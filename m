@@ -1,15 +1,17 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from us-smtp-delivery-195.mimecast.com ([63.128.21.195])
+Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hBhBl-0003yI-0N
- for ath11k@lists.infradead.org; Wed, 03 Apr 2019 14:48:31 +0000
-Received: by mail-pg1-f198.google.com with SMTP id x2so9319377pge.16
- for <ath11k@lists.infradead.org>; Wed, 03 Apr 2019 07:48:24 -0700 (PDT)
-From: Sven Eckelmann <seckelmann@datto.com>
-Subject: ath11k: Meshpoint interfaces with fw 0x30804a5
-Date: Wed, 03 Apr 2019 16:47:58 +0200
-Message-ID: <2316812.VCKJvWO5mf@bentobox>
+ id 1hBswG-0004Vd-OQ
+ for ath11k@lists.infradead.org; Thu, 04 Apr 2019 03:21:18 +0000
 MIME-Version: 1.0
+Content-Type: multipart/mixed;
+ boundary="=_4cf41e0b07b0748347d9d4a44762f165"
+Date: Wed, 03 Apr 2019 20:21:14 -0700
+From: Rajkumar Manoharan <rmanohar@codeaurora.org>
+Subject: Re: ath11k: Meshpoint interfaces with fw 0x30804a5
+In-Reply-To: <cd1c5f61ef06cf858ad650c7529ed2ff@codeaurora.org>
+References: <cd1c5f61ef06cf858ad650c7529ed2ff@codeaurora.org>
+Message-ID: <ff33985163361d7ab73dd658e0410bf6@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -18,282 +20,336 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============4144168379828805117=="
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: Simon Wunderlich <swunderlich@datto.com>, Shashidhar Lakkavalli <slakkavalli@datto.com>
+To: ath11k@lists.infradead.org, seckelmann@datto.com
 
---===============4144168379828805117==
-Content-Type: multipart/signed; boundary="nextPart2320249.TaoVLJRsoN"; micalg="pgp-sha512"; protocol="application/pgp-signature"
-
---nextPart2320249.TaoVLJRsoN
-Content-Type: multipart/mixed; boundary="nextPart4277361.24nD7heDEj"
-Content-Transfer-Encoding: 7Bit
-
-This is a multi-part message in MIME format.
-
---nextPart4277361.24nD7heDEj
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-
-Hi,
-
-I just wanted to try out meshpoint interfaces with firmware 0x30804a5. The 
-change seemed to be a straight forward port from ath10k. But it turned out 
-that the firmware seems to behave significantly different. I saw three 
-unexpected things:
-
-0. firmware dies immediately when using subtype 6 (MESH_11S) during vdev
-   create
-
-    [   28.663988] Fatal error received from wcss software!:
-    [   28.663988] QC Image Version: QC_IMAGE_VERSION_STRING=WLAN.HK.1.1-01967-QCAHKSWPL_SILICONZ-1
-    [   28.663988] Image Variant : IMAGE_VARIANT_STRING=8074.wlanfw.evalQ
-    [   28.663988]
-    [   28.663988] ar_wal_peer.c:7223 Assertion !WAL_IS_TID_QOS_DATA(tidno) failedparam0 :zero, param1 :zero, param2 :zero.
-    [   28.663988] Thread ID      : 0x00000069  Thread name    : WLAN RT0  Process ID     : 0
-    [   28.663988] Register:
-    [   28.663988] SP : 0x4c5a1510
-    [   28.663988] FP : 0x4c5a1518
-    [   28.663988] PC : 0x4b0ba260
-    [   28.663988] SSR : 0x00000008
-    [   28.663988] BADVA : 0x00020000
-    [   28.663988] LR : 0x4b0b9678
-    [   28.663988]
-    [   28.663988] Stack Dump
-    [   28.663988] from : 0x4c5a1510
-    [   28.663988] to   : 0x4c5a1df8
-    [   28.663988]
-    [   28.710734] subsys-restart: subsystem_restart_dev(): Restart sequence requested for q6v5-wcss, restart_level = RELATED.
-    [   28.733017] subsys-restart: subsystem_shutdown(): [kworker/3:1:125]: Shutting down q6v5-m3
-    [   28.743654]  remoteproc0: stopped remote processor q6v5-m3
-    [   28.752024] subsys-restart: subsystem_shutdown(): [kworker/3:1:125]: Shutting down q6v5-wcss
-    [   28.783038]  remoteproc1: stopped remote processor q6v5-wcss
-    [   28.783252] glink_core_link_down glink is down
-    [   28.787759] <SSR>: glink SUBSYS_AFTER_SHUTDOWN cleanup done
-    [   28.842155] glink_xprt_close_event
-    [   30.532142] br-lan: port 2(wlan0-1) entered forwarding state
-    [   31.582164] ath11k c000000.wifi: failed to vdev 1 create peer for AP: -110
-    [   33.802144] open time Out: Q6 crash dump collection failed
-    [   33.802370] subsys-restart: subsystem_ramdump(): q6v5-wcss[kworker/3:1:125]: Ramdump failed.
-    [   33.806617] <SSR>: glink SUBSYS_BEFOER_POWERUP reinit done
-    [   33.815142] ------------[ cut here ]------------
-    [   33.820394] kernel BUG at backports-next-ath11k-20190402/drivers/net/wireless/ath/ath11k/ahb.c:997!
-    [   33.825179] Internal error: Oops - BUG: 0 [#1] PREEMPT SMP
-
-1. WMI commands just timeout (and system is rebooted automatically after a 
-   while) when the meshpoint interface (with subtype 5 during vdev create)
-   is the only existing interface
-
-    [  514.378873] ath11k c000000.wifi: Unknown eventid: 0x3e001
-    [  514.378934] ath11k c000000.wifi: Unknown eventid: 0x3e001
-    [  514.383259] ath11k c000000.wifi: Unknown eventid: 0x3e001
-    [  514.390426] ath11k c000000.wifi: Set slottime: 1 for VDEV: 0
-    [  514.394045] ath11k c000000.wifi: Set preamble: 1 for VDEV: 0
-    [  514.400778] IPv6: ADDRCONF(NETDEV_UP): mesh0: link is not ready
-    [  514.767922] ath11k c000000.wifi: Beacon interval: 100 set for VDEV: 0
-    [  514.768002] ath11k c000000.wifi: Set staggered beacon mode for VDEV: 0
-    [  514.774225] IPv6: ADDRCONF(NETDEV_CHANGE): mesh0: link becomes ready
-    [  514.780195] ath11k c000000.wifi: Added peer: ac:86:74:61:6c:30 for VDEV: 0
-    [  514.787351] ath11k c000000.wifi: Station ac:86:74:61:6c:30 moved to assoc state
-    [  514.793344] ath11k c000000.wifi: Set staggered beacon mode for VDEV: 0
-    [  517.792161] ath11k c000000.wifi: wmi command 16387 timeout
-    [  517.792184] ath11k c000000.wifi: failed to send WMI_PDEV_SET_PARAM cmd
-    [  517.796530] ath11k c000000.wifi: Failed to set beacon mode for VDEV: 0
-    [  520.802153] ath11k c000000.wifi: wmi command 28675 timeout
-    [  520.802175] ath11k c000000.wifi: failed to send WMI_BCN_TMPL_CMDID
-    ....
-    [  531.830735] Fatal error received from wcss software!:
-    [  531.830735] QC Image Version: QC_IMAGE_VERSION_STRING=WLAN.HK.1.1-01967-QCAHKSWPL_SILICONZ-1
-    [  531.830735] Image Variant : IMAGE_VARIANT_STRING=8074.wlanfw.evalQ
-    [  531.830735]
-    [  531.830735] dog_hb.c:209 DOG_HB detects starvation of task "WLAN RT0", triage with its owner(d.dump 0x4b554b50)
-
-2. if I enable an AP device then I see HWMP path discovery Action frames for
-   each outgoing packet. So it looks to me like the response is not coming
-   in correctly (which is the answer from the remote device)
-
-The device is able to receive packets (broadcast/unicast) from two OM5P-ACv2
-when I enable an AP (02:03:7f:12:8b:67) at the same time (see option 2.) as
-the meshpoint interface (00:03:7f:12:8b:67). But sending out is not working 
-at all (no packets in the air but visible in a monitor dump of the ath11k).
-Also not when fixing the path (so no action frames for path discovery are
-required anymore).
-
-1. Where is is the requirement coming from the firmware to have an AP running 
-   at the same time and how to avoid that?
-2. How can I tell the firmware that it should forward the path reply action
-   frame for the path discovery up to us. I can see this frame on a third
-   (capture) device but not when capturing using a monitor interface on the
-   ath11k device.
-
-   * The only action frames I can see are the ones we sent (so which the
-     Linux wifi layer gave back to the monitor interface). All other management
-     frames (send from some remote device) seem to be missing. This became
-     especially obvious when I wanted to check for beacons on the monitor
-     interface.
-
-3. Why does the firmware filter my outgoing unicast/broadcast frames for
-   meshpoint interfaces? (btw. AP is also not working here for me - might be
-   related)
-
-   * I can see them in the monitor dump but not in the air
-
-Just for reference: The meshpoint interfaces were created using following 
-/etc/config/wireless OpenWrt-config:
-
-    config wifi-iface 'wmesh'
-        option device 'radio0'
-        option ifname 'mesh0'
-        option network 'bat0_hardif_mesh0'
-        option mode 'mesh'
-        option mesh_id 'mesh'
-        option mesh_fwding '0'
-        option mesh_ttl '1'
-        option 'mcast_rate' '24000'
-
-Kind regards,
-	Sven
---nextPart4277361.24nD7heDEj
-Content-Disposition: attachment; filename="0001-ath11k-Enable-meshpoint-mode.patch"
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/x-patch; charset="UTF-8"; name="0001-ath11k-Enable-meshpoint-mode.patch"
-
-From 2ad92425c1676f80929f1e2000159dea28d98419 Mon Sep 17 00:00:00 2001
-From: Sven Eckelmann <seckelmann@datto.com>
-Date: Fri, 29 Mar 2019 12:38:52 +0100
-Subject: [PATCH] ath11k: Enable meshpoint interfaces
-
-Signed-off-by: Sven Eckelmann <seckelmann@datto.com>
----
- drivers/net/wireless/ath/ath11k/mac.c | 23 ++++++++++++++++++++++-
- drivers/net/wireless/ath/ath11k/wmi.h |  1 +
- 2 files changed, 23 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index ad75269174dc..305b7ffb8cee 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -1640,6 +1640,13 @@ static void ath11k_bss_info_changed(struct ieee80211_hw *hw,
- 		if (ret)
- 			ath11k_warn(ar->ab, "failed to update bcn template: %d\n",
- 				    ret);
-+
-+		if (ieee80211_vif_is_mesh(vif)) {
-+			/* mesh doesn't use SSID but firmware needs it */
-+			strncpy(arvif->u.ap.ssid, "mesh",
-+				sizeof(arvif->u.ap.ssid));
-+			arvif->u.ap.ssid_len = 4;
-+		}
- 	}
- 
- 	if (changed & BSS_CHANGED_AP_PROBE_RESP) {
-@@ -2150,7 +2157,8 @@ static int ath11k_install_peer_wep_keys(struct ath11k_vif *arvif,
- 
- 	lockdep_assert_held(&ar->conf_mutex);
- 
--	if (WARN_ON(arvif->vif->type != NL80211_IFTYPE_AP))
-+	if (WARN_ON(arvif->vif->type != NL80211_IFTYPE_AP &&
-+		    arvif->vif->type != NL80211_IFTYPE_MESH_POINT))
- 		return -EINVAL;
- 
- 	spin_lock_bh(&ar->data_lock);
-@@ -2744,6 +2752,7 @@ static int ath11k_sta_state(struct ieee80211_hw *hw,
- 	} else if (old_state == IEEE80211_STA_AUTH &&
- 		   new_state == IEEE80211_STA_ASSOC &&
- 		   (vif->type == NL80211_IFTYPE_AP ||
-+		    vif->type == NL80211_IFTYPE_MESH_POINT ||
- 		    vif->type == NL80211_IFTYPE_ADHOC)) {
- 		ret = ath11k_station_assoc(ar, vif, sta, false);
- 		if (ret)
-@@ -2756,6 +2765,7 @@ static int ath11k_sta_state(struct ieee80211_hw *hw,
- 	} else if (old_state == IEEE80211_STA_ASSOC &&
- 		   new_state == IEEE80211_STA_AUTH &&
- 		   (vif->type == NL80211_IFTYPE_AP ||
-+		    vif->type == NL80211_IFTYPE_MESH_POINT ||
- 		    vif->type == NL80211_IFTYPE_ADHOC)) {
- 		ret = ath11k_station_disassoc(ar, vif, sta);
- 		if (ret)
-@@ -3590,6 +3600,10 @@ static int ath11k_add_interface(struct ieee80211_hw *hw,
- 	case NL80211_IFTYPE_STATION:
- 		arvif->vdev_type = WMI_VDEV_TYPE_STA;
- 		break;
-+	case NL80211_IFTYPE_MESH_POINT:
-+		arvif->vdev_type = WMI_VDEV_TYPE_AP;
-+		arvif->vdev_subtype = WMI_VDEV_SUBTYPE_MESH_11S;
-+		break;
- 	case NL80211_IFTYPE_AP:
- 		arvif->vdev_type = WMI_VDEV_TYPE_AP;
- 		break;
-@@ -4841,6 +4855,9 @@ static const struct ieee80211_iface_limit ath11k_if_limits[] = {
- 	{
- 		.max    = 16,
- 		.types  = BIT(NL80211_IFTYPE_AP)
-+#ifdef CPTCFG_MAC80211_MESH
-+			| BIT(NL80211_IFTYPE_MESH_POINT)
-+#endif
- 	},
- };
- 
-@@ -4957,6 +4974,10 @@ static int ath11k_mac_register(struct ath11k *ar)
- 	ar->hw->wiphy->interface_modes = BIT(NL80211_IFTYPE_STATION) |
- 					 BIT(NL80211_IFTYPE_AP);
- 
-+	if (test_bit(WMI_SERVICE_MESH_11S, ar->ab->wmi_sc.svc_map))
-+		ar->hw->wiphy->interface_modes |=
-+			BIT(NL80211_IFTYPE_MESH_POINT);
-+
- 	ieee80211_hw_set(ar->hw, SIGNAL_DBM);
- 	ieee80211_hw_set(ar->hw, SUPPORTS_PS);
- 	ieee80211_hw_set(ar->hw, SUPPORTS_DYNAMIC_PS);
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index 55634b1d5ec2..dba42a3cf9ea 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -4713,6 +4713,7 @@ enum wmi_vdev_subtype {
- 	WMI_VDEV_SUBTYPE_P2P_DEVICE = 1,
- 	WMI_VDEV_SUBTYPE_P2P_CLIENT = 2,
- 	WMI_VDEV_SUBTYPE_P2P_GO     = 3,
-+	WMI_VDEV_SUBTYPE_MESH_11S   = 5,
- };
- 
- enum wmi_sta_powersave_param {
--- 
-2.20.1
+--=_4cf41e0b07b0748347d9d4a44762f165
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 
 
---nextPart4277361.24nD7heDEj--
+> I just wanted to try out meshpoint interfaces with firmware 0x30804a5. 
+> The
+> change seemed to be a straight forward port from ath10k. But it turned 
+> out
+> that the firmware seems to behave significantly different. I saw three
+> unexpected things:
+> 
+> 0. firmware dies immediately when using subtype 6 (MESH_11S) during 
+> vdev
+>    create
+> 
+>     [   28.663988] Fatal error received from wcss software!:
+>     [   28.663988] QC Image Version: 
+> QC_IMAGE_VERSION_STRING=WLAN.HK.1.1-01967-QCAHKSWPL_SILICONZ-1
+>     [   28.663988] Image Variant : 
+> IMAGE_VARIANT_STRING=8074.wlanfw.evalQ
+>     [   28.663988]
+>     [   28.663988] ar_wal_peer.c:7223 Assertion 
+> !WAL_IS_TID_QOS_DATA(tidno) failedparam0 :zero, param1 :zero, param2 
+> :zero.
+> 
+Sven,
 
---nextPart2320249.TaoVLJRsoN
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+Cool... The target assert was fixed in firmware. QCA also is bringing up
+ath11k in MP and with attached list of changes, we were able to send 
+traffic
+open-mesh. Changes are not yet pushed to tree.
 
------BEGIN PGP SIGNATURE-----
+Below issues were observed in bring up and fixed in 
+WLAN.HK.2.1.0.1-00113-QCAHKSWPL_SILICONZ-1 firmware
 
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAlykx54ACgkQXYcKB8Em
-e0b3fxAAw1ijk7dclvcZh0hL977u6Fdo3xAZa97HKYlrcZmYVhUQ5Ty/FH+23PQa
-kTf2kOB5WKAWy07asOkBQ3ewRqIQmZlaltLP8naWM7+ZTJiuCarzbwzfcIWcJjrM
-5+tCDq810BzH6y6A7ObHT0DzpLNF/dVoFUkwKMDXeU2O/t6paPMo+sgvG4S1ntDu
-MWV8ltuTEXKiUTwe+dF3a2p3KtuEq7cdJzeoWb5OtpnJHLulN1Mei8zkdLOyJkpz
-/cNGVCdznKUbnzkxzWJbQPbzb86nRAijhc9gqDtoonxbbpHscdb/Gg6mvTdS9Jic
-S8tmdNZt42nTp6Cz6YVkc23C8S59UNPwizHhS8SLlX4s+miupohYIvdY0cwr+LO9
-ULa1QXQbNKRqwPvIQUg+j9xMmZyYn3ido9yQG/Lo16fB1RKEWwQH21+Af9fpQBzi
-cxnqZ9VWZBjDz80UmS+S5JP0s+JDHVQbRaC+2ssnvQfy41WNtvZO+dNsxvl40zEQ
-P9JFhrDe3J50HDmpbRh51YhVM+RgJCvST6DvfDhQlMAhKQkfKsytssknKAWSEL3V
-7xCLUohdvDcfSB0iW6UquBo4D5LMUgkPrH+w3MM4pqqywwsX/D8tq1hB/otsiCmO
-+pWyIn8FCt07PbUfEkqKRNMLO0eteBg8W9yViUhJMPOL35uC3MM=
-=p5o/
------END PGP SIGNATURE-----
-
---nextPart2320249.TaoVLJRsoN--
+1) Assert in mesh interface creation.
+2) Group action were filtered
+3) fix 4 addr in firmware for mesh peers
 
 
+Moving forward please use 2.1.0-1 firmware release which is meant for 
+ath11k.
+We are still working on to enable secured mesh (SAE).
 
+-Rajkumar
+--=_4cf41e0b07b0748347d9d4a44762f165
+Content-Transfer-Encoding: base64
+Content-Type: text/x-diff; charset=us-ascii;
+ name=mesh_aio.patch
+Content-Disposition: attachment;
+ filename=mesh_aio.patch;
+ size=15378
 
-
---===============4144168379828805117==
+RnJvbSA4YzUwMjRiNDM1MTJhZTU5ODU0MzZjODM1ZDI2MjQwNDFiODIzYTdlIE1vbiBTZXAgMTcg
+MDA6MDA6MDAgMjAwMQpGcm9tOiBSYWprdW1hciBNYW5vaGFyYW4gPHJtYW5vaGFyQGNvZGVhdXJv
+cmEub3JnPgpEYXRlOiBNb24sIDIxIEphbiAyMDE5IDE2OjQ1OjIxIC0wODAwClN1YmplY3Q6IFtQ
+QVRDSCAxLzZdIGF0aDExazogZW5hYmxlIG1lc2ggbW9kZQoKQWxsb3cgTWVzaHBvaW50IGNvbmZp
+Z3VyYXRpb24gZnJvbSBhdGgxMWsgYW5kIGFkdmVydGlzZSBNUApzdXBwb3J0IHRvIG1hYzgwMjEx
+LgoKU2lnbmVkLW9mZi1ieTogUmFqa3VtYXIgTWFub2hhcmFuIDxybWFub2hhckBjb2RlYXVyb3Jh
+Lm9yZz4KLS0tCiBkcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL21hYy5jIHwgMTMgKysr
+KysrKysrKystLQogZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay93bWkuaCB8IDExICsr
+KysrKystLS0tCiAyIGZpbGVzIGNoYW5nZWQsIDE4IGluc2VydGlvbnMoKyksIDYgZGVsZXRpb25z
+KC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9tYWMuYyBi
+L2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvbWFjLmMKaW5kZXggM2Q2MjRhNDZjNjJj
+Li4wN2IzNDBhOTdiZTkgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgx
+MWsvbWFjLmMKKysrIGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9tYWMuYwpAQCAt
+MjE1MCw3ICsyMTUwLDggQEAgc3RhdGljIGludCBhdGgxMWtfaW5zdGFsbF9wZWVyX3dlcF9rZXlz
+KHN0cnVjdCBhdGgxMWtfdmlmICphcnZpZiwKIAogCWxvY2tkZXBfYXNzZXJ0X2hlbGQoJmFyLT5j
+b25mX211dGV4KTsKIAotCWlmIChXQVJOX09OKGFydmlmLT52aWYtPnR5cGUgIT0gTkw4MDIxMV9J
+RlRZUEVfQVApKQorCWlmIChXQVJOX09OKGFydmlmLT52aWYtPnR5cGUgIT0gTkw4MDIxMV9JRlRZ
+UEVfQVAgJiYKKwkJICAgIGFydmlmLT52aWYtPnR5cGUgIT0gTkw4MDIxMV9JRlRZUEVfTUVTSF9Q
+T0lOVCkpCiAJCXJldHVybiAtRUlOVkFMOwogCiAJc3Bpbl9sb2NrX2JoKCZhci0+ZGF0YV9sb2Nr
+KTsKQEAgLTI3MTMsNiArMjcxNCw3IEBAIHN0YXRpYyBpbnQgYXRoMTFrX3N0YV9zdGF0ZShzdHJ1
+Y3QgaWVlZTgwMjExX2h3ICpodywKIAl9IGVsc2UgaWYgKG9sZF9zdGF0ZSA9PSBJRUVFODAyMTFf
+U1RBX0FVVEggJiYKIAkJICAgbmV3X3N0YXRlID09IElFRUU4MDIxMV9TVEFfQVNTT0MgJiYKIAkJ
+ICAgKHZpZi0+dHlwZSA9PSBOTDgwMjExX0lGVFlQRV9BUCB8fAorCQkgICAgdmlmLT50eXBlID09
+IE5MODAyMTFfSUZUWVBFX01FU0hfUE9JTlQgfHwKIAkJICAgIHZpZi0+dHlwZSA9PSBOTDgwMjEx
+X0lGVFlQRV9BREhPQykpIHsKIAkJcmV0ID0gYXRoMTFrX3N0YXRpb25fYXNzb2MoYXIsIHZpZiwg
+c3RhLCBmYWxzZSk7CiAJCWlmIChyZXQpCkBAIC0yNzI1LDYgKzI3MjcsNyBAQCBzdGF0aWMgaW50
+IGF0aDExa19zdGFfc3RhdGUoc3RydWN0IGllZWU4MDIxMV9odyAqaHcsCiAJfSBlbHNlIGlmIChv
+bGRfc3RhdGUgPT0gSUVFRTgwMjExX1NUQV9BU1NPQyAmJgogCQkgICBuZXdfc3RhdGUgPT0gSUVF
+RTgwMjExX1NUQV9BVVRIICYmCiAJCSAgICh2aWYtPnR5cGUgPT0gTkw4MDIxMV9JRlRZUEVfQVAg
+fHwKKwkJICAgIHZpZi0+dHlwZSA9PSBOTDgwMjExX0lGVFlQRV9NRVNIX1BPSU5UIHx8CiAJCSAg
+ICB2aWYtPnR5cGUgPT0gTkw4MDIxMV9JRlRZUEVfQURIT0MpKSB7CiAJCXJldCA9IGF0aDExa19z
+dGF0aW9uX2Rpc2Fzc29jKGFyLCB2aWYsIHN0YSk7CiAJCWlmIChyZXQpCkBAIC0zNTYyLDYgKzM1
+NjUsOCBAQCBzdGF0aWMgaW50IGF0aDExa19hZGRfaW50ZXJmYWNlKHN0cnVjdCBpZWVlODAyMTFf
+aHcgKmh3LAogCWNhc2UgTkw4MDIxMV9JRlRZUEVfU1RBVElPTjoKIAkJYXJ2aWYtPnZkZXZfdHlw
+ZSA9IFdNSV9WREVWX1RZUEVfU1RBOwogCQlicmVhazsKKwljYXNlIE5MODAyMTFfSUZUWVBFX01F
+U0hfUE9JTlQ6CisJCWFydmlmLT52ZGV2X3N1YnR5cGUgPSBXTUlfVkRFVl9TVUJUWVBFX01FU0hf
+MTFTOwogCWNhc2UgTkw4MDIxMV9JRlRZUEVfQVA6CiAJCWFydmlmLT52ZGV2X3R5cGUgPSBXTUlf
+VkRFVl9UWVBFX0FQOwogCQlicmVhazsKQEAgLTQ4MTMsNiArNDgxOCw5IEBAIHN0YXRpYyBpbnQg
+YXRoMTFrX2dldF9zdXJ2ZXkoc3RydWN0IGllZWU4MDIxMV9odyAqaHcsIGludCBpZHgsCiAJewog
+CQkubWF4ICAgID0gMTYsCiAJCS50eXBlcyAgPSBCSVQoTkw4MDIxMV9JRlRZUEVfQVApCisjaWZk
+ZWYgQ09ORklHX01BQzgwMjExX01FU0gKKwkJCXwgQklUKE5MODAyMTFfSUZUWVBFX01FU0hfUE9J
+TlQpCisjZW5kaWYKIAl9LAogfTsKIApAQCAtNDkyNyw3ICs0OTM1LDggQEAgc3RhdGljIGludCBh
+dGgxMWtfbWFjX3JlZ2lzdGVyKHN0cnVjdCBhdGgxMWsgKmFyKQogCWFyLT5ody0+d2lwaHktPmF2
+YWlsYWJsZV9hbnRlbm5hc190eCA9IGNhcC0+dHhfY2hhaW5fbWFzazsKIAogCWFyLT5ody0+d2lw
+aHktPmludGVyZmFjZV9tb2RlcyA9IEJJVChOTDgwMjExX0lGVFlQRV9TVEFUSU9OKSB8Ci0JCQkJ
+CSBCSVQoTkw4MDIxMV9JRlRZUEVfQVApOworCQkJCQkgQklUKE5MODAyMTFfSUZUWVBFX0FQKSB8
+CisJCQkJCSBCSVQoTkw4MDIxMV9JRlRZUEVfTUVTSF9QT0lOVCk7CiAKIAlpZWVlODAyMTFfaHdf
+c2V0KGFyLT5odywgU0lHTkFMX0RCTSk7CiAJaWVlZTgwMjExX2h3X3NldChhci0+aHcsIFNVUFBP
+UlRTX1BTKTsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvd21p
+LmggYi9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL3dtaS5oCmluZGV4IDA2YmE3Y2Rk
+OWMxMC4uYzI1ZWQzOTM0ZmI3IDEwMDY0NAotLS0gYS9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgv
+YXRoMTFrL3dtaS5oCisrKyBiL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvd21pLmgK
+QEAgLTQ2ODUsMTAgKzQ2ODUsMTMgQEAgZW51bSB3bWlfdmRldl90eXBlIHsKIH07CiAKIGVudW0g
+d21pX3ZkZXZfc3VidHlwZSB7Ci0JV01JX1ZERVZfU1VCVFlQRV9OT05FICAgICAgID0gMCwKLQlX
+TUlfVkRFVl9TVUJUWVBFX1AyUF9ERVZJQ0UgPSAxLAotCVdNSV9WREVWX1NVQlRZUEVfUDJQX0NM
+SUVOVCA9IDIsCi0JV01JX1ZERVZfU1VCVFlQRV9QMlBfR08gICAgID0gMywKKwlXTUlfVkRFVl9T
+VUJUWVBFX05PTkUsCisJV01JX1ZERVZfU1VCVFlQRV9QMlBfREVWSUNFLAorCVdNSV9WREVWX1NV
+QlRZUEVfUDJQX0NMSUVOVCwKKwlXTUlfVkRFVl9TVUJUWVBFX1AyUF9HTywKKwlXTUlfVkRFVl9T
+VUJUWVBFX1BST1hZX1NUQSwKKwlXTUlfVkRFVl9TVUJUWVBFX01FU0hfTk9OXzExUywKKwlXTUlf
+VkRFVl9TVUJUWVBFX01FU0hfMTFTLAogfTsKIAogZW51bSB3bWlfc3RhX3Bvd2Vyc2F2ZV9wYXJh
+bSB7Ci0tIAoxLjkuMQoKCkZyb20gNzdjMDE1NmQ4ZjRlZWNhNTE4ZGM2Mzk0NmI0MTNjMTEyNzMy
+M2RiZSBNb24gU2VwIDE3IDAwOjAwOjAwIDIwMDEKRnJvbTogUmFqa3VtYXIgTWFub2hhcmFuIDxy
+bWFub2hhckBjb2RlYXVyb3JhLm9yZz4KRGF0ZTogV2VkLCAxMyBNYXIgMjAxOSAxMToyMTo1NCAt
+MDcwMApTdWJqZWN0OiBbUEFUQ0ggMi82XSBhdGgxMWs6IGFsbG93IDQgYWRkcmVzcyB0cmFuc21p
+c3Npb24gZm9yIG1lc2ggcGFja2V0CgpJbmZvcm0gdGhlIHRhcmdldCB0byB1c2UgNCBhZHJlc3Nz
+ZXMgaW4gODAyLjExIGhlYWRlciBmb3IgbWVzaCBkYXRhCmJ5IG1hcmtpbmcgdGhlIHBlZXIgaXMg
+Y2FwYWJsZSBvZiBvcGVyYXRpbmcgaW4gNCBhZGRyZXNzIGZvcm1hdC4KQWxzbyBlbnN1cmUgdG8g
+aW5mb3JtIFRDTCByaW5nIHRoYXQgbWVzaCBoZWFkZXIgaXMgcGVzZW50IGluIHBheWxvYWQuClRo
+aXMgd2lsbCBiZSB1c2VmdWwgZm9yIGVuYWJsaW5nIEhXIGNoZWNrc3VtbWluZyBmb3JtIG1lc2gg
+cGFja2V0cy4KCkNvLURldmVsb3BlZC1ieTogUHJhZGVlcCBLdW1hciBDaGl0cmFwdSA8cHJhZGVl
+cGNAY29kZWF1cm9yYS5vcmc+ClNpZ25lZC1vZmYtYnk6IFByYWRlZXAgS3VtYXIgQ2hpdHJhcHUg
+PHByYWRlZXBjQGNvZGVhdXJvcmEub3JnPgpTaWduZWQtb2ZmLWJ5OiBSYWprdW1hciBNYW5vaGFy
+YW4gPHJtYW5vaGFyQGNvZGVhdXJvcmEub3JnPgotLS0KIGRyaXZlcnMvbmV0L3dpcmVsZXNzL2F0
+aC9hdGgxMWsvZHBfdHguYyB8IDMgKysrCiBkcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFr
+L21hYy5jICAgfCA5ICsrKysrKysrKwogMiBmaWxlcyBjaGFuZ2VkLCAxMiBpbnNlcnRpb25zKCsp
+CgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9kcF90eC5jIGIv
+ZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9kcF90eC5jCmluZGV4IGVlZGY4YTQ2NWRi
+Ni4uMzNiMTkwZWQ5ZDdjIDEwMDY0NAotLS0gYS9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRo
+MTFrL2RwX3R4LmMKKysrIGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9kcF90eC5j
+CkBAIC0xMjgsNyArMTI4LDEwIEBAIGludCBhdGgxMWtfZHBfdHgoc3RydWN0IGF0aDExayAqYXIs
+IHN0cnVjdCBhdGgxMWtfdmlmICphcnZpZiwKIAkJCSAgICAgRklFTERfUFJFUChIQUxfVENMX0RB
+VEFfQ01EX0lORk8xX1RDUDZfQ0tTVU1fRU4sIDEpOwogCX0KIAorCWlmIChpZWVlODAyMTFfdmlm
+X2lzX21lc2goYXJ2aWYtPnZpZikpCisJCXRpLmZsYWdzMSB8PSBGSUVMRF9QUkVQKEhBTF9UQ0xf
+REFUQV9DTURfSU5GTzJfTUVTSF9FTkFCTEUsIDEpOwogCXRpLmZsYWdzMSB8PSBGSUVMRF9QUkVQ
+KEhBTF9UQ0xfREFUQV9DTURfSU5GTzJfVElEX09WRVJXUklURSwgMSk7CisKIAl0aS50aWQgPSBh
+dGgxMWtfZHBfZ2V0X3RpZChza2IpOwogCiAJc3dpdGNoICh0aS5lbmNhcF90eXBlKSB7CmRpZmYg
+LS1naXQgYS9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL21hYy5jIGIvZHJpdmVycy9u
+ZXQvd2lyZWxlc3MvYXRoL2F0aDExay9tYWMuYwppbmRleCAwN2IzNDBhOTdiZTkuLjE0YmQxZTg2
+YzZmNCAxMDA2NDQKLS0tIGEvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9tYWMuYwor
+KysgYi9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL21hYy5jCkBAIC0yNDg3LDYgKzI0
+ODcsMTUgQEAgc3RhdGljIGludCBhdGgxMWtfc3RhdGlvbl9hc3NvYyhzdHJ1Y3QgYXRoMTFrICph
+ciwKIAkJfQogCX0KIAorCWlmIChpZWVlODAyMTFfdmlmX2lzX21lc2godmlmKSkgeworCQlyZXQg
+PSBhdGgxMWtfd21pX3NldF9wZWVyX3BhcmFtKGFyLCBzdGEtPmFkZHIsIGFydmlmLT52ZGV2X2lk
+LAorCQkJCQkJV01JX1BFRVJfVVNFXzRBRERSLCAxKTsKKwkJaWYgKHJldCkgeworCQkJYXRoMTFr
+X3dhcm4oYXItPmFiLCAiZmFpbGVkIHRvIFNUQSAlcE0gNGFkZHIgY2FwYWJpbGl0eTogJWRcbiIs
+CisJCQkJICAgIHN0YS0+YWRkciwgcmV0KTsKKwkJfQorCX0KKwogCXJldHVybiAwOwogfQogCi0t
+IAoxLjkuMQoKCkZyb20gN2NkNWM4MmIzMTYyYTQxZTE1NjI0MGVkNmQzZmY3NGYxZmZjNzQ1ZiBN
+b24gU2VwIDE3IDAwOjAwOjAwIDIwMDEKRnJvbTogUmFqa3VtYXIgTWFub2hhcmFuIDxybWFub2hh
+ckBjb2RlYXVyb3JhLm9yZz4KRGF0ZTogVGh1LCAyOCBNYXIgMjAxOSAxMzozNDoxOCAtMDcwMApT
+dWJqZWN0OiBbUEFUQ0ggMy82XSBhdGgxMWs6IGhhbmRsZSBlbmNyeXB0ZWQgbWVzaCBncm91cCBh
+Y3Rpb24gZnJhbWUKCkZpcm13YXJlIGRlbGl2ZXJzIG1lc2ggZ3JvdXAgYWN0aW9uIGZyYW1lIGFz
+IGVuY3J5cHRlZCBwYXlsb2FkLgpUbyBhbGxvdyBzb2Z0d2FyZSBkZWNyeXB0aW9uIGZvciB0aGVz
+ZSBncm91cCBhY3Rpb24gZnJhbWVzLCByeApzdGF0dXMgc2hvdWxkIG5vdCBiZSBtYXJrZWQgYXMg
+UlhfRkxBR19ERUNSWVBURUQgYW5kIHByb3RlY3RlZApiaXQgaW4gZnJhbWUgY29udHJvbCBzaG91
+bGQgbm90IGJlIGNsZWFyZWQuCgpUZXN0ZWQtYnk6IFByYWRlZXAgS3VtYXIgQ2hpdHJhcHUgPHBy
+YWRlZXBjQGNvZGVhdXJvcmEub3JnPgpTaWduZWQtb2ZmLWJ5OiBSYWprdW1hciBNYW5vaGFyYW4g
+PHJtYW5vaGFyQGNvZGVhdXJvcmEub3JnPgotLS0KIGRyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9h
+dGgxMWsvd21pLmMgfCA1NiArKysrKysrKysrKysrKysrKysrKysrKy0tLS0tLS0tLS0tLQogMSBm
+aWxlIGNoYW5nZWQsIDM3IGluc2VydGlvbnMoKyksIDE5IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvd21pLmMgYi9kcml2ZXJzL25ldC93
+aXJlbGVzcy9hdGgvYXRoMTFrL3dtaS5jCmluZGV4IGUyOGNhZmU1ZDk0Zi4uZDk4M2JiYmRmZWYw
+IDEwMDY0NAotLS0gYS9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL3dtaS5jCisrKyBi
+L2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvd21pLmMKQEAgLTM1MDksMjAgKzM1MDks
+MjIgQEAgaW50IGF0aDExa19wdWxsX3ZkZXZfc3RvcHBlZF9wYXJhbV90bHYoc3RydWN0IGF0aDEx
+a19iYXNlICphYiwgdTggKmV2dF9idWYsCiAvKiBJZiBrZXlzIGFyZSBjb25maWd1cmVkLCBIVyBk
+ZWNyeXB0cyBhbGwgZnJhbWVzCiAgKiB3aXRoIHByb3RlY3RlZCBiaXQgc2V0LiBNYXJrIHN1Y2gg
+ZnJhbWVzIGFzIGRlY3J5cHRlZC4KICAqLwotc3RhdGljIGJvb2wgYXRoMTFrX3dtaV9jaGVja193
+ZXBfcmVhdXRoKHN0cnVjdCBhdGgxMWtfYmFzZSAqYWIsCi0JCQkJCXN0cnVjdCBza19idWZmICpz
+a2IpCitzdGF0aWMgdm9pZCBhdGgxMWtfd21pX2hhbmRsZV93ZXBfcmVhdXRoKHN0cnVjdCBhdGgx
+MWtfYmFzZSAqYWIsCisJCQkJCSBzdHJ1Y3Qgc2tfYnVmZiAqc2tiLAorCQkJCQkgc3RydWN0IGll
+ZWU4MDIxMV9yeF9zdGF0dXMgKnN0YXR1cykKIHsKIAlzdHJ1Y3QgaWVlZTgwMjExX2hkciAqaGRy
+ID0gKHN0cnVjdCBpZWVlODAyMTFfaGRyICopc2tiLT5kYXRhOwogCXVuc2lnbmVkIGludCBoZHJs
+ZW47CiAJYm9vbCBwZWVyX2tleTsKIAl1OCAqYWRkciwga2V5aWR4OwogCi0JaWYgKCFpZWVlODAy
+MTFfaXNfYXV0aChoZHItPmZyYW1lX2NvbnRyb2wpKQotCQlyZXR1cm4gZmFsc2U7CisJaWYgKCFp
+ZWVlODAyMTFfaXNfYXV0aChoZHItPmZyYW1lX2NvbnRyb2wpIHx8CisJICAgICFpZWVlODAyMTFf
+aGFzX3Byb3RlY3RlZChoZHItPmZyYW1lX2NvbnRyb2wpKQorCQlyZXR1cm47CiAKIAloZHJsZW4g
+PSBpZWVlODAyMTFfaGRybGVuKGhkci0+ZnJhbWVfY29udHJvbCk7CiAJaWYgKHNrYi0+bGVuIDwg
+KGhkcmxlbiArIElFRUU4MDIxMV9XRVBfSVZfTEVOKSkKLQkJcmV0dXJuIGZhbHNlOworCQlyZXR1
+cm47CiAKIAlrZXlpZHggPSBza2ItPmRhdGFbaGRybGVuICsgKElFRUU4MDIxMV9XRVBfSVZfTEVO
+IC0gMSldID4+IFdFUF9LRVlJRF9TSElGVDsKIAlhZGRyID0gaWVlZTgwMjExX2dldF9TQShoZHIp
+OwpAQCAtMzUzNCwxMCArMzUzNiw4IEBAIHN0YXRpYyBib29sIGF0aDExa193bWlfY2hlY2tfd2Vw
+X3JlYXV0aChzdHJ1Y3QgYXRoMTFrX2Jhc2UgKmFiLAogCWlmIChwZWVyX2tleSkgewogCQlhdGgx
+MWtfZGJnKGFiLCBBVEgxMUtfREJHX01BQywKIAkJCSAgICJtYWMgd2VwIGtleSBwcmVzZW50IGZv
+ciBwZWVyICVwTVxuIiwgYWRkcik7Ci0JCXJldHVybiB0cnVlOworCQlzdGF0dXMtPmZsYWcgfD0g
+UlhfRkxBR19ERUNSWVBURUQ7CiAJfQotCi0JcmV0dXJuIGZhbHNlOwogfQogCiBpbnQgYXRoMTFr
+X3B1bGxfbWdtdF9yeF9wYXJhbXNfdGx2KHN0cnVjdCBhdGgxMWtfYmFzZSAqYWIsCkBAIC01MDYw
+LDYgKzUwNjAsMjggQEAgdm9pZCBhdGgxMWtfdmRldl9zdG9wcGVkX2V2ZW50KHN0cnVjdCBhdGgx
+MWtfYmFzZSAqYWIsIHU4ICpldnRfYnVmLCB1MzIgbGVuKQogCWF0aDExa19kYmcoYWIsIEFUSDEx
+S19EQkdfV01JLCAidmRldiBzdG9wcGVkIGZvciB2ZGV2IGlkICVkIiwgdmRldl9pZCk7CiB9CiAK
+K3N0YXRpYyBib29sIGF0aDExa193bWlfcnhfaXNfZGVjcnlwdGVkKHN0cnVjdCBpZWVlODAyMTFf
+aGRyICpoZHIpCit7CisJaWYgKCFpZWVlODAyMTFfaGFzX3Byb3RlY3RlZChoZHItPmZyYW1lX2Nv
+bnRyb2wpKQorCQlyZXR1cm4gZmFsc2U7CisKKwkvKiBGVyBkZWxpdmVycyBXRVAgU2hhcmVkIEF1
+dGggZnJhbWUgd2l0aCBQcm90ZWN0ZWQgQml0IHNldCBhbmQKKwkgKiBlbmNyeXB0ZWQgcGF5bG9h
+ZC4gSG93ZXZlciBpbiBjYXNlIG9mIFBNRiBpdCBkZWxpdmVycyBkZWNyeXB0ZWQKKwkgKiBmcmFt
+ZXMgd2l0aCBQcm90ZWN0ZWQgQml0IHNldC4KKwkgKi8KKwlpZiAoaWVlZTgwMjExX2lzX2F1dGgo
+aGRyLT5mcmFtZV9jb250cm9sKSkKKwkJcmV0dXJuIGZhbHNlOworCisJLyogRlcgZGVsaXZlcnMg
+YnJvYWRjYXN0IG9yIG11bHRpY2FzdCBtYW5hZ2VtZW50IGZyYW1lcworCSAqIChleDogZ3JvdXAg
+cHJpdmFjeSBhY3Rpb24gZnJhbWVzIGluIG1lc2gpIGFzIGVuY3J5cHRlZCBwYXlsb2FkLgorCSAq
+LworCWlmIChpc19tdWx0aWNhc3RfZXRoZXJfYWRkcihpZWVlODAyMTFfZ2V0X0RBKGhkcikpKQor
+CQlyZXR1cm4gZmFsc2U7CisKKwlyZXR1cm4gdHJ1ZTsKK30KKworCiB2b2lkIGF0aDExa19tZ210
+X3J4X2V2ZW50KHN0cnVjdCBhdGgxMWtfYmFzZSAqYWIsIHN0cnVjdCBza19idWZmICpza2IpCiB7
+CiAJc3RydWN0IG1nbXRfcnhfZXZlbnRfcGFyYW1zIHJ4X2V2OwpAQCAtNTEzNSwxOCArNTE1Nywx
+NCBAQCB2b2lkIGF0aDExa19tZ210X3J4X2V2ZW50KHN0cnVjdCBhdGgxMWtfYmFzZSAqYWIsIHN0
+cnVjdCBza19idWZmICpza2IpCiAJICovCiAJc3RhdHVzLT5mbGFnIHw9IFJYX0ZMQUdfU0tJUF9N
+T05JVE9SOwogCi0JaWYgKGllZWU4MDIxMV9oYXNfcHJvdGVjdGVkKGhkci0+ZnJhbWVfY29udHJv
+bCkpIHsKLQkJLyogRlcgZGVsaXZlcnMgV0VQIFNoYXJlZCBBdXRoIGZyYW1lIHdpdGggUHJvdGVj
+dGVkIEJpdCBzZXQgYW5kCi0JCSAqIGVuY3J5cHRlZCBwYXlsb2FkLgotCQkgKi8KLQkJaWYgKGF0
+aDExa193bWlfY2hlY2tfd2VwX3JlYXV0aChhYiwgc2tiKSkgewotCQkJc3RhdHVzLT5mbGFnIHw9
+IFJYX0ZMQUdfREVDUllQVEVEOwotCQkvKiBIb3dldmVyIGluIGNhc2Ugb2YgUE1GLCBGVyBkZWxp
+dmVycyBkZWNyeXB0ZWQgZnJhbWVzCi0JCSAqIHdpdGggUHJvdGVjdGVkIEJpdCBzZXQuIERvbid0
+IGNsZWFyIHRoYXQuCi0JCSAqLwotCQl9IGVsc2UgaWYgKCFpZWVlODAyMTFfaXNfcm9idXN0X21n
+bXRfZnJhbWUoc2tiKSkgIHsKLQkJCXN0YXR1cy0+ZmxhZyB8PSBSWF9GTEFHX0RFQ1JZUFRFRDsK
+KwlhdGgxMWtfd21pX2hhbmRsZV93ZXBfcmVhdXRoKGFiLCBza2IsIHN0YXR1cyk7CisKKwlpZiAo
+YXRoMTFrX3dtaV9yeF9pc19kZWNyeXB0ZWQoaGRyKSkgeworCQlzdGF0dXMtPmZsYWcgfD0gUlhf
+RkxBR19ERUNSWVBURUQ7CiAKKwkJaWYgKCFpZWVlODAyMTFfaXNfYWN0aW9uKGhkci0+ZnJhbWVf
+Y29udHJvbCkgJiYKKwkJICAgICFpZWVlODAyMTFfaXNfZGVhdXRoKGhkci0+ZnJhbWVfY29udHJv
+bCkgJiYKKwkJICAgICFpZWVlODAyMTFfaXNfZGlzYXNzb2MoaGRyLT5mcmFtZV9jb250cm9sKSkg
+ewogCQkJc3RhdHVzLT5mbGFnIHw9IFJYX0ZMQUdfSVZfU1RSSVBQRUQgfAogCQkJCQlSWF9GTEFH
+X01NSUNfU1RSSVBQRUQ7CiAJCQloZHItPmZyYW1lX2NvbnRyb2wgPSBfX2NwdV90b19sZTE2KGZj
+ICYKLS0gCjEuOS4xCgoKRnJvbSAxM2VkNGMxZGUyNTk1ZjVjZTIxYzA5NjE1OTc0YTA4NmJmY2Jl
+MjJjIE1vbiBTZXAgMTcgMDA6MDA6MDAgMjAwMQpGcm9tOiBSYWprdW1hciBNYW5vaGFyYW4gPHJt
+YW5vaGFyQGNvZGVhdXJvcmEub3JnPgpEYXRlOiBUaHUsIDI4IE1hciAyMDE5IDE2OjQ1OjExIC0w
+NzAwClN1YmplY3Q6IFtQQVRDSCA0LzZdIGF0aDExazogYWxsb3cgc29mdHdhcmUgZW5jcnlwdGlv
+biBvZiBHTUFDL0NNQUMgY2lwaGVycwoKVW50aWwgaGFyZHdhcmQgZW5jcnlwdGlvbiBvZiBDTUFD
+L0dNQUMgY2lwaGVycyBhcmUgcHJvcGVybHkKdmFsaWRhdGVkLCBhbGxvdyBvbmx5IHNvZnR3YXJl
+IGVuY3J5cHRpb24gZm9yIG5vdy4KClNpZ25lZC1vZmYtYnk6IFJhamt1bWFyIE1hbm9oYXJhbiA8
+cm1hbm9oYXJAY29kZWF1cm9yYS5vcmc+Ci0tLQogZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0
+aDExay9tYWMuYyB8IDIzICsrKysrKysrKysrKysrKysrKy0tLS0tCiAxIGZpbGUgY2hhbmdlZCwg
+MTggaW5zZXJ0aW9ucygrKSwgNSBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL25l
+dC93aXJlbGVzcy9hdGgvYXRoMTFrL21hYy5jIGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0
+aDExay9tYWMuYwppbmRleCAxNGJkMWU4NmM2ZjQuLjEyMDI0NmM5YjUzNiAxMDA2NDQKLS0tIGEv
+ZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9tYWMuYworKysgYi9kcml2ZXJzL25ldC93
+aXJlbGVzcy9hdGgvYXRoMTFrL21hYy5jCkBAIC0yMDMwLDcgKzIwMzAsNiBAQCBzdGF0aWMgaW50
+IGF0aDExa19pbnN0YWxsX2tleShzdHJ1Y3QgYXRoMTFrX3ZpZiAqYXJ2aWYsCiAJc3dpdGNoIChr
+ZXktPmNpcGhlcikgewogCWNhc2UgV0xBTl9DSVBIRVJfU1VJVEVfQ0NNUDoKIAkJYXJnLmtleV9j
+aXBoZXIgPSBXTUlfQ0lQSEVSX0FFU19DQ007Ci0JCS8qIFRPRE86IFJlLWNoZWNrIGlmIGZsYWcg
+aXMgdmFsaWQgKi8KIAkJa2V5LT5mbGFncyB8PSBJRUVFODAyMTFfS0VZX0ZMQUdfR0VORVJBVEVf
+SVZfTUdNVDsKIAkJYnJlYWs7CiAJY2FzZSBXTEFOX0NJUEhFUl9TVUlURV9US0lQOgpAQCAtMjA0
+OSwxMiArMjA0OCwxMiBAQCBzdGF0aWMgaW50IGF0aDExa19pbnN0YWxsX2tleShzdHJ1Y3QgYXRo
+MTFrX3ZpZiAqYXJ2aWYsCiAJY2FzZSBXTEFOX0NJUEhFUl9TVUlURV9HQ01QXzI1NjoKIAkJYXJn
+LmtleV9jaXBoZXIgPSBXTUlfQ0lQSEVSX0FFU19HQ007CiAJCWJyZWFrOwotCWNhc2UgV0xBTl9D
+SVBIRVJfU1VJVEVfQklQX0dNQUNfMTI4OgotCWNhc2UgV0xBTl9DSVBIRVJfU1VJVEVfQklQX0dN
+QUNfMjU2OgotCQlhcmcua2V5X2NpcGhlciA9IFdNSV9DSVBIRVJfQUVTX0dNQUM7CiAJY2FzZSBX
+TEFOX0NJUEhFUl9TVUlURV9BRVNfQ01BQzoKIAljYXNlIFdMQU5fQ0lQSEVSX1NVSVRFX0JJUF9D
+TUFDXzI1NjoKLQkJYXJnLmtleV9jaXBoZXIgPSBXTUlfQ0lQSEVSX0FFU19DTUFDOworCWNhc2Ug
+V0xBTl9DSVBIRVJfU1VJVEVfQklQX0dNQUNfMTI4OgorCWNhc2UgV0xBTl9DSVBIRVJfU1VJVEVf
+QklQX0dNQUNfMjU2OgorCQlXQVJOX09OKDEpOworCQlyZXR1cm4gLUVJTlZBTDsKIAlkZWZhdWx0
+OgogCQlhdGgxMWtfd2Fybihhci0+YWIsICJjaXBoZXIgJWQgaXMgbm90IHN1cHBvcnRlZFxuIiwg
+a2V5LT5jaXBoZXIpOwogCQlyZXR1cm4gLUVPUE5PVFNVUFA7CkBAIC0yMjM3LDYgKzIyMzYsMTMg
+QEAgc3RhdGljIGludCBhdGgxMWtfc2V0X2tleShzdHJ1Y3QgaWVlZTgwMjExX2h3ICpodywgZW51
+bSBzZXRfa2V5X2NtZCBjbWQsCiAJaW50IHJldCA9IDA7CiAJdTMyIGZsYWdzID0gMDsKIAorCS8q
+IHRoaXMgb25lIG5lZWRzIHRvIGJlIGRvbmUgaW4gc29mdHdhcmUgKi8KKwlpZiAoa2V5LT5jaXBo
+ZXIgPT0gV0xBTl9DSVBIRVJfU1VJVEVfQUVTX0NNQUMgfHwKKwkgICAga2V5LT5jaXBoZXIgPT0g
+V0xBTl9DSVBIRVJfU1VJVEVfQklQX0NNQUNfMjU2IHx8CisJICAgIGtleS0+Y2lwaGVyID09IFdM
+QU5fQ0lQSEVSX1NVSVRFX0JJUF9HTUFDXzEyOCB8fAorCSAgICBrZXktPmNpcGhlciA9PSBXTEFO
+X0NJUEhFUl9TVUlURV9CSVBfR01BQ18yNTYpCisJCXJldHVybiAxOworCiAJaWYgKGtleS0+a2V5
+aWR4ID4gV01JX01BWF9LRVlfSU5ERVgpCiAJCXJldHVybiAtRU5PU1BDOwogCkBAIC00OTIyLDcg
+KzQ5MjgsMTQgQEAgc3RhdGljIGludCBhdGgxMWtfbWFjX3JlZ2lzdGVyKHN0cnVjdCBhdGgxMWsg
+KmFyKQogCQlXTEFOX0NJUEhFUl9TVUlURV9XRVAxMDQsCiAJCVdMQU5fQ0lQSEVSX1NVSVRFX1RL
+SVAsCiAJCVdMQU5fQ0lQSEVSX1NVSVRFX0NDTVAsCisJCVdMQU5fQ0lQSEVSX1NVSVRFX0dDTVAs
+CisJCVdMQU5fQ0lQSEVSX1NVSVRFX0dDTVBfMjU2LAorCQlXTEFOX0NJUEhFUl9TVUlURV9DQ01Q
+XzI1NiwKKwkJLyogU29mdHdhcmUgZW5jcnlwdGlvbiBjaXBoZXJzICovCiAJCVdMQU5fQ0lQSEVS
+X1NVSVRFX0FFU19DTUFDLAorCQlXTEFOX0NJUEhFUl9TVUlURV9CSVBfQ01BQ18yNTYsCisJCVdM
+QU5fQ0lQSEVSX1NVSVRFX0JJUF9HTUFDXzEyOCwKKwkJV0xBTl9DSVBIRVJfU1VJVEVfQklQX0dN
+QUNfMjU2LAogCX07CiAJaW50IHJldDsKIAl1MzIgaHRfY2FwID0gMDsKLS0gCjEuOS4xCgoKRnJv
+bSA3NDc1OGI4NDViZDY5ZjMzOTI3MTQ1N2FlNGZiOGQwNjdhNzY5YWQ2IE1vbiBTZXAgMTcgMDA6
+MDA6MDAgMjAwMQpGcm9tOiBSYWprdW1hciBNYW5vaGFyYW4gPHJtYW5vaGFyQGNvZGVhdXJvcmEu
+b3JnPgpEYXRlOiBUaHUsIDI4IE1hciAyMDE5IDE3OjE0OjM4IC0wNzAwClN1YmplY3Q6IFtQQVRD
+SCA1LzZdIGF0aDExazogZml4IGtleSBkZWxldGlvbgoKU2lnbmVkLW9mZi1ieTogUmFqa3VtYXIg
+TWFub2hhcmFuIDxybWFub2hhckBjb2RlYXVyb3JhLm9yZz4KLS0tCiBkcml2ZXJzL25ldC93aXJl
+bGVzcy9hdGgvYXRoMTFrL21hYy5jIHwgMTQgKysrKystLS0tLS0tLS0KIGRyaXZlcnMvbmV0L3dp
+cmVsZXNzL2F0aC9hdGgxMWsvd21pLmMgfCAgMyArKy0KIDIgZmlsZXMgY2hhbmdlZCwgNyBpbnNl
+cnRpb25zKCspLCAxMCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL25ldC93aXJl
+bGVzcy9hdGgvYXRoMTFrL21hYy5jIGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9t
+YWMuYwppbmRleCAxMjAyNDZjOWI1MzYuLjFkZmMxMGQ5NTRhOSAxMDA2NDQKLS0tIGEvZHJpdmVy
+cy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9tYWMuYworKysgYi9kcml2ZXJzL25ldC93aXJlbGVz
+cy9hdGgvYXRoMTFrL21hYy5jCkBAIC0yMDE5LDE0ICsyMDE5LDYgQEAgc3RhdGljIGludCBhdGgx
+MWtfaW5zdGFsbF9rZXkoc3RydWN0IGF0aDExa192aWYgKmFydmlmLAogCiAJcmVpbml0X2NvbXBs
+ZXRpb24oJmFyLT5pbnN0YWxsX2tleV9kb25lKTsKIAotCWlmIChjbWQgPT0gRElTQUJMRV9LRVkp
+IHsKLQkJLyogVE9ETzogQ2hlY2sgaWYgRlcgZXhwZWN0cyAgdmFsdWUgb3RoZXIgdGhhbiBOT05F
+IGZvciBkZWwgKi8KLQkJLyogYXJnLmtleV9jaXBoZXIgPSBXTUlfQ0lQSEVSX05PTkU7ICovCi0J
+CWFyZy5rZXlfbGVuID0gMDsKLQkJYXJnLmtleV9kYXRhID0gTlVMTDsKLQkJZ290byBpbnN0YWxs
+OwotCX0KLQogCXN3aXRjaCAoa2V5LT5jaXBoZXIpIHsKIAljYXNlIFdMQU5fQ0lQSEVSX1NVSVRF
+X0NDTVA6CiAJCWFyZy5rZXlfY2lwaGVyID0gV01JX0NJUEhFUl9BRVNfQ0NNOwpAQCAtMjA1OSw3
+ICsyMDUxLDExIEBAIHN0YXRpYyBpbnQgYXRoMTFrX2luc3RhbGxfa2V5KHN0cnVjdCBhdGgxMWtf
+dmlmICphcnZpZiwKIAkJcmV0dXJuIC1FT1BOT1RTVVBQOwogCX0KIAotaW5zdGFsbDoKKwlpZiAo
+Y21kID09IERJU0FCTEVfS0VZKSB7CisJCWFyZy5rZXlfY2lwaGVyID0gV01JX0NJUEhFUl9OT05F
+OworCQlhcmcua2V5X2RhdGEgPSBOVUxMOworCX0KKwogCXJldCA9IGF0aDExa193bWlfdmRldl9p
+bnN0YWxsX2tleShhcnZpZi0+YXIsICZhcmcpOwogCWlmIChyZXQpCiAJCXJldHVybiByZXQ7CmRp
+ZmYgLS1naXQgYS9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL3dtaS5jIGIvZHJpdmVy
+cy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay93bWkuYwppbmRleCBkOTgzYmJiZGZlZjAuLjVhYzE3
+OGQ0ZDlmZCAxMDA2NDQKLS0tIGEvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay93bWku
+YworKysgYi9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL3dtaS5jCkBAIC0xNzMyLDcg
+KzE3MzIsOCBAQCBpbnQgYXRoMTFrX3dtaV92ZGV2X2luc3RhbGxfa2V5KHN0cnVjdCBhdGgxMWsg
+KmFyLAogCXRsdiA9IChzdHJ1Y3Qgd21pX3RsdiAqKShza2ItPmRhdGEgKyBzaXplb2YoKmNtZCkp
+OwogCXRsdi0+aGVhZGVyID0gRklFTERfUFJFUChXTUlfVExWX1RBRywgV01JX1RBR19BUlJBWV9C
+WVRFKSB8CiAJCSAgICAgIEZJRUxEX1BSRVAoV01JX1RMVl9MRU4sIGtleV9sZW5fYWxpZ25lZCk7
+Ci0JbWVtY3B5KHRsdi0+dmFsdWUsICh1OCAqKWFyZy0+a2V5X2RhdGEsIGtleV9sZW5fYWxpZ25l
+ZCk7CisJaWYgKGFyZy0+a2V5X2RhdGEpCisJCW1lbWNweSh0bHYtPnZhbHVlLCAodTggKilhcmct
+PmtleV9kYXRhLCBrZXlfbGVuX2FsaWduZWQpOwogCiAJcmV0ID0gYXRoMTFrX3dtaV9jbWRfc2Vu
+ZCh3bWksIHNrYiwgV01JX1ZERVZfSU5TVEFMTF9LRVlfQ01ESUQpOwogCWlmIChyZXQpIHsKLS0g
+CjEuOS4xCgoKRnJvbSBkNmMzZjBmMmNhZWNjOGViMTA2NmNmNGVlM2JlZTdmZjEwNjQ1NTE1IE1v
+biBTZXAgMTcgMDA6MDA6MDAgMjAwMQpGcm9tOiBSYWprdW1hciBNYW5vaGFyYW4gPHJtYW5vaGFy
+QGNvZGVhdXJvcmEub3JnPgpEYXRlOiBUaHUsIDI4IE1hciAyMDE5IDE3OjIyOjA5IC0wNzAwClN1
+YmplY3Q6IFtQQVRDSCA2LzZdIGF0aDExazogZG8gbm90IHNldCBkZWZhdWx0IGtleWlkeCBieSBk
+ZWZhdWx0CgpTaWduZWQtb2ZmLWJ5OiBSYWprdW1hciBNYW5vaGFyYW4gPHJtYW5vaGFyQGNvZGVh
+dXJvcmEub3JnPgotLS0KIGRyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvbWFjLmMgfCA1
+IC0tLS0tCiAxIGZpbGUgY2hhbmdlZCwgNSBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2
+ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL21hYy5jIGIvZHJpdmVycy9uZXQvd2lyZWxlc3Mv
+YXRoL2F0aDExay9tYWMuYwppbmRleCAxZGZjMTBkOTU0YTkuLjY1ZDE0Nzg1MjYzNiAxMDA2NDQK
+LS0tIGEvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9tYWMuYworKysgYi9kcml2ZXJz
+L25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL21hYy5jCkBAIC0zNjExLDExICszNjExLDYgQEAgc3Rh
+dGljIGludCBhdGgxMWtfYWRkX2ludGVyZmFjZShzdHJ1Y3QgaWVlZTgwMjExX2h3ICpodywKIAlz
+cGluX3VubG9ja19iaCgmYXItPmRhdGFfbG9jayk7CiAKIAlhcnZpZi0+ZGVmX3dlcF9rZXlfaW5k
+ZXggPSAtMTsKLQlwYXJhbV9pZCA9IFdNSV9WREVWX1BBUkFNX0RFRl9LRVlJRDsKLQlyZXQgPSBh
+dGgxMWtfd21pX3ZkZXZfc2V0X3BhcmFtX2NtZChhciwgYXJ2aWYtPnZkZXZfaWQsCi0JCQkJCSAg
+ICBwYXJhbV9pZCwgYXJ2aWYtPmRlZl93ZXBfa2V5X2luZGV4KTsKLQlpZiAocmV0KQotCQlhdGgx
+MWtfd2Fybihhci0+YWIsICJGYWlsZWQgdG8gc2V0IGRlZmF1bHQga2V5aWQ6ICVkXG4iLCByZXQp
+OwogCiAJcGFyYW1faWQgPSBXTUlfVkRFVl9QQVJBTV9UWF9FTkNBUF9UWVBFOwogCXBhcmFtX3Zh
+bHVlID0gQVRIMTFLX0hXX1RYUlhfTkFUSVZFX1dJRkk7Ci0tIAoxLjkuMQoK
+--=_4cf41e0b07b0748347d9d4a44762f165
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -304,4 +360,4 @@ ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
 
---===============4144168379828805117==--
+--=_4cf41e0b07b0748347d9d4a44762f165--
