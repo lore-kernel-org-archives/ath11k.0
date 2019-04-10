@@ -1,19 +1,18 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from nbd.name ([2a01:4f8:221:3d45::2])
+Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hDp0M-0007pm-8U
- for ath11k@lists.infradead.org; Tue, 09 Apr 2019 11:33:32 +0000
-Subject: Re: mcs index related error on 2,4ghz
-References: <e4649b18-9fb4-2464-f8ab-07094cc128df@phrozen.org>
- <099511110eca4aedb4825c767a1ab6fb@aptaiexm02b.ap.qualcomm.com>
- <e4bd96eef6fa4e579a084a03846b2cc6@euamsexm01f.eu.qualcomm.com>
- <d50abbeb09a9591c5b3cc064656c68bc@codeaurora.org>
-From: John Crispin <john@phrozen.org>
-Message-ID: <bec5b064-d6f8-75a3-880e-9f28e756fcde@phrozen.org>
-Date: Tue, 9 Apr 2019 13:33:26 +0200
+ id 1hEDpp-0003JC-0v
+ for ath11k@lists.infradead.org; Wed, 10 Apr 2019 14:04:18 +0000
+From: Kalle Valo <kvalo@codeaurora.org>
+Subject: Re: [ath6kl:ath11k-bringup 66/93]
+ drivers/net/wireless/ath/ath11k/core.c:722:2-8: preceding lock on line 718
+ (fwd)
+References: <alpine.DEB.2.21.1904100817290.2799@hadrien>
+Date: Wed, 10 Apr 2019 17:04:09 +0300
+In-Reply-To: <alpine.DEB.2.21.1904100817290.2799@hadrien> (Julia Lawall's
+ message of "Wed, 10 Apr 2019 08:18:18 +0200 (CEST)")
+Message-ID: <878swinehy.fsf@kamboji.qca.qualcomm.com>
 MIME-Version: 1.0
-In-Reply-To: <d50abbeb09a9591c5b3cc064656c68bc@codeaurora.org>
-Content-Language: en-US
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,64 +21,168 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Bhagavathi Perumal S <bperumal@codeaurora.org>, ath11k@lists.infradead.org
+To: Julia Lawall <julia.lawall@lip6.fr>
+Cc: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>, ath11k@lists.infradead.org, kbuild-all@01.org
 
-Ck9uIDA5LzA0LzIwMTkgMTI6MTUsIEJoYWdhdmF0aGkgUGVydW1hbCBTIHdyb3RlOgo+IE9uIDIw
-MTktMDQtMDkgMTQ6MzksIEJoYWdhdmF0aGkgUGVydW1hbCBTIHdyb3RlOgo+PiBIaSwKPj4KPj4g
-V2hlbiBpIGFzc29jIG9uIDVHSHogSSBhbSBhYmxlIHRvIHBhc3MgdHJhZmZpYywgd2hlbiBpIGFz
-c29jIG9uIHRoZQo+PiAyLDRHSHogaSBnZXQgdGhlIGZvbGxvd2luZyBzdGFjayB0cmFjZSB1cG9u
-IGV2ZXJ5IHJlY2VpdmVkIGZyYW1lLiBJcwo+PiB0aGlzIGEga25vd24gcHJvYmxlbSA/Cj4+Cj4+
-IMKgwqDCoMKgIEpvaG4KPj4KPj4KPj4gW8KgIDMzNC4zNzM3MjZdIFJhdGUgbWFya2VkIGFzIGFu
-IEhUIHJhdGUgYnV0IHBhc3NlZCBzdGF0dXMtPnJhdGVfaWR4Cj4+IGlzIG5vdCBhbiBNQ1MgaW5k
-ZXggWzAtNzZdOiAyNDggKDB4ZjgpIFvCoCAzMzQuMzczNzk2XSAtLS0tLS0tLS0tLS1bCj4+IGN1
-dCBoZXJlIF0tLS0tLS0tLS0tLS0gW8KgIDMzNC4zODIyNjFdIFdBUk5JTkc6IGF0Cj4+IGJhY2tw
-b3J0cy1uZXh0LWF0aDExay0yMDE5MDMyMC9uZXQvbWFjODAyMTEvcnguYzo0NTYyCj4+IFvCoCAz
-MzQuMzg2ODY1XSBNb2R1bGVzIGxpbmtlZCBpbjogcHBwb2UgcHBwX2FzeW5jIGlwdGFibGVfbmF0
-IGF0aDExawo+PiBwcHBveCBwcHBfZ2VuZXJpYyBuZl9uYXRfaXB2NCBuZl9jb25udHJhY2tfaXB2
-NiBuZl9jb25udHJhY2tfaXB2NAo+PiBtYWM4MDIxMSBpcHRfUkVKRUNUIGlwdF9NQVNRVUVSQURF
-IGNmZzgwMjExIHh0X3RpbWUgeHRfdGNwdWRwIHh0X3N0YXRlCj4+IHh0X25hdCB4dF9tdWx0aXBv
-cnQgeHRfbWFyayB4dF9tYWMgeHRfbGltaXQgeHRfY29ubnRyYWNrIHh0X2NvbW1lbnQKPj4geHRf
-VENQTVNTIHh0X1JFRElSRUNUIHh0X0xPRyB4dF9DVCBzbGhjIG5mX3JlamVjdF9pcHY0IG5mX25h
-dF9yZWRpcmVjdAo+PiBuZl9uYXRfbWFzcXVlcmFkZV9pcHY0IG5mX25hdCBuZl9sb2dfaXB2NCBu
-Zl9kZWZyYWdfaXB2Ngo+PiBuZl9kZWZyYWdfaXB2NCBuZl9jb25udHJhY2tfcnRjYWNoZSBuZl9j
-b25udHJhY2sgaXB0YWJsZV9tYW5nbGUKPj4gaXB0YWJsZV9maWx0ZXIgaXBfdGFibGVzIGNyY19j
-Y2l0dCBjb21wYXQgaXA2dF9SRUpFQ1QgbmZfcmVqZWN0X2lwdjYKPj4gbmZfbG9nX2lwdjYgbmZf
-bG9nX2NvbW1vbiBpcDZ0YWJsZV9tYW5nbGUgaXA2dGFibGVfZmlsdGVyIGlwNl90YWJsZXMKPj4g
-eF90YWJsZXMgcWNhX25zc19kcnYgcWNhX25zc19kcCBxY2Ffc3NkayBncGlvX2J1dHRvbl9ob3Rw
-bHVnIFsKPj4gMzM0LjQ1MTM0OF0gW8KgIDMzNC40NTE3MDFdIENQVTogMCBQSUQ6IDAgQ29tbTog
-c3dhcHBlci8wIFRhaW50ZWQ6IEcKPj4gV8KgwqDCoMKgwqDCoCA0LjQuNjAgIzAgW8KgIDMzNC40
-NTMyNzBdIEhhcmR3YXJlIG5hbWU6IFF1YWxjb21tIFRlY2hub2xvZ2llcywKPj4gSW5jLgo+PiBJ
-UFE4MDd4L0FQLUhLMDEtQzEgKERUKQo+PiBbwqAgMzM0LjQ2MDMwNV0gdGFzazogZmZmZmZmYzAw
-MWMxYzNjMCB0aTogZmZmZmZmYzAwMWMxYzNjMCB0YXNrLnRpOgo+PiBmZmZmZmZjMDAxYzFjM2Mw
-Cj4+IFvCoCAzMzQuNDY3NTAxXSBQQyBpcyBhdCBpZWVlODAyMTFfcnhfbmFwaSsweGVjLzB4ODM4
-IFttYWM4MDIxMV0gWwo+PiAzMzQuNDc1MDI0XSBMUiBpcyBhdCBpZWVlODAyMTFfcnhfbmFwaSsw
-eGVjLzB4ODM4IFttYWM4MDIxMV0gWwo+PiAzMzQuNDgwNzAwXSBwYyA6IFs8ZmZmZmZmYmZmYzRj
-ZDBmND5dIGxyIDogWzxmZmZmZmZiZmZjNGNkMGY0Pl0KPj4gcHN0YXRlOiA2MDAwMDE0NQo+PiBb
-wqAgMzM0LjQ4NjM0NF0gc3AgOiBmZmZmZmZjMDAxYzEzOWEwCj4+IFvCoCAzMzQuNDkzNzE0XSB4
-Mjk6IGZmZmZmZmMwMDFjMTM5YTAgeDI4OiAwMDAwMDAwMDAwMDAwMDAwIFsKPj4gMzM0LjUwMjA0
-Ml0geDI3OiAwMDAwMDAwMDAwMDAwMDAxIHgyNjogZmZmZmZmYzAzNmZkNmUyOCBbIDMzNC41MDcz
-MzddCj4+IHgyNTogMDAwMDAwMDAwMDAwMDAwMSB4MjQ6IGZmZmZmZmMwMDFjMTNiNTAgW8KgIDMz
-NC41MTI2MzJdIHgyMzoKPj4gMDAwMDAwMDAwMDAwMDAwMCB4MjI6IGZmZmZmZmMwMzZmZDZlMjgg
-W8KgIDMzNC41MTc5MjhdIHgyMToKPj4gZmZmZmZmYzAzOTNlMGY4MCB4MjA6IGZmZmZmZmMwMzkz
-ZTFlMzAgW8KgIDMzNC41MjMyMjJdIHgxOToKPj4gZmZmZmZmYzAzNmZkNmUwMCB4MTg6IDAwMDAw
-MDAwMDAwMDAwMDAgW8KgIDMzNC41Mjg1MTddIHgxNzoKPj4gMDAwMDAwN2ZiMDQxNDdkNCB4MTY6
-IGZmZmZmZmMwMDAxNjcyN2MgW8KgIDMzNC41MzM4MTNdIHgxNToKPj4gMDAzYjlhY2EwMDAwMDAw
-MCB4MTQ6IDIwNmU2MTIwNzQ2ZjZlMjAgW8KgIDMzNC41MzkxMDhdIHgxMzoKPj4gNzM2OTIwNzg2
-NDY5NWY2NSB4MTI6IDc0NjE3MjNlMmQ3Mzc1NzQgW8KgIDMzNC41NDQ0MDJdIHgxMToKPj4gNjE3
-NDczMjA2NDY1NzM3MyB4MTA6IDYxNzAyMDc0NzU2MjIwNjUgW8KgIDMzNC41NDk2OThdIHg5IDoK
-Pj4gNzQ2MTcyMjA1NDQ4MjA2ZSB4OCA6IDVkMzYzNzJkMzA1YjIwNzggW8KgIDMzNC41NTQ5OTNd
-IHg3IDoKPj4gNjU2NDZlNjkyMDUzNDM0ZCB4NiA6IGZmZmZmZmMwMDFjOGIwYWIgW8KgIDMzNC41
-NjAyODldIHg1IDoKPj4gMDAwMDAwMDAwMDAwMDAwMSB4NCA6IDAwMDAwMDAwMDAwMDAwMDAgW8Kg
-IDMzNC41NjU1ODRdIHgzIDoKPj4gMDAwMDAwMDAwMDAwMDAwMCB4MiA6IDAwMDAwMDAwMDAwMDQw
-ZDQgW8KgIDMzNC41NzA4NzhdIHgxIDoKPj4gZmZmZmZmYzAwMWMxYzNjMCB4MCA6IDAwMDAwMDAw
-MDAwMDAwNWMgW8KgIDMzNC41NzYxNzNdIFsgMzM0LjU3NjM1MV0KPj4gLS0tWyBlbmQgdHJhY2Ug
-YzI5MTE3OWM1YWU2MDU3NiBdLS0tCj4KPiBJdCBpcyBrbm93biBpc3N1ZSwgYW5kIGZpeGVkIGlu
-IGZ3LiBBbmQgdGhlIGZ1dHVyZSBmdyByZWxlYXNlIHdpbGwgCj4gaGF2ZSB0aGUgZml4Lgo+Cj4g
-VGhhbmtzLAo+IEJoYWdhdmF0aGkuCj4KSGksCgpUaGFua3MgZm9yIHRoZSBmYXN0IHJlcGx5ICEK
-CiDCoMKgwqAgSm9obgoKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0
-dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vYXRoMTFrCg==
+(moving the thread from ath10k to ath11k list, full copy below)
+
+Julia Lawall <julia.lawall@lip6.fr> writes:
+
+> An unlock seems to be missing on line 722.
+>
+> julia
+>
+> ---------- Forwarded message ----------
+> Date: Wed, 10 Apr 2019 13:54:47 +0800
+> From: kbuild test robot <lkp@intel.com>
+> To: kbuild@01.org
+> Cc: Julia Lawall <julia.lawall@lip6.fr>
+> Subject: [ath6kl:ath11k-bringup 66/93]
+>     drivers/net/wireless/ath/ath11k/core.c:722:2-8: preceding lock on line 718
+>
+> CC: kbuild-all@01.org
+> CC: ath10k@lists.infradead.org
+> TO: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
+> CC: Kalle Valo <kvalo@codeaurora.org>
+>
+> tree:   https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git ath11k-bringup
+> head:   9bcbbf4cedb7a1f30cb547cf87dc480d7f8a5e87
+> commit: 3a7b4838b6f6f234239f263ef3dc02e612a083ad [66/93] ath11k: Add
+> support for subsystem recovery
+> :::::: branch date: 15 hours ago
+> :::::: commit date: 8 days ago
+>
+>>> drivers/net/wireless/ath/ath11k/core.c:722:2-8: preceding lock on line 718
+>
+> #
+> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?id=3a7b4838b6f6f234239f263ef3dc02e612a083ad
+> git remote add ath6kl https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git
+> git remote update ath6kl
+> git checkout 3a7b4838b6f6f234239f263ef3dc02e612a083ad
+> vim +722 drivers/net/wireless/ath/ath11k/core.c
+>
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  682
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 683 static void
+> ath11k_core_restart(struct work_struct *work)
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  684  {
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 685 struct ath11k_base *sc
+> = container_of(work, struct ath11k_base, restart_work);
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  686  	struct ath11k *ar;
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  687  	struct ath11k_pdev *pdev;
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  688  	int i, ret = 0;
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  689
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  690  	spin_lock_bh(&sc->data_lock);
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  691  	sc->stats.fw_crash_counter++;
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 692
+> spin_unlock_bh(&sc->data_lock);
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  693
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 694 for (i = 0; i <
+> sc->num_radios; i++) {
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  695  		pdev = &sc->pdevs[i];
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  696  		ar = pdev->ar;
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 697 if (!ar || ar->state ==
+> ATH11K_STATE_OFF)
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  698  			continue;
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  699
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 700
+> ieee80211_stop_queues(ar->hw);
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  701  		ath11k_drain_tx(ar);
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 702
+> complete(&ar->scan.started);
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 703
+> complete(&ar->scan.completed);
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 704
+> complete(&ar->peer_assoc_done);
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 705
+> complete(&ar->install_key_done);
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 706
+> complete(&ar->vdev_setup_done);
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 707
+> complete(&ar->bss_survey_done);
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  708
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 709
+> wake_up(&ar->dp.tx_empty_waitq);
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 710
+> idr_for_each(&ar->txmgmt_idr,
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 711
+> ath11k_mac_tx_mgmt_pending_free, ar);
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 712
+> idr_destroy(&ar->txmgmt_idr);
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  713  	}
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  714
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 715
+> wake_up(&sc->wmi_sc.tx_credits_wq);
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  716  	wake_up(&sc->peer_mapping_wq);
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  717
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 @718  	mutex_lock(&sc->core_lock);
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 719 ret =
+> ath11k_core_reconfigure_on_crash(sc);
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  720  	if (ret) {
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 721 ath11k_err(sc, "failed
+> to reconfigure driver on crash recovery\n");
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 @722  		return;
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  723  	}
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  724  	mutex_unlock(&sc->core_lock);
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  725
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 726 for (i = 0; i <
+> sc->num_radios; i++) {
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  727  		pdev = &sc->pdevs[i];
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  728  		ar = pdev->ar;
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 729 if (!ar || ar->state ==
+> ATH11K_STATE_OFF)
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  730  			continue;
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  731
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 732
+> mutex_lock(&ar->conf_mutex);
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  733
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  734  		switch (ar->state) {
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  735  		case ATH11K_STATE_ON:
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 736 ar->state =
+> ATH11K_STATE_RESTARTING;
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 737 ath11k_core_halt(ar);
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 738
+> ieee80211_restart_hw(ar->hw);
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  739  			break;
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  740  		case ATH11K_STATE_OFF:
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 741 ath11k_warn(sc, "cannot
+> restart radio %d "
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 742 "that hasn't been
+> started\n", i);
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  743  			break;
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 744 case
+> ATH11K_STATE_RESTARTING:
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  745  			break;
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 746 case
+> ATH11K_STATE_RESTARTED:
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 747 ar->state =
+> ATH11K_STATE_WEDGED;
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 748 case
+> ATH11K_STATE_WEDGED:
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 749 ath11k_warn(sc,
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 750 "device is wedged, will
+> not restart radio %d\n", i);
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  751  			break;
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  752  		}
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 753
+> mutex_unlock(&ar->conf_mutex);
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  754  	}
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21 755
+> complete(&sc->driver_recovery);
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  756  }
+> 3a7b4838 Pradeep Kumar Chitrapu 2019-03-21  757
+>
+> ---
+> 0-DAY kernel test infrastructure                Open Source Technology Center
+> https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
+
+-- 
+Kalle Valo
+
+_______________________________________________
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
