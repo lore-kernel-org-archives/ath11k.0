@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hGBit-0008A8-Hs
- for ath11k@lists.infradead.org; Tue, 16 Apr 2019 00:13:17 +0000
+ id 1hGBix-0008CE-AN
+ for ath11k@lists.infradead.org; Tue, 16 Apr 2019 00:13:20 +0000
 From: Miles Hu <milehu@codeaurora.org>
-Subject: [PATCH v5 2/6] ath11k: monitor filter set function
-Date: Mon, 15 Apr 2019 17:12:52 -0700
-Message-Id: <1555373576-4771-3-git-send-email-milehu@codeaurora.org>
+Subject: [PATCH v5 4/6] ath11k: monitor mode attach/detach
+Date: Mon, 15 Apr 2019 17:12:54 -0700
+Message-Id: <1555373576-4771-5-git-send-email-milehu@codeaurora.org>
 In-Reply-To: <1555373576-4771-1-git-send-email-milehu@codeaurora.org>
 References: <1555373576-4771-1-git-send-email-milehu@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,287 +25,226 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: Miles Hu <milehu@codeaurora.org>
 
-create monitor mode filter.
-implement htt filter set function.
-create common function to get htt ring id and type.
+create monitor mode attach/detach function.
+call attach/detach functions in pdev alloc/free.
+add monitor napi function.
 
 Signed-off-by: Miles Hu <milehu@codeaurora.org>
 ---
 V2:
- - correct wrong indent and style.
- - remove redundant code.
+ - fix warn message style and remove __func__, __LINE__.
 
- drivers/net/wireless/ath/ath11k/dp_tx.c | 193 +++++++++++++++++++-------------
- 1 file changed, 115 insertions(+), 78 deletions(-)
+ drivers/net/wireless/ath/ath11k/dp.c    |  22 +++++
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 153 ++++++++++++++++++++++++++++++++
+ 2 files changed, 175 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
-index ef724ec..2cba343 100644
---- a/drivers/net/wireless/ath/ath11k/dp_tx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
-@@ -335,9 +335,14 @@ static void ath11k_dp_cache_peer_stats(struct ath11k *ar,
- {
- 	struct ath11k_per_peer_tx_stats *peer_stats = &ar->cached_stats;
+diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
+index 5fa01c1..15bb27c 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.c
++++ b/drivers/net/wireless/ath/ath11k/dp.c
+@@ -648,6 +648,21 @@ int ath11k_dp_service_srng(struct ath11k_base *ab,
+ 		}
+ 	}
  
--	if (ts->try_cnt > 1) {
--		peer_stats->retry_pkts += ts->try_cnt - 1;
--		peer_stats->retry_bytes += (ts->try_cnt - 1) * msdu->len;
-+	if (ts->try_cnt >= 1) {
-+		if (ts->try_cnt == 1) {
-+			peer_stats->retry_pkts += 1;
-+			peer_stats->retry_bytes += msdu->len;
-+		} else {
-+			peer_stats->retry_pkts += ts->try_cnt - 1;
-+			peer_stats->retry_bytes += (ts->try_cnt - 1) * msdu->len;
++	if (rx_mon_status_ring_mask[grp_id]) {
++		for (i = 0; i <  ab->num_radios; i++) {
++			if (rx_mon_status_ring_mask[grp_id] & BIT(i)) {
++				work_done =
++				ath11k_dp_rx_process_mon_rings(ab,
++							       i, napi,
++							       budget);
++				budget -= work_done;
++				tot_work_done += work_done;
++			}
++			if (budget <= 0)
++				goto done;
 +		}
++	}
++
+ 	if (ath11k_reo_status_ring_mask[grp_id])
+ 		ath11k_dp_process_reo_status(ab);
  
- 		if (ts->status != HAL_WBM_TQM_REL_REASON_FRAME_ACKED) {
- 			peer_stats->failed_pkts += 1;
-@@ -378,9 +383,6 @@ static void ath11k_dp_tx_complete_msdu(struct ath11k *ar,
- 	info = IEEE80211_SKB_CB(msdu);
- 	memset(&info->status, 0, sizeof(info->status));
- 
--	/* skip tx rate update from ieee80211_status*/
--	 info->status.rates[0].idx = -1;
--
- 	if (ts->status == HAL_WBM_TQM_REL_REASON_FRAME_ACKED &&
- 	    !(info->flags & IEEE80211_TX_CTL_NO_ACK)) {
- 		info->flags |= IEEE80211_TX_STAT_ACK;
-@@ -551,30 +553,15 @@ int ath11k_dp_send_reo_cmd(struct ath11k_base *ab, struct dp_rx_tid *rx_tid,
- 	return 0;
+@@ -685,6 +700,7 @@ void ath11k_dp_pdev_free(struct ath11k_base *ab)
+ 		ar = ab->pdevs[i].ar;
+ 		ath11k_dp_rx_pdev_free(ab, i);
+ 		ath11k_debug_unregister(ar);
++		ath11k_dp_rx_pdev_mon_detach(ar);
+ 	}
  }
  
--int ath11k_dp_htt_srng_setup(struct ath11k_base *ab, u32 ring_id,
--			     int mac_id, enum hal_ring_type ring_type)
-+static int
-+ath11k_dp_get_ring_id_type(struct ath11k_base *ab,
-+			   int mac_id, u32 ring_id,
-+			   enum hal_ring_type ring_type,
-+			   enum htt_srng_ring_type *htt_ring_type,
-+			   enum htt_srng_ring_id *htt_ring_id)
- {
--	struct htt_srng_setup_cmd *cmd;
--	struct hal_srng *srng = &ab->hal.srng_list[ring_id];
--	struct hal_srng_params params;
--	struct sk_buff *skb;
--	int ring_entry_sz;
--	int len = sizeof(*cmd);
--	dma_addr_t hp_addr, tp_addr;
--	int lmac_ring_id_offset;
--	enum htt_srng_ring_type htt_ring_type;
--	enum htt_srng_ring_id htt_ring_id;
--	int ret;
--
--	skb = ath11k_htc_alloc_skb(ab, len);
--	if (!skb)
--		return -ENOMEM;
--
--	memset(&params, 0, sizeof(params));
--	ath11k_hal_srng_get_params(ab, srng, &params);
--
--	hp_addr = ath11k_hal_srng_get_hp_addr(ab, srng);
--	tp_addr = ath11k_hal_srng_get_tp_addr(ab, srng);
-+	int lmac_ring_id_offset = 0;
-+	int ret = 0;
- 
- 	switch (ring_type) {
- 	case HAL_RXDMA_BUF:
-@@ -584,37 +571,66 @@ int ath11k_dp_htt_srng_setup(struct ath11k_base *ab, u32 ring_id,
- 		    ring_id == (HAL_SRNG_RING_ID_WMAC1_SW2RXDMA1_BUF +
- 				lmac_ring_id_offset))) {
- 			ret = -EINVAL;
--			goto err_free;
+@@ -718,6 +734,12 @@ int ath11k_dp_pdev_alloc(struct ath11k_base *ab)
+ 				    i);
+ 			goto err;
  		}
--
--		htt_ring_id = HTT_RXDMA_HOST_BUF_RING;
--		htt_ring_type = HTT_SW_TO_HW_RING;
-+		*htt_ring_id = HTT_RXDMA_HOST_BUF_RING;
-+		*htt_ring_type = HTT_SW_TO_HW_RING;
- 		break;
- 	case HAL_RXDMA_DST:
--		htt_ring_id = HTT_RXDMA_NON_MONITOR_DEST_RING;
--		htt_ring_type = HTT_HW_TO_SW_RING;
-+		*htt_ring_id = HTT_RXDMA_NON_MONITOR_DEST_RING;
-+		*htt_ring_type = HTT_HW_TO_SW_RING;
- 		break;
- 	case HAL_RXDMA_MONITOR_BUF:
--		htt_ring_id = HTT_RXDMA_MONITOR_BUF_RING;
--		htt_ring_type = HTT_SW_TO_HW_RING;
-+		*htt_ring_id = HTT_RXDMA_MONITOR_BUF_RING;
-+		*htt_ring_type = HTT_SW_TO_HW_RING;
- 		break;
- 	case HAL_RXDMA_MONITOR_STATUS:
--		htt_ring_id = HTT_RXDMA_MONITOR_STATUS_RING;
--		htt_ring_type = HTT_SW_TO_HW_RING;
-+		*htt_ring_id = HTT_RXDMA_MONITOR_STATUS_RING;
-+		*htt_ring_type = HTT_SW_TO_HW_RING;
- 		break;
- 	case HAL_RXDMA_MONITOR_DST:
--		htt_ring_id = HTT_RXDMA_MONITOR_DEST_RING;
--		htt_ring_type = HTT_HW_TO_SW_RING;
-+		*htt_ring_id = HTT_RXDMA_MONITOR_DEST_RING;
-+		*htt_ring_type = HTT_HW_TO_SW_RING;
- 		break;
- 	case HAL_RXDMA_MONITOR_DESC:
--		htt_ring_id = HTT_RXDMA_MONITOR_DESC_RING;
--		htt_ring_type = HTT_SW_TO_HW_RING;
-+		*htt_ring_id = HTT_RXDMA_MONITOR_DESC_RING;
-+		*htt_ring_type = HTT_SW_TO_HW_RING;
- 		break;
- 	default:
- 		ath11k_warn(ab, "Unsupported ring type in DP :%d\n", ring_type);
- 		ret = -EINVAL;
--		goto err_free;
++		ret = ath11k_dp_rx_pdev_mon_attach(ar);
++		if (ret) {
++			ath11k_warn(ab, "failed to initialize mon pdev %d\n",
++				    i);
++			goto err;
++		}
  	}
+ 
+ 	return 0;
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 2605b2b..c0c21a8 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -3241,3 +3241,156 @@ static inline int ath11k_dp_pkt_set_pktlen(struct sk_buff *skb, u32 len)
+ 	}
+ 	return 0;
+ }
++
++static inline void
++ath11k_hal_rx_msdu_list_get(struct ath11k *ar,
++			    void *msdu_link_desc,
++			    struct hal_rx_msdu_list *msdu_list,
++			    u16 *num_msdus)
++{
++	struct hal_rx_msdu_details *msdu_details = NULL;
++	struct rx_msdu_desc *msdu_desc_info = NULL;
++	struct hal_rx_msdu_link *msdu_link = NULL;
++	int i;
++	u32 last = FIELD_PREP(RX_MSDU_DESC_INFO0_LAST_MSDU_IN_MPDU, 1);
++	u32 first = FIELD_PREP(RX_MSDU_DESC_INFO0_FIRST_MSDU_IN_MPDU, 1);
++	u8  tmp  = 0;
++
++	msdu_link = (struct hal_rx_msdu_link *)msdu_link_desc;
++	msdu_details = &msdu_link->msdu_link[0];
++
++	for (i = 0; i < HAL_RX_NUM_MSDU_DESC; i++) {
++		if (FIELD_GET(BUFFER_ADDR_INFO0_ADDR,
++			      msdu_details[i].buf_addr_info.info0) == 0) {
++			msdu_desc_info = &msdu_details[i - 1].rx_msdu_info;
++			msdu_desc_info->info0 |= last;
++			;
++			break;
++		}
++		msdu_desc_info = &msdu_details[i].rx_msdu_info;
++
++		if (!i)
++			msdu_desc_info->info0 |= first;
++		else if (i == (HAL_RX_NUM_MSDU_DESC - 1))
++			msdu_desc_info->info0 |= last;
++		msdu_list->msdu_info[i].msdu_flags = msdu_desc_info->info0;
++		msdu_list->msdu_info[i].msdu_len =
++			 HAL_RX_MSDU_PKT_LENGTH_GET(msdu_desc_info->info0);
++		msdu_list->sw_cookie[i] =
++			FIELD_GET(BUFFER_ADDR_INFO1_SW_COOKIE,
++				  msdu_details[i].buf_addr_info.info1);
++		tmp = FIELD_GET(BUFFER_ADDR_INFO1_RET_BUF_MGR,
++				msdu_details[i].buf_addr_info.info1);
++		msdu_list->rbm[i] = tmp;
++	}
++	*num_msdus = i;
++}
++
++static inline u32 ath11k_dp_rx_mon_comp_ppduid(u32 msdu_ppdu_id, u32 *ppdu_id,
++					       u32 *rx_bufs_used)
++{
++	u32 ret = 0;
++
++	if ((*ppdu_id < msdu_ppdu_id) &&
++	    ((msdu_ppdu_id - *ppdu_id) < DP_NOT_PPDU_ID_WRAP_AROUND)) {
++		*ppdu_id = msdu_ppdu_id;
++		ret = msdu_ppdu_id;
++	} else if ((*ppdu_id > msdu_ppdu_id) &&
++		((*ppdu_id - msdu_ppdu_id) > DP_NOT_PPDU_ID_WRAP_AROUND)) {
++		/* mon_dst is behind than mon_status
++		 * skip dst_ring and free it
++		 */
++		*rx_bufs_used += 1;
++		*ppdu_id = msdu_ppdu_id;
++		ret = msdu_ppdu_id;
++	}
 +	return ret;
 +}
 +
-+int ath11k_dp_htt_srng_setup(struct ath11k_base *ab, u32 ring_id,
-+			     int mac_id, enum hal_ring_type ring_type)
++static inline void ath11k_dp_mon_get_buf_len(struct hal_rx_msdu_desc_info *info,
++					     bool *is_frag, u32 *total_len,
++					     u32 *frag_len, u32 *msdu_cnt)
 +{
-+	struct htt_srng_setup_cmd *cmd;
-+	struct hal_srng *srng = &ab->hal.srng_list[ring_id];
-+	struct hal_srng_params params;
-+	struct sk_buff *skb;
-+	u32 ring_entry_sz;
-+	int len = sizeof(*cmd);
-+	dma_addr_t hp_addr, tp_addr;
-+	int lmac_ring_id_offset;
-+	enum htt_srng_ring_type htt_ring_type;
-+	enum htt_srng_ring_id htt_ring_id;
-+	int ret;
++	if (info->msdu_flags & RX_MSDU_DESC_INFO0_MSDU_CONTINUATION) {
++		if (!*is_frag) {
++			*total_len = info->msdu_len;
++			*is_frag = true;
++		}
++		ath11k_dp_mon_set_frag_len(total_len,
++					   frag_len);
++	} else {
++		if (*is_frag) {
++			ath11k_dp_mon_set_frag_len(total_len,
++						   frag_len);
++		} else {
++			*frag_len = info->msdu_len;
++		}
++		*is_frag = false;
++		*msdu_cnt -= 1;
++	}
++}
 +
-+	skb = ath11k_htc_alloc_skb(ab, len);
-+	if (!skb)
-+		return -ENOMEM;
-+
-+	memset(&params, 0, sizeof(params));
-+	ath11k_hal_srng_get_params(ab, srng, &params);
-+
-+	hp_addr = ath11k_hal_srng_get_hp_addr(ab, srng);
-+	tp_addr = ath11k_hal_srng_get_tp_addr(ab, srng);
-+
-+	if (ath11k_dp_get_ring_id_type(ab, mac_id, ring_id,
-+				       ring_type, &htt_ring_type,
-+				       &htt_ring_id))
-+		goto err_free;
- 
- 	skb_put(skb, len);
- 	cmd = (struct htt_srng_setup_cmd *)skb->data;
-@@ -757,7 +773,7 @@ int ath11k_dp_htt_h2t_ppdu_stats_req(struct ath11k *ar, u32 mask)
- 	cmd->msg = FIELD_PREP(HTT_PPDU_STATS_CFG_MSG_TYPE,
- 			      HTT_H2T_MSG_TYPE_PPDU_STATS_CFG);
- 
--	pdev_mask = 1 << (ar->pdev_idx);
-+	pdev_mask = DP_SW2HW_MACID(ar->pdev_idx);
- 	cmd->msg |= FIELD_PREP(HTT_PPDU_STATS_CFG_PDEV_ID, pdev_mask);
- 	cmd->msg |= FIELD_PREP(HTT_PPDU_STATS_CFG_TLV_TYPE_BITMASK, mask);
- 
-@@ -791,36 +807,10 @@ int ath11k_dp_htt_rx_filter_setup(struct ath11k_base *ab, u32 ring_id,
- 	memset(&params, 0, sizeof(params));
- 	ath11k_hal_srng_get_params(ab, srng, &params);
- 
--	switch (ring_type) {
--	case HAL_RXDMA_BUF:
--		htt_ring_id = HTT_RXDMA_HOST_BUF_RING;
--		htt_ring_type = HTT_SW_TO_HW_RING;
--		break;
--	case HAL_RXDMA_DST:
--		htt_ring_id = HTT_RXDMA_NON_MONITOR_DEST_RING;
--		htt_ring_type = HTT_HW_TO_SW_RING;
--		break;
--	case HAL_RXDMA_MONITOR_BUF:
--		htt_ring_id = HTT_RXDMA_MONITOR_BUF_RING;
--		htt_ring_type = HTT_SW_TO_HW_RING;
--		break;
--	case HAL_RXDMA_MONITOR_STATUS:
--		htt_ring_id = HTT_RXDMA_MONITOR_STATUS_RING;
--		htt_ring_type = HTT_SW_TO_HW_RING;
--		break;
--	case HAL_RXDMA_MONITOR_DST:
--		htt_ring_id = HTT_RXDMA_MONITOR_DEST_RING;
--		htt_ring_type = HTT_HW_TO_SW_RING;
--		break;
--	case HAL_RXDMA_MONITOR_DESC:
--		htt_ring_id = HTT_RXDMA_MONITOR_DESC_RING;
--		htt_ring_type = HTT_SW_TO_HW_RING;
--		break;
--	default:
--		ath11k_warn(ab, "Unsupported ring type in DP :%d\n", ring_type);
--		ret = -EINVAL;
-+	if (ath11k_dp_get_ring_id_type(ab, mac_id, ring_id,
-+				       ring_type, &htt_ring_type,
-+				       &htt_ring_id))
- 		goto err_free;
--	}
- 
- 	skb_put(skb, len);
- 	cmd = (struct htt_rx_ring_selection_cfg_cmd *)skb->data;
-@@ -828,11 +818,13 @@ int ath11k_dp_htt_rx_filter_setup(struct ath11k_base *ab, u32 ring_id,
- 				HTT_H2T_MSG_TYPE_RX_RING_SELECTION_CFG);
- 	if (htt_ring_type == HTT_SW_TO_HW_RING ||
- 	    htt_ring_type == HTT_HW_TO_SW_RING)
--		cmd->info0 |= FIELD_PREP(HTT_RX_RING_SELECTION_CFG_CMD_INFO0_PDEV_ID,
--					 DP_SW2HW_MACID(mac_id));
-+		cmd->info0 |=
-+			FIELD_PREP(HTT_RX_RING_SELECTION_CFG_CMD_INFO0_PDEV_ID,
-+				   DP_SW2HW_MACID(mac_id));
- 	else
--		cmd->info0 |= FIELD_PREP(HTT_RX_RING_SELECTION_CFG_CMD_INFO0_PDEV_ID,
--					 mac_id);
-+		cmd->info0 |=
-+			FIELD_PREP(HTT_RX_RING_SELECTION_CFG_CMD_INFO0_PDEV_ID,
-+				   mac_id);
- 	cmd->info0 |= FIELD_PREP(HTT_RX_RING_SELECTION_CFG_CMD_INFO0_RING_ID,
- 				 htt_ring_id);
- 	cmd->info0 |= FIELD_PREP(HTT_RX_RING_SELECTION_CFG_CMD_INFO0_SS,
-@@ -901,3 +893,48 @@ int ath11k_dp_htt_h2t_ext_stats_req(struct ath11k *ar, u8 type,
- 
- 	return 0;
- }
-+
-+int ath11k_dp_htt_monitor_mode_ring_config(struct ath11k *ar, bool reset)
++int ath11k_dp_rx_pdev_mon_status_attach(struct ath11k *ar)
 +{
 +	struct ath11k_pdev_dp *dp = &ar->dp;
-+	struct htt_rx_ring_tlv_filter tlv_filter = {0};
-+	int ret = 0, ring_id = 0;
++	struct ath11k_mon_data *pmon = (struct ath11k_mon_data *)&dp->mon_data;
 +
-+	ring_id = dp->rxdma_mon_buf_ring.refill_buf_ring.ring_id;
++	skb_queue_head_init(&pmon->rx_status_q);
 +
-+	if (!reset) {
-+		tlv_filter.rx_filter = HTT_RX_MON_FILTER_TLV_FLAGS_MON_BUF_RING;
-+		tlv_filter.pkt_filter_flags0 =
-+					HTT_RX_MON_FP_MGMT_FILTER_FLAGS0 |
-+					HTT_RX_MON_MO_MGMT_FILTER_FLAGS0;
-+		tlv_filter.pkt_filter_flags1 =
-+					HTT_RX_MON_FP_MGMT_FILTER_FLAGS1 |
-+					HTT_RX_MON_MO_MGMT_FILTER_FLAGS1;
-+		tlv_filter.pkt_filter_flags2 =
-+					HTT_RX_MON_FP_CTRL_FILTER_FLASG2 |
-+					HTT_RX_MON_MO_CTRL_FILTER_FLASG2;
-+		tlv_filter.pkt_filter_flags3 =
-+					HTT_RX_MON_FP_CTRL_FILTER_FLASG3 |
-+					HTT_RX_MON_MO_CTRL_FILTER_FLASG3 |
-+					HTT_RX_MON_FP_DATA_FILTER_FLASG3 |
-+					HTT_RX_MON_MO_DATA_FILTER_FLASG3;
++	pmon->mon_ppdu_status = DP_PPDU_STATUS_START;
++
++	memset(&pmon->rx_mon_stats, 0,
++	       sizeof(pmon->rx_mon_stats));
++	return 0;
++}
++
++int ath11k_dp_rx_pdev_mon_attach(struct ath11k *ar)
++{
++	struct ath11k_pdev_dp *dp = &ar->dp;
++	struct ath11k_mon_data *pmon = &dp->mon_data;
++	struct hal_srng *mon_desc_srng = NULL;
++	struct dp_srng *dp_srng;
++	int ret = 0;
++	u32 n_link_desc = 0;
++
++	ret = ath11k_dp_rx_pdev_mon_status_attach(ar);
++	if (ret) {
++		ath11k_warn(ar->ab, "pdev_mon_status_attach() failed");
++		return ret;
 +	}
 +
-+	ret = ath11k_dp_htt_rx_filter_setup(ar->ab, ring_id, dp->mac_id,
-+					    HAL_RXDMA_MONITOR_BUF,
-+					    DP_RXDMA_REFILL_RING_SIZE,
-+					    &tlv_filter);
-+	if (ret)
++	dp_srng = &dp->rxdma_mon_desc_ring;
++	n_link_desc = dp_srng->size /
++		ath11k_hal_srng_get_entrysize(HAL_RXDMA_MONITOR_DESC);
++	mon_desc_srng =
++		&ar->ab->hal.srng_list[dp->rxdma_mon_desc_ring.ring_id];
++
++	ret = ath11k_dp_link_desc_setup(ar->ab, pmon->link_desc_banks,
++					HAL_RXDMA_MONITOR_DESC, mon_desc_srng,
++					n_link_desc);
++	if (ret) {
++		ath11k_warn(ar->ab, "mon_link_desc_pool_setup() failed");
 +		return ret;
++	}
++	pmon->mon_last_linkdesc_paddr = 0;
++	pmon->mon_last_buf_cookie = DP_RX_DESC_COOKIE_MAX + 1;
++	spin_lock_init(&pmon->mon_lock);
++	return 0;
++}
 +
-+	ring_id = dp->rx_mon_status_refill_ring.refill_buf_ring.ring_id;
-+	if (!reset)
-+		tlv_filter.rx_filter =
-+				HTT_RX_MON_FILTER_TLV_FLAGS_MON_STATUS_RING;
++int ath11k_dp_mon_link_free(struct ath11k *ar)
++{
++	struct ath11k_pdev_dp *dp = &ar->dp;
++	struct ath11k_mon_data *pmon = &dp->mon_data;
 +
-+	ret = ath11k_dp_htt_rx_filter_setup(ar->ab, ring_id, dp->mac_id,
-+					    HAL_RXDMA_MONITOR_STATUS,
-+					    DP_RXDMA_REFILL_RING_SIZE,
-+					    &tlv_filter);
-+	return ret;
++	ath11k_dp_link_desc_cleanup(ar->ab, pmon->link_desc_banks,
++				    HAL_RXDMA_MONITOR_DESC,
++				    &dp->rxdma_mon_desc_ring);
++	return 0;
++}
++
++int ath11k_dp_rx_pdev_mon_detach(struct ath11k *ar)
++{
++	ath11k_dp_mon_link_free(ar);
++	return 0;
 +}
 -- 
 2.7.4
