@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hG42f-0003JD-Cd
- for ath11k@lists.infradead.org; Mon, 15 Apr 2019 16:01:10 +0000
-From: Bhagavathi Perumal S <bperumal@codeaurora.org>
-Subject: [PATCH] ath11k: Use software version of BIP in mac80211
-Date: Mon, 15 Apr 2019 21:30:47 +0530
-Message-Id: <1555344047-2245-1-git-send-email-bperumal@codeaurora.org>
+ id 1hGBiq-00089S-HQ
+ for ath11k@lists.infradead.org; Tue, 16 Apr 2019 00:13:14 +0000
+From: Miles Hu <milehu@codeaurora.org>
+Subject: [PATCH v5 0/6] ath11k: add monitor mode support
+Date: Mon, 15 Apr 2019 17:12:50 -0700
+Message-Id: <1555373576-4771-1-git-send-email-milehu@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -21,50 +21,78 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
-Cc: Bhagavathi Perumal S <bperumal@codeaurora.org>
+Cc: Miles Hu <milehu@codeaurora.org>
 
-Integrity protection of group-addressed robust management frames
-with BIP needs to be performed in software for both TX and RX,
-so request mac80211 to do so.
+Adding monitor mode in ath11k. It can be enabled
+ by commands below:
 
-Signed-off-by: Bhagavathi Perumal S <bperumal@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/mac.c | 13 +++++++------
- 1 file changed, 7 insertions(+), 6 deletions(-)
+  ifconfig wlan0 down
+  iw wlan0 set type monitor
+  ifconfig wlan0 up
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 12a2c44..fbaf184 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -2084,12 +2084,6 @@ static int ath11k_install_key(struct ath11k_vif *arvif,
- 	case WLAN_CIPHER_SUITE_GCMP_256:
- 		arg.key_cipher = WMI_CIPHER_AES_GCM;
- 		break;
--	case WLAN_CIPHER_SUITE_BIP_GMAC_128:
--	case WLAN_CIPHER_SUITE_BIP_GMAC_256:
--		arg.key_cipher = WMI_CIPHER_AES_GMAC;
--	case WLAN_CIPHER_SUITE_AES_CMAC:
--	case WLAN_CIPHER_SUITE_BIP_CMAC_256:
--		arg.key_cipher = WMI_CIPHER_AES_CMAC;
- 	default:
- 		ath11k_warn(ar->ab, "cipher %d is not supported\n", key->cipher);
- 		return -EOPNOTSUPP;
-@@ -2158,6 +2152,13 @@ static int ath11k_set_key(struct ieee80211_hw *hw, enum set_key_cmd cmd,
- 	int ret = 0;
- 	u32 flags = 0;
- 
-+	/* BIP needs to be done in software */
-+	if (key->cipher == WLAN_CIPHER_SUITE_AES_CMAC ||
-+	    key->cipher == WLAN_CIPHER_SUITE_BIP_GMAC_128 ||
-+	    key->cipher == WLAN_CIPHER_SUITE_BIP_GMAC_256 ||
-+	    key->cipher == WLAN_CIPHER_SUITE_BIP_CMAC_256)
-+		return 1;
-+
- 	if (key->keyidx > WMI_MAX_KEY_INDEX)
- 		return -ENOSPC;
- 
+change channel:
+  iw wlan0 set freq 5805 80 5775
+
+Change summary:
+1. create monitor status/destination/buffer/link descriptor rings.
+2. enable these rings and push ring filters to buffer/status rings.
+3. add napi entry point for monitor status and destination rings process.
+4. implement monitor status/buffer rings replenish.
+5. process entries from the status ring to get ppdu id and tlv status.
+6. process entries from the destination ring by comparing ppdu id to build
+    msdu list.
+7. merge msdu list to mpdu and copy rx status to cb.
+8. deliver mpdu to upper layer.
+
+Known issues:
+ - Coexist with other interface type (AP/STA) not fully supported.
+ - higher data rates (11ax) not supported. radiotap needs proper info.
+ - signal strength and rate idx not accurate in some packets.
+
+-Miles Hu
+
+Miles Hu (6):
+  ath11k: init/deinit monitor rings
+  ath11k: monitor filter set function
+  ath11k: htt setup monitor rings
+  ath11k: monitor mode attach/detach
+  ath11k: enable/disable monitor mode and destination ring entry process
+  ath11k: merge msdu tlv process and status/destination ring process
+
+V2:
+ - correct wrong indent and style.
+ - change function return value to bool.
+ - remove redundent code.
+ - correct warn message style and remove __func__ and __LINE__.
+ - remove likely and unlikely functions.
+
+V3:
+ - create common ring reap function for peer-stats and monitor mode.
+
+V4:
+ - change bool to atomic_t to add protection
+ - remove unnecessary print
+
+V5:
+ - replace atomic_t by atomic bitmask
+
+ drivers/net/wireless/ath/ath11k/core.h     |   8 +-
+ drivers/net/wireless/ath/ath11k/dp.c       | 110 ++--
+ drivers/net/wireless/ath/ath11k/dp.h       | 189 +++++-
+ drivers/net/wireless/ath/ath11k/dp_rx.c    | 917 ++++++++++++++++++++++++++---
+ drivers/net/wireless/ath/ath11k/dp_rx.h    |  61 +-
+ drivers/net/wireless/ath/ath11k/dp_tx.c    | 193 +++---
+ drivers/net/wireless/ath/ath11k/dp_tx.h    |   1 +
+ drivers/net/wireless/ath/ath11k/hal.c      |   2 +-
+ drivers/net/wireless/ath/ath11k/hal_desc.h |   3 +
+ drivers/net/wireless/ath/ath11k/hal_rx.c   |  28 +
+ drivers/net/wireless/ath/ath11k/hal_rx.h   |  17 +
+ drivers/net/wireless/ath/ath11k/mac.c      |  40 +-
+ drivers/net/wireless/ath/ath11k/rx_desc.h  |   1 +
+ 13 files changed, 1360 insertions(+), 210 deletions(-)
+
 -- 
-1.9.1
+2.7.4
 
 
 _______________________________________________
