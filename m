@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hGgst-0008LV-Nj
- for ath11k@lists.infradead.org; Wed, 17 Apr 2019 09:29:41 +0000
+ id 1hGgsv-0008MW-Pa
+ for ath11k@lists.infradead.org; Wed, 17 Apr 2019 09:29:43 +0000
 From: Rajkumar Manoharan <rmanohar@codeaurora.org>
-Subject: [PATCH 2/3] ath11k: allow 4 address transmission for mesh packet
-Date: Wed, 17 Apr 2019 02:29:17 -0700
-Message-Id: <1555493358-16381-3-git-send-email-rmanohar@codeaurora.org>
+Subject: [PATCH 3/3] ath11k: remove unnecessary check for PMF
+Date: Wed, 17 Apr 2019 02:29:18 -0700
+Message-Id: <1555493358-16381-4-git-send-email-rmanohar@codeaurora.org>
 In-Reply-To: <1555493358-16381-1-git-send-email-rmanohar@codeaurora.org>
 References: <1555493358-16381-1-git-send-email-rmanohar@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -23,58 +23,53 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
-Cc: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>, Rajkumar Manoharan <rmanohar@codeaurora.org>
+Cc: Rajkumar Manoharan <rmanohar@codeaurora.org>
 
-Inform the target to use 4 adressses in 802.11 header for mesh data
-by marking the peer is capable of operating in 4 address format.
-Also ensure to inform TCL ring that mesh header is pesent in payload.
-This will be useful for enabling HW checksumming form mesh packets.
+Firmware delivers mesh group action frame as encrypted payload.
+To allow software decryption for these group action frames, rx
+status should not be marked as RX_FLAG_DECRYPTED and protected
+bit in frame control should not be cleared. Existing robust
+management check is enough to handle RX_FLAG_DECRYPTED. Hence
+removing unnecessary protected frame validation.
 
-Co-developed-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
-Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
 Signed-off-by: Rajkumar Manoharan <rmanohar@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/dp_tx.c |  3 +++
- drivers/net/wireless/ath/ath11k/mac.c   | 11 +++++++++++
- 2 files changed, 14 insertions(+)
+ drivers/net/wireless/ath/ath11k/wmi.c | 21 ++++++++++-----------
+ 1 file changed, 10 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
-index 5324c5f514f8..b2807a88df9c 100644
---- a/drivers/net/wireless/ath/ath11k/dp_tx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
-@@ -131,7 +131,10 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
- 			     FIELD_PREP(HAL_TCL_DATA_CMD_INFO1_TCP6_CKSUM_EN, 1);
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index cdacbaea188c..5712ac030419 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -5196,18 +5196,17 @@ void ath11k_mgmt_rx_event(struct ath11k_base *ab, struct sk_buff *skb)
+ 	 */
+ 	status->flag |= RX_FLAG_SKIP_MONITOR;
+ 
+-	if (ieee80211_has_protected(hdr->frame_control)) {
+-		/* In case of PMF, FW delivers decrypted frames
+-		 * with Protected Bit set. Don't clear that.
+-		 */
+-		if (!ieee80211_is_robust_mgmt_frame(skb))  {
+-			status->flag |= RX_FLAG_DECRYPTED;
++	/* In case of PMF, FW delivers decrypted frames with Protected Bit set.
++	 * Don't clear that. FW also delivers broadcast management frames
++	 * (ex: group privacy action frames in mesh) as encrypted payload.
++	 */
++	if (!ieee80211_is_robust_mgmt_frame(skb))  {
++		status->flag |= RX_FLAG_DECRYPTED;
+ 
+-			status->flag |= RX_FLAG_IV_STRIPPED |
+-					RX_FLAG_MMIC_STRIPPED;
+-			hdr->frame_control = __cpu_to_le16(fc &
+-					~IEEE80211_FCTL_PROTECTED);
+-		}
++		status->flag |= RX_FLAG_IV_STRIPPED |
++			RX_FLAG_MMIC_STRIPPED;
++		hdr->frame_control = __cpu_to_le16(fc &
++				~IEEE80211_FCTL_PROTECTED);
  	}
  
-+	if (ieee80211_vif_is_mesh(arvif->vif))
-+		ti.flags1 |= FIELD_PREP(HAL_TCL_DATA_CMD_INFO2_MESH_ENABLE, 1);
- 	ti.flags1 |= FIELD_PREP(HAL_TCL_DATA_CMD_INFO2_TID_OVERWRITE, 1);
-+
- 	ti.tid = ath11k_dp_get_tid(skb);
- 
- 	switch (ti.encap_type) {
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index b384395bb08c..aea99d9d8d1f 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -2550,6 +2550,17 @@ static int ath11k_sta_state(struct ieee80211_hw *hw,
- 				goto exit;
- 		}
- 
-+		if (ieee80211_vif_is_mesh(vif)) {
-+			ret = ath11k_wmi_set_peer_param(ar, sta->addr,
-+							arvif->vdev_id,
-+							WMI_PEER_USE_4ADDR, 1);
-+			if (ret) {
-+				ath11k_warn(ar->ab, "failed to STA %pM 4addr capability: %d\n",
-+						sta->addr, ret);
-+				goto exit;
-+			}
-+		}
-+
- 		ret = ath11k_dp_peer_setup(ar, arvif->vdev_id, sta->addr);
- 		if (ret) {
- 			ath11k_warn(ar->ab, "failed to setup dp for peer %pM on vdev %i (%d)\n",
+ 	/* TODO: Pending handle beacon implementation
 -- 
 1.9.1
 
