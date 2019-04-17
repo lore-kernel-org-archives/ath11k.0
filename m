@@ -1,16 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hGbrw-0002lM-W2
- for ath11k@lists.infradead.org; Wed, 17 Apr 2019 04:08:22 +0000
-MIME-Version: 1.0
-Date: Wed, 17 Apr 2019 09:38:19 +0530
-From: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
-Subject: Re: [PATCH 2/2] ath11k: add TWT support
-In-Reply-To: <20190416190840.20286-2-john@phrozen.org>
-References: <20190416190840.20286-1-john@phrozen.org>
- <20190416190840.20286-2-john@phrozen.org>
-Message-ID: <461b88b9d9d02c70a7b6af5198764f12@codeaurora.org>
+ id 1hGdLn-0002X5-Cf
+ for ath11k@lists.infradead.org; Wed, 17 Apr 2019 05:43:16 +0000
+From: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
+Subject: [PATCH] ath11k: enable support for subsystem recovery.
+Date: Tue, 16 Apr 2019 22:43:08 -0700
+Message-Id: <1555479788-22765-1-git-send-email-pradeepc@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -19,116 +15,124 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: John Crispin <john@phrozen.org>
-Cc: ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>, Shashidhar Lakkavalli <slakkavalli@datto.com>
+To: ath11k@lists.infradead.org
+Cc: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
 
-On 2019-04-17 00:38, John Crispin wrote:
-> Add target wait time wmi calls to the driver. Enable the support inside
-> the FW by default.
-> 
-> Signed-off-by: Shashidhar Lakkavalli <slakkavalli@datto.com>
-> Signed-off-by: John Crispin <john@phrozen.org>
-> ---
->  drivers/net/wireless/ath/ath11k/mac.c |  2 ++
->  drivers/net/wireless/ath/ath11k/wmi.c | 55 
-> +++++++++++++++++++++++++++++++++++
->  drivers/net/wireless/ath/ath11k/wmi.h | 51 
-> ++++++++++++++++++++++++++++++++
->  3 files changed, 108 insertions(+)
-> 
-> diff --git a/drivers/net/wireless/ath/ath11k/mac.c
-> b/drivers/net/wireless/ath/ath11k/mac.c
-> index 6e6e90492b18..aa7603d5aa7f 100644
-> --- a/drivers/net/wireless/ath/ath11k/mac.c
-> +++ b/drivers/net/wireless/ath/ath11k/mac.c
-> @@ -3606,6 +3606,8 @@ static int ath11k_start(struct ieee80211_hw *hw)
-> 
->  	__ath11k_set_antenna(ar, ar->cfg_tx_chainmask, ar->cfg_rx_chainmask);
-> 
-> +	ath11k_send_twt_enable_cmd(ar, ar->pdev_idx);
-> +
->  	/* TODO: Do we need to enable ANI? */
-> 
->  	ath11k_reg_update_chan_list(ar);
-> diff --git a/drivers/net/wireless/ath/ath11k/wmi.c
-> b/drivers/net/wireless/ath/ath11k/wmi.c
-> index 5b5e6b0bb42a..9ba1166d5dac 100644
-> --- a/drivers/net/wireless/ath/ath11k/wmi.c
-> +++ b/drivers/net/wireless/ath/ath11k/wmi.c
-> @@ -1795,6 +1795,10 @@ ath11k_wmi_copy_peer_flags(struct
-> wmi_peer_assoc_complete_cmd *cmd,
->  			cmd->peer_flags |= WMI_PEER_VHT;
->  		if (param->he_flag)
->  			cmd->peer_flags |= WMI_PEER_HE;
-> +		if (param->twt_requester)
-> +			cmd->peer_flags |= WMI_PEER_TWT_REQ;
-> +		if (param->twt_responder)
-> +			cmd->peer_flags |= WMI_PEER_TWT_RESP;
->  	}
-> 
->  	/* Suppress authorization for all AUTH modes that need 4-way 
-> handshake
-> @@ -2679,6 +2683,52 @@ ath11k_wmi_send_init_country_cmd(struct ath11k 
-> *ar,
->  	return ret;
->  }
-> 
-> +int
-> +ath11k_send_twt_enable_cmd(struct ath11k *ar, u32 pdev_id)
+When underlying device crash for some reason, driver will
+restore wireless state and perform the recovery.
 
-Please add ath11k_wmi prefix to the function names defined in wmi.c. It 
-is possible this is not
-being strictly followed all the places but at some point of time these 
-cases will be fixed.
+Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
+---
+ drivers/net/wireless/ath/ath11k/ahb.h  |  2 +-
+ drivers/net/wireless/ath/ath11k/core.c | 10 +++++-----
+ drivers/net/wireless/ath/ath11k/qmi.c  | 19 ++++++++++---------
+ 3 files changed, 16 insertions(+), 15 deletions(-)
 
-> +{
-> +	struct ath11k_pdev_wmi *wmi = ar->wmi;
-> +	struct ath11k_base *ab = wmi->wmi_sc->sc;
-> +	struct wmi_twt_enable_params_cmd *cmd;
-> +	struct sk_buff *skb;
-> +	int ret, len;
-> +
-> +	len = sizeof(*cmd);
-> +
-> +	skb = ath11k_wmi_alloc_skb(wmi->wmi_sc, len);
-> +	if (!skb)
-> +		return -ENOMEM;
-> +
-> +	cmd = (void *)skb->data;
-> +	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_TWT_ENABLE_CMD) |
-> +			  FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
-> +	cmd->pdev_id = pdev_id;
-> +	cmd->sta_cong_timer_ms = 5000;
-> +	/* TODO add MBSSID support */
-> +	cmd->mbss_support = 0;
-> +	cmd->default_slot_size = 10;
-> +	cmd->congestion_thresh_setup = 50;
-> +	cmd->congestion_thresh_teardown = 20;
-> +	cmd->congestion_thresh_critical = 100;
-> +	cmd->interference_thresh_teardown = 80;
-> +	cmd->interference_thresh_setup = 50;
-> +	cmd->min_no_sta_setup = 10;
-> +	cmd->min_no_sta_teardown = 2;
-> +	cmd->no_of_bcast_mcast_slots = 2;
-> +	cmd->min_no_twt_slots = 2;
-> +	cmd->max_no_sta_twt = 500;
-> +	cmd->mode_check_interval = 10000;
-> +	cmd->add_sta_slot_interval = 1000;
-> +	cmd->remove_sta_slot_interval = 5000;
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.h b/drivers/net/wireless/ath/ath11k/ahb.h
+index b0bc4e763dbc..8a6b308d4a6a 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.h
++++ b/drivers/net/wireless/ath/ath11k/ahb.h
+@@ -7,7 +7,7 @@
+ 
+ #include "core.h"
+ 
+-#define ATH11K_AHB_RECOVERY_TIMEOUT (100000 * HZ)
++#define ATH11K_AHB_RECOVERY_TIMEOUT (3 * HZ)
+ struct ath11k_base;
+ 
+ u32 ath11k_ahb_read32(struct ath11k_base *ab, u32 address);
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 5d7c78b8c570..dc56df5d98f6 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -625,13 +625,16 @@ static int ath11k_core_reconfigure_on_crash(struct ath11k_base *sc)
+ {
+ 	int ret;
+ 
++	mutex_lock(&sc->core_lock);
+ 	ath11k_ahb_ext_irq_disable(sc);
+-
+ 	ath11k_dp_pdev_free(sc);
+-	ath11k_dp_free(sc);
+ 	ath11k_ahb_stop(sc);
+ 	ath11k_wmi_detach(sc);
++	mutex_unlock(&sc->core_lock);
++
++	ath11k_dp_free(sc);
+ 	ath11k_hal_srng_deinit(sc);
++
+ 	sc->free_vdev_map = (1LL << (sc->num_radios * TARGET_NUM_VDEVS)) - 1;
+ 
+ 	ret = ath11k_hal_srng_init(sc);
+@@ -707,13 +710,11 @@ static void ath11k_core_restart(struct work_struct *work)
+ 	wake_up(&sc->wmi_sc.tx_credits_wq);
+ 	wake_up(&sc->peer_mapping_wq);
+ 
+-	mutex_lock(&sc->core_lock);
+ 	ret = ath11k_core_reconfigure_on_crash(sc);
+ 	if (ret) {
+ 		ath11k_err(sc, "failed to reconfigure driver on crash recovery\n");
+ 		return;
+ 	}
+-	mutex_unlock(&sc->core_lock);
+ 
+ 	for (i = 0; i < sc->num_radios; i++) {
+ 		pdev = &sc->pdevs[i];
+@@ -767,7 +768,6 @@ int ath11k_core_init(struct ath11k_base *sc)
+ 	sc->tgt_rproc = prproc;
+ 	sc->hw_params = ath11k_hw_params;
+ 
+-	set_bit(ATH11K_FLAG_REGISTERED, &sc->dev_flags);
+ 	ret = ath11k_core_soc_create(sc);
+ 	if (ret) {
+ 		ath11k_err(sc, "failed to create soc core: %d\n", ret);
+diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
+index af09686fbe70..aca717ca1955 100644
+--- a/drivers/net/wireless/ath/ath11k/qmi.c
++++ b/drivers/net/wireless/ath/ath11k/qmi.c
+@@ -2351,6 +2351,9 @@ static void ath11k_qmi_driver_event_work(struct work_struct *work)
+ 		list_del(&event->list);
+ 		spin_unlock(&qmi->event_lock);
+ 
++		if (test_bit(ATH11K_FLAG_UNREGISTERING, &ab->dev_flags))
++			return;
++
+ 		switch (event->type) {
+ 		case ATH11K_QMI_EVENT_SERVER_ARRIVE:
+ 			ath11k_qmi_event_server_arrive(qmi);
+@@ -2366,17 +2369,15 @@ static void ath11k_qmi_driver_event_work(struct work_struct *work)
+ 			ath11k_qmi_event_load_bdf(qmi);
+ 			break;
+ 		case ATH11K_QMI_EVENT_FW_READY:
+-			if (test_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags) &&
+-			    !test_bit(ATH11K_FLAG_UNREGISTERING, &ab->dev_flags) &&
+-			    ab->qmi.cal_done) {
+-				set_bit(ATH11K_FLAG_CRASH_FLUSH, &ab->dev_flags);
+-				set_bit(ATH11K_FLAG_RECOVERY, &ab->dev_flags);
++			if (test_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags)) {
+ 				queue_work(ab->workqueue, &ab->restart_work);
++				break;
+ 			}
+-			else {
+-				ath11k_qmi_firmware_indication(ab);
+-				ab->qmi.cal_done = 1;
+-			}
++
++			ath11k_qmi_firmware_indication(ab);
++			ab->qmi.cal_done = 1;
++			set_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags);
++
+ 			break;
+ 		case ATH11K_QMI_EVENT_COLD_BOOT_CAL_DONE:
+ 			break;
+-- 
+1.9.1
 
-At any point do we expect any of these parameters from mac80211? Or 
-these will be
-just fw/hw specific default values for ever? If the former is true, we 
-can probably
-let mac to pass these parameters rather than filling it within wmi. 
-Defining macros
-for all these parameter values will provide more clarity.
-
-Vasanth
 
 _______________________________________________
 ath11k mailing list
