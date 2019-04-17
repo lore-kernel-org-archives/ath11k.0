@@ -1,14 +1,17 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from nbd.name ([2a01:4f8:221:3d45::2])
+Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hGhd3-0005om-7Y
- for ath11k@lists.infradead.org; Wed, 17 Apr 2019 10:17:22 +0000
-From: John Crispin <john@phrozen.org>
-Subject: patchwork
-Message-ID: <bd15fd3e-a0fb-02b1-05d8-8df1bb3902a2@phrozen.org>
-Date: Wed, 17 Apr 2019 12:17:17 +0200
+ id 1hGrgJ-0000Bn-Sn
+ for ath11k@lists.infradead.org; Wed, 17 Apr 2019 21:01:25 +0000
 MIME-Version: 1.0
-Content-Language: en-US
+Date: Wed, 17 Apr 2019 14:01:22 -0700
+From: Rajkumar Manoharan <rmanohar@codeaurora.org>
+Subject: Re: [PATCH 1/3] ath11k: enable mesh mode
+In-Reply-To: <17ff1868-7c2b-efa2-2be3-8f8a504dfd62@phrozen.org>
+References: <1555493358-16381-1-git-send-email-rmanohar@codeaurora.org>
+ <1555493358-16381-2-git-send-email-rmanohar@codeaurora.org>
+ <17ff1868-7c2b-efa2-2be3-8f8a504dfd62@phrozen.org>
+Message-ID: <e1ce8ea8a82f145b5e405b69e83b6a13@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -17,14 +20,31 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org, jk@ozlabs.org
+To: John Crispin <john@phrozen.org>
+Cc: ath11k@lists.infradead.org
 
-SGkgSmVyZW15LAoKY291bGQgeW91IGtpbmRseSBzZXR1cCBhIHBhdGNod29yayBmb3IgdGhlIGF0
-aDExayBsaXN0ID8KCiDCoMKgwqAgSm9obgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCmF0aDExayBtYWlsaW5nIGxpc3QKYXRoMTFrQGxpc3RzLmluZnJh
-ZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9hdGgx
-MWsK
+On 2019-04-17 02:56, John Crispin wrote:
+> On 17/04/2019 11:29, Rajkumar Manoharan wrote:
+> 
+>> @@ -3436,6 +3438,8 @@ static int ath11k_add_interface(struct 
+>> ieee80211_hw *hw,
+>>   	case NL80211_IFTYPE_STATION:
+>>   		arvif->vdev_type = WMI_VDEV_TYPE_STA;
+>>   		break;
+>> +	case NL80211_IFTYPE_MESH_POINT:
+>> +		arvif->vdev_subtype = WMI_VDEV_SUBTYPE_MESH_11S;
+> 
+> there should be a comment here that the drop is intentional
+> 
+Hmm.. Agree to have fall through comment.
+
+-Rajkumar
+
+_______________________________________________
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
