@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hHXzE-0008PY-JW
- for ath11k@lists.infradead.org; Fri, 19 Apr 2019 18:11:45 +0000
+ id 1hHXzG-0008QI-I8
+ for ath11k@lists.infradead.org; Fri, 19 Apr 2019 18:11:47 +0000
 From: Rajkumar Manoharan <rmanohar@codeaurora.org>
-Subject: [PATCH v2 1/3] ath11k: enable mesh mode
-Date: Fri, 19 Apr 2019 11:11:36 -0700
-Message-Id: <1555697498-27472-2-git-send-email-rmanohar@codeaurora.org>
+Subject: [PATCH v2 2/3] ath11k: allow 4 address transmission for mesh packet
+Date: Fri, 19 Apr 2019 11:11:37 -0700
+Message-Id: <1555697498-27472-3-git-send-email-rmanohar@codeaurora.org>
 In-Reply-To: <1555697498-27472-1-git-send-email-rmanohar@codeaurora.org>
 References: <1555697498-27472-1-git-send-email-rmanohar@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -23,98 +23,58 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
-Cc: Rajkumar Manoharan <rmanohar@codeaurora.org>
+Cc: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>, Rajkumar Manoharan <rmanohar@codeaurora.org>
 
-Allow Meshpoint configuration from ath11k and advertise MP
-support to mac80211. Firmware supports mesh type from
-WLAN.HK.2.1.0.1-00113-QCAHKSWPL_SILICONZ-1 onwards. As of now,
-only open auth mesh networking is working.
+Inform the target to use 4 adressses in 802.11 header for mesh data
+by marking the peer is capable of operating in 4 address format.
+Also ensure to inform TCL ring that mesh header is pesent in payload.
+This will be useful for enabling HW checksumming form mesh packets.
 
-Known issues:
- - Depends on firmware fix to allow other BSS frames
- - Failed to complete path negotiation in secured mode
- - Target assert while shutting down interface in secured mode
-
+Co-developed-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
+Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
 Signed-off-by: Rajkumar Manoharan <rmanohar@codeaurora.org>
 ---
-v2: added fallthrough comment
+ drivers/net/wireless/ath/ath11k/dp_tx.c |  3 +++
+ drivers/net/wireless/ath/ath11k/mac.c   | 11 +++++++++++
+ 2 files changed, 14 insertions(+)
 
- drivers/net/wireless/ath/ath11k/mac.c | 11 ++++++++++-
- drivers/net/wireless/ath/ath11k/wmi.h | 11 +++++++----
- 2 files changed, 17 insertions(+), 5 deletions(-)
-
+diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
+index 5324c5f514f8..b2807a88df9c 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_tx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
+@@ -131,7 +131,10 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
+ 			     FIELD_PREP(HAL_TCL_DATA_CMD_INFO1_TCP6_CKSUM_EN, 1);
+ 	}
+ 
++	if (ieee80211_vif_is_mesh(arvif->vif))
++		ti.flags1 |= FIELD_PREP(HAL_TCL_DATA_CMD_INFO2_MESH_ENABLE, 1);
+ 	ti.flags1 |= FIELD_PREP(HAL_TCL_DATA_CMD_INFO2_TID_OVERWRITE, 1);
++
+ 	ti.tid = ath11k_dp_get_tid(skb);
+ 
+ 	switch (ti.encap_type) {
 diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 12a2c4421264..7d838f2a9138 100644
+index 7d838f2a9138..ccac41bf9217 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -2579,6 +2579,7 @@ static int ath11k_sta_state(struct ieee80211_hw *hw,
- 	} else if (old_state == IEEE80211_STA_AUTH &&
- 		   new_state == IEEE80211_STA_ASSOC &&
- 		   (vif->type == NL80211_IFTYPE_AP ||
-+		    vif->type == NL80211_IFTYPE_MESH_POINT ||
- 		    vif->type == NL80211_IFTYPE_ADHOC)) {
- 		ret = ath11k_station_assoc(ar, vif, sta, false);
- 		if (ret)
-@@ -2591,6 +2592,7 @@ static int ath11k_sta_state(struct ieee80211_hw *hw,
- 	} else if (old_state == IEEE80211_STA_ASSOC &&
- 		   new_state == IEEE80211_STA_AUTH &&
- 		   (vif->type == NL80211_IFTYPE_AP ||
-+		    vif->type == NL80211_IFTYPE_MESH_POINT ||
- 		    vif->type == NL80211_IFTYPE_ADHOC)) {
- 		ret = ath11k_station_disassoc(ar, vif, sta);
- 		if (ret)
-@@ -3436,6 +3438,9 @@ static int ath11k_add_interface(struct ieee80211_hw *hw,
- 	case NL80211_IFTYPE_STATION:
- 		arvif->vdev_type = WMI_VDEV_TYPE_STA;
- 		break;
-+	case NL80211_IFTYPE_MESH_POINT:
-+		arvif->vdev_subtype = WMI_VDEV_SUBTYPE_MESH_11S;
-+		/* fall through */
- 	case NL80211_IFTYPE_AP:
- 		arvif->vdev_type = WMI_VDEV_TYPE_AP;
- 		break;
-@@ -4702,6 +4707,9 @@ static int ath11k_get_survey(struct ieee80211_hw *hw, int idx,
- 	{
- 		.max    = 16,
- 		.types  = BIT(NL80211_IFTYPE_AP)
-+#ifdef CONFIG_MAC80211_MESH
-+			| BIT(NL80211_IFTYPE_MESH_POINT)
-+#endif
- 	},
- };
+@@ -2550,6 +2550,17 @@ static int ath11k_sta_state(struct ieee80211_hw *hw,
+ 				goto exit;
+ 		}
  
-@@ -4820,7 +4828,8 @@ static int ath11k_mac_register(struct ath11k *ar)
- 	ar->hw->wiphy->available_antennas_tx = cap->tx_chain_mask;
- 
- 	ar->hw->wiphy->interface_modes = BIT(NL80211_IFTYPE_STATION) |
--					 BIT(NL80211_IFTYPE_AP);
-+					 BIT(NL80211_IFTYPE_AP) |
-+					 BIT(NL80211_IFTYPE_MESH_POINT);
- 
- 	ieee80211_hw_set(ar->hw, SIGNAL_DBM);
- 	ieee80211_hw_set(ar->hw, SUPPORTS_PS);
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index 8102e80506fa..5d20f57fbacc 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -4720,10 +4720,13 @@ enum wmi_vdev_type {
- };
- 
- enum wmi_vdev_subtype {
--	WMI_VDEV_SUBTYPE_NONE       = 0,
--	WMI_VDEV_SUBTYPE_P2P_DEVICE = 1,
--	WMI_VDEV_SUBTYPE_P2P_CLIENT = 2,
--	WMI_VDEV_SUBTYPE_P2P_GO     = 3,
-+	WMI_VDEV_SUBTYPE_NONE,
-+	WMI_VDEV_SUBTYPE_P2P_DEVICE,
-+	WMI_VDEV_SUBTYPE_P2P_CLIENT,
-+	WMI_VDEV_SUBTYPE_P2P_GO,
-+	WMI_VDEV_SUBTYPE_PROXY_STA,
-+	WMI_VDEV_SUBTYPE_MESH_NON_11S,
-+	WMI_VDEV_SUBTYPE_MESH_11S,
- };
- 
- enum wmi_sta_powersave_param {
++		if (ieee80211_vif_is_mesh(vif)) {
++			ret = ath11k_wmi_set_peer_param(ar, sta->addr,
++							arvif->vdev_id,
++							WMI_PEER_USE_4ADDR, 1);
++			if (ret) {
++				ath11k_warn(ar->ab, "failed to STA %pM 4addr capability: %d\n",
++					    sta->addr, ret);
++				goto exit;
++			}
++		}
++
+ 		ret = ath11k_dp_peer_setup(ar, arvif->vdev_id, sta->addr);
+ 		if (ret) {
+ 			ath11k_warn(ar->ab, "failed to setup dp for peer %pM on vdev %i (%d)\n",
 -- 
 1.9.1
 
