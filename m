@@ -1,18 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hHHQV-0005KF-0I
- for ath11k@lists.infradead.org; Fri, 19 Apr 2019 00:30:48 +0000
-MIME-Version: 1.0
-Date: Thu, 18 Apr 2019 17:30:45 -0700
+ id 1hHXzC-0008NU-Sn
+ for ath11k@lists.infradead.org; Fri, 19 Apr 2019 18:11:44 +0000
 From: Rajkumar Manoharan <rmanohar@codeaurora.org>
-Subject: Re: [PATCH 2/2] ath11k: add TWT support
-In-Reply-To: <b1611f1e-2122-d613-212c-15adb239ba89@phrozen.org>
-References: <20190416190840.20286-1-john@phrozen.org>
- <20190416190840.20286-2-john@phrozen.org>
- <1987e719d39c919bb1e6f660cfc3d49d@codeaurora.org>
- <b1611f1e-2122-d613-212c-15adb239ba89@phrozen.org>
-Message-ID: <5892526c5a8450d1f169db0623b764d3@codeaurora.org>
+Subject: [PATCH v2 0/3] ath11k: Add Mesh mode support
+Date: Fri, 19 Apr 2019 11:11:35 -0700
+Message-Id: <1555697498-27472-1-git-send-email-rmanohar@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -21,33 +15,39 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: John Crispin <john@phrozen.org>
-Cc: ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>, Shashidhar Lakkavalli <slakkavalli@datto.com>
+To: ath11k@lists.infradead.org
+Cc: Rajkumar Manoharan <rmanohar@codeaurora.org>
 
-On 2019-04-17 02:36, John Crispin wrote:
-> On 17/04/2019 11:14, Rajkumar Manoharan wrote:
->> On 2019-04-16 12:08, John Crispin wrote:
->>> Add target wait time wmi calls to the driver. Enable the support 
->>> inside
->>> the FW by default.
->>> 
->> Cool... Are you planning to provide option to disable and enable TWT 
->> through hostapd.
-> 
-> I think this would be a cfg80211 feature not a hostapd feature, but we
-> can do that.
-> 
-Hmm.. I was referring he_twt_required option in hostapd. I see that it 
-used for HE operation.
-Either the same option can be used to enable/disable this feature in 
-firmware or we may
-add new config in start_ap().
+Hi,
+
+Posting initial patches to bring Mesh support to ath11k. There are known
+issues which is also captured in first patch.
+
+Known issues:
+ - Depends on firmware fix to allow other BSS frames
+ - Failed to complete path negotiation in secured mode
+ - Target assert while shutting down interface in secured mode
 
 -Rajkumar
+
+Rajkumar Manoharan (3):
+  ath11k: enable mesh mode
+  ath11k: allow 4 address transmission for mesh packet
+  ath11k: remove addition check for PMF
+
+ drivers/net/wireless/ath/ath11k/dp_tx.c |  3 +++
+ drivers/net/wireless/ath/ath11k/mac.c   | 19 ++++++++++++++++++-
+ drivers/net/wireless/ath/ath11k/wmi.c   | 21 ++++++++++-----------
+ drivers/net/wireless/ath/ath11k/wmi.h   | 11 +++++++----
+ 4 files changed, 38 insertions(+), 16 deletions(-)
+
+-- 
+1.9.1
 
 
 _______________________________________________
