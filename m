@@ -1,14 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hHXzI-0008RE-Gh
- for ath11k@lists.infradead.org; Fri, 19 Apr 2019 18:11:49 +0000
-From: Rajkumar Manoharan <rmanohar@codeaurora.org>
-Subject: [PATCH v2 3/3] ath11k: remove unnecessary check for PMF
-Date: Fri, 19 Apr 2019 11:11:38 -0700
-Message-Id: <1555697498-27472-4-git-send-email-rmanohar@codeaurora.org>
-In-Reply-To: <1555697498-27472-1-git-send-email-rmanohar@codeaurora.org>
-References: <1555697498-27472-1-git-send-email-rmanohar@codeaurora.org>
+ id 1hIw2q-0004qR-FY
+ for ath11k@lists.infradead.org; Tue, 23 Apr 2019 14:05:16 +0000
+From: Kalle Valo <kvalo@codeaurora.org>
+Subject: Re: [PATCH v5 0/6] ath11k: add monitor mode support
+References: <1555373576-4771-1-git-send-email-milehu@codeaurora.org>
+Date: Tue, 23 Apr 2019 17:05:07 +0300
+In-Reply-To: <1555373576-4771-1-git-send-email-milehu@codeaurora.org> (Miles
+ Hu's message of "Mon, 15 Apr 2019 17:12:50 -0700")
+Message-ID: <87a7ggzujw.fsf@kamboji.qca.qualcomm.com>
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -17,62 +19,55 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: Rajkumar Manoharan <rmanohar@codeaurora.org>
+To: Miles Hu <milehu@codeaurora.org>
+Cc: ath11k@lists.infradead.org
 
-Firmware delivers mesh group action frame as encrypted payload.
-To allow software decryption for these group action frames, rx
-status should not be marked as RX_FLAG_DECRYPTED and protected
-bit in frame control should not be cleared. Existing robust
-management check is enough to handle RX_FLAG_DECRYPTED. Hence
-removing unnecessary protected frame validation.
+Miles Hu <milehu@codeaurora.org> writes:
 
-Signed-off-by: Rajkumar Manoharan <rmanohar@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/wmi.c | 21 ++++++++++-----------
- 1 file changed, 10 insertions(+), 11 deletions(-)
+> Adding monitor mode in ath11k. It can be enabled
+>  by commands below:
+>
+>   ifconfig wlan0 down
+>   iw wlan0 set type monitor
+>   ifconfig wlan0 up
+>
+> change channel:
+>   iw wlan0 set freq 5805 80 5775
+>
+> Change summary:
+> 1. create monitor status/destination/buffer/link descriptor rings.
+> 2. enable these rings and push ring filters to buffer/status rings.
+> 3. add napi entry point for monitor status and destination rings process.
+> 4. implement monitor status/buffer rings replenish.
+> 5. process entries from the status ring to get ppdu id and tlv status.
+> 6. process entries from the destination ring by comparing ppdu id to build
+>     msdu list.
+> 7. merge msdu list to mpdu and copy rx status to cb.
+> 8. deliver mpdu to upper layer.
+>
+> Known issues:
+>  - Coexist with other interface type (AP/STA) not fully supported.
+>  - higher data rates (11ax) not supported. radiotap needs proper info.
+>  - signal strength and rate idx not accurate in some packets.
 
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index cdacbaea188c..5712ac030419 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -5196,18 +5196,17 @@ void ath11k_mgmt_rx_event(struct ath11k_base *ab, struct sk_buff *skb)
- 	 */
- 	status->flag |= RX_FLAG_SKIP_MONITOR;
- 
--	if (ieee80211_has_protected(hdr->frame_control)) {
--		/* In case of PMF, FW delivers decrypted frames
--		 * with Protected Bit set. Don't clear that.
--		 */
--		if (!ieee80211_is_robust_mgmt_frame(skb))  {
--			status->flag |= RX_FLAG_DECRYPTED;
-+	/* In case of PMF, FW delivers decrypted frames with Protected Bit set.
-+	 * Don't clear that. FW also delivers broadcast management frames
-+	 * (ex: group privacy action frames in mesh) as encrypted payload.
-+	 */
-+	if (!ieee80211_is_robust_mgmt_frame(skb))  {
-+		status->flag |= RX_FLAG_DECRYPTED;
- 
--			status->flag |= RX_FLAG_IV_STRIPPED |
--					RX_FLAG_MMIC_STRIPPED;
--			hdr->frame_control = __cpu_to_le16(fc &
--					~IEEE80211_FCTL_PROTECTED);
--		}
-+		status->flag |= RX_FLAG_IV_STRIPPED |
-+			RX_FLAG_MMIC_STRIPPED;
-+		hdr->frame_control = __cpu_to_le16(fc &
-+				~IEEE80211_FCTL_PROTECTED);
- 	}
- 
- 	/* TODO: Pending handle beacon implementation
+This does not apply:
+
+Applying: ath11k: init/deinit monitor rings
+fatal: sha1 information is lacking or useless (drivers/net/wireless/ath/ath11k/core.h).
+error: could not build fake ancestor
+Patch failed at 0001 ath11k: init/deinit monitor rings
+
+And the sha1 id is incorrect so I can't use 3-way merge to correct it
+myself. Please ALWAYS use the ath11k-bringup branch as the baseline and
+make sure you don't have other patches applied, otherwise it will be
+pain to handle conflicts.
+
 -- 
-1.9.1
-
+Kalle Valo
 
 _______________________________________________
 ath11k mailing list
