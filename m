@@ -1,17 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hJ0JL-0000Gs-MK
- for ath11k@lists.infradead.org; Tue, 23 Apr 2019 18:38:32 +0000
+ id 1hJ0V4-000576-Go
+ for ath11k@lists.infradead.org; Tue, 23 Apr 2019 18:50:39 +0000
+From: Anilkumar Kolli <akolli@codeaurora.org>
+Subject: [PATCH] ath11k: fix build issues on disabling ATH11K_DEBUG
+Date: Wed, 24 Apr 2019 00:20:25 +0530
+Message-Id: <1556045425-28750-1-git-send-email-akolli@codeaurora.org>
 MIME-Version: 1.0
-Date: Wed, 24 Apr 2019 00:08:30 +0530
-From: Bhagavathi Perumal S <bperumal@codeaurora.org>
-Subject: Re: [PATCH 0/3] ath11k: Add some bug fixes and enhancements in htt
- stats
-In-Reply-To: <875zr4zuaj.fsf@kamboji.qca.qualcomm.com>
-References: <1555343569-2072-1-git-send-email-bperumal@codeaurora.org>
- <875zr4zuaj.fsf@kamboji.qca.qualcomm.com>
-Message-ID: <9d4776387a3b319caf2ff48d6a1a46fc@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -20,38 +16,78 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: ath11k@lists.infradead.org
+To: ath11k@lists.infradead.org
 
-On 2019-04-23 19:40, Kalle Valo wrote:
-> Bhagavathi Perumal S <bperumal@codeaurora.org> writes:
-> 
->> This fixes few coding bugs, And adds htt peer stats
->> as a separate debugfs entry and htt stats reset.
->> 
->> Bhagavathi Perumal S (3):
->>   ath11k: Fix few coding bugs in htt stats
->>   ath11k: Add htt peer stats support
->>   ath11k: Add debugfs entry to support htt stats reset
-> 
-> Does not compile on x86_64 with GCC 8.1.0:
-> 
-> drivers/net/wireless/ath/ath11k/debugfs_sta.c:432:10: error:
-> initialization of 'int (*)(struct inode *, struct file *)' from
-> incompatible pointer type 'ssize_t (*)(struct inode *, struct file *)'
-> {aka 'long int (*)(struct inode *, struct file *)'}
-> [-Werror=incompatible-pointer-types]
-
-Fixed and sent v2 patch.
-
-Thanks,
-Bhagavathi.
-
-_______________________________________________
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+T24gQ09ORklHX0FUSDExS19ERUJVRyBkaXNhYmxlIGZpeCB0aGVzZSBidWlsZCBlcnJvcnMKCmF0
+aDExay9kcF9yeC5jOiBJbiBmdW5jdGlvbiDigJhhdGgxMWtfaHR0X3B1bGxfcHBkdV9zdGF0c+KA
+mToKYXRoMTFrL2RwX3J4LmM6OTkxOjg6IGVycm9yOiDigJhzdHJ1Y3QgYXRoMTFr4oCZIGhhcyBu
+byBtZW1iZXIgbmFtZWQK4oCYZGVidWfigJkKICBpZiAoYXItPmRlYnVnLnBrdGxvZ19tb2RlID09
+IEFUSDExS19QS1RMT0dfTU9ERV9MSVRFKSB7CiAgICAgICAgXgphdGgxMWsvZHBfcnguYzogSW4g
+ZnVuY3Rpb24g4oCYYXRoMTFrX2RwX3J4X3Byb2Nlc3NfbW9uX3N0YXR1c+KAmToKYXRoMTFrL2Rw
+X3J4LmM6MjI3ODoxMDogZXJyb3I6IOKAmHN0cnVjdCBhdGgxMWvigJkgaGFzIG5vIG1lbWJlcgpu
+YW1lZCDigJhkZWJ1Z+KAmQogICBpZiAoIWFyLT5kZWJ1Zy5wa3Rsb2dfcGVlcl92YWxpZCkgewog
+ICAgICAgICAgXgphdGgxMWsvZHBfcnguYzoyMzA3Ojk6IGVycm9yOiDigJhzdHJ1Y3QgYXRoMTFr
+4oCZIGhhcyBubyBtZW1iZXIgbmFtZWQK4oCYZGVidWfigJkKICAgaWYgKGFyLT5kZWJ1Zy5wa3Rs
+b2dfcGVlcl92YWxpZCAmJgogICAgICAgICBeCmF0aDExay9kcF9yeC5jOjIzMDg6Mzg6IGVycm9y
+OiDigJhzdHJ1Y3QgYXRoMTFr4oCZIGhhcyBubyBtZW1iZXIKbmFtZWQg4oCYZGVidWfigJkKICAg
+ICAgIGV0aGVyX2FkZHJfZXF1YWwocGVlci0+YWRkciwgYXItPmRlYnVnLnBrdGxvZ19wZWVyX2Fk
+ZHIpKSB7CgpTaWduZWQtb2ZmLWJ5OiBBbmlsa3VtYXIgS29sbGkgPGFrb2xsaUBjb2RlYXVyb3Jh
+Lm9yZz4KLS0tCiBkcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL2RlYnVnLmggfCAzMSAr
+KysrKysrKysrKysrKysrKysrKysrKysrKysrKysrCiBkcml2ZXJzL25ldC93aXJlbGVzcy9hdGgv
+YXRoMTFrL2RwX3J4LmMgfCAgNyArKystLS0tCiAyIGZpbGVzIGNoYW5nZWQsIDM0IGluc2VydGlv
+bnMoKyksIDQgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9uZXQvd2lyZWxlc3Mv
+YXRoL2F0aDExay9kZWJ1Zy5oIGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9kZWJ1
+Zy5oCmluZGV4IDY2YTU5NmNhMGM4My4uNGYxMDg0YjAyNGE5IDEwMDY0NAotLS0gYS9kcml2ZXJz
+L25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL2RlYnVnLmgKKysrIGIvZHJpdmVycy9uZXQvd2lyZWxl
+c3MvYXRoL2F0aDExay9kZWJ1Zy5oCkBAIC0xMDIsNiArMTAyLDIyIEBAIHZvaWQgYXRoMTFrX2Rl
+YnVnX2Z3X3N0YXRzX3Byb2Nlc3Moc3RydWN0IGF0aDExa19iYXNlICphYiwgdTggKmV2dF9idWYs
+CiAKIHZvaWQgYXRoMTFrX2RlYnVnX2Z3X3N0YXRzX2luaXQoc3RydWN0IGF0aDExayAqYXIpOwog
+CitzdGF0aWMgaW5saW5lIGJvb2wgYXRoMTFrX2RlYnVnX2lzX3BrdGxvZ19saXRlX21vZGVfZW5h
+YmxlZChzdHJ1Y3QgYXRoMTFrICphcikKK3sKKwlyZXR1cm4gKGFyLT5kZWJ1Zy5wa3Rsb2dfbW9k
+ZSA9PSBBVEgxMUtfUEtUTE9HX01PREVfTElURSk7Cit9CisKK3N0YXRpYyBpbmxpbmUgYm9vbCBh
+dGgxMWtfZGVidWdfaXNfcGt0bG9nX3Blcl9wZWVyX2VuYWJsZWQoc3RydWN0IGF0aDExayAqYXIp
+Cit7CisJcmV0dXJuICEhYXItPmRlYnVnLnBrdGxvZ19wZWVyX3ZhbGlkOworfQorCitzdGF0aWMg
+aW5saW5lIGJvb2wgYXRoMTFrX2RlYnVnX2lzX3BrdGxvZ19wZWVyX3ZhaWxkKHN0cnVjdCBhdGgx
+MWsgKmFyLCB1OCAqYWRkcikKK3sKKwlyZXR1cm4gKGFyLT5kZWJ1Zy5wa3Rsb2dfcGVlcl92YWxp
+ZCAmJgorCQlldGhlcl9hZGRyX2VxdWFsKGFkZHIsIGFyLT5kZWJ1Zy5wa3Rsb2dfcGVlcl9hZGRy
+KSk7Cit9CisKIHN0YXRpYyBpbmxpbmUgaW50IGF0aDExa19kZWJ1Z19pc19leHRkX3R4X3N0YXRz
+X2VuYWJsZWQoc3RydWN0IGF0aDExayAqYXIpCiB7CiAJcmV0dXJuIGFyLT5kZWJ1Zy5leHRkX3R4
+X3N0YXRzOwpAQCAtMTU3LDYgKzE3MywyMSBAQCBzdGF0aWMgaW5saW5lIGludCBhdGgxMWtfZGVi
+dWdfaXNfZXh0ZF9yeF9zdGF0c19lbmFibGVkKHN0cnVjdCBhdGgxMWsgKmFyKQogewogCXJldHVy
+biAwOwogfQorCitzdGF0aWMgaW5saW5lIGJvb2wgYXRoMTFrX2RlYnVnX2lzX3BrdGxvZ19saXRl
+X21vZGVfZW5hYmxlZChzdHJ1Y3QgYXRoMTFrICphcikKK3sKKwlyZXR1cm4gZmFsc2U7Cit9CisK
+K3N0YXRpYyBpbmxpbmUgYm9vbCBhdGgxMWtfZGVidWdfaXNfcGt0bG9nX3Blcl9wZWVyX2VuYWJs
+ZWQoc3RydWN0IGF0aDExayAqYXIpCit7CisJcmV0dXJuIGZhbHNlOworfQorCitzdGF0aWMgaW5s
+aW5lIGJvb2wgYXRoMTFrX2RlYnVnX2lzX3BrdGxvZ19wZWVyX3ZhaWxkKHN0cnVjdCBhdGgxMWsg
+KmFyLCB1OCAqYWRkcikKK3sKKwlyZXR1cm4gZmFsc2U7Cit9CiAjZW5kaWYgLyogQ09ORklHX0FU
+SDExS19ERUJVR0ZTICovCiAKICNpZmRlZiBDT05GSUdfTUFDODAyMTFfREVCVUdGUwpkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9kcF9yeC5jIGIvZHJpdmVycy9u
+ZXQvd2lyZWxlc3MvYXRoL2F0aDExay9kcF9yeC5jCmluZGV4IDRmZWE4MmY1YjRiNi4uM2IzN2Mz
+NjQ3NWQyIDEwMDY0NAotLS0gYS9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL2RwX3J4
+LmMKKysrIGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9kcF9yeC5jCkBAIC05ODgs
+NyArOTg4LDcgQEAgc3RhdGljIGludCBhdGgxMWtfaHR0X3B1bGxfcHBkdV9zdGF0cyhzdHJ1Y3Qg
+YXRoMTFrX2Jhc2UgKmFiLAogCXBwZHVfaWQgPSAqKCh1MzIgKilkYXRhICsgMSk7CiAJYXIgPSBh
+Yi0+cGRldnNbcGRldl9pZF0uYXI7CiAKLQlpZiAoYXItPmRlYnVnLnBrdGxvZ19tb2RlID09IEFU
+SDExS19QS1RMT0dfTU9ERV9MSVRFKSB7CisJaWYgKGF0aDExa19kZWJ1Z19pc19wa3Rsb2dfbGl0
+ZV9tb2RlX2VuYWJsZWQoYXIpKSB7CiAJCS8qIFRPRE8gdXBkYXRlIHRoZSBwa3Rsb2cgdHJhY2lu
+ZyAqLwogCX0KIApAQCAtMjI3NSw3ICsyMjc1LDcgQEAgaW50IGF0aDExa19kcF9yeF9wcm9jZXNz
+X21vbl9zdGF0dXMoc3RydWN0IGF0aDExa19iYXNlICphYiwgaW50IG1hY19pZCwKIAkJbWVtc2V0
+KCZwcGR1X2luZm8sIDAsIHNpemVvZihwcGR1X2luZm8pKTsKIAkJcHBkdV9pbmZvLnBlZXJfaWQg
+PSBIQUxfSU5WQUxJRF9QRUVSSUQ7CiAKLQkJaWYgKCFhci0+ZGVidWcucGt0bG9nX3BlZXJfdmFs
+aWQpIHsKKwkJaWYgKCFhdGgxMWtfZGVidWdfaXNfcGt0bG9nX3Blcl9wZWVyX2VuYWJsZWQoYXIp
+KSB7CiAJCQkvKiBUT0RPIHVwZGF0ZSB0aGUgcGt0bG9nIHRyYWNpbmcgKi8KIAkJfQogCkBAIC0y
+MzA0LDggKzIzMDQsNyBAQCBpbnQgYXRoMTFrX2RwX3J4X3Byb2Nlc3NfbW9uX3N0YXR1cyhzdHJ1
+Y3QgYXRoMTFrX2Jhc2UgKmFiLCBpbnQgbWFjX2lkLAogCQlhcnN0YSA9IChzdHJ1Y3QgYXRoMTFr
+X3N0YSAqKXBlZXItPnN0YS0+ZHJ2X3ByaXY7CiAJCWF0aDExa19kcF9yeF91cGRhdGVfcGVlcl9z
+dGF0cyhhcnN0YSwgJnBwZHVfaW5mbyk7CiAKLQkJaWYgKGFyLT5kZWJ1Zy5wa3Rsb2dfcGVlcl92
+YWxpZCAmJgotCQkgICAgZXRoZXJfYWRkcl9lcXVhbChwZWVyLT5hZGRyLCBhci0+ZGVidWcucGt0
+bG9nX3BlZXJfYWRkcikpIHsKKwkJaWYgKGF0aDExa19kZWJ1Z19pc19wa3Rsb2dfcGVlcl92YWls
+ZChhciwgcGVlci0+YWRkcikpIHsKIAkJCS8qIFRPRE8gdXBkYXRlIHRoZSBwa3Rsb2cgdHJhY2lu
+ZyBmb3Igb25lIHBlZXIqLwogCQl9CiAJCXNwaW5fdW5sb2NrX2JoKCZhYi0+ZGF0YV9sb2NrKTsK
+LS0gCjEuOS4xCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KYXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8v
+bGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2F0aDExawo=
