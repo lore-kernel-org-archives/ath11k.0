@@ -1,12 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hJAtn-0002yd-Sz
- for ath11k@lists.infradead.org; Wed, 24 Apr 2019 05:56:53 +0000
-From: Sathishkumar Muruganandam <murugana@codeaurora.org>
-Subject: [PATCH v2] ath11k: add HW checksum offload support
-Date: Wed, 24 Apr 2019 11:26:18 +0530
-Message-Id: <1556085378-4389-1-git-send-email-murugana@codeaurora.org>
+ id 1hJCU9-0006Xa-Ju
+ for ath11k@lists.infradead.org; Wed, 24 Apr 2019 07:38:31 +0000
+MIME-Version: 1.0
+Date: Wed, 24 Apr 2019 13:08:28 +0530
+From: Anilkumar Kolli <akolli@codeaurora.org>
+Subject: Re: [PATCH] ath11k: move per peer pktlog entry to per sta debugfs
+In-Reply-To: <871s1szu4f.fsf@kamboji.qca.qualcomm.com>
+References: <1555389673-19625-1-git-send-email-akolli@codeaurora.org>
+ <871s1szu4f.fsf@kamboji.qca.qualcomm.com>
+Message-ID: <3753b87a425d38b5c50c33cb4c030451@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -15,57 +19,38 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: Sathishkumar Muruganandam <murugana@codeaurora.org>
+To: Kalle Valo <kvalo@codeaurora.org>
+Cc: ath11k@lists.infradead.org
 
-Advertise HW checksum offload capabilities to netdev
+Hi Kalle,
 
-Signed-off-by: Sathishkumar Muruganandam <murugana@codeaurora.org>
----
-Changes in v2:
-	Modified commit log
+Thanks for the review.
 
- drivers/net/wireless/ath/ath11k/dp_tx.c | 4 ++++
- drivers/net/wireless/ath/ath11k/mac.c   | 3 +++
- 2 files changed, 7 insertions(+)
+>> 
+>> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
+> 
+> Does not compile:
+> 
+> drivers/net/wireless/ath/ath11k/debugfs_sta.c:455:11: error:
+> initialization of 'ssize_t (*)(struct file *, const char *, size_t,
+> loff_t *)' {aka 'long int (*)(struct file *, const char *, long
+> unsigned int,  long long int *)'} from incompatible pointer type
+> 'ssize_t (*)(struct file *, char *, size_t,  loff_t *)' {aka 'long int
+> (*)(struct file *, char *, long unsigned int,  long long int *)'}
+> [-Werror=incompatible-pointer-types]
+>   .write = ath11k_dbg_sta_write_peer_pktlog,
+>            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
-index b2807a88df9c..84965000c54d 100644
---- a/drivers/net/wireless/ath/ath11k/dp_tx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
-@@ -142,6 +142,10 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
- 		ath11k_dp_encap_nwifi(skb);
- 		break;
- 	case HAL_TCL_ENCAP_TYPE_RAW:
-+		/*  TODO: for CHECKSUM_PARTIAL case in raw mode, HW checksum offload
-+		 *	  is not applicable, hence manual checksum calculation using
-+		 *	  skb_checksum_help() is needed
-+		 */
- 	case HAL_TCL_ENCAP_TYPE_ETHERNET:
- 	case HAL_TCL_ENCAP_TYPE_802_3:
- 		/* TODO: Take care of other encap modes as well */
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index ddb8beba3ab7..6cba3ebab6ed 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -4927,6 +4927,9 @@ static int ath11k_mac_register(struct ath11k *ar)
- 
- 	ath11k_reg_init(ar);
- 
-+	/* advertise HW checksum offload capabilities */
-+	ar->hw->netdev_features = NETIF_F_HW_CSUM;
-+
- 	ret = ieee80211_register_hw(ar->hw);
- 	if (ret) {
- 		ath11k_err(ar->ab, "ieee80211 registration failed: %d\n", ret);
--- 
-1.9.1
+I am using "arch/x86/configs/x86_64_defconfig" and ath11k enabled, could 
+not reproduce this issue.
+Kindly share the build instructions.
 
+Thanks
+Anil.
 
 _______________________________________________
 ath11k mailing list
