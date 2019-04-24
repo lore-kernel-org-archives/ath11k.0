@@ -1,12 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hJ5Ql-0007kq-3Y
- for ath11k@lists.infradead.org; Wed, 24 Apr 2019 00:06:32 +0000
+ id 1hJ5Qo-0007lo-Jx
+ for ath11k@lists.infradead.org; Wed, 24 Apr 2019 00:06:36 +0000
 From: Miles Hu <milehu@codeaurora.org>
-Subject: [PATCH v2 0/6] ath11k: add monitor mode support
-Date: Tue, 23 Apr 2019 17:06:21 -0700
-Message-Id: <1556064387-4668-1-git-send-email-milehu@codeaurora.org>
+Subject: [PATCH v2 2/6] ath11k: monitor filter set function
+Date: Tue, 23 Apr 2019 17:06:23 -0700
+Message-Id: <1556064387-4668-3-git-send-email-milehu@codeaurora.org>
+In-Reply-To: <1556064387-4668-1-git-send-email-milehu@codeaurora.org>
+References: <1556064387-4668-1-git-send-email-milehu@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,61 +25,250 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: Miles Hu <milehu@codeaurora.org>
 
-Adding monitor mode in ath11k. It can be enabled
- by commands below:
+create monitor mode filter.
+implement htt filter set function.
+create common function to get htt ring id and type.
 
-  ifconfig wlan0 down
-  iw wlan0 set type monitor
-  ifconfig wlan0 up
-
-change channel:
-  iw wlan0 set freq 5805 80 5775
-
-Change summary:
-1. create monitor status/destination/buffer/link descriptor rings.
-2. enable these rings and push ring filters to buffer/status rings.
-3. add napi entry point for monitor status and destination rings process.
-4. implement monitor status/buffer rings replenish.
-5. process entries from the status ring to get ppdu id and tlv status.
-6. process entries from the destination ring by comparing ppdu id to build
-    msdu list.
-7. merge msdu list to mpdu and copy rx status to cb.
-8. deliver mpdu to upper layer.
-
-Known issues:
- - Coexist with other interface type (AP/STA) not fully supported.
- - higher data rates (11ax) not supported. radiotap needs proper info.
- - signal strength and rate idx not accurate in some packets.
-
--Miles Hu
-
-Miles Hu (6):
-  ath11k: init/deinit monitor rings
-  ath11k: monitor filter set function
-  ath11k: htt setup monitor rings
-  ath11k: monitor mode attach/detach
-  ath11k: enable/disable monitor mode and destination ring entry process
-  ath11k: merge msdu tlv process and status/destination ring process
-
+Signed-off-by: Miles Hu <milehu@codeaurora.org>
+---
 V2:
  - Move to ath11k-bringup branch
 
+ drivers/net/wireless/ath/ath11k/dp_tx.c | 177 +++++++++++++++++++-------------
+ 1 file changed, 106 insertions(+), 71 deletions(-)
 
- drivers/net/wireless/ath/ath11k/core.h     |   8 +-
- drivers/net/wireless/ath/ath11k/dp.c       | 110 ++--
- drivers/net/wireless/ath/ath11k/dp.h       | 189 ++++++-
- drivers/net/wireless/ath/ath11k/dp_rx.c    | 872 +++++++++++++++++++++++++++--
- drivers/net/wireless/ath/ath11k/dp_rx.h    |  61 +-
- drivers/net/wireless/ath/ath11k/dp_tx.c    | 177 +++---
- drivers/net/wireless/ath/ath11k/dp_tx.h    |   1 +
- drivers/net/wireless/ath/ath11k/hal.c      |   2 +-
- drivers/net/wireless/ath/ath11k/hal_desc.h |   3 +
- drivers/net/wireless/ath/ath11k/hal_rx.c   |  28 +
- drivers/net/wireless/ath/ath11k/hal_rx.h   |  17 +
- drivers/net/wireless/ath/ath11k/mac.c      |  40 +-
- drivers/net/wireless/ath/ath11k/rx_desc.h  |   1 +
- 13 files changed, 1343 insertions(+), 166 deletions(-)
-
+diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
+index b2807a8..84230c1 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_tx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
+@@ -550,30 +550,15 @@ int ath11k_dp_send_reo_cmd(struct ath11k_base *ab, struct dp_rx_tid *rx_tid,
+ 	return 0;
+ }
+ 
+-int ath11k_dp_htt_srng_setup(struct ath11k_base *ab, u32 ring_id,
+-			     int mac_id, enum hal_ring_type ring_type)
++static int
++ath11k_dp_get_ring_id_type(struct ath11k_base *ab,
++			   int mac_id, u32 ring_id,
++			   enum hal_ring_type ring_type,
++			   enum htt_srng_ring_type *htt_ring_type,
++			   enum htt_srng_ring_id *htt_ring_id)
+ {
+-	struct htt_srng_setup_cmd *cmd;
+-	struct hal_srng *srng = &ab->hal.srng_list[ring_id];
+-	struct hal_srng_params params;
+-	struct sk_buff *skb;
+-	int ring_entry_sz;
+-	int len = sizeof(*cmd);
+-	dma_addr_t hp_addr, tp_addr;
+-	int lmac_ring_id_offset;
+-	enum htt_srng_ring_type htt_ring_type;
+-	enum htt_srng_ring_id htt_ring_id;
+-	int ret;
+-
+-	skb = ath11k_htc_alloc_skb(ab, len);
+-	if (!skb)
+-		return -ENOMEM;
+-
+-	memset(&params, 0, sizeof(params));
+-	ath11k_hal_srng_get_params(ab, srng, &params);
+-
+-	hp_addr = ath11k_hal_srng_get_hp_addr(ab, srng);
+-	tp_addr = ath11k_hal_srng_get_tp_addr(ab, srng);
++	int lmac_ring_id_offset = 0;
++	int ret = 0;
+ 
+ 	switch (ring_type) {
+ 	case HAL_RXDMA_BUF:
+@@ -583,37 +568,66 @@ int ath11k_dp_htt_srng_setup(struct ath11k_base *ab, u32 ring_id,
+ 		    ring_id == (HAL_SRNG_RING_ID_WMAC1_SW2RXDMA1_BUF +
+ 				lmac_ring_id_offset))) {
+ 			ret = -EINVAL;
+-			goto err_free;
+ 		}
+-
+-		htt_ring_id = HTT_RXDMA_HOST_BUF_RING;
+-		htt_ring_type = HTT_SW_TO_HW_RING;
++		*htt_ring_id = HTT_RXDMA_HOST_BUF_RING;
++		*htt_ring_type = HTT_SW_TO_HW_RING;
+ 		break;
+ 	case HAL_RXDMA_DST:
+-		htt_ring_id = HTT_RXDMA_NON_MONITOR_DEST_RING;
+-		htt_ring_type = HTT_HW_TO_SW_RING;
++		*htt_ring_id = HTT_RXDMA_NON_MONITOR_DEST_RING;
++		*htt_ring_type = HTT_HW_TO_SW_RING;
+ 		break;
+ 	case HAL_RXDMA_MONITOR_BUF:
+-		htt_ring_id = HTT_RXDMA_MONITOR_BUF_RING;
+-		htt_ring_type = HTT_SW_TO_HW_RING;
++		*htt_ring_id = HTT_RXDMA_MONITOR_BUF_RING;
++		*htt_ring_type = HTT_SW_TO_HW_RING;
+ 		break;
+ 	case HAL_RXDMA_MONITOR_STATUS:
+-		htt_ring_id = HTT_RXDMA_MONITOR_STATUS_RING;
+-		htt_ring_type = HTT_SW_TO_HW_RING;
++		*htt_ring_id = HTT_RXDMA_MONITOR_STATUS_RING;
++		*htt_ring_type = HTT_SW_TO_HW_RING;
+ 		break;
+ 	case HAL_RXDMA_MONITOR_DST:
+-		htt_ring_id = HTT_RXDMA_MONITOR_DEST_RING;
+-		htt_ring_type = HTT_HW_TO_SW_RING;
++		*htt_ring_id = HTT_RXDMA_MONITOR_DEST_RING;
++		*htt_ring_type = HTT_HW_TO_SW_RING;
+ 		break;
+ 	case HAL_RXDMA_MONITOR_DESC:
+-		htt_ring_id = HTT_RXDMA_MONITOR_DESC_RING;
+-		htt_ring_type = HTT_SW_TO_HW_RING;
++		*htt_ring_id = HTT_RXDMA_MONITOR_DESC_RING;
++		*htt_ring_type = HTT_SW_TO_HW_RING;
+ 		break;
+ 	default:
+ 		ath11k_warn(ab, "Unsupported ring type in DP :%d\n", ring_type);
+ 		ret = -EINVAL;
+-		goto err_free;
+ 	}
++	return ret;
++}
++
++int ath11k_dp_htt_srng_setup(struct ath11k_base *ab, u32 ring_id,
++			     int mac_id, enum hal_ring_type ring_type)
++{
++	struct htt_srng_setup_cmd *cmd;
++	struct hal_srng *srng = &ab->hal.srng_list[ring_id];
++	struct hal_srng_params params;
++	struct sk_buff *skb;
++	u32 ring_entry_sz;
++	int len = sizeof(*cmd);
++	dma_addr_t hp_addr, tp_addr;
++	int lmac_ring_id_offset;
++	enum htt_srng_ring_type htt_ring_type;
++	enum htt_srng_ring_id htt_ring_id;
++	int ret;
++
++	skb = ath11k_htc_alloc_skb(ab, len);
++	if (!skb)
++		return -ENOMEM;
++
++	memset(&params, 0, sizeof(params));
++	ath11k_hal_srng_get_params(ab, srng, &params);
++
++	hp_addr = ath11k_hal_srng_get_hp_addr(ab, srng);
++	tp_addr = ath11k_hal_srng_get_tp_addr(ab, srng);
++
++	if (ath11k_dp_get_ring_id_type(ab, mac_id, ring_id,
++				       ring_type, &htt_ring_type,
++				       &htt_ring_id))
++		goto err_free;
+ 
+ 	skb_put(skb, len);
+ 	cmd = (struct htt_srng_setup_cmd *)skb->data;
+@@ -790,36 +804,10 @@ int ath11k_dp_htt_rx_filter_setup(struct ath11k_base *ab, u32 ring_id,
+ 	memset(&params, 0, sizeof(params));
+ 	ath11k_hal_srng_get_params(ab, srng, &params);
+ 
+-	switch (ring_type) {
+-	case HAL_RXDMA_BUF:
+-		htt_ring_id = HTT_RXDMA_HOST_BUF_RING;
+-		htt_ring_type = HTT_SW_TO_HW_RING;
+-		break;
+-	case HAL_RXDMA_DST:
+-		htt_ring_id = HTT_RXDMA_NON_MONITOR_DEST_RING;
+-		htt_ring_type = HTT_HW_TO_SW_RING;
+-		break;
+-	case HAL_RXDMA_MONITOR_BUF:
+-		htt_ring_id = HTT_RXDMA_MONITOR_BUF_RING;
+-		htt_ring_type = HTT_SW_TO_HW_RING;
+-		break;
+-	case HAL_RXDMA_MONITOR_STATUS:
+-		htt_ring_id = HTT_RXDMA_MONITOR_STATUS_RING;
+-		htt_ring_type = HTT_SW_TO_HW_RING;
+-		break;
+-	case HAL_RXDMA_MONITOR_DST:
+-		htt_ring_id = HTT_RXDMA_MONITOR_DEST_RING;
+-		htt_ring_type = HTT_HW_TO_SW_RING;
+-		break;
+-	case HAL_RXDMA_MONITOR_DESC:
+-		htt_ring_id = HTT_RXDMA_MONITOR_DESC_RING;
+-		htt_ring_type = HTT_SW_TO_HW_RING;
+-		break;
+-	default:
+-		ath11k_warn(ab, "Unsupported ring type in DP :%d\n", ring_type);
+-		ret = -EINVAL;
++	if (ath11k_dp_get_ring_id_type(ab, mac_id, ring_id,
++				       ring_type, &htt_ring_type,
++				       &htt_ring_id))
+ 		goto err_free;
+-	}
+ 
+ 	skb_put(skb, len);
+ 	cmd = (struct htt_rx_ring_selection_cfg_cmd *)skb->data;
+@@ -827,11 +815,13 @@ int ath11k_dp_htt_rx_filter_setup(struct ath11k_base *ab, u32 ring_id,
+ 				HTT_H2T_MSG_TYPE_RX_RING_SELECTION_CFG);
+ 	if (htt_ring_type == HTT_SW_TO_HW_RING ||
+ 	    htt_ring_type == HTT_HW_TO_SW_RING)
+-		cmd->info0 |= FIELD_PREP(HTT_RX_RING_SELECTION_CFG_CMD_INFO0_PDEV_ID,
+-					 DP_SW2HW_MACID(mac_id));
++		cmd->info0 |=
++			FIELD_PREP(HTT_RX_RING_SELECTION_CFG_CMD_INFO0_PDEV_ID,
++				   DP_SW2HW_MACID(mac_id));
+ 	else
+-		cmd->info0 |= FIELD_PREP(HTT_RX_RING_SELECTION_CFG_CMD_INFO0_PDEV_ID,
+-					 mac_id);
++		cmd->info0 |=
++			FIELD_PREP(HTT_RX_RING_SELECTION_CFG_CMD_INFO0_PDEV_ID,
++				   mac_id);
+ 	cmd->info0 |= FIELD_PREP(HTT_RX_RING_SELECTION_CFG_CMD_INFO0_RING_ID,
+ 				 htt_ring_id);
+ 	cmd->info0 |= FIELD_PREP(HTT_RX_RING_SELECTION_CFG_CMD_INFO0_SS,
+@@ -894,3 +884,48 @@ int ath11k_dp_htt_h2t_ext_stats_req(struct ath11k *ar, u8 mask, u64 cookie)
+ 
+ 	return 0;
+ }
++
++int ath11k_dp_htt_monitor_mode_ring_config(struct ath11k *ar, bool reset)
++{
++	struct ath11k_pdev_dp *dp = &ar->dp;
++	struct htt_rx_ring_tlv_filter tlv_filter = {0};
++	int ret = 0, ring_id = 0;
++
++	ring_id = dp->rxdma_mon_buf_ring.refill_buf_ring.ring_id;
++
++	if (!reset) {
++		tlv_filter.rx_filter = HTT_RX_MON_FILTER_TLV_FLAGS_MON_BUF_RING;
++		tlv_filter.pkt_filter_flags0 =
++					HTT_RX_MON_FP_MGMT_FILTER_FLAGS0 |
++					HTT_RX_MON_MO_MGMT_FILTER_FLAGS0;
++		tlv_filter.pkt_filter_flags1 =
++					HTT_RX_MON_FP_MGMT_FILTER_FLAGS1 |
++					HTT_RX_MON_MO_MGMT_FILTER_FLAGS1;
++		tlv_filter.pkt_filter_flags2 =
++					HTT_RX_MON_FP_CTRL_FILTER_FLASG2 |
++					HTT_RX_MON_MO_CTRL_FILTER_FLASG2;
++		tlv_filter.pkt_filter_flags3 =
++					HTT_RX_MON_FP_CTRL_FILTER_FLASG3 |
++					HTT_RX_MON_MO_CTRL_FILTER_FLASG3 |
++					HTT_RX_MON_FP_DATA_FILTER_FLASG3 |
++					HTT_RX_MON_MO_DATA_FILTER_FLASG3;
++	}
++
++	ret = ath11k_dp_htt_rx_filter_setup(ar->ab, ring_id, dp->mac_id,
++					    HAL_RXDMA_MONITOR_BUF,
++					    DP_RXDMA_REFILL_RING_SIZE,
++					    &tlv_filter);
++	if (ret)
++		return ret;
++
++	ring_id = dp->rx_mon_status_refill_ring.refill_buf_ring.ring_id;
++	if (!reset)
++		tlv_filter.rx_filter =
++				HTT_RX_MON_FILTER_TLV_FLAGS_MON_STATUS_RING;
++
++	ret = ath11k_dp_htt_rx_filter_setup(ar->ab, ring_id, dp->mac_id,
++					    HAL_RXDMA_MONITOR_STATUS,
++					    DP_RXDMA_REFILL_RING_SIZE,
++					    &tlv_filter);
++	return ret;
++}
 -- 
 2.7.4
 
