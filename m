@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hJ0VW-00058S-UB
- for ath11k@lists.infradead.org; Tue, 23 Apr 2019 18:51:08 +0000
-From: Anilkumar Kolli <akolli@codeaurora.org>
-Subject: [PATCH] ath11k/dt: remoteproc entry update to device tree binding doc
-Date: Wed, 24 Apr 2019 00:20:55 +0530
-Message-Id: <1556045455-3922-1-git-send-email-akolli@codeaurora.org>
+ id 1hJ5Ql-0007kq-3Y
+ for ath11k@lists.infradead.org; Wed, 24 Apr 2019 00:06:32 +0000
+From: Miles Hu <milehu@codeaurora.org>
+Subject: [PATCH v2 0/6] ath11k: add monitor mode support
+Date: Tue, 23 Apr 2019 17:06:21 -0700
+Message-Id: <1556064387-4668-1-git-send-email-milehu@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -21,35 +21,65 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
+Cc: Miles Hu <milehu@codeaurora.org>
 
-ath11k uses q6v5-wcss device tree entry as rempoteproc
-dts entry to boot q6v5-wcss.
+Adding monitor mode in ath11k. It can be enabled
+ by commands below:
 
-Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/qcom,ath11k.txt | 2 ++
- 1 file changed, 2 insertions(+)
+  ifconfig wlan0 down
+  iw wlan0 set type monitor
+  ifconfig wlan0 up
 
-diff --git a/drivers/net/wireless/ath/ath11k/qcom,ath11k.txt b/drivers/net/wireless/ath/ath11k/qcom,ath11k.txt
-index 6b8a276115f1..3e00f470751b 100644
---- a/drivers/net/wireless/ath/ath11k/qcom,ath11k.txt
-+++ b/drivers/net/wireless/ath/ath11k/qcom,ath11k.txt
-@@ -14,6 +14,7 @@ Optional properties:
- 		   names.
- - qcom,tgt-mem-mode: Target memory mode used to select BDF Address
- - qcom,bdf-addr: List of BDF address used to configure for the device
-+- qcom,rproc: DT entry of q6v5-wcss
- 
- Example:
- 
-@@ -126,4 +127,5 @@ wifi0: wifi@c000000 {
- 			  "tcl2host-status-ring";
- 	qcom,tgt-mem-mode = <0>;
- 	qcom,bdf-addr = <0x4BE00000 0x4BE00000>;
-+	qcom,rproc = <&qcom_q6v5_wcss>;
- };
+change channel:
+  iw wlan0 set freq 5805 80 5775
+
+Change summary:
+1. create monitor status/destination/buffer/link descriptor rings.
+2. enable these rings and push ring filters to buffer/status rings.
+3. add napi entry point for monitor status and destination rings process.
+4. implement monitor status/buffer rings replenish.
+5. process entries from the status ring to get ppdu id and tlv status.
+6. process entries from the destination ring by comparing ppdu id to build
+    msdu list.
+7. merge msdu list to mpdu and copy rx status to cb.
+8. deliver mpdu to upper layer.
+
+Known issues:
+ - Coexist with other interface type (AP/STA) not fully supported.
+ - higher data rates (11ax) not supported. radiotap needs proper info.
+ - signal strength and rate idx not accurate in some packets.
+
+-Miles Hu
+
+Miles Hu (6):
+  ath11k: init/deinit monitor rings
+  ath11k: monitor filter set function
+  ath11k: htt setup monitor rings
+  ath11k: monitor mode attach/detach
+  ath11k: enable/disable monitor mode and destination ring entry process
+  ath11k: merge msdu tlv process and status/destination ring process
+
+V2:
+ - Move to ath11k-bringup branch
+
+
+ drivers/net/wireless/ath/ath11k/core.h     |   8 +-
+ drivers/net/wireless/ath/ath11k/dp.c       | 110 ++--
+ drivers/net/wireless/ath/ath11k/dp.h       | 189 ++++++-
+ drivers/net/wireless/ath/ath11k/dp_rx.c    | 872 +++++++++++++++++++++++++++--
+ drivers/net/wireless/ath/ath11k/dp_rx.h    |  61 +-
+ drivers/net/wireless/ath/ath11k/dp_tx.c    | 177 +++---
+ drivers/net/wireless/ath/ath11k/dp_tx.h    |   1 +
+ drivers/net/wireless/ath/ath11k/hal.c      |   2 +-
+ drivers/net/wireless/ath/ath11k/hal_desc.h |   3 +
+ drivers/net/wireless/ath/ath11k/hal_rx.c   |  28 +
+ drivers/net/wireless/ath/ath11k/hal_rx.h   |  17 +
+ drivers/net/wireless/ath/ath11k/mac.c      |  40 +-
+ drivers/net/wireless/ath/ath11k/rx_desc.h  |   1 +
+ 13 files changed, 1343 insertions(+), 166 deletions(-)
+
 -- 
-1.9.1
+2.7.4
 
 
 _______________________________________________
