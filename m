@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hJAqx-0001R6-MS
- for ath11k@lists.infradead.org; Wed, 24 Apr 2019 05:53:56 +0000
+ id 1hJAtn-0002yd-Sz
+ for ath11k@lists.infradead.org; Wed, 24 Apr 2019 05:56:53 +0000
 From: Sathishkumar Muruganandam <murugana@codeaurora.org>
-Subject: [PATCH] ath11k: add HW checksum offload support
-Date: Wed, 24 Apr 2019 11:23:35 +0530
-Message-Id: <1556085215-3862-1-git-send-email-murugana@codeaurora.org>
+Subject: [PATCH v2] ath11k: add HW checksum offload support
+Date: Wed, 24 Apr 2019 11:26:18 +0530
+Message-Id: <1556085378-4389-1-git-send-email-murugana@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,10 +23,13 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: Sathishkumar Muruganandam <murugana@codeaurora.org>
 
-- advertise HW checksum offload capabilities to netdev
+Advertise HW checksum offload capabilities to netdev
 
 Signed-off-by: Sathishkumar Muruganandam <murugana@codeaurora.org>
 ---
+Changes in v2:
+	Modified commit log
+
  drivers/net/wireless/ath/ath11k/dp_tx.c | 4 ++++
  drivers/net/wireless/ath/ath11k/mac.c   | 3 +++
  2 files changed, 7 insertions(+)
