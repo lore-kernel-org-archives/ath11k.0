@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hJ9rI-0000wQ-4l
- for ath11k@lists.infradead.org; Wed, 24 Apr 2019 04:50:13 +0000
-From: Karthikeyan Periyasamy <periyasa@codeaurora.org>
-Subject: [PATCH] ath11k: Fix "failed to synchronize setup for vdev" warn
-Date: Wed, 24 Apr 2019 10:19:33 +0530
-Message-Id: <1556081373-12635-1-git-send-email-periyasa@codeaurora.org>
+ id 1hJAqx-0001R6-MS
+ for ath11k@lists.infradead.org; Wed, 24 Apr 2019 05:53:56 +0000
+From: Sathishkumar Muruganandam <murugana@codeaurora.org>
+Subject: [PATCH] ath11k: add HW checksum offload support
+Date: Wed, 24 Apr 2019 11:23:35 +0530
+Message-Id: <1556085215-3862-1-git-send-email-murugana@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -21,76 +21,45 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
-Cc: Karthikeyan Periyasamy <periyasa@codeaurora.org>
+Cc: Sathishkumar Muruganandam <murugana@codeaurora.org>
 
-In ath11k_mac_vdev_stop(), vdev_stop_status get marked after the
-WMI vdev stop success. In concurrent scenario, ath11k_vdev_stopped_event()
-get called before the above mark get enabled in ath11k_mac_vdev_stop().
-which leads to fail vdev stop, since ath11k_get_ar_vdev_stop_status()
-not able to find the vdev_stop_status mark. Enabled the vdev_stop_status
-mark before requesting the WMI vdev stop, so that we ensure vdev_stop_status
-mark get available in all concurrent scenario.
+- advertise HW checksum offload capabilities to netdev
 
-Warn:
-ath11k c000000.wifi1: invalid vdev id in vdev stopped ev 0
-ath11k c000000.wifi1: failed to synchronize setup for vdev 0: -110
-ath11k c000000.wifi1: failed to stop vdev 0: -110
-
-Signed-off-by: Karthikeyan Periyasamy <periyasa@codeaurora.org>
+Signed-off-by: Sathishkumar Muruganandam <murugana@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 22 +++++++++++++++-------
- 1 file changed, 15 insertions(+), 7 deletions(-)
+ drivers/net/wireless/ath/ath11k/dp_tx.c | 4 ++++
+ drivers/net/wireless/ath/ath11k/mac.c   | 3 +++
+ 2 files changed, 7 insertions(+)
 
+diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
+index b2807a88df9c..84965000c54d 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_tx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
+@@ -142,6 +142,10 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
+ 		ath11k_dp_encap_nwifi(skb);
+ 		break;
+ 	case HAL_TCL_ENCAP_TYPE_RAW:
++		/*  TODO: for CHECKSUM_PARTIAL case in raw mode, HW checksum offload
++		 *	  is not applicable, hence manual checksum calculation using
++		 *	  skb_checksum_help() is needed
++		 */
+ 	case HAL_TCL_ENCAP_TYPE_ETHERNET:
+ 	case HAL_TCL_ENCAP_TYPE_802_3:
+ 		/* TODO: Take care of other encap modes as well */
 diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index ddb8beb..3dc830c 100644
+index ddb8beba3ab7..6cba3ebab6ed 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -3910,23 +3910,25 @@ static int ath11k_mac_vdev_stop(struct ath11k_vif *arvif)
+@@ -4927,6 +4927,9 @@ static int ath11k_mac_register(struct ath11k *ar)
  
- 	reinit_completion(&ar->vdev_setup_done);
+ 	ath11k_reg_init(ar);
  
-+	spin_lock_bh(&ar->data_lock);
++	/* advertise HW checksum offload capabilities */
++	ar->hw->netdev_features = NETIF_F_HW_CSUM;
 +
-+	ar->vdev_stop_status.stop_in_progress = true;
-+	ar->vdev_stop_status.vdev_id = arvif->vdev_id;
-+
-+	spin_unlock_bh(&ar->data_lock);
-+
- 	ret = ath11k_wmi_vdev_stop(ar, arvif->vdev_id);
+ 	ret = ieee80211_register_hw(ar->hw);
  	if (ret) {
- 		ath11k_warn(ar->ab, "failed to stop WMI vdev %i: %d\n",
- 			    arvif->vdev_id, ret);
--		return ret;
-+		goto err;
- 	}
- 
--	spin_lock_bh(&ar->data_lock);
--	ar->vdev_stop_status.stop_in_progress = true;
--	ar->vdev_stop_status.vdev_id = arvif->vdev_id;
--	spin_unlock_bh(&ar->data_lock);
--
- 	ret = ath11k_mac_vdev_setup_sync(ar);
- 	if (ret) {
- 		ath11k_warn(ar->ab, "failed to synchronize setup for vdev %i: %d\n",
- 			    arvif->vdev_id, ret);
--		return ret;
-+		goto err;
- 	}
- 
- 	WARN_ON(ar->num_started_vdevs == 0);
-@@ -3936,6 +3938,12 @@ static int ath11k_mac_vdev_stop(struct ath11k_vif *arvif)
- 	/* TODO: Recalc radar */
- 
- 	return 0;
-+err:
-+	spin_lock_bh(&ar->data_lock);
-+	ar->vdev_stop_status.stop_in_progress = false;
-+	spin_unlock_bh(&ar->data_lock);
-+
-+	return ret;
- }
- 
- static int ath11k_mac_vdev_start(struct ath11k_vif *arvif,
+ 		ath11k_err(ar->ab, "ieee80211 registration failed: %d\n", ret);
 -- 
 1.9.1
 
