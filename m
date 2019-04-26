@@ -1,12 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hJwRf-0006ZY-Gl
- for ath11k@lists.infradead.org; Fri, 26 Apr 2019 08:43:01 +0000
+ id 1hJwRf-0006Zo-W1
+ for ath11k@lists.infradead.org; Fri, 26 Apr 2019 08:43:02 +0000
 From: John Crispin <john@phrozen.org>
-Subject: [PATCH 0/3] mac80211: notify the driver when it should enable TWT
-Date: Fri, 26 Apr 2019 10:42:41 +0200
-Message-Id: <20190426084244.28098-1-john@phrozen.org>
+Subject: [PATCH 2/3] mac80211: dynamically turn TWT requester support on and
+ off
+Date: Fri, 26 Apr 2019 10:42:43 +0200
+Message-Id: <20190426084244.28098-3-john@phrozen.org>
+In-Reply-To: <20190426084244.28098-1-john@phrozen.org>
+References: <20190426084244.28098-1-john@phrozen.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -21,29 +24,62 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Johannes Berg <johannes@sipsolutions.net>, Kalle Valo <kvalo@codeaurora.org>
-Cc: linux-wireless@vger.kernel.org, John Crispin <john@phrozen.org>, Srini Kode <skode@qti.qualcomm.com>, Rajkumar Manoharan <rmanohar@qti.qualcomm.com>, ath11k@lists.infradead.org
+Cc: John Crispin <john@phrozen.org>, linux-wireless@vger.kernel.org, Rajkumar Manoharan <rmanohar@qti.qualcomm.com>, Srini Kode <skode@qti.qualcomm.com>, Shashidhar Lakkavalli <slakkavalli@datto.com>, ath11k@lists.infradead.org
 
-The ath11k FW has a dedicated call for setting the TWT state. trigger this
-changes to the BSS config.
+Turn TWT for STA interfaces when they associate and/or receive a
+beacon where the twt_responder bit has changed.
 
-In a later step we need to also add calls for manually stating TWT dialogs.
+Signed-off-by: Shashidhar Lakkavalli <slakkavalli@datto.com>
+Signed-off-by: John Crispin <john@phrozen.org>
+---
+ net/mac80211/mlme.c | 20 ++++++++++++++++++--
+ 1 file changed, 18 insertions(+), 2 deletions(-)
 
-John Crispin (3):
-  mac80211: allow turning TWT responder support on and off via netlink
-  mac80211: dynamically turn TWT requester support on and off
-  ath11k: add TWT support
-
- drivers/net/wireless/ath/ath11k/mac.c |  7 +++
- drivers/net/wireless/ath/ath11k/wmi.c | 91 +++++++++++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/wmi.h | 71 +++++++++++++++++++++++++++
- include/net/cfg80211.h                |  2 +
- include/net/mac80211.h                |  5 ++
- include/uapi/linux/nl80211.h          |  4 ++
- net/mac80211/cfg.c                    |  6 +++
- net/mac80211/mlme.c                   | 20 +++++++-
- net/wireless/nl80211.c                |  5 ++
- 9 files changed, 209 insertions(+), 2 deletions(-)
-
+diff --git a/net/mac80211/mlme.c b/net/mac80211/mlme.c
+index 2dbcf5d5512e..f3563670ed58 100644
+--- a/net/mac80211/mlme.c
++++ b/net/mac80211/mlme.c
+@@ -3151,6 +3151,21 @@ static bool ieee80211_twt_req_supported(const struct sta_info *sta,
+ 		IEEE80211_HE_MAC_CAP0_TWT_RES;
+ }
+ 
++static int ieee80211_recalc_twt_req(struct ieee80211_sub_if_data *sdata,
++				    struct sta_info *sta,
++				    struct ieee802_11_elems *elems)
++{
++	bool twt_req;
++
++	twt_req = ieee80211_twt_req_supported(sta, elems);
++
++	if (sdata->vif.bss_conf.twt_requester != twt_req) {
++		sdata->vif.bss_conf.twt_requester = twt_req;
++		return BSS_CHANGED_TWT;
++	}
++	return 0;
++}
++
+ static bool ieee80211_assoc_success(struct ieee80211_sub_if_data *sdata,
+ 				    struct cfg80211_bss *cbss,
+ 				    struct ieee80211_mgmt *mgmt, size_t len)
+@@ -3333,8 +3348,7 @@ static bool ieee80211_assoc_success(struct ieee80211_sub_if_data *sdata,
+ 						  sta);
+ 
+ 		bss_conf->he_support = sta->sta.he_cap.has_he;
+-		bss_conf->twt_requester =
+-			ieee80211_twt_req_supported(sta, &elems);
++		changed |= ieee80211_recalc_twt_req(sdata, sta, &elems);
+ 	} else {
+ 		bss_conf->he_support = false;
+ 		bss_conf->twt_requester = false;
+@@ -3994,6 +4008,8 @@ static void ieee80211_rx_mgmt_beacon(struct ieee80211_sub_if_data *sdata,
+ 	mutex_lock(&local->sta_mtx);
+ 	sta = sta_info_get(sdata, bssid);
+ 
++	changed |= ieee80211_recalc_twt_req(sdata, sta, &elems);
++
+ 	if (ieee80211_config_bw(sdata, sta,
+ 				elems.ht_cap_elem, elems.ht_operation,
+ 				elems.vht_operation, elems.he_operation,
 -- 
 2.11.0
 
