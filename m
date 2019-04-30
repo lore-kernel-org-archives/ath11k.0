@@ -1,18 +1,17 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from nbd.name ([2a01:4f8:221:3d45::2])
+Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hLMpT-0005y2-2w
- for ath11k@lists.infradead.org; Tue, 30 Apr 2019 07:05:31 +0000
-Subject: Re: [PATCH V2 4/4] ath11k: add HE support
-References: <20190425181740.1994-1-john@phrozen.org>
- <20190425181740.1994-5-john@phrozen.org>
- <e6083123cf28cb4c48814b45d27d43cc@codeaurora.org>
-From: John Crispin <john@phrozen.org>
-Message-ID: <2ebdfa38-8e73-1982-6453-ede1434d6ebd@phrozen.org>
-Date: Tue, 30 Apr 2019 09:05:21 +0200
+ id 1hLMVx-0006fN-UD
+ for ath11k@lists.infradead.org; Tue, 30 Apr 2019 06:45:19 +0000
 MIME-Version: 1.0
-In-Reply-To: <e6083123cf28cb4c48814b45d27d43cc@codeaurora.org>
-Content-Language: en-US
+Date: Mon, 29 Apr 2019 23:45:17 -0700
+From: Rajkumar Manoharan <rmanohar@codeaurora.org>
+Subject: Re: [PATCH V2 2/3] mac80211: dynamically turn TWT requester support
+ on and off
+In-Reply-To: <20190426094150.18078-3-john@phrozen.org>
+References: <20190426094150.18078-1-john@phrozen.org>
+ <20190426094150.18078-3-john@phrozen.org>
+Message-ID: <a580242a242ec6126928bba5227f1e2d@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -21,78 +20,25 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Rajkumar Manoharan <rmanohar@codeaurora.org>
-Cc: Rajkumar Manoharan <rmanohar@qti.qualcomm.com>, Srini Kode <skode@qti.qualcomm.com>, ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>, Shashidhar Lakkavalli <slakkavalli@datto.com>
+To: John Crispin <john@phrozen.org>
+Cc: linux-wireless-owner@vger.kernel.org, linux-wireless@vger.kernel.org, Rajkumar Manoharan <rmanohar@qti.qualcomm.com>, Srini Kode <skode@qti.qualcomm.com>, Shashidhar Lakkavalli <slakkavalli@datto.com>, Johannes Berg <johannes@sipsolutions.net>, ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>
 
-CkhpLAoKWy4uLl0KPgo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIFdJRFRIXzIwX05PSFQg
-fMKgwqAgV0lEVEhfMjDCoMKgwqAgfCBXSURUSF80MMKgwqDCoMKgIHwgCj4gV0lEVEhfODDCoMKg
-wqAgwqAgfCBXSURUSF8xNjDCoMKgwqDCoMKgwqDCoCB8IFdJRFRIXzgwUDgwCj4KPiBNT0RFXzEx
-R8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMTFHwqDCoMKgwqDCoMKgIDExTkdfSFQyMMKgwqDCoMKg
-wqDCoCAxMU5HX0hUNDAgTkHCoMKgwqDCoMKgwqDCoMKgIAo+IMKgwqDCoMKgwqDCoMKgwqAgTkHC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgIE5BCj4gTU9ERV8xMUdfSEXCoMKgwqDCoMKgwqDCoMKgIDEx
-R8KgwqDCoMKgwqDCoCAxMUFYX0hFMjBfMkfCoMKgwqAgMTFBWF9IRTQwXzJHIAo+IDExQVhfSEU4
-MF8yR8KgwqDCoMKgwqDCoMKgwqAgTkHCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIE5BCj4gTU9ERV8x
-MUHCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDExQcKgwqDCoMKgwqDCoCAxMU5BX0hUMjDCoMKgwqDC
-oMKgwqAgMTFOQV9IVDQwIE5BwqDCoMKgwqDCoMKgwqDCoMKgIAo+IMKgwqDCoMKgwqDCoMKgwqAg
-TkHCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIE5BCj4gTU9ERV8xMUFfVkhUwqDCoMKgwqDCoMKgwqAg
-MTFBwqDCoMKgwqDCoMKgIDExQUNfVkhUMjDCoMKgwqDCoMKgIDExQUNfVkhUNDAgMTFBQ19WSFQ4
-MMKgIAo+IMKgwqDCoMKgwqDCoMKgwqAgMTFBQ19WSFQxNjDCoMKgIDExQUNfVkhUODBfODAKPiBN
-T0RFXzExQV9IRcKgwqDCoMKgwqDCoMKgwqAgMTFBwqDCoMKgwqDCoMKgIDExQVhfSEUyMMKgwqDC
-oMKgwqDCoCAxMUFYX0hFNDAgMTFBWF9IRTgwwqDCoCAKPiDCoMKgwqDCoMKgwqDCoMKgIDExQVhf
-SEUxNjDCoMKgwqAgMTFBWF9IRTgwXzgwCj4KPiBbLi4uXQo+Cmdvb2QgaWRlYSAhCgoKPj4gK3N0
-YXRpYyBlbnVtIHdtaV9waHlfbW9kZSBhdGgxMWtfbWFjX2dldF9waHltb2RlX2hlKHN0cnVjdCBh
-dGgxMWsgKmFyLAo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoCBzdHJ1Y3QgaWVlZTgwMjExX3N0YSAqc3RhKQo+PiArewo+PiArwqDCoMKgIGlm
-IChzdGEtPmJhbmR3aWR0aCA9PSBJRUVFODAyMTFfU1RBX1JYX0JXXzE2MCkgewo+PiArwqDCoMKg
-wqDCoMKgwqAgaWYgKHN0YS0+aGVfY2FwLmhlX2NhcF9lbGVtLnBoeV9jYXBfaW5mb1swXSAmCj4+
-ICsgSUVFRTgwMjExX0hFX1BIWV9DQVAwX0NIQU5ORUxfV0lEVEhfU0VUXzE2ME1IWl9JTl81RykK
-Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0dXJuIE1PREVfMTFBWF9IRTE2MDsKPj4gK8Kg
-wqDCoMKgwqDCoMKgIGVsc2UgaWYgKHN0YS0+aGVfY2FwLmhlX2NhcF9lbGVtLnBoeV9jYXBfaW5m
-b1swXSAmCj4+ICsgSUVFRTgwMjExX0hFX1BIWV9DQVAwX0NIQU5ORUxfV0lEVEhfU0VUXzgwUExV
-UzgwX01IWl9JTl81RykKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0dXJuIE1PREVfMTFB
-WF9IRTgwXzgwOwo+PiArwqDCoMKgwqDCoMKgwqAgLyogbm90IHN1cmUgaWYgdGhpcyBpcyBhIHZh
-bGlkIGNhc2U/ICovCj4+ICvCoMKgwqDCoMKgwqDCoCByZXR1cm4gTU9ERV8xMUFYX0hFMTYwOwo+
-PiArwqDCoMKgIH0KPj4gKwo+PiArwqDCoMKgIGlmIChzdGEtPmJhbmR3aWR0aCA9PSBJRUVFODAy
-MTFfU1RBX1JYX0JXXzgwKQo+PiArwqDCoMKgwqDCoMKgwqAgcmV0dXJuIE1PREVfMTFBWF9IRTgw
-Owo+PiArCj4+ICvCoMKgwqAgaWYgKHN0YS0+YmFuZHdpZHRoID09IElFRUU4MDIxMV9TVEFfUlhf
-QldfNDApCj4+ICvCoMKgwqDCoMKgwqDCoCByZXR1cm4gTU9ERV8xMUFYX0hFNDA7Cj4+ICsKPj4g
-K8KgwqDCoCBpZiAoc3RhLT5iYW5kd2lkdGggPT0gSUVFRTgwMjExX1NUQV9SWF9CV18yMCkKPj4g
-K8KgwqDCoMKgwqDCoMKgIHJldHVybiBNT0RFXzExQVhfSEUyMDsKPj4gKwo+PiArwqDCoMKgIHJl
-dHVybiBNT0RFX1VOS05PV047Cj4+ICt9Cj4+ICsKPgo+IEkgdGhpbmsgdGhpcyBmdW5jdGlvbiBh
-bHNvIGJlIHJlbW92ZWQgaWYgd2UgaGF2ZSBNT0RFIHRhYmxlIGFzIAo+IG1lbnRpb25lZCBhYm92
-ZS4KPgo+IFsuLi5dCj4KPj4gK3N0YXRpYyB2b2lkIGF0aDExa19tYWNfY29weV9oZV9jYXAoc3Ry
-dWN0IGF0aDExa19wZGV2X2NhcCAqY2FwLAo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgIHN0cnVjdCBpZWVlODAyMTFfc2JhbmRfaWZ0eXBlX2RhdGEgKmRhdGEsCj4+ICvC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaW50IGJhbmQpCj4+ICt7Cj4+ICvC
-oMKgwqAgaW50IGk7Cj4+ICsKPj4gK8KgwqDCoCBmb3IgKGkgPSAwOyBpIDwgMjsgaSsrKSB7Cj4+
-ICvCoMKgwqDCoMKgwqDCoCBzdHJ1Y3QgaWVlZTgwMjExX3N0YV9oZV9jYXAgKmhlX2NhcCA9ICZk
-YXRhW2ldLmhlX2NhcDsKPj4gK8KgwqDCoMKgwqDCoMKgIHN0cnVjdCBhdGgxMWtfYmFuZF9jYXAg
-KmJhbmRfY2FwID0gJmNhcC0+YmFuZFtiYW5kXTsKPj4gK8KgwqDCoMKgwqDCoMKgIHN0cnVjdCBp
-ZWVlODAyMTFfaGVfY2FwX2VsZW0gKmhlX2NhcF9lbGVtID0KPj4gK8KgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCAmaGVfY2FwLT5oZV9jYXBfZWxlbTsKPj4gKwo+PiArwqDCoMKgwqDCoMKg
-wqAgaGVfY2FwLT5oYXNfaGUgPSB0cnVlOwo+PiArwqDCoMKgwqDCoMKgwqAgbWVtY3B5KGhlX2Nh
-cF9lbGVtLT5tYWNfY2FwX2luZm8sIGJhbmRfY2FwLT5oZV9jYXBfaW5mbywKPj4gK8KgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqAgc2l6ZW9mKGhlX2NhcF9lbGVtLT5tYWNfY2FwX2luZm8pKTsK
-Pj4gK8KgwqDCoMKgwqDCoMKgIG1lbWNweShoZV9jYXBfZWxlbS0+cGh5X2NhcF9pbmZvLCBiYW5k
-X2NhcC0+aGVfY2FwX3BoeV9pbmZvLAo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBz
-aXplb2YoaGVfY2FwX2VsZW0tPnBoeV9jYXBfaW5mbykpOwo+PiArCj4+ICvCoMKgwqDCoMKgwqDC
-oCBpZiAoaSkgewo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBkYXRhW2ldLnR5cGVzX21hc2sg
-PSBCSVQoTkw4MDIxMV9JRlRZUEVfU1RBVElPTik7Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-IGhlX2NhcF9lbGVtLT5tYWNfY2FwX2luZm9bMF0gJj0KPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoCB+SUVFRTgwMjExX0hFX01BQ19DQVAwX1RXVF9SRVM7Cj4+ICvCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIGhlX2NhcF9lbGVtLT5tYWNfY2FwX2luZm9bMF0gfD0KPj4gK8KgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBJRUVFODAyMTFfSEVfTUFDX0NBUDBfVFdUX1JFUTsKPj4g
-K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLyogVE9ETyAtIGFkZCBmdXJ0aGVyIGRpZmZlcmVuY2Vz
-IGJldHdlZW4gQVAgYW5kIFNUQSAqLwo+PiArwqDCoMKgwqDCoMKgwqAgfSBlbHNlIHsKPj4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqAgZGF0YVtpXS50eXBlc19tYXNrID0gQklUKE5MODAyMTFfSUZU
-WVBFX0FQKTsKPj4gK8KgwqDCoMKgwqDCoMKgIH0KPj4KPiBIbW1tLi4gSWYgeW91IGFyZSBydW5u
-aW5nIGxvb3AgdG8gZXh0cmFjdCBoZV9jYXAsIGhlX2NhcF9leHRuLCBob3cgCj4gd2lsbCB5b3Ug
-ZXh0ZW5kIEhFIHN1cHBvcnQKPiBmb3Igb3RoZXIgaW50ZXJmYWNlIHR5cGVzIChNZXNoKT8KPgpJ
-IHdpbGwgbWFrZSB0aGlzIGZ1dHVyZS1wcm9vZgoKIMKgwqDCoCBKb2huCgoKCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmF0aDExayBtYWlsaW5nIGxpc3QK
-YXRoMTFrQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9hdGgxMWsK
+On 2019-04-26 02:41, John Crispin wrote:
+> Turn TWT on/off for STA interfaces when they associate and/or receive a
+> beacon where the twt_responder bit has changed.
+> 
+
+Does it mean that TWT responder can be turn on/off when AP is UP and 
+running?
+I thought any change in beacon needs AP restart. no?
+
+-Rajkumar
+
+_______________________________________________
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
