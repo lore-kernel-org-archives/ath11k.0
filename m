@@ -1,18 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hMD57-00009M-Gx
- for ath11k@lists.infradead.org; Thu, 02 May 2019 14:53:07 +0000
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH] ath11k: move per peer pktlog entry to per sta debugfs
-References: <1555389673-19625-1-git-send-email-akolli@codeaurora.org>
- <3753b87a425d38b5c50c33cb4c030451@codeaurora.org>
- <b7fb612b6fe0c9130d8a60c87fd93f90@codeaurora.org>
- <25124618.P5zsotkJkX@bentobox>
-Date: Thu, 02 May 2019 17:53:01 +0300
-In-Reply-To: <25124618.P5zsotkJkX@bentobox> (Sven Eckelmann's message of "Wed, 
- 24 Apr 2019 11:48:29 +0200")
-Message-ID: <87pnp0lxgy.fsf@kamboji.qca.qualcomm.com>
+ id 1hMQXH-0004Mi-3R
+ for ath11k@lists.infradead.org; Fri, 03 May 2019 05:15:04 +0000
+From: Anilkumar Kolli <akolli@codeaurora.org>
+Subject: [PATCH v3] ath11k: fix build issues on disabling ATH11K_DEBUG
+Date: Fri,  3 May 2019 10:44:47 +0530
+Message-Id: <1556860487-31604-1-git-send-email-akolli@codeaurora.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -22,75 +16,82 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Sven Eckelmann <sven@narfation.org>
-Cc: ath11k@lists.infradead.org
+To: ath11k@lists.infradead.org
 
-Sven Eckelmann <sven@narfation.org> writes:
-
-> On Wednesday, 24 April 2019 11:04:19 CEST Anilkumar Kolli wrote:
-> [...]
->> >> Does not compile:
->> >> 
->> >> drivers/net/wireless/ath/ath11k/debugfs_sta.c:455:11: error:
->> >> initialization of 'ssize_t (*)(struct file *, const char *, size_t,
->> >> loff_t *)' {aka 'long int (*)(struct file *, const char *, long
->> >> unsigned int,  long long int *)'} from incompatible pointer type
->> >> 'ssize_t (*)(struct file *, char *, size_t,  loff_t *)' {aka 'long int
->> >> (*)(struct file *, char *, long unsigned int,  long long int *)'}
->> >> [-Werror=incompatible-pointer-types]
->> >>   .write = ath11k_dbg_sta_write_peer_pktlog,
->> >>            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> > 
->> > I am using "arch/x86/configs/x86_64_defconfig" and ath11k enabled,
->> > could not reproduce this issue.
->> > Kindly share the build instructions.
->
-> Not sure what kernel you compile against but the second argument (ubuf) is a 
-> const since a long time (before the history of the git repo starts). I can not 
-> tell you since when GCC checks the constness for function pointers. But try to 
-> upgrade to something recent like GCC 8.
->
->> My build machine configs,
->> ./ath10k-check --version
->> ath10k-check (md5sum 5d3d5f426267bdc0a18e038d2f691a74)
->> 
->> gcc:            gcc (Ubuntu 4.8.4-2ubuntu1~14.04.4) 4.8.4
->> sparse:         0.4.5-rc1
->> checkpatch.pl:  Version: 0.32 (md5sum 3a4f482bde0f92cd08f79fca7efd2a71)
->> gtags:          gtags - GNU GLOBAL 5.7.1
->
-> Btw. you should really think about not using such old components. Ever though 
-> about upgrading your system from a nearly EOL [1] ubuntu version from 2014 to 
-> something more recent?
-
-Yeah, you really should upgrade your ancient distro. But for the kernel
-compilation I use crosstool as it's so easy to upgrade the kernel and
-not mess with distro's compiler:
-
-https://www.kernel.org/pub/tools/crosstool/
-
-Here's an example to install GCC 8.1 from crosstool:
-
-wget https://www.kernel.org/pub/tools/crosstool/files/bin/x86_64/8.1.0/x86_64-gcc-8.1.0-nolibc-x86_64-linux.tar.xz
-cd /opt/cross/
-tar -xf ~/tmp/crosstool/x86_64-gcc-8.1.0-nolibc-x86_64-linux.tar.xz
-
-And then just create GNUMakefile to the kernel's top level directory:
-
-CROSS_COMPILE=/opt/cross/gcc-8.1.0-nolibc/x86_64-linux/bin/x86_64-linux-
-include Makefile
-
-Now you can just run 'make' and the linux build system will use the new
-compiler.
-
--- 
-Kalle Valo
-
-_______________________________________________
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+T24gQ09ORklHX0FUSDExS19ERUJVRyBkaXNhYmxlIGZpeCB0aGVzZSBidWlsZCBlcnJvcnMKCmF0
+aDExay9kcF9yeC5jOiBJbiBmdW5jdGlvbiDigJhhdGgxMWtfaHR0X3B1bGxfcHBkdV9zdGF0c+KA
+mToKYXRoMTFrL2RwX3J4LmM6OTkxOjg6IGVycm9yOiDigJhzdHJ1Y3QgYXRoMTFr4oCZIGhhcyBu
+byBtZW1iZXIgbmFtZWQK4oCYZGVidWfigJkKICBpZiAoYXItPmRlYnVnLnBrdGxvZ19tb2RlID09
+IEFUSDExS19QS1RMT0dfTU9ERV9MSVRFKSB7CiAgICAgICAgXgphdGgxMWsvZHBfcnguYzogSW4g
+ZnVuY3Rpb24g4oCYYXRoMTFrX2RwX3J4X3Byb2Nlc3NfbW9uX3N0YXR1c+KAmToKYXRoMTFrL2Rw
+X3J4LmM6MjI3ODoxMDogZXJyb3I6IOKAmHN0cnVjdCBhdGgxMWvigJkgaGFzIG5vIG1lbWJlcgpu
+YW1lZCDigJhkZWJ1Z+KAmQogICBpZiAoIWFyLT5kZWJ1Zy5wa3Rsb2dfcGVlcl92YWxpZCkgewog
+ICAgICAgICAgXgphdGgxMWsvZHBfcnguYzoyMzA3Ojk6IGVycm9yOiDigJhzdHJ1Y3QgYXRoMTFr
+4oCZIGhhcyBubyBtZW1iZXIgbmFtZWQK4oCYZGVidWfigJkKICAgaWYgKGFyLT5kZWJ1Zy5wa3Rs
+b2dfcGVlcl92YWxpZCAmJgogICAgICAgICBeCmF0aDExay9kcF9yeC5jOjIzMDg6Mzg6IGVycm9y
+OiDigJhzdHJ1Y3QgYXRoMTFr4oCZIGhhcyBubyBtZW1iZXIKbmFtZWQg4oCYZGVidWfigJkKICAg
+ICAgIGV0aGVyX2FkZHJfZXF1YWwocGVlci0+YWRkciwgYXItPmRlYnVnLnBrdGxvZ19wZWVyX2Fk
+ZHIpKSB7CgpTaWduZWQtb2ZmLWJ5OiBBbmlsa3VtYXIgS29sbGkgPGFrb2xsaUBjb2RlYXVyb3Jh
+Lm9yZz4KLS0tClYyOiAKICAtIFJlYmFzZWQgb24gdG9wIG9mIHRyZWUKICAtIGNoYW5nZWQgYXRo
+MTFrX2RlYnVnX2lzX3BrdGxvZ19wZXJfcGVlcl9lbmFibGVkKCkgdG8KICAgIGF0aDExa19kZWJ1
+Z19pc19wa3Rsb2dfcnhfc3RhdHNfZW5hYmxlZCgpCgogZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRo
+L2F0aDExay9kZWJ1Zy5oIHwgMzEgKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKwogZHJp
+dmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9kcF9yeC5jIHwgIDcgKysrLS0tLQogMiBmaWxl
+cyBjaGFuZ2VkLCAzNCBpbnNlcnRpb25zKCspLCA0IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvZGVidWcuaCBiL2RyaXZlcnMvbmV0L3dp
+cmVsZXNzL2F0aC9hdGgxMWsvZGVidWcuaAppbmRleCA0YzFmY2NhMmQ4YjUuLjdmNjJkYThkOGI4
+YiAxMDA2NDQKLS0tIGEvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9kZWJ1Zy5oCisr
+KyBiL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvZGVidWcuaApAQCAtMTQ2LDYgKzE0
+NiwyMiBAQCB2b2lkIGF0aDExa19kZWJ1Z19md19zdGF0c19wcm9jZXNzKHN0cnVjdCBhdGgxMWtf
+YmFzZSAqYWIsIHU4ICpldnRfYnVmLAogaW50IGF0aDExa19kYmdfaHR0X3N0YXRzX3JlcShzdHJ1
+Y3QgYXRoMTFrICphciwKIAkJCSAgICAgc3RydWN0IGRlYnVnX2h0dF9zdGF0c19yZXEgKnN0YXRz
+X3JlcSk7CiAKK3N0YXRpYyBpbmxpbmUgYm9vbCBhdGgxMWtfZGVidWdfaXNfcGt0bG9nX2xpdGVf
+bW9kZV9lbmFibGVkKHN0cnVjdCBhdGgxMWsgKmFyKQoreworCXJldHVybiAoYXItPmRlYnVnLnBr
+dGxvZ19tb2RlID09IEFUSDExS19QS1RMT0dfTU9ERV9MSVRFKTsKK30KKworc3RhdGljIGlubGlu
+ZSBib29sIGF0aDExa19kZWJ1Z19pc19wa3Rsb2dfcnhfc3RhdHNfZW5hYmxlZChzdHJ1Y3QgYXRo
+MTFrICphcikKK3sKKwlyZXR1cm4gKCFhci0+ZGVidWcucGt0bG9nX3BlZXJfdmFsaWQgJiYgYXIt
+PmRlYnVnLnBrdGxvZ19tb2RlKTsKK30KKworc3RhdGljIGlubGluZSBib29sIGF0aDExa19kZWJ1
+Z19pc19wa3Rsb2dfcGVlcl92YWlsZChzdHJ1Y3QgYXRoMTFrICphciwgdTggKmFkZHIpCit7CisJ
+cmV0dXJuIChhci0+ZGVidWcucGt0bG9nX3BlZXJfdmFsaWQgJiYgYXItPmRlYnVnLnBrdGxvZ19t
+b2RlICYmCisJCWV0aGVyX2FkZHJfZXF1YWwoYWRkciwgYXItPmRlYnVnLnBrdGxvZ19wZWVyX2Fk
+ZHIpKTsKK30KKwogc3RhdGljIGlubGluZSBpbnQgYXRoMTFrX2RlYnVnX2lzX2V4dGRfdHhfc3Rh
+dHNfZW5hYmxlZChzdHJ1Y3QgYXRoMTFrICphcikKIHsKIAlyZXR1cm4gYXItPmRlYnVnLmV4dGRf
+dHhfc3RhdHM7CkBAIC0yMDcsNiArMjIzLDIxIEBAIHN0YXRpYyBpbmxpbmUgaW50IGF0aDExa19k
+YmdfaHR0X3N0YXRzX3JlcShzdHJ1Y3QgYXRoMTFrICphciwKIHsKIAlyZXR1cm4gMDsKIH0KKwor
+c3RhdGljIGlubGluZSBib29sIGF0aDExa19kZWJ1Z19pc19wa3Rsb2dfbGl0ZV9tb2RlX2VuYWJs
+ZWQoc3RydWN0IGF0aDExayAqYXIpCit7CisJcmV0dXJuIGZhbHNlOworfQorCitzdGF0aWMgaW5s
+aW5lIGJvb2wgYXRoMTFrX2RlYnVnX2lzX3BrdGxvZ19yeF9zdGF0c19lbmFibGVkKHN0cnVjdCBh
+dGgxMWsgKmFyKQoreworCXJldHVybiBmYWxzZTsKK30KKworc3RhdGljIGlubGluZSBib29sIGF0
+aDExa19kZWJ1Z19pc19wa3Rsb2dfcGVlcl92YWlsZChzdHJ1Y3QgYXRoMTFrICphciwgdTggKmFk
+ZHIpCit7CisJcmV0dXJuIGZhbHNlOworfQogI2VuZGlmIC8qIENPTkZJR19BVEgxMUtfREVCVUdG
+UyAqLwogCiAjaWZkZWYgQ09ORklHX01BQzgwMjExX0RFQlVHRlMKZGlmZiAtLWdpdCBhL2RyaXZl
+cnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvZHBfcnguYyBiL2RyaXZlcnMvbmV0L3dpcmVsZXNz
+L2F0aC9hdGgxMWsvZHBfcnguYwppbmRleCA3OGY3NDIzYTY2ZTkuLjI1N2RkOTcyNzVkOCAxMDA2
+NDQKLS0tIGEvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9kcF9yeC5jCisrKyBiL2Ry
+aXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvZHBfcnguYwpAQCAtOTg4LDcgKzk4OCw3IEBA
+IHN0YXRpYyBpbnQgYXRoMTFrX2h0dF9wdWxsX3BwZHVfc3RhdHMoc3RydWN0IGF0aDExa19iYXNl
+ICphYiwKIAlwcGR1X2lkID0gKigodTMyICopZGF0YSArIDEpOwogCWFyID0gYWItPnBkZXZzW3Bk
+ZXZfaWRdLmFyOwogCi0JaWYgKGFyLT5kZWJ1Zy5wa3Rsb2dfbW9kZSA9PSBBVEgxMUtfUEtUTE9H
+X01PREVfTElURSkgeworCWlmIChhdGgxMWtfZGVidWdfaXNfcGt0bG9nX2xpdGVfbW9kZV9lbmFi
+bGVkKGFyKSkgewogCQkvKiBUT0RPIHVwZGF0ZSB0aGUgcGt0bG9nIHRyYWNpbmcgKi8KIAl9CiAK
+QEAgLTIzMDAsNyArMjMwMCw3IEBAIGludCBhdGgxMWtfZHBfcnhfcHJvY2Vzc19tb25fc3RhdHVz
+KHN0cnVjdCBhdGgxMWtfYmFzZSAqYWIsIGludCBtYWNfaWQsCiAJCW1lbXNldCgmcHBkdV9pbmZv
+LCAwLCBzaXplb2YocHBkdV9pbmZvKSk7CiAJCXBwZHVfaW5mby5wZWVyX2lkID0gSEFMX0lOVkFM
+SURfUEVFUklEOwogCi0JCWlmICghYXItPmRlYnVnLnBrdGxvZ19wZWVyX3ZhbGlkKSB7CisJCWlm
+IChhdGgxMWtfZGVidWdfaXNfcGt0bG9nX3J4X3N0YXRzX2VuYWJsZWQoYXIpKSB7CiAJCQkvKiBU
+T0RPIHVwZGF0ZSB0aGUgcGt0bG9nIHRyYWNpbmcgKi8KIAkJfQogCkBAIC0yMzI5LDggKzIzMjks
+NyBAQCBpbnQgYXRoMTFrX2RwX3J4X3Byb2Nlc3NfbW9uX3N0YXR1cyhzdHJ1Y3QgYXRoMTFrX2Jh
+c2UgKmFiLCBpbnQgbWFjX2lkLAogCQlhcnN0YSA9IChzdHJ1Y3QgYXRoMTFrX3N0YSAqKXBlZXIt
+PnN0YS0+ZHJ2X3ByaXY7CiAJCWF0aDExa19kcF9yeF91cGRhdGVfcGVlcl9zdGF0cyhhcnN0YSwg
+JnBwZHVfaW5mbyk7CiAKLQkJaWYgKGFyLT5kZWJ1Zy5wa3Rsb2dfcGVlcl92YWxpZCAmJgotCQkg
+ICAgZXRoZXJfYWRkcl9lcXVhbChwZWVyLT5hZGRyLCBhci0+ZGVidWcucGt0bG9nX3BlZXJfYWRk
+cikpIHsKKwkJaWYgKGF0aDExa19kZWJ1Z19pc19wa3Rsb2dfcGVlcl92YWlsZChhciwgcGVlci0+
+YWRkcikpIHsKIAkJCS8qIFRPRE8gdXBkYXRlIHRoZSBwa3Rsb2cgdHJhY2luZyBmb3Igb25lIHBl
+ZXIqLwogCQl9CiAJCXNwaW5fdW5sb2NrX2JoKCZhYi0+ZGF0YV9sb2NrKTsKLS0gCjEuOS4xCgoK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYXRoMTFrIG1h
+aWxpbmcgbGlzdAphdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFk
+ZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2F0aDExawo=
