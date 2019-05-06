@@ -1,15 +1,18 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hNd2g-0006Mi-O4
- for ath11k@lists.infradead.org; Mon, 06 May 2019 12:48:27 +0000
+ id 1hNd7H-0000bO-6y
+ for ath11k@lists.infradead.org; Mon, 06 May 2019 12:53:12 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH] ath11K: add extended capabilities registration code
-References: <20190426130031.14453-1-john@phrozen.org>
-Date: Mon, 06 May 2019 15:48:19 +0300
-In-Reply-To: <20190426130031.14453-1-john@phrozen.org> (John Crispin's message
- of "Fri, 26 Apr 2019 15:00:31 +0200")
-Message-ID: <877eb3kauk.fsf@kamboji.qca.qualcomm.com>
+Subject: Re: patchwork
+References: <bd15fd3e-a0fb-02b1-05d8-8df1bb3902a2@phrozen.org>
+ <87sgu8ye5e.fsf@kamboji.qca.qualcomm.com>
+ <8bbbba815f608165a87c10f532e3d3c5aa9f2a1f.camel@ozlabs.org>
+ <87lg00yd5m.fsf@kamboji.qca.qualcomm.com>
+Date: Mon, 06 May 2019 15:53:06 +0300
+In-Reply-To: <87lg00yd5m.fsf@kamboji.qca.qualcomm.com> (Kalle Valo's message
+ of "Tue, 23 Apr 2019 18:06:13 +0300")
+Message-ID: <8736lrkaml.fsf@kamboji.qca.qualcomm.com>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -23,20 +26,40 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: John Crispin <john@phrozen.org>
-Cc: ath11k@lists.infradead.org, Srini Kode <skode@qti.qualcomm.com>, Rajkumar Manoharan <rmanohar@qti.qualcomm.com>, Shashidhar Lakkavalli <slakkavalli@datto.com>
+To: Jeremy Kerr <jk@ozlabs.org>
+Cc: ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-John Crispin <john@phrozen.org> writes:
+Kalle Valo <kvalo@codeaurora.org> writes:
 
-> This patch registers the ext capabilities fields with the subsystem.
-> This allows us to announce TWT support.
+> Jeremy Kerr <jk@ozlabs.org> writes:
 >
-> Signed-off-by: Shashidhar Lakkavalli <slakkavalli@datto.com>
-> Signed-off-by: John Crispin <john@phrozen.org>
+>> Hi John and Kalle,
+>>
+>>> > could you kindly setup a patchwork for the ath11k list ?
+>>> 
+>>> I already requested kernel.org admins to setup one but I have not
+>>> heard
+>>> back yet.
+>>
+>> I'm happy to do so for ozlabs.org, but don't want to duplicate with a
+>> kernel.org setup. Let me know what you want to do here.
+>
+> As I already use patchwork.kernel.org with wireless-drivers patches, and
+> use a custom patchwork script[1], I would prefer to use
+> patchwork.kernel.org also with ath11k. For example, in case there are
+> API incompatibilities etc.
+>
+>> If you do want to go ahead, just let me know what name you want to use
+>> for the instance ("ath11k development"?), and the patchwork usernames of
+>> those you want to assign as maintainers.
+>
+> What if we'll wait for kernel.org admins for a week or so still (I sent
+> the request on April 13th, I'll ping them) and if I don't hear back,
+> maybe then you could add it to ozlabs? I'll let you know how it goes.
 
-Failed to apply and sha1 information was useless so I couldn't use 3-way
-merge. Please rebase, and preferably use ath11k-bringup branch as the
-baseline so that I can use 3-way merge in the future.
+The admins now created a project for us:
+
+https://patchwork.kernel.org/project/ath11k/list/
 
 -- 
 Kalle Valo
