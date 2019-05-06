@@ -1,15 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hNf1Q-0002qB-FK
- for ath11k@lists.infradead.org; Mon, 06 May 2019 14:55:18 +0000
-From: Miles Hu <milehu@codeaurora.org>
-Subject: [PATCH v3 6/6] ath11k: merge msdu tlv process and status/destination
- ring process
-Date: Mon,  6 May 2019 07:54:56 -0700
-Message-Id: <1557154496-12059-7-git-send-email-milehu@codeaurora.org>
-In-Reply-To: <1557154496-12059-1-git-send-email-milehu@codeaurora.org>
-References: <1557154496-12059-1-git-send-email-milehu@codeaurora.org>
+ id 1hNf4N-0003Nt-Tl
+ for ath11k@lists.infradead.org; Mon, 06 May 2019 14:58:23 +0000
+From: Anilkumar Kolli <akolli@codeaurora.org>
+Subject: [PATCH] ath11k: add tracing support for pktlog
+Date: Mon,  6 May 2019 20:28:05 +0530
+Message-Id: <1557154685-15867-1-git-send-email-akolli@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -24,325 +21,245 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
-Cc: Miles Hu <milehu@codeaurora.org>
 
-merge msdu list and process status.
-deliver mpdu to upper layer.
-process tlv in rx descriptor.
-status/destination ring process function.
+Add trace events on htt_pktlog and htt_ppdu_stats
+and rx statistics.
 
-Signed-off-by: Miles Hu <milehu@codeaurora.org>
+Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
 ---
-V2:
- - Move to ath11k-bringup branch
+ drivers/net/wireless/ath/ath11k/Kconfig  |   6 ++
+ drivers/net/wireless/ath/ath11k/Makefile |   4 ++
+ drivers/net/wireless/ath/ath11k/debug.h  |   1 +
+ drivers/net/wireless/ath/ath11k/dp_rx.c  |  11 ++--
+ drivers/net/wireless/ath/ath11k/trace.c  |   9 +++
+ drivers/net/wireless/ath/ath11k/trace.h  | 110 +++++++++++++++++++++++++++++++
+ 6 files changed, 135 insertions(+), 6 deletions(-)
+ create mode 100644 drivers/net/wireless/ath/ath11k/trace.c
+ create mode 100644 drivers/net/wireless/ath/ath11k/trace.h
 
- drivers/net/wireless/ath/ath11k/dp_rx.c | 291 ++++++++++++++++++++++++++++++++
- 1 file changed, 291 insertions(+)
-
+diff --git a/drivers/net/wireless/ath/ath11k/Kconfig b/drivers/net/wireless/ath/ath11k/Kconfig
+index 8a409ff2c8f5..26bf98fa648e 100644
+--- a/drivers/net/wireless/ath/ath11k/Kconfig
++++ b/drivers/net/wireless/ath/ath11k/Kconfig
+@@ -26,3 +26,9 @@ config ATH11K_DEBUGFS
+ 	  Enable ath11k debugfs support
+ 
+ 	  If unsure, say Y to make it easier to debug problems.
++
++config ATH11K_TRACING
++	bool "ath11k tracing support"
++	depends on ATH11K && EVENT_TRACING
++	---help---
++	  Select this to ath11k use tracing infrastructure.
+diff --git a/drivers/net/wireless/ath/ath11k/Makefile b/drivers/net/wireless/ath/ath11k/Makefile
+index 4f1343f253a1..4f86b1841e55 100644
+--- a/drivers/net/wireless/ath/ath11k/Makefile
++++ b/drivers/net/wireless/ath/ath11k/Makefile
+@@ -19,3 +19,7 @@ ath11k-y += core.o \
+ ath11k-$(CONFIG_ATH11K_DEBUGFS) += debug_htt_stats.o
+ ath11k-$(CONFIG_MAC80211_DEBUGFS) += debugfs_sta.o
+ ath11k-$(CONFIG_NL80211_TESTMODE) += testmode.o
++ath11k-$(CONFIG_ATH11K_TRACING) += trace.o
++
++# for tracing framework to find trace.h
++CFLAGS_trace.o := -I$(src)
+diff --git a/drivers/net/wireless/ath/ath11k/debug.h b/drivers/net/wireless/ath/ath11k/debug.h
+index 7f62da8d8b8b..e51235f62536 100644
+--- a/drivers/net/wireless/ath/ath11k/debug.h
++++ b/drivers/net/wireless/ath/ath11k/debug.h
+@@ -7,6 +7,7 @@
+ #define _ATH11K_DEBUG_H_
+ 
+ #include "hal_tx.h"
++#include "trace.h"
+ 
+ enum ath11k_debug_mask {
+ 	ATH11K_DBG_AHB		= 0x00000001,
 diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index faadfd1..f61adf2 100644
+index 257dd97275d8..0851b2a0076f 100644
 --- a/drivers/net/wireless/ath/ath11k/dp_rx.c
 +++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -3567,6 +3567,297 @@ static inline void ath11k_dp_rx_msdus_set_payload(struct sk_buff *msdu)
- 	skb_pull(msdu, rx_pkt_offset + l2_hdr_offset);
+@@ -989,7 +989,7 @@ static int ath11k_htt_pull_ppdu_stats(struct ath11k_base *ab,
+ 	ar = ab->pdevs[pdev_id].ar;
+ 
+ 	if (ath11k_debug_is_pktlog_lite_mode_enabled(ar)) {
+-		/* TODO update the pktlog tracing */
++		trace_ath11k_htt_ppdu_stats(ar, skb->data, len);
+ 	}
+ 
+ 	/* TLV info starts after 16bytes of header */
+@@ -1014,10 +1014,9 @@ static int ath11k_htt_pull_ppdu_stats(struct ath11k_base *ab,
+ static void ath11k_htt_pktlog(struct ath11k_base *ab,
+ 				     struct sk_buff *skb)
+ {
+-	u32 *data = (u32 *)skb->data;
++	u32 *data = (u32 *)skb->data, len;
+ 	struct ath11k *ar;
+ 	u8 pdev_id;
+-	u32 len;
+ 
+ 	len = FIELD_GET(HTT_T2H_PPDU_STATS_PAYLOAD_SIZE_M, *data);
+ 	pdev_id = FIELD_GET(HTT_T2H_PPDU_STATS_PDEV_ID_M, *data);
+@@ -1025,7 +1024,7 @@ static void ath11k_htt_pktlog(struct ath11k_base *ab,
+ 	ar = ab->pdevs[pdev_id].ar;
+ 	++data;
+ 
+-	/* TODO add pktlog tracing */
++	trace_ath11k_htt_pktlog(ar, data, len);
  }
  
-+static inline struct sk_buff *
-+ath11k_dp_rx_mon_merg_msdus(struct ath11k *ar,
-+			    u32 mac_id, struct sk_buff *head_msdu,
-+			    struct sk_buff *last_msdu,
-+			    struct ieee80211_rx_status *rxs)
-+{
-+	struct sk_buff *msdu, *mpdu_buf, *prev_buf;
-+	u32 decap_format, wifi_hdr_len;
-+	void *rx_desc;
-+	char *hdr_desc;
-+	u8 *dest;
-+	struct ieee80211_hdr_3addr *wh;
+ void ath11k_dp_htt_htc_t2h_msg_handler(struct ath11k_base *ab,
+@@ -2301,7 +2300,7 @@ int ath11k_dp_rx_process_mon_status(struct ath11k_base *ab, int mac_id,
+ 		ppdu_info.peer_id = HAL_INVALID_PEERID;
+ 
+ 		if (ath11k_debug_is_pktlog_rx_stats_enabled(ar)) {
+-			/* TODO update the pktlog tracing */
++			trace_ath11k_htt_rxdesc(ar, skb->data, DP_RX_BUFFER_SIZE);
+ 		}
+ 
+ 		hal_status = ath11k_hal_rx_parse_mon_status(ab, &ppdu_info,
+@@ -2330,7 +2329,7 @@ int ath11k_dp_rx_process_mon_status(struct ath11k_base *ab, int mac_id,
+ 		ath11k_dp_rx_update_peer_stats(arsta, &ppdu_info);
+ 
+ 		if (ath11k_debug_is_pktlog_peer_vaild(ar, peer->addr)) {
+-			/* TODO update the pktlog tracing for one peer*/
++			trace_ath11k_htt_rxdesc(ar, skb->data, DP_RX_BUFFER_SIZE);
+ 		}
+ 		spin_unlock_bh(&ab->data_lock);
+ 		rcu_read_unlock();
+diff --git a/drivers/net/wireless/ath/ath11k/trace.c b/drivers/net/wireless/ath/ath11k/trace.c
+new file mode 100644
+index 000000000000..df56457b7cbf
+--- /dev/null
++++ b/drivers/net/wireless/ath/ath11k/trace.c
+@@ -0,0 +1,9 @@
++// SPDX-License-Identifier: ISC
++/*
++ * Copyright (c) 2019 The Linux Foundation. All rights reserved.
++ */
 +
-+	mpdu_buf = NULL;
++#include <linux/module.h>
 +
-+	if (!head_msdu)
-+		goto err_merge_fail;
++#define CREATE_TRACE_POINTS
++#include "trace.h"
+diff --git a/drivers/net/wireless/ath/ath11k/trace.h b/drivers/net/wireless/ath/ath11k/trace.h
+new file mode 100644
+index 000000000000..f369db153282
+--- /dev/null
++++ b/drivers/net/wireless/ath/ath11k/trace.h
+@@ -0,0 +1,110 @@
++// SPDX-License-Identifier: ISC
++/*
++ * Copyright (c) 2019 The Linux Foundation. All rights reserved.
++ */
 +
-+	rx_desc = head_msdu->data;
++#if !defined(_TRACE_H_) || defined(TRACE_HEADER_MULTI_READ)
 +
-+	if (ath11k_dp_rxdesc_get_mpdulen_err(rx_desc))
-+		return NULL;
++#include <linux/tracepoint.h>
++#include "core.h"
 +
-+	decap_format = ath11k_dp_rxdesc_get_decap_format(rx_desc);
++#define _TRACE_H_
 +
-+	ath11k_dp_rx_h_ppdu(ar, rx_desc, rxs);
++/* create empty functions when tracing is disabled */
++#if !defined(CONFIG_ATH11K_TRACING)
++#undef TRACE_EVENT
++#define TRACE_EVENT(name, proto, ...) \
++static inline void trace_ ## name(proto) {}
++#endif /* !CONFIG_ATH11K_TRACING || __CHECKER__ */
 +
-+	if (decap_format == DP_RX_DECAP_TYPE_RAW) {
-+		ath11k_dp_rx_msdus_set_payload(head_msdu);
++TRACE_EVENT(ath11k_htt_pktlog,
++	    TP_PROTO(struct ath11k *ar, const void *buf, u16 buf_len),
 +
-+		prev_buf = head_msdu;
-+		msdu = head_msdu->next;
++	TP_ARGS(ar, buf, buf_len),
 +
-+		while (msdu) {
-+			ath11k_dp_rx_msdus_set_payload(msdu);
++	TP_STRUCT__entry(
++		__string(device, dev_name(ar->ab->dev))
++		__string(driver, dev_driver_string(ar->ab->dev))
++		__field(u16, buf_len)
++		__dynamic_array(u8, pktlog, buf_len)
++	),
 +
-+			prev_buf = msdu;
-+			msdu = msdu->next;
-+		}
++	TP_fast_assign(
++		__assign_str(device, dev_name(ar->ab->dev));
++		__assign_str(driver, dev_driver_string(ar->ab->dev));
++		__entry->buf_len = buf_len;
++		memcpy(__get_dynamic_array(pktlog), buf, buf_len);
++	),
 +
-+		prev_buf->next = NULL;
++	TP_printk(
++		"%s %s size %hu",
++		__get_str(driver),
++		__get_str(device),
++		__entry->buf_len
++	 )
++);
 +
-+		skb_trim(prev_buf, prev_buf->len - HAL_RX_FCS_LEN);
-+	}	else if (decap_format == DP_RX_DECAP_TYPE_NATIVE_WIFI) {
-+		__le16 qos_field;
-+		u8 qos_pkt = 0;
++TRACE_EVENT(ath11k_htt_ppdu_stats,
++	    TP_PROTO(struct ath11k *ar, const void *data, size_t len),
 +
-+		rx_desc = head_msdu->data;
-+		hdr_desc = ath11k_dp_rxdesc_get_80211hdr(rx_desc);
++	TP_ARGS(ar, data, len),
 +
-+		/* Base size */
-+		wifi_hdr_len = sizeof(struct ieee80211_hdr_3addr);
-+		wh = (struct ieee80211_hdr_3addr *)hdr_desc;
++	TP_STRUCT__entry(
++		__string(device, dev_name(ar->ab->dev))
++		__string(driver, dev_driver_string(ar->ab->dev))
++		__field(u16, len)
++		__dynamic_array(u8, ppdu, len)
++	),
 +
-+		if (ieee80211_is_data_qos(wh->frame_control)) {
-+			struct ieee80211_qos_hdr *qwh =
-+					(struct ieee80211_qos_hdr *)hdr_desc;
++	TP_fast_assign(
++		__assign_str(device, dev_name(ar->ab->dev));
++		__assign_str(driver, dev_driver_string(ar->ab->dev));
++		__entry->len = len;
++		memcpy(__get_dynamic_array(ppdu), data, len);
++	),
 +
-+			qos_field = qwh->qos_ctrl;
-+			qos_pkt = 1;
-+		}
-+		msdu = head_msdu;
++	TP_printk(
++		"%s %s ppdu len %d",
++		__get_str(driver),
++		__get_str(device),
++		__entry->len
++	 )
++);
 +
-+		while (msdu) {
-+			rx_desc = msdu->data;
-+			hdr_desc = ath11k_dp_rxdesc_get_80211hdr(rx_desc);
++TRACE_EVENT(ath11k_htt_rxdesc,
++	    TP_PROTO(struct ath11k *ar, const void *data, size_t len),
 +
-+			if (qos_pkt) {
-+				dest = skb_push(msdu, sizeof(__le16));
-+				if (!dest)
-+					goto err_merge_fail;
-+				memcpy(dest, hdr_desc, wifi_hdr_len);
-+				memcpy(dest + wifi_hdr_len,
-+				       (u8 *)&qos_field, sizeof(__le16));
-+			}
-+			ath11k_dp_rx_msdus_set_payload(msdu);
-+			prev_buf = msdu;
-+			msdu = msdu->next;
-+		}
-+		dest = skb_put(prev_buf, HAL_RX_FCS_LEN);
-+		if (!dest)
-+			goto err_merge_fail;
++	TP_ARGS(ar, data, len),
 +
-+		ath11k_dbg(ar->ab, ATH11K_DBG_DATA,
-+			   "mpdu_buf %pK mpdu_buf->len %u",
-+			   prev_buf, prev_buf->len);
-+	} else {
-+		ath11k_dbg(ar->ab, ATH11K_DBG_DATA,
-+			   "decap format %d is not supported!\n",
-+			   decap_format);
-+		goto err_merge_fail;
-+	}
++	TP_STRUCT__entry(
++		__string(device, dev_name(ar->ab->dev))
++		__string(driver, dev_driver_string(ar->ab->dev))
++		__field(u16, len)
++		__dynamic_array(u8, rxdesc, len)
++	),
 +
-+	return head_msdu;
++	TP_fast_assign(
++		__assign_str(device, dev_name(ar->ab->dev));
++		__assign_str(driver, dev_driver_string(ar->ab->dev));
++		__entry->len = len;
++		memcpy(__get_dynamic_array(rxdesc), data, len);
++	),
 +
-+err_merge_fail:
-+	if (mpdu_buf && decap_format != DP_RX_DECAP_TYPE_RAW) {
-+		ath11k_dbg(ar->ab, ATH11K_DBG_DATA,
-+			   "err_merge_fail mpdu_buf %pK", mpdu_buf);
-+		/* Free the head buffer */
-+		dev_kfree_skb_any(mpdu_buf);
-+	}
-+	return NULL;
-+}
++	TP_printk(
++		"%s %s rxdesc len %d",
++		__get_str(driver),
++		__get_str(device),
++		__entry->len
++	 )
++);
 +
-+int ath11k_dp_rx_mon_deliver(struct ath11k *ar, u32 mac_id,
-+			     struct sk_buff *head_msdu,
-+			     struct sk_buff *tail_msdu,
-+			     struct napi_struct *napi)
-+{
-+	struct ath11k_pdev_dp *dp = &ar->dp;
-+	struct sk_buff *mon_skb, *skb_next, *header;
-+	struct ieee80211_rx_status *rxs = &dp->rx_status, *status;
++#endif /* _TRACE_H_ || TRACE_HEADER_MULTI_READ*/
 +
-+	mon_skb = ath11k_dp_rx_mon_merg_msdus(ar, mac_id, head_msdu,
-+					      tail_msdu, rxs);
++/* we don't want to use include/trace/events */
++#undef TRACE_INCLUDE_PATH
++#define TRACE_INCLUDE_PATH .
++#undef TRACE_INCLUDE_FILE
++#define TRACE_INCLUDE_FILE trace
 +
-+	if (!mon_skb)
-+		goto mon_deliver_fail;
-+
-+	header = mon_skb;
-+
-+	do {
-+		skb_next = mon_skb->next;
-+		if (!skb_next)
-+			rxs->flag &= ~RX_FLAG_AMSDU_MORE;
-+		else
-+			rxs->flag |= RX_FLAG_AMSDU_MORE;
-+
-+		if (mon_skb == header) {
-+			header = NULL;
-+			rxs->flag &= ~RX_FLAG_ALLOW_SAME_PN;
-+		} else {
-+			rxs->flag |= RX_FLAG_ALLOW_SAME_PN;
-+		}
-+		rxs->flag |= RX_FLAG_ONLY_MONITOR;
-+
-+		status = IEEE80211_SKB_RXCB(mon_skb);
-+		*status = *rxs;
-+
-+		ath11k_dp_rx_deliver_msdu(ar, napi, mon_skb);
-+		mon_skb = skb_next;
-+	} while (mon_skb && (mon_skb != tail_msdu));
-+
-+	return 0;
-+
-+mon_deliver_fail:
-+	mon_skb = head_msdu;
-+	while (mon_skb) {
-+		skb_next = mon_skb->next;
-+		dev_kfree_skb_any(mon_skb);
-+		mon_skb = skb_next;
-+	}
-+	return -EINVAL;
-+}
-+
-+void ath11k_dp_rx_mon_dest_process(struct ath11k *ar, u32 quota,
-+				   struct napi_struct *napi)
-+{
-+	struct ath11k_pdev_dp *dp = &ar->dp;
-+	struct ath11k_mon_data *pmon = (struct ath11k_mon_data *)&dp->mon_data;
-+	void *ring_entry;
-+	void *mon_dst_srng;
-+	u32 ppdu_id;
-+	u32 rx_bufs_used;
-+	struct ath11k_pdev_mon_stats *rx_mon_stats;
-+	u32	 npackets = 0;
-+
-+	mon_dst_srng = &ar->ab->hal.srng_list[dp->rxdma_mon_dst_ring.ring_id];
-+
-+	if (!mon_dst_srng) {
-+		ath11k_warn(ar->ab,
-+			    "HAL Monitor Destination Ring Init Failed -- %pK",
-+			    mon_dst_srng);
-+		return;
-+	}
-+
-+	spin_lock_bh(&pmon->mon_lock);
-+
-+	ath11k_hal_srng_access_begin(ar->ab, mon_dst_srng);
-+
-+	ppdu_id = pmon->mon_ppdu_info.ppdu_id;
-+	rx_bufs_used = 0;
-+	rx_mon_stats = &pmon->rx_mon_stats;
-+
-+	while ((ring_entry = ath11k_hal_srng_dst_peek(ar->ab, mon_dst_srng))) {
-+		struct sk_buff *head_msdu, *tail_msdu;
-+
-+		head_msdu = NULL;
-+		tail_msdu = NULL;
-+
-+		rx_bufs_used += ath11k_dp_rx_mon_mpdu_pop(ar, ring_entry,
-+							  &head_msdu,
-+							  &tail_msdu,
-+							  &npackets, &ppdu_id);
-+
-+		if (ppdu_id != pmon->mon_ppdu_info.ppdu_id) {
-+			pmon->mon_ppdu_status = DP_PPDU_STATUS_START;
-+			ath11k_dbg(ar->ab, ATH11K_DBG_DATA,
-+				   "dest_rx: new ppdu_id %x != status ppdu_id %x",
-+				   ppdu_id, pmon->mon_ppdu_info.ppdu_id);
-+			break;
-+		}
-+		if (head_msdu && tail_msdu) {
-+			ath11k_dp_rx_mon_deliver(ar, dp->mac_id, head_msdu,
-+						 tail_msdu, napi);
-+			rx_mon_stats->dest_mpdu_done++;
-+		}
-+
-+		ring_entry = ath11k_hal_srng_dst_get_next_entry(ar->ab,
-+								mon_dst_srng);
-+	}
-+	ath11k_hal_srng_access_end(ar->ab, mon_dst_srng);
-+
-+	spin_unlock_bh(&pmon->mon_lock);
-+
-+	if (rx_bufs_used) {
-+		rx_mon_stats->dest_ppdu_done++;
-+		ath11k_dp_rxbufs_replenish(ar->ab, dp->mac_id,
-+					   &dp->rxdma_mon_buf_ring,
-+					   rx_bufs_used,
-+					   HAL_RX_BUF_RBM_SW3_BM, GFP_ATOMIC);
-+	}
-+}
-+
-+static inline void ath11k_dp_rx_mon_status_process_tlv(struct ath11k *ar,
-+						       u32 quota,
-+						       struct napi_struct *napi)
-+{
-+	struct ath11k_pdev_dp *dp = &ar->dp;
-+	struct ath11k_mon_data *pmon = (struct ath11k_mon_data *)&dp->mon_data;
-+	struct hal_rx_mon_ppdu_info *ppdu_info;
-+	struct sk_buff *status_skb;
-+	u8 *rx_tlv;
-+	u8 *rx_tlv_start;
-+	u32 tlv_status = HAL_TLV_STATUS_BUF_DONE;
-+	struct ath11k_pdev_mon_stats *rx_mon_stats;
-+
-+	ppdu_info = &pmon->mon_ppdu_info;
-+	rx_mon_stats = &pmon->rx_mon_stats;
-+
-+	if (pmon->mon_ppdu_status != DP_PPDU_STATUS_START)
-+		return;
-+
-+	while (!skb_queue_empty(&pmon->rx_status_q)) {
-+		status_skb = skb_dequeue(&pmon->rx_status_q);
-+
-+		rx_tlv = status_skb->data;
-+		rx_tlv_start = rx_tlv;
-+
-+		tlv_status = ath11k_hal_rx_parse_mon_status(ar->ab, ppdu_info,
-+							    rx_tlv);
-+		if (tlv_status == HAL_TLV_STATUS_PPDU_DONE) {
-+			rx_mon_stats->status_ppdu_done++;
-+			pmon->mon_ppdu_status = DP_PPDU_STATUS_DONE;
-+			ath11k_dp_rx_mon_dest_process(ar, quota, napi);
-+			pmon->mon_ppdu_status = DP_PPDU_STATUS_START;
-+		}
-+		dev_kfree_skb_any(status_skb);
-+	}
-+}
-+
-+int ath11k_dp_mon_process_rx(struct ath11k_base *ab, int mac_id,
-+			     struct napi_struct *napi, int budget)
-+{
-+	struct ath11k *ar = ab->pdevs[mac_id].ar;
-+	struct ath11k_pdev_dp *dp = &ar->dp;
-+	struct ath11k_mon_data *pmon = (struct ath11k_mon_data *)&dp->mon_data;
-+	int num_buffs_reaped = 0;
-+
-+	num_buffs_reaped = ath11k_dp_rx_reap_mon_status_ring(ar->ab, dp->mac_id, &budget,
-+							     &pmon->rx_status_q);
-+	if (num_buffs_reaped)
-+		ath11k_dp_rx_mon_status_process_tlv(ar, budget, napi);
-+
-+	return num_buffs_reaped;
-+}
-+
-+int ath11k_dp_rx_process_mon_rings(struct ath11k_base *ab, int mac_id,
-+				   struct napi_struct *napi, int budget)
-+{
-+	struct ath11k *ar = ab->pdevs[mac_id].ar;
-+	int ret = 0;
-+
-+	if (test_bit(ATH11K_FLAG_MONITOR_ENABLED, &ar->monitor_flags))
-+		ret = ath11k_dp_mon_process_rx(ab, mac_id, napi, budget);
-+	else
-+		ret = ath11k_dp_rx_process_mon_status(ab, mac_id, napi, budget);
-+	return ret;
-+}
-+
- int ath11k_dp_rx_pdev_mon_status_attach(struct ath11k *ar)
- {
- 	struct ath11k_pdev_dp *dp = &ar->dp;
++/* This part must be outside protection */
++#include <trace/define_trace.h>
 -- 
-2.7.4
+1.9.1
 
 
 _______________________________________________
