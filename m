@@ -1,12 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hOAWR-0006ob-HW
- for ath11k@lists.infradead.org; Wed, 08 May 2019 00:33:24 +0000
-From: Rajkumar Manoharan <rmanohar@codeaurora.org>
-Subject: [PATCH] ath11k: support HE max rx aggregation subframes
-Date: Tue,  7 May 2019 17:33:13 -0700
-Message-Id: <1557275593-2994-1-git-send-email-rmanohar@codeaurora.org>
+ id 1hOJ8m-0007SZ-Db
+ for ath11k@lists.infradead.org; Wed, 08 May 2019 09:45:33 +0000
+MIME-Version: 1.0
+Subject: Re: [PATCH] ath11k: update dfs cac timeout for weather radar band
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <1557150871-1070-1-git-send-email-srirrama@codeaurora.org>
+References: <1557150871-1070-1-git-send-email-srirrama@codeaurora.org>
+Message-Id: <20190508094530.31B18609EF@smtp.codeaurora.org>
+Date: Wed,  8 May 2019 09:45:30 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -15,38 +18,30 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: Rajkumar Manoharan <rmanohar@codeaurora.org>
+To: Sriram R <srirrama@codeaurora.org>
+Cc: ath11k@lists.infradead.org
 
-HE supports upto 256 subframes in an A-MPDU. Hence update
-max_rx_aggregation_subframes to 256 at device registration.
-Since tx A-MPDU aggregation is offloaded to HW, no need to
-update tx aggregation subframes size.
+Sriram R <srirrama@codeaurora.org> wrote:
 
-Signed-off-by: Rajkumar Manoharan <rmanohar@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/mac.c | 1 +
- 1 file changed, 1 insertion(+)
+> DFS CAC Timeout needs to be updated to 600s for channels
+> in weather radar band. Split the reg rule if the rule has
+> weather radar band between start and end freq and update
+> the cac timeout.
+> 
+> Signed-off-by: Sriram R <srirrama@codeaurora.org>
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 2ee0650fe9c1..6b5a466e27ef 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -4961,6 +4961,7 @@ static int ath11k_mac_register(struct ath11k *ar)
- 
- 	ar->hw->queues = ATH11K_HW_MAX_QUEUES;
- 	ar->hw->offchannel_tx_hw_queue = ATH11K_HW_MAX_QUEUES - 1;
-+	ar->hw->max_rx_aggregation_subframes = IEEE80211_MAX_AMPDU_BUF;
- 
- 	ar->hw->vif_data_size = sizeof(struct ath11k_vif);
- 	ar->hw->sta_data_size = sizeof(struct ath11k_sta);
+Patch applied to ath.git, thanks.
+
+c6854eccae90 ath11k: update dfs cac timeout for weather radar band
+
 -- 
-1.9.1
+https://patchwork.kernel.org/patch/10931103/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 
 _______________________________________________
