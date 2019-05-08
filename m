@@ -1,12 +1,19 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hOKvh-0001iT-5g
- for ath11k@lists.infradead.org; Wed, 08 May 2019 11:40:10 +0000
-From: Anilkumar Kolli <akolli@codeaurora.org>
-Subject: [PATCH v2] ath11k: clean up in qmi source files
-Date: Wed,  8 May 2019 17:09:39 +0530
-Message-Id: <1557315579-20508-1-git-send-email-akolli@codeaurora.org>
+ id 1hOLAe-0002Ft-MG
+ for ath11k@lists.infradead.org; Wed, 08 May 2019 11:55:38 +0000
+Received: from vasanth-lnx.qca.qualcomm.com
+ (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+ (No client certificate requested)
+ (Authenticated sender: vthiagar@smtp.codeaurora.org)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 4D6CD60452
+ for <ath11k@lists.infradead.org>; Wed,  8 May 2019 11:55:34 +0000 (UTC)
+From: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
+Subject: [PATCH] ath11k/qmi: Use memcpy_toio() function on I/O memory
+Date: Wed,  8 May 2019 17:24:43 +0530
+Message-Id: <1557316483-18397-1-git-send-email-vthiagar@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,271 +29,59 @@ Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 
-Fix coding style, Remove unused variable.
+The usage of memcpy() function on I/O memory is not recommended
+when doing a bulk data copy. Instead use memcpy_toio() function
+while copying bulk data to I/O memory. Using the right function
+takes care of platform specific alignment requirement as well
+in arm64. This fixes the below kernel crash due to unaligned
+memory access in 64-bit arm during memory copy of board data to I/O
+memory.
 
-Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
+[   15.672513] ath11k c000000.wifi1: Downloading BDF: IPQ8074/board-2.bin, size: 917972
+[   15.672635] Unhandled fault: alignment fault (0x96000061) at 0xffffff8007200004
+[   15.680449] Internal error: : 96000061 [#1] PREEMPT SMP
+[   15.946227] CPU: 0 PID: 890 Comm: kworker/u8:5 Tainted: P
+[   15.968272] task: ffffffc03cae9f80 ti: ffffffc03cae9f80 task.ti: ffffffc03cae9f80
+[   15.968552] PC is at __efistub_memcpy+0x48/0x180
+[   15.976011] LR is at ath11k_ce_get_attr_flags+0xc14/0x1594 [ath11k]
+
+Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
 ---
-V2:
-  - Rebased on latest tree
-
- drivers/net/wireless/ath/ath11k/qmi.c | 36 +++++++++---------------
- drivers/net/wireless/ath/ath11k/qmi.h | 53 ++++++++++++++++-------------------
- 2 files changed, 37 insertions(+), 52 deletions(-)
+ drivers/net/wireless/ath/ath11k/qmi.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index b862fa93bba8..cd1f5bc614fd 100644
+index b862fa9..0bec067 100644
 --- a/drivers/net/wireless/ath/ath11k/qmi.c
 +++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -312,7 +312,7 @@
- 		.array_type	= NO_ARRAY,
- 		.tlv_type	= 0x11,
- 		.offset		= offsetof(struct qmi_wlanfw_ind_register_req_msg_v01,
--				  	   initiate_cal_download_enable),
-+					   initiate_cal_download_enable),
- 	},
- 	{
- 		.data_type	= QMI_OPT_FLAG,
-@@ -570,7 +570,6 @@ struct qmi_elem_info qmi_wlanfw_ind_register_resp_msg_v01_ei[] = {
- 	},
- };
- 
--
- static struct qmi_elem_info qmi_wlanfw_mem_seg_s_v01_ei[] = {
- 	{
- 		.data_type	= QMI_UNSIGNED_4_BYTE,
-@@ -1643,12 +1642,6 @@ static int ath11k_qmi_respond_fw_mem_request(struct ath11k_base *ab)
- 		goto out;
- 
- 	for (i = 0; i < req->mem_seg_len ; i++) {
--		if (!ab->qmi.target_mem[i].paddr || !ab->qmi.target_mem[i].size) {
--			ath11k_warn(ab, "qmi invalid mem request for target\n");
--			ret = -EINVAL;
--			goto out;
--		}
--
- 		req->mem_seg[i].addr = ab->qmi.target_mem[i].paddr;
- 		req->mem_seg[i].size = ab->qmi.target_mem[i].size;
- 		req->mem_seg[i].type = ab->qmi.target_mem[i].type;
-@@ -1688,8 +1681,8 @@ static int ath11k_qmi_alloc_target_mem_chunk(struct ath11k_base *ab)
- 	int i, idx, mode = ab->qmi.target_mem_mode;
- 
- 	if (of_property_read_u32_array(dev->of_node, "qcom,bdf-addr",
--				   &bdf_location[0],
--				   ARRAY_SIZE(bdf_location))) {
-+				       &bdf_location[0],
-+				       ARRAY_SIZE(bdf_location))) {
- 		ath11k_warn(ab, "qmi no bdf_addr in device_tree\n");
- 		return -EINVAL;
- 	}
-@@ -1708,17 +1701,16 @@ static int ath11k_qmi_alloc_target_mem_chunk(struct ath11k_base *ab)
- 				ath11k_warn(ab, "qmi mem size is low to load caldata\n");
- 				return -EINVAL;
- 			}
--			ab->qmi.target_mem[idx].paddr =
--					bdf_location[mode] + ATH11K_QMI_CALDATA_OFFSET;
--			ab->qmi.target_mem[idx].vaddr =
--					bdf_location[mode] + ATH11K_QMI_CALDATA_OFFSET;
-+			/* TODO ath11k does not support cold boot calibration */
-+			ab->qmi.target_mem[idx].paddr = 0;
-+			ab->qmi.target_mem[idx].vaddr = 0;
- 			ab->qmi.target_mem[idx].size = ab->qmi.target_mem[i].size;
- 			ab->qmi.target_mem[idx].type = ab->qmi.target_mem[i].type;
- 			idx++;
- 			break;
- 		default:
- 			ath11k_warn(ab, "qmi ignore invalid mem req type %d\n",
--			       ab->qmi.target_mem[i].type);
-+				    ab->qmi.target_mem[i].type);
- 			break;
- 		}
- 	}
-@@ -1791,7 +1783,6 @@ static int ath11k_qmi_request_target_cap(struct ath11k_base *ab)
- 	return ret;
- }
- 
--
+@@ -1795,7 +1795,7 @@ static int ath11k_qmi_request_target_cap(struct ath11k_base *ab)
  static int
  ath11k_qmi_prepare_bdf_download(struct ath11k_base *ab, int type,
  				struct qmi_wlanfw_bdf_download_req_msg_v01 *req,
-@@ -1818,7 +1809,7 @@ static int ath11k_qmi_request_target_cap(struct ath11k_base *ab)
+-				void *bdf_addr)
++				void __iomem *bdf_addr)
+ {
+ 	struct device *dev = ab->dev;
+ 	char filename[ATH11K_QMI_MAX_BDF_FILE_NAME_SIZE];
+@@ -1813,7 +1813,7 @@ static int ath11k_qmi_request_target_cap(struct ath11k_base *ab)
+ 		}
+ 
+ 		fw_size = min_t(u32, ab->hw_params.fw.board_size, bd.len);
+-		memcpy(bdf_addr, bd.data, fw_size);
++		memcpy_toio(bdf_addr, bd.data, fw_size);
+ 		ath11k_core_free_bdf(ab, &bd);
  		break;
  	case ATH11K_QMI_FILE_TYPE_CALDATA:
- 		snprintf(filename, sizeof(filename),
--			 "%s/%s",ab->hw_params.fw.dir, ATH11K_QMI_DEFAULT_CAL_FILE_NAME);
-+			 "%s/%s", ab->hw_params.fw.dir, ATH11K_QMI_DEFAULT_CAL_FILE_NAME);
- 		ret = request_firmware(&fw_entry, filename, dev);
- 		if (ret) {
- 			ath11k_warn(ab, "qmi failed to load CAL: %s\n", filename);
-@@ -1835,7 +1826,7 @@ static int ath11k_qmi_request_target_cap(struct ath11k_base *ab)
- 		release_firmware(fw_entry);
- 		break;
- 	default:
--		ret =-EINVAL;
-+		ret = -EINVAL;
- 		goto out;
- 	}
+@@ -1828,7 +1828,8 @@ static int ath11k_qmi_request_target_cap(struct ath11k_base *ab)
+ 		fw_size = min_t(u32, ab->hw_params.fw.board_size,
+ 				fw_entry->size);
  
-@@ -1863,7 +1854,7 @@ static int ath11k_qmi_load_bdf(struct ath11k_base *ab)
- 	if (of_property_read_u32_array(dev->of_node, "qcom,bdf-addr", &location[0],
- 				       ARRAY_SIZE(location))) {
- 		ath11k_err(ab, "qmi bdf_addr is not in device_tree\n");
--		ret =-EINVAL;
-+		ret = -EINVAL;
- 		goto out;
- 	}
+-		memcpy(bdf_addr + ATH11K_QMI_CALDATA_OFFSET, fw_entry->data, fw_size);
++		memcpy_toio(bdf_addr + ATH11K_QMI_CALDATA_OFFSET,
++			    fw_entry->data, fw_size);
+ 		ath11k_info(ab, "qmi downloading BDF: %s, size: %zu\n",
+ 			    filename, fw_entry->size);
  
-@@ -1914,7 +1905,7 @@ static int ath11k_qmi_load_bdf(struct ath11k_base *ab)
- 
- 		if (resp.resp.result != QMI_RESULT_SUCCESS_V01) {
- 			ath11k_warn(ab, "qmi BDF download failed, result: %d, err: %d\n",
--				   resp.resp.result, resp.resp.error);
-+				    resp.resp.result, resp.resp.error);
- 			ret = resp.resp.result;
- 			goto out_qmi_bdf;
- 		}
-@@ -2266,7 +2257,6 @@ static void ath11k_qmi_msg_fw_ready_cb(struct qmi_handle *qmi_hdl,
- 	ath11k_qmi_driver_event_post(qmi, ATH11K_QMI_EVENT_FW_READY, NULL);
- }
- 
--
- static void ath11k_qmi_msg_cold_boot_cal_done_cb(struct qmi_handle *qmi,
- 						 struct sockaddr_qrtr *sq,
- 						 struct qmi_txn *txn,
-@@ -2435,8 +2425,8 @@ int ath11k_qmi_init_service(struct ath11k_base *ab)
- 	INIT_WORK(&ab->qmi.event_work, ath11k_qmi_driver_event_work);
- 
- 	ret = qmi_add_lookup(&ab->qmi.handle, ATH11K_QMI_WLFW_SERVICE_ID_V01,
--			ATH11K_QMI_WLFW_SERVICE_VERS_V01,
--			ATH11K_QMI_WLFW_SERVICE_INS_ID_V01);
-+			     ATH11K_QMI_WLFW_SERVICE_VERS_V01,
-+			     ATH11K_QMI_WLFW_SERVICE_INS_ID_V01);
- 	if (ret < 0) {
- 		ath11k_warn(ab, "failed to add qmi lookup\n");
- 		return ret;
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.h b/drivers/net/wireless/ath/ath11k/qmi.h
-index b01759667466..0d1b45d37c8a 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.h
-+++ b/drivers/net/wireless/ath/ath11k/qmi.h
-@@ -13,15 +13,15 @@
- #define ATH11K_QMI_WLANFW_TIMEOUT_MS		5000
- #define ATH11K_QMI_MAX_BDF_FILE_NAME_SIZE	64
- #define ATH11K_QMI_BDF_MAX_SIZE			(256 * 1024)
--#define ATH11K_QMI_CALDATA_OFFSET 		(128 * 1024)
-+#define ATH11K_QMI_CALDATA_OFFSET		(128 * 1024)
- #define ATH11K_QMI_WLANFW_MAX_BUILD_ID_LEN_V01	128
- #define ATH11K_QMI_WLFW_SERVICE_ID_V01		0x45
- #define ATH11K_QMI_WLFW_SERVICE_VERS_V01	0x01
- #define ATH11K_QMI_WLFW_SERVICE_INS_ID_V01	0x02
--#define ATH11K_QMI_WLANFW_MAX_TIMESTAMP_LEN_V01 32
-+#define ATH11K_QMI_WLANFW_MAX_TIMESTAMP_LEN_V01	32
- #define ATH11K_QMI_RESP_LEN_MAX			8192
- #define ATH11K_QMI_WLANFW_MAX_NUM_MEM_SEG_V01	32
--#define ATH11K_QMI_CALDB_SIZE 			0x480000
-+#define ATH11K_QMI_CALDB_SIZE			0x480000
- #define ATH11K_QMI_DEFAULT_CAL_FILE_NAME	"caldata.bin"
- 
- #define QMI_WLFW_REQUEST_MEM_IND_V01		0x0035
-@@ -31,15 +31,12 @@
- 
- #define QMI_WLANFW_MAX_DATA_SIZE_V01		6144
- #define ATH11K_FIRMWARE_MODE_OFF		4
--#define Q6_CALDB_ADDR 0x50000000
--#define Q6_CALDB_SIZE 0x480000
- 
- struct ath11k_base;
--enum ath11k_firmware_mode;
- 
- enum ath11k_qmi_file_type {
- 	ATH11K_QMI_FILE_TYPE_BDF_GOLDEN,
--	ATH11K_QMI_FILE_TYPE_CALDATA,	
-+	ATH11K_QMI_FILE_TYPE_CALDATA,
- 	ATH11K_QMI_MAX_FILE_TYPE,
- };
- 
-@@ -66,7 +63,6 @@ struct ath11k_qmi_driver_event {
- 	void *data;
- };
- 
--
- struct ath11k_qmi_ce_cfg {
- 	const u8 *tgt_ce;
- 	int tgt_ce_len;
-@@ -88,7 +84,6 @@ struct target_mem_chunk {
- 	u32 type;
- 	dma_addr_t paddr;
- 	u32 vaddr;
--	bool is_valid;
- };
- 
- struct target_info {
-@@ -112,7 +107,7 @@ struct ath11k_qmi {
- 	struct target_mem_chunk target_mem[ATH11K_QMI_WLANFW_MAX_NUM_MEM_SEG_V01];
- 	u32 mem_seg_count;
- 	u32 target_mem_mode;
--	bool cal_done;
-+	u8 cal_done;
- 	struct target_info target;
- };
- 
-@@ -120,11 +115,11 @@ struct ath11k_qmi {
- #define QMI_WLANFW_HOST_CAP_REQ_V01			0x0034
- #define QMI_WLANFW_HOST_CAP_RESP_MSG_V01_MAX_LEN	7
- #define QMI_WLFW_HOST_CAP_RESP_V01			0x0034
--#define QMI_WLFW_MAX_NUM_GPIO_V01 			32
-+#define QMI_WLFW_MAX_NUM_GPIO_V01			32
- #define QMI_IPQ8074_FW_MEM_MODE				0xFF
--#define HOST_DDR_REGION_TYPE            0x1
--#define BDF_MEM_REGION_TYPE             0x2
--#define CALDB_MEM_REGION_TYPE           0x4
-+#define HOST_DDR_REGION_TYPE				0x1
-+#define BDF_MEM_REGION_TYPE				0x2
-+#define CALDB_MEM_REGION_TYPE				0x4
- 
- struct qmi_wlanfw_host_cap_req_msg_v01 {
- 	u8 num_clients_valid;
-@@ -208,27 +203,27 @@ struct qmi_wlanfw_ind_register_resp_msg_v01 {
- #define QMI_WLANFW_MAX_NUM_MEM_CFG_V01			2
- 
- struct qmi_wlanfw_mem_cfg_s_v01 {
--        u64 offset;
--        u32 size;
--        u8 secure_flag;
-+	u64 offset;
-+	u32 size;
-+	u8 secure_flag;
- };
- 
- enum qmi_wlanfw_mem_type_enum_v01 {
--        WLANFW_MEM_TYPE_ENUM_MIN_VAL_V01 = INT_MIN,
--        QMI_WLANFW_MEM_TYPE_MSA_V01 = 0,
--        QMI_WLANFW_MEM_TYPE_DDR_V01 = 1,
--        QMI_WLANFW_MEM_BDF_V01 = 2,
--        QMI_WLANFW_MEM_M3_V01 = 3,
--        QMI_WLANFW_MEM_CAL_V01 = 4,
--        QMI_WLANFW_MEM_DPD_V01 = 5,
--        WLANFW_MEM_TYPE_ENUM_MAX_VAL_V01 = INT_MAX,
-+	WLANFW_MEM_TYPE_ENUM_MIN_VAL_V01 = INT_MIN,
-+	QMI_WLANFW_MEM_TYPE_MSA_V01 = 0,
-+	QMI_WLANFW_MEM_TYPE_DDR_V01 = 1,
-+	QMI_WLANFW_MEM_BDF_V01 = 2,
-+	QMI_WLANFW_MEM_M3_V01 = 3,
-+	QMI_WLANFW_MEM_CAL_V01 = 4,
-+	QMI_WLANFW_MEM_DPD_V01 = 5,
-+	WLANFW_MEM_TYPE_ENUM_MAX_VAL_V01 = INT_MAX,
- };
- 
- struct qmi_wlanfw_mem_seg_s_v01 {
--        u32 size;
--        enum qmi_wlanfw_mem_type_enum_v01 type;
--        u32 mem_cfg_len;
--        struct qmi_wlanfw_mem_cfg_s_v01 mem_cfg[QMI_WLANFW_MAX_NUM_MEM_CFG_V01];
-+	u32 size;
-+	enum qmi_wlanfw_mem_type_enum_v01 type;
-+	u32 mem_cfg_len;
-+	struct qmi_wlanfw_mem_cfg_s_v01 mem_cfg[QMI_WLANFW_MAX_NUM_MEM_CFG_V01];
- };
- 
- struct qmi_wlanfw_request_mem_ind_msg_v01 {
 -- 
 1.9.1
 
