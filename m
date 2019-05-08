@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hOJAX-0007XI-W3
- for ath11k@lists.infradead.org; Wed, 08 May 2019 09:47:23 +0000
+ id 1hOJBv-0007pa-2z
+ for ath11k@lists.infradead.org; Wed, 08 May 2019 09:48:48 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: Increase Tx idr size to avoid Tx fail
+Subject: Re: [PATCH] ath11k: clean up in qmi source files
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1557153162-15342-1-git-send-email-periyasa@codeaurora.org>
-References: <1557153162-15342-1-git-send-email-periyasa@codeaurora.org>
-Message-Id: <20190508094721.B13B760A33@smtp.codeaurora.org>
-Date: Wed,  8 May 2019 09:47:21 +0000 (UTC)
+In-Reply-To: <1557154051-8682-1-git-send-email-akolli@codeaurora.org>
+References: <1557154051-8682-1-git-send-email-akolli@codeaurora.org>
+Message-Id: <20190508094846.C1EF5609EF@smtp.codeaurora.org>
+Date: Wed,  8 May 2019 09:48:46 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,26 +22,32 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Karthikeyan Periyasamy <periyasa@codeaurora.org>
+To: Anilkumar Kolli <akolli@codeaurora.org>
 Cc: ath11k@lists.infradead.org
 
-Karthikeyan Periyasamy <periyasa@codeaurora.org> wrote:
+Anilkumar Kolli <akolli@codeaurora.org> wrote:
 
-> In data traffic, encounter below warn due to idr resource unavailable.
-> we found that idr alloc size is not good enough to pump the traffic.
-> so increased the idr size by double the TX completion ring size.
+> Fix coding style, Remove unused variable.
 > 
-> Warn:
-> ath11k c000000.wifi1: failed to transmit frame -28
-> 
-> Signed-off-by: Karthikeyan Periyasamy <periyasa@codeaurora.org>
+> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
 
-Patch applied to ath.git, thanks.
+Fails to apply, most likely due to my GCC warning patch. Please rebase.
 
-d75d0ebd2a7b ath11k: Increase Tx idr size to avoid Tx fail
+Recorded preimage for 'drivers/net/wireless/ath/ath11k/qmi.c'
+error: Failed to merge in the changes.
+Applying: ath11k: clean up in qmi source files
+Using index info to reconstruct a base tree...
+M	drivers/net/wireless/ath/ath11k/qmi.c
+Falling back to patching base and 3-way merge...
+Auto-merging drivers/net/wireless/ath/ath11k/qmi.c
+CONFLICT (content): Merge conflict in drivers/net/wireless/ath/ath11k/qmi.c
+Patch failed at 0001 ath11k: clean up in qmi source files
+The copy of the patch that failed is found in: .git/rebase-apply/patch
+
+Patch set to Changes Requested.
 
 -- 
-https://patchwork.kernel.org/patch/10931149/
+https://patchwork.kernel.org/patch/10931175/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
