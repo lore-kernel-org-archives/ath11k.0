@@ -1,13 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from alexa-out-blr-02.qualcomm.com ([103.229.18.198]
- helo=alexa-out-blr.qualcomm.com)
+Received: from alexa-out-blr-01.qualcomm.com ([103.229.18.197])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hONp8-0007X0-Ky
- for ath11k@lists.infradead.org; Wed, 08 May 2019 14:45:36 +0000
+ id 1hONph-0007dh-RX
+ for ath11k@lists.infradead.org; Wed, 08 May 2019 14:46:11 +0000
 From: Venkateswara Naralasetty <vnaralas@codeaurora.org>
-Subject: [PATCH] ath11k: fix target assert when unload driver
-Date: Wed,  8 May 2019 20:15:26 +0530
-Message-Id: <1557326726-29837-1-git-send-email-vnaralas@codeaurora.org>
+Subject: [PATCH] ath11k: reject tx fragmentation configuration
+Date: Wed,  8 May 2019 20:16:04 +0530
+Message-Id: <1557326764-29931-1-git-send-email-vnaralas@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -24,38 +23,48 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: Venkateswara Naralasetty <vnaralas@codeaurora.org>
 
-Currently ath11k_ahb_ext_irq_disable() called before ath11k_mac_unregister
-which will disable napi before mac_unregister and still we might receive
-packets on all active devices which results reo_dest_ring full.
+Currently no known firmware actually implements frag threshold support.
+Moreover it is not possible to rely frame fragmentation to mac80211
+because firmware clears the "more fragments" bit in frame control making
+it impossible for remote devices to reassemble frames.
 
-Fix this issue by moving ath11k_ahb_ext_irq_disable() after
-ath11k_mac_unregister().
+Hence implement a dummy callback just to say fragmentation isn't
+supported. This effectively prevents mac80211 from doing frame
+fragmentation in software.
+
+This fixes Tx becoming broken after setting fragmentation threshold.
 
 Signed-off-by: Venkateswara Naralasetty <vnaralas@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/core.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/mac.c | 15 +++++++++++----
+ 1 file changed, 11 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index dc56df5..e3e6b64 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -486,6 +486,7 @@ static int ath11k_core_pdev_create(struct ath11k_base *sc)
- static void ath11k_core_pdev_destroy(struct ath11k_base *sc)
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index dc2733c..aa805a4 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -4300,10 +4300,17 @@ static int ath11k_set_rts_threshold(struct ieee80211_hw *hw, u32 value)
+ 
+ static int ath11k_set_frag_threshold(struct ieee80211_hw *hw, u32 value)
  {
- 	ath11k_mac_unregister(sc);
-+	ath11k_ahb_ext_irq_disable(sc);
- 	ath11k_dp_pdev_free(sc);
+-	struct ath11k *ar = hw->priv;
+-	int param_id = WMI_VDEV_PARAM_FRAGMENTATION_THRESHOLD;
+-
+-	return ath11k_set_vdev_param_to_all_vifs(ar, param_id, value);
++	/* Even though there's a WMI vdev param for fragmentation threshold no
++	 * known firmware actually implements it. Moreover it is not possible to
++	 * rely frame fragmentation to mac80211 because firmware clears the
++	 * "more fragments" bit in frame control making it impossible for remote
++	 * devices to reassemble frames.
++	 *
++	 * Hence implement a dummy callback just to say fragmentation isn't
++	 * supported. This effectively prevents mac80211 from doing frame
++	 * fragmentation in software.
++	 */
++	return -EOPNOTSUPP;
  }
  
-@@ -781,7 +782,6 @@ void ath11k_core_deinit(struct ath11k_base *sc)
- {
- 	mutex_lock(&sc->core_lock);
- 
--	ath11k_ahb_ext_irq_disable(sc);
- 	ath11k_core_pdev_destroy(sc);
- 	ath11k_core_stop(sc);
- 
+ static void ath11k_flush(struct ieee80211_hw *hw, struct ieee80211_vif *vif,
 -- 
 2.7.4
 
