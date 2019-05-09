@@ -1,16 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hOf2b-0005n6-W5
- for ath11k@lists.infradead.org; Thu, 09 May 2019 09:08:39 +0000
+ id 1hOf51-0007CW-VT
+ for ath11k@lists.infradead.org; Thu, 09 May 2019 09:11:09 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: Fix bug in QOS capability and related
- configurations in STA mode
+Subject: Re: [PATCH] ath11k: Removed unused comment in the function
+ ath11k_peer_assoc_h_vht_limit()
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1557204554-6821-1-git-send-email-vthiagar@codeaurora.org>
-References: <1557204554-6821-1-git-send-email-vthiagar@codeaurora.org>
-Message-Id: <20190509090837.A70B0607B9@smtp.codeaurora.org>
-Date: Thu,  9 May 2019 09:08:37 +0000 (UTC)
+In-Reply-To: <1557212366-911-1-git-send-email-mkenna@codeaurora.org>
+References: <1557212366-911-1-git-send-email-mkenna@codeaurora.org>
+Message-Id: <20190509091107.8D1A060364@smtp.codeaurora.org>
+Date: Thu,  9 May 2019 09:11:07 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,23 +23,21 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
+To: Maharaja Kennadyrajan <mkenna@codeaurora.org>
 Cc: ath11k@lists.infradead.org
 
-Vasanthakumar Thiagarajan <vthiagar@codeaurora.org> wrote:
+Maharaja Kennadyrajan <mkenna@codeaurora.org> wrote:
 
-> set is_wme_set to true to mark the peer QOS capable for STA mode as well.
-> This would also properly configure other dependant capabilities like ht and
-> vht. This fixes low performance issue in STA mode.
+> Removed unused comment in the function ath11k_peer_assoc_h_vht_limit().
 > 
-> Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
+> Signed-off-by: Maharaja Kennadyrajan <mkenna@codeaurora.org>
 
 Patch applied to ath.git, thanks.
 
-df31a71e2465 ath11k: Fix bug in QOS capability and related configurations in STA mode
+11603ea2e2ae ath11k: Removed unused comment in the function ath11k_peer_assoc_h_vht_limit()
 
 -- 
-https://patchwork.kernel.org/patch/10932273/
+https://patchwork.kernel.org/patch/10932363/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
