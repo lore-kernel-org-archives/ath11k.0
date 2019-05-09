@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hOpSU-0003UC-67
- for ath11k@lists.infradead.org; Thu, 09 May 2019 20:16:03 +0000
+ id 1hOpSV-0003Uk-G7
+ for ath11k@lists.infradead.org; Thu, 09 May 2019 20:16:05 +0000
 From: John Crispin <john@phrozen.org>
-Subject: [PATCH V4 2/5] ath11k: add HE handling to the debug code
-Date: Thu,  9 May 2019 22:15:47 +0200
-Message-Id: <20190509201550.3977-3-john@phrozen.org>
+Subject: [PATCH V4 5/5] ath11k: add HE support
+Date: Thu,  9 May 2019 22:15:50 +0200
+Message-Id: <20190509201550.3977-6-john@phrozen.org>
 In-Reply-To: <20190509201550.3977-1-john@phrozen.org>
 References: <20190509201550.3977-1-john@phrozen.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,107 +25,285 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Kalle Valo <kvalo@codeaurora.org>
 Cc: Shashidhar Lakkavalli <slakkavalli@datto.com>, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-This patch allows the driver to also show the HE counters and stats.
-Also extend the appropriate debug prints with HE info.
+Add basic HE support to the driver. The sband_iftype data is generated from
+the capabilities read from the FW.
+
+Things that still need to implemented
+* ppe_threshold support
 
 Signed-off-by: Shashidhar Lakkavalli <slakkavalli@datto.com>
 Signed-off-by: John Crispin <john@phrozen.org>
 ---
- drivers/net/wireless/ath/ath11k/core.h        |  2 ++
- drivers/net/wireless/ath/ath11k/debugfs_sta.c | 24 ++++++++++++++++++++++--
- drivers/net/wireless/ath/ath11k/dp_rx.c       |  3 ++-
- 3 files changed, 26 insertions(+), 3 deletions(-)
+ drivers/net/wireless/ath/ath11k/core.h |   2 +
+ drivers/net/wireless/ath/ath11k/mac.c  | 173 +++++++++++++++++++++++++++++++--
+ drivers/net/wireless/ath/ath11k/wmi.h  |   5 +-
+ 3 files changed, 171 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index c8c1cd668c04..d17af2255465 100644
+index 50032e701255..fcb6b1abed09 100644
 --- a/drivers/net/wireless/ath/ath11k/core.h
 +++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -253,6 +253,7 @@ struct ath11k_peer {
- 	struct dp_rx_tid rx_tid[IEEE80211_NUM_TIDS + 1];
- };
+@@ -439,6 +439,8 @@ struct ath11k {
  
-+#define ATH11K_HE_MCS_NUM       12
- #define ATH11K_VHT_MCS_NUM      10
- #define ATH11K_BW_NUM           4
- #define ATH11K_NSS_NUM          4
-@@ -306,6 +307,7 @@ struct ath11k_htt_data_stats {
- 	u64 legacy[ATH11K_COUNTER_TYPE_MAX][ATH11K_LEGACY_NUM];
- 	u64 ht[ATH11K_COUNTER_TYPE_MAX][ATH11K_HT_MCS_NUM];
- 	u64 vht[ATH11K_COUNTER_TYPE_MAX][ATH11K_VHT_MCS_NUM];
-+	u64 he[ATH11K_COUNTER_TYPE_MAX][ATH11K_HE_MCS_NUM];
- 	u64 bw[ATH11K_COUNTER_TYPE_MAX][ATH11K_BW_NUM];
- 	u64 nss[ATH11K_COUNTER_TYPE_MAX][ATH11K_NSS_NUM];
- 	u64 gi[ATH11K_COUNTER_TYPE_MAX][ATH11K_GI_NUM];
-diff --git a/drivers/net/wireless/ath/ath11k/debugfs_sta.c b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-index c39b6e1d22c3..cff6a3f048ea 100644
---- a/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-+++ b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-@@ -45,7 +45,14 @@ ath11k_accumulate_per_peer_tx_stats(struct ath11k_sta *arsta,
+ 	struct {
+ 		struct ieee80211_supported_band sbands[NUM_NL80211_BANDS];
++		struct ieee80211_sband_iftype_data
++			iftype[NUM_NL80211_BANDS][NUM_NL80211_IFTYPES];
+ 	} mac;
+ 	unsigned int filter_flags;
+ 	unsigned long monitor_flags;
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index cd7fb9a13639..51003ef3cc37 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -1280,7 +1280,44 @@ static void ath11k_peer_assoc_h_he(struct ath11k *ar,
+ 				   struct ieee80211_sta *sta,
+ 				   struct peer_assoc_params *arg)
+ {
+-	/* TODO: Implementation */
++	const struct ieee80211_sta_he_cap *he_cap = &sta->he_cap;
++
++	if (!he_cap->has_he)
++		return;
++
++	arg->he_flag = true;
++
++	memcpy(&arg->peer_he_cap_macinfo, he_cap->he_cap_elem.mac_cap_info,
++	       sizeof(arg->peer_he_cap_macinfo));
++	memcpy(&arg->peer_he_cap_phyinfo, he_cap->he_cap_elem.phy_cap_info,
++	       sizeof(arg->peer_he_cap_phyinfo));
++
++	if (he_cap->he_cap_elem.mac_cap_info[0] & IEEE80211_HE_MAC_CAP0_TWT_RES)
++		arg->twt_responder = true;
++	if (he_cap->he_cap_elem.mac_cap_info[0] & IEEE80211_HE_MAC_CAP0_TWT_REQ)
++		arg->twt_requester = true;
++
++	/* TODO - peer_ppet and peer_he_ops need to be set */
++
++	switch (sta->bandwidth) {
++	/* TODO - add 80p80 support */
++
++	case IEEE80211_STA_RX_BW_160:
++		arg->peer_he_rx_mcs_set[WMI_HECAP_TXRX_MCS_NSS_IDX_160] =
++			he_cap->he_mcs_nss_supp.rx_mcs_160;
++		arg->peer_he_tx_mcs_set[WMI_HECAP_TXRX_MCS_NSS_IDX_160] =
++			he_cap->he_mcs_nss_supp.tx_mcs_160;
++		arg->peer_he_mcs_count++;
++		/* drop through */
++
++	default:
++		arg->peer_he_rx_mcs_set[WMI_HECAP_TXRX_MCS_NSS_IDX_80] =
++			he_cap->he_mcs_nss_supp.rx_mcs_80;
++		arg->peer_he_tx_mcs_set[WMI_HECAP_TXRX_MCS_NSS_IDX_80] =
++			he_cap->he_mcs_nss_supp.tx_mcs_80;
++		arg->peer_he_mcs_count++;
++		break;
++	}
+ }
  
- #define STATS_OP_FMT(name) tx_stats->stats[ATH11K_STATS_TYPE_##name]
+ static void ath11k_peer_assoc_h_smps(struct ieee80211_sta *sta,
+@@ -1447,6 +1484,32 @@ static enum wmi_phy_mode ath11k_mac_get_phymode_vht(struct ath11k *ar,
+ 	return MODE_UNKNOWN;
+ }
  
--	if (txrate->flags & RATE_INFO_FLAGS_VHT_MCS) {
-+	if (txrate->flags & RATE_INFO_FLAGS_HE_MCS) {
-+		STATS_OP_FMT(SUCC).he[0][mcs] += peer_stats->succ_bytes;
-+		STATS_OP_FMT(SUCC).he[1][mcs] += peer_stats->succ_pkts;
-+		STATS_OP_FMT(FAIL).he[0][mcs] += peer_stats->failed_bytes;
-+		STATS_OP_FMT(FAIL).he[1][mcs] += peer_stats->failed_pkts;
-+		STATS_OP_FMT(RETRY).he[0][mcs] += peer_stats->retry_bytes;
-+		STATS_OP_FMT(RETRY).he[1][mcs] += peer_stats->retry_pkts;
-+	} else if (txrate->flags & RATE_INFO_FLAGS_VHT_MCS) {
- 		STATS_OP_FMT(SUCC).vht[0][mcs] += peer_stats->succ_bytes;
- 		STATS_OP_FMT(SUCC).vht[1][mcs] += peer_stats->succ_pkts;
- 		STATS_OP_FMT(FAIL).vht[0][mcs] += peer_stats->failed_bytes;
-@@ -73,7 +80,12 @@ ath11k_accumulate_per_peer_tx_stats(struct ath11k_sta *arsta,
- 	if (peer_stats->is_ampdu) {
- 		tx_stats->ba_fails += peer_stats->ba_fails;
++static enum wmi_phy_mode ath11k_mac_get_phymode_he(struct ath11k *ar,
++						   struct ieee80211_sta *sta)
++{
++	if (sta->bandwidth == IEEE80211_STA_RX_BW_160) {
++		if (sta->he_cap.he_cap_elem.phy_cap_info[0] &
++		     IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_160MHZ_IN_5G)
++			return MODE_11AX_HE160;
++		else if (sta->he_cap.he_cap_elem.phy_cap_info[0] &
++		     IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_80PLUS80_MHZ_IN_5G)
++			return MODE_11AX_HE80_80;
++		/* not sure if this is a valid case? */
++		return MODE_11AX_HE160;
++	}
++
++	if (sta->bandwidth == IEEE80211_STA_RX_BW_80)
++		return MODE_11AX_HE80;
++
++	if (sta->bandwidth == IEEE80211_STA_RX_BW_40)
++		return MODE_11AX_HE40;
++
++	if (sta->bandwidth == IEEE80211_STA_RX_BW_20)
++		return MODE_11AX_HE20;
++
++	return MODE_UNKNOWN;
++}
++
+ static void ath11k_peer_assoc_h_phymode(struct ath11k *ar,
+ 					struct ieee80211_vif *vif,
+ 					struct ieee80211_sta *sta,
+@@ -1468,7 +1531,14 @@ static void ath11k_peer_assoc_h_phymode(struct ath11k *ar,
  
--		if (txrate->flags & RATE_INFO_FLAGS_MCS) {
-+		if (txrate->flags & RATE_INFO_FLAGS_HE_MCS) {
-+			STATS_OP_FMT(AMPDU).he[0][mcs] +=
-+			peer_stats->succ_bytes + peer_stats->retry_bytes;
-+			STATS_OP_FMT(AMPDU).he[1][mcs] +=
-+			peer_stats->succ_pkts + peer_stats->retry_pkts;
-+		} else if (txrate->flags & RATE_INFO_FLAGS_MCS) {
- 			STATS_OP_FMT(AMPDU).ht[0][mcs] +=
- 			peer_stats->succ_bytes + peer_stats->retry_bytes;
- 			STATS_OP_FMT(AMPDU).ht[1][mcs] +=
-@@ -230,6 +242,14 @@ static ssize_t ath11k_dbg_sta_dump_tx_stats(struct file *file,
- 					 str_name[k],
- 					 str[j]);
- 			len += scnprintf(buf + len, size - len,
-+					 " HE MCS %s\n",
-+					 str[j]);
-+			for (i = 0; i < ATH11K_HE_MCS_NUM; i++)
-+				len += scnprintf(buf + len, size - len,
-+						 "  %llu ",
-+						 stats->he[j][i]);
-+			len += scnprintf(buf + len, size - len, "\n");
-+			len += scnprintf(buf + len, size - len,
- 					 " VHT MCS %s\n",
- 					 str[j]);
- 			for (i = 0; i < ATH11K_VHT_MCS_NUM; i++)
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 0796f3ba8333..c8fa2681ddb0 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -1812,7 +1812,7 @@ static void ath11k_dp_rx_deliver_msdu(struct ath11k *ar, struct napi_struct *nap
- 	status = IEEE80211_SKB_RXCB(msdu);
+ 	switch (band) {
+ 	case NL80211_BAND_2GHZ:
+-		if (sta->vht_cap.vht_supported &&
++		if (sta->he_cap.has_he) {
++			if (sta->bandwidth == IEEE80211_STA_RX_BW_80)
++				phymode = MODE_11AX_HE80_2G;
++			else if (sta->bandwidth == IEEE80211_STA_RX_BW_40)
++				phymode = MODE_11AX_HE40_2G;
++			else
++				phymode = MODE_11AX_HE20_2G;
++		} else if (sta->vht_cap.vht_supported &&
+ 		    !ath11k_peer_assoc_h_vht_masked(vht_mcs_mask)) {
+ 			if (sta->bandwidth == IEEE80211_STA_RX_BW_40)
+ 				phymode = MODE_11AC_VHT40;
+@@ -1485,12 +1555,12 @@ static void ath11k_peer_assoc_h_phymode(struct ath11k *ar,
+ 		} else {
+ 			phymode = MODE_11B;
+ 		}
+-		/* TODO: HE */
+-
+ 		break;
+ 	case NL80211_BAND_5GHZ:
+-		/* Check VHT first */
+-		if (sta->vht_cap.vht_supported &&
++		/* Check HE first */
++		if (sta->he_cap.has_he) {
++			phymode = ath11k_mac_get_phymode_he(ar, sta);
++		} else if (sta->vht_cap.vht_supported &&
+ 		    !ath11k_peer_assoc_h_vht_masked(vht_mcs_mask)) {
+ 			phymode = ath11k_mac_get_phymode_vht(ar, sta);
+ 		} else if (sta->ht_cap.ht_supported &&
+@@ -1502,7 +1572,6 @@ static void ath11k_peer_assoc_h_phymode(struct ath11k *ar,
+ 		} else {
+ 			phymode = MODE_11A;
+ 		}
+-		/* TODO: HE Phymode */
+ 		break;
+ 	default:
+ 		break;
+@@ -3076,6 +3145,92 @@ static int ath11k_check_chain_mask(struct ath11k *ar, u32 ant, bool is_tx_ant)
+ 	return 0;
+ }
  
- 	ath11k_dbg(ar->ab, ATH11K_DBG_DATA,
--		   "rx skb %pK len %u peer %pM %s %s sn %u %s%s%s%s%s%s %srate_idx %u vht_nss %u freq %u band %u flag 0x%x fcs-err %i mic-err %i amsdu-more %i\n",
-+		   "rx skb %pK len %u peer %pM %s %s sn %u %s%s%s%s%s%s%s %srate_idx %u vht_nss %u freq %u band %u flag 0x%x fcs-err %i mic-err %i amsdu-more %i\n",
- 		   msdu,
- 		   msdu->len,
- 		   ieee80211_get_SA(hdr),
-@@ -1823,6 +1823,7 @@ static void ath11k_dp_rx_deliver_msdu(struct ath11k *ar, struct napi_struct *nap
- 		   (status->encoding == RX_ENC_LEGACY) ? "legacy" : "",
- 		   (status->encoding == RX_ENC_HT) ? "ht" : "",
- 		   (status->encoding == RX_ENC_VHT) ? "vht" : "",
-+		   (status->encoding == RX_ENC_HE) ? "he" : "",
- 		   (status->bw == RATE_INFO_BW_40) ? "40" : "",
- 		   (status->bw == RATE_INFO_BW_80) ? "80" : "",
- 		   (status->bw == RATE_INFO_BW_160) ? "160" : "",
++static int ath11k_mac_copy_he_cap(struct ath11k_pdev_cap *cap,
++				  struct ieee80211_sband_iftype_data *data,
++				  int band)
++{
++	int i, idx = 0;
++
++	for (i = 0; i < NUM_NL80211_IFTYPES; i++) {
++		struct ieee80211_sta_he_cap *he_cap = &data[idx].he_cap;
++		struct ath11k_band_cap *band_cap = &cap->band[band];
++		struct ieee80211_he_cap_elem *he_cap_elem =
++				&he_cap->he_cap_elem;
++
++		switch (i) {
++		case NL80211_IFTYPE_STATION:
++		case NL80211_IFTYPE_AP:
++			break;
++
++		default:
++			continue;
++		}
++
++		data[idx].types_mask = BIT(i);
++		he_cap->has_he = true;
++		memcpy(he_cap_elem->mac_cap_info, band_cap->he_cap_info,
++		       sizeof(he_cap_elem->mac_cap_info));
++		memcpy(he_cap_elem->phy_cap_info, band_cap->he_cap_phy_info,
++		       sizeof(he_cap_elem->phy_cap_info));
++
++		switch (i) {
++		case NL80211_IFTYPE_STATION:
++			he_cap_elem->mac_cap_info[0] &=
++				~IEEE80211_HE_MAC_CAP0_TWT_RES;
++			he_cap_elem->mac_cap_info[0] |=
++				IEEE80211_HE_MAC_CAP0_TWT_REQ;
++			break;
++		}
++
++		he_cap->he_mcs_nss_supp.rx_mcs_80 =
++			cpu_to_le16(band_cap->he_mcs & 0xffff);
++		he_cap->he_mcs_nss_supp.tx_mcs_80 =
++			cpu_to_le16(band_cap->he_mcs & 0xffff);
++		he_cap->he_mcs_nss_supp.rx_mcs_160 =
++			cpu_to_le16((band_cap->he_mcs >> 16) & 0xffff);
++		he_cap->he_mcs_nss_supp.tx_mcs_160 =
++			cpu_to_le16((band_cap->he_mcs >> 16) & 0xffff);
++		he_cap->he_mcs_nss_supp.rx_mcs_80p80 =
++			cpu_to_le16((band_cap->he_mcs >> 16) & 0xffff);
++		he_cap->he_mcs_nss_supp.tx_mcs_80p80 =
++			cpu_to_le16((band_cap->he_mcs >> 16) & 0xffff);
++
++		/* TODO - disable ppe threshold until we can generate the
++		 * field from the fw capabilities
++		 */
++		he_cap_elem->phy_cap_info[6] &=
++			~IEEE80211_HE_PHY_CAP6_PPE_THRESHOLD_PRESENT;
++		idx++;
++	}
++
++	return idx;
++}
++
++static void ath11k_mac_setup_he_cap(struct ath11k *ar,
++				    struct ath11k_pdev_cap *cap)
++{
++	struct ieee80211_supported_band *band;
++	int count = 0;
++
++	if (cap->supported_bands & WMI_HOST_WLAN_2G_CAP) {
++		count = ath11k_mac_copy_he_cap(cap,
++				ar->mac.iftype[NL80211_BAND_2GHZ],
++				NL80211_BAND_2GHZ);
++		band = &ar->mac.sbands[NL80211_BAND_2GHZ];
++		band->iftype_data = ar->mac.iftype[NL80211_BAND_2GHZ];
++	}
++
++	if (cap->supported_bands & WMI_HOST_WLAN_5G_CAP) {
++		count = ath11k_mac_copy_he_cap(cap,
++				ar->mac.iftype[NL80211_BAND_5GHZ],
++				NL80211_BAND_5GHZ);
++		band = &ar->mac.sbands[NL80211_BAND_5GHZ];
++		band->iftype_data = ar->mac.iftype[NL80211_BAND_5GHZ];
++	}
++
++	band->n_iftype_data = count;
++}
++
+ static int __ath11k_set_antenna(struct ath11k *ar, u32 tx_ant, u32 rx_ant)
+ {
+ 	int ret;
+@@ -3111,8 +3266,9 @@ static int __ath11k_set_antenna(struct ath11k *ar, u32 tx_ant, u32 rx_ant)
+ 		return ret;
+ 	}
+ 
+-	/* Reload HT/VHT capability */
++	/* Reload HT/VHT/HE capability */
+ 	ath11k_mac_setup_ht_vht_cap(ar, &ar->pdev->cap, NULL);
++	ath11k_mac_setup_he_cap(ar, &ar->pdev->cap);
+ 
+ 	return 0;
+ }
+@@ -4926,6 +5082,7 @@ static int ath11k_mac_register(struct ath11k *ar)
+ 		goto err_free;
+ 
+ 	ath11k_mac_setup_ht_vht_cap(ar, cap, &ht_cap);
++	ath11k_mac_setup_he_cap(ar, cap);
+ 
+ 	ar->hw->wiphy->available_antennas_rx = cap->rx_chain_mask;
+ 	ar->hw->wiphy->available_antennas_tx = cap->tx_chain_mask;
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index 5d20f57fbacc..7674fa85301a 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -3842,7 +3842,10 @@ struct wmi_vdev_install_key_arg {
+ 
+ #define WMI_MAX_SUPPORTED_RATES			128
+ #define WMI_HOST_MAX_HECAP_PHY_SIZE		3
+-#define WMI_HOST_MAX_HE_RATE_SET		1
++#define WMI_HOST_MAX_HE_RATE_SET		3
++#define WMI_HECAP_TXRX_MCS_NSS_IDX_80		0
++#define WMI_HECAP_TXRX_MCS_NSS_IDX_160		1
++#define WMI_HECAP_TXRX_MCS_NSS_IDX_80_80	2
+ 
+ struct wmi_rate_set_arg {
+ 	u32 num_rates;
 -- 
 2.11.0
 
