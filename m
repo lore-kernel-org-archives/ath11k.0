@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hOpSU-0003UI-N9
- for ath11k@lists.infradead.org; Thu, 09 May 2019 20:16:05 +0000
+ id 1hOpSU-0003UC-67
+ for ath11k@lists.infradead.org; Thu, 09 May 2019 20:16:03 +0000
 From: John Crispin <john@phrozen.org>
-Subject: [PATCH V4 4/5] ath11k: handle rx status for HE frames
-Date: Thu,  9 May 2019 22:15:49 +0200
-Message-Id: <20190509201550.3977-5-john@phrozen.org>
+Subject: [PATCH V4 2/5] ath11k: add HE handling to the debug code
+Date: Thu,  9 May 2019 22:15:47 +0200
+Message-Id: <20190509201550.3977-3-john@phrozen.org>
 In-Reply-To: <20190509201550.3977-1-john@phrozen.org>
 References: <20190509201550.3977-1-john@phrozen.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,40 +25,107 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Kalle Valo <kvalo@codeaurora.org>
 Cc: Shashidhar Lakkavalli <slakkavalli@datto.com>, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-The case clause handling HE frames was not handled yet in the code reading
-the RX status. The new case is identical to VHT with the difference of the
-higher maximum MCS rate.
+This patch allows the driver to also show the HE counters and stats.
+Also extend the appropriate debug prints with HE info.
 
 Signed-off-by: Shashidhar Lakkavalli <slakkavalli@datto.com>
 Signed-off-by: John Crispin <john@phrozen.org>
 ---
- drivers/net/wireless/ath/ath11k/dp_rx.c | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/core.h        |  2 ++
+ drivers/net/wireless/ath/ath11k/debugfs_sta.c | 24 ++++++++++++++++++++++--
+ drivers/net/wireless/ath/ath11k/dp_rx.c       |  3 ++-
+ 3 files changed, 26 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index c8c1cd668c04..d17af2255465 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -253,6 +253,7 @@ struct ath11k_peer {
+ 	struct dp_rx_tid rx_tid[IEEE80211_NUM_TIDS + 1];
+ };
+ 
++#define ATH11K_HE_MCS_NUM       12
+ #define ATH11K_VHT_MCS_NUM      10
+ #define ATH11K_BW_NUM           4
+ #define ATH11K_NSS_NUM          4
+@@ -306,6 +307,7 @@ struct ath11k_htt_data_stats {
+ 	u64 legacy[ATH11K_COUNTER_TYPE_MAX][ATH11K_LEGACY_NUM];
+ 	u64 ht[ATH11K_COUNTER_TYPE_MAX][ATH11K_HT_MCS_NUM];
+ 	u64 vht[ATH11K_COUNTER_TYPE_MAX][ATH11K_VHT_MCS_NUM];
++	u64 he[ATH11K_COUNTER_TYPE_MAX][ATH11K_HE_MCS_NUM];
+ 	u64 bw[ATH11K_COUNTER_TYPE_MAX][ATH11K_BW_NUM];
+ 	u64 nss[ATH11K_COUNTER_TYPE_MAX][ATH11K_NSS_NUM];
+ 	u64 gi[ATH11K_COUNTER_TYPE_MAX][ATH11K_GI_NUM];
+diff --git a/drivers/net/wireless/ath/ath11k/debugfs_sta.c b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
+index c39b6e1d22c3..cff6a3f048ea 100644
+--- a/drivers/net/wireless/ath/ath11k/debugfs_sta.c
++++ b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
+@@ -45,7 +45,14 @@ ath11k_accumulate_per_peer_tx_stats(struct ath11k_sta *arsta,
+ 
+ #define STATS_OP_FMT(name) tx_stats->stats[ATH11K_STATS_TYPE_##name]
+ 
+-	if (txrate->flags & RATE_INFO_FLAGS_VHT_MCS) {
++	if (txrate->flags & RATE_INFO_FLAGS_HE_MCS) {
++		STATS_OP_FMT(SUCC).he[0][mcs] += peer_stats->succ_bytes;
++		STATS_OP_FMT(SUCC).he[1][mcs] += peer_stats->succ_pkts;
++		STATS_OP_FMT(FAIL).he[0][mcs] += peer_stats->failed_bytes;
++		STATS_OP_FMT(FAIL).he[1][mcs] += peer_stats->failed_pkts;
++		STATS_OP_FMT(RETRY).he[0][mcs] += peer_stats->retry_bytes;
++		STATS_OP_FMT(RETRY).he[1][mcs] += peer_stats->retry_pkts;
++	} else if (txrate->flags & RATE_INFO_FLAGS_VHT_MCS) {
+ 		STATS_OP_FMT(SUCC).vht[0][mcs] += peer_stats->succ_bytes;
+ 		STATS_OP_FMT(SUCC).vht[1][mcs] += peer_stats->succ_pkts;
+ 		STATS_OP_FMT(FAIL).vht[0][mcs] += peer_stats->failed_bytes;
+@@ -73,7 +80,12 @@ ath11k_accumulate_per_peer_tx_stats(struct ath11k_sta *arsta,
+ 	if (peer_stats->is_ampdu) {
+ 		tx_stats->ba_fails += peer_stats->ba_fails;
+ 
+-		if (txrate->flags & RATE_INFO_FLAGS_MCS) {
++		if (txrate->flags & RATE_INFO_FLAGS_HE_MCS) {
++			STATS_OP_FMT(AMPDU).he[0][mcs] +=
++			peer_stats->succ_bytes + peer_stats->retry_bytes;
++			STATS_OP_FMT(AMPDU).he[1][mcs] +=
++			peer_stats->succ_pkts + peer_stats->retry_pkts;
++		} else if (txrate->flags & RATE_INFO_FLAGS_MCS) {
+ 			STATS_OP_FMT(AMPDU).ht[0][mcs] +=
+ 			peer_stats->succ_bytes + peer_stats->retry_bytes;
+ 			STATS_OP_FMT(AMPDU).ht[1][mcs] +=
+@@ -230,6 +242,14 @@ static ssize_t ath11k_dbg_sta_dump_tx_stats(struct file *file,
+ 					 str_name[k],
+ 					 str[j]);
+ 			len += scnprintf(buf + len, size - len,
++					 " HE MCS %s\n",
++					 str[j]);
++			for (i = 0; i < ATH11K_HE_MCS_NUM; i++)
++				len += scnprintf(buf + len, size - len,
++						 "  %llu ",
++						 stats->he[j][i]);
++			len += scnprintf(buf + len, size - len, "\n");
++			len += scnprintf(buf + len, size - len,
+ 					 " VHT MCS %s\n",
+ 					 str[j]);
+ 			for (i = 0; i < ATH11K_VHT_MCS_NUM; i++)
 diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index c8fa2681ddb0..82cb3f84df32 100644
+index 0796f3ba8333..c8fa2681ddb0 100644
 --- a/drivers/net/wireless/ath/ath11k/dp_rx.c
 +++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -1718,7 +1718,18 @@ static void ath11k_dp_rx_h_rate(struct ath11k *ar, void *rx_desc,
- 		rx_status->bw = ath11k_bw_to_mac80211_bw(bw);
- 		break;
- 	case RX_MSDU_START_PKT_TYPE_11AX:
--		ath11k_warn(ar->ab, "pkt_type %d not yet supported\n", pkt_type);
-+		rx_status->rate_idx = rate_mcs;
-+		if (rate_mcs > 11) {
-+			ath11k_warn(ar->ab,
-+				    "Received with invalid mcs in HE mode %d\n",
-+				    rate_mcs);
-+			break;
-+		}
-+		rx_status->encoding = RX_ENC_HE;
-+		rx_status->nss = nss;
-+		if (sgi)
-+			rx_status->enc_flags |= RX_ENC_FLAG_SHORT_GI;
-+		rx_status->bw = ath11k_bw_to_mac80211_bw(bw);
- 		break;
- 	}
- }
+@@ -1812,7 +1812,7 @@ static void ath11k_dp_rx_deliver_msdu(struct ath11k *ar, struct napi_struct *nap
+ 	status = IEEE80211_SKB_RXCB(msdu);
+ 
+ 	ath11k_dbg(ar->ab, ATH11K_DBG_DATA,
+-		   "rx skb %pK len %u peer %pM %s %s sn %u %s%s%s%s%s%s %srate_idx %u vht_nss %u freq %u band %u flag 0x%x fcs-err %i mic-err %i amsdu-more %i\n",
++		   "rx skb %pK len %u peer %pM %s %s sn %u %s%s%s%s%s%s%s %srate_idx %u vht_nss %u freq %u band %u flag 0x%x fcs-err %i mic-err %i amsdu-more %i\n",
+ 		   msdu,
+ 		   msdu->len,
+ 		   ieee80211_get_SA(hdr),
+@@ -1823,6 +1823,7 @@ static void ath11k_dp_rx_deliver_msdu(struct ath11k *ar, struct napi_struct *nap
+ 		   (status->encoding == RX_ENC_LEGACY) ? "legacy" : "",
+ 		   (status->encoding == RX_ENC_HT) ? "ht" : "",
+ 		   (status->encoding == RX_ENC_VHT) ? "vht" : "",
++		   (status->encoding == RX_ENC_HE) ? "he" : "",
+ 		   (status->bw == RATE_INFO_BW_40) ? "40" : "",
+ 		   (status->bw == RATE_INFO_BW_80) ? "80" : "",
+ 		   (status->bw == RATE_INFO_BW_160) ? "160" : "",
 -- 
 2.11.0
 
