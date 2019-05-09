@@ -1,12 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hOpSV-0003Uk-G7
- for ath11k@lists.infradead.org; Thu, 09 May 2019 20:16:05 +0000
+ id 1hOpSU-0003UB-1V
+ for ath11k@lists.infradead.org; Thu, 09 May 2019 20:16:03 +0000
 From: John Crispin <john@phrozen.org>
-Subject: [PATCH V4 5/5] ath11k: add HE support
-Date: Thu,  9 May 2019 22:15:50 +0200
-Message-Id: <20190509201550.3977-6-john@phrozen.org>
+Subject: [PATCH V4 1/5] ath11k: move phymode selection from function to array
+ lookup
+Date: Thu,  9 May 2019 22:15:46 +0200
+Message-Id: <20190509201550.3977-2-john@phrozen.org>
 In-Reply-To: <20190509201550.3977-1-john@phrozen.org>
 References: <20190509201550.3977-1-john@phrozen.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,285 +26,179 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Kalle Valo <kvalo@codeaurora.org>
 Cc: Shashidhar Lakkavalli <slakkavalli@datto.com>, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-Add basic HE support to the driver. The sband_iftype data is generated from
-the capabilities read from the FW.
-
-Things that still need to implemented
-* ppe_threshold support
+With HE support getting added, the approach of using functions will quickly
+get convoluted. Change the code to use an array lookup function instead.
 
 Signed-off-by: Shashidhar Lakkavalli <slakkavalli@datto.com>
 Signed-off-by: John Crispin <john@phrozen.org>
 ---
- drivers/net/wireless/ath/ath11k/core.h |   2 +
- drivers/net/wireless/ath/ath11k/mac.c  | 173 +++++++++++++++++++++++++++++++--
- drivers/net/wireless/ath/ath11k/wmi.h  |   5 +-
- 3 files changed, 171 insertions(+), 9 deletions(-)
+ drivers/net/wireless/ath/ath11k/mac.c | 116 +++++++++++++++-------------------
+ include/uapi/linux/nl80211.h          |   4 ++
+ 2 files changed, 56 insertions(+), 64 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 50032e701255..fcb6b1abed09 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -439,6 +439,8 @@ struct ath11k {
- 
- 	struct {
- 		struct ieee80211_supported_band sbands[NUM_NL80211_BANDS];
-+		struct ieee80211_sband_iftype_data
-+			iftype[NUM_NL80211_BANDS][NUM_NL80211_IFTYPES];
- 	} mac;
- 	unsigned int filter_flags;
- 	unsigned long monitor_flags;
 diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index cd7fb9a13639..51003ef3cc37 100644
+index 94a87d0fb08e..cd7fb9a13639 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -1280,7 +1280,44 @@ static void ath11k_peer_assoc_h_he(struct ath11k *ar,
- 				   struct ieee80211_sta *sta,
- 				   struct peer_assoc_params *arg)
- {
--	/* TODO: Implementation */
-+	const struct ieee80211_sta_he_cap *he_cap = &sta->he_cap;
+@@ -105,6 +105,51 @@ static struct ieee80211_rate ath11k_legacy_rates[] = {
+ 	{ .bitrate = 540, .hw_value = ATH11K_HW_RATE_OFDM_54M },
+ };
+ 
++static int ath11k_phymodes[NUM_NL80211_BANDS][2][__NL80211_CHAN_WIDTH_NUM] = {
++	[NL80211_BAND_2GHZ] = {
++		{
++			[NL80211_CHAN_WIDTH_5] = MODE_UNKNOWN,
++			[NL80211_CHAN_WIDTH_10] = MODE_UNKNOWN,
++			[NL80211_CHAN_WIDTH_20_NOHT] = MODE_11G,
++			[NL80211_CHAN_WIDTH_20] = MODE_11NG_HT20,
++			[NL80211_CHAN_WIDTH_40] = MODE_11NG_HT40,
++			[NL80211_CHAN_WIDTH_80] = MODE_UNKNOWN,
++			[NL80211_CHAN_WIDTH_80P80] = MODE_UNKNOWN,
++			[NL80211_CHAN_WIDTH_160] = MODE_UNKNOWN,
++		}, {
++			[NL80211_CHAN_WIDTH_5] = MODE_UNKNOWN,
++			[NL80211_CHAN_WIDTH_10] = MODE_UNKNOWN,
++			[NL80211_CHAN_WIDTH_20_NOHT] = MODE_11G,
++			[NL80211_CHAN_WIDTH_20] = MODE_11AX_HE20_2G,
++			[NL80211_CHAN_WIDTH_40] = MODE_11AX_HE40_2G,
++			[NL80211_CHAN_WIDTH_80] = MODE_11AX_HE80_2G,
++			[NL80211_CHAN_WIDTH_80P80] = MODE_UNKNOWN,
++			[NL80211_CHAN_WIDTH_160] = MODE_UNKNOWN,
++		},
++	},
++	[NL80211_BAND_5GHZ] = {
++		{
++			[NL80211_CHAN_WIDTH_5] = MODE_UNKNOWN,
++			[NL80211_CHAN_WIDTH_10] = MODE_UNKNOWN,
++			[NL80211_CHAN_WIDTH_20_NOHT] = MODE_11A,
++			[NL80211_CHAN_WIDTH_20] = MODE_11AC_VHT20,
++			[NL80211_CHAN_WIDTH_40] = MODE_11AC_VHT40,
++			[NL80211_CHAN_WIDTH_80] = MODE_11AC_VHT80,
++			[NL80211_CHAN_WIDTH_160] = MODE_11AC_VHT160,
++			[NL80211_CHAN_WIDTH_80P80] = MODE_11AC_VHT80_80,
++		}, {
++			[NL80211_CHAN_WIDTH_5] = MODE_UNKNOWN,
++			[NL80211_CHAN_WIDTH_10] = MODE_UNKNOWN,
++			[NL80211_CHAN_WIDTH_20_NOHT] = MODE_11A,
++			[NL80211_CHAN_WIDTH_20] = MODE_11AX_HE20,
++			[NL80211_CHAN_WIDTH_40] = MODE_11AX_HE40,
++			[NL80211_CHAN_WIDTH_80] = MODE_11AX_HE80,
++			[NL80211_CHAN_WIDTH_160] = MODE_11AX_HE160,
++			[NL80211_CHAN_WIDTH_80P80] = MODE_11AX_HE80_80,
++		},
++	},
++};
 +
-+	if (!he_cap->has_he)
-+		return;
-+
-+	arg->he_flag = true;
-+
-+	memcpy(&arg->peer_he_cap_macinfo, he_cap->he_cap_elem.mac_cap_info,
-+	       sizeof(arg->peer_he_cap_macinfo));
-+	memcpy(&arg->peer_he_cap_phyinfo, he_cap->he_cap_elem.phy_cap_info,
-+	       sizeof(arg->peer_he_cap_phyinfo));
-+
-+	if (he_cap->he_cap_elem.mac_cap_info[0] & IEEE80211_HE_MAC_CAP0_TWT_RES)
-+		arg->twt_responder = true;
-+	if (he_cap->he_cap_elem.mac_cap_info[0] & IEEE80211_HE_MAC_CAP0_TWT_REQ)
-+		arg->twt_requester = true;
-+
-+	/* TODO - peer_ppet and peer_he_ops need to be set */
-+
-+	switch (sta->bandwidth) {
-+	/* TODO - add 80p80 support */
-+
-+	case IEEE80211_STA_RX_BW_160:
-+		arg->peer_he_rx_mcs_set[WMI_HECAP_TXRX_MCS_NSS_IDX_160] =
-+			he_cap->he_mcs_nss_supp.rx_mcs_160;
-+		arg->peer_he_tx_mcs_set[WMI_HECAP_TXRX_MCS_NSS_IDX_160] =
-+			he_cap->he_mcs_nss_supp.tx_mcs_160;
-+		arg->peer_he_mcs_count++;
-+		/* drop through */
-+
-+	default:
-+		arg->peer_he_rx_mcs_set[WMI_HECAP_TXRX_MCS_NSS_IDX_80] =
-+			he_cap->he_mcs_nss_supp.rx_mcs_80;
-+		arg->peer_he_tx_mcs_set[WMI_HECAP_TXRX_MCS_NSS_IDX_80] =
-+			he_cap->he_mcs_nss_supp.tx_mcs_80;
-+		arg->peer_he_mcs_count++;
-+		break;
-+	}
+ #define ATH11K_MAC_FIRST_OFDM_RATE_IDX 4
+ #define ath11k_g_rates ath11k_legacy_rates
+ #define ath11k_g_rates_size (ARRAY_SIZE(ath11k_legacy_rates))
+@@ -151,69 +196,6 @@ static int get_num_chains(u32 mask)
+ 	return num_chains;
  }
  
- static void ath11k_peer_assoc_h_smps(struct ieee80211_sta *sta,
-@@ -1447,6 +1484,32 @@ static enum wmi_phy_mode ath11k_mac_get_phymode_vht(struct ath11k *ar,
- 	return MODE_UNKNOWN;
- }
- 
-+static enum wmi_phy_mode ath11k_mac_get_phymode_he(struct ath11k *ar,
-+						   struct ieee80211_sta *sta)
-+{
-+	if (sta->bandwidth == IEEE80211_STA_RX_BW_160) {
-+		if (sta->he_cap.he_cap_elem.phy_cap_info[0] &
-+		     IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_160MHZ_IN_5G)
-+			return MODE_11AX_HE160;
-+		else if (sta->he_cap.he_cap_elem.phy_cap_info[0] &
-+		     IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_80PLUS80_MHZ_IN_5G)
-+			return MODE_11AX_HE80_80;
-+		/* not sure if this is a valid case? */
-+		return MODE_11AX_HE160;
-+	}
-+
-+	if (sta->bandwidth == IEEE80211_STA_RX_BW_80)
-+		return MODE_11AX_HE80;
-+
-+	if (sta->bandwidth == IEEE80211_STA_RX_BW_40)
-+		return MODE_11AX_HE40;
-+
-+	if (sta->bandwidth == IEEE80211_STA_RX_BW_20)
-+		return MODE_11AX_HE20;
-+
-+	return MODE_UNKNOWN;
-+}
-+
- static void ath11k_peer_assoc_h_phymode(struct ath11k *ar,
- 					struct ieee80211_vif *vif,
- 					struct ieee80211_sta *sta,
-@@ -1468,7 +1531,14 @@ static void ath11k_peer_assoc_h_phymode(struct ath11k *ar,
- 
- 	switch (band) {
- 	case NL80211_BAND_2GHZ:
--		if (sta->vht_cap.vht_supported &&
-+		if (sta->he_cap.has_he) {
-+			if (sta->bandwidth == IEEE80211_STA_RX_BW_80)
-+				phymode = MODE_11AX_HE80_2G;
-+			else if (sta->bandwidth == IEEE80211_STA_RX_BW_40)
-+				phymode = MODE_11AX_HE40_2G;
-+			else
-+				phymode = MODE_11AX_HE20_2G;
-+		} else if (sta->vht_cap.vht_supported &&
- 		    !ath11k_peer_assoc_h_vht_masked(vht_mcs_mask)) {
- 			if (sta->bandwidth == IEEE80211_STA_RX_BW_40)
- 				phymode = MODE_11AC_VHT40;
-@@ -1485,12 +1555,12 @@ static void ath11k_peer_assoc_h_phymode(struct ath11k *ar,
- 		} else {
- 			phymode = MODE_11B;
- 		}
--		/* TODO: HE */
+-static inline enum wmi_phy_mode
+-chan_to_phymode(const struct cfg80211_chan_def *chandef)
+-{
+-	enum wmi_phy_mode phymode = MODE_UNKNOWN;
 -
- 		break;
- 	case NL80211_BAND_5GHZ:
--		/* Check VHT first */
--		if (sta->vht_cap.vht_supported &&
-+		/* Check HE first */
-+		if (sta->he_cap.has_he) {
-+			phymode = ath11k_mac_get_phymode_he(ar, sta);
-+		} else if (sta->vht_cap.vht_supported &&
- 		    !ath11k_peer_assoc_h_vht_masked(vht_mcs_mask)) {
- 			phymode = ath11k_mac_get_phymode_vht(ar, sta);
- 		} else if (sta->ht_cap.ht_supported &&
-@@ -1502,7 +1572,6 @@ static void ath11k_peer_assoc_h_phymode(struct ath11k *ar,
- 		} else {
- 			phymode = MODE_11A;
- 		}
--		/* TODO: HE Phymode */
- 		break;
- 	default:
- 		break;
-@@ -3076,6 +3145,92 @@ static int ath11k_check_chain_mask(struct ath11k *ar, u32 ant, bool is_tx_ant)
- 	return 0;
- }
- 
-+static int ath11k_mac_copy_he_cap(struct ath11k_pdev_cap *cap,
-+				  struct ieee80211_sband_iftype_data *data,
-+				  int band)
-+{
-+	int i, idx = 0;
-+
-+	for (i = 0; i < NUM_NL80211_IFTYPES; i++) {
-+		struct ieee80211_sta_he_cap *he_cap = &data[idx].he_cap;
-+		struct ath11k_band_cap *band_cap = &cap->band[band];
-+		struct ieee80211_he_cap_elem *he_cap_elem =
-+				&he_cap->he_cap_elem;
-+
-+		switch (i) {
-+		case NL80211_IFTYPE_STATION:
-+		case NL80211_IFTYPE_AP:
-+			break;
-+
-+		default:
-+			continue;
-+		}
-+
-+		data[idx].types_mask = BIT(i);
-+		he_cap->has_he = true;
-+		memcpy(he_cap_elem->mac_cap_info, band_cap->he_cap_info,
-+		       sizeof(he_cap_elem->mac_cap_info));
-+		memcpy(he_cap_elem->phy_cap_info, band_cap->he_cap_phy_info,
-+		       sizeof(he_cap_elem->phy_cap_info));
-+
-+		switch (i) {
-+		case NL80211_IFTYPE_STATION:
-+			he_cap_elem->mac_cap_info[0] &=
-+				~IEEE80211_HE_MAC_CAP0_TWT_RES;
-+			he_cap_elem->mac_cap_info[0] |=
-+				IEEE80211_HE_MAC_CAP0_TWT_REQ;
-+			break;
-+		}
-+
-+		he_cap->he_mcs_nss_supp.rx_mcs_80 =
-+			cpu_to_le16(band_cap->he_mcs & 0xffff);
-+		he_cap->he_mcs_nss_supp.tx_mcs_80 =
-+			cpu_to_le16(band_cap->he_mcs & 0xffff);
-+		he_cap->he_mcs_nss_supp.rx_mcs_160 =
-+			cpu_to_le16((band_cap->he_mcs >> 16) & 0xffff);
-+		he_cap->he_mcs_nss_supp.tx_mcs_160 =
-+			cpu_to_le16((band_cap->he_mcs >> 16) & 0xffff);
-+		he_cap->he_mcs_nss_supp.rx_mcs_80p80 =
-+			cpu_to_le16((band_cap->he_mcs >> 16) & 0xffff);
-+		he_cap->he_mcs_nss_supp.tx_mcs_80p80 =
-+			cpu_to_le16((band_cap->he_mcs >> 16) & 0xffff);
-+
-+		/* TODO - disable ppe threshold until we can generate the
-+		 * field from the fw capabilities
-+		 */
-+		he_cap_elem->phy_cap_info[6] &=
-+			~IEEE80211_HE_PHY_CAP6_PPE_THRESHOLD_PRESENT;
-+		idx++;
-+	}
-+
-+	return idx;
-+}
-+
-+static void ath11k_mac_setup_he_cap(struct ath11k *ar,
-+				    struct ath11k_pdev_cap *cap)
-+{
-+	struct ieee80211_supported_band *band;
-+	int count = 0;
-+
-+	if (cap->supported_bands & WMI_HOST_WLAN_2G_CAP) {
-+		count = ath11k_mac_copy_he_cap(cap,
-+				ar->mac.iftype[NL80211_BAND_2GHZ],
-+				NL80211_BAND_2GHZ);
-+		band = &ar->mac.sbands[NL80211_BAND_2GHZ];
-+		band->iftype_data = ar->mac.iftype[NL80211_BAND_2GHZ];
-+	}
-+
-+	if (cap->supported_bands & WMI_HOST_WLAN_5G_CAP) {
-+		count = ath11k_mac_copy_he_cap(cap,
-+				ar->mac.iftype[NL80211_BAND_5GHZ],
-+				NL80211_BAND_5GHZ);
-+		band = &ar->mac.sbands[NL80211_BAND_5GHZ];
-+		band->iftype_data = ar->mac.iftype[NL80211_BAND_5GHZ];
-+	}
-+
-+	band->n_iftype_data = count;
-+}
-+
- static int __ath11k_set_antenna(struct ath11k *ar, u32 tx_ant, u32 rx_ant)
+-	switch (chandef->chan->band) {
+-	case NL80211_BAND_2GHZ:
+-		switch (chandef->width) {
+-		case NL80211_CHAN_WIDTH_20_NOHT:
+-			if (chandef->chan->flags & IEEE80211_CHAN_NO_OFDM)
+-				phymode = MODE_11B;
+-			else
+-				phymode = MODE_11G;
+-			break;
+-		case NL80211_CHAN_WIDTH_20:
+-			phymode = MODE_11NG_HT20;
+-			break;
+-		case NL80211_CHAN_WIDTH_40:
+-			phymode = MODE_11NG_HT40;
+-			break;
+-		case NL80211_CHAN_WIDTH_5:
+-		case NL80211_CHAN_WIDTH_10:
+-		case NL80211_CHAN_WIDTH_80:
+-		case NL80211_CHAN_WIDTH_80P80:
+-		case NL80211_CHAN_WIDTH_160:
+-			phymode = MODE_UNKNOWN;
+-			break;
+-		}
+-		break;
+-	case NL80211_BAND_5GHZ:
+-		switch (chandef->width) {
+-		case NL80211_CHAN_WIDTH_20_NOHT:
+-			phymode = MODE_11A;
+-			break;
+-		case NL80211_CHAN_WIDTH_20:
+-			phymode = MODE_11AC_VHT20;
+-			break;
+-		case NL80211_CHAN_WIDTH_40:
+-			phymode = MODE_11AC_VHT40;
+-			break;
+-		case NL80211_CHAN_WIDTH_80:
+-			phymode = MODE_11AC_VHT80;
+-			break;
+-		case NL80211_CHAN_WIDTH_160:
+-			phymode = MODE_11AC_VHT160;
+-			break;
+-		case NL80211_CHAN_WIDTH_80P80:
+-			phymode = MODE_11AC_VHT80_80;
+-			break;
+-		case NL80211_CHAN_WIDTH_5:
+-		case NL80211_CHAN_WIDTH_10:
+-			phymode = MODE_UNKNOWN;
+-			break;
+-		}
+-		break;
+-	default:
+-		break;
+-	}
+-
+-	WARN_ON(phymode == MODE_UNKNOWN);
+-	return phymode;
+-}
+-
+ u8 ath11k_mac_bitrate_to_idx(const struct ieee80211_supported_band *sband,
+ 			     u32 bitrate)
  {
- 	int ret;
-@@ -3111,8 +3266,9 @@ static int __ath11k_set_antenna(struct ath11k *ar, u32 tx_ant, u32 rx_ant)
- 		return ret;
- 	}
+@@ -3877,6 +3859,7 @@ ath11k_mac_vdev_start_restart(struct ath11k_vif *arvif,
+ 	struct ath11k_base *ab = ar->ab;
+ 	struct wmi_vdev_start_req_arg arg = {};
+ 	int ret = 0;
++	int he_support = arvif->vif->bss_conf.he_support;
  
--	/* Reload HT/VHT capability */
-+	/* Reload HT/VHT/HE capability */
- 	ath11k_mac_setup_ht_vht_cap(ar, &ar->pdev->cap, NULL);
-+	ath11k_mac_setup_he_cap(ar, &ar->pdev->cap);
+ 	lockdep_assert_held(&ar->conf_mutex);
  
- 	return 0;
- }
-@@ -4926,6 +5082,7 @@ static int ath11k_mac_register(struct ath11k *ar)
- 		goto err_free;
+@@ -3889,7 +3872,12 @@ ath11k_mac_vdev_start_restart(struct ath11k_vif *arvif,
+ 	arg.channel.freq = chandef->chan->center_freq;
+ 	arg.channel.band_center_freq1 = chandef->center_freq1;
+ 	arg.channel.band_center_freq2 = chandef->center_freq2;
+-	arg.channel.mode = chan_to_phymode(chandef);
++	arg.channel.mode =
++		ath11k_phymodes[chandef->chan->band][he_support][chandef->width];
++	if (arg.channel.mode == MODE_11G &&
++	    chandef->chan->flags & IEEE80211_CHAN_NO_OFDM)
++		arg.channel.mode = MODE_11B;
++	WARN_ON(arg.channel.mode == MODE_UNKNOWN);
  
- 	ath11k_mac_setup_ht_vht_cap(ar, cap, &ht_cap);
-+	ath11k_mac_setup_he_cap(ar, cap);
+ 	arg.channel.min_power = 0;
+ 	arg.channel.max_power = chandef->chan->max_power * 2;
+diff --git a/include/uapi/linux/nl80211.h b/include/uapi/linux/nl80211.h
+index 31ae5c7f10e3..64b890b4df33 100644
+--- a/include/uapi/linux/nl80211.h
++++ b/include/uapi/linux/nl80211.h
+@@ -4142,6 +4142,10 @@ enum nl80211_chan_width {
+ 	NL80211_CHAN_WIDTH_160,
+ 	NL80211_CHAN_WIDTH_5,
+ 	NL80211_CHAN_WIDTH_10,
++
++	/* keep last */
++	__NL80211_CHAN_WIDTH_NUM,
++	NL80211_CHAN_WIDTH_MAX = __NL80211_CHAN_WIDTH_NUM - 1,
+ };
  
- 	ar->hw->wiphy->available_antennas_rx = cap->rx_chain_mask;
- 	ar->hw->wiphy->available_antennas_tx = cap->tx_chain_mask;
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index 5d20f57fbacc..7674fa85301a 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -3842,7 +3842,10 @@ struct wmi_vdev_install_key_arg {
- 
- #define WMI_MAX_SUPPORTED_RATES			128
- #define WMI_HOST_MAX_HECAP_PHY_SIZE		3
--#define WMI_HOST_MAX_HE_RATE_SET		1
-+#define WMI_HOST_MAX_HE_RATE_SET		3
-+#define WMI_HECAP_TXRX_MCS_NSS_IDX_80		0
-+#define WMI_HECAP_TXRX_MCS_NSS_IDX_160		1
-+#define WMI_HECAP_TXRX_MCS_NSS_IDX_80_80	2
- 
- struct wmi_rate_set_arg {
- 	u32 num_rates;
+ /**
 -- 
 2.11.0
 
