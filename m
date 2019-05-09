@@ -1,12 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hOpSU-0003UE-Dr
- for ath11k@lists.infradead.org; Thu, 09 May 2019 20:16:04 +0000
+ id 1hOpSU-0003UG-Ha
+ for ath11k@lists.infradead.org; Thu, 09 May 2019 20:16:05 +0000
 From: John Crispin <john@phrozen.org>
-Subject: [PATCH V4 0/5] ath11k: add HE support
-Date: Thu,  9 May 2019 22:15:45 +0200
-Message-Id: <20190509201550.3977-1-john@phrozen.org>
+Subject: [PATCH V4 3/5] ath11k: extend reading of FW capabilities
+Date: Thu,  9 May 2019 22:15:48 +0200
+Message-Id: <20190509201550.3977-4-john@phrozen.org>
+In-Reply-To: <20190509201550.3977-1-john@phrozen.org>
+References: <20190509201550.3977-1-john@phrozen.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -21,42 +23,72 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Kalle Valo <kvalo@codeaurora.org>
-Cc: ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
+Cc: Shashidhar Lakkavalli <slakkavalli@datto.com>, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-This series adds initial support for HE mode to the ath11k driver.
+Read the additional mcs and extended mac capabilities field from the
+service ready callback and store them inside the ath11k_pdev_cap
+structure. This allows us to generate the sband_iftype_data dynamically.
 
-Things that still need to implemented
-* ppe_threshold support
+Signed-off-by: Shashidhar Lakkavalli <slakkavalli@datto.com>
+Signed-off-by: John Crispin <john@phrozen.org>
+---
+ drivers/net/wireless/ath/ath11k/core.h | 3 ++-
+ drivers/net/wireless/ath/ath11k/wmi.c  | 7 +++++--
+ 2 files changed, 7 insertions(+), 3 deletions(-)
 
-Changes in V2:
-* generate sband_iftype data from FW provided capabilities
-* properly handle rx_status for HE frames
-* fix regression in basic VHF phymode
-* various minor cleanups
-
-Changes in V3
-* make the he_cap generating code future-proof
-* move phymode lookup to an array
-
-Changes in V4
-* remove dependency in local patch
-
-John Crispin (5):
-  ath11k: move phymode selection from function to array lookup
-  ath11k: add HE handling to the debug code
-  ath11k: extend reading of FW capabilities
-  ath11k: handle rx status for HE frames
-  ath11k: add HE support
-
- drivers/net/wireless/ath/ath11k/core.h        |   7 +-
- drivers/net/wireless/ath/ath11k/debugfs_sta.c |  24 ++-
- drivers/net/wireless/ath/ath11k/dp_rx.c       |  16 +-
- drivers/net/wireless/ath/ath11k/mac.c         | 289 +++++++++++++++++++-------
- drivers/net/wireless/ath/ath11k/wmi.c         |   7 +-
- drivers/net/wireless/ath/ath11k/wmi.h         |   5 +-
- include/uapi/linux/nl80211.h                  |   4 +
- 7 files changed, 272 insertions(+), 80 deletions(-)
-
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index d17af2255465..50032e701255 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -521,7 +521,7 @@ struct ath11k {
+ struct ath11k_band_cap {
+ 	u32 max_bw_supported;
+ 	u32 ht_cap_info;
+-	u32 he_cap_info;
++	u32 he_cap_info[2];
+ 	u32 he_mcs;
+ 	u32 he_cap_phy_info[PSOC_HOST_MAX_PHY_SIZE];
+ 	struct ath11k_ppe_threshold he_ppet;
+@@ -532,6 +532,7 @@ struct ath11k_pdev_cap {
+ 	u32 ampdu_density;
+ 	u32 vht_cap;
+ 	u32 vht_mcs;
++	u32 he_mcs;
+ 	u32 tx_chain_mask;
+ 	u32 rx_chain_mask;
+ 	u32 tx_chain_mask_shift;
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 5712ac030419..1856dbcc1859 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -325,6 +325,7 @@ static int ath11k_pull_mac_phy_cap_service_ready_ext(
+ 	} else if (mac_phy_caps->supported_bands & WMI_HOST_WLAN_5G_CAP) {
+ 		pdev_cap->vht_cap = mac_phy_caps->vht_cap_info_5g;
+ 		pdev_cap->vht_mcs = mac_phy_caps->vht_supp_mcs_5g;
++		pdev_cap->he_mcs = mac_phy_caps->he_supp_mcs_5g;
+ 		pdev_cap->tx_chain_mask = mac_phy_caps->tx_chain_mask_5g;
+ 		pdev_cap->rx_chain_mask = mac_phy_caps->rx_chain_mask_5g;
+ 	} else {
+@@ -347,7 +348,8 @@ static int ath11k_pull_mac_phy_cap_service_ready_ext(
+ 	cap_band = &pdev_cap->band[NL80211_BAND_2GHZ];
+ 	cap_band->max_bw_supported = mac_phy_caps->max_bw_supported_2g;
+ 	cap_band->ht_cap_info = mac_phy_caps->ht_cap_info_2g;
+-	cap_band->he_cap_info = mac_phy_caps->he_cap_info_2g;
++	cap_band->he_cap_info[0] = mac_phy_caps->he_cap_info_2g;
++	cap_band->he_cap_info[1] = mac_phy_caps->he_cap_info_2g_ext;
+ 	cap_band->he_mcs = mac_phy_caps->he_supp_mcs_2g;
+ 	memcpy(cap_band->he_cap_phy_info, &mac_phy_caps->he_cap_phy_info_2g,
+ 	       sizeof(u32) * PSOC_HOST_MAX_PHY_SIZE);
+@@ -357,7 +359,8 @@ static int ath11k_pull_mac_phy_cap_service_ready_ext(
+ 	cap_band = &pdev_cap->band[NL80211_BAND_5GHZ];
+ 	cap_band->max_bw_supported = mac_phy_caps->max_bw_supported_5g;
+ 	cap_band->ht_cap_info = mac_phy_caps->ht_cap_info_5g;
+-	cap_band->he_cap_info = mac_phy_caps->he_cap_info_5g;
++	cap_band->he_cap_info[0] = mac_phy_caps->he_cap_info_5g;
++	cap_band->he_cap_info[1] = mac_phy_caps->he_cap_info_5g_ext;
+ 	cap_band->he_mcs = mac_phy_caps->he_supp_mcs_5g;
+ 	memcpy(cap_band->he_cap_phy_info, &mac_phy_caps->he_cap_phy_info_5g,
+ 	       sizeof(u32) * PSOC_HOST_MAX_PHY_SIZE);
 -- 
 2.11.0
 
