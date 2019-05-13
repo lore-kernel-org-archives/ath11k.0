@@ -1,17 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hQBut-0000PF-G1
- for ath11k@lists.infradead.org; Mon, 13 May 2019 14:27:00 +0000
+ id 1hQBwa-0000WI-N9
+ for ath11k@lists.infradead.org; Mon, 13 May 2019 14:28:46 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH V4 1/5] ath11k: move phymode selection from function to
- array lookup
+Subject: Re: [PATCH V4 4/5] ath11k: handle rx status for HE frames
 References: <20190509201550.3977-1-john@phrozen.org>
- <20190509201550.3977-2-john@phrozen.org>
-Date: Mon, 13 May 2019 17:26:54 +0300
-In-Reply-To: <20190509201550.3977-2-john@phrozen.org> (John Crispin's message
- of "Thu, 9 May 2019 22:15:46 +0200")
-Message-ID: <87tvdyig5t.fsf@kamboji.qca.qualcomm.com>
+ <20190509201550.3977-5-john@phrozen.org>
+Date: Mon, 13 May 2019 17:28:40 +0300
+In-Reply-To: <20190509201550.3977-5-john@phrozen.org> (John Crispin's message
+ of "Thu, 9 May 2019 22:15:49 +0200")
+Message-ID: <87pnomig2v.fsf@kamboji.qca.qualcomm.com>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -30,42 +29,29 @@ Cc: ath11k@lists.infradead.org, Shashidhar Lakkavalli <slakkavalli@datto.com>
 
 John Crispin <john@phrozen.org> writes:
 
-> With HE support getting added, the approach of using functions will quickly
-> get convoluted. Change the code to use an array lookup function instead.
+> The case clause handling HE frames was not handled yet in the code reading
+> the RX status. The new case is identical to VHT with the difference of the
+> higher maximum MCS rate.
 >
 > Signed-off-by: Shashidhar Lakkavalli <slakkavalli@datto.com>
 > Signed-off-by: John Crispin <john@phrozen.org>
 > ---
->  drivers/net/wireless/ath/ath11k/mac.c | 116 +++++++++++++++-------------------
->  include/uapi/linux/nl80211.h          |   4 ++
->  2 files changed, 56 insertions(+), 64 deletions(-)
+>  drivers/net/wireless/ath/ath11k/dp_rx.c | 13 ++++++++++++-
+>  1 file changed, 12 insertions(+), 1 deletion(-)
 >
-> diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-> index 94a87d0fb08e..cd7fb9a13639 100644
-> --- a/drivers/net/wireless/ath/ath11k/mac.c
-> +++ b/drivers/net/wireless/ath/ath11k/mac.c
-> @@ -105,6 +105,51 @@ static struct ieee80211_rate ath11k_legacy_rates[] = {
->  	{ .bitrate = 540, .hw_value = ATH11K_HW_RATE_OFDM_54M },
->  };
->  
-> +static int ath11k_phymodes[NUM_NL80211_BANDS][2][__NL80211_CHAN_WIDTH_NUM] = {
+> diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+> index c8fa2681ddb0..82cb3f84df32 100644
+> --- a/drivers/net/wireless/ath/ath11k/dp_rx.c
+> +++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+> @@ -1718,7 +1718,18 @@ static void ath11k_dp_rx_h_rate(struct ath11k *ar, void *rx_desc,
+>  		rx_status->bw = ath11k_bw_to_mac80211_bw(bw);
+>  		break;
+>  	case RX_MSDU_START_PKT_TYPE_11AX:
+> -		ath11k_warn(ar->ab, "pkt_type %d not yet supported\n", pkt_type);
+> +		rx_status->rate_idx = rate_mcs;
+> +		if (rate_mcs > 11) {
 
-static const?
-
-> @@ -3889,7 +3872,12 @@ ath11k_mac_vdev_start_restart(struct ath11k_vif *arvif,
->  	arg.channel.freq = chandef->chan->center_freq;
->  	arg.channel.band_center_freq1 = chandef->center_freq1;
->  	arg.channel.band_center_freq2 = chandef->center_freq2;
-> -	arg.channel.mode = chan_to_phymode(chandef);
-> +	arg.channel.mode =
-> +		ath11k_phymodes[chandef->chan->band][he_support][chandef->width];
-> +	if (arg.channel.mode == MODE_11G &&
-> +	    chandef->chan->flags & IEEE80211_CHAN_NO_OFDM)
-> +		arg.channel.mode = MODE_11B;
-> +	WARN_ON(arg.channel.mode == MODE_UNKNOWN);
-
-What happens when mode is MODE_UNKNOWN? Should we assign some default
-value after the warning message?
+A define would be nice, ATH11K_MCS_MAX or something like that.
 
 -- 
 Kalle Valo
