@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hQCDw-0001Ql-Sb
- for ath11k@lists.infradead.org; Mon, 13 May 2019 14:46:42 +0000
+ id 1hQCEj-0001V3-Ch
+ for ath11k@lists.infradead.org; Mon, 13 May 2019 14:47:30 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k:print firmware info during boot
+Subject: Re: [PATCH] ath11k: support HE max rx aggregation subframes
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1557222320-22849-1-git-send-email-mpubbise@codeaurora.org>
-References: <1557222320-22849-1-git-send-email-mpubbise@codeaurora.org>
-Message-Id: <20190513144640.7BB4360A05@smtp.codeaurora.org>
-Date: Mon, 13 May 2019 14:46:40 +0000 (UTC)
+In-Reply-To: <1557275593-2994-1-git-send-email-rmanohar@codeaurora.org>
+References: <1557275593-2994-1-git-send-email-rmanohar@codeaurora.org>
+Message-Id: <20190513144729.17854609D4@smtp.codeaurora.org>
+Date: Mon, 13 May 2019 14:47:27 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,22 +22,24 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Manikanta Pubbisetty <mpubbise@codeaurora.org>
+To: Rajkumar Manoharan <rmanohar@codeaurora.org>
 Cc: ath11k@lists.infradead.org
 
-Manikanta Pubbisetty <mpubbise@codeaurora.org> wrote:
+Rajkumar Manoharan <rmanohar@codeaurora.org> wrote:
 
-> Print fw info like version, time stamp and fw build info
-> during boot.
+> HE supports upto 256 subframes in an A-MPDU. Hence update
+> max_rx_aggregation_subframes to 256 at device registration.
+> Since tx A-MPDU aggregation is offloaded to HW, no need to
+> update tx aggregation subframes size.
 > 
-> Signed-off-by: Manikanta Pubbisetty <mpubbise@codeaurora.org>
+> Signed-off-by: Rajkumar Manoharan <rmanohar@codeaurora.org>
 
 Patch applied to ath.git, thanks.
 
-d6c9dfaafe99 ath11k:print firmware info during boot
+cf0dc8a12521 ath11k: support HE max rx aggregation subframes
 
 -- 
-https://patchwork.kernel.org/patch/10932695/
+https://patchwork.kernel.org/patch/10934009/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
