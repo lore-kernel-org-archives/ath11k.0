@@ -1,13 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hSg3Z-0007IZ-Kh
+ id 1hSg3Z-0007Ia-NH
  for ath11k@lists.infradead.org; Mon, 20 May 2019 11:02:16 +0000
 From: John Crispin <john@phrozen.org>
-Subject: [PATCH 1/7] mac80211: HE: dynamically enable the TWT requester
- support on STA interfaces
-Date: Mon, 20 May 2019 13:01:58 +0200
-Message-Id: <20190520110204.27588-2-john@phrozen.org>
+Subject: [PATCH 4/7] mac80211: HE: add Spatial Reuse IE parsing support
+Date: Mon, 20 May 2019 13:02:01 +0200
+Message-Id: <20190520110204.27588-5-john@phrozen.org>
 In-Reply-To: <20190520110204.27588-1-john@phrozen.org>
 References: <20190520110204.27588-1-john@phrozen.org>
 MIME-Version: 1.0
@@ -26,79 +25,117 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Johannes Berg <johannes@sipsolutions.net>, Kalle Valo <kvalo@codeaurora.org>
 Cc: Shashidhar Lakkavalli <slakkavalli@datto.com>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-Turn TWT for STA interfaces when they associate and/or receive a
-beacon where the twt_responder bit has changed.
+Add support to mac80211 for parsing SPR IEs.
 
 Signed-off-by: Shashidhar Lakkavalli <slakkavalli@datto.com>
 Signed-off-by: John Crispin <john@phrozen.org>
 ---
- include/net/mac80211.h |  2 ++
- net/mac80211/mlme.c    | 18 ++++++++++++++++--
- 2 files changed, 18 insertions(+), 2 deletions(-)
+ include/linux/ieee80211.h  | 49 ++++++++++++++++++++++++++++++++++++++
+ net/mac80211/ieee80211_i.h |  1 +
+ net/mac80211/util.c        |  4 ++++
+ 3 files changed, 54 insertions(+)
 
-diff --git a/include/net/mac80211.h b/include/net/mac80211.h
-index ba4a16f87364..689dc597281c 100644
---- a/include/net/mac80211.h
-+++ b/include/net/mac80211.h
-@@ -317,6 +317,7 @@ struct ieee80211_vif_chanctx_switch {
-  * @BSS_CHANGED_MCAST_RATE: Multicast Rate setting changed for this interface
-  * @BSS_CHANGED_FTM_RESPONDER: fime timing reasurement request responder
-  *	functionality changed for this BSS (AP mode).
-+ * @BSS_CHANGED_TWT: TWT status changed
-  *
-  */
- enum ieee80211_bss_change {
-@@ -347,6 +348,7 @@ enum ieee80211_bss_change {
- 	BSS_CHANGED_KEEP_ALIVE		= 1<<24,
- 	BSS_CHANGED_MCAST_RATE		= 1<<25,
- 	BSS_CHANGED_FTM_RESPONDER	= 1<<26,
-+	BSS_CHANGED_TWT			= 1<<27,
+diff --git a/include/linux/ieee80211.h b/include/linux/ieee80211.h
+index 48703ec60d06..6109aa4024ad 100644
+--- a/include/linux/ieee80211.h
++++ b/include/linux/ieee80211.h
+@@ -1628,6 +1628,18 @@ struct ieee80211_he_operation {
+ 	u8 optional[0];
+ } __packed;
  
- 	/* when adding here, make sure to change ieee80211_reconfig */
- };
-diff --git a/net/mac80211/mlme.c b/net/mac80211/mlme.c
-index 5d8a8a0feaf9..996439a288c0 100644
---- a/net/mac80211/mlme.c
-+++ b/net/mac80211/mlme.c
-@@ -3151,6 +3151,19 @@ static bool ieee80211_twt_req_supported(const struct sta_info *sta,
- 		IEEE80211_HE_MAC_CAP0_TWT_RES;
++/**
++ * struct ieee80211_he_spr - HE spatial reuse element
++ *
++ * This structure is the "HE spatial reuse element" element as
++ * described in P802.11ax_D3.0 section 9.4.2.241
++ */
++struct ieee80211_he_spr {
++	u8 he_sr_control;
++	/* Optional 0 to 19 bytes: depends on @he_sr_control */
++	u8 optional[0];
++} __packed;
++
+ /**
+  * struct ieee80211_he_mu_edca_param_ac_rec - MU AC Parameter Record field
+  *
+@@ -2063,6 +2075,42 @@ ieee80211_he_oper_size(const u8 *he_oper_ie)
+ 	return oper_len;
  }
  
-+static int ieee80211_recalc_twt_req(struct ieee80211_sub_if_data *sdata,
-+				    struct sta_info *sta,
-+				    struct ieee802_11_elems *elems)
-+{
-+	bool twt = ieee80211_twt_req_supported(sta, elems);
++/* HE Spatial Reuse defines */
++#define IEEE80211_HE_SPR_NON_SRG_OFFSET_PRESENT			0x4
++#define IEEE80211_HE_SPR_SRG_INFORMATION_PRESENT		0x8
 +
-+	if (sdata->vif.bss_conf.twt_requester != twt) {
-+		sdata->vif.bss_conf.twt_requester = twt;
-+		return BSS_CHANGED_TWT;
-+	}
-+	return 0;
++/*
++ * ieee80211_he_spr_size - calculate 802.11ax HE Spatial Reuse IE size
++ * @he_spr_ie: byte data of the He Spatial Reuse IE, stating from the the byte
++ *	after the ext ID byte. It is assumed that he_spr_ie has at least
++ *	sizeof(struct ieee80211_he_spr) bytes, checked already in
++ *	ieee802_11_parse_elems_crc()
++ * @return the actual size of the IE data (not including header), or 0 on error
++ */
++static inline u8
++ieee80211_he_spr_size(const u8 *he_spr_ie)
++{
++	struct ieee80211_he_spr *he_spr = (void *)he_spr_ie;
++	u8 spr_len = sizeof(struct ieee80211_he_spr);
++	u32 he_spr_params;
++
++	/* Make sure the input is not NULL */
++	if (!he_spr_ie)
++		return 0;
++
++	/* Calc required length */
++	he_spr_params = le32_to_cpu(he_spr->he_sr_control);
++	if (he_spr_params & IEEE80211_HE_SPR_NON_SRG_OFFSET_PRESENT)
++		spr_len++;
++	if (he_spr_params & IEEE80211_HE_SPR_SRG_INFORMATION_PRESENT)
++		spr_len += 18;
++
++	/* Add the first byte (extension ID) to the total length */
++	spr_len++;
++
++	return spr_len;
 +}
 +
- static bool ieee80211_assoc_success(struct ieee80211_sub_if_data *sdata,
- 				    struct cfg80211_bss *cbss,
- 				    struct ieee80211_mgmt *mgmt, size_t len)
-@@ -3333,8 +3346,7 @@ static bool ieee80211_assoc_success(struct ieee80211_sub_if_data *sdata,
- 						  sta);
- 
- 		bss_conf->he_support = sta->sta.he_cap.has_he;
--		bss_conf->twt_requester =
--			ieee80211_twt_req_supported(sta, &elems);
-+		changed |= ieee80211_recalc_twt_req(sdata, sta, &elems);
- 	} else {
- 		bss_conf->he_support = false;
- 		bss_conf->twt_requester = false;
-@@ -3995,6 +4007,8 @@ static void ieee80211_rx_mgmt_beacon(struct ieee80211_sub_if_data *sdata,
- 	mutex_lock(&local->sta_mtx);
- 	sta = sta_info_get(sdata, bssid);
- 
-+	changed |= ieee80211_recalc_twt_req(sdata, sta, &elems);
-+
- 	if (ieee80211_config_bw(sdata, sta,
- 				elems.ht_cap_elem, elems.ht_operation,
- 				elems.vht_operation, elems.he_operation,
+ /* Authentication algorithms */
+ #define WLAN_AUTH_OPEN 0
+ #define WLAN_AUTH_SHARED_KEY 1
+@@ -2485,6 +2533,7 @@ enum ieee80211_eid_ext {
+ 	WLAN_EID_EXT_HE_OPERATION = 36,
+ 	WLAN_EID_EXT_UORA = 37,
+ 	WLAN_EID_EXT_HE_MU_EDCA = 38,
++	WLAN_EID_EXT_HE_SPR = 39,
+ 	WLAN_EID_EXT_MAX_CHANNEL_SWITCH_TIME = 52,
+ 	WLAN_EID_EXT_MULTIPLE_BSSID_CONFIGURATION = 55,
+ };
+diff --git a/net/mac80211/ieee80211_i.h b/net/mac80211/ieee80211_i.h
+index 11bc1778bfd5..e931e114fba4 100644
+--- a/net/mac80211/ieee80211_i.h
++++ b/net/mac80211/ieee80211_i.h
+@@ -1482,6 +1482,7 @@ struct ieee802_11_elems {
+ 	const struct ieee80211_meshconf_ie *mesh_config;
+ 	const u8 *he_cap;
+ 	const struct ieee80211_he_operation *he_operation;
++	const struct ieee80211_he_spr *he_spr;
+ 	const struct ieee80211_mu_edca_param_set *mu_edca_param_set;
+ 	const u8 *uora_element;
+ 	const u8 *mesh_id;
+diff --git a/net/mac80211/util.c b/net/mac80211/util.c
+index 4c1655972565..1b7076d24c18 100644
+--- a/net/mac80211/util.c
++++ b/net/mac80211/util.c
+@@ -1282,6 +1282,10 @@ _ieee802_11_parse_elems_crc(const u8 *start, size_t len, bool action,
+ 				   WLAN_EID_EXT_MULTIPLE_BSSID_CONFIGURATION &&
+ 				   elen == 3) {
+ 				elems->mbssid_config_ie = (void *)&pos[1];
++			} else if (pos[0] == WLAN_EID_EXT_HE_SPR &&
++				   elen >= sizeof(*elems->he_spr) &&
++				   elen >= ieee80211_he_spr_size(&pos[1])) {
++				elems->he_spr = (void *)&pos[1];
+ 			}
+ 			break;
+ 		default:
 -- 
 2.20.1
 
