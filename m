@@ -1,15 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from smtp.codeaurora.org ([198.145.29.96])
+Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hSdd4-0000Vl-9o
- for ath11k@lists.infradead.org; Mon, 20 May 2019 08:26:43 +0000
+ id 1hSe4k-0004dQ-P5
+ for ath11k@lists.infradead.org; Mon, 20 May 2019 08:55:21 +0000
+From: John Crispin <john@phrozen.org>
+Subject: [PATCH V5 0/8] ath11k: add HE support
+Date: Mon, 20 May 2019 10:55:00 +0200
+Message-Id: <20190520085508.5888-1-john@phrozen.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 1/3] ath11k: fix sparse symbol should be static warnings
-From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1557811234-5439-1-git-send-email-kvalo@codeaurora.org>
-References: <1557811234-5439-1-git-send-email-kvalo@codeaurora.org>
-Message-Id: <20190520082641.8479460E5F@smtp.codeaurora.org>
-Date: Mon, 20 May 2019 08:26:41 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,28 +21,58 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Kalle Valo <kvalo@codeaurora.org>
-Cc: ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-Kalle Valo <kvalo@codeaurora.org> wrote:
+This series adds initial support for HE mode to the ath11k driver.
 
-> Fixes warnings like:
-> 
-> drivers/net/wireless/ath/ath11k/wmi.c:203:5: warning: symbol 'ath11k_wmi_cmd_send_nowait' was not declared. Should it be static?
-> 
-> Also ath11k_dp_htt_rx_filter_setup() was declared in the wrong header file, fix that as well.
-> 
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+Things that still need to implemented
+* ppe_threshold support
 
-3 patches applied to ath.git, thanks.
+Changes in V2:
+* generate sband_iftype data from FW provided capabilities
+* properly handle rx_status for HE frames
+* fix regression in basic VHF phymode
+* various minor cleanups
 
-08c6d676f96b ath11k: fix sparse symbol should be static warnings
-ef5f0fc6d73f ath11k: remove unused functions
-e8cb49bd3900 ath11k: workaround GCC unitialised warnings
+Changes in V3
+* make the he_cap generating code future-proof
+* move phymode lookup to an array
+
+Changes in V4
+* remove dependency in local patch
+
+Changes in V5
+* populate he_oper field when preparing peer assoc
+* populate ppet field when preparing peer assoc
+* fix 80p80 phymode when preparing peer assoc
+* address review comments
+
+John Crispin (8):
+  mac80211: propagate HE operation info into ieee80211_sta
+  ath11k: fix some whitespace errors
+  ath11k: move phymode selection from function to array lookup
+  ath11k: add HE handling to the debug code
+  ath11k: extend reading of FW capabilities
+  ath11k: add defines for max MCS rates per phymode
+  ath11k: handle rx status for HE frames
+  ath11k: add HE support
+
+ drivers/net/wireless/ath/ath11k/core.h        |  11 +-
+ drivers/net/wireless/ath/ath11k/debugfs_sta.c |  24 +-
+ drivers/net/wireless/ath/ath11k/dp_rx.c       |  18 +-
+ drivers/net/wireless/ath/ath11k/mac.c         | 357 ++++++++++++++----
+ drivers/net/wireless/ath/ath11k/reg.c         |   1 +
+ drivers/net/wireless/ath/ath11k/wmi.c         |  13 +-
+ drivers/net/wireless/ath/ath11k/wmi.h         |  44 ++-
+ include/net/mac80211.h                        |   2 +
+ include/uapi/linux/nl80211.h                  |   4 +
+ net/mac80211/he.c                             |  14 +
+ net/mac80211/ieee80211_i.h                    |   5 +
+ net/mac80211/mlme.c                           |   1 +
+ 12 files changed, 392 insertions(+), 102 deletions(-)
 
 -- 
-https://patchwork.kernel.org/patch/10942033/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+2.20.1
 
 
 _______________________________________________
