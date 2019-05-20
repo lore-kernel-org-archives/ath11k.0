@@ -1,14 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hSe4n-0004eW-0c
- for ath11k@lists.infradead.org; Mon, 20 May 2019 08:55:24 +0000
+ id 1hSg3Z-0007IU-0e
+ for ath11k@lists.infradead.org; Mon, 20 May 2019 11:02:14 +0000
 From: John Crispin <john@phrozen.org>
-Subject: [PATCH V5 6/8] ath11k: add defines for max MCS rates per phymode
-Date: Mon, 20 May 2019 10:55:06 +0200
-Message-Id: <20190520085508.5888-7-john@phrozen.org>
-In-Reply-To: <20190520085508.5888-1-john@phrozen.org>
-References: <20190520085508.5888-1-john@phrozen.org>
+Subject: [PATCH 0/7] mac80211: HE: add TWT and SPR/OBSSPD support
+Date: Mon, 20 May 2019 13:01:57 +0200
+Message-Id: <20190520110204.27588-1-john@phrozen.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -22,52 +20,42 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
+To: Johannes Berg <johannes@sipsolutions.net>, Kalle Valo <kvalo@codeaurora.org>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-Signed-off-by: John Crispin <john@phrozen.org>
----
- drivers/net/wireless/ath/ath11k/core.h  | 4 ++++
- drivers/net/wireless/ath/ath11k/dp_rx.c | 4 ++--
- 2 files changed, 6 insertions(+), 2 deletions(-)
+This series adds support for propagating the TWT and OBSS PD information
+from userland/assocs to a wireless driver. The patches for making use of
+these features inside ath11k are also included.
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index a7c59ea0c228..d0d960b384e7 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -46,6 +46,10 @@ enum wme_ac {
- 	WME_NUM_AC
- };
- 
-+#define ATH11K_HT_MCS_MAX	7
-+#define ATH11K_VHT_MCS_MAX	9
-+#define ATH11K_HE_MCS_MAX	11
-+
- static inline enum wme_ac ath11k_tid_to_ac(u32 tid)
- {
- 	return (((tid == 0) || (tid == 3)) ? WME_AC_BE :
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 62820c20f7c1..e52a54cd2b79 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -1705,7 +1705,7 @@ static void ath11k_dp_rx_h_rate(struct ath11k *ar, void *rx_desc,
- 		break;
- 	case RX_MSDU_START_PKT_TYPE_11N:
- 		rx_status->encoding = RX_ENC_HT;
--		if (rate_mcs > 7) {
-+		if (rate_mcs > ATH11K_HT_MCS_MAX) {
- 			ath11k_warn(ar->ab, "Received with invalid mcs in HT mode %d\n", rate_mcs);
- 			break;
- 		}
-@@ -1717,7 +1717,7 @@ static void ath11k_dp_rx_h_rate(struct ath11k *ar, void *rx_desc,
- 	case RX_MSDU_START_PKT_TYPE_11AC:
- 		rx_status->encoding = RX_ENC_VHT;
- 		rx_status->rate_idx = rate_mcs;
--		if (rate_mcs > 9) {
-+		if (rate_mcs > ATH11K_VHT_MCS_MAX) {
- 			ath11k_warn(ar->ab, "Received with invalid mcs in VHT mode %d\n", rate_mcs);
- 			break;
- 		}
+I already have the hostapd patches ready and will send them once these
+changes are inside nl80211.h.
+
+John Crispin (7):
+  mac80211: dynamically enable the TWT requester support on STA
+    interfaces
+  mac80211: allow turning TWT responder support on and off via netlink
+  ath11k: add TWT support
+  mac80211: HE: add Spatial Reuse IE parsing support
+  mac80211: allow setting spatial reuse parameters when bringing up an
+    AP
+  mac80211: propagate spatial reuse info into ieee80211_sta
+  ath11k: add spatial reuse support
+
+ drivers/net/wireless/ath/ath11k/mac.c |  22 +++++
+ drivers/net/wireless/ath/ath11k/wmi.c | 126 ++++++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/wmi.h |  87 ++++++++++++++++++
+ include/linux/ieee80211.h             |  49 ++++++++++
+ include/net/cfg80211.h                |  17 ++++
+ include/net/mac80211.h                |  10 ++
+ include/uapi/linux/nl80211.h          |  31 +++++++
+ net/mac80211/cfg.c                    |   7 +-
+ net/mac80211/he.c                     |  24 +++++
+ net/mac80211/ieee80211_i.h            |   5 +
+ net/mac80211/mlme.c                   |  19 +++-
+ net/mac80211/util.c                   |   4 +
+ net/wireless/nl80211.c                |  47 ++++++++++
+ 13 files changed, 445 insertions(+), 3 deletions(-)
+
 -- 
 2.20.1
 
