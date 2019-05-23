@@ -1,12 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hTlDD-0007RK-VM
+ id 1hTlDE-0007RL-9Z
  for ath11k@lists.infradead.org; Thu, 23 May 2019 10:44:41 +0000
 From: John Crispin <john@phrozen.org>
-Subject: [PATCH 1/2] ath11k: add sta_statistics callback
-Date: Thu, 23 May 2019 12:44:30 +0200
-Message-Id: <20190523104431.8996-1-john@phrozen.org>
+Subject: [PATCH 2/2] ath11k: properly convert bw
+Date: Thu, 23 May 2019 12:44:31 +0200
+Message-Id: <20190523104431.8996-2-john@phrozen.org>
+In-Reply-To: <20190523104431.8996-1-john@phrozen.org>
+References: <20190523104431.8996-1-john@phrozen.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -23,61 +25,28 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Kalle Valo <kvalo@codeaurora.org>
 Cc: Shashidhar Lakkavalli <slakkavalli@datto.com>, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-Add the callback allowing us to pass the rates to userland for iw tool
-to display.
+The bandwidth inside the TX reporting code is not properly converted from
+ath11k values to the rate_info ones.
 
 Signed-off-by: Shashidhar Lakkavalli <slakkavalli@datto.com>
 Signed-off-by: John Crispin <john@phrozen.org>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 28 +++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 1bdb6c949585..5bac07ce18bf 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -5023,6 +5023,33 @@ static int ath11k_get_survey(struct ieee80211_hw *hw, int idx,
- 	return ret;
- }
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 71d385cf55d7..38cc787671ee 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -954,7 +954,7 @@ ath11k_update_per_peer_tx_stats(struct ath11k *ar,
+ 	}
  
-+static void ath11k_sta_statistics(struct ieee80211_hw *hw,
-+				  struct ieee80211_vif *vif,
-+				  struct ieee80211_sta *sta,
-+				  struct station_info *sinfo)
-+{
-+	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
-+
-+	sinfo->rx_duration = arsta->rx_duration;
-+	sinfo->filled |= BIT_ULL(NL80211_STA_INFO_RX_DURATION);
-+
-+	if (!arsta->txrate.legacy && !arsta->txrate.nss)
-+		return;
-+
-+	if (arsta->txrate.legacy) {
-+		sinfo->txrate.legacy = arsta->txrate.legacy;
-+	} else {
-+		sinfo->txrate.mcs = arsta->txrate.mcs;
-+		sinfo->txrate.nss = arsta->txrate.nss;
-+		sinfo->txrate.bw = arsta->txrate.bw;
-+		sinfo->txrate.he_gi = arsta->txrate.he_gi;
-+		sinfo->txrate.he_dcm = arsta->txrate.he_dcm;
-+		sinfo->txrate.he_ru_alloc = arsta->txrate.he_ru_alloc;
-+	}
-+	sinfo->txrate.flags = arsta->txrate.flags;
-+	sinfo->filled |= BIT_ULL(NL80211_STA_INFO_TX_BITRATE);
-+}
-+
- static const struct ieee80211_ops ath11k_ops = {
- 	.tx				= ath11k_mac_op_tx,
- 	.start                          = ath11k_start,
-@@ -5053,6 +5080,7 @@ static const struct ieee80211_ops ath11k_ops = {
- 	.set_bitrate_mask		= ath11k_mac_op_set_bitrate_mask,
- 	.get_survey			= ath11k_get_survey,
- 	.flush				= ath11k_flush,
-+	.sta_statistics			= ath11k_sta_statistics,
- 	CFG80211_TESTMODE_CMD(ath11k_tm_cmd)
- #ifdef CONFIG_MAC80211_DEBUGFS
- 	.sta_add_debugfs		= ath11k_sta_add_debugfs,
+ 	arsta->txrate.nss = nss;
+-	arsta->txrate.bw = bw;
++	arsta->txrate.bw = ath11k_bw_to_mac80211_bw(bw);
+ 	arsta->tx_info.status.rates[0].flags |= ath11k_bw_to_mac80211_bwflags(bw);
+ 
+ 	memcpy(&arsta->last_txrate, &arsta->txrate, sizeof(struct rate_info));
 -- 
 2.20.1
 
