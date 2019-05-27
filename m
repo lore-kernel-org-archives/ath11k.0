@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hVFnO-0001mZ-EL
- for ath11k@lists.infradead.org; Mon, 27 May 2019 13:36:11 +0000
+ id 1hVFoT-0001xM-Tj
+ for ath11k@lists.infradead.org; Mon, 27 May 2019 13:37:19 +0000
 From: Karthikeyan Periyasamy <periyasa@codeaurora.org>
-Subject: [PATCH] ath11k: Fix invalid dma address access in hal rx
-Date: Mon, 27 May 2019 19:05:39 +0530
-Message-Id: <1558964139-13399-1-git-send-email-periyasa@codeaurora.org>
+Subject: [PATCH] ath11k: cleanup in data path
+Date: Mon, 27 May 2019 19:06:53 +0530
+Message-Id: <1558964213-13440-1-git-send-email-periyasa@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,28 +23,27 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: Karthikeyan Periyasamy <periyasa@codeaurora.org>
 
-ath11k_hal_rx_buf_addr_info_get() populating the MSB of the
-dma address from the info0 member, which is invalid. It has
-to populate the MSB from info1 member.
+Removed unnecessary call of ath11k_hal_srng_get_entrysize() in
+ath11k_dp_srng_setup().
 
 Signed-off-by: Karthikeyan Periyasamy <periyasa@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/hal_rx.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/dp.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/hal_rx.c b/drivers/net/wireless/ath/ath11k/hal_rx.c
-index 6eb47d9..c37340f 100644
---- a/drivers/net/wireless/ath/ath11k/hal_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/hal_rx.c
-@@ -286,7 +286,7 @@ void ath11k_hal_rx_buf_addr_info_get(void *desc, dma_addr_t *paddr,
- 	struct buffer_addr *binfo = (struct buffer_addr *)desc;
+diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
+index 5d30fc2..0aec840 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.c
++++ b/drivers/net/wireless/ath/ath11k/dp.c
+@@ -94,8 +94,6 @@ int ath11k_dp_srng_setup(struct ath11k_base *ab, struct dp_srng *ring,
+ 	int max_entries = ath11k_hal_srng_get_max_entries(type);
+ 	int ret;
  
- 	*paddr =
--		(((u64)FIELD_GET(BUFFER_ADDR_INFO1_ADDR, binfo->info0)) << 32) |
-+		(((u64)FIELD_GET(BUFFER_ADDR_INFO1_ADDR, binfo->info1)) << 32) |
- 		FIELD_GET(BUFFER_ADDR_INFO0_ADDR, binfo->info0);
- 	*cookie = FIELD_GET(BUFFER_ADDR_INFO1_SW_COOKIE, binfo->info1);
- 	*rbm = FIELD_GET(BUFFER_ADDR_INFO1_RET_BUF_MGR, binfo->info1);
+-	entry_sz = ath11k_hal_srng_get_entrysize(type);
+-
+ 	if (max_entries < 0 || entry_sz < 0)
+ 		return -EINVAL;
+ 
 -- 
 1.9.1
 
