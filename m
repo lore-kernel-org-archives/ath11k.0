@@ -1,16 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from nbd.name ([2a01:4f8:221:3d45::2])
+Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hTlHT-0000Yn-VB
- for ath11k@lists.infradead.org; Thu, 23 May 2019 10:49:05 +0000
-Subject: Re: [RFC] ath11k: add HE rate reporting
-References: <20190523104730.15256-1-john@phrozen.org>
-From: John Crispin <john@phrozen.org>
-Message-ID: <db697dab-7011-f550-d995-89cefd346369@phrozen.org>
-Date: Thu, 23 May 2019 12:49:01 +0200
-MIME-Version: 1.0
-In-Reply-To: <20190523104730.15256-1-john@phrozen.org>
-Content-Language: en-US
+ id 1hVFSP-0006tJ-Nn
+ for ath11k@lists.infradead.org; Mon, 27 May 2019 13:14:30 +0000
+From: Sriram R <srirrama@codeaurora.org>
+Subject: [PATCH] ath11k: Avoid frequency offset based sanity check in radar
+ detection event
+Date: Mon, 27 May 2019 18:44:05 +0530
+Message-Id: <1558962845-12903-1-git-send-email-srirrama@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -19,97 +16,58 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Rajkumar Manoharan <rmanohar@qti.qualcomm.com>
-Cc: ath11k@lists.infradead.org
+To: ath11k@lists.infradead.org
+Cc: Sriram R <srirrama@codeaurora.org>
 
-Ck9uIDIzLzA1LzIwMTkgMTI6NDcsIEpvaG4gQ3Jpc3BpbiB3cm90ZToKPiBXZSBuZWVkIHRvIGZp
-Z3VyZSBvdXQgaG93IHRvIHJlYWQgdGhlIHJ1X2FsbG9jIGFuZCBEQ00gdmFsdWVzIGZyb20gRlcu
-CgpIaSBSYWprdW1hciwKCmNvdWxkIHlvdSBoZWxwIG1lIGZpZ3VyZSBvdXQgaG93IHRvIGdldCB0
-aGUgRENNL1JVIHZhbHVlcyBpbiB0aGUgRlcgCnJlcG9ydGluZyA/IEkgaGF2ZSBtYXJrZWQgcGxh
-Y2VzIHRoZW0gd2l0aCBUT0RPIHRhZ3MgaW4gdGhlIGNvZGUKCiDCoMKgwqAgSm9obgoKCj4gU2ln
-bmVkLW9mZi1ieTogSm9obiBDcmlzcGluIDxqb2huQHBocm96ZW4ub3JnPgo+IC0tLQo+ICAgZHJp
-dmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9kcC5oICAgIHwgIDkgKysrKysKPiAgIGRyaXZl
-cnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvZHBfcnguYyB8IDQ1ICsrKysrKysrKysrKysrKysr
-KysrKysrKy0KPiAgIDIgZmlsZXMgY2hhbmdlZCwgNTMgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlv
-bigtKQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvZHAu
-aCBiL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvZHAuaAo+IGluZGV4IDc5YjY2NTgx
-NjM3OC4uMGJiN2NiYzkyZTExIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0
-aC9hdGgxMWsvZHAuaAo+ICsrKyBiL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvZHAu
-aAo+IEBAIC0xMDQ5LDYgKzEwNDksMTMgQEAgc3RydWN0IGh0dF9wcGR1X3N0YXRzX2NvbW1vbiB7
-Cj4gICAJdTE2IGJ3X21oejsKPiAgIH0gX19wYWNrZWQ7Cj4gICAKPiArZW51bSBodHRfcHBkdV9z
-dGF0c19naSB7Cj4gKwlIVFRfUFBEVV9TVEFUU19TR0lfMF84X1VTLAo+ICsJSFRUX1BQRFVfU1RB
-VFNfU0dJXzBfNF9VUywKPiArCUhUVF9QUERVX1NUQVRTX1NHSV8xXzZfVVMsCj4gKwlIVFRfUFBE
-VV9TVEFUU19TR0lfM18yX1VTLAo+ICt9Owo+ICsKPiAgICNkZWZpbmUgSFRUX1BQRFVfU1RBVFNf
-VVNFUl9SQVRFX0lORk8wX1VTRVJfUE9TX00JR0VOTUFTSygzLDApCj4gICAjZGVmaW5lIEhUVF9Q
-UERVX1NUQVRTX1VTRVJfUkFURV9JTkZPMF9NVV9HUk9VUF9JRF9NCUdFTk1BU0soMTEsNCkKPiAg
-IAo+IEBAIC0xMDc3LDYgKzEwODQsOCBAQCBzdHJ1Y3QgaHR0X3BwZHVfc3RhdHNfY29tbW9uIHsK
-PiAgIAkJRklFTERfR0VUKEhUVF9QUERVX1NUQVRTX1VTRVJfUkFURV9GTEFHU19NQ1NfTSwgX3Zh
-bCkKPiAgICNkZWZpbmUgSFRUX1VTUl9SQVRFX0dJKF92YWwpIFwKPiAgIAkJRklFTERfR0VUKEhU
-VF9QUERVX1NUQVRTX1VTRVJfUkFURV9GTEFHU19HSV9NLCBfdmFsKQo+ICsjZGVmaW5lIEhUVF9V
-U1JfUkFURV9EQ00oX3ZhbCkgXAo+ICsJCUZJRUxEX0dFVChIVFRfUFBEVV9TVEFUU19VU0VSX1JB
-VEVfRkxBR1NfRENNX00sIF92YWwpCj4gICAKPiAgICNkZWZpbmUgSFRUX1BQRFVfU1RBVFNfVVNF
-Ul9SQVRFX1JFU1BfRkxBR1NfTFRGX1NJWkVfTQkJR0VOTUFTSygxLDApCj4gICAjZGVmaW5lIEhU
-VF9QUERVX1NUQVRTX1VTRVJfUkFURV9SRVNQX0ZMQUdTX1NUQkNfTQkJQklUKDIpCj4gZGlmZiAt
-LWdpdCBhL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvZHBfcnguYyBiL2RyaXZlcnMv
-bmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvZHBfcnguYwo+IGluZGV4IDM4Y2M3ODc2NzFlZS4uYzhm
-MTkwYmUzZTgyIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsv
-ZHBfcnguYwo+ICsrKyBiL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvZHBfcnguYwo+
-IEBAIC04MzEsNiArODMxLDI0IEBAIHN0YXRpYyBpbmxpbmUgdTMyIGF0aDExa19id190b19tYWM4
-MDIxMV9id2ZsYWdzKHU4IGJ3KQo+ICAgCXJldHVybiBid2ZsYWdzOwo+ICAgfQo+ICAgCj4gK3N0
-YXRpYyBpbmxpbmUgdTMyIGF0aDExa19oZV9naV90b19ubDgwMjExX2hlX2dpKHU4IHNnaSkKPiAr
-ewo+ICsJdTMyIHJldCA9IDA7Cj4gKwo+ICsJc3dpdGNoIChzZ2kpIHsKPiArCWNhc2UgUlhfTVNE
-VV9TVEFSVF9TR0lfMF84X1VTOgo+ICsJCXJldCA9IE5MODAyMTFfUkFURV9JTkZPX0hFX0dJXzBf
-ODsKPiArCQlicmVhazsKPiArCWNhc2UgUlhfTVNEVV9TVEFSVF9TR0lfMV82X1VTOgo+ICsJCXJl
-dCA9IE5MODAyMTFfUkFURV9JTkZPX0hFX0dJXzFfNjsKPiArCQlicmVhazsKPiArCWNhc2UgUlhf
-TVNEVV9TVEFSVF9TR0lfM18yX1VTOgo+ICsJCXJldCA9IE5MODAyMTFfUkFURV9JTkZPX0hFX0dJ
-XzNfMjsKPiArCQlicmVhazsKPiArCX0KPiArCXJldHVybiByZXQ7Cj4gK30KPiArCj4gICBzdGF0
-aWMgdm9pZAo+ICAgYXRoMTFrX3VwZGF0ZV9wZXJfcGVlcl90eF9zdGF0cyhzdHJ1Y3QgYXRoMTFr
-ICphciwKPiAgIAkJCQlzdHJ1Y3QgaHR0X3BwZHVfdXNlcl9zdGF0cyAqdXNyX3N0YXRzKQo+IEBA
-IC04NDMsNyArODYxLDcgQEAgYXRoMTFrX3VwZGF0ZV9wZXJfcGVlcl90eF9zdGF0cyhzdHJ1Y3Qg
-YXRoMTFrICphciwKPiAgIAlzdHJ1Y3QgaWVlZTgwMjExX2NoYW5jdHhfY29uZiAqY29uZiA9IE5V
-TEw7Cj4gICAJc3RydWN0IGF0aDExa19wZXJfcGVlcl90eF9zdGF0cyAqcGVlcl9zdGF0cyA9ICZh
-ci0+cGVlcl90eF9zdGF0czsKPiAgIAlpbnQgcmV0Owo+IC0JdTggZmxhZ3MsIG1jcywgbnNzLCBi
-dywgc2dpLCByYXRlX2lkeCA9IDA7Cj4gKwl1OCBmbGFncywgbWNzLCBuc3MsIGJ3LCBzZ2ksIGRj
-bSwgcmF0ZV9pZHggPSAwOwo+ICAgCXUzMiBzdWNjX2J5dGVzID0gMDsKPiAgIAl1MTYgcmF0ZSA9
-IDAsIHN1Y2NfcGt0cyA9IDA7Cj4gICAJYm9vbCBpc19hbXBkdSA9IGZhbHNlOwo+IEBAIC04NzEs
-MTIgKzg4OSwxOCBAQCBhdGgxMWtfdXBkYXRlX3Blcl9wZWVyX3R4X3N0YXRzKHN0cnVjdCBhdGgx
-MWsgKmFyLAo+ICAgCW5zcyA9IEhUVF9VU1JfUkFURV9OU1ModXNlcl9yYXRlLT5yYXRlX2ZsYWdz
-KSArIDE7Cj4gICAJbWNzID0gSFRUX1VTUl9SQVRFX01DUyh1c2VyX3JhdGUtPnJhdGVfZmxhZ3Mp
-Owo+ICAgCXNnaSA9IEhUVF9VU1JfUkFURV9HSSh1c2VyX3JhdGUtPnJhdGVfZmxhZ3MpOwo+ICsJ
-ZGNtID0gSFRUX1VTUl9SQVRFX0RDTSh1c2VyX3JhdGUtPnJhdGVfZmxhZ3MpOwo+ICAgCj4gICAg
-ICAgICAgIC8qIE5vdGU6IElmIGhvc3QgY29uZmlndXJlZCBmaXhlZCByYXRlcyBhbmQgaW4gc29t
-ZSBvdGhlciBzcGVjaWFsCj4gICAJICogY2FzZXMsIHRoZSBicm9hZGNhc3QvbWFuYWdlbWVudCBm
-cmFtZXMgYXJlIHNlbnQgaW4gZGlmZmVyZW50IHJhdGVzLgo+ICAgCSAqIEZpcm1hcmUgcmF0ZSdz
-IGNvbnRyb2wgdG8gYmUgc2tpcHBlZCBmb3IgdGhpcz8KPiAgICAgICAgICAgICovCj4gICAKPiAr
-CWlmIChmbGFncyA9PSBXTUlfUkFURV9QUkVBTUJMRV9IRSAmJiBtY3MgPiAxMSkgewo+ICsJCWF0
-aDExa193YXJuKGFiLCAiSW52YWxpZCBIRSBtY3MgJWhoZCBwZWVyIHN0YXRzIiwgIG1jcyk7Cj4g
-KwkJcmV0dXJuOwo+ICsJfQo+ICsKPiAgIAlpZiAoZmxhZ3MgPT0gV01JX1JBVEVfUFJFQU1CTEVf
-VkhUICYmIG1jcyA+IDkpIHsKPiAgIAkJYXRoMTFrX3dhcm4oYWIsICJJbnZhbGlkIFZIVCBtY3Mg
-JWhoZCBwZWVyIHN0YXRzIiwgIG1jcyk7Cj4gICAJCXJldHVybjsKPiBAQCAtOTUxLDYgKzk3NSwy
-MyBAQCBhdGgxMWtfdXBkYXRlX3Blcl9wZWVyX3R4X3N0YXRzKHN0cnVjdCBhdGgxMWsgKmFyLAo+
-ICAgCQkJCQkJSUVFRTgwMjExX1RYX1JDX1NIT1JUX0dJOwo+ICAgCQl9Cj4gICAJCWJyZWFrOwo+
-ICsJY2FzZSBXTUlfUkFURV9QUkVBTUJMRV9IRToKPiArCQlhcnN0YS0+dHhyYXRlLm1jcyA9IG1j
-czsKPiArCQlhcnN0YS0+dHhyYXRlLmZsYWdzID0gUkFURV9JTkZPX0ZMQUdTX0hFX01DUzsKPiAr
-CQlhcnN0YS0+dHhyYXRlLmhlX2RjbSA9IGRjbTsKPiArCQkvKiBUT0RPIGhvdyBkbyB3ZSBnZXQg
-dGhlIFJVIHJhdGUgPyAqLwo+ICsJCWFyc3RhLT50eHJhdGUuaGVfcnVfYWxsb2MgPSAwOwo+ICsJ
-CWFyc3RhLT50eHJhdGUuaGVfZ2kgPSBhdGgxMWtfaGVfZ2lfdG9fbmw4MDIxMV9oZV9naShzZ2kp
-Owo+ICsJCS8qIFRPRE8gYXJzdGEtPnR4X2luZm8uc3RhdHVzLnJhdGVzIGNhbm5vdCBiZSBzZXQg
-YXMgdGhlcmUgYXJlIG5vdAo+ICsJCSAqIGVub3VnaCBiaXRzIGxlZnQuIFVzZSBWSFQgZm9yIG5v
-dy4KPiArCQkgKi8KPiArCQlhcnN0YS0+dHhfaW5mby5zdGF0dXMucmF0ZXNbMF0uZmxhZ3MgfD0g
-SUVFRTgwMjExX1RYX1JDX1ZIVF9NQ1M7Cj4gKwkJaWYgKHNnaSkgewo+ICsJCQlhcnN0YS0+dHhy
-YXRlLmZsYWdzIHw9IFJBVEVfSU5GT19GTEFHU19TSE9SVF9HSTsKPiArCQkJYXJzdGEtPnR4X2lu
-Zm8uc3RhdHVzLnJhdGVzWzBdLmZsYWdzIHw9Cj4gKwkJCQkJCUlFRUU4MDIxMV9UWF9SQ19TSE9S
-VF9HSTsKPiArCQl9Cj4gKwkJYnJlYWs7Cj4gICAJfQo+ICAgCj4gICAJYXJzdGEtPnR4cmF0ZS5u
-c3MgPSBuc3M7Cj4gQEAgLTE3MzcsNiArMTc3OCw4IEBAIHN0YXRpYyB2b2lkIGF0aDExa19kcF9y
-eF9oX3JhdGUoc3RydWN0IGF0aDExayAqYXIsIHZvaWQgKnJ4X2Rlc2MsCj4gICAJCXJ4X3N0YXR1
-cy0+ZW5jb2RpbmcgPSBSWF9FTkNfSEU7Cj4gICAJCXJ4X3N0YXR1cy0+bnNzID0gbnNzOwo+ICAg
-CQlyeF9zdGF0dXMtPmJ3ID0gYXRoMTFrX2J3X3RvX21hYzgwMjExX2J3KGJ3KTsKPiArCQlyeF9z
-dGF0dXMtPmhlX2dpID0gYXRoMTFrX2hlX2dpX3RvX25sODAyMTFfaGVfZ2koc2dpKTsKPiArCQkv
-KiBUT0RPIERDTSBhbmQgUlUgYXJlIG1pc3NpbmcgKi8KPiAgIAkJYnJlYWs7Cj4gICAJfQo+ICAg
-fQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYXRoMTFr
-IG1haWxpbmcgbGlzdAphdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5m
-cmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2F0aDExawo=
+Currently the detected radar is indicated to mac80211 only when the active
+rx channel is indicated in the event through channel frequency and offset.
+But in case there is a minor difference in this offset provided,say +/- 1,
+the event will rejected.
+
+Hence avoid having these checks to indicate radar to mac80211. Basically the
+event from firmware is highly reliable and such sanity checks are not
+necessary.
+
+Signed-off-by: Sriram R <srirrama@codeaurora.org>
+---
+ drivers/net/wireless/ath/ath11k/wmi.c | 7 +------
+ 1 file changed, 1 insertion(+), 6 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 4f2ac21..90d9560 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -5809,12 +5809,6 @@ ath11k_wmi_pdev_dfs_radar_detected_event(struct ath11k_base *ab,
+ 		goto exit;
+ 	}
+ 
+-	if (ar->rx_channel && ar->rx_channel->center_freq != (ev->chan_freq
+-	    - ev->freq_offset)) {
+-		ath11k_warn(ab, "Radar detected in non-operating channel");
+-		goto exit;
+-	}
+-
+ 	ath11k_dbg(ar->ab, ATH11K_DBG_REG, "DFS Radar Detected in pdev %d\n",
+ 		   ev->pdev_id);
+ 
+@@ -5826,6 +5820,7 @@ ath11k_wmi_pdev_dfs_radar_detected_event(struct ath11k_base *ab,
+ exit:
+ 	kfree(tb);
+ }
++
+ static void ath11k_wmi_tlv_op_rx(struct ath11k_base *ab, struct sk_buff *skb)
+ {
+ 	struct wmi_cmd_hdr *cmd_hdr;
+-- 
+2.7.4
+
+
+_______________________________________________
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
