@@ -1,15 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from nbd.name ([2a01:4f8:221:3d45::2])
+Received: from alexa-out-blr-02.qualcomm.com ([103.229.18.198]
+ helo=alexa-out-blr.qualcomm.com)
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hVW4M-0007Zu-6b
- for ath11k@lists.infradead.org; Tue, 28 May 2019 06:58:47 +0000
-From: John Crispin <john@phrozen.org>
-Subject: [PATCH V6 10/11] ath11k: properly convert bw
-Date: Tue, 28 May 2019 08:48:02 +0200
-Message-Id: <20190528064803.24419-11-john@phrozen.org>
-In-Reply-To: <20190528064803.24419-1-john@phrozen.org>
-References: <20190528064803.24419-1-john@phrozen.org>
-MIME-Version: 1.0
+ id 1hVY70-0000Rn-DD
+ for ath11k@lists.infradead.org; Tue, 28 May 2019 09:09:40 +0000
+From: Venkateswara Naralasetty <vnaralas@codeaurora.org>
+Subject: [PATCH] ath11k: Fix bug in SMPS support
+Date: Tue, 28 May 2019 14:39:31 +0530
+Message-Id: <1559034571-25406-1-git-send-email-vnaralas@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -18,37 +16,93 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: Shashidhar Lakkavalli <slakkavalli@datto.com>, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
+To: ath11k@lists.infradead.org
+Cc: Venkateswara Naralasetty <vnaralas@codeaurora.org>
 
-The bandwidth inside the TX reporting code is not properly converted from
-ath11k values to the rate_info ones.
+Currently firmware ignores SMPS support flags in peer assoc command.
+For SMPS to work it is necessary to send SMPS mode parameters to
+firmware so that tx chainmask is properly set to that peer.
 
-Signed-off-by: Shashidhar Lakkavalli <slakkavalli@datto.com>
-Signed-off-by: John Crispin <john@phrozen.org>
+Signed-off-by: Venkateswara Naralasetty <vnaralas@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/dp_rx.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/mac.c | 43 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 43 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 71d385cf55d7..38cc787671ee 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -954,7 +954,7 @@ ath11k_update_per_peer_tx_stats(struct ath11k *ar,
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index cb0de8e..0839dc9 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -1559,6 +1559,33 @@ static void ath11k_peer_assoc_prepare(struct ath11k *ar,
+ 	/* TODO: amsdu_disable req? */
+ }
+ 
++static const u32 ath11k_smps_map[] = {
++	[WLAN_HT_CAP_SM_PS_STATIC] = WMI_PEER_SMPS_STATIC,
++	[WLAN_HT_CAP_SM_PS_DYNAMIC] = WMI_PEER_SMPS_DYNAMIC,
++	[WLAN_HT_CAP_SM_PS_INVALID] = WMI_PEER_SMPS_PS_NONE,
++	[WLAN_HT_CAP_SM_PS_DISABLED] = WMI_PEER_SMPS_PS_NONE,
++};
++
++static int ath11k_setup_peer_smps(struct ath11k *ar, struct ath11k_vif *arvif,
++				  const u8 *addr,
++				  const struct ieee80211_sta_ht_cap *ht_cap)
++{
++	int smps;
++
++	if (!ht_cap->ht_supported)
++		return 0;
++
++	smps = ht_cap->cap & IEEE80211_HT_CAP_SM_PS;
++	smps >>= IEEE80211_HT_CAP_SM_PS_SHIFT;
++
++	if (smps >= ARRAY_SIZE(ath11k_smps_map))
++		return -EINVAL;
++
++	return ath11k_wmi_set_peer_param(ar, addr, arvif->vdev_id,
++					 WMI_PEER_MIMO_PS_STATE,
++					 ath11k_smps_map[smps]);
++}
++
+ static void ath11k_bss_assoc(struct ieee80211_hw *hw,
+ 			     struct ieee80211_vif *vif,
+ 			     struct ieee80211_bss_conf *bss_conf)
+@@ -1601,6 +1628,14 @@ static void ath11k_bss_assoc(struct ieee80211_hw *hw,
+ 		return;
  	}
  
- 	arsta->txrate.nss = nss;
--	arsta->txrate.bw = bw;
-+	arsta->txrate.bw = ath11k_bw_to_mac80211_bw(bw);
- 	arsta->tx_info.status.rates[0].flags |= ath11k_bw_to_mac80211_bwflags(bw);
++	ret = ath11k_setup_peer_smps(ar, arvif, bss_conf->bssid,
++				     &ap_sta->ht_cap);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to setup peer SMPS for vdev %d: %d\n",
++			    arvif->vdev_id, ret);
++		return;
++	}
++
+ 	WARN_ON(arvif->is_up);
  
- 	memcpy(&arsta->last_txrate, &arsta->txrate, sizeof(struct rate_info));
+ 	arvif->aid = bss_conf->aid;
+@@ -2370,6 +2405,14 @@ static int ath11k_station_assoc(struct ath11k *ar,
+ 	if (reassoc)
+ 		return 0;
+ 
++	ret = ath11k_setup_peer_smps(ar, arvif, sta->addr,
++				     &sta->ht_cap);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to setup peer SMPS for vdev %d: %d\n",
++			    arvif->vdev_id, ret);
++		return ret;
++	}
++
+ 	if (!sta->wme) {
+ 		arvif->num_legacy_stations++;
+ 		ret = ath11k_recalc_rtscts_prot(arvif);
 -- 
-2.20.1
+2.7.4
 
 
 _______________________________________________
