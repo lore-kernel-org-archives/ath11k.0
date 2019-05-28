@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hVk1p-0003vx-20
+ id 1hVk1o-0003vz-Sj
  for ath11k@lists.infradead.org; Tue, 28 May 2019 21:53:06 +0000
 From: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
-Subject: [PATCH 3/4] ath11k: fix multicast txrx for secure 11s mesh support
-Date: Tue, 28 May 2019 14:52:55 -0700
-Message-Id: <1559080376-26817-4-git-send-email-pradeepc@codeaurora.org>
+Subject: [PATCH 4/4] ath11k: fix action frame rx processing
+Date: Tue, 28 May 2019 14:52:56 -0700
+Message-Id: <1559080376-26817-5-git-send-email-pradeepc@codeaurora.org>
 In-Reply-To: <1559080376-26817-1-git-send-email-pradeepc@codeaurora.org>
 References: <1559080376-26817-1-git-send-email-pradeepc@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,33 +25,47 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
 
-setting MESH_MCAST_ENABLE wmi param is necessary for txrx of multicast
-action frames in 11s mesh.
+Firmware/HW delivers broadcast/multicast management frames as encrypted
+and it should be decrypted by mac80211. Setting RX_FLAG_DECRYPTED status
+for these frames is breaking mesh connection establishment. For unicast
+protected action frames, HW decrypts the packet, however, IV and MIC are
+not stripped in HW and same must be done by mac80211. so fix that.
 
 Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/net/wireless/ath/ath11k/wmi.c | 15 +++++++++------
+ 1 file changed, 9 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index c78c1481fe7f..9730c077149a 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -3373,6 +3373,14 @@ static int ath11k_start(struct ieee80211_hw *hw)
- 		goto err;
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 9ca44c4b24f8..07a6fd4d2f8c 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -4905,16 +4905,19 @@ static void ath11k_mgmt_rx_event(struct ath11k_base *ab, struct sk_buff *skb)
+ 	status->flag |= RX_FLAG_SKIP_MONITOR;
+ 
+ 	/* In case of PMF, FW delivers decrypted frames with Protected Bit set.
+-	 * Don't clear that. FW also delivers broadcast management frames
++	 * Don't clear that. Also, FW delivers broadcast management frames
+ 	 * (ex: group privacy action frames in mesh) as encrypted payload.
+ 	 */
+-	if (!ieee80211_is_robust_mgmt_frame(skb))  {
++	if (ieee80211_has_protected(hdr->frame_control) &&
++	    !is_multicast_ether_addr(ieee80211_get_DA(hdr))) {
+ 		status->flag |= RX_FLAG_DECRYPTED;
+ 
+-		status->flag |= RX_FLAG_IV_STRIPPED |
+-			RX_FLAG_MMIC_STRIPPED;
+-		hdr->frame_control = __cpu_to_le16(fc &
+-				~IEEE80211_FCTL_PROTECTED);
++		if (!ieee80211_is_robust_mgmt_frame(skb)) {
++			status->flag |= RX_FLAG_IV_STRIPPED |
++					RX_FLAG_MMIC_STRIPPED;
++			hdr->frame_control = __cpu_to_le16(fc &
++					     ~IEEE80211_FCTL_PROTECTED);
++		}
  	}
  
-+	ret = ath11k_wmi_pdev_set_param(ar, WMI_PDEV_PARAM_MESH_MCAST_ENABLE,
-+					1, pdev->pdev_id);
-+
-+	if (ret) {
-+		ath11k_err(ar->ab, "failed to enable MESH MCAST ENABLE: (%d\n", ret);
-+		goto err;
-+	}
-+
- 	__ath11k_set_antenna(ar, ar->cfg_tx_chainmask, ar->cfg_rx_chainmask);
- 
- 	/* TODO: Do we need to enable ANI? */
+ 	/* TODO: Pending handle beacon implementation
 -- 
 2.1.2
 
