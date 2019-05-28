@@ -1,16 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from narfation.org ([2001:4d88:2000:7::2] helo=v3-1039.vlinux.de)
+Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hVdGU-0008Vu-6B
- for ath11k@lists.infradead.org; Tue, 28 May 2019 14:39:47 +0000
-From: Sven Eckelmann <sven@narfation.org>
-Subject: Re: [PATCH v2 0/3] ath11k: Add Mesh mode support
-Date: Tue, 28 May 2019 16:39:39 +0200
-Message-ID: <3594678.I98WQv5yxB@bentobox>
-In-Reply-To: <1931905.PyyBc1jC1X@bentobox>
-References: <1555697498-27472-1-git-send-email-rmanohar@codeaurora.org>
- <1931905.PyyBc1jC1X@bentobox>
-MIME-Version: 1.0
+ id 1hVk1o-0003vj-Tw
+ for ath11k@lists.infradead.org; Tue, 28 May 2019 21:53:06 +0000
+From: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
+Subject: [PATCH 2/4] ath11k: pad mic len for protected action frames
+Date: Tue, 28 May 2019 14:52:54 -0700
+Message-Id: <1559080376-26817-3-git-send-email-pradeepc@codeaurora.org>
+In-Reply-To: <1559080376-26817-1-git-send-email-pradeepc@codeaurora.org>
+References: <1559080376-26817-1-git-send-email-pradeepc@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -19,81 +17,53 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1535823912164154335=="
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
-Cc: Rajkumar Manoharan <rmanohar@codeaurora.org>
+Cc: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
 
---===============1535823912164154335==
-Content-Type: multipart/signed; boundary="nextPart10829153.VCfYJ5ufOz"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+padding mic space is necessary for firmware to generate mic len
+correctly and to not run into any memory issues.
 
---nextPart10829153.VCfYJ5ufOz
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
+---
+ drivers/net/wireless/ath/ath11k/mac.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-On Tuesday, 28 May 2019 15:48:25 CEST Sven Eckelmann wrote:
-[...]
-> What else is required to get this working? I used ath11k-bringup (which 
-> included these patches) and wanted to implement the HE registration part for 
-> it. But it turns out that it doesn't event work here with VHT. This is what 
-I 
-> did on two HK01 rev B:
-[...]
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index cb0de8e2aa60..c78c1481fe7f 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -3179,6 +3179,7 @@ static int ath11k_mac_mgmt_tx_wmi(struct ath11k *ar, struct ath11k_vif *arvif,
+ 				  struct sk_buff *skb)
+ {
+ 	struct ath11k_base *ab = ar->ab;
++	struct ieee80211_hdr *hdr = (struct ieee80211_hdr *)skb->data;
+ 	dma_addr_t paddr;
+ 	int buf_id;
+ 	int ret;
+@@ -3190,6 +3191,13 @@ static int ath11k_mac_mgmt_tx_wmi(struct ath11k *ar, struct ath11k_vif *arvif,
+ 	if (buf_id < 0)
+ 		return -ENOSPC;
+ 
++	if ((ieee80211_is_action(hdr->frame_control) ||
++	     ieee80211_is_deauth(hdr->frame_control) ||
++	     ieee80211_is_disassoc(hdr->frame_control)) &&
++	     ieee80211_has_protected(hdr->frame_control)) {
++		skb_put(skb, IEEE80211_CCMP_MIC_LEN);
++	}
++
+ 	paddr = dma_map_single(ab->dev, skb->data, skb->len, DMA_TO_DEVICE);
+ 	if (dma_mapping_error(ab->dev, paddr)) {
+ 		ath11k_warn(ab, "failed to DMA map mgmt Tx buffer\n");
+-- 
+2.1.2
 
-Just talked to John. It seems that mesh at the moment only "works" when using 
-legacy (non-HT) mode (this is what he used previously - so mesh join without 
-freq and bandwidth):
-
-    iw phy phy2 interface add mesh2 type mp
-    ip link set up dev mesh2
-    iw dev mesh2 mesh join testmesh
-
-But the HT/VHT stuff is just crashing the firmware as shown in the last mail.
-
-    iw dev mesh2 mesh join testmesh freq 5180 80MHz
-
-Also tested ph1 with "freq 2412 HT20" and it crashed the same way.
-
-Kind regards,
-	Sven
---nextPart10829153.VCfYJ5ufOz
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAlztSCsACgkQXYcKB8Em
-e0bc2RAAvJnTvQvcsZoZtZC5+tM5N265lca7Fw9lP0uKVTEJzYGwlpKFgsjylNj1
-kHUUocmcQPA8SaiOz3VphRmiW1ECCAIlN0uTL91Je9gGL01m25AL6ZYdLWtqKx4H
-G4kWGkE+19q+eVwiZ4bb8Hh1PgX8d7czabeLuswuoGYQVKYaxYSy0RHor0GBQK+N
-aIBv/neaG89s/JyvkWtflYpOdnCoSETLRpu4zPyiMXN4rI6gHVJYqsN6I92plTqy
-yiV0RzSfcK9IB919JPhfMDEGVw1FZyy8N+aHcY9X+DqxvTMlNR/4+VNNtF3iFE2c
-rNnIFqhOyfbsVU1idvIlutwYm1SBnN0b3Z9ZWhRdMB40t/wu8aLbcA55hhXROFwY
-nbJ2VXPpbDKaO0CjfU1TDrBXO8NkT3yqxC+KcvotxYlyj2eYt9o5Bf//Y/2j/Ode
-nl+dPxfHmaOfHiMi6hKWYW3CFolfidZQLmBvyUmZ50W/RUetIRwCVF+OppsY6RWd
-Sr7Jj2zjx4HoxZPKwE4OipUwnbvxfKNF/JfKRQ5gURyjtDX0+IMWHah2lgkLtGf+
-g8lTltixeVZURdiyL61njOJ7xsWkpzhxnfhQguHgvwdbCywDhMTrGS8T6MxIp/uE
-MsYS0Bhnrb5YHdbggKI+94hnPtPxDiN/OsB/WXPzVFtvA2AuOWs=
-=VBgJ
------END PGP SIGNATURE-----
-
---nextPart10829153.VCfYJ5ufOz--
-
-
-
-
-
---===============1535823912164154335==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
-
---===============1535823912164154335==--
