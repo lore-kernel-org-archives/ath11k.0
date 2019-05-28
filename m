@@ -2,12 +2,12 @@ Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from alexa-out-blr-02.qualcomm.com ([103.229.18.198]
  helo=alexa-out-blr.qualcomm.com)
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hVY70-0000Rn-DD
- for ath11k@lists.infradead.org; Tue, 28 May 2019 09:09:40 +0000
+ id 1hVYHr-0005u1-23
+ for ath11k@lists.infradead.org; Tue, 28 May 2019 09:20:53 +0000
 From: Venkateswara Naralasetty <vnaralas@codeaurora.org>
-Subject: [PATCH] ath11k: Fix bug in SMPS support
-Date: Tue, 28 May 2019 14:39:31 +0530
-Message-Id: <1559034571-25406-1-git-send-email-vnaralas@codeaurora.org>
+Subject: [PATCH] ath11k: Allow station connections up to max supported only
+Date: Tue, 28 May 2019 14:50:46 +0530
+Message-Id: <1559035246-3833-1-git-send-email-vnaralas@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -24,83 +24,116 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: Venkateswara Naralasetty <vnaralas@codeaurora.org>
 
-Currently firmware ignores SMPS support flags in peer assoc command.
-For SMPS to work it is necessary to send SMPS mode parameters to
-firmware so that tx chainmask is properly set to that peer.
+This patch add support to allow station connection request up to max
+number of stations supported by target.
 
 Signed-off-by: Venkateswara Naralasetty <vnaralas@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 43 +++++++++++++++++++++++++++++++++++
- 1 file changed, 43 insertions(+)
+ drivers/net/wireless/ath/ath11k/core.h |  1 +
+ drivers/net/wireless/ath/ath11k/mac.c  | 43 ++++++++++++++++++++++++++++++++++
+ 2 files changed, 44 insertions(+)
 
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index 148c9a4..b10d81f 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -448,6 +448,7 @@ struct ath11k {
+ 	u32 txpower_scale;
+ 	u32 power_scale;
+ 	u32 chan_tx_pwr;
++	u32 num_stations;
+ 	u32 max_num_stations;
+ 	bool monitor_present;
+ 	struct mutex conf_mutex;
 diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index cb0de8e..0839dc9 100644
+index cb0de8e..7de1832 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -1559,6 +1559,33 @@ static void ath11k_peer_assoc_prepare(struct ath11k *ar,
- 	/* TODO: amsdu_disable req? */
+@@ -744,6 +744,7 @@ void ath11k_mac_peer_cleanup_all(struct ath11k *ar)
+ 	spin_unlock_bh(&ab->data_lock);
+ 
+ 	ar->num_peers = 0;
++	ar->num_stations = 0;
  }
  
-+static const u32 ath11k_smps_map[] = {
-+	[WLAN_HT_CAP_SM_PS_STATIC] = WMI_PEER_SMPS_STATIC,
-+	[WLAN_HT_CAP_SM_PS_DYNAMIC] = WMI_PEER_SMPS_DYNAMIC,
-+	[WLAN_HT_CAP_SM_PS_INVALID] = WMI_PEER_SMPS_PS_NONE,
-+	[WLAN_HT_CAP_SM_PS_DISABLED] = WMI_PEER_SMPS_PS_NONE,
-+};
-+
-+static int ath11k_setup_peer_smps(struct ath11k *ar, struct ath11k_vif *arvif,
-+				  const u8 *addr,
-+				  const struct ieee80211_sta_ht_cap *ht_cap)
+ static void ath11k_peer_cleanup(struct ath11k *ar, u32 vdev_id)
+@@ -2530,6 +2531,37 @@ static void ath11k_sta_rc_update_wk(struct work_struct *wk)
+ 	mutex_unlock(&ar->conf_mutex);
+ }
+ 
++static int ath11k_mac_inc_num_stations(struct ath11k_vif *arvif,
++				       struct ieee80211_sta *sta)
 +{
-+	int smps;
++	struct ath11k *ar = arvif->ar;
 +
-+	if (!ht_cap->ht_supported)
++	lockdep_assert_held(&ar->conf_mutex);
++
++	if (arvif->vdev_type == WMI_VDEV_TYPE_STA && !sta->tdls)
 +		return 0;
 +
-+	smps = ht_cap->cap & IEEE80211_HT_CAP_SM_PS;
-+	smps >>= IEEE80211_HT_CAP_SM_PS_SHIFT;
++	if (ar->num_stations >= ar->max_num_stations)
++		return -ENOBUFS;
 +
-+	if (smps >= ARRAY_SIZE(ath11k_smps_map))
-+		return -EINVAL;
++	ar->num_stations++;
 +
-+	return ath11k_wmi_set_peer_param(ar, addr, arvif->vdev_id,
-+					 WMI_PEER_MIMO_PS_STATE,
-+					 ath11k_smps_map[smps]);
++	return 0;
 +}
 +
- static void ath11k_bss_assoc(struct ieee80211_hw *hw,
- 			     struct ieee80211_vif *vif,
- 			     struct ieee80211_bss_conf *bss_conf)
-@@ -1601,6 +1628,14 @@ static void ath11k_bss_assoc(struct ieee80211_hw *hw,
- 		return;
- 	}
- 
-+	ret = ath11k_setup_peer_smps(ar, arvif, bss_conf->bssid,
-+				     &ap_sta->ht_cap);
-+	if (ret) {
-+		ath11k_warn(ar->ab, "failed to setup peer SMPS for vdev %d: %d\n",
-+			    arvif->vdev_id, ret);
++static void ath11k_mac_dec_num_stations(struct ath11k_vif *arvif,
++					struct ieee80211_sta *sta)
++{
++	struct ath11k *ar = arvif->ar;
++
++	lockdep_assert_held(&ar->conf_mutex);
++
++	if (arvif->vdev_type == WMI_VDEV_TYPE_STA && !sta->tdls)
 +		return;
-+	}
 +
- 	WARN_ON(arvif->is_up);
- 
- 	arvif->aid = bss_conf->aid;
-@@ -2370,6 +2405,14 @@ static int ath11k_station_assoc(struct ath11k *ar,
- 	if (reassoc)
- 		return 0;
- 
-+	ret = ath11k_setup_peer_smps(ar, arvif, sta->addr,
-+				     &sta->ht_cap);
-+	if (ret) {
-+		ath11k_warn(ar->ab, "failed to setup peer SMPS for vdev %d: %d\n",
-+			    arvif->vdev_id, ret);
-+		return ret;
-+	}
++	ar->num_stations--;
++}
 +
- 	if (!sta->wme) {
- 		arvif->num_legacy_stations++;
- 		ret = ath11k_recalc_rtscts_prot(arvif);
+ static int ath11k_sta_state(struct ieee80211_hw *hw,
+ 			    struct ieee80211_vif *vif,
+ 			    struct ieee80211_sta *sta,
+@@ -2555,6 +2587,13 @@ static int ath11k_sta_state(struct ieee80211_hw *hw,
+ 		arsta->arvif = arvif;
+ 		INIT_WORK(&arsta->update_wk, ath11k_sta_rc_update_wk);
+ 
++		ret = ath11k_mac_inc_num_stations(arvif, sta);
++		if (ret) {
++			ath11k_warn(ar->ab, "refusing to associate station: too many connected already (%d)\n",
++				    ar->max_num_stations);
++			goto exit;
++		}
++
+ 		if (ath11k_debug_is_extd_rx_stats_enabled(ar)) {
+ 			arsta->rx_stats = kzalloc(sizeof(*arsta->rx_stats),
+ 						  GFP_KERNEL);
+@@ -2571,6 +2610,7 @@ static int ath11k_sta_state(struct ieee80211_hw *hw,
+ 		if (ret) {
+ 			ath11k_warn(ar->ab, "Failed to add peer: %pM for VDEV: %d\n",
+ 				    sta->addr, arvif->vdev_id);
++			ath11k_mac_dec_num_stations(arvif, sta);
+ 			goto exit;
+ 		}
+ 
+@@ -2600,6 +2640,7 @@ static int ath11k_sta_state(struct ieee80211_hw *hw,
+ 			ath11k_warn(ar->ab, "failed to setup dp for peer %pM on vdev %i (%d)\n",
+ 				    sta->addr, arvif->vdev_id, ret);
+ 			ath11k_peer_delete(ar, arvif->vdev_id, sta->addr);
++			ath11k_mac_dec_num_stations(arvif, sta);
+ 		}
+ 	} else if ((old_state == IEEE80211_STA_NONE &&
+ 		    new_state == IEEE80211_STA_NOTEXIST)) {
+@@ -2614,6 +2655,8 @@ static int ath11k_sta_state(struct ieee80211_hw *hw,
+ 				    "Removed peer: %pM for VDEV: %d\n",
+ 				    sta->addr, arvif->vdev_id);
+ 
++		ath11k_mac_dec_num_stations(arvif, sta);
++
+ 		if (ath11k_debug_is_extd_tx_stats_enabled(ar))
+ 			kfree(arsta->tx_stats);
+ 
 -- 
 2.7.4
 
