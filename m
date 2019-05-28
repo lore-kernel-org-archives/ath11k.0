@@ -1,14 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from nbd.name ([2a01:4f8:221:3d45::2])
+Received: from narfation.org ([2001:4d88:2000:7::2] helo=v3-1039.vlinux.de)
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hVacL-0004A1-Ii
- for ath11k@lists.infradead.org; Tue, 28 May 2019 11:50:13 +0000
-From: John Crispin <john@phrozen.org>
-Subject: [PATCH V2 6/6] ath11k: add spatial reuse support
-Date: Tue, 28 May 2019 13:49:52 +0200
-Message-Id: <20190528114952.838-7-john@phrozen.org>
-In-Reply-To: <20190528114952.838-1-john@phrozen.org>
-References: <20190528114952.838-1-john@phrozen.org>
+ id 1hVcT4-0005e9-Ti
+ for ath11k@lists.infradead.org; Tue, 28 May 2019 13:48:44 +0000
+From: Sven Eckelmann <sven@narfation.org>
+Subject: Re: [PATCH v2 0/3] ath11k: Add Mesh mode support
+Date: Tue, 28 May 2019 15:48:25 +0200
+Message-ID: <1931905.PyyBc1jC1X@bentobox>
+In-Reply-To: <1555697498-27472-1-git-send-email-rmanohar@codeaurora.org>
+References: <1555697498-27472-1-git-send-email-rmanohar@codeaurora.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -18,149 +18,100 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============4696819731065340770=="
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Johannes Berg <johannes@sipsolutions.net>
-Cc: Shashidhar Lakkavalli <slakkavalli@datto.com>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
+To: ath11k@lists.infradead.org
+Cc: Rajkumar Manoharan <rmanohar@codeaurora.org>
 
-Trigger the WMI call en/disabling OBSS PD when the bss config changes or we
-assoc to an AP that broadcasts the IE.
+--===============4696819731065340770==
+Content-Type: multipart/signed; boundary="nextPart2014066.YrSI8CiBcN"; micalg="pgp-sha512"; protocol="application/pgp-signature"
 
-Signed-off-by: Shashidhar Lakkavalli <slakkavalli@datto.com>
-Signed-off-by: John Crispin <john@phrozen.org>
----
- drivers/net/wireless/ath/ath11k/mac.c | 10 ++++++++
- drivers/net/wireless/ath/ath11k/wmi.c | 35 +++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/wmi.h | 16 ++++++++++++
- 3 files changed, 61 insertions(+)
+--nextPart2014066.YrSI8CiBcN
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 904b16d020d4..f87a9f906202 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -1715,6 +1715,12 @@ static void ath11k_bss_assoc(struct ieee80211_hw *hw,
- 					1);
- 	if (ret)
- 		ath11k_warn(ar->ab, "Unable to authorize BSS peer: %d\n", ret);
-+
-+	ret = ath11k_wmi_send_obss_spr_cmd(ar, arvif->vdev_id,
-+					   &bss_conf->he_obss_pd);
-+	if (ret)
-+		ath11k_warn(ar->ab, "failed to set vdev %i OBSS PD parameters: %d\n",
-+			    arvif->vdev_id, ret);
- }
- 
- static void ath11k_bss_disassoc(struct ieee80211_hw *hw,
-@@ -1906,6 +1912,10 @@ static void ath11k_bss_info_changed(struct ieee80211_hw *hw,
- 			ath11k_wmi_send_twt_disable_cmd(ar, ar->pdev_idx);
- 	}
- 
-+	if (changed & BSS_CHANGED_HE_OBSS_PD)
-+		ath11k_wmi_send_obss_spr_cmd(ar, arvif->vdev_id,
-+					     &info->he_obss_pd);
-+
- 	mutex_unlock(&ar->conf_mutex);
- }
- 
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 7a46239b5d14..941c05cd529e 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -2586,6 +2586,41 @@ ath11k_wmi_send_twt_disable_cmd(struct ath11k *ar, u32 pdev_id)
- 	return ret;
- }
- 
-+int
-+ath11k_wmi_send_obss_spr_cmd(struct ath11k *ar, u32 vdev_id,
-+			     struct ieee80211_he_obss_pd *he_obss_pd)
-+{
-+	struct ath11k_pdev_wmi *wmi = ar->wmi;
-+	struct ath11k_base *ab = wmi->wmi_sc->sc;
-+	struct wmi_obss_spatial_reuse_params_cmd *cmd;
-+	struct sk_buff *skb;
-+	int ret, len;
-+
-+	len = sizeof(*cmd);
-+
-+	skb = ath11k_wmi_alloc_skb(wmi->wmi_sc, len);
-+	if (!skb)
-+		return -ENOMEM;
-+
-+	cmd = (void *)skb->data;
-+	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG,
-+				     WMI_TAG_OBSS_SPATIAL_REUSE_SET_CMD) |
-+			  FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
-+	cmd->vdev_id = vdev_id;
-+	cmd->enable = he_obss_pd->enable;
-+	cmd->obss_min = he_obss_pd->min_offset;
-+	cmd->obss_max = he_obss_pd->max_offset;
-+
-+	ret = ath11k_wmi_cmd_send(wmi, skb,
-+				  WMI_PDEV_OBSS_PD_SPATIAL_REUSE_CMDID);
-+	if (ret) {
-+		ath11k_warn(ab,
-+			"Failed to send WMI_PDEV_OBSS_PD_SPATIAL_REUSE_CMDID");
-+		dev_kfree_skb(skb);
-+	}
-+	return ret;
-+}
-+
- static inline void ath11k_fill_band_to_mac_param(struct ath11k_base  *soc,
- 				struct wmi_host_pdev_band_to_mac *band_to_mac)
- {
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index c74aa98439ca..10f2a83db327 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -172,6 +172,8 @@ enum wmi_cmd_group {
- 	WMI_GRP_WLM,            /* 0x3c */
- 	WMI_GRP_11K_OFFLOAD,    /* 0x3d */
- 	WMI_GRP_TWT,            /* 0x3e */
-+	WMI_GRP_MOTION_DET,     /* 0x3f */
-+	WMI_GRP_SPATIAL_REUSE,  /* 0x40 */
- 
- };
- 
-@@ -541,6 +543,9 @@ enum wmi_tlv_cmd_id {
- 	WMI_TWT_DEL_DIALOG_CMDID,
- 	WMI_TWT_PAUSE_DIALOG_CMDID,
- 	WMI_TWT_RESUME_DIALOG_CMDID,
-+	WMI_PDEV_OBSS_PD_SPATIAL_REUSE_CMDID =
-+				WMI_TLV_CMD(WMI_GRP_SPATIAL_REUSE),
-+	WMI_PDEV_OBSS_PD_SPATIAL_REUSE_SET_DEF_OBSS_THRESH_CMDID,
- };
- 
- enum wmi_tlv_event_id {
-@@ -5114,6 +5119,15 @@ struct wmi_twt_disable_params_cmd {
- 	u32 pdev_id;
- };
- 
-+struct wmi_obss_spatial_reuse_params_cmd {
-+	u32 tlv_header;
-+	u32 pdev_id;
-+	u32 enable;
-+	s32 obss_min;
-+	s32 obss_max;
-+	u32 vdev_id;
-+};
-+
- struct target_resource_config {
- 	u32 num_vdevs;
- 	u32 num_peers;
-@@ -5305,4 +5319,6 @@ void ath11k_wmi_fw_stats_fill(struct ath11k *ar,
- int ath11k_wmi_simulate_radar(struct ath11k *ar);
- int ath11k_wmi_send_twt_enable_cmd(struct ath11k *ar, u32 pdev_id);
- int ath11k_wmi_send_twt_disable_cmd(struct ath11k *ar, u32 pdev_id);
-+int ath11k_wmi_send_obss_spr_cmd(struct ath11k *ar, u32 vdev_id,
-+				 struct ieee80211_he_obss_pd *he_obss_pd);
- #endif
--- 
-2.20.1
+On Friday, 19 April 2019 20:11:35 CEST Rajkumar Manoharan wrote:
+> Hi,
+> 
+> Posting initial patches to bring Mesh support to ath11k. There are known
+> issues which is also captured in first patch.
 
+What else is required to get this working? I used ath11k-bringup (which 
+included these patches) and wanted to implement the HE registration part for 
+it. But it turns out that it doesn't event work here with VHT. This is what I 
+did on two HK01 rev B:
+
+    iw phy phy2 interface add mesh2 type mp
+    ip link set up dev mesh2
+    iw dev mesh2 mesh join testmesh freq 5180 80MHz
+
+But the firmware just crashes somewhere around the association phase:
+
+    [   59.458342] ath11k c000000.wifi1: Added peer: 00:03:7f:12:82:a3 for VDEV: 0
+    [   59.566646] qcom-q6v5-wcss-pil cd00000.qcom_q6v5_wcss: fatal error received:
+    [   59.566646] QC Image Version: QC_IMAGE_VERSION_STRING=WLAN.HK.2.1.0.1-00410-QCAHKSWPL_SILICONZ-2
+    [   59.566646] Image Variant : IMAGE_VARIANT_STRING=8074.wlanfw.eval_v2Q
+    [   59.566646]
+    [   59.566646] wlan_peer.c:2486 Assertion (vdev->bss->ni_chan.phy_mode >= peer_ratectrl_params.phymode) failedparam0 :zero, param1 :zero, param2 :zero.
+    [   59.566646] Thread ID      : 0x0000005d  Thread name    : WLAN RT2  Process ID     : 0
+    [   59.566646] Register:
+    [   59.566646] SP : 0x4c1921f0
+    [   59.566646] FP : 0x4c1921f8
+    [   59.566646] PC : 0x4b1c8850
+    [   59.566646] SSR : 0x00000008
+    [   59.566646] BADVA : 0x00020000
+    [   59.566646] LR : 0x4b1c7c68
+    [   59.566646]
+    [   59.566646] Stack Dump
+    [   59.566646] from : 0x4c1921f0
+    [   59.566646] to   : 0x4c192860
+    [   59.566646]
+    [   59.618939] remoteproc remoteproc0: crash detected in cd00000.qcom_q6v5_wcss: type fatal error
+    [   59.641203] remoteproc remoteproc0: handling crash #1 in cd00000.qcom_q6v5_wcss
+    [   59.649605] Kernel panic - not syncing: remoteproc remoteproc0: Resetting the SoC - cd00000.qcom_q6v5_wcss crashed
+
+The whole device goes down after that.
+
+Kind regards,
+	Sven
+--nextPart2014066.YrSI8CiBcN
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAlztPCkACgkQXYcKB8Em
+e0ZsyBAA12VhDoKycuOxEEGoeQnigUvmxI7UksxuHJhNQwGLpUGdtB6cbYollYOr
+idJ/qRpk8ctE8ASqUEKoZYDyq557bJLLbgSHkK48ZbJehaIUWL39CmYirPuqo1E4
+98wVqif+cPeFthxEFjVsTDFzaee9Fcfa+/iEUGGBVQ6r0Z6/SD0i4ccm6mBRZwsr
+RA6EN4SAgCcZKwdchz6TbBS5O4tBRiP4rd8hDmlBuowBToH1zpQLc+A9w2WGhhq4
+LFYYXQUmXxAZWiprpMs4eKgUgd87ZPteFmGKpd77ICksIZCZMDwgN7XdU0Lqj2eX
+zSno/wiY54TcZHB98HY7ZN7qSQQDYdEWvhgJop5MdW3w9ei5YYXWDsC+MfjirDhf
+VPo5jc3UZlOQHQMIKPiq7/Y9Q8bH0SULWp/rlTLJPjcAnrZRfr79tbVfZoXBw313
+/0Ohf6kwt5IlFVqbVWKR8NgPizsFt2sJXwj6qjq/wvcklzOYlpuN5P0LpMJzHyMh
+n5ym86obtpf6siJ3eWOvaGb++VxgRPE/9eKwCbFZW6q5C+tu+ysEl4rCFn6FcoHJ
+pb23NGyXw7NBIiyJwoDrkfJQFlluuz8oBrX3MaWJwUEuluopI8pWdipZk5hI3PX0
+EUqDO2emAHnnQ6ee7Cp3xGgXFy2WV+eBofiR/biHRSwJopV1MaE=
+=uqn4
+-----END PGP SIGNATURE-----
+
+--nextPart2014066.YrSI8CiBcN--
+
+
+
+
+
+--===============4696819731065340770==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
+
+--===============4696819731065340770==--
