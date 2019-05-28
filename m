@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hVVuC-0001rg-2t
+ id 1hVVuC-0001rY-BE
  for ath11k@lists.infradead.org; Tue, 28 May 2019 06:48:18 +0000
 From: John Crispin <john@phrozen.org>
-Subject: [PATCH V6 06/11] ath11k: add defines for max MCS rates per phymode
-Date: Tue, 28 May 2019 08:47:58 +0200
-Message-Id: <20190528064803.24419-7-john@phrozen.org>
+Subject: [PATCH V6 02/11] ath11k: fix some whitespace errors
+Date: Tue, 28 May 2019 08:47:54 +0200
+Message-Id: <20190528064803.24419-3-john@phrozen.org>
 In-Reply-To: <20190528064803.24419-1-john@phrozen.org>
 References: <20190528064803.24419-1-john@phrozen.org>
 MIME-Version: 1.0
@@ -25,52 +25,66 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Kalle Valo <kvalo@codeaurora.org>
 Cc: Shashidhar Lakkavalli <slakkavalli@datto.com>, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-Use defines rather than magic numbers.
+Minor space vs tabs formatting error.
 
 Signed-off-by: Shashidhar Lakkavalli <slakkavalli@datto.com>
 Signed-off-by: John Crispin <john@phrozen.org>
 ---
- drivers/net/wireless/ath/ath11k/core.h  | 4 ++++
- drivers/net/wireless/ath/ath11k/dp_rx.c | 4 ++--
- 2 files changed, 6 insertions(+), 2 deletions(-)
+ drivers/net/wireless/ath/ath11k/wmi.h | 38 +++++++++++++--------------
+ 1 file changed, 19 insertions(+), 19 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 239bd98b3f8f..010ff8336376 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -49,6 +49,10 @@ enum wme_ac {
- 	WME_NUM_AC
- };
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index 366a136e53ac..0fa33f38abdf 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -4139,28 +4139,28 @@ struct wmi_unit_test_cmd {
  
-+#define ATH11K_HT_MCS_MAX	7
-+#define ATH11K_VHT_MCS_MAX	9
-+#define ATH11K_HE_MCS_MAX	11
-+
- static inline enum wme_ac ath11k_tid_to_ac(u32 tid)
- {
- 	return (((tid == 0) || (tid == 3)) ? WME_AC_BE :
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 62820c20f7c1..e52a54cd2b79 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -1705,7 +1705,7 @@ static void ath11k_dp_rx_h_rate(struct ath11k *ar, void *rx_desc,
- 		break;
- 	case RX_MSDU_START_PKT_TYPE_11N:
- 		rx_status->encoding = RX_ENC_HT;
--		if (rate_mcs > 7) {
-+		if (rate_mcs > ATH11K_HT_MCS_MAX) {
- 			ath11k_warn(ar->ab, "Received with invalid mcs in HT mode %d\n", rate_mcs);
- 			break;
- 		}
-@@ -1717,7 +1717,7 @@ static void ath11k_dp_rx_h_rate(struct ath11k *ar, void *rx_desc,
- 	case RX_MSDU_START_PKT_TYPE_11AC:
- 		rx_status->encoding = RX_ENC_VHT;
- 		rx_status->rate_idx = rate_mcs;
--		if (rate_mcs > 9) {
-+		if (rate_mcs > ATH11K_VHT_MCS_MAX) {
- 			ath11k_warn(ar->ab, "Received with invalid mcs in VHT mode %d\n", rate_mcs);
- 			break;
- 		}
+ #define MAX_SUPPORTED_RATES 128
+ 
+-#define WMI_PEER_AUTH           0x00000001
+-#define WMI_PEER_QOS            0x00000002
+-#define WMI_PEER_NEED_PTK_4_WAY 0x00000004
+-#define WMI_PEER_NEED_GTK_2_WAY 0x00000010
+-#define WMI_PEER_HE             0x00000400
+-#define WMI_PEER_APSD           0x00000800
+-#define WMI_PEER_HT             0x00001000
+-#define WMI_PEER_40MHZ          0x00002000
+-#define WMI_PEER_STBC           0x00008000
+-#define WMI_PEER_LDPC           0x00010000
+-#define WMI_PEER_DYN_MIMOPS     0x00020000
+-#define WMI_PEER_STATIC_MIMOPS  0x00040000
+-#define WMI_PEER_SPATIAL_MUX    0x00200000
+-#define WMI_PEER_VHT            0x02000000
+-#define WMI_PEER_80MHZ          0x04000000
+-#define WMI_PEER_PMF            0x08000000
++#define WMI_PEER_AUTH		0x00000001
++#define WMI_PEER_QOS		0x00000002
++#define WMI_PEER_NEED_PTK_4_WAY	0x00000004
++#define WMI_PEER_NEED_GTK_2_WAY	0x00000010
++#define WMI_PEER_HE		0x00000400
++#define WMI_PEER_APSD		0x00000800
++#define WMI_PEER_HT		0x00001000
++#define WMI_PEER_40MHZ		0x00002000
++#define WMI_PEER_STBC		0x00008000
++#define WMI_PEER_LDPC		0x00010000
++#define WMI_PEER_DYN_MIMOPS	0x00020000
++#define WMI_PEER_STATIC_MIMOPS	0x00040000
++#define WMI_PEER_SPATIAL_MUX	0x00200000
++#define WMI_PEER_VHT		0x02000000
++#define WMI_PEER_80MHZ		0x04000000
++#define WMI_PEER_PMF		0x08000000
+ /* TODO: Place holder for WLAN_PEER_F_PS_PRESEND_REQUIRED = 0x10000000.
+  * Need to be cleaned up
+  */
+-#define WMI_PEER_IS_P2P_CAPABLE 0x20000000
+-#define WMI_PEER_160MHZ         0x40000000
+-#define WMI_PEER_SAFEMODE_EN    0x80000000
++#define WMI_PEER_IS_P2P_CAPABLE	0x20000000
++#define WMI_PEER_160MHZ		0x40000000
++#define WMI_PEER_SAFEMODE_EN	0x80000000
+ 
+ struct beacon_tmpl_params {
+ 	u8 vdev_id;
 -- 
 2.20.1
 
