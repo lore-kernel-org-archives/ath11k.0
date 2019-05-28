@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hVVuB-0001rf-Gn
- for ath11k@lists.infradead.org; Tue, 28 May 2019 06:48:18 +0000
+ id 1hVVuC-0001sJ-II
+ for ath11k@lists.infradead.org; Tue, 28 May 2019 06:48:20 +0000
 From: John Crispin <john@phrozen.org>
-Subject: [PATCH V6 05/11] ath11k: extend reading of FW capabilities
-Date: Tue, 28 May 2019 08:47:57 +0200
-Message-Id: <20190528064803.24419-6-john@phrozen.org>
+Subject: [PATCH V6 07/11] ath11k: handle rx status for HE frames
+Date: Tue, 28 May 2019 08:47:59 +0200
+Message-Id: <20190528064803.24419-8-john@phrozen.org>
 In-Reply-To: <20190528064803.24419-1-john@phrozen.org>
 References: <20190528064803.24419-1-john@phrozen.org>
 MIME-Version: 1.0
@@ -25,70 +25,38 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Kalle Valo <kvalo@codeaurora.org>
 Cc: Shashidhar Lakkavalli <slakkavalli@datto.com>, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-Read the additional mcs and extended mac capabilities field from the
-service ready callback and store them inside the ath11k_pdev_cap
-structure. This allows us to generate the sband_iftype_data dynamically.
+The case clause handling HE frames was not handled yet in the code reading
+the RX status. The new case is identical to VHT with the difference of the
+higher maximum MCS rate.
 
 Signed-off-by: Shashidhar Lakkavalli <slakkavalli@datto.com>
 Signed-off-by: John Crispin <john@phrozen.org>
 ---
- drivers/net/wireless/ath/ath11k/core.h | 3 ++-
- drivers/net/wireless/ath/ath11k/wmi.c  | 7 +++++--
- 2 files changed, 7 insertions(+), 3 deletions(-)
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 569a3247121a..239bd98b3f8f 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -526,7 +526,7 @@ struct ath11k {
- struct ath11k_band_cap {
- 	u32 max_bw_supported;
- 	u32 ht_cap_info;
--	u32 he_cap_info;
-+	u32 he_cap_info[2];
- 	u32 he_mcs;
- 	u32 he_cap_phy_info[PSOC_HOST_MAX_PHY_SIZE];
- 	struct ath11k_ppe_threshold he_ppet;
-@@ -537,6 +537,7 @@ struct ath11k_pdev_cap {
- 	u32 ampdu_density;
- 	u32 vht_cap;
- 	u32 vht_mcs;
-+	u32 he_mcs;
- 	u32 tx_chain_mask;
- 	u32 rx_chain_mask;
- 	u32 tx_chain_mask_shift;
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index f2fa3a598411..92328f6ec056 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -327,6 +327,7 @@ static int ath11k_pull_mac_phy_cap_service_ready_ext(
- 	} else if (mac_phy_caps->supported_bands & WMI_HOST_WLAN_5G_CAP) {
- 		pdev_cap->vht_cap = mac_phy_caps->vht_cap_info_5g;
- 		pdev_cap->vht_mcs = mac_phy_caps->vht_supp_mcs_5g;
-+		pdev_cap->he_mcs = mac_phy_caps->he_supp_mcs_5g;
- 		pdev_cap->tx_chain_mask = mac_phy_caps->tx_chain_mask_5g;
- 		pdev_cap->rx_chain_mask = mac_phy_caps->rx_chain_mask_5g;
- 	} else {
-@@ -349,7 +350,8 @@ static int ath11k_pull_mac_phy_cap_service_ready_ext(
- 	cap_band = &pdev_cap->band[NL80211_BAND_2GHZ];
- 	cap_band->max_bw_supported = mac_phy_caps->max_bw_supported_2g;
- 	cap_band->ht_cap_info = mac_phy_caps->ht_cap_info_2g;
--	cap_band->he_cap_info = mac_phy_caps->he_cap_info_2g;
-+	cap_band->he_cap_info[0] = mac_phy_caps->he_cap_info_2g;
-+	cap_band->he_cap_info[1] = mac_phy_caps->he_cap_info_2g_ext;
- 	cap_band->he_mcs = mac_phy_caps->he_supp_mcs_2g;
- 	memcpy(cap_band->he_cap_phy_info, &mac_phy_caps->he_cap_phy_info_2g,
- 	       sizeof(u32) * PSOC_HOST_MAX_PHY_SIZE);
-@@ -359,7 +361,8 @@ static int ath11k_pull_mac_phy_cap_service_ready_ext(
- 	cap_band = &pdev_cap->band[NL80211_BAND_5GHZ];
- 	cap_band->max_bw_supported = mac_phy_caps->max_bw_supported_5g;
- 	cap_band->ht_cap_info = mac_phy_caps->ht_cap_info_5g;
--	cap_band->he_cap_info = mac_phy_caps->he_cap_info_5g;
-+	cap_band->he_cap_info[0] = mac_phy_caps->he_cap_info_5g;
-+	cap_band->he_cap_info[1] = mac_phy_caps->he_cap_info_5g_ext;
- 	cap_band->he_mcs = mac_phy_caps->he_supp_mcs_5g;
- 	memcpy(cap_band->he_cap_phy_info, &mac_phy_caps->he_cap_phy_info_5g,
- 	       sizeof(u32) * PSOC_HOST_MAX_PHY_SIZE);
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index e52a54cd2b79..71d385cf55d7 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -1727,7 +1727,16 @@ static void ath11k_dp_rx_h_rate(struct ath11k *ar, void *rx_desc,
+ 		rx_status->bw = ath11k_bw_to_mac80211_bw(bw);
+ 		break;
+ 	case RX_MSDU_START_PKT_TYPE_11AX:
+-		ath11k_warn(ar->ab, "pkt_type %d not yet supported\n", pkt_type);
++		rx_status->rate_idx = rate_mcs;
++		if (rate_mcs > ATH11K_HE_MCS_MAX) {
++			ath11k_warn(ar->ab,
++				    "Received with invalid mcs in HE mode %d\n",
++				    rate_mcs);
++			break;
++		}
++		rx_status->encoding = RX_ENC_HE;
++		rx_status->nss = nss;
++		rx_status->bw = ath11k_bw_to_mac80211_bw(bw);
+ 		break;
+ 	}
+ }
 -- 
 2.20.1
 
