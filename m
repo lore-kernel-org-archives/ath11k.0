@@ -1,17 +1,19 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hW0o7-0008Fb-B8
- for ath11k@lists.infradead.org; Wed, 29 May 2019 15:48:04 +0000
+ id 1hW1eA-0002nm-1v
+ for ath11k@lists.infradead.org; Wed, 29 May 2019 16:41:51 +0000
+Received: from x230.qca.qualcomm.com (88-114-240-156.elisa-laajakaista.fi
+ [88.114.240.156])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ (Authenticated sender: kvalo@smtp.codeaurora.org)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 6DE5960741
+ for <ath11k@lists.infradead.org>; Wed, 29 May 2019 16:41:47 +0000 (UTC)
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH V6 03/11] ath11k: move phymode selection from function to
- array lookup
-References: <20190528064803.24419-1-john@phrozen.org>
- <20190528064803.24419-4-john@phrozen.org>
-Date: Wed, 29 May 2019 18:47:56 +0300
-In-Reply-To: <20190528064803.24419-4-john@phrozen.org> (John Crispin's message
- of "Tue, 28 May 2019 08:47:55 +0200")
-Message-ID: <87pno11cur.fsf@kamboji.qca.qualcomm.com>
+Subject: Remaining sparse warnings
+Date: Wed, 29 May 2019 19:41:45 +0300
+Message-ID: <874l5dqkl2.fsf@codeaurora.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -25,44 +27,71 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: John Crispin <john@phrozen.org>
-Cc: ath11k@lists.infradead.org, Shashidhar Lakkavalli <slakkavalli@datto.com>
+To: ath11k@lists.infradead.org
 
-John Crispin <john@phrozen.org> writes:
+Hi,
 
-> With HE support getting added, the approach of using functions will quickly
-> get convoluted. Change the code to use an array lookup function instead.
->
-> Signed-off-by: Shashidhar Lakkavalli <slakkavalli@datto.com>
-> Signed-off-by: John Crispin <john@phrozen.org>
-> ---
->  drivers/net/wireless/ath/ath11k/mac.c | 117 ++++++++++++--------------
->  include/uapi/linux/nl80211.h          |   4 +
->  2 files changed, 57 insertions(+), 64 deletions(-)
->
+there are still few sparse warnings, anyone willing to fix the last
+ones? Though I'm not sure how to fix "dubious: x & !y" warnings, any
+ideas?
 
-[...]
-
-> diff --git a/include/uapi/linux/nl80211.h b/include/uapi/linux/nl80211.h
-> index dd4f86ee286e..b6e29161ec8b 100644
-> --- a/include/uapi/linux/nl80211.h
-> +++ b/include/uapi/linux/nl80211.h
-> @@ -4162,6 +4162,10 @@ enum nl80211_chan_width {
->  	NL80211_CHAN_WIDTH_160,
->  	NL80211_CHAN_WIDTH_5,
->  	NL80211_CHAN_WIDTH_10,
-> +
-> +	/* keep last */
-> +	__NL80211_CHAN_WIDTH_NUM,
-> +	NL80211_CHAN_WIDTH_MAX = __NL80211_CHAN_WIDTH_NUM - 1,
-
-I was wondering why this patchset was giving warnings on ath10k and then
-I found this. In an ath11k patch you can't change anything outside of
-ath11k. So you have to send this to upstream as a separate patch. Or
-maybe modify the ath11k part so that no changes in nl80211.h is needed.
-
-And then you change nl80211 do make sure that you compile testing all
-drivers.
+drivers/net/wireless/ath/ath11k/hal_rx.c:118:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:120:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:122:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:124:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:126:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:128:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:130:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:132:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:134:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:136:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:138:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:140:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:142:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:144:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:146:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:148:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:150:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:152:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:154:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:156:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:158:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:160:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:166:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:170:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:172:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:176:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:178:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:180:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:182:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:184:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:186:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:188:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:190:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:192:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:212:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:216:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/hal_rx.c:218:17: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/dp_tx.c:665:23: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/dp_tx.c:667:23: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/dp_tx.c:670:23: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/dp_tx.c:830:23: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/dp_tx.c:832:23: warning: dubious: x & !y
+drivers/net/wireless/ath/ath11k/dp_tx.c:837:33: warning: incorrect type in assignment (different base types)
+drivers/net/wireless/ath/ath11k/dp_tx.c:837:33:    expected unsigned int [usertype] pkt_type_en_flags0
+drivers/net/wireless/ath/ath11k/dp_tx.c:837:33:    got restricted __le32 [usertype]
+drivers/net/wireless/ath/ath11k/dp_tx.c:838:33: warning: incorrect type in assignment (different base types)
+drivers/net/wireless/ath/ath11k/dp_tx.c:838:33:    expected unsigned int [usertype] pkt_type_en_flags1
+drivers/net/wireless/ath/ath11k/dp_tx.c:838:33:    got restricted __le32 [usertype]
+drivers/net/wireless/ath/ath11k/dp_tx.c:839:33: warning: incorrect type in assignment (different base types)
+drivers/net/wireless/ath/ath11k/dp_tx.c:839:33:    expected unsigned int [usertype] pkt_type_en_flags2
+drivers/net/wireless/ath/ath11k/dp_tx.c:839:33:    got restricted __le32 [usertype]
+drivers/net/wireless/ath/ath11k/dp_tx.c:840:33: warning: incorrect type in assignment (different base types)
+drivers/net/wireless/ath/ath11k/dp_tx.c:840:33:    expected unsigned int [usertype] pkt_type_en_flags3
+drivers/net/wireless/ath/ath11k/dp_tx.c:840:33:    got restricted __le32 [usertype]
+drivers/net/wireless/ath/ath11k/dp_tx.c:841:28: warning: incorrect type in assignment (different base types)
+drivers/net/wireless/ath/ath11k/dp_tx.c:841:28:    expected unsigned int [usertype] rx_filter_tlv
+drivers/net/wireless/ath/ath11k/dp_tx.c:841:28:    got restricted __le32 [usertype]
 
 -- 
 Kalle Valo
