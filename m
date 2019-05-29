@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hW0GY-000324-Jp
- for ath11k@lists.infradead.org; Wed, 29 May 2019 15:13:23 +0000
+ id 1hW0H0-000356-LQ
+ for ath11k@lists.infradead.org; Wed, 29 May 2019 15:13:52 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: add CE specific callbacks
+Subject: Re: [PATCH] ath11k: Fix invalid dma address access in hal rx
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1558963190-30814-1-git-send-email-akolli@codeaurora.org>
-References: <1558963190-30814-1-git-send-email-akolli@codeaurora.org>
-Message-Id: <20190529151322.4905E602FA@smtp.codeaurora.org>
-Date: Wed, 29 May 2019 15:13:21 +0000 (UTC)
+In-Reply-To: <1558964139-13399-1-git-send-email-periyasa@codeaurora.org>
+References: <1558964139-13399-1-git-send-email-periyasa@codeaurora.org>
+Message-Id: <20190529151350.2066060A44@smtp.codeaurora.org>
+Date: Wed, 29 May 2019 15:13:50 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,23 +22,23 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Anilkumar Kolli <akolli@codeaurora.org>
+To: Karthikeyan Periyasamy <periyasa@codeaurora.org>
 Cc: ath11k@lists.infradead.org
 
-Anilkumar Kolli <akolli@codeaurora.org> wrote:
+Karthikeyan Periyasamy <periyasa@codeaurora.org> wrote:
 
-> CE5 is used for pktlog and other HTT messages.
-> CE5 does not have HTC header, add separate callbacks
-> to handle this.
+> ath11k_hal_rx_buf_addr_info_get() populating the MSB of the
+> dma address from the info0 member, which is invalid. It has
+> to populate the MSB from info1 member.
 > 
-> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
+> Signed-off-by: Karthikeyan Periyasamy <periyasa@codeaurora.org>
 
 Patch applied to ath.git, thanks.
 
-160c2a1d9574 ath11k: add CE specific callbacks
+911365b0f0a8 ath11k: Fix invalid dma address access in hal rx
 
 -- 
-https://patchwork.kernel.org/patch/10963041/
+https://patchwork.kernel.org/patch/10963087/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
