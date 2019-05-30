@@ -1,20 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hW1eA-0002nm-1v
- for ath11k@lists.infradead.org; Wed, 29 May 2019 16:41:51 +0000
-Received: from x230.qca.qualcomm.com (88-114-240-156.elisa-laajakaista.fi
- [88.114.240.156])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- (Authenticated sender: kvalo@smtp.codeaurora.org)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 6DE5960741
- for <ath11k@lists.infradead.org>; Wed, 29 May 2019 16:41:47 +0000 (UTC)
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Remaining sparse warnings
-Date: Wed, 29 May 2019 19:41:45 +0300
-Message-ID: <874l5dqkl2.fsf@codeaurora.org>
-MIME-Version: 1.0
+ id 1hWC4G-0008LY-K5
+ for ath11k@lists.infradead.org; Thu, 30 May 2019 03:49:30 +0000
+From: Sriram R <srirrama@codeaurora.org>
+Subject: [PATCH v2] ath11k: Fix error received while aborting hw scan
+Date: Thu, 30 May 2019 09:19:12 +0530
+Message-Id: <1559188152-4826-1-git-send-email-srirrama@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,78 +15,104 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
+Cc: Sriram R <srirrama@codeaurora.org>
 
-Hi,
+Set the appropriate scan cancel request param while stopping
+the hw scan. Also, when a interface is stopped, the SDATA_STATE_RUNNING
+flag will be cleared before cancelling the scan, hence
+the interface can't be found in active interfaces in corresponding
+scan cancellation event. Hence search the corresponding 'ar'
+by iterating through the active pdev's if the scan state is aborting.
 
-there are still few sparse warnings, anyone willing to fix the last
-ones? Though I'm not sure how to fix "dubious: x & !y" warnings, any
-ideas?
+This will avoid 'failed to stop wmi scan' error received
+while aborting the scan.
 
-drivers/net/wireless/ath/ath11k/hal_rx.c:118:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:120:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:122:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:124:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:126:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:128:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:130:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:132:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:134:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:136:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:138:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:140:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:142:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:144:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:146:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:148:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:150:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:152:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:154:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:156:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:158:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:160:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:166:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:170:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:172:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:176:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:178:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:180:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:182:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:184:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:186:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:188:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:190:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:192:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:212:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:216:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/hal_rx.c:218:17: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/dp_tx.c:665:23: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/dp_tx.c:667:23: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/dp_tx.c:670:23: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/dp_tx.c:830:23: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/dp_tx.c:832:23: warning: dubious: x & !y
-drivers/net/wireless/ath/ath11k/dp_tx.c:837:33: warning: incorrect type in assignment (different base types)
-drivers/net/wireless/ath/ath11k/dp_tx.c:837:33:    expected unsigned int [usertype] pkt_type_en_flags0
-drivers/net/wireless/ath/ath11k/dp_tx.c:837:33:    got restricted __le32 [usertype]
-drivers/net/wireless/ath/ath11k/dp_tx.c:838:33: warning: incorrect type in assignment (different base types)
-drivers/net/wireless/ath/ath11k/dp_tx.c:838:33:    expected unsigned int [usertype] pkt_type_en_flags1
-drivers/net/wireless/ath/ath11k/dp_tx.c:838:33:    got restricted __le32 [usertype]
-drivers/net/wireless/ath/ath11k/dp_tx.c:839:33: warning: incorrect type in assignment (different base types)
-drivers/net/wireless/ath/ath11k/dp_tx.c:839:33:    expected unsigned int [usertype] pkt_type_en_flags2
-drivers/net/wireless/ath/ath11k/dp_tx.c:839:33:    got restricted __le32 [usertype]
-drivers/net/wireless/ath/ath11k/dp_tx.c:840:33: warning: incorrect type in assignment (different base types)
-drivers/net/wireless/ath/ath11k/dp_tx.c:840:33:    expected unsigned int [usertype] pkt_type_en_flags3
-drivers/net/wireless/ath/ath11k/dp_tx.c:840:33:    got restricted __le32 [usertype]
-drivers/net/wireless/ath/ath11k/dp_tx.c:841:28: warning: incorrect type in assignment (different base types)
-drivers/net/wireless/ath/ath11k/dp_tx.c:841:28:    expected unsigned int [usertype] rx_filter_tlv
-drivers/net/wireless/ath/ath11k/dp_tx.c:841:28:    got restricted __le32 [usertype]
+Signed-off-by: Sriram R <srirrama@codeaurora.org>
+---
+v2 : Rebased on ToT.
 
+ drivers/net/wireless/ath/ath11k/mac.c |  2 +-
+ drivers/net/wireless/ath/ath11k/wmi.c | 38 ++++++++++++++++++++++++++++++++++-
+ 2 files changed, 38 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index cb0de8e..1d2c14c 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -1857,7 +1857,7 @@ void ath11k_scan_finish(struct ath11k *ar)
+ static int ath11k_scan_stop(struct ath11k *ar)
+ {
+ 	struct scan_cancel_param arg = {
+-		.req_type = WMI_SCAN_STOP_ONE,
++		.req_type = WLAN_SCAN_CANCEL_SINGLE,
+ 		.scan_id = ATH11K_SCAN_ID,
+ 	};
+ 	int ret;
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 9ca44c4..3e6b9c1 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -4969,6 +4969,30 @@ static void ath11k_mgmt_tx_compl_event(struct ath11k_base *ab, struct sk_buff *s
+ 	rcu_read_unlock();
+ }
+ 
++static struct ath11k *ath11k_get_ar_on_scan_abort(struct ath11k_base *ab,
++						  u32 vdev_id)
++{
++	int i;
++	struct ath11k_pdev *pdev;
++	struct ath11k *ar;
++
++	for (i = 0; i < ab->num_radios; i++) {
++		pdev = rcu_dereference(ab->pdevs_active[i]);
++		if (pdev && pdev->ar) {
++			ar = pdev->ar;
++
++			spin_lock_bh(&ar->data_lock);
++			if (ar->scan.state == ATH11K_SCAN_ABORTING &&
++			    ar->scan.vdev_id == vdev_id) {
++				spin_unlock_bh(&ar->data_lock);
++				return ar;
++			}
++			spin_unlock_bh(&ar->data_lock);
++		}
++	}
++	return NULL;
++}
++
+ static void ath11k_scan_event(struct ath11k_base *ab, u8 *evt_buf, u32 len)
+ {
+ 	struct ath11k *ar;
+@@ -4981,7 +5005,19 @@ static void ath11k_scan_event(struct ath11k_base *ab, u8 *evt_buf, u32 len)
+ 	}
+ 
+ 	rcu_read_lock();
+-	ar = ath11k_get_ar_by_vdev_id(ab, scan_ev.vdev_id);
++
++	/* In case the scan was cancelled, ex. during interface teardown,
++	 * the interface will not be found in active interfaces.
++	 * Rather, in such scenarios, iterate over the active pdev's to
++	 * search 'ar' if the corresponding 'ar' scan is ABORTING and the
++	 * aborting scan's vdev id matches this event info.
++	 */
++	if (scan_ev.event_type == WMI_SCAN_EVENT_COMPLETED &&
++	    scan_ev.reason == WMI_SCAN_REASON_CANCELLED)
++		ar = ath11k_get_ar_on_scan_abort(ab, scan_ev.vdev_id);
++	else
++		ar = ath11k_get_ar_by_vdev_id(ab, scan_ev.vdev_id);
++
+ 	if (!ar) {
+ 		ath11k_warn(ab, "Received scan event for unknown vdev");
+ 		rcu_read_unlock();
 -- 
-Kalle Valo
+2.7.4
+
 
 _______________________________________________
 ath11k mailing list
