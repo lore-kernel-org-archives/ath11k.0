@@ -1,13 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hXlHr-0003jL-54
- for ath11k@lists.infradead.org; Mon, 03 Jun 2019 11:38:00 +0000
+ id 1hXlIH-0003lU-8k
+ for ath11k@lists.infradead.org; Mon, 03 Jun 2019 11:38:26 +0000
 From: Sriram R <srirrama@codeaurora.org>
-Subject: [PATCH] ath11k: Fix vdev start failure when operating in CN,
- KR regdomain
-Date: Mon,  3 Jun 2019 17:07:45 +0530
-Message-Id: <1559561865-27928-1-git-send-email-srirrama@codeaurora.org>
+Subject: [PATCH] ath11k: Remove probe response offload template setup
+Date: Mon,  3 Jun 2019 17:08:10 +0530
+Message-Id: <1559561890-27984-1-git-send-email-srirrama@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -24,110 +23,180 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: Sriram R <srirrama@codeaurora.org>
 
-Currently, firmware expects the correct regdomain to be set in
-vdev start command. As firmware supports regulatory offload, it can track
-the current regdomain. This info is received from firmware via
-REG_CHAN_LIST_CC event during bringup or after setting country code.
-Currently the dfs_region received is mapped to nl80211_dfs_regions
-and stored in default_regd or new_regd and is used for vdev start.
-But since nl80211_dfs_regions doesn't have a value enumerated for CN
-KR, the firmware rejects VDEV start with an 'invalid regdomain' error.
-Hence, send the appropriate regdomain received from firmware during
-REG_CHAN_LIST_CC event in vdev start to avoid vdev start failure.
+Probe response offload support is not supported by
+IPQ8074 firmware. Hence do not advertise or set probe
+response template to the firmware.
+
+This would avoid the below error during template setup.
+'failed to update prb tmpl -1'
 
 Signed-off-by: Sriram R <srirrama@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/core.h | 13 +++++++++++++
- drivers/net/wireless/ath/ath11k/mac.c  | 10 +---------
- drivers/net/wireless/ath/ath11k/wmi.c  |  3 +++
- drivers/net/wireless/ath/ath11k/wmi.h  |  1 +
- 4 files changed, 18 insertions(+), 9 deletions(-)
+ drivers/net/wireless/ath/ath11k/mac.c | 40 ------------------------
+ drivers/net/wireless/ath/ath11k/wmi.c | 58 -----------------------------------
+ drivers/net/wireless/ath/ath11k/wmi.h |  8 -----
+ 3 files changed, 106 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 148c9a4..f7d2d96 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -302,6 +302,16 @@ enum ath11k_stats_type {
- 	ATH11K_STATS_TYPE_MAX,
- };
- 
-+enum ath11k_dfs_region {
-+	ATH11K_DFS_REG_UNSET,
-+	ATH11K_DFS_REG_FCC,
-+	ATH11K_DFS_REG_ETSI,
-+	ATH11K_DFS_REG_MKK,
-+	ATH11K_DFS_REG_CN,
-+	ATH11K_DFS_REG_KR,
-+	ATH11K_DFS_REG_UNDEF,
-+};
-+
- struct ath11k_htt_data_stats {
- 	u64 legacy[ATH11K_COUNTER_TYPE_MAX][ATH11K_LEGACY_NUM];
- 	u64 ht[ATH11K_COUNTER_TYPE_MAX][ATH11K_HT_MCS_NUM];
-@@ -622,6 +632,9 @@ struct ath11k_base {
- 	 * This may or may not be used during the runtime
- 	 */
- 	struct ieee80211_regdomain *new_regd[MAX_RADIOS];
-+
-+	/* Current DFS Regulatory */
-+	enum ath11k_dfs_region dfs_region;
- #ifdef CONFIG_ATH11K_DEBUGFS
- 	struct dentry *debugfs_soc;
- #endif
 diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index cb0de8e..87a420e 100644
+index 87a420e..9cb8ea3 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -3915,15 +3915,7 @@ ath11k_mac_vdev_start_restart(struct ath11k_vif *arvif,
- 		arg.channel.passive = arg.channel.chan_radar;
+@@ -828,34 +828,6 @@ static int ath11k_mac_setup_bcn_tmpl(struct ath11k_vif *arvif)
+ 	return ret;
+ }
  
- 		spin_lock_bh(&ab->data_lock);
+-static int ath11k_mac_setup_prb_tmpl(struct ath11k_vif *arvif)
+-{
+-	struct ath11k *ar = arvif->ar;
+-	struct ieee80211_hw *hw = ar->hw;
+-	struct ieee80211_vif *vif = arvif->vif;
+-	struct sk_buff *prb;
+-	int ret;
 -
--		/* Use the new reg info if available */
--		if (ar->ab->new_regd[ar->pdev_idx])
--			arg.regdomain =
--				ar->ab->new_regd[ar->pdev_idx]->dfs_region;
--		else
--			arg.regdomain =
--				ar->ab->default_regd[ar->pdev_idx]->dfs_region;
+-	/* Interface validation is part of the below function, need not
+-	 * check here.
+-	 */
+-	prb = ieee80211_proberesp_get(hw, vif);
+-	if (!prb) {
+-		ath11k_warn(ar->ab, "failed to get probe resp template from mac80211\n");
+-		return -EPERM;
+-	}
 -
-+		arg.regdomain = ar->ab->dfs_region;
- 		spin_unlock_bh(&ab->data_lock);
+-	ret = ath11k_wmi_prb_tmpl(ar, arvif->vdev_id, prb);
+-	kfree_skb(prb);
+-
+-	if (ret) {
+-		ath11k_warn(ar->ab, "failed to submit probe resp template command: %d\n",
+-			    ret);
+-	}
+-
+-	return ret;
+-}
+-
+ static void ath11k_control_beaconing(struct ath11k_vif *arvif,
+ 				     struct ieee80211_bss_conf *info)
+ {
+@@ -1697,13 +1669,6 @@ static void ath11k_bss_info_changed(struct ieee80211_hw *hw,
+ 				    ret);
+ 	}
  
- 		/* TODO: Notify if secondary 80Mhz also needs radar detection */
+-	if (changed & BSS_CHANGED_AP_PROBE_RESP) {
+-		ret = ath11k_mac_setup_prb_tmpl(arvif);
+-		if (ret)
+-			ath11k_warn(ar->ab, "failed to setup probe resp template on vdev %i: %d\n",
+-				    arvif->vdev_id, ret);
+-	}
+-
+ 	if (changed & (BSS_CHANGED_BEACON_INFO | BSS_CHANGED_BEACON)) {
+ 		arvif->dtim_period = info->dtim_period;
+ 
+@@ -4120,11 +4085,6 @@ ath11k_mac_update_vif_chan(struct ath11k *ar,
+ 			ath11k_warn(ab, "failed to update bcn tmpl during csa: %d\n",
+ 				    ret);
+ 
+-		ret = ath11k_mac_setup_prb_tmpl(arvif);
+-		if (ret)
+-			ath11k_warn(ar->ab, "failed to update prb tmpl: %d\n",
+-				    ret);
+-
+ 		ret = ath11k_mac_vdev_restart(arvif, &vifs[i].new_ctx->def);
+ 		if (ret) {
+ 			ath11k_warn(ab, "failed to restart vdev %d: %d\n",
 diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 9ca44c4..3ac1e1c 100644
+index 3ac1e1c..25a45af 100644
 --- a/drivers/net/wireless/ath/ath11k/wmi.c
 +++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -4645,6 +4645,7 @@ static int ath11k_reg_chan_list_event(struct ath11k_base *ab, u8 *evt_buf, u32 l
- 		/* This regd would be applied during mac registration */
- 		ab->default_regd[pdev_idx] = regd;
- 	}
-+	ab->dfs_region = reg_info->dfs_region;
- 	spin_unlock(&ab->data_lock);
+@@ -1514,64 +1514,6 @@ int ath11k_wmi_bcn_tmpl(struct ath11k *ar, u32 vdev_id,
+ 	return ret;
+ }
  
- 	goto mem_free;
-@@ -4748,6 +4749,8 @@ static inline const char *ath11k_wmi_vdev_resp_print(u32 vdev_resp_status)
- 		return "not supported";
- 	case WMI_VDEV_START_RESPONSE_DFS_VIOLATION:
- 		return "dfs violation";
-+	case WMI_VDEV_START_RESPONSE_INVALID_REGDOMAIN:
-+		return "invalid regdomain";
- 	default:
- 		return "unknown";
- 	}
+-int ath11k_wmi_prb_tmpl(struct ath11k *ar, u32 vdev_id,
+-			struct sk_buff *prb)
+-{
+-	struct ath11k_pdev_wmi *wmi = ar->wmi;
+-	struct wmi_prb_tmpl_cmd *cmd;
+-	struct wmi_bcn_prb_info *bcn_prb_info;
+-	struct wmi_tlv *tlv;
+-	struct sk_buff *skb;
+-	void *ptr;
+-	int len, ret;
+-	size_t aligned_len = roundup(prb->len, 4);
+-
+-	len = sizeof(*cmd) + sizeof(*bcn_prb_info) + TLV_HDR_SIZE + aligned_len;
+-	if (len > WMI_BEACON_TX_BUFFER_SIZE) {
+-		ath11k_warn(ar->ab, "Can't send wmi cmd\n");
+-		return -EINVAL;
+-	}
+-
+-	skb = ath11k_wmi_alloc_skb(wmi->wmi_sc, len);
+-	if (!skb)
+-		return -ENOMEM;
+-
+-	cmd = (struct wmi_prb_tmpl_cmd *)skb->data;
+-	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_PRB_TMPL_CMD) |
+-			  FIELD_PREP(WMI_TLV_LEN, sizeof(*cmd) - TLV_HDR_SIZE);
+-	cmd->vdev_id = vdev_id;
+-	cmd->buf_len = prb->len;
+-
+-	ptr = (void *)skb->data + sizeof(*cmd);
+-	len = sizeof(*bcn_prb_info);
+-
+-	bcn_prb_info = (struct wmi_bcn_prb_info *)ptr;
+-	bcn_prb_info->tlv_header = FIELD_PREP(WMI_TLV_TAG,
+-					      WMI_TAG_BCN_PRB_INFO) |
+-				   FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
+-	bcn_prb_info->caps = 0;
+-	bcn_prb_info->erp = 0;
+-
+-	ptr += sizeof(*bcn_prb_info);
+-
+-	tlv = (struct wmi_tlv *)ptr;
+-	tlv->header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_ARRAY_BYTE) |
+-		      FIELD_PREP(WMI_TLV_LEN, aligned_len);
+-
+-	memcpy(tlv->value, prb->data, prb->len);
+-
+-	ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
+-		   "WMI prb tmpl vdev id %d len %d\n", vdev_id, prb->len);
+-
+-	ret = ath11k_wmi_cmd_send(wmi, skb, WMI_PRB_TMPL_CMDID);
+-	if (ret) {
+-		ath11k_warn(ar->ab, "failed to send WMI_PRB_TMPL_CMDID\n");
+-		dev_kfree_skb(skb);
+-	}
+-
+-	return ret;
+-}
+-
+ int ath11k_wmi_vdev_install_key(struct ath11k *ar,
+ 				struct wmi_vdev_install_key_arg *arg)
+ {
 diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index 366a136..0d36c8a 100644
+index 0d36c8a..fdaf63b 100644
 --- a/drivers/net/wireless/ath/ath11k/wmi.h
 +++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -4221,6 +4221,7 @@ enum wmi_vdev_start_resp_status_code {
- 	WMI_VDEV_START_RESPONSE_INVALID_VDEVID = 1,
- 	WMI_VDEV_START_RESPONSE_NOT_SUPPORTED = 2,
- 	WMI_VDEV_START_RESPONSE_DFS_VIOLATION = 3,
-+	WMI_VDEV_START_RESPONSE_INVALID_REGDOMAIN = 4,
- };
+@@ -3792,12 +3792,6 @@ struct wmi_bcn_tmpl_cmd {
+ 	u32 esp_ie_offset;
+ } __packed;
  
- ;
+-struct wmi_prb_tmpl_cmd {
+-	u32 tlv_header;
+-	u32 vdev_id;
+-	u32 buf_len;
+-} __packed;
+-
+ struct wmi_key_seq_counter {
+ 	u32 key_seq_counter_l;
+ 	u32 key_seq_counter_h;
+@@ -5143,8 +5137,6 @@ int ath11k_wmi_mgmt_send(struct ath11k *ar, u32 vdev_id, u32 buf_id,
+ int ath11k_wmi_bcn_tmpl(struct ath11k *ar, u32 vdev_id,
+ 			struct ieee80211_mutable_offsets *offs,
+ 			struct sk_buff *bcn);
+-int ath11k_wmi_prb_tmpl(struct ath11k *ar, u32 vdev_id,
+-			struct sk_buff *prb);
+ int ath11k_wmi_vdev_down(struct ath11k *ar, u8 vdev_id);
+ int ath11k_wmi_vdev_up(struct ath11k *ar, u32 vdev_id, u32 aid,
+ 		       const u8 *bssid);
 -- 
 2.7.4
 
