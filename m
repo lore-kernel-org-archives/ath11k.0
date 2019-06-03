@@ -1,12 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from smtp.codeaurora.org ([198.145.29.96])
+Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hXlIH-0003lU-8k
- for ath11k@lists.infradead.org; Mon, 03 Jun 2019 11:38:26 +0000
-From: Sriram R <srirrama@codeaurora.org>
-Subject: [PATCH] ath11k: Remove probe response offload template setup
-Date: Mon,  3 Jun 2019 17:08:10 +0530
-Message-Id: <1559561890-27984-1-git-send-email-srirrama@codeaurora.org>
+ id 1hXllm-00070A-99
+ for ath11k@lists.infradead.org; Mon, 03 Jun 2019 12:08:56 +0000
+From: John Crispin <john@phrozen.org>
+Subject: [PATCH] ath11k: fix various whitespace errors inside mac.h
+Date: Mon,  3 Jun 2019 14:08:43 +0200
+Message-Id: <20190603120843.31616-1-john@phrozen.org>
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -15,190 +16,263 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: Sriram R <srirrama@codeaurora.org>
+To: Kalle Valo <kvalo@codeaurora.org>
+Cc: ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-Probe response offload support is not supported by
-IPQ8074 firmware. Hence do not advertise or set probe
-response template to the firmware.
-
-This would avoid the below error during template setup.
-'failed to update prb tmpl -1'
-
-Signed-off-by: Sriram R <srirrama@codeaurora.org>
+Signed-off-by: John Crispin <john@phrozen.org>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 40 ------------------------
- drivers/net/wireless/ath/ath11k/wmi.c | 58 -----------------------------------
- drivers/net/wireless/ath/ath11k/wmi.h |  8 -----
- 3 files changed, 106 deletions(-)
+ drivers/net/wireless/ath/ath11k/mac.h | 190 +++++++++++++-------------
+ 1 file changed, 95 insertions(+), 95 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 87a420e..9cb8ea3 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -828,34 +828,6 @@ static int ath11k_mac_setup_bcn_tmpl(struct ath11k_vif *arvif)
- 	return ret;
- }
+diff --git a/drivers/net/wireless/ath/ath11k/mac.h b/drivers/net/wireless/ath/ath11k/mac.h
+index 6f09c56c4eb9..842901ee3e2a 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.h
++++ b/drivers/net/wireless/ath/ath11k/mac.h
+@@ -18,50 +18,50 @@ struct ath11k_generic_iter {
+ };
  
--static int ath11k_mac_setup_prb_tmpl(struct ath11k_vif *arvif)
--{
--	struct ath11k *ar = arvif->ar;
--	struct ieee80211_hw *hw = ar->hw;
--	struct ieee80211_vif *vif = arvif->vif;
--	struct sk_buff *prb;
--	int ret;
--
--	/* Interface validation is part of the below function, need not
--	 * check here.
--	 */
--	prb = ieee80211_proberesp_get(hw, vif);
--	if (!prb) {
--		ath11k_warn(ar->ab, "failed to get probe resp template from mac80211\n");
--		return -EPERM;
--	}
--
--	ret = ath11k_wmi_prb_tmpl(ar, arvif->vdev_id, prb);
--	kfree_skb(prb);
--
--	if (ret) {
--		ath11k_warn(ar->ab, "failed to submit probe resp template command: %d\n",
--			    ret);
--	}
--
--	return ret;
--}
--
- static void ath11k_control_beaconing(struct ath11k_vif *arvif,
- 				     struct ieee80211_bss_conf *info)
- {
-@@ -1697,13 +1669,6 @@ static void ath11k_bss_info_changed(struct ieee80211_hw *hw,
- 				    ret);
- 	}
+ /* number of failed packets (20 packets with 16 sw reties each) */
+-#define ATH11K_KICKOUT_THRESHOLD (20 * 16)
++#define ATH11K_KICKOUT_THRESHOLD		(20 * 16)
  
--	if (changed & BSS_CHANGED_AP_PROBE_RESP) {
--		ret = ath11k_mac_setup_prb_tmpl(arvif);
--		if (ret)
--			ath11k_warn(ar->ab, "failed to setup probe resp template on vdev %i: %d\n",
--				    arvif->vdev_id, ret);
--	}
+ /* Use insanely high numbers to make sure that the firmware implementation
+  * won't start, we have the same functionality already in hostapd. Unit
+  * is seconds.
+  */
+-#define ATH11K_KEEPALIVE_MIN_IDLE 3747
+-#define ATH11K_KEEPALIVE_MAX_IDLE 3895
+-#define ATH11K_KEEPALIVE_MAX_UNRESPONSIVE 3900
 -
- 	if (changed & (BSS_CHANGED_BEACON_INFO | BSS_CHANGED_BEACON)) {
- 		arvif->dtim_period = info->dtim_period;
+-#define WMI_HOST_RC_DS_FLAG             0x01
+-#define WMI_HOST_RC_CW40_FLAG           0x02
+-#define WMI_HOST_RC_SGI_FLAG            0x04
+-#define WMI_HOST_RC_HT_FLAG             0x08
+-#define WMI_HOST_RC_RTSCTS_FLAG         0x10
+-#define WMI_HOST_RC_TX_STBC_FLAG        0x20
+-#define WMI_HOST_RC_RX_STBC_FLAG        0xC0
+-#define WMI_HOST_RC_RX_STBC_FLAG_S      6
+-#define WMI_HOST_RC_WEP_TKIP_FLAG       0x100
+-#define WMI_HOST_RC_TS_FLAG             0x200
+-#define WMI_HOST_RC_UAPSD_FLAG          0x400
+-
+-#define WMI_HT_CAP_ENABLED              0x0001
+-#define WMI_HT_CAP_HT20_SGI             0x0002
+-#define WMI_HT_CAP_DYNAMIC_SMPS         0x0004
+-#define WMI_HT_CAP_TX_STBC              0x0008
+-#define WMI_HT_CAP_TX_STBC_MASK_SHIFT   3
+-#define WMI_HT_CAP_RX_STBC              0x0030
+-#define WMI_HT_CAP_RX_STBC_MASK_SHIFT   4
+-#define WMI_HT_CAP_LDPC                 0x0040
+-#define WMI_HT_CAP_L_SIG_TXOP_PROT      0x0080
+-#define WMI_HT_CAP_MPDU_DENSITY         0x0700
+-#define WMI_HT_CAP_MPDU_DENSITY_MASK_SHIFT 8
+-#define WMI_HT_CAP_HT40_SGI             0x0800
+-#define WMI_HT_CAP_RX_LDPC              0x1000
+-#define WMI_HT_CAP_TX_LDPC              0x2000
+-#define WMI_HT_CAP_IBF_BFER             0x4000
++#define ATH11K_KEEPALIVE_MIN_IDLE		3747
++#define ATH11K_KEEPALIVE_MAX_IDLE		3895
++#define ATH11K_KEEPALIVE_MAX_UNRESPONSIVE	3900
++
++#define WMI_HOST_RC_DS_FLAG			0x01
++#define WMI_HOST_RC_CW40_FLAG			0x02
++#define WMI_HOST_RC_SGI_FLAG			0x04
++#define WMI_HOST_RC_HT_FLAG			0x08
++#define WMI_HOST_RC_RTSCTS_FLAG			0x10
++#define WMI_HOST_RC_TX_STBC_FLAG		0x20
++#define WMI_HOST_RC_RX_STBC_FLAG		0xC0
++#define WMI_HOST_RC_RX_STBC_FLAG_S		6
++#define WMI_HOST_RC_WEP_TKIP_FLAG		0x100
++#define WMI_HOST_RC_TS_FLAG			0x200
++#define WMI_HOST_RC_UAPSD_FLAG			0x400
++
++#define WMI_HT_CAP_ENABLED			0x0001
++#define WMI_HT_CAP_HT20_SGI			0x0002
++#define WMI_HT_CAP_DYNAMIC_SMPS			0x0004
++#define WMI_HT_CAP_TX_STBC			0x0008
++#define WMI_HT_CAP_TX_STBC_MASK_SHIFT		3
++#define WMI_HT_CAP_RX_STBC			0x0030
++#define WMI_HT_CAP_RX_STBC_MASK_SHIFT		4
++#define WMI_HT_CAP_LDPC				0x0040
++#define WMI_HT_CAP_L_SIG_TXOP_PROT		0x0080
++#define WMI_HT_CAP_MPDU_DENSITY			0x0700
++#define WMI_HT_CAP_MPDU_DENSITY_MASK_SHIFT	8
++#define WMI_HT_CAP_HT40_SGI			0x0800
++#define WMI_HT_CAP_RX_LDPC			0x1000
++#define WMI_HT_CAP_TX_LDPC			0x2000
++#define WMI_HT_CAP_IBF_BFER			0x4000
  
-@@ -4120,11 +4085,6 @@ ath11k_mac_update_vif_chan(struct ath11k *ar,
- 			ath11k_warn(ab, "failed to update bcn tmpl during csa: %d\n",
- 				    ret);
+ /* These macros should be used when we wish to advertise STBC support for
+  * only 1SS or 2SS or 3SS.
+  */
+-#define WMI_HT_CAP_RX_STBC_1SS          0x0010
+-#define WMI_HT_CAP_RX_STBC_2SS          0x0020
+-#define WMI_HT_CAP_RX_STBC_3SS          0x0030
++#define WMI_HT_CAP_RX_STBC_1SS			0x0010
++#define WMI_HT_CAP_RX_STBC_2SS			0x0020
++#define WMI_HT_CAP_RX_STBC_3SS			0x0030
  
--		ret = ath11k_mac_setup_prb_tmpl(arvif);
--		if (ret)
--			ath11k_warn(ar->ab, "failed to update prb tmpl: %d\n",
--				    ret);
--
- 		ret = ath11k_mac_vdev_restart(arvif, &vifs[i].new_ctx->def);
- 		if (ret) {
- 			ath11k_warn(ab, "failed to restart vdev %d: %d\n",
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 3ac1e1c..25a45af 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -1514,64 +1514,6 @@ int ath11k_wmi_bcn_tmpl(struct ath11k *ar, u32 vdev_id,
- 	return ret;
- }
+ #define WMI_HT_CAP_DEFAULT_ALL (WMI_HT_CAP_ENABLED    | \
+ 				WMI_HT_CAP_HT20_SGI   | \
+@@ -70,34 +70,34 @@ struct ath11k_generic_iter {
+ 				WMI_HT_CAP_RX_STBC    | \
+ 				WMI_HT_CAP_LDPC)
  
--int ath11k_wmi_prb_tmpl(struct ath11k *ar, u32 vdev_id,
--			struct sk_buff *prb)
--{
--	struct ath11k_pdev_wmi *wmi = ar->wmi;
--	struct wmi_prb_tmpl_cmd *cmd;
--	struct wmi_bcn_prb_info *bcn_prb_info;
--	struct wmi_tlv *tlv;
--	struct sk_buff *skb;
--	void *ptr;
--	int len, ret;
--	size_t aligned_len = roundup(prb->len, 4);
+-#define WMI_VHT_CAP_MAX_MPDU_LEN_MASK      0x00000003
+-#define WMI_VHT_CAP_RX_LDPC                0x00000010
+-#define WMI_VHT_CAP_SGI_80MHZ              0x00000020
+-#define WMI_VHT_CAP_SGI_160MHZ             0x00000040
+-#define WMI_VHT_CAP_TX_STBC                0x00000080
+-#define WMI_VHT_CAP_RX_STBC_MASK           0x00000300
+-#define WMI_VHT_CAP_RX_STBC_MASK_SHIFT     8
+-#define WMI_VHT_CAP_SU_BFER                0x00000800
+-#define WMI_VHT_CAP_SU_BFEE                0x00001000
+-#define WMI_VHT_CAP_MAX_CS_ANT_MASK        0x0000E000
+-#define WMI_VHT_CAP_MAX_CS_ANT_MASK_SHIFT  13
+-#define WMI_VHT_CAP_MAX_SND_DIM_MASK       0x00070000
+-#define WMI_VHT_CAP_MAX_SND_DIM_MASK_SHIFT 16
+-#define WMI_VHT_CAP_MU_BFER                0x00080000
+-#define WMI_VHT_CAP_MU_BFEE                0x00100000
+-#define WMI_VHT_CAP_MAX_AMPDU_LEN_EXP      0x03800000
+-#define WMI_VHT_CAP_MAX_AMPDU_LEN_EXP_SHIT 23
+-#define WMI_VHT_CAP_RX_FIXED_ANT           0x10000000
+-#define WMI_VHT_CAP_TX_FIXED_ANT           0x20000000
 -
--	len = sizeof(*cmd) + sizeof(*bcn_prb_info) + TLV_HDR_SIZE + aligned_len;
--	if (len > WMI_BEACON_TX_BUFFER_SIZE) {
--		ath11k_warn(ar->ab, "Can't send wmi cmd\n");
--		return -EINVAL;
--	}
--
--	skb = ath11k_wmi_alloc_skb(wmi->wmi_sc, len);
--	if (!skb)
--		return -ENOMEM;
--
--	cmd = (struct wmi_prb_tmpl_cmd *)skb->data;
--	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_PRB_TMPL_CMD) |
--			  FIELD_PREP(WMI_TLV_LEN, sizeof(*cmd) - TLV_HDR_SIZE);
--	cmd->vdev_id = vdev_id;
--	cmd->buf_len = prb->len;
--
--	ptr = (void *)skb->data + sizeof(*cmd);
--	len = sizeof(*bcn_prb_info);
--
--	bcn_prb_info = (struct wmi_bcn_prb_info *)ptr;
--	bcn_prb_info->tlv_header = FIELD_PREP(WMI_TLV_TAG,
--					      WMI_TAG_BCN_PRB_INFO) |
--				   FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
--	bcn_prb_info->caps = 0;
--	bcn_prb_info->erp = 0;
--
--	ptr += sizeof(*bcn_prb_info);
--
--	tlv = (struct wmi_tlv *)ptr;
--	tlv->header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_ARRAY_BYTE) |
--		      FIELD_PREP(WMI_TLV_LEN, aligned_len);
--
--	memcpy(tlv->value, prb->data, prb->len);
--
--	ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
--		   "WMI prb tmpl vdev id %d len %d\n", vdev_id, prb->len);
--
--	ret = ath11k_wmi_cmd_send(wmi, skb, WMI_PRB_TMPL_CMDID);
--	if (ret) {
--		ath11k_warn(ar->ab, "failed to send WMI_PRB_TMPL_CMDID\n");
--		dev_kfree_skb(skb);
--	}
--
--	return ret;
--}
--
- int ath11k_wmi_vdev_install_key(struct ath11k *ar,
- 				struct wmi_vdev_install_key_arg *arg)
- {
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index 0d36c8a..fdaf63b 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -3792,12 +3792,6 @@ struct wmi_bcn_tmpl_cmd {
- 	u32 esp_ie_offset;
- } __packed;
+-#define WMI_VHT_CAP_MAX_MPDU_LEN_11454     0x00000002
++#define WMI_VHT_CAP_MAX_MPDU_LEN_MASK		0x00000003
++#define WMI_VHT_CAP_RX_LDPC			0x00000010
++#define WMI_VHT_CAP_SGI_80MHZ			0x00000020
++#define WMI_VHT_CAP_SGI_160MHZ			0x00000040
++#define WMI_VHT_CAP_TX_STBC			0x00000080
++#define WMI_VHT_CAP_RX_STBC_MASK		0x00000300
++#define WMI_VHT_CAP_RX_STBC_MASK_SHIFT		8
++#define WMI_VHT_CAP_SU_BFER			0x00000800
++#define WMI_VHT_CAP_SU_BFEE			0x00001000
++#define WMI_VHT_CAP_MAX_CS_ANT_MASK		0x0000E000
++#define WMI_VHT_CAP_MAX_CS_ANT_MASK_SHIFT	13
++#define WMI_VHT_CAP_MAX_SND_DIM_MASK		0x00070000
++#define WMI_VHT_CAP_MAX_SND_DIM_MASK_SHIFT	16
++#define WMI_VHT_CAP_MU_BFER			0x00080000
++#define WMI_VHT_CAP_MU_BFEE			0x00100000
++#define WMI_VHT_CAP_MAX_AMPDU_LEN_EXP		0x03800000
++#define WMI_VHT_CAP_MAX_AMPDU_LEN_EXP_SHIT	23
++#define WMI_VHT_CAP_RX_FIXED_ANT		0x10000000
++#define WMI_VHT_CAP_TX_FIXED_ANT		0x20000000
++
++#define WMI_VHT_CAP_MAX_MPDU_LEN_11454		0x00000002
  
--struct wmi_prb_tmpl_cmd {
--	u32 tlv_header;
--	u32 vdev_id;
--	u32 buf_len;
--} __packed;
--
- struct wmi_key_seq_counter {
- 	u32 key_seq_counter_l;
- 	u32 key_seq_counter_h;
-@@ -5143,8 +5137,6 @@ int ath11k_wmi_mgmt_send(struct ath11k *ar, u32 vdev_id, u32 buf_id,
- int ath11k_wmi_bcn_tmpl(struct ath11k *ar, u32 vdev_id,
- 			struct ieee80211_mutable_offsets *offs,
- 			struct sk_buff *bcn);
--int ath11k_wmi_prb_tmpl(struct ath11k *ar, u32 vdev_id,
--			struct sk_buff *prb);
- int ath11k_wmi_vdev_down(struct ath11k *ar, u8 vdev_id);
- int ath11k_wmi_vdev_up(struct ath11k *ar, u32 vdev_id, u32 aid,
- 		       const u8 *bssid);
+ /* These macros should be used when we wish to advertise STBC support for
+  * only 1SS or 2SS or 3SS.
+  */
+-#define WMI_VHT_CAP_RX_STBC_1SS            0x00000100
+-#define WMI_VHT_CAP_RX_STBC_2SS            0x00000200
+-#define WMI_VHT_CAP_RX_STBC_3SS            0x00000300
++#define WMI_VHT_CAP_RX_STBC_1SS			0x00000100
++#define WMI_VHT_CAP_RX_STBC_2SS			0x00000200
++#define WMI_VHT_CAP_RX_STBC_3SS			0x00000300
+ 
+ #define WMI_VHT_CAP_DEFAULT_ALL (WMI_VHT_CAP_MAX_MPDU_LEN_11454  | \
+ 				 WMI_VHT_CAP_SGI_80MHZ      |       \
+@@ -110,57 +110,57 @@ struct ath11k_generic_iter {
+ 
+ /* VHT capability flags */
+ /* B0-B1 Maximum MPDU Length */
+-#define IEEE80211_VHTCAP_MAX_MPDU_LEN_3839     0x00000000
+-#define IEEE80211_VHTCAP_MAX_MPDU_LEN_7935     0x00000001
+-#define IEEE80211_VHTCAP_MAX_MPDU_LEN_11454    0x00000002
++#define IEEE80211_VHTCAP_MAX_MPDU_LEN_3839	0x00000000
++#define IEEE80211_VHTCAP_MAX_MPDU_LEN_7935	0x00000001
++#define IEEE80211_VHTCAP_MAX_MPDU_LEN_11454	0x00000002
+ 
+ /* B2-B3 Supported Channel Width */
+-#define IEEE80211_VHTCAP_SUP_CHAN_WIDTH_80     0x00000000
+-#define IEEE80211_VHTCAP_SUP_CHAN_WIDTH_160    0x00000004
+-#define IEEE80211_VHTCAP_SUP_CHAN_WIDTH_80_160 0x00000008
+-#define IEEE80211_VHTCAP_SUP_CHAN_WIDTH_S      2
++#define IEEE80211_VHTCAP_SUP_CHAN_WIDTH_80	0x00000000
++#define IEEE80211_VHTCAP_SUP_CHAN_WIDTH_160	0x00000004
++#define IEEE80211_VHTCAP_SUP_CHAN_WIDTH_80_160	0x00000008
++#define IEEE80211_VHTCAP_SUP_CHAN_WIDTH_S	2
+ 
+-#define IEEE80211_VHTCAP_RX_LDPC             0x00000010
+-#define IEEE80211_VHTCAP_SHORTGI_80          0x00000020
+-#define IEEE80211_VHTCAP_SHORTGI_160         0x00000040
+-#define IEEE80211_VHTCAP_TX_STBC             0x00000080
+-#define IEEE80211_VHTCAP_TX_STBC_S           7
++#define IEEE80211_VHTCAP_RX_LDPC		0x00000010
++#define IEEE80211_VHTCAP_SHORTGI_80		0x00000020
++#define IEEE80211_VHTCAP_SHORTGI_160		0x00000040
++#define IEEE80211_VHTCAP_TX_STBC		0x00000080
++#define IEEE80211_VHTCAP_TX_STBC_S		7
+ 
+-#define IEEE80211_VHTCAP_RX_STBC             0x00000700
+-#define IEEE80211_VHTCAP_RX_STBC_S           8
++#define IEEE80211_VHTCAP_RX_STBC		0x00000700
++#define IEEE80211_VHTCAP_RX_STBC_S		8
+ 
+-#define IEEE80211_VHTCAP_SU_BFORMER          0x00000800
+-#define IEEE80211_VHTCAP_SU_BFORMER_S        11
+-#define IEEE80211_VHTCAP_SU_BFORMEE          0x00001000
+-#define IEEE80211_VHTCAP_SU_BFORMEE_S        12
++#define IEEE80211_VHTCAP_SU_BFORMER		0x00000800
++#define IEEE80211_VHTCAP_SU_BFORMER_S		11
++#define IEEE80211_VHTCAP_SU_BFORMEE		0x00001000
++#define IEEE80211_VHTCAP_SU_BFORMEE_S		12
+ 
+-#define IEEE80211_VHTCAP_BF_MAX_ANT          0x0000E000
+-#define IEEE80211_VHTCAP_BF_MAX_ANT_S        13
++#define IEEE80211_VHTCAP_BF_MAX_ANT		0x0000E000
++#define IEEE80211_VHTCAP_BF_MAX_ANT_S		13
+ 
+-#define IEEE80211_VHTCAP_STS_CAP_S           13
+-#define IEEE80211_VHTCAP_STS_CAP_M           0x7
++#define IEEE80211_VHTCAP_STS_CAP_S		13
++#define IEEE80211_VHTCAP_STS_CAP_M		0x7
+ 
+-#define IEEE80211_VHTCAP_SOUND_DIM           0x00070000
+-#define IEEE80211_VHTCAP_SOUND_DIM_S         16
++#define IEEE80211_VHTCAP_SOUND_DIM		0x00070000
++#define IEEE80211_VHTCAP_SOUND_DIM_S		16
+ 
+-#define IEEE80211_VHTCAP_MU_BFORMER          0x00080000
+-#define IEEE80211_VHTCAP_MU_BFORMER_S        19
+-#define IEEE80211_VHTCAP_MU_BFORMEE          0x00100000
+-#define IEEE80211_VHTCAP_MU_BFORMEE_S        20
+-#define IEEE80211_VHTCAP_TXOP_PS             0x00200000
+-#define IEEE80211_VHTCAP_PLUS_HTC_VHT        0x00400000
++#define IEEE80211_VHTCAP_MU_BFORMER		0x00080000
++#define IEEE80211_VHTCAP_MU_BFORMER_S		19
++#define IEEE80211_VHTCAP_MU_BFORMEE		0x00100000
++#define IEEE80211_VHTCAP_MU_BFORMEE_S		20
++#define IEEE80211_VHTCAP_TXOP_PS		0x00200000
++#define IEEE80211_VHTCAP_PLUS_HTC_VHT		0x00400000
+ 
+-#define IEEE80211_VHTCAP_MAX_AMPDU_LEN_FACTOR 13
+-#define IEEE80211_VHTCAP_MAX_AMPDU_LEN_EXP   0x03800000
+-#define IEEE80211_VHTCAP_MAX_AMPDU_LEN_EXP_S 23
++#define IEEE80211_VHTCAP_MAX_AMPDU_LEN_FACTOR	13
++#define IEEE80211_VHTCAP_MAX_AMPDU_LEN_EXP	0x03800000
++#define IEEE80211_VHTCAP_MAX_AMPDU_LEN_EXP_S	23
+ 
+-#define IEEE80211_VHTCAP_LINK_ADAPT          0x0C000000
+-#define IEEE80211_VHTCAP_RESERVED            0xF0000000
++#define IEEE80211_VHTCAP_LINK_ADAPT		0x0C000000
++#define IEEE80211_VHTCAP_RESERVED		0xF0000000
+ 
+ #define IEEE80211_VHT_MCS_SUPPORT_0_11_MASK	GENMASK(23, 16)
+ #define IEEE80211_DISABLE_VHT_MCS_SUPPORT_0_11	BIT(24)
+ 
+-#define WMI_MAX_SPATIAL_STREAM               3
++#define WMI_MAX_SPATIAL_STREAM			3
+ 
+ int ath11k_mac_create(struct ath11k_base *ab);
+ void ath11k_mac_destroy(struct ath11k_base *ab);
 -- 
-2.7.4
+2.20.1
 
 
 _______________________________________________
