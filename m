@@ -1,17 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hY500-0006AR-MD
- for ath11k@lists.infradead.org; Tue, 04 Jun 2019 08:40:54 +0000
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH V7 8/8] ath11k: add HE support
-References: <20190603190157.25165-1-john@phrozen.org>
- <20190603190157.25165-9-john@phrozen.org>
-Date: Tue, 04 Jun 2019 11:40:47 +0300
-In-Reply-To: <20190603190157.25165-9-john@phrozen.org> (John Crispin's message
- of "Mon, 3 Jun 2019 21:01:57 +0200")
-Message-ID: <874l55wxo0.fsf@kamboji.qca.qualcomm.com>
-MIME-Version: 1.0
+ id 1hY7ie-00020f-0h
+ for ath11k@lists.infradead.org; Tue, 04 Jun 2019 11:35:09 +0000
+From: Maharaja Kennadyrajan <mkenna@codeaurora.org>
+Subject: [PATCH] ath11k: advertize beacon_int_min_gcd as 100 while bring up
+ multi vaps
+Date: Tue,  4 Jun 2019 17:06:27 +0530
+Message-Id: <1559648187-16152-1-git-send-email-mkenna@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -20,50 +16,38 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: John Crispin <john@phrozen.org>
-Cc: ath11k@lists.infradead.org, Shashidhar Lakkavalli <slakkavalli@datto.com>
+To: ath11k@lists.infradead.org
+Cc: Maharaja Kennadyrajan <mkenna@codeaurora.org>
 
-John Crispin <john@phrozen.org> writes:
+When the user tries to bring up the multi vaps with different
+beacon interval, then the beacon intervals of the multi vaps
+should be the minimum GCD of 100.
 
-> Add basic HE support to the driver. The sband_iftype data is generated from
-> the capabilities read from the FW.
->
-> Signed-off-by: Shashidhar Lakkavalli <slakkavalli@datto.com>
-> Signed-off-by: John Crispin <john@phrozen.org>
+Signed-off-by: Maharaja Kennadyrajan <mkenna@codeaurora.org>
+---
+ drivers/net/wireless/ath/ath11k/mac.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-Due to reason unknown to me this had a conflict in mac.c, and annoyingly
-3-way merge didn't work either. Here's the rejected hunk:
-
-diff a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c	(rejected hunks)
-@@ -1470,7 +1565,14 @@ static void ath11k_peer_assoc_h_phymode(struct ath11k *ar,
- 
- 	switch (band) {
- 	case NL80211_BAND_2GHZ:
--		if (sta->vht_cap.vht_supported &&
-+		if (sta->he_cap.has_he) {
-+			if (sta->bandwidth == IEEE80211_STA_RX_BW_80)
-+				phymode = MODE_11AX_HE80_2G;
-+			else if (sta->bandwidth == IEEE80211_STA_RX_BW_40)
-+				phymode = MODE_11AX_HE40_2G;
-+			else
-+				phymode = MODE_11AX_HE20_2G;
-+		} else if (sta->vht_cap.vht_supported &&
- 		    !ath11k_peer_assoc_h_vht_masked(vht_mcs_mask)) {
- 			if (sta->bandwidth == IEEE80211_STA_RX_BW_40)
- 				phymode = MODE_11AC_VHT40_2G;
-
-
-I fixed it manually in the pending branch. Please check and let me know
-if it's ok:
-
-https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=17aca2d9a969788a7f1e3e0c72b5485bf6a432a4
-
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index cb0de8e2aa60..1791f6a6c1e9 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -4843,6 +4843,7 @@ static const struct ieee80211_iface_combination ath11k_if_comb[] = {
+ 		.max_interfaces = 16,
+ 		.num_different_channels = 1,
+ 		.beacon_int_infra_match = true,
++		.beacon_int_min_gcd = 100,
+ 		.radar_detect_widths =	BIT(NL80211_CHAN_WIDTH_20_NOHT) |
+ 					BIT(NL80211_CHAN_WIDTH_20) |
+ 					BIT(NL80211_CHAN_WIDTH_40) |
 -- 
-Kalle Valo
+2.21.0
+
 
 _______________________________________________
 ath11k mailing list
