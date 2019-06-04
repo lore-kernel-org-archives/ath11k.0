@@ -1,12 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hY7jU-0002c3-Ah
- for ath11k@lists.infradead.org; Tue, 04 Jun 2019 11:36:01 +0000
+ id 1hY7k7-0002e2-2w
+ for ath11k@lists.infradead.org; Tue, 04 Jun 2019 11:36:40 +0000
 From: Maharaja Kennadyrajan <mkenna@codeaurora.org>
-Subject: [PATCH] ath11k: Fix the rate mask value for legacy and peer fixed rate
-Date: Tue,  4 Jun 2019 17:07:19 +0530
-Message-Id: <1559648239-16220-1-git-send-email-mkenna@codeaurora.org>
+Subject: [PATCH] ath11k: Disable peer fixed rate before setting the vdev fixed
+ rate
+Date: Tue,  4 Jun 2019 17:08:00 +0530
+Message-Id: <1559648280-16284-1-git-send-email-mkenna@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,61 +24,55 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: Maharaja Kennadyrajan <mkenna@codeaurora.org>
 
-The rate mask value is changed from 0xff to oxffff (u8 to u32)
-in the firmware for the legacy fixed rate and peer fixed rate
-setting in the set bitrate command.
-Hence this patch is fixing the same in the driver.
+As per the firmware design, peer fixed rate should be disabled before
+setting the VDEV fixed rate again.
+When it is not disabled, then the user can't set the legacy rate(VDEV
+fixed rate) after setting peer fixed rate(as peer fixed rate has higher
+priority in the rate setting).
 
 Signed-off-by: Maharaja Kennadyrajan <mkenna@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 6 +++---
- drivers/net/wireless/ath/ath11k/wmi.h | 2 +-
- 2 files changed, 4 insertions(+), 4 deletions(-)
+ drivers/net/wireless/ath/ath11k/mac.c | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
 diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index cb0de8e2aa60..f490d7ccc2e2 100644
+index cb0de8e2aa60..cb1189136959 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -4454,7 +4454,7 @@ static int
- ath11k_mac_get_single_legacy_rate(struct ath11k *ar,
- 				  enum nl80211_band band,
- 				  const struct cfg80211_bitrate_mask *mask,
--				  u8 *rate, u8 *nss)
-+				  u32 *rate, u8 *nss)
- {
- 	int rate_idx;
- 	u16 bitrate;
-@@ -4484,7 +4484,7 @@ ath11k_mac_get_single_legacy_rate(struct ath11k *ar,
+@@ -4573,6 +4573,23 @@ static void ath11k_mac_set_bitrate_mask_iter(void *data,
+ 	ieee80211_queue_work(ar->hw, &arsta->update_wk);
  }
  
- static int ath11k_mac_set_fixed_rate_params(struct ath11k_vif *arvif,
--					    u8 rate, u8 nss, u8 sgi, u8 ldpc)
-+					    u32 rate, u8 nss, u8 sgi, u8 ldpc)
- {
- 	struct ath11k *ar = arvif->ar;
- 	u32 vdev_param;
-@@ -4584,7 +4584,7 @@ ath11k_mac_op_set_bitrate_mask(struct ieee80211_hw *hw,
- 	enum nl80211_band band;
- 	const u8 *ht_mcs_mask;
- 	const u16 *vht_mcs_mask;
--	u8 rate;
-+	u32 rate;
- 	u8 nss;
- 	u8 sgi;
- 	u8 ldpc;
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index 366a136e53ac..fe89f761ccc3 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -4926,7 +4926,7 @@ enum wmi_ap_ps_peer_param {
- #define WMI_CIPHER_AES_GMAC 0xa
- 
- /* Value to disable fixed rate setting */
--#define WMI_FIXED_RATE_NONE	(0xff)
-+#define WMI_FIXED_RATE_NONE	(0xffff)
- 
- #define ATH11K_RC_VERSION_OFFSET	28
- #define ATH11K_RC_PREAMBLE_OFFSET	8
++static void ath11k_mac_disable_peer_fixed_rate(void *data,
++					       struct ieee80211_sta *sta)
++{
++	struct ath11k_vif *arvif = data;
++	struct ath11k *ar = arvif->ar;
++	int ret;
++
++	ret = ath11k_wmi_set_peer_param(ar, sta->addr,
++					arvif->vdev_id,
++					WMI_PEER_PARAM_FIXED_RATE,
++					WMI_FIXED_RATE_NONE);
++	if (ret)
++		ath11k_warn(ar->ab,
++			    "failed to disable peer fixed rate for STA %pM ret %d\n",
++			    sta->addr, ret);
++}
++
+ static int
+ ath11k_mac_op_set_bitrate_mask(struct ieee80211_hw *hw,
+ 			       struct ieee80211_vif *vif,
+@@ -4620,6 +4637,9 @@ ath11k_mac_op_set_bitrate_mask(struct ieee80211_hw *hw,
+ 				    arvif->vdev_id, ret);
+ 			return ret;
+ 		}
++		ieee80211_iterate_stations_atomic(ar->hw,
++						  ath11k_mac_disable_peer_fixed_rate,
++						  arvif);
+ 	} else if (ath11k_mac_bitrate_mask_get_single_nss(ar, band, mask,
+ 							  &single_nss)) {
+ 		rate = WMI_FIXED_RATE_NONE;
 -- 
 2.21.0
 
