@@ -1,15 +1,17 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hYvUm-0006NT-1a
- for ath11k@lists.infradead.org; Thu, 06 Jun 2019 16:44:09 +0000
-MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: fix various whitespace errors inside mac.h
+ id 1hYvXm-0000Pp-2z
+ for ath11k@lists.infradead.org; Thu, 06 Jun 2019 16:47:15 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <20190603120843.31616-1-john@phrozen.org>
-References: <20190603120843.31616-1-john@phrozen.org>
-Message-Id: <20190606164407.BE136605FC@smtp.codeaurora.org>
-Date: Thu,  6 Jun 2019 16:44:07 +0000 (UTC)
+Subject: Re: [PATCH] ath11k: Remove probe response offload template setup
+References: <1559561890-27984-1-git-send-email-srirrama@codeaurora.org>
+ <20190606164126.5EA7D60CED@smtp.codeaurora.org>
+Date: Thu, 06 Jun 2019 19:47:07 +0300
+In-Reply-To: <20190606164126.5EA7D60CED@smtp.codeaurora.org> (Kalle Valo's
+ message of "Thu, 6 Jun 2019 16:41:26 +0000 (UTC)")
+Message-ID: <87d0jqveyc.fsf@kamboji.qca.qualcomm.com>
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,22 +24,37 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: John Crispin <john@phrozen.org>
+To: Sriram R <srirrama@codeaurora.org>
 Cc: ath11k@lists.infradead.org
 
-John Crispin <john@phrozen.org> wrote:
+Kalle Valo <kvalo@codeaurora.org> writes:
 
-> Signed-off-by: John Crispin <john@phrozen.org>
+> Sriram R <srirrama@codeaurora.org> wrote:
+>
+>> Probe response offload support is not supported by
+>> IPQ8074 firmware. Hence do not advertise or set probe
+>> response template to the firmware.
+>> 
+>> This would avoid the below error during template setup.
+>> 'failed to update prb tmpl -1'
+>> 
+>> Signed-off-by: Sriram R <srirrama@codeaurora.org>
+>
+> New warnings:
+>
+> drivers/net/wireless/ath/ath11k/wmi.c:4597:34: warning: mixing different enum types
+> drivers/net/wireless/ath/ath11k/wmi.c:4597:34:     unsigned int enum dfs_reg versus
+> drivers/net/wireless/ath/ath11k/wmi.c:4597:34:     unsigned int enum ath11k_dfs_region
+>
+> Patch set to Changes Requested.
 
-Patch applied to ath.git, thanks.
+Actually I'll take that back, I don't drop this patch. I got confused
+which commit caused those. It's actually this one:
 
-aa91a115a604 ath11k: fix various whitespace errors inside mac.h
+b0d742f32bc3 ath11k: Fix vdev start failure when operating in CN, KR regdomain
 
 -- 
-https://patchwork.kernel.org/patch/10972811/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
+Kalle Valo
 
 _______________________________________________
 ath11k mailing list
