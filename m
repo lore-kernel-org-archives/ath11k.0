@@ -1,18 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hYvZU-0000z5-Kz
- for ath11k@lists.infradead.org; Thu, 06 Jun 2019 16:49:01 +0000
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH] ath11k: Fix vdev start failure when operating in CN,
- KR regdomain
-References: <1559561865-27928-1-git-send-email-srirrama@codeaurora.org>
- <20190606163825.E0DD560E75@smtp.codeaurora.org>
-Date: Thu, 06 Jun 2019 19:48:55 +0300
-In-Reply-To: <20190606163825.E0DD560E75@smtp.codeaurora.org> (Kalle Valo's
- message of "Thu, 6 Jun 2019 16:38:25 +0000 (UTC)")
-Message-ID: <878suevevc.fsf@kamboji.qca.qualcomm.com>
+ id 1hYvaP-0001Fg-M6
+ for ath11k@lists.infradead.org; Thu, 06 Jun 2019 16:49:59 +0000
 MIME-Version: 1.0
+Subject: Re: [PATCH] ath11k: Remove probe response offload template setup
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <1559561890-27984-1-git-send-email-srirrama@codeaurora.org>
+References: <1559561890-27984-1-git-send-email-srirrama@codeaurora.org>
+Message-Id: <20190606164957.5B55C6049C@smtp.codeaurora.org>
+Date: Thu,  6 Jun 2019 16:49:57 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -28,37 +25,26 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Sriram R <srirrama@codeaurora.org>
 Cc: ath11k@lists.infradead.org
 
-Kalle Valo <kvalo@codeaurora.org> writes:
+Sriram R <srirrama@codeaurora.org> wrote:
 
-> Sriram R <srirrama@codeaurora.org> wrote:
->
->> Currently, firmware expects the correct regdomain to be set in
->> vdev start command. As firmware supports regulatory offload, it can track
->> the current regdomain. This info is received from firmware via
->> REG_CHAN_LIST_CC event during bringup or after setting country code.
->> Currently the dfs_region received is mapped to nl80211_dfs_regions
->> and stored in default_regd or new_regd and is used for vdev start.
->> But since nl80211_dfs_regions doesn't have a value enumerated for CN
->> KR, the firmware rejects VDEV start with an 'invalid regdomain' error.
->> Hence, send the appropriate regdomain received from firmware during
->> REG_CHAN_LIST_CC event in vdev start to avoid vdev start failure.
->> 
->> Signed-off-by: Sriram R <srirrama@codeaurora.org>
->
-> Patch applied to ath.git, thanks.
->
-> b0d742f32bc3 ath11k: Fix vdev start failure when operating in CN, KR regdomain
+> Probe response offload support is not supported by
+> IPQ8074 firmware. Hence do not advertise or set probe
+> response template to the firmware.
+> 
+> This would avoid the below error during template setup.
+> 'failed to update prb tmpl -1'
+> 
+> Signed-off-by: Sriram R <srirrama@codeaurora.org>
 
-This added a new warning:
+Patch applied to ath.git, thanks.
 
-drivers/net/wireless/ath/ath11k/wmi.c:4655:34: warning: mixing different enum types
-drivers/net/wireless/ath/ath11k/wmi.c:4655:34:     unsigned int enum dfs_reg versus
-drivers/net/wireless/ath/ath11k/wmi.c:4655:34:     unsigned int enum ath11k_dfs_region
-
-Please send a followup patch to fix that.
+10c16c257e4e ath11k: Remove probe response offload template setup
 
 -- 
-Kalle Valo
+https://patchwork.kernel.org/patch/10972793/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
 _______________________________________________
 ath11k mailing list
