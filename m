@@ -1,18 +1,18 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hZ72b-000107-GI
- for ath11k@lists.infradead.org; Fri, 07 Jun 2019 05:03:54 +0000
+ id 1hZ74P-0002G9-Td
+ for ath11k@lists.infradead.org; Fri, 07 Jun 2019 05:05:43 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH] ath11k: fix fallthrough warnings
-References: <1559754036-2358-1-git-send-email-msinada@codeaurora.org>
- <87lfyevj9x.fsf@kamboji.qca.qualcomm.com>
- <40b6f93fd815c3826d11088788a176e6@codeaurora.org>
-Date: Fri, 07 Jun 2019 08:03:44 +0300
-In-Reply-To: <40b6f93fd815c3826d11088788a176e6@codeaurora.org>
- (msinada@codeaurora.org's message of "Thu, 06 Jun 2019 14:19:56
- -0700")
-Message-ID: <87muiut2a7.fsf@kamboji.qca.qualcomm.com>
+Subject: Re: [PATCH] ath11k: Fix the rate mask value for legacy and peer fixed
+ rate
+References: <1559648239-16220-1-git-send-email-mkenna@codeaurora.org>
+ <20190606165407.65AC460DAB@smtp.codeaurora.org>
+ <04d8be7e61dad763b8526bf615af4730@codeaurora.org>
+Date: Fri, 07 Jun 2019 08:05:38 +0300
+In-Reply-To: <04d8be7e61dad763b8526bf615af4730@codeaurora.org> (Maharaja
+ Kennadyrajan's message of "Fri, 07 Jun 2019 10:31:31 +0530")
+Message-ID: <87imtit271.fsf@kamboji.qca.qualcomm.com>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -26,53 +26,28 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: msinada@codeaurora.org
+To: Maharaja Kennadyrajan <mkenna@codeaurora.org>
 Cc: ath11k@lists.infradead.org
 
-msinada@codeaurora.org writes:
+Maharaja Kennadyrajan <mkenna@codeaurora.org> writes:
 
-> On 2019-06-06 08:13, Kalle Valo wrote:
->> Muna Sinada <msinada@codeaurora.org> writes:
+> On 2019-06-06 10:24 pm, Kalle Valo wrote:
+>> Maharaja Kennadyrajan <mkenna@codeaurora.org> wrote:
 >>
->>> Marked expected switch case fall-through.
+>>> The rate mask value is changed from 0xff to oxffff (u8 to u32)
+>>> in the firmware for the legacy fixed rate and peer fixed rate
+>>> setting in the set bitrate command.
+>>> Hence this patch is fixing the same in the driver.
 >>>
->>> Fall through warnings were generated when running ath11k-check script
->>> with --extra flag:
->>>
->>>     drivers/net/wireless/ath/ath11k/core.c:741:14:
->>> 	warning: this statement may fall through Wimplicit-fallthrough=]
->>>     drivers/net/wireless/ath/ath11k/dp.c:133:6:
->>> 	warning: this statement may fall through [-Wplicit-fallthrough=]
->>>
->>> Signed-off-by: Muna Sinada <msinada@codeaurora.org>
+>>> Signed-off-by: Maharaja Kennadyrajan <mkenna@codeaurora.org>
 >>
->> [...]
->>
->>> --- a/drivers/net/wireless/ath/ath11k/dp.c
->>> +++ b/drivers/net/wireless/ath/ath11k/dp.c
->>> @@ -138,6 +138,7 @@ int ath11k_dp_srng_setup(struct ath11k_base
->>> *ab, struct dp_srng *ring,
->>>  			break;
->>>  		}
->>>  		/* follow through when ring_num >= 3 */
->>> +		/* fall through */
->>
->> Duplicate comments saying the same thing, can't you merge those?
+>> Is this backwards compatible change? I'm not convinced about that.
 >
-> ath11k_check did not recognize "fall through" in the first comment
-> causing the initial fall through warning. It seems that fall through
-> comment needs to be on a separate comment to avoid getting warning
-> from ath11k_check. Should I get rid of first comment or leave things
-> how they are now?
+> [Maha]: It won't break the backward compatibility as firmware is
+> taking care of it. Firmware is using 0xffff as mask value from the
+> beginning and this change is not added recently in the firmware.
 
-Ah, I tested this myself now and indeed GCC does not regocnise '/* fall
-through when ring_num >= 3 */' as a valid fallthrough comment even the
-recommendation implied otherwise:
-
-https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html
-
-Oh well, so I guess we just need to have two comments even it's IMHO
-ugly. Unless someone has other ideas?
+Good, thanks for the clarification.
 
 -- 
 Kalle Valo
