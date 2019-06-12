@@ -1,19 +1,19 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1haylA-0007Ua-HE
- for ath11k@lists.infradead.org; Wed, 12 Jun 2019 08:37:34 +0000
-Received: from vasanth-lnx.qca.qualcomm.com
- (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
+ id 1hayli-0007bf-SJ
+ for ath11k@lists.infradead.org; Wed, 12 Jun 2019 08:38:08 +0000
+Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi
+ [88.114.240.156])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
  (No client certificate requested)
- (Authenticated sender: vthiagar@smtp.codeaurora.org)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 7228A60132
- for <ath11k@lists.infradead.org>; Wed, 12 Jun 2019 08:37:30 +0000 (UTC)
-From: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
-Subject: [PATCH] ath11k: Fix Rx signal strength reporting
-Date: Wed, 12 Jun 2019 14:07:02 +0530
-Message-Id: <1560328622-9240-1-git-send-email-vthiagar@codeaurora.org>
+ (Authenticated sender: kvalo@smtp.codeaurora.org)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 865CE6038E
+ for <ath11k@lists.infradead.org>; Wed, 12 Jun 2019 08:38:05 +0000 (UTC)
+From: Kalle Valo <kvalo@codeaurora.org>
+Subject: [PATCH] ath11k: fix sparse warnings in mac.c
+Date: Wed, 12 Jun 2019 11:38:02 +0300
+Message-Id: <1560328682-23694-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -29,248 +29,87 @@ Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 
-Since rssi in not reported in MSDU_START tlv, current signal strength
-reporting is always wrong. Correct rssi is reported in PPDU_END tlv.
-Enable PPDU_END, PPDU_END_STATUS_DONE and MPDU_START tlv reporting in
-monitor status by default. Pass the sta's Rx signal strength to mac80211
-in sta_statistics() ops. This patch also makes sure the default rx filter
-is always enabled whenever there is a call to reset the filter (from
-extd_rx_stats debugfs and config_filter path). Since some of the rx_stats
-are enabled by default, make memory allocation of arsta->rx_stats unconditional.
+drivers/net/wireless/ath/ath11k/mac.c:1306:83: warning: incorrect type in assignment (different base types)
+drivers/net/wireless/ath/ath11k/mac.c:1306:83:    expected unsigned int
+drivers/net/wireless/ath/ath11k/mac.c:1306:83:    got restricted __le16 const [usertype] rx_mcs_80p80
+drivers/net/wireless/ath/ath11k/mac.c:1308:83: warning: incorrect type in assignment (different base types)
+drivers/net/wireless/ath/ath11k/mac.c:1308:83:    expected unsigned int
+drivers/net/wireless/ath/ath11k/mac.c:1308:83:    got restricted __le16 const [usertype] tx_mcs_80p80
+drivers/net/wireless/ath/ath11k/mac.c:1312:73: warning: incorrect type in assignment (different base types)
+drivers/net/wireless/ath/ath11k/mac.c:1312:73:    expected unsigned int
+drivers/net/wireless/ath/ath11k/mac.c:1312:73:    got restricted __le16 const [usertype] rx_mcs_160
+drivers/net/wireless/ath/ath11k/mac.c:1314:73: warning: incorrect type in assignment (different base types)
+drivers/net/wireless/ath/ath11k/mac.c:1314:73:    expected unsigned int
+drivers/net/wireless/ath/ath11k/mac.c:1314:73:    got restricted __le16 const [usertype] tx_mcs_160
+drivers/net/wireless/ath/ath11k/mac.c:1320:72: warning: incorrect type in assignment (different base types)
+drivers/net/wireless/ath/ath11k/mac.c:1320:72:    expected unsigned int
+drivers/net/wireless/ath/ath11k/mac.c:1320:72:    got restricted __le16 const [usertype] rx_mcs_80
+drivers/net/wireless/ath/ath11k/mac.c:1322:72: warning: incorrect type in assignment (different base types)
+drivers/net/wireless/ath/ath11k/mac.c:1322:72:    expected unsigned int
+drivers/net/wireless/ath/ath11k/mac.c:1322:72:    got restricted __le16 const [usertype] tx_mcs_80
 
-Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
-
+Fixes: 17aca2d9a969 ("ath11k: add HE support")
+Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/core.h   |  1 +
- drivers/net/wireless/ath/ath11k/debug.c  |  2 ++
- drivers/net/wireless/ath/ath11k/dp_rx.c  | 11 ++----
- drivers/net/wireless/ath/ath11k/dp_tx.c  |  2 ++
- drivers/net/wireless/ath/ath11k/hal_rx.c |  4 +++
- drivers/net/wireless/ath/ath11k/mac.c    | 60 ++++++++++++++++++++++++++------
- drivers/net/wireless/ath/ath11k/mac.h    |  2 ++
- 7 files changed, 63 insertions(+), 19 deletions(-)
+ drivers/net/wireless/ath/ath11k/mac.c | 30 ++++++++++++++++++------------
+ 1 file changed, 18 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 6fc2942..d2df798 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -242,6 +242,7 @@ struct ath11k_rx_peer_stats {
- 	u64 tid_count[IEEE80211_NUM_TIDS + 1];
- 	u64 pream_cnt[HAL_RX_PREAMBLE_MAX];
- 	u64 reception_type[HAL_RX_RECEPTION_TYPE_MAX];
-+	u32 rssi_comb;
- };
- 
- struct ath11k_peer {
-diff --git a/drivers/net/wireless/ath/ath11k/debug.c b/drivers/net/wireless/ath/ath11k/debug.c
-index e22e1c8..b1b4fcf 100644
---- a/drivers/net/wireless/ath/ath11k/debug.c
-+++ b/drivers/net/wireless/ath/ath11k/debug.c
-@@ -828,6 +828,8 @@ static ssize_t ath11k_write_extd_rx_stats(struct file *file,
- 		tlv_filter.pkt_filter_flags2 = HTT_RX_FP_CTRL_FILTER_FLASG2;
- 		tlv_filter.pkt_filter_flags3 = HTT_RX_FP_CTRL_FILTER_FLASG3 |
- 			HTT_RX_FP_DATA_FILTER_FLASG3;
-+	} else {
-+		tlv_filter = mon_status_filter_default;
- 	}
- 
- 	ring_id = ar->dp.rx_mon_status_refill_ring.refill_buf_ring.ring_id;
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index dcc6b6e..a9f59a0 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -1754,11 +1754,6 @@ static void ath11k_dp_rx_h_ppdu(struct ath11k *ar, void *rx_desc,
- 
- 	rx_status->flag |= RX_FLAG_NO_SIGNAL_VAL;
- 
--	/* TODO: Use real NF instead of default one */
--	rx_status->signal = ath11k_dp_rx_h_msdu_start_rssi(rx_desc) +
--			    ATH11K_DEFAULT_NOISE_FLOOR;
--	rx_status->flag &= ~RX_FLAG_NO_SIGNAL_VAL;
--
- 	channel_num = ath11k_dp_rx_h_msdu_start_freq(rx_desc);
- 
- 	if (channel_num >= 1 && channel_num <= 14) {
-@@ -2145,6 +2140,8 @@ static void ath11k_dp_rx_update_peer_stats(struct ath11k_sta *arsta,
- 
- 	rx_stats->num_mpdu_fcs_ok += ppdu_info->num_mpdu_fcs_ok;
- 	rx_stats->num_mpdu_fcs_err += ppdu_info->num_mpdu_fcs_err;
-+
-+	rx_stats->rssi_comb = ppdu_info->rssi_comb;
- }
- 
- static struct sk_buff *ath11k_dp_rx_alloc_mon_status_buf(struct ath11k_base *ab,
-@@ -2467,9 +2464,7 @@ static void ath11k_dp_rx_frag_h_mpdu(struct ath11k *ar,
- 	rx_status->encoding = RX_ENC_LEGACY;
- 	rx_status->bw = RATE_INFO_BW_20;
- 
--	/* TODO: Use real NF instead of default one */
--	rx_status->signal = ath11k_dp_rx_h_msdu_start_rssi(rx_desc) +
--			    ATH11K_DEFAULT_NOISE_FLOOR;
-+	rx_status->flag |= RX_FLAG_NO_SIGNAL_VAL;
- 
- 	rx_channel = ath11k_dp_rx_h_msdu_start_freq(rx_desc);
- 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
-index 5670796..27ee47d 100644
---- a/drivers/net/wireless/ath/ath11k/dp_tx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
-@@ -931,6 +931,8 @@ int ath11k_dp_htt_monitor_mode_ring_config(struct ath11k *ar, bool reset)
- 	if (!reset)
- 		tlv_filter.rx_filter =
- 				HTT_RX_MON_FILTER_TLV_FLAGS_MON_STATUS_RING;
-+	else
-+		tlv_filter = mon_status_filter_default;
- 
- 	ret = ath11k_dp_htt_rx_filter_setup(ar->ab, ring_id, dp->mac_id,
- 					    HAL_RXDMA_MONITOR_STATUS,
-diff --git a/drivers/net/wireless/ath/ath11k/hal_rx.c b/drivers/net/wireless/ath/ath11k/hal_rx.c
-index c37340f..0308089 100644
---- a/drivers/net/wireless/ath/ath11k/hal_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/hal_rx.c
-@@ -1129,6 +1129,10 @@ void ath11k_hal_reo_hw_setup(struct ath11k_base *ab,
- 		struct hal_rx_phyrx_rssi_legacy_info *rssi =
- 			(struct hal_rx_phyrx_rssi_legacy_info *)tlv_data;
- 
-+		/* TODO: Please note that the combined rssi will not be accurate
-+		 * in MU case. Rssi in MU needs to be retrieved from
-+		 * PHYRX_OTHER_RECEIVE_INFO TLV.
-+		 */
- 		ppdu_info->rssi_comb =
- 			FIELD_GET(HAL_RX_PHYRX_RSSI_LEGACY_INFO_INFO1_RSSI_COMB,
- 				  __le32_to_cpu(rssi->info0));
 diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 13da2e8..5a93404 100644
+index ee1f69524c4c..46d63841e1d1 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -151,6 +151,15 @@
- 	},
- };
- 
-+const struct htt_rx_ring_tlv_filter mon_status_filter_default = {
-+	.rx_filter = HTT_RX_FILTER_TLV_FLAGS_MPDU_START |
-+		     HTT_RX_FILTER_TLV_FLAGS_PPDU_END |
-+		     HTT_RX_FILTER_TLV_FLAGS_PPDU_END_STATUS_DONE,
-+	.pkt_filter_flags0 = HTT_RX_FP_MGMT_FILTER_FLAGS0,
-+	.pkt_filter_flags1 = HTT_RX_FP_MGMT_FILTER_FLAGS1,
-+	.pkt_filter_flags3 = HTT_RX_FP_DATA_FILTER_FLASG3
-+};
-+
- #define ATH11K_MAC_FIRST_OFDM_RATE_IDX 4
- #define ath11k_g_rates ath11k_legacy_rates
- #define ath11k_g_rates_size (ARRAY_SIZE(ath11k_legacy_rates))
-@@ -2686,13 +2695,10 @@ static int ath11k_sta_state(struct ieee80211_hw *hw,
- 			goto exit;
- 		}
- 
--		if (ath11k_debug_is_extd_rx_stats_enabled(ar)) {
--			arsta->rx_stats = kzalloc(sizeof(*arsta->rx_stats),
--						  GFP_KERNEL);
--			if (!arsta->rx_stats) {
--				ret = -ENOMEM;
--				goto exit;
--			}
-+		arsta->rx_stats = kzalloc(sizeof(*arsta->rx_stats), GFP_KERNEL);
-+		if (!arsta->rx_stats) {
-+			ret = -ENOMEM;
-+			goto exit;
- 		}
- 
- 		peer_param.vdev_id = arvif->vdev_id;
-@@ -2752,10 +2758,8 @@ static int ath11k_sta_state(struct ieee80211_hw *hw,
- 		if (ath11k_debug_is_extd_tx_stats_enabled(ar))
- 			kfree(arsta->tx_stats);
- 
--		if (ath11k_debug_is_extd_rx_stats_enabled(ar)) {
--			kfree(arsta->rx_stats);
--			arsta->rx_stats = NULL;
--		}
-+		kfree(arsta->rx_stats);
-+		arsta->rx_stats = NULL;
- 	} else if (old_state == IEEE80211_STA_AUTH &&
- 		   new_state == IEEE80211_STA_ASSOC &&
- 		   (vif->type == NL80211_IFTYPE_AP ||
-@@ -3581,6 +3585,21 @@ void ath11k_drain_tx(struct ath11k *ar)
- 	ath11k_mgmt_over_wmi_tx_purge(ar);
- }
- 
-+static int ath11k_mac_config_mon_status_default(struct ath11k *ar, bool enable)
-+{
-+	struct htt_rx_ring_tlv_filter tlv_filter = {0};
-+	u32 ring_id;
-+
-+	if (enable)
-+		tlv_filter = mon_status_filter_default;
-+
-+	ring_id = ar->dp.rx_mon_status_refill_ring.refill_buf_ring.ring_id;
-+
-+	return ath11k_dp_htt_rx_filter_setup(ar->ab, ring_id, ar->dp.mac_id,
-+					     HAL_RXDMA_MONITOR_STATUS,
-+					     DP_RX_BUFFER_SIZE, &tlv_filter);
-+}
-+
- static int ath11k_start(struct ieee80211_hw *hw)
+@@ -1255,6 +1255,7 @@ static void ath11k_peer_assoc_h_he(struct ath11k *ar,
+ 				   struct peer_assoc_params *arg)
  {
- 	struct ath11k *ar = hw->priv;
-@@ -3662,6 +3681,16 @@ static int ath11k_start(struct ieee80211_hw *hw)
- 	ar->num_created_vdevs = 0;
- 	ar->num_peers = 0;
+ 	const struct ieee80211_sta_he_cap *he_cap = &sta->he_cap;
++	u16 v;
  
-+	/* Configure monitor status ring with default rx_filter to get rx status
-+	 * such as rssi, rx_duration.
-+	 */
-+	ret = ath11k_mac_config_mon_status_default(ar, true);
-+	if (ret) {
-+		ath11k_err(ab, "failed to configure monitor status ring with default rx_filter: (%d)\n",
-+			   ret);
-+		goto err;
-+	}
+ 	if (!he_cap->has_he)
+ 		return;
+@@ -1303,24 +1304,29 @@ static void ath11k_peer_assoc_h_he(struct ath11k *ar,
+ 	case IEEE80211_STA_RX_BW_160:
+ 		if (he_cap->he_cap_elem.phy_cap_info[0] &
+ 		    IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_80PLUS80_MHZ_IN_5G) {
+-			arg->peer_he_rx_mcs_set[WMI_HECAP_TXRX_MCS_NSS_IDX_80_80] =
+-				he_cap->he_mcs_nss_supp.rx_mcs_80p80;
+-			arg->peer_he_tx_mcs_set[WMI_HECAP_TXRX_MCS_NSS_IDX_80_80] =
+-				he_cap->he_mcs_nss_supp.tx_mcs_80p80;
++			v = le16_to_cpu(he_cap->he_mcs_nss_supp.rx_mcs_80p80);
++			arg->peer_he_rx_mcs_set[WMI_HECAP_TXRX_MCS_NSS_IDX_80_80] = v;
 +
- 	mutex_unlock(&ar->conf_mutex);
- 
- 	rcu_assign_pointer(ab->pdevs_active[ar->pdev_idx],
-@@ -3679,10 +3708,16 @@ static int ath11k_start(struct ieee80211_hw *hw)
- static void ath11k_stop(struct ieee80211_hw *hw)
- {
- 	struct ath11k *ar = hw->priv;
-+	int ret;
- 
- 	ath11k_drain_tx(ar);
- 
- 	mutex_lock(&ar->conf_mutex);
-+	ret = ath11k_mac_config_mon_status_default(ar, false);
-+	if (ret)
-+		ath11k_err(ar->ab, "failed to clear rx_filter for monitor status ring: (%d)\n",
-+			   ret);
++			v = le16_to_cpu(he_cap->he_mcs_nss_supp.tx_mcs_80p80);
++			arg->peer_he_tx_mcs_set[WMI_HECAP_TXRX_MCS_NSS_IDX_80_80] = v;
 +
- 	clear_bit(ATH11K_CAC_RUNNING, &ar->dev_flags);
- 	ar->state = ATH11K_STATE_OFF;
- 	mutex_unlock(&ar->conf_mutex);
-@@ -5182,6 +5217,9 @@ static void ath11k_sta_statistics(struct ieee80211_hw *hw,
+ 			arg->peer_he_mcs_count++;
+ 		}
+-		arg->peer_he_rx_mcs_set[WMI_HECAP_TXRX_MCS_NSS_IDX_160] =
+-			he_cap->he_mcs_nss_supp.rx_mcs_160;
+-		arg->peer_he_tx_mcs_set[WMI_HECAP_TXRX_MCS_NSS_IDX_160] =
+-			he_cap->he_mcs_nss_supp.tx_mcs_160;
++
++		v = le16_to_cpu(he_cap->he_mcs_nss_supp.rx_mcs_160);
++		arg->peer_he_rx_mcs_set[WMI_HECAP_TXRX_MCS_NSS_IDX_160] = v;
++
++		v = le16_to_cpu(he_cap->he_mcs_nss_supp.tx_mcs_160);
++		arg->peer_he_tx_mcs_set[WMI_HECAP_TXRX_MCS_NSS_IDX_160] = v;
++
+ 		arg->peer_he_mcs_count++;
+ 		/* drop through */
+ 
+ 	default:
+-		arg->peer_he_rx_mcs_set[WMI_HECAP_TXRX_MCS_NSS_IDX_80] =
+-			he_cap->he_mcs_nss_supp.rx_mcs_80;
+-		arg->peer_he_tx_mcs_set[WMI_HECAP_TXRX_MCS_NSS_IDX_80] =
+-			he_cap->he_mcs_nss_supp.tx_mcs_80;
++		v = le16_to_cpu(he_cap->he_mcs_nss_supp.rx_mcs_80);
++		arg->peer_he_rx_mcs_set[WMI_HECAP_TXRX_MCS_NSS_IDX_80] = v;
++		v = le16_to_cpu(he_cap->he_mcs_nss_supp.tx_mcs_80);
++		arg->peer_he_tx_mcs_set[WMI_HECAP_TXRX_MCS_NSS_IDX_80] = v;
+ 		arg->peer_he_mcs_count++;
+ 		break;
  	}
- 	sinfo->txrate.flags = arsta->txrate.flags;
- 	sinfo->filled |= BIT_ULL(NL80211_STA_INFO_TX_BITRATE);
-+
-+	/* TODO: Use real NF instead of default one. */
-+	sinfo->signal = arsta->rx_stats->rssi_comb + ATH11K_DEFAULT_NOISE_FLOOR;
- }
- 
- static const struct ieee80211_ops ath11k_ops = {
-diff --git a/drivers/net/wireless/ath/ath11k/mac.h b/drivers/net/wireless/ath/ath11k/mac.h
-index 586e016..c1a55a9 100644
---- a/drivers/net/wireless/ath/ath11k/mac.h
-+++ b/drivers/net/wireless/ath/ath11k/mac.h
-@@ -164,6 +164,8 @@ struct ath11k_generic_iter {
- 
- #define ATH11K_CHAN_WIDTH_NUM			8
- 
-+extern const struct htt_rx_ring_tlv_filter mon_status_filter_default;
-+
- int ath11k_mac_create(struct ath11k_base *ab);
- void ath11k_mac_destroy(struct ath11k_base *ab);
- void ath11k_mac_unregister(struct ath11k_base *ab);
 -- 
-1.9.1
+2.7.4
 
 
 _______________________________________________
