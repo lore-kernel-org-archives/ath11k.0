@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hb0nJ-00009k-EQ
- for ath11k@lists.infradead.org; Wed, 12 Jun 2019 10:47:54 +0000
+ id 1hb0nK-0000BK-VK
+ for ath11k@lists.infradead.org; Wed, 12 Jun 2019 10:47:56 +0000
 From: Maharaja Kennadyrajan <mkenna@codeaurora.org>
-Subject: [PATCH] ath11k: Removed unnecessary spaces before 'else if'
-Date: Wed, 12 Jun 2019 16:19:09 +0530
-Message-Id: <1560336554-14420-2-git-send-email-mkenna@codeaurora.org>
+Subject: [PATCH 0/2] Added prefix in dp_tx.c and dp_rx.c files
+Date: Wed, 12 Jun 2019 16:19:10 +0530
+Message-Id: <1560336554-14420-3-git-send-email-mkenna@codeaurora.org>
 In-Reply-To: <1560336554-14420-1-git-send-email-mkenna@codeaurora.org>
 References: <1560336554-14420-1-git-send-email-mkenna@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,27 +25,24 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: Maharaja Kennadyrajan <mkenna@codeaurora.org>
 
-Removed unnecessary spaces before 'else if' in the
-ath11k_dp_rx_mon_merg_msdus().
+Added 'ath11k' prefix to the struct dp_htt_wbm_tx_status
+in the dp_tx.c and 'ath11k_dp_tx' prefix to all the
+functions in the dp_tx.c and dp_rx.c
 
-Signed-off-by: Maharaja Kennadyrajan <mkenna@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/dp_rx.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Maharaja Kennadyrajan (2):
+  ath11k: Added 'ath11k' as prefix to the struct dp_htt_wbm_tx_status
+  ath11k: Added prefix to all the functions in dp_tx.c file
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 84e4dd147ff0..fc6d3d9dc2e1 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -3636,7 +3636,7 @@ ath11k_dp_rx_mon_merg_msdus(struct ath11k *ar,
- 		prev_buf->next = NULL;
- 
- 		skb_trim(prev_buf, prev_buf->len - HAL_RX_FCS_LEN);
--	}	else if (decap_format == DP_RX_DECAP_TYPE_NATIVE_WIFI) {
-+	} else if (decap_format == DP_RX_DECAP_TYPE_NATIVE_WIFI) {
- 		__le16 qos_field;
- 		u8 qos_pkt = 0;
- 
+ drivers/net/wireless/ath/ath11k/core.c        |   2 +-
+ drivers/net/wireless/ath/ath11k/debug.c       |  12 +-
+ .../net/wireless/ath/ath11k/debug_htt_stats.c |  10 +-
+ drivers/net/wireless/ath/ath11k/dp.h          |   4 +-
+ drivers/net/wireless/ath/ath11k/dp_rx.c       |  47 +++----
+ drivers/net/wireless/ath/ath11k/dp_tx.c       | 130 +++++++++---------
+ drivers/net/wireless/ath/ath11k/dp_tx.h       |  33 ++---
+ drivers/net/wireless/ath/ath11k/mac.c         |   5 +-
+ 8 files changed, 124 insertions(+), 119 deletions(-)
+
 -- 
 2.21.0
 
