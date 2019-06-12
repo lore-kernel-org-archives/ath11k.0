@@ -1,16 +1,19 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from durin.narfation.org ([2001:4d88:2000:7::2])
+Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hazBl-0005Wn-8b
- for ath11k@lists.infradead.org; Wed, 12 Jun 2019 09:05:03 +0000
-From: Sven Eckelmann <sven@narfation.org>
-Subject: Re: [PATCH V7 3/8] ath11k: move phymode selection from function to
- array lookup
-Date: Wed, 12 Jun 2019 11:04:42 +0200
-Message-ID: <1644973.F42viomyVb@bentobox>
-In-Reply-To: <20190603190157.25165-4-john@phrozen.org>
-References: <20190603190157.25165-1-john@phrozen.org>
- <20190603190157.25165-4-john@phrozen.org>
+ id 1hazCn-0006nr-1T
+ for ath11k@lists.infradead.org; Wed, 12 Jun 2019 09:06:06 +0000
+Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi
+ [88.114.240.156])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ (Authenticated sender: kvalo@smtp.codeaurora.org)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id CCD4C6019D
+ for <ath11k@lists.infradead.org>; Wed, 12 Jun 2019 09:06:03 +0000 (UTC)
+From: Kalle Valo <kvalo@codeaurora.org>
+Subject: ath11k-check script pushed
+Date: Wed, 12 Jun 2019 12:06:01 +0300
+Message-ID: <87h88vfa12.fsf@kamboji.qca.qualcomm.com>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -20,84 +23,72 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============4243165436369118684=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
-Cc: Shashidhar Lakkavalli <slakkavalli@datto.com>, Kalle Valo <kvalo@codeaurora.org>, John Crispin <john@phrozen.org>
 
---===============4243165436369118684==
-Content-Type: multipart/signed; boundary="nextPart5309766.hMNZ60ArAy"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+Hi,
 
---nextPart5309766.hMNZ60ArAy
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+This is the script I use to check ath11k after I have applied the
+patches:
 
-On Monday, 3 June 2019 21:01:52 CEST John Crispin wrote:
-> With HE support getting added, the approach of using functions will quickly
-> get convoluted. Change the code to use an array lookup function instead.
-> 
-> Signed-off-by: Shashidhar Lakkavalli <slakkavalli@datto.com>
-> Signed-off-by: John Crispin <john@phrozen.org>
-> ---
-[...]
->  u8 ath11k_mac_bitrate_to_idx(const struct ieee80211_supported_band *sband,
->  			     u32 bitrate)
->  {
-> @@ -4062,7 +4045,12 @@ ath11k_mac_vdev_start_restart(struct ath11k_vif *arvif,
->  	arg.channel.freq = chandef->chan->center_freq;
->  	arg.channel.band_center_freq1 = chandef->center_freq1;
->  	arg.channel.band_center_freq2 = chandef->center_freq2;
-> -	arg.channel.mode = chan_to_phymode(chandef);
-> +	arg.channel.mode =
-> +		ath11k_phymodes[chandef->chan->band][he_support][chandef->width];
-> +	if (arg.channel.mode == MODE_11G &&
-> +	    chandef->chan->flags & IEEE80211_CHAN_NO_OFDM)
-> +		arg.channel.mode = MODE_11B;
-> +	WARN_ON(arg.channel.mode == MODE_UNKNOWN);
+https://github.com/qca/qca-swiss-army-knife/blob/master/tools/scripts/ath11k/ath11k-check
 
-What is the reason for splitting it up between HE and non-HE PHY modes? It is 
-not like there is a split between VHT and HT PHY mode.
+Currently I run it as 'ath11k-check --fast' to avoid running checkpatch.
+But once the checkpatch warnings are fixed I will run it as
+'ath11k-check'. Also I'm hoping to enable the extra W=1 warnings at some
+point, in general they are also quite useful.
 
-Kind regards,
-	Sven
---nextPart5309766.hMNZ60ArAy
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+The help switch some more info about the script:
 
------BEGIN PGP SIGNATURE-----
+$ ath11k-check --help
+usage: ath11k-check [-h] [-d] [--fast] [--extra] [--no-filter] [--version]
 
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl0AwCoACgkQXYcKB8Em
-e0abgxAAuYHzsqbfp1scFlvYEJE3nNGQYEkfV/mZ944InNC6VKi22+xBgZrz0PW3
-dnpeaY1MVRVVMNAehmGpCpTVVeguY3PVZwj9nWiVvHZa6l+uo+7QqGutY9V9kpvK
-YYJV/ijPrHm9P7JPwf/usdd7Hf+ESCK2xjufrea5pEHBZLzWbFG2sU9Jx/uuj+F6
-Hwys4b89GWnTspSm6QQqw8Up34xEKy1oikJSr896TNdYTMsIir2ZglerxEmfcAua
-3Ul+hYTmyID++ly9rqxYydsjmBVJalpf13KmqTi9jukxjF801pO3aXuYrV6KmBbA
-fGBn008P3w+8wdzDx9qopMdwogW9O+Swo2eAyHWvCTvvxDbyLfbKsUa2gxXZzSzL
-VVaVV7VybXsAOzAjUtORuPWYUI7txuFRb+hKZSeWvHWXKw+FvclmiI6PxY854b4V
-yAENoJnyk6KcbEcqNrkVOQSbLBLkdBZNhegsmmFX3VVBJ0oJS8RmNHfKIs/OVCbe
-4eJyXPkNSAcZU4moK5dz8l1ERUuqRqtSh9pXq1lEyuObADeVkIHWdQXDZZPdWf4y
-LuYdU+M+ERPHWXOfMYK9Cgh+jXSZ8MGylF6vSy+GQ0+piNV1Lsg82Y6VEO4eqSxB
-NKSUTq+vLqDhkyCI6+i8x5xNPJ90D/2wSlfZX29s3X+vF+/34yg=
-=SMlI
------END PGP SIGNATURE-----
+ath11k source code checker
 
---nextPart5309766.hMNZ60ArAy--
+Runs various tests (gcc, sparse and checkpatch) with filtering
+unnecessary warnings away, the goal is to have empty output from the
+script.
 
+Run this from the main kernel source directory which is preconfigured
+with ath11k enabled. gcc recompilation is forced every time,
+irrespective if there are any changes in source or not. So this can be
+run multiple times and every time the same warnings will appear.
 
+Requirements (all available in $PATH):
 
+* gcc
+* sparse
+* checkpatch.pl
+* gtags (from package global)
 
+optional arguments:
+  -h, --help   show this help message and exit
+  -d, --debug  enable debug messages
+  --fast       run only tests which finish in few seconds
+  --extra      Run extra checks like W=1
+  --no-filter  Don't filter output with regexp: '/ath'
+  --version    Show version information about dependencies
 
---===============4243165436369118684==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Installation:
+
+As checkpatch is evolving this script always matches a certain version
+of checkpatch. Download the checkpatch version from the URL below and
+install it somewhere in your $PATH:
+
+https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/plain/scripts/checkpatch.pl?id=12c253abb9c9d8e01d9365fc8cbde4688731f401
+
+Alternatively if you want manually run checkpatch with the same
+settings as ath11k-check uses here's the command line:
+
+checkpatch.pl --strict -q --terse --no-summary --max-line-length=90 --show-types --ignore MSLEEP,USLEEP_RANGE,PRINTK_WITHOUT_KERN_LEVEL,NETWORKING_BLOCK_COMMENT_STYLE,LINUX_VERSION_CODE,COMPLEX_MACRO,PREFER_DEV_LEVEL,PREFER_PR_LEVEL,COMPARISON_TO_NULL,BIT_MACRO,CONSTANT_COMPARISON,MACRO_WITH_FLOW_CONTROL,CONST_STRUCT,MACRO_ARG_REUSE,OPEN_ENDED_LINE,FUNCTION_ARGUMENTS,CONFIG_DESCRIPTION,ASSIGNMENT_CONTINUATIONS,UNNECESSARY_PARENTHESES,MACRO_ARG_PRECEDENCE,BOOL_MEMBER foo.patch
+
+-- 
+Kalle Valo
 
 _______________________________________________
 ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
-
---===============4243165436369118684==--
