@@ -1,13 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hb0nN-0000Dl-1X
- for ath11k@lists.infradead.org; Wed, 12 Jun 2019 10:47:58 +0000
+ id 1hb0nW-0000If-G8
+ for ath11k@lists.infradead.org; Wed, 12 Jun 2019 10:48:07 +0000
 From: Maharaja Kennadyrajan <mkenna@codeaurora.org>
-Subject: [PATCH 1/2] ath11k: Added 'ath11k' as prefix to the struct
- dp_htt_wbm_tx_status
-Date: Wed, 12 Jun 2019 16:19:11 +0530
-Message-Id: <1560336554-14420-4-git-send-email-mkenna@codeaurora.org>
+Subject: [PATCH] ath11k: Avoid unnecessary WARN_ON() in
+ ath11k_dp_tx_complete_msdu()
+Date: Wed, 12 Jun 2019 16:19:13 +0530
+Message-Id: <1560336554-14420-6-git-send-email-mkenna@codeaurora.org>
 In-Reply-To: <1560336554-14420-1-git-send-email-mkenna@codeaurora.org>
 References: <1560336554-14420-1-git-send-email-mkenna@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -26,50 +26,27 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: Maharaja Kennadyrajan <mkenna@codeaurora.org>
 
-Renamed the struct dp_htt_wbm_tx_status by adding a prefix
-'ath11k'.
+In order to avoid unnecessary WARN_ON in the function
+ath11k_dp_tx_complete_msdu, changed that WARN_ON to WARN_ON_ONCE.
 
 Signed-off-by: Maharaja Kennadyrajan <mkenna@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/dp_tx.c | 4 ++--
- drivers/net/wireless/ath/ath11k/dp_tx.h | 2 +-
- 2 files changed, 3 insertions(+), 3 deletions(-)
+ drivers/net/wireless/ath/ath11k/dp_tx.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
-index 5670796da05b..21f0dcfad09d 100644
+index 5670796da05b..45db589f8141 100644
 --- a/drivers/net/wireless/ath/ath11k/dp_tx.c
 +++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
-@@ -248,7 +248,7 @@ static void ath11k_dp_free_txbuf(struct ath11k_base *ab, u8 mac_id,
- 
- static void ath11k_dp_htt_tx_complete_buf(struct ath11k_base *ab,
- 					  struct dp_tx_ring *tx_ring,
--					  struct dp_htt_wbm_tx_status *ts)
-+					  struct ath11k_dp_htt_wbm_tx_status *ts)
- {
- 	struct sk_buff *msdu;
+@@ -358,7 +358,7 @@ static void ath11k_dp_tx_complete_msdu(struct ath11k *ar,
  	struct ieee80211_tx_info *info;
-@@ -300,7 +300,7 @@ ath11k_dp_process_htt_tx_complete(struct ath11k_base *ab,
- 				  u32 msdu_id, struct dp_tx_ring *tx_ring)
- {
- 	struct htt_tx_wbm_completion *status_desc;
--	struct dp_htt_wbm_tx_status ts = {0};
-+	struct ath11k_dp_htt_wbm_tx_status ts = {0};
- 	enum hal_wbm_htt_tx_comp_status wbm_status;
+ 	struct ath11k_skb_cb *skb_cb;
  
- 	status_desc = desc + HTT_TX_WBM_COMP_STATUS_OFFSET;
-diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.h b/drivers/net/wireless/ath/ath11k/dp_tx.h
-index 751a0cec4997..373e7ed75a05 100644
---- a/drivers/net/wireless/ath/ath11k/dp_tx.h
-+++ b/drivers/net/wireless/ath/ath11k/dp_tx.h
-@@ -9,7 +9,7 @@
- #include "core.h"
- #include "hal_tx.h"
- 
--struct dp_htt_wbm_tx_status {
-+struct ath11k_dp_htt_wbm_tx_status {
- 	u32 msdu_id;
- 	bool acked;
- 	int ack_rssi;
+-	if (WARN_ON(ts->buf_rel_source != HAL_WBM_REL_SRC_MODULE_TQM)) {
++	if (WARN_ON_ONCE(ts->buf_rel_source != HAL_WBM_REL_SRC_MODULE_TQM)) {
+ 		/* Must not happen */
+ 		return;
+ 	}
 -- 
 2.21.0
 
