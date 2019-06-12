@@ -1,19 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hazCn-0006nr-1T
- for ath11k@lists.infradead.org; Wed, 12 Jun 2019 09:06:06 +0000
-Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi
- [88.114.240.156])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- (Authenticated sender: kvalo@smtp.codeaurora.org)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id CCD4C6019D
- for <ath11k@lists.infradead.org>; Wed, 12 Jun 2019 09:06:03 +0000 (UTC)
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: ath11k-check script pushed
-Date: Wed, 12 Jun 2019 12:06:01 +0300
-Message-ID: <87h88vfa12.fsf@kamboji.qca.qualcomm.com>
+ id 1hb0VH-0006Fw-3R
+ for ath11k@lists.infradead.org; Wed, 12 Jun 2019 10:29:16 +0000
+From: Anilkumar Kolli <akolli@codeaurora.org>
+Subject: [PATCH v2] ath11k: cleanup in htt pktlog
+Date: Wed, 12 Jun 2019 15:59:05 +0530
+Message-Id: <1560335345-13626-1-git-send-email-akolli@codeaurora.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -23,72 +16,91 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 
-Hi,
-
-This is the script I use to check ath11k after I have applied the
-patches:
-
-https://github.com/qca/qca-swiss-army-knife/blob/master/tools/scripts/ath11k/ath11k-check
-
-Currently I run it as 'ath11k-check --fast' to avoid running checkpatch.
-But once the checkpatch warnings are fixed I will run it as
-'ath11k-check'. Also I'm hoping to enable the extra W=1 warnings at some
-point, in general they are also quite useful.
-
-The help switch some more info about the script:
-
-$ ath11k-check --help
-usage: ath11k-check [-h] [-d] [--fast] [--extra] [--no-filter] [--version]
-
-ath11k source code checker
-
-Runs various tests (gcc, sparse and checkpatch) with filtering
-unnecessary warnings away, the goal is to have empty output from the
-script.
-
-Run this from the main kernel source directory which is preconfigured
-with ath11k enabled. gcc recompilation is forced every time,
-irrespective if there are any changes in source or not. So this can be
-run multiple times and every time the same warnings will appear.
-
-Requirements (all available in $PATH):
-
-* gcc
-* sparse
-* checkpatch.pl
-* gtags (from package global)
-
-optional arguments:
-  -h, --help   show this help message and exit
-  -d, --debug  enable debug messages
-  --fast       run only tests which finish in few seconds
-  --extra      Run extra checks like W=1
-  --no-filter  Don't filter output with regexp: '/ath'
-  --version    Show version information about dependencies
-
-Installation:
-
-As checkpatch is evolving this script always matches a certain version
-of checkpatch. Download the checkpatch version from the URL below and
-install it somewhere in your $PATH:
-
-https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/plain/scripts/checkpatch.pl?id=12c253abb9c9d8e01d9365fc8cbde4688731f401
-
-Alternatively if you want manually run checkpatch with the same
-settings as ath11k-check uses here's the command line:
-
-checkpatch.pl --strict -q --terse --no-summary --max-line-length=90 --show-types --ignore MSLEEP,USLEEP_RANGE,PRINTK_WITHOUT_KERN_LEVEL,NETWORKING_BLOCK_COMMENT_STYLE,LINUX_VERSION_CODE,COMPLEX_MACRO,PREFER_DEV_LEVEL,PREFER_PR_LEVEL,COMPARISON_TO_NULL,BIT_MACRO,CONSTANT_COMPARISON,MACRO_WITH_FLOW_CONTROL,CONST_STRUCT,MACRO_ARG_REUSE,OPEN_ENDED_LINE,FUNCTION_ARGUMENTS,CONFIG_DESCRIPTION,ASSIGNMENT_CONTINUATIONS,UNNECESSARY_PARENTHESES,MACRO_ARG_PRECEDENCE,BOOL_MEMBER foo.patch
-
--- 
-Kalle Valo
-
-_______________________________________________
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+QWRkcmVzc2VkIGJlbG93IGNvbW1lbnRzLAoqIGRlYnVnOiBtb3ZlIGVudW0gYXRoMTFrX3dtaV9w
+a3Rsb2dfZW5hYmxlIHRvIHdtaS5oCiogZHBfcng6IGF0aDExa19odHRfcGt0bG9nKCk6ICd1MzIg
+KmRhdGEnIG5lZWRzIGEgcHJvcGVyIHN0cnVjdCwKwqAgYXZvaWRzIHBvaW50ZXIgYXJpdGhtZXRp
+Yy4KClNpZ25lZC1vZmYtYnk6IEFuaWxrdW1hciBLb2xsaSA8YWtvbGxpQGNvZGVhdXJvcmEub3Jn
+PgotLS0KVjI6CiAgLSBhZGRyZXNzZWQgc2F0aGlzaCdzIGNvbW1lbnRzCiAKIGRyaXZlcnMvbmV0
+L3dpcmVsZXNzL2F0aC9hdGgxMWsvZGVidWcuaCB8ICA1IC0tLS0tCiBkcml2ZXJzL25ldC93aXJl
+bGVzcy9hdGgvYXRoMTFrL2RwLmggICAgfCAzOSArKysrKysrKysrKysrKysrKysrKysrKysrKysr
+KysrKysKIGRyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvZHBfcnguYyB8IDEwICsrKyst
+LS0tLQogZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay93bWkuaCAgIHwgIDUgKysrKysK
+IDQgZmlsZXMgY2hhbmdlZCwgNDkgaW5zZXJ0aW9ucygrKSwgMTAgZGVsZXRpb25zKC0pCgpkaWZm
+IC0tZ2l0IGEvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9kZWJ1Zy5oIGIvZHJpdmVy
+cy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9kZWJ1Zy5oCmluZGV4IDEzOTczZDk3MjE2OS4uNTc3
+NGY1MzFmMjY4IDEwMDY0NAotLS0gYS9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL2Rl
+YnVnLmgKKysrIGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9kZWJ1Zy5oCkBAIC04
+MCwxMSArODAsNiBAQCBlbnVtIGF0aDExa19wa3Rsb2dfZmlsdGVyIHsKIAlBVEgxMUtfUEtUTE9H
+X0FOWQkJPSAweDAwMDAwMDA2ZiwKIH07CiAKLWVudW0gYXRoMTFrX3dtaV9wa3Rsb2dfZW5hYmxl
+IHsKLSAgICBBVEgxMUtfV01JX1BLVExPR19FTkFCTEVfQVVUTyAgPSAwLAotICAgIEFUSDExS19X
+TUlfUEtUTE9HX0VOQUJMRV9GT1JDRSA9IDEsCi19OwotCiBlbnVtIGF0aDExa19wa3Rsb2dfbW9k
+ZSB7CiAJQVRIMTFLX1BLVExPR19NT0RFX0xJVEUgPSAxLAogCUFUSDExS19QS1RMT0dfTU9ERV9G
+VUxMID0gMiwKZGlmZiAtLWdpdCBhL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvZHAu
+aCBiL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvZHAuaAppbmRleCA3OWI2NjU4MTYz
+NzguLmE0YjMyYWJiZWFlZSAxMDA2NDQKLS0tIGEvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0
+aDExay9kcC5oCisrKyBiL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvZHAuaApAQCAt
+MTIxNCw2ICsxMjE0LDQ1IEBAIHN0cnVjdCBodHRfcHBkdV9zdGF0c19pbmZvIHsKIH07CiAKIC8q
+KgorICogQGJyaWVmIHRhcmdldCAtPiBob3N0IHBhY2tldCBsb2cgbWVzc2FnZQorICoKKyAqIEBk
+ZXRhaWxzCisgKiBUaGUgZm9sbG93aW5nIGZpZWxkIGRlZmluaXRpb25zIGRlc2NyaWJlIHRoZSBm
+b3JtYXQgb2YgdGhlIHBhY2tldCBsb2cKKyAqIG1lc3NhZ2Ugc2VudCBmcm9tIHRoZSB0YXJnZXQg
+dG8gdGhlIGhvc3QuCisgKiBUaGUgbWVzc2FnZSBjb25zaXN0cyBvZiBhIDQtb2N0ZXQgaGVhZGVy
+LGZvbGxvd2VkIGJ5IGEgdmFyaWFibGUgbnVtYmVyCisgKiBvZiAzMi1iaXQgY2hhcmFjdGVyIHZh
+bHVlcy4KKyAqCisgKiB8MzEgICAgICAgICAgICAgICAgICAgICAgICAgMTZ8MTUgIDEyfDExICAg
+MTB8OSAgICA4fDcgICAgICAgICAgICAwfAorICogfC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLXwKKyAqIHwgICAgICAgIHBh
+eWxvYWRfc2l6ZSAgICAgICAgIHwgcnN2ZCB8cGRldl9pZHxtYWNfaWR8ICAgbXNnIHR5cGUgICB8
+CisgKiB8LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tfAorICogfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBheWxv
+YWQgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwKKyAqIHwtLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS18CisgKiAgIC0g
+TVNHX1RZUEUKKyAqICAgICBCaXRzIDc6MAorICogICAgIFB1cnBvc2U6IGlkZW50aWZpZXMgdGhp
+cyBhcyBhIHBrdGxvZyBtZXNzYWdlCisgKiAgICAgVmFsdWU6IEhUVF9UMkhfTVNHX1RZUEVfUEtU
+TE9HCisgKiAgIC0gbWFjX2lkCisgKiAgICAgQml0cyA5OjgKKyAqICAgICBQdXJwb3NlOiBpZGVu
+dGlmaWVzIHdoaWNoIE1BQy9QSFkgaW5zdGFuY2UgZ2VuZXJhdGVkIHRoaXMgcGt0bG9nIGluZm8K
+KyAqICAgICBWYWx1ZTogMC0zCisgKiAgIC0gcGRldl9pZAorICogICAgIEJpdHMgMTE6MTAKKyAq
+ICAgICBQdXJwb3NlOiBwZGV2X2lkCisgKiAgICAgVmFsdWU6IDAtMworICogICAgIDAgKGZvciBy
+aW5ncyBhdCBTT0MgbGV2ZWwpLAorICogICAgIDEvMi8zIFBERVYgLT4gMC8xLzIKKyAqICAgLSBw
+YXlsb2FkX3NpemUKKyAqICAgICBCaXRzIDMxOjE2CisgKiAgICAgUHVycG9zZTogZXhwbGljaXRs
+eSBzcGVjaWZ5IHRoZSBwYXlsb2FkIHNpemUKKyAqICAgICBWYWx1ZTogcGF5bG9hZCBzaXplIGlu
+IGJ5dGVzIChwYXlsb2FkIHNpemUgaXMgYSBtdWx0aXBsZSBvZiA0IGJ5dGVzKQorICovCitzdHJ1
+Y3QgaHR0X3BrdGxvZ19tc2cgeworCXUzMiBoZHI7CisJdTggcGF5bG9hZFswXTsKK307CisKKy8q
+KgogICogQGJyaWVmIGhvc3QgLT4gdGFyZ2V0IEZXIGV4dGVuZGVkIHN0YXRpc3RpY3MgcmV0cmll
+dmUKICAqCiAgKiBAZGV0YWlscwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRo
+L2F0aDExay9kcF9yeC5jIGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9kcF9yeC5j
+CmluZGV4IDU5ZDI2MDVjMGNlMi4uZTE4Y2E0YzBjZGE0IDEwMDY0NAotLS0gYS9kcml2ZXJzL25l
+dC93aXJlbGVzcy9hdGgvYXRoMTFrL2RwX3J4LmMKKysrIGIvZHJpdmVycy9uZXQvd2lyZWxlc3Mv
+YXRoL2F0aDExay9kcF9yeC5jCkBAIC0xMDg0LDExICsxMDg0LDEyIEBAIHN0YXRpYyBpbnQgYXRo
+MTFrX2h0dF9wdWxsX3BwZHVfc3RhdHMoc3RydWN0IGF0aDExa19iYXNlICphYiwKIHN0YXRpYyB2
+b2lkIGF0aDExa19odHRfcGt0bG9nKHN0cnVjdCBhdGgxMWtfYmFzZSAqYWIsCiAJCQkJICAgICBz
+dHJ1Y3Qgc2tfYnVmZiAqc2tiKQogewotCXUzMiAqZGF0YSA9ICh1MzIgKilza2ItPmRhdGEsIGxl
+bjsKKwlzdHJ1Y3QgaHR0X3BrdGxvZ19tc2cgKmRhdGEgPSAoc3RydWN0IGh0dF9wa3Rsb2dfbXNn
+ICopc2tiLT5kYXRhOwogCXN0cnVjdCBhdGgxMWsgKmFyOworCXUzMiBsZW47CiAJdTggcGRldl9p
+ZDsKIAotCWxlbiA9IEZJRUxEX0dFVChIVFRfVDJIX1BQRFVfU1RBVFNfUEFZTE9BRF9TSVpFX00s
+ICpkYXRhKTsKKwlsZW4gPSBGSUVMRF9HRVQoSFRUX1QySF9QUERVX1NUQVRTX1BBWUxPQURfU0la
+RV9NLCBkYXRhLT5oZHIpOwogCiAJaWYgKGxlbiA+IEFUSDExS19IVFRfUEtUTE9HX01BWF9TSVpF
+KQogCXsKQEAgLTEwOTgsMTIgKzEwOTksMTEgQEAgc3RhdGljIHZvaWQgYXRoMTFrX2h0dF9wa3Rs
+b2coc3RydWN0IGF0aDExa19iYXNlICphYiwKIAkJcmV0dXJuOwogCX0KIAotCXBkZXZfaWQgPSBG
+SUVMRF9HRVQoSFRUX1QySF9QUERVX1NUQVRTX1BERVZfSURfTSwgKmRhdGEpOworCXBkZXZfaWQg
+PSBGSUVMRF9HRVQoSFRUX1QySF9QUERVX1NUQVRTX1BERVZfSURfTSwgZGF0YS0+aGRyKTsKIAlw
+ZGV2X2lkID0gRFBfSFcyU1dfTUFDSUQocGRldl9pZCk7CiAJYXIgPSBhYi0+cGRldnNbcGRldl9p
+ZF0uYXI7Ci0JKytkYXRhOwogCi0JdHJhY2VfYXRoMTFrX2h0dF9wa3Rsb2coYXIsIGRhdGEsIGxl
+bik7CisJdHJhY2VfYXRoMTFrX2h0dF9wa3Rsb2coYXIsIGRhdGEtPnBheWxvYWQsIGxlbik7CiB9
+CiAKIHZvaWQgYXRoMTFrX2RwX2h0dF9odGNfdDJoX21zZ19oYW5kbGVyKHN0cnVjdCBhdGgxMWtf
+YmFzZSAqYWIsCmRpZmYgLS1naXQgYS9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL3dt
+aS5oIGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay93bWkuaAppbmRleCBmMzA1NDJl
+MmQwOTAuLmQ1YjNkZTJlN2U4NyAxMDA2NDQKLS0tIGEvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRo
+L2F0aDExay93bWkuaAorKysgYi9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL3dtaS5o
+CkBAIC00MTQ4LDYgKzQxNDgsMTEgQEAgc3RydWN0IHdtaV9wZGV2X3BrdGxvZ19maWx0ZXJfY21k
+IHsKIAl1MzIgbnVtX21hYzsKIH0gX19wYWNrZWQ7CiAKK2VudW0gYXRoMTFrX3dtaV9wa3Rsb2df
+ZW5hYmxlIHsKKwlBVEgxMUtfV01JX1BLVExPR19FTkFCTEVfQVVUTyAgPSAwLAorCUFUSDExS19X
+TUlfUEtUTE9HX0VOQUJMRV9GT1JDRSA9IDEsCit9OworCiBzdHJ1Y3Qgd21pX3BrdGxvZ19lbmFi
+bGVfY21kIHsKIAl1MzIgdGx2X2hlYWRlcjsKIAl1MzIgcGRldl9pZDsKLS0gCjEuOS4xCgoKX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYXRoMTFrIG1haWxp
+bmcgbGlzdAphdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFk
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2F0aDExawo=
