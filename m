@@ -1,13 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hb0VH-0006Fw-3R
- for ath11k@lists.infradead.org; Wed, 12 Jun 2019 10:29:16 +0000
-From: Anilkumar Kolli <akolli@codeaurora.org>
-Subject: [PATCH v2] ath11k: cleanup in htt pktlog
-Date: Wed, 12 Jun 2019 15:59:05 +0530
-Message-Id: <1560335345-13626-1-git-send-email-akolli@codeaurora.org>
-MIME-Version: 1.0
+ id 1hb0nI-00009V-9l
+ for ath11k@lists.infradead.org; Wed, 12 Jun 2019 10:47:53 +0000
+From: Maharaja Kennadyrajan <mkenna@codeaurora.org>
+Subject: [PATCH] ath11k: Removed MICHAEL_MIC_LEN and use IEEE80211_CCMP_MIC_LEN
+Date: Wed, 12 Jun 2019 16:19:08 +0530
+Message-Id: <1560336554-14420-1-git-send-email-mkenna@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -16,91 +15,49 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
+Cc: Maharaja Kennadyrajan <mkenna@codeaurora.org>
 
-QWRkcmVzc2VkIGJlbG93IGNvbW1lbnRzLAoqIGRlYnVnOiBtb3ZlIGVudW0gYXRoMTFrX3dtaV9w
-a3Rsb2dfZW5hYmxlIHRvIHdtaS5oCiogZHBfcng6IGF0aDExa19odHRfcGt0bG9nKCk6ICd1MzIg
-KmRhdGEnIG5lZWRzIGEgcHJvcGVyIHN0cnVjdCwKwqAgYXZvaWRzIHBvaW50ZXIgYXJpdGhtZXRp
-Yy4KClNpZ25lZC1vZmYtYnk6IEFuaWxrdW1hciBLb2xsaSA8YWtvbGxpQGNvZGVhdXJvcmEub3Jn
-PgotLS0KVjI6CiAgLSBhZGRyZXNzZWQgc2F0aGlzaCdzIGNvbW1lbnRzCiAKIGRyaXZlcnMvbmV0
-L3dpcmVsZXNzL2F0aC9hdGgxMWsvZGVidWcuaCB8ICA1IC0tLS0tCiBkcml2ZXJzL25ldC93aXJl
-bGVzcy9hdGgvYXRoMTFrL2RwLmggICAgfCAzOSArKysrKysrKysrKysrKysrKysrKysrKysrKysr
-KysrKysKIGRyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvZHBfcnguYyB8IDEwICsrKyst
-LS0tLQogZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay93bWkuaCAgIHwgIDUgKysrKysK
-IDQgZmlsZXMgY2hhbmdlZCwgNDkgaW5zZXJ0aW9ucygrKSwgMTAgZGVsZXRpb25zKC0pCgpkaWZm
-IC0tZ2l0IGEvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9kZWJ1Zy5oIGIvZHJpdmVy
-cy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9kZWJ1Zy5oCmluZGV4IDEzOTczZDk3MjE2OS4uNTc3
-NGY1MzFmMjY4IDEwMDY0NAotLS0gYS9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL2Rl
-YnVnLmgKKysrIGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9kZWJ1Zy5oCkBAIC04
-MCwxMSArODAsNiBAQCBlbnVtIGF0aDExa19wa3Rsb2dfZmlsdGVyIHsKIAlBVEgxMUtfUEtUTE9H
-X0FOWQkJPSAweDAwMDAwMDA2ZiwKIH07CiAKLWVudW0gYXRoMTFrX3dtaV9wa3Rsb2dfZW5hYmxl
-IHsKLSAgICBBVEgxMUtfV01JX1BLVExPR19FTkFCTEVfQVVUTyAgPSAwLAotICAgIEFUSDExS19X
-TUlfUEtUTE9HX0VOQUJMRV9GT1JDRSA9IDEsCi19OwotCiBlbnVtIGF0aDExa19wa3Rsb2dfbW9k
-ZSB7CiAJQVRIMTFLX1BLVExPR19NT0RFX0xJVEUgPSAxLAogCUFUSDExS19QS1RMT0dfTU9ERV9G
-VUxMID0gMiwKZGlmZiAtLWdpdCBhL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvZHAu
-aCBiL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvZHAuaAppbmRleCA3OWI2NjU4MTYz
-NzguLmE0YjMyYWJiZWFlZSAxMDA2NDQKLS0tIGEvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0
-aDExay9kcC5oCisrKyBiL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvZHAuaApAQCAt
-MTIxNCw2ICsxMjE0LDQ1IEBAIHN0cnVjdCBodHRfcHBkdV9zdGF0c19pbmZvIHsKIH07CiAKIC8q
-KgorICogQGJyaWVmIHRhcmdldCAtPiBob3N0IHBhY2tldCBsb2cgbWVzc2FnZQorICoKKyAqIEBk
-ZXRhaWxzCisgKiBUaGUgZm9sbG93aW5nIGZpZWxkIGRlZmluaXRpb25zIGRlc2NyaWJlIHRoZSBm
-b3JtYXQgb2YgdGhlIHBhY2tldCBsb2cKKyAqIG1lc3NhZ2Ugc2VudCBmcm9tIHRoZSB0YXJnZXQg
-dG8gdGhlIGhvc3QuCisgKiBUaGUgbWVzc2FnZSBjb25zaXN0cyBvZiBhIDQtb2N0ZXQgaGVhZGVy
-LGZvbGxvd2VkIGJ5IGEgdmFyaWFibGUgbnVtYmVyCisgKiBvZiAzMi1iaXQgY2hhcmFjdGVyIHZh
-bHVlcy4KKyAqCisgKiB8MzEgICAgICAgICAgICAgICAgICAgICAgICAgMTZ8MTUgIDEyfDExICAg
-MTB8OSAgICA4fDcgICAgICAgICAgICAwfAorICogfC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLXwKKyAqIHwgICAgICAgIHBh
-eWxvYWRfc2l6ZSAgICAgICAgIHwgcnN2ZCB8cGRldl9pZHxtYWNfaWR8ICAgbXNnIHR5cGUgICB8
-CisgKiB8LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tfAorICogfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBheWxv
-YWQgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwKKyAqIHwtLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS18CisgKiAgIC0g
-TVNHX1RZUEUKKyAqICAgICBCaXRzIDc6MAorICogICAgIFB1cnBvc2U6IGlkZW50aWZpZXMgdGhp
-cyBhcyBhIHBrdGxvZyBtZXNzYWdlCisgKiAgICAgVmFsdWU6IEhUVF9UMkhfTVNHX1RZUEVfUEtU
-TE9HCisgKiAgIC0gbWFjX2lkCisgKiAgICAgQml0cyA5OjgKKyAqICAgICBQdXJwb3NlOiBpZGVu
-dGlmaWVzIHdoaWNoIE1BQy9QSFkgaW5zdGFuY2UgZ2VuZXJhdGVkIHRoaXMgcGt0bG9nIGluZm8K
-KyAqICAgICBWYWx1ZTogMC0zCisgKiAgIC0gcGRldl9pZAorICogICAgIEJpdHMgMTE6MTAKKyAq
-ICAgICBQdXJwb3NlOiBwZGV2X2lkCisgKiAgICAgVmFsdWU6IDAtMworICogICAgIDAgKGZvciBy
-aW5ncyBhdCBTT0MgbGV2ZWwpLAorICogICAgIDEvMi8zIFBERVYgLT4gMC8xLzIKKyAqICAgLSBw
-YXlsb2FkX3NpemUKKyAqICAgICBCaXRzIDMxOjE2CisgKiAgICAgUHVycG9zZTogZXhwbGljaXRs
-eSBzcGVjaWZ5IHRoZSBwYXlsb2FkIHNpemUKKyAqICAgICBWYWx1ZTogcGF5bG9hZCBzaXplIGlu
-IGJ5dGVzIChwYXlsb2FkIHNpemUgaXMgYSBtdWx0aXBsZSBvZiA0IGJ5dGVzKQorICovCitzdHJ1
-Y3QgaHR0X3BrdGxvZ19tc2cgeworCXUzMiBoZHI7CisJdTggcGF5bG9hZFswXTsKK307CisKKy8q
-KgogICogQGJyaWVmIGhvc3QgLT4gdGFyZ2V0IEZXIGV4dGVuZGVkIHN0YXRpc3RpY3MgcmV0cmll
-dmUKICAqCiAgKiBAZGV0YWlscwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRo
-L2F0aDExay9kcF9yeC5jIGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9kcF9yeC5j
-CmluZGV4IDU5ZDI2MDVjMGNlMi4uZTE4Y2E0YzBjZGE0IDEwMDY0NAotLS0gYS9kcml2ZXJzL25l
-dC93aXJlbGVzcy9hdGgvYXRoMTFrL2RwX3J4LmMKKysrIGIvZHJpdmVycy9uZXQvd2lyZWxlc3Mv
-YXRoL2F0aDExay9kcF9yeC5jCkBAIC0xMDg0LDExICsxMDg0LDEyIEBAIHN0YXRpYyBpbnQgYXRo
-MTFrX2h0dF9wdWxsX3BwZHVfc3RhdHMoc3RydWN0IGF0aDExa19iYXNlICphYiwKIHN0YXRpYyB2
-b2lkIGF0aDExa19odHRfcGt0bG9nKHN0cnVjdCBhdGgxMWtfYmFzZSAqYWIsCiAJCQkJICAgICBz
-dHJ1Y3Qgc2tfYnVmZiAqc2tiKQogewotCXUzMiAqZGF0YSA9ICh1MzIgKilza2ItPmRhdGEsIGxl
-bjsKKwlzdHJ1Y3QgaHR0X3BrdGxvZ19tc2cgKmRhdGEgPSAoc3RydWN0IGh0dF9wa3Rsb2dfbXNn
-ICopc2tiLT5kYXRhOwogCXN0cnVjdCBhdGgxMWsgKmFyOworCXUzMiBsZW47CiAJdTggcGRldl9p
-ZDsKIAotCWxlbiA9IEZJRUxEX0dFVChIVFRfVDJIX1BQRFVfU1RBVFNfUEFZTE9BRF9TSVpFX00s
-ICpkYXRhKTsKKwlsZW4gPSBGSUVMRF9HRVQoSFRUX1QySF9QUERVX1NUQVRTX1BBWUxPQURfU0la
-RV9NLCBkYXRhLT5oZHIpOwogCiAJaWYgKGxlbiA+IEFUSDExS19IVFRfUEtUTE9HX01BWF9TSVpF
-KQogCXsKQEAgLTEwOTgsMTIgKzEwOTksMTEgQEAgc3RhdGljIHZvaWQgYXRoMTFrX2h0dF9wa3Rs
-b2coc3RydWN0IGF0aDExa19iYXNlICphYiwKIAkJcmV0dXJuOwogCX0KIAotCXBkZXZfaWQgPSBG
-SUVMRF9HRVQoSFRUX1QySF9QUERVX1NUQVRTX1BERVZfSURfTSwgKmRhdGEpOworCXBkZXZfaWQg
-PSBGSUVMRF9HRVQoSFRUX1QySF9QUERVX1NUQVRTX1BERVZfSURfTSwgZGF0YS0+aGRyKTsKIAlw
-ZGV2X2lkID0gRFBfSFcyU1dfTUFDSUQocGRldl9pZCk7CiAJYXIgPSBhYi0+cGRldnNbcGRldl9p
-ZF0uYXI7Ci0JKytkYXRhOwogCi0JdHJhY2VfYXRoMTFrX2h0dF9wa3Rsb2coYXIsIGRhdGEsIGxl
-bik7CisJdHJhY2VfYXRoMTFrX2h0dF9wa3Rsb2coYXIsIGRhdGEtPnBheWxvYWQsIGxlbik7CiB9
-CiAKIHZvaWQgYXRoMTFrX2RwX2h0dF9odGNfdDJoX21zZ19oYW5kbGVyKHN0cnVjdCBhdGgxMWtf
-YmFzZSAqYWIsCmRpZmYgLS1naXQgYS9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL3dt
-aS5oIGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay93bWkuaAppbmRleCBmMzA1NDJl
-MmQwOTAuLmQ1YjNkZTJlN2U4NyAxMDA2NDQKLS0tIGEvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRo
-L2F0aDExay93bWkuaAorKysgYi9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL3dtaS5o
-CkBAIC00MTQ4LDYgKzQxNDgsMTEgQEAgc3RydWN0IHdtaV9wZGV2X3BrdGxvZ19maWx0ZXJfY21k
-IHsKIAl1MzIgbnVtX21hYzsKIH0gX19wYWNrZWQ7CiAKK2VudW0gYXRoMTFrX3dtaV9wa3Rsb2df
-ZW5hYmxlIHsKKwlBVEgxMUtfV01JX1BLVExPR19FTkFCTEVfQVVUTyAgPSAwLAorCUFUSDExS19X
-TUlfUEtUTE9HX0VOQUJMRV9GT1JDRSA9IDEsCit9OworCiBzdHJ1Y3Qgd21pX3BrdGxvZ19lbmFi
-bGVfY21kIHsKIAl1MzIgdGx2X2hlYWRlcjsKIAl1MzIgcGRldl9pZDsKLS0gCjEuOS4xCgoKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYXRoMTFrIG1haWxp
-bmcgbGlzdAphdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFk
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2F0aDExawo=
+Removed the macro MICHAEL_MIC_LEN and use IEEE80211_CCMP_MIC_LEN
+in the ath11k_dp_rx_h_undecap_raw() in dp_rx.c.
+
+Signed-off-by: Maharaja Kennadyrajan <mkenna@codeaurora.org>
+---
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 84e4dd147ff0..d68db3f57200 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -1453,8 +1453,6 @@ static void ath11k_dp_rx_h_undecap_nwifi(struct ath11k *ar,
+ 	ether_addr_copy(ieee80211_get_SA(hdr), sa);
+ }
+ 
+-#define MICHAEL_MIC_LEN 8
+-
+ static void ath11k_dp_rx_h_undecap_raw(struct ath11k *ar, struct sk_buff *msdu,
+ 				       enum hal_encrypt_type enctype,
+ 				       struct ieee80211_rx_status *status,
+@@ -1501,7 +1499,7 @@ static void ath11k_dp_rx_h_undecap_raw(struct ath11k *ar, struct sk_buff *msdu,
+ 	if ((status->flag & RX_FLAG_MMIC_STRIPPED) &&
+ 	    !ieee80211_has_morefrags(hdr->frame_control) &&
+ 	    enctype == HAL_ENCRYPT_TYPE_TKIP_MIC)
+-		skb_trim(msdu, msdu->len - MICHAEL_MIC_LEN);
++		skb_trim(msdu, msdu->len - IEEE80211_CCMP_MIC_LEN);
+ 
+ 	/* Head */
+ 	if (status->flag & RX_FLAG_IV_STRIPPED) {
+-- 
+2.21.0
+
+
+_______________________________________________
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
