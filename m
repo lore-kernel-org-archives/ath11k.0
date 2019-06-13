@@ -1,15 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from durin.narfation.org ([79.140.41.39])
+Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hb92Y-0006iT-7f
- for ath11k@lists.infradead.org; Wed, 12 Jun 2019 19:36:11 +0000
-From: Sven Eckelmann <sven@narfation.org>
-Subject: [PATCH v3 3/3] ath11k: register HE mesh capabilities
-Date: Wed, 12 Jun 2019 21:35:10 +0200
-Message-Id: <20190612193510.29489-4-sven@narfation.org>
-In-Reply-To: <20190612193510.29489-1-sven@narfation.org>
-References: <20190612193510.29489-1-sven@narfation.org>
-MIME-Version: 1.0
+ id 1hbDbp-00069q-FY
+ for ath11k@lists.infradead.org; Thu, 13 Jun 2019 00:28:54 +0000
+From: Sriram R <srirrama@codeaurora.org>
+Subject: [PATCH] ath11k: create new header file for regulatory
+Date: Thu, 13 Jun 2019 05:58:37 +0530
+Message-Id: <1560385717-18789-1-git-send-email-srirrama@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -18,117 +15,112 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: linux-wireless@vger.kernel.org
-Cc: ath11k@lists.infradead.org, Sven Eckelmann <seckelmann@datto.com>
+To: ath11k@lists.infradead.org
+Cc: Sriram R <srirrama@codeaurora.org>
 
-From: Sven Eckelmann <seckelmann@datto.com>
+Move regulatory related definitions from 'core.h'
+to a new file 'reg.h'
 
-The capabilities for the HE mesh are generated from the capabilities
-reported by the fw. But the firmware only reports the overall capabilities
-and not the one which are specific for mesh. Some of them (TWT, MU UL/DL,
-TB PPDU, ...) require an infrastructure setup with a main STA (AP)
-controlling the operations. This is not the case for mesh and thus these
-capabilities are removed from the list of capabilities.
-
-Signed-off-by: Sven Eckelmann <seckelmann@datto.com>
+Signed-off-by: Sriram R <srirrama@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 63 +++++++++++++++++++++++++++
- 1 file changed, 63 insertions(+)
+ drivers/net/wireless/ath/ath11k/core.h | 20 +------------------
+ drivers/net/wireless/ath/ath11k/reg.h  | 35 ++++++++++++++++++++++++++++++++++
+ 2 files changed, 36 insertions(+), 19 deletions(-)
+ create mode 100644 drivers/net/wireless/ath/ath11k/reg.h
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 8c47e09a84e7..b55a98902fba 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -3274,6 +3274,7 @@ static int ath11k_mac_copy_he_cap(struct ath11k *ar,
- 		switch (i) {
- 		case NL80211_IFTYPE_STATION:
- 		case NL80211_IFTYPE_AP:
-+		case NL80211_IFTYPE_MESH_POINT:
- 			break;
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index 038f905..4d42ab40 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -19,6 +19,7 @@
+ #include "mac.h"
+ #include "hw.h"
+ #include "hal_rx.h"
++#include "reg.h"
  
- 		default:
-@@ -3314,6 +3315,61 @@ static int ath11k_mac_copy_he_cap(struct ath11k *ar,
- 			he_cap_elem->phy_cap_info[9] |=
- 				IEEE80211_HE_PHY_CAP9_TX_1024_QAM_LESS_THAN_242_TONE_RU;
- 			break;
-+		case NL80211_IFTYPE_MESH_POINT:
-+			he_cap_elem->mac_cap_info[0] &=
-+				~(IEEE80211_HE_MAC_CAP0_TWT_RES |
-+				  IEEE80211_HE_MAC_CAP0_TWT_REQ);
-+			he_cap_elem->mac_cap_info[2] &=
-+				~(IEEE80211_HE_MAC_CAP2_TRS |
-+				  IEEE80211_HE_MAC_CAP2_BCAST_TWT |
-+				  IEEE80211_HE_MAC_CAP2_MU_CASCADING);
-+			he_cap_elem->mac_cap_info[3] &=
-+				~(IEEE80211_HE_MAC_CAP3_FLEX_TWT_SCHED |
-+				  IEEE80211_HE_MAC_CAP2_BCAST_TWT |
-+				  IEEE80211_HE_MAC_CAP2_MU_CASCADING);
-+			he_cap_elem->mac_cap_info[4] &=
-+				~(IEEE80211_HE_MAC_CAP4_BSRP_BQRP_A_MPDU_AGG |
-+				  IEEE80211_HE_MAC_CAP4_BQR);
-+			he_cap_elem->mac_cap_info[5] &=
-+				~(IEEE80211_HE_MAC_CAP5_SUBCHAN_SELECVITE_TRANSMISSION |
-+				  IEEE80211_HE_MAC_CAP5_UL_2x996_TONE_RU |
-+				  IEEE80211_HE_MAC_CAP5_PUNCTURED_SOUNDING |
-+				  IEEE80211_HE_MAC_CAP5_HT_VHT_TRIG_FRAME_RX);
+ #define SM(_v, _f) (((_v) << _f##_LSB) & _f##_MASK)
+ 
+@@ -302,16 +303,6 @@ enum ath11k_stats_type {
+ 	ATH11K_STATS_TYPE_MAX,
+ };
+ 
+-enum ath11k_dfs_region {
+-	ATH11K_DFS_REG_UNSET,
+-	ATH11K_DFS_REG_FCC,
+-	ATH11K_DFS_REG_ETSI,
+-	ATH11K_DFS_REG_MKK,
+-	ATH11K_DFS_REG_CN,
+-	ATH11K_DFS_REG_KR,
+-	ATH11K_DFS_REG_UNDEF,
+-};
+-
+ struct ath11k_htt_data_stats {
+ 	u64 legacy[ATH11K_COUNTER_TYPE_MAX][ATH11K_LEGACY_NUM];
+ 	u64 ht[ATH11K_COUNTER_TYPE_MAX][ATH11K_HT_MCS_NUM];
+@@ -817,15 +808,6 @@ int ath11k_core_fetch_bdf(struct ath11k_base *ath11k,
+ 			  struct ath11k_board_data *bd);
+ void ath11k_core_free_bdf(struct ath11k_base *sc, struct ath11k_board_data *bd);
+ 
+-/* ATH11K Regulatory API's */
+-void ath11k_reg_init(struct ath11k *ar);
+-void ath11k_reg_free(struct ath11k_base *ab);
+-void ath11k_regd_update_work(struct work_struct *work);
+-struct ieee80211_regdomain *
+-ath11k_reg_build_regd(struct ath11k_base *ab,
+-		      struct cur_regulatory_info *reg_info, bool intersect);
+-int ath11k_regd_update(struct ath11k *ar, bool init);
+-int ath11k_reg_update_chan_list(struct ath11k *ar);
+ void ath11k_core_halt(struct ath11k *ar);
+ u8 ath11k_core_get_hw_mac_id(struct ath11k_base *ab, int pdev_idx);
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/reg.h b/drivers/net/wireless/ath/ath11k/reg.h
+new file mode 100644
+index 0000000..d0fc246
+--- /dev/null
++++ b/drivers/net/wireless/ath/ath11k/reg.h
+@@ -0,0 +1,35 @@
++/* SPDX-License-Identifier: ISC */
++/*
++ * Copyright (c) 2019 The Linux Foundation. All rights reserved.
++ */
 +
-+			he_cap_elem->phy_cap_info[2] &=
-+				~(IEEE80211_HE_PHY_CAP2_UL_MU_FULL_MU_MIMO |
-+				  IEEE80211_HE_PHY_CAP2_UL_MU_PARTIAL_MU_MIMO);
-+			he_cap_elem->phy_cap_info[3] &=
-+				~(IEEE80211_HE_PHY_CAP3_RX_HE_MU_PPDU_FROM_NON_AP_STA |
-+				  IEEE80211_HE_PHY_CAP3_DCM_MAX_CONST_TX_MASK |
-+				  IEEE80211_HE_PHY_CAP3_DCM_MAX_CONST_RX_MASK);
-+			he_cap_elem->phy_cap_info[4] &=
-+				~IEEE80211_HE_PHY_CAP4_MU_BEAMFORMER;
-+			he_cap_elem->phy_cap_info[5] &=
-+				~IEEE80211_HE_PHY_CAP5_NG16_MU_FEEDBACK;
-+			he_cap_elem->phy_cap_info[6] &=
-+				~(IEEE80211_HE_PHY_CAP6_CODEBOOK_SIZE_75_MU |
-+				  IEEE80211_HE_PHY_CAP6_TRIG_MU_BEAMFORMER_FB |
-+				  IEEE80211_HE_PHY_CAP6_TRIG_CQI_FB |
-+				  IEEE80211_HE_PHY_CAP6_PARTIAL_BANDWIDTH_DL_MUMIMO);
-+			he_cap_elem->phy_cap_info[7] &=
-+				~(IEEE80211_HE_PHY_CAP7_SRP_BASED_SR |
-+				  IEEE80211_HE_PHY_CAP7_POWER_BOOST_FACTOR_AR |
-+				  IEEE80211_HE_PHY_CAP7_STBC_TX_ABOVE_80MHZ |
-+				  IEEE80211_HE_PHY_CAP7_STBC_RX_ABOVE_80MHZ);
-+			he_cap_elem->phy_cap_info[8] &=
-+				~(IEEE80211_HE_PHY_CAP8_HE_ER_SU_PPDU_4XLTF_AND_08_US_GI |
-+				  IEEE80211_HE_PHY_CAP8_20MHZ_IN_40MHZ_HE_PPDU_IN_2G |
-+				  IEEE80211_HE_PHY_CAP8_20MHZ_IN_160MHZ_HE_PPDU |
-+				  IEEE80211_HE_PHY_CAP8_80MHZ_IN_160MHZ_HE_PPDU);
-+			he_cap_elem->phy_cap_info[9] &=
-+				~(IEEE80211_HE_PHY_CAP9_LONGER_THAN_16_SIGB_OFDM_SYM |
-+				  IEEE80211_HE_PHY_CAP9_NON_TRIGGERED_CQI_FEEDBACK |
-+				  IEEE80211_HE_PHY_CAP9_RX_1024_QAM_LESS_THAN_242_TONE_RU |
-+				  IEEE80211_HE_PHY_CAP9_TX_1024_QAM_LESS_THAN_242_TONE_RU |
-+				  IEEE80211_HE_PHY_CAP9_RX_FULL_BW_SU_USING_MU_WITH_COMP_SIGB |
-+				  IEEE80211_HE_PHY_CAP9_RX_FULL_BW_SU_USING_MU_WITH_NON_COMP_SIGB);
-+			break;
- 		}
- 
- 		he_cap->he_mcs_nss_supp.rx_mcs_80 =
-@@ -4239,6 +4295,13 @@ ath11k_mac_vdev_start_restart(struct ath11k_vif *arvif,
- 	int he_support = arvif->vif->bss_conf.he_support;
- 	int ret = 0;
- 
-+	/* mesh_point interfaces don't use bss_conf.he_support and still
-+	 * requires HE PHY mode to be set during vdev restart to avoid
-+	 * FW hangs when a sta with HE support tries to associate
-+	 */
-+	if (arvif->vif->type == NL80211_IFTYPE_MESH_POINT)
-+		he_support = true;
++#ifndef ATH11K_REG_H
++#define ATH11K_REG_H
 +
- 	lockdep_assert_held(&ar->conf_mutex);
- 
- 	reinit_completion(&ar->vdev_setup_done);
++#include <linux/kernel.h>
++#include <net/regulatory.h>
++
++struct ath11k_base;
++struct ath11k;
++
++/* DFS regdomains supported by Firmware */
++enum ath11k_dfs_region {
++	ATH11K_DFS_REG_UNSET,
++	ATH11K_DFS_REG_FCC,
++	ATH11K_DFS_REG_ETSI,
++	ATH11K_DFS_REG_MKK,
++	ATH11K_DFS_REG_CN,
++	ATH11K_DFS_REG_KR,
++	ATH11K_DFS_REG_UNDEF,
++};
++
++/* ATH11K Regulatory API's */
++void ath11k_reg_init(struct ath11k *ar);
++void ath11k_reg_free(struct ath11k_base *ab);
++void ath11k_regd_update_work(struct work_struct *work);
++struct ieee80211_regdomain *
++ath11k_reg_build_regd(struct ath11k_base *ab,
++		      struct cur_regulatory_info *reg_info, bool intersect);
++int ath11k_regd_update(struct ath11k *ar, bool init);
++int ath11k_reg_update_chan_list(struct ath11k *ar);
++#endif
 -- 
-2.20.1
+2.7.4
 
 
 _______________________________________________
