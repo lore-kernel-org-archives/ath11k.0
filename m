@@ -2,15 +2,15 @@ Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
  helo=sipsolutions.net)
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hblOf-000429-Vp
- for ath11k@lists.infradead.org; Fri, 14 Jun 2019 12:33:35 +0000
-Message-ID: <507ecb111701598ed812dda95c18381a7ae9b720.camel@sipsolutions.net>
-Subject: Re: [PATCH 2/2] mac80211: add support for the ADDBA extension element
+ id 1hblQV-0005S9-U1
+ for ath11k@lists.infradead.org; Fri, 14 Jun 2019 12:35:29 +0000
+Message-ID: <3ef2937994bb0c4c9076b153deaf3c42e2e9a75f.camel@sipsolutions.net>
+Subject: Re: [PATCH V2 4/6] mac80211: HE: add Spatial Reuse IE parsing support
 From: Johannes Berg <johannes@sipsolutions.net>
-Date: Fri, 14 Jun 2019 14:32:50 +0200
-In-Reply-To: <20190521150259.2414-2-john@phrozen.org>
-References: <20190521150259.2414-1-john@phrozen.org>
- <20190521150259.2414-2-john@phrozen.org>
+Date: Fri, 14 Jun 2019 14:34:15 +0200
+In-Reply-To: <20190528114952.838-5-john@phrozen.org>
+References: <20190528114952.838-1-john@phrozen.org>
+ <20190528114952.838-5-john@phrozen.org>
 Mime-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -27,28 +27,16 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: John Crispin <john@phrozen.org>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, Shashidhar Lakkavalli <slakkavalli@datto.com>
 
+> +/*
+> + * ieee80211_he_spr_size - calculate 802.11ax HE Spatial Reuse IE size
+> + * @he_spr_ie: byte data of the He Spatial Reuse IE, stating from the the byte
+> + *	after the ext ID byte. It is assumed that he_spr_ie has at least
+> + *	sizeof(struct ieee80211_he_spr) bytes, checked already in
+> + *	ieee802_11_parse_elems_crc()
 
->  
-> +#define IEEE80211_ADDBA_EXT_ELEM_ID		0x9f
-
-That doesn't really belong here.
-
-> +#define IEEE80211_ADDBA_EXT_ELEM_ID_LEN		0x01
-
-And that's usually not a define?
-
-> +#define IEEE80211_ADDBA_EXT_FRAG_LEVEL_MASK	GENMASK(2, 1)
-> +#define IEEE80211_ADDBA_EXT_FRAG_LEVEL_SHIFT	1
-> +#define IEEE80211_ADDBA_EXT_NO_FRAG		BIT(0)
-> +
-> +struct ieee80211_addbaext {
-> +	u8 eid;
-> +	u8 length;
-> +	u8 data;
-> +} __packed;
-
-I think we don't typically put the eid/len inside, and then we use
-sizeof(struct ...) for the size.
+That reference to mac80211 isn't really quite appropriate here - should
+say something like "the caller must have validated this". This is a
+lower layer usable by non-mac80211 as well.
 
 johannes
 
