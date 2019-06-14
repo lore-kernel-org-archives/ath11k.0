@@ -1,12 +1,17 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from smtp.codeaurora.org ([198.145.29.96])
+Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
+ helo=sipsolutions.net)
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hbOPV-0000xa-BW
- for ath11k@lists.infradead.org; Thu, 13 Jun 2019 12:00:54 +0000
-From: Bhagavathi Perumal S <bperumal@codeaurora.org>
-Subject: [PATCH] ath11k: Cleanup in htt stats init function
-Date: Thu, 13 Jun 2019 17:29:01 +0530
-Message-Id: <1560427141-24367-1-git-send-email-bperumal@codeaurora.org>
+ id 1hblOf-000429-Vp
+ for ath11k@lists.infradead.org; Fri, 14 Jun 2019 12:33:35 +0000
+Message-ID: <507ecb111701598ed812dda95c18381a7ae9b720.camel@sipsolutions.net>
+Subject: Re: [PATCH 2/2] mac80211: add support for the ADDBA extension element
+From: Johannes Berg <johannes@sipsolutions.net>
+Date: Fri, 14 Jun 2019 14:32:50 +0200
+In-Reply-To: <20190521150259.2414-2-john@phrozen.org>
+References: <20190521150259.2414-1-john@phrozen.org>
+ <20190521150259.2414-2-john@phrozen.org>
+Mime-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -15,95 +20,37 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: Bhagavathi Perumal S <bperumal@codeaurora.org>
+To: John Crispin <john@phrozen.org>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, Shashidhar Lakkavalli <slakkavalli@datto.com>
 
-This renames htt stats init function and moves the function declaration
-into debug_htt_stats.h.
 
-Signed-off-by: Bhagavathi Perumal S <bperumal@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/debug.c           | 3 ++-
- drivers/net/wireless/ath/ath11k/debug.h           | 5 -----
- drivers/net/wireless/ath/ath11k/debug_htt_stats.c | 2 +-
- drivers/net/wireless/ath/ath11k/debug_htt_stats.h | 2 ++
- 4 files changed, 5 insertions(+), 7 deletions(-)
+>  
+> +#define IEEE80211_ADDBA_EXT_ELEM_ID		0x9f
 
-diff --git a/drivers/net/wireless/ath/ath11k/debug.c b/drivers/net/wireless/ath/ath11k/debug.c
-index e22e1c8..1658bb7 100644
---- a/drivers/net/wireless/ath/ath11k/debug.c
-+++ b/drivers/net/wireless/ath/ath11k/debug.c
-@@ -9,6 +9,7 @@
- #include "wmi.h"
- #include "hal_rx.h"
- #include "dp_tx.h"
-+#include "debug_htt_stats.h"
- 
- void ath11k_info(struct ath11k_base *sc, const char *fmt, ...)
- {
-@@ -1145,7 +1146,7 @@ int ath11k_debug_register(struct ath11k *ar)
- 	snprintf(buf, 100, "../../%pd2", ar->debug.debugfs_pdev);
- 	debugfs_create_symlink("ath11k", ar->hw->wiphy->debugfsdir, buf);
- 
--	ath11k_htt_stats_debugfs_init(ar);
-+	ath11k_debug_htt_stats_init(ar);
- 
- 	ath11k_debug_fw_stats_init(ar);
- 
-diff --git a/drivers/net/wireless/ath/ath11k/debug.h b/drivers/net/wireless/ath/ath11k/debug.h
-index 13973d9..189205d 100644
---- a/drivers/net/wireless/ath/ath11k/debug.h
-+++ b/drivers/net/wireless/ath/ath11k/debug.h
-@@ -139,7 +139,6 @@ static inline void ath11k_dbg_dump(struct ath11k_base *ab,
- void ath11k_debug_soc_destroy(struct ath11k_base *sc);
- int ath11k_debug_register(struct ath11k *ar);
- void ath11k_debug_unregister(struct ath11k *ar);
--void ath11k_htt_stats_debugfs_init(struct ath11k *ar);
- void ath11k_dbg_htt_ext_stats_handler(struct ath11k_base *ab,
- 				      struct sk_buff *skb);
- void ath11k_debug_fw_stats_process(struct ath11k_base *ab, u8 *evt_buf,
-@@ -193,10 +192,6 @@ static inline void ath11k_debug_unregister(struct ath11k *ar)
- {
- }
- 
--static inline void ath11k_htt_stats_debugfs_init(struct ath11k *ar)
--{
--}
--
- static inline void ath11k_dbg_htt_ext_stats_handler(struct ath11k_base *ab,
- 						    struct sk_buff *skb)
- {
-diff --git a/drivers/net/wireless/ath/ath11k/debug_htt_stats.c b/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
-index ac217d9..ae3814e 100644
---- a/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
-+++ b/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
-@@ -4482,7 +4482,7 @@ static ssize_t ath11k_write_htt_stats_reset(struct file *file,
- 	.llseek = default_llseek,
- };
- 
--void ath11k_htt_stats_debugfs_init(struct ath11k *ar)
-+void ath11k_debug_htt_stats_init(struct ath11k *ar)
- {
- 	spin_lock_init(&ar->debug.htt_stats.lock);
- 	debugfs_create_file("htt_stats_type", 0600, ar->debug.debugfs_pdev,
-diff --git a/drivers/net/wireless/ath/ath11k/debug_htt_stats.h b/drivers/net/wireless/ath/ath11k/debug_htt_stats.h
-index a542bd3..ce49ca48 100644
---- a/drivers/net/wireless/ath/ath11k/debug_htt_stats.h
-+++ b/drivers/net/wireless/ath/ath11k/debug_htt_stats.h
-@@ -1612,4 +1612,6 @@ struct htt_pdev_obss_pd_stats_tlv {
- 	u32        num_obss_tx_ppdu_success;
- 	u32        num_obss_tx_ppdu_failure;
- };
-+
-+void ath11k_debug_htt_stats_init(struct ath11k *ar);
- #endif
--- 
-1.9.1
+That doesn't really belong here.
+
+> +#define IEEE80211_ADDBA_EXT_ELEM_ID_LEN		0x01
+
+And that's usually not a define?
+
+> +#define IEEE80211_ADDBA_EXT_FRAG_LEVEL_MASK	GENMASK(2, 1)
+> +#define IEEE80211_ADDBA_EXT_FRAG_LEVEL_SHIFT	1
+> +#define IEEE80211_ADDBA_EXT_NO_FRAG		BIT(0)
+> +
+> +struct ieee80211_addbaext {
+> +	u8 eid;
+> +	u8 length;
+> +	u8 data;
+> +} __packed;
+
+I think we don't typically put the eid/len inside, and then we use
+sizeof(struct ...) for the size.
+
+johannes
 
 
 _______________________________________________
