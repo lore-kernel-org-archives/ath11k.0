@@ -1,20 +1,20 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hcuZC-0005rI-Lr
- for ath11k@lists.infradead.org; Mon, 17 Jun 2019 16:33:12 +0000
+ id 1hcuZB-0005qm-UC
+ for ath11k@lists.infradead.org; Mon, 17 Jun 2019 16:33:11 +0000
 Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi
  [88.114.240.156])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
  (No client certificate requested)
  (Authenticated sender: kvalo@smtp.codeaurora.org)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id A57C460C60
- for <ath11k@lists.infradead.org>; Mon, 17 Jun 2019 16:33:08 +0000 (UTC)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 49EF6607DE
+ for <ath11k@lists.infradead.org>; Mon, 17 Jun 2019 16:33:07 +0000 (UTC)
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 5/5] ath11k: warning: comparison of unsigned expression < 0 is
- always false [-Wtype-limits]
-Date: Mon, 17 Jun 2019 19:32:59 +0300
-Message-Id: <1560789179-3857-5-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH 4/5] ath11k: comparison is always true due to limited range of
+ data type [-Wtype-limits]
+Date: Mon, 17 Jun 2019 19:32:58 +0300
+Message-Id: <1560789179-3857-4-git-send-email-kvalo@codeaurora.org>
 In-Reply-To: <1560789179-3857-1-git-send-email-kvalo@codeaurora.org>
 References: <1560789179-3857-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -32,49 +32,93 @@ Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 
-Fix gcc W=1 warnings:
-
-drivers/net/wireless/ath/ath11k/dp_tx.c:654:20: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
-drivers/net/wireless/ath/ath11k/debug.c:808:13: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+drivers/net/wireless/ath/ath11k/hal_rx.c:57:18: warning: comparison is always true due to limited range of data type [-Wtype-limits]
+drivers/net/wireless/ath/ath11k/dp_rx.c:2375:21: warning: comparison is always true due to limited range of data type [-Wtype-limits]
+drivers/net/wireless/ath/ath11k/dp_rx.c:2378:20: warning: comparison is always true due to limited range of data type [-Wtype-limits]
+drivers/net/wireless/ath/ath11k/dp_rx.c:2382:20: warning: comparison is always true due to limited range of data type [-Wtype-limits]
+drivers/net/wireless/ath/ath11k/dp_rx.c:2385:22: warning: comparison is always true due to limited range of data type [-Wtype-limits]
+drivers/net/wireless/ath/ath11k/dp_rx.c:2389:21: warning: comparison is always true due to limited range of data type [-Wtype-limits]
+drivers/net/wireless/ath/ath11k/dp_rx.c:2396:32: warning: comparison is always true due to limited range of data type [-Wtype-limits]
 
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/debug.c | 2 +-
- drivers/net/wireless/ath/ath11k/dp_tx.c | 6 ++++--
- 2 files changed, 5 insertions(+), 3 deletions(-)
+ drivers/net/wireless/ath/ath11k/debug_htt_stats.c |  2 +-
+ drivers/net/wireless/ath/ath11k/dp_rx.c           | 18 +++++++-----------
+ drivers/net/wireless/ath/ath11k/hal_rx.c          |  6 +++---
+ 3 files changed, 11 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/debug.c b/drivers/net/wireless/ath/ath11k/debug.c
-index 97ecde81559c..95bf80d38ea7 100644
---- a/drivers/net/wireless/ath/ath11k/debug.c
-+++ b/drivers/net/wireless/ath/ath11k/debug.c
-@@ -805,7 +805,7 @@ static ssize_t ath11k_write_extd_rx_stats(struct file *file,
- 		goto exit;
+diff --git a/drivers/net/wireless/ath/ath11k/debug_htt_stats.c b/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
+index 9558c6ada6d8..22d44a59be14 100644
+--- a/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
++++ b/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
+@@ -52,7 +52,7 @@ static inline void htt_print_stats_string_tlv(const u32 *tag_buf,
+ 		index += snprintf(&data[index],
+ 				HTT_MAX_STRING_LEN - index,
+ 				"%.*s", 4, (char *)&(htt_stats_buf->data[i]));
+-		if (index < 0 || index >= HTT_MAX_STRING_LEN)
++		if (index >= HTT_MAX_STRING_LEN)
+ 			break;
  	}
  
--	if (enable < 0 || enable > 1) {
-+	if (enable > 1) {
- 		ret = -EINVAL;
- 		goto exit;
- 	}
-diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
-index 75d5629c3979..202dba40ba4f 100644
---- a/drivers/net/wireless/ath/ath11k/dp_tx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
-@@ -650,10 +650,12 @@ int ath11k_dp_tx_htt_srng_setup(struct ath11k_base *ab, u32 ring_id,
- 	cmd->ring_base_addr_hi = (u64)params.ring_base_paddr >>
- 				 HAL_ADDR_MSB_REG_SHIFT;
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 0823f6761426..2c7a3585059a 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -2372,29 +2372,25 @@ static void ath11k_dp_rx_update_peer_stats(struct ath11k_sta *arsta,
+ 	if (ppdu_info->nss > 0 && ppdu_info->nss <= HAL_RX_MAX_NSS)
+ 		rx_stats->nss_count[ppdu_info->nss - 1] += num_msdu;
  
--	ring_entry_sz = ath11k_hal_srng_get_entrysize(ring_type);
--	if (ring_entry_sz < 0)
-+	ret = ath11k_hal_srng_get_entrysize(ring_type);
-+	if (ret < 0)
- 		return -EINVAL;
+-	if (ppdu_info->mcs >= 0 && ppdu_info->mcs <= HAL_RX_MAX_MCS)
++	if (ppdu_info->mcs <= HAL_RX_MAX_MCS)
+ 		rx_stats->mcs_count[ppdu_info->mcs] += num_msdu;
  
-+	ring_entry_sz = ret;
+-	if (ppdu_info->gi >= HAL_RX_GI_0_8_US &&
+-	    ppdu_info->gi < HAL_RX_GI_MAX)
++	if (ppdu_info->gi < HAL_RX_GI_MAX)
+ 		rx_stats->gi_count[ppdu_info->gi] += num_msdu;
+ 
+-	if (ppdu_info->bw >= HAL_RX_BW_20MHZ && ppdu_info->bw < HAL_RX_BW_MAX)
++	if (ppdu_info->bw < HAL_RX_BW_MAX)
+ 		rx_stats->bw_count[ppdu_info->bw] += num_msdu;
+ 
+-	if (ppdu_info->ldpc >= HAL_RX_SU_MU_CODING_BCC &&
+-	    ppdu_info->ldpc < HAL_RX_SU_MU_CODING_MAX)
++	if (ppdu_info->ldpc < HAL_RX_SU_MU_CODING_MAX)
+ 		rx_stats->coding_count[ppdu_info->ldpc] += num_msdu;
+ 
+-	if (ppdu_info->tid >= 0 && ppdu_info->tid <= IEEE80211_NUM_TIDS)
++	if (ppdu_info->tid <= IEEE80211_NUM_TIDS)
+ 		rx_stats->tid_count[ppdu_info->tid] += num_msdu;
+ 
+-	if (ppdu_info->preamble_type >= HAL_RX_PREAMBLE_11A &&
+-	    ppdu_info->preamble_type < HAL_RX_PREAMBLE_MAX)
++	if (ppdu_info->preamble_type < HAL_RX_PREAMBLE_MAX)
+ 		rx_stats->pream_cnt[ppdu_info->preamble_type] += num_msdu;
+ 
+-	if (ppdu_info->reception_type >= HAL_RX_RECEPTION_TYPE_SU &&
+-	    ppdu_info->reception_type < HAL_RX_RECEPTION_TYPE_MAX)
++	if (ppdu_info->reception_type < HAL_RX_RECEPTION_TYPE_MAX)
+ 		rx_stats->reception_type[ppdu_info->reception_type] += num_msdu;
+ 
+ 	if (ppdu_info->is_stbc)
+diff --git a/drivers/net/wireless/ath/ath11k/hal_rx.c b/drivers/net/wireless/ath/ath11k/hal_rx.c
+index 0308089c88df..ca55855db2bc 100644
+--- a/drivers/net/wireless/ath/ath11k/hal_rx.c
++++ b/drivers/net/wireless/ath/ath11k/hal_rx.c
+@@ -54,10 +54,10 @@ static int ath11k_hal_reo_cmd_flush_cache(struct ath11k_hal *hal, u32 *reo_desc,
+ 	u8 avail_slot = ffz(hal->avail_blk_resource);
+ 
+ 	if (cmd->flag & HAL_REO_CMD_FLG_FLUSH_BLOCK_LATER) {
+-		if (avail_slot >= 0 && avail_slot < HAL_MAX_AVAIL_BLK_RES)
+-			hal->current_blk_index = avail_slot;
+-		else
++		if (avail_slot >= HAL_MAX_AVAIL_BLK_RES)
+ 			return -ENOSPC;
 +
- 	ring_entry_sz >>= 2;
- 	cmd->info1 = FIELD_PREP(HTT_SRNG_SETUP_CMD_INFO1_RING_ENTRY_SIZE,
- 				ring_entry_sz);
++		hal->current_blk_index = avail_slot;
+ 	}
+ 
+ 	tlv->tl = FIELD_PREP(HAL_TLV_HDR_TAG, HAL_REO_FLUSH_CACHE) |
 -- 
 2.7.4
 
