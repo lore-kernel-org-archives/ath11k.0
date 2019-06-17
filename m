@@ -1,13 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from nbd.name ([2a01:4f8:221:3d45::2])
+Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hcrJG-0003Oe-OX
- for ath11k@lists.infradead.org; Mon, 17 Jun 2019 13:04:32 +0000
-From: John Crispin <john@phrozen.org>
-Subject: [PATCH] mac80211: fix ieee80211_he_oper_size() comment
-Date: Mon, 17 Jun 2019 15:04:25 +0200
-Message-Id: <20190617130425.14014-1-john@phrozen.org>
-MIME-Version: 1.0
+ id 1hcrfZ-0008IS-G0
+ for ath11k@lists.infradead.org; Mon, 17 Jun 2019 13:27:34 +0000
+From: Karthikeyan Periyasamy <periyasa@codeaurora.org>
+Subject: [PATCH] ath11k: fix extended stats update issue
+Date: Mon, 17 Jun 2019 18:57:20 +0530
+Message-Id: <1560778040-12386-1-git-send-email-periyasa@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -16,38 +15,39 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
+To: ath11k@lists.infradead.org
+Cc: Karthikeyan Periyasamy <periyasa@codeaurora.org>
 
-Johannes mentioned that the comment should not reference mac80211 as other
-subsystems might call the helper.
+user not able to see the valid tx stats. htt stats update
+process get failed due to the wrong argument pass to
+ath11k_get_ar_by_pdev_id API. Expected argument is pdev_id not
+the pdev index. so avoid the conversion logic of pdev id to pdev
+index in htt stats update process.
 
-Signed-off-by: John Crispin <john@phrozen.org>
+Signed-off-by: Karthikeyan Periyasamy <periyasa@codeaurora.org>
 ---
- include/linux/ieee80211.h | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/include/linux/ieee80211.h b/include/linux/ieee80211.h
-index e7d23a2cacd8..9b62c3744ed5 100644
---- a/include/linux/ieee80211.h
-+++ b/include/linux/ieee80211.h
-@@ -2062,8 +2062,8 @@ ieee80211_he_ppe_size(u8 ppe_thres_hdr, const u8 *phy_cap_info)
-  * ieee80211_he_oper_size - calculate 802.11ax HE Operations IE size
-  * @he_oper_ie: byte data of the He Operations IE, stating from the the byte
-  *	after the ext ID byte. It is assumed that he_oper_ie has at least
-- *	sizeof(struct ieee80211_he_operation) bytes, checked already in
-- *	ieee802_11_parse_elems_crc()
-+ *	sizeof(struct ieee80211_he_operation) bytes, the caller must have
-+ *	validated this.
-  * @return the actual size of the IE data (not including header), or 0 on error
-  */
- static inline u8
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 1d9892e..971c437 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -1294,7 +1294,6 @@ static int ath11k_htt_pull_ppdu_stats(struct ath11k_base *ab,
+ 
+ 	len = FIELD_GET(HTT_T2H_PPDU_STATS_PAYLOAD_SIZE_M, *(u32 *)data);
+ 	pdev_id = FIELD_GET(HTT_T2H_PPDU_STATS_PDEV_ID_M, *(u32 *)data);
+-	pdev_id = DP_HW2SW_MACID(pdev_id);
+ 	ppdu_id = *((u32 *)data + 1);
+ 
+ 	rcu_read_lock();
 -- 
-2.20.1
+1.9.1
 
 
 _______________________________________________
