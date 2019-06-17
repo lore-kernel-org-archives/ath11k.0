@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hcmaP-0004RM-5R
- for ath11k@lists.infradead.org; Mon, 17 Jun 2019 08:01:59 +0000
+ id 1hcmcM-0004hZ-Vv
+ for ath11k@lists.infradead.org; Mon, 17 Jun 2019 08:03:56 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: fix sparse warnings in mac.c
+Subject: Re: [PATCH v2] ath11k: cleanup in htt pktlog
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1560328682-23694-1-git-send-email-kvalo@codeaurora.org>
-References: <1560328682-23694-1-git-send-email-kvalo@codeaurora.org>
-Message-Id: <20190617080152.4F56360314@smtp.codeaurora.org>
-Date: Mon, 17 Jun 2019 08:01:52 +0000 (UTC)
+In-Reply-To: <1560335345-13626-1-git-send-email-akolli@codeaurora.org>
+References: <1560335345-13626-1-git-send-email-akolli@codeaurora.org>
+Message-Id: <20190617080354.AC12160867@smtp.codeaurora.org>
+Date: Mon, 17 Jun 2019 08:03:54 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -18,48 +18,23 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
+To: Anilkumar Kolli <akolli@codeaurora.org>
 Cc: ath11k@lists.infradead.org
 
-Kalle Valo <kvalo@codeaurora.org> wrote:
-
-> drivers/net/wireless/ath/ath11k/mac.c:1306:83: warning: incorrect type in assignment (different base types)
-> drivers/net/wireless/ath/ath11k/mac.c:1306:83:    expected unsigned int
-> drivers/net/wireless/ath/ath11k/mac.c:1306:83:    got restricted __le16 const [usertype] rx_mcs_80p80
-> drivers/net/wireless/ath/ath11k/mac.c:1308:83: warning: incorrect type in assignment (different base types)
-> drivers/net/wireless/ath/ath11k/mac.c:1308:83:    expected unsigned int
-> drivers/net/wireless/ath/ath11k/mac.c:1308:83:    got restricted __le16 const [usertype] tx_mcs_80p80
-> drivers/net/wireless/ath/ath11k/mac.c:1312:73: warning: incorrect type in assignment (different base types)
-> drivers/net/wireless/ath/ath11k/mac.c:1312:73:    expected unsigned int
-> drivers/net/wireless/ath/ath11k/mac.c:1312:73:    got restricted __le16 const [usertype] rx_mcs_160
-> drivers/net/wireless/ath/ath11k/mac.c:1314:73: warning: incorrect type in assignment (different base types)
-> drivers/net/wireless/ath/ath11k/mac.c:1314:73:    expected unsigned int
-> drivers/net/wireless/ath/ath11k/mac.c:1314:73:    got restricted __le16 const [usertype] tx_mcs_160
-> drivers/net/wireless/ath/ath11k/mac.c:1320:72: warning: incorrect type in assignment (different base types)
-> drivers/net/wireless/ath/ath11k/mac.c:1320:72:    expected unsigned int
-> drivers/net/wireless/ath/ath11k/mac.c:1320:72:    got restricted __le16 const [usertype] rx_mcs_80
-> drivers/net/wireless/ath/ath11k/mac.c:1322:72: warning: incorrect type in assignment (different base types)
-> drivers/net/wireless/ath/ath11k/mac.c:1322:72:    expected unsigned int
-> drivers/net/wireless/ath/ath11k/mac.c:1322:72:    got restricted __le16 const [usertype] tx_mcs_80
-> 
-> Fixes: 17aca2d9a969 ("ath11k: add HE support")
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
-
-Patch applied to ath11k-bringup branch of ath.git, thanks.
-
-3db59a23db43 ath11k: fix sparse warnings in mac.c
-
--- 
-https://patchwork.kernel.org/patch/10988969/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
-
-_______________________________________________
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+QW5pbGt1bWFyIEtvbGxpIDxha29sbGlAY29kZWF1cm9yYS5vcmc+IHdyb3RlOgoKPiBBZGRyZXNz
+ZWQgYmVsb3cgY29tbWVudHMsCj4gKiBkZWJ1ZzogbW92ZSBlbnVtIGF0aDExa193bWlfcGt0bG9n
+X2VuYWJsZSB0byB3bWkuaAo+ICogZHBfcng6IGF0aDExa19odHRfcGt0bG9nKCk6ICd1MzIgKmRh
+dGEnIG5lZWRzIGEgcHJvcGVyIHN0cnVjdCwKPiDCoCBhdm9pZHMgcG9pbnRlciBhcml0aG1ldGlj
+Lgo+IAo+IFNpZ25lZC1vZmYtYnk6IEFuaWxrdW1hciBLb2xsaSA8YWtvbGxpQGNvZGVhdXJvcmEu
+b3JnPgo+IFNpZ25lZC1vZmYtYnk6IEthbGxlIFZhbG8gPGt2YWxvQGNvZGVhdXJvcmEub3JnPgoK
+UGF0Y2ggYXBwbGllZCB0byBhdGgxMWstYnJpbmd1cCBicmFuY2ggb2YgYXRoLmdpdCwgdGhhbmtz
+LgoKM2ZiNGFiY2YxMWQ2IGF0aDExazogY2xlYW51cCBpbiBodHQgcGt0bG9nCgotLSAKaHR0cHM6
+Ly9wYXRjaHdvcmsua2VybmVsLm9yZy9wYXRjaC8xMDk4OTM2Ny8KCmh0dHBzOi8vd2lyZWxlc3Mu
+d2lraS5rZXJuZWwub3JnL2VuL2RldmVsb3BlcnMvZG9jdW1lbnRhdGlvbi9zdWJtaXR0aW5ncGF0
+Y2hlcwoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmF0
+aDExayBtYWlsaW5nIGxpc3QKYXRoMTFrQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3Rz
+LmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9hdGgxMWsK
