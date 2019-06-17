@@ -1,19 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
- helo=sipsolutions.net)
+Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hbmyP-0007XO-Ek
- for ath11k@lists.infradead.org; Fri, 14 Jun 2019 14:14:34 +0000
-Message-ID: <bd02c49411759bcbb5305d0f361791ecaf0281b6.camel@sipsolutions.net>
-Subject: Re: [PATCH v3 2/3] mac80211: implement HE support for mesh
-From: Johannes Berg <johannes@sipsolutions.net>
-Date: Fri, 14 Jun 2019 16:14:20 +0200
-In-Reply-To: <2194147.kqlnQF7k4C@bentobox>
-References: <20190612193510.29489-1-sven@narfation.org>
- <20190612193510.29489-3-sven@narfation.org>
- <8d0d11ca39b6216b24cf4e9e3a1522072db5c0d2.camel@sipsolutions.net>
- <2194147.kqlnQF7k4C@bentobox>
-Mime-Version: 1.0
+ id 1hcmaP-0004RM-5R
+ for ath11k@lists.infradead.org; Mon, 17 Jun 2019 08:01:59 +0000
+MIME-Version: 1.0
+Subject: Re: [PATCH] ath11k: fix sparse warnings in mac.c
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <1560328682-23694-1-git-send-email-kvalo@codeaurora.org>
+References: <1560328682-23694-1-git-send-email-kvalo@codeaurora.org>
+Message-Id: <20190617080152.4F56360314@smtp.codeaurora.org>
+Date: Mon, 17 Jun 2019 08:01:52 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -26,28 +22,41 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Sven Eckelmann <sven@narfation.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: Kalle Valo <kvalo@codeaurora.org>
+Cc: ath11k@lists.infradead.org
 
-On Fri, 2019-06-14 at 16:13 +0200, Sven Eckelmann wrote:
-> On Friday, 14 June 2019 16:11:15 CEST Johannes Berg wrote:
-> > > +       ie_len = 2 + 1 +
-> > > +                sizeof(he_cap->he_cap_elem) + n +
-> > > +                ieee80211_he_ppe_size(he_cap->ppe_thres[0],
-> > > +                                      he_cap->he_cap_elem.phy_cap_info);
-> > > +
-> > > +       return ie_len;
-> > 
-> > There's no value in the "ie_len" variable here.
+Kalle Valo <kvalo@codeaurora.org> wrote:
+
+> drivers/net/wireless/ath/ath11k/mac.c:1306:83: warning: incorrect type in assignment (different base types)
+> drivers/net/wireless/ath/ath11k/mac.c:1306:83:    expected unsigned int
+> drivers/net/wireless/ath/ath11k/mac.c:1306:83:    got restricted __le16 const [usertype] rx_mcs_80p80
+> drivers/net/wireless/ath/ath11k/mac.c:1308:83: warning: incorrect type in assignment (different base types)
+> drivers/net/wireless/ath/ath11k/mac.c:1308:83:    expected unsigned int
+> drivers/net/wireless/ath/ath11k/mac.c:1308:83:    got restricted __le16 const [usertype] tx_mcs_80p80
+> drivers/net/wireless/ath/ath11k/mac.c:1312:73: warning: incorrect type in assignment (different base types)
+> drivers/net/wireless/ath/ath11k/mac.c:1312:73:    expected unsigned int
+> drivers/net/wireless/ath/ath11k/mac.c:1312:73:    got restricted __le16 const [usertype] rx_mcs_160
+> drivers/net/wireless/ath/ath11k/mac.c:1314:73: warning: incorrect type in assignment (different base types)
+> drivers/net/wireless/ath/ath11k/mac.c:1314:73:    expected unsigned int
+> drivers/net/wireless/ath/ath11k/mac.c:1314:73:    got restricted __le16 const [usertype] tx_mcs_160
+> drivers/net/wireless/ath/ath11k/mac.c:1320:72: warning: incorrect type in assignment (different base types)
+> drivers/net/wireless/ath/ath11k/mac.c:1320:72:    expected unsigned int
+> drivers/net/wireless/ath/ath11k/mac.c:1320:72:    got restricted __le16 const [usertype] rx_mcs_80
+> drivers/net/wireless/ath/ath11k/mac.c:1322:72: warning: incorrect type in assignment (different base types)
+> drivers/net/wireless/ath/ath11k/mac.c:1322:72:    expected unsigned int
+> drivers/net/wireless/ath/ath11k/mac.c:1322:72:    got restricted __le16 const [usertype] tx_mcs_80
 > 
-> Sorry, my parser just broke. Why is there no value in ie_len? Was just 
-> assigned a line before. Or are you talking about something else?
+> Fixes: 17aca2d9a969 ("ath11k: add HE support")
+> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-Heh, sorry. I mean, there's no value in having the variable, you could
-just
-	return 2 + 1 + ...
+Patch applied to ath11k-bringup branch of ath.git, thanks.
 
-johannes
+3db59a23db43 ath11k: fix sparse warnings in mac.c
+
+-- 
+https://patchwork.kernel.org/patch/10988969/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 
 _______________________________________________
