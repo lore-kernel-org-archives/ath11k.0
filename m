@@ -1,17 +1,20 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from smtp.codeaurora.org ([198.145.29.96])
+Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hdDaV-0001Hm-0l
- for ath11k@lists.infradead.org; Tue, 18 Jun 2019 12:51:48 +0000
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH] ath11k: add wrapper function to ath11k_dbg
-References: <1560855152-2609-1-git-send-email-vnaralas@codeaurora.org>
-Date: Tue, 18 Jun 2019 15:51:43 +0300
-In-Reply-To: <1560855152-2609-1-git-send-email-vnaralas@codeaurora.org>
- (Venkateswara Naralasetty's message of "Tue, 18 Jun 2019 16:22:32
- +0530")
-Message-ID: <87sgs783a8.fsf@kamboji.qca.qualcomm.com>
+ id 1hdEoO-0003rm-OF
+ for ath11k@lists.infradead.org; Tue, 18 Jun 2019 14:10:14 +0000
+Subject: Re: [ath6kl:pending-ath11k 198/205]
+ drivers/net/wireless/ath/ath11k/mac.c:1274 ath11k_peer_assoc_h_he() error:
+ memcpy() 'he_cap->he_cap_elem.mac_cap_info' too small (6 vs 8)
+References: <20190618065329.GY1893@kadam>
+ <be8949ff-7ac2-3570-05ec-342036a6f52e@phrozen.org>
+ <20190618114732.GD18776@kadam>
+From: John Crispin <john@phrozen.org>
+Message-ID: <781aa8b0-c0c1-cf6c-f3d4-2037b98df639@phrozen.org>
+Date: Tue, 18 Jun 2019 16:10:11 +0200
 MIME-Version: 1.0
+In-Reply-To: <20190618114732.GD18776@kadam>
+Content-Language: en-US
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -20,31 +23,66 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Venkateswara Naralasetty <vnaralas@codeaurora.org>
-Cc: ath11k@lists.infradead.org
+To: Dan Carpenter <dan.carpenter@oracle.com>
+Cc: kbuild@01.org, ath11k@lists.infradead.org, kbuild test robot <lkp@intel.com>, Kalle Valo <kvalo@codeaurora.org>, kbuild-all@01.org
 
-Venkateswara Naralasetty <vnaralas@codeaurora.org> writes:
-
-> This patch define a macro for ath11k_dbg() which improves
-> the Rx performance by avoid calling ath11k_dbg() from
-> ath11k_dp_rx_deliver_msdu() when no dbg_mask set.
->
-> Signed-off-by: Venkateswara Naralasetty <vnaralas@codeaurora.org>
-> ---
-> v2:
->  * corrected one style issue
-
-When you submit v2 please remember to mark it as "[PATCH v2]" in the
-Subject as well. But no need to resend because of this.
-
--- 
-Kalle Valo
-
-_______________________________________________
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+Ck9uIDE4LzA2LzIwMTkgMTM6NDcsIERhbiBDYXJwZW50ZXIgd3JvdGU6Cj4gT24gVHVlLCBKdW4g
+MTgsIDIwMTkgYXQgMDg6NTk6NTVBTSArMDIwMCwgSm9obiBDcmlzcGluIHdyb3RlOgo+PiBPbiAx
+OC8wNi8yMDE5IDA4OjUzLCBrYnVpbGQgdGVzdCByb2JvdCB3cm90ZToKPj4+IHRyZWU6ICAgaHR0
+cHM6Ly9naXQua2VybmVsLm9yZy9wdWIvc2NtL2xpbnV4L2tlcm5lbC9naXQva3ZhbG8vYXRoLmdp
+dCBwZW5kaW5nLWF0aDExawo+Pj4gaGVhZDogICAwZjgyZmVjNTY3OTY2NGJiOTFkNmMxNjdmZDFh
+MTQ2ZjExM2U0MTk3Cj4+PiBjb21taXQ6IGNiZGIzMTU5ZmRmNDUwYjdiMzk5OWEwNjYwMGFhMGUx
+ZmI3ODM4M2YgWzE5OC8yMDVdIGF0aDExazogc2V0IGFkZGl0aW9uYWwgdmFsdWVzIGluc2lkZSB3
+bWlfcGVlcl9hc3NvY19jb21wbGV0ZV9jbWQKPj4+Cj4+PiBJZiB5b3UgZml4IHRoZSBpc3N1ZSwg
+a2luZGx5IGFkZCBmb2xsb3dpbmcgdGFnCj4+PiBSZXBvcnRlZC1ieToga2J1aWxkIHRlc3Qgcm9i
+b3QgPGxrcEBpbnRlbC5jb20+Cj4+PiBSZXBvcnRlZC1ieTogRGFuIENhcnBlbnRlciA8ZGFuLmNh
+cnBlbnRlckBvcmFjbGUuY29tPgo+Pj4KPj4+IE5ldyBzbWF0Y2ggd2FybmluZ3M6Cj4+PiBkcml2
+ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL21hYy5jOjEyNzQgYXRoMTFrX3BlZXJfYXNzb2Nf
+aF9oZSgpIGVycm9yOiBtZW1jcHkoKSAnaGVfY2FwLT5oZV9jYXBfZWxlbS5tYWNfY2FwX2luZm8n
+IHRvbyBzbWFsbCAoNiB2cyA4KQo+Pj4KPj4+IE9sZCBzbWF0Y2ggd2FybmluZ3M6Cj4+PiBkcml2
+ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL21hYy5jOjEyNzYgYXRoMTFrX3BlZXJfYXNzb2Nf
+aF9oZSgpIGVycm9yOiBtZW1jcHkoKSAnaGVfY2FwLT5oZV9jYXBfZWxlbS5waHlfY2FwX2luZm8n
+IHRvbyBzbWFsbCAoMTEgdnMgMTIpCj4+Pgo+Pj4gIyBodHRwczovL2dpdC5rZXJuZWwub3JnL3B1
+Yi9zY20vbGludXgva2VybmVsL2dpdC9rdmFsby9hdGguZ2l0L2NvbW1pdC8/aWQ9Y2JkYjMxNTlm
+ZGY0NTBiN2IzOTk5YTA2NjAwYWEwZTFmYjc4MzgzZgo+Pj4gZ2l0IHJlbW90ZSBhZGQgYXRoNmts
+IGh0dHBzOi8vZ2l0Lmtlcm5lbC5vcmcvcHViL3NjbS9saW51eC9rZXJuZWwvZ2l0L2t2YWxvL2F0
+aC5naXQKPj4+IGdpdCByZW1vdGUgdXBkYXRlIGF0aDZrbAo+Pj4gZ2l0IGNoZWNrb3V0IGNiZGIz
+MTU5ZmRmNDUwYjdiMzk5OWEwNjYwMGFhMGUxZmI3ODM4M2YKPj4+IHZpbSArMTI3NCBkcml2ZXJz
+L25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL21hYy5jCj4+Pgo+Pj4gMjU4YmJmNTIgS2FsbGUgVmFs
+byAgIDIwMTktMDItMDUgIDEyNjAKPj4+IDI1OGJiZjUyIEthbGxlIFZhbG8gICAyMDE5LTAyLTA1
+ICAxMjYxICBzdGF0aWMgdm9pZCBhdGgxMWtfcGVlcl9hc3NvY19oX2hlKHN0cnVjdCBhdGgxMWsg
+KmFyLAo+Pj4gMjU4YmJmNTIgS2FsbGUgVmFsbyAgIDIwMTktMDItMDUgIDEyNjIgIAkJCQkgICBz
+dHJ1Y3QgaWVlZTgwMjExX3ZpZiAqdmlmLAo+Pj4gMjU4YmJmNTIgS2FsbGUgVmFsbyAgIDIwMTkt
+MDItMDUgIDEyNjMgIAkJCQkgICBzdHJ1Y3QgaWVlZTgwMjExX3N0YSAqc3RhLAo+Pj4gMjU4YmJm
+NTIgS2FsbGUgVmFsbyAgIDIwMTktMDItMDUgIDEyNjQgIAkJCQkgICBzdHJ1Y3QgcGVlcl9hc3Nv
+Y19wYXJhbXMgKmFyZykKPj4+IDI1OGJiZjUyIEthbGxlIFZhbG8gICAyMDE5LTAyLTA1ICAxMjY1
+ICB7Cj4+PiAxN2FjYTJkOSBKb2huIENyaXNwaW4gMjAxOS0wNi0wMyAgMTI2NiAgCWNvbnN0IHN0
+cnVjdCBpZWVlODAyMTFfc3RhX2hlX2NhcCAqaGVfY2FwID0gJnN0YS0+aGVfY2FwOwo+Pj4gM2Ri
+NTlhMjMgS2FsbGUgVmFsbyAgIDIwMTktMDYtMTIgIDEyNjcgIAl1MTYgdjsKPj4+IDE3YWNhMmQ5
+IEpvaG4gQ3Jpc3BpbiAyMDE5LTA2LTAzICAxMjY4Cj4+PiAxN2FjYTJkOSBKb2huIENyaXNwaW4g
+MjAxOS0wNi0wMyAgMTI2OSAgCWlmICghaGVfY2FwLT5oYXNfaGUpCj4+PiAxN2FjYTJkOSBKb2hu
+IENyaXNwaW4gMjAxOS0wNi0wMyAgMTI3MCAgCQlyZXR1cm47Cj4+PiAxN2FjYTJkOSBKb2huIENy
+aXNwaW4gMjAxOS0wNi0wMyAgMTI3MQo+Pj4gMTdhY2EyZDkgSm9obiBDcmlzcGluIDIwMTktMDYt
+MDMgIDEyNzIgIAlhcmctPmhlX2ZsYWcgPSB0cnVlOwo+Pj4gMTdhY2EyZDkgSm9obiBDcmlzcGlu
+IDIwMTktMDYtMDMgIDEyNzMKPj4+IDE3YWNhMmQ5IEpvaG4gQ3Jpc3BpbiAyMDE5LTA2LTAzIEAx
+Mjc0ICAJbWVtY3B5KCZhcmctPnBlZXJfaGVfY2FwX21hY2luZm8sIGhlX2NhcC0+aGVfY2FwX2Vs
+ZW0ubWFjX2NhcF9pbmZvLAo+Pj4gMTdhY2EyZDkgSm9obiBDcmlzcGluIDIwMTktMDYtMDMgIDEy
+NzUgIAkgICAgICAgc2l6ZW9mKGFyZy0+cGVlcl9oZV9jYXBfbWFjaW5mbykpOwo+Pj4KPj4+IFNt
+YXRjaCB0aGlua3MgdGhlc2UgYXJlIGRpZmZlcmVudCBzaXplcy4uLiAgSSBkb24ndCBoYXZlIGEg
+Y29weSBvZgo+Pj4gc3RydWN0IHBlZXJfYXNzb2NfcGFyYW1zIHNvIEkgY2FuJ3QgY2hlY2suCj4+
+IEhpLAo+Pgo+PiBpdHMgaGVfY2FwLT5oZV9jYXBfZWxlbS5tYWNfY2FwX2luZm9bNl0gYW5kIGFy
+Zy0+cGVlcl9oZV9jYXBfbWFjaW5mb1syXSBhbmQgd2Ugb25seSBjb3B5IHRoZSBmaXJzdCAyIGVs
+ZW1lbnRzIGFzIHRoZSBGVyBvbmx5IGNhcmVzIGZvciB0aGUgZmlyc3QgMiBieXRlcy4KPj4KPiBJ
+IGRpZCBkb3dubG9hZCB0aGUgbGF0ZXN0IGdpdC4gIFRoZSBwcm9ibGVtIGlzIHRoYXQKPiBoZV9j
+YXAtPmhlX2NhcF9lbGVtLm1hY19jYXBfaW5mb1tdIGlzIHNpeCBieXRlcyBhbmQgYXJnLT5wZWVy
+X2hlX2NhcF9tYWNpbmZvW10KPiBpcyB0d28gdTMycyBvciBlaWdodCBieXRlcy4gIFNvIHdlIGFy
+ZSByZWFkaW5nIGJleW9uZCB0aGUgZW5kIG9mIHRoZQo+IGFycmF5Lgo+Cj4gcmVnYXJkcywKPiBk
+YW4gY2FycGVudGVyCgpjb3JyZWN0LCB0aGFua3MgZm9yIHRoZSBjYXRjaCwgd2lsbCBzZW5kIGEg
+Zml4IHRvIGthbGxlCgogwqDCoMKgIEpvaG4KCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KYXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtAbGlzdHMuaW5m
+cmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2F0
+aDExawo=
