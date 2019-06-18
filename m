@@ -1,12 +1,19 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hd5qY-0005kF-37
- for ath11k@lists.infradead.org; Tue, 18 Jun 2019 04:35:51 +0000
-From: Karthikeyan Periyasamy <periyasa@codeaurora.org>
-Subject: [PATCH] ath11k: fix extended stats update issue
-Date: Tue, 18 Jun 2019 10:05:37 +0530
-Message-Id: <1560832537-22777-1-git-send-email-periyasa@codeaurora.org>
+ id 1hd5wB-00079t-Qj
+ for ath11k@lists.infradead.org; Tue, 18 Jun 2019 04:41:41 +0000
+Received: from vasanth-lnx.qca.qualcomm.com
+ (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+ (No client certificate requested)
+ (Authenticated sender: vthiagar@smtp.codeaurora.org)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 2F787602FE
+ for <ath11k@lists.infradead.org>; Tue, 18 Jun 2019 04:41:37 +0000 (UTC)
+From: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
+Subject: [PATCH 1/5] ath11k: Clean up void *per_transfer_context[] in ce
+Date: Tue, 18 Jun 2019 10:11:25 +0530
+Message-Id: <1560832889-14129-1-git-send-email-vthiagar@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -21,31 +28,70 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
-Cc: Karthikeyan Periyasamy <periyasa@codeaurora.org>
 
-user not able to see the valid tx stats. htt stats update
-process get failed due to the wrong argument pass to
-ath11k_get_ar_by_pdev_id API. Expected argument is pdev_id not
-the pdev index. so avoid the conversion logic of pdev id to pdev
-index in htt stats update process.
+Since per_transfer_context is used as an array of skb pointer always
+no need that to be an array of void *.
 
-Signed-off-by: Karthikeyan Periyasamy <periyasa@codeaurora.org>
+Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/dp_rx.c | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/ce.c | 9 ++++-----
+ drivers/net/wireless/ath/ath11k/ce.h | 2 +-
+ 2 files changed, 5 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 1d9892e..971c437 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -1294,7 +1294,6 @@ static int ath11k_htt_pull_ppdu_stats(struct ath11k_base *ab,
+diff --git a/drivers/net/wireless/ath/ath11k/ce.c b/drivers/net/wireless/ath/ath11k/ce.c
+index b9a57ec..048adc1 100644
+--- a/drivers/net/wireless/ath/ath11k/ce.c
++++ b/drivers/net/wireless/ath/ath11k/ce.c
+@@ -212,7 +212,7 @@ static int ath11k_ce_rx_post_pipe(struct ath11k_ce_pipe *pipe)
+ }
  
- 	len = FIELD_GET(HTT_T2H_PPDU_STATS_PAYLOAD_SIZE_M, *(u32 *)data);
- 	pdev_id = FIELD_GET(HTT_T2H_PPDU_STATS_PDEV_ID_M, *(u32 *)data);
--	pdev_id = DP_HW2SW_MACID(pdev_id);
- 	ppdu_id = *((u32 *)data + 1);
+ static int ath11k_ce_completed_recv_next(struct ath11k_ce_pipe *pipe,
+-					 void **context, int *nbytes)
++					 struct sk_buff **context, int *nbytes)
+ {
+ 	struct ath11k_base *ab = pipe->sc;
+ 	struct hal_srng *srng;
+@@ -270,8 +270,7 @@ static void ath11k_ce_recv_process_cb(struct ath11k_ce_pipe *pipe)
+ 	int ret;
  
- 	rcu_read_lock();
+ 	__skb_queue_head_init(&list);
+-	while (ath11k_ce_completed_recv_next(pipe, (void **)&skb,
+-					     &nbytes) == 0) {
++	while (ath11k_ce_completed_recv_next(pipe, &skb, &nbytes) == 0) {
+ 		max_nbytes = skb->len + skb_tailroom(skb);
+ 		dma_unmap_single(ab->dev, ATH11K_SKB_RXCB(skb)->paddr,
+ 				 max_nbytes, DMA_FROM_DEVICE);
+@@ -303,7 +302,7 @@ static void ath11k_ce_recv_process_cb(struct ath11k_ce_pipe *pipe)
+ }
+ 
+ static int ath11k_ce_completed_send_next(struct ath11k_ce_pipe *pipe,
+-					 void **transfer_contextp)
++					 struct sk_buff **transfer_contextp)
+ {
+ 	struct ath11k_base *ab = pipe->sc;
+ 	struct hal_srng *srng;
+@@ -349,7 +348,7 @@ static void ath11k_ce_send_done_cb(struct ath11k_ce_pipe *pipe)
+ 	struct ath11k_base *ab = pipe->sc;
+ 	struct sk_buff *skb;
+ 
+-	while (ath11k_ce_completed_send_next(pipe, (void **)&skb) == 0) {
++	while (ath11k_ce_completed_send_next(pipe, &skb) == 0) {
+ 		if (!skb)
+ 			continue;
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/ce.h b/drivers/net/wireless/ath/ath11k/ce.h
+index f9b5a0e..9f25bad 100644
+--- a/drivers/net/wireless/ath/ath11k/ce.h
++++ b/drivers/net/wireless/ath/ath11k/ce.h
+@@ -139,7 +139,7 @@ struct ath11k_ce_ring {
+ 	u32 hal_ring_id;
+ 
+ 	/* keep last */
+-	void *per_transfer_context[0];
++	struct sk_buff *per_transfer_context[0];
+ };
+ 
+ struct ath11k_ce_pipe {
 -- 
 1.9.1
 
