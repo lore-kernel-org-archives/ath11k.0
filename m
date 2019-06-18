@@ -1,19 +1,21 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hd5wB-00079t-Qj
- for ath11k@lists.infradead.org; Tue, 18 Jun 2019 04:41:41 +0000
+ id 1hd5wD-0007Ad-Qa
+ for ath11k@lists.infradead.org; Tue, 18 Jun 2019 04:41:43 +0000
 Received: from vasanth-lnx.qca.qualcomm.com
  (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
  (No client certificate requested)
  (Authenticated sender: vthiagar@smtp.codeaurora.org)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 2F787602FE
- for <ath11k@lists.infradead.org>; Tue, 18 Jun 2019 04:41:37 +0000 (UTC)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id BB34D602FE
+ for <ath11k@lists.infradead.org>; Tue, 18 Jun 2019 04:41:40 +0000 (UTC)
 From: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
-Subject: [PATCH 1/5] ath11k: Clean up void *per_transfer_context[] in ce
-Date: Tue, 18 Jun 2019 10:11:25 +0530
-Message-Id: <1560832889-14129-1-git-send-email-vthiagar@codeaurora.org>
+Subject: [PATCH 3/5] ath11k{dp, hal}: Endian macro related clean ups
+Date: Tue, 18 Jun 2019 10:11:27 +0530
+Message-Id: <1560832889-14129-3-git-send-email-vthiagar@codeaurora.org>
+In-Reply-To: <1560832889-14129-1-git-send-email-vthiagar@codeaurora.org>
+References: <1560832889-14129-1-git-send-email-vthiagar@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -29,69 +31,74 @@ Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 
-Since per_transfer_context is used as an array of skb pointer always
-no need that to be an array of void *.
+Replace ifdef __BIG_ENDIAN with IS_ENABLED(CONFIG_CPU_BIG_ENDIAN).
+Replace swapXX() with swabXX(). Also does a renaming of
+dp_peer_map_get_mac_addr.
 
 Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/ce.c | 9 ++++-----
- drivers/net/wireless/ath/ath11k/ce.h | 2 +-
- 2 files changed, 5 insertions(+), 6 deletions(-)
+ drivers/net/wireless/ath/ath11k/dp.h    | 11 +++++------
+ drivers/net/wireless/ath/ath11k/dp_rx.c |  4 ++--
+ drivers/net/wireless/ath/ath11k/hal.c   |  8 +++-----
+ 3 files changed, 10 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/ce.c b/drivers/net/wireless/ath/ath11k/ce.c
-index b9a57ec..048adc1 100644
---- a/drivers/net/wireless/ath/ath11k/ce.c
-+++ b/drivers/net/wireless/ath/ath11k/ce.c
-@@ -212,7 +212,7 @@ static int ath11k_ce_rx_post_pipe(struct ath11k_ce_pipe *pipe)
- }
- 
- static int ath11k_ce_completed_recv_next(struct ath11k_ce_pipe *pipe,
--					 void **context, int *nbytes)
-+					 struct sk_buff **context, int *nbytes)
- {
- 	struct ath11k_base *ab = pipe->sc;
- 	struct hal_srng *srng;
-@@ -270,8 +270,7 @@ static void ath11k_ce_recv_process_cb(struct ath11k_ce_pipe *pipe)
- 	int ret;
- 
- 	__skb_queue_head_init(&list);
--	while (ath11k_ce_completed_recv_next(pipe, (void **)&skb,
--					     &nbytes) == 0) {
-+	while (ath11k_ce_completed_recv_next(pipe, &skb, &nbytes) == 0) {
- 		max_nbytes = skb->len + skb_tailroom(skb);
- 		dma_unmap_single(ab->dev, ATH11K_SKB_RXCB(skb)->paddr,
- 				 max_nbytes, DMA_FROM_DEVICE);
-@@ -303,7 +302,7 @@ static void ath11k_ce_recv_process_cb(struct ath11k_ce_pipe *pipe)
- }
- 
- static int ath11k_ce_completed_send_next(struct ath11k_ce_pipe *pipe,
--					 void **transfer_contextp)
-+					 struct sk_buff **transfer_contextp)
- {
- 	struct ath11k_base *ab = pipe->sc;
- 	struct hal_srng *srng;
-@@ -349,7 +348,7 @@ static void ath11k_ce_send_done_cb(struct ath11k_ce_pipe *pipe)
- 	struct ath11k_base *ab = pipe->sc;
- 	struct sk_buff *skb;
- 
--	while (ath11k_ce_completed_send_next(pipe, (void **)&skb) == 0) {
-+	while (ath11k_ce_completed_send_next(pipe, &skb) == 0) {
- 		if (!skb)
- 			continue;
- 
-diff --git a/drivers/net/wireless/ath/ath11k/ce.h b/drivers/net/wireless/ath/ath11k/ce.h
-index f9b5a0e..9f25bad 100644
---- a/drivers/net/wireless/ath/ath11k/ce.h
-+++ b/drivers/net/wireless/ath/ath11k/ce.h
-@@ -139,7 +139,7 @@ struct ath11k_ce_ring {
- 	u32 hal_ring_id;
- 
- 	/* keep last */
--	void *per_transfer_context[0];
-+	struct sk_buff *per_transfer_context[0];
+diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
+index 037fcbd..f7acd65 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.h
++++ b/drivers/net/wireless/ath/ath11k/dp.h
+@@ -1483,13 +1483,12 @@ struct htt_mac_addr {
+ 	u32 mac_addr_h16;
  };
  
- struct ath11k_ce_pipe {
+-static inline void dp_peer_map_get_mac_addr(u32 addr_l32, u16 addr_h16,
+-					    u8 *addr)
++static inline void ath11k_dp_get_mac_addr(u32 addr_l32, u16 addr_h16, u8 *addr)
+ {
+-#ifdef __BIG_ENDIAN
+-	addr_l32 = swap32(addr_l32);
+-	addr_h16 = swap16(addr_h16);
+-#endif
++	if (IS_ENABLED(CONFIG_CPU_BIG_ENDIAN)) {
++		addr_l32 = swab32(addr_l32);
++		addr_h16 = swab16(addr_h16);
++	}
+ 	memcpy(addr, &addr_l32, 4);
+ 	memcpy(addr + 4, &addr_h16, ETH_ALEN - 4);
+ }
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 9e5bd81..5c47cfc 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -1386,8 +1386,8 @@ void ath11k_dp_htt_htc_t2h_msg_handler(struct ath11k_base *ab,
+ 				    resp->peer_map_ev.info);
+ 		peer_mac_h16 = FIELD_GET(HTT_T2H_PEER_MAP_INFO1_MAC_ADDR_H16,
+ 					 resp->peer_map_ev.info1);
+-		dp_peer_map_get_mac_addr(resp->peer_map_ev.mac_addr_l32,
+-					 peer_mac_h16, mac_addr);
++		ath11k_dp_get_mac_addr(resp->peer_map_ev.mac_addr_l32,
++				       peer_mac_h16, mac_addr);
+ 		ast_hash = FIELD_GET(HTT_T2H_PEER_MAP_INFO2_AST_HASH_VAL,
+ 				     resp->peer_map_ev.info1);
+ 		ath11k_peer_map_event(ab, vdev_id, peer_id, mac_addr, ast_hash);
+diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
+index 3fe8f81..b7b9b9c 100644
+--- a/drivers/net/wireless/ath/ath11k/hal.c
++++ b/drivers/net/wireless/ath/ath11k/hal.c
+@@ -1032,11 +1032,9 @@ int ath11k_hal_srng_setup(struct ath11k_base *sc, enum hal_ring_type type,
+ 	       (srng->entry_size * srng->num_entries) << 2);
+ 
+ 	/* TODO: Add comments on these swap configurations */
+-#ifdef __BIG_ENDIAN
+-	srng->flags |= HAL_SRNG_FLAGS_MSI_SWAP |
+-		       HAL_SRNG_FLAGS_DATA_TLV_SWAP |
+-		       HAL_SRNG_FLAGS_RING_PTR_SWAP;
+-#endif
++	if (IS_ENABLED(CONFIG_CPU_BIG_ENDIAN))
++		srng->flags |= HAL_SRNG_FLAGS_MSI_SWAP | HAL_SRNG_FLAGS_DATA_TLV_SWAP |
++			       HAL_SRNG_FLAGS_RING_PTR_SWAP;
+ 
+ 	reg_base = srng->hwreg_base[HAL_SRNG_REG_GRP_R2];
+ 
 -- 
 1.9.1
 
