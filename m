@@ -1,13 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from nbd.name ([2a01:4f8:221:3d45::2])
+Received: from alexa-out-blr-02.qualcomm.com ([103.229.18.198]
+ helo=alexa-out-blr.qualcomm.com)
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hd7eM-0000gN-Db
- for ath11k@lists.infradead.org; Tue, 18 Jun 2019 06:31:24 +0000
-From: John Crispin <john@phrozen.org>
-Subject: [PATCH V3] ath11k: add TWT support
-Date: Tue, 18 Jun 2019 08:31:17 +0200
-Message-Id: <20190618063117.17676-1-john@phrozen.org>
-MIME-Version: 1.0
+ id 1hdBZI-0006cx-Le
+ for ath11k@lists.infradead.org; Tue, 18 Jun 2019 10:42:26 +0000
+From: Venkateswara Naralasetty <vnaralas@codeaurora.org>
+Subject: [PATCH 2/2] ath11k: fix invalid htt extd stats processing
+Date: Tue, 18 Jun 2019 16:12:14 +0530
+Message-Id: <1560854534-29013-2-git-send-email-vnaralas@codeaurora.org>
+In-Reply-To: <1560854534-29013-1-git-send-email-vnaralas@codeaurora.org>
+References: <1560854534-29013-1-git-send-email-vnaralas@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -16,325 +18,179 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: Shashidhar Lakkavalli <slakkavalli@datto.com>, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
+To: ath11k@lists.infradead.org
+Cc: Venkateswara Naralasetty <vnaralas@codeaurora.org>
 
-Add target wait time wmi calls to the driver. En/disable the support
-from when the bss_config changes. We ignore the cmd completion events.
+Check for valid cookie before processing htt extd stats event,
+which prevents processing invalid htt extd stats event.
 
-Signed-off-by: Shashidhar Lakkavalli <slakkavalli@datto.com>
-Signed-off-by: John Crispin <john@phrozen.org>
+Signed-off-by: Venkateswara Naralasetty <vnaralas@codeaurora.org>
 ---
-Johannes merged the mac80211 part into the next tree. This can go into
-ath11k-bringup once it has been rebased.
+ drivers/net/wireless/ath/ath11k/core.h            |  1 +
+ drivers/net/wireless/ath/ath11k/debug.h           |  6 ++----
+ drivers/net/wireless/ath/ath11k/debug_htt_stats.c | 26 +++++++++++++++--------
+ drivers/net/wireless/ath/ath11k/debug_htt_stats.h |  4 ++++
+ drivers/net/wireless/ath/ath11k/debugfs_sta.c     |  5 ++++-
+ 5 files changed, 28 insertions(+), 14 deletions(-)
 
- drivers/net/wireless/ath/ath11k/mac.c | 12 ++++
- drivers/net/wireless/ath/ath11k/wmi.c | 91 +++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/wmi.h | 71 +++++++++++++++++++++
- 3 files changed, 174 insertions(+)
-
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 8c47e09a84e7..8000e30b5baa 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -1299,6 +1299,11 @@ static void ath11k_peer_assoc_h_he(struct ath11k *ar,
- 		}
- 	}
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index 038f905..1ac5b31 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -385,6 +385,7 @@ struct ath11k_fw_stats {
+ struct ath11k_dbg_htt_stats {
+ 	u8 type;
+ 	u8 reset;
++	struct debug_htt_stats_req *stats_req;
+ 	/* protects shared stats req buffer */
+ 	spinlock_t lock;
+ };
+diff --git a/drivers/net/wireless/ath/ath11k/debug.h b/drivers/net/wireless/ath/ath11k/debug.h
+index 5774f53..e569aba 100644
+--- a/drivers/net/wireless/ath/ath11k/debug.h
++++ b/drivers/net/wireless/ath/ath11k/debug.h
+@@ -141,8 +141,7 @@ void ath11k_debug_fw_stats_process(struct ath11k_base *ab, u8 *evt_buf,
+ 				   u32 len);
  
-+	if (he_cap->he_cap_elem.mac_cap_info[0] & IEEE80211_HE_MAC_CAP0_TWT_RES)
-+		arg->twt_responder = true;
-+	if (he_cap->he_cap_elem.mac_cap_info[0] & IEEE80211_HE_MAC_CAP0_TWT_REQ)
-+		arg->twt_requester = true;
-+
- 	switch (sta->bandwidth) {
- 	case IEEE80211_STA_RX_BW_160:
- 		if (he_cap->he_cap_elem.phy_cap_info[0] &
-@@ -1895,6 +1900,13 @@ static void ath11k_bss_info_changed(struct ieee80211_hw *hw,
- 		ath11k_mac_txpower_recalc(ar);
- 	}
+ void ath11k_debug_fw_stats_init(struct ath11k *ar);
+-int ath11k_dbg_htt_stats_req(struct ath11k *ar,
+-			     struct debug_htt_stats_req *stats_req);
++int ath11k_dbg_htt_stats_req(struct ath11k *ar);
  
-+	if (changed & BSS_CHANGED_TWT) {
-+		if (info->twt_requester || info->twt_responder)
-+			ath11k_wmi_send_twt_enable_cmd(ar, ar->pdev_idx);
-+		else
-+			ath11k_wmi_send_twt_disable_cmd(ar, ar->pdev_idx);
-+	}
-+
- 	mutex_unlock(&ar->conf_mutex);
- }
- 
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index f5e5d3d40037..b64f0bac3f90 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -1612,6 +1612,10 @@ ath11k_wmi_copy_peer_flags(struct wmi_peer_assoc_complete_cmd *cmd,
- 			cmd->peer_flags |= WMI_PEER_VHT;
- 		if (param->he_flag)
- 			cmd->peer_flags |= WMI_PEER_HE;
-+		if (param->twt_requester)
-+			cmd->peer_flags |= WMI_PEER_TWT_REQ;
-+		if (param->twt_responder)
-+			cmd->peer_flags |= WMI_PEER_TWT_RESP;
- 	}
- 
- 	/* Suppress authorization for all AUTH modes that need 4-way handshake
-@@ -2446,6 +2450,86 @@ int ath11k_wmi_pdev_pktlog_disable(struct ath11k *ar)
- 	return ret;
- }
- 
-+int
-+ath11k_wmi_send_twt_enable_cmd(struct ath11k *ar, u32 pdev_id)
-+{
-+	struct ath11k_pdev_wmi *wmi = ar->wmi;
-+	struct ath11k_base *ab = wmi->wmi_sc->sc;
-+	struct wmi_twt_enable_params_cmd *cmd;
-+	struct sk_buff *skb;
-+	int ret, len;
-+
-+	len = sizeof(*cmd);
-+
-+	skb = ath11k_wmi_alloc_skb(wmi->wmi_sc, len);
-+	if (!skb)
-+		return -ENOMEM;
-+
-+	cmd = (void *)skb->data;
-+	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_TWT_ENABLE_CMD) |
-+			  FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
-+	cmd->pdev_id = pdev_id;
-+	cmd->sta_cong_timer_ms = ATH11K_TWT_DEF_STA_CONG_TIMER_MS;
-+	cmd->default_slot_size = ATH11K_TWT_DEF_DEFAULT_SLOT_SIZE;
-+	cmd->congestion_thresh_setup = ATH11K_TWT_DEF_CONGESTION_THRESH_SETUP;
-+	cmd->congestion_thresh_teardown =
-+		ATH11K_TWT_DEF_CONGESTION_THRESH_TEARDOWN;
-+	cmd->congestion_thresh_critical =
-+		ATH11K_TWT_DEF_CONGESTION_THRESH_CRITICAL;
-+	cmd->interference_thresh_teardown =
-+		ATH11K_TWT_DEF_INTERFERENCE_THRESH_TEARDOWN;
-+	cmd->interference_thresh_setup =
-+		ATH11K_TWT_DEF_INTERFERENCE_THRESH_SETUP;
-+	cmd->min_no_sta_setup = ATH11K_TWT_DEF_MIN_NO_STA_SETUP;
-+	cmd->min_no_sta_teardown = ATH11K_TWT_DEF_MIN_NO_STA_TEARDOWN;
-+	cmd->no_of_bcast_mcast_slots = ATH11K_TWT_DEF_NO_OF_BCAST_MCAST_SLOTS;
-+	cmd->min_no_twt_slots = ATH11K_TWT_DEF_MIN_NO_TWT_SLOTS;
-+	cmd->max_no_sta_twt = ATH11K_TWT_DEF_MAX_NO_STA_TWT;
-+	cmd->mode_check_interval = ATH11K_TWT_DEF_MODE_CHECK_INTERVAL;
-+	cmd->add_sta_slot_interval = ATH11K_TWT_DEF_ADD_STA_SLOT_INTERVAL;
-+	cmd->remove_sta_slot_interval =
-+		ATH11K_TWT_DEF_REMOVE_STA_SLOT_INTERVAL;
-+	/* TODO add MBSSID support */
-+	cmd->mbss_support = 0;
-+
-+	ret = ath11k_wmi_cmd_send(wmi, skb,
-+				  WMI_TWT_ENABLE_CMDID);
-+	if (ret) {
-+		ath11k_warn(ab, "Failed to send WMI_TWT_ENABLE_CMDID");
-+		dev_kfree_skb(skb);
-+	}
-+	return ret;
-+}
-+
-+int
-+ath11k_wmi_send_twt_disable_cmd(struct ath11k *ar, u32 pdev_id)
-+{
-+	struct ath11k_pdev_wmi *wmi = ar->wmi;
-+	struct ath11k_base *ab = wmi->wmi_sc->sc;
-+	struct wmi_twt_disable_params_cmd *cmd;
-+	struct sk_buff *skb;
-+	int ret, len;
-+
-+	len = sizeof(*cmd);
-+
-+	skb = ath11k_wmi_alloc_skb(wmi->wmi_sc, len);
-+	if (!skb)
-+		return -ENOMEM;
-+
-+	cmd = (void *)skb->data;
-+	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_TWT_DISABLE_CMD) |
-+			  FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
-+	cmd->pdev_id = pdev_id;
-+
-+	ret = ath11k_wmi_cmd_send(wmi, skb,
-+				  WMI_TWT_DISABLE_CMDID);
-+	if (ret) {
-+		ath11k_warn(ab, "Failed to send WMI_TWT_DIeABLE_CMDID");
-+		dev_kfree_skb(skb);
-+	}
-+	return ret;
-+}
-+
- static inline void ath11k_fill_band_to_mac_param(struct ath11k_base  *soc,
- 				struct wmi_host_pdev_band_to_mac *band_to_mac)
+ static inline bool ath11k_debug_is_pktlog_lite_mode_enabled(struct ath11k *ar)
  {
-@@ -2536,6 +2620,9 @@ ath11k_wmi_copy_resource_config(struct wmi_resource_config *wmi_cfg,
- 	wmi_cfg->use_pdev_id = tg_cfg->use_pdev_id;
- 	wmi_cfg->flag1 = tg_cfg->atf_config;
- 	wmi_cfg->peer_map_unmap_v2_support = tg_cfg->peer_map_unmap_v2_support;
-+	wmi_cfg->sched_params = tg_cfg->sched_params;
-+	wmi_cfg->twt_ap_pdev_count = tg_cfg->twt_ap_pdev_count;
-+	wmi_cfg->twt_ap_sta_count = tg_cfg->twt_ap_sta_count;
+@@ -216,8 +215,7 @@ static inline int ath11k_debug_is_extd_rx_stats_enabled(struct ath11k *ar)
+ 	return 0;
  }
  
- static int ath11k_init_cmd_send(struct ath11k_pdev_wmi *wmi,
-@@ -2727,6 +2814,8 @@ int ath11k_wmi_cmd_init(struct ath11k_base *sc)
- 	config.beacon_tx_offload_max_vdev = sc->num_radios * TARGET_MAX_BCN_OFFLD;
- 	config.rx_batchmode = TARGET_RX_BATCHMODE;
- 	config.peer_map_unmap_v2_support = 1;
-+	config.twt_ap_pdev_count = 2;
-+	config.twt_ap_sta_count = 1000;
+-static inline int ath11k_dbg_htt_stats_req(struct ath11k *ar,
+-					   struct debug_htt_stats_req *stats_req)
++static inline int ath11k_dbg_htt_stats_req(struct ath11k *ar)
+ {
+ 	return 0;
+ }
+diff --git a/drivers/net/wireless/ath/ath11k/debug_htt_stats.c b/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
+index 57fdb8c..b330b5d 100644
+--- a/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
++++ b/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
+@@ -4202,11 +4202,13 @@ void ath11k_dbg_htt_ext_stats_handler(struct ath11k_base *ab,
  
- 	memcpy(&wmi_sc->wlan_resource_config, &config, sizeof(config));
- 
-@@ -5609,6 +5698,8 @@ static void ath11k_wmi_tlv_op_rx(struct ath11k_base *ab, struct sk_buff *skb)
- 	/* add Unsupported events here */
- 	case WMI_TBTTOFFSET_EXT_UPDATE_EVENTID:
- 	case WMI_VDEV_DELETE_RESP_EVENTID:
-+	case WMI_TWT_ENABLE_EVENTID:
-+	case WMI_TWT_DISABLE_EVENTID:
- 		ath11k_dbg(ab, ATH11K_DBG_WMI,
- 			   "ignoring unsupported event 0x%x\n", id);
- 		break;
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index 441fe437ec4c..74916be8a844 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -169,6 +169,10 @@ enum wmi_cmd_group {
- 	WMI_GRP_MONITOR,        /* 0x39 */
- 	WMI_GRP_REGULATORY,     /* 0x3a */
- 	WMI_GRP_HW_DATA_FILTER, /* 0x3b */
-+	WMI_GRP_WLM,            /* 0x3c */
-+	WMI_GRP_11K_OFFLOAD,    /* 0x3d */
-+	WMI_GRP_TWT,            /* 0x3e */
+ 	msg = (struct ath11k_htt_extd_stats_msg *)skb->data;
+ 	cookie = msg->cookie;
+-	stats_req = (struct debug_htt_stats_req *)(uintptr_t)cookie;
+-	if (!stats_req)
 +
- };
++	if (FIELD_GET(HTT_STATS_COOKIE_MSB, cookie) != HTT_STATS_MAGIC_VALUE) {
++		ath11k_warn(ab, "received invalid htt ext stats event\n");
+ 		return;
++	}
  
- #define WMI_CMD_GRP(grp_id) (((grp_id) << 12) | 0x1)
-@@ -531,6 +535,12 @@ enum wmi_tlv_cmd_id {
- 	WMI_NDP_RESPONDER_REQ_CMDID,
- 	WMI_NDP_END_REQ_CMDID,
- 	WMI_HW_DATA_FILTER_CMDID = WMI_TLV_CMD(WMI_GRP_HW_DATA_FILTER),
-+	WMI_TWT_ENABLE_CMDID = WMI_TLV_CMD(WMI_GRP_TWT),
-+	WMI_TWT_DISABLE_CMDID,
-+	WMI_TWT_ADD_DIALOG_CMDID,
-+	WMI_TWT_DEL_DIALOG_CMDID,
-+	WMI_TWT_PAUSE_DIALOG_CMDID,
-+	WMI_TWT_RESUME_DIALOG_CMDID,
- };
+-	pdev_id = stats_req->pdev_id;
++	pdev_id = FIELD_GET(HTT_STATS_COOKIE_LSB, cookie);
+ 	rcu_read_lock();
+ 	ar = ath11k_get_ar_by_pdev_id(ab, pdev_id);
+ 	rcu_read_unlock();
+@@ -4215,6 +4217,10 @@ void ath11k_dbg_htt_ext_stats_handler(struct ath11k_base *ab,
+ 		return;
+ 	}
  
- enum wmi_tlv_event_id {
-@@ -713,6 +723,13 @@ enum wmi_tlv_event_id {
- 	WMI_NDP_INDICATION_EVENTID,
- 	WMI_NDP_CONFIRM_EVENTID,
- 	WMI_NDP_END_INDICATION_EVENTID,
++	stats_req = ar->debug.htt_stats.stats_req;
++	if (!stats_req)
++		return;
 +
-+	WMI_TWT_ENABLE_EVENTID = WMI_TLV_CMD(WMI_GRP_TWT),
-+	WMI_TWT_DISABLE_EVENTID,
-+	WMI_TWT_ADD_DIALOG_EVENTID,
-+	WMI_TWT_DEL_DIALOG_EVENTID,
-+	WMI_TWT_PAUSE_DIALOG_EVENTID,
-+	WMI_TWT_RESUME_DIALOG_EVENTID,
- };
+ 	spin_lock_bh(&ar->debug.htt_stats.lock);
+ 	if (stats_req->done) {
+ 		spin_unlock_bh(&ar->debug.htt_stats.lock);
+@@ -4322,9 +4328,9 @@ static int ath11k_prep_htt_stats_cfg_params(struct ath11k *ar, u8 type,
+ 	return 0;
+ }
  
- enum wmi_tlv_pdev_param {
-@@ -2737,6 +2754,9 @@ struct wmi_resource_config {
- 	u32 max_num_dbs_scan_duty_cycle;
- 	u32 max_num_group_keys;
- 	u32 peer_map_unmap_v2_support;
-+	u32 sched_params;
-+	u32 twt_ap_pdev_count;
-+	u32 twt_ap_sta_count;
- } __packed;
+-int ath11k_dbg_htt_stats_req(struct ath11k *ar,
+-			     struct debug_htt_stats_req *stats_req)
++int ath11k_dbg_htt_stats_req(struct ath11k *ar)
+ {
++	struct debug_htt_stats_req *stats_req = ar->debug.htt_stats.stats_req;
+ 	u8 type = stats_req->type;
+ 	u64 cookie = 0;
+ 	int ret, pdev_id = ar->pdev->pdev_id;
+@@ -4335,7 +4341,8 @@ int ath11k_dbg_htt_stats_req(struct ath11k *ar,
+ 	stats_req->done = false;
+ 	stats_req->pdev_id = pdev_id;
  
- struct wmi_service_ready_event {
-@@ -3952,6 +3972,8 @@ struct peer_assoc_params {
- 	u32 peer_he_mcs_count;
- 	u32 peer_he_rx_mcs_set[WMI_HOST_MAX_HE_RATE_SET];
- 	u32 peer_he_tx_mcs_set[WMI_HOST_MAX_HE_RATE_SET];
-+	bool twt_responder;
-+	bool twt_requester;
- 	struct ath11k_ppe_threshold peer_ppet;
- };
+-	cookie = (u64)(uintptr_t)stats_req;
++	cookie = FIELD_PREP(HTT_STATS_COOKIE_MSB, HTT_STATS_MAGIC_VALUE) |
++		 FIELD_PREP(HTT_STATS_COOKIE_LSB, pdev_id);
  
-@@ -4201,6 +4223,8 @@ struct wmi_unit_test_cmd {
- #define WMI_PEER_DYN_MIMOPS	0x00020000
- #define WMI_PEER_STATIC_MIMOPS	0x00040000
- #define WMI_PEER_SPATIAL_MUX	0x00200000
-+#define WMI_PEER_TWT_REQ	0x00400000
-+#define WMI_PEER_TWT_RESP	0x00800000
- #define WMI_PEER_VHT		0x02000000
- #define WMI_PEER_80MHZ		0x04000000
- #define WMI_PEER_PMF		0x08000000
-@@ -5094,6 +5118,48 @@ struct wmi_wmm_params_all_arg {
- 	struct wmi_wmm_params_arg ac_vo;
- };
+ 	ret = ath11k_prep_htt_stats_cfg_params(ar, type, stats_req->peer_addr,
+ 					       &cfg_params);
+@@ -4344,14 +4351,12 @@ int ath11k_dbg_htt_stats_req(struct ath11k *ar,
+ 		return ret;
+ 	}
  
-+#define ATH11K_TWT_DEF_STA_CONG_TIMER_MS		5000
-+#define ATH11K_TWT_DEF_DEFAULT_SLOT_SIZE		10
-+#define ATH11K_TWT_DEF_CONGESTION_THRESH_SETUP		50
-+#define ATH11K_TWT_DEF_CONGESTION_THRESH_TEARDOWN	20
-+#define ATH11K_TWT_DEF_CONGESTION_THRESH_CRITICAL	100
-+#define ATH11K_TWT_DEF_INTERFERENCE_THRESH_TEARDOWN	80
-+#define ATH11K_TWT_DEF_INTERFERENCE_THRESH_SETUP	50
-+#define ATH11K_TWT_DEF_MIN_NO_STA_SETUP			10
-+#define ATH11K_TWT_DEF_MIN_NO_STA_TEARDOWN		2
-+#define ATH11K_TWT_DEF_NO_OF_BCAST_MCAST_SLOTS		2
-+#define ATH11K_TWT_DEF_MIN_NO_TWT_SLOTS			2
-+#define ATH11K_TWT_DEF_MAX_NO_STA_TWT			500
-+#define ATH11K_TWT_DEF_MODE_CHECK_INTERVAL		10000
-+#define ATH11K_TWT_DEF_ADD_STA_SLOT_INTERVAL		1000
-+#define ATH11K_TWT_DEF_REMOVE_STA_SLOT_INTERVAL		5000
+-	mutex_lock(&ar->conf_mutex);
+ 	ret = ath11k_dp_tx_htt_h2t_ext_stats_req(ar, type, &cfg_params, cookie);
+ 	if (ret) {
+ 		ath11k_warn(ar->ab, "failed to send htt stats request: %d\n", ret);
+ 		mutex_unlock(&ar->conf_mutex);
+ 		return ret;
+ 	}
+-	mutex_unlock(&ar->conf_mutex);
+ 
+ 	while (!wait_for_completion_timeout(&stats_req->cmpln, 3 * HZ)) {
+ 		spin_lock_bh(&ar->debug.htt_stats.lock);
+@@ -4381,8 +4386,11 @@ static int ath11k_open_htt_stats(struct inode *inode, struct file *file)
+ 	if (!stats_req)
+ 		return -ENOMEM;
+ 
++	mutex_lock(&ar->conf_mutex);
++	ar->debug.htt_stats.stats_req = stats_req;
+ 	stats_req->type = type;
+-	ret = ath11k_dbg_htt_stats_req(ar, stats_req);
++	ret = ath11k_dbg_htt_stats_req(ar);
++	mutex_unlock(&ar->conf_mutex);
+ 	if (ret < 0)
+ 		goto out;
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/debug_htt_stats.h b/drivers/net/wireless/ath/ath11k/debug_htt_stats.h
+index a542bd3..b7482de 100644
+--- a/drivers/net/wireless/ath/ath11k/debug_htt_stats.h
++++ b/drivers/net/wireless/ath/ath11k/debug_htt_stats.h
+@@ -6,6 +6,10 @@
+ #ifndef DEBUG_HTT_STATS_H
+ #define DEBUG_HTT_STATS_H
+ 
++#define HTT_STATS_COOKIE_LSB    GENMASK_ULL(31, 0)
++#define HTT_STATS_COOKIE_MSB    GENMASK_ULL(63, 32)
++#define HTT_STATS_MAGIC_VALUE   0xF0F0F0F0
 +
-+struct wmi_twt_enable_params_cmd {
-+	u32 tlv_header;
-+	u32 pdev_id;
-+	u32 sta_cong_timer_ms;
-+	u32 mbss_support;
-+	u32 default_slot_size;
-+	u32 congestion_thresh_setup;
-+	u32 congestion_thresh_teardown;
-+	u32 congestion_thresh_critical;
-+	u32 interference_thresh_teardown;
-+	u32 interference_thresh_setup;
-+	u32 min_no_sta_setup;
-+	u32 min_no_sta_teardown;
-+	u32 no_of_bcast_mcast_slots;
-+	u32 min_no_twt_slots;
-+	u32 max_no_sta_twt;
-+	u32 mode_check_interval;
-+	u32 add_sta_slot_interval;
-+	u32 remove_sta_slot_interval;
-+};
-+
-+struct wmi_twt_disable_params_cmd {
-+	u32 tlv_header;
-+	u32 pdev_id;
-+};
-+
- struct target_resource_config {
- 	u32 num_vdevs;
- 	u32 num_peers;
-@@ -5154,6 +5220,9 @@ struct target_resource_config {
- 	u32 max_bssid_rx_filters;
- 	u32 use_pdev_id;
- 	u32 peer_map_unmap_v2_support;
-+	u32 sched_params;
-+	u32 twt_ap_pdev_count;
-+	u32 twt_ap_sta_count;
- };
+ enum htt_tlv_tag_t {
+ 	HTT_STATS_TX_PDEV_CMN_TAG                           = 0,
+ 	HTT_STATS_TX_PDEV_UNDERRUN_TAG                      = 1,
+diff --git a/drivers/net/wireless/ath/ath11k/debugfs_sta.c b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
+index cff6a3f..dc54e83 100644
+--- a/drivers/net/wireless/ath/ath11k/debugfs_sta.c
++++ b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
+@@ -415,9 +415,12 @@ ath11k_dbg_sta_open_htt_peer_stats(struct inode *inode, struct file *file)
+ 	if (!stats_req)
+ 		return -ENOMEM;
  
- #define WMI_MAX_MEM_REQS 32
-@@ -5278,4 +5347,6 @@ void ath11k_wmi_fw_stats_fill(struct ath11k *ar,
- 			      struct ath11k_fw_stats *fw_stats, u32 stats_id,
- 			      char *buf);
- int ath11k_wmi_simulate_radar(struct ath11k *ar);
-+int ath11k_wmi_send_twt_enable_cmd(struct ath11k *ar, u32 pdev_id);
-+int ath11k_wmi_send_twt_disable_cmd(struct ath11k *ar, u32 pdev_id);
- #endif
++	mutex_lock(&ar->conf_mutex);
++	ar->debug.htt_stats.stats_req = stats_req;
+ 	stats_req->type = ATH11K_DBG_HTT_EXT_STATS_PEER_INFO;
+ 	memcpy(stats_req->peer_addr, sta->addr, ETH_ALEN);
+-	ret = ath11k_dbg_htt_stats_req(ar, stats_req);
++	ret = ath11k_dbg_htt_stats_req(ar);
++	mutex_unlock(&ar->conf_mutex);
+ 	if (ret < 0)
+ 		goto out;
+ 
 -- 
-2.20.1
+2.7.4
 
 
 _______________________________________________
