@@ -2,12 +2,12 @@ Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from alexa-out-blr-02.qualcomm.com ([103.229.18.198]
  helo=alexa-out-blr.qualcomm.com)
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hdBcq-00009t-9I
- for ath11k@lists.infradead.org; Tue, 18 Jun 2019 10:46:06 +0000
+ id 1hdBjE-0002Q5-1C
+ for ath11k@lists.infradead.org; Tue, 18 Jun 2019 10:52:41 +0000
 From: Venkateswara Naralasetty <vnaralas@codeaurora.org>
 Subject: [PATCH] ath11k: add wrapper function to ath11k_dbg
-Date: Tue, 18 Jun 2019 16:16:00 +0530
-Message-Id: <1560854760-29476-1-git-send-email-vnaralas@codeaurora.org>
+Date: Tue, 18 Jun 2019 16:22:32 +0530
+Message-Id: <1560855152-2609-1-git-send-email-vnaralas@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -30,9 +30,12 @@ ath11k_dp_rx_deliver_msdu() when no dbg_mask set.
 
 Signed-off-by: Venkateswara Naralasetty <vnaralas@codeaurora.org>
 ---
+v2:
+ * corrected one style issue
+
  drivers/net/wireless/ath/ath11k/debug.c |  6 +++---
- drivers/net/wireless/ath/ath11k/debug.h | 18 +++++++++++-------
- 2 files changed, 14 insertions(+), 10 deletions(-)
+ drivers/net/wireless/ath/ath11k/debug.h | 18 ++++++++++++------
+ 2 files changed, 15 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/debug.c b/drivers/net/wireless/ath/ath11k/debug.c
 index 69a2340..6e16c29 100644
@@ -59,7 +62,7 @@ index 69a2340..6e16c29 100644
  		for (ptr = buf; (ptr - buf) < len; ptr += 16) {
  			linebuflen = 0;
 diff --git a/drivers/net/wireless/ath/ath11k/debug.h b/drivers/net/wireless/ath/ath11k/debug.h
-index 5774f53..eb2c82d 100644
+index 5774f53..ebc807e 100644
 --- a/drivers/net/wireless/ath/ath11k/debug.h
 +++ b/drivers/net/wireless/ath/ath11k/debug.h
 @@ -106,17 +106,17 @@ __printf(2, 3) void ath11k_warn(struct ath11k_base *sc, const char *fmt, ...);
@@ -86,16 +89,16 @@ index 5774f53..eb2c82d 100644
  {
  	return 0;
  }
-@@ -271,5 +271,9 @@ static inline void ath11k_sta_update_rx_duration(struct ath11k *ar,
- }
+@@ -272,4 +272,10 @@ static inline void ath11k_sta_update_rx_duration(struct ath11k *ar,
  
  #endif /* CONFIG_MAC80211_DEBUGFS*/
--
+ 
 +#define ath11k_dbg(ar, dbg_mask, fmt, ...)			\
 +do {								\
 +	if (ath11k_debug_mask & dbg_mask)			\
 +		__ath11k_dbg(ar, dbg_mask, fmt, ##__VA_ARGS__);	\
 +} while (0)
++
  #endif /* _ATH11K_DEBUG_H_ */
 -- 
 2.7.4
