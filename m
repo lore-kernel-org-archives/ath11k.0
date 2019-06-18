@@ -1,19 +1,19 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hd5wD-0007Ad-Qa
- for ath11k@lists.infradead.org; Tue, 18 Jun 2019 04:41:43 +0000
+ id 1hd5wE-0007B7-TJ
+ for ath11k@lists.infradead.org; Tue, 18 Jun 2019 04:41:44 +0000
 Received: from vasanth-lnx.qca.qualcomm.com
  (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
  (No client certificate requested)
  (Authenticated sender: vthiagar@smtp.codeaurora.org)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id BB34D602FE
- for <ath11k@lists.infradead.org>; Tue, 18 Jun 2019 04:41:40 +0000 (UTC)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id C558A602FE
+ for <ath11k@lists.infradead.org>; Tue, 18 Jun 2019 04:41:41 +0000 (UTC)
 From: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
-Subject: [PATCH 3/5] ath11k{dp, hal}: Endian macro related clean ups
-Date: Tue, 18 Jun 2019 10:11:27 +0530
-Message-Id: <1560832889-14129-3-git-send-email-vthiagar@codeaurora.org>
+Subject: [PATCH 4/5] ath11k: Clean up link_desc_addr buffer typecast
+Date: Tue, 18 Jun 2019 10:11:28 +0530
+Message-Id: <1560832889-14129-4-git-send-email-vthiagar@codeaurora.org>
 In-Reply-To: <1560832889-14129-1-git-send-email-vthiagar@codeaurora.org>
 References: <1560832889-14129-1-git-send-email-vthiagar@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -31,74 +31,79 @@ Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 
-Replace ifdef __BIG_ENDIAN with IS_ENABLED(CONFIG_CPU_BIG_ENDIAN).
-Replace swapXX() with swabXX(). Also does a renaming of
-dp_peer_map_get_mac_addr.
+It is not necessary to typecast scatter_buf while calling
+ath11k_hal_set_link_desc_addr(). Few more trivial clean ups
+related to scatter_buf typecast.
 
 Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/dp.h    | 11 +++++------
- drivers/net/wireless/ath/ath11k/dp_rx.c |  4 ++--
- drivers/net/wireless/ath/ath11k/hal.c   |  8 +++-----
- 3 files changed, 10 insertions(+), 13 deletions(-)
+ drivers/net/wireless/ath/ath11k/dp.c  | 11 +++--------
+ drivers/net/wireless/ath/ath11k/hal.c |  2 +-
+ drivers/net/wireless/ath/ath11k/hal.h |  2 +-
+ 3 files changed, 5 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
-index 037fcbd..f7acd65 100644
---- a/drivers/net/wireless/ath/ath11k/dp.h
-+++ b/drivers/net/wireless/ath/ath11k/dp.h
-@@ -1483,13 +1483,12 @@ struct htt_mac_addr {
- 	u32 mac_addr_h16;
- };
+diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
+index 815a343..e565638 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.c
++++ b/drivers/net/wireless/ath/ath11k/dp.c
+@@ -372,9 +372,7 @@ static int ath11k_dp_scatter_idle_link_desc_setup(struct ath11k_base *ab,
+ 			     HAL_LINK_DESC_SIZE;
+ 		paddr = link_desc_banks[i].paddr;
+ 		while (n_entries) {
+-			ath11k_hal_set_link_desc_addr(
+-					(struct buffer_addr *)scatter_buf, i,
+-					paddr);
++			ath11k_hal_set_link_desc_addr(scatter_buf, i, paddr);
+ 			n_entries--;
+ 			paddr += HAL_LINK_DESC_SIZE;
+ 			if (rem_entries) {
+@@ -391,8 +389,7 @@ static int ath11k_dp_scatter_idle_link_desc_setup(struct ath11k_base *ab,
+ 	}
  
--static inline void dp_peer_map_get_mac_addr(u32 addr_l32, u16 addr_h16,
--					    u8 *addr)
-+static inline void ath11k_dp_get_mac_addr(u32 addr_l32, u16 addr_h16, u8 *addr)
- {
--#ifdef __BIG_ENDIAN
--	addr_l32 = swap32(addr_l32);
--	addr_h16 = swap16(addr_h16);
--#endif
-+	if (IS_ENABLED(CONFIG_CPU_BIG_ENDIAN)) {
-+		addr_l32 = swab32(addr_l32);
-+		addr_h16 = swab16(addr_h16);
-+	}
- 	memcpy(addr, &addr_l32, 4);
- 	memcpy(addr + 4, &addr_h16, ETH_ALEN - 4);
- }
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 9e5bd81..5c47cfc 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -1386,8 +1386,8 @@ void ath11k_dp_htt_htc_t2h_msg_handler(struct ath11k_base *ab,
- 				    resp->peer_map_ev.info);
- 		peer_mac_h16 = FIELD_GET(HTT_T2H_PEER_MAP_INFO1_MAC_ADDR_H16,
- 					 resp->peer_map_ev.info1);
--		dp_peer_map_get_mac_addr(resp->peer_map_ev.mac_addr_l32,
--					 peer_mac_h16, mac_addr);
-+		ath11k_dp_get_mac_addr(resp->peer_map_ev.mac_addr_l32,
-+				       peer_mac_h16, mac_addr);
- 		ast_hash = FIELD_GET(HTT_T2H_PEER_MAP_INFO2_AST_HASH_VAL,
- 				     resp->peer_map_ev.info1);
- 		ath11k_peer_map_event(ab, vdev_id, peer_id, mac_addr, ast_hash);
+ 	ath11k_hal_setup_link_idle_list(ab, slist, num_scatter_buf,
+-					n_link_desc,
+-					(u8 *)scatter_buf -
++					n_link_desc, (u8 *)scatter_buf -
+ 					(u8 *)slist[scatter_idx].vaddr);
+ 
+ 	return 0;
+@@ -576,9 +573,7 @@ int ath11k_dp_link_desc_setup(struct ath11k_base *ab,
+ 		paddr = link_desc_banks[i].paddr;
+ 		while (n_entries &&
+ 		       (desc = ath11k_hal_srng_src_get_next_entry(ab, srng))) {
+-			ath11k_hal_set_link_desc_addr(
+-					(struct buffer_addr *)desc, i,
+-					paddr);
++			ath11k_hal_set_link_desc_addr(desc, i, paddr);
+ 			n_entries--;
+ 			paddr += HAL_LINK_DESC_SIZE;
+ 		}
 diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
-index 3fe8f81..b7b9b9c 100644
+index b7b9b9c..6c8e37f 100644
 --- a/drivers/net/wireless/ath/ath11k/hal.c
 +++ b/drivers/net/wireless/ath/ath11k/hal.c
-@@ -1032,11 +1032,9 @@ int ath11k_hal_srng_setup(struct ath11k_base *sc, enum hal_ring_type type,
- 	       (srng->entry_size * srng->num_entries) << 2);
+@@ -689,7 +689,7 @@ u32 ath11k_hal_ce_dst_status_get_length(void *buf)
+ 	return len;
+ }
  
- 	/* TODO: Add comments on these swap configurations */
--#ifdef __BIG_ENDIAN
--	srng->flags |= HAL_SRNG_FLAGS_MSI_SWAP |
--		       HAL_SRNG_FLAGS_DATA_TLV_SWAP |
--		       HAL_SRNG_FLAGS_RING_PTR_SWAP;
--#endif
-+	if (IS_ENABLED(CONFIG_CPU_BIG_ENDIAN))
-+		srng->flags |= HAL_SRNG_FLAGS_MSI_SWAP | HAL_SRNG_FLAGS_DATA_TLV_SWAP |
-+			       HAL_SRNG_FLAGS_RING_PTR_SWAP;
+-void ath11k_hal_set_link_desc_addr(void *buf, u32 cookie, dma_addr_t paddr)
++void ath11k_hal_set_link_desc_addr(u32 *buf, u32 cookie, dma_addr_t paddr)
+ {
+ 	struct buffer_addr *desc = (struct buffer_addr *)buf;
  
- 	reg_base = srng->hwreg_base[HAL_SRNG_REG_GRP_R2];
- 
+diff --git a/drivers/net/wireless/ath/ath11k/hal.h b/drivers/net/wireless/ath/ath11k/hal.h
+index 6649dd2..f1b4157 100644
+--- a/drivers/net/wireless/ath/ath11k/hal.h
++++ b/drivers/net/wireless/ath/ath11k/hal.h
+@@ -875,7 +875,7 @@ dma_addr_t ath11k_hal_srng_get_tp_addr(struct ath11k_base *ab,
+ 				       struct hal_srng *srng);
+ dma_addr_t ath11k_hal_srng_get_hp_addr(struct ath11k_base *ab,
+ 				       struct hal_srng *srng);
+-void ath11k_hal_set_link_desc_addr(void *buf, u32 cookie, dma_addr_t paddr);
++void ath11k_hal_set_link_desc_addr(u32 *buf, u32 cookie, dma_addr_t paddr);
+ u32 ath11k_hal_ce_get_desc_size(enum hal_ce_desc type);
+ void ath11k_hal_ce_src_set_desc(void *buf, dma_addr_t paddr, u32 len, u32 id,
+ 				u8 byte_swap_data);
 -- 
 1.9.1
 
