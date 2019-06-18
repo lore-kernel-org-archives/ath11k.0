@@ -1,22 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from smtp.codeaurora.org ([198.145.29.96])
+Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hd5wG-0007Bx-MY
- for ath11k@lists.infradead.org; Tue, 18 Jun 2019 04:41:47 +0000
-Received: from vasanth-lnx.qca.qualcomm.com
- (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
- (No client certificate requested)
- (Authenticated sender: vthiagar@smtp.codeaurora.org)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id D0995606DC
- for <ath11k@lists.infradead.org>; Tue, 18 Jun 2019 04:41:42 +0000 (UTC)
-From: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
-Subject: [PATCH 5/5] ath11k/dp_rx: Clean up void *rx_desc in struct
- ath11k_skb_rxcb
-Date: Tue, 18 Jun 2019 10:11:29 +0530
-Message-Id: <1560832889-14129-5-git-send-email-vthiagar@codeaurora.org>
-In-Reply-To: <1560832889-14129-1-git-send-email-vthiagar@codeaurora.org>
-References: <1560832889-14129-1-git-send-email-vthiagar@codeaurora.org>
+ id 1hd7eM-0000gN-Db
+ for ath11k@lists.infradead.org; Tue, 18 Jun 2019 06:31:24 +0000
+From: John Crispin <john@phrozen.org>
+Subject: [PATCH V3] ath11k: add TWT support
+Date: Tue, 18 Jun 2019 08:31:17 +0200
+Message-Id: <20190618063117.17676-1-john@phrozen.org>
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -25,557 +16,325 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
+To: Kalle Valo <kvalo@codeaurora.org>
+Cc: Shashidhar Lakkavalli <slakkavalli@datto.com>, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-Use the actual struct hal_rx_desc * instead of void *.
+Add target wait time wmi calls to the driver. En/disable the support
+from when the bss_config changes. We ignore the cmd completion events.
 
-Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
+Signed-off-by: Shashidhar Lakkavalli <slakkavalli@datto.com>
+Signed-off-by: John Crispin <john@phrozen.org>
 ---
- drivers/net/wireless/ath/ath11k/core.h  |   2 +-
- drivers/net/wireless/ath/ath11k/dp_rx.c | 205 +++++++++++++-------------------
- 2 files changed, 84 insertions(+), 123 deletions(-)
+Johannes merged the mac80211 part into the next tree. This can go into
+ath11k-bringup once it has been rebased.
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index d15ae78..7591ffb 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -65,7 +65,7 @@ struct ath11k_skb_rxcb {
- 	bool is_first_msdu;
- 	bool is_last_msdu;
- 	bool is_continuation;
--	void *rx_desc;
-+	struct hal_rx_desc *rx_desc;
- 	u8 err_rel_src;
- 	u8 err_code;
- 	u8 mac_id;
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 5c47cfc..1c4f81c 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -13,78 +13,61 @@
- #include "dp_tx.h"
- #include "peer.h"
- 
--static u8 *ath11k_dp_rx_h_80211_hdr(u8 *desc)
-+static u8 *ath11k_dp_rx_h_80211_hdr(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
--	return rxd->hdr_status;
-+	return desc->hdr_status;
- }
- 
--static enum hal_encrypt_type ath11k_dp_rx_h_mpdu_start_enctype(u8 *desc)
-+static enum hal_encrypt_type ath11k_dp_rx_h_mpdu_start_enctype(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
--	if (!(__le32_to_cpu(rxd->mpdu_start.info1) &
-+	if (!(__le32_to_cpu(desc->mpdu_start.info1) &
- 	    RX_MPDU_START_INFO1_ENCRYPT_INFO_VALID))
- 		return HAL_ENCRYPT_TYPE_OPEN;
- 
- 	return FIELD_GET(RX_MPDU_START_INFO2_ENC_TYPE,
--			 __le32_to_cpu(rxd->mpdu_start.info2));
-+			 __le32_to_cpu(desc->mpdu_start.info2));
- }
- 
--static u8 ath11k_dp_rx_h_mpdu_start_decap_type(u8 *desc)
-+static u8 ath11k_dp_rx_h_mpdu_start_decap_type(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
- 	return FIELD_GET(RX_MPDU_START_INFO5_DECAP_TYPE,
--			 __le32_to_cpu(rxd->mpdu_start.info5));
-+			 __le32_to_cpu(desc->mpdu_start.info5));
- }
- 
--static bool ath11k_dp_rx_h_attn_msdu_done(u8 *desc)
-+static bool ath11k_dp_rx_h_attn_msdu_done(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
- 	return !!FIELD_GET(RX_ATTENTION_INFO2_MSDU_DONE,
--			   __le32_to_cpu(rxd->attention.info2));
-+			   __le32_to_cpu(desc->attention.info2));
- }
- 
--static bool ath11k_dp_rx_h_attn_first_mpdu(u8 *desc)
-+static bool ath11k_dp_rx_h_attn_first_mpdu(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
- 	return !!FIELD_GET(RX_ATTENTION_INFO1_FIRST_MPDU,
--			   __le32_to_cpu(rxd->attention.info1));
-+			   __le32_to_cpu(desc->attention.info1));
- }
- 
--static bool ath11k_dp_rx_h_attn_l4_cksum_fail(u8 *desc)
-+static bool ath11k_dp_rx_h_attn_l4_cksum_fail(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
- 	return !!FIELD_GET(RX_ATTENTION_INFO1_TCP_UDP_CKSUM_FAIL,
--			   __le32_to_cpu(rxd->attention.info1));
-+			   __le32_to_cpu(desc->attention.info1));
- }
- 
--static bool ath11k_dp_rx_h_attn_ip_cksum_fail(u8 *desc)
-+static bool ath11k_dp_rx_h_attn_ip_cksum_fail(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
- 	return !!FIELD_GET(RX_ATTENTION_INFO1_IP_CKSUM_FAIL,
--			   __le32_to_cpu(rxd->attention.info1));
-+			   __le32_to_cpu(desc->attention.info1));
- }
- 
--static bool ath11k_dp_rx_h_attn_is_decrypted(u8 *desc)
-+static bool ath11k_dp_rx_h_attn_is_decrypted(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
- 	return (FIELD_GET(RX_ATTENTION_INFO2_DCRYPT_STATUS_CODE,
--			  __le32_to_cpu(rxd->attention.info2)) ==
-+			  __le32_to_cpu(desc->attention.info2)) ==
- 		RX_DESC_DECRYPT_STATUS_CODE_OK);
- }
- 
--static u32 ath11k_dp_rx_h_attn_mpdu_err(u8 *desc)
-+static u32 ath11k_dp_rx_h_attn_mpdu_err(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--	u32 info = __le32_to_cpu(rxd->attention.info1);
-+	u32 info = __le32_to_cpu(desc->attention.info1);
- 	u32 errmap = 0;
- 
- 	if (info & RX_ATTENTION_INFO1_FCS_ERR)
-@@ -111,99 +94,76 @@ static u32 ath11k_dp_rx_h_attn_mpdu_err(u8 *desc)
- 	return errmap;
- }
- 
--static u16 ath11k_dp_rx_h_msdu_start_msdu_len(u8 *desc)
-+static u16 ath11k_dp_rx_h_msdu_start_msdu_len(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
- 	return FIELD_GET(RX_MSDU_START_INFO1_MSDU_LENGTH,
--			 __le32_to_cpu(rxd->msdu_start.info1));
-+			 __le32_to_cpu(desc->msdu_start.info1));
- }
- 
--static u8 ath11k_dp_rx_h_msdu_start_sgi(u8 *desc)
-+static u8 ath11k_dp_rx_h_msdu_start_sgi(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
- 	return FIELD_GET(RX_MSDU_START_INFO3_SGI,
--			 __le32_to_cpu(rxd->msdu_start.info3));
-+			 __le32_to_cpu(desc->msdu_start.info3));
- }
- 
--static u8 ath11k_dp_rx_h_msdu_start_rate_mcs(u8 *desc)
-+static u8 ath11k_dp_rx_h_msdu_start_rate_mcs(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
- 	return FIELD_GET(RX_MSDU_START_INFO3_RATE_MCS,
--			 __le32_to_cpu(rxd->msdu_start.info3));
-+			 __le32_to_cpu(desc->msdu_start.info3));
- }
- 
--static u8 ath11k_dp_rx_h_msdu_start_rx_bw(u8 *desc)
-+static u8 ath11k_dp_rx_h_msdu_start_rx_bw(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
- 	return FIELD_GET(RX_MSDU_START_INFO3_RECV_BW,
--			 __le32_to_cpu(rxd->msdu_start.info3));
-+			 __le32_to_cpu(desc->msdu_start.info3));
- }
- 
--static u8 ath11k_dp_rx_h_msdu_start_rssi(u8 *desc)
-+static u8 ath11k_dp_rx_h_msdu_start_rssi(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
- 	return FIELD_GET(RX_MSDU_START_INFO3_USER_RSSI,
--			 __le32_to_cpu(rxd->msdu_start.info3));
-+			 __le32_to_cpu(desc->msdu_start.info3));
- }
- 
--static u32 ath11k_dp_rx_h_msdu_start_freq(u8 *desc)
-+static u32 ath11k_dp_rx_h_msdu_start_freq(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
--	return __le32_to_cpu(rxd->msdu_start.phy_meta_data);
-+	return __le32_to_cpu(desc->msdu_start.phy_meta_data);
- }
- 
--static u8 ath11k_dp_rx_h_msdu_start_pkt_type(u8 *desc)
-+static u8 ath11k_dp_rx_h_msdu_start_pkt_type(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
- 	return FIELD_GET(RX_MSDU_START_INFO3_PKT_TYPE,
--			 __le32_to_cpu(rxd->msdu_start.info3));
-+			 __le32_to_cpu(desc->msdu_start.info3));
- }
- 
--static u8 ath11k_dp_rx_h_msdu_start_nss(u8 *desc)
-+static u8 ath11k_dp_rx_h_msdu_start_nss(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
- 	u8 mimo_ss_bitmap = FIELD_GET(RX_MSDU_START_INFO3_MIMO_SS_BITMAP,
--				      __le32_to_cpu(rxd->msdu_start.info3));
-+				      __le32_to_cpu(desc->msdu_start.info3));
- 
- 	return hweight8(mimo_ss_bitmap);
- }
- 
--static u8 ath11k_dp_rx_h_msdu_end_l3pad(u8 *desc)
-+static u8 ath11k_dp_rx_h_msdu_end_l3pad(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
- 	return FIELD_GET(RX_MSDU_END_INFO2_L3_HDR_PADDING,
--			 __le32_to_cpu(rxd->msdu_end.info2));
-+			 __le32_to_cpu(desc->msdu_end.info2));
- }
- 
--static bool ath11k_dp_rx_h_msdu_end_first_msdu(u8 *desc)
-+static bool ath11k_dp_rx_h_msdu_end_first_msdu(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
- 	return !!FIELD_GET(RX_MSDU_END_INFO2_FIRST_MSDU,
--			   __le32_to_cpu(rxd->msdu_end.info2));
-+			   __le32_to_cpu(desc->msdu_end.info2));
- }
- 
--static bool ath11k_dp_rx_h_msdu_end_last_msdu(u8 *desc)
-+static bool ath11k_dp_rx_h_msdu_end_last_msdu(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
- 	return !!FIELD_GET(RX_MSDU_END_INFO2_LAST_MSDU,
--			   __le32_to_cpu(rxd->msdu_end.info2));
-+			   __le32_to_cpu(desc->msdu_end.info2));
- }
- 
--static void ath11k_dp_rx_desc_end_tlv_copy(u8 *first, u8 *last)
-+static void ath11k_dp_rx_desc_end_tlv_copy(struct hal_rx_desc *fdesc,
-+					   struct hal_rx_desc *ldesc)
- {
--	struct hal_rx_desc *fdesc = (struct hal_rx_desc *)first;
--	struct hal_rx_desc *ldesc = (struct hal_rx_desc *)last;
--
- 	memcpy((u8 *)&fdesc->msdu_end, (u8 *)&ldesc->msdu_end,
- 	       sizeof(struct rx_msdu_end));
- 	memcpy((u8 *)&fdesc->attention, (u8 *)&ldesc->attention,
-@@ -212,9 +172,8 @@ static void ath11k_dp_rx_desc_end_tlv_copy(u8 *first, u8 *last)
- 	       sizeof(struct rx_mpdu_end));
- }
- 
--static u32 ath11k_dp_rxdesc_get_mpdulen_err(void *hw_desc_addr)
-+static u32 ath11k_dp_rxdesc_get_mpdulen_err(struct hal_rx_desc *rx_desc)
- {
--	struct hal_rx_desc *rx_desc = (struct hal_rx_desc *)hw_desc_addr;
- 	struct rx_attention *rx_attn;
- 
- 	rx_attn = &rx_desc->attention;
-@@ -223,9 +182,8 @@ static u32 ath11k_dp_rxdesc_get_mpdulen_err(void *hw_desc_addr)
- 			 __le32_to_cpu(rx_attn->info1));
- }
- 
--static u32 ath11k_dp_rxdesc_get_decap_format(void *hw_desc_addr)
-+static u32 ath11k_dp_rxdesc_get_decap_format(struct hal_rx_desc *rx_desc)
- {
--	struct hal_rx_desc *rx_desc = (struct hal_rx_desc *)hw_desc_addr;
- 	struct rx_msdu_start *rx_msdu_start;
- 
- 	rx_msdu_start = &rx_desc->msdu_start;
-@@ -234,9 +192,8 @@ static u32 ath11k_dp_rxdesc_get_decap_format(void *hw_desc_addr)
- 			 __le32_to_cpu(rx_msdu_start->info2));
- }
- 
--static u8 *ath11k_dp_rxdesc_get_80211hdr(void *hw_desc_addr)
-+static u8 *ath11k_dp_rxdesc_get_80211hdr(struct hal_rx_desc *rx_desc)
- {
--	struct hal_rx_desc *rx_desc = (struct hal_rx_desc *)hw_desc_addr;
- 	u8 *rx_pkt_hdr;
- 
- 	rx_pkt_hdr = &rx_desc->msdu_payload[0];
-@@ -244,9 +201,8 @@ static u8 *ath11k_dp_rxdesc_get_80211hdr(void *hw_desc_addr)
- 	return rx_pkt_hdr;
- }
- 
--static bool ath11k_dp_rxdesc_mpdu_valid(void *hw_desc_addr)
-+static bool ath11k_dp_rxdesc_mpdu_valid(struct hal_rx_desc *rx_desc)
- {
--	struct hal_rx_desc *rx_desc = (struct hal_rx_desc *)hw_desc_addr;
- 	u32 tlv_tag;
- 
- 	tlv_tag = FIELD_GET(HAL_TLV_HDR_TAG,
-@@ -255,10 +211,8 @@ static bool ath11k_dp_rxdesc_mpdu_valid(void *hw_desc_addr)
- 	return tlv_tag == HAL_RX_MPDU_START ? true : false;
- }
- 
--static u32 ath11k_dp_rxdesc_get_ppduid(void *hw_desc_addr)
-+static u32 ath11k_dp_rxdesc_get_ppduid(struct hal_rx_desc *rx_desc)
- {
--	struct hal_rx_desc *rx_desc = (struct hal_rx_desc *)hw_desc_addr;
--
- 	return __le16_to_cpu(rx_desc->mpdu_start.phy_ppdu_id);
- }
- 
-@@ -1421,6 +1375,7 @@ static int ath11k_dp_rx_msdu_coalesce(struct ath11k *ar,
- {
- 	struct sk_buff *skb;
- 	struct ath11k_skb_rxcb *rxcb = ATH11K_SKB_RXCB(first);
-+	struct hal_rx_desc *ldesc;
- 	int space_extra;
- 	int rem_len;
- 	int buf_len;
-@@ -1438,8 +1393,9 @@ static int ath11k_dp_rx_msdu_coalesce(struct ath11k *ar,
- 		return 0;
+ drivers/net/wireless/ath/ath11k/mac.c | 12 ++++
+ drivers/net/wireless/ath/ath11k/wmi.c | 91 +++++++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/wmi.h | 71 +++++++++++++++++++++
+ 3 files changed, 174 insertions(+)
+
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 8c47e09a84e7..8000e30b5baa 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -1299,6 +1299,11 @@ static void ath11k_peer_assoc_h_he(struct ath11k *ar,
+ 		}
  	}
  
--	rxcb->is_first_msdu = ath11k_dp_rx_h_msdu_end_first_msdu(last->data);
--	rxcb->is_last_msdu = ath11k_dp_rx_h_msdu_end_last_msdu(last->data);
-+	ldesc = (struct hal_rx_desc *)last->data;
-+	rxcb->is_first_msdu = ath11k_dp_rx_h_msdu_end_first_msdu(ldesc);
-+	rxcb->is_last_msdu = ath11k_dp_rx_h_msdu_end_last_msdu(ldesc);
- 
- 	/* MSDU spans over multiple buffers because the length of the MSDU
- 	 * exceeds DP_RX_BUFFER_SIZE - HAL_RX_DESC_SIZE. So assume the data
-@@ -1466,7 +1422,7 @@ static int ath11k_dp_rx_msdu_coalesce(struct ath11k *ar,
- 	/* When an MSDU spread over multiple buffers attention, MSDU_END and
- 	 * MPDU_END tlvs are valid only in the last buffer. Copy those tlvs.
- 	 */
--	ath11k_dp_rx_desc_end_tlv_copy(rxcb->rx_desc, last->data);
-+	ath11k_dp_rx_desc_end_tlv_copy(rxcb->rx_desc, ldesc);
- 
- 	rem_len = msdu_len -
- 		  (DP_RX_BUFFER_SIZE - HAL_RX_DESC_SIZE - l3pad_bytes);
-@@ -1523,6 +1479,7 @@ static int ath11k_dp_rx_retrieve_amsdu(struct ath11k *ar,
- 	struct sk_buff *last_buf;
- 	struct ath11k_skb_rxcb *rxcb;
- 	struct ieee80211_hdr *hdr;
-+	struct hal_rx_desc *rx_desc, *lrx_desc;
- 	u16 msdu_len;
- 	u8 l3_pad_bytes;
- 	u8 *hdr_status;
-@@ -1531,7 +1488,8 @@ static int ath11k_dp_rx_retrieve_amsdu(struct ath11k *ar,
- 	if (!msdu)
- 		return -ENOENT;
- 
--	hdr_status = ath11k_dp_rx_h_80211_hdr(msdu->data);
-+	rx_desc = (struct hal_rx_desc *)msdu->data;
-+	hdr_status = ath11k_dp_rx_h_80211_hdr(rx_desc);
- 	hdr = (struct ieee80211_hdr *)hdr_status;
- 	/* Process only data frames */
- 	if (!ieee80211_is_data(hdr->frame_control)) {
-@@ -1550,16 +1508,19 @@ static int ath11k_dp_rx_retrieve_amsdu(struct ath11k *ar,
- 			goto free_out;
- 		}
- 
--		if (!ath11k_dp_rx_h_attn_msdu_done(last_buf->data)) {
-+		rx_desc = (struct hal_rx_desc *)msdu->data;
-+		lrx_desc = (struct hal_rx_desc *)last_buf->data;
++	if (he_cap->he_cap_elem.mac_cap_info[0] & IEEE80211_HE_MAC_CAP0_TWT_RES)
++		arg->twt_responder = true;
++	if (he_cap->he_cap_elem.mac_cap_info[0] & IEEE80211_HE_MAC_CAP0_TWT_REQ)
++		arg->twt_requester = true;
 +
-+		if (!ath11k_dp_rx_h_attn_msdu_done(lrx_desc)) {
- 			ath11k_warn(ar->ab, "msdu_done bit in attention is not set\n");
- 			ret = -EIO;
- 			goto free_out;
- 		}
- 
- 		rxcb = ATH11K_SKB_RXCB(msdu);
--		rxcb->rx_desc = msdu->data;
--		msdu_len = ath11k_dp_rx_h_msdu_start_msdu_len(msdu->data);
--		l3_pad_bytes = ath11k_dp_rx_h_msdu_end_l3pad(last_buf->data);
-+		rxcb->rx_desc = rx_desc;
-+		msdu_len = ath11k_dp_rx_h_msdu_start_msdu_len(rx_desc);
-+		l3_pad_bytes = ath11k_dp_rx_h_msdu_end_l3pad(lrx_desc);
- 
- 		if (!rxcb->is_continuation) {
- 			skb_put(msdu, HAL_RX_DESC_SIZE + l3_pad_bytes + msdu_len);
-@@ -1856,7 +1817,8 @@ static void ath11k_dp_rx_h_undecap_eth(struct ath11k *ar,
- }
- 
- static void ath11k_dp_rx_h_undecap(struct ath11k *ar, struct sk_buff *msdu,
--				   u8 *rx_desc, enum hal_encrypt_type enctype,
-+				   struct hal_rx_desc *rx_desc,
-+				   enum hal_encrypt_type enctype,
- 				   struct ieee80211_rx_status *status,
- 				   bool decrypted)
- {
-@@ -1887,7 +1849,7 @@ static void ath11k_dp_rx_h_undecap(struct ath11k *ar, struct sk_buff *msdu,
- 
- static void ath11k_dp_rx_h_mpdu(struct ath11k *ar,
- 				struct sk_buff_head *amsdu_list,
--				u8 *rx_desc,
-+				struct hal_rx_desc *rx_desc,
- 				struct ieee80211_rx_status *rx_status)
- {
- 	struct ieee80211_hdr *hdr;
-@@ -1945,7 +1907,7 @@ static void ath11k_dp_rx_h_mpdu(struct ath11k *ar,
- 	}
- }
- 
--static void ath11k_dp_rx_h_rate(struct ath11k *ar, void *rx_desc,
-+static void ath11k_dp_rx_h_rate(struct ath11k *ar, struct hal_rx_desc *rx_desc,
- 				struct ieee80211_rx_status *rx_status)
- {
- 	struct ieee80211_supported_band *sband;
-@@ -2007,7 +1969,7 @@ static void ath11k_dp_rx_h_rate(struct ath11k *ar, void *rx_desc,
- 	}
- }
- 
--static void ath11k_dp_rx_h_ppdu(struct ath11k *ar, void *rx_desc,
-+static void ath11k_dp_rx_h_ppdu(struct ath11k *ar, struct hal_rx_desc *rx_desc,
- 				struct ieee80211_rx_status *rx_status)
- {
- 	u8 channel_num;
-@@ -2049,7 +2011,7 @@ static void ath11k_dp_rx_process_amsdu(struct ath11k *ar,
- {
- 	struct sk_buff *first;
- 	struct ath11k_skb_rxcb *rxcb;
--	void *rx_desc;
-+	struct hal_rx_desc *rx_desc;
- 	bool first_mpdu;
- 
- 	if (skb_queue_empty(amsdu_list))
-@@ -2726,7 +2688,7 @@ static int ath11k_dp_rx_link_desc_return(struct ath11k_base *ab,
- 
- static void ath11k_dp_rx_frag_h_mpdu(struct ath11k *ar,
- 				     struct sk_buff *msdu,
--				     u8 *rx_desc,
-+				     struct hal_rx_desc *rx_desc,
- 				     struct ieee80211_rx_status *rx_status)
- {
- 	u8 rx_channel;
-@@ -2787,7 +2749,7 @@ static void ath11k_dp_rx_frag_h_mpdu(struct ath11k *ar,
- 	struct sk_buff *msdu;
- 	struct ath11k_skb_rxcb *rxcb;
- 	struct ieee80211_rx_status *status;
--	void *rx_desc;
-+	struct hal_rx_desc *rx_desc;
- 	u16 msdu_len;
- 
- 	spin_lock_bh(&rx_ring->idr_lock);
-@@ -2826,7 +2788,7 @@ static void ath11k_dp_rx_frag_h_mpdu(struct ath11k *ar,
- 		goto exit;
+ 	switch (sta->bandwidth) {
+ 	case IEEE80211_STA_RX_BW_160:
+ 		if (he_cap->he_cap_elem.phy_cap_info[0] &
+@@ -1895,6 +1900,13 @@ static void ath11k_bss_info_changed(struct ieee80211_hw *hw,
+ 		ath11k_mac_txpower_recalc(ar);
  	}
  
--	rx_desc = msdu->data;
-+	rx_desc = (struct hal_rx_desc *)msdu->data;
- 	msdu_len = ath11k_dp_rx_h_msdu_start_msdu_len(rx_desc);
- 	skb_put(msdu, HAL_RX_DESC_SIZE + msdu_len);
- 	skb_pull(msdu, HAL_RX_DESC_SIZE);
-@@ -2983,7 +2945,7 @@ static int ath11k_dp_rx_h_null_q_desc(struct ath11k *ar, struct sk_buff *msdu,
- {
- 	struct sk_buff_head amsdu_list;
- 	u16 msdu_len;
--	u8 *desc = msdu->data;
-+	struct hal_rx_desc *desc = (struct hal_rx_desc *)msdu->data;
- 	u8 l3pad_bytes;
- 	struct ath11k_skb_rxcb *rxcb = ATH11K_SKB_RXCB(msdu);
- 
-@@ -3067,7 +3029,7 @@ static void ath11k_dp_rx_h_tkip_mic_err(struct ath11k *ar, struct sk_buff *msdu,
- 					struct ieee80211_rx_status *status)
- {
- 	u16 msdu_len;
--	u8 *desc = msdu->data;
-+	struct hal_rx_desc *desc = (struct hal_rx_desc *)msdu->data;
- 	u8 l3pad_bytes;
- 	struct ath11k_skb_rxcb *rxcb = ATH11K_SKB_RXCB(msdu);
- 
-@@ -3215,7 +3177,7 @@ int ath11k_dp_rx_process_wbm_err(struct ath11k_base *ab,
- 
- 		rxcb->err_rel_src = err_info.err_rel_src;
- 		rxcb->err_code = err_info.err_code;
--		rxcb->rx_desc = msdu->data;
-+		rxcb->rx_desc = (struct hal_rx_desc *)msdu->data;
- 		__skb_queue_tail(&msdu_list[mac_id], msdu);
- 	}
- 
-@@ -3679,7 +3641,7 @@ static void ath11k_dp_mon_get_buf_len(struct hal_rx_msdu_desc_info *info,
- 	struct sk_buff *msdu = NULL, *last = NULL;
- 	struct hal_rx_msdu_list msdu_list;
- 	void *p_buf_addr_info, *p_last_buf_addr_info;
--	void *rx_desc;
-+	struct hal_rx_desc *rx_desc;
- 	void *rx_msdu_link_desc;
- 	dma_addr_t paddr;
- 	u16 num_msdus = 0;
-@@ -3768,11 +3730,10 @@ static void ath11k_dp_mon_get_buf_len(struct hal_rx_msdu_desc_info *info,
- 				goto next_msdu;
- 			}
- 			data = msdu->data;
--			rx_desc = msdu->data;
-+			rx_desc = (struct hal_rx_desc *)msdu->data;
- 
- 			rx_pkt_offset = sizeof(struct hal_rx_desc);
--			l2_hdr_offset =
--				ath11k_dp_rx_h_msdu_end_l3pad(msdu->data);
-+			l2_hdr_offset = ath11k_dp_rx_h_msdu_end_l3pad(rx_desc);
- 
- 			if (is_first_msdu) {
- 				if (!ath11k_dp_rxdesc_mpdu_valid(rx_desc)) {
-@@ -3844,7 +3805,7 @@ static void ath11k_dp_rx_msdus_set_payload(struct sk_buff *msdu)
- 	u32 rx_pkt_offset, l2_hdr_offset;
- 
- 	rx_pkt_offset = sizeof(struct hal_rx_desc);
--	l2_hdr_offset = ath11k_dp_rx_h_msdu_end_l3pad(msdu->data);
-+	l2_hdr_offset = ath11k_dp_rx_h_msdu_end_l3pad((struct hal_rx_desc *)msdu->data);
- 	skb_pull(msdu, rx_pkt_offset + l2_hdr_offset);
++	if (changed & BSS_CHANGED_TWT) {
++		if (info->twt_requester || info->twt_responder)
++			ath11k_wmi_send_twt_enable_cmd(ar, ar->pdev_idx);
++		else
++			ath11k_wmi_send_twt_disable_cmd(ar, ar->pdev_idx);
++	}
++
+ 	mutex_unlock(&ar->conf_mutex);
  }
  
-@@ -3856,7 +3817,7 @@ static void ath11k_dp_rx_msdus_set_payload(struct sk_buff *msdu)
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index f5e5d3d40037..b64f0bac3f90 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -1612,6 +1612,10 @@ ath11k_wmi_copy_peer_flags(struct wmi_peer_assoc_complete_cmd *cmd,
+ 			cmd->peer_flags |= WMI_PEER_VHT;
+ 		if (param->he_flag)
+ 			cmd->peer_flags |= WMI_PEER_HE;
++		if (param->twt_requester)
++			cmd->peer_flags |= WMI_PEER_TWT_REQ;
++		if (param->twt_responder)
++			cmd->peer_flags |= WMI_PEER_TWT_RESP;
+ 	}
+ 
+ 	/* Suppress authorization for all AUTH modes that need 4-way handshake
+@@ -2446,6 +2450,86 @@ int ath11k_wmi_pdev_pktlog_disable(struct ath11k *ar)
+ 	return ret;
+ }
+ 
++int
++ath11k_wmi_send_twt_enable_cmd(struct ath11k *ar, u32 pdev_id)
++{
++	struct ath11k_pdev_wmi *wmi = ar->wmi;
++	struct ath11k_base *ab = wmi->wmi_sc->sc;
++	struct wmi_twt_enable_params_cmd *cmd;
++	struct sk_buff *skb;
++	int ret, len;
++
++	len = sizeof(*cmd);
++
++	skb = ath11k_wmi_alloc_skb(wmi->wmi_sc, len);
++	if (!skb)
++		return -ENOMEM;
++
++	cmd = (void *)skb->data;
++	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_TWT_ENABLE_CMD) |
++			  FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
++	cmd->pdev_id = pdev_id;
++	cmd->sta_cong_timer_ms = ATH11K_TWT_DEF_STA_CONG_TIMER_MS;
++	cmd->default_slot_size = ATH11K_TWT_DEF_DEFAULT_SLOT_SIZE;
++	cmd->congestion_thresh_setup = ATH11K_TWT_DEF_CONGESTION_THRESH_SETUP;
++	cmd->congestion_thresh_teardown =
++		ATH11K_TWT_DEF_CONGESTION_THRESH_TEARDOWN;
++	cmd->congestion_thresh_critical =
++		ATH11K_TWT_DEF_CONGESTION_THRESH_CRITICAL;
++	cmd->interference_thresh_teardown =
++		ATH11K_TWT_DEF_INTERFERENCE_THRESH_TEARDOWN;
++	cmd->interference_thresh_setup =
++		ATH11K_TWT_DEF_INTERFERENCE_THRESH_SETUP;
++	cmd->min_no_sta_setup = ATH11K_TWT_DEF_MIN_NO_STA_SETUP;
++	cmd->min_no_sta_teardown = ATH11K_TWT_DEF_MIN_NO_STA_TEARDOWN;
++	cmd->no_of_bcast_mcast_slots = ATH11K_TWT_DEF_NO_OF_BCAST_MCAST_SLOTS;
++	cmd->min_no_twt_slots = ATH11K_TWT_DEF_MIN_NO_TWT_SLOTS;
++	cmd->max_no_sta_twt = ATH11K_TWT_DEF_MAX_NO_STA_TWT;
++	cmd->mode_check_interval = ATH11K_TWT_DEF_MODE_CHECK_INTERVAL;
++	cmd->add_sta_slot_interval = ATH11K_TWT_DEF_ADD_STA_SLOT_INTERVAL;
++	cmd->remove_sta_slot_interval =
++		ATH11K_TWT_DEF_REMOVE_STA_SLOT_INTERVAL;
++	/* TODO add MBSSID support */
++	cmd->mbss_support = 0;
++
++	ret = ath11k_wmi_cmd_send(wmi, skb,
++				  WMI_TWT_ENABLE_CMDID);
++	if (ret) {
++		ath11k_warn(ab, "Failed to send WMI_TWT_ENABLE_CMDID");
++		dev_kfree_skb(skb);
++	}
++	return ret;
++}
++
++int
++ath11k_wmi_send_twt_disable_cmd(struct ath11k *ar, u32 pdev_id)
++{
++	struct ath11k_pdev_wmi *wmi = ar->wmi;
++	struct ath11k_base *ab = wmi->wmi_sc->sc;
++	struct wmi_twt_disable_params_cmd *cmd;
++	struct sk_buff *skb;
++	int ret, len;
++
++	len = sizeof(*cmd);
++
++	skb = ath11k_wmi_alloc_skb(wmi->wmi_sc, len);
++	if (!skb)
++		return -ENOMEM;
++
++	cmd = (void *)skb->data;
++	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_TWT_DISABLE_CMD) |
++			  FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
++	cmd->pdev_id = pdev_id;
++
++	ret = ath11k_wmi_cmd_send(wmi, skb,
++				  WMI_TWT_DISABLE_CMDID);
++	if (ret) {
++		ath11k_warn(ab, "Failed to send WMI_TWT_DIeABLE_CMDID");
++		dev_kfree_skb(skb);
++	}
++	return ret;
++}
++
+ static inline void ath11k_fill_band_to_mac_param(struct ath11k_base  *soc,
+ 				struct wmi_host_pdev_band_to_mac *band_to_mac)
  {
- 	struct sk_buff *msdu, *mpdu_buf, *prev_buf;
- 	u32 decap_format, wifi_hdr_len;
--	void *rx_desc;
-+	struct hal_rx_desc *rx_desc;
- 	char *hdr_desc;
- 	u8 *dest;
- 	struct ieee80211_hdr_3addr *wh;
-@@ -3866,7 +3827,7 @@ static void ath11k_dp_rx_msdus_set_payload(struct sk_buff *msdu)
- 	if (!head_msdu)
- 		goto err_merge_fail;
+@@ -2536,6 +2620,9 @@ ath11k_wmi_copy_resource_config(struct wmi_resource_config *wmi_cfg,
+ 	wmi_cfg->use_pdev_id = tg_cfg->use_pdev_id;
+ 	wmi_cfg->flag1 = tg_cfg->atf_config;
+ 	wmi_cfg->peer_map_unmap_v2_support = tg_cfg->peer_map_unmap_v2_support;
++	wmi_cfg->sched_params = tg_cfg->sched_params;
++	wmi_cfg->twt_ap_pdev_count = tg_cfg->twt_ap_pdev_count;
++	wmi_cfg->twt_ap_sta_count = tg_cfg->twt_ap_sta_count;
+ }
  
--	rx_desc = head_msdu->data;
-+	rx_desc = (struct hal_rx_desc *)head_msdu->data;
+ static int ath11k_init_cmd_send(struct ath11k_pdev_wmi *wmi,
+@@ -2727,6 +2814,8 @@ int ath11k_wmi_cmd_init(struct ath11k_base *sc)
+ 	config.beacon_tx_offload_max_vdev = sc->num_radios * TARGET_MAX_BCN_OFFLD;
+ 	config.rx_batchmode = TARGET_RX_BATCHMODE;
+ 	config.peer_map_unmap_v2_support = 1;
++	config.twt_ap_pdev_count = 2;
++	config.twt_ap_sta_count = 1000;
  
- 	if (ath11k_dp_rxdesc_get_mpdulen_err(rx_desc))
- 		return NULL;
-@@ -3895,7 +3856,7 @@ static void ath11k_dp_rx_msdus_set_payload(struct sk_buff *msdu)
- 		__le16 qos_field;
- 		u8 qos_pkt = 0;
+ 	memcpy(&wmi_sc->wlan_resource_config, &config, sizeof(config));
  
--		rx_desc = head_msdu->data;
-+		rx_desc = (struct hal_rx_desc *)head_msdu->data;
- 		hdr_desc = ath11k_dp_rxdesc_get_80211hdr(rx_desc);
+@@ -5609,6 +5698,8 @@ static void ath11k_wmi_tlv_op_rx(struct ath11k_base *ab, struct sk_buff *skb)
+ 	/* add Unsupported events here */
+ 	case WMI_TBTTOFFSET_EXT_UPDATE_EVENTID:
+ 	case WMI_VDEV_DELETE_RESP_EVENTID:
++	case WMI_TWT_ENABLE_EVENTID:
++	case WMI_TWT_DISABLE_EVENTID:
+ 		ath11k_dbg(ab, ATH11K_DBG_WMI,
+ 			   "ignoring unsupported event 0x%x\n", id);
+ 		break;
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index 441fe437ec4c..74916be8a844 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -169,6 +169,10 @@ enum wmi_cmd_group {
+ 	WMI_GRP_MONITOR,        /* 0x39 */
+ 	WMI_GRP_REGULATORY,     /* 0x3a */
+ 	WMI_GRP_HW_DATA_FILTER, /* 0x3b */
++	WMI_GRP_WLM,            /* 0x3c */
++	WMI_GRP_11K_OFFLOAD,    /* 0x3d */
++	WMI_GRP_TWT,            /* 0x3e */
++
+ };
  
- 		/* Base size */
-@@ -3912,7 +3873,7 @@ static void ath11k_dp_rx_msdus_set_payload(struct sk_buff *msdu)
- 		msdu = head_msdu;
+ #define WMI_CMD_GRP(grp_id) (((grp_id) << 12) | 0x1)
+@@ -531,6 +535,12 @@ enum wmi_tlv_cmd_id {
+ 	WMI_NDP_RESPONDER_REQ_CMDID,
+ 	WMI_NDP_END_REQ_CMDID,
+ 	WMI_HW_DATA_FILTER_CMDID = WMI_TLV_CMD(WMI_GRP_HW_DATA_FILTER),
++	WMI_TWT_ENABLE_CMDID = WMI_TLV_CMD(WMI_GRP_TWT),
++	WMI_TWT_DISABLE_CMDID,
++	WMI_TWT_ADD_DIALOG_CMDID,
++	WMI_TWT_DEL_DIALOG_CMDID,
++	WMI_TWT_PAUSE_DIALOG_CMDID,
++	WMI_TWT_RESUME_DIALOG_CMDID,
+ };
  
- 		while (msdu) {
--			rx_desc = msdu->data;
-+			rx_desc = (struct hal_rx_desc *)msdu->data;
- 			hdr_desc = ath11k_dp_rxdesc_get_80211hdr(rx_desc);
+ enum wmi_tlv_event_id {
+@@ -713,6 +723,13 @@ enum wmi_tlv_event_id {
+ 	WMI_NDP_INDICATION_EVENTID,
+ 	WMI_NDP_CONFIRM_EVENTID,
+ 	WMI_NDP_END_INDICATION_EVENTID,
++
++	WMI_TWT_ENABLE_EVENTID = WMI_TLV_CMD(WMI_GRP_TWT),
++	WMI_TWT_DISABLE_EVENTID,
++	WMI_TWT_ADD_DIALOG_EVENTID,
++	WMI_TWT_DEL_DIALOG_EVENTID,
++	WMI_TWT_PAUSE_DIALOG_EVENTID,
++	WMI_TWT_RESUME_DIALOG_EVENTID,
+ };
  
- 			if (qos_pkt) {
+ enum wmi_tlv_pdev_param {
+@@ -2737,6 +2754,9 @@ struct wmi_resource_config {
+ 	u32 max_num_dbs_scan_duty_cycle;
+ 	u32 max_num_group_keys;
+ 	u32 peer_map_unmap_v2_support;
++	u32 sched_params;
++	u32 twt_ap_pdev_count;
++	u32 twt_ap_sta_count;
+ } __packed;
+ 
+ struct wmi_service_ready_event {
+@@ -3952,6 +3972,8 @@ struct peer_assoc_params {
+ 	u32 peer_he_mcs_count;
+ 	u32 peer_he_rx_mcs_set[WMI_HOST_MAX_HE_RATE_SET];
+ 	u32 peer_he_tx_mcs_set[WMI_HOST_MAX_HE_RATE_SET];
++	bool twt_responder;
++	bool twt_requester;
+ 	struct ath11k_ppe_threshold peer_ppet;
+ };
+ 
+@@ -4201,6 +4223,8 @@ struct wmi_unit_test_cmd {
+ #define WMI_PEER_DYN_MIMOPS	0x00020000
+ #define WMI_PEER_STATIC_MIMOPS	0x00040000
+ #define WMI_PEER_SPATIAL_MUX	0x00200000
++#define WMI_PEER_TWT_REQ	0x00400000
++#define WMI_PEER_TWT_RESP	0x00800000
+ #define WMI_PEER_VHT		0x02000000
+ #define WMI_PEER_80MHZ		0x04000000
+ #define WMI_PEER_PMF		0x08000000
+@@ -5094,6 +5118,48 @@ struct wmi_wmm_params_all_arg {
+ 	struct wmi_wmm_params_arg ac_vo;
+ };
+ 
++#define ATH11K_TWT_DEF_STA_CONG_TIMER_MS		5000
++#define ATH11K_TWT_DEF_DEFAULT_SLOT_SIZE		10
++#define ATH11K_TWT_DEF_CONGESTION_THRESH_SETUP		50
++#define ATH11K_TWT_DEF_CONGESTION_THRESH_TEARDOWN	20
++#define ATH11K_TWT_DEF_CONGESTION_THRESH_CRITICAL	100
++#define ATH11K_TWT_DEF_INTERFERENCE_THRESH_TEARDOWN	80
++#define ATH11K_TWT_DEF_INTERFERENCE_THRESH_SETUP	50
++#define ATH11K_TWT_DEF_MIN_NO_STA_SETUP			10
++#define ATH11K_TWT_DEF_MIN_NO_STA_TEARDOWN		2
++#define ATH11K_TWT_DEF_NO_OF_BCAST_MCAST_SLOTS		2
++#define ATH11K_TWT_DEF_MIN_NO_TWT_SLOTS			2
++#define ATH11K_TWT_DEF_MAX_NO_STA_TWT			500
++#define ATH11K_TWT_DEF_MODE_CHECK_INTERVAL		10000
++#define ATH11K_TWT_DEF_ADD_STA_SLOT_INTERVAL		1000
++#define ATH11K_TWT_DEF_REMOVE_STA_SLOT_INTERVAL		5000
++
++struct wmi_twt_enable_params_cmd {
++	u32 tlv_header;
++	u32 pdev_id;
++	u32 sta_cong_timer_ms;
++	u32 mbss_support;
++	u32 default_slot_size;
++	u32 congestion_thresh_setup;
++	u32 congestion_thresh_teardown;
++	u32 congestion_thresh_critical;
++	u32 interference_thresh_teardown;
++	u32 interference_thresh_setup;
++	u32 min_no_sta_setup;
++	u32 min_no_sta_teardown;
++	u32 no_of_bcast_mcast_slots;
++	u32 min_no_twt_slots;
++	u32 max_no_sta_twt;
++	u32 mode_check_interval;
++	u32 add_sta_slot_interval;
++	u32 remove_sta_slot_interval;
++};
++
++struct wmi_twt_disable_params_cmd {
++	u32 tlv_header;
++	u32 pdev_id;
++};
++
+ struct target_resource_config {
+ 	u32 num_vdevs;
+ 	u32 num_peers;
+@@ -5154,6 +5220,9 @@ struct target_resource_config {
+ 	u32 max_bssid_rx_filters;
+ 	u32 use_pdev_id;
+ 	u32 peer_map_unmap_v2_support;
++	u32 sched_params;
++	u32 twt_ap_pdev_count;
++	u32 twt_ap_sta_count;
+ };
+ 
+ #define WMI_MAX_MEM_REQS 32
+@@ -5278,4 +5347,6 @@ void ath11k_wmi_fw_stats_fill(struct ath11k *ar,
+ 			      struct ath11k_fw_stats *fw_stats, u32 stats_id,
+ 			      char *buf);
+ int ath11k_wmi_simulate_radar(struct ath11k *ar);
++int ath11k_wmi_send_twt_enable_cmd(struct ath11k *ar, u32 pdev_id);
++int ath11k_wmi_send_twt_disable_cmd(struct ath11k *ar, u32 pdev_id);
+ #endif
 -- 
-1.9.1
+2.20.1
 
 
 _______________________________________________
