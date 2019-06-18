@@ -1,13 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from alexa-out-blr-02.qualcomm.com ([103.229.18.198]
- helo=alexa-out-blr.qualcomm.com)
+Received: from alexa-out-blr-01.qualcomm.com ([103.229.18.197])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hdBjE-0002Q5-1C
- for ath11k@lists.infradead.org; Tue, 18 Jun 2019 10:52:41 +0000
+ id 1hdBvX-000288-Rq
+ for ath11k@lists.infradead.org; Tue, 18 Jun 2019 11:05:25 +0000
 From: Venkateswara Naralasetty <vnaralas@codeaurora.org>
-Subject: [PATCH] ath11k: add wrapper function to ath11k_dbg
-Date: Tue, 18 Jun 2019 16:22:32 +0530
-Message-Id: <1560855152-2609-1-git-send-email-vnaralas@codeaurora.org>
+Subject: [PATCH] ath11k: clean up in htt ppdu stats
+Date: Tue, 18 Jun 2019 16:35:18 +0530
+Message-Id: <1560855918-31801-1-git-send-email-vnaralas@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -24,82 +23,101 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: Venkateswara Naralasetty <vnaralas@codeaurora.org>
 
-This patch define a macro for ath11k_dbg() which improves
-the Rx performance by avoid calling ath11k_dbg() from
-ath11k_dp_rx_deliver_msdu() when no dbg_mask set.
+Removed pointer arithmetic and the magic numbers
 
 Signed-off-by: Venkateswara Naralasetty <vnaralas@codeaurora.org>
 ---
-v2:
- * corrected one style issue
+ drivers/net/wireless/ath/ath11k/dp.h    | 12 ++++++++++--
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 18 ++++++++----------
+ 2 files changed, 18 insertions(+), 12 deletions(-)
 
- drivers/net/wireless/ath/ath11k/debug.c |  6 +++---
- drivers/net/wireless/ath/ath11k/debug.h | 18 ++++++++++++------
- 2 files changed, 15 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/debug.c b/drivers/net/wireless/ath/ath11k/debug.c
-index 69a2340..6e16c29 100644
---- a/drivers/net/wireless/ath/ath11k/debug.c
-+++ b/drivers/net/wireless/ath/ath11k/debug.c
-@@ -53,8 +53,8 @@ void ath11k_warn(struct ath11k_base *sc, const char *fmt, ...)
- }
+diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
+index 037fcbd..514acf1 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.h
++++ b/drivers/net/wireless/ath/ath11k/dp.h
+@@ -1005,8 +1005,16 @@ struct htt_resp_msg {
+  *    Value: payload_size in bytes
+  */
  
- #ifdef CONFIG_ATH11K_DEBUG
--void ath11k_dbg(struct ath11k_base *ab, enum ath11k_debug_mask mask,
--		const char *fmt, ...)
-+void __ath11k_dbg(struct ath11k_base *ab, enum ath11k_debug_mask mask,
-+		  const char *fmt, ...)
- {
- 	struct va_format vaf;
- 	va_list args;
-@@ -83,7 +83,7 @@ void ath11k_dbg_dump(struct ath11k_base *ab,
- 
- 	if (ath11k_debug_mask & mask) {
- 		if (msg)
--			ath11k_dbg(ab, mask, "%s\n", msg);
-+			__ath11k_dbg(ab, mask, "%s\n", msg);
- 
- 		for (ptr = buf; (ptr - buf) < len; ptr += 16) {
- 			linebuflen = 0;
-diff --git a/drivers/net/wireless/ath/ath11k/debug.h b/drivers/net/wireless/ath/ath11k/debug.h
-index 5774f53..ebc807e 100644
---- a/drivers/net/wireless/ath/ath11k/debug.h
-+++ b/drivers/net/wireless/ath/ath11k/debug.h
-@@ -106,17 +106,17 @@ __printf(2, 3) void ath11k_warn(struct ath11k_base *sc, const char *fmt, ...);
- extern unsigned int ath11k_debug_mask;
- 
- #ifdef CONFIG_ATH11K_DEBUG
--__printf(3, 4) void ath11k_dbg(struct ath11k_base *ab,
--			       enum ath11k_debug_mask mask,
--			       const char *fmt, ...);
-+__printf(3, 4) void __ath11k_dbg(struct ath11k_base *ab,
-+				 enum ath11k_debug_mask mask,
-+				 const char *fmt, ...);
- void ath11k_dbg_dump(struct ath11k_base *ab,
- 		     enum ath11k_debug_mask mask,
- 		     const char *msg, const char *prefix,
- 		     const void *buf, size_t len);
- #else /* CONFIG_ATH11K_DEBUG */
--static inline int ath11k_dbg(struct ath11k_base *ab,
--			     enum ath11k_debug_mask dbg_mask,
--			     const char *fmt, ...)
-+static inline int __ath11k_dbg(struct ath11k_base *ab,
-+			       enum ath11k_debug_mask dbg_mask,
-+			       const char *fmt, ...)
- {
- 	return 0;
- }
-@@ -272,4 +272,10 @@ static inline void ath11k_sta_update_rx_duration(struct ath11k *ar,
- 
- #endif /* CONFIG_MAC80211_DEBUGFS*/
- 
-+#define ath11k_dbg(ar, dbg_mask, fmt, ...)			\
-+do {								\
-+	if (ath11k_debug_mask & dbg_mask)			\
-+		__ath11k_dbg(ar, dbg_mask, fmt, ##__VA_ARGS__);	\
-+} while (0)
+-#define HTT_T2H_PPDU_STATS_PAYLOAD_SIZE_M GENMASK(31, 16)
+-#define HTT_T2H_PPDU_STATS_PDEV_ID_M GENMASK(11, 10)
++#define HTT_T2H_PPDU_STATS_INFO_PDEV_ID GENMASK(11, 10)
++#define HTT_T2H_PPDU_STATS_INFO_PAYLOAD_SIZE GENMASK(31, 16)
 +
- #endif /* _ATH11K_DEBUG_H_ */
++struct ath11k_htt_ppdu_stats_msg {
++	u32 info;
++	u32 ppdu_id;
++	u32 timestamp;
++	u32 rsvd;
++	u8 data[0];
++} __packed;
+ 
+ struct htt_tlv {
+ 	u32 header;
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 0c660de..03390a8 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -1035,17 +1035,18 @@ struct htt_ppdu_stats_info *ath11k_dp_htt_get_ppdu_desc(struct ath11k *ar,
+ 
+ static int ath11k_htt_pull_ppdu_stats(struct ath11k_base *ab,
+ 					 struct sk_buff *skb) {
+-	u8 *data = (u8 *)skb->data;
++	struct ath11k_htt_ppdu_stats_msg *msg;
+ 	struct htt_ppdu_stats_info *ppdu_info;
+ 	struct ath11k *ar;
+ 	int ret;
+ 	u8 pdev_id;
+ 	u32 ppdu_id, len;
+ 
+-	len = FIELD_GET(HTT_T2H_PPDU_STATS_PAYLOAD_SIZE_M, *(u32 *)data);
+-	pdev_id = FIELD_GET(HTT_T2H_PPDU_STATS_PDEV_ID_M, *(u32 *)data);
++	msg = (struct ath11k_htt_ppdu_stats_msg *)skb->data;
++	len = FIELD_GET(HTT_T2H_PPDU_STATS_INFO_PAYLOAD_SIZE, msg->info);
++	pdev_id = FIELD_GET(HTT_T2H_PPDU_STATS_INFO_PDEV_ID, msg->info);
+ 	pdev_id = DP_HW2SW_MACID(pdev_id);
+-	ppdu_id = *((u32 *)data + 1);
++	ppdu_id = msg->ppdu_id;
+ 
+ 	rcu_read_lock();
+ 	ar = ath11k_get_ar_by_pdev_id(ab, pdev_id);
+@@ -1058,9 +1059,6 @@ static int ath11k_htt_pull_ppdu_stats(struct ath11k_base *ab,
+ 		trace_ath11k_htt_ppdu_stats(ar, skb->data, len);
+ 	}
+ 
+-	/* TLV info starts after 16bytes of header */
+-	data = (u8 *)data + 16;
+-
+ 	ppdu_info = ath11k_dp_htt_get_ppdu_desc(ar, ppdu_id);
+ 	if (!ppdu_info) {
+ 		ret = -EINVAL;
+@@ -1068,7 +1066,7 @@ static int ath11k_htt_pull_ppdu_stats(struct ath11k_base *ab,
+ 	}
+ 
+ 	ppdu_info->ppdu_id = ppdu_id;
+-	ret = ath11k_dp_htt_tlv_iter(ab, data, len,
++	ret = ath11k_dp_htt_tlv_iter(ab, msg->data, len,
+ 				     ath11k_htt_tlv_ppdu_stats_parse,
+ 				     (void *)ppdu_info);
+ 	if (ret) {
+@@ -1090,7 +1088,7 @@ static void ath11k_htt_pktlog(struct ath11k_base *ab,
+ 	u32 len;
+ 	u8 pdev_id;
+ 
+-	len = FIELD_GET(HTT_T2H_PPDU_STATS_PAYLOAD_SIZE_M, data->hdr);
++	len = FIELD_GET(HTT_T2H_PPDU_STATS_INFO_PAYLOAD_SIZE, data->hdr);
+ 
+ 	if (len > ATH11K_HTT_PKTLOG_MAX_SIZE)
+ 	{
+@@ -1100,7 +1098,7 @@ static void ath11k_htt_pktlog(struct ath11k_base *ab,
+ 		return;
+ 	}
+ 
+-	pdev_id = FIELD_GET(HTT_T2H_PPDU_STATS_PDEV_ID_M, data->hdr);
++	pdev_id = FIELD_GET(HTT_T2H_PPDU_STATS_INFO_PDEV_ID, data->hdr);
+ 	pdev_id = DP_HW2SW_MACID(pdev_id);
+ 	ar = ab->pdevs[pdev_id].ar;
+ 
 -- 
 2.7.4
 
