@@ -1,13 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from nbd.name ([2a01:4f8:221:3d45::2])
+Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hdTq7-0002k1-0I
- for ath11k@lists.infradead.org; Wed, 19 Jun 2019 06:13:00 +0000
-From: John Crispin <john@phrozen.org>
-Subject: [PATCH V2] ath11k: fix mac_cap_info copy size
-Date: Wed, 19 Jun 2019 08:12:48 +0200
-Message-Id: <20190619061248.28891-1-john@phrozen.org>
-MIME-Version: 1.0
+ id 1hdUOQ-0006Eb-JK
+ for ath11k@lists.infradead.org; Wed, 19 Jun 2019 06:48:27 +0000
+From: Maharaja Kennadyrajan <mkenna@codeaurora.org>
+Subject: [PATCH] ath11k: Disable peer fixed before setting ht-mcs or vht-mcs
+Date: Wed, 19 Jun 2019 12:20:14 +0530
+Message-Id: <1560927014-17823-1-git-send-email-mkenna@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -16,40 +15,40 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
+To: ath11k@lists.infradead.org
+Cc: Maharaja Kennadyrajan <mkenna@codeaurora.org>
 
-The code currently copies the he_cap field when adding a peer from a six
-byte to an eight byte buffer. Switch from using the dest buffer length to
-that of the src buffer. Also make sure that the trailing 2 bytes are
-zero'ed out.
+Peer fixed rate should be disabled before setting the ht-mcs
+or vht-mcs as peer fixed rate has higher priority in the rate
+setting.
 
-Signed-off-by: John Crispin <john@phrozen.org>
+Signed-off-by: Maharaja Kennadyrajan <mkenna@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/mac.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
 diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 53177a9e3c7e..7e87c8885a06 100644
+index 8c47e09a84e7..3de17bfec689 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -1262,8 +1262,9 @@ static void ath11k_peer_assoc_h_he(struct ath11k *ar,
+@@ -5040,6 +5040,10 @@ ath11k_mac_op_set_bitrate_mask(struct ieee80211_hw *hw,
+ 			return -EINVAL;
+ 		}
  
- 	arg->he_flag = true;
++		ieee80211_iterate_stations_atomic(ar->hw,
++						  ath11k_mac_disable_peer_fixed_rate,
++						  arvif);
++
+ 		mutex_lock(&ar->conf_mutex);
  
-+	memset(&arg->peer_he_cap_macinfo, 0, sizeof(arg->peer_he_cap_macinfo));
- 	memcpy(&arg->peer_he_cap_macinfo, he_cap->he_cap_elem.mac_cap_info,
--	       sizeof(arg->peer_he_cap_macinfo));
-+	       sizeof(he_cap->he_cap_elem.mac_cap_info));
- 	memcpy(&arg->peer_he_cap_phyinfo, he_cap->he_cap_elem.phy_cap_info,
- 	       sizeof(arg->peer_he_cap_phyinfo));
- 	memcpy(&arg->peer_he_ops, &vif->bss_conf.he_operation,
+ 		arvif->bitrate_mask = *mask;
 -- 
-2.20.1
+2.21.0
 
 
 _______________________________________________
