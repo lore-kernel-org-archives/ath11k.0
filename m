@@ -1,22 +1,18 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hdtCH-0000ti-Uy
- for ath11k@lists.infradead.org; Thu, 20 Jun 2019 09:17:36 +0000
-Received: from vasanth-lnx.qca.qualcomm.com
- (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
- (No client certificate requested)
- (Authenticated sender: vthiagar@smtp.codeaurora.org)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 29E5F60AE0
- for <ath11k@lists.infradead.org>; Thu, 20 Jun 2019 09:17:31 +0000 (UTC)
-From: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
-Subject: [PATCH V2 4/4] ath11k/dp_rx: Clean up void *rx_desc in struct
- ath11k_skb_rxcb
-Date: Thu, 20 Jun 2019 14:47:09 +0530
-Message-Id: <1561022229-854-4-git-send-email-vthiagar@codeaurora.org>
-In-Reply-To: <1561022229-854-1-git-send-email-vthiagar@codeaurora.org>
-References: <1561022229-854-1-git-send-email-vthiagar@codeaurora.org>
+ id 1hdxEe-0003hQ-Ba
+ for ath11k@lists.infradead.org; Thu, 20 Jun 2019 13:36:17 +0000
+From: Kalle Valo <kvalo@codeaurora.org>
+Subject: Re: [PATCH V2] ath11k: Fix Rx signal strength reporting
+References: <1560399999-14062-1-git-send-email-vthiagar@codeaurora.org>
+ <20190617153121.973E560F3D@smtp.codeaurora.org>
+ <8736k8b50h.fsf@kamboji.qca.qualcomm.com>
+Date: Thu, 20 Jun 2019 16:36:08 +0300
+In-Reply-To: <8736k8b50h.fsf@kamboji.qca.qualcomm.com> (Kalle Valo's message
+ of "Mon, 17 Jun 2019 18:33:50 +0300")
+Message-ID: <87sgs44bw7.fsf@kamboji.qca.qualcomm.com>
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -25,558 +21,61 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
+To: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
+Cc: ath11k@lists.infradead.org
 
-Use the actual struct hal_rx_desc * instead of void *.
+Kalle Valo <kvalo@codeaurora.org> writes:
 
-Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/core.h  |   2 +-
- drivers/net/wireless/ath/ath11k/dp_rx.c | 205 +++++++++++++-------------------
- 2 files changed, 84 insertions(+), 123 deletions(-)
+> Kalle Valo <kvalo@codeaurora.org> writes:
+>
+>> Vasanthakumar Thiagarajan <vthiagar@codeaurora.org> wrote:
+>>
+>>> Since rssi in not reported in MSDU_START tlv, current signal strength
+>>> reporting is always wrong. Correct rssi is reported in PPDU_END tlv.
+>>> Enable PPDU_END, PPDU_END_STATUS_DONE and MPDU_START tlv reporting in
+>>> monitor status by default. Pass the sta's Rx signal strength to mac80211
+>>> in sta_statistics() ops. This patch also makes sure the default rx filter
+>>> is always enabled whenever there is a call to reset the filter (from
+>>> extd_rx_stats debugfs and config_filter path). Since some of the rx_stats
+>>> are enabled by default, make memory allocation of arsta->rx_stats unconditional.
+>>> 
+>>> Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
+>>> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+>>
+>> This had a conflict and 3-way merge didn't work as the SHA ids were not valid.
+>> Please always try to use ath11k-bringup branch as the baseline (and no extra
+>> patches), that helps my conflict resolution a lot.
+>>
+>> Applied patch drivers/net/wireless/ath/ath11k/core.h cleanly.
+>> Applied patch drivers/net/wireless/ath/ath11k/debug.c cleanly.
+>> Applied patch drivers/net/wireless/ath/ath11k/dp_rx.c cleanly.
+>> Applying patch drivers/net/wireless/ath/ath11k/dp_tx.c with 1 reject...
+>> Rejected hunk #1.
+>> Applied patch drivers/net/wireless/ath/ath11k/hal_rx.c cleanly.
+>> Applied patch drivers/net/wireless/ath/ath11k/mac.c cleanly.
+>> Applied patch drivers/net/wireless/ath/ath11k/mac.h cleanly.
+>> Patch failed at 0001 ath11k: Fix Rx signal strength reporting
+>>
+>> I fixed the conflict in dp_tx.c, that was pretty easy. Also I fixed one
+>> compilation error due to dp function renames. Also I removed
+>> ath11k_dp_rx_h_msdu_start_rssi() as GCC warned that it's unused.
+>
+> Oops, I forgot to add the link to the pending branch:
+>
+> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending-ath11k&id=b36e8ecd8b4e7000a2844db022601890e0b1b39d
+>
+> Please check carefully my changes.
+>
+> Oh, and I also added mac_ prefix to mon_status_filter_default.
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 6b3ee2a..0cfe30a 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -66,7 +66,7 @@ struct ath11k_skb_rxcb {
- 	bool is_first_msdu;
- 	bool is_last_msdu;
- 	bool is_continuation;
--	void *rx_desc;
-+	struct hal_rx_desc *rx_desc;
- 	u8 err_rel_src;
- 	u8 err_code;
- 	u8 mac_id;
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 57a1c27..5666373 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -13,78 +13,61 @@
- #include "dp_tx.h"
- #include "peer.h"
- 
--static u8 *ath11k_dp_rx_h_80211_hdr(u8 *desc)
-+static u8 *ath11k_dp_rx_h_80211_hdr(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
--	return rxd->hdr_status;
-+	return desc->hdr_status;
- }
- 
--static enum hal_encrypt_type ath11k_dp_rx_h_mpdu_start_enctype(u8 *desc)
-+static enum hal_encrypt_type ath11k_dp_rx_h_mpdu_start_enctype(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
--	if (!(__le32_to_cpu(rxd->mpdu_start.info1) &
-+	if (!(__le32_to_cpu(desc->mpdu_start.info1) &
- 	    RX_MPDU_START_INFO1_ENCRYPT_INFO_VALID))
- 		return HAL_ENCRYPT_TYPE_OPEN;
- 
- 	return FIELD_GET(RX_MPDU_START_INFO2_ENC_TYPE,
--			 __le32_to_cpu(rxd->mpdu_start.info2));
-+			 __le32_to_cpu(desc->mpdu_start.info2));
- }
- 
--static u8 ath11k_dp_rx_h_mpdu_start_decap_type(u8 *desc)
-+static u8 ath11k_dp_rx_h_mpdu_start_decap_type(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
- 	return FIELD_GET(RX_MPDU_START_INFO5_DECAP_TYPE,
--			 __le32_to_cpu(rxd->mpdu_start.info5));
-+			 __le32_to_cpu(desc->mpdu_start.info5));
- }
- 
--static bool ath11k_dp_rx_h_attn_msdu_done(u8 *desc)
-+static bool ath11k_dp_rx_h_attn_msdu_done(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
- 	return !!FIELD_GET(RX_ATTENTION_INFO2_MSDU_DONE,
--			   __le32_to_cpu(rxd->attention.info2));
-+			   __le32_to_cpu(desc->attention.info2));
- }
- 
--static bool ath11k_dp_rx_h_attn_first_mpdu(u8 *desc)
-+static bool ath11k_dp_rx_h_attn_first_mpdu(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
- 	return !!FIELD_GET(RX_ATTENTION_INFO1_FIRST_MPDU,
--			   __le32_to_cpu(rxd->attention.info1));
-+			   __le32_to_cpu(desc->attention.info1));
- }
- 
--static bool ath11k_dp_rx_h_attn_l4_cksum_fail(u8 *desc)
-+static bool ath11k_dp_rx_h_attn_l4_cksum_fail(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
- 	return !!FIELD_GET(RX_ATTENTION_INFO1_TCP_UDP_CKSUM_FAIL,
--			   __le32_to_cpu(rxd->attention.info1));
-+			   __le32_to_cpu(desc->attention.info1));
- }
- 
--static bool ath11k_dp_rx_h_attn_ip_cksum_fail(u8 *desc)
-+static bool ath11k_dp_rx_h_attn_ip_cksum_fail(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
- 	return !!FIELD_GET(RX_ATTENTION_INFO1_IP_CKSUM_FAIL,
--			   __le32_to_cpu(rxd->attention.info1));
-+			   __le32_to_cpu(desc->attention.info1));
- }
- 
--static bool ath11k_dp_rx_h_attn_is_decrypted(u8 *desc)
-+static bool ath11k_dp_rx_h_attn_is_decrypted(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
- 	return (FIELD_GET(RX_ATTENTION_INFO2_DCRYPT_STATUS_CODE,
--			  __le32_to_cpu(rxd->attention.info2)) ==
-+			  __le32_to_cpu(desc->attention.info2)) ==
- 		RX_DESC_DECRYPT_STATUS_CODE_OK);
- }
- 
--static u32 ath11k_dp_rx_h_attn_mpdu_err(u8 *desc)
-+static u32 ath11k_dp_rx_h_attn_mpdu_err(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--	u32 info = __le32_to_cpu(rxd->attention.info1);
-+	u32 info = __le32_to_cpu(desc->attention.info1);
- 	u32 errmap = 0;
- 
- 	if (info & RX_ATTENTION_INFO1_FCS_ERR)
-@@ -111,99 +94,76 @@ static u32 ath11k_dp_rx_h_attn_mpdu_err(u8 *desc)
- 	return errmap;
- }
- 
--static u16 ath11k_dp_rx_h_msdu_start_msdu_len(u8 *desc)
-+static u16 ath11k_dp_rx_h_msdu_start_msdu_len(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
- 	return FIELD_GET(RX_MSDU_START_INFO1_MSDU_LENGTH,
--			 __le32_to_cpu(rxd->msdu_start.info1));
-+			 __le32_to_cpu(desc->msdu_start.info1));
- }
- 
--static u8 ath11k_dp_rx_h_msdu_start_sgi(u8 *desc)
-+static u8 ath11k_dp_rx_h_msdu_start_sgi(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
- 	return FIELD_GET(RX_MSDU_START_INFO3_SGI,
--			 __le32_to_cpu(rxd->msdu_start.info3));
-+			 __le32_to_cpu(desc->msdu_start.info3));
- }
- 
--static u8 ath11k_dp_rx_h_msdu_start_rate_mcs(u8 *desc)
-+static u8 ath11k_dp_rx_h_msdu_start_rate_mcs(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
- 	return FIELD_GET(RX_MSDU_START_INFO3_RATE_MCS,
--			 __le32_to_cpu(rxd->msdu_start.info3));
-+			 __le32_to_cpu(desc->msdu_start.info3));
- }
- 
--static u8 ath11k_dp_rx_h_msdu_start_rx_bw(u8 *desc)
-+static u8 ath11k_dp_rx_h_msdu_start_rx_bw(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
- 	return FIELD_GET(RX_MSDU_START_INFO3_RECV_BW,
--			 __le32_to_cpu(rxd->msdu_start.info3));
-+			 __le32_to_cpu(desc->msdu_start.info3));
- }
- 
--static u8 ath11k_dp_rx_h_msdu_start_rssi(u8 *desc)
-+static u8 ath11k_dp_rx_h_msdu_start_rssi(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
- 	return FIELD_GET(RX_MSDU_START_INFO3_USER_RSSI,
--			 __le32_to_cpu(rxd->msdu_start.info3));
-+			 __le32_to_cpu(desc->msdu_start.info3));
- }
- 
--static u32 ath11k_dp_rx_h_msdu_start_freq(u8 *desc)
-+static u32 ath11k_dp_rx_h_msdu_start_freq(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
--	return __le32_to_cpu(rxd->msdu_start.phy_meta_data);
-+	return __le32_to_cpu(desc->msdu_start.phy_meta_data);
- }
- 
--static u8 ath11k_dp_rx_h_msdu_start_pkt_type(u8 *desc)
-+static u8 ath11k_dp_rx_h_msdu_start_pkt_type(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
- 	return FIELD_GET(RX_MSDU_START_INFO3_PKT_TYPE,
--			 __le32_to_cpu(rxd->msdu_start.info3));
-+			 __le32_to_cpu(desc->msdu_start.info3));
- }
- 
--static u8 ath11k_dp_rx_h_msdu_start_nss(u8 *desc)
-+static u8 ath11k_dp_rx_h_msdu_start_nss(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
- 	u8 mimo_ss_bitmap = FIELD_GET(RX_MSDU_START_INFO3_MIMO_SS_BITMAP,
--				      __le32_to_cpu(rxd->msdu_start.info3));
-+				      __le32_to_cpu(desc->msdu_start.info3));
- 
- 	return hweight8(mimo_ss_bitmap);
- }
- 
--static u8 ath11k_dp_rx_h_msdu_end_l3pad(u8 *desc)
-+static u8 ath11k_dp_rx_h_msdu_end_l3pad(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
- 	return FIELD_GET(RX_MSDU_END_INFO2_L3_HDR_PADDING,
--			 __le32_to_cpu(rxd->msdu_end.info2));
-+			 __le32_to_cpu(desc->msdu_end.info2));
- }
- 
--static bool ath11k_dp_rx_h_msdu_end_first_msdu(u8 *desc)
-+static bool ath11k_dp_rx_h_msdu_end_first_msdu(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
- 	return !!FIELD_GET(RX_MSDU_END_INFO2_FIRST_MSDU,
--			   __le32_to_cpu(rxd->msdu_end.info2));
-+			   __le32_to_cpu(desc->msdu_end.info2));
- }
- 
--static bool ath11k_dp_rx_h_msdu_end_last_msdu(u8 *desc)
-+static bool ath11k_dp_rx_h_msdu_end_last_msdu(struct hal_rx_desc *desc)
- {
--	struct hal_rx_desc *rxd = (struct hal_rx_desc *)desc;
--
- 	return !!FIELD_GET(RX_MSDU_END_INFO2_LAST_MSDU,
--			   __le32_to_cpu(rxd->msdu_end.info2));
-+			   __le32_to_cpu(desc->msdu_end.info2));
- }
- 
--static void ath11k_dp_rx_desc_end_tlv_copy(u8 *first, u8 *last)
-+static void ath11k_dp_rx_desc_end_tlv_copy(struct hal_rx_desc *fdesc,
-+					   struct hal_rx_desc *ldesc)
- {
--	struct hal_rx_desc *fdesc = (struct hal_rx_desc *)first;
--	struct hal_rx_desc *ldesc = (struct hal_rx_desc *)last;
--
- 	memcpy((u8 *)&fdesc->msdu_end, (u8 *)&ldesc->msdu_end,
- 	       sizeof(struct rx_msdu_end));
- 	memcpy((u8 *)&fdesc->attention, (u8 *)&ldesc->attention,
-@@ -212,9 +172,8 @@ static void ath11k_dp_rx_desc_end_tlv_copy(u8 *first, u8 *last)
- 	       sizeof(struct rx_mpdu_end));
- }
- 
--static u32 ath11k_dp_rxdesc_get_mpdulen_err(void *hw_desc_addr)
-+static u32 ath11k_dp_rxdesc_get_mpdulen_err(struct hal_rx_desc *rx_desc)
- {
--	struct hal_rx_desc *rx_desc = (struct hal_rx_desc *)hw_desc_addr;
- 	struct rx_attention *rx_attn;
- 
- 	rx_attn = &rx_desc->attention;
-@@ -223,9 +182,8 @@ static u32 ath11k_dp_rxdesc_get_mpdulen_err(void *hw_desc_addr)
- 			 __le32_to_cpu(rx_attn->info1));
- }
- 
--static u32 ath11k_dp_rxdesc_get_decap_format(void *hw_desc_addr)
-+static u32 ath11k_dp_rxdesc_get_decap_format(struct hal_rx_desc *rx_desc)
- {
--	struct hal_rx_desc *rx_desc = (struct hal_rx_desc *)hw_desc_addr;
- 	struct rx_msdu_start *rx_msdu_start;
- 
- 	rx_msdu_start = &rx_desc->msdu_start;
-@@ -234,9 +192,8 @@ static u32 ath11k_dp_rxdesc_get_decap_format(void *hw_desc_addr)
- 			 __le32_to_cpu(rx_msdu_start->info2));
- }
- 
--static u8 *ath11k_dp_rxdesc_get_80211hdr(void *hw_desc_addr)
-+static u8 *ath11k_dp_rxdesc_get_80211hdr(struct hal_rx_desc *rx_desc)
- {
--	struct hal_rx_desc *rx_desc = (struct hal_rx_desc *)hw_desc_addr;
- 	u8 *rx_pkt_hdr;
- 
- 	rx_pkt_hdr = &rx_desc->msdu_payload[0];
-@@ -244,9 +201,8 @@ static u8 *ath11k_dp_rxdesc_get_80211hdr(void *hw_desc_addr)
- 	return rx_pkt_hdr;
- }
- 
--static bool ath11k_dp_rxdesc_mpdu_valid(void *hw_desc_addr)
-+static bool ath11k_dp_rxdesc_mpdu_valid(struct hal_rx_desc *rx_desc)
- {
--	struct hal_rx_desc *rx_desc = (struct hal_rx_desc *)hw_desc_addr;
- 	u32 tlv_tag;
- 
- 	tlv_tag = FIELD_GET(HAL_TLV_HDR_TAG,
-@@ -255,10 +211,8 @@ static bool ath11k_dp_rxdesc_mpdu_valid(void *hw_desc_addr)
- 	return tlv_tag == HAL_RX_MPDU_START ? true : false;
- }
- 
--static u32 ath11k_dp_rxdesc_get_ppduid(void *hw_desc_addr)
-+static u32 ath11k_dp_rxdesc_get_ppduid(struct hal_rx_desc *rx_desc)
- {
--	struct hal_rx_desc *rx_desc = (struct hal_rx_desc *)hw_desc_addr;
--
- 	return __le16_to_cpu(rx_desc->mpdu_start.phy_ppdu_id);
- }
- 
-@@ -1420,6 +1374,7 @@ static int ath11k_dp_rx_msdu_coalesce(struct ath11k *ar,
- {
- 	struct sk_buff *skb;
- 	struct ath11k_skb_rxcb *rxcb = ATH11K_SKB_RXCB(first);
-+	struct hal_rx_desc *ldesc;
- 	int space_extra;
- 	int rem_len;
- 	int buf_len;
-@@ -1437,8 +1392,9 @@ static int ath11k_dp_rx_msdu_coalesce(struct ath11k *ar,
- 		return 0;
- 	}
- 
--	rxcb->is_first_msdu = ath11k_dp_rx_h_msdu_end_first_msdu(last->data);
--	rxcb->is_last_msdu = ath11k_dp_rx_h_msdu_end_last_msdu(last->data);
-+	ldesc = (struct hal_rx_desc *)last->data;
-+	rxcb->is_first_msdu = ath11k_dp_rx_h_msdu_end_first_msdu(ldesc);
-+	rxcb->is_last_msdu = ath11k_dp_rx_h_msdu_end_last_msdu(ldesc);
- 
- 	/* MSDU spans over multiple buffers because the length of the MSDU
- 	 * exceeds DP_RX_BUFFER_SIZE - HAL_RX_DESC_SIZE. So assume the data
-@@ -1465,7 +1421,7 @@ static int ath11k_dp_rx_msdu_coalesce(struct ath11k *ar,
- 	/* When an MSDU spread over multiple buffers attention, MSDU_END and
- 	 * MPDU_END tlvs are valid only in the last buffer. Copy those tlvs.
- 	 */
--	ath11k_dp_rx_desc_end_tlv_copy(rxcb->rx_desc, last->data);
-+	ath11k_dp_rx_desc_end_tlv_copy(rxcb->rx_desc, ldesc);
- 
- 	rem_len = msdu_len -
- 		  (DP_RX_BUFFER_SIZE - HAL_RX_DESC_SIZE - l3pad_bytes);
-@@ -1522,6 +1478,7 @@ static int ath11k_dp_rx_retrieve_amsdu(struct ath11k *ar,
- 	struct sk_buff *last_buf;
- 	struct ath11k_skb_rxcb *rxcb;
- 	struct ieee80211_hdr *hdr;
-+	struct hal_rx_desc *rx_desc, *lrx_desc;
- 	u16 msdu_len;
- 	u8 l3_pad_bytes;
- 	u8 *hdr_status;
-@@ -1530,7 +1487,8 @@ static int ath11k_dp_rx_retrieve_amsdu(struct ath11k *ar,
- 	if (!msdu)
- 		return -ENOENT;
- 
--	hdr_status = ath11k_dp_rx_h_80211_hdr(msdu->data);
-+	rx_desc = (struct hal_rx_desc *)msdu->data;
-+	hdr_status = ath11k_dp_rx_h_80211_hdr(rx_desc);
- 	hdr = (struct ieee80211_hdr *)hdr_status;
- 	/* Process only data frames */
- 	if (!ieee80211_is_data(hdr->frame_control)) {
-@@ -1549,16 +1507,19 @@ static int ath11k_dp_rx_retrieve_amsdu(struct ath11k *ar,
- 			goto free_out;
- 		}
- 
--		if (!ath11k_dp_rx_h_attn_msdu_done(last_buf->data)) {
-+		rx_desc = (struct hal_rx_desc *)msdu->data;
-+		lrx_desc = (struct hal_rx_desc *)last_buf->data;
-+
-+		if (!ath11k_dp_rx_h_attn_msdu_done(lrx_desc)) {
- 			ath11k_warn(ar->ab, "msdu_done bit in attention is not set\n");
- 			ret = -EIO;
- 			goto free_out;
- 		}
- 
- 		rxcb = ATH11K_SKB_RXCB(msdu);
--		rxcb->rx_desc = msdu->data;
--		msdu_len = ath11k_dp_rx_h_msdu_start_msdu_len(msdu->data);
--		l3_pad_bytes = ath11k_dp_rx_h_msdu_end_l3pad(last_buf->data);
-+		rxcb->rx_desc = rx_desc;
-+		msdu_len = ath11k_dp_rx_h_msdu_start_msdu_len(rx_desc);
-+		l3_pad_bytes = ath11k_dp_rx_h_msdu_end_l3pad(lrx_desc);
- 
- 		if (!rxcb->is_continuation) {
- 			skb_put(msdu, HAL_RX_DESC_SIZE + l3_pad_bytes + msdu_len);
-@@ -1855,7 +1816,8 @@ static void ath11k_dp_rx_h_undecap_eth(struct ath11k *ar,
- }
- 
- static void ath11k_dp_rx_h_undecap(struct ath11k *ar, struct sk_buff *msdu,
--				   u8 *rx_desc, enum hal_encrypt_type enctype,
-+				   struct hal_rx_desc *rx_desc,
-+				   enum hal_encrypt_type enctype,
- 				   struct ieee80211_rx_status *status,
- 				   bool decrypted)
- {
-@@ -1886,7 +1848,7 @@ static void ath11k_dp_rx_h_undecap(struct ath11k *ar, struct sk_buff *msdu,
- 
- static void ath11k_dp_rx_h_mpdu(struct ath11k *ar,
- 				struct sk_buff_head *amsdu_list,
--				u8 *rx_desc,
-+				struct hal_rx_desc *rx_desc,
- 				struct ieee80211_rx_status *rx_status)
- {
- 	struct ieee80211_hdr *hdr;
-@@ -1944,7 +1906,7 @@ static void ath11k_dp_rx_h_mpdu(struct ath11k *ar,
- 	}
- }
- 
--static void ath11k_dp_rx_h_rate(struct ath11k *ar, void *rx_desc,
-+static void ath11k_dp_rx_h_rate(struct ath11k *ar, struct hal_rx_desc *rx_desc,
- 				struct ieee80211_rx_status *rx_status)
- {
- 	struct ieee80211_supported_band *sband;
-@@ -2006,7 +1968,7 @@ static void ath11k_dp_rx_h_rate(struct ath11k *ar, void *rx_desc,
- 	}
- }
- 
--static void ath11k_dp_rx_h_ppdu(struct ath11k *ar, void *rx_desc,
-+static void ath11k_dp_rx_h_ppdu(struct ath11k *ar, struct hal_rx_desc *rx_desc,
- 				struct ieee80211_rx_status *rx_status)
- {
- 	u8 channel_num;
-@@ -2048,7 +2010,7 @@ static void ath11k_dp_rx_process_amsdu(struct ath11k *ar,
- {
- 	struct sk_buff *first;
- 	struct ath11k_skb_rxcb *rxcb;
--	void *rx_desc;
-+	struct hal_rx_desc *rx_desc;
- 	bool first_mpdu;
- 
- 	if (skb_queue_empty(amsdu_list))
-@@ -2721,7 +2683,7 @@ static int ath11k_dp_rx_link_desc_return(struct ath11k_base *ab,
- 
- static void ath11k_dp_rx_frag_h_mpdu(struct ath11k *ar,
- 				     struct sk_buff *msdu,
--				     u8 *rx_desc,
-+				     struct hal_rx_desc *rx_desc,
- 				     struct ieee80211_rx_status *rx_status)
- {
- 	u8 rx_channel;
-@@ -2782,7 +2744,7 @@ static void ath11k_dp_rx_frag_h_mpdu(struct ath11k *ar,
- 	struct sk_buff *msdu;
- 	struct ath11k_skb_rxcb *rxcb;
- 	struct ieee80211_rx_status *status;
--	void *rx_desc;
-+	struct hal_rx_desc *rx_desc;
- 	u16 msdu_len;
- 
- 	spin_lock_bh(&rx_ring->idr_lock);
-@@ -2821,7 +2783,7 @@ static void ath11k_dp_rx_frag_h_mpdu(struct ath11k *ar,
- 		goto exit;
- 	}
- 
--	rx_desc = msdu->data;
-+	rx_desc = (struct hal_rx_desc *)msdu->data;
- 	msdu_len = ath11k_dp_rx_h_msdu_start_msdu_len(rx_desc);
- 	skb_put(msdu, HAL_RX_DESC_SIZE + msdu_len);
- 	skb_pull(msdu, HAL_RX_DESC_SIZE);
-@@ -2978,7 +2940,7 @@ static int ath11k_dp_rx_h_null_q_desc(struct ath11k *ar, struct sk_buff *msdu,
- {
- 	struct sk_buff_head amsdu_list;
- 	u16 msdu_len;
--	u8 *desc = msdu->data;
-+	struct hal_rx_desc *desc = (struct hal_rx_desc *)msdu->data;
- 	u8 l3pad_bytes;
- 	struct ath11k_skb_rxcb *rxcb = ATH11K_SKB_RXCB(msdu);
- 
-@@ -3062,7 +3024,7 @@ static void ath11k_dp_rx_h_tkip_mic_err(struct ath11k *ar, struct sk_buff *msdu,
- 					struct ieee80211_rx_status *status)
- {
- 	u16 msdu_len;
--	u8 *desc = msdu->data;
-+	struct hal_rx_desc *desc = (struct hal_rx_desc *)msdu->data;
- 	u8 l3pad_bytes;
- 	struct ath11k_skb_rxcb *rxcb = ATH11K_SKB_RXCB(msdu);
- 
-@@ -3210,7 +3172,7 @@ int ath11k_dp_rx_process_wbm_err(struct ath11k_base *ab,
- 
- 		rxcb->err_rel_src = err_info.err_rel_src;
- 		rxcb->err_code = err_info.err_code;
--		rxcb->rx_desc = msdu->data;
-+		rxcb->rx_desc = (struct hal_rx_desc *)msdu->data;
- 		__skb_queue_tail(&msdu_list[mac_id], msdu);
- 	}
- 
-@@ -3674,7 +3636,7 @@ static void ath11k_dp_mon_get_buf_len(struct hal_rx_msdu_desc_info *info,
- 	struct sk_buff *msdu = NULL, *last = NULL;
- 	struct hal_rx_msdu_list msdu_list;
- 	void *p_buf_addr_info, *p_last_buf_addr_info;
--	void *rx_desc;
-+	struct hal_rx_desc *rx_desc;
- 	void *rx_msdu_link_desc;
- 	dma_addr_t paddr;
- 	u16 num_msdus = 0;
-@@ -3762,11 +3724,10 @@ static void ath11k_dp_mon_get_buf_len(struct hal_rx_msdu_desc_info *info,
- 				goto next_msdu;
- 			}
- 
--			rx_desc = msdu->data;
-+			rx_desc = (struct hal_rx_desc *)msdu->data;
- 
- 			rx_pkt_offset = sizeof(struct hal_rx_desc);
--			l2_hdr_offset =
--				ath11k_dp_rx_h_msdu_end_l3pad(msdu->data);
-+			l2_hdr_offset = ath11k_dp_rx_h_msdu_end_l3pad(rx_desc);
- 
- 			if (is_first_msdu) {
- 				if (!ath11k_dp_rxdesc_mpdu_valid(rx_desc)) {
-@@ -3838,7 +3799,7 @@ static void ath11k_dp_rx_msdus_set_payload(struct sk_buff *msdu)
- 	u32 rx_pkt_offset, l2_hdr_offset;
- 
- 	rx_pkt_offset = sizeof(struct hal_rx_desc);
--	l2_hdr_offset = ath11k_dp_rx_h_msdu_end_l3pad(msdu->data);
-+	l2_hdr_offset = ath11k_dp_rx_h_msdu_end_l3pad((struct hal_rx_desc *)msdu->data);
- 	skb_pull(msdu, rx_pkt_offset + l2_hdr_offset);
- }
- 
-@@ -3850,7 +3811,7 @@ static void ath11k_dp_rx_msdus_set_payload(struct sk_buff *msdu)
- {
- 	struct sk_buff *msdu, *mpdu_buf, *prev_buf;
- 	u32 decap_format, wifi_hdr_len;
--	void *rx_desc;
-+	struct hal_rx_desc *rx_desc;
- 	char *hdr_desc;
- 	u8 *dest;
- 	struct ieee80211_hdr_3addr *wh;
-@@ -3860,7 +3821,7 @@ static void ath11k_dp_rx_msdus_set_payload(struct sk_buff *msdu)
- 	if (!head_msdu)
- 		goto err_merge_fail;
- 
--	rx_desc = head_msdu->data;
-+	rx_desc = (struct hal_rx_desc *)head_msdu->data;
- 
- 	if (ath11k_dp_rxdesc_get_mpdulen_err(rx_desc))
- 		return NULL;
-@@ -3889,7 +3850,7 @@ static void ath11k_dp_rx_msdus_set_payload(struct sk_buff *msdu)
- 		__le16 qos_field;
- 		u8 qos_pkt = 0;
- 
--		rx_desc = head_msdu->data;
-+		rx_desc = (struct hal_rx_desc *)head_msdu->data;
- 		hdr_desc = ath11k_dp_rxdesc_get_80211hdr(rx_desc);
- 
- 		/* Base size */
-@@ -3906,7 +3867,7 @@ static void ath11k_dp_rx_msdus_set_payload(struct sk_buff *msdu)
- 		msdu = head_msdu;
- 
- 		while (msdu) {
--			rx_desc = msdu->data;
-+			rx_desc = (struct hal_rx_desc *)msdu->data;
- 			hdr_desc = ath11k_dp_rxdesc_get_80211hdr(rx_desc);
- 
- 			if (qos_pkt) {
+Actually, I changed the prefix ath11k_mac_ to make the style consistent.
+
 -- 
-1.9.1
-
+Kalle Valo
 
 _______________________________________________
 ath11k mailing list
