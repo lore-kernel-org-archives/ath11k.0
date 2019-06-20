@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hdxIk-0005bZ-5e
- for ath11k@lists.infradead.org; Thu, 20 Jun 2019 13:40:31 +0000
+ id 1hdxPe-0001c8-1L
+ for ath11k@lists.infradead.org; Thu, 20 Jun 2019 13:47:40 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: add wrapper function to ath11k_dbg
+Subject: Re: [PATCH V3] ath11k: add TWT support
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1560855152-2609-1-git-send-email-vnaralas@codeaurora.org>
-References: <1560855152-2609-1-git-send-email-vnaralas@codeaurora.org>
-Message-Id: <20190620134029.DAB266090E@smtp.codeaurora.org>
-Date: Thu, 20 Jun 2019 13:40:29 +0000 (UTC)
+In-Reply-To: <20190618063117.17676-1-john@phrozen.org>
+References: <20190618063117.17676-1-john@phrozen.org>
+Message-Id: <20190620134737.3A4056137E@smtp.codeaurora.org>
+Date: Thu, 20 Jun 2019 13:47:34 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,24 +22,23 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Venkateswara Naralasetty <vnaralas@codeaurora.org>
-Cc: ath11k@lists.infradead.org
+To: John Crispin <john@phrozen.org>
+Cc: ath11k@lists.infradead.org, Shashidhar Lakkavalli <slakkavalli@datto.com>
 
-Venkateswara Naralasetty <vnaralas@codeaurora.org> wrote:
+John Crispin <john@phrozen.org> wrote:
 
-> This patch define a macro for ath11k_dbg() which improves
-> the Rx performance by avoid calling ath11k_dbg() from
-> ath11k_dp_rx_deliver_msdu() when no dbg_mask set.
+> Add target wait time wmi calls to the driver. En/disable the support
+> from when the bss_config changes. We ignore the cmd completion events.
 > 
-> Signed-off-by: Venkateswara Naralasetty <vnaralas@codeaurora.org>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+> Signed-off-by: Shashidhar Lakkavalli <slakkavalli@datto.com>
+> Signed-off-by: John Crispin <john@phrozen.org>
 
-Patch applied to ath11k-bringup branch of ath.git, thanks.
+Marking as requested
 
-6b4ad0ceb075 ath11k: add wrapper function to ath11k_dbg
+Patch set to Awaiting Upstream.
 
 -- 
-https://patchwork.kernel.org/patch/11001381/
+https://patchwork.kernel.org/patch/11000953/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
