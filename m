@@ -1,17 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from nbd.name ([2a01:4f8:221:3d45::2])
+Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1he1Hd-0006Oz-7q
- for ath11k@lists.infradead.org; Thu, 20 Jun 2019 17:55:38 +0000
-Subject: Re: [PATCH] ath11k: fetch and report DCM and RU stats from ppdu stats
-References: <1560872506-21217-1-git-send-email-pradeepc@codeaurora.org>
- <878stw49or.fsf@kamboji.qca.qualcomm.com>
-From: John Crispin <john@phrozen.org>
-Message-ID: <58bd4def-60ac-77b1-ab01-a7da3e9eaf30@phrozen.org>
-Date: Thu, 20 Jun 2019 19:55:38 +0200
-MIME-Version: 1.0
-In-Reply-To: <878stw49or.fsf@kamboji.qca.qualcomm.com>
-Content-Language: en-US
+ id 1he2Eh-0003FD-My
+ for ath11k@lists.infradead.org; Thu, 20 Jun 2019 18:56:41 +0000
+From: Karthikeyan Periyasamy <periyasa@codeaurora.org>
+Subject: [PATCH] ath11k: fix invalid memory access
+Date: Fri, 21 Jun 2019 00:26:13 +0530
+Message-Id: <1561056973-32524-1-git-send-email-periyasa@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -20,54 +15,41 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>, Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
-Cc: ath11k@lists.infradead.org
+To: ath11k@lists.infradead.org
+Cc: Karthikeyan Periyasamy <periyasa@codeaurora.org>
 
-Ck9uIDIwLzA2LzIwMTkgMTY6MjMsIEthbGxlIFZhbG8gd3JvdGU6Cj4gUHJhZGVlcCBLdW1hciBD
-aGl0cmFwdSA8cHJhZGVlcGNAY29kZWF1cm9yYS5vcmc+IHdyaXRlczoKPgo+PiBIRSBEQ00gYW5k
-IFJVIGFsbG9jYXRpb24gaW5mbyBpcyByZXBvcnRlZCBvdXQgb2YgYm91bmQgZGF0YSBwYXRoCj4+
-IGJ5IGZpcm13YXJlIGluIHBwZHUgc3RhdHMuIFRoZXNlIGFyZSByZXBvcnRlZCB0byBtYWM4MDIx
-MSB1c2luZwo+PiBzdGFfc3RhdGlzdGljcygpIGFwaS4KPj4KPj4gU2lnbmVkLW9mZi1ieTogUHJh
-ZGVlcCBLdW1hciBDaGl0cmFwdSA8cHJhZGVlcGNAY29kZWF1cm9yYS5vcmc+Cj4gWy4uLl0KCkhp
-IEFsbCwKCkkgYW0gd29ya2luZyBvbiBhIHNlcmllcyB0aGF0IGRvZXMgYSBjbGVhbiB1cCBvZiBz
-dGF0cyByZXBvcnRpbmcgc28gdGhhdCAKd2UgY2FuIHByb3BhZ2F0ZSB0aGUgaW5mbyBpbnRvIHJh
-ZGlvdGFwLiBJIHdpbGwgcGljayB0aGlzIHBhdGNoIHVwIGFuZCAKbWVyZ2UgaXQgd2l0aCBteSBz
-ZXJpZXMgYW5kIHRoZSByZXNlbmQgaXQgaWYgbm8gb25lIG1pbmRzCgogwqDCoMKgIEpvaG4KCgo+
-PiAtLS0gYS9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL2RwX3J4LmMKPj4gKysrIGIv
-ZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9kcF9yeC5jCj4+IEBAIC0xMDkzLDcgKzEw
-OTMsNyBAQCBzdGF0aWMgdTMyIGF0aDExa19id190b19tYWM4MDIxMV9id2ZsYWdzKHU4IGJ3KQo+
-PiAgIAlzdHJ1Y3QgaWVlZTgwMjExX2NoYW5jdHhfY29uZiAqY29uZiA9IE5VTEw7Cj4+ICAgCXN0
-cnVjdCBhdGgxMWtfcGVyX3BlZXJfdHhfc3RhdHMgKnBlZXJfc3RhdHMgPSAmYXItPnBlZXJfdHhf
-c3RhdHM7Cj4+ICAgCWludCByZXQ7Cj4+IC0JdTggZmxhZ3MsIG1jcywgbnNzLCBidywgc2dpLCBy
-YXRlX2lkeCA9IDA7Cj4+ICsJdTggZmxhZ3MsIG1jcywgbnNzLCBidywgc2dpLCBkY20sIHJhdGVf
-aWR4ID0gMDsKPj4gICAJdTMyIHN1Y2NfYnl0ZXMgPSAwOwo+PiAgIAl1MTYgcmF0ZSA9IDAsIHN1
-Y2NfcGt0cyA9IDA7Cj4+ICAgCWJvb2wgaXNfYW1wZHUgPSBmYWxzZTsKPj4gQEAgLTExMjcsMTIg
-KzExMjcsMTcgQEAgc3RhdGljIHUzMiBhdGgxMWtfYndfdG9fbWFjODAyMTFfYndmbGFncyh1OCBi
-dykKPj4gICAJICogRmlybWFyZSByYXRlJ3MgY29udHJvbCB0byBiZSBza2lwcGVkIGZvciB0aGlz
-Pwo+PiAgICAgICAgICAgICovCj4+ICAgCj4+IC0JaWYgKGZsYWdzID09IFdNSV9SQVRFX1BSRUFN
-QkxFX1ZIVCAmJiBtY3MgPiA5KSB7Cj4+ICsJaWYgKGZsYWdzID09IFdNSV9SQVRFX1BSRUFNQkxF
-X0hFICYmIG1jcyA+IEFUSDExS19IRV9NQ1NfTUFYKSB7Cj4+ICsJCWF0aDExa193YXJuKGFiLCAi
-SW52YWxpZCBIRSBtY3MgJWhoZCBwZWVyIHN0YXRzIiwgIG1jcyk7Cj4+ICsJCXJldHVybjsKPj4g
-Kwl9Cj4+ICsKPj4gKwlpZiAoZmxhZ3MgPT0gV01JX1JBVEVfUFJFQU1CTEVfVkhUICYmIG1jcyA+
-IEFUSDExS19WSFRfTUNTX01BWCkgewo+PiAgIAkJYXRoMTFrX3dhcm4oYWIsICJJbnZhbGlkIFZI
-VCBtY3MgJWhoZCBwZWVyIHN0YXRzIiwgIG1jcyk7Cj4+ICAgCQlyZXR1cm47Cj4+ICAgCX0KPj4g
-ICAKPj4gLQlpZiAoZmxhZ3MgPT0gV01JX1JBVEVfUFJFQU1CTEVfSFQgJiYgKG1jcyA+IDcgfHwg
-bnNzIDwgMSkpIHsKPj4gKwlpZiAoZmxhZ3MgPT0gV01JX1JBVEVfUFJFQU1CTEVfSFQgJiYgKG1j
-cyA+IEFUSDExS19IVF9NQ1NfTUFYIHx8IG5zcyA8IDEpKSB7Cj4+ICAgCQlhdGgxMWtfd2Fybihh
-YiwgIkludmFsaWQgSFQgbWNzICVoaGQgbnNzICVoaGQgcGVlciBzdGF0cyIsCj4+ICAgCQkJICAg
-IG1jcywgbnNzKTsKPj4gICAJCXJldHVybjsKPj4gQEAgLTEyMDEsNiArMTIwNiwxMiBAQCBzdGF0
-aWMgdTMyIGF0aDExa19id190b19tYWM4MDIxMV9id2ZsYWdzKHU4IGJ3KQo+PiAgIAkJCQkJCUlF
-RUU4MDIxMV9UWF9SQ19TSE9SVF9HSTsKPj4gICAJCX0KPj4gICAJCWJyZWFrOwo+PiArCWNhc2Ug
-V01JX1JBVEVfUFJFQU1CTEVfSEU6Cj4+ICsJCWFyc3RhLT50eHJhdGUuaGVfZGNtID0gZGNtOwo+
-IFRoaXMgY2F1c2VzIGEgbmV3IHdhcm5pbmc6Cj4KPiBkcml2ZXJzL25ldC93aXJlbGVzcy9hdGgv
-YXRoMTFrL2RwX3J4LmM6MTE1OToyNDogd2FybmluZzogJ2RjbScgbWF5IGJlIHVzZWQgdW5pbml0
-aWFsaXplZCBpbiB0aGlzIGZ1bmN0aW9uIFstV21heWJlLXVuaW5pdGlhbGl6ZWRdCj4KPiBMb29r
-cyB2YWxpZCB3YXJuaW5nIHRvIG1lLiBIb3cgaXMgdGhpcyBzdXBwb3NlZCB0byB3b3JrLCBJIGRv
-bid0IHNlZSB5b3UKPiBhc3NpZ25pbmcgdG8gZGNtIGFueXdoZXJlPwo+CgpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphdGgxMWsgbWFpbGluZyBsaXN0CmF0
-aDExa0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxt
-YW4vbGlzdGluZm8vYXRoMTFrCg==
+dp_reo_cache_flush_elem element get dynamically allocated with invalid size
+which leads to the access of unallocated memory region or memory corruption.
+Fix this bug by allocate with dp_reo_cache_flush_elem structure size.
+
+Signed-off-by: Karthikeyan Periyasamy <periyasa@codeaurora.org>
+---
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 7654f9a..c64beb5 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -568,7 +568,7 @@ static void ath11k_dp_rx_tid_del_func(struct ath11k_dp *dp, void *ctx,
+ 		return;
+ 	}
+ 
+-	elem = kzalloc(sizeof(elem), GFP_ATOMIC);
++	elem = kzalloc(sizeof(*elem), GFP_ATOMIC);
+ 	if (!elem) {
+ 		ath11k_warn(ab, "failed to allocate memory for cache flush element\n");
+ 		goto free_desc;
+-- 
+1.9.1
+
+
+_______________________________________________
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
