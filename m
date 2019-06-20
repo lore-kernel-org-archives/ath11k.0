@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1he2MY-0005cT-Vc
- for ath11k@lists.infradead.org; Thu, 20 Jun 2019 19:04:48 +0000
+ id 1he2Nd-0006xN-3c
+ for ath11k@lists.infradead.org; Thu, 20 Jun 2019 19:05:54 +0000
 From: Karthikeyan Periyasamy <periyasa@codeaurora.org>
-Subject: [PATCH] ath11k: fix unnecessary brace warnings
-Date: Fri, 21 Jun 2019 00:34:28 +0530
-Message-Id: <1561057468-542-1-git-send-email-periyasa@codeaurora.org>
+Subject: [PATCH] ath11k: fix Block comments warnings
+Date: Fri, 21 Jun 2019 00:35:33 +0530
+Message-Id: <1561057533-601-1-git-send-email-periyasa@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,87 +23,256 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: Karthikeyan Periyasamy <periyasa@codeaurora.org>
 
-drivers/net/wireless/ath/ath11k/core.c:193: braces {} are not necessary for single statement blocks
-drivers/net/wireless/ath/ath11k/dp_rx.c:1306: braces {} are not necessary for single statement blocks
-drivers/net/wireless/ath/ath11k/dp_rx.c:2647: braces {} are not necessary for single statement blocks
-drivers/net/wireless/ath/ath11k/dp_rx.c:2676: braces {} are not necessary for single statement blocks
-drivers/net/wireless/ath/ath11k/mac.c:5123: braces {} are not necessary for single statement blocks
+drivers/net/wireless/ath/ath11k/hal_desc.h:1382: Block comments should align the * on each line
+drivers/net/wireless/ath/ath11k/hal_desc.h:1440: Block comments should align the * on each line
+drivers/net/wireless/ath/ath11k/mac.c:3233: Block comments use a trailing */ on a separate line
 
 Signed-off-by: Karthikeyan Periyasamy <periyasa@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/core.c  |  3 +--
- drivers/net/wireless/ath/ath11k/dp_rx.c | 10 ++++------
- drivers/net/wireless/ath/ath11k/mac.c   |  3 +--
- 3 files changed, 6 insertions(+), 10 deletions(-)
+ drivers/net/wireless/ath/ath11k/hal_desc.h | 208 ++++++++++++++---------------
+ drivers/net/wireless/ath/ath11k/mac.c      |   3 +-
+ 2 files changed, 105 insertions(+), 106 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index ca80832..1ecbbd9 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -190,9 +190,8 @@ static int ath11k_core_fetch_board_data_api_n(struct ath11k_base *sc,
- 		bd->fw = ath11k_fetch_fw_file(sc,
- 					      sc->hw_params.fw.dir,
- 					      filename);
--	if (IS_ERR(bd->fw)) {
-+	if (IS_ERR(bd->fw))
- 		return PTR_ERR(bd->fw);
--	}
+diff --git a/drivers/net/wireless/ath/ath11k/hal_desc.h b/drivers/net/wireless/ath/ath11k/hal_desc.h
+index 99ab6f6..2b2f19a 100644
+--- a/drivers/net/wireless/ath/ath11k/hal_desc.h
++++ b/drivers/net/wireless/ath/ath11k/hal_desc.h
+@@ -1378,46 +1378,45 @@ struct hal_ce_srng_dest_desc {
+ 	u32 buffer_addr_info; /* %HAL_CE_DEST_DESC_ADDR_INFO_ */
+ } __packed;
  
- 	data = bd->fw->data;
- 	len = bd->fw->size;
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index a505e91..cec27a8 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -1253,9 +1253,8 @@ static int ath11k_htt_pull_ppdu_stats(struct ath11k_base *ab,
- 		goto exit;
- 	}
+-/*
+-* hal_ce_srng_dest_desc
+-*
+-* dst_buffer_low
+-*		LSB 32 bits of the 40 Bit Pointer to the Destination
+-*		buffer
+-*
+-* dst_buffer_high
+-*		MSB 8 bits of the 40 Bit Pointer to the Destination
+-*		buffer
+-*
+-* ce_res_4
+-*		Reserved
+-*
+-* ring_id
+-*		The buffer pointer ring ID.
+-*		0 refers to the IDLE ring
+-*		1 - N refers to other rings
+-*		Helps with debugging when dumping ring contents.
+-*
+-* looping_count
+-*		A count value that indicates the number of times the
+-*		producer of entries into the Ring has looped around the
+-*		ring.
+-*
+-*		At initialization time, this value is set to 0. On the
+-*		first loop, this value is set to 1. After the max value is
+-*		reached allowed by the number of bits for this field, the
+-*		count value continues with 0 again.
+-*
+-*		In case SW is the consumer of the ring entries, it can
+-*		use this field to figure out up to where the producer of
+-*		entries has created new entries. This eliminates the need to
+-*		check where the head pointer' of the ring is located once
+-*		the SW starts processing an interrupt indicating that new
+-*		entries have been put into this ring...
+-*
+-*		Also note that SW if it wants only needs to look at the
+-*		LSB bit of this count value.
+-*/
++/* hal_ce_srng_dest_desc
++ *
++ * dst_buffer_low
++ *		LSB 32 bits of the 40 Bit Pointer to the Destination
++ *		buffer
++ *
++ * dst_buffer_high
++ *		MSB 8 bits of the 40 Bit Pointer to the Destination
++ *		buffer
++ *
++ * ce_res_4
++ *		Reserved
++ *
++ * ring_id
++ *		The buffer pointer ring ID.
++ *		0 refers to the IDLE ring
++ *		1 - N refers to other rings
++ *		Helps with debugging when dumping ring contents.
++ *
++ * looping_count
++ *		A count value that indicates the number of times the
++ *		producer of entries into the Ring has looped around the
++ *		ring.
++ *
++ *		At initialization time, this value is set to 0. On the
++ *		first loop, this value is set to 1. After the max value is
++ *		reached allowed by the number of bits for this field, the
++ *		count value continues with 0 again.
++ *
++ *		In case SW is the consumer of the ring entries, it can
++ *		use this field to figure out up to where the producer of
++ *		entries has created new entries. This eliminates the need to
++ *		check where the head pointer' of the ring is located once
++ *		the SW starts processing an interrupt indicating that new
++ *		entries have been put into this ring...
++ *
++ *		Also note that SW if it wants only needs to look at the
++ *		LSB bit of this count value.
++ */
  
--	if (ath11k_debug_is_pktlog_lite_mode_enabled(ar)) {
-+	if (ath11k_debug_is_pktlog_lite_mode_enabled(ar))
- 		trace_ath11k_htt_ppdu_stats(ar, skb->data, len);
--	}
+ #define HAL_CE_DST_STATUS_DESC_FLAGS_HASH_EN		BIT(8)
+ #define HAL_CE_DST_STATUS_DESC_FLAGS_BYTE_SWAP		BIT(9)
+@@ -1436,71 +1435,70 @@ struct hal_ce_srng_dst_status_desc {
+ 	u32 meta_info; /* HAL_CE_DST_STATUS_DESC_META_INFO_ */
+ } __packed;
  
- 	ppdu_info = ath11k_dp_htt_get_ppdu_desc(ar, ppdu_id);
- 	if (!ppdu_info) {
-@@ -2596,9 +2595,8 @@ int ath11k_dp_rx_process_mon_status(struct ath11k_base *ab, int mac_id,
- 		memset(&ppdu_info, 0, sizeof(ppdu_info));
- 		ppdu_info.peer_id = HAL_INVALID_PEERID;
+-/*
+-* hal_ce_srng_dst_status_desc
+-*
+-* ce_res_5
+-*		Reserved
+-*
+-* toeplitz_en
+-*
+-* src_swap
+-*		Source memory buffer swapped
+-*
+-* dest_swap
+-*		Destination  memory buffer swapped
+-*
+-* gather
+-*		Gather of multiple copy engine source descriptors to one
+-*		destination enabled
+-*
+-* ce_res_6
+-*		Reserved
+-*
+-* length
+-*		Sum of all the Lengths of the source descriptor in the
+-*		gather chain
+-*
+-* toeplitz_hash_0
+-*		32 LS bits of 64 bit Toeplitz LFSR hash result
+-*
+-* toeplitz_hash_1
+-*		32 MS bits of 64 bit Toeplitz LFSR hash result
+-*
+-* fw_metadata
+-*		Meta data used by FW
+-*		In case of gather field in first source ring entry of
+-*		the gather copy cycle in taken into account.
+-*
+-* ce_res_7
+-*		Reserved
+-*
+-* ring_id
+-*		The buffer pointer ring ID.
+-*		0 refers to the IDLE ring
+-*		1 - N refers to other rings
+-*		Helps with debugging when dumping ring contents.
+-*
+-* looping_count
+-*		A count value that indicates the number of times the
+-*		producer of entries into the Ring has looped around the
+-*		ring.
+-*
+-*		At initialization time, this value is set to 0. On the
+-*		first loop, this value is set to 1. After the max value is
+-*		reached allowed by the number of bits for this field, the
+-*		count value continues with 0 again.
+-*
+-*		In case SW is the consumer of the ring entries, it can
+-*		use this field to figure out up to where the producer of
+-*		entries has created new entries. This eliminates the need to
+-*		check where the head pointer' of the ring is located once
+-*		the SW starts processing an interrupt indicating that new
+-*		entries have been put into this ring...
+-*
+-*		Also note that SW if it wants only needs to look at the
+-*			LSB bit of this count value.
+-*/
++/* hal_ce_srng_dst_status_desc
++ *
++ * ce_res_5
++ *		Reserved
++ *
++ * toeplitz_en
++ *
++ * src_swap
++ *		Source memory buffer swapped
++ *
++ * dest_swap
++ *		Destination  memory buffer swapped
++ *
++ * gather
++ *		Gather of multiple copy engine source descriptors to one
++ *		destination enabled
++ *
++ * ce_res_6
++ *		Reserved
++ *
++ * length
++ *		Sum of all the Lengths of the source descriptor in the
++ *		gather chain
++ *
++ * toeplitz_hash_0
++ *		32 LS bits of 64 bit Toeplitz LFSR hash result
++ *
++ * toeplitz_hash_1
++ *		32 MS bits of 64 bit Toeplitz LFSR hash result
++ *
++ * fw_metadata
++ *		Meta data used by FW
++ *		In case of gather field in first source ring entry of
++ *		the gather copy cycle in taken into account.
++ *
++ * ce_res_7
++ *		Reserved
++ *
++ * ring_id
++ *		The buffer pointer ring ID.
++ *		0 refers to the IDLE ring
++ *		1 - N refers to other rings
++ *		Helps with debugging when dumping ring contents.
++ *
++ * looping_count
++ *		A count value that indicates the number of times the
++ *		producer of entries into the Ring has looped around the
++ *		ring.
++ *
++ *		At initialization time, this value is set to 0. On the
++ *		first loop, this value is set to 1. After the max value is
++ *		reached allowed by the number of bits for this field, the
++ *		count value continues with 0 again.
++ *
++ *		In case SW is the consumer of the ring entries, it can
++ *		use this field to figure out up to where the producer of
++ *		entries has created new entries. This eliminates the need to
++ *		check where the head pointer' of the ring is located once
++ *		the SW starts processing an interrupt indicating that new
++ *		entries have been put into this ring...
++ *
++ *		Also note that SW if it wants only needs to look at the
++ *			LSB bit of this count value.
++ */
  
--		if (ath11k_debug_is_pktlog_rx_stats_enabled(ar)) {
-+		if (ath11k_debug_is_pktlog_rx_stats_enabled(ar))
- 			trace_ath11k_htt_rxdesc(ar, skb->data, DP_RX_BUFFER_SIZE);
--		}
- 
- 		hal_status = ath11k_hal_rx_parse_mon_status(ab, &ppdu_info,
- 							    (u8 *)skb->data);
-@@ -2625,9 +2623,9 @@ int ath11k_dp_rx_process_mon_status(struct ath11k_base *ab, int mac_id,
- 		arsta = (struct ath11k_sta *)peer->sta->drv_priv;
- 		ath11k_dp_rx_update_peer_stats(arsta, &ppdu_info);
- 
--		if (ath11k_debug_is_pktlog_peer_valid(ar, peer->addr)) {
-+		if (ath11k_debug_is_pktlog_peer_valid(ar, peer->addr))
- 			trace_ath11k_htt_rxdesc(ar, skb->data, DP_RX_BUFFER_SIZE);
--		}
-+
- 		spin_unlock_bh(&ab->data_lock);
- 		rcu_read_unlock();
- 
+ #define HAL_TX_RATE_STATS_INFO0_VALID		BIT(0)
+ #define HAL_TX_RATE_STATS_INFO0_BW		GENMASK(2, 1)
 diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index ee187de..613590e 100644
+index 613590e..23974be 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -5031,9 +5031,8 @@ static void ath11k_mac_disable_peer_fixed_rate(void *data,
- 	}
+@@ -3106,7 +3106,8 @@ static void ath11k_mac_setup_ht_vht_cap(struct ath11k *ar,
+ static int ath11k_check_chain_mask(struct ath11k *ar, u32 ant, bool is_tx_ant)
+ {
+ 	/* TODO: Check the request chainmask against the supported
+-	 * chainmask table which is advertised in extented_service_ready event */
++	 * chainmask table which is advertised in extented_service_ready event
++	 */
  
- 	ret = wait_for_completion_timeout(&ar->bss_survey_done, 3 * HZ);
--	if (ret == 0) {
-+	if (ret == 0)
- 		ath11k_warn(ar->ab, "bss channel survey timed out\n");
--	}
+ 	return 0;
  }
- 
- static int ath11k_get_survey(struct ieee80211_hw *hw, int idx,
 -- 
 1.9.1
 
