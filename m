@@ -1,12 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hfNTt-00050c-24
- for ath11k@lists.infradead.org; Mon, 24 Jun 2019 11:49:54 +0000
+ id 1hfNTv-000520-VG
+ for ath11k@lists.infradead.org; Mon, 24 Jun 2019 11:49:57 +0000
 From: Manikanta Pubbisetty <mpubbise@codeaurora.org>
-Subject: [PATCH 2/8] ath11k: make ath11k_mgmt_over_wmi_tx_*() functions static
-Date: Mon, 24 Jun 2019 17:19:23 +0530
-Message-Id: <1561376969-3999-2-git-send-email-mpubbise@codeaurora.org>
+Subject: [PATCH 3/8] ath11k: move ath11k_smps_map[] to the beginning of the
+ file
+Date: Mon, 24 Jun 2019 17:19:24 +0530
+Message-Id: <1561376969-3999-3-git-send-email-mpubbise@codeaurora.org>
 In-Reply-To: <1561376969-3999-1-git-send-email-mpubbise@codeaurora.org>
 References: <1561376969-3999-1-git-send-email-mpubbise@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,49 +26,45 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: Manikanta Pubbisetty <mpubbise@codeaurora.org>
 
-make ath11k_mgmt_over_wmi_tx_*() functions static in mac.c file.
+move ath11k_smps_map[] to the beginning of the file in mac.c .
 
 Signed-off-by: Manikanta Pubbisetty <mpubbise@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 4 ++--
- drivers/net/wireless/ath/ath11k/mac.h | 2 --
- 2 files changed, 2 insertions(+), 4 deletions(-)
+ drivers/net/wireless/ath/ath11k/mac.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 2e87b1a..e3bca88 100644
+index e3bca88..6c1b331 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -3382,7 +3382,7 @@ static int ath11k_mac_mgmt_tx_wmi(struct ath11k *ar, struct ath11k_vif *arvif,
- 	return ret;
+@@ -167,6 +167,13 @@ const struct htt_rx_ring_tlv_filter ath11k_mac_mon_status_filter_default = {
+ #define ath11k_a_rates (ath11k_legacy_rates + 4)
+ #define ath11k_a_rates_size (ARRAY_SIZE(ath11k_legacy_rates) - 4)
+ 
++static const u32 ath11k_smps_map[] = {
++	[WLAN_HT_CAP_SM_PS_STATIC] = WMI_PEER_SMPS_STATIC,
++	[WLAN_HT_CAP_SM_PS_DYNAMIC] = WMI_PEER_SMPS_DYNAMIC,
++	[WLAN_HT_CAP_SM_PS_INVALID] = WMI_PEER_SMPS_PS_NONE,
++	[WLAN_HT_CAP_SM_PS_DISABLED] = WMI_PEER_SMPS_PS_NONE,
++};
++
+ int ath11k_mac_hw_ratecode_to_legacy_rate(u8 hw_rc, u8 preamble, u8 *rateidx,
+ 					  u16 *rate)
+ {
+@@ -1503,13 +1510,6 @@ static void ath11k_peer_assoc_prepare(struct ath11k *ar,
+ 	/* TODO: amsdu_disable req? */
  }
  
--void ath11k_mgmt_over_wmi_tx_purge(struct ath11k *ar)
-+static void ath11k_mgmt_over_wmi_tx_purge(struct ath11k *ar)
- {
- 	struct sk_buff *skb;
- 
-@@ -3390,7 +3390,7 @@ void ath11k_mgmt_over_wmi_tx_purge(struct ath11k *ar)
- 		ieee80211_free_txskb(ar->hw, skb);
- }
- 
--void ath11k_mgmt_over_wmi_tx_work(struct work_struct *work)
-+static void ath11k_mgmt_over_wmi_tx_work(struct work_struct *work)
- {
- 	struct ath11k *ar = container_of(work, struct ath11k, wmi_mgmt_tx_work);
- 	struct ieee80211_tx_info *info;
-diff --git a/drivers/net/wireless/ath/ath11k/mac.h b/drivers/net/wireless/ath/ath11k/mac.h
-index 071fcbc..7ced4bc1 100644
---- a/drivers/net/wireless/ath/ath11k/mac.h
-+++ b/drivers/net/wireless/ath/ath11k/mac.h
-@@ -187,8 +187,6 @@ struct ath11k *ath11k_mac_get_ar_by_pdev_id(struct ath11k_base *ab, u32 pdev_id)
- struct ath11k *ath11k_mac_get_ar_vdev_stop_status(struct ath11k_base *ab,
- 						  u32 vdev_id);
- 
--void ath11k_mgmt_over_wmi_tx_work(struct work_struct *work);
--void ath11k_mgmt_over_wmi_tx_purge(struct ath11k *ar);
- void ath11k_mac_drain_tx(struct ath11k *ar);
- void ath11k_mac_peer_cleanup_all(struct ath11k *ar);
- int ath11k_mac_tx_mgmt_pending_free(int buf_id, void *skb, void *ctx);
+-static const u32 ath11k_smps_map[] = {
+-	[WLAN_HT_CAP_SM_PS_STATIC] = WMI_PEER_SMPS_STATIC,
+-	[WLAN_HT_CAP_SM_PS_DYNAMIC] = WMI_PEER_SMPS_DYNAMIC,
+-	[WLAN_HT_CAP_SM_PS_INVALID] = WMI_PEER_SMPS_PS_NONE,
+-	[WLAN_HT_CAP_SM_PS_DISABLED] = WMI_PEER_SMPS_PS_NONE,
+-};
+-
+ static int ath11k_setup_peer_smps(struct ath11k *ar, struct ath11k_vif *arvif,
+ 				  const u8 *addr,
+ 				  const struct ieee80211_sta_ht_cap *ht_cap)
 -- 
 2.7.4
 
