@@ -1,16 +1,17 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hfMey-0001lm-Fr
- for ath11k@lists.infradead.org; Mon, 24 Jun 2019 10:57:17 +0000
-MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k/dp: Cleanup type casting in WBM link descriptor
- setup
+ id 1hfMj8-0003Fl-8M
+ for ath11k@lists.infradead.org; Mon, 24 Jun 2019 11:01:35 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1561089055-7355-1-git-send-email-vthiagar@codeaurora.org>
-References: <1561089055-7355-1-git-send-email-vthiagar@codeaurora.org>
-Message-Id: <20190624105716.38DFF606DC@smtp.codeaurora.org>
-Date: Mon, 24 Jun 2019 10:57:16 +0000 (UTC)
+Subject: Re: [PATCH] ath11k: fix invalid memory access
+References: <1561056973-32524-1-git-send-email-periyasa@codeaurora.org>
+ <20190624105458.025FF609D4@smtp.codeaurora.org>
+Date: Mon, 24 Jun 2019 14:01:30 +0300
+In-Reply-To: <20190624105458.025FF609D4@smtp.codeaurora.org> (Kalle Valo's
+ message of "Mon, 24 Jun 2019 10:54:58 +0000 (UTC)")
+Message-ID: <87h88fw8l1.fsf@kamboji.qca.qualcomm.com>
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,29 +24,41 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
+To: Karthikeyan Periyasamy <periyasa@codeaurora.org>
 Cc: ath11k@lists.infradead.org
 
-Vasanthakumar Thiagarajan <vthiagar@codeaurora.org> wrote:
+Kalle Valo <kvalo@codeaurora.org> writes:
 
-> Change the type of virtual address of struct hal_wbm_idle_scatter_list
-> from u32 * to struct hal_wbm_link_desc *. This also makes the pointer
-> arithmetic simpler. This also fixes a bug in pointer arithmetic
-> on scatter buffer address. Scatter buffer address was incremented
-> by HAL_LINK_DESC_SIZE instead of sizeof(hal_wbm_link_desc).
-> 
-> Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+> Karthikeyan Periyasamy <periyasa@codeaurora.org> wrote:
+>
+>> dp_reo_cache_flush_elem element get dynamically allocated with invalid size
+>> which leads to the access of unallocated memory region or memory corruption.
+>> Fix this bug by allocate with dp_reo_cache_flush_elem structure size.
+>> 
+>> Signed-off-by: Karthikeyan Periyasamy <periyasa@codeaurora.org>
+>> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+>
+> 11 patches applied to ath11k-bringup branch of ath.git, thanks.
+>
+> f1df70c948f4 ath11k: fix invalid memory access
+> 3213345e51fc ath11k: Remove unnecessary whitespaces
+> 9d18a5b1d777 ath11k: Avoid blank lines related warning
+> e3b79f9ec2a4 ath11k: Avoid space related warning
+> dcc1fd37c6dd ath11k: Fix Alignment should match open parenthesis warning
+> d2b20789808d ath11k: Fix misspelled warnings
+> e4e738f422d4 ath11k: fix unnecessary brace warnings
+> 61bfed886e93 ath11k: fix Block comments warnings
+> 1e9c09edaba3 ath11k: fix SPDX comment style warnings
+> 6a82b2e7f17e ath11k: fix return statements on void function warnings
+> ff1effad0d9b ath11k: fix string split across warnings
 
-Patch applied to ath11k-bringup branch of ath.git, thanks.
-
-ec3e7d5d47a5 ath11k/dp: Cleanup type casting in WBM link descriptor setup
+BTW, you could have put all these checkpatch cleanup patches into one
+patchset (ie. one patcheset with 11 patches). Easier to manage them that
+way. If the patches are somehow related it's usually a good idea to
+combine them to the same patchset.
 
 -- 
-https://patchwork.kernel.org/patch/11008423/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
+Kalle Valo
 
 _______________________________________________
 ath11k mailing list
