@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hfNU5-0005ST-5c
- for ath11k@lists.infradead.org; Mon, 24 Jun 2019 11:50:06 +0000
+ id 1hfNU7-0005i0-7c
+ for ath11k@lists.infradead.org; Mon, 24 Jun 2019 11:50:08 +0000
 From: Manikanta Pubbisetty <mpubbise@codeaurora.org>
-Subject: [PATCH 7/8] ath11k: remove unnecessary parenthesis
-Date: Mon, 24 Jun 2019 17:19:28 +0530
-Message-Id: <1561376969-3999-7-git-send-email-mpubbise@codeaurora.org>
+Subject: [PATCH 8/8] ath11k: use switch statement when necessary
+Date: Mon, 24 Jun 2019 17:19:29 +0530
+Message-Id: <1561376969-3999-8-git-send-email-mpubbise@codeaurora.org>
 In-Reply-To: <1561376969-3999-1-git-send-email-mpubbise@codeaurora.org>
 References: <1561376969-3999-1-git-send-email-mpubbise@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,26 +25,59 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: Manikanta Pubbisetty <mpubbise@codeaurora.org>
 
-Remove unnecessary parenthesis in mac.c file.
+use switch statement instead of mutliple if statements in
+ath11k_mac_op_add_interface() in mac.c file.
 
 Signed-off-by: Manikanta Pubbisetty <mpubbise@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/mac.c | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 2fd1bfc..2274f77 100644
+index 2274f77..fa92cf7 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -2365,7 +2365,7 @@ static int ath11k_station_assoc(struct ath11k *ar,
- 			return ret;
+@@ -3828,7 +3828,8 @@ static int ath11k_mac_op_add_interface(struct ieee80211_hw *hw,
+ 		goto err_vdev_del;
  	}
  
--	if ((sta->wme && sta->uapsd_queues)) {
-+	if (sta->wme && sta->uapsd_queues) {
- 		ret = ath11k_peer_assoc_qos_ap(ar, arvif, sta);
+-	if (arvif->vdev_type == WMI_VDEV_TYPE_AP) {
++	switch (arvif->vdev_type) {
++	case WMI_VDEV_TYPE_AP:
+ 		peer_param.vdev_id = arvif->vdev_id;
+ 		peer_param.peer_addr = vif->addr;
+ 		peer_param.peer_type = WMI_PEER_TYPE_DEFAULT;
+@@ -3838,18 +3839,15 @@ static int ath11k_mac_op_add_interface(struct ieee80211_hw *hw,
+ 				    arvif->vdev_id, ret);
+ 			goto err_vdev_del;
+ 		}
+-	}
+ 
+-	if (arvif->vdev_type == WMI_VDEV_TYPE_AP) {
+ 		ret = ath11k_mac_set_kickout(arvif);
  		if (ret) {
- 			ath11k_warn(ar->ab, "failed to set qos params for STA %pM for vdev %i: %d\n",
+ 			ath11k_warn(ar->ab, "failed to set vdev %i kickout parameters: %d\n",
+ 				    arvif->vdev_id, ret);
+ 			goto err_peer_del;
+ 		}
+-	}
+-
+-	if (arvif->vdev_type == WMI_VDEV_TYPE_STA) {
++		break;
++	case WMI_VDEV_TYPE_STA:
+ 		param_id = WMI_STA_PS_PARAM_RX_WAKE_POLICY;
+ 		param_value = WMI_STA_PS_RX_WAKE_POLICY_WAKE;
+ 		ret = ath11k_wmi_set_sta_ps_param(ar, arvif->vdev_id,
+@@ -3879,6 +3877,9 @@ static int ath11k_mac_op_add_interface(struct ieee80211_hw *hw,
+ 				    arvif->vdev_id, ret);
+ 			goto err_peer_del;
+ 		}
++		break;
++	default:
++		break;
+ 	}
+ 
+ 	arvif->txpower = vif->bss_conf.txpower;
 -- 
 2.7.4
 
