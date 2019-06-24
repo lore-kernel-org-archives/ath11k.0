@@ -1,14 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hfNU7-0005i0-7c
- for ath11k@lists.infradead.org; Mon, 24 Jun 2019 11:50:08 +0000
-From: Manikanta Pubbisetty <mpubbise@codeaurora.org>
-Subject: [PATCH 8/8] ath11k: use switch statement when necessary
-Date: Mon, 24 Jun 2019 17:19:29 +0530
-Message-Id: <1561376969-3999-8-git-send-email-mpubbise@codeaurora.org>
-In-Reply-To: <1561376969-3999-1-git-send-email-mpubbise@codeaurora.org>
-References: <1561376969-3999-1-git-send-email-mpubbise@codeaurora.org>
+ id 1hfSSx-0005Nz-Vt
+ for ath11k@lists.infradead.org; Mon, 24 Jun 2019 17:09:17 +0000
+From: Muna Sinada <msinada@codeaurora.org>
+Subject: [PATCH 1/5] ath11k: removed duplicated functionality
+Date: Mon, 24 Jun 2019 10:08:57 -0700
+Message-Id: <1561396141-23382-1-git-send-email-msinada@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,61 +21,34 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
-Cc: Manikanta Pubbisetty <mpubbise@codeaurora.org>
+Cc: Muna Sinada <msinada@codeaurora.org>
 
-use switch statement instead of mutliple if statements in
-ath11k_mac_op_add_interface() in mac.c file.
+Removed duplicated functionality in ath11k_hal_desc_reo_parse_err() and
+replaced with function call to ath11k_hal_rx_reo_entl_paddr_get().
 
-Signed-off-by: Manikanta Pubbisetty <mpubbise@codeaurora.org>
+Signed-off-by: Muna Sinada <msinada@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 13 +++++++------
- 1 file changed, 7 insertions(+), 6 deletions(-)
+ drivers/net/wireless/ath/ath11k/hal_rx.c | 7 +------
+ 1 file changed, 1 insertion(+), 6 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 2274f77..fa92cf7 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -3828,7 +3828,8 @@ static int ath11k_mac_op_add_interface(struct ieee80211_hw *hw,
- 		goto err_vdev_del;
+diff --git a/drivers/net/wireless/ath/ath11k/hal_rx.c b/drivers/net/wireless/ath/ath11k/hal_rx.c
+index 76b93f6c33cd..2d2d5cd5ea5f 100644
+--- a/drivers/net/wireless/ath/ath11k/hal_rx.c
++++ b/drivers/net/wireless/ath/ath11k/hal_rx.c
+@@ -351,12 +351,7 @@ int ath11k_hal_desc_reo_parse_err(struct ath11k_base *ab, u32 *rx_desc,
+ 		return -EINVAL;
  	}
  
--	if (arvif->vdev_type == WMI_VDEV_TYPE_AP) {
-+	switch (arvif->vdev_type) {
-+	case WMI_VDEV_TYPE_AP:
- 		peer_param.vdev_id = arvif->vdev_id;
- 		peer_param.peer_addr = vif->addr;
- 		peer_param.peer_type = WMI_PEER_TYPE_DEFAULT;
-@@ -3838,18 +3839,15 @@ static int ath11k_mac_op_add_interface(struct ieee80211_hw *hw,
- 				    arvif->vdev_id, ret);
- 			goto err_vdev_del;
- 		}
--	}
+-	*paddr = (((u64)FIELD_GET(BUFFER_ADDR_INFO1_ADDR,
+-				  desc->buf_addr_info.info1)) << 32) |
+-		FIELD_GET(BUFFER_ADDR_INFO0_ADDR,
+-			  desc->buf_addr_info.info0);
+-	*desc_bank = FIELD_GET(BUFFER_ADDR_INFO1_SW_COOKIE,
+-			       desc->buf_addr_info.info1);
++	ath11k_hal_rx_reo_ent_paddr_get(ab, rx_desc, paddr, desc_bank);
  
--	if (arvif->vdev_type == WMI_VDEV_TYPE_AP) {
- 		ret = ath11k_mac_set_kickout(arvif);
- 		if (ret) {
- 			ath11k_warn(ar->ab, "failed to set vdev %i kickout parameters: %d\n",
- 				    arvif->vdev_id, ret);
- 			goto err_peer_del;
- 		}
--	}
--
--	if (arvif->vdev_type == WMI_VDEV_TYPE_STA) {
-+		break;
-+	case WMI_VDEV_TYPE_STA:
- 		param_id = WMI_STA_PS_PARAM_RX_WAKE_POLICY;
- 		param_value = WMI_STA_PS_RX_WAKE_POLICY_WAKE;
- 		ret = ath11k_wmi_set_sta_ps_param(ar, arvif->vdev_id,
-@@ -3879,6 +3877,9 @@ static int ath11k_mac_op_add_interface(struct ieee80211_hw *hw,
- 				    arvif->vdev_id, ret);
- 			goto err_peer_del;
- 		}
-+		break;
-+	default:
-+		break;
- 	}
- 
- 	arvif->txpower = vif->bss_conf.txpower;
+ 	return 0;
+ }
 -- 
 2.7.4
 
