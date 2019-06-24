@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hfMdb-0001er-In
- for ath11k@lists.infradead.org; Mon, 24 Jun 2019 10:55:52 +0000
+ id 1hfMeI-0001ik-L1
+ for ath11k@lists.infradead.org; Mon, 24 Jun 2019 10:56:38 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: fix possible mem leak in extd tx stats
+Subject: Re: [PATCH] ath11k: clean up in qmi_txn_wait error code handling
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1561094024-32433-1-git-send-email-vnaralas@codeaurora.org>
-References: <1561094024-32433-1-git-send-email-vnaralas@codeaurora.org>
-Message-Id: <20190624105551.0244B60746@smtp.codeaurora.org>
-Date: Mon, 24 Jun 2019 10:55:50 +0000 (UTC)
+In-Reply-To: <1561115853-18202-1-git-send-email-gsamin@codeaurora.org>
+References: <1561115853-18202-1-git-send-email-gsamin@codeaurora.org>
+Message-Id: <20190624105634.60F0660741@smtp.codeaurora.org>
+Date: Mon, 24 Jun 2019 10:56:34 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,23 +22,24 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Venkateswara Naralasetty <vnaralas@codeaurora.org>
+To: Govindaraj Saminathan <gsamin@codeaurora.org>
 Cc: ath11k@lists.infradead.org
 
-Venkateswara Naralasetty <vnaralas@codeaurora.org> wrote:
+Govindaraj Saminathan <gsamin@codeaurora.org> wrote:
 
-> This patch fix the memory leak in extd tx stats.
+> qmi_txn_wait functions resp.resp.result is assigned to ret
+> variable and then returned from the function. The functions should
+> not return error codes from firmware, instead it should return -EINVAL.
 > 
-> Signed-off-by: Venkateswara Naralasetty <vnaralas@codeaurora.org>
+> Signed-off-by: Govindaraj Saminathan <gsamin@codeaurora.org>
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-2 patches applied to ath11k-bringup branch of ath.git, thanks.
+Patch applied to ath11k-bringup branch of ath.git, thanks.
 
-a3ba6e2f28a5 ath11k: fix possible mem leak in extd tx stats
-b9e30f01194c ath11k: fix line over 90 characters warnings
+d5fff50f82df ath11k: clean up in qmi_txn_wait error code handling
 
 -- 
-https://patchwork.kernel.org/patch/11008437/
+https://patchwork.kernel.org/patch/11009821/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
