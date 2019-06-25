@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hfcq3-0003G5-E9
- for ath11k@lists.infradead.org; Tue, 25 Jun 2019 04:13:48 +0000
+ id 1hfcq4-0003HD-S8
+ for ath11k@lists.infradead.org; Tue, 25 Jun 2019 04:13:50 +0000
 From: Karthikeyan Periyasamy <periyasa@codeaurora.org>
-Subject: [PATCH 3/5] ath11k: fix space related warnings
-Date: Tue, 25 Jun 2019 09:43:17 +0530
-Message-Id: <1561435999-28316-3-git-send-email-periyasa@codeaurora.org>
+Subject: [PATCH 4/5] ath11k: avoid min() warning
+Date: Tue, 25 Jun 2019 09:43:18 +0530
+Message-Id: <1561435999-28316-4-git-send-email-periyasa@codeaurora.org>
 In-Reply-To: <1561435999-28316-1-git-send-email-periyasa@codeaurora.org>
 References: <1561435999-28316-1-git-send-email-periyasa@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,60 +25,30 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: Karthikeyan Periyasamy <periyasa@codeaurora.org>
 
-drivers/net/wireless/ath/ath11k/dp.h:1482: Please don't use multiple blank lines
-drivers/net/wireless/ath/ath11k/dp_rx.c:1072: code indent should use tabs where possible
-drivers/net/wireless/ath/ath11k/dp_rx.c:1075: code indent should use tabs where possible
-drivers/net/wireless/ath/ath11k/wmi.c:2321: "(foo*)" should be "(foo *)"
+drivers/net/wireless/ath/ath11k/mac.c:4921: min() should probably be min_t(u32, ar->num_tx_chains, max(ath11k_mac_max_ht_nss(ht_mcs_mask),
 
 Signed-off-by: Karthikeyan Periyasamy <periyasa@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/dp.h    | 1 -
- drivers/net/wireless/ath/ath11k/dp_rx.c | 4 ++--
- drivers/net/wireless/ath/ath11k/wmi.c   | 2 +-
- 3 files changed, 3 insertions(+), 4 deletions(-)
+ drivers/net/wireless/ath/ath11k/mac.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
-index d533d7e..bda5ac2 100644
---- a/drivers/net/wireless/ath/ath11k/dp.h
-+++ b/drivers/net/wireless/ath/ath11k/dp.h
-@@ -1482,7 +1482,6 @@ struct ath11k_htt_extd_stats_msg {
- 	u8 data[0];
- } __packed;
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 7a6c927..1c437b2 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -4920,9 +4920,9 @@ static void ath11k_mac_disable_peer_fixed_rate(void *data,
+ 		nss = single_nss;
+ 	} else {
+ 		rate = WMI_FIXED_RATE_NONE;
+-		nss = min((u32)ar->num_tx_chains,
+-			  max(ath11k_mac_max_ht_nss(ht_mcs_mask),
+-			      ath11k_mac_max_vht_nss(vht_mcs_mask)));
++		nss = min_t(u32, ar->num_tx_chains,
++			    max(ath11k_mac_max_ht_nss(ht_mcs_mask),
++				ath11k_mac_max_vht_nss(vht_mcs_mask)));
  
--
- struct htt_mac_addr {
- 	u32 mac_addr_l32;
- 	u32 mac_addr_h16;
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 17be3cc..0158f90 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -1069,10 +1069,10 @@ static u32 ath11k_bw_to_mac80211_bwflags(u8 bw)
- 	mcs = HTT_USR_RATE_MCS(user_rate->rate_flags);
- 	sgi = HTT_USR_RATE_GI(user_rate->rate_flags);
- 
--        /* Note: If host configured fixed rates and in some other special
-+	/* Note: If host configured fixed rates and in some other special
- 	 * cases, the broadcast/management frames are sent in different rates.
- 	 * Firmware rate's control to be skipped for this?
--         */
-+	 */
- 
- 	if (flags == WMI_RATE_PREAMBLE_VHT && mcs > 9) {
- 		ath11k_warn(ab, "Invalid VHT mcs %hhd peer stats",  mcs);
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 085ee32..f56db77 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -2318,7 +2318,7 @@ int ath11k_wmi_pdev_peer_pktlog_filter(struct ath11k *ar, u8 *addr, u8 enable)
- 		      FIELD_PREP(WMI_TLV_LEN, 0);
- 
- 	ptr += TLV_HDR_SIZE;
--	info = (struct wmi_pdev_pktlog_filter_info*)ptr;
-+	info = (struct wmi_pdev_pktlog_filter_info *)ptr;
- 
- 	ether_addr_copy(info->peer_macaddr.addr, addr);
- 	info->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_PDEV_PEER_PKTLOG_FILTER_INFO) |
+ 		/* If multiple rates across different preambles are given
+ 		 * we can reconfigure this info with all peers using PEER_ASSOC
 -- 
 1.9.1
 
