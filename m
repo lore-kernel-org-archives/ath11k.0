@@ -1,14 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hfqGJ-0002xz-JL
- for ath11k@lists.infradead.org; Tue, 25 Jun 2019 18:33:48 +0000
+ id 1hfqGG-0002xA-Cp
+ for ath11k@lists.infradead.org; Tue, 25 Jun 2019 18:33:45 +0000
 From: Muna Sinada <msinada@codeaurora.org>
-Subject: [PATCH 4/4] ath11k: added RMB to return_buffer_manager description
-Date: Tue, 25 Jun 2019 11:33:34 -0700
-Message-Id: <1561487614-24577-4-git-send-email-msinada@codeaurora.org>
-In-Reply-To: <1561487614-24577-1-git-send-email-msinada@codeaurora.org>
-References: <1561487614-24577-1-git-send-email-msinada@codeaurora.org>
+Subject: [PATCH 1/4] ath11k: removed duplicated functionality
+Date: Tue, 25 Jun 2019 11:33:31 -0700
+Message-Id: <1561487614-24577-1-git-send-email-msinada@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -25,27 +23,32 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: Muna Sinada <msinada@codeaurora.org>
 
-Added "(RBM)" to return_buffer_manager description to clarify what it
-stands for when utilized.
+Removed duplicated functionality in ath11k_hal_desc_reo_parse_err() and
+replaced with function call to ath11k_hal_rx_reo_entl_paddr_get().
 
 Signed-off-by: Muna Sinada <msinada@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/hal_desc.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/hal_rx.c | 7 +------
+ 1 file changed, 1 insertion(+), 6 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/hal_desc.h b/drivers/net/wireless/ath/ath11k/hal_desc.h
-index 32b8ccbd06f0..62741bf792c6 100644
---- a/drivers/net/wireless/ath/ath11k/hal_desc.h
-+++ b/drivers/net/wireless/ath/ath11k/hal_desc.h
-@@ -26,7 +26,7 @@ struct ath11k_buffer_addr {
-  *		Address (upper 8 bits) of the msdu buffer or msdu extension
-  *		descriptor or Link descriptor
-  *
-- * return_buffer_manager
-+ * return_buffer_manager (RBM)
-  *		Consumer: WBM
-  *		Producer: SW/FW
-  *		Indicates to which buffer manager the buffer or MSDU_EXTENSION
+diff --git a/drivers/net/wireless/ath/ath11k/hal_rx.c b/drivers/net/wireless/ath/ath11k/hal_rx.c
+index 76b93f6c33cd..2d2d5cd5ea5f 100644
+--- a/drivers/net/wireless/ath/ath11k/hal_rx.c
++++ b/drivers/net/wireless/ath/ath11k/hal_rx.c
+@@ -351,12 +351,7 @@ int ath11k_hal_desc_reo_parse_err(struct ath11k_base *ab, u32 *rx_desc,
+ 		return -EINVAL;
+ 	}
+ 
+-	*paddr = (((u64)FIELD_GET(BUFFER_ADDR_INFO1_ADDR,
+-				  desc->buf_addr_info.info1)) << 32) |
+-		FIELD_GET(BUFFER_ADDR_INFO0_ADDR,
+-			  desc->buf_addr_info.info0);
+-	*desc_bank = FIELD_GET(BUFFER_ADDR_INFO1_SW_COOKIE,
+-			       desc->buf_addr_info.info1);
++	ath11k_hal_rx_reo_ent_paddr_get(ab, rx_desc, paddr, desc_bank);
+ 
+ 	return 0;
+ }
 -- 
 2.7.4
 
