@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hfmME-000156-SF
- for ath11k@lists.infradead.org; Tue, 25 Jun 2019 14:23:40 +0000
+ id 1hfmPS-0002qR-3N
+ for ath11k@lists.infradead.org; Tue, 25 Jun 2019 14:26:59 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH 1/8] ath11k: correct prefix for public functions in mac.c
+Subject: Re: [PATCH 1/5] ath11k: fix variable name warnings
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1561376969-3999-1-git-send-email-mpubbise@codeaurora.org>
-References: <1561376969-3999-1-git-send-email-mpubbise@codeaurora.org>
-Message-Id: <20190625142338.3F6B46016D@smtp.codeaurora.org>
-Date: Tue, 25 Jun 2019 14:23:38 +0000 (UTC)
+In-Reply-To: <1561435999-28316-1-git-send-email-periyasa@codeaurora.org>
+References: <1561435999-28316-1-git-send-email-periyasa@codeaurora.org>
+Message-Id: <20190625142657.C134A6028D@smtp.codeaurora.org>
+Date: Tue, 25 Jun 2019 14:26:57 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,30 +22,30 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Manikanta Pubbisetty <mpubbise@codeaurora.org>
+To: Karthikeyan Periyasamy <periyasa@codeaurora.org>
 Cc: ath11k@lists.infradead.org
 
-Manikanta Pubbisetty <mpubbise@codeaurora.org> wrote:
+Karthikeyan Periyasamy <periyasa@codeaurora.org> wrote:
 
-> Use ath11k_mac_ prefix for all public functions defined
-> in mac.c file.
+> drivers/net/wireless/ath/ath11k/wmi.h:2728: <BK_Minfree>
+> drivers/net/wireless/ath/ath11k/wmi.h:2729: <BE_Minfree>
+> drivers/net/wireless/ath/ath11k/wmi.h:2730: <VI_Minfree>
+> drivers/net/wireless/ath/ath11k/wmi.h:2731: <VO_Minfree>
+> drivers/net/wireless/ath/ath11k/wmi.h:2965: <bcn_txPower>
 > 
-> Signed-off-by: Manikanta Pubbisetty <mpubbise@codeaurora.org>
+> Signed-off-by: Karthikeyan Periyasamy <periyasa@codeaurora.org>
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-8 patches applied to ath11k-bringup branch of ath.git, thanks.
+5 patches applied to ath11k-bringup branch of ath.git, thanks.
 
-82ca15f54e9f ath11k: correct prefix for public functions in mac.c
-aa9fe5e5483c ath11k: make ath11k_mgmt_over_wmi_tx_*() functions static
-8119fc4fb9b1 ath11k: move ath11k_smps_map[] to the beginning of the file
-8d1a7d05b34e ath11k: use ath11k_mac_op_ prefix for functions in ath11k_ops
-1306a30c2052 ath11k: add approprite comments for no-op functions
-ee997259ac6b ath11k: avoid use of magic numbers
-ba7f9b8c7ffa ath11k: remove unnecessary parenthesis
-e6d0f2ebd5c8 ath11k: use switch statement when necessary
+1f200e02d5c1 ath11k: fix variable name warnings
+323d5816437a ath11k: avoid unnecessary 'out of memory' message
+f94a9da4292b ath11k: fix space related warnings
+e8ab43824092 ath11k: avoid min() warning
+4fed41ea71bf ath11k: fix brace warning
 
 -- 
-https://patchwork.kernel.org/patch/11012929/
+https://patchwork.kernel.org/patch/11014649/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
