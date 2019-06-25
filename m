@@ -1,12 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hfkE8-0002OF-Po
- for ath11k@lists.infradead.org; Tue, 25 Jun 2019 12:07:10 +0000
-From: Govindaraj Saminathan <gsamin@codeaurora.org>
-Subject: [PATCH] ath11k: adding return variable in ath11k_qmi_firmware_stop
-Date: Tue, 25 Jun 2019 17:36:56 +0530
-Message-Id: <1561464416-20553-1-git-send-email-gsamin@codeaurora.org>
+ id 1hfmME-000156-SF
+ for ath11k@lists.infradead.org; Tue, 25 Jun 2019 14:23:40 +0000
+MIME-Version: 1.0
+Subject: Re: [PATCH 1/8] ath11k: correct prefix for public functions in mac.c
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <1561376969-3999-1-git-send-email-mpubbise@codeaurora.org>
+References: <1561376969-3999-1-git-send-email-mpubbise@codeaurora.org>
+Message-Id: <20190625142338.3F6B46016D@smtp.codeaurora.org>
+Date: Tue, 25 Jun 2019 14:23:38 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -15,40 +18,36 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: Govindaraj Saminathan <gsamin@codeaurora.org>
+To: Manikanta Pubbisetty <mpubbise@codeaurora.org>
+Cc: ath11k@lists.infradead.org
 
-adding return variable in ath11k_qmi_firmware_stop to check
-the status of mode_off command.
+Manikanta Pubbisetty <mpubbise@codeaurora.org> wrote:
 
-Signed-off-by: Govindaraj Saminathan <gsamin@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/qmi.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+> Use ath11k_mac_ prefix for all public functions defined
+> in mac.c file.
+> 
+> Signed-off-by: Manikanta Pubbisetty <mpubbise@codeaurora.org>
+> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index eb86fae..f735b7f 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.c
-+++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -2110,7 +2110,10 @@ static int ath11k_qmi_wlanfw_wlan_cfg_send(struct ath11k_base *ab)
- 
- void ath11k_qmi_firmware_stop(struct ath11k_base *ab)
- {
--	if (ath11k_qmi_wlanfw_mode_send(ab, ATH11K_FIRMWARE_MODE_OFF) < 0) {
-+	int ret;
-+
-+	ret = ath11k_qmi_wlanfw_mode_send(ab, ATH11K_FIRMWARE_MODE_OFF);
-+	if (ret < 0) {
- 		ath11k_warn(ab, "qmi failed to send wlan mode off\n");
- 		return;
- 	}
+8 patches applied to ath11k-bringup branch of ath.git, thanks.
+
+82ca15f54e9f ath11k: correct prefix for public functions in mac.c
+aa9fe5e5483c ath11k: make ath11k_mgmt_over_wmi_tx_*() functions static
+8119fc4fb9b1 ath11k: move ath11k_smps_map[] to the beginning of the file
+8d1a7d05b34e ath11k: use ath11k_mac_op_ prefix for functions in ath11k_ops
+1306a30c2052 ath11k: add approprite comments for no-op functions
+ee997259ac6b ath11k: avoid use of magic numbers
+ba7f9b8c7ffa ath11k: remove unnecessary parenthesis
+e6d0f2ebd5c8 ath11k: use switch statement when necessary
+
 -- 
-1.9.1
+https://patchwork.kernel.org/patch/11012929/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 
 _______________________________________________
