@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hfcq4-0003HD-S8
- for ath11k@lists.infradead.org; Tue, 25 Jun 2019 04:13:50 +0000
+ id 1hfcq6-0003I5-ET
+ for ath11k@lists.infradead.org; Tue, 25 Jun 2019 04:13:51 +0000
 From: Karthikeyan Periyasamy <periyasa@codeaurora.org>
-Subject: [PATCH 4/5] ath11k: avoid min() warning
-Date: Tue, 25 Jun 2019 09:43:18 +0530
-Message-Id: <1561435999-28316-4-git-send-email-periyasa@codeaurora.org>
+Subject: [PATCH 5/5] ath11k: fix brace warning
+Date: Tue, 25 Jun 2019 09:43:19 +0530
+Message-Id: <1561435999-28316-5-git-send-email-periyasa@codeaurora.org>
 In-Reply-To: <1561435999-28316-1-git-send-email-periyasa@codeaurora.org>
 References: <1561435999-28316-1-git-send-email-periyasa@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,30 +25,27 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: Karthikeyan Periyasamy <periyasa@codeaurora.org>
 
-drivers/net/wireless/ath/ath11k/mac.c:4921: min() should probably be min_t(u32, ar->num_tx_chains, max(ath11k_mac_max_ht_nss(ht_mcs_mask),
+drivers/net/wireless/ath/ath11k/dp_rx.c:1287: that open brace { should be on the previous line
 
 Signed-off-by: Karthikeyan Periyasamy <periyasa@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 7a6c927..1c437b2 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -4920,9 +4920,9 @@ static void ath11k_mac_disable_peer_fixed_rate(void *data,
- 		nss = single_nss;
- 	} else {
- 		rate = WMI_FIXED_RATE_NONE;
--		nss = min((u32)ar->num_tx_chains,
--			  max(ath11k_mac_max_ht_nss(ht_mcs_mask),
--			      ath11k_mac_max_vht_nss(vht_mcs_mask)));
-+		nss = min_t(u32, ar->num_tx_chains,
-+			    max(ath11k_mac_max_ht_nss(ht_mcs_mask),
-+				ath11k_mac_max_vht_nss(vht_mcs_mask)));
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 0158f90..7d49b3f 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -1284,8 +1284,7 @@ static void ath11k_htt_pktlog(struct ath11k_base *ab, struct sk_buff *skb)
  
- 		/* If multiple rates across different preambles are given
- 		 * we can reconfigure this info with all peers using PEER_ASSOC
+ 	len = FIELD_GET(HTT_T2H_PPDU_STATS_INFO_PAYLOAD_SIZE, data->hdr);
+ 
+-	if (len > ATH11K_HTT_PKTLOG_MAX_SIZE)
+-	{
++	if (len > ATH11K_HTT_PKTLOG_MAX_SIZE) {
+ 		ath11k_warn(ab, "htt pktlog buffer size %d, expected < %d\n",
+ 			    len,
+ 			    ATH11K_HTT_PKTLOG_MAX_SIZE);
 -- 
 1.9.1
 
