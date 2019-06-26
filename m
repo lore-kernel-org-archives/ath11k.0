@@ -1,19 +1,20 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hg6ii-0001ar-Rj
- for ath11k@lists.infradead.org; Wed, 26 Jun 2019 12:08:16 +0000
+ id 1hg6ik-0001bp-UM
+ for ath11k@lists.infradead.org; Wed, 26 Jun 2019 12:08:17 +0000
 Received: from vasanth-lnx.qca.qualcomm.com
  (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
  (No client certificate requested)
  (Authenticated sender: vthiagar@smtp.codeaurora.org)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 4F46860A05
- for <ath11k@lists.infradead.org>; Wed, 26 Jun 2019 12:08:10 +0000 (UTC)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 5BBD660A05
+ for <ath11k@lists.infradead.org>; Wed, 26 Jun 2019 12:08:12 +0000 (UTC)
 From: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
-Subject: [PATCH 2/4] ath11k/wmi: Clean up few indentations in wmi
-Date: Wed, 26 Jun 2019 17:37:38 +0530
-Message-Id: <1561550860-2928-2-git-send-email-vthiagar@codeaurora.org>
+Subject: [PATCH 4/4] ath11k/wmi: Clean up function parameter list in wmi event
+ handlers
+Date: Wed, 26 Jun 2019 17:37:40 +0530
+Message-Id: <1561550860-2928-4-git-send-email-vthiagar@codeaurora.org>
 In-Reply-To: <1561550860-2928-1-git-send-email-vthiagar@codeaurora.org>
 References: <1561550860-2928-1-git-send-email-vthiagar@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -31,454 +32,780 @@ Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 
-Also make ath11k_hw_mode_pri_map[] static const.
+Instead of passing skb->data and skb->len to the wmi event handlers
+pass skb itself and retrieve data and len from inside the handlers from
+skb.
 
 Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/wmi.c | 187 +++++++++++++++-------------------
- 1 file changed, 80 insertions(+), 107 deletions(-)
+ drivers/net/wireless/ath/ath11k/debug.c |   4 +-
+ drivers/net/wireless/ath/ath11k/debug.h |   7 +-
+ drivers/net/wireless/ath/ath11k/wmi.c   | 212 +++++++++++++++-----------------
+ drivers/net/wireless/ath/ath11k/wmi.h   |   2 +-
+ 4 files changed, 103 insertions(+), 122 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 9b0c7d4..6807ee5 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -102,7 +102,7 @@ struct wmi_tlv_rdy_parse {
- #define PRIMAP(_hw_mode_) \
- 	[_hw_mode_] = _hw_mode_##_PRI
- 
--static int ath11k_hw_mode_pri_map[] = {
-+static const int ath11k_hw_mode_pri_map[] = {
- 	PRIMAP(WMI_HOST_HW_MODE_SINGLE),
- 	PRIMAP(WMI_HOST_HW_MODE_DBS),
- 	PRIMAP(WMI_HOST_HW_MODE_SBS_PASSIVE),
-@@ -254,17 +254,18 @@ int ath11k_wmi_cmd_send(struct ath11k_pdev_wmi *wmi, struct sk_buff *skb,
- 	return ret;
+diff --git a/drivers/net/wireless/ath/ath11k/debug.c b/drivers/net/wireless/ath/ath11k/debug.c
+index 6aa260c..76cbd22 100644
+--- a/drivers/net/wireless/ath/ath11k/debug.c
++++ b/drivers/net/wireless/ath/ath11k/debug.c
+@@ -166,7 +166,7 @@ static void ath11k_debug_fw_stats_reset(struct ath11k *ar)
+ 	spin_unlock_bh(&ar->data_lock);
  }
  
--static int ath11k_pull_service_ready_ext(
--		struct ath11k_pdev_wmi *wmi_handle,
--		struct wmi_service_ready_ext_event *ev,
--		struct ath11k_service_ext_param *param)
-+static int ath11k_pull_svc_ready_ext(struct ath11k_pdev_wmi *wmi_handle,
-+				     const void *ptr,
-+				     struct ath11k_service_ext_param *param)
+-void ath11k_debug_fw_stats_process(struct ath11k_base *ab, u8 *evt_buf, u32 len)
++void ath11k_debug_fw_stats_process(struct ath11k_base *ab, struct sk_buff *skb)
  {
-+	struct wmi_service_ready_ext_event *ev;
-+
-+	ev = (struct wmi_service_ready_ext_event *)ptr;
+ 	struct ath11k_fw_stats stats = {};
+ 	struct ath11k *ar;
+@@ -184,7 +184,7 @@ void ath11k_debug_fw_stats_process(struct ath11k_base *ab, u8 *evt_buf, u32 len)
+ 	INIT_LIST_HEAD(&stats.bcn);
+ 	INIT_LIST_HEAD(&stats.peers_extd);
+ 
+-	ret = ath11k_wmi_pull_fw_stats(ab, evt_buf, len, &stats);
++	ret = ath11k_wmi_pull_fw_stats(ab, skb, &stats);
+ 	if (ret) {
+ 		ath11k_warn(ab, "failed to pull fw stats: %d\n", ret);
+ 		goto free;
+diff --git a/drivers/net/wireless/ath/ath11k/debug.h b/drivers/net/wireless/ath/ath11k/debug.h
+index d0c69c4..e73a4f7 100644
+--- a/drivers/net/wireless/ath/ath11k/debug.h
++++ b/drivers/net/wireless/ath/ath11k/debug.h
+@@ -136,8 +136,7 @@ static inline void ath11k_dbg_dump(struct ath11k_base *ab,
+ void ath11k_debug_unregister(struct ath11k *ar);
+ void ath11k_dbg_htt_ext_stats_handler(struct ath11k_base *ab,
+ 				      struct sk_buff *skb);
+-void ath11k_debug_fw_stats_process(struct ath11k_base *ab, u8 *evt_buf,
+-				   u32 len);
++void ath11k_debug_fw_stats_process(struct ath11k_base *ab, struct sk_buff *skb);
+ 
+ void ath11k_debug_fw_stats_init(struct ath11k *ar);
+ int ath11k_dbg_htt_stats_req(struct ath11k *ar);
+@@ -191,8 +190,8 @@ static inline void ath11k_dbg_htt_ext_stats_handler(struct ath11k_base *ab,
+ {
+ }
+ 
+-static inline void ath11k_debug_fw_stats_process(struct ath11k_base *ab, u8 *evt_buf,
+-						 u32 len)
++static inline void ath11k_debug_fw_stats_process(struct ath11k_base *ab,
++						 struct sk_buff *skb)
+ {
+ }
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 713f8b3..1de2299 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -258,9 +258,8 @@ static int ath11k_pull_svc_ready_ext(struct ath11k_pdev_wmi *wmi_handle,
+ 				     const void *ptr,
+ 				     struct ath11k_service_ext_param *param)
+ {
+-	struct wmi_service_ready_ext_event *ev;
++	const struct wmi_service_ready_ext_event *ev = ptr;
+ 
+-	ev = (struct wmi_service_ready_ext_event *)ptr;
  	if (!ev)
  		return -EINVAL;
  
- 	/* Move this to host based bitmap */
--	param->default_conc_scan_config_bits =
--		 ev->default_conc_scan_config_bits;
-+	param->default_conc_scan_config_bits = ev->default_conc_scan_config_bits;
- 	param->default_fw_config_bits =	ev->default_fw_config_bits;
- 	param->he_cap_info = ev->he_cap_info;
- 	param->mpdu_density = ev->mpdu_density;
-@@ -274,14 +275,14 @@ static int ath11k_pull_service_ready_ext(
- 	return 0;
- }
- 
--static int ath11k_pull_mac_phy_cap_service_ready_ext(
--		struct ath11k_pdev_wmi *wmi_handle,
--		struct wmi_soc_mac_phy_hw_mode_caps *hw_caps,
--		struct wmi_hw_mode_capabilities *wmi_hw_mode_caps,
--		struct wmi_soc_hal_reg_capabilities *soc_hal_reg_caps,
--		struct wmi_mac_phy_capabilities *wmi_mac_phy_caps,
--		u8 hw_mode_id, u8 phy_id,
--		struct ath11k_pdev *pdev)
-+static int
-+ath11k_pull_mac_phy_cap_svc_ready_ext(struct ath11k_pdev_wmi *wmi_handle,
-+				      struct wmi_soc_mac_phy_hw_mode_caps *hw_caps,
-+				      struct wmi_hw_mode_capabilities *wmi_hw_mode_caps,
-+				      struct wmi_soc_hal_reg_capabilities *hal_reg_caps,
-+				      struct wmi_mac_phy_capabilities *wmi_mac_phy_caps,
-+				      u8 hw_mode_id, u8 phy_id,
-+				      struct ath11k_pdev *pdev)
- {
- 	struct wmi_mac_phy_capabilities *mac_phy_caps;
- 	struct ath11k_band_cap *cap_band;
-@@ -289,7 +290,7 @@ static int ath11k_pull_mac_phy_cap_service_ready_ext(
- 	u32 phy_map;
- 	u32 hw_idx, phy_idx = 0;
- 
--	if (!hw_caps || !wmi_hw_mode_caps || !soc_hal_reg_caps)
-+	if (!hw_caps || !wmi_hw_mode_caps || !hal_reg_caps)
- 		return -EINVAL;
- 
- 	for (hw_idx = 0; hw_idx < hw_caps->num_hw_modes; hw_idx++) {
-@@ -307,7 +308,7 @@ static int ath11k_pull_mac_phy_cap_service_ready_ext(
- 		return -EINVAL;
- 
- 	phy_idx += phy_id;
--	if (phy_id >= soc_hal_reg_caps->num_phy)
-+	if (phy_id >= hal_reg_caps->num_phy)
- 		return -EINVAL;
- 
- 	mac_phy_caps = &wmi_mac_phy_caps[phy_idx];
-@@ -371,12 +372,12 @@ static int ath11k_pull_mac_phy_cap_service_ready_ext(
- 	return 0;
- }
- 
--static int ath11k_pull_reg_cap_svc_rdy_ext(
--		struct ath11k_pdev_wmi *wmi_handle,
--		struct wmi_soc_hal_reg_capabilities *reg_caps,
--		struct wmi_hal_reg_capabilities_ext *wmi_ext_reg_cap,
--		u8 phy_idx,
--		struct ath11k_hal_reg_capabilities_ext *param)
-+static int
-+ath11k_pull_reg_cap_svc_rdy_ext(struct ath11k_pdev_wmi *wmi_handle,
-+				struct wmi_soc_hal_reg_capabilities *reg_caps,
-+				struct wmi_hal_reg_capabilities_ext *wmi_ext_reg_cap,
-+				u8 phy_idx,
-+				struct ath11k_hal_reg_capabilities_ext *param)
- {
- 	struct wmi_hal_reg_capabilities_ext *ext_reg_cap;
- 
-@@ -407,11 +408,10 @@ static int ath11k_pull_service_ready_tlv(struct ath11k_base *ab,
+@@ -408,7 +407,7 @@ static int ath11k_pull_service_ready_tlv(struct ath11k_base *ab,
  					 const void *evt_buf,
  					 struct ath11k_targ_cap *cap)
  {
--	struct wmi_service_ready_event *ev;
-+	struct wmi_service_ready_event *ev = (struct wmi_service_ready_event *)evt_buf;
+-	struct wmi_service_ready_event *ev = (struct wmi_service_ready_event *)evt_buf;
++	const struct wmi_service_ready_event *ev = evt_buf;
  
--	ev = (struct wmi_service_ready_event *)evt_buf;
  	if (!ev) {
--		ath11k_err(ab, "%s: failed by Null Param\n",
-+		ath11k_err(ab, "%s: failed by NULL param\n",
- 			   __func__);
- 		return -EINVAL;
- 	}
-@@ -2460,7 +2460,7 @@ int ath11k_wmi_pdev_pktlog_disable(struct ath11k *ar)
- 	return ret;
+ 		ath11k_err(ab, "%s: failed by NULL param\n",
+@@ -488,12 +487,12 @@ static int ath11k_wmi_tlv_svc_rdy_parse(struct ath11k_base *ab, u16 tag, u16 len
+ 	return 0;
  }
  
--static inline void
-+static void
- ath11k_fill_band_to_mac_param(struct ath11k_base  *soc,
- 			      struct wmi_host_pdev_band_to_mac *band_to_mac)
+-static int ath11k_service_ready_event(struct ath11k_base *ab, u8 *evt_buf, u32 len)
++static int ath11k_service_ready_event(struct ath11k_base *ab, struct sk_buff *skb)
  {
-@@ -2574,7 +2574,7 @@ static int ath11k_init_cmd_send(struct ath11k_pdev_wmi *wmi,
- 			      (param->num_band_to_mac * sizeof(*band_to_mac));
- 
- 	len = sizeof(*cmd) + TLV_HDR_SIZE + sizeof(*cfg) + hw_mode_len +
--		(sizeof(*host_mem_chunks) * WMI_MAX_MEM_REQS);
-+	      (sizeof(*host_mem_chunks) * WMI_MAX_MEM_REQS);
- 
- 	skb = ath11k_wmi_alloc_skb(wmi->wmi_sc, len);
- 	if (!skb)
-@@ -2878,11 +2878,10 @@ static int ath11k_wmi_tlv_ext_hal_reg_caps(struct ath11k_base *soc,
- 	}
- 
- 	for (i = 0; i < svc_rdy_ext->param.num_phy; i++) {
--		ret = ath11k_pull_reg_cap_svc_rdy_ext
--				(wmi_handle,
--				 svc_rdy_ext->soc_hal_reg_caps,
--				 svc_rdy_ext->ext_hal_reg_caps, i,
--				 &reg_cap);
-+		ret = ath11k_pull_reg_cap_svc_rdy_ext(wmi_handle,
-+						      svc_rdy_ext->soc_hal_reg_caps,
-+						      svc_rdy_ext->ext_hal_reg_caps, i,
-+						      &reg_cap);
- 		if (ret) {
- 			ath11k_warn(soc, "failed to extract reg cap %d\n", i);
- 			return ret;
-@@ -2900,6 +2899,7 @@ static int ath11k_wmi_tlv_ext_soc_hal_reg_caps_parse(struct ath11k_base *soc,
- {
- 	struct ath11k_pdev_wmi *wmi_handle = &soc->wmi_sc.wmi[0];
- 	struct wmi_tlv_svc_rdy_ext_parse *svc_rdy_ext = data;
-+	u8 hw_mode_id = svc_rdy_ext->pref_hw_mode_caps.hw_mode_id;
- 	u32 phy_id_map;
+ 	struct wmi_tlv_svc_ready_parse svc_ready = { };
  	int ret;
  
-@@ -2910,15 +2910,13 @@ static int ath11k_wmi_tlv_ext_soc_hal_reg_caps_parse(struct ath11k_base *soc,
- 	phy_id_map = svc_rdy_ext->pref_hw_mode_caps.phy_id_map;
+-	ret = ath11k_wmi_tlv_iter(ab, evt_buf, len,
++	ret = ath11k_wmi_tlv_iter(ab, skb->data, skb->len,
+ 				  ath11k_wmi_tlv_svc_rdy_parse,
+ 				  &svc_ready);
+ 	if (ret) {
+@@ -1360,7 +1359,7 @@ int ath11k_send_crash_inject_cmd(struct ath11k_pdev_wmi *wmi_handle,
+ 	if (!skb)
+ 		return -ENOMEM;
  
- 	while (phy_id_map && soc->num_radios < MAX_RADIOS) {
--		ret = ath11k_pull_mac_phy_cap_service_ready_ext
--			(wmi_handle,
--			 svc_rdy_ext->hw_caps,
--			 svc_rdy_ext->hw_mode_caps,
--			 svc_rdy_ext->soc_hal_reg_caps,
--			 svc_rdy_ext->mac_phy_caps,
--			 svc_rdy_ext->pref_hw_mode_caps.hw_mode_id,
--			 soc->num_radios,
--			 &soc->pdevs[soc->num_radios]);
-+		ret = ath11k_pull_mac_phy_cap_svc_ready_ext(wmi_handle,
-+							    svc_rdy_ext->hw_caps,
-+							    svc_rdy_ext->hw_mode_caps,
-+							    svc_rdy_ext->soc_hal_reg_caps,
-+							    svc_rdy_ext->mac_phy_caps,
-+							    hw_mode_id, soc->num_radios,
-+							    &soc->pdevs[soc->num_radios]);
- 		if (ret) {
- 			ath11k_warn(soc, "failed to extract mac caps, idx :%d\n",
- 				    soc->num_radios);
-@@ -2943,10 +2941,8 @@ static int ath11k_wmi_tlv_svc_rdy_ext_parse(struct ath11k_base *ab,
+-	cmd = (void *)skb->data;
++	cmd = (struct wmi_force_fw_hang_cmd *)skb->data;
+ 	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_FORCE_FW_HANG_CMD) |
+ 			  FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
  
- 	switch (tag) {
- 	case WMI_TAG_SERVICE_READY_EXT_EVENT:
--		ret =
--		 ath11k_pull_service_ready_ext(wmi_handle,
--					       (struct wmi_service_ready_ext_event *)ptr,
--					       &svc_rdy_ext->param);
-+		ret = ath11k_pull_svc_ready_ext(wmi_handle, ptr,
-+						&svc_rdy_ext->param);
- 		if (ret) {
- 			ath11k_warn(ab, "unable to extract ext params\n");
- 			return ret;
-@@ -3140,20 +3136,15 @@ static int ath11k_pull_reg_chan_list_update_ev(struct ath11k_base *ab,
- 	reg_info->reg_dmn_pair = chan_list_event_hdr->domain_code;
- 	if (chan_list_event_hdr->status_code == WMI_REG_SET_CC_STATUS_PASS)
- 		reg_info->status_code = REG_SET_CC_STATUS_PASS;
--	else if (chan_list_event_hdr->status_code ==
--		 WMI_REG_CURRENT_ALPHA2_NOT_FOUND)
-+	else if (chan_list_event_hdr->status_code == WMI_REG_CURRENT_ALPHA2_NOT_FOUND)
- 		reg_info->status_code = REG_CURRENT_ALPHA2_NOT_FOUND;
--	else if (chan_list_event_hdr->status_code ==
--		 WMI_REG_INIT_ALPHA2_NOT_FOUND)
-+	else if (chan_list_event_hdr->status_code == WMI_REG_INIT_ALPHA2_NOT_FOUND)
- 		reg_info->status_code = REG_INIT_ALPHA2_NOT_FOUND;
--	else if (chan_list_event_hdr->status_code ==
--		 WMI_REG_SET_CC_CHANGE_NOT_ALLOWED)
-+	else if (chan_list_event_hdr->status_code == WMI_REG_SET_CC_CHANGE_NOT_ALLOWED)
- 		reg_info->status_code = REG_SET_CC_CHANGE_NOT_ALLOWED;
--	else if (chan_list_event_hdr->status_code ==
--		 WMI_REG_SET_CC_STATUS_NO_MEMORY)
-+	else if (chan_list_event_hdr->status_code == WMI_REG_SET_CC_STATUS_NO_MEMORY)
- 		reg_info->status_code = REG_SET_CC_STATUS_NO_MEMORY;
--	else if (chan_list_event_hdr->status_code ==
--		 WMI_REG_SET_CC_STATUS_FAIL)
-+	else if (chan_list_event_hdr->status_code == WMI_REG_SET_CC_STATUS_FAIL)
- 		reg_info->status_code = REG_SET_CC_STATUS_FAIL;
+@@ -2324,7 +2323,7 @@ int ath11k_wmi_pdev_peer_pktlog_filter(struct ath11k *ar, u8 *addr, u8 enable)
+ 	cmd->num_mac = 1;
+ 	cmd->enable = enable;
  
- 	reg_info->min_bw_2g = chan_list_event_hdr->min_bw_2g;
-@@ -3180,9 +3171,8 @@ static int ath11k_pull_reg_chan_list_update_ev(struct ath11k_base *ab,
- 						+ sizeof(struct wmi_tlv));
+-	ptr = (void *)skb->data + sizeof(*cmd);
++	ptr = skb->data + sizeof(*cmd);
  
- 	if (num_2g_reg_rules) {
--		reg_info->reg_rules_2g_ptr =
--			create_reg_rules_from_wmi(num_2g_reg_rules,
--						  wmi_reg_rule);
-+		reg_info->reg_rules_2g_ptr = create_reg_rules_from_wmi(num_2g_reg_rules,
-+								       wmi_reg_rule);
- 		if (!reg_info->reg_rules_2g_ptr) {
- 			kfree(tb);
- 			ath11k_warn(ab, "Unable to Allocate memory for 2g rules\n");
-@@ -3192,9 +3182,8 @@ static int ath11k_pull_reg_chan_list_update_ev(struct ath11k_base *ab,
+ 	tlv = ptr;
+ 	tlv->header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_ARRAY_STRUCT) |
+@@ -3000,12 +2999,12 @@ static int ath11k_wmi_tlv_svc_rdy_ext_parse(struct ath11k_base *ab,
+ }
  
- 	if (num_5g_reg_rules) {
- 		wmi_reg_rule += num_2g_reg_rules;
--		reg_info->reg_rules_5g_ptr =
--			create_reg_rules_from_wmi(num_5g_reg_rules,
--						  wmi_reg_rule);
-+		reg_info->reg_rules_5g_ptr = create_reg_rules_from_wmi(num_5g_reg_rules,
-+								       wmi_reg_rule);
- 		if (!reg_info->reg_rules_5g_ptr) {
- 			kfree(tb);
- 			ath11k_warn(ab, "Unable to Allocate memory for 5g rules\n");
-@@ -3702,7 +3691,6 @@ static int ath11k_pull_chan_info_ev(struct ath11k_base *ab, u8 *evt_buf,
+ static int ath11k_service_ready_ext_event(struct ath11k_base *ab,
+-					  u8 *evt_buf, u32 len)
++					  struct sk_buff *skb)
+ {
+ 	struct wmi_tlv_svc_rdy_ext_parse svc_rdy_ext = { };
+ 	int ret;
+ 
+-	ret = ath11k_wmi_tlv_iter(ab, evt_buf, len,
++	ret = ath11k_wmi_tlv_iter(ab, skb->data, skb->len,
+ 				  ath11k_wmi_tlv_svc_rdy_ext_parse,
+ 				  &svc_rdy_ext);
+ 	if (ret) {
+@@ -3016,14 +3015,14 @@ static int ath11k_service_ready_ext_event(struct ath11k_base *ab,
+ 	return 0;
+ }
+ 
+-static int ath11k_pull_vdev_start_resp_tlv(struct ath11k_base *ab, u8 *evt_buf, u32 len,
++static int ath11k_pull_vdev_start_resp_tlv(struct ath11k_base *ab, struct sk_buff *skb,
+ 					   struct wmi_vdev_start_resp_event *vdev_rsp)
+ {
+ 	const void **tb;
+ 	const struct wmi_vdev_start_resp_event *ev;
+ 	int ret;
+ 
+-	tb = ath11k_wmi_tlv_parse_alloc(ab, evt_buf, len, GFP_ATOMIC);
++	tb = ath11k_wmi_tlv_parse_alloc(ab, skb->data, skb->len, GFP_ATOMIC);
+ 	if (IS_ERR(tb)) {
+ 		ret = PTR_ERR(tb);
+ 		ath11k_warn(ab, "failed to parse tlv: %d\n", ret);
+@@ -3091,9 +3090,8 @@ static int ath11k_pull_vdev_start_resp_tlv(struct ath11k_base *ab, u8 *evt_buf,
+ }
+ 
+ static int ath11k_pull_reg_chan_list_update_ev(struct ath11k_base *ab,
+-					       u8 *evt_buf,
+-					       struct cur_regulatory_info *reg_info,
+-					       u32 len)
++					       struct sk_buff *skb,
++					       struct cur_regulatory_info *reg_info)
+ {
+ 	const void **tb;
+ 	const struct wmi_reg_chan_list_cc_event *chan_list_event_hdr;
+@@ -3103,7 +3101,7 @@ static int ath11k_pull_reg_chan_list_update_ev(struct ath11k_base *ab,
+ 
+ 	ath11k_dbg(ab, ATH11K_DBG_WMI, "processing regulatory channel list\n");
+ 
+-	tb = ath11k_wmi_tlv_parse_alloc(ab, evt_buf, len, GFP_ATOMIC);
++	tb = ath11k_wmi_tlv_parse_alloc(ab, skb->data, skb->len, GFP_ATOMIC);
+ 	if (IS_ERR(tb)) {
+ 		ret = PTR_ERR(tb);
+ 		ath11k_warn(ab, "failed to parse tlv: %d\n", ret);
+@@ -3197,14 +3195,14 @@ static int ath11k_pull_reg_chan_list_update_ev(struct ath11k_base *ab,
+ 	return 0;
+ }
+ 
+-static int ath11k_pull_peer_del_resp_ev(struct ath11k_base *ab, u8 *evt_buf, u32 len,
++static int ath11k_pull_peer_del_resp_ev(struct ath11k_base *ab, struct sk_buff *skb,
+ 					struct wmi_peer_delete_resp_event *peer_del_resp)
+ {
+ 	const void **tb;
+ 	const struct wmi_peer_delete_resp_event *ev;
+ 	int ret;
+ 
+-	tb = ath11k_wmi_tlv_parse_alloc(ab, evt_buf, len, GFP_ATOMIC);
++	tb = ath11k_wmi_tlv_parse_alloc(ab, skb->data, skb->len, GFP_ATOMIC);
+ 	if (IS_ERR(tb)) {
+ 		ret = PTR_ERR(tb);
+ 		ath11k_warn(ab, "failed to parse tlv: %d\n", ret);
+@@ -3257,14 +3255,14 @@ static int ath11k_pull_bcn_tx_status_ev(struct ath11k_base *ab, void *evt_buf,
+ 	return 0;
+ }
+ 
+-static int ath11k_pull_vdev_stopped_param_tlv(struct ath11k_base *ab, u8 *evt_buf,
+-					      u32 len, u32 *vdev_id)
++static int ath11k_pull_vdev_stopped_param_tlv(struct ath11k_base *ab, struct sk_buff *skb,
++					      u32 *vdev_id)
+ {
+ 	const void **tb;
+ 	const struct wmi_vdev_stopped_event *ev;
+ 	int ret;
+ 
+-	tb = ath11k_wmi_tlv_parse_alloc(ab, evt_buf, len, GFP_ATOMIC);
++	tb = ath11k_wmi_tlv_parse_alloc(ab, skb->data, skb->len, GFP_ATOMIC);
+ 	if (IS_ERR(tb)) {
+ 		ret = PTR_ERR(tb);
+ 		ath11k_warn(ab, "failed to parse tlv: %d\n", ret);
+@@ -3372,14 +3370,14 @@ static int wmi_process_mgmt_tx_comp(struct ath11k *ar, u32 desc_id,
+ }
+ 
+ static int ath11k_pull_mgmt_tx_compl_param_tlv(struct ath11k_base *ab,
+-					       u8 *evt_buf, u32 len,
++					       struct sk_buff *skb,
+ 					       struct wmi_mgmt_tx_compl_event *param)
+ {
+ 	const void **tb;
+ 	const struct wmi_mgmt_tx_compl_event *ev;
+ 	int ret;
+ 
+-	tb = ath11k_wmi_tlv_parse_alloc(ab, evt_buf, len, GFP_ATOMIC);
++	tb = ath11k_wmi_tlv_parse_alloc(ab, skb->data, skb->len, GFP_ATOMIC);
+ 	if (IS_ERR(tb)) {
+ 		ret = PTR_ERR(tb);
+ 		ath11k_warn(ab, "failed to parse tlv: %d\n", ret);
+@@ -3543,14 +3541,14 @@ static void ath11k_wmi_event_scan_foreign_chan(struct ath11k *ar, u32 freq)
+ 	}
+ }
+ 
+-static int ath11k_pull_scan_ev(struct ath11k_base *ab, u8 *evt_buf,
+-			       u32 len, struct wmi_scan_event *scan_evt_param)
++static int ath11k_pull_scan_ev(struct ath11k_base *ab, struct sk_buff *skb,
++			       struct wmi_scan_event *scan_evt_param)
+ {
+ 	const void **tb;
+ 	const struct wmi_scan_event *ev;
+ 	int ret;
+ 
+-	tb = ath11k_wmi_tlv_parse_alloc(ab, evt_buf, len, GFP_ATOMIC);
++	tb = ath11k_wmi_tlv_parse_alloc(ab, skb->data, skb->len, GFP_ATOMIC);
+ 	if (IS_ERR(tb)) {
+ 		ret = PTR_ERR(tb);
+ 		ath11k_warn(ab, "failed to parse tlv: %d\n", ret);
+@@ -3576,14 +3574,14 @@ static int ath11k_pull_scan_ev(struct ath11k_base *ab, u8 *evt_buf,
+ 	return 0;
+ }
+ 
+-static int ath11k_pull_peer_sta_kickout_ev(struct ath11k_base *ab, u8 *evt_buf,
+-					   u32 len, struct wmi_peer_sta_kickout_arg *arg)
++static int ath11k_pull_peer_sta_kickout_ev(struct ath11k_base *ab, struct sk_buff *skb,
++					   struct wmi_peer_sta_kickout_arg *arg)
+ {
+ 	const void **tb;
+ 	const struct wmi_peer_sta_kickout_event *ev;
+ 	int ret;
+ 
+-	tb = ath11k_wmi_tlv_parse_alloc(ab, evt_buf, len, GFP_ATOMIC);
++	tb = ath11k_wmi_tlv_parse_alloc(ab, skb->data, skb->len, GFP_ATOMIC);
+ 	if (IS_ERR(tb)) {
+ 		ret = PTR_ERR(tb);
+ 		ath11k_warn(ab, "failed to parse tlv: %d\n", ret);
+@@ -3603,14 +3601,14 @@ static int ath11k_pull_peer_sta_kickout_ev(struct ath11k_base *ab, u8 *evt_buf,
+ 	return 0;
+ }
+ 
+-static int ath11k_pull_roam_ev(struct ath11k_base *ab, u8 *evt_buf,
+-			       u32 len, struct wmi_roam_event *roam_ev)
++static int ath11k_pull_roam_ev(struct ath11k_base *ab, struct sk_buff *skb,
++			       struct wmi_roam_event *roam_ev)
+ {
+ 	const void **tb;
+ 	const struct wmi_roam_event *ev;
+ 	int ret;
+ 
+-	tb = ath11k_wmi_tlv_parse_alloc(ab, evt_buf, len, GFP_ATOMIC);
++	tb = ath11k_wmi_tlv_parse_alloc(ab, skb->data, skb->len, GFP_ATOMIC);
+ 	if (IS_ERR(tb)) {
+ 		ret = PTR_ERR(tb);
+ 		ath11k_warn(ab, "failed to parse tlv: %d\n", ret);
+@@ -3690,14 +3688,14 @@ static int ath11k_pull_chan_info_ev(struct ath11k_base *ab, u8 *evt_buf,
+ }
  
  static int
- ath11k_pull_pdev_bss_chan_info_ev(struct ath11k_base *ab, u8 *evt_buf,
--				  u32 len,
+-ath11k_pull_pdev_bss_chan_info_ev(struct ath11k_base *ab, u8 *evt_buf,
++ath11k_pull_pdev_bss_chan_info_ev(struct ath11k_base *ab, struct sk_buff *skb,
  				  struct wmi_pdev_bss_chan_info_event *bss_ch_info_ev)
  {
  	const void **tb;
-@@ -3741,9 +3729,9 @@ static int ath11k_pull_chan_info_ev(struct ath11k_base *ab, u8 *evt_buf,
- 	return 0;
+ 	const struct wmi_pdev_bss_chan_info_event *ev;
+ 	int ret;
+ 
+-	tb = ath11k_wmi_tlv_parse_alloc(ab, evt_buf, len, GFP_ATOMIC);
++	tb = ath11k_wmi_tlv_parse_alloc(ab, skb->data, skb->len, GFP_ATOMIC);
+ 	if (IS_ERR(tb)) {
+ 		ret = PTR_ERR(tb);
+ 		ath11k_warn(ab, "failed to parse tlv: %d\n", ret);
+@@ -3730,14 +3728,14 @@ static int ath11k_pull_chan_info_ev(struct ath11k_base *ab, u8 *evt_buf,
  }
  
--static int ath11k_pull_vdev_install_key_compl_ev(struct ath11k_base *ab, u8 *evt_buf,
--						 u32 len,
--						 struct wmi_vdev_install_key_complete_arg *install_key_compl)
-+static int
-+ath11k_pull_vdev_install_key_compl_ev(struct ath11k_base *ab, u8 *evt_buf, u32 len,
-+				      struct wmi_vdev_install_key_complete_arg *arg)
+ static int
+-ath11k_pull_vdev_install_key_compl_ev(struct ath11k_base *ab, u8 *evt_buf, u32 len,
++ath11k_pull_vdev_install_key_compl_ev(struct ath11k_base *ab, struct sk_buff *skb,
+ 				      struct wmi_vdev_install_key_complete_arg *arg)
  {
  	const void **tb;
  	const struct wmi_vdev_install_key_compl_event *ev;
-@@ -3763,11 +3751,11 @@ static int ath11k_pull_vdev_install_key_compl_ev(struct ath11k_base *ab, u8 *evt
- 		return -EPROTO;
- 	}
+ 	int ret;
  
--	install_key_compl->vdev_id = ev->vdev_id;
--	install_key_compl->macaddr = ev->peer_macaddr.addr;
--	install_key_compl->key_idx = ev->key_idx;
--	install_key_compl->key_flags = ev->key_flags;
--	install_key_compl->status = ev->status;
-+	arg->vdev_id = ev->vdev_id;
-+	arg->macaddr = ev->peer_macaddr.addr;
-+	arg->key_idx = ev->key_idx;
-+	arg->key_flags = ev->key_flags;
-+	arg->status = ev->status;
- 
- 	kfree(tb);
+-	tb = ath11k_wmi_tlv_parse_alloc(ab, evt_buf, len, GFP_ATOMIC);
++	tb = ath11k_wmi_tlv_parse_alloc(ab, skb->data, skb->len, GFP_ATOMIC);
+ 	if (IS_ERR(tb)) {
+ 		ret = PTR_ERR(tb);
+ 		ath11k_warn(ab, "failed to parse tlv: %d\n", ret);
+@@ -3761,15 +3759,14 @@ static int ath11k_pull_chan_info_ev(struct ath11k_base *ab, u8 *evt_buf,
  	return 0;
-@@ -3879,24 +3867,19 @@ static void ath11k_wmi_pull_pdev_stats_rx(const struct wmi_pdev_stats_rx *src,
- 	dst->num_tx_not_acked = src->num_tx_not_acked;
- 
- 	for (i = 0; i < ARRAY_SIZE(src->num_tx_frames); i++)
--		dst->num_tx_frames[i] =
--			src->num_tx_frames[i];
-+		dst->num_tx_frames[i] = src->num_tx_frames[i];
- 
- 	for (i = 0; i < ARRAY_SIZE(src->num_tx_frames_retries); i++)
--		dst->num_tx_frames_retries[i] =
--			src->num_tx_frames_retries[i];
-+		dst->num_tx_frames_retries[i] = src->num_tx_frames_retries[i];
- 
- 	for (i = 0; i < ARRAY_SIZE(src->num_tx_frames_failures); i++)
--		dst->num_tx_frames_failures[i] =
--			src->num_tx_frames_failures[i];
-+		dst->num_tx_frames_failures[i] = src->num_tx_frames_failures[i];
- 
- 	for (i = 0; i < ARRAY_SIZE(src->tx_rate_history); i++)
--		dst->tx_rate_history[i] =
--			src->tx_rate_history[i];
-+		dst->tx_rate_history[i] = src->tx_rate_history[i];
- 
- 	for (i = 0; i < ARRAY_SIZE(src->beacon_rssi_history); i++)
--		dst->beacon_rssi_history[i] =
--			src->beacon_rssi_history[i];
-+		dst->beacon_rssi_history[i] = src->beacon_rssi_history[i];
  }
  
- static void
-@@ -4399,14 +4382,14 @@ static size_t ath11k_wmi_fw_stats_num_bcn(struct list_head *head)
- 	struct ath11k_vif *arvif = ath11k_mac_get_arvif(ar, bcn->vdev_id);
- 	u8 *vdev_macaddr;
+-static int ath11k_pull_peer_assoc_conf_ev(struct ath11k_base *ab, u8 *evt_buf,
+-					  u32 len,
++static int ath11k_pull_peer_assoc_conf_ev(struct ath11k_base *ab, struct sk_buff *skb,
+ 					  struct wmi_peer_assoc_conf_arg *peer_assoc_conf)
+ {
+ 	const void **tb;
+ 	const struct wmi_peer_assoc_conf_event *ev;
+ 	int ret;
  
--	if (arvif) {
--		vdev_macaddr = arvif->vif->addr;
--	} else {
-+	if (!arvif) {
- 		ath11k_warn(ar->ab, "invalid vdev id %d in bcn stats",
- 			    bcn->vdev_id);
+-	tb = ath11k_wmi_tlv_parse_alloc(ab, evt_buf, len, GFP_ATOMIC);
++	tb = ath11k_wmi_tlv_parse_alloc(ab, skb->data, skb->len, GFP_ATOMIC);
+ 	if (IS_ERR(tb)) {
+ 		ret = PTR_ERR(tb);
+ 		ath11k_warn(ab, "failed to parse tlv: %d\n", ret);
+@@ -3914,15 +3911,16 @@ static void ath11k_wmi_pull_pdev_stats_rx(const struct wmi_pdev_stats_rx *src,
+ 	dst->rx_mc_bc_cnt = src->rx_mc_bc_cnt;
+ }
+ 
+-int ath11k_wmi_pull_fw_stats(struct ath11k_base *ab, u8 *evt_buf, u32 len,
++int ath11k_wmi_pull_fw_stats(struct ath11k_base *ab, struct sk_buff *skb,
+ 			     struct ath11k_fw_stats *stats)
+ {
+ 	const void **tb;
+ 	const struct wmi_stats_event *ev;
+ 	const void *data;
+ 	int i, ret;
++	u32 len = skb->len;
+ 
+-	tb = ath11k_wmi_tlv_parse_alloc(ab, evt_buf, len, GFP_ATOMIC);
++	tb = ath11k_wmi_tlv_parse_alloc(ab, skb->data, len, GFP_ATOMIC);
+ 	if (IS_ERR(tb)) {
+ 		ret = PTR_ERR(tb);
+ 		ath11k_warn(ab, "failed to parse tlv: %d\n", ret);
+@@ -4510,7 +4508,7 @@ static bool ath11k_reg_is_world_alpha(char *alpha)
+ 	return alpha[0] == '0' && alpha[1] == '0';
+ }
+ 
+-static int ath11k_reg_chan_list_event(struct ath11k_base *ab, u8 *evt_buf, u32 len)
++static int ath11k_reg_chan_list_event(struct ath11k_base *ab, struct sk_buff *skb)
+ {
+ 	struct cur_regulatory_info *reg_info = NULL;
+ 	struct ieee80211_regdomain *regd = NULL;
+@@ -4524,7 +4522,7 @@ static int ath11k_reg_chan_list_event(struct ath11k_base *ab, u8 *evt_buf, u32 l
+ 		goto fallback;
+ 	}
+ 
+-	ret = ath11k_pull_reg_chan_list_update_ev(ab, evt_buf, reg_info, len);
++	ret = ath11k_pull_reg_chan_list_update_ev(ab, skb, reg_info);
+ 	if (ret) {
+ 		ath11k_warn(ab, "failed to extract regulatory info from received event\n");
+ 		goto fallback;
+@@ -4654,12 +4652,12 @@ static int ath11k_wmi_tlv_rdy_parse(struct ath11k_base *ab, u16 tag, u16 len,
+ 	return 0;
+ }
+ 
+-static int ath11k_ready_event(struct ath11k_base *ab, u8 *evt_buf, u32 len)
++static int ath11k_ready_event(struct ath11k_base *ab, struct sk_buff *skb)
+ {
+ 	struct wmi_tlv_rdy_parse rdy_parse = { };
+ 	int ret;
+ 
+-	ret = ath11k_wmi_tlv_iter(ab, evt_buf, len,
++	ret = ath11k_wmi_tlv_iter(ab, skb->data, skb->len,
+ 				  ath11k_wmi_tlv_rdy_parse, &rdy_parse);
+ 	if (ret) {
+ 		ath11k_warn(ab, "failed to parse tlv %d\n", ret);
+@@ -4670,12 +4668,11 @@ static int ath11k_ready_event(struct ath11k_base *ab, u8 *evt_buf, u32 len)
+ 	return 0;
+ }
+ 
+-static void ath11k_peer_delete_resp_event(struct ath11k_base *ab, u8 *evt_buf, u32 len)
++static void ath11k_peer_delete_resp_event(struct ath11k_base *ab, struct sk_buff *skb)
+ {
+ 	struct wmi_peer_delete_resp_event peer_del_resp;
+ 
+-	if (ath11k_pull_peer_del_resp_ev(ab, evt_buf, len,
+-					 &peer_del_resp) != 0) {
++	if (ath11k_pull_peer_del_resp_ev(ab, skb, &peer_del_resp) != 0) {
+ 		ath11k_warn(ab, "failed to extract peer delete resp");
  		return;
  	}
- 
-+	vdev_macaddr = arvif->vif->addr;
-+
- 	len += scnprintf(buf + len, buf_len - len, "%30s %u\n",
- 			 "VDEV ID", bcn->vdev_id);
- 	len += scnprintf(buf + len, buf_len - len, "%30s %pM\n",
-@@ -4459,9 +4442,8 @@ void ath11k_wmi_fw_stats_fill(struct ath11k *ar,
- 		len += scnprintf(buf + len, buf_len - len, "%30s\n\n",
- 				 "=================");
- 
--		list_for_each_entry(vdev, &fw_stats->vdevs, list) {
-+		list_for_each_entry(vdev, &fw_stats->vdevs, list)
- 			ath11k_wmi_fw_vdev_stats_fill(ar, vdev, buf, &len);
--		}
+@@ -4701,14 +4698,13 @@ static inline const char *ath11k_wmi_vdev_resp_print(u32 vdev_resp_status)
  	}
+ }
  
- 	if (stats_id == WMI_REQUEST_BCN_STAT) {
-@@ -4473,9 +4455,8 @@ void ath11k_wmi_fw_stats_fill(struct ath11k *ar,
- 		len += scnprintf(buf + len, buf_len - len, "%30s\n\n",
- 				 "===================");
+-static void ath11k_vdev_start_resp_event(struct ath11k_base *ab, u8 *evt_buf, u32 len)
++static void ath11k_vdev_start_resp_event(struct ath11k_base *ab, struct sk_buff *skb)
+ {
+ 	struct wmi_vdev_start_resp_event vdev_start_resp;
+ 	struct ath11k *ar;
+ 	u32 status;
  
--		list_for_each_entry(bcn, &fw_stats->bcn, list) {
-+		list_for_each_entry(bcn, &fw_stats->bcn, list)
- 			ath11k_wmi_fw_bcn_stats_fill(ar, bcn, buf, &len);
--		}
+-	if (ath11k_pull_vdev_start_resp_tlv(ab, evt_buf, len,
+-					    &vdev_start_resp) != 0) {
++	if (ath11k_pull_vdev_start_resp_tlv(ab, skb, &vdev_start_resp) != 0) {
+ 		ath11k_warn(ab, "failed to extract vdev start resp");
+ 		return;
  	}
+@@ -4740,24 +4736,23 @@ static void ath11k_vdev_start_resp_event(struct ath11k_base *ab, u8 *evt_buf, u3
+ 		   vdev_start_resp.vdev_id);
+ }
  
- 	if (stats_id & WMI_REQUEST_PEER_STAT) {
-@@ -4486,9 +4467,8 @@ void ath11k_wmi_fw_stats_fill(struct ath11k *ar,
- 		len += scnprintf(buf + len, buf_len - len, "%30s\n\n",
- 				 "=================");
+-static void ath11k_bcn_tx_status_event(struct ath11k_base *ab, u8 *evt_buf, u32 len)
++static void ath11k_bcn_tx_status_event(struct ath11k_base *ab, struct sk_buff *skb)
+ {
+ 	u32 vdev_id, tx_status;
  
--		list_for_each_entry(peer, &fw_stats->peers, list) {
-+		list_for_each_entry(peer, &fw_stats->peers, list)
- 			ath11k_wmi_fw_peer_stats_fill(peer, buf, &len);
--		}
+-	if (ath11k_pull_bcn_tx_status_ev(ab, evt_buf, len,
++	if (ath11k_pull_bcn_tx_status_ev(ab, skb->data, skb->len,
+ 					 &vdev_id, &tx_status) != 0) {
+ 		ath11k_warn(ab, "failed to extract bcn tx status");
+ 		return;
  	}
+ }
  
- 	if (stats_id & WMI_REQUEST_PEER_EXTD_STAT) {
-@@ -4500,9 +4480,8 @@ void ath11k_wmi_fw_stats_fill(struct ath11k *ar,
- 		len += scnprintf(buf + len, buf_len - len, "%30s\n\n",
- 				 "======================");
+-static void ath11k_vdev_stopped_event(struct ath11k_base *ab, u8 *evt_buf, u32 len)
++static void ath11k_vdev_stopped_event(struct ath11k_base *ab, struct sk_buff *skb)
+ {
+ 	struct ath11k *ar;
+ 	u32 vdev_id = 0;
  
--		list_for_each_entry(peer_extd, &fw_stats->peers_extd, list) {
-+		list_for_each_entry(peer_extd, &fw_stats->peers_extd, list)
- 			ath11k_wmi_fw_peer_extd_stats_fill(peer_extd, buf, &len);
--		}
+-	if (ath11k_pull_vdev_stopped_param_tlv(ab, evt_buf, len,
+-					       &vdev_id) != 0) {
++	if (ath11k_pull_vdev_stopped_param_tlv(ab, skb, &vdev_id) != 0) {
+ 		ath11k_warn(ab, "failed to extract vdev stopped event");
+ 		return;
  	}
+@@ -4894,8 +4889,7 @@ static void ath11k_mgmt_tx_compl_event(struct ath11k_base *ab, struct sk_buff *s
+ 	struct wmi_mgmt_tx_compl_event tx_compl_param = {0};
+ 	struct ath11k *ar;
  
- unlock:
-@@ -4970,8 +4949,7 @@ static void ath11k_scan_event(struct ath11k_base *ab, u8 *evt_buf, u32 len)
+-	if (ath11k_pull_mgmt_tx_compl_param_tlv(ab, skb->data, skb->len,
+-						&tx_compl_param) != 0) {
++	if (ath11k_pull_mgmt_tx_compl_param_tlv(ab, skb, &tx_compl_param) != 0) {
+ 		ath11k_warn(ab, "failed to extract mgmt tx compl event");
+ 		return;
+ 	}
+@@ -4944,12 +4938,12 @@ static struct ath11k *ath11k_get_ar_on_scan_abort(struct ath11k_base *ab,
+ 	return NULL;
+ }
+ 
+-static void ath11k_scan_event(struct ath11k_base *ab, u8 *evt_buf, u32 len)
++static void ath11k_scan_event(struct ath11k_base *ab, struct sk_buff *skb)
+ {
  	struct ath11k *ar;
  	struct wmi_scan_event scan_ev = {0};
  
--	if (ath11k_pull_scan_ev(ab, evt_buf, len,
--				&scan_ev) != 0) {
-+	if (ath11k_pull_scan_ev(ab, evt_buf, len, &scan_ev) != 0) {
+-	if (ath11k_pull_scan_ev(ab, evt_buf, len, &scan_ev) != 0) {
++	if (ath11k_pull_scan_ev(ab, skb, &scan_ev) != 0) {
  		ath11k_warn(ab, "failed to extract scan event");
  		return;
  	}
-@@ -5000,8 +4978,7 @@ static void ath11k_scan_event(struct ath11k_base *ab, u8 *evt_buf, u32 len)
+@@ -5013,14 +5007,14 @@ static void ath11k_scan_event(struct ath11k_base *ab, u8 *evt_buf, u32 len)
+ 	rcu_read_unlock();
+ }
  
- 	ath11k_dbg(ab, ATH11K_DBG_WMI,
- 		   "scan event %s type %d reason %d freq %d req_id %d scan_id %d vdev_id %d state %s (%d)\n",
--		   ath11k_wmi_event_scan_type_str(scan_ev.event_type,
--						  scan_ev.reason),
-+		   ath11k_wmi_event_scan_type_str(scan_ev.event_type, scan_ev.reason),
- 		   scan_ev.event_type, scan_ev.reason, scan_ev.channel_freq,
- 		   scan_ev.scan_req_id, scan_ev.scan_id, scan_ev.vdev_id,
- 		   ath11k_scan_state_str(ar->scan.state), ar->scan.state);
-@@ -5306,8 +5283,7 @@ static void ath11k_vdev_install_key_compl_event(struct ath11k_base *ab, u8 *evt_
+-static void ath11k_peer_sta_kickout_event(struct ath11k_base *ab, u8 *evt_buf, u32 len)
++static void ath11k_peer_sta_kickout_event(struct ath11k_base *ab, struct sk_buff *skb)
+ {
+ 	struct wmi_peer_sta_kickout_arg arg = {};
+ 	struct ieee80211_sta *sta;
+ 	struct ath11k_peer *peer;
+ 	struct ath11k *ar;
  
- 	ar->install_key_status = 0;
- 
--	if (install_key_compl.status !=
--		WMI_VDEV_INSTALL_KEY_COMPL_STATUS_SUCCESS) {
-+	if (install_key_compl.status != WMI_VDEV_INSTALL_KEY_COMPL_STATUS_SUCCESS) {
- 		ath11k_warn(ab, "install key failed for %pM status %d\n",
- 			    install_key_compl.macaddr, install_key_compl.status);
- 		ar->install_key_status = install_key_compl.status;
-@@ -5697,7 +5673,7 @@ static int ath11k_connect_pdev_htc_service(struct ath11k_base *sc,
- 	int ret;
- 	int i;
- 
--	arg_len = (sizeof(u32) * ut_cmd.num_args);
-+	arg_len = sizeof(u32) * ut_cmd.num_args;
- 	buf_len = sizeof(ut_cmd) + arg_len + TLV_HDR_SIZE;
- 
- 	skb = ath11k_wmi_alloc_skb(wmi->wmi_sc, buf_len);
-@@ -5705,10 +5681,8 @@ static int ath11k_connect_pdev_htc_service(struct ath11k_base *sc,
- 		return -ENOMEM;
- 
- 	cmd = (struct wmi_unit_test_cmd *)skb->data;
--	cmd->tlv_header =
--		FIELD_PREP(WMI_TLV_TAG,
--			   WMI_TAG_UNIT_TEST_CMD) |
--		FIELD_PREP(WMI_TLV_LEN, sizeof(ut_cmd) - TLV_HDR_SIZE);
-+	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_UNIT_TEST_CMD) |
-+			  FIELD_PREP(WMI_TLV_LEN, sizeof(ut_cmd) - TLV_HDR_SIZE);
- 
- 	cmd->vdev_id = ut_cmd.vdev_id;
- 	cmd->module_id = ut_cmd.module_id;
-@@ -5727,15 +5701,14 @@ static int ath11k_connect_pdev_htc_service(struct ath11k_base *sc,
- 	for (i = 0; i < ut_cmd.num_args; i++)
- 		ut_cmd_args[i] = test_args[i];
- 
--	ret = ath11k_wmi_cmd_send(wmi, skb,
--				  WMI_UNIT_TEST_CMDID);
-+	ret = ath11k_wmi_cmd_send(wmi, skb, WMI_UNIT_TEST_CMDID);
- 
- 	if (ret) {
--		ath11k_warn(ar->ab,
--			    "failed to send WMI_UNIT_TEST CMD :%d\n",
-+		ath11k_warn(ar->ab, "failed to send WMI_UNIT_TEST CMD :%d\n",
- 			    ret);
- 		dev_kfree_skb(skb);
+-	if (ath11k_pull_peer_sta_kickout_ev(ab, evt_buf, len, &arg) != 0) {
++	if (ath11k_pull_peer_sta_kickout_ev(ab, skb, &arg) != 0) {
+ 		ath11k_warn(ab, "failed to extract peer sta kickout event");
+ 		return;
  	}
-+
- 	ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
- 		   "WMI unit test : module %d vdev %d n_args %d token %d\n",
- 		   cmd->module_id, cmd->vdev_id, cmd->num_args,
+@@ -5062,12 +5056,12 @@ static void ath11k_peer_sta_kickout_event(struct ath11k_base *ab, u8 *evt_buf, u
+ 	rcu_read_unlock();
+ }
+ 
+-static void ath11k_roam_event(struct ath11k_base *ab, u8 *evt_buf, u32 len)
++static void ath11k_roam_event(struct ath11k_base *ab, struct sk_buff *skb)
+ {
+ 	struct wmi_roam_event roam_ev = {};
+ 	struct ath11k *ar;
+ 
+-	if (ath11k_pull_roam_ev(ab, evt_buf, len, &roam_ev) != 0) {
++	if (ath11k_pull_roam_ev(ab, skb, &roam_ev) != 0) {
+ 		ath11k_warn(ab, "failed to extract roam event");
+ 		return;
+ 	}
+@@ -5108,7 +5102,7 @@ static void ath11k_roam_event(struct ath11k_base *ab, u8 *evt_buf, u32 len)
+ 	rcu_read_unlock();
+ }
+ 
+-static void ath11k_chan_info_event(struct ath11k_base *ab, u8 *evt_buf, u32 len)
++static void ath11k_chan_info_event(struct ath11k_base *ab, struct sk_buff *skb)
+ {
+ 	struct wmi_chan_info_event ch_info_ev = {0};
+ 	struct ath11k *ar;
+@@ -5117,7 +5111,7 @@ static void ath11k_chan_info_event(struct ath11k_base *ab, u8 *evt_buf, u32 len)
+ 	/* HW channel counters frequency value in hertz */
+ 	u32 cc_freq_hz = ab->cc_freq_hz;
+ 
+-	if (ath11k_pull_chan_info_ev(ab, evt_buf, len, &ch_info_ev) != 0) {
++	if (ath11k_pull_chan_info_ev(ab, skb->data, skb->len, &ch_info_ev) != 0) {
+ 		ath11k_warn(ab, "failed to extract chan info event");
+ 		return;
+ 	}
+@@ -5182,7 +5176,7 @@ static void ath11k_chan_info_event(struct ath11k_base *ab, u8 *evt_buf, u32 len)
+ }
+ 
+ static void
+-ath11k_pdev_bss_chan_info_event(struct ath11k_base *ab, u8 *evt_buf, u32 len)
++ath11k_pdev_bss_chan_info_event(struct ath11k_base *ab, struct sk_buff *skb)
+ {
+ 	struct wmi_pdev_bss_chan_info_event bss_ch_info_ev = {};
+ 	struct survey_info *survey;
+@@ -5191,8 +5185,7 @@ static void ath11k_chan_info_event(struct ath11k_base *ab, u8 *evt_buf, u32 len)
+ 	u64 busy, total, tx, rx, rx_bss;
+ 	int idx;
+ 
+-	if (ath11k_pull_pdev_bss_chan_info_ev(ab, evt_buf, len,
+-					      &bss_ch_info_ev) != 0) {
++	if (ath11k_pull_pdev_bss_chan_info_ev(ab, skb, &bss_ch_info_ev) != 0) {
+ 		ath11k_warn(ab, "failed to extract pdev bss chan info event");
+ 		return;
+ 	}
+@@ -5255,14 +5248,13 @@ static void ath11k_chan_info_event(struct ath11k_base *ab, u8 *evt_buf, u32 len)
+ 	rcu_read_unlock();
+ }
+ 
+-static void ath11k_vdev_install_key_compl_event(struct ath11k_base *ab, u8 *evt_buf,
+-						u32 len)
++static void ath11k_vdev_install_key_compl_event(struct ath11k_base *ab,
++						struct sk_buff *skb)
+ {
+ 	struct wmi_vdev_install_key_complete_arg install_key_compl = {0};
+ 	struct ath11k *ar;
+ 
+-	if (ath11k_pull_vdev_install_key_compl_ev(ab, evt_buf, len,
+-						  &install_key_compl) != 0) {
++	if (ath11k_pull_vdev_install_key_compl_ev(ab, skb, &install_key_compl) != 0) {
+ 		ath11k_warn(ab, "failed to extract install key compl event");
+ 		return;
+ 	}
+@@ -5293,15 +5285,14 @@ static void ath11k_vdev_install_key_compl_event(struct ath11k_base *ab, u8 *evt_
+ 	rcu_read_unlock();
+ }
+ 
+-static void ath11k_service_available_event(struct ath11k_base *ab, u8 *evt_buf,
+-					   u32 len)
++static void ath11k_service_available_event(struct ath11k_base *ab, struct sk_buff *skb)
+ {
+ 	const void **tb;
+ 	const struct wmi_service_available_event *ev;
+ 	int ret;
+ 	int i, j;
+ 
+-	tb = ath11k_wmi_tlv_parse_alloc(ab, evt_buf, len, GFP_ATOMIC);
++	tb = ath11k_wmi_tlv_parse_alloc(ab, skb->data, skb->len, GFP_ATOMIC);
+ 	if (IS_ERR(tb)) {
+ 		ret = PTR_ERR(tb);
+ 		ath11k_warn(ab, "failed to parse tlv: %d\n", ret);
+@@ -5337,13 +5328,12 @@ static void ath11k_service_available_event(struct ath11k_base *ab, u8 *evt_buf,
+ 	kfree(tb);
+ }
+ 
+-static void ath11k_peer_assoc_conf_event(struct ath11k_base *ab, u8 *evt_buf, u32 len)
++static void ath11k_peer_assoc_conf_event(struct ath11k_base *ab, struct sk_buff *skb)
+ {
+ 	struct wmi_peer_assoc_conf_arg peer_assoc_conf = {0};
+ 	struct ath11k *ar;
+ 
+-	if (ath11k_pull_peer_assoc_conf_ev(ab, evt_buf, len,
+-					   &peer_assoc_conf) != 0) {
++	if (ath11k_pull_peer_assoc_conf_ev(ab, skb, &peer_assoc_conf) != 0) {
+ 		ath11k_warn(ab, "failed to extract peer assoc conf event");
+ 		return;
+ 	}
+@@ -5363,22 +5353,22 @@ static void ath11k_peer_assoc_conf_event(struct ath11k_base *ab, u8 *evt_buf, u3
+ 	complete(&ar->peer_assoc_done);
+ }
+ 
+-static void ath11k_update_stats_event(struct ath11k_base *ab, u8 *evt_buf, u32 len)
++static void ath11k_update_stats_event(struct ath11k_base *ab, struct sk_buff *skb)
+ {
+-	ath11k_debug_fw_stats_process(ab, evt_buf, len);
++	ath11k_debug_fw_stats_process(ab, skb);
+ }
+ 
+ /* PDEV_CTL_FAILSAFE_CHECK_EVENT is received from FW when the frequency scanned
+  * is not part of BDF CTL(Conformance test limits) table entries.
+  */
+-static void ath11k_pdev_ctl_failsafe_check_event(struct ath11k_base *ab, u8 *evt_buf,
+-						 u32 len)
++static void ath11k_pdev_ctl_failsafe_check_event(struct ath11k_base *ab,
++						 struct sk_buff *skb)
+ {
+ 	const void **tb;
+ 	const struct wmi_pdev_ctl_failsafe_chk_event *ev;
+ 	int ret;
+ 
+-	tb = ath11k_wmi_tlv_parse_alloc(ab, evt_buf, len, GFP_ATOMIC);
++	tb = ath11k_wmi_tlv_parse_alloc(ab, skb->data, skb->len, GFP_ATOMIC);
+ 	if (IS_ERR(tb)) {
+ 		ret = PTR_ERR(tb);
+ 		ath11k_warn(ab, "failed to parse tlv: %d\n", ret);
+@@ -5436,15 +5426,14 @@ static void ath11k_pdev_ctl_failsafe_check_event(struct ath11k_base *ab, u8 *evt
+ 
+ static void
+ ath11k_wmi_pdev_csa_switch_count_status_event(struct ath11k_base *ab,
+-					      u8 *evt_buf,
+-					      u32 len)
++					      struct sk_buff *skb)
+ {
+ 	const void **tb;
+ 	const struct wmi_pdev_csa_switch_ev *ev;
+ 	const u32 *vdev_ids;
+ 	int ret;
+ 
+-	tb = ath11k_wmi_tlv_parse_alloc(ab, evt_buf, len, GFP_ATOMIC);
++	tb = ath11k_wmi_tlv_parse_alloc(ab, skb->data, skb->len, GFP_ATOMIC);
+ 	if (IS_ERR(tb)) {
+ 		ret = PTR_ERR(tb);
+ 		ath11k_warn(ab, "failed to parse tlv: %d\n", ret);
+@@ -5471,16 +5460,14 @@ static void ath11k_pdev_ctl_failsafe_check_event(struct ath11k_base *ab, u8 *evt
+ }
+ 
+ static void
+-ath11k_wmi_pdev_dfs_radar_detected_event(struct ath11k_base *ab,
+-					 u8 *evt_buf,
+-					 u32 len)
++ath11k_wmi_pdev_dfs_radar_detected_event(struct ath11k_base *ab, struct sk_buff *skb)
+ {
+ 	const void **tb;
+ 	const struct wmi_pdev_radar_ev *ev;
+ 	struct ath11k *ar;
+ 	int ret;
+ 
+-	tb = ath11k_wmi_tlv_parse_alloc(ab, evt_buf, len, GFP_ATOMIC);
++	tb = ath11k_wmi_tlv_parse_alloc(ab, skb->data, skb->len, GFP_ATOMIC);
+ 	if (IS_ERR(tb)) {
+ 		ret = PTR_ERR(tb);
+ 		ath11k_warn(ab, "failed to parse tlv: %d\n", ret);
+@@ -5525,8 +5512,6 @@ static void ath11k_wmi_tlv_op_rx(struct ath11k_base *ab, struct sk_buff *skb)
+ {
+ 	struct wmi_cmd_hdr *cmd_hdr;
+ 	enum wmi_tlv_event_id id;
+-	u8 *data;
+-	u32 len;
+ 
+ 	cmd_hdr = (struct wmi_cmd_hdr *)skb->data;
+ 	id = FIELD_GET(WMI_CMD_HDR_CMD_ID, (cmd_hdr->cmd_id));
+@@ -5534,34 +5519,31 @@ static void ath11k_wmi_tlv_op_rx(struct ath11k_base *ab, struct sk_buff *skb)
+ 	if (skb_pull(skb, sizeof(struct wmi_cmd_hdr)) == NULL)
+ 		goto out;
+ 
+-	data = (u8 *)skb->data;
+-	len = skb->len;
+-
+ 	switch (id) {
+ 		/* Process all the WMI events here */
+ 	case WMI_SERVICE_READY_EVENTID:
+-		ath11k_service_ready_event(ab, data, len);
++		ath11k_service_ready_event(ab, skb);
+ 		break;
+ 	case WMI_SERVICE_READY_EXT_EVENTID:
+-		ath11k_service_ready_ext_event(ab, data, len);
++		ath11k_service_ready_ext_event(ab, skb);
+ 		break;
+ 	case WMI_REG_CHAN_LIST_CC_EVENTID:
+-		ath11k_reg_chan_list_event(ab, data, len);
++		ath11k_reg_chan_list_event(ab, skb);
+ 		break;
+ 	case WMI_READY_EVENTID:
+-		ath11k_ready_event(ab, data, len);
++		ath11k_ready_event(ab, skb);
+ 		break;
+ 	case WMI_PEER_DELETE_RESP_EVENTID:
+-		ath11k_peer_delete_resp_event(ab, data, len);
++		ath11k_peer_delete_resp_event(ab, skb);
+ 		break;
+ 	case WMI_VDEV_START_RESP_EVENTID:
+-		ath11k_vdev_start_resp_event(ab, data, len);
++		ath11k_vdev_start_resp_event(ab, skb);
+ 		break;
+ 	case WMI_OFFLOAD_BCN_TX_STATUS_EVENTID:
+-		ath11k_bcn_tx_status_event(ab, data, len);
++		ath11k_bcn_tx_status_event(ab, skb);
+ 		break;
+ 	case WMI_VDEV_STOPPED_EVENTID:
+-		ath11k_vdev_stopped_event(ab, data, len);
++		ath11k_vdev_stopped_event(ab, skb);
+ 		break;
+ 	case WMI_MGMT_RX_EVENTID:
+ 		ath11k_mgmt_rx_event(ab, skb);
+@@ -5571,37 +5553,37 @@ static void ath11k_wmi_tlv_op_rx(struct ath11k_base *ab, struct sk_buff *skb)
+ 		ath11k_mgmt_tx_compl_event(ab, skb);
+ 		break;
+ 	case WMI_SCAN_EVENTID:
+-		ath11k_scan_event(ab, data, len);
++		ath11k_scan_event(ab, skb);
+ 		break;
+ 	case WMI_PEER_STA_KICKOUT_EVENTID:
+-		ath11k_peer_sta_kickout_event(ab, data, len);
++		ath11k_peer_sta_kickout_event(ab, skb);
+ 		break;
+ 	case WMI_ROAM_EVENTID:
+-		ath11k_roam_event(ab, data, len);
++		ath11k_roam_event(ab, skb);
+ 		break;
+ 	case WMI_CHAN_INFO_EVENTID:
+-		ath11k_chan_info_event(ab, data, len);
++		ath11k_chan_info_event(ab, skb);
+ 		break;
+ 	case WMI_PDEV_BSS_CHAN_INFO_EVENTID:
+-		ath11k_pdev_bss_chan_info_event(ab, data, len);
++		ath11k_pdev_bss_chan_info_event(ab, skb);
+ 		break;
+ 	case WMI_VDEV_INSTALL_KEY_COMPLETE_EVENTID:
+-		ath11k_vdev_install_key_compl_event(ab, data, len);
++		ath11k_vdev_install_key_compl_event(ab, skb);
+ 		break;
+ 	case WMI_SERVICE_AVAILABLE_EVENTID:
+-		ath11k_service_available_event(ab, data, len);
++		ath11k_service_available_event(ab, skb);
+ 		break;
+ 	case WMI_PEER_ASSOC_CONF_EVENTID:
+-		ath11k_peer_assoc_conf_event(ab, data, len);
++		ath11k_peer_assoc_conf_event(ab, skb);
+ 		break;
+ 	case WMI_UPDATE_STATS_EVENTID:
+-		ath11k_update_stats_event(ab, data, len);
++		ath11k_update_stats_event(ab, skb);
+ 		break;
+ 	case WMI_PDEV_CTL_FAILSAFE_CHECK_EVENTID:
+-		ath11k_pdev_ctl_failsafe_check_event(ab, data, len);
++		ath11k_pdev_ctl_failsafe_check_event(ab, skb);
+ 		break;
+ 	case WMI_PDEV_CSA_SWITCH_COUNT_STATUS_EVENTID:
+-		ath11k_wmi_pdev_csa_switch_count_status_event(ab, data, len);
++		ath11k_wmi_pdev_csa_switch_count_status_event(ab, skb);
+ 		break;
+ 	/* add Unsupported events here */
+ 	case WMI_TBTTOFFSET_EXT_UPDATE_EVENTID:
+@@ -5610,7 +5592,7 @@ static void ath11k_wmi_tlv_op_rx(struct ath11k_base *ab, struct sk_buff *skb)
+ 			   "ignoring unsupported event 0x%x\n", id);
+ 		break;
+ 	case WMI_PDEV_DFS_RADAR_DETECTION_EVENTID:
+-		ath11k_wmi_pdev_dfs_radar_detected_event(ab, data, len);
++		ath11k_wmi_pdev_dfs_radar_detected_event(ab, skb);
+ 		break;
+ 	/* TODO: Add remaining events */
+ 	default:
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index 248326e..e6566f7 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -4703,7 +4703,7 @@ int ath11k_wmi_send_bcn_offload_control_cmd(struct ath11k *ar,
+ 				 struct rx_reorder_queue_remove_params *param);
+ int ath11k_wmi_send_pdev_set_regdomain(struct ath11k *ar,
+ 				       struct pdev_set_regdomain_params *param);
+-int ath11k_wmi_pull_fw_stats(struct ath11k_base *ab, u8 *evt_buf, u32 len,
++int ath11k_wmi_pull_fw_stats(struct ath11k_base *ab, struct sk_buff *skb,
+ 			     struct ath11k_fw_stats *stats);
+ size_t ath11k_wmi_fw_stats_num_peers(struct list_head *head);
+ size_t ath11k_wmi_fw_stats_num_peers_extd(struct list_head *head);
 -- 
 1.9.1
 
