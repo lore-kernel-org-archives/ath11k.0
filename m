@@ -1,19 +1,21 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hg9gk-0006d3-9t
- for ath11k@lists.infradead.org; Wed, 26 Jun 2019 15:18:23 +0000
+ id 1hg9gm-0006dh-Fb
+ for ath11k@lists.infradead.org; Wed, 26 Jun 2019 15:18:25 +0000
 Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi
  [88.114.240.156])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
  (No client certificate requested)
  (Authenticated sender: kvalo@smtp.codeaurora.org)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 0A3086085C
- for <ath11k@lists.infradead.org>; Wed, 26 Jun 2019 15:18:20 +0000 (UTC)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 56A1060709
+ for <ath11k@lists.infradead.org>; Wed, 26 Jun 2019 15:18:23 +0000 (UTC)
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 1/4] ath11k: Alignment should match open parenthesis
-Date: Wed, 26 Jun 2019 18:18:12 +0300
-Message-Id: <1561562295-17402-1-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH 3/4] ath11k: line over 90 characters
+Date: Wed, 26 Jun 2019 18:18:14 +0300
+Message-Id: <1561562295-17402-3-git-send-email-kvalo@codeaurora.org>
+In-Reply-To: <1561562295-17402-1-git-send-email-kvalo@codeaurora.org>
+References: <1561562295-17402-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -31,26 +33,28 @@ To: ath11k@lists.infradead.org
 
 Fix checkpatch warning:
 
-drivers/net/wireless/ath/ath11k/mac.c:5029: Alignment should match open parenthesis
+drivers/net/wireless/ath/ath11k/dp_rx.c:2283: line over 90 characters
 
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 8d4ddd9015cb..dd164b5bb51a 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -5026,7 +5026,7 @@ ath11k_mac_update_bss_chan_survey(struct ath11k *ar,
- }
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 14a20f39ed10..9a1c24705a32 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -2280,7 +2280,9 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int mac_id,
+ 			if (ret == -EIO) {
+ 				ath11k_err(ab, "rx ring got corrupted %d\n", ret);
+ 				__skb_queue_purge(&msdu_list);
+-				/* Should stop processing any more rx in future from this ring? */
++				/* Should stop processing any more rx in
++				 * future from this ring?
++				 */
+ 				goto rcu_unlock;
+ 			}
  
- static int ath11k_mac_op_get_survey(struct ieee80211_hw *hw, int idx,
--			     struct survey_info *survey)
-+				    struct survey_info *survey)
- {
- 	struct ath11k *ar = hw->priv;
- 	struct ieee80211_supported_band *sband;
 -- 
 2.7.4
 
