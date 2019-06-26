@@ -1,15 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hg2qu-0008OW-66
- for ath11k@lists.infradead.org; Wed, 26 Jun 2019 08:00:25 +0000
-MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: adding return variable in ath11k_qmi_firmware_stop
+ id 1hg30p-0003qi-D7
+ for ath11k@lists.infradead.org; Wed, 26 Jun 2019 08:10:45 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1561464416-20553-1-git-send-email-gsamin@codeaurora.org>
-References: <1561464416-20553-1-git-send-email-gsamin@codeaurora.org>
-Message-Id: <20190626080023.E30D560A33@smtp.codeaurora.org>
-Date: Wed, 26 Jun 2019 08:00:23 +0000 (UTC)
+Subject: Re: [PATCH] ath11k: Fix rx_duration reporting
+References: <1561456816-27459-1-git-send-email-gseset@codeaurora.org>
+Date: Wed, 26 Jun 2019 11:10:33 +0300
+In-Reply-To: <1561456816-27459-1-git-send-email-gseset@codeaurora.org> (Ganesh
+ Sesetti's message of "Tue, 25 Jun 2019 15:30:16 +0530")
+Message-ID: <87tvccojgm.fsf@kamboji.qca.qualcomm.com>
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,26 +23,30 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Govindaraj Saminathan <gsamin@codeaurora.org>
+To: Ganesh Sesetti <gseset@codeaurora.org>
 Cc: ath11k@lists.infradead.org
 
-Govindaraj Saminathan <gsamin@codeaurora.org> wrote:
+Ganesh Sesetti <gseset@codeaurora.org> writes:
 
-> adding return variable in ath11k_qmi_firmware_stop to check
-> the status of mode_off command.
-> 
-> Signed-off-by: Govindaraj Saminathan <gsamin@codeaurora.org>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+> Since rx duration is wrongly reported in iw wlanX station dump,
+> fetch correct rx duration reported in PPDU_END tlv.
+> Enable PPDU_END, MPDU_START and PPDU_END_STATUS_DONE tlv
+> reporting in monitor status by default. Pass the sta's Rx duration
+> to mac80211 in sta_statistics() ops.
+>
+> Signed-off-by: Ganesh Sesetti <gseset@codeaurora.org>
 
-Patch applied to ath11k-bringup branch of ath.git, thanks.
+Doesn't apply and sha1 is invalid so I can't use 3-way merge. Please
+ALWAYS use ath11k-bringup branch as the baseline and don't have any
+extra patches applied.
 
-7946054a1680 ath11k: adding return variable in ath11k_qmi_firmware_stop
+Applying: ath11k: Fix rx_duration reporting
+fatal: sha1 information is lacking or useless (drivers/net/wireless/ath/ath11k/core.h).
+error: could not build fake ancestor
+Patch failed at 0001 ath11k: Fix rx_duration reporting
 
 -- 
-https://patchwork.kernel.org/patch/11015401/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
+Kalle Valo
 
 _______________________________________________
 ath11k mailing list
