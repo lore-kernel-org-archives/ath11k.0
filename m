@@ -1,19 +1,21 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hg6ii-0001aq-PG
- for ath11k@lists.infradead.org; Wed, 26 Jun 2019 12:08:15 +0000
+ id 1hg6ii-0001b2-PH
+ for ath11k@lists.infradead.org; Wed, 26 Jun 2019 12:08:14 +0000
 Received: from vasanth-lnx.qca.qualcomm.com
  (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
  (No client certificate requested)
  (Authenticated sender: vthiagar@smtp.codeaurora.org)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 12D6D607DE
- for <ath11k@lists.infradead.org>; Wed, 26 Jun 2019 12:08:08 +0000 (UTC)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 55468609F3
+ for <ath11k@lists.infradead.org>; Wed, 26 Jun 2019 12:08:11 +0000 (UTC)
 From: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
-Subject: [PATCH 1/4] ath11k/wmi: Remove wmi service abstraction
-Date: Wed, 26 Jun 2019 17:37:37 +0530
-Message-Id: <1561550860-2928-1-git-send-email-vthiagar@codeaurora.org>
+Subject: [PATCH 3/4] ath11k/wmi: Remove unnecessary type casting
+Date: Wed, 26 Jun 2019 17:37:39 +0530
+Message-Id: <1561550860-2928-3-git-send-email-vthiagar@codeaurora.org>
+In-Reply-To: <1561550860-2928-1-git-send-email-vthiagar@codeaurora.org>
+References: <1561550860-2928-1-git-send-email-vthiagar@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -29,719 +31,256 @@ Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 
-There is going to be only one version of WMI TLV.
+- Remove unnecessary type cast of void *
+- Remove type casting in ether_addr_copy() and use u8 *mac_addr.addri
+  directly.
+- Remove the type cast in ath11k_wmi_vdev_install_key() with memcpy().
 
 Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/core.h |   1 -
- drivers/net/wireless/ath/ath11k/mac.c  |   5 +-
- drivers/net/wireless/ath/ath11k/wmi.c  |  47 ++-
- drivers/net/wireless/ath/ath11k/wmi.h  | 568 +--------------------------------
- 4 files changed, 39 insertions(+), 582 deletions(-)
+ drivers/net/wireless/ath/ath11k/wmi.c | 58 +++++++++++++++++------------------
+ 1 file changed, 29 insertions(+), 29 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index af5c66f..d4b44f8 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -609,7 +609,6 @@ struct ath11k_base {
- 	struct ath11k_ext_irq_grp ext_irq_grp[ATH11K_EXT_IRQ_GRP_NUM_MAX];
- 	struct napi_struct *napi;
- 	struct ath11k_targ_cap target_caps;
--	u32 service_bitmap[WMI_SERVICE_BM_SIZE];
- 	u32 ext_service_bitmap[WMI_SERVICE_EXT_BM_SIZE];
- 	bool pdevs_macaddr_valid;
- 	int bd_api;
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 1a4a333..0787d0d 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -4996,9 +4996,8 @@ static void ath11k_mac_disable_peer_fixed_rate(void *data,
- 
- 	lockdep_assert_held(&ar->conf_mutex);
- 
--	if (!test_bit(WMI_SERVICE_BSS_CHANNEL_INFO_64,
--		      ar->ab->wmi_sc.svc_map) ||
--	    (ar->rx_channel != channel))
-+	if (!test_bit(WMI_TLV_SERVICE_BSS_CHANNEL_INFO_64, ar->ab->wmi_sc.svc_map) ||
-+	    ar->rx_channel != channel)
- 		return;
- 
- 	if (ar->scan.state != ATH11K_SCAN_IDLE) {
 diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 46a3e0f..9b0c7d4 100644
+index 6807ee5..713f8b3 100644
 --- a/drivers/net/wireless/ath/ath11k/wmi.c
 +++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -437,6 +437,23 @@ static int ath11k_pull_service_ready_tlv(struct ath11k_base *ab,
- 	return 0;
- }
+@@ -604,7 +604,7 @@ int ath11k_wmi_vdev_create(struct ath11k *ar, u8 *macaddr,
+ 	cmd->vdev_subtype = param->subtype;
+ 	cmd->num_cfg_txrx_streams = WMI_NUM_SUPPORTED_BAND_MAX;
+ 	cmd->pdev_id = param->pdev_id;
+-	ether_addr_copy((u8 *)&cmd->vdev_macaddr, macaddr);
++	ether_addr_copy(cmd->vdev_macaddr.addr, macaddr);
  
-+/* Save the wmi_service_bitmap into a linear bitmap. The wmi_services in
-+ * wmi_service ready event are advertised in b0-b3 (LSB 4-bits) of each
-+ * 4-byte word.
-+ */
-+static void ath11k_wmi_service_bitmap_copy(struct ath11k_pdev_wmi *wmi,
-+					   const u32 *wmi_svc_bm)
-+{
-+	int i, j;
-+
-+	for (i = 0, j = 0; i < WMI_SERVICE_BM_SIZE && j < WMI_MAX_SERVICE; i++) {
-+		do {
-+			if (wmi_svc_bm[i] & BIT(j % WMI_SERVICE_BITS_IN_SIZE32))
-+				set_bit(j, wmi->wmi_sc->svc_map);
-+		} while (++j % WMI_SERVICE_BITS_IN_SIZE32);
-+	}
-+}
-+
- static int ath11k_wmi_tlv_svc_rdy_parse(struct ath11k_base *ab, u16 tag, u16 len,
- 					const void *ptr, void *data)
- {
-@@ -459,11 +476,7 @@ static int ath11k_wmi_tlv_svc_rdy_parse(struct ath11k_base *ab, u16 tag, u16 len
- 				return -EINVAL;
- 			}
+ 	ptr = skb->data + sizeof(*cmd);
+ 	len = WMI_NUM_SUPPORTED_BAND_MAX * sizeof(*txrx_streams);
+@@ -614,7 +614,7 @@ int ath11k_wmi_vdev_create(struct ath11k *ar, u8 *macaddr,
+ 		      FIELD_PREP(WMI_TLV_LEN, len);
  
--			wmi_svc_map(ptr, wmi_handle->wmi_sc->svc_map,
--				    WMI_MAX_SERVICE);
--
--			memcpy(ab->service_bitmap, ptr,
--			       expect_len);
-+			ath11k_wmi_service_bitmap_copy(wmi_handle, ptr);
+ 	ptr += TLV_HDR_SIZE;
+-	txrx_streams = (void *)ptr;
++	txrx_streams = ptr;
+ 	len = sizeof(*txrx_streams);
+ 	txrx_streams->tlv_header =
+ 		FIELD_PREP(WMI_TLV_TAG, WMI_TAG_VDEV_TXRX_STREAMS) |
+@@ -822,8 +822,8 @@ int ath11k_wmi_vdev_start(struct ath11k *ar, struct wmi_vdev_start_req_arg *arg,
  
- 			svc_ready->wmi_svc_bitmap_done = true;
+ 	cmd->flags |= WMI_VDEV_START_LDPC_RX_ENABLED;
+ 
+-	ptr = (void *)skb->data + sizeof(*cmd);
+-	chan = (struct wmi_channel *)ptr;
++	ptr = skb->data + sizeof(*cmd);
++	chan = ptr;
+ 
+ 	ath11k_wmi_put_wmi_channel(chan, arg);
+ 
+@@ -910,7 +910,7 @@ int ath11k_wmi_send_peer_create_cmd(struct ath11k *ar,
+ 	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_PEER_CREATE_CMD) |
+ 			  FIELD_PREP(WMI_TLV_LEN, sizeof(*cmd) - TLV_HDR_SIZE);
+ 
+-	ether_addr_copy((u8 *)&cmd->peer_macaddr, param->peer_addr);
++	ether_addr_copy(cmd->peer_macaddr.addr, param->peer_addr);
+ 	cmd->peer_type = param->peer_type;
+ 	cmd->vdev_id = param->vdev_id;
+ 
+@@ -943,7 +943,7 @@ int ath11k_wmi_send_peer_delete_cmd(struct ath11k *ar,
+ 	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_PEER_DELETE_CMD) |
+ 			  FIELD_PREP(WMI_TLV_LEN, sizeof(*cmd) - TLV_HDR_SIZE);
+ 
+-	ether_addr_copy((u8 *)&cmd->peer_macaddr, peer_addr);
++	ether_addr_copy(cmd->peer_macaddr.addr, peer_addr);
+ 	cmd->vdev_id = vdev_id;
+ 
+ 	ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
+@@ -1049,7 +1049,7 @@ int ath11k_wmi_send_peer_flush_tids_cmd(struct ath11k *ar,
+ 	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_PEER_FLUSH_TIDS_CMD) |
+ 			  FIELD_PREP(WMI_TLV_LEN, sizeof(*cmd) - TLV_HDR_SIZE);
+ 
+-	ether_addr_copy((u8 *)&cmd->peer_macaddr, peer_addr);
++	ether_addr_copy(cmd->peer_macaddr.addr, peer_addr);
+ 	cmd->peer_tid_bitmap = param->peer_tid_bitmap;
+ 	cmd->vdev_id = param->vdev_id;
+ 
+@@ -1086,7 +1086,7 @@ int ath11k_wmi_peer_rx_reorder_queue_setup(struct ath11k *ar,
+ 				     WMI_TAG_REORDER_QUEUE_SETUP_CMD) |
+ 			  FIELD_PREP(WMI_TLV_LEN, sizeof(*cmd) - TLV_HDR_SIZE);
+ 
+-	ether_addr_copy((u8 *)&cmd->peer_macaddr, (u8 *)addr);
++	ether_addr_copy(cmd->peer_macaddr.addr, addr);
+ 	cmd->vdev_id = vdev_id;
+ 	cmd->tid = tid;
+ 	cmd->queue_ptr_lo = lower_32_bits(paddr);
+@@ -1128,7 +1128,7 @@ int ath11k_wmi_peer_rx_reorder_queue_setup(struct ath11k *ar,
+ 				     WMI_TAG_REORDER_QUEUE_REMOVE_CMD) |
+ 			  FIELD_PREP(WMI_TLV_LEN, sizeof(*cmd) - TLV_HDR_SIZE);
+ 
+-	ether_addr_copy((u8 *)&cmd->peer_macaddr, param->peer_macaddr);
++	ether_addr_copy(cmd->peer_macaddr.addr, param->peer_macaddr);
+ 	cmd->vdev_id = param->vdev_id;
+ 	cmd->tid_mask = param->peer_tid_bitmap;
+ 
+@@ -1294,7 +1294,7 @@ int ath11k_wmi_send_set_ap_ps_param_cmd(struct ath11k *ar, u8 *peer_addr,
+ 			  FIELD_PREP(WMI_TLV_LEN, sizeof(*cmd) - TLV_HDR_SIZE);
+ 
+ 	cmd->vdev_id = param->vdev_id;
+-	ether_addr_copy((u8 *)&cmd->peer_macaddr, peer_addr);
++	ether_addr_copy(cmd->peer_macaddr.addr, peer_addr);
+ 	cmd->param = param->param;
+ 	cmd->value = param->value;
+ 
+@@ -1552,7 +1552,7 @@ int ath11k_wmi_vdev_install_key(struct ath11k *ar,
+ 	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_VDEV_INSTALL_KEY_CMD) |
+ 			  FIELD_PREP(WMI_TLV_LEN, sizeof(*cmd) - TLV_HDR_SIZE);
+ 	cmd->vdev_id = arg->vdev_id;
+-	ether_addr_copy((u8 *)&cmd->peer_macaddr, arg->macaddr);
++	ether_addr_copy(cmd->peer_macaddr.addr, arg->macaddr);
+ 	cmd->key_idx = arg->key_idx;
+ 	cmd->key_flags = arg->key_flags;
+ 	cmd->key_cipher = arg->key_cipher;
+@@ -1561,7 +1561,7 @@ int ath11k_wmi_vdev_install_key(struct ath11k *ar,
+ 	cmd->key_rxmic_len = arg->key_rxmic_len;
+ 
+ 	if (arg->key_rsc_counter)
+-		memcpy((u8 *)&cmd->key_rsc_counter, (u8 *)&arg->key_rsc_counter,
++		memcpy(&cmd->key_rsc_counter, &arg->key_rsc_counter,
+ 		       sizeof(struct wmi_key_seq_counter));
+ 
+ 	tlv = (struct wmi_tlv *)(skb->data + sizeof(*cmd));
+@@ -1692,7 +1692,7 @@ int ath11k_wmi_send_peer_assoc_cmd(struct ath11k *ar,
+ 
+ 	ptr = skb->data;
+ 
+-	cmd = (struct wmi_peer_assoc_complete_cmd *)ptr;
++	cmd = ptr;
+ 	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG,
+ 				     WMI_TAG_PEER_ASSOC_COMPLETE_CMD) |
+ 			  FIELD_PREP(WMI_TLV_LEN, sizeof(*cmd) - TLV_HDR_SIZE);
+@@ -1704,7 +1704,7 @@ int ath11k_wmi_send_peer_assoc_cmd(struct ath11k *ar,
+ 
+ 	ath11k_wmi_copy_peer_flags(cmd, param);
+ 
+-	ether_addr_copy((u8 *)&cmd->peer_macaddr, param->peer_mac);
++	ether_addr_copy(cmd->peer_macaddr.addr, param->peer_mac);
+ 
+ 	cmd->peer_rate_caps = param->peer_rate_caps;
+ 	cmd->peer_caps = param->peer_caps;
+@@ -1752,7 +1752,7 @@ int ath11k_wmi_send_peer_assoc_cmd(struct ath11k *ar,
+ 	/* VHT Rates */
+ 	ptr += peer_ht_rates_align;
+ 
+-	mcs = (struct wmi_vht_rate_set *)ptr;
++	mcs = ptr;
+ 
+ 	mcs->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_VHT_RATE_SET) |
+ 			  FIELD_PREP(WMI_TLV_LEN, sizeof(*mcs) - TLV_HDR_SIZE);
+@@ -1784,7 +1784,7 @@ int ath11k_wmi_send_peer_assoc_cmd(struct ath11k *ar,
+ 
+ 	/* Loop through the HE rate set */
+ 	for (i = 0; i < param->peer_he_mcs_count; i++) {
+-		he_mcs = (struct wmi_he_rate_set *)ptr;
++		he_mcs = ptr;
+ 		he_mcs->tlv_header = FIELD_PREP(WMI_TLV_TAG,
+ 						WMI_TAG_HE_RATE_SET) |
+ 				     FIELD_PREP(WMI_TLV_LEN,
+@@ -1949,7 +1949,7 @@ int ath11k_wmi_send_scan_start_cmd(struct ath11k *ar,
+ 
+ 	ptr = skb->data;
+ 
+-	cmd = (struct wmi_start_scan_cmd *)ptr;
++	cmd = ptr;
+ 	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_START_SCAN_CMD) |
+ 			  FIELD_PREP(WMI_TLV_LEN, sizeof(*cmd) - TLV_HDR_SIZE);
+ 
+@@ -2001,7 +2001,7 @@ int ath11k_wmi_send_scan_start_cmd(struct ath11k *ar,
+ 	ptr += TLV_HDR_SIZE;
+ 
+ 	if (params->num_ssids) {
+-		ssid = (struct wmi_ssid *)ptr;
++		ssid = ptr;
+ 		for (i = 0; i < params->num_ssids; ++i) {
+ 			ssid->ssid_len = params->ssid[i].length;
+ 			memcpy(ssid->ssid, params->ssid[i].ssid,
+@@ -2017,12 +2017,12 @@ int ath11k_wmi_send_scan_start_cmd(struct ath11k *ar,
+ 		      FIELD_PREP(WMI_TLV_LEN, len);
+ 
+ 	ptr += TLV_HDR_SIZE;
+-	bssid = (struct wmi_mac_addr *)ptr;
++	bssid = ptr;
+ 
+ 	if (params->num_bssid) {
+ 		for (i = 0; i < params->num_bssid; ++i) {
+-			ether_addr_copy((u8 *)bssid,
+-					(u8 *)&params->bssid_list[i]);
++			ether_addr_copy(bssid->addr,
++					params->bssid_list[i].addr);
+ 			bssid++;
  		}
-@@ -5310,6 +5323,7 @@ static void ath11k_service_available_event(struct ath11k_base *ab, u8 *evt_buf,
- 	const void **tb;
- 	const struct wmi_service_available_event *ev;
- 	int ret;
-+	int i, j;
- 
- 	tb = ath11k_wmi_tlv_parse_alloc(ab, evt_buf, len, GFP_ATOMIC);
- 	if (IS_ERR(tb)) {
-@@ -5325,17 +5339,24 @@ static void ath11k_service_available_event(struct ath11k_base *ab, u8 *evt_buf,
- 		return;
  	}
+@@ -2139,7 +2139,7 @@ int ath11k_wmi_send_scan_chan_list_cmd(struct ath11k *ar,
+ 	tchan_info = &chan_list->ch_param[0];
  
--	memcpy(ab->ext_service_bitmap, ev->wmi_service_segment_bitmap,
--	       (WMI_SERVICE_SEGMENT_BM_SIZE32 * sizeof(u32)));
--
--	wmi_svc_map_ext(ev->wmi_service_segment_bitmap,
--			ab->wmi_sc.svc_map,
--			WMI_MAX_SERVICE);
-+	/* TODO: Use wmi_service_segment_offset information to get the service
-+	 * especially when more services are advertised in multiple sevice
-+	 * available events.
-+	 */
-+	for (i = 0, j = WMI_MAX_SERVICE;
-+	     i < WMI_SERVICE_SEGMENT_BM_SIZE32 && j < WMI_MAX_EXT_SERVICE;
-+	     i++) {
-+		do {
-+			if (ev->wmi_service_segment_bitmap[i] &
-+			    BIT(j % WMI_AVAIL_SERVICE_BITS_IN_SIZE32))
-+				set_bit(j, ab->wmi_sc.svc_map);
-+		} while (++j % WMI_AVAIL_SERVICE_BITS_IN_SIZE32);
-+	}
+ 	for (i = 0; i < chan_list->nallchans; ++i) {
+-		chan_info = (struct wmi_channel *)ptr;
++		chan_info = ptr;
+ 		memset(chan_info, 0, sizeof(*chan_info));
+ 		len = sizeof(*chan_info);
+ 		chan_info->tlv_header = FIELD_PREP(WMI_TLV_TAG,
+@@ -2331,7 +2331,7 @@ int ath11k_wmi_pdev_peer_pktlog_filter(struct ath11k *ar, u8 *addr, u8 enable)
+ 		      FIELD_PREP(WMI_TLV_LEN, 0);
  
- 	ath11k_dbg(ab, ATH11K_DBG_WMI,
- 		   "wmi_ext_service_bitmap 0:0x%x, 1:0x%x, 2:0x%x, 3:0x%x",
--		   ab->ext_service_bitmap[0], ab->ext_service_bitmap[1],
--		   ab->ext_service_bitmap[2], ab->ext_service_bitmap[3]);
-+		   ev->wmi_service_segment_bitmap[0], ev->wmi_service_segment_bitmap[1],
-+		   ev->wmi_service_segment_bitmap[2], ev->wmi_service_segment_bitmap[3]);
+ 	ptr += TLV_HDR_SIZE;
+-	info = (struct wmi_pdev_pktlog_filter_info *)ptr;
++	info = ptr;
+ 
+ 	ether_addr_copy(info->peer_macaddr.addr, addr);
+ 	info->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_PDEV_PEER_PKTLOG_FILTER_INFO) |
+@@ -2586,7 +2586,7 @@ static int ath11k_init_cmd_send(struct ath11k_pdev_wmi *wmi,
+ 			  FIELD_PREP(WMI_TLV_LEN, sizeof(*cmd) - TLV_HDR_SIZE);
+ 
+ 	ptr = skb->data + sizeof(*cmd);
+-	cfg = (struct wmi_resource_config *)ptr;
++	cfg = ptr;
+ 
+ 	ath11k_wmi_copy_resource_config(cfg, param->res_cfg);
+ 
+@@ -2594,7 +2594,7 @@ static int ath11k_init_cmd_send(struct ath11k_pdev_wmi *wmi,
+ 			  FIELD_PREP(WMI_TLV_LEN, sizeof(*cfg) - TLV_HDR_SIZE);
+ 
+ 	ptr += sizeof(*cfg);
+-	host_mem_chunks = (struct wlan_host_mem_chunk *)(ptr + TLV_HDR_SIZE);
++	host_mem_chunks = ptr + TLV_HDR_SIZE;
+ 	len = sizeof(struct wlan_host_mem_chunk);
+ 
+ 	for (idx = 0; idx < param->num_mem_chunks; ++idx) {
+@@ -3221,8 +3221,8 @@ static int ath11k_pull_peer_del_resp_ev(struct ath11k_base *ab, u8 *evt_buf, u32
+ 	memset(peer_del_resp, 0, sizeof(*peer_del_resp));
+ 
+ 	peer_del_resp->vdev_id = ev->vdev_id;
+-	ether_addr_copy((u8 *)&peer_del_resp->peer_macaddr,
+-			(u8 *)&ev->peer_macaddr);
++	ether_addr_copy(peer_del_resp->peer_macaddr.addr,
++			ev->peer_macaddr.addr);
  
  	kfree(tb);
- }
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index 779209a..248326e 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -1943,570 +1943,6 @@ enum wmi_tlv_service {
+ 	return 0;
+@@ -4631,7 +4631,7 @@ static int ath11k_wmi_tlv_rdy_parse(struct ath11k_base *ab, u16 tag, u16 len,
+ 		ab->wlan_init_status = fixed_param->status;
+ 		rdy_parse->num_extra_mac_addr = fixed_param->num_extra_mac_addr;
  
- };
+-		ether_addr_copy(ab->mac_addr, (u8 *)&fixed_param->mac_addr);
++		ether_addr_copy(ab->mac_addr, fixed_param->mac_addr.addr);
+ 		ab->wmi_ready = true;
+ 		break;
+ 	case WMI_TAG_ARRAY_FIXED_STRUCT:
+@@ -4643,7 +4643,7 @@ static int ath11k_wmi_tlv_rdy_parse(struct ath11k_base *ab, u16 tag, u16 len,
  
--enum wmi_service {
--	WMI_SERVICE_BEACON_OFFLOAD = 0,
--	WMI_SERVICE_SCAN_OFFLOAD,
--	WMI_SERVICE_ROAM_SCAN_OFFLOAD,
--	WMI_SERVICE_BCN_MISS_OFFLOAD,
--	WMI_SERVICE_STA_PWRSAVE,
--	WMI_SERVICE_STA_ADVANCED_PWRSAVE,
--	WMI_SERVICE_AP_UAPSD,
--	WMI_SERVICE_AP_DFS,
--	WMI_SERVICE_11AC,
--	WMI_SERVICE_BLOCKACK,
--	WMI_SERVICE_PHYERR,
--	WMI_SERVICE_BCN_FILTER,
--	WMI_SERVICE_RTT,
--	WMI_SERVICE_WOW,
--	WMI_SERVICE_RATECTRL_CACHE,
--	WMI_SERVICE_IRAM_TIDS,
--	WMI_SERVICE_ARPNS_OFFLOAD,
--	WMI_SERVICE_NLO,
--	WMI_SERVICE_GTK_OFFLOAD,
--	WMI_SERVICE_SCAN_SCH,
--	WMI_SERVICE_CSA_OFFLOAD,
--	WMI_SERVICE_CHATTER,
--	WMI_SERVICE_COEX_FREQAVOID,
--	WMI_SERVICE_PACKET_POWER_SAVE,
--	WMI_SERVICE_FORCE_FW_HANG,
--	WMI_SERVICE_GPIO,
--	WMI_SERVICE_STA_DTIM_PS_MODULATED_DTIM,
--	WMI_SERVICE_STA_UAPSD_BASIC_AUTO_TRIG,
--	WMI_SERVICE_STA_UAPSD_VAR_AUTO_TRIG,
--	WMI_SERVICE_STA_KEEP_ALIVE,
--	WMI_SERVICE_TX_ENCAP,
--	WMI_SERVICE_AP_PS_DETECT_OUT_OF_SYNC,
--	WMI_SERVICE_EARLY_RX,
--	WMI_SERVICE_STA_SMPS,
--	WMI_SERVICE_FWTEST,
--	WMI_SERVICE_STA_WMMAC,
--	WMI_SERVICE_TDLS,
--	WMI_SERVICE_BURST,
--	WMI_SERVICE_MCC_BCN_INTERVAL_CHANGE,
--	WMI_SERVICE_ADAPTIVE_OCS,
--	WMI_SERVICE_BA_SSN_SUPPORT,
--	WMI_SERVICE_FILTER_IPSEC_NATKEEPALIVE,
--	WMI_SERVICE_WLAN_HB,
--	WMI_SERVICE_LTE_ANT_SHARE_SUPPORT,
--	WMI_SERVICE_BATCH_SCAN,
--	WMI_SERVICE_QPOWER,
--	WMI_SERVICE_PLMREQ,
--	WMI_SERVICE_THERMAL_MGMT,
--	WMI_SERVICE_RMC,
--	WMI_SERVICE_MHF_OFFLOAD,
--	WMI_SERVICE_COEX_SAR,
--	WMI_SERVICE_BCN_TXRATE_OVERRIDE,
--	WMI_SERVICE_NAN,
--	WMI_SERVICE_L1SS_STAT,
--	WMI_SERVICE_ESTIMATE_LINKSPEED,
--	WMI_SERVICE_OBSS_SCAN,
--	WMI_SERVICE_TDLS_OFFCHAN,
--	WMI_SERVICE_TDLS_UAPSD_BUFFER_STA,
--	WMI_SERVICE_TDLS_UAPSD_SLEEP_STA,
--	WMI_SERVICE_IBSS_PWRSAVE,
--	WMI_SERVICE_LPASS,
--	WMI_SERVICE_EXTSCAN,
--	WMI_SERVICE_D0WOW,
--	WMI_SERVICE_HSOFFLOAD,
--	WMI_SERVICE_ROAM_HO_OFFLOAD,
--	WMI_SERVICE_RX_FULL_REORDER,
--	WMI_SERVICE_DHCP_OFFLOAD,
--	WMI_SERVICE_STA_RX_IPA_OFFLOAD_SUPPORT,
--	WMI_SERVICE_MDNS_OFFLOAD,
--	WMI_SERVICE_SAP_AUTH_OFFLOAD,
--	WMI_SERVICE_DUAL_BAND_SIMULTANEOUS_SUPPORT,
--	WMI_SERVICE_OCB,
--	WMI_SERVICE_AP_ARPNS_OFFLOAD,
--	WMI_SERVICE_PER_BAND_CHAINMASK_SUPPORT,
--	WMI_SERVICE_PACKET_FILTER_OFFLOAD,
--	WMI_SERVICE_MGMT_TX_HTT,
--	WMI_SERVICE_MGMT_TX_WMI,
--	WMI_SERVICE_EXT_MSG,
--	WMI_SERVICE_MAWC,
--	WMI_SERVICE_PEER_ASSOC_CONF,
--	WMI_SERVICE_EGAP,
--	WMI_SERVICE_STA_PMF_OFFLOAD,
--	WMI_SERVICE_UNIFIED_WOW_CAPABILITY,
--	WMI_SERVICE_ENHANCED_PROXY_STA,
--	WMI_SERVICE_ATF,
--	WMI_SERVICE_COEX_GPIO,
--	WMI_SERVICE_AUX_SPECTRAL_INTF,
--	WMI_SERVICE_AUX_CHAN_LOAD_INTF,
--	WMI_SERVICE_BSS_CHANNEL_INFO_64,
--	WMI_SERVICE_ENTERPRISE_MESH,
--	WMI_SERVICE_RESTRT_CHNL_SUPPORT,
--	WMI_SERVICE_BPF_OFFLOAD,
--	WMI_SERVICE_SYNC_DELETE_CMDS,
--	WMI_SERVICE_SMART_ANTENNA_SW_SUPPORT,
--	WMI_SERVICE_SMART_ANTENNA_HW_SUPPORT,
--	WMI_SERVICE_RATECTRL_LIMIT_MAX_MIN_RATES,
--	WMI_SERVICE_NAN_DATA,
--	WMI_SERVICE_NAN_RTT,
--	WMI_SERVICE_11AX,
--	WMI_SERVICE_DEPRECATED_REPLACE,
--	WMI_SERVICE_TDLS_CONN_TRACKER_IN_HOST_MODE,
--	WMI_SERVICE_ENHANCED_MCAST_FILTER,
--	WMI_SERVICE_PERIODIC_CHAN_STAT_SUPPORT,
--	WMI_SERVICE_MESH_11S,
--	WMI_SERVICE_HALF_RATE_QUARTER_RATE_SUPPORT,
--	WMI_SERVICE_VDEV_RX_FILTER,
--	WMI_SERVICE_P2P_LISTEN_OFFLOAD_SUPPORT,
--	WMI_SERVICE_MARK_FIRST_WAKEUP_PACKET,
--	WMI_SERVICE_MULTIPLE_MCAST_FILTER_SET,
--	WMI_SERVICE_HOST_MANAGED_RX_REORDER,
--	WMI_SERVICE_FLASH_RDWR_SUPPORT,
--	WMI_SERVICE_WLAN_STATS_REPORT,
--	WMI_SERVICE_TX_MSDU_ID_NEW_PARTITION_SUPPORT,
--	WMI_SERVICE_DFS_PHYERR_OFFLOAD,
--	WMI_SERVICE_RCPI_SUPPORT,
--	WMI_SERVICE_FW_MEM_DUMP_SUPPORT,
--	WMI_SERVICE_PEER_STATS_INFO,
--	WMI_SERVICE_REGULATORY_DB,
--	WMI_SERVICE_11D_OFFLOAD,
--	WMI_SERVICE_HW_DATA_FILTERING,
--	WMI_SERVICE_MULTIPLE_VDEV_RESTART,
--	WMI_SERVICE_PKT_ROUTING,
--	WMI_SERVICE_CHECK_CAL_VERSION,
--	WMI_SERVICE_OFFCHAN_TX_WMI,
--	WMI_SERVICE_8SS_TX_BFEE,
--	WMI_SERVICE_EXTENDED_NSS_SUPPORT,
--	WMI_SERVICE_ACK_TIMEOUT,
--	WMI_SERVICE_PDEV_BSS_CHANNEL_INFO_64,
--	WMI_SERVICE_CHAN_LOAD_INFO,
--	WMI_SERVICE_TX_PPDU_INFO_STATS_SUPPORT,
--	WMI_SERVICE_VDEV_LIMIT_OFFCHAN_SUPPORT,
--	WMI_SERVICE_FILS_SUPPORT,
--	WMI_SERVICE_WLAN_OIC_PING_OFFLOAD,
--	WMI_SERVICE_WLAN_DHCP_RENEW,
--	WMI_SERVICE_MAWC_SUPPORT,
--	WMI_SERVICE_VDEV_LATENCY_CONFIG,
--	WMI_SERVICE_PDEV_UPDATE_CTLTABLE_SUPPORT,
--	WMI_SERVICE_PKTLOG_SUPPORT_OVER_HTT,
--	WMI_SERVICE_VDEV_MULTI_GROUP_KEY_SUPPORT,
--	WMI_SERVICE_SCAN_PHYMODE_SUPPORT,
--	WMI_SERVICE_THERM_THROT,
--	WMI_SERVICE_BCN_OFFLOAD_START_STOP_SUPPORT,
--	WMI_SERVICE_WOW_WAKEUP_BY_TIMER_PATTERN,
--	WMI_SERVICE_PEER_MAP_UNMAP_V2_SUPPORT,
--	WMI_SERVICE_OFFCHAN_DATA_TID_SUPPORT,
--	WMI_SERVICE_RX_PROMISC_ENABLE_SUPPORT,
--	WMI_SERVICE_SUPPORT_DIRECT_DMA,
--	WMI_SERVICE_AP_OBSS_DETECTION_OFFLOAD,
--	WMI_SERVICE_11K_NEIGHBOUR_REPORT_SUPPORT,
--	WMI_SERVICE_LISTEN_INTERVAL_OFFLOAD_SUPPORT,
--	WMI_SERVICE_BSS_COLOR_OFFLOAD,
--	WMI_SERVICE_RUNTIME_DPD_RECAL,
--	WMI_SERVICE_STA_TWT,
--	WMI_SERVICE_AP_TWT,
--	WMI_SERVICE_GMAC_OFFLOAD_SUPPORT,
--	WMI_SERVICE_SPOOF_MAC_SUPPORT,
--	WMI_SERVICE_PEER_TID_CONFIGS_SUPPORT,
--	WMI_SERVICE_VDEV_SWRETRY_PER_AC_CONFIG_SUPPORT,
--	WMI_SERVICE_DUAL_BEACON_ON_SINGLE_MAC_SCC_SUPPORT,
--	WMI_SERVICE_DUAL_BEACON_ON_SINGLE_MAC_MCC_SUPPORT,
--	WMI_SERVICE_MOTION_DET,
--	WMI_SERVICE_INFRA_MBSSID,
--	WMI_SERVICE_OBSS_SPATIAL_REUSE,
--	WMI_SERVICE_VDEV_DIFFERENT_BEACON_INTERVAL_SUPPORT,
--	WMI_SERVICE_NAN_DBS_SUPPORT,
--	WMI_SERVICE_NDI_DBS_SUPPORT,
--	WMI_SERVICE_NAN_SAP_SUPPORT,
--	WMI_SERVICE_NDI_SAP_SUPPORT,
--	WMI_SERVICE_CFR_CAPTURE_SUPPORT,
--	WMI_SERVICE_CFR_CAPTURE_IND_MSG_TYPE_1,
--	WMI_SERVICE_ESP_SUPPORT,
--	WMI_SERVICE_PEER_CHWIDTH_CHANGE,
--	WMI_SERVICE_WLAN_HPCS_PULSE,
--	WMI_SERVICE_PER_VDEV_CHAINMASK_CONFIG_SUPPORT,
--	WMI_SERVICE_TX_DATA_MGMT_ACK_RSSI,
--	WMI_SERVICE_NAN_DISABLE_SUPPORT,
--	WMI_SERVICE_NAN_DISABLE_SUPPORT__prototype = WMI_SERVICE_NAN_DISABLE_SUPPORT,
--	WMI_SERVICE_HTT_H2T_NO_HTC_HDR_LEN_IN_MSG_LEN,
--
--	/* keep it last */
--	WMI_SERVICE_MAX
--};
--
--#define WMI_SERVICE_IS_ENABLED(wmi_svc_bmap, svc_id, len) \
--		((svc_id) < (len) && \
--		((wmi_svc_bmap)[(svc_id) / (sizeof(u32))]) & \
--		 BIT((svc_id) % (sizeof(u32))))
--
--#define WMI_EXT_SERVICE_IS_ENABLED(wmi_svc_bmap, svc_id, len) \
--		((svc_id) < (WMI_MAX_EXT_SERVICE) && \
--		 (svc_id) >= (len) && \
--		((wmi_svc_bmap)[((svc_id) - (len)) / 32]) & \
--		BIT(((((svc_id) - (len)) % 32) & 0x1f)))
--
--#define SVCMAP(x, y, len) \
--	do { \
--		if ((WMI_SERVICE_IS_ENABLED((in), (x), (len))) || \
--			(WMI_EXT_SERVICE_IS_ENABLED((in), (x), (len)))) \
--			__set_bit(y, out); \
--	} while (0)
--
--static inline void
--wmi_svc_map_ext(const u32 *in, unsigned long *out, size_t len)
--{
--	SVCMAP(WMI_TLV_SERVICE_TX_PPDU_INFO_STATS_SUPPORT,
--	       WMI_SERVICE_TX_PPDU_INFO_STATS_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_VDEV_LIMIT_OFFCHAN_SUPPORT,
--	       WMI_SERVICE_VDEV_LIMIT_OFFCHAN_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_FILS_SUPPORT,
--	       WMI_SERVICE_FILS_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_WLAN_OIC_PING_OFFLOAD,
--	       WMI_SERVICE_WLAN_OIC_PING_OFFLOAD, len);
--	SVCMAP(WMI_TLV_SERVICE_WLAN_DHCP_RENEW,
--	       WMI_SERVICE_WLAN_DHCP_RENEW, len);
--	SVCMAP(WMI_TLV_SERVICE_MAWC_SUPPORT,
--	       WMI_SERVICE_MAWC_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_VDEV_LATENCY_CONFIG,
--	       WMI_SERVICE_VDEV_LATENCY_CONFIG, len);
--	SVCMAP(WMI_TLV_SERVICE_PDEV_UPDATE_CTLTABLE_SUPPORT,
--	       WMI_SERVICE_PDEV_UPDATE_CTLTABLE_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_PKTLOG_SUPPORT_OVER_HTT,
--	       WMI_SERVICE_PKTLOG_SUPPORT_OVER_HTT, len);
--	SVCMAP(WMI_TLV_SERVICE_VDEV_MULTI_GROUP_KEY_SUPPORT,
--	       WMI_SERVICE_VDEV_MULTI_GROUP_KEY_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_SCAN_PHYMODE_SUPPORT,
--	       WMI_SERVICE_SCAN_PHYMODE_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_THERM_THROT,
--	       WMI_SERVICE_THERM_THROT, len);
--	SVCMAP(WMI_TLV_SERVICE_BCN_OFFLOAD_START_STOP_SUPPORT,
--	       WMI_SERVICE_BCN_OFFLOAD_START_STOP_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_WOW_WAKEUP_BY_TIMER_PATTERN,
--	       WMI_SERVICE_WOW_WAKEUP_BY_TIMER_PATTERN, len);
--	SVCMAP(WMI_TLV_SERVICE_PEER_MAP_UNMAP_V2_SUPPORT,
--	       WMI_SERVICE_PEER_MAP_UNMAP_V2_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_OFFCHAN_DATA_TID_SUPPORT,
--	       WMI_SERVICE_OFFCHAN_DATA_TID_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_RX_PROMISC_ENABLE_SUPPORT,
--	       WMI_SERVICE_RX_PROMISC_ENABLE_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_SUPPORT_DIRECT_DMA,
--	       WMI_SERVICE_SUPPORT_DIRECT_DMA, len);
--	SVCMAP(WMI_TLV_SERVICE_AP_OBSS_DETECTION_OFFLOAD,
--	       WMI_SERVICE_AP_OBSS_DETECTION_OFFLOAD, len);
--	SVCMAP(WMI_TLV_SERVICE_11K_NEIGHBOUR_REPORT_SUPPORT,
--	       WMI_SERVICE_11K_NEIGHBOUR_REPORT_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_LISTEN_INTERVAL_OFFLOAD_SUPPORT,
--	       WMI_SERVICE_LISTEN_INTERVAL_OFFLOAD_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_BSS_COLOR_OFFLOAD,
--	       WMI_SERVICE_BSS_COLOR_OFFLOAD, len);
--	SVCMAP(WMI_TLV_SERVICE_RUNTIME_DPD_RECAL,
--	       WMI_SERVICE_RUNTIME_DPD_RECAL, len);
--	SVCMAP(WMI_TLV_SERVICE_STA_TWT,
--	       WMI_SERVICE_STA_TWT, len);
--	SVCMAP(WMI_TLV_SERVICE_AP_TWT,
--	       WMI_SERVICE_AP_TWT, len);
--	SVCMAP(WMI_TLV_SERVICE_GMAC_OFFLOAD_SUPPORT,
--	       WMI_SERVICE_GMAC_OFFLOAD_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_SPOOF_MAC_SUPPORT,
--	       WMI_SERVICE_SPOOF_MAC_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_PEER_TID_CONFIGS_SUPPORT,
--	       WMI_SERVICE_PEER_TID_CONFIGS_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_VDEV_SWRETRY_PER_AC_CONFIG_SUPPORT,
--	       WMI_SERVICE_VDEV_SWRETRY_PER_AC_CONFIG_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_DUAL_BEACON_ON_SINGLE_MAC_SCC_SUPPORT,
--	       WMI_SERVICE_DUAL_BEACON_ON_SINGLE_MAC_SCC_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_MOTION_DET,
--	       WMI_SERVICE_MOTION_DET, len);
--	SVCMAP(WMI_TLV_SERVICE_INFRA_MBSSID,
--	       WMI_SERVICE_INFRA_MBSSID, len);
--	SVCMAP(WMI_TLV_SERVICE_OBSS_SPATIAL_REUSE,
--	       WMI_SERVICE_OBSS_SPATIAL_REUSE, len);
--	SVCMAP(WMI_TLV_SERVICE_VDEV_DIFFERENT_BEACON_INTERVAL_SUPPORT,
--	       WMI_SERVICE_VDEV_DIFFERENT_BEACON_INTERVAL_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_NAN_DBS_SUPPORT,
--	       WMI_SERVICE_NAN_DBS_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_NDI_DBS_SUPPORT,
--	       WMI_SERVICE_NDI_DBS_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_NAN_SAP_SUPPORT,
--	       WMI_SERVICE_NAN_SAP_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_NDI_SAP_SUPPORT,
--	       WMI_SERVICE_NDI_SAP_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_CFR_CAPTURE_SUPPORT,
--	       WMI_SERVICE_CFR_CAPTURE_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_CFR_CAPTURE_IND_MSG_TYPE_1,
--	       WMI_SERVICE_CFR_CAPTURE_IND_MSG_TYPE_1, len);
--	SVCMAP(WMI_TLV_SERVICE_ESP_SUPPORT,
--	       WMI_SERVICE_ESP_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_PEER_CHWIDTH_CHANGE,
--	       WMI_SERVICE_PEER_CHWIDTH_CHANGE, len);
--	SVCMAP(WMI_TLV_SERVICE_WLAN_HPCS_PULSE,
--	       WMI_SERVICE_WLAN_HPCS_PULSE, len);
--	SVCMAP(WMI_TLV_SERVICE_PER_VDEV_CHAINMASK_CONFIG_SUPPORT,
--	       WMI_SERVICE_PER_VDEV_CHAINMASK_CONFIG_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_TX_DATA_MGMT_ACK_RSSI,
--	       WMI_SERVICE_TX_DATA_MGMT_ACK_RSSI, len);
--	SVCMAP(WMI_TLV_SERVICE_NAN_DISABLE_SUPPORT,
--	       WMI_SERVICE_NAN_DISABLE_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_NAN_DISABLE_SUPPORT__prototype,
--	       WMI_SERVICE_NAN_DISABLE_SUPPORT__prototype, len);
--	SVCMAP(WMI_TLV_SERVICE_HTT_H2T_NO_HTC_HDR_LEN_IN_MSG_LEN,
--	       WMI_SERVICE_HTT_H2T_NO_HTC_HDR_LEN_IN_MSG_LEN, len);
--}
--
--static inline void
--wmi_svc_map(const u32 *in, unsigned long *out, size_t len)
--{
--	SVCMAP(WMI_TLV_SERVICE_BEACON_OFFLOAD,
--	       WMI_SERVICE_BEACON_OFFLOAD, len);
--	SVCMAP(WMI_TLV_SERVICE_SCAN_OFFLOAD,
--	       WMI_SERVICE_SCAN_OFFLOAD, len);
--	SVCMAP(WMI_TLV_SERVICE_ROAM_SCAN_OFFLOAD,
--	       WMI_SERVICE_ROAM_SCAN_OFFLOAD, len);
--	SVCMAP(WMI_TLV_SERVICE_BCN_MISS_OFFLOAD,
--	       WMI_SERVICE_BCN_MISS_OFFLOAD, len);
--	SVCMAP(WMI_TLV_SERVICE_STA_PWRSAVE,
--	       WMI_SERVICE_STA_PWRSAVE, len);
--	SVCMAP(WMI_TLV_SERVICE_STA_ADVANCED_PWRSAVE,
--	       WMI_SERVICE_STA_ADVANCED_PWRSAVE, len);
--	SVCMAP(WMI_TLV_SERVICE_AP_UAPSD,
--	       WMI_SERVICE_AP_UAPSD, len);
--	SVCMAP(WMI_TLV_SERVICE_AP_DFS,
--	       WMI_SERVICE_AP_DFS, len);
--	SVCMAP(WMI_TLV_SERVICE_11AC,
--	       WMI_SERVICE_11AC, len);
--	SVCMAP(WMI_TLV_SERVICE_BLOCKACK,
--	       WMI_SERVICE_BLOCKACK, len);
--	SVCMAP(WMI_TLV_SERVICE_PHYERR,
--	       WMI_SERVICE_PHYERR, len);
--	SVCMAP(WMI_TLV_SERVICE_BCN_FILTER,
--	       WMI_SERVICE_BCN_FILTER, len);
--	SVCMAP(WMI_TLV_SERVICE_RTT,
--	       WMI_SERVICE_RTT, len);
--	SVCMAP(WMI_TLV_SERVICE_WOW,
--	       WMI_SERVICE_WOW, len);
--	SVCMAP(WMI_TLV_SERVICE_RATECTRL_CACHE,
--	       WMI_SERVICE_RATECTRL_CACHE, len);
--	SVCMAP(WMI_TLV_SERVICE_IRAM_TIDS,
--	       WMI_SERVICE_IRAM_TIDS, len);
--	SVCMAP(WMI_TLV_SERVICE_ARPNS_OFFLOAD,
--	       WMI_SERVICE_ARPNS_OFFLOAD, len);
--	SVCMAP(WMI_TLV_SERVICE_NLO,
--	       WMI_SERVICE_NLO, len);
--	SVCMAP(WMI_TLV_SERVICE_GTK_OFFLOAD,
--	       WMI_SERVICE_GTK_OFFLOAD, len);
--	SVCMAP(WMI_TLV_SERVICE_SCAN_SCH,
--	       WMI_SERVICE_SCAN_SCH, len);
--	SVCMAP(WMI_TLV_SERVICE_CSA_OFFLOAD,
--	       WMI_SERVICE_CSA_OFFLOAD, len);
--	SVCMAP(WMI_TLV_SERVICE_CHATTER,
--	       WMI_SERVICE_CHATTER, len);
--	SVCMAP(WMI_TLV_SERVICE_COEX_FREQAVOID,
--	       WMI_SERVICE_COEX_FREQAVOID, len);
--	SVCMAP(WMI_TLV_SERVICE_PACKET_POWER_SAVE,
--	       WMI_SERVICE_PACKET_POWER_SAVE, len);
--	SVCMAP(WMI_TLV_SERVICE_FORCE_FW_HANG,
--	       WMI_SERVICE_FORCE_FW_HANG, len);
--	SVCMAP(WMI_TLV_SERVICE_GPIO,
--	       WMI_SERVICE_GPIO, len);
--	SVCMAP(WMI_TLV_SERVICE_STA_DTIM_PS_MODULATED_DTIM,
--	       WMI_SERVICE_STA_DTIM_PS_MODULATED_DTIM, len);
--	SVCMAP(WMI_STA_UAPSD_BASIC_AUTO_TRIG,
--	       WMI_SERVICE_STA_UAPSD_BASIC_AUTO_TRIG, len);
--	SVCMAP(WMI_STA_UAPSD_VAR_AUTO_TRIG,
--	       WMI_SERVICE_STA_UAPSD_VAR_AUTO_TRIG, len);
--	SVCMAP(WMI_TLV_SERVICE_STA_KEEP_ALIVE,
--	       WMI_SERVICE_STA_KEEP_ALIVE, len);
--	SVCMAP(WMI_TLV_SERVICE_TX_ENCAP,
--	       WMI_SERVICE_TX_ENCAP, len);
--	SVCMAP(WMI_TLV_SERVICE_AP_PS_DETECT_OUT_OF_SYNC,
--	       WMI_SERVICE_AP_PS_DETECT_OUT_OF_SYNC, len);
--	SVCMAP(WMI_TLV_SERVICE_EARLY_RX,
--	       WMI_SERVICE_EARLY_RX, len);
--	SVCMAP(WMI_TLV_SERVICE_STA_SMPS,
--	       WMI_SERVICE_STA_SMPS, len);
--	SVCMAP(WMI_TLV_SERVICE_FWTEST,
--	       WMI_SERVICE_FWTEST, len);
--	SVCMAP(WMI_TLV_SERVICE_STA_WMMAC,
--	       WMI_SERVICE_STA_WMMAC, len);
--	SVCMAP(WMI_TLV_SERVICE_TDLS,
--	       WMI_SERVICE_TDLS, len);
--	SVCMAP(WMI_TLV_SERVICE_BURST,
--	       WMI_SERVICE_BURST, len);
--	SVCMAP(WMI_TLV_SERVICE_MCC_BCN_INTERVAL_CHANGE,
--	       WMI_SERVICE_MCC_BCN_INTERVAL_CHANGE, len);
--	SVCMAP(WMI_TLV_SERVICE_ADAPTIVE_OCS,
--	       WMI_SERVICE_ADAPTIVE_OCS, len);
--	SVCMAP(WMI_TLV_SERVICE_BA_SSN_SUPPORT,
--	       WMI_SERVICE_BA_SSN_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_FILTER_IPSEC_NATKEEPALIVE,
--	       WMI_SERVICE_FILTER_IPSEC_NATKEEPALIVE, len);
--	SVCMAP(WMI_TLV_SERVICE_WLAN_HB,
--	       WMI_SERVICE_WLAN_HB, len);
--	SVCMAP(WMI_TLV_SERVICE_LTE_ANT_SHARE_SUPPORT,
--	       WMI_SERVICE_LTE_ANT_SHARE_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_BATCH_SCAN,
--	       WMI_SERVICE_BATCH_SCAN, len);
--	SVCMAP(WMI_TLV_SERVICE_QPOWER,
--	       WMI_SERVICE_QPOWER, len);
--	SVCMAP(WMI_TLV_SERVICE_PLMREQ,
--	       WMI_SERVICE_PLMREQ, len);
--	SVCMAP(WMI_TLV_SERVICE_THERMAL_MGMT,
--	       WMI_SERVICE_THERMAL_MGMT, len);
--	SVCMAP(WMI_TLV_SERVICE_RMC,
--	       WMI_SERVICE_RMC, len);
--	SVCMAP(WMI_TLV_SERVICE_MHF_OFFLOAD,
--	       WMI_SERVICE_MHF_OFFLOAD, len);
--	SVCMAP(WMI_TLV_SERVICE_COEX_SAR,
--	       WMI_SERVICE_COEX_SAR, len);
--	SVCMAP(WMI_TLV_SERVICE_BCN_TXRATE_OVERRIDE,
--	       WMI_SERVICE_BCN_TXRATE_OVERRIDE, len);
--	SVCMAP(WMI_TLV_SERVICE_NAN,
--	       WMI_SERVICE_NAN, len);
--	SVCMAP(WMI_TLV_SERVICE_L1SS_STAT,
--	       WMI_SERVICE_L1SS_STAT, len);
--	SVCMAP(WMI_TLV_SERVICE_ESTIMATE_LINKSPEED,
--	       WMI_SERVICE_ESTIMATE_LINKSPEED, len);
--	SVCMAP(WMI_TLV_SERVICE_OBSS_SCAN,
--	       WMI_SERVICE_OBSS_SCAN, len);
--	SVCMAP(WMI_TLV_SERVICE_TDLS_OFFCHAN,
--	       WMI_SERVICE_TDLS_OFFCHAN, len);
--	SVCMAP(WMI_TLV_SERVICE_TDLS_UAPSD_BUFFER_STA,
--	       WMI_SERVICE_TDLS_UAPSD_BUFFER_STA, len);
--	SVCMAP(WMI_TLV_SERVICE_TDLS_UAPSD_SLEEP_STA,
--	       WMI_SERVICE_TDLS_UAPSD_SLEEP_STA, len);
--	SVCMAP(WMI_TLV_SERVICE_IBSS_PWRSAVE,
--	       WMI_SERVICE_IBSS_PWRSAVE, len);
--	SVCMAP(WMI_TLV_SERVICE_LPASS,
--	       WMI_SERVICE_LPASS, len);
--	SVCMAP(WMI_TLV_SERVICE_EXTSCAN,
--	       WMI_SERVICE_EXTSCAN, len);
--	SVCMAP(WMI_TLV_SERVICE_D0WOW,
--	       WMI_SERVICE_D0WOW, len);
--	SVCMAP(WMI_TLV_SERVICE_HSOFFLOAD,
--	       WMI_SERVICE_HSOFFLOAD, len);
--	SVCMAP(WMI_TLV_SERVICE_ROAM_HO_OFFLOAD,
--	       WMI_SERVICE_ROAM_HO_OFFLOAD, len);
--	SVCMAP(WMI_TLV_SERVICE_RX_FULL_REORDER,
--	       WMI_SERVICE_RX_FULL_REORDER, len);
--	SVCMAP(WMI_TLV_SERVICE_DHCP_OFFLOAD,
--	       WMI_SERVICE_DHCP_OFFLOAD, len);
--	SVCMAP(WMI_TLV_SERVICE_STA_RX_IPA_OFFLOAD_SUPPORT,
--	       WMI_SERVICE_STA_RX_IPA_OFFLOAD_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_MDNS_OFFLOAD,
--	       WMI_SERVICE_MDNS_OFFLOAD, len);
--	SVCMAP(WMI_TLV_SERVICE_SAP_AUTH_OFFLOAD,
--	       WMI_SERVICE_SAP_AUTH_OFFLOAD, len);
--	SVCMAP(WMI_TLV_SERVICE_DUAL_BAND_SIMULTANEOUS_SUPPORT,
--	       WMI_SERVICE_DUAL_BAND_SIMULTANEOUS_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_OCB,
--	       WMI_SERVICE_OCB, len);
--	SVCMAP(WMI_TLV_SERVICE_AP_ARPNS_OFFLOAD,
--	       WMI_SERVICE_AP_ARPNS_OFFLOAD, len);
--	SVCMAP(WMI_TLV_SERVICE_PER_BAND_CHAINMASK_SUPPORT,
--	       WMI_SERVICE_PER_BAND_CHAINMASK_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_PACKET_FILTER_OFFLOAD,
--	       WMI_SERVICE_PACKET_FILTER_OFFLOAD, len);
--	SVCMAP(WMI_TLV_SERVICE_MGMT_TX_HTT,
--	       WMI_SERVICE_MGMT_TX_HTT, len);
--	SVCMAP(WMI_TLV_SERVICE_MGMT_TX_WMI,
--	       WMI_SERVICE_MGMT_TX_WMI, len);
--	SVCMAP(WMI_TLV_SERVICE_EXT_MSG,
--	       WMI_SERVICE_EXT_MSG, len);
--	SVCMAP(WMI_TLV_SERVICE_MAWC,
--	       WMI_SERVICE_MAWC, len);
--	SVCMAP(WMI_TLV_SERVICE_PEER_ASSOC_CONF,
--	       WMI_SERVICE_PEER_ASSOC_CONF, len);
--	SVCMAP(WMI_TLV_SERVICE_EGAP,
--	       WMI_SERVICE_EGAP, len);
--	SVCMAP(WMI_TLV_SERVICE_STA_PMF_OFFLOAD,
--	       WMI_SERVICE_STA_PMF_OFFLOAD, len);
--	SVCMAP(WMI_TLV_SERVICE_UNIFIED_WOW_CAPABILITY,
--	       WMI_SERVICE_UNIFIED_WOW_CAPABILITY, len);
--	SVCMAP(WMI_TLV_SERVICE_ENHANCED_PROXY_STA,
--	       WMI_SERVICE_ENHANCED_PROXY_STA, len);
--	SVCMAP(WMI_TLV_SERVICE_ATF,
--	       WMI_SERVICE_ATF, len);
--	SVCMAP(WMI_TLV_SERVICE_COEX_GPIO,
--	       WMI_SERVICE_COEX_GPIO, len);
--	SVCMAP(WMI_TLV_SERVICE_AUX_SPECTRAL_INTF,
--	       WMI_SERVICE_AUX_SPECTRAL_INTF, len);
--	SVCMAP(WMI_TLV_SERVICE_AUX_CHAN_LOAD_INTF,
--	       WMI_SERVICE_AUX_CHAN_LOAD_INTF, len);
--	SVCMAP(WMI_TLV_SERVICE_BSS_CHANNEL_INFO_64,
--	       WMI_SERVICE_BSS_CHANNEL_INFO_64, len);
--	SVCMAP(WMI_TLV_SERVICE_ENTERPRISE_MESH,
--	       WMI_SERVICE_ENTERPRISE_MESH, len);
--	SVCMAP(WMI_TLV_SERVICE_RESTRT_CHNL_SUPPORT,
--	       WMI_SERVICE_RESTRT_CHNL_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_BPF_OFFLOAD,
--	       WMI_SERVICE_BPF_OFFLOAD, len);
--	SVCMAP(WMI_TLV_SERVICE_SYNC_DELETE_CMDS,
--	       WMI_SERVICE_SYNC_DELETE_CMDS, len);
--	SVCMAP(WMI_TLV_SERVICE_SMART_ANTENNA_SW_SUPPORT,
--	       WMI_SERVICE_SMART_ANTENNA_SW_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_SMART_ANTENNA_HW_SUPPORT,
--	       WMI_SERVICE_SMART_ANTENNA_HW_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_RATECTRL_LIMIT_MAX_MIN_RATES,
--	       WMI_SERVICE_RATECTRL_LIMIT_MAX_MIN_RATES, len);
--	SVCMAP(WMI_TLV_SERVICE_NAN_DATA,
--	       WMI_SERVICE_NAN_DATA, len);
--	SVCMAP(WMI_TLV_SERVICE_NAN_RTT,
--	       WMI_SERVICE_NAN_RTT, len);
--	SVCMAP(WMI_TLV_SERVICE_11AX,
--	       WMI_SERVICE_11AX, len);
--	SVCMAP(WMI_TLV_SERVICE_DEPRECATED_REPLACE,
--	       WMI_SERVICE_DEPRECATED_REPLACE, len);
--	SVCMAP(WMI_TLV_SERVICE_TDLS_CONN_TRACKER_IN_HOST_MODE,
--	       WMI_SERVICE_TDLS_CONN_TRACKER_IN_HOST_MODE, len);
--	SVCMAP(WMI_TLV_SERVICE_ENHANCED_MCAST_FILTER,
--	       WMI_SERVICE_ENHANCED_MCAST_FILTER, len);
--	SVCMAP(WMI_TLV_SERVICE_PERIODIC_CHAN_STAT_SUPPORT,
--	       WMI_SERVICE_PERIODIC_CHAN_STAT_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_MESH_11S,
--	       WMI_SERVICE_MESH_11S, len);
--	SVCMAP(WMI_TLV_SERVICE_HALF_RATE_QUARTER_RATE_SUPPORT,
--	       WMI_SERVICE_HALF_RATE_QUARTER_RATE_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_VDEV_RX_FILTER,
--	       WMI_SERVICE_VDEV_RX_FILTER, len);
--	SVCMAP(WMI_TLV_SERVICE_P2P_LISTEN_OFFLOAD_SUPPORT,
--	       WMI_SERVICE_P2P_LISTEN_OFFLOAD_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_MARK_FIRST_WAKEUP_PACKET,
--	       WMI_SERVICE_MARK_FIRST_WAKEUP_PACKET, len);
--	SVCMAP(WMI_TLV_SERVICE_MULTIPLE_MCAST_FILTER_SET,
--	       WMI_SERVICE_MULTIPLE_MCAST_FILTER_SET, len);
--	SVCMAP(WMI_TLV_SERVICE_HOST_MANAGED_RX_REORDER,
--	       WMI_SERVICE_HOST_MANAGED_RX_REORDER, len);
--	SVCMAP(WMI_TLV_SERVICE_FLASH_RDWR_SUPPORT,
--	       WMI_SERVICE_FLASH_RDWR_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_WLAN_STATS_REPORT,
--	       WMI_SERVICE_WLAN_STATS_REPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_TX_MSDU_ID_NEW_PARTITION_SUPPORT,
--	       WMI_SERVICE_TX_MSDU_ID_NEW_PARTITION_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_DFS_PHYERR_OFFLOAD,
--	       WMI_SERVICE_DFS_PHYERR_OFFLOAD, len);
--	SVCMAP(WMI_TLV_SERVICE_RCPI_SUPPORT,
--	       WMI_SERVICE_RCPI_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_FW_MEM_DUMP_SUPPORT,
--	       WMI_SERVICE_FW_MEM_DUMP_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_PEER_STATS_INFO,
--	       WMI_SERVICE_PEER_STATS_INFO, len);
--	SVCMAP(WMI_TLV_SERVICE_REGULATORY_DB,
--	       WMI_SERVICE_REGULATORY_DB, len);
--	SVCMAP(WMI_TLV_SERVICE_11D_OFFLOAD,
--	       WMI_SERVICE_11D_OFFLOAD, len);
--	SVCMAP(WMI_TLV_SERVICE_HW_DATA_FILTERING,
--	       WMI_SERVICE_HW_DATA_FILTERING, len);
--	SVCMAP(WMI_TLV_SERVICE_MULTIPLE_VDEV_RESTART,
--	       WMI_SERVICE_MULTIPLE_VDEV_RESTART, len);
--	SVCMAP(WMI_TLV_SERVICE_PKT_ROUTING,
--	       WMI_SERVICE_PKT_ROUTING, len);
--	SVCMAP(WMI_TLV_SERVICE_CHECK_CAL_VERSION,
--	       WMI_SERVICE_CHECK_CAL_VERSION, len);
--	SVCMAP(WMI_TLV_SERVICE_OFFCHAN_TX_WMI,
--	       WMI_SERVICE_OFFCHAN_TX_WMI, len);
--	SVCMAP(WMI_TLV_SERVICE_8SS_TX_BFEE,
--	       WMI_SERVICE_8SS_TX_BFEE, len);
--	SVCMAP(WMI_TLV_SERVICE_EXTENDED_NSS_SUPPORT,
--	       WMI_SERVICE_EXTENDED_NSS_SUPPORT, len);
--	SVCMAP(WMI_TLV_SERVICE_ACK_TIMEOUT,
--	       WMI_SERVICE_ACK_TIMEOUT, len);
--	SVCMAP(WMI_TLV_SERVICE_PDEV_BSS_CHANNEL_INFO_64,
--	       WMI_SERVICE_PDEV_BSS_CHANNEL_INFO_64, len);
--};
--
- enum {
- 	WMI_SMPS_FORCED_MODE_NONE = 0,
- 	WMI_SMPS_FORCED_MODE_DISABLED,
-@@ -2775,6 +2211,8 @@ struct wmi_service_ready_event {
- 
- #define WMI_SERVICE_SEGMENT_BM_SIZE32 4 /* 4x u32 = 128 bits */
- #define WMI_SERVICE_EXT_BM_SIZE (WMI_SERVICE_SEGMENT_BM_SIZE32 * sizeof(u32))
-+#define WMI_AVAIL_SERVICE_BITS_IN_SIZE32 32
-+#define WMI_SERVICE_BITS_IN_SIZE32 4
- 
- struct wmi_service_ready_ext_event {
- 	u32 default_conc_scan_config_bits;
-@@ -5167,7 +4605,7 @@ struct ath11k_wmi_base {
- 
- 	struct completion service_ready;
- 	struct completion unified_ready;
--	DECLARE_BITMAP(svc_map, WMI_SERVICE_MAX);
-+	DECLARE_BITMAP(svc_map, WMI_MAX_EXT_SERVICE);
- 	wait_queue_head_t tx_credits_wq;
- 	const struct wmi_peer_flags_map *peer_flags;
- 	u32 num_mem_chunks;
+ 		for (i = 0; i < ab->num_radios; i++) {
+ 			pdev = &ab->pdevs[i];
+-			ether_addr_copy(pdev->mac_addr, (u8 *)&addr_list[i]);
++			ether_addr_copy(pdev->mac_addr, addr_list[i].addr);
+ 		}
+ 		ab->pdevs_macaddr_valid = true;
+ 		break;
 -- 
 1.9.1
 
