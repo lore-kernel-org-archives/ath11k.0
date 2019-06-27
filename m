@@ -1,21 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
- by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hg9gn-0006eU-Hu
- for ath11k@lists.infradead.org; Wed, 26 Jun 2019 15:18:26 +0000
-Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi
- [88.114.240.156])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
- (No client certificate requested)
- (Authenticated sender: kvalo@smtp.codeaurora.org)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 6B13760A05
- for <ath11k@lists.infradead.org>; Wed, 26 Jun 2019 15:18:24 +0000 (UTC)
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 4/4] ath11k: use kstrtoint_from_user() instead of sscanf()
-Date: Wed, 26 Jun 2019 18:18:15 +0300
-Message-Id: <1561562295-17402-4-git-send-email-kvalo@codeaurora.org>
-In-Reply-To: <1561562295-17402-1-git-send-email-kvalo@codeaurora.org>
-References: <1561562295-17402-1-git-send-email-kvalo@codeaurora.org>
+ by casper.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
+ id 1hgIOa-0002W4-8f
+ for ath11k@lists.infradead.org; Thu, 27 Jun 2019 00:36:14 +0000
+From: Sriram R <srirrama@codeaurora.org>
+Subject: [PATCH] ath11k: Add probe response throttling logic
+Date: Thu, 27 Jun 2019 06:05:53 +0530
+Message-Id: <1561595753-11351-1-git-send-email-srirrama@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -30,62 +21,126 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
+Cc: Sriram R <srirrama@codeaurora.org>
 
-Fix checkpatch warning:
+Drop probe response packets when the pending management tx
+count has reached a certain threshold, so as to prioritize
+other mgmt packets like auth and assoc to be sent on time
+for establishing successful connections.
+This might be required in dense networks, multi-vap scenarios
+or due to emulated probe requests (DoS attack),
+which could lead to association failures due to failure to
+send auth/assoc packets as high probe response traffic occupies the
+limited target mgmt transmit queue.
+Currently the threshold is set to 3/4th of the target management
+tx queue.
 
-drivers/net/wireless/ath/ath11k/debugfs_sta.c:494: Prefer kstrto<type> to single variable sscanf
-
-As kstrtoint_from_user() can read directly from user buffer no need copy the buffer separately.
-
-Compile tested only.
-
-Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+Signed-off-by: Sriram R <srirrama@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/debugfs_sta.c | 17 +++--------------
- 1 file changed, 3 insertions(+), 14 deletions(-)
+ drivers/net/wireless/ath/ath11k/core.h |  6 ++++++
+ drivers/net/wireless/ath/ath11k/mac.c  | 23 +++++++++++++++++++++--
+ drivers/net/wireless/ath/ath11k/wmi.c  |  3 +++
+ 3 files changed, 30 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/debugfs_sta.c b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-index 4a30293bbae4..82bada5a7479 100644
---- a/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-+++ b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-@@ -467,15 +467,13 @@ static const struct file_operations fops_htt_peer_stats = {
- };
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index af5c66f..9023367 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -25,6 +25,11 @@
  
- static ssize_t ath11k_dbg_sta_write_peer_pktlog(struct file *file,
--						const char __user *ubuf,
-+						const char __user *buf,
- 						size_t count, loff_t *ppos)
- {
- 	struct ieee80211_sta *sta = file->private_data;
- 	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
- 	struct ath11k *ar = arsta->arvif->ar;
--	u8 buf[32] = {0};
- 	int ret, enable;
--	ssize_t rc;
+ #define ATH11K_TX_MGMT_NUM_PENDING_MAX	512
  
- 	mutex_lock(&ar->conf_mutex);
++#define ATH11K_TX_MGMT_TARGET_MAX_SUPPORT_WMI 64
++
++/* Pending management packets threshold for dropping probe responses */
++#define ATH11K_PRB_RSP_DROP_THRESHOLD ((ATH11K_TX_MGMT_TARGET_MAX_SUPPORT_WMI * 3) / 4)
++
+ #define ATH11K_INVALID_HW_MAC_ID	0xFF
  
-@@ -484,18 +482,9 @@ static ssize_t ath11k_dbg_sta_write_peer_pktlog(struct file *file,
- 		goto out;
+ enum ath11k_supported_bw {
+@@ -485,6 +490,7 @@ struct ath11k {
+ 	struct idr txmgmt_idr;
+ 	/* protects txmgmt_idr data */
+ 	spinlock_t txmgmt_idr_lock;
++	atomic_t num_pending_mgmt_tx;
+ 
+ 	/* cycle count is reported twice for each visited channel during scan.
+ 	 * access protected by data_lock
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 1a4a333..b8035ec 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -3392,17 +3392,32 @@ static void ath11k_mgmt_over_wmi_tx_work(struct work_struct *work)
+ 			ath11k_warn(ar->ab, "failed to transmit management frame %d\n",
+ 				    ret);
+ 			ieee80211_free_txskb(ar->hw, skb);
++		} else {
++			atomic_inc(&ar->num_pending_mgmt_tx);
+ 		}
  	}
+ }
  
--	rc = simple_write_to_buffer(buf, sizeof(buf) - 1, ppos, ubuf, count);
--	if (rc < 0) {
--		ret = rc;
-+	ret = kstrtoint_from_user(buf, count, 0, &enable);
-+	if (ret)
- 		goto out;
--	}
--	buf[rc] = '\0';
--
--	ret = sscanf(buf, "%d", &enable);
--	if (ret != 1) {
--		ret = -EINVAL;
--		goto out;
--	}
+-static int ath11k_mac_mgmt_tx(struct ath11k *ar, struct sk_buff *skb)
++static int ath11k_mac_mgmt_tx(struct ath11k *ar, struct sk_buff *skb,
++			      bool is_prb_rsp)
+ {
+ 	struct sk_buff_head *q = &ar->wmi_mgmt_tx_queue;
  
- 	ar->debug.pktlog_peer_valid = enable;
- 	memcpy(ar->debug.pktlog_peer_addr, sta->addr, ETH_ALEN);
+ 	if (test_bit(ATH11K_FLAG_CRASH_FLUSH, &ar->ab->dev_flags))
+ 		return -ESHUTDOWN;
+ 
++	/* Drop probe response packets when the pending management tx
++	 * count has reached a certain threshold, so as to prioritize
++	 * other mgmt packets like auth and assoc to be sent on time
++	 * for establishing successful connections.
++	 */
++	if (is_prb_rsp &&
++	    atomic_read(&ar->num_pending_mgmt_tx) > ATH11K_PRB_RSP_DROP_THRESHOLD) {
++		ath11k_warn(ar->ab,
++			    "dropping probe response as pending queue is almost full\n");
++		return -ENOSPC;
++	}
++
+ 	if (skb_queue_len(q) == ATH11K_TX_MGMT_NUM_PENDING_MAX) {
+ 		ath11k_warn(ar->ab, "mgmt tx queue is full\n");
+ 		return -ENOSPC;
+@@ -3423,10 +3438,12 @@ static void ath11k_mac_op_tx(struct ieee80211_hw *hw,
+ 	struct ieee80211_vif *vif = info->control.vif;
+ 	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
+ 	struct ieee80211_hdr *hdr = (struct ieee80211_hdr *)skb->data;
++	bool is_prb_rsp;
+ 	int ret;
+ 
+ 	if (ieee80211_is_mgmt(hdr->frame_control)) {
+-		ret = ath11k_mac_mgmt_tx(ar, skb);
++		is_prb_rsp = ieee80211_is_probe_resp(hdr->frame_control);
++		ret = ath11k_mac_mgmt_tx(ar, skb, is_prb_rsp);
+ 		if (ret) {
+ 			ath11k_warn(ar->ab, "failed to queue management frame %d\n",
+ 				    ret);
+@@ -3601,6 +3618,8 @@ static void ath11k_mac_op_stop(struct ieee80211_hw *hw)
+ 	rcu_assign_pointer(ar->ab->pdevs_active[ar->pdev_idx], NULL);
+ 
+ 	synchronize_rcu();
++
++	atomic_set(&ar->num_pending_mgmt_tx, 0);
+ }
+ 
+ static void
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 46a3e0f..6dad499 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -3366,6 +3366,9 @@ static int wmi_process_mgmt_tx_comp(struct ath11k *ar, u32 desc_id,
+ 
+ 	ieee80211_tx_status_irqsafe(ar->hw, msdu);
+ 
++	WARN_ON(atomic_read(&ar->num_pending_mgmt_tx) == 0);
++	atomic_dec(&ar->num_pending_mgmt_tx);
++
+ 	return 0;
+ }
+ 
 -- 
 2.7.4
 
