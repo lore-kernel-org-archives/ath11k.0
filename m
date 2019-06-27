@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hgSLx-0005jo-Hg
- for ath11k@lists.infradead.org; Thu, 27 Jun 2019 11:14:10 +0000
+ id 1hgSNA-0007CZ-KA
+ for ath11k@lists.infradead.org; Thu, 27 Jun 2019 11:15:26 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: avoid inappropriate data lock
+Subject: Re: [PATCH 1/4] ath11k: Alignment should match open parenthesis
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1561539725-24438-1-git-send-email-periyasa@codeaurora.org>
-References: <1561539725-24438-1-git-send-email-periyasa@codeaurora.org>
-Message-Id: <20190627111409.501556085C@smtp.codeaurora.org>
-Date: Thu, 27 Jun 2019 11:14:09 +0000 (UTC)
+In-Reply-To: <1561562295-17402-1-git-send-email-kvalo@codeaurora.org>
+References: <1561562295-17402-1-git-send-email-kvalo@codeaurora.org>
+Message-Id: <20190627111523.CC40160DAA@smtp.codeaurora.org>
+Date: Thu, 27 Jun 2019 11:15:23 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,24 +22,26 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Karthikeyan Periyasamy <periyasa@codeaurora.org>
+To: Kalle Valo <kvalo@codeaurora.org>
 Cc: ath11k@lists.infradead.org
 
-Karthikeyan Periyasamy <periyasa@codeaurora.org> wrote:
+Kalle Valo <kvalo@codeaurora.org> wrote:
 
-> peer data should protected by the ath11k_base data_lock not
-> by the ath11k data_lock. so lock the ath11k_base data_lock
-> before accessing ath11k_peer_find().
+> Fix checkpatch warning:
 > 
-> Signed-off-by: Karthikeyan Periyasamy <periyasa@codeaurora.org>
+> drivers/net/wireless/ath/ath11k/mac.c:5029: Alignment should match open parenthesis
+> 
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-Patch applied to ath11k-bringup branch of ath.git, thanks.
+4 patches applied to ath11k-bringup branch of ath.git, thanks.
 
-208caa5fb874 ath11k: avoid inappropriate data lock
+8f5a39b1cdaf ath11k: Alignment should match open parenthesis
+810a4fb71e6a ath11k: Remove prototype interface
+7b5a3ac963cb ath11k: line over 90 characters
+4c6476d00657 ath11k: use kstrtoint_from_user() instead of sscanf()
 
 -- 
-https://patchwork.kernel.org/patch/11017269/
+https://patchwork.kernel.org/patch/11018091/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
