@@ -1,12 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from dvalin.narfation.org ([213.160.73.56])
+Received: from dvalin.narfation.org ([2a00:17d8:100::8b1])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hicLo-0003nm-Tt
- for ath11k@lists.infradead.org; Wed, 03 Jul 2019 10:18:58 +0000
+ id 1hicLq-0003oC-KY
+ for ath11k@lists.infradead.org; Wed, 03 Jul 2019 10:19:00 +0000
 From: Sven Eckelmann <sven@narfation.org>
-Subject: [PATCH v4 0/3] mac80211/ath11k: HE mesh support
-Date: Wed,  3 Jul 2019 12:18:36 +0200
-Message-Id: <20190703101839.18827-1-sven@narfation.org>
+Subject: [PATCH v4 1/3] mac80211: implement HE support for mesh
+Date: Wed,  3 Jul 2019 12:18:37 +0200
+Message-Id: <20190703101839.18827-2-sven@narfation.org>
+In-Reply-To: <20190703101839.18827-1-sven@narfation.org>
+References: <20190703101839.18827-1-sven@narfation.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -21,53 +23,269 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: linux-wireless@vger.kernel.org
-Cc: ath11k@lists.infradead.org, Sven Eckelmann <sven@narfation.org>
+Cc: ath11k@lists.infradead.org, Sven Eckelmann <seckelmann@datto.com>
 
-Hi,
+From: Sven Eckelmann <seckelmann@datto.com>
 
-Some features of 802.11ax without central organizing (AP) STA can also be
-used in mesh mode. The main goal is to get HE mesh working with ath11k.
-For persons without ath11k compatible hw, hwsim can be used in the as basis
-for further development of these features.
+Implement the basics required for supporting high efficiency with mesh:
+include HE information elements in beacons, probe responses, and peering
+action frames, and check for compatible HE configurations when peering.
 
-* v4
+Signed-off-by: Sven Eckelmann <seckelmann@datto.com>
+---
+ net/mac80211/ieee80211_i.h |  2 ++
+ net/mac80211/mesh.c        | 62 ++++++++++++++++++++++++++++++++++++++
+ net/mac80211/mesh.h        |  4 +++
+ net/mac80211/mesh_plink.c  | 12 +++++++-
+ net/mac80211/util.c        | 49 ++++++++++++++++++++++++++++++
+ 5 files changed, 128 insertions(+), 1 deletion(-)
 
-  - switch order of the mac80211 HE mesh support and mac80211_hwsim support
-  - drop ie_len variable from ieee80211_ie_len_he_cap and
-    ieee80211_ie_build_he_oper
-  - switch to function ieee80211_get_he_iftype_cap instead of implementing new
-    function ieee80211_get_he_mesh_cap
-  - allow ieee80211_ie_len_he_cap to calculate length for non-mesh HE cap
-  - dropped he_support workaround in ath11k because now all phy_modes are
-    HE phy modes
-
-* v3
-
-  - force ath11k PHY mode for meshpoint vif to HE mode to avoid hang of
-    firmware when HE (or VHT on 2.4GHz) device tries to connect
-
-* v2:
-
-  - add of ath11k patch
-
-* v1:
-
-  - initial RFC
-
-Sven Eckelmann (3):
-  mac80211: implement HE support for mesh
-  mac80211_hwsim: Register support for HE meshpoint
-  ath11k: register HE mesh capabilities
-
- drivers/net/wireless/ath/ath11k/mac.c |  56 +++++
- drivers/net/wireless/mac80211_hwsim.c | 283 +++++++++++++++++---------
- net/mac80211/ieee80211_i.h            |   2 +
- net/mac80211/mesh.c                   |  62 ++++++
- net/mac80211/mesh.h                   |   4 +
- net/mac80211/mesh_plink.c             |  12 +-
- net/mac80211/util.c                   |  49 +++++
- 7 files changed, 373 insertions(+), 95 deletions(-)
-
+diff --git a/net/mac80211/ieee80211_i.h b/net/mac80211/ieee80211_i.h
+index 004e2e3adb88..6e924ba9eeb1 100644
+--- a/net/mac80211/ieee80211_i.h
++++ b/net/mac80211/ieee80211_i.h
+@@ -2133,9 +2133,11 @@ u8 *ieee80211_ie_build_vht_cap(u8 *pos, struct ieee80211_sta_vht_cap *vht_cap,
+ 			       u32 cap);
+ u8 *ieee80211_ie_build_vht_oper(u8 *pos, struct ieee80211_sta_vht_cap *vht_cap,
+ 				const struct cfg80211_chan_def *chandef);
++u8 ieee80211_ie_len_he_cap(struct ieee80211_sub_if_data *sdata, u8 iftype);
+ u8 *ieee80211_ie_build_he_cap(u8 *pos,
+ 			      const struct ieee80211_sta_he_cap *he_cap,
+ 			      u8 *end);
++u8 *ieee80211_ie_build_he_oper(u8 *pos);
+ int ieee80211_parse_bitrates(struct cfg80211_chan_def *chandef,
+ 			     const struct ieee80211_supported_band *sband,
+ 			     const u8 *srates, int srates_len, u32 *rates);
+diff --git a/net/mac80211/mesh.c b/net/mac80211/mesh.c
+index 2e7fa743c892..d09b3c789314 100644
+--- a/net/mac80211/mesh.c
++++ b/net/mac80211/mesh.c
+@@ -532,6 +532,61 @@ int mesh_add_vht_oper_ie(struct ieee80211_sub_if_data *sdata,
+ 	return 0;
+ }
+ 
++int mesh_add_he_cap_ie(struct ieee80211_sub_if_data *sdata,
++		       struct sk_buff *skb, u8 ie_len)
++{
++	const struct ieee80211_sta_he_cap *he_cap;
++	struct ieee80211_supported_band *sband;
++	u8 *pos;
++
++	sband = ieee80211_get_sband(sdata);
++	if (!sband)
++		return -EINVAL;
++
++	he_cap = ieee80211_get_he_iftype_cap(sband, NL80211_IFTYPE_MESH_POINT);
++
++	if (!he_cap ||
++	    sdata->vif.bss_conf.chandef.width == NL80211_CHAN_WIDTH_20_NOHT ||
++	    sdata->vif.bss_conf.chandef.width == NL80211_CHAN_WIDTH_5 ||
++	    sdata->vif.bss_conf.chandef.width == NL80211_CHAN_WIDTH_10)
++		return 0;
++
++	if (skb_tailroom(skb) < ie_len)
++		return -ENOMEM;
++
++	pos = skb_put(skb, ie_len);
++	ieee80211_ie_build_he_cap(pos, he_cap, pos + ie_len);
++
++	return 0;
++}
++
++int mesh_add_he_oper_ie(struct ieee80211_sub_if_data *sdata,
++			struct sk_buff *skb)
++{
++	const struct ieee80211_sta_he_cap *he_cap;
++	struct ieee80211_supported_band *sband;
++	u8 *pos;
++
++	sband = ieee80211_get_sband(sdata);
++	if (!sband)
++		return -EINVAL;
++
++	he_cap = ieee80211_get_he_iftype_cap(sband, NL80211_IFTYPE_MESH_POINT);
++	if (!he_cap ||
++	    sdata->vif.bss_conf.chandef.width == NL80211_CHAN_WIDTH_20_NOHT ||
++	    sdata->vif.bss_conf.chandef.width == NL80211_CHAN_WIDTH_5 ||
++	    sdata->vif.bss_conf.chandef.width == NL80211_CHAN_WIDTH_10)
++		return 0;
++
++	if (skb_tailroom(skb) < 2 + 1 + sizeof(struct ieee80211_he_operation))
++		return -ENOMEM;
++
++	pos = skb_put(skb, 2 + 1 + sizeof(struct ieee80211_he_operation));
++	ieee80211_ie_build_he_oper(pos);
++
++	return 0;
++}
++
+ static void ieee80211_mesh_path_timer(struct timer_list *t)
+ {
+ 	struct ieee80211_sub_if_data *sdata =
+@@ -677,6 +732,7 @@ ieee80211_mesh_build_beacon(struct ieee80211_if_mesh *ifmsh)
+ 	struct ieee80211_chanctx_conf *chanctx_conf;
+ 	struct mesh_csa_settings *csa;
+ 	enum nl80211_band band;
++	u8 ie_len_he_cap;
+ 	u8 *pos;
+ 	struct ieee80211_sub_if_data *sdata;
+ 	int hdr_len = offsetofend(struct ieee80211_mgmt, u.beacon);
+@@ -687,6 +743,8 @@ ieee80211_mesh_build_beacon(struct ieee80211_if_mesh *ifmsh)
+ 	band = chanctx_conf->def.chan->band;
+ 	rcu_read_unlock();
+ 
++	ie_len_he_cap = ieee80211_ie_len_he_cap(sdata,
++						NL80211_IFTYPE_MESH_POINT);
+ 	head_len = hdr_len +
+ 		   2 + /* NULL SSID */
+ 		   /* Channel Switch Announcement */
+@@ -706,6 +764,8 @@ ieee80211_mesh_build_beacon(struct ieee80211_if_mesh *ifmsh)
+ 		   2 + sizeof(__le16) + /* awake window */
+ 		   2 + sizeof(struct ieee80211_vht_cap) +
+ 		   2 + sizeof(struct ieee80211_vht_operation) +
++		   ie_len_he_cap +
++		   2 + 1 + sizeof(struct ieee80211_he_operation) +
+ 		   ifmsh->ie_len;
+ 
+ 	bcn = kzalloc(sizeof(*bcn) + head_len + tail_len, GFP_KERNEL);
+@@ -823,6 +883,8 @@ ieee80211_mesh_build_beacon(struct ieee80211_if_mesh *ifmsh)
+ 	    mesh_add_awake_window_ie(sdata, skb) ||
+ 	    mesh_add_vht_cap_ie(sdata, skb) ||
+ 	    mesh_add_vht_oper_ie(sdata, skb) ||
++	    mesh_add_he_cap_ie(sdata, skb, ie_len_he_cap) ||
++	    mesh_add_he_oper_ie(sdata, skb) ||
+ 	    mesh_add_vendor_ies(sdata, skb))
+ 		goto out_free;
+ 
+diff --git a/net/mac80211/mesh.h b/net/mac80211/mesh.h
+index 94d57cce70da..953f720754e8 100644
+--- a/net/mac80211/mesh.h
++++ b/net/mac80211/mesh.h
+@@ -218,6 +218,10 @@ int mesh_add_vht_cap_ie(struct ieee80211_sub_if_data *sdata,
+ 			struct sk_buff *skb);
+ int mesh_add_vht_oper_ie(struct ieee80211_sub_if_data *sdata,
+ 			 struct sk_buff *skb);
++int mesh_add_he_cap_ie(struct ieee80211_sub_if_data *sdata,
++		       struct sk_buff *skb, u8 ie_len);
++int mesh_add_he_oper_ie(struct ieee80211_sub_if_data *sdata,
++			struct sk_buff *skb);
+ void mesh_rmc_free(struct ieee80211_sub_if_data *sdata);
+ int mesh_rmc_init(struct ieee80211_sub_if_data *sdata);
+ void ieee80211s_init(void);
+diff --git a/net/mac80211/mesh_plink.c b/net/mac80211/mesh_plink.c
+index dd3aefd052a9..737c5f4dbf52 100644
+--- a/net/mac80211/mesh_plink.c
++++ b/net/mac80211/mesh_plink.c
+@@ -218,9 +218,12 @@ static int mesh_plink_frame_tx(struct ieee80211_sub_if_data *sdata,
+ 	bool include_plid = false;
+ 	u16 peering_proto = 0;
+ 	u8 *pos, ie_len = 4;
++	u8 ie_len_he_cap;
+ 	int hdr_len = offsetofend(struct ieee80211_mgmt, u.action.u.self_prot);
+ 	int err = -ENOMEM;
+ 
++	ie_len_he_cap = ieee80211_ie_len_he_cap(sdata,
++						NL80211_IFTYPE_MESH_POINT);
+ 	skb = dev_alloc_skb(local->tx_headroom +
+ 			    hdr_len +
+ 			    2 + /* capability info */
+@@ -233,6 +236,8 @@ static int mesh_plink_frame_tx(struct ieee80211_sub_if_data *sdata,
+ 			    2 + sizeof(struct ieee80211_ht_operation) +
+ 			    2 + sizeof(struct ieee80211_vht_cap) +
+ 			    2 + sizeof(struct ieee80211_vht_operation) +
++			    ie_len_he_cap +
++			    2 + 1 + sizeof(struct ieee80211_he_operation) +
+ 			    2 + 8 + /* peering IE */
+ 			    sdata->u.mesh.ie_len);
+ 	if (!skb)
+@@ -321,7 +326,9 @@ static int mesh_plink_frame_tx(struct ieee80211_sub_if_data *sdata,
+ 		if (mesh_add_ht_cap_ie(sdata, skb) ||
+ 		    mesh_add_ht_oper_ie(sdata, skb) ||
+ 		    mesh_add_vht_cap_ie(sdata, skb) ||
+-		    mesh_add_vht_oper_ie(sdata, skb))
++		    mesh_add_vht_oper_ie(sdata, skb) ||
++		    mesh_add_he_cap_ie(sdata, skb, ie_len_he_cap) ||
++		    mesh_add_he_oper_ie(sdata, skb))
+ 			goto free;
+ 	}
+ 
+@@ -433,6 +440,9 @@ static void mesh_sta_info_init(struct ieee80211_sub_if_data *sdata,
+ 	ieee80211_vht_cap_ie_to_sta_vht_cap(sdata, sband,
+ 					    elems->vht_cap_elem, sta);
+ 
++	ieee80211_he_cap_ie_to_sta_he_cap(sdata, sband, elems->he_cap,
++					  elems->he_cap_len, sta);
++
+ 	if (bw != sta->sta.bandwidth)
+ 		changed |= IEEE80211_RC_BW_CHANGED;
+ 
+diff --git a/net/mac80211/util.c b/net/mac80211/util.c
+index 1b224fa27367..52f5082bb165 100644
+--- a/net/mac80211/util.c
++++ b/net/mac80211/util.c
+@@ -2702,6 +2702,27 @@ u8 *ieee80211_ie_build_vht_cap(u8 *pos, struct ieee80211_sta_vht_cap *vht_cap,
+ 	return pos;
+ }
+ 
++u8 ieee80211_ie_len_he_cap(struct ieee80211_sub_if_data *sdata, u8 iftype)
++{
++	const struct ieee80211_sta_he_cap *he_cap;
++	struct ieee80211_supported_band *sband;
++	u8 n;
++
++	sband = ieee80211_get_sband(sdata);
++	if (!sband)
++		return 0;
++
++	he_cap = ieee80211_get_he_iftype_cap(sband, iftype);
++	if (!he_cap)
++		return 0;
++
++	n = ieee80211_he_mcs_nss_size(&he_cap->he_cap_elem);
++	return 2 + 1 +
++	       sizeof(he_cap->he_cap_elem) + n +
++	       ieee80211_he_ppe_size(he_cap->ppe_thres[0],
++				     he_cap->he_cap_elem.phy_cap_info);
++}
++
+ u8 *ieee80211_ie_build_he_cap(u8 *pos,
+ 			      const struct ieee80211_sta_he_cap *he_cap,
+ 			      u8 *end)
+@@ -2891,6 +2912,34 @@ u8 *ieee80211_ie_build_vht_oper(u8 *pos, struct ieee80211_sta_vht_cap *vht_cap,
+ 	return pos + sizeof(struct ieee80211_vht_operation);
+ }
+ 
++u8 *ieee80211_ie_build_he_oper(u8 *pos)
++{
++	struct ieee80211_he_operation *he_oper;
++	u32 he_oper_params;
++
++	*pos++ = WLAN_EID_EXTENSION;
++	*pos++ = 1 + sizeof(struct ieee80211_he_operation);
++	*pos++ = WLAN_EID_EXT_HE_OPERATION;
++
++	he_oper_params = 0;
++	he_oper_params |= u32_encode_bits(1023, /* disabled */
++				IEEE80211_HE_OPERATION_RTS_THRESHOLD_MASK);
++	he_oper_params |= u32_encode_bits(1,
++				IEEE80211_HE_OPERATION_ER_SU_DISABLE);
++	he_oper_params |= u32_encode_bits(1,
++				IEEE80211_HE_OPERATION_BSS_COLOR_DISABLED);
++
++	he_oper = (struct ieee80211_he_operation *)pos;
++	he_oper->he_oper_params = cpu_to_le32(he_oper_params);
++
++	/* don't require special HE peer rates */
++	he_oper->he_mcs_nss_set = cpu_to_le16(0xffff);
++
++	/* TODO add VHT operational and 6GHz operational subelement? */
++
++	return pos + sizeof(struct ieee80211_vht_operation);
++}
++
+ bool ieee80211_chandef_ht_oper(const struct ieee80211_ht_operation *ht_oper,
+ 			       struct cfg80211_chan_def *chandef)
+ {
 -- 
 2.20.1
 
