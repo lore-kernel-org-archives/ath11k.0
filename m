@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from dvalin.narfation.org ([2a00:17d8:100::8b1])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hicLq-0003oC-KY
- for ath11k@lists.infradead.org; Wed, 03 Jul 2019 10:19:00 +0000
+ id 1hicLu-0003pv-Gi
+ for ath11k@lists.infradead.org; Wed, 03 Jul 2019 10:19:04 +0000
 From: Sven Eckelmann <sven@narfation.org>
-Subject: [PATCH v4 1/3] mac80211: implement HE support for mesh
-Date: Wed,  3 Jul 2019 12:18:37 +0200
-Message-Id: <20190703101839.18827-2-sven@narfation.org>
+Subject: [PATCH v4 3/3] ath11k: register HE mesh capabilities
+Date: Wed,  3 Jul 2019 12:18:39 +0200
+Message-Id: <20190703101839.18827-4-sven@narfation.org>
 In-Reply-To: <20190703101839.18827-1-sven@narfation.org>
 References: <20190703101839.18827-1-sven@narfation.org>
 MIME-Version: 1.0
@@ -27,265 +27,92 @@ Cc: ath11k@lists.infradead.org, Sven Eckelmann <seckelmann@datto.com>
 
 From: Sven Eckelmann <seckelmann@datto.com>
 
-Implement the basics required for supporting high efficiency with mesh:
-include HE information elements in beacons, probe responses, and peering
-action frames, and check for compatible HE configurations when peering.
+The capabilities for the HE mesh are generated from the capabilities
+reported by the fw. But the firmware only reports the overall capabilities
+and not the one which are specific for mesh. Some of them (TWT, MU UL/DL,
+TB PPDU, ...) require an infrastructure setup with a main STA (AP)
+controlling the operations. This is not the case for mesh and thus these
+capabilities are removed from the list of capabilities.
 
 Signed-off-by: Sven Eckelmann <seckelmann@datto.com>
 ---
- net/mac80211/ieee80211_i.h |  2 ++
- net/mac80211/mesh.c        | 62 ++++++++++++++++++++++++++++++++++++++
- net/mac80211/mesh.h        |  4 +++
- net/mac80211/mesh_plink.c  | 12 +++++++-
- net/mac80211/util.c        | 49 ++++++++++++++++++++++++++++++
- 5 files changed, 128 insertions(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/mac.c | 56 +++++++++++++++++++++++++++
+ 1 file changed, 56 insertions(+)
 
-diff --git a/net/mac80211/ieee80211_i.h b/net/mac80211/ieee80211_i.h
-index 004e2e3adb88..6e924ba9eeb1 100644
---- a/net/mac80211/ieee80211_i.h
-+++ b/net/mac80211/ieee80211_i.h
-@@ -2133,9 +2133,11 @@ u8 *ieee80211_ie_build_vht_cap(u8 *pos, struct ieee80211_sta_vht_cap *vht_cap,
- 			       u32 cap);
- u8 *ieee80211_ie_build_vht_oper(u8 *pos, struct ieee80211_sta_vht_cap *vht_cap,
- 				const struct cfg80211_chan_def *chandef);
-+u8 ieee80211_ie_len_he_cap(struct ieee80211_sub_if_data *sdata, u8 iftype);
- u8 *ieee80211_ie_build_he_cap(u8 *pos,
- 			      const struct ieee80211_sta_he_cap *he_cap,
- 			      u8 *end);
-+u8 *ieee80211_ie_build_he_oper(u8 *pos);
- int ieee80211_parse_bitrates(struct cfg80211_chan_def *chandef,
- 			     const struct ieee80211_supported_band *sband,
- 			     const u8 *srates, int srates_len, u32 *rates);
-diff --git a/net/mac80211/mesh.c b/net/mac80211/mesh.c
-index 2e7fa743c892..d09b3c789314 100644
---- a/net/mac80211/mesh.c
-+++ b/net/mac80211/mesh.c
-@@ -532,6 +532,61 @@ int mesh_add_vht_oper_ie(struct ieee80211_sub_if_data *sdata,
- 	return 0;
- }
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index dd164b5bb51a..3a3296b83cc1 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -3150,6 +3150,7 @@ static int ath11k_mac_copy_he_cap(struct ath11k *ar,
+ 		switch (i) {
+ 		case NL80211_IFTYPE_STATION:
+ 		case NL80211_IFTYPE_AP:
++		case NL80211_IFTYPE_MESH_POINT:
+ 			break;
  
-+int mesh_add_he_cap_ie(struct ieee80211_sub_if_data *sdata,
-+		       struct sk_buff *skb, u8 ie_len)
-+{
-+	const struct ieee80211_sta_he_cap *he_cap;
-+	struct ieee80211_supported_band *sband;
-+	u8 *pos;
+ 		default:
+@@ -3190,6 +3191,61 @@ static int ath11k_mac_copy_he_cap(struct ath11k *ar,
+ 			he_cap_elem->phy_cap_info[9] |=
+ 				IEEE80211_HE_PHY_CAP9_TX_1024_QAM_LESS_THAN_242_TONE_RU;
+ 			break;
++		case NL80211_IFTYPE_MESH_POINT:
++			he_cap_elem->mac_cap_info[0] &=
++				~(IEEE80211_HE_MAC_CAP0_TWT_RES |
++				  IEEE80211_HE_MAC_CAP0_TWT_REQ);
++			he_cap_elem->mac_cap_info[2] &=
++				~(IEEE80211_HE_MAC_CAP2_TRS |
++				  IEEE80211_HE_MAC_CAP2_BCAST_TWT |
++				  IEEE80211_HE_MAC_CAP2_MU_CASCADING);
++			he_cap_elem->mac_cap_info[3] &=
++				~(IEEE80211_HE_MAC_CAP3_FLEX_TWT_SCHED |
++				  IEEE80211_HE_MAC_CAP2_BCAST_TWT |
++				  IEEE80211_HE_MAC_CAP2_MU_CASCADING);
++			he_cap_elem->mac_cap_info[4] &=
++				~(IEEE80211_HE_MAC_CAP4_BSRP_BQRP_A_MPDU_AGG |
++				  IEEE80211_HE_MAC_CAP4_BQR);
++			he_cap_elem->mac_cap_info[5] &=
++				~(IEEE80211_HE_MAC_CAP5_SUBCHAN_SELECVITE_TRANSMISSION |
++				  IEEE80211_HE_MAC_CAP5_UL_2x996_TONE_RU |
++				  IEEE80211_HE_MAC_CAP5_PUNCTURED_SOUNDING |
++				  IEEE80211_HE_MAC_CAP5_HT_VHT_TRIG_FRAME_RX);
 +
-+	sband = ieee80211_get_sband(sdata);
-+	if (!sband)
-+		return -EINVAL;
-+
-+	he_cap = ieee80211_get_he_iftype_cap(sband, NL80211_IFTYPE_MESH_POINT);
-+
-+	if (!he_cap ||
-+	    sdata->vif.bss_conf.chandef.width == NL80211_CHAN_WIDTH_20_NOHT ||
-+	    sdata->vif.bss_conf.chandef.width == NL80211_CHAN_WIDTH_5 ||
-+	    sdata->vif.bss_conf.chandef.width == NL80211_CHAN_WIDTH_10)
-+		return 0;
-+
-+	if (skb_tailroom(skb) < ie_len)
-+		return -ENOMEM;
-+
-+	pos = skb_put(skb, ie_len);
-+	ieee80211_ie_build_he_cap(pos, he_cap, pos + ie_len);
-+
-+	return 0;
-+}
-+
-+int mesh_add_he_oper_ie(struct ieee80211_sub_if_data *sdata,
-+			struct sk_buff *skb)
-+{
-+	const struct ieee80211_sta_he_cap *he_cap;
-+	struct ieee80211_supported_band *sband;
-+	u8 *pos;
-+
-+	sband = ieee80211_get_sband(sdata);
-+	if (!sband)
-+		return -EINVAL;
-+
-+	he_cap = ieee80211_get_he_iftype_cap(sband, NL80211_IFTYPE_MESH_POINT);
-+	if (!he_cap ||
-+	    sdata->vif.bss_conf.chandef.width == NL80211_CHAN_WIDTH_20_NOHT ||
-+	    sdata->vif.bss_conf.chandef.width == NL80211_CHAN_WIDTH_5 ||
-+	    sdata->vif.bss_conf.chandef.width == NL80211_CHAN_WIDTH_10)
-+		return 0;
-+
-+	if (skb_tailroom(skb) < 2 + 1 + sizeof(struct ieee80211_he_operation))
-+		return -ENOMEM;
-+
-+	pos = skb_put(skb, 2 + 1 + sizeof(struct ieee80211_he_operation));
-+	ieee80211_ie_build_he_oper(pos);
-+
-+	return 0;
-+}
-+
- static void ieee80211_mesh_path_timer(struct timer_list *t)
- {
- 	struct ieee80211_sub_if_data *sdata =
-@@ -677,6 +732,7 @@ ieee80211_mesh_build_beacon(struct ieee80211_if_mesh *ifmsh)
- 	struct ieee80211_chanctx_conf *chanctx_conf;
- 	struct mesh_csa_settings *csa;
- 	enum nl80211_band band;
-+	u8 ie_len_he_cap;
- 	u8 *pos;
- 	struct ieee80211_sub_if_data *sdata;
- 	int hdr_len = offsetofend(struct ieee80211_mgmt, u.beacon);
-@@ -687,6 +743,8 @@ ieee80211_mesh_build_beacon(struct ieee80211_if_mesh *ifmsh)
- 	band = chanctx_conf->def.chan->band;
- 	rcu_read_unlock();
++			he_cap_elem->phy_cap_info[2] &=
++				~(IEEE80211_HE_PHY_CAP2_UL_MU_FULL_MU_MIMO |
++				  IEEE80211_HE_PHY_CAP2_UL_MU_PARTIAL_MU_MIMO);
++			he_cap_elem->phy_cap_info[3] &=
++				~(IEEE80211_HE_PHY_CAP3_RX_HE_MU_PPDU_FROM_NON_AP_STA |
++				  IEEE80211_HE_PHY_CAP3_DCM_MAX_CONST_TX_MASK |
++				  IEEE80211_HE_PHY_CAP3_DCM_MAX_CONST_RX_MASK);
++			he_cap_elem->phy_cap_info[4] &=
++				~IEEE80211_HE_PHY_CAP4_MU_BEAMFORMER;
++			he_cap_elem->phy_cap_info[5] &=
++				~IEEE80211_HE_PHY_CAP5_NG16_MU_FEEDBACK;
++			he_cap_elem->phy_cap_info[6] &=
++				~(IEEE80211_HE_PHY_CAP6_CODEBOOK_SIZE_75_MU |
++				  IEEE80211_HE_PHY_CAP6_TRIG_MU_BEAMFORMER_FB |
++				  IEEE80211_HE_PHY_CAP6_TRIG_CQI_FB |
++				  IEEE80211_HE_PHY_CAP6_PARTIAL_BANDWIDTH_DL_MUMIMO);
++			he_cap_elem->phy_cap_info[7] &=
++				~(IEEE80211_HE_PHY_CAP7_SRP_BASED_SR |
++				  IEEE80211_HE_PHY_CAP7_POWER_BOOST_FACTOR_AR |
++				  IEEE80211_HE_PHY_CAP7_STBC_TX_ABOVE_80MHZ |
++				  IEEE80211_HE_PHY_CAP7_STBC_RX_ABOVE_80MHZ);
++			he_cap_elem->phy_cap_info[8] &=
++				~(IEEE80211_HE_PHY_CAP8_HE_ER_SU_PPDU_4XLTF_AND_08_US_GI |
++				  IEEE80211_HE_PHY_CAP8_20MHZ_IN_40MHZ_HE_PPDU_IN_2G |
++				  IEEE80211_HE_PHY_CAP8_20MHZ_IN_160MHZ_HE_PPDU |
++				  IEEE80211_HE_PHY_CAP8_80MHZ_IN_160MHZ_HE_PPDU);
++			he_cap_elem->phy_cap_info[9] &=
++				~(IEEE80211_HE_PHY_CAP9_LONGER_THAN_16_SIGB_OFDM_SYM |
++				  IEEE80211_HE_PHY_CAP9_NON_TRIGGERED_CQI_FEEDBACK |
++				  IEEE80211_HE_PHY_CAP9_RX_1024_QAM_LESS_THAN_242_TONE_RU |
++				  IEEE80211_HE_PHY_CAP9_TX_1024_QAM_LESS_THAN_242_TONE_RU |
++				  IEEE80211_HE_PHY_CAP9_RX_FULL_BW_SU_USING_MU_WITH_COMP_SIGB |
++				  IEEE80211_HE_PHY_CAP9_RX_FULL_BW_SU_USING_MU_WITH_NON_COMP_SIGB);
++			break;
+ 		}
  
-+	ie_len_he_cap = ieee80211_ie_len_he_cap(sdata,
-+						NL80211_IFTYPE_MESH_POINT);
- 	head_len = hdr_len +
- 		   2 + /* NULL SSID */
- 		   /* Channel Switch Announcement */
-@@ -706,6 +764,8 @@ ieee80211_mesh_build_beacon(struct ieee80211_if_mesh *ifmsh)
- 		   2 + sizeof(__le16) + /* awake window */
- 		   2 + sizeof(struct ieee80211_vht_cap) +
- 		   2 + sizeof(struct ieee80211_vht_operation) +
-+		   ie_len_he_cap +
-+		   2 + 1 + sizeof(struct ieee80211_he_operation) +
- 		   ifmsh->ie_len;
- 
- 	bcn = kzalloc(sizeof(*bcn) + head_len + tail_len, GFP_KERNEL);
-@@ -823,6 +883,8 @@ ieee80211_mesh_build_beacon(struct ieee80211_if_mesh *ifmsh)
- 	    mesh_add_awake_window_ie(sdata, skb) ||
- 	    mesh_add_vht_cap_ie(sdata, skb) ||
- 	    mesh_add_vht_oper_ie(sdata, skb) ||
-+	    mesh_add_he_cap_ie(sdata, skb, ie_len_he_cap) ||
-+	    mesh_add_he_oper_ie(sdata, skb) ||
- 	    mesh_add_vendor_ies(sdata, skb))
- 		goto out_free;
- 
-diff --git a/net/mac80211/mesh.h b/net/mac80211/mesh.h
-index 94d57cce70da..953f720754e8 100644
---- a/net/mac80211/mesh.h
-+++ b/net/mac80211/mesh.h
-@@ -218,6 +218,10 @@ int mesh_add_vht_cap_ie(struct ieee80211_sub_if_data *sdata,
- 			struct sk_buff *skb);
- int mesh_add_vht_oper_ie(struct ieee80211_sub_if_data *sdata,
- 			 struct sk_buff *skb);
-+int mesh_add_he_cap_ie(struct ieee80211_sub_if_data *sdata,
-+		       struct sk_buff *skb, u8 ie_len);
-+int mesh_add_he_oper_ie(struct ieee80211_sub_if_data *sdata,
-+			struct sk_buff *skb);
- void mesh_rmc_free(struct ieee80211_sub_if_data *sdata);
- int mesh_rmc_init(struct ieee80211_sub_if_data *sdata);
- void ieee80211s_init(void);
-diff --git a/net/mac80211/mesh_plink.c b/net/mac80211/mesh_plink.c
-index dd3aefd052a9..737c5f4dbf52 100644
---- a/net/mac80211/mesh_plink.c
-+++ b/net/mac80211/mesh_plink.c
-@@ -218,9 +218,12 @@ static int mesh_plink_frame_tx(struct ieee80211_sub_if_data *sdata,
- 	bool include_plid = false;
- 	u16 peering_proto = 0;
- 	u8 *pos, ie_len = 4;
-+	u8 ie_len_he_cap;
- 	int hdr_len = offsetofend(struct ieee80211_mgmt, u.action.u.self_prot);
- 	int err = -ENOMEM;
- 
-+	ie_len_he_cap = ieee80211_ie_len_he_cap(sdata,
-+						NL80211_IFTYPE_MESH_POINT);
- 	skb = dev_alloc_skb(local->tx_headroom +
- 			    hdr_len +
- 			    2 + /* capability info */
-@@ -233,6 +236,8 @@ static int mesh_plink_frame_tx(struct ieee80211_sub_if_data *sdata,
- 			    2 + sizeof(struct ieee80211_ht_operation) +
- 			    2 + sizeof(struct ieee80211_vht_cap) +
- 			    2 + sizeof(struct ieee80211_vht_operation) +
-+			    ie_len_he_cap +
-+			    2 + 1 + sizeof(struct ieee80211_he_operation) +
- 			    2 + 8 + /* peering IE */
- 			    sdata->u.mesh.ie_len);
- 	if (!skb)
-@@ -321,7 +326,9 @@ static int mesh_plink_frame_tx(struct ieee80211_sub_if_data *sdata,
- 		if (mesh_add_ht_cap_ie(sdata, skb) ||
- 		    mesh_add_ht_oper_ie(sdata, skb) ||
- 		    mesh_add_vht_cap_ie(sdata, skb) ||
--		    mesh_add_vht_oper_ie(sdata, skb))
-+		    mesh_add_vht_oper_ie(sdata, skb) ||
-+		    mesh_add_he_cap_ie(sdata, skb, ie_len_he_cap) ||
-+		    mesh_add_he_oper_ie(sdata, skb))
- 			goto free;
- 	}
- 
-@@ -433,6 +440,9 @@ static void mesh_sta_info_init(struct ieee80211_sub_if_data *sdata,
- 	ieee80211_vht_cap_ie_to_sta_vht_cap(sdata, sband,
- 					    elems->vht_cap_elem, sta);
- 
-+	ieee80211_he_cap_ie_to_sta_he_cap(sdata, sband, elems->he_cap,
-+					  elems->he_cap_len, sta);
-+
- 	if (bw != sta->sta.bandwidth)
- 		changed |= IEEE80211_RC_BW_CHANGED;
- 
-diff --git a/net/mac80211/util.c b/net/mac80211/util.c
-index 1b224fa27367..52f5082bb165 100644
---- a/net/mac80211/util.c
-+++ b/net/mac80211/util.c
-@@ -2702,6 +2702,27 @@ u8 *ieee80211_ie_build_vht_cap(u8 *pos, struct ieee80211_sta_vht_cap *vht_cap,
- 	return pos;
- }
- 
-+u8 ieee80211_ie_len_he_cap(struct ieee80211_sub_if_data *sdata, u8 iftype)
-+{
-+	const struct ieee80211_sta_he_cap *he_cap;
-+	struct ieee80211_supported_band *sband;
-+	u8 n;
-+
-+	sband = ieee80211_get_sband(sdata);
-+	if (!sband)
-+		return 0;
-+
-+	he_cap = ieee80211_get_he_iftype_cap(sband, iftype);
-+	if (!he_cap)
-+		return 0;
-+
-+	n = ieee80211_he_mcs_nss_size(&he_cap->he_cap_elem);
-+	return 2 + 1 +
-+	       sizeof(he_cap->he_cap_elem) + n +
-+	       ieee80211_he_ppe_size(he_cap->ppe_thres[0],
-+				     he_cap->he_cap_elem.phy_cap_info);
-+}
-+
- u8 *ieee80211_ie_build_he_cap(u8 *pos,
- 			      const struct ieee80211_sta_he_cap *he_cap,
- 			      u8 *end)
-@@ -2891,6 +2912,34 @@ u8 *ieee80211_ie_build_vht_oper(u8 *pos, struct ieee80211_sta_vht_cap *vht_cap,
- 	return pos + sizeof(struct ieee80211_vht_operation);
- }
- 
-+u8 *ieee80211_ie_build_he_oper(u8 *pos)
-+{
-+	struct ieee80211_he_operation *he_oper;
-+	u32 he_oper_params;
-+
-+	*pos++ = WLAN_EID_EXTENSION;
-+	*pos++ = 1 + sizeof(struct ieee80211_he_operation);
-+	*pos++ = WLAN_EID_EXT_HE_OPERATION;
-+
-+	he_oper_params = 0;
-+	he_oper_params |= u32_encode_bits(1023, /* disabled */
-+				IEEE80211_HE_OPERATION_RTS_THRESHOLD_MASK);
-+	he_oper_params |= u32_encode_bits(1,
-+				IEEE80211_HE_OPERATION_ER_SU_DISABLE);
-+	he_oper_params |= u32_encode_bits(1,
-+				IEEE80211_HE_OPERATION_BSS_COLOR_DISABLED);
-+
-+	he_oper = (struct ieee80211_he_operation *)pos;
-+	he_oper->he_oper_params = cpu_to_le32(he_oper_params);
-+
-+	/* don't require special HE peer rates */
-+	he_oper->he_mcs_nss_set = cpu_to_le16(0xffff);
-+
-+	/* TODO add VHT operational and 6GHz operational subelement? */
-+
-+	return pos + sizeof(struct ieee80211_vht_operation);
-+}
-+
- bool ieee80211_chandef_ht_oper(const struct ieee80211_ht_operation *ht_oper,
- 			       struct cfg80211_chan_def *chandef)
- {
+ 		he_cap->he_mcs_nss_supp.rx_mcs_80 =
 -- 
 2.20.1
 
