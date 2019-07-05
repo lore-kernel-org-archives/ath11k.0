@@ -1,12 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from dvalin.narfation.org ([213.160.73.56])
  by casper.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hjLW2-0003EZ-RC
- for ath11k@lists.infradead.org; Fri, 05 Jul 2019 10:32:32 +0000
+ id 1hjLWT-0003Ge-LD
+ for ath11k@lists.infradead.org; Fri, 05 Jul 2019 10:32:59 +0000
 From: Sven Eckelmann <sven@narfation.org>
-Subject: [PATCH 0/3] ath11k: add support for mgmt and mcast rate control
-Date: Fri,  5 Jul 2019 12:31:05 +0200
-Message-Id: <20190705103109.3731-1-sven@narfation.org>
+Subject: [PATCH 3/3] ath11k: apply mgmt rate for beacons
+Date: Fri,  5 Jul 2019 12:31:08 +0200
+Message-Id: <20190705103109.3731-4-sven@narfation.org>
+In-Reply-To: <20190705103109.3731-1-sven@narfation.org>
+References: <20190705103109.3731-1-sven@narfation.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -21,44 +23,39 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
-Cc: Sven Eckelmann <sven@narfation.org>
+Cc: Sven Eckelmann <seckelmann@datto.com>
 
-Hi,
+From: Sven Eckelmann <seckelmann@datto.com>
 
-The management frames and multicast frames have to be sent at a basic
-rate. But the ath11k firmware is always doing them on 1 Mbit/s for
-2.4GHz and 6 Mbit/s for 5GHz. These might not be the basic rates which
-the AP advertised. Clients which don't support these rates will
-therefore not be able to receive them correctly.
+ath11k is using the lowest basic rate to send management frames. But the
+firmware is still sending the beacons at 1 Mbit/s for 2.4GHz and 6 Mbit/s
+on 5GHz. But it could be that these rates are not part of the basic rates.
+And thus the AP should not try to submit using these rates when clients
+don't need to support these rates (and thus might not be able to receive
+these rates).
 
-Also some mesh protocols try to estimate the probability of a successful
-submission of broadcast/multicast frames. In such setups, the multicast
-rate is usually manually set to an higher value to better simulate the
-rates which are used for unicast transmission.
+Signed-off-by: Sven Eckelmann <seckelmann@datto.com>
+---
+ drivers/net/wireless/ath/ath11k/mac.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-mac80211 already provides a list of rates for the driver. ath11k has to
-pick the lowest one (or only provided one) and send it to the firmware
-rate control.
-
-
-Unfortunately, the firmware WLAN.HK.2.1.0.1-00629-QCAHKSWPL_SILICONZ-1
-seems to be buggy [1] and ignores the CCK preamble. So setting the CCK
-rates 1M, 2M, 5.5M and 11M will then result in OFDM rates 6M, 12M, 24M,
-48M.
-
-Kind regards,
-	Sven
-
-[1] at least this is my best guess
-
-Sven Eckelmann (3):
-  ath11k: support for multicast rate control
-  ath11k: support for mgmt rate control
-  ath11k: apply mgmt rate for beacons
-
- drivers/net/wireless/ath/ath11k/mac.c | 119 ++++++++++++++++++++++++++
- 1 file changed, 119 insertions(+)
-
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index cda5b39f1a9b..37e225e0205d 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -1668,6 +1668,12 @@ static void ath11k_recalculate_mgmt_rate(struct ath11k *ar,
+ 					    hw_rate_code);
+ 	if (ret)
+ 		ath11k_warn(ar->ab, "failed to set mgmt tx rate %d\n", ret);
++
++	vdev_param = WMI_VDEV_PARAM_BEACON_RATE;
++	ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id, vdev_param,
++					    hw_rate_code);
++	if (ret)
++		ath11k_warn(ar->ab, "failed to set beacon tx rate %d\n", ret);
+ }
+ 
+ static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
 -- 
 2.20.1
 
