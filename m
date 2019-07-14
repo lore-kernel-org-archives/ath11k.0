@@ -1,12 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hmgg0-0006bD-N7
- for ath11k@lists.infradead.org; Sun, 14 Jul 2019 15:44:38 +0000
+ id 1hmgg1-0006bE-7l
+ for ath11k@lists.infradead.org; Sun, 14 Jul 2019 15:44:39 +0000
 From: John Crispin <john@phrozen.org>
-Subject: [PATCH 1/6] mac80211: add xmit rate to struct ieee80211_tx_status
-Date: Sun, 14 Jul 2019 17:44:14 +0200
-Message-Id: <20190714154419.11854-2-john@phrozen.org>
+Subject: [PATCH 2/6] mac80211: propagate struct ieee80211_tx_status into
+ ieee80211_tx_monitor()
+Date: Sun, 14 Jul 2019 17:44:15 +0200
+Message-Id: <20190714154419.11854-3-john@phrozen.org>
 In-Reply-To: <20190714154419.11854-1-john@phrozen.org>
 References: <20190714154419.11854-1-john@phrozen.org>
 MIME-Version: 1.0
@@ -25,33 +26,67 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Johannes Berg <johannes@sipsolutions.net>, Kalle Valo <kvalo@codeaurora.org>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-Right now struct ieee80211_tx_rate cannot hold HE rates. Lets use
-struct ieee80211_tx_status instead. This will also make the code
-future-proof for when we have EHT.
+This will allow use to report HE rates on the radiotap interface.
 
 Signed-off-by: John Crispin <john@phrozen.org>
 ---
- include/net/mac80211.h | 2 ++
- 1 file changed, 2 insertions(+)
+ net/mac80211/ieee80211_i.h | 3 ++-
+ net/mac80211/status.c      | 6 ++++--
+ net/mac80211/tx.c          | 3 ++-
+ 3 files changed, 8 insertions(+), 4 deletions(-)
 
-diff --git a/include/net/mac80211.h b/include/net/mac80211.h
-index c1e3dd0893e2..15f853cc02b9 100644
---- a/include/net/mac80211.h
-+++ b/include/net/mac80211.h
-@@ -1066,11 +1066,13 @@ struct ieee80211_tx_info {
-  * @sta: Station that the packet was transmitted for
-  * @info: Basic tx status information
-  * @skb: Packet skb (can be NULL if not provided by the driver)
-+ * @rate: The TX rate that was when sending the packet
-  */
- struct ieee80211_tx_status {
- 	struct ieee80211_sta *sta;
- 	struct ieee80211_tx_info *info;
- 	struct sk_buff *skb;
-+	struct rate_info *rate;
- };
+diff --git a/net/mac80211/ieee80211_i.h b/net/mac80211/ieee80211_i.h
+index db1c834d55d5..be06f51d7fa3 100644
+--- a/net/mac80211/ieee80211_i.h
++++ b/net/mac80211/ieee80211_i.h
+@@ -1776,7 +1776,8 @@ ieee80211_build_data_template(struct ieee80211_sub_if_data *sdata,
+ 			      struct sk_buff *skb, u32 info_flags);
+ void ieee80211_tx_monitor(struct ieee80211_local *local, struct sk_buff *skb,
+ 			  struct ieee80211_supported_band *sband,
+-			  int retry_count, int shift, bool send_to_cooked);
++			  int retry_count, int shift, bool send_to_cooked,
++			  struct ieee80211_tx_status *status);
  
- /**
+ void ieee80211_check_fast_xmit(struct sta_info *sta);
+ void ieee80211_check_fast_xmit_all(struct ieee80211_local *local);
+diff --git a/net/mac80211/status.c b/net/mac80211/status.c
+index 0c8858c01e36..a3502da02b4e 100644
+--- a/net/mac80211/status.c
++++ b/net/mac80211/status.c
+@@ -648,7 +648,8 @@ static int ieee80211_tx_get_rates(struct ieee80211_hw *hw,
+ 
+ void ieee80211_tx_monitor(struct ieee80211_local *local, struct sk_buff *skb,
+ 			  struct ieee80211_supported_band *sband,
+-			  int retry_count, int shift, bool send_to_cooked)
++			  int retry_count, int shift, bool send_to_cooked,
++			  struct ieee80211_tx_status *status)
+ {
+ 	struct sk_buff *skb2;
+ 	struct ieee80211_tx_info *info = IEEE80211_SKB_CB(skb);
+@@ -904,7 +905,8 @@ static void __ieee80211_tx_status(struct ieee80211_hw *hw,
+ 	}
+ 
+ 	/* send to monitor interfaces */
+-	ieee80211_tx_monitor(local, skb, sband, retry_count, shift, send_to_cooked);
++	ieee80211_tx_monitor(local, skb, sband, retry_count, shift,
++			     send_to_cooked, status);
+ }
+ 
+ void ieee80211_tx_status(struct ieee80211_hw *hw, struct sk_buff *skb)
+diff --git a/net/mac80211/tx.c b/net/mac80211/tx.c
+index 173a8495820e..2395f7cf0be1 100644
+--- a/net/mac80211/tx.c
++++ b/net/mac80211/tx.c
+@@ -4794,7 +4794,8 @@ struct sk_buff *ieee80211_beacon_get_tim(struct ieee80211_hw *hw,
+ 	if (!sband)
+ 		return bcn;
+ 
+-	ieee80211_tx_monitor(hw_to_local(hw), copy, sband, 1, shift, false);
++	ieee80211_tx_monitor(hw_to_local(hw), copy, sband, 1, shift, false,
++			     NULL);
+ 
+ 	return bcn;
+ }
 -- 
 2.20.1
 
