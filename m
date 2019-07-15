@@ -1,15 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from nbd.name ([2a01:4f8:221:3d45::2])
+Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hmgg4-0006d6-MA
- for ath11k@lists.infradead.org; Sun, 14 Jul 2019 15:44:42 +0000
-From: John Crispin <john@phrozen.org>
-Subject: [PATCH 6/6] ath11k: switch to using ieee80211_tx_status_ext()
-Date: Sun, 14 Jul 2019 17:44:19 +0200
-Message-Id: <20190714154419.11854-7-john@phrozen.org>
-In-Reply-To: <20190714154419.11854-1-john@phrozen.org>
-References: <20190714154419.11854-1-john@phrozen.org>
-MIME-Version: 1.0
+ id 1hn2zf-00063I-I5
+ for ath11k@lists.infradead.org; Mon, 15 Jul 2019 15:34:24 +0000
+From: Miles Hu <milehu@codeaurora.org>
+Subject: [PATCH] ath11k: fix no traffic problem in co-exist monitor mode
+Date: Mon, 15 Jul 2019 08:33:59 -0700
+Message-Id: <1563204839-10683-1-git-send-email-milehu@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -18,63 +15,43 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Johannes Berg <johannes@sipsolutions.net>, Kalle Valo <kvalo@codeaurora.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
+To: ath11k@lists.infradead.org
+Cc: Miles Hu <milehu@codeaurora.org>
 
-This allows us to pass HE rates down into the stack.
+Clear monitor flag in CB for regular data packet to avoid drop in mac80211.
 
-Signed-off-by: John Crispin <john@phrozen.org>
+Signed-off-by: Miles Hu <milehu@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/dp_tx.c | 19 ++++++++++++++-----
- 1 file changed, 14 insertions(+), 5 deletions(-)
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
-index 33404483ec0a..7fe6ca18fc27 100644
---- a/drivers/net/wireless/ath/ath11k/dp_tx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
-@@ -365,9 +365,12 @@ static void ath11k_dp_tx_complete_msdu(struct ath11k *ar,
- 				       struct sk_buff *msdu,
- 				       struct hal_tx_status *ts)
- {
-+	struct ieee80211_tx_status status = { 0 };
- 	struct ath11k_base *ab = ar->ab;
- 	struct ieee80211_tx_info *info;
- 	struct ath11k_skb_cb *skb_cb;
-+	struct ath11k_peer *peer;
-+	struct ath11k_sta *arsta;
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 9a1c247..b9c0eca 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -3915,6 +3915,7 @@ static int ath11k_dp_rx_mon_deliver(struct ath11k *ar, u32 mac_id,
  
- 	if (WARN_ON_ONCE(ts->buf_rel_source != HAL_WBM_REL_SRC_MODULE_TQM)) {
- 		/* Must not happen */
-@@ -431,12 +434,18 @@ static void ath11k_dp_tx_complete_msdu(struct ath11k *ar,
- 		ath11k_dp_tx_cache_peer_stats(ar, msdu, ts);
- 	}
+ 	header = mon_skb;
  
--	/* NOTE: Tx rate status reporting. Tx completion status does not have
--	 * necessary information (for example nss) to build the tx rate.
--	 * Might end up reporting it out-of-band from HTT stats.
--	 */
++	rxs->flag = 0;
+ 	do {
+ 		skb_next = mon_skb->next;
+ 		if (!skb_next)
+@@ -3936,6 +3937,7 @@ static int ath11k_dp_rx_mon_deliver(struct ath11k *ar, u32 mac_id,
+ 		ath11k_dp_rx_deliver_msdu(ar, napi, mon_skb);
+ 		mon_skb = skb_next;
+ 	} while (mon_skb && (mon_skb != tail_msdu));
++	rxs->flag = 0;
  
--	ieee80211_tx_status(ar->hw, msdu);
-+	spin_lock_bh(&ab->data_lock);
-+	peer = ath11k_peer_find_by_id(ab, ts->peer_id);
-+	arsta = (struct ath11k_sta *)peer->sta->drv_priv;
-+	status.sta = peer->sta;
-+	status.skb = msdu;
-+	status.info = info;
-+	status.rate = &arsta->last_txrate;
-+	rcu_read_unlock();
-+	ieee80211_tx_status_ext(ar->hw, &status);
-+	spin_unlock_bh(&ab->data_lock);
-+	return;
+ 	return 0;
  
- exit:
- 	rcu_read_unlock();
 -- 
-2.20.1
+2.7.4
 
 
 _______________________________________________
