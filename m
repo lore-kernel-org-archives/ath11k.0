@@ -1,12 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hn2zx-00065a-5l
- for ath11k@lists.infradead.org; Mon, 15 Jul 2019 15:34:42 +0000
-From: Miles Hu <milehu@codeaurora.org>
-Subject: [PATCH] ath11k: fix duplicate rx packets in co-exist monitor mode
-Date: Mon, 15 Jul 2019 08:34:36 -0700
-Message-Id: <1563204876-10746-1-git-send-email-milehu@codeaurora.org>
+ id 1hnM9Z-0007vE-86
+ for ath11k@lists.infradead.org; Tue, 16 Jul 2019 12:01:54 +0000
+MIME-Version: 1.0
+Subject: Re: [PATCH] ath11k: update tx duration in peer stats
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <1561642595-16359-1-git-send-email-vnaralas@codeaurora.org>
+References: <1561642595-16359-1-git-send-email-vnaralas@codeaurora.org>
+Message-Id: <20190716120151.876D9617A3@smtp.codeaurora.org>
+Date: Tue, 16 Jul 2019 12:01:51 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -15,35 +18,28 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: Miles Hu <milehu@codeaurora.org>
+To: Venkateswara Naralasetty <vnaralas@codeaurora.org>
+Cc: ath11k@lists.infradead.org
 
-Add SKIP_MONITOR flag to rx data packets so mac80211 can skip them. Monitor ring already push same packets up.
+Venkateswara Naralasetty <vnaralas@codeaurora.org> wrote:
 
-Signed-off-by: Miles Hu <milehu@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/dp_rx.c | 1 +
- 1 file changed, 1 insertion(+)
+> Update the tx duraion in peer stats from ppdu stats.
+> 
+> Signed-off-by: Venkateswara Naralasetty <vnaralas@codeaurora.org>
+> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index b9c0eca..04ad2db 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -2093,6 +2093,7 @@ static void ath11k_dp_rx_pre_deliver_amsdu(struct ath11k *ar,
- 		} else {
- 			rxs->flag |= RX_FLAG_ALLOW_SAME_PN;
- 		}
-+		rxs->flag |= RX_FLAG_SKIP_MONITOR;
- 
- 		status = IEEE80211_SKB_RXCB(msdu);
- 		*status = *rxs;
+Patch applied to ath11k-bringup branch of ath.git, thanks.
+
+1a4dface07de ath11k: update tx duration in peer stats
+
 -- 
-2.7.4
+https://patchwork.kernel.org/patch/11019741/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 
 _______________________________________________
