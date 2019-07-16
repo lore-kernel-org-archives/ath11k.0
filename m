@@ -1,15 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hnMEg-0003HQ-Hm
- for ath11k@lists.infradead.org; Tue, 16 Jul 2019 12:07:13 +0000
-MIME-Version: 1.0
-Subject: Re: [PATCH v4] ath11k: Fix rx_duration reporting
+ id 1hnMKZ-0005hb-Q5
+ for ath11k@lists.infradead.org; Tue, 16 Jul 2019 12:13:17 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1562758243-12336-1-git-send-email-gseset@codeaurora.org>
-References: <1562758243-12336-1-git-send-email-gseset@codeaurora.org>
-Message-Id: <20190716120709.D4F0C60D35@smtp.codeaurora.org>
-Date: Tue, 16 Jul 2019 12:07:09 +0000 (UTC)
+Subject: Re: [PATCH] ath11k: Add probe response throttling logic
+References: <1561595753-11351-1-git-send-email-srirrama@codeaurora.org>
+Date: Tue, 16 Jul 2019 15:13:10 +0300
+In-Reply-To: <1561595753-11351-1-git-send-email-srirrama@codeaurora.org>
+ (Sriram R.'s message of "Thu, 27 Jun 2019 06:05:53 +0530")
+Message-ID: <87muhe89ex.fsf@kamboji.qca.qualcomm.com>
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,29 +23,42 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Ganesh Sesetti <gseset@codeaurora.org>
+To: Sriram R <srirrama@codeaurora.org>
 Cc: ath11k@lists.infradead.org
 
-Ganesh Sesetti <gseset@codeaurora.org> wrote:
+Sriram R <srirrama@codeaurora.org> writes:
 
-> Since rx duration is wrongly reported in iw wlanX station dump,
-> fetch correct rx duration reported in PPDU_END tlv.
-> Enable PPDU_END, MPDU_START and PPDU_END_STATUS_DONE tlv
-> reporting in monitor status by default. Pass the sta's Rx duration
-> to mac80211 in sta_statistics() ops.
-> 
-> Signed-off-by: Ganesh Sesetti <gseset@codeaurora.org>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+> Drop probe response packets when the pending management tx
+> count has reached a certain threshold, so as to prioritize
+> other mgmt packets like auth and assoc to be sent on time
+> for establishing successful connections.
+> This might be required in dense networks, multi-vap scenarios
+> or due to emulated probe requests (DoS attack),
+> which could lead to association failures due to failure to
+> send auth/assoc packets as high probe response traffic occupies the
+> limited target mgmt transmit queue.
+> Currently the threshold is set to 3/4th of the target management
+> tx queue.
+>
+> Signed-off-by: Sriram R <srirrama@codeaurora.org>
 
-Patch applied to ath11k-bringup branch of ath.git, thanks.
+[...]
 
-e56ef3789437 ath11k: Fix rx_duration reporting
+> --- a/drivers/net/wireless/ath/ath11k/wmi.c
+> +++ b/drivers/net/wireless/ath/ath11k/wmi.c
+> @@ -3366,6 +3366,9 @@ static int wmi_process_mgmt_tx_comp(struct ath11k *ar, u32 desc_id,
+>  
+>  	ieee80211_tx_status_irqsafe(ar->hw, msdu);
+>  
+> +	WARN_ON(atomic_read(&ar->num_pending_mgmt_tx) == 0);
+
+In the pending branch I changed this to WARN_ON_ONCE() so that we don't
+excessively spam the logs:
+
+https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending-ath11k&id=02d5ce6ef5feff4bbc80afd800586bd15879b714
 
 -- 
-https://patchwork.kernel.org/patch/11038387/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
+Kalle Valo
 
 _______________________________________________
 ath11k mailing list
