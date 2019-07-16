@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hnM9Z-0007vE-86
- for ath11k@lists.infradead.org; Tue, 16 Jul 2019 12:01:54 +0000
+ id 1hnMDV-0002ix-Ev
+ for ath11k@lists.infradead.org; Tue, 16 Jul 2019 12:05:59 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: update tx duration in peer stats
+Subject: Re: [PATCH v2 1/4] ath11k: removed duplicated functionality
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1561642595-16359-1-git-send-email-vnaralas@codeaurora.org>
-References: <1561642595-16359-1-git-send-email-vnaralas@codeaurora.org>
-Message-Id: <20190716120151.876D9617A3@smtp.codeaurora.org>
-Date: Tue, 16 Jul 2019 12:01:51 +0000 (UTC)
+In-Reply-To: <1561737854-19003-1-git-send-email-msinada@codeaurora.org>
+References: <1561737854-19003-1-git-send-email-msinada@codeaurora.org>
+Message-Id: <20190716120557.331FD616BA@smtp.codeaurora.org>
+Date: Tue, 16 Jul 2019 12:05:57 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,22 +22,26 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Venkateswara Naralasetty <vnaralas@codeaurora.org>
+To: Muna Sinada <msinada@codeaurora.org>
 Cc: ath11k@lists.infradead.org
 
-Venkateswara Naralasetty <vnaralas@codeaurora.org> wrote:
+Muna Sinada <msinada@codeaurora.org> wrote:
 
-> Update the tx duraion in peer stats from ppdu stats.
+> Removed duplicated functionality in ath11k_hal_desc_reo_parse_err() and
+> replaced with function call to ath11k_hal_rx_reo_entl_paddr_get().
 > 
-> Signed-off-by: Venkateswara Naralasetty <vnaralas@codeaurora.org>
+> Signed-off-by: Muna Sinada <msinada@codeaurora.org>
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-Patch applied to ath11k-bringup branch of ath.git, thanks.
+4 patches applied to ath11k-bringup branch of ath.git, thanks.
 
-1a4dface07de ath11k: update tx duration in peer stats
+3305d94f75cc ath11k: removed duplicated functionality
+8bc3b7e41ab2 ath11k: changed parameter from u8 * to struct sk_buff *
+a9cd19921cc8 ath11k: comments added to explain purpose
+c6f7e826a450 ath11k: added RMB to return_buffer_manager description
 
 -- 
-https://patchwork.kernel.org/patch/11019741/
+https://patchwork.kernel.org/patch/11022891/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
