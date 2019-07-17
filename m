@@ -1,15 +1,17 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hnj4g-0001IT-49
- for ath11k@lists.infradead.org; Wed, 17 Jul 2019 12:30:23 +0000
-MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: fix memory leak in testmode
+ id 1hnjPF-0007re-67
+ for ath11k@lists.infradead.org; Wed, 17 Jul 2019 12:51:38 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1563285872-13408-1-git-send-email-periyasa@codeaurora.org>
-References: <1563285872-13408-1-git-send-email-periyasa@codeaurora.org>
-Message-Id: <20190717123021.D7D8C606AC@smtp.codeaurora.org>
-Date: Wed, 17 Jul 2019 12:30:21 +0000 (UTC)
+Subject: Re: [PATCH] ath11k: remove deprecated WMI PEER stats
+References: <1563342664-4938-1-git-send-email-murugana@codeaurora.org>
+Date: Wed, 17 Jul 2019 15:51:33 +0300
+In-Reply-To: <1563342664-4938-1-git-send-email-murugana@codeaurora.org>
+ (Sathishkumar Muruganandam's message of "Wed, 17 Jul 2019 11:21:04
+ +0530")
+Message-ID: <87pnm83ju2.fsf@kamboji.qca.qualcomm.com>
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,27 +24,26 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Karthikeyan Periyasamy <periyasa@codeaurora.org>
+To: Sathishkumar Muruganandam <murugana@codeaurora.org>
 Cc: ath11k@lists.infradead.org
 
-Karthikeyan Periyasamy <periyasa@codeaurora.org> wrote:
+Sathishkumar Muruganandam <murugana@codeaurora.org> writes:
 
-> when ath11k_wmi_cmd_send() fails, caller need to free up the skb.
-> In ath11k_tm_cmd_wmi(), skb free not happen when wmi command send
-> fails. so free up the skb in the error case.
-> 
-> Signed-off-by: Karthikeyan Periyasamy <periyasa@codeaurora.org>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+> Removing WMI PEER stats which has been deprecated in FW and rx_duration of
+> a peer is now fetched from HTT PPDU_END stats.
+>
+> Signed-off-by: Sathishkumar Muruganandam <murugana@codeaurora.org>
 
-Patch applied to ath11k-bringup branch of ath.git, thanks.
+This does not apply and sha1 id is invalid. Please use ath11k-bringup
+branch as the baseline, do NOT have any other patches applied.
 
-0c7d3c242f82 ath11k: fix memory leak in testmode
+Applying: ath11k: remove deprecated WMI PEER stats
+fatal: sha1 information is lacking or useless (drivers/net/wireless/ath/ath11k/wmi.c).
+error: could not build fake ancestor
+Patch failed at 0001 ath11k: remove deprecated WMI PEER stats
 
 -- 
-https://patchwork.kernel.org/patch/11046167/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
+Kalle Valo
 
 _______________________________________________
 ath11k mailing list
