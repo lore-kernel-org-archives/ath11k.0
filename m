@@ -1,21 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hnbK9-0003Aa-Na
- for ath11k@lists.infradead.org; Wed, 17 Jul 2019 04:13:51 +0000
-Received: from vasanth-lnx.qca.qualcomm.com
- (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
- (No client certificate requested)
- (Authenticated sender: vthiagar@smtp.codeaurora.org)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 9115960C8B
- for <ath11k@lists.infradead.org>; Wed, 17 Jul 2019 04:13:48 +0000 (UTC)
-From: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
-Subject: [PATCH] ath11k/dp: Remove unnecessary REO remap configuration
-Date: Wed, 17 Jul 2019 09:43:27 +0530
-Message-Id: <1563336807-23646-2-git-send-email-vthiagar@codeaurora.org>
-In-Reply-To: <1563336807-23646-1-git-send-email-vthiagar@codeaurora.org>
-References: <1563336807-23646-1-git-send-email-vthiagar@codeaurora.org>
+ id 1hncqY-0003m2-D0
+ for ath11k@lists.infradead.org; Wed, 17 Jul 2019 05:51:24 +0000
+From: Sathishkumar Muruganandam <murugana@codeaurora.org>
+Subject: [PATCH] ath11k: remove deprecated WMI PEER stats
+Date: Wed, 17 Jul 2019 11:21:04 +0530
+Message-Id: <1563342664-4938-1-git-send-email-murugana@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -30,119 +21,576 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
+Cc: Sathishkumar Muruganandam <murugana@codeaurora.org>
 
-REO remap configuration only required when using all REO rings
-for Rx with hashing. Since hashing based REO routing is currently
-disabled with the driver design, remove unsed register configurations
-with REO remap which are used for hash based REO routing.
+Removing WMI PEER stats which has been deprecated in FW and rx_duration of
+a peer is now fetched from HTT PPDU_END stats.
 
-Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
+Signed-off-by: Sathishkumar Muruganandam <murugana@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/dp.c     | 18 +-----------------
- drivers/net/wireless/ath/ath11k/hal.h    | 16 +---------------
- drivers/net/wireless/ath/ath11k/hal_rx.c | 10 +---------
- 3 files changed, 3 insertions(+), 41 deletions(-)
+ drivers/net/wireless/ath/ath11k/core.h        |  23 ----
+ drivers/net/wireless/ath/ath11k/debug.c       | 141 +--------------------
+ drivers/net/wireless/ath/ath11k/debug.h       |   7 --
+ drivers/net/wireless/ath/ath11k/debugfs_sta.c |  19 ---
+ drivers/net/wireless/ath/ath11k/wmi.c         | 170 +-------------------------
+ drivers/net/wireless/ath/ath11k/wmi.h         |  18 ---
+ 6 files changed, 3 insertions(+), 375 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
-index 3f5174a..ad572e7 100644
---- a/drivers/net/wireless/ath/ath11k/dp.c
-+++ b/drivers/net/wireless/ath/ath11k/dp.c
-@@ -198,7 +198,6 @@ static int ath11k_dp_srng_common_setup(struct ath11k_base *ab)
- 	struct ath11k_dp *dp = &ab->dp;
- 	struct hal_srng *srng;
- 	int i, ret;
--	struct hal_reo_params reo_params = {0};
- 
- 	ret = ath11k_dp_srng_setup(ab, &dp->wbm_desc_rel_ring,
- 				   HAL_SW2WBM_RELEASE, 0, 0,
-@@ -286,22 +285,7 @@ static int ath11k_dp_srng_common_setup(struct ath11k_base *ab)
- 		goto err;
- 	}
- 
--	/* When hash based routing of rx packet is enabled, 16 entries to map
--	 * the hash values to the ring will be configured. Each hash entry uses
--	 * three bits to map to a particular ring. The ring mapping will be
--	 * 0:TCL, 1:SW1, 2:SW2, 3:SW3, 4:SW4, 5:Release, 6:FW and 7:Not used.
--	 */
--	reo_params.ring_hash_map0_7 = HAL_HASH_ROUTING_RING_SW1 << 0 |
--				      HAL_HASH_ROUTING_RING_SW2 << 3 |
--				      HAL_HASH_ROUTING_RING_SW3 << 6 |
--				      HAL_HASH_ROUTING_RING_SW4 << 9 |
--				      HAL_HASH_ROUTING_RING_SW1 << 12 |
--				      HAL_HASH_ROUTING_RING_SW2 << 15 |
--				      HAL_HASH_ROUTING_RING_SW3 << 18 |
--				      HAL_HASH_ROUTING_RING_SW4 << 21;
--	reo_params.ring_hash_map8_15 = reo_params.ring_hash_map0_7;
--
--	ath11k_hal_reo_hw_setup(ab, &reo_params);
-+	ath11k_hal_reo_hw_setup(ab);
- 
- 	return 0;
- 
-diff --git a/drivers/net/wireless/ath/ath11k/hal.h b/drivers/net/wireless/ath/ath11k/hal.h
-index a1e917e..76ab802 100644
---- a/drivers/net/wireless/ath/ath11k/hal.h
-+++ b/drivers/net/wireless/ath/ath11k/hal.h
-@@ -717,19 +717,6 @@ enum hal_ce_desc {
- 	HAL_CE_DESC_DST_STATUS,
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index 60962b582af3..81baf252ac8a 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -357,8 +357,6 @@ struct ath11k_fw_stats {
+ 	struct list_head pdevs;
+ 	struct list_head vdevs;
+ 	struct list_head bcn;
+-	struct list_head peers;
+-	struct list_head peers_extd;
  };
  
--#define HAL_HASH_ROUTING_RING_TCL 0
--#define HAL_HASH_ROUTING_RING_SW1 1
--#define HAL_HASH_ROUTING_RING_SW2 2
--#define HAL_HASH_ROUTING_RING_SW3 3
--#define HAL_HASH_ROUTING_RING_SW4 4
--#define HAL_HASH_ROUTING_RING_REL 5
--#define HAL_HASH_ROUTING_RING_FW  6
+ struct ath11k_dbg_htt_stats {
+@@ -766,27 +764,6 @@ struct ath11k_fw_stats_bcn {
+ 	u32 tx_bcn_outage_cnt;
+ };
+ 
+-struct ath11k_fw_stats_peer {
+-	struct list_head list;
 -
--struct hal_reo_params {
--	u32 ring_hash_map0_7;
--	u32 ring_hash_map8_15;
+-	u8 peer_macaddr[ETH_ALEN];
+-	u32 peer_rssi;
+-	u32 peer_tx_rate;
+-	u32 peer_rx_rate;
 -};
 -
- struct hal_reo_status_header {
- 	u16 cmd_num;
- 	enum hal_reo_cmd_status cmd_status;
-@@ -863,8 +850,7 @@ void ath11k_hal_reo_qdesc_setup(void *vaddr, int tid, u32 ba_window_size,
- 				u32 start_seqtype);
- void ath11k_hal_reo_init_cmd_ring(struct ath11k_base *ab,
- 				  struct hal_srng *srng);
--void ath11k_hal_reo_hw_setup(struct ath11k_base *ab,
--			     struct hal_reo_params *params);
-+void ath11k_hal_reo_hw_setup(struct ath11k_base *ab);
- void ath11k_hal_setup_link_idle_list(struct ath11k_base *ab,
- 				     struct hal_wbm_idle_scatter_list *sbuf,
- 				     u32 nsbufs, u32 tot_link_desc,
-diff --git a/drivers/net/wireless/ath/ath11k/hal_rx.c b/drivers/net/wireless/ath/ath11k/hal_rx.c
-index 1dcc0fc..f8abbb7 100644
---- a/drivers/net/wireless/ath/ath11k/hal_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/hal_rx.c
-@@ -828,8 +828,7 @@ void ath11k_hal_reo_init_cmd_ring(struct ath11k_base *ab,
+-struct ath11k_fw_stats_peer_extd {
+-	struct list_head list;
+-
+-	u8 peer_macaddr[ETH_ALEN];
+-	u32 rx_duration;
+-	u32 peer_tx_bytes;
+-	u32 peer_rx_bytes;
+-	u32 last_tx_rate_code;
+-	s32 last_tx_power;
+-	u32 rx_mc_bc_cnt;
+-};
+-
+ void ath11k_peer_unmap_event(struct ath11k_base *ab, u16 peer_id);
+ void ath11k_peer_map_event(struct ath11k_base *ab, u8 vdev_id, u16 peer_id,
+ 			   u8 *mac_addr, u16 ast_hash);
+diff --git a/drivers/net/wireless/ath/ath11k/debug.c b/drivers/net/wireless/ath/ath11k/debug.c
+index 76cbd22af54e..88a7d63a63c4 100644
+--- a/drivers/net/wireless/ath/ath11k/debug.c
++++ b/drivers/net/wireless/ath/ath11k/debug.c
+@@ -135,34 +135,12 @@ static void ath11k_fw_stats_bcn_free(struct list_head *head)
  	}
  }
  
--void ath11k_hal_reo_hw_setup(struct ath11k_base *ab,
--			     struct hal_reo_params *params)
-+void ath11k_hal_reo_hw_setup(struct ath11k_base *ab)
- {
- 	u32 reo_base = HAL_SEQ_WCSS_UMAC_REO_REG;
- 	u32 val;
-@@ -851,13 +850,6 @@ void ath11k_hal_reo_hw_setup(struct ath11k_base *ab,
- 			   HAL_DEFAULT_REO_TIMEOUT_USEC);
- 	ath11k_ahb_write32(ab, reo_base + HAL_REO1_AGING_THRESH_IX_3,
- 			   HAL_DEFAULT_REO_TIMEOUT_USEC);
+-static void ath11k_fw_stats_peers_free(struct list_head *head)
+-{
+-	struct ath11k_fw_stats_peer *i, *tmp;
 -
--	ath11k_ahb_write32(ab, reo_base + HAL_REO1_DEST_RING_CTRL_IX_2,
--			   FIELD_PREP(HAL_REO_DEST_RING_CTRL_HASH_RING_MAP,
--				      params->ring_hash_map0_7));
--	ath11k_ahb_write32(ab, reo_base + HAL_REO1_DEST_RING_CTRL_IX_3,
--			   FIELD_PREP(HAL_REO_DEST_RING_CTRL_HASH_RING_MAP,
--				      params->ring_hash_map8_15));
+-	list_for_each_entry_safe(i, tmp, head, list) {
+-		list_del(&i->list);
+-		kfree(i);
+-	}
+-}
+-
+-static void ath11k_fw_stats_peers_extd_free(struct list_head *head)
+-{
+-	struct ath11k_fw_stats_peer_extd *i, *tmp;
+-
+-	list_for_each_entry_safe(i, tmp, head, list) {
+-		list_del(&i->list);
+-		kfree(i);
+-	}
+-}
+-
+ static void ath11k_debug_fw_stats_reset(struct ath11k *ar)
+ {
+ 	spin_lock_bh(&ar->data_lock);
+ 	ar->debug.fw_stats_done = false;
+ 	ath11k_fw_stats_pdevs_free(&ar->debug.fw_stats.pdevs);
+ 	ath11k_fw_stats_vdevs_free(&ar->debug.fw_stats.vdevs);
+-	ath11k_fw_stats_peers_free(&ar->debug.fw_stats.peers);
+-	ath11k_fw_stats_peers_extd_free(&ar->debug.fw_stats.peers_extd);
+ 	spin_unlock_bh(&ar->data_lock);
  }
  
- static enum hal_rx_mon_status
+@@ -171,18 +149,14 @@ void ath11k_debug_fw_stats_process(struct ath11k_base *ab, struct sk_buff *skb)
+ 	struct ath11k_fw_stats stats = {};
+ 	struct ath11k *ar;
+ 	struct ath11k_pdev *pdev;
+-	struct ath11k_peer *peer;
+ 	bool is_end;
+-	static unsigned int num_vdev, num_bcn, num_peer;
++	static unsigned int num_vdev, num_bcn;
+ 	size_t total_vdevs_started = 0;
+-	size_t num_peer_stats = 0;
+-	int i, ret, total_num_peers = 0;
++	int i, ret;
+ 
+ 	INIT_LIST_HEAD(&stats.pdevs);
+ 	INIT_LIST_HEAD(&stats.vdevs);
+-	INIT_LIST_HEAD(&stats.peers);
+ 	INIT_LIST_HEAD(&stats.bcn);
+-	INIT_LIST_HEAD(&stats.peers_extd);
+ 
+ 	ret = ath11k_wmi_pull_fw_stats(ab, skb, &stats);
+ 	if (ret) {
+@@ -250,41 +224,8 @@ void ath11k_debug_fw_stats_process(struct ath11k_base *ab, struct sk_buff *skb)
+ 			ar->debug.fw_stats_done = true;
+ 			num_bcn = 0;
+ 		}
+-		goto complete;
+ 	}
+ 
+-	if (stats.stats_id & (WMI_REQUEST_PEER_STAT |
+-			      WMI_REQUEST_PEER_EXTD_STAT)) {
+-		if (list_empty(&stats.peers) && list_empty(&stats.peers_extd)) {
+-			ath11k_warn(ab, "empty peer, peer extd stats");
+-			goto complete;
+-		}
+-		/* FW splits the peer stats when exceeding htc-wmi buffer limit
+-		 * and send back-to-back 'update stats' event. Hence we save the
+-		 * peer stats based on the count until reaching total peers count
+-		 */
+-		num_peer_stats = ath11k_wmi_fw_stats_num_peers(&stats.peers);
+-
+-		spin_lock_bh(&ab->data_lock);
+-		list_for_each_entry(peer, &ab->peers, list)
+-			total_num_peers++;
+-		spin_unlock_bh(&ab->data_lock);
+-
+-		for (i = 0; i < num_peer_stats; i++) {
+-			num_peer++;
+-			list_splice_tail_init(&stats.peers,
+-					      &ar->debug.fw_stats.peers);
+-
+-			list_splice_tail_init(&stats.peers_extd,
+-					      &ar->debug.fw_stats.peers_extd);
+-			ath11k_sta_update_rx_duration(ar, &stats);
+-		}
+-
+-		if (num_peer >= total_num_peers) {
+-			ar->debug.fw_stats_done = true;
+-			num_peer = 0;
+-		}
+-	}
+ complete:
+ 	complete(&ar->debug.fw_stats_complete);
+ 	rcu_read_unlock();
+@@ -294,8 +235,6 @@ void ath11k_debug_fw_stats_process(struct ath11k_base *ab, struct sk_buff *skb)
+ 	ath11k_fw_stats_pdevs_free(&stats.pdevs);
+ 	ath11k_fw_stats_vdevs_free(&stats.vdevs);
+ 	ath11k_fw_stats_bcn_free(&stats.bcn);
+-	ath11k_fw_stats_peers_free(&stats.peers);
+-	ath11k_fw_stats_peers_extd_free(&stats.peers_extd);
+ }
+ 
+ static int ath11k_debug_fw_stats_request(struct ath11k *ar,
+@@ -575,78 +514,6 @@ static const struct file_operations fops_bcn_stats = {
+ 	.llseek = default_llseek,
+ };
+ 
+-static int ath11k_open_peer_stats(struct inode *inode, struct file *file)
+-{
+-	struct ath11k *ar = inode->i_private;
+-	struct stats_request_params req_param;
+-	void *buf = NULL;
+-	int ret;
+-
+-	mutex_lock(&ar->conf_mutex);
+-
+-	if (ar->state != ATH11K_STATE_ON) {
+-		ret = -ENETDOWN;
+-		goto err_unlock;
+-	}
+-
+-	buf = vmalloc(ATH11K_FW_STATS_BUF_SIZE);
+-	if (!buf) {
+-		ret = -ENOMEM;
+-		goto err_unlock;
+-	}
+-
+-	req_param.pdev_id = ar->pdev->pdev_id;
+-	req_param.vdev_id = 0;
+-	req_param.stats_id = (WMI_REQUEST_PEER_STAT |
+-			      WMI_REQUEST_PEER_EXTD_STAT);
+-
+-	ret = ath11k_debug_fw_stats_request(ar, &req_param);
+-	if (ret) {
+-		ath11k_warn(ar->ab, "failed to request fw vdev stats: %d\n", ret);
+-		goto err_free;
+-	}
+-
+-	ath11k_wmi_fw_stats_fill(ar, &ar->debug.fw_stats, req_param.stats_id,
+-				 buf);
+-
+-	file->private_data = buf;
+-
+-	mutex_unlock(&ar->conf_mutex);
+-	return 0;
+-
+-err_free:
+-	vfree(buf);
+-
+-err_unlock:
+-	mutex_unlock(&ar->conf_mutex);
+-	return ret;
+-}
+-
+-static int ath11k_release_peer_stats(struct inode *inode, struct file *file)
+-{
+-	vfree(file->private_data);
+-
+-	return 0;
+-}
+-
+-static ssize_t ath11k_read_peer_stats(struct file *file,
+-				      char __user *user_buf,
+-				      size_t count, loff_t *ppos)
+-{
+-	const char *buf = file->private_data;
+-	size_t len = strlen(buf);
+-
+-	return simple_read_from_buffer(user_buf, count, ppos, buf, len);
+-}
+-
+-static const struct file_operations fops_peer_stats = {
+-	.open = ath11k_open_peer_stats,
+-	.release = ath11k_release_peer_stats,
+-	.read = ath11k_read_peer_stats,
+-	.owner = THIS_MODULE,
+-	.llseek = default_llseek,
+-};
+-
+ static ssize_t ath11k_read_simulate_fw_crash(struct file *file,
+ 					     char __user *user_buf,
+ 					     size_t count, loff_t *ppos)
+@@ -977,14 +844,10 @@ void ath11k_debug_fw_stats_init(struct ath11k *ar)
+ 			    &fops_vdev_stats);
+ 	debugfs_create_file("beacon_stats", 0600, fwstats_dir, ar,
+ 			    &fops_bcn_stats);
+-	debugfs_create_file("peer_stats", 0600, fwstats_dir, ar,
+-			    &fops_peer_stats);
+ 
+ 	INIT_LIST_HEAD(&ar->debug.fw_stats.pdevs);
+ 	INIT_LIST_HEAD(&ar->debug.fw_stats.vdevs);
+ 	INIT_LIST_HEAD(&ar->debug.fw_stats.bcn);
+-	INIT_LIST_HEAD(&ar->debug.fw_stats.peers);
+-	INIT_LIST_HEAD(&ar->debug.fw_stats.peers_extd);
+ 
+ 	init_completion(&ar->debug.fw_stats_complete);
+ }
+diff --git a/drivers/net/wireless/ath/ath11k/debug.h b/drivers/net/wireless/ath/ath11k/debug.h
+index 1a5e4ab43940..ce1f414a95e9 100644
+--- a/drivers/net/wireless/ath/ath11k/debug.h
++++ b/drivers/net/wireless/ath/ath11k/debug.h
+@@ -241,8 +241,6 @@ ath11k_accumulate_per_peer_tx_stats(struct ath11k_sta *arsta,
+ void ath11k_update_per_peer_stats_from_txcompl(struct ath11k *ar,
+ 					       struct sk_buff *msdu,
+ 					       struct hal_tx_status *ts);
+-void ath11k_sta_update_rx_duration(struct ath11k *ar,
+-				   struct ath11k_fw_stats *stats);
+ #else /* !CONFIG_MAC80211_DEBUGFS */
+ static inline void
+ ath11k_accumulate_per_peer_tx_stats(struct ath11k_sta *arsta,
+@@ -258,11 +256,6 @@ ath11k_update_per_peer_stats_from_txcompl(struct ath11k *ar,
+ {
+ }
+ 
+-static inline void ath11k_sta_update_rx_duration(struct ath11k *ar,
+-						 struct ath11k_fw_stats *stats)
+-{
+-}
+-
+ #endif /* CONFIG_MAC80211_DEBUGFS*/
+ 
+ #define ath11k_dbg(ar, dbg_mask, fmt, ...)			\
+diff --git a/drivers/net/wireless/ath/ath11k/debugfs_sta.c b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
+index 4b1d2cb6c41e..bdf1088f2e89 100644
+--- a/drivers/net/wireless/ath/ath11k/debugfs_sta.c
++++ b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
+@@ -9,25 +9,6 @@
+ #include "peer.h"
+ #include "debug.h"
+ 
+-void ath11k_sta_update_rx_duration(struct ath11k *ar,
+-				   struct ath11k_fw_stats *stats)
+-{
+-	struct ath11k_fw_stats_peer_extd *peer;
+-	struct ieee80211_sta *sta;
+-	struct ath11k_sta *arsta;
+-
+-	rcu_read_lock();
+-	list_for_each_entry(peer, &stats->peers_extd, list) {
+-		sta = ieee80211_find_sta_by_ifaddr(ar->hw, peer->peer_macaddr,
+-						   NULL);
+-		if (!sta)
+-			continue;
+-		arsta = (struct ath11k_sta *)sta->drv_priv;
+-		arsta->rx_duration += (u64)peer->rx_duration;
+-	}
+-	rcu_read_unlock();
+-}
+-
+ void
+ ath11k_accumulate_per_peer_tx_stats(struct ath11k_sta *arsta,
+ 				    struct ath11k_per_peer_tx_stats *peer_stats,
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 8bc50af0d720..1d6a36a2323f 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -3987,29 +3987,6 @@ ath11k_wmi_pull_bcn_stats(const struct wmi_bcn_stats *src,
+ 	dst->tx_bcn_outage_cnt = src->tx_bcn_outage_cnt;
+ }
+ 
+-static void
+-ath11k_wmi_pull_peer_stats(const struct wmi_peer_stats *src,
+-			   struct ath11k_fw_stats_peer *dst)
+-{
+-	ether_addr_copy(dst->peer_macaddr, src->peer_macaddr.addr);
+-	dst->peer_rssi = src->peer_rssi;
+-	dst->peer_tx_rate = src->peer_tx_rate;
+-	dst->peer_rx_rate = src->peer_rx_rate;
+-}
+-
+-static void
+-ath11k_wmi_pull_peer_extd_stats(const struct wmi_peer_extd_stats *src,
+-				struct ath11k_fw_stats_peer_extd *dst)
+-{
+-	ether_addr_copy(dst->peer_macaddr, src->peer_macaddr.addr);
+-	dst->rx_duration = src->rx_duration;
+-	dst->peer_tx_bytes = src->peer_tx_bytes;
+-	dst->peer_rx_bytes = src->peer_rx_bytes;
+-	dst->last_tx_rate_code = src->last_tx_rate_code;
+-	dst->last_tx_power = src->last_tx_power;
+-	dst->rx_mc_bc_cnt = src->rx_mc_bc_cnt;
+-}
+-
+ int ath11k_wmi_pull_fw_stats(struct ath11k_base *ab, struct sk_buff *skb,
+ 			     struct ath11k_fw_stats *stats)
+ {
+@@ -4035,10 +4012,9 @@ int ath11k_wmi_pull_fw_stats(struct ath11k_base *ab, struct sk_buff *skb,
+ 	}
+ 
+ 	ath11k_dbg(ab, ATH11K_DBG_WMI,
+-		   "wmi stats update ev pdev_id %d pdev %i vdev %i peer %i peer_extd %i bcn %i\n",
++		   "wmi stats update ev pdev_id %d pdev %i vdev %i bcn %i\n",
+ 		   ev->pdev_id,
+ 		   ev->num_pdev_stats, ev->num_vdev_stats,
+-		   ev->num_peer_stats, ev->num_peer_extd_stats,
+ 		   ev->num_bcn_stats);
+ 
+ 	stats->pdev_id = ev->pdev_id;
+@@ -4115,79 +4091,10 @@ int ath11k_wmi_pull_fw_stats(struct ath11k_base *ab, struct sk_buff *skb,
+ 		list_add_tail(&dst->list, &stats->bcn);
+ 	}
+ 
+-	for (i = 0; i < ev->num_peer_stats; i++) {
+-		const struct wmi_peer_stats *src;
+-		struct ath11k_fw_stats_peer *dst;
+-
+-		src = data;
+-		if (len < sizeof(*src)) {
+-			kfree(tb);
+-			return -EPROTO;
+-		}
+-
+-		stats->stats_id = WMI_REQUEST_PEER_STAT;
+-
+-		data += sizeof(*src);
+-		len -= sizeof(*src);
+-
+-		dst = kzalloc(sizeof(*dst), GFP_ATOMIC);
+-		if (!dst)
+-			continue;
+-
+-		ath11k_wmi_pull_peer_stats(src, dst);
+-		list_add_tail(&dst->list, &stats->peers);
+-	}
+-
+-	for (i = 0; i < ev->num_peer_extd_stats; i++) {
+-		const struct wmi_peer_extd_stats *src;
+-		struct ath11k_fw_stats_peer_extd *dst;
+-
+-		src = data;
+-		if (len < sizeof(*src)) {
+-			kfree(tb);
+-			return -EPROTO;
+-		}
+-
+-		/* PEER_STAT and PEER_EXTD_STAT come together */
+-		stats->stats_id |= WMI_REQUEST_PEER_EXTD_STAT;
+-
+-		data += sizeof(*src);
+-		len -= sizeof(*src);
+-
+-		dst = kzalloc(sizeof(*dst), GFP_ATOMIC);
+-		if (!dst)
+-			continue;
+-
+-		ath11k_wmi_pull_peer_extd_stats(src, dst);
+-		list_add_tail(&dst->list, &stats->peers_extd);
+-	}
+-
+ 	kfree(tb);
+ 	return 0;
+ }
+ 
+-size_t ath11k_wmi_fw_stats_num_peers(struct list_head *head)
+-{
+-	struct ath11k_fw_stats_peer *i;
+-	size_t num = 0;
+-
+-	list_for_each_entry(i, head, list)
+-		++num;
+-
+-	return num;
+-}
+-
+-size_t ath11k_wmi_fw_stats_num_peers_extd(struct list_head *head)
+-{
+-	struct ath11k_fw_stats_peer_extd *i;
+-	size_t num = 0;
+-
+-	list_for_each_entry(i, head, list)
+-		++num;
+-
+-	return num;
+-}
+-
+ size_t ath11k_wmi_fw_stats_num_vdevs(struct list_head *head)
+ {
+ 	struct ath11k_fw_stats_vdev *i;
+@@ -4424,52 +4331,6 @@ ath11k_wmi_fw_vdev_stats_fill(struct ath11k *ar,
+ }
+ 
+ static void
+-ath11k_wmi_fw_peer_stats_fill(const struct ath11k_fw_stats_peer *peer,
+-			      char *buf, u32 *length)
+-{
+-	u32 len = *length;
+-	u32 buf_len = ATH11K_FW_STATS_BUF_SIZE;
+-
+-	len += scnprintf(buf + len, buf_len - len, "%30s %pM\n",
+-			"Peer MAC address", peer->peer_macaddr);
+-	len += scnprintf(buf + len, buf_len - len, "%30s %u\n",
+-			"Peer RSSI", peer->peer_rssi);
+-	len += scnprintf(buf + len, buf_len - len, "%30s %u\n",
+-			"Peer TX rate", peer->peer_tx_rate);
+-	len += scnprintf(buf + len, buf_len - len, "%30s %u\n",
+-			"Peer RX rate", peer->peer_rx_rate);
+-
+-	len += scnprintf(buf + len, buf_len - len, "\n");
+-	*length = len;
+-}
+-
+-static void
+-ath11k_wmi_fw_peer_extd_stats_fill(const struct ath11k_fw_stats_peer_extd *peer,
+-				   char *buf, u32 *length)
+-{
+-	u32 len = *length;
+-	u32 buf_len = ATH11K_FW_STATS_BUF_SIZE;
+-
+-	len += scnprintf(buf + len, buf_len - len, "%30s %pM\n",
+-			"Peer MAC address", peer->peer_macaddr);
+-	len += scnprintf(buf + len, buf_len - len, "%30s %u\n",
+-			"Peer RX duration", peer->rx_duration);
+-	len += scnprintf(buf + len, buf_len - len, "%30s %u\n",
+-			"Peer TX bytes", peer->peer_tx_bytes);
+-	len += scnprintf(buf + len, buf_len - len, "%30s %u\n",
+-			"Peer RX bytes", peer->peer_rx_bytes);
+-	len += scnprintf(buf + len, buf_len - len, "%30s %u\n",
+-			"Peer last Tx rate code", peer->last_tx_rate_code);
+-	len += scnprintf(buf + len, buf_len - len, "%30s %d\n",
+-			"Peer last Tx power", peer->last_tx_power);
+-	len += scnprintf(buf + len, buf_len - len, "%30s %u\n",
+-			"Rx bcast/mcast data frames", peer->rx_mc_bc_cnt);
+-
+-	len += scnprintf(buf + len, buf_len - len, "\n");
+-	*length = len;
+-}
+-
+-static void
+ ath11k_wmi_fw_bcn_stats_fill(struct ath11k *ar,
+ 			     const struct ath11k_fw_stats_bcn *bcn,
+ 			     char *buf, u32 *length)
+@@ -4510,11 +4371,7 @@ void ath11k_wmi_fw_stats_fill(struct ath11k *ar,
+ 	u32 buf_len = ATH11K_FW_STATS_BUF_SIZE;
+ 	const struct ath11k_fw_stats_pdev *pdev;
+ 	const struct ath11k_fw_stats_vdev *vdev;
+-	const struct ath11k_fw_stats_peer *peer;
+-	const struct ath11k_fw_stats_peer_extd *peer_extd;
+ 	const struct ath11k_fw_stats_bcn *bcn;
+-	size_t num_peers;
+-	size_t num_peers_extd;
+ 	size_t num_bcn;
+ 
+ 	spin_lock_bh(&ar->data_lock);
+@@ -4556,31 +4413,6 @@ void ath11k_wmi_fw_stats_fill(struct ath11k *ar,
+ 			ath11k_wmi_fw_bcn_stats_fill(ar, bcn, buf, &len);
+ 	}
+ 
+-	if (stats_id & WMI_REQUEST_PEER_STAT) {
+-		num_peers = ath11k_wmi_fw_stats_num_peers(&fw_stats->peers);
+-		len += scnprintf(buf + len, buf_len - len, "\n");
+-		len += scnprintf(buf + len, buf_len - len, "%30s (%zu)\n",
+-				 "ath11k PEER stats", num_peers);
+-		len += scnprintf(buf + len, buf_len - len, "%30s\n\n",
+-				 "=================");
+-
+-		list_for_each_entry(peer, &fw_stats->peers, list)
+-			ath11k_wmi_fw_peer_stats_fill(peer, buf, &len);
+-	}
+-
+-	if (stats_id & WMI_REQUEST_PEER_EXTD_STAT) {
+-		num_peers_extd =
+-			ath11k_wmi_fw_stats_num_peers_extd(&fw_stats->peers_extd);
+-		len += scnprintf(buf + len, buf_len - len, "\n");
+-		len += scnprintf(buf + len, buf_len - len, "%30s (%zu)\n",
+-				 "ath11k PEER extd stats", num_peers_extd);
+-		len += scnprintf(buf + len, buf_len - len, "%30s\n\n",
+-				 "======================");
+-
+-		list_for_each_entry(peer_extd, &fw_stats->peers_extd, list)
+-			ath11k_wmi_fw_peer_extd_stats_fill(peer_extd, buf, &len);
+-	}
+-
+ unlock:
+ 	spin_unlock_bh(&ar->data_lock);
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index fccddede3337..e7799c2ad1db 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -4051,24 +4051,6 @@ struct wmi_bcn_stats {
+ 	u32 tx_bcn_outage_cnt;
+ } __packed;
+ 
+-struct wmi_peer_stats {
+-	struct wmi_mac_addr peer_macaddr;
+-	u32 peer_rssi;
+-	u32 peer_tx_rate;
+-	u32 peer_rx_rate;
+-} __packed;
+-
+-struct wmi_peer_extd_stats {
+-	struct wmi_mac_addr peer_macaddr;
+-	u32 rx_duration;
+-	u32 peer_tx_bytes;
+-	u32 peer_rx_bytes;
+-	u32 last_tx_rate_code;
+-	s32 last_tx_power;
+-	u32 rx_mc_bc_cnt;
+-	u32 reserved[3];
+-} __packed;
+-
+ struct wmi_stats_event {
+ 	u32 stats_id;
+ 	u32 num_pdev_stats;
 -- 
-1.9.1
+2.7.4
 
 
 _______________________________________________
