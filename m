@@ -1,16 +1,19 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hnOgK-0004O9-31
- for ath11k@lists.infradead.org; Tue, 16 Jul 2019 14:43:53 +0000
-MIME-Version: 1.0
-Date: Tue, 16 Jul 2019 20:13:51 +0530
-From: Sriram R <srirrama@codeaurora.org>
-Subject: Re: [PATCH] ath11k: Add probe response throttling logic
-In-Reply-To: <87muhe89ex.fsf@kamboji.qca.qualcomm.com>
-References: <1561595753-11351-1-git-send-email-srirrama@codeaurora.org>
- <87muhe89ex.fsf@kamboji.qca.qualcomm.com>
-Message-ID: <4d57bd235631cb7952cfaec9c6bdedb4@codeaurora.org>
+ id 1hnbK9-0003AO-DB
+ for ath11k@lists.infradead.org; Wed, 17 Jul 2019 04:13:50 +0000
+Received: from vasanth-lnx.qca.qualcomm.com
+ (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+ (No client certificate requested)
+ (Authenticated sender: vthiagar@smtp.codeaurora.org)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 54261611CF
+ for <ath11k@lists.infradead.org>; Wed, 17 Jul 2019 04:13:47 +0000 (UTC)
+From: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
+Subject: [PATCH] ath11k/dp: Fix possible invalid skb memory access
+Date: Wed, 17 Jul 2019 09:43:26 +0530
+Message-Id: <1563336807-23646-1-git-send-email-vthiagar@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -19,49 +22,48 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: ath11k@lists.infradead.org
+To: ath11k@lists.infradead.org
 
-On 2019-07-16 17:43, Kalle Valo wrote:
-> Sriram R <srirrama@codeaurora.org> writes:
-> 
->> Drop probe response packets when the pending management tx
->> count has reached a certain threshold, so as to prioritize
->> other mgmt packets like auth and assoc to be sent on time
->> for establishing successful connections.
->> This might be required in dense networks, multi-vap scenarios
->> or due to emulated probe requests (DoS attack),
->> which could lead to association failures due to failure to
->> send auth/assoc packets as high probe response traffic occupies the
->> limited target mgmt transmit queue.
->> Currently the threshold is set to 3/4th of the target management
->> tx queue.
->> 
->> Signed-off-by: Sriram R <srirrama@codeaurora.org>
-> 
-> [...]
-> 
->> --- a/drivers/net/wireless/ath/ath11k/wmi.c
->> +++ b/drivers/net/wireless/ath/ath11k/wmi.c
->> @@ -3366,6 +3366,9 @@ static int wmi_process_mgmt_tx_comp(struct 
->> ath11k *ar, u32 desc_id,
->> 
->>  	ieee80211_tx_status_irqsafe(ar->hw, msdu);
->> 
->> +	WARN_ON(atomic_read(&ar->num_pending_mgmt_tx) == 0);
-> 
-> In the pending branch I changed this to WARN_ON_ONCE() so that we don't
-> excessively spam the logs:
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending-ath11k&id=02d5ce6ef5feff4bbc80afd800586bd15879b714
-Fine Kalle. Thanks for making this change.
+In ath11k_dp_rx_null_q_desc_sg_drop(), Use skb_queue_walk_safe()
+instead of skb_queue_walk() while processing skb from the queue
+since this involves removing skb from the list. Using just
+skb_queue_walk() could result in using invalid (or already freed)
+skb memory.
 
-Regards,
-Sriram.R
+Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
+---
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index d074d90..fbe7f34 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -2907,14 +2907,14 @@ static void ath11k_dp_rx_null_q_desc_sg_drop(struct ath11k *ar,
+ 					     int msdu_len,
+ 					     struct sk_buff_head *msdu_list)
+ {
+-	struct sk_buff *skb;
++	struct sk_buff *skb, *tmp;
+ 	struct ath11k_skb_rxcb *rxcb;
+ 	int n_buffs;
+ 
+ 	n_buffs = DIV_ROUND_UP(msdu_len,
+ 			       (DP_RX_BUFFER_SIZE - HAL_RX_DESC_SIZE));
+ 
+-	skb_queue_walk(msdu_list, skb) {
++	skb_queue_walk_safe(msdu_list, skb, tmp) {
+ 		rxcb = ATH11K_SKB_RXCB(skb);
+ 		if (rxcb->err_rel_src == HAL_WBM_REL_SRC_MODULE_REO &&
+ 		    rxcb->err_code == HAL_REO_DEST_RING_ERROR_CODE_DESC_ADDR_ZERO) {
+-- 
+1.9.1
+
 
 _______________________________________________
 ath11k mailing list
