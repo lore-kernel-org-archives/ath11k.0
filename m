@@ -1,17 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1ho4ih-0005qk-Rf
- for ath11k@lists.infradead.org; Thu, 18 Jul 2019 11:37:09 +0000
+ id 1ho4lo-0007GS-Ss
+ for ath11k@lists.infradead.org; Thu, 18 Jul 2019 11:40:22 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH 1/2] ath11k/hal: Fix few bugs in
- ath11k_hal_srng_dst_num_free()
-References: <1563423855-32397-1-git-send-email-vthiagar@codeaurora.org>
-Date: Thu, 18 Jul 2019 14:37:04 +0300
-In-Reply-To: <1563423855-32397-1-git-send-email-vthiagar@codeaurora.org>
- (Vasanthakumar Thiagarajan's message of "Thu, 18 Jul 2019 09:54:14
- +0530")
-Message-ID: <87blxr376n.fsf@kamboji.qca.qualcomm.com>
+Subject: Re: [PATCH 1/2] ath11k: ignore event 0x6017
+References: <20190718054910.362-1-john@phrozen.org>
+Date: Thu, 18 Jul 2019 14:40:16 +0300
+In-Reply-To: <20190718054910.362-1-john@phrozen.org> (John Crispin's message
+ of "Thu, 18 Jul 2019 07:49:09 +0200")
+Message-ID: <877e8f371b.fsf@kamboji.qca.qualcomm.com>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -25,33 +23,67 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
-Cc: ath11k@lists.infradead.org
+To: John Crispin <john@phrozen.org>
+Cc: ath11k@lists.infradead.org, Shashidhar Lakkavalli <slakkavalli@datto.com>
 
-Vasanthakumar Thiagarajan <vthiagar@codeaurora.org> writes:
+John Crispin <john@phrozen.org> writes:
 
-> The logic to compute the number of available buffers in destination
-> ring is wrong. It should be just the different between head and
-> tail pointers in terms of the entry size. This functions currently
-> unused, this is fixed to make use of this function in follow-up
-> patches. Also make destination ring head pointer volatile because
-> it is independently updated by HW.
+> Everytime a new peer gets associated, we see the following message in the log
+> - ath11k c000000.wifi1: Unknown eventid: 0x6017
+> Ignore this event for now. We probably need to handle the event properly when
+> we add OMI support.
 >
-> Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
+> Signed-off-by: Shashidhar Lakkavalli <slakkavalli@datto.com>
+> Signed-off-by: John Crispin <john@phrozen.org>
+> ---
+>  drivers/net/wireless/ath/ath11k/wmi.c |  1 +
+>  drivers/net/wireless/ath/ath11k/wmi.h | 13 ++++++++++++-
+>  2 files changed, 13 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+> index cba9f3a9ebfd..4ec6f5d50459 100644
+> --- a/drivers/net/wireless/ath/ath11k/wmi.c
+> +++ b/drivers/net/wireless/ath/ath11k/wmi.c
+> @@ -5591,6 +5591,7 @@ static void ath11k_wmi_tlv_op_rx(struct ath11k_base *ab, struct sk_buff *skb)
+>  	/* add Unsupported events here */
+>  	case WMI_TBTTOFFSET_EXT_UPDATE_EVENTID:
+>  	case WMI_VDEV_DELETE_RESP_EVENTID:
+> +	case WMI_PEER_OPER_MODE_CHANGE_EVENTID:
+>  		ath11k_dbg(ab, ATH11K_DBG_WMI,
+>  			   "ignoring unsupported event 0x%x\n", id);
+>  		break;
+> diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+> index 7d933eafd3cd..364b44080493 100644
+> --- a/drivers/net/wireless/ath/ath11k/wmi.h
+> +++ b/drivers/net/wireless/ath/ath11k/wmi.h
+> @@ -288,7 +288,6 @@ enum wmi_tlv_cmd_id {
+>  	WMI_PEER_REORDER_QUEUE_REMOVE_CMDID,
+>  	WMI_PEER_SET_RX_BLOCKSIZE_CMDID,
+>  	WMI_PEER_ANTDIV_INFO_REQ_CMDID,
+> -	WMI_PEER_OPER_MODE_CHANGE_EVENTID,
+>  	WMI_BCN_TX_CMDID = WMI_TLV_CMD(WMI_GRP_MGMT),
+>  	WMI_PDEV_SEND_BCN_CMDID,
+>  	WMI_BCN_TMPL_CMDID,
+> @@ -586,6 +585,18 @@ enum wmi_tlv_event_id {
+>  	WMI_WDS_PEER_EVENTID,
+>  	WMI_PEER_STA_PS_STATECHG_EVENTID,
+>  	WMI_PEER_ANTDIV_INFO_EVENTID,
+> +	WMI_PEER_RESERVED0_EVENTID,
+> +	WMI_PEER_RESERVED1_EVENTID,
+> +	WMI_PEER_RESERVED2_EVENTID,
+> +	WMI_PEER_RESERVED3_EVENTID,
+> +	WMI_PEER_RESERVED4_EVENTID,
+> +	WMI_PEER_RESERVED5_EVENTID,
+> +	WMI_PEER_RESERVED6_EVENTID,
+> +	WMI_PEER_RESERVED7_EVENTID,
+> +	WMI_PEER_RESERVED8_EVENTID,
+> +	WMI_PEER_RESERVED9_EVENTID,
+> +	WMI_PEER_RESERVED10_EVENTID,
+> +	WMI_PEER_OPER_MODE_CHANGE_EVENTID,
 
-[...]
-
-> --- a/drivers/net/wireless/ath/ath11k/hal.h
-> +++ b/drivers/net/wireless/ath/ath11k/hal.h
-> @@ -538,7 +538,7 @@ struct hal_srng {
->  			u32 tp;
->  
->  			/* Shadow head pointer location to be updated by HW */
-> -			u32 *hp_addr;
-> +			volatile u32 *hp_addr;
-
-What about tp_addr, shouldn't we make that also volatile to remove the
-ugly cast? Can someone send another patch to fix that, please?
+Why all these reserved ids, is it like that also in official WMI header
+definitions? Can someone from Qualcomm check this and add proper names
+for the ids?
 
 -- 
 Kalle Valo
