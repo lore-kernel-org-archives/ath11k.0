@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hnzH1-0001VC-7V
- for ath11k@lists.infradead.org; Thu, 18 Jul 2019 05:48:14 +0000
+ id 1hnzHZ-0001Ya-Vd
+ for ath11k@lists.infradead.org; Thu, 18 Jul 2019 05:48:52 +0000
 From: John Crispin <john@phrozen.org>
-Subject: [PATCH] MAINTAINERS: add ath11k
-Date: Thu, 18 Jul 2019 07:47:57 +0200
-Message-Id: <20190718054757.32693-1-john@phrozen.org>
+Subject: [PATCH] ath11k: add RX stats support for radiotap
+Date: Thu, 18 Jul 2019 07:48:37 +0200
+Message-Id: <20190718054837.32756-1-john@phrozen.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -21,33 +21,43 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Kalle Valo <kvalo@codeaurora.org>
-Cc: ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
+Cc: Shashidhar Lakkavalli <slakkavalli@datto.com>, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-This makes the get_maintainer.pl script work.
+mac80211 expects the definition of what HE rate info is available inside a
+struct prepended to the skb.
 
+Signed-off-by: Shashidhar Lakkavalli <slakkavalli@datto.com>
 Signed-off-by: John Crispin <john@phrozen.org>
 ---
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 2c2fce72e694..43006c2debf0 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12827,6 +12827,13 @@ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git
- S:	Supported
- F:	drivers/net/wireless/ath/ath10k/
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 686b14044938..dcbc46b52493 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -2038,11 +2038,21 @@ static char *ath11k_print_get_tid(struct ieee80211_hdr *hdr, char *out,
+ static void ath11k_dp_rx_deliver_msdu(struct ath11k *ar, struct napi_struct *napi,
+ 				      struct sk_buff *msdu)
+ {
++	static const struct ieee80211_radiotap_he known = {
++		.data1 = cpu_to_le16(IEEE80211_RADIOTAP_HE_DATA1_DATA_MCS_KNOWN),
++		.data2 = cpu_to_le16(IEEE80211_RADIOTAP_HE_DATA2_GI_KNOWN),
++	};
+ 	struct ieee80211_rx_status *status;
+ 	struct ieee80211_hdr *hdr = (struct ieee80211_hdr *)msdu->data;
++	struct ieee80211_radiotap_he *he = NULL;
+ 	char tid[32];
  
-+QUALCOMM ATHEROS ATH10K WIRELESS DRIVER
-+M:	Kalle Valo <kvalo@codeaurora.org>
-+L:	ath11k@lists.infradead.org
-+T:	git git://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git
-+S:	Supported
-+F:	drivers/net/wireless/ath/ath11k/
-+
- QUALCOMM ATHEROS ATH9K WIRELESS DRIVER
- M:	QCA ath9k Development <ath9k-devel@qca.qualcomm.com>
- L:	linux-wireless@vger.kernel.org
+ 	status = IEEE80211_SKB_RXCB(msdu);
++	if (status->encoding == RX_ENC_HE) {
++		he = skb_push(msdu, sizeof(known));
++		memcpy(he, &known, sizeof(known));
++		status->flag |= RX_FLAG_RADIOTAP_HE;
++	}
+ 
+ 	ath11k_dbg(ar->ab, ATH11K_DBG_DATA,
+ 		   "rx skb %pK len %u peer %pM %s %s sn %u %s%s%s%s%s%s%s %srate_idx %u vht_nss %u freq %u band %u flag 0x%x fcs-err %i mic-err %i amsdu-more %i\n",
 -- 
 2.20.1
 
