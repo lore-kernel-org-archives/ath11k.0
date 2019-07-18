@@ -1,21 +1,19 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hnxy3-0006LY-8H
+ id 1hnxy2-0006LX-Vf
  for ath11k@lists.infradead.org; Thu, 18 Jul 2019 04:24:32 +0000
 Received: from vasanth-lnx.qca.qualcomm.com
  (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
  (No client certificate requested)
  (Authenticated sender: vthiagar@smtp.codeaurora.org)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id B71A660E42
- for <ath11k@lists.infradead.org>; Thu, 18 Jul 2019 04:24:29 +0000 (UTC)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 79C3A609CD
+ for <ath11k@lists.infradead.org>; Thu, 18 Jul 2019 04:24:28 +0000 (UTC)
 From: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
-Subject: [PATCH 2/2] ath11k/dp_rx: Fix possible REO ring desc overwrite
-Date: Thu, 18 Jul 2019 09:54:15 +0530
-Message-Id: <1563423855-32397-2-git-send-email-vthiagar@codeaurora.org>
-In-Reply-To: <1563423855-32397-1-git-send-email-vthiagar@codeaurora.org>
-References: <1563423855-32397-1-git-send-email-vthiagar@codeaurora.org>
+Subject: [PATCH 1/2] ath11k/hal: Fix few bugs in ath11k_hal_srng_dst_num_free()
+Date: Thu, 18 Jul 2019 09:54:14 +0530
+Message-Id: <1563423855-32397-1-git-send-email-vthiagar@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -31,98 +29,58 @@ Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 
-When we find there is not desc available in REO ring based
-on the cached hp (head pointer), we again try to read the REO
-ting with the latest hp that hw might have just updated. In this
-case we update the tp (tail pointer) before the corresponding
-desc is completely processed by the driver. This would lead to
-a scenario where hw will be overwriting the desc which is still
-not completely prcoessed. Make sure tp is not updated to hw before
-the residing desc is completely processed.
+The logic to compute the number of available buffers in destination
+ring is wrong. It should be just the different between head and
+tail pointers in terms of the entry size. This functions currently
+unused, this is fixed to make use of this function in follow-up
+patches. Also make destination ring head pointer volatile because
+it is independently updated by HW.
 
 Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/dp_rx.c | 45 +++++++++++++--------------------
- 1 file changed, 17 insertions(+), 28 deletions(-)
+ drivers/net/wireless/ath/ath11k/hal.c | 7 +++----
+ drivers/net/wireless/ath/ath11k/hal.h | 2 +-
+ 2 files changed, 4 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 686b140..63b7275 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -2104,32 +2104,6 @@ static void ath11k_dp_rx_pre_deliver_amsdu(struct ath11k *ar,
+diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
+index 7da42a1..9eac311 100644
+--- a/drivers/net/wireless/ath/ath11k/hal.c
++++ b/drivers/net/wireless/ath/ath11k/hal.c
+@@ -745,9 +745,9 @@ int ath11k_hal_srng_dst_num_free(struct ath11k_base *ab, struct hal_srng *srng,
  	}
+ 
+ 	if (hp >= tp)
+-		return ((hp - tp) / srng->entry_size) - 1;
++		return (hp - tp) / srng->entry_size;
+ 	else
+-		return ((srng->ring_size - tp + hp) / srng->entry_size) - 1;
++		return (srng->ring_size - tp + hp) / srng->entry_size;
  }
  
--static u32 *ath11k_dp_rx_get_reo_desc(struct ath11k_base *ab,
--				      struct hal_srng *srng)
--{
--	u32 *rx_desc;
--
--	lockdep_assert_held(&srng->lock);
--
--	rx_desc = ath11k_hal_srng_dst_get_next_entry(ab, srng);
--
--	/* Hw might have updated the head pointer after we cached it.
--	 * In this case, even though there are entries in the ring we'll
--	 * get rx_desc NULL. Give the read another try with updated cached
--	 * head pointer so that we can reap complete MPDU in the current
--	 * rx processing.
--	 */
--	if (!rx_desc) {
--		ath11k_hal_srng_access_begin(ab, srng);
--		rx_desc = ath11k_hal_srng_dst_get_next_entry(ab, srng);
--		if (!rx_desc)
--			return NULL;
--		ath11k_hal_srng_access_end(ab, srng);
--	}
--
--	return rx_desc;
--}
--
- static void ath11k_dp_rx_process_pending_packets(struct ath11k_base *ab,
- 						 struct napi_struct *napi,
- 						 struct sk_buff_head *pending_q,
-@@ -2178,6 +2152,7 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int mac_id,
- 	int num_buffs_reaped = 0;
- 	int quota = budget;
- 	int ret;
-+	bool done = false;
+ /* Returns number of available entries in src ring */
+@@ -862,8 +862,7 @@ void ath11k_hal_srng_access_begin(struct ath11k_base *ab, struct hal_srng *srng)
+ 		srng->u.src_ring.cached_tp =
+ 			*(volatile u32 *)srng->u.src_ring.tp_addr;
+ 	else
+-		srng->u.dst_ring.cached_hp =
+-			*(volatile u32 *)srng->u.dst_ring.hp_addr;
++		srng->u.dst_ring.cached_hp = *srng->u.dst_ring.hp_addr;
+ }
  
- 	/* Process any pending packets from the previous napi poll.
- 	 * Note: All msdu's in this pending_q corresponds to the same mac id
-@@ -2201,7 +2176,8 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int mac_id,
+ /* Update cached ring head/tail pointers to HW. ath11k_hal_srng_access_begin()
+diff --git a/drivers/net/wireless/ath/ath11k/hal.h b/drivers/net/wireless/ath/ath11k/hal.h
+index a1e917e..d580acf 100644
+--- a/drivers/net/wireless/ath/ath11k/hal.h
++++ b/drivers/net/wireless/ath/ath11k/hal.h
+@@ -538,7 +538,7 @@ struct hal_srng {
+ 			u32 tp;
  
- 	ath11k_hal_srng_access_begin(ab, srng);
+ 			/* Shadow head pointer location to be updated by HW */
+-			u32 *hp_addr;
++			volatile u32 *hp_addr;
  
--	while ((rx_desc = ath11k_dp_rx_get_reo_desc(ab, srng))) {
-+try_again:
-+	while ((rx_desc = ath11k_hal_srng_dst_get_next_entry(ab, srng))) {
- 		memset(&meta_info, 0, sizeof(meta_info));
- 		ath11k_hal_rx_parse_dst_ring_desc(ab, rx_desc, &meta_info);
- 
-@@ -2250,8 +2226,21 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int mac_id,
- 		 * and how use of budget instead of remaining quota affects it.
- 		 */
- 		if (num_buffs_reaped >= quota && rxcb->is_last_msdu &&
--		    !rxcb->is_continuation)
-+		    !rxcb->is_continuation) {
-+			done = true;
- 			break;
-+		}
-+	}
-+
-+	/* Hw might have updated the head pointer after we cached it.
-+	 * In this case, even though there are entries in the ring we'll
-+	 * get rx_desc NULL. Give the read another try with updated cached
-+	 * head pointer so that we can reap complete MPDU in the current
-+	 * rx processing.
-+	 */
-+	if (!done && ath11k_hal_srng_dst_num_free(ab, srng, true)) {
-+		ath11k_hal_srng_access_end(ab, srng);
-+		goto try_again;
- 	}
- 
- 	ath11k_hal_srng_access_end(ab, srng);
+ 			/* Cached head pointer */
+ 			u32 cached_hp;
 -- 
 1.9.1
 
