@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from nbd.name ([2a01:4f8:221:3d45::2])
+Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hnzI7-0001bt-1P
- for ath11k@lists.infradead.org; Thu, 18 Jul 2019 05:49:20 +0000
-From: John Crispin <john@phrozen.org>
-Subject: [PATCH 2/2] ath11k: convert message from info to dbg
-Date: Thu, 18 Jul 2019 07:49:10 +0200
-Message-Id: <20190718054910.362-2-john@phrozen.org>
-In-Reply-To: <20190718054910.362-1-john@phrozen.org>
-References: <20190718054910.362-1-john@phrozen.org>
+ id 1ho4Om-00070W-F0
+ for ath11k@lists.infradead.org; Thu, 18 Jul 2019 11:16:33 +0000
 MIME-Version: 1.0
+Subject: Re: [PATCH] ath11k: Fix enabling dynamic bandwidth param
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <1563288059-2753-1-git-send-email-srirrama@codeaurora.org>
+References: <1563288059-2753-1-git-send-email-srirrama@codeaurora.org>
+Message-Id: <20190718111631.94FFF60FEB@smtp.codeaurora.org>
+Date: Thu, 18 Jul 2019 11:16:31 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,36 +22,28 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: Shashidhar Lakkavalli <slakkavalli@datto.com>, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
+To: Sriram R <srirrama@codeaurora.org>
+Cc: ath11k@lists.infradead.org
 
-We can regularly see the following message.
-- "ath11k c000000.wifi1: failed to find the peer with peer_id 4"
-This happens when the FW starts sending stats for the peer whilst the
-peer is not fully associated. Convert this info message to a debug one.
+Sriram R <srirrama@codeaurora.org> wrote:
 
-Signed-off-by: Shashidhar Lakkavalli <slakkavalli@datto.com>
-Signed-off-by: John Crispin <john@phrozen.org>
----
- drivers/net/wireless/ath/ath11k/dp_rx.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+> Currently the dynamic bandwidth pdev param is not enabled.
+> Correct the parameter passed to enable this feature. This
+> is required to dynamically switch bandwidth, for eg. when
+> noise in injected in secondary channel of a 40MHz channel
+> the fw will switch to 20MHz when this feature is enabled.
+> 
+> Signed-off-by: Sriram R <srirrama@codeaurora.org>
+> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index dcbc46b52493..e43fb38d5b6c 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -2632,7 +2632,8 @@ int ath11k_dp_rx_process_mon_status(struct ath11k_base *ab, int mac_id,
- 		peer = ath11k_peer_find_by_id(ab, ppdu_info.peer_id);
- 
- 		if (!peer || !peer->sta) {
--			ath11k_warn(ab, "failed to find the peer with peer_id %d\n",
-+			ath11k_dbg(ab, ATH11K_DBG_DATA,
-+				    "failed to find the peer with peer_id %d\n",
- 				    ppdu_info.peer_id);
- 			spin_unlock_bh(&ab->base_lock);
- 			rcu_read_unlock();
+Patch applied to ath11k-bringup branch of ath.git, thanks.
+
+8e22fb7f66e2 ath11k: Fix enabling dynamic bandwidth param
+
 -- 
-2.20.1
+https://patchwork.kernel.org/patch/11046185/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 
 _______________________________________________
