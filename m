@@ -1,17 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from smtp.codeaurora.org ([198.145.29.96])
+Received: from dvalin.narfation.org ([213.160.73.56])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1ho5Ht-0001dp-VK
- for ath11k@lists.infradead.org; Thu, 18 Jul 2019 12:13:31 +0000
+ id 1hqKDX-00060K-Tl
+ for ath11k@lists.infradead.org; Wed, 24 Jul 2019 16:34:17 +0000
+From: Sven Eckelmann <sven@narfation.org>
+Subject: [PATCH v5 0/4] mac80211/ath11k: HE mesh support
+Date: Wed, 24 Jul 2019 18:33:55 +0200
+Message-Id: <20190724163359.3507-1-sven@narfation.org>
 MIME-Version: 1.0
-Date: Thu, 18 Jul 2019 17:43:29 +0530
-From: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
-Subject: Re: [PATCH 1/2] ath11k/hal: Fix few bugs in
- ath11k_hal_srng_dst_num_free()
-In-Reply-To: <87blxr376n.fsf@kamboji.qca.qualcomm.com>
-References: <1563423855-32397-1-git-send-email-vthiagar@codeaurora.org>
- <87blxr376n.fsf@kamboji.qca.qualcomm.com>
-Message-ID: <1bd36139025a437846b547810f51c724@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -20,42 +16,70 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: ath11k@lists.infradead.org
+To: linux-wireless@vger.kernel.org
+Cc: ath11k@lists.infradead.org, Sven Eckelmann <sven@narfation.org>
 
-On 2019-07-18 17:07, Kalle Valo wrote:
-> Vasanthakumar Thiagarajan <vthiagar@codeaurora.org> writes:
-> 
->> The logic to compute the number of available buffers in destination
->> ring is wrong. It should be just the different between head and
->> tail pointers in terms of the entry size. This functions currently
->> unused, this is fixed to make use of this function in follow-up
->> patches. Also make destination ring head pointer volatile because
->> it is independently updated by HW.
->> 
->> Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
-> 
-> [...]
-> 
->> --- a/drivers/net/wireless/ath/ath11k/hal.h
->> +++ b/drivers/net/wireless/ath/ath11k/hal.h
->> @@ -538,7 +538,7 @@ struct hal_srng {
->>  			u32 tp;
->> 
->>  			/* Shadow head pointer location to be updated by HW */
->> -			u32 *hp_addr;
->> +			volatile u32 *hp_addr;
-> 
-> What about tp_addr, shouldn't we make that also volatile to remove the
-> ugly cast? Can someone send another patch to fix that, please?
+Hi,
 
-As mentioned, i'll address the other case separately.
+Some features of 802.11ax without central organizing (AP) STA can also be
+used in mesh mode. The main goal is to get HE mesh working with ath11k.
+For persons without ath11k compatible hw, hwsim can be used in the as basis
+for further development of these features.
 
-Vasanth
+* v5
+
+  - rebased patches
+  - moved ath11k meshpoint HE capabilities filter to avoid lines over 80
+    characters
+  - add patch to disable HE SU phy capabilities to work around problems
+    with WLAN.HK.2.1.0.1-00629-QCAHKSWPL_SILICONZ-1 firmware
+
+* v4
+
+  - switch order of the mac80211 HE mesh support and mac80211_hwsim support
+  - drop ie_len variable from ieee80211_ie_len_he_cap and
+    ieee80211_ie_build_he_oper
+  - switch to function ieee80211_get_he_iftype_cap instead of implementing new
+    function ieee80211_get_he_mesh_cap
+  - allow ieee80211_ie_len_he_cap to calculate length for non-mesh HE cap
+  - dropped he_support workaround in ath11k because now all phy_modes are
+    HE phy modes
+
+* v3
+
+  - force ath11k PHY mode for meshpoint vif to HE mode to avoid hang of
+    firmware when HE (or VHT on 2.4GHz) device tries to connect
+
+* v2:
+
+  - add of ath11k patch
+
+* v1:
+
+  - initial RFC
+
+Sven Eckelmann (4):
+  mac80211: implement HE support for mesh
+  mac80211_hwsim: Register support for HE meshpoint
+  ath11k: register HE mesh capabilities
+  ath11k: Disable SU support in meshpoint mode
+
+ drivers/net/wireless/ath/ath11k/mac.c |  84 ++++++++
+ drivers/net/wireless/mac80211_hwsim.c | 283 +++++++++++++++++---------
+ net/mac80211/ieee80211_i.h            |   2 +
+ net/mac80211/mesh.c                   |  62 ++++++
+ net/mac80211/mesh.h                   |   4 +
+ net/mac80211/mesh_plink.c             |  12 +-
+ net/mac80211/util.c                   |  49 +++++
+ 7 files changed, 401 insertions(+), 95 deletions(-)
+
+-- 
+2.20.1
+
 
 _______________________________________________
 ath11k mailing list
