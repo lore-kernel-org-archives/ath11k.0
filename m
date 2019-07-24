@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from dvalin.narfation.org ([213.160.73.56])
+Received: from dvalin.narfation.org ([2a00:17d8:100::8b1])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hqKDa-00060m-9V
- for ath11k@lists.infradead.org; Wed, 24 Jul 2019 16:34:20 +0000
+ id 1hqKDf-00063S-7Z
+ for ath11k@lists.infradead.org; Wed, 24 Jul 2019 16:34:24 +0000
 From: Sven Eckelmann <sven@narfation.org>
-Subject: [PATCH 2/2] mac80211_hwsim: Register support for HE meshpoint
-Date: Wed, 24 Jul 2019 18:33:57 +0200
-Message-Id: <20190724163359.3507-3-sven@narfation.org>
+Subject: [PATCH v5 4/4] ath11k: Disable SU support in meshpoint mode
+Date: Wed, 24 Jul 2019 18:33:59 +0200
+Message-Id: <20190724163359.3507-5-sven@narfation.org>
 In-Reply-To: <20190724163359.3507-1-sven@narfation.org>
 References: <20190724163359.3507-1-sven@narfation.org>
 MIME-Version: 1.0
@@ -27,327 +27,59 @@ Cc: ath11k@lists.infradead.org, Sven Eckelmann <seckelmann@datto.com>
 
 From: Sven Eckelmann <seckelmann@datto.com>
 
-Some features of 802.11ax without central organizing (AP) STA can also be
-used in mesh mode. hwsim can be used to assist initial development of these
-features without having access to HW.
+The firmware WLAN.HK.2.1.0.1-00629-QCAHKSWPL_SILICONZ-1 often stops sending
+data on 5GHz when SU support is advertised. A simple throughput benchmark
+will end up at only a couple hundred kilobytes per second (when finishing
+at all).
+
+Disabling SU related flags works around this problem and allowed a maximum
+throughput of ~450 MBit/s in a simple test setup with an HK01 over air.
 
 Signed-off-by: Sven Eckelmann <seckelmann@datto.com>
-
-Forwarded: https://patchwork.kernel.org/patch/11029301/
 ---
- drivers/net/wireless/mac80211_hwsim.c | 283 +++++++++++++++++---------
- 1 file changed, 189 insertions(+), 94 deletions(-)
+ drivers/net/wireless/ath/ath11k/mac.c | 15 ++++++++++++---
+ 1 file changed, 12 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/net/wireless/mac80211_hwsim.c b/drivers/net/wireless/mac80211_hwsim.c
-index 519b4ee88c5c..a3913b75d715 100644
---- a/drivers/net/wireless/mac80211_hwsim.c
-+++ b/drivers/net/wireless/mac80211_hwsim.c
-@@ -2496,116 +2496,211 @@ static void hwsim_mcast_new_radio(int id, struct genl_info *info,
- 	nlmsg_free(mcast_skb);
- }
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 4317608ff822..29964185b0a1 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -3290,16 +3290,24 @@ ath11k_mac_filter_he_cap_mesh(struct ieee80211_he_cap_elem *he_cap_elem)
  
--static const struct ieee80211_sband_iftype_data he_capa_2ghz = {
--	/* TODO: should we support other types, e.g., P2P?*/
--	.types_mask = BIT(NL80211_IFTYPE_STATION) | BIT(NL80211_IFTYPE_AP),
--	.he_cap = {
--		.has_he = true,
--		.he_cap_elem = {
--			.mac_cap_info[0] =
--				IEEE80211_HE_MAC_CAP0_HTC_HE,
--			.mac_cap_info[1] =
--				IEEE80211_HE_MAC_CAP1_TF_MAC_PAD_DUR_16US |
--				IEEE80211_HE_MAC_CAP1_MULTI_TID_AGG_RX_QOS_8,
--			.mac_cap_info[2] =
--				IEEE80211_HE_MAC_CAP2_BSR |
--				IEEE80211_HE_MAC_CAP2_MU_CASCADING |
--				IEEE80211_HE_MAC_CAP2_ACK_EN,
--			.mac_cap_info[3] =
--				IEEE80211_HE_MAC_CAP3_OMI_CONTROL |
--				IEEE80211_HE_MAC_CAP3_MAX_AMPDU_LEN_EXP_VHT_2,
--			.mac_cap_info[4] = IEEE80211_HE_MAC_CAP4_AMDSU_IN_AMPDU,
--			.phy_cap_info[1] =
--				IEEE80211_HE_PHY_CAP1_PREAMBLE_PUNC_RX_MASK |
--				IEEE80211_HE_PHY_CAP1_DEVICE_CLASS_A |
--				IEEE80211_HE_PHY_CAP1_LDPC_CODING_IN_PAYLOAD |
--				IEEE80211_HE_PHY_CAP1_MIDAMBLE_RX_TX_MAX_NSTS,
--			.phy_cap_info[2] =
--				IEEE80211_HE_PHY_CAP2_NDP_4x_LTF_AND_3_2US |
--				IEEE80211_HE_PHY_CAP2_STBC_TX_UNDER_80MHZ |
--				IEEE80211_HE_PHY_CAP2_STBC_RX_UNDER_80MHZ |
--				IEEE80211_HE_PHY_CAP2_UL_MU_FULL_MU_MIMO |
--				IEEE80211_HE_PHY_CAP2_UL_MU_PARTIAL_MU_MIMO,
--
--			/* Leave all the other PHY capability bytes unset, as
--			 * DCM, beam forming, RU and PPE threshold information
--			 * are not supported
--			 */
-+static const struct ieee80211_sband_iftype_data he_capa_2ghz[] = {
-+	{
-+		/* TODO: should we support other types, e.g., P2P?*/
-+		.types_mask = BIT(NL80211_IFTYPE_STATION) |
-+			      BIT(NL80211_IFTYPE_AP),
-+		.he_cap = {
-+			.has_he = true,
-+			.he_cap_elem = {
-+				.mac_cap_info[0] =
-+					IEEE80211_HE_MAC_CAP0_HTC_HE,
-+				.mac_cap_info[1] =
-+					IEEE80211_HE_MAC_CAP1_TF_MAC_PAD_DUR_16US |
-+					IEEE80211_HE_MAC_CAP1_MULTI_TID_AGG_RX_QOS_8,
-+				.mac_cap_info[2] =
-+					IEEE80211_HE_MAC_CAP2_BSR |
-+					IEEE80211_HE_MAC_CAP2_MU_CASCADING |
-+					IEEE80211_HE_MAC_CAP2_ACK_EN,
-+				.mac_cap_info[3] =
-+					IEEE80211_HE_MAC_CAP3_OMI_CONTROL |
-+					IEEE80211_HE_MAC_CAP3_MAX_AMPDU_LEN_EXP_VHT_2,
-+				.mac_cap_info[4] = IEEE80211_HE_MAC_CAP4_AMDSU_IN_AMPDU,
-+				.phy_cap_info[1] =
-+					IEEE80211_HE_PHY_CAP1_PREAMBLE_PUNC_RX_MASK |
-+					IEEE80211_HE_PHY_CAP1_DEVICE_CLASS_A |
-+					IEEE80211_HE_PHY_CAP1_LDPC_CODING_IN_PAYLOAD |
-+					IEEE80211_HE_PHY_CAP1_MIDAMBLE_RX_TX_MAX_NSTS,
-+				.phy_cap_info[2] =
-+					IEEE80211_HE_PHY_CAP2_NDP_4x_LTF_AND_3_2US |
-+					IEEE80211_HE_PHY_CAP2_STBC_TX_UNDER_80MHZ |
-+					IEEE80211_HE_PHY_CAP2_STBC_RX_UNDER_80MHZ |
-+					IEEE80211_HE_PHY_CAP2_UL_MU_FULL_MU_MIMO |
-+					IEEE80211_HE_PHY_CAP2_UL_MU_PARTIAL_MU_MIMO,
-+
-+				/* Leave all the other PHY capability bytes
-+				 * unset, as DCM, beam forming, RU and PPE
-+				 * threshold information are not supported
-+				 */
-+			},
-+			.he_mcs_nss_supp = {
-+				.rx_mcs_80 = cpu_to_le16(0xfffa),
-+				.tx_mcs_80 = cpu_to_le16(0xfffa),
-+				.rx_mcs_160 = cpu_to_le16(0xffff),
-+				.tx_mcs_160 = cpu_to_le16(0xffff),
-+				.rx_mcs_80p80 = cpu_to_le16(0xffff),
-+				.tx_mcs_80p80 = cpu_to_le16(0xffff),
-+			},
- 		},
--		.he_mcs_nss_supp = {
--			.rx_mcs_80 = cpu_to_le16(0xfffa),
--			.tx_mcs_80 = cpu_to_le16(0xfffa),
--			.rx_mcs_160 = cpu_to_le16(0xffff),
--			.tx_mcs_160 = cpu_to_le16(0xffff),
--			.rx_mcs_80p80 = cpu_to_le16(0xffff),
--			.tx_mcs_80p80 = cpu_to_le16(0xffff),
-+	},
-+#ifdef CONFIG_MAC80211_MESH
-+	{
-+		/* TODO: should we support other types, e.g., IBSS?*/
-+		.types_mask = BIT(NL80211_IFTYPE_MESH_POINT),
-+		.he_cap = {
-+			.has_he = true,
-+			.he_cap_elem = {
-+				.mac_cap_info[0] =
-+					IEEE80211_HE_MAC_CAP0_HTC_HE,
-+				.mac_cap_info[1] =
-+					IEEE80211_HE_MAC_CAP1_MULTI_TID_AGG_RX_QOS_8,
-+				.mac_cap_info[2] =
-+					IEEE80211_HE_MAC_CAP2_ACK_EN,
-+				.mac_cap_info[3] =
-+					IEEE80211_HE_MAC_CAP3_OMI_CONTROL |
-+					IEEE80211_HE_MAC_CAP3_MAX_AMPDU_LEN_EXP_VHT_2,
-+				.mac_cap_info[4] = IEEE80211_HE_MAC_CAP4_AMDSU_IN_AMPDU,
-+				.phy_cap_info[1] =
-+					IEEE80211_HE_PHY_CAP1_PREAMBLE_PUNC_RX_MASK |
-+					IEEE80211_HE_PHY_CAP1_DEVICE_CLASS_A |
-+					IEEE80211_HE_PHY_CAP1_LDPC_CODING_IN_PAYLOAD |
-+					IEEE80211_HE_PHY_CAP1_MIDAMBLE_RX_TX_MAX_NSTS,
-+				.phy_cap_info[2] = 0,
-+
-+				/* Leave all the other PHY capability bytes
-+				 * unset, as DCM, beam forming, RU and PPE
-+				 * threshold information are not supported
-+				 */
-+			},
-+			.he_mcs_nss_supp = {
-+				.rx_mcs_80 = cpu_to_le16(0xfffa),
-+				.tx_mcs_80 = cpu_to_le16(0xfffa),
-+				.rx_mcs_160 = cpu_to_le16(0xffff),
-+				.tx_mcs_160 = cpu_to_le16(0xffff),
-+				.rx_mcs_80p80 = cpu_to_le16(0xffff),
-+				.tx_mcs_80p80 = cpu_to_le16(0xffff),
-+			},
- 		},
- 	},
-+#endif
- };
+ 	m = IEEE80211_HE_PHY_CAP3_RX_HE_MU_PPDU_FROM_NON_AP_STA |
+ 	    IEEE80211_HE_PHY_CAP3_DCM_MAX_CONST_TX_MASK |
+-	    IEEE80211_HE_PHY_CAP3_DCM_MAX_CONST_RX_MASK;
++	    IEEE80211_HE_PHY_CAP3_DCM_MAX_CONST_RX_MASK |
++	    IEEE80211_HE_PHY_CAP3_SU_BEAMFORMER;
+ 	he_cap_elem->phy_cap_info[3] &= ~m;
  
--static const struct ieee80211_sband_iftype_data he_capa_5ghz = {
--	/* TODO: should we support other types, e.g., P2P?*/
--	.types_mask = BIT(NL80211_IFTYPE_STATION) | BIT(NL80211_IFTYPE_AP),
--	.he_cap = {
--		.has_he = true,
--		.he_cap_elem = {
--			.mac_cap_info[0] =
--				IEEE80211_HE_MAC_CAP0_HTC_HE,
--			.mac_cap_info[1] =
--				IEEE80211_HE_MAC_CAP1_TF_MAC_PAD_DUR_16US |
--				IEEE80211_HE_MAC_CAP1_MULTI_TID_AGG_RX_QOS_8,
--			.mac_cap_info[2] =
--				IEEE80211_HE_MAC_CAP2_BSR |
--				IEEE80211_HE_MAC_CAP2_MU_CASCADING |
--				IEEE80211_HE_MAC_CAP2_ACK_EN,
--			.mac_cap_info[3] =
--				IEEE80211_HE_MAC_CAP3_OMI_CONTROL |
--				IEEE80211_HE_MAC_CAP3_MAX_AMPDU_LEN_EXP_VHT_2,
--			.mac_cap_info[4] = IEEE80211_HE_MAC_CAP4_AMDSU_IN_AMPDU,
--			.phy_cap_info[0] =
--				IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_40MHZ_80MHZ_IN_5G |
--				IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_160MHZ_IN_5G |
--				IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_80PLUS80_MHZ_IN_5G,
--			.phy_cap_info[1] =
--				IEEE80211_HE_PHY_CAP1_PREAMBLE_PUNC_RX_MASK |
--				IEEE80211_HE_PHY_CAP1_DEVICE_CLASS_A |
--				IEEE80211_HE_PHY_CAP1_LDPC_CODING_IN_PAYLOAD |
--				IEEE80211_HE_PHY_CAP1_MIDAMBLE_RX_TX_MAX_NSTS,
--			.phy_cap_info[2] =
--				IEEE80211_HE_PHY_CAP2_NDP_4x_LTF_AND_3_2US |
--				IEEE80211_HE_PHY_CAP2_STBC_TX_UNDER_80MHZ |
--				IEEE80211_HE_PHY_CAP2_STBC_RX_UNDER_80MHZ |
--				IEEE80211_HE_PHY_CAP2_UL_MU_FULL_MU_MIMO |
--				IEEE80211_HE_PHY_CAP2_UL_MU_PARTIAL_MU_MIMO,
--
--			/* Leave all the other PHY capability bytes unset, as
--			 * DCM, beam forming, RU and PPE threshold information
--			 * are not supported
--			 */
-+static const struct ieee80211_sband_iftype_data he_capa_5ghz[] = {
-+	{
-+		/* TODO: should we support other types, e.g., P2P?*/
-+		.types_mask = BIT(NL80211_IFTYPE_STATION) |
-+			      BIT(NL80211_IFTYPE_AP),
-+		.he_cap = {
-+			.has_he = true,
-+			.he_cap_elem = {
-+				.mac_cap_info[0] =
-+					IEEE80211_HE_MAC_CAP0_HTC_HE,
-+				.mac_cap_info[1] =
-+					IEEE80211_HE_MAC_CAP1_TF_MAC_PAD_DUR_16US |
-+					IEEE80211_HE_MAC_CAP1_MULTI_TID_AGG_RX_QOS_8,
-+				.mac_cap_info[2] =
-+					IEEE80211_HE_MAC_CAP2_BSR |
-+					IEEE80211_HE_MAC_CAP2_MU_CASCADING |
-+					IEEE80211_HE_MAC_CAP2_ACK_EN,
-+				.mac_cap_info[3] =
-+					IEEE80211_HE_MAC_CAP3_OMI_CONTROL |
-+					IEEE80211_HE_MAC_CAP3_MAX_AMPDU_LEN_EXP_VHT_2,
-+				.mac_cap_info[4] = IEEE80211_HE_MAC_CAP4_AMDSU_IN_AMPDU,
-+				.phy_cap_info[0] =
-+					IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_40MHZ_80MHZ_IN_5G |
-+					IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_160MHZ_IN_5G |
-+					IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_80PLUS80_MHZ_IN_5G,
-+				.phy_cap_info[1] =
-+					IEEE80211_HE_PHY_CAP1_PREAMBLE_PUNC_RX_MASK |
-+					IEEE80211_HE_PHY_CAP1_DEVICE_CLASS_A |
-+					IEEE80211_HE_PHY_CAP1_LDPC_CODING_IN_PAYLOAD |
-+					IEEE80211_HE_PHY_CAP1_MIDAMBLE_RX_TX_MAX_NSTS,
-+				.phy_cap_info[2] =
-+					IEEE80211_HE_PHY_CAP2_NDP_4x_LTF_AND_3_2US |
-+					IEEE80211_HE_PHY_CAP2_STBC_TX_UNDER_80MHZ |
-+					IEEE80211_HE_PHY_CAP2_STBC_RX_UNDER_80MHZ |
-+					IEEE80211_HE_PHY_CAP2_UL_MU_FULL_MU_MIMO |
-+					IEEE80211_HE_PHY_CAP2_UL_MU_PARTIAL_MU_MIMO,
-+
-+				/* Leave all the other PHY capability bytes
-+				 * unset, as DCM, beam forming, RU and PPE
-+				 * threshold information are not supported
-+				 */
-+			},
-+			.he_mcs_nss_supp = {
-+				.rx_mcs_80 = cpu_to_le16(0xfffa),
-+				.tx_mcs_80 = cpu_to_le16(0xfffa),
-+				.rx_mcs_160 = cpu_to_le16(0xfffa),
-+				.tx_mcs_160 = cpu_to_le16(0xfffa),
-+				.rx_mcs_80p80 = cpu_to_le16(0xfffa),
-+				.tx_mcs_80p80 = cpu_to_le16(0xfffa),
-+			},
- 		},
--		.he_mcs_nss_supp = {
--			.rx_mcs_80 = cpu_to_le16(0xfffa),
--			.tx_mcs_80 = cpu_to_le16(0xfffa),
--			.rx_mcs_160 = cpu_to_le16(0xfffa),
--			.tx_mcs_160 = cpu_to_le16(0xfffa),
--			.rx_mcs_80p80 = cpu_to_le16(0xfffa),
--			.tx_mcs_80p80 = cpu_to_le16(0xfffa),
-+	},
-+#ifdef CONFIG_MAC80211_MESH
-+	{
-+		/* TODO: should we support other types, e.g., IBSS?*/
-+		.types_mask = BIT(NL80211_IFTYPE_MESH_POINT),
-+		.he_cap = {
-+			.has_he = true,
-+			.he_cap_elem = {
-+				.mac_cap_info[0] =
-+					IEEE80211_HE_MAC_CAP0_HTC_HE,
-+				.mac_cap_info[1] =
-+					IEEE80211_HE_MAC_CAP1_MULTI_TID_AGG_RX_QOS_8,
-+				.mac_cap_info[2] =
-+					IEEE80211_HE_MAC_CAP2_ACK_EN,
-+				.mac_cap_info[3] =
-+					IEEE80211_HE_MAC_CAP3_OMI_CONTROL |
-+					IEEE80211_HE_MAC_CAP3_MAX_AMPDU_LEN_EXP_VHT_2,
-+				.mac_cap_info[4] = IEEE80211_HE_MAC_CAP4_AMDSU_IN_AMPDU,
-+				.phy_cap_info[0] =
-+					IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_40MHZ_80MHZ_IN_5G |
-+					IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_160MHZ_IN_5G |
-+					IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_80PLUS80_MHZ_IN_5G,
-+				.phy_cap_info[1] =
-+					IEEE80211_HE_PHY_CAP1_PREAMBLE_PUNC_RX_MASK |
-+					IEEE80211_HE_PHY_CAP1_DEVICE_CLASS_A |
-+					IEEE80211_HE_PHY_CAP1_LDPC_CODING_IN_PAYLOAD |
-+					IEEE80211_HE_PHY_CAP1_MIDAMBLE_RX_TX_MAX_NSTS,
-+				.phy_cap_info[2] = 0,
-+
-+				/* Leave all the other PHY capability bytes
-+				 * unset, as DCM, beam forming, RU and PPE
-+				 * threshold information are not supported
-+				 */
-+			},
-+			.he_mcs_nss_supp = {
-+				.rx_mcs_80 = cpu_to_le16(0xfffa),
-+				.tx_mcs_80 = cpu_to_le16(0xfffa),
-+				.rx_mcs_160 = cpu_to_le16(0xfffa),
-+				.tx_mcs_160 = cpu_to_le16(0xfffa),
-+				.rx_mcs_80p80 = cpu_to_le16(0xfffa),
-+				.tx_mcs_80p80 = cpu_to_le16(0xfffa),
-+			},
- 		},
- 	},
-+#endif
- };
+-	m = IEEE80211_HE_PHY_CAP4_MU_BEAMFORMER;
++	m = IEEE80211_HE_PHY_CAP4_SU_BEAMFORMEE |
++	    IEEE80211_HE_PHY_CAP4_MU_BEAMFORMER |
++	    IEEE80211_HE_PHY_CAP4_BEAMFORMEE_MAX_STS_UNDER_80MHZ_MASK |
++	    IEEE80211_HE_PHY_CAP4_BEAMFORMEE_MAX_STS_ABOVE_80MHZ_MASK;
+ 	he_cap_elem->phy_cap_info[4] &= ~m;
  
- static void mac80211_hswim_he_capab(struct ieee80211_supported_band *sband)
- {
--	if (sband->band == NL80211_BAND_2GHZ)
-+	u16 n_iftype_data;
-+
-+	if (sband->band == NL80211_BAND_2GHZ) {
-+		n_iftype_data = ARRAY_SIZE(he_capa_2ghz);
- 		sband->iftype_data =
--			(struct ieee80211_sband_iftype_data *)&he_capa_2ghz;
--	else if (sband->band == NL80211_BAND_5GHZ)
-+			(struct ieee80211_sband_iftype_data *)he_capa_2ghz;
-+	} else if (sband->band == NL80211_BAND_5GHZ) {
-+		n_iftype_data = ARRAY_SIZE(he_capa_5ghz);
- 		sband->iftype_data =
--			(struct ieee80211_sband_iftype_data *)&he_capa_5ghz;
--	else
-+			(struct ieee80211_sband_iftype_data *)he_capa_5ghz;
-+	} else {
- 		return;
-+	}
+-	m = IEEE80211_HE_PHY_CAP5_NG16_MU_FEEDBACK;
++	m = IEEE80211_HE_PHY_CAP5_BEAMFORMEE_NUM_SND_DIM_UNDER_80MHZ_MASK |
++	    IEEE80211_HE_PHY_CAP5_BEAMFORMEE_NUM_SND_DIM_ABOVE_80MHZ_MASK |
++	    IEEE80211_HE_PHY_CAP5_NG16_SU_FEEDBACK |
++	    IEEE80211_HE_PHY_CAP5_NG16_MU_FEEDBACK;
+ 	he_cap_elem->phy_cap_info[5] &= ~m;
  
--	sband->n_iftype_data = 1;
-+	sband->n_iftype_data = n_iftype_data;
- }
+ 	m = IEEE80211_HE_PHY_CAP6_CODEBOOK_SIZE_75_MU |
++	    IEEE80211_HE_PHY_CAP6_TRIG_SU_BEAMFORMER_FB |
+ 	    IEEE80211_HE_PHY_CAP6_TRIG_MU_BEAMFORMER_FB |
+ 	    IEEE80211_HE_PHY_CAP6_TRIG_CQI_FB |
+ 	    IEEE80211_HE_PHY_CAP6_PARTIAL_BANDWIDTH_DL_MUMIMO;
+@@ -3307,6 +3315,7 @@ ath11k_mac_filter_he_cap_mesh(struct ieee80211_he_cap_elem *he_cap_elem)
  
- #ifdef CONFIG_MAC80211_MESH
+ 	m = IEEE80211_HE_PHY_CAP7_SRP_BASED_SR |
+ 	    IEEE80211_HE_PHY_CAP7_POWER_BOOST_FACTOR_AR |
++	    IEEE80211_HE_PHY_CAP7_HE_SU_MU_PPDU_4XLTF_AND_08_US_GI |
+ 	    IEEE80211_HE_PHY_CAP7_STBC_TX_ABOVE_80MHZ |
+ 	    IEEE80211_HE_PHY_CAP7_STBC_RX_ABOVE_80MHZ;
+ 	he_cap_elem->phy_cap_info[7] &= ~m;
 -- 
 2.20.1
 
