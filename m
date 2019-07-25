@@ -1,14 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from dvalin.narfation.org ([213.160.73.56])
+Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hqKHR-0008Eo-2q
- for ath11k@lists.infradead.org; Wed, 24 Jul 2019 16:38:18 +0000
-From: Sven Eckelmann <sven@narfation.org>
-Subject: Re: [PATCH v5 0/4] mac80211/ath11k: HE mesh support
-Date: Wed, 24 Jul 2019 18:38:13 +0200
-Message-ID: <4232659.0svU1X7Big@bentobox>
-In-Reply-To: <20190724163359.3507-1-sven@narfation.org>
-References: <20190724163359.3507-1-sven@narfation.org>
+ id 1hqgBt-0002Y2-E0
+ for ath11k@lists.infradead.org; Thu, 25 Jul 2019 16:02:03 +0000
+From: John Crispin <john@phrozen.org>
+Subject: [PATCH 1/2] ath11k: add WMI calls to manually add/del/pause/resume
+ TWT dialogs
+Date: Thu, 25 Jul 2019 18:01:51 +0200
+Message-Id: <20190725160152.31731-1-john@phrozen.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -18,74 +17,391 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============2421104189440229427=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
+To: Kalle Valo <kvalo@codeaurora.org>
+Cc: ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
---===============2421104189440229427==
-Content-Type: multipart/signed; boundary="nextPart2088208.6srCk4DusC"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+These calls are used for debugging and will be required for WFA certification
+tests.
 
---nextPart2088208.6srCk4DusC
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Signed-off-by: John Crispin <john@phrozen.org>
+---
+ drivers/net/wireless/ath/ath11k/wmi.c | 194 ++++++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/wmi.h | 114 +++++++++++++++
+ 2 files changed, 308 insertions(+)
 
-On Wednesday, 24 July 2019 18:33:55 CEST Sven Eckelmann wrote:
-> Hi,
-> 
-> Some features of 802.11ax without central organizing (AP) STA can also be
-> used in mesh mode. The main goal is to get HE mesh working with ath11k.
-> For persons without ath11k compatible hw, hwsim can be used in the as basis
-> for further development of these features.
-> 
-> * v5
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 4cd94000d7f4..cca7d65851e3 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -97,6 +97,8 @@ static const struct wmi_tlv_policy wmi_tlv_policies[] = {
+ 		= { .min_len = sizeof(struct wmi_stats_event) },
+ 	[WMI_TAG_PDEV_CTL_FAILSAFE_CHECK_EVENT]
+ 		= { .min_len = sizeof(struct wmi_pdev_ctl_failsafe_chk_event) },
++	[WMI_TAG_TWT_ADD_DIALOG_COMPLETE_EVENT]
++		= { .min_len = sizeof(struct wmi_twt_add_dialog_event) },
+ };
+ 
+ #define PRIMAP(_hw_mode_) \
+@@ -2543,6 +2545,161 @@ ath11k_wmi_send_twt_disable_cmd(struct ath11k *ar, u32 pdev_id)
+ 	return ret;
+ }
+ 
++int
++ath11k_wmi_send_twt_add_dialog_cmd(struct ath11k *ar,
++				   struct wmi_twt_add_dialog_params *params)
++{
++	struct ath11k_pdev_wmi *wmi = ar->wmi;
++	struct ath11k_base *ab = wmi->wmi_sc->sc;
++	struct wmi_twt_add_dialog_params_cmd *cmd;
++	struct sk_buff *skb;
++	int ret, len;
++
++	len = sizeof(*cmd);
++
++	skb = ath11k_wmi_alloc_skb(wmi->wmi_sc, len);
++	if (!skb)
++		return -ENOMEM;
++
++	cmd = (void *)skb->data;
++	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG,
++				     WMI_TAG_TWT_ADD_DIALOG_CMD) |
++			  FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
++
++	cmd->vdev_id = params->vdev_id;
++	ether_addr_copy(cmd->peer_macaddr.addr, params->peer_macaddr);
++	cmd->dialog_id = params->dialog_id;
++	cmd->wake_intvl_us = params->wake_intvl_us;
++	cmd->wake_intvl_mantis = params->wake_intvl_mantis;
++	cmd->wake_dura_us = params->wake_dura_us;
++	cmd->sp_offset_us = params->sp_offset_us;
++	cmd->flags = params->twt_cmd;
++	if (params->flag_bcast)
++		cmd->flags |= WMI_TWT_ADD_DIALOG_FLAG_BCAST;
++	if (params->flag_trigger)
++		cmd->flags |= WMI_TWT_ADD_DIALOG_FLAG_TRIGGER;
++	if (params->flag_flow_type)
++		cmd->flags |= WMI_TWT_ADD_DIALOG_FLAG_FLOW_TYPE;
++	if (params->flag_protection)
++		cmd->flags |= WMI_TWT_ADD_DIALOG_FLAG_PROTECTION;
++
++	ret = ath11k_wmi_cmd_send(wmi, skb,
++				  WMI_TWT_ADD_DIALOG_CMDID);
++	if (ret) {
++		ath11k_warn(ab, "Failed to send WMI_TWT_ADD_DIALOG_CMDID");
++		dev_kfree_skb(skb);
++	}
++	return ret;
++}
++
++int
++ath11k_wmi_send_twt_del_dialog_cmd(struct ath11k *ar,
++				   struct wmi_twt_del_dialog_params *params)
++{
++	struct ath11k_pdev_wmi *wmi = ar->wmi;
++	struct ath11k_base *ab = wmi->wmi_sc->sc;
++	struct wmi_twt_del_dialog_params_cmd *cmd;
++	struct sk_buff *skb;
++	int ret, len;
++
++	len = sizeof(*cmd);
++
++	skb = ath11k_wmi_alloc_skb(wmi->wmi_sc, len);
++	if (!skb)
++		return -ENOMEM;
++
++	cmd = (void *)skb->data;
++	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG,
++				     WMI_TAG_TWT_DEL_DIALOG_CMD) |
++			  FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
++
++	cmd->vdev_id = params->vdev_id;
++	ether_addr_copy(cmd->peer_macaddr.addr, params->peer_macaddr);
++	cmd->dialog_id = params->dialog_id;
++
++	ret = ath11k_wmi_cmd_send(wmi, skb,
++				  WMI_TWT_DEL_DIALOG_CMDID);
++	if (ret) {
++		ath11k_warn(ab, "Failed to send WMI_TWT_DEL_DIALOG_CMDID");
++		dev_kfree_skb(skb);
++	}
++	return ret;
++}
++
++int
++ath11k_wmi_send_twt_pause_dialog_cmd(struct ath11k *ar,
++				     struct wmi_twt_pause_dialog_params *params)
++{
++	struct ath11k_pdev_wmi *wmi = ar->wmi;
++	struct ath11k_base *ab = wmi->wmi_sc->sc;
++	struct wmi_twt_pause_dialog_params_cmd *cmd;
++	struct sk_buff *skb;
++	int ret, len;
++
++	len = sizeof(*cmd);
++
++	skb = ath11k_wmi_alloc_skb(wmi->wmi_sc, len);
++	if (!skb)
++		return -ENOMEM;
++
++	cmd = (void *)skb->data;
++	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG,
++				     WMI_TAG_TWT_PAUSE_DIALOG_CMD) |
++			  FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
++
++	cmd->vdev_id = params->vdev_id;
++	ether_addr_copy(cmd->peer_macaddr.addr, params->peer_macaddr);
++	cmd->dialog_id = params->dialog_id;
++
++	ret = ath11k_wmi_cmd_send(wmi, skb,
++				  WMI_TWT_PAUSE_DIALOG_CMDID);
++	if (ret) {
++		ath11k_warn(ab, "Failed to send WMI_TWT_PAUSE_DIALOG_CMDID");
++		dev_kfree_skb(skb);
++	}
++	return ret;
++}
++
++int
++ath11k_wmi_send_twt_resume_dialog_cmd(struct ath11k *ar,
++				      struct wmi_twt_resume_dialog_params *params)
++{
++	struct ath11k_pdev_wmi *wmi = ar->wmi;
++	struct ath11k_base *ab = wmi->wmi_sc->sc;
++	struct wmi_twt_resume_dialog_params_cmd *cmd;
++	struct sk_buff *skb;
++	int ret, len;
++
++	len = sizeof(*cmd);
++
++	skb = ath11k_wmi_alloc_skb(wmi->wmi_sc, len);
++	if (!skb)
++		return -ENOMEM;
++
++	cmd = (void *)skb->data;
++	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG,
++				     WMI_TAG_TWT_RESUME_DIALOG_CMD) |
++			  FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
++
++	cmd->vdev_id = params->vdev_id;
++	ether_addr_copy(cmd->peer_macaddr.addr, params->peer_macaddr);
++	cmd->dialog_id = params->dialog_id;
++	cmd->sp_offset_us = params->sp_offset_us;
++	cmd->next_twt_size = params->next_twt_size;
++	printk("%s:%s[%d]%x %x %x %x %x\n", __FILE__, __func__, __LINE__,
++		cmd->peer_macaddr.word0,
++		cmd->peer_macaddr.word1,
++		cmd->dialog_id, params->sp_offset_us, params->next_twt_size);
++
++	ret = ath11k_wmi_cmd_send(wmi, skb,
++				  WMI_TWT_RESUME_DIALOG_CMDID);
++	if (ret) {
++		ath11k_warn(ab, "Failed to send WMI_TWT_RESUME_DIALOG_CMDID");
++		dev_kfree_skb(skb);
++	}
++	return ret;
++}
++
+ int
+ ath11k_wmi_send_obss_spr_cmd(struct ath11k *ar, u32 vdev_id,
+ 			     struct ieee80211_he_obss_pd *he_obss_pd)
+@@ -5466,6 +5623,37 @@ ath11k_wmi_pdev_dfs_radar_detected_event(struct ath11k_base *ab, struct sk_buff
+ 	kfree(tb);
+ }
+ 
++static void ath11k_wmi_twt_add_dialog_event(struct ath11k_base *ab, struct sk_buff *skb)
++{
++	const char *status[] = {
++		"OK", "TWT_NOT_ENABLED", "USED_DIALOG_ID", "INVALID_PARAM",
++		"NOT_READY", "NO_RESOURCE", "NO_ACK", "NO_RESPONSE",
++		"DENIED", "UNKNOWN_ERROR"
++	};
++	const void **tb;
++	const struct wmi_twt_add_dialog_event *ev;
++	int ret;
++
++	tb = ath11k_wmi_tlv_parse_alloc(ab, skb->data, skb->len, GFP_ATOMIC);
++	if (IS_ERR(tb)) {
++		ret = PTR_ERR(tb);
++		ath11k_warn(ab, "failed to parse tlv: %d\n", ret);
++		return;
++	}
++
++	ev = tb[WMI_TAG_TWT_ADD_DIALOG_COMPLETE_EVENT];
++	if (!ev) {
++		ath11k_warn(ab, "failed to fetch twt add dialog ev");
++		goto exit;
++	}
++
++	ath11k_info(ab, "TWT Add Dialog Event - Status: %s, DialogId: %d, VdevId: %d\n",
++		    status[ev->status], ev->vdev_id, ev->dialog_id);
++
++exit:
++	kfree(tb);
++}
++
+ static void ath11k_wmi_tlv_op_rx(struct ath11k_base *ab, struct sk_buff *skb)
+ {
+ 	struct wmi_cmd_hdr *cmd_hdr;
+@@ -5543,12 +5731,18 @@ static void ath11k_wmi_tlv_op_rx(struct ath11k_base *ab, struct sk_buff *skb)
+ 	case WMI_PDEV_CSA_SWITCH_COUNT_STATUS_EVENTID:
+ 		ath11k_wmi_pdev_csa_switch_count_status_event(ab, skb);
+ 		break;
++	case WMI_TWT_ADD_DIALOG_EVENTID:
++		ath11k_wmi_twt_add_dialog_event(ab, skb);
++		break;
+ 	/* add Unsupported events here */
+ 	case WMI_TBTTOFFSET_EXT_UPDATE_EVENTID:
+ 	case WMI_VDEV_DELETE_RESP_EVENTID:
+ 	case WMI_PEER_OPER_MODE_CHANGE_EVENTID:
+ 	case WMI_TWT_ENABLE_EVENTID:
+ 	case WMI_TWT_DISABLE_EVENTID:
++	case WMI_TWT_DEL_DIALOG_EVENTID:
++	case WMI_TWT_PAUSE_DIALOG_EVENTID:
++	case WMI_TWT_RESUME_DIALOG_EVENTID:
+ 		ath11k_dbg(ab, ATH11K_DBG_WMI,
+ 			   "ignoring unsupported event 0x%x\n", id);
+ 		break;
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index b9dfe55e9dfb..54ee090fd463 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -4570,6 +4570,112 @@ struct wmi_twt_disable_params_cmd {
+ 	u32 pdev_id;
+ };
+ 
++enum WMI_HOST_TWT_COMMAND {
++	WMI_HOST_TWT_COMMAND_REQUEST_TWT = 0,
++	WMI_HOST_TWT_COMMAND_SUGGEST_TWT,
++	WMI_HOST_TWT_COMMAND_DEMAND_TWT,
++	WMI_HOST_TWT_COMMAND_TWT_GROUPING,
++	WMI_HOST_TWT_COMMAND_ACCEPT_TWT,
++	WMI_HOST_TWT_COMMAND_ALTERNATE_TWT,
++	WMI_HOST_TWT_COMMAND_DICTATE_TWT,
++	WMI_HOST_TWT_COMMAND_REJECT_TWT,
++};
++
++#define WMI_TWT_ADD_DIALOG_FLAG_BCAST		BIT(8)
++#define WMI_TWT_ADD_DIALOG_FLAG_TRIGGER		BIT(9)
++#define WMI_TWT_ADD_DIALOG_FLAG_FLOW_TYPE	BIT(10)
++#define WMI_TWT_ADD_DIALOG_FLAG_PROTECTION	BIT(11)
++
++struct wmi_twt_add_dialog_params_cmd {
++	u32 tlv_header;
++	u32 vdev_id;
++	struct wmi_mac_addr peer_macaddr;
++	u32 dialog_id;
++	u32 wake_intvl_us;
++	u32 wake_intvl_mantis;
++	u32 wake_dura_us;
++	u32 sp_offset_us;
++	u32 flags;
++};
++
++struct wmi_twt_add_dialog_params {
++	u32 vdev_id;
++	u8 peer_macaddr[ETH_ALEN];
++	u32 dialog_id;
++	u32 wake_intvl_us;
++	u32 wake_intvl_mantis;
++	u32 wake_dura_us;
++	u32 sp_offset_us;
++	u8 twt_cmd;
++	u8 flag_bcast;
++	u8 flag_trigger;
++	u8 flag_flow_type;
++	u8 flag_protection;
++};
++
++enum  wmi_twt_add_dialog_status {
++    WMI_ADD_TWT_STATUS_OK,                  /* adding TWT dialog successfully completed */
++    WMI_ADD_TWT_STATUS_TWT_NOT_ENABLED,     /* TWT not enabled */
++    WMI_ADD_TWT_STATUS_USED_DIALOG_ID,      /* TWT dialog ID is already used */
++    WMI_ADD_TWT_STATUS_INVALID_PARAM,       /* invalid parameters */
++    WMI_ADD_TWT_STATUS_NOT_READY,           /* FW not ready */
++    WMI_ADD_TWT_STATUS_NO_RESOURCE,         /* FW resource exhausted */
++    WMI_ADD_TWT_STATUS_NO_ACK,              /* peer AP/STA did not ACK the request/response frame */
++    WMI_ADD_TWT_STATUS_NO_RESPONSE,         /* peer AP did not send the response frame */
++    WMI_ADD_TWT_STATUS_DENIED,              /* AP did not accept the request */
++    WMI_ADD_TWT_STATUS_UNKNOWN_ERROR,       /* adding TWT dialog failed with an unknown reason */
++};
++
++struct wmi_twt_add_dialog_event {
++	u32 vdev_id;
++	struct wmi_mac_addr peer_macaddr;
++	u32 dialog_id;
++	u32 status;
++};
++
++struct wmi_twt_del_dialog_params {
++	u32 vdev_id;
++	u8 peer_macaddr[ETH_ALEN];
++	u32 dialog_id;
++};
++
++struct wmi_twt_del_dialog_params_cmd {
++	u32 tlv_header;
++	u32 vdev_id;
++	struct wmi_mac_addr peer_macaddr;
++	u32 dialog_id;
++};
++
++struct wmi_twt_pause_dialog_params {
++	u32 vdev_id;
++	u8 peer_macaddr[ETH_ALEN];
++	u32 dialog_id;
++};
++
++struct wmi_twt_pause_dialog_params_cmd {
++	u32 tlv_header;
++	u32 vdev_id;
++	struct wmi_mac_addr peer_macaddr;
++	u32 dialog_id;
++};
++
++struct wmi_twt_resume_dialog_params {
++	u32 vdev_id;
++	u8 peer_macaddr[ETH_ALEN];
++	u32 dialog_id;
++	u32 sp_offset_us;
++	u32 next_twt_size;
++};
++
++struct wmi_twt_resume_dialog_params_cmd {
++	u32 tlv_header;
++	u32 vdev_id;
++	struct wmi_mac_addr peer_macaddr;
++	u32 dialog_id;
++	u32 sp_offset_us;
++	u32 next_twt_size;
++};
++
+ struct wmi_obss_spatial_reuse_params_cmd {
+ 	u32 tlv_header;
+ 	u32 pdev_id;
+@@ -4767,6 +4873,14 @@ void ath11k_wmi_fw_stats_fill(struct ath11k *ar,
+ int ath11k_wmi_simulate_radar(struct ath11k *ar);
+ int ath11k_wmi_send_twt_enable_cmd(struct ath11k *ar, u32 pdev_id);
+ int ath11k_wmi_send_twt_disable_cmd(struct ath11k *ar, u32 pdev_id);
++int ath11k_wmi_send_twt_add_dialog_cmd(struct ath11k *ar,
++				       struct wmi_twt_add_dialog_params *params);
++int ath11k_wmi_send_twt_del_dialog_cmd(struct ath11k *ar,
++				       struct wmi_twt_del_dialog_params *params);
++int ath11k_wmi_send_twt_pause_dialog_cmd(struct ath11k *ar,
++					 struct wmi_twt_pause_dialog_params *params);
++int ath11k_wmi_send_twt_resume_dialog_cmd(struct ath11k *ar,
++					  struct wmi_twt_resume_dialog_params *params);
+ int ath11k_wmi_send_obss_spr_cmd(struct ath11k *ar, u32 vdev_id,
+ 				 struct ieee80211_he_obss_pd *he_obss_pd);
+ #endif
+-- 
+2.20.1
 
-Sorry forgot to change the version to v5 for the first two patches. They have 
-to generated from two different trees (one with the ath11k sources and one 
-with the mac80211 stuff). And this is the reason why the ath11k ones have the 
-correct version number included.
-
-Kind regards,
-	Sven
-
---nextPart2088208.6srCk4DusC
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl04iXUACgkQXYcKB8Em
-e0YnsRAAlUdOZollmJx5aXK8//P6My4H4wWCd4J6vTt5656HEFXblwZY+Y6MaNaV
-ZuJqksxO6VHrAjopVbMO9MOO8dRVm72XU9s/1slu1Z+nVvau5cKNTW1r21OV+2r2
-aj5q9ESj8QoZKYskGJujKeJM5iFnqoDhq7OUV69mmGwHBGDuK0VAh+4Dopk/Q3dx
-L++yw/UeFZrQLImbPy+dV5SEOaN+u0GrsSjPwCN159/JUWRXjZxrssLIABmWZGgL
-O3y0BjgXikrT/hLf1bk6H/8S5nweEi4hEjOxbkyqiJSkWa8BF9ygI/ryXw5rTsVu
-kU6T6V4mU6L9FxZfbWoKEYji3RvjwBn/t+vFWsBkIUcvXfCa8fkzd9z8fX+Uimrr
-MgkCj8DFhRggPV8KMJQuNaUkjSMO2KbDX3hSPrr82KnLX0tG3JyWVXanYfM3HGKJ
-KOEI3TWUqxbtpRy8JNNACJ++TYof6+vk5taRIeRWGrAutyGEyzBcbQO2+qri7xEL
-0wj/cPWdQNcBVtRhtIx/OQG0M+q0CwuX8X+KU4SZma/SbY3a4EmMHOU+Wv9QTP1M
-0MpfY+KCB/dOVfjojxP3p+qGGnMq7xxkCtJh/lUEFD2zd58qj9NIjufOzMHxGsPR
-zDHORNi8FRqWFbm3rDqLO47dpo/EwDOHRuFxJJ4INu23/YMlKtQ=
-=fHBH
------END PGP SIGNATURE-----
-
---nextPart2088208.6srCk4DusC--
-
-
-
-
-
---===============2421104189440229427==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
-
---===============2421104189440229427==--
