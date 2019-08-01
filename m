@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1ht377-0005fh-I1
- for ath11k@lists.infradead.org; Thu, 01 Aug 2019 04:54:55 +0000
-From: Karthikeyan Periyasamy <periyasa@codeaurora.org>
-Subject: [PATCH] ath11k: fix resource leak in ath11k_mac_sta_state
-Date: Thu,  1 Aug 2019 10:24:19 +0530
-Message-Id: <1564635259-27502-1-git-send-email-periyasa@codeaurora.org>
+ id 1ht56W-0004Q5-Fa
+ for ath11k@lists.infradead.org; Thu, 01 Aug 2019 07:02:25 +0000
+From: Anilkumar Kolli <akolli@codeaurora.org>
+Subject: [PATCH] ath11k: fix wmi service ready ext tlv parsing
+Date: Thu,  1 Aug 2019 12:31:56 +0530
+Message-Id: <1564642916-4728-1-git-send-email-akolli@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -21,201 +21,78 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
-Cc: Karthikeyan Periyasamy <periyasa@codeaurora.org>
 
-Handled the error case with proper resource cleanup and
-moved the handling into a separate function from
-ath11k_mac_sta_state.
+The current ath11k driver failed to parse
+wmi_tlv_svc_rdy_ext_parse if there is change in
+wmi_mac_phy_capabilities length with below error.
 
-Signed-off-by: Karthikeyan Periyasamy <periyasa@codeaurora.org>
+ath11k c000000.wifi1: failed to extract mac caps, idx :0
+ath11k c000000.wifi1: failed to parse tlv -22
+
+Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 144 ++++++++++++++++++++--------------
- 1 file changed, 86 insertions(+), 58 deletions(-)
+ drivers/net/wireless/ath/ath11k/wmi.c | 14 +++++++++++---
+ drivers/net/wireless/ath/ath11k/wmi.h |  1 -
+ 2 files changed, 11 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 6a3b1a1..5b00f16 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -2540,6 +2540,87 @@ static void ath11k_mac_dec_num_stations(struct ath11k_vif *arvif,
- 	ar->num_stations--;
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 83310d6b6a0e..e46ba532a6a1 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -310,7 +310,7 @@ static int ath11k_pull_svc_ready_ext(struct ath11k_pdev_wmi *wmi_handle,
+ 	if (phy_id >= hal_reg_caps->num_phy)
+ 		return -EINVAL;
+ 
+-	mac_phy_caps = &wmi_mac_phy_caps[phy_idx];
++	mac_phy_caps = wmi_mac_phy_caps + phy_idx;
+ 
+ 	pdev->pdev_id = mac_phy_caps->pdev_id;
+ 	pdev_cap->supported_bands = mac_phy_caps->supported_bands;
+@@ -2837,6 +2837,15 @@ static int ath11k_wmi_tlv_mac_phy_caps_parse(struct ath11k_base *soc,
+ 	if (svc_rdy_ext->n_mac_phy_caps >= svc_rdy_ext->tot_phy_id)
+ 		return -ENOBUFS;
+ 
++	len = min_t(u16, len, sizeof(struct wmi_mac_phy_capabilities));
++	if (!svc_rdy_ext->n_mac_phy_caps) {
++		svc_rdy_ext->mac_phy_caps = kzalloc((svc_rdy_ext->tot_phy_id) * len,
++						    GFP_ATOMIC);
++		if (!svc_rdy_ext->mac_phy_caps)
++			return -ENOMEM;
++	}
++
++	memcpy(svc_rdy_ext->mac_phy_caps + svc_rdy_ext->n_mac_phy_caps, ptr, len);
+ 	svc_rdy_ext->n_mac_phy_caps++;
+ 	return 0;
  }
- 
-+static int ath11k_mac_station_add(struct ath11k *ar,
-+				  struct ieee80211_vif *vif,
-+				  struct ieee80211_sta *sta)
-+{
-+	struct ath11k_base *ab = ar->ab;
-+	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
-+	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
-+	struct peer_create_params peer_param;
-+	int ret;
-+
-+	lockdep_assert_held(&ar->conf_mutex);
-+
-+	ret = ath11k_mac_inc_num_stations(arvif, sta);
-+	if (ret) {
-+		ath11k_warn(ab, "refusing to associate station: too many connected already (%d)\n",
-+			    ar->max_num_stations);
-+		goto exit;
-+	}
-+
-+	arsta->rx_stats = kzalloc(sizeof(*arsta->rx_stats), GFP_KERNEL);
-+	if (!arsta->rx_stats) {
-+		ret = -ENOMEM;
-+		goto dec_num_station;
-+	}
-+
-+	peer_param.vdev_id = arvif->vdev_id;
-+	peer_param.peer_addr = sta->addr;
-+	peer_param.peer_type = WMI_PEER_TYPE_DEFAULT;
-+
-+	ret = ath11k_peer_create(ar, arvif, sta, &peer_param);
-+	if (ret) {
-+		ath11k_warn(ab, "Failed to add peer: %pM for VDEV: %d\n",
-+			    sta->addr, arvif->vdev_id);
-+		goto free_rx_stats;
-+	}
-+
-+	ath11k_dbg(ab, ATH11K_DBG_MAC, "Added peer: %pM for VDEV: %d\n",
-+		   sta->addr, arvif->vdev_id);
-+
-+	if (ath11k_debug_is_extd_tx_stats_enabled(ar)) {
-+		arsta->tx_stats = kzalloc(sizeof(*arsta->tx_stats), GFP_KERNEL);
-+		if (!arsta->tx_stats) {
-+			ret = -ENOMEM;
-+			goto free_peer;
-+		}
-+	}
-+
-+	if (ieee80211_vif_is_mesh(vif)) {
-+		ret = ath11k_wmi_set_peer_param(ar, sta->addr,
-+						arvif->vdev_id,
-+						WMI_PEER_USE_4ADDR, 1);
-+		if (ret) {
-+			ath11k_warn(ab, "failed to STA %pM 4addr capability: %d\n",
-+				    sta->addr, ret);
-+			goto free_tx_stats;
-+		}
-+	}
-+
-+	ret = ath11k_dp_peer_setup(ar, arvif->vdev_id, sta->addr);
-+	if (ret) {
-+		ath11k_warn(ab, "failed to setup dp for peer %pM on vdev %i (%d)\n",
-+			    sta->addr, arvif->vdev_id, ret);
-+		goto free_tx_stats;
-+	}
-+
-+	return 0;
-+
-+free_tx_stats:
-+	kfree(arsta->tx_stats);
-+	arsta->tx_stats = NULL;
-+free_peer:
-+	ath11k_peer_delete(ar, arvif->vdev_id, sta->addr);
-+free_rx_stats:
-+	kfree(arsta->rx_stats);
-+	arsta->rx_stats = NULL;
-+dec_num_station:
-+	ath11k_mac_dec_num_stations(arvif, sta);
-+exit:
-+	return ret;
-+}
-+
- static int ath11k_mac_op_sta_state(struct ieee80211_hw *hw,
- 				   struct ieee80211_vif *vif,
- 				   struct ieee80211_sta *sta,
-@@ -2549,7 +2630,6 @@ static int ath11k_mac_op_sta_state(struct ieee80211_hw *hw,
- 	struct ath11k *ar = hw->priv;
- 	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
- 	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
--	struct peer_create_params peer_param;
- 	int ret = 0;
- 
- 	/* cancel must be done outside the mutex to avoid deadlock */
-@@ -2565,60 +2645,10 @@ static int ath11k_mac_op_sta_state(struct ieee80211_hw *hw,
- 		arsta->arvif = arvif;
- 		INIT_WORK(&arsta->update_wk, ath11k_sta_rc_update_wk);
- 
--		ret = ath11k_mac_inc_num_stations(arvif, sta);
--		if (ret) {
--			ath11k_warn(ar->ab, "refusing to associate station: too many connected already (%d)\n",
--				    ar->max_num_stations);
--			goto exit;
--		}
--
--		arsta->rx_stats = kzalloc(sizeof(*arsta->rx_stats), GFP_KERNEL);
--		if (!arsta->rx_stats) {
--			ret = -ENOMEM;
--			goto exit;
--		}
--
--		peer_param.vdev_id = arvif->vdev_id;
--		peer_param.peer_addr = sta->addr;
--		peer_param.peer_type = WMI_PEER_TYPE_DEFAULT;
--		ret = ath11k_peer_create(ar, arvif, sta, &peer_param);
--		if (ret) {
--			ath11k_warn(ar->ab, "Failed to add peer: %pM for VDEV: %d\n",
-+		ret = ath11k_mac_station_add(ar, vif, sta);
-+		if (ret)
-+			ath11k_warn(ar->ab, "Failed to add station: %pM for VDEV: %d\n",
- 				    sta->addr, arvif->vdev_id);
--			ath11k_mac_dec_num_stations(arvif, sta);
--			goto exit;
--		}
--
--		ath11k_info(ar->ab, "Added peer: %pM for VDEV: %d\n",
--			    sta->addr, arvif->vdev_id);
--
--		if (ath11k_debug_is_extd_tx_stats_enabled(ar)) {
--			arsta->tx_stats = kzalloc(sizeof(*arsta->tx_stats),
--						  GFP_KERNEL);
--			if (!arsta->tx_stats) {
--				ret = -ENOMEM;
--				goto exit;
--			}
--		}
--
--		if (ieee80211_vif_is_mesh(vif)) {
--			ret = ath11k_wmi_set_peer_param(ar, sta->addr,
--							arvif->vdev_id,
--							WMI_PEER_USE_4ADDR, 1);
--			if (ret) {
--				ath11k_warn(ar->ab, "failed to STA %pM 4addr capability: %d\n",
--					    sta->addr, ret);
--				goto exit;
--			}
--		}
--
--		ret = ath11k_dp_peer_setup(ar, arvif->vdev_id, sta->addr);
--		if (ret) {
--			ath11k_warn(ar->ab, "failed to setup dp for peer %pM on vdev %i (%d)\n",
--				    sta->addr, arvif->vdev_id, ret);
--			ath11k_peer_delete(ar, arvif->vdev_id, sta->addr);
--			ath11k_mac_dec_num_stations(arvif, sta);
--		}
- 	} else if ((old_state == IEEE80211_STA_NONE &&
- 		    new_state == IEEE80211_STA_NOTEXIST)) {
- 		ath11k_dp_peer_cleanup(ar, arvif->vdev_id, sta->addr);
-@@ -2628,9 +2658,8 @@ static int ath11k_mac_op_sta_state(struct ieee80211_hw *hw,
- 			ath11k_warn(ar->ab, "Failed to delete peer: %pM for VDEV: %d\n",
- 				    sta->addr, arvif->vdev_id);
- 		else
--			ath11k_info(ar->ab,
--				    "Removed peer: %pM for VDEV: %d\n",
--				    sta->addr, arvif->vdev_id);
-+			ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "Removed peer: %pM for VDEV: %d\n",
-+				   sta->addr, arvif->vdev_id);
- 
- 		ath11k_mac_dec_num_stations(arvif, sta);
- 
-@@ -2667,7 +2696,6 @@ static int ath11k_mac_op_sta_state(struct ieee80211_hw *hw,
- 				    sta->addr);
+@@ -2970,8 +2979,6 @@ static int ath11k_wmi_tlv_svc_rdy_ext_parse(struct ath11k_base *ab,
+ 			svc_rdy_ext->hw_mode_done = true;
+ 		} else if (!svc_rdy_ext->mac_phy_done) {
+ 			svc_rdy_ext->n_mac_phy_caps = 0;
+-			svc_rdy_ext->mac_phy_caps =
+-					(struct wmi_mac_phy_capabilities *)ptr;
+ 			ret = ath11k_wmi_tlv_iter(ab, ptr, len,
+ 						  ath11k_wmi_tlv_mac_phy_caps_parse,
+ 						  svc_rdy_ext);
+@@ -3012,6 +3019,7 @@ static int ath11k_service_ready_ext_event(struct ath11k_base *ab,
+ 		return ret;
  	}
  
--exit:
- 	mutex_unlock(&ar->conf_mutex);
- 	return ret;
++	kfree(svc_rdy_ext.mac_phy_caps);
+ 	return 0;
  }
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index 7d933eafd3cd..8b75b7f9aef1 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -2241,7 +2241,6 @@ struct wmi_hw_mode_capabilities {
+ #define WMI_MAX_HECAP_PHY_SIZE                 (3)
+ 
+ struct wmi_mac_phy_capabilities {
+-	u32 tlv_header;
+ 	u32 hw_mode_id;
+ 	u32 pdev_id;
+ 	u32 phy_id;
 -- 
 1.9.1
 
