@@ -1,13 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hvi4f-00086A-NZ
- for ath11k@lists.infradead.org; Thu, 08 Aug 2019 13:03:23 +0000
+ id 1hvi4e-00085D-8O
+ for ath11k@lists.infradead.org; Thu, 08 Aug 2019 13:03:22 +0000
 From: Maharaja Kennadyrajan <mkenna@codeaurora.org>
-Subject: [PATCH 07/15] ath11k: Rename ath11k_base struct from 'sc' to 'ab in
- debug.h
-Date: Thu,  8 Aug 2019 18:33:04 +0530
-Message-Id: <1565269392-2838-8-git-send-email-mkenna@codeaurora.org>
+Subject: [PATCH 06/15] ath11k: Rename ath11k_base struct from 'sc' to 'ab in
+ debug.c
+Date: Thu,  8 Aug 2019 18:33:03 +0530
+Message-Id: <1565269392-2838-7-git-send-email-mkenna@codeaurora.org>
 In-Reply-To: <1565269392-2838-1-git-send-email-mkenna@codeaurora.org>
 References: <1565269392-2838-1-git-send-email-mkenna@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -27,56 +27,65 @@ To: ath11k@lists.infradead.org
 Cc: Maharaja Kennadyrajan <mkenna@codeaurora.org>
 
 To avoid confusion and better readability, renamed the
-ath11k_base struct from 'sc' to 'ab' in debug.h file.
+ath11k_base struct from 'sc' to 'ab' in debug.c file.
 
 Signed-off-by: Maharaja Kennadyrajan <mkenna@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/debug.h | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+ drivers/net/wireless/ath/ath11k/debug.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/debug.h b/drivers/net/wireless/ath/ath11k/debug.h
-index ce1f414a95e9..fac6cb4aa597 100644
---- a/drivers/net/wireless/ath/ath11k/debug.h
-+++ b/drivers/net/wireless/ath/ath11k/debug.h
-@@ -100,9 +100,9 @@ enum ath11k_pktlog_enum {
- 	ATH11K_PKTLOG_TYPE_LITE_RX      = 24,
- };
+diff --git a/drivers/net/wireless/ath/ath11k/debug.c b/drivers/net/wireless/ath/ath11k/debug.c
+index 4fd99417585c..e62a409185f4 100644
+--- a/drivers/net/wireless/ath/ath11k/debug.c
++++ b/drivers/net/wireless/ath/ath11k/debug.c
+@@ -12,7 +12,7 @@
+ #include "debug_htt_stats.h"
+ #include "peer.h"
  
--__printf(2, 3) void ath11k_info(struct ath11k_base *sc, const char *fmt, ...);
--__printf(2, 3) void ath11k_err(struct ath11k_base *sc, const char *fmt, ...);
--__printf(2, 3) void ath11k_warn(struct ath11k_base *sc, const char *fmt, ...);
-+__printf(2, 3) void ath11k_info(struct ath11k_base *ab, const char *fmt, ...);
-+__printf(2, 3) void ath11k_err(struct ath11k_base *ab, const char *fmt, ...);
-+__printf(2, 3) void ath11k_warn(struct ath11k_base *ab, const char *fmt, ...);
- 
- extern unsigned int ath11k_debug_mask;
- 
-@@ -131,8 +131,8 @@ static inline void ath11k_dbg_dump(struct ath11k_base *ab,
- #endif /* CONFIG_ATH11K_DEBUG */
- 
- #ifdef CONFIG_ATH11K_DEBUGFS
--int ath11k_debug_soc_create(struct ath11k_base *sc);
--void ath11k_debug_soc_destroy(struct ath11k_base *sc);
-+int ath11k_debug_soc_create(struct ath11k_base *ab);
-+void ath11k_debug_soc_destroy(struct ath11k_base *ab);
- int ath11k_debug_register(struct ath11k *ar);
- void ath11k_debug_unregister(struct ath11k *ar);
- void ath11k_dbg_htt_ext_stats_handler(struct ath11k_base *ab,
-@@ -168,12 +168,12 @@ static inline int ath11k_debug_is_extd_rx_stats_enabled(struct ath11k *ar)
- 	return ar->debug.extd_rx_stats;
- }
- #else
--static inline int ath11k_debug_soc_create(struct ath11k_base *sc)
-+static inline int ath11k_debug_soc_create(struct ath11k_base *ab)
+-void ath11k_info(struct ath11k_base *sc, const char *fmt, ...)
++void ath11k_info(struct ath11k_base *ab, const char *fmt, ...)
  {
- 	return 0;
+ 	struct va_format vaf = {
+ 		.fmt = fmt,
+@@ -21,12 +21,12 @@ void ath11k_info(struct ath11k_base *sc, const char *fmt, ...)
+ 
+ 	va_start(args, fmt);
+ 	vaf.va = &args;
+-	dev_info(sc->dev, "%pV", &vaf);
++	dev_info(ab->dev, "%pV", &vaf);
+ 	/* TODO: Trace the log */
+ 	va_end(args);
  }
  
--static inline void ath11k_debug_soc_destroy(struct ath11k_base *sc)
-+static inline void ath11k_debug_soc_destroy(struct ath11k_base *ab)
+-void ath11k_err(struct ath11k_base *sc, const char *fmt, ...)
++void ath11k_err(struct ath11k_base *ab, const char *fmt, ...)
  {
+ 	struct va_format vaf = {
+ 		.fmt = fmt,
+@@ -35,12 +35,12 @@ void ath11k_err(struct ath11k_base *sc, const char *fmt, ...)
+ 
+ 	va_start(args, fmt);
+ 	vaf.va = &args;
+-	dev_err(sc->dev, "%pV", &vaf);
++	dev_err(ab->dev, "%pV", &vaf);
+ 	/* TODO: Trace the log */
+ 	va_end(args);
  }
  
+-void ath11k_warn(struct ath11k_base *sc, const char *fmt, ...)
++void ath11k_warn(struct ath11k_base *ab, const char *fmt, ...)
+ {
+ 	struct va_format vaf = {
+ 		.fmt = fmt,
+@@ -49,7 +49,7 @@ void ath11k_warn(struct ath11k_base *sc, const char *fmt, ...)
+ 
+ 	va_start(args, fmt);
+ 	vaf.va = &args;
+-	dev_warn_ratelimited(sc->dev, "%pV", &vaf);
++	dev_warn_ratelimited(ab->dev, "%pV", &vaf);
+ 	/* TODO: Trace the log */
+ 	va_end(args);
+ }
 -- 
 2.21.0
 
