@@ -1,13 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hvi4s-0008It-BI
- for ath11k@lists.infradead.org; Thu, 08 Aug 2019 13:03:36 +0000
+ id 1hvi4t-0008Jy-D4
+ for ath11k@lists.infradead.org; Thu, 08 Aug 2019 13:03:37 +0000
 From: Maharaja Kennadyrajan <mkenna@codeaurora.org>
-Subject: [PATCH 13/15] ath11k: Rename ath11k_base struct from 'sc' to 'ab in
- qmi.h
-Date: Thu,  8 Aug 2019 18:33:10 +0530
-Message-Id: <1565269392-2838-14-git-send-email-mkenna@codeaurora.org>
+Subject: [PATCH 15/15] ath11k: Rename ath11k_base struct from 'sc' to 'ab in
+ wmi.h
+Date: Thu,  8 Aug 2019 18:33:12 +0530
+Message-Id: <1565269392-2838-16-git-send-email-mkenna@codeaurora.org>
 In-Reply-To: <1565269392-2838-1-git-send-email-mkenna@codeaurora.org>
 References: <1565269392-2838-1-git-send-email-mkenna@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -27,34 +27,48 @@ To: ath11k@lists.infradead.org
 Cc: Maharaja Kennadyrajan <mkenna@codeaurora.org>
 
 To avoid confusion and better readability, renamed the
-ath11k_base struct from 'sc' to 'ab' in qmi.h file.
+ath11k_base struct from 'sc' to 'ab' in wmi.h file.
 
 Signed-off-by: Maharaja Kennadyrajan <mkenna@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/qmi.h | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/net/wireless/ath/ath11k/wmi.h | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.h b/drivers/net/wireless/ath/ath11k/qmi.h
-index ff9203d46810..f388dc6030a4 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.h
-+++ b/drivers/net/wireless/ath/ath11k/qmi.h
-@@ -432,12 +432,12 @@ struct qmi_wlanfw_wlan_cfg_resp_msg_v01 {
- 	struct qmi_response_type_v01 resp;
- };
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index f1930339e633..ff31aa7d8058 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -4553,7 +4553,7 @@ struct target_resource_config {
+ #define WMI_SEND_TIMEOUT_HZ (3 * HZ)
  
--int ath11k_qmi_firmware_start(struct ath11k_base *sc,
-+int ath11k_qmi_firmware_start(struct ath11k_base *ab,
- 			      u32 mode);
--void ath11k_qmi_firmware_stop(struct ath11k_base *sc);
-+void ath11k_qmi_firmware_stop(struct ath11k_base *ab);
- void ath11k_qmi_event_work(struct work_struct *work);
- void ath11k_qmi_msg_recv_work(struct work_struct *work);
--void ath11k_qmi_deinit_service(struct ath11k_base *sc);
--int ath11k_qmi_init_service(struct ath11k_base *sc);
-+void ath11k_qmi_deinit_service(struct ath11k_base *ab);
-+int ath11k_qmi_init_service(struct ath11k_base *ab);
- 
- #endif
+ struct ath11k_wmi_base {
+-	struct ath11k_base *sc;
++	struct ath11k_base *ab;
+ 	struct ath11k_pdev_wmi wmi[MAX_RADIOS];
+ 	enum ath11k_htc_ep_id wmi_endpoint_id[MAX_RADIOS];
+ 	u32 max_msg_len[MAX_RADIOS];
+@@ -4591,14 +4591,14 @@ int ath11k_wmi_set_peer_param(struct ath11k *ar, const u8 *peer_addr,
+ 			      u32 vdev_id, u32 param_id, u32 param_val);
+ int ath11k_wmi_pdev_set_param(struct ath11k *ar, u32 param_id,
+ 			      u32 param_value, u8 pdev_id);
+-int ath11k_wmi_wait_for_unified_ready(struct ath11k_base *sc);
+-int ath11k_wmi_cmd_init(struct ath11k_base *sc);
+-int ath11k_wmi_wait_for_service_ready(struct ath11k_base *sc);
+-int ath11k_wmi_connect(struct ath11k_base *sc);
+-int ath11k_wmi_pdev_attach(struct ath11k_base *sc,
++int ath11k_wmi_wait_for_unified_ready(struct ath11k_base *ab);
++int ath11k_wmi_cmd_init(struct ath11k_base *ab);
++int ath11k_wmi_wait_for_service_ready(struct ath11k_base *ab);
++int ath11k_wmi_connect(struct ath11k_base *ab);
++int ath11k_wmi_pdev_attach(struct ath11k_base *ab,
+ 			   u8 pdev_id);
+-int ath11k_wmi_attach(struct ath11k_base *sc);
+-void ath11k_wmi_detach(struct ath11k_base *sc);
++int ath11k_wmi_attach(struct ath11k_base *ab);
++void ath11k_wmi_detach(struct ath11k_base *ab);
+ int ath11k_wmi_vdev_create(struct ath11k *ar, u8 *macaddr,
+ 			   struct vdev_create_params *param);
+ int ath11k_wmi_peer_rx_reorder_queue_setup(struct ath11k *ar, int vdev_id,
 -- 
 2.21.0
 
