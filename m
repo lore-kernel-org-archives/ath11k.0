@@ -1,13 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hvi4i-00088v-TP
- for ath11k@lists.infradead.org; Thu, 08 Aug 2019 13:03:26 +0000
+ id 1hvi4Z-00083C-Px
+ for ath11k@lists.infradead.org; Thu, 08 Aug 2019 13:03:17 +0000
 From: Maharaja Kennadyrajan <mkenna@codeaurora.org>
-Subject: [PATCH 09/15] ath11k: Rename ath11k_base struct from 'sc' to 'ab in
- dp.h
-Date: Thu,  8 Aug 2019 18:33:06 +0530
-Message-Id: <1565269392-2838-10-git-send-email-mkenna@codeaurora.org>
+Subject: [PATCH 03/15] ath11k: Rename ath11k_base struct from 'sc' to 'ab in
+ ce.h
+Date: Thu,  8 Aug 2019 18:33:00 +0530
+Message-Id: <1565269392-2838-4-git-send-email-mkenna@codeaurora.org>
 In-Reply-To: <1565269392-2838-1-git-send-email-mkenna@codeaurora.org>
 References: <1565269392-2838-1-git-send-email-mkenna@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -27,43 +27,41 @@ To: ath11k@lists.infradead.org
 Cc: Maharaja Kennadyrajan <mkenna@codeaurora.org>
 
 To avoid confusion and better readability, renamed the
-ath11k_base struct from 'sc' to 'ab' in dp.h file.
+ath11k_base struct from 'sc' to 'ab' in ce.h file.
 
 Signed-off-by: Maharaja Kennadyrajan <mkenna@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/dp.h | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/net/wireless/ath/ath11k/ce.h | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
-index bda5ac27f20d..c968d5a6217e 100644
---- a/drivers/net/wireless/ath/ath11k/dp.h
-+++ b/drivers/net/wireless/ath/ath11k/dp.h
-@@ -193,7 +193,7 @@ struct ath11k_pdev_dp {
- #define DP_TX_DESC_ID_POOL_ID GENMASK(20, 19)
+diff --git a/drivers/net/wireless/ath/ath11k/ce.h b/drivers/net/wireless/ath/ath11k/ce.h
+index 9f25bad504e9..5cc3fea55e0f 100644
+--- a/drivers/net/wireless/ath/ath11k/ce.h
++++ b/drivers/net/wireless/ath/ath11k/ce.h
+@@ -143,7 +143,7 @@ struct ath11k_ce_ring {
+ };
  
- struct ath11k_dp {
+ struct ath11k_ce_pipe {
 -	struct ath11k_base *sc;
 +	struct ath11k_base *ab;
- 	enum ath11k_htc_ep_id eid;
- 	struct completion htt_tgt_version_received;
- 	u8 htt_tgt_ver_major;
-@@ -1498,13 +1498,13 @@ static inline void ath11k_dp_get_mac_addr(u32 addr_l32, u16 addr_h16, u8 *addr)
- 	memcpy(addr + 4, &addr_h16, ETH_ALEN - 4);
- }
- 
--int ath11k_dp_service_srng(struct ath11k_base *sc,
-+int ath11k_dp_service_srng(struct ath11k_base *ab,
- 			   struct ath11k_ext_irq_grp *irq_grp,
- 			   int budget);
- int ath11k_dp_htt_connect(struct ath11k_dp *dp);
- void ath11k_dp_vdev_tx_attach(struct ath11k *ar, struct ath11k_vif *arvif);
--void ath11k_dp_free(struct ath11k_base *sc);
--int ath11k_dp_alloc(struct ath11k_base *sc);
-+void ath11k_dp_free(struct ath11k_base *ab);
-+int ath11k_dp_alloc(struct ath11k_base *ab);
- int ath11k_dp_pdev_alloc(struct ath11k_base *ab);
- void ath11k_dp_pdev_free(struct ath11k_base *ab);
- int ath11k_dp_tx_htt_srng_setup(struct ath11k_base *ab, u32 ring_id,
+ 	u16 pipe_num;
+ 	unsigned int attr_flags;
+ 	unsigned int buf_sz;
+@@ -177,10 +177,10 @@ void ath11k_ce_rx_replenish_retry(struct timer_list *t);
+ void ath11k_ce_per_engine_service(struct ath11k_base *ab, u16 ce_id);
+ int ath11k_ce_send(struct ath11k_base *ab, struct sk_buff *skb, u8 pipe_id,
+ 		   u16 transfer_id);
+-void ath11k_ce_rx_post_buf(struct ath11k_base *sc);
+-int ath11k_ce_init_pipes(struct ath11k_base *sc);
+-int ath11k_ce_alloc_pipes(struct ath11k_base *sc);
+-void ath11k_ce_free_pipes(struct ath11k_base *sc);
++void ath11k_ce_rx_post_buf(struct ath11k_base *ab);
++int ath11k_ce_init_pipes(struct ath11k_base *ab);
++int ath11k_ce_alloc_pipes(struct ath11k_base *ab);
++void ath11k_ce_free_pipes(struct ath11k_base *ab);
+ int ath11k_ce_get_attr_flags(int ce_id);
+ void ath11k_ce_poll_send_completed(struct ath11k_base *ab, u8 pipe_id);
+ #endif
 -- 
 2.21.0
 
