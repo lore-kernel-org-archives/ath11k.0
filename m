@@ -1,13 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hvi4c-00084C-58
- for ath11k@lists.infradead.org; Thu, 08 Aug 2019 13:03:20 +0000
+ id 1hvi4m-0008Do-Sm
+ for ath11k@lists.infradead.org; Thu, 08 Aug 2019 13:03:30 +0000
 From: Maharaja Kennadyrajan <mkenna@codeaurora.org>
-Subject: [PATCH 04/15] ath11k: Rename ath11k_base struct from 'sc' to 'ab in
- core.c
-Date: Thu,  8 Aug 2019 18:33:01 +0530
-Message-Id: <1565269392-2838-5-git-send-email-mkenna@codeaurora.org>
+Subject: [PATCH 11/15] ath11k: Rename ath11k_base struct from 'sc' to 'ab in
+ hal.c
+Date: Thu,  8 Aug 2019 18:33:08 +0530
+Message-Id: <1565269392-2838-12-git-send-email-mkenna@codeaurora.org>
 In-Reply-To: <1565269392-2838-1-git-send-email-mkenna@codeaurora.org>
 References: <1565269392-2838-1-git-send-email-mkenna@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -27,749 +27,441 @@ To: ath11k@lists.infradead.org
 Cc: Maharaja Kennadyrajan <mkenna@codeaurora.org>
 
 To avoid confusion and better readability, renamed the
-ath11k_base struct from 'sc' to 'ab' in core.c file.
+ath11k_base struct from 'sc' to 'ab' in hal.c file.
 
 Signed-off-by: Maharaja Kennadyrajan <mkenna@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/core.c | 328 ++++++++++++-------------
- 1 file changed, 164 insertions(+), 164 deletions(-)
+ drivers/net/wireless/ath/ath11k/hal.c | 134 +++++++++++++-------------
+ 1 file changed, 67 insertions(+), 67 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 2e523afc4da8..9324dcb45bbe 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -43,7 +43,7 @@ u8 ath11k_core_get_hw_mac_id(struct ath11k_base *ab, int pdev_idx)
- 	}
- }
+diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
+index 9eac3113de23..e0ec7c5f8112 100644
+--- a/drivers/net/wireless/ath/ath11k/hal.c
++++ b/drivers/net/wireless/ath/ath11k/hal.c
+@@ -285,13 +285,13 @@ static const struct hal_srng_config hw_srng_config[] = {
+ 	},
+ };
  
--static int ath11k_core_create_board_name(struct ath11k_base *sc, char *name,
-+static int ath11k_core_create_board_name(struct ath11k_base *ab, char *name,
- 					 size_t name_len)
+-static int ath11k_hal_alloc_cont_rdp(struct ath11k_base *sc)
++static int ath11k_hal_alloc_cont_rdp(struct ath11k_base *ab)
  {
- 	/* Note: bus is fixed to ahb. When other bus type supported,
-@@ -51,15 +51,15 @@ static int ath11k_core_create_board_name(struct ath11k_base *sc, char *name,
- 	 */
- 	scnprintf(name, name_len,
- 		  "bus=ahb,qmi-chip-id=%d,qmi-board-id=%d",
--		  sc->qmi.target.chip_id,
--		  sc->qmi.target.board_id);
-+		  ab->qmi.target.chip_id,
-+		  ab->qmi.target.board_id);
+-	struct ath11k_hal *hal = &sc->hal;
++	struct ath11k_hal *hal = &ab->hal;
+ 	size_t size;
  
--	ath11k_dbg(sc, ATH11K_DBG_BOOT, "boot using board name '%s'\n", name);
-+	ath11k_dbg(ab, ATH11K_DBG_BOOT, "boot using board name '%s'\n", name);
- 
+ 	size = sizeof(u32) * HAL_SRNG_RING_ID_MAX;
+-	hal->rdp.vaddr = dma_alloc_coherent(sc->dev, size, &hal->rdp.paddr,
++	hal->rdp.vaddr = dma_alloc_coherent(ab->dev, size, &hal->rdp.paddr,
+ 					    GFP_KERNEL);
+ 	if (!hal->rdp.vaddr)
+ 		return -ENOMEM;
+@@ -299,27 +299,27 @@ static int ath11k_hal_alloc_cont_rdp(struct ath11k_base *sc)
  	return 0;
  }
  
--static const struct firmware *ath11k_fetch_fw_file(struct ath11k_base *sc,
-+static const struct firmware *ath11k_fetch_fw_file(struct ath11k_base *ab,
- 						   const char *dir,
- 						   const char *file)
+-static void ath11k_hal_free_cont_rdp(struct ath11k_base *sc)
++static void ath11k_hal_free_cont_rdp(struct ath11k_base *ab)
  {
-@@ -74,19 +74,19 @@ static const struct firmware *ath11k_fetch_fw_file(struct ath11k_base *sc,
- 		dir = ".";
- 
- 	snprintf(filename, sizeof(filename), "%s/%s", dir, file);
--	ret = firmware_request_nowarn(&fw, filename, sc->dev);
--	ath11k_dbg(sc, ATH11K_DBG_BOOT, "boot fw request '%s': %d\n",
-+	ret = firmware_request_nowarn(&fw, filename, ab->dev);
-+	ath11k_dbg(ab, ATH11K_DBG_BOOT, "boot fw request '%s': %d\n",
- 		   filename, ret);
- 
- 	if (ret)
- 		return ERR_PTR(ret);
--	ath11k_warn(sc, "Downloading BDF: %s, size: %zu\n",
-+	ath11k_warn(ab, "Downloading BDF: %s, size: %zu\n",
- 		    filename, fw->size);
- 
- 	return fw;
- }
- 
--void ath11k_core_free_bdf(struct ath11k_base *sc, struct ath11k_board_data *bd)
-+void ath11k_core_free_bdf(struct ath11k_base *ab, struct ath11k_board_data *bd)
- {
- 	if (!IS_ERR(bd->fw))
- 		release_firmware(bd->fw);
-@@ -94,7 +94,7 @@ void ath11k_core_free_bdf(struct ath11k_base *sc, struct ath11k_board_data *bd)
- 	memset(bd, 0, sizeof(*bd));
- }
- 
--static int ath11k_core_parse_bd_ie_board(struct ath11k_base *sc,
-+static int ath11k_core_parse_bd_ie_board(struct ath11k_base *ab,
- 					 struct ath11k_board_data *bd,
- 					 const void *buf, size_t buf_len,
- 					 const char *boardname,
-@@ -119,7 +119,7 @@ static int ath11k_core_parse_bd_ie_board(struct ath11k_base *sc,
- 		buf += sizeof(*hdr);
- 
- 		if (buf_len < ALIGN(board_ie_len, 4)) {
--			ath11k_err(sc, "invalid ATH11K_BD_IE_BOARD length: %zu < %zu\n",
-+			ath11k_err(ab, "invalid ATH11K_BD_IE_BOARD length: %zu < %zu\n",
- 				   buf_len, ALIGN(board_ie_len, 4));
- 			ret = -EINVAL;
- 			goto out;
-@@ -127,7 +127,7 @@ static int ath11k_core_parse_bd_ie_board(struct ath11k_base *sc,
- 
- 		switch (board_ie_id) {
- 		case ATH11K_BD_IE_BOARD_NAME:
--			ath11k_dbg_dump(sc, ATH11K_DBG_BOOT, "board name", "",
-+			ath11k_dbg_dump(ab, ATH11K_DBG_BOOT, "board name", "",
- 					board_ie_data, board_ie_len);
- 
- 			if (board_ie_len != strlen(boardname))
-@@ -138,7 +138,7 @@ static int ath11k_core_parse_bd_ie_board(struct ath11k_base *sc,
- 				break;
- 
- 			name_match_found = true;
--			ath11k_dbg(sc, ATH11K_DBG_BOOT,
-+			ath11k_dbg(ab, ATH11K_DBG_BOOT,
- 				   "boot found match for name '%s'",
- 				   boardname);
- 			break;
-@@ -147,7 +147,7 @@ static int ath11k_core_parse_bd_ie_board(struct ath11k_base *sc,
- 				/* no match found */
- 				break;
- 
--			ath11k_dbg(sc, ATH11K_DBG_BOOT,
-+			ath11k_dbg(ab, ATH11K_DBG_BOOT,
- 				   "boot found board data for '%s'", boardname);
- 
- 			bd->data = board_ie_data;
-@@ -156,7 +156,7 @@ static int ath11k_core_parse_bd_ie_board(struct ath11k_base *sc,
- 			ret = 0;
- 			goto out;
- 		default:
--			ath11k_warn(sc, "unknown ATH11K_BD_IE_BOARD found: %d\n",
-+			ath11k_warn(ab, "unknown ATH11K_BD_IE_BOARD found: %d\n",
- 				    board_ie_id);
- 			break;
- 		}
-@@ -175,7 +175,7 @@ static int ath11k_core_parse_bd_ie_board(struct ath11k_base *sc,
- 	return ret;
- }
- 
--static int ath11k_core_fetch_board_data_api_n(struct ath11k_base *sc,
-+static int ath11k_core_fetch_board_data_api_n(struct ath11k_base *ab,
- 					      struct ath11k_board_data *bd,
- 					      const char *boardname)
- {
-@@ -187,8 +187,8 @@ static int ath11k_core_fetch_board_data_api_n(struct ath11k_base *sc,
- 	int ret, ie_id;
- 
- 	if (!bd->fw)
--		bd->fw = ath11k_fetch_fw_file(sc,
--					      sc->hw_params.fw.dir,
-+		bd->fw = ath11k_fetch_fw_file(ab,
-+					      ab->hw_params.fw.dir,
- 					      filename);
- 	if (IS_ERR(bd->fw))
- 		return PTR_ERR(bd->fw);
-@@ -199,14 +199,14 @@ static int ath11k_core_fetch_board_data_api_n(struct ath11k_base *sc,
- 	/* magic has extra null byte padded */
- 	magic_len = strlen(ATH11K_BOARD_MAGIC) + 1;
- 	if (len < magic_len) {
--		ath11k_err(sc, "failed to find magic value in %s/%s, file too short: %zu\n",
--			   sc->hw_params.fw.dir, filename, len);
-+		ath11k_err(ab, "failed to find magic value in %s/%s, file too short: %zu\n",
-+			   ab->hw_params.fw.dir, filename, len);
- 		ret = -EINVAL;
- 		goto err;
- 	}
- 
- 	if (memcmp(data, ATH11K_BOARD_MAGIC, magic_len)) {
--		ath11k_err(sc, "found invalid board magic\n");
-+		ath11k_err(ab, "found invalid board magic\n");
- 		ret = -EINVAL;
- 		goto err;
- 	}
-@@ -214,8 +214,8 @@ static int ath11k_core_fetch_board_data_api_n(struct ath11k_base *sc,
- 	/* magic is padded to 4 bytes */
- 	magic_len = ALIGN(magic_len, 4);
- 	if (len < magic_len) {
--		ath11k_err(sc, "failed: %s/%s too small to contain board data, len: %zu\n",
--			   sc->hw_params.fw.dir, filename, len);
-+		ath11k_err(ab, "failed: %s/%s too small to contain board data, len: %zu\n",
-+			   ab->hw_params.fw.dir, filename, len);
- 		ret = -EINVAL;
- 		goto err;
- 	}
-@@ -232,14 +232,14 @@ static int ath11k_core_fetch_board_data_api_n(struct ath11k_base *sc,
- 		data = hdr->data;
- 
- 		if (len < ALIGN(ie_len, 4)) {
--			ath11k_err(sc, "invalid length for board ie_id %d ie_len %zu len %zu\n",
-+			ath11k_err(ab, "invalid length for board ie_id %d ie_len %zu len %zu\n",
- 				   ie_id, ie_len, len);
- 			return -EINVAL;
- 		}
- 
- 		switch (ie_id) {
- 		case ATH11K_BD_IE_BOARD:
--			ret = ath11k_core_parse_bd_ie_board(sc, bd, data,
-+			ret = ath11k_core_parse_bd_ie_board(ab, bd, data,
- 							    ie_len,
- 							    boardname,
- 							    ATH11K_BD_IE_BOARD);
-@@ -262,9 +262,9 @@ static int ath11k_core_fetch_board_data_api_n(struct ath11k_base *sc,
- 
- out:
- 	if (!bd->data || !bd->len) {
--		ath11k_err(sc,
-+		ath11k_err(ab,
- 			   "failed to fetch board data for %s from %s/%s\n",
--			   boardname, sc->hw_params.fw.dir, filename);
-+			   boardname, ab->hw_params.fw.dir, filename);
- 		ret = -ENODATA;
- 		goto err;
- 	}
-@@ -272,15 +272,15 @@ static int ath11k_core_fetch_board_data_api_n(struct ath11k_base *sc,
- 	return 0;
- 
- err:
--	ath11k_core_free_bdf(sc, bd);
-+	ath11k_core_free_bdf(ab, bd);
- 	return ret;
- }
- 
--static int ath11k_core_fetch_board_data_api_1(struct ath11k_base *sc,
-+static int ath11k_core_fetch_board_data_api_1(struct ath11k_base *ab,
- 					      struct ath11k_board_data *bd)
- {
--	bd->fw = ath11k_fetch_fw_file(sc,
--				      sc->hw_params.fw.dir,
-+	bd->fw = ath11k_fetch_fw_file(ab,
-+				      ab->hw_params.fw.dir,
- 				      ATH11K_DEFAULT_BOARD_FILE);
- 	if (IS_ERR(bd->fw))
- 		return PTR_ERR(bd->fw);
-@@ -292,192 +292,192 @@ static int ath11k_core_fetch_board_data_api_1(struct ath11k_base *sc,
- }
- 
- #define BOARD_NAME_SIZE 100
--int ath11k_core_fetch_bdf(struct ath11k_base *sc, struct ath11k_board_data *bd)
-+int ath11k_core_fetch_bdf(struct ath11k_base *ab, struct ath11k_board_data *bd)
- {
- 	char boardname[BOARD_NAME_SIZE];
- 	int ret;
- 
--	ret = ath11k_core_create_board_name(sc, boardname, BOARD_NAME_SIZE);
-+	ret = ath11k_core_create_board_name(ab, boardname, BOARD_NAME_SIZE);
- 	if (ret) {
--		ath11k_err(sc, "failed to create board name: %d", ret);
-+		ath11k_err(ab, "failed to create board name: %d", ret);
- 		return ret;
- 	}
- 
--	sc->bd_api = 2;
--	ret = ath11k_core_fetch_board_data_api_n(sc, bd, boardname);
-+	ab->bd_api = 2;
-+	ret = ath11k_core_fetch_board_data_api_n(ab, bd, boardname);
- 	if (!ret)
- 		goto success;
- 
--	sc->bd_api = 1;
--	ret = ath11k_core_fetch_board_data_api_1(sc, bd);
-+	ab->bd_api = 1;
-+	ret = ath11k_core_fetch_board_data_api_1(ab, bd);
- 	if (ret) {
--		ath11k_err(sc, "failed to fetch board-2.bin or board.bin from %s\n",
--			   sc->hw_params.fw.dir);
-+		ath11k_err(ab, "failed to fetch board-2.bin or board.bin from %s\n",
-+			   ab->hw_params.fw.dir);
- 		return ret;
- 	}
- 
- success:
--	ath11k_dbg(sc, ATH11K_DBG_BOOT, "using board api %d\n", sc->bd_api);
-+	ath11k_dbg(ab, ATH11K_DBG_BOOT, "using board api %d\n", ab->bd_api);
- 	return 0;
- }
- 
--static void ath11k_core_stop(struct ath11k_base *sc)
-+static void ath11k_core_stop(struct ath11k_base *ab)
- {
--	if (!test_bit(ATH11K_FLAG_CRASH_FLUSH, &sc->dev_flags))
--		ath11k_qmi_firmware_stop(sc);
--	ath11k_ahb_stop(sc);
--	ath11k_wmi_detach(sc);
-+	if (!test_bit(ATH11K_FLAG_CRASH_FLUSH, &ab->dev_flags))
-+		ath11k_qmi_firmware_stop(ab);
-+	ath11k_ahb_stop(ab);
-+	ath11k_wmi_detach(ab);
- 
- 	/* De-Init of components as needed */
- }
- 
--static int ath11k_core_soc_create(struct ath11k_base *sc)
-+static int ath11k_core_soc_create(struct ath11k_base *ab)
- {
- 	int ret;
- 
--	ret = ath11k_qmi_init_service(sc);
-+	ret = ath11k_qmi_init_service(ab);
- 	if (ret) {
--		ath11k_err(sc, "failed to initialize qmi :%d\n", ret);
-+		ath11k_err(ab, "failed to initialize qmi :%d\n", ret);
- 		return ret;
- 	}
- 
--	ret = ath11k_debug_soc_create(sc);
-+	ret = ath11k_debug_soc_create(ab);
- 	if (ret) {
--		ath11k_err(sc, "failed to create ath11k debugfs\n");
-+		ath11k_err(ab, "failed to create ath11k debugfs\n");
- 		goto err_qmi_deinit;
- 	}
- 
--	ret = ath11k_ahb_power_up(sc);
-+	ret = ath11k_ahb_power_up(ab);
- 	if (ret) {
--		ath11k_err(sc, "failed to power up :%d\n", ret);
-+		ath11k_err(ab, "failed to power up :%d\n", ret);
- 		goto err_debugfs_reg;
- 	}
- 
- 	return 0;
- 
- err_debugfs_reg:
--	ath11k_debug_soc_destroy(sc);
-+	ath11k_debug_soc_destroy(ab);
- err_qmi_deinit:
--	ath11k_qmi_deinit_service(sc);
-+	ath11k_qmi_deinit_service(ab);
- 	return ret;
- }
- 
--static void ath11k_core_soc_destroy(struct ath11k_base *sc)
-+static void ath11k_core_soc_destroy(struct ath11k_base *ab)
- {
--	ath11k_debug_soc_destroy(sc);
--	ath11k_dp_free(sc);
--	ath11k_reg_free(sc);
--	ath11k_qmi_deinit_service(sc);
-+	ath11k_debug_soc_destroy(ab);
-+	ath11k_dp_free(ab);
-+	ath11k_reg_free(ab);
-+	ath11k_qmi_deinit_service(ab);
- }
- 
--static int ath11k_core_pdev_create(struct ath11k_base *sc)
-+static int ath11k_core_pdev_create(struct ath11k_base *ab)
- {
- 	int ret;
- 
--	ret = ath11k_mac_create(sc);
-+	ret = ath11k_mac_create(ab);
- 	if (ret) {
--		ath11k_err(sc, "failed to create new hw device with mac80211 :%d\n",
-+		ath11k_err(ab, "failed to create new hw device with mac80211 :%d\n",
- 			   ret);
- 		return ret;
- 	}
- 
--	ret = ath11k_dp_pdev_alloc(sc);
-+	ret = ath11k_dp_pdev_alloc(ab);
- 	if (ret) {
--		ath11k_err(sc, "failed to attach DP pdev: %d\n", ret);
-+		ath11k_err(ab, "failed to attach DP pdev: %d\n", ret);
- 		goto err_mac_destroy;
- 	}
- 
- 	return 0;
- 
- err_mac_destroy:
--	ath11k_mac_destroy(sc);
-+	ath11k_mac_destroy(ab);
- 
- 	return ret;
- }
- 
--static void ath11k_core_pdev_destroy(struct ath11k_base *sc)
-+static void ath11k_core_pdev_destroy(struct ath11k_base *ab)
- {
--	ath11k_mac_unregister(sc);
--	ath11k_ahb_ext_irq_disable(sc);
--	ath11k_dp_pdev_free(sc);
-+	ath11k_mac_unregister(ab);
-+	ath11k_ahb_ext_irq_disable(ab);
-+	ath11k_dp_pdev_free(ab);
- }
- 
--static int ath11k_core_start(struct ath11k_base *sc,
-+static int ath11k_core_start(struct ath11k_base *ab,
- 			     enum ath11k_firmware_mode mode)
- {
- 	int ret;
- 
--	ret = ath11k_qmi_firmware_start(sc, mode);
-+	ret = ath11k_qmi_firmware_start(ab, mode);
- 	if (ret) {
--		ath11k_err(sc, "failed to attach wmi: %d\n", ret);
-+		ath11k_err(ab, "failed to attach wmi: %d\n", ret);
- 		return ret;
- 	}
- 
--	ret = ath11k_wmi_attach(sc);
-+	ret = ath11k_wmi_attach(ab);
- 	if (ret) {
--		ath11k_err(sc, "failed to attach wmi: %d\n", ret);
-+		ath11k_err(ab, "failed to attach wmi: %d\n", ret);
- 		goto err_firmware_stop;
- 	}
- 
--	ret = ath11k_htc_init(sc);
-+	ret = ath11k_htc_init(ab);
- 	if (ret) {
--		ath11k_err(sc, "failed to init htc: %d\n", ret);
-+		ath11k_err(ab, "failed to init htc: %d\n", ret);
- 		goto err_wmi_detach;
- 	}
- 
--	ret = ath11k_ahb_start(sc);
-+	ret = ath11k_ahb_start(ab);
- 	if (ret) {
--		ath11k_err(sc, "failed to start HIF: %d\n", ret);
-+		ath11k_err(ab, "failed to start HIF: %d\n", ret);
- 		goto err_wmi_detach;
- 	}
- 
--	ret = ath11k_htc_wait_target(&sc->htc);
-+	ret = ath11k_htc_wait_target(&ab->htc);
- 	if (ret) {
--		ath11k_err(sc, "failed to connect to HTC: %d\n", ret);
-+		ath11k_err(ab, "failed to connect to HTC: %d\n", ret);
- 		goto err_hif_stop;
- 	}
- 
--	ret = ath11k_dp_htt_connect(&sc->dp);
-+	ret = ath11k_dp_htt_connect(&ab->dp);
- 	if (ret) {
--		ath11k_err(sc, "failed to connect to HTT: %d\n", ret);
-+		ath11k_err(ab, "failed to connect to HTT: %d\n", ret);
- 		goto err_hif_stop;
- 	}
- 
--	ret = ath11k_wmi_connect(sc);
-+	ret = ath11k_wmi_connect(ab);
- 	if (ret) {
--		ath11k_err(sc, "failed to connect wmi: %d\n", ret);
-+		ath11k_err(ab, "failed to connect wmi: %d\n", ret);
- 		goto err_hif_stop;
- 	}
- 
--	ret = ath11k_htc_start(&sc->htc);
-+	ret = ath11k_htc_start(&ab->htc);
- 	if (ret) {
--		ath11k_err(sc, "failed to start HTC: %d\n", ret);
-+		ath11k_err(ab, "failed to start HTC: %d\n", ret);
- 		goto err_hif_stop;
- 	}
- 
--	ret = ath11k_wmi_wait_for_service_ready(sc);
-+	ret = ath11k_wmi_wait_for_service_ready(ab);
- 	if (ret) {
--		ath11k_err(sc, "failed to receive wmi service ready event: %d\n",
-+		ath11k_err(ab, "failed to receive wmi service ready event: %d\n",
- 			   ret);
- 		goto err_hif_stop;
- 	}
- 
--	ret = ath11k_wmi_cmd_init(sc);
-+	ret = ath11k_wmi_cmd_init(ab);
- 	if (ret) {
--		ath11k_err(sc, "failed to send wmi init cmd: %d\n", ret);
-+		ath11k_err(ab, "failed to send wmi init cmd: %d\n", ret);
- 		goto err_hif_stop;
- 	}
- 
--	ret = ath11k_wmi_wait_for_unified_ready(sc);
-+	ret = ath11k_wmi_wait_for_unified_ready(ab);
- 	if (ret) {
--		ath11k_err(sc, "failed to receive wmi unified ready event: %d\n",
-+		ath11k_err(ab, "failed to receive wmi unified ready event: %d\n",
- 			   ret);
- 		goto err_hif_stop;
- 	}
- 
--	ret = ath11k_dp_tx_htt_h2t_ver_req_msg(sc);
-+	ret = ath11k_dp_tx_htt_h2t_ver_req_msg(ab);
- 	if (ret) {
--		ath11k_err(sc, "failed to send htt version request message: %d\n",
-+		ath11k_err(ab, "failed to send htt version request message: %d\n",
- 			   ret);
- 		goto err_hif_stop;
- 	}
-@@ -485,11 +485,11 @@ static int ath11k_core_start(struct ath11k_base *sc,
- 	return 0;
- 
- err_hif_stop:
--	ath11k_ahb_stop(sc);
-+	ath11k_ahb_stop(ab);
- err_wmi_detach:
--	ath11k_wmi_detach(sc);
-+	ath11k_wmi_detach(ab);
- err_firmware_stop:
--	ath11k_qmi_firmware_stop(sc);
-+	ath11k_qmi_firmware_stop(ab);
- 
- 	return ret;
- }
-@@ -534,44 +534,44 @@ int ath11k_core_qmi_firmware_ready(struct ath11k_base *ab)
- 	return ret;
- }
- 
--static int ath11k_core_reconfigure_on_crash(struct ath11k_base *sc)
-+static int ath11k_core_reconfigure_on_crash(struct ath11k_base *ab)
- {
- 	int ret;
- 
--	mutex_lock(&sc->core_lock);
--	ath11k_ahb_ext_irq_disable(sc);
--	ath11k_dp_pdev_free(sc);
--	ath11k_ahb_stop(sc);
--	ath11k_wmi_detach(sc);
--	mutex_unlock(&sc->core_lock);
-+	mutex_lock(&ab->core_lock);
-+	ath11k_ahb_ext_irq_disable(ab);
-+	ath11k_dp_pdev_free(ab);
-+	ath11k_ahb_stop(ab);
-+	ath11k_wmi_detach(ab);
-+	mutex_unlock(&ab->core_lock);
- 
--	ath11k_dp_free(sc);
--	ath11k_hal_srng_deinit(sc);
-+	ath11k_dp_free(ab);
-+	ath11k_hal_srng_deinit(ab);
- 
--	sc->free_vdev_map = (1LL << (sc->num_radios * TARGET_NUM_VDEVS)) - 1;
-+	ab->free_vdev_map = (1LL << (ab->num_radios * TARGET_NUM_VDEVS)) - 1;
- 
--	ret = ath11k_hal_srng_init(sc);
-+	ret = ath11k_hal_srng_init(ab);
- 	if (ret)
- 		return ret;
- 
--	clear_bit(ATH11K_FLAG_CRASH_FLUSH, &sc->dev_flags);
-+	clear_bit(ATH11K_FLAG_CRASH_FLUSH, &ab->dev_flags);
- 
--	ret = ath11k_core_qmi_firmware_ready(sc);
-+	ret = ath11k_core_qmi_firmware_ready(ab);
- 	if (ret)
- 		goto err_hal_srng_deinit;
- 
--	clear_bit(ATH11K_FLAG_RECOVERY, &sc->dev_flags);
-+	clear_bit(ATH11K_FLAG_RECOVERY, &ab->dev_flags);
- 
- 	return 0;
- 
- err_hal_srng_deinit:
--	ath11k_hal_srng_deinit(sc);
-+	ath11k_hal_srng_deinit(ab);
- 	return ret;
- }
- 
- void ath11k_core_halt(struct ath11k *ar)
- {
--	struct ath11k_base *sc = ar->ab;
-+	struct ath11k_base *ab = ar->ab;
- 
- 	lockdep_assert_held(&ar->conf_mutex);
- 
-@@ -582,7 +582,7 @@ void ath11k_core_halt(struct ath11k *ar)
- 	cancel_delayed_work_sync(&ar->scan.timeout);
- 	cancel_work_sync(&ar->regd_update_work);
- 
--	rcu_assign_pointer(sc->pdevs_active[ar->pdev_idx], NULL);
-+	rcu_assign_pointer(ab->pdevs_active[ar->pdev_idx], NULL);
- 	synchronize_rcu();
- 	INIT_LIST_HEAD(&ar->arvifs);
- 	idr_init(&ar->txmgmt_idr);
-@@ -590,17 +590,17 @@ void ath11k_core_halt(struct ath11k *ar)
- 
- static void ath11k_core_restart(struct work_struct *work)
- {
--	struct ath11k_base *sc = container_of(work, struct ath11k_base, restart_work);
-+	struct ath11k_base *ab = container_of(work, struct ath11k_base, restart_work);
- 	struct ath11k *ar;
- 	struct ath11k_pdev *pdev;
- 	int i, ret = 0;
- 
--	spin_lock_bh(&sc->base_lock);
--	sc->stats.fw_crash_counter++;
--	spin_unlock_bh(&sc->base_lock);
-+	spin_lock_bh(&ab->base_lock);
-+	ab->stats.fw_crash_counter++;
-+	spin_unlock_bh(&ab->base_lock);
- 
--	for (i = 0; i < sc->num_radios; i++) {
--		pdev = &sc->pdevs[i];
-+	for (i = 0; i < ab->num_radios; i++) {
-+		pdev = &ab->pdevs[i];
- 		ar = pdev->ar;
- 		if (!ar || ar->state == ATH11K_STATE_OFF)
- 			continue;
-@@ -620,17 +620,17 @@ static void ath11k_core_restart(struct work_struct *work)
- 		idr_destroy(&ar->txmgmt_idr);
- 	}
- 
--	wake_up(&sc->wmi_sc.tx_credits_wq);
--	wake_up(&sc->peer_mapping_wq);
-+	wake_up(&ab->wmi_sc.tx_credits_wq);
-+	wake_up(&ab->peer_mapping_wq);
- 
--	ret = ath11k_core_reconfigure_on_crash(sc);
-+	ret = ath11k_core_reconfigure_on_crash(ab);
- 	if (ret) {
--		ath11k_err(sc, "failed to reconfigure driver on crash recovery\n");
-+		ath11k_err(ab, "failed to reconfigure driver on crash recovery\n");
+-	struct ath11k_hal *hal = &sc->hal;
++	struct ath11k_hal *hal = &ab->hal;
+ 	size_t size;
+ 
+ 	if (!hal->rdp.vaddr)
  		return;
- 	}
  
--	for (i = 0; i < sc->num_radios; i++) {
--		pdev = &sc->pdevs[i];
-+	for (i = 0; i < ab->num_radios; i++) {
-+		pdev = &ab->pdevs[i];
- 		ar = pdev->ar;
- 		if (!ar || ar->state == ATH11K_STATE_OFF)
- 			continue;
-@@ -644,7 +644,7 @@ static void ath11k_core_restart(struct work_struct *work)
- 			ieee80211_restart_hw(ar->hw);
- 			break;
- 		case ATH11K_STATE_OFF:
--			ath11k_warn(sc,
-+			ath11k_warn(ab,
- 				    "cannot restart radio %d that hasn't been started\n",
- 				    i);
- 			break;
-@@ -654,91 +654,91 @@ static void ath11k_core_restart(struct work_struct *work)
- 			ar->state = ATH11K_STATE_WEDGED;
- 			/* fall through */
- 		case ATH11K_STATE_WEDGED:
--			ath11k_warn(sc,
-+			ath11k_warn(ab,
- 				    "device is wedged, will not restart radio %d\n", i);
- 			break;
- 		}
- 		mutex_unlock(&ar->conf_mutex);
- 	}
--	complete(&sc->driver_recovery);
-+	complete(&ab->driver_recovery);
+ 	size = sizeof(u32) * HAL_SRNG_RING_ID_MAX;
+-	dma_free_coherent(sc->dev, size,
++	dma_free_coherent(ab->dev, size,
+ 			  hal->rdp.vaddr, hal->rdp.paddr);
+ 	hal->rdp.vaddr = NULL;
  }
  
--int ath11k_core_init(struct ath11k_base *sc)
-+int ath11k_core_init(struct ath11k_base *ab)
+-static int ath11k_hal_alloc_cont_wrp(struct ath11k_base *sc)
++static int ath11k_hal_alloc_cont_wrp(struct ath11k_base *ab)
  {
--	struct device *dev = sc->dev;
-+	struct device *dev = ab->dev;
- 	struct rproc *prproc;
- 	phandle rproc_phandle;
- 	int ret;
+-	struct ath11k_hal *hal = &sc->hal;
++	struct ath11k_hal *hal = &ab->hal;
+ 	size_t size;
  
- 	if (of_property_read_u32(dev->of_node, "qcom,rproc", &rproc_phandle)) {
--		ath11k_err(sc, "failed to get q6_rproc handle\n");
-+		ath11k_err(ab, "failed to get q6_rproc handle\n");
- 		return -ENOENT;
+ 	size = sizeof(u32) * HAL_SRNG_NUM_LMAC_RINGS;
+-	hal->wrp.vaddr = dma_alloc_coherent(sc->dev, size, &hal->wrp.paddr,
++	hal->wrp.vaddr = dma_alloc_coherent(ab->dev, size, &hal->wrp.paddr,
+ 					    GFP_KERNEL);
+ 	if (!hal->wrp.vaddr)
+ 		return -ENOMEM;
+@@ -327,21 +327,21 @@ static int ath11k_hal_alloc_cont_wrp(struct ath11k_base *sc)
+ 	return 0;
+ }
+ 
+-static void ath11k_hal_free_cont_wrp(struct ath11k_base *sc)
++static void ath11k_hal_free_cont_wrp(struct ath11k_base *ab)
+ {
+-	struct ath11k_hal *hal = &sc->hal;
++	struct ath11k_hal *hal = &ab->hal;
+ 	size_t size;
+ 
+ 	if (!hal->wrp.vaddr)
+ 		return;
+ 
+ 	size = sizeof(u32) * HAL_SRNG_NUM_LMAC_RINGS;
+-	dma_free_coherent(sc->dev, size,
++	dma_free_coherent(ab->dev, size,
+ 			  hal->wrp.vaddr, hal->wrp.paddr);
+ 	hal->wrp.vaddr = NULL;
+ }
+ 
+-static void ath11k_hal_ce_dst_setup(struct ath11k_base *sc,
++static void ath11k_hal_ce_dst_setup(struct ath11k_base *ab,
+ 				    struct hal_srng *srng, int ring_num)
+ {
+ 	const struct hal_srng_config *srng_config = &hw_srng_config[HAL_CE_DST];
+@@ -351,17 +351,17 @@ static void ath11k_hal_ce_dst_setup(struct ath11k_base *sc,
+ 	addr = HAL_CE_DST_RING_CTRL +
+ 	       srng_config->reg_start[HAL_SRNG_REG_GRP_R0] +
+ 	       ring_num * srng_config->reg_size[HAL_SRNG_REG_GRP_R0];
+-	val = ath11k_ahb_read32(sc, addr);
++	val = ath11k_ahb_read32(ab, addr);
+ 	val &= ~HAL_CE_DST_R0_DEST_CTRL_MAX_LEN;
+ 	val |= FIELD_PREP(HAL_CE_DST_R0_DEST_CTRL_MAX_LEN,
+ 			  srng->u.dst_ring.max_buffer_length);
+-	ath11k_ahb_write32(sc, addr, val);
++	ath11k_ahb_write32(ab, addr, val);
+ }
+ 
+-static void ath11k_hal_srng_dst_hw_init(struct ath11k_base *sc,
++static void ath11k_hal_srng_dst_hw_init(struct ath11k_base *ab,
+ 					struct hal_srng *srng)
+ {
+-	struct ath11k_hal *hal = &sc->hal;
++	struct ath11k_hal *hal = &ab->hal;
+ 	u32 val;
+ 	u64 hp_addr;
+ 	u32 reg_base;
+@@ -369,7 +369,7 @@ static void ath11k_hal_srng_dst_hw_init(struct ath11k_base *sc,
+ 	reg_base = srng->hwreg_base[HAL_SRNG_REG_GRP_R0];
+ 
+ 	if (srng->flags & HAL_SRNG_FLAGS_MSI_INTR) {
+-		ath11k_ahb_write32(sc, reg_base +
++		ath11k_ahb_write32(ab, reg_base +
+ 				       HAL_REO1_RING_MSI1_BASE_LSB_OFFSET,
+ 				   (u32)srng->msi_addr);
+ 
+@@ -377,26 +377,26 @@ static void ath11k_hal_srng_dst_hw_init(struct ath11k_base *sc,
+ 				 ((u64)srng->msi_addr >>
+ 				  HAL_ADDR_MSB_REG_SHIFT)) |
+ 		      HAL_REO1_RING_MSI1_BASE_MSB_MSI1_ENABLE;
+-		ath11k_ahb_write32(sc, reg_base +
++		ath11k_ahb_write32(ab, reg_base +
+ 				       HAL_REO1_RING_MSI1_BASE_MSB_OFFSET, val);
+ 
+-		ath11k_ahb_write32(sc,
++		ath11k_ahb_write32(ab,
+ 				   reg_base + HAL_REO1_RING_MSI1_DATA_OFFSET,
+ 				   srng->msi_data);
  	}
  
- 	prproc = rproc_get_by_phandle(rproc_phandle);
- 	if (!prproc) {
--		ath11k_err(sc, "failed to get rproc\n");
-+		ath11k_err(ab, "failed to get rproc\n");
+-	ath11k_ahb_write32(sc, reg_base, (u32)srng->ring_base_paddr);
++	ath11k_ahb_write32(ab, reg_base, (u32)srng->ring_base_paddr);
+ 
+ 	val = FIELD_PREP(HAL_REO1_RING_BASE_MSB_RING_BASE_ADDR_MSB,
+ 			 ((u64)srng->ring_base_paddr >>
+ 			  HAL_ADDR_MSB_REG_SHIFT)) |
+ 	      FIELD_PREP(HAL_REO1_RING_BASE_MSB_RING_SIZE,
+ 			 (srng->entry_size * srng->num_entries));
+-	ath11k_ahb_write32(sc, reg_base + HAL_REO1_RING_BASE_MSB_OFFSET, val);
++	ath11k_ahb_write32(ab, reg_base + HAL_REO1_RING_BASE_MSB_OFFSET, val);
+ 
+ 	val = FIELD_PREP(HAL_REO1_RING_ID_RING_ID, srng->ring_id) |
+ 	      FIELD_PREP(HAL_REO1_RING_ID_ENTRY_SIZE, srng->entry_size);
+-	ath11k_ahb_write32(sc, reg_base + HAL_REO1_RING_ID_OFFSET, val);
++	ath11k_ahb_write32(ab, reg_base + HAL_REO1_RING_ID_OFFSET, val);
+ 
+ 	/* interrupt setup */
+ 	val = FIELD_PREP(HAL_REO1_RING_PRDR_INT_SETUP_INTR_TMR_THOLD,
+@@ -406,22 +406,22 @@ static void ath11k_hal_srng_dst_hw_init(struct ath11k_base *sc,
+ 			  (srng->intr_batch_cntr_thres_entries *
+ 			   srng->entry_size));
+ 
+-	ath11k_ahb_write32(sc,
++	ath11k_ahb_write32(ab,
+ 			   reg_base + HAL_REO1_RING_PRODUCER_INT_SETUP_OFFSET,
+ 			   val);
+ 
+ 	hp_addr = hal->rdp.paddr +
+ 		  ((unsigned long)srng->u.dst_ring.hp_addr -
+ 		   (unsigned long)hal->rdp.vaddr);
+-	ath11k_ahb_write32(sc, reg_base + HAL_REO1_RING_HP_ADDR_LSB_OFFSET,
++	ath11k_ahb_write32(ab, reg_base + HAL_REO1_RING_HP_ADDR_LSB_OFFSET,
+ 			   hp_addr & HAL_ADDR_LSB_REG_MASK);
+-	ath11k_ahb_write32(sc, reg_base + HAL_REO1_RING_HP_ADDR_MSB_OFFSET,
++	ath11k_ahb_write32(ab, reg_base + HAL_REO1_RING_HP_ADDR_MSB_OFFSET,
+ 			   hp_addr >> HAL_ADDR_MSB_REG_SHIFT);
+ 
+ 	/* Initialize head and tail pointers to indicate ring is empty */
+ 	reg_base = srng->hwreg_base[HAL_SRNG_REG_GRP_R2];
+-	ath11k_ahb_write32(sc, reg_base, 0);
+-	ath11k_ahb_write32(sc, reg_base + HAL_REO1_RING_TP_OFFSET, 0);
++	ath11k_ahb_write32(ab, reg_base, 0);
++	ath11k_ahb_write32(ab, reg_base + HAL_REO1_RING_TP_OFFSET, 0);
+ 	*srng->u.dst_ring.hp_addr = 0;
+ 
+ 	reg_base = srng->hwreg_base[HAL_SRNG_REG_GRP_R0];
+@@ -434,13 +434,13 @@ static void ath11k_hal_srng_dst_hw_init(struct ath11k_base *sc,
+ 		val |= HAL_REO1_RING_MISC_MSI_SWAP;
+ 	val |= HAL_REO1_RING_MISC_SRNG_ENABLE;
+ 
+-	ath11k_ahb_write32(sc, reg_base + HAL_REO1_RING_MISC_OFFSET, val);
++	ath11k_ahb_write32(ab, reg_base + HAL_REO1_RING_MISC_OFFSET, val);
+ }
+ 
+-static void ath11k_hal_srng_src_hw_init(struct ath11k_base *sc,
++static void ath11k_hal_srng_src_hw_init(struct ath11k_base *ab,
+ 					struct hal_srng *srng)
+ {
+-	struct ath11k_hal *hal = &sc->hal;
++	struct ath11k_hal *hal = &ab->hal;
+ 	u32 val;
+ 	u64 tp_addr;
+ 	u32 reg_base;
+@@ -448,7 +448,7 @@ static void ath11k_hal_srng_src_hw_init(struct ath11k_base *sc,
+ 	reg_base = srng->hwreg_base[HAL_SRNG_REG_GRP_R0];
+ 
+ 	if (srng->flags & HAL_SRNG_FLAGS_MSI_INTR) {
+-		ath11k_ahb_write32(sc, reg_base +
++		ath11k_ahb_write32(ab, reg_base +
+ 				       HAL_TCL1_RING_MSI1_BASE_LSB_OFFSET,
+ 				   (u32)srng->msi_addr);
+ 
+@@ -456,26 +456,26 @@ static void ath11k_hal_srng_src_hw_init(struct ath11k_base *sc,
+ 				 ((u64)srng->msi_addr >>
+ 				  HAL_ADDR_MSB_REG_SHIFT)) |
+ 		      HAL_TCL1_RING_MSI1_BASE_MSB_MSI1_ENABLE;
+-		ath11k_ahb_write32(sc, reg_base +
++		ath11k_ahb_write32(ab, reg_base +
+ 				       HAL_TCL1_RING_MSI1_BASE_MSB_OFFSET,
+ 				   val);
+ 
+-		ath11k_ahb_write32(sc, reg_base +
++		ath11k_ahb_write32(ab, reg_base +
+ 				       HAL_TCL1_RING_MSI1_DATA_OFFSET,
+ 				   srng->msi_data);
+ 	}
+ 
+-	ath11k_ahb_write32(sc, reg_base, (u32)srng->ring_base_paddr);
++	ath11k_ahb_write32(ab, reg_base, (u32)srng->ring_base_paddr);
+ 
+ 	val = FIELD_PREP(HAL_TCL1_RING_BASE_MSB_RING_BASE_ADDR_MSB,
+ 			 ((u64)srng->ring_base_paddr >>
+ 			  HAL_ADDR_MSB_REG_SHIFT)) |
+ 	      FIELD_PREP(HAL_TCL1_RING_BASE_MSB_RING_SIZE,
+ 			 (srng->entry_size * srng->num_entries));
+-	ath11k_ahb_write32(sc, reg_base + HAL_TCL1_RING_BASE_MSB_OFFSET, val);
++	ath11k_ahb_write32(ab, reg_base + HAL_TCL1_RING_BASE_MSB_OFFSET, val);
+ 
+ 	val = FIELD_PREP(HAL_REO1_RING_ID_ENTRY_SIZE, srng->entry_size);
+-	ath11k_ahb_write32(sc, reg_base + HAL_TCL1_RING_ID_OFFSET, val);
++	ath11k_ahb_write32(ab, reg_base + HAL_TCL1_RING_ID_OFFSET, val);
+ 
+ 	/* interrupt setup */
+ 	/* NOTE: IPQ8074 v2 requires the interrupt timer threshold in the
+@@ -488,7 +488,7 @@ static void ath11k_hal_srng_src_hw_init(struct ath11k_base *sc,
+ 			  (srng->intr_batch_cntr_thres_entries *
+ 			   srng->entry_size));
+ 
+-	ath11k_ahb_write32(sc,
++	ath11k_ahb_write32(ab,
+ 			   reg_base + HAL_TCL1_RING_CONSR_INT_SETUP_IX0_OFFSET,
+ 			   val);
+ 
+@@ -497,7 +497,7 @@ static void ath11k_hal_srng_src_hw_init(struct ath11k_base *sc,
+ 		val |= FIELD_PREP(HAL_TCL1_RING_CONSR_INT_SETUP_IX1_LOW_THOLD,
+ 				  srng->u.src_ring.low_threshold);
+ 	}
+-	ath11k_ahb_write32(sc,
++	ath11k_ahb_write32(ab,
+ 			   reg_base + HAL_TCL1_RING_CONSR_INT_SETUP_IX1_OFFSET,
+ 			   val);
+ 
+@@ -505,18 +505,18 @@ static void ath11k_hal_srng_src_hw_init(struct ath11k_base *sc,
+ 		tp_addr = hal->rdp.paddr +
+ 			  ((unsigned long)srng->u.src_ring.tp_addr -
+ 			   (unsigned long)hal->rdp.vaddr);
+-		ath11k_ahb_write32(sc,
++		ath11k_ahb_write32(ab,
+ 				   reg_base + HAL_TCL1_RING_TP_ADDR_LSB_OFFSET,
+ 				   tp_addr & HAL_ADDR_LSB_REG_MASK);
+-		ath11k_ahb_write32(sc,
++		ath11k_ahb_write32(ab,
+ 				   reg_base + HAL_TCL1_RING_TP_ADDR_MSB_OFFSET,
+ 				   tp_addr >> HAL_ADDR_MSB_REG_SHIFT);
+ 	}
+ 
+ 	/* Initialize head and tail pointers to indicate ring is empty */
+ 	reg_base = srng->hwreg_base[HAL_SRNG_REG_GRP_R2];
+-	ath11k_ahb_write32(sc, reg_base, 0);
+-	ath11k_ahb_write32(sc, reg_base + HAL_TCL1_RING_TP_OFFSET, 0);
++	ath11k_ahb_write32(ab, reg_base, 0);
++	ath11k_ahb_write32(ab, reg_base + HAL_TCL1_RING_TP_OFFSET, 0);
+ 	*srng->u.src_ring.tp_addr = 0;
+ 
+ 	reg_base = srng->hwreg_base[HAL_SRNG_REG_GRP_R0];
+@@ -533,19 +533,19 @@ static void ath11k_hal_srng_src_hw_init(struct ath11k_base *sc,
+ 
+ 	val |= HAL_TCL1_RING_MISC_SRNG_ENABLE;
+ 
+-	ath11k_ahb_write32(sc, reg_base + HAL_TCL1_RING_MISC_OFFSET, val);
++	ath11k_ahb_write32(ab, reg_base + HAL_TCL1_RING_MISC_OFFSET, val);
+ }
+ 
+-static void ath11k_hal_srng_hw_init(struct ath11k_base *sc,
++static void ath11k_hal_srng_hw_init(struct ath11k_base *ab,
+ 				    struct hal_srng *srng)
+ {
+ 	if (srng->ring_dir == HAL_SRNG_DIR_SRC)
+-		ath11k_hal_srng_src_hw_init(sc, srng);
++		ath11k_hal_srng_src_hw_init(ab, srng);
+ 	else
+-		ath11k_hal_srng_dst_hw_init(sc, srng);
++		ath11k_hal_srng_dst_hw_init(ab, srng);
+ }
+ 
+-static int ath11k_hal_srng_get_ring_id(struct ath11k_base *sc,
++static int ath11k_hal_srng_get_ring_id(struct ath11k_base *ab,
+ 				       enum hal_ring_type type,
+ 				       int ring_num, int mac_id)
+ {
+@@ -553,7 +553,7 @@ static int ath11k_hal_srng_get_ring_id(struct ath11k_base *sc,
+ 	int ring_id;
+ 
+ 	if (ring_num >= srng_config->max_rings) {
+-		ath11k_warn(sc, "invalid ring number :%d\n", ring_num);
++		ath11k_warn(ab, "invalid ring number :%d\n", ring_num);
  		return -EINVAL;
  	}
--	sc->tgt_rproc = prproc;
--	sc->hw_params = ath11k_hw_params;
-+	ab->tgt_rproc = prproc;
-+	ab->hw_params = ath11k_hw_params;
  
--	ret = ath11k_core_soc_create(sc);
-+	ret = ath11k_core_soc_create(ab);
- 	if (ret) {
--		ath11k_err(sc, "failed to create soc core: %d\n", ret);
-+		ath11k_err(ab, "failed to create soc core: %d\n", ret);
- 		return ret;
+@@ -806,7 +806,7 @@ u32 *ath11k_hal_srng_src_get_next_entry(struct ath11k_base *ab,
+ 	return desc;
+ }
+ 
+-u32 *ath11k_hal_srng_src_reap_next(struct ath11k_base *sc,
++u32 *ath11k_hal_srng_src_reap_next(struct ath11k_base *ab,
+ 				   struct hal_srng *srng)
+ {
+ 	u32 *desc;
+@@ -826,7 +826,7 @@ u32 *ath11k_hal_srng_src_reap_next(struct ath11k_base *sc,
+ 	return desc;
+ }
+ 
+-u32 *ath11k_hal_srng_src_get_next_reaped(struct ath11k_base *sc,
++u32 *ath11k_hal_srng_src_get_next_reaped(struct ath11k_base *ab,
+ 					 struct hal_srng *srng)
+ {
+ 	u32 *desc;
+@@ -843,7 +843,7 @@ u32 *ath11k_hal_srng_src_get_next_reaped(struct ath11k_base *sc,
+ 	return desc;
+ }
+ 
+-u32 *ath11k_hal_srng_src_peek(struct ath11k_base *sc, struct hal_srng *srng)
++u32 *ath11k_hal_srng_src_peek(struct ath11k_base *ab, struct hal_srng *srng)
+ {
+ 	lockdep_assert_held(&srng->lock);
+ 
+@@ -988,11 +988,11 @@ void ath11k_hal_setup_link_idle_list(struct ath11k_base *ab,
+ 			   HAL_WBM_IDLE_LINK_RING_MISC_ADDR, 0x40);
+ }
+ 
+-int ath11k_hal_srng_setup(struct ath11k_base *sc, enum hal_ring_type type,
++int ath11k_hal_srng_setup(struct ath11k_base *ab, enum hal_ring_type type,
+ 			  int ring_num, int mac_id,
+ 			  struct hal_srng_params *params)
+ {
+-	struct ath11k_hal *hal = &sc->hal;
++	struct ath11k_hal *hal = &ab->hal;
+ 	const struct hal_srng_config *srng_config = &hw_srng_config[type];
+ 	struct hal_srng *srng;
+ 	int ring_id;
+@@ -1000,7 +1000,7 @@ int ath11k_hal_srng_setup(struct ath11k_base *sc, enum hal_ring_type type,
+ 	int i;
+ 	u32 reg_base;
+ 
+-	ring_id = ath11k_hal_srng_get_ring_id(sc, type, ring_num, mac_id);
++	ring_id = ath11k_hal_srng_get_ring_id(ab, type, ring_num, mac_id);
+ 	if (ring_id < 0)
+ 		return ring_id;
+ 
+@@ -1048,7 +1048,7 @@ int ath11k_hal_srng_setup(struct ath11k_base *sc, enum hal_ring_type type,
+ 			srng->flags |= HAL_SRNG_FLAGS_LMAC_RING;
+ 		} else {
+ 			srng->u.src_ring.hp_addr =
+-				(u32 *)((unsigned long)sc->mem + reg_base);
++				(u32 *)((unsigned long)ab->mem + reg_base);
+ 		}
+ 	} else {
+ 		/* During initialization loop count in all the descriptors
+@@ -1073,7 +1073,7 @@ int ath11k_hal_srng_setup(struct ath11k_base *sc, enum hal_ring_type type,
+ 			srng->flags |= HAL_SRNG_FLAGS_LMAC_RING;
+ 		} else {
+ 			srng->u.dst_ring.tp_addr =
+-				(u32 *)((unsigned long)sc->mem + reg_base +
++				(u32 *)((unsigned long)ab->mem + reg_base +
+ 					(HAL_REO1_RING_TP - HAL_REO1_RING_HP));
+ 		}
+ 	}
+@@ -1081,44 +1081,44 @@ int ath11k_hal_srng_setup(struct ath11k_base *sc, enum hal_ring_type type,
+ 	if (srng_config->lmac_ring)
+ 		return ring_id;
+ 
+-	ath11k_hal_srng_hw_init(sc, srng);
++	ath11k_hal_srng_hw_init(ab, srng);
+ 
+ 	if (type == HAL_CE_DST) {
+ 		srng->u.dst_ring.max_buffer_length = params->max_buffer_len;
+-		ath11k_hal_ce_dst_setup(sc, srng, ring_num);
++		ath11k_hal_ce_dst_setup(ab, srng, ring_num);
  	}
  
+ 	return ring_id;
+ }
+ 
+-int ath11k_hal_srng_init(struct ath11k_base *sc)
++int ath11k_hal_srng_init(struct ath11k_base *ab)
+ {
+-	struct ath11k_hal *hal = &sc->hal;
++	struct ath11k_hal *hal = &ab->hal;
+ 	int ret;
+ 
+ 	memset(hal, 0, sizeof(*hal));
+ 
+ 	hal->srng_config = hw_srng_config;
+ 
+-	ret = ath11k_hal_alloc_cont_rdp(sc);
++	ret = ath11k_hal_alloc_cont_rdp(ab);
+ 	if (ret)
+ 		goto err_hal;
+ 
+-	ret = ath11k_hal_alloc_cont_wrp(sc);
++	ret = ath11k_hal_alloc_cont_wrp(ab);
+ 	if (ret)
+ 		goto err_free_cont_rdp;
+ 
  	return 0;
+ 
+ err_free_cont_rdp:
+-	ath11k_hal_free_cont_rdp(sc);
++	ath11k_hal_free_cont_rdp(ab);
+ 
+ err_hal:
+ 	return ret;
  }
  
--void ath11k_core_deinit(struct ath11k_base *sc)
-+void ath11k_core_deinit(struct ath11k_base *ab)
+-void ath11k_hal_srng_deinit(struct ath11k_base *sc)
++void ath11k_hal_srng_deinit(struct ath11k_base *ab)
  {
--	mutex_lock(&sc->core_lock);
-+	mutex_lock(&ab->core_lock);
- 
--	ath11k_core_pdev_destroy(sc);
--	ath11k_core_stop(sc);
-+	ath11k_core_pdev_destroy(ab);
-+	ath11k_core_stop(ab);
- 
--	mutex_unlock(&sc->core_lock);
-+	mutex_unlock(&ab->core_lock);
- 
--	ath11k_ahb_power_down(sc);
--	ath11k_mac_destroy(sc);
--	ath11k_core_soc_destroy(sc);
-+	ath11k_ahb_power_down(ab);
-+	ath11k_mac_destroy(ab);
-+	ath11k_core_soc_destroy(ab);
+-	ath11k_hal_free_cont_rdp(sc);
+-	ath11k_hal_free_cont_wrp(sc);
++	ath11k_hal_free_cont_rdp(ab);
++	ath11k_hal_free_cont_wrp(ab);
  }
- 
--void ath11k_core_free(struct ath11k_base *sc)
-+void ath11k_core_free(struct ath11k_base *ab)
- {
--	kfree(sc);
-+	kfree(ab);
- }
- 
- struct ath11k_base *ath11k_core_alloc(struct device *dev)
- {
--	struct ath11k_base *sc;
-+	struct ath11k_base *ab;
- 
--	sc = kzalloc(sizeof(*sc), GFP_KERNEL);
--	if (!sc)
-+	ab = kzalloc(sizeof(*ab), GFP_KERNEL);
-+	if (!ab)
- 		return NULL;
- 
--	init_completion(&sc->driver_recovery);
-+	init_completion(&ab->driver_recovery);
- 
--	sc->workqueue = create_singlethread_workqueue("ath11k_wq");
--	if (!sc->workqueue)
-+	ab->workqueue = create_singlethread_workqueue("ath11k_wq");
-+	if (!ab->workqueue)
- 		goto err_sc_free;
- 
--	mutex_init(&sc->core_lock);
--	spin_lock_init(&sc->base_lock);
-+	mutex_init(&ab->core_lock);
-+	spin_lock_init(&ab->base_lock);
- 
--	INIT_LIST_HEAD(&sc->peers);
--	init_waitqueue_head(&sc->peer_mapping_wq);
--	init_waitqueue_head(&sc->wmi_sc.tx_credits_wq);
--	INIT_WORK(&sc->restart_work, ath11k_core_restart);
--	timer_setup(&sc->rx_replenish_retry, ath11k_ce_rx_replenish_retry, 0);
--	sc->dev = dev;
-+	INIT_LIST_HEAD(&ab->peers);
-+	init_waitqueue_head(&ab->peer_mapping_wq);
-+	init_waitqueue_head(&ab->wmi_sc.tx_credits_wq);
-+	INIT_WORK(&ab->restart_work, ath11k_core_restart);
-+	timer_setup(&ab->rx_replenish_retry, ath11k_ce_rx_replenish_retry, 0);
-+	ab->dev = dev;
- 
--	return sc;
-+	return ab;
- 
- err_sc_free:
--	kfree(sc);
-+	kfree(ab);
- 	return NULL;
- }
- 
 -- 
 2.21.0
 
