@@ -1,12 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hvi4Y-00082F-QL
- for ath11k@lists.infradead.org; Thu, 08 Aug 2019 13:03:16 +0000
+ id 1hvi4c-00084N-Np
+ for ath11k@lists.infradead.org; Thu, 08 Aug 2019 13:03:20 +0000
 From: Maharaja Kennadyrajan <mkenna@codeaurora.org>
-Subject: [PATCH 00/15] ath11k: Rename ath11k_base struct from 'sc' to 'ab
-Date: Thu,  8 Aug 2019 18:32:57 +0530
-Message-Id: <1565269392-2838-1-git-send-email-mkenna@codeaurora.org>
+Subject: [PATCH 05/15] ath11k: Rename ath11k_base struct from 'sc' to 'ab in
+ core.h
+Date: Thu,  8 Aug 2019 18:33:02 +0530
+Message-Id: <1565269392-2838-6-git-send-email-mkenna@codeaurora.org>
+In-Reply-To: <1565269392-2838-1-git-send-email-mkenna@codeaurora.org>
+References: <1565269392-2838-1-git-send-email-mkenna@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,47 +26,36 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: Maharaja Kennadyrajan <mkenna@codeaurora.org>
 
-Struct ath11k_base is represented as 'sc' and 'ab'.
-In order to avoid confusion and better readability,
-renamed the ath11k_base struct representation from
-'sc' to 'ab.
+To avoid confusion and better readability, renamed the
+ath11k_base struct from 'sc' to 'ab' in core.h file.
 
-No functional changes are made in this patchset.
+Signed-off-by: Maharaja Kennadyrajan <mkenna@codeaurora.org>
+---
+ drivers/net/wireless/ath/ath11k/core.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Maharaja Kennadyrajan (15):
-  ath11k: Rename ath11k_base struct from 'sc' to 'ab in ahb.c
-  ath11k: Rename ath11k_base struct from 'sc' to 'ab in ce.c
-  ath11k: Rename ath11k_base struct from 'sc' to 'ab in ce.h
-  ath11k: Rename ath11k_base struct from 'sc' to 'ab in core.c
-  ath11k: Rename ath11k_base struct from 'sc' to 'ab in core.h
-  ath11k: Rename ath11k_base struct from 'sc' to 'ab in debug.c
-  ath11k: Rename ath11k_base struct from 'sc' to 'ab in debug.h
-  ath11k: Rename ath11k_base struct from 'sc' to 'ab in dp.c
-  ath11k: Rename ath11k_base struct from 'sc' to 'ab in dp.h
-  ath11k: Rename ath11k_base struct from 'sc' to 'ab in dp_rx.c
-  ath11k: Rename ath11k_base struct from 'sc' to 'ab in hal.c
-  ath11k: Rename ath11k_base struct from 'sc' to 'ab in hal.h
-  ath11k: Rename ath11k_base struct from 'sc' to 'ab in qmi.h
-  ath11k: Rename ath11k_base struct from 'sc' to 'ab in wmi.c
-  ath11k: Rename ath11k_base struct from 'sc' to 'ab in wmi.h
-
- drivers/net/wireless/ath/ath11k/ahb.c   | 202 +++++++--------
- drivers/net/wireless/ath/ath11k/ce.c    |  96 +++----
- drivers/net/wireless/ath/ath11k/ce.h    |  10 +-
- drivers/net/wireless/ath/ath11k/core.c  | 328 ++++++++++++------------
- drivers/net/wireless/ath/ath11k/core.h  |   4 +-
- drivers/net/wireless/ath/ath11k/debug.c |  12 +-
- drivers/net/wireless/ath/ath11k/debug.h |  14 +-
- drivers/net/wireless/ath/ath11k/dp.c    |  40 +--
- drivers/net/wireless/ath/ath11k/dp.h    |   8 +-
- drivers/net/wireless/ath/ath11k/dp_rx.c |   6 +-
- drivers/net/wireless/ath/ath11k/hal.c   | 134 +++++-----
- drivers/net/wireless/ath/ath11k/hal.h   |   8 +-
- drivers/net/wireless/ath/ath11k/qmi.h   |   8 +-
- drivers/net/wireless/ath/ath11k/wmi.c   |  94 +++----
- drivers/net/wireless/ath/ath11k/wmi.h   |  16 +-
- 15 files changed, 490 insertions(+), 490 deletions(-)
-
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index 79134c4fb2e7..55c636e33367 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -104,7 +104,7 @@ extern const u8 ath11k_host2rxdma_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX];
+ extern const u8 rx_mon_status_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX];
+ 
+ struct ath11k_ext_irq_grp {
+-	struct ath11k_base *sc;
++	struct ath11k_base *ab;
+ 	u32 irqs[ATH11K_EXT_IRQ_NUM_MAX];
+ 	u32 num_irq;
+ 	u32 grp_id;
+@@ -783,7 +783,7 @@ struct ath11k_base *ath11k_core_alloc(struct device *dev);
+ void ath11k_core_free(struct ath11k_base *ath11k);
+ int ath11k_core_fetch_bdf(struct ath11k_base *ath11k,
+ 			  struct ath11k_board_data *bd);
+-void ath11k_core_free_bdf(struct ath11k_base *sc, struct ath11k_board_data *bd);
++void ath11k_core_free_bdf(struct ath11k_base *ab, struct ath11k_board_data *bd);
+ 
+ void ath11k_core_halt(struct ath11k *ar);
+ u8 ath11k_core_get_hw_mac_id(struct ath11k_base *ab, int pdev_idx);
 -- 
 2.21.0
 
