@@ -1,19 +1,19 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hw1Ar-0000jO-St
- for ath11k@lists.infradead.org; Fri, 09 Aug 2019 09:27:03 +0000
+ id 1hw1B0-0000oG-5U
+ for ath11k@lists.infradead.org; Fri, 09 Aug 2019 09:27:11 +0000
 Received: from [127.0.1.1] (88-114-240-156.elisa-laajakaista.fi
  [88.114.240.156])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
  (Authenticated sender: kvalo@smtp.codeaurora.org)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id EA7BF60CED
- for <ath11k@lists.infradead.org>; Fri,  9 Aug 2019 09:26:59 +0000 (UTC)
-Subject: [PATCH 07/15] ath11k: make static const in debugfs functions
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 3595160E40
+ for <ath11k@lists.infradead.org>; Fri,  9 Aug 2019 09:27:07 +0000 (UTC)
+Subject: [PATCH 08/15] ath11k: remove box comments
 From: Kalle Valo <kvalo@codeaurora.org>
-Date: Fri, 09 Aug 2019 12:26:57 +0300
-Message-ID: <156534281751.30736.1189769148851226685.stgit@x230>
+Date: Fri, 09 Aug 2019 12:27:06 +0300
+Message-ID: <156534282589.30736.16735947611604984953.stgit@x230>
 In-Reply-To: <156534276745.30736.11736417077894270794.stgit@x230>
 References: <156534276745.30736.11736417077894270794.stgit@x230>
 MIME-Version: 1.0
@@ -31,50 +31,66 @@ Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 
-This should save memory.
+They easily get outdated so better to remove them altogether.
 
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/debug.c       |    4 ++--
- drivers/net/wireless/ath/ath11k/debugfs_sta.c |    6 +++---
- 2 files changed, 5 insertions(+), 5 deletions(-)
+ drivers/net/wireless/ath/ath11k/htc.c |   12 ------------
+ drivers/net/wireless/ath/ath11k/mac.c |    4 ----
+ 2 files changed, 16 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/debug.c b/drivers/net/wireless/ath/ath11k/debug.c
-index 2e3798cd7e99..2ebdd8fd9e81 100644
---- a/drivers/net/wireless/ath/ath11k/debug.c
-+++ b/drivers/net/wireless/ath/ath11k/debug.c
-@@ -745,12 +745,12 @@ static ssize_t ath11k_debug_dump_soc_rx_stats(struct file *file,
- 	struct ath11k_soc_dp_rx_stats *soc_stats = &ab->soc_stats;
- 	int len = 0, i, retval;
- 	const int size = 4096;
--	const char *rxdma_err[HAL_REO_ENTR_RING_RXDMA_ECODE_MAX] = {
-+	static const char *rxdma_err[HAL_REO_ENTR_RING_RXDMA_ECODE_MAX] = {
- 			"Overflow", "MPDU len", "FCS", "Decrypt", "TKIP MIC",
- 			"Unencrypt", "MSDU len", "MSDU limit", "WiFi parse",
- 			"AMSDU parse", "SA timeout", "DA timeout",
- 			"Flow timeout", "Flush req"};
--	const char *reo_err[HAL_REO_DEST_RING_ERROR_CODE_MAX] = {
-+	static const char *reo_err[HAL_REO_DEST_RING_ERROR_CODE_MAX] = {
- 			"Desc addr zero", "Desc inval", "AMPDU in non BA",
- 			"Non BA dup", "BA dup", "Frame 2k jump", "BAR 2k jump",
- 			"Frame OOR", "BAR OOR", "No BA session",
-diff --git a/drivers/net/wireless/ath/ath11k/debugfs_sta.c b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-index 83d65ea96c67..2ca3bc47e502 100644
---- a/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-+++ b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-@@ -207,9 +207,9 @@ static ssize_t ath11k_dbg_sta_dump_tx_stats(struct file *file,
- 	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
- 	struct ath11k *ar = arsta->arvif->ar;
- 	struct ath11k_htt_data_stats *stats;
--	const char *str_name[ATH11K_STATS_TYPE_MAX] = {"succ", "fail",
--						       "retry", "ampdu"};
--	const char *str[ATH11K_COUNTER_TYPE_MAX] = {"bytes", "packets"};
-+	static const char *str_name[ATH11K_STATS_TYPE_MAX] = {"succ", "fail",
-+							      "retry", "ampdu"};
-+	static const char *str[ATH11K_COUNTER_TYPE_MAX] = {"bytes", "packets"};
- 	int len = 0, i, j, k, retval = 0;
- 	const int size = 2 * 4096;
- 	char *buf;
+diff --git a/drivers/net/wireless/ath/ath11k/htc.c b/drivers/net/wireless/ath/ath11k/htc.c
+index 8becedd006f8..fd8444f845a5 100644
+--- a/drivers/net/wireless/ath/ath11k/htc.c
++++ b/drivers/net/wireless/ath/ath11k/htc.c
+@@ -25,10 +25,6 @@ struct sk_buff *ath11k_htc_alloc_skb(struct ath11k_base *ab, int size)
+ 	return skb;
+ }
+ 
+-/********/
+-/* Send */
+-/********/
+-
+ static void ath11k_htc_control_tx_complete(struct ath11k_base *ab,
+ 					   struct sk_buff *skb)
+ {
+@@ -153,10 +149,6 @@ int ath11k_htc_send(struct ath11k_htc *htc,
+ 	return ret;
+ }
+ 
+-/***********/
+-/* Receive */
+-/***********/
+-
+ static void
+ ath11k_htc_process_credit_report(struct ath11k_htc *htc,
+ 				 const struct ath11k_htc_credit_report *report,
+@@ -375,10 +367,6 @@ static void ath11k_htc_control_rx_complete(struct ath11k_base *ab,
+ 	kfree_skb(skb);
+ }
+ 
+-/***************/
+-/* Init/Deinit */
+-/***************/
+-
+ static const char *htc_service_name(enum ath11k_htc_svc_id id)
+ {
+ 	switch (id) {
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index dc9f5f98f880..25c9104afc96 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -1774,10 +1774,6 @@ static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
+ 	mutex_unlock(&ar->conf_mutex);
+ }
+ 
+-/************/
+-/* Scanning */
+-/************/
+-
+ void __ath11k_mac_scan_finish(struct ath11k *ar)
+ {
+ 	lockdep_assert_held(&ar->data_lock);
 
 
 _______________________________________________
