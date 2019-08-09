@@ -1,19 +1,19 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hw1Aj-0000hl-J6
- for ath11k@lists.infradead.org; Fri, 09 Aug 2019 09:26:54 +0000
+ id 1hw1Ar-0000jO-St
+ for ath11k@lists.infradead.org; Fri, 09 Aug 2019 09:27:03 +0000
 Received: from [127.0.1.1] (88-114-240-156.elisa-laajakaista.fi
  [88.114.240.156])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
  (Authenticated sender: kvalo@smtp.codeaurora.org)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 9691C60C8B
- for <ath11k@lists.infradead.org>; Fri,  9 Aug 2019 09:26:51 +0000 (UTC)
-Subject: [PATCH 06/15] ath11k: random whitespace fixes
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id EA7BF60CED
+ for <ath11k@lists.infradead.org>; Fri,  9 Aug 2019 09:26:59 +0000 (UTC)
+Subject: [PATCH 07/15] ath11k: make static const in debugfs functions
 From: Kalle Valo <kvalo@codeaurora.org>
-Date: Fri, 09 Aug 2019 12:26:49 +0300
-Message-ID: <156534280882.30736.10489779348844331061.stgit@x230>
+Date: Fri, 09 Aug 2019 12:26:57 +0300
+Message-ID: <156534281751.30736.1189769148851226685.stgit@x230>
 In-Reply-To: <156534276745.30736.11736417077894270794.stgit@x230>
 References: <156534276745.30736.11736417077894270794.stgit@x230>
 MIME-Version: 1.0
@@ -31,60 +31,50 @@ Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 
-Found while reviewing the driver. No functional changes.
+This should save memory.
 
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/dp_tx.c |    4 +++-
- drivers/net/wireless/ath/ath11k/wmi.c   |    6 +++---
- 2 files changed, 6 insertions(+), 4 deletions(-)
+ drivers/net/wireless/ath/ath11k/debug.c       |    4 ++--
+ drivers/net/wireless/ath/ath11k/debugfs_sta.c |    6 +++---
+ 2 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
-index f7de1fb9820b..69f78d209315 100644
---- a/drivers/net/wireless/ath/ath11k/dp_tx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
-@@ -112,7 +112,7 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
- 
- 	if (info->control.hw_key)
- 		ti.encrypt_type =
--		ath11k_dp_tx_get_encrypt_type(info->control.hw_key->cipher);
-+			ath11k_dp_tx_get_encrypt_type(info->control.hw_key->cipher);
- 	else
- 		ti.encrypt_type = HAL_ENCRYPT_TYPE_OPEN;
- 
-@@ -123,6 +123,7 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
- 	ti.lmac_id = ar->lmac_id;
- 	ti.bss_ast_hash = arvif->ast_hash;
- 	ti.dscp_tid_tbl_idx = 0;
-+
- 	if (skb->ip_summed == CHECKSUM_PARTIAL) {
- 		ti.flags0 |= FIELD_PREP(HAL_TCL_DATA_CMD_INFO1_IP4_CKSUM_EN, 1) |
- 			     FIELD_PREP(HAL_TCL_DATA_CMD_INFO1_UDP4_CKSUM_EN, 1) |
-@@ -133,6 +134,7 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
- 
- 	if (ieee80211_vif_is_mesh(arvif->vif))
- 		ti.flags1 |= FIELD_PREP(HAL_TCL_DATA_CMD_INFO2_MESH_ENABLE, 1);
-+
- 	ti.flags1 |= FIELD_PREP(HAL_TCL_DATA_CMD_INFO2_TID_OVERWRITE, 1);
- 
- 	ti.tid = ath11k_dp_tx_get_tid(skb);
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 24058ab1f5fd..e553adf1cf9d 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -3388,9 +3388,9 @@ static int ath11k_pull_mgmt_tx_compl_param_tlv(struct ath11k_base *ab,
- 		return -EPROTO;
- 	}
- 
--	param->pdev_id =  ev->pdev_id;
--	param->desc_id =  ev->desc_id;
--	param->status =  ev->status;
-+	param->pdev_id = ev->pdev_id;
-+	param->desc_id = ev->desc_id;
-+	param->status = ev->status;
- 
- 	kfree(tb);
- 	return 0;
+diff --git a/drivers/net/wireless/ath/ath11k/debug.c b/drivers/net/wireless/ath/ath11k/debug.c
+index 2e3798cd7e99..2ebdd8fd9e81 100644
+--- a/drivers/net/wireless/ath/ath11k/debug.c
++++ b/drivers/net/wireless/ath/ath11k/debug.c
+@@ -745,12 +745,12 @@ static ssize_t ath11k_debug_dump_soc_rx_stats(struct file *file,
+ 	struct ath11k_soc_dp_rx_stats *soc_stats = &ab->soc_stats;
+ 	int len = 0, i, retval;
+ 	const int size = 4096;
+-	const char *rxdma_err[HAL_REO_ENTR_RING_RXDMA_ECODE_MAX] = {
++	static const char *rxdma_err[HAL_REO_ENTR_RING_RXDMA_ECODE_MAX] = {
+ 			"Overflow", "MPDU len", "FCS", "Decrypt", "TKIP MIC",
+ 			"Unencrypt", "MSDU len", "MSDU limit", "WiFi parse",
+ 			"AMSDU parse", "SA timeout", "DA timeout",
+ 			"Flow timeout", "Flush req"};
+-	const char *reo_err[HAL_REO_DEST_RING_ERROR_CODE_MAX] = {
++	static const char *reo_err[HAL_REO_DEST_RING_ERROR_CODE_MAX] = {
+ 			"Desc addr zero", "Desc inval", "AMPDU in non BA",
+ 			"Non BA dup", "BA dup", "Frame 2k jump", "BAR 2k jump",
+ 			"Frame OOR", "BAR OOR", "No BA session",
+diff --git a/drivers/net/wireless/ath/ath11k/debugfs_sta.c b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
+index 83d65ea96c67..2ca3bc47e502 100644
+--- a/drivers/net/wireless/ath/ath11k/debugfs_sta.c
++++ b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
+@@ -207,9 +207,9 @@ static ssize_t ath11k_dbg_sta_dump_tx_stats(struct file *file,
+ 	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
+ 	struct ath11k *ar = arsta->arvif->ar;
+ 	struct ath11k_htt_data_stats *stats;
+-	const char *str_name[ATH11K_STATS_TYPE_MAX] = {"succ", "fail",
+-						       "retry", "ampdu"};
+-	const char *str[ATH11K_COUNTER_TYPE_MAX] = {"bytes", "packets"};
++	static const char *str_name[ATH11K_STATS_TYPE_MAX] = {"succ", "fail",
++							      "retry", "ampdu"};
++	static const char *str[ATH11K_COUNTER_TYPE_MAX] = {"bytes", "packets"};
+ 	int len = 0, i, j, k, retval = 0;
+ 	const int size = 2 * 4096;
+ 	char *buf;
 
 
 _______________________________________________
