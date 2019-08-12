@@ -1,16 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from smtp.codeaurora.org ([198.145.29.96])
+Received: from dvalin.narfation.org ([2a00:17d8:100::8b1])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hwEEB-0002AN-4P
- for ath11k@lists.infradead.org; Fri, 09 Aug 2019 23:23:20 +0000
+ id 1hx6OO-0006qK-Rs
+ for ath11k@lists.infradead.org; Mon, 12 Aug 2019 09:13:30 +0000
+From: Sven Eckelmann <sven@narfation.org>
+Subject: [PATCH] ath11k: fix multicast rate parameter size
+Date: Mon, 12 Aug 2019 11:13:04 +0200
+Message-Id: <20190812091304.27184-1-sven@narfation.org>
 MIME-Version: 1.0
-Date: Fri, 09 Aug 2019 16:23:16 -0700
-From: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
-Subject: Re: [PATCH 6/6] ath11k: switch to using ieee80211_tx_status_ext()
-In-Reply-To: <20190714154419.11854-7-john@phrozen.org>
-References: <20190714154419.11854-1-john@phrozen.org>
- <20190714154419.11854-7-john@phrozen.org>
-Message-ID: <2dc32161ae3cf25deae0542c72941dc4@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -19,27 +16,40 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: John Crispin <john@phrozen.org>
-Cc: Johannes Berg <johannes@sipsolutions.net>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>
+To: ath11k@lists.infradead.org
+Cc: Sven Eckelmann <seckelmann@datto.com>
 
+From: Sven Eckelmann <seckelmann@datto.com>
 
-> @@ -431,12 +434,18 @@ static void ath11k_dp_tx_complete_msdu(struct 
-> ath11k *ar,
-> -	ieee80211_tx_status(ar->hw, msdu);
-> +	spin_lock_bh(&ab->data_lock);
-> +	peer = ath11k_peer_find_by_id(ab, ts->peer_id);
-> +	arsta = (struct ath11k_sta *)peer->sta->drv_priv;
-Hi John,
+The ATH11K_HW_RATE_CODE() macro uses at least 28 bit to encode the
+parameters. An u8 cannot store all these bits.
 
-Accesing sta when peer is deleted is causing null pointer dereference 
-issue.
+Fixes: c885aaf227ec ("ath11k: support for multicast rate control")
+Signed-off-by: Sven Eckelmann <seckelmann@datto.com>
+---
+ drivers/net/wireless/ath/ath11k/mac.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Thanks
-Pradeep
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 6a3b1a110738..5a65caa019ed 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -1586,7 +1586,7 @@ static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
+ 	u16 bitrate;
+ 	int ret = 0;
+ 	u8 rateidx;
+-	u8 rate;
++	u32 rate;
+ 
+ 	mutex_lock(&ar->conf_mutex);
+ 
+-- 
+2.20.1
+
 
 _______________________________________________
 ath11k mailing list
