@@ -1,15 +1,17 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from smtp.codeaurora.org ([198.145.29.96])
+Received: from dvalin.narfation.org ([2a00:17d8:100::8b1])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hxBqX-0005oM-ET
- for ath11k@lists.infradead.org; Mon, 12 Aug 2019 15:02:54 +0000
+ id 1hxCRv-0003du-PU
+ for ath11k@lists.infradead.org; Mon, 12 Aug 2019 15:41:33 +0000
+From: Sven Eckelmann <sven@narfation.org>
+Subject: Re: [PATCH 2/2] mac80211_hwsim: Register support for HE meshpoint
+Date: Mon, 12 Aug 2019 17:41:18 +0200
+Message-ID: <2152977.f3ncjnVLFo@bentobox>
+In-Reply-To: <eaaff61b1e35c43ee64f728c97a02bfcd15c295a.camel@sipsolutions.net>
+References: <20190724163359.3507-1-sven@narfation.org>
+ <3082836.hUm4yBdaKs@sven-edge>
+ <eaaff61b1e35c43ee64f728c97a02bfcd15c295a.camel@sipsolutions.net>
 MIME-Version: 1.0
-Subject: Re: [PATCH 01/15] ath11k: rename per_transfer_context to skb
-From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <156534276745.30736.11736417077894270794.stgit@x230>
-References: <156534276745.30736.11736417077894270794.stgit@x230>
-Message-Id: <20190812150253.00A5F60AA3@smtp.codeaurora.org>
-Date: Mon, 12 Aug 2019 15:02:52 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -18,47 +20,151 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============3066763833558200410=="
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: ath11k@lists.infradead.org
+To: Johannes Berg <johannes@sipsolutions.net>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-Kalle Valo <kvalo@codeaurora.org> wrote:
+--===============3066763833558200410==
+Content-Type: multipart/signed; boundary="nextPart1601601.eSNR8Z8plV"; micalg="pgp-sha512"; protocol="application/pgp-signature"
 
-> Rename the field to skb to make it more clear what it contains. While at it,
-> change also two function parameters to use skb instead context.
-> 
-> No functional changes. Only compile tested.
-> 
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+--nextPart1601601.eSNR8Z8plV
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-15 patches applied to ath11k-bringup branch of ath.git, thanks.
+On Friday, 26 July 2019 15:32:50 CEST Johannes Berg wrote:
+[...]
+> Ok, dunno. But I don't really want to break everything in the hwsim
+> tests, even if the kernel patch may be correct ... so I guess I'll wait
+> until you resubmit after some fixes go into wpa_s?
 
-3e4f065bbf2b ath11k: rename per_transfer_context to skb
-78eb3c7fce34 ath11k: remove unused struct ath11k_ce_sg_item
-75a016fcc8f7 ath11k: cleanup and rename ath11k_send_crash_inject_cmd()
-c3df984c6cc3 ath11k: remove unused IEEE80211_VHTCAP defines
-9abae4e48e1e ath11k: move ath11k_mac_destroy() after _create()
-44781976e2e6 ath11k: random whitespace fixes
-bf1a82d6d7aa ath11k: make static const in debugfs functions
-dbb836bbbf6f ath11k: remove box comments
-6b5972013e22 ath11k: move fops_pktlog_filter to correct place
-2a5adaf9109a ath11k: avoid excessive casting in debug_htt_stats.c
-ae021cdb8522 ath11k: debug_htt_stats: pass stats_req as a properly typed pointer
-9566b90559c6 ath11k: debug_htt_stats: remove unnecessary cast
-8cfd6f1e670b ath11k: debug_htt_stats: move tag_buf assignment to the first
-31689a989dc5 ath11k: debug_htt_stats: fix line over 90 char warnings
-2e1a3ed0437e ath11k: debug_htt_stats: move fops structs close to the functions
+Ok, will try to do this. Seems like Jouni merged parts of the patches but 
+there are still things pending.
 
--- 
-https://patchwork.kernel.org/patch/11085995/
+Btw. with the patches, I see following things broken in the test suite (single 
+run):
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+failed tests: ibss_5ghz fst_sta_tear_down_session_bad_fsts_id tnc_peap_soh 
+tnc_peap_soh_errors tnc_ttls tnc_ttls_fragmentation tnc_fast 
+p2p_set_discoverability ap_ft_vlan_disconnected ap_ft_eap_vlan_multi 
+ap_ft_ptk_rekey ap_acs_exclude_dfs discovery_while_go_p2p_dev 
+go_neg_forced_freq_diff_than_bss_freq p2p_go_move_reg_change 
+p2ps_stale_group_removal2 p2ps_channel_active_go_and_station_different_mcc 
+radius_acct_interim_unreachable mesh_secure_ocv_mix_legacy 
+mesh_secure_ocv_mix_ht wpas_mesh_open_ht40 wpas_mesh_gate_forwarding olbc_5ghz 
+ap_ht40_csa ap_ht40_csa3 ap_ht_op_class_124 wpas_ap_dfs proxyarp_open_ebtables 
+dpp_test_vector_p_521
 
+Without the patches, I see following (single run):
+
+failed tests: concurrent_grpform_while_connecting2 
+fst_sta_remove_session_established fst_ap_config_oom tnc_peap_soh 
+tnc_peap_soh_errors tnc_ttls tnc_ttls_fragmentation tnc_fast ap_ft_ptk_rekey 
+ap_acs_exclude_dfs autogo_many discovery_group_client discovery_listen_find 
+discovery_while_go p2p_go_move_reg_change p2ps_stale_group_removal2 grpform3_c 
+mesh_secure_ocv_mix_legacy mesh_secure_ocv_mix_ht 
+wpas_mesh_secure_sae_group_mismatch wpas_mesh_open_ht40 wpas_mesh_open_vht40 
+wpas_mesh_open_vht20 mesh_open_vht_160 wpas_mesh_gate_forwarding scan 
+scan_setband ap_vht160 ap_vht80_pwr_constraint proxyarp_open_ebtables
+
+So the diff is (- == before HE patch, + == after HE patch):
+
+     ap_acs_exclude_dfs
+    +ap_ft_eap_vlan_multi
+     ap_ft_ptk_rekey
+    -ap_vht160
+    -ap_vht80_pwr_constraint
+    -autogo_many
+    -concurrent_grpform_while_connecting2
+    -discovery_group_client
+    -discovery_listen_find
+    -discovery_while_go
+    -fst_ap_config_oom
+    -fst_sta_remove_session_established
+    -grpform3_c
+    -mesh_open_vht_160
+    +ap_ft_vlan_disconnected
+    +ap_ht40_csa
+    +ap_ht40_csa3
+    +ap_ht_op_class_124
+    +discovery_while_go_p2p_dev
+    +dpp_test_vector_p_521
+    +fst_sta_tear_down_session_bad_fsts_id
+    +go_neg_forced_freq_diff_than_bss_freq
+    +ibss_5ghz
+     mesh_secure_ocv_mix_ht
+     mesh_secure_ocv_mix_legacy
+    +olbc_5ghz
+     p2p_go_move_reg_change
+    +p2ps_channel_active_go_and_station_different_mcc
+    +p2p_set_discoverability
+     p2ps_stale_group_removal2
+     proxyarp_open_ebtables
+    -scan
+    -scan_setband
+    +radius_acct_interim_unreachable
+     tnc_fast
+     tnc_peap_soh
+     tnc_peap_soh_errors
+     tnc_ttls
+     tnc_ttls_fragmentation
+    +wpas_ap_dfs
+     wpas_mesh_gate_forwarding
+     wpas_mesh_open_ht40
+    -wpas_mesh_open_vht20
+    -wpas_mesh_open_vht40
+    -wpas_mesh_secure_sae_group_mismatch
+
+None of the "+" marked tests are reproducible (they test suite just randomly 
+fails as it looks like in the moment).
+
+Hostapd version was 05822609d105 ("HE: MCS size is always a minimum of 4 
+bytes") with two pending patches [1,2]. Either John will resend the first 
+patch [1] or (when he is busy) I will do it in the next days.
+
+Kind regards,
+	Sven
+
+[1] https://patchwork.ozlabs.org/patch/1116968/
+[2] https://patchwork.ozlabs.org/patch/1131273/
+--nextPart1601601.eSNR8Z8plV
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl1RiJ4ACgkQXYcKB8Em
+e0b1bhAAlXH1er3Ip6PIsMuZ74TWKHj+b739/oZQxTL9Z6tCbzQ7v6EHQvH4QvbE
+VnczrfhN+W2ppI3tOE3M1p3RjR5NUwy6SO3qPKqkv5xazesGJ2NcY3kK1/3plTjT
+GlS6IVn2FC9RBp0fFoq+6MkUBqXbEDeIiXg+9fbzcMUiXEKGKp7ZYuJMCAHYYFI4
+4rxWE8ABfb6dQpkbHPDECeMDfPWFdIsyiQYHoAyxI0m4V3NnEAiRQPDpyanVnQvP
+ht6QyLWWHSL+ByZyoPtvUBWdmRgUP4p7oKSar3Y2c5/S2jLQGcTcMQBdqDJJwxwG
+03djuAyWcsGiQNHCpzFPlYGcjqGE/FOqiUC9mKxATIPkiapMRDW3hOvGY2Z2P9A8
+K7IYKsrkyXzxFa+tbGWVoFMosx+VUosVa1uV2UiTpOsxClo67UOnNuhQaNdDbtSa
+PaV3iTZCjScFXO8a8A6vgXhsDHgSWNsU2F+MWpeJv/ohk3IJGHJCO6phfy0q0MHu
+7n5xn6lqBFDr4/0HvcqXRoi/pUx0xpRaUUoFNVNpsyh5CqLQ5YLM2YZsuINrMk7S
+ihPkNzBlszBFv002PSJsmdzciMtt+sUYZ/OAFmhs+crl9bKgqA7ayM4uJdya4XiL
+wZOiI/EIUxGgKF9iDKpHpxUwfGa/uDMz3vtSYdwybjPrQ1sGkho=
+=gv9i
+-----END PGP SIGNATURE-----
+
+--nextPart1601601.eSNR8Z8plV--
+
+
+
+
+
+--===============3066763833558200410==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
+
+--===============3066763833558200410==--
