@@ -1,12 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hxohI-0005zC-4O
- for ath11k@lists.infradead.org; Wed, 14 Aug 2019 08:31:57 +0000
-From: Sriram R <srirrama@codeaurora.org>
-Subject: [PATCH v2] ath11k: Fix skb_panic observed during msdu coalescing
-Date: Wed, 14 Aug 2019 14:01:42 +0530
-Message-Id: <1565771502-6999-1-git-send-email-srirrama@codeaurora.org>
+ id 1hxtO2-0006L8-LO
+ for ath11k@lists.infradead.org; Wed, 14 Aug 2019 13:32:24 +0000
+MIME-Version: 1.0
+Subject: Re: [PATCH] ath11k: move device tree bindings document to
+ Documentation
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <1565707707-1080-1-git-send-email-kvalo@codeaurora.org>
+References: <1565707707-1080-1-git-send-email-kvalo@codeaurora.org>
+Message-Id: <20190814133221.87E97607DE@smtp.codeaurora.org>
+Date: Wed, 14 Aug 2019 13:32:21 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -15,91 +19,28 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: Sriram R <srirrama@codeaurora.org>
+To: Kalle Valo <kvalo@codeaurora.org>
+Cc: ath11k@lists.infradead.org
 
-skb_panic is hit during msdu coalescing whenever
-enough tailroom is not allocated based on the remaining
-msdu length which is spread across in different rx buffers.
+Kalle Valo <kvalo@codeaurora.org> wrote:
 
-Compute the extra length for resizing the skb based on
-the total msdu length and the msdu length of the first buffer.
+> This is the final place for the doc, move it there to make it easier to create
+> patches for public review.
+> 
+> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-Signed-off-by: Sriram R <srirrama@codeaurora.org>
----
-v2 : Trivial changes to variable names
+Patch applied to ath11k-bringup branch of ath.git, thanks.
 
- drivers/net/wireless/ath/ath11k/dp_rx.c | 26 ++++++++++++++++----------
- 1 file changed, 16 insertions(+), 10 deletions(-)
+9223fbe229a2 ath11k: move device tree bindings document to Documentation
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 7d6b0c3..4ec9963 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -1366,21 +1366,28 @@ static int ath11k_dp_rx_msdu_coalesce(struct ath11k *ar,
- {
- 	struct sk_buff *skb;
- 	struct ath11k_skb_rxcb *rxcb = ATH11K_SKB_RXCB(first);
-+	int buf_first_hdr_len, buf_first_len;
- 	struct hal_rx_desc *ldesc;
- 	int space_extra;
- 	int rem_len;
- 	int buf_len;
- 
-+	/* As the msdu is spread across multiple rx buffers,
-+	 * find the offset to the start of msdu for computing
-+	 * the length of the msdu in the first buffer.
-+	 */
-+	buf_first_hdr_len = HAL_RX_DESC_SIZE + l3pad_bytes;
-+	buf_first_len = DP_RX_BUFFER_SIZE - buf_first_hdr_len;
-+
- 	if (!rxcb->is_continuation) {
--		skb_put(first, HAL_RX_DESC_SIZE + l3pad_bytes + msdu_len);
--		skb_pull(first, HAL_RX_DESC_SIZE + l3pad_bytes);
-+		skb_put(first, buf_first_hdr_len + msdu_len);
-+		skb_pull(first, buf_first_hdr_len);
- 		return 0;
- 	}
- 
--	if (WARN_ON_ONCE(msdu_len <= (DP_RX_BUFFER_SIZE -
--			 (HAL_RX_DESC_SIZE + l3pad_bytes)))) {
--		skb_put(first, HAL_RX_DESC_SIZE + l3pad_bytes + msdu_len);
--		skb_pull(first, HAL_RX_DESC_SIZE + l3pad_bytes);
-+	if (WARN_ON_ONCE(msdu_len <= buf_first_len)) {
-+		skb_put(first, buf_first_hdr_len + msdu_len);
-+		skb_pull(first, buf_first_hdr_len);
- 		return 0;
- 	}
- 
-@@ -1393,9 +1400,9 @@ static int ath11k_dp_rx_msdu_coalesce(struct ath11k *ar,
- 	 * in the first buf is of length DP_RX_BUFFER_SIZE - HAL_RX_DESC_SIZE.
- 	 */
- 	skb_put(first, DP_RX_BUFFER_SIZE);
--	skb_pull(first, HAL_RX_DESC_SIZE + l3pad_bytes);
-+	skb_pull(first, buf_first_hdr_len);
- 
--	space_extra = msdu_len - (DP_RX_BUFFER_SIZE + skb_tailroom(first));
-+	space_extra = msdu_len - (buf_first_len + skb_tailroom(first));
- 	if (space_extra > 0 &&
- 	    (pskb_expand_head(first, 0, space_extra, GFP_ATOMIC) < 0)) {
- 		/* Free up all buffers of the MSDU */
-@@ -1415,8 +1422,7 @@ static int ath11k_dp_rx_msdu_coalesce(struct ath11k *ar,
- 	 */
- 	ath11k_dp_rx_desc_end_tlv_copy(rxcb->rx_desc, ldesc);
- 
--	rem_len = msdu_len -
--		  (DP_RX_BUFFER_SIZE - HAL_RX_DESC_SIZE - l3pad_bytes);
-+	rem_len = msdu_len - buf_first_len;
- 	while ((skb = __skb_dequeue(msdu_list)) != NULL && rem_len > 0) {
- 		rxcb = ATH11K_SKB_RXCB(skb);
- 		if (rxcb->is_continuation)
 -- 
-2.7.4
+https://patchwork.kernel.org/patch/11092375/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 
 _______________________________________________
