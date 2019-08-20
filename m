@@ -1,24 +1,17 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mx1.redhat.com ([209.132.183.28])
+Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i07ML-0007pG-EO
- for ath11k@lists.infradead.org; Tue, 20 Aug 2019 16:51:50 +0000
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com
- [209.85.208.69])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mx1.redhat.com (Postfix) with ESMTPS id BC8AB87648
- for <ath11k@lists.infradead.org>; Tue, 20 Aug 2019 16:51:48 +0000 (UTC)
-Received: by mail-ed1-f69.google.com with SMTP id r21so4501709edc.6
- for <ath11k@lists.infradead.org>; Tue, 20 Aug 2019 09:51:48 -0700 (PDT)
-From: Toke =?utf-8?Q?H=C3=B8iland-J=C3=B8rgensen?= <toke@redhat.com>
-Subject: Re: [PATCH 31/49] ath11k: add mac.c
-In-Reply-To: <1566316095-27507-32-git-send-email-kvalo@codeaurora.org>
+ id 1i07NO-0007rV-7z
+ for ath11k@lists.infradead.org; Tue, 20 Aug 2019 16:52:55 +0000
+Subject: Re: [PATCH 02/49] ath11k: add Kconfig
 References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
- <1566316095-27507-32-git-send-email-kvalo@codeaurora.org>
-Date: Tue, 20 Aug 2019 18:51:45 +0200
-Message-ID: <8736hvu6e6.fsf@toke.dk>
+ <1566316095-27507-3-git-send-email-kvalo@codeaurora.org>
+From: John Crispin <john@phrozen.org>
+Message-ID: <f5af5ff4-63d6-6b94-6c04-8436f955985a@phrozen.org>
+Date: Tue, 20 Aug 2019 18:52:49 +0200
 MIME-Version: 1.0
+In-Reply-To: <1566316095-27507-3-git-send-email-kvalo@codeaurora.org>
+Content-Language: en-US
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -27,23 +20,29 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Kalle Valo <kvalo@codeaurora.org>, linux-wireless@vger.kernel.org
 Cc: devicetree@vger.kernel.org, ath11k@lists.infradead.org
 
-[... snip ... ]
-
-> +static const struct ieee80211_ops ath11k_ops = {
-> +	.tx				= ath11k_mac_op_tx,
-
-No wake_tx_queue? :(
-
--Toke
-
-_______________________________________________
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+Ck9uIDIwLzA4LzIwMTkgMTc6NDcsIEthbGxlIFZhbG8gd3JvdGU6Cj4gLS0tCj4gICBkcml2ZXJz
+L25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL0tjb25maWcgfCAzNCArKysrKysrKysrKysrKysrKysr
+KysrKysrKysrKysrKysKPiAgIDEgZmlsZSBjaGFuZ2VkLCAzNCBpbnNlcnRpb25zKCspCj4KPiBk
+aWZmIC0tZ2l0IGEvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9LY29uZmlnIGIvZHJp
+dmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9LY29uZmlnCj4gbmV3IGZpbGUgbW9kZSAxMDA2
+NDQKPiBpbmRleCAwMDAwMDAwMDAwMDAuLjI2YmY5OGZhNjQ4ZQo+IC0tLSAvZGV2L251bGwKPiAr
+KysgYi9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL0tjb25maWcKPiBAQCAtMCwwICsx
+LDM0IEBACj4gK2NvbmZpZyBBVEgxMUsKPiArICAgICAgICB0cmlzdGF0ZSAiUXVhbGNvbW0gVGVj
+aG5vbG9naWVzIDgwMi4xMWF4IGNoaXBzZXQgc3VwcG9ydCIKPiArICAgICAgICBkZXBlbmRzIG9u
+IE1BQzgwMjExICYmIEhBU19ETUEKCiDCoMKgIF5eIHNwYWNlIHZzIHRhYiBoZXJlCgogwqDCoMKg
+IEpvaG4KCj4gKwlkZXBlbmRzIG9uIFJFTU9URVBST0MKPiArCWRlcGVuZHMgb24gQVJDSF9RQ09N
+IHx8IENPTVBJTEVfVEVTVAo+ICsJc2VsZWN0IEFUSF9DT01NT04KPiArCXNlbGVjdCBRQ09NX1FN
+SV9IRUxQRVJTCj4gKyAgICAgICAgaGVscAo+ICsgICAgICAgICAgVGhpcyBtb2R1bGUgYWRkcyBz
+dXBwb3J0IGZvciBRdWFsY29tbSBUZWNobm9sb2dpZXMgODAyLjExYXggZmFtaWx5IG9mCj4gKwkg
+IGNoaXBzZXRzLgo+ICsKPiArICAgICAgICAgIElmIHlvdSBjaG9vc2UgdG8gYnVpbGQgYSBtb2R1
+bGUsIGl0J2xsIGJlIGNhbGxlZCBhdGgxMWsuCj4gKwoKX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KYXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtAbGlzdHMu
+aW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L2F0aDExawo=
