@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i06Po-0004Uf-7K
- for ath11k@lists.infradead.org; Tue, 20 Aug 2019 15:51:21 +0000
+ id 1i06Pv-0004Wf-8Q
+ for ath11k@lists.infradead.org; Tue, 20 Aug 2019 15:51:28 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 49/49] MAINTAINERS: add ath11k
-Date: Tue, 20 Aug 2019 18:48:15 +0300
-Message-Id: <1566316095-27507-50-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH 48/49] ath: add ath11k to Kconfig
+Date: Tue, 20 Aug 2019 18:48:14 +0300
+Message-Id: <1566316095-27507-49-git-send-email-kvalo@codeaurora.org>
 In-Reply-To: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
 References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -26,27 +26,20 @@ To: linux-wireless@vger.kernel.org
 Cc: devicetree@vger.kernel.org, ath11k@lists.infradead.org
 
 ---
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/net/wireless/ath/Kconfig | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 677ef41cb012..ae00b2c443b6 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13028,6 +13028,13 @@ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git
- S:	Supported
- F:	drivers/net/wireless/ath/ath10k/
+diff --git a/drivers/net/wireless/ath/Kconfig b/drivers/net/wireless/ath/Kconfig
+index 82ab7c33cf97..88473bcdd196 100644
+--- a/drivers/net/wireless/ath/Kconfig
++++ b/drivers/net/wireless/ath/Kconfig
+@@ -61,5 +61,6 @@ source "drivers/net/wireless/ath/ar5523/Kconfig"
+ source "drivers/net/wireless/ath/wil6210/Kconfig"
+ source "drivers/net/wireless/ath/ath10k/Kconfig"
+ source "drivers/net/wireless/ath/wcn36xx/Kconfig"
++source "drivers/net/wireless/ath/ath11k/Kconfig"
  
-+QUALCOMM ATHEROS ATH11K WIRELESS DRIVER
-+M:	Kalle Valo <kvalo@codeaurora.org>
-+L:	ath11k@lists.infradead.org
-+T:	git git://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git
-+S:	Supported
-+F:	drivers/net/wireless/ath/ath11k/
-+
- QUALCOMM ATHEROS ATH9K WIRELESS DRIVER
- M:	QCA ath9k Development <ath9k-devel@qca.qualcomm.com>
- L:	linux-wireless@vger.kernel.org
+ endif
 
 
 _______________________________________________
