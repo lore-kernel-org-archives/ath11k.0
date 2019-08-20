@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i06Mx-0001B0-4v
- for ath11k@lists.infradead.org; Tue, 20 Aug 2019 15:48:24 +0000
+ id 1i06NA-0001HN-Ha
+ for ath11k@lists.infradead.org; Tue, 20 Aug 2019 15:48:37 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 01/49] dt: bindings: net: add qcom,ath11k.txt
-Date: Tue, 20 Aug 2019 18:47:27 +0300
-Message-Id: <1566316095-27507-2-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH 05/49] ath11k: add ahb.h
+Date: Tue, 20 Aug 2019 18:47:31 +0300
+Message-Id: <1566316095-27507-6-git-send-email-kvalo@codeaurora.org>
 In-Reply-To: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
 References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -26,142 +26,42 @@ To: linux-wireless@vger.kernel.org
 Cc: devicetree@vger.kernel.org, ath11k@lists.infradead.org
 
 ---
- .../bindings/net/wireless/qcom,ath11k.txt          | 127 +++++++++++++++++++++
- 1 file changed, 127 insertions(+)
+ drivers/net/wireless/ath/ath11k/ahb.h | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.txt b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.txt
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.h b/drivers/net/wireless/ath/ath11k/ahb.h
 new file mode 100644
-index 000000000000..1824238b4b50
+index 000000000000..8a6b308d4a6a
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.txt
-@@ -0,0 +1,127 @@
-+* Qualcomm Technologies ath11k wireless devices
++++ b/drivers/net/wireless/ath/ath11k/ahb.h
+@@ -0,0 +1,27 @@
++/* SPDX-License-Identifier: ISC */
++/*
++ * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
++ */
++#ifndef ATH11K_AHB_H
++#define ATH11K_AHB_H
 +
-+Required properties:
-+- compatible: Should be "qcom,ipq8074-wifi"
++#include "core.h"
 +
-+AHB based ipq8074 uses most of the properties defined in this doc.
++#define ATH11K_AHB_RECOVERY_TIMEOUT (3 * HZ)
++struct ath11k_base;
 +
-+Optional properties:
-+- reg: Address and length of the register set for the device.
-+- interrupts: List of interrupt lines. Must contain an entry
-+	      for each entry in the interrupt-names property.
-+- interrupt-names: Must include the entries for CE interrupt
-+		   names ("ce0" to "ce11") and hw srng interrupt
-+		   names.
-+- qcom,rproc: DT entry of q6v5-wcss
++u32 ath11k_ahb_read32(struct ath11k_base *ab, u32 address);
++void ath11k_ahb_write32(struct ath11k_base *ab, u32 address, u32 data);
++void ath11k_ahb_ext_irq_enable(struct ath11k_base *ab);
++void ath11k_ahb_ext_irq_disable(struct ath11k_base *ab);
++int ath11k_ahb_start(struct ath11k_base *ab);
++void ath11k_ahb_stop(struct ath11k_base *ab);
++int ath11k_ahb_power_up(struct ath11k_base *ab);
++void ath11k_ahb_power_down(struct ath11k_base *ab);
++int ath11k_ahb_map_service_to_pipe(struct ath11k_base *ab, u16 service_id,
++				   u8 *ul_pipe, u8 *dl_pipe);
 +
-+Example:
++int ath11k_ahb_init(void);
++void ath11k_ahb_exit(void);
 +
-+wifi0: wifi@c000000 {
-+	compatible = "qcom,ipq8074-wifi";
-+	reg = <0xc000000 0x2000000>;
-+	interrupts = <0 320 1>,
-+		     <0 319 1>,
-+		     <0 318 1>,
-+		     <0 317 1>,
-+		     <0 316 1>,
-+		     <0 315 1>,
-+		     <0 314 1>,
-+		     <0 311 1>,
-+		     <0 310 1>,
-+		     <0 411 1>,
-+		     <0 410 1>,
-+		     <0 40 1>,
-+		     <0 39 1>,
-+		     <0 302 1>,
-+		     <0 301 1>,
-+		     <0 37 1>,
-+		     <0 36 1>,
-+		     <0 296 1>,
-+		     <0 295 1>,
-+		     <0 294 1>,
-+		     <0 293 1>,
-+		     <0 292 1>,
-+		     <0 291 1>,
-+		     <0 290 1>,
-+		     <0 289 1>,
-+		     <0 288 1>,
-+		     <0 239 1>,
-+		     <0 236 1>,
-+		     <0 235 1>,
-+		     <0 234 1>,
-+		     <0 233 1>,
-+		     <0 232 1>,
-+		     <0 231 1>,
-+		     <0 230 1>,
-+		     <0 229 1>,
-+		     <0 228 1>,
-+		     <0 224 1>,
-+		     <0 223 1>,
-+		     <0 203 1>,
-+		     <0 183 1>,
-+		     <0 180 1>,
-+		     <0 179 1>,
-+		     <0 178 1>,
-+		     <0 177 1>,
-+		     <0 176 1>,
-+		     <0 163 1>,
-+		     <0 162 1>,
-+		     <0 160 1>,
-+		     <0 159 1>,
-+		     <0 158 1>,
-+		     <0 157 1>,
-+		     <0 156 1>;
-+	interrupt-names = "misc-pulse1",
-+			  "misc-latch",
-+			  "sw-exception",
-+			  "watchdog",
-+			  "ce0",
-+			  "ce1",
-+			  "ce2",
-+			  "ce3",
-+			  "ce4",
-+			  "ce5",
-+			  "ce6",
-+			  "ce7",
-+			  "ce8",
-+			  "ce9",
-+			  "ce10",
-+			  "ce11",
-+			  "host2wbm-desc-feed",
-+			  "host2reo-re-injection",
-+			  "host2reo-command",
-+			  "host2rxdma-monitor-ring3",
-+			  "host2rxdma-monitor-ring2",
-+			  "host2rxdma-monitor-ring1",
-+			  "reo2ost-exception",
-+			  "wbm2host-rx-release",
-+			  "reo2host-status",
-+			  "reo2host-destination-ring4",
-+			  "reo2host-destination-ring3",
-+			  "reo2host-destination-ring2",
-+			  "reo2host-destination-ring1",
-+			  "rxdma2host-monitor-destination-mac3",
-+			  "rxdma2host-monitor-destination-mac2",
-+			  "rxdma2host-monitor-destination-mac1",
-+			  "ppdu-end-interrupts-mac3",
-+			  "ppdu-end-interrupts-mac2",
-+			  "ppdu-end-interrupts-mac1",
-+			  "rxdma2host-monitor-status-ring-mac3",
-+			  "rxdma2host-monitor-status-ring-mac2",
-+			  "rxdma2host-monitor-status-ring-mac1",
-+			  "host2rxdma-host-buf-ring-mac3",
-+			  "host2rxdma-host-buf-ring-mac2",
-+			  "host2rxdma-host-buf-ring-mac1",
-+			  "rxdma2host-destination-ring-mac3",
-+			  "rxdma2host-destination-ring-mac2",
-+			  "rxdma2host-destination-ring-mac1",
-+			  "host2tcl-input-ring4",
-+			  "host2tcl-input-ring3",
-+			  "host2tcl-input-ring2",
-+			  "host2tcl-input-ring1",
-+			  "wbm2host-tx-completions-ring3",
-+			  "wbm2host-tx-completions-ring2",
-+			  "wbm2host-tx-completions-ring1",
-+			  "tcl2host-status-ring";
-+	qcom,rproc = <&qcom_q6v5_wcss>;
-+};
++#endif
 
 
 _______________________________________________
