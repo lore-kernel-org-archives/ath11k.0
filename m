@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i06Ok-0003NF-Ba
- for ath11k@lists.infradead.org; Tue, 20 Aug 2019 15:50:17 +0000
+ id 1i06Oj-0003Mk-Qc
+ for ath11k@lists.infradead.org; Tue, 20 Aug 2019 15:50:16 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 33/49] ath11k: add peer.c
-Date: Tue, 20 Aug 2019 18:47:59 +0300
-Message-Id: <1566316095-27507-34-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH 25/49] ath11k: add hal_rx.h
+Date: Tue, 20 Aug 2019 18:47:51 +0300
+Message-Id: <1566316095-27507-26-git-send-email-kvalo@codeaurora.org>
 In-Reply-To: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
 References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -26,251 +26,367 @@ To: linux-wireless@vger.kernel.org
 Cc: devicetree@vger.kernel.org, ath11k@lists.infradead.org
 
 ---
- drivers/net/wireless/ath/ath11k/peer.c | 236 +++++++++++++++++++++++++++++++++
- 1 file changed, 236 insertions(+)
+ drivers/net/wireless/ath/ath11k/hal_rx.h | 352 +++++++++++++++++++++++++++++++
+ 1 file changed, 352 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/peer.c b/drivers/net/wireless/ath/ath11k/peer.c
+diff --git a/drivers/net/wireless/ath/ath11k/hal_rx.h b/drivers/net/wireless/ath/ath11k/hal_rx.h
 new file mode 100644
-index 000000000000..d484a3b42e49
+index 000000000000..d854b47270c0
 --- /dev/null
-+++ b/drivers/net/wireless/ath/ath11k/peer.c
-@@ -0,0 +1,236 @@
-+// SPDX-License-Identifier: ISC
++++ b/drivers/net/wireless/ath/ath11k/hal_rx.h
+@@ -0,0 +1,352 @@
++/* SPDX-License-Identifier: ISC */
 +/*
 + * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
 + */
 +
-+#include "core.h"
-+#include "peer.h"
-+#include "debug.h"
++#ifndef ATH11K_HAL_RX_H
++#define ATH11K_HAL_RX_H
 +
-+struct ath11k_peer *ath11k_peer_find(struct ath11k_base *ab, int vdev_id,
-+				     const u8 *addr)
-+{
-+	struct ath11k_peer *peer;
++struct hal_rx_mpdu_meta {
++	u32 peer_meta;
++	u16 msdu_cnt;
++	u16 seq_num;
++	bool frag;
++	bool retry;
++	bool ampdu;
++	bool raw;
++};
 +
-+	lockdep_assert_held(&ab->base_lock);
++struct hal_rx_msdu_meta {
++	u32 cookie;
++	u32 msdu_len;
++	bool first;
++	bool last;
++	bool continuation;
++};
 +
-+	list_for_each_entry(peer, &ab->peers, list) {
-+		if (peer->vdev_id != vdev_id)
-+			continue;
-+		if (memcmp(peer->addr, addr, ETH_ALEN))
-+			continue;
++struct hal_rx_meta_info {
++	enum hal_reo_dest_ring_push_reason push_reason;
++	struct hal_rx_mpdu_meta mpdu_meta;
++	struct hal_rx_msdu_meta msdu_meta;
++};
 +
-+		return peer;
-+	}
++struct hal_rx_wbm_rel_info {
++	u32 cookie;
++	enum hal_wbm_rel_src_module err_rel_src;
++	enum hal_reo_dest_ring_push_reason push_reason;
++	u32 err_code;
++	bool first_msdu;
++	bool last_msdu;
++};
 +
-+	return NULL;
-+}
++#define HAL_INVALID_PEERID 0xffff
++#define VHT_SIG_SU_NSS_MASK 0x7
 +
-+struct ath11k_peer *ath11k_peer_find_by_addr(struct ath11k_base *ab,
-+					     const u8 *addr)
-+{
-+	struct ath11k_peer *peer;
++#define HAL_RX_MAX_MCS 12
++#define HAL_RX_MAX_NSS 8
 +
-+	lockdep_assert_held(&ab->base_lock);
++struct hal_rx_mon_status_tlv_hdr {
++	u32 hdr;
++	u8 value[0];
++};
 +
-+	list_for_each_entry(peer, &ab->peers, list) {
-+		if (memcmp(peer->addr, addr, ETH_ALEN))
-+			continue;
++enum hal_rx_su_mu_coding {
++	HAL_RX_SU_MU_CODING_BCC,
++	HAL_RX_SU_MU_CODING_LDPC,
++	HAL_RX_SU_MU_CODING_MAX,
++};
 +
-+		return peer;
-+	}
++enum hal_rx_gi {
++	HAL_RX_GI_0_8_US,
++	HAL_RX_GI_0_4_US,
++	HAL_RX_GI_1_6_US,
++	HAL_RX_GI_3_2_US,
++	HAL_RX_GI_MAX,
++};
 +
-+	return NULL;
-+}
++enum hal_rx_bw {
++	HAL_RX_BW_20MHZ,
++	HAL_RX_BW_40MHZ,
++	HAL_RX_BW_80MHZ,
++	HAL_RX_BW_160MHZ,
++	HAL_RX_BW_MAX,
++};
 +
-+struct ath11k_peer *ath11k_peer_find_by_id(struct ath11k_base *ab,
-+					   int peer_id)
-+{
-+	struct ath11k_peer *peer;
++enum hal_rx_preamble {
++	HAL_RX_PREAMBLE_11A,
++	HAL_RX_PREAMBLE_11B,
++	HAL_RX_PREAMBLE_11N,
++	HAL_RX_PREAMBLE_11AC,
++	HAL_RX_PREAMBLE_11AX,
++	HAL_RX_PREAMBLE_MAX,
++};
 +
-+	lockdep_assert_held(&ab->base_lock);
++enum hal_rx_reception_type {
++	HAL_RX_RECEPTION_TYPE_SU,
++	HAL_RX_RECEPTION_TYPE_MU_MIMO,
++	HAL_RX_RECEPTION_TYPE_MU_OFDMA,
++	HAL_RX_RECEPTION_TYPE_MU_OFDMA_MIMO,
++	HAL_RX_RECEPTION_TYPE_MAX,
++};
 +
-+	list_for_each_entry(peer, &ab->peers, list)
-+		if (peer_id == peer->peer_id)
-+			return peer;
++#define HAL_TLV_STATUS_PPDU_NOT_DONE            0
++#define HAL_TLV_STATUS_PPDU_DONE                1
++#define HAL_TLV_STATUS_BUF_DONE                 2
++#define HAL_TLV_STATUS_PPDU_NON_STD_DONE        3
++#define HAL_RX_FCS_LEN                          4
 +
-+	return NULL;
-+}
++enum hal_rx_mon_status {
++	HAL_RX_MON_STATUS_PPDU_NOT_DONE,
++	HAL_RX_MON_STATUS_PPDU_DONE,
++	HAL_RX_MON_STATUS_BUF_DONE,
++};
 +
-+void ath11k_peer_unmap_event(struct ath11k_base *ab, u16 peer_id)
-+{
-+	struct ath11k_peer *peer;
++struct hal_rx_mon_ppdu_info {
++	u32 ppdu_id;
++	u32 ppdu_ts;
++	u32 num_mpdu_fcs_ok;
++	u32 num_mpdu_fcs_err;
++	u32 preamble_type;
++	u16 chan_num;
++	u16 tcp_msdu_count;
++	u16 tcp_ack_msdu_count;
++	u16 udp_msdu_count;
++	u16 other_msdu_count;
++	u16 peer_id;
++	u8 rate;
++	u8 mcs;
++	u8 nss;
++	u8 bw;
++	u8 is_stbc;
++	u8 gi;
++	u8 ldpc;
++	u8 beamformed;
++	u8 rssi_comb;
++	u8 tid;
++	u8 reception_type;
++	u64 rx_duration;
++};
 +
-+	spin_lock_bh(&ab->base_lock);
++#define HAL_RX_PPDU_START_INFO0_PPDU_ID		GENMASK(15, 0)
 +
-+	peer = ath11k_peer_find_by_id(ab, peer_id);
-+	if (!peer) {
-+		ath11k_warn(ab, "peer-unmap-event: unknown peer id %d\n",
-+			    peer_id);
-+		goto exit;
-+	}
++struct hal_rx_ppdu_start {
++	__le32 info0;
++	__le32 chan_num;
++	__le32 ppdu_start_ts;
++} __packed;
 +
-+	ath11k_dbg(ab, ATH11K_DBG_DP_HTT, "htt peer unmap vdev %d peer %pM id %d\n",
-+		   peer->vdev_id, peer->addr, peer_id);
++#define HAL_RX_PPDU_END_USER_STATS_INFO0_MPDU_CNT_FCS_ERR	GENMASK(25, 16)
 +
-+	list_del(&peer->list);
-+	kfree(peer);
-+	wake_up(&ab->peer_mapping_wq);
++#define HAL_RX_PPDU_END_USER_STATS_INFO1_MPDU_CNT_FCS_OK	GENMASK(8, 0)
++#define HAL_RX_PPDU_END_USER_STATS_INFO1_FC_VALID		BIT(9)
++#define HAL_RX_PPDU_END_USER_STATS_INFO1_QOS_CTRL_VALID		BIT(10)
++#define HAL_RX_PPDU_END_USER_STATS_INFO1_HT_CTRL_VALID		BIT(11)
++#define HAL_RX_PPDU_END_USER_STATS_INFO1_PKT_TYPE		GENMASK(23, 20)
 +
-+exit:
-+	spin_unlock_bh(&ab->base_lock);
-+}
++#define HAL_RX_PPDU_END_USER_STATS_INFO2_AST_INDEX		GENMASK(15, 0)
++#define HAL_RX_PPDU_END_USER_STATS_INFO2_FRAME_CTRL		GENMASK(31, 16)
 +
-+void ath11k_peer_map_event(struct ath11k_base *ab, u8 vdev_id, u16 peer_id,
-+			   u8 *mac_addr, u16 ast_hash)
-+{
-+	struct ath11k_peer *peer;
++#define HAL_RX_PPDU_END_USER_STATS_INFO3_QOS_CTRL		GENMASK(31, 16)
 +
-+	spin_lock_bh(&ab->base_lock);
-+	peer = ath11k_peer_find(ab, vdev_id, mac_addr);
-+	if (!peer) {
-+		peer = kzalloc(sizeof(*peer), GFP_ATOMIC);
-+		if (!peer)
-+			goto exit;
++#define HAL_RX_PPDU_END_USER_STATS_INFO4_UDP_MSDU_CNT		GENMASK(15, 0)
++#define HAL_RX_PPDU_END_USER_STATS_INFO4_TCP_MSDU_CNT		GENMASK(31, 16)
 +
-+		peer->vdev_id = vdev_id;
-+		peer->peer_id = peer_id;
-+		peer->ast_hash = ast_hash;
-+		ether_addr_copy(peer->addr, mac_addr);
-+		list_add(&peer->list, &ab->peers);
-+		wake_up(&ab->peer_mapping_wq);
-+	}
++#define HAL_RX_PPDU_END_USER_STATS_INFO5_OTHER_MSDU_CNT		GENMASK(15, 0)
++#define HAL_RX_PPDU_END_USER_STATS_INFO5_TCP_ACK_MSDU_CNT	GENMASK(31, 16)
 +
-+	ath11k_dbg(ab, ATH11K_DBG_DP_HTT, "htt peer map vdev %d peer %pM id %d\n",
-+		   vdev_id, mac_addr, peer_id);
++#define HAL_RX_PPDU_END_USER_STATS_INFO6_TID_BITMAP		GENMASK(15, 0)
++#define HAL_RX_PPDU_END_USER_STATS_INFO6_TID_EOSP_BITMAP	GENMASK(31, 16)
 +
-+exit:
-+	spin_unlock_bh(&ab->base_lock);
-+}
++struct hal_rx_ppdu_end_user_stats {
++	__le32 rsvd0[2];
++	__le32 info0;
++	__le32 info1;
++	__le32 info2;
++	__le32 info3;
++	__le32 ht_ctrl;
++	__le32 rsvd1[2];
++	__le32 info4;
++	__le32 info5;
++	__le32 info6;
++	__le32 rsvd2[11];
++} __packed;
 +
-+static int ath11k_wait_for_peer_common(struct ath11k_base *ab, int vdev_id,
-+				       const u8 *addr, bool expect_mapped)
-+{
-+	int ret;
++#define HAL_RX_HT_SIG_INFO_INFO0_MCS		GENMASK(6, 0)
++#define HAL_RX_HT_SIG_INFO_INFO0_BW		BIT(7)
 +
-+	ret = wait_event_timeout(ab->peer_mapping_wq, ({
-+				bool mapped;
++#define HAL_RX_HT_SIG_INFO_INFO1_STBC		GENMASK(5, 4)
++#define HAL_RX_HT_SIG_INFO_INFO1_FEC_CODING	BIT(6)
++#define HAL_RX_HT_SIG_INFO_INFO1_GI		BIT(7)
 +
-+				spin_lock_bh(&ab->base_lock);
-+				mapped = !!ath11k_peer_find(ab, vdev_id, addr);
-+				spin_unlock_bh(&ab->base_lock);
++struct hal_rx_ht_sig_info {
++	__le32 info0;
++	__le32 info1;
++} __packed;
 +
-+				(mapped == expect_mapped ||
-+				 test_bit(ATH11K_FLAG_CRASH_FLUSH, &ab->dev_flags));
-+				}), 3 * HZ);
++#define HAL_RX_LSIG_B_INFO_INFO0_RATE	GENMASK(3, 0)
++#define HAL_RX_LSIG_B_INFO_INFO0_LEN	GENMASK(15, 4)
 +
-+	if (ret <= 0)
-+		return -ETIMEDOUT;
++struct hal_rx_lsig_b_info {
++	__le32 info0;
++} __packed;
 +
-+	return 0;
-+}
++#define HAL_RX_LSIG_A_INFO_INFO0_RATE		GENMASK(3, 0)
++#define HAL_RX_LSIG_A_INFO_INFO0_LEN		GENMASK(16, 5)
++#define HAL_RX_LSIG_A_INFO_INFO0_PKT_TYPE	GENMASK(27, 24)
 +
-+void ath11k_peer_cleanup(struct ath11k *ar, u32 vdev_id)
-+{
-+	struct ath11k_peer *peer, *tmp;
-+	struct ath11k_base *ab = ar->ab;
++struct hal_rx_lsig_a_info {
++	__le32 info0;
++} __packed;
 +
-+	lockdep_assert_held(&ar->conf_mutex);
++#define HAL_RX_VHT_SIG_A_INFO_INFO0_BW		GENMASK(1, 0)
++#define HAL_RX_VHT_SIG_A_INFO_INFO0_STBC	BIT(3)
++#define HAL_RX_VHT_SIG_A_INFO_INFO0_GROUP_ID	GENMASK(9, 4)
++#define HAL_RX_VHT_SIG_A_INFO_INFO0_NSTS	GENMASK(21, 10)
 +
-+	spin_lock_bh(&ab->base_lock);
-+	list_for_each_entry_safe(peer, tmp, &ab->peers, list) {
-+		if (peer->vdev_id != vdev_id)
-+			continue;
++#define HAL_RX_VHT_SIG_A_INFO_INFO1_GI_SETTING		GENMASK(1, 0)
++#define HAL_RX_VHT_SIG_A_INFO_INFO1_SU_MU_CODING	BIT(2)
++#define HAL_RX_VHT_SIG_A_INFO_INFO1_MCS			GENMASK(7, 4)
++#define HAL_RX_VHT_SIG_A_INFO_INFO1_BEAMFORMED		BIT(8)
 +
-+		ath11k_warn(ab, "removing stale peer %pM from vdev_id %d\n",
-+			    peer->addr, vdev_id);
++struct hal_rx_vht_sig_a_info {
++	__le32 info0;
++	__le32 info1;
++} __packed;
 +
-+		list_del(&peer->list);
-+		kfree(peer);
-+		ar->num_peers--;
-+	}
++#define HAL_RX_HE_SIG_A_SU_INFO_INFO0_TRANSMIT_MCS	GENMASK(6, 3)
++#define HAL_RX_HE_SIG_A_SU_INFO_INFO0_DCM		BIT(7)
++#define HAL_RX_HE_SIG_A_SU_INFO_INFO0_TRANSMIT_BW	GENMASK(20, 19)
++#define HAL_RX_HE_SIG_A_SU_INFO_INFO0_CP_LTF_SIZE	GENMASK(22, 21)
++#define HAL_RX_HE_SIG_A_SU_INFO_INFO0_NSTS		GENMASK(25, 23)
 +
-+	spin_unlock_bh(&ab->base_lock);
-+}
++#define HAL_RX_HE_SIG_A_SU_INFO_INFO1_CODING		BIT(7)
++#define HAL_RX_HE_SIG_A_SU_INFO_INFO1_STBC		BIT(9)
++#define HAL_RX_HE_SIG_A_SU_INFO_INFO1_TXBF		BIT(10)
 +
-+static int ath11k_wait_for_peer_deleted(struct ath11k *ar, int vdev_id, const u8 *addr)
-+{
-+	return ath11k_wait_for_peer_common(ar->ab, vdev_id, addr, false);
-+}
++struct hal_rx_he_sig_a_su_info {
++	__le32 info0;
++	__le32 info1;
++} __packed;
 +
-+int ath11k_peer_delete(struct ath11k *ar, u32 vdev_id, u8 *addr)
-+{
-+	int ret;
++#define HAL_RX_HE_SIG_A_MU_DL_INFO_INFO0_TRANSMIT_BW	GENMASK(17, 15)
++#define HAL_RX_HE_SIG_A_MU_DL_INFO_INFO0_CP_LTF_SIZE	GENMASK(24, 23)
 +
-+	lockdep_assert_held(&ar->conf_mutex);
++#define HAL_RX_HE_SIG_A_MU_DL_INFO_INFO1_STBC		BIT(12)
 +
-+	ret = ath11k_wmi_send_peer_delete_cmd(ar, addr, vdev_id);
-+	if (ret) {
-+		ath11k_warn(ar->ab,
-+			    "failed to delete peer vdev_id %d addr %pM ret %d\n",
-+			    vdev_id, addr, ret);
-+		return ret;
-+	}
++struct hal_rx_he_sig_a_mu_dl_info {
++	__le32 info0;
++	__le32 info1;
++} __packed;
 +
-+	ret = ath11k_wait_for_peer_deleted(ar, vdev_id, addr);
-+	if (ret)
-+		return ret;
++#define HAL_RX_HE_SIG_B1_MU_INFO_INFO0_RU_ALLOCATION	GENMASK(7, 0)
 +
-+	ar->num_peers--;
++struct hal_rx_he_sig_b1_mu_info {
++	__le32 info0;
++} __packed;
 +
-+	return 0;
-+}
++#define HAL_RX_HE_SIG_B2_MU_INFO_INFO0_STA_MCS		GENMASK(18, 15)
++#define HAL_RX_HE_SIG_B2_MU_INFO_INFO0_STA_CODING	BIT(20)
++#define HAL_RX_HE_SIG_B2_MU_INFO_INFO0_STA_NSTS		GENMASK(31, 29)
 +
-+static int ath11k_wait_for_peer_created(struct ath11k *ar, int vdev_id, const u8 *addr)
-+{
-+	return ath11k_wait_for_peer_common(ar->ab, vdev_id, addr, true);
-+}
++struct hal_rx_he_sig_b2_mu_info {
++	__le32 info0;
++} __packed;
 +
-+int ath11k_peer_create(struct ath11k *ar, struct ath11k_vif *arvif,
-+		       struct ieee80211_sta *sta, struct peer_create_params *param)
-+{
-+	struct ath11k_peer *peer;
-+	int ret;
++#define HAL_RX_HE_SIG_B2_OFDMA_INFO_INFO0_STA_NSTS	GENMASK(13, 11)
++#define HAL_RX_HE_SIG_B2_OFDMA_INFO_INFO0_STA_TXBF	BIT(19)
++#define HAL_RX_HE_SIG_B2_OFDMA_INFO_INFO0_STA_MCS	GENMASK(18, 15)
++#define HAL_RX_HE_SIG_B2_OFDMA_INFO_INFO0_STA_DCM	BIT(19)
++#define HAL_RX_HE_SIG_B2_OFDMA_INFO_INFO0_STA_CODING	BIT(20)
 +
-+	lockdep_assert_held(&ar->conf_mutex);
++struct hal_rx_he_sig_b2_ofdma_info {
++	__le32 info0;
++} __packed;
 +
-+	if (ar->num_peers > (ar->max_num_peers - 1)) {
-+		ath11k_warn(ar->ab,
-+			    "failed to create peer due to insufficient peer entry resource in firmware\n");
-+		return -ENOBUFS;
-+	}
++#define HAL_RX_PHYRX_RSSI_LEGACY_INFO_INFO1_RSSI_COMB	GENMASK(15, 8)
 +
-+	ret = ath11k_wmi_send_peer_create_cmd(ar, param);
-+	if (ret) {
-+		ath11k_warn(ar->ab,
-+			    "failed to send peer create vdev_id %d ret %d\n",
-+			    param->vdev_id, ret);
-+		return ret;
-+	}
++struct hal_rx_phyrx_rssi_legacy_info {
++	__le32 rsvd[35];
++	__le32 info0;
++} __packed;
 +
-+	ret = ath11k_wait_for_peer_created(ar, param->vdev_id,
-+					   param->peer_addr);
-+	if (ret)
-+		return ret;
++#define HAL_RX_MPDU_INFO_INFO0_PEERID	GENMASK(31, 16)
++struct hal_rx_mpdu_info {
++	__le32 rsvd0;
++	__le32 info0;
++	__le32 rsvd1[21];
++} __packed;
 +
-+	spin_lock_bh(&ar->ab->base_lock);
++#define HAL_RX_PPDU_END_DURATION	GENMASK(23, 0)
++struct hal_rx_ppdu_end_duration {
++	__le32 rsvd0[9];
++	__le32 info0;
++	__le32 rsvd1[4];
++} __packed;
 +
-+	peer = ath11k_peer_find(ar->ab, param->vdev_id, param->peer_addr);
-+	if (!peer) {
-+		spin_unlock_bh(&ar->ab->base_lock);
-+		ath11k_warn(ar->ab, "failed to find peer %pM on vdev %i after creation\n",
-+			    param->peer_addr, param->vdev_id);
-+		ath11k_wmi_send_peer_delete_cmd(ar, param->peer_addr,
-+						param->vdev_id);
-+		return -ENOENT;
-+	}
++struct hal_rx_rxpcu_classification_overview {
++	u32 rsvd0;
++} __packed;
 +
-+	peer->sta = sta;
-+	arvif->ast_hash = peer->ast_hash;
++struct hal_rx_msdu_desc_info {
++	u32 msdu_flags;
++	u16 msdu_len; /* 14 bits for length */
++};
 +
-+	ar->num_peers++;
++#define HAL_RX_NUM_MSDU_DESC 6
++struct hal_rx_msdu_list {
++	struct hal_rx_msdu_desc_info msdu_info[HAL_RX_NUM_MSDU_DESC];
++	u32 sw_cookie[HAL_RX_NUM_MSDU_DESC];
++	u8 rbm[HAL_RX_NUM_MSDU_DESC];
++};
 +
-+	spin_unlock_bh(&ar->ab->base_lock);
-+
-+	return 0;
-+}
++void ath11k_hal_reo_status_queue_stats(struct ath11k_base *ab, u32 *reo_desc,
++				       struct hal_reo_status *status);
++void ath11k_hal_reo_flush_queue_status(struct ath11k_base *ab, u32 *reo_desc,
++				       struct hal_reo_status *status);
++void ath11k_hal_reo_flush_cache_status(struct ath11k_base *ab, u32 *reo_desc,
++				       struct hal_reo_status *status);
++void ath11k_hal_reo_flush_cache_status(struct ath11k_base *ab, u32 *reo_desc,
++				       struct hal_reo_status *status);
++void ath11k_hal_reo_unblk_cache_status(struct ath11k_base *ab, u32 *reo_desc,
++				       struct hal_reo_status *status);
++void ath11k_hal_reo_flush_timeout_list_status(struct ath11k_base *ab,
++					      u32 *reo_desc,
++					      struct hal_reo_status *status);
++void ath11k_hal_reo_desc_thresh_reached_status(struct ath11k_base *ab,
++					       u32 *reo_desc,
++					       struct hal_reo_status *status);
++void ath11k_hal_reo_update_rx_reo_queue_status(struct ath11k_base *ab,
++					       u32 *reo_desc,
++					       struct hal_reo_status *status);
++int ath11k_hal_reo_process_status(u8 *reo_desc, u8 *status);
++void ath11k_hal_rx_msdu_link_info_get(void *link_desc, u32 *num_msdus,
++				      struct hal_rx_msdu_meta *meta,
++				      enum hal_rx_buf_return_buf_manager *rbm);
++void ath11k_hal_rx_msdu_link_desc_set(struct ath11k_base *ab, void *desc,
++				      void *link_desc,
++				      enum hal_wbm_rel_bm_act action);
++void ath11k_hal_rx_buf_addr_info_set(void *desc, dma_addr_t paddr,
++				     u32 cookie, u8 manager);
++void ath11k_hal_rx_buf_addr_info_get(void *desc, dma_addr_t *paddr,
++				     u32 *cookie, u8 *rbm);
++int ath11k_hal_desc_reo_parse_err(struct ath11k_base *ab, u32 *rx_desc,
++				  dma_addr_t *paddr, u32 *desc_bank);
++void ath11k_hal_rx_parse_dst_ring_desc(struct ath11k_base *ab, u32 *rx_desc,
++				       struct hal_rx_meta_info *meta_info);
++int ath11k_hal_wbm_desc_parse_err(struct ath11k_base *ab, void *desc,
++				  struct hal_rx_wbm_rel_info *rel_info);
++void ath11k_hal_rx_reo_ent_paddr_get(struct ath11k_base *ab, void *desc,
++				     dma_addr_t *paddr, u32 *desc_bank);
++void ath11k_hal_rx_reo_ent_buf_paddr_get(void *rx_desc,
++					 dma_addr_t *paddr, u32 *sw_cookie,
++					 void **pp_buf_addr_info,
++					 u32 *msdu_cnt);
++enum hal_rx_mon_status
++ath11k_hal_rx_parse_mon_status(struct ath11k_base *ab,
++			       struct hal_rx_mon_ppdu_info *ppdu_info,
++			       struct sk_buff *skb);
++#define REO_QUEUE_DESC_MAGIC_DEBUG_PATTERN_0 0xDDBEEF
++#define REO_QUEUE_DESC_MAGIC_DEBUG_PATTERN_1 0xADBEEF
++#define REO_QUEUE_DESC_MAGIC_DEBUG_PATTERN_2 0xBDBEEF
++#define REO_QUEUE_DESC_MAGIC_DEBUG_PATTERN_3 0xCDBEEF
++#endif
 
 
 _______________________________________________
