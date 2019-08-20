@@ -1,20 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hzzlB-0006ER-61
- for ath11k@lists.infradead.org; Tue, 20 Aug 2019 08:44:58 +0000
-Received: from x230.adurom.net (88-114-240-156.elisa-laajakaista.fi
- [88.114.240.156])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
- (No client certificate requested)
- (Authenticated sender: kvalo@smtp.codeaurora.org)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 73CE860588
- for <ath11k@lists.infradead.org>; Tue, 20 Aug 2019 08:44:55 +0000 (UTC)
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH] ath11k: change remaining UTF-8 characters to ASCII
-Date: Tue, 20 Aug 2019 11:44:52 +0300
-Message-Id: <1566290692-5129-1-git-send-email-kvalo@codeaurora.org>
+ id 1i0134-0002we-0Q
+ for ath11k@lists.infradead.org; Tue, 20 Aug 2019 10:07:31 +0000
 MIME-Version: 1.0
+Subject: Re: [PATCH] ath11k: change remaining UTF-8 characters to ASCII
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <1566290692-5129-1-git-send-email-kvalo@codeaurora.org>
+References: <1566290692-5129-1-git-send-email-kvalo@codeaurora.org>
+Message-Id: <20190820100729.62D4160ACE@smtp.codeaurora.org>
+Date: Tue, 20 Aug 2019 10:07:29 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,56 +18,33 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
+To: Kalle Valo <kvalo@codeaurora.org>
+Cc: ath11k@lists.infradead.org
 
-V2hpbGUgdGVzdGluZyBnaXQgc2VuZC1lbWFpbCBpdCByZXBvcnRlZCB0aGF0IHRoZXJlIGFyZSBm
-ZXcgVVRGLTggY2hhcmFjdGVycyBpbgp0aGUgY29tbWVudHMsIHdoaWNoIGlzIHVubmVjZXNzYXJ5
-LiBDaGFuZ2UgdGhvc2UgdG8gQVNDSUkgdG8ga2VlcCB0aGluZ3Mgc2ltcGxlci4KCk5vIGZ1bmN0
-aW9uYWwgY2hhbmdlcy4KClNpZ25lZC1vZmYtYnk6IEthbGxlIFZhbG8gPGt2YWxvQGNvZGVhdXJv
-cmEub3JnPgotLS0KIGRyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvaGFsLmggICAgIHwg
-MTAgKysrKystLS0tLQogZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9yeF9kZXNjLmgg
-fCAgMiArLQogMiBmaWxlcyBjaGFuZ2VkLCA2IGluc2VydGlvbnMoKyksIDYgZGVsZXRpb25zKC0p
-CgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9oYWwuaCBiL2Ry
-aXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvaGFsLmgKaW5kZXggYzgwYjA2OGYwYmFmLi44
-ZjFkMmIzNTlmNTAgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsv
-aGFsLmgKKysrIGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9oYWwuaApAQCAtNTA1
-LDEwICs1MDUsMTAgQEAgc3RydWN0IGhhbF9zcm5nIHsKIAkvKiBTaXplIG9mIHJpbmcgZW50cnkg
-Ki8KIAl1MzIgZW50cnlfc2l6ZTsKIAotCS8qIEludGVycnVwdCB0aW1lciB0aHJlc2hvbGQg4oCT
-IGluIG1pY3JvIHNlY29uZHMgKi8KKwkvKiBJbnRlcnJ1cHQgdGltZXIgdGhyZXNob2xkIC0gaW4g
-bWljcm8gc2Vjb25kcyAqLwogCXUzMiBpbnRyX3RpbWVyX3RocmVzX3VzOwogCi0JLyogSW50ZXJy
-dXB0IGJhdGNoIGNvdW50ZXIgdGhyZXNob2xkIOKAkyBpbiBudW1iZXIgb2YgcmluZyBlbnRyaWVz
-ICovCisJLyogSW50ZXJydXB0IGJhdGNoIGNvdW50ZXIgdGhyZXNob2xkIC0gaW4gbnVtYmVyIG9m
-IHJpbmcgZW50cmllcyAqLwogCXUzMiBpbnRyX2JhdGNoX2NudHJfdGhyZXNfZW50cmllczsKIAog
-CS8qIE1TSSBBZGRyZXNzICovCkBAIC01NDMsNyArNTQzLDcgQEAgc3RydWN0IGhhbF9zcm5nIHsK
-IAkJCS8qIENhY2hlZCBoZWFkIHBvaW50ZXIgKi8KIAkJCXUzMiBjYWNoZWRfaHA7CiAKLQkJCS8q
-IFRhaWwgcG9pbnRlciBsb2NhdGlvbiB0byBiZSB1cGRhdGVkIGJ5IFNXIOKAkyBUaGlzCisJCQkv
-KiBUYWlsIHBvaW50ZXIgbG9jYXRpb24gdG8gYmUgdXBkYXRlZCBieSBTVyAtIFRoaXMKIAkJCSAq
-IHdpbGwgYmUgYSByZWdpc3RlciBhZGRyZXNzIGFuZCBuZWVkIG5vdCBiZQogCQkJICogYWNjZXNz
-ZWQgdGhyb3VnaCBTVyBzdHJ1Y3R1cmUKIAkJCSAqLwpAQCAtNTY5LDEzICs1NjksMTMgQEAgc3Ry
-dWN0IGhhbF9zcm5nIHsKIAkJCS8qIENhY2hlZCB0YWlsIHBvaW50ZXIgKi8KIAkJCXUzMiBjYWNo
-ZWRfdHA7CiAKLQkJCS8qIEhlYWQgcG9pbnRlciBsb2NhdGlvbiB0byBiZSB1cGRhdGVkIGJ5IFNX
-IOKAkyBUaGlzCisJCQkvKiBIZWFkIHBvaW50ZXIgbG9jYXRpb24gdG8gYmUgdXBkYXRlZCBieSBT
-VyAtIFRoaXMKIAkJCSAqIHdpbGwgYmUgYSByZWdpc3RlciBhZGRyZXNzIGFuZCBuZWVkIG5vdCBi
-ZSBhY2Nlc3NlZAogCQkJICogdGhyb3VnaCBTVyBzdHJ1Y3R1cmUKIAkJCSAqLwogCQkJdTMyICpo
-cF9hZGRyOwogCi0JCQkvKiBMb3cgdGhyZXNob2xkIOKAkyBpbiBudW1iZXIgb2YgcmluZyBlbnRy
-aWVzICovCisJCQkvKiBMb3cgdGhyZXNob2xkIC0gaW4gbnVtYmVyIG9mIHJpbmcgZW50cmllcyAq
-LwogCQkJdTMyIGxvd190aHJlc2hvbGQ7CiAJCX0gc3JjX3Jpbmc7CiAJfSB1OwpkaWZmIC0tZ2l0
-IGEvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9yeF9kZXNjLmggYi9kcml2ZXJzL25l
-dC93aXJlbGVzcy9hdGgvYXRoMTFrL3J4X2Rlc2MuaAppbmRleCAzYmMyYmJlOTY3YjAuLjliZTk3
-YzQ5NThlMCAxMDA2NDQKLS0tIGEvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9yeF9k
-ZXNjLmgKKysrIGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9yeF9kZXNjLmgKQEAg
-LTcyMSw3ICs3MjEsNyBAQCBzdHJ1Y3QgcnhfbXNkdV9zdGFydCB7CiAgKgkJaWYgZWl0aGVyIGlw
-djRfcHJvdG8gb3IgaXB2Nl9wcm90byBpcyBzZXQgdG8gMSkgb3IgaW5kaWNhdGVzCiAgKgkJdGhl
-IG9mZnNldCBpbiBieXRlcyB0byB0aGUgc3RhcnQgb2YgVENQIG9yIFVEUCBoZWFkZXIgZnJvbQog
-ICoJCXRoZSBzdGFydCBvZiB0aGUgSVAgaGVhZGVyIGFmdGVyIGRlY2Fwc3VsYXRpb24gKE9ubHkg
-dmFsaWQgaWYKLSAqCQl0Y3BfcHJvdG8gb3IgdWRwX3Byb3RvIGlzIHNldCkuwqAgVGhlIHZhbHVl
-IDAgaW5kaWNhdGVzIHRoYXQKKyAqCQl0Y3BfcHJvdG8gb3IgdWRwX3Byb3RvIGlzIHNldCkuIFRo
-ZSB2YWx1ZSAwIGluZGljYXRlcyB0aGF0CiAgKgkJdGhlIG9mZnNldCBpcyBsb25nZXIgdGhhbiAx
-MjcgYnl0ZXMuCiAgKgogICogbXNkdV9udW1iZXIKLS0gCjIuNy40CgoKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYXRoMTFrIG1haWxpbmcgbGlzdAphdGgx
-MWtAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL2F0aDExawo=
+Kalle Valo <kvalo@codeaurora.org> wrote:
+
+> While testing git send-email it reported that there are few UTF-8 characters in
+> the comments, which is unnecessary. Change those to ASCII to keep things simpler.
+> 
+> No functional changes.
+> 
+> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+
+Patch applied to ath11k-bringup branch of ath.git, thanks.
+
+2a87d965bc23 ath11k: change remaining UTF-8 characters to ASCII
+
+-- 
+https://patchwork.kernel.org/patch/11103393/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
+
+_______________________________________________
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
