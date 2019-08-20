@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i06Ot-0003Un-As
+ id 1i06Os-0003Ue-Un
  for ath11k@lists.infradead.org; Tue, 20 Aug 2019 15:50:29 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 27/49] ath11k: add hal_tx.h
-Date: Tue, 20 Aug 2019 18:47:53 +0300
-Message-Id: <1566316095-27507-28-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH 30/49] ath11k: add hw.h
+Date: Tue, 20 Aug 2019 18:47:56 +0300
+Message-Id: <1566316095-27507-31-git-send-email-kvalo@codeaurora.org>
 In-Reply-To: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
 References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -26,94 +26,141 @@ To: linux-wireless@vger.kernel.org
 Cc: devicetree@vger.kernel.org, ath11k@lists.infradead.org
 
 ---
- drivers/net/wireless/ath/ath11k/hal_tx.h | 80 ++++++++++++++++++++++++++++++++
- 1 file changed, 80 insertions(+)
+ drivers/net/wireless/ath/ath11k/hw.h | 127 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 127 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/hal_tx.h b/drivers/net/wireless/ath/ath11k/hal_tx.h
+diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
 new file mode 100644
-index 000000000000..3b12dfda7423
+index 000000000000..f510d9d9263c
 --- /dev/null
-+++ b/drivers/net/wireless/ath/ath11k/hal_tx.h
-@@ -0,0 +1,80 @@
++++ b/drivers/net/wireless/ath/ath11k/hw.h
+@@ -0,0 +1,127 @@
 +/* SPDX-License-Identifier: ISC */
 +/*
 + * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
 + */
 +
-+#ifndef ATH11K_HAL_TX_H
-+#define ATH11K_HAL_TX_H
++#ifndef ATH11K_HW_H
++#define ATH11K_HW_H
 +
-+#include "hal_desc.h"
++/* Target configuration defines */
 +
-+#define HAL_TX_ADDRX_EN			1
-+#define HAL_TX_ADDRY_EN			2
++/* Num VDEVS per radio */
++#define TARGET_NUM_VDEVS	(16 + 1)
 +
-+#define HAL_TX_ADDR_SEARCH_INDEX	0
-+#define HAL_TX_ADDR_SEARCH_DEFAULT	1
++#define TARGET_NUM_PEERS_PDEV	(512 + TARGET_NUM_VDEVS)
 +
-+struct hal_tx_info {
-+	u16 meta_data_flags; /* %HAL_TCL_DATA_CMD_INFO0_META_ */
-+	u8 ring_id;
-+	u32 desc_id;
-+	enum hal_tcl_desc_type type;
-+	enum hal_tcl_encap_type encap_type;
-+	dma_addr_t paddr;
-+	u32 data_len;
-+	u32 pkt_offset;
-+	enum hal_encrypt_type encrypt_type;
-+	u32 flags0; /* %HAL_TCL_DATA_CMD_INFO1_ */
-+	u32 flags1; /* %HAL_TCL_DATA_CMD_INFO2_ */
-+	u16 addr_search_flags; /* %HAL_TCL_DATA_CMD_INFO0_ADDR(X/Y)_ */
-+	u16 bss_ast_hash;
-+	u8 tid;
-+	u8 search_type; /* %HAL_TX_ADDR_SEARCH_ */
-+	u8 lmac_id;
-+	u8 dscp_tid_tbl_idx;
++/* Num of peers for Single Radio mode */
++#define TARGET_NUM_PEERS_SINGLE		(TARGET_NUM_PEERS_PDEV)
++
++/* Num of peers for DBS */
++#define TARGET_NUM_PEERS_DBS		(2 * TARGET_NUM_PEERS_PDEV)
++
++/* Num of peers for DBS_SBS */
++#define TARGET_NUM_PEERS_DBS_SBS	(3 * TARGET_NUM_PEERS_PDEV)
++
++/* Max num of stations (per radio) */
++#define TARGET_NUM_STATIONS	512
++
++#define TARGET_NUM_PEERS(x)	TARGET_NUM_PEERS_##x
++#define TARGET_NUM_PEER_KEYS	2
++#define TARGET_NUM_TIDS(x)	(2 * TARGET_NUM_PEERS(x) + \
++				 4 * TARGET_NUM_VDEVS + 8)
++
++#define TARGET_AST_SKID_LIMIT	16
++#define TARGET_NUM_OFFLD_PEERS	4
++#define TARGET_NUM_OFFLD_REORDER_BUFFS 4
++
++#define TARGET_TX_CHAIN_MASK	(BIT(0) | BIT(1) | BIT(2) | BIT(4))
++#define TARGET_RX_CHAIN_MASK	(BIT(0) | BIT(1) | BIT(2) | BIT(4))
++#define TARGET_RX_TIMEOUT_LO_PRI	100
++#define TARGET_RX_TIMEOUT_HI_PRI	40
++
++#define TARGET_DECAP_MODE_RAW		0
++#define TARGET_DECAP_MODE_NATIVE_WIFI	1
++#define TARGET_DECAP_MODE_ETH		2
++
++#define TARGET_SCAN_MAX_PENDING_REQS	4
++#define TARGET_BMISS_OFFLOAD_MAX_VDEV	3
++#define TARGET_ROAM_OFFLOAD_MAX_VDEV	3
++#define TARGET_ROAM_OFFLOAD_MAX_AP_PROFILES	8
++#define TARGET_GTK_OFFLOAD_MAX_VDEV	3
++#define TARGET_NUM_MCAST_GROUPS		12
++#define TARGET_NUM_MCAST_TABLE_ELEMS	64
++#define TARGET_MCAST2UCAST_MODE		2
++#define TARGET_TX_DBG_LOG_SIZE		1024
++#define TARGET_RX_SKIP_DEFRAG_TIMEOUT_DUP_DETECTION_CHECK 1
++#define TARGET_VOW_CONFIG		0
++#define TARGET_NUM_MSDU_DESC		(2500)
++#define TARGET_MAX_FRAG_ENTRIES		6
++#define TARGET_MAX_BCN_OFFLD		16
++#define TARGET_NUM_WDS_ENTRIES		32
++#define TARGET_DMA_BURST_SIZE		1
++#define TARGET_RX_BATCHMODE		1
++
++#define ATH11K_HW_MAX_QUEUES		4
++
++#define ATH11k_HW_RATECODE_CCK_SHORT_PREAM_MASK  0x4
++
++#define ATH11K_FW_DIR			"ath11k"
++
++/* IPQ8074 definitions */
++#define IPQ8074_FW_DIR			"IPQ8074"
++#define IPQ8074_MAX_BOARD_DATA_SZ	(256 * 1024)
++#define IPQ8074_MAX_CAL_DATA_SZ		IPQ8074_MAX_BOARD_DATA_SZ
++
++#define ATH11K_BOARD_MAGIC		"QCA-ATH11K-BOARD"
++#define ATH11K_BOARD_API2_FILE		"board-2.bin"
++#define ATH11K_DEFAULT_BOARD_FILE	"bdwlan.bin"
++#define ATH11K_DEFAULT_CAL_FILE		"caldata.bin"
++
++enum ath11k_hw_rate_cck {
++	ATH11K_HW_RATE_CCK_LP_11M = 0,
++	ATH11K_HW_RATE_CCK_LP_5_5M,
++	ATH11K_HW_RATE_CCK_LP_2M,
++	ATH11K_HW_RATE_CCK_LP_1M,
++	ATH11K_HW_RATE_CCK_SP_11M,
++	ATH11K_HW_RATE_CCK_SP_5_5M,
++	ATH11K_HW_RATE_CCK_SP_2M,
 +};
 +
-+/* TODO: Check if the actual desc macros can be used instead */
-+#define HAL_TX_STATUS_FLAGS_FIRST_MSDU		BIT(0)
-+#define HAL_TX_STATUS_FLAGS_LAST_MSDU		BIT(1)
-+#define HAL_TX_STATUS_FLAGS_MSDU_IN_AMSDU	BIT(2)
-+#define HAL_TX_STATUS_FLAGS_RATE_STATS_VALID	BIT(3)
-+#define HAL_TX_STATUS_FLAGS_RATE_LDPC		BIT(4)
-+#define HAL_TX_STATUS_FLAGS_RATE_STBC		BIT(5)
-+#define HAL_TX_STATUS_FLAGS_OFDMA		BIT(6)
-+
-+#define HAL_TX_STATUS_DESC_LEN		sizeof(struct hal_wbm_release_ring)
-+
-+/* Tx status parsed from srng desc */
-+struct hal_tx_status {
-+	enum hal_wbm_rel_src_module buf_rel_source;
-+	u32 desc_id;
-+	enum hal_wbm_tqm_rel_reason status;
-+	u8 ack_rssi;
-+	enum hal_tx_rate_stats_bw bw;
-+	enum hal_tx_rate_stats_pkt_type pkt_type;
-+	enum hal_tx_rate_stats_sgi sgi;
-+	u8 mcs;
-+	u16 num_tones_in_ru;
-+	u32 flags; /* %HAL_TX_STATUS_FLAGS_ */
-+	u32 tsf;
-+	u32 ppdu_id;
-+	u8 try_cnt;
-+	u8 tid;
-+	u16 peer_id;
++enum ath11k_hw_rate_ofdm {
++	ATH11K_HW_RATE_OFDM_48M = 0,
++	ATH11K_HW_RATE_OFDM_24M,
++	ATH11K_HW_RATE_OFDM_12M,
++	ATH11K_HW_RATE_OFDM_6M,
++	ATH11K_HW_RATE_OFDM_54M,
++	ATH11K_HW_RATE_OFDM_36M,
++	ATH11K_HW_RATE_OFDM_18M,
++	ATH11K_HW_RATE_OFDM_9M,
 +};
 +
-+void ath11k_hal_tx_cmd_desc_setup(struct ath11k_base *ab, void *cmd,
-+				  struct hal_tx_info *ti);
-+void ath11k_hal_tx_desc_sync(void *tx_desc_cached, void *hw_desc);
-+void ath11k_hal_tx_status_parse(struct ath11k_base *ab,
-+				struct hal_wbm_release_ring *desc,
-+				struct hal_tx_status *ts);
-+void ath11k_hal_tx_status_desc_sync(void *hw_desc, void *local_desc);
-+void ath11k_hal_tx_set_dscp_tid_map(struct ath11k_base *ab, int id);
-+int ath11k_hal_reo_cmd_send(struct ath11k_base *ab, struct hal_srng *srng,
-+			    enum hal_reo_cmd_type type,
-+			    struct ath11k_hal_reo_cmd *cmd);
-+void ath11k_hal_tx_init_data_ring(struct ath11k_base *ab,
-+				  struct hal_srng *srng);
++struct ath11k_hw_params {
++	const char *name;
++	struct {
++		const char *dir;
++		size_t board_size;
++		size_t cal_size;
++	} fw;
++};
++
++struct ath11k_fw_ie {
++	__le32 id;
++	__le32 len;
++	u8 data[0];
++};
++
++enum ath11k_bd_ie_board_type {
++	ATH11K_BD_IE_BOARD_NAME = 0,
++	ATH11K_BD_IE_BOARD_DATA = 1,
++};
++
++enum ath11k_bd_ie_type {
++	/* contains sub IEs of enum ath11k_bd_ie_board_type */
++	ATH11K_BD_IE_BOARD = 0,
++	ATH11K_BD_IE_BOARD_EXT = 1,
++};
++
 +#endif
 
 
