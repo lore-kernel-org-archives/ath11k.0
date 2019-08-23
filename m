@@ -1,20 +1,18 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i0U87-0002dV-Cb
- for ath11k@lists.infradead.org; Wed, 21 Aug 2019 17:10:40 +0000
+ id 1i115B-0007dm-Dn
+ for ath11k@lists.infradead.org; Fri, 23 Aug 2019 04:21:50 +0000
 MIME-Version: 1.0
-Date: Wed, 21 Aug 2019 22:40:38 +0530
+Date: Fri, 23 Aug 2019 09:51:47 +0530
 From: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
-Subject: Re: [PATCH 04/49] ath11k: add ahb.c
-In-Reply-To: <e0cbf7b86b275f87c0a69bd9a31e5b9fa8691d3a.camel@sipsolutions.net>
+Subject: Re: [PATCH 46/49] ath11k: add wmi.h
+In-Reply-To: <c60afe716cc9ce3b511d8be0b04958342dfea908.camel@sipsolutions.net>
 References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
- <1566316095-27507-5-git-send-email-kvalo@codeaurora.org>
- (sfid-20190820_175156_108502_D7159DB2)
- <8c791df54a831f32fddd634e71e5e91342532535.camel@sipsolutions.net>
- <e53ddcaa11d069fbe9d083b9b0105d19@codeaurora.org>
- <e0cbf7b86b275f87c0a69bd9a31e5b9fa8691d3a.camel@sipsolutions.net>
-Message-ID: <c35138041d9a3431594fda8afe8c354e@codeaurora.org>
+ <1566316095-27507-47-git-send-email-kvalo@codeaurora.org>
+ (sfid-20190820_181541_270184_9285B240)
+ <c60afe716cc9ce3b511d8be0b04958342dfea908.camel@sipsolutions.net>
+Message-ID: <826dd60c50a2b821fe82c5c04730deb1@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -30,48 +28,88 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Johannes Berg <johannes@sipsolutions.net>
 Cc: linux-wireless-owner@vger.kernel.org, devicetree@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>
 
-On 2019-08-21 15:10, Johannes Berg wrote:
-> On Wed, 2019-08-21 at 14:59 +0530, Vasanthakumar Thiagarajan wrote:
-> 
->> > > +#define ATH11K_TX_RING_MASK_3 0x0
->> >
->> > You have a LOT of masks here that are 0, that seems odd?
+On 2019-08-21 01:59, Johannes Berg wrote:
+> On Tue, 2019-08-20 at 18:48 +0300, Kalle Valo wrote:
 >> 
->> We'll remove them.
+>> +enum wmi_cmd_group {
+>> +	/* 0 to 2 are reserved */
+>> +	WMI_GRP_START = 0x3,
+>> +	WMI_GRP_SCAN = WMI_GRP_START, /* 0x3 */
+>> +	WMI_GRP_PDEV,           /* 0x4 */
 > 
-> I'm not sure you should just *remove* them, that might very well be
-> valid and what you need here, I'm just saying it looks odd since you
-> usually expect masks to, well, not really mask *everything*?
+> If you're going to spell out the numbers anyway, why not do it in C
+> rather than a comment?
+> 
+> 	WMI_GRP_PDEV		= 0x4,
+> 
+> would tell you just as much, and be much less error-prone.
 
-Right, we'll try to clean that up wherever possible.
+Sure, we'll do it that way.
 
 > 
->> > > +inline u32 ath11k_ahb_read32(struct ath11k_base *ab, u32 offset)
->> > > +{
->> > > +	return ioread32(ab->mem + offset);
->> > > +}
->> > > +
->> > > +inline void ath11k_ahb_write32(struct ath11k_base *ab, u32 offset,
->> > > u32 value)
->> > > +{
->> > > +	iowrite32(value, ab->mem + offset);
->> > > +}
->> >
->> > Just "inline" doesn't seem to make that much sense? If it's only used
->> > here then I guess it should be static, otherwise not inline? Or maybe
->> > you want it to be inlined *in this file* but available out-of-line
->> > otherwise? I'm not sure that actually is guaranteed to work right in C?
->> 
->> Yes, these read/write functions are used from other files as well. May
->> be define them as static inline in ahb.c will be fine.
+>> +struct wmi_pdev_set_hw_mode_cmd_param {
+>> +	u32 tlv_header;
+>> +	u32 pdev_id;
+>> +	u32 hw_mode_index;
+>> +	u32 num_band_to_mac;
+>> +} __packed;
 > 
-> No, if they're static they cannot be used from other files, but if
-> they're declared and used elsewhere they can't really be inline ...
-> 
-> You could declare them static inline in ahb.h I guess, instead.
+> Does it really makes sense for something to be using "u32" (i.e. host
+> endian) but then __packed (kinda tagging it as "I am using this with 
+> the
+> hardware, don't change the layout")?
 
-My bad, I wanted to mean the same, moving those function to ahb.h as 
-static inline.
+Yes, this is mainly for tagging. Since Copy Engine does the 
+byte-swapping when working with big-endian
+system, these are declared in host endian. Removing __packed also fine, 
+I guess.
+
+> 
+> That really applies to a lot of the things here.
+> 
+>> +struct channel_param {
+>> +	u8 chan_id;
+>> +	u8 pwr;
+>> +	u32 mhz;
+>> +	u32 half_rate:1,
+>> +	    quarter_rate:1,
+>> +	    dfs_set:1,
+>> +	    dfs_set_cfreq2:1,
+>> +	    is_chan_passive:1,
+>> +	    allow_ht:1,
+>> +	    allow_vht:1,
+>> +	    set_agile:1;
+>> +	u32 phy_mode;
+>> +	u32 cfreq1;
+>> +	u32 cfreq2;
+>> +	char   maxpower;
+>> +	char   minpower;
+>> +	char   maxregpower;
+>> +	u8  antennamax;
+>> +	u8  reg_class_id;
+>> +} __packed;
+> 
+> Bitfields in FW structs are even less likely to work right, I'd avoid
+> that.
+> 
+> (and if you have this copy engine do endian conversion, then the u8
+> fields won't work right since that ending seems to be working on u32s?)
+> 
+> That probably all applies elsewhere too, but the file is pretty long 
+> ;-)
+
+Sure, we'll clean this up.
+
+> 
+> Personally, I'd also consider splitting internal driver usage stuff and
+> FW API into different files, but that's your decision. I just find it
+> lets me understand it better even when I'm looking at it myself.
+> 
+
+Sure, this will look better.
+
+
+Thanks,
 
 Vasanth
 
