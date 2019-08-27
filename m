@@ -1,19 +1,26 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail-ot1-f68.google.com ([209.85.210.68])
+Received: from mx1.redhat.com ([209.132.183.28])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i2f1p-000079-R2
- for ath11k@lists.infradead.org; Tue, 27 Aug 2019 17:13:14 +0000
-Received: by mail-ot1-f68.google.com with SMTP id b1so19405269otp.6
- for <ath11k@lists.infradead.org>; Tue, 27 Aug 2019 10:13:09 -0700 (PDT)
-Date: Tue, 27 Aug 2019 12:13:07 -0500
-From: Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH 01/49] dt: bindings: net: add qcom,ath11k.txt
-Message-ID: <20190827171307.GA23128@bogus>
+ id 1i2fFZ-0006RO-Qd
+ for ath11k@lists.infradead.org; Tue, 27 Aug 2019 17:27:23 +0000
+Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com
+ [209.85.208.72])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mx1.redhat.com (Postfix) with ESMTPS id 9598289ACA
+ for <ath11k@lists.infradead.org>; Tue, 27 Aug 2019 17:27:20 +0000 (UTC)
+Received: by mail-ed1-f72.google.com with SMTP id r21so13655edc.6
+ for <ath11k@lists.infradead.org>; Tue, 27 Aug 2019 10:27:20 -0700 (PDT)
+From: Toke =?utf-8?Q?H=C3=B8iland-J=C3=B8rgensen?= <toke@redhat.com>
+Subject: Re: [PATCH 31/49] ath11k: add mac.c
+In-Reply-To: <14737343f1925a771ddd8dadf0f2b5a3@codeaurora.org>
 References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
- <1566316095-27507-2-git-send-email-kvalo@codeaurora.org>
+ <1566316095-27507-32-git-send-email-kvalo@codeaurora.org>
+ <8736hvu6e6.fsf@toke.dk> <ac6e7dbbd53e7ba9e82e49baca22b73c@codeaurora.org>
+ <875zmqsudn.fsf@toke.dk> <14737343f1925a771ddd8dadf0f2b5a3@codeaurora.org>
+Date: Tue, 27 Aug 2019 19:27:17 +0200
+Message-ID: <87sgpmikne.fsf@toke.dk>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1566316095-27507-2-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,163 +29,34 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: devicetree@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
+Cc: linux-wireless-owner@vger.kernel.org, devicetree@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>
 
-On Tue, Aug 20, 2019 at 06:47:27PM +0300, Kalle Valo wrote:
-
-Missing commit message and Sob (and on the other patches).
-
-> ---
->  .../bindings/net/wireless/qcom,ath11k.txt          | 127 +++++++++++++++++++++
->  1 file changed, 127 insertions(+)
-
-Please use the DT schema format (YAML). See writing-schema.md.
-
-> 
-> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.txt b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.txt
-> new file mode 100644
-> index 000000000000..1824238b4b50
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.txt
-> @@ -0,0 +1,127 @@
-> +* Qualcomm Technologies ath11k wireless devices
-> +
-> +Required properties:
-> +- compatible: Should be "qcom,ipq8074-wifi"
-> +
-> +AHB based ipq8074 uses most of the properties defined in this doc.
-> +
-> +Optional properties:
-> +- reg: Address and length of the register set for the device.
-> +- interrupts: List of interrupt lines. Must contain an entry
-> +	      for each entry in the interrupt-names property.
-
-Need to be explicit as to how many interrupts and what they are.
-
-> +- interrupt-names: Must include the entries for CE interrupt
-> +		   names ("ce0" to "ce11") and hw srng interrupt
-> +		   names.
-> +- qcom,rproc: DT entry of q6v5-wcss
-> +
-> +Example:
-> +
-> +wifi0: wifi@c000000 {
-> +	compatible = "qcom,ipq8074-wifi";
-> +	reg = <0xc000000 0x2000000>;
-> +	interrupts = <0 320 1>,
-> +		     <0 319 1>,
-> +		     <0 318 1>,
-> +		     <0 317 1>,
-> +		     <0 316 1>,
-> +		     <0 315 1>,
-> +		     <0 314 1>,
-> +		     <0 311 1>,
-> +		     <0 310 1>,
-> +		     <0 411 1>,
-> +		     <0 410 1>,
-> +		     <0 40 1>,
-> +		     <0 39 1>,
-> +		     <0 302 1>,
-> +		     <0 301 1>,
-> +		     <0 37 1>,
-> +		     <0 36 1>,
-> +		     <0 296 1>,
-> +		     <0 295 1>,
-> +		     <0 294 1>,
-> +		     <0 293 1>,
-> +		     <0 292 1>,
-> +		     <0 291 1>,
-> +		     <0 290 1>,
-> +		     <0 289 1>,
-> +		     <0 288 1>,
-> +		     <0 239 1>,
-> +		     <0 236 1>,
-> +		     <0 235 1>,
-> +		     <0 234 1>,
-> +		     <0 233 1>,
-> +		     <0 232 1>,
-> +		     <0 231 1>,
-> +		     <0 230 1>,
-> +		     <0 229 1>,
-> +		     <0 228 1>,
-> +		     <0 224 1>,
-> +		     <0 223 1>,
-> +		     <0 203 1>,
-> +		     <0 183 1>,
-> +		     <0 180 1>,
-> +		     <0 179 1>,
-> +		     <0 178 1>,
-> +		     <0 177 1>,
-> +		     <0 176 1>,
-> +		     <0 163 1>,
-> +		     <0 162 1>,
-> +		     <0 160 1>,
-> +		     <0 159 1>,
-> +		     <0 158 1>,
-> +		     <0 157 1>,
-> +		     <0 156 1>;
-> +	interrupt-names = "misc-pulse1",
-> +			  "misc-latch",
-> +			  "sw-exception",
-> +			  "watchdog",
-> +			  "ce0",
-> +			  "ce1",
-> +			  "ce2",
-> +			  "ce3",
-> +			  "ce4",
-> +			  "ce5",
-> +			  "ce6",
-> +			  "ce7",
-> +			  "ce8",
-> +			  "ce9",
-> +			  "ce10",
-> +			  "ce11",
-> +			  "host2wbm-desc-feed",
-> +			  "host2reo-re-injection",
-> +			  "host2reo-command",
-> +			  "host2rxdma-monitor-ring3",
-> +			  "host2rxdma-monitor-ring2",
-> +			  "host2rxdma-monitor-ring1",
-> +			  "reo2ost-exception",
-> +			  "wbm2host-rx-release",
-> +			  "reo2host-status",
-> +			  "reo2host-destination-ring4",
-> +			  "reo2host-destination-ring3",
-> +			  "reo2host-destination-ring2",
-> +			  "reo2host-destination-ring1",
-> +			  "rxdma2host-monitor-destination-mac3",
-> +			  "rxdma2host-monitor-destination-mac2",
-> +			  "rxdma2host-monitor-destination-mac1",
-> +			  "ppdu-end-interrupts-mac3",
-> +			  "ppdu-end-interrupts-mac2",
-> +			  "ppdu-end-interrupts-mac1",
-> +			  "rxdma2host-monitor-status-ring-mac3",
-> +			  "rxdma2host-monitor-status-ring-mac2",
-> +			  "rxdma2host-monitor-status-ring-mac1",
-> +			  "host2rxdma-host-buf-ring-mac3",
-> +			  "host2rxdma-host-buf-ring-mac2",
-> +			  "host2rxdma-host-buf-ring-mac1",
-> +			  "rxdma2host-destination-ring-mac3",
-> +			  "rxdma2host-destination-ring-mac2",
-> +			  "rxdma2host-destination-ring-mac1",
-> +			  "host2tcl-input-ring4",
-> +			  "host2tcl-input-ring3",
-> +			  "host2tcl-input-ring2",
-> +			  "host2tcl-input-ring1",
-> +			  "wbm2host-tx-completions-ring3",
-> +			  "wbm2host-tx-completions-ring2",
-> +			  "wbm2host-tx-completions-ring1",
-> +			  "tcl2host-status-ring";
-> +	qcom,rproc = <&qcom_q6v5_wcss>;
-> +};
-> 
-
-_______________________________________________
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+VmFzYW50aGFrdW1hciBUaGlhZ2FyYWphbiA8dnRoaWFnYXJAY29kZWF1cm9yYS5vcmc+IHdyaXRl
+czoKCj4gT24gMjAxOS0wOC0yMSAxNTozOCwgVG9rZSBIw7hpbGFuZC1Kw7hyZ2Vuc2VuIHdyb3Rl
+Ogo+PiBWYXNhbnRoYWt1bWFyIFRoaWFnYXJhamFuIDx2dGhpYWdhckBjb2RlYXVyb3JhLm9yZz4g
+d3JpdGVzOgo+PiAKPj4+IE9uIDIwMTktMDgtMjAgMjI6MjEsIFRva2UgSMO4aWxhbmQtSsO4cmdl
+bnNlbiB3cm90ZToKPj4+PiBbLi4uIHNuaXAgLi4uIF0KPj4+PiAKPj4+Pj4gK3N0YXRpYyBjb25z
+dCBzdHJ1Y3QgaWVlZTgwMjExX29wcyBhdGgxMWtfb3BzID0gewo+Pj4+PiArCS50eAkJCQk9IGF0
+aDExa19tYWNfb3BfdHgsCj4+Pj4gCj4+Pj4gTm8gd2FrZV90eF9xdWV1ZT8gOigKPj4+IAo+Pj4g
+WWVzLCBwYWNrZXQgcXVldWVpbmcgaXMgaGFuZGxlZCBpbiBmaXJtd2FyZS4gVGhpcyBtYWtlcyBz
+ZW5zZQo+Pj4gZXNwZWNpYWxseSB3aGVuIHdlIGVuYWJsZSA4MDIuMTEgZW5jYXAgb2ZmbG9hZCBz
+dXBwb3J0IHdoZXJlIG1vc3Qgb2YKPj4+IHRoZSBkYXRhIHBhdGggcHJvY2Vzc2luZyBpbiBtYWM4
+MDIxMSB3aWxsIGJlIHNraXBwZWQgYW5kIHBhY2tldCBpcwo+Pj4gZ2l2ZW4gdG8gZHJpdmVyL2Zp
+cm13YXJlIGluIDgwMi4zIGZvcm1hdCBpdHNlbGYuIFRoZW4gZmlybXdhcmUgd291bGQKPj4+IHRh
+a2UgY2FyZSBvZiBhbGwgdGhlIGNsYXNzaWZpY2F0aW9uLCBxdWV1ZWluZyBhbmQgZW5jYXBzdWxh
+dGlvbgo+Pj4gb3BlcmF0aW9ucy4KPj4gCj4+IFdlbGwsIHNvIGRvZXMgYXRoMTBrLCBhbmQgeWV0
+IHdlIHN0aWxsIHNhdyBhIHNpZ25pZmljYW50IGltcHJvdmVtZW50IGJ5Cj4+IG1vdmluZyBxdWV1
+ZWluZyBiYWNrIGludG8gdGhlIGhvc3Qgd2hlcmUgaXQgY2FuIGJlIGhhbmRsZWQgYnkgdGhlCj4+
+IEZRLUNvRGVsLWVuYWJsZWQgcXVldWVpbmcgc3RydWN0dXJlLgo+PiAKPgo+IFN1cmUsIHdlIGNv
+dWxkIHByb2JhYmx5IHRyeSB0aGF0IHdpdGggYXRoMTFrIGFzIHdlbGwgYXQgc29tZSBwb2ludCB3
+aGVuIAo+IHdlIGhhdmUgYSBiYXNlbGluZSB3aXRoIEhFIHN1cHBvcnQuCgpXZWxsLCByYXRoZXIg
+dGhhbiByZXRyb2ZpdCBjaGFuZ2UgdGhpbmdzIGxhdGVyLCB3aHkgbm90IHN0YXJ0IG91dCB3aXRo
+IGEKd2FrZV90eF9xdWV1ZS1iYXNlZCBkcml2ZXI/CgotVG9rZQoKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtA
+bGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL2F0aDExawo=
