@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i5RKx-0006ig-0r
+ id 1i5RKx-0006ik-0m
  for ath11k@lists.infradead.org; Wed, 04 Sep 2019 09:12:26 +0000
 From: John Crispin <john@phrozen.org>
-Subject: [PATCH 1/4] ath11k: add HE support
-Date: Wed,  4 Sep 2019 11:12:08 +0200
-Message-Id: <20190904091211.26868-2-john@phrozen.org>
+Subject: [PATCH 2/4] ath11k: add TWT support
+Date: Wed,  4 Sep 2019 11:12:09 +0200
+Message-Id: <20190904091211.26868-3-john@phrozen.org>
 In-Reply-To: <20190904091211.26868-1-john@phrozen.org>
 References: <20190904091211.26868-1-john@phrozen.org>
 MIME-Version: 1.0
@@ -25,414 +25,313 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Kalle Valo <kvalo@codeaurora.org>
 Cc: Shashidhar Lakkavalli <slakkavalli@datto.com>, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-Add basic HE support to the driver. The sband_iftype data is generated from
-the capabilities read from the FW.
+Add target wait time wmi calls to the driver. En/disable the support
+from when the bss_config changes. We ignore the cmd completion events.
 
 Signed-off-by: Shashidhar Lakkavalli <slakkavalli@datto.com>
 Signed-off-by: John Crispin <john@phrozen.org>
-Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/core.h |   2 +
- drivers/net/wireless/ath/ath11k/mac.c  | 258 ++++++++++++++++++++++++-
- drivers/net/wireless/ath/ath11k/reg.c  |   1 +
- drivers/net/wireless/ath/ath11k/wmi.c  |   6 +-
- drivers/net/wireless/ath/ath11k/wmi.h  |   6 +-
- 5 files changed, 263 insertions(+), 10 deletions(-)
+ drivers/net/wireless/ath/ath11k/mac.c | 12 ++++
+ drivers/net/wireless/ath/ath11k/wmi.c | 91 +++++++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/wmi.h | 71 +++++++++++++++++++++
+ 3 files changed, 174 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 35cb7b58220e..29d98a295f2e 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -431,6 +431,8 @@ struct ath11k {
- 
- 	struct {
- 		struct ieee80211_supported_band sbands[NUM_NL80211_BANDS];
-+		struct ieee80211_sband_iftype_data
-+			iftype[NUM_NL80211_BANDS][NUM_NL80211_IFTYPES];
- 	} mac;
- 	unsigned long dev_flags;
- 	unsigned int filter_flags;
 diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 64f51b608ad2..8abbff35ee21 100644
+index 8abbff35ee21..d036c50bb43f 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -1140,7 +1140,79 @@ static void ath11k_peer_assoc_h_he(struct ath11k *ar,
- 				   struct ieee80211_sta *sta,
- 				   struct peer_assoc_params *arg)
- {
--	/* TODO: Implementation */
-+	const struct ieee80211_sta_he_cap *he_cap = &sta->he_cap;
-+
-+	if (!he_cap->has_he)
-+		return;
-+
-+	arg->he_flag = true;
-+
-+	memcpy(&arg->peer_he_cap_macinfo, he_cap->he_cap_elem.mac_cap_info,
-+	       sizeof(arg->peer_he_cap_macinfo));
-+	memcpy(&arg->peer_he_cap_phyinfo, he_cap->he_cap_elem.phy_cap_info,
-+	       sizeof(arg->peer_he_cap_phyinfo));
-+	memcpy(&arg->peer_he_ops, &vif->bss_conf.he_operation,
-+	       sizeof(arg->peer_he_ops));
-+
-+	/* the top most byte is used to indicate BSS color info */
-+	arg->peer_he_ops &= 0xffffff;
-+
-+	if (he_cap->he_cap_elem.phy_cap_info[6] &
-+	    IEEE80211_HE_PHY_CAP6_PPE_THRESHOLD_PRESENT) {
-+		int bit = 7;
-+		int nss, ru;
-+
-+		arg->peer_ppet.numss_m1 = he_cap->ppe_thres[0] &
-+					  IEEE80211_PPE_THRES_NSS_MASK;
-+		arg->peer_ppet.ru_bit_mask =
-+			(he_cap->ppe_thres[0] &
-+			 IEEE80211_PPE_THRES_RU_INDEX_BITMASK_MASK) >>
-+			IEEE80211_PPE_THRES_RU_INDEX_BITMASK_POS;
-+
-+		for (nss = 0; nss <= arg->peer_ppet.numss_m1; nss++) {
-+			for (ru = 0; ru < 4; ru++) {
-+				u32 val = 0;
-+				int i;
-+
-+				if ((arg->peer_ppet.ru_bit_mask & BIT(ru)) == 0)
-+					continue;
-+				for (i = 0; i < 6; i++) {
-+					val >>= 1;
-+					val |= ((he_cap->ppe_thres[bit / 8] >>
-+						 (bit % 8)) & 0x1) << 5;
-+					bit++;
-+				}
-+				arg->peer_ppet.ppet16_ppet8_ru3_ru0[nss] |=
-+								val << (ru * 6);
-+			}
-+		}
-+	}
-+
-+	switch (sta->bandwidth) {
-+	case IEEE80211_STA_RX_BW_160:
-+		if (he_cap->he_cap_elem.phy_cap_info[0] &
-+		    IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_80PLUS80_MHZ_IN_5G) {
-+			arg->peer_he_rx_mcs_set[WMI_HECAP_TXRX_MCS_NSS_IDX_80_80] =
-+				he_cap->he_mcs_nss_supp.rx_mcs_80p80;
-+			arg->peer_he_tx_mcs_set[WMI_HECAP_TXRX_MCS_NSS_IDX_80_80] =
-+				he_cap->he_mcs_nss_supp.tx_mcs_80p80;
-+			arg->peer_he_mcs_count++;
-+		}
-+		arg->peer_he_rx_mcs_set[WMI_HECAP_TXRX_MCS_NSS_IDX_160] =
-+			he_cap->he_mcs_nss_supp.rx_mcs_160;
-+		arg->peer_he_tx_mcs_set[WMI_HECAP_TXRX_MCS_NSS_IDX_160] =
-+			he_cap->he_mcs_nss_supp.tx_mcs_160;
-+		arg->peer_he_mcs_count++;
-+		/* fall through */
-+
-+	default:
-+		arg->peer_he_rx_mcs_set[WMI_HECAP_TXRX_MCS_NSS_IDX_80] =
-+			he_cap->he_mcs_nss_supp.rx_mcs_80;
-+		arg->peer_he_tx_mcs_set[WMI_HECAP_TXRX_MCS_NSS_IDX_80] =
-+			he_cap->he_mcs_nss_supp.tx_mcs_80;
-+		arg->peer_he_mcs_count++;
-+		break;
-+	}
- }
- 
- static void ath11k_peer_assoc_h_smps(struct ieee80211_sta *sta,
-@@ -1307,6 +1379,32 @@ static enum wmi_phy_mode ath11k_mac_get_phymode_vht(struct ath11k *ar,
- 	return MODE_UNKNOWN;
- }
- 
-+static enum wmi_phy_mode ath11k_mac_get_phymode_he(struct ath11k *ar,
-+						   struct ieee80211_sta *sta)
-+{
-+	if (sta->bandwidth == IEEE80211_STA_RX_BW_160) {
-+		if (sta->he_cap.he_cap_elem.phy_cap_info[0] &
-+		     IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_160MHZ_IN_5G)
-+			return MODE_11AX_HE160;
-+		else if (sta->he_cap.he_cap_elem.phy_cap_info[0] &
-+		     IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_80PLUS80_MHZ_IN_5G)
-+			return MODE_11AX_HE80_80;
-+		/* not sure if this is a valid case? */
-+		return MODE_11AX_HE160;
-+	}
-+
-+	if (sta->bandwidth == IEEE80211_STA_RX_BW_80)
-+		return MODE_11AX_HE80;
-+
-+	if (sta->bandwidth == IEEE80211_STA_RX_BW_40)
-+		return MODE_11AX_HE40;
-+
-+	if (sta->bandwidth == IEEE80211_STA_RX_BW_20)
-+		return MODE_11AX_HE20;
-+
-+	return MODE_UNKNOWN;
-+}
-+
- static void ath11k_peer_assoc_h_phymode(struct ath11k *ar,
- 					struct ieee80211_vif *vif,
- 					struct ieee80211_sta *sta,
-@@ -1328,7 +1426,14 @@ static void ath11k_peer_assoc_h_phymode(struct ath11k *ar,
- 
- 	switch (band) {
- 	case NL80211_BAND_2GHZ:
--		if (sta->vht_cap.vht_supported &&
-+		if (sta->he_cap.has_he) {
-+			if (sta->bandwidth == IEEE80211_STA_RX_BW_80)
-+				phymode = MODE_11AX_HE80_2G;
-+			else if (sta->bandwidth == IEEE80211_STA_RX_BW_40)
-+				phymode = MODE_11AX_HE40_2G;
-+			else
-+				phymode = MODE_11AX_HE20_2G;
-+		} else if (sta->vht_cap.vht_supported &&
- 		    !ath11k_peer_assoc_h_vht_masked(vht_mcs_mask)) {
- 			if (sta->bandwidth == IEEE80211_STA_RX_BW_40)
- 				phymode = MODE_11AC_VHT40;
-@@ -1345,12 +1450,12 @@ static void ath11k_peer_assoc_h_phymode(struct ath11k *ar,
- 		} else {
- 			phymode = MODE_11B;
+@@ -1188,6 +1188,11 @@ static void ath11k_peer_assoc_h_he(struct ath11k *ar,
  		}
--		/* TODO: HE */
--
- 		break;
- 	case NL80211_BAND_5GHZ:
--		/* Check VHT first */
--		if (sta->vht_cap.vht_supported &&
-+		/* Check HE first */
-+		if (sta->he_cap.has_he) {
-+			phymode = ath11k_mac_get_phymode_he(ar, sta);
-+		} else if (sta->vht_cap.vht_supported &&
- 		    !ath11k_peer_assoc_h_vht_masked(vht_mcs_mask)) {
- 			phymode = ath11k_mac_get_phymode_vht(ar, sta);
- 		} else if (sta->ht_cap.ht_supported &&
-@@ -1362,7 +1467,6 @@ static void ath11k_peer_assoc_h_phymode(struct ath11k *ar,
- 		} else {
- 			phymode = MODE_11A;
- 		}
--		/* TODO: HE Phymode */
- 		break;
- 	default:
- 		break;
-@@ -3126,6 +3230,142 @@ static int ath11k_check_chain_mask(struct ath11k *ar, u32 ant, bool is_tx_ant)
- 	return 0;
- }
- 
-+static void ath11k_gen_ppe_thresh(struct ath11k_ppe_threshold *fw_ppet,
-+				  u8 *he_ppet)
-+{
-+	int nss, ru;
-+	u8 bit = 7;
-+
-+	he_ppet[0] = fw_ppet->numss_m1 & IEEE80211_PPE_THRES_NSS_MASK;
-+	he_ppet[0] |= (fw_ppet->ru_bit_mask <<
-+		       IEEE80211_PPE_THRES_RU_INDEX_BITMASK_POS) &
-+		      IEEE80211_PPE_THRES_RU_INDEX_BITMASK_MASK;
-+	for (nss = 0; nss <= fw_ppet->numss_m1; nss++) {
-+		for (ru = 0; ru < 4; ru++) {
-+			u8 val;
-+			int i;
-+
-+			if ((fw_ppet->ru_bit_mask & BIT(ru)) == 0)
-+				continue;
-+			val = (fw_ppet->ppet16_ppet8_ru3_ru0[nss] >> (ru * 6)) &
-+			       0x3f;
-+			val = ((val >> 3) & 0x7) | ((val & 0x7) << 3);
-+			for (i = 5; i >= 0; i--) {
-+				he_ppet[bit / 8] |=
-+					((val >> i) & 0x1) << ((bit % 8));
-+				bit++;
-+			}
-+		}
-+	}
-+}
-+
-+static int ath11k_mac_copy_he_cap(struct ath11k *ar,
-+				  struct ath11k_pdev_cap *cap,
-+				  struct ieee80211_sband_iftype_data *data,
-+				  int band)
-+{
-+	int i, idx = 0;
-+
-+	for (i = 0; i < NUM_NL80211_IFTYPES; i++) {
-+		struct ieee80211_sta_he_cap *he_cap = &data[idx].he_cap;
-+		struct ath11k_band_cap *band_cap = &cap->band[band];
-+		struct ieee80211_he_cap_elem *he_cap_elem =
-+				&he_cap->he_cap_elem;
-+
-+		switch (i) {
-+		case NL80211_IFTYPE_STATION:
-+		case NL80211_IFTYPE_AP:
-+			break;
-+
-+		default:
-+			continue;
-+		}
-+
-+		data[idx].types_mask = BIT(i);
-+		he_cap->has_he = true;
-+		memcpy(he_cap_elem->mac_cap_info, band_cap->he_cap_info,
-+		       sizeof(he_cap_elem->mac_cap_info));
-+		memcpy(he_cap_elem->phy_cap_info, band_cap->he_cap_phy_info,
-+		       sizeof(he_cap_elem->phy_cap_info));
-+
-+		he_cap_elem->mac_cap_info[1] |=
-+			IEEE80211_HE_MAC_CAP1_TF_MAC_PAD_DUR_MASK;
-+		he_cap_elem->phy_cap_info[4] &=
-+			~IEEE80211_HE_PHY_CAP4_BEAMFORMEE_MAX_STS_UNDER_80MHZ_MASK;
-+		he_cap_elem->phy_cap_info[4] &=
-+			~IEEE80211_HE_PHY_CAP4_BEAMFORMEE_MAX_STS_ABOVE_80MHZ_MASK;
-+		he_cap_elem->phy_cap_info[4] |= (ar->num_tx_chains - 1) << 2;
-+
-+		he_cap_elem->phy_cap_info[5] &=
-+			~IEEE80211_HE_PHY_CAP5_BEAMFORMEE_NUM_SND_DIM_UNDER_80MHZ_MASK;
-+		he_cap_elem->phy_cap_info[5] &=
-+			~IEEE80211_HE_PHY_CAP5_BEAMFORMEE_NUM_SND_DIM_ABOVE_80MHZ_MASK;
-+		he_cap_elem->phy_cap_info[5] |= ar->num_tx_chains - 1;
-+
-+		switch (i) {
-+		case NL80211_IFTYPE_AP:
-+			he_cap_elem->phy_cap_info[9] |=
-+				IEEE80211_HE_PHY_CAP9_RX_1024_QAM_LESS_THAN_242_TONE_RU;
-+			break;
-+		case NL80211_IFTYPE_STATION:
-+			he_cap_elem->mac_cap_info[0] &=
-+				~IEEE80211_HE_MAC_CAP0_TWT_RES;
-+			he_cap_elem->mac_cap_info[0] |=
-+				IEEE80211_HE_MAC_CAP0_TWT_REQ;
-+			he_cap_elem->phy_cap_info[9] |=
-+				IEEE80211_HE_PHY_CAP9_TX_1024_QAM_LESS_THAN_242_TONE_RU;
-+			break;
-+		}
-+
-+		he_cap->he_mcs_nss_supp.rx_mcs_80 =
-+			cpu_to_le16(band_cap->he_mcs & 0xffff);
-+		he_cap->he_mcs_nss_supp.tx_mcs_80 =
-+			cpu_to_le16(band_cap->he_mcs & 0xffff);
-+		he_cap->he_mcs_nss_supp.rx_mcs_160 =
-+			cpu_to_le16((band_cap->he_mcs >> 16) & 0xffff);
-+		he_cap->he_mcs_nss_supp.tx_mcs_160 =
-+			cpu_to_le16((band_cap->he_mcs >> 16) & 0xffff);
-+		he_cap->he_mcs_nss_supp.rx_mcs_80p80 =
-+			cpu_to_le16((band_cap->he_mcs >> 16) & 0xffff);
-+		he_cap->he_mcs_nss_supp.tx_mcs_80p80 =
-+			cpu_to_le16((band_cap->he_mcs >> 16) & 0xffff);
-+
-+		memset(he_cap->ppe_thres, 0, sizeof(he_cap->ppe_thres));
-+		if (he_cap_elem->phy_cap_info[6] &
-+		    IEEE80211_HE_PHY_CAP6_PPE_THRESHOLD_PRESENT)
-+			ath11k_gen_ppe_thresh(&band_cap->he_ppet,
-+					      he_cap->ppe_thres);
-+		idx++;
-+	}
-+
-+	return idx;
-+}
-+
-+static void ath11k_mac_setup_he_cap(struct ath11k *ar,
-+				    struct ath11k_pdev_cap *cap)
-+{
-+	struct ieee80211_supported_band *band = NULL;
-+	int count = 0;
-+
-+	if (cap->supported_bands & WMI_HOST_WLAN_2G_CAP) {
-+		count = ath11k_mac_copy_he_cap(ar, cap,
-+				ar->mac.iftype[NL80211_BAND_2GHZ],
-+				NL80211_BAND_2GHZ);
-+		band = &ar->mac.sbands[NL80211_BAND_2GHZ];
-+		band->iftype_data = ar->mac.iftype[NL80211_BAND_2GHZ];
-+	}
-+
-+	if (cap->supported_bands & WMI_HOST_WLAN_5G_CAP) {
-+		count = ath11k_mac_copy_he_cap(ar, cap,
-+				ar->mac.iftype[NL80211_BAND_5GHZ],
-+				NL80211_BAND_5GHZ);
-+		band = &ar->mac.sbands[NL80211_BAND_5GHZ];
-+		band->iftype_data = ar->mac.iftype[NL80211_BAND_5GHZ];
-+	}
-+
-+	band->n_iftype_data = count;
-+}
-+
- static int __ath11k_set_antenna(struct ath11k *ar, u32 tx_ant, u32 rx_ant)
- {
- 	int ret;
-@@ -3161,8 +3401,9 @@ static int __ath11k_set_antenna(struct ath11k *ar, u32 tx_ant, u32 rx_ant)
- 		return ret;
  	}
  
--	/* Reload HT/VHT capability */
-+	/* Reload HT/VHT/HE capability */
- 	ath11k_mac_setup_ht_vht_cap(ar, &ar->pdev->cap, NULL);
-+	ath11k_mac_setup_he_cap(ar, &ar->pdev->cap);
++	if (he_cap->he_cap_elem.mac_cap_info[0] & IEEE80211_HE_MAC_CAP0_TWT_RES)
++		arg->twt_responder = true;
++	if (he_cap->he_cap_elem.mac_cap_info[0] & IEEE80211_HE_MAC_CAP0_TWT_REQ)
++		arg->twt_requester = true;
++
+ 	switch (sta->bandwidth) {
+ 	case IEEE80211_STA_RX_BW_160:
+ 		if (he_cap->he_cap_elem.phy_cap_info[0] &
+@@ -1897,6 +1902,13 @@ static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
+ 	    !ath11k_mac_vif_chan(arvif->vif, &def))
+ 		ath11k_recalculate_mgmt_rate(ar, vif, &def);
  
- 	return 0;
++	if (changed & BSS_CHANGED_TWT) {
++		if (info->twt_requester || info->twt_responder)
++			ath11k_wmi_send_twt_enable_cmd(ar, ar->pdev_idx);
++		else
++			ath11k_wmi_send_twt_disable_cmd(ar, ar->pdev_idx);
++	}
++
+ 	mutex_unlock(&ar->conf_mutex);
  }
-@@ -5207,6 +5448,7 @@ static int ath11k_mac_register(struct ath11k *ar)
- 		goto err_free;
  
- 	ath11k_mac_setup_ht_vht_cap(ar, cap, &ht_cap);
-+	ath11k_mac_setup_he_cap(ar, cap);
- 
- 	ar->hw->wiphy->available_antennas_rx = cap->rx_chain_mask;
- 	ar->hw->wiphy->available_antennas_tx = cap->tx_chain_mask;
-diff --git a/drivers/net/wireless/ath/ath11k/reg.c b/drivers/net/wireless/ath/ath11k/reg.c
-index 4f9c808019e3..9c3f79c0d168 100644
---- a/drivers/net/wireless/ath/ath11k/reg.c
-+++ b/drivers/net/wireless/ath/ath11k/reg.c
-@@ -141,6 +141,7 @@ int ath11k_reg_update_chan_list(struct ath11k *ar)
- 			/* TODO: Set to true/false based on some condition? */
- 			ch->allow_ht = true;
- 			ch->allow_vht = true;
-+			ch->allow_he = true;
- 
- 			ch->dfs_set =
- 				!!(channel->flags & IEEE80211_CHAN_RADAR);
 diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index a7178cd28c43..b721e5142f6c 100644
+index b721e5142f6c..019d2f45e51d 100644
 --- a/drivers/net/wireless/ath/ath11k/wmi.c
 +++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -753,6 +753,8 @@ static void ath11k_wmi_put_wmi_channel(struct wmi_channel *chan,
- 		chan->info |= WMI_CHAN_INFO_ALLOW_HT;
- 	if (arg->channel.allow_vht)
- 		chan->info |= WMI_CHAN_INFO_ALLOW_VHT;
-+	if (arg->channel.allow_he)
-+		chan->info |= WMI_CHAN_INFO_ALLOW_HE;
- 	if (arg->channel.ht40plus)
- 		chan->info |= WMI_CHAN_INFO_HT40_PLUS;
- 	if (arg->channel.chan_radar)
-@@ -2150,7 +2152,9 @@ int ath11k_wmi_send_scan_chan_list_cmd(struct ath11k *ar,
+@@ -1622,6 +1622,10 @@ ath11k_wmi_copy_peer_flags(struct wmi_peer_assoc_complete_cmd *cmd,
+ 			cmd->peer_flags |= WMI_PEER_VHT;
+ 		if (param->he_flag)
+ 			cmd->peer_flags |= WMI_PEER_HE;
++		if (param->twt_requester)
++			cmd->peer_flags |= WMI_PEER_TWT_REQ;
++		if (param->twt_responder)
++			cmd->peer_flags |= WMI_PEER_TWT_RESP;
+ 	}
  
- 		if (tchan_info->is_chan_passive)
- 			chan_info->info |= WMI_CHAN_INFO_PASSIVE;
--		if (tchan_info->allow_vht)
-+		if (tchan_info->allow_he)
-+			chan_info->info |= WMI_CHAN_INFO_ALLOW_HE;
-+		else if (tchan_info->allow_vht)
- 			chan_info->info |= WMI_CHAN_INFO_ALLOW_VHT;
- 		else if (tchan_info->allow_ht)
- 			chan_info->info |= WMI_CHAN_INFO_ALLOW_HT;
+ 	/* Suppress authorization for all AUTH modes that need 4-way handshake
+@@ -2457,6 +2461,86 @@ int ath11k_wmi_pdev_pktlog_disable(struct ath11k *ar)
+ 	return ret;
+ }
+ 
++int
++ath11k_wmi_send_twt_enable_cmd(struct ath11k *ar, u32 pdev_id)
++{
++	struct ath11k_pdev_wmi *wmi = ar->wmi;
++	struct ath11k_base *ab = wmi->wmi_sc->ab;
++	struct wmi_twt_enable_params_cmd *cmd;
++	struct sk_buff *skb;
++	int ret, len;
++
++	len = sizeof(*cmd);
++
++	skb = ath11k_wmi_alloc_skb(wmi->wmi_sc, len);
++	if (!skb)
++		return -ENOMEM;
++
++	cmd = (void *)skb->data;
++	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_TWT_ENABLE_CMD) |
++			  FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
++	cmd->pdev_id = pdev_id;
++	cmd->sta_cong_timer_ms = ATH11K_TWT_DEF_STA_CONG_TIMER_MS;
++	cmd->default_slot_size = ATH11K_TWT_DEF_DEFAULT_SLOT_SIZE;
++	cmd->congestion_thresh_setup = ATH11K_TWT_DEF_CONGESTION_THRESH_SETUP;
++	cmd->congestion_thresh_teardown =
++		ATH11K_TWT_DEF_CONGESTION_THRESH_TEARDOWN;
++	cmd->congestion_thresh_critical =
++		ATH11K_TWT_DEF_CONGESTION_THRESH_CRITICAL;
++	cmd->interference_thresh_teardown =
++		ATH11K_TWT_DEF_INTERFERENCE_THRESH_TEARDOWN;
++	cmd->interference_thresh_setup =
++		ATH11K_TWT_DEF_INTERFERENCE_THRESH_SETUP;
++	cmd->min_no_sta_setup = ATH11K_TWT_DEF_MIN_NO_STA_SETUP;
++	cmd->min_no_sta_teardown = ATH11K_TWT_DEF_MIN_NO_STA_TEARDOWN;
++	cmd->no_of_bcast_mcast_slots = ATH11K_TWT_DEF_NO_OF_BCAST_MCAST_SLOTS;
++	cmd->min_no_twt_slots = ATH11K_TWT_DEF_MIN_NO_TWT_SLOTS;
++	cmd->max_no_sta_twt = ATH11K_TWT_DEF_MAX_NO_STA_TWT;
++	cmd->mode_check_interval = ATH11K_TWT_DEF_MODE_CHECK_INTERVAL;
++	cmd->add_sta_slot_interval = ATH11K_TWT_DEF_ADD_STA_SLOT_INTERVAL;
++	cmd->remove_sta_slot_interval =
++		ATH11K_TWT_DEF_REMOVE_STA_SLOT_INTERVAL;
++	/* TODO add MBSSID support */
++	cmd->mbss_support = 0;
++
++	ret = ath11k_wmi_cmd_send(wmi, skb,
++				  WMI_TWT_ENABLE_CMDID);
++	if (ret) {
++		ath11k_warn(ab, "Failed to send WMI_TWT_ENABLE_CMDID");
++		dev_kfree_skb(skb);
++	}
++	return ret;
++}
++
++int
++ath11k_wmi_send_twt_disable_cmd(struct ath11k *ar, u32 pdev_id)
++{
++	struct ath11k_pdev_wmi *wmi = ar->wmi;
++	struct ath11k_base *ab = wmi->wmi_sc->ab;
++	struct wmi_twt_disable_params_cmd *cmd;
++	struct sk_buff *skb;
++	int ret, len;
++
++	len = sizeof(*cmd);
++
++	skb = ath11k_wmi_alloc_skb(wmi->wmi_sc, len);
++	if (!skb)
++		return -ENOMEM;
++
++	cmd = (void *)skb->data;
++	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_TWT_DISABLE_CMD) |
++			  FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
++	cmd->pdev_id = pdev_id;
++
++	ret = ath11k_wmi_cmd_send(wmi, skb,
++				  WMI_TWT_DISABLE_CMDID);
++	if (ret) {
++		ath11k_warn(ab, "Failed to send WMI_TWT_DIeABLE_CMDID");
++		dev_kfree_skb(skb);
++	}
++	return ret;
++}
++
+ static void
+ ath11k_fill_band_to_mac_param(struct ath11k_base  *soc,
+ 			      struct wmi_host_pdev_band_to_mac *band_to_mac)
+@@ -2548,6 +2632,9 @@ ath11k_wmi_copy_resource_config(struct wmi_resource_config *wmi_cfg,
+ 	wmi_cfg->use_pdev_id = tg_cfg->use_pdev_id;
+ 	wmi_cfg->flag1 = tg_cfg->atf_config;
+ 	wmi_cfg->peer_map_unmap_v2_support = tg_cfg->peer_map_unmap_v2_support;
++	wmi_cfg->sched_params = tg_cfg->sched_params;
++	wmi_cfg->twt_ap_pdev_count = tg_cfg->twt_ap_pdev_count;
++	wmi_cfg->twt_ap_sta_count = tg_cfg->twt_ap_sta_count;
+ }
+ 
+ static int ath11k_init_cmd_send(struct ath11k_pdev_wmi *wmi,
+@@ -2739,6 +2826,8 @@ int ath11k_wmi_cmd_init(struct ath11k_base *ab)
+ 	config.beacon_tx_offload_max_vdev = ab->num_radios * TARGET_MAX_BCN_OFFLD;
+ 	config.rx_batchmode = TARGET_RX_BATCHMODE;
+ 	config.peer_map_unmap_v2_support = 1;
++	config.twt_ap_pdev_count = 2;
++	config.twt_ap_sta_count = 1000;
+ 
+ 	memcpy(&wmi_sc->wlan_resource_config, &config, sizeof(config));
+ 
+@@ -5421,6 +5510,8 @@ static void ath11k_wmi_tlv_op_rx(struct ath11k_base *ab, struct sk_buff *skb)
+ 	case WMI_TBTTOFFSET_EXT_UPDATE_EVENTID:
+ 	case WMI_VDEV_DELETE_RESP_EVENTID:
+ 	case WMI_PEER_OPER_MODE_CHANGE_EVENTID:
++	case WMI_TWT_ENABLE_EVENTID:
++	case WMI_TWT_DISABLE_EVENTID:
+ 		ath11k_dbg(ab, ATH11K_DBG_WMI,
+ 			   "ignoring unsupported event 0x%x\n", id);
+ 		break;
 diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index d4072726f656..c03cbe4a0f71 100644
+index c03cbe4a0f71..c880d10ff2e9 100644
 --- a/drivers/net/wireless/ath/ath11k/wmi.h
 +++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -2445,6 +2445,7 @@ struct channel_param {
- 	    is_chan_passive:1,
- 	    allow_ht:1,
- 	    allow_vht:1,
-+	    allow_he:1,
- 	    set_agile:1;
- 	u32 phy_mode;
- 	u32 cfreq1;
-@@ -3334,7 +3335,10 @@ struct wmi_vdev_install_key_arg {
+@@ -169,6 +169,10 @@ enum wmi_cmd_group {
+ 	WMI_GRP_MONITOR,        /* 0x39 */
+ 	WMI_GRP_REGULATORY,     /* 0x3a */
+ 	WMI_GRP_HW_DATA_FILTER, /* 0x3b */
++	WMI_GRP_WLM,            /* 0x3c */
++	WMI_GRP_11K_OFFLOAD,    /* 0x3d */
++	WMI_GRP_TWT,            /* 0x3e */
++
+ };
  
- #define WMI_MAX_SUPPORTED_RATES			128
- #define WMI_HOST_MAX_HECAP_PHY_SIZE		3
--#define WMI_HOST_MAX_HE_RATE_SET		1
-+#define WMI_HOST_MAX_HE_RATE_SET		3
-+#define WMI_HECAP_TXRX_MCS_NSS_IDX_80		0
-+#define WMI_HECAP_TXRX_MCS_NSS_IDX_160		1
-+#define WMI_HECAP_TXRX_MCS_NSS_IDX_80_80	2
+ #define WMI_CMD_GRP(grp_id) (((grp_id) << 12) | 0x1)
+@@ -530,6 +534,12 @@ enum wmi_tlv_cmd_id {
+ 	WMI_NDP_RESPONDER_REQ_CMDID,
+ 	WMI_NDP_END_REQ_CMDID,
+ 	WMI_HW_DATA_FILTER_CMDID = WMI_TLV_CMD(WMI_GRP_HW_DATA_FILTER),
++	WMI_TWT_ENABLE_CMDID = WMI_TLV_CMD(WMI_GRP_TWT),
++	WMI_TWT_DISABLE_CMDID,
++	WMI_TWT_ADD_DIALOG_CMDID,
++	WMI_TWT_DEL_DIALOG_CMDID,
++	WMI_TWT_PAUSE_DIALOG_CMDID,
++	WMI_TWT_RESUME_DIALOG_CMDID,
+ };
  
- struct wmi_rate_set_arg {
- 	u32 num_rates;
+ enum wmi_tlv_event_id {
+@@ -724,6 +734,13 @@ enum wmi_tlv_event_id {
+ 	WMI_NDP_INDICATION_EVENTID,
+ 	WMI_NDP_CONFIRM_EVENTID,
+ 	WMI_NDP_END_INDICATION_EVENTID,
++
++	WMI_TWT_ENABLE_EVENTID = WMI_TLV_CMD(WMI_GRP_TWT),
++	WMI_TWT_DISABLE_EVENTID,
++	WMI_TWT_ADD_DIALOG_EVENTID,
++	WMI_TWT_DEL_DIALOG_EVENTID,
++	WMI_TWT_PAUSE_DIALOG_EVENTID,
++	WMI_TWT_RESUME_DIALOG_EVENTID,
+ };
+ 
+ enum wmi_tlv_pdev_param {
+@@ -2183,6 +2200,9 @@ struct wmi_resource_config {
+ 	u32 max_num_dbs_scan_duty_cycle;
+ 	u32 max_num_group_keys;
+ 	u32 peer_map_unmap_v2_support;
++	u32 sched_params;
++	u32 twt_ap_pdev_count;
++	u32 twt_ap_sta_count;
+ } __packed;
+ 
+ struct wmi_service_ready_event {
+@@ -3401,6 +3421,8 @@ struct peer_assoc_params {
+ 	u32 peer_he_mcs_count;
+ 	u32 peer_he_rx_mcs_set[WMI_HOST_MAX_HE_RATE_SET];
+ 	u32 peer_he_tx_mcs_set[WMI_HOST_MAX_HE_RATE_SET];
++	bool twt_responder;
++	bool twt_requester;
+ 	struct ath11k_ppe_threshold peer_ppet;
+ };
+ 
+@@ -3652,6 +3674,8 @@ struct wmi_unit_test_cmd {
+ #define WMI_PEER_DYN_MIMOPS	0x00020000
+ #define WMI_PEER_STATIC_MIMOPS	0x00040000
+ #define WMI_PEER_SPATIAL_MUX	0x00200000
++#define WMI_PEER_TWT_REQ	0x00400000
++#define WMI_PEER_TWT_RESP	0x00800000
+ #define WMI_PEER_VHT		0x02000000
+ #define WMI_PEER_80MHZ		0x04000000
+ #define WMI_PEER_PMF		0x08000000
+@@ -4494,6 +4518,48 @@ struct wmi_wmm_params_all_arg {
+ 	struct wmi_wmm_params_arg ac_vo;
+ };
+ 
++#define ATH11K_TWT_DEF_STA_CONG_TIMER_MS		5000
++#define ATH11K_TWT_DEF_DEFAULT_SLOT_SIZE		10
++#define ATH11K_TWT_DEF_CONGESTION_THRESH_SETUP		50
++#define ATH11K_TWT_DEF_CONGESTION_THRESH_TEARDOWN	20
++#define ATH11K_TWT_DEF_CONGESTION_THRESH_CRITICAL	100
++#define ATH11K_TWT_DEF_INTERFERENCE_THRESH_TEARDOWN	80
++#define ATH11K_TWT_DEF_INTERFERENCE_THRESH_SETUP	50
++#define ATH11K_TWT_DEF_MIN_NO_STA_SETUP			10
++#define ATH11K_TWT_DEF_MIN_NO_STA_TEARDOWN		2
++#define ATH11K_TWT_DEF_NO_OF_BCAST_MCAST_SLOTS		2
++#define ATH11K_TWT_DEF_MIN_NO_TWT_SLOTS			2
++#define ATH11K_TWT_DEF_MAX_NO_STA_TWT			500
++#define ATH11K_TWT_DEF_MODE_CHECK_INTERVAL		10000
++#define ATH11K_TWT_DEF_ADD_STA_SLOT_INTERVAL		1000
++#define ATH11K_TWT_DEF_REMOVE_STA_SLOT_INTERVAL		5000
++
++struct wmi_twt_enable_params_cmd {
++	u32 tlv_header;
++	u32 pdev_id;
++	u32 sta_cong_timer_ms;
++	u32 mbss_support;
++	u32 default_slot_size;
++	u32 congestion_thresh_setup;
++	u32 congestion_thresh_teardown;
++	u32 congestion_thresh_critical;
++	u32 interference_thresh_teardown;
++	u32 interference_thresh_setup;
++	u32 min_no_sta_setup;
++	u32 min_no_sta_teardown;
++	u32 no_of_bcast_mcast_slots;
++	u32 min_no_twt_slots;
++	u32 max_no_sta_twt;
++	u32 mode_check_interval;
++	u32 add_sta_slot_interval;
++	u32 remove_sta_slot_interval;
++};
++
++struct wmi_twt_disable_params_cmd {
++	u32 tlv_header;
++	u32 pdev_id;
++};
++
+ struct target_resource_config {
+ 	u32 num_vdevs;
+ 	u32 num_peers;
+@@ -4553,6 +4619,9 @@ struct target_resource_config {
+ 	u32 max_bssid_rx_filters;
+ 	u32 use_pdev_id;
+ 	u32 peer_map_unmap_v2_support;
++	u32 sched_params;
++	u32 twt_ap_pdev_count;
++	u32 twt_ap_sta_count;
+ };
+ 
+ #define WMI_MAX_MEM_REQS 32
+@@ -4676,4 +4745,6 @@ void ath11k_wmi_fw_stats_fill(struct ath11k *ar,
+ 			      struct ath11k_fw_stats *fw_stats, u32 stats_id,
+ 			      char *buf);
+ int ath11k_wmi_simulate_radar(struct ath11k *ar);
++int ath11k_wmi_send_twt_enable_cmd(struct ath11k *ar, u32 pdev_id);
++int ath11k_wmi_send_twt_disable_cmd(struct ath11k *ar, u32 pdev_id);
+ #endif
 -- 
 2.20.1
 
