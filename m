@@ -1,12 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i5RKx-0006ii-1Q
+ id 1i5RKx-0006il-0l
  for ath11k@lists.infradead.org; Wed, 04 Sep 2019 09:12:24 +0000
 From: John Crispin <john@phrozen.org>
-Subject: [PATCH 0/4] ath11k: add HE support
-Date: Wed,  4 Sep 2019 11:12:07 +0200
-Message-Id: <20190904091211.26868-1-john@phrozen.org>
+Subject: [PATCH 4/4] ath11k: register HE mesh capabilities
+Date: Wed,  4 Sep 2019 11:12:11 +0200
+Message-Id: <20190904091211.26868-5-john@phrozen.org>
+In-Reply-To: <20190904091211.26868-1-john@phrozen.org>
+References: <20190904091211.26868-1-john@phrozen.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -21,28 +23,98 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Kalle Valo <kvalo@codeaurora.org>
-Cc: ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
+Cc: ath11k@lists.infradead.org, Sven Eckelmann <seckelmann@datto.com>
 
-This series adds HE support for the ath11k driver. These patches were
-previously sent and this is a rebase on ontop of ath11k-post-bringup.
+From: Sven Eckelmann <seckelmann@datto.com>
 
-*** BLURB HERE ***
+The capabilities for the HE mesh are generated from the capabilities
+reported by the fw. But the firmware only reports the overall capabilities
+and not the one which are specific for mesh. Some of them (TWT, MU UL/DL,
+TB PPDU, ...) require an infrastructure setup with a main STA (AP)
+controlling the operations. This is not the case for mesh and thus these
+capabilities are removed from the list of capabilities.
 
-John Crispin (3):
-  ath11k: add HE support
-  ath11k: add TWT support
-  ath11k: add spatial reuse support
+Signed-off-by: Sven Eckelmann <seckelmann@datto.com>
 
-Sven Eckelmann (1):
-  ath11k: register HE mesh capabilities
+Forwarded: https://patchwork.kernel.org/patch/11029297/
+---
+ drivers/net/wireless/ath/ath11k/mac.c | 56 +++++++++++++++++++++++++++
+ 1 file changed, 56 insertions(+)
 
- drivers/net/wireless/ath/ath11k/core.h |   2 +
- drivers/net/wireless/ath/ath11k/mac.c  | 336 ++++++++++++++++++++++++-
- drivers/net/wireless/ath/ath11k/reg.c  |   1 +
- drivers/net/wireless/ath/ath11k/wmi.c  | 132 +++++++++-
- drivers/net/wireless/ath/ath11k/wmi.h  |  93 ++++++-
- 5 files changed, 554 insertions(+), 10 deletions(-)
-
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index b1964385b206..4d40c9635a4a 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -3297,6 +3297,7 @@ static int ath11k_mac_copy_he_cap(struct ath11k *ar,
+ 		switch (i) {
+ 		case NL80211_IFTYPE_STATION:
+ 		case NL80211_IFTYPE_AP:
++		case NL80211_IFTYPE_MESH_POINT:
+ 			break;
+ 
+ 		default:
+@@ -3337,6 +3338,61 @@ static int ath11k_mac_copy_he_cap(struct ath11k *ar,
+ 			he_cap_elem->phy_cap_info[9] |=
+ 				IEEE80211_HE_PHY_CAP9_TX_1024_QAM_LESS_THAN_242_TONE_RU;
+ 			break;
++		case NL80211_IFTYPE_MESH_POINT:
++			he_cap_elem->mac_cap_info[0] &=
++				~(IEEE80211_HE_MAC_CAP0_TWT_RES |
++				  IEEE80211_HE_MAC_CAP0_TWT_REQ);
++			he_cap_elem->mac_cap_info[2] &=
++				~(IEEE80211_HE_MAC_CAP2_TRS |
++				  IEEE80211_HE_MAC_CAP2_BCAST_TWT |
++				  IEEE80211_HE_MAC_CAP2_MU_CASCADING);
++			he_cap_elem->mac_cap_info[3] &=
++				~(IEEE80211_HE_MAC_CAP3_FLEX_TWT_SCHED |
++				  IEEE80211_HE_MAC_CAP2_BCAST_TWT |
++				  IEEE80211_HE_MAC_CAP2_MU_CASCADING);
++			he_cap_elem->mac_cap_info[4] &=
++				~(IEEE80211_HE_MAC_CAP4_BSRP_BQRP_A_MPDU_AGG |
++				  IEEE80211_HE_MAC_CAP4_BQR);
++			he_cap_elem->mac_cap_info[5] &=
++				~(IEEE80211_HE_MAC_CAP5_SUBCHAN_SELECVITE_TRANSMISSION |
++				  IEEE80211_HE_MAC_CAP5_UL_2x996_TONE_RU |
++				  IEEE80211_HE_MAC_CAP5_PUNCTURED_SOUNDING |
++				  IEEE80211_HE_MAC_CAP5_HT_VHT_TRIG_FRAME_RX);
++
++			he_cap_elem->phy_cap_info[2] &=
++				~(IEEE80211_HE_PHY_CAP2_UL_MU_FULL_MU_MIMO |
++				  IEEE80211_HE_PHY_CAP2_UL_MU_PARTIAL_MU_MIMO);
++			he_cap_elem->phy_cap_info[3] &=
++				~(IEEE80211_HE_PHY_CAP3_RX_HE_MU_PPDU_FROM_NON_AP_STA |
++				  IEEE80211_HE_PHY_CAP3_DCM_MAX_CONST_TX_MASK |
++				  IEEE80211_HE_PHY_CAP3_DCM_MAX_CONST_RX_MASK);
++			he_cap_elem->phy_cap_info[4] &=
++				~IEEE80211_HE_PHY_CAP4_MU_BEAMFORMER;
++			he_cap_elem->phy_cap_info[5] &=
++				~IEEE80211_HE_PHY_CAP5_NG16_MU_FEEDBACK;
++			he_cap_elem->phy_cap_info[6] &=
++				~(IEEE80211_HE_PHY_CAP6_CODEBOOK_SIZE_75_MU |
++				  IEEE80211_HE_PHY_CAP6_TRIG_MU_BEAMFORMER_FB |
++				  IEEE80211_HE_PHY_CAP6_TRIG_CQI_FB |
++				  IEEE80211_HE_PHY_CAP6_PARTIAL_BANDWIDTH_DL_MUMIMO);
++			he_cap_elem->phy_cap_info[7] &=
++				~(IEEE80211_HE_PHY_CAP7_SRP_BASED_SR |
++				  IEEE80211_HE_PHY_CAP7_POWER_BOOST_FACTOR_AR |
++				  IEEE80211_HE_PHY_CAP7_STBC_TX_ABOVE_80MHZ |
++				  IEEE80211_HE_PHY_CAP7_STBC_RX_ABOVE_80MHZ);
++			he_cap_elem->phy_cap_info[8] &=
++				~(IEEE80211_HE_PHY_CAP8_HE_ER_SU_PPDU_4XLTF_AND_08_US_GI |
++				  IEEE80211_HE_PHY_CAP8_20MHZ_IN_40MHZ_HE_PPDU_IN_2G |
++				  IEEE80211_HE_PHY_CAP8_20MHZ_IN_160MHZ_HE_PPDU |
++				  IEEE80211_HE_PHY_CAP8_80MHZ_IN_160MHZ_HE_PPDU);
++			he_cap_elem->phy_cap_info[9] &=
++				~(IEEE80211_HE_PHY_CAP9_LONGER_THAN_16_SIGB_OFDM_SYM |
++				  IEEE80211_HE_PHY_CAP9_NON_TRIGGERED_CQI_FEEDBACK |
++				  IEEE80211_HE_PHY_CAP9_RX_1024_QAM_LESS_THAN_242_TONE_RU |
++				  IEEE80211_HE_PHY_CAP9_TX_1024_QAM_LESS_THAN_242_TONE_RU |
++				  IEEE80211_HE_PHY_CAP9_RX_FULL_BW_SU_USING_MU_WITH_COMP_SIGB |
++				  IEEE80211_HE_PHY_CAP9_RX_FULL_BW_SU_USING_MU_WITH_NON_COMP_SIGB);
++			break;
+ 		}
+ 
+ 		he_cap->he_mcs_nss_supp.rx_mcs_80 =
 -- 
 2.20.1
 
