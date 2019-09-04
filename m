@@ -1,16 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i5X0p-0002iY-I2
- for ath11k@lists.infradead.org; Wed, 04 Sep 2019 15:16:01 +0000
+ id 1i5X5w-0004bk-FP
+ for ath11k@lists.infradead.org; Wed, 04 Sep 2019 15:21:18 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
 Subject: Re: [PATCH 1/4] ath11k: add HE support
 References: <20190904091211.26868-1-john@phrozen.org>
  <20190904091211.26868-2-john@phrozen.org>
-Date: Wed, 04 Sep 2019 18:15:54 +0300
+Date: Wed, 04 Sep 2019 18:21:12 +0300
 In-Reply-To: <20190904091211.26868-2-john@phrozen.org> (John Crispin's message
  of "Wed, 4 Sep 2019 11:12:08 +0200")
-Message-ID: <87v9u8nlcl.fsf@kamboji.qca.qualcomm.com>
+Message-ID: <87r24wnl3r.fsf@kamboji.qca.qualcomm.com>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -36,31 +36,77 @@ John Crispin <john@phrozen.org> writes:
 > Signed-off-by: John Crispin <john@phrozen.org>
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-This added few new warnings below which I fixed in the pending branch,
-please check:
+[...]
 
-https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending-ath11k&id=c2cc53787bf54a6fb8d45f375bad18719b1ffd4f
+> +		for (nss = 0; nss <= arg->peer_ppet.numss_m1; nss++) {
+> +			for (ru = 0; ru < 4; ru++) {
+> +				u32 val = 0;
+> +				int i;
+> +
+> +				if ((arg->peer_ppet.ru_bit_mask & BIT(ru)) == 0)
+> +					continue;
+> +				for (i = 0; i < 6; i++) {
+> +					val >>= 1;
+> +					val |= ((he_cap->ppe_thres[bit / 8] >>
+> +						 (bit % 8)) & 0x1) << 5;
+> +					bit++;
+> +				}
+> +				arg->peer_ppet.ppet16_ppet8_ru3_ru0[nss] |=
+> +								val << (ru * 6);
+> +			}
+> +		}
+> +	}
 
-drivers/net/wireless/ath/ath11k/mac.c:1195:83: warning: incorrect type in assignment (different base types)
-drivers/net/wireless/ath/ath11k/mac.c:1195:83:    expected unsigned int
-drivers/net/wireless/ath/ath11k/mac.c:1195:83:    got restricted __le16 const [usertype] rx_mcs_80p80
-drivers/net/wireless/ath/ath11k/mac.c:1197:83: warning: incorrect type in assignment (different base types)
-drivers/net/wireless/ath/ath11k/mac.c:1197:83:    expected unsigned int
-drivers/net/wireless/ath/ath11k/mac.c:1197:83:    got restricted __le16 const [usertype] tx_mcs_80p80
-drivers/net/wireless/ath/ath11k/mac.c:1201:73: warning: incorrect type in assignment (different base types)
-drivers/net/wireless/ath/ath11k/mac.c:1201:73:    expected unsigned int
-drivers/net/wireless/ath/ath11k/mac.c:1201:73:    got restricted __le16 const [usertype] rx_mcs_160
-drivers/net/wireless/ath/ath11k/mac.c:1203:73: warning: incorrect type in assignment (different base types)
-drivers/net/wireless/ath/ath11k/mac.c:1203:73:    expected unsigned int
-drivers/net/wireless/ath/ath11k/mac.c:1203:73:    got restricted __le16 const [usertype] tx_mcs_160
-drivers/net/wireless/ath/ath11k/mac.c:1209:72: warning: incorrect type in assignment (different base types)
-drivers/net/wireless/ath/ath11k/mac.c:1209:72:    expected unsigned int
-drivers/net/wireless/ath/ath11k/mac.c:1209:72:    got restricted __le16 const [usertype] rx_mcs_80
-drivers/net/wireless/ath/ath11k/mac.c:1211:72: warning: incorrect type in assignment (different base types)
-drivers/net/wireless/ath/ath11k/mac.c:1211:72:    expected unsigned int
-drivers/net/wireless/ath/ath11k/mac.c:1211:72:    got restricted __le16 const [usertype] tx_mcs_80
-drivers/net/wireless/ath/ath11k/mac.c:3352: Alignment should match open parenthesis
-drivers/net/wireless/ath/ath11k/mac.c:3360: Alignment should match open parenthesis
+I think this loop needs a code comment explaining what's happening here.
+
+
+[...]
+
+> +static void ath11k_gen_ppe_thresh(struct ath11k_ppe_threshold *fw_ppet,
+> +				  u8 *he_ppet)
+> +{
+> +	int nss, ru;
+> +	u8 bit = 7;
+> +
+> +	he_ppet[0] = fw_ppet->numss_m1 & IEEE80211_PPE_THRES_NSS_MASK;
+> +	he_ppet[0] |= (fw_ppet->ru_bit_mask <<
+> +		       IEEE80211_PPE_THRES_RU_INDEX_BITMASK_POS) &
+> +		      IEEE80211_PPE_THRES_RU_INDEX_BITMASK_MASK;
+> +	for (nss = 0; nss <= fw_ppet->numss_m1; nss++) {
+> +		for (ru = 0; ru < 4; ru++) {
+> +			u8 val;
+> +			int i;
+> +
+> +			if ((fw_ppet->ru_bit_mask & BIT(ru)) == 0)
+> +				continue;
+> +			val = (fw_ppet->ppet16_ppet8_ru3_ru0[nss] >> (ru * 6)) &
+> +			       0x3f;
+> +			val = ((val >> 3) & 0x7) | ((val & 0x7) << 3);
+> +			for (i = 5; i >= 0; i--) {
+> +				he_ppet[bit / 8] |=
+> +					((val >> i) & 0x1) << ((bit % 8));
+> +				bit++;
+> +			}
+> +		}
+> +	}
+
+And this as well.
+
+> +		he_cap->he_mcs_nss_supp.rx_mcs_80 =
+> +			cpu_to_le16(band_cap->he_mcs & 0xffff);
+> +		he_cap->he_mcs_nss_supp.tx_mcs_80 =
+> +			cpu_to_le16(band_cap->he_mcs & 0xffff);
+> +		he_cap->he_mcs_nss_supp.rx_mcs_160 =
+> +			cpu_to_le16((band_cap->he_mcs >> 16) & 0xffff);
+> +		he_cap->he_mcs_nss_supp.tx_mcs_160 =
+> +			cpu_to_le16((band_cap->he_mcs >> 16) & 0xffff);
+> +		he_cap->he_mcs_nss_supp.rx_mcs_80p80 =
+> +			cpu_to_le16((band_cap->he_mcs >> 16) & 0xffff);
+> +		he_cap->he_mcs_nss_supp.tx_mcs_80p80 =
+> +			cpu_to_le16((band_cap->he_mcs >> 16) & 0xffff);
+
+We try always have proper defines for the magic values and using
+FIELD_GET() instead of manually shifting.
 
 
 -- 
