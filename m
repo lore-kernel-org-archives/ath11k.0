@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i5smv-00015M-RR
- for ath11k@lists.infradead.org; Thu, 05 Sep 2019 14:31:07 +0000
+ id 1i5sng-00018K-GV
+ for ath11k@lists.infradead.org; Thu, 05 Sep 2019 14:31:53 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH v2] ath11k: Fix htt stats sounding info and pdev cca stats
+Subject: Re: [PATCH] ath11k: fix resource leak in ath11k_mac_sta_state
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1564628769-23490-1-git-send-email-gseset@codeaurora.org>
-References: <1564628769-23490-1-git-send-email-gseset@codeaurora.org>
-Message-Id: <20190905143105.850C46058E@smtp.codeaurora.org>
-Date: Thu,  5 Sep 2019 14:31:05 +0000 (UTC)
+In-Reply-To: <1564635259-27502-1-git-send-email-periyasa@codeaurora.org>
+References: <1564635259-27502-1-git-send-email-periyasa@codeaurora.org>
+Message-Id: <20190905143152.398D0602DC@smtp.codeaurora.org>
+Date: Thu,  5 Sep 2019 14:31:52 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,26 +22,24 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Ganesh Sesetti <gseset@codeaurora.org>
+To: Karthikeyan Periyasamy <periyasa@codeaurora.org>
 Cc: ath11k@lists.infradead.org
 
-Ganesh Sesetti <gseset@codeaurora.org> wrote:
+Karthikeyan Periyasamy <periyasa@codeaurora.org> wrote:
 
-> The Previous configuartion of htt stats sounding info and pdev cca stats
-> are invalid due to that getting time out error.
+> Handled the error case with proper resource cleanup and
+> moved the handling into a separate function from
+> ath11k_mac_sta_state.
 > 
-> Changing htt stats sounding info value from 0xFF to 0x00 and htt pdev cca
-> stats from 0x10 to 0x00
-> 
-> Signed-off-by: Ganesh Sesetti <gseset@codeaurora.org>
+> Signed-off-by: Karthikeyan Periyasamy <periyasa@codeaurora.org>
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
 Patch applied to ath11k-post-bringup branch of ath.git, thanks.
 
-a349c4b7a080 ath11k: Fix htt stats sounding info and pdev cca stats
+37c3d6552273 ath11k: fix resource leak in ath11k_mac_sta_state
 
 -- 
-https://patchwork.kernel.org/patch/11070087/
+https://patchwork.kernel.org/patch/11070167/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
