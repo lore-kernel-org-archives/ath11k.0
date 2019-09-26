@@ -1,22 +1,20 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iCzDG-0003Mg-7j
- for ath11k@lists.infradead.org; Wed, 25 Sep 2019 04:47:39 +0000
-Received: from vasanth-lnx.qca.qualcomm.com
- (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+ id 1iDUrr-0004u4-6Z
+ for ath11k@lists.infradead.org; Thu, 26 Sep 2019 14:35:41 +0000
+Received: from [127.0.1.1] (88-114-240-156.elisa-laajakaista.fi
+ [88.114.240.156])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- (Authenticated sender: vthiagar@smtp.codeaurora.org)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id A35516115A
- for <ath11k@lists.infradead.org>; Wed, 25 Sep 2019 04:47:36 +0000 (UTC)
-From: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
-Subject: [PATCH bringup 2/3] ath11k: Clean up parameter list in
- ath11k_ce_completed_send_next()
-Date: Wed, 25 Sep 2019 10:14:17 +0530
-Message-Id: <1569386658-1325-2-git-send-email-vthiagar@codeaurora.org>
-In-Reply-To: <1569386658-1325-1-git-send-email-vthiagar@codeaurora.org>
-References: <1569386658-1325-1-git-send-email-vthiagar@codeaurora.org>
+ (Authenticated sender: kvalo@smtp.codeaurora.org)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id B541A609F3
+ for <ath11k@lists.infradead.org>; Thu, 26 Sep 2019 14:35:36 +0000 (UTC)
+Subject: [PATCH] ath11k: change license to BSD 3-clause "Clear"
+From: Kalle Valo <kvalo@codeaurora.org>
+Date: Thu, 26 Sep 2019 17:35:34 +0300
+Message-ID: <156950853389.4940.6655233001777613900.stgit@x230>
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -25,77 +23,514 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 
-Make ath11k_ce_completed_send_next() to return skb instead of
-through a double pointer argument of type sk_buff.
+Change ath11k license from ISC to BSD 3-clause "Clear".
 
-Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
+At the same also add a missing SPDX tag to Kconfig.
+
+Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/ce.c | 13 ++++++-------
- 1 file changed, 6 insertions(+), 7 deletions(-)
+ drivers/net/wireless/ath/ath11k/Kconfig           |    1 +
+ drivers/net/wireless/ath/ath11k/Makefile          |    2 +-
+ drivers/net/wireless/ath/ath11k/ahb.c             |    2 +-
+ drivers/net/wireless/ath/ath11k/ahb.h             |    2 +-
+ drivers/net/wireless/ath/ath11k/ce.c              |    2 +-
+ drivers/net/wireless/ath/ath11k/ce.h              |    2 +-
+ drivers/net/wireless/ath/ath11k/core.c            |    2 +-
+ drivers/net/wireless/ath/ath11k/core.h            |    2 +-
+ drivers/net/wireless/ath/ath11k/debug.c           |    2 +-
+ drivers/net/wireless/ath/ath11k/debug.h           |    2 +-
+ drivers/net/wireless/ath/ath11k/debug_htt_stats.c |    2 +-
+ drivers/net/wireless/ath/ath11k/debug_htt_stats.h |    2 +-
+ drivers/net/wireless/ath/ath11k/debugfs_sta.c     |    2 +-
+ drivers/net/wireless/ath/ath11k/dp.c              |    2 +-
+ drivers/net/wireless/ath/ath11k/dp.h              |    2 +-
+ drivers/net/wireless/ath/ath11k/dp_rx.c           |    2 +-
+ drivers/net/wireless/ath/ath11k/dp_rx.h           |    2 +-
+ drivers/net/wireless/ath/ath11k/dp_tx.c           |    2 +-
+ drivers/net/wireless/ath/ath11k/dp_tx.h           |    2 +-
+ drivers/net/wireless/ath/ath11k/hal.c             |    2 +-
+ drivers/net/wireless/ath/ath11k/hal.h             |    2 +-
+ drivers/net/wireless/ath/ath11k/hal_desc.h        |    2 +-
+ drivers/net/wireless/ath/ath11k/hal_rx.c          |    2 +-
+ drivers/net/wireless/ath/ath11k/hal_rx.h          |    2 +-
+ drivers/net/wireless/ath/ath11k/hal_tx.c          |    2 +-
+ drivers/net/wireless/ath/ath11k/hal_tx.h          |    2 +-
+ drivers/net/wireless/ath/ath11k/htc.c             |    2 +-
+ drivers/net/wireless/ath/ath11k/htc.h             |    2 +-
+ drivers/net/wireless/ath/ath11k/hw.h              |    2 +-
+ drivers/net/wireless/ath/ath11k/mac.c             |    2 +-
+ drivers/net/wireless/ath/ath11k/mac.h             |    2 +-
+ drivers/net/wireless/ath/ath11k/peer.c            |    2 +-
+ drivers/net/wireless/ath/ath11k/peer.h            |    2 +-
+ drivers/net/wireless/ath/ath11k/qmi.c             |    2 +-
+ drivers/net/wireless/ath/ath11k/qmi.h             |    2 +-
+ drivers/net/wireless/ath/ath11k/reg.c             |    2 +-
+ drivers/net/wireless/ath/ath11k/reg.h             |    2 +-
+ drivers/net/wireless/ath/ath11k/rx_desc.h         |    2 +-
+ drivers/net/wireless/ath/ath11k/testmode.c        |    2 +-
+ drivers/net/wireless/ath/ath11k/testmode.h        |    2 +-
+ drivers/net/wireless/ath/ath11k/testmode_i.h      |    2 +-
+ drivers/net/wireless/ath/ath11k/trace.c           |    2 +-
+ drivers/net/wireless/ath/ath11k/trace.h           |    2 +-
+ drivers/net/wireless/ath/ath11k/wmi.c             |    2 +-
+ drivers/net/wireless/ath/ath11k/wmi.h             |    2 +-
+ 45 files changed, 45 insertions(+), 44 deletions(-)
 
+diff --git a/drivers/net/wireless/ath/ath11k/Kconfig b/drivers/net/wireless/ath/ath11k/Kconfig
+index 26bf98fa648e..cb8f45b0d995 100644
+--- a/drivers/net/wireless/ath/ath11k/Kconfig
++++ b/drivers/net/wireless/ath/ath11k/Kconfig
+@@ -1,3 +1,4 @@
++# SPDX-License-Identifier: BSD-3-Clause-Clear
+ config ATH11K
+         tristate "Qualcomm Technologies 802.11ax chipset support"
+         depends on MAC80211 && HAS_DMA
+diff --git a/drivers/net/wireless/ath/ath11k/Makefile b/drivers/net/wireless/ath/ath11k/Makefile
+index 6b4a5b5a2aa3..a91d75c1cfeb 100644
+--- a/drivers/net/wireless/ath/ath11k/Makefile
++++ b/drivers/net/wireless/ath/ath11k/Makefile
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: ISC
++# SPDX-License-Identifier: BSD-3-Clause-Clear
+ obj-$(CONFIG_ATH11K) += ath11k.o
+ ath11k-y += core.o \
+ 	    hal.o \
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+index e1fee70055a6..9c3f2a581b9c 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.c
++++ b/drivers/net/wireless/ath/ath11k/ahb.c
+@@ -1,4 +1,4 @@
+-// SPDX-License-Identifier: ISC
++// SPDX-License-Identifier: BSD-3-Clause-Clear
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.h b/drivers/net/wireless/ath/ath11k/ahb.h
+index 8a6b308d4a6a..bec4dc259aa1 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.h
++++ b/drivers/net/wireless/ath/ath11k/ahb.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: ISC */
++/* SPDX-License-Identifier: BSD-3-Clause-Clear */
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
 diff --git a/drivers/net/wireless/ath/ath11k/ce.c b/drivers/net/wireless/ath/ath11k/ce.c
-index 205f28e..03e7cf0 100644
+index c1b170cf45ba..c9ac5b0472cf 100644
 --- a/drivers/net/wireless/ath/ath11k/ce.c
 +++ b/drivers/net/wireless/ath/ath11k/ce.c
-@@ -296,15 +296,14 @@ static void ath11k_ce_recv_process_cb(struct ath11k_ce_pipe *pipe)
- 	}
- }
- 
--static int ath11k_ce_completed_send_next(struct ath11k_ce_pipe *pipe,
--					 struct sk_buff **skb)
-+static struct sk_buff *ath11k_ce_completed_send_next(struct ath11k_ce_pipe *pipe)
- {
- 	struct ath11k_base *ab = pipe->ab;
- 	struct hal_srng *srng;
- 	unsigned int sw_index;
- 	unsigned int nentries_mask;
-+	struct sk_buff *skb;
- 	u32 *desc;
--	int ret = 0;
- 
- 	spin_lock_bh(&ab->ce.ce_lock);
- 
-@@ -319,11 +318,11 @@ static int ath11k_ce_completed_send_next(struct ath11k_ce_pipe *pipe,
- 
- 	desc = ath11k_hal_srng_src_reap_next(ab, srng);
- 	if (!desc) {
--		ret = -EIO;
-+		skb = ERR_PTR(-EIO);
- 		goto err_unlock;
- 	}
- 
--	*skb = pipe->src_ring->skb[sw_index];
-+	skb = pipe->src_ring->skb[sw_index];
- 
- 	pipe->src_ring->skb[sw_index] = NULL;
- 
-@@ -335,7 +334,7 @@ static int ath11k_ce_completed_send_next(struct ath11k_ce_pipe *pipe,
- 
- 	spin_unlock_bh(&ab->ce.ce_lock);
- 
--	return ret;
-+	return skb;
- }
- 
- static void ath11k_ce_send_done_cb(struct ath11k_ce_pipe *pipe)
-@@ -343,7 +342,7 @@ static void ath11k_ce_send_done_cb(struct ath11k_ce_pipe *pipe)
- 	struct ath11k_base *ab = pipe->ab;
- 	struct sk_buff *skb;
- 
--	while (ath11k_ce_completed_send_next(pipe, &skb) == 0) {
-+	while (!IS_ERR(skb = ath11k_ce_completed_send_next(pipe))) {
- 		if (!skb)
- 			continue;
- 
--- 
-1.9.1
+@@ -1,4 +1,4 @@
+-// SPDX-License-Identifier: ISC
++// SPDX-License-Identifier: BSD-3-Clause-Clear
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/ce.h b/drivers/net/wireless/ath/ath11k/ce.h
+index b9f8a0b4cd7e..6174eac84410 100644
+--- a/drivers/net/wireless/ath/ath11k/ce.h
++++ b/drivers/net/wireless/ath/ath11k/ce.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: ISC */
++/* SPDX-License-Identifier: BSD-3-Clause-Clear */
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 9324dcb45bbe..f0d0f4ecd4de 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -1,4 +1,4 @@
+-// SPDX-License-Identifier: ISC
++// SPDX-License-Identifier: BSD-3-Clause-Clear
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index 35cb7b58220e..4acacdf24e56 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: ISC */
++/* SPDX-License-Identifier: BSD-3-Clause-Clear */
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/debug.c b/drivers/net/wireless/ath/ath11k/debug.c
+index dc247b41390d..ea18c41cc451 100644
+--- a/drivers/net/wireless/ath/ath11k/debug.c
++++ b/drivers/net/wireless/ath/ath11k/debug.c
+@@ -1,4 +1,4 @@
+-// SPDX-License-Identifier: ISC
++// SPDX-License-Identifier: BSD-3-Clause-Clear
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/debug.h b/drivers/net/wireless/ath/ath11k/debug.h
+index fac6cb4aa597..4591a9e3a92e 100644
+--- a/drivers/net/wireless/ath/ath11k/debug.h
++++ b/drivers/net/wireless/ath/ath11k/debug.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: ISC */
++/* SPDX-License-Identifier: BSD-3-Clause-Clear */
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/debug_htt_stats.c b/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
+index 838c17f3dad2..27b301bc1a1b 100644
+--- a/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
++++ b/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
+@@ -1,4 +1,4 @@
+-// SPDX-License-Identifier: ISC
++// SPDX-License-Identifier: BSD-3-Clause-Clear
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/debug_htt_stats.h b/drivers/net/wireless/ath/ath11k/debug_htt_stats.h
+index f59e002e5dba..618f1946bf49 100644
+--- a/drivers/net/wireless/ath/ath11k/debug_htt_stats.h
++++ b/drivers/net/wireless/ath/ath11k/debug_htt_stats.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: ISC */
++/* SPDX-License-Identifier: BSD-3-Clause-Clear */
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/debugfs_sta.c b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
+index 2ca3bc47e502..b392117eff3c 100644
+--- a/drivers/net/wireless/ath/ath11k/debugfs_sta.c
++++ b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
+@@ -1,4 +1,4 @@
+-// SPDX-License-Identifier: ISC
++// SPDX-License-Identifier: BSD-3-Clause-Clear
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
+index b55d9d023a55..aa2b28189cda 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.c
++++ b/drivers/net/wireless/ath/ath11k/dp.c
+@@ -1,4 +1,4 @@
+-// SPDX-License-Identifier: ISC
++// SPDX-License-Identifier: BSD-3-Clause-Clear
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
+index c968d5a6217e..4db71173db62 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.h
++++ b/drivers/net/wireless/ath/ath11k/dp.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: ISC */
++/* SPDX-License-Identifier: BSD-3-Clause-Clear */
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index cc3bf25c9a91..faea5b12a2d6 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -1,4 +1,4 @@
+-// SPDX-License-Identifier: ISC
++// SPDX-License-Identifier: BSD-3-Clause-Clear
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.h b/drivers/net/wireless/ath/ath11k/dp_rx.h
+index 0a243ec5eb16..026820fda568 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.h
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: ISC */
++/* SPDX-License-Identifier: BSD-3-Clause-Clear */
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
+index 69f78d209315..51a02b8e66cc 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_tx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
+@@ -1,4 +1,4 @@
+-// SPDX-License-Identifier: ISC
++// SPDX-License-Identifier: BSD-3-Clause-Clear
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.h b/drivers/net/wireless/ath/ath11k/dp_tx.h
+index 0a1f151aad8a..f8a9f9c8e444 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_tx.h
++++ b/drivers/net/wireless/ath/ath11k/dp_tx.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: ISC */
++/* SPDX-License-Identifier: BSD-3-Clause-Clear */
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
+index e0ec7c5f8112..b58ac11c2747 100644
+--- a/drivers/net/wireless/ath/ath11k/hal.c
++++ b/drivers/net/wireless/ath/ath11k/hal.c
+@@ -1,4 +1,4 @@
+-// SPDX-License-Identifier: ISC
++// SPDX-License-Identifier: BSD-3-Clause-Clear
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/hal.h b/drivers/net/wireless/ath/ath11k/hal.h
+index 8f1d2b359f50..5b13ccdf39e4 100644
+--- a/drivers/net/wireless/ath/ath11k/hal.h
++++ b/drivers/net/wireless/ath/ath11k/hal.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: ISC */
++/* SPDX-License-Identifier: BSD-3-Clause-Clear */
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/hal_desc.h b/drivers/net/wireless/ath/ath11k/hal_desc.h
+index dbfb82130db6..35e191b77271 100644
+--- a/drivers/net/wireless/ath/ath11k/hal_desc.h
++++ b/drivers/net/wireless/ath/ath11k/hal_desc.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: ISC */
++/* SPDX-License-Identifier: BSD-3-Clause-Clear */
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/hal_rx.c b/drivers/net/wireless/ath/ath11k/hal_rx.c
+index f8abbb79261f..2de4b388db20 100644
+--- a/drivers/net/wireless/ath/ath11k/hal_rx.c
++++ b/drivers/net/wireless/ath/ath11k/hal_rx.c
+@@ -1,4 +1,4 @@
+-// SPDX-License-Identifier: ISC
++// SPDX-License-Identifier: BSD-3-Clause-Clear
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/hal_rx.h b/drivers/net/wireless/ath/ath11k/hal_rx.h
+index d854b47270c0..96555e4f4ef3 100644
+--- a/drivers/net/wireless/ath/ath11k/hal_rx.h
++++ b/drivers/net/wireless/ath/ath11k/hal_rx.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: ISC */
++/* SPDX-License-Identifier: BSD-3-Clause-Clear */
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/hal_tx.c b/drivers/net/wireless/ath/ath11k/hal_tx.c
+index 2b1789a260d2..bb27591023fe 100644
+--- a/drivers/net/wireless/ath/ath11k/hal_tx.c
++++ b/drivers/net/wireless/ath/ath11k/hal_tx.c
+@@ -1,4 +1,4 @@
+-// SPDX-License-Identifier: ISC
++// SPDX-License-Identifier: BSD-3-Clause-Clear
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/hal_tx.h b/drivers/net/wireless/ath/ath11k/hal_tx.h
+index 3b12dfda7423..f955070bcf1e 100644
+--- a/drivers/net/wireless/ath/ath11k/hal_tx.h
++++ b/drivers/net/wireless/ath/ath11k/hal_tx.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: ISC */
++/* SPDX-License-Identifier: BSD-3-Clause-Clear */
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/htc.c b/drivers/net/wireless/ath/ath11k/htc.c
+index fd8444f845a5..9d4115f25ceb 100644
+--- a/drivers/net/wireless/ath/ath11k/htc.c
++++ b/drivers/net/wireless/ath/ath11k/htc.c
+@@ -1,4 +1,4 @@
+-// SPDX-License-Identifier: ISC
++// SPDX-License-Identifier: BSD-3-Clause-Clear
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/htc.h b/drivers/net/wireless/ath/ath11k/htc.h
+index 39fbee4861ab..f0a3387567ca 100644
+--- a/drivers/net/wireless/ath/ath11k/htc.h
++++ b/drivers/net/wireless/ath/ath11k/htc.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: ISC */
++/* SPDX-License-Identifier: BSD-3-Clause-Clear */
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
+index f510d9d9263c..dd39333ec0ea 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.h
++++ b/drivers/net/wireless/ath/ath11k/hw.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: ISC */
++/* SPDX-License-Identifier: BSD-3-Clause-Clear */
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 25c9104afc96..2b4405728d2a 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -1,4 +1,4 @@
+-// SPDX-License-Identifier: ISC
++// SPDX-License-Identifier: BSD-3-Clause-Clear
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/mac.h b/drivers/net/wireless/ath/ath11k/mac.h
+index 29b42b145fc3..f84af1fc4952 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.h
++++ b/drivers/net/wireless/ath/ath11k/mac.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: ISC */
++/* SPDX-License-Identifier: BSD-3-Clause-Clear */
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/peer.c b/drivers/net/wireless/ath/ath11k/peer.c
+index d484a3b42e49..4bf1dfa498b6 100644
+--- a/drivers/net/wireless/ath/ath11k/peer.c
++++ b/drivers/net/wireless/ath/ath11k/peer.c
+@@ -1,4 +1,4 @@
+-// SPDX-License-Identifier: ISC
++// SPDX-License-Identifier: BSD-3-Clause-Clear
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/peer.h b/drivers/net/wireless/ath/ath11k/peer.h
+index 99e54f11cbc9..9a40d1f6ccd9 100644
+--- a/drivers/net/wireless/ath/ath11k/peer.h
++++ b/drivers/net/wireless/ath/ath11k/peer.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: ISC */
++/* SPDX-License-Identifier: BSD-3-Clause-Clear */
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
+index fffc4c1dde19..adf41f28a231 100644
+--- a/drivers/net/wireless/ath/ath11k/qmi.c
++++ b/drivers/net/wireless/ath/ath11k/qmi.c
+@@ -1,4 +1,4 @@
+-// SPDX-License-Identifier: ISC
++// SPDX-License-Identifier: BSD-3-Clause-Clear
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/qmi.h b/drivers/net/wireless/ath/ath11k/qmi.h
+index f4d8ee8d59f7..df0685564e21 100644
+--- a/drivers/net/wireless/ath/ath11k/qmi.h
++++ b/drivers/net/wireless/ath/ath11k/qmi.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: ISC */
++/* SPDX-License-Identifier: BSD-3-Clause-Clear */
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/reg.c b/drivers/net/wireless/ath/ath11k/reg.c
+index 4f9c808019e3..810050b033c4 100644
+--- a/drivers/net/wireless/ath/ath11k/reg.c
++++ b/drivers/net/wireless/ath/ath11k/reg.c
+@@ -1,4 +1,4 @@
+-// SPDX-License-Identifier: ISC
++// SPDX-License-Identifier: BSD-3-Clause-Clear
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/reg.h b/drivers/net/wireless/ath/ath11k/reg.h
+index d0fc246a34ce..39b7fc943541 100644
+--- a/drivers/net/wireless/ath/ath11k/reg.h
++++ b/drivers/net/wireless/ath/ath11k/reg.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: ISC */
++/* SPDX-License-Identifier: BSD-3-Clause-Clear */
+ /*
+  * Copyright (c) 2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/rx_desc.h b/drivers/net/wireless/ath/ath11k/rx_desc.h
+index 9be97c4958e0..a5aff801f17f 100644
+--- a/drivers/net/wireless/ath/ath11k/rx_desc.h
++++ b/drivers/net/wireless/ath/ath11k/rx_desc.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: ISC */
++/* SPDX-License-Identifier: BSD-3-Clause-Clear */
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/testmode.c b/drivers/net/wireless/ath/ath11k/testmode.c
+index 9274b6cc3921..932bee6d1740 100644
+--- a/drivers/net/wireless/ath/ath11k/testmode.c
++++ b/drivers/net/wireless/ath/ath11k/testmode.c
+@@ -1,4 +1,4 @@
+-// SPDX-License-Identifier: ISC
++// SPDX-License-Identifier: BSD-3-Clause-Clear
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/testmode.h b/drivers/net/wireless/ath/ath11k/testmode.h
+index 303091b7fe78..aaa122ed9069 100644
+--- a/drivers/net/wireless/ath/ath11k/testmode.h
++++ b/drivers/net/wireless/ath/ath11k/testmode.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: ISC */
++/* SPDX-License-Identifier: BSD-3-Clause-Clear */
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/testmode_i.h b/drivers/net/wireless/ath/ath11k/testmode_i.h
+index 96ae22b558af..4bae2a9eeea4 100644
+--- a/drivers/net/wireless/ath/ath11k/testmode_i.h
++++ b/drivers/net/wireless/ath/ath11k/testmode_i.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: ISC */
++/* SPDX-License-Identifier: BSD-3-Clause-Clear */
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/trace.c b/drivers/net/wireless/ath/ath11k/trace.c
+index df56457b7cbf..f0cc49ba0387 100644
+--- a/drivers/net/wireless/ath/ath11k/trace.c
++++ b/drivers/net/wireless/ath/ath11k/trace.c
+@@ -1,4 +1,4 @@
+-// SPDX-License-Identifier: ISC
++// SPDX-License-Identifier: BSD-3-Clause-Clear
+ /*
+  * Copyright (c) 2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/trace.h b/drivers/net/wireless/ath/ath11k/trace.h
+index aa96c4e7a0d5..400f759568e1 100644
+--- a/drivers/net/wireless/ath/ath11k/trace.h
++++ b/drivers/net/wireless/ath/ath11k/trace.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: ISC */
++/* SPDX-License-Identifier: BSD-3-Clause-Clear */
+ /*
+  * Copyright (c) 2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index e553adf1cf9d..3d1d4d3c3f20 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -1,4 +1,4 @@
+-// SPDX-License-Identifier: ISC
++// SPDX-License-Identifier: BSD-3-Clause-Clear
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index 96be01972aef..28e16e353488 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: ISC */
++/* SPDX-License-Identifier: BSD-3-Clause-Clear */
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
 
 
 _______________________________________________
