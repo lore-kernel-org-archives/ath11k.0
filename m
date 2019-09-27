@@ -1,17 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iDrfT-0000nP-AD
- for ath11k@lists.infradead.org; Fri, 27 Sep 2019 14:56:24 +0000
+ id 1iDrfg-0000ps-3i
+ for ath11k@lists.infradead.org; Fri, 27 Sep 2019 14:56:37 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH bringup 1/5] ath11k: Use C99 structure initialization for
- target_service_to_ce_map_wlan[]
-References: <1569386639-1242-1-git-send-email-vthiagar@codeaurora.org>
- <20190927144834.9E12A60BFE@smtp.codeaurora.org>
-Date: Fri, 27 Sep 2019 17:56:19 +0300
-In-Reply-To: <20190927144834.9E12A60BFE@smtp.codeaurora.org> (Kalle Valo's
- message of "Fri, 27 Sep 2019 14:48:34 +0000 (UTC)")
-Message-ID: <874l0xdbzg.fsf@kamboji.qca.qualcomm.com>
+Subject: Re: [PATCH bringup] ath11k: fix Kconfig, replace spaces with tabs
+References: <1568101406-22363-1-git-send-email-akolli@codeaurora.org>
+ <20190927131020.327BA60F3A@smtp.codeaurora.org>
+Date: Fri, 27 Sep 2019 17:56:32 +0300
+In-Reply-To: <20190927131020.327BA60F3A@smtp.codeaurora.org> (Kalle Valo's
+ message of "Fri, 27 Sep 2019 13:10:20 +0000 (UTC)")
+Message-ID: <87zhipbxen.fsf@kamboji.qca.qualcomm.com>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -25,29 +24,21 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
+To: Anilkumar Kolli <akolli@codeaurora.org>
 Cc: ath11k@lists.infradead.org
 
 Kalle Valo <kvalo@codeaurora.org> writes:
 
-> Vasanthakumar Thiagarajan <vthiagar@codeaurora.org> wrote:
+> Anilkumar Kolli <akolli@codeaurora.org> wrote:
 >
->> Also cleanup endian conversion for 0 in the last entry of
->> target_service_to_ce_map_wlan[] with a comment saying it is
->> the terminator entry of the map table as suggested during
->> public review.
+>> Fixes format in kconfig file
 >> 
->> Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
+>> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
 >> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 >
-> 5 patches applied to ath11k-post-bringup branch of ath.git, thanks.
+> Patch applied to ath11k-post-bringup branch of ath.git, thanks.
 >
-> b7101eedfdc2 ath11k: Use C99 structure initialization for
-> target_service_to_ce_map_wlan[]
-> c3fe7092ac3f ath11k: Remove ring mask macros defined for 0
-> ecd0896d0412 ath11k: Move ath11k_ahb_read32() and ath11k_ahb_write32() to ahb.h
-> 082dfd065273 ath11k: Avoid code duplication in set/clear of a register bit values
-> 7b6c56295216 ath11k: Few clean ups in comments
+> ef725dd469e0 ath11k: fix Kconfig, replace spaces with tabs
 
 Please disregard, I applied to a wrong branch.
 
