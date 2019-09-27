@@ -1,16 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iDrXw-0005yk-4r
- for ath11k@lists.infradead.org; Fri, 27 Sep 2019 14:48:37 +0000
+ id 1iDrbT-0007eV-CU
+ for ath11k@lists.infradead.org; Fri, 27 Sep 2019 14:52:16 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH bringup 1/5] ath11k: Use C99 structure initialization for
- target_service_to_ce_map_wlan[]
+Subject: Re: [PATCH bringup 1/3] ath11k: Clean ups in
+ ath11k_ce_rx_buf_enqueue_pipe() error path
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1569386639-1242-1-git-send-email-vthiagar@codeaurora.org>
-References: <1569386639-1242-1-git-send-email-vthiagar@codeaurora.org>
-Message-Id: <20190927144834.9E12A60BFE@smtp.codeaurora.org>
-Date: Fri, 27 Sep 2019 14:48:34 +0000 (UTC)
+In-Reply-To: <1569386658-1325-1-git-send-email-vthiagar@codeaurora.org>
+References: <1569386658-1325-1-git-send-email-vthiagar@codeaurora.org>
+Message-Id: <20190927145215.1111760BFE@smtp.codeaurora.org>
+Date: Fri, 27 Sep 2019 14:52:14 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -28,24 +28,22 @@ Cc: ath11k@lists.infradead.org
 
 Vasanthakumar Thiagarajan <vthiagar@codeaurora.org> wrote:
 
-> Also cleanup endian conversion for 0 in the last entry of
-> target_service_to_ce_map_wlan[] with a comment saying it is
-> the terminator entry of the map table as suggested during
-> public review.
+> Unify the unlock/ring_access_end calls with error path in
+> ath11k_ce_rx_buf_enqueue_pipe(). Update to ce_pipe->rx_buf_needed
+> is done inside srng->lock before ath11k_hal_srng_access_end().
+> Also rename the goto label from err to exit.
 > 
 > Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-5 patches applied to ath11k-post-bringup branch of ath.git, thanks.
+3 patches applied to ath11k-post-bringup branch of ath.git, thanks.
 
-b7101eedfdc2 ath11k: Use C99 structure initialization for target_service_to_ce_map_wlan[]
-c3fe7092ac3f ath11k: Remove ring mask macros defined for 0
-ecd0896d0412 ath11k: Move ath11k_ahb_read32() and ath11k_ahb_write32() to ahb.h
-082dfd065273 ath11k: Avoid code duplication in set/clear of a register bit values
-7b6c56295216 ath11k: Few clean ups in comments
+d28909b5a9ac ath11k: Clean ups in ath11k_ce_rx_buf_enqueue_pipe() error path
+759b5305b0bc ath11k: Clean up parameter list in ath11k_ce_completed_send_next()
+51725f95094a ath11k: Use struct_size() to get the structure size with trailing array
 
 -- 
-https://patchwork.kernel.org/patch/11160003/
+https://patchwork.kernel.org/patch/11160007/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
