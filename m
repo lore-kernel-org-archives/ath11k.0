@@ -1,17 +1,17 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iDreg-0000ju-UO
- for ath11k@lists.infradead.org; Fri, 27 Sep 2019 14:55:36 +0000
+ id 1iDrfT-0000nP-AD
+ for ath11k@lists.infradead.org; Fri, 27 Sep 2019 14:56:24 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH bringup 1/3] ath11k: Clean ups in
- ath11k_ce_rx_buf_enqueue_pipe() error path
-References: <1569386658-1325-1-git-send-email-vthiagar@codeaurora.org>
- <20190927145215.1111760BFE@smtp.codeaurora.org>
-Date: Fri, 27 Sep 2019 17:55:31 +0300
-In-Reply-To: <20190927145215.1111760BFE@smtp.codeaurora.org> (Kalle Valo's
- message of "Fri, 27 Sep 2019 14:52:14 +0000 (UTC)")
-Message-ID: <878sq9dc0s.fsf@kamboji.qca.qualcomm.com>
+Subject: Re: [PATCH bringup 1/5] ath11k: Use C99 structure initialization for
+ target_service_to_ce_map_wlan[]
+References: <1569386639-1242-1-git-send-email-vthiagar@codeaurora.org>
+ <20190927144834.9E12A60BFE@smtp.codeaurora.org>
+Date: Fri, 27 Sep 2019 17:56:19 +0300
+In-Reply-To: <20190927144834.9E12A60BFE@smtp.codeaurora.org> (Kalle Valo's
+ message of "Fri, 27 Sep 2019 14:48:34 +0000 (UTC)")
+Message-ID: <874l0xdbzg.fsf@kamboji.qca.qualcomm.com>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -32,19 +32,22 @@ Kalle Valo <kvalo@codeaurora.org> writes:
 
 > Vasanthakumar Thiagarajan <vthiagar@codeaurora.org> wrote:
 >
->> Unify the unlock/ring_access_end calls with error path in
->> ath11k_ce_rx_buf_enqueue_pipe(). Update to ce_pipe->rx_buf_needed
->> is done inside srng->lock before ath11k_hal_srng_access_end().
->> Also rename the goto label from err to exit.
+>> Also cleanup endian conversion for 0 in the last entry of
+>> target_service_to_ce_map_wlan[] with a comment saying it is
+>> the terminator entry of the map table as suggested during
+>> public review.
 >> 
 >> Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
 >> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 >
-> 3 patches applied to ath11k-post-bringup branch of ath.git, thanks.
+> 5 patches applied to ath11k-post-bringup branch of ath.git, thanks.
 >
-> d28909b5a9ac ath11k: Clean ups in ath11k_ce_rx_buf_enqueue_pipe() error path
-> 759b5305b0bc ath11k: Clean up parameter list in ath11k_ce_completed_send_next()
-> 51725f95094a ath11k: Use struct_size() to get the structure size with trailing array
+> b7101eedfdc2 ath11k: Use C99 structure initialization for
+> target_service_to_ce_map_wlan[]
+> c3fe7092ac3f ath11k: Remove ring mask macros defined for 0
+> ecd0896d0412 ath11k: Move ath11k_ahb_read32() and ath11k_ahb_write32() to ahb.h
+> 082dfd065273 ath11k: Avoid code duplication in set/clear of a register bit values
+> 7b6c56295216 ath11k: Few clean ups in comments
 
 Please disregard, I applied to a wrong branch.
 
