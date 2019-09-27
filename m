@@ -1,16 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iDrbT-0007eV-CU
- for ath11k@lists.infradead.org; Fri, 27 Sep 2019 14:52:16 +0000
+ id 1iDrcD-0007hh-KG
+ for ath11k@lists.infradead.org; Fri, 27 Sep 2019 14:53:03 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH bringup 1/3] ath11k: Clean ups in
- ath11k_ce_rx_buf_enqueue_pipe() error path
+Subject: Re: [PATCH] ath11k: change license to BSD 3-clause "Clear"
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1569386658-1325-1-git-send-email-vthiagar@codeaurora.org>
-References: <1569386658-1325-1-git-send-email-vthiagar@codeaurora.org>
-Message-Id: <20190927145215.1111760BFE@smtp.codeaurora.org>
-Date: Fri, 27 Sep 2019 14:52:14 +0000 (UTC)
+In-Reply-To: <156950853389.4940.6655233001777613900.stgit@x230>
+References: <156950853389.4940.6655233001777613900.stgit@x230>
+Message-Id: <20190927145301.52D12611BE@smtp.codeaurora.org>
+Date: Fri, 27 Sep 2019 14:53:01 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,27 +22,25 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
+To: Kalle Valo <kvalo@codeaurora.org>
 Cc: ath11k@lists.infradead.org
 
-Vasanthakumar Thiagarajan <vthiagar@codeaurora.org> wrote:
+Kalle Valo <kvalo@codeaurora.org> wrote:
 
-> Unify the unlock/ring_access_end calls with error path in
-> ath11k_ce_rx_buf_enqueue_pipe(). Update to ce_pipe->rx_buf_needed
-> is done inside srng->lock before ath11k_hal_srng_access_end().
-> Also rename the goto label from err to exit.
+> Change ath11k license from ISC to BSD 3-clause "Clear".
 > 
-> Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
+> At the same also add a missing SPDX tag to Kconfig.
+> 
+> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+> Acked-by: John Crispin <john@phrozen.org>
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-3 patches applied to ath11k-post-bringup branch of ath.git, thanks.
+Patch applied to ath11k-post-bringup branch of ath.git, thanks.
 
-d28909b5a9ac ath11k: Clean ups in ath11k_ce_rx_buf_enqueue_pipe() error path
-759b5305b0bc ath11k: Clean up parameter list in ath11k_ce_completed_send_next()
-51725f95094a ath11k: Use struct_size() to get the structure size with trailing array
+93d3e2e3e04e ath11k: change license to BSD 3-clause "Clear"
 
 -- 
-https://patchwork.kernel.org/patch/11160007/
+https://patchwork.kernel.org/patch/11162863/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
