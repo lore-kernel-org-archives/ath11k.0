@@ -1,12 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iIowq-0006pS-PB
- for ath11k@lists.infradead.org; Fri, 11 Oct 2019 07:02:50 +0000
-From: Sathishkumar Muruganandam <murugana@codeaurora.org>
-Subject: [PATCH bringup] ath11k: fix tkip mic error reporting to cfg80211
-Date: Fri, 11 Oct 2019 12:32:32 +0530
-Message-Id: <1570777352-25385-1-git-send-email-murugana@codeaurora.org>
+ id 1iIq78-0001mW-Ln
+ for ath11k@lists.infradead.org; Fri, 11 Oct 2019 08:17:31 +0000
+MIME-Version: 1.0
+Subject: Re: [PATCH bringup] ath11k: assigning values to enum
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <20191003040447.7399-1-vikpatel@codeaurora.org>
+References: <20191003040447.7399-1-vikpatel@codeaurora.org>
+Message-Id: <20191011081730.17B1960BE8@smtp.codeaurora.org>
+Date: Fri, 11 Oct 2019 08:17:30 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -15,39 +18,29 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: Sathishkumar Muruganandam <murugana@codeaurora.org>
+To: Vikas Patel <vikpatel@codeaurora.org>
+Cc: ath11k@lists.infradead.org
 
-ieee80211_rx_status flag was not updated with MMIC_STRIPPED and DECRYPTED
-bits during TKIP MIC error detection from RxDMA and hence this is not
-getting reported to cfg80211_michael_mic_failure() for WPA countermeasures.
+Vikas Patel <vikpatel@codeaurora.org> wrote:
 
-Signed-off-by: Sathishkumar Muruganandam <murugana@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/dp_rx.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+> Instead of writing enum value in comment,
+> assigning directly to enum.
+> 
+> Signed-off-by: Vikas Patel <vikpatel@codeaurora.org>
+> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index faea5b12a2d6..9491a479fab5 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -3021,7 +3021,8 @@ static void ath11k_dp_rx_h_tkip_mic_err(struct ath11k *ar, struct sk_buff *msdu,
- 
- 	ath11k_dp_rx_h_ppdu(ar, desc, status);
- 
--	status->flag |= RX_FLAG_MMIC_ERROR;
-+	status->flag |= (RX_FLAG_MMIC_STRIPPED | RX_FLAG_MMIC_ERROR |
-+			 RX_FLAG_DECRYPTED);
- 
- 	ath11k_dp_rx_h_undecap(ar, msdu, desc,
- 			       HAL_ENCRYPT_TYPE_TKIP_MIC, status, false);
+Patch applied to ath11k-bringup branch of ath.git, thanks.
+
+e4386fb86f51 ath11k: assigning values to enum
+
 -- 
-2.7.4
+https://patchwork.kernel.org/patch/11172059/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 
 _______________________________________________
