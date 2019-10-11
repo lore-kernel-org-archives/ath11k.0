@@ -1,15 +1,18 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iIq9F-0001wH-MK
- for ath11k@lists.infradead.org; Fri, 11 Oct 2019 08:19:43 +0000
-MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: Add debugfs per chip
+ id 1iItLv-0000cR-LW
+ for ath11k@lists.infradead.org; Fri, 11 Oct 2019 11:45:01 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1565336444-26904-1-git-send-email-akolli@codeaurora.org>
-References: <1565336444-26904-1-git-send-email-akolli@codeaurora.org>
-Message-Id: <20191011081941.64E3C60791@smtp.codeaurora.org>
-Date: Fri, 11 Oct 2019 08:19:41 +0000 (UTC)
+Subject: Re: [ath6kl:pending-ath11k 316/345]
+ drivers/net/wireless/ath/ath11k/debug.c:575 ath11k_write_simulate_fw_crash()
+ error: we previously assumed 'ar' could be null (see line 549)
+References: <20191011103719.GR13286@kadam>
+Date: Fri, 11 Oct 2019 14:44:54 +0300
+In-Reply-To: <20191011103719.GR13286@kadam> (Dan Carpenter's message of "Fri, 
+ 11 Oct 2019 13:37:19 +0300")
+Message-ID: <87eezjzetl.fsf@kamboji.qca.qualcomm.com>
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,39 +25,75 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Anilkumar Kolli <akolli@codeaurora.org>
-Cc: ath11k@lists.infradead.org
+To: Dan Carpenter <dan.carpenter@oracle.com>
+Cc: kbuild@lists.01.org, kbuild-all@lists.01.org, ath11k@lists.infradead.org
 
-Anilkumar Kolli <akolli@codeaurora.org> wrote:
+(moving from ath10k to ath11k list)
 
-> Add debugfs per chip [soc/pci] under ath11k debugfs entry.
-> 
-> Example:
-> $ls -l /sys/kernel/debug/ath11k/ipq8074/
-> mac0/              mac2/              soc_ring_stats
-> mac1/              simulate_fw_crash  soc_rx_stats
-> $ls -l /sys/kernel/debug/ieee80211/phy0/
-> lrwxrwxrwx    1 root     root             0 Aug  6 17:06 ath11k ->
-> ../../ath11k/ipq8074/mac0
-> $ ls -l /sys/kernel/debug/ieee80211/phy0/ath11k/
-> dfs_block_radar_events  htt_stats               spectral_bins
-> dfs_simulate_radar      htt_stats_reset         spectral_count
-> ext_rx_stats            htt_stats_type          spectral_scan0
-> ext_tx_stats            pktlog/                 spectral_scan_ctl
-> fw_stats/               pktlog_filter
-> 
-> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+Dan Carpenter <dan.carpenter@oracle.com> writes:
 
-Patch applied to ath11k-bringup branch of ath.git, thanks.
+> tree:   https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git pending-ath11k
+> head:   727f4796623292eb33ce560a3e25ba0040d17871
+> commit: 75a016fcc8f79a7d650462c69bb28aa886b4f09e [316/345] ath11k: cleanup and rename ath11k_send_crash_inject_cmd()
+>
+> If you fix the issue, kindly add following tag
+> Reported-by: kbuild test robot <lkp@intel.com>
+> Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
+>
+> New smatch warnings:
+> drivers/net/wireless/ath/ath11k/debug.c:575 ath11k_write_simulate_fw_crash() error: we previously assumed 'ar' could be null (see line 549)
+>
+> Old smatch warnings:
+> drivers/net/wireless/ath/ath11k/debug.c:566 ath11k_write_simulate_fw_crash() error: uninitialized symbol 'radioup'.
+>
+> # https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?id=75a016fcc8f79a7d650462c69bb28aa886b4f09e
+> git remote add ath6kl https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git
+> git remote update ath6kl
+> git checkout 75a016fcc8f79a7d650462c69bb28aa886b4f09e
+> vim +/ar +575 drivers/net/wireless/ath/ath11k/debug.c
+>
+> 258bbf525e652e Kalle Valo                2019-02-05  535  static ssize_t ath11k_write_simulate_fw_crash(struct file *file,
+> 258bbf525e652e Kalle Valo                2019-02-05  536  					      const char __user *user_buf,
+> 258bbf525e652e Kalle Valo                2019-02-05  537  					      size_t count, loff_t *ppos)
+> 258bbf525e652e Kalle Valo                2019-02-05  538  {
+> d25cb35c6f10ac Sathishkumar Muruganandam 2019-02-13  539  	struct ath11k_base *ab = file->private_data;
+> 5cf3588467b76d Pradeep Kumar Chitrapu    2019-03-15  540  	struct ath11k_pdev *pdev;
+> d25cb35c6f10ac Sathishkumar Muruganandam 2019-02-13  541  	struct ath11k *ar = ab->pdevs[0].ar;
+> 258bbf525e652e Kalle Valo                2019-02-05  542  	char buf[32] = {0};
+> 258bbf525e652e Kalle Valo                2019-02-05  543  	ssize_t rc;
+> 5cf3588467b76d Pradeep Kumar Chitrapu    2019-03-15  544  	int i, ret, radioup;
+>                                                                             ^^^^^^^
+> The real bug is that this isn't initialized.
+>
+> 258bbf525e652e Kalle Valo                2019-02-05  545  
+> 5cf3588467b76d Pradeep Kumar Chitrapu    2019-03-15  546  	for (i = 0; i < ab->num_radios; i++) {
+> 5cf3588467b76d Pradeep Kumar Chitrapu    2019-03-15  547  		pdev = &ab->pdevs[i];
+> 5cf3588467b76d Pradeep Kumar Chitrapu    2019-03-15  548  		ar = pdev->ar;
+> 5cf3588467b76d Pradeep Kumar Chitrapu    2019-03-15 @549  		if (ar && ar->state == ATH11K_STATE_ON) {
+> 5cf3588467b76d Pradeep Kumar Chitrapu    2019-03-15  550  			radioup = 1;
+> 5cf3588467b76d Pradeep Kumar Chitrapu    2019-03-15  551  			break;
+> 5cf3588467b76d Pradeep Kumar Chitrapu    2019-03-15  552  		}
+> 5cf3588467b76d Pradeep Kumar Chitrapu    2019-03-15  553  	}
+> 258bbf525e652e Kalle Valo                2019-02-05  554  	/* filter partial writes and invalid commands */
+> 258bbf525e652e Kalle Valo                2019-02-05  555  	if (*ppos != 0 || count >= sizeof(buf) || count == 0)
+> 258bbf525e652e Kalle Valo                2019-02-05  556  		return -EINVAL;
+> 258bbf525e652e Kalle Valo                2019-02-05  557  
+> 258bbf525e652e Kalle Valo                2019-02-05  558  	rc = simple_write_to_buffer(buf, sizeof(buf) - 1, ppos, user_buf, count);
+> 258bbf525e652e Kalle Valo                2019-02-05  559  	if (rc < 0)
+> 258bbf525e652e Kalle Valo                2019-02-05  560  		return rc;
+> 258bbf525e652e Kalle Valo                2019-02-05  561  
+> 258bbf525e652e Kalle Valo                2019-02-05  562  	/* drop the possible '\n' from the end */
+> 258bbf525e652e Kalle Valo                2019-02-05  563  	if (buf[*ppos - 1] == '\n')
+> 258bbf525e652e Kalle Valo                2019-02-05  564  		buf[*ppos - 1] = '\0';
+> 258bbf525e652e Kalle Valo                2019-02-05  565  
+> 5cf3588467b76d Pradeep Kumar Chitrapu    2019-03-15  566  	if (radioup == 0) {
+>                                                                     ^^^^^^^^^^^^
+> So this is meaningless.  Why not check if (i == ab->num_radios) instead?
 
-78b6da0fb67c ath11k: Add debugfs per chip
+Can someone from ath11k look at this report, please?
 
 -- 
-https://patchwork.kernel.org/patch/11085571/
-
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
 
 _______________________________________________
 ath11k mailing list
