@@ -1,16 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iInBj-0008G5-7W
- for ath11k@lists.infradead.org; Fri, 11 Oct 2019 05:10:04 +0000
-MIME-Version: 1.0
-Date: Fri, 11 Oct 2019 10:40:01 +0530
-From: Anilkumar Kolli <akolli@codeaurora.org>
-Subject: Re: [PATCH] ath11k: Add debugfs per chip
-In-Reply-To: <87a7a837s5.fsf@kamboji.qca.qualcomm.com>
-References: <1565336444-26904-1-git-send-email-akolli@codeaurora.org>
- <87a7a837s5.fsf@kamboji.qca.qualcomm.com>
-Message-ID: <5a580e62daf75a265ad327f3db927912@codeaurora.org>
+ id 1iIowq-0006pS-PB
+ for ath11k@lists.infradead.org; Fri, 11 Oct 2019 07:02:50 +0000
+From: Sathishkumar Muruganandam <murugana@codeaurora.org>
+Subject: [PATCH bringup] ath11k: fix tkip mic error reporting to cfg80211
+Date: Fri, 11 Oct 2019 12:32:32 +0530
+Message-Id: <1570777352-25385-1-git-send-email-murugana@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -19,43 +15,40 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: ath11k@lists.infradead.org
+To: ath11k@lists.infradead.org
+Cc: Sathishkumar Muruganandam <murugana@codeaurora.org>
 
-On 2019-10-10 21:35, Kalle Valo wrote:
-> Anilkumar Kolli <akolli@codeaurora.org> writes:
-> 
->> Add debugfs per chip [soc/pci] under ath11k debugfs entry.
->> 
->> Example:
->> $ls -l /sys/kernel/debug/ath11k/ipq8074/
->> mac0/              mac2/              soc_ring_stats
->> mac1/              simulate_fw_crash  soc_rx_stats
->> $ls -l /sys/kernel/debug/ieee80211/phy0/
->> lrwxrwxrwx    1 root     root             0 Aug  6 17:06 ath11k ->
->> ../../ath11k/ipq8074/mac0
->> $ ls -l /sys/kernel/debug/ieee80211/phy0/ath11k/
->> dfs_block_radar_events  htt_stats               spectral_bins
->> dfs_simulate_radar      htt_stats_reset         spectral_count
->> ext_rx_stats            htt_stats_type          spectral_scan0
->> ext_tx_stats            pktlog/                 spectral_scan_ctl
->> fw_stats/               pktlog_filter
->> 
->> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
-> 
-> This didn't apply but I fixed the conflicts myself. Please double 
-> check:
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending-ath11k&id=727f4796623292eb33ce560a3e25ba0040d17871
+ieee80211_rx_status flag was not updated with MMIC_STRIPPED and DECRYPTED
+bits during TKIP MIC error detection from RxDMA and hence this is not
+getting reported to cfg80211_michael_mic_failure() for WPA countermeasures.
 
-Thanks Kalle, This looks good.
+Signed-off-by: Sathishkumar Muruganandam <murugana@codeaurora.org>
+---
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-Regards
-Anil.
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index faea5b12a2d6..9491a479fab5 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -3021,7 +3021,8 @@ static void ath11k_dp_rx_h_tkip_mic_err(struct ath11k *ar, struct sk_buff *msdu,
+ 
+ 	ath11k_dp_rx_h_ppdu(ar, desc, status);
+ 
+-	status->flag |= RX_FLAG_MMIC_ERROR;
++	status->flag |= (RX_FLAG_MMIC_STRIPPED | RX_FLAG_MMIC_ERROR |
++			 RX_FLAG_DECRYPTED);
+ 
+ 	ath11k_dp_rx_h_undecap(ar, msdu, desc,
+ 			       HAL_ENCRYPT_TYPE_TKIP_MIC, status, false);
+-- 
+2.7.4
+
 
 _______________________________________________
 ath11k mailing list
