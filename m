@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iKMGT-0002cw-SX
- for ath11k@lists.infradead.org; Tue, 15 Oct 2019 12:49:27 +0000
+ id 1iKMKD-00043L-6G
+ for ath11k@lists.infradead.org; Tue, 15 Oct 2019 12:53:18 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH bringup] ath11k: fix tkip mic error reporting to cfg80211
+Subject: Re: [PATCH] ath11k: Add missing pdev rx rate stats
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1570777352-25385-1-git-send-email-murugana@codeaurora.org>
-References: <1570777352-25385-1-git-send-email-murugana@codeaurora.org>
-Message-Id: <20191015124924.99D1960B16@smtp.codeaurora.org>
-Date: Tue, 15 Oct 2019 12:49:23 +0000 (UTC)
+In-Reply-To: <1564672545-27675-1-git-send-email-bperumal@codeaurora.org>
+References: <1564672545-27675-1-git-send-email-bperumal@codeaurora.org>
+Message-Id: <20191015125316.D640860112@smtp.codeaurora.org>
+Date: Tue, 15 Oct 2019 12:53:16 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,24 +22,29 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Sathishkumar Muruganandam <murugana@codeaurora.org>
+To: Bhagavathi Perumal S <bperumal@codeaurora.org>
 Cc: ath11k@lists.infradead.org
 
-Sathishkumar Muruganandam <murugana@codeaurora.org> wrote:
+Bhagavathi Perumal S <bperumal@codeaurora.org> wrote:
 
-> ieee80211_rx_status flag was not updated with MMIC_STRIPPED and DECRYPTED
-> bits during TKIP MIC error detection from RxDMA and hence this is not
-> getting reported to cfg80211_michael_mic_failure() for WPA countermeasures.
+> This adds missing rx rate info stats like pilot evm,
+> per chain rssi, per user ul ppdu and mpdu counts and
+> ul ofdma rate info etc.
 > 
-> Signed-off-by: Sathishkumar Muruganandam <murugana@codeaurora.org>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+> And add null checks for memory alloc failures.
+> 
+> Signed-off-by: Bhagavathi Perumal S <bperumal@codeaurora.org>
 
-Patch applied to ath11k-bringup branch of ath.git, thanks.
+Does not apply to ath11k-post-bringup, please rebase.
 
-e44597a02dad ath11k: fix tkip mic error reporting to cfg80211
+error: patch failed: drivers/net/wireless/ath/ath11k/debug_htt_stats.c:882
+error: drivers/net/wireless/ath/ath11k/debug_htt_stats.c: patch does not apply
+stg import: Diff does not apply cleanly
+
+Patch set to Changes Requested.
 
 -- 
-https://patchwork.kernel.org/patch/11184905/
+https://patchwork.kernel.org/patch/11070887/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
