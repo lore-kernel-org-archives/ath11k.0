@@ -1,18 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iKPgY-0006Pz-8h
- for ath11k@lists.infradead.org; Tue, 15 Oct 2019 16:28:35 +0000
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH 31/49] ath11k: add mac.c
-References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
- <1566316095-27507-32-git-send-email-kvalo@codeaurora.org>
- <1635460.phzPRRphLd@bentobox>
-Date: Tue, 15 Oct 2019 19:28:27 +0300
-In-Reply-To: <1635460.phzPRRphLd@bentobox> (Sven Eckelmann's message of "Wed, 
- 21 Aug 2019 08:16:27 +0200")
-Message-ID: <87d0eym0r8.fsf@codeaurora.org>
-MIME-Version: 1.0
+ id 1iKbvy-0006yc-B9
+ for ath11k@lists.infradead.org; Wed, 16 Oct 2019 05:33:20 +0000
+From: Anilkumar Kolli <akolli@codeaurora.org>
+Subject: [PATCH bringup] dt-bindings: net: add qcom,ath11k.yaml
+Date: Wed, 16 Oct 2019 11:02:56 +0530
+Message-Id: <1571203976-5648-1-git-send-email-akolli@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -21,41 +15,442 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Sven Eckelmann <sven@narfation.org>
-Cc: devicetree@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: ath11k@lists.infradead.org
 
-Sven Eckelmann <sven@narfation.org> writes:
+Converting ath11k device tree documentation to yaml format.
 
-> On Tuesday, 20 August 2019 17:47:57 CEST Kalle Valo wrote:
->> +static void ath11k_peer_assoc_h_rates(struct ath11k *ar,
->> +                                     struct ieee80211_vif *vif,
->> +                                     struct ieee80211_sta *sta,
->> +                                     struct peer_assoc_params *arg)
->> +{
->> +       struct ath11k_vif *arvif = (void *)vif->drv_priv;
->> +       struct wmi_rate_set_arg *rateset = &arg->peer_legacy_rates;
->> +       struct cfg80211_chan_def def;
->> +       const struct ieee80211_supported_band *sband;
->> +       const struct ieee80211_rate *rates;
->> +       enum nl80211_band band;
->> +       u32 ratemask;
->> +       u8 rate;
->
-> rate has to be u32 [1].
->
-> Kind regards,
-> 	Sven
->
-> [1] https://patchwork.kernel.org/patch/11089507/
+Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
+---
+ .../bindings/net/wireless/qcom,ath11k.txt          | 127 ----------
+ .../bindings/net/wireless/qcom,ath11k.yaml         | 277 +++++++++++++++++++++
+ 2 files changed, 277 insertions(+), 127 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/net/wireless/qcom,ath11k.txt
+ create mode 100644 Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
 
-I have applied this now.
-
+diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.txt b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.txt
+deleted file mode 100644
+index 1824238b4b50..000000000000
+--- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.txt
++++ /dev/null
+@@ -1,127 +0,0 @@
+-* Qualcomm Technologies ath11k wireless devices
+-
+-Required properties:
+-- compatible: Should be "qcom,ipq8074-wifi"
+-
+-AHB based ipq8074 uses most of the properties defined in this doc.
+-
+-Optional properties:
+-- reg: Address and length of the register set for the device.
+-- interrupts: List of interrupt lines. Must contain an entry
+-	      for each entry in the interrupt-names property.
+-- interrupt-names: Must include the entries for CE interrupt
+-		   names ("ce0" to "ce11") and hw srng interrupt
+-		   names.
+-- qcom,rproc: DT entry of q6v5-wcss
+-
+-Example:
+-
+-wifi0: wifi@c000000 {
+-	compatible = "qcom,ipq8074-wifi";
+-	reg = <0xc000000 0x2000000>;
+-	interrupts = <0 320 1>,
+-		     <0 319 1>,
+-		     <0 318 1>,
+-		     <0 317 1>,
+-		     <0 316 1>,
+-		     <0 315 1>,
+-		     <0 314 1>,
+-		     <0 311 1>,
+-		     <0 310 1>,
+-		     <0 411 1>,
+-		     <0 410 1>,
+-		     <0 40 1>,
+-		     <0 39 1>,
+-		     <0 302 1>,
+-		     <0 301 1>,
+-		     <0 37 1>,
+-		     <0 36 1>,
+-		     <0 296 1>,
+-		     <0 295 1>,
+-		     <0 294 1>,
+-		     <0 293 1>,
+-		     <0 292 1>,
+-		     <0 291 1>,
+-		     <0 290 1>,
+-		     <0 289 1>,
+-		     <0 288 1>,
+-		     <0 239 1>,
+-		     <0 236 1>,
+-		     <0 235 1>,
+-		     <0 234 1>,
+-		     <0 233 1>,
+-		     <0 232 1>,
+-		     <0 231 1>,
+-		     <0 230 1>,
+-		     <0 229 1>,
+-		     <0 228 1>,
+-		     <0 224 1>,
+-		     <0 223 1>,
+-		     <0 203 1>,
+-		     <0 183 1>,
+-		     <0 180 1>,
+-		     <0 179 1>,
+-		     <0 178 1>,
+-		     <0 177 1>,
+-		     <0 176 1>,
+-		     <0 163 1>,
+-		     <0 162 1>,
+-		     <0 160 1>,
+-		     <0 159 1>,
+-		     <0 158 1>,
+-		     <0 157 1>,
+-		     <0 156 1>;
+-	interrupt-names = "misc-pulse1",
+-			  "misc-latch",
+-			  "sw-exception",
+-			  "watchdog",
+-			  "ce0",
+-			  "ce1",
+-			  "ce2",
+-			  "ce3",
+-			  "ce4",
+-			  "ce5",
+-			  "ce6",
+-			  "ce7",
+-			  "ce8",
+-			  "ce9",
+-			  "ce10",
+-			  "ce11",
+-			  "host2wbm-desc-feed",
+-			  "host2reo-re-injection",
+-			  "host2reo-command",
+-			  "host2rxdma-monitor-ring3",
+-			  "host2rxdma-monitor-ring2",
+-			  "host2rxdma-monitor-ring1",
+-			  "reo2ost-exception",
+-			  "wbm2host-rx-release",
+-			  "reo2host-status",
+-			  "reo2host-destination-ring4",
+-			  "reo2host-destination-ring3",
+-			  "reo2host-destination-ring2",
+-			  "reo2host-destination-ring1",
+-			  "rxdma2host-monitor-destination-mac3",
+-			  "rxdma2host-monitor-destination-mac2",
+-			  "rxdma2host-monitor-destination-mac1",
+-			  "ppdu-end-interrupts-mac3",
+-			  "ppdu-end-interrupts-mac2",
+-			  "ppdu-end-interrupts-mac1",
+-			  "rxdma2host-monitor-status-ring-mac3",
+-			  "rxdma2host-monitor-status-ring-mac2",
+-			  "rxdma2host-monitor-status-ring-mac1",
+-			  "host2rxdma-host-buf-ring-mac3",
+-			  "host2rxdma-host-buf-ring-mac2",
+-			  "host2rxdma-host-buf-ring-mac1",
+-			  "rxdma2host-destination-ring-mac3",
+-			  "rxdma2host-destination-ring-mac2",
+-			  "rxdma2host-destination-ring-mac1",
+-			  "host2tcl-input-ring4",
+-			  "host2tcl-input-ring3",
+-			  "host2tcl-input-ring2",
+-			  "host2tcl-input-ring1",
+-			  "wbm2host-tx-completions-ring3",
+-			  "wbm2host-tx-completions-ring2",
+-			  "wbm2host-tx-completions-ring1",
+-			  "tcl2host-status-ring";
+-	qcom,rproc = <&qcom_q6v5_wcss>;
+-};
+diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+new file mode 100644
+index 000000000000..5d25542f85f8
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+@@ -0,0 +1,277 @@
++# SPDX-License-Identifier: BSD-3-Clause-Clear
++# Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
++
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/wireless/qcom,ath11k.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm Technologies ath11k wireless devices Generic Binding
++
++maintainers:
++  - Kalle Valo <kvalo@codeaurora.org>
++
++description: |
++  These are dt entries used on ath11k driver. AHB based ipq8074 uses most of the properties defined in this doc.
++
++properties:
++  compatible:
++    const: "qcom,ipq8074-wifi"
++
++  reg:
++    description: Address and length of the register set for the device
++    maxItems: 1
++
++  interrupts:
++    minItems: 53
++    maxItems: 53
++    items:
++      - description: misc-pulse1 interrupt events
++      - description: misc-latch interrupt events
++      - description: sw exception interrupt events
++      - description: watchdog interrupt events
++      - description: interrupt event for ring CE0
++      - description: interrupt event for ring CE1
++      - description: interrupt event for ring CE2
++      - description: interrupt event for ring CE3
++      - description: interrupt event for ring CE4
++      - description: interrupt event for ring CE5
++      - description: interrupt event for ring CE6
++      - description: interrupt event for ring CE7
++      - description: interrupt event for ring CE8
++      - description: interrupt event for ring CE9
++      - description: interrupt event for ring CE10
++      - description: interrupt event for ring CE11
++      - description: interrupt event for ring host2wbm-desc-feed
++      - description: interrupt event for ring host2reo-re-injection
++      - description: interrupt event for ring host2reo-command
++      - description: interrupt event for ring host2rxdma-monitor-ring3
++      - description: interrupt event for ring host2rxdma-monitor-ring2
++      - description: interrupt event for ring host2rxdma-monitor-ring1
++      - description: interrupt event for ring reo2ost-exception
++      - description: interrupt event for ring wbm2host-rx-release
++      - description: interrupt event for ring reo2host-status
++      - description: interrupt event for ring reo2host-destination-ring4
++      - description: interrupt event for ring reo2host-destination-ring3
++      - description: interrupt event for ring reo2host-destination-ring2
++      - description: interrupt event for ring reo2host-destination-ring1
++      - description: interrupt event for ring rxdma2host-monitor-destination-mac3
++      - description: interrupt event for ring rxdma2host-monitor-destination-mac2
++      - description: interrupt event for ring rxdma2host-monitor-destination-mac1
++      - description: interrupt event for ring ppdu-end-interrupts-mac3
++      - description: interrupt event for ring ppdu-end-interrupts-mac2
++      - description: interrupt event for ring ppdu-end-interrupts-mac1
++      - description: interrupt event for ring rxdma2host-monitor-status-ring-mac3
++      - description: interrupt event for ring rxdma2host-monitor-status-ring-mac2
++      - description: interrupt event for ring rxdma2host-monitor-status-ring-mac1
++      - description: interrupt event for ring host2rxdma-host-buf-ring-mac3
++      - description: interrupt event for ring host2rxdma-host-buf-ring-mac2
++      - description: interrupt event for ring host2rxdma-host-buf-ring-mac1
++      - description: interrupt event for ring rxdma2host-destination-ring-mac3
++      - description: interrupt event for ring rxdma2host-destination-ring-mac2
++      - description: interrupt event for ring rxdma2host-destination-ring-mac1
++      - description: interrupt event for ring host2tcl-input-ring4
++      - description: interrupt event for ring host2tcl-input-ring3
++      - description: interrupt event for ring host2tcl-input-ring2
++      - description: interrupt event for ring host2tcl-input-ring1
++      - description: interrupt event for ring wbm2host-tx-completions-ring3
++      - description: interrupt event for ring wbm2host-tx-completions-ring2
++      - description: interrupt event for ring wbm2host-tx-completions-ring1
++      - description: interrupt event for ring tcl2host-status-ring
++
++
++  interrupt-names:
++    minItems: 53
++    maxItems: 53
++    items:
++      - const: misc-pulse1
++      - const: misc-latch
++      - const: sw-exception
++      - const: watchdog
++      - const: ce0
++      - const: ce1
++      - const: ce2
++      - const: ce3
++      - const: ce4
++      - const: ce5
++      - const: ce6
++      - const: ce7
++      - const: ce8
++      - const: ce9
++      - const: ce10
++      - const: ce11
++      - const: host2wbm-desc-feed
++      - const: host2reo-re-injection
++      - const: host2reo-command
++      - const: host2rxdma-monitor-ring3
++      - const: host2rxdma-monitor-ring2
++      - const: host2rxdma-monitor-ring1
++      - const: reo2ost-exception
++      - const: wbm2host-rx-release
++      - const: reo2host-status
++      - const: reo2host-destination-ring4
++      - const: reo2host-destination-ring3
++      - const: reo2host-destination-ring2
++      - const: reo2host-destination-ring1
++      - const: rxdma2host-monitor-destination-mac3
++      - const: rxdma2host-monitor-destination-mac2
++      - const: rxdma2host-monitor-destination-mac1
++      - const: ppdu-end-interrupts-mac3
++      - const: ppdu-end-interrupts-mac2
++      - const: ppdu-end-interrupts-mac1
++      - const: rxdma2host-monitor-status-ring-mac3
++      - const: rxdma2host-monitor-status-ring-mac2
++      - const: rxdma2host-monitor-status-ring-mac1
++      - const: host2rxdma-host-buf-ring-mac3
++      - const: host2rxdma-host-buf-ring-mac2
++      - const: host2rxdma-host-buf-ring-mac1
++      - const: rxdma2host-destination-ring-mac3
++      - const: rxdma2host-destination-ring-mac2
++      - const: rxdma2host-destination-ring-mac1
++      - const: host2tcl-input-ring4
++      - const: host2tcl-input-ring3
++      - const: host2tcl-input-ring2
++      - const: host2tcl-input-ring1
++      - const: wbm2host-tx-completions-ring3
++      - const: wbm2host-tx-completions-ring2
++      - const: wbm2host-tx-completions-ring1
++      - const: tcl2host-status-ring
++
++  qcom,rproc:
++    $ref: /schemas/types.yaml#definitions/phandle
++    description:
++      DT entry of q6v5-wcss remoteproc driver.
++      Phandle to a node that can contain the following properties
++        * compatible
++        * reg
++        * reg-names
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - interrupt-names
++  - qcom,rproc
++
++additionalProperties: false
++
++examples:
++  - |
++
++    q6v5_wcss: q6v5_wcss@CD00000 {
++    	compatible = "qcom,ipq8074-wcss-pil";
++    	reg = <0xCD00000 0x4040>,
++    	      <0x4AB000 0x20>;
++    	reg-names = "qdsp6",
++    		    "rmb";
++    };
++
++    wifi0: wifi@c000000 {
++        	compatible = "qcom,ipq8074-wifi";
++    	reg = <0xc000000 0x2000000>;
++    	interrupts = <0 320 1>,
++    		     <0 319 1>,
++    		     <0 318 1>,
++    		     <0 317 1>,
++    		     <0 316 1>,
++    		     <0 315 1>,
++    		     <0 314 1>,
++    		     <0 311 1>,
++    		     <0 310 1>,
++    		     <0 411 1>,
++    		     <0 410 1>,
++    		     <0 40 1>,
++    		     <0 39 1>,
++    		     <0 302 1>,
++    		     <0 301 1>,
++    		     <0 37 1>,
++    		     <0 36 1>,
++    		     <0 296 1>,
++    		     <0 295 1>,
++    		     <0 294 1>,
++    		     <0 293 1>,
++    		     <0 292 1>,
++    		     <0 291 1>,
++    		     <0 290 1>,
++    		     <0 289 1>,
++    		     <0 288 1>,
++    		     <0 239 1>,
++    		     <0 236 1>,
++    		     <0 235 1>,
++    		     <0 234 1>,
++    		     <0 233 1>,
++    		     <0 232 1>,
++    		     <0 231 1>,
++    		     <0 230 1>,
++    		     <0 229 1>,
++    		     <0 228 1>,
++    		     <0 224 1>,
++    		     <0 223 1>,
++    		     <0 203 1>,
++    		     <0 183 1>,
++    		     <0 180 1>,
++    		     <0 179 1>,
++    		     <0 178 1>,
++    		     <0 177 1>,
++    		     <0 176 1>,
++    		     <0 163 1>,
++    		     <0 162 1>,
++    		     <0 160 1>,
++    		     <0 159 1>,
++    		     <0 158 1>,
++    		     <0 157 1>,
++    		     <0 156 1>;
++    	interrupt-names = "misc-pulse1",
++    			  "misc-latch",
++    			  "sw-exception",
++    			  "watchdog",
++    			  "ce0",
++    			  "ce1",
++    			  "ce2",
++    			  "ce3",
++    			  "ce4",
++    			  "ce5",
++    			  "ce6",
++    			  "ce7",
++    			  "ce8",
++    			  "ce9",
++    			  "ce10",
++    			  "ce11",
++    			  "host2wbm-desc-feed",
++    			  "host2reo-re-injection",
++    			  "host2reo-command",
++    			  "host2rxdma-monitor-ring3",
++    			  "host2rxdma-monitor-ring2",
++    			  "host2rxdma-monitor-ring1",
++    			  "reo2ost-exception",
++    			  "wbm2host-rx-release",
++    			  "reo2host-status",
++    			  "reo2host-destination-ring4",
++    			  "reo2host-destination-ring3",
++    			  "reo2host-destination-ring2",
++    			  "reo2host-destination-ring1",
++    			  "rxdma2host-monitor-destination-mac3",
++    			  "rxdma2host-monitor-destination-mac2",
++    			  "rxdma2host-monitor-destination-mac1",
++    			  "ppdu-end-interrupts-mac3",
++    			  "ppdu-end-interrupts-mac2",
++    			  "ppdu-end-interrupts-mac1",
++    			  "rxdma2host-monitor-status-ring-mac3",
++    			  "rxdma2host-monitor-status-ring-mac2",
++    			  "rxdma2host-monitor-status-ring-mac1",
++    			  "host2rxdma-host-buf-ring-mac3",
++    			  "host2rxdma-host-buf-ring-mac2",
++    			  "host2rxdma-host-buf-ring-mac1",
++    			  "rxdma2host-destination-ring-mac3",
++    			  "rxdma2host-destination-ring-mac2",
++    			  "rxdma2host-destination-ring-mac1",
++    			  "host2tcl-input-ring4",
++    			  "host2tcl-input-ring3",
++    			  "host2tcl-input-ring2",
++    			  "host2tcl-input-ring1",
++    			  "wbm2host-tx-completions-ring3",
++    			  "wbm2host-tx-completions-ring2",
++    			  "wbm2host-tx-completions-ring1",
++    			  "tcl2host-status-ring";
++    	qcom,rproc = <&q6v5_wcss>;
++    };
 -- 
-Kalle Valo
+1.9.1
+
 
 _______________________________________________
 ath11k mailing list
