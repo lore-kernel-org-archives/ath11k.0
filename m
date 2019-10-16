@@ -1,19 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iKez3-0002nB-FO
- for ath11k@lists.infradead.org; Wed, 16 Oct 2019 08:48:42 +0000
-Received: from [127.0.1.1] (176-93-78-119.bb.dnainternet.fi [176.93.78.119])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- (Authenticated sender: kvalo@smtp.codeaurora.org)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 2A3646090E
- for <ath11k@lists.infradead.org>; Wed, 16 Oct 2019 08:48:39 +0000 (UTC)
-Subject: [PATCH] ath11k: whitespace cleanup in core.c
-From: Kalle Valo <kvalo@codeaurora.org>
-Date: Wed, 16 Oct 2019 11:48:37 +0300
-Message-ID: <157121571771.9253.16181125542423146269.stgit@x230>
+ id 1iKf2I-0004fs-PC
+ for ath11k@lists.infradead.org; Wed, 16 Oct 2019 08:52:04 +0000
 MIME-Version: 1.0
+Subject: Re: [PATCH] ath11k: update tcl cmd descriptor parameters for STA mode
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <1569240441-18252-1-git-send-email-akolli@codeaurora.org>
+References: <1569240441-18252-1-git-send-email-akolli@codeaurora.org>
+Message-Id: <20191016085202.7222A60540@smtp.codeaurora.org>
+Date: Wed, 16 Oct 2019 08:52:02 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -26,44 +22,28 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
+To: Anilkumar Kolli <akolli@codeaurora.org>
+Cc: ath11k@lists.infradead.org
 
-ath11k_hw_params was indented too much. Also group the module parameter macros together.
+Anilkumar Kolli <akolli@codeaurora.org> wrote:
 
-Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/core.c |   14 ++++++--------
- 1 file changed, 6 insertions(+), 8 deletions(-)
+> It is observed that ath11k STA mode UL throughput is low.
+> This is due to packets delivered to FW from TCL instead of TQM.
+> TCL AST search fail causes packet delivered to FW, fix this by
+> properly configuring the TCL address search type and ast_hash.
+> STA UL throughput is improved 10times with 11AC AP.
+> 
+> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
+> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 5a6df2acabce..b0c71b5879b1 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -13,18 +13,16 @@
- #include "debug.h"
- 
- unsigned int ath11k_debug_mask;
--
- module_param_named(debug_mask, ath11k_debug_mask, uint, 0644);
--
- MODULE_PARM_DESC(debug_mask, "Debugging mask");
- 
- static const struct ath11k_hw_params ath11k_hw_params = {
--			.name = "ipq8074",
--			.fw = {
--				.dir = IPQ8074_FW_DIR,
--				.board_size = IPQ8074_MAX_BOARD_DATA_SZ,
--				.cal_size =  IPQ8074_MAX_CAL_DATA_SZ,
--			},
-+	.name = "ipq8074",
-+	.fw = {
-+		.dir = IPQ8074_FW_DIR,
-+		.board_size = IPQ8074_MAX_BOARD_DATA_SZ,
-+		.cal_size =  IPQ8074_MAX_CAL_DATA_SZ,
-+	},
- };
- 
- /* Map from pdev index to hw mac index */
+Patch applied to ath11k-post-bringup branch of ath.git, thanks.
+
+578468defa7f ath11k: update tcl cmd descriptor parameters for STA mode
+
+-- 
+https://patchwork.kernel.org/patch/11156647/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 
 _______________________________________________
