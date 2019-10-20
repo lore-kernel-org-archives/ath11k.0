@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iM861-0002JG-NU
- for ath11k@lists.infradead.org; Sun, 20 Oct 2019 10:05:59 +0000
+ id 1iM867-0002Nm-LH
+ for ath11k@lists.infradead.org; Sun, 20 Oct 2019 10:06:04 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH v2 44/49] ath11k: add trace.h
-Date: Sun, 20 Oct 2019 13:04:02 +0300
-Message-Id: <1571565847-10338-45-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH v2 43/49] ath11k: add trace.c
+Date: Sun, 20 Oct 2019 13:04:01 +0300
+Message-Id: <1571565847-10338-44-git-send-email-kvalo@codeaurora.org>
 In-Reply-To: <1571565847-10338-1-git-send-email-kvalo@codeaurora.org>
 References: <1571565847-10338-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -29,125 +29,24 @@ Cc: devicetree@vger.kernel.org, ath11k@lists.infradead.org
 
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/trace.h | 110 ++++++++++++++++++++++++++++++++
- 1 file changed, 110 insertions(+)
+ drivers/net/wireless/ath/ath11k/trace.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/trace.h b/drivers/net/wireless/ath/ath11k/trace.h
+diff --git a/drivers/net/wireless/ath/ath11k/trace.c b/drivers/net/wireless/ath/ath11k/trace.c
 new file mode 100644
-index 000000000000..400f759568e1
+index 000000000000..f0cc49ba0387
 --- /dev/null
-+++ b/drivers/net/wireless/ath/ath11k/trace.h
-@@ -0,0 +1,110 @@
-+/* SPDX-License-Identifier: BSD-3-Clause-Clear */
++++ b/drivers/net/wireless/ath/ath11k/trace.c
+@@ -0,0 +1,9 @@
++// SPDX-License-Identifier: BSD-3-Clause-Clear
 +/*
 + * Copyright (c) 2019 The Linux Foundation. All rights reserved.
 + */
 +
-+#if !defined(_TRACE_H_) || defined(TRACE_HEADER_MULTI_READ)
++#include <linux/module.h>
 +
-+#include <linux/tracepoint.h>
-+#include "core.h"
-+
-+#define _TRACE_H_
-+
-+/* create empty functions when tracing is disabled */
-+#if !defined(CONFIG_ATH11K_TRACING)
-+#undef TRACE_EVENT
-+#define TRACE_EVENT(name, proto, ...) \
-+static inline void trace_ ## name(proto) {}
-+#endif /* !CONFIG_ATH11K_TRACING || __CHECKER__ */
-+
-+TRACE_EVENT(ath11k_htt_pktlog,
-+	    TP_PROTO(struct ath11k *ar, const void *buf, u16 buf_len),
-+
-+	TP_ARGS(ar, buf, buf_len),
-+
-+	TP_STRUCT__entry(
-+		__string(device, dev_name(ar->ab->dev))
-+		__string(driver, dev_driver_string(ar->ab->dev))
-+		__field(u16, buf_len)
-+		__dynamic_array(u8, pktlog, buf_len)
-+	),
-+
-+	TP_fast_assign(
-+		__assign_str(device, dev_name(ar->ab->dev));
-+		__assign_str(driver, dev_driver_string(ar->ab->dev));
-+		__entry->buf_len = buf_len;
-+		memcpy(__get_dynamic_array(pktlog), buf, buf_len);
-+	),
-+
-+	TP_printk(
-+		"%s %s size %hu",
-+		__get_str(driver),
-+		__get_str(device),
-+		__entry->buf_len
-+	 )
-+);
-+
-+TRACE_EVENT(ath11k_htt_ppdu_stats,
-+	    TP_PROTO(struct ath11k *ar, const void *data, size_t len),
-+
-+	TP_ARGS(ar, data, len),
-+
-+	TP_STRUCT__entry(
-+		__string(device, dev_name(ar->ab->dev))
-+		__string(driver, dev_driver_string(ar->ab->dev))
-+		__field(u16, len)
-+		__dynamic_array(u8, ppdu, len)
-+	),
-+
-+	TP_fast_assign(
-+		__assign_str(device, dev_name(ar->ab->dev));
-+		__assign_str(driver, dev_driver_string(ar->ab->dev));
-+		__entry->len = len;
-+		memcpy(__get_dynamic_array(ppdu), data, len);
-+	),
-+
-+	TP_printk(
-+		"%s %s ppdu len %d",
-+		__get_str(driver),
-+		__get_str(device),
-+		__entry->len
-+	 )
-+);
-+
-+TRACE_EVENT(ath11k_htt_rxdesc,
-+	    TP_PROTO(struct ath11k *ar, const void *data, size_t len),
-+
-+	TP_ARGS(ar, data, len),
-+
-+	TP_STRUCT__entry(
-+		__string(device, dev_name(ar->ab->dev))
-+		__string(driver, dev_driver_string(ar->ab->dev))
-+		__field(u16, len)
-+		__dynamic_array(u8, rxdesc, len)
-+	),
-+
-+	TP_fast_assign(
-+		__assign_str(device, dev_name(ar->ab->dev));
-+		__assign_str(driver, dev_driver_string(ar->ab->dev));
-+		__entry->len = len;
-+		memcpy(__get_dynamic_array(rxdesc), data, len);
-+	),
-+
-+	TP_printk(
-+		"%s %s rxdesc len %d",
-+		__get_str(driver),
-+		__get_str(device),
-+		__entry->len
-+	 )
-+);
-+
-+#endif /* _TRACE_H_ || TRACE_HEADER_MULTI_READ*/
-+
-+/* we don't want to use include/trace/events */
-+#undef TRACE_INCLUDE_PATH
-+#define TRACE_INCLUDE_PATH .
-+#undef TRACE_INCLUDE_FILE
-+#define TRACE_INCLUDE_FILE trace
-+
-+/* This part must be outside protection */
-+#include <trace/define_trace.h>
++#define CREATE_TRACE_POINTS
++#include "trace.h"
 
 
 _______________________________________________
