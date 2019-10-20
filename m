@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iM84X-0000F9-NV
- for ath11k@lists.infradead.org; Sun, 20 Oct 2019 10:04:28 +0000
+ id 1iM84t-0000Px-NM
+ for ath11k@lists.infradead.org; Sun, 20 Oct 2019 10:04:50 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH v2 08/49] ath11k: add core.c
-Date: Sun, 20 Oct 2019 13:03:26 +0300
-Message-Id: <1571565847-10338-9-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH v2 14/49] ath11k: add debugfs_sta.c
+Date: Sun, 20 Oct 2019 13:03:32 +0300
+Message-Id: <1571565847-10338-15-git-send-email-kvalo@codeaurora.org>
 In-Reply-To: <1571565847-10338-1-git-send-email-kvalo@codeaurora.org>
 References: <1571565847-10338-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -29,787 +29,553 @@ Cc: devicetree@vger.kernel.org, ath11k@lists.infradead.org
 
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/core.c | 772 +++++++++++++++++++++++++++++++++
- 1 file changed, 772 insertions(+)
+ drivers/net/wireless/ath/ath11k/debugfs_sta.c | 538 ++++++++++++++++++++++++++
+ 1 file changed, 538 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+diff --git a/drivers/net/wireless/ath/ath11k/debugfs_sta.c b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
 new file mode 100644
-index 000000000000..b0c71b5879b1
+index 000000000000..b392117eff3c
 --- /dev/null
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -0,0 +1,772 @@
++++ b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
+@@ -0,0 +1,538 @@
 +// SPDX-License-Identifier: BSD-3-Clause-Clear
 +/*
 + * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
 + */
 +
-+#include <linux/module.h>
-+#include <linux/slab.h>
-+#include <linux/remoteproc.h>
-+#include <linux/firmware.h>
-+#include "ahb.h"
++#include <linux/vmalloc.h>
++
 +#include "core.h"
-+#include "dp_tx.h"
++#include "peer.h"
 +#include "debug.h"
 +
-+unsigned int ath11k_debug_mask;
-+module_param_named(debug_mask, ath11k_debug_mask, uint, 0644);
-+MODULE_PARM_DESC(debug_mask, "Debugging mask");
-+
-+static const struct ath11k_hw_params ath11k_hw_params = {
-+	.name = "ipq8074",
-+	.fw = {
-+		.dir = IPQ8074_FW_DIR,
-+		.board_size = IPQ8074_MAX_BOARD_DATA_SZ,
-+		.cal_size =  IPQ8074_MAX_CAL_DATA_SZ,
-+	},
-+};
-+
-+/* Map from pdev index to hw mac index */
-+u8 ath11k_core_get_hw_mac_id(struct ath11k_base *ab, int pdev_idx)
++void
++ath11k_accumulate_per_peer_tx_stats(struct ath11k_sta *arsta,
++				    struct ath11k_per_peer_tx_stats *peer_stats,
++				    u8 legacy_rate_idx)
 +{
-+	switch (pdev_idx) {
-+	case 0:
-+		return 0;
-+	case 1:
-+		return 2;
-+	case 2:
-+		return 1;
-+	default:
-+		ath11k_warn(ab, "Invalid pdev idx %d\n", pdev_idx);
-+		return ATH11K_INVALID_HW_MAC_ID;
++	struct rate_info *txrate = &arsta->txrate;
++	struct ath11k_htt_tx_stats *tx_stats;
++	int gi, mcs, bw, nss;
++
++	if (!arsta->tx_stats)
++		return;
++
++	tx_stats = arsta->tx_stats;
++	gi = FIELD_GET(RATE_INFO_FLAGS_SHORT_GI, arsta->txrate.flags);
++	mcs = txrate->mcs;
++	bw = txrate->bw;
++	nss = txrate->nss - 1;
++
++#define STATS_OP_FMT(name) tx_stats->stats[ATH11K_STATS_TYPE_##name]
++
++	if (txrate->flags & RATE_INFO_FLAGS_HE_MCS) {
++		STATS_OP_FMT(SUCC).he[0][mcs] += peer_stats->succ_bytes;
++		STATS_OP_FMT(SUCC).he[1][mcs] += peer_stats->succ_pkts;
++		STATS_OP_FMT(FAIL).he[0][mcs] += peer_stats->failed_bytes;
++		STATS_OP_FMT(FAIL).he[1][mcs] += peer_stats->failed_pkts;
++		STATS_OP_FMT(RETRY).he[0][mcs] += peer_stats->retry_bytes;
++		STATS_OP_FMT(RETRY).he[1][mcs] += peer_stats->retry_pkts;
++	} else if (txrate->flags & RATE_INFO_FLAGS_VHT_MCS) {
++		STATS_OP_FMT(SUCC).vht[0][mcs] += peer_stats->succ_bytes;
++		STATS_OP_FMT(SUCC).vht[1][mcs] += peer_stats->succ_pkts;
++		STATS_OP_FMT(FAIL).vht[0][mcs] += peer_stats->failed_bytes;
++		STATS_OP_FMT(FAIL).vht[1][mcs] += peer_stats->failed_pkts;
++		STATS_OP_FMT(RETRY).vht[0][mcs] += peer_stats->retry_bytes;
++		STATS_OP_FMT(RETRY).vht[1][mcs] += peer_stats->retry_pkts;
++	} else if (txrate->flags & RATE_INFO_FLAGS_MCS) {
++		STATS_OP_FMT(SUCC).ht[0][mcs] += peer_stats->succ_bytes;
++		STATS_OP_FMT(SUCC).ht[1][mcs] += peer_stats->succ_pkts;
++		STATS_OP_FMT(FAIL).ht[0][mcs] += peer_stats->failed_bytes;
++		STATS_OP_FMT(FAIL).ht[1][mcs] += peer_stats->failed_pkts;
++		STATS_OP_FMT(RETRY).ht[0][mcs] += peer_stats->retry_bytes;
++		STATS_OP_FMT(RETRY).ht[1][mcs] += peer_stats->retry_pkts;
++	} else {
++		mcs = legacy_rate_idx;
++
++		STATS_OP_FMT(SUCC).legacy[0][mcs] += peer_stats->succ_bytes;
++		STATS_OP_FMT(SUCC).legacy[1][mcs] += peer_stats->succ_pkts;
++		STATS_OP_FMT(FAIL).legacy[0][mcs] += peer_stats->failed_bytes;
++		STATS_OP_FMT(FAIL).legacy[1][mcs] += peer_stats->failed_pkts;
++		STATS_OP_FMT(RETRY).legacy[0][mcs] += peer_stats->retry_bytes;
++		STATS_OP_FMT(RETRY).legacy[1][mcs] += peer_stats->retry_pkts;
 +	}
-+}
 +
-+static int ath11k_core_create_board_name(struct ath11k_base *ab, char *name,
-+					 size_t name_len)
-+{
-+	/* Note: bus is fixed to ahb. When other bus type supported,
-+	 * make it to dynamic.
-+	 */
-+	scnprintf(name, name_len,
-+		  "bus=ahb,qmi-chip-id=%d,qmi-board-id=%d",
-+		  ab->qmi.target.chip_id,
-+		  ab->qmi.target.board_id);
++	if (peer_stats->is_ampdu) {
++		tx_stats->ba_fails += peer_stats->ba_fails;
 +
-+	ath11k_dbg(ab, ATH11K_DBG_BOOT, "boot using board name '%s'\n", name);
-+
-+	return 0;
-+}
-+
-+static const struct firmware *ath11k_fetch_fw_file(struct ath11k_base *ab,
-+						   const char *dir,
-+						   const char *file)
-+{
-+	char filename[100];
-+	const struct firmware *fw;
-+	int ret;
-+
-+	if (file == NULL)
-+		return ERR_PTR(-ENOENT);
-+
-+	if (dir == NULL)
-+		dir = ".";
-+
-+	snprintf(filename, sizeof(filename), "%s/%s", dir, file);
-+	ret = firmware_request_nowarn(&fw, filename, ab->dev);
-+	ath11k_dbg(ab, ATH11K_DBG_BOOT, "boot fw request '%s': %d\n",
-+		   filename, ret);
-+
-+	if (ret)
-+		return ERR_PTR(ret);
-+	ath11k_warn(ab, "Downloading BDF: %s, size: %zu\n",
-+		    filename, fw->size);
-+
-+	return fw;
-+}
-+
-+void ath11k_core_free_bdf(struct ath11k_base *ab, struct ath11k_board_data *bd)
-+{
-+	if (!IS_ERR(bd->fw))
-+		release_firmware(bd->fw);
-+
-+	memset(bd, 0, sizeof(*bd));
-+}
-+
-+static int ath11k_core_parse_bd_ie_board(struct ath11k_base *ab,
-+					 struct ath11k_board_data *bd,
-+					 const void *buf, size_t buf_len,
-+					 const char *boardname,
-+					 int bd_ie_type)
-+{
-+	const struct ath11k_fw_ie *hdr;
-+	bool name_match_found;
-+	int ret, board_ie_id;
-+	size_t board_ie_len;
-+	const void *board_ie_data;
-+
-+	name_match_found = false;
-+
-+	/* go through ATH11K_BD_IE_BOARD_ elements */
-+	while (buf_len > sizeof(struct ath11k_fw_ie)) {
-+		hdr = buf;
-+		board_ie_id = le32_to_cpu(hdr->id);
-+		board_ie_len = le32_to_cpu(hdr->len);
-+		board_ie_data = hdr->data;
-+
-+		buf_len -= sizeof(*hdr);
-+		buf += sizeof(*hdr);
-+
-+		if (buf_len < ALIGN(board_ie_len, 4)) {
-+			ath11k_err(ab, "invalid ATH11K_BD_IE_BOARD length: %zu < %zu\n",
-+				   buf_len, ALIGN(board_ie_len, 4));
-+			ret = -EINVAL;
-+			goto out;
++		if (txrate->flags & RATE_INFO_FLAGS_HE_MCS) {
++			STATS_OP_FMT(AMPDU).he[0][mcs] +=
++			peer_stats->succ_bytes + peer_stats->retry_bytes;
++			STATS_OP_FMT(AMPDU).he[1][mcs] +=
++			peer_stats->succ_pkts + peer_stats->retry_pkts;
++		} else if (txrate->flags & RATE_INFO_FLAGS_MCS) {
++			STATS_OP_FMT(AMPDU).ht[0][mcs] +=
++			peer_stats->succ_bytes + peer_stats->retry_bytes;
++			STATS_OP_FMT(AMPDU).ht[1][mcs] +=
++			peer_stats->succ_pkts + peer_stats->retry_pkts;
++		} else {
++			STATS_OP_FMT(AMPDU).vht[0][mcs] +=
++			peer_stats->succ_bytes + peer_stats->retry_bytes;
++			STATS_OP_FMT(AMPDU).vht[1][mcs] +=
++			peer_stats->succ_pkts + peer_stats->retry_pkts;
 +		}
-+
-+		switch (board_ie_id) {
-+		case ATH11K_BD_IE_BOARD_NAME:
-+			ath11k_dbg_dump(ab, ATH11K_DBG_BOOT, "board name", "",
-+					board_ie_data, board_ie_len);
-+
-+			if (board_ie_len != strlen(boardname))
-+				break;
-+
-+			ret = memcmp(board_ie_data, boardname, strlen(boardname));
-+			if (ret)
-+				break;
-+
-+			name_match_found = true;
-+			ath11k_dbg(ab, ATH11K_DBG_BOOT,
-+				   "boot found match for name '%s'",
-+				   boardname);
-+			break;
-+		case ATH11K_BD_IE_BOARD_DATA:
-+			if (!name_match_found)
-+				/* no match found */
-+				break;
-+
-+			ath11k_dbg(ab, ATH11K_DBG_BOOT,
-+				   "boot found board data for '%s'", boardname);
-+
-+			bd->data = board_ie_data;
-+			bd->len = board_ie_len;
-+
-+			ret = 0;
-+			goto out;
-+		default:
-+			ath11k_warn(ab, "unknown ATH11K_BD_IE_BOARD found: %d\n",
-+				    board_ie_id);
-+			break;
-+		}
-+
-+		/* jump over the padding */
-+		board_ie_len = ALIGN(board_ie_len, 4);
-+
-+		buf_len -= board_ie_len;
-+		buf += board_ie_len;
++		STATS_OP_FMT(AMPDU).bw[0][bw] +=
++			peer_stats->succ_bytes + peer_stats->retry_bytes;
++		STATS_OP_FMT(AMPDU).nss[0][nss] +=
++			peer_stats->succ_bytes + peer_stats->retry_bytes;
++		STATS_OP_FMT(AMPDU).gi[0][gi] +=
++			peer_stats->succ_bytes + peer_stats->retry_bytes;
++		STATS_OP_FMT(AMPDU).bw[1][bw] +=
++			peer_stats->succ_pkts + peer_stats->retry_pkts;
++		STATS_OP_FMT(AMPDU).nss[1][nss] +=
++			peer_stats->succ_pkts + peer_stats->retry_pkts;
++		STATS_OP_FMT(AMPDU).gi[1][gi] +=
++			peer_stats->succ_pkts + peer_stats->retry_pkts;
++	} else {
++		tx_stats->ack_fails += peer_stats->ba_fails;
 +	}
 +
-+	/* no match found */
-+	ret = -ENOENT;
++	STATS_OP_FMT(SUCC).bw[0][bw] += peer_stats->succ_bytes;
++	STATS_OP_FMT(SUCC).nss[0][nss] += peer_stats->succ_bytes;
++	STATS_OP_FMT(SUCC).gi[0][gi] += peer_stats->succ_bytes;
 +
-+out:
-+	return ret;
++	STATS_OP_FMT(SUCC).bw[1][bw] += peer_stats->succ_pkts;
++	STATS_OP_FMT(SUCC).nss[1][nss] += peer_stats->succ_pkts;
++	STATS_OP_FMT(SUCC).gi[1][gi] += peer_stats->succ_pkts;
++
++	STATS_OP_FMT(FAIL).bw[0][bw] += peer_stats->failed_bytes;
++	STATS_OP_FMT(FAIL).nss[0][nss] += peer_stats->failed_bytes;
++	STATS_OP_FMT(FAIL).gi[0][gi] += peer_stats->failed_bytes;
++
++	STATS_OP_FMT(FAIL).bw[1][bw] += peer_stats->failed_pkts;
++	STATS_OP_FMT(FAIL).nss[1][nss] += peer_stats->failed_pkts;
++	STATS_OP_FMT(FAIL).gi[1][gi] += peer_stats->failed_pkts;
++
++	STATS_OP_FMT(RETRY).bw[0][bw] += peer_stats->retry_bytes;
++	STATS_OP_FMT(RETRY).nss[0][nss] += peer_stats->retry_bytes;
++	STATS_OP_FMT(RETRY).gi[0][gi] += peer_stats->retry_bytes;
++
++	STATS_OP_FMT(RETRY).bw[1][bw] += peer_stats->retry_pkts;
++	STATS_OP_FMT(RETRY).nss[1][nss] += peer_stats->retry_pkts;
++	STATS_OP_FMT(RETRY).gi[1][gi] += peer_stats->retry_pkts;
++
++	tx_stats->tx_duration += peer_stats->duration;
 +}
 +
-+static int ath11k_core_fetch_board_data_api_n(struct ath11k_base *ab,
-+					      struct ath11k_board_data *bd,
-+					      const char *boardname)
-+{
-+	size_t len, magic_len;
-+	const u8 *data;
-+	char *filename = ATH11K_BOARD_API2_FILE;
-+	size_t ie_len;
-+	struct ath11k_fw_ie *hdr;
-+	int ret, ie_id;
-+
-+	if (!bd->fw)
-+		bd->fw = ath11k_fetch_fw_file(ab,
-+					      ab->hw_params.fw.dir,
-+					      filename);
-+	if (IS_ERR(bd->fw))
-+		return PTR_ERR(bd->fw);
-+
-+	data = bd->fw->data;
-+	len = bd->fw->size;
-+
-+	/* magic has extra null byte padded */
-+	magic_len = strlen(ATH11K_BOARD_MAGIC) + 1;
-+	if (len < magic_len) {
-+		ath11k_err(ab, "failed to find magic value in %s/%s, file too short: %zu\n",
-+			   ab->hw_params.fw.dir, filename, len);
-+		ret = -EINVAL;
-+		goto err;
-+	}
-+
-+	if (memcmp(data, ATH11K_BOARD_MAGIC, magic_len)) {
-+		ath11k_err(ab, "found invalid board magic\n");
-+		ret = -EINVAL;
-+		goto err;
-+	}
-+
-+	/* magic is padded to 4 bytes */
-+	magic_len = ALIGN(magic_len, 4);
-+	if (len < magic_len) {
-+		ath11k_err(ab, "failed: %s/%s too small to contain board data, len: %zu\n",
-+			   ab->hw_params.fw.dir, filename, len);
-+		ret = -EINVAL;
-+		goto err;
-+	}
-+
-+	data += magic_len;
-+	len -= magic_len;
-+
-+	while (len > sizeof(struct ath11k_fw_ie)) {
-+		hdr = (struct ath11k_fw_ie *)data;
-+		ie_id = le32_to_cpu(hdr->id);
-+		ie_len = le32_to_cpu(hdr->len);
-+
-+		len -= sizeof(*hdr);
-+		data = hdr->data;
-+
-+		if (len < ALIGN(ie_len, 4)) {
-+			ath11k_err(ab, "invalid length for board ie_id %d ie_len %zu len %zu\n",
-+				   ie_id, ie_len, len);
-+			return -EINVAL;
-+		}
-+
-+		switch (ie_id) {
-+		case ATH11K_BD_IE_BOARD:
-+			ret = ath11k_core_parse_bd_ie_board(ab, bd, data,
-+							    ie_len,
-+							    boardname,
-+							    ATH11K_BD_IE_BOARD);
-+			if (ret == -ENOENT)
-+				/* no match found, continue */
-+				break;
-+			else if (ret)
-+				/* there was an error, bail out */
-+				goto err;
-+			/* either found or error, so stop searching */
-+			goto out;
-+		}
-+
-+		/* jump over the padding */
-+		ie_len = ALIGN(ie_len, 4);
-+
-+		len -= ie_len;
-+		data += ie_len;
-+	}
-+
-+out:
-+	if (!bd->data || !bd->len) {
-+		ath11k_err(ab,
-+			   "failed to fetch board data for %s from %s/%s\n",
-+			   boardname, ab->hw_params.fw.dir, filename);
-+		ret = -ENODATA;
-+		goto err;
-+	}
-+
-+	return 0;
-+
-+err:
-+	ath11k_core_free_bdf(ab, bd);
-+	return ret;
-+}
-+
-+static int ath11k_core_fetch_board_data_api_1(struct ath11k_base *ab,
-+					      struct ath11k_board_data *bd)
-+{
-+	bd->fw = ath11k_fetch_fw_file(ab,
-+				      ab->hw_params.fw.dir,
-+				      ATH11K_DEFAULT_BOARD_FILE);
-+	if (IS_ERR(bd->fw))
-+		return PTR_ERR(bd->fw);
-+
-+	bd->data = bd->fw->data;
-+	bd->len = bd->fw->size;
-+
-+	return 0;
-+}
-+
-+#define BOARD_NAME_SIZE 100
-+int ath11k_core_fetch_bdf(struct ath11k_base *ab, struct ath11k_board_data *bd)
-+{
-+	char boardname[BOARD_NAME_SIZE];
-+	int ret;
-+
-+	ret = ath11k_core_create_board_name(ab, boardname, BOARD_NAME_SIZE);
-+	if (ret) {
-+		ath11k_err(ab, "failed to create board name: %d", ret);
-+		return ret;
-+	}
-+
-+	ab->bd_api = 2;
-+	ret = ath11k_core_fetch_board_data_api_n(ab, bd, boardname);
-+	if (!ret)
-+		goto success;
-+
-+	ab->bd_api = 1;
-+	ret = ath11k_core_fetch_board_data_api_1(ab, bd);
-+	if (ret) {
-+		ath11k_err(ab, "failed to fetch board-2.bin or board.bin from %s\n",
-+			   ab->hw_params.fw.dir);
-+		return ret;
-+	}
-+
-+success:
-+	ath11k_dbg(ab, ATH11K_DBG_BOOT, "using board api %d\n", ab->bd_api);
-+	return 0;
-+}
-+
-+static void ath11k_core_stop(struct ath11k_base *ab)
-+{
-+	if (!test_bit(ATH11K_FLAG_CRASH_FLUSH, &ab->dev_flags))
-+		ath11k_qmi_firmware_stop(ab);
-+	ath11k_ahb_stop(ab);
-+	ath11k_wmi_detach(ab);
-+
-+	/* De-Init of components as needed */
-+}
-+
-+static int ath11k_core_soc_create(struct ath11k_base *ab)
-+{
-+	int ret;
-+
-+	ret = ath11k_qmi_init_service(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to initialize qmi :%d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = ath11k_debug_soc_create(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to create ath11k debugfs\n");
-+		goto err_qmi_deinit;
-+	}
-+
-+	ret = ath11k_ahb_power_up(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to power up :%d\n", ret);
-+		goto err_debugfs_reg;
-+	}
-+
-+	return 0;
-+
-+err_debugfs_reg:
-+	ath11k_debug_soc_destroy(ab);
-+err_qmi_deinit:
-+	ath11k_qmi_deinit_service(ab);
-+	return ret;
-+}
-+
-+static void ath11k_core_soc_destroy(struct ath11k_base *ab)
-+{
-+	ath11k_debug_soc_destroy(ab);
-+	ath11k_dp_free(ab);
-+	ath11k_reg_free(ab);
-+	ath11k_qmi_deinit_service(ab);
-+}
-+
-+static int ath11k_core_pdev_create(struct ath11k_base *ab)
-+{
-+	int ret;
-+
-+	ret = ath11k_debug_pdev_create(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to create core pdev debugfs: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = ath11k_mac_create(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to create new hw device with mac80211 :%d\n",
-+			   ret);
-+		goto err_pdev_debug;
-+	}
-+
-+	ret = ath11k_dp_pdev_alloc(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to attach DP pdev: %d\n", ret);
-+		goto err_mac_destroy;
-+	}
-+
-+	return 0;
-+
-+err_mac_destroy:
-+	ath11k_mac_destroy(ab);
-+
-+err_pdev_debug:
-+	ath11k_debug_pdev_destroy(ab);
-+
-+	return ret;
-+}
-+
-+static void ath11k_core_pdev_destroy(struct ath11k_base *ab)
-+{
-+	ath11k_mac_unregister(ab);
-+	ath11k_ahb_ext_irq_disable(ab);
-+	ath11k_dp_pdev_free(ab);
-+	ath11k_debug_pdev_destroy(ab);
-+}
-+
-+static int ath11k_core_start(struct ath11k_base *ab,
-+			     enum ath11k_firmware_mode mode)
-+{
-+	int ret;
-+
-+	ret = ath11k_qmi_firmware_start(ab, mode);
-+	if (ret) {
-+		ath11k_err(ab, "failed to attach wmi: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = ath11k_wmi_attach(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to attach wmi: %d\n", ret);
-+		goto err_firmware_stop;
-+	}
-+
-+	ret = ath11k_htc_init(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to init htc: %d\n", ret);
-+		goto err_wmi_detach;
-+	}
-+
-+	ret = ath11k_ahb_start(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to start HIF: %d\n", ret);
-+		goto err_wmi_detach;
-+	}
-+
-+	ret = ath11k_htc_wait_target(&ab->htc);
-+	if (ret) {
-+		ath11k_err(ab, "failed to connect to HTC: %d\n", ret);
-+		goto err_hif_stop;
-+	}
-+
-+	ret = ath11k_dp_htt_connect(&ab->dp);
-+	if (ret) {
-+		ath11k_err(ab, "failed to connect to HTT: %d\n", ret);
-+		goto err_hif_stop;
-+	}
-+
-+	ret = ath11k_wmi_connect(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to connect wmi: %d\n", ret);
-+		goto err_hif_stop;
-+	}
-+
-+	ret = ath11k_htc_start(&ab->htc);
-+	if (ret) {
-+		ath11k_err(ab, "failed to start HTC: %d\n", ret);
-+		goto err_hif_stop;
-+	}
-+
-+	ret = ath11k_wmi_wait_for_service_ready(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to receive wmi service ready event: %d\n",
-+			   ret);
-+		goto err_hif_stop;
-+	}
-+
-+	ret = ath11k_wmi_cmd_init(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to send wmi init cmd: %d\n", ret);
-+		goto err_hif_stop;
-+	}
-+
-+	ret = ath11k_wmi_wait_for_unified_ready(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to receive wmi unified ready event: %d\n",
-+			   ret);
-+		goto err_hif_stop;
-+	}
-+
-+	ret = ath11k_dp_tx_htt_h2t_ver_req_msg(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to send htt version request message: %d\n",
-+			   ret);
-+		goto err_hif_stop;
-+	}
-+
-+	return 0;
-+
-+err_hif_stop:
-+	ath11k_ahb_stop(ab);
-+err_wmi_detach:
-+	ath11k_wmi_detach(ab);
-+err_firmware_stop:
-+	ath11k_qmi_firmware_stop(ab);
-+
-+	return ret;
-+}
-+
-+int ath11k_core_qmi_firmware_ready(struct ath11k_base *ab)
-+{
-+	int ret;
-+
-+	ret = ath11k_ce_init_pipes(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to initialize CE: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = ath11k_dp_alloc(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to init DP: %d\n", ret);
-+		return ret;
-+	}
-+
-+	mutex_lock(&ab->core_lock);
-+	ret = ath11k_core_start(ab, ATH11K_FIRMWARE_MODE_NORMAL);
-+	if (ret) {
-+		ath11k_err(ab, "failed to start core: %d\n", ret);
-+		goto err_dp_free;
-+	}
-+
-+	ret = ath11k_core_pdev_create(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to create pdev core: %d\n", ret);
-+		goto err_core_stop;
-+	}
-+	ath11k_ahb_ext_irq_enable(ab);
-+	mutex_unlock(&ab->core_lock);
-+
-+	return 0;
-+
-+err_core_stop:
-+	ath11k_core_stop(ab);
-+err_dp_free:
-+	ath11k_dp_free(ab);
-+	return ret;
-+}
-+
-+static int ath11k_core_reconfigure_on_crash(struct ath11k_base *ab)
-+{
-+	int ret;
-+
-+	mutex_lock(&ab->core_lock);
-+	ath11k_ahb_ext_irq_disable(ab);
-+	ath11k_dp_pdev_free(ab);
-+	ath11k_ahb_stop(ab);
-+	ath11k_wmi_detach(ab);
-+	mutex_unlock(&ab->core_lock);
-+
-+	ath11k_dp_free(ab);
-+	ath11k_hal_srng_deinit(ab);
-+
-+	ab->free_vdev_map = (1LL << (ab->num_radios * TARGET_NUM_VDEVS)) - 1;
-+
-+	ret = ath11k_hal_srng_init(ab);
-+	if (ret)
-+		return ret;
-+
-+	clear_bit(ATH11K_FLAG_CRASH_FLUSH, &ab->dev_flags);
-+
-+	ret = ath11k_core_qmi_firmware_ready(ab);
-+	if (ret)
-+		goto err_hal_srng_deinit;
-+
-+	clear_bit(ATH11K_FLAG_RECOVERY, &ab->dev_flags);
-+
-+	return 0;
-+
-+err_hal_srng_deinit:
-+	ath11k_hal_srng_deinit(ab);
-+	return ret;
-+}
-+
-+void ath11k_core_halt(struct ath11k *ar)
++void ath11k_update_per_peer_stats_from_txcompl(struct ath11k *ar,
++					       struct sk_buff *msdu,
++					       struct hal_tx_status *ts)
 +{
 +	struct ath11k_base *ab = ar->ab;
++	struct ath11k_per_peer_tx_stats *peer_stats = &ar->cached_stats;
++	struct ath11k_peer *peer;
++	struct ath11k_sta *arsta;
++	struct ieee80211_sta *sta;
++	u16 rate;
++	u8 rate_idx;
++	int ret;
 +
-+	lockdep_assert_held(&ar->conf_mutex);
-+
-+	ar->num_created_vdevs = 0;
-+
-+	ath11k_mac_scan_finish(ar);
-+	ath11k_mac_peer_cleanup_all(ar);
-+	cancel_delayed_work_sync(&ar->scan.timeout);
-+	cancel_work_sync(&ar->regd_update_work);
-+
-+	rcu_assign_pointer(ab->pdevs_active[ar->pdev_idx], NULL);
-+	synchronize_rcu();
-+	INIT_LIST_HEAD(&ar->arvifs);
-+	idr_init(&ar->txmgmt_idr);
-+}
-+
-+static void ath11k_core_restart(struct work_struct *work)
-+{
-+	struct ath11k_base *ab = container_of(work, struct ath11k_base, restart_work);
-+	struct ath11k *ar;
-+	struct ath11k_pdev *pdev;
-+	int i, ret = 0;
-+
++	rcu_read_lock();
 +	spin_lock_bh(&ab->base_lock);
-+	ab->stats.fw_crash_counter++;
-+	spin_unlock_bh(&ab->base_lock);
-+
-+	for (i = 0; i < ab->num_radios; i++) {
-+		pdev = &ab->pdevs[i];
-+		ar = pdev->ar;
-+		if (!ar || ar->state == ATH11K_STATE_OFF)
-+			continue;
-+
-+		ieee80211_stop_queues(ar->hw);
-+		ath11k_mac_drain_tx(ar);
-+		complete(&ar->scan.started);
-+		complete(&ar->scan.completed);
-+		complete(&ar->peer_assoc_done);
-+		complete(&ar->install_key_done);
-+		complete(&ar->vdev_setup_done);
-+		complete(&ar->bss_survey_done);
-+
-+		wake_up(&ar->dp.tx_empty_waitq);
-+		idr_for_each(&ar->txmgmt_idr,
-+			     ath11k_mac_tx_mgmt_pending_free, ar);
-+		idr_destroy(&ar->txmgmt_idr);
-+	}
-+
-+	wake_up(&ab->wmi_sc.tx_credits_wq);
-+	wake_up(&ab->peer_mapping_wq);
-+
-+	ret = ath11k_core_reconfigure_on_crash(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to reconfigure driver on crash recovery\n");
++	peer = ath11k_peer_find_by_id(ab, ts->peer_id);
++	if (!peer || !peer->sta) {
++		ath11k_warn(ab, "failed to find the peer\n");
++		spin_unlock_bh(&ab->base_lock);
++		rcu_read_unlock();
 +		return;
 +	}
 +
-+	for (i = 0; i < ab->num_radios; i++) {
-+		pdev = &ab->pdevs[i];
-+		ar = pdev->ar;
-+		if (!ar || ar->state == ATH11K_STATE_OFF)
-+			continue;
++	sta = peer->sta;
++	arsta = (struct ath11k_sta *)sta->drv_priv;
 +
-+		mutex_lock(&ar->conf_mutex);
++	memset(&arsta->txrate, 0, sizeof(arsta->txrate));
 +
-+		switch (ar->state) {
-+		case ATH11K_STATE_ON:
-+			ar->state = ATH11K_STATE_RESTARTING;
-+			ath11k_core_halt(ar);
-+			ieee80211_restart_hw(ar->hw);
-+			break;
-+		case ATH11K_STATE_OFF:
-+			ath11k_warn(ab,
-+				    "cannot restart radio %d that hasn't been started\n",
-+				    i);
-+			break;
-+		case ATH11K_STATE_RESTARTING:
-+			break;
-+		case ATH11K_STATE_RESTARTED:
-+			ar->state = ATH11K_STATE_WEDGED;
-+			/* fall through */
-+		case ATH11K_STATE_WEDGED:
-+			ath11k_warn(ab,
-+				    "device is wedged, will not restart radio %d\n", i);
-+			break;
++	if (ts->pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11A ||
++	    ts->pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11B) {
++		ret = ath11k_mac_hw_ratecode_to_legacy_rate(ts->mcs,
++							    ts->pkt_type,
++							    &rate_idx,
++							    &rate);
++		if (ret < 0) {
++			spin_unlock_bh(&ab->base_lock);
++			rcu_read_unlock();
++			return;
 +		}
-+		mutex_unlock(&ar->conf_mutex);
++		arsta->txrate.legacy = rate;
++	} else if (ts->pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11N) {
++		if (ts->mcs > 7) {
++			ath11k_warn(ab, "Invalid HT mcs index %d\n", ts->mcs);
++			spin_unlock_bh(&ab->base_lock);
++			rcu_read_unlock();
++			return;
++		}
++
++		arsta->txrate.mcs = ts->mcs + 8 * (arsta->last_txrate.nss - 1);
++		arsta->txrate.flags = RATE_INFO_FLAGS_MCS;
++		if (ts->sgi)
++			arsta->txrate.flags |= RATE_INFO_FLAGS_SHORT_GI;
++	} else if (ts->pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11AC) {
++		if (ts->mcs > 9) {
++			ath11k_warn(ab, "Invalid VHT mcs index %d\n", ts->mcs);
++			spin_unlock_bh(&ab->base_lock);
++			rcu_read_unlock();
++			return;
++		}
++
++		arsta->txrate.mcs = ts->mcs;
++		arsta->txrate.flags = RATE_INFO_FLAGS_VHT_MCS;
++		if (ts->sgi)
++			arsta->txrate.flags |= RATE_INFO_FLAGS_SHORT_GI;
++	} else {
++		/*TODO: update HE rates */
 +	}
-+	complete(&ab->driver_recovery);
++
++	arsta->txrate.nss = arsta->last_txrate.nss;
++	arsta->txrate.bw = ts->bw;
++
++	ath11k_accumulate_per_peer_tx_stats(arsta, peer_stats, rate_idx);
++	spin_unlock_bh(&ab->base_lock);
++	rcu_read_unlock();
 +}
 +
-+int ath11k_core_init(struct ath11k_base *ab)
++static ssize_t ath11k_dbg_sta_dump_tx_stats(struct file *file,
++					    char __user *user_buf,
++					    size_t count, loff_t *ppos)
 +{
-+	struct device *dev = ab->dev;
-+	struct rproc *prproc;
-+	phandle rproc_phandle;
++	struct ieee80211_sta *sta = file->private_data;
++	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
++	struct ath11k *ar = arsta->arvif->ar;
++	struct ath11k_htt_data_stats *stats;
++	static const char *str_name[ATH11K_STATS_TYPE_MAX] = {"succ", "fail",
++							      "retry", "ampdu"};
++	static const char *str[ATH11K_COUNTER_TYPE_MAX] = {"bytes", "packets"};
++	int len = 0, i, j, k, retval = 0;
++	const int size = 2 * 4096;
++	char *buf;
++
++	buf = kzalloc(size, GFP_KERNEL);
++	if (!buf)
++		return -ENOMEM;
++
++	mutex_lock(&ar->conf_mutex);
++
++	spin_lock_bh(&ar->data_lock);
++	for (k = 0; k < ATH11K_STATS_TYPE_MAX; k++) {
++		for (j = 0; j < ATH11K_COUNTER_TYPE_MAX; j++) {
++			stats = &arsta->tx_stats->stats[k];
++			len += scnprintf(buf + len, size - len, "%s_%s\n",
++					 str_name[k],
++					 str[j]);
++			len += scnprintf(buf + len, size - len,
++					 " HE MCS %s\n",
++					 str[j]);
++			for (i = 0; i < ATH11K_HE_MCS_NUM; i++)
++				len += scnprintf(buf + len, size - len,
++						 "  %llu ",
++						 stats->he[j][i]);
++			len += scnprintf(buf + len, size - len, "\n");
++			len += scnprintf(buf + len, size - len,
++					 " VHT MCS %s\n",
++					 str[j]);
++			for (i = 0; i < ATH11K_VHT_MCS_NUM; i++)
++				len += scnprintf(buf + len, size - len,
++						 "  %llu ",
++						 stats->vht[j][i]);
++			len += scnprintf(buf + len, size - len, "\n");
++			len += scnprintf(buf + len, size - len, " HT MCS %s\n",
++					 str[j]);
++			for (i = 0; i < ATH11K_HT_MCS_NUM; i++)
++				len += scnprintf(buf + len, size - len,
++						 "  %llu ", stats->ht[j][i]);
++			len += scnprintf(buf + len, size - len, "\n");
++			len += scnprintf(buf + len, size - len,
++					" BW %s (20,40,80,160 MHz)\n", str[j]);
++			len += scnprintf(buf + len, size - len,
++					 "  %llu %llu %llu %llu\n",
++					 stats->bw[j][0], stats->bw[j][1],
++					 stats->bw[j][2], stats->bw[j][3]);
++			len += scnprintf(buf + len, size - len,
++					 " NSS %s (1x1,2x2,3x3,4x4)\n", str[j]);
++			len += scnprintf(buf + len, size - len,
++					 "  %llu %llu %llu %llu\n",
++					 stats->nss[j][0], stats->nss[j][1],
++					 stats->nss[j][2], stats->nss[j][3]);
++			len += scnprintf(buf + len, size - len,
++					 " GI %s (0.4us,0.8us,1.6us,3.2us)\n",
++					 str[j]);
++			len += scnprintf(buf + len, size - len,
++					 "  %llu %llu %llu %llu\n",
++					 stats->gi[j][0], stats->gi[j][1],
++					 stats->gi[j][2], stats->gi[j][3]);
++			len += scnprintf(buf + len, size - len,
++					 " legacy rate %s (1,2 ... Mbps)\n  ",
++					 str[j]);
++			for (i = 0; i < ATH11K_LEGACY_NUM; i++)
++				len += scnprintf(buf + len, size - len, "%llu ",
++						 stats->legacy[j][i]);
++			len += scnprintf(buf + len, size - len, "\n");
++		}
++	}
++
++	len += scnprintf(buf + len, size - len,
++			 "\nTX duration\n %llu usecs\n",
++			 arsta->tx_stats->tx_duration);
++	len += scnprintf(buf + len, size - len,
++			"BA fails\n %llu\n", arsta->tx_stats->ba_fails);
++	len += scnprintf(buf + len, size - len,
++			"ack fails\n %llu\n", arsta->tx_stats->ack_fails);
++	spin_unlock_bh(&ar->data_lock);
++
++	if (len > size)
++		len = size;
++	retval = simple_read_from_buffer(user_buf, count, ppos, buf, len);
++	kfree(buf);
++
++	mutex_unlock(&ar->conf_mutex);
++	return retval;
++}
++
++static const struct file_operations fops_tx_stats = {
++	.read = ath11k_dbg_sta_dump_tx_stats,
++	.open = simple_open,
++	.owner = THIS_MODULE,
++	.llseek = default_llseek,
++};
++
++static ssize_t ath11k_dbg_sta_dump_rx_stats(struct file *file,
++					    char __user *user_buf,
++					    size_t count, loff_t *ppos)
++{
++	struct ieee80211_sta *sta = file->private_data;
++	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
++	struct ath11k *ar = arsta->arvif->ar;
++	struct ath11k_rx_peer_stats *rx_stats = arsta->rx_stats;
++	int len = 0, i, retval = 0;
++	const int size = 4096;
++	char *buf;
++
++	if (!rx_stats)
++		return -ENOENT;
++
++	buf = kzalloc(size, GFP_KERNEL);
++	if (!buf)
++		return -ENOMEM;
++
++	mutex_lock(&ar->conf_mutex);
++	spin_lock_bh(&ar->ab->base_lock);
++
++	len += scnprintf(buf + len, size - len, "RX peer stats:\n");
++	len += scnprintf(buf + len, size - len, "Num of MSDUs: %llu\n",
++			 rx_stats->num_msdu);
++	len += scnprintf(buf + len, size - len, "Num of MSDUs with TCP L4: %llu\n",
++			 rx_stats->tcp_msdu_count);
++	len += scnprintf(buf + len, size - len, "Num of MSDUs with UDP L4: %llu\n",
++			 rx_stats->udp_msdu_count);
++	len += scnprintf(buf + len, size - len, "Num of MSDUs part of AMPDU: %llu\n",
++			 rx_stats->ampdu_msdu_count);
++	len += scnprintf(buf + len, size - len, "Num of MSDUs not part of AMPDU: %llu\n",
++			 rx_stats->non_ampdu_msdu_count);
++	len += scnprintf(buf + len, size - len, "Num of MSDUs using STBC: %llu\n",
++			 rx_stats->stbc_count);
++	len += scnprintf(buf + len, size - len, "Num of MSDUs beamformed: %llu\n",
++			 rx_stats->beamformed_count);
++	len += scnprintf(buf + len, size - len, "Num of MPDUs with FCS ok: %llu\n",
++			 rx_stats->num_mpdu_fcs_ok);
++	len += scnprintf(buf + len, size - len, "Num of MPDUs with FCS error: %llu\n",
++			 rx_stats->num_mpdu_fcs_err);
++	len += scnprintf(buf + len, size - len,
++			 "GI: 0.8us %llu 0.4us %llu 1.6us %llu 3.2us %llu\n",
++			 rx_stats->gi_count[0], rx_stats->gi_count[1],
++			 rx_stats->gi_count[2], rx_stats->gi_count[3]);
++	len += scnprintf(buf + len, size - len,
++			 "BW: 20Mhz %llu 40Mhz %llu 80Mhz %llu 160Mhz %llu\n",
++			 rx_stats->bw_count[0], rx_stats->bw_count[1],
++			 rx_stats->bw_count[2], rx_stats->bw_count[3]);
++	len += scnprintf(buf + len, size - len, "BCC %llu LDPC %llu\n",
++			 rx_stats->coding_count[0], rx_stats->coding_count[1]);
++	len += scnprintf(buf + len, size - len,
++			 "preamble: 11A %llu 11B %llu 11N %llu 11AC %llu 11AX %llu\n",
++			 rx_stats->pream_cnt[0], rx_stats->pream_cnt[1],
++			 rx_stats->pream_cnt[2], rx_stats->pream_cnt[3],
++			 rx_stats->pream_cnt[4]);
++	len += scnprintf(buf + len, size - len,
++			 "reception type: SU %llu MU_MIMO %llu MU_OFDMA %llu MU_OFDMA_MIMO %llu\n",
++			 rx_stats->reception_type[0], rx_stats->reception_type[1],
++			 rx_stats->reception_type[2], rx_stats->reception_type[3]);
++	len += scnprintf(buf + len, size - len, "TID(0-15) Legacy TID(16):");
++	for (i = 0; i <= IEEE80211_NUM_TIDS; i++)
++		len += scnprintf(buf + len, size - len, "%llu ", rx_stats->tid_count[i]);
++	len += scnprintf(buf + len, size - len, "\nMCS(0-11) Legacy MCS(12):");
++	for (i = 0; i < HAL_RX_MAX_MCS + 1; i++)
++		len += scnprintf(buf + len, size - len, "%llu ", rx_stats->mcs_count[i]);
++	len += scnprintf(buf + len, size - len, "\nNSS(1-8):");
++	for (i = 0; i < HAL_RX_MAX_NSS; i++)
++		len += scnprintf(buf + len, size - len, "%llu ", rx_stats->nss_count[i]);
++	len += scnprintf(buf + len, size - len, "\nRX Duration:%llu ",
++			 rx_stats->rx_duration);
++	len += scnprintf(buf + len, size - len, "\n");
++
++	spin_unlock_bh(&ar->ab->base_lock);
++
++	if (len > size)
++		len = size;
++	retval = simple_read_from_buffer(user_buf, count, ppos, buf, len);
++	kfree(buf);
++
++	mutex_unlock(&ar->conf_mutex);
++	return retval;
++}
++
++static const struct file_operations fops_rx_stats = {
++	.read = ath11k_dbg_sta_dump_rx_stats,
++	.open = simple_open,
++	.owner = THIS_MODULE,
++	.llseek = default_llseek,
++};
++
++static int
++ath11k_dbg_sta_open_htt_peer_stats(struct inode *inode, struct file *file)
++{
++	struct ieee80211_sta *sta = inode->i_private;
++	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
++	struct ath11k *ar = arsta->arvif->ar;
++	struct debug_htt_stats_req *stats_req;
 +	int ret;
 +
-+	if (of_property_read_u32(dev->of_node, "qcom,rproc", &rproc_phandle)) {
-+		ath11k_err(ab, "failed to get q6_rproc handle\n");
-+		return -ENOENT;
-+	}
++	stats_req = vzalloc(sizeof(*stats_req) + ATH11K_HTT_STATS_BUF_SIZE);
++	if (!stats_req)
++		return -ENOMEM;
 +
-+	prproc = rproc_get_by_phandle(rproc_phandle);
-+	if (!prproc) {
-+		ath11k_err(ab, "failed to get rproc\n");
-+		return -EINVAL;
-+	}
-+	ab->tgt_rproc = prproc;
-+	ab->hw_params = ath11k_hw_params;
++	mutex_lock(&ar->conf_mutex);
++	ar->debug.htt_stats.stats_req = stats_req;
++	stats_req->type = ATH11K_DBG_HTT_EXT_STATS_PEER_INFO;
++	memcpy(stats_req->peer_addr, sta->addr, ETH_ALEN);
++	ret = ath11k_dbg_htt_stats_req(ar);
++	mutex_unlock(&ar->conf_mutex);
++	if (ret < 0)
++		goto out;
 +
-+	ret = ath11k_core_soc_create(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to create soc core: %d\n", ret);
-+		return ret;
-+	}
++	file->private_data = stats_req;
++	return 0;
++out:
++	vfree(stats_req);
++	return ret;
++}
 +
++static int
++ath11k_dbg_sta_release_htt_peer_stats(struct inode *inode, struct file *file)
++{
++	vfree(file->private_data);
 +	return 0;
 +}
 +
-+void ath11k_core_deinit(struct ath11k_base *ab)
++static ssize_t ath11k_dbg_sta_read_htt_peer_stats(struct file *file,
++						  char __user *user_buf,
++						  size_t count, loff_t *ppos)
 +{
-+	mutex_lock(&ab->core_lock);
++	struct debug_htt_stats_req *stats_req = file->private_data;
++	char *buf;
++	u32 length = 0;
 +
-+	ath11k_core_pdev_destroy(ab);
-+	ath11k_core_stop(ab);
-+
-+	mutex_unlock(&ab->core_lock);
-+
-+	ath11k_ahb_power_down(ab);
-+	ath11k_mac_destroy(ab);
-+	ath11k_core_soc_destroy(ab);
++	buf = stats_req->buf;
++	length = min_t(u32, stats_req->buf_len, ATH11K_HTT_STATS_BUF_SIZE);
++	return simple_read_from_buffer(user_buf, count, ppos, buf, length);
 +}
 +
-+void ath11k_core_free(struct ath11k_base *ab)
++static const struct file_operations fops_htt_peer_stats = {
++	.open = ath11k_dbg_sta_open_htt_peer_stats,
++	.release = ath11k_dbg_sta_release_htt_peer_stats,
++	.read = ath11k_dbg_sta_read_htt_peer_stats,
++	.owner = THIS_MODULE,
++	.llseek = default_llseek,
++};
++
++static ssize_t ath11k_dbg_sta_write_peer_pktlog(struct file *file,
++						const char __user *buf,
++						size_t count, loff_t *ppos)
 +{
-+	kfree(ab);
-+}
++	struct ieee80211_sta *sta = file->private_data;
++	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
++	struct ath11k *ar = arsta->arvif->ar;
++	int ret, enable;
 +
-+struct ath11k_base *ath11k_core_alloc(struct device *dev)
-+{
-+	struct ath11k_base *ab;
++	mutex_lock(&ar->conf_mutex);
 +
-+	ab = kzalloc(sizeof(*ab), GFP_KERNEL);
-+	if (!ab)
-+		return NULL;
++	if (ar->state != ATH11K_STATE_ON) {
++		ret = -ENETDOWN;
++		goto out;
++	}
 +
-+	init_completion(&ab->driver_recovery);
-+
-+	ab->workqueue = create_singlethread_workqueue("ath11k_wq");
-+	if (!ab->workqueue)
-+		goto err_sc_free;
-+
-+	mutex_init(&ab->core_lock);
-+	spin_lock_init(&ab->base_lock);
-+
-+	INIT_LIST_HEAD(&ab->peers);
-+	init_waitqueue_head(&ab->peer_mapping_wq);
-+	init_waitqueue_head(&ab->wmi_sc.tx_credits_wq);
-+	INIT_WORK(&ab->restart_work, ath11k_core_restart);
-+	timer_setup(&ab->rx_replenish_retry, ath11k_ce_rx_replenish_retry, 0);
-+	ab->dev = dev;
-+
-+	return ab;
-+
-+err_sc_free:
-+	kfree(ab);
-+	return NULL;
-+}
-+
-+static int __init ath11k_init(void)
-+{
-+	int ret;
-+
-+	ret = ath11k_ahb_init();
++	ret = kstrtoint_from_user(buf, count, 0, &enable);
 +	if (ret)
-+		printk(KERN_ERR "failed to register ath11k ahb driver: %d\n",
-+		       ret);
++		goto out;
++
++	ar->debug.pktlog_peer_valid = enable;
++	memcpy(ar->debug.pktlog_peer_addr, sta->addr, ETH_ALEN);
++
++	/* Send peer based pktlog enable/disable */
++	ret = ath11k_wmi_pdev_peer_pktlog_filter(ar, sta->addr, enable);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to set peer pktlog filter %pM: %d\n",
++			    sta->addr, ret);
++		goto out;
++	}
++
++	ath11k_dbg(ar->ab, ATH11K_DBG_WMI, "peer pktlog filter set to %d\n",
++		   enable);
++	ret = count;
++
++out:
++	mutex_unlock(&ar->conf_mutex);
 +	return ret;
 +}
-+module_init(ath11k_init);
 +
-+static void __exit ath11k_exit(void)
++static ssize_t ath11k_dbg_sta_read_peer_pktlog(struct file *file,
++					       char __user *ubuf,
++					       size_t count, loff_t *ppos)
 +{
-+	ath11k_ahb_exit();
-+}
-+module_exit(ath11k_exit);
++	struct ieee80211_sta *sta = file->private_data;
++	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
++	struct ath11k *ar = arsta->arvif->ar;
++	char buf[32] = {0};
++	int len;
 +
-+MODULE_DESCRIPTION("Driver support for Qualcomm Technologies 802.11ax wireless chip");
-+MODULE_LICENSE("Dual BSD/GPL");
++	mutex_lock(&ar->conf_mutex);
++	len = scnprintf(buf, sizeof(buf), "%08x %pM\n",
++			ar->debug.pktlog_peer_valid,
++			ar->debug.pktlog_peer_addr);
++	mutex_unlock(&ar->conf_mutex);
++
++	return simple_read_from_buffer(ubuf, count, ppos, buf, len);
++}
++
++static const struct file_operations fops_peer_pktlog = {
++	.write = ath11k_dbg_sta_write_peer_pktlog,
++	.read = ath11k_dbg_sta_read_peer_pktlog,
++	.open = simple_open,
++	.owner = THIS_MODULE,
++	.llseek = default_llseek,
++};
++
++void ath11k_sta_add_debugfs(struct ieee80211_hw *hw, struct ieee80211_vif *vif,
++			    struct ieee80211_sta *sta, struct dentry *dir)
++{
++	struct ath11k *ar = hw->priv;
++
++	if (ath11k_debug_is_extd_tx_stats_enabled(ar))
++		debugfs_create_file("tx_stats", 0400, dir, sta,
++				    &fops_tx_stats);
++	if (ath11k_debug_is_extd_rx_stats_enabled(ar))
++		debugfs_create_file("rx_stats", 0400, dir, sta,
++				    &fops_rx_stats);
++
++	debugfs_create_file("htt_peer_stats", 0400, dir, sta,
++			    &fops_htt_peer_stats);
++
++	debugfs_create_file("peer_pktlog", 0644, dir, sta,
++			    &fops_peer_pktlog);
++}
 
 
 _______________________________________________
