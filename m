@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iNUCT-00047Z-Nc
- for ath11k@lists.infradead.org; Thu, 24 Oct 2019 03:54:15 +0000
-From: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
-Subject: [PATCH] ath11k: remove unused tx ring counters
-Date: Wed, 23 Oct 2019 20:54:06 -0700
-Message-Id: <1571889246-1793-1-git-send-email-pradeepc@codeaurora.org>
+ id 1iNWDp-0004xN-EL
+ for ath11k@lists.infradead.org; Thu, 24 Oct 2019 06:03:46 +0000
+From: Sriram R <srirrama@codeaurora.org>
+Subject: [PATCH v3] ath11k: Fix skb_panic observed during msdu coalescing
+Date: Thu, 24 Oct 2019 11:33:11 +0530
+Message-Id: <1571896991-19713-1-git-send-email-srirrama@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -21,74 +21,77 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
-Cc: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
+Cc: Sriram R <srirrama@codeaurora.org>
 
-remove unused counter to avoid taking locks inorder to optimize
-cpu load.
+skb_panic is hit during msdu coalescing whenever
+enough tailroom is not allocated based on the remaining
+msdu length which is spread across in different rx buffers.
 
-Using Flamegraph, cpu usage of ath11k_dp_tx() observed to be decreased
-from 5.58% to 3.74% with iperf traffic running with 80MHz bandwidth ap
-mode. 
+Compute the extra length for resizing the skb based on
+the total msdu length and the msdu length of the first buffer.
 
-Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
+Signed-off-by: Sriram R <srirrama@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/dp.h    | 1 -
- drivers/net/wireless/ath/ath11k/dp_tx.c | 7 -------
- 2 files changed, 8 deletions(-)
+v3 : Rebased on top of ath11k-post-bringup
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
-index 4db71173db62..d087d515e8a3 100644
---- a/drivers/net/wireless/ath/ath11k/dp.h
-+++ b/drivers/net/wireless/ath/ath11k/dp.h
-@@ -63,7 +63,6 @@ struct dp_tx_ring {
- 	struct dp_srng tcl_data_ring;
- 	struct dp_srng tcl_comp_ring;
- 	struct idr txbuf_idr;
--	u32 num_tx_pending;
- 	/* Protects txbuf_idr and num_pending */
- 	spinlock_t tx_idr_lock;
- 	DECLARE_KFIFO_PTR(tx_status_fifo, struct hal_wbm_release_ring);
-diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
-index 51a02b8e66cc..a8b9557c2346 100644
---- a/drivers/net/wireless/ath/ath11k/dp_tx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
-@@ -196,10 +196,6 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 22 ++++++++++++++--------
+ 1 file changed, 14 insertions(+), 8 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 321a2bb..acad746 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -1344,15 +1344,22 @@ static int ath11k_dp_rx_msdu_coalesce(struct ath11k *ar,
+ {
+ 	struct sk_buff *skb;
+ 	struct ath11k_skb_rxcb *rxcb = ATH11K_SKB_RXCB(first);
++	int buf_first_hdr_len, buf_first_len;
+ 	struct hal_rx_desc *ldesc;
+ 	int space_extra;
+ 	int rem_len;
+ 	int buf_len;
  
- 	spin_unlock_bh(&tcl_ring->lock);
+-	if (WARN_ON_ONCE(msdu_len <= (DP_RX_BUFFER_SIZE -
+-			 (HAL_RX_DESC_SIZE + l3pad_bytes)))) {
+-		skb_put(first, HAL_RX_DESC_SIZE + l3pad_bytes + msdu_len);
+-		skb_pull(first, HAL_RX_DESC_SIZE + l3pad_bytes);
++	/* As the msdu is spread across multiple rx buffers,
++	 * find the offset to the start of msdu for computing
++	 * the length of the msdu in the first buffer.
++	 */
++	buf_first_hdr_len = HAL_RX_DESC_SIZE + l3pad_bytes;
++	buf_first_len = DP_RX_BUFFER_SIZE - buf_first_hdr_len;
++
++	if (WARN_ON_ONCE(msdu_len <= buf_first_len)) {
++		skb_put(first, buf_first_hdr_len + msdu_len);
++		skb_pull(first, buf_first_hdr_len);
+ 		return 0;
+ 	}
  
--	spin_lock_bh(&tx_ring->tx_idr_lock);
--	tx_ring->num_tx_pending++;
--	spin_unlock_bh(&tx_ring->tx_idr_lock);
--
- 	atomic_inc(&ar->dp.num_tx_pending);
+@@ -1365,9 +1372,9 @@ static int ath11k_dp_rx_msdu_coalesce(struct ath11k *ar,
+ 	 * in the first buf is of length DP_RX_BUFFER_SIZE - HAL_RX_DESC_SIZE.
+ 	 */
+ 	skb_put(first, DP_RX_BUFFER_SIZE);
+-	skb_pull(first, HAL_RX_DESC_SIZE + l3pad_bytes);
++	skb_pull(first, buf_first_hdr_len);
  
- 	return 0;
-@@ -236,7 +232,6 @@ static void ath11k_dp_tx_free_txbuf(struct ath11k_base *ab, u8 mac_id,
- 	skb_cb = ATH11K_SKB_CB(msdu);
+-	space_extra = msdu_len - (DP_RX_BUFFER_SIZE + skb_tailroom(first));
++	space_extra = msdu_len - (buf_first_len + skb_tailroom(first));
+ 	if (space_extra > 0 &&
+ 	    (pskb_expand_head(first, 0, space_extra, GFP_ATOMIC) < 0)) {
+ 		/* Free up all buffers of the MSDU */
+@@ -1387,8 +1394,7 @@ static int ath11k_dp_rx_msdu_coalesce(struct ath11k *ar,
+ 	 */
+ 	ath11k_dp_rx_desc_end_tlv_copy(rxcb->rx_desc, ldesc);
  
- 	idr_remove(&tx_ring->txbuf_idr, msdu_id);
--	tx_ring->num_tx_pending--;
- 	spin_unlock_bh(&tx_ring->tx_idr_lock);
- 
- 	dma_unmap_single(ab->dev, skb_cb->paddr, msdu->len, DMA_TO_DEVICE);
-@@ -272,7 +267,6 @@ ath11k_dp_tx_htt_tx_complete_buf(struct ath11k_base *ab,
- 	ar = skb_cb->ar;
- 
- 	idr_remove(&tx_ring->txbuf_idr, ts->msdu_id);
--	tx_ring->num_tx_pending--;
- 	spin_unlock_bh(&tx_ring->tx_idr_lock);
- 
- 	if (atomic_dec_and_test(&ar->dp.num_tx_pending))
-@@ -495,7 +489,6 @@ void ath11k_dp_tx_completion_handler(struct ath11k_base *ab, int ring_id)
- 			continue;
- 		}
- 		idr_remove(&tx_ring->txbuf_idr, msdu_id);
--		tx_ring->num_tx_pending--;
- 		spin_unlock_bh(&tx_ring->tx_idr_lock);
- 
- 		ar = ab->pdevs[mac_id].ar;
+-	rem_len = msdu_len -
+-		  (DP_RX_BUFFER_SIZE - HAL_RX_DESC_SIZE - l3pad_bytes);
++	rem_len = msdu_len - buf_first_len;
+ 	while ((skb = __skb_dequeue(msdu_list)) != NULL && rem_len > 0) {
+ 		rxcb = ATH11K_SKB_RXCB(skb);
+ 		if (rxcb->is_continuation)
 -- 
-2.1.2
+2.7.4
 
 
 _______________________________________________
