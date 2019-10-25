@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iNupF-0002Ad-48
- for ath11k@lists.infradead.org; Fri, 25 Oct 2019 08:20:02 +0000
+ id 1iNuqK-0003fT-4r
+ for ath11k@lists.infradead.org; Fri, 25 Oct 2019 08:21:10 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: remove unused tx ring counters
+Subject: Re: [PATCH v3] ath11k: Fix skb_panic observed during msdu coalescing
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1571889246-1793-1-git-send-email-pradeepc@codeaurora.org>
-References: <1571889246-1793-1-git-send-email-pradeepc@codeaurora.org>
-Message-Id: <20191025082000.C31896101B@smtp.codeaurora.org>
-Date: Fri, 25 Oct 2019 08:20:00 +0000 (UTC)
+In-Reply-To: <1571896991-19713-1-git-send-email-srirrama@codeaurora.org>
+References: <1571896991-19713-1-git-send-email-srirrama@codeaurora.org>
+Message-Id: <20191025082107.C91BC60D95@smtp.codeaurora.org>
+Date: Fri, 25 Oct 2019 08:21:06 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,27 +22,27 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
+To: Sriram R <srirrama@codeaurora.org>
 Cc: ath11k@lists.infradead.org
 
-Pradeep Kumar Chitrapu <pradeepc@codeaurora.org> wrote:
+Sriram R <srirrama@codeaurora.org> wrote:
 
-> remove unused counter to avoid taking locks inorder to optimize
-> cpu load.
+> skb_panic is hit during msdu coalescing whenever
+> enough tailroom is not allocated based on the remaining
+> msdu length which is spread across in different rx buffers.
 > 
-> Using Flamegraph, cpu usage of ath11k_dp_tx() observed to be decreased
-> from 5.58% to 3.74% with iperf traffic running with 80MHz bandwidth ap
-> mode.
+> Compute the extra length for resizing the skb based on
+> the total msdu length and the msdu length of the first buffer.
 > 
-> Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
+> Signed-off-by: Sriram R <srirrama@codeaurora.org>
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
 Patch applied to ath11k-post-bringup branch of ath.git, thanks.
 
-be0217cf9f47 ath11k: remove unused tx ring counters
+1f59a8d204e9 ath11k: Fix skb_panic observed during msdu coalescing
 
 -- 
-https://patchwork.kernel.org/patch/11208261/
+https://patchwork.kernel.org/patch/11208333/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
