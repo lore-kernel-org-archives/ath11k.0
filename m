@@ -1,18 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iPpCU-0001sH-QW
- for ath11k@lists.infradead.org; Wed, 30 Oct 2019 14:43:58 +0000
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH 1/2] nl80211: add Wide Band Scan support
-References: <1572349405-4653-1-git-send-email-murugana@codeaurora.org>
- <1572349405-4653-2-git-send-email-murugana@codeaurora.org>
-Date: Wed, 30 Oct 2019 16:43:50 +0200
-In-Reply-To: <1572349405-4653-2-git-send-email-murugana@codeaurora.org>
- (Sathishkumar Muruganandam's message of "Tue, 29 Oct 2019 17:13:24
- +0530")
-Message-ID: <877e4m2t09.fsf@kamboji.qca.qualcomm.com>
+ id 1iPpLG-0005WH-8D
+ for ath11k@lists.infradead.org; Wed, 30 Oct 2019 14:52:59 +0000
 MIME-Version: 1.0
+Subject: Re: [PATCH] ath11k: mac: Remove WAR on max a-mpdu len in vht
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <1572332456-5419-1-git-send-email-akolli@codeaurora.org>
+References: <1572332456-5419-1-git-send-email-akolli@codeaurora.org>
+Message-Id: <20191030145257.E492B60E07@smtp.codeaurora.org>
+Date: Wed, 30 Oct 2019 14:52:57 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -25,34 +22,26 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Sathishkumar Muruganandam <murugana@codeaurora.org>
+To: Anilkumar Kolli <akolli@codeaurora.org>
 Cc: ath11k@lists.infradead.org
 
-Sathishkumar Muruganandam <murugana@codeaurora.org> writes:
+Anilkumar Kolli <akolli@codeaurora.org> wrote:
 
-> New nl80211 ext_feature and scan_flag added to support wide band scan which
-> allows driver to scan on requested channel with corresponding
-> phy mode/bandwidth (40Mhz, 80Mhz).
->
-> To handle center frequency of 80Mhz channel, struct cfg80211_chan_def is
-> included in cfg80211_scan_request.
->
-> Signed-off-by: Sathishkumar Muruganandam <murugana@codeaurora.org>
-> ---
->  include/net/cfg80211.h       |  2 ++
->  include/uapi/linux/nl80211.h |  7 +++++
->  net/mac80211/scan.c          |  2 ++
->  net/wireless/nl80211.c       | 68 ++++++++++++++++++++++++++++----------------
->  4 files changed, 55 insertions(+), 24 deletions(-)
+> Revert commit a24b88b56074424a413a ("ath10k: Fix bug in max.
+> VHT A-MPDU size"), Moving this logic to mac80211.
+> 
+> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
 
-I don't apply nl80211 patches. So you need to submit this to
-linux-wireless like all other nl80211 patches.
+The mac80211 patch is not yet in my tree so I'll put this patch into my
+wait queue.
 
-I'll also drop the ath11k patch, please resend once the nl80211 patch is
-applied.
+Patch set to Awaiting Upstream.
 
 -- 
+https://patchwork.kernel.org/patch/11217307/
+
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
 _______________________________________________
 ath11k mailing list
