@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iQ9Wf-0005Qp-Rf
- for ath11k@lists.infradead.org; Thu, 31 Oct 2019 12:26:07 +0000
-From: Govindaraj Saminathan <gsamin@codeaurora.org>
-Subject: [PATCH] ath11k: unlock mutex during failure in qmi fw ready
-Date: Thu, 31 Oct 2019 17:55:47 +0530
-Message-Id: <1572524747-25843-1-git-send-email-gsamin@codeaurora.org>
+ id 1iQ9Yi-0005WY-36
+ for ath11k@lists.infradead.org; Thu, 31 Oct 2019 12:28:13 +0000
+From: Sathishkumar Muruganandam <murugana@codeaurora.org>
+Subject: [PATCH 0/2] add Wide Band Scan support
+Date: Thu, 31 Oct 2019 17:57:45 +0530
+Message-Id: <1572524867-26703-1-git-send-email-murugana@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -20,32 +20,30 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: Govindaraj Saminathan <gsamin@codeaurora.org>
+To: johannes@sipsolutions.net
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-qmi firmware ready event start to initialize the core modules and
-the sequence executed with mutex lock. In case of any failure
-mutex should be unlocked otherwise it will hang during the recovery.
+Wide Band Scan allows to perform off-channel scan on requested channel/
+frequency along with corresponding phy mode/bandwidth (40Mhz, 80Mhz).
 
-Signed-off-by: Govindaraj Saminathan <gsamin@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/core.c | 1 +
- 1 file changed, 1 insertion(+)
+Sathishkumar Muruganandam (2):
+  nl80211: add Wide Band Scan support
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 9324dcb..d2dd0ba 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -531,6 +531,7 @@ int ath11k_core_qmi_firmware_ready(struct ath11k_base *ab)
- 	ath11k_core_stop(ab);
- err_dp_free:
- 	ath11k_dp_free(ab);
-+	mutex_unlock(&ab->core_lock);
- 	return ret;
- }
- 
+ include/net/cfg80211.h       |  2 ++
+ include/uapi/linux/nl80211.h |  7 +++++
+ net/mac80211/scan.c          |  2 ++
+ net/wireless/nl80211.c       | 68 ++++++++++++++++++++++++++++----------------
+ 4 files changed, 55 insertions(+), 24 deletions(-)
+
+  ath11k: add Wide Band Scan support
+
+ drivers/net/wireless/ath/ath11k/mac.c |  41 ++++++++++--
+ drivers/net/wireless/ath/ath11k/wmi.c | 115 +++++++++++++++++++++++++++++++---
+ drivers/net/wireless/ath/ath11k/wmi.h |  34 +++++++++-
+ 3 files changed, 175 insertions(+), 15 deletions(-)
+
 -- 
-1.9.1
+2.7.4
 
 
 _______________________________________________
