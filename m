@@ -1,19 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iQ7CO-0006jX-GE
- for ath11k@lists.infradead.org; Thu, 31 Oct 2019 09:57:02 +0000
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH 1/2] nl80211: add Wide Band Scan support
-References: <1572349405-4653-1-git-send-email-murugana@codeaurora.org>
- <1572349405-4653-2-git-send-email-murugana@codeaurora.org>
- <877e4m2t09.fsf@kamboji.qca.qualcomm.com>
- <9a59444a57a898ec26e5824aa22db081@codeaurora.org>
-Date: Thu, 31 Oct 2019 11:56:55 +0200
-In-Reply-To: <9a59444a57a898ec26e5824aa22db081@codeaurora.org> (Sathishkumar
- Muruganandam's message of "Thu, 31 Oct 2019 15:23:56 +0530")
-Message-ID: <87lft11bmg.fsf@kamboji.qca.qualcomm.com>
-MIME-Version: 1.0
+ id 1iQ7MY-0003AB-81
+ for ath11k@lists.infradead.org; Thu, 31 Oct 2019 10:07:31 +0000
+From: Maharaja Kennadyrajan <mkenna@codeaurora.org>
+Subject: [PATCH] ath11k: add support for controlling tx power to a station
+Date: Thu, 31 Oct 2019 15:38:11 +0530
+Message-Id: <1572516491-18745-1-git-send-email-mkenna@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,58 +15,120 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Sathishkumar Muruganandam <murugana@codeaurora.org>
-Cc: ath11k@lists.infradead.org
+To: ath11k@lists.infradead.org
+Cc: Maharaja Kennadyrajan <mkenna@codeaurora.org>
 
-Sathishkumar Muruganandam <murugana@codeaurora.org> writes:
+This patch will add the support to control the transmit power
+for traffic to a station associated with the AP.
 
-> On 2019-10-30 20:13, Kalle Valo wrote:
->> Sathishkumar Muruganandam <murugana@codeaurora.org> writes:
->>
->>> New nl80211 ext_feature and scan_flag added to support wide band
->>> scan which
->>> allows driver to scan on requested channel with corresponding
->>> phy mode/bandwidth (40Mhz, 80Mhz).
->>>
->>> To handle center frequency of 80Mhz channel, struct
->>> cfg80211_chan_def is
->>> included in cfg80211_scan_request.
->>>
->>> Signed-off-by: Sathishkumar Muruganandam <murugana@codeaurora.org>
->>> ---
->>>  include/net/cfg80211.h       |  2 ++
->>>  include/uapi/linux/nl80211.h |  7 +++++
->>>  net/mac80211/scan.c          |  2 ++
->>>  net/wireless/nl80211.c       | 68
->>> ++++++++++++++++++++++++++++----------------
->>>  4 files changed, 55 insertions(+), 24 deletions(-)
->>
->> I don't apply nl80211 patches. So you need to submit this to
->> linux-wireless like all other nl80211 patches.
->>
->> I'll also drop the ath11k patch, please resend once the nl80211
->> patch is
->> applied.
->
-> Here both nl80211 and ath11k patches are inter-related to Wide band
-> scan and hence I had sent them as single patch series like the other
-> previous ath11k patches.
+Underlying firmware will enforce that the maximum tx power will
+be based on the regulatory requirements. If the user given
+transmit power is greater than the allowed tx power in the given
+channel, then the firmware will use the maximum tx power in the
+same channel.
 
-Sure.
+Max and Min tx power values will depends on number of tx chain
+masks. The allowed tx power range values are from 6 to 23.
 
-> If I need to submit nl80211 patch to linux-wireless first, whether I
-> can send ath11k patch also in series ?
+When 0 is sent to the firmware as tx power, it will revert to
+the default tx power for the station.
 
-Yeah, I think that's the best as then people can see how a driver would
-be using the feature. But make sure that nl80211/mac80211 patch applies
-to mac80211-next.
+Note: mac80211/cfg80211 patches are merged in master branch in ath.git.
+Patchwork links for mac80211/cfg80211 patches are given below.
 
+https://patchwork.kernel.org/patch/10876853/
+https://patchwork.kernel.org/patch/10876859/
+
+Signed-off-by: Maharaja Kennadyrajan <mkenna@codeaurora.org>
+---
+ drivers/net/wireless/ath/ath11k/debug.h |  3 ++
+ drivers/net/wireless/ath/ath11k/mac.c   | 37 +++++++++++++++++++++++++
+ 2 files changed, 40 insertions(+)
+
+diff --git a/drivers/net/wireless/ath/ath11k/debug.h b/drivers/net/wireless/ath/ath11k/debug.h
+index aef33f83c9b1..a317a7bdb9a2 100644
+--- a/drivers/net/wireless/ath/ath11k/debug.h
++++ b/drivers/net/wireless/ath/ath11k/debug.h
+@@ -9,6 +9,9 @@
+ #include "hal_tx.h"
+ #include "trace.h"
+ 
++#define ATH11K_TX_POWER_MAX_VAL	70
++#define ATH11K_TX_POWER_MIN_VAL	0
++
+ enum ath11k_debug_mask {
+ 	ATH11K_DBG_AHB		= 0x00000001,
+ 	ATH11K_DBG_WMI		= 0x00000002,
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 6f82fdbbd358..2dc5f63b9446 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -2842,6 +2842,41 @@ static int ath11k_mac_op_sta_state(struct ieee80211_hw *hw,
+ 	return ret;
+ }
+ 
++static int ath11k_mac_op_sta_set_txpwr(struct ieee80211_hw *hw,
++				       struct ieee80211_vif *vif,
++				       struct ieee80211_sta *sta)
++{
++	struct ath11k *ar = hw->priv;
++	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	int ret = 0;
++	s16 txpwr;
++
++	if (sta->txpwr.type == NL80211_TX_POWER_AUTOMATIC) {
++		txpwr = 0;
++	} else {
++		txpwr = sta->txpwr.power;
++		if (!txpwr)
++			return -EINVAL;
++	}
++
++	if (txpwr > ATH11K_TX_POWER_MAX_VAL || txpwr < ATH11K_TX_POWER_MIN_VAL)
++		return -EINVAL;
++
++	mutex_lock(&ar->conf_mutex);
++
++	ret = ath11k_wmi_set_peer_param(ar, sta->addr, arvif->vdev_id,
++					WMI_PEER_USE_FIXED_PWR, txpwr);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to set tx power for station ret: %d\n",
++			    ret);
++		goto out;
++	}
++
++out:
++	mutex_unlock(&ar->conf_mutex);
++	return ret;
++}
++
+ static void ath11k_mac_op_sta_rc_update(struct ieee80211_hw *hw,
+ 					struct ieee80211_vif *vif,
+ 					struct ieee80211_sta *sta,
+@@ -5316,6 +5351,7 @@ static const struct ieee80211_ops ath11k_ops = {
+ 	.cancel_hw_scan                 = ath11k_mac_op_cancel_hw_scan,
+ 	.set_key                        = ath11k_mac_op_set_key,
+ 	.sta_state                      = ath11k_mac_op_sta_state,
++	.sta_set_txpwr			= ath11k_mac_op_sta_set_txpwr,
+ 	.sta_rc_update			= ath11k_mac_op_sta_rc_update,
+ 	.conf_tx                        = ath11k_mac_op_conf_tx,
+ 	.set_antenna			= ath11k_mac_op_set_antenna,
+@@ -5576,6 +5612,7 @@ static int ath11k_mac_register(struct ath11k *ar)
+ 	ar->hw->wiphy->n_iface_combinations = ARRAY_SIZE(ath11k_if_comb);
+ 
+ 	wiphy_ext_feature_set(ar->hw->wiphy, NL80211_EXT_FEATURE_CQM_RSSI_LIST);
++	wiphy_ext_feature_set(ar->hw->wiphy, NL80211_EXT_FEATURE_STA_TX_PWR);
+ 
+ 	ar->hw->wiphy->cipher_suites = cipher_suites;
+ 	ar->hw->wiphy->n_cipher_suites = ARRAY_SIZE(cipher_suites);
 -- 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+2.23.0
+
 
 _______________________________________________
 ath11k mailing list
