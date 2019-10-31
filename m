@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iQ7MY-0003AB-81
- for ath11k@lists.infradead.org; Thu, 31 Oct 2019 10:07:31 +0000
-From: Maharaja Kennadyrajan <mkenna@codeaurora.org>
-Subject: [PATCH] ath11k: add support for controlling tx power to a station
-Date: Thu, 31 Oct 2019 15:38:11 +0530
-Message-Id: <1572516491-18745-1-git-send-email-mkenna@codeaurora.org>
+ id 1iQ9Wf-0005Qp-Rf
+ for ath11k@lists.infradead.org; Thu, 31 Oct 2019 12:26:07 +0000
+From: Govindaraj Saminathan <gsamin@codeaurora.org>
+Subject: [PATCH] ath11k: unlock mutex during failure in qmi fw ready
+Date: Thu, 31 Oct 2019 17:55:47 +0530
+Message-Id: <1572524747-25843-1-git-send-email-gsamin@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -21,113 +21,31 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
-Cc: Maharaja Kennadyrajan <mkenna@codeaurora.org>
+Cc: Govindaraj Saminathan <gsamin@codeaurora.org>
 
-This patch will add the support to control the transmit power
-for traffic to a station associated with the AP.
+qmi firmware ready event start to initialize the core modules and
+the sequence executed with mutex lock. In case of any failure
+mutex should be unlocked otherwise it will hang during the recovery.
 
-Underlying firmware will enforce that the maximum tx power will
-be based on the regulatory requirements. If the user given
-transmit power is greater than the allowed tx power in the given
-channel, then the firmware will use the maximum tx power in the
-same channel.
-
-Max and Min tx power values will depends on number of tx chain
-masks. The allowed tx power range values are from 6 to 23.
-
-When 0 is sent to the firmware as tx power, it will revert to
-the default tx power for the station.
-
-Note: mac80211/cfg80211 patches are merged in master branch in ath.git.
-Patchwork links for mac80211/cfg80211 patches are given below.
-
-https://patchwork.kernel.org/patch/10876853/
-https://patchwork.kernel.org/patch/10876859/
-
-Signed-off-by: Maharaja Kennadyrajan <mkenna@codeaurora.org>
+Signed-off-by: Govindaraj Saminathan <gsamin@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/debug.h |  3 ++
- drivers/net/wireless/ath/ath11k/mac.c   | 37 +++++++++++++++++++++++++
- 2 files changed, 40 insertions(+)
+ drivers/net/wireless/ath/ath11k/core.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/debug.h b/drivers/net/wireless/ath/ath11k/debug.h
-index aef33f83c9b1..a317a7bdb9a2 100644
---- a/drivers/net/wireless/ath/ath11k/debug.h
-+++ b/drivers/net/wireless/ath/ath11k/debug.h
-@@ -9,6 +9,9 @@
- #include "hal_tx.h"
- #include "trace.h"
- 
-+#define ATH11K_TX_POWER_MAX_VAL	70
-+#define ATH11K_TX_POWER_MIN_VAL	0
-+
- enum ath11k_debug_mask {
- 	ATH11K_DBG_AHB		= 0x00000001,
- 	ATH11K_DBG_WMI		= 0x00000002,
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 6f82fdbbd358..2dc5f63b9446 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -2842,6 +2842,41 @@ static int ath11k_mac_op_sta_state(struct ieee80211_hw *hw,
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 9324dcb..d2dd0ba 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -531,6 +531,7 @@ int ath11k_core_qmi_firmware_ready(struct ath11k_base *ab)
+ 	ath11k_core_stop(ab);
+ err_dp_free:
+ 	ath11k_dp_free(ab);
++	mutex_unlock(&ab->core_lock);
  	return ret;
  }
  
-+static int ath11k_mac_op_sta_set_txpwr(struct ieee80211_hw *hw,
-+				       struct ieee80211_vif *vif,
-+				       struct ieee80211_sta *sta)
-+{
-+	struct ath11k *ar = hw->priv;
-+	struct ath11k_vif *arvif = (void *)vif->drv_priv;
-+	int ret = 0;
-+	s16 txpwr;
-+
-+	if (sta->txpwr.type == NL80211_TX_POWER_AUTOMATIC) {
-+		txpwr = 0;
-+	} else {
-+		txpwr = sta->txpwr.power;
-+		if (!txpwr)
-+			return -EINVAL;
-+	}
-+
-+	if (txpwr > ATH11K_TX_POWER_MAX_VAL || txpwr < ATH11K_TX_POWER_MIN_VAL)
-+		return -EINVAL;
-+
-+	mutex_lock(&ar->conf_mutex);
-+
-+	ret = ath11k_wmi_set_peer_param(ar, sta->addr, arvif->vdev_id,
-+					WMI_PEER_USE_FIXED_PWR, txpwr);
-+	if (ret) {
-+		ath11k_warn(ar->ab, "failed to set tx power for station ret: %d\n",
-+			    ret);
-+		goto out;
-+	}
-+
-+out:
-+	mutex_unlock(&ar->conf_mutex);
-+	return ret;
-+}
-+
- static void ath11k_mac_op_sta_rc_update(struct ieee80211_hw *hw,
- 					struct ieee80211_vif *vif,
- 					struct ieee80211_sta *sta,
-@@ -5316,6 +5351,7 @@ static const struct ieee80211_ops ath11k_ops = {
- 	.cancel_hw_scan                 = ath11k_mac_op_cancel_hw_scan,
- 	.set_key                        = ath11k_mac_op_set_key,
- 	.sta_state                      = ath11k_mac_op_sta_state,
-+	.sta_set_txpwr			= ath11k_mac_op_sta_set_txpwr,
- 	.sta_rc_update			= ath11k_mac_op_sta_rc_update,
- 	.conf_tx                        = ath11k_mac_op_conf_tx,
- 	.set_antenna			= ath11k_mac_op_set_antenna,
-@@ -5576,6 +5612,7 @@ static int ath11k_mac_register(struct ath11k *ar)
- 	ar->hw->wiphy->n_iface_combinations = ARRAY_SIZE(ath11k_if_comb);
- 
- 	wiphy_ext_feature_set(ar->hw->wiphy, NL80211_EXT_FEATURE_CQM_RSSI_LIST);
-+	wiphy_ext_feature_set(ar->hw->wiphy, NL80211_EXT_FEATURE_STA_TX_PWR);
- 
- 	ar->hw->wiphy->cipher_suites = cipher_suites;
- 	ar->hw->wiphy->n_cipher_suites = ARRAY_SIZE(cipher_suites);
 -- 
-2.23.0
+1.9.1
 
 
 _______________________________________________
