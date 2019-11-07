@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iSdhx-0003FQ-7s
- for ath11k@lists.infradead.org; Thu, 07 Nov 2019 09:04:02 +0000
+ id 1iSdiT-0003S5-RE
+ for ath11k@lists.infradead.org; Thu, 07 Nov 2019 09:04:35 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: tracing: fix ath11k tracing
+Subject: Re: [PATCH 1/2] ath11k: qmi clean up ce and HTC service config update
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1572331755-22072-1-git-send-email-akolli@codeaurora.org>
-References: <1572331755-22072-1-git-send-email-akolli@codeaurora.org>
-Message-Id: <20191107090400.8D2E1601C4@smtp.codeaurora.org>
-Date: Thu,  7 Nov 2019 09:04:00 +0000 (UTC)
+In-Reply-To: <1572332068-2611-1-git-send-email-akolli@codeaurora.org>
+References: <1572332068-2611-1-git-send-email-akolli@codeaurora.org>
+Message-Id: <20191107090432.137D46086A@smtp.codeaurora.org>
+Date: Thu,  7 Nov 2019 09:04:31 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -27,17 +27,18 @@ Cc: ath11k@lists.infradead.org
 
 Anilkumar Kolli <akolli@codeaurora.org> wrote:
 
-> Add missing tracing subsystem define.
+> Copy CE and htc service configs for all pipes.
 > 
 > Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-Patch applied to ath11k-post-bringup branch of ath.git, thanks.
+2 patches applied to ath11k-post-bringup branch of ath.git, thanks.
 
-b7c49ead1fb2 ath11k: tracing: fix ath11k tracing
+a6e9c4ddb317 ath11k: qmi clean up ce and HTC service config update
+b7ba9e95da21 ath11k: qmi clean up in ath11k_qmi_wlanfw_wlan_cfg_send()
 
 -- 
-https://patchwork.kernel.org/patch/11217279/
+https://patchwork.kernel.org/patch/11217303/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
