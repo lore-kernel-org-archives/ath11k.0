@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iSdj6-0004vz-Du
- for ath11k@lists.infradead.org; Thu, 07 Nov 2019 09:05:13 +0000
+ id 1iSdkN-0005A4-0c
+ for ath11k@lists.infradead.org; Thu, 07 Nov 2019 09:06:32 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: pktlog: fix sending/using the pdev id
+Subject: Re: [PATCH] ath11k: avoid burst time conversion logic
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1572420225-28801-1-git-send-email-akolli@codeaurora.org>
-References: <1572420225-28801-1-git-send-email-akolli@codeaurora.org>
-Message-Id: <20191107090512.0DCDE602C8@smtp.codeaurora.org>
-Date: Thu,  7 Nov 2019 09:05:11 +0000 (UTC)
+In-Reply-To: <1572420925-11452-1-git-send-email-periyasa@codeaurora.org>
+References: <1572420925-11452-1-git-send-email-periyasa@codeaurora.org>
+Message-Id: <20191107090630.058906076A@smtp.codeaurora.org>
+Date: Thu,  7 Nov 2019 09:06:29 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,23 +22,25 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Anilkumar Kolli <akolli@codeaurora.org>
+To: Karthikeyan Periyasamy <periyasa@codeaurora.org>
 Cc: ath11k@lists.infradead.org
 
-Anilkumar Kolli <akolli@codeaurora.org> wrote:
+Karthikeyan Periyasamy <periyasa@codeaurora.org> wrote:
 
-> Fixes sending the pdev id(0,1,2 for mac0, mac1, mac2)
-> to FW in wmi cmd pktlog enable/disable.
+> WMI_VDEV_SET_WMM_PARAMS commmand expects the txoplimit param in the units of
+> 32 microseconds. convert the txop unit from 32 microseconds to absolute
+> microseconds leads to the higher burst values which is incorrect. so no need
+> to convert the txop unit from 32 microseconds to absolute microseconds.
 > 
-> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
+> Signed-off-by: Karthikeyan Periyasamy <periyasa@codeaurora.org>
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
 Patch applied to ath11k-post-bringup branch of ath.git, thanks.
 
-e5d30440486d ath11k: pktlog: fix sending/using the pdev id
+ecbd15739034 ath11k: avoid burst time conversion logic
 
 -- 
-https://patchwork.kernel.org/patch/11219095/
+https://patchwork.kernel.org/patch/11219119/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
