@@ -1,15 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iSdkN-0005A4-0c
- for ath11k@lists.infradead.org; Thu, 07 Nov 2019 09:06:32 +0000
+ id 1iSeEs-0003WG-97
+ for ath11k@lists.infradead.org; Thu, 07 Nov 2019 09:38:03 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: avoid burst time conversion logic
+Subject: Re: [PATCH] ath11k: avoid use_after_free in
+ ath11k_dp_rx_msdu_coalesce API
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1572420925-11452-1-git-send-email-periyasa@codeaurora.org>
-References: <1572420925-11452-1-git-send-email-periyasa@codeaurora.org>
-Message-Id: <20191107090630.058906076A@smtp.codeaurora.org>
-Date: Thu,  7 Nov 2019 09:06:29 +0000 (UTC)
+In-Reply-To: <1572421575-2904-1-git-send-email-periyasa@codeaurora.org>
+References: <1572421575-2904-1-git-send-email-periyasa@codeaurora.org>
+Message-Id: <20191107093801.D52C36081E@smtp.codeaurora.org>
+Date: Thu,  7 Nov 2019 09:38:01 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -27,20 +28,19 @@ Cc: ath11k@lists.infradead.org
 
 Karthikeyan Periyasamy <periyasa@codeaurora.org> wrote:
 
-> WMI_VDEV_SET_WMM_PARAMS commmand expects the txoplimit param in the units of
-> 32 microseconds. convert the txop unit from 32 microseconds to absolute
-> microseconds leads to the higher burst values which is incorrect. so no need
-> to convert the txop unit from 32 microseconds to absolute microseconds.
+> Accessing already stored first msdu data after the skb expand trigger
+> use_after_free, since first msdu got deleted. so do the descriptor copy
+> operation before the skb expand operation.
 > 
 > Signed-off-by: Karthikeyan Periyasamy <periyasa@codeaurora.org>
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
 Patch applied to ath11k-post-bringup branch of ath.git, thanks.
 
-ecbd15739034 ath11k: avoid burst time conversion logic
+88b53b57ad55 ath11k: avoid use_after_free in ath11k_dp_rx_msdu_coalesce API
 
 -- 
-https://patchwork.kernel.org/patch/11219119/
+https://patchwork.kernel.org/patch/11219131/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
