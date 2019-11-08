@@ -1,18 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iSkGf-0005g6-8E
- for ath11k@lists.infradead.org; Thu, 07 Nov 2019 16:04:18 +0000
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH v2 02/49] ath11k: add Kconfig
-References: <1571565847-10338-1-git-send-email-kvalo@codeaurora.org>
- <1571565847-10338-3-git-send-email-kvalo@codeaurora.org>
- <6ffc215251b54d562496d978bdbbcead@codeaurora.org>
-Date: Thu, 07 Nov 2019 18:04:13 +0200
-In-Reply-To: <6ffc215251b54d562496d978bdbbcead@codeaurora.org> (Jeff Johnson's
- message of "Mon, 21 Oct 2019 13:53:51 -0700")
-Message-ID: <87ftizy8oy.fsf@kamboji.qca.qualcomm.com>
-MIME-Version: 1.0
+ id 1iSznT-00023v-1v
+ for ath11k@lists.infradead.org; Fri, 08 Nov 2019 08:39:12 +0000
+From: Sriram R <srirrama@codeaurora.org>
+Subject: [PATCH] ath11k: add necessary peer assoc params in wmi dbg
+Date: Fri,  8 Nov 2019 14:08:57 +0530
+Message-Id: <1573202337-15300-1-git-send-email-srirrama@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -21,33 +15,50 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Jeff Johnson <jjohnson@codeaurora.org>
-Cc: devicetree@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: ath11k@lists.infradead.org
+Cc: Sriram R <srirrama@codeaurora.org>
 
-Jeff Johnson <jjohnson@codeaurora.org> writes:
+Add necessary peer assoc params in WMI debug message
+while sending the peer assoc command to firmware
+to aid in debugging.
 
-> On 2019-10-20 03:03, Kalle Valo wrote:
->> [...snip...]
->> +config ATH11K_TRACING
->> +	bool "ath11k tracing support"
->> +	depends on ATH11K && EVENT_TRACING
->> +	---help---
->> +	  Select this to ath11k use tracing infrastructure.
->
-> Help text does not parse
+Signed-off-by: Sriram R <srirrama@codeaurora.org>
+---
+ drivers/net/wireless/ath/ath11k/wmi.c | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
 
-Will be fixed in v3:
-
-https://patchwork.kernel.org/patch/11233257/
-
-Thanks for the review.
-
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index ccebf7c..13531e1 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -1804,8 +1804,17 @@ int ath11k_wmi_send_peer_assoc_cmd(struct ath11k *ar,
+ 	}
+ 
+ 	ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
+-		   "WMI peer assoc vdev id %d assoc id %d peer mac %pM\n",
+-		   param->vdev_id, param->peer_associd, param->peer_mac);
++		   "wmi peer assoc vdev id %d assoc id %d peer mac %pM peer_flags %x rate_caps %x peer_caps %x listen_intval %d ht_caps %x max_mpdu %d nss %d phymode %d peer_mpdu_density %d vht_caps %x he cap_info %x he ops %x he cap_info_ext %x he phy %x %x %x peer_bw_rxnss_override %x\n",
++		   cmd->vdev_id, cmd->peer_associd, param->peer_mac,
++		   cmd->peer_flags, cmd->peer_rate_caps, cmd->peer_caps,
++		   cmd->peer_listen_intval, cmd->peer_ht_caps,
++		   cmd->peer_max_mpdu, cmd->peer_nss, cmd->peer_phymode,
++		   cmd->peer_mpdu_density,
++		   cmd->peer_vht_caps, cmd->peer_he_cap_info,
++		   cmd->peer_he_ops, cmd->peer_he_cap_info_ext,
++		   cmd->peer_he_cap_phy[0], cmd->peer_he_cap_phy[1],
++		   cmd->peer_he_cap_phy[2],
++		   cmd->peer_bw_rxnss_override);
+ 
+ 	return ret;
+ }
 -- 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+2.7.4
+
 
 _______________________________________________
 ath11k mailing list
