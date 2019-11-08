@@ -1,12 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iSznT-00023v-1v
- for ath11k@lists.infradead.org; Fri, 08 Nov 2019 08:39:12 +0000
+ id 1iSznx-0002Da-1u
+ for ath11k@lists.infradead.org; Fri, 08 Nov 2019 08:39:42 +0000
 From: Sriram R <srirrama@codeaurora.org>
-Subject: [PATCH] ath11k: add necessary peer assoc params in wmi dbg
-Date: Fri,  8 Nov 2019 14:08:57 +0530
-Message-Id: <1573202337-15300-1-git-send-email-srirrama@codeaurora.org>
+Subject: [PATCH] ath11k: Update tx and rx chain count properly on
+ drv_set_antenna
+Date: Fri,  8 Nov 2019 14:09:15 +0530
+Message-Id: <1573202355-15351-1-git-send-email-srirrama@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,39 +24,37 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: Sriram R <srirrama@codeaurora.org>
 
-Add necessary peer assoc params in WMI debug message
-while sending the peer assoc command to firmware
-to aid in debugging.
+Set the number of tx and rx chains properly on drv_set_antenna().
+This will ensure the related ht/vht/he caps are properly recalculated
+based on the tx/rx chains set.
 
 Signed-off-by: Sriram R <srirrama@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/wmi.c | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
+ drivers/net/wireless/ath/ath11k/mac.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index ccebf7c..13531e1 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -1804,8 +1804,17 @@ int ath11k_wmi_send_peer_assoc_cmd(struct ath11k *ar,
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 6f82fdb..8c4f039 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -3450,6 +3450,8 @@ static int __ath11k_set_antenna(struct ath11k *ar, u32 tx_ant, u32 rx_ant)
+ 		return ret;
  	}
  
- 	ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
--		   "WMI peer assoc vdev id %d assoc id %d peer mac %pM\n",
--		   param->vdev_id, param->peer_associd, param->peer_mac);
-+		   "wmi peer assoc vdev id %d assoc id %d peer mac %pM peer_flags %x rate_caps %x peer_caps %x listen_intval %d ht_caps %x max_mpdu %d nss %d phymode %d peer_mpdu_density %d vht_caps %x he cap_info %x he ops %x he cap_info_ext %x he phy %x %x %x peer_bw_rxnss_override %x\n",
-+		   cmd->vdev_id, cmd->peer_associd, param->peer_mac,
-+		   cmd->peer_flags, cmd->peer_rate_caps, cmd->peer_caps,
-+		   cmd->peer_listen_intval, cmd->peer_ht_caps,
-+		   cmd->peer_max_mpdu, cmd->peer_nss, cmd->peer_phymode,
-+		   cmd->peer_mpdu_density,
-+		   cmd->peer_vht_caps, cmd->peer_he_cap_info,
-+		   cmd->peer_he_ops, cmd->peer_he_cap_info_ext,
-+		   cmd->peer_he_cap_phy[0], cmd->peer_he_cap_phy[1],
-+		   cmd->peer_he_cap_phy[2],
-+		   cmd->peer_bw_rxnss_override);
++	ar->num_tx_chains = get_num_chains(tx_ant);
++
+ 	ret = ath11k_wmi_pdev_set_param(ar, WMI_PDEV_PARAM_RX_CHAIN_MASK,
+ 					rx_ant, ar->pdev->pdev_id);
+ 	if (ret) {
+@@ -3458,6 +3460,8 @@ static int __ath11k_set_antenna(struct ath11k *ar, u32 tx_ant, u32 rx_ant)
+ 		return ret;
+ 	}
  
- 	return ret;
- }
++	ar->num_rx_chains = get_num_chains(rx_ant);
++
+ 	/* Reload HT/VHT/HE capability */
+ 	ath11k_mac_setup_ht_vht_cap(ar, &ar->pdev->cap, NULL);
+ 	ath11k_mac_setup_he_cap(ar, &ar->pdev->cap);
 -- 
 2.7.4
 
