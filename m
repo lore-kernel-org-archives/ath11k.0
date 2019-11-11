@@ -1,12 +1,18 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from alexa-out-blr-01.qualcomm.com ([103.229.18.197])
+Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iU1eD-0005fI-AL
- for ath11k@lists.infradead.org; Mon, 11 Nov 2019 04:49:55 +0000
-From: Venkateswara Naralasetty <vnaralas@codeaurora.org>
-Subject: [PATCH] ath11k: change failed to find peer id log level
-Date: Mon, 11 Nov 2019 10:19:47 +0530
-Message-Id: <1573447787-30517-1-git-send-email-vnaralas@codeaurora.org>
+ id 1iU4ZS-0001C2-Nh
+ for ath11k@lists.infradead.org; Mon, 11 Nov 2019 07:57:11 +0000
+MIME-Version: 1.0
+Date: Mon, 11 Nov 2019 13:27:09 +0530
+From: Sathishkumar Muruganandam <murugana@codeaurora.org>
+Subject: Re: [EXT] Re: [PATCH v2 0/2] add Wide Band Scan support
+In-Reply-To: <867302d58d3183ce7e2c7afa846027a787579b87.camel@sipsolutions.net>
+References: <1572869374-9635-1-git-send-email-murugana@codeaurora.org>
+ <53d45563803b3f96be0d53731408cc3af028c510.camel@sipsolutions.net>
+ <00d301d593c2$bd37d8f0$37a78ad0$@codeaurora.org>
+ <867302d58d3183ce7e2c7afa846027a787579b87.camel@sipsolutions.net>
+Message-ID: <6ea305b2ac09c340181623a23cf4180b@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -15,42 +21,37 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: Venkateswara Naralasetty <vnaralas@codeaurora.org>
+To: Johannes Berg <johannes@sipsolutions.net>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-Peer deletion and NAPI processing are from two different paths,
-failed to find peer id is expected when NAPI scheduled
-for mon stats processing after peer deletion.
+On 2019-11-05 15:52, Johannes Berg wrote:
+> On Tue, 2019-11-05 at 15:51 +0530, Sathishkumar Muruganandam wrote:
+>> > Neither of these are scan use cases (at least not that are covered by
+>> > nl80211 scan APIs), so that doesn't make sense.
+>> >
+>> 
+>> Actually we had extended the existing 'iw scan' command to do Wide
+>> Band Scan using nl80211 scan APIs.
+> 
+> Yes ... but ... that doesn't address my question.
+> 
+> How is this related to scanning? It sounds to me like you're just
+> (ab)using scan as a somewhat convenient "do some channel hopping" API
+> ...
+> 
 
-This patch change the log level from warn to debug.
+Whether this can be used under "iw offchannel" with 
+NL80211_CMD_REMAIN_ON_CHANNEL?
 
-Signed-off-by: Venkateswara Naralasetty <vnaralas@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/dp_rx.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Please provide your comments.
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 8c0298d..d68a37e 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -2618,7 +2618,8 @@ int ath11k_dp_rx_process_mon_status(struct ath11k_base *ab, int mac_id,
- 		peer = ath11k_peer_find_by_id(ab, ppdu_info.peer_id);
- 
- 		if (!peer || !peer->sta) {
--			ath11k_warn(ab, "failed to find the peer with peer_id %d\n",
-+			ath11k_dbg(ab, ATH11K_DBG_DATA,
-+				   "failed to find the peer with peer_id %d to update peer stats\n",
- 				    ppdu_info.peer_id);
- 			spin_unlock_bh(&ab->base_lock);
- 			rcu_read_unlock();
 -- 
-2.7.4
-
+Thanks,
+Sathishkumar
 
 _______________________________________________
 ath11k mailing list
