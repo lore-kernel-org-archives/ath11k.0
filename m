@@ -1,15 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iUAMg-00024b-7t
- for ath11k@lists.infradead.org; Mon, 11 Nov 2019 14:08:23 +0000
+ id 1iUANZ-0002CZ-O2
+ for ath11k@lists.infradead.org; Mon, 11 Nov 2019 14:09:19 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: update tx duration in station info
+Subject: Re: [PATCH 1/2] ath11k: Move mac80211 hw allocation before wmi_init
+ command
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1572499360-4430-1-git-send-email-vnaralas@codeaurora.org>
-References: <1572499360-4430-1-git-send-email-vnaralas@codeaurora.org>
-Message-Id: <20191111140821.4641D60A74@smtp.codeaurora.org>
-Date: Mon, 11 Nov 2019 14:08:21 +0000 (UTC)
+In-Reply-To: <1573204214-17336-1-git-send-email-vthiagar@codeaurora.org>
+References: <1573204214-17336-1-git-send-email-vthiagar@codeaurora.org>
+Message-Id: <20191111140917.557AE60D84@smtp.codeaurora.org>
+Date: Mon, 11 Nov 2019 14:09:17 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,26 +23,34 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Venkateswara Naralasetty <vnaralas@codeaurora.org>
+To: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
 Cc: ath11k@lists.infradead.org
 
-Venkateswara Naralasetty <vnaralas@codeaurora.org> wrote:
+Vasanthakumar Thiagarajan <vthiagar@codeaurora.org> wrote:
 
-> Update tx duration in station info form PPDU stats so that
-> users can dump tx duration of the station.
+> This is to prepare REO ring setup before sending wmi_init command.
+> Firmware expects all the required REO rings to be setup while processing
+> wmi_init command. But as per the current initialization sequence, REO ring
+> configurations are done only after wmi_init command is sent.
+> Also refactoring ath11k_mac_create() into ath11k_mac_alloc() and
+> ath11k_mac_register() to it mac80211 hw structure available before sending
+> wmi_init command.
 > 
-> Signed-off-by: Venkateswara Naralasetty <vnaralas@codeaurora.org>
+> Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
 
 Failed to apply, please rebase.
 
-error: patch failed: drivers/net/wireless/ath/ath11k/dp_rx.c:1159
-error: drivers/net/wireless/ath/ath11k/dp_rx.c: patch does not apply
+error: patch failed: drivers/net/wireless/ath/ath11k/core.c:537
+error: drivers/net/wireless/ath/ath11k/core.c: patch does not apply
 stg import: Diff does not apply cleanly
 
-Patch set to Changes Requested.
+2 patches set to Changes Requested.
+
+11234363 [1/2] ath11k: Move mac80211 hw allocation before wmi_init command
+11234365 [2/2] ath11k: Setup REO destination ring before sending wmi_init command
 
 -- 
-https://patchwork.kernel.org/patch/11220621/
+https://patchwork.kernel.org/patch/11234363/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
