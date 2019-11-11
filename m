@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iUADI-0006ny-8R
- for ath11k@lists.infradead.org; Mon, 11 Nov 2019 13:58:41 +0000
+ id 1iUAEj-00080t-9a
+ for ath11k@lists.infradead.org; Mon, 11 Nov 2019 14:00:11 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: update bawindow size in delba process
+Subject: Re: [PATCH] ath11k: add support for controlling tx power to a station
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1572500150-13044-1-git-send-email-vnaralas@codeaurora.org>
-References: <1572500150-13044-1-git-send-email-vnaralas@codeaurora.org>
-Message-Id: <20191111135839.431B660E3C@smtp.codeaurora.org>
-Date: Mon, 11 Nov 2019 13:58:39 +0000 (UTC)
+In-Reply-To: <1572516491-18745-1-git-send-email-mkenna@codeaurora.org>
+References: <1572516491-18745-1-git-send-email-mkenna@codeaurora.org>
+Message-Id: <20191111140008.8479A60B12@smtp.codeaurora.org>
+Date: Mon, 11 Nov 2019 14:00:08 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,29 +22,35 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Venkateswara Naralasetty <vnaralas@codeaurora.org>
+To: Maharaja Kennadyrajan <mkenna@codeaurora.org>
 Cc: ath11k@lists.infradead.org
 
-Venkateswara Naralasetty <vnaralas@codeaurora.org> wrote:
+Maharaja Kennadyrajan <mkenna@codeaurora.org> wrote:
 
-> Currenly in delba process calling ath11k_peer_rx_tid_delete() updates
-> reo with desc invalid and add tid queue to the flush list. If station
-> send data traffic without addba req and before tid flush, hw gives
-> those packets as invalid desc reo error. Since we are dropping these
-> invalid desc packets results in traffic stall.
+> This patch will add the support to control the transmit power
+> for traffic to a station associated with the AP.
 > 
-> This patch fix this issue by updating the reo queue with bawindow size 1
-> instead of tid removal in delba process.
+> Underlying firmware will enforce that the maximum tx power will
+> be based on the regulatory requirements. If the user given
+> transmit power is greater than the allowed tx power in the given
+> channel, then the firmware will use the maximum tx power in the
+> same channel.
 > 
-> Signed-off-by: Venkateswara Naralasetty <vnaralas@codeaurora.org>
+> Max and Min tx power values will depends on number of tx chain
+> masks. The allowed tx power range values are from 6 to 23.
+> 
+> When 0 is sent to the firmware as tx power, it will revert to
+> the default tx power for the station.
+> 
+> Signed-off-by: Maharaja Kennadyrajan <mkenna@codeaurora.org>
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
 Patch applied to ath11k-post-bringup branch of ath.git, thanks.
 
-8f10140436f9 ath11k: update bawindow size in delba process
+1b964c6fa08b ath11k: add support for controlling tx power to a station
 
 -- 
-https://patchwork.kernel.org/patch/11220623/
+https://patchwork.kernel.org/patch/11220849/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
