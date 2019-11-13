@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from alexa-out-blr-01.qualcomm.com ([103.229.18.197])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iUu9X-0000dw-2x
- for ath11k@lists.infradead.org; Wed, 13 Nov 2019 15:01:52 +0000
+ id 1iUuBv-00018q-HB
+ for ath11k@lists.infradead.org; Wed, 13 Nov 2019 15:04:21 +0000
 From: Venkateswara Naralasetty <vnaralas@codeaurora.org>
-Subject: [PATCHv2] ath11k: update tx duration in station info
-Date: Wed, 13 Nov 2019 20:31:33 +0530
-Message-Id: <1573657293-29509-1-git-send-email-vnaralas@codeaurora.org>
+Subject: [PATCH] ath11k: Advertise MPDU start spacing as no restriction
+Date: Wed, 13 Nov 2019 20:34:13 +0530
+Message-Id: <1573657453-4575-1-git-send-email-vnaralas@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,58 +23,29 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: Venkateswara Naralasetty <vnaralas@codeaurora.org>
 
-Update tx duration in station info form PPDU stats
-so that users can dump tx duration of the station.
+Adverise MPDU start spacing as no restriction in ht capabilities,
+Since IPQ8074 hw support all sorts of mpdu start spcing. With this
+observed minor uplink performance improvement in lower data frame
+size case with Veriwave clients.
 
 Signed-off-by: Venkateswara Naralasetty <vnaralas@codeaurora.org>
 ---
-v2:
- * rebased version
+ drivers/net/wireless/ath/ath11k/mac.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
- drivers/net/wireless/ath/ath11k/core.h  | 1 +
- drivers/net/wireless/ath/ath11k/dp_rx.c | 2 +-
- drivers/net/wireless/ath/ath11k/mac.c   | 3 +++
- 3 files changed, 5 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 065cb9d..06482a5 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -335,6 +335,7 @@ struct ath11k_sta {
- 	struct rate_info txrate;
- 	struct rate_info last_txrate;
- 	u64 rx_duration;
-+	u64 tx_duration;
- 	u8 rssi_comb;
- 	struct ath11k_htt_tx_stats *tx_stats;
- 	struct ath11k_rx_peer_stats *rx_stats;
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 8c21925..8b88e56 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -1147,7 +1147,7 @@ ath11k_update_per_peer_tx_stats(struct ath11k *ar,
- 	arsta->txrate.nss = nss;
- 	arsta->txrate.bw = ath11k_mac_bw_to_mac80211_bw(bw);
- 	arsta->tx_info.status.rates[0].flags |= ath11k_bw_to_mac80211_bwflags(bw);
--
-+	arsta->tx_duration += tx_duration;
- 	memcpy(&arsta->last_txrate, &arsta->txrate, sizeof(struct rate_info));
- 
- 	if (succ_pkts) {
 diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 5ee7c2a..c5ab067 100644
+index c5ab067..624534d 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -5316,6 +5316,9 @@ static void ath11k_mac_op_sta_statistics(struct ieee80211_hw *hw,
- 	sinfo->rx_duration = arsta->rx_duration;
- 	sinfo->filled |= BIT_ULL(NL80211_STA_INFO_RX_DURATION);
+@@ -3089,7 +3089,7 @@ ath11k_create_ht_cap(struct ath11k *ar, u32 ar_ht_cap, u32 rate_cap_rx_chainmask
  
-+	sinfo->tx_duration = arsta->tx_duration;
-+	sinfo->filled |= BIT_ULL(NL80211_STA_INFO_TX_DURATION);
-+
- 	if (!arsta->txrate.legacy && !arsta->txrate.nss)
- 		return;
- 
+ 	ht_cap.ht_supported = 1;
+ 	ht_cap.ampdu_factor = IEEE80211_HT_MAX_AMPDU_64K;
+-	ht_cap.ampdu_density = IEEE80211_HT_MPDU_DENSITY_8;
++	ht_cap.ampdu_density = IEEE80211_HT_MPDU_DENSITY_NONE;
+ 	ht_cap.cap |= IEEE80211_HT_CAP_SUP_WIDTH_20_40;
+ 	ht_cap.cap |= IEEE80211_HT_CAP_DSSSCCK40;
+ 	ht_cap.cap |= WLAN_HT_CAP_SM_PS_STATIC << IEEE80211_HT_CAP_SM_PS_SHIFT;
 -- 
 2.7.4
 
