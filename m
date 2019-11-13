@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from smtp.codeaurora.org ([198.145.29.96])
+Received: from alexa-out-blr-01.qualcomm.com ([103.229.18.197])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iUpeG-0008FI-MX
- for ath11k@lists.infradead.org; Wed, 13 Nov 2019 10:13:18 +0000
-From: Manikanta Pubbisetty <mpubbise@codeaurora.org>
-Subject: [PATCH] ath11k: fix vht guard interval mapping
-Date: Wed, 13 Nov 2019 15:43:04 +0530
-Message-Id: <1573639984-31249-1-git-send-email-mpubbise@codeaurora.org>
+ id 1iUu9X-0000dw-2x
+ for ath11k@lists.infradead.org; Wed, 13 Nov 2019 15:01:52 +0000
+From: Venkateswara Naralasetty <vnaralas@codeaurora.org>
+Subject: [PATCHv2] ath11k: update tx duration in station info
+Date: Wed, 13 Nov 2019 20:31:33 +0530
+Message-Id: <1573657293-29509-1-git-send-email-vnaralas@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -21,72 +21,60 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
-Cc: Manikanta Pubbisetty <mpubbise@codeaurora.org>
+Cc: Venkateswara Naralasetty <vnaralas@codeaurora.org>
 
-Guard interval value which comes from VHT_SIG_A TLV has a mapping
-where value 0 corresponds to LGI, 1 and 3 corresponds to SGI.
+Update tx duration in station info form PPDU stats
+so that users can dump tx duration of the station.
 
-Value 3 which is SGI(0.4us) in VHT was incorrectly mapped to a GI
-of 3.2us(only applicable in HE) resulting in incorrect rx GI stats.
-Fixing the mapping.
-
-Signed-off-by: Manikanta Pubbisetty <mpubbise@codeaurora.org>
+Signed-off-by: Venkateswara Naralasetty <vnaralas@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/hal_rx.c | 16 +++++++++++++---
- drivers/net/wireless/ath/ath11k/hal_rx.h |  6 ++++++
- 2 files changed, 19 insertions(+), 3 deletions(-)
+v2:
+ * rebased version
 
-diff --git a/drivers/net/wireless/ath/ath11k/hal_rx.c b/drivers/net/wireless/ath/ath11k/hal_rx.c
-index 2de4b38..70e693e 100644
---- a/drivers/net/wireless/ath/ath11k/hal_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/hal_rx.c
-@@ -961,6 +961,7 @@ ath11k_hal_rx_parse_mon_status_tlv(struct ath11k_base *ab,
- 			(struct hal_rx_vht_sig_a_info *)tlv_data;
- 		u32 nsts;
- 		u32 group_id;
-+		u8 gi_setting;
+ drivers/net/wireless/ath/ath11k/core.h  | 1 +
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 2 +-
+ drivers/net/wireless/ath/ath11k/mac.c   | 3 +++
+ 3 files changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index 065cb9d..06482a5 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -335,6 +335,7 @@ struct ath11k_sta {
+ 	struct rate_info txrate;
+ 	struct rate_info last_txrate;
+ 	u64 rx_duration;
++	u64 tx_duration;
+ 	u8 rssi_comb;
+ 	struct ath11k_htt_tx_stats *tx_stats;
+ 	struct ath11k_rx_peer_stats *rx_stats;
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 8c21925..8b88e56 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -1147,7 +1147,7 @@ ath11k_update_per_peer_tx_stats(struct ath11k *ar,
+ 	arsta->txrate.nss = nss;
+ 	arsta->txrate.bw = ath11k_mac_bw_to_mac80211_bw(bw);
+ 	arsta->tx_info.status.rates[0].flags |= ath11k_bw_to_mac80211_bwflags(bw);
+-
++	arsta->tx_duration += tx_duration;
+ 	memcpy(&arsta->last_txrate, &arsta->txrate, sizeof(struct rate_info));
  
- 		info0 = __le32_to_cpu(vht_sig->info0);
- 		info1 = __le32_to_cpu(vht_sig->info1);
-@@ -969,9 +970,18 @@ ath11k_hal_rx_parse_mon_status_tlv(struct ath11k_base *ab,
- 					    info0);
- 		ppdu_info->mcs = FIELD_GET(HAL_RX_VHT_SIG_A_INFO_INFO1_MCS,
- 					   info1);
--		ppdu_info->gi =
--			FIELD_GET(HAL_RX_VHT_SIG_A_INFO_INFO1_GI_SETTING,
--				  info1);
-+		gi_setting = FIELD_GET(HAL_RX_VHT_SIG_A_INFO_INFO1_GI_SETTING,
-+				       info1);
-+		switch (gi_setting) {
-+		case HAL_RX_VHT_SIG_A_NORMAL_GI:
-+			ppdu_info->gi = HAL_RX_GI_0_8_US;
-+			break;
-+		case HAL_RX_VHT_SIG_A_SHORT_GI:
-+		case HAL_RX_VHT_SIG_A_SHORT_GI_AMBIGUITY:
-+			ppdu_info->gi = HAL_RX_GI_0_4_US;
-+			break;
-+		}
-+
- 		ppdu_info->is_stbc = info0 & HAL_RX_VHT_SIG_A_INFO_INFO0_STBC;
- 		nsts = FIELD_GET(HAL_RX_VHT_SIG_A_INFO_INFO0_NSTS, info0);
- 		if (ppdu_info->is_stbc && nsts > 0)
-diff --git a/drivers/net/wireless/ath/ath11k/hal_rx.h b/drivers/net/wireless/ath/ath11k/hal_rx.h
-index 96555e4..a6eb3de 100644
---- a/drivers/net/wireless/ath/ath11k/hal_rx.h
-+++ b/drivers/net/wireless/ath/ath11k/hal_rx.h
-@@ -213,6 +213,12 @@ struct hal_rx_vht_sig_a_info {
- 	__le32 info1;
- } __packed;
+ 	if (succ_pkts) {
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 5ee7c2a..c5ab067 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -5316,6 +5316,9 @@ static void ath11k_mac_op_sta_statistics(struct ieee80211_hw *hw,
+ 	sinfo->rx_duration = arsta->rx_duration;
+ 	sinfo->filled |= BIT_ULL(NL80211_STA_INFO_RX_DURATION);
  
-+enum hal_rx_vht_sig_a_gi_setting {
-+	HAL_RX_VHT_SIG_A_NORMAL_GI = 0,
-+	HAL_RX_VHT_SIG_A_SHORT_GI = 1,
-+	HAL_RX_VHT_SIG_A_SHORT_GI_AMBIGUITY = 3,
-+};
++	sinfo->tx_duration = arsta->tx_duration;
++	sinfo->filled |= BIT_ULL(NL80211_STA_INFO_TX_DURATION);
 +
- #define HAL_RX_HE_SIG_A_SU_INFO_INFO0_TRANSMIT_MCS	GENMASK(6, 3)
- #define HAL_RX_HE_SIG_A_SU_INFO_INFO0_DCM		BIT(7)
- #define HAL_RX_HE_SIG_A_SU_INFO_INFO0_TRANSMIT_BW	GENMASK(20, 19)
+ 	if (!arsta->txrate.legacy && !arsta->txrate.nss)
+ 		return;
+ 
 -- 
 2.7.4
 
