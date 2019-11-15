@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iVXwC-00050b-1m
- for ath11k@lists.infradead.org; Fri, 15 Nov 2019 09:31:08 +0000
+ id 1iVXxG-0006RX-JZ
+ for ath11k@lists.infradead.org; Fri, 15 Nov 2019 09:31:59 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH v3 23/49] ath11k: add hal_desc.h
-Date: Fri, 15 Nov 2019 11:28:47 +0200
-Message-Id: <1573810153-29623-24-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH v3 31/49] ath11k: add mac.c
+Date: Fri, 15 Nov 2019 11:28:55 +0200
+Message-Id: <1573810153-29623-32-git-send-email-kvalo@codeaurora.org>
 In-Reply-To: <1573810153-29623-1-git-send-email-kvalo@codeaurora.org>
 References: <1573810153-29623-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -29,2484 +29,5442 @@ Cc: devicetree@vger.kernel.org, ath11k@lists.infradead.org
 
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/hal_desc.h | 2469 ++++++++++++++++++++++++++++
- 1 file changed, 2469 insertions(+)
+ drivers/net/wireless/ath/ath11k/mac.c | 5427 +++++++++++++++++++++++++++++++++
+ 1 file changed, 5427 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/hal_desc.h b/drivers/net/wireless/ath/ath11k/hal_desc.h
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
 new file mode 100644
-index 000000000000..35e191b77271
+index 000000000000..cb025a4a5785
 --- /dev/null
-+++ b/drivers/net/wireless/ath/ath11k/hal_desc.h
-@@ -0,0 +1,2469 @@
-+/* SPDX-License-Identifier: BSD-3-Clause-Clear */
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -0,0 +1,5427 @@
++// SPDX-License-Identifier: BSD-3-Clause-Clear
 +/*
 + * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
 + */
-+#ifndef ATH11K_HAL_DESC_H
-+#define ATH11K_HAL_DESC_H
 +
-+#define BUFFER_ADDR_INFO0_ADDR         GENMASK(31, 0)
++#include <net/mac80211.h>
++#include <linux/etherdevice.h>
++#include "mac.h"
++#include "core.h"
++#include "debug.h"
++#include "wmi.h"
++#include "hw.h"
++#include "dp_tx.h"
++#include "dp_rx.h"
++#include "testmode.h"
++#include "peer.h"
 +
-+#define BUFFER_ADDR_INFO1_ADDR         GENMASK(7, 0)
-+#define BUFFER_ADDR_INFO1_RET_BUF_MGR  GENMASK(10, 8)
-+#define BUFFER_ADDR_INFO1_SW_COOKIE    GENMASK(31, 11)
++#define CHAN2G(_channel, _freq, _flags) { \
++	.band                   = NL80211_BAND_2GHZ, \
++	.hw_value               = (_channel), \
++	.center_freq            = (_freq), \
++	.flags                  = (_flags), \
++	.max_antenna_gain       = 0, \
++	.max_power              = 30, \
++}
 +
-+struct ath11k_buffer_addr {
-+	u32 info0;
-+	u32 info1;
-+} __packed;
++#define CHAN5G(_channel, _freq, _flags) { \
++	.band                   = NL80211_BAND_5GHZ, \
++	.hw_value               = (_channel), \
++	.center_freq            = (_freq), \
++	.flags                  = (_flags), \
++	.max_antenna_gain       = 0, \
++	.max_power              = 30, \
++}
 +
-+/* ath11k_buffer_addr
-+ *
-+ * info0
-+ *		Address (lower 32 bits) of the msdu buffer or msdu extension
-+ *		descriptor or Link descriptor
-+ *
-+ * addr
-+ *		Address (upper 8 bits) of the msdu buffer or msdu extension
-+ *		descriptor or Link descriptor
-+ *
-+ * return_buffer_manager (RBM)
-+ *		Consumer: WBM
-+ *		Producer: SW/FW
-+ *		Indicates to which buffer manager the buffer or MSDU_EXTENSION
-+ *		descriptor or link descriptor that is being pointed to shall be
-+ *		returned after the frame has been processed. It is used by WBM
-+ *		for routing purposes.
-+ *
-+ *		Values are defined in enum %HAL_RX_BUF_RBM_
-+ *
-+ * sw_buffer_cookie
-+ *		Cookie field exclusively used by SW. HW ignores the contents,
-+ *		accept that it passes the programmed value on to other
-+ *		descriptors together with the physical address.
-+ *
-+ *		Field can be used by SW to for example associate the buffers
-+ *		physical address with the virtual address.
-+ */
-+
-+enum hal_tlv_tag {
-+	HAL_MACTX_CBF_START                    =   0 /* 0x0 */,
-+	HAL_PHYRX_DATA                         =   1 /* 0x1 */,
-+	HAL_PHYRX_CBF_DATA_RESP                =   2 /* 0x2 */,
-+	HAL_PHYRX_ABORT_REQUEST                =   3 /* 0x3 */,
-+	HAL_PHYRX_USER_ABORT_NOTIFICATION      =   4 /* 0x4 */,
-+	HAL_MACTX_DATA_RESP                    =   5 /* 0x5 */,
-+	HAL_MACTX_CBF_DATA                     =   6 /* 0x6 */,
-+	HAL_MACTX_CBF_DONE                     =   7 /* 0x7 */,
-+	HAL_MACRX_CBF_READ_REQUEST             =   8 /* 0x8 */,
-+	HAL_MACRX_CBF_DATA_REQUEST             =   9 /* 0x9 */,
-+	HAL_MACRX_EXPECT_NDP_RECEPTION         =  10 /* 0xa */,
-+	HAL_MACRX_FREEZE_CAPTURE_CHANNEL       =  11 /* 0xb */,
-+	HAL_MACRX_NDP_TIMEOUT                  =  12 /* 0xc */,
-+	HAL_MACRX_ABORT_ACK                    =  13 /* 0xd */,
-+	HAL_MACRX_REQ_IMPLICIT_FB              =  14 /* 0xe */,
-+	HAL_MACRX_CHAIN_MASK                   =  15 /* 0xf */,
-+	HAL_MACRX_NAP_USER                     =  16 /* 0x10 */,
-+	HAL_MACRX_ABORT_REQUEST                =  17 /* 0x11 */,
-+	HAL_PHYTX_OTHER_TRANSMIT_INFO16        =  18 /* 0x12 */,
-+	HAL_PHYTX_ABORT_ACK                    =  19 /* 0x13 */,
-+	HAL_PHYTX_ABORT_REQUEST                =  20 /* 0x14 */,
-+	HAL_PHYTX_PKT_END                      =  21 /* 0x15 */,
-+	HAL_PHYTX_PPDU_HEADER_INFO_REQUEST     =  22 /* 0x16 */,
-+	HAL_PHYTX_REQUEST_CTRL_INFO            =  23 /* 0x17 */,
-+	HAL_PHYTX_DATA_REQUEST                 =  24 /* 0x18 */,
-+	HAL_PHYTX_BF_CV_LOADING_DONE           =  25 /* 0x19 */,
-+	HAL_PHYTX_NAP_ACK                      =  26 /* 0x1a */,
-+	HAL_PHYTX_NAP_DONE                     =  27 /* 0x1b */,
-+	HAL_PHYTX_OFF_ACK                      =  28 /* 0x1c */,
-+	HAL_PHYTX_ON_ACK                       =  29 /* 0x1d */,
-+	HAL_PHYTX_SYNTH_OFF_ACK                =  30 /* 0x1e */,
-+	HAL_PHYTX_DEBUG16                      =  31 /* 0x1f */,
-+	HAL_MACTX_ABORT_REQUEST                =  32 /* 0x20 */,
-+	HAL_MACTX_ABORT_ACK                    =  33 /* 0x21 */,
-+	HAL_MACTX_PKT_END                      =  34 /* 0x22 */,
-+	HAL_MACTX_PRE_PHY_DESC                 =  35 /* 0x23 */,
-+	HAL_MACTX_BF_PARAMS_COMMON             =  36 /* 0x24 */,
-+	HAL_MACTX_BF_PARAMS_PER_USER           =  37 /* 0x25 */,
-+	HAL_MACTX_PREFETCH_CV                  =  38 /* 0x26 */,
-+	HAL_MACTX_USER_DESC_COMMON             =  39 /* 0x27 */,
-+	HAL_MACTX_USER_DESC_PER_USER           =  40 /* 0x28 */,
-+	HAL_EXAMPLE_USER_TLV_16                =  41 /* 0x29 */,
-+	HAL_EXAMPLE_TLV_16                     =  42 /* 0x2a */,
-+	HAL_MACTX_PHY_OFF                      =  43 /* 0x2b */,
-+	HAL_MACTX_PHY_ON                       =  44 /* 0x2c */,
-+	HAL_MACTX_SYNTH_OFF                    =  45 /* 0x2d */,
-+	HAL_MACTX_EXPECT_CBF_COMMON            =  46 /* 0x2e */,
-+	HAL_MACTX_EXPECT_CBF_PER_USER          =  47 /* 0x2f */,
-+	HAL_MACTX_PHY_DESC                     =  48 /* 0x30 */,
-+	HAL_MACTX_L_SIG_A                      =  49 /* 0x31 */,
-+	HAL_MACTX_L_SIG_B                      =  50 /* 0x32 */,
-+	HAL_MACTX_HT_SIG                       =  51 /* 0x33 */,
-+	HAL_MACTX_VHT_SIG_A                    =  52 /* 0x34 */,
-+	HAL_MACTX_VHT_SIG_B_SU20               =  53 /* 0x35 */,
-+	HAL_MACTX_VHT_SIG_B_SU40               =  54 /* 0x36 */,
-+	HAL_MACTX_VHT_SIG_B_SU80               =  55 /* 0x37 */,
-+	HAL_MACTX_VHT_SIG_B_SU160              =  56 /* 0x38 */,
-+	HAL_MACTX_VHT_SIG_B_MU20               =  57 /* 0x39 */,
-+	HAL_MACTX_VHT_SIG_B_MU40               =  58 /* 0x3a */,
-+	HAL_MACTX_VHT_SIG_B_MU80               =  59 /* 0x3b */,
-+	HAL_MACTX_VHT_SIG_B_MU160              =  60 /* 0x3c */,
-+	HAL_MACTX_SERVICE                      =  61 /* 0x3d */,
-+	HAL_MACTX_HE_SIG_A_SU                  =  62 /* 0x3e */,
-+	HAL_MACTX_HE_SIG_A_MU_DL               =  63 /* 0x3f */,
-+	HAL_MACTX_HE_SIG_A_MU_UL               =  64 /* 0x40 */,
-+	HAL_MACTX_HE_SIG_B1_MU                 =  65 /* 0x41 */,
-+	HAL_MACTX_HE_SIG_B2_MU                 =  66 /* 0x42 */,
-+	HAL_MACTX_HE_SIG_B2_OFDMA              =  67 /* 0x43 */,
-+	HAL_MACTX_DELETE_CV                    =  68 /* 0x44 */,
-+	HAL_MACTX_MU_UPLINK_COMMON             =  69 /* 0x45 */,
-+	HAL_MACTX_MU_UPLINK_USER_SETUP         =  70 /* 0x46 */,
-+	HAL_MACTX_OTHER_TRANSMIT_INFO          =  71 /* 0x47 */,
-+	HAL_MACTX_PHY_NAP                      =  72 /* 0x48 */,
-+	HAL_MACTX_DEBUG                        =  73 /* 0x49 */,
-+	HAL_PHYRX_ABORT_ACK                    =  74 /* 0x4a */,
-+	HAL_PHYRX_GENERATED_CBF_DETAILS        =  75 /* 0x4b */,
-+	HAL_PHYRX_RSSI_LEGACY                  =  76 /* 0x4c */,
-+	HAL_PHYRX_RSSI_HT                      =  77 /* 0x4d */,
-+	HAL_PHYRX_USER_INFO                    =  78 /* 0x4e */,
-+	HAL_PHYRX_PKT_END                      =  79 /* 0x4f */,
-+	HAL_PHYRX_DEBUG                        =  80 /* 0x50 */,
-+	HAL_PHYRX_CBF_TRANSFER_DONE            =  81 /* 0x51 */,
-+	HAL_PHYRX_CBF_TRANSFER_ABORT           =  82 /* 0x52 */,
-+	HAL_PHYRX_L_SIG_A                      =  83 /* 0x53 */,
-+	HAL_PHYRX_L_SIG_B                      =  84 /* 0x54 */,
-+	HAL_PHYRX_HT_SIG                       =  85 /* 0x55 */,
-+	HAL_PHYRX_VHT_SIG_A                    =  86 /* 0x56 */,
-+	HAL_PHYRX_VHT_SIG_B_SU20               =  87 /* 0x57 */,
-+	HAL_PHYRX_VHT_SIG_B_SU40               =  88 /* 0x58 */,
-+	HAL_PHYRX_VHT_SIG_B_SU80               =  89 /* 0x59 */,
-+	HAL_PHYRX_VHT_SIG_B_SU160              =  90 /* 0x5a */,
-+	HAL_PHYRX_VHT_SIG_B_MU20               =  91 /* 0x5b */,
-+	HAL_PHYRX_VHT_SIG_B_MU40               =  92 /* 0x5c */,
-+	HAL_PHYRX_VHT_SIG_B_MU80               =  93 /* 0x5d */,
-+	HAL_PHYRX_VHT_SIG_B_MU160              =  94 /* 0x5e */,
-+	HAL_PHYRX_HE_SIG_A_SU                  =  95 /* 0x5f */,
-+	HAL_PHYRX_HE_SIG_A_MU_DL               =  96 /* 0x60 */,
-+	HAL_PHYRX_HE_SIG_A_MU_UL               =  97 /* 0x61 */,
-+	HAL_PHYRX_HE_SIG_B1_MU                 =  98 /* 0x62 */,
-+	HAL_PHYRX_HE_SIG_B2_MU                 =  99 /* 0x63 */,
-+	HAL_PHYRX_HE_SIG_B2_OFDMA              = 100 /* 0x64 */,
-+	HAL_PHYRX_OTHER_RECEIVE_INFO           = 101 /* 0x65 */,
-+	HAL_PHYRX_COMMON_USER_INFO             = 102 /* 0x66 */,
-+	HAL_PHYRX_DATA_DONE                    = 103 /* 0x67 */,
-+	HAL_RECEIVE_RSSI_INFO                  = 104 /* 0x68 */,
-+	HAL_RECEIVE_USER_INFO                  = 105 /* 0x69 */,
-+	HAL_MIMO_CONTROL_INFO                  = 106 /* 0x6a */,
-+	HAL_RX_LOCATION_INFO                   = 107 /* 0x6b */,
-+	HAL_COEX_TX_REQ                        = 108 /* 0x6c */,
-+	HAL_DUMMY                              = 109 /* 0x6d */,
-+	HAL_RX_TIMING_OFFSET_INFO              = 110 /* 0x6e */,
-+	HAL_EXAMPLE_TLV_32_NAME                = 111 /* 0x6f */,
-+	HAL_MPDU_LIMIT                         = 112 /* 0x70 */,
-+	HAL_NA_LENGTH_END                      = 113 /* 0x71 */,
-+	HAL_OLE_BUF_STATUS                     = 114 /* 0x72 */,
-+	HAL_PCU_PPDU_SETUP_DONE                = 115 /* 0x73 */,
-+	HAL_PCU_PPDU_SETUP_END                 = 116 /* 0x74 */,
-+	HAL_PCU_PPDU_SETUP_INIT                = 117 /* 0x75 */,
-+	HAL_PCU_PPDU_SETUP_START               = 118 /* 0x76 */,
-+	HAL_PDG_FES_SETUP                      = 119 /* 0x77 */,
-+	HAL_PDG_RESPONSE                       = 120 /* 0x78 */,
-+	HAL_PDG_TX_REQ                         = 121 /* 0x79 */,
-+	HAL_SCH_WAIT_INSTR                     = 122 /* 0x7a */,
-+	HAL_SCHEDULER_TLV                      = 123 /* 0x7b */,
-+	HAL_TQM_FLOW_EMPTY_STATUS              = 124 /* 0x7c */,
-+	HAL_TQM_FLOW_NOT_EMPTY_STATUS          = 125 /* 0x7d */,
-+	HAL_TQM_GEN_MPDU_LENGTH_LIST           = 126 /* 0x7e */,
-+	HAL_TQM_GEN_MPDU_LENGTH_LIST_STATUS    = 127 /* 0x7f */,
-+	HAL_TQM_GEN_MPDUS                      = 128 /* 0x80 */,
-+	HAL_TQM_GEN_MPDUS_STATUS               = 129 /* 0x81 */,
-+	HAL_TQM_REMOVE_MPDU                    = 130 /* 0x82 */,
-+	HAL_TQM_REMOVE_MPDU_STATUS             = 131 /* 0x83 */,
-+	HAL_TQM_REMOVE_MSDU                    = 132 /* 0x84 */,
-+	HAL_TQM_REMOVE_MSDU_STATUS             = 133 /* 0x85 */,
-+	HAL_TQM_UPDATE_TX_MPDU_COUNT           = 134 /* 0x86 */,
-+	HAL_TQM_WRITE_CMD                      = 135 /* 0x87 */,
-+	HAL_OFDMA_TRIGGER_DETAILS              = 136 /* 0x88 */,
-+	HAL_TX_DATA                            = 137 /* 0x89 */,
-+	HAL_TX_FES_SETUP                       = 138 /* 0x8a */,
-+	HAL_RX_PACKET                          = 139 /* 0x8b */,
-+	HAL_EXPECTED_RESPONSE                  = 140 /* 0x8c */,
-+	HAL_TX_MPDU_END                        = 141 /* 0x8d */,
-+	HAL_TX_MPDU_START                      = 142 /* 0x8e */,
-+	HAL_TX_MSDU_END                        = 143 /* 0x8f */,
-+	HAL_TX_MSDU_START                      = 144 /* 0x90 */,
-+	HAL_TX_SW_MODE_SETUP                   = 145 /* 0x91 */,
-+	HAL_TXPCU_BUFFER_STATUS                = 146 /* 0x92 */,
-+	HAL_TXPCU_USER_BUFFER_STATUS           = 147 /* 0x93 */,
-+	HAL_DATA_TO_TIME_CONFIG                = 148 /* 0x94 */,
-+	HAL_EXAMPLE_USER_TLV_32                = 149 /* 0x95 */,
-+	HAL_MPDU_INFO                          = 150 /* 0x96 */,
-+	HAL_PDG_USER_SETUP                     = 151 /* 0x97 */,
-+	HAL_TX_11AH_SETUP                      = 152 /* 0x98 */,
-+	HAL_REO_UPDATE_RX_REO_QUEUE_STATUS     = 153 /* 0x99 */,
-+	HAL_TX_PEER_ENTRY                      = 154 /* 0x9a */,
-+	HAL_TX_RAW_OR_NATIVE_FRAME_SETUP       = 155 /* 0x9b */,
-+	HAL_EXAMPLE_STRUCT_NAME                = 156 /* 0x9c */,
-+	HAL_PCU_PPDU_SETUP_END_INFO            = 157 /* 0x9d */,
-+	HAL_PPDU_RATE_SETTING                  = 158 /* 0x9e */,
-+	HAL_PROT_RATE_SETTING                  = 159 /* 0x9f */,
-+	HAL_RX_MPDU_DETAILS                    = 160 /* 0xa0 */,
-+	HAL_EXAMPLE_USER_TLV_42                = 161 /* 0xa1 */,
-+	HAL_RX_MSDU_LINK                       = 162 /* 0xa2 */,
-+	HAL_RX_REO_QUEUE                       = 163 /* 0xa3 */,
-+	HAL_ADDR_SEARCH_ENTRY                  = 164 /* 0xa4 */,
-+	HAL_SCHEDULER_CMD                      = 165 /* 0xa5 */,
-+	HAL_TX_FLUSH                           = 166 /* 0xa6 */,
-+	HAL_TQM_ENTRANCE_RING                  = 167 /* 0xa7 */,
-+	HAL_TX_DATA_WORD                       = 168 /* 0xa8 */,
-+	HAL_TX_MPDU_DETAILS                    = 169 /* 0xa9 */,
-+	HAL_TX_MPDU_LINK                       = 170 /* 0xaa */,
-+	HAL_TX_MPDU_LINK_PTR                   = 171 /* 0xab */,
-+	HAL_TX_MPDU_QUEUE_HEAD                 = 172 /* 0xac */,
-+	HAL_TX_MPDU_QUEUE_EXT                  = 173 /* 0xad */,
-+	HAL_TX_MPDU_QUEUE_EXT_PTR              = 174 /* 0xae */,
-+	HAL_TX_MSDU_DETAILS                    = 175 /* 0xaf */,
-+	HAL_TX_MSDU_EXTENSION                  = 176 /* 0xb0 */,
-+	HAL_TX_MSDU_FLOW                       = 177 /* 0xb1 */,
-+	HAL_TX_MSDU_LINK                       = 178 /* 0xb2 */,
-+	HAL_TX_MSDU_LINK_ENTRY_PTR             = 179 /* 0xb3 */,
-+	HAL_RESPONSE_RATE_SETTING              = 180 /* 0xb4 */,
-+	HAL_TXPCU_BUFFER_BASICS                = 181 /* 0xb5 */,
-+	HAL_UNIFORM_DESCRIPTOR_HEADER          = 182 /* 0xb6 */,
-+	HAL_UNIFORM_TQM_CMD_HEADER             = 183 /* 0xb7 */,
-+	HAL_UNIFORM_TQM_STATUS_HEADER          = 184 /* 0xb8 */,
-+	HAL_USER_RATE_SETTING                  = 185 /* 0xb9 */,
-+	HAL_WBM_BUFFER_RING                    = 186 /* 0xba */,
-+	HAL_WBM_LINK_DESCRIPTOR_RING           = 187 /* 0xbb */,
-+	HAL_WBM_RELEASE_RING                   = 188 /* 0xbc */,
-+	HAL_TX_FLUSH_REQ                       = 189 /* 0xbd */,
-+	HAL_RX_MSDU_DETAILS                    = 190 /* 0xbe */,
-+	HAL_TQM_WRITE_CMD_STATUS               = 191 /* 0xbf */,
-+	HAL_TQM_GET_MPDU_QUEUE_STATS           = 192 /* 0xc0 */,
-+	HAL_TQM_GET_MSDU_FLOW_STATS            = 193 /* 0xc1 */,
-+	HAL_EXAMPLE_USER_CTLV_32               = 194 /* 0xc2 */,
-+	HAL_TX_FES_STATUS_START                = 195 /* 0xc3 */,
-+	HAL_TX_FES_STATUS_USER_PPDU            = 196 /* 0xc4 */,
-+	HAL_TX_FES_STATUS_USER_RESPONSE        = 197 /* 0xc5 */,
-+	HAL_TX_FES_STATUS_END                  = 198 /* 0xc6 */,
-+	HAL_RX_TRIG_INFO                       = 199 /* 0xc7 */,
-+	HAL_RXPCU_TX_SETUP_CLEAR               = 200 /* 0xc8 */,
-+	HAL_RX_FRAME_BITMAP_REQ                = 201 /* 0xc9 */,
-+	HAL_RX_FRAME_BITMAP_ACK                = 202 /* 0xca */,
-+	HAL_COEX_RX_STATUS                     = 203 /* 0xcb */,
-+	HAL_RX_START_PARAM                     = 204 /* 0xcc */,
-+	HAL_RX_PPDU_START                      = 205 /* 0xcd */,
-+	HAL_RX_PPDU_END                        = 206 /* 0xce */,
-+	HAL_RX_MPDU_START                      = 207 /* 0xcf */,
-+	HAL_RX_MPDU_END                        = 208 /* 0xd0 */,
-+	HAL_RX_MSDU_START                      = 209 /* 0xd1 */,
-+	HAL_RX_MSDU_END                        = 210 /* 0xd2 */,
-+	HAL_RX_ATTENTION                       = 211 /* 0xd3 */,
-+	HAL_RECEIVED_RESPONSE_INFO             = 212 /* 0xd4 */,
-+	HAL_RX_PHY_SLEEP                       = 213 /* 0xd5 */,
-+	HAL_RX_HEADER                          = 214 /* 0xd6 */,
-+	HAL_RX_PEER_ENTRY                      = 215 /* 0xd7 */,
-+	HAL_RX_FLUSH                           = 216 /* 0xd8 */,
-+	HAL_RX_RESPONSE_REQUIRED_INFO          = 217 /* 0xd9 */,
-+	HAL_RX_FRAMELESS_BAR_DETAILS           = 218 /* 0xda */,
-+	HAL_TQM_GET_MPDU_QUEUE_STATS_STATUS    = 219 /* 0xdb */,
-+	HAL_TQM_GET_MSDU_FLOW_STATS_STATUS     = 220 /* 0xdc */,
-+	HAL_TX_CBF_INFO                        = 221 /* 0xdd */,
-+	HAL_PCU_PPDU_SETUP_USER                = 222 /* 0xde */,
-+	HAL_RX_MPDU_PCU_START                  = 223 /* 0xdf */,
-+	HAL_RX_PM_INFO                         = 224 /* 0xe0 */,
-+	HAL_RX_USER_PPDU_END                   = 225 /* 0xe1 */,
-+	HAL_RX_PRE_PPDU_START                  = 226 /* 0xe2 */,
-+	HAL_RX_PREAMBLE                        = 227 /* 0xe3 */,
-+	HAL_TX_FES_SETUP_COMPLETE              = 228 /* 0xe4 */,
-+	HAL_TX_LAST_MPDU_FETCHED               = 229 /* 0xe5 */,
-+	HAL_TXDMA_STOP_REQUEST                 = 230 /* 0xe6 */,
-+	HAL_RXPCU_SETUP                        = 231 /* 0xe7 */,
-+	HAL_RXPCU_USER_SETUP                   = 232 /* 0xe8 */,
-+	HAL_TX_FES_STATUS_ACK_OR_BA            = 233 /* 0xe9 */,
-+	HAL_TQM_ACKED_MPDU                     = 234 /* 0xea */,
-+	HAL_COEX_TX_RESP                       = 235 /* 0xeb */,
-+	HAL_COEX_TX_STATUS                     = 236 /* 0xec */,
-+	HAL_MACTX_COEX_PHY_CTRL                = 237 /* 0xed */,
-+	HAL_COEX_STATUS_BROADCAST              = 238 /* 0xee */,
-+	HAL_RESPONSE_START_STATUS              = 239 /* 0xef */,
-+	HAL_RESPONSE_END_STATUS                = 240 /* 0xf0 */,
-+	HAL_CRYPTO_STATUS                      = 241 /* 0xf1 */,
-+	HAL_RECEIVED_TRIGGER_INFO              = 242 /* 0xf2 */,
-+	HAL_REO_ENTRANCE_RING                  = 243 /* 0xf3 */,
-+	HAL_RX_MPDU_LINK                       = 244 /* 0xf4 */,
-+	HAL_COEX_TX_STOP_CTRL                  = 245 /* 0xf5 */,
-+	HAL_RX_PPDU_ACK_REPORT                 = 246 /* 0xf6 */,
-+	HAL_RX_PPDU_NO_ACK_REPORT              = 247 /* 0xf7 */,
-+	HAL_SCH_COEX_STATUS                    = 248 /* 0xf8 */,
-+	HAL_SCHEDULER_COMMAND_STATUS           = 249 /* 0xf9 */,
-+	HAL_SCHEDULER_RX_PPDU_NO_RESPONSE_STATUS = 250 /* 0xfa */,
-+	HAL_TX_FES_STATUS_PROT                 = 251 /* 0xfb */,
-+	HAL_TX_FES_STATUS_START_PPDU           = 252 /* 0xfc */,
-+	HAL_TX_FES_STATUS_START_PROT           = 253 /* 0xfd */,
-+	HAL_TXPCU_PHYTX_DEBUG32                = 254 /* 0xfe */,
-+	HAL_TXPCU_PHYTX_OTHER_TRANSMIT_INFO32  = 255 /* 0xff */,
-+	HAL_TX_MPDU_COUNT_TRANSFER_END         = 256 /* 0x100 */,
-+	HAL_WHO_ANCHOR_OFFSET                  = 257 /* 0x101 */,
-+	HAL_WHO_ANCHOR_VALUE                   = 258 /* 0x102 */,
-+	HAL_WHO_CCE_INFO                       = 259 /* 0x103 */,
-+	HAL_WHO_COMMIT                         = 260 /* 0x104 */,
-+	HAL_WHO_COMMIT_DONE                    = 261 /* 0x105 */,
-+	HAL_WHO_FLUSH                          = 262 /* 0x106 */,
-+	HAL_WHO_L2_LLC                         = 263 /* 0x107 */,
-+	HAL_WHO_L2_PAYLOAD                     = 264 /* 0x108 */,
-+	HAL_WHO_L3_CHECKSUM                    = 265 /* 0x109 */,
-+	HAL_WHO_L3_INFO                        = 266 /* 0x10a */,
-+	HAL_WHO_L4_CHECKSUM                    = 267 /* 0x10b */,
-+	HAL_WHO_L4_INFO                        = 268 /* 0x10c */,
-+	HAL_WHO_MSDU                           = 269 /* 0x10d */,
-+	HAL_WHO_MSDU_MISC                      = 270 /* 0x10e */,
-+	HAL_WHO_PACKET_DATA                    = 271 /* 0x10f */,
-+	HAL_WHO_PACKET_HDR                     = 272 /* 0x110 */,
-+	HAL_WHO_PPDU_END                       = 273 /* 0x111 */,
-+	HAL_WHO_PPDU_START                     = 274 /* 0x112 */,
-+	HAL_WHO_TSO                            = 275 /* 0x113 */,
-+	HAL_WHO_WMAC_HEADER_PV0                = 276 /* 0x114 */,
-+	HAL_WHO_WMAC_HEADER_PV1                = 277 /* 0x115 */,
-+	HAL_WHO_WMAC_IV                        = 278 /* 0x116 */,
-+	HAL_MPDU_INFO_END                      = 279 /* 0x117 */,
-+	HAL_MPDU_INFO_BITMAP                   = 280 /* 0x118 */,
-+	HAL_TX_QUEUE_EXTENSION                 = 281 /* 0x119 */,
-+	HAL_RX_PEER_ENTRY_DETAILS              = 282 /* 0x11a */,
-+	HAL_RX_REO_QUEUE_REFERENCE             = 283 /* 0x11b */,
-+	HAL_RX_REO_QUEUE_EXT                   = 284 /* 0x11c */,
-+	HAL_SCHEDULER_SELFGEN_RESPONSE_STATUS  = 285 /* 0x11d */,
-+	HAL_TQM_UPDATE_TX_MPDU_COUNT_STATUS    = 286 /* 0x11e */,
-+	HAL_TQM_ACKED_MPDU_STATUS              = 287 /* 0x11f */,
-+	HAL_TQM_ADD_MSDU_STATUS                = 288 /* 0x120 */,
-+	HAL_RX_MPDU_LINK_PTR                   = 289 /* 0x121 */,
-+	HAL_REO_DESTINATION_RING               = 290 /* 0x122 */,
-+	HAL_TQM_LIST_GEN_DONE                  = 291 /* 0x123 */,
-+	HAL_WHO_TERMINATE                      = 292 /* 0x124 */,
-+	HAL_TX_LAST_MPDU_END                   = 293 /* 0x125 */,
-+	HAL_TX_CV_DATA                         = 294 /* 0x126 */,
-+	HAL_TCL_ENTRANCE_FROM_PPE_RING         = 295 /* 0x127 */,
-+	HAL_PPDU_TX_END                        = 296 /* 0x128 */,
-+	HAL_PROT_TX_END                        = 297 /* 0x129 */,
-+	HAL_PDG_RESPONSE_RATE_SETTING          = 298 /* 0x12a */,
-+	HAL_MPDU_INFO_GLOBAL_END               = 299 /* 0x12b */,
-+	HAL_TQM_SCH_INSTR_GLOBAL_END           = 300 /* 0x12c */,
-+	HAL_RX_PPDU_END_USER_STATS             = 301 /* 0x12d */,
-+	HAL_RX_PPDU_END_USER_STATS_EXT         = 302 /* 0x12e */,
-+	HAL_NO_ACK_REPORT                      = 303 /* 0x12f */,
-+	HAL_ACK_REPORT                         = 304 /* 0x130 */,
-+	HAL_UNIFORM_REO_CMD_HEADER             = 305 /* 0x131 */,
-+	HAL_REO_GET_QUEUE_STATS                = 306 /* 0x132 */,
-+	HAL_REO_FLUSH_QUEUE                    = 307 /* 0x133 */,
-+	HAL_REO_FLUSH_CACHE                    = 308 /* 0x134 */,
-+	HAL_REO_UNBLOCK_CACHE                  = 309 /* 0x135 */,
-+	HAL_UNIFORM_REO_STATUS_HEADER          = 310 /* 0x136 */,
-+	HAL_REO_GET_QUEUE_STATS_STATUS         = 311 /* 0x137 */,
-+	HAL_REO_FLUSH_QUEUE_STATUS             = 312 /* 0x138 */,
-+	HAL_REO_FLUSH_CACHE_STATUS             = 313 /* 0x139 */,
-+	HAL_REO_UNBLOCK_CACHE_STATUS           = 314 /* 0x13a */,
-+	HAL_TQM_FLUSH_CACHE                    = 315 /* 0x13b */,
-+	HAL_TQM_UNBLOCK_CACHE                  = 316 /* 0x13c */,
-+	HAL_TQM_FLUSH_CACHE_STATUS             = 317 /* 0x13d */,
-+	HAL_TQM_UNBLOCK_CACHE_STATUS           = 318 /* 0x13e */,
-+	HAL_RX_PPDU_END_STATUS_DONE            = 319 /* 0x13f */,
-+	HAL_RX_STATUS_BUFFER_DONE              = 320 /* 0x140 */,
-+	HAL_BUFFER_ADDR_INFO                   = 321 /* 0x141 */,
-+	HAL_RX_MSDU_DESC_INFO                  = 322 /* 0x142 */,
-+	HAL_RX_MPDU_DESC_INFO                  = 323 /* 0x143 */,
-+	HAL_TCL_DATA_CMD                       = 324 /* 0x144 */,
-+	HAL_TCL_GSE_CMD                        = 325 /* 0x145 */,
-+	HAL_TCL_EXIT_BASE                      = 326 /* 0x146 */,
-+	HAL_TCL_COMPACT_EXIT_RING              = 327 /* 0x147 */,
-+	HAL_TCL_REGULAR_EXIT_RING              = 328 /* 0x148 */,
-+	HAL_TCL_EXTENDED_EXIT_RING             = 329 /* 0x149 */,
-+	HAL_UPLINK_COMMON_INFO                 = 330 /* 0x14a */,
-+	HAL_UPLINK_USER_SETUP_INFO             = 331 /* 0x14b */,
-+	HAL_TX_DATA_SYNC                       = 332 /* 0x14c */,
-+	HAL_PHYRX_CBF_READ_REQUEST_ACK         = 333 /* 0x14d */,
-+	HAL_TCL_STATUS_RING                    = 334 /* 0x14e */,
-+	HAL_TQM_GET_MPDU_HEAD_INFO             = 335 /* 0x14f */,
-+	HAL_TQM_SYNC_CMD                       = 336 /* 0x150 */,
-+	HAL_TQM_GET_MPDU_HEAD_INFO_STATUS      = 337 /* 0x151 */,
-+	HAL_TQM_SYNC_CMD_STATUS                = 338 /* 0x152 */,
-+	HAL_TQM_THRESHOLD_DROP_NOTIFICATION_STATUS = 339 /* 0x153 */,
-+	HAL_TQM_DESCRIPTOR_THRESHOLD_REACHED_STATUS = 340 /* 0x154 */,
-+	HAL_REO_FLUSH_TIMEOUT_LIST             = 341 /* 0x155 */,
-+	HAL_REO_FLUSH_TIMEOUT_LIST_STATUS      = 342 /* 0x156 */,
-+	HAL_REO_TO_PPE_RING                    = 343 /* 0x157 */,
-+	HAL_RX_MPDU_INFO                       = 344 /* 0x158 */,
-+	HAL_REO_DESCRIPTOR_THRESHOLD_REACHED_STATUS = 345 /* 0x159 */,
-+	HAL_SCHEDULER_RX_SIFS_RESPONSE_TRIGGER_STATUS = 346 /* 0x15a */,
-+	HAL_EXAMPLE_USER_TLV_32_NAME           = 347 /* 0x15b */,
-+	HAL_RX_PPDU_START_USER_INFO            = 348 /* 0x15c */,
-+	HAL_RX_RXPCU_CLASSIFICATION_OVERVIEW   = 349 /* 0x15d */,
-+	HAL_RX_RING_MASK                       = 350 /* 0x15e */,
-+	HAL_WHO_CLASSIFY_INFO                  = 351 /* 0x15f */,
-+	HAL_TXPT_CLASSIFY_INFO                 = 352 /* 0x160 */,
-+	HAL_RXPT_CLASSIFY_INFO                 = 353 /* 0x161 */,
-+	HAL_TX_FLOW_SEARCH_ENTRY               = 354 /* 0x162 */,
-+	HAL_RX_FLOW_SEARCH_ENTRY               = 355 /* 0x163 */,
-+	HAL_RECEIVED_TRIGGER_INFO_DETAILS      = 356 /* 0x164 */,
-+	HAL_COEX_MAC_NAP                       = 357 /* 0x165 */,
-+	HAL_MACRX_ABORT_REQUEST_INFO           = 358 /* 0x166 */,
-+	HAL_MACTX_ABORT_REQUEST_INFO           = 359 /* 0x167 */,
-+	HAL_PHYRX_ABORT_REQUEST_INFO           = 360 /* 0x168 */,
-+	HAL_PHYTX_ABORT_REQUEST_INFO           = 361 /* 0x169 */,
-+	HAL_RXPCU_PPDU_END_INFO                = 362 /* 0x16a */,
-+	HAL_WHO_MESH_CONTROL                   = 363 /* 0x16b */,
-+	HAL_L_SIG_A_INFO                       = 364 /* 0x16c */,
-+	HAL_L_SIG_B_INFO                       = 365 /* 0x16d */,
-+	HAL_HT_SIG_INFO                        = 366 /* 0x16e */,
-+	HAL_VHT_SIG_A_INFO                     = 367 /* 0x16f */,
-+	HAL_VHT_SIG_B_SU20_INFO                = 368 /* 0x170 */,
-+	HAL_VHT_SIG_B_SU40_INFO                = 369 /* 0x171 */,
-+	HAL_VHT_SIG_B_SU80_INFO                = 370 /* 0x172 */,
-+	HAL_VHT_SIG_B_SU160_INFO               = 371 /* 0x173 */,
-+	HAL_VHT_SIG_B_MU20_INFO                = 372 /* 0x174 */,
-+	HAL_VHT_SIG_B_MU40_INFO                = 373 /* 0x175 */,
-+	HAL_VHT_SIG_B_MU80_INFO                = 374 /* 0x176 */,
-+	HAL_VHT_SIG_B_MU160_INFO               = 375 /* 0x177 */,
-+	HAL_SERVICE_INFO                       = 376 /* 0x178 */,
-+	HAL_HE_SIG_A_SU_INFO                   = 377 /* 0x179 */,
-+	HAL_HE_SIG_A_MU_DL_INFO                = 378 /* 0x17a */,
-+	HAL_HE_SIG_A_MU_UL_INFO                = 379 /* 0x17b */,
-+	HAL_HE_SIG_B1_MU_INFO                  = 380 /* 0x17c */,
-+	HAL_HE_SIG_B2_MU_INFO                  = 381 /* 0x17d */,
-+	HAL_HE_SIG_B2_OFDMA_INFO               = 382 /* 0x17e */,
-+	HAL_PDG_SW_MODE_BW_START               = 383 /* 0x17f */,
-+	HAL_PDG_SW_MODE_BW_END                 = 384 /* 0x180 */,
-+	HAL_PDG_WAIT_FOR_MAC_REQUEST           = 385 /* 0x181 */,
-+	HAL_PDG_WAIT_FOR_PHY_REQUEST           = 386 /* 0x182 */,
-+	HAL_SCHEDULER_END                      = 387 /* 0x183 */,
-+	HAL_PEER_TABLE_ENTRY                   = 388 /* 0x184 */,
-+	HAL_SW_PEER_INFO                       = 389 /* 0x185 */,
-+	HAL_RXOLE_CCE_CLASSIFY_INFO            = 390 /* 0x186 */,
-+	HAL_TCL_CCE_CLASSIFY_INFO              = 391 /* 0x187 */,
-+	HAL_RXOLE_CCE_INFO                     = 392 /* 0x188 */,
-+	HAL_TCL_CCE_INFO                       = 393 /* 0x189 */,
-+	HAL_TCL_CCE_SUPERRULE                  = 394 /* 0x18a */,
-+	HAL_CCE_RULE                           = 395 /* 0x18b */,
-+	HAL_RX_PPDU_START_DROPPED              = 396 /* 0x18c */,
-+	HAL_RX_PPDU_END_DROPPED                = 397 /* 0x18d */,
-+	HAL_RX_PPDU_END_STATUS_DONE_DROPPED    = 398 /* 0x18e */,
-+	HAL_RX_MPDU_START_DROPPED              = 399 /* 0x18f */,
-+	HAL_RX_MSDU_START_DROPPED              = 400 /* 0x190 */,
-+	HAL_RX_MSDU_END_DROPPED                = 401 /* 0x191 */,
-+	HAL_RX_MPDU_END_DROPPED                = 402 /* 0x192 */,
-+	HAL_RX_ATTENTION_DROPPED               = 403 /* 0x193 */,
-+	HAL_TXPCU_USER_SETUP                   = 404 /* 0x194 */,
-+	HAL_RXPCU_USER_SETUP_EXT               = 405 /* 0x195 */,
-+	HAL_CE_SRC_DESC                        = 406 /* 0x196 */,
-+	HAL_CE_STAT_DESC                       = 407 /* 0x197 */,
-+	HAL_RXOLE_CCE_SUPERRULE                = 408 /* 0x198 */,
-+	HAL_TX_RATE_STATS_INFO                 = 409 /* 0x199 */,
-+	HAL_CMD_PART_0_END                     = 410 /* 0x19a */,
-+	HAL_MACTX_SYNTH_ON                     = 411 /* 0x19b */,
-+	HAL_SCH_CRITICAL_TLV_REFERENCE         = 412 /* 0x19c */,
-+	HAL_TQM_MPDU_GLOBAL_START              = 413 /* 0x19d */,
-+	HAL_EXAMPLE_TLV_32                     = 414 /* 0x19e */,
-+	HAL_TQM_UPDATE_TX_MSDU_FLOW            = 415 /* 0x19f */,
-+	HAL_TQM_UPDATE_TX_MPDU_QUEUE_HEAD      = 416 /* 0x1a0 */,
-+	HAL_TQM_UPDATE_TX_MSDU_FLOW_STATUS     = 417 /* 0x1a1 */,
-+	HAL_TQM_UPDATE_TX_MPDU_QUEUE_HEAD_STATUS = 418 /* 0x1a2 */,
-+	HAL_REO_UPDATE_RX_REO_QUEUE            = 419 /* 0x1a3 */,
-+	HAL_CE_DST_DESC			       = 420 /* 0x1a4 */,
-+	HAL_TLV_BASE                           = 511 /* 0x1ff */,
++static const struct ieee80211_channel ath11k_2ghz_channels[] = {
++	CHAN2G(1, 2412, 0),
++	CHAN2G(2, 2417, 0),
++	CHAN2G(3, 2422, 0),
++	CHAN2G(4, 2427, 0),
++	CHAN2G(5, 2432, 0),
++	CHAN2G(6, 2437, 0),
++	CHAN2G(7, 2442, 0),
++	CHAN2G(8, 2447, 0),
++	CHAN2G(9, 2452, 0),
++	CHAN2G(10, 2457, 0),
++	CHAN2G(11, 2462, 0),
++	CHAN2G(12, 2467, 0),
++	CHAN2G(13, 2472, 0),
++	CHAN2G(14, 2484, 0),
 +};
 +
-+#define HAL_TLV_HDR_TAG		GENMASK(9, 1)
-+#define HAL_TLV_HDR_LEN		GENMASK(25, 10)
-+
-+#define HAL_TLV_ALIGN	4
-+
-+struct hal_tlv_hdr {
-+	u32 tl;
-+	u8 value[0];
-+} __packed;
-+
-+#define RX_MPDU_DESC_INFO0_MSDU_COUNT		GENMASK(7, 0)
-+#define RX_MPDU_DESC_INFO0_SEQ_NUM		GENMASK(19, 8)
-+#define RX_MPDU_DESC_INFO0_FRAG_FLAG		BIT(20)
-+#define RX_MPDU_DESC_INFO0_MPDU_RETRY		BIT(21)
-+#define RX_MPDU_DESC_INFO0_AMPDU_FLAG		BIT(22)
-+#define RX_MPDU_DESC_INFO0_BAR_FRAME		BIT(23)
-+#define RX_MPDU_DESC_INFO0_VALID_PN		BIT(24)
-+#define RX_MPDU_DESC_INFO0_VALID_SA		BIT(25)
-+#define RX_MPDU_DESC_INFO0_SA_IDX_TIMEOUT	BIT(26)
-+#define RX_MPDU_DESC_INFO0_VALID_DA		BIT(27)
-+#define RX_MPDU_DESC_INFO0_DA_MCBC		BIT(28)
-+#define RX_MPDU_DESC_INFO0_DA_IDX_TIMEOUT	BIT(29)
-+#define RX_MPDU_DESC_INFO0_RAW_MPDU		BIT(30)
-+
-+struct rx_mpdu_desc {
-+	u32 info0; /* %RX_MPDU_DESC_INFO */
-+	u32 meta_data;
-+} __packed;
-+
-+/* rx_mpdu_desc
-+ *		Producer: RXDMA
-+ *		Consumer: REO/SW/FW
-+ *
-+ * msdu_count
-+ *		The number of MSDUs within the MPDU
-+ *
-+ * mpdu_sequence_number
-+ *		The field can have two different meanings based on the setting
-+ *		of field 'bar_frame'. If 'bar_frame' is set, it means the MPDU
-+ *		start sequence number from the BAR frame otherwise it means
-+ *		the MPDU sequence number of the received frame.
-+ *
-+ * fragment_flag
-+ *		When set, this MPDU is a fragment and REO should forward this
-+ *		fragment MPDU to the REO destination ring without any reorder
-+ *		checks, pn checks or bitmap update. This implies that REO is
-+ *		forwarding the pointer to the MSDU link descriptor.
-+ *
-+ * mpdu_retry_bit
-+ *		The retry bit setting from the MPDU header of the received frame
-+ *
-+ * ampdu_flag
-+ *		Indicates the MPDU was received as part of an A-MPDU.
-+ *
-+ * bar_frame
-+ *		Indicates the received frame is a BAR frame. After processing,
-+ *		this frame shall be pushed to SW or deleted.
-+ *
-+ * valid_pn
-+ *		When not set, REO will not perform a PN sequence number check.
-+ *
-+ * valid_sa
-+ *		Indicates OLE found a valid SA entry for all MSDUs in this MPDU.
-+ *
-+ * sa_idx_timeout
-+ *		Indicates, at least 1 MSDU within the MPDU has an unsuccessful
-+ *		MAC source address search due to the expiration of search timer.
-+ *
-+ * valid_da
-+ *		When set, OLE found a valid DA entry for all MSDUs in this MPDU.
-+ *
-+ * da_mcbc
-+ *		Field Only valid if valid_da is set. Indicates at least one of
-+ *		the DA addresses is a Multicast or Broadcast address.
-+ *
-+ * da_idx_timeout
-+ *		Indicates, at least 1 MSDU within the MPDU has an unsuccessful
-+ *		MAC destination address search due to the expiration of search
-+ *		timer.
-+ *
-+ * raw_mpdu
-+ *		Field only valid when first_msdu_in_mpdu_flag is set. Indicates
-+ *		the contents in the MSDU buffer contains a 'RAW' MPDU.
-+ */
-+
-+enum hal_rx_msdu_desc_reo_dest_ind {
-+	HAL_RX_MSDU_DESC_REO_DEST_IND_TCL,
-+	HAL_RX_MSDU_DESC_REO_DEST_IND_SW1,
-+	HAL_RX_MSDU_DESC_REO_DEST_IND_SW2,
-+	HAL_RX_MSDU_DESC_REO_DEST_IND_SW3,
-+	HAL_RX_MSDU_DESC_REO_DEST_IND_SW4,
-+	HAL_RX_MSDU_DESC_REO_DEST_IND_RELEASE,
-+	HAL_RX_MSDU_DESC_REO_DEST_IND_FW,
++static const struct ieee80211_channel ath11k_5ghz_channels[] = {
++	CHAN5G(36, 5180, 0),
++	CHAN5G(40, 5200, 0),
++	CHAN5G(44, 5220, 0),
++	CHAN5G(48, 5240, 0),
++	CHAN5G(52, 5260, 0),
++	CHAN5G(56, 5280, 0),
++	CHAN5G(60, 5300, 0),
++	CHAN5G(64, 5320, 0),
++	CHAN5G(100, 5500, 0),
++	CHAN5G(104, 5520, 0),
++	CHAN5G(108, 5540, 0),
++	CHAN5G(112, 5560, 0),
++	CHAN5G(116, 5580, 0),
++	CHAN5G(120, 5600, 0),
++	CHAN5G(124, 5620, 0),
++	CHAN5G(128, 5640, 0),
++	CHAN5G(132, 5660, 0),
++	CHAN5G(136, 5680, 0),
++	CHAN5G(140, 5700, 0),
++	CHAN5G(144, 5720, 0),
++	CHAN5G(149, 5745, 0),
++	CHAN5G(153, 5765, 0),
++	CHAN5G(157, 5785, 0),
++	CHAN5G(161, 5805, 0),
++	CHAN5G(165, 5825, 0),
++	CHAN5G(169, 5845, 0),
++	CHAN5G(173, 5865, 0),
 +};
 +
-+#define RX_MSDU_DESC_INFO0_FIRST_MSDU_IN_MPDU	BIT(0)
-+#define RX_MSDU_DESC_INFO0_LAST_MSDU_IN_MPDU	BIT(1)
-+#define RX_MSDU_DESC_INFO0_MSDU_CONTINUATION	BIT(2)
-+#define RX_MSDU_DESC_INFO0_MSDU_LENGTH		GENMASK(16, 3)
-+#define RX_MSDU_DESC_INFO0_REO_DEST_IND		GENMASK(21, 17)
-+#define RX_MSDU_DESC_INFO0_MSDU_DROP		BIT(22)
-+#define RX_MSDU_DESC_INFO0_VALID_SA		BIT(23)
-+#define RX_MSDU_DESC_INFO0_SA_IDX_TIMEOUT	BIT(24)
-+#define RX_MSDU_DESC_INFO0_VALID_DA		BIT(25)
-+#define RX_MSDU_DESC_INFO0_DA_MCBC		BIT(26)
-+#define RX_MSDU_DESC_INFO0_DA_IDX_TIMEOUT	BIT(27)
++static struct ieee80211_rate ath11k_legacy_rates[] = {
++	{ .bitrate = 10,
++	  .hw_value = ATH11K_HW_RATE_CCK_LP_1M },
++	{ .bitrate = 20,
++	  .hw_value = ATH11K_HW_RATE_CCK_LP_2M,
++	  .hw_value_short = ATH11K_HW_RATE_CCK_SP_2M,
++	  .flags = IEEE80211_RATE_SHORT_PREAMBLE },
++	{ .bitrate = 55,
++	  .hw_value = ATH11K_HW_RATE_CCK_LP_5_5M,
++	  .hw_value_short = ATH11K_HW_RATE_CCK_SP_5_5M,
++	  .flags = IEEE80211_RATE_SHORT_PREAMBLE },
++	{ .bitrate = 110,
++	  .hw_value = ATH11K_HW_RATE_CCK_LP_11M,
++	  .hw_value_short = ATH11K_HW_RATE_CCK_SP_11M,
++	  .flags = IEEE80211_RATE_SHORT_PREAMBLE },
 +
-+#define HAL_RX_MSDU_PKT_LENGTH_GET(val)		\
-+	(FIELD_GET(RX_MSDU_DESC_INFO0_MSDU_LENGTH, (val)))
-+
-+struct rx_msdu_desc {
-+	u32 info0;
-+	u32 rsvd0;
-+} __packed;
-+
-+/* rx_msdu_desc
-+ *
-+ * first_msdu_in_mpdu
-+ *		Indicates first msdu in mpdu.
-+ *
-+ * last_msdu_in_mpdu
-+ *		Indicates last msdu in mpdu. This flag can be true only when
-+ *		'Msdu_continuation' set to 0. This implies that when an msdu
-+ *		is spread out over multiple buffers and thus msdu_continuation
-+ *		is set, only for the very last buffer of the msdu, can the
-+ *		'last_msdu_in_mpdu' be set.
-+ *
-+ *		When both first_msdu_in_mpdu and last_msdu_in_mpdu are set,
-+ *		the MPDU that this MSDU belongs to only contains a single MSDU.
-+ *
-+ * msdu_continuation
-+ *		When set, this MSDU buffer was not able to hold the entire MSDU.
-+ *		The next buffer will therefor contain additional information
-+ *		related to this MSDU.
-+ *
-+ * msdu_length
-+ *		Field is only valid in combination with the 'first_msdu_in_mpdu'
-+ *		being set. Full MSDU length in bytes after decapsulation. This
-+ *		field is still valid for MPDU frames without A-MSDU. It still
-+ *		represents MSDU length after decapsulation Or in case of RAW
-+ *		MPDUs, it indicates the length of the entire MPDU (without FCS
-+ *		field).
-+ *
-+ * reo_destination_indication
-+ *		The id of the reo exit ring where the msdu frame shall push
-+ *		after (MPDU level) reordering has finished. Values are defined
-+ *		in enum %HAL_RX_MSDU_DESC_REO_DEST_IND_.
-+ *
-+ * msdu_drop
-+ *		Indicates that REO shall drop this MSDU and not forward it to
-+ *		any other ring.
-+ *
-+ * valid_sa
-+ *		Indicates OLE found a valid SA entry for this MSDU.
-+ *
-+ * sa_idx_timeout
-+ *		Indicates, an unsuccessful MAC source address search due to
-+ *		the expiration of search timer for this MSDU.
-+ *
-+ * valid_da
-+ *		When set, OLE found a valid DA entry for this MSDU.
-+ *
-+ * da_mcbc
-+ *		Field Only valid if valid_da is set. Indicates the DA address
-+ *		is a Multicast or Broadcast address for this MSDU.
-+ *
-+ * da_idx_timeout
-+ *		Indicates, an unsuccessful MAC destination address search due
-+ *		to the expiration of search timer fot this MSDU.
-+ */
-+
-+enum hal_reo_dest_ring_buffer_type {
-+	HAL_REO_DEST_RING_BUFFER_TYPE_MSDU,
-+	HAL_REO_DEST_RING_BUFFER_TYPE_LINK_DESC,
++	{ .bitrate = 60, .hw_value = ATH11K_HW_RATE_OFDM_6M },
++	{ .bitrate = 90, .hw_value = ATH11K_HW_RATE_OFDM_9M },
++	{ .bitrate = 120, .hw_value = ATH11K_HW_RATE_OFDM_12M },
++	{ .bitrate = 180, .hw_value = ATH11K_HW_RATE_OFDM_18M },
++	{ .bitrate = 240, .hw_value = ATH11K_HW_RATE_OFDM_24M },
++	{ .bitrate = 360, .hw_value = ATH11K_HW_RATE_OFDM_36M },
++	{ .bitrate = 480, .hw_value = ATH11K_HW_RATE_OFDM_48M },
++	{ .bitrate = 540, .hw_value = ATH11K_HW_RATE_OFDM_54M },
 +};
 +
-+enum hal_reo_dest_ring_push_reason {
-+	HAL_REO_DEST_RING_PUSH_REASON_ERR_DETECTED,
-+	HAL_REO_DEST_RING_PUSH_REASON_ROUTING_INSTRUCTION,
++static const int
++ath11k_phymodes[NUM_NL80211_BANDS][ATH11K_CHAN_WIDTH_NUM] = {
++	[NL80211_BAND_2GHZ] = {
++			[NL80211_CHAN_WIDTH_5] = MODE_UNKNOWN,
++			[NL80211_CHAN_WIDTH_10] = MODE_UNKNOWN,
++			[NL80211_CHAN_WIDTH_20_NOHT] = MODE_11AX_HE20_2G,
++			[NL80211_CHAN_WIDTH_20] = MODE_11AX_HE20_2G,
++			[NL80211_CHAN_WIDTH_40] = MODE_11AX_HE40_2G,
++			[NL80211_CHAN_WIDTH_80] = MODE_11AX_HE80_2G,
++			[NL80211_CHAN_WIDTH_80P80] = MODE_UNKNOWN,
++			[NL80211_CHAN_WIDTH_160] = MODE_UNKNOWN,
++	},
++	[NL80211_BAND_5GHZ] = {
++			[NL80211_CHAN_WIDTH_5] = MODE_UNKNOWN,
++			[NL80211_CHAN_WIDTH_10] = MODE_UNKNOWN,
++			[NL80211_CHAN_WIDTH_20_NOHT] = MODE_11AX_HE20,
++			[NL80211_CHAN_WIDTH_20] = MODE_11AX_HE20,
++			[NL80211_CHAN_WIDTH_40] = MODE_11AX_HE40,
++			[NL80211_CHAN_WIDTH_80] = MODE_11AX_HE80,
++			[NL80211_CHAN_WIDTH_160] = MODE_11AX_HE160,
++			[NL80211_CHAN_WIDTH_80P80] = MODE_11AX_HE80_80,
++	},
 +};
 +
-+enum hal_reo_dest_ring_error_code {
-+	HAL_REO_DEST_RING_ERROR_CODE_DESC_ADDR_ZERO,
-+	HAL_REO_DEST_RING_ERROR_CODE_DESC_INVALID,
-+	HAL_REO_DEST_RING_ERROR_CODE_AMPDU_IN_NON_BA,
-+	HAL_REO_DEST_RING_ERROR_CODE_NON_BA_DUPLICATE,
-+	HAL_REO_DEST_RING_ERROR_CODE_BA_DUPLICATE,
-+	HAL_REO_DEST_RING_ERROR_CODE_FRAME_2K_JUMP,
-+	HAL_REO_DEST_RING_ERROR_CODE_BAR_2K_JUMP,
-+	HAL_REO_DEST_RING_ERROR_CODE_FRAME_OOR,
-+	HAL_REO_DEST_RING_ERROR_CODE_BAR_OOR,
-+	HAL_REO_DEST_RING_ERROR_CODE_NO_BA_SESSION,
-+	HAL_REO_DEST_RING_ERROR_CODE_FRAME_SN_EQUALS_SSN,
-+	HAL_REO_DEST_RING_ERROR_CODE_PN_CHECK_FAILED,
-+	HAL_REO_DEST_RING_ERROR_CODE_2K_ERR_FLAG_SET,
-+	HAL_REO_DEST_RING_ERROR_CODE_PN_ERR_FLAG_SET,
-+	HAL_REO_DEST_RING_ERROR_CODE_DESC_BLOCKED,
-+	HAL_REO_DEST_RING_ERROR_CODE_MAX,
++const struct htt_rx_ring_tlv_filter ath11k_mac_mon_status_filter_default = {
++	.rx_filter = HTT_RX_FILTER_TLV_FLAGS_MPDU_START |
++		     HTT_RX_FILTER_TLV_FLAGS_PPDU_END |
++		     HTT_RX_FILTER_TLV_FLAGS_PPDU_END_STATUS_DONE,
++	.pkt_filter_flags0 = HTT_RX_FP_MGMT_FILTER_FLAGS0,
++	.pkt_filter_flags1 = HTT_RX_FP_MGMT_FILTER_FLAGS1,
++	.pkt_filter_flags2 = HTT_RX_FP_CTRL_FILTER_FLASG2,
++	.pkt_filter_flags3 = HTT_RX_FP_DATA_FILTER_FLASG3 |
++			     HTT_RX_FP_CTRL_FILTER_FLASG3
 +};
 +
-+#define HAL_REO_DEST_RING_INFO0_QUEUE_ADDR_HI		GENMASK(7, 0)
-+#define HAL_REO_DEST_RING_INFO0_BUFFER_TYPE		BIT(8)
-+#define HAL_REO_DEST_RING_INFO0_PUSH_REASON		GENMASK(10, 9)
-+#define HAL_REO_DEST_RING_INFO0_ERROR_CODE		GENMASK(15, 11)
-+#define HAL_REO_DEST_RING_INFO0_RX_QUEUE_NUM		GENMASK(31, 16)
++#define ATH11K_MAC_FIRST_OFDM_RATE_IDX 4
++#define ath11k_g_rates ath11k_legacy_rates
++#define ath11k_g_rates_size (ARRAY_SIZE(ath11k_legacy_rates))
++#define ath11k_a_rates (ath11k_legacy_rates + 4)
++#define ath11k_a_rates_size (ARRAY_SIZE(ath11k_legacy_rates) - 4)
 +
-+#define HAL_REO_DEST_RING_INFO1_REORDER_INFO_VALID	BIT(0)
-+#define HAL_REO_DEST_RING_INFO1_REORDER_OPCODE		GENMASK(4, 1)
-+#define HAL_REO_DEST_RING_INFO1_REORDER_SLOT_IDX	GENMASK(12, 5)
++#define ATH11K_MAC_SCAN_TIMEOUT_MSECS 200 /* in msecs */
 +
-+#define HAL_REO_DEST_RING_INFO2_RING_ID			GENMASK(27, 20)
-+#define HAL_REO_DEST_RING_INFO2_LOOPING_COUNT		GENMASK(31, 28)
-+
-+struct hal_reo_dest_ring {
-+	struct ath11k_buffer_addr buf_addr_info;
-+	struct rx_mpdu_desc rx_mpdu_info;
-+	struct rx_msdu_desc rx_msdu_info;
-+	u32 queue_addr_lo;
-+	u32 info0; /* %HAL_REO_DEST_RING_INFO0_ */
-+	u32 info1; /* %HAL_REO_DEST_RING_INFO1_ */
-+	u32 rsvd0;
-+	u32 rsvd1;
-+	u32 rsvd2;
-+	u32 rsvd3;
-+	u32 rsvd4;
-+	u32 rsvd5;
-+	u32 info2; /* %HAL_REO_DEST_RING_INFO2_ */
-+} __packed;
-+
-+/* hal_reo_dest_ring
-+ *
-+ *		Producer: RXDMA
-+ *		Consumer: REO/SW/FW
-+ *
-+ * buf_addr_info
-+ *		Details of the physical address of a buffer or MSDU
-+ *		link descriptor.
-+ *
-+ * rx_mpdu_info
-+ *		General information related to the MPDU that is passed
-+ *		on from REO entrance ring to the REO destination ring.
-+ *
-+ * rx_msdu_info
-+ *		General information related to the MSDU that is passed
-+ *		on from RXDMA all the way to to the REO destination ring.
-+ *
-+ * queue_addr_lo
-+ *		Address (lower 32 bits) of the REO queue descriptor.
-+ *
-+ * queue_addr_hi
-+ *		Address (upper 8 bits) of the REO queue descriptor.
-+ *
-+ * buffer_type
-+ *		Indicates the type of address provided in the buf_addr_info.
-+ *		Values are defined in enum %HAL_REO_DEST_RING_BUFFER_TYPE_.
-+ *
-+ * push_reason
-+ *		Reason for pushing this frame to this exit ring. Values are
-+ *		defined in enum %HAL_REO_DEST_RING_PUSH_REASON_.
-+ *
-+ * error_code
-+ *		Valid only when 'push_reason' is set. All error codes are
-+ *		defined in enum %HAL_REO_DEST_RING_ERROR_CODE_.
-+ *
-+ * rx_queue_num
-+ *		Indicates the REO MPDU reorder queue id from which this frame
-+ *		originated.
-+ *
-+ * reorder_info_valid
-+ *		When set, REO has been instructed to not perform the actual
-+ *		re-ordering of frames for this queue, but just to insert
-+ *		the reorder opcodes.
-+ *
-+ * reorder_opcode
-+ *		Field is valid when 'reorder_info_valid' is set. This field is
-+ *		always valid for debug purpose as well.
-+ *
-+ * reorder_slot_idx
-+ *		Valid only when 'reorder_info_valid' is set.
-+ *
-+ * ring_id
-+ *		The buffer pointer ring id.
-+ *		0 - Idle ring
-+ *		1 - N refers to other rings.
-+ *
-+ * looping_count
-+ *		Indicates the number of times the producer of entries into
-+ *		this ring has looped around the ring.
-+ */
-+
-+enum hal_reo_entr_rxdma_ecode {
-+	HAL_REO_ENTR_RING_RXDMA_ECODE_OVERFLOW_ERR,
-+	HAL_REO_ENTR_RING_RXDMA_ECODE_MPDU_LEN_ERR,
-+	HAL_REO_ENTR_RING_RXDMA_ECODE_FCS_ERR,
-+	HAL_REO_ENTR_RING_RXDMA_ECODE_DECRYPT_ERR,
-+	HAL_REO_ENTR_RING_RXDMA_ECODE_TKIP_MIC_ERR,
-+	HAL_REO_ENTR_RING_RXDMA_ECODE_UNECRYPTED_ERR,
-+	HAL_REO_ENTR_RING_RXDMA_ECODE_MSDU_LEN_ERR,
-+	HAL_REO_ENTR_RING_RXDMA_ECODE_MSDU_LIMIT_ERR,
-+	HAL_REO_ENTR_RING_RXDMA_ECODE_WIFI_PARSE_ERR,
-+	HAL_REO_ENTR_RING_RXDMA_ECODE_AMSDU_PARSE_ERR,
-+	HAL_REO_ENTR_RING_RXDMA_ECODE_SA_TIMEOUT_ERR,
-+	HAL_REO_ENTR_RING_RXDMA_ECODE_DA_TIMEOUT_ERR,
-+	HAL_REO_ENTR_RING_RXDMA_ECODE_FLOW_TIMEOUT_ERR,
-+	HAL_REO_ENTR_RING_RXDMA_ECODE_FLUSH_REQUEST_ERR,
-+	HAL_REO_ENTR_RING_RXDMA_ECODE_MAX,
++static const u32 ath11k_smps_map[] = {
++	[WLAN_HT_CAP_SM_PS_STATIC] = WMI_PEER_SMPS_STATIC,
++	[WLAN_HT_CAP_SM_PS_DYNAMIC] = WMI_PEER_SMPS_DYNAMIC,
++	[WLAN_HT_CAP_SM_PS_INVALID] = WMI_PEER_SMPS_PS_NONE,
++	[WLAN_HT_CAP_SM_PS_DISABLED] = WMI_PEER_SMPS_PS_NONE,
 +};
 +
-+#define HAL_REO_ENTR_RING_INFO0_QUEUE_ADDR_HI		GENMASK(7, 0)
-+#define HAL_REO_ENTR_RING_INFO0_MPDU_BYTE_COUNT		GENMASK(21, 8)
-+#define HAL_REO_ENTR_RING_INFO0_DEST_IND		GENMASK(26, 22)
-+#define HAL_REO_ENTR_RING_INFO0_FRAMELESS_BAR		BIT(27)
++int ath11k_mac_hw_ratecode_to_legacy_rate(u8 hw_rc, u8 preamble, u8 *rateidx,
++					  u16 *rate)
++{
++	/* As default, it is OFDM rates */
++	int i = ATH11K_MAC_FIRST_OFDM_RATE_IDX;
++	int max_rates_idx = ath11k_g_rates_size;
 +
-+#define HAL_REO_ENTR_RING_INFO1_RXDMA_PUSH_REASON	GENMASK(1, 0)
-+#define HAL_REO_ENTR_RING_INFO1_RXDMA_ERROR_CODE	GENMASK(6, 2)
++	if (preamble == WMI_RATE_PREAMBLE_CCK) {
++		hw_rc &= ~ATH11k_HW_RATECODE_CCK_SHORT_PREAM_MASK;
++		i = 0;
++		max_rates_idx = ATH11K_MAC_FIRST_OFDM_RATE_IDX;
++	}
 +
-+struct hal_reo_entrance_ring {
-+	struct ath11k_buffer_addr buf_addr_info;
-+	struct rx_mpdu_desc rx_mpdu_info;
-+	u32 queue_addr_lo;
-+	u32 info0; /* %HAL_REO_ENTR_RING_INFO0_ */
-+	u32 info1; /* %HAL_REO_ENTR_RING_INFO1_ */
-+	u32 info2; /* %HAL_REO_DEST_RING_INFO2_ */
++	while (i < max_rates_idx) {
++		if (hw_rc == ath11k_legacy_rates[i].hw_value) {
++			*rateidx = i;
++			*rate = ath11k_legacy_rates[i].bitrate;
++			return 0;
++		}
++		i++;
++	}
 +
-+} __packed;
++	return -EINVAL;
++}
 +
-+/* hal_reo_entrance_ring
-+ *
-+ *		Producer: RXDMA
-+ *		Consumer: REO
-+ *
-+ * buf_addr_info
-+ *		Details of the physical address of a buffer or MSDU
-+ *		link descriptor.
-+ *
-+ * rx_mpdu_info
-+ *		General information related to the MPDU that is passed
-+ *		on from REO entrance ring to the REO destination ring.
-+ *
-+ * queue_addr_lo
-+ *		Address (lower 32 bits) of the REO queue descriptor.
-+ *
-+ * queue_addr_hi
-+ *		Address (upper 8 bits) of the REO queue descriptor.
-+ *
-+ * mpdu_byte_count
-+ *		An approximation of the number of bytes received in this MPDU.
-+ *		Used to keeps stats on the amount of data flowing
-+ *		through a queue.
-+ *
-+ * reo_destination_indication
-+ *		The id of the reo exit ring where the msdu frame shall push
-+ *		after (MPDU level) reordering has finished. Values are defined
-+ *		in enum %HAL_RX_MSDU_DESC_REO_DEST_IND_.
-+ *
-+ * frameless_bar
-+ *		Indicates that this REO entrance ring struct contains BAR info
-+ *		from a multi TID BAR frame. The original multi TID BAR frame
-+ *		itself contained all the REO info for the first TID, but all
-+ *		the subsequent TID info and their linkage to the REO descriptors
-+ *		is passed down as 'frameless' BAR info.
-+ *
-+ *		The only fields valid in this descriptor when this bit is set
-+ *		are queue_addr_lo, queue_addr_hi, mpdu_sequence_number,
-+ *		bar_frame and peer_meta_data.
-+ *
-+ * rxdma_push_reason
-+ *		Reason for pushing this frame to this exit ring. Values are
-+ *		defined in enum %HAL_REO_DEST_RING_PUSH_REASON_.
-+ *
-+ * rxdma_error_code
-+ *		Valid only when 'push_reason' is set. All error codes are
-+ *		defined in enum %HAL_REO_ENTR_RING_RXDMA_ECODE_.
-+ *
-+ * ring_id
-+ *		The buffer pointer ring id.
-+ *		0 - Idle ring
-+ *		1 - N refers to other rings.
-+ *
-+ * looping_count
-+ *		Indicates the number of times the producer of entries into
-+ *		this ring has looped around the ring.
++static int get_num_chains(u32 mask)
++{
++	int num_chains = 0;
++
++	while (mask) {
++		if (mask & BIT(0))
++			num_chains++;
++		mask >>= 1;
++	}
++
++	return num_chains;
++}
++
++u8 ath11k_mac_bitrate_to_idx(const struct ieee80211_supported_band *sband,
++			     u32 bitrate)
++{
++	int i;
++
++	for (i = 0; i < sband->n_bitrates; i++)
++		if (sband->bitrates[i].bitrate == bitrate)
++			return i;
++
++	return 0;
++}
++
++static u32
++ath11k_mac_max_ht_nss(const u8 ht_mcs_mask[IEEE80211_HT_MCS_MASK_LEN])
++{
++	int nss;
++
++	for (nss = IEEE80211_HT_MCS_MASK_LEN - 1; nss >= 0; nss--)
++		if (ht_mcs_mask[nss])
++			return nss + 1;
++
++	return 1;
++}
++
++static u32
++ath11k_mac_max_vht_nss(const u16 vht_mcs_mask[NL80211_VHT_NSS_MAX])
++{
++	int nss;
++
++	for (nss = NL80211_VHT_NSS_MAX - 1; nss >= 0; nss--)
++		if (vht_mcs_mask[nss])
++			return nss + 1;
++
++	return 1;
++}
++
++static u8 ath11k_parse_mpdudensity(u8 mpdudensity)
++{
++/* 802.11n D2.0 defined values for "Minimum MPDU Start Spacing":
++ *   0 for no restriction
++ *   1 for 1/4 us
++ *   2 for 1/2 us
++ *   3 for 1 us
++ *   4 for 2 us
++ *   5 for 4 us
++ *   6 for 8 us
++ *   7 for 16 us
 + */
++	switch (mpdudensity) {
++	case 0:
++		return 0;
++	case 1:
++	case 2:
++	case 3:
++	/* Our lower layer calculations limit our precision to
++	 * 1 microsecond
++	 */
++		return 1;
++	case 4:
++		return 2;
++	case 5:
++		return 4;
++	case 6:
++		return 8;
++	case 7:
++		return 16;
++	default:
++		return 0;
++	}
++}
 +
-+#define HAL_REO_CMD_HDR_INFO0_CMD_NUMBER	GENMASK(15, 0)
-+#define HAL_REO_CMD_HDR_INFO0_STATUS_REQUIRED	BIT(16)
++static int ath11k_mac_vif_chan(struct ieee80211_vif *vif,
++			       struct cfg80211_chan_def *def)
++{
++	struct ieee80211_chanctx_conf *conf;
 +
-+struct hal_reo_cmd_hdr {
-+	u32 info0;
-+} __packed;
++	rcu_read_lock();
++	conf = rcu_dereference(vif->chanctx_conf);
++	if (!conf) {
++		rcu_read_unlock();
++		return -ENOENT;
++	}
 +
-+#define HAL_REO_GET_QUEUE_STATS_INFO0_QUEUE_ADDR_HI	GENMASK(7, 0)
-+#define HAL_REO_GET_QUEUE_STATS_INFO0_CLEAR_STATS	BIT(8)
++	*def = conf->def;
++	rcu_read_unlock();
 +
-+struct hal_reo_get_queue_stats {
-+	struct hal_reo_cmd_hdr cmd;
-+	u32 queue_addr_lo;
-+	u32 info0;
-+	u32 rsvd0[6];
-+} __packed;
++	return 0;
++}
 +
-+/* hal_reo_get_queue_stats
-+ *		Producer: SW
-+ *		Consumer: REO
-+ *
-+ * cmd
-+ *		Details for command execution tracking purposes.
-+ *
-+ * queue_addr_lo
-+ *		Address (lower 32 bits) of the REO queue descriptor.
-+ *
-+ * queue_addr_hi
-+ *		Address (upper 8 bits) of the REO queue descriptor.
-+ *
-+ * clear_stats
-+ *		Clear stats settings. When set, Clear the stats after
-+ *		generating the status.
-+ *
-+ *		Following stats will be cleared.
-+ *		Timeout_count
-+ *		Forward_due_to_bar_count
-+ *		Duplicate_count
-+ *		Frames_in_order_count
-+ *		BAR_received_count
-+ *		MPDU_Frames_processed_count
-+ *		MSDU_Frames_processed_count
-+ *		Total_processed_byte_count
-+ *		Late_receive_MPDU_count
-+ *		window_jump_2k
-+ *		Hole_count
-+ */
++static bool ath11k_mac_bitrate_is_cck(int bitrate)
++{
++	switch (bitrate) {
++	case 10:
++	case 20:
++	case 55:
++	case 110:
++		return true;
++	}
 +
-+#define HAL_REO_FLUSH_QUEUE_INFO0_DESC_ADDR_HI		GENMASK(7, 0)
-+#define HAL_REO_FLUSH_QUEUE_INFO0_BLOCK_DESC_ADDR	BIT(8)
-+#define HAL_REO_FLUSH_QUEUE_INFO0_BLOCK_RESRC_IDX	GENMASK(10, 9)
++	return false;
++}
 +
-+struct hal_reo_flush_queue {
-+	struct hal_reo_cmd_hdr cmd;
-+	u32 desc_addr_lo;
-+	u32 info0;
-+	u32 rsvd0[6];
-+} __packed;
++u8 ath11k_mac_hw_rate_to_idx(const struct ieee80211_supported_band *sband,
++			     u8 hw_rate, bool cck)
++{
++	const struct ieee80211_rate *rate;
++	int i;
 +
-+#define HAL_REO_FLUSH_CACHE_INFO0_CACHE_ADDR_HI		GENMASK(7, 0)
-+#define HAL_REO_FLUSH_CACHE_INFO0_FWD_ALL_MPDUS		BIT(8)
-+#define HAL_REO_FLUSH_CACHE_INFO0_RELEASE_BLOCK_IDX	BIT(9)
-+#define HAL_REO_FLUSH_CACHE_INFO0_BLOCK_RESRC_IDX	GENMASK(11, 10)
-+#define HAL_REO_FLUSH_CACHE_INFO0_FLUSH_WO_INVALIDATE	BIT(12)
-+#define HAL_REO_FLUSH_CACHE_INFO0_BLOCK_CACHE_USAGE	BIT(13)
-+#define HAL_REO_FLUSH_CACHE_INFO0_FLUSH_ALL		BIT(14)
++	for (i = 0; i < sband->n_bitrates; i++) {
++		rate = &sband->bitrates[i];
 +
-+struct hal_reo_flush_cache {
-+	struct hal_reo_cmd_hdr cmd;
-+	u32 cache_addr_lo;
-+	u32 info0;
-+	u32 rsvd0[6];
-+} __packed;
++		if (ath11k_mac_bitrate_is_cck(rate->bitrate) != cck)
++			continue;
 +
-+#define HAL_TCL_DATA_CMD_INFO0_DESC_TYPE	BIT(0)
-+#define HAL_TCL_DATA_CMD_INFO0_EPD		BIT(1)
-+#define HAL_TCL_DATA_CMD_INFO0_ENCAP_TYPE	GENMASK(3, 2)
-+#define HAL_TCL_DATA_CMD_INFO0_ENCRYPT_TYPE	GENMASK(7, 4)
-+#define HAL_TCL_DATA_CMD_INFO0_SRC_BUF_SWAP	BIT(8)
-+#define HAL_TCL_DATA_CMD_INFO0_LNK_META_SWAP	BIT(9)
-+#define HAL_TCL_DATA_CMD_INFO0_SEARCH_TYPE	BIT(12)
-+#define HAL_TCL_DATA_CMD_INFO0_ADDRX_EN		BIT(14)
-+#define HAL_TCL_DATA_CMD_INFO0_ADDRY_EN		BIT(15)
-+#define HAL_TCL_DATA_CMD_INFO0_CMD_NUM		GENMASK(31, 16)
++		if (rate->hw_value == hw_rate)
++			return i;
++		else if (rate->flags & IEEE80211_RATE_SHORT_PREAMBLE &&
++			 rate->hw_value_short == hw_rate)
++			return i;
++	}
 +
-+#define HAL_TCL_DATA_CMD_INFO1_DATA_LEN		GENMASK(15, 0)
-+#define HAL_TCL_DATA_CMD_INFO1_IP4_CKSUM_EN	BIT(16)
-+#define HAL_TCL_DATA_CMD_INFO1_UDP4_CKSUM_EN	BIT(17)
-+#define HAL_TCL_DATA_CMD_INFO1_UDP6_CKSUM_EN	BIT(18)
-+#define HAL_TCL_DATA_CMD_INFO1_TCP4_CKSUM_EN	BIT(19)
-+#define HAL_TCL_DATA_CMD_INFO1_TCP6_CKSUM_EN	BIT(20)
-+#define HAL_TCL_DATA_CMD_INFO1_TO_FW		BIT(21)
-+#define HAL_TCL_DATA_CMD_INFO1_PKT_OFFSET	GENMASK(31, 23)
++	return 0;
++}
 +
-+#define HAL_TCL_DATA_CMD_INFO2_BUF_TIMESTAMP	GENMASK(18, 0)
-+#define HAL_TCL_DATA_CMD_INFO2_BUF_T_VALID	BIT(19)
-+#define HAL_TCL_DATA_CMD_INFO2_MESH_ENABLE	BIT(20)
-+#define HAL_TCL_DATA_CMD_INFO2_TID_OVERWRITE	BIT(21)
-+#define HAL_TCL_DATA_CMD_INFO2_TID		GENMASK(25, 22)
-+#define HAL_TCL_DATA_CMD_INFO2_LMAC_ID		GENMASK(27, 26)
++static u8 ath11k_mac_bitrate_to_rate(int bitrate)
++{
++	return DIV_ROUND_UP(bitrate, 5) |
++	       (ath11k_mac_bitrate_is_cck(bitrate) ? BIT(7) : 0);
++}
 +
-+#define HAL_TCL_DATA_CMD_INFO3_DSCP_TID_TABLE_IDX	GENMASK(5, 0)
-+#define HAL_TCL_DATA_CMD_INFO3_SEARCH_INDEX		GENMASK(25, 6)
-+#define HAL_TCL_DATA_CMD_INFO3_CACHE_SET_NUM		GENMASK(29, 26)
++static void ath11k_get_arvif_iter(void *data, u8 *mac,
++				  struct ieee80211_vif *vif)
++{
++	struct ath11k_vif_iter *arvif_iter = data;
++	struct ath11k_vif *arvif = (void *)vif->drv_priv;
 +
-+#define HAL_TCL_DATA_CMD_INFO4_RING_ID			GENMASK(27, 20)
-+#define HAL_TCL_DATA_CMD_INFO4_LOOPING_COUNT		GENMASK(31, 28)
++	if (arvif->vdev_id == arvif_iter->vdev_id)
++		arvif_iter->arvif = arvif;
++}
 +
-+enum hal_encrypt_type {
-+	HAL_ENCRYPT_TYPE_WEP_40,
-+	HAL_ENCRYPT_TYPE_WEP_104,
-+	HAL_ENCRYPT_TYPE_TKIP_NO_MIC,
-+	HAL_ENCRYPT_TYPE_WEP_128,
-+	HAL_ENCRYPT_TYPE_TKIP_MIC,
-+	HAL_ENCRYPT_TYPE_WAPI,
-+	HAL_ENCRYPT_TYPE_CCMP_128,
-+	HAL_ENCRYPT_TYPE_OPEN,
-+	HAL_ENCRYPT_TYPE_CCMP_256,
-+	HAL_ENCRYPT_TYPE_GCMP_128,
-+	HAL_ENCRYPT_TYPE_AES_GCMP_256,
-+	HAL_ENCRYPT_TYPE_WAPI_GCM_SM4,
++struct ath11k_vif *ath11k_mac_get_arvif(struct ath11k *ar, u32 vdev_id)
++{
++	struct ath11k_vif_iter arvif_iter;
++	u32 flags;
++
++	memset(&arvif_iter, 0, sizeof(struct ath11k_vif_iter));
++	arvif_iter.vdev_id = vdev_id;
++
++	flags = IEEE80211_IFACE_ITER_RESUME_ALL;
++	ieee80211_iterate_active_interfaces_atomic(ar->hw,
++						   flags,
++						   ath11k_get_arvif_iter,
++						   &arvif_iter);
++	if (!arvif_iter.arvif)
++		return NULL;
++
++	return arvif_iter.arvif;
++}
++
++struct ath11k_vif *ath11k_mac_get_arvif_by_vdev_id(struct ath11k_base *ab,
++						   u32 vdev_id)
++{
++	int i;
++	struct ath11k_pdev *pdev;
++	struct ath11k_vif *arvif;
++
++	for (i = 0; i < ab->num_radios; i++) {
++		pdev = rcu_dereference(ab->pdevs_active[i]);
++		if (pdev && pdev->ar) {
++			arvif = ath11k_mac_get_arvif(pdev->ar, vdev_id);
++			if (arvif)
++				return arvif;
++		}
++	}
++
++	return NULL;
++}
++
++struct ath11k *ath11k_mac_get_ar_by_vdev_id(struct ath11k_base *ab, u32 vdev_id)
++{
++	int i;
++	struct ath11k_pdev *pdev;
++	struct ath11k_vif *arvif;
++
++	for (i = 0; i < ab->num_radios; i++) {
++		pdev = rcu_dereference(ab->pdevs_active[i]);
++		if (pdev && pdev->ar) {
++			arvif = ath11k_mac_get_arvif(pdev->ar, vdev_id);
++			if (arvif)
++				return arvif->ar;
++		}
++	}
++
++	return NULL;
++}
++
++struct ath11k *ath11k_mac_get_ar_by_pdev_id(struct ath11k_base *ab, u32 pdev_id)
++{
++	int i;
++	struct ath11k_pdev *pdev;
++
++	if (WARN_ON(pdev_id > ab->num_radios))
++		return NULL;
++
++	for (i = 0; i < ab->num_radios; i++) {
++		pdev = rcu_dereference(ab->pdevs_active[i]);
++
++		if (pdev && pdev->pdev_id == pdev_id)
++			return (pdev->ar ? pdev->ar : NULL);
++	}
++
++	return NULL;
++}
++
++struct ath11k *ath11k_mac_get_ar_vdev_stop_status(struct ath11k_base *ab,
++						  u32 vdev_id)
++{
++	int i;
++	struct ath11k_pdev *pdev;
++	struct ath11k *ar;
++
++	for (i = 0; i < ab->num_radios; i++) {
++		pdev = rcu_dereference(ab->pdevs_active[i]);
++		if (pdev && pdev->ar) {
++			ar = pdev->ar;
++
++			spin_lock_bh(&ar->data_lock);
++			if (ar->vdev_stop_status.stop_in_progress &&
++			    ar->vdev_stop_status.vdev_id == vdev_id) {
++				ar->vdev_stop_status.stop_in_progress = false;
++				spin_unlock_bh(&ar->data_lock);
++				return ar;
++			}
++			spin_unlock_bh(&ar->data_lock);
++		}
++	}
++	return NULL;
++}
++
++static void ath11k_pdev_caps_update(struct ath11k *ar)
++{
++	struct ath11k_base *ab = ar->ab;
++
++	ar->max_tx_power = ab->target_caps.hw_max_tx_power;
++
++	/* FIXME Set min_tx_power to ab->target_caps.hw_min_tx_power.
++	 * But since the received value in svcrdy is same as hw_max_tx_power,
++	 * we can set ar->min_tx_power to 0 currently until
++	 * this is fixed in firmware
++	 */
++	ar->min_tx_power = 0;
++
++	ar->txpower_limit_2g = ar->max_tx_power;
++	ar->txpower_limit_5g = ar->max_tx_power;
++	ar->txpower_scale = WMI_HOST_TP_SCALE_MAX;
++}
++
++static int ath11k_mac_txpower_recalc(struct ath11k *ar)
++{
++	struct ath11k_pdev *pdev = ar->pdev;
++	struct ath11k_vif *arvif;
++	int ret, txpower = -1;
++	u32 param;
++
++	lockdep_assert_held(&ar->conf_mutex);
++
++	list_for_each_entry(arvif, &ar->arvifs, list) {
++		if (arvif->txpower <= 0)
++			continue;
++
++		if (txpower == -1)
++			txpower = arvif->txpower;
++		else
++			txpower = min(txpower, arvif->txpower);
++	}
++
++	if (txpower == -1)
++		return 0;
++
++	/* txpwr is set as 2 units per dBm in FW*/
++	txpower = min_t(u32, max_t(u32, ar->min_tx_power, txpower),
++			ar->max_tx_power) * 2;
++
++	ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "txpower to set in hw %d\n",
++		   txpower / 2);
++
++	if ((pdev->cap.supported_bands & WMI_HOST_WLAN_2G_CAP) &&
++	    ar->txpower_limit_2g != txpower) {
++		param = WMI_PDEV_PARAM_TXPOWER_LIMIT2G;
++		ret = ath11k_wmi_pdev_set_param(ar, param,
++						txpower, ar->pdev->pdev_id);
++		if (ret)
++			goto fail;
++		ar->txpower_limit_2g = txpower;
++	}
++
++	if ((pdev->cap.supported_bands & WMI_HOST_WLAN_5G_CAP) &&
++	    ar->txpower_limit_5g != txpower) {
++		param = WMI_PDEV_PARAM_TXPOWER_LIMIT5G;
++		ret = ath11k_wmi_pdev_set_param(ar, param,
++						txpower, ar->pdev->pdev_id);
++		if (ret)
++			goto fail;
++		ar->txpower_limit_5g = txpower;
++	}
++
++	return 0;
++
++fail:
++	ath11k_warn(ar->ab, "failed to recalc txpower limit %d using pdev param %d: %d\n",
++		    txpower / 2, param, ret);
++	return ret;
++}
++
++static int ath11k_recalc_rtscts_prot(struct ath11k_vif *arvif)
++{
++	struct ath11k *ar = arvif->ar;
++	u32 vdev_param, rts_cts = 0;
++	int ret;
++
++	lockdep_assert_held(&ar->conf_mutex);
++
++	vdev_param = WMI_VDEV_PARAM_ENABLE_RTSCTS;
++
++	/* Enable RTS/CTS protection for sw retries (when legacy stations
++	 * are in BSS) or by default only for second rate series.
++	 * TODO: Check if we need to enable CTS 2 Self in any case
++	 */
++	rts_cts = WMI_USE_RTS_CTS;
++
++	if (arvif->num_legacy_stations > 0)
++		rts_cts |= WMI_RTSCTS_ACROSS_SW_RETRIES << 4;
++	else
++		rts_cts |= WMI_RTSCTS_FOR_SECOND_RATESERIES << 4;
++
++	/* Need not send duplicate param value to firmware */
++	if (arvif->rtscts_prot_mode == rts_cts)
++		return 0;
++
++	arvif->rtscts_prot_mode = rts_cts;
++
++	ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "mac vdev %d recalc rts/cts prot %d\n",
++		   arvif->vdev_id, rts_cts);
++
++	ret =  ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
++					     vdev_param, rts_cts);
++	if (ret)
++		ath11k_warn(ar->ab, "failed to recalculate rts/cts prot for vdev %d: %d\n",
++			    arvif->vdev_id, ret);
++
++	return ret;
++}
++
++static int ath11k_mac_set_kickout(struct ath11k_vif *arvif)
++{
++	struct ath11k *ar = arvif->ar;
++	u32 param;
++	int ret;
++
++	ret = ath11k_wmi_pdev_set_param(ar, WMI_PDEV_PARAM_STA_KICKOUT_TH,
++					ATH11K_KICKOUT_THRESHOLD,
++					ar->pdev->pdev_id);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to set kickout threshold on vdev %i: %d\n",
++			    arvif->vdev_id, ret);
++		return ret;
++	}
++
++	param = WMI_VDEV_PARAM_AP_KEEPALIVE_MIN_IDLE_INACTIVE_TIME_SECS;
++	ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id, param,
++					    ATH11K_KEEPALIVE_MIN_IDLE);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to set keepalive minimum idle time on vdev %i: %d\n",
++			    arvif->vdev_id, ret);
++		return ret;
++	}
++
++	param = WMI_VDEV_PARAM_AP_KEEPALIVE_MAX_IDLE_INACTIVE_TIME_SECS;
++	ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id, param,
++					    ATH11K_KEEPALIVE_MAX_IDLE);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to set keepalive maximum idle time on vdev %i: %d\n",
++			    arvif->vdev_id, ret);
++		return ret;
++	}
++
++	param = WMI_VDEV_PARAM_AP_KEEPALIVE_MAX_UNRESPONSIVE_TIME_SECS;
++	ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id, param,
++					    ATH11K_KEEPALIVE_MAX_UNRESPONSIVE);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to set keepalive maximum unresponsive time on vdev %i: %d\n",
++			    arvif->vdev_id, ret);
++		return ret;
++	}
++
++	return 0;
++}
++
++void ath11k_mac_peer_cleanup_all(struct ath11k *ar)
++{
++	struct ath11k_peer *peer, *tmp;
++	struct ath11k_base *ab = ar->ab;
++
++	lockdep_assert_held(&ar->conf_mutex);
++
++	spin_lock_bh(&ab->base_lock);
++	list_for_each_entry_safe(peer, tmp, &ab->peers, list) {
++		ath11k_peer_rx_tid_cleanup(ar, peer);
++		list_del(&peer->list);
++		kfree(peer);
++	}
++	spin_unlock_bh(&ab->base_lock);
++
++	ar->num_peers = 0;
++	ar->num_stations = 0;
++}
++
++static int ath11k_monitor_vdev_up(struct ath11k *ar, int vdev_id)
++{
++	int ret = 0;
++
++	ret = ath11k_wmi_vdev_up(ar, vdev_id, 0, ar->mac_addr);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to put up monitor vdev %i: %d\n",
++			    vdev_id, ret);
++		return ret;
++	}
++
++	ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "mac monitor vdev %i started\n",
++		   vdev_id);
++	return 0;
++}
++
++static int ath11k_mac_op_config(struct ieee80211_hw *hw, u32 changed)
++{
++	struct ath11k *ar = hw->priv;
++	int ret = 0;
++
++	/* mac80211 requires this op to be present and that's why
++	 * there's an empty function, this can be extended when
++	 * required.
++	 */
++
++	mutex_lock(&ar->conf_mutex);
++
++	/* TODO: Handle configuration changes as appropriate */
++
++	mutex_unlock(&ar->conf_mutex);
++
++	return ret;
++}
++
++static int ath11k_mac_setup_bcn_tmpl(struct ath11k_vif *arvif)
++{
++	struct ath11k *ar = arvif->ar;
++	struct ath11k_base *ab = ar->ab;
++	struct ieee80211_hw *hw = ar->hw;
++	struct ieee80211_vif *vif = arvif->vif;
++	struct ieee80211_mutable_offsets offs = {};
++	struct sk_buff *bcn;
++	int ret;
++
++	if (arvif->vdev_type != WMI_VDEV_TYPE_AP)
++		return 0;
++
++	bcn = ieee80211_beacon_get_template(hw, vif, &offs);
++	if (!bcn) {
++		ath11k_warn(ab, "failed to get beacon template from mac80211\n");
++		return -EPERM;
++	}
++
++	ret = ath11k_wmi_bcn_tmpl(ar, arvif->vdev_id, &offs, bcn);
++
++	kfree_skb(bcn);
++
++	if (ret)
++		ath11k_warn(ab, "failed to submit beacon template command: %d\n",
++			    ret);
++
++	return ret;
++}
++
++static void ath11k_control_beaconing(struct ath11k_vif *arvif,
++				     struct ieee80211_bss_conf *info)
++{
++	struct ath11k *ar = arvif->ar;
++	int ret = 0;
++
++	lockdep_assert_held(&arvif->ar->conf_mutex);
++
++	if (!info->enable_beacon) {
++		ret = ath11k_wmi_vdev_down(ar, arvif->vdev_id);
++		if (ret)
++			ath11k_warn(ar->ab, "failed to down vdev_id %i: %d\n",
++				    arvif->vdev_id, ret);
++
++		arvif->is_up = false;
++		return;
++	}
++
++	/* Install the beacon template to the FW */
++	ret = ath11k_mac_setup_bcn_tmpl(arvif);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to update bcn tmpl during vdev up: %d\n",
++			    ret);
++		return;
++	}
++
++	arvif->tx_seq_no = 0x1000;
++
++	arvif->aid = 0;
++
++	ether_addr_copy(arvif->bssid, info->bssid);
++
++	ret = ath11k_wmi_vdev_up(arvif->ar, arvif->vdev_id, arvif->aid,
++				 arvif->bssid);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to bring up vdev %d: %i\n",
++			    arvif->vdev_id, ret);
++		return;
++	}
++
++	arvif->is_up = true;
++
++	ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "mac vdev %d up\n", arvif->vdev_id);
++}
++
++static void ath11k_peer_assoc_h_basic(struct ath11k *ar,
++				      struct ieee80211_vif *vif,
++				      struct ieee80211_sta *sta,
++				      struct peer_assoc_params *arg)
++{
++	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	u32 aid;
++
++	lockdep_assert_held(&ar->conf_mutex);
++
++	if (vif->type == NL80211_IFTYPE_STATION)
++		aid = vif->bss_conf.aid;
++	else
++		aid = sta->aid;
++
++	ether_addr_copy(arg->peer_mac, sta->addr);
++	arg->vdev_id = arvif->vdev_id;
++	arg->peer_associd = aid;
++	arg->auth_flag = true;
++	/* TODO: STA WAR in ath10k for listen interval required? */
++	arg->peer_listen_intval = ar->hw->conf.listen_interval;
++	arg->peer_nss = 1;
++	arg->peer_caps = vif->bss_conf.assoc_capability;
++}
++
++static void ath11k_peer_assoc_h_crypto(struct ath11k *ar,
++				       struct ieee80211_vif *vif,
++				       struct ieee80211_sta *sta,
++				       struct peer_assoc_params *arg)
++{
++	struct ieee80211_bss_conf *info = &vif->bss_conf;
++	struct cfg80211_chan_def def;
++	struct cfg80211_bss *bss;
++	const u8 *rsnie = NULL;
++	const u8 *wpaie = NULL;
++
++	lockdep_assert_held(&ar->conf_mutex);
++
++	if (WARN_ON(ath11k_mac_vif_chan(vif, &def)))
++		return;
++
++	bss = cfg80211_get_bss(ar->hw->wiphy, def.chan, info->bssid, NULL, 0,
++			       IEEE80211_BSS_TYPE_ANY, IEEE80211_PRIVACY_ANY);
++	if (bss) {
++		const struct cfg80211_bss_ies *ies;
++
++		rcu_read_lock();
++		rsnie = ieee80211_bss_get_ie(bss, WLAN_EID_RSN);
++
++		ies = rcu_dereference(bss->ies);
++
++		wpaie = cfg80211_find_vendor_ie(WLAN_OUI_MICROSOFT,
++						WLAN_OUI_TYPE_MICROSOFT_WPA,
++						ies->data,
++						ies->len);
++		rcu_read_unlock();
++		cfg80211_put_bss(ar->hw->wiphy, bss);
++	}
++
++	/* FIXME: base on RSN IE/WPA IE is a correct idea? */
++	if (rsnie || wpaie) {
++		ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
++			   "%s: rsn ie found\n", __func__);
++		arg->need_ptk_4_way = true;
++	}
++
++	if (wpaie) {
++		ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
++			   "%s: wpa ie found\n", __func__);
++		arg->need_gtk_2_way = true;
++	}
++
++	if (sta->mfp) {
++		/* TODO: Need to check if FW supports PMF? */
++		arg->is_pmf_enabled = true;
++	}
++
++	/* TODO: safe_mode_enabled (bypass 4-way handshake) flag req? */
++}
++
++static void ath11k_peer_assoc_h_rates(struct ath11k *ar,
++				      struct ieee80211_vif *vif,
++				      struct ieee80211_sta *sta,
++				      struct peer_assoc_params *arg)
++{
++	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	struct wmi_rate_set_arg *rateset = &arg->peer_legacy_rates;
++	struct cfg80211_chan_def def;
++	const struct ieee80211_supported_band *sband;
++	const struct ieee80211_rate *rates;
++	enum nl80211_band band;
++	u32 ratemask;
++	u8 rate;
++	int i;
++
++	lockdep_assert_held(&ar->conf_mutex);
++
++	if (WARN_ON(ath11k_mac_vif_chan(vif, &def)))
++		return;
++
++	band = def.chan->band;
++	sband = ar->hw->wiphy->bands[band];
++	ratemask = sta->supp_rates[band];
++	ratemask &= arvif->bitrate_mask.control[band].legacy;
++	rates = sband->bitrates;
++
++	rateset->num_rates = 0;
++
++	for (i = 0; i < 32; i++, ratemask >>= 1, rates++) {
++		if (!(ratemask & 1))
++			continue;
++
++		rate = ath11k_mac_bitrate_to_rate(rates->bitrate);
++		rateset->rates[rateset->num_rates] = rate;
++		rateset->num_rates++;
++	}
++}
++
++static bool
++ath11k_peer_assoc_h_ht_masked(const u8 ht_mcs_mask[IEEE80211_HT_MCS_MASK_LEN])
++{
++	int nss;
++
++	for (nss = 0; nss < IEEE80211_HT_MCS_MASK_LEN; nss++)
++		if (ht_mcs_mask[nss])
++			return false;
++
++	return true;
++}
++
++static bool
++ath11k_peer_assoc_h_vht_masked(const u16 vht_mcs_mask[NL80211_VHT_NSS_MAX])
++{
++	int nss;
++
++	for (nss = 0; nss < NL80211_VHT_NSS_MAX; nss++)
++		if (vht_mcs_mask[nss])
++			return false;
++
++	return true;
++}
++
++static void ath11k_peer_assoc_h_ht(struct ath11k *ar,
++				   struct ieee80211_vif *vif,
++				   struct ieee80211_sta *sta,
++				   struct peer_assoc_params *arg)
++{
++	const struct ieee80211_sta_ht_cap *ht_cap = &sta->ht_cap;
++	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	struct cfg80211_chan_def def;
++	enum nl80211_band band;
++	const u8 *ht_mcs_mask;
++	int i, n;
++	u8 max_nss;
++	u32 stbc;
++
++	lockdep_assert_held(&ar->conf_mutex);
++
++	if (WARN_ON(ath11k_mac_vif_chan(vif, &def)))
++		return;
++
++	if (!ht_cap->ht_supported)
++		return;
++
++	band = def.chan->band;
++	ht_mcs_mask = arvif->bitrate_mask.control[band].ht_mcs;
++
++	if (ath11k_peer_assoc_h_ht_masked(ht_mcs_mask))
++		return;
++
++	arg->ht_flag = true;
++
++	arg->peer_max_mpdu = (1 << (IEEE80211_HT_MAX_AMPDU_FACTOR +
++				    ht_cap->ampdu_factor)) - 1;
++
++	arg->peer_mpdu_density =
++		ath11k_parse_mpdudensity(ht_cap->ampdu_density);
++
++	arg->peer_ht_caps = ht_cap->cap;
++	arg->peer_rate_caps |= WMI_HOST_RC_HT_FLAG;
++
++	if (ht_cap->cap & IEEE80211_HT_CAP_LDPC_CODING)
++		arg->ldpc_flag = true;
++
++	if (sta->bandwidth >= IEEE80211_STA_RX_BW_40) {
++		arg->bw_40 = true;
++		arg->peer_rate_caps |= WMI_HOST_RC_CW40_FLAG;
++	}
++
++	if (arvif->bitrate_mask.control[band].gi != NL80211_TXRATE_FORCE_LGI) {
++		if (ht_cap->cap & (IEEE80211_HT_CAP_SGI_20 |
++		    IEEE80211_HT_CAP_SGI_40))
++			arg->peer_rate_caps |= WMI_HOST_RC_SGI_FLAG;
++	}
++
++	if (ht_cap->cap & IEEE80211_HT_CAP_TX_STBC) {
++		arg->peer_rate_caps |= WMI_HOST_RC_TX_STBC_FLAG;
++		arg->stbc_flag = true;
++	}
++
++	if (ht_cap->cap & IEEE80211_HT_CAP_RX_STBC) {
++		stbc = ht_cap->cap & IEEE80211_HT_CAP_RX_STBC;
++		stbc = stbc >> IEEE80211_HT_CAP_RX_STBC_SHIFT;
++		stbc = stbc << WMI_HOST_RC_RX_STBC_FLAG_S;
++		arg->peer_rate_caps |= stbc;
++		arg->stbc_flag = true;
++	}
++
++	if (ht_cap->mcs.rx_mask[1] && ht_cap->mcs.rx_mask[2])
++		arg->peer_rate_caps |= WMI_HOST_RC_TS_FLAG;
++	else if (ht_cap->mcs.rx_mask[1])
++		arg->peer_rate_caps |= WMI_HOST_RC_DS_FLAG;
++
++	for (i = 0, n = 0, max_nss = 0; i < IEEE80211_HT_MCS_MASK_LEN * 8; i++)
++		if ((ht_cap->mcs.rx_mask[i / 8] & BIT(i % 8)) &&
++		    (ht_mcs_mask[i / 8] & BIT(i % 8))) {
++			max_nss = (i / 8) + 1;
++			arg->peer_ht_rates.rates[n++] = i;
++		}
++
++	/* This is a workaround for HT-enabled STAs which break the spec
++	 * and have no HT capabilities RX mask (no HT RX MCS map).
++	 *
++	 * As per spec, in section 20.3.5 Modulation and coding scheme (MCS),
++	 * MCS 0 through 7 are mandatory in 20MHz with 800 ns GI at all STAs.
++	 *
++	 * Firmware asserts if such situation occurs.
++	 */
++	if (n == 0) {
++		arg->peer_ht_rates.num_rates = 8;
++		for (i = 0; i < arg->peer_ht_rates.num_rates; i++)
++			arg->peer_ht_rates.rates[i] = i;
++	} else {
++		arg->peer_ht_rates.num_rates = n;
++		arg->peer_nss = min(sta->rx_nss, max_nss);
++	}
++
++	ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "mac ht peer %pM mcs cnt %d nss %d\n",
++		   arg->peer_mac,
++		   arg->peer_ht_rates.num_rates,
++		   arg->peer_nss);
++}
++
++static int ath11k_mac_get_max_vht_mcs_map(u16 mcs_map, int nss)
++{
++	switch ((mcs_map >> (2 * nss)) & 0x3) {
++	case IEEE80211_VHT_MCS_SUPPORT_0_7: return BIT(8) - 1;
++	case IEEE80211_VHT_MCS_SUPPORT_0_8: return BIT(9) - 1;
++	case IEEE80211_VHT_MCS_SUPPORT_0_9: return BIT(10) - 1;
++	}
++	return 0;
++}
++
++static u16
++ath11k_peer_assoc_h_vht_limit(u16 tx_mcs_set,
++			      const u16 vht_mcs_limit[NL80211_VHT_NSS_MAX])
++{
++	int idx_limit;
++	int nss;
++	u16 mcs_map;
++	u16 mcs;
++
++	for (nss = 0; nss < NL80211_VHT_NSS_MAX; nss++) {
++		mcs_map = ath11k_mac_get_max_vht_mcs_map(tx_mcs_set, nss) &
++			  vht_mcs_limit[nss];
++
++		if (mcs_map)
++			idx_limit = fls(mcs_map) - 1;
++		else
++			idx_limit = -1;
++
++		switch (idx_limit) {
++		case 0: /* fall through */
++		case 1: /* fall through */
++		case 2: /* fall through */
++		case 3: /* fall through */
++		case 4: /* fall through */
++		case 5: /* fall through */
++		case 6: /* fall through */
++		case 7:
++			mcs = IEEE80211_VHT_MCS_SUPPORT_0_7;
++			break;
++		case 8:
++			mcs = IEEE80211_VHT_MCS_SUPPORT_0_8;
++			break;
++		case 9:
++			mcs = IEEE80211_VHT_MCS_SUPPORT_0_9;
++			break;
++		default:
++			WARN_ON(1);
++			/* fall through */
++		case -1:
++			mcs = IEEE80211_VHT_MCS_NOT_SUPPORTED;
++			break;
++		}
++
++		tx_mcs_set &= ~(0x3 << (nss * 2));
++		tx_mcs_set |= mcs << (nss * 2);
++	}
++
++	return tx_mcs_set;
++}
++
++static void ath11k_peer_assoc_h_vht(struct ath11k *ar,
++				    struct ieee80211_vif *vif,
++				    struct ieee80211_sta *sta,
++				    struct peer_assoc_params *arg)
++{
++	const struct ieee80211_sta_vht_cap *vht_cap = &sta->vht_cap;
++	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	struct cfg80211_chan_def def;
++	enum nl80211_band band;
++	const u16 *vht_mcs_mask;
++	u8 ampdu_factor;
++	u8 max_nss, vht_mcs;
++	int i;
++
++	if (WARN_ON(ath11k_mac_vif_chan(vif, &def)))
++		return;
++
++	if (!vht_cap->vht_supported)
++		return;
++
++	band = def.chan->band;
++	vht_mcs_mask = arvif->bitrate_mask.control[band].vht_mcs;
++
++	if (ath11k_peer_assoc_h_vht_masked(vht_mcs_mask))
++		return;
++
++	arg->vht_flag = true;
++
++	/* TODO: similar flags required? */
++	arg->vht_capable = true;
++
++	if (def.chan->band == NL80211_BAND_2GHZ)
++		arg->vht_ng_flag = true;
++
++	arg->peer_vht_caps = vht_cap->cap;
++
++	ampdu_factor = (vht_cap->cap &
++			IEEE80211_VHT_CAP_MAX_A_MPDU_LENGTH_EXPONENT_MASK) >>
++		       IEEE80211_VHT_CAP_MAX_A_MPDU_LENGTH_EXPONENT_SHIFT;
++
++	/* Workaround: Some Netgear/Linksys 11ac APs set Rx A-MPDU factor to
++	 * zero in VHT IE. Using it would result in degraded throughput.
++	 * arg->peer_max_mpdu at this point contains HT max_mpdu so keep
++	 * it if VHT max_mpdu is smaller.
++	 */
++	arg->peer_max_mpdu = max(arg->peer_max_mpdu,
++				 (1U << (IEEE80211_HT_MAX_AMPDU_FACTOR +
++					ampdu_factor)) - 1);
++
++	if (sta->bandwidth == IEEE80211_STA_RX_BW_80)
++		arg->bw_80 = true;
++
++	if (sta->bandwidth == IEEE80211_STA_RX_BW_160)
++		arg->bw_160 = true;
++
++	/* Calculate peer NSS capability from VHT capabilities if STA
++	 * supports VHT.
++	 */
++	for (i = 0, max_nss = 0, vht_mcs = 0; i < NL80211_VHT_NSS_MAX; i++) {
++		vht_mcs = __le16_to_cpu(vht_cap->vht_mcs.rx_mcs_map) >>
++			  (2 * i) & 3;
++
++		if (vht_mcs != IEEE80211_VHT_MCS_NOT_SUPPORTED &&
++		    vht_mcs_mask[i])
++			max_nss = i + 1;
++	}
++	arg->peer_nss = min(sta->rx_nss, max_nss);
++	arg->rx_max_rate = __le16_to_cpu(vht_cap->vht_mcs.rx_highest);
++	arg->rx_mcs_set = __le16_to_cpu(vht_cap->vht_mcs.rx_mcs_map);
++	arg->tx_max_rate = __le16_to_cpu(vht_cap->vht_mcs.tx_highest);
++	arg->tx_mcs_set = ath11k_peer_assoc_h_vht_limit(
++		__le16_to_cpu(vht_cap->vht_mcs.tx_mcs_map), vht_mcs_mask);
++
++	/* In IPQ8074 platform, VHT mcs rate 10 and 11 is enabled by default.
++	 * VHT mcs rate 10 and 11 is not suppoerted in 11ac standard.
++	 * so explicitly disable the VHT MCS rate 10 and 11 in 11ac mode.
++	 */
++	arg->tx_mcs_set &= ~IEEE80211_VHT_MCS_SUPPORT_0_11_MASK;
++	arg->tx_mcs_set |= IEEE80211_DISABLE_VHT_MCS_SUPPORT_0_11;
++
++	/* TODO:  Check */
++	arg->tx_max_mcs_nss = 0xFF;
++
++	ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "mac vht peer %pM max_mpdu %d flags 0x%x\n",
++		   sta->addr, arg->peer_max_mpdu, arg->peer_flags);
++
++	/* TODO: rxnss_override */
++}
++
++static void ath11k_peer_assoc_h_he(struct ath11k *ar,
++				   struct ieee80211_vif *vif,
++				   struct ieee80211_sta *sta,
++				   struct peer_assoc_params *arg)
++{
++	/* TODO: Implementation */
++}
++
++static void ath11k_peer_assoc_h_smps(struct ieee80211_sta *sta,
++				     struct peer_assoc_params *arg)
++{
++	const struct ieee80211_sta_ht_cap *ht_cap = &sta->ht_cap;
++	int smps;
++
++	if (!ht_cap->ht_supported)
++		return;
++
++	smps = ht_cap->cap & IEEE80211_HT_CAP_SM_PS;
++	smps >>= IEEE80211_HT_CAP_SM_PS_SHIFT;
++
++	switch (smps) {
++	case WLAN_HT_CAP_SM_PS_STATIC:
++		arg->static_mimops_flag = true;
++		break;
++	case WLAN_HT_CAP_SM_PS_DYNAMIC:
++		arg->dynamic_mimops_flag = true;
++		break;
++	case WLAN_HT_CAP_SM_PS_DISABLED:
++		arg->spatial_mux_flag = true;
++		break;
++	default:
++		break;
++	}
++}
++
++static void ath11k_peer_assoc_h_qos(struct ath11k *ar,
++				    struct ieee80211_vif *vif,
++				    struct ieee80211_sta *sta,
++				    struct peer_assoc_params *arg)
++{
++	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++
++	switch (arvif->vdev_type) {
++	case WMI_VDEV_TYPE_AP:
++		if (sta->wme) {
++			/* TODO: Check WME vs QoS */
++			arg->is_wme_set = true;
++			arg->qos_flag = true;
++		}
++
++		if (sta->wme && sta->uapsd_queues) {
++			/* TODO: Check WME vs QoS */
++			arg->is_wme_set = true;
++			arg->apsd_flag = true;
++			arg->peer_rate_caps |= WMI_HOST_RC_UAPSD_FLAG;
++		}
++		break;
++	case WMI_VDEV_TYPE_STA:
++		if (sta->wme) {
++			arg->is_wme_set = true;
++			arg->qos_flag = true;
++		}
++		break;
++	default:
++		break;
++	}
++
++	ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "mac peer %pM qos %d\n",
++		   sta->addr, arg->qos_flag);
++}
++
++static int ath11k_peer_assoc_qos_ap(struct ath11k *ar,
++				    struct ath11k_vif *arvif,
++				    struct ieee80211_sta *sta)
++{
++	struct ap_ps_params params;
++	u32 max_sp;
++	u32 uapsd;
++	int ret;
++
++	lockdep_assert_held(&ar->conf_mutex);
++
++	params.vdev_id = arvif->vdev_id;
++
++	ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "mac uapsd_queues 0x%x max_sp %d\n",
++		   sta->uapsd_queues, sta->max_sp);
++
++	uapsd = 0;
++	if (sta->uapsd_queues & IEEE80211_WMM_IE_STA_QOSINFO_AC_VO)
++		uapsd |= WMI_AP_PS_UAPSD_AC3_DELIVERY_EN |
++			 WMI_AP_PS_UAPSD_AC3_TRIGGER_EN;
++	if (sta->uapsd_queues & IEEE80211_WMM_IE_STA_QOSINFO_AC_VI)
++		uapsd |= WMI_AP_PS_UAPSD_AC2_DELIVERY_EN |
++			 WMI_AP_PS_UAPSD_AC2_TRIGGER_EN;
++	if (sta->uapsd_queues & IEEE80211_WMM_IE_STA_QOSINFO_AC_BK)
++		uapsd |= WMI_AP_PS_UAPSD_AC1_DELIVERY_EN |
++			 WMI_AP_PS_UAPSD_AC1_TRIGGER_EN;
++	if (sta->uapsd_queues & IEEE80211_WMM_IE_STA_QOSINFO_AC_BE)
++		uapsd |= WMI_AP_PS_UAPSD_AC0_DELIVERY_EN |
++			 WMI_AP_PS_UAPSD_AC0_TRIGGER_EN;
++
++	max_sp = 0;
++	if (sta->max_sp < MAX_WMI_AP_PS_PEER_PARAM_MAX_SP)
++		max_sp = sta->max_sp;
++
++	params.param = WMI_AP_PS_PEER_PARAM_UAPSD;
++	params.value = uapsd;
++	ret = ath11k_wmi_send_set_ap_ps_param_cmd(ar, sta->addr, &params);
++	if (ret)
++		goto err;
++
++	params.param = WMI_AP_PS_PEER_PARAM_MAX_SP;
++	params.value = max_sp;
++	ret = ath11k_wmi_send_set_ap_ps_param_cmd(ar, sta->addr, &params);
++	if (ret)
++		goto err;
++
++	/* TODO revisit during testing */
++	params.param = WMI_AP_PS_PEER_PARAM_SIFS_RESP_FRMTYPE;
++	params.value = DISABLE_SIFS_RESPONSE_TRIGGER;
++	ret = ath11k_wmi_send_set_ap_ps_param_cmd(ar, sta->addr, &params);
++	if (ret)
++		goto err;
++
++	params.param = WMI_AP_PS_PEER_PARAM_SIFS_RESP_UAPSD;
++	params.value = DISABLE_SIFS_RESPONSE_TRIGGER;
++	ret = ath11k_wmi_send_set_ap_ps_param_cmd(ar, sta->addr, &params);
++	if (ret)
++		goto err;
++
++	return 0;
++
++err:
++	ath11k_warn(ar->ab, "failed to set ap ps peer param %d for vdev %i: %d\n",
++		    params.param, arvif->vdev_id, ret);
++	return ret;
++}
++
++static bool ath11k_mac_sta_has_ofdm_only(struct ieee80211_sta *sta)
++{
++	return sta->supp_rates[NL80211_BAND_2GHZ] >>
++	       ATH11K_MAC_FIRST_OFDM_RATE_IDX;
++}
++
++static enum wmi_phy_mode ath11k_mac_get_phymode_vht(struct ath11k *ar,
++						    struct ieee80211_sta *sta)
++{
++	if (sta->bandwidth == IEEE80211_STA_RX_BW_160) {
++		switch (sta->vht_cap.cap &
++			IEEE80211_VHT_CAP_SUPP_CHAN_WIDTH_MASK) {
++		case IEEE80211_VHT_CAP_SUPP_CHAN_WIDTH_160MHZ:
++			return MODE_11AC_VHT160;
++		case IEEE80211_VHT_CAP_SUPP_CHAN_WIDTH_160_80PLUS80MHZ:
++			return MODE_11AC_VHT80_80;
++		default:
++			/* not sure if this is a valid case? */
++			return MODE_11AC_VHT160;
++		}
++	}
++
++	if (sta->bandwidth == IEEE80211_STA_RX_BW_80)
++		return MODE_11AC_VHT80;
++
++	if (sta->bandwidth == IEEE80211_STA_RX_BW_40)
++		return MODE_11AC_VHT40;
++
++	if (sta->bandwidth == IEEE80211_STA_RX_BW_20)
++		return MODE_11AC_VHT20;
++
++	return MODE_UNKNOWN;
++}
++
++static void ath11k_peer_assoc_h_phymode(struct ath11k *ar,
++					struct ieee80211_vif *vif,
++					struct ieee80211_sta *sta,
++					struct peer_assoc_params *arg)
++{
++	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	struct cfg80211_chan_def def;
++	enum nl80211_band band;
++	const u8 *ht_mcs_mask;
++	const u16 *vht_mcs_mask;
++	enum wmi_phy_mode phymode = MODE_UNKNOWN;
++
++	if (WARN_ON(ath11k_mac_vif_chan(vif, &def)))
++		return;
++
++	band = def.chan->band;
++	ht_mcs_mask = arvif->bitrate_mask.control[band].ht_mcs;
++	vht_mcs_mask = arvif->bitrate_mask.control[band].vht_mcs;
++
++	switch (band) {
++	case NL80211_BAND_2GHZ:
++		if (sta->vht_cap.vht_supported &&
++		    !ath11k_peer_assoc_h_vht_masked(vht_mcs_mask)) {
++			if (sta->bandwidth == IEEE80211_STA_RX_BW_40)
++				phymode = MODE_11AC_VHT40;
++			else
++				phymode = MODE_11AC_VHT20;
++		} else if (sta->ht_cap.ht_supported &&
++			   !ath11k_peer_assoc_h_ht_masked(ht_mcs_mask)) {
++			if (sta->bandwidth == IEEE80211_STA_RX_BW_40)
++				phymode = MODE_11NG_HT40;
++			else
++				phymode = MODE_11NG_HT20;
++		} else if (ath11k_mac_sta_has_ofdm_only(sta)) {
++			phymode = MODE_11G;
++		} else {
++			phymode = MODE_11B;
++		}
++		/* TODO: HE */
++
++		break;
++	case NL80211_BAND_5GHZ:
++		/* Check VHT first */
++		if (sta->vht_cap.vht_supported &&
++		    !ath11k_peer_assoc_h_vht_masked(vht_mcs_mask)) {
++			phymode = ath11k_mac_get_phymode_vht(ar, sta);
++		} else if (sta->ht_cap.ht_supported &&
++			   !ath11k_peer_assoc_h_ht_masked(ht_mcs_mask)) {
++			if (sta->bandwidth >= IEEE80211_STA_RX_BW_40)
++				phymode = MODE_11NA_HT40;
++			else
++				phymode = MODE_11NA_HT20;
++		} else {
++			phymode = MODE_11A;
++		}
++		/* TODO: HE Phymode */
++		break;
++	default:
++		break;
++	}
++
++	ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "mac peer %pM phymode %s\n",
++		   sta->addr, ath11k_wmi_phymode_str(phymode));
++
++	arg->peer_phymode = phymode;
++	WARN_ON(phymode == MODE_UNKNOWN);
++}
++
++static void ath11k_peer_assoc_prepare(struct ath11k *ar,
++				      struct ieee80211_vif *vif,
++				      struct ieee80211_sta *sta,
++				      struct peer_assoc_params *arg,
++				      bool reassoc)
++{
++	lockdep_assert_held(&ar->conf_mutex);
++
++	memset(arg, 0, sizeof(*arg));
++
++	reinit_completion(&ar->peer_assoc_done);
++
++	arg->peer_new_assoc = !reassoc;
++	ath11k_peer_assoc_h_basic(ar, vif, sta, arg);
++	ath11k_peer_assoc_h_crypto(ar, vif, sta, arg);
++	ath11k_peer_assoc_h_rates(ar, vif, sta, arg);
++	ath11k_peer_assoc_h_ht(ar, vif, sta, arg);
++	ath11k_peer_assoc_h_vht(ar, vif, sta, arg);
++	ath11k_peer_assoc_h_he(ar, vif, sta, arg);
++	ath11k_peer_assoc_h_qos(ar, vif, sta, arg);
++	ath11k_peer_assoc_h_phymode(ar, vif, sta, arg);
++	ath11k_peer_assoc_h_smps(sta, arg);
++
++	/* TODO: amsdu_disable req? */
++}
++
++static int ath11k_setup_peer_smps(struct ath11k *ar, struct ath11k_vif *arvif,
++				  const u8 *addr,
++				  const struct ieee80211_sta_ht_cap *ht_cap)
++{
++	int smps;
++
++	if (!ht_cap->ht_supported)
++		return 0;
++
++	smps = ht_cap->cap & IEEE80211_HT_CAP_SM_PS;
++	smps >>= IEEE80211_HT_CAP_SM_PS_SHIFT;
++
++	if (smps >= ARRAY_SIZE(ath11k_smps_map))
++		return -EINVAL;
++
++	return ath11k_wmi_set_peer_param(ar, addr, arvif->vdev_id,
++					 WMI_PEER_MIMO_PS_STATE,
++					 ath11k_smps_map[smps]);
++}
++
++static void ath11k_bss_assoc(struct ieee80211_hw *hw,
++			     struct ieee80211_vif *vif,
++			     struct ieee80211_bss_conf *bss_conf)
++{
++	struct ath11k *ar = hw->priv;
++	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	struct peer_assoc_params peer_arg;
++	struct ieee80211_sta *ap_sta;
++	int ret;
++
++	lockdep_assert_held(&ar->conf_mutex);
++
++	ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "mac vdev %i assoc bssid %pM aid %d\n",
++		   arvif->vdev_id, arvif->bssid, arvif->aid);
++
++	rcu_read_lock();
++
++	ap_sta = ieee80211_find_sta(vif, bss_conf->bssid);
++	if (!ap_sta) {
++		ath11k_warn(ar->ab, "failed to find station entry for bss %pM vdev %i\n",
++			    bss_conf->bssid, arvif->vdev_id);
++		rcu_read_unlock();
++		return;
++	}
++
++	ath11k_peer_assoc_prepare(ar, vif, ap_sta, &peer_arg, false);
++
++	rcu_read_unlock();
++
++	ret = ath11k_wmi_send_peer_assoc_cmd(ar, &peer_arg);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to run peer assoc for %pM vdev %i: %d\n",
++			    bss_conf->bssid, arvif->vdev_id, ret);
++		return;
++	}
++
++	if (!wait_for_completion_timeout(&ar->peer_assoc_done, 1 * HZ)) {
++		ath11k_warn(ar->ab, "failed to get peer assoc conf event for %pM vdev %i\n",
++			    bss_conf->bssid, arvif->vdev_id);
++		return;
++	}
++
++	ret = ath11k_setup_peer_smps(ar, arvif, bss_conf->bssid,
++				     &ap_sta->ht_cap);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to setup peer SMPS for vdev %d: %d\n",
++			    arvif->vdev_id, ret);
++		return;
++	}
++
++	WARN_ON(arvif->is_up);
++
++	arvif->aid = bss_conf->aid;
++	ether_addr_copy(arvif->bssid, bss_conf->bssid);
++
++	ret = ath11k_wmi_vdev_up(ar, arvif->vdev_id, arvif->aid, arvif->bssid);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to set vdev %d up: %d\n",
++			    arvif->vdev_id, ret);
++		return;
++	}
++
++	arvif->is_up = true;
++
++	ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
++		   "mac vdev %d up (associated) bssid %pM aid %d\n",
++		   arvif->vdev_id, bss_conf->bssid, bss_conf->aid);
++
++	/* Authorize BSS Peer */
++	ret = ath11k_wmi_set_peer_param(ar, arvif->bssid,
++					arvif->vdev_id,
++					WMI_PEER_AUTHORIZE,
++					1);
++	if (ret)
++		ath11k_warn(ar->ab, "Unable to authorize BSS peer: %d\n", ret);
++}
++
++static void ath11k_bss_disassoc(struct ieee80211_hw *hw,
++				struct ieee80211_vif *vif)
++{
++	struct ath11k *ar = hw->priv;
++	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	int ret;
++
++	lockdep_assert_held(&ar->conf_mutex);
++
++	ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "mac vdev %i disassoc bssid %pM\n",
++		   arvif->vdev_id, arvif->bssid);
++
++	ret = ath11k_wmi_vdev_down(ar, arvif->vdev_id);
++	if (ret)
++		ath11k_warn(ar->ab, "failed to down vdev %i: %d\n",
++			    arvif->vdev_id, ret);
++
++	arvif->is_up = false;
++
++	/* TODO: cancel connection_loss_work */
++}
++
++static u32 ath11k_mac_get_rate_hw_value(int bitrate)
++{
++	u32 preamble;
++	u16 hw_value;
++	int rate;
++	size_t i;
++
++	if (ath11k_mac_bitrate_is_cck(bitrate))
++		preamble = WMI_RATE_PREAMBLE_CCK;
++	else
++		preamble = WMI_RATE_PREAMBLE_OFDM;
++
++	for (i = 0; i < ARRAY_SIZE(ath11k_legacy_rates); i++) {
++		if (ath11k_legacy_rates[i].bitrate != bitrate)
++			continue;
++
++		hw_value = ath11k_legacy_rates[i].hw_value;
++		rate = ATH11K_HW_RATE_CODE(hw_value, 0, preamble);
++
++		return rate;
++	}
++
++	return -EINVAL;
++}
++
++static void ath11k_recalculate_mgmt_rate(struct ath11k *ar,
++					 struct ieee80211_vif *vif,
++					 struct cfg80211_chan_def *def)
++{
++	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	const struct ieee80211_supported_band *sband;
++	u8 basic_rate_idx;
++	int hw_rate_code;
++	u32 vdev_param;
++	u16 bitrate;
++	int ret;
++
++	lockdep_assert_held(&ar->conf_mutex);
++
++	sband = ar->hw->wiphy->bands[def->chan->band];
++	basic_rate_idx = ffs(vif->bss_conf.basic_rates) - 1;
++	bitrate = sband->bitrates[basic_rate_idx].bitrate;
++
++	hw_rate_code = ath11k_mac_get_rate_hw_value(bitrate);
++	if (hw_rate_code < 0) {
++		ath11k_warn(ar->ab, "bitrate not supported %d\n", bitrate);
++		return;
++	}
++
++	vdev_param = WMI_VDEV_PARAM_MGMT_RATE;
++	ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id, vdev_param,
++					    hw_rate_code);
++	if (ret)
++		ath11k_warn(ar->ab, "failed to set mgmt tx rate %d\n", ret);
++
++	vdev_param = WMI_VDEV_PARAM_BEACON_RATE;
++	ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id, vdev_param,
++					    hw_rate_code);
++	if (ret)
++		ath11k_warn(ar->ab, "failed to set beacon tx rate %d\n", ret);
++}
++
++static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
++					   struct ieee80211_vif *vif,
++					   struct ieee80211_bss_conf *info,
++					   u32 changed)
++{
++	struct ath11k *ar = hw->priv;
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
++	struct cfg80211_chan_def def;
++	u32 param_id, param_value;
++	enum nl80211_band band;
++	u32 vdev_param;
++	int mcast_rate;
++	u32 preamble;
++	u16 hw_value;
++	u16 bitrate;
++	int ret = 0;
++	u8 rateidx;
++	u32 rate;
++
++	mutex_lock(&ar->conf_mutex);
++
++	if (changed & BSS_CHANGED_BEACON_INT) {
++		arvif->beacon_interval = info->beacon_int;
++
++		param_id = WMI_VDEV_PARAM_BEACON_INTERVAL;
++		ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
++						    param_id,
++						    arvif->beacon_interval);
++		if (ret)
++			ath11k_warn(ar->ab, "Failed to set beacon interval for VDEV: %d\n",
++				    arvif->vdev_id);
++		else
++			ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
++				   "Beacon interval: %d set for VDEV: %d\n",
++				   arvif->beacon_interval, arvif->vdev_id);
++	}
++
++	if (changed & BSS_CHANGED_BEACON) {
++		param_id = WMI_PDEV_PARAM_BEACON_TX_MODE;
++		param_value = WMI_BEACON_STAGGERED_MODE;
++		ret = ath11k_wmi_pdev_set_param(ar, param_id,
++						param_value, ar->pdev->pdev_id);
++		if (ret)
++			ath11k_warn(ar->ab, "Failed to set beacon mode for VDEV: %d\n",
++				    arvif->vdev_id);
++		else
++			ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
++				   "Set staggered beacon mode for VDEV: %d\n",
++				   arvif->vdev_id);
++
++		ret = ath11k_mac_setup_bcn_tmpl(arvif);
++		if (ret)
++			ath11k_warn(ar->ab, "failed to update bcn template: %d\n",
++				    ret);
++	}
++
++	if (changed & (BSS_CHANGED_BEACON_INFO | BSS_CHANGED_BEACON)) {
++		arvif->dtim_period = info->dtim_period;
++
++		param_id = WMI_VDEV_PARAM_DTIM_PERIOD;
++		ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
++						    param_id,
++						    arvif->dtim_period);
++
++		if (ret)
++			ath11k_warn(ar->ab, "Failed to set dtim period for VDEV %d: %i\n",
++				    arvif->vdev_id, ret);
++		else
++			ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
++				   "DTIM period: %d set for VDEV: %d\n",
++				   arvif->dtim_period, arvif->vdev_id);
++	}
++
++	if (changed & BSS_CHANGED_SSID &&
++	    vif->type == NL80211_IFTYPE_AP) {
++		arvif->u.ap.ssid_len = info->ssid_len;
++		if (info->ssid_len)
++			memcpy(arvif->u.ap.ssid, info->ssid, info->ssid_len);
++		arvif->u.ap.hidden_ssid = info->hidden_ssid;
++	}
++
++	if (changed & BSS_CHANGED_BSSID && !is_zero_ether_addr(info->bssid))
++		ether_addr_copy(arvif->bssid, info->bssid);
++
++	if (changed & BSS_CHANGED_BEACON_ENABLED)
++		ath11k_control_beaconing(arvif, info);
++
++	if (changed & BSS_CHANGED_ERP_CTS_PROT) {
++		u32 cts_prot;
++
++		cts_prot = !!(info->use_cts_prot);
++		param_id = WMI_VDEV_PARAM_PROTECTION_MODE;
++
++		if (arvif->is_started) {
++			ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
++							    param_id, cts_prot);
++			if (ret)
++				ath11k_warn(ar->ab, "Failed to set CTS prot for VDEV: %d\n",
++					    arvif->vdev_id);
++			else
++				ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "Set CTS prot: %d for VDEV: %d\n",
++					   cts_prot, arvif->vdev_id);
++		} else {
++			ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "defer protection mode setup, vdev is not ready yet\n");
++		}
++	}
++
++	if (changed & BSS_CHANGED_ERP_SLOT) {
++		u32 slottime;
++
++		if (info->use_short_slot)
++			slottime = WMI_VDEV_SLOT_TIME_SHORT; /* 9us */
++
++		else
++			slottime = WMI_VDEV_SLOT_TIME_LONG; /* 20us */
++
++		param_id = WMI_VDEV_PARAM_SLOT_TIME;
++		ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
++						    param_id, slottime);
++		if (ret)
++			ath11k_warn(ar->ab, "Failed to set erp slot for VDEV: %d\n",
++				    arvif->vdev_id);
++		else
++			ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
++				   "Set slottime: %d for VDEV: %d\n",
++				   slottime, arvif->vdev_id);
++	}
++
++	if (changed & BSS_CHANGED_ERP_PREAMBLE) {
++		u32 preamble;
++
++		if (info->use_short_preamble)
++			preamble = WMI_VDEV_PREAMBLE_SHORT;
++		else
++			preamble = WMI_VDEV_PREAMBLE_LONG;
++
++		param_id = WMI_VDEV_PARAM_PREAMBLE;
++		ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
++						    param_id, preamble);
++		if (ret)
++			ath11k_warn(ar->ab, "Failed to set preamble for VDEV: %d\n",
++				    arvif->vdev_id);
++		else
++			ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
++				   "Set preamble: %d for VDEV: %d\n",
++				   preamble, arvif->vdev_id);
++	}
++
++	if (changed & BSS_CHANGED_ASSOC) {
++		if (info->assoc)
++			ath11k_bss_assoc(hw, vif, info);
++		else
++			ath11k_bss_disassoc(hw, vif);
++	}
++
++	if (changed & BSS_CHANGED_TXPOWER) {
++		ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "mac vdev_id %i txpower %d\n",
++			   arvif->vdev_id, info->txpower);
++
++		arvif->txpower = info->txpower;
++		ath11k_mac_txpower_recalc(ar);
++	}
++
++	if (changed & BSS_CHANGED_MCAST_RATE &&
++	    !ath11k_mac_vif_chan(arvif->vif, &def)) {
++		band = def.chan->band;
++		mcast_rate = vif->bss_conf.mcast_rate[band];
++
++		if (mcast_rate > 0)
++			rateidx = mcast_rate - 1;
++		else
++			rateidx = ffs(vif->bss_conf.basic_rates) - 1;
++
++		if (ar->pdev->cap.supported_bands & WMI_HOST_WLAN_5G_CAP)
++			rateidx += ATH11K_MAC_FIRST_OFDM_RATE_IDX;
++
++		bitrate = ath11k_legacy_rates[rateidx].bitrate;
++		hw_value = ath11k_legacy_rates[rateidx].hw_value;
++
++		if (ath11k_mac_bitrate_is_cck(bitrate))
++			preamble = WMI_RATE_PREAMBLE_CCK;
++		else
++			preamble = WMI_RATE_PREAMBLE_OFDM;
++
++		rate = ATH11K_HW_RATE_CODE(hw_value, 0, preamble);
++
++		ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
++			   "mac vdev %d mcast_rate %x\n",
++			   arvif->vdev_id, rate);
++
++		vdev_param = WMI_VDEV_PARAM_MCAST_DATA_RATE;
++		ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
++						    vdev_param, rate);
++		if (ret)
++			ath11k_warn(ar->ab,
++				    "failed to set mcast rate on vdev %i: %d\n",
++				    arvif->vdev_id,  ret);
++
++		vdev_param = WMI_VDEV_PARAM_BCAST_DATA_RATE;
++		ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
++						    vdev_param, rate);
++		if (ret)
++			ath11k_warn(ar->ab,
++				    "failed to set bcast rate on vdev %i: %d\n",
++				    arvif->vdev_id,  ret);
++	}
++
++	if (changed & BSS_CHANGED_BASIC_RATES &&
++	    !ath11k_mac_vif_chan(arvif->vif, &def))
++		ath11k_recalculate_mgmt_rate(ar, vif, &def);
++
++	mutex_unlock(&ar->conf_mutex);
++}
++
++void __ath11k_mac_scan_finish(struct ath11k *ar)
++{
++	lockdep_assert_held(&ar->data_lock);
++
++	switch (ar->scan.state) {
++	case ATH11K_SCAN_IDLE:
++		break;
++	case ATH11K_SCAN_RUNNING:
++	case ATH11K_SCAN_ABORTING:
++		if (!ar->scan.is_roc) {
++			struct cfg80211_scan_info info = {
++				.aborted = (ar->scan.state ==
++					    ATH11K_SCAN_ABORTING),
++			};
++
++			ieee80211_scan_completed(ar->hw, &info);
++		} else if (ar->scan.roc_notify) {
++			ieee80211_remain_on_channel_expired(ar->hw);
++		}
++		/* fall through */
++	case ATH11K_SCAN_STARTING:
++		ar->scan.state = ATH11K_SCAN_IDLE;
++		ar->scan_channel = NULL;
++		ar->scan.roc_freq = 0;
++		cancel_delayed_work(&ar->scan.timeout);
++		complete(&ar->scan.completed);
++		break;
++	}
++}
++
++void ath11k_mac_scan_finish(struct ath11k *ar)
++{
++	spin_lock_bh(&ar->data_lock);
++	__ath11k_mac_scan_finish(ar);
++	spin_unlock_bh(&ar->data_lock);
++}
++
++static int ath11k_scan_stop(struct ath11k *ar)
++{
++	struct scan_cancel_param arg = {
++		.req_type = WLAN_SCAN_CANCEL_SINGLE,
++		.scan_id = ATH11K_SCAN_ID,
++	};
++	int ret;
++
++	lockdep_assert_held(&ar->conf_mutex);
++
++	/* TODO: Fill other STOP Params */
++	arg.pdev_id = ar->pdev->pdev_id;
++
++	ret = ath11k_wmi_send_scan_stop_cmd(ar, &arg);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to stop wmi scan: %d\n", ret);
++		goto out;
++	}
++
++	ret = wait_for_completion_timeout(&ar->scan.completed, 3 * HZ);
++	if (ret == 0) {
++		ath11k_warn(ar->ab,
++			    "failed to receive scan abort comple: timed out\n");
++		ret = -ETIMEDOUT;
++	} else if (ret > 0) {
++		ret = 0;
++	}
++
++out:
++	/* Scan state should be updated upon scan completion but in case
++	 * firmware fails to deliver the event (for whatever reason) it is
++	 * desired to clean up scan state anyway. Firmware may have just
++	 * dropped the scan completion event delivery due to transport pipe
++	 * being overflown with data and/or it can recover on its own before
++	 * next scan request is submitted.
++	 */
++	spin_lock_bh(&ar->data_lock);
++	if (ar->scan.state != ATH11K_SCAN_IDLE)
++		__ath11k_mac_scan_finish(ar);
++	spin_unlock_bh(&ar->data_lock);
++
++	return ret;
++}
++
++static void ath11k_scan_abort(struct ath11k *ar)
++{
++	int ret;
++
++	lockdep_assert_held(&ar->conf_mutex);
++
++	spin_lock_bh(&ar->data_lock);
++
++	switch (ar->scan.state) {
++	case ATH11K_SCAN_IDLE:
++		/* This can happen if timeout worker kicked in and called
++		 * abortion while scan completion was being processed.
++		 */
++		break;
++	case ATH11K_SCAN_STARTING:
++	case ATH11K_SCAN_ABORTING:
++		ath11k_warn(ar->ab, "refusing scan abortion due to invalid scan state: %d\n",
++			    ar->scan.state);
++		break;
++	case ATH11K_SCAN_RUNNING:
++		ar->scan.state = ATH11K_SCAN_ABORTING;
++		spin_unlock_bh(&ar->data_lock);
++
++		ret = ath11k_scan_stop(ar);
++		if (ret)
++			ath11k_warn(ar->ab, "failed to abort scan: %d\n", ret);
++
++		spin_lock_bh(&ar->data_lock);
++		break;
++	}
++
++	spin_unlock_bh(&ar->data_lock);
++}
++
++static void ath11k_scan_timeout_work(struct work_struct *work)
++{
++	struct ath11k *ar = container_of(work, struct ath11k,
++					 scan.timeout.work);
++
++	mutex_lock(&ar->conf_mutex);
++	ath11k_scan_abort(ar);
++	mutex_unlock(&ar->conf_mutex);
++}
++
++static int ath11k_start_scan(struct ath11k *ar,
++			     struct scan_req_params *arg)
++{
++	int ret;
++
++	lockdep_assert_held(&ar->conf_mutex);
++
++	ret = ath11k_wmi_send_scan_start_cmd(ar, arg);
++	if (ret)
++		return ret;
++
++	ret = wait_for_completion_timeout(&ar->scan.started, 1 * HZ);
++	if (ret == 0) {
++		ret = ath11k_scan_stop(ar);
++		if (ret)
++			ath11k_warn(ar->ab, "failed to stop scan: %d\n", ret);
++
++		return -ETIMEDOUT;
++	}
++
++	/* If we failed to start the scan, return error code at
++	 * this point.  This is probably due to some issue in the
++	 * firmware, but no need to wedge the driver due to that...
++	 */
++	spin_lock_bh(&ar->data_lock);
++	if (ar->scan.state == ATH11K_SCAN_IDLE) {
++		spin_unlock_bh(&ar->data_lock);
++		return -EINVAL;
++	}
++	spin_unlock_bh(&ar->data_lock);
++
++	return 0;
++}
++
++static int ath11k_mac_op_hw_scan(struct ieee80211_hw *hw,
++				 struct ieee80211_vif *vif,
++				 struct ieee80211_scan_request *hw_req)
++{
++	struct ath11k *ar = hw->priv;
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
++	struct cfg80211_scan_request *req = &hw_req->req;
++	struct scan_req_params arg;
++	int ret = 0;
++	int i;
++
++	mutex_lock(&ar->conf_mutex);
++
++	spin_lock_bh(&ar->data_lock);
++	switch (ar->scan.state) {
++	case ATH11K_SCAN_IDLE:
++		reinit_completion(&ar->scan.started);
++		reinit_completion(&ar->scan.completed);
++		ar->scan.state = ATH11K_SCAN_STARTING;
++		ar->scan.is_roc = false;
++		ar->scan.vdev_id = arvif->vdev_id;
++		ret = 0;
++		break;
++	case ATH11K_SCAN_STARTING:
++	case ATH11K_SCAN_RUNNING:
++	case ATH11K_SCAN_ABORTING:
++		ret = -EBUSY;
++		break;
++	}
++	spin_unlock_bh(&ar->data_lock);
++
++	if (ret)
++		goto exit;
++
++	memset(&arg, 0, sizeof(arg));
++	ath11k_wmi_start_scan_init(ar, &arg);
++	arg.vdev_id = arvif->vdev_id;
++	arg.scan_id = ATH11K_SCAN_ID;
++
++	if (req->ie_len) {
++		arg.extraie.len = req->ie_len;
++		arg.extraie.ptr = kzalloc(req->ie_len, GFP_KERNEL);
++		memcpy(arg.extraie.ptr, req->ie, req->ie_len);
++	}
++
++	if (req->n_ssids) {
++		arg.num_ssids = req->n_ssids;
++		for (i = 0; i < arg.num_ssids; i++) {
++			arg.ssid[i].length  = req->ssids[i].ssid_len;
++			memcpy(&arg.ssid[i].ssid, req->ssids[i].ssid,
++			       req->ssids[i].ssid_len);
++		}
++	} else {
++		arg.scan_flags |= WMI_SCAN_FLAG_PASSIVE;
++	}
++
++	if (req->n_channels) {
++		arg.num_chan = req->n_channels;
++		for (i = 0; i < arg.num_chan; i++)
++			arg.chan_list[i] = req->channels[i]->center_freq;
++	}
++
++	ret = ath11k_start_scan(ar, &arg);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to start hw scan: %d\n", ret);
++		spin_lock_bh(&ar->data_lock);
++		ar->scan.state = ATH11K_SCAN_IDLE;
++		spin_unlock_bh(&ar->data_lock);
++	}
++
++	/* Add a 200ms margin to account for event/command processing */
++	ieee80211_queue_delayed_work(ar->hw, &ar->scan.timeout,
++				     msecs_to_jiffies(arg.max_scan_time +
++						      ATH11K_MAC_SCAN_TIMEOUT_MSECS));
++
++exit:
++	if (req->ie_len)
++		kfree(arg.extraie.ptr);
++
++	mutex_unlock(&ar->conf_mutex);
++	return ret;
++}
++
++static void ath11k_mac_op_cancel_hw_scan(struct ieee80211_hw *hw,
++					 struct ieee80211_vif *vif)
++{
++	struct ath11k *ar = hw->priv;
++
++	mutex_lock(&ar->conf_mutex);
++	ath11k_scan_abort(ar);
++	mutex_unlock(&ar->conf_mutex);
++
++	cancel_delayed_work_sync(&ar->scan.timeout);
++}
++
++static int ath11k_install_key(struct ath11k_vif *arvif,
++			      struct ieee80211_key_conf *key,
++			      enum set_key_cmd cmd,
++			      const u8 *macaddr, u32 flags)
++{
++	int ret;
++	struct ath11k *ar = arvif->ar;
++	struct wmi_vdev_install_key_arg arg = {
++		.vdev_id = arvif->vdev_id,
++		.key_idx = key->keyidx,
++		.key_len = key->keylen,
++		.key_data = key->key,
++		.key_flags = flags,
++		.macaddr = macaddr,
++	};
++
++	lockdep_assert_held(&arvif->ar->conf_mutex);
++
++	reinit_completion(&ar->install_key_done);
++
++	if (cmd == DISABLE_KEY) {
++		/* TODO: Check if FW expects  value other than NONE for del */
++		/* arg.key_cipher = WMI_CIPHER_NONE; */
++		arg.key_len = 0;
++		arg.key_data = NULL;
++		goto install;
++	}
++
++	switch (key->cipher) {
++	case WLAN_CIPHER_SUITE_CCMP:
++		arg.key_cipher = WMI_CIPHER_AES_CCM;
++		/* TODO: Re-check if flag is valid */
++		key->flags |= IEEE80211_KEY_FLAG_GENERATE_IV_MGMT;
++		break;
++	case WLAN_CIPHER_SUITE_TKIP:
++		arg.key_cipher = WMI_CIPHER_TKIP;
++		arg.key_txmic_len = 8;
++		arg.key_rxmic_len = 8;
++		break;
++	case WLAN_CIPHER_SUITE_CCMP_256:
++		arg.key_cipher = WMI_CIPHER_AES_CCM;
++		break;
++	case WLAN_CIPHER_SUITE_GCMP:
++	case WLAN_CIPHER_SUITE_GCMP_256:
++		arg.key_cipher = WMI_CIPHER_AES_GCM;
++		break;
++	default:
++		ath11k_warn(ar->ab, "cipher %d is not supported\n", key->cipher);
++		return -EOPNOTSUPP;
++	}
++
++install:
++	ret = ath11k_wmi_vdev_install_key(arvif->ar, &arg);
++	if (ret)
++		return ret;
++
++	if (!wait_for_completion_timeout(&ar->install_key_done, 1 * HZ))
++		return -ETIMEDOUT;
++
++	return ar->install_key_status ? -EINVAL : 0;
++}
++
++static int ath11k_clear_peer_keys(struct ath11k_vif *arvif,
++				  const u8 *addr)
++{
++	struct ath11k *ar = arvif->ar;
++	struct ath11k_base *ab = ar->ab;
++	struct ath11k_peer *peer;
++	int first_errno = 0;
++	int ret;
++	int i;
++	u32 flags = 0;
++
++	lockdep_assert_held(&ar->conf_mutex);
++
++	spin_lock_bh(&ab->base_lock);
++	peer = ath11k_peer_find(ab, arvif->vdev_id, addr);
++	spin_unlock_bh(&ab->base_lock);
++
++	if (!peer)
++		return -ENOENT;
++
++	for (i = 0; i < ARRAY_SIZE(peer->keys); i++) {
++		if (!peer->keys[i])
++			continue;
++
++		/* key flags are not required to delete the key */
++		ret = ath11k_install_key(arvif, peer->keys[i],
++					 DISABLE_KEY, addr, flags);
++		if (ret < 0 && first_errno == 0)
++			first_errno = ret;
++
++		if (ret < 0)
++			ath11k_warn(ab, "failed to remove peer key %d: %d\n",
++				    i, ret);
++
++		spin_lock_bh(&ab->base_lock);
++		peer->keys[i] = NULL;
++		spin_unlock_bh(&ab->base_lock);
++	}
++
++	return first_errno;
++}
++
++static int ath11k_mac_op_set_key(struct ieee80211_hw *hw, enum set_key_cmd cmd,
++				 struct ieee80211_vif *vif, struct ieee80211_sta *sta,
++				 struct ieee80211_key_conf *key)
++{
++	struct ath11k *ar = hw->priv;
++	struct ath11k_base *ab = ar->ab;
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
++	struct ath11k_peer *peer;
++	const u8 *peer_addr;
++	int ret = 0;
++	u32 flags = 0;
++
++	/* BIP needs to be done in software */
++	if (key->cipher == WLAN_CIPHER_SUITE_AES_CMAC ||
++	    key->cipher == WLAN_CIPHER_SUITE_BIP_GMAC_128 ||
++	    key->cipher == WLAN_CIPHER_SUITE_BIP_GMAC_256 ||
++	    key->cipher == WLAN_CIPHER_SUITE_BIP_CMAC_256)
++		return 1;
++
++	if (key->keyidx > WMI_MAX_KEY_INDEX)
++		return -ENOSPC;
++
++	mutex_lock(&ar->conf_mutex);
++
++	if (sta)
++		peer_addr = sta->addr;
++	else if (arvif->vdev_type == WMI_VDEV_TYPE_STA)
++		peer_addr = vif->bss_conf.bssid;
++	else
++		peer_addr = vif->addr;
++
++	key->hw_key_idx = key->keyidx;
++
++	/* the peer should not disappear in mid-way (unless FW goes awry) since
++	 * we already hold conf_mutex. we just make sure its there now.
++	 */
++	spin_lock_bh(&ab->base_lock);
++	peer = ath11k_peer_find(ab, arvif->vdev_id, peer_addr);
++	spin_unlock_bh(&ab->base_lock);
++
++	if (!peer) {
++		if (cmd == SET_KEY) {
++			ath11k_warn(ab, "cannot install key for non-existent peer %pM\n",
++				    peer_addr);
++			ret = -EOPNOTSUPP;
++			goto exit;
++		} else {
++			/* if the peer doesn't exist there is no key to disable
++			 * anymore
++			 */
++			goto exit;
++		}
++	}
++
++	if (key->flags & IEEE80211_KEY_FLAG_PAIRWISE)
++		flags |= WMI_KEY_PAIRWISE;
++	else
++		flags |= WMI_KEY_GROUP;
++
++	ret = ath11k_install_key(arvif, key, cmd, peer_addr, flags);
++	if (ret) {
++		ath11k_warn(ab, "ath11k_install_key failed (%d)\n", ret);
++		goto exit;
++	}
++
++	spin_lock_bh(&ab->base_lock);
++	peer = ath11k_peer_find(ab, arvif->vdev_id, peer_addr);
++	if (peer && cmd == SET_KEY)
++		peer->keys[key->keyidx] = key;
++	else if (peer && cmd == DISABLE_KEY)
++		peer->keys[key->keyidx] = NULL;
++	else if (!peer)
++		/* impossible unless FW goes crazy */
++		ath11k_warn(ab, "peer %pM disappeared!\n", peer_addr);
++	spin_unlock_bh(&ab->base_lock);
++
++exit:
++	mutex_unlock(&ar->conf_mutex);
++	return ret;
++}
++
++static int
++ath11k_mac_bitrate_mask_num_vht_rates(struct ath11k *ar,
++				      enum nl80211_band band,
++				      const struct cfg80211_bitrate_mask *mask)
++{
++	int num_rates = 0;
++	int i;
++
++	for (i = 0; i < ARRAY_SIZE(mask->control[band].vht_mcs); i++)
++		num_rates += hweight16(mask->control[band].vht_mcs[i]);
++
++	return num_rates;
++}
++
++static int
++ath11k_mac_set_peer_vht_fixed_rate(struct ath11k_vif *arvif,
++				   struct ieee80211_sta *sta,
++				   const struct cfg80211_bitrate_mask *mask,
++				   enum nl80211_band band)
++{
++	struct ath11k *ar = arvif->ar;
++	u8 vht_rate, nss;
++	u32 rate_code;
++	int ret, i;
++
++	lockdep_assert_held(&ar->conf_mutex);
++
++	nss = 0;
++
++	for (i = 0; i < ARRAY_SIZE(mask->control[band].vht_mcs); i++) {
++		if (hweight16(mask->control[band].vht_mcs[i]) == 1) {
++			nss = i + 1;
++			vht_rate = ffs(mask->control[band].vht_mcs[i]) - 1;
++		}
++	}
++
++	if (!nss) {
++		ath11k_warn(ar->ab, "No single VHT Fixed rate found to set for %pM",
++			    sta->addr);
++		return -EINVAL;
++	}
++
++	ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
++		   "Setting Fixed VHT Rate for peer %pM. Device will not switch to any other selected rates",
++		   sta->addr);
++
++	rate_code = ATH11K_HW_RATE_CODE(vht_rate, nss - 1,
++					WMI_RATE_PREAMBLE_VHT);
++	ret = ath11k_wmi_set_peer_param(ar, sta->addr,
++					arvif->vdev_id,
++					WMI_PEER_PARAM_FIXED_RATE,
++					rate_code);
++	if (ret)
++		ath11k_warn(ar->ab,
++			    "failed to update STA %pM Fixed Rate %d: %d\n",
++			     sta->addr, rate_code, ret);
++
++	return ret;
++}
++
++static int ath11k_station_assoc(struct ath11k *ar,
++				struct ieee80211_vif *vif,
++				struct ieee80211_sta *sta,
++				bool reassoc)
++{
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
++	struct peer_assoc_params peer_arg;
++	int ret = 0;
++	struct cfg80211_chan_def def;
++	enum nl80211_band band;
++	struct cfg80211_bitrate_mask *mask;
++	u8 num_vht_rates;
++
++	lockdep_assert_held(&ar->conf_mutex);
++
++	if (WARN_ON(ath11k_mac_vif_chan(vif, &def)))
++		return -EPERM;
++
++	band = def.chan->band;
++	mask = &arvif->bitrate_mask;
++
++	ath11k_peer_assoc_prepare(ar, vif, sta, &peer_arg, reassoc);
++
++	ret = ath11k_wmi_send_peer_assoc_cmd(ar, &peer_arg);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to run peer assoc for STA %pM vdev %i: %d\n",
++			    sta->addr, arvif->vdev_id, ret);
++		return ret;
++	}
++
++	if (!wait_for_completion_timeout(&ar->peer_assoc_done, 1 * HZ)) {
++		ath11k_warn(ar->ab, "failed to get peer assoc conf event for %pM vdev %i\n",
++			    sta->addr, arvif->vdev_id);
++		return -ETIMEDOUT;
++	}
++
++	num_vht_rates = ath11k_mac_bitrate_mask_num_vht_rates(ar, band, mask);
++
++	/* If single VHT rate is configured (by set_bitrate_mask()),
++	 * peer_assoc will disable VHT. This is now enabled by a peer specific
++	 * fixed param.
++	 * Note that all other rates and NSS will be disabled for this peer.
++	 */
++	if (sta->vht_cap.vht_supported && num_vht_rates == 1) {
++		ret = ath11k_mac_set_peer_vht_fixed_rate(arvif, sta, mask,
++							 band);
++		if (ret)
++			return ret;
++	}
++
++	/* Re-assoc is run only to update supported rates for given station. It
++	 * doesn't make much sense to reconfigure the peer completely.
++	 */
++	if (reassoc)
++		return 0;
++
++	ret = ath11k_setup_peer_smps(ar, arvif, sta->addr,
++				     &sta->ht_cap);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to setup peer SMPS for vdev %d: %d\n",
++			    arvif->vdev_id, ret);
++		return ret;
++	}
++
++	if (!sta->wme) {
++		arvif->num_legacy_stations++;
++		ret = ath11k_recalc_rtscts_prot(arvif);
++		if (ret)
++			return ret;
++	}
++
++	if (sta->wme && sta->uapsd_queues) {
++		ret = ath11k_peer_assoc_qos_ap(ar, arvif, sta);
++		if (ret) {
++			ath11k_warn(ar->ab, "failed to set qos params for STA %pM for vdev %i: %d\n",
++				    sta->addr, arvif->vdev_id, ret);
++			return ret;
++		}
++	}
++
++	return 0;
++}
++
++static int ath11k_station_disassoc(struct ath11k *ar,
++				   struct ieee80211_vif *vif,
++				   struct ieee80211_sta *sta)
++{
++	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	int ret = 0;
++
++	lockdep_assert_held(&ar->conf_mutex);
++
++	if (!sta->wme) {
++		arvif->num_legacy_stations--;
++		ret = ath11k_recalc_rtscts_prot(arvif);
++		if (ret)
++			return ret;
++	}
++
++	ret = ath11k_clear_peer_keys(arvif, sta->addr);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to clear all peer keys for vdev %i: %d\n",
++			    arvif->vdev_id, ret);
++		return ret;
++	}
++	return 0;
++}
++
++static void ath11k_sta_rc_update_wk(struct work_struct *wk)
++{
++	struct ath11k *ar;
++	struct ath11k_vif *arvif;
++	struct ath11k_sta *arsta;
++	struct ieee80211_sta *sta;
++	struct cfg80211_chan_def def;
++	enum nl80211_band band;
++	const u8 *ht_mcs_mask;
++	const u16 *vht_mcs_mask;
++	u32 changed, bw, nss, smps;
++	int err, num_vht_rates;
++	const struct cfg80211_bitrate_mask *mask;
++	struct peer_assoc_params peer_arg;
++
++	arsta = container_of(wk, struct ath11k_sta, update_wk);
++	sta = container_of((void *)arsta, struct ieee80211_sta, drv_priv);
++	arvif = arsta->arvif;
++	ar = arvif->ar;
++
++	if (WARN_ON(ath11k_mac_vif_chan(arvif->vif, &def)))
++		return;
++
++	band = def.chan->band;
++	ht_mcs_mask = arvif->bitrate_mask.control[band].ht_mcs;
++	vht_mcs_mask = arvif->bitrate_mask.control[band].vht_mcs;
++
++	spin_lock_bh(&ar->data_lock);
++
++	changed = arsta->changed;
++	arsta->changed = 0;
++
++	bw = arsta->bw;
++	nss = arsta->nss;
++	smps = arsta->smps;
++
++	spin_unlock_bh(&ar->data_lock);
++
++	mutex_lock(&ar->conf_mutex);
++
++	nss = max_t(u32, 1, nss);
++	nss = min(nss, max(ath11k_mac_max_ht_nss(ht_mcs_mask),
++			   ath11k_mac_max_vht_nss(vht_mcs_mask)));
++
++	if (changed & IEEE80211_RC_BW_CHANGED) {
++		err = ath11k_wmi_set_peer_param(ar, sta->addr, arvif->vdev_id,
++						WMI_PEER_CHWIDTH, bw);
++		if (err)
++			ath11k_warn(ar->ab, "failed to update STA %pM peer bw %d: %d\n",
++				    sta->addr, bw, err);
++	}
++
++	if (changed & IEEE80211_RC_NSS_CHANGED) {
++		ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "mac update sta %pM nss %d\n",
++			   sta->addr, nss);
++
++		err = ath11k_wmi_set_peer_param(ar, sta->addr, arvif->vdev_id,
++						WMI_PEER_NSS, nss);
++		if (err)
++			ath11k_warn(ar->ab, "failed to update STA %pM nss %d: %d\n",
++				    sta->addr, nss, err);
++	}
++
++	if (changed & IEEE80211_RC_SMPS_CHANGED) {
++		ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "mac update sta %pM smps %d\n",
++			   sta->addr, smps);
++
++		err = ath11k_wmi_set_peer_param(ar, sta->addr, arvif->vdev_id,
++						WMI_PEER_MIMO_PS_STATE, smps);
++		if (err)
++			ath11k_warn(ar->ab, "failed to update STA %pM smps %d: %d\n",
++				    sta->addr, smps, err);
++	}
++
++	if (changed & IEEE80211_RC_SUPP_RATES_CHANGED) {
++		mask = &arvif->bitrate_mask;
++		num_vht_rates = ath11k_mac_bitrate_mask_num_vht_rates(ar, band,
++								      mask);
++
++		/* Peer_assoc_prepare will reject vht rates in
++		 * bitrate_mask if its not available in range format and
++		 * sets vht tx_rateset as unsupported. So multiple VHT MCS
++		 * setting(eg. MCS 4,5,6) per peer is not supported here.
++		 * But, Single rate in VHT mask can be set as per-peer
++		 * fixed rate. But even if any HT rates are configured in
++		 * the bitrate mask, device will not switch to those rates
++		 * when per-peer Fixed rate is set.
++		 * TODO: Check RATEMASK_CMDID to support auto rates selection
++		 * across HT/VHT and for multiple VHT MCS support.
++		 */
++		if (sta->vht_cap.vht_supported && num_vht_rates == 1) {
++			ath11k_mac_set_peer_vht_fixed_rate(arvif, sta, mask,
++							   band);
++		} else {
++			/* If the peer is non-VHT or no fixed VHT rate
++			 * is provided in the new bitrate mask we set the
++			 * other rates using peer_assoc command.
++			 */
++			ath11k_peer_assoc_prepare(ar, arvif->vif, sta,
++						  &peer_arg, true);
++
++			err = ath11k_wmi_send_peer_assoc_cmd(ar, &peer_arg);
++			if (err)
++				ath11k_warn(ar->ab, "failed to run peer assoc for STA %pM vdev %i: %d\n",
++					    sta->addr, arvif->vdev_id, err);
++
++			if (!wait_for_completion_timeout(&ar->peer_assoc_done, 1 * HZ))
++				ath11k_warn(ar->ab, "failed to get peer assoc conf event for %pM vdev %i\n",
++					    sta->addr, arvif->vdev_id);
++		}
++	}
++
++	mutex_unlock(&ar->conf_mutex);
++}
++
++static int ath11k_mac_inc_num_stations(struct ath11k_vif *arvif,
++				       struct ieee80211_sta *sta)
++{
++	struct ath11k *ar = arvif->ar;
++
++	lockdep_assert_held(&ar->conf_mutex);
++
++	if (arvif->vdev_type == WMI_VDEV_TYPE_STA && !sta->tdls)
++		return 0;
++
++	if (ar->num_stations >= ar->max_num_stations)
++		return -ENOBUFS;
++
++	ar->num_stations++;
++
++	return 0;
++}
++
++static void ath11k_mac_dec_num_stations(struct ath11k_vif *arvif,
++					struct ieee80211_sta *sta)
++{
++	struct ath11k *ar = arvif->ar;
++
++	lockdep_assert_held(&ar->conf_mutex);
++
++	if (arvif->vdev_type == WMI_VDEV_TYPE_STA && !sta->tdls)
++		return;
++
++	ar->num_stations--;
++}
++
++static int ath11k_mac_op_sta_state(struct ieee80211_hw *hw,
++				   struct ieee80211_vif *vif,
++				   struct ieee80211_sta *sta,
++				   enum ieee80211_sta_state old_state,
++				   enum ieee80211_sta_state new_state)
++{
++	struct ath11k *ar = hw->priv;
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
++	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
++	struct peer_create_params peer_param;
++	int ret = 0;
++
++	/* cancel must be done outside the mutex to avoid deadlock */
++	if ((old_state == IEEE80211_STA_NONE &&
++	     new_state == IEEE80211_STA_NOTEXIST))
++		cancel_work_sync(&arsta->update_wk);
++
++	mutex_lock(&ar->conf_mutex);
++
++	if (old_state == IEEE80211_STA_NOTEXIST &&
++	    new_state == IEEE80211_STA_NONE) {
++		memset(arsta, 0, sizeof(*arsta));
++		arsta->arvif = arvif;
++		INIT_WORK(&arsta->update_wk, ath11k_sta_rc_update_wk);
++
++		ret = ath11k_mac_inc_num_stations(arvif, sta);
++		if (ret) {
++			ath11k_warn(ar->ab, "refusing to associate station: too many connected already (%d)\n",
++				    ar->max_num_stations);
++			goto exit;
++		}
++
++		arsta->rx_stats = kzalloc(sizeof(*arsta->rx_stats), GFP_KERNEL);
++		if (!arsta->rx_stats) {
++			ret = -ENOMEM;
++			goto exit;
++		}
++
++		peer_param.vdev_id = arvif->vdev_id;
++		peer_param.peer_addr = sta->addr;
++		peer_param.peer_type = WMI_PEER_TYPE_DEFAULT;
++		ret = ath11k_peer_create(ar, arvif, sta, &peer_param);
++		if (ret) {
++			ath11k_warn(ar->ab, "Failed to add peer: %pM for VDEV: %d\n",
++				    sta->addr, arvif->vdev_id);
++			ath11k_mac_dec_num_stations(arvif, sta);
++			goto exit;
++		}
++
++		ath11k_info(ar->ab, "Added peer: %pM for VDEV: %d\n",
++			    sta->addr, arvif->vdev_id);
++
++		if (ath11k_debug_is_extd_tx_stats_enabled(ar)) {
++			arsta->tx_stats = kzalloc(sizeof(*arsta->tx_stats),
++						  GFP_KERNEL);
++			if (!arsta->tx_stats) {
++				ret = -ENOMEM;
++				goto exit;
++			}
++		}
++
++		if (ieee80211_vif_is_mesh(vif)) {
++			ret = ath11k_wmi_set_peer_param(ar, sta->addr,
++							arvif->vdev_id,
++							WMI_PEER_USE_4ADDR, 1);
++			if (ret) {
++				ath11k_warn(ar->ab, "failed to STA %pM 4addr capability: %d\n",
++					    sta->addr, ret);
++				goto exit;
++			}
++		}
++
++		ret = ath11k_dp_peer_setup(ar, arvif->vdev_id, sta->addr);
++		if (ret) {
++			ath11k_warn(ar->ab, "failed to setup dp for peer %pM on vdev %i (%d)\n",
++				    sta->addr, arvif->vdev_id, ret);
++			ath11k_peer_delete(ar, arvif->vdev_id, sta->addr);
++			ath11k_mac_dec_num_stations(arvif, sta);
++		}
++	} else if ((old_state == IEEE80211_STA_NONE &&
++		    new_state == IEEE80211_STA_NOTEXIST)) {
++		ath11k_dp_peer_cleanup(ar, arvif->vdev_id, sta->addr);
++
++		ret = ath11k_peer_delete(ar, arvif->vdev_id, sta->addr);
++		if (ret)
++			ath11k_warn(ar->ab, "Failed to delete peer: %pM for VDEV: %d\n",
++				    sta->addr, arvif->vdev_id);
++		else
++			ath11k_info(ar->ab,
++				    "Removed peer: %pM for VDEV: %d\n",
++				    sta->addr, arvif->vdev_id);
++
++		ath11k_mac_dec_num_stations(arvif, sta);
++
++		kfree(arsta->tx_stats);
++		arsta->tx_stats = NULL;
++
++		kfree(arsta->rx_stats);
++		arsta->rx_stats = NULL;
++	} else if (old_state == IEEE80211_STA_AUTH &&
++		   new_state == IEEE80211_STA_ASSOC &&
++		   (vif->type == NL80211_IFTYPE_AP ||
++		    vif->type == NL80211_IFTYPE_MESH_POINT ||
++		    vif->type == NL80211_IFTYPE_ADHOC)) {
++		ret = ath11k_station_assoc(ar, vif, sta, false);
++		if (ret)
++			ath11k_warn(ar->ab, "Failed to associate station: %pM\n",
++				    sta->addr);
++		else
++			ath11k_info(ar->ab,
++				    "Station %pM moved to assoc state\n",
++				    sta->addr);
++	} else if (old_state == IEEE80211_STA_ASSOC &&
++		   new_state == IEEE80211_STA_AUTH &&
++		   (vif->type == NL80211_IFTYPE_AP ||
++		    vif->type == NL80211_IFTYPE_MESH_POINT ||
++		    vif->type == NL80211_IFTYPE_ADHOC)) {
++		ret = ath11k_station_disassoc(ar, vif, sta);
++		if (ret)
++			ath11k_warn(ar->ab, "Failed to disassociate station: %pM\n",
++				    sta->addr);
++		else
++			ath11k_info(ar->ab,
++				    "Station %pM moved to disassociated state\n",
++				    sta->addr);
++	}
++
++exit:
++	mutex_unlock(&ar->conf_mutex);
++	return ret;
++}
++
++static void ath11k_mac_op_sta_rc_update(struct ieee80211_hw *hw,
++					struct ieee80211_vif *vif,
++					struct ieee80211_sta *sta,
++					u32 changed)
++{
++	struct ath11k *ar = hw->priv;
++	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
++	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	struct ath11k_peer *peer;
++	u32 bw, smps;
++
++	spin_lock_bh(&ar->ab->base_lock);
++
++	peer = ath11k_peer_find(ar->ab, arvif->vdev_id, sta->addr);
++	if (!peer) {
++		spin_unlock_bh(&ar->ab->base_lock);
++		ath11k_warn(ar->ab, "mac sta rc update failed to find peer %pM on vdev %i\n",
++			    sta->addr, arvif->vdev_id);
++		return;
++	}
++
++	spin_unlock_bh(&ar->ab->base_lock);
++
++	ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
++		   "mac sta rc update for %pM changed %08x bw %d nss %d smps %d\n",
++		   sta->addr, changed, sta->bandwidth, sta->rx_nss,
++		   sta->smps_mode);
++
++	spin_lock_bh(&ar->data_lock);
++
++	if (changed & IEEE80211_RC_BW_CHANGED) {
++		bw = WMI_PEER_CHWIDTH_20MHZ;
++
++		switch (sta->bandwidth) {
++		case IEEE80211_STA_RX_BW_20:
++			bw = WMI_PEER_CHWIDTH_20MHZ;
++			break;
++		case IEEE80211_STA_RX_BW_40:
++			bw = WMI_PEER_CHWIDTH_40MHZ;
++			break;
++		case IEEE80211_STA_RX_BW_80:
++			bw = WMI_PEER_CHWIDTH_80MHZ;
++			break;
++		case IEEE80211_STA_RX_BW_160:
++			bw = WMI_PEER_CHWIDTH_160MHZ;
++			break;
++		default:
++			ath11k_warn(ar->ab, "Invalid bandwidth %d in rc update for %pM\n",
++				    sta->bandwidth, sta->addr);
++			bw = WMI_PEER_CHWIDTH_20MHZ;
++			break;
++		}
++
++		arsta->bw = bw;
++	}
++
++	if (changed & IEEE80211_RC_NSS_CHANGED)
++		arsta->nss = sta->rx_nss;
++
++	if (changed & IEEE80211_RC_SMPS_CHANGED) {
++		smps = WMI_PEER_SMPS_PS_NONE;
++
++		switch (sta->smps_mode) {
++		case IEEE80211_SMPS_AUTOMATIC:
++		case IEEE80211_SMPS_OFF:
++			smps = WMI_PEER_SMPS_PS_NONE;
++			break;
++		case IEEE80211_SMPS_STATIC:
++			smps = WMI_PEER_SMPS_STATIC;
++			break;
++		case IEEE80211_SMPS_DYNAMIC:
++			smps = WMI_PEER_SMPS_DYNAMIC;
++			break;
++		default:
++			ath11k_warn(ar->ab, "Invalid smps %d in sta rc update for %pM\n",
++				    sta->smps_mode, sta->addr);
++			smps = WMI_PEER_SMPS_PS_NONE;
++			break;
++		}
++
++		arsta->smps = smps;
++	}
++
++	arsta->changed |= changed;
++
++	spin_unlock_bh(&ar->data_lock);
++
++	ieee80211_queue_work(hw, &arsta->update_wk);
++}
++
++static int ath11k_conf_tx_uapsd(struct ath11k *ar, struct ieee80211_vif *vif,
++				u16 ac, bool enable)
++{
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
++	u32 value = 0;
++	int ret = 0;
++
++	if (arvif->vdev_type != WMI_VDEV_TYPE_STA)
++		return 0;
++
++	switch (ac) {
++	case IEEE80211_AC_VO:
++		value = WMI_STA_PS_UAPSD_AC3_DELIVERY_EN |
++			WMI_STA_PS_UAPSD_AC3_TRIGGER_EN;
++		break;
++	case IEEE80211_AC_VI:
++		value = WMI_STA_PS_UAPSD_AC2_DELIVERY_EN |
++			WMI_STA_PS_UAPSD_AC2_TRIGGER_EN;
++		break;
++	case IEEE80211_AC_BE:
++		value = WMI_STA_PS_UAPSD_AC1_DELIVERY_EN |
++			WMI_STA_PS_UAPSD_AC1_TRIGGER_EN;
++		break;
++	case IEEE80211_AC_BK:
++		value = WMI_STA_PS_UAPSD_AC0_DELIVERY_EN |
++			WMI_STA_PS_UAPSD_AC0_TRIGGER_EN;
++		break;
++	}
++
++	if (enable)
++		arvif->u.sta.uapsd |= value;
++	else
++		arvif->u.sta.uapsd &= ~value;
++
++	ret = ath11k_wmi_set_sta_ps_param(ar, arvif->vdev_id,
++					  WMI_STA_PS_PARAM_UAPSD,
++					  arvif->u.sta.uapsd);
++	if (ret) {
++		ath11k_warn(ar->ab, "could not set uapsd params %d\n", ret);
++		goto exit;
++	}
++
++	if (arvif->u.sta.uapsd)
++		value = WMI_STA_PS_RX_WAKE_POLICY_POLL_UAPSD;
++	else
++		value = WMI_STA_PS_RX_WAKE_POLICY_WAKE;
++
++	ret = ath11k_wmi_set_sta_ps_param(ar, arvif->vdev_id,
++					  WMI_STA_PS_PARAM_RX_WAKE_POLICY,
++					  value);
++	if (ret)
++		ath11k_warn(ar->ab, "could not set rx wake param %d\n", ret);
++
++exit:
++	return ret;
++}
++
++static int ath11k_mac_op_conf_tx(struct ieee80211_hw *hw,
++				 struct ieee80211_vif *vif, u16 ac,
++				 const struct ieee80211_tx_queue_params *params)
++{
++	struct ath11k *ar = hw->priv;
++	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	struct wmi_wmm_params_arg *p = NULL;
++	int ret;
++
++	mutex_lock(&ar->conf_mutex);
++
++	switch (ac) {
++	case IEEE80211_AC_VO:
++		p = &arvif->wmm_params.ac_vo;
++		break;
++	case IEEE80211_AC_VI:
++		p = &arvif->wmm_params.ac_vi;
++		break;
++	case IEEE80211_AC_BE:
++		p = &arvif->wmm_params.ac_be;
++		break;
++	case IEEE80211_AC_BK:
++		p = &arvif->wmm_params.ac_bk;
++		break;
++	}
++
++	if (WARN_ON(!p)) {
++		ret = -EINVAL;
++		goto exit;
++	}
++
++	p->cwmin = params->cw_min;
++	p->cwmax = params->cw_max;
++	p->aifs = params->aifs;
++
++	/* The channel time duration programmed in the HW is in absolute
++	 * microseconds, while mac80211 gives the txop in units of
++	 * 32 microseconds.
++	 */
++	p->txop = params->txop * 32;
++
++	ret = ath11k_wmi_send_wmm_update_cmd_tlv(ar, arvif->vdev_id,
++						 &arvif->wmm_params);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to set wmm params: %d\n", ret);
++		goto exit;
++	}
++
++	ret = ath11k_conf_tx_uapsd(ar, vif, ac, params->uapsd);
++
++	if (ret)
++		ath11k_warn(ar->ab, "failed to set sta uapsd: %d\n", ret);
++
++exit:
++	mutex_unlock(&ar->conf_mutex);
++	return ret;
++}
++
++static struct ieee80211_sta_ht_cap
++ath11k_create_ht_cap(struct ath11k *ar, u32 ar_ht_cap, u32 rate_cap_rx_chainmask)
++{
++	int i;
++	struct ieee80211_sta_ht_cap ht_cap = {0};
++	u32 ar_vht_cap = ar->pdev->cap.vht_cap;
++
++	if (!(ar_ht_cap & WMI_HT_CAP_ENABLED))
++		return ht_cap;
++
++	ht_cap.ht_supported = 1;
++	ht_cap.ampdu_factor = IEEE80211_HT_MAX_AMPDU_64K;
++	ht_cap.ampdu_density = IEEE80211_HT_MPDU_DENSITY_8;
++	ht_cap.cap |= IEEE80211_HT_CAP_SUP_WIDTH_20_40;
++	ht_cap.cap |= IEEE80211_HT_CAP_DSSSCCK40;
++	ht_cap.cap |= WLAN_HT_CAP_SM_PS_STATIC << IEEE80211_HT_CAP_SM_PS_SHIFT;
++
++	if (ar_ht_cap & WMI_HT_CAP_HT20_SGI)
++		ht_cap.cap |= IEEE80211_HT_CAP_SGI_20;
++
++	if (ar_ht_cap & WMI_HT_CAP_HT40_SGI)
++		ht_cap.cap |= IEEE80211_HT_CAP_SGI_40;
++
++	if (ar_ht_cap & WMI_HT_CAP_DYNAMIC_SMPS) {
++		u32 smps;
++
++		smps   = WLAN_HT_CAP_SM_PS_DYNAMIC;
++		smps <<= IEEE80211_HT_CAP_SM_PS_SHIFT;
++
++		ht_cap.cap |= smps;
++	}
++
++	if (ar_ht_cap & WMI_HT_CAP_TX_STBC)
++		ht_cap.cap |= IEEE80211_HT_CAP_TX_STBC;
++
++	if (ar_ht_cap & WMI_HT_CAP_RX_STBC) {
++		u32 stbc;
++
++		stbc   = ar_ht_cap;
++		stbc  &= WMI_HT_CAP_RX_STBC;
++		stbc >>= WMI_HT_CAP_RX_STBC_MASK_SHIFT;
++		stbc <<= IEEE80211_HT_CAP_RX_STBC_SHIFT;
++		stbc  &= IEEE80211_HT_CAP_RX_STBC;
++
++		ht_cap.cap |= stbc;
++	}
++
++	if (ar_ht_cap & WMI_HT_CAP_RX_LDPC)
++		ht_cap.cap |= IEEE80211_HT_CAP_LDPC_CODING;
++
++	if (ar_ht_cap & WMI_HT_CAP_L_SIG_TXOP_PROT)
++		ht_cap.cap |= IEEE80211_HT_CAP_LSIG_TXOP_PROT;
++
++	if (ar_vht_cap & WMI_VHT_CAP_MAX_MPDU_LEN_MASK)
++		ht_cap.cap |= IEEE80211_HT_CAP_MAX_AMSDU;
++
++	for (i = 0; i < ar->num_rx_chains; i++) {
++		if (rate_cap_rx_chainmask & BIT(i))
++			ht_cap.mcs.rx_mask[i] = 0xFF;
++	}
++
++	ht_cap.mcs.tx_params |= IEEE80211_HT_MCS_TX_DEFINED;
++
++	return ht_cap;
++}
++
++static int ath11k_mac_set_txbf_conf(struct ath11k_vif *arvif)
++{
++	u32 value = 0;
++	struct ath11k *ar = arvif->ar;
++	int nsts;
++	int sound_dim;
++	u32 vht_cap = ar->pdev->cap.vht_cap;
++	u32 vdev_param = WMI_VDEV_PARAM_TXBF;
++
++	if (vht_cap & (IEEE80211_VHT_CAP_SU_BEAMFORMEE_CAPABLE)) {
++		nsts = vht_cap & IEEE80211_VHT_CAP_BEAMFORMEE_STS_MASK;
++		nsts >>= IEEE80211_VHT_CAP_BEAMFORMEE_STS_SHIFT;
++		value |= SM(nsts, WMI_TXBF_STS_CAP_OFFSET);
++	}
++
++	if (vht_cap & (IEEE80211_VHT_CAP_SU_BEAMFORMER_CAPABLE)) {
++		sound_dim = vht_cap &
++			    IEEE80211_VHT_CAP_SOUNDING_DIMENSIONS_MASK;
++		sound_dim >>= IEEE80211_VHT_CAP_SOUNDING_DIMENSIONS_SHIFT;
++		if (sound_dim > (ar->num_tx_chains - 1))
++			sound_dim = ar->num_tx_chains - 1;
++		value |= SM(sound_dim, WMI_BF_SOUND_DIM_OFFSET);
++	}
++
++	if (!value)
++		return 0;
++
++	if (vht_cap & IEEE80211_VHT_CAP_SU_BEAMFORMER_CAPABLE) {
++		value |= WMI_VDEV_PARAM_TXBF_SU_TX_BFER;
++
++		if ((vht_cap & IEEE80211_VHT_CAP_MU_BEAMFORMER_CAPABLE) &&
++		    arvif->vdev_type == WMI_VDEV_TYPE_AP)
++			value |= WMI_VDEV_PARAM_TXBF_MU_TX_BFER;
++	}
++
++	/* TODO: SUBFEE not validated in HK, disable here until validated? */
++
++	if (vht_cap & IEEE80211_VHT_CAP_SU_BEAMFORMEE_CAPABLE) {
++		value |= WMI_VDEV_PARAM_TXBF_SU_TX_BFEE;
++
++		if ((vht_cap & IEEE80211_VHT_CAP_MU_BEAMFORMEE_CAPABLE) &&
++		    arvif->vdev_type == WMI_VDEV_TYPE_STA)
++			value |= WMI_VDEV_PARAM_TXBF_MU_TX_BFEE;
++	}
++
++	return ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
++					     vdev_param, value);
++}
++
++static void ath11k_set_vht_txbf_cap(struct ath11k *ar, u32 *vht_cap)
++{
++	bool subfer, subfee;
++	int sound_dim = 0;
++
++	subfer = !!(*vht_cap & (IEEE80211_VHT_CAP_SU_BEAMFORMER_CAPABLE));
++	subfee = !!(*vht_cap & (IEEE80211_VHT_CAP_SU_BEAMFORMEE_CAPABLE));
++
++	if (ar->num_tx_chains < 2) {
++		*vht_cap &= ~(IEEE80211_VHT_CAP_SU_BEAMFORMER_CAPABLE);
++		subfer = false;
++	}
++
++	/* If SU Beaformer is not set, then disable MU Beamformer Capability */
++	if (!subfer)
++		*vht_cap &= ~(IEEE80211_VHT_CAP_MU_BEAMFORMER_CAPABLE);
++
++	/* If SU Beaformee is not set, then disable MU Beamformee Capability */
++	if (!subfee)
++		*vht_cap &= ~(IEEE80211_VHT_CAP_MU_BEAMFORMEE_CAPABLE);
++
++	sound_dim = (*vht_cap & IEEE80211_VHT_CAP_SOUNDING_DIMENSIONS_MASK);
++	sound_dim >>= IEEE80211_VHT_CAP_SOUNDING_DIMENSIONS_SHIFT;
++	*vht_cap &= ~IEEE80211_VHT_CAP_SOUNDING_DIMENSIONS_MASK;
++
++	/* TODO: Need to check invalid STS and Sound_dim values set by FW? */
++
++	/* Enable Sounding Dimension Field only if SU BF is enabled */
++	if (subfer) {
++		if (sound_dim > (ar->num_tx_chains - 1))
++			sound_dim = ar->num_tx_chains - 1;
++
++		sound_dim <<= IEEE80211_VHT_CAP_SOUNDING_DIMENSIONS_SHIFT;
++		sound_dim &=  IEEE80211_VHT_CAP_SOUNDING_DIMENSIONS_MASK;
++		*vht_cap |= sound_dim;
++	}
++
++	/* Use the STS advertised by FW unless SU Beamformee is not supported*/
++	if (!subfee)
++		*vht_cap &= ~(IEEE80211_VHT_CAP_BEAMFORMEE_STS_MASK);
++}
++
++static struct ieee80211_sta_vht_cap
++ath11k_create_vht_cap(struct ath11k *ar, u32 rate_cap_tx_chainmask,
++		      u32 rate_cap_rx_chainmask)
++{
++	struct ieee80211_sta_vht_cap vht_cap = {0};
++	u16 txmcs_map, rxmcs_map;
++	int i;
++
++	vht_cap.vht_supported = 1;
++	vht_cap.cap = ar->pdev->cap.vht_cap;
++
++	ath11k_set_vht_txbf_cap(ar, &vht_cap.cap);
++
++	/* TODO: Enable back VHT160 mode once association issues are fixed */
++	/* Disabling VHT160 and VHT80+80 modes */
++	vht_cap.cap &= ~IEEE80211_VHT_CAP_SUPP_CHAN_WIDTH_MASK;
++	vht_cap.cap &= ~IEEE80211_VHT_CAP_SHORT_GI_160;
++
++	rxmcs_map = 0;
++	txmcs_map = 0;
++	for (i = 0; i < 8; i++) {
++		if (i < ar->num_tx_chains && rate_cap_tx_chainmask & BIT(i))
++			txmcs_map |= IEEE80211_VHT_MCS_SUPPORT_0_9 << (i * 2);
++		else
++			txmcs_map |= IEEE80211_VHT_MCS_NOT_SUPPORTED << (i * 2);
++
++		if (i < ar->num_rx_chains && rate_cap_rx_chainmask & BIT(i))
++			rxmcs_map |= IEEE80211_VHT_MCS_SUPPORT_0_9 << (i * 2);
++		else
++			rxmcs_map |= IEEE80211_VHT_MCS_NOT_SUPPORTED << (i * 2);
++	}
++
++	if (rate_cap_tx_chainmask <= 1)
++		vht_cap.cap &= ~IEEE80211_VHT_CAP_TXSTBC;
++
++	vht_cap.vht_mcs.rx_mcs_map = cpu_to_le16(rxmcs_map);
++	vht_cap.vht_mcs.tx_mcs_map = cpu_to_le16(txmcs_map);
++
++	return vht_cap;
++}
++
++static void ath11k_mac_setup_ht_vht_cap(struct ath11k *ar,
++					struct ath11k_pdev_cap *cap,
++					u32 *ht_cap_info)
++{
++	struct ieee80211_supported_band *band;
++	u32 rate_cap_tx_chainmask;
++	u32 rate_cap_rx_chainmask;
++	u32 ht_cap;
++
++	rate_cap_tx_chainmask = ar->cfg_tx_chainmask >> cap->tx_chain_mask_shift;
++	rate_cap_rx_chainmask = ar->cfg_rx_chainmask >> cap->rx_chain_mask_shift;
++
++	if (cap->supported_bands & WMI_HOST_WLAN_2G_CAP) {
++		band = &ar->mac.sbands[NL80211_BAND_2GHZ];
++		ht_cap = cap->band[NL80211_BAND_2GHZ].ht_cap_info;
++		if (ht_cap_info)
++			*ht_cap_info = ht_cap;
++		band->ht_cap = ath11k_create_ht_cap(ar, ht_cap,
++						    rate_cap_rx_chainmask);
++	}
++
++	if (cap->supported_bands & WMI_HOST_WLAN_5G_CAP) {
++		band = &ar->mac.sbands[NL80211_BAND_5GHZ];
++		ht_cap = cap->band[NL80211_BAND_5GHZ].ht_cap_info;
++		if (ht_cap_info)
++			*ht_cap_info = ht_cap;
++		band->ht_cap = ath11k_create_ht_cap(ar, ht_cap,
++						    rate_cap_rx_chainmask);
++		band->vht_cap = ath11k_create_vht_cap(ar, rate_cap_tx_chainmask,
++						      rate_cap_rx_chainmask);
++	}
++}
++
++static int ath11k_check_chain_mask(struct ath11k *ar, u32 ant, bool is_tx_ant)
++{
++	/* TODO: Check the request chainmask against the supported
++	 * chainmask table which is advertised in extented_service_ready event
++	 */
++
++	return 0;
++}
++
++static int __ath11k_set_antenna(struct ath11k *ar, u32 tx_ant, u32 rx_ant)
++{
++	int ret;
++
++	lockdep_assert_held(&ar->conf_mutex);
++
++	if (ath11k_check_chain_mask(ar, tx_ant, true))
++		return -EINVAL;
++
++	if (ath11k_check_chain_mask(ar, rx_ant, false))
++		return -EINVAL;
++
++	ar->cfg_tx_chainmask = tx_ant;
++	ar->cfg_rx_chainmask = rx_ant;
++
++	if (ar->state != ATH11K_STATE_ON &&
++	    ar->state != ATH11K_STATE_RESTARTED)
++		return 0;
++
++	ret = ath11k_wmi_pdev_set_param(ar, WMI_PDEV_PARAM_TX_CHAIN_MASK,
++					tx_ant, ar->pdev->pdev_id);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to set tx-chainmask: %d, req 0x%x\n",
++			    ret, tx_ant);
++		return ret;
++	}
++
++	ret = ath11k_wmi_pdev_set_param(ar, WMI_PDEV_PARAM_RX_CHAIN_MASK,
++					rx_ant, ar->pdev->pdev_id);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to set rx-chainmask: %d, req 0x%x\n",
++			    ret, rx_ant);
++		return ret;
++	}
++
++	/* Reload HT/VHT capability */
++	ath11k_mac_setup_ht_vht_cap(ar, &ar->pdev->cap, NULL);
++
++	return 0;
++}
++
++int ath11k_mac_tx_mgmt_pending_free(int buf_id, void *skb, void *ctx)
++{
++	struct ath11k *ar = ctx;
++	struct ath11k_base *ab = ar->ab;
++	struct sk_buff *msdu = skb;
++	struct ieee80211_tx_info *info;
++
++	spin_lock_bh(&ar->txmgmt_idr_lock);
++	idr_remove(&ar->txmgmt_idr, buf_id);
++	spin_unlock_bh(&ar->txmgmt_idr_lock);
++	dma_unmap_single(ab->dev, ATH11K_SKB_CB(msdu)->paddr, msdu->len,
++			 DMA_TO_DEVICE);
++
++	info = IEEE80211_SKB_CB(msdu);
++	memset(&info->status, 0, sizeof(info->status));
++
++	ieee80211_free_txskb(ar->hw, msdu);
++
++	return 0;
++}
++
++static int ath11k_mac_vif_txmgmt_idr_remove(int buf_id, void *skb, void *ctx)
++{
++	struct ieee80211_vif *vif = ctx;
++	struct ath11k_skb_cb *skb_cb = ATH11K_SKB_CB((struct sk_buff *)skb);
++	struct sk_buff *msdu = skb;
++	struct ath11k *ar = skb_cb->ar;
++	struct ath11k_base *ab = ar->ab;
++
++	if (skb_cb->vif == vif) {
++		spin_lock_bh(&ar->txmgmt_idr_lock);
++		idr_remove(&ar->txmgmt_idr, buf_id);
++		spin_unlock_bh(&ar->txmgmt_idr_lock);
++		dma_unmap_single(ab->dev, skb_cb->paddr, msdu->len,
++				 DMA_TO_DEVICE);
++	}
++
++	return 0;
++}
++
++static int ath11k_mac_mgmt_tx_wmi(struct ath11k *ar, struct ath11k_vif *arvif,
++				  struct sk_buff *skb)
++{
++	struct ath11k_base *ab = ar->ab;
++	struct ieee80211_hdr *hdr = (struct ieee80211_hdr *)skb->data;
++	dma_addr_t paddr;
++	int buf_id;
++	int ret;
++
++	spin_lock_bh(&ar->txmgmt_idr_lock);
++	buf_id = idr_alloc(&ar->txmgmt_idr, skb, 0,
++			   ATH11K_TX_MGMT_NUM_PENDING_MAX, GFP_ATOMIC);
++	spin_unlock_bh(&ar->txmgmt_idr_lock);
++	if (buf_id < 0)
++		return -ENOSPC;
++
++	if ((ieee80211_is_action(hdr->frame_control) ||
++	     ieee80211_is_deauth(hdr->frame_control) ||
++	     ieee80211_is_disassoc(hdr->frame_control)) &&
++	     ieee80211_has_protected(hdr->frame_control)) {
++		skb_put(skb, IEEE80211_CCMP_MIC_LEN);
++	}
++
++	paddr = dma_map_single(ab->dev, skb->data, skb->len, DMA_TO_DEVICE);
++	if (dma_mapping_error(ab->dev, paddr)) {
++		ath11k_warn(ab, "failed to DMA map mgmt Tx buffer\n");
++		ret = -EIO;
++		goto err_free_idr;
++	}
++
++	ATH11K_SKB_CB(skb)->paddr = paddr;
++
++	ret = ath11k_wmi_mgmt_send(ar, arvif->vdev_id, buf_id, skb);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to send mgmt frame: %d\n", ret);
++		goto err_unmap_buf;
++	}
++
++	return 0;
++
++err_unmap_buf:
++	dma_unmap_single(ab->dev, ATH11K_SKB_CB(skb)->paddr,
++			 skb->len, DMA_TO_DEVICE);
++err_free_idr:
++	spin_lock_bh(&ar->txmgmt_idr_lock);
++	idr_remove(&ar->txmgmt_idr, buf_id);
++	spin_unlock_bh(&ar->txmgmt_idr_lock);
++
++	return ret;
++}
++
++static void ath11k_mgmt_over_wmi_tx_purge(struct ath11k *ar)
++{
++	struct sk_buff *skb;
++
++	while ((skb = skb_dequeue(&ar->wmi_mgmt_tx_queue)) != NULL)
++		ieee80211_free_txskb(ar->hw, skb);
++}
++
++static void ath11k_mgmt_over_wmi_tx_work(struct work_struct *work)
++{
++	struct ath11k *ar = container_of(work, struct ath11k, wmi_mgmt_tx_work);
++	struct ieee80211_tx_info *info;
++	struct ath11k_vif *arvif;
++	struct sk_buff *skb;
++	int ret;
++
++	while ((skb = skb_dequeue(&ar->wmi_mgmt_tx_queue)) != NULL) {
++		info = IEEE80211_SKB_CB(skb);
++		arvif = ath11k_vif_to_arvif(info->control.vif);
++
++		ret = ath11k_mac_mgmt_tx_wmi(ar, arvif, skb);
++		if (ret) {
++			ath11k_warn(ar->ab, "failed to transmit management frame %d\n",
++				    ret);
++			ieee80211_free_txskb(ar->hw, skb);
++		} else {
++			atomic_inc(&ar->num_pending_mgmt_tx);
++		}
++	}
++}
++
++static int ath11k_mac_mgmt_tx(struct ath11k *ar, struct sk_buff *skb,
++			      bool is_prb_rsp)
++{
++	struct sk_buff_head *q = &ar->wmi_mgmt_tx_queue;
++
++	if (test_bit(ATH11K_FLAG_CRASH_FLUSH, &ar->ab->dev_flags))
++		return -ESHUTDOWN;
++
++	/* Drop probe response packets when the pending management tx
++	 * count has reached a certain threshold, so as to prioritize
++	 * other mgmt packets like auth and assoc to be sent on time
++	 * for establishing successful connections.
++	 */
++	if (is_prb_rsp &&
++	    atomic_read(&ar->num_pending_mgmt_tx) > ATH11K_PRB_RSP_DROP_THRESHOLD) {
++		ath11k_warn(ar->ab,
++			    "dropping probe response as pending queue is almost full\n");
++		return -ENOSPC;
++	}
++
++	if (skb_queue_len(q) == ATH11K_TX_MGMT_NUM_PENDING_MAX) {
++		ath11k_warn(ar->ab, "mgmt tx queue is full\n");
++		return -ENOSPC;
++	}
++
++	skb_queue_tail(q, skb);
++	ieee80211_queue_work(ar->hw, &ar->wmi_mgmt_tx_work);
++
++	return 0;
++}
++
++static void ath11k_mac_op_tx(struct ieee80211_hw *hw,
++			     struct ieee80211_tx_control *control,
++			     struct sk_buff *skb)
++{
++	struct ath11k *ar = hw->priv;
++	struct ieee80211_tx_info *info = IEEE80211_SKB_CB(skb);
++	struct ieee80211_vif *vif = info->control.vif;
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
++	struct ieee80211_hdr *hdr = (struct ieee80211_hdr *)skb->data;
++	bool is_prb_rsp;
++	int ret;
++
++	if (ieee80211_is_mgmt(hdr->frame_control)) {
++		is_prb_rsp = ieee80211_is_probe_resp(hdr->frame_control);
++		ret = ath11k_mac_mgmt_tx(ar, skb, is_prb_rsp);
++		if (ret) {
++			ath11k_warn(ar->ab, "failed to queue management frame %d\n",
++				    ret);
++			ieee80211_free_txskb(ar->hw, skb);
++		}
++		return;
++	}
++
++	ret = ath11k_dp_tx(ar, arvif, skb);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to transmit frame %d\n", ret);
++		ieee80211_free_txskb(ar->hw, skb);
++	}
++}
++
++void ath11k_mac_drain_tx(struct ath11k *ar)
++{
++	/* make sure rcu-protected mac80211 tx path itself is drained */
++	synchronize_net();
++
++	cancel_work_sync(&ar->wmi_mgmt_tx_work);
++	ath11k_mgmt_over_wmi_tx_purge(ar);
++}
++
++static int ath11k_mac_config_mon_status_default(struct ath11k *ar, bool enable)
++{
++	struct htt_rx_ring_tlv_filter tlv_filter = {0};
++	u32 ring_id;
++
++	if (enable)
++		tlv_filter = ath11k_mac_mon_status_filter_default;
++
++	ring_id = ar->dp.rx_mon_status_refill_ring.refill_buf_ring.ring_id;
++
++	return ath11k_dp_tx_htt_rx_filter_setup(ar->ab, ring_id, ar->dp.mac_id,
++						HAL_RXDMA_MONITOR_STATUS,
++						DP_RX_BUFFER_SIZE, &tlv_filter);
++}
++
++static int ath11k_mac_op_start(struct ieee80211_hw *hw)
++{
++	struct ath11k *ar = hw->priv;
++	struct ath11k_base *ab = ar->ab;
++	struct ath11k_pdev *pdev = ar->pdev;
++	int ret;
++
++	ath11k_mac_drain_tx(ar);
++	mutex_lock(&ar->conf_mutex);
++
++	switch (ar->state) {
++	case ATH11K_STATE_OFF:
++		ar->state = ATH11K_STATE_ON;
++		break;
++	case ATH11K_STATE_RESTARTING:
++		ar->state = ATH11K_STATE_RESTARTED;
++		break;
++	case ATH11K_STATE_RESTARTED:
++	case ATH11K_STATE_WEDGED:
++	case ATH11K_STATE_ON:
++		WARN_ON(1);
++		ret = -EINVAL;
++		goto err;
++	}
++
++	ret = ath11k_wmi_pdev_set_param(ar, WMI_PDEV_PARAM_PMF_QOS,
++					1, pdev->pdev_id);
++
++	if (ret) {
++		ath11k_err(ar->ab, "failed to enable PMF QOS: (%d\n", ret);
++		goto err;
++	}
++
++	ret = ath11k_wmi_pdev_set_param(ar, WMI_PDEV_PARAM_DYNAMIC_BW, 1,
++					pdev->pdev_id);
++	if (ret) {
++		ath11k_err(ar->ab, "failed to enable dynamic bw: %d\n", ret);
++		goto err;
++	}
++
++	ret = ath11k_wmi_pdev_set_param(ar, WMI_PDEV_PARAM_ARP_AC_OVERRIDE,
++					0, pdev->pdev_id);
++	if (ret) {
++		ath11k_err(ab, "failed to set ac override for ARP: %d\n",
++			   ret);
++		goto err;
++	}
++
++	ret = ath11k_wmi_send_dfs_phyerr_offload_enable_cmd(ar, pdev->pdev_id);
++	if (ret) {
++		ath11k_err(ab, "failed to offload radar detection: %d\n",
++			   ret);
++		goto err;
++	}
++
++	ret = ath11k_dp_tx_htt_h2t_ppdu_stats_req(ar,
++						  HTT_PPDU_STATS_TAG_DEFAULT);
++	if (ret) {
++		ath11k_err(ab, "failed to req ppdu stats: %d\n", ret);
++		goto err;
++	}
++
++	ret = ath11k_wmi_pdev_set_param(ar, WMI_PDEV_PARAM_MESH_MCAST_ENABLE,
++					1, pdev->pdev_id);
++
++	if (ret) {
++		ath11k_err(ar->ab, "failed to enable MESH MCAST ENABLE: (%d\n", ret);
++		goto err;
++	}
++
++	__ath11k_set_antenna(ar, ar->cfg_tx_chainmask, ar->cfg_rx_chainmask);
++
++	/* TODO: Do we need to enable ANI? */
++
++	ath11k_reg_update_chan_list(ar);
++
++	ar->num_started_vdevs = 0;
++	ar->num_created_vdevs = 0;
++	ar->num_peers = 0;
++
++	/* Configure monitor status ring with default rx_filter to get rx status
++	 * such as rssi, rx_duration.
++	 */
++	ret = ath11k_mac_config_mon_status_default(ar, true);
++	if (ret) {
++		ath11k_err(ab, "failed to configure monitor status ring with default rx_filter: (%d)\n",
++			   ret);
++		goto err;
++	}
++
++	mutex_unlock(&ar->conf_mutex);
++
++	rcu_assign_pointer(ab->pdevs_active[ar->pdev_idx],
++			   &ab->pdevs[ar->pdev_idx]);
++
++	return 0;
++
++err:
++	ar->state = ATH11K_STATE_OFF;
++	mutex_unlock(&ar->conf_mutex);
++
++	return ret;
++}
++
++static void ath11k_mac_op_stop(struct ieee80211_hw *hw)
++{
++	struct ath11k *ar = hw->priv;
++	struct htt_ppdu_stats_info *ppdu_stats, *tmp;
++	int ret;
++
++	ath11k_mac_drain_tx(ar);
++
++	mutex_lock(&ar->conf_mutex);
++	ret = ath11k_mac_config_mon_status_default(ar, false);
++	if (ret)
++		ath11k_err(ar->ab, "failed to clear rx_filter for monitor status ring: (%d)\n",
++			   ret);
++
++	clear_bit(ATH11K_CAC_RUNNING, &ar->dev_flags);
++	ar->state = ATH11K_STATE_OFF;
++	mutex_unlock(&ar->conf_mutex);
++
++	cancel_delayed_work_sync(&ar->scan.timeout);
++	cancel_work_sync(&ar->regd_update_work);
++
++	spin_lock_bh(&ar->data_lock);
++	list_for_each_entry_safe(ppdu_stats, tmp, &ar->ppdu_stats_info, list) {
++		list_del(&ppdu_stats->list);
++		kfree(ppdu_stats);
++	}
++	spin_unlock_bh(&ar->data_lock);
++
++	rcu_assign_pointer(ar->ab->pdevs_active[ar->pdev_idx], NULL);
++
++	synchronize_rcu();
++
++	atomic_set(&ar->num_pending_mgmt_tx, 0);
++}
++
++static void
++ath11k_mac_setup_vdev_create_params(struct ath11k_vif *arvif,
++				    struct vdev_create_params *params)
++{
++	struct ath11k *ar = arvif->ar;
++	struct ath11k_pdev *pdev = ar->pdev;
++
++	params->if_id = arvif->vdev_id;
++	params->type = arvif->vdev_type;
++	params->subtype = arvif->vdev_subtype;
++	params->pdev_id = pdev->pdev_id;
++
++	if (pdev->cap.supported_bands & WMI_HOST_WLAN_2G_CAP) {
++		params->chains[NL80211_BAND_2GHZ].tx = ar->num_tx_chains;
++		params->chains[NL80211_BAND_2GHZ].rx = ar->num_rx_chains;
++	}
++	if (pdev->cap.supported_bands & WMI_HOST_WLAN_5G_CAP) {
++		params->chains[NL80211_BAND_5GHZ].tx = ar->num_tx_chains;
++		params->chains[NL80211_BAND_5GHZ].rx = ar->num_rx_chains;
++	}
++}
++
++static u32
++ath11k_mac_prepare_he_mode(struct ath11k_pdev *pdev, u32 viftype)
++{
++	struct ath11k_pdev_cap *pdev_cap = &pdev->cap;
++	struct ath11k_band_cap *cap_band = NULL;
++	u32 *hecap_phy_ptr = NULL;
++	u32 hemode = 0;
++
++	if (pdev->cap.supported_bands & WMI_HOST_WLAN_2G_CAP)
++		cap_band = &pdev_cap->band[NL80211_BAND_2GHZ];
++	else
++		cap_band = &pdev_cap->band[NL80211_BAND_5GHZ];
++
++	hecap_phy_ptr = &cap_band->he_cap_phy_info[0];
++
++	hemode = FIELD_PREP(HE_MODE_SU_TX_BFEE, HE_SU_BFEE_ENABLE) |
++		FIELD_PREP(HE_MODE_SU_TX_BFER, HECAP_PHY_SUBFMR_GET(hecap_phy_ptr)) |
++		FIELD_PREP(HE_MODE_UL_MUMIMO, HECAP_PHY_ULMUMIMO_GET(hecap_phy_ptr));
++
++	/* TODO WDS and other modes */
++	if (viftype == NL80211_IFTYPE_AP) {
++		hemode |= FIELD_PREP(HE_MODE_MU_TX_BFER,
++			   HECAP_PHY_MUBFMR_GET(hecap_phy_ptr)) |
++			FIELD_PREP(HE_MODE_DL_OFDMA, HE_DL_MUOFDMA_ENABLE) |
++			FIELD_PREP(HE_MODE_UL_OFDMA, HE_UL_MUOFDMA_ENABLE);
++	} else {
++		hemode |= FIELD_PREP(HE_MODE_MU_TX_BFEE, HE_MU_BFEE_ENABLE);
++	}
++
++	return hemode;
++}
++
++static int ath11k_set_he_mu_sounding_mode(struct ath11k *ar,
++					  struct ath11k_vif *arvif)
++{
++	u32 param_id, param_value;
++	struct ath11k_base *ab = ar->ab;
++	int ret = 0;
++
++	param_id = WMI_VDEV_PARAM_SET_HEMU_MODE;
++	param_value = ath11k_mac_prepare_he_mode(ar->pdev, arvif->vif->type);
++	ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
++					    param_id, param_value);
++	if (ret) {
++		ath11k_warn(ab, "failed to set vdev %d HE MU mode: %d param_value %x\n",
++			    arvif->vdev_id, ret, param_value);
++		return ret;
++	}
++	param_id = WMI_VDEV_PARAM_SET_HE_SOUNDING_MODE;
++	param_value =
++		FIELD_PREP(HE_VHT_SOUNDING_MODE, HE_VHT_SOUNDING_MODE_ENABLE) |
++		FIELD_PREP(HE_TRIG_NONTRIG_SOUNDING_MODE,
++			   HE_TRIG_NONTRIG_SOUNDING_MODE_ENABLE);
++	ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
++					    param_id, param_value);
++	if (ret) {
++		ath11k_warn(ab, "failed to set vdev %d HE MU mode: %d\n",
++			    arvif->vdev_id, ret);
++		return ret;
++	}
++	return ret;
++}
++
++static int ath11k_mac_op_add_interface(struct ieee80211_hw *hw,
++				       struct ieee80211_vif *vif)
++{
++	struct ath11k *ar = hw->priv;
++	struct ath11k_base *ab = ar->ab;
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
++	struct vdev_create_params vdev_param = {0};
++	struct peer_create_params peer_param;
++	u32 param_id, param_value;
++	u16 nss;
++	int i;
++	int ret;
++	int bit;
++
++	vif->driver_flags |= IEEE80211_VIF_SUPPORTS_UAPSD;
++
++	mutex_lock(&ar->conf_mutex);
++
++	if (vif->type == NL80211_IFTYPE_AP &&
++	    ar->num_peers > (ar->max_num_peers - 1)) {
++		ath11k_warn(ab, "failed to create vdev due to insufficient peer entry resource in firmware\n");
++		ret = -ENOBUFS;
++		goto err;
++	}
++
++	if (ar->num_created_vdevs > (TARGET_NUM_VDEVS - 1)) {
++		ath11k_warn(ab, "failed to create vdev, reached max vdev limit %d\n",
++			    TARGET_NUM_VDEVS);
++		ret = -EBUSY;
++		goto err;
++	}
++
++	memset(arvif, 0, sizeof(*arvif));
++
++	arvif->ar = ar;
++	arvif->vif = vif;
++
++	INIT_LIST_HEAD(&arvif->list);
++
++	/* Should we initialize any worker to handle connection loss indication
++	 * from firmware in sta mode?
++	 */
++
++	for (i = 0; i < ARRAY_SIZE(arvif->bitrate_mask.control); i++) {
++		arvif->bitrate_mask.control[i].legacy = 0xffffffff;
++		memset(arvif->bitrate_mask.control[i].ht_mcs, 0xff,
++		       sizeof(arvif->bitrate_mask.control[i].ht_mcs));
++		memset(arvif->bitrate_mask.control[i].vht_mcs, 0xff,
++		       sizeof(arvif->bitrate_mask.control[i].vht_mcs));
++	}
++
++	bit = __ffs64(ab->free_vdev_map);
++
++	arvif->vdev_id = bit;
++	arvif->vdev_subtype = WMI_VDEV_SUBTYPE_NONE;
++
++	switch (vif->type) {
++	case NL80211_IFTYPE_UNSPECIFIED:
++	case NL80211_IFTYPE_STATION:
++		arvif->vdev_type = WMI_VDEV_TYPE_STA;
++		break;
++	case NL80211_IFTYPE_MESH_POINT:
++		arvif->vdev_subtype = WMI_VDEV_SUBTYPE_MESH_11S;
++		/* fall through */
++	case NL80211_IFTYPE_AP:
++		arvif->vdev_type = WMI_VDEV_TYPE_AP;
++		break;
++	case NL80211_IFTYPE_MONITOR:
++		arvif->vdev_type = WMI_VDEV_TYPE_MONITOR;
++		break;
++	default:
++		WARN_ON(1);
++		break;
++	}
++
++	ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "mac add interface id %d type %d subtype %d map %llx\n",
++		   arvif->vdev_id, arvif->vdev_type, arvif->vdev_subtype,
++		   ab->free_vdev_map);
++
++	vif->cab_queue = arvif->vdev_id % (ATH11K_HW_MAX_QUEUES - 1);
++	for (i = 0; i < ARRAY_SIZE(vif->hw_queue); i++)
++		vif->hw_queue[i] = i % (ATH11K_HW_MAX_QUEUES - 1);
++
++	ath11k_mac_setup_vdev_create_params(arvif, &vdev_param);
++
++	ret = ath11k_wmi_vdev_create(ar, vif->addr, &vdev_param);
++	if (ret) {
++		ath11k_warn(ab, "failed to create WMI vdev %d: %d\n",
++			    arvif->vdev_id, ret);
++		goto err;
++	}
++
++	ar->num_created_vdevs++;
++
++	ab->free_vdev_map &= ~(1LL << arvif->vdev_id);
++	spin_lock_bh(&ar->data_lock);
++	list_add(&arvif->list, &ar->arvifs);
++	spin_unlock_bh(&ar->data_lock);
++
++	param_id = WMI_VDEV_PARAM_TX_ENCAP_TYPE;
++	param_value = ATH11K_HW_TXRX_NATIVE_WIFI;
++	ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
++					    param_id, param_value);
++	if (ret) {
++		ath11k_warn(ab, "failed to set vdev %d tx encap mode: %d\n",
++			    arvif->vdev_id, ret);
++		goto err_vdev_del;
++	}
++
++	nss = get_num_chains(ar->cfg_tx_chainmask) ? : 1;
++	ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
++					    WMI_VDEV_PARAM_NSS, nss);
++	if (ret) {
++		ath11k_warn(ab, "failed to set vdev %d chainmask 0x%x, nss %d :%d\n",
++			    arvif->vdev_id, ar->cfg_tx_chainmask, nss, ret);
++		goto err_vdev_del;
++	}
++
++	switch (arvif->vdev_type) {
++	case WMI_VDEV_TYPE_AP:
++		peer_param.vdev_id = arvif->vdev_id;
++		peer_param.peer_addr = vif->addr;
++		peer_param.peer_type = WMI_PEER_TYPE_DEFAULT;
++		ret = ath11k_peer_create(ar, arvif, NULL, &peer_param);
++		if (ret) {
++			ath11k_warn(ab, "failed to vdev %d create peer for AP: %d\n",
++				    arvif->vdev_id, ret);
++			goto err_vdev_del;
++		}
++
++		ret = ath11k_mac_set_kickout(arvif);
++		if (ret) {
++			ath11k_warn(ar->ab, "failed to set vdev %i kickout parameters: %d\n",
++				    arvif->vdev_id, ret);
++			goto err_peer_del;
++		}
++		break;
++	case WMI_VDEV_TYPE_STA:
++		param_id = WMI_STA_PS_PARAM_RX_WAKE_POLICY;
++		param_value = WMI_STA_PS_RX_WAKE_POLICY_WAKE;
++		ret = ath11k_wmi_set_sta_ps_param(ar, arvif->vdev_id,
++						  param_id, param_value);
++		if (ret) {
++			ath11k_warn(ar->ab, "failed to set vdev %d RX wake policy: %d\n",
++				    arvif->vdev_id, ret);
++			goto err_peer_del;
++		}
++
++		param_id = WMI_STA_PS_PARAM_TX_WAKE_THRESHOLD;
++		param_value = WMI_STA_PS_TX_WAKE_THRESHOLD_ALWAYS;
++		ret = ath11k_wmi_set_sta_ps_param(ar, arvif->vdev_id,
++						  param_id, param_value);
++		if (ret) {
++			ath11k_warn(ar->ab, "failed to set vdev %d TX wake threshold: %d\n",
++				    arvif->vdev_id, ret);
++			goto err_peer_del;
++		}
++
++		param_id = WMI_STA_PS_PARAM_PSPOLL_COUNT;
++		param_value = WMI_STA_PS_PSPOLL_COUNT_NO_MAX;
++		ret = ath11k_wmi_set_sta_ps_param(ar, arvif->vdev_id,
++						  param_id, param_value);
++		if (ret) {
++			ath11k_warn(ar->ab, "failed to set vdev %d pspoll count: %d\n",
++				    arvif->vdev_id, ret);
++			goto err_peer_del;
++		}
++		break;
++	default:
++		break;
++	}
++
++	arvif->txpower = vif->bss_conf.txpower;
++	ret = ath11k_mac_txpower_recalc(ar);
++	if (ret)
++		goto err_peer_del;
++
++	param_id = WMI_VDEV_PARAM_RTS_THRESHOLD;
++	param_value = ar->hw->wiphy->rts_threshold;
++	ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
++					    param_id, param_value);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to set rts threshold for vdev %d: %d\n",
++			    arvif->vdev_id, ret);
++	}
++
++	ret = ath11k_mac_set_txbf_conf(arvif);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to set txbf conf for vdev %d: %d\n",
++			    arvif->vdev_id, ret);
++	}
++
++	ath11k_dp_vdev_tx_attach(ar, arvif);
++
++	mutex_unlock(&ar->conf_mutex);
++
++	return 0;
++
++err_peer_del:
++	if (arvif->vdev_type == WMI_VDEV_TYPE_AP) {
++		ar->num_peers--;
++		ath11k_wmi_send_peer_delete_cmd(ar, vif->addr, arvif->vdev_id);
++	}
++
++err_vdev_del:
++	ath11k_wmi_vdev_delete(ar, arvif->vdev_id);
++	ar->num_created_vdevs--;
++	ab->free_vdev_map |= 1LL << arvif->vdev_id;
++	spin_lock_bh(&ar->data_lock);
++	list_del(&arvif->list);
++	spin_unlock_bh(&ar->data_lock);
++
++err:
++	mutex_unlock(&ar->conf_mutex);
++
++	return ret;
++}
++
++static int ath11k_mac_vif_unref(int buf_id, void *skb, void *ctx)
++{
++	struct ieee80211_vif *vif = (struct ieee80211_vif *)ctx;
++	struct ath11k_skb_cb *skb_cb = ATH11K_SKB_CB((struct sk_buff *)skb);
++
++	if (skb_cb->vif == vif)
++		skb_cb->vif = NULL;
++
++	return 0;
++}
++
++static void ath11k_mac_op_remove_interface(struct ieee80211_hw *hw,
++					   struct ieee80211_vif *vif)
++{
++	struct ath11k *ar = hw->priv;
++	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
++	struct ath11k_base *ab = ar->ab;
++	int ret;
++	int i;
++
++	mutex_lock(&ar->conf_mutex);
++
++	ath11k_dbg(ab, ATH11K_DBG_MAC, "mac remove interface (vdev %d)\n",
++		   arvif->vdev_id);
++
++	ab->free_vdev_map |= 1LL << (arvif->vdev_id);
++	spin_lock_bh(&ar->data_lock);
++	list_del(&arvif->list);
++	spin_unlock_bh(&ar->data_lock);
++
++	if (arvif->vdev_type == WMI_VDEV_TYPE_AP) {
++		ret = ath11k_peer_delete(ar, arvif->vdev_id, vif->addr);
++		if (ret)
++			ath11k_warn(ab, "failed to submit AP self-peer removal on vdev %d: %d\n",
++				    arvif->vdev_id, ret);
++	}
++
++	ret = ath11k_wmi_vdev_delete(ar, arvif->vdev_id);
++	if (ret)
++		ath11k_warn(ab, "failed to delete WMI vdev %d: %d\n",
++			    arvif->vdev_id, ret);
++
++	ar->num_created_vdevs--;
++
++	ath11k_peer_cleanup(ar, arvif->vdev_id);
++
++	idr_for_each(&ar->txmgmt_idr,
++		     ath11k_mac_vif_txmgmt_idr_remove, vif);
++
++	for (i = 0; i < DP_TCL_NUM_RING_MAX; i++) {
++		spin_lock_bh(&ab->dp.tx_ring[i].tx_idr_lock);
++		idr_for_each(&ab->dp.tx_ring[i].txbuf_idr,
++			     ath11k_mac_vif_unref, vif);
++		spin_unlock_bh(&ab->dp.tx_ring[i].tx_idr_lock);
++	}
++
++	/* Recalc txpower for remaining vdev */
++	ath11k_mac_txpower_recalc(ar);
++	clear_bit(ATH11K_FLAG_MONITOR_ENABLED, &ar->monitor_flags);
++
++	/* TODO: recal traffic pause state based on the available vdevs */
++
++	mutex_unlock(&ar->conf_mutex);
++}
++
++/* FIXME: Has to be verified. */
++#define SUPPORTED_FILTERS			\
++	(FIF_ALLMULTI |				\
++	FIF_CONTROL |				\
++	FIF_PSPOLL |				\
++	FIF_OTHER_BSS |				\
++	FIF_BCN_PRBRESP_PROMISC |		\
++	FIF_PROBE_REQ |				\
++	FIF_FCSFAIL)
++
++static void ath11k_mac_op_configure_filter(struct ieee80211_hw *hw,
++					   unsigned int changed_flags,
++					   unsigned int *total_flags,
++					   u64 multicast)
++{
++	struct ath11k *ar = hw->priv;
++	bool reset_flag = false;
++	int ret = 0;
++
++	mutex_lock(&ar->conf_mutex);
++
++	changed_flags &= SUPPORTED_FILTERS;
++	*total_flags &= SUPPORTED_FILTERS;
++	ar->filter_flags = *total_flags;
++
++	/* For monitor mode */
++	reset_flag = !(ar->filter_flags & FIF_BCN_PRBRESP_PROMISC);
++
++	ret = ath11k_dp_tx_htt_monitor_mode_ring_config(ar, reset_flag);
++	if (!ret) {
++		if (!reset_flag)
++			set_bit(ATH11K_FLAG_MONITOR_ENABLED, &ar->monitor_flags);
++		else
++			clear_bit(ATH11K_FLAG_MONITOR_ENABLED, &ar->monitor_flags);
++	} else {
++		ath11k_warn(ar->ab,
++			    "fail to set monitor filter: %d\n", ret);
++	}
++	mutex_unlock(&ar->conf_mutex);
++}
++
++static int ath11k_mac_op_get_antenna(struct ieee80211_hw *hw, u32 *tx_ant, u32 *rx_ant)
++{
++	struct ath11k *ar = hw->priv;
++
++	mutex_lock(&ar->conf_mutex);
++
++	*tx_ant = ar->cfg_tx_chainmask;
++	*rx_ant = ar->cfg_rx_chainmask;
++
++	mutex_unlock(&ar->conf_mutex);
++
++	return 0;
++}
++
++static int ath11k_mac_op_set_antenna(struct ieee80211_hw *hw, u32 tx_ant, u32 rx_ant)
++{
++	struct ath11k *ar = hw->priv;
++	int ret;
++
++	mutex_lock(&ar->conf_mutex);
++	ret = __ath11k_set_antenna(ar, tx_ant, rx_ant);
++	mutex_unlock(&ar->conf_mutex);
++
++	return ret;
++}
++
++static int ath11k_mac_op_ampdu_action(struct ieee80211_hw *hw,
++				      struct ieee80211_vif *vif,
++				      struct ieee80211_ampdu_params *params)
++{
++	struct ath11k *ar = hw->priv;
++	int ret = -EINVAL;
++
++	mutex_lock(&ar->conf_mutex);
++
++	switch (params->action) {
++	case IEEE80211_AMPDU_RX_START:
++		ret = ath11k_dp_rx_ampdu_start(ar, params);
++		break;
++	case IEEE80211_AMPDU_RX_STOP:
++		ret = ath11k_dp_rx_ampdu_stop(ar, params);
++		break;
++	case IEEE80211_AMPDU_TX_START:
++	case IEEE80211_AMPDU_TX_STOP_CONT:
++	case IEEE80211_AMPDU_TX_STOP_FLUSH:
++	case IEEE80211_AMPDU_TX_STOP_FLUSH_CONT:
++	case IEEE80211_AMPDU_TX_OPERATIONAL:
++		/* Tx A-MPDU aggregation offloaded to hw/fw so deny mac80211
++		 * Tx aggregation requests.
++		 */
++		ret = -EOPNOTSUPP;
++		break;
++	}
++
++	mutex_unlock(&ar->conf_mutex);
++
++	return ret;
++}
++
++static int ath11k_mac_op_add_chanctx(struct ieee80211_hw *hw,
++				     struct ieee80211_chanctx_conf *ctx)
++{
++	struct ath11k *ar = hw->priv;
++	struct ath11k_base *ab = ar->ab;
++
++	ath11k_dbg(ab, ATH11K_DBG_MAC,
++		   "mac chanctx add freq %hu width %d ptr %pK\n",
++		   ctx->def.chan->center_freq, ctx->def.width, ctx);
++
++	mutex_lock(&ar->conf_mutex);
++
++	spin_lock_bh(&ar->data_lock);
++	/* TODO: In case of multiple channel context, populate rx_channel from
++	 * Rx PPDU desc information.
++	 */
++	ar->rx_channel = ctx->def.chan;
++	spin_unlock_bh(&ar->data_lock);
++
++	mutex_unlock(&ar->conf_mutex);
++
++	return 0;
++}
++
++static void ath11k_mac_op_remove_chanctx(struct ieee80211_hw *hw,
++					 struct ieee80211_chanctx_conf *ctx)
++{
++	struct ath11k *ar = hw->priv;
++	struct ath11k_base *ab = ar->ab;
++
++	ath11k_dbg(ab, ATH11K_DBG_MAC,
++		   "mac chanctx remove freq %hu width %d ptr %pK\n",
++		   ctx->def.chan->center_freq, ctx->def.width, ctx);
++
++	mutex_lock(&ar->conf_mutex);
++
++	spin_lock_bh(&ar->data_lock);
++	/* TODO: In case of there is one more channel context left, populate
++	 * rx_channel with the channel of that remaining channel context.
++	 */
++	ar->rx_channel = NULL;
++	spin_unlock_bh(&ar->data_lock);
++
++	mutex_unlock(&ar->conf_mutex);
++}
++
++static inline int ath11k_mac_vdev_setup_sync(struct ath11k *ar)
++{
++	lockdep_assert_held(&ar->conf_mutex);
++
++	if (test_bit(ATH11K_FLAG_CRASH_FLUSH, &ar->ab->dev_flags))
++		return -ESHUTDOWN;
++
++	if (!wait_for_completion_timeout(&ar->vdev_setup_done,
++					 ATH11K_VDEV_SETUP_TIMEOUT_HZ))
++		return -ETIMEDOUT;
++
++	return ar->last_wmi_vdev_start_status ? -EINVAL : 0;
++}
++
++static int
++ath11k_mac_vdev_start_restart(struct ath11k_vif *arvif,
++			      const struct cfg80211_chan_def *chandef,
++			      bool restart)
++{
++	struct ath11k *ar = arvif->ar;
++	struct ath11k_base *ab = ar->ab;
++	struct wmi_vdev_start_req_arg arg = {};
++	int he_support = arvif->vif->bss_conf.he_support;
++	int ret = 0;
++
++	lockdep_assert_held(&ar->conf_mutex);
++
++	reinit_completion(&ar->vdev_setup_done);
++
++	arg.vdev_id = arvif->vdev_id;
++	arg.dtim_period = arvif->dtim_period;
++	arg.bcn_intval = arvif->beacon_interval;
++
++	arg.channel.freq = chandef->chan->center_freq;
++	arg.channel.band_center_freq1 = chandef->center_freq1;
++	arg.channel.band_center_freq2 = chandef->center_freq2;
++	arg.channel.mode =
++		ath11k_phymodes[chandef->chan->band][chandef->width];
++
++	arg.channel.min_power = 0;
++	arg.channel.max_power = chandef->chan->max_power * 2;
++	arg.channel.max_reg_power = chandef->chan->max_reg_power * 2;
++	arg.channel.max_antenna_gain = chandef->chan->max_antenna_gain * 2;
++
++	arg.pref_tx_streams = ar->num_tx_chains;
++	arg.pref_rx_streams = ar->num_rx_chains;
++
++	if (arvif->vdev_type == WMI_VDEV_TYPE_AP) {
++		arg.ssid = arvif->u.ap.ssid;
++		arg.ssid_len = arvif->u.ap.ssid_len;
++		arg.hidden_ssid = arvif->u.ap.hidden_ssid;
++
++		/* For now allow DFS for AP mode */
++		arg.channel.chan_radar =
++			!!(chandef->chan->flags & IEEE80211_CHAN_RADAR);
++
++		arg.channel.passive = arg.channel.chan_radar;
++
++		spin_lock_bh(&ab->base_lock);
++		arg.regdomain = ar->ab->dfs_region;
++		spin_unlock_bh(&ab->base_lock);
++
++		/* TODO: Notify if secondary 80Mhz also needs radar detection */
++		if (he_support) {
++			ret = ath11k_set_he_mu_sounding_mode(ar, arvif);
++			if (ret) {
++				ath11k_warn(ar->ab, "failed to set he mode vdev %i\n",
++					    arg.vdev_id);
++				return ret;
++			}
++		}
++	}
++
++	arg.channel.passive |= !!(chandef->chan->flags & IEEE80211_CHAN_NO_IR);
++
++	ath11k_dbg(ab, ATH11K_DBG_MAC,
++		   "mac vdev %d start center_freq %d phymode %s\n",
++		   arg.vdev_id, arg.channel.freq,
++		   ath11k_wmi_phymode_str(arg.channel.mode));
++
++	ret = ath11k_wmi_vdev_start(ar, &arg, restart);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to %s WMI vdev %i\n",
++			    restart ? "restart" : "start", arg.vdev_id);
++		return ret;
++	}
++
++	ret = ath11k_mac_vdev_setup_sync(ar);
++	if (ret) {
++		ath11k_warn(ab, "failed to synchronize setup for vdev %i %s: %d\n",
++			    arg.vdev_id, restart ? "restart" : "start", ret);
++		return ret;
++	}
++
++	ar->num_started_vdevs++;
++
++	/* Enable CAC Flag in the driver by checking the channel DFS cac time,
++	 * i.e dfs_cac_ms value which will be valid only for radar channels
++	 * and state as NL80211_DFS_USABLE which indicates CAC needs to be
++	 * done before channel usage. This flags is used to drop rx packets.
++	 * during CAC.
++	 */
++	/* TODO Set the flag for other interface types as required */
++	if (arvif->vdev_type == WMI_VDEV_TYPE_AP &&
++	    chandef->chan->dfs_cac_ms &&
++	    chandef->chan->dfs_state == NL80211_DFS_USABLE) {
++		set_bit(ATH11K_CAC_RUNNING, &ar->dev_flags);
++		ath11k_dbg(ab, ATH11K_DBG_MAC,
++			   "CAC Started in chan_freq %d for vdev %d\n",
++			   arg.channel.freq, arg.vdev_id);
++	}
++
++	return 0;
++}
++
++static int ath11k_mac_vdev_stop(struct ath11k_vif *arvif)
++{
++	struct ath11k *ar = arvif->ar;
++	int ret;
++
++	lockdep_assert_held(&ar->conf_mutex);
++
++	reinit_completion(&ar->vdev_setup_done);
++
++	spin_lock_bh(&ar->data_lock);
++
++	ar->vdev_stop_status.stop_in_progress = true;
++	ar->vdev_stop_status.vdev_id = arvif->vdev_id;
++
++	spin_unlock_bh(&ar->data_lock);
++
++	ret = ath11k_wmi_vdev_stop(ar, arvif->vdev_id);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to stop WMI vdev %i: %d\n",
++			    arvif->vdev_id, ret);
++		goto err;
++	}
++
++	ret = ath11k_mac_vdev_setup_sync(ar);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to synchronize setup for vdev %i: %d\n",
++			    arvif->vdev_id, ret);
++		goto err;
++	}
++
++	WARN_ON(ar->num_started_vdevs == 0);
++
++	ar->num_started_vdevs--;
++
++	if (test_bit(ATH11K_CAC_RUNNING, &ar->dev_flags)) {
++		clear_bit(ATH11K_CAC_RUNNING, &ar->dev_flags);
++		ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "CAC Stopped for vdev %d\n",
++			   arvif->vdev_id);
++	}
++
++	return 0;
++err:
++	spin_lock_bh(&ar->data_lock);
++	ar->vdev_stop_status.stop_in_progress = false;
++	spin_unlock_bh(&ar->data_lock);
++
++	return ret;
++}
++
++static int ath11k_mac_vdev_start(struct ath11k_vif *arvif,
++				 const struct cfg80211_chan_def *chandef)
++{
++	return ath11k_mac_vdev_start_restart(arvif, chandef, false);
++}
++
++static int ath11k_mac_vdev_restart(struct ath11k_vif *arvif,
++				   const struct cfg80211_chan_def *chandef)
++{
++	return ath11k_mac_vdev_start_restart(arvif, chandef, true);
++}
++
++struct ath11k_mac_change_chanctx_arg {
++	struct ieee80211_chanctx_conf *ctx;
++	struct ieee80211_vif_chanctx_switch *vifs;
++	int n_vifs;
++	int next_vif;
 +};
 +
-+enum hal_tcl_encap_type {
-+	HAL_TCL_ENCAP_TYPE_RAW,
-+	HAL_TCL_ENCAP_TYPE_NATIVE_WIFI,
-+	HAL_TCL_ENCAP_TYPE_ETHERNET,
-+	HAL_TCL_ENCAP_TYPE_802_3 = 3,
++static void
++ath11k_mac_change_chanctx_cnt_iter(void *data, u8 *mac,
++				   struct ieee80211_vif *vif)
++{
++	struct ath11k_mac_change_chanctx_arg *arg = data;
++
++	if (rcu_access_pointer(vif->chanctx_conf) != arg->ctx)
++		return;
++
++	arg->n_vifs++;
++}
++
++static void
++ath11k_mac_change_chanctx_fill_iter(void *data, u8 *mac,
++				    struct ieee80211_vif *vif)
++{
++	struct ath11k_mac_change_chanctx_arg *arg = data;
++	struct ieee80211_chanctx_conf *ctx;
++
++	ctx = rcu_access_pointer(vif->chanctx_conf);
++	if (ctx != arg->ctx)
++		return;
++
++	if (WARN_ON(arg->next_vif == arg->n_vifs))
++		return;
++
++	arg->vifs[arg->next_vif].vif = vif;
++	arg->vifs[arg->next_vif].old_ctx = ctx;
++	arg->vifs[arg->next_vif].new_ctx = ctx;
++	arg->next_vif++;
++}
++
++static void
++ath11k_mac_update_vif_chan(struct ath11k *ar,
++			   struct ieee80211_vif_chanctx_switch *vifs,
++			   int n_vifs)
++{
++	struct ath11k_base *ab = ar->ab;
++	struct ath11k_vif *arvif;
++	int ret;
++	int i;
++
++	lockdep_assert_held(&ar->conf_mutex);
++
++	for (i = 0; i < n_vifs; i++) {
++		arvif = (void *)vifs[i].vif->drv_priv;
++
++		ath11k_dbg(ab, ATH11K_DBG_MAC,
++			   "mac chanctx switch vdev_id %i freq %hu->%hu width %d->%d\n",
++			   arvif->vdev_id,
++			   vifs[i].old_ctx->def.chan->center_freq,
++			   vifs[i].new_ctx->def.chan->center_freq,
++			   vifs[i].old_ctx->def.width,
++			   vifs[i].new_ctx->def.width);
++
++		if (WARN_ON(!arvif->is_started))
++			continue;
++
++		if (WARN_ON(!arvif->is_up))
++			continue;
++
++		ret = ath11k_wmi_vdev_down(ar, arvif->vdev_id);
++		if (ret) {
++			ath11k_warn(ab, "failed to down vdev %d: %d\n",
++				    arvif->vdev_id, ret);
++			continue;
++		}
++	}
++
++	/* All relevant vdevs are downed and associated channel resources
++	 * should be available for the channel switch now.
++	 */
++
++	/* TODO: Update ar->rx_channel */
++
++	for (i = 0; i < n_vifs; i++) {
++		arvif = (void *)vifs[i].vif->drv_priv;
++
++		if (WARN_ON(!arvif->is_started))
++			continue;
++
++		if (WARN_ON(!arvif->is_up))
++			continue;
++
++		ret = ath11k_mac_setup_bcn_tmpl(arvif);
++		if (ret)
++			ath11k_warn(ab, "failed to update bcn tmpl during csa: %d\n",
++				    ret);
++
++		ret = ath11k_mac_vdev_restart(arvif, &vifs[i].new_ctx->def);
++		if (ret) {
++			ath11k_warn(ab, "failed to restart vdev %d: %d\n",
++				    arvif->vdev_id, ret);
++			continue;
++		}
++
++		ret = ath11k_wmi_vdev_up(arvif->ar, arvif->vdev_id, arvif->aid,
++					 arvif->bssid);
++		if (ret) {
++			ath11k_warn(ab, "failed to bring vdev up %d: %d\n",
++				    arvif->vdev_id, ret);
++			continue;
++		}
++	}
++}
++
++static void
++ath11k_mac_update_active_vif_chan(struct ath11k *ar,
++				  struct ieee80211_chanctx_conf *ctx)
++{
++	struct ath11k_mac_change_chanctx_arg arg = { .ctx = ctx };
++
++	lockdep_assert_held(&ar->conf_mutex);
++
++	ieee80211_iterate_active_interfaces_atomic(ar->hw,
++						   IEEE80211_IFACE_ITER_NORMAL,
++						   ath11k_mac_change_chanctx_cnt_iter,
++						   &arg);
++	if (arg.n_vifs == 0)
++		return;
++
++	arg.vifs = kcalloc(arg.n_vifs, sizeof(arg.vifs[0]), GFP_KERNEL);
++	if (!arg.vifs)
++		return;
++
++	ieee80211_iterate_active_interfaces_atomic(ar->hw,
++						   IEEE80211_IFACE_ITER_NORMAL,
++						   ath11k_mac_change_chanctx_fill_iter,
++						   &arg);
++
++	ath11k_mac_update_vif_chan(ar, arg.vifs, arg.n_vifs);
++
++	kfree(arg.vifs);
++}
++
++static void ath11k_mac_op_change_chanctx(struct ieee80211_hw *hw,
++					 struct ieee80211_chanctx_conf *ctx,
++					 u32 changed)
++{
++	struct ath11k *ar = hw->priv;
++	struct ath11k_base *ab = ar->ab;
++
++	mutex_lock(&ar->conf_mutex);
++
++	ath11k_dbg(ab, ATH11K_DBG_MAC,
++		   "mac chanctx change freq %hu width %d ptr %pK changed %x\n",
++		   ctx->def.chan->center_freq, ctx->def.width, ctx, changed);
++
++	/* This shouldn't really happen because channel switching should use
++	 * switch_vif_chanctx().
++	 */
++	if (WARN_ON(changed & IEEE80211_CHANCTX_CHANGE_CHANNEL))
++		goto unlock;
++
++	if (changed & IEEE80211_CHANCTX_CHANGE_WIDTH)
++		ath11k_mac_update_active_vif_chan(ar, ctx);
++
++	/* TODO: Recalc radar detection */
++
++unlock:
++	mutex_unlock(&ar->conf_mutex);
++}
++
++static int
++ath11k_mac_op_assign_vif_chanctx(struct ieee80211_hw *hw,
++				 struct ieee80211_vif *vif,
++				 struct ieee80211_chanctx_conf *ctx)
++{
++	struct ath11k *ar = hw->priv;
++	struct ath11k_base *ab = ar->ab;
++	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	int ret;
++
++	mutex_lock(&ar->conf_mutex);
++
++	ath11k_dbg(ab, ATH11K_DBG_MAC,
++		   "mac chanctx assign ptr %pK vdev_id %i\n",
++		   ctx, arvif->vdev_id);
++
++	if (WARN_ON(arvif->is_started)) {
++		mutex_unlock(&ar->conf_mutex);
++		return -EBUSY;
++	}
++
++	ret = ath11k_mac_vdev_start(arvif, &ctx->def);
++	if (ret) {
++		ath11k_warn(ab, "failed to start vdev %i addr %pM on freq %d: %d\n",
++			    arvif->vdev_id, vif->addr,
++			    ctx->def.chan->center_freq, ret);
++		goto err;
++	}
++	if (arvif->vdev_type == WMI_VDEV_TYPE_MONITOR) {
++		ret = ath11k_monitor_vdev_up(ar, arvif->vdev_id);
++		if (ret)
++			goto err;
++	}
++
++	arvif->is_started = true;
++
++	/* TODO: Setup ps and cts/rts protection */
++
++	mutex_unlock(&ar->conf_mutex);
++
++	return 0;
++
++err:
++	mutex_unlock(&ar->conf_mutex);
++
++	return ret;
++}
++
++static void
++ath11k_mac_op_unassign_vif_chanctx(struct ieee80211_hw *hw,
++				   struct ieee80211_vif *vif,
++				   struct ieee80211_chanctx_conf *ctx)
++{
++	struct ath11k *ar = hw->priv;
++	struct ath11k_base *ab = ar->ab;
++	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	int ret;
++
++	mutex_lock(&ar->conf_mutex);
++
++	ath11k_dbg(ab, ATH11K_DBG_MAC,
++		   "mac chanctx unassign ptr %pK vdev_id %i\n",
++		   ctx, arvif->vdev_id);
++
++	WARN_ON(!arvif->is_started);
++
++	ret = ath11k_mac_vdev_stop(arvif);
++	if (ret)
++		ath11k_warn(ab, "failed to stop vdev %i: %d\n",
++			    arvif->vdev_id, ret);
++
++	arvif->is_started = false;
++
++	mutex_unlock(&ar->conf_mutex);
++}
++
++static int
++ath11k_mac_op_switch_vif_chanctx(struct ieee80211_hw *hw,
++				 struct ieee80211_vif_chanctx_switch *vifs,
++				 int n_vifs,
++				 enum ieee80211_chanctx_switch_mode mode)
++{
++	struct ath11k *ar = hw->priv;
++
++	mutex_lock(&ar->conf_mutex);
++
++	ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
++		   "mac chanctx switch n_vifs %d mode %d\n",
++		   n_vifs, mode);
++	ath11k_mac_update_vif_chan(ar, vifs, n_vifs);
++
++	mutex_unlock(&ar->conf_mutex);
++
++	return 0;
++}
++
++static int
++ath11k_set_vdev_param_to_all_vifs(struct ath11k *ar, int param, u32 value)
++{
++	struct ath11k_vif *arvif;
++	int ret = 0;
++
++	mutex_lock(&ar->conf_mutex);
++	list_for_each_entry(arvif, &ar->arvifs, list) {
++		ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "setting mac vdev %d param %d value %d\n",
++			   param, arvif->vdev_id, value);
++
++		ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
++						    param, value);
++		if (ret) {
++			ath11k_warn(ar->ab, "failed to set param %d for vdev %d: %d\n",
++				    param, arvif->vdev_id, ret);
++			break;
++		}
++	}
++	mutex_unlock(&ar->conf_mutex);
++	return ret;
++}
++
++/* mac80211 stores device specific RTS/Fragmentation threshold value,
++ * this is set interface specific to firmware from ath11k driver
++ */
++static int ath11k_mac_op_set_rts_threshold(struct ieee80211_hw *hw, u32 value)
++{
++	struct ath11k *ar = hw->priv;
++	int param_id = WMI_VDEV_PARAM_RTS_THRESHOLD;
++
++	return ath11k_set_vdev_param_to_all_vifs(ar, param_id, value);
++}
++
++static int ath11k_mac_op_set_frag_threshold(struct ieee80211_hw *hw, u32 value)
++{
++	/* Even though there's a WMI vdev param for fragmentation threshold no
++	 * known firmware actually implements it. Moreover it is not possible to
++	 * rely frame fragmentation to mac80211 because firmware clears the
++	 * "more fragments" bit in frame control making it impossible for remote
++	 * devices to reassemble frames.
++	 *
++	 * Hence implement a dummy callback just to say fragmentation isn't
++	 * supported. This effectively prevents mac80211 from doing frame
++	 * fragmentation in software.
++	 */
++	return -EOPNOTSUPP;
++}
++
++static void ath11k_mac_op_flush(struct ieee80211_hw *hw, struct ieee80211_vif *vif,
++				u32 queues, bool drop)
++{
++	struct ath11k *ar = hw->priv;
++	long time_left;
++
++	if (drop)
++		return;
++
++	time_left = wait_event_timeout(ar->dp.tx_empty_waitq,
++				       (atomic_read(&ar->dp.num_tx_pending) == 0),
++				       ATH11K_FLUSH_TIMEOUT);
++	if (time_left == 0)
++		ath11k_warn(ar->ab, "failed to flush transmit queue %ld\n", time_left);
++}
++
++static int
++ath11k_mac_bitrate_mask_num_ht_rates(struct ath11k *ar,
++				     enum nl80211_band band,
++				     const struct cfg80211_bitrate_mask *mask)
++{
++	int num_rates = 0;
++	int i;
++
++	for (i = 0; i < ARRAY_SIZE(mask->control[band].ht_mcs); i++)
++		num_rates += hweight16(mask->control[band].ht_mcs[i]);
++
++	return num_rates;
++}
++
++static bool
++ath11k_mac_has_single_legacy_rate(struct ath11k *ar,
++				  enum nl80211_band band,
++				  const struct cfg80211_bitrate_mask *mask)
++{
++	int num_rates = 0;
++
++	num_rates = hweight32(mask->control[band].legacy);
++
++	if (ath11k_mac_bitrate_mask_num_ht_rates(ar, band, mask))
++		return false;
++
++	if (ath11k_mac_bitrate_mask_num_vht_rates(ar, band, mask))
++		return false;
++
++	return num_rates == 1;
++}
++
++static bool
++ath11k_mac_bitrate_mask_get_single_nss(struct ath11k *ar,
++				       enum nl80211_band band,
++				       const struct cfg80211_bitrate_mask *mask,
++				       int *nss)
++{
++	struct ieee80211_supported_band *sband = &ar->mac.sbands[band];
++	u16 vht_mcs_map = le16_to_cpu(sband->vht_cap.vht_mcs.tx_mcs_map);
++	u8 ht_nss_mask = 0;
++	u8 vht_nss_mask = 0;
++	int i;
++
++	/* No need to consider legacy here. Basic rates are always present
++	 * in bitrate mask
++	 */
++
++	for (i = 0; i < ARRAY_SIZE(mask->control[band].ht_mcs); i++) {
++		if (mask->control[band].ht_mcs[i] == 0)
++			continue;
++		else if (mask->control[band].ht_mcs[i] ==
++			 sband->ht_cap.mcs.rx_mask[i])
++			ht_nss_mask |= BIT(i);
++		else
++			return false;
++	}
++
++	for (i = 0; i < ARRAY_SIZE(mask->control[band].vht_mcs); i++) {
++		if (mask->control[band].vht_mcs[i] == 0)
++			continue;
++		else if (mask->control[band].vht_mcs[i] ==
++			 ath11k_mac_get_max_vht_mcs_map(vht_mcs_map, i))
++			vht_nss_mask |= BIT(i);
++		else
++			return false;
++	}
++
++	if (ht_nss_mask != vht_nss_mask)
++		return false;
++
++	if (ht_nss_mask == 0)
++		return false;
++
++	if (BIT(fls(ht_nss_mask)) - 1 != ht_nss_mask)
++		return false;
++
++	*nss = fls(ht_nss_mask);
++
++	return true;
++}
++
++static int
++ath11k_mac_get_single_legacy_rate(struct ath11k *ar,
++				  enum nl80211_band band,
++				  const struct cfg80211_bitrate_mask *mask,
++				  u32 *rate, u8 *nss)
++{
++	int rate_idx;
++	u16 bitrate;
++	u8 preamble;
++	u8 hw_rate;
++
++	if (hweight32(mask->control[band].legacy) != 1)
++		return -EINVAL;
++
++	rate_idx = ffs(mask->control[band].legacy) - 1;
++
++	if (band == NL80211_BAND_5GHZ)
++		rate_idx += ATH11K_MAC_FIRST_OFDM_RATE_IDX;
++
++	hw_rate = ath11k_legacy_rates[rate_idx].hw_value;
++	bitrate = ath11k_legacy_rates[rate_idx].bitrate;
++
++	if (ath11k_mac_bitrate_is_cck(bitrate))
++		preamble = WMI_RATE_PREAMBLE_CCK;
++	else
++		preamble = WMI_RATE_PREAMBLE_OFDM;
++
++	*nss = 1;
++	*rate = ATH11K_HW_RATE_CODE(hw_rate, 0, preamble);
++
++	return 0;
++}
++
++static int ath11k_mac_set_fixed_rate_params(struct ath11k_vif *arvif,
++					    u32 rate, u8 nss, u8 sgi, u8 ldpc)
++{
++	struct ath11k *ar = arvif->ar;
++	u32 vdev_param;
++	int ret;
++
++	lockdep_assert_held(&ar->conf_mutex);
++
++	ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "mac set fixed rate params vdev %i rate 0x%02hhx nss %hhu sgi %hhu\n",
++		   arvif->vdev_id, rate, nss, sgi);
++
++	vdev_param = WMI_VDEV_PARAM_FIXED_RATE;
++	ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
++					    vdev_param, rate);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to set fixed rate param 0x%02x: %d\n",
++			    rate, ret);
++		return ret;
++	}
++
++	vdev_param = WMI_VDEV_PARAM_NSS;
++	ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
++					    vdev_param, nss);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to set nss param %d: %d\n",
++			    nss, ret);
++		return ret;
++	}
++
++	vdev_param = WMI_VDEV_PARAM_SGI;
++	ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
++					    vdev_param, sgi);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to set sgi param %d: %d\n",
++			    sgi, ret);
++		return ret;
++	}
++
++	vdev_param = WMI_VDEV_PARAM_LDPC;
++	ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
++					    vdev_param, ldpc);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to set ldpc param %d: %d\n",
++			    ldpc, ret);
++		return ret;
++	}
++
++	return 0;
++}
++
++static bool
++ath11k_mac_vht_mcs_range_present(struct ath11k *ar,
++				 enum nl80211_band band,
++				 const struct cfg80211_bitrate_mask *mask)
++{
++	int i;
++	u16 vht_mcs;
++
++	for (i = 0; i < NL80211_VHT_NSS_MAX; i++) {
++		vht_mcs = mask->control[band].vht_mcs[i];
++
++		switch (vht_mcs) {
++		case 0:
++		case BIT(8) - 1:
++		case BIT(9) - 1:
++		case BIT(10) - 1:
++			break;
++		default:
++			return false;
++		}
++	}
++
++	return true;
++}
++
++static void ath11k_mac_set_bitrate_mask_iter(void *data,
++					     struct ieee80211_sta *sta)
++{
++	struct ath11k_vif *arvif = data;
++	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
++	struct ath11k *ar = arvif->ar;
++
++	spin_lock_bh(&ar->data_lock);
++	arsta->changed |= IEEE80211_RC_SUPP_RATES_CHANGED;
++	spin_unlock_bh(&ar->data_lock);
++
++	ieee80211_queue_work(ar->hw, &arsta->update_wk);
++}
++
++static void ath11k_mac_disable_peer_fixed_rate(void *data,
++					       struct ieee80211_sta *sta)
++{
++	struct ath11k_vif *arvif = data;
++	struct ath11k *ar = arvif->ar;
++	int ret;
++
++	ret = ath11k_wmi_set_peer_param(ar, sta->addr,
++					arvif->vdev_id,
++					WMI_PEER_PARAM_FIXED_RATE,
++					WMI_FIXED_RATE_NONE);
++	if (ret)
++		ath11k_warn(ar->ab,
++			    "failed to disable peer fixed rate for STA %pM ret %d\n",
++			    sta->addr, ret);
++}
++
++static int
++ath11k_mac_op_set_bitrate_mask(struct ieee80211_hw *hw,
++			       struct ieee80211_vif *vif,
++			       const struct cfg80211_bitrate_mask *mask)
++{
++	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	struct cfg80211_chan_def def;
++	struct ath11k *ar = arvif->ar;
++	enum nl80211_band band;
++	const u8 *ht_mcs_mask;
++	const u16 *vht_mcs_mask;
++	u32 rate;
++	u8 nss;
++	u8 sgi;
++	u8 ldpc;
++	int single_nss;
++	int ret;
++	int num_rates;
++
++	if (ath11k_mac_vif_chan(vif, &def))
++		return -EPERM;
++
++	band = def.chan->band;
++	ht_mcs_mask = mask->control[band].ht_mcs;
++	vht_mcs_mask = mask->control[band].vht_mcs;
++	ldpc = !!(ar->ht_cap_info & WMI_HT_CAP_LDPC);
++
++	sgi = mask->control[band].gi;
++	if (sgi == NL80211_TXRATE_FORCE_LGI)
++		return -EINVAL;
++
++	/* mac80211 doesn't support sending a fixed HT/VHT MCS alone, rather it
++	 * requires passing atleast one of used basic rates along with them.
++	 * Fixed rate setting across different preambles(legacy, HT, VHT) is
++	 * not supported by the FW. Hence use of FIXED_RATE vdev param is not
++	 * suitable for setting single HT/VHT rates.
++	 * But, there could be a single basic rate passed from userspace which
++	 * can be done through the FIXED_RATE param.
++	 */
++	if (ath11k_mac_has_single_legacy_rate(ar, band, mask)) {
++		ret = ath11k_mac_get_single_legacy_rate(ar, band, mask, &rate,
++							&nss);
++		if (ret) {
++			ath11k_warn(ar->ab, "failed to get single legacy rate for vdev %i: %d\n",
++				    arvif->vdev_id, ret);
++			return ret;
++		}
++		ieee80211_iterate_stations_atomic(ar->hw,
++						  ath11k_mac_disable_peer_fixed_rate,
++						  arvif);
++	} else if (ath11k_mac_bitrate_mask_get_single_nss(ar, band, mask,
++							  &single_nss)) {
++		rate = WMI_FIXED_RATE_NONE;
++		nss = single_nss;
++	} else {
++		rate = WMI_FIXED_RATE_NONE;
++		nss = min_t(u32, ar->num_tx_chains,
++			    max(ath11k_mac_max_ht_nss(ht_mcs_mask),
++				ath11k_mac_max_vht_nss(vht_mcs_mask)));
++
++		/* If multiple rates across different preambles are given
++		 * we can reconfigure this info with all peers using PEER_ASSOC
++		 * command with the below exception cases.
++		 * - Single VHT Rate : peer_assoc command accommodates only MCS
++		 * range values i.e 0-7, 0-8, 0-9 for VHT. Though mac80211
++		 * mandates passing basic rates along with HT/VHT rates, FW
++		 * doesn't allow switching from VHT to Legacy. Hence instead of
++		 * setting legacy and VHT rates using RATEMASK_CMD vdev cmd,
++		 * we could set this VHT rate as peer fixed rate param, which
++		 * will override FIXED rate and FW rate control algorithm.
++		 * If single VHT rate is passed along with HT rates, we select
++		 * the VHT rate as fixed rate for vht peers.
++		 * - Multiple VHT Rates : When Multiple VHT rates are given,this
++		 * can be set using RATEMASK CMD which uses FW rate-ctl alg.
++		 * TODO: Setting multiple VHT MCS and replacing peer_assoc with
++		 * RATEMASK_CMDID can cover all use cases of setting rates
++		 * across multiple preambles and rates within same type.
++		 * But requires more validation of the command at this point.
++		 */
++
++		num_rates = ath11k_mac_bitrate_mask_num_vht_rates(ar, band,
++								  mask);
++
++		if (!ath11k_mac_vht_mcs_range_present(ar, band, mask) &&
++		    num_rates > 1) {
++			/* TODO: Handle multiple VHT MCS values setting using
++			 * RATEMASK CMD
++			 */
++			ath11k_warn(ar->ab,
++				    "Setting more than one MCS Value in bitrate mask not supported\n");
++			return -EINVAL;
++		}
++
++		ieee80211_iterate_stations_atomic(ar->hw,
++						  ath11k_mac_disable_peer_fixed_rate,
++						  arvif);
++
++		mutex_lock(&ar->conf_mutex);
++
++		arvif->bitrate_mask = *mask;
++		ieee80211_iterate_stations_atomic(ar->hw,
++						  ath11k_mac_set_bitrate_mask_iter,
++						  arvif);
++
++		mutex_unlock(&ar->conf_mutex);
++	}
++
++	mutex_lock(&ar->conf_mutex);
++
++	ret = ath11k_mac_set_fixed_rate_params(arvif, rate, nss, sgi, ldpc);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to set fixed rate params on vdev %i: %d\n",
++			    arvif->vdev_id, ret);
++	}
++
++	mutex_unlock(&ar->conf_mutex);
++
++	return ret;
++}
++
++static void
++ath11k_mac_op_reconfig_complete(struct ieee80211_hw *hw,
++				enum ieee80211_reconfig_type reconfig_type)
++{
++	struct ath11k *ar = hw->priv;
++
++	if (reconfig_type != IEEE80211_RECONFIG_TYPE_RESTART)
++		return;
++
++	mutex_lock(&ar->conf_mutex);
++
++	if (ar->state == ATH11K_STATE_RESTARTED) {
++		ath11k_warn(ar->ab, "pdev %d successfully recovered\n",
++			    ar->pdev->pdev_id);
++		ar->state = ATH11K_STATE_ON;
++		ieee80211_wake_queues(ar->hw);
++	}
++
++	mutex_unlock(&ar->conf_mutex);
++}
++
++static void
++ath11k_mac_update_bss_chan_survey(struct ath11k *ar,
++				  struct ieee80211_channel *channel)
++{
++	int ret;
++	enum wmi_bss_chan_info_req_type type = WMI_BSS_SURVEY_REQ_TYPE_READ;
++
++	lockdep_assert_held(&ar->conf_mutex);
++
++	if (!test_bit(WMI_TLV_SERVICE_BSS_CHANNEL_INFO_64, ar->ab->wmi_sc.svc_map) ||
++	    ar->rx_channel != channel)
++		return;
++
++	if (ar->scan.state != ATH11K_SCAN_IDLE) {
++		ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
++			   "ignoring bss chan info req while scanning..\n");
++		return;
++	}
++
++	reinit_completion(&ar->bss_survey_done);
++
++	ret = ath11k_wmi_pdev_bss_chan_info_request(ar, type);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to send pdev bss chan info request\n");
++		return;
++	}
++
++	ret = wait_for_completion_timeout(&ar->bss_survey_done, 3 * HZ);
++	if (ret == 0)
++		ath11k_warn(ar->ab, "bss channel survey timed out\n");
++}
++
++static int ath11k_mac_op_get_survey(struct ieee80211_hw *hw, int idx,
++				    struct survey_info *survey)
++{
++	struct ath11k *ar = hw->priv;
++	struct ieee80211_supported_band *sband;
++	struct survey_info *ar_survey;
++	int ret = 0;
++
++	if (idx >= ATH11K_NUM_CHANS)
++		return -ENOENT;
++
++	ar_survey = &ar->survey[idx];
++
++	mutex_lock(&ar->conf_mutex);
++
++	sband = hw->wiphy->bands[NL80211_BAND_2GHZ];
++	if (sband && idx >= sband->n_channels) {
++		idx -= sband->n_channels;
++		sband = NULL;
++	}
++
++	if (!sband)
++		sband = hw->wiphy->bands[NL80211_BAND_5GHZ];
++
++	if (!sband || idx >= sband->n_channels) {
++		ret = -ENOENT;
++		goto exit;
++	}
++
++	ath11k_mac_update_bss_chan_survey(ar, &sband->channels[idx]);
++
++	spin_lock_bh(&ar->data_lock);
++	memcpy(survey, ar_survey, sizeof(*survey));
++	spin_unlock_bh(&ar->data_lock);
++
++	survey->channel = &sband->channels[idx];
++
++	if (ar->rx_channel == survey->channel)
++		survey->filled |= SURVEY_INFO_IN_USE;
++
++exit:
++	mutex_unlock(&ar->conf_mutex);
++	return ret;
++}
++
++static void ath11k_mac_op_sta_statistics(struct ieee80211_hw *hw,
++					 struct ieee80211_vif *vif,
++					 struct ieee80211_sta *sta,
++					 struct station_info *sinfo)
++{
++	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
++
++	sinfo->rx_duration = arsta->rx_duration;
++	sinfo->filled |= BIT_ULL(NL80211_STA_INFO_RX_DURATION);
++
++	if (!arsta->txrate.legacy && !arsta->txrate.nss)
++		return;
++
++	if (arsta->txrate.legacy) {
++		sinfo->txrate.legacy = arsta->txrate.legacy;
++	} else {
++		sinfo->txrate.mcs = arsta->txrate.mcs;
++		sinfo->txrate.nss = arsta->txrate.nss;
++		sinfo->txrate.bw = arsta->txrate.bw;
++		sinfo->txrate.he_gi = arsta->txrate.he_gi;
++		sinfo->txrate.he_dcm = arsta->txrate.he_dcm;
++		sinfo->txrate.he_ru_alloc = arsta->txrate.he_ru_alloc;
++	}
++	sinfo->txrate.flags = arsta->txrate.flags;
++	sinfo->filled |= BIT_ULL(NL80211_STA_INFO_TX_BITRATE);
++
++	/* TODO: Use real NF instead of default one. */
++	sinfo->signal = arsta->rssi_comb + ATH11K_DEFAULT_NOISE_FLOOR;
++}
++
++static const struct ieee80211_ops ath11k_ops = {
++	.tx				= ath11k_mac_op_tx,
++	.start                          = ath11k_mac_op_start,
++	.stop                           = ath11k_mac_op_stop,
++	.reconfig_complete              = ath11k_mac_op_reconfig_complete,
++	.add_interface                  = ath11k_mac_op_add_interface,
++	.remove_interface		= ath11k_mac_op_remove_interface,
++	.config                         = ath11k_mac_op_config,
++	.bss_info_changed               = ath11k_mac_op_bss_info_changed,
++	.configure_filter		= ath11k_mac_op_configure_filter,
++	.hw_scan                        = ath11k_mac_op_hw_scan,
++	.cancel_hw_scan                 = ath11k_mac_op_cancel_hw_scan,
++	.set_key                        = ath11k_mac_op_set_key,
++	.sta_state                      = ath11k_mac_op_sta_state,
++	.sta_rc_update			= ath11k_mac_op_sta_rc_update,
++	.conf_tx                        = ath11k_mac_op_conf_tx,
++	.set_antenna			= ath11k_mac_op_set_antenna,
++	.get_antenna			= ath11k_mac_op_get_antenna,
++	.ampdu_action			= ath11k_mac_op_ampdu_action,
++	.add_chanctx			= ath11k_mac_op_add_chanctx,
++	.remove_chanctx			= ath11k_mac_op_remove_chanctx,
++	.change_chanctx			= ath11k_mac_op_change_chanctx,
++	.assign_vif_chanctx		= ath11k_mac_op_assign_vif_chanctx,
++	.unassign_vif_chanctx		= ath11k_mac_op_unassign_vif_chanctx,
++	.switch_vif_chanctx		= ath11k_mac_op_switch_vif_chanctx,
++	.set_rts_threshold		= ath11k_mac_op_set_rts_threshold,
++	.set_frag_threshold		= ath11k_mac_op_set_frag_threshold,
++	.set_bitrate_mask		= ath11k_mac_op_set_bitrate_mask,
++	.get_survey			= ath11k_mac_op_get_survey,
++	.flush				= ath11k_mac_op_flush,
++	.sta_statistics			= ath11k_mac_op_sta_statistics,
++	CFG80211_TESTMODE_CMD(ath11k_tm_cmd)
++#ifdef CONFIG_MAC80211_DEBUGFS
++	.sta_add_debugfs		= ath11k_sta_add_debugfs,
++#endif
 +};
 +
-+enum hal_tcl_desc_type {
-+	HAL_TCL_DESC_TYPE_BUFFER,
-+	HAL_TCL_DESC_TYPE_EXT_DESC,
++static const struct ieee80211_iface_limit ath11k_if_limits[] = {
++	{
++		.max = 1,
++		.types = BIT(NL80211_IFTYPE_STATION),
++	},
++	{
++		.max    = 16,
++		.types  = BIT(NL80211_IFTYPE_AP)
++#ifdef CONFIG_MAC80211_MESH
++			| BIT(NL80211_IFTYPE_MESH_POINT)
++#endif
++	},
 +};
 +
-+enum hal_wbm_htt_tx_comp_status {
-+	HAL_WBM_REL_HTT_TX_COMP_STATUS_OK,
-+	HAL_WBM_REL_HTT_TX_COMP_STATUS_DROP,
-+	HAL_WBM_REL_HTT_TX_COMP_STATUS_TTL,
-+	HAL_WBM_REL_HTT_TX_COMP_STATUS_REINJ,
-+	HAL_WBM_REL_HTT_TX_COMP_STATUS_INSPECT,
-+	HAL_WBM_REL_HTT_TX_COMP_STATUS_MEC_NOTIFY,
++static const struct ieee80211_iface_combination ath11k_if_comb[] = {
++	{
++		.limits = ath11k_if_limits,
++		.n_limits = ARRAY_SIZE(ath11k_if_limits),
++		.max_interfaces = 16,
++		.num_different_channels = 1,
++		.beacon_int_infra_match = true,
++		.beacon_int_min_gcd = 100,
++		.radar_detect_widths =	BIT(NL80211_CHAN_WIDTH_20_NOHT) |
++					BIT(NL80211_CHAN_WIDTH_20) |
++					BIT(NL80211_CHAN_WIDTH_40) |
++					BIT(NL80211_CHAN_WIDTH_80),
++	},
 +};
 +
-+struct hal_tcl_data_cmd {
-+	struct ath11k_buffer_addr buf_addr_info;
-+	u32 info0;
-+	u32 info1;
-+	u32 info2;
-+	u32 info3;
-+	u32 info4;
-+} __packed;
++static void ath11k_mac_update_ch_list(struct ath11k *ar,
++				      struct ieee80211_supported_band *band,
++				      u32 freq_low, u32 freq_high)
++{
++	int i;
 +
-+/* hal_tcl_data_cmd
-+ *
-+ * buf_addr_info
-+ *		Details of the physical address of a buffer or MSDU
-+ *		link descriptor.
-+ *
-+ * desc_type
-+ *		Indicates the type of address provided in the buf_addr_info.
-+ *		Values are defined in enum %HAL_REO_DEST_RING_BUFFER_TYPE_.
-+ *
-+ * epd
-+ *		When this bit is set then input packet is an EPD type.
-+ *
-+ * encap_type
-+ *		Indicates the encapsulation that HW will perform. Values are
-+ *		defined in enum %HAL_TCL_ENCAP_TYPE_.
-+ *
-+ * encrypt_type
-+ *		Field only valid for encap_type: RAW
-+ *		Values are defined in enum %HAL_ENCRYPT_TYPE_.
-+ *
-+ * src_buffer_swap
-+ *		Treats source memory (packet buffer) organization as big-endian.
-+ *		1'b0: Source memory is little endian
-+ *		1'b1: Source memory is big endian
-+ *
-+ * link_meta_swap
-+ *		Treats link descriptor and Metadata as big-endian.
-+ *		1'b0: memory is little endian
-+ *		1'b1: memory is big endian
-+ *
-+ * search_type
-+ *		Search type select
-+ *		0 - Normal search, 1 - Index based address search,
-+ *		2 - Index based flow search
-+ *
-+ * addrx_en
-+ * addry_en
-+ *		Address X/Y search enable in ASE correspondingly.
-+ *		1'b0: Search disable
-+ *		1'b1: Search Enable
-+ *
-+ * cmd_num
-+ *		This number can be used to match against status.
-+ *
-+ * data_length
-+ *		MSDU length in case of direct descriptor. Length of link
-+ *		extension descriptor in case of Link extension descriptor.
-+ *
-+ * *_checksum_en
-+ *		Enable checksum replacement for ipv4, udp_over_ipv4, ipv6,
-+ *		udp_over_ipv6, tcp_over_ipv4 and tcp_over_ipv6.
-+ *
-+ * to_fw
-+ *		Forward packet to FW along with classification result. The
-+ *		packet will not be forward to TQM when this bit is set.
-+ *		1'b0: Use classification result to forward the packet.
-+ *		1'b1: Override classification result & forward packet only to fw
-+ *
-+ * packet_offset
-+ *		Packet offset from Metadata in case of direct buffer descriptor.
-+ *
-+ * buffer_timestamp
-+ * buffer_timestamp_valid
-+ *		Frame system entrance timestamp. It shall be filled by first
-+ *		module (SW, TCL or TQM) that sees the frames first.
-+ *
-+ * mesh_enable
-+ *		For raw WiFi frames, this indicates transmission to a mesh STA,
-+ *		enabling the interpretation of the 'Mesh Control Present' bit
-+ *		(bit 8) of QoS Control.
-+ *		For native WiFi frames, this indicates that a 'Mesh Control'
-+ *		field is present between the header and the LLC.
-+ *
-+ * hlos_tid_overwrite
-+ *
-+ *		When set, TCL shall ignore the IP DSCP and VLAN PCP
-+ *		fields and use HLOS_TID as the final TID. Otherwise TCL
-+ *		shall consider the DSCP and PCP fields as well as HLOS_TID
-+ *		and choose a final TID based on the configured priority
-+ *
-+ * hlos_tid
-+ *		HLOS MSDU priority
-+ *		Field is used when HLOS_TID_overwrite is set.
-+ *
-+ * lmac_id
-+ *		TCL uses this LMAC_ID in address search, i.e, while
-+ *		finding matching entry for the packet in AST corresponding
-+ *		to given LMAC_ID
-+ *
-+ *		If LMAC ID is all 1s (=> value 3), it indicates wildcard
-+ *		match for any MAC
-+ *
-+ * dscp_tid_table_num
-+ *		DSCP to TID mapping table number that need to be used
-+ *		for the MSDU.
-+ *
-+ * search_index
-+ *		The index that will be used for index based address or
-+ *		flow search. The field is valid when 'search_type' is  1 or 2.
-+ *
-+ * cache_set_num
-+ *
-+ *		Cache set number that should be used to cache the index
-+ *		based search results, for address and flow search. This
-+ *		value should be equal to LSB four bits of the hash value of
-+ *		match data, in case of search index points to an entry which
-+ *		may be used in content based search also. The value can be
-+ *		anything when the entry pointed by search index will not be
-+ *		used for content based search.
-+ *
-+ * ring_id
-+ *		The buffer pointer ring ID.
-+ *		0 refers to the IDLE ring
-+ *		1 - N refers to other rings
-+ *
-+ * looping_count
-+ *
-+ *		A count value that indicates the number of times the
-+ *		producer of entries into the Ring has looped around the
-+ *		ring.
-+ *
-+ *		At initialization time, this value is set to 0. On the
-+ *		first loop, this value is set to 1. After the max value is
-+ *		reached allowed by the number of bits for this field, the
-+ *		count value continues with 0 again.
-+ *
-+ *		In case SW is the consumer of the ring entries, it can
-+ *		use this field to figure out up to where the producer of
-+ *		entries has created new entries. This eliminates the need to
-+ *		check where the head pointer' of the ring is located once
-+ *		the SW starts processing an interrupt indicating that new
-+ *		entries have been put into this ring...
-+ *
-+ *		Also note that SW if it wants only needs to look at the
-+ *		LSB bit of this count value.
-+ */
++	if (!(freq_low && freq_high))
++		return;
 +
-+#define HAL_TCL_DESC_LEN sizeof(struct hal_tcl_data_cmd)
++	for (i = 0; i < band->n_channels; i++) {
++		if (band->channels[i].center_freq < freq_low ||
++		    band->channels[i].center_freq > freq_high)
++			band->channels[i].flags |= IEEE80211_CHAN_DISABLED;
++	}
++}
 +
-+enum hal_tcl_gse_ctrl {
-+	HAL_TCL_GSE_CTRL_RD_STAT,
-+	HAL_TCL_GSE_CTRL_SRCH_DIS,
-+	HAL_TCL_GSE_CTRL_WR_BK_SINGLE,
-+	HAL_TCL_GSE_CTRL_WR_BK_ALL,
-+	HAL_TCL_GSE_CTRL_INVAL_SINGLE,
-+	HAL_TCL_GSE_CTRL_INVAL_ALL,
-+	HAL_TCL_GSE_CTRL_WR_BK_INVAL_SINGLE,
-+	HAL_TCL_GSE_CTRL_WR_BK_INVAL_ALL,
-+	HAL_TCL_GSE_CTRL_CLR_STAT_SINGLE,
++static int ath11k_mac_setup_channels_rates(struct ath11k *ar,
++					   u32 supported_bands)
++{
++	struct ieee80211_supported_band *band;
++	struct ath11k_hal_reg_capabilities_ext *reg_cap;
++	void *channels;
++
++	BUILD_BUG_ON((ARRAY_SIZE(ath11k_2ghz_channels) +
++		      ARRAY_SIZE(ath11k_5ghz_channels)) !=
++		     ATH11K_NUM_CHANS);
++
++	reg_cap = &ar->ab->hal_reg_cap[ar->pdev_idx];
++
++	if (supported_bands & WMI_HOST_WLAN_2G_CAP) {
++		channels = kmemdup(ath11k_2ghz_channels,
++				   sizeof(ath11k_2ghz_channels),
++				   GFP_KERNEL);
++		if (!channels)
++			return -ENOMEM;
++
++		band = &ar->mac.sbands[NL80211_BAND_2GHZ];
++		band->n_channels = ARRAY_SIZE(ath11k_2ghz_channels);
++		band->channels = channels;
++		band->n_bitrates = ath11k_g_rates_size;
++		band->bitrates = ath11k_g_rates;
++		ar->hw->wiphy->bands[NL80211_BAND_2GHZ] = band;
++		ath11k_mac_update_ch_list(ar, band,
++					  reg_cap->low_2ghz_chan,
++					  reg_cap->high_2ghz_chan);
++	}
++
++	if (supported_bands & WMI_HOST_WLAN_5G_CAP) {
++		channels = kmemdup(ath11k_5ghz_channels,
++				   sizeof(ath11k_5ghz_channels),
++				   GFP_KERNEL);
++		if (!channels) {
++			kfree(ar->mac.sbands[NL80211_BAND_2GHZ].channels);
++			return -ENOMEM;
++		}
++
++		band = &ar->mac.sbands[NL80211_BAND_5GHZ];
++		band->n_channels = ARRAY_SIZE(ath11k_5ghz_channels);
++		band->channels = channels;
++		band->n_bitrates = ath11k_a_rates_size;
++		band->bitrates = ath11k_a_rates;
++		ar->hw->wiphy->bands[NL80211_BAND_5GHZ] = band;
++		ath11k_mac_update_ch_list(ar, band,
++					  reg_cap->low_5ghz_chan,
++					  reg_cap->high_5ghz_chan);
++	}
++
++	return 0;
++}
++
++static const u8 ath11k_if_types_ext_capa[] = {
++	[0] = WLAN_EXT_CAPA1_EXT_CHANNEL_SWITCHING,
++	[7] = WLAN_EXT_CAPA8_OPMODE_NOTIF,
 +};
 +
-+/* hal_tcl_gse_ctrl
-+ *
-+ * rd_stat
-+ *		Report or Read statistics
-+ * srch_dis
-+ *		Search disable. Report only Hash.
-+ * wr_bk_single
-+ *		Write Back single entry
-+ * wr_bk_all
-+ *		Write Back entire cache entry
-+ * inval_single
-+ *		Invalidate single cache entry
-+ * inval_all
-+ *		Invalidate entire cache
-+ * wr_bk_inval_single
-+ *		Write back and invalidate single entry in cache
-+ * wr_bk_inval_all
-+ *		Write back and invalidate entire cache
-+ * clr_stat_single
-+ *		Clear statistics for single entry
-+ */
-+
-+#define HAL_TCL_GSE_CMD_INFO0_CTRL_BUF_ADDR_HI		GENMASK(7, 0)
-+#define HAL_TCL_GSE_CMD_INFO0_GSE_CTRL			GENMASK(11, 8)
-+#define HAL_TCL_GSE_CMD_INFO0_GSE_SEL			BIT(12)
-+#define HAL_TCL_GSE_CMD_INFO0_STATUS_DEST_RING_ID	BIT(13)
-+#define HAL_TCL_GSE_CMD_INFO0_SWAP			BIT(14)
-+
-+#define HAL_TCL_GSE_CMD_INFO1_RING_ID			GENMASK(27, 20)
-+#define HAL_TCL_GSE_CMD_INFO1_LOOPING_COUNT		GENMASK(31, 28)
-+
-+struct hal_tcl_gse_cmd {
-+	u32 ctrl_buf_addr_lo;
-+	u32 info0;
-+	u32 meta_data[2];
-+	u32 rsvd0[2];
-+	u32 info1;
-+} __packed;
-+
-+/* hal_tcl_gse_cmd
-+ *
-+ * ctrl_buf_addr_lo, ctrl_buf_addr_hi
-+ *		Address of a control buffer containing additional info needed
-+ *		for this command execution.
-+ *
-+ * gse_ctrl
-+ *		GSE control operations. This includes cache operations and table
-+ *		entry statistics read/clear operation. Values are defined in
-+ *		enum %HAL_TCL_GSE_CTRL.
-+ *
-+ * gse_sel
-+ *		To select the ASE/FSE to do the operation mention by GSE_ctrl.
-+ *		0: FSE select 1: ASE select
-+ *
-+ * status_destination_ring_id
-+ *		TCL status ring to which the GSE status needs to be send.
-+ *
-+ * swap
-+ *		Bit to enable byte swapping of contents of buffer.
-+ *
-+ * meta_data
-+ *		Meta data to be returned in the status descriptor
-+ */
-+
-+enum hal_tcl_cache_op_res {
-+	HAL_TCL_CACHE_OP_RES_DONE,
-+	HAL_TCL_CACHE_OP_RES_NOT_FOUND,
-+	HAL_TCL_CACHE_OP_RES_TIMEOUT,
++static const u8 ath11k_if_types_ext_capa_sta[] = {
++	[0] = WLAN_EXT_CAPA1_EXT_CHANNEL_SWITCHING,
++	[7] = WLAN_EXT_CAPA8_OPMODE_NOTIF,
++	[9] = WLAN_EXT_CAPA10_TWT_REQUESTER_SUPPORT,
 +};
 +
-+#define HAL_TCL_STATUS_RING_INFO0_GSE_CTRL		GENMASK(3, 0)
-+#define HAL_TCL_STATUS_RING_INFO0_GSE_SEL		BIT(4)
-+#define HAL_TCL_STATUS_RING_INFO0_CACHE_OP_RES		GENMASK(6, 5)
-+#define HAL_TCL_STATUS_RING_INFO0_MSDU_CNT		GENMASK(31, 8)
-+
-+#define HAL_TCL_STATUS_RING_INFO1_HASH_IDX		GENMASK(19, 0)
-+
-+#define HAL_TCL_STATUS_RING_INFO2_RING_ID		GENMASK(27, 20)
-+#define HAL_TCL_STATUS_RING_INFO2_LOOPING_COUNT		GENMASK(31, 28)
-+
-+struct hal_tcl_status_ring {
-+	u32 info0;
-+	u32 msdu_byte_count;
-+	u32 msdu_timestamp;
-+	u32 meta_data[2];
-+	u32 info1;
-+	u32 rsvd0;
-+	u32 info2;
-+} __packed;
-+
-+/* hal_tcl_status_ring
-+ *
-+ * gse_ctrl
-+ *		GSE control operations. This includes cache operations and table
-+ *		entry statistics read/clear operation. Values are defined in
-+ *		enum %HAL_TCL_GSE_CTRL.
-+ *
-+ * gse_sel
-+ *		To select the ASE/FSE to do the operation mention by GSE_ctrl.
-+ *		0: FSE select 1: ASE select
-+ *
-+ * cache_op_res
-+ *		Cache operation result. Values are defined in enum
-+ *		%HAL_TCL_CACHE_OP_RES_.
-+ *
-+ * msdu_cnt
-+ * msdu_byte_count
-+ *		MSDU count of Entry and MSDU byte count for entry 1.
-+ *
-+ * hash_indx
-+ *		Hash value of the entry in case of search failed or disabled.
-+ */
-+
-+#define HAL_CE_SRC_DESC_ADDR_INFO_ADDR_HI	GENMASK(7, 0)
-+#define HAL_CE_SRC_DESC_ADDR_INFO_HASH_EN	BIT(8)
-+#define HAL_CE_SRC_DESC_ADDR_INFO_BYTE_SWAP	BIT(9)
-+#define HAL_CE_SRC_DESC_ADDR_INFO_DEST_SWAP	BIT(10)
-+#define HAL_CE_SRC_DESC_ADDR_INFO_GATHER	BIT(11)
-+#define HAL_CE_SRC_DESC_ADDR_INFO_LEN		GENMASK(31, 16)
-+
-+#define HAL_CE_SRC_DESC_META_INFO_DATA		GENMASK(15, 0)
-+
-+#define HAL_CE_SRC_DESC_FLAGS_RING_ID		GENMASK(27, 20)
-+#define HAL_CE_SRC_DESC_FLAGS_LOOP_CNT		HAL_SRNG_DESC_LOOP_CNT
-+
-+struct hal_ce_srng_src_desc {
-+	u32 buffer_addr_low;
-+	u32 buffer_addr_info; /* %HAL_CE_SRC_DESC_ADDR_INFO_ */
-+	u32 meta_info; /* %HAL_CE_SRC_DESC_META_INFO_ */
-+	u32 flags; /* %HAL_CE_SRC_DESC_FLAGS_ */
-+} __packed;
-+
-+/*
-+ * hal_ce_srng_src_desc
-+ *
-+ * buffer_addr_lo
-+ *		LSB 32 bits of the 40 Bit Pointer to the source buffer
-+ *
-+ * buffer_addr_hi
-+ *		MSB 8 bits of the 40 Bit Pointer to the source buffer
-+ *
-+ * toeplitz_en
-+ *		Enable generation of 32-bit Toeplitz-LFSR hash for
-+ *		data transfer. In case of gather field in first source
-+ *		ring entry of the gather copy cycle in taken into account.
-+ *
-+ * src_swap
-+ *		Treats source memory organization as big-endian. For
-+ *		each dword read (4 bytes), the byte 0 is swapped with byte 3
-+ *		and byte 1 is swapped with byte 2.
-+ *		In case of gather field in first source ring entry of
-+ *		the gather copy cycle in taken into account.
-+ *
-+ * dest_swap
-+ *		Treats destination memory organization as big-endian.
-+ *		For each dword write (4 bytes), the byte 0 is swapped with
-+ *		byte 3 and byte 1 is swapped with byte 2.
-+ *		In case of gather field in first source ring entry of
-+ *		the gather copy cycle in taken into account.
-+ *
-+ * gather
-+ *		Enables gather of multiple copy engine source
-+ *		descriptors to one destination.
-+ *
-+ * ce_res_0
-+ *		Reserved
-+ *
-+ *
-+ * length
-+ *		Length of the buffer in units of octets of the current
-+ *		descriptor
-+ *
-+ * fw_metadata
-+ *		Meta data used by FW.
-+ *		In case of gather field in first source ring entry of
-+ *		the gather copy cycle in taken into account.
-+ *
-+ * ce_res_1
-+ *		Reserved
-+ *
-+ * ce_res_2
-+ *		Reserved
-+ *
-+ * ring_id
-+ *		The buffer pointer ring ID.
-+ *		0 refers to the IDLE ring
-+ *		1 - N refers to other rings
-+ *		Helps with debugging when dumping ring contents.
-+ *
-+ * looping_count
-+ *		A count value that indicates the number of times the
-+ *		producer of entries into the Ring has looped around the
-+ *		ring.
-+ *
-+ *		At initialization time, this value is set to 0. On the
-+ *		first loop, this value is set to 1. After the max value is
-+ *		reached allowed by the number of bits for this field, the
-+ *		count value continues with 0 again.
-+ *
-+ *		In case SW is the consumer of the ring entries, it can
-+ *		use this field to figure out up to where the producer of
-+ *		entries has created new entries. This eliminates the need to
-+ *		check where the head pointer' of the ring is located once
-+ *		the SW starts processing an interrupt indicating that new
-+ *		entries have been put into this ring...
-+ *
-+ *		Also note that SW if it wants only needs to look at the
-+ *		LSB bit of this count value.
-+ */
-+
-+#define HAL_CE_DEST_DESC_ADDR_INFO_ADDR_HI		GENMASK(7, 0)
-+#define HAL_CE_DEST_DESC_ADDR_INFO_RING_ID		GENMASK(27, 20)
-+#define HAL_CE_DEST_DESC_ADDR_INFO_LOOP_CNT		HAL_SRNG_DESC_LOOP_CNT
-+
-+struct hal_ce_srng_dest_desc {
-+	u32 buffer_addr_low;
-+	u32 buffer_addr_info; /* %HAL_CE_DEST_DESC_ADDR_INFO_ */
-+} __packed;
-+
-+/* hal_ce_srng_dest_desc
-+ *
-+ * dst_buffer_low
-+ *		LSB 32 bits of the 40 Bit Pointer to the Destination
-+ *		buffer
-+ *
-+ * dst_buffer_high
-+ *		MSB 8 bits of the 40 Bit Pointer to the Destination
-+ *		buffer
-+ *
-+ * ce_res_4
-+ *		Reserved
-+ *
-+ * ring_id
-+ *		The buffer pointer ring ID.
-+ *		0 refers to the IDLE ring
-+ *		1 - N refers to other rings
-+ *		Helps with debugging when dumping ring contents.
-+ *
-+ * looping_count
-+ *		A count value that indicates the number of times the
-+ *		producer of entries into the Ring has looped around the
-+ *		ring.
-+ *
-+ *		At initialization time, this value is set to 0. On the
-+ *		first loop, this value is set to 1. After the max value is
-+ *		reached allowed by the number of bits for this field, the
-+ *		count value continues with 0 again.
-+ *
-+ *		In case SW is the consumer of the ring entries, it can
-+ *		use this field to figure out up to where the producer of
-+ *		entries has created new entries. This eliminates the need to
-+ *		check where the head pointer' of the ring is located once
-+ *		the SW starts processing an interrupt indicating that new
-+ *		entries have been put into this ring...
-+ *
-+ *		Also note that SW if it wants only needs to look at the
-+ *		LSB bit of this count value.
-+ */
-+
-+#define HAL_CE_DST_STATUS_DESC_FLAGS_HASH_EN		BIT(8)
-+#define HAL_CE_DST_STATUS_DESC_FLAGS_BYTE_SWAP		BIT(9)
-+#define HAL_CE_DST_STATUS_DESC_FLAGS_DEST_SWAP		BIT(10)
-+#define HAL_CE_DST_STATUS_DESC_FLAGS_GATHER		BIT(11)
-+#define HAL_CE_DST_STATUS_DESC_FLAGS_LEN		GENMASK(31, 16)
-+
-+#define HAL_CE_DST_STATUS_DESC_META_INFO_DATA		GENMASK(7, 0)
-+#define HAL_CE_DST_STATUS_DESC_META_INFO_RING_ID	GENMASK(27, 20)
-+#define HAL_CE_DST_STATUS_DESC_META_INFO_LOOP_CNT	HAL_SRNG_DESC_LOOP_CNT
-+
-+struct hal_ce_srng_dst_status_desc {
-+	u32 flags; /* %HAL_CE_DST_STATUS_DESC_FLAGS_ */
-+	u32 toeplitz_hash0;
-+	u32 toeplitz_hash1;
-+	u32 meta_info; /* HAL_CE_DST_STATUS_DESC_META_INFO_ */
-+} __packed;
-+
-+/* hal_ce_srng_dst_status_desc
-+ *
-+ * ce_res_5
-+ *		Reserved
-+ *
-+ * toeplitz_en
-+ *
-+ * src_swap
-+ *		Source memory buffer swapped
-+ *
-+ * dest_swap
-+ *		Destination  memory buffer swapped
-+ *
-+ * gather
-+ *		Gather of multiple copy engine source descriptors to one
-+ *		destination enabled
-+ *
-+ * ce_res_6
-+ *		Reserved
-+ *
-+ * length
-+ *		Sum of all the Lengths of the source descriptor in the
-+ *		gather chain
-+ *
-+ * toeplitz_hash_0
-+ *		32 LS bits of 64 bit Toeplitz LFSR hash result
-+ *
-+ * toeplitz_hash_1
-+ *		32 MS bits of 64 bit Toeplitz LFSR hash result
-+ *
-+ * fw_metadata
-+ *		Meta data used by FW
-+ *		In case of gather field in first source ring entry of
-+ *		the gather copy cycle in taken into account.
-+ *
-+ * ce_res_7
-+ *		Reserved
-+ *
-+ * ring_id
-+ *		The buffer pointer ring ID.
-+ *		0 refers to the IDLE ring
-+ *		1 - N refers to other rings
-+ *		Helps with debugging when dumping ring contents.
-+ *
-+ * looping_count
-+ *		A count value that indicates the number of times the
-+ *		producer of entries into the Ring has looped around the
-+ *		ring.
-+ *
-+ *		At initialization time, this value is set to 0. On the
-+ *		first loop, this value is set to 1. After the max value is
-+ *		reached allowed by the number of bits for this field, the
-+ *		count value continues with 0 again.
-+ *
-+ *		In case SW is the consumer of the ring entries, it can
-+ *		use this field to figure out up to where the producer of
-+ *		entries has created new entries. This eliminates the need to
-+ *		check where the head pointer' of the ring is located once
-+ *		the SW starts processing an interrupt indicating that new
-+ *		entries have been put into this ring...
-+ *
-+ *		Also note that SW if it wants only needs to look at the
-+ *			LSB bit of this count value.
-+ */
-+
-+#define HAL_TX_RATE_STATS_INFO0_VALID		BIT(0)
-+#define HAL_TX_RATE_STATS_INFO0_BW		GENMASK(2, 1)
-+#define HAL_TX_RATE_STATS_INFO0_PKT_TYPE	GENMASK(6, 3)
-+#define HAL_TX_RATE_STATS_INFO0_STBC		BIT(7)
-+#define HAL_TX_RATE_STATS_INFO0_LDPC		BIT(8)
-+#define HAL_TX_RATE_STATS_INFO0_SGI		GENMASK(10, 9)
-+#define HAL_TX_RATE_STATS_INFO0_MCS		GENMASK(14, 11)
-+#define HAL_TX_RATE_STATS_INFO0_OFDMA_TX	BIT(15)
-+#define HAL_TX_RATE_STATS_INFO0_TONES_IN_RU	GENMASK(27, 16)
-+
-+enum hal_tx_rate_stats_bw {
-+	HAL_TX_RATE_STATS_BW_20,
-+	HAL_TX_RATE_STATS_BW_40,
-+	HAL_TX_RATE_STATS_BW_80,
-+	HAL_TX_RATE_STATS_BW_160,
++static const u8 ath11k_if_types_ext_capa_ap[] = {
++	[0] = WLAN_EXT_CAPA1_EXT_CHANNEL_SWITCHING,
++	[7] = WLAN_EXT_CAPA8_OPMODE_NOTIF,
++	[9] = WLAN_EXT_CAPA10_TWT_RESPONDER_SUPPORT,
 +};
 +
-+enum hal_tx_rate_stats_pkt_type {
-+	HAL_TX_RATE_STATS_PKT_TYPE_11A,
-+	HAL_TX_RATE_STATS_PKT_TYPE_11B,
-+	HAL_TX_RATE_STATS_PKT_TYPE_11N,
-+	HAL_TX_RATE_STATS_PKT_TYPE_11AC,
-+	HAL_TX_RATE_STATS_PKT_TYPE_11AX,
++static const struct wiphy_iftype_ext_capab ath11k_iftypes_ext_capa[] = {
++	{
++		.extended_capabilities = ath11k_if_types_ext_capa,
++		.extended_capabilities_mask = ath11k_if_types_ext_capa,
++		.extended_capabilities_len = sizeof(ath11k_if_types_ext_capa),
++	}, {
++		.iftype = NL80211_IFTYPE_STATION,
++		.extended_capabilities = ath11k_if_types_ext_capa_sta,
++		.extended_capabilities_mask = ath11k_if_types_ext_capa_sta,
++		.extended_capabilities_len =
++				sizeof(ath11k_if_types_ext_capa_sta),
++	}, {
++		.iftype = NL80211_IFTYPE_AP,
++		.extended_capabilities = ath11k_if_types_ext_capa_ap,
++		.extended_capabilities_mask = ath11k_if_types_ext_capa_ap,
++		.extended_capabilities_len =
++				sizeof(ath11k_if_types_ext_capa_ap),
++	},
 +};
 +
-+enum hal_tx_rate_stats_sgi {
-+	HAL_TX_RATE_STATS_SGI_08US,
-+	HAL_TX_RATE_STATS_SGI_04US,
-+	HAL_TX_RATE_STATS_SGI_16US,
-+	HAL_TX_RATE_STATS_SGI_32US,
-+};
-+
-+struct hal_tx_rate_stats {
-+	u32 info0;
-+	u32 tsf;
-+} __packed;
-+
-+struct hal_wbm_link_desc {
-+	struct ath11k_buffer_addr buf_addr_info;
-+} __packed;
-+
-+/* hal_wbm_link_desc
-+ *
-+ *	Producer: WBM
-+ *	Consumer: WBM
-+ *
-+ * buf_addr_info
-+ *		Details of the physical address of a buffer or MSDU
-+ *		link descriptor.
-+ */
-+
-+enum hal_wbm_rel_src_module {
-+	HAL_WBM_REL_SRC_MODULE_TQM,
-+	HAL_WBM_REL_SRC_MODULE_RXDMA,
-+	HAL_WBM_REL_SRC_MODULE_REO,
-+	HAL_WBM_REL_SRC_MODULE_FW,
-+	HAL_WBM_REL_SRC_MODULE_SW,
-+};
-+
-+enum hal_wbm_rel_desc_type {
-+	HAL_WBM_REL_DESC_TYPE_REL_MSDU,
-+	HAL_WBM_REL_DESC_TYPE_MSDU_LINK,
-+	HAL_WBM_REL_DESC_TYPE_MPDU_LINK,
-+	HAL_WBM_REL_DESC_TYPE_MSDU_EXT,
-+	HAL_WBM_REL_DESC_TYPE_QUEUE_EXT,
-+};
-+
-+/* hal_wbm_rel_desc_type
-+ *
-+ * msdu_buffer
-+ *	The address points to an MSDU buffer
-+ *
-+ * msdu_link_descriptor
-+ *	The address points to an Tx MSDU link descriptor
-+ *
-+ * mpdu_link_descriptor
-+ *	The address points to an MPDU link descriptor
-+ *
-+ * msdu_ext_descriptor
-+ *	The address points to an MSDU extension descriptor
-+ *
-+ * queue_ext_descriptor
-+ *	The address points to an TQM queue extension descriptor. WBM should
-+ *	treat this is the same way as a link descriptor.
-+ */
-+
-+enum hal_wbm_rel_bm_act {
-+	HAL_WBM_REL_BM_ACT_PUT_IN_IDLE,
-+	HAL_WBM_REL_BM_ACT_REL_MSDU,
-+};
-+
-+/* hal_wbm_rel_bm_act
-+ *
-+ * put_in_idle_list
-+ *	Put the buffer or descriptor back in the idle list. In case of MSDU or
-+ *	MDPU link descriptor, BM does not need to check to release any
-+ *	individual MSDU buffers.
-+ *
-+ * release_msdu_list
-+ *	This BM action can only be used in combination with desc_type being
-+ *	msdu_link_descriptor. Field first_msdu_index points out which MSDU
-+ *	pointer in the MSDU link descriptor is the first of an MPDU that is
-+ *	released. BM shall release all the MSDU buffers linked to this first
-+ *	MSDU buffer pointer. All related MSDU buffer pointer entries shall be
-+ *	set to value 0, which represents the 'NULL' pointer. When all MSDU
-+ *	buffer pointers in the MSDU link descriptor are 'NULL', the MSDU link
-+ *	descriptor itself shall also be released.
-+ */
-+
-+#define HAL_WBM_RELEASE_INFO0_REL_SRC_MODULE		GENMASK(2, 0)
-+#define HAL_WBM_RELEASE_INFO0_BM_ACTION			GENMASK(5, 3)
-+#define HAL_WBM_RELEASE_INFO0_DESC_TYPE			GENMASK(8, 6)
-+#define HAL_WBM_RELEASE_INFO0_FIRST_MSDU_IDX		GENMASK(12, 9)
-+#define HAL_WBM_RELEASE_INFO0_TQM_RELEASE_REASON	GENMASK(16, 13)
-+#define HAL_WBM_RELEASE_INFO0_RXDMA_PUSH_REASON		GENMASK(18, 17)
-+#define HAL_WBM_RELEASE_INFO0_RXDMA_ERROR_CODE		GENMASK(23, 19)
-+#define HAL_WBM_RELEASE_INFO0_REO_PUSH_REASON		GENMASK(25, 24)
-+#define HAL_WBM_RELEASE_INFO0_REO_ERROR_CODE		GENMASK(30, 26)
-+#define HAL_WBM_RELEASE_INFO0_WBM_INTERNAL_ERROR	BIT(31)
-+
-+#define HAL_WBM_RELEASE_INFO1_TQM_STATUS_NUMBER		GENMASK(23, 0)
-+#define HAL_WBM_RELEASE_INFO1_TRANSMIT_COUNT		GENMASK(30, 24)
-+
-+#define HAL_WBM_RELEASE_INFO2_ACK_FRAME_RSSI		GENMASK(7, 0)
-+#define HAL_WBM_RELEASE_INFO2_SW_REL_DETAILS_VALID	BIT(8)
-+#define HAL_WBM_RELEASE_INFO2_FIRST_MSDU		BIT(9)
-+#define HAL_WBM_RELEASE_INFO2_LAST_MSDU			BIT(10)
-+#define HAL_WBM_RELEASE_INFO2_MSDU_IN_AMSDU		BIT(11)
-+#define HAL_WBM_RELEASE_INFO2_FW_TX_NOTIF_FRAME		BIT(12)
-+#define HAL_WBM_RELEASE_INFO2_BUFFER_TIMESTAMP		GENMASK(31, 13)
-+
-+#define HAL_WBM_RELEASE_INFO3_PEER_ID			GENMASK(15, 0)
-+#define HAL_WBM_RELEASE_INFO3_TID			GENMASK(19, 16)
-+#define HAL_WBM_RELEASE_INFO3_RING_ID			GENMASK(27, 20)
-+#define HAL_WBM_RELEASE_INFO3_LOOPING_COUNT		GENMASK(31, 28)
-+
-+#define HAL_WBM_REL_HTT_TX_COMP_INFO0_STATUS		GENMASK(12, 9)
-+#define HAL_WBM_REL_HTT_TX_COMP_INFO0_REINJ_REASON	GENMASK(16, 13)
-+#define HAL_WBM_REL_HTT_TX_COMP_INFO0_EXP_FRAME		BIT(17)
-+
-+struct hal_wbm_release_ring {
-+	struct ath11k_buffer_addr buf_addr_info;
-+	u32 info0;
-+	u32 info1;
-+	u32 info2;
-+	struct hal_tx_rate_stats rate_stats;
-+	u32 info3;
-+} __packed;
-+
-+/* hal_wbm_release_ring
-+ *
-+ *	Producer: SW/TQM/RXDMA/REO/SWITCH
-+ *	Consumer: WBM/SW/FW
-+ *
-+ * HTT tx status is overlayed on wbm_release ring on 4-byte words 2, 3, 4 and 5
-+ * for software based completions.
-+ *
-+ * buf_addr_info
-+ *	Details of the physical address of the buffer or link descriptor.
-+ *
-+ * release_source_module
-+ *	Indicates which module initiated the release of this buffer/descriptor.
-+ *	Values are defined in enum %HAL_WBM_REL_SRC_MODULE_.
-+ *
-+ * bm_action
-+ *	Field only valid when the field return_buffer_manager in
-+ *	Released_buff_or_desc_addr_info indicates:
-+ *		WBM_IDLE_BUF_LIST / WBM_IDLE_DESC_LIST
-+ *	Values are defined in enum %HAL_WBM_REL_BM_ACT_.
-+ *
-+ * buffer_or_desc_type
-+ *	Field only valid when WBM is marked as the return_buffer_manager in
-+ *	the Released_Buffer_address_info. Indicates that type of buffer or
-+ *	descriptor is being released. Values are in enum %HAL_WBM_REL_DESC_TYPE.
-+ *
-+ * first_msdu_index
-+ *	Field only valid for the bm_action release_msdu_list. The index of the
-+ *	first MSDU in an MSDU link descriptor all belonging to the same MPDU.
-+ *
-+ * tqm_release_reason
-+ *	Field only valid when Release_source_module is set to release_source_TQM
-+ *	Release reasons are defined in enum %HAL_WBM_TQM_REL_REASON_.
-+ *
-+ * rxdma_push_reason
-+ * reo_push_reason
-+ *	Indicates why rxdma/reo pushed the frame to this ring and values are
-+ *	defined in enum %HAL_REO_DEST_RING_PUSH_REASON_.
-+ *
-+ * rxdma_error_code
-+ *	Field only valid when 'rxdma_push_reason' set to 'error_detected'.
-+ *	Values are defined in enum %HAL_REO_ENTR_RING_RXDMA_ECODE_.
-+ *
-+ * reo_error_code
-+ *	Field only valid when 'reo_push_reason' set to 'error_detected'. Values
-+ *	are defined in enum %HAL_REO_DEST_RING_ERROR_CODE_.
-+ *
-+ * wbm_internal_error
-+ *	Is set when WBM got a buffer pointer but the action was to push it to
-+ *	the idle link descriptor ring or do link related activity OR
-+ *	Is set when WBM got a link buffer pointer but the action was to push it
-+ *	to the buffer descriptor ring.
-+ *
-+ * tqm_status_number
-+ *	The value in this field is equal to tqm_cmd_number in TQM command. It is
-+ *	used to correlate the statu with TQM commands. Only valid when
-+ *	release_source_module is TQM.
-+ *
-+ * transmit_count
-+ *	The number of times the frame has been transmitted, valid only when
-+ *	release source in TQM.
-+ *
-+ * ack_frame_rssi
-+ *	This field is only valid when the source is TQM. If this frame is
-+ *	removed as the result of the reception of an ACK or BA, this field
-+ *	indicates the RSSI of the received ACK or BA frame.
-+ *
-+ * sw_release_details_valid
-+ *	This is set when WMB got a 'release_msdu_list' command from TQM and
-+ *	return buffer manager is not WMB. WBM will then de-aggregate all MSDUs
-+ *	and pass them one at a time on to the 'buffer owner'.
-+ *
-+ * first_msdu
-+ *	Field only valid when SW_release_details_valid is set.
-+ *	When set, this MSDU is the first MSDU pointed to in the
-+ *	'release_msdu_list' command.
-+ *
-+ * last_msdu
-+ *	Field only valid when SW_release_details_valid is set.
-+ *	When set, this MSDU is the last MSDU pointed to in the
-+ *	'release_msdu_list' command.
-+ *
-+ * msdu_part_of_amsdu
-+ *	Field only valid when SW_release_details_valid is set.
-+ *	When set, this MSDU was part of an A-MSDU in MPDU
-+ *
-+ * fw_tx_notify_frame
-+ *	Field only valid when SW_release_details_valid is set.
-+ *
-+ * buffer_timestamp
-+ *	Field only valid when SW_release_details_valid is set.
-+ *	This is the Buffer_timestamp field from the
-+ *	Timestamp in units of 1024 us
-+ *
-+ * struct hal_tx_rate_stats rate_stats
-+ *	Details for command execution tracking purposes.
-+ *
-+ * sw_peer_id
-+ * tid
-+ *	Field only valid when Release_source_module is set to
-+ *	release_source_TQM
-+ *
-+ *	1) Release of msdu buffer due to drop_frame = 1. Flow is
-+ *	not fetched and hence sw_peer_id and tid = 0
-+ *
-+ *	buffer_or_desc_type = e_num 0
-+ *	MSDU_rel_buffertqm_release_reason = e_num 1
-+ *	tqm_rr_rem_cmd_rem
-+ *
-+ *	2) Release of msdu buffer due to Flow is not fetched and
-+ *	hence sw_peer_id and tid = 0
-+ *
-+ *	buffer_or_desc_type = e_num 0
-+ *	MSDU_rel_buffertqm_release_reason = e_num 1
-+ *	tqm_rr_rem_cmd_rem
-+ *
-+ *	3) Release of msdu link due to remove_mpdu or acked_mpdu
-+ *	command.
-+ *
-+ *	buffer_or_desc_type = e_num1
-+ *	msdu_link_descriptortqm_release_reason can be:e_num 1
-+ *	tqm_rr_rem_cmd_reme_num 2 tqm_rr_rem_cmd_tx
-+ *	e_num 3 tqm_rr_rem_cmd_notxe_num 4 tqm_rr_rem_cmd_aged
-+ *
-+ *	This field represents the TID from the TX_MSDU_FLOW
-+ *	descriptor or TX_MPDU_QUEUE descriptor
-+ *
-+ * rind_id
-+ *	For debugging.
-+ *	This field is filled in by the SRNG module.
-+ *	It help to identify the ring that is being looked
-+ *
-+ * looping_count
-+ *	A count value that indicates the number of times the
-+ *	producer of entries into the Buffer Manager Ring has looped
-+ *	around the ring.
-+ *
-+ *	At initialization time, this value is set to 0. On the
-+ *	first loop, this value is set to 1. After the max value is
-+ *	reached allowed by the number of bits for this field, the
-+ *	count value continues with 0 again.
-+ *
-+ *	In case SW is the consumer of the ring entries, it can
-+ *	use this field to figure out up to where the producer of
-+ *	entries has created new entries. This eliminates the need to
-+ *	check where the head pointer' of the ring is located once
-+ *	the SW starts processing an interrupt indicating that new
-+ *	entries have been put into this ring...
-+ *
-+ *	Also note that SW if it wants only needs to look at the
-+ *	LSB bit of this count value.
-+ */
-+
-+/**
-+ * enum hal_wbm_tqm_rel_reason - TQM release reason code
-+ * @HAL_WBM_TQM_REL_REASON_FRAME_ACKED: ACK or BACK received for the frame
-+ * @HAL_WBM_TQM_REL_REASON_CMD_REMOVE_MPDU: Command remove_mpdus initiated by SW
-+ * @HAL_WBM_TQM_REL_REASON_CMD_REMOVE_TX: Command remove transmitted_mpdus
-+ *	initiated by sw.
-+ * @HAL_WBM_TQM_REL_REASON_CMD_REMOVE_NOTX: Command remove untransmitted_mpdus
-+ *	initiated by sw.
-+ * @HAL_WBM_TQM_REL_REASON_CMD_REMOVE_AGED_FRAMES: Command remove aged msdus or
-+ *	mpdus.
-+ * @HAL_WBM_TQM_REL_REASON_CMD_REMOVE_RESEAON1: Remove command initiated by
-+ *	fw with fw_reason1.
-+ * @HAL_WBM_TQM_REL_REASON_CMD_REMOVE_RESEAON2: Remove command initiated by
-+ *	fw with fw_reason2.
-+ * @HAL_WBM_TQM_REL_REASON_CMD_REMOVE_RESEAON3: Remove command initiated by
-+ *	fw with fw_reason3.
-+ */
-+enum hal_wbm_tqm_rel_reason {
-+	HAL_WBM_TQM_REL_REASON_FRAME_ACKED,
-+	HAL_WBM_TQM_REL_REASON_CMD_REMOVE_MPDU,
-+	HAL_WBM_TQM_REL_REASON_CMD_REMOVE_TX,
-+	HAL_WBM_TQM_REL_REASON_CMD_REMOVE_NOTX,
-+	HAL_WBM_TQM_REL_REASON_CMD_REMOVE_AGED_FRAMES,
-+	HAL_WBM_TQM_REL_REASON_CMD_REMOVE_RESEAON1,
-+	HAL_WBM_TQM_REL_REASON_CMD_REMOVE_RESEAON2,
-+	HAL_WBM_TQM_REL_REASON_CMD_REMOVE_RESEAON3,
-+};
-+
-+struct hal_wbm_buffer_ring {
-+	struct ath11k_buffer_addr buf_addr_info;
-+};
-+
-+enum hal_desc_owner {
-+	HAL_DESC_OWNER_WBM,
-+	HAL_DESC_OWNER_SW,
-+	HAL_DESC_OWNER_TQM,
-+	HAL_DESC_OWNER_RXDMA,
-+	HAL_DESC_OWNER_REO,
-+	HAL_DESC_OWNER_SWITCH,
-+};
-+
-+enum hal_desc_buf_type {
-+	HAL_DESC_BUF_TYPE_TX_MSDU_LINK,
-+	HAL_DESC_BUF_TYPE_TX_MPDU_LINK,
-+	HAL_DESC_BUF_TYPE_TX_MPDU_QUEUE_HEAD,
-+	HAL_DESC_BUF_TYPE_TX_MPDU_QUEUE_EXT,
-+	HAL_DESC_BUF_TYPE_TX_FLOW,
-+	HAL_DESC_BUF_TYPE_TX_BUFFER,
-+	HAL_DESC_BUF_TYPE_RX_MSDU_LINK,
-+	HAL_DESC_BUF_TYPE_RX_MPDU_LINK,
-+	HAL_DESC_BUF_TYPE_RX_REO_QUEUE,
-+	HAL_DESC_BUF_TYPE_RX_REO_QUEUE_EXT,
-+	HAL_DESC_BUF_TYPE_RX_BUFFER,
-+	HAL_DESC_BUF_TYPE_IDLE_LINK,
-+};
-+
-+#define HAL_DESC_REO_OWNED		4
-+#define HAL_DESC_REO_QUEUE_DESC		8
-+#define HAL_DESC_REO_QUEUE_EXT_DESC	9
-+#define HAL_DESC_REO_NON_QOS_TID	16
-+
-+#define HAL_DESC_HDR_INFO0_OWNER	GENMASK(3, 0)
-+#define HAL_DESC_HDR_INFO0_BUF_TYPE	GENMASK(7, 4)
-+#define HAL_DESC_HDR_INFO0_DBG_RESERVED	GENMASK(31, 8)
-+
-+struct hal_desc_header {
-+	u32 info0;
-+} __packed;
-+
-+struct hal_rx_mpdu_link_ptr {
-+	struct ath11k_buffer_addr addr_info;
-+} __packed;
-+
-+struct hal_rx_msdu_details {
-+	struct ath11k_buffer_addr buf_addr_info;
-+	struct rx_msdu_desc rx_msdu_info;
-+} __packed;
-+
-+#define HAL_RX_MSDU_LNK_INFO0_RX_QUEUE_NUMBER		GENMASK(15, 0)
-+#define HAL_RX_MSDU_LNK_INFO0_FIRST_MSDU_LNK		BIT(16)
-+
-+struct hal_rx_msdu_link {
-+	struct hal_desc_header desc_hdr;
-+	struct ath11k_buffer_addr buf_addr_info;
-+	u32 info0;
-+	u32 pn[4];
-+	struct hal_rx_msdu_details msdu_link[6];
-+} __packed;
-+
-+struct hal_rx_reo_queue_ext {
-+	struct hal_desc_header desc_hdr;
-+	u32 rsvd;
-+	struct hal_rx_mpdu_link_ptr mpdu_link[15];
-+} __packed;
-+
-+/* hal_rx_reo_queue_ext
-+ *	Consumer: REO
-+ *	Producer: REO
-+ *
-+ * descriptor_header
-+ *	Details about which module owns this struct.
-+ *
-+ * mpdu_link
-+ *	Pointer to the next MPDU_link descriptor in the MPDU queue.
-+ */
-+
-+enum hal_rx_reo_queue_pn_size {
-+	HAL_RX_REO_QUEUE_PN_SIZE_24,
-+	HAL_RX_REO_QUEUE_PN_SIZE_48,
-+	HAL_RX_REO_QUEUE_PN_SIZE_128,
-+};
-+
-+#define HAL_RX_REO_QUEUE_RX_QUEUE_NUMBER		GENMASK(15, 0)
-+
-+#define HAL_RX_REO_QUEUE_INFO0_VLD			BIT(0)
-+#define HAL_RX_REO_QUEUE_INFO0_ASSOC_LNK_DESC_COUNTER	GENMASK(2, 1)
-+#define HAL_RX_REO_QUEUE_INFO0_DIS_DUP_DETECTION	BIT(3)
-+#define HAL_RX_REO_QUEUE_INFO0_SOFT_REORDER_EN		BIT(4)
-+#define HAL_RX_REO_QUEUE_INFO0_AC			GENMASK(6, 5)
-+#define HAL_RX_REO_QUEUE_INFO0_BAR			BIT(7)
-+#define HAL_RX_REO_QUEUE_INFO0_RETRY			BIT(8)
-+#define HAL_RX_REO_QUEUE_INFO0_CHECK_2K_MODE		BIT(9)
-+#define HAL_RX_REO_QUEUE_INFO0_OOR_MODE			BIT(10)
-+#define HAL_RX_REO_QUEUE_INFO0_BA_WINDOW_SIZE		GENMASK(18, 11)
-+#define HAL_RX_REO_QUEUE_INFO0_PN_CHECK			BIT(19)
-+#define HAL_RX_REO_QUEUE_INFO0_EVEN_PN			BIT(20)
-+#define HAL_RX_REO_QUEUE_INFO0_UNEVEN_PN		BIT(21)
-+#define HAL_RX_REO_QUEUE_INFO0_PN_HANDLE_ENABLE		BIT(22)
-+#define HAL_RX_REO_QUEUE_INFO0_PN_SIZE			GENMASK(24, 23)
-+#define HAL_RX_REO_QUEUE_INFO0_IGNORE_AMPDU_FLG		BIT(25)
-+
-+#define HAL_RX_REO_QUEUE_INFO1_SVLD			BIT(0)
-+#define HAL_RX_REO_QUEUE_INFO1_SSN			GENMASK(12, 1)
-+#define HAL_RX_REO_QUEUE_INFO1_CURRENT_IDX		GENMASK(20, 13)
-+#define HAL_RX_REO_QUEUE_INFO1_SEQ_2K_ERR		BIT(21)
-+#define HAL_RX_REO_QUEUE_INFO1_PN_ERR			BIT(22)
-+#define HAL_RX_REO_QUEUE_INFO1_PN_VALID			BIT(31)
-+
-+#define HAL_RX_REO_QUEUE_INFO2_MPDU_COUNT		GENMASK(6, 0)
-+#define HAL_RX_REO_QUEUE_INFO2_MSDU_COUNT		(31, 7)
-+
-+#define HAL_RX_REO_QUEUE_INFO3_TIMEOUT_COUNT		GENMASK(9, 4)
-+#define HAL_RX_REO_QUEUE_INFO3_FWD_DUE_TO_BAR_CNT	GENMASK(15, 10)
-+#define HAL_RX_REO_QUEUE_INFO3_DUPLICATE_COUNT		GENMASK(31, 10)
-+
-+#define HAL_RX_REO_QUEUE_INFO4_FRAME_IN_ORD_COUNT	GENMASK(23, 0)
-+#define HAL_RX_REO_QUEUE_INFO4_BAR_RECVD_COUNT		GENMASK(31, 24)
-+
-+#define HAL_RX_REO_QUEUE_INFO5_LATE_RX_MPDU_COUNT	GENMASK(11, 0)
-+#define HAL_RX_REO_QUEUE_INFO5_WINDOW_JUMP_2K		GENMASK(15, 12)
-+#define HAL_RX_REO_QUEUE_INFO5_HOLE_COUNT		GENMASK(31, 16)
-+
-+struct hal_rx_reo_queue {
-+	struct hal_desc_header desc_hdr;
-+	u32 rx_queue_num;
-+	u32 info0;
-+	u32 info1;
-+	u32 pn[4];
-+	u32 last_rx_enqueue_timestamp;
-+	u32 last_rx_dequeue_timestamp;
-+	u32 next_aging_queue[2];
-+	u32 prev_aging_queue[2];
-+	u32 rx_bitmap[8];
-+	u32 info2;
-+	u32 info3;
-+	u32 info4;
-+	u32 processed_mpdus;
-+	u32 processed_msdus;
-+	u32 processed_total_bytes;
-+	u32 info5;
-+	u32 rsvd[3];
-+	struct hal_rx_reo_queue_ext ext_desc[0];
-+} __packed;
-+
-+/* hal_rx_reo_queue
-+ *
-+ * descriptor_header
-+ *	Details about which module owns this struct. Note that sub field
-+ *	Buffer_type shall be set to receive_reo_queue_descriptor.
-+ *
-+ * receive_queue_number
-+ *	Indicates the MPDU queue ID to which this MPDU link descriptor belongs.
-+ *
-+ * vld
-+ *	Valid bit indicating a session is established and the queue descriptor
-+ *	is valid.
-+ * associated_link_descriptor_counter
-+ *	Indicates which of the 3 link descriptor counters shall be incremented
-+ *	or decremented when link descriptors are added or removed from this
-+ *	flow queue.
-+ * disable_duplicate_detection
-+ *	When set, do not perform any duplicate detection.
-+ * soft_reorder_enable
-+ *	When set, REO has been instructed to not perform the actual re-ordering
-+ *	of frames for this queue, but just to insert the reorder opcodes.
-+ * ac
-+ *	Indicates the access category of the queue descriptor.
-+ * bar
-+ *	Indicates if BAR has been received.
-+ * retry
-+ *	Retry bit is checked if this bit is set.
-+ * chk_2k_mode
-+ *	Indicates what type of operation is expected from Reo when the received
-+ *	frame SN falls within the 2K window.
-+ * oor_mode
-+ *	Indicates what type of operation is expected when the received frame
-+ *	falls within the OOR window.
-+ * ba_window_size
-+ *	Indicates the negotiated (window size + 1). Max of 256 bits.
-+ *
-+ *	A value 255 means 256 bitmap, 63 means 64 bitmap, 0 (means non-BA
-+ *	session, with window size of 0). The 3 values here are the main values
-+ *	validated, but other values should work as well.
-+ *
-+ *	A BA window size of 0 (=> one frame entry bitmat), means that there is
-+ *	no additional rx_reo_queue_ext desc. following rx_reo_queue in memory.
-+ *	A BA window size of 1 - 105, means that there is 1 rx_reo_queue_ext.
-+ *	A BA window size of 106 - 210, means that there are 2 rx_reo_queue_ext.
-+ *	A BA window size of 211 - 256, means that there are 3 rx_reo_queue_ext.
-+ * pn_check_needed, pn_shall_be_even, pn_shall_be_uneven, pn_handling_enable,
-+ * pn_size
-+ *	REO shall perform the PN increment check, even number check, uneven
-+ *	number check, PN error check and size of the PN field check.
-+ * ignore_ampdu_flag
-+ *	REO shall ignore the ampdu_flag on entrance descriptor for this queue.
-+ *
-+ * svld
-+ *	Sequence number in next field is valid one.
-+ * ssn
-+ *	 Starting Sequence number of the session.
-+ * current_index
-+ *	Points to last forwarded packet
-+ * seq_2k_error_detected_flag
-+ *	REO has detected a 2k error jump in the sequence number and from that
-+ *	moment forward, all new frames are forwarded directly to FW, without
-+ *	duplicate detect, reordering, etc.
-+ * pn_error_detected_flag
-+ *	REO has detected a PN error.
-+ */
-+
-+#define HAL_REO_UPD_RX_QUEUE_INFO0_QUEUE_ADDR_HI		GENMASK(7, 0)
-+#define HAL_REO_UPD_RX_QUEUE_INFO0_UPD_RX_QUEUE_NUM		BIT(8)
-+#define HAL_REO_UPD_RX_QUEUE_INFO0_UPD_VLD			BIT(9)
-+#define HAL_REO_UPD_RX_QUEUE_INFO0_UPD_ASSOC_LNK_DESC_CNT	BIT(10)
-+#define HAL_REO_UPD_RX_QUEUE_INFO0_UPD_DIS_DUP_DETECTION	BIT(11)
-+#define HAL_REO_UPD_RX_QUEUE_INFO0_UPD_SOFT_REORDER_EN		BIT(12)
-+#define HAL_REO_UPD_RX_QUEUE_INFO0_UPD_AC			BIT(13)
-+#define HAL_REO_UPD_RX_QUEUE_INFO0_UPD_BAR			BIT(14)
-+#define HAL_REO_UPD_RX_QUEUE_INFO0_UPD_RETRY			BIT(15)
-+#define HAL_REO_UPD_RX_QUEUE_INFO0_UPD_CHECK_2K_MODE		BIT(16)
-+#define HAL_REO_UPD_RX_QUEUE_INFO0_UPD_OOR_MODE			BIT(17)
-+#define HAL_REO_UPD_RX_QUEUE_INFO0_UPD_BA_WINDOW_SIZE		BIT(18)
-+#define HAL_REO_UPD_RX_QUEUE_INFO0_UPD_PN_CHECK			BIT(19)
-+#define HAL_REO_UPD_RX_QUEUE_INFO0_UPD_EVEN_PN			BIT(20)
-+#define HAL_REO_UPD_RX_QUEUE_INFO0_UPD_UNEVEN_PN		BIT(21)
-+#define HAL_REO_UPD_RX_QUEUE_INFO0_UPD_PN_HANDLE_ENABLE		BIT(22)
-+#define HAL_REO_UPD_RX_QUEUE_INFO0_UPD_PN_SIZE			BIT(23)
-+#define HAL_REO_UPD_RX_QUEUE_INFO0_UPD_IGNORE_AMPDU_FLG		BIT(24)
-+#define HAL_REO_UPD_RX_QUEUE_INFO0_UPD_SVLD			BIT(25)
-+#define HAL_REO_UPD_RX_QUEUE_INFO0_UPD_SSN			BIT(26)
-+#define HAL_REO_UPD_RX_QUEUE_INFO0_UPD_SEQ_2K_ERR		BIT(27)
-+#define HAL_REO_UPD_RX_QUEUE_INFO0_UPD_PN_ERR			BIT(28)
-+#define HAL_REO_UPD_RX_QUEUE_INFO0_UPD_PN_VALID			BIT(29)
-+#define HAL_REO_UPD_RX_QUEUE_INFO0_UPD_PN			BIT(30)
-+
-+#define HAL_REO_UPD_RX_QUEUE_INFO1_RX_QUEUE_NUMBER		GENMASK(15, 0)
-+#define HAL_REO_UPD_RX_QUEUE_INFO1_VLD				BIT(16)
-+#define HAL_REO_UPD_RX_QUEUE_INFO1_ASSOC_LNK_DESC_COUNTER	GENMASK(18, 17)
-+#define HAL_REO_UPD_RX_QUEUE_INFO1_DIS_DUP_DETECTION		BIT(19)
-+#define HAL_REO_UPD_RX_QUEUE_INFO1_SOFT_REORDER_EN		BIT(20)
-+#define HAL_REO_UPD_RX_QUEUE_INFO1_AC				GENMASK(22, 21)
-+#define HAL_REO_UPD_RX_QUEUE_INFO1_BAR				BIT(23)
-+#define HAL_REO_UPD_RX_QUEUE_INFO1_RETRY			BIT(24)
-+#define HAL_REO_UPD_RX_QUEUE_INFO1_CHECK_2K_MODE		BIT(25)
-+#define HAL_REO_UPD_RX_QUEUE_INFO1_OOR_MODE			BIT(26)
-+#define HAL_REO_UPD_RX_QUEUE_INFO1_PN_CHECK			BIT(27)
-+#define HAL_REO_UPD_RX_QUEUE_INFO1_EVEN_PN			BIT(28)
-+#define HAL_REO_UPD_RX_QUEUE_INFO1_UNEVEN_PN			BIT(29)
-+#define HAL_REO_UPD_RX_QUEUE_INFO1_PN_HANDLE_ENABLE		BIT(30)
-+#define HAL_REO_UPD_RX_QUEUE_INFO1_IGNORE_AMPDU_FLG		BIT(31)
-+
-+#define HAL_REO_UPD_RX_QUEUE_INFO2_BA_WINDOW_SIZE		GENMASK(7, 0)
-+#define HAL_REO_UPD_RX_QUEUE_INFO2_PN_SIZE			GENMASK(9, 8)
-+#define HAL_REO_UPD_RX_QUEUE_INFO2_SVLD				BIT(10)
-+#define HAL_REO_UPD_RX_QUEUE_INFO2_SSN				GENMASK(22, 11)
-+#define HAL_REO_UPD_RX_QUEUE_INFO2_SEQ_2K_ERR			BIT(23)
-+#define HAL_REO_UPD_RX_QUEUE_INFO2_PN_ERR			BIT(24)
-+#define HAL_REO_UPD_RX_QUEUE_INFO2_PN_VALID			BIT(25)
-+
-+struct hal_reo_update_rx_queue {
-+	struct hal_reo_cmd_hdr cmd;
-+	u32 queue_addr_lo;
-+	u32 info0;
-+	u32 info1;
-+	u32 info2;
-+	u32 pn[4];
-+} __packed;
-+
-+#define HAL_REO_UNBLOCK_CACHE_INFO0_UNBLK_CACHE		BIT(0)
-+#define HAL_REO_UNBLOCK_CACHE_INFO0_RESOURCE_IDX	GENMASK(2, 1)
-+
-+struct hal_reo_unblock_cache {
-+	struct hal_reo_cmd_hdr cmd;
-+	u32 info0;
-+	u32 rsvd[7];
-+} __packed;
-+
-+enum hal_reo_exec_status {
-+	HAL_REO_EXEC_STATUS_SUCCESS,
-+	HAL_REO_EXEC_STATUS_BLOCKED,
-+	HAL_REO_EXEC_STATUS_FAILED,
-+	HAL_REO_EXEC_STATUS_RESOURCE_BLOCKED,
-+};
-+
-+#define HAL_REO_STATUS_HDR_INFO0_STATUS_NUM	GENMASK(15, 0)
-+#define HAL_REO_STATUS_HDR_INFO0_EXEC_TIME	GENMASK(25, 16)
-+#define HAL_REO_STATUS_HDR_INFO0_EXEC_STATUS	GENMASK(27, 26)
-+
-+struct hal_reo_status_hdr {
-+	u32 info0;
-+	u32 timestamp;
-+} __packed;
-+
-+/* hal_reo_status_hdr
-+ *		Producer: REO
-+ *		Consumer: SW
-+ *
-+ * status_num
-+ *		The value in this field is equal to value of the reo command
-+ *		number. This field helps to correlate the statuses with the REO
-+ *		commands.
-+ *
-+ * execution_time (in us)
-+ *		The amount of time REO took to excecute the command. Note that
-+ *		this time does not include the duration of the command waiting
-+ *		in the command ring, before the execution started.
-+ *
-+ * execution_status
-+ *		Execution status of the command. Values are defined in
-+ *		enum %HAL_REO_EXEC_STATUS_.
-+ */
-+#define HAL_REO_GET_QUEUE_STATS_STATUS_INFO0_SSN		GENMASK(11, 0)
-+#define HAL_REO_GET_QUEUE_STATS_STATUS_INFO0_CUR_IDX		GENMASK(19, 12)
-+
-+#define HAL_REO_GET_QUEUE_STATS_STATUS_INFO1_MPDU_COUNT		GENMASK(6, 0)
-+#define HAL_REO_GET_QUEUE_STATS_STATUS_INFO1_MSDU_COUNT		GENMASK(31, 7)
-+
-+#define HAL_REO_GET_QUEUE_STATS_STATUS_INFO2_TIMEOUT_COUNT	GENMASK(9, 4)
-+#define HAL_REO_GET_QUEUE_STATS_STATUS_INFO2_FDTB_COUNT		GENMASK(15, 10)
-+#define HAL_REO_GET_QUEUE_STATS_STATUS_INFO2_DUPLICATE_COUNT	GENMASK(31, 16)
-+
-+#define HAL_REO_GET_QUEUE_STATS_STATUS_INFO3_FIO_COUNT		GENMASK(23, 0)
-+#define HAL_REO_GET_QUEUE_STATS_STATUS_INFO3_BAR_RCVD_CNT	GENMASK(31, 24)
-+
-+#define HAL_REO_GET_QUEUE_STATS_STATUS_INFO4_LATE_RX_MPDU	GENMASK(11, 0)
-+#define HAL_REO_GET_QUEUE_STATS_STATUS_INFO4_WINDOW_JMP2K	GENMASK(15, 12)
-+#define HAL_REO_GET_QUEUE_STATS_STATUS_INFO4_HOLE_COUNT		GENMASK(31, 16)
-+
-+#define HAL_REO_GET_QUEUE_STATS_STATUS_INFO5_LOOPING_CNT	GENMASK(31, 28)
-+
-+struct hal_reo_get_queue_stats_status {
-+	struct hal_reo_status_hdr hdr;
-+	u32 info0;
-+	u32 pn[4];
-+	u32 last_rx_enqueue_timestamp;
-+	u32 last_rx_dequeue_timestamp;
-+	u32 rx_bitmap[8];
-+	u32 info1;
-+	u32 info2;
-+	u32 info3;
-+	u32 num_mpdu_frames;
-+	u32 num_msdu_frames;
-+	u32 total_bytes;
-+	u32 info4;
-+	u32 info5;
-+} __packed;
-+
-+/* hal_reo_get_queue_stats_status
-+ *		Producer: REO
-+ *		Consumer: SW
-+ *
-+ * status_hdr
-+ *		Details that can link this status with the original command. It
-+ *		also contains info on how long REO took to execute this command.
-+ *
-+ * ssn
-+ *		Starting Sequence number of the session, this changes whenever
-+ *		window moves (can be filled by SW then maintained by REO).
-+ *
-+ * current_index
-+ *		Points to last forwarded packet.
-+ *
-+ * pn
-+ *		Bits of the PN number.
-+ *
-+ * last_rx_enqueue_timestamp
-+ * last_rx_dequeue_timestamp
-+ *		Timestamp of arrival of the last MPDU for this queue and
-+ *		Timestamp of forwarding an MPDU accordingly.
-+ *
-+ * rx_bitmap
-+ *		When a bit is set, the corresponding frame is currently held
-+ *		in the re-order queue. The bitmap  is Fully managed by HW.
-+ *
-+ * current_mpdu_count
-+ * current_msdu_count
-+ *		The number of MPDUs and MSDUs in the queue.
-+ *
-+ * timeout_count
-+ *		The number of times REO started forwarding frames even though
-+ *		there is a hole in the bitmap. Forwarding reason is timeout.
-+ *
-+ * forward_due_to_bar_count
-+ *		The number of times REO started forwarding frames even though
-+ *		there is a hole in the bitmap. Fwd reason is reception of BAR.
-+ *
-+ * duplicate_count
-+ *		The number of duplicate frames that have been detected.
-+ *
-+ * frames_in_order_count
-+ *		The number of frames that have been received in order (without
-+ *		a hole that prevented them from being forwarded immediately).
-+ *
-+ * bar_received_count
-+ *		The number of times a BAR frame is received.
-+ *
-+ * mpdu_frames_processed_count
-+ * msdu_frames_processed_count
-+ *		The total number of MPDU/MSDU frames that have been processed.
-+ *
-+ * total_bytes
-+ *		An approximation of the number of bytes received for this queue.
-+ *
-+ * late_receive_mpdu_count
-+ *		The number of MPDUs received after the window had already moved
-+ *		on. The 'late' sequence window is defined as
-+ *		(Window SSN - 256) - (Window SSN - 1).
-+ *
-+ * window_jump_2k
-+ *		The number of times the window moved more than 2K
-+ *
-+ * hole_count
-+ *		The number of times a hole was created in the receive bitmap.
-+ *
-+ * looping_count
-+ *		A count value that indicates the number of times the producer of
-+ *		entries into this Ring has looped around the ring.
-+ */
-+
-+#define HAL_REO_STATUS_LOOP_CNT			GENMASK(31, 28)
-+
-+#define HAL_REO_FLUSH_QUEUE_INFO0_ERR_DETECTED	BIT(0)
-+#define HAL_REO_FLUSH_QUEUE_INFO0_RSVD		GENMASK(31, 1)
-+#define HAL_REO_FLUSH_QUEUE_INFO1_RSVD		GENMASK(27, 0)
-+
-+struct hal_reo_flush_queue_status {
-+	struct hal_reo_status_hdr hdr;
-+	u32 info0;
-+	u32 rsvd0[21];
-+	u32 info1;
-+} __packed;
-+
-+/* hal_reo_flush_queue_status
-+ *		Producer: REO
-+ *		Consumer: SW
-+ *
-+ * status_hdr
-+ *		Details that can link this status with the original command. It
-+ *		also contains info on how long REO took to execute this command.
-+ *
-+ * error_detected
-+ *		Status of blocking resource
-+ *
-+ *		0 - No error has been detected while executing this command
-+ *		1 - Error detected. The resource to be used for blocking was
-+ *		    already in use.
-+ *
-+ * looping_count
-+ *		A count value that indicates the number of times the producer of
-+ *		entries into this Ring has looped around the ring.
-+ */
-+
-+#define HAL_REO_FLUSH_CACHE_STATUS_INFO0_IS_ERR			BIT(0)
-+#define HAL_REO_FLUSH_CACHE_STATUS_INFO0_BLOCK_ERR_CODE		GENMASK(2, 1)
-+#define HAL_REO_FLUSH_CACHE_STATUS_INFO0_FLUSH_STATUS_HIT	BIT(8)
-+#define HAL_REO_FLUSH_CACHE_STATUS_INFO0_FLUSH_DESC_TYPE	GENMASK(11, 9)
-+#define HAL_REO_FLUSH_CACHE_STATUS_INFO0_FLUSH_CLIENT_ID	GENMASK(15, 12)
-+#define HAL_REO_FLUSH_CACHE_STATUS_INFO0_FLUSH_ERR		GENMASK(17, 16)
-+#define HAL_REO_FLUSH_CACHE_STATUS_INFO0_FLUSH_COUNT		GENMASK(25, 18)
-+
-+struct hal_reo_flush_cache_status {
-+	struct hal_reo_status_hdr hdr;
-+	u32 info0;
-+	u32 rsvd0[21];
-+	u32 info1;
-+} __packed;
-+
-+/* hal_reo_flush_cache_status
-+ *		Producer: REO
-+ *		Consumer: SW
-+ *
-+ * status_hdr
-+ *		Details that can link this status with the original command. It
-+ *		also contains info on how long REO took to execute this command.
-+ *
-+ * error_detected
-+ *		Status for blocking resource handling
-+ *
-+ *		0 - No error has been detected while executing this command
-+ *		1 - An error in the blocking resource management was detected
-+ *
-+ * block_error_details
-+ *		only valid when error_detected is set
-+ *
-+ *		0 - No blocking related errors found
-+ *		1 - Blocking resource is already in use
-+ *		2 - Resource requested to be unblocked, was not blocked
-+ *
-+ * cache_controller_flush_status_hit
-+ *		The status that the cache controller returned on executing the
-+ *		flush command.
-+ *
-+ *		0 - miss; 1 - hit
-+ *
-+ * cache_controller_flush_status_desc_type
-+ *		Flush descriptor type
-+ *
-+ * cache_controller_flush_status_client_id
-+ *		Module who made the flush request
-+ *
-+ *		In REO, this is always 0
-+ *
-+ * cache_controller_flush_status_error
-+ *		Error condition
-+ *
-+ *		0 - No error found
-+ *		1 - HW interface is still busy
-+ *		2 - Line currently locked. Used for one line flush command
-+ *		3 - At least one line is still locked.
-+ *		    Used for cache flush command.
-+ *
-+ * cache_controller_flush_count
-+ *		The number of lines that were actually flushed out
-+ *
-+ * looping_count
-+ *		A count value that indicates the number of times the producer of
-+ *		entries into this Ring has looped around the ring.
-+ */
-+
-+#define HAL_REO_UNBLOCK_CACHE_STATUS_INFO0_IS_ERR	BIT(0)
-+#define HAL_REO_UNBLOCK_CACHE_STATUS_INFO0_TYPE		BIT(1)
-+
-+struct hal_reo_unblock_cache_status {
-+	struct hal_reo_status_hdr hdr;
-+	u32 info0;
-+	u32 rsvd0[21];
-+	u32 info1;
-+} __packed;
-+
-+/* hal_reo_unblock_cache_status
-+ *		Producer: REO
-+ *		Consumer: SW
-+ *
-+ * status_hdr
-+ *		Details that can link this status with the original command. It
-+ *		also contains info on how long REO took to execute this command.
-+ *
-+ * error_detected
-+ *		0 - No error has been detected while executing this command
-+ *		1 - The blocking resource was not in use, and therefore it could
-+ *		    not be unblocked.
-+ *
-+ * unblock_type
-+ *		Reference to the type of unblock command
-+ *		0 - Unblock a blocking resource
-+ *		1 - The entire cache usage is unblock
-+ *
-+ * looping_count
-+ *		A count value that indicates the number of times the producer of
-+ *		entries into this Ring has looped around the ring.
-+ */
-+
-+#define HAL_REO_FLUSH_TIMEOUT_STATUS_INFO0_IS_ERR		BIT(0)
-+#define HAL_REO_FLUSH_TIMEOUT_STATUS_INFO0_LIST_EMPTY		BIT(1)
-+
-+#define HAL_REO_FLUSH_TIMEOUT_STATUS_INFO1_REL_DESC_COUNT	GENMASK(15, 0)
-+#define HAL_REO_FLUSH_TIMEOUT_STATUS_INFO1_FWD_BUF_COUNT	GENMASK(31, 16)
-+
-+struct hal_reo_flush_timeout_list_status {
-+	struct hal_reo_status_hdr hdr;
-+	u32 info0;
-+	u32 info1;
-+	u32 rsvd0[20];
-+	u32 info2;
-+} __packed;
-+
-+/* hal_reo_flush_timeout_list_status
-+ *		Producer: REO
-+ *		Consumer: SW
-+ *
-+ * status_hdr
-+ *		Details that can link this status with the original command. It
-+ *		also contains info on how long REO took to execute this command.
-+ *
-+ * error_detected
-+ *		0 - No error has been detected while executing this command
-+ *		1 - Command not properly executed and returned with error
-+ *
-+ * timeout_list_empty
-+ *		When set, REO has depleted the timeout list and all entries are
-+ *		gone.
-+ *
-+ * release_desc_count
-+ *		Producer: SW; Consumer: REO
-+ *		The number of link descriptor released
-+ *
-+ * forward_buf_count
-+ *		Producer: SW; Consumer: REO
-+ *		The number of buffers forwarded to the REO destination rings
-+ *
-+ * looping_count
-+ *		A count value that indicates the number of times the producer of
-+ *		entries into this Ring has looped around the ring.
-+ */
-+
-+#define HAL_REO_DESC_THRESH_STATUS_INFO0_THRESH_INDEX		GENMASK(1, 0)
-+#define HAL_REO_DESC_THRESH_STATUS_INFO1_LINK_DESC_COUNTER0	GENMASK(23, 0)
-+#define HAL_REO_DESC_THRESH_STATUS_INFO2_LINK_DESC_COUNTER1	GENMASK(23, 0)
-+#define HAL_REO_DESC_THRESH_STATUS_INFO3_LINK_DESC_COUNTER2	GENMASK(23, 0)
-+#define HAL_REO_DESC_THRESH_STATUS_INFO4_LINK_DESC_COUNTER_SUM	GENMASK(23, 0)
-+
-+struct hal_reo_desc_thresh_reached_status {
-+	struct hal_reo_status_hdr hdr;
-+	u32 info0;
-+	u32 info1;
-+	u32 info2;
-+	u32 info3;
-+	u32 info4;
-+	u32 rsvd0[17];
-+	u32 info5;
-+} __packed;
-+
-+/* hal_reo_desc_thresh_reached_status
-+ *		Producer: REO
-+ *		Consumer: SW
-+ *
-+ * status_hdr
-+ *		Details that can link this status with the original command. It
-+ *		also contains info on how long REO took to execute this command.
-+ *
-+ * threshold_index
-+ *		The index of the threshold register whose value got reached
-+ *
-+ * link_descriptor_counter0
-+ * link_descriptor_counter1
-+ * link_descriptor_counter2
-+ * link_descriptor_counter_sum
-+ *		Value of the respective counters at generation of this message
-+ *
-+ * looping_count
-+ *		A count value that indicates the number of times the producer of
-+ *		entries into this Ring has looped around the ring.
-+ */
-+
-+#endif /* ATH11K_HAL_DESC_H */
++static int ath11k_mac_register(struct ath11k *ar)
++{
++	struct ath11k_base *ab = ar->ab;
++	struct ath11k_pdev_cap *cap = &ar->pdev->cap;
++	static const u32 cipher_suites[] = {
++		WLAN_CIPHER_SUITE_TKIP,
++		WLAN_CIPHER_SUITE_CCMP,
++		WLAN_CIPHER_SUITE_AES_CMAC,
++		WLAN_CIPHER_SUITE_BIP_CMAC_256,
++		WLAN_CIPHER_SUITE_BIP_GMAC_128,
++		WLAN_CIPHER_SUITE_BIP_GMAC_256,
++		WLAN_CIPHER_SUITE_GCMP,
++		WLAN_CIPHER_SUITE_GCMP_256,
++		WLAN_CIPHER_SUITE_CCMP_256,
++	};
++	int ret;
++	u32 ht_cap = 0;
++
++	ath11k_pdev_caps_update(ar);
++
++	SET_IEEE80211_PERM_ADDR(ar->hw, ar->mac_addr);
++
++	SET_IEEE80211_DEV(ar->hw, ab->dev);
++
++	ret = ath11k_mac_setup_channels_rates(ar,
++					      cap->supported_bands);
++	if (ret)
++		goto err_free;
++
++	ath11k_mac_setup_ht_vht_cap(ar, cap, &ht_cap);
++
++	ar->hw->wiphy->available_antennas_rx = cap->rx_chain_mask;
++	ar->hw->wiphy->available_antennas_tx = cap->tx_chain_mask;
++
++	ar->hw->wiphy->interface_modes = BIT(NL80211_IFTYPE_STATION) |
++					 BIT(NL80211_IFTYPE_AP) |
++					 BIT(NL80211_IFTYPE_MESH_POINT);
++
++	ieee80211_hw_set(ar->hw, SIGNAL_DBM);
++	ieee80211_hw_set(ar->hw, SUPPORTS_PS);
++	ieee80211_hw_set(ar->hw, SUPPORTS_DYNAMIC_PS);
++	ieee80211_hw_set(ar->hw, MFP_CAPABLE);
++	ieee80211_hw_set(ar->hw, REPORTS_TX_ACK_STATUS);
++	ieee80211_hw_set(ar->hw, HAS_RATE_CONTROL);
++	ieee80211_hw_set(ar->hw, AP_LINK_PS);
++	ieee80211_hw_set(ar->hw, SPECTRUM_MGMT);
++	ieee80211_hw_set(ar->hw, SUPPORT_FAST_XMIT);
++	ieee80211_hw_set(ar->hw, CONNECTION_MONITOR);
++	ieee80211_hw_set(ar->hw, SUPPORTS_PER_STA_GTK);
++	ieee80211_hw_set(ar->hw, WANT_MONITOR_VIF);
++	ieee80211_hw_set(ar->hw, CHANCTX_STA_CSA);
++	ieee80211_hw_set(ar->hw, QUEUE_CONTROL);
++	ieee80211_hw_set(ar->hw, SUPPORTS_TX_FRAG);
++	ieee80211_hw_set(ar->hw, REPORTS_LOW_ACK);
++	if (ht_cap & WMI_HT_CAP_ENABLED) {
++		ieee80211_hw_set(ar->hw, AMPDU_AGGREGATION);
++		ieee80211_hw_set(ar->hw, TX_AMPDU_SETUP_IN_HW);
++		ieee80211_hw_set(ar->hw, SUPPORTS_REORDERING_BUFFER);
++		ieee80211_hw_set(ar->hw, SUPPORTS_AMSDU_IN_AMPDU);
++	}
++
++	ar->hw->wiphy->features |= NL80211_FEATURE_STATIC_SMPS;
++	ar->hw->wiphy->flags |= WIPHY_FLAG_IBSS_RSN;
++
++	/* TODO: Check if HT capability advertised from firmware is different
++	 * for each band for a dual band capable radio. It will be tricky to
++	 * handle it when the ht capability different for each band.
++	 */
++	if (ht_cap & WMI_HT_CAP_DYNAMIC_SMPS)
++		ar->hw->wiphy->features |= NL80211_FEATURE_DYNAMIC_SMPS;
++
++	ar->hw->wiphy->max_scan_ssids = WLAN_SCAN_PARAMS_MAX_SSID;
++	ar->hw->wiphy->max_scan_ie_len = WLAN_SCAN_PARAMS_MAX_IE_LEN;
++
++	ar->hw->max_listen_interval = ATH11K_MAX_HW_LISTEN_INTERVAL;
++
++	ar->hw->wiphy->flags |= WIPHY_FLAG_HAS_REMAIN_ON_CHANNEL;
++	ar->hw->wiphy->flags |= WIPHY_FLAG_HAS_CHANNEL_SWITCH;
++	ar->hw->wiphy->max_remain_on_channel_duration = 5000;
++
++	ar->hw->wiphy->flags |= WIPHY_FLAG_AP_UAPSD;
++	ar->hw->wiphy->features |= NL80211_FEATURE_AP_MODE_CHAN_WIDTH_CHANGE |
++				   NL80211_FEATURE_AP_SCAN;
++
++	ar->max_num_stations = TARGET_NUM_STATIONS;
++	ar->max_num_peers = TARGET_NUM_PEERS_PDEV;
++
++	ar->hw->wiphy->max_ap_assoc_sta = ar->max_num_stations;
++
++	ar->hw->queues = ATH11K_HW_MAX_QUEUES;
++	ar->hw->offchannel_tx_hw_queue = ATH11K_HW_MAX_QUEUES - 1;
++	ar->hw->max_rx_aggregation_subframes = IEEE80211_MAX_AMPDU_BUF;
++
++	ar->hw->vif_data_size = sizeof(struct ath11k_vif);
++	ar->hw->sta_data_size = sizeof(struct ath11k_sta);
++
++	ar->hw->wiphy->iface_combinations = ath11k_if_comb;
++	ar->hw->wiphy->n_iface_combinations = ARRAY_SIZE(ath11k_if_comb);
++
++	wiphy_ext_feature_set(ar->hw->wiphy, NL80211_EXT_FEATURE_CQM_RSSI_LIST);
++
++	ar->hw->wiphy->cipher_suites = cipher_suites;
++	ar->hw->wiphy->n_cipher_suites = ARRAY_SIZE(cipher_suites);
++
++	ar->hw->wiphy->iftype_ext_capab = ath11k_iftypes_ext_capa;
++	ar->hw->wiphy->num_iftype_ext_capab =
++		ARRAY_SIZE(ath11k_iftypes_ext_capa);
++
++	ath11k_reg_init(ar);
++
++	/* advertise HW checksum offload capabilities */
++	ar->hw->netdev_features = NETIF_F_HW_CSUM;
++
++	ret = ieee80211_register_hw(ar->hw);
++	if (ret) {
++		ath11k_err(ar->ab, "ieee80211 registration failed: %d\n", ret);
++		goto err_free;
++	}
++
++	/* Apply the regd received during initialization */
++	ret = ath11k_regd_update(ar, true);
++	if (ret) {
++		ath11k_err(ar->ab, "ath11k regd update failed: %d\n", ret);
++		goto err_free;
++	}
++
++	ret = ath11k_debug_register(ar);
++	if (ret) {
++		ath11k_err(ar->ab, "debugfs registration failed: %d\n", ret);
++		goto err_free;
++	}
++
++	return 0;
++
++err_free:
++	kfree(ar->mac.sbands[NL80211_BAND_2GHZ].channels);
++	kfree(ar->mac.sbands[NL80211_BAND_5GHZ].channels);
++
++	SET_IEEE80211_DEV(ar->hw, NULL);
++	return ret;
++}
++
++void ath11k_mac_unregister(struct ath11k_base *ab)
++{
++	struct ath11k *ar;
++	struct ath11k_pdev *pdev;
++	int i;
++
++	for (i = 0; i < ab->num_radios; i++) {
++		pdev = &ab->pdevs[i];
++		ar = pdev->ar;
++		if (!ar)
++			continue;
++		cancel_work_sync(&ar->regd_update_work);
++
++		ieee80211_unregister_hw(ar->hw);
++
++		idr_for_each(&ar->txmgmt_idr, ath11k_mac_tx_mgmt_pending_free, ar);
++		idr_destroy(&ar->txmgmt_idr);
++
++		kfree(ar->mac.sbands[NL80211_BAND_2GHZ].channels);
++		kfree(ar->mac.sbands[NL80211_BAND_5GHZ].channels);
++
++		SET_IEEE80211_DEV(ar->hw, NULL);
++	}
++}
++
++int ath11k_mac_create(struct ath11k_base *ab)
++{
++	struct ieee80211_hw *hw;
++	struct ath11k *ar;
++	struct ath11k_pdev *pdev;
++	int ret;
++	int i;
++
++	if (test_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags))
++		return 0;
++
++	for (i = 0; i < ab->num_radios; i++) {
++		pdev = &ab->pdevs[i];
++		hw = ieee80211_alloc_hw(sizeof(struct ath11k), &ath11k_ops);
++		if (!hw) {
++			ath11k_warn(ab, "failed to allocate mac80211 hw device\n");
++			ret = -ENOMEM;
++			goto err_destroy_mac;
++		}
++
++		ar = hw->priv;
++		ar->hw = hw;
++		ar->ab = ab;
++		ar->pdev = pdev;
++		ar->pdev_idx = i;
++		ar->lmac_id = ath11k_core_get_hw_mac_id(ab, i);
++
++		ar->wmi = &ab->wmi_sc.wmi[i];
++		/* FIXME wmi[0] is already initialized during attach,
++		 * Should we do this again?
++		 */
++		ath11k_wmi_pdev_attach(ab, i);
++
++		ar->cfg_tx_chainmask = pdev->cap.tx_chain_mask;
++		ar->cfg_rx_chainmask = pdev->cap.rx_chain_mask;
++		ar->num_tx_chains = get_num_chains(pdev->cap.tx_chain_mask);
++		ar->num_rx_chains = get_num_chains(pdev->cap.rx_chain_mask);
++
++		if (ab->pdevs_macaddr_valid) {
++			ether_addr_copy(ar->mac_addr, pdev->mac_addr);
++		} else {
++			ether_addr_copy(ar->mac_addr, ab->mac_addr);
++			ar->mac_addr[4] += i;
++		}
++
++		pdev->ar = ar;
++		spin_lock_init(&ar->data_lock);
++		INIT_LIST_HEAD(&ar->arvifs);
++		INIT_LIST_HEAD(&ar->ppdu_stats_info);
++		mutex_init(&ar->conf_mutex);
++		init_completion(&ar->vdev_setup_done);
++		init_completion(&ar->peer_assoc_done);
++		init_completion(&ar->install_key_done);
++		init_completion(&ar->bss_survey_done);
++		init_completion(&ar->scan.started);
++		init_completion(&ar->scan.completed);
++		INIT_DELAYED_WORK(&ar->scan.timeout, ath11k_scan_timeout_work);
++		INIT_WORK(&ar->regd_update_work, ath11k_regd_update_work);
++
++		INIT_WORK(&ar->wmi_mgmt_tx_work, ath11k_mgmt_over_wmi_tx_work);
++		skb_queue_head_init(&ar->wmi_mgmt_tx_queue);
++		clear_bit(ATH11K_FLAG_MONITOR_ENABLED, &ar->monitor_flags);
++
++		ret = ath11k_mac_register(ar);
++		if (ret) {
++			ath11k_warn(ab, "failed to register hw device\n");
++			pdev->ar = NULL;
++			ieee80211_free_hw(hw);
++			goto err_destroy_mac;
++		}
++
++		idr_init(&ar->txmgmt_idr);
++		spin_lock_init(&ar->txmgmt_idr_lock);
++	}
++
++	/* Initialize channel counters frequency value in hertz */
++	ab->cc_freq_hz = IPQ8074_CC_FREQ_HERTZ;
++	ab->free_vdev_map = (1LL << (ab->num_radios * TARGET_NUM_VDEVS)) - 1;
++
++	return 0;
++
++err_destroy_mac:
++	ath11k_mac_destroy(ab);
++
++	return ret;
++}
++
++void ath11k_mac_destroy(struct ath11k_base *ab)
++{
++	struct ath11k *ar;
++	struct ath11k_pdev *pdev;
++	int i;
++
++	for (i = 0; i < ab->num_radios; i++) {
++		pdev = &ab->pdevs[i];
++		ar = pdev->ar;
++		if (!ar)
++			continue;
++
++		ieee80211_free_hw(ar->hw);
++		pdev->ar = NULL;
++	}
++}
 
 
 _______________________________________________
