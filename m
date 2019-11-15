@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iVXut-0002Pz-Jk
- for ath11k@lists.infradead.org; Fri, 15 Nov 2019 09:29:24 +0000
+ id 1iVXur-0002PE-SZ
+ for ath11k@lists.infradead.org; Fri, 15 Nov 2019 09:29:23 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH v3 03/49] ath11k: add Makefile
-Date: Fri, 15 Nov 2019 11:28:27 +0200
-Message-Id: <1573810153-29623-4-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH v3 02/49] ath11k: add Kconfig
+Date: Fri, 15 Nov 2019 11:28:26 +0200
+Message-Id: <1573810153-29623-3-git-send-email-kvalo@codeaurora.org>
 In-Reply-To: <1573810153-29623-1-git-send-email-kvalo@codeaurora.org>
 References: <1573810153-29623-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -29,41 +29,50 @@ Cc: devicetree@vger.kernel.org, ath11k@lists.infradead.org
 
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/Makefile | 26 ++++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+ drivers/net/wireless/ath/ath11k/Kconfig | 35 +++++++++++++++++++++++++++++++++
+ 1 file changed, 35 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/Makefile b/drivers/net/wireless/ath/ath11k/Makefile
+diff --git a/drivers/net/wireless/ath/ath11k/Kconfig b/drivers/net/wireless/ath/ath11k/Kconfig
 new file mode 100644
-index 000000000000..a91d75c1cfeb
+index 000000000000..cfab4fb86aef
 --- /dev/null
-+++ b/drivers/net/wireless/ath/ath11k/Makefile
-@@ -0,0 +1,26 @@
++++ b/drivers/net/wireless/ath/ath11k/Kconfig
+@@ -0,0 +1,35 @@
 +# SPDX-License-Identifier: BSD-3-Clause-Clear
-+obj-$(CONFIG_ATH11K) += ath11k.o
-+ath11k-y += core.o \
-+	    hal.o \
-+	    hal_tx.o \
-+	    hal_rx.o \
-+	    ahb.o \
-+	    wmi.o \
-+	    mac.o \
-+	    reg.o \
-+	    htc.o \
-+	    qmi.o \
-+	    dp.o  \
-+	    dp_tx.o \
-+	    dp_rx.o \
-+	    debug.o \
-+	    ce.o \
-+	    peer.o
++config ATH11K
++	tristate "Qualcomm Technologies 802.11ax chipset support"
++	depends on MAC80211 && HAS_DMA
++	depends on REMOTEPROC
++	depends on ARCH_QCOM || COMPILE_TEST
++	select ATH_COMMON
++	select QCOM_QMI_HELPERS
++	---help---
++	  This module adds support for Qualcomm Technologies 802.11ax family of
++	  chipsets.
 +
-+ath11k-$(CONFIG_ATH11K_DEBUGFS) += debug_htt_stats.o
-+ath11k-$(CONFIG_MAC80211_DEBUGFS) += debugfs_sta.o
-+ath11k-$(CONFIG_NL80211_TESTMODE) += testmode.o
-+ath11k-$(CONFIG_ATH11K_TRACING) += trace.o
++	  If you choose to build a module, it'll be called ath11k.
 +
-+# for tracing framework to find trace.h
-+CFLAGS_trace.o := -I$(src)
++config ATH11K_DEBUG
++	bool "QCA ath11k debugging"
++	depends on ATH11K
++	---help---
++	  Enables debug support
++
++	  If unsure, say Y to make it easier to debug problems.
++
++config ATH11K_DEBUGFS
++	bool "QCA ath11k debugfs support"
++	depends on ATH11K && DEBUG_FS
++	---help---
++	  Enable ath11k debugfs support
++
++	  If unsure, say Y to make it easier to debug problems.
++
++config ATH11K_TRACING
++	bool "ath11k tracing support"
++	depends on ATH11K && EVENT_TRACING
++	---help---
++	  Select this to use ath11k tracing infrastructure.
 
 
 _______________________________________________
