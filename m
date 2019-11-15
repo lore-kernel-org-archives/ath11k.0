@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from smtp.codeaurora.org ([198.145.29.96])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iVXwa-0005fA-7N
- for ath11k@lists.infradead.org; Fri, 15 Nov 2019 09:31:10 +0000
+ id 1iVXx9-0006NO-NQ
+ for ath11k@lists.infradead.org; Fri, 15 Nov 2019 09:31:44 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH v3 38/49] ath11k: add reg.h
-Date: Fri, 15 Nov 2019 11:29:02 +0200
-Message-Id: <1573810153-29623-39-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH v3 47/49] ath: add ath11k to Makefile
+Date: Fri, 15 Nov 2019 11:29:11 +0200
+Message-Id: <1573810153-29623-48-git-send-email-kvalo@codeaurora.org>
 In-Reply-To: <1573810153-29623-1-git-send-email-kvalo@codeaurora.org>
 References: <1573810153-29623-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -29,50 +29,21 @@ Cc: devicetree@vger.kernel.org, ath11k@lists.infradead.org
 
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/reg.h | 35 +++++++++++++++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
+ drivers/net/wireless/ath/Makefile | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/reg.h b/drivers/net/wireless/ath/ath11k/reg.h
-new file mode 100644
-index 000000000000..39b7fc943541
---- /dev/null
-+++ b/drivers/net/wireless/ath/ath11k/reg.h
-@@ -0,0 +1,35 @@
-+/* SPDX-License-Identifier: BSD-3-Clause-Clear */
-+/*
-+ * Copyright (c) 2019 The Linux Foundation. All rights reserved.
-+ */
-+
-+#ifndef ATH11K_REG_H
-+#define ATH11K_REG_H
-+
-+#include <linux/kernel.h>
-+#include <net/regulatory.h>
-+
-+struct ath11k_base;
-+struct ath11k;
-+
-+/* DFS regdomains supported by Firmware */
-+enum ath11k_dfs_region {
-+	ATH11K_DFS_REG_UNSET,
-+	ATH11K_DFS_REG_FCC,
-+	ATH11K_DFS_REG_ETSI,
-+	ATH11K_DFS_REG_MKK,
-+	ATH11K_DFS_REG_CN,
-+	ATH11K_DFS_REG_KR,
-+	ATH11K_DFS_REG_UNDEF,
-+};
-+
-+/* ATH11K Regulatory API's */
-+void ath11k_reg_init(struct ath11k *ar);
-+void ath11k_reg_free(struct ath11k_base *ab);
-+void ath11k_regd_update_work(struct work_struct *work);
-+struct ieee80211_regdomain *
-+ath11k_reg_build_regd(struct ath11k_base *ab,
-+		      struct cur_regulatory_info *reg_info, bool intersect);
-+int ath11k_regd_update(struct ath11k *ar, bool init);
-+int ath11k_reg_update_chan_list(struct ath11k *ar);
-+#endif
+diff --git a/drivers/net/wireless/ath/Makefile b/drivers/net/wireless/ath/Makefile
+index e4e460b5498e..72f8e3a24c67 100644
+--- a/drivers/net/wireless/ath/Makefile
++++ b/drivers/net/wireless/ath/Makefile
+@@ -7,6 +7,7 @@ obj-$(CONFIG_AR5523)		+= ar5523/
+ obj-$(CONFIG_WIL6210)		+= wil6210/
+ obj-$(CONFIG_ATH10K)		+= ath10k/
+ obj-$(CONFIG_WCN36XX)		+= wcn36xx/
++obj-$(CONFIG_ATH11K)		+= ath11k/
+ 
+ obj-$(CONFIG_ATH_COMMON)	+= ath.o
+ 
 
 
 _______________________________________________
