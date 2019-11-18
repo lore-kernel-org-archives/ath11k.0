@@ -1,15 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from a27-21.smtp-out.us-west-2.amazonses.com ([54.240.27.21])
+Received: from a27-10.smtp-out.us-west-2.amazonses.com ([54.240.27.10])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iWe2w-000394-57
- for ath11k@lists.infradead.org; Mon, 18 Nov 2019 10:14:15 +0000
+ id 1iWe2v-000391-0R
+ for ath11k@lists.infradead.org; Mon, 18 Nov 2019 10:14:14 +0000
 From: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
-Subject: [PATCH V2 2/2] ath11k: Setup REO destination ring before sending
- wmi_init command
-Date: Mon, 18 Nov 2019 10:14:12 +0000
-Message-ID: <0101016e7e0169a0-ccda6f11-1cd1-4653-8c8c-ce06c103477e-000000@us-west-2.amazonses.com>
-In-Reply-To: <1574072039-2927-1-git-send-email-vthiagar@codeaurora.org>
-References: <1574072039-2927-1-git-send-email-vthiagar@codeaurora.org>
+Subject: [PATCH V2 1/2] ath11k: Move mac80211 hw allocation before wmi_init
+ command
+Date: Mon, 18 Nov 2019 10:14:11 +0000
+Message-ID: <0101016e7e0163d4-8af9866a-85f0-4aa5-9548-3f0b48ccc308-000000@us-west-2.amazonses.com>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -25,217 +23,278 @@ Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 
-Firmware expects all the required REO destination rings setup
-while processing wmi_init command. Not doing this causes connected
-stations getting disconnected and not able to connect back.
+This is to prepare REO ring setup before sending wmi_init command.
+Firmware expects all the required REO rings to be setup while processing
+wmi_init command. But as per the current initialization sequence, REO ring
+configurations are done only after wmi_init command is sent.
+Also refactoring ath11k_mac_create() into ath11k_mac_alloc() and
+ath11k_mac_register() to it mac80211 hw structure available before sending
+wmi_init command.
 
 Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/core.c  | 19 +++++++++++--
- drivers/net/wireless/ath/ath11k/dp.c    | 10 +++++--
- drivers/net/wireless/ath/ath11k/dp.h    |  1 +
- drivers/net/wireless/ath/ath11k/dp_rx.c | 49 +++++++++++++++++++++++++++------
- drivers/net/wireless/ath/ath11k/dp_rx.h |  2 ++
- 5 files changed, 67 insertions(+), 14 deletions(-)
+
+V2:
+	- Rebased on top of latest ath11k-post-bringup
+
+ drivers/net/wireless/ath/ath11k/core.c | 27 ++++++----
+ drivers/net/wireless/ath/ath11k/mac.c  | 97 +++++++++++++++++++++-------------
+ drivers/net/wireless/ath/ath11k/mac.h  |  3 +-
+ 3 files changed, 81 insertions(+), 46 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index c9c9e4b..5cdc9b2 100644
+index 37d4ecb..c9c9e4b 100644
 --- a/drivers/net/wireless/ath/ath11k/core.c
 +++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -10,6 +10,7 @@
- #include "ahb.h"
- #include "core.h"
- #include "dp_tx.h"
-+#include "dp_rx.h"
- #include "debug.h"
+@@ -378,23 +378,22 @@ static int ath11k_core_pdev_create(struct ath11k_base *ab)
+ 		return ret;
+ 	}
  
- unsigned int ath11k_debug_mask;
-@@ -325,6 +326,7 @@ static void ath11k_core_stop(struct ath11k_base *ab)
- 		ath11k_qmi_firmware_stop(ab);
- 	ath11k_ahb_stop(ab);
- 	ath11k_wmi_detach(ab);
-+	ath11k_dp_pdev_reo_cleanup(ab);
+-	ret = ath11k_mac_create(ab);
++	ret = ath11k_mac_register(ab);
+ 	if (ret) {
+-		ath11k_err(ab, "failed to create new hw device with mac80211 :%d\n",
+-			   ret);
++		ath11k_err(ab, "failed register the radio with mac80211: %d\n", ret);
+ 		goto err_pdev_debug;
+ 	}
  
- 	/* De-Init of components as needed */
- }
-@@ -476,28 +478,38 @@ static int ath11k_core_start(struct ath11k_base *ab,
+ 	ret = ath11k_dp_pdev_alloc(ab);
+ 	if (ret) {
+ 		ath11k_err(ab, "failed to attach DP pdev: %d\n", ret);
+-		goto err_mac_destroy;
++		goto err_mac_unregister;
+ 	}
+ 
+ 	return 0;
+ 
+-err_mac_destroy:
+-	ath11k_mac_destroy(ab);
++err_mac_unregister:
++	ath11k_mac_unregister(ab);
+ 
+ err_pdev_debug:
+ 	ath11k_debug_pdev_destroy(ab);
+@@ -470,28 +469,37 @@ static int ath11k_core_start(struct ath11k_base *ab,
  		goto err_hif_stop;
  	}
  
-+	ath11k_dp_pdev_pre_alloc(ab);
-+
-+	ret = ath11k_dp_pdev_reo_setup(ab);
++	ret = ath11k_mac_allocate(ab);
 +	if (ret) {
-+		ath11k_err(ab, "failed to initialize reo destination rings: %d\n", ret);
-+		goto err_mac_destroy;
++		ath11k_err(ab, "failed to create new hw device with mac80211 :%d\n",
++			   ret);
++		goto err_hif_stop;
 +	}
 +
  	ret = ath11k_wmi_cmd_init(ab);
  	if (ret) {
  		ath11k_err(ab, "failed to send wmi init cmd: %d\n", ret);
--		goto err_mac_destroy;
-+		goto err_reo_cleanup;
+-		goto err_hif_stop;
++		goto err_mac_destroy;
  	}
  
  	ret = ath11k_wmi_wait_for_unified_ready(ab);
  	if (ret) {
  		ath11k_err(ab, "failed to receive wmi unified ready event: %d\n",
  			   ret);
--		goto err_mac_destroy;
-+		goto err_reo_cleanup;
+-		goto err_hif_stop;
++		goto err_mac_destroy;
  	}
  
  	ret = ath11k_dp_tx_htt_h2t_ver_req_msg(ab);
  	if (ret) {
  		ath11k_err(ab, "failed to send htt version request message: %d\n",
  			   ret);
--		goto err_mac_destroy;
-+		goto err_reo_cleanup;
+-		goto err_hif_stop;
++		goto err_mac_destroy;
  	}
  
  	return 0;
  
-+err_reo_cleanup:
-+	ath11k_dp_pdev_reo_cleanup(ab);
- err_mac_destroy:
- 	ath11k_mac_destroy(ab);
++err_mac_destroy:
++	ath11k_mac_destroy(ab);
  err_hif_stop:
-@@ -561,6 +573,7 @@ static int ath11k_core_reconfigure_on_crash(struct ath11k_base *ab)
- 	ath11k_dp_pdev_free(ab);
  	ath11k_ahb_stop(ab);
- 	ath11k_wmi_detach(ab);
-+	ath11k_dp_pdev_reo_cleanup(ab);
- 	mutex_unlock(&ab->core_lock);
+ err_wmi_detach:
+@@ -537,6 +545,7 @@ int ath11k_core_qmi_firmware_ready(struct ath11k_base *ab)
  
+ err_core_stop:
+ 	ath11k_core_stop(ab);
++	ath11k_mac_destroy(ab);
+ err_dp_free:
  	ath11k_dp_free(ab);
-diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
-index 72c21cf..b966a16 100644
---- a/drivers/net/wireless/ath/ath11k/dp.c
-+++ b/drivers/net/wireless/ath/ath11k/dp.c
-@@ -684,11 +684,10 @@ void ath11k_dp_pdev_free(struct ath11k_base *ab)
- 	}
+ 	mutex_unlock(&ab->core_lock);
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 5ee7c2a..a40d6bd 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -5510,7 +5510,38 @@ static const struct wiphy_iftype_ext_capab ath11k_iftypes_ext_capa[] = {
+ 	},
+ };
+ 
+-static int ath11k_mac_register(struct ath11k *ar)
++static void __ath11k_mac_unregister(struct ath11k *ar)
++{
++	cancel_work_sync(&ar->regd_update_work);
++
++	ieee80211_unregister_hw(ar->hw);
++
++	idr_for_each(&ar->txmgmt_idr, ath11k_mac_tx_mgmt_pending_free, ar);
++	idr_destroy(&ar->txmgmt_idr);
++
++	kfree(ar->mac.sbands[NL80211_BAND_2GHZ].channels);
++	kfree(ar->mac.sbands[NL80211_BAND_5GHZ].channels);
++
++	SET_IEEE80211_DEV(ar->hw, NULL);
++}
++
++void ath11k_mac_unregister(struct ath11k_base *ab)
++{
++	struct ath11k *ar;
++	struct ath11k_pdev *pdev;
++	int i;
++
++	for (i = 0; i < ab->num_radios; i++) {
++		pdev = &ab->pdevs[i];
++		ar = pdev->ar;
++		if (!ar)
++			continue;
++
++		__ath11k_mac_unregister(ar);
++	}
++}
++
++static int __ath11k_mac_register(struct ath11k *ar)
+ {
+ 	struct ath11k_base *ab = ar->ab;
+ 	struct ath11k_pdev_cap *cap = &ar->pdev->cap;
+@@ -5654,32 +5685,48 @@ static int ath11k_mac_register(struct ath11k *ar)
+ 	return ret;
  }
  
--int ath11k_dp_pdev_alloc(struct ath11k_base *ab)
-+void ath11k_dp_pdev_pre_alloc(struct ath11k_base *ab)
+-void ath11k_mac_unregister(struct ath11k_base *ab)
++int ath11k_mac_register(struct ath11k_base *ab)
  {
  	struct ath11k *ar;
- 	struct ath11k_pdev_dp *dp;
--	int ret;
+ 	struct ath11k_pdev *pdev;
  	int i;
- 
- 	for (i = 0; i <  ab->num_radios; i++) {
-@@ -704,6 +703,13 @@ int ath11k_dp_pdev_alloc(struct ath11k_base *ab)
- 		idr_init(&dp->rxdma_mon_buf_ring.bufs_idr);
- 		spin_lock_init(&dp->rxdma_mon_buf_ring.idr_lock);
- 	}
-+}
-+
-+int ath11k_dp_pdev_alloc(struct ath11k_base *ab)
-+{
-+	struct ath11k *ar;
 +	int ret;
-+	int i;
  
- 	/* TODO:Per-pdev rx ring unlike tx ring which is mapped to different AC's */
  	for (i = 0; i < ab->num_radios; i++) {
-diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
-index db216f0..2b935df 100644
---- a/drivers/net/wireless/ath/ath11k/dp.h
-+++ b/drivers/net/wireless/ath/ath11k/dp.h
-@@ -1505,6 +1505,7 @@ void ath11k_dp_vdev_tx_attach(struct ath11k *ar, struct ath11k_vif *arvif);
- void ath11k_dp_free(struct ath11k_base *ab);
- int ath11k_dp_alloc(struct ath11k_base *ab);
- int ath11k_dp_pdev_alloc(struct ath11k_base *ab);
-+void ath11k_dp_pdev_pre_alloc(struct ath11k_base *ab);
- void ath11k_dp_pdev_free(struct ath11k_base *ab);
- int ath11k_dp_tx_htt_srng_setup(struct ath11k_base *ab, u32 ring_id,
- 				int mac_id, enum hal_ring_type ring_type);
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 8c21925..c9cc5ad 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -395,12 +395,51 @@ static void ath11k_dp_rx_pdev_srng_free(struct ath11k *ar)
- 	struct ath11k_pdev_dp *dp = &ar->dp;
- 
- 	ath11k_dp_srng_cleanup(ar->ab, &dp->rx_refill_buf_ring.refill_buf_ring);
--	ath11k_dp_srng_cleanup(ar->ab, &dp->reo_dst_ring);
- 	ath11k_dp_srng_cleanup(ar->ab, &dp->rxdma_err_dst_ring);
- 	ath11k_dp_srng_cleanup(ar->ab, &dp->rx_mon_status_refill_ring.refill_buf_ring);
- 	ath11k_dp_srng_cleanup(ar->ab, &dp->rxdma_mon_buf_ring.refill_buf_ring);
- }
- 
-+void ath11k_dp_pdev_reo_cleanup(struct ath11k_base *ab)
-+{
-+	struct ath11k_pdev_dp *dp;
-+	struct ath11k *ar;
-+	int i;
-+
-+	for (i = 0; i < ab->num_radios; i++) {
-+		ar = ab->pdevs[i].ar;
-+		dp = &ar->dp;
-+		ath11k_dp_srng_cleanup(ab, &dp->reo_dst_ring);
-+	}
-+}
-+
-+int ath11k_dp_pdev_reo_setup(struct ath11k_base *ab)
-+{
-+	struct ath11k *ar;
-+	struct ath11k_pdev_dp *dp;
-+	int ret;
-+	int i;
-+
-+	for (i = 0; i < ab->num_radios; i++) {
-+		ar = ab->pdevs[i].ar;
-+		dp = &ar->dp;
-+		ret = ath11k_dp_srng_setup(ab, &dp->reo_dst_ring, HAL_REO_DST,
-+					   dp->mac_id, dp->mac_id,
-+					   DP_REO_DST_RING_SIZE);
-+		if (ret) {
-+			ath11k_warn(ar->ab, "failed to setup reo_dst_ring\n");
-+			goto err_reo_cleanup;
+ 		pdev = &ab->pdevs[i];
+ 		ar = pdev->ar;
+-		if (!ar)
+-			continue;
+-		cancel_work_sync(&ar->regd_update_work);
++		if (ab->pdevs_macaddr_valid) {
++			ether_addr_copy(ar->mac_addr, pdev->mac_addr);
++		} else {
++			ether_addr_copy(ar->mac_addr, ab->mac_addr);
++			ar->mac_addr[4] += i;
 +		}
+ 
+-		ieee80211_unregister_hw(ar->hw);
++		ret = __ath11k_mac_register(ar);
++		if (ret)
++			goto err_cleanup;
+ 
+-		idr_for_each(&ar->txmgmt_idr, ath11k_mac_tx_mgmt_pending_free, ar);
+-		idr_destroy(&ar->txmgmt_idr);
++		idr_init(&ar->txmgmt_idr);
++		spin_lock_init(&ar->txmgmt_idr_lock);
 +	}
+ 
+-		kfree(ar->mac.sbands[NL80211_BAND_2GHZ].channels);
+-		kfree(ar->mac.sbands[NL80211_BAND_5GHZ].channels);
++	/* Initialize channel counters frequency value in hertz */
++	ab->cc_freq_hz = IPQ8074_CC_FREQ_HERTZ;
++	ab->free_vdev_map = (1LL << (ab->num_radios * TARGET_NUM_VDEVS)) - 1;
 +
 +	return 0;
-+
-+err_reo_cleanup:
-+	ath11k_dp_pdev_reo_cleanup(ab);
+ 
+-		SET_IEEE80211_DEV(ar->hw, NULL);
++err_cleanup:
++	for (i = i - 1; i >= 0; i--) {
++		pdev = &ab->pdevs[i];
++		ar = pdev->ar;
++		__ath11k_mac_unregister(ar);
+ 	}
 +
 +	return ret;
-+}
-+
- static int ath11k_dp_rx_pdev_srng_alloc(struct ath11k *ar)
+ }
+ 
+-int ath11k_mac_create(struct ath11k_base *ab)
++int ath11k_mac_allocate(struct ath11k_base *ab)
  {
- 	struct ath11k_pdev_dp *dp = &ar->dp;
-@@ -416,14 +455,6 @@ static int ath11k_dp_rx_pdev_srng_alloc(struct ath11k *ar)
- 		return ret;
+ 	struct ieee80211_hw *hw;
+ 	struct ath11k *ar;
+@@ -5696,7 +5743,7 @@ int ath11k_mac_create(struct ath11k_base *ab)
+ 		if (!hw) {
+ 			ath11k_warn(ab, "failed to allocate mac80211 hw device\n");
+ 			ret = -ENOMEM;
+-			goto err_destroy_mac;
++			goto err_free_mac;
+ 		}
+ 
+ 		ar = hw->priv;
+@@ -5717,13 +5764,6 @@ int ath11k_mac_create(struct ath11k_base *ab)
+ 		ar->num_tx_chains = get_num_chains(pdev->cap.tx_chain_mask);
+ 		ar->num_rx_chains = get_num_chains(pdev->cap.rx_chain_mask);
+ 
+-		if (ab->pdevs_macaddr_valid) {
+-			ether_addr_copy(ar->mac_addr, pdev->mac_addr);
+-		} else {
+-			ether_addr_copy(ar->mac_addr, ab->mac_addr);
+-			ar->mac_addr[4] += i;
+-		}
+-
+ 		pdev->ar = ar;
+ 		spin_lock_init(&ar->data_lock);
+ 		INIT_LIST_HEAD(&ar->arvifs);
+@@ -5741,26 +5781,11 @@ int ath11k_mac_create(struct ath11k_base *ab)
+ 		INIT_WORK(&ar->wmi_mgmt_tx_work, ath11k_mgmt_over_wmi_tx_work);
+ 		skb_queue_head_init(&ar->wmi_mgmt_tx_queue);
+ 		clear_bit(ATH11K_FLAG_MONITOR_ENABLED, &ar->monitor_flags);
+-
+-		ret = ath11k_mac_register(ar);
+-		if (ret) {
+-			ath11k_warn(ab, "failed to register hw device\n");
+-			pdev->ar = NULL;
+-			ieee80211_free_hw(hw);
+-			goto err_destroy_mac;
+-		}
+-
+-		idr_init(&ar->txmgmt_idr);
+-		spin_lock_init(&ar->txmgmt_idr_lock);
  	}
  
--	ret = ath11k_dp_srng_setup(ar->ab, &dp->reo_dst_ring, HAL_REO_DST,
--				   dp->mac_id, dp->mac_id,
--				   DP_REO_DST_RING_SIZE);
--	if (ret) {
--		ath11k_warn(ar->ab, "failed to setup reo_dst_ring\n");
--		return ret;
--	}
+-	/* Initialize channel counters frequency value in hertz */
+-	ab->cc_freq_hz = IPQ8074_CC_FREQ_HERTZ;
+-	ab->free_vdev_map = (1LL << (ab->num_radios * TARGET_NUM_VDEVS)) - 1;
 -
- 	ret = ath11k_dp_srng_setup(ar->ab, &dp->rxdma_err_dst_ring,
- 				   HAL_RXDMA_DST, 0, dp->mac_id,
- 				   DP_RXDMA_ERR_DST_RING_SIZE);
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.h b/drivers/net/wireless/ath/ath11k/dp_rx.h
-index 026820f..eec5dea 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.h
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.h
-@@ -48,6 +48,8 @@ int ath11k_peer_rx_tid_setup(struct ath11k *ar, const u8 *peer_mac, int vdev_id,
- 			     u8 tid, u32 ba_win_sz, u16 ssn);
- void ath11k_dp_htt_htc_t2h_msg_handler(struct ath11k_base *ab,
- 				       struct sk_buff *skb);
-+int ath11k_dp_pdev_reo_setup(struct ath11k_base *ab);
-+void ath11k_dp_pdev_reo_cleanup(struct ath11k_base *ab);
- int ath11k_dp_rx_pdev_alloc(struct ath11k_base *ab, int pdev_idx);
- void ath11k_dp_rx_pdev_free(struct ath11k_base *ab, int pdev_idx);
- void ath11k_dp_reo_cmd_list_cleanup(struct ath11k_base *ab);
+ 	return 0;
+ 
+-err_destroy_mac:
++err_free_mac:
+ 	ath11k_mac_destroy(ab);
+ 
+ 	return ret;
+diff --git a/drivers/net/wireless/ath/ath11k/mac.h b/drivers/net/wireless/ath/ath11k/mac.h
+index 8c37573..f286531 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.h
++++ b/drivers/net/wireless/ath/ath11k/mac.h
+@@ -118,9 +118,10 @@ struct ath11k_generic_iter {
+ 
+ extern const struct htt_rx_ring_tlv_filter ath11k_mac_mon_status_filter_default;
+ 
+-int ath11k_mac_create(struct ath11k_base *ab);
+ void ath11k_mac_destroy(struct ath11k_base *ab);
+ void ath11k_mac_unregister(struct ath11k_base *ab);
++int ath11k_mac_register(struct ath11k_base *ab);
++int ath11k_mac_allocate(struct ath11k_base *ab);
+ int ath11k_mac_hw_ratecode_to_legacy_rate(u8 hw_rc, u8 preamble, u8 *rateidx,
+ 					  u16 *rate);
+ u8 ath11k_mac_bitrate_to_idx(const struct ieee80211_supported_band *sband,
 -- 
 2.7.4
 
