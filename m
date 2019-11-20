@@ -1,12 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iXWc6-0005Xm-6C
- for ath11k@lists.infradead.org; Wed, 20 Nov 2019 20:30:11 +0000
+ id 1iXWc7-0005hZ-HY
+ for ath11k@lists.infradead.org; Wed, 20 Nov 2019 20:30:13 +0000
 From: John Crispin <john@phrozen.org>
-Subject: [PATCH 0/3] ath11k: improve TX path
-Date: Wed, 20 Nov 2019 21:29:53 +0100
-Message-Id: <20191120202956.4401-1-john@phrozen.org>
+Subject: [PATCH 3/3] ath11k: optimize ath11k_hal_tx_status_parse
+Date: Wed, 20 Nov 2019 21:29:56 +0100
+Message-Id: <20191120202956.4401-4-john@phrozen.org>
+In-Reply-To: <20191120202956.4401-1-john@phrozen.org>
+References: <20191120202956.4401-1-john@phrozen.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -23,29 +25,168 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Kalle Valo <kvalo@codeaurora.org>
 Cc: ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-This series improves the TX path. The following numbers
-are peak performance measured.
+Moving the function into dp_tx.c allows gcc to optimize the code better
+and also avoid chace invalidates and context switches.
 
-prior to series
-[SUM]  30.00-31.00  sec   104 MBytes   874 Mbits/sec
-series applied
-[SUM]  35.00-36.00  sec   124 MBytes  1.04 Gbits/sec
-series applied + tx encap
-[SUM]  77.00-78.00  sec   167 MBytes  1.40 Gbits/sec
+Signed-off-by: John Crispin <john@phrozen.org>
+---
+ drivers/net/wireless/ath/ath11k/dp.h     |  2 +-
+ drivers/net/wireless/ath/ath11k/dp_tx.c  | 38 +++++++++++++++++++--
+ drivers/net/wireless/ath/ath11k/hal_tx.c | 43 ------------------------
+ drivers/net/wireless/ath/ath11k/hal_tx.h |  4 ---
+ 4 files changed, 37 insertions(+), 50 deletions(-)
 
-John Crispin (3):
-  ath11k: move some tx_status parsing to debugfs code
-  ath11k: optimise ath11k_dp_tx_completion_handler
-  ath11k: optimize ath11k_hal_tx_status_parse
-
- drivers/net/wireless/ath/ath11k/debugfs_sta.c | 66 +++++++++-------
- drivers/net/wireless/ath/ath11k/dp.c          | 16 ++--
- drivers/net/wireless/ath/ath11k/dp.h          | 11 ++-
- drivers/net/wireless/ath/ath11k/dp_tx.c       | 79 ++++++++++++-------
- drivers/net/wireless/ath/ath11k/hal_tx.c      | 73 -----------------
- drivers/net/wireless/ath/ath11k/hal_tx.h      | 13 +--
- 6 files changed, 101 insertions(+), 157 deletions(-)
-
+diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
+index 02e55986e521..4917f2bd46f1 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.h
++++ b/drivers/net/wireless/ath/ath11k/dp.h
+@@ -57,7 +57,7 @@ struct dp_rxdma_ring {
+ 	int bufs_max;
+ };
+ 
+-#define ATH11K_TX_COMPL_NEXT(x)	((x + 1) % DP_TX_COMP_RING_SIZE)
++#define ATH11K_TX_COMPL_NEXT(x)	(((x) + 1) % DP_TX_COMP_RING_SIZE)
+ 
+ struct dp_tx_ring {
+ 	u8 tcl_data_ring_id;
+diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
+index 5d6403cf99ab..828f8984235e 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_tx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
+@@ -423,6 +423,37 @@ static void ath11k_dp_tx_complete_msdu(struct ath11k *ar,
+ 	rcu_read_unlock();
+ }
+ 
++static inline void ath11k_hal_tx_status_parse(struct ath11k_base *ab,
++					      struct hal_wbm_release_ring *desc,
++					      struct hal_tx_status *ts)
++{
++	ts->buf_rel_source =
++		FIELD_GET(HAL_WBM_RELEASE_INFO0_REL_SRC_MODULE, desc->info0);
++	if (ts->buf_rel_source != HAL_WBM_REL_SRC_MODULE_FW &&
++	    ts->buf_rel_source != HAL_WBM_REL_SRC_MODULE_TQM)
++		return;
++
++	if (ts->buf_rel_source == HAL_WBM_REL_SRC_MODULE_FW)
++		return;
++
++	ts->status = FIELD_GET(HAL_WBM_RELEASE_INFO0_TQM_RELEASE_REASON,
++			       desc->info0);
++	ts->ppdu_id = FIELD_GET(HAL_WBM_RELEASE_INFO1_TQM_STATUS_NUMBER,
++				desc->info1);
++	ts->try_cnt = FIELD_GET(HAL_WBM_RELEASE_INFO1_TRANSMIT_COUNT,
++				desc->info1);
++	ts->ack_rssi = FIELD_GET(HAL_WBM_RELEASE_INFO2_ACK_FRAME_RSSI,
++				 desc->info2);
++	if (desc->info2 & HAL_WBM_RELEASE_INFO2_FIRST_MSDU)
++		ts->flags |= HAL_TX_STATUS_FLAGS_FIRST_MSDU;
++	ts->peer_id = FIELD_GET(HAL_WBM_RELEASE_INFO3_PEER_ID, desc->info3);
++	ts->tid = FIELD_GET(HAL_WBM_RELEASE_INFO3_TID, desc->info3);
++	if (desc->rate_stats.info0 & HAL_TX_RATE_STATS_INFO0_VALID)
++		ts->rate_stats = desc->rate_stats.info0;
++	else
++		ts->rate_stats = 0;
++}
++
+ void ath11k_dp_tx_completion_handler(struct ath11k_base *ab, int ring_id)
+ {
+ 	struct ath11k *ar;
+@@ -456,14 +487,17 @@ void ath11k_dp_tx_completion_handler(struct ath11k_base *ab, int ring_id)
+ 
+ 	while (ATH11K_TX_COMPL_NEXT(tx_ring->tx_status_tail) != tx_ring->tx_status_head) {
+ 		struct hal_wbm_release_ring *tx_status;
++		u32 desc_id;
+ 
+ 		tx_ring->tx_status_tail =
+ 			ATH11K_TX_COMPL_NEXT(tx_ring->tx_status_tail);
+ 		tx_status = &tx_ring->tx_status[tx_ring->tx_status_tail];
+ 		ath11k_hal_tx_status_parse(ab, tx_status, &ts);
+ 
+-		mac_id = FIELD_GET(DP_TX_DESC_ID_MAC_ID, ts.desc_id);
+-		msdu_id = FIELD_GET(DP_TX_DESC_ID_MSDU_ID, ts.desc_id);
++		desc_id = FIELD_GET(BUFFER_ADDR_INFO1_SW_COOKIE,
++				    tx_status->buf_addr_info.info1);
++		mac_id = FIELD_GET(DP_TX_DESC_ID_MAC_ID, desc_id);
++		msdu_id = FIELD_GET(DP_TX_DESC_ID_MSDU_ID, desc_id);
+ 
+ 		if (ts.buf_rel_source == HAL_WBM_REL_SRC_MODULE_FW) {
+ 			ath11k_dp_tx_process_htt_tx_complete(ab,
+diff --git a/drivers/net/wireless/ath/ath11k/hal_tx.c b/drivers/net/wireless/ath/ath11k/hal_tx.c
+index e8710bbbbc3a..e4aa7e8a1284 100644
+--- a/drivers/net/wireless/ath/ath11k/hal_tx.c
++++ b/drivers/net/wireless/ath/ath11k/hal_tx.c
+@@ -74,49 +74,6 @@ void ath11k_hal_tx_cmd_desc_setup(struct ath11k_base *ab, void *cmd,
+ 	tcl_cmd->info4 = 0;
+ }
+ 
+-void ath11k_hal_tx_status_parse(struct ath11k_base *ab,
+-				struct hal_wbm_release_ring *desc,
+-				struct hal_tx_status *ts)
+-{
+-	ts->buf_rel_source =
+-		FIELD_GET(HAL_WBM_RELEASE_INFO0_REL_SRC_MODULE, desc->info0);
+-	if (ts->buf_rel_source != HAL_WBM_REL_SRC_MODULE_FW &&
+-	    ts->buf_rel_source != HAL_WBM_REL_SRC_MODULE_TQM)
+-		return;
+-
+-	ts->desc_id = FIELD_GET(BUFFER_ADDR_INFO1_SW_COOKIE,
+-				desc->buf_addr_info.info1);
+-
+-	if (ts->buf_rel_source == HAL_WBM_REL_SRC_MODULE_FW)
+-		return;
+-
+-	ts->status = FIELD_GET(HAL_WBM_RELEASE_INFO0_TQM_RELEASE_REASON,
+-			       desc->info0);
+-	ts->ppdu_id = FIELD_GET(HAL_WBM_RELEASE_INFO1_TQM_STATUS_NUMBER,
+-				desc->info1);
+-	ts->try_cnt = FIELD_GET(HAL_WBM_RELEASE_INFO1_TRANSMIT_COUNT,
+-				desc->info1);
+-
+-	ts->ack_rssi = FIELD_GET(HAL_WBM_RELEASE_INFO2_ACK_FRAME_RSSI,
+-				 desc->info2);
+-	if (desc->info2 & HAL_WBM_RELEASE_INFO2_FIRST_MSDU)
+-		ts->flags |= HAL_TX_STATUS_FLAGS_FIRST_MSDU;
+-
+-	if (desc->info2 & HAL_WBM_RELEASE_INFO2_LAST_MSDU)
+-		ts->flags |= HAL_TX_STATUS_FLAGS_LAST_MSDU;
+-
+-	if (desc->info2 & HAL_WBM_RELEASE_INFO2_MSDU_IN_AMSDU)
+-		ts->flags |= HAL_TX_STATUS_FLAGS_MSDU_IN_AMSDU;
+-
+-	ts->peer_id = FIELD_GET(HAL_WBM_RELEASE_INFO3_PEER_ID, desc->info3);
+-	ts->tid = FIELD_GET(HAL_WBM_RELEASE_INFO3_TID, desc->info3);
+-
+-	if (!(desc->rate_stats.info0 & HAL_TX_RATE_STATS_INFO0_VALID))
+-		return;
+-
+-	ts->rate_stats = desc->rate_stats.info0;
+-}
+-
+ void ath11k_hal_tx_set_dscp_tid_map(struct ath11k_base *ab, int id)
+ {
+ 	u32 ctrl_reg_val;
+diff --git a/drivers/net/wireless/ath/ath11k/hal_tx.h b/drivers/net/wireless/ath/ath11k/hal_tx.h
+index 5fe89b729a6e..ce48a61bfb66 100644
+--- a/drivers/net/wireless/ath/ath11k/hal_tx.h
++++ b/drivers/net/wireless/ath/ath11k/hal_tx.h
+@@ -48,7 +48,6 @@ struct hal_tx_info {
+ /* Tx status parsed from srng desc */
+ struct hal_tx_status {
+ 	enum hal_wbm_rel_src_module buf_rel_source;
+-	u32 desc_id;
+ 	enum hal_wbm_tqm_rel_reason status;
+ 	u8 ack_rssi;
+ 	u32 flags; /* %HAL_TX_STATUS_FLAGS_ */
+@@ -61,9 +60,6 @@ struct hal_tx_status {
+ 
+ void ath11k_hal_tx_cmd_desc_setup(struct ath11k_base *ab, void *cmd,
+ 				  struct hal_tx_info *ti);
+-void ath11k_hal_tx_status_parse(struct ath11k_base *ab,
+-				struct hal_wbm_release_ring *desc,
+-				struct hal_tx_status *ts);
+ void ath11k_hal_tx_set_dscp_tid_map(struct ath11k_base *ab, int id);
+ int ath11k_hal_reo_cmd_send(struct ath11k_base *ab, struct hal_srng *srng,
+ 			    enum hal_reo_cmd_type type,
 -- 
 2.20.1
 
