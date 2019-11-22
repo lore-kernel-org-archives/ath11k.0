@@ -1,14 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from nbd.name ([2a01:4f8:221:3d45::2])
+Received: from a27-188.smtp-out.us-west-2.amazonses.com ([54.240.27.188])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iXWc6-0005h8-Rx
- for ath11k@lists.infradead.org; Wed, 20 Nov 2019 20:30:13 +0000
-From: John Crispin <john@phrozen.org>
-Subject: [PATCH 2/3] ath11k: optimise ath11k_dp_tx_completion_handler
-Date: Wed, 20 Nov 2019 21:29:55 +0100
-Message-Id: <20191120202956.4401-3-john@phrozen.org>
-In-Reply-To: <20191120202956.4401-1-john@phrozen.org>
-References: <20191120202956.4401-1-john@phrozen.org>
+ id 1iY6GT-0000o0-BR
+ for ath11k@lists.infradead.org; Fri, 22 Nov 2019 10:34:15 +0000
+From: Kalle Valo <kvalo@codeaurora.org>
+Subject: Re: [PATCH] ath11k: fix kernel panic by freeing the msdu received
+ with invalid length
+References: <1573024463-9066-1-git-send-email-tamizhr@codeaurora.org>
+Date: Fri, 22 Nov 2019 10:34:09 +0000
+In-Reply-To: <1573024463-9066-1-git-send-email-tamizhr@codeaurora.org> (Tamizh
+ chelvam's message of "Wed, 6 Nov 2019 12:44:23 +0530")
+Message-ID: <0101016e92ad1e94-69a164c4-92b8-42a6-977e-ac61c146647f-000000@us-west-2.amazonses.com>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -22,261 +24,117 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
+To: Tamizh chelvam <tamizhr@codeaurora.org>
+Cc: ath11k@lists.infradead.org
 
-the current code does 4 memcpys for each completion frame.
-1) duplicate the desc
-2 + 3) inside kfifo insertion
-4) kfifo remove
+Tamizh chelvam <tamizhr@codeaurora.org> writes:
 
-The code simply drops the kfifo and uses a trivial ring buffer. This
-requires a single memcpy for insertion. There is no removal needed as
-we can simply use the inserted data for processing. As the code runs
-inside the NAPI context it is atomic and there is no need for most of
-the locking.
+> In certain scenario host receives the packets with invalid
+> length which causes below kernel panic. Free up those msdus to avoid this
+> kernel panic. And printed packet information for debugging purpose.
+>
+>  2270.028121:   <6> task: ffffffc0008306d0 ti: ffffffc0008306d0 task.ti: ffffffc0008306d0
+>  2270.035247:   <2> PC is at skb_panic+0x40/0x44
+>  2270.042784:   <2> LR is at skb_panic+0x40/0x44
+>  2270.521775:   <2> [<ffffffc0004a06e0>] skb_panic+0x40/0x44
+>  2270.524039:   <2> [<ffffffc0004a1278>] skb_put+0x54/0x5c
+>  2270.529264:   <2> [<ffffffbffcc373a8>] ath11k_dp_process_rx_err+0x320/0x5b0 [ath11k]
+>  2270.533860:   <2> [<ffffffbffcc30b68>] ath11k_dp_service_srng+0x80/0x268 [ath11k]
+>  2270.541063:   <2> [<ffffffbffcc1d554>] ath11k_hal_rx_reo_ent_buf_paddr_get+0x200/0xb64 [ath11k]
+>  2270.547917:   <2> [<ffffffc0004b1f74>] net_rx_action+0xf8/0x274
+>  2270.556247:   <2> [<ffffffc000099df4>] __do_softirq+0x128/0x228
+>  2270.561625:   <2> [<ffffffc00009a130>] irq_exit+0x84/0xcc
+>  2270.567008:   <2> [<ffffffc0000cfb28>] __handle_domain_irq+0x8c/0xb0
+>  2270.571695:   <2> [<ffffffc000082484>] gic_handle_irq+0x6c/0xbc
+>
+> Signed-off-by: Tamizh chelvam <tamizhr@codeaurora.org>
 
-Signed-off-by: John Crispin <john@phrozen.org>
----
- drivers/net/wireless/ath/ath11k/dp.c     | 16 ++++-----
- drivers/net/wireless/ath/ath11k/dp.h     | 11 +++----
- drivers/net/wireless/ath/ath11k/dp_tx.c  | 41 +++++++++---------------
- drivers/net/wireless/ath/ath11k/hal_tx.c | 13 --------
- drivers/net/wireless/ath/ath11k/hal_tx.h |  2 --
- 5 files changed, 27 insertions(+), 56 deletions(-)
+Is your lastname uncapitalised on purpose? Looks odd.
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
-index 72c21cf6a352..a3e2b639cfcd 100644
---- a/drivers/net/wireless/ath/ath11k/dp.c
-+++ b/drivers/net/wireless/ath/ath11k/dp.c
-@@ -3,7 +3,6 @@
-  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
-  */
- 
--#include <linux/kfifo.h>
- #include "core.h"
- #include "dp_tx.h"
- #include "hal_tx.h"
-@@ -822,10 +821,7 @@ void ath11k_dp_free(struct ath11k_base *ab)
- 			     ath11k_dp_tx_pending_cleanup, ab);
- 		idr_destroy(&dp->tx_ring[i].txbuf_idr);
- 		spin_unlock_bh(&dp->tx_ring[i].tx_idr_lock);
--
--		spin_lock_bh(&dp->tx_ring[i].tx_status_lock);
--		kfifo_free(&dp->tx_ring[i].tx_status_fifo);
--		spin_unlock_bh(&dp->tx_ring[i].tx_status_lock);
-+		kfree(&dp->tx_ring[i].tx_status);
- 	}
- 
- 	/* Deinit any SOC level resource */
-@@ -865,17 +861,17 @@ int ath11k_dp_alloc(struct ath11k_base *ab)
- 	if (ret)
- 		goto fail_link_desc_cleanup;
- 
--	size = roundup_pow_of_two(DP_TX_COMP_RING_SIZE);
-+	size = sizeof(struct hal_wbm_release_ring) * DP_TX_COMP_RING_SIZE;
- 
- 	for (i = 0; i < DP_TCL_NUM_RING_MAX; i++) {
- 		idr_init(&dp->tx_ring[i].txbuf_idr);
- 		spin_lock_init(&dp->tx_ring[i].tx_idr_lock);
- 		dp->tx_ring[i].tcl_data_ring_id = i;
- 
--		spin_lock_init(&dp->tx_ring[i].tx_status_lock);
--		ret = kfifo_alloc(&dp->tx_ring[i].tx_status_fifo, size,
--				  GFP_KERNEL);
--		if (ret)
-+		dp->tx_ring[i].tx_status_head = 0;
-+		dp->tx_ring[i].tx_status_tail = DP_TX_COMP_RING_SIZE - 1;
-+		dp->tx_ring[i].tx_status = kmalloc(size, GFP_KERNEL);
-+		if (!dp->tx_ring[i].tx_status)
- 			goto fail_cmn_srng_cleanup;
- 	}
- 
-diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
-index db216f055c42..02e55986e521 100644
---- a/drivers/net/wireless/ath/ath11k/dp.h
-+++ b/drivers/net/wireless/ath/ath11k/dp.h
-@@ -6,7 +6,6 @@
- #ifndef ATH11K_DP_H
- #define ATH11K_DP_H
- 
--#include <linux/kfifo.h>
- #include "hal_rx.h"
- 
- struct ath11k_base;
-@@ -58,6 +57,8 @@ struct dp_rxdma_ring {
- 	int bufs_max;
- };
- 
-+#define ATH11K_TX_COMPL_NEXT(x)	((x + 1) % DP_TX_COMP_RING_SIZE)
-+
- struct dp_tx_ring {
- 	u8 tcl_data_ring_id;
- 	struct dp_srng tcl_data_ring;
-@@ -65,11 +66,9 @@ struct dp_tx_ring {
- 	struct idr txbuf_idr;
- 	/* Protects txbuf_idr and num_pending */
- 	spinlock_t tx_idr_lock;
--	DECLARE_KFIFO_PTR(tx_status_fifo, struct hal_wbm_release_ring);
--	/* lock to protect tx_status_fifo because tx_status_fifo can be
--	 * accessed concurrently.
--	 */
--	spinlock_t tx_status_lock;
-+	struct hal_wbm_release_ring *tx_status;
-+	int tx_status_head;
-+	int tx_status_tail;
- };
- 
- struct ath11k_pdev_mon_stats {
-diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
-index 28ebc414533e..5d6403cf99ab 100644
---- a/drivers/net/wireless/ath/ath11k/dp_tx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
-@@ -79,7 +79,6 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
- 	struct hal_srng *tcl_ring;
- 	struct ieee80211_hdr *hdr = (void *)skb->data;
- 	struct dp_tx_ring *tx_ring;
--	u8 cached_desc[HAL_TCL_DESC_LEN];
- 	void *hal_tcl_desc;
- 	u8 pool_id;
- 	u8 hal_ring_id;
-@@ -167,8 +166,6 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
- 	skb_cb->vif = arvif->vif;
- 	skb_cb->ar = ar;
- 
--	ath11k_hal_tx_cmd_desc_setup(ab, cached_desc, &ti);
--
- 	hal_ring_id = tx_ring->tcl_data_ring.ring_id;
- 	tcl_ring = &ab->hal.srng_list[hal_ring_id];
- 
-@@ -188,7 +185,8 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
- 		goto fail_unmap_dma;
- 	}
- 
--	ath11k_hal_tx_desc_sync(cached_desc, hal_tcl_desc);
-+	ath11k_hal_tx_cmd_desc_setup(ab, hal_tcl_desc +
-+					 sizeof(struct hal_tlv_hdr), &ti);
- 
- 	ath11k_hal_srng_access_end(ab, tcl_ring);
- 
-@@ -432,47 +430,44 @@ void ath11k_dp_tx_completion_handler(struct ath11k_base *ab, int ring_id)
- 	int hal_ring_id = dp->tx_ring[ring_id].tcl_comp_ring.ring_id;
- 	struct hal_srng *status_ring = &ab->hal.srng_list[hal_ring_id];
- 	struct sk_buff *msdu;
--	struct hal_wbm_release_ring tx_status;
- 	struct hal_tx_status ts;
- 	struct dp_tx_ring *tx_ring = &dp->tx_ring[ring_id];
- 	u32 *desc;
- 	u32 msdu_id;
- 	u8 mac_id;
- 
--	spin_lock_bh(&status_ring->lock);
--
- 	ath11k_hal_srng_access_begin(ab, status_ring);
- 
--	spin_lock_bh(&tx_ring->tx_status_lock);
--	while (!kfifo_is_full(&tx_ring->tx_status_fifo) &&
-+	while ((ATH11K_TX_COMPL_NEXT(tx_ring->tx_status_head) != tx_ring->tx_status_tail) &&
- 	       (desc = ath11k_hal_srng_dst_get_next_entry(ab, status_ring))) {
--		ath11k_hal_tx_status_desc_sync((void *)desc,
--					       (void *)&tx_status);
--		kfifo_put(&tx_ring->tx_status_fifo, tx_status);
-+		memcpy(&tx_ring->tx_status[tx_ring->tx_status_head],
-+		       desc, sizeof(struct hal_wbm_release_ring));
-+		tx_ring->tx_status_head =
-+			ATH11K_TX_COMPL_NEXT(tx_ring->tx_status_head);
- 	}
- 
- 	if ((ath11k_hal_srng_dst_peek(ab, status_ring) != NULL) &&
--	    kfifo_is_full(&tx_ring->tx_status_fifo)) {
-+	    (ATH11K_TX_COMPL_NEXT(tx_ring->tx_status_head) == tx_ring->tx_status_tail)) {
- 		/* TODO: Process pending tx_status messages when kfifo_is_full() */
- 		ath11k_warn(ab, "Unable to process some of the tx_status ring desc because status_fifo is full\n");
- 	}
- 
--	spin_unlock_bh(&tx_ring->tx_status_lock);
--
- 	ath11k_hal_srng_access_end(ab, status_ring);
--	spin_unlock_bh(&status_ring->lock);
- 
--	spin_lock_bh(&tx_ring->tx_status_lock);
--	while (kfifo_get(&tx_ring->tx_status_fifo, &tx_status)) {
--		memset(&ts, 0, sizeof(ts));
--		ath11k_hal_tx_status_parse(ab, &tx_status, &ts);
-+	while (ATH11K_TX_COMPL_NEXT(tx_ring->tx_status_tail) != tx_ring->tx_status_head) {
-+		struct hal_wbm_release_ring *tx_status;
-+
-+		tx_ring->tx_status_tail =
-+			ATH11K_TX_COMPL_NEXT(tx_ring->tx_status_tail);
-+		tx_status = &tx_ring->tx_status[tx_ring->tx_status_tail];
-+		ath11k_hal_tx_status_parse(ab, tx_status, &ts);
- 
- 		mac_id = FIELD_GET(DP_TX_DESC_ID_MAC_ID, ts.desc_id);
- 		msdu_id = FIELD_GET(DP_TX_DESC_ID_MSDU_ID, ts.desc_id);
- 
- 		if (ts.buf_rel_source == HAL_WBM_REL_SRC_MODULE_FW) {
- 			ath11k_dp_tx_process_htt_tx_complete(ab,
--							     (void *)&tx_status,
-+							     (void *)tx_status,
- 							     mac_id, msdu_id,
- 							     tx_ring);
- 			continue;
-@@ -494,12 +489,8 @@ void ath11k_dp_tx_completion_handler(struct ath11k_base *ab, int ring_id)
- 		if (atomic_dec_and_test(&ar->dp.num_tx_pending))
- 			wake_up(&ar->dp.tx_empty_waitq);
- 
--		/* TODO: Locking optimization so that tx_completion for an msdu
--		 * is not called with tx_status_lock acquired
--		 */
- 		ath11k_dp_tx_complete_msdu(ar, msdu, &ts);
- 	}
--	spin_unlock_bh(&tx_ring->tx_status_lock);
- }
- 
- int ath11k_dp_tx_send_reo_cmd(struct ath11k_base *ab, struct dp_rx_tid *rx_tid,
-diff --git a/drivers/net/wireless/ath/ath11k/hal_tx.c b/drivers/net/wireless/ath/ath11k/hal_tx.c
-index c2a3a9d2e534..e8710bbbbc3a 100644
---- a/drivers/net/wireless/ath/ath11k/hal_tx.c
-+++ b/drivers/net/wireless/ath/ath11k/hal_tx.c
-@@ -74,19 +74,6 @@ void ath11k_hal_tx_cmd_desc_setup(struct ath11k_base *ab, void *cmd,
- 	tcl_cmd->info4 = 0;
- }
- 
--/* Commit the descriptor to hardware */
--void ath11k_hal_tx_desc_sync(void *tx_desc_cached, void *hw_desc)
--{
--	memcpy(hw_desc + sizeof(struct hal_tlv_hdr), tx_desc_cached,
--	       sizeof(struct hal_tcl_data_cmd));
--}
--
--/* Get the descriptor status from hardware */
--void ath11k_hal_tx_status_desc_sync(void *hw_desc, void *local_desc)
--{
--	memcpy(local_desc, hw_desc, HAL_TX_STATUS_DESC_LEN);
--}
--
- void ath11k_hal_tx_status_parse(struct ath11k_base *ab,
- 				struct hal_wbm_release_ring *desc,
- 				struct hal_tx_status *ts)
-diff --git a/drivers/net/wireless/ath/ath11k/hal_tx.h b/drivers/net/wireless/ath/ath11k/hal_tx.h
-index cf99e2b31f9f..5fe89b729a6e 100644
---- a/drivers/net/wireless/ath/ath11k/hal_tx.h
-+++ b/drivers/net/wireless/ath/ath11k/hal_tx.h
-@@ -61,11 +61,9 @@ struct hal_tx_status {
- 
- void ath11k_hal_tx_cmd_desc_setup(struct ath11k_base *ab, void *cmd,
- 				  struct hal_tx_info *ti);
--void ath11k_hal_tx_desc_sync(void *tx_desc_cached, void *hw_desc);
- void ath11k_hal_tx_status_parse(struct ath11k_base *ab,
- 				struct hal_wbm_release_ring *desc,
- 				struct hal_tx_status *ts);
--void ath11k_hal_tx_status_desc_sync(void *hw_desc, void *local_desc);
- void ath11k_hal_tx_set_dscp_tid_map(struct ath11k_base *ab, int id);
- int ath11k_hal_reo_cmd_send(struct ath11k_base *ab, struct hal_srng *srng,
- 			    enum hal_reo_cmd_type type,
+> --- a/drivers/net/wireless/ath/ath11k/dp_rx.c
+> +++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+> @@ -1440,6 +1440,35 @@ static struct sk_buff *ath11k_dp_rx_get_msdu_last_buf(struct sk_buff_head *msdu_
+>  	return NULL;
+>  }
+>  
+> +static void ath11k_dp_rx_msdu_info(struct ath11k *ar,
+> +				   struct hal_rx_desc *rx_desc,
+> +				   struct ath11k_skb_rxcb *rxcb)
+> +{
+> +	enum hal_encrypt_type enctype;
+> +	bool is_decrypted;
+> +	bool mpdu_len_err;
+> +	u32 decap_format;
+> +	u8 *hdr_status;
+> +	u16 msdu_len;
+> +
+> +	hdr_status = ath11k_dp_rx_h_80211_hdr(rx_desc);
+> +	msdu_len = ath11k_dp_rx_h_msdu_start_msdu_len(rx_desc);
+> +	rxcb->is_first_msdu = ath11k_dp_rx_h_msdu_end_first_msdu(rx_desc);
+> +	rxcb->is_last_msdu = ath11k_dp_rx_h_msdu_end_last_msdu(rx_desc);
+> +
+> +	decap_format = ath11k_dp_rxdesc_get_decap_format(rx_desc);
+> +	mpdu_len_err = !!ath11k_dp_rxdesc_get_mpdulen_err(rx_desc);
+> +
+> +	is_decrypted = ath11k_dp_rx_h_attn_is_decrypted(rx_desc);
+> +	enctype = ath11k_dp_rx_h_mpdu_start_enctype(rx_desc);
+> +
+> +	ath11k_warn(ar->ab, "frame rx with invalid msdu len %u first msdu %d last msdu %d decap format %u mpdu_len_err %d decrypted %d encryption type %u\n",
+> +		    msdu_len, rxcb->is_first_msdu, rxcb->is_last_msdu,
+> +		    decap_format, mpdu_len_err, is_decrypted, enctype);
+> +	ath11k_dbg_dump(ar->ab, ATH11K_DBG_DATA, NULL, "", hdr_status,
+> +			sizeof(struct ieee80211_hdr));
+> +}
+
+This function feels quite excessive. The warning messages are supposed
+to be concise and printing 7 different values is far from that. So I
+would prefer to drop this function altogether.
+
+>  static int ath11k_dp_rx_retrieve_amsdu(struct ath11k *ar,
+>  				       struct sk_buff_head *msdu_list,
+>  				       struct sk_buff_head *amsdu_list)
+> @@ -1492,6 +1521,12 @@ static int ath11k_dp_rx_retrieve_amsdu(struct ath11k *ar,
+>  		l3_pad_bytes = ath11k_dp_rx_h_msdu_end_l3pad(lrx_desc);
+>  
+>  		if (!rxcb->is_continuation) {
+> +			if ((msdu_len + HAL_RX_DESC_SIZE) > DP_RX_BUFFER_SIZE) {
+> +				ath11k_dbg_dump(ar->ab, ATH11K_DBG_DATA, NULL, "", rx_desc,
+> +						sizeof(struct hal_rx_desc));
+> +				ath11k_dp_rx_msdu_info(ar, rx_desc, rxcb);
+> +				goto free_out;
+> +			}
+
+So instead I would just print a warning like this:
+
+"dropping received amsdu frame with invalid msdu length %u"
+
+And also call ath11k_dbg_dump() here.
+
+>  			skb_put(msdu, HAL_RX_DESC_SIZE + l3_pad_bytes + msdu_len);
+>  			skb_pull(msdu, HAL_RX_DESC_SIZE + l3_pad_bytes);
+>  		} else {
+> @@ -2764,6 +2799,14 @@ static void ath11k_dp_rx_frag_h_mpdu(struct ath11k *ar,
+>  
+>  	rx_desc = (struct hal_rx_desc *)msdu->data;
+>  	msdu_len = ath11k_dp_rx_h_msdu_start_msdu_len(rx_desc);
+> +	if ((msdu_len + HAL_RX_DESC_SIZE) > DP_RX_BUFFER_SIZE) {
+> +		ath11k_dbg_dump(ar->ab, ATH11K_DBG_DATA, NULL, "", rx_desc,
+> +				sizeof(struct hal_rx_desc));
+> +		ath11k_dp_rx_msdu_info(ar, rx_desc, rxcb);
+> +		dev_kfree_skb_any(msdu);
+> +		goto exit;
+> +	}
+
+And the same here, but change the message a bit to make it unique to
+make it easier to find when reading logs:
+
+"dropping received fragmented frame with invalid msdu length %u"
+
+I just made up terms "amsdu" and "fragmented" from function names,
+please do come up with more appropriate terms if they are not correct.
+
 -- 
-2.20.1
-
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 _______________________________________________
 ath11k mailing list
