@@ -1,17 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from a27-56.smtp-out.us-west-2.amazonses.com ([54.240.27.56])
+Received: from a27-185.smtp-out.us-west-2.amazonses.com ([54.240.27.185])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iY6K9-0002jg-Qf
- for ath11k@lists.infradead.org; Fri, 22 Nov 2019 10:38:03 +0000
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH] ath11k: Advertise MPDU start spacing as no restriction
-References: <1573447702-30398-1-git-send-email-vnaralas@codeaurora.org>
-Date: Fri, 22 Nov 2019 10:37:59 +0000
-In-Reply-To: <1573447702-30398-1-git-send-email-vnaralas@codeaurora.org>
- (Venkateswara Naralasetty's message of "Mon, 11 Nov 2019 10:18:22
- +0530")
-Message-ID: <0101016e92b09f4d-9483a82a-64eb-4441-a100-e51a2040ca8e-000000@us-west-2.amazonses.com>
+ id 1iY6Lg-0003IF-L0
+ for ath11k@lists.infradead.org; Fri, 22 Nov 2019 10:39:37 +0000
 MIME-Version: 1.0
+Subject: Re: [PATCH] ath11k: fix memory leak in monitor mode
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <1573506903-3593-1-git-send-email-milehu@codeaurora.org>
+References: <1573506903-3593-1-git-send-email-milehu@codeaurora.org>
+Message-ID: <0101016e92b21088-a80e8b9a-1e05-47b7-875d-5f0b9be75e6d-000000@us-west-2.amazonses.com>
+Date: Fri, 22 Nov 2019 10:39:33 +0000
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -24,24 +22,26 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Venkateswara Naralasetty <vnaralas@codeaurora.org>
+To: Miles Hu <milehu@codeaurora.org>
 Cc: ath11k@lists.infradead.org
 
-Venkateswara Naralasetty <vnaralas@codeaurora.org> writes:
+Miles Hu <milehu@codeaurora.org> wrote:
 
-> Adverise MPDU start spacing as no restriction in ht capabilities,
-> Since IPQ8074 hw support all sorts of mpdu start spcing. With this
-> observed minor uplink performance improvement in lower data frame
-> size case with Veriwave clients.
->
-> Signed-off-by: Venkateswara Naralasetty <vnaralas@codeaurora.org>
+> remove tail check to avoid last amsdu leak.
+> recycle skb in ppdu id wrap around case
+> 
+> Signed-off-by: Miles Hu <milehu@codeaurora.org>
+> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-Applied, thanks.
+Patch applied to ath11k-post-bringup branch of ath.git, thanks.
 
-2bce98caf793 ath11k: Advertise MPDU start spacing as no restriction
+a20bffb1b01d ath11k: fix memory leak in monitor mode
 
 -- 
+https://patchwork.kernel.org/patch/11237789/
+
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
 _______________________________________________
 ath11k mailing list
