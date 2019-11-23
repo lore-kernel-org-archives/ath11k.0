@@ -1,19 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail-pj1-f68.google.com ([209.85.216.68])
+Received: from a27-18.smtp-out.us-west-2.amazonses.com ([54.240.27.18])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iYJCf-0006ri-93
- for ath11k@lists.infradead.org; Sat, 23 Nov 2019 00:23:10 +0000
-Received: by mail-pj1-f68.google.com with SMTP id a16so3751340pjs.13
- for <ath11k@lists.infradead.org>; Fri, 22 Nov 2019 16:23:08 -0800 (PST)
-Date: Fri, 22 Nov 2019 18:23:03 -0600
-From: Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v3 01/49] dt: bindings: net: add qcom,ath11k.yaml
-Message-ID: <20191123002303.GA23259@bogus>
+ id 1iYQke-00005r-GO
+ for ath11k@lists.infradead.org; Sat, 23 Nov 2019 08:26:46 +0000
+From: Kalle Valo <kvalo@codeaurora.org>
+Subject: Re: [PATCH v3 00/49] ath11k: driver for Qualcomm IEEE 802.11ax devices
 References: <1573810153-29623-1-git-send-email-kvalo@codeaurora.org>
- <1573810153-29623-2-git-send-email-kvalo@codeaurora.org>
+Date: Sat, 23 Nov 2019 08:26:42 +0000
+In-Reply-To: <1573810153-29623-1-git-send-email-kvalo@codeaurora.org> (Kalle
+ Valo's message of "Fri, 15 Nov 2019 11:28:24 +0200")
+Message-ID: <0101016e975ecab1-ef63d336-dcb8-4f96-ab9c-30624f8e3ac8-000000@us-west-2.amazonses.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1573810153-29623-2-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -29,19 +26,73 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Kalle Valo <kvalo@codeaurora.org>
 Cc: devicetree@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-On Fri, 15 Nov 2019 11:28:25 +0200, Kalle Valo wrote:
-> ath11k is a driver for Qualcomm IEEE 802.11ax devices. Add a
-> bindings document for the driver, first documenting IPQ8074 which is the
-> only device ath11k currently supports.
-> 
-> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
-> ---
->  .../bindings/net/wireless/qcom,ath11k.yaml         | 273 +++++++++++++++++++++
->  1 file changed, 273 insertions(+)
-> 
+Kalle Valo <kvalo@codeaurora.org> writes:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> ath11k is a new driver for Qualcomm IEEE 802.11ax devices, first
+> supporting only IPQ8074 SoC using the shared memory AHB bus. ath11k
+> uses mac80211 and supports AP, Station and Mesh modes.
+>
+> Even though ath11k has some similar code as with ath10k (especially
+> the WMI layer) it was concluded to be simpler to have a "clean start"
+> for ath11k code base and not try to share the code with ath10k. This
+> makes maintenance easier and avoids major changes in ath10k, which
+> would have significantly increased the risk of regressions in existing
+> setups.
+>
+> Even though the driver is very similar with ath10k but there are major
+> differences as well. The datapath is completely different. ath11k
+> supports multiple MACs, called "soc" in the firmware interface. And
+> there's only one WMI interface to support.
+>
+> Currently ath11k supports only IEEE 802.11ac mode, but patches for
+> 802.11ax are available and they will be submitted after ath11k is
+> accepted to upstream.
+>
+> The firmware images are available from ath11k-firmware repository but
+> they will be also submitted to linux-firmware:
+>
+> https://github.com/kvalo/ath11k-firmware
+
+I also added to the commit log the version which was used in testing:
+
+WLAN.HK.2.1.0.1-00629-QCAHKSWPL_SILICONZ-1
+
+> --------------[cut]-------------------[cut]-----------------
+>
+> I have split the driver into multiple patches for easier review, but
+> the final version will be split into three commits:
+>
+> 1. adding Documentatio/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+>
+> 2. adding drivers/net/wireless/ath/ath11k/ with the commit log being the
+>    text before the cut line above.
+>
+> 3. adding ath11k entry to MAINTAINERS file
+>
+> This version is based on commit ad10d2ff619f0797cb102b2ff488429d3f8e4a8a
+> from ath11k-bringup branch on my ath.git tree:
+>
+> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/log/?h=ath11k-bringup
+>
+> This patchset applies to wireless-drivers-next but needs
+> CONFIG_COMPILE_TEST, CONFIG_REMOTEPROC AND CONFIG_QCOM_QMI_HELPERS to
+> be able to compile on x86.
+>
+> Please review and comment.
+
+I have now prepared the three commits and they are in the pending
+branch for build testing:
+
+https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=20bddf19da715842fe24c8e9990ae1b75825c747
+
+https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=461a5c86cfa562bd3c4a8f6bec9a54c406540e87
+
+https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=8710785df81b8b57e62a71e9048c111a7db98005
+
+In the next few days I'll apply these to ath-next branch and queue for v5.6.
+
+-- 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 _______________________________________________
 ath11k mailing list
