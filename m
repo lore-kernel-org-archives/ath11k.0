@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from a27-185.smtp-out.us-west-2.amazonses.com ([54.240.27.185])
+Received: from a27-188.smtp-out.us-west-2.amazonses.com ([54.240.27.188])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iZHLc-0006pp-99
- for ath11k@lists.infradead.org; Mon, 25 Nov 2019 16:36:26 +0000
+ id 1iZHLi-0006pJ-Si
+ for ath11k@lists.infradead.org; Mon, 25 Nov 2019 16:36:32 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 4/8] ath11k: fix missed bw conversion in tx completion
-Date: Mon, 25 Nov 2019 16:36:22 +0000
-Message-ID: <0101016ea36bd186-58d91e19-0aaa-484f-aa0c-959488bb5812-000000@us-west-2.amazonses.com>
+Subject: [PATCH 8/8] ath11k: add spatial reuse support
+Date: Mon, 25 Nov 2019 16:36:29 +0000
+Message-ID: <0101016ea36bedda-bd9dfad8-f75c-4c71-9939-116a3dfd10aa-000000@us-west-2.amazonses.com>
 In-Reply-To: <1574699772-17938-1-git-send-email-kvalo@codeaurora.org>
 References: <1574699772-17938-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,158 +25,138 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: linux-wireless@vger.kernel.org
 Cc: ath11k@lists.infradead.org
 
-From: Tamizh chelvam <tamizhr@codeaurora.org>
+From: John Crispin <john@phrozen.org>
 
-TX rate stats for the retried packets for a station comes through
-tx completion events. Assigning hw reported bandwidth information
-directly to station's txrate bandwidth will cause below warning.
-Fix this warning by converting the hw reported bandwidth to
-mac80211 base bandwidth.
+Trigger the WMI call en/disabling OBSS PD when the bss config changes or we
+assoc to an AP that broadcasts the IE.
 
-[ 134.758190] PC is at cfg80211_calculate_bitrate+0x1bc/0x214 [cfg80211]
-[ 134.765730] LR is at cfg80211_calculate_bitrate+0x1bc/0x214 [cfg80211]
-[ 134.875014] [<ffffffbffca8d708>] cfg80211_calculate_bitrate+0x1bc/0x214 [cfg80211]
-[ 134.877192] [<ffffffbffcaa9704>] nl80211_put_sta_rate+0x54/0xf24 [cfg80211]
-[ 134.884829] [<ffffffbffcaa9d48>] nl80211_put_sta_rate+0x698/0xf24 [cfg80211]
-[ 134.891687] [<ffffffbffcaaa490>] nl80211_put_sta_rate+0xde0/0xf24 [cfg80211]
-[ 134.898975] [<ffffffc0004de748>] genl_lock_dumpit+0x30/0x4c
-[ 134.905998] [<ffffffc0004dc264>] netlink_dump+0xf4/0x248
-[ 134.911291] [<ffffffc0004dc910>] __netlink_dump_start+0xe0/0x174
-[ 134.916850] [<ffffffc0004df114>] genl_family_rcv_msg+0x130/0x2c0
-
-Signed-off-by: Tamizh chelvam <tamizhr@codeaurora.org>
+Signed-off-by: John Crispin <john@phrozen.org>
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/debugfs_sta.c |  2 +-
- drivers/net/wireless/ath/ath11k/dp_rx.c       | 30 ++++-----------------------
- drivers/net/wireless/ath/ath11k/mac.c         | 22 ++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/mac.h         |  1 +
- 4 files changed, 28 insertions(+), 27 deletions(-)
+ drivers/net/wireless/ath/ath11k/mac.c | 10 ++++++++++
+ drivers/net/wireless/ath/ath11k/wmi.c | 35 +++++++++++++++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/wmi.h | 16 ++++++++++++++++
+ 3 files changed, 61 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/debugfs_sta.c b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-index b392117eff3c..3c5f931e22a9 100644
---- a/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-+++ b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-@@ -192,7 +192,7 @@ void ath11k_update_per_peer_stats_from_txcompl(struct ath11k *ar,
- 	}
- 
- 	arsta->txrate.nss = arsta->last_txrate.nss;
--	arsta->txrate.bw = ts->bw;
-+	arsta->txrate.bw = ath11k_mac_bw_to_mac80211_bw(ts->bw);
- 
- 	ath11k_accumulate_per_peer_tx_stats(arsta, peer_stats, rate_idx);
- 	spin_unlock_bh(&ab->base_lock);
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index d5963509419b..0ff0ff81adeb 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -987,28 +987,6 @@ int ath11k_dp_htt_tlv_iter(struct ath11k_base *ab, const void *ptr, size_t len,
- 	return 0;
- }
- 
--static u8 ath11k_bw_to_mac80211_bw(u8 bw)
--{
--	u8 ret = 0;
--
--	switch (bw) {
--	case ATH11K_BW_20:
--		ret = RATE_INFO_BW_20;
--		break;
--	case ATH11K_BW_40:
--		ret = RATE_INFO_BW_40;
--		break;
--	case ATH11K_BW_80:
--		ret = RATE_INFO_BW_80;
--		break;
--	case ATH11K_BW_160:
--		ret = RATE_INFO_BW_160;
--		break;
--	}
--
--	return ret;
--}
--
- static u32 ath11k_bw_to_mac80211_bwflags(u8 bw)
- {
- 	u32 bwflags = 0;
-@@ -1157,7 +1135,7 @@ ath11k_update_per_peer_tx_stats(struct ath11k *ar,
- 	}
- 
- 	arsta->txrate.nss = nss;
--	arsta->txrate.bw = ath11k_bw_to_mac80211_bw(bw);
-+	arsta->txrate.bw = ath11k_mac_bw_to_mac80211_bw(bw);
- 	arsta->tx_info.status.rates[0].flags |= ath11k_bw_to_mac80211_bwflags(bw);
- 
- 	memcpy(&arsta->last_txrate, &arsta->txrate, sizeof(struct rate_info));
-@@ -1934,7 +1912,7 @@ static void ath11k_dp_rx_h_rate(struct ath11k *ar, struct hal_rx_desc *rx_desc,
- 		rx_status->rate_idx = rate_mcs + (8 * (nss - 1));
- 		if (sgi)
- 			rx_status->enc_flags |= RX_ENC_FLAG_SHORT_GI;
--		rx_status->bw = ath11k_bw_to_mac80211_bw(bw);
-+		rx_status->bw = ath11k_mac_bw_to_mac80211_bw(bw);
- 		break;
- 	case RX_MSDU_START_PKT_TYPE_11AC:
- 		rx_status->encoding = RX_ENC_VHT;
-@@ -1948,7 +1926,7 @@ static void ath11k_dp_rx_h_rate(struct ath11k *ar, struct hal_rx_desc *rx_desc,
- 		rx_status->nss = nss;
- 		if (sgi)
- 			rx_status->enc_flags |= RX_ENC_FLAG_SHORT_GI;
--		rx_status->bw = ath11k_bw_to_mac80211_bw(bw);
-+		rx_status->bw = ath11k_mac_bw_to_mac80211_bw(bw);
- 		break;
- 	case RX_MSDU_START_PKT_TYPE_11AX:
- 		rx_status->rate_idx = rate_mcs;
-@@ -1960,7 +1938,7 @@ static void ath11k_dp_rx_h_rate(struct ath11k *ar, struct hal_rx_desc *rx_desc,
- 		}
- 		rx_status->encoding = RX_ENC_HE;
- 		rx_status->nss = nss;
--		rx_status->bw = ath11k_bw_to_mac80211_bw(bw);
-+		rx_status->bw = ath11k_mac_bw_to_mac80211_bw(bw);
- 		break;
- 	}
- }
 diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index cb025a4a5785..939f5880bce6 100644
+index 70945d121fba..c25817c51d87 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -156,6 +156,28 @@ static const u32 ath11k_smps_map[] = {
- 	[WLAN_HT_CAP_SM_PS_DISABLED] = WMI_PEER_SMPS_PS_NONE,
- };
+@@ -1612,6 +1612,12 @@ static void ath11k_bss_assoc(struct ieee80211_hw *hw,
+ 					1);
+ 	if (ret)
+ 		ath11k_warn(ar->ab, "Unable to authorize BSS peer: %d\n", ret);
++
++	ret = ath11k_wmi_send_obss_spr_cmd(ar, arvif->vdev_id,
++					   &bss_conf->he_obss_pd);
++	if (ret)
++		ath11k_warn(ar->ab, "failed to set vdev %i OBSS PD parameters: %d\n",
++			    arvif->vdev_id, ret);
+ }
  
-+u8 ath11k_mac_bw_to_mac80211_bw(u8 bw)
+ static void ath11k_bss_disassoc(struct ieee80211_hw *hw,
+@@ -1916,6 +1922,10 @@ static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
+ 			ath11k_wmi_send_twt_disable_cmd(ar, ar->pdev_idx);
+ 	}
+ 
++	if (changed & BSS_CHANGED_HE_OBSS_PD)
++		ath11k_wmi_send_obss_spr_cmd(ar, arvif->vdev_id,
++					     &info->he_obss_pd);
++
+ 	mutex_unlock(&ar->conf_mutex);
+ }
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 7aa66e8eecb6..2c3c973f5f7c 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -2541,6 +2541,41 @@ ath11k_wmi_send_twt_disable_cmd(struct ath11k *ar, u32 pdev_id)
+ 	return ret;
+ }
+ 
++int
++ath11k_wmi_send_obss_spr_cmd(struct ath11k *ar, u32 vdev_id,
++			     struct ieee80211_he_obss_pd *he_obss_pd)
 +{
-+	u8 ret = 0;
++	struct ath11k_pdev_wmi *wmi = ar->wmi;
++	struct ath11k_base *ab = wmi->wmi_sc->ab;
++	struct wmi_obss_spatial_reuse_params_cmd *cmd;
++	struct sk_buff *skb;
++	int ret, len;
 +
-+	switch (bw) {
-+	case ATH11K_BW_20:
-+		ret = RATE_INFO_BW_20;
-+		break;
-+	case ATH11K_BW_40:
-+		ret = RATE_INFO_BW_40;
-+		break;
-+	case ATH11K_BW_80:
-+		ret = RATE_INFO_BW_80;
-+		break;
-+	case ATH11K_BW_160:
-+		ret = RATE_INFO_BW_160;
-+		break;
++	len = sizeof(*cmd);
++
++	skb = ath11k_wmi_alloc_skb(wmi->wmi_sc, len);
++	if (!skb)
++		return -ENOMEM;
++
++	cmd = (void *)skb->data;
++	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG,
++				     WMI_TAG_OBSS_SPATIAL_REUSE_SET_CMD) |
++			  FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
++	cmd->vdev_id = vdev_id;
++	cmd->enable = he_obss_pd->enable;
++	cmd->obss_min = he_obss_pd->min_offset;
++	cmd->obss_max = he_obss_pd->max_offset;
++
++	ret = ath11k_wmi_cmd_send(wmi, skb,
++				  WMI_PDEV_OBSS_PD_SPATIAL_REUSE_CMDID);
++	if (ret) {
++		ath11k_warn(ab,
++			    "Failed to send WMI_PDEV_OBSS_PD_SPATIAL_REUSE_CMDID");
++		dev_kfree_skb(skb);
 +	}
-+
 +	return ret;
 +}
 +
- int ath11k_mac_hw_ratecode_to_legacy_rate(u8 hw_rc, u8 preamble, u8 *rateidx,
- 					  u16 *rate)
- {
-diff --git a/drivers/net/wireless/ath/ath11k/mac.h b/drivers/net/wireless/ath/ath11k/mac.h
-index f84af1fc4952..8c37573ae5dc 100644
---- a/drivers/net/wireless/ath/ath11k/mac.h
-+++ b/drivers/net/wireless/ath/ath11k/mac.h
-@@ -142,4 +142,5 @@ struct ath11k *ath11k_mac_get_ar_vdev_stop_status(struct ath11k_base *ab,
- void ath11k_mac_drain_tx(struct ath11k *ar);
- void ath11k_mac_peer_cleanup_all(struct ath11k *ar);
- int ath11k_mac_tx_mgmt_pending_free(int buf_id, void *skb, void *ctx);
-+u8 ath11k_mac_bw_to_mac80211_bw(u8 bw);
+ static void
+ ath11k_fill_band_to_mac_param(struct ath11k_base  *soc,
+ 			      struct wmi_host_pdev_band_to_mac *band_to_mac)
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index b5c53f2ac5cc..7d5690c65279 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -172,6 +172,8 @@ enum wmi_cmd_group {
+ 	WMI_GRP_WLM            = 0x3c,
+ 	WMI_GRP_11K_OFFLOAD    = 0x3d,
+ 	WMI_GRP_TWT            = 0x3e,
++	WMI_GRP_MOTION_DET     = 0x3f,
++	WMI_GRP_SPATIAL_REUSE  = 0x40,
+ };
+ 
+ #define WMI_CMD_GRP(grp_id) (((grp_id) << 12) | 0x1)
+@@ -539,6 +541,9 @@ enum wmi_tlv_cmd_id {
+ 	WMI_TWT_DEL_DIALOG_CMDID,
+ 	WMI_TWT_PAUSE_DIALOG_CMDID,
+ 	WMI_TWT_RESUME_DIALOG_CMDID,
++	WMI_PDEV_OBSS_PD_SPATIAL_REUSE_CMDID =
++				WMI_TLV_CMD(WMI_GRP_SPATIAL_REUSE),
++	WMI_PDEV_OBSS_PD_SPATIAL_REUSE_SET_DEF_OBSS_THRESH_CMDID,
+ };
+ 
+ enum wmi_tlv_event_id {
+@@ -4559,6 +4564,15 @@ struct wmi_twt_disable_params_cmd {
+ 	u32 pdev_id;
+ };
+ 
++struct wmi_obss_spatial_reuse_params_cmd {
++	u32 tlv_header;
++	u32 pdev_id;
++	u32 enable;
++	s32 obss_min;
++	s32 obss_max;
++	u32 vdev_id;
++};
++
+ struct target_resource_config {
+ 	u32 num_vdevs;
+ 	u32 num_peers;
+@@ -4746,4 +4760,6 @@ void ath11k_wmi_fw_stats_fill(struct ath11k *ar,
+ int ath11k_wmi_simulate_radar(struct ath11k *ar);
+ int ath11k_wmi_send_twt_enable_cmd(struct ath11k *ar, u32 pdev_id);
+ int ath11k_wmi_send_twt_disable_cmd(struct ath11k *ar, u32 pdev_id);
++int ath11k_wmi_send_obss_spr_cmd(struct ath11k *ar, u32 vdev_id,
++				 struct ieee80211_he_obss_pd *he_obss_pd);
  #endif
 -- 
 2.7.4
