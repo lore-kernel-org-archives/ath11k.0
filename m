@@ -1,12 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from a27-188.smtp-out.us-west-2.amazonses.com ([54.240.27.188])
+Received: from a27-187.smtp-out.us-west-2.amazonses.com ([54.240.27.187])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iZHLb-0006pJ-N4
- for ath11k@lists.infradead.org; Mon, 25 Nov 2019 16:36:25 +0000
+ id 1iZHLd-0006rD-VP
+ for ath11k@lists.infradead.org; Mon, 25 Nov 2019 16:36:27 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 0/8] ath11k: first round of post-bringup patches
-Date: Mon, 25 Nov 2019 16:36:18 +0000
-Message-ID: <0101016ea36bc31b-81925bd3-6a89-4ea8-95ef-f255c81a4568-000000@us-west-2.amazonses.com>
+Subject: [PATCH 5/8] ath11k: Remove dead code while handling amsdu packets
+Date: Mon, 25 Nov 2019 16:36:23 +0000
+Message-ID: <0101016ea36bd65c-fca10b66-bfe9-4338-9c4d-fac674f68cb6-000000@us-west-2.amazonses.com>
+In-Reply-To: <1574699772-17938-1-git-send-email-kvalo@codeaurora.org>
+References: <1574699772-17938-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,39 +25,34 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: linux-wireless@vger.kernel.org
 Cc: ath11k@lists.infradead.org
 
-Here's first of round of ath11k patches from ath11k-post-bringup
-branch[1] which got queued while ath11k was in review. Major features
-here are HE and TWT support.
+From: Tamizh chelvam <tamizhr@codeaurora.org>
 
-Please review.
+Remove unexecuted code while handling amsdu packets.
+The same logic is done before calling ath11k_dp_rx_msdu_coalesce
 
-Kalle
+Signed-off-by: Tamizh chelvam <tamizhr@codeaurora.org>
+Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+---
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 6 ------
+ 1 file changed, 6 deletions(-)
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/log/?h=ath11k-post-bringup
-
-
-John Crispin (6):
-  ath11k: add RX stats support for radiotap
-  ath11k: ignore event 0x6017
-  ath11k: convert message from info to dbg
-  ath11k: add HE support
-  ath11k: add TWT support
-  ath11k: add spatial reuse support
-
-Tamizh chelvam (2):
-  ath11k: fix missed bw conversion in tx completion
-  ath11k: Remove dead code while handling amsdu packets
-
- drivers/net/wireless/ath/ath11k/core.h        |   2 +
- drivers/net/wireless/ath/ath11k/debugfs_sta.c |   2 +-
- drivers/net/wireless/ath/ath11k/dp_rx.c       |  51 ++---
- drivers/net/wireless/ath/ath11k/mac.c         | 309 +++++++++++++++++++++++++-
- drivers/net/wireless/ath/ath11k/mac.h         |   1 +
- drivers/net/wireless/ath/ath11k/reg.c         |   1 +
- drivers/net/wireless/ath/ath11k/wmi.c         | 133 ++++++++++-
- drivers/net/wireless/ath/ath11k/wmi.h         | 105 ++++++++-
- 8 files changed, 558 insertions(+), 46 deletions(-)
-
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 0ff0ff81adeb..7aade0314e61 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -1349,12 +1349,6 @@ static int ath11k_dp_rx_msdu_coalesce(struct ath11k *ar,
+ 	int rem_len;
+ 	int buf_len;
+ 
+-	if (!rxcb->is_continuation) {
+-		skb_put(first, HAL_RX_DESC_SIZE + l3pad_bytes + msdu_len);
+-		skb_pull(first, HAL_RX_DESC_SIZE + l3pad_bytes);
+-		return 0;
+-	}
+-
+ 	if (WARN_ON_ONCE(msdu_len <= (DP_RX_BUFFER_SIZE -
+ 			 (HAL_RX_DESC_SIZE + l3pad_bytes)))) {
+ 		skb_put(first, HAL_RX_DESC_SIZE + l3pad_bytes + msdu_len);
 -- 
 2.7.4
 
