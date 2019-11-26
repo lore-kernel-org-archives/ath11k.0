@@ -1,13 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from a27-11.smtp-out.us-west-2.amazonses.com ([54.240.27.11])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iZYeK-0003Mm-6n
- for ath11k@lists.infradead.org; Tue, 26 Nov 2019 11:04:53 +0000
+ id 1iZYeP-0003Mm-Gi
+ for ath11k@lists.infradead.org; Tue, 26 Nov 2019 11:04:59 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 04/10] ath11k: update tcl cmd descriptor parameters for STA
- mode
-Date: Tue, 26 Nov 2019 11:04:49 +0000
-Message-ID: <0101016ea762a321-ae03ef3c-62d6-4d7c-aad6-9245868c5ef0-000000@us-west-2.amazonses.com>
+Subject: [PATCH 08/10] ath11k: Fix skb_panic observed during msdu coalescing
+Date: Tue, 26 Nov 2019 11:04:56 +0000
+Message-ID: <0101016ea762bd2f-3ff38ca6-39f9-44b0-9d1b-f0e2449c9800-000000@us-west-2.amazonses.com>
 In-Reply-To: <1574766279-13105-1-git-send-email-kvalo@codeaurora.org>
 References: <1574766279-13105-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -26,107 +25,74 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: linux-wireless@vger.kernel.org
 Cc: ath11k@lists.infradead.org
 
-From: Anilkumar Kolli <akolli@codeaurora.org>
+From: Sriram R <srirrama@codeaurora.org>
 
-It is observed that ath11k STA mode UL throughput is low.
-This is due to packets delivered to FW from TCL instead of TQM.
-TCL AST search fail causes packet delivered to FW, fix this by
-properly configuring the TCL address search type and ast_hash.
-STA UL throughput is improved 10times with 11AC AP.
+skb_panic is hit during msdu coalescing whenever
+enough tailroom is not allocated based on the remaining
+msdu length which is spread across in different rx buffers.
 
-Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
+Compute the extra length for resizing the skb based on
+the total msdu length and the msdu length of the first buffer.
+
+Signed-off-by: Sriram R <srirrama@codeaurora.org>
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/dp.c       | 9 ++++-----
- drivers/net/wireless/ath/ath11k/dp_rx.c    | 2 +-
- drivers/net/wireless/ath/ath11k/hal_desc.h | 5 ++---
- drivers/net/wireless/ath/ath11k/hal_tx.c   | 6 +++---
- drivers/net/wireless/ath/ath11k/hal_tx.h   | 4 ++--
- 5 files changed, 12 insertions(+), 14 deletions(-)
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 22 ++++++++++++++--------
+ 1 file changed, 14 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
-index aa2b28189cda..ff510e821a29 100644
---- a/drivers/net/wireless/ath/ath11k/dp.c
-+++ b/drivers/net/wireless/ath/ath11k/dp.c
-@@ -758,13 +758,12 @@ int ath11k_dp_htt_connect(struct ath11k_dp *dp)
- 
- static void ath11k_dp_update_vdev_search(struct ath11k_vif *arvif)
- {
--	/* Enable AddrY (SA based search) for STA mode. All other modes it
--	 * is going to be AddrX (DA based search). For STA mode, set search
--	 * type based on AST value.
--	 */
-+	 /* For STA mode, enable address search index,
-+	  * tcl uses ast_hash value in the descriptor.
-+	  */
- 	switch (arvif->vdev_type) {
- 	case WMI_VDEV_TYPE_STA:
--		arvif->hal_addr_search_flags = HAL_TX_ADDRY_EN;
-+		arvif->hal_addr_search_flags = HAL_TX_ADDRX_EN;
- 		arvif->search_type = HAL_TX_ADDR_SEARCH_INDEX;
- 		break;
- 	case WMI_VDEV_TYPE_AP:
 diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 7aade0314e61..396658be6f26 100644
+index 321a2bb657e8..acad74658e64 100644
 --- a/drivers/net/wireless/ath/ath11k/dp_rx.c
 +++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -1312,7 +1312,7 @@ void ath11k_dp_htt_htc_t2h_msg_handler(struct ath11k_base *ab,
- 		ath11k_dp_get_mac_addr(resp->peer_map_ev.mac_addr_l32,
- 				       peer_mac_h16, mac_addr);
- 		ast_hash = FIELD_GET(HTT_T2H_PEER_MAP_INFO2_AST_HASH_VAL,
--				     resp->peer_map_ev.info1);
-+				     resp->peer_map_ev.info2);
- 		ath11k_peer_map_event(ab, vdev_id, peer_id, mac_addr, ast_hash);
- 		break;
- 	case HTT_T2H_MSG_TYPE_PEER_UNMAP:
-diff --git a/drivers/net/wireless/ath/ath11k/hal_desc.h b/drivers/net/wireless/ath/ath11k/hal_desc.h
-index 35e191b77271..5e200380cca4 100644
---- a/drivers/net/wireless/ath/ath11k/hal_desc.h
-+++ b/drivers/net/wireless/ath/ath11k/hal_desc.h
-@@ -934,9 +934,8 @@ struct hal_reo_flush_cache {
- #define HAL_TCL_DATA_CMD_INFO0_ENCRYPT_TYPE	GENMASK(7, 4)
- #define HAL_TCL_DATA_CMD_INFO0_SRC_BUF_SWAP	BIT(8)
- #define HAL_TCL_DATA_CMD_INFO0_LNK_META_SWAP	BIT(9)
--#define HAL_TCL_DATA_CMD_INFO0_SEARCH_TYPE	BIT(12)
--#define HAL_TCL_DATA_CMD_INFO0_ADDRX_EN		BIT(14)
--#define HAL_TCL_DATA_CMD_INFO0_ADDRY_EN		BIT(15)
-+#define HAL_TCL_DATA_CMD_INFO0_SEARCH_TYPE	GENMASK(13, 12)
-+#define HAL_TCL_DATA_CMD_INFO0_ADDR_EN		GENMASK(15, 14)
- #define HAL_TCL_DATA_CMD_INFO0_CMD_NUM		GENMASK(31, 16)
+@@ -1344,15 +1344,22 @@ static int ath11k_dp_rx_msdu_coalesce(struct ath11k *ar,
+ {
+ 	struct sk_buff *skb;
+ 	struct ath11k_skb_rxcb *rxcb = ATH11K_SKB_RXCB(first);
++	int buf_first_hdr_len, buf_first_len;
+ 	struct hal_rx_desc *ldesc;
+ 	int space_extra;
+ 	int rem_len;
+ 	int buf_len;
  
- #define HAL_TCL_DATA_CMD_INFO1_DATA_LEN		GENMASK(15, 0)
-diff --git a/drivers/net/wireless/ath/ath11k/hal_tx.c b/drivers/net/wireless/ath/ath11k/hal_tx.c
-index bb27591023fe..cbe549798762 100644
---- a/drivers/net/wireless/ath/ath11k/hal_tx.c
-+++ b/drivers/net/wireless/ath/ath11k/hal_tx.c
-@@ -52,9 +52,9 @@ void ath11k_hal_tx_cmd_desc_setup(struct ath11k_base *ab, void *cmd,
- 		FIELD_PREP(HAL_TCL_DATA_CMD_INFO0_ENCAP_TYPE, ti->encap_type) |
- 		FIELD_PREP(HAL_TCL_DATA_CMD_INFO0_ENCRYPT_TYPE,
- 			   ti->encrypt_type) |
--		FIELD_PREP(HAL_TCL_DATA_CMD_INFO0_ADDRX_EN,
--			   ti->addr_search_flags) |
--		FIELD_PREP(HAL_TCL_DATA_CMD_INFO0_ADDRY_EN,
-+		FIELD_PREP(HAL_TCL_DATA_CMD_INFO0_SEARCH_TYPE,
-+			   ti->search_type) |
-+		FIELD_PREP(HAL_TCL_DATA_CMD_INFO0_ADDR_EN,
- 			   ti->addr_search_flags) |
- 		FIELD_PREP(HAL_TCL_DATA_CMD_INFO0_CMD_NUM,
- 			   ti->meta_data_flags);
-diff --git a/drivers/net/wireless/ath/ath11k/hal_tx.h b/drivers/net/wireless/ath/ath11k/hal_tx.h
-index f955070bcf1e..5217eaf9da50 100644
---- a/drivers/net/wireless/ath/ath11k/hal_tx.h
-+++ b/drivers/net/wireless/ath/ath11k/hal_tx.h
-@@ -11,8 +11,8 @@
- #define HAL_TX_ADDRX_EN			1
- #define HAL_TX_ADDRY_EN			2
+-	if (WARN_ON_ONCE(msdu_len <= (DP_RX_BUFFER_SIZE -
+-			 (HAL_RX_DESC_SIZE + l3pad_bytes)))) {
+-		skb_put(first, HAL_RX_DESC_SIZE + l3pad_bytes + msdu_len);
+-		skb_pull(first, HAL_RX_DESC_SIZE + l3pad_bytes);
++	/* As the msdu is spread across multiple rx buffers,
++	 * find the offset to the start of msdu for computing
++	 * the length of the msdu in the first buffer.
++	 */
++	buf_first_hdr_len = HAL_RX_DESC_SIZE + l3pad_bytes;
++	buf_first_len = DP_RX_BUFFER_SIZE - buf_first_hdr_len;
++
++	if (WARN_ON_ONCE(msdu_len <= buf_first_len)) {
++		skb_put(first, buf_first_hdr_len + msdu_len);
++		skb_pull(first, buf_first_hdr_len);
+ 		return 0;
+ 	}
  
--#define HAL_TX_ADDR_SEARCH_INDEX	0
--#define HAL_TX_ADDR_SEARCH_DEFAULT	1
-+#define HAL_TX_ADDR_SEARCH_DEFAULT	0
-+#define HAL_TX_ADDR_SEARCH_INDEX	1
+@@ -1365,9 +1372,9 @@ static int ath11k_dp_rx_msdu_coalesce(struct ath11k *ar,
+ 	 * in the first buf is of length DP_RX_BUFFER_SIZE - HAL_RX_DESC_SIZE.
+ 	 */
+ 	skb_put(first, DP_RX_BUFFER_SIZE);
+-	skb_pull(first, HAL_RX_DESC_SIZE + l3pad_bytes);
++	skb_pull(first, buf_first_hdr_len);
  
- struct hal_tx_info {
- 	u16 meta_data_flags; /* %HAL_TCL_DATA_CMD_INFO0_META_ */
+-	space_extra = msdu_len - (DP_RX_BUFFER_SIZE + skb_tailroom(first));
++	space_extra = msdu_len - (buf_first_len + skb_tailroom(first));
+ 	if (space_extra > 0 &&
+ 	    (pskb_expand_head(first, 0, space_extra, GFP_ATOMIC) < 0)) {
+ 		/* Free up all buffers of the MSDU */
+@@ -1387,8 +1394,7 @@ static int ath11k_dp_rx_msdu_coalesce(struct ath11k *ar,
+ 	 */
+ 	ath11k_dp_rx_desc_end_tlv_copy(rxcb->rx_desc, ldesc);
+ 
+-	rem_len = msdu_len -
+-		  (DP_RX_BUFFER_SIZE - HAL_RX_DESC_SIZE - l3pad_bytes);
++	rem_len = msdu_len - buf_first_len;
+ 	while ((skb = __skb_dequeue(msdu_list)) != NULL && rem_len > 0) {
+ 		rxcb = ATH11K_SKB_RXCB(skb);
+ 		if (rxcb->is_continuation)
 -- 
 2.7.4
 
