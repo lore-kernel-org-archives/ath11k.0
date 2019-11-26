@@ -1,13 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from a27-186.smtp-out.us-west-2.amazonses.com ([54.240.27.186])
+Received: from a27-185.smtp-out.us-west-2.amazonses.com ([54.240.27.185])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iZYeS-0002jj-B9
- for ath11k@lists.infradead.org; Tue, 26 Nov 2019 11:05:02 +0000
+ id 1iZYeQ-0003e6-Bd
+ for ath11k@lists.infradead.org; Tue, 26 Nov 2019 11:05:01 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 10/10] ath11k: Fix target crash due to WBM_IDLE_LINK ring desc
- shortage
-Date: Tue, 26 Nov 2019 11:04:59 +0000
-Message-ID: <0101016ea762c7d2-64e63a0b-b99e-4f6e-bbc9-2714048cd062-000000@us-west-2.amazonses.com>
+Subject: [PATCH 07/10] ath11k: remove unused tx ring counters
+Date: Tue, 26 Nov 2019 11:04:54 +0000
+Message-ID: <0101016ea762b47b-4cd50d91-8b0f-438a-9373-0c14463589a0-000000@us-west-2.amazonses.com>
 In-Reply-To: <1574766279-13105-1-git-send-email-kvalo@codeaurora.org>
 References: <1574766279-13105-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -26,45 +25,73 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: linux-wireless@vger.kernel.org
 Cc: ath11k@lists.infradead.org
 
-From: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
+From: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
 
-Make sure the number of WBM_IDLE_LINK ring descriptors is power
-of 2. This increases the number of descriptors to 32k from the
-current ~18k to fix the target assert because of the shortage in
-the descriptors in WBM_IDLE_LINK ring. Remove unnecessary
-power of 2 calculation in ath11k_dp_link_desc_setup() as it is
-not required after this change.
+remove unused counter to avoid taking locks inorder to optimize
+cpu load.
 
-Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
+Using Flamegraph, cpu usage of ath11k_dp_tx() observed to be decreased
+from 5.58% to 3.74% with iperf traffic running with 80MHz bandwidth ap
+mode.
+
+Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/dp.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/net/wireless/ath/ath11k/dp.h    | 1 -
+ drivers/net/wireless/ath/ath11k/dp_tx.c | 7 -------
+ 2 files changed, 8 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
-index ff510e821a29..72c21cf6a352 100644
---- a/drivers/net/wireless/ath/ath11k/dp.c
-+++ b/drivers/net/wireless/ath/ath11k/dp.c
-@@ -478,6 +478,9 @@ static int ath11k_wbm_idle_ring_setup(struct ath11k_base *ab, u32 *n_link_desc)
- 	*n_link_desc = n_mpdu_link_desc + n_mpdu_queue_desc +
- 		      n_tx_msdu_link_desc + n_rx_msdu_link_desc;
+diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
+index eb0f3df131c5..db216f055c42 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.h
++++ b/drivers/net/wireless/ath/ath11k/dp.h
+@@ -63,7 +63,6 @@ struct dp_tx_ring {
+ 	struct dp_srng tcl_data_ring;
+ 	struct dp_srng tcl_comp_ring;
+ 	struct idr txbuf_idr;
+-	u32 num_tx_pending;
+ 	/* Protects txbuf_idr and num_pending */
+ 	spinlock_t tx_idr_lock;
+ 	DECLARE_KFIFO_PTR(tx_status_fifo, struct hal_wbm_release_ring);
+diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
+index 51a02b8e66cc..a8b9557c2346 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_tx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
+@@ -196,10 +196,6 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
  
-+	if (*n_link_desc & (*n_link_desc - 1))
-+		*n_link_desc = 1 << fls(*n_link_desc);
-+
- 	ret = ath11k_dp_srng_setup(ab, &dp->wbm_idle_ring,
- 				   HAL_WBM_IDLE_LINK, 0, 0, *n_link_desc);
- 	if (ret) {
-@@ -499,9 +502,6 @@ int ath11k_dp_link_desc_setup(struct ath11k_base *ab,
- 	u32 *desc;
- 	int i, ret;
+ 	spin_unlock_bh(&tcl_ring->lock);
  
--	if (n_link_desc & (n_link_desc - 1))
--		n_link_desc = 1 << fls(n_link_desc);
+-	spin_lock_bh(&tx_ring->tx_idr_lock);
+-	tx_ring->num_tx_pending++;
+-	spin_unlock_bh(&tx_ring->tx_idr_lock);
 -
- 	tot_mem_sz = n_link_desc * HAL_LINK_DESC_SIZE;
- 	tot_mem_sz += HAL_LINK_DESC_ALIGN;
+ 	atomic_inc(&ar->dp.num_tx_pending);
  
+ 	return 0;
+@@ -236,7 +232,6 @@ static void ath11k_dp_tx_free_txbuf(struct ath11k_base *ab, u8 mac_id,
+ 	skb_cb = ATH11K_SKB_CB(msdu);
+ 
+ 	idr_remove(&tx_ring->txbuf_idr, msdu_id);
+-	tx_ring->num_tx_pending--;
+ 	spin_unlock_bh(&tx_ring->tx_idr_lock);
+ 
+ 	dma_unmap_single(ab->dev, skb_cb->paddr, msdu->len, DMA_TO_DEVICE);
+@@ -272,7 +267,6 @@ ath11k_dp_tx_htt_tx_complete_buf(struct ath11k_base *ab,
+ 	ar = skb_cb->ar;
+ 
+ 	idr_remove(&tx_ring->txbuf_idr, ts->msdu_id);
+-	tx_ring->num_tx_pending--;
+ 	spin_unlock_bh(&tx_ring->tx_idr_lock);
+ 
+ 	if (atomic_dec_and_test(&ar->dp.num_tx_pending))
+@@ -495,7 +489,6 @@ void ath11k_dp_tx_completion_handler(struct ath11k_base *ab, int ring_id)
+ 			continue;
+ 		}
+ 		idr_remove(&tx_ring->txbuf_idr, msdu_id);
+-		tx_ring->num_tx_pending--;
+ 		spin_unlock_bh(&tx_ring->tx_idr_lock);
+ 
+ 		ar = ab->pdevs[mac_id].ar;
 -- 
 2.7.4
 
