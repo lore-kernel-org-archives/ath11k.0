@@ -1,12 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from a27-186.smtp-out.us-west-2.amazonses.com ([54.240.27.186])
+Received: from a27-11.smtp-out.us-west-2.amazonses.com ([54.240.27.11])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iZYeI-0002jj-2k
- for ath11k@lists.infradead.org; Tue, 26 Nov 2019 11:04:51 +0000
+ id 1iZYeK-0003Mm-6n
+ for ath11k@lists.infradead.org; Tue, 26 Nov 2019 11:04:53 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 03/10] ath11k: fix wmi service ready ext tlv parsing
+Subject: [PATCH 04/10] ath11k: update tcl cmd descriptor parameters for STA
+ mode
 Date: Tue, 26 Nov 2019 11:04:49 +0000
-Message-ID: <0101016ea762a1ec-0099c5b1-2401-4627-8e9d-0e781ab6be45-000000@us-west-2.amazonses.com>
+Message-ID: <0101016ea762a321-ae03ef3c-62d6-4d7c-aad6-9245868c5ef0-000000@us-west-2.amazonses.com>
 In-Reply-To: <1574766279-13105-1-git-send-email-kvalo@codeaurora.org>
 References: <1574766279-13105-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -27,81 +28,105 @@ Cc: ath11k@lists.infradead.org
 
 From: Anilkumar Kolli <akolli@codeaurora.org>
 
-The current ath11k driver failed to parse
-wmi_tlv_svc_rdy_ext_parse if there is change in
-wmi_mac_phy_capabilities length with below error.
-
-ath11k c000000.wifi1: failed to extract mac caps, idx :0
-ath11k c000000.wifi1: failed to parse tlv -22
-
-This is needed to get firmware version
-WLAN.HK.2.0.0.1-00240-QCAHKSWPL_SILICONZ-1 working.
+It is observed that ath11k STA mode UL throughput is low.
+This is due to packets delivered to FW from TCL instead of TQM.
+TCL AST search fail causes packet delivered to FW, fix this by
+properly configuring the TCL address search type and ast_hash.
+STA UL throughput is improved 10times with 11AC AP.
 
 Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/wmi.c | 14 +++++++++++---
- drivers/net/wireless/ath/ath11k/wmi.h |  1 -
- 2 files changed, 11 insertions(+), 4 deletions(-)
+ drivers/net/wireless/ath/ath11k/dp.c       | 9 ++++-----
+ drivers/net/wireless/ath/ath11k/dp_rx.c    | 2 +-
+ drivers/net/wireless/ath/ath11k/hal_desc.h | 5 ++---
+ drivers/net/wireless/ath/ath11k/hal_tx.c   | 6 +++---
+ drivers/net/wireless/ath/ath11k/hal_tx.h   | 4 ++--
+ 5 files changed, 12 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 2c3c973f5f7c..ccebf7ce420a 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -310,7 +310,7 @@ ath11k_pull_mac_phy_cap_svc_ready_ext(struct ath11k_pdev_wmi *wmi_handle,
- 	if (phy_id >= hal_reg_caps->num_phy)
- 		return -EINVAL;
+diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
+index aa2b28189cda..ff510e821a29 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.c
++++ b/drivers/net/wireless/ath/ath11k/dp.c
+@@ -758,13 +758,12 @@ int ath11k_dp_htt_connect(struct ath11k_dp *dp)
  
--	mac_phy_caps = &wmi_mac_phy_caps[phy_idx];
-+	mac_phy_caps = wmi_mac_phy_caps + phy_idx;
+ static void ath11k_dp_update_vdev_search(struct ath11k_vif *arvif)
+ {
+-	/* Enable AddrY (SA based search) for STA mode. All other modes it
+-	 * is going to be AddrX (DA based search). For STA mode, set search
+-	 * type based on AST value.
+-	 */
++	 /* For STA mode, enable address search index,
++	  * tcl uses ast_hash value in the descriptor.
++	  */
+ 	switch (arvif->vdev_type) {
+ 	case WMI_VDEV_TYPE_STA:
+-		arvif->hal_addr_search_flags = HAL_TX_ADDRY_EN;
++		arvif->hal_addr_search_flags = HAL_TX_ADDRX_EN;
+ 		arvif->search_type = HAL_TX_ADDR_SEARCH_INDEX;
+ 		break;
+ 	case WMI_VDEV_TYPE_AP:
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 7aade0314e61..396658be6f26 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -1312,7 +1312,7 @@ void ath11k_dp_htt_htc_t2h_msg_handler(struct ath11k_base *ab,
+ 		ath11k_dp_get_mac_addr(resp->peer_map_ev.mac_addr_l32,
+ 				       peer_mac_h16, mac_addr);
+ 		ast_hash = FIELD_GET(HTT_T2H_PEER_MAP_INFO2_AST_HASH_VAL,
+-				     resp->peer_map_ev.info1);
++				     resp->peer_map_ev.info2);
+ 		ath11k_peer_map_event(ab, vdev_id, peer_id, mac_addr, ast_hash);
+ 		break;
+ 	case HTT_T2H_MSG_TYPE_PEER_UNMAP:
+diff --git a/drivers/net/wireless/ath/ath11k/hal_desc.h b/drivers/net/wireless/ath/ath11k/hal_desc.h
+index 35e191b77271..5e200380cca4 100644
+--- a/drivers/net/wireless/ath/ath11k/hal_desc.h
++++ b/drivers/net/wireless/ath/ath11k/hal_desc.h
+@@ -934,9 +934,8 @@ struct hal_reo_flush_cache {
+ #define HAL_TCL_DATA_CMD_INFO0_ENCRYPT_TYPE	GENMASK(7, 4)
+ #define HAL_TCL_DATA_CMD_INFO0_SRC_BUF_SWAP	BIT(8)
+ #define HAL_TCL_DATA_CMD_INFO0_LNK_META_SWAP	BIT(9)
+-#define HAL_TCL_DATA_CMD_INFO0_SEARCH_TYPE	BIT(12)
+-#define HAL_TCL_DATA_CMD_INFO0_ADDRX_EN		BIT(14)
+-#define HAL_TCL_DATA_CMD_INFO0_ADDRY_EN		BIT(15)
++#define HAL_TCL_DATA_CMD_INFO0_SEARCH_TYPE	GENMASK(13, 12)
++#define HAL_TCL_DATA_CMD_INFO0_ADDR_EN		GENMASK(15, 14)
+ #define HAL_TCL_DATA_CMD_INFO0_CMD_NUM		GENMASK(31, 16)
  
- 	pdev->pdev_id = mac_phy_caps->pdev_id;
- 	pdev_cap->supported_bands = mac_phy_caps->supported_bands;
-@@ -2959,6 +2959,15 @@ static int ath11k_wmi_tlv_mac_phy_caps_parse(struct ath11k_base *soc,
- 	if (svc_rdy_ext->n_mac_phy_caps >= svc_rdy_ext->tot_phy_id)
- 		return -ENOBUFS;
+ #define HAL_TCL_DATA_CMD_INFO1_DATA_LEN		GENMASK(15, 0)
+diff --git a/drivers/net/wireless/ath/ath11k/hal_tx.c b/drivers/net/wireless/ath/ath11k/hal_tx.c
+index bb27591023fe..cbe549798762 100644
+--- a/drivers/net/wireless/ath/ath11k/hal_tx.c
++++ b/drivers/net/wireless/ath/ath11k/hal_tx.c
+@@ -52,9 +52,9 @@ void ath11k_hal_tx_cmd_desc_setup(struct ath11k_base *ab, void *cmd,
+ 		FIELD_PREP(HAL_TCL_DATA_CMD_INFO0_ENCAP_TYPE, ti->encap_type) |
+ 		FIELD_PREP(HAL_TCL_DATA_CMD_INFO0_ENCRYPT_TYPE,
+ 			   ti->encrypt_type) |
+-		FIELD_PREP(HAL_TCL_DATA_CMD_INFO0_ADDRX_EN,
+-			   ti->addr_search_flags) |
+-		FIELD_PREP(HAL_TCL_DATA_CMD_INFO0_ADDRY_EN,
++		FIELD_PREP(HAL_TCL_DATA_CMD_INFO0_SEARCH_TYPE,
++			   ti->search_type) |
++		FIELD_PREP(HAL_TCL_DATA_CMD_INFO0_ADDR_EN,
+ 			   ti->addr_search_flags) |
+ 		FIELD_PREP(HAL_TCL_DATA_CMD_INFO0_CMD_NUM,
+ 			   ti->meta_data_flags);
+diff --git a/drivers/net/wireless/ath/ath11k/hal_tx.h b/drivers/net/wireless/ath/ath11k/hal_tx.h
+index f955070bcf1e..5217eaf9da50 100644
+--- a/drivers/net/wireless/ath/ath11k/hal_tx.h
++++ b/drivers/net/wireless/ath/ath11k/hal_tx.h
+@@ -11,8 +11,8 @@
+ #define HAL_TX_ADDRX_EN			1
+ #define HAL_TX_ADDRY_EN			2
  
-+	len = min_t(u16, len, sizeof(struct wmi_mac_phy_capabilities));
-+	if (!svc_rdy_ext->n_mac_phy_caps) {
-+		svc_rdy_ext->mac_phy_caps = kzalloc((svc_rdy_ext->tot_phy_id) * len,
-+						    GFP_ATOMIC);
-+		if (!svc_rdy_ext->mac_phy_caps)
-+			return -ENOMEM;
-+	}
-+
-+	memcpy(svc_rdy_ext->mac_phy_caps + svc_rdy_ext->n_mac_phy_caps, ptr, len);
- 	svc_rdy_ext->n_mac_phy_caps++;
- 	return 0;
- }
-@@ -3092,8 +3101,6 @@ static int ath11k_wmi_tlv_svc_rdy_ext_parse(struct ath11k_base *ab,
- 			svc_rdy_ext->hw_mode_done = true;
- 		} else if (!svc_rdy_ext->mac_phy_done) {
- 			svc_rdy_ext->n_mac_phy_caps = 0;
--			svc_rdy_ext->mac_phy_caps =
--					(struct wmi_mac_phy_capabilities *)ptr;
- 			ret = ath11k_wmi_tlv_iter(ab, ptr, len,
- 						  ath11k_wmi_tlv_mac_phy_caps_parse,
- 						  svc_rdy_ext);
-@@ -3134,6 +3141,7 @@ static int ath11k_service_ready_ext_event(struct ath11k_base *ab,
- 		return ret;
- 	}
+-#define HAL_TX_ADDR_SEARCH_INDEX	0
+-#define HAL_TX_ADDR_SEARCH_DEFAULT	1
++#define HAL_TX_ADDR_SEARCH_DEFAULT	0
++#define HAL_TX_ADDR_SEARCH_INDEX	1
  
-+	kfree(svc_rdy_ext.mac_phy_caps);
- 	return 0;
- }
- 
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index 7d5690c65279..6a0468094694 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -2276,7 +2276,6 @@ struct wmi_hw_mode_capabilities {
- #define WMI_MAX_HECAP_PHY_SIZE                 (3)
- 
- struct wmi_mac_phy_capabilities {
--	u32 tlv_header;
- 	u32 hw_mode_id;
- 	u32 pdev_id;
- 	u32 phy_id;
+ struct hal_tx_info {
+ 	u16 meta_data_flags; /* %HAL_TCL_DATA_CMD_INFO0_META_ */
 -- 
 2.7.4
 
