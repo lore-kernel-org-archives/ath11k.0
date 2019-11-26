@@ -1,14 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from a27-187.smtp-out.us-west-2.amazonses.com ([54.240.27.187])
+Received: from a27-186.smtp-out.us-west-2.amazonses.com ([54.240.27.186])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iZYeG-0002uV-Jq
- for ath11k@lists.infradead.org; Tue, 26 Nov 2019 11:04:49 +0000
+ id 1iZYeE-0002jj-DX
+ for ath11k@lists.infradead.org; Tue, 26 Nov 2019 11:04:48 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 01/10] ath11k: Fix htt stats sounding info and pdev cca stats
-Date: Tue, 26 Nov 2019 11:04:45 +0000
-Message-ID: <0101016ea76291d2-4b8f69f8-8b9f-4272-942e-984a1b2138ce-000000@us-west-2.amazonses.com>
-In-Reply-To: <1574766279-13105-1-git-send-email-kvalo@codeaurora.org>
-References: <1574766279-13105-1-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH 00/10] ath11k: second round of post-bringup patches
+Date: Tue, 26 Nov 2019 11:04:43 +0000
+Message-ID: <0101016ea7628c8b-bbd1270e-424a-4bfe-bbec-24d21f7d13be-000000@us-west-2.amazonses.com>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -25,35 +23,58 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: linux-wireless@vger.kernel.org
 Cc: ath11k@lists.infradead.org
 
-From: Ganesh Sesetti <gseset@codeaurora.org>
+Here's second of round of ath11k patches from ath11k-post-bringup
+branch[1] which got queued while ath11k was in review.
 
-The Previous configuartion of htt stats sounding info and pdev cca stats
-are invalid due to that getting time out error.
+Major features here are support for new firmare version and
+performance improvements.
 
-Changing htt stats sounding info value from 0xFF to 0x00 and htt pdev cca
-stats from 0x10 to 0x00
+Please review.
 
-Signed-off-by: Ganesh Sesetti <gseset@codeaurora.org>
-Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/dp.h | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Kalle
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
-index 4db71173db62..eb0f3df131c5 100644
---- a/drivers/net/wireless/ath/ath11k/dp.h
-+++ b/drivers/net/wireless/ath/ath11k/dp.h
-@@ -1365,8 +1365,8 @@ struct htt_ext_stats_cfg_cmd {
- #define HTT_STAT_DEFAULT_CFG0_ALL_CMDQS 0xffff
- #define HTT_STAT_DEFAULT_CFG0_ALL_RINGS 0xffff
- #define HTT_STAT_DEFAULT_CFG0_ACTIVE_PEERS 0xff
--#define HTT_STAT_DEFAULT_CFG0_CCA_CUMULATIVE 0x10
--#define HTT_STAT_DEFAULT_CFG0_ACTIVE_VDEVS 0xff
-+#define HTT_STAT_DEFAULT_CFG0_CCA_CUMULATIVE 0x00
-+#define HTT_STAT_DEFAULT_CFG0_ACTIVE_VDEVS 0x00
- 
- /* HTT_DBG_EXT_STATS_PEER_INFO
-  * PARAMS:
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/log/?h=ath11k-post-bringup
+
+Anilkumar Kolli (2):
+  ath11k: fix wmi service ready ext tlv parsing
+  ath11k: update tcl cmd descriptor parameters for STA mode
+
+Ganesh Sesetti (1):
+  ath11k: Fix htt stats sounding info and pdev cca stats
+
+John Crispin (1):
+  ath11k: optimize RX path latency
+
+Karthikeyan Periyasamy (2):
+  ath11k: fix resource leak in ath11k_mac_sta_state
+  ath11k: avoid WMM param truncation
+
+Pradeep Kumar Chitrapu (1):
+  ath11k: remove unused tx ring counters
+
+Sriram R (1):
+  ath11k: Fix skb_panic observed during msdu coalescing
+
+Vasanthakumar Thiagarajan (1):
+  ath11k: Fix target crash due to WBM_IDLE_LINK ring desc shortage
+
+Vikas Patel (1):
+  ath11k: Fixing TLV length issue in peer pktlog WMI command
+
+ drivers/net/wireless/ath/ath11k/dp.c       |  15 ++-
+ drivers/net/wireless/ath/ath11k/dp.h       |   5 +-
+ drivers/net/wireless/ath/ath11k/dp_rx.c    |  71 ++++++++------
+ drivers/net/wireless/ath/ath11k/dp_tx.c    |   7 --
+ drivers/net/wireless/ath/ath11k/hal_desc.h |   5 +-
+ drivers/net/wireless/ath/ath11k/hal_rx.c   |  49 +---------
+ drivers/net/wireless/ath/ath11k/hal_rx.h   |  28 +-----
+ drivers/net/wireless/ath/ath11k/hal_tx.c   |   6 +-
+ drivers/net/wireless/ath/ath11k/hal_tx.h   |   4 +-
+ drivers/net/wireless/ath/ath11k/mac.c      | 144 +++++++++++++++++------------
+ drivers/net/wireless/ath/ath11k/wmi.c      |  16 +++-
+ drivers/net/wireless/ath/ath11k/wmi.h      |   5 +-
+ 12 files changed, 162 insertions(+), 193 deletions(-)
+
 -- 
 2.7.4
 
