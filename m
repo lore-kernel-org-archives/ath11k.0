@@ -1,17 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from nbd.name ([2a01:4f8:221:3d45::2])
+Received: from a27-187.smtp-out.us-west-2.amazonses.com ([54.240.27.187])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iZIi7-0000Uu-SU
- for ath11k@lists.infradead.org; Mon, 25 Nov 2019 18:03:46 +0000
-Subject: Re: [PATCH 6/8] ath11k: add HE support
-References: <1574699772-17938-1-git-send-email-kvalo@codeaurora.org>
- <0101016ea36be2a7-e7459aa6-c762-4f95-bb93-0158f7bb5bfb-000000@us-west-2.amazonses.com>
-From: John Crispin <john@phrozen.org>
-Message-ID: <3bba1a22-48e2-31c2-9671-ade9312b10c9@phrozen.org>
-Date: Mon, 25 Nov 2019 19:03:39 +0100
-MIME-Version: 1.0
-In-Reply-To: <0101016ea36be2a7-e7459aa6-c762-4f95-bb93-0158f7bb5bfb-000000@us-west-2.amazonses.com>
-Content-Language: en-US
+ id 1iZVfC-0002mU-39
+ for ath11k@lists.infradead.org; Tue, 26 Nov 2019 07:53:36 +0000
+From: Bhagavathi Perumal S <bperumal@codeaurora.org>
+Subject: [PATCH v2] ath11k: Add missing pdev rx rate stats
+Date: Tue, 26 Nov 2019 07:53:29 +0000
+Message-ID: <0101016ea6b37701-c96a715a-3466-4836-9152-079584e49603-000000@us-west-2.amazonses.com>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -20,435 +15,410 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>, linux-wireless@vger.kernel.org
-Cc: ath11k@lists.infradead.org
+To: ath11k@lists.infradead.org
+Cc: Bhagavathi Perumal S <bperumal@codeaurora.org>
 
-On 25/11/2019 17:36, Kalle Valo wrote:
-> From: John Crispin <john@phrozen.org>
-> 
-> Add basic HE support to the driver. The sband_iftype data is generated from
-> the capabilities read from the FW.
-> 
-> Signed-off-by: Shashidhar Lakkavalli <slakkavalli@datto.com>
-> Signed-off-by: John Crispin <john@phrozen.org>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+This adds missing rx rate info stats like pilot evm,
+per chain rssi, per user ul ppdu and mpdu counts and
+ul ofdma rate info etc.
 
-yippie !!
+And add null checks for memory alloc failures.
 
-> ---
->   drivers/net/wireless/ath/ath11k/core.h |   2 +
->   drivers/net/wireless/ath/ath11k/mac.c  | 265 ++++++++++++++++++++++++++++++++-
->   drivers/net/wireless/ath/ath11k/reg.c  |   1 +
->   drivers/net/wireless/ath/ath11k/wmi.c  |   6 +-
->   drivers/net/wireless/ath/ath11k/wmi.h  |   6 +-
->   5 files changed, 270 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-> index 95447d1be104..065cb9dc880b 100644
-> --- a/drivers/net/wireless/ath/ath11k/core.h
-> +++ b/drivers/net/wireless/ath/ath11k/core.h
-> @@ -431,6 +431,8 @@ struct ath11k {
->   
->   	struct {
->   		struct ieee80211_supported_band sbands[NUM_NL80211_BANDS];
-> +		struct ieee80211_sband_iftype_data
-> +			iftype[NUM_NL80211_BANDS][NUM_NL80211_IFTYPES];
->   	} mac;
->   	unsigned long dev_flags;
->   	unsigned int filter_flags;
-> diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-> index 939f5880bce6..79c22d86e0fe 100644
-> --- a/drivers/net/wireless/ath/ath11k/mac.c
-> +++ b/drivers/net/wireless/ath/ath11k/mac.c
-> @@ -1140,7 +1140,86 @@ static void ath11k_peer_assoc_h_he(struct ath11k *ar,
->   				   struct ieee80211_sta *sta,
->   				   struct peer_assoc_params *arg)
->   {
-> -	/* TODO: Implementation */
-> +	const struct ieee80211_sta_he_cap *he_cap = &sta->he_cap;
-> +	u16 v;
-> +
-> +	if (!he_cap->has_he)
-> +		return;
-> +
-> +	arg->he_flag = true;
-> +
-> +	memcpy(&arg->peer_he_cap_macinfo, he_cap->he_cap_elem.mac_cap_info,
-> +	       sizeof(arg->peer_he_cap_macinfo));
-> +	memcpy(&arg->peer_he_cap_phyinfo, he_cap->he_cap_elem.phy_cap_info,
-> +	       sizeof(arg->peer_he_cap_phyinfo));
-> +	memcpy(&arg->peer_he_ops, &vif->bss_conf.he_operation,
-> +	       sizeof(arg->peer_he_ops));
-> +
-> +	/* the top most byte is used to indicate BSS color info */
-> +	arg->peer_he_ops &= 0xffffff;
-> +
-> +	if (he_cap->he_cap_elem.phy_cap_info[6] &
-> +	    IEEE80211_HE_PHY_CAP6_PPE_THRESHOLD_PRESENT) {
-> +		int bit = 7;
-> +		int nss, ru;
-> +
-> +		arg->peer_ppet.numss_m1 = he_cap->ppe_thres[0] &
-> +					  IEEE80211_PPE_THRES_NSS_MASK;
-> +		arg->peer_ppet.ru_bit_mask =
-> +			(he_cap->ppe_thres[0] &
-> +			 IEEE80211_PPE_THRES_RU_INDEX_BITMASK_MASK) >>
-> +			IEEE80211_PPE_THRES_RU_INDEX_BITMASK_POS;
-> +
-> +		for (nss = 0; nss <= arg->peer_ppet.numss_m1; nss++) {
-> +			for (ru = 0; ru < 4; ru++) {
-> +				u32 val = 0;
-> +				int i;
-> +
-> +				if ((arg->peer_ppet.ru_bit_mask & BIT(ru)) == 0)
-> +					continue;
-> +				for (i = 0; i < 6; i++) {
-> +					val >>= 1;
-> +					val |= ((he_cap->ppe_thres[bit / 8] >>
-> +						 (bit % 8)) & 0x1) << 5;
-> +					bit++;
-> +				}
-> +				arg->peer_ppet.ppet16_ppet8_ru3_ru0[nss] |=
-> +								val << (ru * 6);
-> +			}
-> +		}
-> +	}
-> +
-> +	switch (sta->bandwidth) {
-> +	case IEEE80211_STA_RX_BW_160:
-> +		if (he_cap->he_cap_elem.phy_cap_info[0] &
-> +		    IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_80PLUS80_MHZ_IN_5G) {
-> +			v = le16_to_cpu(he_cap->he_mcs_nss_supp.rx_mcs_80p80);
-> +			arg->peer_he_rx_mcs_set[WMI_HECAP_TXRX_MCS_NSS_IDX_80_80] = v;
-> +
-> +			v = le16_to_cpu(he_cap->he_mcs_nss_supp.tx_mcs_80p80);
-> +			arg->peer_he_tx_mcs_set[WMI_HECAP_TXRX_MCS_NSS_IDX_80_80] = v;
-> +
-> +			arg->peer_he_mcs_count++;
-> +		}
-> +		v = le16_to_cpu(he_cap->he_mcs_nss_supp.rx_mcs_160);
-> +		arg->peer_he_rx_mcs_set[WMI_HECAP_TXRX_MCS_NSS_IDX_160] = v;
-> +
-> +		v = le16_to_cpu(he_cap->he_mcs_nss_supp.tx_mcs_160);
-> +		arg->peer_he_tx_mcs_set[WMI_HECAP_TXRX_MCS_NSS_IDX_160] = v;
-> +
-> +		arg->peer_he_mcs_count++;
-> +		/* fall through */
-> +
-> +	default:
-> +		v = le16_to_cpu(he_cap->he_mcs_nss_supp.rx_mcs_80);
-> +		arg->peer_he_rx_mcs_set[WMI_HECAP_TXRX_MCS_NSS_IDX_80] = v;
-> +
-> +		v = le16_to_cpu(he_cap->he_mcs_nss_supp.tx_mcs_80);
-> +		arg->peer_he_tx_mcs_set[WMI_HECAP_TXRX_MCS_NSS_IDX_80] = v;
-> +
-> +		arg->peer_he_mcs_count++;
-> +		break;
-> +	}
->   }
->   
->   static void ath11k_peer_assoc_h_smps(struct ieee80211_sta *sta,
-> @@ -1307,6 +1386,32 @@ static enum wmi_phy_mode ath11k_mac_get_phymode_vht(struct ath11k *ar,
->   	return MODE_UNKNOWN;
->   }
->   
-> +static enum wmi_phy_mode ath11k_mac_get_phymode_he(struct ath11k *ar,
-> +						   struct ieee80211_sta *sta)
-> +{
-> +	if (sta->bandwidth == IEEE80211_STA_RX_BW_160) {
-> +		if (sta->he_cap.he_cap_elem.phy_cap_info[0] &
-> +		     IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_160MHZ_IN_5G)
-> +			return MODE_11AX_HE160;
-> +		else if (sta->he_cap.he_cap_elem.phy_cap_info[0] &
-> +		     IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_80PLUS80_MHZ_IN_5G)
-> +			return MODE_11AX_HE80_80;
-> +		/* not sure if this is a valid case? */
-> +		return MODE_11AX_HE160;
-> +	}
-> +
-> +	if (sta->bandwidth == IEEE80211_STA_RX_BW_80)
-> +		return MODE_11AX_HE80;
-> +
-> +	if (sta->bandwidth == IEEE80211_STA_RX_BW_40)
-> +		return MODE_11AX_HE40;
-> +
-> +	if (sta->bandwidth == IEEE80211_STA_RX_BW_20)
-> +		return MODE_11AX_HE20;
-> +
-> +	return MODE_UNKNOWN;
-> +}
-> +
->   static void ath11k_peer_assoc_h_phymode(struct ath11k *ar,
->   					struct ieee80211_vif *vif,
->   					struct ieee80211_sta *sta,
-> @@ -1328,7 +1433,14 @@ static void ath11k_peer_assoc_h_phymode(struct ath11k *ar,
->   
->   	switch (band) {
->   	case NL80211_BAND_2GHZ:
-> -		if (sta->vht_cap.vht_supported &&
-> +		if (sta->he_cap.has_he) {
-> +			if (sta->bandwidth == IEEE80211_STA_RX_BW_80)
-> +				phymode = MODE_11AX_HE80_2G;
-> +			else if (sta->bandwidth == IEEE80211_STA_RX_BW_40)
-> +				phymode = MODE_11AX_HE40_2G;
-> +			else
-> +				phymode = MODE_11AX_HE20_2G;
-> +		} else if (sta->vht_cap.vht_supported &&
->   		    !ath11k_peer_assoc_h_vht_masked(vht_mcs_mask)) {
->   			if (sta->bandwidth == IEEE80211_STA_RX_BW_40)
->   				phymode = MODE_11AC_VHT40;
-> @@ -1345,12 +1457,12 @@ static void ath11k_peer_assoc_h_phymode(struct ath11k *ar,
->   		} else {
->   			phymode = MODE_11B;
->   		}
-> -		/* TODO: HE */
-> -
->   		break;
->   	case NL80211_BAND_5GHZ:
-> -		/* Check VHT first */
-> -		if (sta->vht_cap.vht_supported &&
-> +		/* Check HE first */
-> +		if (sta->he_cap.has_he) {
-> +			phymode = ath11k_mac_get_phymode_he(ar, sta);
-> +		} else if (sta->vht_cap.vht_supported &&
->   		    !ath11k_peer_assoc_h_vht_masked(vht_mcs_mask)) {
->   			phymode = ath11k_mac_get_phymode_vht(ar, sta);
->   		} else if (sta->ht_cap.ht_supported &&
-> @@ -1362,7 +1474,6 @@ static void ath11k_peer_assoc_h_phymode(struct ath11k *ar,
->   		} else {
->   			phymode = MODE_11A;
->   		}
-> -		/* TODO: HE Phymode */
->   		break;
->   	default:
->   		break;
-> @@ -3126,6 +3237,142 @@ static int ath11k_check_chain_mask(struct ath11k *ar, u32 ant, bool is_tx_ant)
->   	return 0;
->   }
->   
-> +static void ath11k_gen_ppe_thresh(struct ath11k_ppe_threshold *fw_ppet,
-> +				  u8 *he_ppet)
-> +{
-> +	int nss, ru;
-> +	u8 bit = 7;
-> +
-> +	he_ppet[0] = fw_ppet->numss_m1 & IEEE80211_PPE_THRES_NSS_MASK;
-> +	he_ppet[0] |= (fw_ppet->ru_bit_mask <<
-> +		       IEEE80211_PPE_THRES_RU_INDEX_BITMASK_POS) &
-> +		      IEEE80211_PPE_THRES_RU_INDEX_BITMASK_MASK;
-> +	for (nss = 0; nss <= fw_ppet->numss_m1; nss++) {
-> +		for (ru = 0; ru < 4; ru++) {
-> +			u8 val;
-> +			int i;
-> +
-> +			if ((fw_ppet->ru_bit_mask & BIT(ru)) == 0)
-> +				continue;
-> +			val = (fw_ppet->ppet16_ppet8_ru3_ru0[nss] >> (ru * 6)) &
-> +			       0x3f;
-> +			val = ((val >> 3) & 0x7) | ((val & 0x7) << 3);
-> +			for (i = 5; i >= 0; i--) {
-> +				he_ppet[bit / 8] |=
-> +					((val >> i) & 0x1) << ((bit % 8));
-> +				bit++;
-> +			}
-> +		}
-> +	}
-> +}
-> +
-> +static int ath11k_mac_copy_he_cap(struct ath11k *ar,
-> +				  struct ath11k_pdev_cap *cap,
-> +				  struct ieee80211_sband_iftype_data *data,
-> +				  int band)
-> +{
-> +	int i, idx = 0;
-> +
-> +	for (i = 0; i < NUM_NL80211_IFTYPES; i++) {
-> +		struct ieee80211_sta_he_cap *he_cap = &data[idx].he_cap;
-> +		struct ath11k_band_cap *band_cap = &cap->band[band];
-> +		struct ieee80211_he_cap_elem *he_cap_elem =
-> +				&he_cap->he_cap_elem;
-> +
-> +		switch (i) {
-> +		case NL80211_IFTYPE_STATION:
-> +		case NL80211_IFTYPE_AP:
-> +			break;
-> +
-> +		default:
-> +			continue;
-> +		}
-> +
-> +		data[idx].types_mask = BIT(i);
-> +		he_cap->has_he = true;
-> +		memcpy(he_cap_elem->mac_cap_info, band_cap->he_cap_info,
-> +		       sizeof(he_cap_elem->mac_cap_info));
-> +		memcpy(he_cap_elem->phy_cap_info, band_cap->he_cap_phy_info,
-> +		       sizeof(he_cap_elem->phy_cap_info));
-> +
-> +		he_cap_elem->mac_cap_info[1] |=
-> +			IEEE80211_HE_MAC_CAP1_TF_MAC_PAD_DUR_MASK;
-> +		he_cap_elem->phy_cap_info[4] &=
-> +			~IEEE80211_HE_PHY_CAP4_BEAMFORMEE_MAX_STS_UNDER_80MHZ_MASK;
-> +		he_cap_elem->phy_cap_info[4] &=
-> +			~IEEE80211_HE_PHY_CAP4_BEAMFORMEE_MAX_STS_ABOVE_80MHZ_MASK;
-> +		he_cap_elem->phy_cap_info[4] |= (ar->num_tx_chains - 1) << 2;
-> +
-> +		he_cap_elem->phy_cap_info[5] &=
-> +			~IEEE80211_HE_PHY_CAP5_BEAMFORMEE_NUM_SND_DIM_UNDER_80MHZ_MASK;
-> +		he_cap_elem->phy_cap_info[5] &=
-> +			~IEEE80211_HE_PHY_CAP5_BEAMFORMEE_NUM_SND_DIM_ABOVE_80MHZ_MASK;
-> +		he_cap_elem->phy_cap_info[5] |= ar->num_tx_chains - 1;
-> +
-> +		switch (i) {
-> +		case NL80211_IFTYPE_AP:
-> +			he_cap_elem->phy_cap_info[9] |=
-> +				IEEE80211_HE_PHY_CAP9_RX_1024_QAM_LESS_THAN_242_TONE_RU;
-> +			break;
-> +		case NL80211_IFTYPE_STATION:
-> +			he_cap_elem->mac_cap_info[0] &=
-> +				~IEEE80211_HE_MAC_CAP0_TWT_RES;
-> +			he_cap_elem->mac_cap_info[0] |=
-> +				IEEE80211_HE_MAC_CAP0_TWT_REQ;
-> +			he_cap_elem->phy_cap_info[9] |=
-> +				IEEE80211_HE_PHY_CAP9_TX_1024_QAM_LESS_THAN_242_TONE_RU;
-> +			break;
-> +		}
-> +
-> +		he_cap->he_mcs_nss_supp.rx_mcs_80 =
-> +			cpu_to_le16(band_cap->he_mcs & 0xffff);
-> +		he_cap->he_mcs_nss_supp.tx_mcs_80 =
-> +			cpu_to_le16(band_cap->he_mcs & 0xffff);
-> +		he_cap->he_mcs_nss_supp.rx_mcs_160 =
-> +			cpu_to_le16((band_cap->he_mcs >> 16) & 0xffff);
-> +		he_cap->he_mcs_nss_supp.tx_mcs_160 =
-> +			cpu_to_le16((band_cap->he_mcs >> 16) & 0xffff);
-> +		he_cap->he_mcs_nss_supp.rx_mcs_80p80 =
-> +			cpu_to_le16((band_cap->he_mcs >> 16) & 0xffff);
-> +		he_cap->he_mcs_nss_supp.tx_mcs_80p80 =
-> +			cpu_to_le16((band_cap->he_mcs >> 16) & 0xffff);
-> +
-> +		memset(he_cap->ppe_thres, 0, sizeof(he_cap->ppe_thres));
-> +		if (he_cap_elem->phy_cap_info[6] &
-> +		    IEEE80211_HE_PHY_CAP6_PPE_THRESHOLD_PRESENT)
-> +			ath11k_gen_ppe_thresh(&band_cap->he_ppet,
-> +					      he_cap->ppe_thres);
-> +		idx++;
-> +	}
-> +
-> +	return idx;
-> +}
-> +
-> +static void ath11k_mac_setup_he_cap(struct ath11k *ar,
-> +				    struct ath11k_pdev_cap *cap)
-> +{
-> +	struct ieee80211_supported_band *band = NULL;
-> +	int count = 0;
-> +
-> +	if (cap->supported_bands & WMI_HOST_WLAN_2G_CAP) {
-> +		count = ath11k_mac_copy_he_cap(ar, cap,
-> +					       ar->mac.iftype[NL80211_BAND_2GHZ],
-> +					       NL80211_BAND_2GHZ);
-> +		band = &ar->mac.sbands[NL80211_BAND_2GHZ];
-> +		band->iftype_data = ar->mac.iftype[NL80211_BAND_2GHZ];
-> +	}
-> +
-> +	if (cap->supported_bands & WMI_HOST_WLAN_5G_CAP) {
-> +		count = ath11k_mac_copy_he_cap(ar, cap,
-> +					       ar->mac.iftype[NL80211_BAND_5GHZ],
-> +					       NL80211_BAND_5GHZ);
-> +		band = &ar->mac.sbands[NL80211_BAND_5GHZ];
-> +		band->iftype_data = ar->mac.iftype[NL80211_BAND_5GHZ];
-> +	}
-> +
-> +	band->n_iftype_data = count;
-> +}
-> +
->   static int __ath11k_set_antenna(struct ath11k *ar, u32 tx_ant, u32 rx_ant)
->   {
->   	int ret;
-> @@ -3161,8 +3408,9 @@ static int __ath11k_set_antenna(struct ath11k *ar, u32 tx_ant, u32 rx_ant)
->   		return ret;
->   	}
->   
-> -	/* Reload HT/VHT capability */
-> +	/* Reload HT/VHT/HE capability */
->   	ath11k_mac_setup_ht_vht_cap(ar, &ar->pdev->cap, NULL);
-> +	ath11k_mac_setup_he_cap(ar, &ar->pdev->cap);
->   
->   	return 0;
->   }
-> @@ -5207,6 +5455,7 @@ static int ath11k_mac_register(struct ath11k *ar)
->   		goto err_free;
->   
->   	ath11k_mac_setup_ht_vht_cap(ar, cap, &ht_cap);
-> +	ath11k_mac_setup_he_cap(ar, cap);
->   
->   	ar->hw->wiphy->available_antennas_rx = cap->rx_chain_mask;
->   	ar->hw->wiphy->available_antennas_tx = cap->tx_chain_mask;
-> diff --git a/drivers/net/wireless/ath/ath11k/reg.c b/drivers/net/wireless/ath/ath11k/reg.c
-> index 810050b033c4..453aa9c06969 100644
-> --- a/drivers/net/wireless/ath/ath11k/reg.c
-> +++ b/drivers/net/wireless/ath/ath11k/reg.c
-> @@ -141,6 +141,7 @@ int ath11k_reg_update_chan_list(struct ath11k *ar)
->   			/* TODO: Set to true/false based on some condition? */
->   			ch->allow_ht = true;
->   			ch->allow_vht = true;
-> +			ch->allow_he = true;
->   
->   			ch->dfs_set =
->   				!!(channel->flags & IEEE80211_CHAN_RADAR);
-> diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-> index 3ec5dd47cdc8..d077ea30f3c1 100644
-> --- a/drivers/net/wireless/ath/ath11k/wmi.c
-> +++ b/drivers/net/wireless/ath/ath11k/wmi.c
-> @@ -753,6 +753,8 @@ static void ath11k_wmi_put_wmi_channel(struct wmi_channel *chan,
->   		chan->info |= WMI_CHAN_INFO_ALLOW_HT;
->   	if (arg->channel.allow_vht)
->   		chan->info |= WMI_CHAN_INFO_ALLOW_VHT;
-> +	if (arg->channel.allow_he)
-> +		chan->info |= WMI_CHAN_INFO_ALLOW_HE;
->   	if (arg->channel.ht40plus)
->   		chan->info |= WMI_CHAN_INFO_HT40_PLUS;
->   	if (arg->channel.chan_radar)
-> @@ -2150,7 +2152,9 @@ int ath11k_wmi_send_scan_chan_list_cmd(struct ath11k *ar,
->   
->   		if (tchan_info->is_chan_passive)
->   			chan_info->info |= WMI_CHAN_INFO_PASSIVE;
-> -		if (tchan_info->allow_vht)
-> +		if (tchan_info->allow_he)
-> +			chan_info->info |= WMI_CHAN_INFO_ALLOW_HE;
-> +		else if (tchan_info->allow_vht)
->   			chan_info->info |= WMI_CHAN_INFO_ALLOW_VHT;
->   		else if (tchan_info->allow_ht)
->   			chan_info->info |= WMI_CHAN_INFO_ALLOW_HT;
-> diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-> index 1110da29cfcd..fd1ffa593a41 100644
-> --- a/drivers/net/wireless/ath/ath11k/wmi.h
-> +++ b/drivers/net/wireless/ath/ath11k/wmi.h
-> @@ -2445,6 +2445,7 @@ struct channel_param {
->   	    is_chan_passive:1,
->   	    allow_ht:1,
->   	    allow_vht:1,
-> +	    allow_he:1,
->   	    set_agile:1;
->   	u32 phy_mode;
->   	u32 cfreq1;
-> @@ -3334,7 +3335,10 @@ struct wmi_vdev_install_key_arg {
->   
->   #define WMI_MAX_SUPPORTED_RATES			128
->   #define WMI_HOST_MAX_HECAP_PHY_SIZE		3
-> -#define WMI_HOST_MAX_HE_RATE_SET		1
-> +#define WMI_HOST_MAX_HE_RATE_SET		3
-> +#define WMI_HECAP_TXRX_MCS_NSS_IDX_80		0
-> +#define WMI_HECAP_TXRX_MCS_NSS_IDX_160		1
-> +#define WMI_HECAP_TXRX_MCS_NSS_IDX_80_80	2
->   
->   struct wmi_rate_set_arg {
->   	u32 num_rates;
-> 
+Signed-off-by: Bhagavathi Perumal S <bperumal@codeaurora.org>
+---
+v2:
+ -Rebased on top of the latest ath11k-post-bringup
+
+ drivers/net/wireless/ath/ath11k/debug_htt_stats.c | 205 ++++++++++++++++++----
+ drivers/net/wireless/ath/ath11k/debug_htt_stats.h |  42 +++++
+ 2 files changed, 214 insertions(+), 33 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/debug_htt_stats.c b/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
+index 27b301b..17a598d 100644
+--- a/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
++++ b/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
+@@ -776,11 +776,14 @@ static inline void htt_print_tx_peer_rate_stats_tlv(const void *tag_buf,
+ 	u32 len = stats_req->buf_len;
+ 	u32 buf_len = ATH11K_HTT_STATS_BUF_SIZE;
+ 	char str_buf[HTT_MAX_STRING_LEN] = {0};
+-	char *tx_gi[HTT_TX_PEER_STATS_NUM_GI_COUNTERS];
++	char *tx_gi[HTT_TX_PEER_STATS_NUM_GI_COUNTERS] = {0};
+ 	u8 j;
+ 
+-	for (j = 0; j < HTT_TX_PEER_STATS_NUM_GI_COUNTERS; j++)
++	for (j = 0; j < HTT_TX_PEER_STATS_NUM_GI_COUNTERS; j++) {
+ 		tx_gi[j] = kmalloc(HTT_MAX_STRING_LEN, GFP_ATOMIC);
++		if (!tx_gi[j])
++			goto fail;
++	}
+ 
+ 	len += HTT_DBG_OUT(buf + len, buf_len - len, "HTT_TX_PEER_RATE_STATS_TLV:");
+ 	len += HTT_DBG_OUT(buf + len, buf_len - len, "tx_ldpc = %u",
+@@ -841,15 +844,16 @@ static inline void htt_print_tx_peer_rate_stats_tlv(const void *tag_buf,
+ 			HTT_TX_PDEV_STATS_NUM_DCM_COUNTERS);
+ 	len += HTT_DBG_OUT(buf + len, buf_len - len, "tx_dcm = %s\n", str_buf);
+ 
+-	for (j = 0; j < HTT_TX_PEER_STATS_NUM_GI_COUNTERS; j++)
+-		kfree(tx_gi[j]);
+-
+ 	if (len >= buf_len)
+ 		buf[buf_len - 1] = 0;
+ 	else
+ 		buf[len] = 0;
+ 
+ 	stats_req->buf_len = len;
++
++fail:
++	for (j = 0; j < HTT_TX_PEER_STATS_NUM_GI_COUNTERS; j++)
++		kfree(tx_gi[j]);
+ }
+ 
+ static inline void htt_print_rx_peer_rate_stats_tlv(const void *tag_buf,
+@@ -860,15 +864,21 @@ static inline void htt_print_rx_peer_rate_stats_tlv(const void *tag_buf,
+ 	u32 len = stats_req->buf_len;
+ 	u32 buf_len = ATH11K_HTT_STATS_BUF_SIZE;
+ 	u8 j;
+-	char *rssi_chain[HTT_RX_PEER_STATS_NUM_SPATIAL_STREAMS];
+-	char *rx_gi[HTT_RX_PEER_STATS_NUM_GI_COUNTERS];
++	char *rssi_chain[HTT_RX_PEER_STATS_NUM_SPATIAL_STREAMS] = {0};
++	char *rx_gi[HTT_RX_PEER_STATS_NUM_GI_COUNTERS] = {0};
+ 	char str_buf[HTT_MAX_STRING_LEN] = {0};
+ 
+-	for (j = 0; j < HTT_RX_PEER_STATS_NUM_SPATIAL_STREAMS; j++)
++	for (j = 0; j < HTT_RX_PEER_STATS_NUM_SPATIAL_STREAMS; j++) {
+ 		rssi_chain[j] = kmalloc(HTT_MAX_STRING_LEN, GFP_ATOMIC);
++		if (!rssi_chain[j])
++			goto fail;
++	}
+ 
+-	for (j = 0; j < HTT_RX_PEER_STATS_NUM_GI_COUNTERS; j++)
++	for (j = 0; j < HTT_RX_PEER_STATS_NUM_GI_COUNTERS; j++) {
+ 		rx_gi[j] = kmalloc(HTT_MAX_STRING_LEN, GFP_ATOMIC);
++		if (!rx_gi[j])
++			goto fail;
++	}
+ 
+ 	len += HTT_DBG_OUT(buf + len, buf_len - len, "HTT_RX_PEER_RATE_STATS_TLV:");
+ 	len += HTT_DBG_OUT(buf + len, buf_len - len, "nsts = %u",
+@@ -928,18 +938,19 @@ static inline void htt_print_rx_peer_rate_stats_tlv(const void *tag_buf,
+ 			HTT_RX_PDEV_STATS_NUM_PREAMBLE_TYPES);
+ 	len += HTT_DBG_OUT(buf + len, buf_len - len, "rx_pream = %s\n", str_buf);
+ 
+-	for (j = 0; j < HTT_RX_PEER_STATS_NUM_SPATIAL_STREAMS; j++)
+-		kfree(rssi_chain[j]);
+-
+-	for (j = 0; j < HTT_RX_PEER_STATS_NUM_GI_COUNTERS; j++)
+-		kfree(rx_gi[j]);
+-
+ 	if (len >= buf_len)
+ 		buf[buf_len - 1] = 0;
+ 	else
+ 		buf[len] = 0;
+ 
+ 	stats_req->buf_len = len;
++
++fail:
++	for (j = 0; j < HTT_RX_PEER_STATS_NUM_SPATIAL_STREAMS; j++)
++		kfree(rssi_chain[j]);
++
++	for (j = 0; j < HTT_RX_PEER_STATS_NUM_GI_COUNTERS; j++)
++		kfree(rx_gi[j]);
+ }
+ 
+ static inline void
+@@ -2832,10 +2843,13 @@ static inline void htt_print_tx_pdev_rate_stats_tlv(const void *tag_buf,
+ 	u32 buf_len = ATH11K_HTT_STATS_BUF_SIZE;
+ 	u8 j;
+ 	char str_buf[HTT_MAX_STRING_LEN] = {0};
+-	char *tx_gi[HTT_TX_PEER_STATS_NUM_GI_COUNTERS];
++	char *tx_gi[HTT_TX_PEER_STATS_NUM_GI_COUNTERS] = {0};
+ 
+-	for (j = 0; j < HTT_TX_PEER_STATS_NUM_GI_COUNTERS; j++)
++	for (j = 0; j < HTT_TX_PEER_STATS_NUM_GI_COUNTERS; j++) {
+ 		tx_gi[j] = kmalloc(HTT_MAX_STRING_LEN, GFP_ATOMIC);
++		if (!tx_gi[j])
++			goto fail;
++	}
+ 
+ 	len += HTT_DBG_OUT(buf + len, buf_len - len, "HTT_TX_PDEV_RATE_STATS_TLV:");
+ 	len += HTT_DBG_OUT(buf + len, buf_len - len, "mac_id = %u",
+@@ -2988,15 +3002,15 @@ static inline void htt_print_tx_pdev_rate_stats_tlv(const void *tag_buf,
+ 			HTT_TX_PDEV_STATS_NUM_DCM_COUNTERS);
+ 	len += HTT_DBG_OUT(buf + len, buf_len - len, "tx_dcm = %s\n", str_buf);
+ 
+-	for (j = 0; j < HTT_TX_PEER_STATS_NUM_GI_COUNTERS; j++)
+-		kfree(tx_gi[j]);
+-
+ 	if (len >= buf_len)
+ 		buf[buf_len - 1] = 0;
+ 	else
+ 		buf[len] = 0;
+ 
+ 	stats_req->buf_len = len;
++fail:
++	for (j = 0; j < HTT_TX_PEER_STATS_NUM_GI_COUNTERS; j++)
++		kfree(tx_gi[j]);
+ }
+ 
+ static inline void htt_print_rx_pdev_rate_stats_tlv(const void *tag_buf,
+@@ -3006,16 +3020,30 @@ static inline void htt_print_rx_pdev_rate_stats_tlv(const void *tag_buf,
+ 	u8 *buf = stats_req->buf;
+ 	u32 len = stats_req->buf_len;
+ 	u32 buf_len = ATH11K_HTT_STATS_BUF_SIZE;
+-	u8 j;
+-	char *rssi_chain[HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS];
+-	char *rx_gi[HTT_RX_PDEV_STATS_NUM_GI_COUNTERS];
++	u8 i, j;
++	u16 index = 0;
++	char *rssi_chain[HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS] = {0};
++	char *rx_gi[HTT_RX_PDEV_STATS_NUM_GI_COUNTERS] = {0};
+ 	char str_buf[HTT_MAX_STRING_LEN] = {0};
++	char *rx_pilot_evm_dB[HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS] = {0};
+ 
+-	for (j = 0; j < HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS; j++)
++	for (j = 0; j < HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS; j++) {
+ 		rssi_chain[j] = kmalloc(HTT_MAX_STRING_LEN, GFP_ATOMIC);
++		if (!rssi_chain[j])
++			goto fail;
++	}
+ 
+-	for (j = 0; j < HTT_RX_PDEV_STATS_NUM_GI_COUNTERS; j++)
++	for (j = 0; j < HTT_RX_PDEV_STATS_NUM_GI_COUNTERS; j++) {
+ 		rx_gi[j] = kmalloc(HTT_MAX_STRING_LEN, GFP_ATOMIC);
++		if (!rx_gi[j])
++			goto fail;
++	}
++
++	for (j = 0; j < HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS; j++) {
++		rx_pilot_evm_dB[j] = kmalloc(HTT_MAX_STRING_LEN, GFP_ATOMIC);
++		if (!rx_pilot_evm_dB[j])
++			goto fail;
++	}
+ 
+ 	len += HTT_DBG_OUT(buf + len, buf_len - len, "HTT_RX_PDEV_RATE_STATS_TLV:");
+ 	len += HTT_DBG_OUT(buf + len, buf_len - len, "mac_id = %u",
+@@ -3059,6 +3087,32 @@ static inline void htt_print_rx_pdev_rate_stats_tlv(const void *tag_buf,
+ 	ARRAY_TO_STRING(str_buf, htt_stats_buf->rx_bw,
+ 			HTT_RX_PDEV_STATS_NUM_BW_COUNTERS);
+ 	len += HTT_DBG_OUT(buf + len, buf_len - len, "rx_bw = %s ", str_buf);
++	len += HTT_DBG_OUT(buf + len, buf_len - len, "rx_evm_nss_count = %u",
++			htt_stats_buf->nss_count);
++
++	len += HTT_DBG_OUT(buf + len, buf_len - len, "rx_evm_pilot_count = %u",
++			htt_stats_buf->pilot_count);
++
++	for (j = 0; j < HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS; j++) {
++		index = 0;
++
++		for (i = 0; i < HTT_RX_PDEV_STATS_RXEVM_MAX_PILOTS_PER_NSS; i++)
++			index += snprintf(&rx_pilot_evm_dB[j][index],
++					  HTT_MAX_STRING_LEN - index,
++					  " %u:%d,",
++					  i,
++					  htt_stats_buf->rx_pilot_evm_dB[j][i]);
++		len += HTT_DBG_OUT(buf + len, buf_len - len, "pilot_evm_dB[%u] = %s ",
++				   j, rx_pilot_evm_dB[j]);
++	}
++
++	index = 0;
++	memset(str_buf, 0x0, HTT_MAX_STRING_LEN);
++	for (i = 0; i < HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS; i++)
++		index += snprintf(&str_buf[index],
++				  HTT_MAX_STRING_LEN - index,
++				  " %u:%d,", i, htt_stats_buf->rx_pilot_evm_dB_mean[i]);
++	len += HTT_DBG_OUT(buf + len, buf_len - len, "pilot_evm_dB_mean = %s ", str_buf);
+ 
+ 	for (j = 0; j < HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS; j++) {
+ 		ARRAY_TO_STRING(rssi_chain[j], htt_stats_buf->rssi_chain[j],
+@@ -3079,12 +3133,6 @@ static inline void htt_print_rx_pdev_rate_stats_tlv(const void *tag_buf,
+ 			HTT_RX_PDEV_STATS_NUM_PREAMBLE_TYPES);
+ 	len += HTT_DBG_OUT(buf + len, buf_len - len, "rx_pream = %s", str_buf);
+ 
+-	for (j = 0; j < HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS; j++)
+-		kfree(rssi_chain[j]);
+-
+-	for (j = 0; j < HTT_RX_PDEV_STATS_NUM_GI_COUNTERS; j++)
+-		kfree(rx_gi[j]);
+-
+ 	len += HTT_DBG_OUT(buf + len, buf_len - len, "rx_11ax_su_ext = %u",
+ 			   htt_stats_buf->rx_11ax_su_ext);
+ 	len += HTT_DBG_OUT(buf + len, buf_len - len, "rx_11ac_mumimo = %u",
+@@ -3110,8 +3158,89 @@ static inline void htt_print_rx_pdev_rate_stats_tlv(const void *tag_buf,
+ 
+ 	len += HTT_DBG_OUT(buf + len, buf_len - len, "rx_active_dur_us_low = %u",
+ 			   htt_stats_buf->rx_active_dur_us_low);
+-	len += HTT_DBG_OUT(buf + len, buf_len - len, "rx_active_dur_us_high = %u\n",
+-			   htt_stats_buf->rx_active_dur_us_high);
++	len += HTT_DBG_OUT(buf + len, buf_len - len, "rx_active_dur_us_high = %u",
++			htt_stats_buf->rx_active_dur_us_high);
++	len += HTT_DBG_OUT(buf + len, buf_len - len, "rx_11ax_ul_ofdma = %u",
++			htt_stats_buf->rx_11ax_ul_ofdma);
++
++	memset(str_buf, 0x0, HTT_MAX_STRING_LEN);
++	ARRAY_TO_STRING(str_buf, htt_stats_buf->ul_ofdma_rx_mcs,
++			HTT_RX_PDEV_STATS_NUM_MCS_COUNTERS);
++	len += HTT_DBG_OUT(buf + len, buf_len - len, "ul_ofdma_rx_mcs = %s ", str_buf);
++
++	for (j = 0; j < HTT_RX_PDEV_STATS_NUM_GI_COUNTERS; j++) {
++		ARRAY_TO_STRING(rx_gi[j], htt_stats_buf->ul_ofdma_rx_gi[j],
++				HTT_RX_PDEV_STATS_NUM_MCS_COUNTERS);
++		len += HTT_DBG_OUT(buf + len, buf_len - len, "ul_ofdma_rx_gi[%u] = %s ",
++				   j, rx_gi[j]);
++	}
++
++	memset(str_buf, 0x0, HTT_MAX_STRING_LEN);
++	ARRAY_TO_STRING(str_buf, htt_stats_buf->ul_ofdma_rx_nss,
++			HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS);
++	len += HTT_DBG_OUT(buf + len, buf_len - len, "ul_ofdma_rx_nss = %s ", str_buf);
++
++	memset(str_buf, 0x0, HTT_MAX_STRING_LEN);
++	ARRAY_TO_STRING(str_buf, htt_stats_buf->ul_ofdma_rx_bw,
++			HTT_RX_PDEV_STATS_NUM_BW_COUNTERS);
++	len += HTT_DBG_OUT(buf + len, buf_len - len, "ul_ofdma_rx_bw = %s ", str_buf);
++
++	len += HTT_DBG_OUT(buf + len, buf_len - len, "ul_ofdma_rx_stbc = %u",
++			htt_stats_buf->ul_ofdma_rx_stbc);
++	len += HTT_DBG_OUT(buf + len, buf_len - len, "ul_ofdma_rx_ldpc = %u",
++			htt_stats_buf->ul_ofdma_rx_ldpc);
++
++	memset(str_buf, 0x0, HTT_MAX_STRING_LEN);
++	ARRAY_TO_STRING(str_buf, htt_stats_buf->rx_ulofdma_non_data_ppdu,
++			HTT_RX_PDEV_MAX_OFDMA_NUM_USER);
++	len += HTT_DBG_OUT(buf + len, buf_len - len, "rx_ulofdma_non_data_ppdu = %s ",
++			   str_buf);
++
++	memset(str_buf, 0x0, HTT_MAX_STRING_LEN);
++	ARRAY_TO_STRING(str_buf, htt_stats_buf->rx_ulofdma_data_ppdu,
++			HTT_RX_PDEV_MAX_OFDMA_NUM_USER);
++	len += HTT_DBG_OUT(buf + len, buf_len - len, "rx_ulofdma_data_ppdu = %s ",
++			   str_buf);
++
++	memset(str_buf, 0x0, HTT_MAX_STRING_LEN);
++	ARRAY_TO_STRING(str_buf, htt_stats_buf->rx_ulofdma_mpdu_ok,
++			HTT_RX_PDEV_MAX_OFDMA_NUM_USER);
++	len += HTT_DBG_OUT(buf + len, buf_len - len, "rx_ulofdma_mpdu_ok = %s ", str_buf);
++
++	memset(str_buf, 0x0, HTT_MAX_STRING_LEN);
++	ARRAY_TO_STRING(str_buf, htt_stats_buf->rx_ulofdma_mpdu_fail,
++			HTT_RX_PDEV_MAX_OFDMA_NUM_USER);
++	len += HTT_DBG_OUT(buf + len, buf_len - len, "rx_ulofdma_mpdu_fail = %s",
++			   str_buf);
++
++	for (j = 0; j < HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS; j++) {
++		index = 0;
++		memset(str_buf, 0x0, HTT_MAX_STRING_LEN);
++		for (i = 0; i < HTT_RX_PDEV_MAX_OFDMA_NUM_USER; i++)
++			index += snprintf(&str_buf[index],
++					  HTT_MAX_STRING_LEN - index,
++					  " %u:%d,",
++					  i, htt_stats_buf->rx_ul_fd_rssi[j][i]);
++		len += HTT_DBG_OUT(buf + len, buf_len - len,
++				   "rx_ul_fd_rssi: nss[%u] = %s", j, str_buf);
++	}
++
++	len += HTT_DBG_OUT(buf + len, buf_len - len, "per_chain_rssi_pkt_type = %#x",
++			   htt_stats_buf->per_chain_rssi_pkt_type);
++
++	for (j = 0; j < HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS; j++) {
++		index = 0;
++		memset(str_buf, 0x0, HTT_MAX_STRING_LEN);
++		for (i = 0; i < HTT_RX_PDEV_STATS_NUM_BW_COUNTERS; i++)
++			index += snprintf(&str_buf[index],
++					  HTT_MAX_STRING_LEN - index,
++					  " %u:%d,",
++					  i,
++					  htt_stats_buf->rx_per_chain_rssi_in_dbm[j][i]);
++		len += HTT_DBG_OUT(buf + len, buf_len - len,
++				   "rx_per_chain_rssi_in_dbm[%u] = %s ", j, str_buf);
++	}
++	len += HTT_DBG_OUT(buf + len, buf_len - len, "\n");
+ 
+ 	if (len >= buf_len)
+ 		buf[buf_len - 1] = 0;
+@@ -3119,6 +3248,16 @@ static inline void htt_print_rx_pdev_rate_stats_tlv(const void *tag_buf,
+ 		buf[len] = 0;
+ 
+ 	stats_req->buf_len = len;
++
++fail:
++	for (j = 0; j < HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS; j++)
++		kfree(rssi_chain[j]);
++
++	for (j = 0; j < HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS; j++)
++		kfree(rx_pilot_evm_dB[j]);
++
++	for (i = 0; i < HTT_RX_PDEV_STATS_NUM_GI_COUNTERS; i++)
++		kfree(rx_gi[i]);
+ }
+ 
+ static inline void htt_print_rx_soc_fw_stats_tlv(const void *tag_buf,
+diff --git a/drivers/net/wireless/ath/ath11k/debug_htt_stats.h b/drivers/net/wireless/ath/ath11k/debug_htt_stats.h
+index 618f194..9807599 100644
+--- a/drivers/net/wireless/ath/ath11k/debug_htt_stats.h
++++ b/drivers/net/wireless/ath/ath11k/debug_htt_stats.h
+@@ -1231,6 +1231,8 @@ struct htt_tx_pdev_rate_stats_tlv {
+ #define HTT_RX_PDEV_STATS_NUM_BW_COUNTERS          4
+ #define HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS      8
+ #define HTT_RX_PDEV_STATS_NUM_PREAMBLE_TYPES       HTT_STATS_PREAM_COUNT
++#define HTT_RX_PDEV_MAX_OFDMA_NUM_USER             8
++#define HTT_RX_PDEV_STATS_RXEVM_MAX_PILOTS_PER_NSS 16
+ 
+ struct htt_rx_pdev_rate_stats_tlv {
+ 	u32 mac_id__word;
+@@ -1269,6 +1271,46 @@ struct htt_rx_pdev_rate_stats_tlv {
+ 	u32 rx_legacy_ofdm_rate[HTT_RX_PDEV_STATS_NUM_LEGACY_OFDM_STATS];
+ 	u32 rx_active_dur_us_low;
+ 	u32 rx_active_dur_us_high;
++
++	u32 rx_11ax_ul_ofdma;
++
++	u32 ul_ofdma_rx_mcs[HTT_RX_PDEV_STATS_NUM_MCS_COUNTERS];
++	u32 ul_ofdma_rx_gi[HTT_TX_PDEV_STATS_NUM_GI_COUNTERS]
++			  [HTT_RX_PDEV_STATS_NUM_MCS_COUNTERS];
++	u32 ul_ofdma_rx_nss[HTT_TX_PDEV_STATS_NUM_SPATIAL_STREAMS];
++	u32 ul_ofdma_rx_bw[HTT_TX_PDEV_STATS_NUM_BW_COUNTERS];
++	u32 ul_ofdma_rx_stbc;
++	u32 ul_ofdma_rx_ldpc;
++
++	/* record the stats for each user index */
++	u32 rx_ulofdma_non_data_ppdu[HTT_RX_PDEV_MAX_OFDMA_NUM_USER]; /* ppdu level */
++	u32 rx_ulofdma_data_ppdu[HTT_RX_PDEV_MAX_OFDMA_NUM_USER];     /* ppdu level */
++	u32 rx_ulofdma_mpdu_ok[HTT_RX_PDEV_MAX_OFDMA_NUM_USER];       /* mpdu level */
++	u32 rx_ulofdma_mpdu_fail[HTT_RX_PDEV_MAX_OFDMA_NUM_USER];     /* mpdu level */
++
++	u32 nss_count;
++	u32 pilot_count;
++	/* RxEVM stats in dB */
++	s32 rx_pilot_evm_dB[HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS]
++			   [HTT_RX_PDEV_STATS_RXEVM_MAX_PILOTS_PER_NSS];
++	/* rx_pilot_evm_dB_mean:
++	 * EVM mean across pilots, computed as
++	 *     mean(10*log10(rx_pilot_evm_linear)) = mean(rx_pilot_evm_dB)
++	 */
++	s32 rx_pilot_evm_dB_mean[HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS];
++	s8 rx_ul_fd_rssi[HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS]
++			[HTT_RX_PDEV_MAX_OFDMA_NUM_USER]; /* dBm units */
++	/* per_chain_rssi_pkt_type:
++	 * This field shows what type of rx frame the per-chain RSSI was computed
++	 * on, by recording the frame type and sub-type as bit-fields within this
++	 * field:
++	 * BIT [3 : 0]    :- IEEE80211_FC0_TYPE
++	 * BIT [7 : 4]    :- IEEE80211_FC0_SUBTYPE
++	 * BIT [31 : 8]   :- Reserved
++	 */
++	u32 per_chain_rssi_pkt_type;
++	s8 rx_per_chain_rssi_in_dbm[HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS]
++				   [HTT_RX_PDEV_STATS_NUM_BW_COUNTERS];
+ };
+ 
+ /* == RX PDEV/SOC STATS == */
+-- 
+1.9.1
 
 
 _______________________________________________
