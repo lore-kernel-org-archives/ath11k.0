@@ -1,12 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from a27-187.smtp-out.us-west-2.amazonses.com ([54.240.27.187])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iZVfC-0002mU-39
- for ath11k@lists.infradead.org; Tue, 26 Nov 2019 07:53:36 +0000
-From: Bhagavathi Perumal S <bperumal@codeaurora.org>
-Subject: [PATCH v2] ath11k: Add missing pdev rx rate stats
-Date: Tue, 26 Nov 2019 07:53:29 +0000
-Message-ID: <0101016ea6b37701-c96a715a-3466-4836-9152-079584e49603-000000@us-west-2.amazonses.com>
+ id 1iZYeG-0002uV-Jq
+ for ath11k@lists.infradead.org; Tue, 26 Nov 2019 11:04:49 +0000
+From: Kalle Valo <kvalo@codeaurora.org>
+Subject: [PATCH 01/10] ath11k: Fix htt stats sounding info and pdev cca stats
+Date: Tue, 26 Nov 2019 11:04:45 +0000
+Message-ID: <0101016ea76291d2-4b8f69f8-8b9f-4272-942e-984a1b2138ce-000000@us-west-2.amazonses.com>
+In-Reply-To: <1574766279-13105-1-git-send-email-kvalo@codeaurora.org>
+References: <1574766279-13105-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -20,405 +22,40 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: Bhagavathi Perumal S <bperumal@codeaurora.org>
+To: linux-wireless@vger.kernel.org
+Cc: ath11k@lists.infradead.org
 
-This adds missing rx rate info stats like pilot evm,
-per chain rssi, per user ul ppdu and mpdu counts and
-ul ofdma rate info etc.
+From: Ganesh Sesetti <gseset@codeaurora.org>
 
-And add null checks for memory alloc failures.
+The Previous configuartion of htt stats sounding info and pdev cca stats
+are invalid due to that getting time out error.
 
-Signed-off-by: Bhagavathi Perumal S <bperumal@codeaurora.org>
+Changing htt stats sounding info value from 0xFF to 0x00 and htt pdev cca
+stats from 0x10 to 0x00
+
+Signed-off-by: Ganesh Sesetti <gseset@codeaurora.org>
+Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
-v2:
- -Rebased on top of the latest ath11k-post-bringup
+ drivers/net/wireless/ath/ath11k/dp.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
- drivers/net/wireless/ath/ath11k/debug_htt_stats.c | 205 ++++++++++++++++++----
- drivers/net/wireless/ath/ath11k/debug_htt_stats.h |  42 +++++
- 2 files changed, 214 insertions(+), 33 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/debug_htt_stats.c b/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
-index 27b301b..17a598d 100644
---- a/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
-+++ b/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
-@@ -776,11 +776,14 @@ static inline void htt_print_tx_peer_rate_stats_tlv(const void *tag_buf,
- 	u32 len = stats_req->buf_len;
- 	u32 buf_len = ATH11K_HTT_STATS_BUF_SIZE;
- 	char str_buf[HTT_MAX_STRING_LEN] = {0};
--	char *tx_gi[HTT_TX_PEER_STATS_NUM_GI_COUNTERS];
-+	char *tx_gi[HTT_TX_PEER_STATS_NUM_GI_COUNTERS] = {0};
- 	u8 j;
+diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
+index 4db71173db62..eb0f3df131c5 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.h
++++ b/drivers/net/wireless/ath/ath11k/dp.h
+@@ -1365,8 +1365,8 @@ struct htt_ext_stats_cfg_cmd {
+ #define HTT_STAT_DEFAULT_CFG0_ALL_CMDQS 0xffff
+ #define HTT_STAT_DEFAULT_CFG0_ALL_RINGS 0xffff
+ #define HTT_STAT_DEFAULT_CFG0_ACTIVE_PEERS 0xff
+-#define HTT_STAT_DEFAULT_CFG0_CCA_CUMULATIVE 0x10
+-#define HTT_STAT_DEFAULT_CFG0_ACTIVE_VDEVS 0xff
++#define HTT_STAT_DEFAULT_CFG0_CCA_CUMULATIVE 0x00
++#define HTT_STAT_DEFAULT_CFG0_ACTIVE_VDEVS 0x00
  
--	for (j = 0; j < HTT_TX_PEER_STATS_NUM_GI_COUNTERS; j++)
-+	for (j = 0; j < HTT_TX_PEER_STATS_NUM_GI_COUNTERS; j++) {
- 		tx_gi[j] = kmalloc(HTT_MAX_STRING_LEN, GFP_ATOMIC);
-+		if (!tx_gi[j])
-+			goto fail;
-+	}
- 
- 	len += HTT_DBG_OUT(buf + len, buf_len - len, "HTT_TX_PEER_RATE_STATS_TLV:");
- 	len += HTT_DBG_OUT(buf + len, buf_len - len, "tx_ldpc = %u",
-@@ -841,15 +844,16 @@ static inline void htt_print_tx_peer_rate_stats_tlv(const void *tag_buf,
- 			HTT_TX_PDEV_STATS_NUM_DCM_COUNTERS);
- 	len += HTT_DBG_OUT(buf + len, buf_len - len, "tx_dcm = %s\n", str_buf);
- 
--	for (j = 0; j < HTT_TX_PEER_STATS_NUM_GI_COUNTERS; j++)
--		kfree(tx_gi[j]);
--
- 	if (len >= buf_len)
- 		buf[buf_len - 1] = 0;
- 	else
- 		buf[len] = 0;
- 
- 	stats_req->buf_len = len;
-+
-+fail:
-+	for (j = 0; j < HTT_TX_PEER_STATS_NUM_GI_COUNTERS; j++)
-+		kfree(tx_gi[j]);
- }
- 
- static inline void htt_print_rx_peer_rate_stats_tlv(const void *tag_buf,
-@@ -860,15 +864,21 @@ static inline void htt_print_rx_peer_rate_stats_tlv(const void *tag_buf,
- 	u32 len = stats_req->buf_len;
- 	u32 buf_len = ATH11K_HTT_STATS_BUF_SIZE;
- 	u8 j;
--	char *rssi_chain[HTT_RX_PEER_STATS_NUM_SPATIAL_STREAMS];
--	char *rx_gi[HTT_RX_PEER_STATS_NUM_GI_COUNTERS];
-+	char *rssi_chain[HTT_RX_PEER_STATS_NUM_SPATIAL_STREAMS] = {0};
-+	char *rx_gi[HTT_RX_PEER_STATS_NUM_GI_COUNTERS] = {0};
- 	char str_buf[HTT_MAX_STRING_LEN] = {0};
- 
--	for (j = 0; j < HTT_RX_PEER_STATS_NUM_SPATIAL_STREAMS; j++)
-+	for (j = 0; j < HTT_RX_PEER_STATS_NUM_SPATIAL_STREAMS; j++) {
- 		rssi_chain[j] = kmalloc(HTT_MAX_STRING_LEN, GFP_ATOMIC);
-+		if (!rssi_chain[j])
-+			goto fail;
-+	}
- 
--	for (j = 0; j < HTT_RX_PEER_STATS_NUM_GI_COUNTERS; j++)
-+	for (j = 0; j < HTT_RX_PEER_STATS_NUM_GI_COUNTERS; j++) {
- 		rx_gi[j] = kmalloc(HTT_MAX_STRING_LEN, GFP_ATOMIC);
-+		if (!rx_gi[j])
-+			goto fail;
-+	}
- 
- 	len += HTT_DBG_OUT(buf + len, buf_len - len, "HTT_RX_PEER_RATE_STATS_TLV:");
- 	len += HTT_DBG_OUT(buf + len, buf_len - len, "nsts = %u",
-@@ -928,18 +938,19 @@ static inline void htt_print_rx_peer_rate_stats_tlv(const void *tag_buf,
- 			HTT_RX_PDEV_STATS_NUM_PREAMBLE_TYPES);
- 	len += HTT_DBG_OUT(buf + len, buf_len - len, "rx_pream = %s\n", str_buf);
- 
--	for (j = 0; j < HTT_RX_PEER_STATS_NUM_SPATIAL_STREAMS; j++)
--		kfree(rssi_chain[j]);
--
--	for (j = 0; j < HTT_RX_PEER_STATS_NUM_GI_COUNTERS; j++)
--		kfree(rx_gi[j]);
--
- 	if (len >= buf_len)
- 		buf[buf_len - 1] = 0;
- 	else
- 		buf[len] = 0;
- 
- 	stats_req->buf_len = len;
-+
-+fail:
-+	for (j = 0; j < HTT_RX_PEER_STATS_NUM_SPATIAL_STREAMS; j++)
-+		kfree(rssi_chain[j]);
-+
-+	for (j = 0; j < HTT_RX_PEER_STATS_NUM_GI_COUNTERS; j++)
-+		kfree(rx_gi[j]);
- }
- 
- static inline void
-@@ -2832,10 +2843,13 @@ static inline void htt_print_tx_pdev_rate_stats_tlv(const void *tag_buf,
- 	u32 buf_len = ATH11K_HTT_STATS_BUF_SIZE;
- 	u8 j;
- 	char str_buf[HTT_MAX_STRING_LEN] = {0};
--	char *tx_gi[HTT_TX_PEER_STATS_NUM_GI_COUNTERS];
-+	char *tx_gi[HTT_TX_PEER_STATS_NUM_GI_COUNTERS] = {0};
- 
--	for (j = 0; j < HTT_TX_PEER_STATS_NUM_GI_COUNTERS; j++)
-+	for (j = 0; j < HTT_TX_PEER_STATS_NUM_GI_COUNTERS; j++) {
- 		tx_gi[j] = kmalloc(HTT_MAX_STRING_LEN, GFP_ATOMIC);
-+		if (!tx_gi[j])
-+			goto fail;
-+	}
- 
- 	len += HTT_DBG_OUT(buf + len, buf_len - len, "HTT_TX_PDEV_RATE_STATS_TLV:");
- 	len += HTT_DBG_OUT(buf + len, buf_len - len, "mac_id = %u",
-@@ -2988,15 +3002,15 @@ static inline void htt_print_tx_pdev_rate_stats_tlv(const void *tag_buf,
- 			HTT_TX_PDEV_STATS_NUM_DCM_COUNTERS);
- 	len += HTT_DBG_OUT(buf + len, buf_len - len, "tx_dcm = %s\n", str_buf);
- 
--	for (j = 0; j < HTT_TX_PEER_STATS_NUM_GI_COUNTERS; j++)
--		kfree(tx_gi[j]);
--
- 	if (len >= buf_len)
- 		buf[buf_len - 1] = 0;
- 	else
- 		buf[len] = 0;
- 
- 	stats_req->buf_len = len;
-+fail:
-+	for (j = 0; j < HTT_TX_PEER_STATS_NUM_GI_COUNTERS; j++)
-+		kfree(tx_gi[j]);
- }
- 
- static inline void htt_print_rx_pdev_rate_stats_tlv(const void *tag_buf,
-@@ -3006,16 +3020,30 @@ static inline void htt_print_rx_pdev_rate_stats_tlv(const void *tag_buf,
- 	u8 *buf = stats_req->buf;
- 	u32 len = stats_req->buf_len;
- 	u32 buf_len = ATH11K_HTT_STATS_BUF_SIZE;
--	u8 j;
--	char *rssi_chain[HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS];
--	char *rx_gi[HTT_RX_PDEV_STATS_NUM_GI_COUNTERS];
-+	u8 i, j;
-+	u16 index = 0;
-+	char *rssi_chain[HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS] = {0};
-+	char *rx_gi[HTT_RX_PDEV_STATS_NUM_GI_COUNTERS] = {0};
- 	char str_buf[HTT_MAX_STRING_LEN] = {0};
-+	char *rx_pilot_evm_dB[HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS] = {0};
- 
--	for (j = 0; j < HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS; j++)
-+	for (j = 0; j < HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS; j++) {
- 		rssi_chain[j] = kmalloc(HTT_MAX_STRING_LEN, GFP_ATOMIC);
-+		if (!rssi_chain[j])
-+			goto fail;
-+	}
- 
--	for (j = 0; j < HTT_RX_PDEV_STATS_NUM_GI_COUNTERS; j++)
-+	for (j = 0; j < HTT_RX_PDEV_STATS_NUM_GI_COUNTERS; j++) {
- 		rx_gi[j] = kmalloc(HTT_MAX_STRING_LEN, GFP_ATOMIC);
-+		if (!rx_gi[j])
-+			goto fail;
-+	}
-+
-+	for (j = 0; j < HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS; j++) {
-+		rx_pilot_evm_dB[j] = kmalloc(HTT_MAX_STRING_LEN, GFP_ATOMIC);
-+		if (!rx_pilot_evm_dB[j])
-+			goto fail;
-+	}
- 
- 	len += HTT_DBG_OUT(buf + len, buf_len - len, "HTT_RX_PDEV_RATE_STATS_TLV:");
- 	len += HTT_DBG_OUT(buf + len, buf_len - len, "mac_id = %u",
-@@ -3059,6 +3087,32 @@ static inline void htt_print_rx_pdev_rate_stats_tlv(const void *tag_buf,
- 	ARRAY_TO_STRING(str_buf, htt_stats_buf->rx_bw,
- 			HTT_RX_PDEV_STATS_NUM_BW_COUNTERS);
- 	len += HTT_DBG_OUT(buf + len, buf_len - len, "rx_bw = %s ", str_buf);
-+	len += HTT_DBG_OUT(buf + len, buf_len - len, "rx_evm_nss_count = %u",
-+			htt_stats_buf->nss_count);
-+
-+	len += HTT_DBG_OUT(buf + len, buf_len - len, "rx_evm_pilot_count = %u",
-+			htt_stats_buf->pilot_count);
-+
-+	for (j = 0; j < HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS; j++) {
-+		index = 0;
-+
-+		for (i = 0; i < HTT_RX_PDEV_STATS_RXEVM_MAX_PILOTS_PER_NSS; i++)
-+			index += snprintf(&rx_pilot_evm_dB[j][index],
-+					  HTT_MAX_STRING_LEN - index,
-+					  " %u:%d,",
-+					  i,
-+					  htt_stats_buf->rx_pilot_evm_dB[j][i]);
-+		len += HTT_DBG_OUT(buf + len, buf_len - len, "pilot_evm_dB[%u] = %s ",
-+				   j, rx_pilot_evm_dB[j]);
-+	}
-+
-+	index = 0;
-+	memset(str_buf, 0x0, HTT_MAX_STRING_LEN);
-+	for (i = 0; i < HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS; i++)
-+		index += snprintf(&str_buf[index],
-+				  HTT_MAX_STRING_LEN - index,
-+				  " %u:%d,", i, htt_stats_buf->rx_pilot_evm_dB_mean[i]);
-+	len += HTT_DBG_OUT(buf + len, buf_len - len, "pilot_evm_dB_mean = %s ", str_buf);
- 
- 	for (j = 0; j < HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS; j++) {
- 		ARRAY_TO_STRING(rssi_chain[j], htt_stats_buf->rssi_chain[j],
-@@ -3079,12 +3133,6 @@ static inline void htt_print_rx_pdev_rate_stats_tlv(const void *tag_buf,
- 			HTT_RX_PDEV_STATS_NUM_PREAMBLE_TYPES);
- 	len += HTT_DBG_OUT(buf + len, buf_len - len, "rx_pream = %s", str_buf);
- 
--	for (j = 0; j < HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS; j++)
--		kfree(rssi_chain[j]);
--
--	for (j = 0; j < HTT_RX_PDEV_STATS_NUM_GI_COUNTERS; j++)
--		kfree(rx_gi[j]);
--
- 	len += HTT_DBG_OUT(buf + len, buf_len - len, "rx_11ax_su_ext = %u",
- 			   htt_stats_buf->rx_11ax_su_ext);
- 	len += HTT_DBG_OUT(buf + len, buf_len - len, "rx_11ac_mumimo = %u",
-@@ -3110,8 +3158,89 @@ static inline void htt_print_rx_pdev_rate_stats_tlv(const void *tag_buf,
- 
- 	len += HTT_DBG_OUT(buf + len, buf_len - len, "rx_active_dur_us_low = %u",
- 			   htt_stats_buf->rx_active_dur_us_low);
--	len += HTT_DBG_OUT(buf + len, buf_len - len, "rx_active_dur_us_high = %u\n",
--			   htt_stats_buf->rx_active_dur_us_high);
-+	len += HTT_DBG_OUT(buf + len, buf_len - len, "rx_active_dur_us_high = %u",
-+			htt_stats_buf->rx_active_dur_us_high);
-+	len += HTT_DBG_OUT(buf + len, buf_len - len, "rx_11ax_ul_ofdma = %u",
-+			htt_stats_buf->rx_11ax_ul_ofdma);
-+
-+	memset(str_buf, 0x0, HTT_MAX_STRING_LEN);
-+	ARRAY_TO_STRING(str_buf, htt_stats_buf->ul_ofdma_rx_mcs,
-+			HTT_RX_PDEV_STATS_NUM_MCS_COUNTERS);
-+	len += HTT_DBG_OUT(buf + len, buf_len - len, "ul_ofdma_rx_mcs = %s ", str_buf);
-+
-+	for (j = 0; j < HTT_RX_PDEV_STATS_NUM_GI_COUNTERS; j++) {
-+		ARRAY_TO_STRING(rx_gi[j], htt_stats_buf->ul_ofdma_rx_gi[j],
-+				HTT_RX_PDEV_STATS_NUM_MCS_COUNTERS);
-+		len += HTT_DBG_OUT(buf + len, buf_len - len, "ul_ofdma_rx_gi[%u] = %s ",
-+				   j, rx_gi[j]);
-+	}
-+
-+	memset(str_buf, 0x0, HTT_MAX_STRING_LEN);
-+	ARRAY_TO_STRING(str_buf, htt_stats_buf->ul_ofdma_rx_nss,
-+			HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS);
-+	len += HTT_DBG_OUT(buf + len, buf_len - len, "ul_ofdma_rx_nss = %s ", str_buf);
-+
-+	memset(str_buf, 0x0, HTT_MAX_STRING_LEN);
-+	ARRAY_TO_STRING(str_buf, htt_stats_buf->ul_ofdma_rx_bw,
-+			HTT_RX_PDEV_STATS_NUM_BW_COUNTERS);
-+	len += HTT_DBG_OUT(buf + len, buf_len - len, "ul_ofdma_rx_bw = %s ", str_buf);
-+
-+	len += HTT_DBG_OUT(buf + len, buf_len - len, "ul_ofdma_rx_stbc = %u",
-+			htt_stats_buf->ul_ofdma_rx_stbc);
-+	len += HTT_DBG_OUT(buf + len, buf_len - len, "ul_ofdma_rx_ldpc = %u",
-+			htt_stats_buf->ul_ofdma_rx_ldpc);
-+
-+	memset(str_buf, 0x0, HTT_MAX_STRING_LEN);
-+	ARRAY_TO_STRING(str_buf, htt_stats_buf->rx_ulofdma_non_data_ppdu,
-+			HTT_RX_PDEV_MAX_OFDMA_NUM_USER);
-+	len += HTT_DBG_OUT(buf + len, buf_len - len, "rx_ulofdma_non_data_ppdu = %s ",
-+			   str_buf);
-+
-+	memset(str_buf, 0x0, HTT_MAX_STRING_LEN);
-+	ARRAY_TO_STRING(str_buf, htt_stats_buf->rx_ulofdma_data_ppdu,
-+			HTT_RX_PDEV_MAX_OFDMA_NUM_USER);
-+	len += HTT_DBG_OUT(buf + len, buf_len - len, "rx_ulofdma_data_ppdu = %s ",
-+			   str_buf);
-+
-+	memset(str_buf, 0x0, HTT_MAX_STRING_LEN);
-+	ARRAY_TO_STRING(str_buf, htt_stats_buf->rx_ulofdma_mpdu_ok,
-+			HTT_RX_PDEV_MAX_OFDMA_NUM_USER);
-+	len += HTT_DBG_OUT(buf + len, buf_len - len, "rx_ulofdma_mpdu_ok = %s ", str_buf);
-+
-+	memset(str_buf, 0x0, HTT_MAX_STRING_LEN);
-+	ARRAY_TO_STRING(str_buf, htt_stats_buf->rx_ulofdma_mpdu_fail,
-+			HTT_RX_PDEV_MAX_OFDMA_NUM_USER);
-+	len += HTT_DBG_OUT(buf + len, buf_len - len, "rx_ulofdma_mpdu_fail = %s",
-+			   str_buf);
-+
-+	for (j = 0; j < HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS; j++) {
-+		index = 0;
-+		memset(str_buf, 0x0, HTT_MAX_STRING_LEN);
-+		for (i = 0; i < HTT_RX_PDEV_MAX_OFDMA_NUM_USER; i++)
-+			index += snprintf(&str_buf[index],
-+					  HTT_MAX_STRING_LEN - index,
-+					  " %u:%d,",
-+					  i, htt_stats_buf->rx_ul_fd_rssi[j][i]);
-+		len += HTT_DBG_OUT(buf + len, buf_len - len,
-+				   "rx_ul_fd_rssi: nss[%u] = %s", j, str_buf);
-+	}
-+
-+	len += HTT_DBG_OUT(buf + len, buf_len - len, "per_chain_rssi_pkt_type = %#x",
-+			   htt_stats_buf->per_chain_rssi_pkt_type);
-+
-+	for (j = 0; j < HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS; j++) {
-+		index = 0;
-+		memset(str_buf, 0x0, HTT_MAX_STRING_LEN);
-+		for (i = 0; i < HTT_RX_PDEV_STATS_NUM_BW_COUNTERS; i++)
-+			index += snprintf(&str_buf[index],
-+					  HTT_MAX_STRING_LEN - index,
-+					  " %u:%d,",
-+					  i,
-+					  htt_stats_buf->rx_per_chain_rssi_in_dbm[j][i]);
-+		len += HTT_DBG_OUT(buf + len, buf_len - len,
-+				   "rx_per_chain_rssi_in_dbm[%u] = %s ", j, str_buf);
-+	}
-+	len += HTT_DBG_OUT(buf + len, buf_len - len, "\n");
- 
- 	if (len >= buf_len)
- 		buf[buf_len - 1] = 0;
-@@ -3119,6 +3248,16 @@ static inline void htt_print_rx_pdev_rate_stats_tlv(const void *tag_buf,
- 		buf[len] = 0;
- 
- 	stats_req->buf_len = len;
-+
-+fail:
-+	for (j = 0; j < HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS; j++)
-+		kfree(rssi_chain[j]);
-+
-+	for (j = 0; j < HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS; j++)
-+		kfree(rx_pilot_evm_dB[j]);
-+
-+	for (i = 0; i < HTT_RX_PDEV_STATS_NUM_GI_COUNTERS; i++)
-+		kfree(rx_gi[i]);
- }
- 
- static inline void htt_print_rx_soc_fw_stats_tlv(const void *tag_buf,
-diff --git a/drivers/net/wireless/ath/ath11k/debug_htt_stats.h b/drivers/net/wireless/ath/ath11k/debug_htt_stats.h
-index 618f194..9807599 100644
---- a/drivers/net/wireless/ath/ath11k/debug_htt_stats.h
-+++ b/drivers/net/wireless/ath/ath11k/debug_htt_stats.h
-@@ -1231,6 +1231,8 @@ struct htt_tx_pdev_rate_stats_tlv {
- #define HTT_RX_PDEV_STATS_NUM_BW_COUNTERS          4
- #define HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS      8
- #define HTT_RX_PDEV_STATS_NUM_PREAMBLE_TYPES       HTT_STATS_PREAM_COUNT
-+#define HTT_RX_PDEV_MAX_OFDMA_NUM_USER             8
-+#define HTT_RX_PDEV_STATS_RXEVM_MAX_PILOTS_PER_NSS 16
- 
- struct htt_rx_pdev_rate_stats_tlv {
- 	u32 mac_id__word;
-@@ -1269,6 +1271,46 @@ struct htt_rx_pdev_rate_stats_tlv {
- 	u32 rx_legacy_ofdm_rate[HTT_RX_PDEV_STATS_NUM_LEGACY_OFDM_STATS];
- 	u32 rx_active_dur_us_low;
- 	u32 rx_active_dur_us_high;
-+
-+	u32 rx_11ax_ul_ofdma;
-+
-+	u32 ul_ofdma_rx_mcs[HTT_RX_PDEV_STATS_NUM_MCS_COUNTERS];
-+	u32 ul_ofdma_rx_gi[HTT_TX_PDEV_STATS_NUM_GI_COUNTERS]
-+			  [HTT_RX_PDEV_STATS_NUM_MCS_COUNTERS];
-+	u32 ul_ofdma_rx_nss[HTT_TX_PDEV_STATS_NUM_SPATIAL_STREAMS];
-+	u32 ul_ofdma_rx_bw[HTT_TX_PDEV_STATS_NUM_BW_COUNTERS];
-+	u32 ul_ofdma_rx_stbc;
-+	u32 ul_ofdma_rx_ldpc;
-+
-+	/* record the stats for each user index */
-+	u32 rx_ulofdma_non_data_ppdu[HTT_RX_PDEV_MAX_OFDMA_NUM_USER]; /* ppdu level */
-+	u32 rx_ulofdma_data_ppdu[HTT_RX_PDEV_MAX_OFDMA_NUM_USER];     /* ppdu level */
-+	u32 rx_ulofdma_mpdu_ok[HTT_RX_PDEV_MAX_OFDMA_NUM_USER];       /* mpdu level */
-+	u32 rx_ulofdma_mpdu_fail[HTT_RX_PDEV_MAX_OFDMA_NUM_USER];     /* mpdu level */
-+
-+	u32 nss_count;
-+	u32 pilot_count;
-+	/* RxEVM stats in dB */
-+	s32 rx_pilot_evm_dB[HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS]
-+			   [HTT_RX_PDEV_STATS_RXEVM_MAX_PILOTS_PER_NSS];
-+	/* rx_pilot_evm_dB_mean:
-+	 * EVM mean across pilots, computed as
-+	 *     mean(10*log10(rx_pilot_evm_linear)) = mean(rx_pilot_evm_dB)
-+	 */
-+	s32 rx_pilot_evm_dB_mean[HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS];
-+	s8 rx_ul_fd_rssi[HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS]
-+			[HTT_RX_PDEV_MAX_OFDMA_NUM_USER]; /* dBm units */
-+	/* per_chain_rssi_pkt_type:
-+	 * This field shows what type of rx frame the per-chain RSSI was computed
-+	 * on, by recording the frame type and sub-type as bit-fields within this
-+	 * field:
-+	 * BIT [3 : 0]    :- IEEE80211_FC0_TYPE
-+	 * BIT [7 : 4]    :- IEEE80211_FC0_SUBTYPE
-+	 * BIT [31 : 8]   :- Reserved
-+	 */
-+	u32 per_chain_rssi_pkt_type;
-+	s8 rx_per_chain_rssi_in_dbm[HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS]
-+				   [HTT_RX_PDEV_STATS_NUM_BW_COUNTERS];
- };
- 
- /* == RX PDEV/SOC STATS == */
+ /* HTT_DBG_EXT_STATS_PEER_INFO
+  * PARAMS:
 -- 
-1.9.1
+2.7.4
 
 
 _______________________________________________
