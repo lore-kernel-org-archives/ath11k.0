@@ -1,14 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from a27-18.smtp-out.us-west-2.amazonses.com ([54.240.27.18])
+Received: from a27-56.smtp-out.us-west-2.amazonses.com ([54.240.27.56])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iaF3i-00015g-D7
- for ath11k@lists.infradead.org; Thu, 28 Nov 2019 08:21:55 +0000
+ id 1iaF3c-00015f-Bt
+ for ath11k@lists.infradead.org; Thu, 28 Nov 2019 08:21:49 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 5/9] ath11k: update tx duration in station info
-Date: Thu, 28 Nov 2019 08:21:51 +0000
-Message-ID: <0101016eb11a268a-08e82b29-536f-4c1b-b967-3759497a3943-000000@us-west-2.amazonses.com>
-In-Reply-To: <1574929300-31782-1-git-send-email-kvalo@codeaurora.org>
-References: <1574929300-31782-1-git-send-email-kvalo@codeaurora.org>
+Subject: nFrom 964f1808c8512d0e99baf48cfa45cf5ee6b41952 Mon Sep 17 00:00:00
+ 2001
+Date: Thu, 28 Nov 2019 08:21:45 +0000
+Message-ID: <0101016eb11a0f72-517acc13-b581-4365-8b87-39e91d43d413-000000@us-west-2.amazonses.com>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -25,58 +24,50 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: linux-wireless@vger.kernel.org
 Cc: ath11k@lists.infradead.org
 
-From: Venkateswara Naralasetty <vnaralas@codeaurora.org>
+Here's fourth, and last, round of ath11k patches from
+ath11k-post-bringup branch[1] which got queued while ath11k was in
+review.
 
-Update tx duration in station info form PPDU stats
-so that users can dump tx duration of the station.
+This time there are various fixes.
 
-Signed-off-by: Venkateswara Naralasetty <vnaralas@codeaurora.org>
-Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/core.h  | 1 +
- drivers/net/wireless/ath/ath11k/dp_rx.c | 2 +-
- drivers/net/wireless/ath/ath11k/mac.c   | 3 +++
- 3 files changed, 5 insertions(+), 1 deletion(-)
+Please review.
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 065cb9dc880b..06482a5c102d 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -335,6 +335,7 @@ struct ath11k_sta {
- 	struct rate_info txrate;
- 	struct rate_info last_txrate;
- 	u64 rx_duration;
-+	u64 tx_duration;
- 	u8 rssi_comb;
- 	struct ath11k_htt_tx_stats *tx_stats;
- 	struct ath11k_rx_peer_stats *rx_stats;
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 85e999c7a238..8f69de594ada 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -1147,7 +1147,7 @@ ath11k_update_per_peer_tx_stats(struct ath11k *ar,
- 	arsta->txrate.nss = nss;
- 	arsta->txrate.bw = ath11k_mac_bw_to_mac80211_bw(bw);
- 	arsta->tx_info.status.rates[0].flags |= ath11k_bw_to_mac80211_bwflags(bw);
--
-+	arsta->tx_duration += tx_duration;
- 	memcpy(&arsta->last_txrate, &arsta->txrate, sizeof(struct rate_info));
- 
- 	if (succ_pkts) {
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index b048057b398f..624534d4c33a 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -5316,6 +5316,9 @@ static void ath11k_mac_op_sta_statistics(struct ieee80211_hw *hw,
- 	sinfo->rx_duration = arsta->rx_duration;
- 	sinfo->filled |= BIT_ULL(NL80211_STA_INFO_RX_DURATION);
- 
-+	sinfo->tx_duration = arsta->tx_duration;
-+	sinfo->filled |= BIT_ULL(NL80211_STA_INFO_TX_DURATION);
-+
- 	if (!arsta->txrate.legacy && !arsta->txrate.nss)
- 		return;
- 
+Kalle
+
+
+John Crispin (1):
+  ath11k: fix indentation in ath11k_mac_prepare_he_mode()
+
+Manikanta Pubbisetty (1):
+  ath11k: fix vht guard interval mapping
+
+Miles Hu (1):
+  ath11k: fix memory leak in monitor mode
+
+Sriram R (1):
+  ath11k: Update tx and rx chain count properly on drv_set_antenna
+
+Vasanthakumar Thiagarajan (2):
+  ath11k: Move mac80211 hw allocation before wmi_init command
+  ath11k: Setup REO destination ring before sending wmi_init command
+
+Venkateswara Naralasetty (3):
+  ath11k: Advertise MPDU start spacing as no restriction
+  ath11k: update tx duration in station info
+  ath11k: Skip update peer stats for management packets
+
+ drivers/net/wireless/ath/ath11k/core.c   |  40 ++++++++---
+ drivers/net/wireless/ath/ath11k/core.h   |   1 +
+ drivers/net/wireless/ath/ath11k/dp.c     |  10 ++-
+ drivers/net/wireless/ath/ath11k/dp.h     |   5 +-
+ drivers/net/wireless/ath/ath11k/dp_rx.c  |  95 ++++++++++++++++++-------
+ drivers/net/wireless/ath/ath11k/dp_rx.h  |   2 +
+ drivers/net/wireless/ath/ath11k/hal_rx.c |  16 ++++-
+ drivers/net/wireless/ath/ath11k/hal_rx.h |   6 ++
+ drivers/net/wireless/ath/ath11k/mac.c    | 116 ++++++++++++++++++++-----------
+ drivers/net/wireless/ath/ath11k/mac.h    |   3 +-
+ 10 files changed, 211 insertions(+), 83 deletions(-)
+
 -- 
 2.7.4
 
