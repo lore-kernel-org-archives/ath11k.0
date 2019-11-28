@@ -1,15 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from a27-188.smtp-out.us-west-2.amazonses.com ([54.240.27.188])
+Received: from a27-10.smtp-out.us-west-2.amazonses.com ([54.240.27.10])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iZzXT-0005uf-N7
- for ath11k@lists.infradead.org; Wed, 27 Nov 2019 15:47:37 +0000
-MIME-Version: 1.0
-Subject: Re: [PATCH 1/8] ath11k: add RX stats support for radiotap
+ id 1iaF3f-00016A-6W
+ for ath11k@lists.infradead.org; Thu, 28 Nov 2019 08:21:52 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <0101016ea36bc1e7-b9c8f0c1-9781-4920-afa0-45684e8754cc-000000@us-west-2.amazonses.com>
-References: <0101016ea36bc1e7-b9c8f0c1-9781-4920-afa0-45684e8754cc-000000@us-west-2.amazonses.com>
-Message-ID: <0101016ead8bd7cd-2ad027a9-a447-4a4f-a69b-9e6eb8bb2e41-000000@us-west-2.amazonses.com>
-Date: Wed, 27 Nov 2019 15:47:33 +0000
+Subject: [PATCH 3/9] ath11k: fix memory leak in monitor mode
+Date: Thu, 28 Nov 2019 08:21:48 +0000
+Message-ID: <0101016eb11a1b8d-63b9e4ac-451a-474c-bc76-8193ac8044bb-000000@us-west-2.amazonses.com>
+In-Reply-To: <1574929300-31782-1-git-send-email-kvalo@codeaurora.org>
+References: <1574929300-31782-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -18,37 +17,57 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: linux-wireless@vger.kernel.org
+Cc: ath11k@lists.infradead.org
 
-Kalle Valo <kvalo@codeaurora.org> wrote:
+From: Miles Hu <milehu@codeaurora.org>
 
-> mac80211 expects the definition of what HE rate info is available inside a
-> struct prepended to the skb.
-> 
-> Signed-off-by: Shashidhar Lakkavalli <slakkavalli@datto.com>
-> Signed-off-by: John Crispin <john@phrozen.org>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+remove tail check to avoid last amsdu leak.
+recycle skb in ppdu id wrap around case
 
-8 patches applied to ath-next branch of ath.git, thanks.
+Signed-off-by: Miles Hu <milehu@codeaurora.org>
+Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+---
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
 
-e4eb7b5c335c ath11k: add RX stats support for radiotap
-9cfbae4632fa ath11k: ignore event 0x6017
-2dab7d221e88 ath11k: convert message from info to dbg
-39e81c6a2907 ath11k: fix missed bw conversion in tx completion
-33782a3c379e ath11k: Remove dead code while handling amsdu packets
-9f056ed8ee01 ath11k: add HE support
-6d293d447670 ath11k: add TWT support
-3f8be640077a ath11k: add spatial reuse support
-
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 8c21925a522a..85e999c7a238 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -3735,8 +3735,15 @@ ath11k_dp_rx_mon_mpdu_pop(struct ath11k *ar,
+ 
+ 				if (ath11k_dp_rx_mon_comp_ppduid(msdu_ppdu_id,
+ 								 ppdu_id,
+-								 &rx_bufs_used))
++								 &rx_bufs_used)) {
++					if (rx_bufs_used) {
++						drop_mpdu = true;
++						dev_kfree_skb_any(msdu);
++						msdu = NULL;
++						goto next_msdu;
++					}
+ 					return rx_bufs_used;
++				}
+ 				pmon->mon_last_linkdesc_paddr = paddr;
+ 				is_first_msdu = false;
+ 			}
+@@ -3938,7 +3945,7 @@ static int ath11k_dp_rx_mon_deliver(struct ath11k *ar, u32 mac_id,
+ 
+ 		ath11k_dp_rx_deliver_msdu(ar, napi, mon_skb);
+ 		mon_skb = skb_next;
+-	} while (mon_skb && (mon_skb != tail_msdu));
++	} while (mon_skb);
+ 	rxs->flag = 0;
+ 
+ 	return 0;
 -- 
-https://patchwork.kernel.org/patch/11260591/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+2.7.4
 
 
 _______________________________________________
