@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from a27-55.smtp-out.us-west-2.amazonses.com ([54.240.27.55])
+Received: from a27-185.smtp-out.us-west-2.amazonses.com ([54.240.27.185])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iaF3g-00017T-Q0
- for ath11k@lists.infradead.org; Thu, 28 Nov 2019 08:21:54 +0000
+ id 1iaF3k-0001AV-8q
+ for ath11k@lists.infradead.org; Thu, 28 Nov 2019 08:21:57 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 4/9] ath11k: fix vht guard interval mapping
-Date: Thu, 28 Nov 2019 08:21:51 +0000
-Message-ID: <0101016eb11a25fa-46ffc2be-3377-49fe-94d0-48052e6cd865-000000@us-west-2.amazonses.com>
+Subject: [PATCH 6/9] ath11k: Skip update peer stats for management packets
+Date: Thu, 28 Nov 2019 08:21:54 +0000
+Message-ID: <0101016eb11a30c2-7e950fe3-fd78-4353-9c28-3fcf7cbde859-000000@us-west-2.amazonses.com>
 In-Reply-To: <1574929300-31782-1-git-send-email-kvalo@codeaurora.org>
 References: <1574929300-31782-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,73 +25,92 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: linux-wireless@vger.kernel.org
 Cc: ath11k@lists.infradead.org
 
-From: Manikanta Pubbisetty <mpubbise@codeaurora.org>
+From: Venkateswara Naralasetty <vnaralas@codeaurora.org>
 
-Guard interval value which comes from VHT_SIG_A TLV has a mapping
-where value 0 corresponds to LGI, 1 and 3 corresponds to SGI.
+Currently HTT_PPDU_STATS_TAG_USR_COMPLTN_ACK_BA_STATUS tag of PPDU stats
+doesn't have valid success bytes info of management frames.
+So skip update peer stats for management packets.
 
-Value 3 which is SGI(0.4us) in VHT was incorrectly mapped to a GI
-of 3.2us(only applicable in HE) resulting in incorrect rx GI stats.
-Fixing the mapping.
-
-Signed-off-by: Manikanta Pubbisetty <mpubbise@codeaurora.org>
+Signed-off-by: Venkateswara Naralasetty <vnaralas@codeaurora.org>
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/hal_rx.c | 16 +++++++++++++---
- drivers/net/wireless/ath/ath11k/hal_rx.h |  6 ++++++
- 2 files changed, 19 insertions(+), 3 deletions(-)
+ drivers/net/wireless/ath/ath11k/dp.h    |  4 +++-
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 33 ++++++++++++++++++++-------------
+ 2 files changed, 23 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/hal_rx.c b/drivers/net/wireless/ath/ath11k/hal_rx.c
-index 6168a4eb0c0b..9e0f8064e427 100644
---- a/drivers/net/wireless/ath/ath11k/hal_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/hal_rx.c
-@@ -920,6 +920,7 @@ ath11k_hal_rx_parse_mon_status_tlv(struct ath11k_base *ab,
- 			(struct hal_rx_vht_sig_a_info *)tlv_data;
- 		u32 nsts;
- 		u32 group_id;
-+		u8 gi_setting;
+diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
+index db216f055c42..82ddd7017722 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.h
++++ b/drivers/net/wireless/ath/ath11k/dp.h
+@@ -1176,7 +1176,9 @@ struct htt_ppdu_stats_usr_cmpltn_cmn {
  
- 		info0 = __le32_to_cpu(vht_sig->info0);
- 		info1 = __le32_to_cpu(vht_sig->info1);
-@@ -928,9 +929,18 @@ ath11k_hal_rx_parse_mon_status_tlv(struct ath11k_base *ab,
- 					    info0);
- 		ppdu_info->mcs = FIELD_GET(HAL_RX_VHT_SIG_A_INFO_INFO1_MCS,
- 					   info1);
--		ppdu_info->gi =
--			FIELD_GET(HAL_RX_VHT_SIG_A_INFO_INFO1_GI_SETTING,
--				  info1);
-+		gi_setting = FIELD_GET(HAL_RX_VHT_SIG_A_INFO_INFO1_GI_SETTING,
-+				       info1);
-+		switch (gi_setting) {
-+		case HAL_RX_VHT_SIG_A_NORMAL_GI:
-+			ppdu_info->gi = HAL_RX_GI_0_8_US;
-+			break;
-+		case HAL_RX_VHT_SIG_A_SHORT_GI:
-+		case HAL_RX_VHT_SIG_A_SHORT_GI_AMBIGUITY:
-+			ppdu_info->gi = HAL_RX_GI_0_4_US;
-+			break;
-+		}
+ #define HTT_PPDU_STATS_ACK_BA_INFO_NUM_MPDU_M	GENMASK(8, 0)
+ #define HTT_PPDU_STATS_ACK_BA_INFO_NUM_MSDU_M	GENMASK(24, 9)
+-#define HTT_PPDU_STATS_ACK_BA_INFO_TID_NUM	GENMASK(3, 0)
++#define HTT_PPDU_STATS_ACK_BA_INFO_TID_NUM	GENMASK(31, 25)
 +
- 		ppdu_info->is_stbc = info0 & HAL_RX_VHT_SIG_A_INFO_INFO0_STBC;
- 		nsts = FIELD_GET(HAL_RX_VHT_SIG_A_INFO_INFO0_NSTS, info0);
- 		if (ppdu_info->is_stbc && nsts > 0)
-diff --git a/drivers/net/wireless/ath/ath11k/hal_rx.h b/drivers/net/wireless/ath/ath11k/hal_rx.h
-index 2271bf56183b..bb022c781c48 100644
---- a/drivers/net/wireless/ath/ath11k/hal_rx.h
-+++ b/drivers/net/wireless/ath/ath11k/hal_rx.h
-@@ -189,6 +189,12 @@ struct hal_rx_vht_sig_a_info {
- 	__le32 info1;
- } __packed;
++#define HTT_PPDU_STATS_NON_QOS_TID	16
  
-+enum hal_rx_vht_sig_a_gi_setting {
-+	HAL_RX_VHT_SIG_A_NORMAL_GI = 0,
-+	HAL_RX_VHT_SIG_A_SHORT_GI = 1,
-+	HAL_RX_VHT_SIG_A_SHORT_GI_AMBIGUITY = 3,
-+};
+ struct htt_ppdu_stats_usr_cmpltn_ack_ba_status {
+ 	u32 ppdu_id;
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 8f69de594ada..a380efb9caa6 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -1034,6 +1034,7 @@ ath11k_update_per_peer_tx_stats(struct ath11k *ar,
+ 	u32 succ_bytes = 0;
+ 	u16 rate = 0, succ_pkts = 0;
+ 	u32 tx_duration = 0;
++	u8 tid = HTT_PPDU_STATS_NON_QOS_TID;
+ 	bool is_ampdu = false;
+ 
+ 	if (!usr_stats)
+@@ -1051,6 +1052,8 @@ ath11k_update_per_peer_tx_stats(struct ath11k *ar,
+ 		succ_bytes = usr_stats->ack_ba.success_bytes;
+ 		succ_pkts = FIELD_GET(HTT_PPDU_STATS_ACK_BA_INFO_NUM_MSDU_M,
+ 				      usr_stats->ack_ba.info);
++		tid = FIELD_GET(HTT_PPDU_STATS_ACK_BA_INFO_TID_NUM,
++				usr_stats->ack_ba.info);
+ 	}
+ 
+ 	if (common->fes_duration_us)
+@@ -1156,19 +1159,23 @@ ath11k_update_per_peer_tx_stats(struct ath11k *ar,
+ 		ieee80211_tx_rate_update(ar->hw, sta, &arsta->tx_info);
+ 	}
+ 
+-	memset(peer_stats, 0, sizeof(*peer_stats));
+-
+-	peer_stats->succ_pkts = succ_pkts;
+-	peer_stats->succ_bytes = succ_bytes;
+-	peer_stats->is_ampdu = is_ampdu;
+-	peer_stats->duration = tx_duration;
+-	peer_stats->ba_fails =
+-		HTT_USR_CMPLTN_LONG_RETRY(usr_stats->cmpltn_cmn.flags) +
+-		HTT_USR_CMPLTN_SHORT_RETRY(usr_stats->cmpltn_cmn.flags);
+-
+-	if (ath11k_debug_is_extd_tx_stats_enabled(ar))
+-		ath11k_accumulate_per_peer_tx_stats(arsta,
+-						    peer_stats, rate_idx);
++	/* PPDU stats reported for mgmt packet doesn't have valid tx bytes.
++	 * So skip peer stats update for mgmt packets.
++	 */
++	if (tid < HTT_PPDU_STATS_NON_QOS_TID) {
++		memset(peer_stats, 0, sizeof(*peer_stats));
++		peer_stats->succ_pkts = succ_pkts;
++		peer_stats->succ_bytes = succ_bytes;
++		peer_stats->is_ampdu = is_ampdu;
++		peer_stats->duration = tx_duration;
++		peer_stats->ba_fails =
++			HTT_USR_CMPLTN_LONG_RETRY(usr_stats->cmpltn_cmn.flags) +
++			HTT_USR_CMPLTN_SHORT_RETRY(usr_stats->cmpltn_cmn.flags);
 +
- #define HAL_RX_HE_SIG_A_SU_INFO_INFO0_TRANSMIT_MCS	GENMASK(6, 3)
- #define HAL_RX_HE_SIG_A_SU_INFO_INFO0_DCM		BIT(7)
- #define HAL_RX_HE_SIG_A_SU_INFO_INFO0_TRANSMIT_BW	GENMASK(20, 19)
++		if (ath11k_debug_is_extd_tx_stats_enabled(ar))
++			ath11k_accumulate_per_peer_tx_stats(arsta,
++							    peer_stats, rate_idx);
++	}
+ 
+ 	spin_unlock_bh(&ab->base_lock);
+ 	rcu_read_unlock();
 -- 
 2.7.4
 
