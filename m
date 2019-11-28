@@ -1,12 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from a27-10.smtp-out.us-west-2.amazonses.com ([54.240.27.10])
+Received: from a27-18.smtp-out.us-west-2.amazonses.com ([54.240.27.18])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iaF3f-00016A-6W
- for ath11k@lists.infradead.org; Thu, 28 Nov 2019 08:21:52 +0000
+ id 1iaF3c-00015g-JU
+ for ath11k@lists.infradead.org; Thu, 28 Nov 2019 08:21:49 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 3/9] ath11k: fix memory leak in monitor mode
-Date: Thu, 28 Nov 2019 08:21:48 +0000
-Message-ID: <0101016eb11a1b8d-63b9e4ac-451a-474c-bc76-8193ac8044bb-000000@us-west-2.amazonses.com>
+Subject: [PATCH 1/9] ath11k: Update tx and rx chain count properly on
+ drv_set_antenna
+Date: Thu, 28 Nov 2019 08:21:46 +0000
+Message-ID: <0101016eb11a12a4-fe2e3161-3d2e-4f10-a232-29a3f71fa979-000000@us-west-2.amazonses.com>
 In-Reply-To: <1574929300-31782-1-git-send-email-kvalo@codeaurora.org>
 References: <1574929300-31782-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,47 +26,40 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: linux-wireless@vger.kernel.org
 Cc: ath11k@lists.infradead.org
 
-From: Miles Hu <milehu@codeaurora.org>
+From: Sriram R <srirrama@codeaurora.org>
 
-remove tail check to avoid last amsdu leak.
-recycle skb in ppdu id wrap around case
+Set the number of tx and rx chains properly on drv_set_antenna().
+This will ensure the related ht/vht/he caps are properly recalculated
+based on the tx/rx chains set.
 
-Signed-off-by: Miles Hu <milehu@codeaurora.org>
+Signed-off-by: Sriram R <srirrama@codeaurora.org>
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/dp_rx.c | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
+ drivers/net/wireless/ath/ath11k/mac.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 8c21925a522a..85e999c7a238 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -3735,8 +3735,15 @@ ath11k_dp_rx_mon_mpdu_pop(struct ath11k *ar,
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 5231c4fa0e38..5ee7c2a1c611 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -3480,6 +3480,8 @@ static int __ath11k_set_antenna(struct ath11k *ar, u32 tx_ant, u32 rx_ant)
+ 		return ret;
+ 	}
  
- 				if (ath11k_dp_rx_mon_comp_ppduid(msdu_ppdu_id,
- 								 ppdu_id,
--								 &rx_bufs_used))
-+								 &rx_bufs_used)) {
-+					if (rx_bufs_used) {
-+						drop_mpdu = true;
-+						dev_kfree_skb_any(msdu);
-+						msdu = NULL;
-+						goto next_msdu;
-+					}
- 					return rx_bufs_used;
-+				}
- 				pmon->mon_last_linkdesc_paddr = paddr;
- 				is_first_msdu = false;
- 			}
-@@ -3938,7 +3945,7 @@ static int ath11k_dp_rx_mon_deliver(struct ath11k *ar, u32 mac_id,
++	ar->num_tx_chains = get_num_chains(tx_ant);
++
+ 	ret = ath11k_wmi_pdev_set_param(ar, WMI_PDEV_PARAM_RX_CHAIN_MASK,
+ 					rx_ant, ar->pdev->pdev_id);
+ 	if (ret) {
+@@ -3488,6 +3490,8 @@ static int __ath11k_set_antenna(struct ath11k *ar, u32 tx_ant, u32 rx_ant)
+ 		return ret;
+ 	}
  
- 		ath11k_dp_rx_deliver_msdu(ar, napi, mon_skb);
- 		mon_skb = skb_next;
--	} while (mon_skb && (mon_skb != tail_msdu));
-+	} while (mon_skb);
- 	rxs->flag = 0;
- 
- 	return 0;
++	ar->num_rx_chains = get_num_chains(rx_ant);
++
+ 	/* Reload HT/VHT/HE capability */
+ 	ath11k_mac_setup_ht_vht_cap(ar, &ar->pdev->cap, NULL);
+ 	ath11k_mac_setup_he_cap(ar, &ar->pdev->cap);
 -- 
 2.7.4
 
