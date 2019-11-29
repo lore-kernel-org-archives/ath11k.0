@@ -1,15 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from a27-21.smtp-out.us-west-2.amazonses.com ([54.240.27.21])
+Received: from a27-188.smtp-out.us-west-2.amazonses.com ([54.240.27.188])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iabfo-0005Fp-El
- for ath11k@lists.infradead.org; Fri, 29 Nov 2019 08:30:47 +0000
+ id 1iabgN-0005TS-DE
+ for ath11k@lists.infradead.org; Fri, 29 Nov 2019 08:31:21 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH 1/2] ath11k: add wmi helper for turning STA PS on/off
+Subject: Re: [PATCH V2 1/3] ath11k: rename ath11k_wmi_base instances from
+ wmi_sc to wmi_ab
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <20191118110815.23768-1-john@phrozen.org>
-References: <20191118110815.23768-1-john@phrozen.org>
-Message-ID: <0101016eb6489ad3-6f1c3be9-26bc-48f1-84de-108d9154d18d-000000@us-west-2.amazonses.com>
-Date: Fri, 29 Nov 2019 08:30:41 +0000
+In-Reply-To: <20191120192854.29582-1-john@phrozen.org>
+References: <20191120192854.29582-1-john@phrozen.org>
+Message-ID: <0101016eb6492523-b804d6f1-e8df-4d5c-b55e-273f6bfb241c-000000@us-west-2.amazonses.com>
+Date: Fri, 29 Nov 2019 08:31:17 +0000
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -27,23 +28,24 @@ Cc: ath11k@lists.infradead.org
 
 John Crispin <john@phrozen.org> wrote:
 
-> Add a WMI call helper to set the powersave mode of a STA interface.
+> This makes the code consistent with the recent sc to ab rename.
 > 
 > Signed-off-by: John Crispin <john@phrozen.org>
 
-Failed to apply, please resend.
+Failed to apply, please rebase.
 
-error: patch failed: drivers/net/wireless/ath/ath11k/mac.c:4074
-error: drivers/net/wireless/ath/ath11k/mac.c: patch does not apply
+error: patch failed: drivers/net/wireless/ath/ath11k/wmi.c:2479
+error: drivers/net/wireless/ath/ath11k/wmi.c: patch does not apply
 stg import: Diff does not apply cleanly
 
-2 patches set to Changes Requested.
+3 patches set to Changes Requested.
 
-11249515 [1/2] ath11k: add wmi helper for turning STA PS on/off
-11249513 [2/2] ath11k: disable PS for STA interfaces by default upon bringup
+11254749 [V2,1/3] ath11k: rename ath11k_wmi_base instances from wmi_sc to wmi_ab
+11254745 [V2,2/3] ath11k: add WMI calls to manually add/del/pause/resume TWT dialogs
+11254743 [V2,3/3] ath11k: add debugfs for TWT debug calls
 
 -- 
-https://patchwork.kernel.org/patch/11249515/
+https://patchwork.kernel.org/patch/11254749/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
