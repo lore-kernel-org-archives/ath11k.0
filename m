@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from a27-186.smtp-out.us-west-2.amazonses.com ([54.240.27.186])
+Received: from a27-21.smtp-out.us-west-2.amazonses.com ([54.240.27.21])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iabew-0003xJ-QL
- for ath11k@lists.infradead.org; Fri, 29 Nov 2019 08:29:52 +0000
+ id 1iabfo-0005Fp-El
+ for ath11k@lists.infradead.org; Fri, 29 Nov 2019 08:30:47 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH v2] ath11k: Add missing pdev rx rate stats
+Subject: Re: [PATCH 1/2] ath11k: add wmi helper for turning STA PS on/off
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <0101016ea6b37701-c96a715a-3466-4836-9152-079584e49603-000000@us-west-2.amazonses.com>
-References: <0101016ea6b37701-c96a715a-3466-4836-9152-079584e49603-000000@us-west-2.amazonses.com>
-Message-ID: <0101016eb647c829-26d7a55a-e8db-4a38-b115-60b33d1a572d-000000@us-west-2.amazonses.com>
-Date: Fri, 29 Nov 2019 08:29:47 +0000
+In-Reply-To: <20191118110815.23768-1-john@phrozen.org>
+References: <20191118110815.23768-1-john@phrozen.org>
+Message-ID: <0101016eb6489ad3-6f1c3be9-26bc-48f1-84de-108d9154d18d-000000@us-west-2.amazonses.com>
+Date: Fri, 29 Nov 2019 08:30:41 +0000
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,25 +22,28 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Bhagavathi Perumal S <bperumal@codeaurora.org>
+To: John Crispin <john@phrozen.org>
 Cc: ath11k@lists.infradead.org
 
-Bhagavathi Perumal S <bperumal@codeaurora.org> wrote:
+John Crispin <john@phrozen.org> wrote:
 
-> This adds missing rx rate info stats like pilot evm,
-> per chain rssi, per user ul ppdu and mpdu counts and
-> ul ofdma rate info etc.
+> Add a WMI call helper to set the powersave mode of a STA interface.
 > 
-> And add null checks for memory alloc failures.
-> 
-> Signed-off-by: Bhagavathi Perumal S <bperumal@codeaurora.org>
+> Signed-off-by: John Crispin <john@phrozen.org>
 
-Please CC linux-wireless and resend.
+Failed to apply, please resend.
 
-Patch set to Changes Requested.
+error: patch failed: drivers/net/wireless/ath/ath11k/mac.c:4074
+error: drivers/net/wireless/ath/ath11k/mac.c: patch does not apply
+stg import: Diff does not apply cleanly
+
+2 patches set to Changes Requested.
+
+11249515 [1/2] ath11k: add wmi helper for turning STA PS on/off
+11249513 [2/2] ath11k: disable PS for STA interfaces by default upon bringup
 
 -- 
-https://patchwork.kernel.org/patch/11261571/
+https://patchwork.kernel.org/patch/11249515/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
