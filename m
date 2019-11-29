@@ -1,13 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from a27-11.smtp-out.us-west-2.amazonses.com ([54.240.27.11])
+Received: from a27-186.smtp-out.us-west-2.amazonses.com ([54.240.27.186])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iabYv-00023B-4N
- for ath11k@lists.infradead.org; Fri, 29 Nov 2019 08:23:38 +0000
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Changes in ath11k patch submission process
-Date: Fri, 29 Nov 2019 08:23:34 +0000
-Message-ID: <0101016eb6421564-1d958a07-0bde-44ca-9a0a-ab29760aa4fb-000000@us-west-2.amazonses.com>
+ id 1iabew-0003xJ-QL
+ for ath11k@lists.infradead.org; Fri, 29 Nov 2019 08:29:52 +0000
 MIME-Version: 1.0
+Subject: Re: [PATCH v2] ath11k: Add missing pdev rx rate stats
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <0101016ea6b37701-c96a715a-3466-4836-9152-079584e49603-000000@us-west-2.amazonses.com>
+References: <0101016ea6b37701-c96a715a-3466-4836-9152-079584e49603-000000@us-west-2.amazonses.com>
+Message-ID: <0101016eb647c829-26d7a55a-e8db-4a38-b115-60b33d1a572d-000000@us-west-2.amazonses.com>
+Date: Fri, 29 Nov 2019 08:29:47 +0000
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -20,31 +22,28 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
+To: Bhagavathi Perumal S <bperumal@codeaurora.org>
+Cc: ath11k@lists.infradead.org
 
-Hi,
+Bhagavathi Perumal S <bperumal@codeaurora.org> wrote:
 
-now that ath11k is accepted to upstream (=ath-next branch) and all
-patches from ath11k-post-bringup are now applied to ath-next branch,
-there are some changes in the process. I wrote some documentation here:
+> This adds missing rx rate info stats like pilot evm,
+> per chain rssi, per user ul ppdu and mpdu counts and
+> ul ofdma rate info etc.
+> 
+> And add null checks for memory alloc failures.
+> 
+> Signed-off-by: Bhagavathi Perumal S <bperumal@codeaurora.org>
 
-https://wireless.wiki.kernel.org/en/users/drivers/ath11k/submittingpatches
+Please CC linux-wireless and resend.
 
-Most important change is that patches need to be submitted both
-linux-wireless and ath11k lists, just like with ath10k patches.
-
-ath11k-bringup and ath11k-post-bringup branches are
-not used anymore. I will leave them in the repo for historical purposes
-but that's it.
-
-The ath11k specific patchwork project will not be used anymore. But I
-will not request to delete it either so that old links still work etc.
-Instead the linux-wireless project is used:
-
-https://patchwork.kernel.org/project/linux-wireless/list/?state=*&q=ath11k
+Patch set to Changes Requested.
 
 -- 
+https://patchwork.kernel.org/patch/11261571/
+
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
 _______________________________________________
 ath11k mailing list
