@@ -1,15 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from a27-185.smtp-out.us-west-2.amazonses.com ([54.240.27.185])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iab1M-0007Mh-02
- for ath11k@lists.infradead.org; Fri, 29 Nov 2019 07:48:57 +0000
+ id 1iab3t-0000KU-4u
+ for ath11k@lists.infradead.org; Fri, 29 Nov 2019 07:51:34 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH 01/10] ath11k: tracing: fix ath11k tracing
+Subject: Re: [PATCH 1/9] ath11k: Update tx and rx chain count properly on
+ drv_set_antenna
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <0101016ead3164f5-3135488d-f71b-4fc9-834f-08a735724e15-000000@us-west-2.amazonses.com>
-References: <0101016ead3164f5-3135488d-f71b-4fc9-834f-08a735724e15-000000@us-west-2.amazonses.com>
-Message-ID: <0101016eb62256c5-39f3a0c8-cd74-4617-9b67-d03024ec6c93-000000@us-west-2.amazonses.com>
-Date: Fri, 29 Nov 2019 07:48:54 +0000
+In-Reply-To: <0101016eb11a10c9-dd904af5-539a-4c05-9ffc-3a1cc33b99f5-000000@us-west-2.amazonses.com>
+References: <0101016eb11a10c9-dd904af5-539a-4c05-9ffc-3a1cc33b99f5-000000@us-west-2.amazonses.com>
+Message-ID: <0101016eb624bd91-079fe960-c38d-4ec5-a59c-d247a2fcc353-000000@us-west-2.amazonses.com>
+Date: Fri, 29 Nov 2019 07:51:31 +0000
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -27,26 +28,27 @@ Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
 Kalle Valo <kvalo@codeaurora.org> wrote:
 
-> Add missing tracing subsystem define.
+> Set the number of tx and rx chains properly on drv_set_antenna().
+> This will ensure the related ht/vht/he caps are properly recalculated
+> based on the tx/rx chains set.
 > 
-> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
+> Signed-off-by: Sriram R <srirrama@codeaurora.org>
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-10 patches applied to ath-next branch of ath.git, thanks.
+9 patches applied to ath-next branch of ath.git, thanks.
 
-e8da3986570e ath11k: tracing: fix ath11k tracing
-d6af906d8307 ath11k: qmi clean up ce and HTC service config update
-0c408515cd3b ath11k: qmi clean up in ath11k_qmi_wlanfw_wlan_cfg_send()
-d0f390eae072 ath11k: pktlog: fix sending/using the pdev id
-f425078b449f ath11k: avoid burst time conversion logic
-30679ec40918 ath11k: avoid use_after_free in ath11k_dp_rx_msdu_coalesce API
-fe201947f8bd ath11k: update bawindow size in delba process
-64f1d7e94daa ath11k: add support for controlling tx power to a station
-ba47923974fb ath11k: unlock mutex during failure in qmi fw ready
-1cb616a3b497 ath11k: add necessary peer assoc params in wmi dbg
+a3c5195a97af ath11k: Update tx and rx chain count properly on drv_set_antenna
+c000e56ee6b0 ath11k: Advertise MPDU start spacing as no restriction
+5e02bc7354e1 ath11k: fix memory leak in monitor mode
+28dee8ef7645 ath11k: fix vht guard interval mapping
+a9e945eadf17 ath11k: update tx duration in station info
+b9269a078ae6 ath11k: Skip update peer stats for management packets
+0366f42640a4 ath11k: Move mac80211 hw allocation before wmi_init command
+9c57d7e3b488 ath11k: Setup REO destination ring before sending wmi_init command
+fcaf49d0f2dc ath11k: fix indentation in ath11k_mac_prepare_he_mode()
 
 -- 
-https://patchwork.kernel.org/patch/11264127/
+https://patchwork.kernel.org/patch/11265469/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
