@@ -1,14 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1icNLr-00044q-U3
- for ath11k@lists.infradead.org; Wed, 04 Dec 2019 05:37:29 +0000
+ id 1icNLr-00044k-W5
+ for ath11k@lists.infradead.org; Wed, 04 Dec 2019 05:37:30 +0000
 From: John Crispin <john@phrozen.org>
-Subject: [RESEND 3/9] ath11k: drop memset when setting up a tx cmd desc
-Date: Wed,  4 Dec 2019 06:37:07 +0100
-Message-Id: <20191204053713.3064-4-john@phrozen.org>
-In-Reply-To: <20191204053713.3064-1-john@phrozen.org>
-References: <20191204053713.3064-1-john@phrozen.org>
+Subject: [RESEND 0/9] ath11k: resend pending patches
+Date: Wed,  4 Dec 2019 06:37:04 +0100
+Message-Id: <20191204053713.3064-1-john@phrozen.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -25,40 +23,38 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Kalle Valo <kvalo@codeaurora.org>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-There is no point in zero'ing out the structure if we set all values in the
-following line.
+Kalle merged ath11k into his next tree and then applied the huge backlog
+from patchwork. This is a resend of pending patches that no longer apply
+due to merge order conflicts.
 
-Signed-off-by: John Crispin <john@phrozen.org>
----
- drivers/net/wireless/ath/ath11k/dp_tx.c  | 2 --
- drivers/net/wireless/ath/ath11k/hal_tx.c | 1 +
- 2 files changed, 1 insertion(+), 2 deletions(-)
+John Crispin (9):
+  ath11k: add wmi helper for turning STA PS on/off
+  ath11k: disable PS for STA interfaces by default upon bringup
+  ath11k: drop memset when setting up a tx cmd desc
+  ath11k: rename ath11k_wmi_base instances from wmi_sc to wmi_ab
+  ath11k: add WMI calls to manually add/del/pause/resume TWT dialogs
+  ath11k: add debugfs for TWT debug calls
+  ath11k: move some tx_status parsing to debugfs code
+  ath11k: optimise ath11k_dp_tx_completion_handler
+  ath11k: optimize ath11k_hal_tx_status_parse
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
-index a8b9557c2346..28ebc414533e 100644
---- a/drivers/net/wireless/ath/ath11k/dp_tx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
-@@ -167,8 +167,6 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
- 	skb_cb->vif = arvif->vif;
- 	skb_cb->ar = ar;
- 
--	memset(cached_desc, 0, HAL_TCL_DESC_LEN);
--
- 	ath11k_hal_tx_cmd_desc_setup(ab, cached_desc, &ti);
- 
- 	hal_ring_id = tx_ring->tcl_data_ring.ring_id;
-diff --git a/drivers/net/wireless/ath/ath11k/hal_tx.c b/drivers/net/wireless/ath/ath11k/hal_tx.c
-index cbe549798762..72a51ed65a51 100644
---- a/drivers/net/wireless/ath/ath11k/hal_tx.c
-+++ b/drivers/net/wireless/ath/ath11k/hal_tx.c
-@@ -71,6 +71,7 @@ void ath11k_hal_tx_cmd_desc_setup(struct ath11k_base *ab, void *cmd,
- 				    ti->dscp_tid_tbl_idx) |
- 			 FIELD_PREP(HAL_TCL_DATA_CMD_INFO3_SEARCH_INDEX,
- 				    ti->bss_ast_hash);
-+	tcl_cmd->info4 = 0;
- }
- 
- /* Commit the descriptor to hardware */
+ drivers/net/wireless/ath/ath11k/core.c        |   4 +-
+ drivers/net/wireless/ath/ath11k/core.h        |   3 +-
+ drivers/net/wireless/ath/ath11k/debug.c       | 197 +++++++++
+ drivers/net/wireless/ath/ath11k/debug.h       |   8 +
+ drivers/net/wireless/ath/ath11k/debugfs_sta.c |  66 +--
+ drivers/net/wireless/ath/ath11k/dp.c          |  16 +-
+ drivers/net/wireless/ath/ath11k/dp.h          |  11 +-
+ drivers/net/wireless/ath/ath11k/dp_tx.c       |  81 ++--
+ drivers/net/wireless/ath/ath11k/hal_tx.c      |  74 +---
+ drivers/net/wireless/ath/ath11k/hal_tx.h      |  13 +-
+ drivers/net/wireless/ath/ath11k/htc.c         |   2 +-
+ drivers/net/wireless/ath/ath11k/mac.c         |  15 +-
+ drivers/net/wireless/ath/ath11k/testmode.c    |   2 +-
+ drivers/net/wireless/ath/ath11k/wmi.c         | 388 ++++++++++++++----
+ drivers/net/wireless/ath/ath11k/wmi.h         | 123 +++++-
+ 15 files changed, 752 insertions(+), 251 deletions(-)
+
 -- 
 2.20.1
 
