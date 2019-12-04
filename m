@@ -1,13 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1icNLs-00045d-RW
- for ath11k@lists.infradead.org; Wed, 04 Dec 2019 05:37:31 +0000
+ id 1icNLt-00048I-Th
+ for ath11k@lists.infradead.org; Wed, 04 Dec 2019 05:37:33 +0000
 From: John Crispin <john@phrozen.org>
-Subject: [RESEND 5/9] ath11k: add WMI calls to manually add/del/pause/resume
- TWT dialogs
-Date: Wed,  4 Dec 2019 06:37:09 +0100
-Message-Id: <20191204053713.3064-6-john@phrozen.org>
+Subject: [RESEND 8/9] ath11k: optimise ath11k_dp_tx_completion_handler
+Date: Wed,  4 Dec 2019 06:37:12 +0100
+Message-Id: <20191204053713.3064-9-john@phrozen.org>
 In-Reply-To: <20191204053713.3064-1-john@phrozen.org>
 References: <20191204053713.3064-1-john@phrozen.org>
 MIME-Version: 1.0
@@ -26,453 +25,255 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Kalle Valo <kvalo@codeaurora.org>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-These calls are used for debugging and will be required for WFA certification
-tests.
+the current code does 4 memcpys for each completion frame.
+1) duplicate the desc
+2 + 3) inside kfifo insertion
+4) kfifo remove
+
+The code simply drops the kfifo and uses a trivial ring buffer. This
+requires a single memcpy for insertion. There is no removal needed as
+we can simply use the inserted data for processing. As the code runs
+inside the NAPI context it is atomic and there is no need for most of
+the locking.
 
 Signed-off-by: John Crispin <john@phrozen.org>
 ---
- drivers/net/wireless/ath/ath11k/wmi.c | 218 ++++++++++++++++++++++++--
- drivers/net/wireless/ath/ath11k/wmi.h | 114 ++++++++++++++
- 2 files changed, 318 insertions(+), 14 deletions(-)
+ drivers/net/wireless/ath/ath11k/dp.c     | 16 ++++-----
+ drivers/net/wireless/ath/ath11k/dp.h     | 11 +++----
+ drivers/net/wireless/ath/ath11k/dp_tx.c  | 41 +++++++++---------------
+ drivers/net/wireless/ath/ath11k/hal_tx.c | 13 --------
+ drivers/net/wireless/ath/ath11k/hal_tx.h |  2 --
+ 5 files changed, 27 insertions(+), 56 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index b16bfb50d73e..ba08a7d95764 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -97,6 +97,8 @@ static const struct wmi_tlv_policy wmi_tlv_policies[] = {
- 		= { .min_len = sizeof(struct wmi_stats_event) },
- 	[WMI_TAG_PDEV_CTL_FAILSAFE_CHECK_EVENT]
- 		= { .min_len = sizeof(struct wmi_pdev_ctl_failsafe_chk_event) },
-+	[WMI_TAG_TWT_ADD_DIALOG_COMPLETE_EVENT]
-+		= { .min_len = sizeof(struct wmi_twt_add_dialog_event) },
+diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
+index b966a16a930f..ef989795e985 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.c
++++ b/drivers/net/wireless/ath/ath11k/dp.c
+@@ -3,7 +3,6 @@
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
+ 
+-#include <linux/kfifo.h>
+ #include "core.h"
+ #include "dp_tx.h"
+ #include "hal_tx.h"
+@@ -828,10 +827,7 @@ void ath11k_dp_free(struct ath11k_base *ab)
+ 			     ath11k_dp_tx_pending_cleanup, ab);
+ 		idr_destroy(&dp->tx_ring[i].txbuf_idr);
+ 		spin_unlock_bh(&dp->tx_ring[i].tx_idr_lock);
+-
+-		spin_lock_bh(&dp->tx_ring[i].tx_status_lock);
+-		kfifo_free(&dp->tx_ring[i].tx_status_fifo);
+-		spin_unlock_bh(&dp->tx_ring[i].tx_status_lock);
++		kfree(&dp->tx_ring[i].tx_status);
+ 	}
+ 
+ 	/* Deinit any SOC level resource */
+@@ -871,17 +867,17 @@ int ath11k_dp_alloc(struct ath11k_base *ab)
+ 	if (ret)
+ 		goto fail_link_desc_cleanup;
+ 
+-	size = roundup_pow_of_two(DP_TX_COMP_RING_SIZE);
++	size = sizeof(struct hal_wbm_release_ring) * DP_TX_COMP_RING_SIZE;
+ 
+ 	for (i = 0; i < DP_TCL_NUM_RING_MAX; i++) {
+ 		idr_init(&dp->tx_ring[i].txbuf_idr);
+ 		spin_lock_init(&dp->tx_ring[i].tx_idr_lock);
+ 		dp->tx_ring[i].tcl_data_ring_id = i;
+ 
+-		spin_lock_init(&dp->tx_ring[i].tx_status_lock);
+-		ret = kfifo_alloc(&dp->tx_ring[i].tx_status_fifo, size,
+-				  GFP_KERNEL);
+-		if (ret)
++		dp->tx_ring[i].tx_status_head = 0;
++		dp->tx_ring[i].tx_status_tail = DP_TX_COMP_RING_SIZE - 1;
++		dp->tx_ring[i].tx_status = kmalloc(size, GFP_KERNEL);
++		if (!dp->tx_ring[i].tx_status)
+ 			goto fail_cmn_srng_cleanup;
+ 	}
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
+index f7e53509ae07..d4011f902930 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.h
++++ b/drivers/net/wireless/ath/ath11k/dp.h
+@@ -6,7 +6,6 @@
+ #ifndef ATH11K_DP_H
+ #define ATH11K_DP_H
+ 
+-#include <linux/kfifo.h>
+ #include "hal_rx.h"
+ 
+ struct ath11k_base;
+@@ -58,6 +57,8 @@ struct dp_rxdma_ring {
+ 	int bufs_max;
  };
  
- #define PRIMAP(_hw_mode_) \
-@@ -234,22 +236,22 @@ static int ath11k_wmi_cmd_send_nowait(struct ath11k_pdev_wmi *wmi, struct sk_buf
- int ath11k_wmi_cmd_send(struct ath11k_pdev_wmi *wmi, struct sk_buff *skb,
- 			u32 cmd_id)
- {
--	struct ath11k_wmi_base *wmi_sc = wmi->wmi_ab;
-+	struct ath11k_wmi_base *wmi_ab = wmi->wmi_ab;
- 	int ret = -EOPNOTSUPP;
- 
- 	might_sleep();
- 
--	wait_event_timeout(wmi_sc->tx_credits_wq, ({
-+	wait_event_timeout(wmi_ab->tx_credits_wq, ({
- 		ret = ath11k_wmi_cmd_send_nowait(wmi, skb, cmd_id);
- 
--		if (ret && test_bit(ATH11K_FLAG_CRASH_FLUSH, &wmi_sc->ab->dev_flags))
-+		if (ret && test_bit(ATH11K_FLAG_CRASH_FLUSH, &wmi_ab->ab->dev_flags))
- 			ret = -ESHUTDOWN;
- 
- 		(ret != -EAGAIN);
- 	}), WMI_SEND_TIMEOUT_HZ);
- 
- 	if (ret == -EAGAIN)
--		ath11k_warn(wmi_sc->ab, "wmi command %d timeout\n", cmd_id);
-+		ath11k_warn(wmi_ab->ab, "wmi command %d timeout\n", cmd_id);
- 
- 	return ret;
- }
-@@ -503,10 +505,10 @@ static int ath11k_service_ready_event(struct ath11k_base *ab, struct sk_buff *sk
- 	return 0;
- }
- 
--struct sk_buff *ath11k_wmi_alloc_skb(struct ath11k_wmi_base *wmi_sc, u32 len)
-+struct sk_buff *ath11k_wmi_alloc_skb(struct ath11k_wmi_base *wmi_ab, u32 len)
- {
- 	struct sk_buff *skb;
--	struct ath11k_base *ab = wmi_sc->ab;
-+	struct ath11k_base *ab = wmi_ab->ab;
- 	u32 round_len = roundup(len, 4);
- 
- 	skb = ath11k_htc_alloc_skb(ab, WMI_SKB_HEADROOM + round_len);
-@@ -2580,6 +2582,157 @@ ath11k_wmi_send_twt_disable_cmd(struct ath11k *ar, u32 pdev_id)
- 	return ret;
- }
- 
-+int
-+ath11k_wmi_send_twt_add_dialog_cmd(struct ath11k *ar,
-+				   struct wmi_twt_add_dialog_params *params)
-+{
-+	struct ath11k_pdev_wmi *wmi = ar->wmi;
-+	struct ath11k_base *ab = wmi->wmi_ab->ab;
-+	struct wmi_twt_add_dialog_params_cmd *cmd;
-+	struct sk_buff *skb;
-+	int ret, len;
++#define ATH11K_TX_COMPL_NEXT(x)	((x + 1) % DP_TX_COMP_RING_SIZE)
 +
-+	len = sizeof(*cmd);
-+
-+	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, len);
-+	if (!skb)
-+		return -ENOMEM;
-+
-+	cmd = (void *)skb->data;
-+	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG,
-+				     WMI_TAG_TWT_ADD_DIALOG_CMD) |
-+			  FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
-+
-+	cmd->vdev_id = params->vdev_id;
-+	ether_addr_copy(cmd->peer_macaddr.addr, params->peer_macaddr);
-+	cmd->dialog_id = params->dialog_id;
-+	cmd->wake_intvl_us = params->wake_intvl_us;
-+	cmd->wake_intvl_mantis = params->wake_intvl_mantis;
-+	cmd->wake_dura_us = params->wake_dura_us;
-+	cmd->sp_offset_us = params->sp_offset_us;
-+	cmd->flags = params->twt_cmd;
-+	if (params->flag_bcast)
-+		cmd->flags |= WMI_TWT_ADD_DIALOG_FLAG_BCAST;
-+	if (params->flag_trigger)
-+		cmd->flags |= WMI_TWT_ADD_DIALOG_FLAG_TRIGGER;
-+	if (params->flag_flow_type)
-+		cmd->flags |= WMI_TWT_ADD_DIALOG_FLAG_FLOW_TYPE;
-+	if (params->flag_protection)
-+		cmd->flags |= WMI_TWT_ADD_DIALOG_FLAG_PROTECTION;
-+
-+	ret = ath11k_wmi_cmd_send(wmi, skb,
-+				  WMI_TWT_ADD_DIALOG_CMDID);
-+	if (ret) {
-+		ath11k_warn(ab, "Failed to send WMI_TWT_ADD_DIALOG_CMDID");
-+		dev_kfree_skb(skb);
-+	}
-+	return ret;
-+}
-+
-+int
-+ath11k_wmi_send_twt_del_dialog_cmd(struct ath11k *ar,
-+				   struct wmi_twt_del_dialog_params *params)
-+{
-+	struct ath11k_pdev_wmi *wmi = ar->wmi;
-+	struct ath11k_base *ab = wmi->wmi_ab->ab;
-+	struct wmi_twt_del_dialog_params_cmd *cmd;
-+	struct sk_buff *skb;
-+	int ret, len;
-+
-+	len = sizeof(*cmd);
-+
-+	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, len);
-+	if (!skb)
-+		return -ENOMEM;
-+
-+	cmd = (void *)skb->data;
-+	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG,
-+				     WMI_TAG_TWT_DEL_DIALOG_CMD) |
-+			  FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
-+
-+	cmd->vdev_id = params->vdev_id;
-+	ether_addr_copy(cmd->peer_macaddr.addr, params->peer_macaddr);
-+	cmd->dialog_id = params->dialog_id;
-+
-+	ret = ath11k_wmi_cmd_send(wmi, skb,
-+				  WMI_TWT_DEL_DIALOG_CMDID);
-+	if (ret) {
-+		ath11k_warn(ab, "Failed to send WMI_TWT_DEL_DIALOG_CMDID");
-+		dev_kfree_skb(skb);
-+	}
-+	return ret;
-+}
-+
-+int
-+ath11k_wmi_send_twt_pause_dialog_cmd(struct ath11k *ar,
-+				     struct wmi_twt_pause_dialog_params *params)
-+{
-+	struct ath11k_pdev_wmi *wmi = ar->wmi;
-+	struct ath11k_base *ab = wmi->wmi_ab->ab;
-+	struct wmi_twt_pause_dialog_params_cmd *cmd;
-+	struct sk_buff *skb;
-+	int ret, len;
-+
-+	len = sizeof(*cmd);
-+
-+	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, len);
-+	if (!skb)
-+		return -ENOMEM;
-+
-+	cmd = (void *)skb->data;
-+	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG,
-+				     WMI_TAG_TWT_PAUSE_DIALOG_CMD) |
-+			  FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
-+
-+	cmd->vdev_id = params->vdev_id;
-+	ether_addr_copy(cmd->peer_macaddr.addr, params->peer_macaddr);
-+	cmd->dialog_id = params->dialog_id;
-+
-+	ret = ath11k_wmi_cmd_send(wmi, skb,
-+				  WMI_TWT_PAUSE_DIALOG_CMDID);
-+	if (ret) {
-+		ath11k_warn(ab, "Failed to send WMI_TWT_PAUSE_DIALOG_CMDID");
-+		dev_kfree_skb(skb);
-+	}
-+	return ret;
-+}
-+
-+int
-+ath11k_wmi_send_twt_resume_dialog_cmd(struct ath11k *ar,
-+				      struct wmi_twt_resume_dialog_params *params)
-+{
-+	struct ath11k_pdev_wmi *wmi = ar->wmi;
-+	struct ath11k_base *ab = wmi->wmi_ab->ab;
-+	struct wmi_twt_resume_dialog_params_cmd *cmd;
-+	struct sk_buff *skb;
-+	int ret, len;
-+
-+	len = sizeof(*cmd);
-+
-+	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, len);
-+	if (!skb)
-+		return -ENOMEM;
-+
-+	cmd = (void *)skb->data;
-+	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG,
-+				     WMI_TAG_TWT_RESUME_DIALOG_CMD) |
-+			  FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
-+
-+	cmd->vdev_id = params->vdev_id;
-+	ether_addr_copy(cmd->peer_macaddr.addr, params->peer_macaddr);
-+	cmd->dialog_id = params->dialog_id;
-+	cmd->sp_offset_us = params->sp_offset_us;
-+	cmd->next_twt_size = params->next_twt_size;
-+
-+	ret = ath11k_wmi_cmd_send(wmi, skb,
-+				  WMI_TWT_RESUME_DIALOG_CMDID);
-+	if (ret) {
-+		ath11k_warn(ab, "Failed to send WMI_TWT_RESUME_DIALOG_CMDID");
-+		dev_kfree_skb(skb);
-+	}
-+	return ret;
-+}
-+
- int
- ath11k_wmi_send_obss_spr_cmd(struct ath11k *ar, u32 vdev_id,
- 			     struct ieee80211_he_obss_pd *he_obss_pd)
-@@ -2851,7 +3004,7 @@ int ath11k_wmi_wait_for_unified_ready(struct ath11k_base *ab)
- 
- int ath11k_wmi_cmd_init(struct ath11k_base *ab)
- {
--	struct ath11k_wmi_base *wmi_sc = &ab->wmi_ab;
-+	struct ath11k_wmi_base *wmi_ab = &ab->wmi_ab;
- 	struct wmi_init_cmd_param init_param;
- 	struct target_resource_config  config;
- 
-@@ -2903,21 +3056,21 @@ int ath11k_wmi_cmd_init(struct ath11k_base *ab)
- 	config.twt_ap_pdev_count = 2;
- 	config.twt_ap_sta_count = 1000;
- 
--	memcpy(&wmi_sc->wlan_resource_config, &config, sizeof(config));
-+	memcpy(&wmi_ab->wlan_resource_config, &config, sizeof(config));
- 
--	init_param.res_cfg = &wmi_sc->wlan_resource_config;
--	init_param.num_mem_chunks = wmi_sc->num_mem_chunks;
--	init_param.hw_mode_id = wmi_sc->preferred_hw_mode;
--	init_param.mem_chunks = wmi_sc->mem_chunks;
-+	init_param.res_cfg = &wmi_ab->wlan_resource_config;
-+	init_param.num_mem_chunks = wmi_ab->num_mem_chunks;
-+	init_param.hw_mode_id = wmi_ab->preferred_hw_mode;
-+	init_param.mem_chunks = wmi_ab->mem_chunks;
- 
--	if (wmi_sc->preferred_hw_mode == WMI_HOST_HW_MODE_SINGLE)
-+	if (wmi_ab->preferred_hw_mode == WMI_HOST_HW_MODE_SINGLE)
- 		init_param.hw_mode_id = WMI_HOST_HW_MODE_MAX;
- 
- 	init_param.num_band_to_mac = ab->num_radios;
- 
- 	ath11k_fill_band_to_mac_param(ab, init_param.band_to_mac);
- 
--	return ath11k_init_cmd_send(&wmi_sc->wmi[0], &init_param);
-+	return ath11k_init_cmd_send(&wmi_ab->wmi[0], &init_param);
- }
- 
- static int ath11k_wmi_tlv_hw_mode_caps_parse(struct ath11k_base *soc,
-@@ -5511,6 +5664,37 @@ ath11k_wmi_pdev_dfs_radar_detected_event(struct ath11k_base *ab, struct sk_buff
- 	kfree(tb);
- }
- 
-+static void ath11k_wmi_twt_add_dialog_event(struct ath11k_base *ab, struct sk_buff *skb)
-+{
-+	const char *status[] = {
-+		"OK", "TWT_NOT_ENABLED", "USED_DIALOG_ID", "INVALID_PARAM",
-+		"NOT_READY", "NO_RESOURCE", "NO_ACK", "NO_RESPONSE",
-+		"DENIED", "UNKNOWN_ERROR"
-+	};
-+	const void **tb;
-+	const struct wmi_twt_add_dialog_event *ev;
-+	int ret;
-+
-+	tb = ath11k_wmi_tlv_parse_alloc(ab, skb->data, skb->len, GFP_ATOMIC);
-+	if (IS_ERR(tb)) {
-+		ret = PTR_ERR(tb);
-+		ath11k_warn(ab, "failed to parse tlv: %d\n", ret);
-+		return;
-+	}
-+
-+	ev = tb[WMI_TAG_TWT_ADD_DIALOG_COMPLETE_EVENT];
-+	if (!ev) {
-+		ath11k_warn(ab, "failed to fetch twt add dialog ev");
-+		goto exit;
-+	}
-+
-+	ath11k_info(ab, "TWT Add Dialog Event - Status: %s, DialogId: %d, VdevId: %d\n",
-+		    status[ev->status], ev->vdev_id, ev->dialog_id);
-+
-+exit:
-+	kfree(tb);
-+}
-+
- static void ath11k_wmi_tlv_op_rx(struct ath11k_base *ab, struct sk_buff *skb)
- {
- 	struct wmi_cmd_hdr *cmd_hdr;
-@@ -5588,12 +5772,18 @@ static void ath11k_wmi_tlv_op_rx(struct ath11k_base *ab, struct sk_buff *skb)
- 	case WMI_PDEV_CSA_SWITCH_COUNT_STATUS_EVENTID:
- 		ath11k_wmi_pdev_csa_switch_count_status_event(ab, skb);
- 		break;
-+	case WMI_TWT_ADD_DIALOG_EVENTID:
-+		ath11k_wmi_twt_add_dialog_event(ab, skb);
-+		break;
- 	/* add Unsupported events here */
- 	case WMI_TBTTOFFSET_EXT_UPDATE_EVENTID:
- 	case WMI_VDEV_DELETE_RESP_EVENTID:
- 	case WMI_PEER_OPER_MODE_CHANGE_EVENTID:
- 	case WMI_TWT_ENABLE_EVENTID:
- 	case WMI_TWT_DISABLE_EVENTID:
-+	case WMI_TWT_DEL_DIALOG_EVENTID:
-+	case WMI_TWT_PAUSE_DIALOG_EVENTID:
-+	case WMI_TWT_RESUME_DIALOG_EVENTID:
- 		ath11k_dbg(ab, ATH11K_DBG_WMI,
- 			   "ignoring unsupported event 0x%x\n", id);
- 		break;
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index ab983aac604b..6e0be33bd37c 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -4569,6 +4569,112 @@ struct wmi_twt_disable_params_cmd {
- 	u32 pdev_id;
+ struct dp_tx_ring {
+ 	u8 tcl_data_ring_id;
+ 	struct dp_srng tcl_data_ring;
+@@ -65,11 +66,9 @@ struct dp_tx_ring {
+ 	struct idr txbuf_idr;
+ 	/* Protects txbuf_idr and num_pending */
+ 	spinlock_t tx_idr_lock;
+-	DECLARE_KFIFO_PTR(tx_status_fifo, struct hal_wbm_release_ring);
+-	/* lock to protect tx_status_fifo because tx_status_fifo can be
+-	 * accessed concurrently.
+-	 */
+-	spinlock_t tx_status_lock;
++	struct hal_wbm_release_ring *tx_status;
++	int tx_status_head;
++	int tx_status_tail;
  };
  
-+enum WMI_HOST_TWT_COMMAND {
-+	WMI_HOST_TWT_COMMAND_REQUEST_TWT = 0,
-+	WMI_HOST_TWT_COMMAND_SUGGEST_TWT,
-+	WMI_HOST_TWT_COMMAND_DEMAND_TWT,
-+	WMI_HOST_TWT_COMMAND_TWT_GROUPING,
-+	WMI_HOST_TWT_COMMAND_ACCEPT_TWT,
-+	WMI_HOST_TWT_COMMAND_ALTERNATE_TWT,
-+	WMI_HOST_TWT_COMMAND_DICTATE_TWT,
-+	WMI_HOST_TWT_COMMAND_REJECT_TWT,
-+};
+ struct ath11k_pdev_mon_stats {
+diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
+index 28ebc414533e..5d6403cf99ab 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_tx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
+@@ -79,7 +79,6 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
+ 	struct hal_srng *tcl_ring;
+ 	struct ieee80211_hdr *hdr = (void *)skb->data;
+ 	struct dp_tx_ring *tx_ring;
+-	u8 cached_desc[HAL_TCL_DESC_LEN];
+ 	void *hal_tcl_desc;
+ 	u8 pool_id;
+ 	u8 hal_ring_id;
+@@ -167,8 +166,6 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
+ 	skb_cb->vif = arvif->vif;
+ 	skb_cb->ar = ar;
+ 
+-	ath11k_hal_tx_cmd_desc_setup(ab, cached_desc, &ti);
+-
+ 	hal_ring_id = tx_ring->tcl_data_ring.ring_id;
+ 	tcl_ring = &ab->hal.srng_list[hal_ring_id];
+ 
+@@ -188,7 +185,8 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
+ 		goto fail_unmap_dma;
+ 	}
+ 
+-	ath11k_hal_tx_desc_sync(cached_desc, hal_tcl_desc);
++	ath11k_hal_tx_cmd_desc_setup(ab, hal_tcl_desc +
++					 sizeof(struct hal_tlv_hdr), &ti);
+ 
+ 	ath11k_hal_srng_access_end(ab, tcl_ring);
+ 
+@@ -432,47 +430,44 @@ void ath11k_dp_tx_completion_handler(struct ath11k_base *ab, int ring_id)
+ 	int hal_ring_id = dp->tx_ring[ring_id].tcl_comp_ring.ring_id;
+ 	struct hal_srng *status_ring = &ab->hal.srng_list[hal_ring_id];
+ 	struct sk_buff *msdu;
+-	struct hal_wbm_release_ring tx_status;
+ 	struct hal_tx_status ts;
+ 	struct dp_tx_ring *tx_ring = &dp->tx_ring[ring_id];
+ 	u32 *desc;
+ 	u32 msdu_id;
+ 	u8 mac_id;
+ 
+-	spin_lock_bh(&status_ring->lock);
+-
+ 	ath11k_hal_srng_access_begin(ab, status_ring);
+ 
+-	spin_lock_bh(&tx_ring->tx_status_lock);
+-	while (!kfifo_is_full(&tx_ring->tx_status_fifo) &&
++	while ((ATH11K_TX_COMPL_NEXT(tx_ring->tx_status_head) != tx_ring->tx_status_tail) &&
+ 	       (desc = ath11k_hal_srng_dst_get_next_entry(ab, status_ring))) {
+-		ath11k_hal_tx_status_desc_sync((void *)desc,
+-					       (void *)&tx_status);
+-		kfifo_put(&tx_ring->tx_status_fifo, tx_status);
++		memcpy(&tx_ring->tx_status[tx_ring->tx_status_head],
++		       desc, sizeof(struct hal_wbm_release_ring));
++		tx_ring->tx_status_head =
++			ATH11K_TX_COMPL_NEXT(tx_ring->tx_status_head);
+ 	}
+ 
+ 	if ((ath11k_hal_srng_dst_peek(ab, status_ring) != NULL) &&
+-	    kfifo_is_full(&tx_ring->tx_status_fifo)) {
++	    (ATH11K_TX_COMPL_NEXT(tx_ring->tx_status_head) == tx_ring->tx_status_tail)) {
+ 		/* TODO: Process pending tx_status messages when kfifo_is_full() */
+ 		ath11k_warn(ab, "Unable to process some of the tx_status ring desc because status_fifo is full\n");
+ 	}
+ 
+-	spin_unlock_bh(&tx_ring->tx_status_lock);
+-
+ 	ath11k_hal_srng_access_end(ab, status_ring);
+-	spin_unlock_bh(&status_ring->lock);
+ 
+-	spin_lock_bh(&tx_ring->tx_status_lock);
+-	while (kfifo_get(&tx_ring->tx_status_fifo, &tx_status)) {
+-		memset(&ts, 0, sizeof(ts));
+-		ath11k_hal_tx_status_parse(ab, &tx_status, &ts);
++	while (ATH11K_TX_COMPL_NEXT(tx_ring->tx_status_tail) != tx_ring->tx_status_head) {
++		struct hal_wbm_release_ring *tx_status;
 +
-+#define WMI_TWT_ADD_DIALOG_FLAG_BCAST		BIT(8)
-+#define WMI_TWT_ADD_DIALOG_FLAG_TRIGGER		BIT(9)
-+#define WMI_TWT_ADD_DIALOG_FLAG_FLOW_TYPE	BIT(10)
-+#define WMI_TWT_ADD_DIALOG_FLAG_PROTECTION	BIT(11)
-+
-+struct wmi_twt_add_dialog_params_cmd {
-+	u32 tlv_header;
-+	u32 vdev_id;
-+	struct wmi_mac_addr peer_macaddr;
-+	u32 dialog_id;
-+	u32 wake_intvl_us;
-+	u32 wake_intvl_mantis;
-+	u32 wake_dura_us;
-+	u32 sp_offset_us;
-+	u32 flags;
-+};
-+
-+struct wmi_twt_add_dialog_params {
-+	u32 vdev_id;
-+	u8 peer_macaddr[ETH_ALEN];
-+	u32 dialog_id;
-+	u32 wake_intvl_us;
-+	u32 wake_intvl_mantis;
-+	u32 wake_dura_us;
-+	u32 sp_offset_us;
-+	u8 twt_cmd;
-+	u8 flag_bcast;
-+	u8 flag_trigger;
-+	u8 flag_flow_type;
-+	u8 flag_protection;
-+};
-+
-+enum  wmi_twt_add_dialog_status {
-+	WMI_ADD_TWT_STATUS_OK,
-+	WMI_ADD_TWT_STATUS_TWT_NOT_ENABLED,
-+	WMI_ADD_TWT_STATUS_USED_DIALOG_ID,
-+	WMI_ADD_TWT_STATUS_INVALID_PARAM,
-+	WMI_ADD_TWT_STATUS_NOT_READY,
-+	WMI_ADD_TWT_STATUS_NO_RESOURCE,
-+	WMI_ADD_TWT_STATUS_NO_ACK,
-+	WMI_ADD_TWT_STATUS_NO_RESPONSE,
-+	WMI_ADD_TWT_STATUS_DENIED,
-+	WMI_ADD_TWT_STATUS_UNKNOWN_ERROR,
-+};
-+
-+struct wmi_twt_add_dialog_event {
-+	u32 vdev_id;
-+	struct wmi_mac_addr peer_macaddr;
-+	u32 dialog_id;
-+	u32 status;
-+};
-+
-+struct wmi_twt_del_dialog_params {
-+	u32 vdev_id;
-+	u8 peer_macaddr[ETH_ALEN];
-+	u32 dialog_id;
-+};
-+
-+struct wmi_twt_del_dialog_params_cmd {
-+	u32 tlv_header;
-+	u32 vdev_id;
-+	struct wmi_mac_addr peer_macaddr;
-+	u32 dialog_id;
-+};
-+
-+struct wmi_twt_pause_dialog_params {
-+	u32 vdev_id;
-+	u8 peer_macaddr[ETH_ALEN];
-+	u32 dialog_id;
-+};
-+
-+struct wmi_twt_pause_dialog_params_cmd {
-+	u32 tlv_header;
-+	u32 vdev_id;
-+	struct wmi_mac_addr peer_macaddr;
-+	u32 dialog_id;
-+};
-+
-+struct wmi_twt_resume_dialog_params {
-+	u32 vdev_id;
-+	u8 peer_macaddr[ETH_ALEN];
-+	u32 dialog_id;
-+	u32 sp_offset_us;
-+	u32 next_twt_size;
-+};
-+
-+struct wmi_twt_resume_dialog_params_cmd {
-+	u32 tlv_header;
-+	u32 vdev_id;
-+	struct wmi_mac_addr peer_macaddr;
-+	u32 dialog_id;
-+	u32 sp_offset_us;
-+	u32 next_twt_size;
-+};
-+
- struct wmi_obss_spatial_reuse_params_cmd {
- 	u32 tlv_header;
- 	u32 pdev_id;
-@@ -4766,6 +4872,14 @@ void ath11k_wmi_fw_stats_fill(struct ath11k *ar,
- int ath11k_wmi_simulate_radar(struct ath11k *ar);
- int ath11k_wmi_send_twt_enable_cmd(struct ath11k *ar, u32 pdev_id);
- int ath11k_wmi_send_twt_disable_cmd(struct ath11k *ar, u32 pdev_id);
-+int ath11k_wmi_send_twt_add_dialog_cmd(struct ath11k *ar,
-+				       struct wmi_twt_add_dialog_params *params);
-+int ath11k_wmi_send_twt_del_dialog_cmd(struct ath11k *ar,
-+				       struct wmi_twt_del_dialog_params *params);
-+int ath11k_wmi_send_twt_pause_dialog_cmd(struct ath11k *ar,
-+					 struct wmi_twt_pause_dialog_params *params);
-+int ath11k_wmi_send_twt_resume_dialog_cmd(struct ath11k *ar,
-+					  struct wmi_twt_resume_dialog_params *params);
- int ath11k_wmi_send_obss_spr_cmd(struct ath11k *ar, u32 vdev_id,
- 				 struct ieee80211_he_obss_pd *he_obss_pd);
- #endif
++		tx_ring->tx_status_tail =
++			ATH11K_TX_COMPL_NEXT(tx_ring->tx_status_tail);
++		tx_status = &tx_ring->tx_status[tx_ring->tx_status_tail];
++		ath11k_hal_tx_status_parse(ab, tx_status, &ts);
+ 
+ 		mac_id = FIELD_GET(DP_TX_DESC_ID_MAC_ID, ts.desc_id);
+ 		msdu_id = FIELD_GET(DP_TX_DESC_ID_MSDU_ID, ts.desc_id);
+ 
+ 		if (ts.buf_rel_source == HAL_WBM_REL_SRC_MODULE_FW) {
+ 			ath11k_dp_tx_process_htt_tx_complete(ab,
+-							     (void *)&tx_status,
++							     (void *)tx_status,
+ 							     mac_id, msdu_id,
+ 							     tx_ring);
+ 			continue;
+@@ -494,12 +489,8 @@ void ath11k_dp_tx_completion_handler(struct ath11k_base *ab, int ring_id)
+ 		if (atomic_dec_and_test(&ar->dp.num_tx_pending))
+ 			wake_up(&ar->dp.tx_empty_waitq);
+ 
+-		/* TODO: Locking optimization so that tx_completion for an msdu
+-		 * is not called with tx_status_lock acquired
+-		 */
+ 		ath11k_dp_tx_complete_msdu(ar, msdu, &ts);
+ 	}
+-	spin_unlock_bh(&tx_ring->tx_status_lock);
+ }
+ 
+ int ath11k_dp_tx_send_reo_cmd(struct ath11k_base *ab, struct dp_rx_tid *rx_tid,
+diff --git a/drivers/net/wireless/ath/ath11k/hal_tx.c b/drivers/net/wireless/ath/ath11k/hal_tx.c
+index c2a3a9d2e534..e8710bbbbc3a 100644
+--- a/drivers/net/wireless/ath/ath11k/hal_tx.c
++++ b/drivers/net/wireless/ath/ath11k/hal_tx.c
+@@ -74,19 +74,6 @@ void ath11k_hal_tx_cmd_desc_setup(struct ath11k_base *ab, void *cmd,
+ 	tcl_cmd->info4 = 0;
+ }
+ 
+-/* Commit the descriptor to hardware */
+-void ath11k_hal_tx_desc_sync(void *tx_desc_cached, void *hw_desc)
+-{
+-	memcpy(hw_desc + sizeof(struct hal_tlv_hdr), tx_desc_cached,
+-	       sizeof(struct hal_tcl_data_cmd));
+-}
+-
+-/* Get the descriptor status from hardware */
+-void ath11k_hal_tx_status_desc_sync(void *hw_desc, void *local_desc)
+-{
+-	memcpy(local_desc, hw_desc, HAL_TX_STATUS_DESC_LEN);
+-}
+-
+ void ath11k_hal_tx_status_parse(struct ath11k_base *ab,
+ 				struct hal_wbm_release_ring *desc,
+ 				struct hal_tx_status *ts)
+diff --git a/drivers/net/wireless/ath/ath11k/hal_tx.h b/drivers/net/wireless/ath/ath11k/hal_tx.h
+index cf99e2b31f9f..5fe89b729a6e 100644
+--- a/drivers/net/wireless/ath/ath11k/hal_tx.h
++++ b/drivers/net/wireless/ath/ath11k/hal_tx.h
+@@ -61,11 +61,9 @@ struct hal_tx_status {
+ 
+ void ath11k_hal_tx_cmd_desc_setup(struct ath11k_base *ab, void *cmd,
+ 				  struct hal_tx_info *ti);
+-void ath11k_hal_tx_desc_sync(void *tx_desc_cached, void *hw_desc);
+ void ath11k_hal_tx_status_parse(struct ath11k_base *ab,
+ 				struct hal_wbm_release_ring *desc,
+ 				struct hal_tx_status *ts);
+-void ath11k_hal_tx_status_desc_sync(void *hw_desc, void *local_desc);
+ void ath11k_hal_tx_set_dscp_tid_map(struct ath11k_base *ab, int id);
+ int ath11k_hal_reo_cmd_send(struct ath11k_base *ab, struct hal_srng *srng,
+ 			    enum hal_reo_cmd_type type,
 -- 
 2.20.1
 
