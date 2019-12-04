@@ -1,12 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from dvalin.narfation.org ([213.160.73.56])
+Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ibgbQ-0005hz-U0
- for ath11k@lists.infradead.org; Mon, 02 Dec 2019 07:58:42 +0000
-From: Sven Eckelmann <sven@narfation.org>
-Subject: [PATCH v7] ath11k: register HE mesh capabilities
-Date: Mon,  2 Dec 2019 08:58:15 +0100
-Message-Id: <20191202075815.20409-1-sven@narfation.org>
+ id 1icNLr-00044q-U3
+ for ath11k@lists.infradead.org; Wed, 04 Dec 2019 05:37:29 +0000
+From: John Crispin <john@phrozen.org>
+Subject: [RESEND 3/9] ath11k: drop memset when setting up a tx cmd desc
+Date: Wed,  4 Dec 2019 06:37:07 +0100
+Message-Id: <20191204053713.3064-4-john@phrozen.org>
+In-Reply-To: <20191204053713.3064-1-john@phrozen.org>
+References: <20191204053713.3064-1-john@phrozen.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -20,167 +22,43 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org, Sven Eckelmann <seckelmann@datto.com>
+To: Kalle Valo <kvalo@codeaurora.org>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-From: Sven Eckelmann <seckelmann@datto.com>
+There is no point in zero'ing out the structure if we set all values in the
+following line.
 
-The capabilities for the HE mesh are generated from the capabilities
-reported by the fw. But the firmware only reports the overall capabilities
-and not the one which are specific for mesh. Some of them (TWT, MU UL/DL,
-TB PPDU, ...) require an infrastructure setup with a main STA (AP)
-controlling the operations. This is not the case for mesh and thus these
-capabilities are removed from the list of capabilities.
-
-Signed-off-by: Sven Eckelmann <seckelmann@datto.com>
+Signed-off-by: John Crispin <john@phrozen.org>
 ---
-* v7
+ drivers/net/wireless/ath/ath11k/dp_tx.c  | 2 --
+ drivers/net/wireless/ath/ath11k/hal_tx.c | 1 +
+ 2 files changed, 1 insertion(+), 2 deletions(-)
 
-  - remove SU patch since the problems couldn't be reproduced (at the moment)
-    with firmware WLAN.HK.2.0.0.1-00043-QCAHKSWPL_SILICONZ-1
-
-* v6
-
-  - remove upstream merged mac80211 patch
-  - send only the ath11k relevant patches
-  - drop (internal DEP-3-like) "Forwarded:" tag
-  - switch from PATCH to RFC due to dropped HE support in ath11k
-
-* v5
-
-  - rebased patches
-  - moved ath11k meshpoint HE capabilities filter to avoid lines over 80
-    characters
-  - add patch to disable HE SU phy capabilities to work around problems
-    with WLAN.HK.2.1.0.1-00629-QCAHKSWPL_SILICONZ-1 firmware
-
-* v4
-
-  - switch order of the mac80211 HE mesh support and mac80211_hwsim support
-  - drop ie_len variable from ieee80211_ie_len_he_cap and
-    ieee80211_ie_build_he_oper
-  - switch to function ieee80211_get_he_iftype_cap instead of implementing new
-    function ieee80211_get_he_mesh_cap
-  - allow ieee80211_ie_len_he_cap to calculate length for non-mesh HE cap
-  - dropped he_support workaround in ath11k because now all phy_modes are
-    HE phy modes
-
-* v3
-
-  - force ath11k PHY mode for meshpoint vif to HE mode to avoid hang of
-    firmware when HE (or VHT on 2.4GHz) device tries to connect
-
-* v2:
-
-  - add of ath11k patch
-
-* v1:
-
-  - initial RFC
-
- drivers/net/wireless/ath/ath11k/mac.c | 75 +++++++++++++++++++++++++++
- 1 file changed, 75 insertions(+)
-
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 978d8768d68a..65f6a2585577 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -3346,6 +3346,77 @@ static void ath11k_gen_ppe_thresh(struct ath11k_ppe_threshold *fw_ppet,
- 	}
+diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
+index a8b9557c2346..28ebc414533e 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_tx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
+@@ -167,8 +167,6 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
+ 	skb_cb->vif = arvif->vif;
+ 	skb_cb->ar = ar;
+ 
+-	memset(cached_desc, 0, HAL_TCL_DESC_LEN);
+-
+ 	ath11k_hal_tx_cmd_desc_setup(ab, cached_desc, &ti);
+ 
+ 	hal_ring_id = tx_ring->tcl_data_ring.ring_id;
+diff --git a/drivers/net/wireless/ath/ath11k/hal_tx.c b/drivers/net/wireless/ath/ath11k/hal_tx.c
+index cbe549798762..72a51ed65a51 100644
+--- a/drivers/net/wireless/ath/ath11k/hal_tx.c
++++ b/drivers/net/wireless/ath/ath11k/hal_tx.c
+@@ -71,6 +71,7 @@ void ath11k_hal_tx_cmd_desc_setup(struct ath11k_base *ab, void *cmd,
+ 				    ti->dscp_tid_tbl_idx) |
+ 			 FIELD_PREP(HAL_TCL_DATA_CMD_INFO3_SEARCH_INDEX,
+ 				    ti->bss_ast_hash);
++	tcl_cmd->info4 = 0;
  }
  
-+static void
-+ath11k_mac_filter_he_cap_mesh(struct ieee80211_he_cap_elem *he_cap_elem)
-+{
-+	u8 m;
-+
-+	m = IEEE80211_HE_MAC_CAP0_TWT_RES |
-+	    IEEE80211_HE_MAC_CAP0_TWT_REQ;
-+	he_cap_elem->mac_cap_info[0] &= ~m;
-+
-+	m = IEEE80211_HE_MAC_CAP2_TRS |
-+	    IEEE80211_HE_MAC_CAP2_BCAST_TWT |
-+	    IEEE80211_HE_MAC_CAP2_MU_CASCADING;
-+	he_cap_elem->mac_cap_info[2] &= ~m;
-+
-+	m = IEEE80211_HE_MAC_CAP3_FLEX_TWT_SCHED |
-+	    IEEE80211_HE_MAC_CAP2_BCAST_TWT |
-+	    IEEE80211_HE_MAC_CAP2_MU_CASCADING;
-+	he_cap_elem->mac_cap_info[3] &= ~m;
-+
-+	m = IEEE80211_HE_MAC_CAP4_BSRP_BQRP_A_MPDU_AGG |
-+	    IEEE80211_HE_MAC_CAP4_BQR;
-+	he_cap_elem->mac_cap_info[4] &= ~m;
-+
-+	m = IEEE80211_HE_MAC_CAP5_SUBCHAN_SELECVITE_TRANSMISSION |
-+	    IEEE80211_HE_MAC_CAP5_UL_2x996_TONE_RU |
-+	    IEEE80211_HE_MAC_CAP5_PUNCTURED_SOUNDING |
-+	    IEEE80211_HE_MAC_CAP5_HT_VHT_TRIG_FRAME_RX;
-+	he_cap_elem->mac_cap_info[5] &= ~m;
-+
-+	m = IEEE80211_HE_PHY_CAP2_UL_MU_FULL_MU_MIMO |
-+	    IEEE80211_HE_PHY_CAP2_UL_MU_PARTIAL_MU_MIMO;
-+	he_cap_elem->phy_cap_info[2] &= ~m;
-+
-+	m = IEEE80211_HE_PHY_CAP3_RX_HE_MU_PPDU_FROM_NON_AP_STA |
-+	    IEEE80211_HE_PHY_CAP3_DCM_MAX_CONST_TX_MASK |
-+	    IEEE80211_HE_PHY_CAP3_DCM_MAX_CONST_RX_MASK;
-+	he_cap_elem->phy_cap_info[3] &= ~m;
-+
-+	m = IEEE80211_HE_PHY_CAP4_MU_BEAMFORMER;
-+	he_cap_elem->phy_cap_info[4] &= ~m;
-+
-+	m = IEEE80211_HE_PHY_CAP5_NG16_MU_FEEDBACK;
-+	he_cap_elem->phy_cap_info[5] &= ~m;
-+
-+	m = IEEE80211_HE_PHY_CAP6_CODEBOOK_SIZE_75_MU |
-+	    IEEE80211_HE_PHY_CAP6_TRIG_MU_BEAMFORMER_FB |
-+	    IEEE80211_HE_PHY_CAP6_TRIG_CQI_FB |
-+	    IEEE80211_HE_PHY_CAP6_PARTIAL_BANDWIDTH_DL_MUMIMO;
-+	he_cap_elem->phy_cap_info[6] &= ~m;
-+
-+	m = IEEE80211_HE_PHY_CAP7_SRP_BASED_SR |
-+	    IEEE80211_HE_PHY_CAP7_POWER_BOOST_FACTOR_AR |
-+	    IEEE80211_HE_PHY_CAP7_STBC_TX_ABOVE_80MHZ |
-+	    IEEE80211_HE_PHY_CAP7_STBC_RX_ABOVE_80MHZ;
-+	he_cap_elem->phy_cap_info[7] &= ~m;
-+
-+	m = IEEE80211_HE_PHY_CAP8_HE_ER_SU_PPDU_4XLTF_AND_08_US_GI |
-+	    IEEE80211_HE_PHY_CAP8_20MHZ_IN_40MHZ_HE_PPDU_IN_2G |
-+	    IEEE80211_HE_PHY_CAP8_20MHZ_IN_160MHZ_HE_PPDU |
-+	    IEEE80211_HE_PHY_CAP8_80MHZ_IN_160MHZ_HE_PPDU;
-+	he_cap_elem->phy_cap_info[8] &= ~m;
-+
-+	m = IEEE80211_HE_PHY_CAP9_LONGER_THAN_16_SIGB_OFDM_SYM |
-+	    IEEE80211_HE_PHY_CAP9_NON_TRIGGERED_CQI_FEEDBACK |
-+	    IEEE80211_HE_PHY_CAP9_RX_1024_QAM_LESS_THAN_242_TONE_RU |
-+	    IEEE80211_HE_PHY_CAP9_TX_1024_QAM_LESS_THAN_242_TONE_RU |
-+	    IEEE80211_HE_PHY_CAP9_RX_FULL_BW_SU_USING_MU_WITH_COMP_SIGB |
-+	    IEEE80211_HE_PHY_CAP9_RX_FULL_BW_SU_USING_MU_WITH_NON_COMP_SIGB;
-+	he_cap_elem->phy_cap_info[9] &= ~m;
-+}
-+
- static int ath11k_mac_copy_he_cap(struct ath11k *ar,
- 				  struct ath11k_pdev_cap *cap,
- 				  struct ieee80211_sband_iftype_data *data,
-@@ -3362,6 +3433,7 @@ static int ath11k_mac_copy_he_cap(struct ath11k *ar,
- 		switch (i) {
- 		case NL80211_IFTYPE_STATION:
- 		case NL80211_IFTYPE_AP:
-+		case NL80211_IFTYPE_MESH_POINT:
- 			break;
- 
- 		default:
-@@ -3402,6 +3474,9 @@ static int ath11k_mac_copy_he_cap(struct ath11k *ar,
- 			he_cap_elem->phy_cap_info[9] |=
- 				IEEE80211_HE_PHY_CAP9_TX_1024_QAM_LESS_THAN_242_TONE_RU;
- 			break;
-+		case NL80211_IFTYPE_MESH_POINT:
-+			ath11k_mac_filter_he_cap_mesh(he_cap_elem);
-+			break;
- 		}
- 
- 		he_cap->he_mcs_nss_supp.rx_mcs_80 =
+ /* Commit the descriptor to hardware */
 -- 
 2.20.1
 
