@@ -1,13 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1icZDn-0003Nq-2v
+ id 1icZDn-0003O3-Jq
  for ath11k@lists.infradead.org; Wed, 04 Dec 2019 18:17:57 +0000
 From: John Crispin <john@phrozen.org>
-Subject: [PATCH V2 2/9] ath11k: disable PS for STA interfaces by default upon
- bringup
-Date: Wed,  4 Dec 2019 19:17:38 +0100
-Message-Id: <20191204181745.27297-3-john@phrozen.org>
+Subject: [PATCH V2 3/9] ath11k: drop memset when setting up a tx cmd desc
+Date: Wed,  4 Dec 2019 19:17:39 +0100
+Message-Id: <20191204181745.27297-4-john@phrozen.org>
 In-Reply-To: <20191204181745.27297-1-john@phrozen.org>
 References: <20191204181745.27297-1-john@phrozen.org>
 MIME-Version: 1.0
@@ -26,32 +25,40 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Kalle Valo <kvalo@codeaurora.org>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-After applying this setting the TX performance issue of STA interfaces is
-gone and we can see TX performance go up to ~900mbit on HE80.
+There is no point in zero'ing out the structure if we set all values in the
+following line.
 
 Signed-off-by: John Crispin <john@phrozen.org>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/net/wireless/ath/ath11k/dp_tx.c  | 2 --
+ drivers/net/wireless/ath/ath11k/hal_tx.c | 1 +
+ 2 files changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 978d8768d68a..d9b4c95019e5 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -4097,6 +4097,13 @@ static int ath11k_mac_op_add_interface(struct ieee80211_hw *hw,
- 				    arvif->vdev_id, ret);
- 			goto err_peer_del;
- 		}
-+
-+		ret = ath11k_wmi_pdev_set_ps_mode(ar, arvif->vdev_id, false);
-+		if (ret) {
-+			ath11k_warn(ar->ab, "failed to disable vdev %d ps mode: %d\n",
-+				    arvif->vdev_id, ret);
-+			goto err_peer_del;
-+		}
- 		break;
- 	default:
- 		break;
+diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
+index a8b9557c2346..28ebc414533e 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_tx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
+@@ -167,8 +167,6 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
+ 	skb_cb->vif = arvif->vif;
+ 	skb_cb->ar = ar;
+ 
+-	memset(cached_desc, 0, HAL_TCL_DESC_LEN);
+-
+ 	ath11k_hal_tx_cmd_desc_setup(ab, cached_desc, &ti);
+ 
+ 	hal_ring_id = tx_ring->tcl_data_ring.ring_id;
+diff --git a/drivers/net/wireless/ath/ath11k/hal_tx.c b/drivers/net/wireless/ath/ath11k/hal_tx.c
+index cbe549798762..72a51ed65a51 100644
+--- a/drivers/net/wireless/ath/ath11k/hal_tx.c
++++ b/drivers/net/wireless/ath/ath11k/hal_tx.c
+@@ -71,6 +71,7 @@ void ath11k_hal_tx_cmd_desc_setup(struct ath11k_base *ab, void *cmd,
+ 				    ti->dscp_tid_tbl_idx) |
+ 			 FIELD_PREP(HAL_TCL_DATA_CMD_INFO3_SEARCH_INDEX,
+ 				    ti->bss_ast_hash);
++	tcl_cmd->info4 = 0;
+ }
+ 
+ /* Commit the descriptor to hardware */
 -- 
 2.20.1
 
