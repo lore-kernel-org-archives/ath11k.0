@@ -1,15 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from a27-186.smtp-out.us-west-2.amazonses.com ([54.240.27.186])
+Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1icjDH-0005o5-TE
- for ath11k@lists.infradead.org; Thu, 05 Dec 2019 04:58:05 +0000
+ id 1ickbJ-0000aw-2Y
+ for ath11k@lists.infradead.org; Thu, 05 Dec 2019 06:26:58 +0000
+From: John Crispin <john@phrozen.org>
+Subject: [PATCH 1/2] ath11k: add some missing __packed qualifiers
+Date: Thu,  5 Dec 2019 07:26:44 +0100
+Message-Id: <20191205062645.6033-1-john@phrozen.org>
 MIME-Version: 1.0
-Date: Thu, 5 Dec 2019 04:57:57 +0000
-From: vthiagar@codeaurora.org
-Subject: Re: [PATCH] ath11k: add OMI debug support
-In-Reply-To: <20191204162541.9602-1-john@phrozen.org>
-References: <20191204162541.9602-1-john@phrozen.org>
-Message-ID: <0101016ed46bfc03-3f1ef4a6-8a7f-464e-b37a-0e568686d96e-000000@us-west-2.amazonses.com>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -18,218 +16,51 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: John Crispin <john@phrozen.org>
-Cc: linux-wireless-owner@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>
+To: Kalle Valo <kvalo@codeaurora.org>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-On 2019-12-04 21:55, John Crispin wrote:
-> This patch allows us to initiate a OMI transaction for test purposes 
-> using
-> a debugfs interface. the xmit_omi file expects 9 parameters. The first 
-> two
-> are VHT and HE followed by the 7 A-Control fields from D4.0/9.2.4.6a.2.
-> 
-> Signed-off-by: John Crispin <john@phrozen.org>
-> ---
->  drivers/net/wireless/ath/ath11k/debug.h       | 10 ++++
->  drivers/net/wireless/ath/ath11k/debugfs_sta.c | 47 +++++++++++++++++++
->  drivers/net/wireless/ath/ath11k/wmi.c         | 33 ++++++++++++-
->  drivers/net/wireless/ath/ath11k/wmi.h         | 10 ++++
->  4 files changed, 99 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/net/wireless/ath/ath11k/debug.h
-> b/drivers/net/wireless/ath/ath11k/debug.h
-> index 805e30c07e14..1535af2eebe5 100644
-> --- a/drivers/net/wireless/ath/ath11k/debug.h
-> +++ b/drivers/net/wireless/ath/ath11k/debug.h
-> @@ -12,6 +12,16 @@
->  #define ATH11K_TX_POWER_MAX_VAL	70
->  #define ATH11K_TX_POWER_MIN_VAL	0
-> 
-> +#define	ATH11K_XMIT_OMI_VHT		BIT(0)
-> +#define	ATH11K_XMIT_OMI_HE		BIT(1)
-> +#define	ATH11K_XMIT_OMI_RX_NSS		GENMASK(4, 2)
-> +#define	ATH11K_XMIT_OMI_CHWIDTH		GENMASK(6, 5)
-> +#define	ATH11K_XMIT_OMI_UL_UM_DIS	BIT(7)
-> +#define	ATH11K_XMIT_OMI_TX_NSTS		GENMASK(10, 8)
-> +#define	ATH11K_XMIT_OMI_ER_SU_DISABLE	BIT(11)
-> +#define	ATH11K_XMIT_OMI_MIMO_RESOUND	BIT(12)
-> +#define	ATH11K_XMIT_OMI_UL_MU_DATA_DIS	BIT(13)
-> +
->  enum ath11k_debug_mask {
->  	ATH11K_DBG_AHB		= 0x00000001,
->  	ATH11K_DBG_WMI		= 0x00000002,
-> diff --git a/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-> b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-> index 3cdc34218a7d..61c40105bd2a 100644
-> --- a/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-> +++ b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-> @@ -526,6 +526,52 @@ static const struct file_operations 
-> fops_peer_pktlog = {
->  	.llseek = default_llseek,
->  };
-> 
-> +static ssize_t ath11k_dbg_sta_write_xmit_omi(struct file *file,
-> +					     const char __user *ubuf,
-> +					     size_t count, loff_t *ppos)
-> +{
-> +	struct ieee80211_sta *sta = file->private_data;
-> +	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
-> +	u8 vht, he, rx_nss, chwidth, ul_mu_disable, tx_nsts, er_su_disable;
-> +	u8 resound_recommendation, ul_mu_data_disable;
-> +	u8 buf[64] = {0};
-> +	u32 val;
-> +	int ret;
-> +
-> +	ret = simple_write_to_buffer(buf, sizeof(buf) - 1, ppos, ubuf, 
-> count);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	buf[ret] = '\0';
-> +	ret = sscanf(buf, "%hhu %hhu %hhu %hhu %hhu %hhu %hhu %hhu %hhu",
-> +		     &vht, &he, &rx_nss, &chwidth, &ul_mu_disable, &tx_nsts,
-> +		     &er_su_disable, &resound_recommendation,
-> +		     &ul_mu_data_disable);
-> +	if (ret != 9)
-> +		return -EINVAL;
-> +
-> +	val = FIELD_PREP(ATH11K_XMIT_OMI_VHT, vht) |
-> +	      FIELD_PREP(ATH11K_XMIT_OMI_HE, he) |
-> +	      FIELD_PREP(ATH11K_XMIT_OMI_RX_NSS, rx_nss) |
-> +	      FIELD_PREP(ATH11K_XMIT_OMI_CHWIDTH, chwidth) |
-> +	      FIELD_PREP(ATH11K_XMIT_OMI_UL_UM_DIS, ul_mu_disable) |
-> +	      FIELD_PREP(ATH11K_XMIT_OMI_TX_NSTS, tx_nsts) |
-> +	      FIELD_PREP(ATH11K_XMIT_OMI_ER_SU_DISABLE, er_su_disable) |
-> +	      FIELD_PREP(ATH11K_XMIT_OMI_MIMO_RESOUND, 
-> resound_recommendation) |
-> +	      FIELD_PREP(ATH11K_XMIT_OMI_UL_MU_DATA_DIS, ul_mu_data_disable);
-> +
-> +	ret = ath11k_wmi_set_peer_param(arsta->arvif->ar, sta->addr,
-> +					arsta->arvif->vdev_id,
-> +					WMI_PEER_PARAM_XMIT_OMI,
-> +					val);
-> +	return ret ? ret : count;
-> +}
-> +
-> +static const struct file_operations fops_write_xmit_omi = {
-> +	.write = ath11k_dbg_sta_write_xmit_omi,
-> +	.open = simple_open
-> +};
-> +
->  void ath11k_sta_add_debugfs(struct ieee80211_hw *hw, struct 
-> ieee80211_vif *vif,
->  			    struct ieee80211_sta *sta, struct dentry *dir)
->  {
-> @@ -543,4 +589,5 @@ void ath11k_sta_add_debugfs(struct ieee80211_hw
-> *hw, struct ieee80211_vif *vif,
-> 
->  	debugfs_create_file("peer_pktlog", 0644, dir, sta,
->  			    &fops_peer_pktlog);
-> +	debugfs_create_file("xmit_omi", 0644, dir, sta, 
-> &fops_write_xmit_omi);
->  }
-> diff --git a/drivers/net/wireless/ath/ath11k/wmi.c
-> b/drivers/net/wireless/ath/ath11k/wmi.c
-> index ba08a7d95764..425fdd46e529 100644
-> --- a/drivers/net/wireless/ath/ath11k/wmi.c
-> +++ b/drivers/net/wireless/ath/ath11k/wmi.c
-> @@ -99,6 +99,8 @@ static const struct wmi_tlv_policy wmi_tlv_policies[] 
-> = {
->  		= { .min_len = sizeof(struct wmi_pdev_ctl_failsafe_chk_event) },
->  	[WMI_TAG_TWT_ADD_DIALOG_COMPLETE_EVENT]
->  		= { .min_len = sizeof(struct wmi_twt_add_dialog_event) },
-> +	[WMI_TAG_PEER_OPER_MODE_CHANGE_EVENT]
-> +		= { .min_len = sizeof(struct wmi_peer_oper_mode_change_event) },
->  };
-> 
->  #define PRIMAP(_hw_mode_) \
-> @@ -5695,6 +5697,33 @@ static void
-> ath11k_wmi_twt_add_dialog_event(struct ath11k_base *ab, struct sk_bu
->  	kfree(tb);
->  }
-> 
-> +static void ath11k_wmi_peer_oper_mode_change_event(struct ath11k_base
-> *ab, struct sk_buff *skb)
-> +{
-> +	const void **tb;
-> +	const struct wmi_peer_oper_mode_change_event *ev;
-> +	int ret;
-> +
-> +	tb = ath11k_wmi_tlv_parse_alloc(ab, skb->data, skb->len, GFP_ATOMIC);
-> +	if (IS_ERR(tb)) {
-> +		ret = PTR_ERR(tb);
-> +		ath11k_warn(ab, "failed to parse tlv: %d\n", ret);
-> +		return;
-> +	}
-> +
-> +	ev = tb[WMI_TAG_PEER_OPER_MODE_CHANGE_EVENT];
-> +	if (!ev) {
-> +		ath11k_warn(ab, "failed to fetch peer oper mode change ev");
-> +		goto exit;
-> +	}
-> +
-> +	ath11k_dbg(ab, ATH11K_DBG_WMI,
-> +		   "OMI Change Event - ind: %ds, rxnss: %d, bw: %d, txnss: %d,
-> disablemu: %d\n",
-> +		   ev->ind_type, ev->new_rxnss, ev->new_bw, ev->new_txnss,
-> ev->new_disablemu);
-> +
-> +exit:
-> +	kfree(tb);
-> +}
-> +
->  static void ath11k_wmi_tlv_op_rx(struct ath11k_base *ab, struct 
-> sk_buff *skb)
->  {
->  	struct wmi_cmd_hdr *cmd_hdr;
-> @@ -5775,10 +5804,12 @@ static void ath11k_wmi_tlv_op_rx(struct
-> ath11k_base *ab, struct sk_buff *skb)
->  	case WMI_TWT_ADD_DIALOG_EVENTID:
->  		ath11k_wmi_twt_add_dialog_event(ab, skb);
->  		break;
-> +	case WMI_PEER_OPER_MODE_CHANGE_EVENTID:
-> +		ath11k_wmi_peer_oper_mode_change_event(ab, skb);
-> +		break;
->  	/* add Unsupported events here */
->  	case WMI_TBTTOFFSET_EXT_UPDATE_EVENTID:
->  	case WMI_VDEV_DELETE_RESP_EVENTID:
-> -	case WMI_PEER_OPER_MODE_CHANGE_EVENTID:
->  	case WMI_TWT_ENABLE_EVENTID:
->  	case WMI_TWT_DISABLE_EVENTID:
->  	case WMI_TWT_DEL_DIALOG_EVENTID:
-> diff --git a/drivers/net/wireless/ath/ath11k/wmi.h
-> b/drivers/net/wireless/ath/ath11k/wmi.h
-> index 6e0be33bd37c..f8823766fc1c 100644
-> --- a/drivers/net/wireless/ath/ath11k/wmi.h
-> +++ b/drivers/net/wireless/ath/ath11k/wmi.h
-> @@ -2004,6 +2004,7 @@ enum {
->  #define WMI_PEER_SET_MAX_TX_RATE                        0x11
->  #define WMI_PEER_SET_MIN_TX_RATE                        0x12
->  #define WMI_PEER_SET_DEFAULT_ROUTING                    0x13
-> +#define WMI_PEER_PARAM_XMIT_OMI				0x1c
-> 
->  /* slot time long */
->  #define WMI_VDEV_SLOT_TIME_LONG         0x1
-> @@ -4684,6 +4685,15 @@ struct wmi_obss_spatial_reuse_params_cmd {
->  	u32 vdev_id;
->  };
-> 
-> +struct wmi_peer_oper_mode_change_event {
-> +	struct wmi_mac_addr peer_macaddr;
-> +	u32 ind_type;
-> +	u32 new_rxnss;
-> +	u32 new_bw;
-> +	u32 new_txnss;
-> +	u32 new_disablemu;
-> +};
+A few of the WMI parameter structs were missing this.
 
-Needs to be marked with __packed, I guess.
+Signed-off-by: John Crispin <john@phrozen.org>
+---
+ drivers/net/wireless/ath/ath11k/wmi.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-Vasanth
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index 0d7caa1e4d75..7a1ed73d8b7b 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -4562,12 +4562,12 @@ struct wmi_twt_enable_params_cmd {
+ 	u32 mode_check_interval;
+ 	u32 add_sta_slot_interval;
+ 	u32 remove_sta_slot_interval;
+-};
++} __packed;
+ 
+ struct wmi_twt_disable_params_cmd {
+ 	u32 tlv_header;
+ 	u32 pdev_id;
+-};
++} __packed;
+ 
+ enum WMI_HOST_TWT_COMMAND {
+ 	WMI_HOST_TWT_COMMAND_REQUEST_TWT = 0,
+@@ -4682,7 +4682,7 @@ struct wmi_obss_spatial_reuse_params_cmd {
+ 	s32 obss_min;
+ 	s32 obss_max;
+ 	u32 vdev_id;
+-};
++} __packed;
+ 
+ struct target_resource_config {
+ 	u32 num_vdevs;
+-- 
+2.20.1
+
 
 _______________________________________________
 ath11k mailing list
