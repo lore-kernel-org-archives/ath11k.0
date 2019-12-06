@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1idEgM-0006uW-NV
+ id 1idEgM-0006sA-Rw
  for ath11k@lists.infradead.org; Fri, 06 Dec 2019 14:34:13 +0000
 From: John Crispin <john@phrozen.org>
-Subject: [PATCH 6/7] ath11k: add WMI calls required for handling BSS color
-Date: Fri,  6 Dec 2019 15:34:00 +0100
-Message-Id: <20191206143401.4080-6-john@phrozen.org>
+Subject: [PATCH 3/7] mac80211: add handling for BSS color
+Date: Fri,  6 Dec 2019 15:33:57 +0100
+Message-Id: <20191206143401.4080-3-john@phrozen.org>
 In-Reply-To: <20191206143401.4080-1-john@phrozen.org>
 References: <20191206143401.4080-1-john@phrozen.org>
 MIME-Version: 1.0
@@ -25,148 +25,82 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Johannes Berg <johannes@sipsolutions.net>, Kalle Valo <kvalo@codeaurora.org>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-If the he_operation field of the beacon sets a BSS color, we need to inform
-the FW of the settings. This patch adds the WMI command handlers required
-to do so.
+It is now possible to propagate BSS color settings into the subsystem. Lets
+make mac80211 also handle them so that we can send them further down the
+stack into the drivers. We continue to populate the old bss_color field
+until all users have been updated to use the new he_bss_color struct.
 
 Signed-off-by: John Crispin <john@phrozen.org>
 ---
- drivers/net/wireless/ath/ath11k/wmi.c | 67 +++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/wmi.h | 31 +++++++++++++
- 2 files changed, 98 insertions(+)
+ include/net/mac80211.h | 2 ++
+ net/mac80211/cfg.c     | 5 ++++-
+ net/mac80211/mlme.c    | 8 ++++++++
+ 3 files changed, 14 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 8cf7220a95f9..5d9276db9a85 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -2789,6 +2789,73 @@ ath11k_wmi_send_obss_spr_cmd(struct ath11k *ar, u32 vdev_id,
- 	return ret;
- }
+diff --git a/include/net/mac80211.h b/include/net/mac80211.h
+index 16a5525ddab1..994686443553 100644
+--- a/include/net/mac80211.h
++++ b/include/net/mac80211.h
+@@ -316,6 +316,7 @@ struct ieee80211_vif_chanctx_switch {
+  *	functionality changed for this BSS (AP mode).
+  * @BSS_CHANGED_TWT: TWT status changed
+  * @BSS_CHANGED_HE_OBSS_PD: OBSS Packet Detection status changed.
++ * @BSS_CHANGED_HE_BSS_COLOR: BSS Color has changed
+  *
+  */
+ enum ieee80211_bss_change {
+@@ -348,6 +349,7 @@ enum ieee80211_bss_change {
+ 	BSS_CHANGED_FTM_RESPONDER	= 1<<26,
+ 	BSS_CHANGED_TWT			= 1<<27,
+ 	BSS_CHANGED_HE_OBSS_PD		= 1<<28,
++	BSS_CHANGED_HE_BSS_COLOR	= 1<<29,
  
-+int
-+ath11k_wmi_send_obss_color_collision_cfg_cmd(struct ath11k *ar, u32 vdev_id,
-+					     u8 bss_color, u32 period,
-+					     bool enable)
-+{
-+	struct ath11k_pdev_wmi *wmi = ar->wmi;
-+	struct ath11k_base *ab = wmi->wmi_ab->ab;
-+	struct wmi_obss_color_collision_cfg_params_cmd *cmd;
-+	struct sk_buff *skb;
-+	int ret, len;
-+
-+	len = sizeof(*cmd);
-+
-+	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, len);
-+	if (!skb)
-+		return -ENOMEM;
-+
-+	cmd = (struct wmi_obss_color_collision_cfg_params_cmd *)skb->data;
-+	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_OBSS_COLOR_COLLISION_DET_CONFIG) |
-+			  FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
-+	cmd->vdev_id = vdev_id;
-+	cmd->evt_type = enable ? ATH11K_OBSS_COLOR_COLLISION_DETECTION :
-+				 ATH11K_OBSS_COLOR_COLLISION_DETECTION_DISABLE;
-+	cmd->current_bss_color = bss_color;
-+	cmd->detection_period_ms = period;
-+	cmd->scan_period_ms = ATH11K_BSS_COLOR_COLLISION_SCAN_PERIOD_MS;
-+	cmd->free_slot_expiry_time_ms = 0;
-+	cmd->flags = 0;
-+
-+	ret = ath11k_wmi_cmd_send(wmi, skb,
-+				  WMI_OBSS_COLOR_COLLISION_DET_CONFIG_CMDID);
-+	if (ret) {
-+		ath11k_warn(ab, "Failed to send WMI_OBSS_COLOR_COLLISION_DET_CONFIG_CMDID");
-+		dev_kfree_skb(skb);
-+	}
-+	return ret;
-+}
-+
-+int ath11k_wmi_send_bss_color_change_enable_cmd(struct ath11k *ar, u32 vdev_id, bool enable)
-+{
-+	struct ath11k_pdev_wmi *wmi = ar->wmi;
-+	struct ath11k_base *ab = wmi->wmi_ab->ab;
-+	struct wmi_bss_color_change_enable_params_cmd *cmd;
-+	struct sk_buff *skb;
-+	int ret, len;
-+
-+	len = sizeof(*cmd);
-+
-+	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, len);
-+	if (!skb)
-+		return -ENOMEM;
-+
-+	cmd = (struct wmi_bss_color_change_enable_params_cmd *)skb->data;
-+	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_BSS_COLOR_CHANGE_ENABLE) |
-+			  FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
-+	cmd->vdev_id = vdev_id;
-+	cmd->enable = enable ? 1 : 0;
-+
-+	ret = ath11k_wmi_cmd_send(wmi, skb,
-+				  WMI_BSS_COLOR_CHANGE_ENABLE_CMDID);
-+	if (ret) {
-+		ath11k_warn(ab, "Failed to send WMI_TWT_DIeABLE_CMDID");
-+		dev_kfree_skb(skb);
-+	}
-+	return ret;
-+}
-+
- static void
- ath11k_fill_band_to_mac_param(struct ath11k_base  *soc,
- 			      struct wmi_host_pdev_band_to_mac *band_to_mac)
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index 4dbcb9dc0f8d..f62f796305aa 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -483,6 +483,7 @@ enum wmi_tlv_cmd_id {
- 	WMI_SAR_LIMITS_CMDID,
- 	WMI_OBSS_SCAN_ENABLE_CMDID = WMI_TLV_CMD(WMI_GRP_OBSS_OFL),
- 	WMI_OBSS_SCAN_DISABLE_CMDID,
-+	WMI_OBSS_COLOR_COLLISION_DET_CONFIG_CMDID,
- 	WMI_LPI_MGMT_SNOOPING_CONFIG_CMDID = WMI_TLV_CMD(WMI_GRP_LPI),
- 	WMI_LPI_START_SCAN_CMDID,
- 	WMI_LPI_STOP_SCAN_CMDID,
-@@ -4694,6 +4695,30 @@ struct wmi_peer_oper_mode_change_event {
- 	u32 new_disablemu;
- } __packed;
+ 	/* when adding here, make sure to change ieee80211_reconfig */
+ };
+diff --git a/net/mac80211/cfg.c b/net/mac80211/cfg.c
+index ed56b0c6fe19..e109b47c4219 100644
+--- a/net/mac80211/cfg.c
++++ b/net/mac80211/cfg.c
+@@ -981,7 +981,8 @@ static int ieee80211_start_ap(struct wiphy *wiphy, struct net_device *dev,
+ 		      BSS_CHANGED_P2P_PS |
+ 		      BSS_CHANGED_TXPOWER |
+ 		      BSS_CHANGED_TWT |
+-		      BSS_CHANGED_HE_OBSS_PD;
++		      BSS_CHANGED_HE_OBSS_PD |
++		      BSS_CHANGED_HE_BSS_COLOR;
+ 	int err;
+ 	int prev_beacon_int;
  
-+#define ATH11K_BSS_COLOR_COLLISION_SCAN_PERIOD_MS		200
-+#define ATH11K_OBSS_COLOR_COLLISION_DETECTION_DISABLE		0
-+#define ATH11K_OBSS_COLOR_COLLISION_DETECTION			1
-+
-+#define ATH11K_BSS_COLOR_COLLISION_DETECTION_STA_PERIOD_MS	10000
-+#define ATH11K_BSS_COLOR_COLLISION_DETECTION_AP_PERIOD_MS	5000
-+
-+struct wmi_obss_color_collision_cfg_params_cmd {
-+	u32 tlv_header;
-+	u32 vdev_id;
-+	u32 flags;
-+	u32 evt_type;
-+	u32 current_bss_color;
-+	u32 detection_period_ms;
-+	u32 scan_period_ms;
-+	u32 free_slot_expiry_time_ms;
-+} __packed;
-+
-+struct wmi_bss_color_change_enable_params_cmd {
-+	u32 tlv_header;
-+	u32 vdev_id;
-+	u32 enable;
-+} __packed;
-+
- struct target_resource_config {
- 	u32 num_vdevs;
- 	u32 num_peers;
-@@ -4892,4 +4917,10 @@ int ath11k_wmi_send_twt_resume_dialog_cmd(struct ath11k *ar,
- 					  struct wmi_twt_resume_dialog_params *params);
- int ath11k_wmi_send_obss_spr_cmd(struct ath11k *ar, u32 vdev_id,
- 				 struct ieee80211_he_obss_pd *he_obss_pd);
-+int ath11k_wmi_send_obss_color_collision_cfg_cmd(struct ath11k *ar, u32 vdev_id,
-+						 u8 bss_color, u32 period,
-+						 bool enable);
-+int ath11k_wmi_send_bss_color_change_enable_cmd(struct ath11k *ar, u32 vdev_id,
-+						bool enable);
-+
- #endif
+@@ -1054,6 +1055,8 @@ static int ieee80211_start_ap(struct wiphy *wiphy, struct net_device *dev,
+ 	sdata->vif.bss_conf.twt_responder = params->twt_responder;
+ 	memcpy(&sdata->vif.bss_conf.he_obss_pd, &params->he_obss_pd,
+ 	       sizeof(struct ieee80211_he_obss_pd));
++	memcpy(&sdata->vif.bss_conf.he_bss_color, &params->he_bss_color,
++	       sizeof(struct ieee80211_he_bss_color));
+ 
+ 	sdata->vif.bss_conf.ssid_len = params->ssid_len;
+ 	if (params->ssid_len)
+diff --git a/net/mac80211/mlme.c b/net/mac80211/mlme.c
+index 641876982ab9..319d43f4082b 100644
+--- a/net/mac80211/mlme.c
++++ b/net/mac80211/mlme.c
+@@ -3372,8 +3372,16 @@ static bool ieee80211_assoc_success(struct ieee80211_sub_if_data *sdata,
+ 
+ 	if (bss_conf->he_support) {
+ 		bss_conf->bss_color =
++		bss_conf->he_bss_color.color =
+ 			le32_get_bits(elems.he_operation->he_oper_params,
+ 				      IEEE80211_HE_OPERATION_BSS_COLOR_MASK);
++		bss_conf->he_bss_color.partial =
++			le32_get_bits(elems.he_operation->he_oper_params,
++				      IEEE80211_HE_OPERATION_PARTIAL_BSS_COLOR);
++		bss_conf->he_bss_color.disabled =
++			le32_get_bits(elems.he_operation->he_oper_params,
++				      IEEE80211_HE_OPERATION_BSS_COLOR_DISABLED);
++		changed |= BSS_CHANGED_HE_BSS_COLOR;
+ 
+ 		bss_conf->htc_trig_based_pkt_ext =
+ 			le32_get_bits(elems.he_operation->he_oper_params,
 -- 
 2.20.1
 
