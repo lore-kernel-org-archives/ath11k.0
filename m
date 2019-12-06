@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1idEgM-0006uX-Pn
- for ath11k@lists.infradead.org; Fri, 06 Dec 2019 14:34:13 +0000
+ id 1idEgM-0006px-8s
+ for ath11k@lists.infradead.org; Fri, 06 Dec 2019 14:34:11 +0000
 From: John Crispin <john@phrozen.org>
-Subject: [PATCH 7/7] ath11k: add handling for BSS color
-Date: Fri,  6 Dec 2019 15:34:01 +0100
-Message-Id: <20191206143401.4080-7-john@phrozen.org>
+Subject: [PATCH 4/7] iwlwifi: use new bss_color struct
+Date: Fri,  6 Dec 2019 15:33:58 +0100
+Message-Id: <20191206143401.4080-4-john@phrozen.org>
 In-Reply-To: <20191206143401.4080-1-john@phrozen.org>
 References: <20191206143401.4080-1-john@phrozen.org>
 MIME-Version: 1.0
@@ -25,39 +25,27 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Johannes Berg <johannes@sipsolutions.net>, Kalle Valo <kvalo@codeaurora.org>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-This patch adds code to handle the BSS_CHANGED_BSS_COLOR flag. IT will
-trigger the propagation of BSS color settings into the FW. Handling is
-slightly different between AP and STA interfaces.
+We will be removing the bss_color element. Lets use the he_bss_color
+struct instead.
 
 Signed-off-by: John Crispin <john@phrozen.org>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ drivers/net/wireless/intel/iwlwifi/mvm/mac80211.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 6a8c1c3b8da2..c692922513b2 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -1928,6 +1928,19 @@ static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
- 		ath11k_wmi_send_obss_spr_cmd(ar, arvif->vdev_id,
- 					     &info->he_obss_pd);
- 
-+	if (changed & BSS_CHANGED_HE_BSS_COLOR) {
-+		if (vif->type == NL80211_IFTYPE_AP) {
-+			ath11k_wmi_send_obss_color_collision_cfg_cmd(
-+				ar, arvif->vdev_id, info->he_bss_color.color,
-+				ATH11K_BSS_COLOR_COLLISION_DETECTION_AP_PERIOD_MS,
-+				!info->he_bss_color.disabled);
-+		} else if (vif->type == NL80211_IFTYPE_STATION) {
-+			ath11k_wmi_send_bss_color_change_enable_cmd(ar, arvif->vdev_id, 1);
-+			ath11k_wmi_send_obss_color_collision_cfg_cmd(ar, arvif->vdev_id, 0,
-+				ATH11K_BSS_COLOR_COLLISION_DETECTION_STA_PERIOD_MS, 1);
-+		}
-+	}
-+
- 	mutex_unlock(&ar->conf_mutex);
- }
- 
+diff --git a/drivers/net/wireless/intel/iwlwifi/mvm/mac80211.c b/drivers/net/wireless/intel/iwlwifi/mvm/mac80211.c
+index b74bd58f3f45..f0bf42f91af1 100644
+--- a/drivers/net/wireless/intel/iwlwifi/mvm/mac80211.c
++++ b/drivers/net/wireless/intel/iwlwifi/mvm/mac80211.c
+@@ -2225,7 +2225,7 @@ static void iwl_mvm_cfg_he_sta(struct iwl_mvm *mvm,
+ 	struct iwl_he_sta_context_cmd sta_ctxt_cmd = {
+ 		.sta_id = sta_id,
+ 		.tid_limit = IWL_MAX_TID_COUNT,
+-		.bss_color = vif->bss_conf.bss_color,
++		.bss_color = vif->bss_conf.he_bss_color.color,
+ 		.htc_trig_based_pkt_ext = vif->bss_conf.htc_trig_based_pkt_ext,
+ 		.frame_time_rts_th =
+ 			cpu_to_le16(vif->bss_conf.frame_time_rts_th),
 -- 
 2.20.1
 
