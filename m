@@ -1,15 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from a27-21.smtp-out.us-west-2.amazonses.com ([54.240.27.21])
+Received: from youngberry.canonical.com ([91.189.89.112])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iejPl-0002jL-HN
- for ath11k@lists.infradead.org; Tue, 10 Dec 2019 17:35:15 +0000
+ id 1iexSN-00010u-C1
+ for ath11k@lists.infradead.org; Wed, 11 Dec 2019 08:34:52 +0000
+From: Colin King <colin.king@canonical.com>
+Subject: [PATCH][next] ath11k: fix several spelling mistakes
+Date: Wed, 11 Dec 2019 08:34:43 +0000
+Message-Id: <20191211083443.372506-1-colin.king@canonical.com>
 MIME-Version: 1.0
-Subject: Re: [RESEND 1/9] ath11k: add wmi helper for turning STA PS on/off
-From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <20191204053713.3064-2-john@phrozen.org>
-References: <20191204053713.3064-2-john@phrozen.org>
-Message-ID: <0101016ef0e10cee-df4807d0-d613-402b-8574-39e7afd6a1a8-000000@us-west-2.amazonses.com>
-Date: Tue, 10 Dec 2019 17:35:11 +0000
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,28 +20,71 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: John Crispin <john@phrozen.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: Kalle Valo <kvalo@codeaurora.org>, "David S . Miller" <davem@davemloft.net>, ath11k@lists.infradead.org, linux-wireless@vger.kernel.org, netdev@vger.kernel.org
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 
-John Crispin <john@phrozen.org> wrote:
+From: Colin Ian King <colin.king@canonical.com>
 
-> Add a WMI call helper to set the powersave mode of a STA interface.
-> 
-> Signed-off-by: John Crispin <john@phrozen.org>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+There are several spelling mistakes in warning and debug messages,
+fix them.
 
-There were few new warnings:
+Signed-off-by: Colin Ian King <colin.king@canonical.com>
+---
+ drivers/net/wireless/ath/ath11k/debug.c           | 4 ++--
+ drivers/net/wireless/ath/ath11k/debug_htt_stats.c | 2 +-
+ drivers/net/wireless/ath/ath11k/wmi.c             | 2 +-
+ 3 files changed, 4 insertions(+), 4 deletions(-)
 
-drivers/net/wireless/ath/ath11k/debugfs_sta.c: In function 'ath11k_update_per_peer_stats_from_txcompl':
-drivers/net/wireless/ath/ath11k/debugfs_sta.c:138:6: warning: variable 'num_tones_in_ru' set but not used [-Wunused-but-set-variable]
-drivers/net/wireless/ath/ath11k/debug.c:122: line over 90 characters
-drivers/net/wireless/ath/ath11k/dp_tx.c:472: line over 90 characters
-drivers/net/wireless/ath/ath11k/wmi.c:5669: char * array declaration might be better as static const
-
+diff --git a/drivers/net/wireless/ath/ath11k/debug.c b/drivers/net/wireless/ath/ath11k/debug.c
+index c27fffd13a5d..e00b5739fb00 100644
+--- a/drivers/net/wireless/ath/ath11k/debug.c
++++ b/drivers/net/wireless/ath/ath11k/debug.c
+@@ -704,7 +704,7 @@ static ssize_t ath11k_write_extd_rx_stats(struct file *file,
+ 					       DP_RX_BUFFER_SIZE, &tlv_filter);
+ 
+ 	if (ret) {
+-		ath11k_warn(ar->ab, "failed to set rx filter for moniter status ring\n");
++		ath11k_warn(ar->ab, "failed to set rx filter for monitor status ring\n");
+ 		goto exit;
+ 	}
+ 
+@@ -948,7 +948,7 @@ static ssize_t ath11k_write_pktlog_filter(struct file *file,
+ 					       HAL_RXDMA_MONITOR_STATUS,
+ 					       DP_RX_BUFFER_SIZE, &tlv_filter);
+ 	if (ret) {
+-		ath11k_warn(ar->ab, "failed to set rx filter for moniter status ring\n");
++		ath11k_warn(ar->ab, "failed to set rx filter for monitor status ring\n");
+ 		goto out;
+ 	}
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/debug_htt_stats.c b/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
+index 27b301bc1a1b..a824826f562c 100644
+--- a/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
++++ b/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
+@@ -3512,7 +3512,7 @@ htt_print_rx_pdev_fw_stats_phy_err_tlv(const void *tag_buf,
+ 	len += HTT_DBG_OUT(buf + len, buf_len - len, "HTT_RX_PDEV_FW_STATS_PHY_ERR_TLV:");
+ 	len += HTT_DBG_OUT(buf + len, buf_len - len, "mac_id__word = %u",
+ 			   htt_stats_buf->mac_id__word);
+-	len += HTT_DBG_OUT(buf + len, buf_len - len, "tota_phy_err_nct = %u",
++	len += HTT_DBG_OUT(buf + len, buf_len - len, "total_phy_err_nct = %u",
+ 			   htt_stats_buf->total_phy_err_cnt);
+ 
+ 	ARRAY_TO_STRING(phy_errs,
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index b05642617b78..682563ccfe5a 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -2544,7 +2544,7 @@ ath11k_wmi_send_twt_disable_cmd(struct ath11k *ar, u32 pdev_id)
+ 	ret = ath11k_wmi_cmd_send(wmi, skb,
+ 				  WMI_TWT_DISABLE_CMDID);
+ 	if (ret) {
+-		ath11k_warn(ab, "Failed to send WMI_TWT_DIeABLE_CMDID");
++		ath11k_warn(ab, "Failed to send WMI_TWT_DISABLE_CMDID");
+ 		dev_kfree_skb(skb);
+ 	}
+ 	return ret;
 -- 
-https://patchwork.kernel.org/patch/11272115/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+2.24.0
 
 
 _______________________________________________
