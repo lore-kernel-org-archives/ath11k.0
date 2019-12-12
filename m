@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from youngberry.canonical.com ([91.189.89.112])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ifUMS-0005r6-HW
- for ath11k@lists.infradead.org; Thu, 12 Dec 2019 19:42:57 +0000
+ id 1ifTrM-0003os-Px
+ for ath11k@lists.infradead.org; Thu, 12 Dec 2019 19:10:50 +0000
 From: Colin King <colin.king@canonical.com>
-Subject: [PATCH] ath11k: fix missing free of skb on error return path
-Date: Thu, 12 Dec 2019 19:42:51 +0000
-Message-Id: <20191212194251.108343-1-colin.king@canonical.com>
+Subject: [PATCH][next] ath11k: fix uninitialized variable radioup
+Date: Thu, 12 Dec 2019 19:10:44 +0000
+Message-Id: <20191212191044.107544-1-colin.king@canonical.com>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -25,34 +25,30 @@ Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 
 From: Colin Ian King <colin.king@canonical.com>
 
-The error handling when the call to ath11k_hal_srng_get_entrysize fails
-leaks skb, fix this by returning via the err_free return path that will
-ensure the skb is free'd.
+The variable radioup is not uninitalized so it may contain a garbage
+value and hence the detection of a radio that is not up is buggy.
+Fix this by initializing it to zero.
 
-Addresses-Coverity: ("Resource leak")
+Addresses-Coverity: ("Uninitalized scalar variable")
 Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
 Signed-off-by: Colin Ian King <colin.king@canonical.com>
 ---
- drivers/net/wireless/ath/ath11k/dp_tx.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ drivers/net/wireless/ath/ath11k/debug.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
-index a8b9557c2346..7123a4fc4635 100644
---- a/drivers/net/wireless/ath/ath11k/dp_tx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
-@@ -645,8 +645,10 @@ int ath11k_dp_tx_htt_srng_setup(struct ath11k_base *ab, u32 ring_id,
- 				 HAL_ADDR_MSB_REG_SHIFT;
+diff --git a/drivers/net/wireless/ath/ath11k/debug.c b/drivers/net/wireless/ath/ath11k/debug.c
+index c27fffd13a5d..34b960453edc 100644
+--- a/drivers/net/wireless/ath/ath11k/debug.c
++++ b/drivers/net/wireless/ath/ath11k/debug.c
+@@ -541,7 +541,7 @@ static ssize_t ath11k_write_simulate_fw_crash(struct file *file,
+ 	struct ath11k *ar = ab->pdevs[0].ar;
+ 	char buf[32] = {0};
+ 	ssize_t rc;
+-	int i, ret, radioup;
++	int i, ret, radioup = 0;
  
- 	ret = ath11k_hal_srng_get_entrysize(ring_type);
--	if (ret < 0)
--		return -EINVAL;
-+	if (ret < 0) {
-+		ret = -EINVAL;
-+		goto err_free;
-+	}
- 
- 	ring_entry_sz = ret;
- 
+ 	for (i = 0; i < ab->num_radios; i++) {
+ 		pdev = &ab->pdevs[i];
 -- 
 2.24.0
 
