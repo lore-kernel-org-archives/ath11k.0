@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from userp2130.oracle.com ([156.151.31.86])
+Received: from userp2120.oracle.com ([156.151.31.85])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ifiZt-0008Hg-1a
- for ath11k@lists.infradead.org; Fri, 13 Dec 2019 10:53:46 +0000
-Date: Fri, 13 Dec 2019 13:53:35 +0300
+ id 1ifib9-0000G2-OO
+ for ath11k@lists.infradead.org; Fri, 13 Dec 2019 10:55:05 +0000
+Date: Fri, 13 Dec 2019 13:54:48 +0300
 From: Dan Carpenter <dan.carpenter@oracle.com>
-Subject: [bug report] ath11k: driver for Qualcomm IEEE 802.11ax devices
-Message-ID: <20191213105335.lg7n627mhas6spcy@kili.mountain>
+Subject: [PATCH] ath11k: fix up some error paths
+Message-ID: <20191213105448.b7lic5ddih6c3sqy@kili.mountain>
 MIME-Version: 1.0
 Content-Disposition: inline
 List-Id: <ath11k.lists.infradead.org>
@@ -21,61 +21,83 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: kvalo@codeaurora.org
-Cc: ath11k@lists.infradead.org
+To: Kalle Valo <kvalo@codeaurora.org>
+Cc: Bhagavathi Perumal S <bperumal@codeaurora.org>, kernel-janitors@vger.kernel.org, Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>, linux-wireless@vger.kernel.org, John Crispin <john@phrozen.org>, ath11k@lists.infradead.org
 
-Hello Kalle Valo,
+There are two error paths where "ret" wasn't set.  Ideally the compiler
+would have warned about these bugs, but we initialized "ret" to zero so
+it silenced the warning.  I have removed that.  Also if
+ath11k_hal_srng_get_entrysize() fails then we need to free some
+resources before returning.
 
-This is a semi-automatic email about new static checker warnings.
+Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
+---
+ drivers/net/wireless/ath/ath11k/dp_tx.c | 20 +++++++++++---------
+ 1 file changed, 11 insertions(+), 9 deletions(-)
 
-The patch d5c65159f289: "ath11k: driver for Qualcomm IEEE 802.11ax 
-devices" from Nov 23, 2019, leads to the following Smatch complaint:
+diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
+index a8b9557c2346..ea7564245c58 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_tx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
+@@ -606,7 +606,7 @@ int ath11k_dp_tx_htt_srng_setup(struct ath11k_base *ab, u32 ring_id,
+ 	dma_addr_t hp_addr, tp_addr;
+ 	enum htt_srng_ring_type htt_ring_type;
+ 	enum htt_srng_ring_id htt_ring_id;
+-	int ret = 0;
++	int ret;
+ 
+ 	skb = ath11k_htc_alloc_skb(ab, len);
+ 	if (!skb)
+@@ -618,9 +618,10 @@ int ath11k_dp_tx_htt_srng_setup(struct ath11k_base *ab, u32 ring_id,
+ 	hp_addr = ath11k_hal_srng_get_hp_addr(ab, srng);
+ 	tp_addr = ath11k_hal_srng_get_tp_addr(ab, srng);
+ 
+-	if (ath11k_dp_tx_get_ring_id_type(ab, mac_id, ring_id,
+-					  ring_type, &htt_ring_type,
+-					  &htt_ring_id))
++	ret = ath11k_dp_tx_get_ring_id_type(ab, mac_id, ring_id,
++					    ring_type, &htt_ring_type,
++					    &htt_ring_id);
++	if (ret)
+ 		goto err_free;
+ 
+ 	skb_put(skb, len);
+@@ -646,7 +647,7 @@ int ath11k_dp_tx_htt_srng_setup(struct ath11k_base *ab, u32 ring_id,
+ 
+ 	ret = ath11k_hal_srng_get_entrysize(ring_type);
+ 	if (ret < 0)
+-		return -EINVAL;
++		goto err_free;
+ 
+ 	ring_entry_sz = ret;
+ 
+@@ -791,7 +792,7 @@ int ath11k_dp_tx_htt_rx_filter_setup(struct ath11k_base *ab, u32 ring_id,
+ 	int len = sizeof(*cmd);
+ 	enum htt_srng_ring_type htt_ring_type;
+ 	enum htt_srng_ring_id htt_ring_id;
+-	int ret = 0;
++	int ret;
+ 
+ 	skb = ath11k_htc_alloc_skb(ab, len);
+ 	if (!skb)
+@@ -800,9 +801,10 @@ int ath11k_dp_tx_htt_rx_filter_setup(struct ath11k_base *ab, u32 ring_id,
+ 	memset(&params, 0, sizeof(params));
+ 	ath11k_hal_srng_get_params(ab, srng, &params);
+ 
+-	if (ath11k_dp_tx_get_ring_id_type(ab, mac_id, ring_id,
+-					  ring_type, &htt_ring_type,
+-					  &htt_ring_id))
++	ret = ath11k_dp_tx_get_ring_id_type(ab, mac_id, ring_id,
++					    ring_type, &htt_ring_type,
++					    &htt_ring_id);
++	if (ret)
+ 		goto err_free;
+ 
+ 	skb_put(skb, len);
+-- 
+2.11.0
 
-    drivers/net/wireless/ath/ath11k/ce.c:192 ath11k_ce_rx_post_pipe()
-     error: we previously assumed 'pipe->dest_ring' could be null (see line 167)
-
-drivers/net/wireless/ath/ath11k/ce.c
-   166	
-   167		if (!(pipe->dest_ring || pipe->status_ring))
-                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-This checks that at least one is non-NULL but it should check that both
-are non-NULL, probably?
-
-		if (!pipe->dest_ring || !pipe->status_ring)
-
-   168			return 0;
-   169	
-   170		spin_lock_bh(&ab->ce.ce_lock);
-   171		while (pipe->rx_buf_needed) {
-   172			skb = dev_alloc_skb(pipe->buf_sz);
-   173			if (!skb) {
-   174				ret = -ENOMEM;
-   175				goto exit;
-   176			}
-   177	
-   178			WARN_ON_ONCE(!IS_ALIGNED((unsigned long)skb->data, 4));
-   179	
-   180			paddr = dma_map_single(ab->dev, skb->data,
-   181					       skb->len + skb_tailroom(skb),
-   182					       DMA_FROM_DEVICE);
-   183			if (unlikely(dma_mapping_error(ab->dev, paddr))) {
-   184				ath11k_warn(ab, "failed to dma map ce rx buf\n");
-   185				dev_kfree_skb_any(skb);
-   186				ret = -EIO;
-   187				goto exit;
-   188			}
-   189	
-   190			ATH11K_SKB_RXCB(skb)->paddr = paddr;
-   191	
-   192			ret = ath11k_ce_rx_buf_enqueue_pipe(pipe, skb, paddr);
-                                                            ^^^^
-pipe->dest_ring is dereferenced inside the function.
-
-   193	
-   194			if (ret) {
-
-regards,
-dan carpenter
 
 _______________________________________________
 ath11k mailing list
