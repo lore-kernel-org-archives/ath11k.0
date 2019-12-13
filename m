@@ -1,12 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ifgSI-0002A4-9z
+ id 1ifgSI-0002A6-A1
  for ath11k@lists.infradead.org; Fri, 13 Dec 2019 08:37:47 +0000
 From: John Crispin <john@phrozen.org>
-Subject: [PATCH V3 0/9] ath11k: resend pending patches
-Date: Fri, 13 Dec 2019 09:37:25 +0100
-Message-Id: <20191213083734.22471-1-john@phrozen.org>
+Subject: [PATCH V3 2/9] ath11k: disable PS for STA interfaces by default upon
+ bringup
+Date: Fri, 13 Dec 2019 09:37:27 +0100
+Message-Id: <20191213083734.22471-3-john@phrozen.org>
+In-Reply-To: <20191213083734.22471-1-john@phrozen.org>
+References: <20191213083734.22471-1-john@phrozen.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -23,38 +26,32 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Kalle Valo <kvalo@codeaurora.org>
 Cc: ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-Kalle merged ath11k into his next tree and then applied the huge backlog
-from patchwork. This is a resend of pending patches that no longer apply
-due to merge order conflicts.
+After applying this setting the TX performance issue of STA interfaces is
+gone and we can see TX performance go up to ~900mbit on HE80.
 
-John Crispin (9):
-  ath11k: add wmi helper for turning STA PS on/off
-  ath11k: disable PS for STA interfaces by default upon bringup
-  ath11k: drop memset when setting up a tx cmd desc
-  ath11k: rename ath11k_wmi_base instances from wmi_sc to wmi_ab
-  ath11k: add WMI calls to manually add/del/pause/resume TWT dialogs
-  ath11k: add debugfs for TWT debug calls
-  ath11k: move some tx_status parsing to debugfs code
-  ath11k: optimise ath11k_dp_tx_completion_handler
-  ath11k: optimize ath11k_hal_tx_status_parse
+Signed-off-by: John Crispin <john@phrozen.org>
+---
+ drivers/net/wireless/ath/ath11k/mac.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
- drivers/net/wireless/ath/ath11k/core.c        |   4 +-
- drivers/net/wireless/ath/ath11k/core.h        |   3 +-
- drivers/net/wireless/ath/ath11k/debug.c       | 198 +++++++++
- drivers/net/wireless/ath/ath11k/debug.h       |   8 +
- drivers/net/wireless/ath/ath11k/debugfs_sta.c |  66 +--
- drivers/net/wireless/ath/ath11k/dp.c          |  16 +-
- drivers/net/wireless/ath/ath11k/dp.h          |  11 +-
- drivers/net/wireless/ath/ath11k/dp_tx.c       |  81 ++--
- drivers/net/wireless/ath/ath11k/hal_tx.c      |  74 +---
- drivers/net/wireless/ath/ath11k/hal_tx.h      |  13 +-
- drivers/net/wireless/ath/ath11k/htc.c         |   2 +-
- drivers/net/wireless/ath/ath11k/mac.c         |  15 +-
- drivers/net/wireless/ath/ath11k/testmode.c    |   2 +-
- drivers/net/wireless/ath/ath11k/wmi.c         | 408 ++++++++++++++----
- drivers/net/wireless/ath/ath11k/wmi.h         | 123 +++++-
- 15 files changed, 773 insertions(+), 251 deletions(-)
-
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 978d8768d68a..d9b4c95019e5 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -4097,6 +4097,13 @@ static int ath11k_mac_op_add_interface(struct ieee80211_hw *hw,
+ 				    arvif->vdev_id, ret);
+ 			goto err_peer_del;
+ 		}
++
++		ret = ath11k_wmi_pdev_set_ps_mode(ar, arvif->vdev_id, false);
++		if (ret) {
++			ath11k_warn(ar->ab, "failed to disable vdev %d ps mode: %d\n",
++				    arvif->vdev_id, ret);
++			goto err_peer_del;
++		}
+ 		break;
+ 	default:
+ 		break;
 -- 
 2.20.1
 
