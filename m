@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from userp2120.oracle.com ([156.151.31.85])
+Received: from aserp2120.oracle.com ([141.146.126.78])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ifiXz-0007jW-3X
- for ath11k@lists.infradead.org; Fri, 13 Dec 2019 10:51:48 +0000
-Date: Fri, 13 Dec 2019 13:51:27 +0300
+ id 1ifiYB-0007vZ-J8
+ for ath11k@lists.infradead.org; Fri, 13 Dec 2019 10:52:00 +0000
+Date: Fri, 13 Dec 2019 13:51:49 +0300
 From: Dan Carpenter <dan.carpenter@oracle.com>
-Subject: [PATCH] ath11k: checking for NULL vs IS_ERR()
-Message-ID: <20191213105127.kijiazxwtghmubyk@kili.mountain>
+Subject: [bug report] ath11k: driver for Qualcomm IEEE 802.11ax devices
+Message-ID: <20191213105149.r7knavfbd2xs76vv@kili.mountain>
 MIME-Version: 1.0
 Content-Disposition: inline
 List-Id: <ath11k.lists.infradead.org>
@@ -21,72 +21,59 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: Miles Hu <milehu@codeaurora.org>, kernel-janitors@vger.kernel.org, Venkateswara Naralasetty <vnaralas@codeaurora.org>, linux-wireless@vger.kernel.org, Muna Sinada <msinada@codeaurora.org>, Shashidhar Lakkavalli <slakkavalli@datto.com>, ath11k@lists.infradead.org
+To: kvalo@codeaurora.org
+Cc: ath11k@lists.infradead.org
 
-The ath11k_ce_alloc_ring() function returns error pointers on error, not
-NULL.  The rest of the driver assumes that "pipe->src_ring" is either
-valid or NULL so this patch introduces a temporary varaible to avoid
-leaving it as an error pointer.
+Hello Kalle Valo,
 
-Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
-Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
----
- drivers/net/wireless/ath/ath11k/ce.c | 23 +++++++++++++----------
- 1 file changed, 13 insertions(+), 10 deletions(-)
+This is a semi-automatic email about new static checker warnings.
 
-diff --git a/drivers/net/wireless/ath/ath11k/ce.c b/drivers/net/wireless/ath/ath11k/ce.c
-index a6572b414303..cdd40c8fc867 100644
---- a/drivers/net/wireless/ath/ath11k/ce.c
-+++ b/drivers/net/wireless/ath/ath11k/ce.c
-@@ -441,6 +441,7 @@ static int ath11k_ce_alloc_pipe(struct ath11k_base *ab, int ce_id)
- {
- 	struct ath11k_ce_pipe *pipe = &ab->ce.ce_pipe[ce_id];
- 	const struct ce_attr *attr = &host_ce_config_wlan[ce_id];
-+	struct ath11k_ce_ring *ring;
- 	int nentries;
- 	int desc_sz;
- 
-@@ -450,24 +451,26 @@ static int ath11k_ce_alloc_pipe(struct ath11k_base *ab, int ce_id)
- 		pipe->send_cb = ath11k_ce_send_done_cb;
- 		nentries = roundup_pow_of_two(attr->src_nentries);
- 		desc_sz = ath11k_hal_ce_get_desc_size(HAL_CE_DESC_SRC);
--		pipe->src_ring = ath11k_ce_alloc_ring(ab, nentries, desc_sz);
--		if (!pipe->src_ring)
--			return -ENOMEM;
-+		ring = ath11k_ce_alloc_ring(ab, nentries, desc_sz);
-+		if (IS_ERR(ring))
-+			return PTR_ERR(ring);
-+		pipe->src_ring = ring;
- 	}
- 
- 	if (attr->dest_nentries) {
- 		pipe->recv_cb = attr->recv_cb;
- 		nentries = roundup_pow_of_two(attr->dest_nentries);
- 		desc_sz = ath11k_hal_ce_get_desc_size(HAL_CE_DESC_DST);
--		pipe->dest_ring = ath11k_ce_alloc_ring(ab, nentries, desc_sz);
--
--		if (!pipe->dest_ring)
--			return -ENOMEM;
-+		ring = ath11k_ce_alloc_ring(ab, nentries, desc_sz);
-+		if (IS_ERR(ring))
-+			return PTR_ERR(ring);
-+		pipe->dest_ring = ring;
- 
- 		desc_sz = ath11k_hal_ce_get_desc_size(HAL_CE_DESC_DST_STATUS);
--		pipe->status_ring = ath11k_ce_alloc_ring(ab, nentries, desc_sz);
--		if (!pipe->status_ring)
--			return -ENOMEM;
-+		ring = ath11k_ce_alloc_ring(ab, nentries, desc_sz);
-+		if (IS_ERR(ring))
-+			return PTR_ERR(ring);
-+		pipe->status_ring = ring;
- 	}
- 
- 	return 0;
--- 
-2.11.0
+The patch d5c65159f289: "ath11k: driver for Qualcomm IEEE 802.11ax 
+devices" from Nov 23, 2019, leads to the following Smatch complaint:
 
+    drivers/net/wireless/ath/ath11k/debug.c:575 ath11k_write_simulate_fw_crash()
+     error: we previously assumed 'ar' could be null (see line 549)
+
+drivers/net/wireless/ath/ath11k/debug.c
+   548			ar = pdev->ar;
+   549			if (ar && ar->state == ATH11K_STATE_ON) {
+                            ^^
+Check for NULL
+
+   550				radioup = 1;
+   551				break;
+   552			}
+   553		}
+   554		/* filter partial writes and invalid commands */
+   555		if (*ppos != 0 || count >= sizeof(buf) || count == 0)
+   556			return -EINVAL;
+   557	
+   558		rc = simple_write_to_buffer(buf, sizeof(buf) - 1, ppos, user_buf, count);
+   559		if (rc < 0)
+   560			return rc;
+   561	
+   562		/* drop the possible '\n' from the end */
+   563		if (buf[*ppos - 1] == '\n')
+   564			buf[*ppos - 1] = '\0';
+   565	
+   566		if (radioup == 0) {
+   567			ret = -ENETDOWN;
+   568			goto exit;
+   569		}
+   570	
+   571		if (!strcmp(buf, "assert")) {
+   572			ath11k_info(ab, "simulating firmware assert crash\n");
+   573			ret = ath11k_wmi_force_fw_hang_cmd(ar,
+                                                           ^^
+Unchecked dereference inside function
+
+   574							   ATH11K_WMI_FW_HANG_ASSERT_TYPE,
+   575							   ATH11K_WMI_FW_HANG_DELAY);
+   576		} else {
+   577			ret = -EINVAL;
+
+regards,
+dan carpenter
 
 _______________________________________________
 ath11k mailing list
