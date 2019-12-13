@@ -1,12 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ifnKZ-0007E6-0f
- for ath11k@lists.infradead.org; Fri, 13 Dec 2019 15:58:16 +0000
+ id 1ifnKZ-0007EC-Nc
+ for ath11k@lists.infradead.org; Fri, 13 Dec 2019 15:58:18 +0000
 From: John Crispin <john@phrozen.org>
-Subject: [PATCH v2 1/7] mac80211: add a struct for holding BSS color settings
-Date: Fri, 13 Dec 2019 16:57:56 +0100
-Message-Id: <20191213155802.25491-1-john@phrozen.org>
+Subject: [PATCH v2 5/7] mac80211: drop now unused bss_color element
+Date: Fri, 13 Dec 2019 16:58:00 +0100
+Message-Id: <20191213155802.25491-5-john@phrozen.org>
+In-Reply-To: <20191213155802.25491-1-john@phrozen.org>
+References: <20191213155802.25491-1-john@phrozen.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -23,76 +25,47 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Johannes Berg <johannes@sipsolutions.net>, Kalle Valo <kvalo@codeaurora.org>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-Right now we only track the actual color but not the other bits contained
-within the he_oper field. Fix this by creating a new struct to hold all
-of the info.
+With all users of bss_color converted we can drop the old element. Driver
+code should now use the new he_bss_color struct.
 
 Signed-off-by: John Crispin <john@phrozen.org>
 ---
- include/net/cfg80211.h | 15 +++++++++++++++
- include/net/mac80211.h |  2 ++
- 2 files changed, 17 insertions(+)
+ include/net/mac80211.h | 2 --
+ net/mac80211/mlme.c    | 1 -
+ 2 files changed, 3 deletions(-)
 
-diff --git a/include/net/cfg80211.h b/include/net/cfg80211.h
-index 8140c4837122..e395ef48af83 100644
---- a/include/net/cfg80211.h
-+++ b/include/net/cfg80211.h
-@@ -259,6 +259,19 @@ struct ieee80211_he_obss_pd {
- 	u8 max_offset;
- };
- 
-+/**
-+ * struct ieee80211_he_bss_color - AP settings for BSS coloring
-+ *
-+ * @color: the current color.
-+ * @disabled: is the feature disabled.
-+ * @partial: define the AID equation.
-+ */
-+struct ieee80211_he_bss_color {
-+	u8 color;
-+	bool disabled;
-+	bool partial;
-+};
-+
- /**
-  * struct ieee80211_sta_ht_cap - STA's HT capabilities
-  *
-@@ -910,6 +923,7 @@ enum cfg80211_ap_settings_flags {
-  * @twt_responder: Enable Target Wait Time
-  * @flags: flags, as defined in enum cfg80211_ap_settings_flags
-  * @he_obss_pd: OBSS Packet Detection settings
-+ * @he_bss_color: BSS Color settings
-  */
- struct cfg80211_ap_settings {
- 	struct cfg80211_chan_def chandef;
-@@ -938,6 +952,7 @@ struct cfg80211_ap_settings {
- 	bool twt_responder;
- 	u32 flags;
- 	struct ieee80211_he_obss_pd he_obss_pd;
-+	struct ieee80211_he_bss_color he_bss_color;
- };
- 
- /**
 diff --git a/include/net/mac80211.h b/include/net/mac80211.h
-index 6781d4637557..16a5525ddab1 100644
+index 994686443553..9a67fd2cfe4b 100644
 --- a/include/net/mac80211.h
 +++ b/include/net/mac80211.h
-@@ -604,6 +604,7 @@ struct ieee80211_ftm_responder_params {
-  *	in order to discover all the nontransmitted BSSIDs in the set.
-  * @he_operation: HE operation information of the AP we are connected to
-  * @he_obss_pd: OBSS Packet Detection parameters.
-+ * @he_bss_color: BSS coloring settings, if BSS supports HE
+@@ -496,7 +496,6 @@ struct ieee80211_ftm_responder_params {
+  * This structure keeps information about a BSS (and an association
+  * to that BSS) that can change during the lifetime of the BSS.
+  *
+- * @bss_color: 6-bit value to mark inter-BSS frame, if BSS supports HE
+  * @htc_trig_based_pkt_ext: default PE in 4us units, if BSS supports HE
+  * @multi_sta_back_32bit: supports BA bitmap of 32-bits in Multi-STA BACK
+  * @uora_exists: is the UORA element advertised by AP
+@@ -610,7 +609,6 @@ struct ieee80211_ftm_responder_params {
   */
  struct ieee80211_bss_conf {
  	const u8 *bssid;
-@@ -667,6 +668,7 @@ struct ieee80211_bss_conf {
- 	u8 profile_periodicity;
- 	struct ieee80211_he_operation he_operation;
- 	struct ieee80211_he_obss_pd he_obss_pd;
-+	struct ieee80211_he_bss_color he_bss_color;
- };
+-	u8 bss_color;
+ 	u8 htc_trig_based_pkt_ext;
+ 	bool multi_sta_back_32bit;
+ 	bool uora_exists;
+diff --git a/net/mac80211/mlme.c b/net/mac80211/mlme.c
+index 319d43f4082b..bc602d460b73 100644
+--- a/net/mac80211/mlme.c
++++ b/net/mac80211/mlme.c
+@@ -3371,7 +3371,6 @@ static bool ieee80211_assoc_success(struct ieee80211_sub_if_data *sdata,
+ 	}
  
- /**
+ 	if (bss_conf->he_support) {
+-		bss_conf->bss_color =
+ 		bss_conf->he_bss_color.color =
+ 			le32_get_bits(elems.he_operation->he_oper_params,
+ 				      IEEE80211_HE_OPERATION_BSS_COLOR_MASK);
 -- 
 2.20.1
 
