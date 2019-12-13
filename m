@@ -1,13 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from nbd.name ([2a01:4f8:221:3d45::2])
+Received: from aserp2120.oracle.com ([141.146.126.78])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ifhLm-00020S-K2
- for ath11k@lists.infradead.org; Fri, 13 Dec 2019 09:35:08 +0000
-From: John Crispin <john@phrozen.org>
-Subject: [PATCH] ath11k: set the BA buffer size to 256 when HE is enabled
-Date: Fri, 13 Dec 2019 10:35:01 +0100
-Message-Id: <20191213093501.26519-1-john@phrozen.org>
+ id 1ifiUZ-0006GK-SF
+ for ath11k@lists.infradead.org; Fri, 13 Dec 2019 10:48:17 +0000
+Date: Fri, 13 Dec 2019 13:47:54 +0300
+From: Dan Carpenter <dan.carpenter@oracle.com>
+Subject: [PATCH] ath11k: delete a stray unlock in ath11k_dbg_htt_stats_req()
+Message-ID: <20191213104754.2lwrq2qqokycjjbm@kili.mountain>
 MIME-Version: 1.0
+Content-Disposition: inline
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -21,66 +22,30 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Kalle Valo <kvalo@codeaurora.org>
-Cc: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
+Cc: Rajkumar Manoharan <rmanohar@codeaurora.org>, Miles Hu <milehu@codeaurora.org>, linux-wireless@vger.kernel.org, kernel-janitors@vger.kernel.org, ath11k@lists.infradead.org
 
-From: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
+The callers unlock this lock so this error path has a double unlock.
 
-Without this change we are not able to receive 256 bitmapped BA frames.
-
-Signed-off-by: John Crispin <john@phrozen.org>
-Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
+Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 14 ++++++++++++++
- drivers/net/wireless/ath/ath11k/wmi.h |  2 ++
- 2 files changed, 16 insertions(+)
+ drivers/net/wireless/ath/ath11k/debug_htt_stats.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index b229b0b3e0bd..82df8af57369 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -1758,6 +1758,20 @@ static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
- 		if (ret)
- 			ath11k_warn(ar->ab, "failed to update bcn template: %d\n",
- 				    ret);
-+
-+		if (vif->bss_conf.he_support) {
-+			ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
-+							    WMI_VDEV_PARAM_BA_MODE,
-+							    WMI_BA_MODE_BUFFER_SIZE_256);
-+			if (ret)
-+				ath11k_warn(ar->ab,
-+					    "failed to set BA BUFFER SIZE 256 for vdev: %d\n",
-+					    arvif->vdev_id);
-+			else
-+				ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
-+					   "Set BA BUFFER SIZE 256 for VDEV: %d\n",
-+					   arvif->vdev_id);
-+		}
+diff --git a/drivers/net/wireless/ath/ath11k/debug_htt_stats.c b/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
+index 27b301bc1a1b..4b1b1ecd5eae 100644
+--- a/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
++++ b/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
+@@ -4287,7 +4287,6 @@ int ath11k_dbg_htt_stats_req(struct ath11k *ar)
+ 	ret = ath11k_dp_tx_htt_h2t_ext_stats_req(ar, type, &cfg_params, cookie);
+ 	if (ret) {
+ 		ath11k_warn(ar->ab, "failed to send htt stats request: %d\n", ret);
+-		mutex_unlock(&ar->conf_mutex);
+ 		return ret;
  	}
  
- 	if (changed & (BSS_CHANGED_BEACON_INFO | BSS_CHANGED_BEACON)) {
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index f62f796305aa..284794dadd87 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -54,6 +54,7 @@ struct wmi_tlv {
- #define WLAN_SCAN_PARAMS_MAX_BSSID   4
- #define WLAN_SCAN_PARAMS_MAX_IE_LEN  256
- 
-+#define WMI_BA_MODE_BUFFER_SIZE_256  3
- /*
-  * HW mode config type replicated from FW header
-  * @WMI_HOST_HW_MODE_SINGLE: Only one PHY is active.
-@@ -1004,6 +1005,7 @@ enum wmi_tlv_vdev_param {
- 	WMI_VDEV_PARAM_HE_RANGE_EXT,
- 	WMI_VDEV_PARAM_ENABLE_BCAST_PROBE_RESPONSE,
- 	WMI_VDEV_PARAM_FILS_MAX_CHANNEL_GUARD_TIME,
-+	WMI_VDEV_PARAM_BA_MODE = 0x7e,
- 	WMI_VDEV_PARAM_SET_HE_SOUNDING_MODE = 0x87,
- 	WMI_VDEV_PARAM_PROTOTYPE = 0x8000,
- 	WMI_VDEV_PARAM_BSS_COLOR,
 -- 
-2.20.1
+2.11.0
 
 
 _______________________________________________
