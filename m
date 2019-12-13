@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from aserp2120.oracle.com ([141.146.126.78])
+Received: from userp2130.oracle.com ([156.151.31.86])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ifiYe-00087i-8f
- for ath11k@lists.infradead.org; Fri, 13 Dec 2019 10:52:29 +0000
-Date: Fri, 13 Dec 2019 13:52:19 +0300
+ id 1ifiZt-0008Hg-1a
+ for ath11k@lists.infradead.org; Fri, 13 Dec 2019 10:53:46 +0000
+Date: Fri, 13 Dec 2019 13:53:35 +0300
 From: Dan Carpenter <dan.carpenter@oracle.com>
-Subject: [PATCH] ath11k: remove an unneeded NULL check
-Message-ID: <20191213105219.qbpng7eut5zgty2p@kili.mountain>
+Subject: [bug report] ath11k: driver for Qualcomm IEEE 802.11ax devices
+Message-ID: <20191213105335.lg7n627mhas6spcy@kili.mountain>
 MIME-Version: 1.0
 Content-Disposition: inline
 List-Id: <ath11k.lists.infradead.org>
@@ -21,40 +21,61 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: kernel-janitors@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: kvalo@codeaurora.org
+Cc: ath11k@lists.infradead.org
 
-The list iterator is always non-NULL so it doesn't need to be checked.
-I also removed the unnecessary initializer because the list iterator is
-always initialized.
+Hello Kalle Valo,
 
-Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
----
- drivers/net/wireless/ath/ath11k/dp_rx.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+This is a semi-automatic email about new static checker warnings.
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 1b3b65c0038c..3a3dc7680622 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -1225,12 +1225,12 @@ static
- struct htt_ppdu_stats_info *ath11k_dp_htt_get_ppdu_desc(struct ath11k *ar,
- 							u32 ppdu_id)
- {
--	struct htt_ppdu_stats_info *ppdu_info = NULL;
-+	struct htt_ppdu_stats_info *ppdu_info;
- 
- 	spin_lock_bh(&ar->data_lock);
- 	if (!list_empty(&ar->ppdu_stats_info)) {
- 		list_for_each_entry(ppdu_info, &ar->ppdu_stats_info, list) {
--			if (ppdu_info && ppdu_info->ppdu_id == ppdu_id) {
-+			if (ppdu_info->ppdu_id == ppdu_id) {
- 				spin_unlock_bh(&ar->data_lock);
- 				return ppdu_info;
- 			}
--- 
-2.11.0
+The patch d5c65159f289: "ath11k: driver for Qualcomm IEEE 802.11ax 
+devices" from Nov 23, 2019, leads to the following Smatch complaint:
 
+    drivers/net/wireless/ath/ath11k/ce.c:192 ath11k_ce_rx_post_pipe()
+     error: we previously assumed 'pipe->dest_ring' could be null (see line 167)
+
+drivers/net/wireless/ath/ath11k/ce.c
+   166	
+   167		if (!(pipe->dest_ring || pipe->status_ring))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+This checks that at least one is non-NULL but it should check that both
+are non-NULL, probably?
+
+		if (!pipe->dest_ring || !pipe->status_ring)
+
+   168			return 0;
+   169	
+   170		spin_lock_bh(&ab->ce.ce_lock);
+   171		while (pipe->rx_buf_needed) {
+   172			skb = dev_alloc_skb(pipe->buf_sz);
+   173			if (!skb) {
+   174				ret = -ENOMEM;
+   175				goto exit;
+   176			}
+   177	
+   178			WARN_ON_ONCE(!IS_ALIGNED((unsigned long)skb->data, 4));
+   179	
+   180			paddr = dma_map_single(ab->dev, skb->data,
+   181					       skb->len + skb_tailroom(skb),
+   182					       DMA_FROM_DEVICE);
+   183			if (unlikely(dma_mapping_error(ab->dev, paddr))) {
+   184				ath11k_warn(ab, "failed to dma map ce rx buf\n");
+   185				dev_kfree_skb_any(skb);
+   186				ret = -EIO;
+   187				goto exit;
+   188			}
+   189	
+   190			ATH11K_SKB_RXCB(skb)->paddr = paddr;
+   191	
+   192			ret = ath11k_ce_rx_buf_enqueue_pipe(pipe, skb, paddr);
+                                                            ^^^^
+pipe->dest_ring is dereferenced inside the function.
+
+   193	
+   194			if (ret) {
+
+regards,
+dan carpenter
 
 _______________________________________________
 ath11k mailing list
