@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ifgSI-0002A8-AS
+ id 1ifgSI-0002A5-A0
  for ath11k@lists.infradead.org; Fri, 13 Dec 2019 08:37:49 +0000
 From: John Crispin <john@phrozen.org>
-Subject: [PATCH V3 3/9] ath11k: drop memset when setting up a tx cmd desc
-Date: Fri, 13 Dec 2019 09:37:28 +0100
-Message-Id: <20191213083734.22471-4-john@phrozen.org>
+Subject: [PATCH V3 1/9] ath11k: add wmi helper for turning STA PS on/off
+Date: Fri, 13 Dec 2019 09:37:26 +0100
+Message-Id: <20191213083734.22471-2-john@phrozen.org>
 In-Reply-To: <20191213083734.22471-1-john@phrozen.org>
 References: <20191213083734.22471-1-john@phrozen.org>
 MIME-Version: 1.0
@@ -25,40 +25,80 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Kalle Valo <kvalo@codeaurora.org>
 Cc: ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-There is no point in zero'ing out the structure if we set all values in the
-following line.
+Add a WMI call helper to set the powersave mode of a STA interface.
 
 Signed-off-by: John Crispin <john@phrozen.org>
 ---
- drivers/net/wireless/ath/ath11k/dp_tx.c  | 2 --
- drivers/net/wireless/ath/ath11k/hal_tx.c | 1 +
- 2 files changed, 1 insertion(+), 2 deletions(-)
+ drivers/net/wireless/ath/ath11k/wmi.c | 30 +++++++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/wmi.h |  7 +++++++
+ 2 files changed, 37 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
-index a8b9557c2346..28ebc414533e 100644
---- a/drivers/net/wireless/ath/ath11k/dp_tx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
-@@ -167,8 +167,6 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
- 	skb_cb->vif = arvif->vif;
- 	skb_cb->ar = ar;
- 
--	memset(cached_desc, 0, HAL_TCL_DESC_LEN);
--
- 	ath11k_hal_tx_cmd_desc_setup(ab, cached_desc, &ti);
- 
- 	hal_ring_id = tx_ring->tcl_data_ring.ring_id;
-diff --git a/drivers/net/wireless/ath/ath11k/hal_tx.c b/drivers/net/wireless/ath/ath11k/hal_tx.c
-index cbe549798762..72a51ed65a51 100644
---- a/drivers/net/wireless/ath/ath11k/hal_tx.c
-+++ b/drivers/net/wireless/ath/ath11k/hal_tx.c
-@@ -71,6 +71,7 @@ void ath11k_hal_tx_cmd_desc_setup(struct ath11k_base *ab, void *cmd,
- 				    ti->dscp_tid_tbl_idx) |
- 			 FIELD_PREP(HAL_TCL_DATA_CMD_INFO3_SEARCH_INDEX,
- 				    ti->bss_ast_hash);
-+	tcl_cmd->info4 = 0;
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index b05642617b78..bf3c246ce883 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -1178,6 +1178,36 @@ int ath11k_wmi_pdev_set_param(struct ath11k *ar, u32 param_id,
+ 	return ret;
  }
  
- /* Commit the descriptor to hardware */
++int ath11k_wmi_pdev_set_ps_mode(struct ath11k *ar, int vdev_id, u32 enable)
++{
++	struct ath11k_pdev_wmi *wmi = ar->wmi;
++	struct wmi_pdev_set_ps_mode_cmd *cmd;
++	struct sk_buff *skb;
++	int ret;
++
++	skb = ath11k_wmi_alloc_skb(wmi->wmi_sc, sizeof(*cmd));
++	if (!skb)
++		return -ENOMEM;
++
++	cmd = (struct wmi_pdev_set_ps_mode_cmd *)skb->data;
++	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_STA_POWERSAVE_MODE_CMD) |
++			  FIELD_PREP(WMI_TLV_LEN, sizeof(*cmd) - TLV_HDR_SIZE);
++	cmd->vdev_id = vdev_id;
++	cmd->sta_ps_mode = enable;
++
++	ret = ath11k_wmi_cmd_send(wmi, skb, WMI_STA_POWERSAVE_MODE_CMDID);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to send WMI_PDEV_SET_PARAM cmd\n");
++		dev_kfree_skb(skb);
++	}
++
++	ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
++		   "WMI vdev set psmode %d vdev id %d\n",
++		   enable, vdev_id);
++
++	return ret;
++}
++
+ int ath11k_wmi_pdev_suspend(struct ath11k *ar, u32 suspend_opt,
+ 			    u32 pdev_id)
+ {
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index 4a518d406bc5..9919d8bf297b 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -2827,6 +2827,12 @@ struct wmi_pdev_set_param_cmd {
+ 	u32 param_value;
+ } __packed;
+ 
++struct wmi_pdev_set_ps_mode_cmd {
++	u32 tlv_header;
++	u32 vdev_id;
++	u32 sta_ps_mode;
++} __packed;
++
+ struct wmi_pdev_suspend_cmd {
+ 	u32 tlv_header;
+ 	u32 pdev_id;
+@@ -4682,6 +4688,7 @@ int ath11k_wmi_set_peer_param(struct ath11k *ar, const u8 *peer_addr,
+ 			      u32 vdev_id, u32 param_id, u32 param_val);
+ int ath11k_wmi_pdev_set_param(struct ath11k *ar, u32 param_id,
+ 			      u32 param_value, u8 pdev_id);
++int ath11k_wmi_pdev_set_ps_mode(struct ath11k *ar, int vdev_id, u32 enable);
+ int ath11k_wmi_wait_for_unified_ready(struct ath11k_base *ab);
+ int ath11k_wmi_cmd_init(struct ath11k_base *ab);
+ int ath11k_wmi_wait_for_service_ready(struct ath11k_base *ab);
 -- 
 2.20.1
 
