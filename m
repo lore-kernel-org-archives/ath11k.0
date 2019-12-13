@@ -1,14 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from userp2120.oracle.com ([156.151.31.85])
+Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ifkGB-0003uJ-Gf
- for ath11k@lists.infradead.org; Fri, 13 Dec 2019 12:41:33 +0000
-Date: Fri, 13 Dec 2019 15:39:15 +0300
-From: Dan Carpenter <dan.carpenter@oracle.com>
-Subject: [bug report] ath11k: driver for Qualcomm IEEE 802.11ax devices
-Message-ID: <20191213123915.pyjq7fhpq5lllkum@kili.mountain>
+ id 1ifmwZ-0001Aa-Bj
+ for ath11k@lists.infradead.org; Fri, 13 Dec 2019 15:33:28 +0000
+Subject: Re: [PATCH V3 0/9] ath11k: resend pending patches
+References: <20191213083734.22471-1-john@phrozen.org>
+From: John Crispin <john@phrozen.org>
+Message-ID: <28044b5a-2bac-a3af-c2ee-e6ec81373e4c@phrozen.org>
+Date: Fri, 13 Dec 2019 16:33:22 +0100
 MIME-Version: 1.0
-Content-Disposition: inline
+In-Reply-To: <20191213083734.22471-1-john@phrozen.org>
+Content-Language: en-US
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -17,109 +19,50 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: kvalo@codeaurora.org
+To: Kalle Valo <kvalo@codeaurora.org>
 Cc: ath11k@lists.infradead.org
 
-Hello Kalle Valo,
+On 13/12/2019 09:37, John Crispin wrote:
+> Kalle merged ath11k into his next tree and then applied the huge backlog
+> from patchwork. This is a resend of pending patches that no longer apply
+> due to merge order conflicts.
+> 
 
-The patch d5c65159f289: "ath11k: driver for Qualcomm IEEE 802.11ax
-devices" from Nov 23, 2019, leads to the following static checker
-warning:
+sorry, forgot to Cc: linux-wireless
 
-	drivers/net/wireless/ath/ath11k/debugfs_sta.c:197 ath11k_update_per_peer_stats_from_txcompl()
-	error: uninitialized symbol 'rate_idx'.
+> John Crispin (9):
+>    ath11k: add wmi helper for turning STA PS on/off
+>    ath11k: disable PS for STA interfaces by default upon bringup
+>    ath11k: drop memset when setting up a tx cmd desc
+>    ath11k: rename ath11k_wmi_base instances from wmi_sc to wmi_ab
+>    ath11k: add WMI calls to manually add/del/pause/resume TWT dialogs
+>    ath11k: add debugfs for TWT debug calls
+>    ath11k: move some tx_status parsing to debugfs code
+>    ath11k: optimise ath11k_dp_tx_completion_handler
+>    ath11k: optimize ath11k_hal_tx_status_parse
+> 
+>   drivers/net/wireless/ath/ath11k/core.c        |   4 +-
+>   drivers/net/wireless/ath/ath11k/core.h        |   3 +-
+>   drivers/net/wireless/ath/ath11k/debug.c       | 198 +++++++++
+>   drivers/net/wireless/ath/ath11k/debug.h       |   8 +
+>   drivers/net/wireless/ath/ath11k/debugfs_sta.c |  66 +--
+>   drivers/net/wireless/ath/ath11k/dp.c          |  16 +-
+>   drivers/net/wireless/ath/ath11k/dp.h          |  11 +-
+>   drivers/net/wireless/ath/ath11k/dp_tx.c       |  81 ++--
+>   drivers/net/wireless/ath/ath11k/hal_tx.c      |  74 +---
+>   drivers/net/wireless/ath/ath11k/hal_tx.h      |  13 +-
+>   drivers/net/wireless/ath/ath11k/htc.c         |   2 +-
+>   drivers/net/wireless/ath/ath11k/mac.c         |  15 +-
+>   drivers/net/wireless/ath/ath11k/testmode.c    |   2 +-
+>   drivers/net/wireless/ath/ath11k/wmi.c         | 408 ++++++++++++++----
+>   drivers/net/wireless/ath/ath11k/wmi.h         | 123 +++++-
+>   15 files changed, 773 insertions(+), 251 deletions(-)
+> 
 
-drivers/net/wireless/ath/ath11k/debugfs_sta.c
-   126  void ath11k_update_per_peer_stats_from_txcompl(struct ath11k *ar,
-   127                                                 struct sk_buff *msdu,
-   128                                                 struct hal_tx_status *ts)
-   129  {
-   130          struct ath11k_base *ab = ar->ab;
-   131          struct ath11k_per_peer_tx_stats *peer_stats = &ar->cached_stats;
-   132          struct ath11k_peer *peer;
-   133          struct ath11k_sta *arsta;
-   134          struct ieee80211_sta *sta;
-   135          u16 rate;
-   136          u8 rate_idx;
-                ^^^^^^^^^^^
-
-   137          int ret;
-   138  
-   139          rcu_read_lock();
-   140          spin_lock_bh(&ab->base_lock);
-   141          peer = ath11k_peer_find_by_id(ab, ts->peer_id);
-   142          if (!peer || !peer->sta) {
-   143                  ath11k_warn(ab, "failed to find the peer\n");
-   144                  spin_unlock_bh(&ab->base_lock);
-   145                  rcu_read_unlock();
-   146                  return;
-   147          }
-   148  
-   149          sta = peer->sta;
-   150          arsta = (struct ath11k_sta *)sta->drv_priv;
-   151  
-   152          memset(&arsta->txrate, 0, sizeof(arsta->txrate));
-   153  
-   154          if (ts->pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11A ||
-   155              ts->pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11B) {
-   156                  ret = ath11k_mac_hw_ratecode_to_legacy_rate(ts->mcs,
-   157                                                              ts->pkt_type,
-   158                                                              &rate_idx,
-   159                                                              &rate);
-   160                  if (ret < 0) {
-   161                          spin_unlock_bh(&ab->base_lock);
-   162                          rcu_read_unlock();
-   163                          return;
-   164                  }
-   165                  arsta->txrate.legacy = rate;
-   166          } else if (ts->pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11N) {
-   167                  if (ts->mcs > 7) {
-   168                          ath11k_warn(ab, "Invalid HT mcs index %d\n", ts->mcs);
-   169                          spin_unlock_bh(&ab->base_lock);
-   170                          rcu_read_unlock();
-   171                          return;
-   172                  }
-   173  
-   174                  arsta->txrate.mcs = ts->mcs + 8 * (arsta->last_txrate.nss - 1);
-   175                  arsta->txrate.flags = RATE_INFO_FLAGS_MCS;
-   176                  if (ts->sgi)
-   177                          arsta->txrate.flags |= RATE_INFO_FLAGS_SHORT_GI;
-
-"rate_idx" is not initialized on the else paths.
-
-   178          } else if (ts->pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11AC) {
-   179                  if (ts->mcs > 9) {
-   180                          ath11k_warn(ab, "Invalid VHT mcs index %d\n", ts->mcs);
-   181                          spin_unlock_bh(&ab->base_lock);
-   182                          rcu_read_unlock();
-   183                          return;
-   184                  }
-   185  
-   186                  arsta->txrate.mcs = ts->mcs;
-   187                  arsta->txrate.flags = RATE_INFO_FLAGS_VHT_MCS;
-   188                  if (ts->sgi)
-   189                          arsta->txrate.flags |= RATE_INFO_FLAGS_SHORT_GI;
-   190          } else {
-   191                  /*TODO: update HE rates */
-   192          }
-   193  
-   194          arsta->txrate.nss = arsta->last_txrate.nss;
-   195          arsta->txrate.bw = ath11k_mac_bw_to_mac80211_bw(ts->bw);
-   196  
-   197          ath11k_accumulate_per_peer_tx_stats(arsta, peer_stats, rate_idx);
-                                                                       ^^^^^^^^
-UBSan will complain about this at run time as well.
-
-   198          spin_unlock_bh(&ab->base_lock);
-   199          rcu_read_unlock();
-   200  }
-
-regards,
-dan carpenter
 
 _______________________________________________
 ath11k mailing list
