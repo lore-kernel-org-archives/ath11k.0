@@ -2,15 +2,15 @@ Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
  helo=sipsolutions.net)
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ign0g-0002DK-Pe
- for ath11k@lists.infradead.org; Mon, 16 Dec 2019 09:49:52 +0000
-Message-ID: <c4b44147e00a8c86931f680d8ea4825cebb4a524.camel@sipsolutions.net>
-Subject: Re: [PATCH v2 1/7] mac80211: add a struct for holding BSS color
- settings
+ id 1ign6i-0005Km-Uu
+ for ath11k@lists.infradead.org; Mon, 16 Dec 2019 09:56:06 +0000
+Message-ID: <a67dd924ebb638a8ba2b742a07fd3d1db34732ce.camel@sipsolutions.net>
+Subject: Re: [PATCH v2 2/7] nl80211: add handling for BSS color
 From: Johannes Berg <johannes@sipsolutions.net>
-Date: Mon, 16 Dec 2019 10:49:42 +0100
-In-Reply-To: <20191213155802.25491-1-john@phrozen.org>
+Date: Mon, 16 Dec 2019 10:56:00 +0100
+In-Reply-To: <20191213155802.25491-2-john@phrozen.org>
 References: <20191213155802.25491-1-john@phrozen.org>
+ <20191213155802.25491-2-john@phrozen.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -27,34 +27,37 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: John Crispin <john@phrozen.org>, Kalle Valo <kvalo@codeaurora.org>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-On Fri, 2019-12-13 at 16:57 +0100, John Crispin wrote:
-> Right now we only track the actual color but not the other bits contained
-> within the he_oper field. Fix this by creating a new struct to hold all
-> of the info.
-> 
-> Signed-off-by: John Crispin <john@phrozen.org>
-> ---
->  include/net/cfg80211.h | 15 +++++++++++++++
->  include/net/mac80211.h |  2 ++
->  2 files changed, 17 insertions(+)
 
-I think you should drop this patch and put the cfg80211 and mac80211
-update into the second and third patch of this series, respectively. It
-doesn't make much sense to add some unused structs.
+> +/**
+> + * enum nl80211_bss_color_attributes - BSS Color attributes
+> + * @__NL80211_HE_BSS_COLOR_ATTR_INVALID: Invalid
+> + *
+> + * @NL80211_HE_BSS_COLOR: the current BSS Color.
+> + * @NL80211_HE_BSS_COLOR_DISABLED: is BSS coloring disabled.
+> + * @NL80211_HE_BSS_COLOR_PARTIAL: the AID equation to be used..
 
-> diff --git a/include/net/cfg80211.h b/include/net/cfg80211.h
-> index 8140c4837122..e395ef48af83 100644
-> --- a/include/net/cfg80211.h
-> +++ b/include/net/cfg80211.h
-> @@ -259,6 +259,19 @@ struct ieee80211_he_obss_pd {
+It makes the names somewhat awkwardly long, but I think _ATTR should be
+included here like the invalid/last/max, to make clear it's not the
+color itself or something like that?
 
-It looks like I didn't see that previously for that one,
+> +static const struct nla_policy
+> +he_bss_color_policy[NL80211_HE_BSS_COLOR_ATTR_MAX + 1] = {
 
-> + * struct ieee80211_he_bss_color - AP settings for BSS coloring
+I didn't realize this before and really thought about it only because I
+saw the one for the nl80211_policy in the context now, but I guess this
+should have a strict start type like below:
 
-but I'd kinda prefer this be called cfg80211_... since it's not part of
-ieee80211.h with all the over-the-air struct definitions. I'm sure we
-have some non-over-the-air things that are called ieee80211_*, but ...
+>  	[0] = { .strict_start_type = NL80211_ATTR_HE_OBSS_PD },
+
+though in this case we can probably do
+
+	[0] = { .strict_start_type = 0 },
+
+to indicate that all these should be treated strictly.
+
+
+Also, not directly related to any code, can't the BSS color change, and
+thus you need a method to update it?
 
 johannes
 
