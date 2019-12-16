@@ -1,17 +1,18 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
- helo=sipsolutions.net)
+Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ign7q-0006Gy-W4
- for ath11k@lists.infradead.org; Mon, 16 Dec 2019 09:57:16 +0000
-Message-ID: <1a8b7f092969b673c85b21c298f4465b2cce389c.camel@sipsolutions.net>
-Subject: Re: [PATCH v2 5/7] mac80211: drop now unused bss_color element
-From: Johannes Berg <johannes@sipsolutions.net>
-Date: Mon, 16 Dec 2019 10:57:10 +0100
-In-Reply-To: <20191213155802.25491-5-john@phrozen.org>
+ id 1igsfc-0003UW-5y
+ for ath11k@lists.infradead.org; Mon, 16 Dec 2019 15:52:30 +0000
+Subject: Re: [PATCH v2 2/7] nl80211: add handling for BSS color
 References: <20191213155802.25491-1-john@phrozen.org>
- <20191213155802.25491-5-john@phrozen.org>
+ <20191213155802.25491-2-john@phrozen.org>
+ <a67dd924ebb638a8ba2b742a07fd3d1db34732ce.camel@sipsolutions.net>
+From: John Crispin <john@phrozen.org>
+Message-ID: <fc64ea0b-d2c3-79a3-6973-c822078db01f@phrozen.org>
+Date: Mon, 16 Dec 2019 16:52:20 +0100
 MIME-Version: 1.0
+In-Reply-To: <a67dd924ebb638a8ba2b742a07fd3d1db34732ce.camel@sipsolutions.net>
+Content-Language: en-US
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -20,23 +21,21 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: John Crispin <john@phrozen.org>, Kalle Valo <kvalo@codeaurora.org>
+To: Johannes Berg <johannes@sipsolutions.net>, Kalle Valo <kvalo@codeaurora.org>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-On Fri, 2019-12-13 at 16:58 +0100, John Crispin wrote:
-> With all users of bss_color converted we can drop the old element. Driver
-> code should now use the new he_bss_color struct.
+On 16/12/2019 10:56, Johannes Berg wrote:
+> 
+> Also, not directly related to any code, can't the BSS color change, and
+> thus you need a method to update it?
 
-I think it'd be OK to squash patches 3-5 together, minimal driver
-updates for changing mac80211 API are totally fine and will need to go
-via my tree anyway.
-
-johannes
-
+Coming shortly once I start working on the collission events and then 
+the hostapd color change algorithm
+	John
 
 _______________________________________________
 ath11k mailing list
