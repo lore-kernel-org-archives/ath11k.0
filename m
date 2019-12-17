@@ -1,12 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ihGXs-0006x7-JS
- for ath11k@lists.infradead.org; Tue, 17 Dec 2019 17:22:06 +0000
+ id 1ihJJS-0005S8-Tx
+ for ath11k@lists.infradead.org; Tue, 17 Dec 2019 20:19:25 +0000
 From: John Crispin <john@phrozen.org>
-Subject: [PATCH] ath11k: htt stats module does not handle multiple skbs
-Date: Tue, 17 Dec 2019 18:22:00 +0100
-Message-Id: <20191217172200.7470-1-john@phrozen.org>
+Subject: [RESEND 3/3] ath11k: switch to using ieee80211_tx_status_ext()
+Date: Tue, 17 Dec 2019 21:19:09 +0100
+Message-Id: <20191217201909.27420-3-john@phrozen.org>
+In-Reply-To: <20191217201909.27420-1-john@phrozen.org>
+References: <20191217201909.27420-1-john@phrozen.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -21,54 +23,61 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Kalle Valo <kvalo@codeaurora.org>
-Cc: Miles Hu <milehu@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-From: Miles Hu <milehu@codeaurora.org>
+This allows us to pass HE rates down into the stack.
 
-This patch removes the "done" check from the stats handler thus allowing
-the code to parse more skbs.
-
-Reviewed-by: John Crispin <john@phrozen.org>
-Signed-off-by: Miles Hu <milehu@codeaurora.org>
+Signed-off-by: John Crispin <john@phrozen.org>
 ---
- drivers/net/wireless/ath/ath11k/debug_htt_stats.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ drivers/net/wireless/ath/ath11k/dp_tx.c | 24 +++++++++++++++++++-----
+ 1 file changed, 19 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/debug_htt_stats.c b/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
-index 27b301bc1a1b..45dbffaca3bd 100644
---- a/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
-+++ b/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
-@@ -4119,6 +4119,7 @@ void ath11k_dbg_htt_ext_stats_handler(struct ath11k_base *ab,
+diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
+index 0c93b291305c..d4be307f2eba 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_tx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
+@@ -361,9 +361,12 @@ static void ath11k_dp_tx_complete_msdu(struct ath11k *ar,
+ 				       struct sk_buff *msdu,
+ 				       struct hal_tx_status *ts)
  {
- 	struct ath11k_htt_extd_stats_msg *msg;
- 	struct debug_htt_stats_req *stats_req;
-+	bool send_completion = false;
- 	struct ath11k *ar;
- 	u32 len;
- 	u64 cookie;
-@@ -4147,10 +4148,8 @@ void ath11k_dbg_htt_ext_stats_handler(struct ath11k_base *ab,
- 		return;
++	struct ieee80211_tx_status status = { 0 };
+ 	struct ath11k_base *ab = ar->ab;
+ 	struct ieee80211_tx_info *info;
+ 	struct ath11k_skb_cb *skb_cb;
++	struct ath11k_peer *peer;
++	struct ath11k_sta *arsta;
  
- 	spin_lock_bh(&ar->debug.htt_stats.lock);
--	if (stats_req->done) {
--		spin_unlock_bh(&ar->debug.htt_stats.lock);
--		return;
--	}
-+	if (!stats_req->done)
-+		send_completion = true;
- 	stats_req->done = true;
- 	spin_unlock_bh(&ar->debug.htt_stats.lock);
+ 	if (WARN_ON_ONCE(ts->buf_rel_source != HAL_WBM_REL_SRC_MODULE_TQM)) {
+ 		/* Must not happen */
+@@ -427,12 +430,23 @@ static void ath11k_dp_tx_complete_msdu(struct ath11k *ar,
+ 		ath11k_dp_tx_cache_peer_stats(ar, msdu, ts);
+ 	}
  
-@@ -4161,7 +4160,8 @@ void ath11k_dbg_htt_ext_stats_handler(struct ath11k_base *ab,
- 	if (ret)
- 		ath11k_warn(ab, "Failed to parse tlv %d\n", ret);
+-	/* NOTE: Tx rate status reporting. Tx completion status does not have
+-	 * necessary information (for example nss) to build the tx rate.
+-	 * Might end up reporting it out-of-band from HTT stats.
+-	 */
  
--	complete(&stats_req->cmpln);
-+	if (send_completion)
-+		complete(&stats_req->cmpln);
- }
+-	ieee80211_tx_status(ar->hw, msdu);
++	spin_lock_bh(&ab->base_lock);
++	peer = ath11k_peer_find_by_id(ab, ts->peer_id);
++	if (peer) {
++		arsta = (struct ath11k_sta *)peer->sta->drv_priv;
++		status.sta = peer->sta;
++		status.skb = msdu;
++		status.info = info;
++		status.rate = &arsta->last_txrate;
++	}
++	rcu_read_unlock();
++	if (peer)
++		ieee80211_tx_status_ext(ar->hw, &status);
++	else
++		dev_kfree_skb_any(msdu);
++	spin_unlock_bh(&ab->base_lock);
++	return;
  
- static ssize_t ath11k_read_htt_stats_type(struct file *file,
+ exit:
+ 	rcu_read_unlock();
 -- 
 2.20.1
 
