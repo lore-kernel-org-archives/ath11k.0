@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ihG2F-0002aV-UB
- for ath11k@lists.infradead.org; Tue, 17 Dec 2019 16:49:25 +0000
+ id 1ihGUY-0005Pv-Ek
+ for ath11k@lists.infradead.org; Tue, 17 Dec 2019 17:18:39 +0000
 From: John Crispin <john@phrozen.org>
-Subject: [PATCH] ath11k: set TxBf parameters after vdev start
-Date: Tue, 17 Dec 2019 17:49:17 +0100
-Message-Id: <20191217164917.5040-1-john@phrozen.org>
+Subject: [PATCH] ath11k: mask out vht beamforming if a fixed rate is set
+Date: Tue, 17 Dec 2019 18:18:27 +0100
+Message-Id: <20191217171827.6780-1-john@phrozen.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -21,48 +21,33 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Kalle Valo <kvalo@codeaurora.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, Bhagavathi Perumal S <bperumal@codeaurora.org>, John Crispin <john@phrozen.org>
+Cc: Ritesh Singh <ritesi@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-From: Bhagavathi Perumal S <bperumal@codeaurora.org>
+From: Ritesh Singh <ritesi@codeaurora.org>
 
-The channel info parameters are required by the firmware to process TxBf
-parameters. Currently TxBf is passed prior to the channel info. This patch
-moves TxBf setup after the channel setup.
+After setting a fixed vht-rate we see a FW assert if a STA tries to
+(re)assoc with the mu_bfee cap set. This patch masks out the capability
+bits if a fixed rate is set.
 
-Signed-off-by: John Crispin <john@phrozen.org>
-Signed-off-by: Bhagavathi Perumal S <bperumal@codeaurora.org>
+Reviewed-by: John Crispin <john@phrozen.org>
+Signed-off-by: Ritesh Singh <ritesi@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 11 +++++------
- 1 file changed, 5 insertions(+), 6 deletions(-)
+ drivers/net/wireless/ath/ath11k/mac.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
 diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 9d0fed4034dd..a8ccb00d6072 100644
+index b8be78dc295d..7f17d0e4cb96 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -4216,12 +4216,6 @@ static int ath11k_mac_op_add_interface(struct ieee80211_hw *hw,
- 			    arvif->vdev_id, ret);
- 	}
+@@ -1126,6 +1126,9 @@ static void ath11k_peer_assoc_h_vht(struct ath11k *ar,
+ 	arg->tx_mcs_set &= ~IEEE80211_VHT_MCS_SUPPORT_0_11_MASK;
+ 	arg->tx_mcs_set |= IEEE80211_DISABLE_VHT_MCS_SUPPORT_0_11;
  
--	ret = ath11k_mac_set_txbf_conf(arvif);
--	if (ret) {
--		ath11k_warn(ar->ab, "failed to set txbf conf for vdev %d: %d\n",
--			    arvif->vdev_id, ret);
--	}
--
- 	ath11k_dp_vdev_tx_attach(ar, arvif);
- 
- 	mutex_unlock(&ar->conf_mutex);
-@@ -4573,6 +4567,11 @@ ath11k_mac_vdev_start_restart(struct ath11k_vif *arvif,
- 			   arg.channel.freq, arg.vdev_id);
- 	}
- 
-+	ret = ath11k_mac_set_txbf_conf(arvif);
-+	if (ret)
-+		ath11k_warn(ab, "failed to set txbf conf for vdev %d: %d\n",
-+			    arvif->vdev_id, ret);
++	if ((arg->tx_mcs_set & 0x3) == 0x3)
++		arg->peer_vht_caps &= ~IEEE80211_VHT_CAP_MU_BEAMFORMEE_CAPABLE;
 +
- 	return 0;
- }
+ 	/* TODO:  Check */
+ 	arg->tx_max_mcs_nss = 0xFF;
  
 -- 
 2.20.1
