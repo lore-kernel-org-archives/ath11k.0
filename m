@@ -1,12 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ihJJS-0005SB-Tw
- for ath11k@lists.infradead.org; Tue, 17 Dec 2019 20:19:24 +0000
+ id 1ihJL4-0006uo-8y
+ for ath11k@lists.infradead.org; Tue, 17 Dec 2019 20:21:03 +0000
 From: John Crispin <john@phrozen.org>
-Subject: [RESEND 1/3] ath11k: drop tx_info from ath11k_sta
-Date: Tue, 17 Dec 2019 21:19:07 +0100
-Message-Id: <20191217201909.27420-1-john@phrozen.org>
+Subject: [RESEND] ath11k: make sure to also report the RX bandwidth inside
+ radiotap
+Date: Tue, 17 Dec 2019 21:20:57 +0100
+Message-Id: <20191217202057.27720-1-john@phrozen.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -23,129 +24,29 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Kalle Valo <kvalo@codeaurora.org>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-We will start using ieee80211_tx_status_ext() so we do not need to track
-tx rates inside a struct ieee80211_tx_info. It is currently not possible
-to populate that struct with HE rate info anyhow.
+Add IEEE80211_RADIOTAP_HE_DATA1_BW_RU_ALLOC_KNOWN to the list of known
+fields. Not doing so will result in wireshark not calculating the
+bitrate correctly.
 
 Signed-off-by: John Crispin <john@phrozen.org>
 ---
- drivers/net/wireless/ath/ath11k/core.h  |  1 -
- drivers/net/wireless/ath/ath11k/dp_rx.c | 51 +------------------------
- 2 files changed, 2 insertions(+), 50 deletions(-)
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 64ebda171a9b..2c5eed29333c 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -347,7 +347,6 @@ struct ath11k_sta {
- 	enum hal_pn_type pn_type;
- 
- 	struct work_struct update_wk;
--	struct ieee80211_tx_info tx_info;
- 	struct rate_info txrate;
- 	struct rate_info last_txrate;
- 	u64 rx_duration;
 diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 15bf18447464..47f9414ee921 100644
+index 09edf0f05039..c4692cee3af4 100644
 --- a/drivers/net/wireless/ath/ath11k/dp_rx.c
 +++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -1217,25 +1217,6 @@ int ath11k_dp_htt_tlv_iter(struct ath11k_base *ab, const void *ptr, size_t len,
- 	return 0;
- }
- 
--static u32 ath11k_bw_to_mac80211_bwflags(u8 bw)
--{
--	u32 bwflags = 0;
--
--	switch (bw) {
--	case ATH11K_BW_40:
--		bwflags = IEEE80211_TX_RC_40_MHZ_WIDTH;
--		break;
--	case ATH11K_BW_80:
--		bwflags = IEEE80211_TX_RC_80_MHZ_WIDTH;
--		break;
--	case ATH11K_BW_160:
--		bwflags = IEEE80211_TX_RC_160_MHZ_WIDTH;
--		break;
--	}
--
--	return bwflags;
--}
--
- static void
- ath11k_update_per_peer_tx_stats(struct ath11k *ar,
- 				struct htt_ppdu_stats *ppdu_stats, u8 user)
-@@ -1245,7 +1226,6 @@ ath11k_update_per_peer_tx_stats(struct ath11k *ar,
- 	struct ieee80211_sta *sta;
- 	struct ath11k_sta *arsta;
- 	struct htt_ppdu_stats_user_rate *user_rate;
--	struct ieee80211_chanctx_conf *conf = NULL;
- 	struct ath11k_per_peer_tx_stats *peer_stats = &ar->peer_tx_stats;
- 	struct htt_ppdu_user_stats *usr_stats = &ppdu_stats->user_stats[user];
- 	struct htt_ppdu_stats_common *common = &ppdu_stats->common;
-@@ -1325,60 +1305,33 @@ ath11k_update_per_peer_tx_stats(struct ath11k *ar,
- 	arsta = (struct ath11k_sta *)sta->drv_priv;
- 
- 	memset(&arsta->txrate, 0, sizeof(arsta->txrate));
--	memset(&arsta->tx_info.status, 0, sizeof(arsta->tx_info.status));
- 
- 	switch (flags) {
- 	case WMI_RATE_PREAMBLE_OFDM:
- 		arsta->txrate.legacy = rate;
--		if (arsta->arvif && arsta->arvif->vif)
--			conf = rcu_dereference(arsta->arvif->vif->chanctx_conf);
--		if (conf && conf->def.chan->band == NL80211_BAND_5GHZ)
--			arsta->tx_info.status.rates[0].idx = rate_idx - 4;
- 		break;
- 	case WMI_RATE_PREAMBLE_CCK:
- 		arsta->txrate.legacy = rate;
--		arsta->tx_info.status.rates[0].idx = rate_idx;
--		if (mcs > ATH11K_HW_RATE_CCK_LP_1M &&
--		    mcs <= ATH11K_HW_RATE_CCK_SP_2M)
--			arsta->tx_info.status.rates[0].flags |=
--					IEEE80211_TX_RC_USE_SHORT_PREAMBLE;
- 		break;
- 	case WMI_RATE_PREAMBLE_HT:
- 		arsta->txrate.mcs = mcs + 8 * (nss - 1);
--		arsta->tx_info.status.rates[0].idx = arsta->txrate.mcs;
- 		arsta->txrate.flags = RATE_INFO_FLAGS_MCS;
--		arsta->tx_info.status.rates[0].flags |= IEEE80211_TX_RC_MCS;
--		if (sgi) {
-+		if (sgi)
- 			arsta->txrate.flags |= RATE_INFO_FLAGS_SHORT_GI;
--			arsta->tx_info.status.rates[0].flags |=
--					IEEE80211_TX_RC_SHORT_GI;
--		}
- 		break;
- 	case WMI_RATE_PREAMBLE_VHT:
- 		arsta->txrate.mcs = mcs;
--		ieee80211_rate_set_vht(&arsta->tx_info.status.rates[0], mcs, nss);
- 		arsta->txrate.flags = RATE_INFO_FLAGS_VHT_MCS;
--		arsta->tx_info.status.rates[0].flags |= IEEE80211_TX_RC_VHT_MCS;
--		if (sgi) {
-+		if (sgi)
- 			arsta->txrate.flags |= RATE_INFO_FLAGS_SHORT_GI;
--			arsta->tx_info.status.rates[0].flags |=
--						IEEE80211_TX_RC_SHORT_GI;
--		}
- 		break;
- 	}
- 
- 	arsta->txrate.nss = nss;
- 	arsta->txrate.bw = ath11k_mac_bw_to_mac80211_bw(bw);
--	arsta->tx_info.status.rates[0].flags |= ath11k_bw_to_mac80211_bwflags(bw);
- 	arsta->tx_duration += tx_duration;
- 	memcpy(&arsta->last_txrate, &arsta->txrate, sizeof(struct rate_info));
- 
--	if (succ_pkts) {
--		arsta->tx_info.flags = IEEE80211_TX_STAT_ACK;
--		arsta->tx_info.status.rates[0].count = 1;
--		ieee80211_tx_rate_update(ar->hw, sta, &arsta->tx_info);
--	}
--
- 	/* PPDU stats reported for mgmt packet doesn't have valid tx bytes.
- 	 * So skip peer stats update for mgmt packets.
- 	 */
+@@ -2348,7 +2348,8 @@ static void ath11k_dp_rx_deliver_msdu(struct ath11k *ar, struct napi_struct *nap
+ 				      struct sk_buff *msdu)
+ {
+ 	static const struct ieee80211_radiotap_he known = {
+-		.data1 = cpu_to_le16(IEEE80211_RADIOTAP_HE_DATA1_DATA_MCS_KNOWN),
++		.data1 = cpu_to_le16(IEEE80211_RADIOTAP_HE_DATA1_DATA_MCS_KNOWN |
++				     IEEE80211_RADIOTAP_HE_DATA1_BW_RU_ALLOC_KNOWN),
+ 		.data2 = cpu_to_le16(IEEE80211_RADIOTAP_HE_DATA2_GI_KNOWN),
+ 	};
+ 	struct ieee80211_rx_status *status;
 -- 
 2.20.1
 
