@@ -1,12 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ihDhM-0002Da-6s
+ id 1ihDhM-0002Db-6U
  for ath11k@lists.infradead.org; Tue, 17 Dec 2019 14:19:43 +0000
 From: John Crispin <john@phrozen.org>
-Subject: [PATCH V3 1/4] nl80211: add handling for BSS color
-Date: Tue, 17 Dec 2019 15:19:18 +0100
-Message-Id: <20191217141921.8114-1-john@phrozen.org>
+Subject: [PATCH V3 3/4] ath11k: add WMI calls required for handling BSS color
+Date: Tue, 17 Dec 2019 15:19:20 +0100
+Message-Id: <20191217141921.8114-3-john@phrozen.org>
+In-Reply-To: <20191217141921.8114-1-john@phrozen.org>
+References: <20191217141921.8114-1-john@phrozen.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -23,192 +25,161 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Johannes Berg <johannes@sipsolutions.net>, Kalle Valo <kvalo@codeaurora.org>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-This patch adds the attributes, policy and parsing code to allow userland
-to send the info about the BSS coloring settings to the kernel. We also
-enable strict policy parsing.
+If the he_operation field of the beacon sets a BSS color, we need to inform
+the FW of the settings. This patch adds the WMI command handlers required
+to do so.
 
 Signed-off-by: John Crispin <john@phrozen.org>
 ---
-Changes in V3
-* fold header files changes into this patch
-* ieee80211_he_bss_color -> cfg80211_he_bss_color
-* fix nl80211 attribute names
-* enable strict policy parsing
-
 Changes in V2
-* fix a copy paste error
+* add WMI debug log
 
- include/net/cfg80211.h       | 15 +++++++++++++
- include/uapi/linux/nl80211.h | 27 +++++++++++++++++++++++
- net/wireless/nl80211.c       | 42 +++++++++++++++++++++++++++++++++++-
- 3 files changed, 83 insertions(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/wmi.c | 77 +++++++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/wmi.h | 31 +++++++++++
+ 2 files changed, 108 insertions(+)
 
-diff --git a/include/net/cfg80211.h b/include/net/cfg80211.h
-index 8140c4837122..fffae8ecef5d 100644
---- a/include/net/cfg80211.h
-+++ b/include/net/cfg80211.h
-@@ -259,6 +259,19 @@ struct ieee80211_he_obss_pd {
- 	u8 max_offset;
- };
- 
-+/**
-+ * struct cfg80211_he_bss_color - AP settings for BSS coloring
-+ *
-+ * @color: the current color.
-+ * @disabled: is the feature disabled.
-+ * @partial: define the AID equation.
-+ */
-+struct cfg80211_he_bss_color {
-+	u8 color;
-+	bool disabled;
-+	bool partial;
-+};
-+
- /**
-  * struct ieee80211_sta_ht_cap - STA's HT capabilities
-  *
-@@ -910,6 +923,7 @@ enum cfg80211_ap_settings_flags {
-  * @twt_responder: Enable Target Wait Time
-  * @flags: flags, as defined in enum cfg80211_ap_settings_flags
-  * @he_obss_pd: OBSS Packet Detection settings
-+ * @he_bss_color: BSS Color settings
-  */
- struct cfg80211_ap_settings {
- 	struct cfg80211_chan_def chandef;
-@@ -938,6 +952,7 @@ struct cfg80211_ap_settings {
- 	bool twt_responder;
- 	u32 flags;
- 	struct ieee80211_he_obss_pd he_obss_pd;
-+	struct cfg80211_he_bss_color he_bss_color;
- };
- 
- /**
-diff --git a/include/uapi/linux/nl80211.h b/include/uapi/linux/nl80211.h
-index 822851d369ab..fd5028459c3a 100644
---- a/include/uapi/linux/nl80211.h
-+++ b/include/uapi/linux/nl80211.h
-@@ -2361,6 +2361,8 @@ enum nl80211_commands {
-  * @NL80211_ATTR_HE_OBSS_PD: nested attribute for OBSS Packet Detection
-  *	functionality.
-  *
-+ * @NL80211_ATTR_HE_BSS_COLOR: nested attribute for BSS Color Settings.
-+ *
-  * @NUM_NL80211_ATTR: total number of nl80211_attrs available
-  * @NL80211_ATTR_MAX: highest attribute number currently defined
-  * @__NL80211_ATTR_AFTER_LAST: internal use
-@@ -2820,6 +2822,8 @@ enum nl80211_attrs {
- 
- 	NL80211_ATTR_HE_OBSS_PD,
- 
-+	NL80211_ATTR_HE_BSS_COLOR,
-+
- 	/* add attributes here, update the policy in nl80211.c */
- 
- 	__NL80211_ATTR_AFTER_LAST,
-@@ -6516,5 +6520,28 @@ enum nl80211_obss_pd_attributes {
- 	NL80211_HE_OBSS_PD_ATTR_MAX = __NL80211_HE_OBSS_PD_ATTR_LAST - 1,
- };
- 
-+/**
-+ * enum nl80211_bss_color_attributes - BSS Color attributes
-+ * @__NL80211_HE_BSS_COLOR_ATTR_INVALID: Invalid
-+ *
-+ * @NL80211_HE_BSS_COLOR_ATTR_COLOR: the current BSS Color.
-+ * @NL80211_HE_BSS_COLOR_ATTR_DISABLED: is BSS coloring disabled.
-+ * @NL80211_HE_BSS_COLOR_ATTR_PARTIAL: the AID equation to be used..
-+ *
-+ * @__NL80211_HE_BSS_COLOR_ATTR_LAST: Internal
-+ * @NL80211_HE_BSS_COLOR_ATTR_MAX: highest BSS Color attribute.
-+ */
-+enum nl80211_bss_color_attributes {
-+	__NL80211_HE_BSS_COLOR_ATTR_INVALID,
-+
-+	NL80211_HE_BSS_COLOR_ATTR_COLOR,
-+	NL80211_HE_BSS_COLOR_ATTR_DISABLED,
-+	NL80211_HE_BSS_COLOR_ATTR_PARTIAL,
-+
-+	/* keep last */
-+	__NL80211_HE_BSS_COLOR_ATTR_LAST,
-+	NL80211_HE_BSS_COLOR_ATTR_MAX = __NL80211_HE_BSS_COLOR_ATTR_LAST - 1,
-+};
-+
- 
- #endif /* __LINUX_NL80211_H */
-diff --git a/net/wireless/nl80211.c b/net/wireless/nl80211.c
-index 92e06482563c..65e33db93633 100644
---- a/net/wireless/nl80211.c
-+++ b/net/wireless/nl80211.c
-@@ -289,8 +289,15 @@ he_obss_pd_policy[NL80211_HE_OBSS_PD_ATTR_MAX + 1] = {
- 		NLA_POLICY_RANGE(NLA_U8, 1, 20),
- };
- 
-+static const struct nla_policy
-+he_bss_color_policy[NL80211_HE_BSS_COLOR_ATTR_MAX + 1] = {
-+	[NL80211_HE_BSS_COLOR_ATTR_COLOR] = NLA_POLICY_RANGE(NLA_U8, 1, 63),
-+	[NL80211_HE_BSS_COLOR_ATTR_DISABLED] = { .type = NLA_FLAG },
-+	[NL80211_HE_BSS_COLOR_ATTR_PARTIAL] = { .type = NLA_FLAG },
-+};
-+
- const struct nla_policy nl80211_policy[NUM_NL80211_ATTR] = {
--	[0] = { .strict_start_type = NL80211_ATTR_HE_OBSS_PD },
-+	[0] = { .strict_start_type = 0 },
- 	[NL80211_ATTR_WIPHY] = { .type = NLA_U32 },
- 	[NL80211_ATTR_WIPHY_NAME] = { .type = NLA_NUL_STRING,
- 				      .len = 20-1 },
-@@ -584,6 +591,7 @@ const struct nla_policy nl80211_policy[NUM_NL80211_ATTR] = {
- 					.len = SAE_PASSWORD_MAX_LEN },
- 	[NL80211_ATTR_TWT_RESPONDER] = { .type = NLA_FLAG },
- 	[NL80211_ATTR_HE_OBSS_PD] = NLA_POLICY_NESTED(he_obss_pd_policy),
-+	[NL80211_ATTR_HE_BSS_COLOR] = NLA_POLICY_NESTED(he_bss_color_policy),
- };
- 
- /* policy for the key attributes */
-@@ -4441,6 +4449,30 @@ static int nl80211_parse_he_obss_pd(struct nlattr *attrs,
- 	return 0;
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 5b3dc9e4c6c1..ba2cc6fac809 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -2790,6 +2790,83 @@ ath11k_wmi_send_obss_spr_cmd(struct ath11k *ar, u32 vdev_id,
+ 	return ret;
  }
  
-+static int nl80211_parse_he_bss_color(struct nlattr *attrs,
-+				      struct cfg80211_he_bss_color *he_bss_color)
++int
++ath11k_wmi_send_obss_color_collision_cfg_cmd(struct ath11k *ar, u32 vdev_id,
++					     u8 bss_color, u32 period,
++					     bool enable)
 +{
-+	struct nlattr *tb[NL80211_HE_BSS_COLOR_ATTR_MAX + 1];
-+	int err;
++	struct ath11k_pdev_wmi *wmi = ar->wmi;
++	struct ath11k_base *ab = wmi->wmi_ab->ab;
++	struct wmi_obss_color_collision_cfg_params_cmd *cmd;
++	struct sk_buff *skb;
++	int ret, len;
 +
-+	err = nla_parse_nested(tb, NL80211_HE_BSS_COLOR_ATTR_MAX, attrs,
-+			       he_bss_color_policy, NULL);
-+	if (err)
-+		return err;
++	len = sizeof(*cmd);
 +
-+	if (!tb[NL80211_HE_BSS_COLOR_ATTR_COLOR])
-+		return -EINVAL;
++	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, len);
++	if (!skb)
++		return -ENOMEM;
 +
-+	he_bss_color->color =
-+		nla_get_u8(tb[NL80211_HE_BSS_COLOR_ATTR_COLOR]);
-+	he_bss_color->disabled =
-+		nla_get_flag(tb[NL80211_HE_BSS_COLOR_ATTR_DISABLED]);
-+	he_bss_color->partial =
-+		nla_get_flag(tb[NL80211_HE_BSS_COLOR_ATTR_PARTIAL]);
++	cmd = (struct wmi_obss_color_collision_cfg_params_cmd *)skb->data;
++	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_OBSS_COLOR_COLLISION_DET_CONFIG) |
++			  FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
++	cmd->vdev_id = vdev_id;
++	cmd->evt_type = enable ? ATH11K_OBSS_COLOR_COLLISION_DETECTION :
++				 ATH11K_OBSS_COLOR_COLLISION_DETECTION_DISABLE;
++	cmd->current_bss_color = bss_color;
++	cmd->detection_period_ms = period;
++	cmd->scan_period_ms = ATH11K_BSS_COLOR_COLLISION_SCAN_PERIOD_MS;
++	cmd->free_slot_expiry_time_ms = 0;
++	cmd->flags = 0;
 +
-+	return 0;
++	ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
++		   "wmi_send_obss_color_collision_cfg id %d type %d "
++		   "bss_color %d detect_period %d scan_period %d\n",
++		   cmd->vdev_id, cmd->evt_type, cmd->current_bss_color,
++		   cmd->detection_period_ms, cmd->scan_period_ms);
++
++	ret = ath11k_wmi_cmd_send(wmi, skb,
++				  WMI_OBSS_COLOR_COLLISION_DET_CONFIG_CMDID);
++	if (ret) {
++		ath11k_warn(ab, "Failed to send WMI_OBSS_COLOR_COLLISION_DET_CONFIG_CMDID");
++		dev_kfree_skb(skb);
++	}
++	return ret;
 +}
 +
- static void nl80211_check_ap_rate_selectors(struct cfg80211_ap_settings *params,
- 					    const u8 *rates)
- {
-@@ -4733,6 +4765,14 @@ static int nl80211_start_ap(struct sk_buff *skb, struct genl_info *info)
- 			return err;
- 	}
- 
-+	if (info->attrs[NL80211_ATTR_HE_BSS_COLOR]) {
-+		err = nl80211_parse_he_bss_color(
-+					info->attrs[NL80211_ATTR_HE_BSS_COLOR],
-+					&params.he_bss_color);
-+		if (err)
-+			return err;
-+	}
++int ath11k_wmi_send_bss_color_change_enable_cmd(struct ath11k *ar, u32 vdev_id, bool enable)
++{
++	struct ath11k_pdev_wmi *wmi = ar->wmi;
++	struct ath11k_base *ab = wmi->wmi_ab->ab;
++	struct wmi_bss_color_change_enable_params_cmd *cmd;
++	struct sk_buff *skb;
++	int ret, len;
 +
- 	nl80211_calculate_ap_params(&params);
++	len = sizeof(*cmd);
++
++	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, len);
++	if (!skb)
++		return -ENOMEM;
++
++	cmd = (struct wmi_bss_color_change_enable_params_cmd *)skb->data;
++	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_BSS_COLOR_CHANGE_ENABLE) |
++			  FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
++	cmd->vdev_id = vdev_id;
++	cmd->enable = enable ? 1 : 0;
++
++	ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
++		   "wmi_send_bss_color_change_enable id %d enable %d\n",
++		   cmd->vdev_id, cmd->enable);
++
++	ret = ath11k_wmi_cmd_send(wmi, skb,
++				  WMI_BSS_COLOR_CHANGE_ENABLE_CMDID);
++	if (ret) {
++		ath11k_warn(ab, "Failed to send WMI_TWT_DIeABLE_CMDID");
++		dev_kfree_skb(skb);
++	}
++	return ret;
++}
++
+ static void
+ ath11k_fill_band_to_mac_param(struct ath11k_base  *soc,
+ 			      struct wmi_host_pdev_band_to_mac *band_to_mac)
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index 4dbcb9dc0f8d..f62f796305aa 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -483,6 +483,7 @@ enum wmi_tlv_cmd_id {
+ 	WMI_SAR_LIMITS_CMDID,
+ 	WMI_OBSS_SCAN_ENABLE_CMDID = WMI_TLV_CMD(WMI_GRP_OBSS_OFL),
+ 	WMI_OBSS_SCAN_DISABLE_CMDID,
++	WMI_OBSS_COLOR_COLLISION_DET_CONFIG_CMDID,
+ 	WMI_LPI_MGMT_SNOOPING_CONFIG_CMDID = WMI_TLV_CMD(WMI_GRP_LPI),
+ 	WMI_LPI_START_SCAN_CMDID,
+ 	WMI_LPI_STOP_SCAN_CMDID,
+@@ -4694,6 +4695,30 @@ struct wmi_peer_oper_mode_change_event {
+ 	u32 new_disablemu;
+ } __packed;
  
- 	if (info->attrs[NL80211_ATTR_EXTERNAL_AUTH_SUPPORT])
++#define ATH11K_BSS_COLOR_COLLISION_SCAN_PERIOD_MS		200
++#define ATH11K_OBSS_COLOR_COLLISION_DETECTION_DISABLE		0
++#define ATH11K_OBSS_COLOR_COLLISION_DETECTION			1
++
++#define ATH11K_BSS_COLOR_COLLISION_DETECTION_STA_PERIOD_MS	10000
++#define ATH11K_BSS_COLOR_COLLISION_DETECTION_AP_PERIOD_MS	5000
++
++struct wmi_obss_color_collision_cfg_params_cmd {
++	u32 tlv_header;
++	u32 vdev_id;
++	u32 flags;
++	u32 evt_type;
++	u32 current_bss_color;
++	u32 detection_period_ms;
++	u32 scan_period_ms;
++	u32 free_slot_expiry_time_ms;
++} __packed;
++
++struct wmi_bss_color_change_enable_params_cmd {
++	u32 tlv_header;
++	u32 vdev_id;
++	u32 enable;
++} __packed;
++
+ struct target_resource_config {
+ 	u32 num_vdevs;
+ 	u32 num_peers;
+@@ -4892,4 +4917,10 @@ int ath11k_wmi_send_twt_resume_dialog_cmd(struct ath11k *ar,
+ 					  struct wmi_twt_resume_dialog_params *params);
+ int ath11k_wmi_send_obss_spr_cmd(struct ath11k *ar, u32 vdev_id,
+ 				 struct ieee80211_he_obss_pd *he_obss_pd);
++int ath11k_wmi_send_obss_color_collision_cfg_cmd(struct ath11k *ar, u32 vdev_id,
++						 u8 bss_color, u32 period,
++						 bool enable);
++int ath11k_wmi_send_bss_color_change_enable_cmd(struct ath11k *ar, u32 vdev_id,
++						bool enable);
++
+ #endif
 -- 
 2.20.1
 
