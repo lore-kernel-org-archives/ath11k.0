@@ -1,15 +1,17 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail25.static.mailgun.info ([104.130.122.25])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ihdVc-0001oU-UF
- for ath11k@lists.infradead.org; Wed, 18 Dec 2019 17:53:19 +0000
-MIME-Version: 1.0
-Subject: Re: [PATCH][next] ath11k: fix uninitialized variable radioup
+ id 1ihdi8-0007ga-GH
+ for ath11k@lists.infradead.org; Wed, 18 Dec 2019 18:06:14 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <20191212191044.107544-1-colin.king@canonical.com>
-References: <20191212191044.107544-1-colin.king@canonical.com>
-Message-Id: <20191218175314.4EEDEC4479F@smtp.codeaurora.org>
-Date: Wed, 18 Dec 2019 17:53:14 +0000 (UTC)
+Subject: Re: [PATCH V2 1/2] ath11k: fix pdev when invoking
+ ath11k_wmi_send_twt_enable_cmd()
+References: <20191213153457.11946-1-john@phrozen.org>
+Date: Wed, 18 Dec 2019 20:06:04 +0200
+In-Reply-To: <20191213153457.11946-1-john@phrozen.org> (John Crispin's message
+ of "Fri, 13 Dec 2019 16:34:56 +0100")
+Message-ID: <87h81x8q5v.fsf@kamboji.qca.qualcomm.com>
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,27 +24,24 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Colin King <colin.king@canonical.com>
-Cc: kernel-janitors@vger.kernel.org, Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>, netdev@vger.kernel.org, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, "David S . Miller" <davem@davemloft.net>, Ganesh Sesetti <gseset@codeaurora.org>, John Crispin <john@phrozen.org>, Karthikeyan Periyasamy <periyasa@codeaurora.org>, ath11k@lists.infradead.org
+To: John Crispin <john@phrozen.org>
+Cc: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-Colin King <colin.king@canonical.com> wrote:
+John Crispin <john@phrozen.org> writes:
 
-> The variable radioup is not uninitalized so it may contain a garbage
-> value and hence the detection of a radio that is not up is buggy.
-> Fix this by initializing it to zero.
-> 
-> Addresses-Coverity: ("Uninitalized scalar variable")
-> Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
-> Signed-off-by: Colin Ian King <colin.king@canonical.com>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+> From: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
+>
+> The code currently uses the wrong pdev id when enabling TWT. Fix this by
+> using the correct ones.
+>
+> Fixes: e65a616f4e74 ("ath11k: add TWT support")
+> Signed-off-by: John Crispin <john@phrozen.org>
+> Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
 
-Patch applied to ath-next branch of ath.git, thanks.
-
-08cc0f44f5ed ath11k: fix uninitialized variable radioup
+I noticed only after I applied this, but the s-o-b line is in wrong
+order. Pradeep, being the author, should have his s-o-b line first.
 
 -- 
-https://patchwork.kernel.org/patch/11289309/
-
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 _______________________________________________
