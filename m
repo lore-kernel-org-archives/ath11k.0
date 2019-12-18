@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail25.static.mailgun.info ([104.130.122.25])
+Received: from mail26.static.mailgun.info ([104.130.122.26])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ihdZ7-0003oJ-2S
- for ath11k@lists.infradead.org; Wed, 18 Dec 2019 17:56:55 +0000
+ id 1ihdaL-0003rn-Ms
+ for ath11k@lists.infradead.org; Wed, 18 Dec 2019 17:58:12 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: remove an unneeded NULL check
+Subject: Re: [PATCH -next] ath11k: Remove unneeded semicolon
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <20191213105219.qbpng7eut5zgty2p@kili.mountain>
-References: <20191213105219.qbpng7eut5zgty2p@kili.mountain>
-Message-Id: <20191218175650.41296C433A2@smtp.codeaurora.org>
-Date: Wed, 18 Dec 2019 17:56:50 +0000 (UTC)
+In-Reply-To: <1576318954-40658-1-git-send-email-zhengbin13@huawei.com>
+References: <1576318954-40658-1-git-send-email-zhengbin13@huawei.com>
+Message-Id: <20191218175802.26186C4479D@smtp.codeaurora.org>
+Date: Wed, 18 Dec 2019 17:58:02 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,24 +22,25 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Dan Carpenter <dan.carpenter@oracle.com>
-Cc: kernel-janitors@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: zhengbin <zhengbin13@huawei.com>
+Cc: netdev@vger.kernel.org, linux-wireless@vger.kernel.org, davem@davemloft.net, ath11k@lists.infradead.org
 
-Dan Carpenter <dan.carpenter@oracle.com> wrote:
+zhengbin <zhengbin13@huawei.com> wrote:
 
-> The list iterator is always non-NULL so it doesn't need to be checked.
-> I also removed the unnecessary initializer because the list iterator is
-> always initialized.
+> Fixes coccicheck warning:
 > 
-> Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
+> drivers/net/wireless/ath/ath11k/wmi.h:2570:2-3: Unneeded semicolon
+> 
+> Reported-by: Hulk Robot <hulkci@huawei.com>
+> Signed-off-by: zhengbin <zhengbin13@huawei.com>
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
 Patch applied to ath-next branch of ath.git, thanks.
 
-269663f18474 ath11k: remove an unneeded NULL check
+d1389e19e682 ath11k: Remove unneeded semicolon
 
 -- 
-https://patchwork.kernel.org/patch/11290433/
+https://patchwork.kernel.org/patch/11292181/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
