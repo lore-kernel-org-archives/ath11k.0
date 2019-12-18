@@ -1,15 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail26.static.mailgun.info ([104.130.122.26])
+Received: from mail-pg1-x542.google.com ([2607:f8b0:4864:20::542])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ihXyA-00062W-CX
- for ath11k@lists.infradead.org; Wed, 18 Dec 2019 11:58:23 +0000
+ id 1ihcz4-0005CK-KF
+ for ath11k@lists.infradead.org; Wed, 18 Dec 2019 17:19:39 +0000
+Received: by mail-pg1-x542.google.com with SMTP id b137so1612046pga.6
+ for <ath11k@lists.infradead.org>; Wed, 18 Dec 2019 09:19:38 -0800 (PST)
+Date: Wed, 18 Dec 2019 09:19:35 -0800
+From: Kees Cook <keescook@chromium.org>
+Subject: [PATCH] ath11k: Use sizeof_field() instead of FIELD_SIZEOF()
+Message-ID: <201912180919.2A471217@keescook>
 MIME-Version: 1.0
-Subject: Re: [PATCH V2] ath11k: add OMI debug support
-From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <20191205062812.6208-1-john@phrozen.org>
-References: <20191205062812.6208-1-john@phrozen.org>
-Message-Id: <20191218115821.05AADC433A2@smtp.codeaurora.org>
-Date: Wed, 18 Dec 2019 11:58:21 +0000 (UTC)
+Content-Disposition: inline
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,27 +23,37 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: John Crispin <john@phrozen.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: Kalle Valo <kvalo@codeaurora.org>
+Cc: linux-kernel@vger.kernel.org, ath11k@lists.infradead.org
 
-John Crispin <john@phrozen.org> wrote:
+The FIELD_SIZEOF() macro was redundant, and is being removed from the
+kernel. Since commit c593642c8be0 ("treewide: Use sizeof_field() macro")
+this is one of the last users of the old macro, so replace it.
 
-> This patch allows us to initiate a OMI transaction for test purposes using
-> a debugfs interface. the xmit_omi file expects 9 parameters. The first two
-> are VHT and HE followed by the 7 A-Control fields from D4.0/9.2.4.6a.2.
-> 
-> Signed-off-by: John Crispin <john@phrozen.org>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+Signed-off-by: Kees Cook <keescook@chromium.org>
+---
+ drivers/net/wireless/ath/ath11k/wmi.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-This had new warnings, fixed in pending branch:
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index 4a518d406bc5..fd7cb07a9940 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -44,7 +44,7 @@ struct wmi_tlv {
+ 
+ #define WMI_TLV_LEN	GENMASK(15, 0)
+ #define WMI_TLV_TAG	GENMASK(31, 16)
+-#define TLV_HDR_SIZE	FIELD_SIZEOF(struct wmi_tlv, header)
++#define TLV_HDR_SIZE	sizeof_field(struct wmi_tlv, header)
+ 
+ #define WMI_CMD_HDR_CMD_ID      GENMASK(23, 0)
+ #define WMI_MAX_MEM_REQS        32
+-- 
+2.17.1
 
-drivers/net/wireless/ath/ath11k/wmi.c:5718: line over 90 characters
-drivers/net/wireless/ath/ath11k/wmi.c:5739: line over 90 characters
 
 -- 
-https://patchwork.kernel.org/patch/11274229/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+Kees Cook
 
 _______________________________________________
 ath11k mailing list
