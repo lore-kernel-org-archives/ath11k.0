@@ -1,16 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail26.static.mailgun.info ([104.130.122.26])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ihdXC-000295-3t
- for ath11k@lists.infradead.org; Wed, 18 Dec 2019 17:54:55 +0000
+ id 1ihdYE-000295-16
+ for ath11k@lists.infradead.org; Wed, 18 Dec 2019 17:55:59 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: delete a stray unlock in
- ath11k_dbg_htt_stats_req()
+Subject: Re: [PATCH] ath11k: checking for NULL vs IS_ERR()
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <20191213104754.2lwrq2qqokycjjbm@kili.mountain>
-References: <20191213104754.2lwrq2qqokycjjbm@kili.mountain>
-Message-Id: <20191218175453.3747CC433CB@smtp.codeaurora.org>
-Date: Wed, 18 Dec 2019 17:54:53 +0000 (UTC)
+In-Reply-To: <20191213105127.kijiazxwtghmubyk@kili.mountain>
+References: <20191213105127.kijiazxwtghmubyk@kili.mountain>
+Message-Id: <20191218175556.AA276C4479F@smtp.codeaurora.org>
+Date: Wed, 18 Dec 2019 17:55:56 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -24,11 +23,14 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Dan Carpenter <dan.carpenter@oracle.com>
-Cc: Rajkumar Manoharan <rmanohar@codeaurora.org>, Miles Hu <milehu@codeaurora.org>, linux-wireless@vger.kernel.org, kernel-janitors@vger.kernel.org, ath11k@lists.infradead.org
+Cc: Miles Hu <milehu@codeaurora.org>, kernel-janitors@vger.kernel.org, Venkateswara Naralasetty <vnaralas@codeaurora.org>, linux-wireless@vger.kernel.org, Muna Sinada <msinada@codeaurora.org>, Shashidhar Lakkavalli <slakkavalli@datto.com>, ath11k@lists.infradead.org
 
 Dan Carpenter <dan.carpenter@oracle.com> wrote:
 
-> The callers unlock this lock so this error path has a double unlock.
+> The ath11k_ce_alloc_ring() function returns error pointers on error, not
+> NULL.  The rest of the driver assumes that "pipe->src_ring" is either
+> valid or NULL so this patch introduces a temporary varaible to avoid
+> leaving it as an error pointer.
 > 
 > Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
 > Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
@@ -36,10 +38,10 @@ Dan Carpenter <dan.carpenter@oracle.com> wrote:
 
 Patch applied to ath-next branch of ath.git, thanks.
 
-cd21c827a155 ath11k: delete a stray unlock in ath11k_dbg_htt_stats_req()
+c76fa846b0e1 ath11k: checking for NULL vs IS_ERR()
 
 -- 
-https://patchwork.kernel.org/patch/11290409/
+https://patchwork.kernel.org/patch/11290421/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
