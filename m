@@ -1,14 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from nbd.name ([2a01:4f8:221:3d45::2])
+Received: from mail25.static.mailgun.info ([104.130.122.25])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ihJL4-0006uo-8y
- for ath11k@lists.infradead.org; Tue, 17 Dec 2019 20:21:03 +0000
-From: John Crispin <john@phrozen.org>
-Subject: [RESEND] ath11k: make sure to also report the RX bandwidth inside
- radiotap
-Date: Tue, 17 Dec 2019 21:20:57 +0100
-Message-Id: <20191217202057.27720-1-john@phrozen.org>
+ id 1ihXHz-0001Ut-Cs
+ for ath11k@lists.infradead.org; Wed, 18 Dec 2019 11:14:48 +0000
 MIME-Version: 1.0
+Subject: Re: [PATCH V3 5/9] ath11k: add WMI calls to manually
+ add/del/pause/resume TWT dialogs
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <20191213153839.12372-6-john@phrozen.org>
+References: <20191213153839.12372-6-john@phrozen.org>
+Message-Id: <20191218111443.C1C9FC43383@smtp.codeaurora.org>
+Date: Wed, 18 Dec 2019 11:14:43 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -21,35 +23,26 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
+To: John Crispin <john@phrozen.org>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-Add IEEE80211_RADIOTAP_HE_DATA1_BW_RU_ALLOC_KNOWN to the list of known
-fields. Not doing so will result in wireshark not calculating the
-bitrate correctly.
+John Crispin <john@phrozen.org> wrote:
 
-Signed-off-by: John Crispin <john@phrozen.org>
----
- drivers/net/wireless/ath/ath11k/dp_rx.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+> These calls are used for debugging and will be required for WFA
+> certification tests.
+> 
+> Signed-off-by: John Crispin <john@phrozen.org>
+> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 09edf0f05039..c4692cee3af4 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -2348,7 +2348,8 @@ static void ath11k_dp_rx_deliver_msdu(struct ath11k *ar, struct napi_struct *nap
- 				      struct sk_buff *msdu)
- {
- 	static const struct ieee80211_radiotap_he known = {
--		.data1 = cpu_to_le16(IEEE80211_RADIOTAP_HE_DATA1_DATA_MCS_KNOWN),
-+		.data1 = cpu_to_le16(IEEE80211_RADIOTAP_HE_DATA1_DATA_MCS_KNOWN |
-+				     IEEE80211_RADIOTAP_HE_DATA1_BW_RU_ALLOC_KNOWN),
- 		.data2 = cpu_to_le16(IEEE80211_RADIOTAP_HE_DATA2_GI_KNOWN),
- 	};
- 	struct ieee80211_rx_status *status;
+This had two warnings, fixed in pending branch:
+
+drivers/net/wireless/ath/ath11k/wmi.c:2625: quoted string split across lines
+drivers/net/wireless/ath/ath11k/wmi.c:2626: quoted string split across lines
+
 -- 
-2.20.1
+https://patchwork.kernel.org/patch/11290749/
 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 _______________________________________________
 ath11k mailing list
