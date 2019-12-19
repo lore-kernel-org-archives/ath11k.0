@@ -1,17 +1,19 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail26.static.mailgun.info ([104.130.122.26])
+Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ihw0Y-00011U-48
- for ath11k@lists.infradead.org; Thu, 19 Dec 2019 13:38:27 +0000
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH -next] ath11k: add dependency for struct ath11k member
- debug
-References: <20191213012417.130719-1-maowenan@huawei.com>
-Date: Thu, 19 Dec 2019 15:38:18 +0200
-In-Reply-To: <20191213012417.130719-1-maowenan@huawei.com> (Mao Wenan's
- message of "Fri, 13 Dec 2019 09:24:17 +0800")
-Message-ID: <875zic77w5.fsf@kamboji.qca.qualcomm.com>
+ id 1ihw7n-0003pm-9T
+ for ath11k@lists.infradead.org; Thu, 19 Dec 2019 13:45:57 +0000
+Subject: Re: [RESEND 6/9] ath11k: add debugfs for TWT debug calls
+References: <20191204053713.3064-1-john@phrozen.org>
+ <20191204053713.3064-7-john@phrozen.org>
+ <0101016ecf7e75e3-b26c2edc-e278-4fbc-97d5-fc7f678c240f-000000@us-west-2.amazonses.com>
+ <87eex078gs.fsf@kamboji.qca.qualcomm.com>
+From: John Crispin <john@phrozen.org>
+Message-ID: <5c00b087-f865-f663-cda0-91c196386366@phrozen.org>
+Date: Thu, 19 Dec 2019 14:45:52 +0100
 MIME-Version: 1.0
+In-Reply-To: <87eex078gs.fsf@kamboji.qca.qualcomm.com>
+Content-Language: en-US
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -20,60 +22,31 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Mao Wenan <maowenan@huawei.com>
-Cc: linux-wireless@vger.kernel.org, milehu@codeaurora.org, netdev@vger.kernel.org, kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org, ath11k@lists.infradead.org, julia.lawall@lip6.fr, mpubbise@codeaurora.org, msinada@codeaurora.org, periyasa@codeaurora.org, davem@davemloft.net
+To: Kalle Valo <kvalo@codeaurora.org>, vthiagar@codeaurora.org
+Cc: linux-wireless-owner@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-Mao Wenan <maowenan@huawei.com> writes:
+On 19/12/2019 14:25, Kalle Valo wrote:
+> vthiagar@codeaurora.org writes:
+> 
+>> On 2019-12-04 11:07, John Crispin wrote:
+>>> These new debugfs files allow us to manually add/del/pause/resume TWT
+>>> dialogs for test/debug purposes.
+>>>
+>>
+>> Information such as how these debugfs entries are supposed to be used
+>> could be helpful.
+> 
+> Yes, please always add instructions how the debugfs file is supposed to
+> be used. Not only it helps the users but makes the review easier as
+> well.
+> 
 
-> If CONFIG_ATH11K, CONFIG_MAC80211_DEBUGFS are set,
-> and CONFIG_ATH11K_DEBUGFS is not set, below error can be found,
-> drivers/net/wireless/ath/ath11k/debugfs_sta.c: In function ath11k_dbg_sta_open_htt_peer_stats:
-> drivers/net/wireless/ath/ath11k/debugfs_sta.c:411:4: error: struct ath11k has no member named debug
->   ar->debug.htt_stats.stats_req = stats_req;
->
-> It is to add the dependency for the member of struct ath11k.
->
-> Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
-> Signed-off-by: Mao Wenan <maowenan@huawei.com>
-> ---
->  drivers/net/wireless/ath/ath11k/debugfs_sta.c | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/drivers/net/wireless/ath/ath11k/debugfs_sta.c b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-> index 3c5f931..bcc51d7 100644
-> --- a/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-> +++ b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-> @@ -408,7 +408,9 @@ ath11k_dbg_sta_open_htt_peer_stats(struct inode *inode, struct file *file)
->  		return -ENOMEM;
->  
->  	mutex_lock(&ar->conf_mutex);
-> +#ifdef CONFIG_ATH11K_DEBUGFS
->  	ar->debug.htt_stats.stats_req = stats_req;
-> +#endif
-
-ifdefs are ugly and I don't think this is the root cause for the
-problem. I suspect (but not sure!) that ATH11K_DEBUGFS should depend on
-MAC80211_DEBUGFS, not DEBUG_FS like it does now. Or would there be a
-valid reason to have ATH11K_DEBUGFS enabled but not MAC80211_DEBUGFS?
-
-Then we could also change Makefile to this:
-
-ath11k-$(CONFIG_ATH11K_DEBUGFS) += debugfs_sta.o
-
-And hopefully get rid of an ifdef:
-
-drivers/net/wireless/ath/ath11k/debug.h:#ifdef CONFIG_MAC80211_DEBUGFS
-drivers/net/wireless/ath/ath11k/debug.h:#else /* !CONFIG_MAC80211_DEBUGFS */
-drivers/net/wireless/ath/ath11k/debug.h:#endif /* CONFIG_MAC80211_DEBUGFS*/
-
-Care to try this out?
-
--- 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+I did in the V3 series --> https://patchwork.kernel.org/patch/11290751/
+	John
 
 _______________________________________________
 ath11k mailing list
