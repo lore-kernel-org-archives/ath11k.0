@@ -1,19 +1,17 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from nbd.name ([2a01:4f8:221:3d45::2])
+Received: from mail25.static.mailgun.info ([104.130.122.25])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ihw7n-0003pm-9T
- for ath11k@lists.infradead.org; Thu, 19 Dec 2019 13:45:57 +0000
-Subject: Re: [RESEND 6/9] ath11k: add debugfs for TWT debug calls
-References: <20191204053713.3064-1-john@phrozen.org>
- <20191204053713.3064-7-john@phrozen.org>
- <0101016ecf7e75e3-b26c2edc-e278-4fbc-97d5-fc7f678c240f-000000@us-west-2.amazonses.com>
- <87eex078gs.fsf@kamboji.qca.qualcomm.com>
-From: John Crispin <john@phrozen.org>
-Message-ID: <5c00b087-f865-f663-cda0-91c196386366@phrozen.org>
-Date: Thu, 19 Dec 2019 14:45:52 +0100
+ id 1ihwBV-0004FQ-IW
+ for ath11k@lists.infradead.org; Thu, 19 Dec 2019 13:49:47 +0000
+From: Kalle Valo <kvalo@codeaurora.org>
+Subject: Re: [PATCH 1/2] dt: bindings: net: ath11k: add qcom,
+ board_id definition
+References: <20191217164329.4151-1-john@phrozen.org>
+Date: Thu, 19 Dec 2019 15:49:39 +0200
+In-Reply-To: <20191217164329.4151-1-john@phrozen.org> (John Crispin's message
+ of "Tue, 17 Dec 2019 17:43:28 +0100")
+Message-ID: <871rt077d8.fsf@kamboji.qca.qualcomm.com>
 MIME-Version: 1.0
-In-Reply-To: <87eex078gs.fsf@kamboji.qca.qualcomm.com>
-Content-Language: en-US
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,31 +20,43 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>, vthiagar@codeaurora.org
-Cc: linux-wireless-owner@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: John Crispin <john@phrozen.org>
+Cc: devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-On 19/12/2019 14:25, Kalle Valo wrote:
-> vthiagar@codeaurora.org writes:
-> 
->> On 2019-12-04 11:07, John Crispin wrote:
->>> These new debugfs files allow us to manually add/del/pause/resume TWT
->>> dialogs for test/debug purposes.
->>>
->>
->> Information such as how these debugfs entries are supposed to be used
->> could be helpful.
-> 
-> Yes, please always add instructions how the debugfs file is supposed to
-> be used. Not only it helps the users but makes the review easier as
-> well.
-> 
+John Crispin <john@phrozen.org> writes:
 
-I did in the V3 series --> https://patchwork.kernel.org/patch/11290751/
-	John
+> We need to be able to define what id the board has allowing us to load the
+> correct definition data. This patch adds the description of the required
+> property.
+>
+> Signed-off-by: John Crispin <john@phrozen.org>
+> ---
+>  .../devicetree/bindings/net/wireless/qcom,ath11k.yaml        | 5 +++++
+>  1 file changed, 5 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+> index a1717db36dba..c68daf6ad424 100644
+> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+> @@ -142,6 +142,11 @@ properties:
+>          * reg
+>          * reg-names
+>  
+> +  qcom,board_id:
+> +      $ref: /schemas/types.yaml#/definitions/uint32
+> +      description:
+> +        The board id defining what board definition should be loaded
+
+I think this needs more discussion. This is very tricky to get right, as
+it needs to be extensible and what not. With ath10k we have learned that
+a simple integer is not enough.
+
+-- 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 _______________________________________________
 ath11k mailing list
