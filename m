@@ -1,16 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail26.static.mailgun.info ([104.130.122.26])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ihvuS-0007l5-R2
- for ath11k@lists.infradead.org; Thu, 19 Dec 2019 13:32:12 +0000
+ id 1ihw0Y-00011U-48
+ for ath11k@lists.infradead.org; Thu, 19 Dec 2019 13:38:27 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH] ath11k: Remove unnecessary enum scan_priority
-References: <20191211192252.35024-1-natechancellor@gmail.com>
- <CAKwvOdmQp+Rjgh49kbTp1ocLCjv4SUACEO4+tX5vz4stX-pPpg@mail.gmail.com>
-Date: Thu, 19 Dec 2019 15:31:59 +0200
-In-Reply-To: <CAKwvOdmQp+Rjgh49kbTp1ocLCjv4SUACEO4+tX5vz4stX-pPpg@mail.gmail.com>
- (Nick Desaulniers's message of "Thu, 12 Dec 2019 11:34:42 -0800")
-Message-ID: <87a77o786o.fsf@kamboji.qca.qualcomm.com>
+Subject: Re: [PATCH -next] ath11k: add dependency for struct ath11k member
+ debug
+References: <20191213012417.130719-1-maowenan@huawei.com>
+Date: Thu, 19 Dec 2019 15:38:18 +0200
+In-Reply-To: <20191213012417.130719-1-maowenan@huawei.com> (Mao Wenan's
+ message of "Fri, 13 Dec 2019 09:24:17 +0800")
+Message-ID: <875zic77w5.fsf@kamboji.qca.qualcomm.com>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -24,42 +24,53 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Nick Desaulniers <ndesaulniers@google.com>
-Cc: Network Development <netdev@vger.kernel.org>, linux-wireless@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, clang-built-linux <clang-built-linux@googlegroups.com>, Nathan Chancellor <natechancellor@gmail.com>, ath11k@lists.infradead.org
+To: Mao Wenan <maowenan@huawei.com>
+Cc: linux-wireless@vger.kernel.org, milehu@codeaurora.org, netdev@vger.kernel.org, kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org, ath11k@lists.infradead.org, julia.lawall@lip6.fr, mpubbise@codeaurora.org, msinada@codeaurora.org, periyasa@codeaurora.org, davem@davemloft.net
 
-Nick Desaulniers <ndesaulniers@google.com> writes:
+Mao Wenan <maowenan@huawei.com> writes:
 
-> On Wed, Dec 11, 2019 at 11:23 AM Nathan Chancellor
-> <natechancellor@gmail.com> wrote:
->>
->> Clang warns:
->>
->> drivers/net/wireless/ath/ath11k/wmi.c:1827:23: warning: implicit
->> conversion from enumeration type 'enum wmi_scan_priority' to different
->> enumeration type 'enum scan_priority' [-Wenum-conversion]
->>         arg->scan_priority = WMI_SCAN_PRIORITY_LOW;
->>                            ~ ^~~~~~~~~~~~~~~~~~~~~
->> 1 warning generated.
->>
->> wmi_scan_priority and scan_priority have the same values but the wmi one
->> has WMI prefixed to the names. Since that enum is already being used,
->> get rid of scan_priority and switch its one use to wmi_scan_priority to
->> fix this warning.
->>
->> Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
->> Link: https://github.com/ClangBuiltLinux/linux/issues/808
->> Signed-off-by: Nathan Chancellor <natechancellor@gmail.com>
+> If CONFIG_ATH11K, CONFIG_MAC80211_DEBUGFS are set,
+> and CONFIG_ATH11K_DEBUGFS is not set, below error can be found,
+> drivers/net/wireless/ath/ath11k/debugfs_sta.c: In function ath11k_dbg_sta_open_htt_peer_stats:
+> drivers/net/wireless/ath/ath11k/debugfs_sta.c:411:4: error: struct ath11k has no member named debug
+>   ar->debug.htt_stats.stats_req = stats_req;
 >
-> Further, it looks like the member `scan_priority` in `struct
-> wmi_start_scan_arg` and `struct wmi_start_scan_cmd` should probably
-> use `enum wmi_scan_priority`, rather than `u32`.
+> It is to add the dependency for the member of struct ath11k.
+>
+> Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+> Signed-off-by: Mao Wenan <maowenan@huawei.com>
+> ---
+>  drivers/net/wireless/ath/ath11k/debugfs_sta.c | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/drivers/net/wireless/ath/ath11k/debugfs_sta.c b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
+> index 3c5f931..bcc51d7 100644
+> --- a/drivers/net/wireless/ath/ath11k/debugfs_sta.c
+> +++ b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
+> @@ -408,7 +408,9 @@ ath11k_dbg_sta_open_htt_peer_stats(struct inode *inode, struct file *file)
+>  		return -ENOMEM;
+>  
+>  	mutex_lock(&ar->conf_mutex);
+> +#ifdef CONFIG_ATH11K_DEBUGFS
+>  	ar->debug.htt_stats.stats_req = stats_req;
+> +#endif
 
-struct wmi_start_scan_cmd is sent to firmware and that's why it has u32
-to make sure that the size is exactly 32 bits.
+ifdefs are ugly and I don't think this is the root cause for the
+problem. I suspect (but not sure!) that ATH11K_DEBUGFS should depend on
+MAC80211_DEBUGFS, not DEBUG_FS like it does now. Or would there be a
+valid reason to have ATH11K_DEBUGFS enabled but not MAC80211_DEBUGFS?
 
-> Also, I don't know if the more concisely named enum is preferable?
+Then we could also change Makefile to this:
 
-I didn't get this comment.
+ath11k-$(CONFIG_ATH11K_DEBUGFS) += debugfs_sta.o
+
+And hopefully get rid of an ifdef:
+
+drivers/net/wireless/ath/ath11k/debug.h:#ifdef CONFIG_MAC80211_DEBUGFS
+drivers/net/wireless/ath/ath11k/debug.h:#else /* !CONFIG_MAC80211_DEBUGFS */
+drivers/net/wireless/ath/ath11k/debug.h:#endif /* CONFIG_MAC80211_DEBUGFS*/
+
+Care to try this out?
 
 -- 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
