@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail25.static.mailgun.info ([104.130.122.25])
+Received: from mail26.static.mailgun.info ([104.130.122.26])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iiJ1p-0003Jz-FX
- for ath11k@lists.infradead.org; Fri, 20 Dec 2019 14:13:19 +0000
+ id 1iiJ7S-0005FO-E4
+ for ath11k@lists.infradead.org; Fri, 20 Dec 2019 14:19:09 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH qca6390-bringup] ath11k: fix ZERO address in probe request
-References: <1576830666-30661-1-git-send-email-cjhuang@codeaurora.org>
-Date: Fri, 20 Dec 2019 16:13:06 +0200
-In-Reply-To: <1576830666-30661-1-git-send-email-cjhuang@codeaurora.org> (Carl
- Huang's message of "Fri, 20 Dec 2019 16:31:06 +0800")
-Message-ID: <87woar13wt.fsf@kamboji.qca.qualcomm.com>
+Subject: Re: [PATCH qca6390-bringup] ath11k: enable internal sleep clock
+References: <1576812528-24979-1-git-send-email-cjhuang@codeaurora.org>
+Date: Fri, 20 Dec 2019 16:18:59 +0200
+In-Reply-To: <1576812528-24979-1-git-send-email-cjhuang@codeaurora.org> (Carl
+ Huang's message of "Fri, 20 Dec 2019 11:28:48 +0800")
+Message-ID: <87sglf13n0.fsf@kamboji.qca.qualcomm.com>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -28,33 +28,15 @@ Cc: ath11k@lists.infradead.org
 
 Carl Huang <cjhuang@codeaurora.org> writes:
 
-> Host needs to pass at least on bssid with all 0xff to firmware in
-> WMI_START_SCAN_CMDID, otherwise the bssid and receiver address
-> in probe requeste are all ZEROs.
->
-> This also fixed some hidden AP connection issue because some AP
-> doesn't respond to probe request which receiver address are all
-> ZEROs.
+> For QCA6390 on x86 and non-qcom platfrom, host need explicitly tell firmware
+> to use internal sleep clock. Some QCA6390 modules have OTP burnt with external
+> sleep clock selected, and these moduesl usually can't  work normally on
+> these platforms unless firmware selects internal sleep clock.
 >
 > Signed-off-by: Carl Huang <cjhuang@codeaurora.org>
-> ---
->  drivers/net/wireless/ath/ath11k/wmi.c | 3 +++
->  1 file changed, 3 insertions(+)
->
-> diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-> index 4375e59..1a78002 100644
-> --- a/drivers/net/wireless/ath/ath11k/wmi.c
-> +++ b/drivers/net/wireless/ath/ath11k/wmi.c
-> @@ -1842,6 +1842,9 @@ void ath11k_wmi_start_scan_init(struct ath11k *ar,
->  				  WMI_SCAN_EVENT_DEQUEUED;
->  	arg->scan_flags |= WMI_SCAN_CHAN_STAT_EVENT;
->  	arg->num_bssid = 1;
-> +	/* fill bssid_list[0] with 0xff */
-> +	ether_addr_copy(arg->bssid_list[0].addr, "\xFF\xFF\xFF\xFF\xFF\xFF");
 
-The comment should explain _why_ you are doing that. It's clear from
-looking at the code that we are filling the address with 0xff but the
-reason for this unclear just from looking at the code.
+I applied the 8 qca6390 patches you submitted to ath11k-qca6390-bringup
+branch now.
 
 -- 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
