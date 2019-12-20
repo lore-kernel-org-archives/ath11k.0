@@ -1,18 +1,17 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail25.static.mailgun.info ([104.130.122.25])
+Received: from mail26.static.mailgun.info ([104.130.122.26])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iiDff-0003UO-GW
- for ath11k@lists.infradead.org; Fri, 20 Dec 2019 08:30:04 +0000
+ id 1iiDgq-0005NJ-Li
+ for ath11k@lists.infradead.org; Fri, 20 Dec 2019 08:31:18 +0000
 Received: from cjhuang-station.qca.qualcomm.com (unknown [180.166.53.21])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
  (No client certificate requested) (Authenticated sender: cjhuang)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 4503FC43383
- for <ath11k@lists.infradead.org>; Fri, 20 Dec 2019 08:30:01 +0000 (UTC)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 3984FC433CB
+ for <ath11k@lists.infradead.org>; Fri, 20 Dec 2019 08:31:12 +0000 (UTC)
 From: Carl Huang <cjhuang@codeaurora.org>
-Subject: [PATCH qca6390-bringup] ath11k: fix KASAN warning of
- ath11k_qmi_wlanfw_wlan_cfg_send
-Date: Fri, 20 Dec 2019 16:29:55 +0800
-Message-Id: <1576830595-30610-1-git-send-email-cjhuang@codeaurora.org>
+Subject: [PATCH qca6390-bringup] ath11k: fix ZERO address in probe request
+Date: Fri, 20 Dec 2019 16:31:06 +0800
+Message-Id: <1576830666-30661-1-git-send-email-cjhuang@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -28,28 +27,33 @@ Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 
-It's caused by reading memory out of boundary from target_ce_config_wlan.
-There is no need to read the last array element even for AHB interface, so
-fix it by not reading the last array element.
+Host needs to pass at least on bssid with all 0xff to firmware in
+WMI_START_SCAN_CMDID, otherwise the bssid and receiver address
+in probe requeste are all ZEROs.
+
+This also fixed some hidden AP connection issue because some AP
+doesn't respond to probe request which receiver address are all
+ZEROs.
 
 Signed-off-by: Carl Huang <cjhuang@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/qmi.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/wmi.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index 44060b2..d0d283b 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.c
-+++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -2217,7 +2217,7 @@ static int ath11k_qmi_wlanfw_wlan_cfg_send(struct ath11k_base *ab)
- 	req->tgt_cfg_valid = 1;
- 	/* This is number of CE configs */
- 	req->tgt_cfg_len = ab->qmi.ce_cfg.tgt_ce_len;
--	for (pipe_num = 0; pipe_num <= req->tgt_cfg_len ; pipe_num++) {
-+	for (pipe_num = 0; pipe_num < req->tgt_cfg_len ; pipe_num++) {
- 		req->tgt_cfg[pipe_num].pipe_num = ce_cfg[pipe_num].pipenum;
- 		req->tgt_cfg[pipe_num].pipe_dir = ce_cfg[pipe_num].pipedir;
- 		req->tgt_cfg[pipe_num].nentries = ce_cfg[pipe_num].nentries;
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 4375e59..1a78002 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -1842,6 +1842,9 @@ void ath11k_wmi_start_scan_init(struct ath11k *ar,
+ 				  WMI_SCAN_EVENT_DEQUEUED;
+ 	arg->scan_flags |= WMI_SCAN_CHAN_STAT_EVENT;
+ 	arg->num_bssid = 1;
++	/* fill bssid_list[0] with 0xff */
++	ether_addr_copy(arg->bssid_list[0].addr, "\xFF\xFF\xFF\xFF\xFF\xFF");
++
+ }
+ 
+ static inline void
 -- 
 2.7.4
 
