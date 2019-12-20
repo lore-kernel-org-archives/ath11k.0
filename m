@@ -1,19 +1,17 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail-pj1-x1042.google.com ([2607:f8b0:4864:20::1042])
+Received: from mail25.static.mailgun.info ([104.130.122.25])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ihzGK-0006jh-5C
- for ath11k@lists.infradead.org; Thu, 19 Dec 2019 17:06:57 +0000
-Received: by mail-pj1-x1042.google.com with SMTP id s94so2813033pjc.1
- for <ath11k@lists.infradead.org>; Thu, 19 Dec 2019 09:06:50 -0800 (PST)
-MIME-Version: 1.0
-References: <20191211192252.35024-1-natechancellor@gmail.com>
- <CAKwvOdmQp+Rjgh49kbTp1ocLCjv4SUACEO4+tX5vz4stX-pPpg@mail.gmail.com>
- <87a77o786o.fsf@kamboji.qca.qualcomm.com>
-In-Reply-To: <87a77o786o.fsf@kamboji.qca.qualcomm.com>
-From: Nick Desaulniers <ndesaulniers@google.com>
-Date: Thu, 19 Dec 2019 09:06:37 -0800
-Message-ID: <CAKwvOdk3EPurHLMf81VHowauRYZ4FZXxNg98hJvp8CLgu=SSPw@mail.gmail.com>
-Subject: Re: [PATCH] ath11k: Remove unnecessary enum scan_priority
+ id 1ii8yN-0004RQ-TQ
+ for ath11k@lists.infradead.org; Fri, 20 Dec 2019 03:29:05 +0000
+Received: from cjhuang-station.qca.qualcomm.com (unknown [180.166.53.21])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+ (No client certificate requested) (Authenticated sender: cjhuang)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 9D844C433CB
+ for <ath11k@lists.infradead.org>; Fri, 20 Dec 2019 03:28:54 +0000 (UTC)
+From: Carl Huang <cjhuang@codeaurora.org>
+Subject: [PATCH qca6390-bringup] ath11k: enable internal sleep clock
+Date: Fri, 20 Dec 2019 11:28:48 +0800
+Message-Id: <1576812528-24979-1-git-send-email-cjhuang@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,36 +20,54 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: Network Development <netdev@vger.kernel.org>, linux-wireless@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, clang-built-linux <clang-built-linux@googlegroups.com>, Nathan Chancellor <natechancellor@gmail.com>, ath11k@lists.infradead.org
+To: ath11k@lists.infradead.org
 
-On Thu, Dec 19, 2019 at 5:32 AM Kalle Valo <kvalo@codeaurora.org> wrote:
->
-> Nick Desaulniers <ndesaulniers@google.com> writes:
->
-> > On Wed, Dec 11, 2019 at 11:23 AM Nathan Chancellor
-> > <natechancellor@gmail.com> wrote:
-> >> wmi_scan_priority and scan_priority have the same values but the wmi one
-> >> has WMI prefixed to the names. Since that enum is already being used,
-> >> get rid of scan_priority and switch its one use to wmi_scan_priority to
-> >> fix this warning.
-> >>
-> > Also, I don't know if the more concisely named enum is preferable?
->
-> I didn't get this comment.
+For QCA6390 on x86 and non-qcom platfrom, host need explicitly tell firmware
+to use internal sleep clock. Some QCA6390 modules have OTP burnt with external
+sleep clock selected, and these moduesl usually can't  work normally on
+these platforms unless firmware selects internal sleep clock.
 
-Given two enums with the same values:
-enum scan_priority
-enum wmi_scan_priority
-wouldn't you prefer to type wmi_ a few times less?  Doesn't really
-matter, but that was the point I was making.
+Signed-off-by: Carl Huang <cjhuang@codeaurora.org>
+---
+ drivers/net/wireless/ath/ath11k/qmi.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
+index d96446c..6612637 100644
+--- a/drivers/net/wireless/ath/ath11k/qmi.c
++++ b/drivers/net/wireless/ath/ath11k/qmi.c
+@@ -14,6 +14,8 @@
+ #define BDF_FILE_NAME_PREFIX		"bdwlan"
+ #define MAX_M3_FILE_NAME_LENGTH		13
+ #define DEFAULT_M3_FILE_NAME		"m3.bin"
++#define SLEEP_CLOCK_SELECT_INTERNAL_BIT 0x02
++#define HOST_CSTATE_BIT 0x04
+ 
+ static struct qmi_elem_info qmi_wlanfw_host_cap_req_msg_v01_ei[] = {
+ 	{
+@@ -1537,6 +1539,15 @@ static int ath11k_qmi_host_cap_send(struct ath11k_base *ab)
+ 	req.cal_done_valid = 1;
+ 	req.cal_done = ab->qmi.cal_done;
+ 
++	req.nm_modem_valid = 1;
++	/*notify firmware that os is X86*/
++	req.nm_modem |= HOST_CSTATE_BIT;
++	/* notify firmware about the sleep clock selection,
++	 * discussed with firmware, nm_modem_bit[1] used for this purpose
++	 * x86 host driver should select internal sleep clock.
++	 */
++	req.nm_modem |= SLEEP_CLOCK_SELECT_INTERNAL_BIT;
++
+ 	ret = qmi_txn_init(&ab->qmi.handle, &txn,
+ 			   qmi_wlanfw_host_cap_resp_msg_v01_ei, &resp);
+ 	if (ret < 0)
 -- 
-Thanks,
-~Nick Desaulniers
+2.7.4
 
 _______________________________________________
 ath11k mailing list
