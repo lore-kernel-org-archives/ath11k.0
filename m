@@ -1,13 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from youngberry.canonical.com ([91.189.89.112])
+Received: from mail25.static.mailgun.info ([104.130.122.25])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iiSpB-0004CU-G4
- for ath11k@lists.infradead.org; Sat, 21 Dec 2019 00:40:54 +0000
-From: Colin King <colin.king@canonical.com>
-Subject: [PATCH] ath11k: ensure ts.flags is initialized before bit-wise or'ing
- in values
-Date: Sat, 21 Dec 2019 00:40:46 +0000
-Message-Id: <20191221004046.15859-1-colin.king@canonical.com>
+ id 1imDtW-0000P5-Ka
+ for ath11k@lists.infradead.org; Tue, 31 Dec 2019 09:32:55 +0000
+From: Wen Gong <wgong@codeaurora.org>
+Subject: [PATCH] net: qrtr: fix len of skb_put_padto in qrtr_node_enqueue
+Date: Tue, 31 Dec 2019 17:32:42 +0800
+Message-Id: <20191231093242.6320-1-wgong@codeaurora.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -21,40 +20,34 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>, "David S . Miller" <davem@davemloft.net>, Anilkumar Kolli <akolli@codeaurora.org>, Manikanta Pubbisetty <mpubbise@codeaurora.org>, Sven Eckelmann <seckelmann@datto.com>, Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>, ath11k@lists.infradead.org, linux-wireless@vger.kernel.org, netdev@vger.kernel.org
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+To: davem@davemloft.net
+Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org, ath11k@lists.infradead.org
 
-From: Colin Ian King <colin.king@canonical.com>
+From: Carl Huang <cjhuang@codeaurora.org>
 
-Currently the structure ts is not inititalized and ts.flags contains
-garbage values from the stack.  This is being passed into function
-ath11k_dp_tx_status_parse that bit-wise or'ing in settings into the
-ts.flags field.  To avoid flags (and other fields) from containing
-garbage, initialize the structure to zero before use.
+The len used for skb_put_padto is wrong, it need to add len of hdr.
 
-Addresses-Coverity: ("Uninitialized scalar variable)"
-Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
-Signed-off-by: Colin Ian King <colin.king@canonical.com>
+Signed-off-by: Carl Huang <cjhuang@codeaurora.org>
+Signed-off-by: Wen Gong <wgong@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/dp_tx.c | 2 +-
+ net/qrtr/qrtr.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
-index 918305dda106..04ad1a20e459 100644
---- a/drivers/net/wireless/ath/ath11k/dp_tx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
-@@ -461,7 +461,7 @@ void ath11k_dp_tx_completion_handler(struct ath11k_base *ab, int ring_id)
- 	int hal_ring_id = dp->tx_ring[ring_id].tcl_comp_ring.ring_id;
- 	struct hal_srng *status_ring = &ab->hal.srng_list[hal_ring_id];
- 	struct sk_buff *msdu;
--	struct hal_tx_status ts;
-+	struct hal_tx_status ts = { 0 };
- 	struct dp_tx_ring *tx_ring = &dp->tx_ring[ring_id];
- 	u32 *desc;
- 	u32 msdu_id;
+diff --git a/net/qrtr/qrtr.c b/net/qrtr/qrtr.c
+index 88f98f27ad88..3d24d45be5f4 100644
+--- a/net/qrtr/qrtr.c
++++ b/net/qrtr/qrtr.c
+@@ -196,7 +196,7 @@ static int qrtr_node_enqueue(struct qrtr_node *node, struct sk_buff *skb,
+ 	hdr->size = cpu_to_le32(len);
+ 	hdr->confirm_rx = 0;
+ 
+-	skb_put_padto(skb, ALIGN(len, 4));
++	skb_put_padto(skb, ALIGN(len, 4) + sizeof(*hdr));
+ 
+ 	mutex_lock(&node->ep_lock);
+ 	if (node->ep)
 -- 
-2.24.0
-
+2.23.0
 
 _______________________________________________
 ath11k mailing list
