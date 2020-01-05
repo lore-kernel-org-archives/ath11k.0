@@ -1,17 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail25.static.mailgun.info ([104.130.122.25])
+Received: from shards.monkeyblade.net ([2620:137:e000::1:9])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1inEwq-000271-EU
- for ath11k@lists.infradead.org; Fri, 03 Jan 2020 04:52:34 +0000
-MIME-Version: 1.0
-Date: Fri, 03 Jan 2020 12:52:26 +0800
-From: Wen Gong <wgong@codeaurora.org>
-Subject: Re: [PATCH] net: qrtr: fix len of skb_put_padto in qrtr_node_enqueue
-In-Reply-To: <297b94fe2eb5a20c75c2095e9640a495@codeaurora.org>
-References: <20191231093242.6320-1-wgong@codeaurora.org>
- <20200102.162249.948673283541180133.davem@davemloft.net>
- <297b94fe2eb5a20c75c2095e9640a495@codeaurora.org>
-Message-ID: <69f125876df44373236d0068dff8478d@codeaurora.org>
+ id 1ioEfp-0001kl-Tl
+ for ath11k@lists.infradead.org; Sun, 05 Jan 2020 22:47:07 +0000
+Date: Sun, 05 Jan 2020 14:47:04 -0800 (PST)
+Message-Id: <20200105.144704.221506192255563950.davem@davemloft.net>
+Subject: Re: [PATCH v2] net: qrtr: fix len of skb_put_padto in
+ qrtr_node_enqueue
+From: David Miller <davem@davemloft.net>
+In-Reply-To: <20200103045016.12459-1-wgong@codeaurora.org>
+References: <20200103045016.12459-1-wgong@codeaurora.org>
+Mime-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -20,33 +19,26 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: David Miller <davem@davemloft.net>
+To: wgong@codeaurora.org
 Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org, ath11k@lists.infradead.org
 
-On 2020-01-03 09:37, Wen Gong wrote:
-> On 2020-01-03 08:22, David Miller wrote:
-> 
->> I don't think this is correct.
->> 
->> The 'hdr' was already "pushed" earlier in this file.
->> 
->> Here we are padding the area after the header, which is being "put".
->> 
->> I'm not applying this.  If you still think it is correct, you must 
->> explain
->> in detail why it is and add that description to the commit log 
->> message.
->> 
->> Thank you.
-> 
-> Thanks David.
-> I will add more description and send patch v2.
-v2:
-http://patchwork.ozlabs.org/patch/1217201/
+From: Wen Gong <wgong@codeaurora.org>
+Date: Fri,  3 Jan 2020 12:50:16 +0800
+
+> The len used for skb_put_padto is wrong, it need to add len of hdr.
+
+Thanks, applied.
+
+There is another bug here, skb_put_padto() returns an error and frees
+the SKB when the put fails.  There really needs to be a check here,
+because currently the code right now will keep using the freed up
+skb in that situation.
+
+Thanks.
 
 _______________________________________________
 ath11k mailing list
