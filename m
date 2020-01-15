@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail26.static.mailgun.info ([104.130.122.26])
+Received: from mail25.static.mailgun.info ([104.130.122.25])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1irepX-000316-2E
- for ath11k@lists.infradead.org; Wed, 15 Jan 2020 09:19:19 +0000
+ id 1irev9-0005jE-LM
+ for ath11k@lists.infradead.org; Wed, 15 Jan 2020 09:25:07 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: fix up some error paths
+Subject: Re: [PATCH] ath11k: mask out vht beamforming if a fixed rate is set
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <20191213105448.b7lic5ddih6c3sqy@kili.mountain>
-References: <20191213105448.b7lic5ddih6c3sqy@kili.mountain>
-Message-Id: <20200115091903.59FC7C433A2@smtp.codeaurora.org>
-Date: Wed, 15 Jan 2020 09:19:03 +0000 (UTC)
+In-Reply-To: <20191217171827.6780-1-john@phrozen.org>
+References: <20191217171827.6780-1-john@phrozen.org>
+Message-Id: <20200115092502.35F64C4479C@smtp.codeaurora.org>
+Date: Wed, 15 Jan 2020 09:25:02 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,30 +22,25 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Dan Carpenter <dan.carpenter@oracle.com>
-Cc: Bhagavathi Perumal S <bperumal@codeaurora.org>, kernel-janitors@vger.kernel.org, Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>, linux-wireless@vger.kernel.org, John Crispin <john@phrozen.org>, ath11k@lists.infradead.org
+To: John Crispin <john@phrozen.org>
+Cc: Ritesh Singh <ritesi@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-Dan Carpenter <dan.carpenter@oracle.com> wrote:
+John Crispin <john@phrozen.org> wrote:
 
-> There are two error paths where "ret" wasn't set.  Ideally the compiler
-> would have warned about these bugs, but we initialized "ret" to zero so
-> it silenced the warning.  I have removed that.  Also if
-> ath11k_hal_srng_get_entrysize() fails then we need to free some
-> resources before returning.
+> From: Ritesh Singh <ritesi@codeaurora.org>
 > 
-> Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
-> Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
+> After setting a fixed vht-rate we see a FW assert if a STA tries to
+> (re)assoc with the mu_bfee cap set. This patch masks out the capability
+> bits if a fixed rate is set.
+> 
+> Reviewed-by: John Crispin <john@phrozen.org>
+> Signed-off-by: Ritesh Singh <ritesi@codeaurora.org>
 
-Failed to apply:
-
-error: patch failed: drivers/net/wireless/ath/ath11k/dp_tx.c:646
-error: drivers/net/wireless/ath/ath11k/dp_tx.c: patch does not apply
-stg import: Diff does not apply cleanly
-
-Patch set to Changes Requested.
+John's s-o-b missing. Also no magic numbers, please. Isn't there a proper
+define for 0x3?
 
 -- 
-https://patchwork.kernel.org/patch/11290443/
+https://patchwork.kernel.org/patch/11298287/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
