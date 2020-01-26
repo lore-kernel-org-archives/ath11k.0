@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail26.static.mailgun.info ([104.130.122.26])
+Received: from mail25.static.mailgun.info ([104.130.122.25])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ivfJQ-0007Ox-QH
- for ath11k@lists.infradead.org; Sun, 26 Jan 2020 10:38:42 +0000
+ id 1ivfKz-0000Sp-V0
+ for ath11k@lists.infradead.org; Sun, 26 Jan 2020 10:40:20 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: enable HE tlvs in ppdu stats for pktlog lite
+Subject: Re: [PATCH] ath11k: set TxBf parameters after vdev start
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <20191217162140.2102-1-john@phrozen.org>
-References: <20191217162140.2102-1-john@phrozen.org>
-Message-Id: <20200126103838.E84DCC43383@smtp.codeaurora.org>
-Date: Sun, 26 Jan 2020 10:38:38 +0000 (UTC)
+In-Reply-To: <20191217164917.5040-1-john@phrozen.org>
+References: <20191217164917.5040-1-john@phrozen.org>
+Message-Id: <20200126104015.30968C4479C@smtp.codeaurora.org>
+Date: Sun, 26 Jan 2020 10:40:15 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,22 +23,24 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: John Crispin <john@phrozen.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, Bhagavathi Perumal S <bperumal@codeaurora.org>
 
 John Crispin <john@phrozen.org> wrote:
 
-> This patch enables HE tlvs in ppdu stats for pktlog lite mode.
+> The channel info parameters are required by the firmware to process TxBf
+> parameters. Currently TxBf is passed prior to the channel info. This patch
+> moves TxBf setup after the channel setup.
 > 
 > Signed-off-by: John Crispin <john@phrozen.org>
-> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
+> Signed-off-by: Bhagavathi Perumal S <bperumal@codeaurora.org>
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
 Patch applied to ath-next branch of ath.git, thanks.
 
-1e93a78113b4 ath11k: enable HE tlvs in ppdu stats for pktlog lite
+5815719dd271 ath11k: set TxBf parameters after vdev start
 
 -- 
-https://patchwork.kernel.org/patch/11298211/
+https://patchwork.kernel.org/patch/11298249/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
