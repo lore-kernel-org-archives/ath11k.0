@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail26.static.mailgun.info ([104.130.122.26])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iuZ3K-0006iR-IW
- for ath11k@lists.infradead.org; Thu, 23 Jan 2020 09:45:33 +0000
+ id 1ivfIX-0007Ox-CK
+ for ath11k@lists.infradead.org; Sun, 26 Jan 2020 10:37:46 +0000
 MIME-Version: 1.0
-Date: Thu, 23 Jan 2020 15:15:26 +0530
-From: periyasa@codeaurora.org
-Subject: Re: [RESEND] ath11k: add tx hw 802.11 encapusaltion offloading support
-In-Reply-To: <20200122142930.19239-1-john@phrozen.org>
-References: <20200122142930.19239-1-john@phrozen.org>
-Message-ID: <d4c4c85868ad02bb4b65b7de0f31f264@codeaurora.org>
+Subject: Re: [PATCH] ath11k: fix debugfs build failure
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <20200107215036.1333983-1-arnd@arndb.de>
+References: <20200107215036.1333983-1-arnd@arndb.de>
+Message-Id: <20200126103743.80EE7C433CB@smtp.codeaurora.org>
+Date: Sun, 26 Jan 2020 10:37:43 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -18,52 +18,38 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: John Crispin <john@phrozen.org>
-Cc: linux-wireless-owner@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>, Shashidhar Lakkavalli <slakkavalli@datto.com>
+To: Arnd Bergmann <arnd@arndb.de>
+Cc: Maharaja Kennadyrajan <mkenna@codeaurora.org>, Sriram R <srirrama@codeaurora.org>, Venkateswara Naralasetty <vnaralas@codeaurora.org>, Muna Sinada <msinada@codeaurora.org>, Shashidhar Lakkavalli <slakkavalli@datto.com>, Tamizh chelvam <tamizhr@codeaurora.org>, kbuild test robot <lkp@intel.com>, Rajkumar Manoharan <rmanohar@codeaurora.org>, Sven Eckelmann <seckelmann@datto.com>, Ganesh Sesetti <gseset@codeaurora.org>, Sathishkumar Muruganandam <murugana@codeaurora.org>, Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>, Miles Hu <milehu@codeaurora.org>, Julia Lawall <julia.lawall@lip6.fr>, John Crispin <john@phrozen.org>, Govindaraj Saminathan <gsamin@codeaurora.org>, Bhagavathi Perumal S <bperumal@codeaurora.org>, Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>, netdev@vger.kernel.org, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, ath11k@lists.infradead.org, Manikanta Pubbisetty <mpubbise@codeaurora.org>, Karthikeyan Periyasamy <periyasa@codeaurora.org>, "David S. Miller" <davem@davemloft.net>
 
-> This patch adds support for ethernet rxtx mode to the driver. The 
-> feature
-> is enabled via a new module parameter. If enabled to driver will enable
-> the feature on a per vif basis if all other requirements were met.
+Arnd Bergmann <arnd@arndb.de> wrote:
+
+> When CONFIG_ATH11K_DEBUGFS is disabled, but CONFIG_MAC80211_DEBUGFS
+> is turned on, the driver fails to build:
 > 
-> Signed-off-by: Shashidhar Lakkavalli <slakkavalli@datto.com>
-> Signed-off-by: John Crispin <john@phrozen.org>
-> ---
->  drivers/net/wireless/ath/ath11k/core.h  |  5 +++
->  drivers/net/wireless/ath/ath11k/dp_tx.c | 16 ++++++++--
->  drivers/net/wireless/ath/ath11k/mac.c   | 41 ++++++++++++++++++++-----
->  3 files changed, 52 insertions(+), 10 deletions(-)
+> drivers/net/wireless/ath/ath11k/debugfs_sta.c: In function 'ath11k_dbg_sta_open_htt_peer_stats':
+> drivers/net/wireless/ath/ath11k/debugfs_sta.c:416:4: error: 'struct ath11k' has no member named 'debug'
+>   ar->debug.htt_stats.stats_req = stats_req;
+>     ^~
 > 
-> diff --git a/drivers/net/wireless/ath/ath11k/mac.c
-> b/drivers/net/wireless/ath/ath11k/mac.c
-> index 556eef9881a7..f56adba5f838 100644
-> --- a/drivers/net/wireless/ath/ath11k/mac.c
-> +++ b/drivers/net/wireless/ath/ath11k/mac.c
-> @@ -33,6 +33,10 @@
->  	.max_power              = 30, \
->  }
+> It appears that just using the former symbol is sufficient here,
+> adding a Kconfig dependency takes care of the corner cases.
 > 
-> +static unsigned int ath11k_ethernet_mode;
-> +module_param_named(ethernet_mode, ath11k_ethernet_mode, uint, 0644);
-> +MODULE_PARM_DESC(ethernet_mode, "Use ethernet frame datapath");
-> +
+> Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-Shall we have a generic module parameter instead of a dedicated module 
-parameter for ethernet mode?
-so that we can extend this module parameter for raw mode also like below
+Patch applied to ath-next branch of ath.git, thanks.
 
-/* 0 - Nativi wifi
-  * 1 - Ethernet mode
-  */
-static unsigned int ath11k_mode;
-module_param_named(mode, ath11k_mode, uint, 0644);
-MODULE_PARM_DESC(mode, "Use for rxtx frame datapath");
+a45ceea5015d ath11k: fix debugfs build failure
 
-- Karthikeyan
+-- 
+https://patchwork.kernel.org/patch/11321921/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 _______________________________________________
 ath11k mailing list
