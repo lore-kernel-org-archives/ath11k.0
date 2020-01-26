@@ -1,15 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail25.static.mailgun.info ([104.130.122.25])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ivfSE-0001xu-VB
- for ath11k@lists.infradead.org; Sun, 26 Jan 2020 10:47:48 +0000
+ id 1ivfT2-0001xu-Br
+ for ath11k@lists.infradead.org; Sun, 26 Jan 2020 10:48:37 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH v4] ath11k: Add missing pdev rx rate stats
+Subject: Re: [PATCH][next] ath11k: avoid null pointer dereference when pointer
+ band is null
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1578570530-32038-1-git-send-email-bperumal@codeaurora.org>
-References: <1578570530-32038-1-git-send-email-bperumal@codeaurora.org>
-Message-Id: <20200126104744.E22D5C4479C@smtp.codeaurora.org>
-Date: Sun, 26 Jan 2020 10:47:44 +0000 (UTC)
+In-Reply-To: <20200111090824.9999-1-colin.king@canonical.com>
+References: <20200111090824.9999-1-colin.king@canonical.com>
+Message-Id: <20200126104834.2D046C433A2@smtp.codeaurora.org>
+Date: Sun, 26 Jan 2020 10:48:34 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,26 +23,28 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Bhagavathi Perumal S <bperumal@codeaurora.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: Colin King <colin.king@canonical.com>
+Cc: kernel-janitors@vger.kernel.org, netdev@vger.kernel.org, John Crispin <john@phrozen.org>, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, "David S . Miller" <davem@davemloft.net>, Shashidhar Lakkavalli <slakkavalli@datto.com>, ath11k@lists.infradead.org
 
-Bhagavathi Perumal S <bperumal@codeaurora.org> wrote:
+Colin King <colin.king@canonical.com> wrote:
 
-> This adds missing rx rate info stats like pilot evm,
-> per chain rssi, per user ul ppdu and mpdu counts and
-> ul ofdma rate info etc.
+> In the unlikely event that cap->supported_bands has neither
+> WMI_HOST_WLAN_2G_CAP set or WMI_HOST_WLAN_5G_CAP set then pointer
+> band is null and a null dereference occurs when assigning
+> band->n_iftype_data.  Move the assignment to the if blocks to
+> avoid this.  Cleans up static analysis warnings.
 > 
-> And add null checks for memory alloc failures.
-> 
-> Signed-off-by: Bhagavathi Perumal S <bperumal@codeaurora.org>
+> Addresses-Coverity: ("Explicit null dereference")
+> Fixes: 9f056ed8ee01 ("ath11k: add HE support")
+> Signed-off-by: Colin Ian King <colin.king@canonical.com>
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
 Patch applied to ath-next branch of ath.git, thanks.
 
-875603b3de9f ath11k: Add missing pdev rx rate stats
+3b4516838eaa ath11k: avoid null pointer dereference when pointer band is null
 
 -- 
-https://patchwork.kernel.org/patch/11325519/
+https://patchwork.kernel.org/patch/11328755/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
