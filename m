@@ -1,14 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail25.static.mailgun.info ([104.130.122.25])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iz87V-0003kY-1j
- for ath11k@lists.infradead.org; Wed, 05 Feb 2020 00:00:42 +0000
-From: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
-Subject: [PATCH 2/2] ath11k: add thermal sensor device support
-Date: Wed,  5 Feb 2020 05:30:30 +0530
-Message-Id: <1580860830-12696-2-git-send-email-pradeepc@codeaurora.org>
-In-Reply-To: <1580860830-12696-1-git-send-email-pradeepc@codeaurora.org>
-References: <1580860830-12696-1-git-send-email-pradeepc@codeaurora.org>
+ id 1iz9Nc-0006DI-4f
+ for ath11k@lists.infradead.org; Wed, 05 Feb 2020 01:21:26 +0000
+From: Sriram R <srirrama@codeaurora.org>
+Subject: [PATCH] ath11k: Supporting RX ring backpressure HTT event and stats
+ handling
+Date: Wed,  5 Feb 2020 06:50:49 +0530
+Message-Id: <1580865649-14219-1-git-send-email-srirrama@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,363 +22,222 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
-Cc: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>, linux-wireless@vger.kernel.org
+Cc: Vikas Patel <vikpatel@codeaurora.org>, Sriram R <srirrama@codeaurora.org>
 
-Temperature sensor generates electrical analog voltage from temperature
-of each chain. The analog voltage is converted to digital value through
-ADC. For reading temperature values fom user space, hw monitoring device
-is used.
+From: Vikas Patel <vikpatel@codeaurora.org>
 
-Whenever the user requests for current temperature, the driver sends WMI
-command and wait for response. For reading temperature,
+The Firmware sends HTT event to host whenever there is a
+backpressure on RX rings, Handling such event and dumping
+info on the console under the "ATH11K_DBG_DP_HTT"  debug level.
 
-cat /sys/class/ieee80211/phy*/device/hwmon/hwmon2/temp1_input
+Fetching RX ring backpressure histogram from FW via htt_stats debugfs.
 
-Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
+ #echo 24 > /sys/kernel/debug/ath11k/ipq8074/mac0/htt_stats_type
+ #cat /sys/kernel/debug/ath11k/ipq8074/macX/htt_stats
+
+Signed-off-by: Vikas Patel <vikpatel@codeaurora.org>
+Signed-off-by: Sriram R <srirrama@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/core.c    |  1 +
- drivers/net/wireless/ath/ath11k/mac.c     |  2 +
- drivers/net/wireless/ath/ath11k/thermal.c | 79 ++++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/thermal.h | 13 +++++
- drivers/net/wireless/ath/ath11k/wmi.c     | 85 +++++++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/wmi.h     | 13 +++++
- 6 files changed, 193 insertions(+)
+v2 - Rebased on top of latest
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 63b0864c6bcb..d9849bc6033d 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -654,6 +654,7 @@ static void ath11k_core_restart(struct work_struct *work)
- 		complete(&ar->install_key_done);
- 		complete(&ar->vdev_setup_done);
- 		complete(&ar->bss_survey_done);
-+		complete(&ar->thermal.wmi_sync);
+ drivers/net/wireless/ath/ath11k/debug.h       |  2 +
+ .../net/wireless/ath/ath11k/debug_htt_stats.c | 44 +++++++++++++++++++
+ .../net/wireless/ath/ath11k/debug_htt_stats.h | 28 ++++++++++++
+ drivers/net/wireless/ath/ath11k/dp.h          |  8 ++++
+ drivers/net/wireless/ath/ath11k/dp_rx.c       | 26 +++++++++++
+ 5 files changed, 108 insertions(+)
+
+diff --git a/drivers/net/wireless/ath/ath11k/debug.h b/drivers/net/wireless/ath/ath11k/debug.h
+index a317a7bdb9a2..012ed37cf704 100644
+--- a/drivers/net/wireless/ath/ath11k/debug.h
++++ b/drivers/net/wireless/ath/ath11k/debug.h
+@@ -53,6 +53,8 @@ enum ath11k_dbg_htt_ext_stats_type {
+ 	ATH11K_DBG_HTT_EXT_STATS_TWT_SESSIONS               =  20,
+ 	ATH11K_DBG_HTT_EXT_STATS_REO_RESOURCE_STATS         =  21,
+ 	ATH11K_DBG_HTT_EXT_STATS_TX_SOUNDING_INFO           =  22,
++	ATH11K_DBG_HTT_EXT_STATS_PDEV_OBSS_PD_STATS	    =  23,
++	ATH11K_DBG_HTT_EXT_STATS_RING_BACKPRESSURE_STATS    =  24,
  
- 		wake_up(&ar->dp.tx_empty_waitq);
- 		idr_for_each(&ar->txmgmt_idr,
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 6640662f5ede..90d4ebe6be89 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -5873,6 +5873,8 @@ int ath11k_mac_allocate(struct ath11k_base *ab)
- 		init_completion(&ar->bss_survey_done);
- 		init_completion(&ar->scan.started);
- 		init_completion(&ar->scan.completed);
-+		init_completion(&ar->thermal.wmi_sync);
-+
- 		INIT_DELAYED_WORK(&ar->scan.timeout, ath11k_scan_timeout_work);
- 		INIT_WORK(&ar->regd_update_work, ath11k_regd_update_work);
- 
-diff --git a/drivers/net/wireless/ath/ath11k/thermal.c b/drivers/net/wireless/ath/ath11k/thermal.c
-index 6c2d96be34cb..259dddbda2c7 100644
---- a/drivers/net/wireless/ath/ath11k/thermal.c
-+++ b/drivers/net/wireless/ath/ath11k/thermal.c
-@@ -6,6 +6,8 @@
- #include <linux/device.h>
- #include <linux/sysfs.h>
- #include <linux/thermal.h>
-+#include <linux/hwmon.h>
-+#include <linux/hwmon-sysfs.h>
- #include "core.h"
- #include "debug.h"
- 
-@@ -57,6 +59,70 @@
- 	.set_cur_state = ath11k_thermal_set_cur_throttle_state,
- };
- 
-+static ssize_t ath11k_thermal_show_temp(struct device *dev,
-+					struct device_attribute *attr,
-+					char *buf)
-+{
-+	struct ath11k *ar = dev_get_drvdata(dev);
-+	int ret, temperature;
-+	unsigned long time_left;
-+
-+	mutex_lock(&ar->conf_mutex);
-+
-+	/* Can't get temperature when the card is off */
-+	if (ar->state != ATH11K_STATE_ON) {
-+		ret = -ENETDOWN;
-+		goto out;
-+	}
-+
-+	reinit_completion(&ar->thermal.wmi_sync);
-+	ret = ath11k_wmi_send_pdev_temperature_cmd(ar);
-+	if (ret) {
-+		ath11k_warn(ar->ab, "failed to read temperature %d\n", ret);
-+		goto out;
-+	}
-+
-+	if (test_bit(ATH11K_FLAG_CRASH_FLUSH, &ar->ab->dev_flags)) {
-+		ret = -ESHUTDOWN;
-+		goto out;
-+	}
-+
-+	time_left = wait_for_completion_timeout(&ar->thermal.wmi_sync,
-+						ATH11K_THERMAL_SYNC_TIMEOUT_HZ);
-+	if (!time_left) {
-+		ath11k_warn(ar->ab, "failed to synchronize thermal read\n");
-+		ret = -ETIMEDOUT;
-+		goto out;
-+	}
-+
-+	spin_lock_bh(&ar->data_lock);
-+	temperature = ar->thermal.temperature;
-+	spin_unlock_bh(&ar->data_lock);
-+
-+	/* display in millidegree celcius */
-+	ret = snprintf(buf, PAGE_SIZE, "%d\n", temperature * 1000);
-+out:
-+	mutex_unlock(&ar->conf_mutex);
-+	return ret;
-+}
-+
-+void ath11k_thermal_event_temperature(struct ath11k *ar, int temperature)
-+{
-+	spin_lock_bh(&ar->data_lock);
-+	ar->thermal.temperature = temperature;
-+	spin_unlock_bh(&ar->data_lock);
-+	complete(&ar->thermal.wmi_sync);
-+}
-+
-+static SENSOR_DEVICE_ATTR(temp1_input, 0444, ath11k_thermal_show_temp,
-+			  NULL, 0);
-+
-+static struct attribute *ath11k_hwmon_attrs[] = {
-+	&sensor_dev_attr_temp1_input.dev_attr.attr,
-+	NULL,
-+};
-+ATTRIBUTE_GROUPS(ath11k_hwmon);
-+
- int ath11k_thermal_set_throttling(struct ath11k *ar, u32 throttle_state)
- {
- 	struct ath11k_base *sc = ar->ab;
-@@ -91,6 +157,7 @@ int ath11k_thermal_set_throttling(struct ath11k *ar, u32 throttle_state)
- int ath11k_thermal_register(struct ath11k_base *sc)
- {
- 	struct thermal_cooling_device *cdev;
-+	struct device *hwmon_dev;
- 	struct ath11k *ar;
- 	struct ath11k_pdev *pdev;
- 	int i, ret;
-@@ -118,6 +185,18 @@ int ath11k_thermal_register(struct ath11k_base *sc)
- 		}
- 
- 		ar->thermal.cdev = cdev;
-+		if (!IS_REACHABLE(CONFIG_HWMON))
-+			return 0;
-+
-+		hwmon_dev = devm_hwmon_device_register_with_groups(&ar->hw->wiphy->dev,
-+								   "ath11k_hwmon", ar,
-+								   ath11k_hwmon_groups);
-+		if (IS_ERR(hwmon_dev)) {
-+			ath11k_err(ar->ab, "failed to register hwmon device: %ld\n",
-+				   PTR_ERR(hwmon_dev));
-+			ret = -EINVAL;
-+			goto err_thermal_destroy;
-+		}
- 	}
- 
- 	return 0;
-diff --git a/drivers/net/wireless/ath/ath11k/thermal.h b/drivers/net/wireless/ath/ath11k/thermal.h
-index 7aa8dcfdb624..510c5aaebefa 100644
---- a/drivers/net/wireless/ath/ath11k/thermal.h
-+++ b/drivers/net/wireless/ath/ath11k/thermal.h
-@@ -10,18 +10,26 @@
- #define ATH11K_THERMAL_TEMP_HIGH_MARK 150
- #define ATH11K_THERMAL_THROTTLE_MAX     100
- #define ATH11K_THERMAL_DEFAULT_DUTY_CYCLE 100
-+#define ATH11K_HWMON_NAME_LEN           15
-+#define ATH11K_THERMAL_SYNC_TIMEOUT_HZ (5 * HZ)
- 
- struct ath11k_thermal {
- 	struct thermal_cooling_device *cdev;
-+	struct completion wmi_sync;
- 
- 	/* protected by conf_mutex */
- 	u32 throttle_state;
-+	/* temperature value in Celcius degree
-+	 * protected by data_lock
-+	 */
-+	int temperature;
- };
- 
- #if IS_REACHABLE(CONFIG_THERMAL)
- int ath11k_thermal_register(struct ath11k_base *sc);
- void ath11k_thermal_unregister(struct ath11k_base *sc);
- int ath11k_thermal_set_throttling(struct ath11k *ar, u32 throttle_state);
-+void ath11k_thermal_event_temperature(struct ath11k *ar, int temperature);
- #else
- static inline int ath11k_thermal_register(struct ath11k_base *sc)
- {
-@@ -36,5 +44,10 @@ static inline int ath11k_thermal_set_throttling(struct ath11k *ar, u32 throttle_
- {
+ 	/* keep this last */
+ 	ATH11K_DBG_HTT_NUM_EXT_STATS,
+diff --git a/drivers/net/wireless/ath/ath11k/debug_htt_stats.c b/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
+index 090fffa5e53c..8accfb973044 100644
+--- a/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
++++ b/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
+@@ -3715,6 +3715,47 @@ htt_print_pdev_obss_pd_stats_tlv_v(const void *tag_buf,
+ 	stats_req->buf_len = len;
  }
  
-+static inline void ath11k_thermal_event_temperature(struct ath11k *ar,
-+						    int temperature)
++static inline void htt_print_backpressure_stats_tlv_v(const u32 *tag_buf,
++						      u8 *data)
 +{
++	struct debug_htt_stats_req *stats_req =
++			(struct debug_htt_stats_req *)data;
++	struct htt_ring_backpressure_stats_tlv *htt_stats_buf =
++			(struct htt_ring_backpressure_stats_tlv *)tag_buf;
++	int i;
++	u8 *buf = stats_req->buf;
++	u32 len = stats_req->buf_len;
++	u32 buf_len = ATH11K_HTT_STATS_BUF_SIZE;
++
++	len += HTT_DBG_OUT(buf + len, buf_len - len, "pdev_id = %u",
++			   htt_stats_buf->pdev_id);
++	len += HTT_DBG_OUT(buf + len, buf_len - len, "current_head_idx = %u",
++			   htt_stats_buf->current_head_idx);
++	len += HTT_DBG_OUT(buf + len, buf_len - len, "current_tail_idx = %u",
++			   htt_stats_buf->current_tail_idx);
++	len += HTT_DBG_OUT(buf + len, buf_len - len, "num_htt_msgs_sent = %u",
++			   htt_stats_buf->num_htt_msgs_sent);
++	len += HTT_DBG_OUT(buf + len, buf_len - len,
++			   "backpressure_time_ms = %u",
++			   htt_stats_buf->backpressure_time_ms);
++
++	for (i = 0; i < 5; i++)
++		len += HTT_DBG_OUT(buf + len, buf_len - len,
++				   "backpressure_hist_%u = %u",
++				   i + 1, htt_stats_buf->backpressure_hist[i]);
++
++	len += HTT_DBG_OUT(buf + len, buf_len - len,
++			   "============================");
++
++	if (len >= buf_len) {
++		buf[buf_len - 1] = 0;
++		stats_req->buf_len = buf_len - 1;
++	} else {
++		buf[len] = 0;
++		stats_req->buf_len = len;
++	}
 +}
++
+ static inline void htt_htt_stats_debug_dump(const u32 *tag_buf,
+ 					    struct debug_htt_stats_req *stats_req)
+ {
+@@ -4107,6 +4148,9 @@ static int ath11k_dbg_htt_ext_stats_parse(struct ath11k_base *ab,
+ 	case HTT_STATS_PDEV_OBSS_PD_TAG:
+ 		htt_print_pdev_obss_pd_stats_tlv_v(tag_buf, stats_req);
+ 		break;
++	case HTT_STATS_RING_BACKPRESSURE_STATS_TAG:
++		htt_print_backpressure_stats_tlv_v(tag_buf, user_data);
++		break;
+ 	default:
+ 		break;
+ 	}
+diff --git a/drivers/net/wireless/ath/ath11k/debug_htt_stats.h b/drivers/net/wireless/ath/ath11k/debug_htt_stats.h
+index 618f1946bf49..23ac03221ac8 100644
+--- a/drivers/net/wireless/ath/ath11k/debug_htt_stats.h
++++ b/drivers/net/wireless/ath/ath11k/debug_htt_stats.h
+@@ -100,6 +100,8 @@ enum htt_tlv_tag_t {
+ 	HTT_STATS_SCHED_TXQ_SCHED_ORDER_SU_TAG              = 86,
+ 	HTT_STATS_SCHED_TXQ_SCHED_INELIGIBILITY_TAG         = 87,
+ 	HTT_STATS_PDEV_OBSS_PD_TAG                          = 88,
++	HTT_STATS_HW_WAR_TAG				    = 89,
++	HTT_STATS_RING_BACKPRESSURE_STATS_TAG		    = 90,
+ 
+ 	HTT_STATS_MAX_TAG,
+ };
+@@ -1617,4 +1619,30 @@ struct htt_pdev_obss_pd_stats_tlv {
+ };
+ 
+ void ath11k_debug_htt_stats_init(struct ath11k *ar);
++
++struct htt_ring_backpressure_stats_tlv {
++	u32 pdev_id;
++	u32 current_head_idx;
++	u32 current_tail_idx;
++	u32 num_htt_msgs_sent;
++	/* Time in milliseconds for which the ring has been in
++	 * its current backpressure condition
++	 */
++	u32 backpressure_time_ms;
++	/* backpressure_hist - histogram showing how many times
++	 * different degrees of backpressure duration occurred:
++	 * Index 0 indicates the number of times ring was
++	 * continuously in backpressure state for 100 - 200ms.
++	 * Index 1 indicates the number of times ring was
++	 * continuously in backpressure state for 200 - 300ms.
++	 * Index 2 indicates the number of times ring was
++	 * continuously in backpressure state for 300 - 400ms.
++	 * Index 3 indicates the number of times ring was
++	 * continuously in backpressure state for 400 - 500ms.
++	 * Index 4 indicates the number of times ring was
++	 * continuously in backpressure state beyond 500ms.
++	 */
++	u32 backpressure_hist[5];
++};
 +
  #endif
- #endif /* _ATH11K_THERMAL_ */
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 425c9fdee71d..ca63ce07f12d 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -1471,6 +1471,34 @@ int ath11k_wmi_send_stats_request_cmd(struct ath11k *ar,
- 	return ret;
+diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
+index 2f0980f2c762..97dacdd6793a 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.h
++++ b/drivers/net/wireless/ath/ath11k/dp.h
+@@ -916,6 +916,7 @@ enum htt_t2h_msg_type {
+ 	HTT_T2H_MSG_TYPE_PEER_UNMAP	= 0x1f,
+ 	HTT_T2H_MSG_TYPE_PPDU_STATS_IND = 0x1d,
+ 	HTT_T2H_MSG_TYPE_EXT_STATS_CONF = 0x1c,
++	HTT_T2H_MSG_TYPE_BKPRESSURE_EVENT_IND = 0x24,
+ };
+ 
+ #define HTT_TARGET_VERSION_MAJOR 3
+@@ -964,6 +965,13 @@ struct htt_resp_msg {
+ 	};
+ } __packed;
+ 
++#define HTT_BACKPRESSURE_EVENT_PDEV_ID_M GENMASK(15, 8)
++#define HTT_BACKPRESSURE_EVENT_RING_TYPE_M GENMASK(23, 16)
++#define HTT_BACKPRESSURE_EVENT_RING_ID_M GENMASK(31, 24)
++
++#define HTT_BACKPRESSURE_EVENT_HP_M GENMASK(15, 0)
++#define HTT_BACKPRESSURE_EVENT_TP_M GENMASK(31, 16)
++
+ /* ppdu stats
+  *
+  * @details
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 3a3dc7680622..40c56c3826c7 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -1330,6 +1330,29 @@ static void ath11k_htt_pktlog(struct ath11k_base *ab, struct sk_buff *skb)
+ 	trace_ath11k_htt_pktlog(ar, data->payload, len);
  }
  
-+int ath11k_wmi_send_pdev_temperature_cmd(struct ath11k *ar)
++static void ath11k_htt_backpressure_event_handler(struct ath11k_base *ab,
++						  struct sk_buff *skb)
 +{
-+	struct ath11k_pdev_wmi *wmi = ar->wmi;
-+	struct wmi_get_pdev_temperature_cmd *cmd;
-+	struct sk_buff *skb;
-+	int ret;
++	u32 *data = (u32 *)skb->data;
++	u8 pdev_id, ring_type, ring_id;
++	u16 hp, tp;
++	u32 backpressure_time;
 +
-+	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, sizeof(*cmd));
-+	if (!skb)
-+		return -ENOMEM;
++	pdev_id = FIELD_GET(HTT_BACKPRESSURE_EVENT_PDEV_ID_M, *data);
++	ring_type = FIELD_GET(HTT_BACKPRESSURE_EVENT_RING_TYPE_M, *data);
++	ring_id = FIELD_GET(HTT_BACKPRESSURE_EVENT_RING_ID_M, *data);
++	++data;
 +
-+	cmd = (struct wmi_get_pdev_temperature_cmd *)skb->data;
-+	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_PDEV_GET_TEMPERATURE_CMD) |
-+			  FIELD_PREP(WMI_TLV_LEN, sizeof(*cmd) - TLV_HDR_SIZE);
-+	cmd->pdev_id = ar->pdev->pdev_id;
++	hp = FIELD_GET(HTT_BACKPRESSURE_EVENT_HP_M, *data);
++	tp = FIELD_GET(HTT_BACKPRESSURE_EVENT_TP_M, *data);
++	++data;
 +
-+	ret = ath11k_wmi_cmd_send(wmi, skb, WMI_PDEV_GET_TEMPERATURE_CMDID);
-+	if (ret) {
-+		ath11k_warn(ar->ab, "failed to send WMI_PDEV_GET_TEMPERATURE cmd\n");
-+		dev_kfree_skb(skb);
-+	}
++	backpressure_time = *data;
 +
-+	ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
-+		   "WMI pdev get temperature for pdev_id %d\n", ar->pdev->pdev_id);
-+
-+	return ret;
++	ath11k_dbg(ab, ATH11K_DBG_DP_HTT, "htt backpressure event, pdev %d, ring type %d,ring id %d, hp %d tp %d, backpressure time %d\n",
++		   pdev_id, ring_type, ring_id, hp, tp, backpressure_time);
 +}
 +
- int ath11k_wmi_send_bcn_offload_control_cmd(struct ath11k *ar,
- 					    u32 vdev_id, u32 bcn_ctrl_op)
+ void ath11k_dp_htt_htc_t2h_msg_handler(struct ath11k_base *ab,
+ 				       struct sk_buff *skb)
  {
-@@ -4232,6 +4260,35 @@ int ath11k_wmi_pull_fw_stats(struct ath11k_base *ab, struct sk_buff *skb,
- 	return 0;
- }
- 
-+static int
-+ath11k_pull_pdev_temp_ev(struct ath11k_base *ab, u8 *evt_buf,
-+			 u32 len, s32 *temp, u32 *pdev_id)
-+{
-+	const void **tb;
-+	const struct wmi_pdev_temperature_event *ev;
-+	int ret;
-+
-+	tb = ath11k_wmi_tlv_parse_alloc(ab, evt_buf, len, GFP_ATOMIC);
-+	if (IS_ERR(tb)) {
-+		ret = PTR_ERR(tb);
-+		ath11k_warn(ab, "failed to parse tlv: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ev = tb[WMI_TAG_PDEV_TEMPERATURE_EVENT];
-+	if (!ev) {
-+		ath11k_warn(ab, "failed to fetch pdev temp ev");
-+		kfree(tb);
-+		return -EPROTO;
-+	}
-+
-+	*pdev_id = ev->pdev_id;
-+	*temp = ev->temperature;
-+
-+	kfree(tb);
-+	return 0;
-+}
-+
- size_t ath11k_wmi_fw_stats_num_vdevs(struct list_head *head)
- {
- 	struct ath11k_fw_stats_vdev *i;
-@@ -5575,6 +5632,31 @@ static void ath11k_pdev_ctl_failsafe_check_event(struct ath11k_base *ab,
- 	kfree(tb);
- }
- 
-+static void
-+ath11k_wmi_pdev_temperature_event(struct ath11k_base *ab,
-+				  struct sk_buff *skb)
-+{
-+	struct ath11k *ar;
-+	s32 temp;
-+	u32 pdev_id;
-+
-+	if (ath11k_pull_pdev_temp_ev(ab, skb->data, skb->len, &temp, &pdev_id) != 0) {
-+		ath11k_warn(ab, "failed to extract pdev temperature event");
-+		return;
-+	}
-+
-+	ath11k_dbg(ab, ATH11K_DBG_WMI,
-+		   "pdev temperature ev temp %d pdev_id %d\n", temp, pdev_id);
-+
-+	ar = ath11k_mac_get_ar_by_pdev_id(ab, pdev_id);
-+	if (!ar) {
-+		ath11k_warn(ab, "invalid pdev id in pdev temperature ev %d", pdev_id);
-+		return;
-+	}
-+
-+	ath11k_thermal_event_temperature(ar, temp);
-+}
-+
- static void ath11k_wmi_tlv_op_rx(struct ath11k_base *ab, struct sk_buff *skb)
- {
- 	struct wmi_cmd_hdr *cmd_hdr;
-@@ -5652,6 +5734,9 @@ static void ath11k_wmi_tlv_op_rx(struct ath11k_base *ab, struct sk_buff *skb)
- 	case WMI_PDEV_CSA_SWITCH_COUNT_STATUS_EVENTID:
- 		ath11k_wmi_pdev_csa_switch_count_status_event(ab, skb);
+@@ -1379,6 +1402,9 @@ void ath11k_dp_htt_htc_t2h_msg_handler(struct ath11k_base *ab,
+ 	case HTT_T2H_MSG_TYPE_PKTLOG:
+ 		ath11k_htt_pktlog(ab, skb);
  		break;
-+	case WMI_PDEV_TEMPERATURE_EVENTID:
-+		ath11k_wmi_pdev_temperature_event(ab, skb);
++	case HTT_T2H_MSG_TYPE_BKPRESSURE_EVENT_IND:
++		ath11k_htt_backpressure_event_handler(ab, skb);
 +		break;
- 	/* add Unsupported events here */
- 	case WMI_TBTTOFFSET_EXT_UPDATE_EVENTID:
- 	case WMI_VDEV_DELETE_RESP_EVENTID:
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index c8aa4cbb9a49..5192dda614d1 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -3304,6 +3304,12 @@ struct wmi_request_stats_cmd {
- 	u32 pdev_id;
- } __packed;
- 
-+struct wmi_get_pdev_temperature_cmd {
-+	u32 tlv_header;
-+	u32 param;
-+	u32 pdev_id;
-+} __packed;
-+
- #define WMI_BEACON_TX_BUFFER_SIZE	512
- 
- struct wmi_bcn_tmpl_cmd {
-@@ -4132,6 +4138,12 @@ struct wmi_pdev_radar_ev {
- 	s32 sidx;
- } __packed;
- 
-+struct wmi_pdev_temperature_event {
-+	/* temperature value in Celcius degree */
-+	s32 temperature;
-+	u32 pdev_id;
-+} __packed;
-+
- #define WMI_RX_STATUS_OK			0x00
- #define WMI_RX_STATUS_ERR_CRC			0x01
- #define WMI_RX_STATUS_ERR_DECRYPT		0x08
-@@ -4763,6 +4775,7 @@ int ath11k_wmi_pdev_bss_chan_info_request(struct ath11k *ar,
- 					  enum wmi_bss_chan_info_req_type type);
- int ath11k_wmi_send_stats_request_cmd(struct ath11k *ar,
- 				      struct stats_request_params *param);
-+int ath11k_wmi_send_pdev_temperature_cmd(struct ath11k *ar);
- int ath11k_wmi_send_peer_flush_tids_cmd(struct ath11k *ar,
- 					u8 peer_addr[ETH_ALEN],
- 					struct peer_flush_params *param);
+ 	default:
+ 		ath11k_warn(ab, "htt event %d not handled\n", type);
+ 		break;
 -- 
-1.9.1
+2.23.0
 
 _______________________________________________
 ath11k mailing list
