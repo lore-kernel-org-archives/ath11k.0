@@ -1,17 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail25.static.mailgun.info ([104.130.122.25])
+Received: from mail26.static.mailgun.info ([104.130.122.26])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j1Vuq-0004WC-Dk
- for ath11k@lists.infradead.org; Tue, 11 Feb 2020 13:49:31 +0000
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH 2/2] ath11k: add thermal sensor device support
-References: <1580860830-12696-1-git-send-email-pradeepc@codeaurora.org>
- <1580860830-12696-2-git-send-email-pradeepc@codeaurora.org>
-Date: Tue, 11 Feb 2020 15:49:19 +0200
-In-Reply-To: <1580860830-12696-2-git-send-email-pradeepc@codeaurora.org>
- (Pradeep Kumar Chitrapu's message of "Wed, 5 Feb 2020 05:30:30 +0530")
-Message-ID: <87zhdpw7xc.fsf@kamboji.qca.qualcomm.com>
+ id 1j1WSm-0002rZ-2G
+ for ath11k@lists.infradead.org; Tue, 11 Feb 2020 14:24:33 +0000
 MIME-Version: 1.0
+Subject: Re: [PATCH] ath11k: Silence clang -Wsometimes-uninitialized in
+ ath11k_update_per_peer_stats_from_txcompl
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <20200130015905.18610-1-natechancellor@gmail.com>
+References: <20200130015905.18610-1-natechancellor@gmail.com>
+Message-Id: <20200211142431.57B36C43383@smtp.codeaurora.org>
+Date: Tue, 11 Feb 2020 14:24:31 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -24,37 +23,40 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: Nathan Chancellor <natechancellor@gmail.com>
+Cc: netdev@vger.kernel.org, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, clang-built-linux@googlegroups.com, ci_notify@linaro.org, ath11k@lists.infradead.org
 
-Pradeep Kumar Chitrapu <pradeepc@codeaurora.org> writes:
+Nathan Chancellor <natechancellor@gmail.com> wrote:
 
-> Temperature sensor generates electrical analog voltage from temperature
-> of each chain. The analog voltage is converted to digital value through
-> ADC. For reading temperature values fom user space, hw monitoring device
-> is used.
->
-> Whenever the user requests for current temperature, the driver sends WMI
-> command and wait for response. For reading temperature,
->
-> cat /sys/class/ieee80211/phy*/device/hwmon/hwmon2/temp1_input
->
-> Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
+> Clang warns a few times (trimmed for brevity):
+> 
+> ../drivers/net/wireless/ath/ath11k/debugfs_sta.c:185:7: warning:
+> variable 'rate_idx' is used uninitialized whenever 'if' condition is
+> false [-Wsometimes-uninitialized]
+> 
+> It is not wrong, rate_idx is only initialized in the first if block.
+> However, this is not necessarily an issue in practice because rate_idx
+> will only be used when initialized because
+> ath11k_accumulate_per_peer_tx_stats only uses rate_idx when flags is not
+> set to RATE_INFO_FLAGS_HE_MCS, RATE_INFO_FLAGS_VHT_MCS, or
+> RATE_INFO_FLAGS_MCS. Still, it is not good to stick uninitialized values
+> into another function so initialize it to zero to prevent any issues
+> down the line.
+> 
+> Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+> Link: https://github.com/ClangBuiltLinux/linux/issues/832
+> Reported-by: ci_notify@linaro.org
+> Signed-off-by: Nathan Chancellor <natechancellor@gmail.com>
+> Reviewed-by: Nick Desaulniers <ndesaulniers@google.com>
+> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-Multiple warnings, please fix those and resend the whole series.
+Patch applied to ath-next branch of ath.git, thanks.
 
-drivers/net/wireless/ath/ath11k/wmi.c: In function 'ath11k_wmi_tlv_op_rx':
-drivers/net/wireless/ath/ath11k/wmi.c:5651:7: warning: 'pdev_id' may be used uninitialized in this function [-Wmaybe-uninitialized]
-drivers/net/wireless/ath/ath11k/wmi.c:5641:6: note: 'pdev_id' was declared here
-drivers/net/wireless/ath/ath11k/wmi.c:5657:2: warning: 'temp' may be used uninitialized in this function [-Wmaybe-uninitialized]
-drivers/net/wireless/ath/ath11k/wmi.c:5640:6: note: 'temp' was declared here
-drivers/net/wireless/ath/ath11k/wmi.c: In function 'ath11k_wmi_tlv_op_rx':
-drivers/net/wireless/ath/ath11k/wmi.c:5651:7: warning: 'pdev_id' may be used uninitialized in this function [-Wmaybe-uninitialized]
-drivers/net/wireless/ath/ath11k/wmi.c:5641:6: note: 'pdev_id' was declared here
-drivers/net/wireless/ath/ath11k/wmi.c:5657:2: warning: 'temp' may be used uninitialized in this function [-Wmaybe-uninitialized]
-drivers/net/wireless/ath/ath11k/wmi.c:5640:6: note: 'temp' was declared here
+df57acc415b1 ath11k: Silence clang -Wsometimes-uninitialized in ath11k_update_per_peer_stats_from_txcompl
 
 -- 
+https://patchwork.kernel.org/patch/11357331/
+
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 _______________________________________________
