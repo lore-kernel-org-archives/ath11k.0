@@ -1,14 +1,18 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from nbd.name ([2a01:4f8:221:3d45::2])
+Received: from us-smtp-2.mimecast.com ([205.139.110.61]
+ helo=us-smtp-delivery-1.mimecast.com)
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j1UcO-0003PD-WD
- for ath11k@lists.infradead.org; Tue, 11 Feb 2020 12:26:22 +0000
-From: John Crispin <john@phrozen.org>
-Subject: [PATCH 2/2] ath11k: set queue_len to 4096
-Date: Tue, 11 Feb 2020 13:26:05 +0100
-Message-Id: <20200211122605.13002-2-john@phrozen.org>
+ id 1j1Ufo-0004uB-0v
+ for ath11k@lists.infradead.org; Tue, 11 Feb 2020 12:29:56 +0000
+Received: by mail-lj1-f197.google.com with SMTP id b15so3692483ljp.7
+ for <ath11k@lists.infradead.org>; Tue, 11 Feb 2020 04:29:47 -0800 (PST)
+From: Toke =?utf-8?Q?H=C3=B8iland-J=C3=B8rgensen?= <toke@redhat.com>
+Subject: Re: [PATCH 1/2] mac80211: allow setting queue_len for drivers not
+ using wake_tx_queue
 In-Reply-To: <20200211122605.13002-1-john@phrozen.org>
 References: <20200211122605.13002-1-john@phrozen.org>
+Date: Tue, 11 Feb 2020 13:29:44 +0100
+Message-ID: <87eev1b93b.fsf@toke.dk>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -22,45 +26,21 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Johannes Berg <johannes@sipsolutions.net>, Kalle Valo <kvalo@codeaurora.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
+To: John Crispin <john@phrozen.org>, Johannes Berg <johannes@sipsolutions.net>, Kalle Valo <kvalo@codeaurora.org>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-The driver currently does not use wake_txq_queue. This leads to the
-tx_queue_len being defaulted to 1000. Setting this parameter will
-change the queue_len to 4096 which is more fitting for HE.
+John Crispin <john@phrozen.org> writes:
 
-Signed-off-by: John Crispin <john@phrozen.org>
----
- drivers/net/wireless/ath/ath11k/hw.h  | 1 +
- drivers/net/wireless/ath/ath11k/mac.c | 1 +
- 2 files changed, 2 insertions(+)
+> Currently a mac80211 driver can only set the txq_limit when using
+> wake_tx_queue. Not all drivers use wake_tx_queue. This patch adds a new
+> element to wiphy allowing a driver to set a custom tx_queue_len and the
+> code that will apply it in case it is set. The current default is
+> 1000 which is too low for ath11k when doing HE rates.
 
-diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
-index dd39333ec0ea..9973477ae373 100644
---- a/drivers/net/wireless/ath/ath11k/hw.h
-+++ b/drivers/net/wireless/ath/ath11k/hw.h
-@@ -62,6 +62,7 @@
- #define TARGET_RX_BATCHMODE		1
- 
- #define ATH11K_HW_MAX_QUEUES		4
-+#define ATH11K_QUEUE_LEN		4096
- 
- #define ATH11k_HW_RATECODE_CCK_SHORT_PREAM_MASK  0x4
- 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 139ecbcf0179..c0606e4a8967 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -6025,6 +6025,7 @@ static int __ath11k_mac_register(struct ath11k *ar)
- 	ar->hw->wiphy->max_ap_assoc_sta = ar->max_num_stations;
- 
- 	ar->hw->queues = ATH11K_HW_MAX_QUEUES;
-+	ar->hw->wiphy->tx_queue_len = ATH11K_QUEUE_LEN;
- 	ar->hw->offchannel_tx_hw_queue = ATH11K_HW_MAX_QUEUES - 1;
- 	ar->hw->max_rx_aggregation_subframes = IEEE80211_MAX_AMPDU_BUF;
- 
--- 
-2.20.1
+Fine, but we should really fix ath11k to do something smarter than a
+fixed queue len... 4096 packets is 6 seconds of queueing at 8Mbps :/
+
+-Toke
 
 
 _______________________________________________
