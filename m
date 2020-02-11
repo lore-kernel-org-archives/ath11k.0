@@ -1,15 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail25.static.mailgun.info ([104.130.122.25])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j1VgQ-0004EU-Qs
- for ath11k@lists.infradead.org; Tue, 11 Feb 2020 13:34:38 +0000
+ id 1j1Vuq-0004WC-Dk
+ for ath11k@lists.infradead.org; Tue, 11 Feb 2020 13:49:31 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH 1/2] ath11k: add thermal cooling device support
+Subject: Re: [PATCH 2/2] ath11k: add thermal sensor device support
 References: <1580860830-12696-1-git-send-email-pradeepc@codeaurora.org>
-Date: Tue, 11 Feb 2020 15:34:25 +0200
-In-Reply-To: <1580860830-12696-1-git-send-email-pradeepc@codeaurora.org>
- (Pradeep Kumar Chitrapu's message of "Wed, 5 Feb 2020 05:30:29 +0530")
-Message-ID: <874kvxxn6m.fsf@kamboji.qca.qualcomm.com>
+ <1580860830-12696-2-git-send-email-pradeepc@codeaurora.org>
+Date: Tue, 11 Feb 2020 15:49:19 +0200
+In-Reply-To: <1580860830-12696-2-git-send-email-pradeepc@codeaurora.org>
+ (Pradeep Kumar Chitrapu's message of "Wed, 5 Feb 2020 05:30:30 +0530")
+Message-ID: <87zhdpw7xc.fsf@kamboji.qca.qualcomm.com>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -28,35 +29,30 @@ Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
 Pradeep Kumar Chitrapu <pradeepc@codeaurora.org> writes:
 
-> Thermal cooling device support is added to control the temperature by
-> throttling the data transmission for the given duration. Throttling is
-> done by suspending all data tx queues by given percentage of time. The
-> thermal device allows user to configure duty cycle.
+> Temperature sensor generates electrical analog voltage from temperature
+> of each chain. The analog voltage is converted to digital value through
+> ADC. For reading temperature values fom user space, hw monitoring device
+> is used.
 >
-> Throttling can be disabled by setting the duty cycle to 0. The cooling
-> device can be found under /sys/class/thermal/cooling_deviceX/.
-> Corresponding soft link to this device can be found under phy folder.
+> Whenever the user requests for current temperature, the driver sends WMI
+> command and wait for response. For reading temperature,
 >
-> /sys/class/ieee80211/phy*/device/cooling_device.
->
-> To set duty cycle as 40%,
->
-> echo 40 >/sys/class/ieee80211/phy*/device/cooling_device/cur_state
+> cat /sys/class/ieee80211/phy*/device/hwmon/hwmon2/temp1_input
 >
 > Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
 
-[...]
+Multiple warnings, please fix those and resend the whole series.
 
-> +++ b/drivers/net/wireless/ath/ath11k/thermal.h
-> @@ -0,0 +1,40 @@
-> +// SPDX-License-Identifier: BSD-3-Clause-Clear
-
-This had a warning:
-
-drivers/net/wireless/ath/ath11k/thermal.h:1: Improper SPDX comment style for 'drivers/net/wireless/ath/ath11k/thermal.h', please use '/*' instead
-drivers/net/wireless/ath/ath11k/thermal.h:1: Missing or malformed SPDX-License-Identifier tag in line 1
-
-I fixed that in the pending branch.
+drivers/net/wireless/ath/ath11k/wmi.c: In function 'ath11k_wmi_tlv_op_rx':
+drivers/net/wireless/ath/ath11k/wmi.c:5651:7: warning: 'pdev_id' may be used uninitialized in this function [-Wmaybe-uninitialized]
+drivers/net/wireless/ath/ath11k/wmi.c:5641:6: note: 'pdev_id' was declared here
+drivers/net/wireless/ath/ath11k/wmi.c:5657:2: warning: 'temp' may be used uninitialized in this function [-Wmaybe-uninitialized]
+drivers/net/wireless/ath/ath11k/wmi.c:5640:6: note: 'temp' was declared here
+drivers/net/wireless/ath/ath11k/wmi.c: In function 'ath11k_wmi_tlv_op_rx':
+drivers/net/wireless/ath/ath11k/wmi.c:5651:7: warning: 'pdev_id' may be used uninitialized in this function [-Wmaybe-uninitialized]
+drivers/net/wireless/ath/ath11k/wmi.c:5641:6: note: 'pdev_id' was declared here
+drivers/net/wireless/ath/ath11k/wmi.c:5657:2: warning: 'temp' may be used uninitialized in this function [-Wmaybe-uninitialized]
+drivers/net/wireless/ath/ath11k/wmi.c:5640:6: note: 'temp' was declared here
 
 -- 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
