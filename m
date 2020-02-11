@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail26.static.mailgun.info ([104.130.122.26])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j1aLN-0006JO-SP
- for ath11k@lists.infradead.org; Tue, 11 Feb 2020 18:33:11 +0000
+ id 1j1aMQ-0007Bh-7e
+ for ath11k@lists.infradead.org; Tue, 11 Feb 2020 18:34:16 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: fix warn-on in disassociation
+Subject: Re: [PATCH] ath11k: fix parsing PPDU_CTRL type in pktlog
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1580865828-31330-1-git-send-email-periyasa@codeaurora.org>
-References: <1580865828-31330-1-git-send-email-periyasa@codeaurora.org>
-Message-Id: <20200211183306.90832C4479F@smtp.codeaurora.org>
-Date: Tue, 11 Feb 2020 18:33:06 +0000 (UTC)
+In-Reply-To: <1580886959-8436-1-git-send-email-akolli@codeaurora.org>
+References: <1580886959-8436-1-git-send-email-akolli@codeaurora.org>
+Message-Id: <20200211183411.61525C4479F@smtp.codeaurora.org>
+Date: Tue, 11 Feb 2020 18:34:11 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,92 +22,27 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Karthikeyan Periyasamy <periyasa@codeaurora.org>
+To: Anilkumar Kolli <akolli@codeaurora.org>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-Karthikeyan Periyasamy <periyasa@codeaurora.org> wrote:
+Anilkumar Kolli <akolli@codeaurora.org> wrote:
 
-> In multi AP VAP scenario, when user bring down the interfaces. mac80211 mark
-> the interface down for the duplicated VAP and removed from the
-> local->interfaces list. ath11k_mac_get_arvif() is dependent on
-> ieee80211_iterate_active_interfaces_atomic() API to find the vdev id
-> in a given radio. In disassociation path, ath11k_mac_get_arvif() not
-> able to find the given vdev id since that VAP is removed from the
-> local->interfaces list. since sta_state callback throws error, mac80211 log
-> the below WARN_ON_ONCE message.
+> PPDU_CTRL type is missing in current pktlog dumps.
+> PPDU_CTRL is sent on CE5 with len 2560 bytes, current
+> driver ignores the payload len greter than 2048.
+> PPDU_CTRL of 2560 bytes is sent in two fragments of len 2028
+> and 532 bytes, but firmware reports pkt header has length as 2560
+> for both of the fragments.
 > 
-> Fixed it by storing the allocated_vdev_map in each radio structure to maintain
-> the created vdev id bits. so that we can directly mask this against the given
-> vdev_id to find out the ar from the vdev_id.
-> 
-> WARN LOG:
-> 
-> WARNING: at net/mac80211/sta_info.c:1008
-> CPU: 2 PID: 2135 Comm: hostapd Not tainted #1
-> Hardware name: Qualcomm Technologies, Inc. IPQ807x/AP-HK01-C1 (DT)
-> task: ffffffc03a43d800 ti: ffffffc03a43d800 task.ti: ffffffc03a43d800
-> PC is at sta_set_sinfo+0x9dc/0xad4 [mac80211]
-> LR is at sta_set_sinfo+0x9cc/0xad4 [mac80211]
-> pc : [<ffffffbffce2a008>] lr : [<ffffffbffce29ff8>] pstate: 20000145
-> sp : ffffffc02cedb5f0
-> x29: ffffffc02cedb5f0 x28: ffffffc03a43d800
-> x27: 0000000000000014 x26: 0000000000000001
-> x25: ffffffc02cfc4000 x24: ffffffc036905508
-> x23: 0000000000000012 x22: ffffffc02cedb670
-> x21: ffffffc03bc64880 x20: ffffffc036904f80
-> x19: ffffffc02ae31000 x18: 00000000b019f3a1
-> x17: 0000000057f30331 x16: 00000000d8d1998e
-> x15: 0000000000000066 x14: 393a35383a36343a
-> x13: 6337203a6e6f6974 x12: 6174732065746169
-> x11: 636f737361736964 x10: 206f742064656c69
-> x9 : 6146203a31696669 x8 : 6337203a6e6f6974
-> x7 : 6174732065746169 x6 : ffffffc0008c33f6
-> x5 : 0000000000000000 x4 : 0000000000000000
-> x3 : 0000000000000000 x2 : 00000000ffffff92
-> x1 : 0000000000000000 x0 : ffffffbffcea1091
-> ---[ end trace 63c4b1c527345d5a ]---
-> Call trace:
-> [<ffffffbffce2a008>] sta_set_sinfo+0x9dc/0xad4 [mac80211]
-> [<ffffffbffce2a2c4>] __sta_info_flush+0xec/0x130 [mac80211]
-> [<ffffffbffce3dc48>] ieee80211_nan_func_match+0x1a34/0x23e4 [mac80211]
-> [<ffffffbffcde03e0>] __cfg80211_stop_ap+0x60/0xf0 [cfg80211]
-> [<ffffffbffcdb6d08>] __cfg80211_leave+0x110/0x150 [cfg80211]
-> [<ffffffbffcdb6d78>] cfg80211_leave+0x30/0x48 [cfg80211]
-> [<ffffffbffcdb6fbc>] cfg80211_init_wdev+0x22c/0x808 [cfg80211]
-> [<ffffffc0000afe28>] notifier_call_chain+0x50/0x84
-> [<ffffffc0000afefc>] raw_notifier_call_chain+0x14/0x1c
-> [<ffffffc0004ae94c>] call_netdevice_notifiers_info+0x5c/0x6c
-> [<ffffffc0004ae96c>] call_netdevice_notifiers+0x10/0x18
-> [<ffffffc0004aea80>] __dev_close_many+0x54/0xc0
-> [<ffffffc0004aeb50>] dev_close_many+0x64/0xdc
-> [<ffffffc0004b0b70>] rollback_registered_many+0x138/0x2f4
-> [<ffffffc0004b0d4c>] rollback_registered+0x20/0x34
-> [<ffffffc0004b34b4>] unregister_netdevice_queue+0x68/0xa8
-> [<ffffffbffce3870c>] ieee80211_if_remove+0x84/0xc0 [mac80211]
-> [<ffffffbffce3e588>] ieee80211_nan_func_match+0x2374/0x23e4 [mac80211]
-> [<ffffffbffcdc29e8>] cfg80211_wext_giwscan+0x1000/0x1140 [cfg80211]
-> [<ffffffbffcb2a87c>] backport_genlmsg_multicast_allns+0x158/0x1b4 [compat]
-> [<ffffffc0004e0944>] genl_family_rcv_msg+0x258/0x2c0
-> [<ffffffc0004e09f4>] genl_rcv_msg+0x48/0x6c
-> [<ffffffc0004dfb50>] netlink_rcv_skb+0x5c/0xc4
-> [<ffffffc0004e06d8>] genl_rcv+0x34/0x48
-> [<ffffffc0004df570>] netlink_unicast+0x12c/0x1e0
-> [<ffffffc0004df9a4>] netlink_sendmsg+0x2bc/0x2dc
-> [<ffffffc00049a540>] sock_sendmsg+0x18/0x2c
-> [<ffffffc00049ab94>] ___sys_sendmsg+0x1bc/0x248
-> [<ffffffc00049ba24>] __sys_sendmsg+0x40/0x68
-> [<ffffffc00049ba5c>] SyS_sendmsg+0x10/0x20
-> [<ffffffc000085db0>] el0_svc_naked+0x24/0x28
-> 
-> Signed-off-by: Karthikeyan Periyasamy <periyasa@codeaurora.org>
+> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
 Patch applied to ath-next branch of ath.git, thanks.
 
-79c080dbe35b ath11k: fix warn-on in disassociation
+443d2ee758ac ath11k: fix parsing PPDU_CTRL type in pktlog
 
 -- 
-https://patchwork.kernel.org/patch/11365673/
+https://patchwork.kernel.org/patch/11365851/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
