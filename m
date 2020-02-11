@@ -1,21 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail-pg1-x541.google.com ([2607:f8b0:4864:20::541])
+Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1izd71-0002Wz-70
- for ath11k@lists.infradead.org; Thu, 06 Feb 2020 09:06:16 +0000
-Received: by mail-pg1-x541.google.com with SMTP id b9so2390964pgk.12
- for <ath11k@lists.infradead.org>; Thu, 06 Feb 2020 01:06:14 -0800 (PST)
-Subject: Re: [PATCH V2 1/3] nl80211: add support for setting fixed HE
- rate/gi/ltf
-References: <20200204103514.18111-1-john@phrozen.org>
- <4bf4c267-bfc2-1a04-f2d6-541f086e72c0@broadcom.com>
- <1b74ca8c-3bed-6296-5b3d-1ece82b4a56e@phrozen.org>
-From: Arend Van Spriel <arend.vanspriel@broadcom.com>
-Message-ID: <5d96b4b5-dcbd-30da-754c-685619ea671e@broadcom.com>
-Date: Thu, 6 Feb 2020 10:06:06 +0100
+ id 1j1UcP-0003PC-09
+ for ath11k@lists.infradead.org; Tue, 11 Feb 2020 12:26:22 +0000
+From: John Crispin <john@phrozen.org>
+Subject: [PATCH 1/2] mac80211: allow setting queue_len for drivers not using
+ wake_tx_queue
+Date: Tue, 11 Feb 2020 13:26:04 +0100
+Message-Id: <20200211122605.13002-1-john@phrozen.org>
 MIME-Version: 1.0
-In-Reply-To: <1b74ca8c-3bed-6296-5b3d-1ece82b4a56e@phrozen.org>
-Content-Language: en-US
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -24,44 +17,56 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: John Crispin <john@phrozen.org>, Johannes Berg <johannes@sipsolutions.net>, Kalle Valo <kvalo@codeaurora.org>
-Cc: Miles Hu <milehu@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: Johannes Berg <johannes@sipsolutions.net>, Kalle Valo <kvalo@codeaurora.org>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
+Currently a mac80211 driver can only set the txq_limit when using
+wake_tx_queue. Not all drivers use wake_tx_queue. This patch adds a new
+element to wiphy allowing a driver to set a custom tx_queue_len and the
+code that will apply it in case it is set. The current default is
+1000 which is too low for ath11k when doing HE rates.
 
+Signed-off-by: John Crispin <john@phrozen.org>
+---
+ include/net/cfg80211.h | 2 ++
+ net/mac80211/iface.c   | 4 ++++
+ 2 files changed, 6 insertions(+)
 
-On 2/6/2020 10:04 AM, John Crispin wrote:
-> On 06/02/2020 09:58, Arend Van Spriel wrote:
->> On 2/4/2020 11:35 AM, John Crispin wrote:
->>> From: Miles Hu <milehu@codeaurora.org>
->>>
->>> This patch adds the nl80211 structs, definitions, policies and parsing
->>> code required to pass fixed HE rate, gi and ltf settings.
->>>
->>> Signed-off-by: John Crispin <john@phrozen.org>
->>> Signed-off-by: Miles Hu <milehu@codeaurora.org>
->>> ---
->>> Changes in V2
->>> * add more policies
->>> * reoder enums
->>> * remove incorrect he_cap from ieee80211_supported_band
->>
->> Not seeing the change listed above or am I missing something?
->>
->> Regards,
->> Arend
-> 
-> Hi Arend,
-> that is the delta to V1 as per Johannes's feedback. Not additional 
-> code/features
+diff --git a/include/net/cfg80211.h b/include/net/cfg80211.h
+index 0939645567e9..254080a04ee3 100644
+--- a/include/net/cfg80211.h
++++ b/include/net/cfg80211.h
+@@ -4742,6 +4742,8 @@ struct wiphy {
+ 	u32 txq_memory_limit;
+ 	u32 txq_quantum;
+ 
++	unsigned long tx_queue_len;
++
+ 	u8 support_mbssid:1,
+ 	   support_only_he_mbssid:1;
+ 
+diff --git a/net/mac80211/iface.c b/net/mac80211/iface.c
+index 3c00408e9c8c..128b3468d13e 100644
+--- a/net/mac80211/iface.c
++++ b/net/mac80211/iface.c
+@@ -1834,6 +1834,10 @@ int ieee80211_if_add(struct ieee80211_local *local, const char *name,
+ 					if_setup, txqs, 1);
+ 		if (!ndev)
+ 			return -ENOMEM;
++
++		if (!local->ops->wake_tx_queue && local->hw.wiphy->tx_queue_len)
++			ndev->tx_queue_len = local->hw.wiphy->tx_queue_len;
++
+ 		dev_net_set(ndev, wiphy_net(local->hw.wiphy));
+ 
+ 		ndev->tstats = netdev_alloc_pcpu_stats(struct pcpu_sw_netstats);
+-- 
+2.20.1
 
-Guess I was missing context ;-)
-
-Thanks,
-Arend
 
 _______________________________________________
 ath11k mailing list
