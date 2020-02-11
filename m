@@ -1,17 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail25.static.mailgun.info ([104.130.122.25])
+Received: from mail26.static.mailgun.info ([104.130.122.26])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j1VOM-0006aO-HD
- for ath11k@lists.infradead.org; Tue, 11 Feb 2020 13:15:56 +0000
+ id 1j1VaP-0001wF-3y
+ for ath11k@lists.infradead.org; Tue, 11 Feb 2020 13:28:24 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH V2 3/3] ath11k: add support for setting fixed HE
- rate/gi/ltf
-References: <20200204103514.18111-1-john@phrozen.org>
- <20200204103514.18111-3-john@phrozen.org>
-Date: Tue, 11 Feb 2020 15:15:43 +0200
-In-Reply-To: <20200204103514.18111-3-john@phrozen.org> (John Crispin's message
- of "Tue, 4 Feb 2020 11:35:14 +0100")
-Message-ID: <87d0alxo1s.fsf@kamboji.qca.qualcomm.com>
+Subject: Re: [PATCH 4/4] ath11k: add more HE fields into radiotap header
+References: <20200204151135.25302-1-john@phrozen.org>
+ <20200204151135.25302-4-john@phrozen.org>
+Date: Tue, 11 Feb 2020 15:27:56 +0200
+In-Reply-To: <20200204151135.25302-4-john@phrozen.org> (John Crispin's message
+ of "Tue, 4 Feb 2020 16:11:35 +0100")
+Message-ID: <878sl9xnhf.fsf@kamboji.qca.qualcomm.com>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -26,22 +25,46 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: John Crispin <john@phrozen.org>
-Cc: Miles Hu <milehu@codeaurora.org>, Johannes Berg <johannes@sipsolutions.net>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+Cc: Miles Hu <milehu@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
 John Crispin <john@phrozen.org> writes:
 
 > From: Miles Hu <milehu@codeaurora.org>
 >
-> This patch adds ath11k support for setting fixed HE rate/gi/ltf values that
-> we are now able to send to the kernel using nl80211. The added code is
-> reusing parts of the existing code path already used for HT/VHT. The new
-> helpers are symmetric to how we do it for HT/VHT.
+> This patch adds code to parse HE fields inside ppdu TLVs. Then it adds the
+> populates the additional info into the ratiotap header. Also fix missing QoS
+> tag in native wifi mode. Finally rssi and tsf are also added.
 >
-> Signed-off-by: John Crispin <john@phrozen.org>
 > Signed-off-by: Miles Hu <milehu@codeaurora.org>
+> Tested-by: John Crispin <john@phrozen.org>
 
-s-o-b lines in incorrect order, Miles' tag (being the author) should be
-first.
+John's s-o-b missing and loads of warnings:
+
+drivers/net/wireless/ath/ath11k/hal_rx.c: In function 'ath11k_hal_rx_parse_mon_status_tlv':
+drivers/net/wireless/ath/ath11k/hal_rx.c:1074:13: warning: variable 'cp_ltf' set but not used [-Wunused-but-set-variable]
+drivers/net/wireless/ath/ath11k/hal_rx.c:822:48: warning: incorrect type in assignment (different base types)
+drivers/net/wireless/ath/ath11k/hal_rx.c:822:48:    expected unsigned int [usertype] ul_ofdma_user_v0_word0
+drivers/net/wireless/ath/ath11k/hal_rx.c:822:48:    got restricted __le32 [usertype] info6
+drivers/net/wireless/ath/ath11k/hal_rx.c:824:48: warning: incorrect type in assignment (different base types)
+drivers/net/wireless/ath/ath11k/hal_rx.c:824:48:    expected unsigned int [usertype] ul_ofdma_user_v0_word1
+drivers/net/wireless/ath/ath11k/hal_rx.c:824:48:    got restricted __le32
+drivers/net/wireless/ath/ath11k/hal_rx.c:835:17: warning: cast to restricted __le32
+drivers/net/wireless/ath/ath11k/hal_rx.c:835:17: warning: restricted __le32 degrades to integer
+drivers/net/wireless/ath/ath11k/hal_rx.c:835:17: warning: restricted __le32 degrades to integer
+drivers/net/wireless/ath/ath11k/hal_rx.c:838:17: warning: cast to restricted __le32
+drivers/net/wireless/ath/ath11k/hal_rx.c:838:17: warning: restricted __le32 degrades to integer
+drivers/net/wireless/ath/ath11k/hal_rx.c:838:17: warning: restricted __le32 degrades to integer
+drivers/net/wireless/ath/ath11k/hal_rx.c:951:60: warning: incorrect type in assignment (different base types)
+drivers/net/wireless/ath/ath11k/hal_rx.c:951:60:    expected unsigned int
+drivers/net/wireless/ath/ath11k/hal_rx.c:951:60:    got restricted __le32
+drivers/net/wireless/ath/ath11k/hal_rx.c:952:60: warning: incorrect type in assignment (different base types)
+drivers/net/wireless/ath/ath11k/hal_rx.c:952:60:    expected unsigned int
+drivers/net/wireless/ath/ath11k/hal_rx.c:952:60:    got restricted __le32
+drivers/net/wireless/ath/ath11k/hal_rx.c:1469:33: warning: incorrect type in assignment (different base types)
+drivers/net/wireless/ath/ath11k/hal_rx.c:1469:33:    expected unsigned long long [usertype] tsft
+drivers/net/wireless/ath/ath11k/hal_rx.c:1469:33:    got restricted __le32
+drivers/net/wireless/ath/ath11k/hal_rx.c:1470:84: warning: restricted __le32 degrades to integer
+drivers/net/wireless/ath/ath11k/dp_rx.c:3894: braces {} are not necessary for single statement blocks
 
 -- 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
