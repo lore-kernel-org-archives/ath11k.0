@@ -1,18 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from us-smtp-2.mimecast.com ([205.139.110.61]
- helo=us-smtp-delivery-1.mimecast.com)
+Received: from mail26.static.mailgun.info ([104.130.122.26])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j1Ufo-0004uB-0v
- for ath11k@lists.infradead.org; Tue, 11 Feb 2020 12:29:56 +0000
-Received: by mail-lj1-f197.google.com with SMTP id b15so3692483ljp.7
- for <ath11k@lists.infradead.org>; Tue, 11 Feb 2020 04:29:47 -0800 (PST)
-From: Toke =?utf-8?Q?H=C3=B8iland-J=C3=B8rgensen?= <toke@redhat.com>
-Subject: Re: [PATCH 1/2] mac80211: allow setting queue_len for drivers not
- using wake_tx_queue
-In-Reply-To: <20200211122605.13002-1-john@phrozen.org>
-References: <20200211122605.13002-1-john@phrozen.org>
-Date: Tue, 11 Feb 2020 13:29:44 +0100
-Message-ID: <87eev1b93b.fsf@toke.dk>
+ id 1j1VIy-00050P-AU
+ for ath11k@lists.infradead.org; Tue, 11 Feb 2020 13:10:21 +0000
+From: Kalle Valo <kvalo@codeaurora.org>
+Subject: Re: [RESEND V2 3/4] ath11k: switch to using ieee80211_tx_status_ext()
+References: <20200204151135.25302-1-john@phrozen.org>
+ <20200204151135.25302-3-john@phrozen.org>
+Date: Tue, 11 Feb 2020 15:10:04 +0200
+In-Reply-To: <20200204151135.25302-3-john@phrozen.org> (John Crispin's message
+ of "Tue, 4 Feb 2020 16:11:34 +0100")
+Message-ID: <87h7zxxob7.fsf@kamboji.qca.qualcomm.com>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -26,22 +24,41 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: John Crispin <john@phrozen.org>, Johannes Berg <johannes@sipsolutions.net>, Kalle Valo <kvalo@codeaurora.org>
+To: John Crispin <john@phrozen.org>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
 John Crispin <john@phrozen.org> writes:
 
-> Currently a mac80211 driver can only set the txq_limit when using
-> wake_tx_queue. Not all drivers use wake_tx_queue. This patch adds a new
-> element to wiphy allowing a driver to set a custom tx_queue_len and the
-> code that will apply it in case it is set. The current default is
-> 1000 which is too low for ath11k when doing HE rates.
+> This allows us to pass HE rates down into the stack.
+>
+> Signed-off-by: John Crispin <john@phrozen.org>
+> ---
+>  drivers/net/wireless/ath/ath11k/dp_tx.c | 24 +++++++++++++++++++-----
+>  1 file changed, 19 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
+> index 7b532bf9acd8..66a6cfd54ad9 100644
+> --- a/drivers/net/wireless/ath/ath11k/dp_tx.c
+> +++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
+> @@ -357,9 +357,12 @@ static void ath11k_dp_tx_complete_msdu(struct ath11k *ar,
+>  				       struct sk_buff *msdu,
+>  				       struct hal_tx_status *ts)
+>  {
+> +	struct ieee80211_tx_status status = { 0 };
 
-Fine, but we should really fix ath11k to do something smarter than a
-fixed queue len... 4096 packets is 6 seconds of queueing at 8Mbps :/
+This adds a sparse warning:
 
--Toke
+drivers/net/wireless/ath/ath11k/dp_tx.c:350:47: warning: Using plain integer as NULL pointer
 
+Seems like a false warning, no? But not sure how to shut up the warning,
+using '{ NULL }' would do that but just feels wrong. Any opinions?
+
+There was also a trivial checkpatch warning:
+
+drivers/net/wireless/ath/ath11k/dp_tx.c:419: Please don't use multiple blank lines
+
+-- 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 _______________________________________________
 ath11k mailing list
