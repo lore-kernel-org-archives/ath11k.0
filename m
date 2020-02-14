@@ -1,18 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
- helo=sipsolutions.net)
+Received: from mail26.static.mailgun.info ([104.130.122.26])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j2Wtr-0006MC-E4
- for ath11k@lists.infradead.org; Fri, 14 Feb 2020 09:04:40 +0000
-Message-ID: <3f76962656e97793afd512c69d7836de417772ac.camel@sipsolutions.net>
-Subject: Re: [PATCH V2 2/3] mac80211: add support for setting fixed HE
- rate/gi/ltf
-From: Johannes Berg <johannes@sipsolutions.net>
-Date: Fri, 14 Feb 2020 10:04:35 +0100
-In-Reply-To: <20200204103514.18111-2-john@phrozen.org>
-References: <20200204103514.18111-1-john@phrozen.org>
- <20200204103514.18111-2-john@phrozen.org>
-MIME-Version: 1.0
+ id 1j2X3P-0000tM-Cp
+ for ath11k@lists.infradead.org; Fri, 14 Feb 2020 09:14:33 +0000
+From: Manikanta Pubbisetty <mpubbise@codeaurora.org>
+Subject: [PATCH 0/2] ath11k: offload PN verification to the HW
+Date: Fri, 14 Feb 2020 14:44:10 +0530
+Message-Id: <1581671652-8115-1-git-send-email-mpubbise@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -21,22 +15,47 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: John Crispin <john@phrozen.org>, Kalle Valo <kvalo@codeaurora.org>
-Cc: Miles Hu <milehu@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: ath11k@lists.infradead.org
+Cc: Manikanta Pubbisetty <mpubbise@codeaurora.org>, linux-wireless@vger.kernel.org
 
-On Tue, 2020-02-04 at 11:35 +0100, John Crispin wrote:
-> 
-> +		for (j = 0; j < NL80211_HE_NSS_MAX; j++) {
-> +			if (~sdata->rc_rateidx_he_mcs_mask[i][j]) {
+This patch series enables PN validation in the HW thereby
+reducing CPU cycles spent in the host CPU. It also is the
+basis for other performance improvement patches that follow
+this series.
 
-Let's not copy-paste this weird ~ here, we can just ask if it's ! right?
+TSC (TKIP sequence counter) validation is also offloaded.
 
-johannes
+Hardware validates PN/TSC only for unicast packets;
+for group addressed packets, PN validation is done
+in mac80211.
 
+This patchset is dependent on the following patch:
+"ath11k: config reorder queue for all tids during peer setup"
+
+Manikanta Pubbisetty (2):
+  ath11k: handle RX fragments
+  ath11k: enable PN offload
+
+ drivers/net/wireless/ath/ath11k/Kconfig   |   1 +
+ drivers/net/wireless/ath/ath11k/core.h    |   2 +
+ drivers/net/wireless/ath/ath11k/dp.c      |  12 +-
+ drivers/net/wireless/ath/ath11k/dp.h      |  12 +
+ drivers/net/wireless/ath/ath11k/dp_rx.c   | 870 ++++++++++++++++++++++++++----
+ drivers/net/wireless/ath/ath11k/dp_rx.h   |   8 +-
+ drivers/net/wireless/ath/ath11k/hal.h     |   2 +-
+ drivers/net/wireless/ath/ath11k/hal_rx.c  |  14 +-
+ drivers/net/wireless/ath/ath11k/mac.c     |  41 +-
+ drivers/net/wireless/ath/ath11k/peer.h    |   7 +
+ drivers/net/wireless/ath/ath11k/rx_desc.h |   2 +-
+ 11 files changed, 865 insertions(+), 106 deletions(-)
+
+-- 
+2.7.4
 
 _______________________________________________
 ath11k mailing list
