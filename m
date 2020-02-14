@@ -1,12 +1,17 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail27.static.mailgun.info ([104.130.122.27])
+Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
+ helo=sipsolutions.net)
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j2QZR-0002fB-Ro
- for ath11k@lists.infradead.org; Fri, 14 Feb 2020 02:19:11 +0000
-From: Tamizh Chelvam <tamizhr@codeaurora.org>
-Subject: [PATCH] ath11k: config reorder queue for all tids during peer setup
-Date: Fri, 14 Feb 2020 07:48:44 +0530
-Message-Id: <1581646724-23098-1-git-send-email-tamizhr@codeaurora.org>
+ id 1j2Wsy-0006Fw-1f
+ for ath11k@lists.infradead.org; Fri, 14 Feb 2020 09:03:45 +0000
+Message-ID: <d6fdf3419a323bdf5008bcd51c36b92977f5b872.camel@sipsolutions.net>
+Subject: Re: [PATCH V2 1/3] nl80211: add support for setting fixed HE
+ rate/gi/ltf
+From: Johannes Berg <johannes@sipsolutions.net>
+Date: Fri, 14 Feb 2020 10:03:38 +0100
+In-Reply-To: <20200204103514.18111-1-john@phrozen.org>
+References: <20200204103514.18111-1-john@phrozen.org>
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -15,143 +20,74 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: Govindaraj Saminathan <gsamin@codeaurora.org>, linux-wireless@vger.kernel.org, Tamizh Chelvam <tamizhr@codeaurora.org>
+To: John Crispin <john@phrozen.org>, Kalle Valo <kvalo@codeaurora.org>
+Cc: Miles Hu <milehu@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-From: Govindaraj Saminathan <gsamin@codeaurora.org>
+On Tue, 2020-02-04 at 11:35 +0100, John Crispin wrote:
+> 
+> +	[NL80211_TXRATE_HE] = {
+> +		.type = NLA_EXACT_LEN,
+> +		.len = sizeof(struct nl80211_txrate_he),
+> +	},
+> +	[NL80211_TXRATE_HE_GI] =  NLA_POLICY_RANGE(NLA_U8,
+> +						   NL80211_RATE_INFO_HE_GI_0_8,
+> +						   NL80211_RATE_INFO_HE_GI_3_2),
+> +	[NL80211_TXRATE_HE_LTF] = NLA_POLICY_RANGE(NLA_U8,
+> +						   NL80211_RATE_INFO_HE_1XLTF,
+> +						   NL80211_RATE_INFO_HE_4XLTF),
+>  };
 
-Currently rx tid setup is happening for TID 0 and TID 16
-during peer setup. And if other TID packets received for
-the peer it will be redirected to rx error ring and not through
-reo ring. And this rx tid configuration cannot be done
-in the rx error ring path since it is a atomic context.
-So moving the rx tid setup for all tids during the peer setup.
-This is required to enable PN offload functionality to route
-all packets through reo ring.
+Thanks for this :-)
 
-Co-developed-by: Tamizh Chelvam <tamizhr@codeaurora.org>
-Signed-off-by: Tamizh Chelvam <tamizhr@codeaurora.org>
-Signed-off-by: Govindaraj Saminathan <gsamin@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/dp.c    | 41 ++++++++++++++++++++++-----------
- drivers/net/wireless/ath/ath11k/dp.h    |  2 +-
- drivers/net/wireless/ath/ath11k/dp_rx.c |  4 ++--
- drivers/net/wireless/ath/ath11k/dp_rx.h |  2 ++
- 4 files changed, 32 insertions(+), 17 deletions(-)
+> +		if (tb[NL80211_TXRATE_HE]) {
+> +			if (!he_set_mcs_mask(info, sband, nla_data(tb[NL80211_TXRATE_HE]),
+> +					     mask->control[band].he_mcs))
+> +				return -EINVAL;
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
-index b112825..ce76341 100644
---- a/drivers/net/wireless/ath/ath11k/dp.c
-+++ b/drivers/net/wireless/ath/ath11k/dp.c
-@@ -39,8 +39,9 @@ void ath11k_dp_peer_cleanup(struct ath11k *ar, int vdev_id, const u8 *addr)
- int ath11k_dp_peer_setup(struct ath11k *ar, int vdev_id, const u8 *addr)
- {
- 	struct ath11k_base *ab = ar->ab;
-+	struct ath11k_peer *peer;
- 	u32 reo_dest;
--	int ret;
-+	int ret = 0, tid;
- 
- 	/* NOTE: reo_dest ring id starts from 1 unlike mac_id which starts from 0 */
- 	reo_dest = ar->dp.mac_id + 1;
-@@ -54,24 +55,36 @@ int ath11k_dp_peer_setup(struct ath11k *ar, int vdev_id, const u8 *addr)
- 		return ret;
- 	}
- 
--	ret = ath11k_peer_rx_tid_setup(ar, addr, vdev_id,
--				       HAL_DESC_REO_NON_QOS_TID, 1, 0);
--	if (ret) {
--		ath11k_warn(ab, "failed to setup rxd tid queue for non-qos tid %d\n",
--			    ret);
--		return ret;
--	}
--
--	ret = ath11k_peer_rx_tid_setup(ar, addr, vdev_id, 0, 1, 0);
--	if (ret) {
--		ath11k_warn(ab, "failed to setup rxd tid queue for tid 0 %d\n",
--			    ret);
--		return ret;
-+	for (tid = 0; tid <= IEEE80211_NUM_TIDS; tid++) {
-+		ret = ath11k_peer_rx_tid_setup(ar, addr, vdev_id,
-+					       tid, 1, 0);
-+		if (ret) {
-+			ath11k_warn(ab, "failed to setup rxd tid queue for tid %d: %d\n",
-+				    tid, ret);
-+			goto peer_clean;
-+		}
- 	}
- 
- 	/* TODO: Setup other peer specific resource used in data path */
- 
- 	return 0;
-+
-+peer_clean:
-+	spin_lock_bh(&ab->base_lock);
-+
-+	peer = ath11k_peer_find(ab, vdev_id, addr);
-+	if (!peer) {
-+		ath11k_warn(ab, "failed to find the peer to del rx tid\n");
-+		spin_unlock_bh(&ab->base_lock);
-+		return -ENOENT;
-+	}
-+
-+	for (; tid >= 0; tid--)
-+		ath11k_peer_rx_tid_delete(ar, peer, tid);
-+
-+	spin_unlock_bh(&ab->base_lock);
-+
-+	return ret;
- }
- 
- void ath11k_dp_srng_cleanup(struct ath11k_base *ab, struct dp_srng *ring)
-diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
-index 3592c39..4f9e4ce 100644
---- a/drivers/net/wireless/ath/ath11k/dp.h
-+++ b/drivers/net/wireless/ath/ath11k/dp.h
-@@ -168,7 +168,7 @@ struct ath11k_pdev_dp {
- #define DP_RX_RELEASE_RING_SIZE		1024
- #define DP_REO_EXCEPTION_RING_SIZE	128
- #define DP_REO_CMD_RING_SIZE		128
--#define DP_REO_STATUS_RING_SIZE		256
-+#define DP_REO_STATUS_RING_SIZE		2048
- #define DP_RXDMA_BUF_RING_SIZE		4096
- #define DP_RXDMA_REFILL_RING_SIZE	2048
- #define DP_RXDMA_ERR_DST_RING_SIZE	1024
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 6dfaea1..dc7881b 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -633,8 +633,8 @@ static void ath11k_dp_rx_tid_del_func(struct ath11k_dp *dp, void *ctx,
- 	kfree(rx_tid->vaddr);
- }
- 
--static void ath11k_peer_rx_tid_delete(struct ath11k *ar,
--				      struct ath11k_peer *peer, u8 tid)
-+void ath11k_peer_rx_tid_delete(struct ath11k *ar,
-+			       struct ath11k_peer *peer, u8 tid)
- {
- 	struct ath11k_hal_reo_cmd cmd = {0};
- 	struct dp_rx_tid *rx_tid = &peer->rx_tid[tid];
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.h b/drivers/net/wireless/ath/ath11k/dp_rx.h
-index eec5dea..1b08b7d 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.h
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.h
-@@ -44,6 +44,8 @@ int ath11k_dp_rx_ampdu_start(struct ath11k *ar,
- int ath11k_dp_rx_ampdu_stop(struct ath11k *ar,
- 			    struct ieee80211_ampdu_params *params);
- void ath11k_peer_rx_tid_cleanup(struct ath11k *ar, struct ath11k_peer *peer);
-+void ath11k_peer_rx_tid_delete(struct ath11k *ar,
-+			       struct ath11k_peer *peer, u8 tid);
- int ath11k_peer_rx_tid_setup(struct ath11k *ar, const u8 *peer_mac, int vdev_id,
- 			     u8 tid, u32 ba_win_sz, u16 ssn);
- void ath11k_dp_htt_htc_t2h_msg_handler(struct ath11k_base *ab,
--- 
-1.9.1
+Maybe unify these into a single condition?
+
+if (tb[...] &&
+    he_set_...
+	return -EINVAL;
+
+Seems nicer to me. Especially with the lines already being so long.
+
+> +		}
+> +		if (tb[NL80211_TXRATE_HE_GI]) {
+> +			mask->control[band].he_gi =
+> +				nla_get_u8(tb[NL80211_TXRATE_HE_GI]);
+> +			if (mask->control[band].he_gi > NL80211_RATE_INFO_HE_GI_3_2)
+> +				return -EINVAL;
+
+This is not needed with the policy, is it?
+
+> +		}
+> +		if (tb[NL80211_TXRATE_HE_LTF]) {
+> +			mask->control[band].he_ltf =
+> +				nla_get_u8(tb[NL80211_TXRATE_HE_LTF]);
+> +			if (mask->control[band].he_ltf > NL80211_RATE_INFO_HE_4XLTF)
+> +				return -EINVAL;
+
+Same here.
+
+>  			if (!(rdev->wiphy.bands[band]->ht_cap.ht_supported ||
+> -			      rdev->wiphy.bands[band]->vht_cap.vht_supported))
+> +			      rdev->wiphy.bands[band]->vht_cap.vht_supported ||
+> +			      (rdev->wiphy.bands[band]->iftype_data &&
+> +			       rdev->wiphy.bands[band]->iftype_data->he_cap.has_he)))
+>  				return -EINVAL;
+
+And now we get to why I replied at all and didn't just fix it up ;-)
+
+That can't be right, iftype_data is an array of pointers, you're
+basically always taking the first one?
+
+johannes
+
 
 _______________________________________________
 ath11k mailing list
