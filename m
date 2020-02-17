@@ -1,13 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j3Wpd-0000pb-E0
- for ath11k@lists.infradead.org; Mon, 17 Feb 2020 03:12:27 +0000
-From: Sriram R <srirrama@codeaurora.org>
-Subject: [PATCHv2] ath11k: Supporting RX ring backpressure HTT event and stats
- handling
-Date: Mon, 17 Feb 2020 08:42:08 +0530
-Message-Id: <1581909128-14861-1-git-send-email-srirrama@codeaurora.org>
+ id 1j3fSa-0005i0-FS
+ for ath11k@lists.infradead.org; Mon, 17 Feb 2020 12:25:17 +0000
+From: Manikanta Pubbisetty <mpubbise@codeaurora.org>
+Subject: [RFC 1/2] mac80211: add receive path for ethernet frame format
+Date: Mon, 17 Feb 2020 17:54:36 +0530
+Message-Id: <1581942277-585-2-git-send-email-mpubbise@codeaurora.org>
+In-Reply-To: <1581942277-585-1-git-send-email-mpubbise@codeaurora.org>
+References: <1581942277-585-1-git-send-email-mpubbise@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,222 +23,324 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
-Cc: Vikas Patel <vikpatel@codeaurora.org>, linux-wireless@vger.kernel.org, Sriram R <srirrama@codeaurora.org>
+Cc: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>, Manikanta Pubbisetty <mpubbise@codeaurora.org>, linux-wireless@vger.kernel.org
 
-From: Vikas Patel <vikpatel@codeaurora.org>
+From: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
 
-The Firmware sends HTT event to host whenever there is a
-backpressure on RX rings, Handling such event and dumping
-info on the console under the "ATH11K_DBG_DP_HTT"  debug level.
+Implement rx path which does fewer processing on the received data
+frame which has already gone through 802.11 header decapsulation
+and other functionalities which require 802.11 header in the low
+level driver or hardware. Currently this rx path is restricted
+to AP and STA mode, but can be extended for Adhoc mode as well.
 
-Fetching RX ring backpressure histogram from FW via htt_stats debugfs.
+It is upto to the low level driver to invoke the correct API and
+make sure if the frame that it passes is in ethernet format and
+the sta pointer is valid.
 
- #echo "24" > /sys/kernel/debug/ath11k/macX/htt_stats_type
- #cat /sys/kernel/debug/ath11k/macX/htt_stats
-
-Signed-off-by: Vikas Patel <vikpatel@codeaurora.org>
-Signed-off-by: Sriram R <srirrama@codeaurora.org>
+Co-developed-by: Manikanta Pubbisetty <mpubbise@codeaurora.org>
+Signed-off-by: Manikanta Pubbisetty <mpubbise@codeaurora.org>
+Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
 ---
-v2: Including linux-wireless
+ include/net/mac80211.h |  20 +++++
+ net/mac80211/rx.c      | 215 +++++++++++++++++++++++++++++++++++++++++++++++--
+ 2 files changed, 230 insertions(+), 5 deletions(-)
 
- drivers/net/wireless/ath/ath11k/debug.h       |  2 +
- .../net/wireless/ath/ath11k/debug_htt_stats.c | 44 +++++++++++++++++++
- .../net/wireless/ath/ath11k/debug_htt_stats.h | 28 ++++++++++++
- drivers/net/wireless/ath/ath11k/dp.h          |  8 ++++
- drivers/net/wireless/ath/ath11k/dp_rx.c       | 26 +++++++++++
- 5 files changed, 108 insertions(+)
-
-diff --git a/drivers/net/wireless/ath/ath11k/debug.h b/drivers/net/wireless/ath/ath11k/debug.h
-index a317a7bdb9a2..012ed37cf704 100644
---- a/drivers/net/wireless/ath/ath11k/debug.h
-+++ b/drivers/net/wireless/ath/ath11k/debug.h
-@@ -53,6 +53,8 @@ enum ath11k_dbg_htt_ext_stats_type {
- 	ATH11K_DBG_HTT_EXT_STATS_TWT_SESSIONS               =  20,
- 	ATH11K_DBG_HTT_EXT_STATS_REO_RESOURCE_STATS         =  21,
- 	ATH11K_DBG_HTT_EXT_STATS_TX_SOUNDING_INFO           =  22,
-+	ATH11K_DBG_HTT_EXT_STATS_PDEV_OBSS_PD_STATS	    =  23,
-+	ATH11K_DBG_HTT_EXT_STATS_RING_BACKPRESSURE_STATS    =  24,
+diff --git a/include/net/mac80211.h b/include/net/mac80211.h
+index ce80773..5959058 100644
+--- a/include/net/mac80211.h
++++ b/include/net/mac80211.h
+@@ -1251,6 +1251,9 @@ ieee80211_tx_info_clear_status(struct ieee80211_tx_info *info)
+  *	the "0-length PSDU" field included there.  The value for it is
+  *	in &struct ieee80211_rx_status.  Note that if this value isn't
+  *	known the frame shouldn't be reported.
++ * @RX_FLAG_80211_MCAST: If the receiver address (addr1) in the frame is
++ *	multicast. This is used with the data frames by the drivers
++ *	supporting 802.11 hdr decap offload.
+  */
+ enum mac80211_rx_flags {
+ 	RX_FLAG_MMIC_ERROR		= BIT(0),
+@@ -1283,6 +1286,7 @@ enum mac80211_rx_flags {
+ 	RX_FLAG_RADIOTAP_HE_MU		= BIT(27),
+ 	RX_FLAG_RADIOTAP_LSIG		= BIT(28),
+ 	RX_FLAG_NO_PSDU			= BIT(29),
++	RX_FLAG_80211_MCAST		= BIT(30),
+ };
  
- 	/* keep this last */
- 	ATH11K_DBG_HTT_NUM_EXT_STATS,
-diff --git a/drivers/net/wireless/ath/ath11k/debug_htt_stats.c b/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
-index 090fffa5e53c..8accfb973044 100644
---- a/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
-+++ b/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
-@@ -3715,6 +3715,47 @@ htt_print_pdev_obss_pd_stats_tlv_v(const void *tag_buf,
- 	stats_req->buf_len = len;
+ /**
+@@ -4402,6 +4406,22 @@ static inline void ieee80211_rx_ni(struct ieee80211_hw *hw,
  }
  
-+static inline void htt_print_backpressure_stats_tlv_v(const u32 *tag_buf,
-+						      u8 *data)
-+{
-+	struct debug_htt_stats_req *stats_req =
-+			(struct debug_htt_stats_req *)data;
-+	struct htt_ring_backpressure_stats_tlv *htt_stats_buf =
-+			(struct htt_ring_backpressure_stats_tlv *)tag_buf;
-+	int i;
-+	u8 *buf = stats_req->buf;
-+	u32 len = stats_req->buf_len;
-+	u32 buf_len = ATH11K_HTT_STATS_BUF_SIZE;
+ /**
++ * ieee80211_rx_decap_offl - Receive frames in 802.11 decapsulated format
++ *
++ * Low level driver capable of 802.11 header decap uses this function. The frame
++ * will be in ethernet format.
++ * This function may not be called in IRQ context. Calls to this function
++ * for a single hardware must be synchronized against each other.
++ *
++ * @hw: the hardware this frame came in on
++ * @sta : the station the frame was received from, must not be %NULL
++ * @skb: the buffer to receive, owned by mac80211 after this call
++ * @napi: the NAPI context
++ */
++void ieee80211_rx_decap_offl(struct ieee80211_hw *hw, struct ieee80211_sta *sta,
++			     struct sk_buff *skb, struct napi_struct *napi);
 +
-+	len += HTT_DBG_OUT(buf + len, buf_len - len, "pdev_id = %u",
-+			   htt_stats_buf->pdev_id);
-+	len += HTT_DBG_OUT(buf + len, buf_len - len, "current_head_idx = %u",
-+			   htt_stats_buf->current_head_idx);
-+	len += HTT_DBG_OUT(buf + len, buf_len - len, "current_tail_idx = %u",
-+			   htt_stats_buf->current_tail_idx);
-+	len += HTT_DBG_OUT(buf + len, buf_len - len, "num_htt_msgs_sent = %u",
-+			   htt_stats_buf->num_htt_msgs_sent);
-+	len += HTT_DBG_OUT(buf + len, buf_len - len,
-+			   "backpressure_time_ms = %u",
-+			   htt_stats_buf->backpressure_time_ms);
-+
-+	for (i = 0; i < 5; i++)
-+		len += HTT_DBG_OUT(buf + len, buf_len - len,
-+				   "backpressure_hist_%u = %u",
-+				   i + 1, htt_stats_buf->backpressure_hist[i]);
-+
-+	len += HTT_DBG_OUT(buf + len, buf_len - len,
-+			   "============================");
-+
-+	if (len >= buf_len) {
-+		buf[buf_len - 1] = 0;
-+		stats_req->buf_len = buf_len - 1;
-+	} else {
-+		buf[len] = 0;
-+		stats_req->buf_len = len;
-+	}
-+}
-+
- static inline void htt_htt_stats_debug_dump(const u32 *tag_buf,
- 					    struct debug_htt_stats_req *stats_req)
- {
-@@ -4107,6 +4148,9 @@ static int ath11k_dbg_htt_ext_stats_parse(struct ath11k_base *ab,
- 	case HTT_STATS_PDEV_OBSS_PD_TAG:
- 		htt_print_pdev_obss_pd_stats_tlv_v(tag_buf, stats_req);
- 		break;
-+	case HTT_STATS_RING_BACKPRESSURE_STATS_TAG:
-+		htt_print_backpressure_stats_tlv_v(tag_buf, user_data);
-+		break;
- 	default:
- 		break;
- 	}
-diff --git a/drivers/net/wireless/ath/ath11k/debug_htt_stats.h b/drivers/net/wireless/ath/ath11k/debug_htt_stats.h
-index 618f1946bf49..23ac03221ac8 100644
---- a/drivers/net/wireless/ath/ath11k/debug_htt_stats.h
-+++ b/drivers/net/wireless/ath/ath11k/debug_htt_stats.h
-@@ -100,6 +100,8 @@ enum htt_tlv_tag_t {
- 	HTT_STATS_SCHED_TXQ_SCHED_ORDER_SU_TAG              = 86,
- 	HTT_STATS_SCHED_TXQ_SCHED_INELIGIBILITY_TAG         = 87,
- 	HTT_STATS_PDEV_OBSS_PD_TAG                          = 88,
-+	HTT_STATS_HW_WAR_TAG				    = 89,
-+	HTT_STATS_RING_BACKPRESSURE_STATS_TAG		    = 90,
- 
- 	HTT_STATS_MAX_TAG,
- };
-@@ -1617,4 +1619,30 @@ struct htt_pdev_obss_pd_stats_tlv {
- };
- 
- void ath11k_debug_htt_stats_init(struct ath11k *ar);
-+
-+struct htt_ring_backpressure_stats_tlv {
-+	u32 pdev_id;
-+	u32 current_head_idx;
-+	u32 current_tail_idx;
-+	u32 num_htt_msgs_sent;
-+	/* Time in milliseconds for which the ring has been in
-+	 * its current backpressure condition
-+	 */
-+	u32 backpressure_time_ms;
-+	/* backpressure_hist - histogram showing how many times
-+	 * different degrees of backpressure duration occurred:
-+	 * Index 0 indicates the number of times ring was
-+	 * continuously in backpressure state for 100 - 200ms.
-+	 * Index 1 indicates the number of times ring was
-+	 * continuously in backpressure state for 200 - 300ms.
-+	 * Index 2 indicates the number of times ring was
-+	 * continuously in backpressure state for 300 - 400ms.
-+	 * Index 3 indicates the number of times ring was
-+	 * continuously in backpressure state for 400 - 500ms.
-+	 * Index 4 indicates the number of times ring was
-+	 * continuously in backpressure state beyond 500ms.
-+	 */
-+	u32 backpressure_hist[5];
-+};
-+
- #endif
-diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
-index 2f0980f2c762..97dacdd6793a 100644
---- a/drivers/net/wireless/ath/ath11k/dp.h
-+++ b/drivers/net/wireless/ath/ath11k/dp.h
-@@ -916,6 +916,7 @@ enum htt_t2h_msg_type {
- 	HTT_T2H_MSG_TYPE_PEER_UNMAP	= 0x1f,
- 	HTT_T2H_MSG_TYPE_PPDU_STATS_IND = 0x1d,
- 	HTT_T2H_MSG_TYPE_EXT_STATS_CONF = 0x1c,
-+	HTT_T2H_MSG_TYPE_BKPRESSURE_EVENT_IND = 0x24,
- };
- 
- #define HTT_TARGET_VERSION_MAJOR 3
-@@ -964,6 +965,13 @@ struct htt_resp_msg {
- 	};
- } __packed;
- 
-+#define HTT_BACKPRESSURE_EVENT_PDEV_ID_M GENMASK(15, 8)
-+#define HTT_BACKPRESSURE_EVENT_RING_TYPE_M GENMASK(23, 16)
-+#define HTT_BACKPRESSURE_EVENT_RING_ID_M GENMASK(31, 24)
-+
-+#define HTT_BACKPRESSURE_EVENT_HP_M GENMASK(15, 0)
-+#define HTT_BACKPRESSURE_EVENT_TP_M GENMASK(31, 16)
-+
- /* ppdu stats
++/**
+  * ieee80211_sta_ps_transition - PS transition for connected sta
   *
-  * @details
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 3a3dc7680622..40c56c3826c7 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -1330,6 +1330,29 @@ static void ath11k_htt_pktlog(struct ath11k_base *ab, struct sk_buff *skb)
- 	trace_ath11k_htt_pktlog(ar, data->payload, len);
+  * When operating in AP mode with the %IEEE80211_HW_AP_LINK_PS
+diff --git a/net/mac80211/rx.c b/net/mac80211/rx.c
+index ec3a04a..78f2f71 100644
+--- a/net/mac80211/rx.c
++++ b/net/mac80211/rx.c
+@@ -2410,13 +2410,14 @@ __ieee80211_data_to_8023(struct ieee80211_rx_data *rx, bool *port_control)
+ 	return 0;
  }
  
-+static void ath11k_htt_backpressure_event_handler(struct ath11k_base *ab,
-+						  struct sk_buff *skb)
++static const u8 pae_group_addr[ETH_ALEN] __aligned(2) = {0x01, 0x80, 0xC2, 0x00,
++							 0x00, 0x03};
++
+ /*
+  * requires that rx->skb is a frame with ethernet header
+  */
+ static bool ieee80211_frame_allowed(struct ieee80211_rx_data *rx, __le16 fc)
+ {
+-	static const u8 pae_group_addr[ETH_ALEN] __aligned(2)
+-		= { 0x01, 0x80, 0xC2, 0x00, 0x00, 0x03 };
+ 	struct ethhdr *ehdr = (struct ethhdr *) rx->skb->data;
+ 
+ 	/*
+@@ -2471,6 +2472,7 @@ ieee80211_deliver_skb(struct ieee80211_rx_data *rx)
+ 	struct sk_buff *skb, *xmit_skb;
+ 	struct ethhdr *ehdr = (struct ethhdr *) rx->skb->data;
+ 	struct sta_info *dsta;
++	struct ieee80211_sta_rx_stats *rx_stats;
+ 
+ 	skb = rx->skb;
+ 	xmit_skb = NULL;
+@@ -2483,9 +2485,12 @@ ieee80211_deliver_skb(struct ieee80211_rx_data *rx)
+ 		 * for non-QoS-data frames. Here we know it's a data
+ 		 * frame, so count MSDUs.
+ 		 */
+-		u64_stats_update_begin(&rx->sta->rx_stats.syncp);
+-		rx->sta->rx_stats.msdu[rx->seqno_idx]++;
+-		u64_stats_update_end(&rx->sta->rx_stats.syncp);
++		rx_stats = &rx->sta->rx_stats;
++		if (ieee80211_hw_check(&rx->local->hw, USES_RSS))
++			rx_stats = this_cpu_ptr(rx->sta->pcpu_rx_stats);
++		u64_stats_update_begin(&rx_stats->syncp);
++		rx_stats->msdu[rx->seqno_idx]++;
++		u64_stats_update_end(&rx_stats->syncp);
+ 	}
+ 
+ 	if ((sdata->vif.type == NL80211_IFTYPE_AP ||
+@@ -4658,3 +4663,203 @@ void ieee80211_rx_irqsafe(struct ieee80211_hw *hw, struct sk_buff *skb)
+ 	tasklet_schedule(&local->tasklet);
+ }
+ EXPORT_SYMBOL(ieee80211_rx_irqsafe);
++
++/* Receive path for decap offloaded data frames */
++
++static void
++ieee80211_rx_handle_decap_offl(struct ieee80211_sub_if_data *sdata,
++			       struct sta_info *sta, struct sk_buff *skb,
++			       struct napi_struct *napi)
 +{
-+	u32 *data = (u32 *)skb->data;
-+	u8 pdev_id, ring_type, ring_id;
-+	u16 hp, tp;
-+	u32 backpressure_time;
++	struct ieee80211_local *local = sdata->local;
++	struct ieee80211_vif *vif = &sdata->vif;
++	struct net_device *dev = sdata->dev;
++	struct ieee80211_rx_status *status;
++	struct ieee80211_key *key = NULL;
++	struct ieee80211_rx_data rx;
++	int i;
++	struct ethhdr *ehdr;
++	struct ieee80211_sta_rx_stats *stats = &sta->rx_stats;
 +
-+	pdev_id = FIELD_GET(HTT_BACKPRESSURE_EVENT_PDEV_ID_M, *data);
-+	ring_type = FIELD_GET(HTT_BACKPRESSURE_EVENT_RING_TYPE_M, *data);
-+	ring_id = FIELD_GET(HTT_BACKPRESSURE_EVENT_RING_ID_M, *data);
-+	++data;
++	ehdr = (struct ethhdr *)skb->data;
++	status = IEEE80211_SKB_RXCB(skb);
 +
-+	hp = FIELD_GET(HTT_BACKPRESSURE_EVENT_HP_M, *data);
-+	tp = FIELD_GET(HTT_BACKPRESSURE_EVENT_TP_M, *data);
-+	++data;
++	if (ieee80211_hw_check(&local->hw, USES_RSS))
++		stats = this_cpu_ptr(sta->pcpu_rx_stats);
 +
-+	backpressure_time = *data;
++	/* TODO: Extend ieee80211_rx_decap_offl() with bssid so that Ethernet
++	 * encap/decap can be supported in Adhoc interface type as well.
++	 * Adhoc interface depends on bssid to update last_rx.
++	 */
++	if (vif->type != NL80211_IFTYPE_STATION &&
++	    vif->type != NL80211_IFTYPE_AP_VLAN &&
++	    vif->type != NL80211_IFTYPE_AP)
++		goto drop;
 +
-+	ath11k_dbg(ab, ATH11K_DBG_DP_HTT, "htt backpressure event, pdev %d, ring type %d,ring id %d, hp %d tp %d, backpressure time %d\n",
-+		   pdev_id, ring_type, ring_id, hp, tp, backpressure_time);
++	if (unlikely(!test_sta_flag(sta, WLAN_STA_AUTHORIZED))) {
++		if (ehdr->h_proto != sdata->control_port_protocol)
++			goto drop;
++		else if (!ether_addr_equal(ehdr->h_dest, vif->addr) &&
++			 !ether_addr_equal(ehdr->h_dest, pae_group_addr))
++			goto drop;
++	}
++
++	if (status->flag & RX_FLAG_80211_MCAST) {
++		for (i = 0; i < NUM_DEFAULT_KEYS; i++) {
++			key = rcu_dereference(sta->gtk[i]);
++			if (key)
++				break;
++		}
++	} else {
++		key = rcu_dereference(sta->ptk[sta->ptk_idx]);
++	}
++
++	if (key && unlikely(key->flags & KEY_FLAG_TAINTED))
++		goto drop;
++
++	if (status->flag & RX_FLAG_MMIC_ERROR) {
++		if (key)
++			key->u.tkip.mic_failures++;
++		goto mic_fail;
++	}
++
++#define ETH_RX_CRYPT_FLAGS	(RX_FLAG_PN_VALIDATED | RX_FLAG_DECRYPTED)
++
++	if (key && (status->flag & ETH_RX_CRYPT_FLAGS) != ETH_RX_CRYPT_FLAGS)
++		goto drop;
++
++	if (!(status->flag & RX_FLAG_DUP_VALIDATED))
++		goto drop;
++
++	I802_DEBUG_INC(local->dot11ReceivedFragmentCount);
++
++	if (!(status->flag & RX_FLAG_80211_MCAST)) {
++		stats->last_rx = jiffies;
++		stats->last_rate = sta_stats_encode_rate(status);
++	}
++
++	if (sdata->vif.type == NL80211_IFTYPE_STATION &&
++	    !(status->flag & RX_FLAG_80211_MCAST))
++		ieee80211_sta_reset_conn_monitor(sdata);
++
++	u64_stats_update_begin(&stats->syncp);
++	stats->fragments++;
++	stats->packets++;
++	stats->bytes += skb->len;
++	u64_stats_update_end(&stats->syncp);
++
++	if (!(status->flag & RX_FLAG_NO_SIGNAL_VAL)) {
++		stats->last_signal = status->signal;
++		if (!ieee80211_hw_check(&local->hw, USES_RSS))
++			ewma_signal_add(&sta->rx_stats_avg.signal,
++					-status->signal);
++	}
++
++	if (status->chains) {
++		stats->chains = status->chains;
++		for (i = 0; i < ARRAY_SIZE(status->chain_signal); i++) {
++			int signal = status->chain_signal[i];
++
++			if (!(status->chains & BIT(i)))
++				continue;
++
++			stats->chain_signal_last[i] = signal;
++			if (!ieee80211_hw_check(&local->hw, USES_RSS))
++				ewma_signal_add(&sta->rx_stats_avg.chain_signal[i],
++						-signal);
++		}
++	}
++
++	if (unlikely(ehdr->h_proto == cpu_to_be16(ETH_P_TDLS))) {
++		struct ieee80211_tdls_data *tf = (void *)skb->data;
++
++		if (pskb_may_pull(skb,
++				  offsetof(struct ieee80211_tdls_data, u)) &&
++		    tf->payload_type == WLAN_TDLS_SNAP_RFTYPE &&
++		    tf->category == WLAN_CATEGORY_TDLS &&
++		    (tf->action_code == WLAN_TDLS_CHANNEL_SWITCH_REQUEST ||
++		     tf->action_code == WLAN_TDLS_CHANNEL_SWITCH_RESPONSE)) {
++			skb_queue_tail(&local->skb_queue_tdls_chsw, skb);
++			schedule_work(&local->tdls_chsw_work);
++			return;
++		}
++	}
++
++	memset(&rx, 0, sizeof(rx));
++	rx.skb = skb;
++	rx.sdata = sdata;
++	rx.local = local;
++	rx.sta = sta;
++	rx.napi = napi;
++
++	if (vif->type == NL80211_IFTYPE_AP_VLAN && sdata->bss &&
++	    unlikely(ehdr->h_proto == sdata->control_port_protocol)) {
++		sdata = container_of(sdata->bss, struct ieee80211_sub_if_data,
++				     u.ap);
++		dev = sdata->dev;
++		rx.sdata = sdata;
++	}
++
++	rx.skb->dev = dev;
++
++	/* FIXME: Since rx.seqno_idx is not available for decap offloaded frames
++	 * rx msdu stats update at the seqno_idx in ieee80211_deliver_skb()
++	 * will always be updated at index 0 and will not be very useful.
++	 * Should we disable these statistics in the case of decap offload?
++	 */
++	ieee80211_deliver_skb(&rx);
++
++	return;
++
++mic_fail:
++
++	cfg80211_michael_mic_failure(sdata->dev, sta->addr,
++				     is_multicast_ether_addr(ehdr->h_dest) ?
++				     NL80211_KEYTYPE_GROUP :
++				     NL80211_KEYTYPE_PAIRWISE,
++				     key ? key->conf.keyidx : -1,
++				     NULL, GFP_ATOMIC);
++
++drop:
++	stats->dropped++;
++	dev_kfree_skb(skb);
 +}
 +
- void ath11k_dp_htt_htc_t2h_msg_handler(struct ath11k_base *ab,
- 				       struct sk_buff *skb)
- {
-@@ -1379,6 +1402,9 @@ void ath11k_dp_htt_htc_t2h_msg_handler(struct ath11k_base *ab,
- 	case HTT_T2H_MSG_TYPE_PKTLOG:
- 		ath11k_htt_pktlog(ab, skb);
- 		break;
-+	case HTT_T2H_MSG_TYPE_BKPRESSURE_EVENT_IND:
-+		ath11k_htt_backpressure_event_handler(ab, skb);
-+		break;
- 	default:
- 		ath11k_warn(ab, "htt event %d not handled\n", type);
- 		break;
++/* Receive path handler that a low level driver supporting 802.11 hdr decap
++ * offload can call. The frame is in ethernet format and the assumption is
++ * all necessary operations like decryption, defrag, deaggregation, etc.
++ * requiring 802.11 headers are already performed in the low level driver
++ * or hardware.
++ */
++void ieee80211_rx_decap_offl(struct ieee80211_hw *hw,
++			     struct ieee80211_sta *pubsta, struct sk_buff *skb,
++			     struct napi_struct *napi)
++{
++	struct ieee80211_local *local = hw_to_local(hw);
++	struct sta_info *sta;
++
++	if (unlikely(local->quiescing || local->suspended))
++		goto drop;
++
++	if (unlikely(local->in_reconfig))
++		goto drop;
++
++	if (WARN_ON(!local->started))
++		goto drop;
++
++	if (!pubsta)
++		goto drop;
++
++	sta  = container_of(pubsta, struct sta_info, sta);
++
++	/* TODO: Toggle Rx throughput LED */
++
++	rcu_read_lock();
++	ieee80211_rx_handle_decap_offl(sta->sdata, sta, skb, napi);
++	rcu_read_unlock();
++
++	return;
++drop:
++	kfree_skb(skb);
++}
++EXPORT_SYMBOL(ieee80211_rx_decap_offl);
 -- 
-2.23.0
+2.7.4
 
 _______________________________________________
 ath11k mailing list
