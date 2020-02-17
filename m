@@ -1,16 +1,18 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from nbd.name ([2a01:4f8:221:3d45::2])
+Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
+ helo=sipsolutions.net)
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j3gVA-00089G-7l
- for ath11k@lists.infradead.org; Mon, 17 Feb 2020 13:31:58 +0000
+ id 1j3hJ2-0006lM-Fs
+ for ath11k@lists.infradead.org; Mon, 17 Feb 2020 14:23:29 +0000
+Message-ID: <06100182506e35438e31990a56a2668a6de31735.camel@sipsolutions.net>
 Subject: Re: [RFC 0/2] add 802.11 decapsulation offload support
-References: <1581942277-585-1-git-send-email-mpubbise@codeaurora.org>
-From: John Crispin <john@phrozen.org>
-Message-ID: <eb504840-dd76-5278-e2ac-973548f31ba0@phrozen.org>
-Date: Mon, 17 Feb 2020 14:31:51 +0100
-MIME-Version: 1.0
+From: Johannes Berg <johannes@sipsolutions.net>
+Date: Mon, 17 Feb 2020 15:23:22 +0100
 In-Reply-To: <1581942277-585-1-git-send-email-mpubbise@codeaurora.org>
-Content-Language: en-US
+ (sfid-20200217_132517_718887_22B874B1)
+References: <1581942277-585-1-git-send-email-mpubbise@codeaurora.org>
+ (sfid-20200217_132517_718887_22B874B1)
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -19,43 +21,22 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Manikanta Pubbisetty <mpubbise@codeaurora.org>, ath11k@lists.infradead.org
 Cc: linux-wireless@vger.kernel.org
 
-On 17/02/2020 13:24, Manikanta Pubbisetty wrote:
+On Mon, 2020-02-17 at 17:54 +0530, Manikanta Pubbisetty wrote:
 > Adding support for offloading 802.11 decapsulation to the HW.
-> This reduces the CPU cycles spent on host CPU for doing the
+> This reduces the CPU cycles spent on host CPU for doing the 
 > conversion from 802.11 format to ethernet format and thereby
 > improving the performance of the device.
-> 
-> Note:
-> Ath11k patch in this patchset depends on PN offload series
-> and the multi reo patchset with the following name.
-> "Support hash based reo destination ring selection"
-> 
 
-Hi,
-you need to also Cc: this to linux-wireless
-	John
+Would be nice to quantify that :)
 
-
-> Manikanta Pubbisetty (2):
->    mac80211: add receive path for ethernet frame format
->    ath11k: add rx hw 802.11 decapsulation offloading support
-> 
->   drivers/net/wireless/ath/ath11k/core.c     |   4 +
->   drivers/net/wireless/ath/ath11k/core.h     |   3 +
->   drivers/net/wireless/ath/ath11k/dp_rx.c    | 184 ++++++++++++++----------
->   drivers/net/wireless/ath/ath11k/hal_desc.h |   2 +
->   drivers/net/wireless/ath/ath11k/mac.c      |  21 +++
->   include/net/mac80211.h                     |  20 +++
->   net/mac80211/rx.c                          | 215 ++++++++++++++++++++++++++++-
->   7 files changed, 370 insertions(+), 79 deletions(-)
-> 
+johannes
 
 
 _______________________________________________
