@@ -1,14 +1,18 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j7HsG-0001ge-9B
- for ath11k@lists.infradead.org; Thu, 27 Feb 2020 12:02:43 +0000
-From: Manikanta Pubbisetty <mpubbise@codeaurora.org>
-Subject: [RFCv2 1/2] mac80211: add receive path for ethernet frame format
-Date: Thu, 27 Feb 2020 17:31:38 +0530
-Message-Id: <1582804899-12814-2-git-send-email-mpubbise@codeaurora.org>
-In-Reply-To: <1582804899-12814-1-git-send-email-mpubbise@codeaurora.org>
-References: <1582804899-12814-1-git-send-email-mpubbise@codeaurora.org>
+ id 1j9kGc-0006GR-Hb
+ for ath11k@lists.infradead.org; Thu, 05 Mar 2020 06:46:03 +0000
+From: Kalle Valo <kvalo@codeaurora.org>
+Subject: Re: [ath6kl:pending 21/34]
+ drivers/net/wireless/ath/ath11k/dp_rx.c:3078:5-11: WARNING: Unsigned
+ expression compared with zero: buf_id < 0 (fwd)
+References: <alpine.DEB.2.21.2003042103370.3192@hadrien>
+Date: Thu, 05 Mar 2020 08:45:24 +0200
+In-Reply-To: <alpine.DEB.2.21.2003042103370.3192@hadrien> (Julia Lawall's
+ message of "Wed, 4 Mar 2020 21:04:43 +0100 (CET)")
+Message-ID: <87y2sf5mgr.fsf@codeaurora.org>
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -17,336 +21,259 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>, Manikanta Pubbisetty <mpubbise@codeaurora.org>, linux-wireless@vger.kernel.org
+To: Julia Lawall <julia.lawall@inria.fr>
+Cc: Manikanta Pubbisetty <mpubbise@codeaurora.org>, kbuild-all@lists.01.org, ath11k@lists.infradead.org
 
-From: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
+Hi,
 
-Implement rx path which does fewer processing on the received data
-frame which has already gone through 802.11 header decapsulation
-and other functionalities which require 802.11 header in the low
-level driver or hardware. Currently this rx path is restricted
-to AP and STA mode, but can be extended for Adhoc mode as well.
+moving from ath10k to ath11k list, keeping intact the whole email below.
+Can someone look at this, please?
 
-It is upto to the low level driver to invoke the correct API and
-make sure if the frame that it passes is in ethernet format and
-the sta pointer is valid.
+Kalle
 
-Co-developed-by: Manikanta Pubbisetty <mpubbise@codeaurora.org>
-Signed-off-by: Manikanta Pubbisetty <mpubbise@codeaurora.org>
-Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
----
- include/net/mac80211.h |  20 +++++
- net/mac80211/rx.c      | 217 +++++++++++++++++++++++++++++++++++++++++++++++--
- 2 files changed, 231 insertions(+), 6 deletions(-)
+Julia Lawall <julia.lawall@inria.fr> writes:
 
-diff --git a/include/net/mac80211.h b/include/net/mac80211.h
-index ce80773..5959058 100644
---- a/include/net/mac80211.h
-+++ b/include/net/mac80211.h
-@@ -1251,6 +1251,9 @@ ieee80211_tx_info_clear_status(struct ieee80211_tx_info *info)
-  *	the "0-length PSDU" field included there.  The value for it is
-  *	in &struct ieee80211_rx_status.  Note that if this value isn't
-  *	known the frame shouldn't be reported.
-+ * @RX_FLAG_80211_MCAST: If the receiver address (addr1) in the frame is
-+ *	multicast. This is used with the data frames by the drivers
-+ *	supporting 802.11 hdr decap offload.
-  */
- enum mac80211_rx_flags {
- 	RX_FLAG_MMIC_ERROR		= BIT(0),
-@@ -1283,6 +1286,7 @@ enum mac80211_rx_flags {
- 	RX_FLAG_RADIOTAP_HE_MU		= BIT(27),
- 	RX_FLAG_RADIOTAP_LSIG		= BIT(28),
- 	RX_FLAG_NO_PSDU			= BIT(29),
-+	RX_FLAG_80211_MCAST		= BIT(30),
- };
- 
- /**
-@@ -4402,6 +4406,22 @@ static inline void ieee80211_rx_ni(struct ieee80211_hw *hw,
- }
- 
- /**
-+ * ieee80211_rx_decap_offl - Receive frames in 802.11 decapsulated format
-+ *
-+ * Low level driver capable of 802.11 header decap uses this function. The frame
-+ * will be in ethernet format.
-+ * This function may not be called in IRQ context. Calls to this function
-+ * for a single hardware must be synchronized against each other.
-+ *
-+ * @hw: the hardware this frame came in on
-+ * @sta : the station the frame was received from, must not be %NULL
-+ * @skb: the buffer to receive, owned by mac80211 after this call
-+ * @napi: the NAPI context
-+ */
-+void ieee80211_rx_decap_offl(struct ieee80211_hw *hw, struct ieee80211_sta *sta,
-+			     struct sk_buff *skb, struct napi_struct *napi);
-+
-+/**
-  * ieee80211_sta_ps_transition - PS transition for connected sta
-  *
-  * When operating in AP mode with the %IEEE80211_HW_AP_LINK_PS
-diff --git a/net/mac80211/rx.c b/net/mac80211/rx.c
-index ec3a04a..3df9fd9 100644
---- a/net/mac80211/rx.c
-+++ b/net/mac80211/rx.c
-@@ -2410,13 +2410,14 @@ __ieee80211_data_to_8023(struct ieee80211_rx_data *rx, bool *port_control)
- 	return 0;
- }
- 
-+static const u8 pae_group_addr[ETH_ALEN] __aligned(2) = {0x01, 0x80, 0xC2, 0x00,
-+							 0x00, 0x03};
-+
- /*
-  * requires that rx->skb is a frame with ethernet header
-  */
- static bool ieee80211_frame_allowed(struct ieee80211_rx_data *rx, __le16 fc)
- {
--	static const u8 pae_group_addr[ETH_ALEN] __aligned(2)
--		= { 0x01, 0x80, 0xC2, 0x00, 0x00, 0x03 };
- 	struct ethhdr *ehdr = (struct ethhdr *) rx->skb->data;
- 
- 	/*
-@@ -2471,21 +2472,25 @@ ieee80211_deliver_skb(struct ieee80211_rx_data *rx)
- 	struct sk_buff *skb, *xmit_skb;
- 	struct ethhdr *ehdr = (struct ethhdr *) rx->skb->data;
- 	struct sta_info *dsta;
-+	struct ieee80211_sta_rx_stats *rx_stats;
- 
- 	skb = rx->skb;
- 	xmit_skb = NULL;
- 
- 	ieee80211_rx_stats(dev, skb->len);
- 
--	if (rx->sta) {
-+	if (rx->sta && rx->seqno_idx > 0) {
- 		/* The seqno index has the same property as needed
- 		 * for the rx_msdu field, i.e. it is IEEE80211_NUM_TIDS
- 		 * for non-QoS-data frames. Here we know it's a data
- 		 * frame, so count MSDUs.
- 		 */
--		u64_stats_update_begin(&rx->sta->rx_stats.syncp);
--		rx->sta->rx_stats.msdu[rx->seqno_idx]++;
--		u64_stats_update_end(&rx->sta->rx_stats.syncp);
-+		rx_stats = &rx->sta->rx_stats;
-+		if (ieee80211_hw_check(&rx->local->hw, USES_RSS))
-+			rx_stats = this_cpu_ptr(rx->sta->pcpu_rx_stats);
-+		u64_stats_update_begin(&rx_stats->syncp);
-+		rx_stats->msdu[rx->seqno_idx]++;
-+		u64_stats_update_end(&rx_stats->syncp);
- 	}
- 
- 	if ((sdata->vif.type == NL80211_IFTYPE_AP ||
-@@ -4658,3 +4663,203 @@ void ieee80211_rx_irqsafe(struct ieee80211_hw *hw, struct sk_buff *skb)
- 	tasklet_schedule(&local->tasklet);
- }
- EXPORT_SYMBOL(ieee80211_rx_irqsafe);
-+
-+/* Receive path for decap offloaded data frames */
-+
-+static void
-+ieee80211_rx_handle_decap_offl(struct ieee80211_sub_if_data *sdata,
-+			       struct sta_info *sta, struct sk_buff *skb,
-+			       struct napi_struct *napi)
-+{
-+	struct ieee80211_local *local = sdata->local;
-+	struct ieee80211_vif *vif = &sdata->vif;
-+	struct net_device *dev = sdata->dev;
-+	struct ieee80211_rx_status *status;
-+	struct ieee80211_key *key = NULL;
-+	struct ieee80211_rx_data rx;
-+	int i;
-+	struct ethhdr *ehdr;
-+	struct ieee80211_sta_rx_stats *stats = &sta->rx_stats;
-+
-+	ehdr = (struct ethhdr *)skb->data;
-+	status = IEEE80211_SKB_RXCB(skb);
-+
-+	if (ieee80211_hw_check(&local->hw, USES_RSS))
-+		stats = this_cpu_ptr(sta->pcpu_rx_stats);
-+
-+	/* TODO: Extend ieee80211_rx_decap_offl() with bssid so that Ethernet
-+	 * encap/decap can be supported in Adhoc interface type as well.
-+	 * Adhoc interface depends on bssid to update last_rx.
-+	 */
-+	if (vif->type != NL80211_IFTYPE_STATION &&
-+	    vif->type != NL80211_IFTYPE_AP_VLAN &&
-+	    vif->type != NL80211_IFTYPE_AP)
-+		goto drop;
-+
-+	if (unlikely(!test_sta_flag(sta, WLAN_STA_AUTHORIZED))) {
-+		if (ehdr->h_proto != sdata->control_port_protocol)
-+			goto drop;
-+		else if (!ether_addr_equal(ehdr->h_dest, vif->addr) &&
-+			 !ether_addr_equal(ehdr->h_dest, pae_group_addr))
-+			goto drop;
-+	}
-+
-+	if (status->flag & RX_FLAG_80211_MCAST) {
-+		for (i = 0; i < NUM_DEFAULT_KEYS; i++) {
-+			key = rcu_dereference(sta->gtk[i]);
-+			if (key)
-+				break;
-+		}
-+	} else {
-+		key = rcu_dereference(sta->ptk[sta->ptk_idx]);
-+	}
-+
-+	if (key && unlikely(key->flags & KEY_FLAG_TAINTED))
-+		goto drop;
-+
-+	if (status->flag & RX_FLAG_MMIC_ERROR) {
-+		if (key)
-+			key->u.tkip.mic_failures++;
-+		goto mic_fail;
-+	}
-+
-+#define ETH_RX_CRYPT_FLAGS	(RX_FLAG_PN_VALIDATED | RX_FLAG_DECRYPTED)
-+
-+	if (key && (status->flag & ETH_RX_CRYPT_FLAGS) != ETH_RX_CRYPT_FLAGS)
-+		goto drop;
-+
-+	if (!(status->flag & RX_FLAG_DUP_VALIDATED))
-+		goto drop;
-+
-+	I802_DEBUG_INC(local->dot11ReceivedFragmentCount);
-+
-+	if (!(status->flag & RX_FLAG_80211_MCAST)) {
-+		stats->last_rx = jiffies;
-+		stats->last_rate = sta_stats_encode_rate(status);
-+	}
-+
-+	if (sdata->vif.type == NL80211_IFTYPE_STATION &&
-+	    !(status->flag & RX_FLAG_80211_MCAST))
-+		ieee80211_sta_reset_conn_monitor(sdata);
-+
-+	u64_stats_update_begin(&stats->syncp);
-+	stats->fragments++;
-+	stats->packets++;
-+	stats->bytes += skb->len;
-+	u64_stats_update_end(&stats->syncp);
-+
-+	if (!(status->flag & RX_FLAG_NO_SIGNAL_VAL)) {
-+		stats->last_signal = status->signal;
-+		if (!ieee80211_hw_check(&local->hw, USES_RSS))
-+			ewma_signal_add(&sta->rx_stats_avg.signal,
-+					-status->signal);
-+	}
-+
-+	if (status->chains) {
-+		stats->chains = status->chains;
-+		for (i = 0; i < ARRAY_SIZE(status->chain_signal); i++) {
-+			int signal = status->chain_signal[i];
-+
-+			if (!(status->chains & BIT(i)))
-+				continue;
-+
-+			stats->chain_signal_last[i] = signal;
-+			if (!ieee80211_hw_check(&local->hw, USES_RSS))
-+				ewma_signal_add(&sta->rx_stats_avg.chain_signal[i],
-+						-signal);
-+		}
-+	}
-+
-+	if (unlikely(ehdr->h_proto == cpu_to_be16(ETH_P_TDLS))) {
-+		struct ieee80211_tdls_data *tf = (void *)skb->data;
-+
-+		if (pskb_may_pull(skb,
-+				  offsetof(struct ieee80211_tdls_data, u)) &&
-+		    tf->payload_type == WLAN_TDLS_SNAP_RFTYPE &&
-+		    tf->category == WLAN_CATEGORY_TDLS &&
-+		    (tf->action_code == WLAN_TDLS_CHANNEL_SWITCH_REQUEST ||
-+		     tf->action_code == WLAN_TDLS_CHANNEL_SWITCH_RESPONSE)) {
-+			skb_queue_tail(&local->skb_queue_tdls_chsw, skb);
-+			schedule_work(&local->tdls_chsw_work);
-+			return;
-+		}
-+	}
-+
-+	memset(&rx, 0, sizeof(rx));
-+	rx.skb = skb;
-+	rx.sdata = sdata;
-+	rx.local = local;
-+	rx.sta = sta;
-+	rx.napi = napi;
-+
-+	/* Forcing seqno index to -1 so that tid specific stats are
-+	 * not updated in ieee80211_deliver_skb().
-+	 */
-+	rx.seqno_idx = -1;
-+
-+	if (vif->type == NL80211_IFTYPE_AP_VLAN && sdata->bss &&
-+	    unlikely(ehdr->h_proto == sdata->control_port_protocol)) {
-+		sdata = container_of(sdata->bss, struct ieee80211_sub_if_data,
-+				     u.ap);
-+		dev = sdata->dev;
-+		rx.sdata = sdata;
-+	}
-+
-+	rx.skb->dev = dev;
-+
-+	ieee80211_deliver_skb(&rx);
-+
-+	return;
-+
-+mic_fail:
-+
-+	cfg80211_michael_mic_failure(sdata->dev, sta->addr,
-+				     is_multicast_ether_addr(ehdr->h_dest) ?
-+				     NL80211_KEYTYPE_GROUP :
-+				     NL80211_KEYTYPE_PAIRWISE,
-+				     key ? key->conf.keyidx : -1,
-+				     NULL, GFP_ATOMIC);
-+
-+drop:
-+	stats->dropped++;
-+	dev_kfree_skb(skb);
-+}
-+
-+/* Receive path handler that a low level driver supporting 802.11 hdr decap
-+ * offload can call. The frame is in ethernet format and the assumption is
-+ * all necessary operations like decryption, defrag, deaggregation, etc.
-+ * requiring 802.11 headers are already performed in the low level driver
-+ * or hardware.
-+ */
-+void ieee80211_rx_decap_offl(struct ieee80211_hw *hw,
-+			     struct ieee80211_sta *pubsta, struct sk_buff *skb,
-+			     struct napi_struct *napi)
-+{
-+	struct ieee80211_local *local = hw_to_local(hw);
-+	struct sta_info *sta;
-+
-+	if (unlikely(local->quiescing || local->suspended))
-+		goto drop;
-+
-+	if (unlikely(local->in_reconfig))
-+		goto drop;
-+
-+	if (WARN_ON(!local->started))
-+		goto drop;
-+
-+	if (!pubsta)
-+		goto drop;
-+
-+	sta  = container_of(pubsta, struct sta_info, sta);
-+
-+	/* TODO: Toggle Rx throughput LED */
-+
-+	rcu_read_lock();
-+	ieee80211_rx_handle_decap_offl(sta->sdata, sta, skb, napi);
-+	rcu_read_unlock();
-+
-+	return;
-+drop:
-+	kfree_skb(skb);
-+}
-+EXPORT_SYMBOL(ieee80211_rx_decap_offl);
+> Hello,
+>
+> Please check on the use of buf_id on line 3078.  Idr_alloc returns an int,
+> not an unsigned value.
+>
+> julia
+>
+> ---------- Forwarded message ----------
+> Date: Wed, 4 Mar 2020 21:19:46 +0800
+> From: kbuild test robot <lkp@intel.com>
+> To: kbuild@lists.01.org
+> Cc: Julia Lawall <julia.lawall@lip6.fr>
+> Subject: [ath6kl:pending 21/34]
+>     drivers/net/wireless/ath/ath11k/dp_rx.c:3078:5-11: WARNING: Unsigned
+>     expression compared with zero: buf_id < 0
+>
+> CC: kbuild-all@lists.01.org
+> CC: Kalle Valo <kvalo@codeaurora.org>
+> CC: ath10k@lists.infradead.org
+> TO: Manikanta Pubbisetty <mpubbise@codeaurora.org>
+> CC: Kalle Valo <kvalo@codeaurora.org>
+>
+> tree:   https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git pending
+> head:   8098994ce0e3684547d874966af5d4c27c11f855
+> commit: 481e5890884c05226b129e9cae2dca58b22c1a4f [21/34] ath11k: handle RX fragments
+> :::::: branch date: 8 hours ago
+> :::::: commit date: 3 weeks ago
+>
+> If you fix the issue, kindly add following tag
+> Reported-by: kbuild test robot <lkp@intel.com>
+> Reported-by: Julia Lawall <julia.lawall@lip6.fr>
+>
+>>> drivers/net/wireless/ath/ath11k/dp_rx.c:3078:5-11: WARNING:
+> Unsigned expression compared with zero: buf_id < 0
+>
+> #
+> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?id=481e5890884c05226b129e9cae2dca58b22c1a4f
+> git remote add ath6kl https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git
+> git remote update ath6kl
+> git checkout 481e5890884c05226b129e9cae2dca58b22c1a4f
+> vim +3078 drivers/net/wireless/ath/ath11k/dp_rx.c
+>
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3023
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3024 static int
+> ath11k_dp_rx_h_defrag_reo_reinject(struct ath11k *ar, struct dp_rx_tid
+> *rx_tid,
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3025 struct sk_buff
+> *defrag_skb)
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3026  {
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3027  	struct ath11k_base *ab = ar->ab;
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3028  	struct ath11k_pdev_dp *dp = &ar->dp;
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3029 struct
+> dp_rxdma_ring *rx_refill_ring = &dp->rx_refill_buf_ring;
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3030 struct hal_rx_desc
+> *rx_desc = (struct hal_rx_desc *)defrag_skb->data;
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3031 struct
+> hal_reo_entrance_ring *reo_ent_ring;
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3032 struct
+> hal_reo_dest_ring *reo_dest_ring;
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3033 struct
+> dp_link_desc_bank *link_desc_banks;
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3034  	struct hal_rx_msdu_link *msdu_link;
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3035  	struct hal_rx_msdu_details *msdu0;
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3036  	struct hal_srng *srng;
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3037  	dma_addr_t paddr;
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3038  	u32 desc_bank, msdu_info, mpdu_info;
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3039  	u32 dst_idx, buf_id, cookie;
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3040  	u32 *msdu_len_offset;
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3041  	int ret;
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3042
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3043 link_desc_banks =
+> ab->dp.link_desc_banks;
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3044 reo_dest_ring =
+> rx_tid->dst_ring_desc;
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3045
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3046
+> ath11k_hal_rx_reo_ent_paddr_get(ab, reo_dest_ring, &paddr,
+> &desc_bank);
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3047 msdu_link =
+> (struct hal_rx_msdu_link *)(link_desc_banks[desc_bank].vaddr +
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3048 (paddr -
+> link_desc_banks[desc_bank].paddr));
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3049  	msdu0 = &msdu_link->msdu_link[0];
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3050 dst_idx =
+> FIELD_GET(RX_MSDU_DESC_INFO0_REO_DEST_IND, msdu0->rx_msdu_info.info0);
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3051  	memset(msdu0, 0, sizeof(*msdu0));
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3052
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3053 msdu_info =
+> FIELD_PREP(RX_MSDU_DESC_INFO0_FIRST_MSDU_IN_MPDU, 1) |
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3054
+> FIELD_PREP(RX_MSDU_DESC_INFO0_LAST_MSDU_IN_MPDU, 1) |
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3055
+> FIELD_PREP(RX_MSDU_DESC_INFO0_MSDU_CONTINUATION, 0) |
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3056
+> FIELD_PREP(RX_MSDU_DESC_INFO0_MSDU_LENGTH,
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3057 defrag_skb->len -
+> HAL_RX_DESC_SIZE) |
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3058
+> FIELD_PREP(RX_MSDU_DESC_INFO0_REO_DEST_IND, dst_idx) |
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3059
+> FIELD_PREP(RX_MSDU_DESC_INFO0_VALID_SA, 1) |
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3060
+> FIELD_PREP(RX_MSDU_DESC_INFO0_VALID_DA, 1);
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3061
+> msdu0->rx_msdu_info.info0 = msdu_info;
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3062
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3063  	/* change msdu len in hal rx desc */
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3064 msdu_len_offset =
+> (u32 *)&rx_desc->msdu_start;
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3065 *msdu_len_offset
+> &= ~(RX_MSDU_START_INFO1_MSDU_LENGTH);
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3066 *msdu_len_offset
+> |= defrag_skb->len - HAL_RX_DESC_SIZE;
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3067
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3068 paddr =
+> dma_map_single(ab->dev, defrag_skb->data,
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3069 defrag_skb->len +
+> skb_tailroom(defrag_skb),
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3070 DMA_FROM_DEVICE);
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3071 if
+> (dma_mapping_error(ab->dev, paddr))
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3072  		return -ENOMEM;
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3073
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3074
+> spin_lock_bh(&rx_refill_ring->idr_lock);
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3075 buf_id =
+> idr_alloc(&rx_refill_ring->bufs_idr, defrag_skb, 0,
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3076
+> rx_refill_ring->bufs_max * 3, GFP_ATOMIC);
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3077
+> spin_unlock_bh(&rx_refill_ring->idr_lock);
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 @3078  	if (buf_id < 0) {
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3079  		ret = -ENOMEM;
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3080  		goto err_unmap_dma;
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3081  	}
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3082
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3083
+> ATH11K_SKB_RXCB(defrag_skb)->paddr = paddr;
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3084 cookie =
+> FIELD_PREP(DP_RXDMA_BUF_COOKIE_PDEV_ID, dp->mac_id) |
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3085
+> FIELD_PREP(DP_RXDMA_BUF_COOKIE_BUF_ID, buf_id);
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3086
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3087
+> ath11k_hal_rx_buf_addr_info_set(msdu0, paddr, cookie,
+> HAL_RX_BUF_RBM_SW3_BM);
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3088
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3089 /* Fill mpdu
+> details into reo entrace ring */
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3090 srng =
+> &ab->hal.srng_list[ab->dp.reo_reinject_ring.ring_id];
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3091
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3092  	spin_lock_bh(&srng->lock);
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3093
+> ath11k_hal_srng_access_begin(ab, srng);
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3094
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3095 reo_ent_ring =
+> (struct hal_reo_entrance_ring *)
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3096
+> ath11k_hal_srng_src_get_next_entry(ab, srng);
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3097  	if (!reo_ent_ring) {
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3098
+> ath11k_hal_srng_access_end(ab, srng);
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3099  		spin_unlock_bh(&srng->lock);
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3100  		ret = -ENOSPC;
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3101  		goto err_free_idr;
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3102  	}
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3103
+> memset(reo_ent_ring, 0, sizeof(*reo_ent_ring));
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3104
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3105
+> ath11k_hal_rx_reo_ent_paddr_get(ab, reo_dest_ring, &paddr,
+> &desc_bank);
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3106
+> ath11k_hal_rx_buf_addr_info_set(reo_ent_ring, paddr, desc_bank,
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3107
+> HAL_RX_BUF_RBM_WBM_IDLE_DESC_LIST);
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3108
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3109 mpdu_info =
+> FIELD_PREP(RX_MPDU_DESC_INFO0_MSDU_COUNT, 1) |
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3110
+> FIELD_PREP(RX_MPDU_DESC_INFO0_SEQ_NUM, rx_tid->cur_sn) |
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3111
+> FIELD_PREP(RX_MPDU_DESC_INFO0_FRAG_FLAG, 0) |
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3112
+> FIELD_PREP(RX_MPDU_DESC_INFO0_VALID_SA, 1) |
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3113
+> FIELD_PREP(RX_MPDU_DESC_INFO0_VALID_DA, 1) |
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3114
+> FIELD_PREP(RX_MPDU_DESC_INFO0_RAW_MPDU, 1) |
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3115
+> FIELD_PREP(RX_MPDU_DESC_INFO0_VALID_PN, 1);
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3116
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3117
+> reo_ent_ring->rx_mpdu_info.info0 = mpdu_info;
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3118
+> reo_ent_ring->rx_mpdu_info.meta_data =
+> reo_dest_ring->rx_mpdu_info.meta_data;
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3119
+> reo_ent_ring->queue_addr_lo = reo_dest_ring->queue_addr_lo;
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3120
+> reo_ent_ring->info0 =
+> FIELD_PREP(HAL_REO_ENTR_RING_INFO0_QUEUE_ADDR_HI,
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3121
+> FIELD_GET(HAL_REO_DEST_RING_INFO0_QUEUE_ADDR_HI,
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3122
+> reo_dest_ring->info0)) |
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3123
+> FIELD_PREP(HAL_REO_ENTR_RING_INFO0_DEST_IND, dst_idx);
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3124
+> ath11k_hal_srng_access_end(ab, srng);
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3125  	spin_unlock_bh(&srng->lock);
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3126
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3127  	return 0;
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3128
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3129  err_free_idr:
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3130
+> spin_lock_bh(&rx_refill_ring->idr_lock);
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3131
+> idr_remove(&rx_refill_ring->bufs_idr, buf_id);
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3132
+> spin_unlock_bh(&rx_refill_ring->idr_lock);
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3133  err_unmap_dma:
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14 3134
+> dma_unmap_single(ab->dev, paddr, defrag_skb->len +
+> skb_tailroom(defrag_skb),
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3135  			 DMA_FROM_DEVICE);
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3136  	return ret;
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3137  }
+> 481e5890884c05 Manikanta Pubbisetty 2020-02-14  3138
+>
+> ---
+> 0-DAY CI Kernel Test Service, Intel Corporation
+> https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+
 -- 
-2.7.4
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 _______________________________________________
 ath11k mailing list
