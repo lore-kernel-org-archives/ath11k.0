@@ -1,16 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail27.static.mailgun.info ([104.130.122.27])
+Received: from mail26.static.mailgun.info ([104.130.122.26])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jCJ6f-0007xp-Ln
- for ath11k@lists.infradead.org; Thu, 12 Mar 2020 08:22:21 +0000
+ id 1jCNeB-00017A-2d
+ for ath11k@lists.infradead.org; Thu, 12 Mar 2020 13:13:12 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH 1/7] ath11k: Use scnprintf() for avoiding potential buffer
- overflow
+Subject: Re: [PATCHv2 1/2] ath11k: Configure hash based reo destination ring
+ selection
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <20200311084713.18220-2-tiwai@suse.de>
-References: <20200311084713.18220-2-tiwai@suse.de>
-Message-Id: <20200312082208.36F25C433BA@smtp.codeaurora.org>
-Date: Thu, 12 Mar 2020 08:22:08 +0000 (UTC)
+In-Reply-To: <1581908873-14749-2-git-send-email-srirrama@codeaurora.org>
+References: <1581908873-14749-2-git-send-email-srirrama@codeaurora.org>
+Message-Id: <20200312131308.79A0AC432C2@smtp.codeaurora.org>
+Date: Thu, 12 Mar 2020 13:13:08 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,26 +23,37 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Takashi Iwai <tiwai@suse.de>
+To: Sriram R <srirrama@codeaurora.org>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-Takashi Iwai <tiwai@suse.de> wrote:
+Sriram R <srirrama@codeaurora.org> wrote:
 
-> Since snprintf() returns the would-be-output size instead of the
-> actual output size, the succeeding calls may go beyond the given
-> buffer limit.  Fix it by replacing with scnprintf().
+> Current implementation of pdev based reo destination ring
+> selection is replaced by hash based ring selection so as to
+> ensure all the available rings are utilized for better performance.
 > 
-> Cc: ath11k@lists.infradead.org
-> Signed-off-by: Takashi Iwai <tiwai@suse.de>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+> The 4 reo destination rings are selected by the HW based on the
+> hash value computed from the received packet based on the 5 tuple
+> {ip src/ip dst/src port/dst port/protocol}. Out of the 32 hash values
+> used by the hw, the driver assigns 8 values per reo destination ring
+> to each of the 4 reo destination rings.
+> 
+> Signed-off-by: Sriram R <srirrama@codeaurora.org>
 
-2 patches applied to ath-next branch of ath.git, thanks.
+I had some problems in the pending branch and these fail to apply
+now. Please fix the two warnings I reported and rebase.
 
-bc8f237823bc ath11k: Use scnprintf() for avoiding potential buffer overflow
-dfb252c7b680 ath5k: Use scnprintf() for avoiding potential buffer overflow
+error: patch failed: drivers/net/wireless/ath/ath11k/hal.h:850
+error: drivers/net/wireless/ath/ath11k/hal.h: patch does not apply
+stg import: Diff does not apply cleanly
+
+2 patches set to Changes Requested.
+
+11385031 [PATCHv2,1/2] ath11k: Configure hash based reo destination ring selection
+11385033 [PATCHv2,2/2] ath11k: Perform per-msdu rx processing
 
 -- 
-https://patchwork.kernel.org/patch/11431143/
+https://patchwork.kernel.org/patch/11385031/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
