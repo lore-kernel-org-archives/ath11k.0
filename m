@@ -1,15 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jC4WV-0001yT-Oq
- for ath11k@lists.infradead.org; Wed, 11 Mar 2020 16:48:02 +0000
+ id 1jCJ6f-0007xp-Ln
+ for ath11k@lists.infradead.org; Thu, 12 Mar 2020 08:22:21 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 1/2] ath11k: add thermal cooling device support
+Subject: Re: [PATCH 1/7] ath11k: Use scnprintf() for avoiding potential buffer
+ overflow
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1581726322-29658-1-git-send-email-pradeepc@codeaurora.org>
-References: <1581726322-29658-1-git-send-email-pradeepc@codeaurora.org>
-Message-Id: <20200311164757.9A087C432C2@smtp.codeaurora.org>
-Date: Wed, 11 Mar 2020 16:47:57 +0000 (UTC)
+In-Reply-To: <20200311084713.18220-2-tiwai@suse.de>
+References: <20200311084713.18220-2-tiwai@suse.de>
+Message-Id: <20200312082208.36F25C433BA@smtp.codeaurora.org>
+Date: Thu, 12 Mar 2020 08:22:08 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,36 +23,26 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
+To: Takashi Iwai <tiwai@suse.de>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-Pradeep Kumar Chitrapu <pradeepc@codeaurora.org> wrote:
+Takashi Iwai <tiwai@suse.de> wrote:
 
-> Thermal cooling device support is added to control the temperature by
-> throttling the data transmission for the given duration. Throttling is
-> done by suspending all data tx queues by given percentage of time. The
-> thermal device allows user to configure duty cycle.
+> Since snprintf() returns the would-be-output size instead of the
+> actual output size, the succeeding calls may go beyond the given
+> buffer limit.  Fix it by replacing with scnprintf().
 > 
-> Throttling can be disabled by setting the duty cycle to 0. The cooling
-> device can be found under /sys/class/thermal/cooling_deviceX/.
-> Corresponding soft link to this device can be found under phy folder.
-> 
-> /sys/class/ieee80211/phy*/device/cooling_device.
-> 
-> To set duty cycle as 40%,
-> 
-> echo 40 >/sys/class/ieee80211/phy*/device/cooling_device/cur_state
-> 
-> Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
+> Cc: ath11k@lists.infradead.org
+> Signed-off-by: Takashi Iwai <tiwai@suse.de>
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
 2 patches applied to ath-next branch of ath.git, thanks.
 
-2a63bbca06b2 ath11k: add thermal cooling device support
-a41d10348b01 ath11k: add thermal sensor device support
+bc8f237823bc ath11k: Use scnprintf() for avoiding potential buffer overflow
+dfb252c7b680 ath5k: Use scnprintf() for avoiding potential buffer overflow
 
 -- 
-https://patchwork.kernel.org/patch/11383647/
+https://patchwork.kernel.org/patch/11431143/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
