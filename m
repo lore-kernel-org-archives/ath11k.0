@@ -1,16 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail26.static.mailgun.info ([104.130.122.26])
+Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jCNeB-00017A-2d
- for ath11k@lists.infradead.org; Thu, 12 Mar 2020 13:13:12 +0000
+ id 1jCNfL-0001XB-Uu
+ for ath11k@lists.infradead.org; Thu, 12 Mar 2020 13:14:25 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCHv2 1/2] ath11k: Configure hash based reo destination ring
- selection
+Subject: Re: [PATCHv2] ath11k: Supporting RX ring backpressure HTT event and
+ stats handling
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1581908873-14749-2-git-send-email-srirrama@codeaurora.org>
-References: <1581908873-14749-2-git-send-email-srirrama@codeaurora.org>
-Message-Id: <20200312131308.79A0AC432C2@smtp.codeaurora.org>
-Date: Thu, 12 Mar 2020 13:13:08 +0000 (UTC)
+In-Reply-To: <1581909128-14861-1-git-send-email-srirrama@codeaurora.org>
+References: <1581909128-14861-1-git-send-email-srirrama@codeaurora.org>
+Message-Id: <20200312131422.54190C433D2@smtp.codeaurora.org>
+Date: Thu, 12 Mar 2020 13:14:22 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -24,36 +24,34 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Sriram R <srirrama@codeaurora.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+Cc: Vikas Patel <vikpatel@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
 Sriram R <srirrama@codeaurora.org> wrote:
 
-> Current implementation of pdev based reo destination ring
-> selection is replaced by hash based ring selection so as to
-> ensure all the available rings are utilized for better performance.
+> From: Vikas Patel <vikpatel@codeaurora.org>
 > 
-> The 4 reo destination rings are selected by the HW based on the
-> hash value computed from the received packet based on the 5 tuple
-> {ip src/ip dst/src port/dst port/protocol}. Out of the 32 hash values
-> used by the hw, the driver assigns 8 values per reo destination ring
-> to each of the 4 reo destination rings.
+> The Firmware sends HTT event to host whenever there is a
+> backpressure on RX rings, Handling such event and dumping
+> info on the console under the "ATH11K_DBG_DP_HTT"  debug level.
 > 
+> Fetching RX ring backpressure histogram from FW via htt_stats debugfs.
+> 
+>  #echo "24" > /sys/kernel/debug/ath11k/macX/htt_stats_type
+>  #cat /sys/kernel/debug/ath11k/macX/htt_stats
+> 
+> Signed-off-by: Vikas Patel <vikpatel@codeaurora.org>
 > Signed-off-by: Sriram R <srirrama@codeaurora.org>
 
-I had some problems in the pending branch and these fail to apply
-now. Please fix the two warnings I reported and rebase.
+Fails to apply, please rebase.
 
-error: patch failed: drivers/net/wireless/ath/ath11k/hal.h:850
-error: drivers/net/wireless/ath/ath11k/hal.h: patch does not apply
+error: patch failed: drivers/net/wireless/ath/ath11k/dp_rx.c:1330
+error: drivers/net/wireless/ath/ath11k/dp_rx.c: patch does not apply
 stg import: Diff does not apply cleanly
 
-2 patches set to Changes Requested.
-
-11385031 [PATCHv2,1/2] ath11k: Configure hash based reo destination ring selection
-11385033 [PATCHv2,2/2] ath11k: Perform per-msdu rx processing
+Patch set to Changes Requested.
 
 -- 
-https://patchwork.kernel.org/patch/11385031/
+https://patchwork.kernel.org/patch/11385041/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
