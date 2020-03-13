@@ -1,16 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jCNfL-0001XB-Uu
- for ath11k@lists.infradead.org; Thu, 12 Mar 2020 13:14:25 +0000
-MIME-Version: 1.0
-Subject: Re: [PATCHv2] ath11k: Supporting RX ring backpressure HTT event and
- stats handling
-From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1581909128-14861-1-git-send-email-srirrama@codeaurora.org>
-References: <1581909128-14861-1-git-send-email-srirrama@codeaurora.org>
-Message-Id: <20200312131422.54190C433D2@smtp.codeaurora.org>
-Date: Thu, 12 Mar 2020 13:14:22 +0000 (UTC)
+ id 1jCfkD-0001Ju-UG
+ for ath11k@lists.infradead.org; Fri, 13 Mar 2020 08:32:39 +0000
+From: Manikanta Pubbisetty <mpubbise@codeaurora.org>
+Subject: [PATCH v2 0/2] ath11k: offload PN verification to the HW
+Date: Fri, 13 Mar 2020 14:02:21 +0530
+Message-Id: <1584088343-3584-1-git-send-email-mpubbise@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -19,41 +15,47 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Sriram R <srirrama@codeaurora.org>
-Cc: Vikas Patel <vikpatel@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: ath11k@lists.infradead.org
+Cc: Manikanta Pubbisetty <mpubbise@codeaurora.org>, linux-wireless@vger.kernel.org
 
-Sriram R <srirrama@codeaurora.org> wrote:
+This patch series enables PN validation in the HW thereby
+reducing CPU cycles spent in the host CPU. It also is the
+basis for other performance improvement patches that follow
+this series.
 
-> From: Vikas Patel <vikpatel@codeaurora.org>
-> 
-> The Firmware sends HTT event to host whenever there is a
-> backpressure on RX rings, Handling such event and dumping
-> info on the console under the "ATH11K_DBG_DP_HTT"  debug level.
-> 
-> Fetching RX ring backpressure histogram from FW via htt_stats debugfs.
-> 
->  #echo "24" > /sys/kernel/debug/ath11k/macX/htt_stats_type
->  #cat /sys/kernel/debug/ath11k/macX/htt_stats
-> 
-> Signed-off-by: Vikas Patel <vikpatel@codeaurora.org>
-> Signed-off-by: Sriram R <srirrama@codeaurora.org>
+TSC (TKIP sequence counter) validation is also offloaded.
 
-Fails to apply, please rebase.
+Hardware validates PN/TSC only for unicast packets;
+for group addressed packets, PN validation is done
+in mac80211.
 
-error: patch failed: drivers/net/wireless/ath/ath11k/dp_rx.c:1330
-error: drivers/net/wireless/ath/ath11k/dp_rx.c: patch does not apply
-stg import: Diff does not apply cleanly
+v2:
+        - fixed kbuild test robot warnings
 
-Patch set to Changes Requested.
+Manikanta Pubbisetty (2):
+  ath11k: handle RX fragments
+  ath11k: enable PN offload
+
+ drivers/net/wireless/ath/ath11k/Kconfig   |   1 +
+ drivers/net/wireless/ath/ath11k/core.h    |   2 +
+ drivers/net/wireless/ath/ath11k/dp.c      |  12 +-
+ drivers/net/wireless/ath/ath11k/dp.h      |  12 +
+ drivers/net/wireless/ath/ath11k/dp_rx.c   | 870 ++++++++++++++++++++++++++----
+ drivers/net/wireless/ath/ath11k/dp_rx.h   |   8 +-
+ drivers/net/wireless/ath/ath11k/hal.h     |   2 +-
+ drivers/net/wireless/ath/ath11k/hal_rx.c  |  14 +-
+ drivers/net/wireless/ath/ath11k/mac.c     |  41 +-
+ drivers/net/wireless/ath/ath11k/peer.h    |   7 +
+ drivers/net/wireless/ath/ath11k/rx_desc.h |   2 +-
+ 11 files changed, 865 insertions(+), 106 deletions(-)
 
 -- 
-https://patchwork.kernel.org/patch/11385041/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+2.7.4
 
 _______________________________________________
 ath11k mailing list
