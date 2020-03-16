@@ -1,13 +1,19 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail26.static.mailgun.info ([104.130.122.26])
+Received: from mail-pj1-x1041.google.com ([2607:f8b0:4864:20::1041])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jDm3x-0003NV-LI
- for ath11k@lists.infradead.org; Mon, 16 Mar 2020 09:29:35 +0000
-From: Sriram R <srirrama@codeaurora.org>
-Subject: [PATCH v3] ath11k: Supporting RX ring backpressure HTT event and
- stats handling
-Date: Mon, 16 Mar 2020 14:58:40 +0530
-Message-Id: <1584350920-20688-1-git-send-email-srirrama@codeaurora.org>
+ id 1jDx5B-0002TC-6R
+ for ath11k@lists.infradead.org; Mon, 16 Mar 2020 21:15:34 +0000
+Received: by mail-pj1-x1041.google.com with SMTP id q16so1714522pje.1
+ for <ath11k@lists.infradead.org>; Mon, 16 Mar 2020 14:15:30 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200130015905.18610-1-natechancellor@gmail.com>
+ <20200211142431.243E6C433A2@smtp.codeaurora.org>
+In-Reply-To: <20200211142431.243E6C433A2@smtp.codeaurora.org>
+From: Nick Desaulniers <ndesaulniers@google.com>
+Date: Mon, 16 Mar 2020 14:15:17 -0700
+Message-ID: <CAKwvOdkcT6jdFu2Mj5ZKErKmm+MyGAoJ=R_0LatR+_A0j7OtYw@mail.gmail.com>
+Subject: Re: [PATCH] ath11k: Silence clang -Wsometimes-uninitialized in
+ ath11k_update_per_peer_stats_from_txcompl
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -16,225 +22,62 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: Vikas Patel <vikpatel@codeaurora.org>, linux-wireless@vger.kernel.org, Sriram R <srirrama@codeaurora.org>
+To: Kalle Valo <kvalo@codeaurora.org>
+Cc: Network Development <netdev@vger.kernel.org>, linux-wireless@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, clang-built-linux <clang-built-linux@googlegroups.com>, Nathan Chancellor <natechancellor@gmail.com>, CI Notify <ci_notify@linaro.org>, ath11k@lists.infradead.org
 
-The Firmware sends HTT event to host whenever there is a
-backpressure on RX rings, Handling such event and dumping
-info on the console under the "ATH11K_DBG_DP_HTT"  debug level.
+Hi Kalle, I still see this warning in KernelCI builds of linux-next.
+Is ath-next flowing into linux-next?  I just want to triple check that
+this fix gets sent along.
 
-Fetching RX ring backpressure histogram from FW via htt_stats debugfs.
+On Tue, Feb 11, 2020 at 6:24 AM Kalle Valo <kvalo@codeaurora.org> wrote:
+>
+> Nathan Chancellor <natechancellor@gmail.com> wrote:
+>
+> > Clang warns a few times (trimmed for brevity):
+> >
+> > ../drivers/net/wireless/ath/ath11k/debugfs_sta.c:185:7: warning:
+> > variable 'rate_idx' is used uninitialized whenever 'if' condition is
+> > false [-Wsometimes-uninitialized]
+> >
+> > It is not wrong, rate_idx is only initialized in the first if block.
+> > However, this is not necessarily an issue in practice because rate_idx
+> > will only be used when initialized because
+> > ath11k_accumulate_per_peer_tx_stats only uses rate_idx when flags is not
+> > set to RATE_INFO_FLAGS_HE_MCS, RATE_INFO_FLAGS_VHT_MCS, or
+> > RATE_INFO_FLAGS_MCS. Still, it is not good to stick uninitialized values
+> > into another function so initialize it to zero to prevent any issues
+> > down the line.
+> >
+> > Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+> > Link: https://github.com/ClangBuiltLinux/linux/issues/832
+> > Reported-by: ci_notify@linaro.org
+> > Signed-off-by: Nathan Chancellor <natechancellor@gmail.com>
+> > Reviewed-by: Nick Desaulniers <ndesaulniers@google.com>
+> > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+>
+> Patch applied to ath-next branch of ath.git, thanks.
+>
+> df57acc415b1 ath11k: Silence clang -Wsometimes-uninitialized in ath11k_update_per_peer_stats_from_txcompl
+>
+> --
+> https://patchwork.kernel.org/patch/11357331/
+>
+> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+>
+> --
+> You received this message because you are subscribed to the Google Groups "Clang Built Linux" group.
+> To unsubscribe from this group and stop receiving emails from it, send an email to clang-built-linux+unsubscribe@googlegroups.com.
+> To view this discussion on the web visit https://groups.google.com/d/msgid/clang-built-linux/20200211142431.243E6C433A2%40smtp.codeaurora.org.
 
- #echo "24" > /sys/kernel/debug/ath11k/ipq8074/macX/htt_stats_type
- #cat /sys/kernel/debug/ath11k/ipq8074/macX/htt_stats
 
-Signed-off-by: Vikas Patel <vikpatel@codeaurora.org>
-Signed-off-by: Sriram R <srirrama@codeaurora.org>
----
-v3: Rebased on top of master
- drivers/net/wireless/ath/ath11k/debug.h           |  2 ++
- drivers/net/wireless/ath/ath11k/debug_htt_stats.c | 44 +++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/debug_htt_stats.h | 28 +++++++++++++++
- drivers/net/wireless/ath/ath11k/dp.h              |  8 +++++
- drivers/net/wireless/ath/ath11k/dp_rx.c           | 26 ++++++++++++++
- 5 files changed, 108 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/debug.h b/drivers/net/wireless/ath/ath11k/debug.h
-index 427d3ac..97e7306 100644
---- a/drivers/net/wireless/ath/ath11k/debug.h
-+++ b/drivers/net/wireless/ath/ath11k/debug.h
-@@ -53,6 +53,8 @@ enum ath11k_dbg_htt_ext_stats_type {
- 	ATH11K_DBG_HTT_EXT_STATS_TWT_SESSIONS               =  20,
- 	ATH11K_DBG_HTT_EXT_STATS_REO_RESOURCE_STATS         =  21,
- 	ATH11K_DBG_HTT_EXT_STATS_TX_SOUNDING_INFO           =  22,
-+	ATH11K_DBG_HTT_EXT_STATS_PDEV_OBSS_PD_STATS	    =  23,
-+	ATH11K_DBG_HTT_EXT_STATS_RING_BACKPRESSURE_STATS    =  24,
- 
- 	/* keep this last */
- 	ATH11K_DBG_HTT_NUM_EXT_STATS,
-diff --git a/drivers/net/wireless/ath/ath11k/debug_htt_stats.c b/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
-index f44dec8..5db0c27 100644
---- a/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
-+++ b/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
-@@ -3854,6 +3854,47 @@ htt_print_pdev_obss_pd_stats_tlv_v(const void *tag_buf,
- 	stats_req->buf_len = len;
- }
- 
-+static inline void htt_print_backpressure_stats_tlv_v(const u32 *tag_buf,
-+						      u8 *data)
-+{
-+	struct debug_htt_stats_req *stats_req =
-+			(struct debug_htt_stats_req *)data;
-+	struct htt_ring_backpressure_stats_tlv *htt_stats_buf =
-+			(struct htt_ring_backpressure_stats_tlv *)tag_buf;
-+	int i;
-+	u8 *buf = stats_req->buf;
-+	u32 len = stats_req->buf_len;
-+	u32 buf_len = ATH11K_HTT_STATS_BUF_SIZE;
-+
-+	len += HTT_DBG_OUT(buf + len, buf_len - len, "pdev_id = %u",
-+			   htt_stats_buf->pdev_id);
-+	len += HTT_DBG_OUT(buf + len, buf_len - len, "current_head_idx = %u",
-+			   htt_stats_buf->current_head_idx);
-+	len += HTT_DBG_OUT(buf + len, buf_len - len, "current_tail_idx = %u",
-+			   htt_stats_buf->current_tail_idx);
-+	len += HTT_DBG_OUT(buf + len, buf_len - len, "num_htt_msgs_sent = %u",
-+			   htt_stats_buf->num_htt_msgs_sent);
-+	len += HTT_DBG_OUT(buf + len, buf_len - len,
-+			   "backpressure_time_ms = %u",
-+			   htt_stats_buf->backpressure_time_ms);
-+
-+	for (i = 0; i < 5; i++)
-+		len += HTT_DBG_OUT(buf + len, buf_len - len,
-+				   "backpressure_hist_%u = %u",
-+				   i + 1, htt_stats_buf->backpressure_hist[i]);
-+
-+	len += HTT_DBG_OUT(buf + len, buf_len - len,
-+			   "============================");
-+
-+	if (len >= buf_len) {
-+		buf[buf_len - 1] = 0;
-+		stats_req->buf_len = buf_len - 1;
-+	} else {
-+		buf[len] = 0;
-+		stats_req->buf_len = len;
-+	}
-+}
-+
- static inline void htt_htt_stats_debug_dump(const u32 *tag_buf,
- 					    struct debug_htt_stats_req *stats_req)
- {
-@@ -4246,6 +4287,9 @@ static int ath11k_dbg_htt_ext_stats_parse(struct ath11k_base *ab,
- 	case HTT_STATS_PDEV_OBSS_PD_TAG:
- 		htt_print_pdev_obss_pd_stats_tlv_v(tag_buf, stats_req);
- 		break;
-+	case HTT_STATS_RING_BACKPRESSURE_STATS_TAG:
-+		htt_print_backpressure_stats_tlv_v(tag_buf, user_data);
-+		break;
- 	default:
- 		break;
- 	}
-diff --git a/drivers/net/wireless/ath/ath11k/debug_htt_stats.h b/drivers/net/wireless/ath/ath11k/debug_htt_stats.h
-index 4bdb62d..23a6baa 100644
---- a/drivers/net/wireless/ath/ath11k/debug_htt_stats.h
-+++ b/drivers/net/wireless/ath/ath11k/debug_htt_stats.h
-@@ -100,6 +100,8 @@ enum htt_tlv_tag_t {
- 	HTT_STATS_SCHED_TXQ_SCHED_ORDER_SU_TAG              = 86,
- 	HTT_STATS_SCHED_TXQ_SCHED_INELIGIBILITY_TAG         = 87,
- 	HTT_STATS_PDEV_OBSS_PD_TAG                          = 88,
-+	HTT_STATS_HW_WAR_TAG				    = 89,
-+	HTT_STATS_RING_BACKPRESSURE_STATS_TAG		    = 90,
- 
- 	HTT_STATS_MAX_TAG,
- };
-@@ -1659,4 +1661,30 @@ struct htt_pdev_obss_pd_stats_tlv {
- };
- 
- void ath11k_debug_htt_stats_init(struct ath11k *ar);
-+
-+struct htt_ring_backpressure_stats_tlv {
-+	u32 pdev_id;
-+	u32 current_head_idx;
-+	u32 current_tail_idx;
-+	u32 num_htt_msgs_sent;
-+	/* Time in milliseconds for which the ring has been in
-+	 * its current backpressure condition
-+	 */
-+	u32 backpressure_time_ms;
-+	/* backpressure_hist - histogram showing how many times
-+	 * different degrees of backpressure duration occurred:
-+	 * Index 0 indicates the number of times ring was
-+	 * continuously in backpressure state for 100 - 200ms.
-+	 * Index 1 indicates the number of times ring was
-+	 * continuously in backpressure state for 200 - 300ms.
-+	 * Index 2 indicates the number of times ring was
-+	 * continuously in backpressure state for 300 - 400ms.
-+	 * Index 3 indicates the number of times ring was
-+	 * continuously in backpressure state for 400 - 500ms.
-+	 * Index 4 indicates the number of times ring was
-+	 * continuously in backpressure state beyond 500ms.
-+	 */
-+	u32 backpressure_hist[5];
-+};
-+
- #endif
-diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
-index f9b66de..551f9c9 100644
---- a/drivers/net/wireless/ath/ath11k/dp.h
-+++ b/drivers/net/wireless/ath/ath11k/dp.h
-@@ -936,6 +936,7 @@ enum htt_t2h_msg_type {
- 	HTT_T2H_MSG_TYPE_PEER_UNMAP	= 0x1f,
- 	HTT_T2H_MSG_TYPE_PPDU_STATS_IND = 0x1d,
- 	HTT_T2H_MSG_TYPE_EXT_STATS_CONF = 0x1c,
-+	HTT_T2H_MSG_TYPE_BKPRESSURE_EVENT_IND = 0x24,
- };
- 
- #define HTT_TARGET_VERSION_MAJOR 3
-@@ -984,6 +985,13 @@ struct htt_resp_msg {
- 	};
- } __packed;
- 
-+#define HTT_BACKPRESSURE_EVENT_PDEV_ID_M GENMASK(15, 8)
-+#define HTT_BACKPRESSURE_EVENT_RING_TYPE_M GENMASK(23, 16)
-+#define HTT_BACKPRESSURE_EVENT_RING_ID_M GENMASK(31, 24)
-+
-+#define HTT_BACKPRESSURE_EVENT_HP_M GENMASK(15, 0)
-+#define HTT_BACKPRESSURE_EVENT_TP_M GENMASK(31, 16)
-+
- /* ppdu stats
-  *
-  * @details
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index aba2dca..fbb67c9 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -1494,6 +1494,29 @@ static void ath11k_htt_pktlog(struct ath11k_base *ab, struct sk_buff *skb)
- 	trace_ath11k_htt_pktlog(ar, data->payload, hdr->size);
- }
- 
-+static void ath11k_htt_backpressure_event_handler(struct ath11k_base *ab,
-+						  struct sk_buff *skb)
-+{
-+	u32 *data = (u32 *)skb->data;
-+	u8 pdev_id, ring_type, ring_id;
-+	u16 hp, tp;
-+	u32 backpressure_time;
-+
-+	pdev_id = FIELD_GET(HTT_BACKPRESSURE_EVENT_PDEV_ID_M, *data);
-+	ring_type = FIELD_GET(HTT_BACKPRESSURE_EVENT_RING_TYPE_M, *data);
-+	ring_id = FIELD_GET(HTT_BACKPRESSURE_EVENT_RING_ID_M, *data);
-+	++data;
-+
-+	hp = FIELD_GET(HTT_BACKPRESSURE_EVENT_HP_M, *data);
-+	tp = FIELD_GET(HTT_BACKPRESSURE_EVENT_TP_M, *data);
-+	++data;
-+
-+	backpressure_time = *data;
-+
-+	ath11k_dbg(ab, ATH11K_DBG_DP_HTT, "htt backpressure event, pdev %d, ring type %d,ring id %d, hp %d tp %d, backpressure time %d\n",
-+		   pdev_id, ring_type, ring_id, hp, tp, backpressure_time);
-+}
-+
- void ath11k_dp_htt_htc_t2h_msg_handler(struct ath11k_base *ab,
- 				       struct sk_buff *skb)
- {
-@@ -1543,6 +1566,9 @@ void ath11k_dp_htt_htc_t2h_msg_handler(struct ath11k_base *ab,
- 	case HTT_T2H_MSG_TYPE_PKTLOG:
- 		ath11k_htt_pktlog(ab, skb);
- 		break;
-+	case HTT_T2H_MSG_TYPE_BKPRESSURE_EVENT_IND:
-+		ath11k_htt_backpressure_event_handler(ab, skb);
-+		break;
- 	default:
- 		ath11k_warn(ab, "htt event %d not handled\n", type);
- 		break;
 -- 
-2.7.4
+Thanks,
+~Nick Desaulniers
 
 _______________________________________________
 ath11k mailing list
