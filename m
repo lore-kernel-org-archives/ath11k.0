@@ -1,16 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail27.static.mailgun.info ([104.130.122.27])
+Received: from mail26.static.mailgun.info ([104.130.122.26])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jDj67-00054U-Oh
- for ath11k@lists.infradead.org; Mon, 16 Mar 2020 06:19:37 +0000
-MIME-Version: 1.0
-Subject: Re: [PATCH V3 3/4] ath11k: add WMI calls required for handling BSS
- color
-From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <20191217141921.8114-3-john@phrozen.org>
-References: <20191217141921.8114-3-john@phrozen.org>
-Message-Id: <20200316061912.E2F60C433BA@smtp.codeaurora.org>
-Date: Mon, 16 Mar 2020 06:19:12 +0000 (UTC)
+ id 1jDm2l-0003NV-Qs
+ for ath11k@lists.infradead.org; Mon, 16 Mar 2020 09:28:24 +0000
+From: Sriram R <srirrama@codeaurora.org>
+Subject: [PATCHv3 0/2] Support hash based reo destination ring selection 
+Date: Mon, 16 Mar 2020 14:57:42 +0530
+Message-Id: <1584350864-20622-1-git-send-email-srirrama@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -19,29 +15,56 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: John Crispin <john@phrozen.org>
-Cc: Johannes Berg <johannes@sipsolutions.net>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org, Sriram R <srirrama@codeaurora.org>
 
-John Crispin <john@phrozen.org> wrote:
+Currently, reo destination ring selection is based on pdev,
+i.e each pdev is allocated a static reo destintaion ring and
+rx packets for the pdev is always received on the ring.
+This allows use of only 3 out of 4 reo destination rings at the
+max when all pdev's are active and when only one pdev is active
+we utilize only one ring and other 3 rings remain idle.
+To make effective use of all the reo rings, this patchset enables
+hash based reo destination ring selection where the hash is computed
+based on the 5-tuple ( src/dst ip, src/dst port, protocol) info
+from each packet and is used by hw for destination ring selection.
 
-> If the he_operation field of the beacon sets a BSS color, we need to inform
-> the FW of the settings. This patch adds the WMI command handlers required
-> to do so.
-> 
-> Signed-off-by: John Crispin <john@phrozen.org>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+Also, current implementation of amsdu list based processing is replaced
+with per msdu based handling since the received subframe could be
+pushed to different rings after decap based on hash value computed.
 
-There were trivial conflicts in wmi.h and some checkpatch warnings, fixed those
-in the pending branch.
+This patchset is based on patchset "ath11k: offload PN verification to the HW"
+
+v3: Fixed kbuild test bot warnings
+
+Sriram R (2):
+  ath11k: Configure hash based reo destination ring selection
+  ath11k: Perform per-msdu rx processing
+
+ drivers/net/wireless/ath/ath11k/ahb.c    |   5 -
+ drivers/net/wireless/ath/ath11k/core.h   |   5 +-
+ drivers/net/wireless/ath/ath11k/dp.c     |  35 ++-
+ drivers/net/wireless/ath/ath11k/dp.h     |   4 +-
+ drivers/net/wireless/ath/ath11k/dp_rx.c  | 513 +++++++++++++------------------
+ drivers/net/wireless/ath/ath11k/dp_rx.h  |   4 +-
+ drivers/net/wireless/ath/ath11k/dp_tx.c  |   2 +-
+ drivers/net/wireless/ath/ath11k/hal.h    |  12 +-
+ drivers/net/wireless/ath/ath11k/hal_rx.c |  15 +-
+ drivers/net/wireless/ath/ath11k/mac.c    |  12 +-
+ drivers/net/wireless/ath/ath11k/mac.h    |   1 +
+ drivers/net/wireless/ath/ath11k/peer.c   |   3 +
+ drivers/net/wireless/ath/ath11k/peer.h   |   2 +
+ drivers/net/wireless/ath/ath11k/wmi.c    |  35 +++
+ drivers/net/wireless/ath/ath11k/wmi.h    |  13 +
+ 15 files changed, 339 insertions(+), 322 deletions(-)
 
 -- 
-https://patchwork.kernel.org/patch/11297707/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+2.7.4
 
 _______________________________________________
 ath11k mailing list
