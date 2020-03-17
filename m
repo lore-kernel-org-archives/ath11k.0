@@ -1,12 +1,29 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail26.static.mailgun.info ([104.130.122.26])
+Received: from mail-vs1-xe44.google.com ([2607:f8b0:4864:20::e44])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jEAtj-0006KK-9C
- for ath11k@lists.infradead.org; Tue, 17 Mar 2020 12:00:44 +0000
-From: Pravas Kumar Panda <kumarpan@codeaurora.org>
-Subject: [PATCH] ath11k: Adding proper validation before accessing tx_stats
-Date: Tue, 17 Mar 2020 17:29:29 +0530
-Message-Id: <1584446369-7021-1-git-send-email-kumarpan@codeaurora.org>
+ id 1jEEPG-0007YN-2B
+ for ath11k@lists.infradead.org; Tue, 17 Mar 2020 15:45:28 +0000
+Received: by mail-vs1-xe44.google.com with SMTP id 7so14134124vsr.10
+ for <ath11k@lists.infradead.org>; Tue, 17 Mar 2020 08:45:24 -0700 (PDT)
+Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com.
+ [209.85.217.45])
+ by smtp.gmail.com with ESMTPSA id k123sm1466693vkk.52.2020.03.17.08.45.22
+ for <ath11k@lists.infradead.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 17 Mar 2020 08:45:22 -0700 (PDT)
+Received: by mail-vs1-f45.google.com with SMTP id a63so4213869vsa.8
+ for <ath11k@lists.infradead.org>; Tue, 17 Mar 2020 08:45:22 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200103045016.12459-1-wgong@codeaurora.org>
+ <20200105.144704.221506192255563950.davem@davemloft.net>
+ <CAD=FV=WiceRwLUS1sdL_W=ELKYZ9zKE13e8vx9SO0+tRvX74QQ@mail.gmail.com>
+ <20200317102604.GD1130294@kroah.com>
+In-Reply-To: <20200317102604.GD1130294@kroah.com>
+From: Doug Anderson <dianders@chromium.org>
+Date: Tue, 17 Mar 2020 08:45:09 -0700
+Message-ID: <CAD=FV=XXPACnPt=5=7gH3L6DufZ4tLSPTN-AtTAmvi5KAJuP6A@mail.gmail.com>
+Subject: Re: [PATCH v2] net: qrtr: fix len of skb_put_padto in
+ qrtr_node_enqueue
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -15,65 +32,54 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: Pravas Kumar Panda <kumarpan@codeaurora.org>, linux-wireless@vger.kernel.org
+To: Greg KH <greg@kroah.com>
+Cc: netdev <netdev@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>, "stable@vger.kernel.org" <stable@vger.kernel.org>, ath11k@lists.infradead.org, Wen Gong <wgong@codeaurora.org>, David Miller <davem@davemloft.net>
 
-Before dumping tx_stats proper validation was not been taken care of.
-Due to which we were encountering null pointer dereference(kernel panic).
-This scenario will arise when a station is getting disconnected and
-we are changing the STA state by ath11k_mac_op_sta_state and assigning
-tx_stats as NULL and after this the mac80211 will destroy the
-debugfs entry from where we are trying to read the stats.
+Hi,
 
-If anyone tries to dump tx_stats for that STA in between setting
-tx_stats to NULL and debugfs file removal without checking the NULL
-value it will run into a NULL pointer exception.
+On Tue, Mar 17, 2020 at 3:26 AM Greg KH <greg@kroah.com> wrote:
+>
+> On Tue, Feb 25, 2020 at 02:52:24PM -0800, Doug Anderson wrote:
+> > Hi,
+> >
+> >
+> > On Sun, Jan 5, 2020 at 2:47 PM David Miller <davem@davemloft.net> wrote:
+> > >
+> > > From: Wen Gong <wgong@codeaurora.org>
+> > > Date: Fri,  3 Jan 2020 12:50:16 +0800
+> > >
+> > > > The len used for skb_put_padto is wrong, it need to add len of hdr.
+> > >
+> > > Thanks, applied.
+> >
+> > I noticed this patch is in mainline now as:
+> >
+> > ce57785bf91b net: qrtr: fix len of skb_put_padto in qrtr_node_enqueue
+> >
+> > Though I'm not an expert on the code, it feels like a stable candidate
+> > unless someone objects.
+>
+> Stable candidate for what tree(s)?
 
-Proceeding with the analysis of "ARM Kernel Panic".
-The APSS crash happened due to OOPS on CPU 3.
-Crash Signature : Unable to handle kernel NULL pointer dereference at
-virtual address 00000360
-During the crash,
-PC points to "ath11k_debug_htt_stats_init+0x16ac/0x1acc [ath11k]"
-LR points to "ath11k_debug_htt_stats_init+0x1688/0x1acc [ath11k]".
-The Backtrace obtained is as follows:
-[<ffffffbffcfd8590>] ath11k_debug_htt_stats_init+0x16ac/0x1acc [ath11k]
-[<ffffffc000156320>] do_loop_readv_writev+0x60/0xa4
-[<ffffffc000156a5c>] do_readv_writev+0xd8/0x19c
-[<ffffffc000156b54>] vfs_readv+0x34/0x48
-[<ffffffc00017d6f4>] default_file_splice_read+0x1a8/0x2e4
-[<ffffffc00017c56c>] do_splice_to+0x78/0x98
-[<ffffffc00017c63c>] splice_direct_to_actor+0xb0/0x1a4
-[<ffffffc00017c7b4>] do_splice_direct+0x84/0xa8
-[<ffffffc000156f40>] do_sendfile+0x160/0x2a4
-[<ffffffc000157980>] SyS_sendfile64+0xb4/0xc8
+I noticed that it was lacking and applied cleanly on 5.4.  As of
+5.4.25 it's still not stable there.  I only noticed it because I was
+comparing all the patches in mainline in "net/qrtr" with what we had
+in our tree and stumbled upon this one.
 
-Signed-off-by: Pravas Kumar Panda <kumarpan@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/debugfs_sta.c | 3 +++
- 1 file changed, 3 insertions(+)
+Looking at it a little more carefully, I guess you could say:
 
-diff --git a/drivers/net/wireless/ath/ath11k/debugfs_sta.c b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-index 872f3ef..389dac2 100644
---- a/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-+++ b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-@@ -219,6 +219,9 @@ static ssize_t ath11k_dbg_sta_dump_tx_stats(struct file *file,
- 	const int size = 2 * 4096;
- 	char *buf;
- 
-+	if (!arsta->tx_stats)
-+		return -ENOENT;
-+
- 	buf = kzalloc(size, GFP_KERNEL);
- 	if (!buf)
- 		return -ENOMEM;
--- 
-2.7.4
+Fixes: e7044482c8ac ("net: qrtr: Pass source and destination to
+enqueue functions")
+
+...though it will be trickier to apply past commit 194ccc88297a ("net:
+qrtr: Support decoding incoming v2 packets") just because the math
+changed.
+
+-Doug
 
 _______________________________________________
 ath11k mailing list
