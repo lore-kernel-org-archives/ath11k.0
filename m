@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail26.static.mailgun.info ([104.130.122.26])
+Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jE5py-00071n-RI
- for ath11k@lists.infradead.org; Tue, 17 Mar 2020 06:36:28 +0000
+ id 1jE5tg-0008Rw-7t
+ for ath11k@lists.infradead.org; Tue, 17 Mar 2020 06:40:19 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 1/2] ath11k: handle RX fragments
+Subject: Re: [PATCH 2/2] ath11k: set queue_len to 4096
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1584088343-3584-2-git-send-email-mpubbise@codeaurora.org>
-References: <1584088343-3584-2-git-send-email-mpubbise@codeaurora.org>
-Message-Id: <20200317063620.92A1FC433BA@smtp.codeaurora.org>
-Date: Tue, 17 Mar 2020 06:36:20 +0000 (UTC)
+In-Reply-To: <20200211122605.13002-2-john@phrozen.org>
+References: <20200211122605.13002-2-john@phrozen.org>
+Message-Id: <20200317064005.80303C433BA@smtp.codeaurora.org>
+Date: Tue, 17 Mar 2020 06:40:05 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,44 +22,24 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Manikanta Pubbisetty <mpubbise@codeaurora.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: John Crispin <john@phrozen.org>
+Cc: Johannes Berg <johannes@sipsolutions.net>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-Manikanta Pubbisetty <mpubbise@codeaurora.org> wrote:
+John Crispin <john@phrozen.org> wrote:
 
-> IPQ8074 HW has support to verify the PN of the received frames.
-> For all frames except for fragmented ones, HW checks the PN and
-> delivers them to the driver. For fragmented frames, driver is
-> required to do a little more; it has to reassemble the fragments
-> and then reinject them to the HW for verifying the PN. Currently,
-> to keep the logic simple, PN verifcation is disabled in HW and is
-> handled in mac80211 for all the frames (fragmented and unfragmented).
+> The driver currently does not use wake_txq_queue. This leads to the
+> tx_queue_len being defaulted to 1000. Setting this parameter will
+> change the queue_len to 4096 which is more fitting for HE.
 > 
-> On the contrary, offloading PN Validation to the HW brings important
-> benefits. It reduces CPU cycles spent on the host CPU for verifying
-> the same; helps in enabling features which improve performance like
-> mac80211 fast RX path, enabling multiple REO rings for parallel RX
-> processing, 802.11 decapsulation offloading. All these features are
-> dependent on PN offload which in turn is dependent on handling of
-> the received fragments in the driver.
-> 
-> When TKIP security is used, additional handling is required while
-> processing the fragments; since MIC is computed on an MSDU in TKIP,
-> only the last fragment has the MIC info. In this case, driver has to
-> compute the MIC after reassembly and compare it against the MIC
-> present in the frame. For this, MICHAEL_MIC kernel crypto library
-> APIs are used and the dependencies are appropriately set.
-> 
-> Signed-off-by: Manikanta Pubbisetty <mpubbise@codeaurora.org>
+> Signed-off-by: John Crispin <john@phrozen.org>
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-2 patches applied to ath-next branch of ath.git, thanks.
+Patch applied to ath-next branch of ath.git, thanks.
 
-243874c64c81 ath11k: handle RX fragments
-1441b2f205a7 ath11k: enable PN offload
+107560d847e6 ath11k: set queue_len to 4096
 
 -- 
-https://patchwork.kernel.org/patch/11436249/
+https://patchwork.kernel.org/patch/11375351/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
