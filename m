@@ -1,15 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jE5tg-0008Rw-7t
- for ath11k@lists.infradead.org; Tue, 17 Mar 2020 06:40:19 +0000
+ id 1jE5yH-00009h-34
+ for ath11k@lists.infradead.org; Tue, 17 Mar 2020 06:45:02 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH 2/2] ath11k: set queue_len to 4096
+Subject: Re: [PATCH V3 3/4] ath11k: add WMI calls required for handling BSS
+ color
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <20200211122605.13002-2-john@phrozen.org>
-References: <20200211122605.13002-2-john@phrozen.org>
-Message-Id: <20200317064005.80303C433BA@smtp.codeaurora.org>
-Date: Tue, 17 Mar 2020 06:40:05 +0000 (UTC)
+In-Reply-To: <20191217141921.8114-3-john@phrozen.org>
+References: <20191217141921.8114-3-john@phrozen.org>
+Message-Id: <20200317064500.9F973C433BA@smtp.codeaurora.org>
+Date: Tue, 17 Mar 2020 06:45:00 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -27,19 +28,20 @@ Cc: Johannes Berg <johannes@sipsolutions.net>, linux-wireless@vger.kernel.org, a
 
 John Crispin <john@phrozen.org> wrote:
 
-> The driver currently does not use wake_txq_queue. This leads to the
-> tx_queue_len being defaulted to 1000. Setting this parameter will
-> change the queue_len to 4096 which is more fitting for HE.
+> If the he_operation field of the beacon sets a BSS color, we need to inform
+> the FW of the settings. This patch adds the WMI command handlers required
+> to do so.
 > 
 > Signed-off-by: John Crispin <john@phrozen.org>
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-Patch applied to ath-next branch of ath.git, thanks.
+2 patches applied to ath-next branch of ath.git, thanks.
 
-107560d847e6 ath11k: set queue_len to 4096
+5a032c8d1953 ath11k: add WMI calls required for handling BSS color
+beb2f77297b0 ath11k: add handling for BSS color
 
 -- 
-https://patchwork.kernel.org/patch/11375351/
+https://patchwork.kernel.org/patch/11297707/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
