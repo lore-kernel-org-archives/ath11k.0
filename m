@@ -1,16 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail27.static.mailgun.info ([104.130.122.27])
+Received: from mail26.static.mailgun.info ([104.130.122.26])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jE5yH-00009h-34
- for ath11k@lists.infradead.org; Tue, 17 Mar 2020 06:45:02 +0000
+ id 1jE7OU-0006Y8-HR
+ for ath11k@lists.infradead.org; Tue, 17 Mar 2020 08:16:12 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH V3 3/4] ath11k: add WMI calls required for handling BSS
- color
+Subject: Re: [PATCHv3 1/2] ath11k: Configure hash based reo destination ring
+ selection
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <20191217141921.8114-3-john@phrozen.org>
-References: <20191217141921.8114-3-john@phrozen.org>
-Message-Id: <20200317064500.9F973C433BA@smtp.codeaurora.org>
-Date: Tue, 17 Mar 2020 06:45:00 +0000 (UTC)
+In-Reply-To: <1584350864-20622-2-git-send-email-srirrama@codeaurora.org>
+References: <1584350864-20622-2-git-send-email-srirrama@codeaurora.org>
+Message-Id: <20200317081605.21077C432C2@smtp.codeaurora.org>
+Date: Tue, 17 Mar 2020 08:16:05 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,25 +23,36 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: John Crispin <john@phrozen.org>
-Cc: Johannes Berg <johannes@sipsolutions.net>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: Sriram R <srirrama@codeaurora.org>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-John Crispin <john@phrozen.org> wrote:
+Sriram R <srirrama@codeaurora.org> wrote:
 
-> If the he_operation field of the beacon sets a BSS color, we need to inform
-> the FW of the settings. This patch adds the WMI command handlers required
-> to do so.
+> Current implementation of pdev based reo destination ring
+> selection is replaced by hash based ring selection so as to
+> ensure all the available rings are utilized for better performance.
 > 
-> Signed-off-by: John Crispin <john@phrozen.org>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+> The 4 reo destination rings are selected by the HW based on the
+> hash value computed from the received packet based on the 5 tuple
+> {ip src/ip dst/src port/dst port/protocol}. Out of the 32 hash values
+> used by the hw, the driver assigns 8 values per reo destination ring
+> to each of the 4 reo destination rings.
+> 
+> Signed-off-by: Sriram R <srirrama@codeaurora.org>
 
-2 patches applied to ath-next branch of ath.git, thanks.
+Failed to apply, please rebase.
 
-5a032c8d1953 ath11k: add WMI calls required for handling BSS color
-beb2f77297b0 ath11k: add handling for BSS color
+error: patch failed: drivers/net/wireless/ath/ath11k/wmi.h:4620
+error: drivers/net/wireless/ath/ath11k/wmi.h: patch does not apply
+stg import: Diff does not apply cleanly
+
+2 patches set to Changes Requested.
+
+11439997 [PATCHv3,1/2] ath11k: Configure hash based reo destination ring selection
+11440005 [PATCHv3,2/2] ath11k: Perform per-msdu rx processing
 
 -- 
-https://patchwork.kernel.org/patch/11297707/
+https://patchwork.kernel.org/patch/11439997/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
