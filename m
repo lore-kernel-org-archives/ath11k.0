@@ -1,19 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail-pj1-x1041.google.com ([2607:f8b0:4864:20::1041])
+Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jDx5B-0002TC-6R
- for ath11k@lists.infradead.org; Mon, 16 Mar 2020 21:15:34 +0000
-Received: by mail-pj1-x1041.google.com with SMTP id q16so1714522pje.1
- for <ath11k@lists.infradead.org>; Mon, 16 Mar 2020 14:15:30 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200130015905.18610-1-natechancellor@gmail.com>
- <20200211142431.243E6C433A2@smtp.codeaurora.org>
-In-Reply-To: <20200211142431.243E6C433A2@smtp.codeaurora.org>
-From: Nick Desaulniers <ndesaulniers@google.com>
-Date: Mon, 16 Mar 2020 14:15:17 -0700
-Message-ID: <CAKwvOdkcT6jdFu2Mj5ZKErKmm+MyGAoJ=R_0LatR+_A0j7OtYw@mail.gmail.com>
-Subject: Re: [PATCH] ath11k: Silence clang -Wsometimes-uninitialized in
- ath11k_update_per_peer_stats_from_txcompl
+ id 1jE3go-0004hD-Fl
+ for ath11k@lists.infradead.org; Tue, 17 Mar 2020 04:18:53 +0000
+From: Venkateswara Naralasetty <vnaralas@codeaurora.org>
+Subject: [PATCH] ath11k: fill channel info from rx channel
+Date: Tue, 17 Mar 2020 09:48:18 +0530
+Message-Id: <1584418698-19505-1-git-send-email-vnaralas@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,62 +15,45 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: Network Development <netdev@vger.kernel.org>, linux-wireless@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, clang-built-linux <clang-built-linux@googlegroups.com>, Nathan Chancellor <natechancellor@gmail.com>, CI Notify <ci_notify@linaro.org>, ath11k@lists.infradead.org
+To: ath11k@lists.infradead.org
+Cc: Venkateswara Naralasetty <vnaralas@codeaurora.org>, linux-wireless@vger.kernel.org
 
-Hi Kalle, I still see this warning in KernelCI builds of linux-next.
-Is ath-next flowing into linux-next?  I just want to triple check that
-this fix gets sent along.
+Fill the channel information from rx channel for the packet
+which has invalid channel info from meta data.
 
-On Tue, Feb 11, 2020 at 6:24 AM Kalle Valo <kvalo@codeaurora.org> wrote:
->
-> Nathan Chancellor <natechancellor@gmail.com> wrote:
->
-> > Clang warns a few times (trimmed for brevity):
-> >
-> > ../drivers/net/wireless/ath/ath11k/debugfs_sta.c:185:7: warning:
-> > variable 'rate_idx' is used uninitialized whenever 'if' condition is
-> > false [-Wsometimes-uninitialized]
-> >
-> > It is not wrong, rate_idx is only initialized in the first if block.
-> > However, this is not necessarily an issue in practice because rate_idx
-> > will only be used when initialized because
-> > ath11k_accumulate_per_peer_tx_stats only uses rate_idx when flags is not
-> > set to RATE_INFO_FLAGS_HE_MCS, RATE_INFO_FLAGS_VHT_MCS, or
-> > RATE_INFO_FLAGS_MCS. Still, it is not good to stick uninitialized values
-> > into another function so initialize it to zero to prevent any issues
-> > down the line.
-> >
-> > Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
-> > Link: https://github.com/ClangBuiltLinux/linux/issues/832
-> > Reported-by: ci_notify@linaro.org
-> > Signed-off-by: Nathan Chancellor <natechancellor@gmail.com>
-> > Reviewed-by: Nick Desaulniers <ndesaulniers@google.com>
-> > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
->
-> Patch applied to ath-next branch of ath.git, thanks.
->
-> df57acc415b1 ath11k: Silence clang -Wsometimes-uninitialized in ath11k_update_per_peer_stats_from_txcompl
->
-> --
-> https://patchwork.kernel.org/patch/11357331/
->
-> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
->
-> --
-> You received this message because you are subscribed to the Google Groups "Clang Built Linux" group.
-> To unsubscribe from this group and stop receiving emails from it, send an email to clang-built-linux+unsubscribe@googlegroups.com.
-> To view this discussion on the web visit https://groups.google.com/d/msgid/clang-built-linux/20200211142431.243E6C433A2%40smtp.codeaurora.org.
+Signed-off-by: Venkateswara Naralasetty <vnaralas@codeaurora.org>
+---
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
 
-
-
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index dc7881b..034e6f21 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -1998,9 +1998,13 @@ static void ath11k_dp_rx_h_ppdu(struct ath11k *ar, struct hal_rx_desc *rx_desc,
+ 	} else if (channel_num >= 36 && channel_num <= 173) {
+ 		rx_status->band = NL80211_BAND_5GHZ;
+ 	} else {
+-		ath11k_warn(ar->ab, "Unsupported Channel info received %d\n",
+-			    channel_num);
+-		return;
++		spin_lock_bh(&ar->data_lock);
++		rx_status->band = ar->rx_channel->band;
++		channel_num =
++			ieee80211_frequency_to_channel(ar->rx_channel->center_freq);
++		spin_unlock_bh(&ar->data_lock);
++		ath11k_dbg_dump(ar->ab, ATH11K_DBG_DATA, NULL, "rx_desc: ",
++				rx_desc, sizeof(struct hal_rx_desc));
+ 	}
+ 
+ 	rx_status->freq = ieee80211_channel_to_frequency(channel_num,
 -- 
-Thanks,
-~Nick Desaulniers
+2.7.4
 
 _______________________________________________
 ath11k mailing list
