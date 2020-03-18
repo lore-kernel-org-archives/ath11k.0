@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail26.static.mailgun.info ([104.130.122.26])
+Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jEXF0-0005u6-Ue
- for ath11k@lists.infradead.org; Wed, 18 Mar 2020 11:52:11 +0000
+ id 1jEXG8-0006n0-Ai
+ for ath11k@lists.infradead.org; Wed, 18 Mar 2020 11:53:25 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: dump SRNG stats during FW assert
+Subject: Re: [PATCH] ath11k: Adding proper validation before accessing tx_stats
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1584437534-7521-1-git-send-email-mpubbise@codeaurora.org>
-References: <1584437534-7521-1-git-send-email-mpubbise@codeaurora.org>
-Message-Id: <20200318115158.7C9A6C43637@smtp.codeaurora.org>
-Date: Wed, 18 Mar 2020 11:51:58 +0000 (UTC)
+In-Reply-To: <1584446369-7021-1-git-send-email-kumarpan@codeaurora.org>
+References: <1584446369-7021-1-git-send-email-kumarpan@codeaurora.org>
+Message-Id: <20200318115311.00323C44795@smtp.codeaurora.org>
+Date: Wed, 18 Mar 2020 11:53:10 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,25 +22,50 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Manikanta Pubbisetty <mpubbise@codeaurora.org>
-Cc: Karthikeyan Periyasamy <periyasa@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: Pravas Kumar Panda <kumarpan@codeaurora.org>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-Manikanta Pubbisetty <mpubbise@codeaurora.org> wrote:
+Pravas Kumar Panda <kumarpan@codeaurora.org> wrote:
 
-> Dumping the SRNG stats during FW assert, this would help
-> in debugging ring stuck issues.
+> Before dumping tx_stats proper validation was not been taken care of.
+> Due to which we were encountering null pointer dereference(kernel panic).
+> This scenario will arise when a station is getting disconnected and
+> we are changing the STA state by ath11k_mac_op_sta_state and assigning
+> tx_stats as NULL and after this the mac80211 will destroy the
+> debugfs entry from where we are trying to read the stats.
 > 
-> Co-developed-by: Karthikeyan Periyasamy <periyasa@codeaurora.org>
-> Signed-off-by: Karthikeyan Periyasamy <periyasa@codeaurora.org>
-> Signed-off-by: Manikanta Pubbisetty <mpubbise@codeaurora.org>
+> If anyone tries to dump tx_stats for that STA in between setting
+> tx_stats to NULL and debugfs file removal without checking the NULL
+> value it will run into a NULL pointer exception.
+> 
+> Proceeding with the analysis of "ARM Kernel Panic".
+> The APSS crash happened due to OOPS on CPU 3.
+> Crash Signature : Unable to handle kernel NULL pointer dereference at
+> virtual address 00000360
+> During the crash,
+> PC points to "ath11k_debug_htt_stats_init+0x16ac/0x1acc [ath11k]"
+> LR points to "ath11k_debug_htt_stats_init+0x1688/0x1acc [ath11k]".
+> The Backtrace obtained is as follows:
+> [<ffffffbffcfd8590>] ath11k_debug_htt_stats_init+0x16ac/0x1acc [ath11k]
+> [<ffffffc000156320>] do_loop_readv_writev+0x60/0xa4
+> [<ffffffc000156a5c>] do_readv_writev+0xd8/0x19c
+> [<ffffffc000156b54>] vfs_readv+0x34/0x48
+> [<ffffffc00017d6f4>] default_file_splice_read+0x1a8/0x2e4
+> [<ffffffc00017c56c>] do_splice_to+0x78/0x98
+> [<ffffffc00017c63c>] splice_direct_to_actor+0xb0/0x1a4
+> [<ffffffc00017c7b4>] do_splice_direct+0x84/0xa8
+> [<ffffffc000156f40>] do_sendfile+0x160/0x2a4
+> [<ffffffc000157980>] SyS_sendfile64+0xb4/0xc8
+> 
+> Signed-off-by: Pravas Kumar Panda <kumarpan@codeaurora.org>
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
 Patch applied to ath-next branch of ath.git, thanks.
 
-5118935b1bc2 ath11k: dump SRNG stats during FW assert
+fe0ebb51604f ath11k: Adding proper validation before accessing tx_stats
 
 -- 
-https://patchwork.kernel.org/patch/11442081/
+https://patchwork.kernel.org/patch/11442613/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
