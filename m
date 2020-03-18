@@ -1,29 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail-vs1-xe44.google.com ([2607:f8b0:4864:20::e44])
+Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jEEPG-0007YN-2B
- for ath11k@lists.infradead.org; Tue, 17 Mar 2020 15:45:28 +0000
-Received: by mail-vs1-xe44.google.com with SMTP id 7so14134124vsr.10
- for <ath11k@lists.infradead.org>; Tue, 17 Mar 2020 08:45:24 -0700 (PDT)
-Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com.
- [209.85.217.45])
- by smtp.gmail.com with ESMTPSA id k123sm1466693vkk.52.2020.03.17.08.45.22
- for <ath11k@lists.infradead.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 17 Mar 2020 08:45:22 -0700 (PDT)
-Received: by mail-vs1-f45.google.com with SMTP id a63so4213869vsa.8
- for <ath11k@lists.infradead.org>; Tue, 17 Mar 2020 08:45:22 -0700 (PDT)
+ id 1jEX93-0002Do-74
+ for ath11k@lists.infradead.org; Wed, 18 Mar 2020 11:46:01 +0000
 MIME-Version: 1.0
-References: <20200103045016.12459-1-wgong@codeaurora.org>
- <20200105.144704.221506192255563950.davem@davemloft.net>
- <CAD=FV=WiceRwLUS1sdL_W=ELKYZ9zKE13e8vx9SO0+tRvX74QQ@mail.gmail.com>
- <20200317102604.GD1130294@kroah.com>
-In-Reply-To: <20200317102604.GD1130294@kroah.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Tue, 17 Mar 2020 08:45:09 -0700
-Message-ID: <CAD=FV=XXPACnPt=5=7gH3L6DufZ4tLSPTN-AtTAmvi5KAJuP6A@mail.gmail.com>
-Subject: Re: [PATCH v2] net: qrtr: fix len of skb_put_padto in
- qrtr_node_enqueue
+Subject: Re: [PATCH v3] ath11k: Supporting RX ring backpressure HTT event and
+ stats handling
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <1584350920-20688-1-git-send-email-srirrama@codeaurora.org>
+References: <1584350920-20688-1-git-send-email-srirrama@codeaurora.org>
+Message-Id: <20200318114546.B8411C433BA@smtp.codeaurora.org>
+Date: Wed, 18 Mar 2020 11:45:46 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -36,50 +23,32 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Greg KH <greg@kroah.com>
-Cc: netdev <netdev@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>, "stable@vger.kernel.org" <stable@vger.kernel.org>, ath11k@lists.infradead.org, Wen Gong <wgong@codeaurora.org>, David Miller <davem@davemloft.net>
+To: Sriram R <srirrama@codeaurora.org>
+Cc: Vikas Patel <vikpatel@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-Hi,
+Sriram R <srirrama@codeaurora.org> wrote:
 
-On Tue, Mar 17, 2020 at 3:26 AM Greg KH <greg@kroah.com> wrote:
->
-> On Tue, Feb 25, 2020 at 02:52:24PM -0800, Doug Anderson wrote:
-> > Hi,
-> >
-> >
-> > On Sun, Jan 5, 2020 at 2:47 PM David Miller <davem@davemloft.net> wrote:
-> > >
-> > > From: Wen Gong <wgong@codeaurora.org>
-> > > Date: Fri,  3 Jan 2020 12:50:16 +0800
-> > >
-> > > > The len used for skb_put_padto is wrong, it need to add len of hdr.
-> > >
-> > > Thanks, applied.
-> >
-> > I noticed this patch is in mainline now as:
-> >
-> > ce57785bf91b net: qrtr: fix len of skb_put_padto in qrtr_node_enqueue
-> >
-> > Though I'm not an expert on the code, it feels like a stable candidate
-> > unless someone objects.
->
-> Stable candidate for what tree(s)?
+> The Firmware sends HTT event to host whenever there is a
+> backpressure on RX rings, Handling such event and dumping
+> info on the console under the "ATH11K_DBG_DP_HTT"  debug level.
+> 
+> Fetching RX ring backpressure histogram from FW via htt_stats debugfs.
+> 
+>  #echo "24" > /sys/kernel/debug/ath11k/ipq8074/macX/htt_stats_type
+>  #cat /sys/kernel/debug/ath11k/ipq8074/macX/htt_stats
+> 
+> Signed-off-by: Vikas Patel <vikpatel@codeaurora.org>
+> Signed-off-by: Sriram R <srirrama@codeaurora.org>
+> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-I noticed that it was lacking and applied cleanly on 5.4.  As of
-5.4.25 it's still not stable there.  I only noticed it because I was
-comparing all the patches in mainline in "net/qrtr" with what we had
-in our tree and stumbled upon this one.
+Patch applied to ath-next branch of ath.git, thanks.
 
-Looking at it a little more carefully, I guess you could say:
+678e8414bf4e ath11k: Supporting RX ring backpressure HTT event and stats handling
 
-Fixes: e7044482c8ac ("net: qrtr: Pass source and destination to
-enqueue functions")
+-- 
+https://patchwork.kernel.org/patch/11440011/
 
-...though it will be trickier to apply past commit 194ccc88297a ("net:
-qrtr: Support decoding incoming v2 packets") just because the math
-changed.
-
--Doug
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 _______________________________________________
 ath11k mailing list
