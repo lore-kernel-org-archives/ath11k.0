@@ -1,16 +1,21 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail26.static.mailgun.info ([104.130.122.26])
+Received: from out2-smtp.messagingengine.com ([66.111.4.26])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jEXHM-00088k-0E
- for ath11k@lists.infradead.org; Wed, 18 Mar 2020 11:54:34 +0000
+ id 1jEptD-0005eP-7z
+ for ath11k@lists.infradead.org; Thu, 19 Mar 2020 07:46:52 +0000
+Date: Thu, 19 Mar 2020 08:46:34 +0100
+From: Greg KH <greg@kroah.com>
+Subject: Re: [PATCH v2] net: qrtr: fix len of skb_put_padto in
+ qrtr_node_enqueue
+Message-ID: <20200319074634.GA3421780@kroah.com>
+References: <20200103045016.12459-1-wgong@codeaurora.org>
+ <20200105.144704.221506192255563950.davem@davemloft.net>
+ <CAD=FV=WiceRwLUS1sdL_W=ELKYZ9zKE13e8vx9SO0+tRvX74QQ@mail.gmail.com>
+ <20200317102604.GD1130294@kroah.com>
+ <CAD=FV=XXPACnPt=5=7gH3L6DufZ4tLSPTN-AtTAmvi5KAJuP6A@mail.gmail.com>
 MIME-Version: 1.0
-Subject: Re: [PATCHv4 1/2] ath11k: Configure hash based reo destination ring
- selection
-From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1584445023-17384-2-git-send-email-srirrama@codeaurora.org>
-References: <1584445023-17384-2-git-send-email-srirrama@codeaurora.org>
-Message-Id: <20200318115429.7F11CC432C2@smtp.codeaurora.org>
-Date: Wed, 18 Mar 2020 11:54:29 +0000 (UTC)
+Content-Disposition: inline
+In-Reply-To: <CAD=FV=XXPACnPt=5=7gH3L6DufZ4tLSPTN-AtTAmvi5KAJuP6A@mail.gmail.com>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,33 +28,56 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Sriram R <srirrama@codeaurora.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: Doug Anderson <dianders@chromium.org>
+Cc: netdev <netdev@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>, "stable@vger.kernel.org" <stable@vger.kernel.org>, ath11k@lists.infradead.org, Wen Gong <wgong@codeaurora.org>, David Miller <davem@davemloft.net>
 
-Sriram R <srirrama@codeaurora.org> wrote:
-
-> Current implementation of pdev based reo destination ring
-> selection is replaced by hash based ring selection so as to
-> ensure all the available rings are utilized for better performance.
+On Tue, Mar 17, 2020 at 08:45:09AM -0700, Doug Anderson wrote:
+> Hi,
 > 
-> The 4 reo destination rings are selected by the HW based on the
-> hash value computed from the received packet based on the 5 tuple
-> {ip src/ip dst/src port/dst port/protocol}. Out of the 32 hash values
-> used by the hw, the driver assigns 8 values per reo destination ring
-> to each of the 4 reo destination rings.
+> On Tue, Mar 17, 2020 at 3:26 AM Greg KH <greg@kroah.com> wrote:
+> >
+> > On Tue, Feb 25, 2020 at 02:52:24PM -0800, Doug Anderson wrote:
+> > > Hi,
+> > >
+> > >
+> > > On Sun, Jan 5, 2020 at 2:47 PM David Miller <davem@davemloft.net> wrote:
+> > > >
+> > > > From: Wen Gong <wgong@codeaurora.org>
+> > > > Date: Fri,  3 Jan 2020 12:50:16 +0800
+> > > >
+> > > > > The len used for skb_put_padto is wrong, it need to add len of hdr.
+> > > >
+> > > > Thanks, applied.
+> > >
+> > > I noticed this patch is in mainline now as:
+> > >
+> > > ce57785bf91b net: qrtr: fix len of skb_put_padto in qrtr_node_enqueue
+> > >
+> > > Though I'm not an expert on the code, it feels like a stable candidate
+> > > unless someone objects.
+> >
+> > Stable candidate for what tree(s)?
 > 
-> Signed-off-by: Sriram R <srirrama@codeaurora.org>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+> I noticed that it was lacking and applied cleanly on 5.4.  As of
+> 5.4.25 it's still not stable there.  I only noticed it because I was
+> comparing all the patches in mainline in "net/qrtr" with what we had
+> in our tree and stumbled upon this one.
+> 
+> Looking at it a little more carefully, I guess you could say:
+> 
+> Fixes: e7044482c8ac ("net: qrtr: Pass source and destination to
+> enqueue functions")
+> 
+> ...though it will be trickier to apply past commit 194ccc88297a ("net:
+> qrtr: Support decoding incoming v2 packets") just because the math
+> changed.
 
-2 patches applied to ath-next branch of ath.git, thanks.
+Given that both of those commits showed up in 4.15, it doesn't matter
+much :)
 
-26c79927f123 ath11k: Configure hash based reo destination ring selection
-acc79d981c14 ath11k: Perform per-msdu rx processing
+I've queued this up for 5.4.y and 4.19.y now, thanks.
 
--- 
-https://patchwork.kernel.org/patch/11442547/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+greg k-h
 
 _______________________________________________
 ath11k mailing list
