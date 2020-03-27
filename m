@@ -1,17 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail26.static.mailgun.info ([104.130.122.26])
+Received: from youngberry.canonical.com ([91.189.89.112])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jHgfy-0008TT-LN
- for ath11k@lists.infradead.org; Fri, 27 Mar 2020 04:33:00 +0000
+ id 1jHucx-00051P-7d
+ for ath11k@lists.infradead.org; Fri, 27 Mar 2020 19:26:49 +0000
+From: Colin King <colin.king@canonical.com>
+Subject: [PATCH][next] ath11k: fix error message to correctly report the
+ command that failed
+Date: Fri, 27 Mar 2020 19:26:39 +0000
+Message-Id: <20200327192639.363354-1-colin.king@canonical.com>
 MIME-Version: 1.0
-Date: Fri, 27 Mar 2020 10:02:54 +0530
-From: Maharaja Kennadyrajan <mkenna@codeaurora.org>
-Subject: Re: [PATCH] ath11k: add pktlog checksum in trace events to support
- pktlog
-In-Reply-To: <87k137oykt.fsf@tynnyri.adurom.net>
-References: <1585234155-30574-1-git-send-email-mkenna@codeaurora.org>
- <87k137oykt.fsf@tynnyri.adurom.net>
-Message-ID: <24d78270e4df4a336e4b9989415af7e1@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -20,40 +17,41 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: Kalle Valo <kvalo@codeaurora.org>, "David S . Miller" <davem@davemloft.net>, John Crispin <john@phrozen.org>, ath11k@lists.infradead.org, linux-wireless@vger.kernel.org, netdev@vger.kernel.org
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 
-On 2020-03-26 22:14, Kalle Valo wrote:
-> Maharaja Kennadyrajan <mkenna@codeaurora.org> writes:
-> 
->> Pktlog data are different among the chipset & chipset versions.
->> As part of enhancing the user space script to decode the pktlog
->> trace events generated, it is desirable to know which chipset or
->> which chipset version has provided the events and thereby decode
->> the pktlogs appropriately.
->> 
->> Pktlog checksum helps to determine the chipset variant which is
->> given by the firmware in the struct wmi_ready_event.
->> 
->> Pktlog checksums are computed during the firmware build.
->> So, adding that pktlog checksum in the pklog trace events.
->> 
->> Signed-off-by: Maharaja Kennadyrajan <mkenna@codeaurora.org>
-> 
-> When you send a new version please always increase the version number
-> (in this case this should be v2), even if just the email address has
-> changed. That way I can immediately see which version to take.
-> 
-> But no need to resend just because of this.
+From: Colin Ian King <colin.king@canonical.com>
 
-[Maha]: Sure Kalle. Got it. Thanks for the clarification.
+Currently the error message refers to the command WMI_TWT_DIeABLE_CMDID
+which looks like a cut-n-paste mangled typo. Fix the message to match
+the command WMI_BSS_COLOR_CHANGE_ENABLE_CMDID that failed.
 
-Regards,
-Maha
+Fixes: 5a032c8d1953 ("ath11k: add WMI calls required for handling BSS color")
+Signed-off-by: Colin Ian King <colin.king@canonical.com>
+---
+ drivers/net/wireless/ath/ath11k/wmi.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index e7ce36966d6a..6fec62846279 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -2779,7 +2779,7 @@ int ath11k_wmi_send_bss_color_change_enable_cmd(struct ath11k *ar, u32 vdev_id,
+ 	ret = ath11k_wmi_cmd_send(wmi, skb,
+ 				  WMI_BSS_COLOR_CHANGE_ENABLE_CMDID);
+ 	if (ret) {
+-		ath11k_warn(ab, "Failed to send WMI_TWT_DIeABLE_CMDID");
++		ath11k_warn(ab, "Failed to send WMI_BSS_COLOR_CHANGE_ENABLE_CMDID");
+ 		dev_kfree_skb(skb);
+ 	}
+ 	return ret;
+-- 
+2.25.1
+
 
 _______________________________________________
 ath11k mailing list
