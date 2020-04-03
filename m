@@ -1,12 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail26.static.mailgun.info ([104.130.122.26])
+Received: from szxga06-in.huawei.com ([45.249.212.32] helo=huawei.com)
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jIsPo-0005xh-Su
- for ath11k@lists.infradead.org; Mon, 30 Mar 2020 11:17:16 +0000
-From: Sriram R <srirrama@codeaurora.org>
-Subject: [PATCH] ath11k: Increase the tx completion ring size
-Date: Mon, 30 Mar 2020 16:46:46 +0530
-Message-Id: <1585567006-9173-1-git-send-email-srirrama@codeaurora.org>
+ id 1jKHmu-00079T-Jl
+ for ath11k@lists.infradead.org; Fri, 03 Apr 2020 08:34:54 +0000
+From: YueHaibing <yuehaibing@huawei.com>
+Subject: [PATCH] ath11k: thermal: Fix build error without CONFIG_THERMAL
+Date: Fri, 3 Apr 2020 16:34:14 +0800
+Message-ID: <20200403083414.31392-1-yuehaibing@huawei.com>
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -15,44 +16,36 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org, Sriram R <srirrama@codeaurora.org>
+To: kvalo@codeaurora.org, davem@davemloft.net, pradeepc@codeaurora.org
+Cc: netdev@vger.kernel.org, YueHaibing <yuehaibing@huawei.com>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, linux-kernel@vger.kernel.org
 
-Increase the tx completion ring size to 0x8000.Also set the
-idr size to be same as the completion ring size.
-
-This avoids backpressure on the TX Completion and
-corresponding TCL Data ring during high data traffic.
-
-Signed-off-by: Sriram R <srirrama@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/dp.h | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
-index 551f9c9..d4e19dc 100644
---- a/drivers/net/wireless/ath/ath11k/dp.h
-+++ b/drivers/net/wireless/ath/ath11k/dp.h
-@@ -169,8 +169,8 @@ struct ath11k_pdev_dp {
- 
- #define DP_WBM_RELEASE_RING_SIZE	64
- #define DP_TCL_DATA_RING_SIZE		512
--#define DP_TX_COMP_RING_SIZE		8192
--#define DP_TX_IDR_SIZE			(DP_TX_COMP_RING_SIZE << 1)
-+#define DP_TX_COMP_RING_SIZE		32768
-+#define DP_TX_IDR_SIZE			DP_TX_COMP_RING_SIZE
- #define DP_TCL_CMD_RING_SIZE		32
- #define DP_TCL_STATUS_RING_SIZE		32
- #define DP_REO_DST_RING_MAX		4
--- 
-2.7.4
-
-_______________________________________________
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+ZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay90aGVybWFsLmg6NDU6MToKIHdhcm5pbmc6
+IG5vIHJldHVybiBzdGF0ZW1lbnQgaW4gZnVuY3Rpb24gcmV0dXJuaW5nIG5vbi12b2lkIFstV3Jl
+dHVybi10eXBlXQpkcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL2NvcmUuYzo0MTY6Mjg6
+IGVycm9yOgogcGFzc2luZyBhcmd1bWVudCAxIG9mIOKAmGF0aDExa190aGVybWFsX3VucmVnaXN0
+ZXLigJkgZnJvbSBpbmNvbXBhdGlibGUgcG9pbnRlciB0eXBlIFstV2Vycm9yPWluY29tcGF0aWJs
+ZS1wb2ludGVyLXR5cGVzXQoKQWRkIG1pc3NpbmcgcmV0dXJuIDAgaW4gYXRoMTFrX3RoZXJtYWxf
+c2V0X3Rocm90dGxpbmcsCmFuZCBmaXggYXRoMTFrX3RoZXJtYWxfdW5yZWdpc3RlciBwYXJhbSB0
+eXBlLgoKRml4ZXM6IDJhNjNiYmNhMDZiMiAoImF0aDExazogYWRkIHRoZXJtYWwgY29vbGluZyBk
+ZXZpY2Ugc3VwcG9ydCIpClNpZ25lZC1vZmYtYnk6IFl1ZUhhaWJpbmcgPHl1ZWhhaWJpbmdAaHVh
+d2VpLmNvbT4KLS0tCiBkcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL3RoZXJtYWwuaCB8
+IDMgKystCiAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCgpk
+aWZmIC0tZ2l0IGEvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay90aGVybWFsLmggYi9k
+cml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL3RoZXJtYWwuaAppbmRleCA0NTliOGQ0OWMx
+ODQuLmY5YWY1NWYzNjgyZCAxMDA2NDQKLS0tIGEvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0
+aDExay90aGVybWFsLmgKKysrIGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay90aGVy
+bWFsLmgKQEAgLTM2LDEyICszNiwxMyBAQCBzdGF0aWMgaW5saW5lIGludCBhdGgxMWtfdGhlcm1h
+bF9yZWdpc3RlcihzdHJ1Y3QgYXRoMTFrX2Jhc2UgKnNjKQogCXJldHVybiAwOwogfQogCi1zdGF0
+aWMgaW5saW5lIHZvaWQgYXRoMTFrX3RoZXJtYWxfdW5yZWdpc3RlcihzdHJ1Y3QgYXRoMTFrICph
+cikKK3N0YXRpYyBpbmxpbmUgdm9pZCBhdGgxMWtfdGhlcm1hbF91bnJlZ2lzdGVyKHN0cnVjdCBh
+dGgxMWtfYmFzZSAqc2MpCiB7CiB9CiAKIHN0YXRpYyBpbmxpbmUgaW50IGF0aDExa190aGVybWFs
+X3NldF90aHJvdHRsaW5nKHN0cnVjdCBhdGgxMWsgKmFyLCB1MzIgdGhyb3R0bGVfc3RhdGUpCiB7
+CisJcmV0dXJuIDA7CiB9CiAKIHN0YXRpYyBpbmxpbmUgdm9pZCBhdGgxMWtfdGhlcm1hbF9ldmVu
+dF90ZW1wZXJhdHVyZShzdHJ1Y3QgYXRoMTFrICphciwKLS0gCjIuMTcuMQoKCgpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphdGgxMWsgbWFpbGluZyBsaXN0
+CmF0aDExa0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21h
+aWxtYW4vbGlzdGluZm8vYXRoMTFrCg==
