@@ -1,15 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jLSdh-0002ZH-F4
- for ath11k@lists.infradead.org; Mon, 06 Apr 2020 14:22:15 +0000
+ id 1jLUOL-0002h8-DU
+ for ath11k@lists.infradead.org; Mon, 06 Apr 2020 16:14:33 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: fix compiler warnings without CONFIG_THERMAL
+Subject: Re: [PATCH v3] ath11k: Add sta debugfs support to configure ADDBA and
+ DELBA
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <20200403083414.31392-1-yuehaibing@huawei.com>
-References: <20200403083414.31392-1-yuehaibing@huawei.com>
-Message-Id: <20200406142207.C7F3CC433F2@smtp.codeaurora.org>
-Date: Mon,  6 Apr 2020 14:22:07 +0000 (UTC)
+In-Reply-To: <1585213026-28406-1-git-send-email-mkenna@codeaurora.org>
+References: <1585213026-28406-1-git-send-email-mkenna@codeaurora.org>
+Message-Id: <20200406161414.A3400C43637@smtp.codeaurora.org>
+Date: Mon,  6 Apr 2020 16:14:14 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,28 +23,45 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: YueHaibing <yuehaibing@huawei.com>
-Cc: pradeepc@codeaurora.org, netdev@vger.kernel.org, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, ath11k@lists.infradead.org, davem@davemloft.net
+To: Maharaja Kennadyrajan <mkenna@codeaurora.org>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-YueHaibing <yuehaibing@huawei.com> wrote:
+Maharaja Kennadyrajan <mkenna@codeaurora.org> wrote:
 
-> drivers/net/wireless/ath/ath11k/thermal.h:45:1:
->  warning: no return statement in function returning non-void [-Wreturn-type]
-> drivers/net/wireless/ath/ath11k/core.c:416:28: error:
->  passing argument 1 of 'ath11k_thermal_unregister' from incompatible pointer type [-Werror=incompatible-pointer-types]
+> Add support to test aggregation procedures (addba/addba_resp/delba)
+> manually by adding the required callbacks in sta debugfs files.
 > 
-> Add missing return 0 in ath11k_thermal_set_throttling,
-> and fix ath11k_thermal_unregister param type.
+> To enable automatic aggregation in target,
 > 
-> Fixes: 2a63bbca06b2 ("ath11k: add thermal cooling device support")
-> Signed-off-by: YueHaibing <yuehaibing@huawei.com>
+>     echo 0 > /sys/kernel/debug/ieee80211/phyX/netdev:wlanX/
+> 	     stations/XX:XX:XX:XX:XX:XX/aggr_mode
+> 
+> For manual mode,
+> 
+>     echo 1 > /sys/kernel/debug/ieee80211/phyX/netdev:wlanX/
+> 	     stations/XX:XX:XX:XX:XX:XX/aggr_mode
+> 
+> To send addba response,
+>     echo 0 25 > /sys/kernel/debug/ieee80211/phyX/netdev:wlanX/
+> 		stations/XX:XX:XX:XX:XX:XX/addba_resp
+> 
+> To send addba,
+>     echo 1 32 > /sys/kernel/debug/ieee80211/phyX/netdev:wlanX/
+> 		stations/XX:XX:XX:XX:XX:XX/addba
+> 
+> To send delba,
+>     echo 0 1 37 > /sys/kernel/debug/ieee80211/phyX/netdev:wlanX/
+> 		  stations/XX:XX:XX:XX:XX:XX/delba
+> 
+> Signed-off-by: Maharaja Kennadyrajan <mkenna@codeaurora.org>
+> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-Patch applied to wireless-drivers.git, thanks.
+Patch applied to ath-next branch of ath.git, thanks.
 
-c9be1a642a7b ath11k: fix compiler warnings without CONFIG_THERMAL
+9556dfa28b4d ath11k: Add sta debugfs support to configure ADDBA and DELBA
 
 -- 
-https://patchwork.kernel.org/patch/11472105/
+https://patchwork.kernel.org/patch/11459699/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
