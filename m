@@ -1,15 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail27.static.mailgun.info ([104.130.122.27])
+Received: from szxga07-in.huawei.com ([45.249.212.35] helo=huawei.com)
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jLUXl-0000B6-M5
- for ath11k@lists.infradead.org; Mon, 06 Apr 2020 16:24:15 +0000
+ id 1jLdZ1-0004Jw-Oz
+ for ath11k@lists.infradead.org; Tue, 07 Apr 2020 02:02:10 +0000
+Subject: Re: [PATCH] ath11k: thermal: Fix build error without CONFIG_THERMAL
+References: <20200403083414.31392-1-yuehaibing@huawei.com>
+ <87mu7ozs1c.fsf@kamboji.qca.qualcomm.com>
+From: Yuehaibing <yuehaibing@huawei.com>
+Message-ID: <2c636eaf-7672-353c-80b2-1649b3a94e60@huawei.com>
+Date: Tue, 7 Apr 2020 10:01:47 +0800
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: Avoid mgmt tx count underflow
-From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1585567028-9242-1-git-send-email-srirrama@codeaurora.org>
-References: <1585567028-9242-1-git-send-email-srirrama@codeaurora.org>
-Message-Id: <20200406162411.F1256C43636@smtp.codeaurora.org>
-Date: Mon,  6 Apr 2020 16:24:11 +0000 (UTC)
+In-Reply-To: <87mu7ozs1c.fsf@kamboji.qca.qualcomm.com>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -18,34 +19,27 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Sriram R <srirrama@codeaurora.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: Kalle Valo <kvalo@codeaurora.org>
+Cc: pradeepc@codeaurora.org, netdev@vger.kernel.org, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, ath11k@lists.infradead.org, davem@davemloft.net
 
-Sriram R <srirrama@codeaurora.org> wrote:
-
-> The mgmt tx count reference is incremented/decremented on every mgmt tx and on
-> tx completion event from firmware.
-> In case of an unexpected mgmt tx completion event from firmware,
-> the counter would underflow. Avoid this by decrementing
-> only when the tx count is greater than 0.
-> 
-> Signed-off-by: Sriram R <srirrama@codeaurora.org>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
-
-Patch applied to ath-next branch of ath.git, thanks.
-
-800113ff4b1d ath11k: Avoid mgmt tx count underflow
-
--- 
-https://patchwork.kernel.org/patch/11465279/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
-_______________________________________________
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+T24gMjAyMC80LzYgMjE6MDIsIEthbGxlIFZhbG8gd3JvdGU6Cj4gWXVlSGFpYmluZyA8eXVlaGFp
+YmluZ0BodWF3ZWkuY29tPiB3cml0ZXM6Cj4gCj4+IGRyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9h
+dGgxMWsvdGhlcm1hbC5oOjQ1OjE6Cj4+ICB3YXJuaW5nOiBubyByZXR1cm4gc3RhdGVtZW50IGlu
+IGZ1bmN0aW9uIHJldHVybmluZyBub24tdm9pZCBbLVdyZXR1cm4tdHlwZV0KPj4gZHJpdmVycy9u
+ZXQvd2lyZWxlc3MvYXRoL2F0aDExay9jb3JlLmM6NDE2OjI4OiBlcnJvcjoKPj4gIHBhc3Npbmcg
+YXJndW1lbnQgMSBvZiDigJhhdGgxMWtfdGhlcm1hbF91bnJlZ2lzdGVy4oCZIGZyb20gaW5jb21w
+YXRpYmxlIHBvaW50ZXIgdHlwZSBbLVdlcnJvcj1pbmNvbXBhdGlibGUtcG9pbnRlci10eXBlc10K
+Pj4KPj4gQWRkIG1pc3NpbmcgcmV0dXJuIDAgaW4gYXRoMTFrX3RoZXJtYWxfc2V0X3Rocm90dGxp
+bmcsCj4+IGFuZCBmaXggYXRoMTFrX3RoZXJtYWxfdW5yZWdpc3RlciBwYXJhbSB0eXBlLgo+IAo+
+IFRoZXNlIGFyZSB3YXJuaW5ncywgbm8/ICJidWlsZCBlcnJvciIgYW5kICJjb21waWxlciB3YXJu
+aW5nIiBhcmUKPiBkaWZmZXJlbnQgdGhpbmdzLCB0aGUgZm9ybWVyIGJyZWFrcyB0aGUgd2hvbGUg
+YnVpbGQgd2hpY2ggaXMgc3VwZXIKPiBjcml0aWNhbCwgYnV0IEknbGwgcXVldWUgdGhpcyB0byB2
+NS43IG5ldmVydGhlbGVzcy4gQW5kIEknbGwgY2hhbmdlIHRoZQo+IHRpdGxlIHRvOgo+IAo+IGF0
+aDExazogZml4IGNvbXBpbGVyIHdhcm5pbmcgd2l0aG91dCBDT05GSUdfVEhFUk1BTAoKT2sgLCB0
+aGFua3MhCgo+IAoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCmF0aDExayBtYWlsaW5nIGxpc3QKYXRoMTFrQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDov
+L2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9hdGgxMWsK
