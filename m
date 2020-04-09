@@ -1,16 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail27.static.mailgun.info ([104.130.122.27])
+Received: from mail26.static.mailgun.info ([104.130.122.26])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jMSt8-000387-Ry
- for ath11k@lists.infradead.org; Thu, 09 Apr 2020 08:50:22 +0000
+ id 1jMStQ-0003Eh-Di
+ for ath11k@lists.infradead.org; Thu, 09 Apr 2020 08:50:38 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH 1/2] ath11k: fix missing return in
- ath11k_thermal_set_throttling
+Subject: Re: [PATCH 2/2] ath11k: fix ath11k_thermal_unregister() prototype
 References: <20200408190606.870098-1-arnd@arndb.de>
-Date: Thu, 09 Apr 2020 11:50:01 +0300
-In-Reply-To: <20200408190606.870098-1-arnd@arndb.de> (Arnd Bergmann's message
- of "Wed, 8 Apr 2020 21:05:57 +0200")
-Message-ID: <87h7xtujpi.fsf@kamboji.qca.qualcomm.com>
+ <20200408190606.870098-2-arnd@arndb.de>
+Date: Thu, 09 Apr 2020 11:50:29 +0300
+In-Reply-To: <20200408190606.870098-2-arnd@arndb.de> (Arnd Bergmann's message
+ of "Wed, 8 Apr 2020 21:05:58 +0200")
+Message-ID: <87d08hujoq.fsf@kamboji.qca.qualcomm.com>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -29,32 +29,30 @@ Cc: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>, netdev@vger.kernel.org, li
 
 Arnd Bergmann <arnd@arndb.de> writes:
 
-> The empty stub version of this function causes a compile-time
-> warning:
+> The stub function has the wrong prototype, causing a warning:
 >
-> In file included from drivers/net/wireless/ath/ath11k/core.h:23,
->                  from drivers/net/wireless/ath/ath11k/dp_rx.h:8,
->                  from drivers/net/wireless/ath/ath11k/ce.c:6:
-> drivers/net/wireless/ath/ath11k/thermal.h: In function 'ath11k_thermal_set_throttling':
-> drivers/net/wireless/ath/ath11k/thermal.h:45:1: error: no return statement in function returning non-void [-Werror=return-type]
+> drivers/net/wireless/ath/ath11k/core.c: In function 'ath11k_core_pdev_destroy':
+> drivers/net/wireless/ath/ath11k/core.c:416:28: error: passing argument 1 of 'ath11k_thermal_unregister' from incompatible pointer type [-Werror=incompatible-pointer-types]
 >
-> Just return success here.
+> Change it to take the same arguments as the normal implementation.
 >
-> Fixes: a41d10348b01 ("ath11k: add thermal sensor device support")
+> Fixes: 2a63bbca06b2 ("ath11k: add thermal cooling device support")
 > Signed-off-by: Arnd Bergmann <arnd@arndb.de>
 > ---
->  drivers/net/wireless/ath/ath11k/thermal.h | 1 +
->  1 file changed, 1 insertion(+)
+>  drivers/net/wireless/ath/ath11k/thermal.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
 > diff --git a/drivers/net/wireless/ath/ath11k/thermal.h b/drivers/net/wireless/ath/ath11k/thermal.h
-> index 459b8d49c184..f1395a14748c 100644
+> index f1395a14748c..ea9a58bf6a93 100644
 > --- a/drivers/net/wireless/ath/ath11k/thermal.h
 > +++ b/drivers/net/wireless/ath/ath11k/thermal.h
-> @@ -42,6 +42,7 @@ static inline void ath11k_thermal_unregister(struct ath11k *ar)
+> @@ -36,7 +36,7 @@ static inline int ath11k_thermal_register(struct ath11k_base *sc)
+>  	return 0;
+>  }
 >  
->  static inline int ath11k_thermal_set_throttling(struct ath11k *ar, u32 throttle_state)
+> -static inline void ath11k_thermal_unregister(struct ath11k *ar)
+> +static inline void ath11k_thermal_unregister(struct ath11k_base *ar)
 >  {
-> +	return 0;
 >  }
 
 Already fixed by this commit:
