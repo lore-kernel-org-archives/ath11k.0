@@ -1,14 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail27.static.mailgun.info ([104.130.122.27])
+Received: from mail26.static.mailgun.info ([104.130.122.26])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jMx5r-0004PQ-ND
+ id 1jMx5q-0004Os-Fr
  for ath11k@lists.infradead.org; Fri, 10 Apr 2020 17:05:29 +0000
 From: Maharaja Kennadyrajan <mkenna@codeaurora.org>
-Subject: [PATCH] ath11k: Fix fw assert by setting proper vht cap
-Date: Fri, 10 Apr 2020 22:36:44 +0530
-Message-Id: <1586538405-16226-2-git-send-email-mkenna@codeaurora.org>
-In-Reply-To: <1586538405-16226-1-git-send-email-mkenna@codeaurora.org>
-References: <1586538405-16226-1-git-send-email-mkenna@codeaurora.org>
+Subject: [PATCH] ath11k: Cleanup in pdev destroy and mac register during crash
+ on recovery
+Date: Fri, 10 Apr 2020 22:36:43 +0530
+Message-Id: <1586538405-16226-1-git-send-email-mkenna@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,39 +22,46 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
-Cc: Ritesh Singh <ritesi@codeaurora.org>, Maharaja Kennadyrajan <mkenna@codeaurora.org>, linux-wireless@vger.kernel.org
+Cc: Maharaja Kennadyrajan <mkenna@codeaurora.org>, linux-wireless@vger.kernel.org
 
-From: Ritesh Singh <ritesi@codeaurora.org>
+Debugfs pdev entries should be cleaned up during the crash
+on recovery. If not, mac register will fail for the reason
+that it is already registered during core reconfigure.
 
-After setting fixed vht-rate if new station is trying to
-assoc with mu_bfee cap, or if a sta is already connected
-with mu_bfee cap then set the fixed vht-rate and
-reconnecting the sta, FW assert is happening.
-
-So to avoid this, reset the MU_BEAMFORMEE bit in vht->caps,
-if mcs_index is invalid for nss 1.
-
-Signed-off-by: Ritesh Singh <ritesi@codeaurora.org>
 Signed-off-by: Maharaja Kennadyrajan <mkenna@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/net/wireless/ath/ath11k/debug.c | 3 +++
+ drivers/net/wireless/ath/ath11k/mac.c   | 3 +++
+ 2 files changed, 6 insertions(+)
 
+diff --git a/drivers/net/wireless/ath/ath11k/debug.c b/drivers/net/wireless/ath/ath11k/debug.c
+index 8d48517..825e7ba6 100644
+--- a/drivers/net/wireless/ath/ath11k/debug.c
++++ b/drivers/net/wireless/ath/ath11k/debug.c
+@@ -803,6 +803,9 @@ static ssize_t ath11k_debug_dump_soc_rx_stats(struct file *file,
+ 
+ int ath11k_debug_pdev_create(struct ath11k_base *ab)
+ {
++	if (test_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags))
++		return 0;
++
+ 	ab->debugfs_soc = debugfs_create_dir(ab->hw_params.name, ab->debugfs_ath11k);
+ 
+ 	if (IS_ERR_OR_NULL(ab->debugfs_soc)) {
 diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 9f8bc19..29e1267 100644
+index 9f8bc19..4783394 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -1142,6 +1142,10 @@ static void ath11k_peer_assoc_h_vht(struct ath11k *ar,
- 	arg->tx_mcs_set &= ~IEEE80211_VHT_MCS_SUPPORT_0_11_MASK;
- 	arg->tx_mcs_set |= IEEE80211_DISABLE_VHT_MCS_SUPPORT_0_11;
+@@ -5891,6 +5891,9 @@ int ath11k_mac_register(struct ath11k_base *ab)
+ 	int i;
+ 	int ret;
  
-+	if ((arg->tx_mcs_set & IEEE80211_VHT_MCS_NOT_SUPPORTED) ==
-+			IEEE80211_VHT_MCS_NOT_SUPPORTED)
-+		arg->peer_vht_caps &= ~IEEE80211_VHT_CAP_MU_BEAMFORMEE_CAPABLE;
++	if (test_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags))
++		return 0;
 +
- 	/* TODO:  Check */
- 	arg->tx_max_mcs_nss = 0xFF;
- 
+ 	for (i = 0; i < ab->num_radios; i++) {
+ 		pdev = &ab->pdevs[i];
+ 		ar = pdev->ar;
 -- 
 1.9.1
 
