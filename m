@@ -1,14 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail26.static.mailgun.info ([104.130.122.26])
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jMx5s-0004Pi-2j
- for ath11k@lists.infradead.org; Fri, 10 Apr 2020 17:05:30 +0000
-From: Maharaja Kennadyrajan <mkenna@codeaurora.org>
-Subject: [PATCH] ath11k: Fix rx_filter flags setting for per peer rx_stats
-Date: Fri, 10 Apr 2020 22:36:45 +0530
-Message-Id: <1586538405-16226-3-git-send-email-mkenna@codeaurora.org>
-In-Reply-To: <1586538405-16226-1-git-send-email-mkenna@codeaurora.org>
-References: <1586538405-16226-1-git-send-email-mkenna@codeaurora.org>
+ id 1jNPAZ-0004iE-3R
+ for ath11k@lists.infradead.org; Sat, 11 Apr 2020 23:04:15 +0000
+From: Sasha Levin <sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.6 017/149] ath11k: Adding proper validation before
+ accessing tx_stats
+Date: Sat, 11 Apr 2020 19:01:34 -0400
+Message-Id: <20200411230347.22371-17-sashal@kernel.org>
+In-Reply-To: <20200411230347.22371-1-sashal@kernel.org>
+References: <20200411230347.22371-1-sashal@kernel.org>
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -17,100 +19,71 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: Maharaja Kennadyrajan <mkenna@codeaurora.org>, linux-wireless@vger.kernel.org
+To: linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc: Sasha Levin <sashal@kernel.org>, Pravas Kumar Panda <kumarpan@codeaurora.org>, netdev@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>
 
-Rx_filter flags are set with default filter flags during
-wifi up/down sequence even though the 'ext_rx_stats' debugfs
-is enabled as 1. So, that we are not getting proper per peer
-rx_stats.
-Hence, fixing this by setting the missing rx_filter when
-ext_rx_stats is already set/enabled.
+From: Pravas Kumar Panda <kumarpan@codeaurora.org>
 
-Signed-off-by: Maharaja Kennadyrajan <mkenna@codeaurora.org>
+[ Upstream commit fe0ebb51604f190b13b20a5f6c2821772c0cfc22 ]
+
+Before dumping tx_stats proper validation was not been taken care of.
+Due to which we were encountering null pointer dereference(kernel panic).
+This scenario will arise when a station is getting disconnected and
+we are changing the STA state by ath11k_mac_op_sta_state and assigning
+tx_stats as NULL and after this the mac80211 will destroy the
+debugfs entry from where we are trying to read the stats.
+
+If anyone tries to dump tx_stats for that STA in between setting
+tx_stats to NULL and debugfs file removal without checking the NULL
+value it will run into a NULL pointer exception.
+
+Proceeding with the analysis of "ARM Kernel Panic".
+The APSS crash happened due to OOPS on CPU 3.
+Crash Signature : Unable to handle kernel NULL pointer dereference at
+virtual address 00000360
+During the crash,
+PC points to "ath11k_debug_htt_stats_init+0x16ac/0x1acc [ath11k]"
+LR points to "ath11k_debug_htt_stats_init+0x1688/0x1acc [ath11k]".
+The Backtrace obtained is as follows:
+[<ffffffbffcfd8590>] ath11k_debug_htt_stats_init+0x16ac/0x1acc [ath11k]
+[<ffffffc000156320>] do_loop_readv_writev+0x60/0xa4
+[<ffffffc000156a5c>] do_readv_writev+0xd8/0x19c
+[<ffffffc000156b54>] vfs_readv+0x34/0x48
+[<ffffffc00017d6f4>] default_file_splice_read+0x1a8/0x2e4
+[<ffffffc00017c56c>] do_splice_to+0x78/0x98
+[<ffffffc00017c63c>] splice_direct_to_actor+0xb0/0x1a4
+[<ffffffc00017c7b4>] do_splice_direct+0x84/0xa8
+[<ffffffc000156f40>] do_sendfile+0x160/0x2a4
+[<ffffffc000157980>] SyS_sendfile64+0xb4/0xc8
+
+Signed-off-by: Pravas Kumar Panda <kumarpan@codeaurora.org>
+Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/net/wireless/ath/ath11k/core.h  |  1 +
- drivers/net/wireless/ath/ath11k/debug.c |  2 ++
- drivers/net/wireless/ath/ath11k/debug.h | 10 ++++++++++
- drivers/net/wireless/ath/ath11k/mac.c   |  4 +++-
- 4 files changed, 16 insertions(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/debugfs_sta.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index b4c3e041..a8ef95f 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -392,6 +392,7 @@ struct ath11k_debug {
- 	u32 pktlog_mode;
- 	u32 pktlog_peer_valid;
- 	u8 pktlog_peer_addr[ETH_ALEN];
-+	u32 rx_filter;
- };
+diff --git a/drivers/net/wireless/ath/ath11k/debugfs_sta.c b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
+index 743760c9bcae4..e52f3b079bacc 100644
+--- a/drivers/net/wireless/ath/ath11k/debugfs_sta.c
++++ b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
+@@ -219,6 +219,9 @@ static ssize_t ath11k_dbg_sta_dump_tx_stats(struct file *file,
+ 	const int size = 2 * 4096;
+ 	char *buf;
  
- struct ath11k_per_peer_tx_stats {
-diff --git a/drivers/net/wireless/ath/ath11k/debug.c b/drivers/net/wireless/ath/ath11k/debug.c
-index 8d48517..e479504 100644
---- a/drivers/net/wireless/ath/ath11k/debug.c
-+++ b/drivers/net/wireless/ath/ath11k/debug.c
-@@ -698,6 +698,8 @@ static ssize_t ath11k_write_extd_rx_stats(struct file *file,
- 		tlv_filter = ath11k_mac_mon_status_filter_default;
- 	}
- 
-+	ar->debug.rx_filter = tlv_filter.rx_filter;
++	if (!arsta->tx_stats)
++		return -ENOENT;
 +
- 	ring_id = ar->dp.rx_mon_status_refill_ring.refill_buf_ring.ring_id;
- 	ret = ath11k_dp_tx_htt_rx_filter_setup(ar->ab, ring_id, ar->dp.mac_id,
- 					       HAL_RXDMA_MONITOR_STATUS,
-diff --git a/drivers/net/wireless/ath/ath11k/debug.h b/drivers/net/wireless/ath/ath11k/debug.h
-index 4a3ff82..45454fc 100644
---- a/drivers/net/wireless/ath/ath11k/debug.h
-+++ b/drivers/net/wireless/ath/ath11k/debug.h
-@@ -188,6 +188,11 @@ static inline int ath11k_debug_is_extd_rx_stats_enabled(struct ath11k *ar)
- 	return ar->debug.extd_rx_stats;
- }
- 
-+static inline int ath11k_debug_rx_filter(struct ath11k *ar)
-+{
-+	return ar->debug.rx_filter;
-+}
-+
- void ath11k_sta_add_debugfs(struct ieee80211_hw *hw, struct ieee80211_vif *vif,
- 			    struct ieee80211_sta *sta, struct dentry *dir);
- void
-@@ -269,6 +274,11 @@ static inline bool ath11k_debug_is_pktlog_peer_valid(struct ath11k *ar, u8 *addr
- 	return false;
- }
- 
-+static inline int ath11k_debug_rx_filter(struct ath11k *ar)
-+{
-+	return 0;
-+}
-+
- static inline void
- ath11k_accumulate_per_peer_tx_stats(struct ath11k_sta *arsta,
- 				    struct ath11k_per_peer_tx_stats *peer_stats,
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 9f8bc19..3665e72 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -3877,8 +3877,10 @@ static int ath11k_mac_config_mon_status_default(struct ath11k *ar, bool enable)
- 	struct htt_rx_ring_tlv_filter tlv_filter = {0};
- 	u32 ring_id;
- 
--	if (enable)
-+	if (enable) {
- 		tlv_filter = ath11k_mac_mon_status_filter_default;
-+		tlv_filter.rx_filter = ath11k_debug_rx_filter(ar);
-+	}
- 
- 	ring_id = ar->dp.rx_mon_status_refill_ring.refill_buf_ring.ring_id;
- 
+ 	buf = kzalloc(size, GFP_KERNEL);
+ 	if (!buf)
+ 		return -ENOMEM;
 -- 
-1.9.1
+2.20.1
+
 
 _______________________________________________
 ath11k mailing list
