@@ -1,15 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail27.static.mailgun.info ([104.130.122.27])
+Received: from mail26.static.mailgun.info ([104.130.122.26])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jOH1x-00020c-GF
- for ath11k@lists.infradead.org; Tue, 14 Apr 2020 08:34:57 +0000
+ id 1jOcwx-0002uO-Mn
+ for ath11k@lists.infradead.org; Wed, 15 Apr 2020 07:59:13 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: rx path optimizations
+Subject: Re: [PATCH] ath11k: Cleanup in pdev destroy and mac register during
+ crash on recovery
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1586421797-885-1-git-send-email-mpubbise@codeaurora.org>
-References: <1586421797-885-1-git-send-email-mpubbise@codeaurora.org>
-Message-Id: <20200414083439.3099CC433F2@smtp.codeaurora.org>
-Date: Tue, 14 Apr 2020 08:34:39 +0000 (UTC)
+In-Reply-To: <1586538405-16226-1-git-send-email-mkenna@codeaurora.org>
+References: <1586538405-16226-1-git-send-email-mkenna@codeaurora.org>
+Message-Id: <20200415075908.442DCC432C2@smtp.codeaurora.org>
+Date: Wed, 15 Apr 2020 07:59:08 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,28 +23,24 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Manikanta Pubbisetty <mpubbise@codeaurora.org>
+To: Maharaja Kennadyrajan <mkenna@codeaurora.org>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-Manikanta Pubbisetty <mpubbise@codeaurora.org> wrote:
+Maharaja Kennadyrajan <mkenna@codeaurora.org> wrote:
 
-> During RX, accessing the reo dest ring descriptor directly is consuming
-> a lot of CPU cycles. Accessing the descriptor after copying it locally
-> has improved CPU usage by around ~10-15% while measuring throughput
-> in RX DBTC test cases(all radios are involved in the throughput
-> measurement).
+> Debugfs pdev entries should be cleaned up during the crash
+> on recovery. If not, mac register will fail for the reason
+> that it is already registered during core reconfigure.
 > 
-> HW tested: IPQ8074
-> 
-> Signed-off-by: Manikanta Pubbisetty <mpubbise@codeaurora.org>
+> Signed-off-by: Maharaja Kennadyrajan <mkenna@codeaurora.org>
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
 Patch applied to ath-next branch of ath.git, thanks.
 
-7395fb496577 ath11k: rx path optimizations
+6fc3b94ef596 ath11k: Cleanup in pdev destroy and mac register during crash on recovery
 
 -- 
-https://patchwork.kernel.org/patch/11481425/
+https://patchwork.kernel.org/patch/11483477/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
