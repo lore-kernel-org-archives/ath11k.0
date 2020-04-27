@@ -1,13 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from szxga04-in.huawei.com ([45.249.212.190] helo=huawei.com)
+Received: from mail26.static.mailgun.info ([104.130.122.26])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jT1GH-0006CN-JL
- for ath11k@lists.infradead.org; Mon, 27 Apr 2020 10:45:20 +0000
-From: Wei Yongjun <weiyongjun1@huawei.com>
-Subject: [PATCH net-next] ath11k: fix error return code in ath11k_dp_alloc()
-Date: Mon, 27 Apr 2020 10:46:21 +0000
-Message-ID: <20200427104621.23752-1-weiyongjun1@huawei.com>
-MIME-Version: 1.0
+ id 1jT44d-0000FK-R2
+ for ath11k@lists.infradead.org; Mon, 27 Apr 2020 13:45:31 +0000
+From: Sathishkumar Muruganandam <murugana@codeaurora.org>
+Subject: [PATCH v3 2/2] ath11k: add DBG_MAC prints to track vdev events
+Date: Mon, 27 Apr 2020 19:14:55 +0530
+Message-Id: <1587995095-7808-3-git-send-email-murugana@codeaurora.org>
+In-Reply-To: <1587995095-7808-1-git-send-email-murugana@codeaurora.org>
+References: <1587995095-7808-1-git-send-email-murugana@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -16,41 +17,64 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>, John Crispin <john@phrozen.org>
-Cc: linux-wireless@vger.kernel.org, kernel-janitors@vger.kernel.org, Wei Yongjun <weiyongjun1@huawei.com>, ath11k@lists.infradead.org
+To: ath11k@lists.infradead.org
+Cc: Sathishkumar Muruganandam <murugana@codeaurora.org>, linux-wireless@vger.kernel.org
 
-Fix to return negative error code -ENOMEM from the error handling
-case instead of 0, as done elsewhere in this function.
+Added DBG_MAC prints to track vdev create, delete, start and
+stop events.
 
-Fixes: d0998eb84ed3 ("ath11k: optimise ath11k_dp_tx_completion_handler")
-Signed-off-by: Wei Yongjun <weiyongjun1@huawei.com>
+Signed-off-by: Sathishkumar Muruganandam <murugana@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/dp.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/mac.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
-index 50350f77b309..2f35d325f7a5 100644
---- a/drivers/net/wireless/ath/ath11k/dp.c
-+++ b/drivers/net/wireless/ath/ath11k/dp.c
-@@ -909,8 +909,10 @@ int ath11k_dp_alloc(struct ath11k_base *ab)
- 		dp->tx_ring[i].tx_status_head = 0;
- 		dp->tx_ring[i].tx_status_tail = DP_TX_COMP_RING_SIZE - 1;
- 		dp->tx_ring[i].tx_status = kmalloc(size, GFP_KERNEL);
--		if (!dp->tx_ring[i].tx_status)
-+		if (!dp->tx_ring[i].tx_status) {
-+			ret = -ENOMEM;
- 			goto fail_cmn_srng_cleanup;
-+		}
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 2b3a63ac216c..bfe2d20de351 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -4229,6 +4229,8 @@ static int ath11k_mac_op_add_interface(struct ieee80211_hw *hw,
  	}
  
- 	for (i = 0; i < HAL_DSCP_TID_MAP_TBL_NUM_ENTRIES_MAX; i++)
-
-
-
+ 	ar->num_created_vdevs++;
++	ath11k_dbg(ab, ATH11K_DBG_MAC, "vdev %pM created, vdev_id %d\n",
++		   vif->addr, arvif->vdev_id);
+ 	ar->allocated_vdev_map |= 1LL << arvif->vdev_id;
+ 	ab->free_vdev_map &= ~(1LL << arvif->vdev_id);
+ 
+@@ -4399,6 +4401,8 @@ static void ath11k_mac_op_remove_interface(struct ieee80211_hw *hw,
+ 			    arvif->vdev_id, ret);
+ 
+ 	ar->num_created_vdevs--;
++	ath11k_dbg(ab, ATH11K_DBG_MAC, "vdev %pM deleted, vdev_id %d\n",
++		   vif->addr, arvif->vdev_id);
+ 	ar->allocated_vdev_map &= ~(1LL << arvif->vdev_id);
+ 	ab->free_vdev_map |= 1LL << (arvif->vdev_id);
+ 
+@@ -4664,6 +4668,8 @@ ath11k_mac_vdev_start_restart(struct ath11k_vif *arvif,
+ 	}
+ 
+ 	ar->num_started_vdevs++;
++	ath11k_dbg(ab, ATH11K_DBG_MAC,  "vdev %pM started, vdev_id %d\n",
++		   arvif->vif->addr, arvif->vdev_id);
+ 
+ 	/* Enable CAC Flag in the driver by checking the channel DFS cac time,
+ 	 * i.e dfs_cac_ms value which will be valid only for radar channels
+@@ -4722,6 +4728,8 @@ static int ath11k_mac_vdev_stop(struct ath11k_vif *arvif)
+ 	WARN_ON(ar->num_started_vdevs == 0);
+ 
+ 	ar->num_started_vdevs--;
++	ath11k_dbg(ab, ATH11K_DBG_MAC, "vdev %pM stopped, vdev_id %d\n",
++		   arvif->vif->addr, arvif->vdev_id);
+ 
+ 	if (test_bit(ATH11K_CAC_RUNNING, &ar->dev_flags)) {
+ 		clear_bit(ATH11K_CAC_RUNNING, &ar->dev_flags);
+-- 
+2.7.4
 
 _______________________________________________
 ath11k mailing list
