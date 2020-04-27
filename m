@@ -1,15 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail27.static.mailgun.info ([104.130.122.27])
+Received: from szxga06-in.huawei.com ([45.249.212.32] helo=huawei.com)
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jSvoi-00019V-0J
- for ath11k@lists.infradead.org; Mon, 27 Apr 2020 04:56:29 +0000
+ id 1jSzyt-0001Er-NE
+ for ath11k@lists.infradead.org; Mon, 27 Apr 2020 09:23:17 +0000
+From: Wei Yongjun <weiyongjun1@huawei.com>
+Subject: [PATCH net-next] ath11k: use GFP_ATOMIC under spin lock
+Date: Mon, 27 Apr 2020 09:24:17 +0000
+Message-ID: <20200427092417.56236-1-weiyongjun1@huawei.com>
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: fix reo flush send
-From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1587552378-4884-1-git-send-email-periyasa@codeaurora.org>
-References: <1587552378-4884-1-git-send-email-periyasa@codeaurora.org>
-Message-Id: <20200427045626.284DBC433D2@smtp.codeaurora.org>
-Date: Mon, 27 Apr 2020 04:56:26 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,30 +20,33 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Karthikeyan Periyasamy <periyasa@codeaurora.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: Kalle Valo <kvalo@codeaurora.org>, Sumit Semwal <sumit.semwal@linaro.org>
+Cc: kernel-janitors@vger.kernel.org, linux-wireless@vger.kernel.org, dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, Wei Yongjun <weiyongjun1@huawei.com>, ath11k@lists.infradead.org, linux-media@vger.kernel.org
 
-Karthikeyan Periyasamy <periyasa@codeaurora.org> wrote:
+A spin lock is taken here so we should use GFP_ATOMIC.
 
-> we are sending the reo flush command for the deleted peer
-> tid after the ageout period reaches 1 second. This handling
-> causes reo ring get full when more than 128 clients are
-> disconnected continuously. so added the count for flush list
-> and reo flush command is triggered after the list count reaches
-> the threshold value, it is configured as 64 (half of the reo ring).
-> This will avoid the situation where reo ring get full.
-> 
-> Signed-off-by: Karthikeyan Periyasamy <periyasa@codeaurora.org>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+Signed-off-by: Wei Yongjun <weiyongjun1@huawei.com>
+---
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Patch applied to ath-next branch of ath.git, thanks.
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index f74a0e74bf3e..34b1e8e6a7fb 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -892,7 +892,7 @@ int ath11k_peer_rx_tid_setup(struct ath11k *ar, const u8 *peer_mac, int vdev_id,
+ 	else
+ 		hw_desc_sz = ath11k_hal_reo_qdesc_size(DP_BA_WIN_SZ_MAX, tid);
+ 
+-	vaddr = kzalloc(hw_desc_sz + HAL_LINK_DESC_ALIGN - 1, GFP_KERNEL);
++	vaddr = kzalloc(hw_desc_sz + HAL_LINK_DESC_ALIGN - 1, GFP_ATOMIC);
+ 	if (!vaddr) {
+ 		spin_unlock_bh(&ab->base_lock);
+ 		return -ENOMEM;
 
-5cb899dd5ba4 ath11k: fix reo flush send
 
--- 
-https://patchwork.kernel.org/patch/11503445/
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 _______________________________________________
 ath11k mailing list
