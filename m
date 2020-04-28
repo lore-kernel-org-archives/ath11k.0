@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jTI80-0001mD-FO
- for ath11k@lists.infradead.org; Tue, 28 Apr 2020 04:45:56 +0000
+ id 1jTI7q-0001mD-JG
+ for ath11k@lists.infradead.org; Tue, 28 Apr 2020 04:45:44 +0000
 From: Sathishkumar Muruganandam <murugana@codeaurora.org>
-Subject: [PATCH v4 2/2] ath11k: add DBG_MAC prints to track vdev events
-Date: Tue, 28 Apr 2020 10:15:26 +0530
-Message-Id: <1588049126-1490-3-git-send-email-murugana@codeaurora.org>
+Subject: [PATCH v4 1/2] ath11k: fix mgmt_tx_wmi cmd sent to FW for deleted vdev
+Date: Tue, 28 Apr 2020 10:15:25 +0530
+Message-Id: <1588049126-1490-2-git-send-email-murugana@codeaurora.org>
 In-Reply-To: <1588049126-1490-1-git-send-email-murugana@codeaurora.org>
 References: <1588049126-1490-1-git-send-email-murugana@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,54 +25,61 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: Sathishkumar Muruganandam <murugana@codeaurora.org>, linux-wireless@vger.kernel.org
 
-Added DBG_MAC prints to track vdev create, delete, start and
-stop events.
+In Multi-AP VAP scenario with frequent interface up-down, there is a
+chance that ath11k_mgmt_over_wmi_tx_work() will dequeue a skb
+corresponding to currently deleted/stopped vdev.
+
+FW will assert on receiving mgmt_tx_wmi cmd for already deleted vdev.
+Hence adding validation checks for arvif present on the corresponding
+ar before sending mgmt_tx_wmi cmd.
 
 Signed-off-by: Sathishkumar Muruganandam <murugana@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/net/wireless/ath/ath11k/mac.c | 29 ++++++++++++++++++++++-------
+ 1 file changed, 22 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 2b3a63ac216c..f33c6d714da8 100644
+index 065b7d6d4ab2..2b3a63ac216c 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -4229,6 +4229,8 @@ static int ath11k_mac_op_add_interface(struct ieee80211_hw *hw,
+@@ -3793,15 +3793,30 @@ static void ath11k_mgmt_over_wmi_tx_work(struct work_struct *work)
+ 
+ 	while ((skb = skb_dequeue(&ar->wmi_mgmt_tx_queue)) != NULL) {
+ 		info = IEEE80211_SKB_CB(skb);
+-		arvif = ath11k_vif_to_arvif(info->control.vif);
+-
+-		ret = ath11k_mac_mgmt_tx_wmi(ar, arvif, skb);
+-		if (ret) {
+-			ath11k_warn(ar->ab, "failed to transmit management frame %d\n",
+-				    ret);
++		if (!info->control.vif) {
++			ath11k_warn(ar->ab, "no vif found for mgmt frame, flags 0x%x\n",
++				    info->control.flags);
+ 			ieee80211_free_txskb(ar->hw, skb);
++			continue;
++		}
++
++		arvif = ath11k_vif_to_arvif(info->control.vif);
++		if (ar->allocated_vdev_map & (1LL << arvif->vdev_id) &&
++		    arvif->is_started) {
++			ret = ath11k_mac_mgmt_tx_wmi(ar, arvif, skb);
++			if (ret) {
++				ath11k_warn(ar->ab, "failed to tx mgmt frame, vdev_id %d :%d\n",
++					    arvif->vdev_id, ret);
++				ieee80211_free_txskb(ar->hw, skb);
++			} else {
++				atomic_inc(&ar->num_pending_mgmt_tx);
++			}
+ 		} else {
+-			atomic_inc(&ar->num_pending_mgmt_tx);
++			ath11k_warn(ar->ab,
++				    "dropping mgmt frame for vdev %d, flags 0x%x is_started %d\n",
++				    arvif->vdev_id, info->control.flags,
++				    arvif->is_started);
++			ieee80211_free_txskb(ar->hw, skb);
+ 		}
  	}
- 
- 	ar->num_created_vdevs++;
-+	ath11k_dbg(ab, ATH11K_DBG_MAC, "vdev %pM created, vdev_id %d\n",
-+		   vif->addr, arvif->vdev_id);
- 	ar->allocated_vdev_map |= 1LL << arvif->vdev_id;
- 	ab->free_vdev_map &= ~(1LL << arvif->vdev_id);
- 
-@@ -4399,6 +4401,8 @@ static void ath11k_mac_op_remove_interface(struct ieee80211_hw *hw,
- 			    arvif->vdev_id, ret);
- 
- 	ar->num_created_vdevs--;
-+	ath11k_dbg(ab, ATH11K_DBG_MAC, "vdev %pM deleted, vdev_id %d\n",
-+		   vif->addr, arvif->vdev_id);
- 	ar->allocated_vdev_map &= ~(1LL << arvif->vdev_id);
- 	ab->free_vdev_map |= 1LL << (arvif->vdev_id);
- 
-@@ -4664,6 +4668,8 @@ ath11k_mac_vdev_start_restart(struct ath11k_vif *arvif,
- 	}
- 
- 	ar->num_started_vdevs++;
-+	ath11k_dbg(ab, ATH11K_DBG_MAC,  "vdev %pM started, vdev_id %d\n",
-+		   arvif->vif->addr, arvif->vdev_id);
- 
- 	/* Enable CAC Flag in the driver by checking the channel DFS cac time,
- 	 * i.e dfs_cac_ms value which will be valid only for radar channels
-@@ -4722,6 +4728,8 @@ static int ath11k_mac_vdev_stop(struct ath11k_vif *arvif)
- 	WARN_ON(ar->num_started_vdevs == 0);
- 
- 	ar->num_started_vdevs--;
-+	ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "vdev %pM stopped, vdev_id %d\n",
-+		   arvif->vif->addr, arvif->vdev_id);
- 
- 	if (test_bit(ATH11K_CAC_RUNNING, &ar->dev_flags)) {
- 		clear_bit(ATH11K_CAC_RUNNING, &ar->dev_flags);
+ }
 -- 
 2.7.4
 
