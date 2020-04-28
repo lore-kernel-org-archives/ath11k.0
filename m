@@ -1,14 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jTI7q-0001mD-JG
- for ath11k@lists.infradead.org; Tue, 28 Apr 2020 04:45:44 +0000
-From: Sathishkumar Muruganandam <murugana@codeaurora.org>
-Subject: [PATCH v4 1/2] ath11k: fix mgmt_tx_wmi cmd sent to FW for deleted vdev
-Date: Tue, 28 Apr 2020 10:15:25 +0530
-Message-Id: <1588049126-1490-2-git-send-email-murugana@codeaurora.org>
-In-Reply-To: <1588049126-1490-1-git-send-email-murugana@codeaurora.org>
-References: <1588049126-1490-1-git-send-email-murugana@codeaurora.org>
+ id 1jTMJi-000233-UR
+ for ath11k@lists.infradead.org; Tue, 28 Apr 2020 09:14:20 +0000
+MIME-Version: 1.0
+Subject: Re: [PATCH net-next] ath11k: use GFP_ATOMIC under spin lock
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <20200427092417.56236-1-weiyongjun1@huawei.com>
+References: <20200427092417.56236-1-weiyongjun1@huawei.com>
+Message-Id: <20200428091400.9525BC433F2@smtp.codeaurora.org>
+Date: Tue, 28 Apr 2020 09:14:00 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -17,71 +18,29 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: Sathishkumar Muruganandam <murugana@codeaurora.org>, linux-wireless@vger.kernel.org
+To: Wei Yongjun <weiyongjun1@huawei.com>
+Cc: kernel-janitors@vger.kernel.org, linux-wireless@vger.kernel.org, dri-devel@lists.freedesktop.org, ath11k@lists.infradead.org, linaro-mm-sig@lists.linaro.org, Sumit Semwal <sumit.semwal@linaro.org>, linux-media@vger.kernel.org
 
-In Multi-AP VAP scenario with frequent interface up-down, there is a
-chance that ath11k_mgmt_over_wmi_tx_work() will dequeue a skb
-corresponding to currently deleted/stopped vdev.
+Wei Yongjun <weiyongjun1@huawei.com> wrote:
 
-FW will assert on receiving mgmt_tx_wmi cmd for already deleted vdev.
-Hence adding validation checks for arvif present on the corresponding
-ar before sending mgmt_tx_wmi cmd.
+> A spin lock is taken here so we should use GFP_ATOMIC.
+> 
+> Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+> Signed-off-by: Wei Yongjun <weiyongjun1@huawei.com>
+> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-Signed-off-by: Sathishkumar Muruganandam <murugana@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/mac.c | 29 ++++++++++++++++++++++-------
- 1 file changed, 22 insertions(+), 7 deletions(-)
+Patch applied to ath-next branch of ath.git, thanks.
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 065b7d6d4ab2..2b3a63ac216c 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -3793,15 +3793,30 @@ static void ath11k_mgmt_over_wmi_tx_work(struct work_struct *work)
- 
- 	while ((skb = skb_dequeue(&ar->wmi_mgmt_tx_queue)) != NULL) {
- 		info = IEEE80211_SKB_CB(skb);
--		arvif = ath11k_vif_to_arvif(info->control.vif);
--
--		ret = ath11k_mac_mgmt_tx_wmi(ar, arvif, skb);
--		if (ret) {
--			ath11k_warn(ar->ab, "failed to transmit management frame %d\n",
--				    ret);
-+		if (!info->control.vif) {
-+			ath11k_warn(ar->ab, "no vif found for mgmt frame, flags 0x%x\n",
-+				    info->control.flags);
- 			ieee80211_free_txskb(ar->hw, skb);
-+			continue;
-+		}
-+
-+		arvif = ath11k_vif_to_arvif(info->control.vif);
-+		if (ar->allocated_vdev_map & (1LL << arvif->vdev_id) &&
-+		    arvif->is_started) {
-+			ret = ath11k_mac_mgmt_tx_wmi(ar, arvif, skb);
-+			if (ret) {
-+				ath11k_warn(ar->ab, "failed to tx mgmt frame, vdev_id %d :%d\n",
-+					    arvif->vdev_id, ret);
-+				ieee80211_free_txskb(ar->hw, skb);
-+			} else {
-+				atomic_inc(&ar->num_pending_mgmt_tx);
-+			}
- 		} else {
--			atomic_inc(&ar->num_pending_mgmt_tx);
-+			ath11k_warn(ar->ab,
-+				    "dropping mgmt frame for vdev %d, flags 0x%x is_started %d\n",
-+				    arvif->vdev_id, info->control.flags,
-+				    arvif->is_started);
-+			ieee80211_free_txskb(ar->hw, skb);
- 		}
- 	}
- }
+69c93f9674c9 ath11k: use GFP_ATOMIC under spin lock
+
 -- 
-2.7.4
+https://patchwork.kernel.org/patch/11511711/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 _______________________________________________
 ath11k mailing list
