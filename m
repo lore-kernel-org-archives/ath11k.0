@@ -1,13 +1,17 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from nbd.name ([2a01:4f8:221:3d45::2])
+Received: from mga09.intel.com ([134.134.136.24])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jUB6v-0005pR-Vk
- for ath11k@lists.infradead.org; Thu, 30 Apr 2020 15:28:27 +0000
-From: John Crispin <john@phrozen.org>
-Subject: [PATCH V2] ath11k: add tx hw 802.11 encapusaltion offloading support
-Date: Thu, 30 Apr 2020 17:28:14 +0200
-Message-Id: <20200430152814.18481-1-john@phrozen.org>
+ id 1jUHpF-0000Jy-Um
+ for ath11k@lists.infradead.org; Thu, 30 Apr 2020 22:38:39 +0000
+Date: Fri, 1 May 2020 06:38:19 +0800
+From: kbuild test robot <lkp@intel.com>
+Subject: Re: [PATCH V3 1/3] nl80211: add support for setting fixed HE
+ rate/gi/ltf
+Message-ID: <202005010643.4LK4hgmF%lkp@intel.com>
+References: <20200429145708.25992-1-john@phrozen.org>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20200429145708.25992-1-john@phrozen.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -20,206 +24,65 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: Shashidhar Lakkavalli <slakkavalli@datto.com>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
+To: John Crispin <john@phrozen.org>, Johannes Berg <johannes@sipsolutions.net>, Kalle Valo <kvalo@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, Miles Hu <milehu@codeaurora.org>
+Cc: kbuild-all@lists.01.org
 
-This patch adds support for ethernet rxtx mode to the driver. The feature
-is enabled via a new module parameter. If enabled to driver will enable
-the feature on a per vif basis if all other requirements were met.
+Hi John,
 
-Signed-off-by: Shashidhar Lakkavalli <slakkavalli@datto.com>
-Signed-off-by: John Crispin <john@phrozen.org>
+Thank you for the patch! Perhaps something to improve:
+
+[auto build test WARNING on mac80211/master]
+[also build test WARNING on ath6kl/ath-next v5.7-rc3 next-20200430]
+[cannot apply to mac80211-next/master]
+[if your patch is applied to the wrong git tree, please drop us a note to help
+improve the system. BTW, we also suggest to use '--base' option to specify the
+base tree in git format-patch, please see https://stackoverflow.com/a/37406982]
+
+url:    https://github.com/0day-ci/linux/commits/John-Crispin/nl80211-add-support-for-setting-fixed-HE-rate-gi-ltf/20200430-040802
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jberg/mac80211.git master
+reproduce:
+        # apt-get install sparse
+        # sparse version: v0.6.1-191-gc51a0382-dirty
+        make ARCH=x86_64 allmodconfig
+        make C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__'
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kbuild test robot <lkp@intel.com>
+
+
+sparse warnings: (new ones prefixed by >>)
+
+>> net/wireless/nl80211.c:4440:47: sparse: sparse: incorrect type in return expression (different base types) @@    expected unsigned short @@    got restricted __le16 conunsigned short @@
+>> net/wireless/nl80211.c:4440:47: sparse:    expected unsigned short
+>> net/wireless/nl80211.c:4440:47: sparse:    got restricted __le16 const [usertype] tx_mcs_80p80
+   net/wireless/nl80211.c:4442:47: sparse: sparse: incorrect type in return expression (different base types) @@    expected unsigned short @@    got restricted __le16 conunsigned short @@
+   net/wireless/nl80211.c:4442:47: sparse:    expected unsigned short
+>> net/wireless/nl80211.c:4442:47: sparse:    got restricted __le16 const [usertype] tx_mcs_160
+
+vim +4440 net/wireless/nl80211.c
+
+  4431	
+  4432	static u16 he_get_txmcsmap(struct genl_info *info,
+  4433				   const struct ieee80211_sta_he_cap *he_cap)
+  4434	{
+  4435		struct net_device *dev = info->user_ptr[1];
+  4436		struct wireless_dev *wdev = dev->ieee80211_ptr;
+  4437	
+  4438		switch (wdev->chandef.width) {
+  4439		case NL80211_CHAN_WIDTH_80P80:
+> 4440			return he_cap->he_mcs_nss_supp.tx_mcs_80p80;
+  4441		case NL80211_CHAN_WIDTH_160:
+> 4442			return he_cap->he_mcs_nss_supp.tx_mcs_160;
+  4443		default:
+  4444			break;
+  4445		}
+  4446		return le16_to_cpu(he_cap->he_mcs_nss_supp.tx_mcs_80);
+  4447	}
+  4448	
+
 ---
-Changes in V2
-* use an enum for datapath mode
-* minor fixes as suggested by Julian
-
- drivers/net/wireless/ath/ath11k/core.h  |  5 +++
- drivers/net/wireless/ath/ath11k/dp_tx.c | 17 +++++++--
- drivers/net/wireless/ath/ath11k/mac.c   | 46 ++++++++++++++++++++-----
- 3 files changed, 56 insertions(+), 12 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 5c767d87c174..12c0a4de3506 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -60,9 +60,14 @@ static inline enum wme_ac ath11k_tid_to_ac(u32 tid)
- 		WME_AC_VO);
- }
- 
-+enum ath11k_skb_flags {
-+	ATH11K_SKB_HW_80211_ENCAP = BIT(0),
-+};
-+
- struct ath11k_skb_cb {
- 	dma_addr_t paddr;
- 	u8 eid;
-+	u8 flags;
- 	struct ath11k *ar;
- 	struct ieee80211_vif *vif;
- } __packed;
-diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
-index 8c3f973923d6..a8f3accb7d3e 100644
---- a/drivers/net/wireless/ath/ath11k/dp_tx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
-@@ -16,7 +16,11 @@ ath11k_txq_tcl_ring_map[ATH11K_HW_MAX_QUEUES] = { 0x0, 0x1, 0x2, 0x2 };
- static enum hal_tcl_encap_type
- ath11k_dp_tx_get_encap_type(struct ath11k_vif *arvif, struct sk_buff *skb)
- {
--	/* TODO: Determine encap type based on vif_type and configuration */
-+	struct ieee80211_tx_info *tx_info = IEEE80211_SKB_CB(skb);
-+
-+	if (tx_info->control.flags & IEEE80211_TX_CTRL_HW_80211_ENCAP)
-+		return HAL_TCL_ENCAP_TYPE_ETHERNET;
-+
- 	return HAL_TCL_ENCAP_TYPE_NATIVE_WIFI;
- }
- 
-@@ -40,8 +44,11 @@ static void ath11k_dp_tx_encap_nwifi(struct sk_buff *skb)
- static u8 ath11k_dp_tx_get_tid(struct sk_buff *skb)
- {
- 	struct ieee80211_hdr *hdr = (void *)skb->data;
-+	struct ath11k_skb_cb *cb = ATH11K_SKB_CB(skb);
- 
--	if (!ieee80211_is_data_qos(hdr->frame_control))
-+	if (cb->flags & ATH11K_SKB_HW_80211_ENCAP)
-+		return skb->priority & IEEE80211_QOS_CTL_TID_MASK;
-+	else if (!ieee80211_is_data_qos(hdr->frame_control))
- 		return HAL_DESC_REO_NON_QOS_TID;
- 	else
- 		return skb->priority & IEEE80211_QOS_CTL_TID_MASK;
-@@ -88,7 +95,8 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
- 	if (test_bit(ATH11K_FLAG_CRASH_FLUSH, &ar->ab->dev_flags))
- 		return -ESHUTDOWN;
- 
--	if (!ieee80211_is_data(hdr->frame_control))
-+	if (!(info->control.flags & IEEE80211_TX_CTRL_HW_80211_ENCAP) &&
-+	    !ieee80211_is_data(hdr->frame_control))
- 		return -ENOTSUPP;
- 
- 	pool_id = skb_get_queue_mapping(skb) & (ATH11K_HW_MAX_QUEUES - 1);
-@@ -149,7 +157,10 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
- 		 *	  skb_checksum_help() is needed
- 		 */
- 	case HAL_TCL_ENCAP_TYPE_ETHERNET:
-+		/* no need to encap */
-+		break;
- 	case HAL_TCL_ENCAP_TYPE_802_3:
-+	default:
- 		/* TODO: Take care of other encap modes as well */
- 		ret = -EINVAL;
- 		goto fail_remove_idr;
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index aef012912003..735526b34024 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -33,6 +33,11 @@
- 	.max_power              = 30, \
- }
- 
-+/* frame mode values are mapped as per enum ath11k_hw_txrx_mode */
-+static unsigned int ath11k_ath11k_frame_mode = ATH11K_HW_TXRX_NATIVE_WIFI;
-+module_param_named(ath11k_frame_mode, ath11k_ath11k_frame_mode, uint, 0644);
-+MODULE_PARM_DESC(ath11k_frame_mode, "Datapath frame mode");
-+
- static const struct ieee80211_channel ath11k_2ghz_channels[] = {
- 	CHAN2G(1, 2412, 0),
- 	CHAN2G(2, 2417, 0),
-@@ -3806,10 +3811,10 @@ static int __ath11k_set_antenna(struct ath11k *ar, u32 tx_ant, u32 rx_ant)
- 
- int ath11k_mac_tx_mgmt_pending_free(int buf_id, void *skb, void *ctx)
- {
-+	struct sk_buff *msdu = skb;
-+	struct ieee80211_tx_info *info = IEEE80211_SKB_CB(msdu);
- 	struct ath11k *ar = ctx;
- 	struct ath11k_base *ab = ar->ab;
--	struct sk_buff *msdu = skb;
--	struct ieee80211_tx_info *info;
- 
- 	spin_lock_bh(&ar->txmgmt_idr_lock);
- 	idr_remove(&ar->txmgmt_idr, buf_id);
-@@ -3849,6 +3854,7 @@ static int ath11k_mac_mgmt_tx_wmi(struct ath11k *ar, struct ath11k_vif *arvif,
- {
- 	struct ath11k_base *ab = ar->ab;
- 	struct ieee80211_hdr *hdr = (struct ieee80211_hdr *)skb->data;
-+	struct ieee80211_tx_info *info;
- 	dma_addr_t paddr;
- 	int buf_id;
- 	int ret;
-@@ -3860,11 +3866,14 @@ static int ath11k_mac_mgmt_tx_wmi(struct ath11k *ar, struct ath11k_vif *arvif,
- 	if (buf_id < 0)
- 		return -ENOSPC;
- 
--	if ((ieee80211_is_action(hdr->frame_control) ||
--	     ieee80211_is_deauth(hdr->frame_control) ||
--	     ieee80211_is_disassoc(hdr->frame_control)) &&
--	     ieee80211_has_protected(hdr->frame_control)) {
--		skb_put(skb, IEEE80211_CCMP_MIC_LEN);
-+	info = IEEE80211_SKB_CB(skb);
-+	if (!(info->control.flags & IEEE80211_TX_CTRL_HW_80211_ENCAP)) {
-+		if ((ieee80211_is_action(hdr->frame_control) ||
-+		     ieee80211_is_deauth(hdr->frame_control) ||
-+		     ieee80211_is_disassoc(hdr->frame_control)) &&
-+		     ieee80211_has_protected(hdr->frame_control)) {
-+			skb_put(skb, IEEE80211_CCMP_MIC_LEN);
-+		}
- 	}
- 
- 	paddr = dma_map_single(ab->dev, skb->data, skb->len, DMA_TO_DEVICE);
-@@ -3961,6 +3970,7 @@ static void ath11k_mac_op_tx(struct ieee80211_hw *hw,
- 			     struct ieee80211_tx_control *control,
- 			     struct sk_buff *skb)
- {
-+	struct ath11k_skb_cb *skb_cb = ATH11K_SKB_CB(skb);
- 	struct ath11k *ar = hw->priv;
- 	struct ieee80211_tx_info *info = IEEE80211_SKB_CB(skb);
- 	struct ieee80211_vif *vif = info->control.vif;
-@@ -3969,7 +3979,9 @@ static void ath11k_mac_op_tx(struct ieee80211_hw *hw,
- 	bool is_prb_rsp;
- 	int ret;
- 
--	if (ieee80211_is_mgmt(hdr->frame_control)) {
-+	if (info->control.flags & IEEE80211_TX_CTRL_HW_80211_ENCAP) {
-+		skb_cb->flags |= ATH11K_SKB_HW_80211_ENCAP;
-+	} else if (ieee80211_is_mgmt(hdr->frame_control)) {
- 		is_prb_rsp = ieee80211_is_probe_resp(hdr->frame_control);
- 		ret = ath11k_mac_mgmt_tx(ar, skb, is_prb_rsp);
- 		if (ret) {
-@@ -4245,6 +4257,7 @@ static int ath11k_mac_op_add_interface(struct ieee80211_hw *hw,
- 	struct vdev_create_params vdev_param = {0};
- 	struct peer_create_params peer_param;
- 	u32 param_id, param_value;
-+	int hw_encap = 0;
- 	u16 nss;
- 	int i;
- 	int ret;
-@@ -4339,7 +4352,22 @@ static int ath11k_mac_op_add_interface(struct ieee80211_hw *hw,
- 	spin_unlock_bh(&ar->data_lock);
- 
- 	param_id = WMI_VDEV_PARAM_TX_ENCAP_TYPE;
--	param_value = ATH11K_HW_TXRX_NATIVE_WIFI;
-+	if (ath11k_ath11k_frame_mode == ATH11K_HW_TXRX_ETHERNET)
-+		switch (vif->type) {
-+		case NL80211_IFTYPE_STATION:
-+		case NL80211_IFTYPE_AP_VLAN:
-+		case NL80211_IFTYPE_AP:
-+			hw_encap = 1;
-+			break;
-+		default:
-+			break;
-+		}
-+
-+	if (ieee80211_set_hw_80211_encap(vif, hw_encap))
-+		param_value = ATH11K_HW_TXRX_ETHERNET;
-+	else
-+		param_value = ATH11K_HW_TXRX_NATIVE_WIFI;
-+
- 	ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
- 					    param_id, param_value);
- 	if (ret) {
--- 
-2.20.1
-
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
 
 _______________________________________________
 ath11k mailing list
