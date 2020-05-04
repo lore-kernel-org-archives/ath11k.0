@@ -1,13 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from szxga04-in.huawei.com ([45.249.212.190] helo=huawei.com)
+Received: from mail26.static.mailgun.info ([104.130.122.26])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jVZMg-00034M-2o
- for ath11k@lists.infradead.org; Mon, 04 May 2020 11:34:27 +0000
-From: Jason Yan <yanaijie@huawei.com>
-Subject: [PATCH] ath11k: use true,false for bool variables
-Date: Mon, 4 May 2020 19:33:36 +0800
-Message-ID: <20200504113336.41249-1-yanaijie@huawei.com>
-MIME-Version: 1.0
+ id 1jVZYV-0004Ie-J8
+ for ath11k@lists.infradead.org; Mon, 04 May 2020 11:46:44 +0000
+From: Sowmiya Sree Elavalagan <ssreeela@codeaurora.org>
+Subject: [PATCH] ath11k: fix resource unavailability for htt stats after peer
+ stats display
+Date: Mon,  4 May 2020 17:15:55 +0530
+Message-Id: <1588592755-10427-1-git-send-email-ssreeela@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -16,43 +16,64 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: kvalo@codeaurora.org, davem@davemloft.net, srirrama@codeaurora.org, ath11k@lists.infradead.org, linux-wireless@vger.kernel.org, netdev@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Jason Yan <yanaijie@huawei.com>
+To: ath11k@lists.infradead.org
+Cc: Sowmiya Sree Elavalagan <ssreeela@codeaurora.org>, linux-wireless@vger.kernel.org
 
-Fix the following coccicheck warning:
+htt stats are not working after htt peer stats display
+and also after htt peer stats reset. Trying to dump htt 
+stats shows "Resource temporarily unavailable".
+This is because of "ar->debug.htt_stats.stats_req" member is being
+consecutively used for all htt stats without being reset 
+during the previous usage. Hence assigning NULL to this member 
+after freeing the allocated memory fixes the issue.
 
-drivers/net/wireless/ath/ath11k/dp_rx.c:2964:1-39: WARNING: Assignment
-of 0/1 to bool variable
-drivers/net/wireless/ath/ath11k/dp_rx.c:2965:1-38: WARNING: Assignment
-of 0/1 to bool variable
+console logs below:
+# echo 9 >/sys/kernel/debug/ath11k/ipq8074/mac1/htt_stats_type
+# cat /sys/kernel/debug/ath11k/ipq8074/mac1/htt_stats_type
+9
+# cat /sys/kernel/debug/ath11k/ipq8074/mac1/htt_stats
+cat: can't open '/sys/kernel/debug/ath11k/ipq8074/mac1/htt_stats'
+: Resource temporarily unavailable
 
-Signed-off-by: Jason Yan <yanaijie@huawei.com>
+Signed-off-by: Sowmiya Sree Elavalagan <ssreeela@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/dp_rx.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/net/wireless/ath/ath11k/debugfs_sta.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index bbd7da48518f..8d3ab3b5213d 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -2961,8 +2961,8 @@ static int ath11k_dp_rx_h_verify_tkip_mic(struct ath11k *ar, struct ath11k_peer
+diff --git a/drivers/net/wireless/ath/ath11k/debugfs_sta.c b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
+index 389dac2..696ff14 100644
+--- a/drivers/net/wireless/ath/ath11k/debugfs_sta.c
++++ b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
+@@ -435,13 +435,22 @@ ath11k_dbg_sta_open_htt_peer_stats(struct inode *inode, struct file *file)
  	return 0;
+ out:
+ 	vfree(stats_req);
++	ar->debug.htt_stats.stats_req = NULL;
+ 	return ret;
+ }
  
- mic_fail:
--	(ATH11K_SKB_RXCB(msdu))->is_first_msdu = 1;
--	(ATH11K_SKB_RXCB(msdu))->is_last_msdu = 1;
-+	(ATH11K_SKB_RXCB(msdu))->is_first_msdu = true;
-+	(ATH11K_SKB_RXCB(msdu))->is_last_msdu = true;
+ static int
+ ath11k_dbg_sta_release_htt_peer_stats(struct inode *inode, struct file *file)
+ {
++	struct ieee80211_sta *sta = inode->i_private;
++	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
++	struct ath11k *ar = arsta->arvif->ar;
++
++	mutex_lock(&ar->conf_mutex);
+ 	vfree(file->private_data);
++	ar->debug.htt_stats.stats_req = NULL;
++	mutex_unlock(&ar->conf_mutex);
++
+ 	return 0;
+ }
  
- 	rxs->flag |= RX_FLAG_MMIC_ERROR | RX_FLAG_MMIC_STRIPPED |
- 		    RX_FLAG_IV_STRIPPED | RX_FLAG_DECRYPTED;
 -- 
-2.21.1
-
+2.7.4
 
 _______________________________________________
 ath11k mailing list
