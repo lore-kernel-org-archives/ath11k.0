@@ -1,13 +1,11 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail26.static.mailgun.info ([104.130.122.26])
- by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jVZYV-0004Ie-J8
- for ath11k@lists.infradead.org; Mon, 04 May 2020 11:46:44 +0000
-From: Sowmiya Sree Elavalagan <ssreeela@codeaurora.org>
-Subject: [PATCH] ath11k: fix resource unavailability for htt stats after peer
- stats display
-Date: Mon,  4 May 2020 17:15:55 +0530
-Message-Id: <1588592755-10427-1-git-send-email-ssreeela@codeaurora.org>
+From: Markus Theil <markus.theil@tu-ilmenau.de>
+Subject: [PATCH 2/2] ath11k: use cumulative survey statistics
+Date: Mon,  4 May 2020 17:41:22 +0200
+Message-Id: <20200504154122.91862-2-markus.theil@tu-ilmenau.de>
+In-Reply-To: <20200504154122.91862-1-markus.theil@tu-ilmenau.de>
+References: <20200504154122.91862-1-markus.theil@tu-ilmenau.de>
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -16,64 +14,59 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: Sowmiya Sree Elavalagan <ssreeela@codeaurora.org>, linux-wireless@vger.kernel.org
+To: linux-wireless@vger.kernel.org
+Cc: Markus Theil <markus.theil@tu-ilmenau.de>, ath10k@lists.infradead.org, kvalo@codeaurora.org, ath11k@lists.infradead.org
 
-htt stats are not working after htt peer stats display
-and also after htt peer stats reset. Trying to dump htt 
-stats shows "Resource temporarily unavailable".
-This is because of "ar->debug.htt_stats.stats_req" member is being
-consecutively used for all htt stats without being reset 
-during the previous usage. Hence assigning NULL to this member 
-after freeing the allocated memory fixes the issue.
+ath11k currently reports survey results for the last interval between each
+invocation of NL80211_CMD_GET_SURVEY. For concurrent invocations, this
+can lead to unexpectedly small results, e.g. when hostapd uses survey
+data and iw survey dump is invoked in parallel. Fix this by returning
+cumulative results, that don't depend on the last invocation. Other
+drivers, e.g. ath9k or mt76 also use this behavior.
 
-console logs below:
-# echo 9 >/sys/kernel/debug/ath11k/ipq8074/mac1/htt_stats_type
-# cat /sys/kernel/debug/ath11k/ipq8074/mac1/htt_stats_type
-9
-# cat /sys/kernel/debug/ath11k/ipq8074/mac1/htt_stats
-cat: can't open '/sys/kernel/debug/ath11k/ipq8074/mac1/htt_stats'
-: Resource temporarily unavailable
-
-Signed-off-by: Sowmiya Sree Elavalagan <ssreeela@codeaurora.org>
+Signed-off-by: Markus Theil <markus.theil@tu-ilmenau.de>
 ---
- drivers/net/wireless/ath/ath11k/debugfs_sta.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ drivers/net/wireless/ath/ath11k/wmi.c | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/debugfs_sta.c b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-index 389dac2..696ff14 100644
---- a/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-+++ b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-@@ -435,13 +435,22 @@ ath11k_dbg_sta_open_htt_peer_stats(struct inode *inode, struct file *file)
- 	return 0;
- out:
- 	vfree(stats_req);
-+	ar->debug.htt_stats.stats_req = NULL;
- 	return ret;
- }
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index c2a972377687..322ddfda5bfd 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -5610,16 +5610,16 @@ ath11k_pdev_bss_chan_info_event(struct ath11k_base *ab, struct sk_buff *skb)
  
- static int
- ath11k_dbg_sta_release_htt_peer_stats(struct inode *inode, struct file *file)
- {
-+	struct ieee80211_sta *sta = inode->i_private;
-+	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
-+	struct ath11k *ar = arsta->arvif->ar;
-+
-+	mutex_lock(&ar->conf_mutex);
- 	vfree(file->private_data);
-+	ar->debug.htt_stats.stats_req = NULL;
-+	mutex_unlock(&ar->conf_mutex);
-+
- 	return 0;
- }
+ 	survey = &ar->survey[idx];
  
+-	survey->noise     = bss_ch_info_ev.noise_floor;
+-	survey->time      = div_u64(total, cc_freq_hz);
+-	survey->time_busy = div_u64(busy, cc_freq_hz);
+-	survey->time_rx   = div_u64(rx_bss, cc_freq_hz);
+-	survey->time_tx   = div_u64(tx, cc_freq_hz);
+-	survey->filled   |= (SURVEY_INFO_NOISE_DBM |
+-			     SURVEY_INFO_TIME |
+-			     SURVEY_INFO_TIME_BUSY |
+-			     SURVEY_INFO_TIME_RX |
+-			     SURVEY_INFO_TIME_TX);
++	survey->noise      = bss_ch_info_ev.noise_floor;
++	survey->time      += div_u64(total, cc_freq_hz);
++	survey->time_busy += div_u64(busy, cc_freq_hz);
++	survey->time_rx   += div_u64(rx_bss, cc_freq_hz);
++	survey->time_tx   += div_u64(tx, cc_freq_hz);
++	survey->filled    |= (SURVEY_INFO_NOISE_DBM |
++			      SURVEY_INFO_TIME |
++			      SURVEY_INFO_TIME_BUSY |
++			      SURVEY_INFO_TIME_RX |
++			      SURVEY_INFO_TIME_TX);
+ exit:
+ 	spin_unlock_bh(&ar->data_lock);
+ 	complete(&ar->bss_survey_done);
 -- 
-2.7.4
+2.26.2
+
 
 _______________________________________________
 ath11k mailing list
