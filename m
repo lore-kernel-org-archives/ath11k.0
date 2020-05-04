@@ -1,15 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail26.static.mailgun.info ([104.130.122.26])
- by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jVkmw-0007A0-Rw
- for ath11k@lists.infradead.org; Mon, 04 May 2020 23:46:23 +0000
-MIME-Version: 1.0
-Date: Mon, 04 May 2020 16:46:12 -0700
-From: Rajkumar Manoharan <rmanohar@codeaurora.org>
 Subject: Re: [PATCH 1/2] ath10k: use cumulative survey statistics
-In-Reply-To: <20200504154122.91862-1-markus.theil@tu-ilmenau.de>
 References: <20200504154122.91862-1-markus.theil@tu-ilmenau.de>
-Message-ID: <f772b7bf0eac31516a4e28719c1938f2@codeaurora.org>
+ <f772b7bf0eac31516a4e28719c1938f2@codeaurora.org>
+From: Ben Greear <greearb@candelatech.com>
+Message-ID: <323b4d4f-a967-cf63-6f5a-04f53802c50a@candelatech.com>
+Date: Mon, 4 May 2020 16:49:19 -0700
+MIME-Version: 1.0
+In-Reply-To: <f772b7bf0eac31516a4e28719c1938f2@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,28 +19,38 @@ Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Markus Theil <markus.theil@tu-ilmenau.de>
+To: Rajkumar Manoharan <rmanohar@codeaurora.org>, Markus Theil <markus.theil@tu-ilmenau.de>
 Cc: linux-wireless-owner@vger.kernel.org, linux-wireless@vger.kernel.org, ath10k@lists.infradead.org, kvalo@codeaurora.org, ath11k@lists.infradead.org
 
-On 2020-05-04 08:41, Markus Theil wrote:
-> ath10k currently reports survey results for the last interval between 
-> each
-> invocation of NL80211_CMD_GET_SURVEY. For concurrent invocations, this
-> can lead to unexpectedly small results, e.g. when hostapd uses survey
-> data and iw survey dump is invoked in parallel. Fix this by returning
-> cumulative results, that don't depend on the last invocation. Other
-> drivers, e.g. ath9k or mt76 also use this behavior.
-> 
-> Signed-off-by: Markus Theil <markus.theil@tu-ilmenau.de>
-> 
 
-IIRC this was fixed a while ago by below patch. Somehow it never landed 
-in ath.git.
-Simple one line change is enough.
 
-https://patchwork.kernel.org/patch/10550707/
+On 05/04/2020 04:46 PM, Rajkumar Manoharan wrote:
+> On 2020-05-04 08:41, Markus Theil wrote:
+>> ath10k currently reports survey results for the last interval between each
+>> invocation of NL80211_CMD_GET_SURVEY. For concurrent invocations, this
+>> can lead to unexpectedly small results, e.g. when hostapd uses survey
+>> data and iw survey dump is invoked in parallel. Fix this by returning
+>> cumulative results, that don't depend on the last invocation. Other
+>> drivers, e.g. ath9k or mt76 also use this behavior.
+>>
+>> Signed-off-by: Markus Theil <markus.theil@tu-ilmenau.de>
+>>
+>
+> IIRC this was fixed a while ago by below patch. Somehow it never landed in ath.git.
+> Simple one line change is enough.
+>
+> https://patchwork.kernel.org/patch/10550707/
+>
+> -Rajkumar
 
--Rajkumar
+Have you tested this with wave-1?  Lots of older, at least, firmware has brokenness in this area.
+
+Thanks,
+Ben
+
+-- 
+Ben Greear <greearb@candelatech.com>
+Candela Technologies Inc  http://www.candelatech.com
 
 _______________________________________________
 ath11k mailing list
