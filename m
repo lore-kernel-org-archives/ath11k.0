@@ -1,12 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail27.static.mailgun.info ([104.130.122.27])
+Received: from mail26.static.mailgun.info ([104.130.122.26])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jVeYW-00029N-1e
- for ath11k@lists.infradead.org; Mon, 04 May 2020 17:07:02 +0000
+ id 1jVeYa-0002An-1R
+ for ath11k@lists.infradead.org; Mon, 04 May 2020 17:07:10 +0000
 From: Tamizh Chelvam <tamizhr@codeaurora.org>
-Subject: [PATCH 1/2] mac80211: Add new AMPDU factor macro for HE peer caps
-Date: Mon,  4 May 2020 22:34:59 +0530
-Message-Id: <1588611900-21185-1-git-send-email-tamizhr@codeaurora.org>
+Subject: [PATCH 2/2] ath11k: Add peer max mpdu parameter in peer assoc command
+Date: Mon,  4 May 2020 22:35:00 +0530
+Message-Id: <1588611900-21185-2-git-send-email-tamizhr@codeaurora.org>
+In-Reply-To: <1588611900-21185-1-git-send-email-tamizhr@codeaurora.org>
+References: <1588611900-21185-1-git-send-email-tamizhr@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,37 +25,59 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org, johannes@sipsolutions.net
 Cc: linux-wireless@vger.kernel.org, Tamizh Chelvam <tamizhr@codeaurora.org>
 
-Add IEEE80211_HE_VHT_MAX_AMPDU_FACTOR and IEEE80211_HE_HT_MAX_AMPDU_FACTOR
-as per spec to use for peer max ampdu factor.
+Add peer max mpdu length configuration support in peer_assoc_he
+parameters. Noticed low throughput for the STA which
+supports HE, HT and not VHT in MU-MIMO case without this
+configuration
 
 Signed-off-by: Tamizh Chelvam <tamizhr@codeaurora.org>
 ---
- include/linux/ieee80211.h | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/net/wireless/ath/ath11k/mac.c | 25 +++++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
 
-diff --git a/include/linux/ieee80211.h b/include/linux/ieee80211.h
-index a561db4..69e214c 100644
---- a/include/linux/ieee80211.h
-+++ b/include/linux/ieee80211.h
-@@ -1821,6 +1821,8 @@ int ieee80211_get_vht_max_nss(struct ieee80211_vht_cap *cap,
- #define IEEE80211_HE_MAC_CAP3_FLEX_TWT_SCHED			0x40
- #define IEEE80211_HE_MAC_CAP3_RX_CTRL_FRAME_TO_MULTIBSS		0x80
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index f33c6d7..88e533c 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -1161,6 +1161,7 @@ static void ath11k_peer_assoc_h_he(struct ath11k *ar,
+ 				   struct peer_assoc_params *arg)
+ {
+ 	const struct ieee80211_sta_he_cap *he_cap = &sta->he_cap;
++	u8  ampdu_factor;
+ 	u16 v;
  
-+#define IEEE80211_HE_MAC_CAP3_MAX_AMPDU_LEN_EXP_SHIFT		3
-+
- #define IEEE80211_HE_MAC_CAP4_BSRP_BQRP_A_MPDU_AGG		0x01
- #define IEEE80211_HE_MAC_CAP4_QTP				0x02
- #define IEEE80211_HE_MAC_CAP4_BQR				0x04
-@@ -1842,6 +1844,9 @@ int ieee80211_get_vht_max_nss(struct ieee80211_vht_cap *cap,
- #define IEEE80211_HE_MAC_CAP5_PUNCTURED_SOUNDING		0x40
- #define IEEE80211_HE_MAC_CAP5_HT_VHT_TRIG_FRAME_RX		0x80
+ 	if (!he_cap->has_he)
+@@ -1178,6 +1179,30 @@ static void ath11k_peer_assoc_h_he(struct ath11k *ar,
+ 	/* the top most byte is used to indicate BSS color info */
+ 	arg->peer_he_ops &= 0xffffff;
  
-+#define IEEE80211_HE_VHT_MAX_AMPDU_FACTOR	20
-+#define IEEE80211_HE_HT_MAX_AMPDU_FACTOR	16
++	/* As per section 26.6.1 11ax Draft5.0, if the Max AMPDU Exponent Extension
++	 * in HE cap is zero, use the arg->peer_max_mpdu as calculated while parsing
++	 * VHT caps(if VHT caps is present) or HT caps (if VHT caps is not present).
++	 *
++	 * For non-zero value of Max AMPDU Extponent Extension in HE MAC caps,
++	 * if a HE STA sends VHT cap and HE cap IE in assoc request then, use
++	 * MAX_AMPDU_LEN_FACTOR as 20 to calculate max_ampdu length.
++	 * If a HE STA that does not send VHT cap, but HE and HT cap in assoc
++	 * request, then use MAX_AMPDU_LEN_FACTOR as 16 to calculate max_ampdu
++	 * length.
++	 */
++	ampdu_factor = (he_cap->he_cap_elem.mac_cap_info[3] &
++			IEEE80211_HE_MAC_CAP3_MAX_AMPDU_LEN_EXP_MASK) >>
++			IEEE80211_HE_MAC_CAP3_MAX_AMPDU_LEN_EXP_SHIFT;
 +
- /* 802.11ax HE PHY capabilities */
- #define IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_40MHZ_IN_2G		0x02
- #define IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_40MHZ_80MHZ_IN_5G	0x04
++	if (ampdu_factor) {
++		if (sta->vht_cap.vht_supported)
++			arg->peer_max_mpdu = (1 << (IEEE80211_HE_VHT_MAX_AMPDU_FACTOR +
++						    ampdu_factor)) - 1;
++		else if (sta->ht_cap.ht_supported)
++			arg->peer_max_mpdu = (1 << (IEEE80211_HE_HT_MAX_AMPDU_FACTOR +
++						    ampdu_factor)) - 1;
++	}
++
+ 	if (he_cap->he_cap_elem.phy_cap_info[6] &
+ 	    IEEE80211_HE_PHY_CAP6_PPE_THRESHOLD_PRESENT) {
+ 		int bit = 7;
 -- 
 1.9.1
 
