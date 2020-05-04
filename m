@@ -1,16 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail27.static.mailgun.info ([104.130.122.27])
+Received: from mail26.static.mailgun.info ([104.130.122.26])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jVWrB-0000TO-2o
- for ath11k@lists.infradead.org; Mon, 04 May 2020 08:53:48 +0000
+ id 1jVWso-0003Zn-8f
+ for ath11k@lists.infradead.org; Mon, 04 May 2020 08:55:29 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH net-next] ath11k: fix error return code in
- ath11k_dp_alloc()
+Subject: Re: [PATCH v4 1/2] ath11k: fix mgmt_tx_wmi cmd sent to FW for deleted
+ vdev
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <20200427104621.23752-1-weiyongjun1@huawei.com>
-References: <20200427104621.23752-1-weiyongjun1@huawei.com>
-Message-Id: <20200504085336.01C7BC433D2@smtp.codeaurora.org>
-Date: Mon,  4 May 2020 08:53:36 +0000 (UTC)
+In-Reply-To: <1588049126-1490-2-git-send-email-murugana@codeaurora.org>
+References: <1588049126-1490-2-git-send-email-murugana@codeaurora.org>
+Message-Id: <20200504085524.36769C433BA@smtp.codeaurora.org>
+Date: Mon,  4 May 2020 08:55:24 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,24 +23,29 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Wei Yongjun <weiyongjun1@huawei.com>
-Cc: linux-wireless@vger.kernel.org, kernel-janitors@vger.kernel.org, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
+To: Sathishkumar Muruganandam <murugana@codeaurora.org>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-Wei Yongjun <weiyongjun1@huawei.com> wrote:
+Sathishkumar Muruganandam <murugana@codeaurora.org> wrote:
 
-> Fix to return negative error code -ENOMEM from the error handling
-> case instead of 0, as done elsewhere in this function.
+> In Multi-AP VAP scenario with frequent interface up-down, there is a
+> chance that ath11k_mgmt_over_wmi_tx_work() will dequeue a skb
+> corresponding to currently deleted/stopped vdev.
 > 
-> Fixes: d0998eb84ed3 ("ath11k: optimise ath11k_dp_tx_completion_handler")
-> Signed-off-by: Wei Yongjun <weiyongjun1@huawei.com>
+> FW will assert on receiving mgmt_tx_wmi cmd for already deleted vdev.
+> Hence adding validation checks for arvif present on the corresponding
+> ar before sending mgmt_tx_wmi cmd.
+> 
+> Signed-off-by: Sathishkumar Muruganandam <murugana@codeaurora.org>
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-Patch applied to ath-next branch of ath.git, thanks.
+2 patches applied to ath-next branch of ath.git, thanks.
 
-f76f750aeea4 ath11k: fix error return code in ath11k_dp_alloc()
+66307ca04057 ath11k: fix mgmt_tx_wmi cmd sent to FW for deleted vdev
+657680cc86ca ath11k: add DBG_MAC prints to track vdev events
 
 -- 
-https://patchwork.kernel.org/patch/11511849/
+https://patchwork.kernel.org/patch/11513813/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
