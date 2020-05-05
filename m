@@ -1,13 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Subject: Re: [PATCH 2/2] ath11k: use cumulative survey statistics
+From: Sven Eckelmann <sven@narfation.org>
+Subject: Re: [PATCH 1/2] ath10k: use cumulative survey statistics
+Date: Tue, 05 May 2020 09:01:34 +0200
+Message-ID: <2335594.cnkAv9Vaq7@bentobox>
+In-Reply-To: <f772b7bf0eac31516a4e28719c1938f2@codeaurora.org>
 References: <20200504154122.91862-1-markus.theil@tu-ilmenau.de>
- <20200504154122.91862-2-markus.theil@tu-ilmenau.de>
- <85fa2d5f9183b3a12c5283b800f3750f@codeaurora.org>
-From: Markus Theil <markus.theil@tu-ilmenau.de>
-Message-ID: <c786e982-fcd6-2368-6b2f-f09b265654d6@tu-ilmenau.de>
-Date: Tue, 5 May 2020 08:53:24 +0200
+ <f772b7bf0eac31516a4e28719c1938f2@codeaurora.org>
 MIME-Version: 1.0
-In-Reply-To: <85fa2d5f9183b3a12c5283b800f3750f@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -16,60 +15,71 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: multipart/mixed; boundary="===============2104430274756850094=="
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Rajkumar Manoharan <rmanohar@codeaurora.org>
-Cc: linux-wireless-owner@vger.kernel.org, linux-wireless@vger.kernel.org, kvalo@codeaurora.org, ath10k@lists.infradead.org, ath11k@lists.infradead.org
+To: ath11k@lists.infradead.org
+Cc: Rajkumar Manoharan <rmanohar@codeaurora.org>, linux-wireless-owner@vger.kernel.org, linux-wireless@vger.kernel.org, Markus Theil <markus.theil@tu-ilmenau.de>, ath10k@lists.infradead.org, kvalo@codeaurora.org
 
-QW0gMDUuMDUuMjAyMCB1bSAwMTozNyBzY2hyaWViIFJhamt1bWFyIE1hbm9oYXJhbjoKPiBPbiAy
-MDIwLTA1LTA0IDA4OjQxLCBNYXJrdXMgVGhlaWwgd3JvdGU6Cj4+IGF0aDExayBjdXJyZW50bHkg
-cmVwb3J0cyBzdXJ2ZXkgcmVzdWx0cyBmb3IgdGhlIGxhc3QgaW50ZXJ2YWwgYmV0d2VlbiAKPj4g
-ZWFjaAo+PiBpbnZvY2F0aW9uIG9mIE5MODAyMTFfQ01EX0dFVF9TVVJWRVkuIEZvciBjb25jdXJy
-ZW50IGludm9jYXRpb25zLCB0aGlzCj4+IGNhbiBsZWFkIHRvIHVuZXhwZWN0ZWRseSBzbWFsbCBy
-ZXN1bHRzLCBlLmcuIHdoZW4gaG9zdGFwZCB1c2VzIHN1cnZleQo+PiBkYXRhIGFuZCBpdyBzdXJ2
-ZXkgZHVtcCBpcyBpbnZva2VkIGluIHBhcmFsbGVsLiBGaXggdGhpcyBieSByZXR1cm5pbmcKPj4g
-Y3VtdWxhdGl2ZSByZXN1bHRzLCB0aGF0IGRvbid0IGRlcGVuZCBvbiB0aGUgbGFzdCBpbnZvY2F0
-aW9uLiBPdGhlcgo+PiBkcml2ZXJzLCBlLmcuIGF0aDlrIG9yIG10NzYgYWxzbyB1c2UgdGhpcyBi
-ZWhhdmlvci4KPj4KPj4gU2lnbmVkLW9mZi1ieTogTWFya3VzIFRoZWlsIDxtYXJrdXMudGhlaWxA
-dHUtaWxtZW5hdS5kZT4KPj4gLS0tCj4+IMKgZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDEx
-ay93bWkuYyB8IDIwICsrKysrKysrKystLS0tLS0tLS0tCj4+IMKgMSBmaWxlIGNoYW5nZWQsIDEw
-IGluc2VydGlvbnMoKyksIDEwIGRlbGV0aW9ucygtKQo+Pgo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay93bWkuYwo+PiBiL2RyaXZlcnMvbmV0L3dpcmVsZXNz
-L2F0aC9hdGgxMWsvd21pLmMKPj4gaW5kZXggYzJhOTcyMzc3Njg3Li4zMjJkZGZkYTViZmQgMTAw
-NjQ0Cj4+IC0tLSBhL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvd21pLmMKPj4gKysr
-IGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay93bWkuYwo+PiBAQCAtNTYxMCwxNiAr
-NTYxMCwxNiBAQCBhdGgxMWtfcGRldl9ic3NfY2hhbl9pbmZvX2V2ZW50KHN0cnVjdAo+PiBhdGgx
-MWtfYmFzZSAqYWIsIHN0cnVjdCBza19idWZmICpza2IpCj4+Cj4+IMKgwqDCoMKgIHN1cnZleSA9
-ICZhci0+c3VydmV5W2lkeF07Cj4+Cj4+IC3CoMKgwqAgc3VydmV5LT5ub2lzZcKgwqDCoMKgID0g
-YnNzX2NoX2luZm9fZXYubm9pc2VfZmxvb3I7Cj4+IC3CoMKgwqAgc3VydmV5LT50aW1lwqDCoMKg
-wqDCoCA9IGRpdl91NjQodG90YWwsIGNjX2ZyZXFfaHopOwo+PiAtwqDCoMKgIHN1cnZleS0+dGlt
-ZV9idXN5ID0gZGl2X3U2NChidXN5LCBjY19mcmVxX2h6KTsKPj4gLcKgwqDCoCBzdXJ2ZXktPnRp
-bWVfcnjCoMKgID0gZGl2X3U2NChyeF9ic3MsIGNjX2ZyZXFfaHopOwo+PiAtwqDCoMKgIHN1cnZl
-eS0+dGltZV90eMKgwqAgPSBkaXZfdTY0KHR4LCBjY19mcmVxX2h6KTsKPj4gLcKgwqDCoCBzdXJ2
-ZXktPmZpbGxlZMKgwqAgfD0gKFNVUlZFWV9JTkZPX05PSVNFX0RCTSB8Cj4+IC3CoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBTVVJWRVlfSU5GT19USU1FIHwKPj4gLcKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgIFNVUlZFWV9JTkZPX1RJTUVfQlVTWSB8Cj4+IC3CoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBTVVJWRVlfSU5GT19USU1FX1JYIHwKPj4gLcKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIFNVUlZFWV9JTkZPX1RJTUVfVFgpOwo+PiArwqDC
-oMKgIHN1cnZleS0+bm9pc2XCoMKgwqDCoMKgID0gYnNzX2NoX2luZm9fZXYubm9pc2VfZmxvb3I7
-Cj4+ICvCoMKgwqAgc3VydmV5LT50aW1lwqDCoMKgwqDCoCArPSBkaXZfdTY0KHRvdGFsLCBjY19m
-cmVxX2h6KTsKPj4gK8KgwqDCoCBzdXJ2ZXktPnRpbWVfYnVzeSArPSBkaXZfdTY0KGJ1c3ksIGNj
-X2ZyZXFfaHopOwo+PiArwqDCoMKgIHN1cnZleS0+dGltZV9yeMKgwqAgKz0gZGl2X3U2NChyeF9i
-c3MsIGNjX2ZyZXFfaHopOwo+PiArwqDCoMKgIHN1cnZleS0+dGltZV90eMKgwqAgKz0gZGl2X3U2
-NCh0eCwgY2NfZnJlcV9oeik7Cj4+ICvCoMKgwqAgc3VydmV5LT5maWxsZWTCoMKgwqAgfD0gKFNV
-UlZFWV9JTkZPX05PSVNFX0RCTSB8Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgIFNVUlZFWV9JTkZPX1RJTUUgfAo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoCBTVVJWRVlfSU5GT19USU1FX0JVU1kgfAo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoCBTVVJWRVlfSU5GT19USU1FX1JYIHwKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqAgU1VSVkVZX0lORk9fVElNRV9UWCk7Cj4KPiBNYXJrdXMsCj4KPiBJdCBk
-ZXBlbmRzIG9uIHR5cGUgb2Ygc3VydmV5IHJlcXVlc3QgaXMgZ2l2ZW4gdG8gZmlybXdhcmUuIElu
-IGF0aDExaywgCj4gZmlybXdhcmUgcmVwb3J0cwo+IGFjY3VtdWxhdGVkIHZhbHVlcy4gU28gdGhl
-IGFib3ZlIGFkZGl0aW9uIGlzIHdyb25nIGFuZCByZXBvcnQgZG91YmxlIAo+IHZhbHVlLiBIYXZl
-IHlvdQo+IHRlc3RlZCB0aGlzIGNoYW5nZT8KPgo+IC1SYWprdW1hcgpPaywgc28gcGxlYXNlIGRy
-b3AgYm90aCBvZiBteSBwYXRjaGVzLiBNeSBhc3N1bXB0aW9ucyB3ZXJlIGluY29tcGxldGUgCmFu
-ZCB0b28gaHVtYmxlLiBJIGp1c3QgYXNzdW1lZCwgYXRoMTBrIGFuZCBhdGgxMWsgYm90aCB1c2Ug
-aW5jcmVtZW50YWwgCnN1cnZleXMuCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0cy5pbmZyYWRlYWQu
-b3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vYXRoMTFrCg==
+--===============2104430274756850094==
+Content-Type: multipart/signed; boundary="nextPart2406179.bnRGkfsQJl"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+
+--nextPart2406179.bnRGkfsQJl
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+
+On Tuesday, 5 May 2020 01:46:12 CEST Rajkumar Manoharan wrote:
+[...]
+> IIRC this was fixed a while ago by below patch. Somehow it never landed 
+> in ath.git.
+> Simple one line change is enough.
+> 
+> https://patchwork.kernel.org/patch/10550707/
+
+Because it doesn't work for everything. Remember that 10.2.4.x overflows all 
+the time (14-30s) because it used only 31 bit for the counters.
+
+But feel free to point me to the firmware version which fixed this.
+
+Kind regards,
+	Sven
+--nextPart2406179.bnRGkfsQJl
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl6xD04ACgkQXYcKB8Em
+e0YEVw//TH/fq0NNa8BsCXeGXzxlVMEexjFoX4Kd4gu+kbKZaN6e6kHdfp4jVfFL
+nWvkEuCkVytqr+7pBRVvPHOdKoLTJXwkbIdfbtz2GR+qpVDqxC90qn+pPJr33V4D
+Tinws56w4EhXK3YLaptPZRYGmRUjXIsMd6+KCdUyNupG1ztIlwrSUfTYdk6imWkS
+XXUin/LTR5YsVGkBKoj3NNyBcjAvr//g+PLTiWR/PBmIDBYzl1QhvBrxMURuN8wx
+sUeco+4LlP1nunB6OE2JwikoOK0AAFc8SyjHgZeBXm45cDmbnMeYhcLYYnakl+gs
+BifsmGgeeNPl2smGYgkUC0VtisX3p4/mFU0B87Fp9RD4ouO2bFTCldbmDROTX/gY
+m55yIZIWhH908xPVjf4SLQpaC3IBSTHmfEZ1ie/5guO8E0q19pZCoDLRiYdYpUtv
+USM/9+8M68yXrvgdg/Xxi/gcOHDeKeZIXb3gxYK1+xoIfahGdM/t/IFE9qIN5O+n
+hCYEBnbA26niZop3JDQxDHesjGA8uuPkBT+xtaUqWzDgBANG4DWn94uyZGffTapk
+dCYwFM0jdzTdQQuPYDphwMisi+P42x9jgk0QkmCgAh6CfWxdTe9D44UgCs/8+lZd
+wTzFvz5lcyJv8BsOjpzHA/6mI9CiJ7178pwOYU9SR43zF4pr8kw=
+=nZKo
+-----END PGP SIGNATURE-----
+
+--nextPart2406179.bnRGkfsQJl--
+
+
+
+
+
+--===============2104430274756850094==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
+
+--===============2104430274756850094==--
