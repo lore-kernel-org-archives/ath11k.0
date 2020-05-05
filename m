@@ -1,12 +1,18 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail26.static.mailgun.info ([104.130.122.26])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jW16x-00030Y-Uu
- for ath11k@lists.infradead.org; Tue, 05 May 2020 17:12:09 +0000
-From: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
-Subject: [PATCH] ath11k: fix htt stats module not handle multiple skbs
-Date: Tue,  5 May 2020 10:11:33 -0700
-Message-Id: <1588698693-6218-1-git-send-email-pradeepc@codeaurora.org>
+ id 1jW1Q1-0003tC-E1
+ for ath11k@lists.infradead.org; Tue, 05 May 2020 17:31:49 +0000
+MIME-Version: 1.0
+Date: Tue, 05 May 2020 10:31:10 -0700
+From: Rajkumar Manoharan <rmanohar@codeaurora.org>
+Subject: Re: [PATCH 2/2] ath11k: use cumulative survey statistics
+In-Reply-To: <c786e982-fcd6-2368-6b2f-f09b265654d6@tu-ilmenau.de>
+References: <20200504154122.91862-1-markus.theil@tu-ilmenau.de>
+ <20200504154122.91862-2-markus.theil@tu-ilmenau.de>
+ <85fa2d5f9183b3a12c5283b800f3750f@codeaurora.org>
+ <c786e982-fcd6-2368-6b2f-f09b265654d6@tu-ilmenau.de>
+Message-ID: <61f3dcc195fa4d877ddbd161523142ec@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -15,152 +21,46 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>, Miles Hu <milehu@codeaurora.org>, linux-wireless@vger.kernel.org
+To: Markus Theil <markus.theil@tu-ilmenau.de>
+Cc: linux-wireless-owner@vger.kernel.org, linux-wireless@vger.kernel.org, kvalo@codeaurora.org, ath10k@lists.infradead.org, ath11k@lists.infradead.org
 
-HTT EXT stats comes in stream of TLVs spanning over multiple
-messages. Currently completion is being sent for each message
-which is creating a race where stats_req is being accessed
-for filling in second message after the memory is already
-freed in release operation. Fix this by issuing completion
-once all the messages are received and processed. Driver
-knows this info from DONE bit set in htt msg.
+On 2020-05-04 23:53, Markus Theil wrote:
+> Am 05.05.2020 um 01:37 schrieb Rajkumar Manoharan:
+>> On 2020-05-04 08:41, Markus Theil wrote:
+>>> ath11k currently reports survey results for the last interval between 
+>>> each
+>>> invocation of NL80211_CMD_GET_SURVEY. For concurrent invocations, 
+>>> this
+>>> can lead to unexpectedly small results, e.g. when hostapd uses survey
+>>> data and iw survey dump is invoked in parallel. Fix this by returning
+>>> cumulative results, that don't depend on the last invocation. Other
+>>> drivers, e.g. ath9k or mt76 also use this behavior.
+>>> 
+[...]
+>> Markus,
+>> 
+>> It depends on type of survey request is given to firmware. In ath11k, 
+>> firmware reports
+>> accumulated values. So the above addition is wrong and report double 
+>> value. Have you
+>> tested this change?
+>> 
+>> -Rajkumar
+> Ok, so please drop both of my patches. My assumptions were incomplete
+> and too humble. I just assumed, ath10k and ath11k both use incremental
+> surveys.
+> 
+Markus,
 
-Also fix locking required for htt stats.
+The ath10k driver still counts survey stats incrementally. But it should 
+be handled by sending
+appropriate survey request_type to firmware.
 
-Co-developed-by: Miles Hu <milehu@codeaurora.org>
-Signed-off-by: Miles Hu <milehu@codeaurora.org>
-Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/debug_htt_stats.c | 49 ++++++++++++++++++-----
- drivers/net/wireless/ath/ath11k/dp.h              |  1 +
- 2 files changed, 39 insertions(+), 11 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/debug_htt_stats.c b/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
-index 5db0c27de475..9722dc431173 100644
---- a/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
-+++ b/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
-@@ -4306,6 +4306,7 @@ void ath11k_dbg_htt_ext_stats_handler(struct ath11k_base *ab,
- 	u32 len;
- 	u64 cookie;
- 	int ret;
-+	bool send_completion = false;
- 	u8 pdev_id;
- 
- 	msg = (struct ath11k_htt_extd_stats_msg *)skb->data;
-@@ -4330,11 +4331,11 @@ void ath11k_dbg_htt_ext_stats_handler(struct ath11k_base *ab,
- 		return;
- 
- 	spin_lock_bh(&ar->debug.htt_stats.lock);
--	if (stats_req->done) {
--		spin_unlock_bh(&ar->debug.htt_stats.lock);
--		return;
--	}
--	stats_req->done = true;
-+
-+	stats_req->done = FIELD_GET(HTT_T2H_EXT_STATS_INFO1_DONE, msg->info1);
-+	if (stats_req->done)
-+		send_completion = true;
-+
- 	spin_unlock_bh(&ar->debug.htt_stats.lock);
- 
- 	len = FIELD_GET(HTT_T2H_EXT_STATS_INFO1_LENGTH, msg->info1);
-@@ -4344,7 +4345,8 @@ void ath11k_dbg_htt_ext_stats_handler(struct ath11k_base *ab,
- 	if (ret)
- 		ath11k_warn(ab, "Failed to parse tlv %d\n", ret);
- 
--	complete(&stats_req->cmpln);
-+	if (send_completion)
-+		complete(&stats_req->cmpln);
- }
- 
- static ssize_t ath11k_read_htt_stats_type(struct file *file,
-@@ -4497,28 +4499,54 @@ static int ath11k_open_htt_stats(struct inode *inode, struct file *file)
- 	if (type == ATH11K_DBG_HTT_EXT_STATS_RESET)
- 		return -EPERM;
- 
-+	mutex_lock(&ar->conf_mutex);
-+
-+	if (ar->state != ATH11K_STATE_ON) {
-+		ret = -ENETDOWN;
-+		goto err_unlock;
-+	}
-+
-+	if (ar->debug.htt_stats.stats_req) {
-+		ret = -EAGAIN;
-+		goto err_unlock;
-+	}
-+
- 	stats_req = vzalloc(sizeof(*stats_req) + ATH11K_HTT_STATS_BUF_SIZE);
--	if (!stats_req)
--		return -ENOMEM;
-+	if (!stats_req) {
-+		ret = -ENOMEM;
-+		goto err_unlock;
-+	}
- 
--	mutex_lock(&ar->conf_mutex);
- 	ar->debug.htt_stats.stats_req = stats_req;
- 	stats_req->type = type;
-+
- 	ret = ath11k_dbg_htt_stats_req(ar);
--	mutex_unlock(&ar->conf_mutex);
- 	if (ret < 0)
- 		goto out;
- 
- 	file->private_data = stats_req;
-+
-+	mutex_unlock(&ar->conf_mutex);
-+
- 	return 0;
- out:
- 	vfree(stats_req);
-+	ar->debug.htt_stats.stats_req = NULL;
-+err_unlock:
-+	mutex_unlock(&ar->conf_mutex);
-+
- 	return ret;
- }
- 
- static int ath11k_release_htt_stats(struct inode *inode, struct file *file)
- {
-+	struct ath11k *ar = inode->i_private;
-+
-+	mutex_lock(&ar->conf_mutex);
- 	vfree(file->private_data);
-+	ar->debug.htt_stats.stats_req = NULL;
-+	mutex_unlock(&ar->conf_mutex);
-+
- 	return 0;
- }
- 
-@@ -4582,7 +4610,6 @@ static ssize_t ath11k_write_htt_stats_reset(struct file *file,
- 						 0ULL);
- 	if (ret) {
- 		ath11k_warn(ar->ab, "failed to send htt stats request: %d\n", ret);
--		mutex_unlock(&ar->conf_mutex);
- 		return ret;
- 	}
- 
-diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
-index 222de10e4b93..058a5c1d86ff 100644
---- a/drivers/net/wireless/ath/ath11k/dp.h
-+++ b/drivers/net/wireless/ath/ath11k/dp.h
-@@ -1517,6 +1517,7 @@ struct htt_ext_stats_cfg_params {
-  *       4 bytes.
-  */
- 
-+#define HTT_T2H_EXT_STATS_INFO1_DONE	BIT(11)
- #define HTT_T2H_EXT_STATS_INFO1_LENGTH   GENMASK(31, 16)
- 
- struct ath11k_htt_extd_stats_msg {
--- 
-1.9.1
+-Rajkumar
 
 _______________________________________________
 ath11k mailing list
