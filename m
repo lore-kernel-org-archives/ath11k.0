@@ -1,14 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Subject: Re: [PATCH 1/2] ath10k: use cumulative survey statistics
-References: <20200504154122.91862-1-markus.theil@tu-ilmenau.de>
- <f772b7bf0eac31516a4e28719c1938f2@codeaurora.org>
- <2335594.cnkAv9Vaq7@bentobox> <1845755.pTfhzBy2qg@bentobox>
-From: Markus Theil <markus.theil@tu-ilmenau.de>
-Message-ID: <46ab4ffd-b512-de43-40bb-f35989d228b9@tu-ilmenau.de>
-Date: Tue, 5 May 2020 17:37:27 +0200
-MIME-Version: 1.0
-In-Reply-To: <1845755.pTfhzBy2qg@bentobox>
-Content-Language: en-US
+Received: from mail26.static.mailgun.info ([104.130.122.26])
+ by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1jW16x-00030Y-Uu
+ for ath11k@lists.infradead.org; Tue, 05 May 2020 17:12:09 +0000
+From: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
+Subject: [PATCH] ath11k: fix htt stats module not handle multiple skbs
+Date: Tue,  5 May 2020 10:11:33 -0700
+Message-Id: <1588698693-6218-1-git-send-email-pradeepc@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -17,61 +15,152 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="windows-1252"
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Sven Eckelmann <sven@narfation.org>, ath11k@lists.infradead.org
-Cc: linux-wireless-owner@vger.kernel.org, linux-wireless@vger.kernel.org, ath10k@lists.infradead.org, Rajkumar Manoharan <rmanohar@codeaurora.org>, kvalo@codeaurora.org
+To: ath11k@lists.infradead.org
+Cc: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>, Miles Hu <milehu@codeaurora.org>, linux-wireless@vger.kernel.org
 
-On 5/5/20 9:49 AM, Sven Eckelmann wrote:
-> On Tuesday, 5 May 2020 09:01:34 CEST Sven Eckelmann wrote:
->> On Tuesday, 5 May 2020 01:46:12 CEST Rajkumar Manoharan wrote:
->> [...]
->>> IIRC this was fixed a while ago by below patch. Somehow it never landed =
+HTT EXT stats comes in stream of TLVs spanning over multiple
+messages. Currently completion is being sent for each message
+which is creating a race where stats_req is being accessed
+for filling in second message after the memory is already
+freed in release operation. Fix this by issuing completion
+once all the messages are received and processed. Driver
+knows this info from DONE bit set in htt msg.
 
->>> in ath.git.
->>> Simple one line change is enough.
->>>
->>> https://patchwork.kernel.org/patch/10550707/
->> Because it doesn't work for everything. Remember that 10.2.4.x overflows=
- all =
+Also fix locking required for htt stats.
 
->> the time (14-30s) because it used only 31 bit for the counters.
->>
->> But feel free to point me to the firmware version which fixed this.
-> See also https://patchwork.kernel.org/patch/9701459/
->
-> Kind regards,
-> 	Sven
+Co-developed-by: Miles Hu <milehu@codeaurora.org>
+Signed-off-by: Miles Hu <milehu@codeaurora.org>
+Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
+---
+ drivers/net/wireless/ath/ath11k/debug_htt_stats.c | 49 ++++++++++++++++++-----
+ drivers/net/wireless/ath/ath11k/dp.h              |  1 +
+ 2 files changed, 39 insertions(+), 11 deletions(-)
 
-This patch already fixes the problem for me. I tested it on QCA988X hw
-with firmware 10.2.4.
-
-[=A0=A0 10.350919] ath10k_pci 0000:04:00.0: qca988x hw2.0 target 0x4100016c
-chip_id 0x043222ff sub 0000:0000
-[=A0=A0 10.350930] ath10k_pci 0000:04:00.0: kconfig debug 1 debugfs 1
-tracing 1 dfs 0 testmode 0
-[=A0=A0 10.351803] ath10k_pci 0000:04:00.0: firmware ver 10.2.4-1.0-00047
-api 5 features no-p2p,raw-mode,mfp,allows-mesh-bcast crc32 35bd9258
-[=A0=A0 10.385617] ath10k_pci 0000:04:00.0: board_file api 1 bmi_id N/A
-crc32 bebc7c08
-[=A0=A0 11.536818] ath10k_pci 0000:04:00.0: htt-ver 2.1 wmi-op 5 htt-op 2
-cal otp max-sta 128 raw 0 hwcrypto 1
-
-I also did not see the 31 bit overflow after a small amount of seconds.
-
-Survey data from wlp4s0
-=A0=A0=A0 frequency:=A0=A0=A0 =A0=A0=A0 =A0=A0=A0 2412 MHz [in use]
-=A0=A0=A0 noise:=A0=A0=A0 =A0=A0=A0 =A0=A0=A0 =A0=A0=A0 -65 dBm
-=A0=A0=A0 channel active time:=A0=A0=A0 =A0=A0=A0 5370225 ms
-=A0=A0=A0 channel busy time:=A0=A0=A0 =A0=A0=A0 924199 ms
-=A0=A0=A0 channel receive time:=A0=A0=A0 =A0=A0=A0 140 ms
-=A0=A0=A0 channel transmit time:=A0=A0=A0 =A0=A0=A0 0 ms
-
-Kind regards,
-Markus
-
+diff --git a/drivers/net/wireless/ath/ath11k/debug_htt_stats.c b/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
+index 5db0c27de475..9722dc431173 100644
+--- a/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
++++ b/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
+@@ -4306,6 +4306,7 @@ void ath11k_dbg_htt_ext_stats_handler(struct ath11k_base *ab,
+ 	u32 len;
+ 	u64 cookie;
+ 	int ret;
++	bool send_completion = false;
+ 	u8 pdev_id;
+ 
+ 	msg = (struct ath11k_htt_extd_stats_msg *)skb->data;
+@@ -4330,11 +4331,11 @@ void ath11k_dbg_htt_ext_stats_handler(struct ath11k_base *ab,
+ 		return;
+ 
+ 	spin_lock_bh(&ar->debug.htt_stats.lock);
+-	if (stats_req->done) {
+-		spin_unlock_bh(&ar->debug.htt_stats.lock);
+-		return;
+-	}
+-	stats_req->done = true;
++
++	stats_req->done = FIELD_GET(HTT_T2H_EXT_STATS_INFO1_DONE, msg->info1);
++	if (stats_req->done)
++		send_completion = true;
++
+ 	spin_unlock_bh(&ar->debug.htt_stats.lock);
+ 
+ 	len = FIELD_GET(HTT_T2H_EXT_STATS_INFO1_LENGTH, msg->info1);
+@@ -4344,7 +4345,8 @@ void ath11k_dbg_htt_ext_stats_handler(struct ath11k_base *ab,
+ 	if (ret)
+ 		ath11k_warn(ab, "Failed to parse tlv %d\n", ret);
+ 
+-	complete(&stats_req->cmpln);
++	if (send_completion)
++		complete(&stats_req->cmpln);
+ }
+ 
+ static ssize_t ath11k_read_htt_stats_type(struct file *file,
+@@ -4497,28 +4499,54 @@ static int ath11k_open_htt_stats(struct inode *inode, struct file *file)
+ 	if (type == ATH11K_DBG_HTT_EXT_STATS_RESET)
+ 		return -EPERM;
+ 
++	mutex_lock(&ar->conf_mutex);
++
++	if (ar->state != ATH11K_STATE_ON) {
++		ret = -ENETDOWN;
++		goto err_unlock;
++	}
++
++	if (ar->debug.htt_stats.stats_req) {
++		ret = -EAGAIN;
++		goto err_unlock;
++	}
++
+ 	stats_req = vzalloc(sizeof(*stats_req) + ATH11K_HTT_STATS_BUF_SIZE);
+-	if (!stats_req)
+-		return -ENOMEM;
++	if (!stats_req) {
++		ret = -ENOMEM;
++		goto err_unlock;
++	}
+ 
+-	mutex_lock(&ar->conf_mutex);
+ 	ar->debug.htt_stats.stats_req = stats_req;
+ 	stats_req->type = type;
++
+ 	ret = ath11k_dbg_htt_stats_req(ar);
+-	mutex_unlock(&ar->conf_mutex);
+ 	if (ret < 0)
+ 		goto out;
+ 
+ 	file->private_data = stats_req;
++
++	mutex_unlock(&ar->conf_mutex);
++
+ 	return 0;
+ out:
+ 	vfree(stats_req);
++	ar->debug.htt_stats.stats_req = NULL;
++err_unlock:
++	mutex_unlock(&ar->conf_mutex);
++
+ 	return ret;
+ }
+ 
+ static int ath11k_release_htt_stats(struct inode *inode, struct file *file)
+ {
++	struct ath11k *ar = inode->i_private;
++
++	mutex_lock(&ar->conf_mutex);
+ 	vfree(file->private_data);
++	ar->debug.htt_stats.stats_req = NULL;
++	mutex_unlock(&ar->conf_mutex);
++
+ 	return 0;
+ }
+ 
+@@ -4582,7 +4610,6 @@ static ssize_t ath11k_write_htt_stats_reset(struct file *file,
+ 						 0ULL);
+ 	if (ret) {
+ 		ath11k_warn(ar->ab, "failed to send htt stats request: %d\n", ret);
+-		mutex_unlock(&ar->conf_mutex);
+ 		return ret;
+ 	}
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
+index 222de10e4b93..058a5c1d86ff 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.h
++++ b/drivers/net/wireless/ath/ath11k/dp.h
+@@ -1517,6 +1517,7 @@ struct htt_ext_stats_cfg_params {
+  *       4 bytes.
+  */
+ 
++#define HTT_T2H_EXT_STATS_INFO1_DONE	BIT(11)
+ #define HTT_T2H_EXT_STATS_INFO1_LENGTH   GENMASK(31, 16)
+ 
+ struct ath11k_htt_extd_stats_msg {
+-- 
+1.9.1
 
 _______________________________________________
 ath11k mailing list
