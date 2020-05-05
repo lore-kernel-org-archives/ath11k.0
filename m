@@ -1,17 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from nbd.name ([2a01:4f8:221:3d45::2])
- by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jVslg-0003XA-C2
- for ath11k@lists.infradead.org; Tue, 05 May 2020 08:17:34 +0000
-Subject: Re: [PATCH V2] ath11k: add tx hw 802.11 encapusaltion offloading
- support
-References: <20200430152814.18481-1-john@phrozen.org>
- <87ftcedcwi.fsf@kamboji.qca.qualcomm.com>
-From: John Crispin <john@phrozen.org>
-Message-ID: <7b8be57c-2bed-32dc-53d4-82ff1bc3b70b@phrozen.org>
-Date: Tue, 5 May 2020 10:17:26 +0200
+Subject: Re: [PATCH 1/2] ath10k: use cumulative survey statistics
+References: <20200504154122.91862-1-markus.theil@tu-ilmenau.de>
+ <f772b7bf0eac31516a4e28719c1938f2@codeaurora.org>
+ <2335594.cnkAv9Vaq7@bentobox> <1845755.pTfhzBy2qg@bentobox>
+From: Markus Theil <markus.theil@tu-ilmenau.de>
+Message-ID: <46ab4ffd-b512-de43-40bb-f35989d228b9@tu-ilmenau.de>
+Date: Tue, 5 May 2020 17:37:27 +0200
 MIME-Version: 1.0
-In-Reply-To: <87ftcedcwi.fsf@kamboji.qca.qualcomm.com>
+In-Reply-To: <1845755.pTfhzBy2qg@bentobox>
 Content-Language: en-US
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -21,55 +17,61 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="windows-1252"
+Content-Transfer-Encoding: quoted-printable
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, Shashidhar Lakkavalli <slakkavalli@datto.com>
+To: Sven Eckelmann <sven@narfation.org>, ath11k@lists.infradead.org
+Cc: linux-wireless-owner@vger.kernel.org, linux-wireless@vger.kernel.org, ath10k@lists.infradead.org, Rajkumar Manoharan <rmanohar@codeaurora.org>, kvalo@codeaurora.org
 
-On 05.05.20 10:06, Kalle Valo wrote:
-> John Crispin <john@phrozen.org> writes:
-> 
->> This patch adds support for ethernet rxtx mode to the driver. The feature
->> is enabled via a new module parameter. If enabled to driver will enable
->> the feature on a per vif basis if all other requirements were met.
+On 5/5/20 9:49 AM, Sven Eckelmann wrote:
+> On Tuesday, 5 May 2020 09:01:34 CEST Sven Eckelmann wrote:
+>> On Tuesday, 5 May 2020 01:46:12 CEST Rajkumar Manoharan wrote:
+>> [...]
+>>> IIRC this was fixed a while ago by below patch. Somehow it never landed =
+
+>>> in ath.git.
+>>> Simple one line change is enough.
+>>>
+>>> https://patchwork.kernel.org/patch/10550707/
+>> Because it doesn't work for everything. Remember that 10.2.4.x overflows=
+ all =
+
+>> the time (14-30s) because it used only 31 bit for the counters.
 >>
->> Signed-off-by: Shashidhar Lakkavalli <slakkavalli@datto.com>
->> Signed-off-by: John Crispin <john@phrozen.org>
-> 
-> [...]
-> 
->> --- a/drivers/net/wireless/ath/ath11k/mac.c
->> +++ b/drivers/net/wireless/ath/ath11k/mac.c
->> @@ -33,6 +33,11 @@
->>   	.max_power              = 30, \
->>   }
->>   
->> +/* frame mode values are mapped as per enum ath11k_hw_txrx_mode */
->> +static unsigned int ath11k_ath11k_frame_mode = ATH11K_HW_TXRX_NATIVE_WIFI;
->> +module_param_named(ath11k_frame_mode, ath11k_ath11k_frame_mode, uint, 0644);
->> +MODULE_PARM_DESC(ath11k_frame_mode, "Datapath frame mode");
-> 
-> I don't think we should add ath11k_ prefix to module names, right? So I
-> changed that and documented the values:
-> 
-> /* frame mode values are mapped as per enum ath11k_hw_txrx_mode */
-> static unsigned int ath11k_frame_mode = ATH11K_HW_TXRX_NATIVE_WIFI;
-> module_param_named(frame_mode, ath11k_frame_mode, uint, 0644);
-> MODULE_PARM_DESC(frame_mode,
-> 		 "Datapath frame mode (0: raw, 1: native wifi (default), 2: ethernet)");
-> 
-> Also I added a comment to enum ath11k_hw_txrx_mode so that we don't
-> accidentally change the values. This is now in pending branch:
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=f0717ed39d06a9f2fd32edbdf88f29939dc25516
-> 
-> Please check my changes.
-> 
+>> But feel free to point me to the firmware version which fixed this.
+> See also https://patchwork.kernel.org/patch/9701459/
+>
+> Kind regards,
+> 	Sven
 
-Thanks, looks good.
-	John
+This patch already fixes the problem for me. I tested it on QCA988X hw
+with firmware 10.2.4.
+
+[=A0=A0 10.350919] ath10k_pci 0000:04:00.0: qca988x hw2.0 target 0x4100016c
+chip_id 0x043222ff sub 0000:0000
+[=A0=A0 10.350930] ath10k_pci 0000:04:00.0: kconfig debug 1 debugfs 1
+tracing 1 dfs 0 testmode 0
+[=A0=A0 10.351803] ath10k_pci 0000:04:00.0: firmware ver 10.2.4-1.0-00047
+api 5 features no-p2p,raw-mode,mfp,allows-mesh-bcast crc32 35bd9258
+[=A0=A0 10.385617] ath10k_pci 0000:04:00.0: board_file api 1 bmi_id N/A
+crc32 bebc7c08
+[=A0=A0 11.536818] ath10k_pci 0000:04:00.0: htt-ver 2.1 wmi-op 5 htt-op 2
+cal otp max-sta 128 raw 0 hwcrypto 1
+
+I also did not see the 31 bit overflow after a small amount of seconds.
+
+Survey data from wlp4s0
+=A0=A0=A0 frequency:=A0=A0=A0 =A0=A0=A0 =A0=A0=A0 2412 MHz [in use]
+=A0=A0=A0 noise:=A0=A0=A0 =A0=A0=A0 =A0=A0=A0 =A0=A0=A0 -65 dBm
+=A0=A0=A0 channel active time:=A0=A0=A0 =A0=A0=A0 5370225 ms
+=A0=A0=A0 channel busy time:=A0=A0=A0 =A0=A0=A0 924199 ms
+=A0=A0=A0 channel receive time:=A0=A0=A0 =A0=A0=A0 140 ms
+=A0=A0=A0 channel transmit time:=A0=A0=A0 =A0=A0=A0 0 ms
+
+Kind regards,
+Markus
+
 
 _______________________________________________
 ath11k mailing list
