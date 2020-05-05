@@ -1,18 +1,18 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail26.static.mailgun.info ([104.130.122.26])
+Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jW1Q1-0003tC-E1
- for ath11k@lists.infradead.org; Tue, 05 May 2020 17:31:49 +0000
+ id 1jW2N5-000621-Ee
+ for ath11k@lists.infradead.org; Tue, 05 May 2020 18:32:49 +0000
 MIME-Version: 1.0
-Date: Tue, 05 May 2020 10:31:10 -0700
+Date: Tue, 05 May 2020 11:32:44 -0700
 From: Rajkumar Manoharan <rmanohar@codeaurora.org>
-Subject: Re: [PATCH 2/2] ath11k: use cumulative survey statistics
-In-Reply-To: <c786e982-fcd6-2368-6b2f-f09b265654d6@tu-ilmenau.de>
+Subject: Re: [PATCH 1/2] ath10k: use cumulative survey statistics
+In-Reply-To: <46ab4ffd-b512-de43-40bb-f35989d228b9@tu-ilmenau.de>
 References: <20200504154122.91862-1-markus.theil@tu-ilmenau.de>
- <20200504154122.91862-2-markus.theil@tu-ilmenau.de>
- <85fa2d5f9183b3a12c5283b800f3750f@codeaurora.org>
- <c786e982-fcd6-2368-6b2f-f09b265654d6@tu-ilmenau.de>
-Message-ID: <61f3dcc195fa4d877ddbd161523142ec@codeaurora.org>
+ <f772b7bf0eac31516a4e28719c1938f2@codeaurora.org>
+ <2335594.cnkAv9Vaq7@bentobox> <1845755.pTfhzBy2qg@bentobox>
+ <46ab4ffd-b512-de43-40bb-f35989d228b9@tu-ilmenau.de>
+Message-ID: <0cd75c16a8557a44e9b2c086847941a1@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -21,48 +21,46 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Markus Theil <markus.theil@tu-ilmenau.de>
-Cc: linux-wireless-owner@vger.kernel.org, linux-wireless@vger.kernel.org, kvalo@codeaurora.org, ath10k@lists.infradead.org, ath11k@lists.infradead.org
+Cc: linux-wireless-owner@vger.kernel.org, linux-wireless@vger.kernel.org, ath10k@lists.infradead.org, kvalo@codeaurora.org, ath11k@lists.infradead.org, Sven Eckelmann <sven@narfation.org>
 
-On 2020-05-04 23:53, Markus Theil wrote:
-> Am 05.05.2020 um 01:37 schrieb Rajkumar Manoharan:
->> On 2020-05-04 08:41, Markus Theil wrote:
->>> ath11k currently reports survey results for the last interval between 
->>> each
->>> invocation of NL80211_CMD_GET_SURVEY. For concurrent invocations, 
->>> this
->>> can lead to unexpectedly small results, e.g. when hostapd uses survey
->>> data and iw survey dump is invoked in parallel. Fix this by returning
->>> cumulative results, that don't depend on the last invocation. Other
->>> drivers, e.g. ath9k or mt76 also use this behavior.
->>> 
-[...]
->> Markus,
->> 
->> It depends on type of survey request is given to firmware. In ath11k, 
->> firmware reports
->> accumulated values. So the above addition is wrong and report double 
->> value. Have you
->> tested this change?
->> 
->> -Rajkumar
-> Ok, so please drop both of my patches. My assumptions were incomplete
-> and too humble. I just assumed, ath10k and ath11k both use incremental
-> surveys.
-> 
-Markus,
-
-The ath10k driver still counts survey stats incrementally. But it should 
-be handled by sending
-appropriate survey request_type to firmware.
-
--Rajkumar
-
-_______________________________________________
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+T24gMjAyMC0wNS0wNSAwODozNywgTWFya3VzIFRoZWlsIHdyb3RlOgo+IE9uIDUvNS8yMCA5OjQ5
+IEFNLCBTdmVuIEVja2VsbWFubiB3cm90ZToKPj4gT24gVHVlc2RheSwgNSBNYXkgMjAyMCAwOTow
+MTozNCBDRVNUIFN2ZW4gRWNrZWxtYW5uIHdyb3RlOgo+Pj4gT24gVHVlc2RheSwgNSBNYXkgMjAy
+MCAwMTo0NjoxMiBDRVNUIFJhamt1bWFyIE1hbm9oYXJhbiB3cm90ZToKPj4+IFsuLi5dCj4+Pj4g
+SUlSQyB0aGlzIHdhcyBmaXhlZCBhIHdoaWxlIGFnbyBieSBiZWxvdyBwYXRjaC4gU29tZWhvdyBp
+dCBuZXZlciAKPj4+PiBsYW5kZWQKPj4+PiBpbiBhdGguZ2l0Lgo+Pj4+IFNpbXBsZSBvbmUgbGlu
+ZSBjaGFuZ2UgaXMgZW5vdWdoLgo+Pj4+IAo+Pj4+IGh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5v
+cmcvcGF0Y2gvMTA1NTA3MDcvCj4+PiBCZWNhdXNlIGl0IGRvZXNuJ3Qgd29yayBmb3IgZXZlcnl0
+aGluZy4gUmVtZW1iZXIgdGhhdCAxMC4yLjQueCAKPj4+IG92ZXJmbG93cyBhbGwKPj4+IHRoZSB0
+aW1lICgxNC0zMHMpIGJlY2F1c2UgaXQgdXNlZCBvbmx5IDMxIGJpdCBmb3IgdGhlIGNvdW50ZXJz
+Lgo+Pj4gCj4+PiBCdXQgZmVlbCBmcmVlIHRvIHBvaW50IG1lIHRvIHRoZSBmaXJtd2FyZSB2ZXJz
+aW9uIHdoaWNoIGZpeGVkIHRoaXMuCj4+IFNlZSBhbHNvIGh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5l
+bC5vcmcvcGF0Y2gvOTcwMTQ1OS8KPj4gCj4+IEtpbmQgcmVnYXJkcywKPj4gCVN2ZW4KPiAKPiBU
+aGlzIHBhdGNoIGFscmVhZHkgZml4ZXMgdGhlIHByb2JsZW0gZm9yIG1lLiBJIHRlc3RlZCBpdCBv
+biBRQ0E5ODhYIGh3Cj4gd2l0aCBmaXJtd2FyZSAxMC4yLjQuCj4gCj4gW8KgwqAgMTAuMzUwOTE5
+XSBhdGgxMGtfcGNpIDAwMDA6MDQ6MDAuMDogcWNhOTg4eCBodzIuMCB0YXJnZXQgMHg0MTAwMDE2
+Ywo+IGNoaXBfaWQgMHgwNDMyMjJmZiBzdWIgMDAwMDowMDAwCj4gW8KgwqAgMTAuMzUwOTMwXSBh
+dGgxMGtfcGNpIDAwMDA6MDQ6MDAuMDoga2NvbmZpZyBkZWJ1ZyAxIGRlYnVnZnMgMQo+IHRyYWNp
+bmcgMSBkZnMgMCB0ZXN0bW9kZSAwCj4gW8KgwqAgMTAuMzUxODAzXSBhdGgxMGtfcGNpIDAwMDA6
+MDQ6MDAuMDogZmlybXdhcmUgdmVyIDEwLjIuNC0xLjAtMDAwNDcKPiBhcGkgNSBmZWF0dXJlcyBu
+by1wMnAscmF3LW1vZGUsbWZwLGFsbG93cy1tZXNoLWJjYXN0IGNyYzMyIDM1YmQ5MjU4Cj4gW8Kg
+wqAgMTAuMzg1NjE3XSBhdGgxMGtfcGNpIDAwMDA6MDQ6MDAuMDogYm9hcmRfZmlsZSBhcGkgMSBi
+bWlfaWQgTi9BCj4gY3JjMzIgYmViYzdjMDgKPiBbwqDCoCAxMS41MzY4MThdIGF0aDEwa19wY2kg
+MDAwMDowNDowMC4wOiBodHQtdmVyIDIuMSB3bWktb3AgNSBodHQtb3AgMgo+IGNhbCBvdHAgbWF4
+LXN0YSAxMjggcmF3IDAgaHdjcnlwdG8gMQo+IAo+IEkgYWxzbyBkaWQgbm90IHNlZSB0aGUgMzEg
+Yml0IG92ZXJmbG93IGFmdGVyIGEgc21hbGwgYW1vdW50IG9mIHNlY29uZHMuCj4gCj4gU3VydmV5
+IGRhdGEgZnJvbSB3bHA0czAKPiDCoMKgwqAgZnJlcXVlbmN5OsKgwqDCoCDCoMKgwqAgwqDCoMKg
+IDI0MTIgTUh6IFtpbiB1c2VdCj4gwqDCoMKgIG5vaXNlOsKgwqDCoCDCoMKgwqAgwqDCoMKgIMKg
+wqDCoCAtNjUgZEJtCj4gwqDCoMKgIGNoYW5uZWwgYWN0aXZlIHRpbWU6wqDCoMKgIMKgwqDCoCA1
+MzcwMjI1IG1zCj4gwqDCoMKgIGNoYW5uZWwgYnVzeSB0aW1lOsKgwqDCoCDCoMKgwqAgOTI0MTk5
+IG1zCj4gwqDCoMKgIGNoYW5uZWwgcmVjZWl2ZSB0aW1lOsKgwqDCoCDCoMKgwqAgMTQwIG1zCj4g
+wqDCoMKgIGNoYW5uZWwgdHJhbnNtaXQgdGltZTrCoMKgwqAgwqDCoMKgIDAgbXMKPiAKR3JlYXQu
+IFRoYW5rcyBmb3IgdmFsaWRhdGluZyB0aGUgcGF0Y2guIFZlbmthdCB3aWxsIHBvc3QgdGhlIHBh
+dGNoIG9uIApUb1QuCgotUmFqa3VtYXIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCmF0aDExayBtYWlsaW5nIGxpc3QKYXRoMTFrQGxpc3RzLmluZnJhZGVh
+ZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9hdGgxMWsK
