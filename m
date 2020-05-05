@@ -1,11 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-From: Sven Eckelmann <sven@narfation.org>
-Subject: Re: [PATCH 1/2] ath10k: use cumulative survey statistics
-Date: Tue, 05 May 2020 09:55:08 +0200
-Message-ID: <5194473.9tBAi8KRnL@bentobox>
-In-Reply-To: <1845755.pTfhzBy2qg@bentobox>
-References: <20200504154122.91862-1-markus.theil@tu-ilmenau.de>
- <2335594.cnkAv9Vaq7@bentobox> <1845755.pTfhzBy2qg@bentobox>
+Received: from mail27.static.mailgun.info ([104.130.122.27])
+ by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1jVsal-0004oW-UA
+ for ath11k@lists.infradead.org; Tue, 05 May 2020 08:06:23 +0000
+From: Kalle Valo <kvalo@codeaurora.org>
+Subject: Re: [PATCH V2] ath11k: add tx hw 802.11 encapusaltion offloading
+ support
+References: <20200430152814.18481-1-john@phrozen.org>
+Date: Tue, 05 May 2020 11:06:05 +0300
+In-Reply-To: <20200430152814.18481-1-john@phrozen.org> (John Crispin's message
+ of "Thu, 30 Apr 2020 17:28:14 +0200")
+Message-ID: <87ftcedcwi.fsf@kamboji.qca.qualcomm.com>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -15,64 +20,55 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============8838227701525989217=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: Rajkumar Manoharan <rmanohar@codeaurora.org>, linux-wireless-owner@vger.kernel.org, linux-wireless@vger.kernel.org, Markus Theil <markus.theil@tu-ilmenau.de>, ath10k@lists.infradead.org, kvalo@codeaurora.org
+To: John Crispin <john@phrozen.org>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, Shashidhar Lakkavalli <slakkavalli@datto.com>
 
---===============8838227701525989217==
-Content-Type: multipart/signed; boundary="nextPart1919120.v24dTSXcW5"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+John Crispin <john@phrozen.org> writes:
 
---nextPart1919120.v24dTSXcW5
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+> This patch adds support for ethernet rxtx mode to the driver. The feature
+> is enabled via a new module parameter. If enabled to driver will enable
+> the feature on a per vif basis if all other requirements were met.
+>
+> Signed-off-by: Shashidhar Lakkavalli <slakkavalli@datto.com>
+> Signed-off-by: John Crispin <john@phrozen.org>
 
-On Tuesday, 5 May 2020 09:49:46 CEST Sven Eckelmann wrote:
 [...]
-> See also https://patchwork.kernel.org/patch/9701459/
 
-And I completely forgot about this one: https://patchwork.kernel.org/patch/10417673/
+> --- a/drivers/net/wireless/ath/ath11k/mac.c
+> +++ b/drivers/net/wireless/ath/ath11k/mac.c
+> @@ -33,6 +33,11 @@
+>  	.max_power              = 30, \
+>  }
+>  
+> +/* frame mode values are mapped as per enum ath11k_hw_txrx_mode */
+> +static unsigned int ath11k_ath11k_frame_mode = ATH11K_HW_TXRX_NATIVE_WIFI;
+> +module_param_named(ath11k_frame_mode, ath11k_ath11k_frame_mode, uint, 0644);
+> +MODULE_PARM_DESC(ath11k_frame_mode, "Datapath frame mode");
 
-Kind regards,
-	Sven
---nextPart1919120.v24dTSXcW5
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+I don't think we should add ath11k_ prefix to module names, right? So I
+changed that and documented the values:
 
------BEGIN PGP SIGNATURE-----
+/* frame mode values are mapped as per enum ath11k_hw_txrx_mode */
+static unsigned int ath11k_frame_mode = ATH11K_HW_TXRX_NATIVE_WIFI;
+module_param_named(frame_mode, ath11k_frame_mode, uint, 0644);
+MODULE_PARM_DESC(frame_mode,
+		 "Datapath frame mode (0: raw, 1: native wifi (default), 2: ethernet)");
 
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl6xG9wACgkQXYcKB8Em
-e0YkJhAAxZ5ZkAftBeyPFhdZ1oSQ3Rtt2EfbS9lOfQLqGW33memF3NQ56Rf/Seap
-Oqz9MiJ2ix+6iI6GoOEU8th59vL7Ve5yjNxp46G4OYzYjjtaQ6bd3ZaNYq6E9Cx/
-VAEeKFTkmNyuglwj+xradnU31JN4bMbsDm0p57c3A1YTExhtbPud+e2SDXxrjww0
-FBWPN625g7lgSMWLpVoaTRnFaXRVJ5Fq5m00BpFEDcTZieiTmfwYpDswveU2Ei3c
-UXUfbQ88zoCh0OW3gvHT0aTjk76Atgnk/KFWVVeyZuV0whp94CatyuZem0BEMGII
-DqVJEm9TEHVuxzZN4e+MK8exIF209HLa4ReX6KHdUBgYPAwo+Nm0ZWMd/BWrvJi6
-BF5k6pEXwevLLkPFcdOPG13fWF2ExMxlEztOY3yo9pyk7CtZmZECMh/0KYrNZe1z
-YqxGrnu5Qd9mzRI5q/5PtXf4Ni9z9aEwkVJaQSzO/fId64ysxYrnmGNvc+hbFnLr
-iI/x5mp7CpJVa5F1qg1X+9hwouQi7g756A9pnY2O7fVvJzYG0GmsH2KUt6k7SJSH
-vb7aRjxpfk4DKm6P6o/u2bgIUU6J8m8IyJI5evkKbX4YbhZsoea7egLQmG0rYUMR
-kMNymnkhCDraj46HlOHCWRvbZL+v6hehB1jBIDvjIGLcSEfUZ84=
-=93bm
------END PGP SIGNATURE-----
+Also I added a comment to enum ath11k_hw_txrx_mode so that we don't
+accidentally change the values. This is now in pending branch:
 
---nextPart1919120.v24dTSXcW5--
+https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=f0717ed39d06a9f2fd32edbdf88f29939dc25516
 
+Please check my changes.
 
-
-
-
---===============8838227701525989217==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+-- 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 _______________________________________________
 ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
-
---===============8838227701525989217==--
