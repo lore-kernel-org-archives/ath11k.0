@@ -1,16 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail26.static.mailgun.info ([104.130.122.26])
- by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jVs9f-0008HF-1W
- for ath11k@lists.infradead.org; Tue, 05 May 2020 07:38:17 +0000
+From: Sven Eckelmann <sven@narfation.org>
+Subject: Re: [PATCH 1/2] ath10k: use cumulative survey statistics
+Date: Tue, 05 May 2020 09:49:46 +0200
+Message-ID: <1845755.pTfhzBy2qg@bentobox>
+In-Reply-To: <2335594.cnkAv9Vaq7@bentobox>
+References: <20200504154122.91862-1-markus.theil@tu-ilmenau.de>
+ <f772b7bf0eac31516a4e28719c1938f2@codeaurora.org>
+ <2335594.cnkAv9Vaq7@bentobox>
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: fix resource unavailability for htt stats after
- peer stats display
-From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1588592755-10427-1-git-send-email-ssreeela@codeaurora.org>
-References: <1588592755-10427-1-git-send-email-ssreeela@codeaurora.org>
-Message-Id: <20200505073811.382FFC432C2@smtp.codeaurora.org>
-Date: Tue,  5 May 2020 07:38:11 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -19,44 +16,74 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1255509882856008525=="
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Sowmiya Sree Elavalagan <ssreeela@codeaurora.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: ath11k@lists.infradead.org
+Cc: Rajkumar Manoharan <rmanohar@codeaurora.org>, linux-wireless-owner@vger.kernel.org, linux-wireless@vger.kernel.org, Markus Theil <markus.theil@tu-ilmenau.de>, ath10k@lists.infradead.org, kvalo@codeaurora.org
 
-Sowmiya Sree Elavalagan <ssreeela@codeaurora.org> wrote:
+--===============1255509882856008525==
+Content-Type: multipart/signed; boundary="nextPart4024693.4Mujkspm9b"; micalg="pgp-sha512"; protocol="application/pgp-signature"
 
-> htt stats are not working after htt peer stats display
-> and also after htt peer stats reset. Trying to dump htt
-> stats shows "Resource temporarily unavailable".
-> This is because of "ar->debug.htt_stats.stats_req" member is being
-> consecutively used for all htt stats without being reset
-> during the previous usage. Hence assigning NULL to this member
-> after freeing the allocated memory fixes the issue.
+--nextPart4024693.4Mujkspm9b
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+
+On Tuesday, 5 May 2020 09:01:34 CEST Sven Eckelmann wrote:
+> On Tuesday, 5 May 2020 01:46:12 CEST Rajkumar Manoharan wrote:
+> [...]
+> > IIRC this was fixed a while ago by below patch. Somehow it never landed 
+> > in ath.git.
+> > Simple one line change is enough.
+> > 
+> > https://patchwork.kernel.org/patch/10550707/
 > 
-> console logs below:
-> # echo 9 >/sys/kernel/debug/ath11k/ipq8074/mac1/htt_stats_type
-> # cat /sys/kernel/debug/ath11k/ipq8074/mac1/htt_stats_type
-> 9
-> # cat /sys/kernel/debug/ath11k/ipq8074/mac1/htt_stats
-> cat: can't open '/sys/kernel/debug/ath11k/ipq8074/mac1/htt_stats'
-> : Resource temporarily unavailable
+> Because it doesn't work for everything. Remember that 10.2.4.x overflows all 
+> the time (14-30s) because it used only 31 bit for the counters.
 > 
-> Signed-off-by: Sowmiya Sree Elavalagan <ssreeela@codeaurora.org>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+> But feel free to point me to the firmware version which fixed this.
 
-Patch applied to ath-next branch of ath.git, thanks.
+See also https://patchwork.kernel.org/patch/9701459/
 
-52f274b51993 ath11k: fix resource unavailability for htt stats after peer stats display
+Kind regards,
+	Sven
+--nextPart4024693.4Mujkspm9b
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
 
--- 
-https://patchwork.kernel.org/patch/11525557/
+-----BEGIN PGP SIGNATURE-----
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl6xGpoACgkQXYcKB8Em
+e0ZzCRAAgqYCt2mvPP4dcDSuLObeeqnrlCg1zGaJJZTOYiTbGbBOFPKRKKWoX/PG
+manCnusFGFRHSpoGC94W89wlOJ6EW9x2RMy7ylws0z15iOzziE6faiE9XNuczjQw
++NVHZthe6xgWq5iORv2+zGtVqPPjvzoVcObZyyTdWtYmnVEb/Vo5W0g713/ha42K
+IHfFLbcwdW3OjVFEd88hEt6sOaMeM86ZmZql6cox23CNzYfG76BcNUvgta7l2Tr1
+MvpLrattlWdTP+6uWabdIdJp2IDKFj9DeEQrvUUuIlQJO1lbiZSBK+/jMqv0buNS
+dImQBdrJZElVL7LW0hqgYHesekgpigVOt4gWd/mZfJlH6dtzW8hp/btxonCzecfd
+DUJchzFPJv4LfAswoWEr/Uw3MYwi7W0pdcbKCJQbzchHgMfO2mtWX6BvfdU5Pvl3
+V5tmKzNbpJIZTFUKh0mFqsceBRXU/fYWU9S3IuAuFmPzTnew4YeBKQj/xhHmduhx
+dXF6IQU69fM2hKUQWZV9NCxmCzHXhytChza4JeQpGhXKM8bQ4sH7yuMWrSlKJ7VU
+D14XlUppGsOW8uKK6VNl76DfFpWqs76bZs95npCX0u188PwTTTAGpbqaizZjXZ5q
+OWF98ErpHvU88aaLjKsYNmUOj6pXyRCfADeukZnuXHKUWSyf3jw=
+=8mIN
+-----END PGP SIGNATURE-----
+
+--nextPart4024693.4Mujkspm9b--
+
+
+
+
+
+--===============1255509882856008525==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
+
+--===============1255509882856008525==--
