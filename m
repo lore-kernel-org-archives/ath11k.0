@@ -1,14 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Subject: Re: [PATCH 1/2] ath10k: use cumulative survey statistics
-References: <20200504154122.91862-1-markus.theil@tu-ilmenau.de>
- <f772b7bf0eac31516a4e28719c1938f2@codeaurora.org>
- <323b4d4f-a967-cf63-6f5a-04f53802c50a@candelatech.com>
- <4b03993ba81a8e9ebb1203c0b8aa90f6@codeaurora.org>
-From: Ben Greear <greearb@candelatech.com>
-Message-ID: <9044aa57-ceb2-fecd-e220-eb8b7c0db4b5@candelatech.com>
-Date: Mon, 4 May 2020 17:02:42 -0700
-MIME-Version: 1.0
-In-Reply-To: <4b03993ba81a8e9ebb1203c0b8aa90f6@codeaurora.org>
+Received: from mail27.static.mailgun.info ([104.130.122.27])
+ by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1jVmND-0000Ba-Qd
+ for ath11k@lists.infradead.org; Tue, 05 May 2020 01:27:53 +0000
+From: Rajkumar Manoharan <rmanohar@codeaurora.org>
+Subject: [PATCH] ath11k: remove stale monitor status descriptor
+Date: Mon,  4 May 2020 18:27:43 -0700
+Message-Id: <1588642063-6950-1-git-send-email-rmanohar@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -17,51 +15,64 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Rajkumar Manoharan <rmanohar@codeaurora.org>
-Cc: linux-wireless-owner@vger.kernel.org, linux-wireless@vger.kernel.org, Markus Theil <markus.theil@tu-ilmenau.de>, ath10k@lists.infradead.org, ath11k@lists.infradead.org, kvalo@codeaurora.org
+To: ath11k@lists.infradead.org
+Cc: Miles Hu <milehu@codeaurora.org>, linux-wireless@vger.kernel.org, Rajkumar Manoharan <rmanohar@codeaurora.org>
 
+From: Miles Hu <milehu@codeaurora.org>
 
+The driver is not handling monitor status descriptor whenever
+the done bit of status descriptor is not set by hardware. This leave
+a stale entry in monitor status ring and flooding warning message.
+Fix that by removing the descriptor and move forward to next one
+in monitor status ring.
 
-On 05/04/2020 04:52 PM, Rajkumar Manoharan wrote:
-> On 2020-05-04 16:49, Ben Greear wrote:
->> On 05/04/2020 04:46 PM, Rajkumar Manoharan wrote:
->>> On 2020-05-04 08:41, Markus Theil wrote:
->>>> ath10k currently reports survey results for the last interval between each
->>>> invocation of NL80211_CMD_GET_SURVEY. For concurrent invocations, this
->>>> can lead to unexpectedly small results, e.g. when hostapd uses survey
->>>> data and iw survey dump is invoked in parallel. Fix this by returning
->>>> cumulative results, that don't depend on the last invocation. Other
->>>> drivers, e.g. ath9k or mt76 also use this behavior.
->>>>
->>>> Signed-off-by: Markus Theil <markus.theil@tu-ilmenau.de>
->>>>
->>>
->>> IIRC this was fixed a while ago by below patch. Somehow it never landed in ath.git.
->>> Simple one line change is enough.
->>>
->>> https://patchwork.kernel.org/patch/10550707/
->>>
->>> -Rajkumar
->>
->> Have you tested this with wave-1?  Lots of older, at least, firmware
->> has brokenness in this area.
->>
-> Yes. It was tested in wave-1 as well. Venkat replied to your comment on original change.
+Co-developed-by: Rajkumar Manoharan <rmanohar@codeaurora.org>
+Signed-off-by: Rajkumar Manoharan <rmanohar@codeaurora.org>
+Signed-off-by: Miles Hu <milehu@codeaurora.org>
+---
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
 
-Ahh, sorry I missed that.
-
-Hopefully no one is using the broken firmware anymore then!
-
---Ben
-
-
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 47ad3bd9e1c6..27d17b8db662 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -2722,7 +2722,7 @@ static int ath11k_dp_rx_reap_mon_status_ring(struct ath11k_base *ab, int mac_id,
+ 				ath11k_warn(ab, "rx monitor status with invalid buf_id %d\n",
+ 					    buf_id);
+ 				spin_unlock_bh(&rx_ring->idr_lock);
+-				continue;
++				goto move_next;
+ 			}
+ 
+ 			idr_remove(&rx_ring->bufs_idr, buf_id);
+@@ -2741,13 +2741,16 @@ static int ath11k_dp_rx_reap_mon_status_ring(struct ath11k_base *ab, int mac_id,
+ 			tlv = (struct hal_tlv_hdr *)skb->data;
+ 			if (FIELD_GET(HAL_TLV_HDR_TAG, tlv->tl) !=
+ 					HAL_RX_STATUS_BUFFER_DONE) {
+-				ath11k_hal_srng_src_get_next_entry(ab, srng);
+-				continue;
++				ath11k_warn(ab, "mon status DONE not set %lx\n",
++					    FIELD_GET(HAL_TLV_HDR_TAG,
++						      tlv->tl));
++				dev_kfree_skb_any(skb);
++				goto move_next;
+ 			}
+ 
+ 			__skb_queue_tail(skb_list, skb);
+ 		}
+-
++move_next:
+ 		skb = ath11k_dp_rx_alloc_mon_status_buf(ab, rx_ring,
+ 							&buf_id, GFP_ATOMIC);
+ 
 -- 
-Ben Greear <greearb@candelatech.com>
-Candela Technologies Inc  http://www.candelatech.com
+2.7.4
 
 _______________________________________________
 ath11k mailing list
