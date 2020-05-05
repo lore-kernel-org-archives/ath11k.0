@@ -1,12 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail27.static.mailgun.info ([104.130.122.27])
- by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jVmND-0000Ba-Qd
- for ath11k@lists.infradead.org; Tue, 05 May 2020 01:27:53 +0000
-From: Rajkumar Manoharan <rmanohar@codeaurora.org>
-Subject: [PATCH] ath11k: remove stale monitor status descriptor
-Date: Mon,  4 May 2020 18:27:43 -0700
-Message-Id: <1588642063-6950-1-git-send-email-rmanohar@codeaurora.org>
+Subject: Re: [PATCH 2/2] ath11k: use cumulative survey statistics
+References: <20200504154122.91862-1-markus.theil@tu-ilmenau.de>
+ <20200504154122.91862-2-markus.theil@tu-ilmenau.de>
+ <85fa2d5f9183b3a12c5283b800f3750f@codeaurora.org>
+From: Markus Theil <markus.theil@tu-ilmenau.de>
+Message-ID: <c786e982-fcd6-2368-6b2f-f09b265654d6@tu-ilmenau.de>
+Date: Tue, 5 May 2020 08:53:24 +0200
+MIME-Version: 1.0
+In-Reply-To: <85fa2d5f9183b3a12c5283b800f3750f@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -15,66 +16,60 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: Miles Hu <milehu@codeaurora.org>, linux-wireless@vger.kernel.org, Rajkumar Manoharan <rmanohar@codeaurora.org>
+To: Rajkumar Manoharan <rmanohar@codeaurora.org>
+Cc: linux-wireless-owner@vger.kernel.org, linux-wireless@vger.kernel.org, kvalo@codeaurora.org, ath10k@lists.infradead.org, ath11k@lists.infradead.org
 
-From: Miles Hu <milehu@codeaurora.org>
-
-The driver is not handling monitor status descriptor whenever
-the done bit of status descriptor is not set by hardware. This leave
-a stale entry in monitor status ring and flooding warning message.
-Fix that by removing the descriptor and move forward to next one
-in monitor status ring.
-
-Co-developed-by: Rajkumar Manoharan <rmanohar@codeaurora.org>
-Signed-off-by: Rajkumar Manoharan <rmanohar@codeaurora.org>
-Signed-off-by: Miles Hu <milehu@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/dp_rx.c | 11 +++++++----
- 1 file changed, 7 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 47ad3bd9e1c6..27d17b8db662 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -2722,7 +2722,7 @@ static int ath11k_dp_rx_reap_mon_status_ring(struct ath11k_base *ab, int mac_id,
- 				ath11k_warn(ab, "rx monitor status with invalid buf_id %d\n",
- 					    buf_id);
- 				spin_unlock_bh(&rx_ring->idr_lock);
--				continue;
-+				goto move_next;
- 			}
- 
- 			idr_remove(&rx_ring->bufs_idr, buf_id);
-@@ -2741,13 +2741,16 @@ static int ath11k_dp_rx_reap_mon_status_ring(struct ath11k_base *ab, int mac_id,
- 			tlv = (struct hal_tlv_hdr *)skb->data;
- 			if (FIELD_GET(HAL_TLV_HDR_TAG, tlv->tl) !=
- 					HAL_RX_STATUS_BUFFER_DONE) {
--				ath11k_hal_srng_src_get_next_entry(ab, srng);
--				continue;
-+				ath11k_warn(ab, "mon status DONE not set %lx\n",
-+					    FIELD_GET(HAL_TLV_HDR_TAG,
-+						      tlv->tl));
-+				dev_kfree_skb_any(skb);
-+				goto move_next;
- 			}
- 
- 			__skb_queue_tail(skb_list, skb);
- 		}
--
-+move_next:
- 		skb = ath11k_dp_rx_alloc_mon_status_buf(ab, rx_ring,
- 							&buf_id, GFP_ATOMIC);
- 
--- 
-2.7.4
-
-_______________________________________________
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+QW0gMDUuMDUuMjAyMCB1bSAwMTozNyBzY2hyaWViIFJhamt1bWFyIE1hbm9oYXJhbjoKPiBPbiAy
+MDIwLTA1LTA0IDA4OjQxLCBNYXJrdXMgVGhlaWwgd3JvdGU6Cj4+IGF0aDExayBjdXJyZW50bHkg
+cmVwb3J0cyBzdXJ2ZXkgcmVzdWx0cyBmb3IgdGhlIGxhc3QgaW50ZXJ2YWwgYmV0d2VlbiAKPj4g
+ZWFjaAo+PiBpbnZvY2F0aW9uIG9mIE5MODAyMTFfQ01EX0dFVF9TVVJWRVkuIEZvciBjb25jdXJy
+ZW50IGludm9jYXRpb25zLCB0aGlzCj4+IGNhbiBsZWFkIHRvIHVuZXhwZWN0ZWRseSBzbWFsbCBy
+ZXN1bHRzLCBlLmcuIHdoZW4gaG9zdGFwZCB1c2VzIHN1cnZleQo+PiBkYXRhIGFuZCBpdyBzdXJ2
+ZXkgZHVtcCBpcyBpbnZva2VkIGluIHBhcmFsbGVsLiBGaXggdGhpcyBieSByZXR1cm5pbmcKPj4g
+Y3VtdWxhdGl2ZSByZXN1bHRzLCB0aGF0IGRvbid0IGRlcGVuZCBvbiB0aGUgbGFzdCBpbnZvY2F0
+aW9uLiBPdGhlcgo+PiBkcml2ZXJzLCBlLmcuIGF0aDlrIG9yIG10NzYgYWxzbyB1c2UgdGhpcyBi
+ZWhhdmlvci4KPj4KPj4gU2lnbmVkLW9mZi1ieTogTWFya3VzIFRoZWlsIDxtYXJrdXMudGhlaWxA
+dHUtaWxtZW5hdS5kZT4KPj4gLS0tCj4+IMKgZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDEx
+ay93bWkuYyB8IDIwICsrKysrKysrKystLS0tLS0tLS0tCj4+IMKgMSBmaWxlIGNoYW5nZWQsIDEw
+IGluc2VydGlvbnMoKyksIDEwIGRlbGV0aW9ucygtKQo+Pgo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay93bWkuYwo+PiBiL2RyaXZlcnMvbmV0L3dpcmVsZXNz
+L2F0aC9hdGgxMWsvd21pLmMKPj4gaW5kZXggYzJhOTcyMzc3Njg3Li4zMjJkZGZkYTViZmQgMTAw
+NjQ0Cj4+IC0tLSBhL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvd21pLmMKPj4gKysr
+IGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay93bWkuYwo+PiBAQCAtNTYxMCwxNiAr
+NTYxMCwxNiBAQCBhdGgxMWtfcGRldl9ic3NfY2hhbl9pbmZvX2V2ZW50KHN0cnVjdAo+PiBhdGgx
+MWtfYmFzZSAqYWIsIHN0cnVjdCBza19idWZmICpza2IpCj4+Cj4+IMKgwqDCoMKgIHN1cnZleSA9
+ICZhci0+c3VydmV5W2lkeF07Cj4+Cj4+IC3CoMKgwqAgc3VydmV5LT5ub2lzZcKgwqDCoMKgID0g
+YnNzX2NoX2luZm9fZXYubm9pc2VfZmxvb3I7Cj4+IC3CoMKgwqAgc3VydmV5LT50aW1lwqDCoMKg
+wqDCoCA9IGRpdl91NjQodG90YWwsIGNjX2ZyZXFfaHopOwo+PiAtwqDCoMKgIHN1cnZleS0+dGlt
+ZV9idXN5ID0gZGl2X3U2NChidXN5LCBjY19mcmVxX2h6KTsKPj4gLcKgwqDCoCBzdXJ2ZXktPnRp
+bWVfcnjCoMKgID0gZGl2X3U2NChyeF9ic3MsIGNjX2ZyZXFfaHopOwo+PiAtwqDCoMKgIHN1cnZl
+eS0+dGltZV90eMKgwqAgPSBkaXZfdTY0KHR4LCBjY19mcmVxX2h6KTsKPj4gLcKgwqDCoCBzdXJ2
+ZXktPmZpbGxlZMKgwqAgfD0gKFNVUlZFWV9JTkZPX05PSVNFX0RCTSB8Cj4+IC3CoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBTVVJWRVlfSU5GT19USU1FIHwKPj4gLcKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgIFNVUlZFWV9JTkZPX1RJTUVfQlVTWSB8Cj4+IC3CoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBTVVJWRVlfSU5GT19USU1FX1JYIHwKPj4gLcKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIFNVUlZFWV9JTkZPX1RJTUVfVFgpOwo+PiArwqDC
+oMKgIHN1cnZleS0+bm9pc2XCoMKgwqDCoMKgID0gYnNzX2NoX2luZm9fZXYubm9pc2VfZmxvb3I7
+Cj4+ICvCoMKgwqAgc3VydmV5LT50aW1lwqDCoMKgwqDCoCArPSBkaXZfdTY0KHRvdGFsLCBjY19m
+cmVxX2h6KTsKPj4gK8KgwqDCoCBzdXJ2ZXktPnRpbWVfYnVzeSArPSBkaXZfdTY0KGJ1c3ksIGNj
+X2ZyZXFfaHopOwo+PiArwqDCoMKgIHN1cnZleS0+dGltZV9yeMKgwqAgKz0gZGl2X3U2NChyeF9i
+c3MsIGNjX2ZyZXFfaHopOwo+PiArwqDCoMKgIHN1cnZleS0+dGltZV90eMKgwqAgKz0gZGl2X3U2
+NCh0eCwgY2NfZnJlcV9oeik7Cj4+ICvCoMKgwqAgc3VydmV5LT5maWxsZWTCoMKgwqAgfD0gKFNV
+UlZFWV9JTkZPX05PSVNFX0RCTSB8Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgIFNVUlZFWV9JTkZPX1RJTUUgfAo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoCBTVVJWRVlfSU5GT19USU1FX0JVU1kgfAo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoCBTVVJWRVlfSU5GT19USU1FX1JYIHwKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqAgU1VSVkVZX0lORk9fVElNRV9UWCk7Cj4KPiBNYXJrdXMsCj4KPiBJdCBk
+ZXBlbmRzIG9uIHR5cGUgb2Ygc3VydmV5IHJlcXVlc3QgaXMgZ2l2ZW4gdG8gZmlybXdhcmUuIElu
+IGF0aDExaywgCj4gZmlybXdhcmUgcmVwb3J0cwo+IGFjY3VtdWxhdGVkIHZhbHVlcy4gU28gdGhl
+IGFib3ZlIGFkZGl0aW9uIGlzIHdyb25nIGFuZCByZXBvcnQgZG91YmxlIAo+IHZhbHVlLiBIYXZl
+IHlvdQo+IHRlc3RlZCB0aGlzIGNoYW5nZT8KPgo+IC1SYWprdW1hcgpPaywgc28gcGxlYXNlIGRy
+b3AgYm90aCBvZiBteSBwYXRjaGVzLiBNeSBhc3N1bXB0aW9ucyB3ZXJlIGluY29tcGxldGUgCmFu
+ZCB0b28gaHVtYmxlLiBJIGp1c3QgYXNzdW1lZCwgYXRoMTBrIGFuZCBhdGgxMWsgYm90aCB1c2Ug
+aW5jcmVtZW50YWwgCnN1cnZleXMuCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0cy5pbmZyYWRlYWQu
+b3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vYXRoMTFrCg==
