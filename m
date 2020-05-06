@@ -1,15 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail26.static.mailgun.info ([104.130.122.26])
+Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jWDLe-0001dA-1G
- for ath11k@lists.infradead.org; Wed, 06 May 2020 06:16:04 +0000
+ id 1jWDM5-0001hi-Hc
+ for ath11k@lists.infradead.org; Wed, 06 May 2020 06:16:31 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: Add support to reset htt peer stats
+Subject: Re: [PATCH] ath11k: fix kernel panic by freeing the msdu received with
+ invalid length
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1588610147-20231-1-git-send-email-tamizhr@codeaurora.org>
-References: <1588610147-20231-1-git-send-email-tamizhr@codeaurora.org>
-Message-Id: <20200506061548.201CFC433F2@smtp.codeaurora.org>
-Date: Wed,  6 May 2020 06:15:48 +0000 (UTC)
+In-Reply-To: <1588611568-20791-1-git-send-email-tamizhr@codeaurora.org>
+References: <1588611568-20791-1-git-send-email-tamizhr@codeaurora.org>
+Message-Id: <20200506061628.C8E30C433D2@smtp.codeaurora.org>
+Date: Wed,  6 May 2020 06:16:28 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,28 +24,37 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Tamizh Chelvam <tamizhr@codeaurora.org>
-Cc: Ashok Raj Nagarajan <arnagara@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
 Tamizh Chelvam <tamizhr@codeaurora.org> wrote:
 
-> This patch add supports to reset the per peer htt stats.
+> In certain scenario host receives the packets with invalid length
+> which causes below kernel panic. Free up those msdus to avoid
+> this kernel panic.
 > 
-> Usage:
+>  2270.028121:   <6> task: ffffffc0008306d0 ti: ffffffc0008306d0 task.ti: ffffffc0008306d0
+>  2270.035247:   <2> PC is at skb_panic+0x40/0x44
+>  2270.042784:   <2> LR is at skb_panic+0x40/0x44
+>  2270.521775:   <2> [<ffffffc0004a06e0>] skb_panic+0x40/0x44
+>  2270.524039:   <2> [<ffffffc0004a1278>] skb_put+0x54/0x5c
+>  2270.529264:   <2> [<ffffffbffcc373a8>] ath11k_dp_process_rx_err+0x320/0x5b0 [ath11k]
+>  2270.533860:   <2> [<ffffffbffcc30b68>] ath11k_dp_service_srng+0x80/0x268 [ath11k]
+>  2270.541063:   <2> [<ffffffbffcc1d554>] ath11k_hal_rx_reo_ent_buf_paddr_get+0x200/0xb64 [ath11k]
+>  2270.547917:   <2> [<ffffffc0004b1f74>] net_rx_action+0xf8/0x274
+>  2270.556247:   <2> [<ffffffc000099df4>] __do_softirq+0x128/0x228
+>  2270.561625:   <2> [<ffffffc00009a130>] irq_exit+0x84/0xcc
+>  2270.567008:   <2> [<ffffffc0000cfb28>] __handle_domain_irq+0x8c/0xb0
+>  2270.571695:   <2> [<ffffffc000082484>] gic_handle_irq+0x6c/0xbc
 > 
-> echo 1 > /sys/kernel/debug/ieee80211/phyX/netdev:wlanX/stations/<peer MAC addr>/htt_peer_stats_reset
-> 
-> While doing so, sync the wmi services between FW and host.
-> 
-> Signed-off-by: Ashok Raj Nagarajan <arnagara@codeaurora.org>
 > Signed-off-by: Tamizh Chelvam <tamizhr@codeaurora.org>
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
 Patch applied to ath-next branch of ath.git, thanks.
 
-559ef68f5f69 ath11k: Add support to reset htt peer stats
+d7d43782d541 ath11k: fix kernel panic by freeing the msdu received with invalid length
 
 -- 
-https://patchwork.kernel.org/patch/11526701/
+https://patchwork.kernel.org/patch/11526757/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
