@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail26.static.mailgun.info ([104.130.122.26])
+Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jWGbN-0006Pn-NB
- for ath11k@lists.infradead.org; Wed, 06 May 2020 09:44:33 +0000
-From: Govind Singh <govinds@codeaurora.org>
-Subject: [PATCH 3/3] ath11k: Remove bus layer includes from upper layer
-Date: Wed,  6 May 2020 15:14:00 +0530
-Message-Id: <20200506094400.4740-4-govinds@codeaurora.org>
-In-Reply-To: <20200506094400.4740-1-govinds@codeaurora.org>
-References: <20200506094400.4740-1-govinds@codeaurora.org>
+ id 1jWZI3-0004Th-Ab
+ for ath11k@lists.infradead.org; Thu, 07 May 2020 05:41:48 +0000
 MIME-Version: 1.0
+Subject: Re: [PATCH 1/3] ath11k: Add support for multibus support
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <20200506094400.4740-2-govinds@codeaurora.org>
+References: <20200506094400.4740-2-govinds@codeaurora.org>
+Message-Id: <20200507054144.E8F95C433BA@smtp.codeaurora.org>
+Date: Thu,  7 May 2020 05:41:44 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,112 +22,29 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: Govind Singh <govinds@codeaurora.org>, linux-wireless@vger.kernel.org
+To: Govind Singh <govinds@codeaurora.org>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-Bus level header files needs to be abstracted by upper
-layer. Remove bus layer includes by adding appropriate header
-files.
+Govind Singh <govinds@codeaurora.org> wrote:
 
-Signed-off-by: Govind Singh <govinds@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/core.c     | 1 -
- drivers/net/wireless/ath/ath11k/hal.c      | 1 -
- drivers/net/wireless/ath/ath11k/hal_desc.h | 2 ++
- drivers/net/wireless/ath/ath11k/hal_rx.c   | 1 -
- drivers/net/wireless/ath/ath11k/hal_tx.c   | 2 +-
- drivers/net/wireless/ath/ath11k/hal_tx.h   | 1 +
- drivers/net/wireless/ath/ath11k/htc.c      | 1 -
- 7 files changed, 4 insertions(+), 5 deletions(-)
+> Current design supports only AHB interface for
+> 11ax chipset. Refactor the code by adding hif layer
+> for bus level abstraction to support  PCI based device.
+> 
+> Signed-off-by: Govind Singh <govinds@codeaurora.org>
+> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index a91eae6a4e57..02501cc154fe 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -7,7 +7,6 @@
- #include <linux/slab.h>
- #include <linux/remoteproc.h>
- #include <linux/firmware.h>
--#include "ahb.h"
- #include "core.h"
- #include "dp_tx.h"
- #include "dp_rx.h"
-diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
-index 6d937674215e..d63785178afa 100644
---- a/drivers/net/wireless/ath/ath11k/hal.c
-+++ b/drivers/net/wireless/ath/ath11k/hal.c
-@@ -3,7 +3,6 @@
-  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
-  */
- #include <linux/dma-mapping.h>
--#include "ahb.h"
- #include "hal_tx.h"
- #include "debug.h"
- #include "hal_desc.h"
-diff --git a/drivers/net/wireless/ath/ath11k/hal_desc.h b/drivers/net/wireless/ath/ath11k/hal_desc.h
-index 5e200380cca4..ab73c813fb45 100644
---- a/drivers/net/wireless/ath/ath11k/hal_desc.h
-+++ b/drivers/net/wireless/ath/ath11k/hal_desc.h
-@@ -2,6 +2,8 @@
- /*
-  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
-  */
-+#include "core.h"
-+
- #ifndef ATH11K_HAL_DESC_H
- #define ATH11K_HAL_DESC_H
- 
-diff --git a/drivers/net/wireless/ath/ath11k/hal_rx.c b/drivers/net/wireless/ath/ath11k/hal_rx.c
-index 69b0248a7baf..129c9e1efeb9 100644
---- a/drivers/net/wireless/ath/ath11k/hal_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/hal_rx.c
-@@ -3,7 +3,6 @@
-  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
-  */
- 
--#include "ahb.h"
- #include "debug.h"
- #include "hal.h"
- #include "hal_tx.h"
-diff --git a/drivers/net/wireless/ath/ath11k/hal_tx.c b/drivers/net/wireless/ath/ath11k/hal_tx.c
-index b364c077c1f7..81937c29ffca 100644
---- a/drivers/net/wireless/ath/ath11k/hal_tx.c
-+++ b/drivers/net/wireless/ath/ath11k/hal_tx.c
-@@ -3,7 +3,7 @@
-  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
-  */
- 
--#include "ahb.h"
-+#include "hal_desc.h"
- #include "hal.h"
- #include "hal_tx.h"
- #include "hif.h"
-diff --git a/drivers/net/wireless/ath/ath11k/hal_tx.h b/drivers/net/wireless/ath/ath11k/hal_tx.h
-index ce48a61bfb66..d4760a20fdac 100644
---- a/drivers/net/wireless/ath/ath11k/hal_tx.h
-+++ b/drivers/net/wireless/ath/ath11k/hal_tx.h
-@@ -7,6 +7,7 @@
- #define ATH11K_HAL_TX_H
- 
- #include "hal_desc.h"
-+#include "core.h"
- 
- #define HAL_TX_ADDRX_EN			1
- #define HAL_TX_ADDRY_EN			2
-diff --git a/drivers/net/wireless/ath/ath11k/htc.c b/drivers/net/wireless/ath/ath11k/htc.c
-index 1909fc3287ba..ad13c648b679 100644
---- a/drivers/net/wireless/ath/ath11k/htc.c
-+++ b/drivers/net/wireless/ath/ath11k/htc.c
-@@ -5,7 +5,6 @@
- #include <linux/skbuff.h>
- #include <linux/ctype.h>
- 
--#include "ahb.h"
- #include "debug.h"
- #include "hif.h"
- 
+This had sparse warnings, I fixed them in the pending branch:
+
+drivers/net/wireless/ath/ath11k/ahb.c:1020:5: warning: no previous prototype for 'ath11k_ahb_init' [-Wmissing-prototypes]
+drivers/net/wireless/ath/ath11k/ahb.c:1026:6: warning: no previous prototype for 'ath11k_ahb_exit' [-Wmissing-prototypes]
+drivers/net/wireless/ath/ath11k/ahb.c:1020:5: warning: symbol 'ath11k_ahb_init' was not declared. Should it be static?
+drivers/net/wireless/ath/ath11k/ahb.c:1026:6: warning: symbol 'ath11k_ahb_exit' was not declared. Should it be static?
+
 -- 
-2.22.0
+https://patchwork.kernel.org/patch/11530873/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 _______________________________________________
 ath11k mailing list
