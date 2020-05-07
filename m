@@ -1,15 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail27.static.mailgun.info ([104.130.122.27])
+Received: from youngberry.canonical.com ([91.189.89.112])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jWZI3-0004Th-Ab
- for ath11k@lists.infradead.org; Thu, 07 May 2020 05:41:48 +0000
+ id 1jWjeM-0001kj-Sf
+ for ath11k@lists.infradead.org; Thu, 07 May 2020 16:45:32 +0000
+From: Colin King <colin.king@canonical.com>
+Subject: [PATCH][next] ath11k: remove redundant initialization of pointer info
+Date: Thu,  7 May 2020 17:43:18 +0100
+Message-Id: <20200507164318.56570-1-colin.king@canonical.com>
 MIME-Version: 1.0
-Subject: Re: [PATCH 1/3] ath11k: Add support for multibus support
-From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <20200506094400.4740-2-govinds@codeaurora.org>
-References: <20200506094400.4740-2-govinds@codeaurora.org>
-Message-Id: <20200507054144.E8F95C433BA@smtp.codeaurora.org>
-Date: Thu,  7 May 2020 05:41:44 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,29 +20,38 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Govind Singh <govinds@codeaurora.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: Kalle Valo <kvalo@codeaurora.org>, "David S . Miller" <davem@davemloft.net>, ath11k@lists.infradead.org, linux-wireless@vger.kernel.org, netdev@vger.kernel.org
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 
-Govind Singh <govinds@codeaurora.org> wrote:
+From: Colin Ian King <colin.king@canonical.com>
 
-> Current design supports only AHB interface for
-> 11ax chipset. Refactor the code by adding hif layer
-> for bus level abstraction to support  PCI based device.
-> 
-> Signed-off-by: Govind Singh <govinds@codeaurora.org>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+Pointer info is being assigned twice, once at the start of the function
+and secondly when it is just about to be accessed. Remove the redundant
+initialization and keep the original assignment to info that is close
+to the memcpy that uses it.
 
-This had sparse warnings, I fixed them in the pending branch:
+Addresses-Coverity: ("Unused value")
+Signed-off-by: Colin Ian King <colin.king@canonical.com>
+---
+ drivers/net/wireless/ath/ath11k/mac.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-drivers/net/wireless/ath/ath11k/ahb.c:1020:5: warning: no previous prototype for 'ath11k_ahb_init' [-Wmissing-prototypes]
-drivers/net/wireless/ath/ath11k/ahb.c:1026:6: warning: no previous prototype for 'ath11k_ahb_exit' [-Wmissing-prototypes]
-drivers/net/wireless/ath/ath11k/ahb.c:1020:5: warning: symbol 'ath11k_ahb_init' was not declared. Should it be static?
-drivers/net/wireless/ath/ath11k/ahb.c:1026:6: warning: symbol 'ath11k_ahb_exit' was not declared. Should it be static?
-
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index d9117ebf2809..1a7e5817e5c8 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -3692,7 +3692,7 @@ static int __ath11k_set_antenna(struct ath11k *ar, u32 tx_ant, u32 rx_ant)
+ int ath11k_mac_tx_mgmt_pending_free(int buf_id, void *skb, void *ctx)
+ {
+ 	struct sk_buff *msdu = skb;
+-	struct ieee80211_tx_info *info = IEEE80211_SKB_CB(msdu);
++	struct ieee80211_tx_info *info;
+ 	struct ath11k *ar = ctx;
+ 	struct ath11k_base *ab = ar->ab;
+ 
 -- 
-https://patchwork.kernel.org/patch/11530873/
+2.25.1
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 _______________________________________________
 ath11k mailing list
