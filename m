@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from youngberry.canonical.com ([91.189.89.112])
+Received: from szxga07-in.huawei.com ([45.249.212.35] helo=huawei.com)
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jWjeM-0001kj-Sf
- for ath11k@lists.infradead.org; Thu, 07 May 2020 16:45:32 +0000
-From: Colin King <colin.king@canonical.com>
-Subject: [PATCH][next] ath11k: remove redundant initialization of pointer info
-Date: Thu,  7 May 2020 17:43:18 +0100
-Message-Id: <20200507164318.56570-1-colin.king@canonical.com>
+ id 1jWxla-0007Cv-Aj
+ for ath11k@lists.infradead.org; Fri, 08 May 2020 07:49:56 +0000
+From: Wei Yongjun <weiyongjun1@huawei.com>
+Subject: [PATCH next] ath11k: convert to devm_platform_get_and_ioremap_resource
+Date: Fri, 8 May 2020 07:53:23 +0000
+Message-ID: <20200508075323.81128-1-weiyongjun1@huawei.com>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -20,37 +20,38 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>, "David S . Miller" <davem@davemloft.net>, ath11k@lists.infradead.org, linux-wireless@vger.kernel.org, netdev@vger.kernel.org
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+To: Kalle Valo <kvalo@codeaurora.org>
+Cc: linux-wireless@vger.kernel.org, kernel-janitors@vger.kernel.org, Wei Yongjun <weiyongjun1@huawei.com>, ath11k@lists.infradead.org
 
-From: Colin Ian King <colin.king@canonical.com>
+Use the helper function that wraps the calls to platform_get_resource()
+and devm_ioremap_resource() together.
 
-Pointer info is being assigned twice, once at the start of the function
-and secondly when it is just about to be accessed. Remove the redundant
-initialization and keep the original assignment to info that is close
-to the memcpy that uses it.
-
-Addresses-Coverity: ("Unused value")
-Signed-off-by: Colin Ian King <colin.king@canonical.com>
+Signed-off-by: Wei Yongjun <weiyongjun1@huawei.com>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/ahb.c | 8 +-------
+ 1 file changed, 1 insertion(+), 7 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index d9117ebf2809..1a7e5817e5c8 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -3692,7 +3692,7 @@ static int __ath11k_set_antenna(struct ath11k *ar, u32 tx_ant, u32 rx_ant)
- int ath11k_mac_tx_mgmt_pending_free(int buf_id, void *skb, void *ctx)
- {
- 	struct sk_buff *msdu = skb;
--	struct ieee80211_tx_info *info = IEEE80211_SKB_CB(msdu);
-+	struct ieee80211_tx_info *info;
- 	struct ath11k *ar = ctx;
- 	struct ath11k_base *ab = ar->ab;
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+index 3b2b76d602f2..d4ad99eb0e16 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.c
++++ b/drivers/net/wireless/ath/ath11k/ahb.c
+@@ -891,13 +891,7 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
+ 		return -EINVAL;
+ 	}
  
--- 
-2.25.1
+-	mem_res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+-	if (!mem_res) {
+-		dev_err(&pdev->dev, "failed to get IO memory resource\n");
+-		return -ENXIO;
+-	}
+-
+-	mem = devm_ioremap_resource(&pdev->dev, mem_res);
++	mem = devm_platform_get_and_ioremap_resource(pdev, 0, &mem_res);
+ 	if (IS_ERR(mem)) {
+ 		dev_err(&pdev->dev, "ioremap error\n");
+ 		return PTR_ERR(mem);
+
+
 
 
 _______________________________________________
