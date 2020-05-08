@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail26.static.mailgun.info ([104.130.122.26])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jWyqV-0008KR-0j
- for ath11k@lists.infradead.org; Fri, 08 May 2020 08:59:05 +0000
+ id 1jWyqY-0008KR-RL
+ for ath11k@lists.infradead.org; Fri, 08 May 2020 08:59:09 +0000
 From: Govind Singh <govinds@codeaurora.org>
-Subject: [PATCH 1/4] ath11k: Add PCI client driver for QCA6390 chipset
-Date: Fri,  8 May 2020 14:28:47 +0530
-Message-Id: <20200508085850.23363-2-govinds@codeaurora.org>
+Subject: [PATCH 4/4] ath11k: Register mhi controller device for qca6390
+Date: Fri,  8 May 2020 14:28:50 +0530
+Message-Id: <20200508085850.23363-5-govinds@codeaurora.org>
 In-Reply-To: <20200508085850.23363-1-govinds@codeaurora.org>
 References: <20200508085850.23363-1-govinds@codeaurora.org>
 MIME-Version: 1.0
@@ -18,512 +18,321 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: Govind Singh <govinds@codeaurora.org>, linux-wireless@vger.kernel.org
 
-QCA6390 is PCI based 11ax chipset, add
-pci client driver for QCA6390 target.
-
-Signed-off-by: Govind Singh <govinds@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/Kconfig  | 12 ++++
- drivers/net/wireless/ath/ath11k/Makefile |  7 +-
- drivers/net/wireless/ath/ath11k/ahb.c    | 71 -------------------
- drivers/net/wireless/ath/ath11k/ce.c     |  2 +
- drivers/net/wireless/ath/ath11k/core.c   |  6 ++
- drivers/net/wireless/ath/ath11k/core.h   | 11 +--
- drivers/net/wireless/ath/ath11k/debug.c  |  6 +-
- drivers/net/wireless/ath/ath11k/dp.c     |  1 +
- drivers/net/wireless/ath/ath11k/hal.c    |  1 +
- drivers/net/wireless/ath/ath11k/hif.h    | 77 +++++++++++++++++++-
- drivers/net/wireless/ath/ath11k/pci.c    | 90 ++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/pci.h    | 10 +++
- 12 files changed, 211 insertions(+), 83 deletions(-)
- create mode 100644 drivers/net/wireless/ath/ath11k/pci.c
- create mode 100644 drivers/net/wireless/ath/ath11k/pci.h
-
-diff --git a/drivers/net/wireless/ath/ath11k/Kconfig b/drivers/net/wireless/ath/ath11k/Kconfig
-index 738f99090d83..320b3b151bce 100644
---- a/drivers/net/wireless/ath/ath11k/Kconfig
-+++ b/drivers/net/wireless/ath/ath11k/Kconfig
-@@ -13,6 +13,18 @@ config ATH11K
- 
- 	  If you choose to build a module, it'll be called ath11k.
- 
-+config ATH11K_AHB
-+	tristate "Qualcomm Technologies 802.11ax chipset AHB support"
-+	depends on ATH11K
-+	---help---
-+	  This module adds support for AHB bus
-+
-+config ATH11K_PCI
-+	tristate "Qualcomm Technologies 802.11ax chipset PCI support"
-+	depends on ATH11K && PCI
-+	---help---
-+	  This module adds support for PCIE bus
-+
- config ATH11K_DEBUG
- 	bool "QCA ath11k debugging"
- 	depends on ATH11K
-diff --git a/drivers/net/wireless/ath/ath11k/Makefile b/drivers/net/wireless/ath/ath11k/Makefile
-index fe7736e53583..933fcb2fd55d 100644
---- a/drivers/net/wireless/ath/ath11k/Makefile
-+++ b/drivers/net/wireless/ath/ath11k/Makefile
-@@ -4,7 +4,6 @@ ath11k-y += core.o \
- 	    hal.o \
- 	    hal_tx.o \
- 	    hal_rx.o \
--	    ahb.o \
- 	    wmi.o \
- 	    mac.o \
- 	    reg.o \
-@@ -22,5 +21,11 @@ ath11k-$(CONFIG_NL80211_TESTMODE) += testmode.o
- ath11k-$(CONFIG_ATH11K_TRACING) += trace.o
- ath11k-$(CONFIG_THERMAL) += thermal.o
- 
-+obj-$(CONFIG_ATH11K_AHB) += ath11k_ahb.o
-+ath11k_ahb-y += ahb.o
-+
-+obj-$(CONFIG_ATH11K_PCI) += ath11k_pci.o
-+ath11k_pci-y += pci.o
-+
- # for tracing framework to find trace.h
- CFLAGS_trace.o := -I$(src)
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index 19cda6bfe9b7..43950367fc1a 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.c
-+++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -321,77 +321,6 @@ static const char *irq_name[ATH11K_IRQ_NUM_MAX] = {
- 	"tcl2host-status-ring",
- };
- 
--#define ATH11K_TX_RING_MASK_0 0x1
--#define ATH11K_TX_RING_MASK_1 0x2
--#define ATH11K_TX_RING_MASK_2 0x4
--
--#define ATH11K_RX_RING_MASK_0 0x1
--#define ATH11K_RX_RING_MASK_1 0x2
--#define ATH11K_RX_RING_MASK_2 0x4
--#define ATH11K_RX_RING_MASK_3 0x8
--
--#define ATH11K_RX_ERR_RING_MASK_0 0x1
--
--#define ATH11K_RX_WBM_REL_RING_MASK_0 0x1
--
--#define ATH11K_REO_STATUS_RING_MASK_0 0x1
--
--#define ATH11K_RXDMA2HOST_RING_MASK_0 0x1
--#define ATH11K_RXDMA2HOST_RING_MASK_1 0x2
--#define ATH11K_RXDMA2HOST_RING_MASK_2 0x4
--
--#define ATH11K_HOST2RXDMA_RING_MASK_0 0x1
--#define ATH11K_HOST2RXDMA_RING_MASK_1 0x2
--#define ATH11K_HOST2RXDMA_RING_MASK_2 0x4
--
--#define ATH11K_RX_MON_STATUS_RING_MASK_0 0x1
--#define ATH11K_RX_MON_STATUS_RING_MASK_1 0x2
--#define ATH11K_RX_MON_STATUS_RING_MASK_2 0x4
--
--const u8 ath11k_tx_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX] = {
--	ATH11K_TX_RING_MASK_0,
--	ATH11K_TX_RING_MASK_1,
--	ATH11K_TX_RING_MASK_2,
--};
--
--const u8 rx_mon_status_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX] = {
--	0, 0, 0, 0,
--	ATH11K_RX_MON_STATUS_RING_MASK_0,
--	ATH11K_RX_MON_STATUS_RING_MASK_1,
--	ATH11K_RX_MON_STATUS_RING_MASK_2,
--};
--
--const u8 ath11k_rx_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX] = {
--	0, 0, 0, 0, 0, 0, 0,
--	ATH11K_RX_RING_MASK_0,
--	ATH11K_RX_RING_MASK_1,
--	ATH11K_RX_RING_MASK_2,
--	ATH11K_RX_RING_MASK_3,
--};
--
--const u8 ath11k_rx_err_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX] = {
--	ATH11K_RX_ERR_RING_MASK_0,
--};
--
--const u8 ath11k_rx_wbm_rel_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX] = {
--	ATH11K_RX_WBM_REL_RING_MASK_0,
--};
--
--const u8 ath11k_reo_status_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX] = {
--	ATH11K_REO_STATUS_RING_MASK_0,
--};
--
--const u8 ath11k_rxdma2host_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX] = {
--	ATH11K_RXDMA2HOST_RING_MASK_0,
--	ATH11K_RXDMA2HOST_RING_MASK_1,
--	ATH11K_RXDMA2HOST_RING_MASK_2,
--};
--
--const u8 ath11k_host2rxdma_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX] = {
--	ATH11K_HOST2RXDMA_RING_MASK_0,
--	ATH11K_HOST2RXDMA_RING_MASK_1,
--	ATH11K_HOST2RXDMA_RING_MASK_2,
--};
- 
- /* enum ext_irq_num - irq numbers that can be used by external modules
-  * like datapath
-diff --git a/drivers/net/wireless/ath/ath11k/ce.c b/drivers/net/wireless/ath/ath11k/ce.c
-index cdd40c8fc867..7ae1bef0ab30 100644
---- a/drivers/net/wireless/ath/ath11k/ce.c
-+++ b/drivers/net/wireless/ath/ath11k/ce.c
-@@ -752,6 +752,7 @@ void ath11k_ce_free_pipes(struct ath11k_base *ab)
- 		}
- 	}
- }
-+EXPORT_SYMBOL(ath11k_ce_free_pipes);
- 
- int ath11k_ce_alloc_pipes(struct ath11k_base *ab)
- {
-@@ -806,3 +807,4 @@ int ath11k_ce_get_attr_flags(int ce_id)
- 
- 	return host_ce_config_wlan[ce_id].flags;
- }
-+EXPORT_SYMBOL(ath11k_ce_get_attr_flags);
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 02501cc154fe..8d07a2bb31bb 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -749,11 +749,13 @@ void ath11k_core_deinit(struct ath11k_base *ab)
- 	ath11k_mac_destroy(ab);
- 	ath11k_core_soc_destroy(ab);
- }
-+EXPORT_SYMBOL(ath11k_core_deinit);
- 
- void ath11k_core_free(struct ath11k_base *ab)
- {
- 	kfree(ab);
- }
-+EXPORT_SYMBOL(ath11k_core_free);
- 
- struct ath11k_base *ath11k_core_alloc(struct device *dev, size_t priv_size,
- 				      enum ath11k_bus bus)
-@@ -786,3 +788,7 @@ struct ath11k_base *ath11k_core_alloc(struct device *dev, size_t priv_size,
- 	kfree(ab);
- 	return NULL;
- }
-+EXPORT_SYMBOL(ath11k_core_alloc);
-+
-+MODULE_DESCRIPTION("Core module for Qualcomm Atheros 802.11ax wireless LAN cards.");
-+MODULE_LICENSE("Dual BSD/GPL");
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index e04f0e711779..757302992ce5 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -88,6 +88,8 @@ struct ath11k_skb_rxcb {
- 
- enum ath11k_hw_rev {
- 	ATH11K_HW_IPQ8074,
-+	ATH11K_HW_QCA6290,
-+	ATH11K_HW_QCA6390,
- };
- 
- enum ath11k_firmware_mode {
-@@ -102,15 +104,6 @@ enum ath11k_firmware_mode {
- #define ATH11K_EXT_IRQ_GRP_NUM_MAX 11
- #define ATH11K_EXT_IRQ_NUM_MAX	16
- 
--extern const u8 ath11k_reo_status_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX];
--extern const u8 ath11k_tx_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX];
--extern const u8 ath11k_rx_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX];
--extern const u8 ath11k_rx_err_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX];
--extern const u8 ath11k_rx_wbm_rel_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX];
--extern const u8 ath11k_rxdma2host_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX];
--extern const u8 ath11k_host2rxdma_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX];
--extern const u8 rx_mon_status_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX];
--
- struct ath11k_ext_irq_grp {
- 	struct ath11k_base *ab;
- 	u32 irqs[ATH11K_EXT_IRQ_NUM_MAX];
-diff --git a/drivers/net/wireless/ath/ath11k/debug.c b/drivers/net/wireless/ath/ath11k/debug.c
-index 3fd6b5af073b..eba7a5471ead 100644
---- a/drivers/net/wireless/ath/ath11k/debug.c
-+++ b/drivers/net/wireless/ath/ath11k/debug.c
-@@ -25,6 +25,7 @@ void ath11k_info(struct ath11k_base *ab, const char *fmt, ...)
- 	/* TODO: Trace the log */
- 	va_end(args);
- }
-+EXPORT_SYMBOL(ath11k_info);
- 
- void ath11k_err(struct ath11k_base *ab, const char *fmt, ...)
- {
-@@ -39,6 +40,7 @@ void ath11k_err(struct ath11k_base *ab, const char *fmt, ...)
- 	/* TODO: Trace the log */
- 	va_end(args);
- }
-+EXPORT_SYMBOL(ath11k_err);
- 
- void ath11k_warn(struct ath11k_base *ab, const char *fmt, ...)
- {
-@@ -53,6 +55,7 @@ void ath11k_warn(struct ath11k_base *ab, const char *fmt, ...)
- 	/* TODO: Trace the log */
- 	va_end(args);
- }
-+EXPORT_SYMBOL(ath11k_warn);
- 
- #ifdef CONFIG_ATH11K_DEBUG
- void __ath11k_dbg(struct ath11k_base *ab, enum ath11k_debug_mask mask,
-@@ -73,6 +76,7 @@ void __ath11k_dbg(struct ath11k_base *ab, enum ath11k_debug_mask mask,
- 
- 	va_end(args);
- }
-+EXPORT_SYMBOL(__ath11k_dbg);
- 
- void ath11k_dbg_dump(struct ath11k_base *ab,
- 		     enum ath11k_debug_mask mask,
-@@ -101,7 +105,7 @@ void ath11k_dbg_dump(struct ath11k_base *ab,
- 		}
- 	}
- }
--
-+EXPORT_SYMBOL(ath11k_dbg_dump);
- #endif
- 
- #ifdef CONFIG_ATH11K_DEBUGFS
-diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
-index 9ae743e528af..30e78a96ef6d 100644
---- a/drivers/net/wireless/ath/ath11k/dp.c
-+++ b/drivers/net/wireless/ath/ath11k/dp.c
-@@ -7,6 +7,7 @@
- #include "core.h"
- #include "dp_tx.h"
- #include "hal_tx.h"
-+#include "hif.h"
- #include "debug.h"
- #include "dp_rx.h"
- #include "peer.h"
-diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
-index d63785178afa..c7b26478d3e7 100644
---- a/drivers/net/wireless/ath/ath11k/hal.c
-+++ b/drivers/net/wireless/ath/ath11k/hal.c
-@@ -1133,6 +1133,7 @@ void ath11k_hal_srng_deinit(struct ath11k_base *ab)
- 	ath11k_hal_free_cont_rdp(ab);
- 	ath11k_hal_free_cont_wrp(ab);
- }
-+EXPORT_SYMBOL(ath11k_hal_srng_deinit);
- 
- void ath11k_hal_dump_srng_stats(struct ath11k_base *ab)
- {
-diff --git a/drivers/net/wireless/ath/ath11k/hif.h b/drivers/net/wireless/ath/ath11k/hif.h
-index 165f7e51c238..7e74be42e0fb 100644
---- a/drivers/net/wireless/ath/ath11k/hif.h
-+++ b/drivers/net/wireless/ath/ath11k/hif.h
-@@ -3,7 +3,81 @@
-  * Copyright (c) 2019-2020 The Linux Foundation. All rights reserved.
-  */
- 
--#include "core.h"
-+#ifndef _HIF_H_
-+#define _HIF_H_
-+
-+#define ATH11K_TX_RING_MASK_0 0x1
-+#define ATH11K_TX_RING_MASK_1 0x2
-+#define ATH11K_TX_RING_MASK_2 0x4
-+
-+#define ATH11K_RX_RING_MASK_0 0x1
-+#define ATH11K_RX_RING_MASK_1 0x2
-+#define ATH11K_RX_RING_MASK_2 0x4
-+#define ATH11K_RX_RING_MASK_3 0x8
-+
-+#define ATH11K_RX_ERR_RING_MASK_0 0x1
-+
-+#define ATH11K_RX_WBM_REL_RING_MASK_0 0x1
-+
-+#define ATH11K_REO_STATUS_RING_MASK_0 0x1
-+
-+#define ATH11K_RXDMA2HOST_RING_MASK_0 0x1
-+#define ATH11K_RXDMA2HOST_RING_MASK_1 0x2
-+#define ATH11K_RXDMA2HOST_RING_MASK_2 0x4
-+
-+#define ATH11K_HOST2RXDMA_RING_MASK_0 0x1
-+#define ATH11K_HOST2RXDMA_RING_MASK_1 0x2
-+#define ATH11K_HOST2RXDMA_RING_MASK_2 0x4
-+
-+#define ATH11K_RX_MON_STATUS_RING_MASK_0 0x1
-+#define ATH11K_RX_MON_STATUS_RING_MASK_1 0x2
-+#define ATH11K_RX_MON_STATUS_RING_MASK_2 0x4
-+
-+static const u8 ath11k_tx_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX] = {
-+	ATH11K_TX_RING_MASK_0,
-+	ATH11K_TX_RING_MASK_1,
-+	ATH11K_TX_RING_MASK_2,
-+};
-+
-+static const u8 rx_mon_status_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX] = {
-+	0, 0, 0, 0,
-+	ATH11K_RX_MON_STATUS_RING_MASK_0,
-+	ATH11K_RX_MON_STATUS_RING_MASK_1,
-+	ATH11K_RX_MON_STATUS_RING_MASK_2,
-+};
-+
-+static const u8 ath11k_rx_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX] = {
-+	0, 0, 0, 0, 0, 0, 0,
-+	ATH11K_RX_RING_MASK_0,
-+	ATH11K_RX_RING_MASK_1,
-+	ATH11K_RX_RING_MASK_2,
-+	ATH11K_RX_RING_MASK_3,
-+};
-+
-+static const u8 ath11k_rx_err_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX] = {
-+	ATH11K_RX_ERR_RING_MASK_0,
-+};
-+
-+static const u8 ath11k_rx_wbm_rel_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX] = {
-+	ATH11K_RX_WBM_REL_RING_MASK_0,
-+};
-+
-+static const u8 ath11k_reo_status_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX] = {
-+	ATH11K_REO_STATUS_RING_MASK_0,
-+};
-+
-+static const u8 ath11k_rxdma2host_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX] = {
-+	ATH11K_RXDMA2HOST_RING_MASK_0,
-+	ATH11K_RXDMA2HOST_RING_MASK_1,
-+	ATH11K_RXDMA2HOST_RING_MASK_2,
-+};
-+
-+static const u8 ath11k_host2rxdma_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX] = {
-+	ATH11K_HOST2RXDMA_RING_MASK_0,
-+	ATH11K_HOST2RXDMA_RING_MASK_1,
-+	ATH11K_HOST2RXDMA_RING_MASK_2,
-+};
-+
- 
- struct ath11k_hif_ops {
- 	u32 (*read32)(struct ath11k_base *sc, u32 address);
-@@ -63,3 +137,4 @@ static inline int ath11k_hif_map_service_to_pipe(struct ath11k_base *sc, u16 ser
- {
- 	return sc->hif.ops->map_service_to_pipe(sc, service_id, ul_pipe, dl_pipe);
- }
-+#endif /* _HIF_H_ */
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-new file mode 100644
-index 000000000000..582e7cd3c56e
---- /dev/null
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -0,0 +1,90 @@
-+// SPDX-License-Identifier: BSD-3-Clause-Clear
-+/*
-+ * Copyright (c) 2019-2020 The Linux Foundation. All rights reserved.
-+ */
-+
-+#include <linux/module.h>
-+#include <linux/pci.h>
-+
-+#include "core.h"
-+#include "pci.h"
-+#include "debug.h"
-+
-+static const struct pci_device_id ath11k_pci_id_table[] = {
-+	{ QCA6290_VENDOR_ID, QCA6290_DEVICE_ID, PCI_ANY_ID, PCI_ANY_ID },
-+	{ QCA6390_VENDOR_ID, QCA6390_DEVICE_ID, PCI_ANY_ID, PCI_ANY_ID },
-+	{ 0 }
-+};
-+
-+MODULE_DEVICE_TABLE(pci, ath11k_pci_id_table);
-+
-+static int ath11k_pci_probe(struct pci_dev *pdev,
-+			    const struct pci_device_id *pci_dev)
-+{
-+	struct ath11k_base *ab;
-+	enum ath11k_hw_rev hw_rev;
-+	int ret;
-+
-+	switch (pci_dev->device) {
-+	case QCA6290_DEVICE_ID:
-+		hw_rev = ATH11K_HW_QCA6290;
-+	case QCA6390_DEVICE_ID:
-+		hw_rev = ATH11K_HW_QCA6390;
-+		break;
-+	default:
-+		dev_err(&pdev->dev, "Unknown PCI device found: 0x%x\n",
-+			pci_dev->device);
-+		WARN_ON(1);
-+		return -ENOTSUPP;
-+	}
-+
-+	ab = ath11k_core_alloc(&pdev->dev, 0, ATH11K_BUS_PCI);
-+	if (!ab) {
-+		dev_err(&pdev->dev, "failed to allocate ath11k base\n");
-+		return -ENOMEM;
-+	}
-+
-+	ab->dev = &pdev->dev;
-+	ab->hw_rev = hw_rev;
-+	pci_set_drvdata(pdev, ab);
-+
-+	return ret;
-+}
-+
-+static void ath11k_pci_remove(struct pci_dev *pdev)
-+{
-+	struct ath11k_base *ab = pci_get_drvdata(pdev);
-+
-+	set_bit(ATH11K_FLAG_UNREGISTERING, &ab->dev_flags);
-+	ath11k_core_free(ab);
-+}
-+
-+static struct pci_driver ath11k_pci_driver = {
-+	.name = "ath11k_pci",
-+	.id_table = ath11k_pci_id_table,
-+	.probe = ath11k_pci_probe,
-+	.remove = ath11k_pci_remove,
-+};
-+
-+static int ath11k_pci_init(void)
-+{
-+	int ret;
-+
-+	ret = pci_register_driver(&ath11k_pci_driver);
-+	if (ret)
-+		pr_err("failed to register ath11k pci driver: %d\n",
-+		       ret);
-+
-+	return ret;
-+}
-+module_init(ath11k_pci_init);
-+
-+static void ath11k_pci_exit(void)
-+{
-+	pci_unregister_driver(&ath11k_pci_driver);
-+}
-+
-+module_exit(ath11k_pci_exit);
-+
-+MODULE_DESCRIPTION("Driver support for Qualcomm Atheros 802.11ax WLAN PCIe devices");
-+MODULE_LICENSE("Dual BSD/GPL");
-diff --git a/drivers/net/wireless/ath/ath11k/pci.h b/drivers/net/wireless/ath/ath11k/pci.h
-new file mode 100644
-index 000000000000..790b8993d225
---- /dev/null
-+++ b/drivers/net/wireless/ath/ath11k/pci.h
-@@ -0,0 +1,10 @@
-+/* SPDX-License-Identifier: BSD-3-Clause-Clear */
-+/*
-+ * Copyright (c) 2019-2020 The Linux Foundation. All rights reserved.
-+ */
-+
-+#define QCA6290_VENDOR_ID		0x17CB
-+#define QCA6290_DEVICE_ID		0x1100
-+#define QCA6390_VENDOR_ID		0x17CB
-+#define QCA6390_DEVICE_ID		0x1101
-+
--- 
-2.22.0
-
-_______________________________________________
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+TUhJIGlzIGEgY29tbXVuaWNhdGlvbiBwcm90b2NvbCB0byBjb21tdW5pY2F0ZSB3aXRoIGV4dGVy
+bmFsClF1YWxjb21tIG1vZGVtcyBhbmQgV2ktRmkgY2hpcHNldHMgb3ZlciBoaWdoIHNwZWVkIHBl
+cmlwaGVyYWwgYnVzZXMuIEV2ZW4KdGhvdWdoIE1ISSBkb2VzbuKAmXQgZGljdGF0ZSB1bmRlcmx5
+aW5nIHBoeXNpY2FsIGxheWVyLCBwcm90b2NvbCBhbmQgbWhpIHN0YWNrCmlzIHN0cnVjdHVyZWQg
+Zm9yIFBDSWUgYmFzZWQgZGV2aWNlcy4KClJlZ2lzdGVyIGRpcmVjdGx5IHdpdGggbWhpIGNvcmUg
+bGF5ZXIgYXMgYSBtaGkgZGV2aWNlIGRyaXZlciBmb3IKZmlybXdhcmUgZG93bmxvYWQuCgpUZXN0
+ZWQgUUNBNjM5MCBvbiBYODYgcGxhdGZvcm0uClRlc3RlZCBmaXJtd2FyZSBXTEFOLkhTVC4xLjAu
+MS5jMS0wMDQ0MC1RQ0FIU1RTV1BMWl9WMl9UT19YODYtMS4KClNpZ25lZC1vZmYtYnk6IEdvdmlu
+ZCBTaW5naCA8Z292aW5kc0Bjb2RlYXVyb3JhLm9yZz4KLS0tCiBkcml2ZXJzL25ldC93aXJlbGVz
+cy9hdGgvYXRoMTFrL0tjb25maWcgIHwgICA1ICstCiBkcml2ZXJzL25ldC93aXJlbGVzcy9hdGgv
+YXRoMTFrL01ha2VmaWxlIHwgICAyICstCiBkcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFr
+L21oaS5jICAgIHwgMzc5ICsrKysrKysrKysrKysrKysrKysrKysrCiBkcml2ZXJzL25ldC93aXJl
+bGVzcy9hdGgvYXRoMTFrL21oaS5oICAgIHwgIDI4ICsrCiBkcml2ZXJzL25ldC93aXJlbGVzcy9h
+dGgvYXRoMTFrL3BjaS5jICAgIHwgIDk3ICsrKysrKwogZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRo
+L2F0aDExay9wY2kuaCAgICB8ICAxMyArCiA2IGZpbGVzIGNoYW5nZWQsIDUyMCBpbnNlcnRpb25z
+KCspLCA0IGRlbGV0aW9ucygtKQogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvbmV0L3dpcmVs
+ZXNzL2F0aC9hdGgxMWsvbWhpLmMKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL25ldC93aXJl
+bGVzcy9hdGgvYXRoMTFrL21oaS5oCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9uZXQvd2lyZWxlc3Mv
+YXRoL2F0aDExay9LY29uZmlnIGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9LY29u
+ZmlnCmluZGV4IDMyMGIzYjE1MWJjZS4uYmQ0ODc5Njc0MmJiIDEwMDY0NAotLS0gYS9kcml2ZXJz
+L25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL0tjb25maWcKKysrIGIvZHJpdmVycy9uZXQvd2lyZWxl
+c3MvYXRoL2F0aDExay9LY29uZmlnCkBAIC0yLDcgKzIsNiBAQAogY29uZmlnIEFUSDExSwogCXRy
+aXN0YXRlICJRdWFsY29tbSBUZWNobm9sb2dpZXMgODAyLjExYXggY2hpcHNldCBzdXBwb3J0Igog
+CWRlcGVuZHMgb24gTUFDODAyMTEgJiYgSEFTX0RNQQotCWRlcGVuZHMgb24gUkVNT1RFUFJPQwog
+CWRlcGVuZHMgb24gQ1JZUFRPX01JQ0hBRUxfTUlDCiAJZGVwZW5kcyBvbiBBUkNIX1FDT00gfHwg
+Q09NUElMRV9URVNUCiAJc2VsZWN0IEFUSF9DT01NT04KQEAgLTE1LDEzICsxNCwxMyBAQCBjb25m
+aWcgQVRIMTFLCiAKIGNvbmZpZyBBVEgxMUtfQUhCCiAJdHJpc3RhdGUgIlF1YWxjb21tIFRlY2hu
+b2xvZ2llcyA4MDIuMTFheCBjaGlwc2V0IEFIQiBzdXBwb3J0IgotCWRlcGVuZHMgb24gQVRIMTFL
+CisJZGVwZW5kcyBvbiBBVEgxMUsgJiYgUkVNT1RFUFJPQwogCS0tLWhlbHAtLS0KIAkgIFRoaXMg
+bW9kdWxlIGFkZHMgc3VwcG9ydCBmb3IgQUhCIGJ1cwogCiBjb25maWcgQVRIMTFLX1BDSQogCXRy
+aXN0YXRlICJRdWFsY29tbSBUZWNobm9sb2dpZXMgODAyLjExYXggY2hpcHNldCBQQ0kgc3VwcG9y
+dCIKLQlkZXBlbmRzIG9uIEFUSDExSyAmJiBQQ0kKKwlkZXBlbmRzIG9uIEFUSDExSyAmJiBQQ0kg
+JiYgTUhJX0JVUwogCS0tLWhlbHAtLS0KIAkgIFRoaXMgbW9kdWxlIGFkZHMgc3VwcG9ydCBmb3Ig
+UENJRSBidXMKIApkaWZmIC0tZ2l0IGEvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9N
+YWtlZmlsZSBiL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvTWFrZWZpbGUKaW5kZXgg
+OTMzZmNiMmZkNTVkLi44MzQzYzdkZmFhZTMgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvbmV0L3dpcmVs
+ZXNzL2F0aC9hdGgxMWsvTWFrZWZpbGUKKysrIGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0
+aDExay9NYWtlZmlsZQpAQCAtMjUsNyArMjUsNyBAQCBvYmotJChDT05GSUdfQVRIMTFLX0FIQikg
+Kz0gYXRoMTFrX2FoYi5vCiBhdGgxMWtfYWhiLXkgKz0gYWhiLm8KIAogb2JqLSQoQ09ORklHX0FU
+SDExS19QQ0kpICs9IGF0aDExa19wY2kubwotYXRoMTFrX3BjaS15ICs9IHBjaS5vCithdGgxMWtf
+cGNpLXkgKz0gbWhpLm8gcGNpLm8KIAogIyBmb3IgdHJhY2luZyBmcmFtZXdvcmsgdG8gZmluZCB0
+cmFjZS5oCiBDRkxBR1NfdHJhY2UubyA6PSAtSSQoc3JjKQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9u
+ZXQvd2lyZWxlc3MvYXRoL2F0aDExay9taGkuYyBiL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9h
+dGgxMWsvbWhpLmMKbmV3IGZpbGUgbW9kZSAxMDA2NDQKaW5kZXggMDAwMDAwMDAwMDAwLi4xY2E0
+MzI0M2UyNjUKLS0tIC9kZXYvbnVsbAorKysgYi9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRo
+MTFrL21oaS5jCkBAIC0wLDAgKzEsMzc5IEBACisvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjog
+QlNELTMtQ2xhdXNlLUNsZWFyCisvKiBDb3B5cmlnaHQgKGMpIDIwMjAgVGhlIExpbnV4IEZvdW5k
+YXRpb24uIEFsbCByaWdodHMgcmVzZXJ2ZWQuICovCisKKyNpbmNsdWRlIDxsaW51eC9tc2kuaD4K
+KyNpbmNsdWRlIDxsaW51eC9wY2kuaD4KKworI2luY2x1ZGUgImRlYnVnLmgiCisjaW5jbHVkZSAi
+bWhpLmgiCisKKyNkZWZpbmUgTUhJX1RJTUVPVVRfREVGQVVMVF9NUwk5MDAwMAorCitzdGF0aWMg
+c3RydWN0IG1oaV9jaGFubmVsX2NvbmZpZyBhdGgxMWtfbWhpX2NoYW5uZWxzW10gPSB7CisJewor
+CQkubnVtID0gMCwKKwkJLm5hbWUgPSAiTE9PUEJBQ0siLAorCQkubnVtX2VsZW1lbnRzID0gMzIs
+CisJCS5ldmVudF9yaW5nID0gMCwKKwkJLmRpciA9IERNQV9UT19ERVZJQ0UsCisJCS5lZV9tYXNr
+ID0gMHg0LAorCQkucG9sbGNmZyA9IDAsCisJCS5kb29yYmVsbCA9IE1ISV9EQl9CUlNUX0RJU0FC
+TEUsCisJCS5scG1fbm90aWZ5ID0gZmFsc2UsCisJCS5vZmZsb2FkX2NoYW5uZWwgPSBmYWxzZSwK
+KwkJLmRvb3JiZWxsX21vZGVfc3dpdGNoID0gZmFsc2UsCisJCS5hdXRvX3F1ZXVlID0gZmFsc2Us
+CisJCS5hdXRvX3N0YXJ0ID0gZmFsc2UsCisJfSwKKwl7CisJCS5udW0gPSAxLAorCQkubmFtZSA9
+ICJMT09QQkFDSyIsCisJCS5udW1fZWxlbWVudHMgPSAzMiwKKwkJLmV2ZW50X3JpbmcgPSAwLAor
+CQkuZGlyID0gRE1BX0ZST01fREVWSUNFLAorCQkuZWVfbWFzayA9IDB4NCwKKwkJLnBvbGxjZmcg
+PSAwLAorCQkuZG9vcmJlbGwgPSBNSElfREJfQlJTVF9ESVNBQkxFLAorCQkubHBtX25vdGlmeSA9
+IGZhbHNlLAorCQkub2ZmbG9hZF9jaGFubmVsID0gZmFsc2UsCisJCS5kb29yYmVsbF9tb2RlX3N3
+aXRjaCA9IGZhbHNlLAorCQkuYXV0b19xdWV1ZSA9IGZhbHNlLAorCQkuYXV0b19zdGFydCA9IGZh
+bHNlLAorCX0sCisJeworCQkubnVtID0gMjAsCisJCS5uYW1lID0gIklQQ1IiLAorCQkubnVtX2Vs
+ZW1lbnRzID0gNjQsCisJCS5ldmVudF9yaW5nID0gMSwKKwkJLmRpciA9IERNQV9UT19ERVZJQ0Us
+CisJCS5lZV9tYXNrID0gMHg0LAorCQkucG9sbGNmZyA9IDAsCisJCS5kb29yYmVsbCA9IE1ISV9E
+Ql9CUlNUX0RJU0FCTEUsCisJCS5scG1fbm90aWZ5ID0gZmFsc2UsCisJCS5vZmZsb2FkX2NoYW5u
+ZWwgPSBmYWxzZSwKKwkJLmRvb3JiZWxsX21vZGVfc3dpdGNoID0gZmFsc2UsCisJCS5hdXRvX3F1
+ZXVlID0gZmFsc2UsCisJCS5hdXRvX3N0YXJ0ID0gdHJ1ZSwKKwl9LAorCXsKKwkJLm51bSA9IDIx
+LAorCQkubmFtZSA9ICJJUENSIiwKKwkJLm51bV9lbGVtZW50cyA9IDY0LAorCQkuZXZlbnRfcmlu
+ZyA9IDEsCisJCS5kaXIgPSBETUFfRlJPTV9ERVZJQ0UsCisJCS5lZV9tYXNrID0gMHg0LAorCQku
+cG9sbGNmZyA9IDAsCisJCS5kb29yYmVsbCA9IE1ISV9EQl9CUlNUX0RJU0FCTEUsCisJCS5scG1f
+bm90aWZ5ID0gZmFsc2UsCisJCS5vZmZsb2FkX2NoYW5uZWwgPSBmYWxzZSwKKwkJLmRvb3JiZWxs
+X21vZGVfc3dpdGNoID0gZmFsc2UsCisJCS5hdXRvX3F1ZXVlID0gdHJ1ZSwKKwkJLmF1dG9fc3Rh
+cnQgPSB0cnVlLAorCX0sCit9OworCitzdGF0aWMgc3RydWN0IG1oaV9ldmVudF9jb25maWcgYXRo
+MTFrX21oaV9ldmVudHNbXSA9IHsKKwl7CisJCS5udW1fZWxlbWVudHMgPSAzMiwKKwkJLmlycV9t
+b2RlcmF0aW9uX21zID0gMCwKKwkJLmlycSA9IDEsCisJCS5tb2RlID0gTUhJX0RCX0JSU1RfRElT
+QUJMRSwKKwkJLmhhcmR3YXJlX2V2ZW50ID0gZmFsc2UsCisJCS5jbGllbnRfbWFuYWdlZCA9IGZh
+bHNlLAorCQkub2ZmbG9hZF9jaGFubmVsID0gZmFsc2UsCisJfSwKKwl7CisJCS5udW1fZWxlbWVu
+dHMgPSAyNTYsCisJCS5pcnFfbW9kZXJhdGlvbl9tcyA9IDEsCisJCS5pcnEgPSAyLAorCQkubW9k
+ZSA9IE1ISV9EQl9CUlNUX0RJU0FCTEUsCisJCS5wcmlvcml0eSA9IDEsCisJCS5oYXJkd2FyZV9l
+dmVudCA9IGZhbHNlLAorCQkuY2xpZW50X21hbmFnZWQgPSBmYWxzZSwKKwkJLm9mZmxvYWRfY2hh
+bm5lbCA9IGZhbHNlLAorCX0sCit9OworCitzdGF0aWMgc3RydWN0IG1oaV9jb250cm9sbGVyX2Nv
+bmZpZyBhdGgxMWtfbWhpX2NvbmZpZyA9IHsKKwkubWF4X2NoYW5uZWxzID0gMTI4LAorCS50aW1l
+b3V0X21zID0gMjAwMCwKKwkudXNlX2JvdW5jZV9idWYgPSBmYWxzZSwKKwkuYnVmX2xlbiA9IDAs
+CisJLm51bV9jaGFubmVscyA9IEFSUkFZX1NJWkUoYXRoMTFrX21oaV9jaGFubmVscyksCisJLmNo
+X2NmZyA9IGF0aDExa19taGlfY2hhbm5lbHMsCisJLm51bV9ldmVudHMgPSBBUlJBWV9TSVpFKGF0
+aDExa19taGlfZXZlbnRzKSwKKwkuZXZlbnRfY2ZnID0gYXRoMTFrX21oaV9ldmVudHMsCit9Owor
+CitzdGF0aWMgaW50IGF0aDExa19wY2lfZ2V0X21oaV9tc2koc3RydWN0IGF0aDExa19wY2kgKmFi
+X3BjaSkKK3sKKwlzdHJ1Y3QgYXRoMTFrX2Jhc2UgKmFiID0gYWJfcGNpLT5hYjsKKwl1MzIgdXNl
+cl9iYXNlX2RhdGEsIGJhc2VfdmVjdG9yOworCWludCByZXQsIG51bV92ZWN0b3JzLCBpOworCWlu
+dCAqaXJxOworCisJcmV0ID0gYXRoMTFrX3BjaV9nZXRfdXNlcl9tc2lfYXNzaWdubWVudChhYl9w
+Y2ksCisJCQkJCQkgIk1ISSIsICZudW1fdmVjdG9ycywKKwkJCQkJCSAmdXNlcl9iYXNlX2RhdGEs
+ICZiYXNlX3ZlY3Rvcik7CisJaWYgKHJldCkKKwkJcmV0dXJuIHJldDsKKworCWF0aDExa19kYmco
+YWIsIEFUSDExS19EQkdfUENJLCAiTnVtYmVyIG9mIGFzc2lnbmVkIE1TSSBmb3IgTUhJIGlzICVk
+LCBiYXNlIHZlY3RvciBpcyAlZFxuIiwKKwkJICAgbnVtX3ZlY3RvcnMsIGJhc2VfdmVjdG9yKTsK
+KworCWlycSA9IGtjYWxsb2MobnVtX3ZlY3RvcnMsIHNpemVvZihpbnQpLCBHRlBfS0VSTkVMKTsK
+KwlpZiAoIWlycSkKKwkJcmV0dXJuIC1FTk9NRU07CisKKwlmb3IgKGkgPSAwOyBpIDwgbnVtX3Zl
+Y3RvcnM7IGkrKykKKwkJaXJxW2ldID0gYXRoMTFrX3BjaV9nZXRfbXNpX2lycShhYl9wY2ktPmRl
+diwKKwkJCQkJCWJhc2VfdmVjdG9yICsgaSk7CisKKwlhYl9wY2ktPm1oaV9jdHJsLT5pcnEgPSBp
+cnE7CisJYWJfcGNpLT5taGlfY3RybC0+bnJfaXJxcyA9IG51bV92ZWN0b3JzOworCisJcmV0dXJu
+IDA7Cit9CisKK2ludCBhdGgxMWtfcGNpX3JlZ2lzdGVyX21oaShzdHJ1Y3QgYXRoMTFrX3BjaSAq
+YWJfcGNpKQoreworCXN0cnVjdCBhdGgxMWtfYmFzZSAqYWIgPSBhYl9wY2ktPmFiOworCXN0cnVj
+dCBtaGlfY29udHJvbGxlciAqbWhpX2N0cmw7CisJaW50IHJldDsKKworCW1oaV9jdHJsID0ga3ph
+bGxvYyhzaXplb2YoKm1oaV9jdHJsKSwgR0ZQX0tFUk5FTCk7CisJaWYgKCFtaGlfY3RybCkKKwkJ
+cmV0dXJuIFBUUl9FUlIobWhpX2N0cmwpOworCisJYWJfcGNpLT5taGlfY3RybCA9IG1oaV9jdHJs
+OworCW1oaV9jdHJsLT5md19pbWFnZSA9IEFUSDExS19QQ0lfRldfRklMRV9OQU1FOworCW1oaV9j
+dHJsLT5yZWdzID0gYWJfcGNpLT5tZW07CisKKwlyZXQgPSBhdGgxMWtfcGNpX2dldF9taGlfbXNp
+KGFiX3BjaSk7CisJaWYgKHJldCkgeworCQlhdGgxMWtfZXJyKGFiLCAiZmFpbGVkIHRvIGdldCBt
+c2kgZm9yIG1oaVxuIik7CisJCWtmcmVlKG1oaV9jdHJsKTsKKwkJcmV0dXJuIHJldDsKKwl9CisK
+KwltaGlfY3RybC0+aW92YV9zdGFydCA9IDA7CisJbWhpX2N0cmwtPmlvdmFfc3RvcCA9IDB4ZmZm
+ZmZmZmY7CisJbWhpX2N0cmwtPnNibF9zaXplID0gU1pfNTEySzsKKwltaGlfY3RybC0+c2VnX2xl
+biA9IFNaXzUxMks7CisJbWhpX2N0cmwtPmZiY19kb3dubG9hZCA9IHRydWU7CisKKwlyZXQgPSBt
+aGlfcmVnaXN0ZXJfY29udHJvbGxlcihtaGlfY3RybCwgJmF0aDExa19taGlfY29uZmlnKTsKKwlp
+ZiAocmV0KSB7CisJCWF0aDExa19lcnIoYWIsICJmYWlsZWQgdG8gcmVnaXN0ZXIgdG8gbWhpIGJ1
+cywgZXJyID0gJWRcbiIsIHJldCk7CisJCWtmcmVlKG1oaV9jdHJsKTsKKwkJcmV0dXJuIHJldDsK
+Kwl9CisKKwlyZXR1cm4gMDsKK30KKwordm9pZCBhdGgxMWtfcGNpX3VucmVnaXN0ZXJfbWhpKHN0
+cnVjdCBhdGgxMWtfcGNpICphYl9wY2kpCit7CisJc3RydWN0IG1oaV9jb250cm9sbGVyICptaGlf
+Y3RybCA9IGFiX3BjaS0+bWhpX2N0cmw7CisKKwltaGlfdW5yZWdpc3Rlcl9jb250cm9sbGVyKG1o
+aV9jdHJsKTsKKwlrZnJlZShtaGlfY3RybC0+aXJxKTsKK30KKworc3RhdGljIGNoYXIgKmF0aDEx
+a19taGlfc3RhdGVfdG9fc3RyKGVudW0gYXRoMTFrX21oaV9zdGF0ZSBtaGlfc3RhdGUpCit7CisJ
+c3dpdGNoIChtaGlfc3RhdGUpIHsKKwljYXNlIEFUSDExS19NSElfSU5JVDoKKwkJcmV0dXJuICJJ
+TklUIjsKKwljYXNlIEFUSDExS19NSElfREVJTklUOgorCQlyZXR1cm4gIkRFSU5JVCI7CisJY2Fz
+ZSBBVEgxMUtfTUhJX1BPV0VSX09OOgorCQlyZXR1cm4gIlBPV0VSX09OIjsKKwljYXNlIEFUSDEx
+S19NSElfUE9XRVJfT0ZGOgorCQlyZXR1cm4gIlBPV0VSX09GRiI7CisJY2FzZSBBVEgxMUtfTUhJ
+X0ZPUkNFX1BPV0VSX09GRjoKKwkJcmV0dXJuICJGT1JDRV9QT1dFUl9PRkYiOworCWNhc2UgQVRI
+MTFLX01ISV9TVVNQRU5EOgorCQlyZXR1cm4gIlNVU1BFTkQiOworCWNhc2UgQVRIMTFLX01ISV9S
+RVNVTUU6CisJCXJldHVybiAiUkVTVU1FIjsKKwljYXNlIEFUSDExS19NSElfVFJJR0dFUl9SRERN
+OgorCQlyZXR1cm4gIlRSSUdHRVJfUkRETSI7CisJY2FzZSBBVEgxMUtfTUhJX1JERE1fRE9ORToK
+KwkJcmV0dXJuICJSRERNX0RPTkUiOworCWRlZmF1bHQ6CisJCXJldHVybiAiVU5LTk9XTiI7CisJ
+fQorfTsKKworc3RhdGljIHZvaWQgYXRoMTFrX3BjaV9zZXRfbWhpX3N0YXRlX2JpdChzdHJ1Y3Qg
+YXRoMTFrX3BjaSAqYWJfcGNpLAorCQkJCQkgZW51bSBhdGgxMWtfbWhpX3N0YXRlIG1oaV9zdGF0
+ZSkKK3sKKwlzdHJ1Y3QgYXRoMTFrX2Jhc2UgKmFiID0gYWJfcGNpLT5hYjsKKworCXN3aXRjaCAo
+bWhpX3N0YXRlKSB7CisJY2FzZSBBVEgxMUtfTUhJX0lOSVQ6CisJCXNldF9iaXQoQVRIMTFLX01I
+SV9JTklULCAmYWJfcGNpLT5taGlfc3RhdGUpOworCQlicmVhazsKKwljYXNlIEFUSDExS19NSElf
+REVJTklUOgorCQljbGVhcl9iaXQoQVRIMTFLX01ISV9JTklULCAmYWJfcGNpLT5taGlfc3RhdGUp
+OworCQlicmVhazsKKwljYXNlIEFUSDExS19NSElfUE9XRVJfT046CisJCXNldF9iaXQoQVRIMTFL
+X01ISV9QT1dFUl9PTiwgJmFiX3BjaS0+bWhpX3N0YXRlKTsKKwkJYnJlYWs7CisJY2FzZSBBVEgx
+MUtfTUhJX1BPV0VSX09GRjoKKwljYXNlIEFUSDExS19NSElfRk9SQ0VfUE9XRVJfT0ZGOgorCQlj
+bGVhcl9iaXQoQVRIMTFLX01ISV9QT1dFUl9PTiwgJmFiX3BjaS0+bWhpX3N0YXRlKTsKKwkJY2xl
+YXJfYml0KEFUSDExS19NSElfVFJJR0dFUl9SRERNLCAmYWJfcGNpLT5taGlfc3RhdGUpOworCQlj
+bGVhcl9iaXQoQVRIMTFLX01ISV9SRERNX0RPTkUsICZhYl9wY2ktPm1oaV9zdGF0ZSk7CisJCWJy
+ZWFrOworCWNhc2UgQVRIMTFLX01ISV9TVVNQRU5EOgorCQlzZXRfYml0KEFUSDExS19NSElfU1VT
+UEVORCwgJmFiX3BjaS0+bWhpX3N0YXRlKTsKKwkJYnJlYWs7CisJY2FzZSBBVEgxMUtfTUhJX1JF
+U1VNRToKKwkJY2xlYXJfYml0KEFUSDExS19NSElfU1VTUEVORCwgJmFiX3BjaS0+bWhpX3N0YXRl
+KTsKKwkJYnJlYWs7CisJY2FzZSBBVEgxMUtfTUhJX1RSSUdHRVJfUkRETToKKwkJc2V0X2JpdChB
+VEgxMUtfTUhJX1RSSUdHRVJfUkRETSwgJmFiX3BjaS0+bWhpX3N0YXRlKTsKKwkJYnJlYWs7CisJ
+Y2FzZSBBVEgxMUtfTUhJX1JERE1fRE9ORToKKwkJc2V0X2JpdChBVEgxMUtfTUhJX1JERE1fRE9O
+RSwgJmFiX3BjaS0+bWhpX3N0YXRlKTsKKwkJYnJlYWs7CisJZGVmYXVsdDoKKwkJYXRoMTFrX2Vy
+cihhYiwgInVuaGFuZGxlZCBtaGkgc3RhdGUgKCVkKVxuIiwgbWhpX3N0YXRlKTsKKwl9Cit9CisK
+K3N0YXRpYyBpbnQgYXRoMTFrX3BjaV9jaGVja19taGlfc3RhdGVfYml0KHN0cnVjdCBhdGgxMWtf
+cGNpICphYl9wY2ksCisJCQkJCSAgZW51bSBhdGgxMWtfbWhpX3N0YXRlIG1oaV9zdGF0ZSkKK3sK
+KwlzdHJ1Y3QgYXRoMTFrX2Jhc2UgKmFiID0gYWJfcGNpLT5hYjsKKworCXN3aXRjaCAobWhpX3N0
+YXRlKSB7CisJY2FzZSBBVEgxMUtfTUhJX0lOSVQ6CisJCWlmICghdGVzdF9iaXQoQVRIMTFLX01I
+SV9JTklULCAmYWJfcGNpLT5taGlfc3RhdGUpKQorCQkJcmV0dXJuIDA7CisJCWJyZWFrOworCWNh
+c2UgQVRIMTFLX01ISV9ERUlOSVQ6CisJY2FzZSBBVEgxMUtfTUhJX1BPV0VSX09OOgorCQlpZiAo
+dGVzdF9iaXQoQVRIMTFLX01ISV9JTklULCAmYWJfcGNpLT5taGlfc3RhdGUpICYmCisJCSAgICAh
+dGVzdF9iaXQoQVRIMTFLX01ISV9QT1dFUl9PTiwgJmFiX3BjaS0+bWhpX3N0YXRlKSkKKwkJCXJl
+dHVybiAwOworCQlicmVhazsKKwljYXNlIEFUSDExS19NSElfRk9SQ0VfUE9XRVJfT0ZGOgorCQlp
+ZiAodGVzdF9iaXQoQVRIMTFLX01ISV9QT1dFUl9PTiwgJmFiX3BjaS0+bWhpX3N0YXRlKSkKKwkJ
+CXJldHVybiAwOworCQlicmVhazsKKwljYXNlIEFUSDExS19NSElfUE9XRVJfT0ZGOgorCWNhc2Ug
+QVRIMTFLX01ISV9TVVNQRU5EOgorCQlpZiAodGVzdF9iaXQoQVRIMTFLX01ISV9QT1dFUl9PTiwg
+JmFiX3BjaS0+bWhpX3N0YXRlKSAmJgorCQkgICAgIXRlc3RfYml0KEFUSDExS19NSElfU1VTUEVO
+RCwgJmFiX3BjaS0+bWhpX3N0YXRlKSkKKwkJCXJldHVybiAwOworCQlicmVhazsKKwljYXNlIEFU
+SDExS19NSElfUkVTVU1FOgorCQlpZiAodGVzdF9iaXQoQVRIMTFLX01ISV9TVVNQRU5ELCAmYWJf
+cGNpLT5taGlfc3RhdGUpKQorCQkJcmV0dXJuIDA7CisJCWJyZWFrOworCWNhc2UgQVRIMTFLX01I
+SV9UUklHR0VSX1JERE06CisJCWlmICh0ZXN0X2JpdChBVEgxMUtfTUhJX1BPV0VSX09OLCAmYWJf
+cGNpLT5taGlfc3RhdGUpICYmCisJCSAgICAhdGVzdF9iaXQoQVRIMTFLX01ISV9UUklHR0VSX1JE
+RE0sICZhYl9wY2ktPm1oaV9zdGF0ZSkpCisJCQlyZXR1cm4gMDsKKwkJYnJlYWs7CisJY2FzZSBB
+VEgxMUtfTUhJX1JERE1fRE9ORToKKwkJcmV0dXJuIDA7CisJZGVmYXVsdDoKKwkJYXRoMTFrX2Vy
+cihhYiwgInVuaGFuZGxlZCBtaGkgc3RhdGU6ICVzKCVkKVxuIiwKKwkJCSAgIGF0aDExa19taGlf
+c3RhdGVfdG9fc3RyKG1oaV9zdGF0ZSksIG1oaV9zdGF0ZSk7CisJfQorCisJYXRoMTFrX2Vycihh
+YiwgImZhaWxlZCB0byBzZXQgbWhpIHN0YXRlICVzKCVkKSBpbiBjdXJyZW50IG1oaSBzdGF0ZSAo
+MHglbHgpXG4iLAorCQkgICBhdGgxMWtfbWhpX3N0YXRlX3RvX3N0cihtaGlfc3RhdGUpLCBtaGlf
+c3RhdGUsCisJCSAgIGFiX3BjaS0+bWhpX3N0YXRlKTsKKworCXJldHVybiAtRUlOVkFMOworfQor
+CitzdGF0aWMgaW50IGF0aDExa19wY2lfc2V0X21oaV9zdGF0ZShzdHJ1Y3QgYXRoMTFrX3BjaSAq
+YWJfcGNpLAorCQkJCSAgICBlbnVtIGF0aDExa19taGlfc3RhdGUgbWhpX3N0YXRlKQoreworCXN0
+cnVjdCBhdGgxMWtfYmFzZSAqYWIgPSBhYl9wY2ktPmFiOworCWludCByZXQ7CisKKwlyZXQgPSBh
+dGgxMWtfcGNpX2NoZWNrX21oaV9zdGF0ZV9iaXQoYWJfcGNpLCBtaGlfc3RhdGUpOworCWlmIChy
+ZXQpCisJCWdvdG8gb3V0OworCisJYXRoMTFrX2RiZyhhYiwgQVRIMTFLX0RCR19QQ0ksICJzZXR0
+aW5nIG1oaSBzdGF0ZTogJXMoJWQpXG4iLAorCQkgICBhdGgxMWtfbWhpX3N0YXRlX3RvX3N0ciht
+aGlfc3RhdGUpLCBtaGlfc3RhdGUpOworCisJc3dpdGNoIChtaGlfc3RhdGUpIHsKKwljYXNlIEFU
+SDExS19NSElfSU5JVDoKKwkJcmV0ID0gbWhpX3ByZXBhcmVfZm9yX3Bvd2VyX3VwKGFiX3BjaS0+
+bWhpX2N0cmwpOworCQlicmVhazsKKwljYXNlIEFUSDExS19NSElfREVJTklUOgorCQltaGlfdW5w
+cmVwYXJlX2FmdGVyX3Bvd2VyX2Rvd24oYWJfcGNpLT5taGlfY3RybCk7CisJCXJldCA9IDA7CisJ
+CWJyZWFrOworCWNhc2UgQVRIMTFLX01ISV9QT1dFUl9PTjoKKwkJcmV0ID0gbWhpX2FzeW5jX3Bv
+d2VyX3VwKGFiX3BjaS0+bWhpX2N0cmwpOworCQlicmVhazsKKwljYXNlIEFUSDExS19NSElfUE9X
+RVJfT0ZGOgorCQltaGlfcG93ZXJfZG93bihhYl9wY2ktPm1oaV9jdHJsLCB0cnVlKTsKKwkJcmV0
+ID0gMDsKKwkJYnJlYWs7CisJY2FzZSBBVEgxMUtfTUhJX0ZPUkNFX1BPV0VSX09GRjoKKwkJbWhp
+X3Bvd2VyX2Rvd24oYWJfcGNpLT5taGlfY3RybCwgZmFsc2UpOworCQlyZXQgPSAwOworCQlicmVh
+azsKKwljYXNlIEFUSDExS19NSElfU1VTUEVORDoKKwkJYnJlYWs7CisJY2FzZSBBVEgxMUtfTUhJ
+X1JFU1VNRToKKwkJYnJlYWs7CisJY2FzZSBBVEgxMUtfTUhJX1RSSUdHRVJfUkRETToKKwkJcmV0
+ID0gbWhpX2ZvcmNlX3JkZG1fbW9kZShhYl9wY2ktPm1oaV9jdHJsKTsKKwkJYnJlYWs7CisJY2Fz
+ZSBBVEgxMUtfTUhJX1JERE1fRE9ORToKKwkJYnJlYWs7CisJZGVmYXVsdDoKKwkJYXRoMTFrX2Vy
+cihhYiwgInVuaGFuZGxlZCBNSEkgc3RhdGUgKCVkKVxuIiwgbWhpX3N0YXRlKTsKKwkJcmV0ID0g
+LUVJTlZBTDsKKwl9CisKKwlpZiAocmV0KQorCQlnb3RvIG91dDsKKworCWF0aDExa19wY2lfc2V0
+X21oaV9zdGF0ZV9iaXQoYWJfcGNpLCBtaGlfc3RhdGUpOworCisJcmV0dXJuIDA7CisKK291dDoK
+KwlhdGgxMWtfZXJyKGFiLCAiZmFpbGVkIHRvIHNldCBtaGkgc3RhdGU6ICVzKCVkKVxuIiwKKwkJ
+ICAgYXRoMTFrX21oaV9zdGF0ZV90b19zdHIobWhpX3N0YXRlKSwgbWhpX3N0YXRlKTsKKwlyZXR1
+cm4gcmV0OworfQorCitpbnQgYXRoMTFrX3BjaV9zdGFydF9taGkoc3RydWN0IGF0aDExa19wY2kg
+KmFiX3BjaSkKK3sKKwlzdHJ1Y3QgYXRoMTFrX2Jhc2UgKmFiID0gYWJfcGNpLT5hYjsKKwlpbnQg
+cmV0OworCisJYWJfcGNpLT5taGlfY3RybC0+dGltZW91dF9tcyA9IE1ISV9USU1FT1VUX0RFRkFV
+TFRfTVM7CisKKwlyZXQgPSBhdGgxMWtfcGNpX3NldF9taGlfc3RhdGUoYWJfcGNpLCBBVEgxMUtf
+TUhJX0lOSVQpOworCWlmIChyZXQpCisJCWF0aDExa19lcnIoYWIsICJmYWlsZWQgdG8gc2V0IG1o
+aSBpbml0IHN0YXRlOiAlZFxuIiwgcmV0KTsKKworCXJldCA9IGF0aDExa19wY2lfc2V0X21oaV9z
+dGF0ZShhYl9wY2ksIEFUSDExS19NSElfUE9XRVJfT04pOworCWlmIChyZXQpCisJCWF0aDExa19l
+cnIoYWIsICJmYWlsZWQgdG8gc2V0IG1oaSBwb3dlciBvbiBzdGF0ZTogJWRcbiIsIHJldCk7CisK
+KwlyZXR1cm4gcmV0OworfQorCit2b2lkIGF0aDExa19wY2lfc3RvcF9taGkoc3RydWN0IGF0aDEx
+a19wY2kgKmFiX3BjaSkKK3sKKwlhdGgxMWtfcGNpX3NldF9taGlfc3RhdGUoYWJfcGNpLCBBVEgx
+MUtfTUhJX1JFU1VNRSk7CisJYXRoMTFrX3BjaV9zZXRfbWhpX3N0YXRlKGFiX3BjaSwgQVRIMTFL
+X01ISV9QT1dFUl9PRkYpOworCWF0aDExa19wY2lfc2V0X21oaV9zdGF0ZShhYl9wY2ksIEFUSDEx
+S19NSElfREVJTklUKTsKK30KKwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRo
+L2F0aDExay9taGkuaCBiL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvbWhpLmgKbmV3
+IGZpbGUgbW9kZSAxMDA2NDQKaW5kZXggMDAwMDAwMDAwMDAwLi4zNTVkZTVhMmMyNDEKLS0tIC9k
+ZXYvbnVsbAorKysgYi9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL21oaS5oCkBAIC0w
+LDAgKzEsMjggQEAKKy8qIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBCU0QtMy1DbGF1c2UtQ2xl
+YXIgKi8KKy8qCisgKiBDb3B5cmlnaHQgKGMpIDIwMjAgVGhlIExpbnV4IEZvdW5kYXRpb24uIEFs
+bCByaWdodHMgcmVzZXJ2ZWQuCisgKi8KKyNpZm5kZWYgX0FUSDExS19NSElfSAorI2RlZmluZSBf
+QVRIMTFLX01ISV9ICisKKyNpbmNsdWRlICJwY2kuaCIKKyNkZWZpbmUgQVRIMTFLX1BDSV9GV19G
+SUxFX05BTUUJCSJhbXNzLmJpbiIKKworZW51bSBhdGgxMWtfbWhpX3N0YXRlIHsKKwlBVEgxMUtf
+TUhJX0lOSVQsCisJQVRIMTFLX01ISV9ERUlOSVQsCisJQVRIMTFLX01ISV9QT1dFUl9PTiwKKwlB
+VEgxMUtfTUhJX1BPV0VSX09GRiwKKwlBVEgxMUtfTUhJX0ZPUkNFX1BPV0VSX09GRiwKKwlBVEgx
+MUtfTUhJX1NVU1BFTkQsCisJQVRIMTFLX01ISV9SRVNVTUUsCisJQVRIMTFLX01ISV9UUklHR0VS
+X1JERE0sCisJQVRIMTFLX01ISV9SRERNLAorCUFUSDExS19NSElfUkRETV9ET05FLAorfTsKKwor
+aW50IGF0aDExa19wY2lfc3RhcnRfbWhpKHN0cnVjdCBhdGgxMWtfcGNpICphcl9wY2kpOwordm9p
+ZCBhdGgxMWtfcGNpX3N0b3BfbWhpKHN0cnVjdCBhdGgxMWtfcGNpICphcl9wY2kpOworaW50IGF0
+aDExa19wY2lfcmVnaXN0ZXJfbWhpKHN0cnVjdCBhdGgxMWtfcGNpICphcl9wY2kpOwordm9pZCBh
+dGgxMWtfcGNpX3VucmVnaXN0ZXJfbWhpKHN0cnVjdCBhdGgxMWtfcGNpICphcl9wY2kpOworI2Vu
+ZGlmCmRpZmYgLS1naXQgYS9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL3BjaS5jIGIv
+ZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9wY2kuYwppbmRleCBkODlkY2I1ZmU4MWUu
+LjkzODA3OGVlOGQ4MCAxMDA2NDQKLS0tIGEvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDEx
+ay9wY2kuYworKysgYi9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL3BjaS5jCkBAIC05
+LDYgKzksOCBAQAogCiAjaW5jbHVkZSAiYWhiLmgiCiAjaW5jbHVkZSAiY29yZS5oIgorI2luY2x1
+ZGUgImhpZi5oIgorI2luY2x1ZGUgIm1oaS5oIgogI2luY2x1ZGUgInBjaS5oIgogI2luY2x1ZGUg
+ImRlYnVnLmgiCiAKQEAgLTMxLDYgKzMzLDYwIEBAIHN0YXRpYyBzdHJ1Y3QgYXRoMTFrX21zaV9j
+b25maWcgbXNpX2NvbmZpZyA9IHsKIAl9LAogfTsKIAoraW50IGF0aDExa19wY2lfZ2V0X21zaV9p
+cnEoc3RydWN0IGRldmljZSAqZGV2LCB1bnNpZ25lZCBpbnQgdmVjdG9yKQoreworCXN0cnVjdCBw
+Y2lfZGV2ICpwY2lfZGV2ID0gdG9fcGNpX2RldihkZXYpOworCWludCBpcnFfbnVtOworCisJaXJx
+X251bSA9IHBjaV9pcnFfdmVjdG9yKHBjaV9kZXYsIHZlY3Rvcik7CisKKwlyZXR1cm4gaXJxX251
+bTsKK30KKworaW50IGF0aDExa19wY2lfZ2V0X3VzZXJfbXNpX2Fzc2lnbm1lbnQoc3RydWN0IGF0
+aDExa19wY2kgKmFiX3BjaSwgY2hhciAqdXNlcl9uYW1lLAorCQkJCSAgICAgICBpbnQgKm51bV92
+ZWN0b3JzLCB1MzIgKnVzZXJfYmFzZV9kYXRhLAorCQkJCSAgICAgICB1MzIgKmJhc2VfdmVjdG9y
+KQoreworCXN0cnVjdCBhdGgxMWtfYmFzZSAqYWIgPSBhYl9wY2ktPmFiOworCXN0cnVjdCBhdGgx
+MWtfbXNpX2NvbmZpZyAqbXNpX2NvbmZpZzsKKwlpbnQgaWR4OworCisJbXNpX2NvbmZpZyA9IGFi
+X3BjaS0+bXNpX2NvbmZpZzsKKwlpZiAoIW1zaV9jb25maWcpIHsKKwkJYXRoMTFrX2VycihhYiwg
+Ik1TSSBpcyBub3Qgc3VwcG9ydGVkLlxuIik7CisJCXJldHVybiAtRUlOVkFMOworCX0KKworCWZv
+ciAoaWR4ID0gMDsgaWR4IDwgbXNpX2NvbmZpZy0+dG90YWxfdXNlcnM7IGlkeCsrKSB7CisJCWlm
+IChzdHJjbXAodXNlcl9uYW1lLCBtc2lfY29uZmlnLT51c2Vyc1tpZHhdLm5hbWUpID09IDApIHsK
+KwkJCSpudW1fdmVjdG9ycyA9IG1zaV9jb25maWctPnVzZXJzW2lkeF0ubnVtX3ZlY3RvcnM7CisJ
+CQkqdXNlcl9iYXNlX2RhdGEgPSBtc2lfY29uZmlnLT51c2Vyc1tpZHhdLmJhc2VfdmVjdG9yCisJ
+CQkJKyBhYl9wY2ktPm1zaV9lcF9iYXNlX2RhdGE7CisJCQkqYmFzZV92ZWN0b3IgPSBtc2lfY29u
+ZmlnLT51c2Vyc1tpZHhdLmJhc2VfdmVjdG9yOworCisJCQlhdGgxMWtfZGJnKGFiLCBBVEgxMUtf
+REJHX1BDSSwgIkFzc2lnbiBNU0kgdG8gdXNlcjogJXMsIG51bV92ZWN0b3JzOiAlZCwgdXNlcl9i
+YXNlX2RhdGE6ICV1LCBiYXNlX3ZlY3RvcjogJXVcbiIsCisJCQkJICAgdXNlcl9uYW1lLCAqbnVt
+X3ZlY3RvcnMsICp1c2VyX2Jhc2VfZGF0YSwKKwkJCQkgICAqYmFzZV92ZWN0b3IpOworCisJCQly
+ZXR1cm4gMDsKKwkJfQorCX0KKworCWF0aDExa19lcnIoYWIsICJGYWlsZWQgdG8gZmluZCBNU0kg
+YXNzaWdubWVudCBmb3IgJXMhXG4iLCB1c2VyX25hbWUpOworCisJcmV0dXJuIC1FSU5WQUw7Cit9
+CisKK3N0YXRpYyBpbnQgYXRoMTFrX3BjaV9xY2E2eDkwX3Bvd2VydXAoc3RydWN0IGF0aDExa19w
+Y2kgKmFiX3BjaSkKK3sKKwlyZXR1cm4gYXRoMTFrX3BjaV9zdGFydF9taGkoYWJfcGNpKTsKK30K
+Kworc3RhdGljIHZvaWQgYXRoMTFrX3BjaV9xY2E2eDkwX3Bvd2VyZG93bihzdHJ1Y3QgYXRoMTFr
+X3BjaSAqYWJfcGNpKQoreworCWF0aDExa19wY2lfc3RvcF9taGkoYWJfcGNpKTsKK30KKwogc3Rh
+dGljIGludCBhdGgxMWtfcGNpX2dldF9tc2lfYXNzaWdubWVudChzdHJ1Y3QgYXRoMTFrX3BjaSAq
+YWJfcGNpKQogewogCWFiX3BjaS0+bXNpX2NvbmZpZyA9ICZtc2lfY29uZmlnOwpAQCAtMTg0LDYg
+KzI0MCwzNCBAQCBzdGF0aWMgdm9pZCBhdGgxMWtfcGNpX2ZyZWVfcmVnaW9uKHN0cnVjdCBhdGgx
+MWtfcGNpICphYl9wY2kpCiAJCXBjaV9kaXNhYmxlX2RldmljZShwY2lfZGV2KTsKIH0KIAorc3Rh
+dGljIGludCBhdGgxMWtfcGNpX3Bvd2VyX3VwKHN0cnVjdCBhdGgxMWtfYmFzZSAqYWIpCit7CisJ
+c3RydWN0IGF0aDExa19wY2kgKmFiX3BjaTsKKwlpbnQgcmV0OworCisJYWJfcGNpID0gYXRoMTFr
+X3BjaV9wcml2KGFiKTsKKwlyZXQgPSBhdGgxMWtfcGNpX3FjYTZ4OTBfcG93ZXJ1cChhYl9wY2kp
+OworCWlmIChyZXQpIHsKKwkJYXRoMTFrX2VycihhYiwgImZhaWxlZCB0byBwb3dlciBvbiAgbWhp
+OiAlZFxuIiwgcmV0KTsKKwkJcmV0dXJuIHJldDsKKwl9CisKKwlyZXR1cm4gMDsKK30KKworc3Rh
+dGljIHZvaWQgYXRoMTFrX3BjaV9wb3dlcl9kb3duKHN0cnVjdCBhdGgxMWtfYmFzZSAqYWIpCit7
+CisJc3RydWN0IGF0aDExa19wY2kgKmFiX3BjaTsKKworCWFiX3BjaSA9IGF0aDExa19wY2lfcHJp
+dihhYik7CisJYXRoMTFrX3BjaV9xY2E2eDkwX3Bvd2VyZG93bihhYl9wY2kpOworfQorCitzdGF0
+aWMgY29uc3Qgc3RydWN0IGF0aDExa19oaWZfb3BzIGF0aDExa19wY2lfaGlmX29wcyA9IHsKKwku
+cG93ZXJfZG93biA9IGF0aDExa19wY2lfcG93ZXJfZG93biwKKwkucG93ZXJfdXAgPSBhdGgxMWtf
+cGNpX3Bvd2VyX3VwLAorfTsKKwogc3RhdGljIGludCBhdGgxMWtfcGNpX3Byb2JlKHN0cnVjdCBw
+Y2lfZGV2ICpwZGV2LAogCQkJICAgIGNvbnN0IHN0cnVjdCBwY2lfZGV2aWNlX2lkICpwY2lfZGV2
+KQogewpAQCAtMjI5LDE0ICszMTMsMjYgQEAgc3RhdGljIGludCBhdGgxMWtfcGNpX3Byb2JlKHN0
+cnVjdCBwY2lfZGV2ICpwZGV2LAogCQlnb3RvIGVycl9mcmVlX2NvcmU7CiAJfQogCisJYWItPm1l
+bSA9IGFiX3BjaS0+bWVtOworCWFiLT5tZW1fbGVuID0gYWJfcGNpLT5tZW1fbGVuOworCiAJcmV0
+ID0gYXRoMTFrX3BjaV9lbmFibGVfbXNpKGFiX3BjaSk7CiAJaWYgKHJldCkgewogCQlhdGgxMWtf
+ZXJyKGFiLCAiZmFpbGVkIHRvIGVuYWJsZSAgbXNpOiAlZFxuIiwgcmV0KTsKIAkJZ290byBlcnJf
+cGNpX2ZyZWVfcmVnaW9uOwogCX0KIAorCXJldCA9IGF0aDExa19wY2lfcmVnaXN0ZXJfbWhpKGFi
+X3BjaSk7CisJaWYgKHJldCkgeworCQlhdGgxMWtfZXJyKGFiLCAiZmFpbGVkIHRvIHJlZ2lzdGVy
+ICBtaGk6ICVkXG4iLCByZXQpOworCQlnb3RvIGVycl9wY2lfZGlzYWJsZV9tc2k7CisJfQorCiAJ
+cmV0dXJuIDA7CiAKK2Vycl9wY2lfZGlzYWJsZV9tc2k6CisJYXRoMTFrX3BjaV9kaXNhYmxlX21z
+aShhYl9wY2kpOworCiBlcnJfcGNpX2ZyZWVfcmVnaW9uOgogCWF0aDExa19wY2lfZnJlZV9yZWdp
+b24oYWJfcGNpKTsKIApAQCAtMjUyLDYgKzM0OCw3IEBAIHN0YXRpYyB2b2lkIGF0aDExa19wY2lf
+cmVtb3ZlKHN0cnVjdCBwY2lfZGV2ICpwZGV2KQogCXN0cnVjdCBhdGgxMWtfcGNpICphYl9wY2kg
+PSBhdGgxMWtfcGNpX3ByaXYoYWIpOwogCiAJc2V0X2JpdChBVEgxMUtfRkxBR19VTlJFR0lTVEVS
+SU5HLCAmYWItPmRldl9mbGFncyk7CisJYXRoMTFrX3BjaV91bnJlZ2lzdGVyX21oaShhYl9wY2kp
+OwogCWF0aDExa19wY2lfZGlzYWJsZV9tc2koYWJfcGNpKTsKIAlhdGgxMWtfcGNpX2ZyZWVfcmVn
+aW9uKGFiX3BjaSk7CiAJYXRoMTFrX2NvcmVfZnJlZShhYik7CmRpZmYgLS1naXQgYS9kcml2ZXJz
+L25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL3BjaS5oIGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRo
+L2F0aDExay9wY2kuaAppbmRleCA3YzdmYTE5NjVhYTYuLjgzYjQ4NWJlNmM1MCAxMDA2NDQKLS0t
+IGEvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9wY2kuaAorKysgYi9kcml2ZXJzL25l
+dC93aXJlbGVzcy9hdGgvYXRoMTFrL3BjaS5oCkBAIC0yLDYgKzIsMTAgQEAKIC8qCiAgKiBDb3B5
+cmlnaHQgKGMpIDIwMTktMjAyMCBUaGUgTGludXggRm91bmRhdGlvbi4gQWxsIHJpZ2h0cyByZXNl
+cnZlZC4KICAqLworI2lmbmRlZiBfQVRIMTFLX1BDSV9ICisjZGVmaW5lIF9BVEgxMUtfUENJX0gK
+KworI2luY2x1ZGUgPGxpbnV4L21oaS5oPgogCiAjZGVmaW5lIFFDQTYyOTBfVkVORE9SX0lECQkw
+eDE3Q0IKICNkZWZpbmUgUUNBNjI5MF9ERVZJQ0VfSUQJCTB4MTEwMApAQCAtMzMsNCArMzcsMTMg
+QEAgc3RydWN0IGF0aDExa19wY2kgewogCXUzMiBjaGlwX2lkOwogCXN0cnVjdCBhdGgxMWtfbXNp
+X2NvbmZpZyAqbXNpX2NvbmZpZzsKIAl1MzIgbXNpX2VwX2Jhc2VfZGF0YTsKKwlzdHJ1Y3QgbWhp
+X2NvbnRyb2xsZXIgKm1oaV9jdHJsOworCXVuc2lnbmVkIGxvbmcgbWhpX3N0YXRlOwogfTsKKwor
+aW50IGF0aDExa19wY2lfZ2V0X3VzZXJfbXNpX2Fzc2lnbm1lbnQoc3RydWN0IGF0aDExa19wY2kg
+KmFyX3BjaSwgY2hhciAqdXNlcl9uYW1lLAorCQkJCSAgICAgICBpbnQgKm51bV92ZWN0b3JzLCB1
+MzIgKnVzZXJfYmFzZV9kYXRhLAorCQkJCSAgICAgICB1MzIgKmJhc2VfdmVjdG9yKTsKKworaW50
+IGF0aDExa19wY2lfZ2V0X21zaV9pcnEoc3RydWN0IGRldmljZSAqZGV2LCB1bnNpZ25lZCBpbnQg
+dmVjdG9yKTsKKyNlbmRpZgotLSAKMi4yMi4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0cy5pbmZy
+YWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vYXRo
+MTFrCg==
