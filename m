@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from szxga07-in.huawei.com ([45.249.212.35] helo=huawei.com)
+Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jWxla-0007Cv-Aj
- for ath11k@lists.infradead.org; Fri, 08 May 2020 07:49:56 +0000
-From: Wei Yongjun <weiyongjun1@huawei.com>
-Subject: [PATCH next] ath11k: convert to devm_platform_get_and_ioremap_resource
-Date: Fri, 8 May 2020 07:53:23 +0000
-Message-ID: <20200508075323.81128-1-weiyongjun1@huawei.com>
+ id 1jWypM-0008DR-FS
+ for ath11k@lists.infradead.org; Fri, 08 May 2020 08:57:55 +0000
+From: Govind Singh <govinds@codeaurora.org>
+Subject: [PATCH 0/4] Add PCI client driver for QCA6390 chipset
+Date: Fri,  8 May 2020 14:27:26 +0530
+Message-Id: <20200508085730.23272-1-govinds@codeaurora.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -20,39 +20,65 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: linux-wireless@vger.kernel.org, kernel-janitors@vger.kernel.org, Wei Yongjun <weiyongjun1@huawei.com>, ath11k@lists.infradead.org
+To: ath11k@lists.infradead.org
+Cc: Govind Singh <govinds@codeaurora.org>, linux-wireless@vger.kernel.org
 
-Use the helper function that wraps the calls to platform_get_resource()
-and devm_ioremap_resource() together.
+QCA6390 chipsets is PCI based 11ax chipset to be supported in ath11k.
 
-Signed-off-by: Wei Yongjun <weiyongjun1@huawei.com>
----
- drivers/net/wireless/ath/ath11k/ahb.c | 8 +-------
- 1 file changed, 1 insertion(+), 7 deletions(-)
+Add PCI client driver for QCA6390 chipset with enumeration/resource initialization/msi vector mapping.
+With these changes driver is splitted in two modules(bus layer module/ common core module).
+This is required due to following reasons.
 
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index 3b2b76d602f2..d4ad99eb0e16 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.c
-+++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -891,13 +891,7 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
- 		return -EINVAL;
- 	}
- 
--	mem_res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	if (!mem_res) {
--		dev_err(&pdev->dev, "failed to get IO memory resource\n");
--		return -ENXIO;
--	}
--
--	mem = devm_ioremap_resource(&pdev->dev, mem_res);
-+	mem = devm_platform_get_and_ioremap_resource(pdev, 0, &mem_res);
- 	if (IS_ERR(mem)) {
- 		dev_err(&pdev->dev, "ioremap error\n");
- 		return PTR_ERR(mem);
+ 1) PCI based transport layer for QCA6390 chipsets.
+ 2) FW loading based on MHI protocol unlike rproc in IPQ8074A.
+ 3) MSI based data path/CE/fw RAM dump interrupt.
+ 4) CE assignments is different.
+ 5) Different boot up sequence due to requirement of voltage regulators/bootstrap
+    pinctrls for QCA6390.
+ 6) Clear separation in bus level operation.
 
 
+For AHB based devices:
+ath11k_ahb.ko
+ath11k_ko
 
+For PCI based devices:
+ath11k_pci.ko
+ath11k.ko
+
+Tested HW:
+	IPQ8074A
+	X86 + QCA6390: pci probe/resource setup
+
+Govind Singh (4):
+  ath11k: Add PCI client driver for QCA6390 chipset
+  ath11k: setup pci resource for QCA6390 target
+  ath11k: Add msi config init for QCA6390
+  ath11k: Register mhi controller device for qca6390
+
+ drivers/net/wireless/ath/ath11k/Kconfig  |  13 +-
+ drivers/net/wireless/ath/ath11k/Makefile |   7 +-
+ drivers/net/wireless/ath/ath11k/ahb.c    |  71 -----
+ drivers/net/wireless/ath/ath11k/ce.c     |   2 +
+ drivers/net/wireless/ath/ath11k/core.c   |   7 +
+ drivers/net/wireless/ath/ath11k/core.h   |  11 +-
+ drivers/net/wireless/ath/ath11k/debug.c  |   6 +-
+ drivers/net/wireless/ath/ath11k/debug.h  |   1 +
+ drivers/net/wireless/ath/ath11k/dp.c     |   1 +
+ drivers/net/wireless/ath/ath11k/hal.c    |   1 +
+ drivers/net/wireless/ath/ath11k/hif.h    |  77 ++++-
+ drivers/net/wireless/ath/ath11k/mhi.c    | 379 ++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/mhi.h    |  28 ++
+ drivers/net/wireless/ath/ath11k/pci.c    | 385 +++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/pci.h    |  49 +++
+ 15 files changed, 954 insertions(+), 84 deletions(-)
+ create mode 100644 drivers/net/wireless/ath/ath11k/mhi.c
+ create mode 100644 drivers/net/wireless/ath/ath11k/mhi.h
+ create mode 100644 drivers/net/wireless/ath/ath11k/pci.c
+ create mode 100644 drivers/net/wireless/ath/ath11k/pci.h
+
+-- 
+2.22.0
 
 _______________________________________________
 ath11k mailing list
