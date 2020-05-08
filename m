@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jWypM-0008DR-FS
- for ath11k@lists.infradead.org; Fri, 08 May 2020 08:57:55 +0000
+ id 1jWyqQ-0008DR-3W
+ for ath11k@lists.infradead.org; Fri, 08 May 2020 08:58:59 +0000
 From: Govind Singh <govinds@codeaurora.org>
 Subject: [PATCH 0/4] Add PCI client driver for QCA6390 chipset
-Date: Fri,  8 May 2020 14:27:26 +0530
-Message-Id: <20200508085730.23272-1-govinds@codeaurora.org>
+Date: Fri,  8 May 2020 14:28:46 +0530
+Message-Id: <20200508085850.23363-1-govinds@codeaurora.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
