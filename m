@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail27.static.mailgun.info ([104.130.122.27])
+Received: from mail26.static.mailgun.info ([104.130.122.26])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jWyqg-0008DR-Pl
- for ath11k@lists.infradead.org; Fri, 08 May 2020 08:59:18 +0000
-From: Govind Singh <govinds@codeaurora.org>
-Subject: [PATCH 2/4] ath11k: setup pci resource for QCA6390 target
-Date: Fri,  8 May 2020 14:28:48 +0530
-Message-Id: <20200508085850.23363-3-govinds@codeaurora.org>
-In-Reply-To: <20200508085850.23363-1-govinds@codeaurora.org>
-References: <20200508085850.23363-1-govinds@codeaurora.org>
-MIME-Version: 1.0
+ id 1jXD7T-00071g-74
+ for ath11k@lists.infradead.org; Sat, 09 May 2020 00:13:35 +0000
+From: Rajkumar Manoharan <rmanohar@codeaurora.org>
+Subject: [PATCH v3 05/11] mac80211: fix memory overlap due to variable length
+ param
+Date: Fri,  8 May 2020 17:12:59 -0700
+Message-Id: <1588983185-5741-5-git-send-email-rmanohar@codeaurora.org>
+In-Reply-To: <1588983185-5741-1-git-send-email-rmanohar@codeaurora.org>
+References: <1588983185-5741-1-git-send-email-rmanohar@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -18,213 +18,95 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: Govind Singh <govinds@codeaurora.org>, linux-wireless@vger.kernel.org
+To: johannes@sipsolutions.net, kvalo@codeaurora.org
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, Rajkumar Manoharan <rmanohar@codeaurora.org>
 
-Add support for setting up pci region and dma mask
-for QCA6390 target.
+As of now HE operation element in bss_conf includes variable length
+optional field followed by other HE variable. Though the optional
+field never be used, actually it is referring to next member of the
+bss_conf structure which is not correct. Fix it by declaring needed
+HE operation fields within bss_conf itself.
 
-Signed-off-by: Govind Singh <govinds@codeaurora.org>
+Signed-off-by: Rajkumar Manoharan <rmanohar@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/core.c |   1 +
- drivers/net/wireless/ath/ath11k/pci.c  | 109 ++++++++++++++++++++++++-
- drivers/net/wireless/ath/ath11k/pci.h  |  12 +++
- 3 files changed, 121 insertions(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/mac.c |  3 +--
+ include/net/mac80211.h                |  7 +++++--
+ net/mac80211/he.c                     | 13 +++++--------
+ 3 files changed, 11 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 8d07a2bb31bb..4c3f5a9d0d8a 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -14,6 +14,7 @@
- #include "hif.h"
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 9f8bc19cc5ae..06d063274eea 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -1168,8 +1168,7 @@ static void ath11k_peer_assoc_h_he(struct ath11k *ar,
+ 	       sizeof(arg->peer_he_cap_macinfo));
+ 	memcpy(&arg->peer_he_cap_phyinfo, he_cap->he_cap_elem.phy_cap_info,
+ 	       sizeof(arg->peer_he_cap_phyinfo));
+-	memcpy(&arg->peer_he_ops, &vif->bss_conf.he_operation,
+-	       sizeof(arg->peer_he_ops));
++	arg->peer_he_ops = vif->bss_conf.he_oper.params;
  
- unsigned int ath11k_debug_mask;
-+EXPORT_SYMBOL(ath11k_debug_mask);
- module_param_named(debug_mask, ath11k_debug_mask, uint, 0644);
- MODULE_PARM_DESC(debug_mask, "Debugging mask");
+ 	/* the top most byte is used to indicate BSS color info */
+ 	arg->peer_he_ops &= 0xffffff;
+diff --git a/include/net/mac80211.h b/include/net/mac80211.h
+index 97fec4d310ac..2af956bdf80c 100644
+--- a/include/net/mac80211.h
++++ b/include/net/mac80211.h
+@@ -603,7 +603,7 @@ struct ieee80211_ftm_responder_params {
+  *	nontransmitted BSSIDs
+  * @profile_periodicity: the least number of beacon frames need to be received
+  *	in order to discover all the nontransmitted BSSIDs in the set.
+- * @he_operation: HE operation information of the AP we are connected to
++ * @he_oper: HE operation information of the AP we are connected to
+  * @he_obss_pd: OBSS Packet Detection parameters.
+  * @he_bss_color: BSS coloring settings, if BSS supports HE
+  */
+@@ -666,7 +666,10 @@ struct ieee80211_bss_conf {
+ 	u8 bssid_indicator;
+ 	bool ema_ap;
+ 	u8 profile_periodicity;
+-	struct ieee80211_he_operation he_operation;
++	struct {
++		u32 params;
++		u16 nss_set;
++	} he_oper;
+ 	struct ieee80211_he_obss_pd he_obss_pd;
+ 	struct cfg80211_he_bss_color he_bss_color;
+ };
+diff --git a/net/mac80211/he.c b/net/mac80211/he.c
+index 1087f715338b..f520552b22be 100644
+--- a/net/mac80211/he.c
++++ b/net/mac80211/he.c
+@@ -57,17 +57,14 @@ ieee80211_he_cap_ie_to_sta_he_cap(struct ieee80211_sub_if_data *sdata,
  
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index 582e7cd3c56e..6ab9e25c4ff9 100644
---- a/drivers/net/wireless/ath/ath11k/pci.c
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -6,6 +6,7 @@
- #include <linux/module.h>
- #include <linux/pci.h>
- 
-+#include "ahb.h"
- #include "core.h"
- #include "pci.h"
- #include "debug.h"
-@@ -18,10 +19,98 @@ static const struct pci_device_id ath11k_pci_id_table[] = {
- 
- MODULE_DEVICE_TABLE(pci, ath11k_pci_id_table);
- 
-+static inline struct ath11k_pci *ath11k_pci_priv(struct ath11k_base *ab)
-+{
-+	return (struct ath11k_pci *)ab->drv_priv;
-+}
-+
-+static int ath11k_pci_claim(struct ath11k_pci *ab_pci, struct pci_dev *pdev)
-+{
-+	u32 pci_dma_mask = PCI_DMA_MASK_32_BIT;
-+	struct ath11k_base *ab = ab_pci->ab;
-+	u16 device_id;
-+	int ret = 0;
-+
-+	pci_read_config_word(pdev, PCI_DEVICE_ID, &device_id);
-+	if (device_id != ab_pci->dev_id)  {
-+		ath11k_err(ab, "pci device id mismatch, config ID: 0x%x, probe ID: 0x%x\n",
-+			   device_id, ab_pci->dev_id);
-+		ret = -EIO;
-+		goto out;
-+	}
-+
-+	ret = pci_assign_resource(pdev, PCI_BAR_NUM);
-+	if (ret) {
-+		ath11k_err(ab, "failed to assign pci resource, err = %d\n", ret);
-+		goto out;
-+	}
-+
-+	ret = pci_enable_device(pdev);
-+	if (ret) {
-+		ath11k_err(ab, "failed to enable pci device, err = %d\n", ret);
-+		goto out;
-+	}
-+
-+	ret = pci_request_region(pdev, PCI_BAR_NUM, "ath11k_pci");
-+	if (ret) {
-+		ath11k_err(ab, "failed to request pci region, err = %d\n", ret);
-+		goto disable_device;
-+	}
-+
-+	ret = pci_set_dma_mask(pdev, DMA_BIT_MASK(pci_dma_mask));
-+	if (ret) {
-+		ath11k_err(ab, "failed to set pci dma mask (%d), err = %d\n",
-+			   ret, pci_dma_mask);
-+		goto release_region;
-+	}
-+
-+	ret = pci_set_consistent_dma_mask(pdev, DMA_BIT_MASK(pci_dma_mask));
-+	if (ret) {
-+		ath11k_err(ab, "failed to set pci consistent dma mask (%d), err = %d\n",
-+			   ret, pci_dma_mask);
-+		goto release_region;
-+	}
-+
-+	pci_set_master(pdev);
-+
-+	ab_pci->mem_len = pci_resource_len(pdev, PCI_BAR_NUM);
-+	ab_pci->mem = pci_iomap(pdev, PCI_BAR_NUM, 0);
-+	if (!ab_pci->mem) {
-+		ath11k_err(ab, "failed to map pci bar, bar = %d\n", PCI_BAR_NUM);
-+		ret = -EIO;
-+		goto clear_master;
-+	}
-+
-+	ath11k_dbg(ab, ATH11K_DBG_BOOT, "boot pci_mem 0x%pK\n", ab_pci->mem);
-+	return 0;
-+
-+clear_master:
-+	pci_clear_master(pdev);
-+release_region:
-+	pci_release_region(pdev, PCI_BAR_NUM);
-+disable_device:
-+	pci_disable_device(pdev);
-+out:
-+	return ret;
-+}
-+
-+static void ath11k_pci_free_region(struct ath11k_pci *ab_pci)
-+{
-+	struct pci_dev *pci_dev = ab_pci->pdev;
-+
-+	pci_iounmap(pci_dev, ab_pci->mem);
-+	ab_pci->mem = NULL;
-+	pci_clear_master(pci_dev);
-+	pci_release_region(pci_dev, PCI_BAR_NUM);
-+	if (pci_is_enabled(pci_dev))
-+		pci_disable_device(pci_dev);
-+}
-+
- static int ath11k_pci_probe(struct pci_dev *pdev,
- 			    const struct pci_device_id *pci_dev)
+ void
+ ieee80211_he_op_ie_to_bss_conf(struct ieee80211_vif *vif,
+-			const struct ieee80211_he_operation *he_op_ie_elem)
++			const struct ieee80211_he_operation *he_op_ie)
  {
- 	struct ath11k_base *ab;
-+	struct ath11k_pci *ab_pci;
- 	enum ath11k_hw_rev hw_rev;
- 	int ret;
+-	struct ieee80211_he_operation *he_operation =
+-					&vif->bss_conf.he_operation;
+-
+-	if (!he_op_ie_elem) {
+-		memset(he_operation, 0, sizeof(*he_operation));
++	memset(&vif->bss_conf.he_oper, 0, sizeof(vif->bss_conf.he_oper));
++	if (!he_op_ie)
+ 		return;
+-	}
  
-@@ -38,24 +127,42 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
- 		return -ENOTSUPP;
- 	}
- 
--	ab = ath11k_core_alloc(&pdev->dev, 0, ATH11K_BUS_PCI);
-+	ab = ath11k_core_alloc(&pdev->dev, sizeof(*ab_pci), ATH11K_BUS_PCI);
- 	if (!ab) {
- 		dev_err(&pdev->dev, "failed to allocate ath11k base\n");
- 		return -ENOMEM;
- 	}
- 
-+	ab->dev = &pdev->dev;
-+	ab->hw_rev = hw_rev;
-+	pci_set_drvdata(pdev, ab);
-+	ab_pci = ath11k_pci_priv(ab);
-+	ab_pci->dev_id = pci_dev->device;
-+	ab_pci->ab = ab;
- 	ab->dev = &pdev->dev;
- 	ab->hw_rev = hw_rev;
- 	pci_set_drvdata(pdev, ab);
- 
-+	ret = ath11k_pci_claim(ab_pci, pdev);
-+	if (ret) {
-+		ath11k_err(ab, "failed to claim device: %d\n", ret);
-+		goto err_free_core;
-+	}
-+
-+	return 0;
-+
-+err_free_core:
-+	ath11k_core_free(ab);
- 	return ret;
+-	vif->bss_conf.he_operation = *he_op_ie_elem;
++	vif->bss_conf.he_oper.params = __le32_to_cpu(he_op_ie->he_oper_params);
++	vif->bss_conf.he_oper.nss_set = __le16_to_cpu(he_op_ie->he_mcs_nss_set);
  }
  
- static void ath11k_pci_remove(struct pci_dev *pdev)
- {
- 	struct ath11k_base *ab = pci_get_drvdata(pdev);
-+	struct ath11k_pci *ab_pci = ath11k_pci_priv(ab);
- 
- 	set_bit(ATH11K_FLAG_UNREGISTERING, &ab->dev_flags);
-+	ath11k_pci_free_region(ab_pci);
- 	ath11k_core_free(ab);
- }
- 
-diff --git a/drivers/net/wireless/ath/ath11k/pci.h b/drivers/net/wireless/ath/ath11k/pci.h
-index 790b8993d225..5e6f2b5059a8 100644
---- a/drivers/net/wireless/ath/ath11k/pci.h
-+++ b/drivers/net/wireless/ath/ath11k/pci.h
-@@ -7,4 +7,16 @@
- #define QCA6290_DEVICE_ID		0x1100
- #define QCA6390_VENDOR_ID		0x17CB
- #define QCA6390_DEVICE_ID		0x1101
-+#define PCI_BAR_NUM			0
-+#define PCI_DMA_MASK_64_BIT		64
-+#define PCI_DMA_MASK_32_BIT		32
- 
-+struct ath11k_pci {
-+	struct pci_dev *pdev;
-+	struct device *dev;
-+	struct ath11k_base *ab;
-+	void __iomem *mem;
-+	size_t mem_len;
-+	u16 dev_id;
-+	u32 chip_id;
-+};
+ void
 -- 
-2.22.0
+2.7.4
 
 _______________________________________________
 ath11k mailing list
