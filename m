@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail26.static.mailgun.info ([104.130.122.26])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jXD7T-00071g-74
- for ath11k@lists.infradead.org; Sat, 09 May 2020 00:13:35 +0000
+ id 1jXD7S-00071T-Hf
+ for ath11k@lists.infradead.org; Sat, 09 May 2020 00:13:33 +0000
 From: Rajkumar Manoharan <rmanohar@codeaurora.org>
-Subject: [PATCH v3 05/11] mac80211: fix memory overlap due to variable length
- param
-Date: Fri,  8 May 2020 17:12:59 -0700
-Message-Id: <1588983185-5741-5-git-send-email-rmanohar@codeaurora.org>
+Subject: [PATCH v3 03/11] nl80211: add HE 6 GHz Band Capability support
+Date: Fri,  8 May 2020 17:12:57 -0700
+Message-Id: <1588983185-5741-3-git-send-email-rmanohar@codeaurora.org>
 In-Reply-To: <1588983185-5741-1-git-send-email-rmanohar@codeaurora.org>
 References: <1588983185-5741-1-git-send-email-rmanohar@codeaurora.org>
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -18,97 +18,84 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: johannes@sipsolutions.net, kvalo@codeaurora.org
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, Rajkumar Manoharan <rmanohar@codeaurora.org>
 
-As of now HE operation element in bss_conf includes variable length
-optional field followed by other HE variable. Though the optional
-field never be used, actually it is referring to next member of the
-bss_conf structure which is not correct. Fix it by declaring needed
-HE operation fields within bss_conf itself.
-
-Signed-off-by: Rajkumar Manoharan <rmanohar@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/mac.c |  3 +--
- include/net/mac80211.h                |  7 +++++--
- net/mac80211/he.c                     | 13 +++++--------
- 3 files changed, 11 insertions(+), 12 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 9f8bc19cc5ae..06d063274eea 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -1168,8 +1168,7 @@ static void ath11k_peer_assoc_h_he(struct ath11k *ar,
- 	       sizeof(arg->peer_he_cap_macinfo));
- 	memcpy(&arg->peer_he_cap_phyinfo, he_cap->he_cap_elem.phy_cap_info,
- 	       sizeof(arg->peer_he_cap_phyinfo));
--	memcpy(&arg->peer_he_ops, &vif->bss_conf.he_operation,
--	       sizeof(arg->peer_he_ops));
-+	arg->peer_he_ops = vif->bss_conf.he_oper.params;
- 
- 	/* the top most byte is used to indicate BSS color info */
- 	arg->peer_he_ops &= 0xffffff;
-diff --git a/include/net/mac80211.h b/include/net/mac80211.h
-index 97fec4d310ac..2af956bdf80c 100644
---- a/include/net/mac80211.h
-+++ b/include/net/mac80211.h
-@@ -603,7 +603,7 @@ struct ieee80211_ftm_responder_params {
-  *	nontransmitted BSSIDs
-  * @profile_periodicity: the least number of beacon frames need to be received
-  *	in order to discover all the nontransmitted BSSIDs in the set.
-- * @he_operation: HE operation information of the AP we are connected to
-+ * @he_oper: HE operation information of the AP we are connected to
-  * @he_obss_pd: OBSS Packet Detection parameters.
-  * @he_bss_color: BSS coloring settings, if BSS supports HE
-  */
-@@ -666,7 +666,10 @@ struct ieee80211_bss_conf {
- 	u8 bssid_indicator;
- 	bool ema_ap;
- 	u8 profile_periodicity;
--	struct ieee80211_he_operation he_operation;
-+	struct {
-+		u32 params;
-+		u16 nss_set;
-+	} he_oper;
- 	struct ieee80211_he_obss_pd he_obss_pd;
- 	struct cfg80211_he_bss_color he_bss_color;
- };
-diff --git a/net/mac80211/he.c b/net/mac80211/he.c
-index 1087f715338b..f520552b22be 100644
---- a/net/mac80211/he.c
-+++ b/net/mac80211/he.c
-@@ -57,17 +57,14 @@ ieee80211_he_cap_ie_to_sta_he_cap(struct ieee80211_sub_if_data *sdata,
- 
- void
- ieee80211_he_op_ie_to_bss_conf(struct ieee80211_vif *vif,
--			const struct ieee80211_he_operation *he_op_ie_elem)
-+			const struct ieee80211_he_operation *he_op_ie)
- {
--	struct ieee80211_he_operation *he_operation =
--					&vif->bss_conf.he_operation;
--
--	if (!he_op_ie_elem) {
--		memset(he_operation, 0, sizeof(*he_operation));
-+	memset(&vif->bss_conf.he_oper, 0, sizeof(vif->bss_conf.he_oper));
-+	if (!he_op_ie)
- 		return;
--	}
- 
--	vif->bss_conf.he_operation = *he_op_ie_elem;
-+	vif->bss_conf.he_oper.params = __le32_to_cpu(he_op_ie->he_oper_params);
-+	vif->bss_conf.he_oper.nss_set = __le16_to_cpu(he_op_ie->he_mcs_nss_set);
- }
- 
- void
--- 
-2.7.4
-
-_______________________________________________
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+RGVmaW5lIG5ldyBzdHJ1Y3R1cmVzIGZvciBIRSA2IEdIeiBiYW5kIGNhcGFiaWxpdGllcyBhcyBw
+ZXIKSUVFRSBQODAyLjExYXgvRDYuMCwgOS40LjIuMjYxIEhFIDYgR0h6IEJhbmQgQ2FwYWJpbGl0
+aWVzIGVsZW1lbnQKYW5kIDYgR0h6IE9wZXJhdGlvbiBJbmZvcm1hdGlvbiBmaWVsZCBvZiBIRSBv
+cGVyYXRpb24gZWxlbWVudAooSUVFRSBQODAyLjExYXgvRDYuMCwgRmlndXJlIDktNzg3aykuCgpT
+aWduZWQtb2ZmLWJ5OiBSYWprdW1hciBNYW5vaGFyYW4gPHJtYW5vaGFyQGNvZGVhdXJvcmEub3Jn
+PgotLS0KIGluY2x1ZGUvbGludXgvaWVlZTgwMjExLmggfCA1NyArKysrKysrKysrKysrKysrKysr
+KysrKysrKysrKysrKysrKysrKysrKysrKysrKwogMSBmaWxlIGNoYW5nZWQsIDU3IGluc2VydGlv
+bnMoKykKCmRpZmYgLS1naXQgYS9pbmNsdWRlL2xpbnV4L2llZWU4MDIxMS5oIGIvaW5jbHVkZS9s
+aW51eC9pZWVlODAyMTEuaAppbmRleCAxNjI2OGVmMWNiY2MuLjc3NDYyZGZmNmRiMyAxMDA2NDQK
+LS0tIGEvaW5jbHVkZS9saW51eC9pZWVlODAyMTEuaAorKysgYi9pbmNsdWRlL2xpbnV4L2llZWU4
+MDIxMS5oCkBAIC0xNjMyLDYgKzE2MzIsNDQgQEAgc3RydWN0IGllZWU4MDIxMV9oZV9tY3NfbnNz
+X3N1cHAgewogfSBfX3BhY2tlZDsKIAogLyoqCisgKiBlbnVtIGllZWU4MDIxMV9oZV82Z2h6X2No
+YW53aWR0aCAtIEhFIDYgR0h6IGNoYW5uZWwgd2lkdGgKKyAqIEBJRUVFODAyMTFfSEVfNkdIWl9D
+SEFOV0lEVEhfMjBNSFo6IDIwIE1IeiBiYW5kd2lkdGgKKyAqIEBJRUVFODAyMTFfSEVfNkdIWl9D
+SEFOV0lEVEhfNDBNSFo6IDQwIE1IeiBiYW5kd2lkdGgKKyAqIEBJRUVFODAyMTFfSEVfNkdIWl9D
+SEFOV0lEVEhfODBNSFo6IDgwIE1IeiBiYW5kd2lkdGgKKyAqIEBJRUVFODAyMTFfSEVfNkdIWl9D
+SEFOV0lEVEhfODBQODBNSFo6IDE2MCBvciA4MCs4MCBNSHogYmFuZHdpZHRoCisgKi8KK2VudW0g
+aWVlZTgwMjExX2hlXzZnaHpfY2hhbndpZHRoIHsKKwlJRUVFODAyMTFfSEVfNkdIWl9DSEFOV0lE
+VEhfMjBNSFoJCT0gMCwKKwlJRUVFODAyMTFfSEVfNkdIWl9DSEFOV0lEVEhfNDBNSFoJCT0gMSwK
+KwlJRUVFODAyMTFfSEVfNkdIWl9DSEFOV0lEVEhfODBNSFoJCT0gMiwKKwlJRUVFODAyMTFfSEVf
+NkdIWl9DSEFOV0lEVEhfMTYwTUhaXzgwUDgwTUhaCT0gMywKK307CisKKy8qKgorICogc3RydWN0
+IGllZWU4MDIxMV9oZV9vcGVyXzZnaHpfb3BfaW5mbyAtIDYgR0h6IE9wZXJhdGlvbiBJbmZvcm1h
+dGlvbgorICoKKyAqIFRoaXMgc3RydWN0dXJlIGlzIGRlZmluZWQgYXMgZGVzY3JpYmVkIGluIElF
+RUUgUDgwMi4xMWF4L0Q2LjAsCisgKiBGaWd1cmUgOS03ODdr4oCUNiBHSHogT3BlcmF0aW9uIElu
+Zm9ybWF0aW9uIGZpZWxkLgorICoKKyAqIEBwcmltYXJ5X2NoYW46IFRoZSBjaGFubmVsIG51bWJl
+ciBvZiB0aGUgcHJpbWFyeSBjaGFubmVsIGluIHRoZSA2IEdIeiBiYW5kLgorICogQGNvbnRyb2w6
+IEZpcnN0IHR3byBiaXRzIGRlZmluZXMgY2hhbm5lbCB3aWR0aCBmaWVsZCBpbmRpY2F0ZXMgdGhl
+IEJTUworICoJY2hhbm5lbCB3aWR0aCBhbmQgaXMgc2V0IHRvIDAgZm9yIDIwIE1IeiwgMSBmb3Ig
+NDAgTUh6LCAyIGZvciA4MCBNSHosCisgKglhbmQgMyBmb3IgODArODAgb3IgMTYwIE1Iei4KKyAq
+IEBjZW50ZXJfZnJlcV9zZWcwX2lkeDogQ2hhbm5lbCBjZW50ZXIgZnJlcXVlbmN5IGluZGV4IGZv
+ciB0aGUgMjAgTUh6LAorICoJNDAgTUh6LCBvciA4MCBNSHosIG9yIDgwKzgwIE1Iei4KKyAqIEBj
+ZW50ZXJfZnJlcV9zZWcxX2lkeDogQ2hhbm5lbCBjZW50ZXIgZnJlcXVlbmN5IGluZGV4IG9mIHRo
+ZSAxNjAgTUh6LgorICogQG1pbl9yYXRlOiBNaW5pbXVtIHJhdGUsIGluIHVuaXRzIG9mIDEgTWIv
+cywgdGhhdCB0aGUgbm9uLUFQIFNUQSBpcyBhbGxvd2VkCisgKgl0byB1c2UgZm9yIHNlbmRpbmcg
+UFBEVXMuCisgKi8KK3N0cnVjdCBpZWVlODAyMTFfaGVfb3Blcl82Z2h6X29wX2luZm8geworCXU4
+IHByaW1hcnlfY2hhbjsKKwl1OCBjb250cm9sOworCXU4IGNlbnRlcl9mcmVxX3NlZzBfaWR4Owor
+CXU4IGNlbnRlcl9mcmVxX3NlZzFfaWR4OworCXU4IG1pbl9yYXRlOworfSBfX3BhY2tlZDsKKwor
+LyoqCiAgKiBzdHJ1Y3QgaWVlZTgwMjExX2hlX29wZXJhdGlvbiAtIEhFIGNhcGFiaWxpdGllcyBl
+bGVtZW50CiAgKgogICogVGhpcyBzdHJ1Y3R1cmUgaXMgdGhlICJIRSBvcGVyYXRpb24gZWxlbWVu
+dCIgZmllbGRzIGFzCkBAIC0xNjgyLDYgKzE3MjAsMTUgQEAgc3RydWN0IGllZWU4MDIxMV9tdV9l
+ZGNhX3BhcmFtX3NldCB7CiAJc3RydWN0IGllZWU4MDIxMV9oZV9tdV9lZGNhX3BhcmFtX2FjX3Jl
+YyBhY192bzsKIH0gX19wYWNrZWQ7CiAKKy8qKgorICogc3RydWN0IGllZWU4MDIxMV9oZV82Z2h6
+X2JhbmRfY2FwIC0gSEUgNiBHSHogQmFuZCBDYXBhYmlsaXRpZXMgZWxlbWVudAorICoKKyAqIFRo
+aXMgc3RydWN0dXJlIGlzIGRlZmluZWQgYXMgZGVzY3JpYmVkIGluIElFRUUgUDgwMi4xMWF4L0Q2
+LjAsIDkuNC4yLjI2MS4KKyAqLworc3RydWN0IGllZWU4MDIxMV9oZV82Z2h6X2JhbmRfY2FwIHsK
+KwlfX2xlMTYgY2FwYWI7Cit9IF9fcGFja2VkOworCiAvKiA4MDIuMTFhYyBWSFQgQ2FwYWJpbGl0
+aWVzICovCiAjZGVmaW5lIElFRUU4MDIxMV9WSFRfQ0FQX01BWF9NUERVX0xFTkdUSF8zODk1CQkJ
+MHgwMDAwMDAwMAogI2RlZmluZSBJRUVFODAyMTFfVkhUX0NBUF9NQVhfTVBEVV9MRU5HVEhfNzk5
+MQkJCTB4MDAwMDAwMDEKQEAgLTE5ODIsNiArMjAyOSwxNSBAQCBpbnQgaWVlZTgwMjExX2dldF92
+aHRfbWF4X25zcyhzdHJ1Y3QgaWVlZTgwMjExX3ZodF9jYXAgKmNhcCwKICNkZWZpbmUgSUVFRTgw
+MjExX1RYX1JYX01DU19OU1NfU1VQUF9UWF9CSVRNQVBfTUFTSwkJCTB4MDdjMAogI2RlZmluZSBJ
+RUVFODAyMTFfVFhfUlhfTUNTX05TU19TVVBQX1JYX0JJVE1BUF9NQVNLCQkJMHhmODAwCiAKKy8q
+IDgwMi4xMWF4IEhFIDYgR0h6IEJhbmQgQ2FwYWJpbGl0eSAqLworI2RlZmluZSBJRUVFODAyMTFf
+SEVfNkdIWl9DQVBfTUlOX01QRFVfU1RBUlRfU1BBQ0VfTUFTSwkJR0VOTUFTSygyLCAwKQorI2Rl
+ZmluZSBJRUVFODAyMTFfSEVfNkdIWl9DQVBfTUFYX0FfTVBEVV9MRU5HVEhfRVhQT05FTlRfTUFT
+SwlHRU5NQVNLKDUsIDMpCisjZGVmaW5lIElFRUU4MDIxMV9IRV82R0haX0NBUF9NQVhfTVBEVV9M
+RU5HVEhfTUFTSwkJR0VOTUFTSyg3LCA2KQorI2RlZmluZSBJRUVFODAyMTFfSEVfNkdIWl9DQVBf
+U01QU19NQVNLCQkJCUdFTk1BU0soMTAsIDkpCisjZGVmaW5lIElFRUU4MDIxMV9IRV82R0haX0NB
+UF9SRF9SRVNQCQkJCUJJVCgxMSkKKyNkZWZpbmUgSUVFRTgwMjExX0hFXzZHSFpfQ0FQX1JYX0FO
+VEVOTkFfUEFUVEVSTgkJQklUKDEyKQorI2RlZmluZSBJRUVFODAyMTFfSEVfNkdIWl9DQVBfVFhf
+QU5URU5OQV9QQVRURVJOCQlCSVQoMTMpCisKIC8qIFRYL1JYIEhFIE1DUyBTdXBwb3J0IGZpZWxk
+IEhpZ2hlc3QgTUNTIHN1YmZpZWxkIGVuY29kaW5nICovCiBlbnVtIGllZWU4MDIxMV9oZV9oaWdo
+ZXN0X21jc19zdXBwb3J0ZWRfc3ViZmllbGRfZW5jIHsKIAlISUdIRVNUX01DU19TVVBQT1JURURf
+TUNTNyA9IDAsCkBAIC0yMDU5LDYgKzIxMTUsNyBAQCBpZWVlODAyMTFfaGVfcHBlX3NpemUodTgg
+cHBlX3RocmVzX2hkciwgY29uc3QgdTggKnBoeV9jYXBfaW5mbykKICNkZWZpbmUgSUVFRTgwMjEx
+X0hFX09QRVJBVElPTl9CU1NfQ09MT1JfT0ZGU0VUCQkJMjQKICNkZWZpbmUgSUVFRTgwMjExX0hF
+X09QRVJBVElPTl9QQVJUSUFMX0JTU19DT0xPUgkJMHg0MDAwMDAwMAogI2RlZmluZSBJRUVFODAy
+MTFfSEVfT1BFUkFUSU9OX0JTU19DT0xPUl9ESVNBQkxFRAkJMHg4MDAwMDAwMAorI2RlZmluZSBJ
+RUVFODAyMTFfSEVfT1BFUkFUSU9OXzZHSFpfT1BfSU5GT19DVFJMX0NIQU5fV0lEVEgJMHgzCiAK
+IC8qCiAgKiBpZWVlODAyMTFfaGVfb3Blcl9zaXplIC0gY2FsY3VsYXRlIDgwMi4xMWF4IEhFIE9w
+ZXJhdGlvbnMgSUUgc2l6ZQotLSAKMi43LjQKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCmF0aDExayBtYWlsaW5nIGxpc3QKYXRoMTFrQGxpc3RzLmluZnJh
+ZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9hdGgx
+MWsK
