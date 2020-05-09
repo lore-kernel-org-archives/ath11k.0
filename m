@@ -1,12 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail27.static.mailgun.info ([104.130.122.27])
+Received: from mail26.static.mailgun.info ([104.130.122.26])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jXD7c-00077O-DF
- for ath11k@lists.infradead.org; Sat, 09 May 2020 00:13:46 +0000
+ id 1jXD7g-00071T-Jk
+ for ath11k@lists.infradead.org; Sat, 09 May 2020 00:13:49 +0000
 From: Rajkumar Manoharan <rmanohar@codeaurora.org>
-Subject: [PATCH v3 11/11] ath11k: build HE 6 GHz capability
-Date: Fri,  8 May 2020 17:13:05 -0700
-Message-Id: <1588983185-5741-11-git-send-email-rmanohar@codeaurora.org>
+Subject: [PATCH v3 08/11] mac80211: build HE operation with 6 GHz oper
+ information
+Date: Fri,  8 May 2020 17:13:02 -0700
+Message-Id: <1588983185-5741-8-git-send-email-rmanohar@codeaurora.org>
 In-Reply-To: <1588983185-5741-1-git-send-email-rmanohar@codeaurora.org>
 References: <1588983185-5741-1-git-send-email-rmanohar@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,79 +26,155 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: johannes@sipsolutions.net, kvalo@codeaurora.org
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, Rajkumar Manoharan <rmanohar@codeaurora.org>
 
-Build 6 GHz band capability from HT and VHT capabilities reported
-by firmware.
+Add 6 GHz operation information (IEEE 802.11ax/D6.0, Figure 9-787k)
+while building HE operation element for non-HE AP. This field is used to
+determine channel information in the absence of HT/VHT IEs.
 
 Signed-off-by: Rajkumar Manoharan <rmanohar@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/core.h |  1 +
- drivers/net/wireless/ath/ath11k/mac.c  | 34 ++++++++++++++++++++++++++++++++++
- 2 files changed, 35 insertions(+)
+ net/mac80211/ieee80211_i.h |  2 +-
+ net/mac80211/mesh.c        | 11 +++++---
+ net/mac80211/util.c        | 63 +++++++++++++++++++++++++++++++++++++++++++---
+ 3 files changed, 68 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 6e7b8ecd09a6..3325e692f7fd 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -537,6 +537,7 @@ struct ath11k_band_cap {
- 	u32 he_mcs;
- 	u32 he_cap_phy_info[PSOC_HOST_MAX_PHY_SIZE];
- 	struct ath11k_ppe_threshold he_ppet;
-+	u16 he_6ghz_cap;
- };
+diff --git a/net/mac80211/ieee80211_i.h b/net/mac80211/ieee80211_i.h
+index 6517a56970b7..0bb442feb1db 100644
+--- a/net/mac80211/ieee80211_i.h
++++ b/net/mac80211/ieee80211_i.h
+@@ -2175,7 +2175,7 @@ u8 *ieee80211_ie_build_he_cap(u8 *pos,
+ 			      const struct ieee80211_sta_he_cap *he_cap,
+ 			      u8 *end);
+ u8 *ieee80211_ie_build_he_6ghz_band_cap(u8 *pos, u16 he_6ghz_cap);
+-u8 *ieee80211_ie_build_he_oper(u8 *pos);
++u8 *ieee80211_ie_build_he_oper(u8 *pos, struct cfg80211_chan_def *chandef);
+ int ieee80211_parse_bitrates(struct cfg80211_chan_def *chandef,
+ 			     const struct ieee80211_supported_band *sband,
+ 			     const u8 *srates, int srates_len, u32 *rates);
+diff --git a/net/mac80211/mesh.c b/net/mac80211/mesh.c
+index 2ca34869538d..0cbe3260c5c1 100644
+--- a/net/mac80211/mesh.c
++++ b/net/mac80211/mesh.c
+@@ -565,6 +565,7 @@ int mesh_add_he_oper_ie(struct ieee80211_sub_if_data *sdata,
+ {
+ 	const struct ieee80211_sta_he_cap *he_cap;
+ 	struct ieee80211_supported_band *sband;
++	u32 len;
+ 	u8 *pos;
  
- struct ath11k_pdev_cap {
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 06d063274eea..8babba45d879 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -3522,6 +3522,34 @@ ath11k_mac_filter_he_cap_mesh(struct ieee80211_he_cap_elem *he_cap_elem)
- 	he_cap_elem->phy_cap_info[9] &= ~m;
+ 	sband = ieee80211_get_sband(sdata);
+@@ -578,11 +579,15 @@ int mesh_add_he_oper_ie(struct ieee80211_sub_if_data *sdata,
+ 	    sdata->vif.bss_conf.chandef.width == NL80211_CHAN_WIDTH_10)
+ 		return 0;
+ 
+-	if (skb_tailroom(skb) < 2 + 1 + sizeof(struct ieee80211_he_operation))
++	len = 2 + 1 + sizeof(struct ieee80211_he_operation);
++	if (sdata->vif.bss_conf.chandef.chan->band == NL80211_BAND_6GHZ)
++		len += sizeof(struct ieee80211_he_oper_6ghz_op_info);
++
++	if (skb_tailroom(skb) < len)
+ 		return -ENOMEM;
+ 
+-	pos = skb_put(skb, 2 + 1 + sizeof(struct ieee80211_he_operation));
+-	ieee80211_ie_build_he_oper(pos);
++	pos = skb_put(skb, len);
++	ieee80211_ie_build_he_oper(pos, &sdata->vif.bss_conf.chandef);
+ 
+ 	return 0;
+ }
+diff --git a/net/mac80211/util.c b/net/mac80211/util.c
+index 2bcebe672c0d..90b8c42b1aa8 100644
+--- a/net/mac80211/util.c
++++ b/net/mac80211/util.c
+@@ -2977,13 +2977,18 @@ u8 *ieee80211_ie_build_vht_oper(u8 *pos, struct ieee80211_sta_vht_cap *vht_cap,
+ 	return pos + sizeof(struct ieee80211_vht_operation);
  }
  
-+static u16 ath11k_mac_setup_he_6ghz_cap(struct ath11k_pdev_cap *pcap,
-+					struct ath11k_band_cap *bcap)
-+{
-+	u8 val;
+-u8 *ieee80211_ie_build_he_oper(u8 *pos)
++u8 *ieee80211_ie_build_he_oper(u8 *pos, struct cfg80211_chan_def *chandef)
+ {
+ 	struct ieee80211_he_operation *he_oper;
++	struct ieee80211_he_oper_6ghz_op_info *he_6ghz_op;
+ 	u32 he_oper_params;
++	u8 ie_len = 1 + sizeof(struct ieee80211_he_operation);
 +
-+	bcap->he_6ghz_cap = IEEE80211_HT_MPDU_DENSITY_NONE;
-+	if (bcap->ht_cap_info & WMI_HT_CAP_DYNAMIC_SMPS)
-+		bcap->he_6ghz_cap |=
-+			FIELD_PREP(IEEE80211_HE_6GHZ_CAP_SMPS_MASK,
-+				   WLAN_HT_CAP_SM_PS_DYNAMIC);
-+	val = FIELD_GET(IEEE80211_VHT_CAP_MAX_A_MPDU_LENGTH_EXPONENT_MASK,
-+			pcap->vht_cap);
-+	bcap->he_6ghz_cap |=
-+	   FIELD_PREP(IEEE80211_HE_6GHZ_CAP_MAX_A_MPDU_LENGTH_EXPONENT_MASK,
-+		      val);
-+	val = FIELD_GET(IEEE80211_VHT_CAP_MAX_MPDU_MASK, pcap->vht_cap);
-+	bcap->he_6ghz_cap |=
-+		FIELD_PREP(IEEE80211_HE_6GHZ_CAP_MAX_MPDU_LENGTH_MASK, val);
-+	if (pcap->vht_cap & IEEE80211_VHT_CAP_RX_ANTENNA_PATTERN)
-+		bcap->he_6ghz_cap |=
-+			IEEE80211_HE_6GHZ_CAP_RX_ANTENNA_PATTERN;
-+	if (pcap->vht_cap & IEEE80211_VHT_CAP_TX_ANTENNA_PATTERN)
-+		bcap->he_6ghz_cap |=
-+			IEEE80211_HE_6GHZ_CAP_TX_ANTENNA_PATTERN;
-+
-+	return bcap->he_6ghz_cap;
-+}
-+
- static int ath11k_mac_copy_he_cap(struct ath11k *ar,
- 				  struct ath11k_pdev_cap *cap,
- 				  struct ieee80211_sband_iftype_data *data,
-@@ -3602,6 +3630,12 @@ static int ath11k_mac_copy_he_cap(struct ath11k *ar,
- 		    IEEE80211_HE_PHY_CAP6_PPE_THRESHOLD_PRESENT)
- 			ath11k_gen_ppe_thresh(&band_cap->he_ppet,
- 					      he_cap->ppe_thres);
-+
-+		if (band == NL80211_BAND_6GHZ) {
-+			he_cap->has_he_6ghz = true;
-+			he_cap->he_6ghz.cap =
-+				ath11k_mac_setup_he_6ghz_cap(cap, band_cap);
-+		}
- 		idx++;
- 	}
++	if (chandef->chan->band == NL80211_BAND_6GHZ)
++		ie_len += sizeof(struct ieee80211_he_oper_6ghz_op_info);
  
+ 	*pos++ = WLAN_EID_EXTENSION;
+-	*pos++ = 1 + sizeof(struct ieee80211_he_operation);
++	*pos++ = ie_len;
+ 	*pos++ = WLAN_EID_EXT_HE_OPERATION;
+ 
+ 	he_oper_params = 0;
+@@ -2993,16 +2998,66 @@ u8 *ieee80211_ie_build_he_oper(u8 *pos)
+ 				IEEE80211_HE_OPERATION_ER_SU_DISABLE);
+ 	he_oper_params |= u32_encode_bits(1,
+ 				IEEE80211_HE_OPERATION_BSS_COLOR_DISABLED);
++	if (chandef->chan->band == NL80211_BAND_6GHZ)
++		he_oper_params |= u32_encode_bits(1,
++				IEEE80211_HE_OPERATION_6GHZ_OP_INFO);
+ 
+ 	he_oper = (struct ieee80211_he_operation *)pos;
+ 	he_oper->he_oper_params = cpu_to_le32(he_oper_params);
+ 
+ 	/* don't require special HE peer rates */
+ 	he_oper->he_mcs_nss_set = cpu_to_le16(0xffff);
++	pos += sizeof(struct ieee80211_he_operation);
+ 
+-	/* TODO add VHT operational and 6GHz operational subelement? */
++	if (chandef->chan->band != NL80211_BAND_6GHZ)
++		goto out;
+ 
+-	return pos + sizeof(struct ieee80211_vht_operation);
++	/* TODO add VHT operational */
++	he_6ghz_op = (struct ieee80211_he_oper_6ghz_op_info *)pos;
++	he_6ghz_op->min_rate = 6; /* 6 Mbps */
++	he_6ghz_op->primary_chan =
++		ieee80211_frequency_to_channel(chandef->chan->center_freq);
++	he_6ghz_op->center_freq_seg0_idx =
++		ieee80211_frequency_to_channel(chandef->center_freq1);
++	if (chandef->center_freq2)
++		he_6ghz_op->center_freq_seg1_idx =
++			ieee80211_frequency_to_channel(chandef->center_freq2);
++	else
++		he_6ghz_op->center_freq_seg1_idx = 0;
++
++	switch (chandef->width) {
++	case NL80211_CHAN_WIDTH_160:
++		/* Convert 160 MHz channel width to new style as interop
++		 * workaround.
++		 */
++		he_6ghz_op->control =
++			IEEE80211_HE_6GHZ_CHANWIDTH_160MHZ_80P80MHZ;
++		he_6ghz_op->center_freq_seg1_idx =
++			he_6ghz_op->center_freq_seg0_idx;
++		if (chandef->chan->center_freq < chandef->center_freq1)
++			he_6ghz_op->center_freq_seg0_idx -= 8;
++		else
++			he_6ghz_op->center_freq_seg0_idx += 8;
++		fallthrough;
++	case NL80211_CHAN_WIDTH_80P80:
++		he_6ghz_op->control =
++			IEEE80211_HE_6GHZ_CHANWIDTH_160MHZ_80P80MHZ;
++		break;
++	case NL80211_CHAN_WIDTH_80:
++		he_6ghz_op->control = IEEE80211_HE_6GHZ_CHANWIDTH_80MHZ;
++		break;
++	case NL80211_CHAN_WIDTH_40:
++		he_6ghz_op->control = IEEE80211_HE_6GHZ_CHANWIDTH_40MHZ;
++		break;
++	default:
++		he_6ghz_op->control = IEEE80211_HE_6GHZ_CHANWIDTH_20MHZ;
++		break;
++	}
++
++	pos += sizeof(struct ieee80211_he_oper_6ghz_op_info);
++
++out:
++	return pos;
+ }
+ 
+ bool ieee80211_chandef_ht_oper(const struct ieee80211_ht_operation *ht_oper,
 -- 
 2.7.4
 
