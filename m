@@ -1,15 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail26.static.mailgun.info ([104.130.122.26])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jXD7S-00071T-Hf
- for ath11k@lists.infradead.org; Sat, 09 May 2020 00:13:33 +0000
+ id 1jXD7X-00071T-FN
+ for ath11k@lists.infradead.org; Sat, 09 May 2020 00:13:39 +0000
 From: Rajkumar Manoharan <rmanohar@codeaurora.org>
-Subject: [PATCH v3 03/11] nl80211: add HE 6 GHz Band Capability support
-Date: Fri,  8 May 2020 17:12:57 -0700
-Message-Id: <1588983185-5741-3-git-send-email-rmanohar@codeaurora.org>
-In-Reply-To: <1588983185-5741-1-git-send-email-rmanohar@codeaurora.org>
-References: <1588983185-5741-1-git-send-email-rmanohar@codeaurora.org>
-MIME-Version: 1.0
+Subject: [PATCH v3 01/11] cfg80211: use only HE capability to set prohibited
+ flags in 6 GHz
+Date: Fri,  8 May 2020 17:12:55 -0700
+Message-Id: <1588983185-5741-1-git-send-email-rmanohar@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -18,84 +16,137 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: johannes@sipsolutions.net, kvalo@codeaurora.org
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, Rajkumar Manoharan <rmanohar@codeaurora.org>
+Cc: Vamsi Krishna <vamsin@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, Rajkumar Manoharan <rmanohar@codeaurora.org>
 
-RGVmaW5lIG5ldyBzdHJ1Y3R1cmVzIGZvciBIRSA2IEdIeiBiYW5kIGNhcGFiaWxpdGllcyBhcyBw
-ZXIKSUVFRSBQODAyLjExYXgvRDYuMCwgOS40LjIuMjYxIEhFIDYgR0h6IEJhbmQgQ2FwYWJpbGl0
-aWVzIGVsZW1lbnQKYW5kIDYgR0h6IE9wZXJhdGlvbiBJbmZvcm1hdGlvbiBmaWVsZCBvZiBIRSBv
-cGVyYXRpb24gZWxlbWVudAooSUVFRSBQODAyLjExYXgvRDYuMCwgRmlndXJlIDktNzg3aykuCgpT
-aWduZWQtb2ZmLWJ5OiBSYWprdW1hciBNYW5vaGFyYW4gPHJtYW5vaGFyQGNvZGVhdXJvcmEub3Jn
-PgotLS0KIGluY2x1ZGUvbGludXgvaWVlZTgwMjExLmggfCA1NyArKysrKysrKysrKysrKysrKysr
-KysrKysrKysrKysrKysrKysrKysrKysrKysrKwogMSBmaWxlIGNoYW5nZWQsIDU3IGluc2VydGlv
-bnMoKykKCmRpZmYgLS1naXQgYS9pbmNsdWRlL2xpbnV4L2llZWU4MDIxMS5oIGIvaW5jbHVkZS9s
-aW51eC9pZWVlODAyMTEuaAppbmRleCAxNjI2OGVmMWNiY2MuLjc3NDYyZGZmNmRiMyAxMDA2NDQK
-LS0tIGEvaW5jbHVkZS9saW51eC9pZWVlODAyMTEuaAorKysgYi9pbmNsdWRlL2xpbnV4L2llZWU4
-MDIxMS5oCkBAIC0xNjMyLDYgKzE2MzIsNDQgQEAgc3RydWN0IGllZWU4MDIxMV9oZV9tY3NfbnNz
-X3N1cHAgewogfSBfX3BhY2tlZDsKIAogLyoqCisgKiBlbnVtIGllZWU4MDIxMV9oZV82Z2h6X2No
-YW53aWR0aCAtIEhFIDYgR0h6IGNoYW5uZWwgd2lkdGgKKyAqIEBJRUVFODAyMTFfSEVfNkdIWl9D
-SEFOV0lEVEhfMjBNSFo6IDIwIE1IeiBiYW5kd2lkdGgKKyAqIEBJRUVFODAyMTFfSEVfNkdIWl9D
-SEFOV0lEVEhfNDBNSFo6IDQwIE1IeiBiYW5kd2lkdGgKKyAqIEBJRUVFODAyMTFfSEVfNkdIWl9D
-SEFOV0lEVEhfODBNSFo6IDgwIE1IeiBiYW5kd2lkdGgKKyAqIEBJRUVFODAyMTFfSEVfNkdIWl9D
-SEFOV0lEVEhfODBQODBNSFo6IDE2MCBvciA4MCs4MCBNSHogYmFuZHdpZHRoCisgKi8KK2VudW0g
-aWVlZTgwMjExX2hlXzZnaHpfY2hhbndpZHRoIHsKKwlJRUVFODAyMTFfSEVfNkdIWl9DSEFOV0lE
-VEhfMjBNSFoJCT0gMCwKKwlJRUVFODAyMTFfSEVfNkdIWl9DSEFOV0lEVEhfNDBNSFoJCT0gMSwK
-KwlJRUVFODAyMTFfSEVfNkdIWl9DSEFOV0lEVEhfODBNSFoJCT0gMiwKKwlJRUVFODAyMTFfSEVf
-NkdIWl9DSEFOV0lEVEhfMTYwTUhaXzgwUDgwTUhaCT0gMywKK307CisKKy8qKgorICogc3RydWN0
-IGllZWU4MDIxMV9oZV9vcGVyXzZnaHpfb3BfaW5mbyAtIDYgR0h6IE9wZXJhdGlvbiBJbmZvcm1h
-dGlvbgorICoKKyAqIFRoaXMgc3RydWN0dXJlIGlzIGRlZmluZWQgYXMgZGVzY3JpYmVkIGluIElF
-RUUgUDgwMi4xMWF4L0Q2LjAsCisgKiBGaWd1cmUgOS03ODdr4oCUNiBHSHogT3BlcmF0aW9uIElu
-Zm9ybWF0aW9uIGZpZWxkLgorICoKKyAqIEBwcmltYXJ5X2NoYW46IFRoZSBjaGFubmVsIG51bWJl
-ciBvZiB0aGUgcHJpbWFyeSBjaGFubmVsIGluIHRoZSA2IEdIeiBiYW5kLgorICogQGNvbnRyb2w6
-IEZpcnN0IHR3byBiaXRzIGRlZmluZXMgY2hhbm5lbCB3aWR0aCBmaWVsZCBpbmRpY2F0ZXMgdGhl
-IEJTUworICoJY2hhbm5lbCB3aWR0aCBhbmQgaXMgc2V0IHRvIDAgZm9yIDIwIE1IeiwgMSBmb3Ig
-NDAgTUh6LCAyIGZvciA4MCBNSHosCisgKglhbmQgMyBmb3IgODArODAgb3IgMTYwIE1Iei4KKyAq
-IEBjZW50ZXJfZnJlcV9zZWcwX2lkeDogQ2hhbm5lbCBjZW50ZXIgZnJlcXVlbmN5IGluZGV4IGZv
-ciB0aGUgMjAgTUh6LAorICoJNDAgTUh6LCBvciA4MCBNSHosIG9yIDgwKzgwIE1Iei4KKyAqIEBj
-ZW50ZXJfZnJlcV9zZWcxX2lkeDogQ2hhbm5lbCBjZW50ZXIgZnJlcXVlbmN5IGluZGV4IG9mIHRo
-ZSAxNjAgTUh6LgorICogQG1pbl9yYXRlOiBNaW5pbXVtIHJhdGUsIGluIHVuaXRzIG9mIDEgTWIv
-cywgdGhhdCB0aGUgbm9uLUFQIFNUQSBpcyBhbGxvd2VkCisgKgl0byB1c2UgZm9yIHNlbmRpbmcg
-UFBEVXMuCisgKi8KK3N0cnVjdCBpZWVlODAyMTFfaGVfb3Blcl82Z2h6X29wX2luZm8geworCXU4
-IHByaW1hcnlfY2hhbjsKKwl1OCBjb250cm9sOworCXU4IGNlbnRlcl9mcmVxX3NlZzBfaWR4Owor
-CXU4IGNlbnRlcl9mcmVxX3NlZzFfaWR4OworCXU4IG1pbl9yYXRlOworfSBfX3BhY2tlZDsKKwor
-LyoqCiAgKiBzdHJ1Y3QgaWVlZTgwMjExX2hlX29wZXJhdGlvbiAtIEhFIGNhcGFiaWxpdGllcyBl
-bGVtZW50CiAgKgogICogVGhpcyBzdHJ1Y3R1cmUgaXMgdGhlICJIRSBvcGVyYXRpb24gZWxlbWVu
-dCIgZmllbGRzIGFzCkBAIC0xNjgyLDYgKzE3MjAsMTUgQEAgc3RydWN0IGllZWU4MDIxMV9tdV9l
-ZGNhX3BhcmFtX3NldCB7CiAJc3RydWN0IGllZWU4MDIxMV9oZV9tdV9lZGNhX3BhcmFtX2FjX3Jl
-YyBhY192bzsKIH0gX19wYWNrZWQ7CiAKKy8qKgorICogc3RydWN0IGllZWU4MDIxMV9oZV82Z2h6
-X2JhbmRfY2FwIC0gSEUgNiBHSHogQmFuZCBDYXBhYmlsaXRpZXMgZWxlbWVudAorICoKKyAqIFRo
-aXMgc3RydWN0dXJlIGlzIGRlZmluZWQgYXMgZGVzY3JpYmVkIGluIElFRUUgUDgwMi4xMWF4L0Q2
-LjAsIDkuNC4yLjI2MS4KKyAqLworc3RydWN0IGllZWU4MDIxMV9oZV82Z2h6X2JhbmRfY2FwIHsK
-KwlfX2xlMTYgY2FwYWI7Cit9IF9fcGFja2VkOworCiAvKiA4MDIuMTFhYyBWSFQgQ2FwYWJpbGl0
-aWVzICovCiAjZGVmaW5lIElFRUU4MDIxMV9WSFRfQ0FQX01BWF9NUERVX0xFTkdUSF8zODk1CQkJ
-MHgwMDAwMDAwMAogI2RlZmluZSBJRUVFODAyMTFfVkhUX0NBUF9NQVhfTVBEVV9MRU5HVEhfNzk5
-MQkJCTB4MDAwMDAwMDEKQEAgLTE5ODIsNiArMjAyOSwxNSBAQCBpbnQgaWVlZTgwMjExX2dldF92
-aHRfbWF4X25zcyhzdHJ1Y3QgaWVlZTgwMjExX3ZodF9jYXAgKmNhcCwKICNkZWZpbmUgSUVFRTgw
-MjExX1RYX1JYX01DU19OU1NfU1VQUF9UWF9CSVRNQVBfTUFTSwkJCTB4MDdjMAogI2RlZmluZSBJ
-RUVFODAyMTFfVFhfUlhfTUNTX05TU19TVVBQX1JYX0JJVE1BUF9NQVNLCQkJMHhmODAwCiAKKy8q
-IDgwMi4xMWF4IEhFIDYgR0h6IEJhbmQgQ2FwYWJpbGl0eSAqLworI2RlZmluZSBJRUVFODAyMTFf
-SEVfNkdIWl9DQVBfTUlOX01QRFVfU1RBUlRfU1BBQ0VfTUFTSwkJR0VOTUFTSygyLCAwKQorI2Rl
-ZmluZSBJRUVFODAyMTFfSEVfNkdIWl9DQVBfTUFYX0FfTVBEVV9MRU5HVEhfRVhQT05FTlRfTUFT
-SwlHRU5NQVNLKDUsIDMpCisjZGVmaW5lIElFRUU4MDIxMV9IRV82R0haX0NBUF9NQVhfTVBEVV9M
-RU5HVEhfTUFTSwkJR0VOTUFTSyg3LCA2KQorI2RlZmluZSBJRUVFODAyMTFfSEVfNkdIWl9DQVBf
-U01QU19NQVNLCQkJCUdFTk1BU0soMTAsIDkpCisjZGVmaW5lIElFRUU4MDIxMV9IRV82R0haX0NB
-UF9SRF9SRVNQCQkJCUJJVCgxMSkKKyNkZWZpbmUgSUVFRTgwMjExX0hFXzZHSFpfQ0FQX1JYX0FO
-VEVOTkFfUEFUVEVSTgkJQklUKDEyKQorI2RlZmluZSBJRUVFODAyMTFfSEVfNkdIWl9DQVBfVFhf
-QU5URU5OQV9QQVRURVJOCQlCSVQoMTMpCisKIC8qIFRYL1JYIEhFIE1DUyBTdXBwb3J0IGZpZWxk
-IEhpZ2hlc3QgTUNTIHN1YmZpZWxkIGVuY29kaW5nICovCiBlbnVtIGllZWU4MDIxMV9oZV9oaWdo
-ZXN0X21jc19zdXBwb3J0ZWRfc3ViZmllbGRfZW5jIHsKIAlISUdIRVNUX01DU19TVVBQT1JURURf
-TUNTNyA9IDAsCkBAIC0yMDU5LDYgKzIxMTUsNyBAQCBpZWVlODAyMTFfaGVfcHBlX3NpemUodTgg
-cHBlX3RocmVzX2hkciwgY29uc3QgdTggKnBoeV9jYXBfaW5mbykKICNkZWZpbmUgSUVFRTgwMjEx
-X0hFX09QRVJBVElPTl9CU1NfQ09MT1JfT0ZGU0VUCQkJMjQKICNkZWZpbmUgSUVFRTgwMjExX0hF
-X09QRVJBVElPTl9QQVJUSUFMX0JTU19DT0xPUgkJMHg0MDAwMDAwMAogI2RlZmluZSBJRUVFODAy
-MTFfSEVfT1BFUkFUSU9OX0JTU19DT0xPUl9ESVNBQkxFRAkJMHg4MDAwMDAwMAorI2RlZmluZSBJ
-RUVFODAyMTFfSEVfT1BFUkFUSU9OXzZHSFpfT1BfSU5GT19DVFJMX0NIQU5fV0lEVEgJMHgzCiAK
-IC8qCiAgKiBpZWVlODAyMTFfaGVfb3Blcl9zaXplIC0gY2FsY3VsYXRlIDgwMi4xMWF4IEhFIE9w
-ZXJhdGlvbnMgSUUgc2l6ZQotLSAKMi43LjQKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCmF0aDExayBtYWlsaW5nIGxpc3QKYXRoMTFrQGxpc3RzLmluZnJh
-ZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9hdGgx
-MWsK
+The prohibited flags to determine whether configured bandwidth
+is supported by driver are validated only against HT and VHT capability.
+In 6 GHz band, Only HE capability should be validated to find out
+given chandef is usable.
+
+Co-developed-by: Vamsi Krishna <vamsin@codeaurora.org>
+Signed-off-by: Vamsi Krishna <vamsin@codeaurora.org>
+Signed-off-by: Rajkumar Manoharan <rmanohar@codeaurora.org>
+---
+ net/wireless/chan.c | 54 +++++++++++++++++++++++++++++++++++++++++++++++++----
+ 1 file changed, 50 insertions(+), 4 deletions(-)
+
+diff --git a/net/wireless/chan.c b/net/wireless/chan.c
+index fcac5c6366e1..582b487576e1 100644
+--- a/net/wireless/chan.c
++++ b/net/wireless/chan.c
+@@ -19,6 +19,11 @@ static bool cfg80211_valid_60g_freq(u32 freq)
+ 	return freq >= 58320 && freq <= 70200;
+ }
+ 
++static bool cfg80211_is_6ghz_freq(u32 freq)
++{
++	return (freq > 5940 && freq < 7105);
++}
++
+ void cfg80211_chandef_create(struct cfg80211_chan_def *chandef,
+ 			     struct ieee80211_channel *chan,
+ 			     enum nl80211_channel_type chan_type)
+@@ -882,6 +887,7 @@ bool cfg80211_chandef_usable(struct wiphy *wiphy,
+ 	struct ieee80211_sta_ht_cap *ht_cap;
+ 	struct ieee80211_sta_vht_cap *vht_cap;
+ 	struct ieee80211_edmg *edmg_cap;
++	const struct ieee80211_sta_he_cap *he_cap;
+ 	u32 width, control_freq, cap;
+ 
+ 	if (WARN_ON(!cfg80211_chandef_valid(chandef)))
+@@ -890,6 +896,7 @@ bool cfg80211_chandef_usable(struct wiphy *wiphy,
+ 	ht_cap = &wiphy->bands[chandef->chan->band]->ht_cap;
+ 	vht_cap = &wiphy->bands[chandef->chan->band]->vht_cap;
+ 	edmg_cap = &wiphy->bands[chandef->chan->band]->edmg_cap;
++	he_cap = ieee80211_get_he_sta_cap(wiphy->bands[chandef->chan->band]);
+ 
+ 	if (edmg_cap->channels &&
+ 	    !cfg80211_edmg_usable(wiphy,
+@@ -919,6 +926,16 @@ bool cfg80211_chandef_usable(struct wiphy *wiphy,
+ 		break;
+ 	case NL80211_CHAN_WIDTH_40:
+ 		width = 40;
++		if (cfg80211_is_6ghz_freq(chandef->center_freq1)) {
++			if (!he_cap)
++				return false;
++			if (!he_cap->has_he_6ghz)
++				return false;
++			if (!(he_cap->he_cap_elem.phy_cap_info[0] &
++			      IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_40MHZ_80MHZ_IN_5G))
++				return false;
++			break;
++		}
+ 		if (!ht_cap->ht_supported)
+ 			return false;
+ 		if (!(ht_cap->cap & IEEE80211_HT_CAP_SUP_WIDTH_20_40) ||
+@@ -933,24 +950,53 @@ bool cfg80211_chandef_usable(struct wiphy *wiphy,
+ 		break;
+ 	case NL80211_CHAN_WIDTH_80P80:
+ 		cap = vht_cap->cap & IEEE80211_VHT_CAP_SUPP_CHAN_WIDTH_MASK;
+-		if (cap != IEEE80211_VHT_CAP_SUPP_CHAN_WIDTH_160_80PLUS80MHZ)
++		if (!cfg80211_is_6ghz_freq(chandef->center_freq1) &&
++		    cap != IEEE80211_VHT_CAP_SUPP_CHAN_WIDTH_160_80PLUS80MHZ)
+ 			return false;
++		if (cfg80211_is_6ghz_freq(chandef->center_freq1)) {
++			if (!he_cap)
++				return false;
++			if (!he_cap->has_he_6ghz)
++				return false;
++			if (!(he_cap->he_cap_elem.phy_cap_info[0] &
++			      IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_80PLUS80_MHZ_IN_5G))
++				return false;
++		}
+ 		/* fall through */
+ 	case NL80211_CHAN_WIDTH_80:
+-		if (!vht_cap->vht_supported)
++		if (cfg80211_is_6ghz_freq(chandef->center_freq1)) {
++			if (!he_cap)
++				return false;
++			if (!he_cap->has_he_6ghz)
++				return false;
++			if (!(he_cap->he_cap_elem.phy_cap_info[0] &
++			      IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_40MHZ_80MHZ_IN_5G))
++				return false;
++		} else if (!vht_cap->vht_supported) {
+ 			return false;
++		}
+ 		prohibited_flags |= IEEE80211_CHAN_NO_80MHZ;
+ 		width = 80;
+ 		break;
+ 	case NL80211_CHAN_WIDTH_160:
++		prohibited_flags |= IEEE80211_CHAN_NO_160MHZ;
++		width = 160;
++		if (cfg80211_is_6ghz_freq(chandef->center_freq1)) {
++			if (!he_cap)
++				return false;
++			if (!he_cap->has_he_6ghz)
++				return false;
++			if (!(he_cap->he_cap_elem.phy_cap_info[0] &
++			      IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_160MHZ_IN_5G))
++				return false;
++			break;
++		}
+ 		if (!vht_cap->vht_supported)
+ 			return false;
+ 		cap = vht_cap->cap & IEEE80211_VHT_CAP_SUPP_CHAN_WIDTH_MASK;
+ 		if (cap != IEEE80211_VHT_CAP_SUPP_CHAN_WIDTH_160MHZ &&
+ 		    cap != IEEE80211_VHT_CAP_SUPP_CHAN_WIDTH_160_80PLUS80MHZ)
+ 			return false;
+-		prohibited_flags |= IEEE80211_CHAN_NO_160MHZ;
+-		width = 160;
+ 		break;
+ 	default:
+ 		WARN_ON_ONCE(1);
+-- 
+2.7.4
+
+_______________________________________________
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
