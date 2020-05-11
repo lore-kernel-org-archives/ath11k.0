@@ -1,16 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jYCi9-0005Mt-4D
- for ath11k@lists.infradead.org; Mon, 11 May 2020 17:59:32 +0000
+ id 1jYCmZ-00009k-M9
+ for ath11k@lists.infradead.org; Mon, 11 May 2020 18:04:05 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH 1/4] ath11k: Add PCI client driver for QCA6390 chipset
+Subject: Re: [PATCH 4/4] ath11k: Register mhi controller device for qca6390
 References: <20200508085850.23363-1-govinds@codeaurora.org>
- <20200508085850.23363-2-govinds@codeaurora.org>
-Date: Mon, 11 May 2020 20:59:14 +0300
-In-Reply-To: <20200508085850.23363-2-govinds@codeaurora.org> (Govind Singh's
- message of "Fri, 8 May 2020 14:28:47 +0530")
-Message-ID: <87h7wm4akt.fsf@kamboji.qca.qualcomm.com>
+ <20200508085850.23363-5-govinds@codeaurora.org>
+Date: Mon, 11 May 2020 21:03:56 +0300
+In-Reply-To: <20200508085850.23363-5-govinds@codeaurora.org> (Govind Singh's
+ message of "Fri, 8 May 2020 14:28:50 +0530")
+Message-ID: <87d07a4acz.fsf@kamboji.qca.qualcomm.com>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -20,40 +20,44 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Govind Singh <govinds@codeaurora.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-Govind Singh <govinds@codeaurora.org> writes:
-
-> QCA6390 is PCI based 11ax chipset, add
-> pci client driver for QCA6390 target.
->
-> Signed-off-by: Govind Singh <govinds@codeaurora.org>
-
-This patch had multiple problems, most important ones were:
-
-* a break missing in ath11k_pci_probe()
-
-* it's not possible to have static variables in .h files, I fixed by
-  moving the ring variables to core.c in a separate patch:
-
-  https://patchwork.kernel.org/patch/11541355/
-
-* this patch didn't link (at least when compiling as modules), I fixed
-  those by adding missing EXPORT_SYMBOL() macros
-
-Please double check my changes:
-
-https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=44a28b572070f578914367dc2469cef48ece13f4
-
--- 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
-_______________________________________________
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+KyBtYW5pCgpHb3ZpbmQgU2luZ2ggPGdvdmluZHNAY29kZWF1cm9yYS5vcmc+IHdyaXRlczoKCj4g
+TUhJIGlzIGEgY29tbXVuaWNhdGlvbiBwcm90b2NvbCB0byBjb21tdW5pY2F0ZSB3aXRoIGV4dGVy
+bmFsCj4gUXVhbGNvbW0gbW9kZW1zIGFuZCBXaS1GaSBjaGlwc2V0cyBvdmVyIGhpZ2ggc3BlZWQg
+cGVyaXBoZXJhbCBidXNlcy4gRXZlbgo+IHRob3VnaCBNSEkgZG9lc27igJl0IGRpY3RhdGUgdW5k
+ZXJseWluZyBwaHlzaWNhbCBsYXllciwgcHJvdG9jb2wgYW5kIG1oaSBzdGFjawo+IGlzIHN0cnVj
+dHVyZWQgZm9yIFBDSWUgYmFzZWQgZGV2aWNlcy4KPgo+IFJlZ2lzdGVyIGRpcmVjdGx5IHdpdGgg
+bWhpIGNvcmUgbGF5ZXIgYXMgYSBtaGkgZGV2aWNlIGRyaXZlciBmb3IKPiBmaXJtd2FyZSBkb3du
+bG9hZC4KPgo+IFRlc3RlZCBRQ0E2MzkwIG9uIFg4NiBwbGF0Zm9ybS4KPiBUZXN0ZWQgZmlybXdh
+cmUgV0xBTi5IU1QuMS4wLjEuYzEtMDA0NDAtUUNBSFNUU1dQTFpfVjJfVE9fWDg2LTEuCj4KPiBT
+aWduZWQtb2ZmLWJ5OiBHb3ZpbmQgU2luZ2ggPGdvdmluZHNAY29kZWF1cm9yYS5vcmc+CgpbLi4u
+XQoKPiAtLS0gYS9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL0tjb25maWcKPiArKysg
+Yi9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL0tjb25maWcKPiBAQCAtMiw3ICsyLDYg
+QEAKPiAgY29uZmlnIEFUSDExSwo+ICAJdHJpc3RhdGUgIlF1YWxjb21tIFRlY2hub2xvZ2llcyA4
+MDIuMTFheCBjaGlwc2V0IHN1cHBvcnQiCj4gIAlkZXBlbmRzIG9uIE1BQzgwMjExICYmIEhBU19E
+TUEKPiAtCWRlcGVuZHMgb24gUkVNT1RFUFJPQwo+ICAJZGVwZW5kcyBvbiBDUllQVE9fTUlDSEFF
+TF9NSUMKPiAgCWRlcGVuZHMgb24gQVJDSF9RQ09NIHx8IENPTVBJTEVfVEVTVAo+ICAJc2VsZWN0
+IEFUSF9DT01NT04KPiBAQCAtMTUsMTMgKzE0LDEzIEBAIGNvbmZpZyBBVEgxMUsKPiAgCj4gIGNv
+bmZpZyBBVEgxMUtfQUhCCj4gIAl0cmlzdGF0ZSAiUXVhbGNvbW0gVGVjaG5vbG9naWVzIDgwMi4x
+MWF4IGNoaXBzZXQgQUhCIHN1cHBvcnQiCj4gLQlkZXBlbmRzIG9uIEFUSDExSwo+ICsJZGVwZW5k
+cyBvbiBBVEgxMUsgJiYgUkVNT1RFUFJPQwo+ICAJLS0taGVscC0tLQo+ICAJICBUaGlzIG1vZHVs
+ZSBhZGRzIHN1cHBvcnQgZm9yIEFIQiBidXMKPiAgCj4gIGNvbmZpZyBBVEgxMUtfUENJCj4gIAl0
+cmlzdGF0ZSAiUXVhbGNvbW0gVGVjaG5vbG9naWVzIDgwMi4xMWF4IGNoaXBzZXQgUENJIHN1cHBv
+cnQiCj4gLQlkZXBlbmRzIG9uIEFUSDExSyAmJiBQQ0kKPiArCWRlcGVuZHMgb24gQVRIMTFLICYm
+IFBDSSAmJiBNSElfQlVTCj4gIAktLS1oZWxwLS0tCj4gIAkgIFRoaXMgbW9kdWxlIGFkZHMgc3Vw
+cG9ydCBmb3IgUENJRSBidXMKCkN1cnJlbnRseSBBVEgxMUtfUENJIGlzIG5vdCB2aXNpYmxlIGlm
+IE1ISV9CVVMgaXMgZGlzYWJsZWQsIHdoaWNoIEknbQp3b3JyaWVkIHdpbGwgY29uZnVzZSB0aGUg
+dXNlcnMuIEkgd29uZGVyIGlmIHdlIHNob3VsZCB1c2UgJ3NlbGVjdApNSElfQlVTJyBpbnN0ZWFk
+PyBUaGF0IHdheSBBVEgxMUtfUENJIHdvdWxkIGJlIHZpc2libGUgZXZlbiBpZiBNSElfQlVTCmlz
+IGRpc2FibGVkLgoKQW5kIHdoYXQgYWJvdXQgUVJUUl9NSEk/IE1hbmksIGFueSBzdWdnZXN0aW9u
+cz8KCi0tIApodHRwczovL3dpcmVsZXNzLndpa2kua2VybmVsLm9yZy9lbi9kZXZlbG9wZXJzL2Rv
+Y3VtZW50YXRpb24vc3VibWl0dGluZ3BhdGNoZXMKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCmF0aDExayBtYWlsaW5nIGxpc3QKYXRoMTFrQGxpc3RzLmlu
+ZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9h
+dGgxMWsK
