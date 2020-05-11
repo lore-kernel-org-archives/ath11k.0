@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail26.static.mailgun.info ([104.130.122.26])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jY7Xk-0003XO-58
- for ath11k@lists.infradead.org; Mon, 11 May 2020 12:28:35 +0000
+ id 1jY7ew-0008FL-GB
+ for ath11k@lists.infradead.org; Mon, 11 May 2020 12:35:54 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: remove stale monitor status descriptor
+Subject: Re: [PATCH 1/3] ath11k: Add support for multibus support
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1588642063-6950-1-git-send-email-rmanohar@codeaurora.org>
-References: <1588642063-6950-1-git-send-email-rmanohar@codeaurora.org>
-Message-Id: <20200511122754.79249C432C2@smtp.codeaurora.org>
-Date: Mon, 11 May 2020 12:27:54 +0000 (UTC)
+In-Reply-To: <20200506094400.4740-2-govinds@codeaurora.org>
+References: <20200506094400.4740-2-govinds@codeaurora.org>
+Message-Id: <20200511123544.182DBC44788@smtp.codeaurora.org>
+Date: Mon, 11 May 2020 12:35:43 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,28 +22,26 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Rajkumar Manoharan <rmanohar@codeaurora.org>
-Cc: Miles Hu <milehu@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: Govind Singh <govinds@codeaurora.org>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-Rajkumar Manoharan <rmanohar@codeaurora.org> wrote:
+Govind Singh <govinds@codeaurora.org> wrote:
 
-> The driver is not handling monitor status descriptor whenever
-> the done bit of status descriptor is not set by hardware. This leave
-> a stale entry in monitor status ring and flooding warning message.
-> Fix that by removing the descriptor and move forward to next one
-> in monitor status ring.
+> Current design supports only AHB interface for
+> 11ax chipset. Refactor the code by adding hif layer
+> for bus level abstraction to support  PCI based device.
 > 
-> Co-developed-by: Rajkumar Manoharan <rmanohar@codeaurora.org>
-> Signed-off-by: Rajkumar Manoharan <rmanohar@codeaurora.org>
-> Signed-off-by: Miles Hu <milehu@codeaurora.org>
+> Signed-off-by: Govind Singh <govinds@codeaurora.org>
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-Patch applied to ath-next branch of ath.git, thanks.
+3 patches applied to ath-next branch of ath.git, thanks.
 
-32a2be499c01 ath11k: remove stale monitor status descriptor
+31858805f91a ath11k: Add support for multibus support
+630ad41c195c ath11k: Add drv private for bus opaque struct
+27143fa93c3b ath11k: Remove bus layer includes from upper layer
 
 -- 
-https://patchwork.kernel.org/patch/11527999/
+https://patchwork.kernel.org/patch/11530873/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
