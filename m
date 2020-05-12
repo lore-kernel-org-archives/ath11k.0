@@ -1,12 +1,17 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail27.static.mailgun.info ([104.130.122.27])
+Received: from mail26.static.mailgun.info ([104.130.122.26])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jYD0M-0000l9-1y
- for ath11k@lists.infradead.org; Mon, 11 May 2020 18:18:21 +0000
-From: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
-Subject: [PATCH v2] ath11k: fix htt stats module not handle multiple skbs
-Date: Mon, 11 May 2020 11:17:54 -0700
-Message-Id: <1589221074-28778-1-git-send-email-pradeepc@codeaurora.org>
+ id 1jYNVY-0000TJ-TT
+ for ath11k@lists.infradead.org; Tue, 12 May 2020 05:31:14 +0000
+MIME-Version: 1.0
+Date: Tue, 12 May 2020 11:01:09 +0530
+From: govinds@codeaurora.org
+Subject: Re: [PATCH 1/4] ath11k: Add PCI client driver for QCA6390 chipset
+In-Reply-To: <87h7wm4akt.fsf@kamboji.qca.qualcomm.com>
+References: <20200508085850.23363-1-govinds@codeaurora.org>
+ <20200508085850.23363-2-govinds@codeaurora.org>
+ <87h7wm4akt.fsf@kamboji.qca.qualcomm.com>
+Message-ID: <2028987516458b3145d3cd9758eafe8f@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -15,147 +20,49 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>, Miles Hu <milehu@codeaurora.org>, linux-wireless@vger.kernel.org
+To: Kalle Valo <kvalo@codeaurora.org>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-HTT EXT stats comes in stream of TLVs spanning over multiple
-messages. Currently completion is being sent for each message
-which is creating a race where stats_req is being accessed
-for filling in second message after the memory is already
-freed in release operation. Fix this by issuing completion
-once all the messages are received and processed. Driver
-knows this info from DONE bit set in htt msg.
+Hi Kalle,
 
-Also fix locking required for htt stats.
+On 2020-05-11 23:29, Kalle Valo wrote:
+> Govind Singh <govinds@codeaurora.org> writes:
+> 
+>> QCA6390 is PCI based 11ax chipset, add
+>> pci client driver for QCA6390 target.
+>> 
+>> Signed-off-by: Govind Singh <govinds@codeaurora.org>
+> 
+> This patch had multiple problems, most important ones were:
+> 
+> * a break missing in ath11k_pci_probe()
+> 
 
-Co-developed-by: Miles Hu <milehu@codeaurora.org>
-Signed-off-by: Miles Hu <milehu@codeaurora.org>
-Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
----
-v2:
- - fix kbot reported issue of missing unlock
+My bad. Thanks for fixing same.
 
- drivers/net/wireless/ath/ath11k/debug_htt_stats.c | 48 ++++++++++++++++++-----
- drivers/net/wireless/ath/ath11k/dp.h              |  1 +
- 2 files changed, 39 insertions(+), 10 deletions(-)
+> * it's not possible to have static variables in .h files, I fixed by
+>   moving the ring variables to core.c in a separate patch:
+> 
+>   https://patchwork.kernel.org/patch/11541355/
+> 
+> * this patch didn't link (at least when compiling as modules), I fixed
+>   those by adding missing EXPORT_SYMBOL() macros
+> 
 
-diff --git a/drivers/net/wireless/ath/ath11k/debug_htt_stats.c b/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
-index 5db0c27de475..6b532dc99c98 100644
---- a/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
-+++ b/drivers/net/wireless/ath/ath11k/debug_htt_stats.c
-@@ -4306,6 +4306,7 @@ void ath11k_dbg_htt_ext_stats_handler(struct ath11k_base *ab,
- 	u32 len;
- 	u64 cookie;
- 	int ret;
-+	bool send_completion = false;
- 	u8 pdev_id;
- 
- 	msg = (struct ath11k_htt_extd_stats_msg *)skb->data;
-@@ -4330,11 +4331,11 @@ void ath11k_dbg_htt_ext_stats_handler(struct ath11k_base *ab,
- 		return;
- 
- 	spin_lock_bh(&ar->debug.htt_stats.lock);
--	if (stats_req->done) {
--		spin_unlock_bh(&ar->debug.htt_stats.lock);
--		return;
--	}
--	stats_req->done = true;
-+
-+	stats_req->done = FIELD_GET(HTT_T2H_EXT_STATS_INFO1_DONE, msg->info1);
-+	if (stats_req->done)
-+		send_completion = true;
-+
- 	spin_unlock_bh(&ar->debug.htt_stats.lock);
- 
- 	len = FIELD_GET(HTT_T2H_EXT_STATS_INFO1_LENGTH, msg->info1);
-@@ -4344,7 +4345,8 @@ void ath11k_dbg_htt_ext_stats_handler(struct ath11k_base *ab,
- 	if (ret)
- 		ath11k_warn(ab, "Failed to parse tlv %d\n", ret);
- 
--	complete(&stats_req->cmpln);
-+	if (send_completion)
-+		complete(&stats_req->cmpln);
- }
- 
- static ssize_t ath11k_read_htt_stats_type(struct file *file,
-@@ -4497,28 +4499,54 @@ static int ath11k_open_htt_stats(struct inode *inode, struct file *file)
- 	if (type == ATH11K_DBG_HTT_EXT_STATS_RESET)
- 		return -EPERM;
- 
-+	mutex_lock(&ar->conf_mutex);
-+
-+	if (ar->state != ATH11K_STATE_ON) {
-+		ret = -ENETDOWN;
-+		goto err_unlock;
-+	}
-+
-+	if (ar->debug.htt_stats.stats_req) {
-+		ret = -EAGAIN;
-+		goto err_unlock;
-+	}
-+
- 	stats_req = vzalloc(sizeof(*stats_req) + ATH11K_HTT_STATS_BUF_SIZE);
--	if (!stats_req)
--		return -ENOMEM;
-+	if (!stats_req) {
-+		ret = -ENOMEM;
-+		goto err_unlock;
-+	}
- 
--	mutex_lock(&ar->conf_mutex);
- 	ar->debug.htt_stats.stats_req = stats_req;
- 	stats_req->type = type;
-+
- 	ret = ath11k_dbg_htt_stats_req(ar);
--	mutex_unlock(&ar->conf_mutex);
- 	if (ret < 0)
- 		goto out;
- 
- 	file->private_data = stats_req;
-+
-+	mutex_unlock(&ar->conf_mutex);
-+
- 	return 0;
- out:
- 	vfree(stats_req);
-+	ar->debug.htt_stats.stats_req = NULL;
-+err_unlock:
-+	mutex_unlock(&ar->conf_mutex);
-+
- 	return ret;
- }
- 
- static int ath11k_release_htt_stats(struct inode *inode, struct file *file)
- {
-+	struct ath11k *ar = inode->i_private;
-+
-+	mutex_lock(&ar->conf_mutex);
- 	vfree(file->private_data);
-+	ar->debug.htt_stats.stats_req = NULL;
-+	mutex_unlock(&ar->conf_mutex);
-+
- 	return 0;
- }
- 
-diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
-index 222de10e4b93..058a5c1d86ff 100644
---- a/drivers/net/wireless/ath/ath11k/dp.h
-+++ b/drivers/net/wireless/ath/ath11k/dp.h
-@@ -1517,6 +1517,7 @@ struct htt_ext_stats_cfg_params {
-  *       4 bytes.
-  */
- 
-+#define HTT_T2H_EXT_STATS_INFO1_DONE	BIT(11)
- #define HTT_T2H_EXT_STATS_INFO1_LENGTH   GENMASK(31, 16)
- 
- struct ath11k_htt_extd_stats_msg {
--- 
-1.9.1
+Looks, this is required after moving the ring mask from ahb to core.
+
+> Please double check my changes:
+> 
+> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=44a28b572070f578914367dc2469cef48ece13f4
+
+Looks good to me.
+
+BR,
+Govind
 
 _______________________________________________
 ath11k mailing list
