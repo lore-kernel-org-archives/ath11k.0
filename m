@@ -1,20 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail-pf1-x443.google.com ([2607:f8b0:4864:20::443])
+Received: from mail26.static.mailgun.info ([104.130.122.26])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jYP6X-0007lt-RL
- for ath11k@lists.infradead.org; Tue, 12 May 2020 07:13:31 +0000
-Received: by mail-pf1-x443.google.com with SMTP id f7so5946170pfa.9
- for <ath11k@lists.infradead.org>; Tue, 12 May 2020 00:13:29 -0700 (PDT)
-Date: Tue, 12 May 2020 12:43:23 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: Re: [PATCH 4/4] ath11k: Register mhi controller device for qca6390
-Message-ID: <20200512071323.GI4928@Mani-XPS-13-9360>
-References: <20200508085850.23363-1-govinds@codeaurora.org>
- <20200508085850.23363-5-govinds@codeaurora.org>
- <87d07a4acz.fsf@kamboji.qca.qualcomm.com>
+ id 1jYPQt-00056h-Nr
+ for ath11k@lists.infradead.org; Tue, 12 May 2020 07:34:37 +0000
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <87d07a4acz.fsf@kamboji.qca.qualcomm.com>
+Subject: Re: [PATCH][next] ath11k: remove redundant initialization of pointer
+ info
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <20200507164318.56570-1-colin.king@canonical.com>
+References: <20200507164318.56570-1-colin.king@canonical.com>
+Message-Id: <20200512073425.12DDBC432C2@smtp.codeaurora.org>
+Date: Tue, 12 May 2020 07:34:25 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,56 +19,34 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: Govind Singh <govinds@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: Colin King <colin.king@canonical.com>
+Cc: linux-wireless@vger.kernel.org, netdev@vger.kernel.org, kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org, ath11k@lists.infradead.org, "David S . Miller" <davem@davemloft.net>
 
-SGkgS2FsbGUsCgpPbiBNb24sIE1heSAxMSwgMjAyMCBhdCAwOTowMzo1NlBNICswMzAwLCBLYWxs
-ZSBWYWxvIHdyb3RlOgo+ICsgbWFuaQo+IAo+IEdvdmluZCBTaW5naCA8Z292aW5kc0Bjb2RlYXVy
-b3JhLm9yZz4gd3JpdGVzOgo+IAo+ID4gTUhJIGlzIGEgY29tbXVuaWNhdGlvbiBwcm90b2NvbCB0
-byBjb21tdW5pY2F0ZSB3aXRoIGV4dGVybmFsCj4gPiBRdWFsY29tbSBtb2RlbXMgYW5kIFdpLUZp
-IGNoaXBzZXRzIG92ZXIgaGlnaCBzcGVlZCBwZXJpcGhlcmFsIGJ1c2VzLiBFdmVuCj4gPiB0aG91
-Z2ggTUhJIGRvZXNu4oCZdCBkaWN0YXRlIHVuZGVybHlpbmcgcGh5c2ljYWwgbGF5ZXIsIHByb3Rv
-Y29sIGFuZCBtaGkgc3RhY2sKPiA+IGlzIHN0cnVjdHVyZWQgZm9yIFBDSWUgYmFzZWQgZGV2aWNl
-cy4KPiA+Cj4gPiBSZWdpc3RlciBkaXJlY3RseSB3aXRoIG1oaSBjb3JlIGxheWVyIGFzIGEgbWhp
-IGRldmljZSBkcml2ZXIgZm9yCj4gPiBmaXJtd2FyZSBkb3dubG9hZC4KPiA+Cj4gPiBUZXN0ZWQg
-UUNBNjM5MCBvbiBYODYgcGxhdGZvcm0uCj4gPiBUZXN0ZWQgZmlybXdhcmUgV0xBTi5IU1QuMS4w
-LjEuYzEtMDA0NDAtUUNBSFNUU1dQTFpfVjJfVE9fWDg2LTEuCj4gPgo+ID4gU2lnbmVkLW9mZi1i
-eTogR292aW5kIFNpbmdoIDxnb3ZpbmRzQGNvZGVhdXJvcmEub3JnPgo+IAoKQWgsZmluYWxseSEK
-Cj4gWy4uLl0KPiAKPiA+IC0tLSBhL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvS2Nv
-bmZpZwo+ID4gKysrIGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9LY29uZmlnCj4g
-PiBAQCAtMiw3ICsyLDYgQEAKPiA+ICBjb25maWcgQVRIMTFLCj4gPiAgCXRyaXN0YXRlICJRdWFs
-Y29tbSBUZWNobm9sb2dpZXMgODAyLjExYXggY2hpcHNldCBzdXBwb3J0Igo+ID4gIAlkZXBlbmRz
-IG9uIE1BQzgwMjExICYmIEhBU19ETUEKPiA+IC0JZGVwZW5kcyBvbiBSRU1PVEVQUk9DCj4gPiAg
-CWRlcGVuZHMgb24gQ1JZUFRPX01JQ0hBRUxfTUlDCj4gPiAgCWRlcGVuZHMgb24gQVJDSF9RQ09N
-IHx8IENPTVBJTEVfVEVTVAo+ID4gIAlzZWxlY3QgQVRIX0NPTU1PTgo+ID4gQEAgLTE1LDEzICsx
-NCwxMyBAQCBjb25maWcgQVRIMTFLCj4gPiAgCj4gPiAgY29uZmlnIEFUSDExS19BSEIKPiA+ICAJ
-dHJpc3RhdGUgIlF1YWxjb21tIFRlY2hub2xvZ2llcyA4MDIuMTFheCBjaGlwc2V0IEFIQiBzdXBw
-b3J0Igo+ID4gLQlkZXBlbmRzIG9uIEFUSDExSwo+ID4gKwlkZXBlbmRzIG9uIEFUSDExSyAmJiBS
-RU1PVEVQUk9DCj4gPiAgCS0tLWhlbHAtLS0KPiA+ICAJICBUaGlzIG1vZHVsZSBhZGRzIHN1cHBv
-cnQgZm9yIEFIQiBidXMKPiA+ICAKPiA+ICBjb25maWcgQVRIMTFLX1BDSQo+ID4gIAl0cmlzdGF0
-ZSAiUXVhbGNvbW0gVGVjaG5vbG9naWVzIDgwMi4xMWF4IGNoaXBzZXQgUENJIHN1cHBvcnQiCj4g
-PiAtCWRlcGVuZHMgb24gQVRIMTFLICYmIFBDSQo+ID4gKwlkZXBlbmRzIG9uIEFUSDExSyAmJiBQ
-Q0kgJiYgTUhJX0JVUwo+ID4gIAktLS1oZWxwLS0tCj4gPiAgCSAgVGhpcyBtb2R1bGUgYWRkcyBz
-dXBwb3J0IGZvciBQQ0lFIGJ1cwo+IAo+IEN1cnJlbnRseSBBVEgxMUtfUENJIGlzIG5vdCB2aXNp
-YmxlIGlmIE1ISV9CVVMgaXMgZGlzYWJsZWQsIHdoaWNoIEknbQo+IHdvcnJpZWQgd2lsbCBjb25m
-dXNlIHRoZSB1c2Vycy4gSSB3b25kZXIgaWYgd2Ugc2hvdWxkIHVzZSAnc2VsZWN0Cj4gTUhJX0JV
-UycgaW5zdGVhZD8gVGhhdCB3YXkgQVRIMTFLX1BDSSB3b3VsZCBiZSB2aXNpYmxlIGV2ZW4gaWYg
-TUhJX0JVUwo+IGlzIGRpc2FibGVkLgo+IAoKUmlnaHQsIHRoaXMgc291bmRzIGdvb2QgdG8gbWUu
-Cgo+IEFuZCB3aGF0IGFib3V0IFFSVFJfTUhJPyBNYW5pLCBhbnkgc3VnZ2VzdGlvbnM/Cj4gCgpB
-cmUgeW91IGFza2luZyBmb3IgS2NvbmZpZyBkZXBlbmRlbmN5PyBJZiB5ZXMsIHRoZW4geW91IG5l
-ZWQgdG8gc2VsZWN0IGl0IGhlcmUKYWxzbyBhcyB5b3UgY2FuJ3QgZG8gbXVjaCB3aXRob3V0IGl0
-LgoKQnR3LCBJJ20gbm90IENDZWQgZm9yIHRoZSBwYXRjaCBzbyBJIGhhdmVuJ3QgbG9va2VkIGF0
-IGl0LiBCdXQgd2UgaGF2ZSBtYWRlIGZldwpjaGFuZ2VzIHRvIHRoZSBNSEkgc3RhY2sgd2hpY2gg
-d2lsbCBpbXBhY3QgdGhlIGNvbnRyb2xsZXIgZHJpdmVycy4gU28gSSdkCnN1Z2dlc3QgeW91IHRv
-IHJlYmFzZSBNSEkgY29udHJvbGxlciBwYXRjaCBvbiB0b3Agb2YgbWhpLW5leHQgWzFdLiBUaGUg
-cHJvcG9zZWQKY2hhbmdlcyBpbiBNSEkgd2lsbCBob3BlZnVsbHkgbGFuZCBpbiA1LjguCgpUaGFu
-a3MsCk1hbmkKClsxXSBodHRwczovL2dpdC5rZXJuZWwub3JnL3B1Yi9zY20vbGludXgva2VybmVs
-L2dpdC9tYW5pL21oaS5naXQvbG9nLz9oPW1oaS1uZXh0Cgo+IC0tIAo+IGh0dHBzOi8vd2lyZWxl
-c3Mud2lraS5rZXJuZWwub3JnL2VuL2RldmVsb3BlcnMvZG9jdW1lbnRhdGlvbi9zdWJtaXR0aW5n
-cGF0Y2hlcwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-YXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlz
-dHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2F0aDExawo=
+Colin King <colin.king@canonical.com> wrote:
+
+> Pointer info is being assigned twice, once at the start of the function
+> and secondly when it is just about to be accessed. Remove the redundant
+> initialization and keep the original assignment to info that is close
+> to the memcpy that uses it.
+> 
+> Addresses-Coverity: ("Unused value")
+> Signed-off-by: Colin Ian King <colin.king@canonical.com>
+> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+
+Patch applied to ath-next branch of ath.git, thanks.
+
+52b776fa5921 ath11k: remove redundant initialization of pointer info
+
+-- 
+https://patchwork.kernel.org/patch/11534415/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
+_______________________________________________
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
