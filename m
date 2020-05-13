@@ -1,15 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jYxJw-0000MA-6K
- for ath11k@lists.infradead.org; Wed, 13 May 2020 19:45:39 +0000
+ id 1jYxJs-0000M5-13
+ for ath11k@lists.infradead.org; Wed, 13 May 2020 19:45:36 +0000
 From: Rajkumar Manoharan <rmanohar@codeaurora.org>
-Subject: [PATCH v3 07/11] mac80211: add HE 6 GHz Band Capability IE in Assoc.
- Request
-Date: Wed, 13 May 2020 12:45:01 -0700
-Message-Id: <1589399105-25472-7-git-send-email-rmanohar@codeaurora.org>
-In-Reply-To: <1589399105-25472-1-git-send-email-rmanohar@codeaurora.org>
-References: <1589399105-25472-1-git-send-email-rmanohar@codeaurora.org>
+Subject: [PATCH v3 01/11] cfg80211: use only HE capability to set prohibited
+ flags in 6 GHz
+Date: Wed, 13 May 2020 12:44:55 -0700
+Message-Id: <1589399105-25472-1-git-send-email-rmanohar@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -24,176 +22,127 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: johannes@sipsolutions.net, kvalo@codeaurora.org
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, Rajkumar Manoharan <rmanohar@codeaurora.org>
+Cc: Vamsi Krishna <vamsin@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, Rajkumar Manoharan <rmanohar@codeaurora.org>
 
-Construct HE 6 GHz band capability element element (IEEE 802.11ax/D6.0,
-9.4.2.261) for association request and mesh beacon. The 6 GHz capability
-information is passed by driver through iftypes caps.
+The prohibited flags to determine whether configured bandwidth
+is supported by driver are validated only against HT and VHT capability.
+In 6 GHz band, Only HE capability should be validated to find out
+given chandef is usable.
 
+Co-developed-by: Vamsi Krishna <vamsin@codeaurora.org>
+Signed-off-by: Vamsi Krishna <vamsin@codeaurora.org>
 Signed-off-by: Rajkumar Manoharan <rmanohar@codeaurora.org>
 ---
- net/mac80211/ieee80211_i.h |  1 +
- net/mac80211/mesh.c        | 34 ++++++++++++++++++++++++++++++++++
- net/mac80211/mesh.h        |  2 ++
- net/mac80211/mesh_plink.c  |  3 ++-
- net/mac80211/mlme.c        | 12 ++++++++++--
- net/mac80211/util.c        | 15 +++++++++++++++
- 6 files changed, 64 insertions(+), 3 deletions(-)
+ net/wireless/chan.c | 54 +++++++++++++++++++++++++++++++++++++++++++++++++----
+ 1 file changed, 50 insertions(+), 4 deletions(-)
 
-diff --git a/net/mac80211/ieee80211_i.h b/net/mac80211/ieee80211_i.h
-index 78a95a11458c..6517a56970b7 100644
---- a/net/mac80211/ieee80211_i.h
-+++ b/net/mac80211/ieee80211_i.h
-@@ -2174,6 +2174,7 @@ u8 ieee80211_ie_len_he_cap(struct ieee80211_sub_if_data *sdata, u8 iftype);
- u8 *ieee80211_ie_build_he_cap(u8 *pos,
- 			      const struct ieee80211_sta_he_cap *he_cap,
- 			      u8 *end);
-+u8 *ieee80211_ie_build_he_6ghz_band_cap(u8 *pos, u16 he_6ghz_cap);
- u8 *ieee80211_ie_build_he_oper(u8 *pos);
- int ieee80211_parse_bitrates(struct cfg80211_chan_def *chandef,
- 			     const struct ieee80211_supported_band *sband,
-diff --git a/net/mac80211/mesh.c b/net/mac80211/mesh.c
-index 36978a0e5000..2ca34869538d 100644
---- a/net/mac80211/mesh.c
-+++ b/net/mac80211/mesh.c
-@@ -587,6 +587,39 @@ int mesh_add_he_oper_ie(struct ieee80211_sub_if_data *sdata,
- 	return 0;
+diff --git a/net/wireless/chan.c b/net/wireless/chan.c
+index fcac5c6366e1..582b487576e1 100644
+--- a/net/wireless/chan.c
++++ b/net/wireless/chan.c
+@@ -19,6 +19,11 @@ static bool cfg80211_valid_60g_freq(u32 freq)
+ 	return freq >= 58320 && freq <= 70200;
  }
  
-+int mesh_add_he_6ghz_cap_ie(struct ieee80211_sub_if_data *sdata,
-+			    struct sk_buff *skb)
++static bool cfg80211_is_6ghz_freq(u32 freq)
 +{
++	return (freq > 5940 && freq < 7105);
++}
++
+ void cfg80211_chandef_create(struct cfg80211_chan_def *chandef,
+ 			     struct ieee80211_channel *chan,
+ 			     enum nl80211_channel_type chan_type)
+@@ -882,6 +887,7 @@ bool cfg80211_chandef_usable(struct wiphy *wiphy,
+ 	struct ieee80211_sta_ht_cap *ht_cap;
+ 	struct ieee80211_sta_vht_cap *vht_cap;
+ 	struct ieee80211_edmg *edmg_cap;
 +	const struct ieee80211_sta_he_cap *he_cap;
-+	struct ieee80211_supported_band *sband;
-+	u8 ie_len;
-+	u8 *pos;
-+
-+	sband = ieee80211_get_sband(sdata);
-+	if (!sband)
-+		return -EINVAL;
-+
-+	he_cap = ieee80211_get_he_iftype_cap(sband, NL80211_IFTYPE_MESH_POINT);
-+
-+	if (!he_cap ||
-+	    sdata->vif.bss_conf.chandef.width == NL80211_CHAN_WIDTH_20_NOHT ||
-+	    sdata->vif.bss_conf.chandef.width == NL80211_CHAN_WIDTH_5 ||
-+	    sdata->vif.bss_conf.chandef.width == NL80211_CHAN_WIDTH_10)
-+		return 0;
-+
-+	if (!he_cap->has_he_6ghz)
-+		return 0;
-+
-+	ie_len = 2 + 1 + sizeof(struct ieee80211_he_6ghz_band_cap);
-+	if (skb_tailroom(skb) < ie_len)
-+		return -ENOMEM;
-+
-+	pos = skb_put(skb, ie_len);
-+	ieee80211_ie_build_he_6ghz_band_cap(pos, he_cap->he_6ghz.cap);
-+
-+	return 0;
-+}
-+
- static void ieee80211_mesh_path_timer(struct timer_list *t)
- {
- 	struct ieee80211_sub_if_data *sdata =
-@@ -885,6 +918,7 @@ ieee80211_mesh_build_beacon(struct ieee80211_if_mesh *ifmsh)
- 	    mesh_add_vht_oper_ie(sdata, skb) ||
- 	    mesh_add_he_cap_ie(sdata, skb, ie_len_he_cap) ||
- 	    mesh_add_he_oper_ie(sdata, skb) ||
-+	    mesh_add_he_6ghz_cap_ie(sdata, skb) ||
- 	    mesh_add_vendor_ies(sdata, skb))
- 		goto out_free;
+ 	u32 width, control_freq, cap;
  
-diff --git a/net/mac80211/mesh.h b/net/mac80211/mesh.h
-index 953f720754e8..40492d1bd8fd 100644
---- a/net/mac80211/mesh.h
-+++ b/net/mac80211/mesh.h
-@@ -222,6 +222,8 @@ int mesh_add_he_cap_ie(struct ieee80211_sub_if_data *sdata,
- 		       struct sk_buff *skb, u8 ie_len);
- int mesh_add_he_oper_ie(struct ieee80211_sub_if_data *sdata,
- 			struct sk_buff *skb);
-+int mesh_add_he_6ghz_cap_ie(struct ieee80211_sub_if_data *sdata,
-+			    struct sk_buff *skb);
- void mesh_rmc_free(struct ieee80211_sub_if_data *sdata);
- int mesh_rmc_init(struct ieee80211_sub_if_data *sdata);
- void ieee80211s_init(void);
-diff --git a/net/mac80211/mesh_plink.c b/net/mac80211/mesh_plink.c
-index e3e29b8d641d..dedb2341ebdd 100644
---- a/net/mac80211/mesh_plink.c
-+++ b/net/mac80211/mesh_plink.c
-@@ -328,7 +328,8 @@ static int mesh_plink_frame_tx(struct ieee80211_sub_if_data *sdata,
- 		    mesh_add_vht_cap_ie(sdata, skb) ||
- 		    mesh_add_vht_oper_ie(sdata, skb) ||
- 		    mesh_add_he_cap_ie(sdata, skb, ie_len_he_cap) ||
--		    mesh_add_he_oper_ie(sdata, skb))
-+		    mesh_add_he_oper_ie(sdata, skb) ||
-+		    mesh_add_he_6ghz_cap_ie(sdata, skb))
- 			goto free;
- 	}
+ 	if (WARN_ON(!cfg80211_chandef_valid(chandef)))
+@@ -890,6 +896,7 @@ bool cfg80211_chandef_usable(struct wiphy *wiphy,
+ 	ht_cap = &wiphy->bands[chandef->chan->band]->ht_cap;
+ 	vht_cap = &wiphy->bands[chandef->chan->band]->vht_cap;
+ 	edmg_cap = &wiphy->bands[chandef->chan->band]->edmg_cap;
++	he_cap = ieee80211_get_he_sta_cap(wiphy->bands[chandef->chan->band]);
  
-diff --git a/net/mac80211/mlme.c b/net/mac80211/mlme.c
-index 58a082efc3b3..b4dfefd482a6 100644
---- a/net/mac80211/mlme.c
-+++ b/net/mac80211/mlme.c
-@@ -654,6 +654,12 @@ static void ieee80211_add_he_ie(struct ieee80211_sub_if_data *sdata,
- 				      he_cap->he_cap_elem.phy_cap_info);
- 	pos = skb_put(skb, he_cap_size);
- 	ieee80211_ie_build_he_cap(pos, he_cap, pos + he_cap_size);
-+
-+	if (!he_cap->has_he_6ghz)
-+		return;
-+
-+	pos = skb_put(skb, 5); /* 2 + 1 + sizeof(he_cap->he_6ghz.cap) */
-+	ieee80211_ie_build_he_6ghz_band_cap(pos, he_cap->he_6ghz.cap);
- }
- 
- static void ieee80211_send_assoc(struct ieee80211_sub_if_data *sdata)
-@@ -4803,7 +4809,8 @@ static int ieee80211_prep_channel(struct ieee80211_sub_if_data *sdata,
- 	if (!sband->ht_cap.ht_supported) {
- 		ifmgd->flags |= IEEE80211_STA_DISABLE_HT;
- 		ifmgd->flags |= IEEE80211_STA_DISABLE_VHT;
--		ifmgd->flags |= IEEE80211_STA_DISABLE_HE;
-+		if (sband->band != NL80211_BAND_6GHZ)
-+			ifmgd->flags |= IEEE80211_STA_DISABLE_HE;
- 	}
- 
- 	if (!sband->vht_cap.vht_supported)
-@@ -5493,7 +5500,8 @@ int ieee80211_mgd_assoc(struct ieee80211_sub_if_data *sdata,
- 	if (req->flags & ASSOC_REQ_DISABLE_HT) {
- 		ifmgd->flags |= IEEE80211_STA_DISABLE_HT;
- 		ifmgd->flags |= IEEE80211_STA_DISABLE_VHT;
--		ifmgd->flags |= IEEE80211_STA_DISABLE_HE;
-+		if (sband->band != NL80211_BAND_6GHZ)
-+			ifmgd->flags |= IEEE80211_STA_DISABLE_HE;
- 	}
- 
- 	if (req->flags & ASSOC_REQ_DISABLE_VHT)
-diff --git a/net/mac80211/util.c b/net/mac80211/util.c
-index 5a33755c22f4..2bcebe672c0d 100644
---- a/net/mac80211/util.c
-+++ b/net/mac80211/util.c
-@@ -2839,6 +2839,21 @@ u8 *ieee80211_ie_build_he_cap(u8 *pos,
- 	return pos;
- }
- 
-+u8 *ieee80211_ie_build_he_6ghz_band_cap(u8 *pos, u16 he_6ghz_cap)
-+{
-+	__le16 cap = cpu_to_le16(he_6ghz_cap);
-+
-+	*pos++ = WLAN_EID_EXTENSION;
-+	*pos++ = 3;
-+	*pos++ = WLAN_EID_EXT_HE_6GHZ_BAND_CAP;
-+
-+	/* Fixed data */
-+	memcpy(pos, &cap, sizeof(cap));
-+	pos += sizeof(cap);
-+
-+	return pos;
-+}
-+
- u8 *ieee80211_ie_build_ht_oper(u8 *pos, struct ieee80211_sta_ht_cap *ht_cap,
- 			       const struct cfg80211_chan_def *chandef,
- 			       u16 prot_mode, bool rifs_mode)
+ 	if (edmg_cap->channels &&
+ 	    !cfg80211_edmg_usable(wiphy,
+@@ -919,6 +926,16 @@ bool cfg80211_chandef_usable(struct wiphy *wiphy,
+ 		break;
+ 	case NL80211_CHAN_WIDTH_40:
+ 		width = 40;
++		if (cfg80211_is_6ghz_freq(chandef->center_freq1)) {
++			if (!he_cap)
++				return false;
++			if (!he_cap->has_he_6ghz)
++				return false;
++			if (!(he_cap->he_cap_elem.phy_cap_info[0] &
++			      IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_40MHZ_80MHZ_IN_5G))
++				return false;
++			break;
++		}
+ 		if (!ht_cap->ht_supported)
+ 			return false;
+ 		if (!(ht_cap->cap & IEEE80211_HT_CAP_SUP_WIDTH_20_40) ||
+@@ -933,24 +950,53 @@ bool cfg80211_chandef_usable(struct wiphy *wiphy,
+ 		break;
+ 	case NL80211_CHAN_WIDTH_80P80:
+ 		cap = vht_cap->cap & IEEE80211_VHT_CAP_SUPP_CHAN_WIDTH_MASK;
+-		if (cap != IEEE80211_VHT_CAP_SUPP_CHAN_WIDTH_160_80PLUS80MHZ)
++		if (!cfg80211_is_6ghz_freq(chandef->center_freq1) &&
++		    cap != IEEE80211_VHT_CAP_SUPP_CHAN_WIDTH_160_80PLUS80MHZ)
+ 			return false;
++		if (cfg80211_is_6ghz_freq(chandef->center_freq1)) {
++			if (!he_cap)
++				return false;
++			if (!he_cap->has_he_6ghz)
++				return false;
++			if (!(he_cap->he_cap_elem.phy_cap_info[0] &
++			      IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_80PLUS80_MHZ_IN_5G))
++				return false;
++		}
+ 		/* fall through */
+ 	case NL80211_CHAN_WIDTH_80:
+-		if (!vht_cap->vht_supported)
++		if (cfg80211_is_6ghz_freq(chandef->center_freq1)) {
++			if (!he_cap)
++				return false;
++			if (!he_cap->has_he_6ghz)
++				return false;
++			if (!(he_cap->he_cap_elem.phy_cap_info[0] &
++			      IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_40MHZ_80MHZ_IN_5G))
++				return false;
++		} else if (!vht_cap->vht_supported) {
+ 			return false;
++		}
+ 		prohibited_flags |= IEEE80211_CHAN_NO_80MHZ;
+ 		width = 80;
+ 		break;
+ 	case NL80211_CHAN_WIDTH_160:
++		prohibited_flags |= IEEE80211_CHAN_NO_160MHZ;
++		width = 160;
++		if (cfg80211_is_6ghz_freq(chandef->center_freq1)) {
++			if (!he_cap)
++				return false;
++			if (!he_cap->has_he_6ghz)
++				return false;
++			if (!(he_cap->he_cap_elem.phy_cap_info[0] &
++			      IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_160MHZ_IN_5G))
++				return false;
++			break;
++		}
+ 		if (!vht_cap->vht_supported)
+ 			return false;
+ 		cap = vht_cap->cap & IEEE80211_VHT_CAP_SUPP_CHAN_WIDTH_MASK;
+ 		if (cap != IEEE80211_VHT_CAP_SUPP_CHAN_WIDTH_160MHZ &&
+ 		    cap != IEEE80211_VHT_CAP_SUPP_CHAN_WIDTH_160_80PLUS80MHZ)
+ 			return false;
+-		prohibited_flags |= IEEE80211_CHAN_NO_160MHZ;
+-		width = 160;
+ 		break;
+ 	default:
+ 		WARN_ON_ONCE(1);
 -- 
 2.7.4
 
