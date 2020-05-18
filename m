@@ -1,14 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jaisb-0002Wp-6c
+ id 1jaisb-0002Wn-5r
  for ath11k@lists.infradead.org; Mon, 18 May 2020 16:44:46 +0000
 From: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
-Subject: [PATCH 2/9] ath11k: add 6G frequency list supported by driver
-Date: Mon, 18 May 2020 09:44:17 -0700
-Message-Id: <20200518164424.29497-3-pradeepc@codeaurora.org>
+Subject: [PATCH 1/9] cfg80211: Add new channel flag to identify 6GHz PSC
+ channel
+Date: Mon, 18 May 2020 09:44:16 -0700
+Message-Id: <20200518164424.29497-2-pradeepc@codeaurora.org>
 In-Reply-To: <20200518164424.29497-1-pradeepc@codeaurora.org>
 References: <20200518164424.29497-1-pradeepc@codeaurora.org>
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -17,114 +19,61 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Johannes Berg <johannes@sipsolutions.net>, ath11k@lists.infradead.org
 Cc: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>, linux-wireless@vger.kernel.org
 
-This patch adds support for 6GHz frequency listing.
-
-Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/mac.c | 71 +++++++++++++++++++++++++++
- 1 file changed, 71 insertions(+)
-
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 36882562b976..f699e882949b 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -33,6 +33,15 @@
- 	.max_power              = 30, \
- }
- 
-+#define CHAN6G(_channel, _freq, _flags) { \
-+	.band                   = NL80211_BAND_6GHZ, \
-+	.hw_value               = (_channel), \
-+	.center_freq            = (_freq), \
-+	.flags                  = (_flags), \
-+	.max_antenna_gain       = 0, \
-+	.max_power              = 30, \
-+}
-+
- /* frame mode values are mapped as per enum ath11k_hw_txrx_mode */
- static unsigned int ath11k_frame_mode = ATH11K_HW_TXRX_NATIVE_WIFI;
- module_param_named(frame_mode, ath11k_frame_mode, uint, 0644);
-@@ -86,6 +95,68 @@ static const struct ieee80211_channel ath11k_5ghz_channels[] = {
- 	CHAN5G(173, 5865, 0),
- };
- 
-+static const struct ieee80211_channel ath11k_6ghz_channels[] = {
-+	CHAN6G(1, 5945, 0),
-+	CHAN6G(5, 5965, 0),
-+	CHAN6G(9, 5985, 0),
-+	CHAN6G(13, 6005, 0),
-+	CHAN6G(17, 6025, 0),
-+	CHAN6G(21, 6045, 0),
-+	CHAN6G(25, 6065, 0),
-+	CHAN6G(29, 6085, 0),
-+	CHAN6G(33, 6105, 0),
-+	CHAN6G(37, 6125, 0),
-+	CHAN6G(41, 6145, 0),
-+	CHAN6G(45, 6165, 0),
-+	CHAN6G(49, 6185, 0),
-+	CHAN6G(53, 6205, 0),
-+	CHAN6G(57, 6225, 0),
-+	CHAN6G(61, 6245, 0),
-+	CHAN6G(65, 6265, 0),
-+	CHAN6G(69, 6285, 0),
-+	CHAN6G(73, 6305, 0),
-+	CHAN6G(77, 6325, 0),
-+	CHAN6G(81, 6345, 0),
-+	CHAN6G(85, 6365, 0),
-+	CHAN6G(89, 6385, 0),
-+	CHAN6G(93, 6405, 0),
-+	CHAN6G(97, 6425, 0),
-+	CHAN6G(101, 6445, 0),
-+	CHAN6G(105, 6465, 0),
-+	CHAN6G(109, 6485, 0),
-+	CHAN6G(113, 6505, 0),
-+	CHAN6G(117, 6525, 0),
-+	CHAN6G(121, 6545, 0),
-+	CHAN6G(125, 6565, 0),
-+	CHAN6G(129, 6585, 0),
-+	CHAN6G(133, 6605, 0),
-+	CHAN6G(137, 6625, 0),
-+	CHAN6G(141, 6645, 0),
-+	CHAN6G(145, 6665, 0),
-+	CHAN6G(149, 6685, 0),
-+	CHAN6G(153, 6705, 0),
-+	CHAN6G(157, 6725, 0),
-+	CHAN6G(161, 6745, 0),
-+	CHAN6G(165, 6765, 0),
-+	CHAN6G(169, 6785, 0),
-+	CHAN6G(173, 6805, 0),
-+	CHAN6G(177, 6825, 0),
-+	CHAN6G(181, 6845, 0),
-+	CHAN6G(185, 6865, 0),
-+	CHAN6G(189, 6885, 0),
-+	CHAN6G(193, 6905, 0),
-+	CHAN6G(197, 6925, 0),
-+	CHAN6G(201, 6945, 0),
-+	CHAN6G(205, 6965, 0),
-+	CHAN6G(209, 6985, 0),
-+	CHAN6G(213, 7005, 0),
-+	CHAN6G(217, 7025, 0),
-+	CHAN6G(221, 7045, 0),
-+	CHAN6G(225, 7065, 0),
-+	CHAN6G(229, 7085, 0),
-+	CHAN6G(233, 7105, 0),
-+};
-+
- static struct ieee80211_rate ath11k_legacy_rates[] = {
- 	{ .bitrate = 10,
- 	  .hw_value = ATH11K_HW_RATE_CCK_LP_1M },
--- 
-2.17.1
-
-_______________________________________________
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+NkdIeiBjaGFubmVscyBhcmUgZGl2aWRlZCBpbnRvIHByZWZlcnJlZCBzY2FubmluZyBjaGFubmVs
+cyhQU0MpCmFuZCBub24tUFNDIGNoYW5uZWxzLiBPbmUgaW4gZXZlcnkgZm91ciAyME1IeiBjaGFu
+bmVscyBpcyBhIFBTQy4KU3BlYyBtYW5kYXRlcyB0byB1c2Ugb25seSBQU0MgY2hhbm5lbHMgYXMg
+cHJpbWFyeSBjaGFubmVscyBmb3IKc2V0dGluZyB1cCBCU1Mgb24gNkdIeiBvbmx5IEFQLgoKVGhl
+IHNldCBvZiAyMCBNSHogY2hhbm5lbHMgaW4gdGhlIDYgR0h6IGJhbmQsIHdpdGggY2hhbm5lbCBj
+ZW50ZXIKZnJlcXVlbmN5LCBjaF9hID0gQ2hhbm5lbCBzdGFydGluZyBmcmVxdWVuY3kg4oCTIDU1
+ICsgODAgw5cgbiAoTUh6KQphcmUgcmVmZXJyZWQgdG8gYXMgcHJlZmVycmVkIHNjYW5uaW5nIGNo
+YW5uZWxzIChQU0NzKSB3aGVyZSwKbiA9IDEsIOKApiwgMTUgYXMgcGVyIElFRUUgUDgwMi4xMWF4
+L0Q2LjAuCgpUaGlzIGZsYWcgYWxzbyB3aWxsIGJlIHVzZWQgd2hlbiBtYWtpbmcgc2Nhbm5pbmcg
+ZGVjaXNpb24gb24KNkdIeiBjaGFubmVscy4KClNpZ25lZC1vZmYtYnk6IFByYWRlZXAgS3VtYXIg
+Q2hpdHJhcHUgPHByYWRlZXBjQGNvZGVhdXJvcmEub3JnPgotLS0KIGluY2x1ZGUvbmV0L2NmZzgw
+MjExLmggfCAgMiArKwogbmV0L3dpcmVsZXNzL3JlZy5jICAgICB8IDE5ICsrKysrKysrKysrKysr
+KysrKysKIDIgZmlsZXMgY2hhbmdlZCwgMjEgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2lu
+Y2x1ZGUvbmV0L2NmZzgwMjExLmggYi9pbmNsdWRlL25ldC9jZmc4MDIxMS5oCmluZGV4IGZkNmE5
+NzNiMTI0OS4uY2EzZTlkZjdhZGZlIDEwMDY0NAotLS0gYS9pbmNsdWRlL25ldC9jZmc4MDIxMS5o
+CisrKyBiL2luY2x1ZGUvbmV0L2NmZzgwMjExLmgKQEAgLTk2LDYgKzk2LDcgQEAgc3RydWN0IHdp
+cGh5OwogICogQElFRUU4MDIxMV9DSEFOX05PXzEwTUhaOiAxMCBNSHogYmFuZHdpZHRoIGlzIG5v
+dCBwZXJtaXR0ZWQKICAqCW9uIHRoaXMgY2hhbm5lbC4KICAqIEBJRUVFODAyMTFfQ0hBTl9OT19I
+RTogSEUgb3BlcmF0aW9uIGlzIG5vdCBwZXJtaXR0ZWQgb24gdGhpcyBjaGFubmVsLgorICogQElF
+RUU4MDIxMV9DSEFOX1BTQzogNkdIeiBDaGFubmVsIGlzIFByZWZlcnJlZCBTY2FubmluZyBDaGFu
+bmVsKFBTQykKICAqCiAgKi8KIGVudW0gaWVlZTgwMjExX2NoYW5uZWxfZmxhZ3MgewpAQCAtMTEz
+LDYgKzExNCw3IEBAIGVudW0gaWVlZTgwMjExX2NoYW5uZWxfZmxhZ3MgewogCUlFRUU4MDIxMV9D
+SEFOX05PXzIwTUhaCQk9IDE8PDExLAogCUlFRUU4MDIxMV9DSEFOX05PXzEwTUhaCQk9IDE8PDEy
+LAogCUlFRUU4MDIxMV9DSEFOX05PX0hFCQk9IDE8PDEzLAorCUlFRUU4MDIxMV9DSEFOX1BTQwkJ
+PSAxPDwxNCwKIH07CiAKICNkZWZpbmUgSUVFRTgwMjExX0NIQU5fTk9fSFQ0MCBcCmRpZmYgLS1n
+aXQgYS9uZXQvd2lyZWxlc3MvcmVnLmMgYi9uZXQvd2lyZWxlc3MvcmVnLmMKaW5kZXggMGQ3NGEz
+MWVmMGFiLi40ZWJhYTU3ZTYwZTQgMTAwNjQ0Ci0tLSBhL25ldC93aXJlbGVzcy9yZWcuYworKysg
+Yi9uZXQvd2lyZWxlc3MvcmVnLmMKQEAgLTIwMjMsNiArMjAyMywyMSBAQCBzdGF0aWMgYm9vbCBp
+c19odDQwX2FsbG93ZWQoc3RydWN0IGllZWU4MDIxMV9jaGFubmVsICpjaGFuKQogCXJldHVybiB0
+cnVlOwogfQogCitzdGF0aWMgYm9vbCByZWdfaXNfNmdoel9jaGFubmVsX3BzYyhzdHJ1Y3QgaWVl
+ZTgwMjExX2NoYW5uZWwgKmNoYW4pCit7CisJLyoKKwkgKiBGcm9tIElFRUUgUDgwMi4xMWF4L0Q2
+LjA6IFRoZSBzZXQgb2YgMjAgTUh6IGNoYW5uZWxzIGluIHRoZSA2IEdIegorCSAqIGJhbmQsIHdp
+dGggY2hhbm5lbCBjZW50ZXIgZnJlcXVlbmN5LCBjaF9hID0gQ2hhbm5lbCBzdGFydGluZworCSAq
+IGZyZXF1ZW5jeSDigJMgNTUgKyA4MCDDlyBuIChNSHopIGFyZSByZWZlcnJlZCB0byBhcyBwcmVm
+ZXJyZWQgc2Nhbm5pbmcKKwkgKiBjaGFubmVscyAoUFNDcykuIENoYW5uZWwgc3RhcnRpbmcgZnJl
+cXVlbmN5IGlzIGRlZmluZWQgaW4gMjcuMy4yMy4yCisJICogKENoYW5uZWwgYWxsb2NhdGlvbiBp
+biB0aGUgNiBHSHogYmFuZCksIGFuZCBuID0gMSwg4oCmLCAxNS4KKwkgKi8KKwlpZiAoISgoKGNo
+YW4tPmNlbnRlcl9mcmVxIC0gNTk0MCArIDU1KSA+PiA0KSAlIDUpKQorCQlyZXR1cm4gdHJ1ZTsK
+KworCXJldHVybiBmYWxzZTsKK30KKwogc3RhdGljIHZvaWQgcmVnX3Byb2Nlc3NfaHRfZmxhZ3Nf
+Y2hhbm5lbChzdHJ1Y3Qgd2lwaHkgKndpcGh5LAogCQkJCQkgc3RydWN0IGllZWU4MDIxMV9jaGFu
+bmVsICpjaGFubmVsKQogewpAQCAtMjMwNSw2ICsyMzIwLDEwIEBAIHN0YXRpYyB2b2lkIGhhbmRs
+ZV9jaGFubmVsX2N1c3RvbShzdHJ1Y3Qgd2lwaHkgKndpcGh5LAogCWVsc2UKIAkJY2hhbi0+Zmxh
+Z3MgfD0gbWFwX3JlZ2RvbV9mbGFncyhyZWdfcnVsZS0+ZmxhZ3MpIHwgYndfZmxhZ3M7CiAKKwlp
+ZiAoY2hhbi0+YmFuZCA9PSBOTDgwMjExX0JBTkRfNkdIWiAmJgorCSAgICByZWdfaXNfNmdoel9j
+aGFubmVsX3BzYyhjaGFuKSkKKwkJY2hhbi0+ZmxhZ3MgfD0gSUVFRTgwMjExX0NIQU5fUFNDOwor
+CiAJY2hhbi0+bWF4X2FudGVubmFfZ2FpbiA9IChpbnQpIE1CSV9UT19EQkkocG93ZXJfcnVsZS0+
+bWF4X2FudGVubmFfZ2Fpbik7CiAJY2hhbi0+bWF4X3JlZ19wb3dlciA9IGNoYW4tPm1heF9wb3dl
+ciA9CiAJCShpbnQpIE1CTV9UT19EQk0ocG93ZXJfcnVsZS0+bWF4X2VpcnApOwotLSAKMi4xNy4x
+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphdGgxMWsg
+bWFpbGluZyBsaXN0CmF0aDExa0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZy
+YWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vYXRoMTFrCg==
