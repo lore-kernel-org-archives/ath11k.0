@@ -1,16 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jaisb-0002Wn-5r
- for ath11k@lists.infradead.org; Mon, 18 May 2020 16:44:46 +0000
+ id 1jaisY-0002Zf-K8
+ for ath11k@lists.infradead.org; Mon, 18 May 2020 16:44:41 +0000
 From: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
-Subject: [PATCH 1/9] cfg80211: Add new channel flag to identify 6GHz PSC
- channel
-Date: Mon, 18 May 2020 09:44:16 -0700
-Message-Id: <20200518164424.29497-2-pradeepc@codeaurora.org>
+Subject: [PATCH 8/9] ath11k: Send multiple scan_chan_list messages if required
+Date: Mon, 18 May 2020 09:44:23 -0700
+Message-Id: <20200518164424.29497-9-pradeepc@codeaurora.org>
 In-Reply-To: <20200518164424.29497-1-pradeepc@codeaurora.org>
 References: <20200518164424.29497-1-pradeepc@codeaurora.org>
-MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -19,61 +17,241 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Johannes Berg <johannes@sipsolutions.net>, ath11k@lists.infradead.org
 Cc: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>, linux-wireless@vger.kernel.org
 
-NkdIeiBjaGFubmVscyBhcmUgZGl2aWRlZCBpbnRvIHByZWZlcnJlZCBzY2FubmluZyBjaGFubmVs
-cyhQU0MpCmFuZCBub24tUFNDIGNoYW5uZWxzLiBPbmUgaW4gZXZlcnkgZm91ciAyME1IeiBjaGFu
-bmVscyBpcyBhIFBTQy4KU3BlYyBtYW5kYXRlcyB0byB1c2Ugb25seSBQU0MgY2hhbm5lbHMgYXMg
-cHJpbWFyeSBjaGFubmVscyBmb3IKc2V0dGluZyB1cCBCU1Mgb24gNkdIeiBvbmx5IEFQLgoKVGhl
-IHNldCBvZiAyMCBNSHogY2hhbm5lbHMgaW4gdGhlIDYgR0h6IGJhbmQsIHdpdGggY2hhbm5lbCBj
-ZW50ZXIKZnJlcXVlbmN5LCBjaF9hID0gQ2hhbm5lbCBzdGFydGluZyBmcmVxdWVuY3kg4oCTIDU1
-ICsgODAgw5cgbiAoTUh6KQphcmUgcmVmZXJyZWQgdG8gYXMgcHJlZmVycmVkIHNjYW5uaW5nIGNo
-YW5uZWxzIChQU0NzKSB3aGVyZSwKbiA9IDEsIOKApiwgMTUgYXMgcGVyIElFRUUgUDgwMi4xMWF4
-L0Q2LjAuCgpUaGlzIGZsYWcgYWxzbyB3aWxsIGJlIHVzZWQgd2hlbiBtYWtpbmcgc2Nhbm5pbmcg
-ZGVjaXNpb24gb24KNkdIeiBjaGFubmVscy4KClNpZ25lZC1vZmYtYnk6IFByYWRlZXAgS3VtYXIg
-Q2hpdHJhcHUgPHByYWRlZXBjQGNvZGVhdXJvcmEub3JnPgotLS0KIGluY2x1ZGUvbmV0L2NmZzgw
-MjExLmggfCAgMiArKwogbmV0L3dpcmVsZXNzL3JlZy5jICAgICB8IDE5ICsrKysrKysrKysrKysr
-KysrKysKIDIgZmlsZXMgY2hhbmdlZCwgMjEgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2lu
-Y2x1ZGUvbmV0L2NmZzgwMjExLmggYi9pbmNsdWRlL25ldC9jZmc4MDIxMS5oCmluZGV4IGZkNmE5
-NzNiMTI0OS4uY2EzZTlkZjdhZGZlIDEwMDY0NAotLS0gYS9pbmNsdWRlL25ldC9jZmc4MDIxMS5o
-CisrKyBiL2luY2x1ZGUvbmV0L2NmZzgwMjExLmgKQEAgLTk2LDYgKzk2LDcgQEAgc3RydWN0IHdp
-cGh5OwogICogQElFRUU4MDIxMV9DSEFOX05PXzEwTUhaOiAxMCBNSHogYmFuZHdpZHRoIGlzIG5v
-dCBwZXJtaXR0ZWQKICAqCW9uIHRoaXMgY2hhbm5lbC4KICAqIEBJRUVFODAyMTFfQ0hBTl9OT19I
-RTogSEUgb3BlcmF0aW9uIGlzIG5vdCBwZXJtaXR0ZWQgb24gdGhpcyBjaGFubmVsLgorICogQElF
-RUU4MDIxMV9DSEFOX1BTQzogNkdIeiBDaGFubmVsIGlzIFByZWZlcnJlZCBTY2FubmluZyBDaGFu
-bmVsKFBTQykKICAqCiAgKi8KIGVudW0gaWVlZTgwMjExX2NoYW5uZWxfZmxhZ3MgewpAQCAtMTEz
-LDYgKzExNCw3IEBAIGVudW0gaWVlZTgwMjExX2NoYW5uZWxfZmxhZ3MgewogCUlFRUU4MDIxMV9D
-SEFOX05PXzIwTUhaCQk9IDE8PDExLAogCUlFRUU4MDIxMV9DSEFOX05PXzEwTUhaCQk9IDE8PDEy
-LAogCUlFRUU4MDIxMV9DSEFOX05PX0hFCQk9IDE8PDEzLAorCUlFRUU4MDIxMV9DSEFOX1BTQwkJ
-PSAxPDwxNCwKIH07CiAKICNkZWZpbmUgSUVFRTgwMjExX0NIQU5fTk9fSFQ0MCBcCmRpZmYgLS1n
-aXQgYS9uZXQvd2lyZWxlc3MvcmVnLmMgYi9uZXQvd2lyZWxlc3MvcmVnLmMKaW5kZXggMGQ3NGEz
-MWVmMGFiLi40ZWJhYTU3ZTYwZTQgMTAwNjQ0Ci0tLSBhL25ldC93aXJlbGVzcy9yZWcuYworKysg
-Yi9uZXQvd2lyZWxlc3MvcmVnLmMKQEAgLTIwMjMsNiArMjAyMywyMSBAQCBzdGF0aWMgYm9vbCBp
-c19odDQwX2FsbG93ZWQoc3RydWN0IGllZWU4MDIxMV9jaGFubmVsICpjaGFuKQogCXJldHVybiB0
-cnVlOwogfQogCitzdGF0aWMgYm9vbCByZWdfaXNfNmdoel9jaGFubmVsX3BzYyhzdHJ1Y3QgaWVl
-ZTgwMjExX2NoYW5uZWwgKmNoYW4pCit7CisJLyoKKwkgKiBGcm9tIElFRUUgUDgwMi4xMWF4L0Q2
-LjA6IFRoZSBzZXQgb2YgMjAgTUh6IGNoYW5uZWxzIGluIHRoZSA2IEdIegorCSAqIGJhbmQsIHdp
-dGggY2hhbm5lbCBjZW50ZXIgZnJlcXVlbmN5LCBjaF9hID0gQ2hhbm5lbCBzdGFydGluZworCSAq
-IGZyZXF1ZW5jeSDigJMgNTUgKyA4MCDDlyBuIChNSHopIGFyZSByZWZlcnJlZCB0byBhcyBwcmVm
-ZXJyZWQgc2Nhbm5pbmcKKwkgKiBjaGFubmVscyAoUFNDcykuIENoYW5uZWwgc3RhcnRpbmcgZnJl
-cXVlbmN5IGlzIGRlZmluZWQgaW4gMjcuMy4yMy4yCisJICogKENoYW5uZWwgYWxsb2NhdGlvbiBp
-biB0aGUgNiBHSHogYmFuZCksIGFuZCBuID0gMSwg4oCmLCAxNS4KKwkgKi8KKwlpZiAoISgoKGNo
-YW4tPmNlbnRlcl9mcmVxIC0gNTk0MCArIDU1KSA+PiA0KSAlIDUpKQorCQlyZXR1cm4gdHJ1ZTsK
-KworCXJldHVybiBmYWxzZTsKK30KKwogc3RhdGljIHZvaWQgcmVnX3Byb2Nlc3NfaHRfZmxhZ3Nf
-Y2hhbm5lbChzdHJ1Y3Qgd2lwaHkgKndpcGh5LAogCQkJCQkgc3RydWN0IGllZWU4MDIxMV9jaGFu
-bmVsICpjaGFubmVsKQogewpAQCAtMjMwNSw2ICsyMzIwLDEwIEBAIHN0YXRpYyB2b2lkIGhhbmRs
-ZV9jaGFubmVsX2N1c3RvbShzdHJ1Y3Qgd2lwaHkgKndpcGh5LAogCWVsc2UKIAkJY2hhbi0+Zmxh
-Z3MgfD0gbWFwX3JlZ2RvbV9mbGFncyhyZWdfcnVsZS0+ZmxhZ3MpIHwgYndfZmxhZ3M7CiAKKwlp
-ZiAoY2hhbi0+YmFuZCA9PSBOTDgwMjExX0JBTkRfNkdIWiAmJgorCSAgICByZWdfaXNfNmdoel9j
-aGFubmVsX3BzYyhjaGFuKSkKKwkJY2hhbi0+ZmxhZ3MgfD0gSUVFRTgwMjExX0NIQU5fUFNDOwor
-CiAJY2hhbi0+bWF4X2FudGVubmFfZ2FpbiA9IChpbnQpIE1CSV9UT19EQkkocG93ZXJfcnVsZS0+
-bWF4X2FudGVubmFfZ2Fpbik7CiAJY2hhbi0+bWF4X3JlZ19wb3dlciA9IGNoYW4tPm1heF9wb3dl
-ciA9CiAJCShpbnQpIE1CTV9UT19EQk0ocG93ZXJfcnVsZS0+bWF4X2VpcnApOwotLSAKMi4xNy4x
-CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphdGgxMWsg
-bWFpbGluZyBsaXN0CmF0aDExa0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZy
-YWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vYXRoMTFrCg==
+With addition of 6Ghz channels, it is possible that wmi buffer size can
+exceed the maximum wmi buffer size. So iterate over the channel list,
+and send multiple messages till channel list is empty.
+Also mark PSC channel flag for 6GHz channels accordingly.
+
+Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
+---
+ drivers/net/wireless/ath/ath11k/wmi.c | 170 ++++++++++++++------------
+ drivers/net/wireless/ath/ath11k/wmi.h |   3 +
+ 2 files changed, 98 insertions(+), 75 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index dfa4bd7b44ad..a88278ba5fec 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -2194,91 +2194,111 @@ int ath11k_wmi_send_scan_chan_list_cmd(struct ath11k *ar,
+ 	struct channel_param *tchan_info;
+ 	struct wmi_tlv *tlv;
+ 	void *ptr;
+-	int i, ret, len;
++	int i, ret = 0, len;
++	u16 num_send_chans, num_sends = 0, max_chan_limit = 0;
+ 	u32 *reg1, *reg2;
+ 
+-	len = sizeof(*cmd) + TLV_HDR_SIZE +
+-		 sizeof(*chan_info) * chan_list->nallchans;
+-
+-	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, len);
+-	if (!skb)
+-		return -ENOMEM;
+-
+-	cmd = (struct wmi_scan_chan_list_cmd *)skb->data;
+-	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_SCAN_CHAN_LIST_CMD) |
+-			  FIELD_PREP(WMI_TLV_LEN, sizeof(*cmd) - TLV_HDR_SIZE);
+-
+-	ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
+-		   "WMI no.of chan = %d len = %d\n", chan_list->nallchans, len);
+-	cmd->pdev_id = chan_list->pdev_id;
+-	cmd->num_scan_chans = chan_list->nallchans;
+-
+-	ptr = skb->data + sizeof(*cmd);
+-
+-	len = sizeof(*chan_info) * chan_list->nallchans;
+-	tlv = ptr;
+-	tlv->header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_ARRAY_STRUCT) |
+-		      FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
+-	ptr += TLV_HDR_SIZE;
+-
+ 	tchan_info = &chan_list->ch_param[0];
++	while (chan_list->nallchans) {
++		len = sizeof(*cmd) + TLV_HDR_SIZE;
++		max_chan_limit =
++			(wmi->wmi_ab->max_msg_len[ar->pdev_idx] - len) /
++			sizeof(*chan_info);
++
++		if (chan_list->nallchans > max_chan_limit)
++			num_send_chans = max_chan_limit;
++		else
++			num_send_chans = chan_list->nallchans;
++
++		chan_list->nallchans -= num_send_chans;
++		len += sizeof(*chan_info) * num_send_chans;
++
++		skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, len);
++		if (!skb)
++			return -ENOMEM;
+ 
+-	for (i = 0; i < chan_list->nallchans; ++i) {
+-		chan_info = ptr;
+-		memset(chan_info, 0, sizeof(*chan_info));
+-		len = sizeof(*chan_info);
+-		chan_info->tlv_header = FIELD_PREP(WMI_TLV_TAG,
+-						   WMI_TAG_CHANNEL) |
+-					FIELD_PREP(WMI_TLV_LEN,
+-						   len - TLV_HDR_SIZE);
+-
+-		reg1 = &chan_info->reg_info_1;
+-		reg2 = &chan_info->reg_info_2;
+-		chan_info->mhz = tchan_info->mhz;
+-		chan_info->band_center_freq1 = tchan_info->cfreq1;
+-		chan_info->band_center_freq2 = tchan_info->cfreq2;
+-
+-		if (tchan_info->is_chan_passive)
+-			chan_info->info |= WMI_CHAN_INFO_PASSIVE;
+-		if (tchan_info->allow_he)
+-			chan_info->info |= WMI_CHAN_INFO_ALLOW_HE;
+-		else if (tchan_info->allow_vht)
+-			chan_info->info |= WMI_CHAN_INFO_ALLOW_VHT;
+-		else if (tchan_info->allow_ht)
+-			chan_info->info |= WMI_CHAN_INFO_ALLOW_HT;
+-		if (tchan_info->half_rate)
+-			chan_info->info |= WMI_CHAN_INFO_HALF_RATE;
+-		if (tchan_info->quarter_rate)
+-			chan_info->info |= WMI_CHAN_INFO_QUARTER_RATE;
+-
+-		chan_info->info |= FIELD_PREP(WMI_CHAN_INFO_MODE,
+-					      tchan_info->phy_mode);
+-		*reg1 |= FIELD_PREP(WMI_CHAN_REG_INFO1_MIN_PWR,
+-				    tchan_info->minpower);
+-		*reg1 |= FIELD_PREP(WMI_CHAN_REG_INFO1_MAX_PWR,
+-				    tchan_info->maxpower);
+-		*reg1 |= FIELD_PREP(WMI_CHAN_REG_INFO1_MAX_REG_PWR,
+-				    tchan_info->maxregpower);
+-		*reg1 |= FIELD_PREP(WMI_CHAN_REG_INFO1_REG_CLS,
+-				    tchan_info->reg_class_id);
+-		*reg2 |= FIELD_PREP(WMI_CHAN_REG_INFO2_ANT_MAX,
+-				    tchan_info->antennamax);
++		cmd = (struct wmi_scan_chan_list_cmd *)skb->data;
++		cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_SCAN_CHAN_LIST_CMD) |
++			FIELD_PREP(WMI_TLV_LEN, sizeof(*cmd) - TLV_HDR_SIZE);
++		cmd->pdev_id = chan_list->pdev_id;
++		cmd->num_scan_chans = num_send_chans;
++		if (num_sends)
++			cmd->flags |= WMI_APPEND_TO_EXISTING_CHAN_LIST_FLAG;
+ 
+ 		ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
+-			   "WMI chan scan list chan[%d] = %u\n",
+-			   i, chan_info->mhz);
++			   "WMI no.of chan = %d len = %d pdev_id = %d num_sends = %d\n",
++			   num_send_chans, len, cmd->pdev_id, num_sends);
+ 
+-		ptr += sizeof(*chan_info);
++		ptr = skb->data + sizeof(*cmd);
+ 
+-		tchan_info++;
+-	}
++		len = sizeof(*chan_info) * num_send_chans;
++		tlv = ptr;
++		tlv->header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_ARRAY_STRUCT) |
++			      FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
++		ptr += TLV_HDR_SIZE;
+ 
+-	ret = ath11k_wmi_cmd_send(wmi, skb, WMI_SCAN_CHAN_LIST_CMDID);
+-	if (ret) {
+-		ath11k_warn(ar->ab, "failed to send WMI_SCAN_CHAN_LIST cmd\n");
+-		dev_kfree_skb(skb);
+-	}
++		for (i = 0; i < num_send_chans; ++i) {
++			chan_info = ptr;
++			memset(chan_info, 0, sizeof(*chan_info));
++			len = sizeof(*chan_info);
++			chan_info->tlv_header = FIELD_PREP(WMI_TLV_TAG,
++							   WMI_TAG_CHANNEL) |
++						FIELD_PREP(WMI_TLV_LEN,
++							   len - TLV_HDR_SIZE);
++
++			reg1 = &chan_info->reg_info_1;
++			reg2 = &chan_info->reg_info_2;
++			chan_info->mhz = tchan_info->mhz;
++			chan_info->band_center_freq1 = tchan_info->cfreq1;
++			chan_info->band_center_freq2 = tchan_info->cfreq2;
++
++			if (tchan_info->is_chan_passive)
++				chan_info->info |= WMI_CHAN_INFO_PASSIVE;
++			if (tchan_info->allow_he)
++				chan_info->info |= WMI_CHAN_INFO_ALLOW_HE;
++			else if (tchan_info->allow_vht)
++				chan_info->info |= WMI_CHAN_INFO_ALLOW_VHT;
++			else if (tchan_info->allow_ht)
++				chan_info->info |= WMI_CHAN_INFO_ALLOW_HT;
++			if (tchan_info->half_rate)
++				chan_info->info |= WMI_CHAN_INFO_HALF_RATE;
++			if (tchan_info->quarter_rate)
++				chan_info->info |= WMI_CHAN_INFO_QUARTER_RATE;
++			if (tchan_info->psc_channel)
++				chan_info->info |= WMI_CHAN_INFO_PSC;
++
++			chan_info->info |= FIELD_PREP(WMI_CHAN_INFO_MODE,
++						      tchan_info->phy_mode);
++			*reg1 |= FIELD_PREP(WMI_CHAN_REG_INFO1_MIN_PWR,
++					    tchan_info->minpower);
++			*reg1 |= FIELD_PREP(WMI_CHAN_REG_INFO1_MAX_PWR,
++					    tchan_info->maxpower);
++			*reg1 |= FIELD_PREP(WMI_CHAN_REG_INFO1_MAX_REG_PWR,
++					    tchan_info->maxregpower);
++			*reg1 |= FIELD_PREP(WMI_CHAN_REG_INFO1_REG_CLS,
++					    tchan_info->reg_class_id);
++			*reg2 |= FIELD_PREP(WMI_CHAN_REG_INFO2_ANT_MAX,
++					    tchan_info->antennamax);
++
++			ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
++				   "WMI chan scan list chan[%d] = %u, chan_info->info %8x\n",
++				   i, chan_info->mhz, chan_info->info);
++
++			ptr += sizeof(*chan_info);
++
++			tchan_info++;
++		}
+ 
++		ret = ath11k_wmi_cmd_send(wmi, skb, WMI_SCAN_CHAN_LIST_CMDID);
++		if (ret) {
++			ath11k_warn(ar->ab, "failed to send WMI_SCAN_CHAN_LIST cmd\n");
++			dev_kfree_skb(skb);
++			goto end;
++		}
++
++		num_sends++;
++	}
++end:
+ 	return ret;
+ }
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index 4937d02839fc..319ad7241e01 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -54,6 +54,8 @@ struct wmi_tlv {
+ #define WLAN_SCAN_PARAMS_MAX_BSSID   4
+ #define WLAN_SCAN_PARAMS_MAX_IE_LEN  256
+ 
++#define WMI_APPEND_TO_EXISTING_CHAN_LIST_FLAG 1
++
+ #define WMI_BA_MODE_BUFFER_SIZE_256  3
+ /*
+  * HW mode config type replicated from FW header
+@@ -3271,6 +3273,7 @@ struct  wmi_bcn_send_from_host_cmd {
+ #define WMI_CHAN_INFO_QUARTER_RATE	BIT(15)
+ #define WMI_CHAN_INFO_DFS_FREQ2		BIT(16)
+ #define WMI_CHAN_INFO_ALLOW_HE		BIT(17)
++#define WMI_CHAN_INFO_PSC		BIT(18)
+ 
+ #define WMI_CHAN_REG_INFO1_MIN_PWR	GENMASK(7, 0)
+ #define WMI_CHAN_REG_INFO1_MAX_PWR	GENMASK(15, 8)
+-- 
+2.17.1
+
+_______________________________________________
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
