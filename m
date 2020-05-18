@@ -1,15 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail26.static.mailgun.info ([104.130.122.26])
+Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jaisY-0002Ys-B2
- for ath11k@lists.infradead.org; Mon, 18 May 2020 16:44:41 +0000
+ id 1jaisX-0002Wn-1u
+ for ath11k@lists.infradead.org; Mon, 18 May 2020 16:44:39 +0000
 From: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
-Subject: [PATCH 5/9] ath11k: extend peer_assoc_cmd for 6GHz band
-Date: Mon, 18 May 2020 09:44:20 -0700
-Message-Id: <20200518164424.29497-6-pradeepc@codeaurora.org>
+Subject: [PATCH 3/9] ath11k: add support for 6GHz radio in driver
+Date: Mon, 18 May 2020 09:44:18 -0700
+Message-Id: <20200518164424.29497-4-pradeepc@codeaurora.org>
 In-Reply-To: <20200518164424.29497-1-pradeepc@codeaurora.org>
 References: <20200518164424.29497-1-pradeepc@codeaurora.org>
-MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -18,59 +17,218 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Johannes Berg <johannes@sipsolutions.net>, ath11k@lists.infradead.org
 Cc: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>, linux-wireless@vger.kernel.org
 
-VGhpcyBhZGRzIHN1cHBvcnQgcmVxdWlyZWQgZm9yIGNvbmZpZ3VyaW5nIG1pbl9kYXRhX3JhdGUg
-b2YgNkdIeiBvcGVyIElFCmFuZCBwZWVyX2hlX2NhcHNfNmdoeiBpbiBwZWVyIGFzc29jIGNvbW1h
-bmQuIFRoZSBNaW5pbXVtIFJhdGUgZmllbGQKaW5kaWNhdGVzIHRoZSBtaW5pbXVtIHJhdGUsIGlu
-IHVuaXRzIG9mIDEgTWIvcywgdGhhdCB0aGUgbm9uLUFQIFNUQSBpcwphbGxvd2VkIHRvIHVzZSBm
-b3Igc2VuZGluZyBQUERVcyBhcyBkZWZpbmVkIGluIElFRUUgUDgwMi4xMWF44oSiL0Q2LjAuCgpT
-aWduZWQtb2ZmLWJ5OiBQcmFkZWVwIEt1bWFyIENoaXRyYXB1IDxwcmFkZWVwY0Bjb2RlYXVyb3Jh
-Lm9yZz4KLS0tCiBkcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL3dtaS5jIHwgMiArKwog
-ZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay93bWkuaCB8IDUgKysrKysKIDIgZmlsZXMg
-Y2hhbmdlZCwgNyBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9uZXQvd2lyZWxl
-c3MvYXRoL2F0aDExay93bWkuYyBiL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvd21p
-LmMKaW5kZXggYzI5OWFkMDkzNmY1Li5jMmUzYTRkNmYwN2UgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMv
-bmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvd21pLmMKKysrIGIvZHJpdmVycy9uZXQvd2lyZWxlc3Mv
-YXRoL2F0aDExay93bWkuYwpAQCAtMTc4OSw2ICsxNzg5LDcgQEAgaW50IGF0aDExa193bWlfc2Vu
-ZF9wZWVyX2Fzc29jX2NtZChzdHJ1Y3QgYXRoMTFrICphciwKIAljbWQtPnBlZXJfaGVfY2FwX2lu
-Zm8gPSBwYXJhbS0+cGVlcl9oZV9jYXBfbWFjaW5mb1swXTsKIAljbWQtPnBlZXJfaGVfY2FwX2lu
-Zm9fZXh0ID0gcGFyYW0tPnBlZXJfaGVfY2FwX21hY2luZm9bMV07CiAJY21kLT5wZWVyX2hlX2Nh
-cF9pbmZvX2ludGVybmFsID0gcGFyYW0tPnBlZXJfaGVfY2FwX21hY2luZm9faW50ZXJuYWw7CisJ
-Y21kLT5wZWVyX2hlX2NhcHNfNmdoeiA9IHBhcmFtLT5wZWVyX2hlX2NhcHNfNmdoejsKIAljbWQt
-PnBlZXJfaGVfb3BzID0gcGFyYW0tPnBlZXJfaGVfb3BzOwogCW1lbWNweSgmY21kLT5wZWVyX2hl
-X2NhcF9waHksICZwYXJhbS0+cGVlcl9oZV9jYXBfcGh5aW5mbywKIAkgICAgICAgc2l6ZW9mKHBh
-cmFtLT5wZWVyX2hlX2NhcF9waHlpbmZvKSk7CkBAIC0xODQyLDYgKzE4NDMsNyBAQCBpbnQgYXRo
-MTFrX3dtaV9zZW5kX3BlZXJfYXNzb2NfY21kKHN0cnVjdCBhdGgxMWsgKmFyLAogCiAJLyogSEUg
-UmF0ZXMgKi8KIAljbWQtPnBlZXJfaGVfbWNzID0gcGFyYW0tPnBlZXJfaGVfbWNzX2NvdW50Owor
-CWNtZC0+bWluX2RhdGFfcmF0ZSA9IHBhcmFtLT5taW5fZGF0YV9yYXRlOwogCiAJcHRyICs9IHNp
-emVvZigqbWNzKTsKIApkaWZmIC0tZ2l0IGEvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDEx
-ay93bWkuaCBiL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvd21pLmgKaW5kZXggYWZh
-M2M0Y2Y5MGU5Li5mZDgyY2ZmNzUzN2IgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvbmV0L3dpcmVsZXNz
-L2F0aC9hdGgxMWsvd21pLmgKKysrIGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay93
-bWkuaApAQCAtMTAxMSw2ICsxMDExLDcgQEAgZW51bSB3bWlfdGx2X3ZkZXZfcGFyYW0gewogCVdN
-SV9WREVWX1BBUkFNX0ZJTFNfTUFYX0NIQU5ORUxfR1VBUkRfVElNRSwKIAlXTUlfVkRFVl9QQVJB
-TV9CQV9NT0RFID0gMHg3ZSwKIAlXTUlfVkRFVl9QQVJBTV9TRVRfSEVfU09VTkRJTkdfTU9ERSA9
-IDB4ODcsCisJV01JX1ZERVZfUEFSQU1fNkdIWl9QQVJBTVMgPSAweDk5LAogCVdNSV9WREVWX1BB
-UkFNX1BST1RPVFlQRSA9IDB4ODAwMCwKIAlXTUlfVkRFVl9QQVJBTV9CU1NfQ09MT1IsCiAJV01J
-X1ZERVZfUEFSQU1fU0VUX0hFTVVfTU9ERSwKQEAgLTM0NDQsNiArMzQ0NSw3IEBAIHN0cnVjdCBw
-ZWVyX2Fzc29jX3BhcmFtcyB7CiAJdTMyIHR4X21heF9yYXRlOwogCXUzMiB0eF9tY3Nfc2V0Owog
-CXU4IHZodF9jYXBhYmxlOworCXU4IG1pbl9kYXRhX3JhdGU7CiAJdTMyIHR4X21heF9tY3NfbnNz
-OwogCXUzMiBwZWVyX2J3X3J4bnNzX292ZXJyaWRlOwogCWJvb2wgaXNfcG1mX2VuYWJsZWQ7CkBA
-IC0zNDcyLDYgKzM0NzQsNyBAQCBzdHJ1Y3QgcGVlcl9hc3NvY19wYXJhbXMgewogCWJvb2wgaGVf
-ZmxhZzsKIAl1MzIgcGVlcl9oZV9jYXBfbWFjaW5mb1syXTsKIAl1MzIgcGVlcl9oZV9jYXBfbWFj
-aW5mb19pbnRlcm5hbDsKKwl1MzIgcGVlcl9oZV9jYXBzXzZnaHo7CiAJdTMyIHBlZXJfaGVfb3Bz
-OwogCXUzMiBwZWVyX2hlX2NhcF9waHlpbmZvW1dNSV9IT1NUX01BWF9IRUNBUF9QSFlfU0laRV07
-CiAJdTMyIHBlZXJfaGVfbWNzX2NvdW50OwpAQCAtMzUwOSw2ICszNTEyLDggQEAgc3RydWN0ICB3
-bWlfcGVlcl9hc3NvY19jb21wbGV0ZV9jbWQgewogCXUzMiBwZWVyX2hlX21jczsKIAl1MzIgcGVl
-cl9oZV9jYXBfaW5mb19leHQ7CiAJdTMyIHBlZXJfaGVfY2FwX2luZm9faW50ZXJuYWw7CisJdTMy
-IG1pbl9kYXRhX3JhdGU7CisJdTMyIHBlZXJfaGVfY2Fwc182Z2h6OwogfSBfX3BhY2tlZDsKIAog
-c3RydWN0IHdtaV9zdG9wX3NjYW5fY21kIHsKLS0gCjIuMTcuMQoKX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtA
-bGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL2F0aDExawo=
+This patch adds 6GHz band support and mac80211 registration for
+the 6G phy radio.
+
+Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
+---
+ drivers/net/wireless/ath/ath11k/core.h |  6 +-
+ drivers/net/wireless/ath/ath11k/mac.c  | 89 +++++++++++++++++++++-----
+ drivers/net/wireless/ath/ath11k/wmi.c  | 11 ++++
+ 3 files changed, 89 insertions(+), 17 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index 7e51445cfa20..83bffd7f633a 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -353,7 +353,10 @@ struct ath11k_sta {
+ #endif
+ };
+ 
+-#define ATH11K_NUM_CHANS 41
++#define ATH11K_MIN_5G_FREQ 4150
++#define ATH11K_MIN_6G_FREQ 5935
++#define ATH11K_MAX_6G_FREQ 7105
++#define ATH11K_NUM_CHANS 100
+ #define ATH11K_MAX_5G_CHAN 173
+ 
+ enum ath11k_state {
+@@ -431,6 +434,7 @@ struct ath11k {
+ 	u32 vht_cap_info;
+ 	struct ath11k_he ar_he;
+ 	enum ath11k_state state;
++	bool supports_6ghz;
+ 	struct {
+ 		struct completion started;
+ 		struct completion completed;
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index f699e882949b..8ddc7dad33e1 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -3492,6 +3492,18 @@ static void ath11k_mac_setup_ht_vht_cap(struct ath11k *ar,
+ 		band->vht_cap = ath11k_create_vht_cap(ar, rate_cap_tx_chainmask,
+ 						      rate_cap_rx_chainmask);
+ 	}
++
++	if (cap->supported_bands & WMI_HOST_WLAN_5G_CAP &&
++	    ar->supports_6ghz) {
++		band = &ar->mac.sbands[NL80211_BAND_6GHZ];
++		ht_cap = cap->band[NL80211_BAND_6GHZ].ht_cap_info;
++		if (ht_cap_info)
++			*ht_cap_info = ht_cap;
++		band->ht_cap = ath11k_create_ht_cap(ar, ht_cap,
++						    rate_cap_rx_chainmask);
++		band->vht_cap = ath11k_create_vht_cap(ar, rate_cap_tx_chainmask,
++						      rate_cap_rx_chainmask);
++	}
+ }
+ 
+ static int ath11k_check_chain_mask(struct ath11k *ar, u32 ant, bool is_tx_ant)
+@@ -3746,6 +3758,17 @@ static void ath11k_mac_setup_he_cap(struct ath11k *ar,
+ 		band->iftype_data = ar->mac.iftype[NL80211_BAND_5GHZ];
+ 		band->n_iftype_data = count;
+ 	}
++
++	if (cap->supported_bands & WMI_HOST_WLAN_5G_CAP &&
++	    ar->supports_6ghz) {
++		count = ath11k_mac_copy_he_cap(ar, cap,
++					       ar->mac.iftype[NL80211_BAND_6GHZ],
++					       NL80211_BAND_6GHZ);
++		band = &ar->mac.sbands[NL80211_BAND_6GHZ];
++		band->iftype_data = ar->mac.iftype[NL80211_BAND_6GHZ];
++		band->n_iftype_data = count;
++	}
++
+ }
+ 
+ static int __ath11k_set_antenna(struct ath11k *ar, u32 tx_ant, u32 rx_ant)
+@@ -4188,6 +4211,12 @@ ath11k_mac_setup_vdev_create_params(struct ath11k_vif *arvif,
+ 		params->chains[NL80211_BAND_5GHZ].tx = ar->num_tx_chains;
+ 		params->chains[NL80211_BAND_5GHZ].rx = ar->num_rx_chains;
+ 	}
++	if (pdev->cap.supported_bands & WMI_HOST_WLAN_5G_CAP &&
++	    ar->supports_6ghz) {
++		params->chains[NL80211_BAND_6GHZ].tx = ar->num_tx_chains;
++		params->chains[NL80211_BAND_6GHZ].rx = ar->num_rx_chains;
++	}
++
+ }
+ 
+ static u32
+@@ -5786,7 +5815,8 @@ static int ath11k_mac_setup_channels_rates(struct ath11k *ar,
+ 	void *channels;
+ 
+ 	BUILD_BUG_ON((ARRAY_SIZE(ath11k_2ghz_channels) +
+-		      ARRAY_SIZE(ath11k_5ghz_channels)) !=
++		      ARRAY_SIZE(ath11k_5ghz_channels) +
++		      ARRAY_SIZE(ath11k_6ghz_channels)) !=
+ 		     ATH11K_NUM_CHANS);
+ 
+ 	reg_cap = &ar->ab->hal_reg_cap[ar->pdev_idx];
+@@ -5799,6 +5829,7 @@ static int ath11k_mac_setup_channels_rates(struct ath11k *ar,
+ 			return -ENOMEM;
+ 
+ 		band = &ar->mac.sbands[NL80211_BAND_2GHZ];
++		band->band = NL80211_BAND_2GHZ;
+ 		band->n_channels = ARRAY_SIZE(ath11k_2ghz_channels);
+ 		band->channels = channels;
+ 		band->n_bitrates = ath11k_g_rates_size;
+@@ -5810,23 +5841,48 @@ static int ath11k_mac_setup_channels_rates(struct ath11k *ar,
+ 	}
+ 
+ 	if (supported_bands & WMI_HOST_WLAN_5G_CAP) {
+-		channels = kmemdup(ath11k_5ghz_channels,
+-				   sizeof(ath11k_5ghz_channels),
+-				   GFP_KERNEL);
+-		if (!channels) {
+-			kfree(ar->mac.sbands[NL80211_BAND_2GHZ].channels);
+-			return -ENOMEM;
++		if (reg_cap->high_5ghz_chan >= ATH11K_MAX_6G_FREQ) {
++			channels = kmemdup(ath11k_6ghz_channels,
++					   sizeof(ath11k_6ghz_channels), GFP_KERNEL);
++			if (!channels) {
++				kfree(ar->mac.sbands[NL80211_BAND_2GHZ].channels);
++				return -ENOMEM;
++			}
++
++			ar->supports_6ghz = true;
++			band = &ar->mac.sbands[NL80211_BAND_6GHZ];
++			band->band = NL80211_BAND_6GHZ;
++			band->n_channels = ARRAY_SIZE(ath11k_6ghz_channels);
++			band->channels = channels;
++			band->n_bitrates = ath11k_a_rates_size;
++			band->bitrates = ath11k_a_rates;
++			ar->hw->wiphy->bands[NL80211_BAND_6GHZ] = band;
++			ath11k_mac_update_ch_list(ar, band,
++						  reg_cap->low_5ghz_chan,
++						  reg_cap->high_5ghz_chan);
+ 		}
+ 
+-		band = &ar->mac.sbands[NL80211_BAND_5GHZ];
+-		band->n_channels = ARRAY_SIZE(ath11k_5ghz_channels);
+-		band->channels = channels;
+-		band->n_bitrates = ath11k_a_rates_size;
+-		band->bitrates = ath11k_a_rates;
+-		ar->hw->wiphy->bands[NL80211_BAND_5GHZ] = band;
+-		ath11k_mac_update_ch_list(ar, band,
+-					  reg_cap->low_5ghz_chan,
+-					  reg_cap->high_5ghz_chan);
++		if (reg_cap->low_5ghz_chan < ATH11K_MIN_6G_FREQ) {
++			channels = kmemdup(ath11k_5ghz_channels,
++					   sizeof(ath11k_5ghz_channels),
++					   GFP_KERNEL);
++			if (!channels) {
++				kfree(ar->mac.sbands[NL80211_BAND_2GHZ].channels);
++				kfree(ar->mac.sbands[NL80211_BAND_6GHZ].channels);
++				return -ENOMEM;
++			}
++
++			band = &ar->mac.sbands[NL80211_BAND_5GHZ];
++			band->band = NL80211_BAND_5GHZ;
++			band->n_channels = ARRAY_SIZE(ath11k_5ghz_channels);
++			band->channels = channels;
++			band->n_bitrates = ath11k_a_rates_size;
++			band->bitrates = ath11k_a_rates;
++			ar->hw->wiphy->bands[NL80211_BAND_5GHZ] = band;
++			ath11k_mac_update_ch_list(ar, band,
++						  reg_cap->low_5ghz_chan,
++						  reg_cap->high_5ghz_chan);
++		}
+ 	}
+ 
+ 	return 0;
+@@ -5880,6 +5936,7 @@ static void __ath11k_mac_unregister(struct ath11k *ar)
+ 
+ 	kfree(ar->mac.sbands[NL80211_BAND_2GHZ].channels);
+ 	kfree(ar->mac.sbands[NL80211_BAND_5GHZ].channels);
++	kfree(ar->mac.sbands[NL80211_BAND_6GHZ].channels);
+ 
+ 	SET_IEEE80211_DEV(ar->hw, NULL);
+ }
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index c2a972377687..f405c162c2b2 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -368,6 +368,17 @@ ath11k_pull_mac_phy_cap_svc_ready_ext(struct ath11k_pdev_wmi *wmi_handle,
+ 	memcpy(&cap_band->he_ppet, &mac_phy_caps->he_ppet5g,
+ 	       sizeof(struct ath11k_ppe_threshold));
+ 
++	cap_band = &pdev_cap->band[NL80211_BAND_6GHZ];
++	cap_band->max_bw_supported = mac_phy_caps->max_bw_supported_5g;
++	cap_band->ht_cap_info = mac_phy_caps->ht_cap_info_5g;
++	cap_band->he_cap_info[0] = mac_phy_caps->he_cap_info_5g;
++	cap_band->he_cap_info[1] = mac_phy_caps->he_cap_info_5g_ext;
++	cap_band->he_mcs = mac_phy_caps->he_supp_mcs_5g;
++	memcpy(cap_band->he_cap_phy_info, &mac_phy_caps->he_cap_phy_info_5g,
++	       sizeof(u32) * PSOC_HOST_MAX_PHY_SIZE);
++	memcpy(&cap_band->he_ppet, &mac_phy_caps->he_ppet5g,
++	       sizeof(struct ath11k_ppe_threshold));
++
+ 	return 0;
+ }
+ 
+-- 
+2.17.1
+
+_______________________________________________
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
