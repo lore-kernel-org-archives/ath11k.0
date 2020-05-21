@@ -1,14 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jbHrr-0001WZ-SA
- for ath11k@lists.infradead.org; Wed, 20 May 2020 06:06:21 +0000
-From: Venkateswara Naralasetty <vnaralas@codeaurora.org>
-Subject: [PATCH 2/2] ath11k: Add ap power save support
-Date: Wed, 20 May 2020 11:35:45 +0530
-Message-Id: <1589954745-12870-2-git-send-email-vnaralas@codeaurora.org>
-In-Reply-To: <1589954745-12870-1-git-send-email-vnaralas@codeaurora.org>
-References: <1589954745-12870-1-git-send-email-vnaralas@codeaurora.org>
+ id 1jblHw-0003od-Lr
+ for ath11k@lists.infradead.org; Thu, 21 May 2020 13:31:17 +0000
+From: Maharaja Kennadyrajan <mkenna@codeaurora.org>
+Subject: [PATCH 1/3] ath11k: vdev delete synchronization with firmware
+Date: Thu, 21 May 2020 19:00:27 +0530
+Message-Id: <1590067829-26109-2-git-send-email-mkenna@codeaurora.org>
+In-Reply-To: <1590067829-26109-1-git-send-email-mkenna@codeaurora.org>
+References: <1590067829-26109-1-git-send-email-mkenna@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,360 +23,248 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
-Cc: Venkateswara Naralasetty <vnaralas@codeaurora.org>, linux-wireless@vger.kernel.org
+Cc: Ritesh Singh <ritesi@codeaurora.org>, Maharaja Kennadyrajan <mkenna@codeaurora.org>, linux-wireless@vger.kernel.org
 
-AP power save where AP goes to power save mode when no stations associate
-to it and come out of power save when any station associate to AP.
+From: Ritesh Singh <ritesi@codeaurora.org>
 
-This AP power save capability can be used to save power with the drawback
-of reduced range or delayed discovery of the AP
+When the interface is added immediately after removing the
+interface, vdev deletion in firmware might not have been
+completed.
 
-This patch also porvides user configuration to enable/disable
-this feature using vendor command. This feature is disabled by default.
+Hence, add vdev_delete_resp_event and wait_event_timeout
+to synchronize with firmware.
 
-Tested-on: IPQ8074 WLAN.HK.2.1.0.1-01228-QCAHKSWPL_SILICONZ-1
+Tested-on: IPQ8074 WLAN.HK.2.4.0.1-00009-QCAHKSWPL_SILICONZ-1
 
-Signed-off-by: Venkateswara Naralasetty <vnaralas@codeaurora.org>
+Signed-off-by: Ritesh Singh <ritesi@codeaurora.org>
+Signed-off-by: Maharaja Kennadyrajan <mkenna@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/Makefile |  3 +-
- drivers/net/wireless/ath/ath11k/core.h   |  8 ++++
- drivers/net/wireless/ath/ath11k/mac.c    | 44 +++++++++++++++++
- drivers/net/wireless/ath/ath11k/mac.h    |  1 +
- drivers/net/wireless/ath/ath11k/vendor.c | 81 ++++++++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/vendor.h | 12 +++++
- drivers/net/wireless/ath/ath11k/wmi.c    | 32 +++++++++++++
- drivers/net/wireless/ath/ath11k/wmi.h    |  7 +++
- 8 files changed, 187 insertions(+), 1 deletion(-)
- create mode 100644 drivers/net/wireless/ath/ath11k/vendor.c
- create mode 100644 drivers/net/wireless/ath/ath11k/vendor.h
+ drivers/net/wireless/ath/ath11k/core.c |  1 +
+ drivers/net/wireless/ath/ath11k/core.h |  2 ++
+ drivers/net/wireless/ath/ath11k/mac.c  | 29 ++++++++++++----
+ drivers/net/wireless/ath/ath11k/wmi.c  | 62 +++++++++++++++++++++++++++++++++-
+ drivers/net/wireless/ath/ath11k/wmi.h  |  4 +++
+ 5 files changed, 90 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/Makefile b/drivers/net/wireless/ath/ath11k/Makefile
-index fe7736e..a7e8d00 100644
---- a/drivers/net/wireless/ath/ath11k/Makefile
-+++ b/drivers/net/wireless/ath/ath11k/Makefile
-@@ -15,7 +15,8 @@ ath11k-y += core.o \
- 	    dp_rx.o \
- 	    debug.o \
- 	    ce.o \
--	    peer.o
-+	    peer.o \
-+	    vendor.o
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 02501cc..cccd411 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -655,6 +655,7 @@ static void ath11k_core_restart(struct work_struct *work)
+ 		complete(&ar->peer_assoc_done);
+ 		complete(&ar->install_key_done);
+ 		complete(&ar->vdev_setup_done);
++		complete(&ar->vdev_delete_done);
+ 		complete(&ar->bss_survey_done);
+ 		complete(&ar->thermal.wmi_sync);
  
- ath11k-$(CONFIG_ATH11K_DEBUGFS) += debug_htt_stats.o debugfs_sta.o
- ath11k-$(CONFIG_NL80211_TESTMODE) += testmode.o
 diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index e04f0e7..81cabbd 100644
+index e04f0e7..f3b6dd9 100644
 --- a/drivers/net/wireless/ath/ath11k/core.h
 +++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -21,6 +21,7 @@
- #include "hal_rx.h"
- #include "reg.h"
- #include "thermal.h"
-+#include "vendor.h"
- 
- #define SM(_v, _f) (((_v) << _f##_LSB) & _f##_MASK)
- 
-@@ -419,6 +420,11 @@ struct ath11k_vdev_stop_status {
- 	u32  vdev_id;
+@@ -413,6 +413,7 @@ struct ath11k_per_peer_tx_stats {
  };
  
-+enum ath11k_ap_ps_state {
-+	ATH11K_AP_PS_STATE_OFF,
-+	ATH11K_AP_PS_STATE_ON,
-+};
-+
- struct ath11k {
- 	struct ath11k_base *ab;
- 	struct ath11k_pdev *pdev;
-@@ -539,6 +545,8 @@ struct ath11k {
- #endif
- 	bool dfs_block_radar_events;
- 	struct ath11k_thermal thermal;
-+	int ap_ps_enabled;
-+	enum ath11k_ap_ps_state ap_ps_state;
- };
+ #define ATH11K_FLUSH_TIMEOUT (5 * HZ)
++#define ATH11K_VDEV_DELETE_TIMEOUT_HZ (5 * HZ)
  
- struct ath11k_band_cap {
+ struct ath11k_vdev_stop_status {
+ 	bool stop_in_progress;
+@@ -494,6 +495,7 @@ struct ath11k {
+ 	int last_wmi_vdev_start_status;
+ 	struct ath11k_vdev_stop_status vdev_stop_status;
+ 	struct completion vdev_setup_done;
++	struct completion vdev_delete_done;
+ 
+ 	int num_peers;
+ 	int max_num_peers;
 diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index d9117eb..2cd2e9c 100644
+index 1a7e581..12f501e 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -2785,6 +2785,33 @@ static void ath11k_mac_dec_num_stations(struct ath11k_vif *arvif,
- 	ar->num_stations--;
+@@ -4404,6 +4404,7 @@ static void ath11k_mac_op_remove_interface(struct ieee80211_hw *hw,
+ 	struct ath11k *ar = hw->priv;
+ 	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
+ 	struct ath11k_base *ab = ar->ab;
++	unsigned long time_left;
+ 	int ret;
+ 	int i;
+ 
+@@ -4412,10 +4413,6 @@ static void ath11k_mac_op_remove_interface(struct ieee80211_hw *hw,
+ 	ath11k_dbg(ab, ATH11K_DBG_MAC, "mac remove interface (vdev %d)\n",
+ 		   arvif->vdev_id);
+ 
+-	spin_lock_bh(&ar->data_lock);
+-	list_del(&arvif->list);
+-	spin_unlock_bh(&ar->data_lock);
+-
+ 	if (arvif->vdev_type == WMI_VDEV_TYPE_AP) {
+ 		ret = ath11k_peer_delete(ar, arvif->vdev_id, vif->addr);
+ 		if (ret)
+@@ -4423,16 +4420,33 @@ static void ath11k_mac_op_remove_interface(struct ieee80211_hw *hw,
+ 				    arvif->vdev_id, ret);
+ 	}
+ 
++	reinit_completion(&ar->vdev_delete_done);
++
+ 	ret = ath11k_wmi_vdev_delete(ar, arvif->vdev_id);
+-	if (ret)
++	if (ret) {
+ 		ath11k_warn(ab, "failed to delete WMI vdev %d: %d\n",
+ 			    arvif->vdev_id, ret);
++		goto err_vdev_del;
++	}
++
++	time_left = wait_for_completion_timeout(&ar->vdev_delete_done,
++						ATH11K_VDEV_DELETE_TIMEOUT_HZ);
++	if (time_left == 0) {
++		ath11k_warn(ab, "Timeout in receiving vdev delete response\n");
++		goto err_vdev_del;
++	}
+ 
++	ab->free_vdev_map |= 1LL << (arvif->vdev_id);
++	ar->allocated_vdev_map &= ~(1LL << arvif->vdev_id);
+ 	ar->num_created_vdevs--;
++
+ 	ath11k_dbg(ab, ATH11K_DBG_MAC, "vdev %pM deleted, vdev_id %d\n",
+ 		   vif->addr, arvif->vdev_id);
+-	ar->allocated_vdev_map &= ~(1LL << arvif->vdev_id);
+-	ab->free_vdev_map |= 1LL << (arvif->vdev_id);
++
++err_vdev_del:
++	spin_lock_bh(&ar->data_lock);
++	list_del(&arvif->list);
++	spin_unlock_bh(&ar->data_lock);
+ 
+ 	ath11k_peer_cleanup(ar, arvif->vdev_id);
+ 
+@@ -6029,6 +6043,7 @@ int ath11k_mac_allocate(struct ath11k_base *ab)
+ 		INIT_LIST_HEAD(&ar->ppdu_stats_info);
+ 		mutex_init(&ar->conf_mutex);
+ 		init_completion(&ar->vdev_setup_done);
++		init_completion(&ar->vdev_delete_done);
+ 		init_completion(&ar->peer_assoc_done);
+ 		init_completion(&ar->install_key_done);
+ 		init_completion(&ar->bss_survey_done);
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index c2a9723..5eae527 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -97,6 +97,8 @@ struct wmi_tlv_rdy_parse {
+ 		= { .min_len = sizeof(struct wmi_stats_event) },
+ 	[WMI_TAG_PDEV_CTL_FAILSAFE_CHECK_EVENT]
+ 		= { .min_len = sizeof(struct wmi_pdev_ctl_failsafe_chk_event) },
++	[WMI_TAG_VDEV_DELETE_RESP_EVENT] = {
++		.min_len = sizeof(struct wmi_vdev_delete_resp_event) },
+ };
+ 
+ #define PRIMAP(_hw_mode_) \
+@@ -3740,6 +3742,34 @@ static int ath11k_pull_peer_del_resp_ev(struct ath11k_base *ab, struct sk_buff *
+ 	return 0;
  }
  
-+int ath11k_mac_ap_ps_recalc(struct ath11k *ar)
++static int ath11k_pull_vdev_del_resp_ev(struct ath11k_base *ab,
++					struct sk_buff *skb,
++					u32 *vdev_id)
 +{
-+	struct ath11k_vif *arvif;
-+	bool has_sta_iface = false;
-+	enum ath11k_ap_ps_state state = ATH11K_AP_PS_STATE_OFF;
-+	int ret = 0;
++	const void **tb;
++	const struct wmi_vdev_delete_resp_event *ev;
++	int ret;
 +
-+	list_for_each_entry(arvif, &ar->arvifs, list) {
-+		if (arvif->vdev_type == WMI_VDEV_TYPE_STA) {
-+			has_sta_iface = true;
-+			break;
-+		}
-+	}
-+
-+	if (!has_sta_iface && !ar->num_stations && ar->ap_ps_enabled)
-+		state = ATH11K_AP_PS_STATE_ON;
-+
-+	if (ar->ap_ps_state == state)
++	tb = ath11k_wmi_tlv_parse_alloc(ab, skb->data, skb->len, GFP_ATOMIC);
++	if (IS_ERR(tb)) {
++		ret = PTR_ERR(tb);
++		ath11k_warn(ab, "failed to parse tlv: %d\n", ret);
 +		return ret;
-+
-+	ret = ath11k_wmi_pdev_ap_ps_cmd_send(ar, ar->pdev->pdev_id, state);
-+	if (!ret)
-+		ar->ap_ps_state = state;
-+
-+	return ret;
-+}
-+
- static int ath11k_mac_station_add(struct ath11k *ar,
- 				  struct ieee80211_vif *vif,
- 				  struct ieee80211_sta *sta)
-@@ -2824,6 +2851,12 @@ static int ath11k_mac_station_add(struct ath11k *ar,
- 	ath11k_dbg(ab, ATH11K_DBG_MAC, "Added peer: %pM for VDEV: %d\n",
- 		   sta->addr, arvif->vdev_id);
- 
-+	ret = ath11k_mac_ap_ps_recalc(ar);
-+	if (ret) {
-+		ath11k_warn(ar->ab, "failed to send ap ps ret %d\n", ret);
-+		goto exit;
 +	}
 +
- 	if (ath11k_debug_is_extd_tx_stats_enabled(ar)) {
- 		arsta->tx_stats = kzalloc(sizeof(*arsta->tx_stats), GFP_KERNEL);
- 		if (!arsta->tx_stats) {
-@@ -2925,6 +2958,10 @@ static int ath11k_mac_op_sta_state(struct ieee80211_hw *hw,
- 
- 		kfree(arsta->rx_stats);
- 		arsta->rx_stats = NULL;
-+
-+		ret = ath11k_mac_ap_ps_recalc(ar);
-+		if (ret)
-+			ath11k_warn(ar->ab, "failed to send ap ps ret %d\n", ret);
- 	} else if (old_state == IEEE80211_STA_AUTH &&
- 		   new_state == IEEE80211_STA_ASSOC &&
- 		   (vif->type == NL80211_IFTYPE_AP ||
-@@ -4044,6 +4081,7 @@ static void ath11k_mac_op_stop(struct ieee80211_hw *hw)
- 
- 	clear_bit(ATH11K_CAC_RUNNING, &ar->dev_flags);
- 	ar->state = ATH11K_STATE_OFF;
-+	ar->ap_ps_state = ATH11K_AP_PS_STATE_OFF;
- 	mutex_unlock(&ar->conf_mutex);
- 
- 	cancel_delayed_work_sync(&ar->scan.timeout);
-@@ -4362,6 +4400,10 @@ static int ath11k_mac_op_add_interface(struct ieee80211_hw *hw,
- 
- 	ath11k_dp_vdev_tx_attach(ar, arvif);
- 
-+	ret = ath11k_mac_ap_ps_recalc(ar);
-+	if (ret)
-+		ath11k_warn(ar->ab, "failed to set ap ps ret %d\n", ret);
-+
- 	mutex_unlock(&ar->conf_mutex);
- 
- 	return 0;
-@@ -4448,6 +4490,7 @@ static void ath11k_mac_op_remove_interface(struct ieee80211_hw *hw,
- 
- 	/* Recalc txpower for remaining vdev */
- 	ath11k_mac_txpower_recalc(ar);
-+	ath11k_mac_ap_ps_recalc(ar);
- 	clear_bit(ATH11K_FLAG_MONITOR_ENABLED, &ar->monitor_flags);
- 
- 	/* TODO: recal traffic pause state based on the available vdevs */
-@@ -5908,6 +5951,7 @@ static int __ath11k_mac_register(struct ath11k *ar)
- 		ARRAY_SIZE(ath11k_iftypes_ext_capa);
- 
- 	ath11k_reg_init(ar);
-+	ath11k_vendor_register(ar);
- 
- 	/* advertise HW checksum offload capabilities */
- 	ar->hw->netdev_features = NETIF_F_HW_CSUM;
-diff --git a/drivers/net/wireless/ath/ath11k/mac.h b/drivers/net/wireless/ath/ath11k/mac.h
-index 0607479..18d2f28 100644
---- a/drivers/net/wireless/ath/ath11k/mac.h
-+++ b/drivers/net/wireless/ath/ath11k/mac.h
-@@ -146,4 +146,5 @@ int ath11k_mac_tx_mgmt_pending_free(int buf_id, void *skb, void *ctx);
- u8 ath11k_mac_bw_to_mac80211_bw(u8 bw);
- enum ath11k_supported_bw ath11k_mac_mac80211_bw_to_ath11k_bw(enum rate_info_bw bw);
- enum hal_encrypt_type ath11k_dp_tx_get_encrypt_type(u32 cipher);
-+int ath11k_mac_ap_ps_recalc(struct ath11k *ar);
- #endif
-diff --git a/drivers/net/wireless/ath/ath11k/vendor.c b/drivers/net/wireless/ath/ath11k/vendor.c
-new file mode 100644
-index 0000000..b28cc65
---- /dev/null
-+++ b/drivers/net/wireless/ath/ath11k/vendor.c
-@@ -0,0 +1,81 @@
-+// SPDX-License-Identifier: BSD-3-Clause-Clear
-+/*
-+ * Copyright (c) 2019-2020 The Linux Foundation. All rights reserved.
-+ */
-+
-+#include <net/netlink.h>
-+#include <net/mac80211.h>
-+#include <uapi/nl80211-vnd-qca.h>
-+#include "core.h"
-+#include "debug.h"
-+
-+static const struct nla_policy
-+ath11k_vendor_set_wifi_config_policy[QCA_WLAN_VENDOR_ATTR_CONFIG_MAX + 1] = {
-+	[QCA_WLAN_VENDOR_ATTR_CONFIG_GTX] = {.type = NLA_FLAG}
-+};
-+
-+static int ath11k_vendor_set_wifi_config(struct wiphy *wihpy,
-+					 struct wireless_dev *wdev,
-+					 const void *data,
-+					 int data_len)
-+{
-+	struct ieee80211_vif *vif;
-+	struct ath11k_vif *arvif;
-+	struct ath11k *ar;
-+	struct nlattr *tb[QCA_WLAN_VENDOR_ATTR_CONFIG_MAX + 1];
-+	int ret = 0;
-+
-+	if (!wdev)
-+		return -EINVAL;
-+
-+	vif = wdev_to_ieee80211_vif(wdev);
-+	if (!vif)
-+		return -EINVAL;
-+
-+	arvif = (struct ath11k_vif *)vif->drv_priv;
-+	if (!arvif)
-+		return -EINVAL;
-+
-+	ar = arvif->ar;
-+
-+	mutex_lock(&ar->conf_mutex);
-+
-+	ret = nla_parse(tb, QCA_WLAN_VENDOR_ATTR_CONFIG_MAX, data, data_len,
-+			ath11k_vendor_set_wifi_config_policy, NULL);
-+	if (ret) {
-+		ath11k_warn(ar->ab, "invalid set wifi config policy attribute\n");
-+		goto exit;
++	ev = tb[WMI_TAG_VDEV_DELETE_RESP_EVENT];
++	if (!ev) {
++		ath11k_warn(ab, "failed to fetch vdev delete resp ev");
++		kfree(tb);
++		return -EPROTO;
 +	}
 +
-+	ar->ap_ps_enabled = nla_get_flag(tb[QCA_WLAN_VENDOR_ATTR_CONFIG_GTX]);
-+	ret = ath11k_mac_ap_ps_recalc(ar);
-+	if (ret) {
-+		ath11k_warn(ar->ab, "failed to send ap ps ret %d\n", ret);
-+		goto exit;
-+	}
++	*vdev_id = ev->vdev_id;
 +
-+exit:
-+	mutex_unlock(&ar->conf_mutex);
-+	return ret;
-+}
-+
-+static struct wiphy_vendor_command ath11k_vendor_commands[] = {
-+	{
-+		.info.vendor_id = QCA_NL80211_VENDOR_ID,
-+		.info.subcmd = QCA_NL80211_VENDOR_SUBCMD_SET_WIFI_CONFIGURATION,
-+		.flags = WIPHY_VENDOR_CMD_NEED_WDEV |
-+			WIPHY_VENDOR_CMD_NEED_RUNNING,
-+		.doit = ath11k_vendor_set_wifi_config,
-+		.policy = ath11k_vendor_set_wifi_config_policy,
-+		.maxattr = QCA_WLAN_VENDOR_ATTR_CONFIG_MAX
-+	}
-+};
-+
-+int ath11k_vendor_register(struct ath11k *ar)
-+{
-+	ar->hw->wiphy->vendor_commands = ath11k_vendor_commands;
-+	ar->hw->wiphy->n_vendor_commands = ARRAY_SIZE(ath11k_vendor_commands);
-+
++	kfree(tb);
 +	return 0;
 +}
 +
-diff --git a/drivers/net/wireless/ath/ath11k/vendor.h b/drivers/net/wireless/ath/ath11k/vendor.h
-new file mode 100644
-index 0000000..6eaf07e
---- /dev/null
-+++ b/drivers/net/wireless/ath/ath11k/vendor.h
-@@ -0,0 +1,12 @@
-+// SPDX-License-Identifier: BSD-3-Clause-Clear
-+/*
-+ * Copyright (c) 2019-2020 The Linux Foundation. All rights reserved.
-+ */
-+
-+#ifndef ATH11K_VENDOR_H
-+#define ATH11K_VENDOR_H
-+
-+int ath11k_vendor_register(struct ath11k *ar);
-+
-+#endif /* QCA_VENDOR_H */
-+
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index c2a9723..71fff34 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -1146,6 +1146,38 @@ ath11k_wmi_rx_reord_queue_remove(struct ath11k *ar,
- 	return ret;
+ static int ath11k_pull_bcn_tx_status_ev(struct ath11k_base *ab, void *evt_buf,
+ 					u32 len, u32 *vdev_id,
+ 					u32 *tx_status)
+@@ -5062,6 +5092,34 @@ static void ath11k_peer_delete_resp_event(struct ath11k_base *ab, struct sk_buff
+ 	 */
  }
  
-+int ath11k_wmi_pdev_ap_ps_cmd_send(struct ath11k *ar, u8 pdev_id,
-+				   u32 param_value)
++static void ath11k_vdev_delete_resp_event(struct ath11k_base *ab,
++					  struct sk_buff *skb)
 +{
-+	struct ath11k_pdev_wmi *wmi = ar->wmi;
-+	struct wmi_pdev_ap_ps_cmd *cmd;
-+	struct sk_buff *skb;
-+	int ret;
++	struct ath11k *ar;
++	u32 vdev_id = 0;
 +
-+	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, sizeof(*cmd));
-+	if (!skb)
-+		return -ENOMEM;
-+
-+	cmd = (struct wmi_pdev_ap_ps_cmd *)skb->data;
-+	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG,
-+				     WMI_TAG_PDEV_GREEN_AP_PS_ENABLE_CMD) |
-+			  FIELD_PREP(WMI_TLV_LEN, sizeof(*cmd) - TLV_HDR_SIZE);
-+	cmd->pdev_id = pdev_id;
-+	cmd->param_value = param_value;
-+
-+	ret = ath11k_wmi_cmd_send(wmi, skb, WMI_PDEV_GREEN_AP_PS_ENABLE_CMDID);
-+	if (ret) {
-+		ath11k_warn(ar->ab, "failed to send ap ps enable/disable cmd\n");
-+		dev_kfree_skb(skb);
++	if (ath11k_pull_vdev_del_resp_ev(ab, skb, &vdev_id) != 0) {
++		ath11k_warn(ab, "failed to extract vdev delete resp");
++		return;
 +	}
 +
-+	ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
-+		   "wmi pdev ap ps set pdev id %d value %d\n",
-+		   pdev_id, param_value);
++	rcu_read_lock();
++	ar = ath11k_mac_get_ar_by_vdev_id(ab, vdev_id);
++	if (!ar) {
++		ath11k_warn(ab, "invalid vdev id in vdev delete resp ev %d",
++			    vdev_id);
++		rcu_read_unlock();
++		return;
++	}
 +
-+	return ret;
++	complete(&ar->vdev_delete_done);
++
++	rcu_read_unlock();
++
++	ath11k_dbg(ab, ATH11K_DBG_WMI, "vdev delete resp for vdev id %d\n",
++		   vdev_id);
 +}
 +
- int ath11k_wmi_pdev_set_param(struct ath11k *ar, u32 param_id,
- 			      u32 param_value, u8 pdev_id)
+ static inline const char *ath11k_wmi_vdev_resp_print(u32 vdev_resp_status)
  {
+ 	switch (vdev_resp_status) {
+@@ -5996,7 +6054,6 @@ static void ath11k_wmi_tlv_op_rx(struct ath11k_base *ab, struct sk_buff *skb)
+ 		break;
+ 	/* add Unsupported events here */
+ 	case WMI_TBTTOFFSET_EXT_UPDATE_EVENTID:
+-	case WMI_VDEV_DELETE_RESP_EVENTID:
+ 	case WMI_PEER_OPER_MODE_CHANGE_EVENTID:
+ 	case WMI_TWT_ENABLE_EVENTID:
+ 	case WMI_TWT_DISABLE_EVENTID:
+@@ -6006,6 +6063,9 @@ static void ath11k_wmi_tlv_op_rx(struct ath11k_base *ab, struct sk_buff *skb)
+ 	case WMI_PDEV_DFS_RADAR_DETECTION_EVENTID:
+ 		ath11k_wmi_pdev_dfs_radar_detected_event(ab, skb);
+ 		break;
++	case WMI_VDEV_DELETE_RESP_EVENTID:
++		ath11k_vdev_delete_resp_event(ab, skb);
++		break;
+ 	/* TODO: Add remaining events */
+ 	default:
+ 		ath11k_warn(ab, "Unknown eventid: 0x%x\n", id);
 diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index b9f3e55..1ef6c67 100644
+index b9f3e55..fb8068f 100644
 --- a/drivers/net/wireless/ath/ath11k/wmi.h
 +++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -2864,6 +2864,12 @@ struct set_fwtest_params {
- 	u32 value;
+@@ -3952,6 +3952,10 @@ struct wmi_regulatory_rule_struct {
+ 	u32  flag_info;
  };
  
-+struct wmi_pdev_ap_ps_cmd {
-+	u32 tlv_header;
-+	u32 pdev_id;
-+	u32 param_value;
++struct wmi_vdev_delete_resp_event {
++	u32 vdev_id;
 +} __packed;
 +
- struct wmi_fwtest_set_param_cmd_param {
- 	u32 tlv_header;
- 	u32 param_id;
-@@ -4941,4 +4947,5 @@ int ath11k_wmi_send_obss_color_collision_cfg_cmd(struct ath11k *ar, u32 vdev_id,
- int ath11k_wmi_send_bss_color_change_enable_cmd(struct ath11k *ar, u32 vdev_id,
- 						bool enable);
- int ath11k_wmi_pdev_lro_cfg(struct ath11k *ar, int pdev_id);
-+int ath11k_wmi_pdev_ap_ps_cmd_send(struct ath11k *ar, u8 pdev_id, u32 value);
- #endif
+ struct wmi_peer_delete_resp_event {
+ 	u32 vdev_id;
+ 	struct wmi_mac_addr peer_macaddr;
 -- 
-2.7.4
+1.9.1
+
 
 _______________________________________________
 ath11k mailing list
