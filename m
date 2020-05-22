@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail26.static.mailgun.info ([104.130.122.26])
+Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jc23M-0003Ix-HN
- for ath11k@lists.infradead.org; Fri, 22 May 2020 07:25:16 +0000
+ id 1jc2F5-0005B0-0z
+ for ath11k@lists.infradead.org; Fri, 22 May 2020 07:37:20 +0000
 From: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
-Subject: [PATCH v2 9/9] ath11k: Add support for 6g scan hint
-Date: Fri, 22 May 2020 00:24:31 -0700
-Message-Id: <20200522072431.27601-10-pradeepc@codeaurora.org>
+Subject: [PATCH v2 2/9] ath11k: add 6G frequency list supported by driver
+Date: Fri, 22 May 2020 00:24:24 -0700
+Message-Id: <20200522072431.27601-3-pradeepc@codeaurora.org>
 In-Reply-To: <20200522072431.27601-1-pradeepc@codeaurora.org>
 References: <20200522072431.27601-1-pradeepc@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,159 +25,102 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Johannes Berg <johannes@sipsolutions.net>, ath11k@lists.infradead.org
 Cc: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>, linux-wireless@vger.kernel.org
 
-Add support for 6Ghz short ssid and bssid hint mechanism
-as part of scan command.
+This patch adds support for 6GHz frequency listing.
 
 Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/wmi.c | 72 +++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/wmi.h | 22 ++++++++
- 2 files changed, 94 insertions(+)
+ drivers/net/wireless/ath/ath11k/mac.c | 71 +++++++++++++++++++++++++++
+ 1 file changed, 71 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index ad3a7b68d308..317376a4eb6e 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -2005,6 +2005,8 @@ int ath11k_wmi_send_scan_start_cmd(struct ath11k *ar,
- 	int i, ret, len;
- 	u32 *tmp_ptr;
- 	u8 extraie_len_with_pad = 0;
-+	struct hint_short_ssid *s_ssid = NULL;
-+	struct hint_bssid *hint_bssid = NULL;
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 36882562b976..f699e882949b 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -33,6 +33,15 @@
+ 	.max_power              = 30, \
+ }
  
- 	len = sizeof(*cmd);
- 
-@@ -2026,6 +2028,14 @@ int ath11k_wmi_send_scan_start_cmd(struct ath11k *ar,
- 			roundup(params->extraie.len, sizeof(u32));
- 	len += extraie_len_with_pad;
- 
-+	if (params->num_hint_bssid)
-+		len += TLV_HDR_SIZE +
-+		       params->num_hint_bssid * sizeof(struct hint_bssid);
++#define CHAN6G(_channel, _freq, _flags) { \
++	.band                   = NL80211_BAND_6GHZ, \
++	.hw_value               = (_channel), \
++	.center_freq            = (_freq), \
++	.flags                  = (_flags), \
++	.max_antenna_gain       = 0, \
++	.max_power              = 30, \
++}
 +
-+	if (params->num_hint_s_ssid)
-+		len += TLV_HDR_SIZE +
-+		       params->num_hint_s_ssid * sizeof(struct hint_short_ssid);
-+
- 	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, len);
- 	if (!skb)
- 		return -ENOMEM;
-@@ -2126,6 +2136,68 @@ int ath11k_wmi_send_scan_start_cmd(struct ath11k *ar,
- 
- 	ptr += extraie_len_with_pad;
- 
-+	if (params->num_hint_s_ssid) {
-+		len = params->num_hint_s_ssid * sizeof(struct hint_short_ssid);
-+		tlv = ptr;
-+		tlv->header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_ARRAY_FIXED_STRUCT) |
-+			      FIELD_PREP(WMI_TLV_LEN, len);
-+		ptr += TLV_HDR_SIZE;
-+		s_ssid = ptr;
-+		for (i = 0; i < params->num_hint_s_ssid; ++i) {
-+			s_ssid->freq_flags = params->hint_s_ssid[i].freq_flags;
-+			s_ssid->short_ssid = params->hint_s_ssid[i].short_ssid;
-+			s_ssid++;
-+		}
-+		ptr += len;
-+	}
-+
-+	if (params->num_hint_bssid) {
-+		len = params->num_hint_bssid * sizeof(struct hint_bssid);
-+		tlv = ptr;
-+		tlv->header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_ARRAY_FIXED_STRUCT) |
-+			      FIELD_PREP(WMI_TLV_LEN, len);
-+		ptr += TLV_HDR_SIZE;
-+		hint_bssid = ptr;
-+		for (i = 0; i < params->num_hint_bssid; ++i) {
-+			hint_bssid->freq_flags =
-+				params->hint_bssid[i].freq_flags;
-+			ether_addr_copy(&params->hint_bssid[i].bssid.addr[0],
-+					&hint_bssid->bssid.addr[0]);
-+			hint_bssid++;
-+		}
-+	}
-+
-+	len = params->num_hint_s_ssid * sizeof(struct hint_short_ssid);
-+	tlv = ptr;
-+	tlv->header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_ARRAY_FIXED_STRUCT) |
-+		      FIELD_PREP(WMI_TLV_LEN, len);
-+	ptr += TLV_HDR_SIZE;
-+	if (params->num_hint_s_ssid) {
-+		s_ssid = ptr;
-+		for (i = 0; i < params->num_hint_s_ssid; ++i) {
-+			s_ssid->freq_flags = params->hint_s_ssid[i].freq_flags;
-+			s_ssid->short_ssid = params->hint_s_ssid[i].short_ssid;
-+			s_ssid++;
-+		}
-+	}
-+	ptr += len;
-+
-+	len = params->num_hint_bssid * sizeof(struct hint_bssid);
-+	tlv = ptr;
-+	tlv->header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_ARRAY_FIXED_STRUCT) |
-+		      FIELD_PREP(WMI_TLV_LEN, len);
-+	ptr += TLV_HDR_SIZE;
-+	if (params->num_hint_bssid) {
-+		hint_bssid = ptr;
-+		for (i = 0; i < params->num_hint_bssid; ++i) {
-+			hint_bssid->freq_flags =
-+				params->hint_bssid[i].freq_flags;
-+			ether_addr_copy(&params->hint_bssid[i].bssid.addr[0],
-+					&hint_bssid->bssid.addr[0]);
-+			hint_bssid++;
-+		}
-+	}
-+
- 	ret = ath11k_wmi_cmd_send(wmi, skb,
- 				  WMI_START_SCAN_CMDID);
- 	if (ret) {
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index 319ad7241e01..1162bd7a5f87 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -50,6 +50,14 @@ struct wmi_tlv {
- #define WMI_MAX_MEM_REQS        32
- #define ATH11K_MAX_HW_LISTEN_INTERVAL 5
- 
-+#define WLAN_SCAN_MAX_HINT_S_SSID        10
-+#define WLAN_SCAN_MAX_HINT_BSSID         10
-+#define MAX_RNR_BSS                    5
-+
-+#define WLAN_SCAN_MAX_HINT_S_SSID        10
-+#define WLAN_SCAN_MAX_HINT_BSSID         10
-+#define MAX_RNR_BSS                    5
-+
- #define WLAN_SCAN_PARAMS_MAX_SSID    16
- #define WLAN_SCAN_PARAMS_MAX_BSSID   4
- #define WLAN_SCAN_PARAMS_MAX_IE_LEN  256
-@@ -3105,6 +3113,16 @@ enum {
- 	((flag) |= (((mode) << WMI_SCAN_DWELL_MODE_SHIFT) & \
- 		    WMI_SCAN_DWELL_MODE_MASK))
- 
-+struct hint_short_ssid {
-+	u32 freq_flags;
-+	u32 short_ssid;
-+};
-+
-+struct hint_bssid {
-+	u32 freq_flags;
-+	struct wmi_mac_addr bssid;
-+};
-+
- struct scan_req_params {
- 	u32 scan_id;
- 	u32 scan_req_id;
-@@ -3184,6 +3202,10 @@ struct scan_req_params {
- 	struct element_info extraie;
- 	struct element_info htcap;
- 	struct element_info vhtcap;
-+	u32 num_hint_s_ssid;
-+	u32 num_hint_bssid;
-+	struct hint_short_ssid hint_s_ssid[WLAN_SCAN_MAX_HINT_S_SSID];
-+	struct hint_bssid hint_bssid[WLAN_SCAN_MAX_HINT_BSSID];
+ /* frame mode values are mapped as per enum ath11k_hw_txrx_mode */
+ static unsigned int ath11k_frame_mode = ATH11K_HW_TXRX_NATIVE_WIFI;
+ module_param_named(frame_mode, ath11k_frame_mode, uint, 0644);
+@@ -86,6 +95,68 @@ static const struct ieee80211_channel ath11k_5ghz_channels[] = {
+ 	CHAN5G(173, 5865, 0),
  };
  
- struct wmi_ssid_arg {
++static const struct ieee80211_channel ath11k_6ghz_channels[] = {
++	CHAN6G(1, 5945, 0),
++	CHAN6G(5, 5965, 0),
++	CHAN6G(9, 5985, 0),
++	CHAN6G(13, 6005, 0),
++	CHAN6G(17, 6025, 0),
++	CHAN6G(21, 6045, 0),
++	CHAN6G(25, 6065, 0),
++	CHAN6G(29, 6085, 0),
++	CHAN6G(33, 6105, 0),
++	CHAN6G(37, 6125, 0),
++	CHAN6G(41, 6145, 0),
++	CHAN6G(45, 6165, 0),
++	CHAN6G(49, 6185, 0),
++	CHAN6G(53, 6205, 0),
++	CHAN6G(57, 6225, 0),
++	CHAN6G(61, 6245, 0),
++	CHAN6G(65, 6265, 0),
++	CHAN6G(69, 6285, 0),
++	CHAN6G(73, 6305, 0),
++	CHAN6G(77, 6325, 0),
++	CHAN6G(81, 6345, 0),
++	CHAN6G(85, 6365, 0),
++	CHAN6G(89, 6385, 0),
++	CHAN6G(93, 6405, 0),
++	CHAN6G(97, 6425, 0),
++	CHAN6G(101, 6445, 0),
++	CHAN6G(105, 6465, 0),
++	CHAN6G(109, 6485, 0),
++	CHAN6G(113, 6505, 0),
++	CHAN6G(117, 6525, 0),
++	CHAN6G(121, 6545, 0),
++	CHAN6G(125, 6565, 0),
++	CHAN6G(129, 6585, 0),
++	CHAN6G(133, 6605, 0),
++	CHAN6G(137, 6625, 0),
++	CHAN6G(141, 6645, 0),
++	CHAN6G(145, 6665, 0),
++	CHAN6G(149, 6685, 0),
++	CHAN6G(153, 6705, 0),
++	CHAN6G(157, 6725, 0),
++	CHAN6G(161, 6745, 0),
++	CHAN6G(165, 6765, 0),
++	CHAN6G(169, 6785, 0),
++	CHAN6G(173, 6805, 0),
++	CHAN6G(177, 6825, 0),
++	CHAN6G(181, 6845, 0),
++	CHAN6G(185, 6865, 0),
++	CHAN6G(189, 6885, 0),
++	CHAN6G(193, 6905, 0),
++	CHAN6G(197, 6925, 0),
++	CHAN6G(201, 6945, 0),
++	CHAN6G(205, 6965, 0),
++	CHAN6G(209, 6985, 0),
++	CHAN6G(213, 7005, 0),
++	CHAN6G(217, 7025, 0),
++	CHAN6G(221, 7045, 0),
++	CHAN6G(225, 7065, 0),
++	CHAN6G(229, 7085, 0),
++	CHAN6G(233, 7105, 0),
++};
++
+ static struct ieee80211_rate ath11k_legacy_rates[] = {
+ 	{ .bitrate = 10,
+ 	  .hw_value = ATH11K_HW_RATE_CCK_LP_1M },
 -- 
 2.17.1
 
