@@ -1,12 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail26.static.mailgun.info ([104.130.122.26])
+Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jc22x-0003Ix-K4
- for ath11k@lists.infradead.org; Fri, 22 May 2020 07:24:49 +0000
+ id 1jc22z-0003JU-6Y
+ for ath11k@lists.infradead.org; Fri, 22 May 2020 07:24:51 +0000
 From: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
-Subject: [PATCH v2 4/9] ath11k: Use freq instead of channel number in rx path
-Date: Fri, 22 May 2020 00:24:26 -0700
-Message-Id: <20200522072431.27601-5-pradeepc@codeaurora.org>
+Subject: [PATCH v2 8/9] ath11k: Send multiple scan_chan_list messages if
+ required
+Date: Fri, 22 May 2020 00:24:30 -0700
+Message-Id: <20200522072431.27601-9-pradeepc@codeaurora.org>
 In-Reply-To: <20200522072431.27601-1-pradeepc@codeaurora.org>
 References: <20200522072431.27601-1-pradeepc@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,85 +26,229 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Johannes Berg <johannes@sipsolutions.net>, ath11k@lists.infradead.org
 Cc: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>, linux-wireless@vger.kernel.org
 
-As 6GHz cahnnel numbers overlap with those of 5GHz and 2GHz bands,
-it is necessary to use frequency when determining the band info
-in rx path.
+With addition of 6Ghz channels, it is possible that wmi buffer size can
+exceed the maximum wmi buffer size. So iterate over the channel list,
+and send multiple messages till channel list is empty.
+Also mark PSC channel flag for 6GHz channels accordingly.
 
 Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/dp_rx.c | 6 +++++-
- drivers/net/wireless/ath/ath11k/wmi.c   | 5 ++++-
- drivers/net/wireless/ath/ath11k/wmi.h   | 2 ++
- 3 files changed, 11 insertions(+), 2 deletions(-)
+ drivers/net/wireless/ath/ath11k/wmi.c | 170 ++++++++++++++------------
+ drivers/net/wireless/ath/ath11k/wmi.h |   3 +
+ 2 files changed, 98 insertions(+), 75 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index a54610d75c40..c8f1ea69ea9d 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -2162,6 +2162,7 @@ static void ath11k_dp_rx_h_ppdu(struct ath11k *ar, struct hal_rx_desc *rx_desc,
- 				struct ieee80211_rx_status *rx_status)
- {
- 	u8 channel_num;
-+	u32 center_freq;
- 
- 	rx_status->freq = 0;
- 	rx_status->rate_idx = 0;
-@@ -2172,8 +2173,11 @@ static void ath11k_dp_rx_h_ppdu(struct ath11k *ar, struct hal_rx_desc *rx_desc,
- 	rx_status->flag |= RX_FLAG_NO_SIGNAL_VAL;
- 
- 	channel_num = ath11k_dp_rx_h_msdu_start_freq(rx_desc);
-+	center_freq = ath11k_dp_rx_h_msdu_start_freq(rx_desc) >> 16;
- 
--	if (channel_num >= 1 && channel_num <= 14) {
-+	if (center_freq >= 5935 && center_freq <= 7105)
-+		rx_status->band = NL80211_BAND_6GHZ;
-+	else if (channel_num >= 1 && channel_num <= 14) {
- 		rx_status->band = NL80211_BAND_2GHZ;
- 	} else if (channel_num >= 36 && channel_num <= 173) {
- 		rx_status->band = NL80211_BAND_5GHZ;
 diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 291fb274134f..500108fa59d9 100644
+index 239a336f55f4..ad3a7b68d308 100644
 --- a/drivers/net/wireless/ath/ath11k/wmi.c
 +++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -3833,6 +3833,7 @@ static int ath11k_pull_mgmt_rx_params_tlv(struct ath11k_base *ab,
- 	}
+@@ -2194,91 +2194,111 @@ int ath11k_wmi_send_scan_chan_list_cmd(struct ath11k *ar,
+ 	struct channel_param *tchan_info;
+ 	struct wmi_tlv *tlv;
+ 	void *ptr;
+-	int i, ret, len;
++	int i, ret = 0, len;
++	u16 num_send_chans, num_sends = 0, max_chan_limit = 0;
+ 	u32 *reg1, *reg2;
  
- 	hdr->pdev_id =  ev->pdev_id;
-+	hdr->chan_freq = ev->chan_freq;
- 	hdr->channel =  ev->channel;
- 	hdr->snr =  ev->snr;
- 	hdr->rate =  ev->rate;
-@@ -5204,7 +5205,9 @@ static void ath11k_mgmt_rx_event(struct ath11k_base *ab, struct sk_buff *skb)
- 	if (rx_ev.status & WMI_RX_STATUS_ERR_MIC)
- 		status->flag |= RX_FLAG_MMIC_ERROR;
+-	len = sizeof(*cmd) + TLV_HDR_SIZE +
+-		 sizeof(*chan_info) * chan_list->nallchans;
+-
+-	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, len);
+-	if (!skb)
+-		return -ENOMEM;
+-
+-	cmd = (struct wmi_scan_chan_list_cmd *)skb->data;
+-	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_SCAN_CHAN_LIST_CMD) |
+-			  FIELD_PREP(WMI_TLV_LEN, sizeof(*cmd) - TLV_HDR_SIZE);
+-
+-	ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
+-		   "WMI no.of chan = %d len = %d\n", chan_list->nallchans, len);
+-	cmd->pdev_id = chan_list->pdev_id;
+-	cmd->num_scan_chans = chan_list->nallchans;
+-
+-	ptr = skb->data + sizeof(*cmd);
+-
+-	len = sizeof(*chan_info) * chan_list->nallchans;
+-	tlv = ptr;
+-	tlv->header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_ARRAY_STRUCT) |
+-		      FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
+-	ptr += TLV_HDR_SIZE;
+-
+ 	tchan_info = &chan_list->ch_param[0];
++	while (chan_list->nallchans) {
++		len = sizeof(*cmd) + TLV_HDR_SIZE;
++		max_chan_limit =
++			(wmi->wmi_ab->max_msg_len[ar->pdev_idx] - len) /
++			sizeof(*chan_info);
++
++		if (chan_list->nallchans > max_chan_limit)
++			num_send_chans = max_chan_limit;
++		else
++			num_send_chans = chan_list->nallchans;
++
++		chan_list->nallchans -= num_send_chans;
++		len += sizeof(*chan_info) * num_send_chans;
++
++		skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, len);
++		if (!skb)
++			return -ENOMEM;
  
--	if (rx_ev.channel >= 1 && rx_ev.channel <= 14) {
-+	if (rx_ev.chan_freq >= ATH11K_MIN_6G_FREQ) {
-+		status->band = NL80211_BAND_6GHZ;
-+	} else if (rx_ev.channel >= 1 && rx_ev.channel <= 14) {
- 		status->band = NL80211_BAND_2GHZ;
- 	} else if (rx_ev.channel >= 36 && rx_ev.channel <= ATH11K_MAX_5G_CHAN) {
- 		status->band = NL80211_BAND_5GHZ;
+-	for (i = 0; i < chan_list->nallchans; ++i) {
+-		chan_info = ptr;
+-		memset(chan_info, 0, sizeof(*chan_info));
+-		len = sizeof(*chan_info);
+-		chan_info->tlv_header = FIELD_PREP(WMI_TLV_TAG,
+-						   WMI_TAG_CHANNEL) |
+-					FIELD_PREP(WMI_TLV_LEN,
+-						   len - TLV_HDR_SIZE);
+-
+-		reg1 = &chan_info->reg_info_1;
+-		reg2 = &chan_info->reg_info_2;
+-		chan_info->mhz = tchan_info->mhz;
+-		chan_info->band_center_freq1 = tchan_info->cfreq1;
+-		chan_info->band_center_freq2 = tchan_info->cfreq2;
+-
+-		if (tchan_info->is_chan_passive)
+-			chan_info->info |= WMI_CHAN_INFO_PASSIVE;
+-		if (tchan_info->allow_he)
+-			chan_info->info |= WMI_CHAN_INFO_ALLOW_HE;
+-		else if (tchan_info->allow_vht)
+-			chan_info->info |= WMI_CHAN_INFO_ALLOW_VHT;
+-		else if (tchan_info->allow_ht)
+-			chan_info->info |= WMI_CHAN_INFO_ALLOW_HT;
+-		if (tchan_info->half_rate)
+-			chan_info->info |= WMI_CHAN_INFO_HALF_RATE;
+-		if (tchan_info->quarter_rate)
+-			chan_info->info |= WMI_CHAN_INFO_QUARTER_RATE;
+-
+-		chan_info->info |= FIELD_PREP(WMI_CHAN_INFO_MODE,
+-					      tchan_info->phy_mode);
+-		*reg1 |= FIELD_PREP(WMI_CHAN_REG_INFO1_MIN_PWR,
+-				    tchan_info->minpower);
+-		*reg1 |= FIELD_PREP(WMI_CHAN_REG_INFO1_MAX_PWR,
+-				    tchan_info->maxpower);
+-		*reg1 |= FIELD_PREP(WMI_CHAN_REG_INFO1_MAX_REG_PWR,
+-				    tchan_info->maxregpower);
+-		*reg1 |= FIELD_PREP(WMI_CHAN_REG_INFO1_REG_CLS,
+-				    tchan_info->reg_class_id);
+-		*reg2 |= FIELD_PREP(WMI_CHAN_REG_INFO2_ANT_MAX,
+-				    tchan_info->antennamax);
++		cmd = (struct wmi_scan_chan_list_cmd *)skb->data;
++		cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_SCAN_CHAN_LIST_CMD) |
++			FIELD_PREP(WMI_TLV_LEN, sizeof(*cmd) - TLV_HDR_SIZE);
++		cmd->pdev_id = chan_list->pdev_id;
++		cmd->num_scan_chans = num_send_chans;
++		if (num_sends)
++			cmd->flags |= WMI_APPEND_TO_EXISTING_CHAN_LIST_FLAG;
+ 
+ 		ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
+-			   "WMI chan scan list chan[%d] = %u\n",
+-			   i, chan_info->mhz);
++			   "WMI no.of chan = %d len = %d pdev_id = %d num_sends = %d\n",
++			   num_send_chans, len, cmd->pdev_id, num_sends);
+ 
+-		ptr += sizeof(*chan_info);
++		ptr = skb->data + sizeof(*cmd);
+ 
+-		tchan_info++;
+-	}
++		len = sizeof(*chan_info) * num_send_chans;
++		tlv = ptr;
++		tlv->header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_ARRAY_STRUCT) |
++			      FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
++		ptr += TLV_HDR_SIZE;
+ 
+-	ret = ath11k_wmi_cmd_send(wmi, skb, WMI_SCAN_CHAN_LIST_CMDID);
+-	if (ret) {
+-		ath11k_warn(ar->ab, "failed to send WMI_SCAN_CHAN_LIST cmd\n");
+-		dev_kfree_skb(skb);
+-	}
++		for (i = 0; i < num_send_chans; ++i) {
++			chan_info = ptr;
++			memset(chan_info, 0, sizeof(*chan_info));
++			len = sizeof(*chan_info);
++			chan_info->tlv_header = FIELD_PREP(WMI_TLV_TAG,
++							   WMI_TAG_CHANNEL) |
++						FIELD_PREP(WMI_TLV_LEN,
++							   len - TLV_HDR_SIZE);
++
++			reg1 = &chan_info->reg_info_1;
++			reg2 = &chan_info->reg_info_2;
++			chan_info->mhz = tchan_info->mhz;
++			chan_info->band_center_freq1 = tchan_info->cfreq1;
++			chan_info->band_center_freq2 = tchan_info->cfreq2;
++
++			if (tchan_info->is_chan_passive)
++				chan_info->info |= WMI_CHAN_INFO_PASSIVE;
++			if (tchan_info->allow_he)
++				chan_info->info |= WMI_CHAN_INFO_ALLOW_HE;
++			else if (tchan_info->allow_vht)
++				chan_info->info |= WMI_CHAN_INFO_ALLOW_VHT;
++			else if (tchan_info->allow_ht)
++				chan_info->info |= WMI_CHAN_INFO_ALLOW_HT;
++			if (tchan_info->half_rate)
++				chan_info->info |= WMI_CHAN_INFO_HALF_RATE;
++			if (tchan_info->quarter_rate)
++				chan_info->info |= WMI_CHAN_INFO_QUARTER_RATE;
++			if (tchan_info->psc_channel)
++				chan_info->info |= WMI_CHAN_INFO_PSC;
++
++			chan_info->info |= FIELD_PREP(WMI_CHAN_INFO_MODE,
++						      tchan_info->phy_mode);
++			*reg1 |= FIELD_PREP(WMI_CHAN_REG_INFO1_MIN_PWR,
++					    tchan_info->minpower);
++			*reg1 |= FIELD_PREP(WMI_CHAN_REG_INFO1_MAX_PWR,
++					    tchan_info->maxpower);
++			*reg1 |= FIELD_PREP(WMI_CHAN_REG_INFO1_MAX_REG_PWR,
++					    tchan_info->maxregpower);
++			*reg1 |= FIELD_PREP(WMI_CHAN_REG_INFO1_REG_CLS,
++					    tchan_info->reg_class_id);
++			*reg2 |= FIELD_PREP(WMI_CHAN_REG_INFO2_ANT_MAX,
++					    tchan_info->antennamax);
++
++			ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
++				   "WMI chan scan list chan[%d] = %u, chan_info->info %8x\n",
++				   i, chan_info->mhz, chan_info->info);
++
++			ptr += sizeof(*chan_info);
++
++			tchan_info++;
++		}
+ 
++		ret = ath11k_wmi_cmd_send(wmi, skb, WMI_SCAN_CHAN_LIST_CMDID);
++		if (ret) {
++			ath11k_warn(ar->ab, "failed to send WMI_SCAN_CHAN_LIST cmd\n");
++			dev_kfree_skb(skb);
++			goto end;
++		}
++
++		num_sends++;
++	}
++end:
+ 	return ret;
+ }
+ 
 diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index b9f3e559ced7..afa3c4cf90e9 100644
+index 4937d02839fc..319ad7241e01 100644
 --- a/drivers/net/wireless/ath/ath11k/wmi.h
 +++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -4228,6 +4228,7 @@ struct wmi_pdev_temperature_event {
- #define WLAN_MGMT_TXRX_HOST_MAX_ANTENNA 4
+@@ -54,6 +54,8 @@ struct wmi_tlv {
+ #define WLAN_SCAN_PARAMS_MAX_BSSID   4
+ #define WLAN_SCAN_PARAMS_MAX_IE_LEN  256
  
- struct mgmt_rx_event_params {
-+	u32 chan_freq;
- 	u32 channel;
- 	u32 snr;
- 	u8 rssi_ctl[WLAN_MGMT_TXRX_HOST_MAX_ANTENNA];
-@@ -4257,6 +4258,7 @@ struct wmi_mgmt_rx_hdr {
- 	u32 rx_tsf_l32;
- 	u32 rx_tsf_u32;
- 	u32 pdev_id;
-+	u32 chan_freq;
- } __packed;
++#define WMI_APPEND_TO_EXISTING_CHAN_LIST_FLAG 1
++
+ #define WMI_BA_MODE_BUFFER_SIZE_256  3
+ /*
+  * HW mode config type replicated from FW header
+@@ -3271,6 +3273,7 @@ struct  wmi_bcn_send_from_host_cmd {
+ #define WMI_CHAN_INFO_QUARTER_RATE	BIT(15)
+ #define WMI_CHAN_INFO_DFS_FREQ2		BIT(16)
+ #define WMI_CHAN_INFO_ALLOW_HE		BIT(17)
++#define WMI_CHAN_INFO_PSC		BIT(18)
  
- #define MAX_ANTENNA_EIGHT 8
+ #define WMI_CHAN_REG_INFO1_MIN_PWR	GENMASK(7, 0)
+ #define WMI_CHAN_REG_INFO1_MAX_PWR	GENMASK(15, 8)
 -- 
 2.17.1
 
