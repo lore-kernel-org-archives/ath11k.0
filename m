@@ -1,15 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail26.static.mailgun.info ([104.130.122.26])
+Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jc23A-0003QR-DQ
+ id 1jc23A-0003JS-T6
  for ath11k@lists.infradead.org; Fri, 22 May 2020 07:25:06 +0000
 From: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
-Subject: [PATCH v2 7/9] ath11k: Add 6G scan dwell time parameter in scan
- request command
-Date: Fri, 22 May 2020 00:24:29 -0700
-Message-Id: <20200522072431.27601-8-pradeepc@codeaurora.org>
+Subject: [PATCH v2 1/9] cfg80211: Add new channel flag to identify 6GHz PSC
+ channel
+Date: Fri, 22 May 2020 00:24:23 -0700
+Message-Id: <20200522072431.27601-2-pradeepc@codeaurora.org>
 In-Reply-To: <20200522072431.27601-1-pradeepc@codeaurora.org>
 References: <20200522072431.27601-1-pradeepc@codeaurora.org>
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -18,71 +19,61 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Johannes Berg <johannes@sipsolutions.net>, ath11k@lists.infradead.org
 Cc: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>, linux-wireless@vger.kernel.org
 
-Add 6G scan active and passive dwell time parameter to scan request.
-
-Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/wmi.c | 4 ++++
- drivers/net/wireless/ath/ath11k/wmi.h | 5 +++++
- 2 files changed, 9 insertions(+)
-
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index a6bbb3badd1f..239a336f55f4 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -1899,6 +1899,8 @@ void ath11k_wmi_start_scan_init(struct ath11k *ar,
- 	arg->dwell_time_active = 50;
- 	arg->dwell_time_active_2g = 0;
- 	arg->dwell_time_passive = 150;
-+	arg->dwell_time_active_6g = 40;
-+	arg->dwell_time_passive_6g = 30;
- 	arg->min_rest_time = 50;
- 	arg->max_rest_time = 500;
- 	arg->repeat_probe_time = 0;
-@@ -2045,6 +2047,8 @@ int ath11k_wmi_send_scan_start_cmd(struct ath11k *ar,
- 	cmd->dwell_time_active = params->dwell_time_active;
- 	cmd->dwell_time_active_2g = params->dwell_time_active_2g;
- 	cmd->dwell_time_passive = params->dwell_time_passive;
-+	cmd->dwell_time_active_6g = params->dwell_time_active_6g;
-+	cmd->dwell_time_passive_6g = params->dwell_time_passive_6g;
- 	cmd->min_rest_time = params->min_rest_time;
- 	cmd->max_rest_time = params->max_rest_time;
- 	cmd->repeat_probe_time = params->repeat_probe_time;
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index 76c2da2c5db7..4937d02839fc 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -3061,6 +3061,9 @@ struct  wmi_start_scan_cmd {
- 	u32 num_vendor_oui;
- 	u32 scan_ctrl_flags_ext;
- 	u32 dwell_time_active_2g;
-+	u32 dwell_time_active_6g;
-+	u32 dwell_time_passive_6g;
-+	u32 scan_start_offset;
- } __packed;
- 
- #define WMI_SCAN_FLAG_PASSIVE        0x1
-@@ -3127,6 +3130,8 @@ struct scan_req_params {
- 	u32 dwell_time_active;
- 	u32 dwell_time_active_2g;
- 	u32 dwell_time_passive;
-+	u32 dwell_time_active_6g;
-+	u32 dwell_time_passive_6g;
- 	u32 min_rest_time;
- 	u32 max_rest_time;
- 	u32 repeat_probe_time;
--- 
-2.17.1
-
-_______________________________________________
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+NkdIeiBjaGFubmVscyBhcmUgZGl2aWRlZCBpbnRvIHByZWZlcnJlZCBzY2FubmluZyBjaGFubmVs
+cyhQU0MpCmFuZCBub24tUFNDIGNoYW5uZWxzLiBPbmUgaW4gZXZlcnkgZm91ciAyME1IeiBjaGFu
+bmVscyBpcyBhIFBTQy4KU3BlYyBtYW5kYXRlcyB0byB1c2Ugb25seSBQU0MgY2hhbm5lbHMgYXMg
+cHJpbWFyeSBjaGFubmVscyBmb3IKc2V0dGluZyB1cCBCU1Mgb24gNkdIeiBvbmx5IEFQLgoKVGhl
+IHNldCBvZiAyMCBNSHogY2hhbm5lbHMgaW4gdGhlIDYgR0h6IGJhbmQsIHdpdGggY2hhbm5lbCBj
+ZW50ZXIKZnJlcXVlbmN5LCBjaF9hID0gQ2hhbm5lbCBzdGFydGluZyBmcmVxdWVuY3kg4oCTIDU1
+ICsgODAgw5cgbiAoTUh6KQphcmUgcmVmZXJyZWQgdG8gYXMgcHJlZmVycmVkIHNjYW5uaW5nIGNo
+YW5uZWxzIChQU0NzKSB3aGVyZSwKbiA9IDEsIOKApiwgMTUgYXMgcGVyIElFRUUgUDgwMi4xMWF4
+L0Q2LjAuCgpUaGlzIGZsYWcgYWxzbyB3aWxsIGJlIHVzZWQgd2hlbiBtYWtpbmcgc2Nhbm5pbmcg
+ZGVjaXNpb24gb24KNkdIeiBjaGFubmVscy4KClNpZ25lZC1vZmYtYnk6IFByYWRlZXAgS3VtYXIg
+Q2hpdHJhcHUgPHByYWRlZXBjQGNvZGVhdXJvcmEub3JnPgotLS0KIGluY2x1ZGUvbmV0L2NmZzgw
+MjExLmggfCAgMiArKwogbmV0L3dpcmVsZXNzL3JlZy5jICAgICB8IDE5ICsrKysrKysrKysrKysr
+KysrKysKIDIgZmlsZXMgY2hhbmdlZCwgMjEgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2lu
+Y2x1ZGUvbmV0L2NmZzgwMjExLmggYi9pbmNsdWRlL25ldC9jZmc4MDIxMS5oCmluZGV4IGZkNmE5
+NzNiMTI0OS4uY2EzZTlkZjdhZGZlIDEwMDY0NAotLS0gYS9pbmNsdWRlL25ldC9jZmc4MDIxMS5o
+CisrKyBiL2luY2x1ZGUvbmV0L2NmZzgwMjExLmgKQEAgLTk2LDYgKzk2LDcgQEAgc3RydWN0IHdp
+cGh5OwogICogQElFRUU4MDIxMV9DSEFOX05PXzEwTUhaOiAxMCBNSHogYmFuZHdpZHRoIGlzIG5v
+dCBwZXJtaXR0ZWQKICAqCW9uIHRoaXMgY2hhbm5lbC4KICAqIEBJRUVFODAyMTFfQ0hBTl9OT19I
+RTogSEUgb3BlcmF0aW9uIGlzIG5vdCBwZXJtaXR0ZWQgb24gdGhpcyBjaGFubmVsLgorICogQElF
+RUU4MDIxMV9DSEFOX1BTQzogNkdIeiBDaGFubmVsIGlzIFByZWZlcnJlZCBTY2FubmluZyBDaGFu
+bmVsKFBTQykKICAqCiAgKi8KIGVudW0gaWVlZTgwMjExX2NoYW5uZWxfZmxhZ3MgewpAQCAtMTEz
+LDYgKzExNCw3IEBAIGVudW0gaWVlZTgwMjExX2NoYW5uZWxfZmxhZ3MgewogCUlFRUU4MDIxMV9D
+SEFOX05PXzIwTUhaCQk9IDE8PDExLAogCUlFRUU4MDIxMV9DSEFOX05PXzEwTUhaCQk9IDE8PDEy
+LAogCUlFRUU4MDIxMV9DSEFOX05PX0hFCQk9IDE8PDEzLAorCUlFRUU4MDIxMV9DSEFOX1BTQwkJ
+PSAxPDwxNCwKIH07CiAKICNkZWZpbmUgSUVFRTgwMjExX0NIQU5fTk9fSFQ0MCBcCmRpZmYgLS1n
+aXQgYS9uZXQvd2lyZWxlc3MvcmVnLmMgYi9uZXQvd2lyZWxlc3MvcmVnLmMKaW5kZXggMGQ3NGEz
+MWVmMGFiLi40ZWJhYTU3ZTYwZTQgMTAwNjQ0Ci0tLSBhL25ldC93aXJlbGVzcy9yZWcuYworKysg
+Yi9uZXQvd2lyZWxlc3MvcmVnLmMKQEAgLTIwMjMsNiArMjAyMywyMSBAQCBzdGF0aWMgYm9vbCBp
+c19odDQwX2FsbG93ZWQoc3RydWN0IGllZWU4MDIxMV9jaGFubmVsICpjaGFuKQogCXJldHVybiB0
+cnVlOwogfQogCitzdGF0aWMgYm9vbCByZWdfaXNfNmdoel9jaGFubmVsX3BzYyhzdHJ1Y3QgaWVl
+ZTgwMjExX2NoYW5uZWwgKmNoYW4pCit7CisJLyoKKwkgKiBGcm9tIElFRUUgUDgwMi4xMWF4L0Q2
+LjA6IFRoZSBzZXQgb2YgMjAgTUh6IGNoYW5uZWxzIGluIHRoZSA2IEdIegorCSAqIGJhbmQsIHdp
+dGggY2hhbm5lbCBjZW50ZXIgZnJlcXVlbmN5LCBjaF9hID0gQ2hhbm5lbCBzdGFydGluZworCSAq
+IGZyZXF1ZW5jeSDigJMgNTUgKyA4MCDDlyBuIChNSHopIGFyZSByZWZlcnJlZCB0byBhcyBwcmVm
+ZXJyZWQgc2Nhbm5pbmcKKwkgKiBjaGFubmVscyAoUFNDcykuIENoYW5uZWwgc3RhcnRpbmcgZnJl
+cXVlbmN5IGlzIGRlZmluZWQgaW4gMjcuMy4yMy4yCisJICogKENoYW5uZWwgYWxsb2NhdGlvbiBp
+biB0aGUgNiBHSHogYmFuZCksIGFuZCBuID0gMSwg4oCmLCAxNS4KKwkgKi8KKwlpZiAoISgoKGNo
+YW4tPmNlbnRlcl9mcmVxIC0gNTk0MCArIDU1KSA+PiA0KSAlIDUpKQorCQlyZXR1cm4gdHJ1ZTsK
+KworCXJldHVybiBmYWxzZTsKK30KKwogc3RhdGljIHZvaWQgcmVnX3Byb2Nlc3NfaHRfZmxhZ3Nf
+Y2hhbm5lbChzdHJ1Y3Qgd2lwaHkgKndpcGh5LAogCQkJCQkgc3RydWN0IGllZWU4MDIxMV9jaGFu
+bmVsICpjaGFubmVsKQogewpAQCAtMjMwNSw2ICsyMzIwLDEwIEBAIHN0YXRpYyB2b2lkIGhhbmRs
+ZV9jaGFubmVsX2N1c3RvbShzdHJ1Y3Qgd2lwaHkgKndpcGh5LAogCWVsc2UKIAkJY2hhbi0+Zmxh
+Z3MgfD0gbWFwX3JlZ2RvbV9mbGFncyhyZWdfcnVsZS0+ZmxhZ3MpIHwgYndfZmxhZ3M7CiAKKwlp
+ZiAoY2hhbi0+YmFuZCA9PSBOTDgwMjExX0JBTkRfNkdIWiAmJgorCSAgICByZWdfaXNfNmdoel9j
+aGFubmVsX3BzYyhjaGFuKSkKKwkJY2hhbi0+ZmxhZ3MgfD0gSUVFRTgwMjExX0NIQU5fUFNDOwor
+CiAJY2hhbi0+bWF4X2FudGVubmFfZ2FpbiA9IChpbnQpIE1CSV9UT19EQkkocG93ZXJfcnVsZS0+
+bWF4X2FudGVubmFfZ2Fpbik7CiAJY2hhbi0+bWF4X3JlZ19wb3dlciA9IGNoYW4tPm1heF9wb3dl
+ciA9CiAJCShpbnQpIE1CTV9UT19EQk0ocG93ZXJfcnVsZS0+bWF4X2VpcnApOwotLSAKMi4xNy4x
+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphdGgxMWsg
+bWFpbGluZyBsaXN0CmF0aDExa0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZy
+YWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vYXRoMTFrCg==
