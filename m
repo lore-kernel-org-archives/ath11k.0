@@ -1,18 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
- helo=sipsolutions.net)
+Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jdZIp-0006i3-6T
- for ath11k@lists.infradead.org; Tue, 26 May 2020 13:07:32 +0000
-Message-ID: <e4009ab74aaf037148932eccf41a6d7739bef59c.camel@sipsolutions.net>
-Subject: Re: [PATCH V4 1/3] nl80211: add support for setting fixed HE
- rate/gi/ltf
-From: Johannes Berg <johannes@sipsolutions.net>
-Date: Tue, 26 May 2020 15:07:25 +0200
-In-Reply-To: <20200504102051.6438-1-john@phrozen.org>
- (sfid-20200504_122104_674755_5B1A7EF6)
-References: <20200504102051.6438-1-john@phrozen.org>
- (sfid-20200504_122104_674755_5B1A7EF6)
+ id 1jdiHQ-0006HQ-7l
+ for ath11k@lists.infradead.org; Tue, 26 May 2020 22:42:42 +0000
+From: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
+Subject: [PATCH v3 1/9] cfg80211: Add helper function to identify 6GHz PSC
+ channel
+Date: Tue, 26 May 2020 15:42:09 -0700
+Message-Id: <20200526224217.11119-2-pradeepc@codeaurora.org>
+In-Reply-To: <20200526224217.11119-1-pradeepc@codeaurora.org>
+References: <20200526224217.11119-1-pradeepc@codeaurora.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -22,53 +19,49 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: John Crispin <john@phrozen.org>, Kalle Valo <kvalo@codeaurora.org>
-Cc: Miles Hu <milehu@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: Johannes Berg <johannes@sipsolutions.net>, ath11k@lists.infradead.org
+Cc: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>, linux-wireless@vger.kernel.org
 
-On Mon, 2020-05-04 at 12:20 +0200, John Crispin wrote:
-> 
-> * properly make use the iftype_data array
-
-questionable? ;)
- 
-> +/**
-> + * ieee80211_get_he_cap - return the first he_cap that we find for a sband
-> + * @sband: the sband that we want to check for HE support
-> + *
-> + * Return: return a valid he_cap or NULL
-> + */
-> +static inline const struct ieee80211_sta_he_cap *
-> +ieee80211_get_he_cap(const struct ieee80211_supported_band *sband)
-
-So this returns an ... arbitrary one basically.
-
-> +static bool he_set_mcs_mask(struct genl_info *info,
-> +			    struct ieee80211_supported_band *sband,
-> +			    struct nl80211_txrate_he *txrate,
-> +			    u16 mcs[NL80211_HE_NSS_MAX])
-> +{
-> +	const struct ieee80211_sta_he_cap *he_cap;
-> +	u16 tx_mcs_mask[NL80211_HE_NSS_MAX] = {};
-> +	u16 tx_mcs_map = 0;
-> +	u8 i;
-> +
-> +	he_cap = ieee80211_get_he_cap(sband);
-
-and here you use it
-
-But! In all the cases where you actually get here, you should have a
-netdev. So you also know the correct type, and don't have to pick an
-arbitrary one.
-
-johannes
-
-
-
-_______________________________________________
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+NkdIeiBjaGFubmVscyBhcmUgZGl2aWRlZCBpbnRvIHByZWZlcnJlZCBzY2FubmluZyBjaGFubmVs
+cyhQU0MpCmFuZCBub24tUFNDIGNoYW5uZWxzLiBPbmUgaW4gZXZlcnkgZm91ciAyME1IeiBjaGFu
+bmVscyBpcyBhIFBTQy4KU3BlYyBtYW5kYXRlcyB0byB1c2Ugb25seSBQU0MgY2hhbm5lbHMgYXMg
+cHJpbWFyeSBjaGFubmVscyBmb3IKc2V0dGluZyB1cCBCU1Mgb24gNkdIeiBvbmx5IEFQLgoKVGhl
+IHNldCBvZiAyMCBNSHogY2hhbm5lbHMgaW4gdGhlIDYgR0h6IGJhbmQsIHdpdGggY2hhbm5lbCBj
+ZW50ZXIKZnJlcXVlbmN5LCBjaF9hID0gQ2hhbm5lbCBzdGFydGluZyBmcmVxdWVuY3kg4oCTIDU1
+ICsgODAgw5cgbiAoTUh6KQphcmUgcmVmZXJyZWQgdG8gYXMgcHJlZmVycmVkIHNjYW5uaW5nIGNo
+YW5uZWxzIChQU0NzKSB3aGVyZSwKbiA9IDEsIOKApiwgMTUgYXMgcGVyIElFRUUgUDgwMi4xMWF4
+L0Q2LjEuCgpUaGlzIGZ1bmN0aW9uIGNhbiBiZSB1c2VkIGJ5IGRyaXZlcnMgb3IgY2ZnODAyMTEg
+d2hlbiBtYWtpbmcKc2Nhbm5pbmcgZGVjaXNpb24gb24gNkdIeiBjaGFubmVscy4KClNpZ25lZC1v
+ZmYtYnk6IFByYWRlZXAgS3VtYXIgQ2hpdHJhcHUgPHByYWRlZXBjQGNvZGVhdXJvcmEub3JnPgot
+LS0KdjM6CiAtIHVwZGF0ZSBjaGFubmVsIHN0YXJ0aW5nIGZyZXF1ZW5jeSBmcm9tIDU5NDUgdG8g
+NTk1MCBhcyBwZXIKICAgSUVFRSBQODAyLjExYXgvRDYuMQogLSBEZWZpbmUgaGVscGVyIGZ1bmN0
+aW9uIGFuZCByZW1vdmUgY2Fobm5lbCBmbGFnIFBTQwoKIGluY2x1ZGUvbmV0L2NmZzgwMjExLmgg
+fCAyNCArKysrKysrKysrKysrKysrKysrKysrKysKIDEgZmlsZSBjaGFuZ2VkLCAyNCBpbnNlcnRp
+b25zKCspCgpkaWZmIC0tZ2l0IGEvaW5jbHVkZS9uZXQvY2ZnODAyMTEuaCBiL2luY2x1ZGUvbmV0
+L2NmZzgwMjExLmgKaW5kZXggZmQ2YTk3M2IxMjQ5Li5iZDI3MDIwZWE4YzkgMTAwNjQ0Ci0tLSBh
+L2luY2x1ZGUvbmV0L2NmZzgwMjExLmgKKysrIGIvaW5jbHVkZS9uZXQvY2ZnODAyMTEuaApAQCAt
+NTI4MSw2ICs1MjgxLDMwIEBAIGllZWU4MDIxMV9nZXRfY2hhbm5lbChzdHJ1Y3Qgd2lwaHkgKndp
+cGh5LCBpbnQgZnJlcSkKIAlyZXR1cm4gaWVlZTgwMjExX2dldF9jaGFubmVsX2toeih3aXBoeSwg
+TUhaX1RPX0tIWihmcmVxKSk7CiB9CiAKKy8qKgorICogaWVlZTgwMjExX2lzX2NoYW5uZWxfcHNj
+IC0gaXMgNmdoeiBjaGFubmVsIGEgUHJlZmVycmVkIFNjYW5uaW5nIENoYW5uZWwgKFBTQykKKyAq
+CisgKiBAY2hhbjogc3RydWN0IGllZWU4MDIxMV9jaGFubmVsIHRvIGRldGVybWluZQorICogUmV0
+dXJuOiBUcnVlIGlmIDZnaHogY2hhbm5lbCBpcyBhIFBTQyBjaGFubmVsLiBGYWxzZSBmb3IgdGhl
+IHJlc3QuCisgKi8KK3N0YXRpYyBpbmxpbmUgYm9vbCBpZWVlODAyMTFfaXNfY2hhbm5lbF9wc2Mo
+c3RydWN0IGllZWU4MDIxMV9jaGFubmVsICpjaGFuKQoreworCWlmIChjaGFuLT5iYW5kICE9IE5M
+ODAyMTFfQkFORF82R0haKQorCQlyZXR1cm4gZmFsc2U7CisKKwkvKgorCSAqIEZyb20gSUVFRSBQ
+ODAyLjExYXgvRDYuMTogVGhlIHNldCBvZiAyMCBNSHogY2hhbm5lbHMgaW4gdGhlIDYgR0h6CisJ
+ICogYmFuZCwgd2l0aCBjaGFubmVsIGNlbnRlciBmcmVxdWVuY3ksIGNoX2EgPSBDaGFubmVsIHN0
+YXJ0aW5nCisJICogZnJlcXVlbmN5IOKAkyA1NSAgODAgw5cgbiAoTUh6KSBhcmUgcmVmZXJyZWQg
+dG8gYXMgcHJlZmVycmVkIHNjYW5uaW5nCisJICogY2hhbm5lbHMgKFBTQ3MpLiBDaGFubmVsIHN0
+YXJ0aW5nIGZyZXF1ZW5jeSBpcyBkZWZpbmVkIGluIDI3LjMuMjMuMgorCSAqIChDaGFubmVsIGFs
+bG9jYXRpb24gaW4gdGhlIDYgR0h6IGJhbmQpLCBhbmQgbiA9IDEsIOKApiwgMTUuCisJICovCisJ
+aWYgKCEoKChjaGFuLT5jZW50ZXJfZnJlcSAtIDU5NTAgKyA1NSkgPj4gNCkgJSA1KSkKKwkJcmV0
+dXJuIHRydWU7CisKKwlyZXR1cm4gZmFsc2U7Cit9CisKIC8qKgogICogaWVlZTgwMjExX2dldF9y
+ZXNwb25zZV9yYXRlIC0gZ2V0IGJhc2ljIHJhdGUgZm9yIGEgZ2l2ZW4gcmF0ZQogICoKLS0gCjIu
+MTcuMQoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmF0
+aDExayBtYWlsaW5nIGxpc3QKYXRoMTFrQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3Rz
+LmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9hdGgxMWsK
