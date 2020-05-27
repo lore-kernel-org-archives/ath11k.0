@@ -2,15 +2,15 @@ Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
  helo=sipsolutions.net)
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jdwLU-0006zJ-0e
- for ath11k@lists.infradead.org; Wed, 27 May 2020 13:43:49 +0000
-Message-ID: <7f2a2a382c42b7285b9ad1eeac4e8060bc8d897a.camel@sipsolutions.net>
-Subject: Re: [PATCH v3 01/11] cfg80211: use only HE capability to set
- prohibited flags in 6 GHz
+ id 1jdwbu-00057L-MC
+ for ath11k@lists.infradead.org; Wed, 27 May 2020 14:00:48 +0000
+Message-ID: <bf0f6c17c188901477c1d6aa61aab6143c4ac635.camel@sipsolutions.net>
+Subject: Re: [PATCH v3 02/11] cfg80211: handle 6 GHz capability of new station
 From: Johannes Berg <johannes@sipsolutions.net>
-Date: Wed, 27 May 2020 15:43:41 +0200
-In-Reply-To: <1589399105-25472-1-git-send-email-rmanohar@codeaurora.org>
+Date: Wed, 27 May 2020 16:00:42 +0200
+In-Reply-To: <1589399105-25472-2-git-send-email-rmanohar@codeaurora.org>
 References: <1589399105-25472-1-git-send-email-rmanohar@codeaurora.org>
+ <1589399105-25472-2-git-send-email-rmanohar@codeaurora.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -25,52 +25,60 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Rajkumar Manoharan <rmanohar@codeaurora.org>, kvalo@codeaurora.org
-Cc: Vamsi Krishna <vamsin@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-Hi,
+On Wed, 2020-05-13 at 12:44 -0700, Rajkumar Manoharan wrote:
+> Handle 6 GHz HE capability while adding new station. It will be used
+> later in mac80211 station processing.
 
-This is what we have in this area:
-https://p.sipsolutions.net/d8e56772a261199a.txt
+This doesn't compile without the next patch.
 
-but I see it's also incomplete.
+> +       const struct ieee80211_he_6ghz_band_cap *he_6ghz_capa;
 
-> +static bool cfg80211_is_6ghz_freq(u32 freq)
-> +{
-> +	return (freq > 5940 && freq < 7105);
-> +}
+This we made just an __le16, any particular reason to have the struct?
+It does need to be a pointer for the "no changes" case, but the struct
+seems a bit overkill?
 
-That doesn't really make sense, I don't want to see those hardcoded
-frequencies all over the place.
+> + * @NL80211_ATTR_HE_6GHZ_CAPABILITY: HE 6 GHz Band Capability element (from
+> + *	association request when used with NL80211_CMD_NEW_STATION).
 
->  	case NL80211_CHAN_WIDTH_40:
->  		width = 40;
-> +		if (cfg80211_is_6ghz_freq(chandef->center_freq1)) {
+That we have pretty much identically.
 
-You can check chandef->chan->band instead. (In fact, we did)
+> @@ -2998,6 +3003,7 @@ enum nl80211_attrs {
+>  #define NL80211_HE_MAX_CAPABILITY_LEN           54
+>  #define NL80211_MAX_NR_CIPHER_SUITES		5
+>  #define NL80211_MAX_NR_AKM_SUITES		2
+> +#define NL80211_HE_6GHZ_CAPABILITY_LEN		2
 
-> +			if (!he_cap)
-> +				return false;
-> +			if (!he_cap->has_he_6ghz)
-> +				return false;
+This not, we defined it just to be a U16.
 
-I'm not sure you should even _get_ here with a 6 GHz channel if you
-don't have 6 GHz capability? I mean, why did you register the channel in
-the first place then? This seems unnecessarily complex. If the channel
-didn't exist, it was rejected long before here.
+> +	[NL80211_ATTR_HE_6GHZ_CAPABILITY] = {
+> +		.type = NLA_EXACT_LEN,
+> +		.len = NL80211_HE_6GHZ_CAPABILITY_LEN,
+> +	},
 
-However, looking at D6.0, maybe we do need some checks of the HE
-capability?
+This no longer exists, but I guess I'll just take our patch for the U16
+here.
+ 
+> +	/* Ensure that HT/VHT capabilities are not set for 6 GHz HE STA */
+> +	if (params.he_6ghz_capa && (params.ht_capa || params.vht_capa))
+> +		return -EINVAL;
 
-> +			if (!(he_cap->he_cap_elem.phy_cap_info[0] &
-> +			      IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_40MHZ_80MHZ_IN_5G))
-> +				return false;
+Not sure this makes much sense? We can only check what's being set at
+the same time, so multiple calls here would still be possible ...
+doesn't hurt much though.
 
-Looks like even D6.0 still changed something in this area...
+We didn't have this check, and have one additional check:
 
-Evidently our patch just assumed that in 6 GHz all of this is supported,
-but the spec doesn't support that theory :-)
-
-Can you respin this with D6.0 taken into account?
+@@ -6170,7 +6200,7 @@ static int nl80211_new_station(struct sk_buff *skb, struct genl_info *info)
+                params.vht_capa = NULL;
+ 
+                /* HE requires WME */
+-               if (params.he_capa_len)
++               if (params.he_capa_len || params.he_6ghz_capa)
+                        return -EINVAL;
+        }
+ 
 
 johannes
 
