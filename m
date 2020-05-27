@@ -1,14 +1,17 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from m43-7.mailgun.net ([69.72.43.7])
+Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
+ helo=sipsolutions.net)
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jdiHS-0006KX-BU
- for ath11k@lists.infradead.org; Tue, 26 May 2020 22:42:46 +0000
-From: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
-Subject: [PATCH v3 9/9] ath11k: Add support for 6g scan hint
-Date: Tue, 26 May 2020 15:42:17 -0700
-Message-Id: <20200526224217.11119-10-pradeepc@codeaurora.org>
-In-Reply-To: <20200526224217.11119-1-pradeepc@codeaurora.org>
-References: <20200526224217.11119-1-pradeepc@codeaurora.org>
+ id 1jdwLU-0006zJ-0e
+ for ath11k@lists.infradead.org; Wed, 27 May 2020 13:43:49 +0000
+Message-ID: <7f2a2a382c42b7285b9ad1eeac4e8060bc8d897a.camel@sipsolutions.net>
+Subject: Re: [PATCH v3 01/11] cfg80211: use only HE capability to set
+ prohibited flags in 6 GHz
+From: Johannes Berg <johannes@sipsolutions.net>
+Date: Wed, 27 May 2020 15:43:41 +0200
+In-Reply-To: <1589399105-25472-1-git-send-email-rmanohar@codeaurora.org>
+References: <1589399105-25472-1-git-send-email-rmanohar@codeaurora.org>
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -17,169 +20,59 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Johannes Berg <johannes@sipsolutions.net>, ath11k@lists.infradead.org
-Cc: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>, linux-wireless@vger.kernel.org
+To: Rajkumar Manoharan <rmanohar@codeaurora.org>, kvalo@codeaurora.org
+Cc: Vamsi Krishna <vamsin@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-Add support for 6Ghz short ssid and bssid hint mechanism
-as part of scan command.
+Hi,
 
-Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/wmi.c | 72 +++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/wmi.h | 22 ++++++++
- 2 files changed, 94 insertions(+)
+This is what we have in this area:
+https://p.sipsolutions.net/d8e56772a261199a.txt
 
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index ad3a7b68d308..317376a4eb6e 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -2005,6 +2005,8 @@ int ath11k_wmi_send_scan_start_cmd(struct ath11k *ar,
- 	int i, ret, len;
- 	u32 *tmp_ptr;
- 	u8 extraie_len_with_pad = 0;
-+	struct hint_short_ssid *s_ssid = NULL;
-+	struct hint_bssid *hint_bssid = NULL;
- 
- 	len = sizeof(*cmd);
- 
-@@ -2026,6 +2028,14 @@ int ath11k_wmi_send_scan_start_cmd(struct ath11k *ar,
- 			roundup(params->extraie.len, sizeof(u32));
- 	len += extraie_len_with_pad;
- 
-+	if (params->num_hint_bssid)
-+		len += TLV_HDR_SIZE +
-+		       params->num_hint_bssid * sizeof(struct hint_bssid);
-+
-+	if (params->num_hint_s_ssid)
-+		len += TLV_HDR_SIZE +
-+		       params->num_hint_s_ssid * sizeof(struct hint_short_ssid);
-+
- 	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, len);
- 	if (!skb)
- 		return -ENOMEM;
-@@ -2126,6 +2136,68 @@ int ath11k_wmi_send_scan_start_cmd(struct ath11k *ar,
- 
- 	ptr += extraie_len_with_pad;
- 
-+	if (params->num_hint_s_ssid) {
-+		len = params->num_hint_s_ssid * sizeof(struct hint_short_ssid);
-+		tlv = ptr;
-+		tlv->header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_ARRAY_FIXED_STRUCT) |
-+			      FIELD_PREP(WMI_TLV_LEN, len);
-+		ptr += TLV_HDR_SIZE;
-+		s_ssid = ptr;
-+		for (i = 0; i < params->num_hint_s_ssid; ++i) {
-+			s_ssid->freq_flags = params->hint_s_ssid[i].freq_flags;
-+			s_ssid->short_ssid = params->hint_s_ssid[i].short_ssid;
-+			s_ssid++;
-+		}
-+		ptr += len;
-+	}
-+
-+	if (params->num_hint_bssid) {
-+		len = params->num_hint_bssid * sizeof(struct hint_bssid);
-+		tlv = ptr;
-+		tlv->header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_ARRAY_FIXED_STRUCT) |
-+			      FIELD_PREP(WMI_TLV_LEN, len);
-+		ptr += TLV_HDR_SIZE;
-+		hint_bssid = ptr;
-+		for (i = 0; i < params->num_hint_bssid; ++i) {
-+			hint_bssid->freq_flags =
-+				params->hint_bssid[i].freq_flags;
-+			ether_addr_copy(&params->hint_bssid[i].bssid.addr[0],
-+					&hint_bssid->bssid.addr[0]);
-+			hint_bssid++;
-+		}
-+	}
-+
-+	len = params->num_hint_s_ssid * sizeof(struct hint_short_ssid);
-+	tlv = ptr;
-+	tlv->header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_ARRAY_FIXED_STRUCT) |
-+		      FIELD_PREP(WMI_TLV_LEN, len);
-+	ptr += TLV_HDR_SIZE;
-+	if (params->num_hint_s_ssid) {
-+		s_ssid = ptr;
-+		for (i = 0; i < params->num_hint_s_ssid; ++i) {
-+			s_ssid->freq_flags = params->hint_s_ssid[i].freq_flags;
-+			s_ssid->short_ssid = params->hint_s_ssid[i].short_ssid;
-+			s_ssid++;
-+		}
-+	}
-+	ptr += len;
-+
-+	len = params->num_hint_bssid * sizeof(struct hint_bssid);
-+	tlv = ptr;
-+	tlv->header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_ARRAY_FIXED_STRUCT) |
-+		      FIELD_PREP(WMI_TLV_LEN, len);
-+	ptr += TLV_HDR_SIZE;
-+	if (params->num_hint_bssid) {
-+		hint_bssid = ptr;
-+		for (i = 0; i < params->num_hint_bssid; ++i) {
-+			hint_bssid->freq_flags =
-+				params->hint_bssid[i].freq_flags;
-+			ether_addr_copy(&params->hint_bssid[i].bssid.addr[0],
-+					&hint_bssid->bssid.addr[0]);
-+			hint_bssid++;
-+		}
-+	}
-+
- 	ret = ath11k_wmi_cmd_send(wmi, skb,
- 				  WMI_START_SCAN_CMDID);
- 	if (ret) {
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index 319ad7241e01..1162bd7a5f87 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -50,6 +50,14 @@ struct wmi_tlv {
- #define WMI_MAX_MEM_REQS        32
- #define ATH11K_MAX_HW_LISTEN_INTERVAL 5
- 
-+#define WLAN_SCAN_MAX_HINT_S_SSID        10
-+#define WLAN_SCAN_MAX_HINT_BSSID         10
-+#define MAX_RNR_BSS                    5
-+
-+#define WLAN_SCAN_MAX_HINT_S_SSID        10
-+#define WLAN_SCAN_MAX_HINT_BSSID         10
-+#define MAX_RNR_BSS                    5
-+
- #define WLAN_SCAN_PARAMS_MAX_SSID    16
- #define WLAN_SCAN_PARAMS_MAX_BSSID   4
- #define WLAN_SCAN_PARAMS_MAX_IE_LEN  256
-@@ -3105,6 +3113,16 @@ enum {
- 	((flag) |= (((mode) << WMI_SCAN_DWELL_MODE_SHIFT) & \
- 		    WMI_SCAN_DWELL_MODE_MASK))
- 
-+struct hint_short_ssid {
-+	u32 freq_flags;
-+	u32 short_ssid;
-+};
-+
-+struct hint_bssid {
-+	u32 freq_flags;
-+	struct wmi_mac_addr bssid;
-+};
-+
- struct scan_req_params {
- 	u32 scan_id;
- 	u32 scan_req_id;
-@@ -3184,6 +3202,10 @@ struct scan_req_params {
- 	struct element_info extraie;
- 	struct element_info htcap;
- 	struct element_info vhtcap;
-+	u32 num_hint_s_ssid;
-+	u32 num_hint_bssid;
-+	struct hint_short_ssid hint_s_ssid[WLAN_SCAN_MAX_HINT_S_SSID];
-+	struct hint_bssid hint_bssid[WLAN_SCAN_MAX_HINT_BSSID];
- };
- 
- struct wmi_ssid_arg {
--- 
-2.17.1
+but I see it's also incomplete.
+
+> +static bool cfg80211_is_6ghz_freq(u32 freq)
+> +{
+> +	return (freq > 5940 && freq < 7105);
+> +}
+
+That doesn't really make sense, I don't want to see those hardcoded
+frequencies all over the place.
+
+>  	case NL80211_CHAN_WIDTH_40:
+>  		width = 40;
+> +		if (cfg80211_is_6ghz_freq(chandef->center_freq1)) {
+
+You can check chandef->chan->band instead. (In fact, we did)
+
+> +			if (!he_cap)
+> +				return false;
+> +			if (!he_cap->has_he_6ghz)
+> +				return false;
+
+I'm not sure you should even _get_ here with a 6 GHz channel if you
+don't have 6 GHz capability? I mean, why did you register the channel in
+the first place then? This seems unnecessarily complex. If the channel
+didn't exist, it was rejected long before here.
+
+However, looking at D6.0, maybe we do need some checks of the HE
+capability?
+
+> +			if (!(he_cap->he_cap_elem.phy_cap_info[0] &
+> +			      IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_40MHZ_80MHZ_IN_5G))
+> +				return false;
+
+Looks like even D6.0 still changed something in this area...
+
+Evidently our patch just assumed that in 6 GHz all of this is supported,
+but the spec doesn't support that theory :-)
+
+Can you respin this with D6.0 taken into account?
+
+johannes
 
 
 _______________________________________________
