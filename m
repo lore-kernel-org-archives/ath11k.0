@@ -1,19 +1,19 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail27.static.mailgun.info ([104.130.122.27])
+Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
+ helo=sipsolutions.net)
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jeDAd-0008NU-S3
- for ath11k@lists.infradead.org; Thu, 28 May 2020 07:41:45 +0000
+ id 1jeDAj-0008Rx-Lm
+ for ath11k@lists.infradead.org; Thu, 28 May 2020 07:41:51 +0000
+Message-ID: <6a606d4e32d6eb00b33f5ce8ad44a71994640c7d.camel@sipsolutions.net>
+Subject: Re: [PATCH v3 01/11] cfg80211: use only HE capability to set
+ prohibited flags in 6 GHz
+From: Johannes Berg <johannes@sipsolutions.net>
+Date: Thu, 28 May 2020 09:41:46 +0200
+In-Reply-To: <0fa1c07811796add4a6a23c81cbafe41@codeaurora.org>
+References: <1589399105-25472-1-git-send-email-rmanohar@codeaurora.org>
+ <7f2a2a382c42b7285b9ad1eeac4e8060bc8d897a.camel@sipsolutions.net>
+ <0fa1c07811796add4a6a23c81cbafe41@codeaurora.org>
 MIME-Version: 1.0
-Date: Thu, 28 May 2020 00:41:39 -0700
-From: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
-Subject: Re: [PATCH v3 1/9] cfg80211: Add helper function to identify 6GHz PSC
- channel
-In-Reply-To: <643b2e386881de3051f35eaf64d36344cb2df9f6.camel@sipsolutions.net>
-References: <20200526224217.11119-1-pradeepc@codeaurora.org>
- <20200526224217.11119-2-pradeepc@codeaurora.org>
- (sfid-20200527_004804_951011_BE3F0562)
- <643b2e386881de3051f35eaf64d36344cb2df9f6.camel@sipsolutions.net>
-Message-ID: <4f4b4023d38d75bfa7f95db1aa1a3056@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,28 +22,44 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Johannes Berg <johannes@sipsolutions.net>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: Rajkumar Manoharan <rmanohar@codeaurora.org>
+Cc: Vamsi Krishna <vamsin@codeaurora.org>, linux-wireless-owner@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, kvalo@codeaurora.org
 
-
-> static inline bool cfg80211_channel_is_psc(struct ieee80211_channel 
-> *chan)
-> {
-> 	if (chan->band != NL80211_BAND_6GHZ)
-> 		return false;
+On Wed, 2020-05-27 at 16:32 -0700, Rajkumar Manoharan wrote:
 > 
-> 	return ieee80211_frequency_to_channel(chan->center_freq) % 16 == 5;
-> }
-> 
-> johannes
-sure Johannes. Above looks neat.
+> > However, looking at D6.0, maybe we do need some checks of the HE
+> > capability?
+> > 
+> > > +			if (!(he_cap->he_cap_elem.phy_cap_info[0] &
+> > > +			      IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_40MHZ_80MHZ_IN_5G))
+> > > +				return false;
+> > 
+> > Looks like even D6.0 still changed something in this area...
+> > 
+> > Evidently our patch just assumed that in 6 GHz all of this is 
+> > supported,
+> > but the spec doesn't support that theory :-)
+> > 
+> IIUC the same bits are applicable for both 5 GHz & 6 GHz. I understand 
+> the macro doesn't capture both.
 
-Thanks
-pradeep
+Yeah, I think you're right. I looked at D6.0 (though there seems to be
+D6.1?) but I couldn't quite 
+
+> > Can you respin this with D6.0 taken into account?
+> > 
+> Let me check again and respin after your series. Does it sound good?
+
+Ok. I'll include our more limited code in the series for now then, and
+we can make changes to that after we're on the same page.
+
+Thanks,
+johannes
+
 
 _______________________________________________
 ath11k mailing list
