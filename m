@@ -2,16 +2,19 @@ Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
  helo=sipsolutions.net)
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jeEJn-0006xB-Hw
- for ath11k@lists.infradead.org; Thu, 28 May 2020 08:55:17 +0000
-Message-ID: <f9a764eaf9f0898c257b6c98346536c2c0f5d6f8.camel@sipsolutions.net>
-Subject: Re: [PATCH v3 06/11] mac80211: handle HE 6 GHz Capability in HE STA
- processing
+ id 1jeF2n-0000mg-Ti
+ for ath11k@lists.infradead.org; Thu, 28 May 2020 09:41:47 +0000
+Message-ID: <650d683aeabd94a69bad64ae2a0af45c2fe25cd1.camel@sipsolutions.net>
+Subject: Re: [PATCH v3 10/11] mac80211: determine chantype from HE operation
+ in 6 GHz
 From: Johannes Berg <johannes@sipsolutions.net>
-Date: Thu, 28 May 2020 10:55:09 +0200
-In-Reply-To: <1589399105-25472-6-git-send-email-rmanohar@codeaurora.org>
+Date: Thu, 28 May 2020 11:41:40 +0200
+In-Reply-To: <74232fe9a140a15306c04f0509e6c615b8e329de.camel@sipsolutions.net>
+ (sfid-20200527_164156_614875_57253EF5)
 References: <1589399105-25472-1-git-send-email-rmanohar@codeaurora.org>
- <1589399105-25472-6-git-send-email-rmanohar@codeaurora.org>
+ <1589399105-25472-10-git-send-email-rmanohar@codeaurora.org>
+ <74232fe9a140a15306c04f0509e6c615b8e329de.camel@sipsolutions.net>
+ (sfid-20200527_164156_614875_57253EF5)
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -28,77 +31,35 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Rajkumar Manoharan <rmanohar@codeaurora.org>, kvalo@codeaurora.org
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
+On Wed, 2020-05-27 at 16:41 +0200, Johannes Berg wrote:
+> 
+> Hmm. Yes, we just had
+> 
+> +       case IEEE80211_HE_6GHZ_OPER_CTRL_CHANWIDTH_160MHZ:
+> +               if (abs(he_6ghz_oper->ccfs1 - he_6ghz_oper->ccfs0) == 8)
+> +                       he_chandef.width = NL80211_CHAN_WIDTH_160;
+> +               else
+> +                       he_chandef.width = NL80211_CHAN_WIDTH_80P80;
+> +               break;
+> 
+> 
+> but that breaks if you don't support 80+80 or 160.
+> 
+> OTOH, we check this later again, I think, and downgrade if we don't
+> support it, so no harm done?
+> 
+> I think I'd prefer the parsing to be exact, and then downgrade as
+> necessary. That makes things a bit simpler.
 
-> +++ b/include/net/cfg80211.h
-> @@ -332,15 +332,25 @@ struct ieee80211_sta_vht_cap {
->   * to describe 802.11ax HE capabilities for a STA.
->   *
->   * @has_he: true iff HE data is valid.
-> + * @has_he_6ghz: true iff HE 6 GHz data is valid.
->   * @he_cap_elem: Fixed portion of the HE capabilities element.
->   * @he_mcs_nss_supp: The supported NSS/MCS combinations.
->   * @ppe_thres: Holds the PPE Thresholds data.
-> + * @ampdu_factor: Maximum A-MPDU length factor used in 6 GHz.
-> + * @ampdu_density: Minimum A-MPDU spacing used in 6 GHz.
-> + * @cap: HE 6 GHz Band capability.
->   */
->  struct ieee80211_sta_he_cap {
->  	bool has_he;
-> +	bool has_he_6ghz;
->  	struct ieee80211_he_cap_elem he_cap_elem;
->  	struct ieee80211_he_mcs_nss_supp he_mcs_nss_supp;
->  	u8 ppe_thres[IEEE80211_HE_PPE_THRES_MAX_LEN];
-> +	struct {
-> +		u8 ampdu_factor;
-> +		u8 ampdu_density;
-> +		u16 cap;
-> +	} he_6ghz;
->  };
+Except that won't work for mesh.
 
-So ... I'm a bit unsure about this now. What I had done was this (well,
-I adjusted it slightly now):
+I actually kinda like this better than what I did, because what I did
+required all kinds of contortions with DISABLE_HT/VHT/HE ...
 
-https://p.sipsolutions.net/2d0eb7c7e23a1b92.txt
-
-
-But it's only half related? Maybe you're also using that for the
-associated stations, not just for "self"? But then again, you *already*
-added 
-
-@@ -1270,6 +1271,7 @@ struct station_parameters {
-        u8 he_capa_len;
-        u16 airtime_weight;
-        struct sta_txpwr txpwr;
-+       const struct ieee80211_he_6ghz_capa *he_6ghz_capa;
- };
-
-right?
-
-
-But no ... that's different. We still have a need to store the station's
-capabilities.
-
-But even then,
-
-> +	struct {
-> +		u8 ampdu_factor;
-> +		u8 ampdu_density;
-> +		u16 cap;
-> +	} he_6ghz;
-
-doesn't really make sense, does it? "cap' already includes the
-ampdu_factor and ampdu_density flags, so that's doubled...
-
-
-I think I would prefer to have this separate. We need it as I put into
-my patch that I linked to above, and we also need it in the station in
-mac80211 for AP, but we don't really need it for cfg80211 as you put it
-here.
-
-I'll continue with my other patches, and then maybe see how this fits in
-later.
+Still checking.
 
 johannes
+
 
 
 _______________________________________________
