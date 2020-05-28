@@ -1,20 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
- helo=sipsolutions.net)
+Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jeCe9-0004eu-Ui
- for ath11k@lists.infradead.org; Thu, 28 May 2020 07:08:11 +0000
-Message-ID: <643b2e386881de3051f35eaf64d36344cb2df9f6.camel@sipsolutions.net>
-Subject: Re: [PATCH v3 1/9] cfg80211: Add helper function to identify 6GHz
- PSC channel
-From: Johannes Berg <johannes@sipsolutions.net>
-Date: Thu, 28 May 2020 09:08:06 +0200
-In-Reply-To: <20200526224217.11119-2-pradeepc@codeaurora.org>
- (sfid-20200527_004804_951011_BE3F0562)
-References: <20200526224217.11119-1-pradeepc@codeaurora.org>
- <20200526224217.11119-2-pradeepc@codeaurora.org>
- (sfid-20200527_004804_951011_BE3F0562)
+ id 1jeD0N-0007WA-Aj
+ for ath11k@lists.infradead.org; Thu, 28 May 2020 07:31:10 +0000
 MIME-Version: 1.0
+Subject: Re: [PATCH 3/3] ath11k: remove "ath11k_mac_get_ar_vdev_stop_status"
+ references
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <1590067829-26109-4-git-send-email-mkenna@codeaurora.org>
+References: <1590067829-26109-4-git-send-email-mkenna@codeaurora.org>
+Message-Id: <20200528073035.22F46C43387@smtp.codeaurora.org>
+Date: Thu, 28 May 2020 07:30:35 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,43 +19,34 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>, ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
+To: Maharaja Kennadyrajan <mkenna@codeaurora.org>
+Cc: Ritesh Singh <ritesi@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-T24gVHVlLCAyMDIwLTA1LTI2IGF0IDE1OjQyIC0wNzAwLCBQcmFkZWVwIEt1bWFyIENoaXRyYXB1
-IHdyb3RlOgpIaSwKCkp1c3QgY2hlY2tlZCB3aGF0IHdlIGhhZCBoZXJlLCBhbmQgaXQgd2FzIHRo
-ZSBmb2xsb3dpbmc6Cgo+ICsvKioKPiArICogaWVlZTgwMjExX2lzX2NoYW5uZWxfcHNjIC0gaXMg
-NmdoeiBjaGFubmVsIGEgUHJlZmVycmVkIFNjYW5uaW5nIENoYW5uZWwgKFBTQykKPiArICoKPiAr
-ICogQGNoYW46IHN0cnVjdCBpZWVlODAyMTFfY2hhbm5lbCB0byBkZXRlcm1pbmUKPiArICogUmV0
-dXJuOiBUcnVlIGlmIDZnaHogY2hhbm5lbCBpcyBhIFBTQyBjaGFubmVsLiBGYWxzZSBmb3IgdGhl
-IHJlc3QuCj4gKyAqLwo+ICtzdGF0aWMgaW5saW5lIGJvb2wgaWVlZTgwMjExX2lzX2NoYW5uZWxf
-cHNjKHN0cnVjdCBpZWVlODAyMTFfY2hhbm5lbCAqY2hhbikKPiArewo+ICsJaWYgKGNoYW4tPmJh
-bmQgIT0gTkw4MDIxMV9CQU5EXzZHSFopCj4gKwkJcmV0dXJuIGZhbHNlOwo+ICsKPiArCS8qCj4g
-KwkgKiBGcm9tIElFRUUgUDgwMi4xMWF4L0Q2LjE6IFRoZSBzZXQgb2YgMjAgTUh6IGNoYW5uZWxz
-IGluIHRoZSA2IEdIego+ICsJICogYmFuZCwgd2l0aCBjaGFubmVsIGNlbnRlciBmcmVxdWVuY3ks
-IGNoX2EgPSBDaGFubmVsIHN0YXJ0aW5nCj4gKwkgKiBmcmVxdWVuY3kg4oCTIDU1ICA4MCDDlyBu
-IChNSHopIGFyZSByZWZlcnJlZCB0byBhcyBwcmVmZXJyZWQgc2Nhbm5pbmcKPiArCSAqIGNoYW5u
-ZWxzIChQU0NzKS4gQ2hhbm5lbCBzdGFydGluZyBmcmVxdWVuY3kgaXMgZGVmaW5lZCBpbiAyNy4z
-LjIzLjIKPiArCSAqIChDaGFubmVsIGFsbG9jYXRpb24gaW4gdGhlIDYgR0h6IGJhbmQpLCBhbmQg
-biA9IDEsIOKApiwgMTUuCj4gKwkgKi8KPiArCWlmICghKCgoY2hhbi0+Y2VudGVyX2ZyZXEgLSA1
-OTUwICsgNTUpID4+IDQpICUgNSkpCj4gKwkJcmV0dXJuIHRydWU7Cj4gKwo+ICsJcmV0dXJuIGZh
-bHNlOwo+ICt9CgoKc3RhdGljIGlubGluZSBib29sIGNmZzgwMjExX2lzX3BzYyhzdHJ1Y3QgaWVl
-ZTgwMjExX2NoYW5uZWwgKmNoYW4pCnsKICAgICAgICBpbnQgY2hhbl9udW0gPQogICAgICAgICAg
-ICAgICAgaWVlZTgwMjExX2ZyZXF1ZW5jeV90b19jaGFubmVsKGNoYW4tPmNlbnRlcl9mcmVxKTsK
-CiAgICAgICAgcmV0dXJuIGNoYW4tPmJhbmQgPT0gTkw4MDIxMV9CQU5EXzZHSFogJiYgY2hhbl9u
-dW0gJSAxNiA9PSA1Owp9CgpBcGFydCBmcm9tIHRoZSBuYW1pbmcsIHdoZXJlIEkgZ3Vlc3MgSSBw
-cmVmZXIgYWN0dWFsbHkKCgljZmc4MDIxMV9jaGFubmVsX2lzX3BzYygpCgpvciBzbywgZG9lcyB0
-aGF0IHNlZW0gcmVhc29uYWJsZSB0byB5b3U/IEknZCBwcmVmZXIgbm90IHRvIGhhcmRjb2RlCmZy
-ZXF1ZW5jaWVzIGV2ZXJ5d2hlcmUsIHNvIGluIHRoYXQgcmVnYXJkIEkgbGlrZSBvdXIgdmVyc2lv
-biBiZXR0ZXIuCk1heWJlIGJhaWwgb3V0IGVhcmxpZXIgaWYgYmFuZCAhPSA2IGdoejoKCnN0YXRp
-YyBpbmxpbmUgYm9vbCBjZmc4MDIxMV9jaGFubmVsX2lzX3BzYyhzdHJ1Y3QgaWVlZTgwMjExX2No
-YW5uZWwgKmNoYW4pCnsKCWlmIChjaGFuLT5iYW5kICE9IE5MODAyMTFfQkFORF82R0haKQoJCXJl
-dHVybiBmYWxzZTsKCglyZXR1cm4gaWVlZTgwMjExX2ZyZXF1ZW5jeV90b19jaGFubmVsKGNoYW4t
-PmNlbnRlcl9mcmVxKSAlIDE2ID09IDU7Cn0KCmpvaGFubmVzCgoKX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtA
-bGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL2F0aDExawo=
+Maharaja Kennadyrajan <mkenna@codeaurora.org> wrote:
+
+> Unused structure ath11k_vdev_stop_status is removed.
+> 'ath11k_mac_get_ar_vdev_stop_status' api has been replaced
+> with 'ath11k_mac_get_ar_by_vdev_id' inside vdev_stopped_event.
+> 
+> Tested-on: IPQ8074 WLAN.HK.2.4.0.1-00009-QCAHKSWPL_SILICONZ-1
+> 
+> Signed-off-by: Ritesh Singh <ritesi@codeaurora.org>
+> Signed-off-by: Maharaja Kennadyrajan <mkenna@codeaurora.org>
+> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+
+What about other firmware branches? For example, will this break 2.1.0.1 branch support?
+
+-- 
+https://patchwork.kernel.org/patch/11562971/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
+
+_______________________________________________
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
