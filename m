@@ -1,17 +1,20 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from m43-7.mailgun.net ([69.72.43.7])
+Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
+ helo=sipsolutions.net)
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1je5XT-0008OL-BI
- for ath11k@lists.infradead.org; Wed, 27 May 2020 23:32:53 +0000
+ id 1jeCe9-0004eu-Ui
+ for ath11k@lists.infradead.org; Thu, 28 May 2020 07:08:11 +0000
+Message-ID: <643b2e386881de3051f35eaf64d36344cb2df9f6.camel@sipsolutions.net>
+Subject: Re: [PATCH v3 1/9] cfg80211: Add helper function to identify 6GHz
+ PSC channel
+From: Johannes Berg <johannes@sipsolutions.net>
+Date: Thu, 28 May 2020 09:08:06 +0200
+In-Reply-To: <20200526224217.11119-2-pradeepc@codeaurora.org>
+ (sfid-20200527_004804_951011_BE3F0562)
+References: <20200526224217.11119-1-pradeepc@codeaurora.org>
+ <20200526224217.11119-2-pradeepc@codeaurora.org>
+ (sfid-20200527_004804_951011_BE3F0562)
 MIME-Version: 1.0
-Date: Wed, 27 May 2020 16:32:32 -0700
-From: Rajkumar Manoharan <rmanohar@codeaurora.org>
-Subject: Re: [PATCH v3 01/11] cfg80211: use only HE capability to set
- prohibited flags in 6 GHz
-In-Reply-To: <7f2a2a382c42b7285b9ad1eeac4e8060bc8d897a.camel@sipsolutions.net>
-References: <1589399105-25472-1-git-send-email-rmanohar@codeaurora.org>
- <7f2a2a382c42b7285b9ad1eeac4e8060bc8d897a.camel@sipsolutions.net>
-Message-ID: <0fa1c07811796add4a6a23c81cbafe41@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -20,74 +23,43 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Johannes Berg <johannes@sipsolutions.net>
-Cc: Vamsi Krishna <vamsin@codeaurora.org>, linux-wireless-owner@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, kvalo@codeaurora.org
+To: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>, ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org
 
-On 2020-05-27 06:43, Johannes Berg wrote:
-> Hi,
-> 
-> This is what we have in this area:
-> https://p.sipsolutions.net/d8e56772a261199a.txt
-> 
-> but I see it's also incomplete.
-> 
->> +static bool cfg80211_is_6ghz_freq(u32 freq)
->> +{
->> +	return (freq > 5940 && freq < 7105);
->> +}
-> 
-> That doesn't really make sense, I don't want to see those hardcoded
-> frequencies all over the place.
-> 
->>  	case NL80211_CHAN_WIDTH_40:
->>  		width = 40;
->> +		if (cfg80211_is_6ghz_freq(chandef->center_freq1)) {
-> 
-> You can check chandef->chan->band instead. (In fact, we did)
-> 
-Got it..
-
->> +			if (!he_cap)
->> +				return false;
->> +			if (!he_cap->has_he_6ghz)
->> +				return false;
-> 
-> I'm not sure you should even _get_ here with a 6 GHz channel if you
-> don't have 6 GHz capability? I mean, why did you register the channel 
-> in
-> the first place then? This seems unnecessarily complex. If the channel
-> didn't exist, it was rejected long before here.
-> 
-Hmm... Agreed.
-
-> However, looking at D6.0, maybe we do need some checks of the HE
-> capability?
-> 
->> +			if (!(he_cap->he_cap_elem.phy_cap_info[0] &
->> +			      IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_40MHZ_80MHZ_IN_5G))
->> +				return false;
-> 
-> Looks like even D6.0 still changed something in this area...
-> 
-> Evidently our patch just assumed that in 6 GHz all of this is 
-> supported,
-> but the spec doesn't support that theory :-)
-> 
-IIUC the same bits are applicable for both 5 GHz & 6 GHz. I understand 
-the macro doesn't
-capture both.
-
-> Can you respin this with D6.0 taken into account?
-> 
-Let me check again and respin after your series. Does it sound good?
-
--Rajkumar
-
-_______________________________________________
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+T24gVHVlLCAyMDIwLTA1LTI2IGF0IDE1OjQyIC0wNzAwLCBQcmFkZWVwIEt1bWFyIENoaXRyYXB1
+IHdyb3RlOgpIaSwKCkp1c3QgY2hlY2tlZCB3aGF0IHdlIGhhZCBoZXJlLCBhbmQgaXQgd2FzIHRo
+ZSBmb2xsb3dpbmc6Cgo+ICsvKioKPiArICogaWVlZTgwMjExX2lzX2NoYW5uZWxfcHNjIC0gaXMg
+NmdoeiBjaGFubmVsIGEgUHJlZmVycmVkIFNjYW5uaW5nIENoYW5uZWwgKFBTQykKPiArICoKPiAr
+ICogQGNoYW46IHN0cnVjdCBpZWVlODAyMTFfY2hhbm5lbCB0byBkZXRlcm1pbmUKPiArICogUmV0
+dXJuOiBUcnVlIGlmIDZnaHogY2hhbm5lbCBpcyBhIFBTQyBjaGFubmVsLiBGYWxzZSBmb3IgdGhl
+IHJlc3QuCj4gKyAqLwo+ICtzdGF0aWMgaW5saW5lIGJvb2wgaWVlZTgwMjExX2lzX2NoYW5uZWxf
+cHNjKHN0cnVjdCBpZWVlODAyMTFfY2hhbm5lbCAqY2hhbikKPiArewo+ICsJaWYgKGNoYW4tPmJh
+bmQgIT0gTkw4MDIxMV9CQU5EXzZHSFopCj4gKwkJcmV0dXJuIGZhbHNlOwo+ICsKPiArCS8qCj4g
+KwkgKiBGcm9tIElFRUUgUDgwMi4xMWF4L0Q2LjE6IFRoZSBzZXQgb2YgMjAgTUh6IGNoYW5uZWxz
+IGluIHRoZSA2IEdIego+ICsJICogYmFuZCwgd2l0aCBjaGFubmVsIGNlbnRlciBmcmVxdWVuY3ks
+IGNoX2EgPSBDaGFubmVsIHN0YXJ0aW5nCj4gKwkgKiBmcmVxdWVuY3kg4oCTIDU1ICA4MCDDlyBu
+IChNSHopIGFyZSByZWZlcnJlZCB0byBhcyBwcmVmZXJyZWQgc2Nhbm5pbmcKPiArCSAqIGNoYW5u
+ZWxzIChQU0NzKS4gQ2hhbm5lbCBzdGFydGluZyBmcmVxdWVuY3kgaXMgZGVmaW5lZCBpbiAyNy4z
+LjIzLjIKPiArCSAqIChDaGFubmVsIGFsbG9jYXRpb24gaW4gdGhlIDYgR0h6IGJhbmQpLCBhbmQg
+biA9IDEsIOKApiwgMTUuCj4gKwkgKi8KPiArCWlmICghKCgoY2hhbi0+Y2VudGVyX2ZyZXEgLSA1
+OTUwICsgNTUpID4+IDQpICUgNSkpCj4gKwkJcmV0dXJuIHRydWU7Cj4gKwo+ICsJcmV0dXJuIGZh
+bHNlOwo+ICt9CgoKc3RhdGljIGlubGluZSBib29sIGNmZzgwMjExX2lzX3BzYyhzdHJ1Y3QgaWVl
+ZTgwMjExX2NoYW5uZWwgKmNoYW4pCnsKICAgICAgICBpbnQgY2hhbl9udW0gPQogICAgICAgICAg
+ICAgICAgaWVlZTgwMjExX2ZyZXF1ZW5jeV90b19jaGFubmVsKGNoYW4tPmNlbnRlcl9mcmVxKTsK
+CiAgICAgICAgcmV0dXJuIGNoYW4tPmJhbmQgPT0gTkw4MDIxMV9CQU5EXzZHSFogJiYgY2hhbl9u
+dW0gJSAxNiA9PSA1Owp9CgpBcGFydCBmcm9tIHRoZSBuYW1pbmcsIHdoZXJlIEkgZ3Vlc3MgSSBw
+cmVmZXIgYWN0dWFsbHkKCgljZmc4MDIxMV9jaGFubmVsX2lzX3BzYygpCgpvciBzbywgZG9lcyB0
+aGF0IHNlZW0gcmVhc29uYWJsZSB0byB5b3U/IEknZCBwcmVmZXIgbm90IHRvIGhhcmRjb2RlCmZy
+ZXF1ZW5jaWVzIGV2ZXJ5d2hlcmUsIHNvIGluIHRoYXQgcmVnYXJkIEkgbGlrZSBvdXIgdmVyc2lv
+biBiZXR0ZXIuCk1heWJlIGJhaWwgb3V0IGVhcmxpZXIgaWYgYmFuZCAhPSA2IGdoejoKCnN0YXRp
+YyBpbmxpbmUgYm9vbCBjZmc4MDIxMV9jaGFubmVsX2lzX3BzYyhzdHJ1Y3QgaWVlZTgwMjExX2No
+YW5uZWwgKmNoYW4pCnsKCWlmIChjaGFuLT5iYW5kICE9IE5MODAyMTFfQkFORF82R0haKQoJCXJl
+dHVybiBmYWxzZTsKCglyZXR1cm4gaWVlZTgwMjExX2ZyZXF1ZW5jeV90b19jaGFubmVsKGNoYW4t
+PmNlbnRlcl9mcmVxKSAlIDE2ID09IDU7Cn0KCmpvaGFubmVzCgoKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtA
+bGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL2F0aDExawo=
