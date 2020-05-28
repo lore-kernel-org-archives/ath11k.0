@@ -1,12 +1,18 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail27.static.mailgun.info ([104.130.122.27])
+Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
+ helo=sipsolutions.net)
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jeEEY-0000g9-JX
- for ath11k@lists.infradead.org; Thu, 28 May 2020 08:49:54 +0000
-From: Muna Sinada <msinada@codeaurora.org>
-Subject: [PATCH] nl80211: Add HE UL MU fixed rate setting
-Date: Thu, 28 May 2020 01:49:31 -0700
-Message-Id: <1590655771-12984-1-git-send-email-msinada@codeaurora.org>
+ id 1jeEJn-0006xB-Hw
+ for ath11k@lists.infradead.org; Thu, 28 May 2020 08:55:17 +0000
+Message-ID: <f9a764eaf9f0898c257b6c98346536c2c0f5d6f8.camel@sipsolutions.net>
+Subject: Re: [PATCH v3 06/11] mac80211: handle HE 6 GHz Capability in HE STA
+ processing
+From: Johannes Berg <johannes@sipsolutions.net>
+Date: Thu, 28 May 2020 10:55:09 +0200
+In-Reply-To: <1589399105-25472-6-git-send-email-rmanohar@codeaurora.org>
+References: <1589399105-25472-1-git-send-email-rmanohar@codeaurora.org>
+ <1589399105-25472-6-git-send-email-rmanohar@codeaurora.org>
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -15,85 +21,84 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: Muna Sinada <msinada@codeaurora.org>
+To: Rajkumar Manoharan <rmanohar@codeaurora.org>, kvalo@codeaurora.org
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-This patch adds nl80211 definitions, policies and parsing code required
-to pass HE UL MU fixed rate settings.
 
-Signed-off-by: Muna Sinada <msinada@codeaurora.org>
----
- include/net/cfg80211.h       | 1 +
- include/uapi/linux/nl80211.h | 2 ++
- net/wireless/nl80211.c       | 9 +++++++++
- 3 files changed, 12 insertions(+)
+> +++ b/include/net/cfg80211.h
+> @@ -332,15 +332,25 @@ struct ieee80211_sta_vht_cap {
+>   * to describe 802.11ax HE capabilities for a STA.
+>   *
+>   * @has_he: true iff HE data is valid.
+> + * @has_he_6ghz: true iff HE 6 GHz data is valid.
+>   * @he_cap_elem: Fixed portion of the HE capabilities element.
+>   * @he_mcs_nss_supp: The supported NSS/MCS combinations.
+>   * @ppe_thres: Holds the PPE Thresholds data.
+> + * @ampdu_factor: Maximum A-MPDU length factor used in 6 GHz.
+> + * @ampdu_density: Minimum A-MPDU spacing used in 6 GHz.
+> + * @cap: HE 6 GHz Band capability.
+>   */
+>  struct ieee80211_sta_he_cap {
+>  	bool has_he;
+> +	bool has_he_6ghz;
+>  	struct ieee80211_he_cap_elem he_cap_elem;
+>  	struct ieee80211_he_mcs_nss_supp he_mcs_nss_supp;
+>  	u8 ppe_thres[IEEE80211_HE_PPE_THRES_MAX_LEN];
+> +	struct {
+> +		u8 ampdu_factor;
+> +		u8 ampdu_density;
+> +		u16 cap;
+> +	} he_6ghz;
+>  };
 
-diff --git a/include/net/cfg80211.h b/include/net/cfg80211.h
-index 96bf879c049b..a6cc2c8a8c92 100644
---- a/include/net/cfg80211.h
-+++ b/include/net/cfg80211.h
-@@ -1039,6 +1039,7 @@ struct cfg80211_bitrate_mask {
- 		enum nl80211_txrate_gi gi;
- 		enum nl80211_he_gi he_gi;
- 		enum nl80211_he_ltf he_ltf;
-+		u16 he_ul_mcs[NL80211_HE_NSS_MAX];
- 	} control[NUM_NL80211_BANDS];
+So ... I'm a bit unsure about this now. What I had done was this (well,
+I adjusted it slightly now):
+
+https://p.sipsolutions.net/2d0eb7c7e23a1b92.txt
+
+
+But it's only half related? Maybe you're also using that for the
+associated stations, not just for "self"? But then again, you *already*
+added 
+
+@@ -1270,6 +1271,7 @@ struct station_parameters {
+        u8 he_capa_len;
+        u16 airtime_weight;
+        struct sta_txpwr txpwr;
++       const struct ieee80211_he_6ghz_capa *he_6ghz_capa;
  };
- 
-diff --git a/include/uapi/linux/nl80211.h b/include/uapi/linux/nl80211.h
-index 69e2cf22a329..e418c6be9494 100644
---- a/include/uapi/linux/nl80211.h
-+++ b/include/uapi/linux/nl80211.h
-@@ -4685,6 +4685,7 @@ enum nl80211_key_attributes {
-  *	see &struct nl80211_txrate_he
-  * @NL80211_TXRATE_HE_GI: configure HE GI, 0.8us, 1.6us and 3.2us.
-  * @NL80211_TXRATE_HE_LTF: configure HE LTF, 1XLTF, 2XLTF and 4XLTF.
-+ * @NL80211_TXRATE_HE_UL: HE MCS rates of connected HE STA for uplink traffic.
-  * @__NL80211_TXRATE_AFTER_LAST: internal
-  * @NL80211_TXRATE_MAX: highest TX rate attribute
-  */
-@@ -4697,6 +4698,7 @@ enum nl80211_tx_rate_attributes {
- 	NL80211_TXRATE_HE,
- 	NL80211_TXRATE_HE_GI,
- 	NL80211_TXRATE_HE_LTF,
-+	NL80211_TXRATE_HE_UL,
- 
- 	/* keep last */
- 	__NL80211_TXRATE_AFTER_LAST,
-diff --git a/net/wireless/nl80211.c b/net/wireless/nl80211.c
-index 33f1ad127e8f..b057168941c9 100644
---- a/net/wireless/nl80211.c
-+++ b/net/wireless/nl80211.c
-@@ -4467,6 +4467,10 @@ static const struct nla_policy nl80211_txattr_policy[NL80211_TXRATE_MAX + 1] = {
- 	[NL80211_TXRATE_HE_LTF] = NLA_POLICY_RANGE(NLA_U8,
- 						   NL80211_RATE_INFO_HE_1XLTF,
- 						   NL80211_RATE_INFO_HE_4XLTF),
-+	[NL80211_TXRATE_HE_UL] = {
-+		.type = NLA_EXACT_LEN,
-+		.len = sizeof(struct nl80211_txrate_he),
-+	},
- };
- 
- static int nl80211_parse_tx_bitrate_mask(struct genl_info *info,
-@@ -4575,6 +4579,11 @@ static int nl80211_parse_tx_bitrate_mask(struct genl_info *info,
- 		if (tb[NL80211_TXRATE_HE_LTF])
- 			mask->control[band].he_ltf =
- 				nla_get_u8(tb[NL80211_TXRATE_HE_LTF]);
-+		if (tb[NL80211_TXRATE_HE_UL] &&
-+		    !he_set_mcs_mask(info, sband,
-+				     nla_data(tb[NL80211_TXRATE_HE_UL]),
-+				     mask->control[band].he_ul_mcs))
-+			return -EINVAL;
- 
- 		if (mask->control[band].legacy == 0) {
- 			/* don't allow empty legacy rates if HT or VHT
--- 
-2.7.4
+
+right?
+
+
+But no ... that's different. We still have a need to store the station's
+capabilities.
+
+But even then,
+
+> +	struct {
+> +		u8 ampdu_factor;
+> +		u8 ampdu_density;
+> +		u16 cap;
+> +	} he_6ghz;
+
+doesn't really make sense, does it? "cap' already includes the
+ampdu_factor and ampdu_density flags, so that's doubled...
+
+
+I think I would prefer to have this separate. We need it as I put into
+my patch that I linked to above, and we also need it in the station in
+mac80211 for AP, but we don't really need it for cfg80211 as you put it
+here.
+
+I'll continue with my other patches, and then maybe see how this fits in
+later.
+
+johannes
 
 
 _______________________________________________
