@@ -1,23 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail27.static.mailgun.info ([104.130.122.27])
+Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jegBn-0006v0-6t
- for ath11k@lists.infradead.org; Fri, 29 May 2020 14:40:56 +0000
+ id 1jegDl-0007IP-UY
+ for ath11k@lists.infradead.org; Fri, 29 May 2020 14:42:58 +0000
 MIME-Version: 1.0
-Date: Fri, 29 May 2020 20:10:38 +0530
-From: Sathishkumar Muruganandam <murugana@codeaurora.org>
-Subject: Re: [PATCH 1/2] mac80211: enable TKIP when using encapsulation
- offloading
-In-Reply-To: <f2b8fb0783b270a177ee900168fdc1fbc9253e3d.camel@sipsolutions.net>
-References: <1587720951-9222-1-git-send-email-murugana@codeaurora.org>
- <1587720951-9222-2-git-send-email-murugana@codeaurora.org>
- (sfid-20200424_113624_468114_4CC488DE)
- <d4e39180f0a8a8b07dc558c9439b66cd2c3aec07.camel@sipsolutions.net>
- <7fb606edf1e5c7ab5b1446d637768ee7@codeaurora.org>
- <aaa53c3a9cf6788cb653eb574073a1a0bcc5e6bf.camel@sipsolutions.net>
- <4bab3197997bb2dd6555ff920c5dd1cb@codeaurora.org>
- <f2b8fb0783b270a177ee900168fdc1fbc9253e3d.camel@sipsolutions.net>
-Message-ID: <92eddf5d153781b2698ad258aac2fbe4@codeaurora.org>
+Subject: Re: [PATCH 2/2] ath11k: add 802.3 undecap support to fix TKIP MIC
+ error reporting
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <1587720951-9222-3-git-send-email-murugana@codeaurora.org>
+References: <1587720951-9222-3-git-send-email-murugana@codeaurora.org>
+Message-Id: <20200529144243.5671CC433C9@smtp.codeaurora.org>
+Date: Fri, 29 May 2020 14:42:43 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -26,35 +19,38 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Johannes Berg <johannes@sipsolutions.net>
+To: Sathishkumar Muruganandam <murugana@codeaurora.org>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-On 2020-05-29 18:16, Johannes Berg wrote:
-> On Fri, 2020-05-29 at 17:59 +0530, Sathishkumar Muruganandam wrote:
->> 
->> Yes, currently only tx encap support is added and rx decap support is 
->> in
->> progress to do TKIP MIC error reporting to userspace via
->> cfg80211_michael_mic_failure().
+Sathishkumar Muruganandam <murugana@codeaurora.org> wrote:
+
+> Currently DECAP_TYPE_8023 frames with TKIP MIC error is not undecaped
+> and hence fails to do TKIP MIC error reporting in ieee80211_rx_napi()
+> path.
 > 
-> Yes, but can you actually call that? It requires a netdev. I don't 
-> think
-> you can easily get it from the vif?
+> Fix this by adding undecap support for ieee80211_rx_napi() to process
+> these frames and perform TKIP counter-measures when there is MIC error
+> reported.
 > 
+> Tested with STA triggering TKIP MIC error frames (using debugfs
+> "tkip_mic_test" in SW encryption mode) twice within a minute and
+> verify TKIP counter-measures are performed as expected.
+> 
+> Signed-off-by: Sathishkumar Muruganandam <murugana@codeaurora.org>
 
-Yes, that's right. Currently the plan is to add new mac80211 api for rx 
-decap where
-we can call cfg80211_michael_mic_failure() and not called directly from 
-driver.
+Dropping this patch as the mac80211 patch was dropped.
 
-Whether we can expose netdev to driver for doing such cfg80211 call ?
+Patch set to Rejected.
 
-Thanks,
-Sathishkumar
+-- 
+https://patchwork.kernel.org/patch/11507411/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
 _______________________________________________
 ath11k mailing list
