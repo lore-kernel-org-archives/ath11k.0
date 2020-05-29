@@ -1,12 +1,19 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail27.static.mailgun.info ([104.130.122.27])
+Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jeRfT-00034f-Pa
- for ath11k@lists.infradead.org; Thu, 28 May 2020 23:10:36 +0000
-From: Muna Sinada <msinada@codeaurora.org>
-Subject: [PATCH v2] ath11k: clear DCM max constellation tx value
-Date: Thu, 28 May 2020 16:10:17 -0700
-Message-Id: <1590707417-29672-1-git-send-email-msinada@codeaurora.org>
+ id 1jedoQ-0005xj-47
+ for ath11k@lists.infradead.org; Fri, 29 May 2020 12:08:41 +0000
+MIME-Version: 1.0
+Date: Fri, 29 May 2020 17:38:17 +0530
+From: Sathishkumar Muruganandam <murugana@codeaurora.org>
+Subject: Re: [PATCH 1/2] mac80211: enable TKIP when using encapsulation
+ offloading
+In-Reply-To: <d4e39180f0a8a8b07dc558c9439b66cd2c3aec07.camel@sipsolutions.net>
+References: <1587720951-9222-1-git-send-email-murugana@codeaurora.org>
+ <1587720951-9222-2-git-send-email-murugana@codeaurora.org>
+ (sfid-20200424_113624_468114_4CC488DE)
+ <d4e39180f0a8a8b07dc558c9439b66cd2c3aec07.camel@sipsolutions.net>
+Message-ID: <7fb606edf1e5c7ab5b1446d637768ee7@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -15,39 +22,45 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: Muna Sinada <msinada@codeaurora.org>, linux-wireless@vger.kernel.org
+To: Johannes Berg <johannes@sipsolutions.net>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-According to 11ax spec. draft 4.0. DCM Max Constellation Tx data
-field should be set to "Reserved" for an AP, therefore bit is
-cleared.
+On 2020-05-26 18:14, Johannes Berg wrote:
+> On Fri, 2020-04-24 at 15:05 +0530, Sathishkumar Muruganandam wrote:
+>> TKIP was disabled on encap offload mode since if TKIP MIC error
+>> reporting is not capable by the driver using encap offload mode,
+>> then TKIP countermeasures wont work.
+>> 
+>> Enabling back TKIP bring-up in encap offload mode to leave the
+>> control with the driver to disable hw encap when it is not capable
+>> of TKIP MIC error reporting.
+> 
+> So how can the driver do TKIP MIC error reporting?
+> 
+> I don't think it can. It doesn't have all the necessary information to
+> call cfg80211_michael_mic_failure(), as far as I can tell.
 
-Signed-off-by: Muna Sinada <msinada@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/mac.c | 2 ++
- 1 file changed, 2 insertions(+)
+Ath11k HW has capability of reporting TKIP MIC error when hw encap is 
+enabled as well, so TKIP encryption shall be enabled.
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 1a7e5817e5c8..3b360c6a1f32 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -3578,6 +3578,8 @@ static int ath11k_mac_copy_he_cap(struct ath11k *ar,
- 
- 		switch (i) {
- 		case NL80211_IFTYPE_AP:
-+			he_cap_elem->phy_cap_info[3] &=
-+				~IEEE80211_HE_PHY_CAP3_DCM_MAX_CONST_TX_MASK;
- 			he_cap_elem->phy_cap_info[9] |=
- 				IEEE80211_HE_PHY_CAP9_RX_1024_QAM_LESS_THAN_242_TONE_RU;
- 			break;
--- 
-2.7.4
+> 
+> I'm not applying this until I see at least the *ability* for drivers to
+> do it. I mean, I don't really want to worry about your driver's
+> correctness, but if you then turn around and realize that you *cannot*
+> actually implement the right behaviour, that's no good either.
+> 
 
+Shall we have a ieee80211_hw_flags for the driver to advertise TKIP MIC 
+error reporting capability when hw encap is enabled ?
+TKIP bring-up will be disabled for the drivers which doesn't have the 
+capability.
+
+--
+Sathishkumar
 
 _______________________________________________
 ath11k mailing list
