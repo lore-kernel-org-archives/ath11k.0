@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jf2Lq-0006cV-Qt
- for ath11k@lists.infradead.org; Sat, 30 May 2020 14:20:49 +0000
-MIME-Version: 1.0
-Subject: Re: [PATCH v2] ath11k: clear DCM max constellation tx value
-From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1590707417-29672-1-git-send-email-msinada@codeaurora.org>
-References: <1590707417-29672-1-git-send-email-msinada@codeaurora.org>
-Message-Id: <20200530142040.06F15C433C9@smtp.codeaurora.org>
-Date: Sat, 30 May 2020 14:20:40 +0000 (UTC)
+ id 1jfT89-0003cX-E6
+ for ath11k@lists.infradead.org; Sun, 31 May 2020 18:56:25 +0000
+From: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
+Subject: [PATCH v4 5/8] ath11k: set psc channel flag when sending channel list
+ to firmware.
+Date: Sun, 31 May 2020 11:55:57 -0700
+Message-Id: <20200531185600.20789-6-pradeepc@codeaurora.org>
+In-Reply-To: <20200531185600.20789-1-pradeepc@codeaurora.org>
+References: <20200531185600.20789-1-pradeepc@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -18,30 +18,61 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Muna Sinada <msinada@codeaurora.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: ath11k@lists.infradead.org
+Cc: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>, linux-wireless@vger.kernel.org
 
-Muna Sinada <msinada@codeaurora.org> wrote:
+If 6 ghz channel is a Preferred Scanning Channel(PSC), mark
+the channel flag accordingly when updating channel list to firmware.
+This will be used when making scanning decision in 6GHz channels.
 
-> According to 11ax spec. draft 4.0. DCM Max Constellation Tx data
-> field should be set to "Reserved" for an AP, therefore bit is
-> cleared.
-> 
-> Signed-off-by: Muna Sinada <msinada@codeaurora.org>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
+---
+v4:
+ - use cfg80211_channel_is_psc.
+v3:
+ - use helper function ieee80211_is_channel_psc() instead of
+   channel flag for identifying 6GHz PSC channels.
 
-Patch applied to ath-next branch of ath.git, thanks.
+ drivers/net/wireless/ath/ath11k/reg.c | 4 ++++
+ drivers/net/wireless/ath/ath11k/wmi.h | 3 ++-
+ 2 files changed, 6 insertions(+), 1 deletion(-)
 
-37b76986ebd7 ath11k: clear DCM max constellation tx value
-
+diff --git a/drivers/net/wireless/ath/ath11k/reg.c b/drivers/net/wireless/ath/ath11k/reg.c
+index 453aa9c06969..7c9dc91cc48a 100644
+--- a/drivers/net/wireless/ath/ath11k/reg.c
++++ b/drivers/net/wireless/ath/ath11k/reg.c
+@@ -161,6 +161,10 @@ int ath11k_reg_update_chan_list(struct ath11k *ar)
+ 			else
+ 				ch->phy_mode = MODE_11A;
+ 
++			if (channel->band == NL80211_BAND_6GHZ &&
++			    cfg80211_channel_is_psc(channel))
++				ch->psc_channel = true;
++
+ 			ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
+ 				   "mac channel [%d/%d] freq %d maxpower %d regpower %d antenna %d mode %d\n",
+ 				   i, params->nallchans,
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index fd82cff7537b..76c2da2c5db7 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -2520,7 +2520,8 @@ struct channel_param {
+ 	    allow_ht:1,
+ 	    allow_vht:1,
+ 	    allow_he:1,
+-	    set_agile:1;
++	    set_agile:1,
++	    psc_channel:1;
+ 	u32 phy_mode;
+ 	u32 cfreq1;
+ 	u32 cfreq2;
 -- 
-https://patchwork.kernel.org/patch/11577233/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+2.17.1
 
 
 _______________________________________________
