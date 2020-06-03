@@ -1,15 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jgH6C-00021s-QC
- for ath11k@lists.infradead.org; Wed, 03 Jun 2020 00:17:44 +0000
+ id 1jgH6G-0002Bd-61
+ for ath11k@lists.infradead.org; Wed, 03 Jun 2020 00:17:48 +0000
 From: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
-Subject: [PATCH v5 4/8] ath11k: extend peer_assoc_cmd for 6GHz band
-Date: Tue,  2 Jun 2020 17:17:20 -0700
-Message-Id: <20200603001724.12161-5-pradeepc@codeaurora.org>
+Subject: [PATCH v5 8/8] ath11k: Add support for 6g scan hint
+Date: Tue,  2 Jun 2020 17:17:24 -0700
+Message-Id: <20200603001724.12161-9-pradeepc@codeaurora.org>
 In-Reply-To: <20200603001724.12161-1-pradeepc@codeaurora.org>
 References: <20200603001724.12161-1-pradeepc@codeaurora.org>
-MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -18,59 +17,172 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>, linux-wireless@vger.kernel.org
 
-VGhpcyBhZGRzIHN1cHBvcnQgcmVxdWlyZWQgZm9yIGNvbmZpZ3VyaW5nIG1pbl9kYXRhX3JhdGUg
-b2YgNkdIeiBvcGVyIElFCmFuZCBwZWVyX2hlX2NhcHNfNmdoeiBpbiBwZWVyIGFzc29jIGNvbW1h
-bmQuIFRoZSBNaW5pbXVtIFJhdGUgZmllbGQKaW5kaWNhdGVzIHRoZSBtaW5pbXVtIHJhdGUsIGlu
-IHVuaXRzIG9mIDEgTWIvcywgdGhhdCB0aGUgbm9uLUFQIFNUQSBpcwphbGxvd2VkIHRvIHVzZSBm
-b3Igc2VuZGluZyBQUERVcyBhcyBkZWZpbmVkIGluIElFRUUgUDgwMi4xMWF44oSiL0Q2LjAuCgpT
-aWduZWQtb2ZmLWJ5OiBQcmFkZWVwIEt1bWFyIENoaXRyYXB1IDxwcmFkZWVwY0Bjb2RlYXVyb3Jh
-Lm9yZz4KLS0tCiBkcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL3dtaS5jIHwgMiArKwog
-ZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay93bWkuaCB8IDUgKysrKysKIDIgZmlsZXMg
-Y2hhbmdlZCwgNyBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9uZXQvd2lyZWxl
-c3MvYXRoL2F0aDExay93bWkuYyBiL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvd21p
-LmMKaW5kZXggNTAwMTA4ZmE1OWQ5Li5hNmJiYjNiYWRkMWYgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMv
-bmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvd21pLmMKKysrIGIvZHJpdmVycy9uZXQvd2lyZWxlc3Mv
-YXRoL2F0aDExay93bWkuYwpAQCAtMTc4OSw2ICsxNzg5LDcgQEAgaW50IGF0aDExa193bWlfc2Vu
-ZF9wZWVyX2Fzc29jX2NtZChzdHJ1Y3QgYXRoMTFrICphciwKIAljbWQtPnBlZXJfaGVfY2FwX2lu
-Zm8gPSBwYXJhbS0+cGVlcl9oZV9jYXBfbWFjaW5mb1swXTsKIAljbWQtPnBlZXJfaGVfY2FwX2lu
-Zm9fZXh0ID0gcGFyYW0tPnBlZXJfaGVfY2FwX21hY2luZm9bMV07CiAJY21kLT5wZWVyX2hlX2Nh
-cF9pbmZvX2ludGVybmFsID0gcGFyYW0tPnBlZXJfaGVfY2FwX21hY2luZm9faW50ZXJuYWw7CisJ
-Y21kLT5wZWVyX2hlX2NhcHNfNmdoeiA9IHBhcmFtLT5wZWVyX2hlX2NhcHNfNmdoejsKIAljbWQt
-PnBlZXJfaGVfb3BzID0gcGFyYW0tPnBlZXJfaGVfb3BzOwogCW1lbWNweSgmY21kLT5wZWVyX2hl
-X2NhcF9waHksICZwYXJhbS0+cGVlcl9oZV9jYXBfcGh5aW5mbywKIAkgICAgICAgc2l6ZW9mKHBh
-cmFtLT5wZWVyX2hlX2NhcF9waHlpbmZvKSk7CkBAIC0xODQyLDYgKzE4NDMsNyBAQCBpbnQgYXRo
-MTFrX3dtaV9zZW5kX3BlZXJfYXNzb2NfY21kKHN0cnVjdCBhdGgxMWsgKmFyLAogCiAJLyogSEUg
-UmF0ZXMgKi8KIAljbWQtPnBlZXJfaGVfbWNzID0gcGFyYW0tPnBlZXJfaGVfbWNzX2NvdW50Owor
-CWNtZC0+bWluX2RhdGFfcmF0ZSA9IHBhcmFtLT5taW5fZGF0YV9yYXRlOwogCiAJcHRyICs9IHNp
-emVvZigqbWNzKTsKIApkaWZmIC0tZ2l0IGEvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDEx
-ay93bWkuaCBiL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvd21pLmgKaW5kZXggYWZh
-M2M0Y2Y5MGU5Li5mZDgyY2ZmNzUzN2IgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvbmV0L3dpcmVsZXNz
-L2F0aC9hdGgxMWsvd21pLmgKKysrIGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay93
-bWkuaApAQCAtMTAxMSw2ICsxMDExLDcgQEAgZW51bSB3bWlfdGx2X3ZkZXZfcGFyYW0gewogCVdN
-SV9WREVWX1BBUkFNX0ZJTFNfTUFYX0NIQU5ORUxfR1VBUkRfVElNRSwKIAlXTUlfVkRFVl9QQVJB
-TV9CQV9NT0RFID0gMHg3ZSwKIAlXTUlfVkRFVl9QQVJBTV9TRVRfSEVfU09VTkRJTkdfTU9ERSA9
-IDB4ODcsCisJV01JX1ZERVZfUEFSQU1fNkdIWl9QQVJBTVMgPSAweDk5LAogCVdNSV9WREVWX1BB
-UkFNX1BST1RPVFlQRSA9IDB4ODAwMCwKIAlXTUlfVkRFVl9QQVJBTV9CU1NfQ09MT1IsCiAJV01J
-X1ZERVZfUEFSQU1fU0VUX0hFTVVfTU9ERSwKQEAgLTM0NDQsNiArMzQ0NSw3IEBAIHN0cnVjdCBw
-ZWVyX2Fzc29jX3BhcmFtcyB7CiAJdTMyIHR4X21heF9yYXRlOwogCXUzMiB0eF9tY3Nfc2V0Owog
-CXU4IHZodF9jYXBhYmxlOworCXU4IG1pbl9kYXRhX3JhdGU7CiAJdTMyIHR4X21heF9tY3NfbnNz
-OwogCXUzMiBwZWVyX2J3X3J4bnNzX292ZXJyaWRlOwogCWJvb2wgaXNfcG1mX2VuYWJsZWQ7CkBA
-IC0zNDcyLDYgKzM0NzQsNyBAQCBzdHJ1Y3QgcGVlcl9hc3NvY19wYXJhbXMgewogCWJvb2wgaGVf
-ZmxhZzsKIAl1MzIgcGVlcl9oZV9jYXBfbWFjaW5mb1syXTsKIAl1MzIgcGVlcl9oZV9jYXBfbWFj
-aW5mb19pbnRlcm5hbDsKKwl1MzIgcGVlcl9oZV9jYXBzXzZnaHo7CiAJdTMyIHBlZXJfaGVfb3Bz
-OwogCXUzMiBwZWVyX2hlX2NhcF9waHlpbmZvW1dNSV9IT1NUX01BWF9IRUNBUF9QSFlfU0laRV07
-CiAJdTMyIHBlZXJfaGVfbWNzX2NvdW50OwpAQCAtMzUwOSw2ICszNTEyLDggQEAgc3RydWN0ICB3
-bWlfcGVlcl9hc3NvY19jb21wbGV0ZV9jbWQgewogCXUzMiBwZWVyX2hlX21jczsKIAl1MzIgcGVl
-cl9oZV9jYXBfaW5mb19leHQ7CiAJdTMyIHBlZXJfaGVfY2FwX2luZm9faW50ZXJuYWw7CisJdTMy
-IG1pbl9kYXRhX3JhdGU7CisJdTMyIHBlZXJfaGVfY2Fwc182Z2h6OwogfSBfX3BhY2tlZDsKIAog
-c3RydWN0IHdtaV9zdG9wX3NjYW5fY21kIHsKLS0gCjIuMTcuMQoKCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmF0aDExayBtYWlsaW5nIGxpc3QKYXRoMTFr
-QGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9hdGgxMWsK
+Add support for 6Ghz short ssid and bssid hint mechanism
+as part of scan command.
+
+Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
+---
+ drivers/net/wireless/ath/ath11k/wmi.c | 72 +++++++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/wmi.h | 22 ++++++++
+ 2 files changed, 94 insertions(+)
+
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index ad3a7b68d308..317376a4eb6e 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -2005,6 +2005,8 @@ int ath11k_wmi_send_scan_start_cmd(struct ath11k *ar,
+ 	int i, ret, len;
+ 	u32 *tmp_ptr;
+ 	u8 extraie_len_with_pad = 0;
++	struct hint_short_ssid *s_ssid = NULL;
++	struct hint_bssid *hint_bssid = NULL;
+ 
+ 	len = sizeof(*cmd);
+ 
+@@ -2026,6 +2028,14 @@ int ath11k_wmi_send_scan_start_cmd(struct ath11k *ar,
+ 			roundup(params->extraie.len, sizeof(u32));
+ 	len += extraie_len_with_pad;
+ 
++	if (params->num_hint_bssid)
++		len += TLV_HDR_SIZE +
++		       params->num_hint_bssid * sizeof(struct hint_bssid);
++
++	if (params->num_hint_s_ssid)
++		len += TLV_HDR_SIZE +
++		       params->num_hint_s_ssid * sizeof(struct hint_short_ssid);
++
+ 	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, len);
+ 	if (!skb)
+ 		return -ENOMEM;
+@@ -2126,6 +2136,68 @@ int ath11k_wmi_send_scan_start_cmd(struct ath11k *ar,
+ 
+ 	ptr += extraie_len_with_pad;
+ 
++	if (params->num_hint_s_ssid) {
++		len = params->num_hint_s_ssid * sizeof(struct hint_short_ssid);
++		tlv = ptr;
++		tlv->header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_ARRAY_FIXED_STRUCT) |
++			      FIELD_PREP(WMI_TLV_LEN, len);
++		ptr += TLV_HDR_SIZE;
++		s_ssid = ptr;
++		for (i = 0; i < params->num_hint_s_ssid; ++i) {
++			s_ssid->freq_flags = params->hint_s_ssid[i].freq_flags;
++			s_ssid->short_ssid = params->hint_s_ssid[i].short_ssid;
++			s_ssid++;
++		}
++		ptr += len;
++	}
++
++	if (params->num_hint_bssid) {
++		len = params->num_hint_bssid * sizeof(struct hint_bssid);
++		tlv = ptr;
++		tlv->header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_ARRAY_FIXED_STRUCT) |
++			      FIELD_PREP(WMI_TLV_LEN, len);
++		ptr += TLV_HDR_SIZE;
++		hint_bssid = ptr;
++		for (i = 0; i < params->num_hint_bssid; ++i) {
++			hint_bssid->freq_flags =
++				params->hint_bssid[i].freq_flags;
++			ether_addr_copy(&params->hint_bssid[i].bssid.addr[0],
++					&hint_bssid->bssid.addr[0]);
++			hint_bssid++;
++		}
++	}
++
++	len = params->num_hint_s_ssid * sizeof(struct hint_short_ssid);
++	tlv = ptr;
++	tlv->header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_ARRAY_FIXED_STRUCT) |
++		      FIELD_PREP(WMI_TLV_LEN, len);
++	ptr += TLV_HDR_SIZE;
++	if (params->num_hint_s_ssid) {
++		s_ssid = ptr;
++		for (i = 0; i < params->num_hint_s_ssid; ++i) {
++			s_ssid->freq_flags = params->hint_s_ssid[i].freq_flags;
++			s_ssid->short_ssid = params->hint_s_ssid[i].short_ssid;
++			s_ssid++;
++		}
++	}
++	ptr += len;
++
++	len = params->num_hint_bssid * sizeof(struct hint_bssid);
++	tlv = ptr;
++	tlv->header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_ARRAY_FIXED_STRUCT) |
++		      FIELD_PREP(WMI_TLV_LEN, len);
++	ptr += TLV_HDR_SIZE;
++	if (params->num_hint_bssid) {
++		hint_bssid = ptr;
++		for (i = 0; i < params->num_hint_bssid; ++i) {
++			hint_bssid->freq_flags =
++				params->hint_bssid[i].freq_flags;
++			ether_addr_copy(&params->hint_bssid[i].bssid.addr[0],
++					&hint_bssid->bssid.addr[0]);
++			hint_bssid++;
++		}
++	}
++
+ 	ret = ath11k_wmi_cmd_send(wmi, skb,
+ 				  WMI_START_SCAN_CMDID);
+ 	if (ret) {
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index 319ad7241e01..1162bd7a5f87 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -50,6 +50,14 @@ struct wmi_tlv {
+ #define WMI_MAX_MEM_REQS        32
+ #define ATH11K_MAX_HW_LISTEN_INTERVAL 5
+ 
++#define WLAN_SCAN_MAX_HINT_S_SSID        10
++#define WLAN_SCAN_MAX_HINT_BSSID         10
++#define MAX_RNR_BSS                    5
++
++#define WLAN_SCAN_MAX_HINT_S_SSID        10
++#define WLAN_SCAN_MAX_HINT_BSSID         10
++#define MAX_RNR_BSS                    5
++
+ #define WLAN_SCAN_PARAMS_MAX_SSID    16
+ #define WLAN_SCAN_PARAMS_MAX_BSSID   4
+ #define WLAN_SCAN_PARAMS_MAX_IE_LEN  256
+@@ -3105,6 +3113,16 @@ enum {
+ 	((flag) |= (((mode) << WMI_SCAN_DWELL_MODE_SHIFT) & \
+ 		    WMI_SCAN_DWELL_MODE_MASK))
+ 
++struct hint_short_ssid {
++	u32 freq_flags;
++	u32 short_ssid;
++};
++
++struct hint_bssid {
++	u32 freq_flags;
++	struct wmi_mac_addr bssid;
++};
++
+ struct scan_req_params {
+ 	u32 scan_id;
+ 	u32 scan_req_id;
+@@ -3184,6 +3202,10 @@ struct scan_req_params {
+ 	struct element_info extraie;
+ 	struct element_info htcap;
+ 	struct element_info vhtcap;
++	u32 num_hint_s_ssid;
++	u32 num_hint_bssid;
++	struct hint_short_ssid hint_s_ssid[WLAN_SCAN_MAX_HINT_S_SSID];
++	struct hint_bssid hint_bssid[WLAN_SCAN_MAX_HINT_BSSID];
+ };
+ 
+ struct wmi_ssid_arg {
+-- 
+2.17.1
+
+
+_______________________________________________
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
