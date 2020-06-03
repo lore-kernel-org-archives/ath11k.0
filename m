@@ -1,12 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jgH6G-0002Bd-61
+ id 1jgH6E-00021e-5Q
  for ath11k@lists.infradead.org; Wed, 03 Jun 2020 00:17:48 +0000
 From: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
-Subject: [PATCH v5 8/8] ath11k: Add support for 6g scan hint
-Date: Tue,  2 Jun 2020 17:17:24 -0700
-Message-Id: <20200603001724.12161-9-pradeepc@codeaurora.org>
+Subject: [PATCH v5 5/8] ath11k: set psc channel flag when sending channel list
+ to firmware.
+Date: Tue,  2 Jun 2020 17:17:21 -0700
+Message-Id: <20200603001724.12161-6-pradeepc@codeaurora.org>
 In-Reply-To: <20200603001724.12161-1-pradeepc@codeaurora.org>
 References: <20200603001724.12161-1-pradeepc@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,159 +26,45 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>, linux-wireless@vger.kernel.org
 
-Add support for 6Ghz short ssid and bssid hint mechanism
-as part of scan command.
+If 6 ghz channel is a Preferred Scanning Channel(PSC), mark
+the channel flag accordingly when updating channel list to firmware.
+This will be used when making scanning decision in 6GHz channels.
 
 Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/wmi.c | 72 +++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/wmi.h | 22 ++++++++
- 2 files changed, 94 insertions(+)
+ drivers/net/wireless/ath/ath11k/reg.c | 4 ++++
+ drivers/net/wireless/ath/ath11k/wmi.h | 3 ++-
+ 2 files changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index ad3a7b68d308..317376a4eb6e 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -2005,6 +2005,8 @@ int ath11k_wmi_send_scan_start_cmd(struct ath11k *ar,
- 	int i, ret, len;
- 	u32 *tmp_ptr;
- 	u8 extraie_len_with_pad = 0;
-+	struct hint_short_ssid *s_ssid = NULL;
-+	struct hint_bssid *hint_bssid = NULL;
+diff --git a/drivers/net/wireless/ath/ath11k/reg.c b/drivers/net/wireless/ath/ath11k/reg.c
+index 453aa9c06969..7c9dc91cc48a 100644
+--- a/drivers/net/wireless/ath/ath11k/reg.c
++++ b/drivers/net/wireless/ath/ath11k/reg.c
+@@ -161,6 +161,10 @@ int ath11k_reg_update_chan_list(struct ath11k *ar)
+ 			else
+ 				ch->phy_mode = MODE_11A;
  
- 	len = sizeof(*cmd);
- 
-@@ -2026,6 +2028,14 @@ int ath11k_wmi_send_scan_start_cmd(struct ath11k *ar,
- 			roundup(params->extraie.len, sizeof(u32));
- 	len += extraie_len_with_pad;
- 
-+	if (params->num_hint_bssid)
-+		len += TLV_HDR_SIZE +
-+		       params->num_hint_bssid * sizeof(struct hint_bssid);
++			if (channel->band == NL80211_BAND_6GHZ &&
++			    cfg80211_channel_is_psc(channel))
++				ch->psc_channel = true;
 +
-+	if (params->num_hint_s_ssid)
-+		len += TLV_HDR_SIZE +
-+		       params->num_hint_s_ssid * sizeof(struct hint_short_ssid);
-+
- 	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, len);
- 	if (!skb)
- 		return -ENOMEM;
-@@ -2126,6 +2136,68 @@ int ath11k_wmi_send_scan_start_cmd(struct ath11k *ar,
- 
- 	ptr += extraie_len_with_pad;
- 
-+	if (params->num_hint_s_ssid) {
-+		len = params->num_hint_s_ssid * sizeof(struct hint_short_ssid);
-+		tlv = ptr;
-+		tlv->header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_ARRAY_FIXED_STRUCT) |
-+			      FIELD_PREP(WMI_TLV_LEN, len);
-+		ptr += TLV_HDR_SIZE;
-+		s_ssid = ptr;
-+		for (i = 0; i < params->num_hint_s_ssid; ++i) {
-+			s_ssid->freq_flags = params->hint_s_ssid[i].freq_flags;
-+			s_ssid->short_ssid = params->hint_s_ssid[i].short_ssid;
-+			s_ssid++;
-+		}
-+		ptr += len;
-+	}
-+
-+	if (params->num_hint_bssid) {
-+		len = params->num_hint_bssid * sizeof(struct hint_bssid);
-+		tlv = ptr;
-+		tlv->header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_ARRAY_FIXED_STRUCT) |
-+			      FIELD_PREP(WMI_TLV_LEN, len);
-+		ptr += TLV_HDR_SIZE;
-+		hint_bssid = ptr;
-+		for (i = 0; i < params->num_hint_bssid; ++i) {
-+			hint_bssid->freq_flags =
-+				params->hint_bssid[i].freq_flags;
-+			ether_addr_copy(&params->hint_bssid[i].bssid.addr[0],
-+					&hint_bssid->bssid.addr[0]);
-+			hint_bssid++;
-+		}
-+	}
-+
-+	len = params->num_hint_s_ssid * sizeof(struct hint_short_ssid);
-+	tlv = ptr;
-+	tlv->header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_ARRAY_FIXED_STRUCT) |
-+		      FIELD_PREP(WMI_TLV_LEN, len);
-+	ptr += TLV_HDR_SIZE;
-+	if (params->num_hint_s_ssid) {
-+		s_ssid = ptr;
-+		for (i = 0; i < params->num_hint_s_ssid; ++i) {
-+			s_ssid->freq_flags = params->hint_s_ssid[i].freq_flags;
-+			s_ssid->short_ssid = params->hint_s_ssid[i].short_ssid;
-+			s_ssid++;
-+		}
-+	}
-+	ptr += len;
-+
-+	len = params->num_hint_bssid * sizeof(struct hint_bssid);
-+	tlv = ptr;
-+	tlv->header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_ARRAY_FIXED_STRUCT) |
-+		      FIELD_PREP(WMI_TLV_LEN, len);
-+	ptr += TLV_HDR_SIZE;
-+	if (params->num_hint_bssid) {
-+		hint_bssid = ptr;
-+		for (i = 0; i < params->num_hint_bssid; ++i) {
-+			hint_bssid->freq_flags =
-+				params->hint_bssid[i].freq_flags;
-+			ether_addr_copy(&params->hint_bssid[i].bssid.addr[0],
-+					&hint_bssid->bssid.addr[0]);
-+			hint_bssid++;
-+		}
-+	}
-+
- 	ret = ath11k_wmi_cmd_send(wmi, skb,
- 				  WMI_START_SCAN_CMDID);
- 	if (ret) {
+ 			ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
+ 				   "mac channel [%d/%d] freq %d maxpower %d regpower %d antenna %d mode %d\n",
+ 				   i, params->nallchans,
 diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index 319ad7241e01..1162bd7a5f87 100644
+index fd82cff7537b..76c2da2c5db7 100644
 --- a/drivers/net/wireless/ath/ath11k/wmi.h
 +++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -50,6 +50,14 @@ struct wmi_tlv {
- #define WMI_MAX_MEM_REQS        32
- #define ATH11K_MAX_HW_LISTEN_INTERVAL 5
- 
-+#define WLAN_SCAN_MAX_HINT_S_SSID        10
-+#define WLAN_SCAN_MAX_HINT_BSSID         10
-+#define MAX_RNR_BSS                    5
-+
-+#define WLAN_SCAN_MAX_HINT_S_SSID        10
-+#define WLAN_SCAN_MAX_HINT_BSSID         10
-+#define MAX_RNR_BSS                    5
-+
- #define WLAN_SCAN_PARAMS_MAX_SSID    16
- #define WLAN_SCAN_PARAMS_MAX_BSSID   4
- #define WLAN_SCAN_PARAMS_MAX_IE_LEN  256
-@@ -3105,6 +3113,16 @@ enum {
- 	((flag) |= (((mode) << WMI_SCAN_DWELL_MODE_SHIFT) & \
- 		    WMI_SCAN_DWELL_MODE_MASK))
- 
-+struct hint_short_ssid {
-+	u32 freq_flags;
-+	u32 short_ssid;
-+};
-+
-+struct hint_bssid {
-+	u32 freq_flags;
-+	struct wmi_mac_addr bssid;
-+};
-+
- struct scan_req_params {
- 	u32 scan_id;
- 	u32 scan_req_id;
-@@ -3184,6 +3202,10 @@ struct scan_req_params {
- 	struct element_info extraie;
- 	struct element_info htcap;
- 	struct element_info vhtcap;
-+	u32 num_hint_s_ssid;
-+	u32 num_hint_bssid;
-+	struct hint_short_ssid hint_s_ssid[WLAN_SCAN_MAX_HINT_S_SSID];
-+	struct hint_bssid hint_bssid[WLAN_SCAN_MAX_HINT_BSSID];
- };
- 
- struct wmi_ssid_arg {
+@@ -2520,7 +2520,8 @@ struct channel_param {
+ 	    allow_ht:1,
+ 	    allow_vht:1,
+ 	    allow_he:1,
+-	    set_agile:1;
++	    set_agile:1,
++	    psc_channel:1;
+ 	u32 phy_mode;
+ 	u32 cfreq1;
+ 	u32 cfreq2;
 -- 
 2.17.1
 
