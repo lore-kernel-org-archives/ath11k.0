@@ -1,12 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jgk0p-0000GO-LK
+ id 1jgk0p-0000GM-5w
  for ath11k@lists.infradead.org; Thu, 04 Jun 2020 07:10:06 +0000
 From: John Crispin <john@phrozen.org>
-Subject: [PATCH 05/12] mac80211: add multiple bssid IE parsing
-Date: Thu,  4 Jun 2020 09:09:45 +0200
-Message-Id: <20200604070952.15481-6-john@phrozen.org>
+Subject: [PATCH 02/12] nl80211: add attributes for multiple bssid related
+ settings
+Date: Thu,  4 Jun 2020 09:09:42 +0200
+Message-Id: <20200604070952.15481-3-john@phrozen.org>
 In-Reply-To: <20200604070952.15481-1-john@phrozen.org>
 References: <20200604070952.15481-1-john@phrozen.org>
 MIME-Version: 1.0
@@ -25,100 +26,112 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Johannes Berg <johannes@sipsolutions.net>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-Drivers might need to know the offset and length of the IE. Add parsing
-code and propagate the values to the driver using the mutable struct.
+When we start a multiple bssid AP we need to pass the index and number of
+peers aswell to the kernel. This info needs to be propagated to the
+driver.
 
 Signed-off-by: John Crispin <john@phrozen.org>
 ---
- include/net/mac80211.h     |  5 +++++
- net/mac80211/ieee80211_i.h |  2 ++
- net/mac80211/tx.c          | 10 ++++++++++
- net/mac80211/util.c        |  4 ++++
- 4 files changed, 21 insertions(+)
+ include/net/cfg80211.h       | 12 ++++++++++++
+ include/uapi/linux/nl80211.h |  7 +++++++
+ net/wireless/nl80211.c       | 15 +++++++++++++++
+ 3 files changed, 34 insertions(+)
 
-diff --git a/include/net/mac80211.h b/include/net/mac80211.h
-index bb2edace71a9..1a98b3907aa7 100644
---- a/include/net/mac80211.h
-+++ b/include/net/mac80211.h
-@@ -4717,12 +4717,17 @@ void ieee80211_report_low_ack(struct ieee80211_sta *sta, u32 num_packets);
-  * @csa_counter_offs: array of IEEE80211_MAX_CSA_COUNTERS_NUM offsets
-  *	to CSA counters.  This array can contain zero values which
-  *	should be ignored.
-+ * @mbssid_offset: position of mbssid_offset
-+ * @mbssid_length: position of mbssid_offset
-  */
- struct ieee80211_mutable_offsets {
- 	u16 tim_offset;
- 	u16 tim_length;
+diff --git a/include/net/cfg80211.h b/include/net/cfg80211.h
+index f0fc65f900b4..77cd2f780c6a 100644
+--- a/include/net/cfg80211.h
++++ b/include/net/cfg80211.h
+@@ -448,6 +448,17 @@ struct ieee80211_supported_band {
+ 	const struct ieee80211_sband_iftype_data *iftype_data;
+ };
  
- 	u16 csa_counter_offs[IEEE80211_MAX_CSA_COUNTERS_NUM];
++/**
++ * struct ieee80211_multi_bssid - AP settings for multi bssid
++ *
++ * @index: the index of this AP in the multi bssid group.
++ * @count: the total number of multi bssid peer APs.
++ */
++struct ieee80211_multi_bssid {
++	u32 index;
++	u32 count;
++};
 +
-+	u16 multiple_bssid_offset;
-+	u16 multiple_bssid_length;
+ /**
+  * ieee80211_get_sband_iftype_data - return sband data for a given iftype
+  * @sband: the sband to search for the STA on
+@@ -1113,6 +1124,7 @@ struct cfg80211_ap_settings {
+ 	u32 flags;
+ 	struct ieee80211_he_obss_pd he_obss_pd;
+ 	struct cfg80211_he_bss_color he_bss_color;
++	struct ieee80211_multi_bssid multi_bssid;
  };
  
  /**
-diff --git a/net/mac80211/ieee80211_i.h b/net/mac80211/ieee80211_i.h
-index 2502726d0a58..abe488424287 100644
---- a/net/mac80211/ieee80211_i.h
-+++ b/net/mac80211/ieee80211_i.h
-@@ -1520,6 +1520,7 @@ struct ieee802_11_elems {
- 	u8 dtim_count;
- 	u8 dtim_period;
- 	const struct ieee80211_addba_ext_ie *addba_ext_ie;
-+	u16 multiple_bssid_offset;
+diff --git a/include/uapi/linux/nl80211.h b/include/uapi/linux/nl80211.h
+index a586567f18ea..f18f681796ed 100644
+--- a/include/uapi/linux/nl80211.h
++++ b/include/uapi/linux/nl80211.h
+@@ -2476,6 +2476,11 @@ enum nl80211_commands {
+  * @NL80211_ATTR_MULTI_BSSID_PARENT: If this is a Non-Transmitted BSSID, define
+  *	the parent interface.
+  *
++ * @NL80211_ATTR_MULTI_BSSID_INDEX: The index of this BSS inside the multi bssid
++ *	IE.
++ *
++ * @NL80211_ATTR_MULTI_BSSID_COUNT: The number of BSSs inside the multi bssid IE.
++ *
+  * @NUM_NL80211_ATTR: total number of nl80211_attrs available
+  * @NL80211_ATTR_MAX: highest attribute number currently defined
+  * @__NL80211_ATTR_AFTER_LAST: internal use
+@@ -2953,6 +2958,8 @@ enum nl80211_attrs {
  
- 	/* length of them, respectively */
- 	u8 ext_capab_len;
-@@ -1540,6 +1541,7 @@ struct ieee802_11_elems {
- 	u8 perr_len;
- 	u8 country_elem_len;
- 	u8 bssid_index_len;
-+	u8 multiple_bssid_len;
+ 	NL80211_ATTR_MULTI_BSSID_MODE,
+ 	NL80211_ATTR_MULTI_BSSID_PARENT,
++	NL80211_ATTR_MULTI_BSSID_INDEX,
++	NL80211_ATTR_MULTI_BSSID_COUNT,
  
- 	/* whether a parse error occurred while retrieving these elements */
- 	bool parse_error;
-diff --git a/net/mac80211/tx.c b/net/mac80211/tx.c
-index 49d35936cc9d..5e2879cd24b0 100644
---- a/net/mac80211/tx.c
-+++ b/net/mac80211/tx.c
-@@ -4747,11 +4747,21 @@ __ieee80211_beacon_get(struct ieee80211_hw *hw,
- 						 is_template);
+ 	/* add attributes here, update the policy in nl80211.c */
  
- 			if (offs) {
-+				struct ieee802_11_elems elems;
+diff --git a/net/wireless/nl80211.c b/net/wireless/nl80211.c
+index 3b502514944c..58ce67bc31da 100644
+--- a/net/wireless/nl80211.c
++++ b/net/wireless/nl80211.c
+@@ -667,6 +667,8 @@ const struct nla_policy nl80211_policy[NUM_NL80211_ATTR] = {
+ 					NL80211_MULTIPLE_BSSID_LEGACY,
+ 					NL80211_MULTIPLE_BSSID_NON_TRANSMITTED),
+ 	[NL80211_ATTR_MULTI_BSSID_PARENT] = { .type = NLA_U32 },
++	[NL80211_ATTR_MULTI_BSSID_INDEX] = { .type = NLA_U32 },
++	[NL80211_ATTR_MULTI_BSSID_COUNT] = { .type = NLA_U32 },
+ };
+ 
+ /* policy for the key attributes */
+@@ -4996,6 +4998,11 @@ static int nl80211_start_ap(struct sk_buff *skb, struct genl_info *info)
+ 	    !info->attrs[NL80211_ATTR_BEACON_HEAD])
+ 		return -EINVAL;
+ 
++	if (wdev->multi_bssid_mode == NL80211_MULTIPLE_BSSID_NON_TRANSMITTED &&
++	    (!info->attrs[NL80211_ATTR_MULTI_BSSID_INDEX] ||
++	     !info->attrs[NL80211_ATTR_MULTI_BSSID_COUNT]))
++		return -EINVAL;
 +
- 				offs->tim_offset = beacon->head_len;
- 				offs->tim_length = skb->len - beacon->head_len;
+ 	err = nl80211_parse_beacon(rdev, info->attrs, &params.beacon);
+ 	if (err)
+ 		return err;
+@@ -5150,6 +5157,14 @@ static int nl80211_start_ap(struct sk_buff *skb, struct genl_info *info)
+ 			return err;
+ 	}
  
- 				/* for AP the csa offsets are from tail */
- 				csa_off_base = skb->len;
++	if (info->attrs[NL80211_ATTR_MULTI_BSSID_INDEX])
++		params.multi_bssid.index = nla_get_u32(
++				info->attrs[NL80211_ATTR_MULTI_BSSID_INDEX]);
 +
-+				ieee802_11_parse_elems(skb->head, skb->len, true, &elems,
-+						       sdata->wdev.address, NULL);
-+				if (!elems.parse_error)
-+					goto out;
++	if (info->attrs[NL80211_ATTR_MULTI_BSSID_COUNT])
++		params.multi_bssid.count = nla_get_u32(
++				info->attrs[NL80211_ATTR_MULTI_BSSID_COUNT]);
 +
-+				offs->multiple_bssid_offset = elems.multiple_bssid_offset;
-+				offs->multiple_bssid_length = elems.multiple_bssid_len;
- 			}
+ 	nl80211_calculate_ap_params(&params);
  
- 			if (beacon->tail)
-diff --git a/net/mac80211/util.c b/net/mac80211/util.c
-index a7c4d6a44e21..bbe2f1d9166c 100644
---- a/net/mac80211/util.c
-+++ b/net/mac80211/util.c
-@@ -1311,6 +1311,10 @@ _ieee802_11_parse_elems_crc(const u8 *start, size_t len, bool action,
- 								&crc : NULL,
- 							  elem, elems);
- 			break;
-+		case WLAN_EID_MULTIPLE_BSSID:
-+			elems->multiple_bssid_offset = pos - start;
-+			elems->multiple_bssid_len = elen;
-+			break;
- 		default:
- 			break;
- 		}
+ 	if (info->attrs[NL80211_ATTR_EXTERNAL_AUTH_SUPPORT])
 -- 
 2.20.1
 
