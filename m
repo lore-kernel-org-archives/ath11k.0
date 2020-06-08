@@ -1,17 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail27.static.mailgun.info ([104.130.122.27])
+Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jiFa4-0003Hk-Sp
- for ath11k@lists.infradead.org; Mon, 08 Jun 2020 11:04:43 +0000
+ id 1jiFeh-0006To-7h
+ for ath11k@lists.infradead.org; Mon, 08 Jun 2020 11:09:29 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH v5 0/8] add 6GHz radio support in ath11k driver
-References: <20200603001724.12161-1-pradeepc@codeaurora.org>
- <871rmwl2d6.fsf@codeaurora.org>
- <97dabee94c4faecbc83bbd02baf3a798@codeaurora.org>
-Date: Mon, 08 Jun 2020 14:04:29 +0300
-In-Reply-To: <97dabee94c4faecbc83bbd02baf3a798@codeaurora.org> (Pradeep Kumar
- Chitrapu's message of "Wed, 03 Jun 2020 10:50:53 -0700")
-Message-ID: <87k10hkede.fsf@codeaurora.org>
+Subject: Re: [PATCH 12/12] ath11k: set the multiple bssid hw cap
+References: <20200604070952.15481-1-john@phrozen.org>
+ <20200604070952.15481-13-john@phrozen.org>
+Date: Mon, 08 Jun 2020 14:09:18 +0300
+In-Reply-To: <20200604070952.15481-13-john@phrozen.org> (John Crispin's
+ message of "Thu, 4 Jun 2020 09:09:52 +0200")
+Message-ID: <87ftb5ke5d.fsf@codeaurora.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -25,41 +24,30 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: John Crispin <john@phrozen.org>
+Cc: Johannes Berg <johannes@sipsolutions.net>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-Pradeep Kumar Chitrapu <pradeepc@codeaurora.org> writes:
+John Crispin <john@phrozen.org> writes:
 
-> On 2020-06-03 06:12, Kalle Valo wrote:
->> Pradeep Kumar Chitrapu <pradeepc@codeaurora.org> writes:
->>
->>> This patch series adds 6GHz frequency listing in ath11k driver and
->>> mac80211
->>> registration for the 6GHz band. Also, extends some of wmi command
->>> tlvs for
->>> supporting 6GHz.
->>>
->>> changes in v5:
->>>  - latest 6ghz patches on mac80211 expects driver not to pass ht/vht
->>>    caps for 6GHZ band at device registration. so fix that.
->>
->> What are the dependencies for this patch? Is everything that is in
->> mac80211-next as of today enough?
+> This patch sets the SUPPORTS_MULTI_BSSID inside ath11k.
 >
-> Yes Kalle. current mac80211-next is enough.
->
->>
->> Also what I do with Rajkumar's patch:
->>
->> [PATCH] ath11k: build HE 6 GHz capability
->>
->> Should I apply it before or after this patchset?
->
-> Although there is no compile dependency with above patchset, there
-> will be 6ghz functionality dependency with above. So, IMO, its better
-> to apply after this patch set.
+> Signed-off-by: John Crispin <john@phrozen.org>
 
-Ok, thanks.
+On what hardware and firmware did you test this?
+
+> --- a/drivers/net/wireless/ath/ath11k/wmi.h
+> +++ b/drivers/net/wireless/ath/ath11k/wmi.h
+> @@ -109,8 +109,8 @@ enum {
+>  
+>  enum {
+>  	WMI_HOST_VDEV_FLAGS_NON_MBSSID_AP	= 1,
+> -	WMI_HOST_VDEV_FLAGS_TRANSMIT_AP		= 2,
+> -	WMI_HOST_VDEV_FLAGS_NON_TRANSMIT_AP	= 4,
+> +	WMI_HOST_VDEV_FLAGS_NON_TRANSMIT_AP	= 2,
+> +	WMI_HOST_VDEV_FLAGS_TRANSMIT_AP		= 4,
+
+I wonder if this is a safe thing to do? Do all firmware branches use
+these new values?
 
 -- 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
