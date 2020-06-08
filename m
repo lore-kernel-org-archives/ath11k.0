@@ -1,12 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jiQsx-0000Fc-SN
- for ath11k@lists.infradead.org; Mon, 08 Jun 2020 23:08:58 +0000
+ id 1jiQta-0000pZ-VW
+ for ath11k@lists.infradead.org; Mon, 08 Jun 2020 23:09:37 +0000
 From: Sasha Levin <sashal@kernel.org>
-Subject: [PATCH AUTOSEL 5.7 125/274] ath11k: use GFP_ATOMIC under spin lock
-Date: Mon,  8 Jun 2020 19:03:38 -0400
-Message-Id: <20200608230607.3361041-125-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.7 157/274] ath11k: fix error return code in
+ ath11k_dp_alloc()
+Date: Mon,  8 Jun 2020 19:04:10 -0400
+Message-Id: <20200608230607.3361041-157-sashal@kernel.org>
 In-Reply-To: <20200608230607.3361041-1-sashal@kernel.org>
 References: <20200608230607.3361041-1-sashal@kernel.org>
 MIME-Version: 1.0
@@ -27,32 +28,36 @@ Cc: Sasha Levin <sashal@kernel.org>, netdev@vger.kernel.org, linux-wireless@vger
 
 From: Wei Yongjun <weiyongjun1@huawei.com>
 
-[ Upstream commit 69c93f9674c97dc439cdc0527811f8ad104c2e35 ]
+[ Upstream commit f76f750aeea47fd98b6502eb6d37f84ca33662bf ]
 
-A spin lock is taken here so we should use GFP_ATOMIC.
+Fix to return negative error code -ENOMEM from the error handling
+case instead of 0, as done elsewhere in this function.
 
-Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+Fixes: d0998eb84ed3 ("ath11k: optimise ath11k_dp_tx_completion_handler")
 Signed-off-by: Wei Yongjun <weiyongjun1@huawei.com>
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
-Link: https://lore.kernel.org/r/20200427092417.56236-1-weiyongjun1@huawei.com
+Link: https://lore.kernel.org/r/20200427104621.23752-1-weiyongjun1@huawei.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/net/wireless/ath/ath11k/dp_rx.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/dp.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index f74a0e74bf3e..34b1e8e6a7fb 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -892,7 +892,7 @@ int ath11k_peer_rx_tid_setup(struct ath11k *ar, const u8 *peer_mac, int vdev_id,
- 	else
- 		hw_desc_sz = ath11k_hal_reo_qdesc_size(DP_BA_WIN_SZ_MAX, tid);
+diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
+index 50350f77b309..2f35d325f7a5 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.c
++++ b/drivers/net/wireless/ath/ath11k/dp.c
+@@ -909,8 +909,10 @@ int ath11k_dp_alloc(struct ath11k_base *ab)
+ 		dp->tx_ring[i].tx_status_head = 0;
+ 		dp->tx_ring[i].tx_status_tail = DP_TX_COMP_RING_SIZE - 1;
+ 		dp->tx_ring[i].tx_status = kmalloc(size, GFP_KERNEL);
+-		if (!dp->tx_ring[i].tx_status)
++		if (!dp->tx_ring[i].tx_status) {
++			ret = -ENOMEM;
+ 			goto fail_cmn_srng_cleanup;
++		}
+ 	}
  
--	vaddr = kzalloc(hw_desc_sz + HAL_LINK_DESC_ALIGN - 1, GFP_KERNEL);
-+	vaddr = kzalloc(hw_desc_sz + HAL_LINK_DESC_ALIGN - 1, GFP_ATOMIC);
- 	if (!vaddr) {
- 		spin_unlock_bh(&ab->base_lock);
- 		return -ENOMEM;
+ 	for (i = 0; i < HAL_DSCP_TID_MAP_TBL_NUM_ENTRIES_MAX; i++)
 -- 
 2.25.1
 
