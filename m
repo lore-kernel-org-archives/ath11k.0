@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jiQsE-00083O-Qm
- for ath11k@lists.infradead.org; Mon, 08 Jun 2020 23:08:12 +0000
+ id 1jiQsx-0000Fc-SN
+ for ath11k@lists.infradead.org; Mon, 08 Jun 2020 23:08:58 +0000
 From: Sasha Levin <sashal@kernel.org>
-Subject: [PATCH AUTOSEL 5.7 091/274] ath11k: Avoid mgmt tx count underflow
-Date: Mon,  8 Jun 2020 19:03:04 -0400
-Message-Id: <20200608230607.3361041-91-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.7 125/274] ath11k: use GFP_ATOMIC under spin lock
+Date: Mon,  8 Jun 2020 19:03:38 -0400
+Message-Id: <20200608230607.3361041-125-sashal@kernel.org>
 In-Reply-To: <20200608230607.3361041-1-sashal@kernel.org>
 References: <20200608230607.3361041-1-sashal@kernel.org>
 MIME-Version: 1.0
@@ -23,42 +23,36 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc: Sasha Levin <sashal@kernel.org>, Sriram R <srirrama@codeaurora.org>, netdev@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>
+Cc: Sasha Levin <sashal@kernel.org>, netdev@vger.kernel.org, linux-wireless@vger.kernel.org, Wei Yongjun <weiyongjun1@huawei.com>, ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>
 
-From: Sriram R <srirrama@codeaurora.org>
+From: Wei Yongjun <weiyongjun1@huawei.com>
 
-[ Upstream commit 800113ff4b1d277c2b66ffc04d4d38f202a0d187 ]
+[ Upstream commit 69c93f9674c97dc439cdc0527811f8ad104c2e35 ]
 
-The mgmt tx count reference is incremented/decremented on every mgmt tx and on
-tx completion event from firmware.
-In case of an unexpected mgmt tx completion event from firmware,
-the counter would underflow. Avoid this by decrementing
-only when the tx count is greater than 0.
+A spin lock is taken here so we should use GFP_ATOMIC.
 
-Signed-off-by: Sriram R <srirrama@codeaurora.org>
+Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+Signed-off-by: Wei Yongjun <weiyongjun1@huawei.com>
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
-Link: https://lore.kernel.org/r/1585567028-9242-1-git-send-email-srirrama@codeaurora.org
+Link: https://lore.kernel.org/r/20200427092417.56236-1-weiyongjun1@huawei.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/net/wireless/ath/ath11k/wmi.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 6fec62846279..73beca6d6b5f 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -3740,8 +3740,9 @@ static int wmi_process_mgmt_tx_comp(struct ath11k *ar, u32 desc_id,
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index f74a0e74bf3e..34b1e8e6a7fb 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -892,7 +892,7 @@ int ath11k_peer_rx_tid_setup(struct ath11k *ar, const u8 *peer_mac, int vdev_id,
+ 	else
+ 		hw_desc_sz = ath11k_hal_reo_qdesc_size(DP_BA_WIN_SZ_MAX, tid);
  
- 	ieee80211_tx_status_irqsafe(ar->hw, msdu);
- 
--	WARN_ON_ONCE(atomic_read(&ar->num_pending_mgmt_tx) == 0);
--	atomic_dec(&ar->num_pending_mgmt_tx);
-+	/* WARN when we received this event without doing any mgmt tx */
-+	if (atomic_dec_if_positive(&ar->num_pending_mgmt_tx) < 0)
-+		WARN_ON_ONCE(1);
- 
- 	return 0;
- }
+-	vaddr = kzalloc(hw_desc_sz + HAL_LINK_DESC_ALIGN - 1, GFP_KERNEL);
++	vaddr = kzalloc(hw_desc_sz + HAL_LINK_DESC_ALIGN - 1, GFP_ATOMIC);
+ 	if (!vaddr) {
+ 		spin_unlock_bh(&ab->base_lock);
+ 		return -ENOMEM;
 -- 
 2.25.1
 
