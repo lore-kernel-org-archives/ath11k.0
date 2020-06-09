@@ -1,16 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail.kernel.org ([198.145.29.99])
+Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jiQth-0000uo-5g
- for ath11k@lists.infradead.org; Mon, 08 Jun 2020 23:09:43 +0000
-From: Sasha Levin <sashal@kernel.org>
-Subject: [PATCH AUTOSEL 5.7 162/274] ath11k: fix kernel panic by freeing the
- msdu received with invalid length
-Date: Mon,  8 Jun 2020 19:04:15 -0400
-Message-Id: <20200608230607.3361041-162-sashal@kernel.org>
-In-Reply-To: <20200608230607.3361041-1-sashal@kernel.org>
-References: <20200608230607.3361041-1-sashal@kernel.org>
+ id 1jiV2W-00086h-HZ
+ for ath11k@lists.infradead.org; Tue, 09 Jun 2020 03:35:06 +0000
 MIME-Version: 1.0
+Date: Mon, 08 Jun 2020 20:35:01 -0700
+From: Rajkumar Manoharan <rmanohar@codeaurora.org>
+Subject: Re: [PATCH 00/12] mac80211: add multiple bssid support
+In-Reply-To: <20200604070952.15481-1-john@phrozen.org>
+References: <20200604070952.15481-1-john@phrozen.org>
+Message-ID: <dbf176d11cb4110a0a0bf6e29d68c409@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -19,98 +18,39 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc: Sasha Levin <sashal@kernel.org>, netdev@vger.kernel.org, linux-wireless@vger.kernel.org, Tamizh Chelvam <tamizhr@codeaurora.org>, ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>
+To: John Crispin <john@phrozen.org>
+Cc: linux-wireless-owner@vger.kernel.org, Johannes Berg <johannes@sipsolutions.net>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-From: Tamizh Chelvam <tamizhr@codeaurora.org>
+On 2020-06-04 00:09, John Crispin wrote:
+> Multiple bssid allows us to share a single beacon amongst several VAPs.
+> This essentially safes airtime. This feature is achieved by adding an
+> additional IE to the transmitting VAPs beacon. This new IE contains
+> the additional SSIDs and their non-inheritance information.
+> 
+> This series is still missing handling for TIM, which will be sent in a
+> follow-up series.
+> 
+> John Crispin (12):
+>   nl80211: add basic multiple bssid support
+>   nl80211: add attributes for multiple bssid related settings
+>   nl80211: add attributes to set beacon transmit mode
+>   mac80211: add multiple bssid support
+>   mac80211: add multiple bssid IE parsing
+>   mac80211: propagate multi bssid settings when starting an AP
+>   mac80211: propagate beacon tx mode to the driver
+>   ath11k: pass multiple bssid info to FW when a new vdev is created
+>   ath11k: add a struct to pass parameters into ath11k_wmi_vdev_up
+>   ath11k: add the multiple bssid IE offset to the beacon template
+>   ath11k: set beacon tx mode
+>   ath11k: set the multiple bssid hw cap
+> 
+Great work :)
 
-[ Upstream commit d7d43782d541edb8596d2f4fc7f41b0734948ec5 ]
-
-In certain scenario host receives the packets with invalid length
-which causes below kernel panic. Free up those msdus to avoid
-this kernel panic.
-
- 2270.028121:   <6> task: ffffffc0008306d0 ti: ffffffc0008306d0 task.ti: ffffffc0008306d0
- 2270.035247:   <2> PC is at skb_panic+0x40/0x44
- 2270.042784:   <2> LR is at skb_panic+0x40/0x44
- 2270.521775:   <2> [<ffffffc0004a06e0>] skb_panic+0x40/0x44
- 2270.524039:   <2> [<ffffffc0004a1278>] skb_put+0x54/0x5c
- 2270.529264:   <2> [<ffffffbffcc373a8>] ath11k_dp_process_rx_err+0x320/0x5b0 [ath11k]
- 2270.533860:   <2> [<ffffffbffcc30b68>] ath11k_dp_service_srng+0x80/0x268 [ath11k]
- 2270.541063:   <2> [<ffffffbffcc1d554>] ath11k_hal_rx_reo_ent_buf_paddr_get+0x200/0xb64 [ath11k]
- 2270.547917:   <2> [<ffffffc0004b1f74>] net_rx_action+0xf8/0x274
- 2270.556247:   <2> [<ffffffc000099df4>] __do_softirq+0x128/0x228
- 2270.561625:   <2> [<ffffffc00009a130>] irq_exit+0x84/0xcc
- 2270.567008:   <2> [<ffffffc0000cfb28>] __handle_domain_irq+0x8c/0xb0
- 2270.571695:   <2> [<ffffffc000082484>] gic_handle_irq+0x6c/0xbc
-
-Signed-off-by: Tamizh Chelvam <tamizhr@codeaurora.org>
-Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
-Link: https://lore.kernel.org/r/1588611568-20791-1-git-send-email-tamizhr@codeaurora.org
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/net/wireless/ath/ath11k/dp_rx.c | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
-
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 34b1e8e6a7fb..007bb73d6c61 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -2265,6 +2265,7 @@ static int ath11k_dp_rx_process_msdu(struct ath11k *ar,
- 	struct ieee80211_hdr *hdr;
- 	struct sk_buff *last_buf;
- 	u8 l3_pad_bytes;
-+	u8 *hdr_status;
- 	u16 msdu_len;
- 	int ret;
- 
-@@ -2293,8 +2294,13 @@ static int ath11k_dp_rx_process_msdu(struct ath11k *ar,
- 		skb_pull(msdu, HAL_RX_DESC_SIZE);
- 	} else if (!rxcb->is_continuation) {
- 		if ((msdu_len + HAL_RX_DESC_SIZE) > DP_RX_BUFFER_SIZE) {
-+			hdr_status = ath11k_dp_rx_h_80211_hdr(rx_desc);
- 			ret = -EINVAL;
- 			ath11k_warn(ar->ab, "invalid msdu len %u\n", msdu_len);
-+			ath11k_dbg_dump(ar->ab, ATH11K_DBG_DATA, NULL, "", hdr_status,
-+					sizeof(struct ieee80211_hdr));
-+			ath11k_dbg_dump(ar->ab, ATH11K_DBG_DATA, NULL, "", rx_desc,
-+					sizeof(struct hal_rx_desc));
- 			goto free_out;
- 		}
- 		skb_put(msdu, HAL_RX_DESC_SIZE + l3_pad_bytes + msdu_len);
-@@ -3389,6 +3395,7 @@ ath11k_dp_process_rx_err_buf(struct ath11k *ar, u32 *ring_desc, int buf_id, bool
- 	struct sk_buff *msdu;
- 	struct ath11k_skb_rxcb *rxcb;
- 	struct hal_rx_desc *rx_desc;
-+	u8 *hdr_status;
- 	u16 msdu_len;
- 
- 	spin_lock_bh(&rx_ring->idr_lock);
-@@ -3426,6 +3433,17 @@ ath11k_dp_process_rx_err_buf(struct ath11k *ar, u32 *ring_desc, int buf_id, bool
- 
- 	rx_desc = (struct hal_rx_desc *)msdu->data;
- 	msdu_len = ath11k_dp_rx_h_msdu_start_msdu_len(rx_desc);
-+	if ((msdu_len + HAL_RX_DESC_SIZE) > DP_RX_BUFFER_SIZE) {
-+		hdr_status = ath11k_dp_rx_h_80211_hdr(rx_desc);
-+		ath11k_warn(ar->ab, "invalid msdu leng %u", msdu_len);
-+		ath11k_dbg_dump(ar->ab, ATH11K_DBG_DATA, NULL, "", hdr_status,
-+				sizeof(struct ieee80211_hdr));
-+		ath11k_dbg_dump(ar->ab, ATH11K_DBG_DATA, NULL, "", rx_desc,
-+				sizeof(struct hal_rx_desc));
-+		dev_kfree_skb_any(msdu);
-+		goto exit;
-+	}
-+
- 	skb_put(msdu, HAL_RX_DESC_SIZE + msdu_len);
- 
- 	if (ath11k_dp_rx_frag_h_mpdu(ar, msdu, ring_desc)) {
--- 
-2.25.1
-
+-Rajkumar
 
 _______________________________________________
 ath11k mailing list
