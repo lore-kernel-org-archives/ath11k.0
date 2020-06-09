@@ -1,18 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jiXtF-0006OF-Do
- for ath11k@lists.infradead.org; Tue, 09 Jun 2020 06:37:43 +0000
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH v5 7/8] ath11k: Send multiple scan_chan_list messages if
- required
-References: <20200603001724.12161-1-pradeepc@codeaurora.org>
- <20200603001724.12161-8-pradeepc@codeaurora.org>
-Date: Tue, 09 Jun 2020 09:37:35 +0300
-In-Reply-To: <20200603001724.12161-8-pradeepc@codeaurora.org> (Pradeep Kumar
- Chitrapu's message of "Tue, 2 Jun 2020 17:17:23 -0700")
-Message-ID: <87ftb4zqvk.fsf@codeaurora.org>
+ id 1jiXvd-00008e-Cx
+ for ath11k@lists.infradead.org; Tue, 09 Jun 2020 06:40:12 +0000
 MIME-Version: 1.0
+Subject: Re: [PATCH 1/2] ath11k: Add direct buffer ring support
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <1591673945-25300-1-git-send-email-periyasa@codeaurora.org>
+References: <1591673945-25300-1-git-send-email-periyasa@codeaurora.org>
+Message-Id: <20200609063958.A4567C43387@smtp.codeaurora.org>
+Date: Tue,  9 Jun 2020 06:39:58 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -25,58 +22,51 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
+To: Karthikeyan Periyasamy <periyasa@codeaurora.org>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-Pradeep Kumar Chitrapu <pradeepc@codeaurora.org> writes:
+Karthikeyan Periyasamy <periyasa@codeaurora.org> wrote:
 
-> With addition of 6Ghz channels, it is possible that wmi buffer size can
-> exceed the maximum wmi buffer size. So iterate over the channel list,
-> and send multiple messages till channel list is empty.
-> Also mark PSC channel flag for 6GHz channels accordingly.
->
-> Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
-> ---
->  drivers/net/wireless/ath/ath11k/wmi.c | 170 ++++++++++++++------------
->  drivers/net/wireless/ath/ath11k/wmi.h |   3 +
->  2 files changed, 98 insertions(+), 75 deletions(-)
->
-> diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-> index 239a336f55f4..ad3a7b68d308 100644
-> --- a/drivers/net/wireless/ath/ath11k/wmi.c
-> +++ b/drivers/net/wireless/ath/ath11k/wmi.c
-> @@ -2194,91 +2194,111 @@ int ath11k_wmi_send_scan_chan_list_cmd(struct ath11k *ar,
->  	struct channel_param *tchan_info;
->  	struct wmi_tlv *tlv;
->  	void *ptr;
-> -	int i, ret, len;
-> +	int i, ret = 0, len;
-> +	u16 num_send_chans, num_sends = 0, max_chan_limit = 0;
->  	u32 *reg1, *reg2;
->  
+> Add direct buffer ring (dbring) with helper API, which is used by the
+> spectral scan. Initialise the direct buffer ring based on the dma ring
+> capability, which get announced in the wmi service ready extended event.
+> This ring is slightly changed from data path rings. Compare to data path
+> ring this ring shares the hp and tp address to firmware though WMI commands.
+> Also the replenish buffer size is derived from firmware announcement.
+> driver receive indication through WMI event
+> WMI_PDEV_DMA_RING_BUF_RELEASE_EVENTID.
+> 
+> Tested-on: IPQ8074 WLAN.HK.2.1.0.1-01228-QCAHKSWPL_SILICONZ-1
+> 
+> Signed-off-by: Karthikeyan Periyasamy <periyasa@codeaurora.org>
 
-[...]
+Fails to build:
 
-> +		ret = ath11k_wmi_cmd_send(wmi, skb, WMI_SCAN_CHAN_LIST_CMDID);
-> +		if (ret) {
-> +			ath11k_warn(ar->ab, "failed to send WMI_SCAN_CHAN_LIST cmd\n");
-> +			dev_kfree_skb(skb);
-> +			goto end;
-> +		}
-> +
-> +		num_sends++;
-> +	}
-> +end:
->  	return ret;
->  }
+Error in reading or end of file.
+drivers/net/wireless/ath/ath11k/dbring.c: In function 'ath11k_dbring_buffer_release_event':
+drivers/net/wireless/ath/ath11k/dbring.c:271:8: error: assignment to 'struct ath11k_dbring *' from incompatible pointer type 'struct ath11k_db_ring *' [-Werror=incompatible-pointer-types]
+  271 |   ring = ath11k_spectral_get_dbring(ar);
+      |        ^
+cc1: some warnings being treated as errors
+make[5]: *** [drivers/net/wireless/ath/ath11k/dbring.o] Error 1
+make[5]: *** Waiting for unfinished jobs....
+make[4]: *** [drivers/net/wireless/ath/ath11k] Error 2
+make[4]: *** Waiting for unfinished jobs....
+make[3]: *** [drivers/net/wireless/ath] Error 2
+make[2]: *** [drivers/net/wireless] Error 2
+make[1]: *** [drivers/net] Error 2
+make: *** [drivers] Error 2
 
-The end label is useless, I removed that and replaced the goto with
-'return ret'. And I replaced the return in the end to 'return 0' which
-made it possible to not initialise the ret variable. Please check my
-changes in the pending branch (which I will push shortly).
+2 patches set to Changes Requested.
+
+11594295 [1/2] ath11k: Add direct buffer ring support
+11594297 [2/2] ath11k: add support for spectral scan
 
 -- 
+https://patchwork.kernel.org/patch/11594295/
+
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
 _______________________________________________
 ath11k mailing list
