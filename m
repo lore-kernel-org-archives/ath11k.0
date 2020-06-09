@@ -1,18 +1,17 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jibV2-0006ph-MG
- for ath11k@lists.infradead.org; Tue, 09 Jun 2020 10:29:00 +0000
-Received: from CHECSTEX0180100-LIN.qca.qualcomm.com
- (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
- (No client certificate requested) (Authenticated sender: vthiagar)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 84FD3C433C6
- for <ath11k@lists.infradead.org>; Tue,  9 Jun 2020 10:28:35 +0000 (UTC)
-From: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
-Subject: [PATCH] ath11k: Fix resource leak in QMI send message error path
-Date: Tue,  9 Jun 2020 15:58:24 +0530
-Message-Id: <1591698504-30330-1-git-send-email-vthiagar@codeaurora.org>
+ id 1jicpg-00010P-NE
+ for ath11k@lists.infradead.org; Tue, 09 Jun 2020 11:54:21 +0000
+MIME-Version: 1.0
+Date: Tue, 09 Jun 2020 17:24:12 +0530
+From: Maharaja Kennadyrajan <mkenna@codeaurora.org>
+Subject: Re: [PATCH 3/3] ath11k: remove "ath11k_mac_get_ar_vdev_stop_status"
+ references
+In-Reply-To: <20200528073034.F14B9C43387@smtp.codeaurora.org>
+References: <1590067829-26109-4-git-send-email-mkenna@codeaurora.org>
+ <20200528073034.F14B9C43387@smtp.codeaurora.org>
+Message-ID: <80107de209f1149ecae07a50a7cf86a9@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -21,87 +20,34 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
+To: Kalle Valo <kvalo@codeaurora.org>
+Cc: Ritesh Singh <ritesi@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-QMI client calling qmi_txn_init() must call either qmi_txn_wait()
-or qmi_txn_cancel() to free up the allocated transaction id. There
-are many error cases leaking this resource. Found in code review.
+On 2020-05-28 13:00, Kalle Valo wrote:
+> Maharaja Kennadyrajan <mkenna@codeaurora.org> wrote:
+> 
+>> Unused structure ath11k_vdev_stop_status is removed.
+>> 'ath11k_mac_get_ar_vdev_stop_status' api has been replaced
+>> with 'ath11k_mac_get_ar_by_vdev_id' inside vdev_stopped_event.
+>> 
+>> Tested-on: IPQ8074 WLAN.HK.2.4.0.1-00009-QCAHKSWPL_SILICONZ-1
+>> 
+>> Signed-off-by: Ritesh Singh <ritesi@codeaurora.org>
+>> Signed-off-by: Maharaja Kennadyrajan <mkenna@codeaurora.org>
+>> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+> 
+> What about other firmware branches? For example, will this break
+> 2.1.0.1 branch support?
 
-Tested-on: Compile tested only
+[Maha]: It won't break 2.1.0.1 branch as it is host related change.
 
-Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/qmi.c | 7 +++++++
- 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index c00a99a..74e0dc0 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.c
-+++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -1535,6 +1535,7 @@ static int ath11k_qmi_host_cap_send(struct ath11k_base *ab)
- 			       QMI_WLANFW_HOST_CAP_REQ_MSG_V01_MAX_LEN,
- 			       qmi_wlanfw_host_cap_req_msg_v01_ei, &req);
- 	if (ret < 0) {
-+		qmi_txn_cancel(&txn);
- 		ath11k_warn(ab, "Failed to send host capability request,err = %d\n", ret);
- 		goto out;
- 	}
-@@ -1596,6 +1597,7 @@ static int ath11k_qmi_fw_ind_register_send(struct ath11k_base *ab)
- 			       QMI_WLANFW_IND_REGISTER_REQ_MSG_V01_MAX_LEN,
- 			       qmi_wlanfw_ind_register_req_msg_v01_ei, req);
- 	if (ret < 0) {
-+		qmi_txn_cancel(&txn);
- 		ath11k_warn(ab, "Failed to send indication register request, err = %d\n",
- 			    ret);
- 		goto out;
-@@ -1652,6 +1654,7 @@ static int ath11k_qmi_respond_fw_mem_request(struct ath11k_base *ab)
- 			       QMI_WLANFW_RESPOND_MEM_REQ_MSG_V01_MAX_LEN,
- 			       qmi_wlanfw_respond_mem_req_msg_v01_ei, req);
- 	if (ret < 0) {
-+		qmi_txn_cancel(&txn);
- 		ath11k_warn(ab, "qmi failed to respond memory request, err = %d\n",
- 			    ret);
- 		goto out;
-@@ -1730,6 +1733,7 @@ static int ath11k_qmi_request_target_cap(struct ath11k_base *ab)
- 			       QMI_WLANFW_CAP_REQ_MSG_V01_MAX_LEN,
- 			       qmi_wlanfw_cap_req_msg_v01_ei, &req);
- 	if (ret < 0) {
-+		qmi_txn_cancel(&txn);
- 		ath11k_warn(ab, "qmi failed to send target cap request, err = %d\n",
- 			    ret);
- 		goto out;
-@@ -1936,6 +1940,7 @@ static int ath11k_qmi_wlanfw_m3_info_send(struct ath11k_base *ab)
- 			       QMI_WLANFW_M3_INFO_REQ_MSG_V01_MAX_MSG_LEN,
- 			       qmi_wlanfw_m3_info_req_msg_v01_ei, &req);
- 	if (ret < 0) {
-+		qmi_txn_cancel(&txn);
- 		ath11k_warn(ab, "qmi failed to send M3 information request, err = %d\n",
- 			    ret);
- 		goto out;
-@@ -1982,6 +1987,7 @@ static int ath11k_qmi_wlanfw_mode_send(struct ath11k_base *ab,
- 			       QMI_WLANFW_WLAN_MODE_REQ_MSG_V01_MAX_LEN,
- 			       qmi_wlanfw_wlan_mode_req_msg_v01_ei, &req);
- 	if (ret < 0) {
-+		qmi_txn_cancel(&txn);
- 		ath11k_warn(ab, "qmi failed to send mode request, mode: %d, err = %d\n",
- 			    mode, ret);
- 		goto out;
-@@ -2063,6 +2069,7 @@ static int ath11k_qmi_wlanfw_wlan_cfg_send(struct ath11k_base *ab)
- 			       QMI_WLANFW_WLAN_CFG_REQ_MSG_V01_MAX_LEN,
- 			       qmi_wlanfw_wlan_cfg_req_msg_v01_ei, req);
- 	if (ret < 0) {
-+		qmi_txn_cancel(&txn);
- 		ath11k_warn(ab, "qmi failed to send wlan config request, err = %d\n",
- 			    ret);
- 		goto out;
--- 
-2.7.4
-
+Regards,
+Maha
 
 _______________________________________________
 ath11k mailing list
