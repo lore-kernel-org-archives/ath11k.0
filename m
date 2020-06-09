@@ -1,15 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jiXvd-00008e-Cx
- for ath11k@lists.infradead.org; Tue, 09 Jun 2020 06:40:12 +0000
-MIME-Version: 1.0
-Subject: Re: [PATCH 1/2] ath11k: Add direct buffer ring support
+ id 1jiXyo-0000qD-KK
+ for ath11k@lists.infradead.org; Tue, 09 Jun 2020 06:43:28 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1591673945-25300-1-git-send-email-periyasa@codeaurora.org>
-References: <1591673945-25300-1-git-send-email-periyasa@codeaurora.org>
-Message-Id: <20200609063958.A4567C43387@smtp.codeaurora.org>
-Date: Tue,  9 Jun 2020 06:39:58 +0000 (UTC)
+Subject: Re: [PATCH 0/8] ath11k: Add IPQ6018 support
+References: <1591678993-11016-1-git-send-email-akolli@codeaurora.org>
+Date: Tue, 09 Jun 2020 09:43:21 +0300
+In-Reply-To: <1591678993-11016-1-git-send-email-akolli@codeaurora.org>
+ (Anilkumar Kolli's message of "Tue, 9 Jun 2020 10:33:05 +0530")
+Message-ID: <87bllszqly.fsf@codeaurora.org>
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,51 +23,33 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Karthikeyan Periyasamy <periyasa@codeaurora.org>
+To: Anilkumar Kolli <akolli@codeaurora.org>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-Karthikeyan Periyasamy <periyasa@codeaurora.org> wrote:
+Anilkumar Kolli <akolli@codeaurora.org> writes:
 
-> Add direct buffer ring (dbring) with helper API, which is used by the
-> spectral scan. Initialise the direct buffer ring based on the dma ring
-> capability, which get announced in the wmi service ready extended event.
-> This ring is slightly changed from data path rings. Compare to data path
-> ring this ring shares the hp and tp address to firmware though WMI commands.
-> Also the replenish buffer size is derived from firmware announcement.
-> driver receive indication through WMI event
-> WMI_PDEV_DMA_RING_BUF_RELEASE_EVENTID.
-> 
-> Tested-on: IPQ8074 WLAN.HK.2.1.0.1-01228-QCAHKSWPL_SILICONZ-1
-> 
-> Signed-off-by: Karthikeyan Periyasamy <periyasa@codeaurora.org>
+> IPQ6018 has a 5G radio and 2G radio with 2x2
+> and shares IPQ8074 configuration.
+>
+> Tested on: IPQ6018 WLAN.HK.2.2-02134-QCAHKSWPL_SILICONZ-1
+> Tested on: IPQ8074 WLAN.HK.2.4.0.1-00009-QCAHKSWPL_SILICONZ-1 
+>
+> Anilkumar Kolli (8):
+>   ath11k: update firmware files read path
+>   ath11k: rename default board file
+>   dt: bindings: net: update compatible for ath11k
+>   ath11k: add IPQ6018 support
+>   ath11k: define max_radios in hw_params
+>   ath11k: add hw_ops for pdev id to hw_mac mapping
+>   ath11k: add ce services for IPQ6018
+>   ath11k: Add bdf-addr in hw_params
 
-Fails to build:
-
-Error in reading or end of file.
-drivers/net/wireless/ath/ath11k/dbring.c: In function 'ath11k_dbring_buffer_release_event':
-drivers/net/wireless/ath/ath11k/dbring.c:271:8: error: assignment to 'struct ath11k_dbring *' from incompatible pointer type 'struct ath11k_db_ring *' [-Werror=incompatible-pointer-types]
-  271 |   ring = ath11k_spectral_get_dbring(ar);
-      |        ^
-cc1: some warnings being treated as errors
-make[5]: *** [drivers/net/wireless/ath/ath11k/dbring.o] Error 1
-make[5]: *** Waiting for unfinished jobs....
-make[4]: *** [drivers/net/wireless/ath/ath11k] Error 2
-make[4]: *** Waiting for unfinished jobs....
-make[3]: *** [drivers/net/wireless/ath] Error 2
-make[2]: *** [drivers/net/wireless] Error 2
-make[1]: *** [drivers/net] Error 2
-make: *** [drivers] Error 2
-
-2 patches set to Changes Requested.
-
-11594295 [1/2] ath11k: Add direct buffer ring support
-11594297 [2/2] ath11k: add support for spectral scan
+You need to CC the device tree list, so please resubmit as v2. And to
+make their review easier please move the binding doc update as the first
+patch.
 
 -- 
-https://patchwork.kernel.org/patch/11594295/
-
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
 
 _______________________________________________
 ath11k mailing list
