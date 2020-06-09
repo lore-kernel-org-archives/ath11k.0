@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jieNw-0000Tw-Fb
- for ath11k@lists.infradead.org; Tue, 09 Jun 2020 13:33:53 +0000
+ id 1jieNz-0000Uk-7q
+ for ath11k@lists.infradead.org; Tue, 09 Jun 2020 13:33:59 +0000
 From: Anilkumar Kolli <akolli@codeaurora.org>
-Subject: [PATCH v2 7/8] ath11k: add ce services for IPQ6018
-Date: Tue,  9 Jun 2020 19:03:00 +0530
-Message-Id: <1591709581-18039-8-git-send-email-akolli@codeaurora.org>
+Subject: [PATCH v2 8/8] ath11k: Add bdf-addr in hw_params
+Date: Tue,  9 Jun 2020 19:03:01 +0530
+Message-Id: <1591709581-18039-9-git-send-email-akolli@codeaurora.org>
 In-Reply-To: <1591709581-18039-1-git-send-email-akolli@codeaurora.org>
 References: <1591709581-18039-1-git-send-email-akolli@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,167 +25,84 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: devicetree@vger.kernel.org, linux-wireless@vger.kernel.org
 
-IPQ6018 does not support mac2, add a new ce service map.
+bdf-addr is different for IPQ8074 and IPQ6018
 
 Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/ahb.c | 122 ++++++++++++++++++++++++++++++++--
- 1 file changed, 117 insertions(+), 5 deletions(-)
+ drivers/net/wireless/ath/ath11k/core.c | 2 ++
+ drivers/net/wireless/ath/ath11k/hw.h   | 1 +
+ drivers/net/wireless/ath/ath11k/qmi.c  | 6 +++---
+ drivers/net/wireless/ath/ath11k/qmi.h  | 1 -
+ 4 files changed, 6 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index b080ad8fab0a..25764f719db0 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.c
-+++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -155,7 +155,7 @@ static const struct ce_pipe_config target_ce_config_wlan[] = {
-  * This table is derived from the CE_PCI TABLE, above.
-  * It is passed to the Target at startup for use by firmware.
-  */
--static const struct service_to_pipe target_service_to_ce_map_wlan[] = {
-+static const struct service_to_pipe target_service_to_ce_map_wlan_ipq8074[] = {
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 79ee97e91159..7d528677e3a3 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -27,6 +27,7 @@ static const struct ath11k_hw_params ath11k_hw_params_list[] = {
+ 			.cal_size =  IPQ8074_MAX_CAL_DATA_SZ,
+ 		},
+ 		.max_radios = 3,
++		.bdf_addr = 0x4B0C0000,
+ 		.hw_ops = &ipq8074_ops,
+ 	},
  	{
- 		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_VO),
- 		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-@@ -267,6 +267,108 @@ static const struct service_to_pipe target_service_to_ce_map_wlan[] = {
- 	{ /* terminator entry */ }
+@@ -38,6 +39,7 @@ static const struct ath11k_hw_params ath11k_hw_params_list[] = {
+ 			.cal_size =  IPQ6018_MAX_CAL_DATA_SZ,
+ 		},
+ 		.max_radios = 2,
++		.bdf_addr = 0x4ABC0000,
+ 		.hw_ops = &ipq6018_ops,
+ 	},
  };
+diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
+index 5b5cd56c1aea..6d372eeb869c 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.h
++++ b/drivers/net/wireless/ath/ath11k/hw.h
+@@ -115,6 +115,7 @@ struct ath11k_hw_ops {
  
-+static const struct service_to_pipe target_service_to_ce_map_wlan_ipq6018[] = {
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_VO),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(3),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_VO),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(2),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_BK),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(3),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_BK),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(2),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_BE),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(3),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_BE),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(2),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_VI),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(3),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_VI),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(2),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_CONTROL),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(3),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_CONTROL),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(2),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_CONTROL_MAC1),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(7),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_CONTROL_MAC1),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(2),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_RSVD_CTRL),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(0),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_RSVD_CTRL),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(1),
-+	},
-+	{ /* not used */
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_TEST_RAW_STREAMS),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(0),
-+	},
-+	{ /* not used */
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_TEST_RAW_STREAMS),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(1),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_HTT_DATA_MSG),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(4),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_HTT_DATA_MSG),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(1),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_PKT_LOG),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(5),
-+	},
-+
-+	/* (Additions here) */
-+
-+	{ /* terminator entry */ }
-+};
-+
- #define ATH11K_IRQ_CE0_OFFSET 4
+ struct ath11k_hw_params {
+ 	const char *name;
++	u32 bdf_addr;
+ 	u16 dev_id;
+ 	u8 max_radios;
+ 	struct {
+diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
+index c00a99ad8dbc..e4198d3b0bae 100644
+--- a/drivers/net/wireless/ath/ath11k/qmi.c
++++ b/drivers/net/wireless/ath/ath11k/qmi.c
+@@ -1681,8 +1681,8 @@ static int ath11k_qmi_alloc_target_mem_chunk(struct ath11k_base *ab)
+ 	for (i = 0, idx = 0; i < ab->qmi.mem_seg_count; i++) {
+ 		switch (ab->qmi.target_mem[i].type) {
+ 		case BDF_MEM_REGION_TYPE:
+-			ab->qmi.target_mem[idx].paddr = ATH11K_QMI_BDF_ADDRESS;
+-			ab->qmi.target_mem[idx].vaddr = ATH11K_QMI_BDF_ADDRESS;
++			ab->qmi.target_mem[idx].paddr = ab->hw_params.bdf_addr;
++			ab->qmi.target_mem[idx].vaddr = ab->hw_params.bdf_addr;
+ 			ab->qmi.target_mem[idx].size = ab->qmi.target_mem[i].size;
+ 			ab->qmi.target_mem[idx].type = ab->qmi.target_mem[i].type;
+ 			idx++;
+@@ -1854,7 +1854,7 @@ static int ath11k_qmi_load_bdf(struct ath11k_base *ab)
+ 		return -ENOMEM;
+ 	memset(&resp, 0, sizeof(resp));
  
- static const char *irq_name[ATH11K_IRQ_NUM_MAX] = {
-@@ -647,8 +749,15 @@ static void ath11k_ahb_init_qmi_ce_config(struct ath11k_base *ab)
- 
- 	cfg->tgt_ce_len = ARRAY_SIZE(target_ce_config_wlan) - 1;
- 	cfg->tgt_ce = target_ce_config_wlan;
--	cfg->svc_to_ce_map_len = ARRAY_SIZE(target_service_to_ce_map_wlan);
--	cfg->svc_to_ce_map = target_service_to_ce_map_wlan;
-+	if (ab->hw_params.dev_id == ATH11K_HW_IPQ6018) {
-+		cfg->svc_to_ce_map_len =
-+			ARRAY_SIZE(target_service_to_ce_map_wlan_ipq6018);
-+		cfg->svc_to_ce_map = target_service_to_ce_map_wlan_ipq6018;
-+	} else {
-+		cfg->svc_to_ce_map_len =
-+			ARRAY_SIZE(target_service_to_ce_map_wlan_ipq8074);
-+		cfg->svc_to_ce_map = target_service_to_ce_map_wlan_ipq8074;
-+	}
- }
- 
- static void ath11k_ahb_free_ext_irq(struct ath11k_base *ab)
-@@ -856,8 +965,11 @@ static int ath11k_ahb_map_service_to_pipe(struct ath11k_base *ab, u16 service_id
- 	bool ul_set = false, dl_set = false;
- 	int i;
- 
--	for (i = 0; i < ARRAY_SIZE(target_service_to_ce_map_wlan); i++) {
--		entry = &target_service_to_ce_map_wlan[i];
-+	for (i = 0; i < ab->qmi.ce_cfg.svc_to_ce_map_len; i++) {
-+		if (ab->hw_params.dev_id == ATH11K_HW_IPQ6018)
-+			entry = &target_service_to_ce_map_wlan_ipq6018[i];
-+		else
-+			entry = &target_service_to_ce_map_wlan_ipq8074[i];
- 
- 		if (__le32_to_cpu(entry->service_id) != service_id)
- 			continue;
+-	bdf_addr = ioremap(ATH11K_QMI_BDF_ADDRESS, ATH11K_QMI_BDF_MAX_SIZE);
++	bdf_addr = ioremap(ab->hw_params.bdf_addr, ATH11K_QMI_BDF_MAX_SIZE);
+ 	if (!bdf_addr) {
+ 		ath11k_warn(ab, "qmi ioremap error for BDF\n");
+ 		ret = -EIO;
+diff --git a/drivers/net/wireless/ath/ath11k/qmi.h b/drivers/net/wireless/ath/ath11k/qmi.h
+index 3f7db642d869..a7a0a189cbe4 100644
+--- a/drivers/net/wireless/ath/ath11k/qmi.h
++++ b/drivers/net/wireless/ath/ath11k/qmi.h
+@@ -12,7 +12,6 @@
+ #define ATH11K_HOST_VERSION_STRING		"WIN"
+ #define ATH11K_QMI_WLANFW_TIMEOUT_MS		5000
+ #define ATH11K_QMI_MAX_BDF_FILE_NAME_SIZE	64
+-#define ATH11K_QMI_BDF_ADDRESS			0x4B0C0000
+ #define ATH11K_QMI_BDF_MAX_SIZE			(256 * 1024)
+ #define ATH11K_QMI_CALDATA_OFFSET		(128 * 1024)
+ #define ATH11K_QMI_WLANFW_MAX_BUILD_ID_LEN_V01	128
 -- 
 2.7.4
 
