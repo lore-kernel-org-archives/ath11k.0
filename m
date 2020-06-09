@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail27.static.mailgun.info ([104.130.122.27])
+Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jieNm-0000UF-4A
- for ath11k@lists.infradead.org; Tue, 09 Jun 2020 13:33:42 +0000
+ id 1jieNl-0000Tw-2N
+ for ath11k@lists.infradead.org; Tue, 09 Jun 2020 13:33:41 +0000
 From: Anilkumar Kolli <akolli@codeaurora.org>
-Subject: [PATCH v2 3/8] ath11k: rename default board file
-Date: Tue,  9 Jun 2020 19:02:56 +0530
-Message-Id: <1591709581-18039-4-git-send-email-akolli@codeaurora.org>
+Subject: [PATCH v2 5/8] ath11k: define max_radios in hw_params
+Date: Tue,  9 Jun 2020 19:02:58 +0530
+Message-Id: <1591709581-18039-6-git-send-email-akolli@codeaurora.org>
 In-Reply-To: <1591709581-18039-1-git-send-email-akolli@codeaurora.org>
 References: <1591709581-18039-1-git-send-email-akolli@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,26 +25,111 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: devicetree@vger.kernel.org, linux-wireless@vger.kernel.org
 
-Rename default BDF to make it consistent with board-2.bin naming.
+Define max_radios supported in hw_params.
 
 Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/hw.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/core.c  | 2 ++
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 2 +-
+ drivers/net/wireless/ath/ath11k/htc.c   | 2 +-
+ drivers/net/wireless/ath/ath11k/hw.h    | 1 +
+ drivers/net/wireless/ath/ath11k/reg.c   | 2 +-
+ drivers/net/wireless/ath/ath11k/wmi.c   | 4 ++--
+ 6 files changed, 8 insertions(+), 5 deletions(-)
 
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index abe9edb56309..115db4c21e70 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -26,6 +26,7 @@ static const struct ath11k_hw_params ath11k_hw_params_list[] = {
+ 			.board_size = IPQ8074_MAX_BOARD_DATA_SZ,
+ 			.cal_size =  IPQ8074_MAX_CAL_DATA_SZ,
+ 		},
++		.max_radios = 3,
+ 	},
+ 	{
+ 		.dev_id = ATH11K_HW_IPQ6018,
+@@ -35,6 +36,7 @@ static const struct ath11k_hw_params ath11k_hw_params_list[] = {
+ 			.board_size = IPQ6018_MAX_BOARD_DATA_SZ,
+ 			.cal_size =  IPQ6018_MAX_CAL_DATA_SZ,
+ 		},
++		.max_radios = 2,
+ 	},
+ };
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index a54610d75c40..57aee0d9a124 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -3792,7 +3792,7 @@ int ath11k_dp_rx_process_wbm_err(struct ath11k_base *ab,
+ 	int total_num_buffs_reaped = 0;
+ 	int ret, i;
+ 
+-	for (i = 0; i < MAX_RADIOS; i++)
++	for (i = 0; i < ab->num_radios; i++)
+ 		__skb_queue_head_init(&msdu_list[i]);
+ 
+ 	srng = &ab->hal.srng_list[dp->rx_rel_ring.ring_id];
+diff --git a/drivers/net/wireless/ath/ath11k/htc.c b/drivers/net/wireless/ath/ath11k/htc.c
+index ad13c648b679..bc0026c1e4a6 100644
+--- a/drivers/net/wireless/ath/ath11k/htc.c
++++ b/drivers/net/wireless/ath/ath11k/htc.c
+@@ -748,7 +748,7 @@ int ath11k_htc_init(struct ath11k_base *ab)
+ 		htc->wmi_ep_count = 3;
+ 		break;
+ 	default:
+-		htc->wmi_ep_count = 3;
++		htc->wmi_ep_count = ab->hw_params.max_radios;
+ 		break;
+ 	}
+ 
 diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
-index 6e065c4e5935..f7f070af233c 100644
+index e66f0e0138c4..d1a08d529988 100644
 --- a/drivers/net/wireless/ath/ath11k/hw.h
 +++ b/drivers/net/wireless/ath/ath11k/hw.h
-@@ -75,7 +75,7 @@
+@@ -112,6 +112,7 @@ enum ath11k_bus {
+ struct ath11k_hw_params {
+ 	const char *name;
+ 	u16 dev_id;
++	u8 max_radios;
+ 	struct {
+ 		const char *dir;
+ 		size_t board_size;
+diff --git a/drivers/net/wireless/ath/ath11k/reg.c b/drivers/net/wireless/ath/ath11k/reg.c
+index 453aa9c06969..831f11d1b42e 100644
+--- a/drivers/net/wireless/ath/ath11k/reg.c
++++ b/drivers/net/wireless/ath/ath11k/reg.c
+@@ -695,7 +695,7 @@ void ath11k_reg_free(struct ath11k_base *ab)
+ {
+ 	int i;
  
- #define ATH11K_BOARD_MAGIC		"QCA-ATH11K-BOARD"
- #define ATH11K_BOARD_API2_FILE		"board-2.bin"
--#define ATH11K_DEFAULT_BOARD_FILE	"bdwlan.bin"
-+#define ATH11K_DEFAULT_BOARD_FILE	"board.bin"
- #define ATH11K_DEFAULT_CAL_FILE		"caldata.bin"
+-	for (i = 0; i < MAX_RADIOS; i++) {
++	for (i = 0; i < ab->hw_params.max_radios; i++) {
+ 		kfree(ab->default_regd[i]);
+ 		kfree(ab->new_regd[i]);
+ 	}
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index c2a972377687..5324782c355b 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -6152,7 +6152,7 @@ int ath11k_wmi_connect(struct ath11k_base *ab)
+ 	u8 wmi_ep_count;
  
- enum ath11k_hw_rate_cck {
+ 	wmi_ep_count = ab->htc.wmi_ep_count;
+-	if (wmi_ep_count > MAX_RADIOS)
++	if (wmi_ep_count > ab->hw_params.max_radios)
+ 		return -1;
+ 
+ 	for (i = 0; i < wmi_ep_count; i++)
+@@ -6174,7 +6174,7 @@ int ath11k_wmi_pdev_attach(struct ath11k_base *ab,
+ {
+ 	struct ath11k_pdev_wmi *wmi_handle;
+ 
+-	if (pdev_id >= MAX_RADIOS)
++	if (pdev_id >= ab->hw_params.max_radios)
+ 		return -EINVAL;
+ 
+ 	wmi_handle = &ab->wmi_ab.wmi[pdev_id];
 -- 
 2.7.4
 
