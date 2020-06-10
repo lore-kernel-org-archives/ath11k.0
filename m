@@ -1,13 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from m43-7.mailgun.net ([69.72.43.7])
+Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jifO7-0002iM-OR
- for ath11k@lists.infradead.org; Tue, 09 Jun 2020 14:38:07 +0000
-From: Sowmiya Sree Elavalagan <ssreeela@codeaurora.org>
-Subject: [PATCH] ath11k: removing redundant reo unlock followed by immediate
- lock
-Date: Tue,  9 Jun 2020 20:07:12 +0530
-Message-Id: <1591713432-26426-1-git-send-email-ssreeela@codeaurora.org>
+ id 1jioZ7-0000rT-3Y
+ for ath11k@lists.infradead.org; Wed, 10 Jun 2020 00:26:03 +0000
+MIME-Version: 1.0
+Date: Tue, 09 Jun 2020 17:25:54 -0700
+From: Rajkumar Manoharan <rmanohar@codeaurora.org>
+Subject: Re: [PATCH 01/12] nl80211: add basic multiple bssid support
+In-Reply-To: <20200604070952.15481-2-john@phrozen.org>
+References: <20200604070952.15481-1-john@phrozen.org>
+ <20200604070952.15481-2-john@phrozen.org>
+Message-ID: <95d452bacbeba285c9dad7f037f78078@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -16,40 +19,53 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: Sowmiya Sree Elavalagan <ssreeela@codeaurora.org>, linux-wireless@vger.kernel.org
+To: John Crispin <john@phrozen.org>
+Cc: linux-wireless-owner@vger.kernel.org, Johannes Berg <johannes@sipsolutions.net>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-Removed reo cmd lock and unlock which was acquiring the lock immediately
-after unlock. Done for code clean up.
+On 2020-06-04 00:09, John Crispin wrote:
+[...]
+> --- a/net/wireless/nl80211.c
+> +++ b/net/wireless/nl80211.c
+> @@ -663,6 +663,10 @@ const struct nla_policy
+> nl80211_policy[NUM_NL80211_ATTR] = {
+>  	[NL80211_ATTR_CONTROL_PORT_NO_PREAUTH] = { .type = NLA_FLAG },
+>  	[NL80211_ATTR_PMK_LIFETIME] = NLA_POLICY_MIN(NLA_U32, 1),
+>  	[NL80211_ATTR_PMK_REAUTH_THRESHOLD] = NLA_POLICY_RANGE(NLA_U8, 1, 
+> 100),
+> +	[NL80211_ATTR_MULTI_BSSID_MODE] = NLA_POLICY_RANGE(NLA_U8,
+> +					NL80211_MULTIPLE_BSSID_LEGACY,
+> +					NL80211_MULTIPLE_BSSID_NON_TRANSMITTED),
+> +	[NL80211_ATTR_MULTI_BSSID_PARENT] = { .type = NLA_U32 },
+> 
+If it is read as u8, better define as NLA_U8.
 
-Signed-off-by: Sowmiya Sree Elavalagan <ssreeela@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/dp_rx.c | 2 --
- 1 file changed, 2 deletions(-)
+>  };
+> 
+>  /* policy for the key attributes */
+> @@ -3756,6 +3760,16 @@ static int nl80211_new_interface(struct sk_buff
+> *skb, struct genl_info *info)
+>  	if (err < 0)
+>  		return err;
+> 
+> +	if (info->attrs[NL80211_ATTR_MULTI_BSSID_MODE])
+> +		params.multi_bssid_mode =
+> +			nla_get_u8(info->attrs[NL80211_ATTR_MULTI_BSSID_MODE]);
+> +	if (info->attrs[NL80211_ATTR_MULTI_BSSID_PARENT])
+> +		params.multi_bssid_parent =
+> +			nla_get_u8(info->attrs[NL80211_ATTR_MULTI_BSSID_PARENT]);
+> +	if (params.multi_bssid_mode == NL80211_MULTIPLE_BSSID_NON_TRANSMITTED 
+> &&
+> +	    !params.multi_bssid_parent)
+> +		return -EOPNOTSUPP;
+> +
+Are you expecting BSSID or ifindex in multi_bssid_parent? If it is 
+ifindex, it can be 0. no
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index a54610d..a010cf7 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -653,10 +653,8 @@ static void ath11k_dp_rx_tid_del_func(struct ath11k_dp *dp, void *ctx,
- 	spin_lock_bh(&dp->reo_cmd_lock);
- 	list_add_tail(&elem->list, &dp->reo_cmd_cache_flush_list);
- 	dp->reo_cmd_cache_flush_count++;
--	spin_unlock_bh(&dp->reo_cmd_lock);
- 
- 	/* Flush and invalidate aged REO desc from HW cache */
--	spin_lock_bh(&dp->reo_cmd_lock);
- 	list_for_each_entry_safe(elem, tmp, &dp->reo_cmd_cache_flush_list,
- 				 list) {
- 		if (dp->reo_cmd_cache_flush_count > DP_REO_DESC_FREE_THRESHOLD ||
--- 
-2.7.4
-
+-Rajkumar
 
 _______________________________________________
 ath11k mailing list
