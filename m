@@ -1,18 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail27.static.mailgun.info ([104.130.122.27])
+Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jkpyc-0002KD-Lm
- for ath11k@lists.infradead.org; Mon, 15 Jun 2020 14:20:45 +0000
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH 7/8] ath11k: add ce services for IPQ6018
-References: <1591678993-11016-1-git-send-email-akolli@codeaurora.org>
- <1591678993-11016-8-git-send-email-akolli@codeaurora.org>
- <CAGRGNgWO_KwfQcfh=DSB5NdM2696ZzVU7ZuQN_x_+op1c5ySEw@mail.gmail.com>
-Date: Mon, 15 Jun 2020 17:20:28 +0300
-In-Reply-To: <CAGRGNgWO_KwfQcfh=DSB5NdM2696ZzVU7ZuQN_x_+op1c5ySEw@mail.gmail.com>
- (Julian Calaby's message of "Tue, 9 Jun 2020 17:10:06 +1000")
-Message-ID: <874krcjtqr.fsf@codeaurora.org>
+ id 1jkq3f-0005QK-Gl
+ for ath11k@lists.infradead.org; Mon, 15 Jun 2020 14:25:58 +0000
 MIME-Version: 1.0
+Subject: Re: [PATCH v2 1/2] ath11k: Add direct buffer ring support
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <1591688014-26441-1-git-send-email-periyasa@codeaurora.org>
+References: <1591688014-26441-1-git-send-email-periyasa@codeaurora.org>
+Message-Id: <20200615142542.6D645C433C8@smtp.codeaurora.org>
+Date: Mon, 15 Jun 2020 14:25:42 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -25,52 +22,35 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Julian Calaby <julian.calaby@gmail.com>
+To: Karthikeyan Periyasamy <periyasa@codeaurora.org>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-Julian Calaby <julian.calaby@gmail.com> writes:
+Karthikeyan Periyasamy <periyasa@codeaurora.org> wrote:
 
-> On Tue, Jun 9, 2020 at 3:07 PM Anilkumar Kolli <akolli@codeaurora.org> wrote:
->>
->> IPQ6018 does not support mac2, add a new ce service map.
->>
->> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
->> ---
->>  drivers/net/wireless/ath/ath11k/ahb.c | 122 ++++++++++++++++++++++++++++++++--
->>  1 file changed, 117 insertions(+), 5 deletions(-)
->>
->> diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
->> index b080ad8fab0a..25764f719db0 100644
->> --- a/drivers/net/wireless/ath/ath11k/ahb.c
->> +++ b/drivers/net/wireless/ath/ath11k/ahb.c
->> @@ -647,8 +749,15 @@ static void ath11k_ahb_init_qmi_ce_config(struct ath11k_base *ab)
->>
->>         cfg->tgt_ce_len = ARRAY_SIZE(target_ce_config_wlan) - 1;
->>         cfg->tgt_ce = target_ce_config_wlan;
->> -       cfg->svc_to_ce_map_len = ARRAY_SIZE(target_service_to_ce_map_wlan);
->> -       cfg->svc_to_ce_map = target_service_to_ce_map_wlan;
->> +       if (ab->hw_params.dev_id == ATH11K_HW_IPQ6018) {
->> +               cfg->svc_to_ce_map_len =
->> +                       ARRAY_SIZE(target_service_to_ce_map_wlan_ipq6018);
->> +               cfg->svc_to_ce_map = target_service_to_ce_map_wlan_ipq6018;
->> +       } else {
->> +               cfg->svc_to_ce_map_len =
->> +                       ARRAY_SIZE(target_service_to_ce_map_wlan_ipq8074);
->> +               cfg->svc_to_ce_map = target_service_to_ce_map_wlan_ipq8074;
->> +       }
->
-> You could just have a pointer to this array in the "hw_params"
-> structure which would reduce this to something like:
->
-> cfg->svc_to_ce_map_len = ARRAY_SIZE(ab->hw_params.service_to_ce_map);
-> cfg->svc_to_ce_map = ab->hw_params.service_to_ce_map;
->
-> and make adding future hardware easier.
+> Add direct buffer ring (dbring) with helper API, which is used by the
+> spectral scan. Initialise the direct buffer ring based on the dma ring
+> capability, which get announced in the wmi service ready extended event.
+> This ring is slightly changed from data path rings. Compare to data path
+> ring this ring shares the hp and tp address to firmware though WMI commands.
+> Also the replenish buffer size is derived from firmware announcement.
+> driver receive indication through WMI event
+> WMI_PDEV_DMA_RING_BUF_RELEASE_EVENTID.
+> 
+> Tested-on: IPQ8074 WLAN.HK.2.1.0.1-01228-QCAHKSWPL_SILICONZ-1
+> 
+> Signed-off-by: Karthikeyan Periyasamy <periyasa@codeaurora.org>
+> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-Yeah, that's a good idea.
+2 patches applied to ath-next branch of ath.git, thanks.
+
+bd6478559e27 ath11k: Add direct buffer ring support
+9d11b7bff950 ath11k: add support for spectral scan
 
 -- 
+https://patchwork.kernel.org/patch/11594695/
+
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
 _______________________________________________
 ath11k mailing list
