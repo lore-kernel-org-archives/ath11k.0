@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from m43-7.mailgun.net ([69.72.43.7])
+Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jlC9c-0002tv-7k
- for ath11k@lists.infradead.org; Tue, 16 Jun 2020 14:01:42 +0000
+ id 1jlC9c-0002u8-6j
+ for ath11k@lists.infradead.org; Tue, 16 Jun 2020 14:01:43 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 02/12] ath11k: convert ath11k_hw_params to an array
-Date: Tue, 16 Jun 2020 17:00:45 +0300
-Message-Id: <1592316055-24958-3-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH 09/12] ath11k: remove useless info messages
+Date: Tue, 16 Jun 2020 17:00:52 +0300
+Message-Id: <1592316055-24958-10-git-send-email-kvalo@codeaurora.org>
 In-Reply-To: <1592316055-24958-1-git-send-email-kvalo@codeaurora.org>
 References: <1592316055-24958-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,103 +25,99 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: linux-wireless@vger.kernel.org
 
-From: Anilkumar Kolli <akolli@codeaurora.org>
+ath11k should not be spamming these to the logs. If these are important they
+should be debug messages, but I just remove them for now.
 
-Convert to ath11k_hw_params to an array to make it possible add new hardware in
-the future, for example IPQ6018 or QCA6390.
+Compile tested only.
 
-No functional changes. Compile tested only.
-
-Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/core.c | 46 ++++++++++++++++++++++++++++------
- drivers/net/wireless/ath/ath11k/hw.h   |  1 +
- 2 files changed, 40 insertions(+), 7 deletions(-)
+ drivers/net/wireless/ath/ath11k/mac.c      | 8 --------
+ drivers/net/wireless/ath/ath11k/peer.c     | 3 ---
+ drivers/net/wireless/ath/ath11k/qmi.c      | 1 -
+ drivers/net/wireless/ath/ath11k/spectral.c | 8 ++------
+ 4 files changed, 2 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 905cd8beaf28..92d7925ad0f4 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -17,12 +17,15 @@ unsigned int ath11k_debug_mask;
- module_param_named(debug_mask, ath11k_debug_mask, uint, 0644);
- MODULE_PARM_DESC(debug_mask, "Debugging mask");
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index cdedb2ea7d87..0fd1f714429c 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -3039,10 +3039,6 @@ static int ath11k_mac_op_sta_state(struct ieee80211_hw *hw,
+ 		if (ret)
+ 			ath11k_warn(ar->ab, "Failed to associate station: %pM\n",
+ 				    sta->addr);
+-		else
+-			ath11k_info(ar->ab,
+-				    "Station %pM moved to assoc state\n",
+-				    sta->addr);
+ 	} else if (old_state == IEEE80211_STA_ASSOC &&
+ 		   new_state == IEEE80211_STA_AUTH &&
+ 		   (vif->type == NL80211_IFTYPE_AP ||
+@@ -3052,10 +3048,6 @@ static int ath11k_mac_op_sta_state(struct ieee80211_hw *hw,
+ 		if (ret)
+ 			ath11k_warn(ar->ab, "Failed to disassociate station: %pM\n",
+ 				    sta->addr);
+-		else
+-			ath11k_info(ar->ab,
+-				    "Station %pM moved to disassociated state\n",
+-				    sta->addr);
+ 	}
  
--static const struct ath11k_hw_params ath11k_hw_params = {
--	.name = "ipq8074",
--	.fw = {
--		.dir = IPQ8074_FW_DIR,
--		.board_size = IPQ8074_MAX_BOARD_DATA_SZ,
--		.cal_size =  IPQ8074_MAX_CAL_DATA_SZ,
-+static const struct ath11k_hw_params ath11k_hw_params[] = {
-+	{
-+		.hw_rev = ATH11K_HW_IPQ8074,
-+		.name = "ipq8074 hw2.0",
-+		.fw = {
-+			.dir = IPQ8074_FW_DIR,
-+			.board_size = IPQ8074_MAX_BOARD_DATA_SZ,
-+			.cal_size =  IPQ8074_MAX_CAL_DATA_SZ,
-+		},
- 	},
- };
- 
-@@ -717,6 +720,30 @@ static void ath11k_core_restart(struct work_struct *work)
- 	complete(&ab->driver_recovery);
- }
- 
-+static int ath11k_init_hw_params(struct ath11k_base *ab)
-+{
-+	const struct ath11k_hw_params *hw_params = NULL;
-+	int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(ath11k_hw_params); i++) {
-+		hw_params = &ath11k_hw_params[i];
-+
-+		if (hw_params->hw_rev == ab->hw_rev)
-+			break;
-+	}
-+
-+	if (i == ARRAY_SIZE(ath11k_hw_params)) {
-+		ath11k_err(ab, "Unsupported hardware version: 0x%x\n", ab->hw_rev);
-+		return -EINVAL;
-+	}
-+
-+	ab->hw_params = *hw_params;
-+
-+	ath11k_dbg(ab, ATH11K_DBG_BOOT, "Hardware name %s\n", ab->hw_params.name);
-+
-+	return 0;
-+}
-+
- int ath11k_core_init(struct ath11k_base *ab)
- {
- 	struct device *dev = ab->dev;
-@@ -735,7 +762,12 @@ int ath11k_core_init(struct ath11k_base *ab)
+ 	mutex_unlock(&ar->conf_mutex);
+diff --git a/drivers/net/wireless/ath/ath11k/peer.c b/drivers/net/wireless/ath/ath11k/peer.c
+index 297172538620..61ad9300eafb 100644
+--- a/drivers/net/wireless/ath/ath11k/peer.c
++++ b/drivers/net/wireless/ath/ath11k/peer.c
+@@ -223,9 +223,6 @@ int ath11k_peer_create(struct ath11k *ar, struct ath11k_vif *arvif,
+ 	peer = ath11k_peer_find_by_pdev_idx(ar->ab, ar->pdev_idx, param->peer_addr);
+ 	if (peer) {
+ 		spin_unlock_bh(&ar->ab->base_lock);
+-		ath11k_info(ar->ab,
+-			    "ignoring the peer %pM creation on same pdev idx %d\n",
+-			    param->peer_addr, ar->pdev_idx);
  		return -EINVAL;
  	}
- 	ab->tgt_rproc = prproc;
--	ab->hw_params = ath11k_hw_params;
-+
-+	ret = ath11k_init_hw_params(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to get hw params %d\n", ret);
-+		return ret;
-+	}
+ 	spin_unlock_bh(&ar->ab->base_lock);
+diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
+index d9ffdf84ccae..bbdbf1ed19dc 100644
+--- a/drivers/net/wireless/ath/ath11k/qmi.c
++++ b/drivers/net/wireless/ath/ath11k/qmi.c
+@@ -1901,7 +1901,6 @@ static int ath11k_qmi_load_bdf(struct ath11k_base *ab)
+ 			goto out_qmi_bdf;
+ 		}
+ 	}
+-	ath11k_info(ab, "qmi BDF downloaded\n");
  
- 	ret = ath11k_core_soc_create(ab);
- 	if (ret) {
-diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
-index f7f070af233c..f95ad31d3d6c 100644
---- a/drivers/net/wireless/ath/ath11k/hw.h
-+++ b/drivers/net/wireless/ath/ath11k/hw.h
-@@ -106,6 +106,7 @@ enum ath11k_bus {
+ out_qmi_bdf:
+ 	iounmap(bdf_addr);
+diff --git a/drivers/net/wireless/ath/ath11k/spectral.c b/drivers/net/wireless/ath/ath11k/spectral.c
+index 1c5d65bb411f..6cbe6f4e2864 100644
+--- a/drivers/net/wireless/ath/ath11k/spectral.c
++++ b/drivers/net/wireless/ath/ath11k/spectral.c
+@@ -954,10 +954,8 @@ int ath11k_spectral_init(struct ath11k_base *ab)
+ 	int i;
  
- struct ath11k_hw_params {
- 	const char *name;
-+	u16 hw_rev;
- 	struct {
- 		const char *dir;
- 		size_t board_size;
+ 	if (!test_bit(WMI_TLV_SERVICE_FREQINFO_IN_METADATA,
+-		      ab->wmi_ab.svc_map)) {
+-		ath11k_info(ab, "spectral not supported\n");
++		      ab->wmi_ab.svc_map))
+ 		return 0;
+-	}
+ 
+ 	for (i = 0; i < ab->num_radios; i++) {
+ 		ar = ab->pdevs[i].ar;
+@@ -966,10 +964,8 @@ int ath11k_spectral_init(struct ath11k_base *ab)
+ 		ret = ath11k_dbring_get_cap(ar->ab, ar->pdev_idx,
+ 					    WMI_DIRECT_BUF_SPECTRAL,
+ 					    &db_cap);
+-		if (ret) {
+-			ath11k_info(ab, "spectral not enabled for pdev %d\n", i);
++		if (ret)
+ 			continue;
+-		}
+ 
+ 		idr_init(&sp->rx_ring.bufs_idr);
+ 		spin_lock_init(&sp->rx_ring.idr_lock);
 -- 
 2.7.4
 
