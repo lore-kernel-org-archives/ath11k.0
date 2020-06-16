@@ -1,16 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jl7eZ-0001e2-JK
- for ath11k@lists.infradead.org; Tue, 16 Jun 2020 09:13:15 +0000
+ id 1jlC9N-0002d1-NR
+ for ath11k@lists.infradead.org; Tue, 16 Jun 2020 14:01:24 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH v2 0/8] ath11k: Add IPQ6018 support
-References: <1591709581-18039-1-git-send-email-akolli@codeaurora.org>
-Date: Tue, 16 Jun 2020 12:13:01 +0300
-In-Reply-To: <1591709581-18039-1-git-send-email-akolli@codeaurora.org>
- (Anilkumar Kolli's message of "Tue, 9 Jun 2020 19:02:53 +0530")
-Message-ID: <87pn9zidb6.fsf@codeaurora.org>
-MIME-Version: 1.0
+Subject: [PATCH 01/12] ath11k: ahb: call ath11k_core_init() before irq
+ configuration
+Date: Tue, 16 Jun 2020 17:00:44 +0300
+Message-Id: <1592316055-24958-2-git-send-email-kvalo@codeaurora.org>
+In-Reply-To: <1592316055-24958-1-git-send-email-kvalo@codeaurora.org>
+References: <1592316055-24958-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -19,49 +18,54 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Anilkumar Kolli <akolli@codeaurora.org>
-Cc: devicetree@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org
 
-Anilkumar Kolli <akolli@codeaurora.org> writes:
+From: Anilkumar Kolli <akolli@codeaurora.org>
 
-> IPQ6018 has a 5G radio and 2G radio with 2x2
-> and shares IPQ8074 configuration.
->
-> Tested on: IPQ6018 WLAN.HK.2.2-02134-QCAHKSWPL_SILICONZ-1
-> Tested on: IPQ8074 WLAN.HK.2.4.0.1-00009-QCAHKSWPL_SILICONZ-1 
+This is needed to init .max_radios in hw_params and onfigure external
+interrupts for available pdev_ids.
 
-To get the multiple hw support faster in (I need them also for QCA6390
-patches) I split this into multiple sets:
+Compile tested only.
 
->   ath11k: update firmware files read path
->   ath11k: rename default board file
+Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
+Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+---
+ drivers/net/wireless/ath/ath11k/ahb.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-These are now applied.
-
->   ath11k: define max_radios in hw_params
->   ath11k: add hw_ops for pdev id to hw_mac mapping
->   ath11k: Add bdf-addr in hw_params
-
-I'll modify these a bit, remove all IPQ6018 references from them and
-then submit them myself.
-
->   dt: bindings: net: update compatible for ath11k
->   ath11k: add ce services for IPQ6018
-
-Anil, please resubmit these as v3 based on the comments.
-
->   ath11k: add IPQ6018 support
-
-Anil, add this as the last patch in your v3 series. And do note that I
-will split the part adding ath11k_init_hw_params() function to a
-separate patch, so no need to include it in this patch anymore.
-
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+index 30092841ac46..2ea6da7682ce 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.c
++++ b/drivers/net/wireless/ath/ath11k/ahb.c
+@@ -951,15 +951,15 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
+ 
+ 	ath11k_ahb_init_qmi_ce_config(ab);
+ 
+-	ret = ath11k_ahb_config_irq(ab);
++	ret = ath11k_core_init(ab);
+ 	if (ret) {
+-		ath11k_err(ab, "failed to configure irq: %d\n", ret);
++		ath11k_err(ab, "failed to init core: %d\n", ret);
+ 		goto err_ce_free;
+ 	}
+ 
+-	ret = ath11k_core_init(ab);
++	ret = ath11k_ahb_config_irq(ab);
+ 	if (ret) {
+-		ath11k_err(ab, "failed to init core: %d\n", ret);
++		ath11k_err(ab, "failed to configure irq: %d\n", ret);
+ 		goto err_ce_free;
+ 	}
+ 
 -- 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+2.7.4
+
 
 _______________________________________________
 ath11k mailing list
