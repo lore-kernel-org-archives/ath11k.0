@@ -1,13 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from m43-7.mailgun.net ([69.72.43.7])
+Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jlC9X-0002qc-R9
- for ath11k@lists.infradead.org; Tue, 16 Jun 2020 14:01:37 +0000
+ id 1jlC9a-0002d1-UJ
+ for ath11k@lists.infradead.org; Tue, 16 Jun 2020 14:01:39 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 06/12] ath11k: create a common function to request all
- firmware files
-Date: Tue, 16 Jun 2020 17:00:49 +0300
-Message-Id: <1592316055-24958-7-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH 04/12] ath11k: add hw_ops for pdev id to hw_mac mapping
+Date: Tue, 16 Jun 2020 17:00:47 +0300
+Message-Id: <1592316055-24958-5-git-send-email-kvalo@codeaurora.org>
 In-Reply-To: <1592316055-24958-1-git-send-email-kvalo@codeaurora.org>
 References: <1592316055-24958-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -26,135 +25,228 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: linux-wireless@vger.kernel.org
 
-To avoid duplicating the logic how the full firmware path is created create a
-common function ath11k_core_firmware_request() and convert also qmi.c to use it.
+From: Anilkumar Kolli <akolli@codeaurora.org>
 
-Also remove a useless info print, it's more like a debug message anyway.
+pdev_id to hw_mac is different for ipq8074 and ipq6018
+Below table has the mapping
+
+pdev_id	ipq8074	ipq6018
+-------	------- -------
+  0		0	0
+  1		2	1
+  2		1	Not applicable
 
 No functional changes. Compile tested only.
 
+Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/core.c | 27 +++++++++++++--------------
- drivers/net/wireless/ath/ath11k/core.h |  4 ++++
- drivers/net/wireless/ath/ath11k/qmi.c  | 12 ++++--------
- 3 files changed, 21 insertions(+), 22 deletions(-)
+ drivers/net/wireless/ath/ath11k/Makefile |  3 ++-
+ drivers/net/wireless/ath/ath11k/ahb.c    | 15 +++++++-------
+ drivers/net/wireless/ath/ath11k/core.c   | 18 +----------------
+ drivers/net/wireless/ath/ath11k/core.h   |  1 -
+ drivers/net/wireless/ath/ath11k/hw.c     | 34 ++++++++++++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/hw.h     | 19 ++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/mac.c    |  2 +-
+ 7 files changed, 65 insertions(+), 27 deletions(-)
+ create mode 100644 drivers/net/wireless/ath/ath11k/hw.c
 
+diff --git a/drivers/net/wireless/ath/ath11k/Makefile b/drivers/net/wireless/ath/ath11k/Makefile
+index 104186373c9e..ee13a3becbcf 100644
+--- a/drivers/net/wireless/ath/ath11k/Makefile
++++ b/drivers/net/wireless/ath/ath11k/Makefile
+@@ -16,7 +16,8 @@ ath11k-y += core.o \
+ 	    debug.o \
+ 	    ce.o \
+ 	    peer.o \
+-	    dbring.o
++	    dbring.o \
++	    hw.o
+ 
+ ath11k-$(CONFIG_ATH11K_DEBUGFS) += debug_htt_stats.o debugfs_sta.o
+ ath11k-$(CONFIG_NL80211_TESTMODE) += testmode.o
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+index 2ea6da7682ce..7e9bfeaaf4d2 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.c
++++ b/drivers/net/wireless/ath/ath11k/ahb.c
+@@ -734,6 +734,7 @@ static irqreturn_t ath11k_ahb_ext_interrupt_handler(int irq, void *arg)
+ 
+ static int ath11k_ahb_ext_irq_config(struct ath11k_base *ab)
+ {
++	struct ath11k_hw_params *hw = &ab->hw_params;
+ 	int i, j;
+ 	int irq;
+ 	int ret;
+@@ -768,26 +769,26 @@ static int ath11k_ahb_ext_irq_config(struct ath11k_base *ab)
+ 			if (ath11k_reo_status_ring_mask[i] & BIT(j))
+ 				irq_grp->irqs[num_irq++] = reo2host_status;
+ 
+-			if (j < MAX_RADIOS) {
++			if (j < ab->hw_params.max_radios) {
+ 				if (ath11k_rxdma2host_ring_mask[i] & BIT(j)) {
+ 					irq_grp->irqs[num_irq++] =
+-						rxdma2host_destination_ring_mac1
+-						- ath11k_core_get_hw_mac_id(ab, j);
++						rxdma2host_destination_ring_mac1 -
++						ath11k_hw_get_mac_from_pdev_id(hw, j);
+ 				}
+ 
+ 				if (ath11k_host2rxdma_ring_mask[i] & BIT(j)) {
+ 					irq_grp->irqs[num_irq++] =
+-						host2rxdma_host_buf_ring_mac1
+-						- ath11k_core_get_hw_mac_id(ab, j);
++						host2rxdma_host_buf_ring_mac1 -
++						ath11k_hw_get_mac_from_pdev_id(hw, j);
+ 				}
+ 
+ 				if (rx_mon_status_ring_mask[i] & BIT(j)) {
+ 					irq_grp->irqs[num_irq++] =
+ 						ppdu_end_interrupts_mac1 -
+-						ath11k_core_get_hw_mac_id(ab, j);
++						ath11k_hw_get_mac_from_pdev_id(hw, j);
+ 					irq_grp->irqs[num_irq++] =
+ 						rxdma2host_monitor_status_ring_mac1 -
+-						ath11k_core_get_hw_mac_id(ab, j);
++						ath11k_hw_get_mac_from_pdev_id(hw, j);
+ 				}
+ 			}
+ 		}
 diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 5232a355ac12..7e29977c23b4 100644
+index 67822508327c..089b46ba86c5 100644
 --- a/drivers/net/wireless/ath/ath11k/core.c
 +++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -48,9 +48,9 @@ static int ath11k_core_create_board_name(struct ath11k_base *ab, char *name,
- 	return 0;
- }
+@@ -27,26 +27,10 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 			.cal_size =  IPQ8074_MAX_CAL_DATA_SZ,
+ 		},
+ 		.max_radios = 3,
++		.hw_ops = &ipq8074_ops,
+ 	},
+ };
  
--static const struct firmware *ath11k_fetch_fw_file(struct ath11k_base *ab,
--						   const char *dir,
--						   const char *file)
-+const struct firmware *ath11k_core_firmware_request(struct ath11k_base *ab,
-+						    const char *dir,
-+						    const char *file)
+-/* Map from pdev index to hw mac index */
+-u8 ath11k_core_get_hw_mac_id(struct ath11k_base *ab, int pdev_idx)
+-{
+-	switch (pdev_idx) {
+-	case 0:
+-		return 0;
+-	case 1:
+-		return 2;
+-	case 2:
+-		return 1;
+-	default:
+-		ath11k_warn(ab, "Invalid pdev idx %d\n", pdev_idx);
+-		return ATH11K_INVALID_HW_MAC_ID;
+-	}
+-}
+-EXPORT_SYMBOL(ath11k_core_get_hw_mac_id);
+-
+ static int ath11k_core_create_board_name(struct ath11k_base *ab, char *name,
+ 					 size_t name_len)
  {
- 	char filename[100];
- 	const struct firmware *fw;
-@@ -63,14 +63,13 @@ static const struct firmware *ath11k_fetch_fw_file(struct ath11k_base *ab,
- 		dir = ".";
- 
- 	snprintf(filename, sizeof(filename), "%s/%s", dir, file);
--	ret = firmware_request_nowarn(&fw, filename, ab->dev);
--	ath11k_dbg(ab, ATH11K_DBG_BOOT, "boot fw request '%s': %d\n",
--		   filename, ret);
- 
-+	ret = firmware_request_nowarn(&fw, filename, ab->dev);
- 	if (ret)
- 		return ERR_PTR(ret);
--	ath11k_warn(ab, "Downloading BDF: %s, size: %zu\n",
--		    filename, fw->size);
-+
-+	ath11k_dbg(ab, ATH11K_DBG_BOOT, "boot firmware request %s size %zu\n",
-+		   filename, fw->size);
- 
- 	return fw;
- }
-@@ -176,9 +175,9 @@ static int ath11k_core_fetch_board_data_api_n(struct ath11k_base *ab,
- 	int ret, ie_id;
- 
- 	if (!bd->fw)
--		bd->fw = ath11k_fetch_fw_file(ab,
--					      ab->hw_params.fw.dir,
--					      filename);
-+		bd->fw = ath11k_core_firmware_request(ab,
-+						      ab->hw_params.fw.dir,
-+						      filename);
- 	if (IS_ERR(bd->fw))
- 		return PTR_ERR(bd->fw);
- 
-@@ -268,9 +267,9 @@ static int ath11k_core_fetch_board_data_api_n(struct ath11k_base *ab,
- static int ath11k_core_fetch_board_data_api_1(struct ath11k_base *ab,
- 					      struct ath11k_board_data *bd)
- {
--	bd->fw = ath11k_fetch_fw_file(ab,
--				      ab->hw_params.fw.dir,
--				      ATH11K_DEFAULT_BOARD_FILE);
-+	bd->fw = ath11k_core_firmware_request(ab,
-+					      ab->hw_params.fw.dir,
-+					      ATH11K_DEFAULT_BOARD_FILE);
- 	if (IS_ERR(bd->fw))
- 		return PTR_ERR(bd->fw);
- 
 diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 98de9c35e178..be1339a5ea0a 100644
+index e5c4e19020ee..98de9c35e178 100644
 --- a/drivers/net/wireless/ath/ath11k/core.h
 +++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -861,6 +861,10 @@ void ath11k_core_free_bdf(struct ath11k_base *ab, struct ath11k_board_data *bd);
+@@ -860,7 +860,6 @@ int ath11k_core_fetch_bdf(struct ath11k_base *ath11k,
+ void ath11k_core_free_bdf(struct ath11k_base *ab, struct ath11k_board_data *bd);
  
  void ath11k_core_halt(struct ath11k *ar);
+-u8 ath11k_core_get_hw_mac_id(struct ath11k_base *ab, int pdev_idx);
  
-+const struct firmware *ath11k_core_firmware_request(struct ath11k_base *ab,
-+						    const char *dir,
-+						    const char *file);
-+
  static inline const char *ath11k_scan_state_str(enum ath11k_scan_state state)
  {
- 	switch (state) {
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index e4198d3b0bae..0cd3fb8eeece 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.c
-+++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -1790,8 +1790,6 @@ ath11k_qmi_prepare_bdf_download(struct ath11k_base *ab, int type,
- 				struct qmi_wlanfw_bdf_download_req_msg_v01 *req,
- 				void __iomem *bdf_addr)
- {
--	struct device *dev = ab->dev;
--	char filename[ATH11K_QMI_MAX_BDF_FILE_NAME_SIZE];
- 	const struct firmware *fw_entry;
- 	struct ath11k_board_data bd;
- 	u32 fw_size;
-@@ -1812,11 +1810,11 @@ ath11k_qmi_prepare_bdf_download(struct ath11k_base *ab, int type,
- 		ath11k_core_free_bdf(ab, &bd);
- 		break;
- 	case ATH11K_QMI_FILE_TYPE_CALDATA:
--		snprintf(filename, sizeof(filename),
--			 "%s/%s", ab->hw_params.fw.dir, ATH11K_QMI_DEFAULT_CAL_FILE_NAME);
--		ret = request_firmware(&fw_entry, filename, dev);
-+		fw_entry = ath11k_core_firmware_request(ab, ab->hw_params.fw.dir,
-+							ATH11K_QMI_DEFAULT_CAL_FILE_NAME);
- 		if (ret) {
--			ath11k_warn(ab, "qmi failed to load CAL: %s\n", filename);
-+			ath11k_warn(ab, "failed to load %s: %d\n",
-+				    ATH11K_QMI_DEFAULT_CAL_FILE_NAME, ret);
- 			goto out;
- 		}
+diff --git a/drivers/net/wireless/ath/ath11k/hw.c b/drivers/net/wireless/ath/ath11k/hw.c
+new file mode 100644
+index 000000000000..7cc5f36509c0
+--- /dev/null
++++ b/drivers/net/wireless/ath/ath11k/hw.c
+@@ -0,0 +1,34 @@
++// SPDX-License-Identifier: BSD-3-Clause-Clear
++/*
++ * Copyright (c) 2018-2020 The Linux Foundation. All rights reserved.
++ */
++
++#include "core.h"
++
++/* Map from pdev index to hw mac index */
++static u8 ath11k_hw_ipq8074_mac_from_pdev_id(int pdev_idx)
++{
++	switch (pdev_idx) {
++	case 0:
++		return 0;
++	case 1:
++		return 2;
++	case 2:
++		return 1;
++	default:
++		return ATH11K_INVALID_HW_MAC_ID;
++	}
++}
++
++static u8 ath11k_hw_ipq6018_mac_from_pdev_id(int pdev_idx)
++{
++	return pdev_idx;
++}
++
++const struct ath11k_hw_ops ipq8074_ops = {
++	.get_hw_mac_from_pdev_id = ath11k_hw_ipq8074_mac_from_pdev_id,
++};
++
++const struct ath11k_hw_ops ipq6018_ops = {
++	.get_hw_mac_from_pdev_id = ath11k_hw_ipq6018_mac_from_pdev_id,
++};
+diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
+index ba897d186cf5..2fb986b9a6cb 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.h
++++ b/drivers/net/wireless/ath/ath11k/hw.h
+@@ -104,6 +104,10 @@ enum ath11k_bus {
+ 	ATH11K_BUS_PCI,
+ };
  
-@@ -1825,8 +1823,6 @@ ath11k_qmi_prepare_bdf_download(struct ath11k_base *ab, int type,
++struct ath11k_hw_ops {
++	u8 (*get_hw_mac_from_pdev_id)(int pdev_id);
++};
++
+ struct ath11k_hw_params {
+ 	const char *name;
+ 	u16 hw_rev;
+@@ -113,8 +117,23 @@ struct ath11k_hw_params {
+ 		size_t board_size;
+ 		size_t cal_size;
+ 	} fw;
++
++	const struct ath11k_hw_ops *hw_ops;
+ };
  
- 		memcpy_toio(bdf_addr + ATH11K_QMI_CALDATA_OFFSET,
- 			    fw_entry->data, fw_size);
--		ath11k_info(ab, "qmi downloading BDF: %s, size: %zu\n",
--			    filename, fw_entry->size);
++extern const struct ath11k_hw_ops ipq8074_ops;
++extern const struct ath11k_hw_ops ipq6018_ops;
++
++static inline
++int ath11k_hw_get_mac_from_pdev_id(struct ath11k_hw_params *hw,
++				   int pdev_idx)
++{
++	if (hw->hw_ops->get_hw_mac_from_pdev_id)
++		return hw->hw_ops->get_hw_mac_from_pdev_id(pdev_idx);
++
++	return 0;
++}
++
+ struct ath11k_fw_ie {
+ 	__le32 id;
+ 	__le32 len;
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 07d3e031c75a..cdedb2ea7d87 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -6194,7 +6194,7 @@ int ath11k_mac_allocate(struct ath11k_base *ab)
+ 		ar->ab = ab;
+ 		ar->pdev = pdev;
+ 		ar->pdev_idx = i;
+-		ar->lmac_id = ath11k_core_get_hw_mac_id(ab, i);
++		ar->lmac_id = ath11k_hw_get_mac_from_pdev_id(&ab->hw_params, i);
  
- 		release_firmware(fw_entry);
- 		break;
+ 		ar->wmi = &ab->wmi_ab.wmi[i];
+ 		/* FIXME wmi[0] is already initialized during attach,
 -- 
 2.7.4
 
