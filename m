@@ -1,12 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jlC9n-0002d1-R3
- for ath11k@lists.infradead.org; Tue, 16 Jun 2020 14:01:49 +0000
+ id 1jlC9p-0002u8-Dp
+ for ath11k@lists.infradead.org; Tue, 16 Jun 2020 14:01:51 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 11/12] ath11k: don't use defines in hw_params
-Date: Tue, 16 Jun 2020 17:00:54 +0300
-Message-Id: <1592316055-24958-12-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH 08/12] ath11k: change ath11k_core_fetch_board_data_api_n() to
+ use ath11k_core_create_firmware_path()
+Date: Tue, 16 Jun 2020 17:00:51 +0300
+Message-Id: <1592316055-24958-9-git-send-email-kvalo@codeaurora.org>
 In-Reply-To: <1592316055-24958-1-git-send-email-kvalo@codeaurora.org>
 References: <1592316055-24958-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,47 +26,73 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: linux-wireless@vger.kernel.org
 
-These defines are not used anywhere else so to avoid extra indirection add the
-values directly to hw_params.
+Use the helper added in previous comment to create the full path, instead of doing it manually.
 
 No functional changes. Compile tested only.
 
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/core.c | 4 ++--
- drivers/net/wireless/ath/ath11k/hw.h   | 4 ----
- 2 files changed, 2 insertions(+), 6 deletions(-)
+ drivers/net/wireless/ath/ath11k/core.c | 19 ++++++++++++-------
+ 1 file changed, 12 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 84a566dffad9..38e830a2395b 100644
+index de5b1d20771a..84a566dffad9 100644
 --- a/drivers/net/wireless/ath/ath11k/core.c
 +++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -23,8 +23,8 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.name = "ipq8074 hw2.0",
- 		.fw = {
- 			.dir = "IPQ8074/hw2.0",
--			.board_size = IPQ8074_MAX_BOARD_DATA_SZ,
--			.cal_size =  IPQ8074_MAX_CAL_DATA_SZ,
-+			.board_size = 256 * 1024,
-+			.cal_size = 256 * 1024,
- 		},
- 		.max_radios = 3,
- 		.bdf_addr = 0x4B0C0000,
-diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
-index 828c8c076218..f31d53f6adb8 100644
---- a/drivers/net/wireless/ath/ath11k/hw.h
-+++ b/drivers/net/wireless/ath/ath11k/hw.h
-@@ -68,10 +68,6 @@
+@@ -165,11 +165,13 @@ static int ath11k_core_fetch_board_data_api_n(struct ath11k_base *ab,
+ {
+ 	size_t len, magic_len;
+ 	const u8 *data;
+-	char *filename = ATH11K_BOARD_API2_FILE;
++	char *filename, filepath[100];
+ 	size_t ie_len;
+ 	struct ath11k_fw_ie *hdr;
+ 	int ret, ie_id;
  
- #define ATH11K_FW_DIR			"ath11k"
++	filename = ATH11K_BOARD_API2_FILE;
++
+ 	if (!bd->fw)
+ 		bd->fw = ath11k_core_firmware_request(ab, filename);
  
--/* IPQ8074 definitions */
--#define IPQ8074_MAX_BOARD_DATA_SZ	(256 * 1024)
--#define IPQ8074_MAX_CAL_DATA_SZ		IPQ8074_MAX_BOARD_DATA_SZ
--
- #define ATH11K_BOARD_MAGIC		"QCA-ATH11K-BOARD"
- #define ATH11K_BOARD_API2_FILE		"board-2.bin"
- #define ATH11K_DEFAULT_BOARD_FILE	"board.bin"
+@@ -179,11 +181,14 @@ static int ath11k_core_fetch_board_data_api_n(struct ath11k_base *ab,
+ 	data = bd->fw->data;
+ 	len = bd->fw->size;
+ 
++	ath11k_core_create_firmware_path(ab, filename,
++					 filepath, sizeof(filepath));
++
+ 	/* magic has extra null byte padded */
+ 	magic_len = strlen(ATH11K_BOARD_MAGIC) + 1;
+ 	if (len < magic_len) {
+-		ath11k_err(ab, "failed to find magic value in %s/%s, file too short: %zu\n",
+-			   ab->hw_params.fw.dir, filename, len);
++		ath11k_err(ab, "failed to find magic value in %s, file too short: %zu\n",
++			   filepath, len);
+ 		ret = -EINVAL;
+ 		goto err;
+ 	}
+@@ -197,8 +202,8 @@ static int ath11k_core_fetch_board_data_api_n(struct ath11k_base *ab,
+ 	/* magic is padded to 4 bytes */
+ 	magic_len = ALIGN(magic_len, 4);
+ 	if (len < magic_len) {
+-		ath11k_err(ab, "failed: %s/%s too small to contain board data, len: %zu\n",
+-			   ab->hw_params.fw.dir, filename, len);
++		ath11k_err(ab, "failed: %s too small to contain board data, len: %zu\n",
++			   filepath, len);
+ 		ret = -EINVAL;
+ 		goto err;
+ 	}
+@@ -246,8 +251,8 @@ static int ath11k_core_fetch_board_data_api_n(struct ath11k_base *ab,
+ out:
+ 	if (!bd->data || !bd->len) {
+ 		ath11k_err(ab,
+-			   "failed to fetch board data for %s from %s/%s\n",
+-			   boardname, ab->hw_params.fw.dir, filename);
++			   "failed to fetch board data for %s from %s\n",
++			   boardname, filepath);
+ 		ret = -ENODATA;
+ 		goto err;
+ 	}
 -- 
 2.7.4
 
