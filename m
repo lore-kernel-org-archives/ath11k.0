@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from m43-7.mailgun.net ([69.72.43.7])
+Received: from mail27.static.mailgun.info ([104.130.122.27])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jl7G4-0002O3-C1
- for ath11k@lists.infradead.org; Tue, 16 Jun 2020 08:47:55 +0000
+ id 1jl7Ga-0002SF-GE
+ for ath11k@lists.infradead.org; Tue, 16 Jun 2020 08:48:27 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 2/8] ath11k: update firmware files read path
+Subject: Re: [PATCH v2 3/8] ath11k: rename default board file
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1591709581-18039-3-git-send-email-akolli@codeaurora.org>
-References: <1591709581-18039-3-git-send-email-akolli@codeaurora.org>
-Message-Id: <20200616084742.F2C15C433C9@smtp.codeaurora.org>
-Date: Tue, 16 Jun 2020 08:47:42 +0000 (UTC)
+In-Reply-To: <1591709581-18039-4-git-send-email-akolli@codeaurora.org>
+References: <1591709581-18039-4-git-send-email-akolli@codeaurora.org>
+Message-Id: <20200616084821.8BA47C43387@smtp.codeaurora.org>
+Date: Tue, 16 Jun 2020 08:48:21 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -27,22 +27,17 @@ Cc: devicetree@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.inf
 
 Anilkumar Kolli <akolli@codeaurora.org> wrote:
 
-> We need this so that all hardware versions can coexist and
-> it's easier to manage everything then all hardware
-> directories are under ath11k directory.
-> 
-> Copy ath11k firmware files to
-> /lib/firmware/ath11k/IPQ8074/hw2.0/
+> Rename default BDF to make it consistent with board-2.bin naming.
 > 
 > Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
 Patch applied to ath-next branch of ath.git, thanks.
 
-7309f7730532 ath11k: update firmware files read path
+93a5b668806c ath11k: rename default board file
 
 -- 
-https://patchwork.kernel.org/patch/11595655/
+https://patchwork.kernel.org/patch/11595667/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
