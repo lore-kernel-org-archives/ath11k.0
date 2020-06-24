@@ -1,17 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from m43-7.mailgun.net ([69.72.43.7])
- by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jmJp2-00023z-F9
- for ath11k@lists.infradead.org; Fri, 19 Jun 2020 16:24:58 +0000
+Received: from nbd.name ([2a01:4f8:221:3d45::2])
+ by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1jo0Nb-0001M8-1Q
+ for ath11k@lists.infradead.org; Wed, 24 Jun 2020 08:03:36 +0000
+From: John Crispin <john@phrozen.org>
+Subject: [RESEND 2/2] ath11k: add debugfs for TWT debug calls
+Date: Wed, 24 Jun 2020 10:03:21 +0200
+Message-Id: <20200624080321.2271943-2-john@phrozen.org>
+In-Reply-To: <20200624080321.2271943-1-john@phrozen.org>
+References: <20200624080321.2271943-1-john@phrozen.org>
 MIME-Version: 1.0
-Date: Fri, 19 Jun 2020 21:54:42 +0530
-From: akolli@codeaurora.org
-Subject: Re: [PATCH v3 2/3] ath11k: copy ce service configs to hw_params
-In-Reply-To: <CAGRGNgV74fCD1gb=rXEe1BMN5+5stYeX3W6eKc4-do76TBmFqA@mail.gmail.com>
-References: <1592458104-2961-1-git-send-email-akolli@codeaurora.org>
- <1592458104-2961-3-git-send-email-akolli@codeaurora.org>
- <CAGRGNgV74fCD1gb=rXEe1BMN5+5stYeX3W6eKc4-do76TBmFqA@mail.gmail.com>
-Message-ID: <34ed705f28b40fab493b8c888138e6a7@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -20,125 +18,299 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Julian Calaby <julian.calaby@gmail.com>
-Cc: devicetree <devicetree@vger.kernel.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: Kalle Valo <kvalo@codeaurora.org>
+Cc: ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-On 2020-06-19 04:40, Julian Calaby wrote:
-> Hi Anilkumar,
-> 
-> On Thu, Jun 18, 2020 at 3:31 PM Anilkumar Kolli <akolli@codeaurora.org> 
-> wrote:
->> 
->> No functional changes, added target ce service configurations
->> to hw_params.
->> 
->> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
->> ---
->> V3:
->>  - added ce svc configs in hw_params
->> 
->>  drivers/net/wireless/ath/ath11k/ahb.c  | 20 +++++++++++++++-----
->>  drivers/net/wireless/ath/ath11k/core.c |  8 +-------
->>  drivers/net/wireless/ath/ath11k/core.h |  1 +
->>  drivers/net/wireless/ath/ath11k/hw.h   |  2 ++
->>  4 files changed, 19 insertions(+), 12 deletions(-)
->> 
->> diff --git a/drivers/net/wireless/ath/ath11k/ahb.c 
->> b/drivers/net/wireless/ath/ath11k/ahb.c
->> index 7e9bfeaaf4d2..aa74d27e5871 100644
->> --- a/drivers/net/wireless/ath/ath11k/ahb.c
->> +++ b/drivers/net/wireless/ath/ath11k/ahb.c
->> @@ -152,7 +152,7 @@ static const struct ce_pipe_config 
->> target_ce_config_wlan[] = {
->>   * This table is derived from the CE_PCI TABLE, above.
->>   * It is passed to the Target at startup for use by firmware.
->>   */
->> -static const struct service_to_pipe target_service_to_ce_map_wlan[] = 
->> {
->> +static const struct service_to_pipe 
->> target_service_to_ce_map_wlan_ipq8074[] = {
->>         {
->>                 .service_id = 
->> __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_VO),
->>                 .pipedir = __cpu_to_le32(PIPEDIR_OUT),  /* out = UL = 
->> host -> target */
->> @@ -644,8 +644,8 @@ static void ath11k_ahb_init_qmi_ce_config(struct 
->> ath11k_base *ab)
->> 
->>         cfg->tgt_ce_len = ARRAY_SIZE(target_ce_config_wlan) - 1;
->>         cfg->tgt_ce = target_ce_config_wlan;
->> -       cfg->svc_to_ce_map_len = 
->> ARRAY_SIZE(target_service_to_ce_map_wlan);
->> -       cfg->svc_to_ce_map = target_service_to_ce_map_wlan;
->> +       cfg->svc_to_ce_map_len = ab->hw_params.svc_to_ce_map_len;
->> +       cfg->svc_to_ce_map = ab->hw_params.svc_to_ce_map;
->>  }
->> 
->>  static void ath11k_ahb_free_ext_irq(struct ath11k_base *ab)
->> @@ -853,8 +853,8 @@ static int ath11k_ahb_map_service_to_pipe(struct 
->> ath11k_base *ab, u16 service_id
->>         bool ul_set = false, dl_set = false;
->>         int i;
->> 
->> -       for (i = 0; i < ARRAY_SIZE(target_service_to_ce_map_wlan); 
->> i++) {
->> -               entry = &target_service_to_ce_map_wlan[i];
->> +       for (i = 0; i < ab->hw_params.svc_to_ce_map_len; i++) {
->> +               entry = &ab->hw_params.svc_to_ce_map[i];
->> 
->>                 if (__le32_to_cpu(entry->service_id) != service_id)
->>                         continue;
->> @@ -950,6 +950,16 @@ static int ath11k_ahb_probe(struct 
->> platform_device *pdev)
->>                 goto err_hal_srng_deinit;
->>         }
->> 
->> +       ret = ath11k_init_hw_params(ab);
->> +       if (ret) {
->> +               ath11k_err(ab, "failed to get hw params %d\n", ret);
->> +               return ret;
->> +       }
->> +
->> +       ab->hw_params.svc_to_ce_map_len =
->> +                       
->> ARRAY_SIZE(target_service_to_ce_map_wlan_ipq8074);
->> +       ab->hw_params.svc_to_ce_map = 
->> target_service_to_ce_map_wlan_ipq8074;
-> 
-> I think you misunderstood my point about this, the point wasn't to
-> copy the svc map to hw_params, but define it in hw_params:
-> 
-> +       {
-> +               .hw_rev = ATH11K_HW_IPQ6018,
-> +               .name = "ipq6018 hw1.0",
-> +               .fw = {
-> +                       .dir = "IPQ6018/hw1.0",
-> +                       .board_size = 256 * 1024,
-> +                       .cal_size = 256 * 1024,
-> +               },
-> +               .max_radios = 2,
-> +               .bdf_addr = 0x4ABC0000,
-> +               .hw_ops = &ipq6018_ops,
-> +               .svc_to_ce_map_len =
-> ARRAY_SIZE(target_service_to_ce_map_wlan_ipq6018,
-> +               .svc_to_ce_map = target_service_to_ce_map_wlan_ipq6018,
-> +       },
-> 
-> That completely eliminates special case code based on the hardware ID
-> in the driver.
-> 
-The static array of structures target_service_to_ce_map_wlan_ipq6018[] 
-is defined in ahb.c and hw_params are initialised in core.c, this will 
-not work. no?
+These new debugfs files allow us to manually add/del/pause/resume TWT
+dialogs for test/debug purposes.
 
-Thanks
-Anil
+The debugfs files expect the following parameters
+add_dialog      - mac dialog_id wake_intvl_us wake_intvl_mantis
+                  wake_dura_us sp_offset_us twt_cmd flag_bcast
+                  flag_trigger flag_flow_type flag_protection
+del_dialog      - mac dialog_id
+pause_dialog    - mac dialog_id
+resume_dialog   - mac dialog_id sp_offset_us next_twt_size
 
-_______________________________________________
+Signed-off-by: John Crispin <john@phrozen.org>
+---
+ drivers/net/wireless/ath/ath11k/core.h  |   1 +
+ drivers/net/wireless/ath/ath11k/debug.c | 198 ++++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/debug.h |   8 +
+ drivers/net/wireless/ath/ath11k/mac.c   |   4 +
+ 4 files changed, 211 insertions(+)
+
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index e5c4e19020ee..5a75f9857ca2 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -226,6 +226,7 @@ struct ath11k_vif {
+ 	int txpower;
+ 	bool rsnie_present;
+ 	bool wpaie_present;
++	struct dentry *debugfs_twt;
+ };
+ 
+ struct ath11k_vif_iter {
+diff --git a/drivers/net/wireless/ath/ath11k/debug.c b/drivers/net/wireless/ath/ath11k/debug.c
+index 62a1aa0565a9..81c9b201df65 100644
+--- a/drivers/net/wireless/ath/ath11k/debug.c
++++ b/drivers/net/wireless/ath/ath11k/debug.c
+@@ -141,6 +141,204 @@ void ath11k_dbg_dump(struct ath11k_base *ab,
+ 
+ #endif
+ 
++#ifdef CONFIG_MAC80211_DEBUGFS
++static ssize_t ath11k_write_twt_add_dialog(struct file *file,
++					   const char __user *ubuf,
++					   size_t count, loff_t *ppos)
++{
++	struct ath11k_vif *arvif = file->private_data;
++	struct wmi_twt_add_dialog_params params = { 0 };
++	u8 buf[128] = {0};
++	int ret;
++
++	ret = simple_write_to_buffer(buf, sizeof(buf) - 1, ppos, ubuf, count);
++	if (ret < 0)
++		return ret;
++
++	buf[ret] = '\0';
++	ret = sscanf(buf, "%02hhx:%02hhx:%02hhx:%02hhx:%02hhx:%02hhx %u %u "
++		     "%u %u %u %hhu %hhu %hhu %hhu %hhu",
++		     &params.peer_macaddr[0],
++		     &params.peer_macaddr[1],
++		     &params.peer_macaddr[2],
++		     &params.peer_macaddr[3],
++		     &params.peer_macaddr[4],
++		     &params.peer_macaddr[5],
++		     &params.dialog_id,
++		     &params.wake_intvl_us,
++		     &params.wake_intvl_mantis,
++		     &params.wake_dura_us,
++		     &params.sp_offset_us,
++		     &params.twt_cmd,
++		     &params.flag_bcast,
++		     &params.flag_trigger,
++		     &params.flag_flow_type,
++		     &params.flag_protection);
++	if (ret != 16)
++		return -EINVAL;
++
++	params.vdev_id = arvif->vdev_id;
++
++	ret = ath11k_wmi_send_twt_add_dialog_cmd(arvif->ar, &params);
++
++	return ret ? ret : count;
++}
++
++static ssize_t ath11k_write_twt_del_dialog(struct file *file,
++					   const char __user *ubuf,
++					   size_t count, loff_t *ppos)
++{
++	struct ath11k_vif *arvif = file->private_data;
++	struct wmi_twt_del_dialog_params params = { 0 };
++	u8 buf[64] = {0};
++	int ret;
++
++	ret = simple_write_to_buffer(buf, sizeof(buf) - 1, ppos, ubuf, count);
++	if (ret < 0)
++		return ret;
++
++	buf[ret] = '\0';
++	ret = sscanf(buf, "%02hhx:%02hhx:%02hhx:%02hhx:%02hhx:%02hhx %u",
++		     &params.peer_macaddr[0],
++		     &params.peer_macaddr[1],
++		     &params.peer_macaddr[2],
++		     &params.peer_macaddr[3],
++		     &params.peer_macaddr[4],
++		     &params.peer_macaddr[5],
++		     &params.dialog_id);
++	if (ret != 7)
++		return -EINVAL;
++
++	params.vdev_id = arvif->vdev_id;
++
++	ret = ath11k_wmi_send_twt_del_dialog_cmd(arvif->ar, &params);
++
++	return ret ? ret : count;
++}
++
++static ssize_t ath11k_write_twt_pause_dialog(struct file *file,
++					     const char __user *ubuf,
++					     size_t count, loff_t *ppos)
++{
++	struct ath11k_vif *arvif = file->private_data;
++	struct wmi_twt_pause_dialog_params params = { 0 };
++	u8 buf[64] = {0};
++	int ret;
++
++	ret = simple_write_to_buffer(buf, sizeof(buf) - 1, ppos, ubuf, count);
++	if (ret < 0)
++		return ret;
++
++	buf[ret] = '\0';
++	ret = sscanf(buf, "%02hhx:%02hhx:%02hhx:%02hhx:%02hhx:%02hhx %u",
++		     &params.peer_macaddr[0],
++		     &params.peer_macaddr[1],
++		     &params.peer_macaddr[2],
++		     &params.peer_macaddr[3],
++		     &params.peer_macaddr[4],
++		     &params.peer_macaddr[5],
++		     &params.dialog_id);
++	if (ret != 7)
++		return -EINVAL;
++
++	params.vdev_id = arvif->vdev_id;
++
++	ret = ath11k_wmi_send_twt_pause_dialog_cmd(arvif->ar, &params);
++
++	return ret ? ret : count;
++}
++
++static ssize_t ath11k_write_twt_resume_dialog(struct file *file,
++					      const char __user *ubuf,
++					      size_t count, loff_t *ppos)
++{
++	struct ath11k_vif *arvif = file->private_data;
++	struct wmi_twt_resume_dialog_params params = { 0 };
++	u8 buf[64] = {0};
++	int ret;
++
++	ret = simple_write_to_buffer(buf, sizeof(buf) - 1, ppos, ubuf, count);
++	if (ret < 0)
++		return ret;
++	buf[ret] = '\0';
++	ret = sscanf(buf, "%02hhx:%02hhx:%02hhx:%02hhx:%02hhx:%02hhx %u %u %u",
++		     &params.peer_macaddr[0],
++		     &params.peer_macaddr[1],
++		     &params.peer_macaddr[2],
++		     &params.peer_macaddr[3],
++		     &params.peer_macaddr[4],
++		     &params.peer_macaddr[5],
++		     &params.dialog_id,
++		     &params.sp_offset_us,
++		     &params.next_twt_size);
++	if (ret != 9)
++		return -EINVAL;
++
++	params.vdev_id = arvif->vdev_id;
++
++	ret = ath11k_wmi_send_twt_resume_dialog_cmd(arvif->ar, &params);
++
++	return ret ? ret : count;
++}
++
++static const struct file_operations ath11k_fops_twt_add_dialog = {
++	.write = ath11k_write_twt_add_dialog,
++	.open = simple_open
++};
++
++static const struct file_operations ath11k_fops_twt_del_dialog = {
++	.write = ath11k_write_twt_del_dialog,
++	.open = simple_open
++};
++
++static const struct file_operations ath11k_fops_twt_pause_dialog = {
++	.write = ath11k_write_twt_pause_dialog,
++	.open = simple_open
++};
++
++static const struct file_operations ath11k_fops_twt_resume_dialog = {
++	.write = ath11k_write_twt_resume_dialog,
++	.open = simple_open
++};
++
++void ath11k_debugfs_twt(struct ath11k_vif *arvif, bool enable)
++{
++	if (!enable && arvif->debugfs_twt) {
++		debugfs_remove_recursive(arvif->debugfs_twt);
++		arvif->debugfs_twt = NULL;
++		return;
++	}
++
++	if (arvif->debugfs_twt)
++		return;
++
++	arvif->debugfs_twt = debugfs_create_dir("twt", arvif->vif->debugfs_dir);
++	if (IS_ERR_OR_NULL(arvif->debugfs_twt)) {
++		ath11k_warn(arvif->ar->ab,
++			    "failed to create twt debugfs: %p\n",
++			    arvif->debugfs_twt);
++		arvif->debugfs_twt = NULL;
++		return;
++	}
++
++	debugfs_create_file("add_dialog", 0200,
++			    arvif->debugfs_twt, arvif,
++			    &ath11k_fops_twt_add_dialog);
++
++	debugfs_create_file("del_dialog", 0200,
++			    arvif->debugfs_twt, arvif,
++			    &ath11k_fops_twt_del_dialog);
++
++	debugfs_create_file("pause_dialog", 0200,
++			    arvif->debugfs_twt, arvif,
++			    &ath11k_fops_twt_pause_dialog);
++
++	debugfs_create_file("resume_dialog", 0200,
++			    arvif->debugfs_twt, arvif,
++			    &ath11k_fops_twt_resume_dialog);
++}
++#endif
++
+ #ifdef CONFIG_ATH11K_DEBUGFS
+ static void ath11k_fw_stats_pdevs_free(struct list_head *head)
+ {
+diff --git a/drivers/net/wireless/ath/ath11k/debug.h b/drivers/net/wireless/ath/ath11k/debug.h
+index c30085406bfb..2dfd01cff91f 100644
+--- a/drivers/net/wireless/ath/ath11k/debug.h
++++ b/drivers/net/wireless/ath/ath11k/debug.h
+@@ -150,6 +150,14 @@ static inline void ath11k_dbg_dump(struct ath11k_base *ab,
+ }
+ #endif /* CONFIG_ATH11K_DEBUG */
+ 
++#ifdef CONFIG_MAC80211_DEBUGFS
++void ath11k_debugfs_twt(struct ath11k_vif *arvif, bool enable);
++#else
++static inline void ath11k_debugfs_twt(struct ath11k_vif *arvif, bool enable)
++{
++}
++#endif
++
+ #ifdef CONFIG_ATH11K_DEBUGFS
+ int ath11k_debug_soc_create(struct ath11k_base *ab);
+ void ath11k_debug_soc_destroy(struct ath11k_base *ab);
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 07d3e031c75a..f63d1ce4ff4c 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -2061,6 +2061,8 @@ static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
+ 			ath11k_wmi_send_twt_enable_cmd(ar, ar->pdev->pdev_id);
+ 		else
+ 			ath11k_wmi_send_twt_disable_cmd(ar, ar->pdev->pdev_id);
++		if (vif->type == NL80211_IFTYPE_AP)
++			ath11k_debugfs_twt(arvif, info->twt_requester);
+ 	}
+ 
+ 	if (changed & BSS_CHANGED_HE_OBSS_PD)
+@@ -4608,6 +4610,8 @@ static void ath11k_mac_op_remove_interface(struct ieee80211_hw *hw,
+ 
+ 	/* TODO: recal traffic pause state based on the available vdevs */
+ 
++	debugfs_remove_recursive(arvif->debugfs_twt);
++	arvif->debugfs_twt = NULL;
+ 	mutex_unlock(&ar->conf_mutex);
+ }
+ 
+-- 
+2.25.1
+
+
+-- 
 ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
