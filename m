@@ -1,12 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from m43-7.mailgun.net ([69.72.43.7])
+Received: from shards.monkeyblade.net ([2620:137:e000::1:9])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jqA8h-00011P-3p
- for ath11k@lists.infradead.org; Tue, 30 Jun 2020 06:53:10 +0000
-From: Carl Huang <cjhuang@codeaurora.org>
-Subject: [PATCH v2] net: qrtr: free flow in __qrtr_node_release
-Date: Tue, 30 Jun 2020 14:52:51 +0800
-Message-Id: <1593499971-9212-1-git-send-email-cjhuang@codeaurora.org>
+ id 1jnw3e-0003Tb-Ad
+ for ath11k@lists.infradead.org; Wed, 24 Jun 2020 03:26:43 +0000
+Date: Tue, 23 Jun 2020 20:26:29 -0700 (PDT)
+Message-Id: <20200623.202629.352077396302165327.davem@davemloft.net>
+Subject: Re: [PATCH] net: qrtr: free flow in __qrtr_node_release
+From: David Miller <davem@davemloft.net>
+In-Reply-To: <1592882523-12870-1-git-send-email-cjhuang@codeaurora.org>
+References: <1592882523-12870-1-git-send-email-cjhuang@codeaurora.org>
+Mime-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -15,65 +18,25 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: davem@davemloft.net
+To: cjhuang@codeaurora.org
 Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org, ath11k@lists.infradead.org
 
-The flow is allocated in qrtr_tx_wait, but not freed when qrtr node
-is released. (*slot) becomes NULL after radix_tree_iter_delete is
-called in __qrtr_node_release. The fix is to save (*slot) to a
-vairable and then free it.
+From: Carl Huang <cjhuang@codeaurora.org>
+Date: Tue, 23 Jun 2020 11:22:03 +0800
 
-This memory leak is catched when kmemleak is enabled in kernel,
-the report looks like below:
+> @@ -168,6 +168,7 @@ static void __qrtr_node_release(struct kref *kref)
+>  	struct radix_tree_iter iter;
+>  	unsigned long flags;
+>  	void __rcu **slot;
+> +	struct qrtr_tx_flow *flow;
 
-unreferenced object 0xffffa0de69e08420 (size 32):
-  comm "kworker/u16:3", pid 176, jiffies 4294918275 (age 82858.876s)
-  hex dump (first 32 bytes):
-    00 00 00 00 00 00 00 00 28 84 e0 69 de a0 ff ff  ........(..i....
-    28 84 e0 69 de a0 ff ff 03 00 00 00 00 00 00 00  (..i............
-  backtrace:
-    [<00000000e252af0a>] qrtr_node_enqueue+0x38e/0x400 [qrtr]
-    [<000000009cea437f>] qrtr_sendmsg+0x1e0/0x2a0 [qrtr]
-    [<000000008bddbba4>] sock_sendmsg+0x5b/0x60
-    [<0000000003beb43a>] qmi_send_message.isra.3+0xbe/0x110 [qmi_helpers]
-    [<000000009c9ae7de>] qmi_send_request+0x1c/0x20 [qmi_helpers]
+Please retain the reverse christmas tree ordering of local variables here.
 
-Signed-off-by: Carl Huang <cjhuang@codeaurora.org>
----
- net/qrtr/qrtr.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/net/qrtr/qrtr.c b/net/qrtr/qrtr.c
-index 2d8d613..0598813 100644
---- a/net/qrtr/qrtr.c
-+++ b/net/qrtr/qrtr.c
-@@ -166,6 +166,7 @@ static void __qrtr_node_release(struct kref *kref)
- {
- 	struct qrtr_node *node = container_of(kref, struct qrtr_node, ref);
- 	struct radix_tree_iter iter;
-+	struct qrtr_tx_flow *flow;
- 	unsigned long flags;
- 	void __rcu **slot;
- 
-@@ -181,8 +182,9 @@ static void __qrtr_node_release(struct kref *kref)
- 
- 	/* Free tx flow counters */
- 	radix_tree_for_each_slot(slot, &node->qrtr_tx_flow, &iter, 0) {
-+		flow = *slot;
- 		radix_tree_iter_delete(&node->qrtr_tx_flow, &iter, slot);
--		kfree(*slot);
-+		kfree(flow);
- 	}
- 	kfree(node);
- }
--- 
-2.7.4
-
+Thanks.
 
 -- 
 ath11k mailing list
