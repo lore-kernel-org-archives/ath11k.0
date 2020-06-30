@@ -1,16 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from m43-7.mailgun.net ([69.72.43.7])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jnqs6-0005sJ-82
- for ath11k@lists.infradead.org; Tue, 23 Jun 2020 21:54:27 +0000
-MIME-Version: 1.0
-Date: Tue, 23 Jun 2020 14:53:53 -0700
-From: Rajkumar Manoharan <rmanohar@codeaurora.org>
-Subject: Re: [PATCH 3/3] ath11k: add support for BSS coloring
-In-Reply-To: <20200617150021.4183253-3-john@phrozen.org>
-References: <20200617150021.4183253-1-john@phrozen.org>
- <20200617150021.4183253-3-john@phrozen.org>
-Message-ID: <9597d58917d651655e51ba313b69d0c4@codeaurora.org>
+ id 1jqA8h-00011P-3p
+ for ath11k@lists.infradead.org; Tue, 30 Jun 2020 06:53:10 +0000
+From: Carl Huang <cjhuang@codeaurora.org>
+Subject: [PATCH v2] net: qrtr: free flow in __qrtr_node_release
+Date: Tue, 30 Jun 2020 14:52:51 +0800
+Message-Id: <1593499971-9212-1-git-send-email-cjhuang@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -19,61 +15,65 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: John Crispin <john@phrozen.org>
-Cc: Johannes Berg <johannes@sipsolutions.net>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: davem@davemloft.net
+Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org, ath11k@lists.infradead.org
 
-On 2020-06-17 08:00, John Crispin wrote:
-> Whenever the MAC detects a color collision or any of its associated 
-> station
-> detects one the FW will send out an event. Add the code to parse and 
-> handle
-> this event. and pass the data up to mac80211.
-> 
-> The FW does not provide an offload future such as the one used for CSA. 
-> The
-> CCA process is hence triggered via the beacon offload tx completion 
-> events
-> sent out by the FW.
-> 
-[...]
-> +static void
-> +ath11k_wmi_obss_color_collision_event(struct ath11k_base *ab, struct
-> sk_buff *skb)
-> +{
-> +	const void **tb;
-> +	const struct wmi_obss_color_collision_event *ev;
-> +	struct ath11k_vif *arvif;
-> +	int ret;
-> +
-> +	tb = ath11k_wmi_tlv_parse_alloc(ab, skb->data, skb->len, GFP_ATOMIC);
-> +	if (IS_ERR(tb)) {
-> +		ret = PTR_ERR(tb);
-> +		ath11k_warn(ab, "failed to parse tlv: %d\n", ret);
-> +		return;
-> +	}
-> +
-> +	ev = tb[WMI_TAG_OBSS_COLOR_COLLISION_EVT];
-> +	if (!ev) {
-> +		ath11k_warn(ab, "failed to fetch obss color collision ev");
-> +		goto exit;
-> +	}
-> +
-> +	arvif = ath11k_mac_get_arvif_by_vdev_id(ab, ev->vdev_id);
-> +	switch (ev->evt_type) {
-> +	case WMI_BSS_COLOR_COLLISION_DETECTION:
-> +		break;
-> +	case WMI_BSS_COLOR_COLLISION_DISABLE:
-> +	case WMI_BSS_COLOR_FREE_SLOT_TIMER_EXPIRY:
-> +	case WMI_BSS_COLOR_FREE_SLOT_AVAILABLE:
-> +		return;
-> 
-tb should be freed here.
+The flow is allocated in qrtr_tx_wait, but not freed when qrtr node
+is released. (*slot) becomes NULL after radix_tree_iter_delete is
+called in __qrtr_node_release. The fix is to save (*slot) to a
+vairable and then free it.
 
--Rajkumar
+This memory leak is catched when kmemleak is enabled in kernel,
+the report looks like below:
+
+unreferenced object 0xffffa0de69e08420 (size 32):
+  comm "kworker/u16:3", pid 176, jiffies 4294918275 (age 82858.876s)
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 28 84 e0 69 de a0 ff ff  ........(..i....
+    28 84 e0 69 de a0 ff ff 03 00 00 00 00 00 00 00  (..i............
+  backtrace:
+    [<00000000e252af0a>] qrtr_node_enqueue+0x38e/0x400 [qrtr]
+    [<000000009cea437f>] qrtr_sendmsg+0x1e0/0x2a0 [qrtr]
+    [<000000008bddbba4>] sock_sendmsg+0x5b/0x60
+    [<0000000003beb43a>] qmi_send_message.isra.3+0xbe/0x110 [qmi_helpers]
+    [<000000009c9ae7de>] qmi_send_request+0x1c/0x20 [qmi_helpers]
+
+Signed-off-by: Carl Huang <cjhuang@codeaurora.org>
+---
+ net/qrtr/qrtr.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/net/qrtr/qrtr.c b/net/qrtr/qrtr.c
+index 2d8d613..0598813 100644
+--- a/net/qrtr/qrtr.c
++++ b/net/qrtr/qrtr.c
+@@ -166,6 +166,7 @@ static void __qrtr_node_release(struct kref *kref)
+ {
+ 	struct qrtr_node *node = container_of(kref, struct qrtr_node, ref);
+ 	struct radix_tree_iter iter;
++	struct qrtr_tx_flow *flow;
+ 	unsigned long flags;
+ 	void __rcu **slot;
+ 
+@@ -181,8 +182,9 @@ static void __qrtr_node_release(struct kref *kref)
+ 
+ 	/* Free tx flow counters */
+ 	radix_tree_for_each_slot(slot, &node->qrtr_tx_flow, &iter, 0) {
++		flow = *slot;
+ 		radix_tree_iter_delete(&node->qrtr_tx_flow, &iter, slot);
+-		kfree(*slot);
++		kfree(flow);
+ 	}
+ 	kfree(node);
+ }
+-- 
+2.7.4
+
 
 -- 
 ath11k mailing list
