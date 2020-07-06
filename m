@@ -1,15 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jsPfl-00033p-EV
- for ath11k@lists.infradead.org; Mon, 06 Jul 2020 11:52:38 +0000
+ id 1jsPfk-00032q-Cp
+ for ath11k@lists.infradead.org; Mon, 06 Jul 2020 11:52:33 +0000
 From: John Crispin <john@phrozen.org>
-Subject: [PATCH V2 07/10] ath11k: add a struct to pass parameters into
- ath11k_wmi_vdev_up
-Date: Mon,  6 Jul 2020 13:52:16 +0200
-Message-Id: <20200706115219.663650-7-john@phrozen.org>
-In-Reply-To: <20200706115219.663650-1-john@phrozen.org>
-References: <20200706115219.663650-1-john@phrozen.org>
+Subject: [PATCH V2 01/10] nl80211: add basic multiple bssid support
+Date: Mon,  6 Jul 2020 13:52:10 +0200
+Message-Id: <20200706115219.663650-1-john@phrozen.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -26,185 +23,134 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Johannes Berg <johannes@sipsolutions.net>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-When setting up a multiple bssid we need to pass additional parameters to
-the FW. Doing this as individual parameters would make the call signature
-very long. Use an intermediate struct instead and adjust all callees to
-make use of it.
+This patch adds support for passing the multiple bssid config to the
+kernel when adding an interface. A bss can be legacy, transmitting or
+non-transmitting. A non-transmitting BSSID will have a parent interface,
+which needs to be transmitting.
 
 Signed-off-by: John Crispin <john@phrozen.org>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 38 ++++++++++++++++++++++-----
- drivers/net/wireless/ath/ath11k/wmi.c | 17 +++++++-----
- drivers/net/wireless/ath/ath11k/wmi.h | 12 +++++++--
- 3 files changed, 53 insertions(+), 14 deletions(-)
+ include/net/cfg80211.h       |  9 +++++++++
+ include/uapi/linux/nl80211.h | 25 +++++++++++++++++++++++++
+ net/wireless/nl80211.c       | 14 ++++++++++++++
+ 3 files changed, 48 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 498f9a15d0e4..65a77f6c27e1 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -657,9 +657,13 @@ void ath11k_mac_peer_cleanup_all(struct ath11k *ar)
+diff --git a/include/net/cfg80211.h b/include/net/cfg80211.h
+index fc7e8807838d..ba8f3c8df0ca 100644
+--- a/include/net/cfg80211.h
++++ b/include/net/cfg80211.h
+@@ -604,6 +604,8 @@ struct vif_params {
+ 	u8 macaddr[ETH_ALEN];
+ 	const u8 *vht_mumimo_groups;
+ 	const u8 *vht_mumimo_follow_addr;
++	enum nl80211_multi_bssid_mode multi_bssid_mode;
++	u32 multi_bssid_parent;
+ };
  
- static int ath11k_monitor_vdev_up(struct ath11k *ar, int vdev_id)
- {
-+	struct vdev_up_params params = {
-+		.vdev_id = vdev_id,
-+		.bssid = ar->mac_addr,
-+	};
- 	int ret = 0;
+ /**
+@@ -5109,6 +5111,9 @@ struct cfg80211_cqm_config;
+  * @pmsr_free_wk: (private) peer measurements cleanup work
+  * @unprot_beacon_reported: (private) timestamp of last
+  *	unprotected beacon report
++ * @multi_bssid_mode: Is this a legacy, transmitted or non-transmitted bssid
++ * @multi_bssid_parent: a non-transmitted bssid has a transmitted parent
++ * @multi_bssid_list: linked list for tracking parent - child relations.
+  */
+ struct wireless_dev {
+ 	struct wiphy *wiphy;
+@@ -5188,6 +5193,10 @@ struct wireless_dev {
+ 	struct work_struct pmsr_free_wk;
  
--	ret = ath11k_wmi_vdev_up(ar, vdev_id, 0, ar->mac_addr);
-+	ret = ath11k_wmi_vdev_up(ar, &params);
- 	if (ret) {
- 		ath11k_warn(ar->ab, "failed to put up monitor vdev %i: %d\n",
- 			    vdev_id, ret);
-@@ -724,6 +728,13 @@ static void ath11k_control_beaconing(struct ath11k_vif *arvif,
- 				     struct ieee80211_bss_conf *info)
- {
- 	struct ath11k *ar = arvif->ar;
-+	struct ieee80211_vif *parent;
-+	struct vdev_up_params params = {
-+		.vdev_id = arvif->vdev_id,
-+		.bssid = arvif->bssid,
-+		.profile_num = info->multi_bssid.count,
-+		.profile_idx = info->multi_bssid.index,
-+	};
- 	int ret = 0;
- 
- 	lockdep_assert_held(&arvif->ar->conf_mutex);
-@@ -751,9 +762,15 @@ static void ath11k_control_beaconing(struct ath11k_vif *arvif,
- 	arvif->aid = 0;
- 
- 	ether_addr_copy(arvif->bssid, info->bssid);
-+	parent = ieee80211_get_multi_bssid_parent(arvif->vif);
-+	if (parent) {
-+		struct ath11k_vif *pvif = (struct ath11k_vif *)parent->drv_priv;
+ 	unsigned long unprot_beacon_reported;
 +
-+		params.trans_bssid = pvif->bssid;
-+	}
++	enum nl80211_multi_bssid_mode multi_bssid_mode;
++	struct wireless_dev *multi_bssid_parent;
++	struct list_head multi_bssid_list;
+ };
+ 
+ static inline u8 *wdev_address(struct wireless_dev *wdev)
+diff --git a/include/uapi/linux/nl80211.h b/include/uapi/linux/nl80211.h
+index 4e6339ab1fce..b7a5d1de7aff 100644
+--- a/include/uapi/linux/nl80211.h
++++ b/include/uapi/linux/nl80211.h
+@@ -2505,6 +2505,12 @@ enum nl80211_commands {
+  * @NL80211_ATTR_HE_6GHZ_CAPABILITY: HE 6 GHz Band Capability element (from
+  *	association request when used with NL80211_CMD_NEW_STATION).
+  *
++ * @NL80211_ATTR_MULTI_BSSID_MODE: Set the (Non-)Transmitted flag for this
++ *	BSSIDs beacon.
++ *
++ * @NL80211_ATTR_MULTI_BSSID_PARENT: If this is a Non-Transmitted BSSID, define
++ *	the parent interface.
++ *
+  * @NUM_NL80211_ATTR: total number of nl80211_attrs available
+  * @NL80211_ATTR_MAX: highest attribute number currently defined
+  * @__NL80211_ATTR_AFTER_LAST: internal use
+@@ -2987,6 +2993,9 @@ enum nl80211_attrs {
+ 
+ 	NL80211_ATTR_HE_6GHZ_CAPABILITY,
+ 
++	NL80211_ATTR_MULTI_BSSID_MODE,
++	NL80211_ATTR_MULTI_BSSID_PARENT,
 +
+ 	/* add attributes here, update the policy in nl80211.c */
  
--	ret = ath11k_wmi_vdev_up(arvif->ar, arvif->vdev_id, arvif->aid,
--				 arvif->bssid);
-+	ret = ath11k_wmi_vdev_up(arvif->ar, &params);
- 	if (ret) {
- 		ath11k_warn(ar->ab, "failed to bring up vdev %d: %i\n",
- 			    arvif->vdev_id, ret);
-@@ -1569,6 +1586,11 @@ static void ath11k_bss_assoc(struct ieee80211_hw *hw,
- 	struct ath11k *ar = hw->priv;
- 	struct ath11k_vif *arvif = (void *)vif->drv_priv;
- 	struct peer_assoc_params peer_arg;
-+	struct vdev_up_params params = {
-+		.vdev_id = arvif->vdev_id,
-+		.bssid = bss_conf->bssid,
-+		.aid = bss_conf->aid,
-+	};
- 	struct ieee80211_sta *ap_sta;
- 	int ret;
+ 	__NL80211_ATTR_AFTER_LAST,
+@@ -6769,6 +6778,22 @@ enum nl80211_peer_measurement_ftm_failure_reasons {
+ 	NL80211_PMSR_FTM_FAILURE_BAD_CHANGED_PARAMS,
+ };
  
-@@ -1617,7 +1639,7 @@ static void ath11k_bss_assoc(struct ieee80211_hw *hw,
- 	arvif->aid = bss_conf->aid;
- 	ether_addr_copy(arvif->bssid, bss_conf->bssid);
- 
--	ret = ath11k_wmi_vdev_up(ar, arvif->vdev_id, arvif->aid, arvif->bssid);
-+	ret = ath11k_wmi_vdev_up(ar, &params);
- 	if (ret) {
- 		ath11k_warn(ar->ab, "failed to set vdev %d up: %d\n",
- 			    arvif->vdev_id, ret);
-@@ -4895,6 +4917,8 @@ ath11k_mac_update_vif_chan(struct ath11k *ar,
- 	/* TODO: Update ar->rx_channel */
- 
- 	for (i = 0; i < n_vifs; i++) {
-+		struct vdev_up_params params;
-+
- 		arvif = (void *)vifs[i].vif->drv_priv;
- 
- 		if (WARN_ON(!arvif->is_started))
-@@ -4915,8 +4939,10 @@ ath11k_mac_update_vif_chan(struct ath11k *ar,
- 			continue;
- 		}
- 
--		ret = ath11k_wmi_vdev_up(arvif->ar, arvif->vdev_id, arvif->aid,
--					 arvif->bssid);
-+		params.vdev_id = arvif->vdev_id,
-+		params.bssid = arvif->bssid,
-+		params.aid = arvif->aid,
-+		ret = ath11k_wmi_vdev_up(arvif->ar, &params);
- 		if (ret) {
- 			ath11k_warn(ab, "failed to bring vdev up %d: %d\n",
- 				    arvif->vdev_id, ret);
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 90c68d1d9087..b7a4913228bc 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -862,7 +862,7 @@ int ath11k_wmi_vdev_start(struct ath11k *ar, struct wmi_vdev_start_req_arg *arg,
- 	return ret;
- }
- 
--int ath11k_wmi_vdev_up(struct ath11k *ar, u32 vdev_id, u32 aid, const u8 *bssid)
-+int ath11k_wmi_vdev_up(struct ath11k *ar, struct vdev_up_params *params)
- {
- 	struct ath11k_pdev_wmi *wmi = ar->wmi;
- 	struct wmi_vdev_up_cmd *cmd;
-@@ -877,10 +877,14 @@ int ath11k_wmi_vdev_up(struct ath11k *ar, u32 vdev_id, u32 aid, const u8 *bssid)
- 
- 	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_VDEV_UP_CMD) |
- 			  FIELD_PREP(WMI_TLV_LEN, sizeof(*cmd) - TLV_HDR_SIZE);
--	cmd->vdev_id = vdev_id;
--	cmd->vdev_assoc_id = aid;
-+	cmd->vdev_id = params->vdev_id;
-+	cmd->vdev_assoc_id = params->aid;
-+	cmd->profile_idx = params->profile_idx;
-+	cmd->profile_num = params->profile_num;
- 
--	ether_addr_copy(cmd->vdev_bssid.addr, bssid);
-+	if (params->trans_bssid)
-+		ether_addr_copy(cmd->trans_bssid.addr, params->trans_bssid);
-+	ether_addr_copy(cmd->vdev_bssid.addr, params->bssid);
- 
- 	ret = ath11k_wmi_cmd_send(wmi, skb, WMI_VDEV_UP_CMDID);
- 	if (ret) {
-@@ -889,8 +893,9 @@ int ath11k_wmi_vdev_up(struct ath11k *ar, u32 vdev_id, u32 aid, const u8 *bssid)
- 	}
- 
- 	ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
--		   "WMI mgmt vdev up id 0x%x assoc id %d bssid %pM\n",
--		   vdev_id, aid, bssid);
-+		   "WMI mgmt vdev up id 0x%x assoc id %d idx %d num %d bssid %pM trans_bssid %pM\n",
-+		   params->vdev_id, params->aid, params->profile_idx, params->profile_num,
-+		   params->bssid, params->trans_bssid);
- 
- 	return ret;
- }
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index fa6665584caf..1a436e1885bc 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -2453,6 +2453,15 @@ struct wmi_vdev_delete_cmd {
- 	u32 vdev_id;
- } __packed;
- 
-+struct vdev_up_params {
-+	u32 vdev_id;
-+	u16 aid;
-+	u32 profile_idx;
-+	u32 profile_num;
-+	const u8 *bssid;
-+	u8 *trans_bssid;
++/**
++ * enum nl80211_multi_bssid_mode - Multiple BSSID beacon type
++ *
++ * Used by cfg80211_ap_settings
++ *
++ * @MULTIPLE_BSSID_LEGACY: This BSS is not part of a multiple BSSID group
++ * @MULTIPLE_BSSID_TRANSMITTED: This BSS is broadcasting a multiple BSSID
++ *                                    beacon
++ * @MULTIPLE_BSSID_NON_TRANSMITTED: This BSS is not broadcasting a beacon
++ */
++enum nl80211_multi_bssid_mode {
++	NL80211_MULTIPLE_BSSID_LEGACY = 0,
++	NL80211_MULTIPLE_BSSID_TRANSMITTED,
++	NL80211_MULTIPLE_BSSID_NON_TRANSMITTED,
 +};
 +
- struct wmi_vdev_up_cmd {
- 	u32 tlv_header;
- 	u32 vdev_id;
-@@ -4845,8 +4854,7 @@ int ath11k_wmi_bcn_tmpl(struct ath11k *ar, u32 vdev_id,
- 			struct ieee80211_mutable_offsets *offs,
- 			struct sk_buff *bcn);
- int ath11k_wmi_vdev_down(struct ath11k *ar, u8 vdev_id);
--int ath11k_wmi_vdev_up(struct ath11k *ar, u32 vdev_id, u32 aid,
--		       const u8 *bssid);
-+int ath11k_wmi_vdev_up(struct ath11k *ar, struct vdev_up_params *params);
- int ath11k_wmi_vdev_stop(struct ath11k *ar, u8 vdev_id);
- int ath11k_wmi_vdev_start(struct ath11k *ar, struct wmi_vdev_start_req_arg *arg,
- 			  bool restart);
+ /**
+  * enum nl80211_peer_measurement_ftm_resp - FTM response attributes
+  * @__NL80211_PMSR_FTM_RESP_ATTR_INVALID: invalid
+diff --git a/net/wireless/nl80211.c b/net/wireless/nl80211.c
+index 263ae395ad44..e29f834f8d12 100644
+--- a/net/wireless/nl80211.c
++++ b/net/wireless/nl80211.c
+@@ -658,6 +658,10 @@ static const struct nla_policy nl80211_policy[NUM_NL80211_ATTR] = {
+ 		.type = NLA_EXACT_LEN,
+ 		.len = sizeof(struct ieee80211_he_6ghz_capa),
+ 	},
++	[NL80211_ATTR_MULTI_BSSID_MODE] = NLA_POLICY_RANGE(NLA_U8,
++					NL80211_MULTIPLE_BSSID_LEGACY,
++					NL80211_MULTIPLE_BSSID_NON_TRANSMITTED),
++	[NL80211_ATTR_MULTI_BSSID_PARENT] = { .type = NLA_U32 },
+ };
+ 
+ /* policy for the key attributes */
+@@ -3761,6 +3765,16 @@ static int nl80211_new_interface(struct sk_buff *skb, struct genl_info *info)
+ 	if (err < 0)
+ 		return err;
+ 
++	if (info->attrs[NL80211_ATTR_MULTI_BSSID_MODE])
++		params.multi_bssid_mode =
++			nla_get_u8(info->attrs[NL80211_ATTR_MULTI_BSSID_MODE]);
++	if (info->attrs[NL80211_ATTR_MULTI_BSSID_PARENT])
++		params.multi_bssid_parent =
++			nla_get_u8(info->attrs[NL80211_ATTR_MULTI_BSSID_PARENT]);
++	if (params.multi_bssid_mode == NL80211_MULTIPLE_BSSID_NON_TRANSMITTED &&
++	    !params.multi_bssid_parent)
++		return -EOPNOTSUPP;
++
+ 	msg = nlmsg_new(NLMSG_DEFAULT_SIZE, GFP_KERNEL);
+ 	if (!msg)
+ 		return -ENOMEM;
 -- 
 2.25.1
 
