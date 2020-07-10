@@ -1,14 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from nbd.name ([2a01:4f8:221:3d45::2])
+Received: from mail29.static.mailgun.info ([104.130.122.29])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jsUZb-00078u-Q4
- for ath11k@lists.infradead.org; Mon, 06 Jul 2020 17:06:33 +0000
-From: John Crispin <john@phrozen.org>
-Subject: [PATCH V2 3/3] ath11k: add support for BSS coloring
-Date: Mon,  6 Jul 2020 19:06:16 +0200
-Message-Id: <20200706170616.1764626-3-john@phrozen.org>
-In-Reply-To: <20200706170616.1764626-1-john@phrozen.org>
-References: <20200706170616.1764626-1-john@phrozen.org>
+ id 1jtp11-0000YV-7Y
+ for ath11k@lists.infradead.org; Fri, 10 Jul 2020 09:08:20 +0000
+From: Sowmiya Sree Elavalagan <ssreeela@codeaurora.org>
+Subject: [PATCH v2] ath11k: cold boot calibration support
+Date: Fri, 10 Jul 2020 14:37:29 +0530
+Message-Id: <1594372049-31480-1-git-send-email-ssreeela@codeaurora.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -18,244 +16,162 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Johannes Berg <johannes@sipsolutions.net>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
+To: ath11k@lists.infradead.org
+Cc: Govindaraj Saminathan <gsamin@codeaurora.org>, Sowmiya Sree Elavalagan <ssreeela@codeaurora.org>, linux-wireless@vger.kernel.org
 
-Whenever the MAC detects a color collision or any of its associated station
-detects one the FW will send out an event. Add the code to parse and handle
-this event. and pass the data up to mac80211.
-
-The FW does not provide an offload feature such as the one used for CSA. The
-CCA process is hence triggered via the beacon offload tx completion events
-sent out by the FW.
-
-Signed-off-by: John Crispin <john@phrozen.org>
----
-Changes in V2
-* properly set the BSS color to avoid duplicate events
-* turn the collision warning into a dbg message
-
- drivers/net/wireless/ath/ath11k/mac.c | 36 +++++++++++++++++
- drivers/net/wireless/ath/ath11k/mac.h |  1 +
- drivers/net/wireless/ath/ath11k/wmi.c | 57 +++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/wmi.h | 14 +++++++
- 4 files changed, 108 insertions(+)
-
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 2836a0f197ab..9fc20ba15818 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -720,6 +720,22 @@ static int ath11k_mac_setup_bcn_tmpl(struct ath11k_vif *arvif)
- 	return ret;
- }
- 
-+void ath11k_mac_bcn_tx_event(struct ath11k_vif *arvif)
-+{
-+	struct ieee80211_vif *vif = arvif->vif;
-+
-+	if (!vif->cca_active)
-+		return;
-+
-+	if (ieee80211_cca_is_complete(vif)) {
-+		ieee80211_cca_finish(vif);
-+		return;
-+	}
-+
-+	ieee80211_cca_update_counter(vif);
-+	ath11k_mac_setup_bcn_tmpl(arvif);
-+}
-+
- static void ath11k_control_beaconing(struct ath11k_vif *arvif,
- 				     struct ieee80211_bss_conf *info)
- {
-@@ -1974,6 +1990,24 @@ static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
- 			if (ret)
- 				ath11k_warn(ar->ab, "failed to set bss color collision on vdev %i: %d\n",
- 					    arvif->vdev_id,  ret);
-+
-+			param_id = WMI_VDEV_PARAM_BSS_COLOR;
-+			if (info->he_bss_color.disabled)
-+				param_value = IEEE80211_HE_OPERATION_BSS_COLOR_DISABLED;
-+			else
-+				param_value = info->he_bss_color.color <<
-+						IEEE80211_HE_OPERATION_BSS_COLOR_OFFSET;
-+
-+			ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
-+							    param_id,
-+							    param_value);
-+			if (ret)
-+				ath11k_warn(ar->ab,
-+					    "failed to set bss color param on vdev %i: %d\n",
-+					    arvif->vdev_id,  ret);
-+
-+			ath11k_info(ar->ab, "bss color param 0x%x set on vdev %i\n",
-+				    param_value, arvif->vdev_id);
- 		} else if (vif->type == NL80211_IFTYPE_STATION) {
- 			ret = ath11k_wmi_send_bss_color_change_enable_cmd(ar,
- 									  arvif->vdev_id,
-@@ -5883,6 +5917,8 @@ static int __ath11k_mac_register(struct ath11k *ar)
- 	ar->hw->wiphy->features |= NL80211_FEATURE_AP_MODE_CHAN_WIDTH_CHANGE |
- 				   NL80211_FEATURE_AP_SCAN;
- 
-+	ar->hw->wiphy->flags |= WIPHY_FLAG_SUPPORTS_BSS_COLOR;
-+
- 	ar->max_num_stations = TARGET_NUM_STATIONS;
- 	ar->max_num_peers = TARGET_NUM_PEERS_PDEV;
- 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.h b/drivers/net/wireless/ath/ath11k/mac.h
-index 0607479774a9..55978744e170 100644
---- a/drivers/net/wireless/ath/ath11k/mac.h
-+++ b/drivers/net/wireless/ath/ath11k/mac.h
-@@ -146,4 +146,5 @@ int ath11k_mac_tx_mgmt_pending_free(int buf_id, void *skb, void *ctx);
- u8 ath11k_mac_bw_to_mac80211_bw(u8 bw);
- enum ath11k_supported_bw ath11k_mac_mac80211_bw_to_ath11k_bw(enum rate_info_bw bw);
- enum hal_encrypt_type ath11k_dp_tx_get_encrypt_type(u32 cipher);
-+void ath11k_mac_bcn_tx_event(struct ath11k_vif *arvif);
- #endif
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index c2a972377687..210d230bc146 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -97,6 +97,8 @@ static const struct wmi_tlv_policy wmi_tlv_policies[] = {
- 		= { .min_len = sizeof(struct wmi_stats_event) },
- 	[WMI_TAG_PDEV_CTL_FAILSAFE_CHECK_EVENT]
- 		= { .min_len = sizeof(struct wmi_pdev_ctl_failsafe_chk_event) },
-+	[WMI_TAG_OBSS_COLOR_COLLISION_EVT]
-+		= { .min_len = sizeof(struct wmi_obss_color_collision_event) },
- };
- 
- #define PRIMAP(_hw_mode_) \
-@@ -2925,6 +2927,49 @@ int ath11k_wmi_send_bss_color_change_enable_cmd(struct ath11k *ar, u32 vdev_id,
- 	return ret;
- }
- 
-+static void
-+ath11k_wmi_obss_color_collision_event(struct ath11k_base *ab, struct sk_buff *skb)
-+{
-+	const void **tb;
-+	const struct wmi_obss_color_collision_event *ev;
-+	struct ath11k_vif *arvif;
-+	int ret;
-+
-+	tb = ath11k_wmi_tlv_parse_alloc(ab, skb->data, skb->len, GFP_ATOMIC);
-+	if (IS_ERR(tb)) {
-+		ret = PTR_ERR(tb);
-+		ath11k_warn(ab, "failed to parse tlv: %d\n", ret);
-+		return;
-+	}
-+
-+	ev = tb[WMI_TAG_OBSS_COLOR_COLLISION_EVT];
-+	if (!ev) {
-+		ath11k_warn(ab, "failed to fetch obss color collision ev");
-+		goto exit;
-+	}
-+
-+	arvif = ath11k_mac_get_arvif_by_vdev_id(ab, ev->vdev_id);
-+	switch (ev->evt_type) {
-+	case WMI_BSS_COLOR_COLLISION_DETECTION:
-+		break;
-+	case WMI_BSS_COLOR_COLLISION_DISABLE:
-+	case WMI_BSS_COLOR_FREE_SLOT_TIMER_EXPIRY:
-+	case WMI_BSS_COLOR_FREE_SLOT_AVAILABLE:
-+		goto exit;
-+	default:
-+		ath11k_warn(ab, "received unknown obss color collision detetction event\n");
-+		goto exit;
-+	}
-+
-+	ieeee80211_obss_color_collision_notify(arvif->vif, ev->obss_color_bitmap);
-+
-+	ath11k_dbg(ab, ATH11K_DBG_WMI,
-+		   "OBSS color collision detected vdev:%d, event:%d, bitmap:%08llx\n",
-+		   ev->vdev_id, ev->evt_type, ev->obss_color_bitmap);
-+exit:
-+	kfree(tb);
-+}
-+
- static void
- ath11k_fill_band_to_mac_param(struct ath11k_base  *soc,
- 			      struct wmi_host_pdev_band_to_mac *band_to_mac)
-@@ -5118,6 +5163,7 @@ static void ath11k_vdev_start_resp_event(struct ath11k_base *ab, struct sk_buff
- 
- static void ath11k_bcn_tx_status_event(struct ath11k_base *ab, struct sk_buff *skb)
- {
-+	struct ath11k_vif *arvif;
- 	u32 vdev_id, tx_status;
- 
- 	if (ath11k_pull_bcn_tx_status_ev(ab, skb->data, skb->len,
-@@ -5125,6 +5171,14 @@ static void ath11k_bcn_tx_status_event(struct ath11k_base *ab, struct sk_buff *s
- 		ath11k_warn(ab, "failed to extract bcn tx status");
- 		return;
- 	}
-+
-+	arvif = ath11k_mac_get_arvif_by_vdev_id(ab, vdev_id);
-+	if (!arvif) {
-+		ath11k_warn(ab, "invalid vdev id %d in bcn_tx_status",
-+			    vdev_id);
-+		return;
-+	}
-+	ath11k_mac_bcn_tx_event(arvif);
- }
- 
- static void ath11k_vdev_stopped_event(struct ath11k_base *ab, struct sk_buff *skb)
-@@ -5994,6 +6048,9 @@ static void ath11k_wmi_tlv_op_rx(struct ath11k_base *ab, struct sk_buff *skb)
- 	case WMI_PDEV_TEMPERATURE_EVENTID:
- 		ath11k_wmi_pdev_temperature_event(ab, skb);
- 		break;
-+	case WMI_OBSS_COLOR_COLLISION_DETECTION_EVENTID:
-+		ath11k_wmi_obss_color_collision_event(ab, skb);
-+		break;
- 	/* add Unsupported events here */
- 	case WMI_TBTTOFFSET_EXT_UPDATE_EVENTID:
- 	case WMI_VDEV_DELETE_RESP_EVENTID:
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index b9f3e559ced7..5676ae3d5454 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -723,6 +723,7 @@ enum wmi_tlv_event_id {
- 	WMI_MDNS_STATS_EVENTID = WMI_TLV_CMD(WMI_GRP_MDNS_OFL),
- 	WMI_SAP_OFL_ADD_STA_EVENTID = WMI_TLV_CMD(WMI_GRP_SAP_OFL),
- 	WMI_SAP_OFL_DEL_STA_EVENTID,
-+	WMI_OBSS_COLOR_COLLISION_DETECTION_EVENTID = WMI_EVT_GRP_START_ID(WMI_GRP_OBSS_OFL),
- 	WMI_OCB_SET_CONFIG_RESP_EVENTID = WMI_TLV_CMD(WMI_GRP_OCB),
- 	WMI_OCB_GET_TSF_TIMER_RESP_EVENTID,
- 	WMI_DCC_GET_STATS_RESP_EVENTID,
-@@ -4705,6 +4706,13 @@ struct wmi_obss_spatial_reuse_params_cmd {
- #define ATH11K_BSS_COLOR_COLLISION_DETECTION_STA_PERIOD_MS	10000
- #define ATH11K_BSS_COLOR_COLLISION_DETECTION_AP_PERIOD_MS	5000
- 
-+enum wmi_bss_color_collision {
-+	WMI_BSS_COLOR_COLLISION_DISABLE = 0,
-+	WMI_BSS_COLOR_COLLISION_DETECTION,
-+	WMI_BSS_COLOR_FREE_SLOT_TIMER_EXPIRY,
-+	WMI_BSS_COLOR_FREE_SLOT_AVAILABLE,
-+};
-+
- struct wmi_obss_color_collision_cfg_params_cmd {
- 	u32 tlv_header;
- 	u32 vdev_id;
-@@ -4722,6 +4730,12 @@ struct wmi_bss_color_change_enable_params_cmd {
- 	u32 enable;
- } __packed;
- 
-+struct wmi_obss_color_collision_event {
-+	u32 vdev_id;
-+	u32 evt_type;
-+	u64 obss_color_bitmap;
-+} __packed;
-+
- #define ATH11K_IPV4_TH_SEED_SIZE 5
- #define ATH11K_IPV6_TH_SEED_SIZE 11
- 
--- 
-2.25.1
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+RnJvbTogR292aW5kYXJhaiBTYW1pbmF0aGFuIDxnc2FtaW5AY29kZWF1cm9yYS5vcmc+Cgpjb2xk
+IGJvb3QgY2FsaWJyYXRpb24gaXMgdGhlIHByb2Nlc3MgdG8gY2FsaWJyYXRlIGFsbCB0aGUgY2hh
+bm5lbHMKZHVyaW5nIHRoZSBib290LXVwIHRvIGF2b2lkIHRoZSBjYWxpYnJhdGlvbiBkZWxheSBk
+dXJpbmcgdGhlCmNoYW5uZWwgY2hhbmdlLgpEdXJpbmcgdGhlIGJvb3QtdXAsIGZpcm13YXJlIHN0
+YXJ0ZWQgd2l0aCBtb2RlIOKAnGNvbGRfYm9vdF9jYWxpYnJhdGlvbuKAnQpGaXJtd2FyZSBjYWxp
+YnJhdGUgYWxsIGNoYW5uZWxzIGFuZCBnZW5lcmF0ZSBDYWxEYihERFIpLgpTdWJzZXF1ZW50IFdJ
+RkkgT04gd2lsbCByZXVzZSB0aGUgc2FtZSBDYWxEYi4KRmlybXdhcmUgcmVzdGFydGVkIHdpdGgg
+TWlzc2lvbiBtb2RlIHRvIGNvbnRpbnVlIHRoZSBub3JtYWwgb3BlcmF0aW9uLgoKY2FsZGIgbWVt
+b3J5IGFkZHJlc3Mgc2VuZCB0byBmaXJtd2FyZSB0aHJvdWdoIHRoZSBRTUkgbWVzc2FnZS5GaXJt
+d2FyZQp1c2UgdGhpcyBhZGRyZXNzIHRvIHN0b3JlIHRoZSBjYWxkYiBkYXRhIGFuZCB1c2UgaXQg
+dW50aWwgbmV4dCByZWJvb3QuCgpUaGlzIHdpbGwgZ2l2ZSB0aGUgaW1wcm92ZW1lbnQgZHVyaW5n
+IHRoZSBjaGFubmVsIGNoYW5nZS4gQnV0IGl0IGlzCmluY3JlYXNpbmcgdGhlIGJvb3QtdXAgdGlt
+ZSh1cCB0byAxNXNlYyBkZXBlbmQgb24gbnVtYmVyIG9mIHJhZGlvcykuClNvIGlmIHRoZSB1c2Vy
+IHdhbnQgdG8gcmVkdWNlIHRoZSBib290LXVwIHRpbWUgYW5kIGFjY2VwdGluZyBmb3IgY2hhbm5l
+bApjaGFuZ2UgZGVsYXksIHVzZXIgY2FuIGRpc2FibGUgdGhpcyBmZWF0dXJlIHVzaW5nIHRoZSBt
+b2R1bGUgcGFyYW0KY29sZF9ib290X2NhbCA9MC4KClNpZ25lZC1vZmYtYnk6IEdvdmluZGFyYWog
+U2FtaW5hdGhhbiA8Z3NhbWluQGNvZGVhdXJvcmEub3JnPgpDby1kZXZlbG9wZWQtYnk6IFNvd21p
+eWEgU3JlZSBFbGF2YWxhZ2FuIDxzc3JlZWVsYUBjb2RlYXVyb3JhLm9yZz4KU2lnbmVkLW9mZi1i
+eTogU293bWl5YSBTcmVlIEVsYXZhbGFnYW4gPHNzcmVlZWxhQGNvZGVhdXJvcmEub3JnPgotLS0K
+djI6CiAgIC0gRml4ZWQgY29tcGlsYXRpb25zIHdhcm5pbmdzCiAgICAgUmVwb3J0ZWQtYnk6IGtl
+cm5lbCB0ZXN0IHJvYm90IDxsa3BAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvbmV0L3dpcmVsZXNz
+L2F0aC9hdGgxMWsvYWhiLmMgIHwgMjYgKysrKysrKysrKysrKysKIGRyaXZlcnMvbmV0L3dpcmVs
+ZXNzL2F0aC9hdGgxMWsvY29yZS5jIHwgIDEgKwogZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0
+aDExay9jb3JlLmggfCAgNSArKysKIGRyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvcW1p
+LmMgIHwgNjYgKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrLS0tLQogZHJpdmVycy9uZXQv
+d2lyZWxlc3MvYXRoL2F0aDExay9xbWkuaCAgfCAgMyArKwogNSBmaWxlcyBjaGFuZ2VkLCA5NCBp
+bnNlcnRpb25zKCspLCA3IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvbmV0L3dp
+cmVsZXNzL2F0aC9hdGgxMWsvYWhiLmMgYi9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFr
+L2FoYi5jCmluZGV4IDdlOWJmZWEuLjJlMGQ2MWQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvbmV0L3dp
+cmVsZXNzL2F0aC9hdGgxMWsvYWhiLmMKKysrIGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0
+aDExay9haGIuYwpAQCAtNjM4LDYgKzYzOCwzMCBAQCBzdGF0aWMgdm9pZCBhdGgxMWtfYWhiX3Bv
+d2VyX2Rvd24oc3RydWN0IGF0aDExa19iYXNlICphYikKIAlycHJvY19zaHV0ZG93bihhYi0+dGd0
+X3Jwcm9jKTsKIH0KIAorc3RhdGljIGludCBhdGgxMWtfYWhiX2Z3cmVzZXRfZnJvbV9jb2xkX2Jv
+b3Qoc3RydWN0IGF0aDExa19iYXNlICphYikKK3sKKwlpbnQgdGltZW91dDsKKworCWlmIChhdGgx
+MWtfY29sZF9ib290X2NhbCA9PSAwIHx8IGFiLT5xbWkuY2FsX2RvbmUpCisJCXJldHVybiAwOwor
+CisJYXRoMTFrX2RiZyhhYiwgQVRIMTFLX0RCR19BSEIsICJ3YWl0IGZvciBjb2xkIGJvb3QgZG9u
+ZVxuIik7CisJdGltZW91dCA9IHdhaXRfZXZlbnRfdGltZW91dChhYi0+cW1pLmNvbGRfYm9vdF93
+YWl0cSwKKwkJCQkgICAgIChhYi0+cW1pLmNhbF9kb25lICA9PSAxKSwKKwkJCQkgICAgIEFUSDEx
+S19DT0xEX0JPT1RfRldfUkVTRVRfREVMQVkpOworCWlmICh0aW1lb3V0IDw9IDApIHsKKwkJYXRo
+MTFrX3dhcm4oYWIsICJDb2xkYm9vdCBDYWxpYnJhdGlvbiB0aW1lZCBvdXRcbiIpOworCQlyZXR1
+cm4gLUVUSU1FRE9VVDsKKwl9CisKKwkvKiByZXNldCB0aGUgZmlybXdhcmUgKi8KKwlhdGgxMWtf
+YWhiX3Bvd2VyX2Rvd24oYWIpOworCWF0aDExa19haGJfcG93ZXJfdXAoYWIpOworCisJYXRoMTFr
+X2RiZyhhYiwgQVRIMTFLX0RCR19BSEIsICJleGl0IHdhaXQgZm9yIGNvbGQgYm9vdCBkb25lXG4i
+KTsKKwlyZXR1cm4gMDsKK30KKwogc3RhdGljIHZvaWQgYXRoMTFrX2FoYl9pbml0X3FtaV9jZV9j
+b25maWcoc3RydWN0IGF0aDExa19iYXNlICphYikKIHsKIAlzdHJ1Y3QgYXRoMTFrX3FtaV9jZV9j
+ZmcgKmNmZyA9ICZhYi0+cW1pLmNlX2NmZzsKQEAgLTk2NCw2ICs5ODgsOCBAQCBzdGF0aWMgaW50
+IGF0aDExa19haGJfcHJvYmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldikKIAkJZ290byBl
+cnJfY2VfZnJlZTsKIAl9CiAKKwlhdGgxMWtfYWhiX2Z3cmVzZXRfZnJvbV9jb2xkX2Jvb3QoYWIp
+OworCiAJcmV0dXJuIDA7CiAKIGVycl9jZV9mcmVlOgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9uZXQv
+d2lyZWxlc3MvYXRoL2F0aDExay9jb3JlLmMgYi9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRo
+MTFrL2NvcmUuYwppbmRleCAzOGU4MzBhLi41MzNjN2IyIDEwMDY0NAotLS0gYS9kcml2ZXJzL25l
+dC93aXJlbGVzcy9hdGgvYXRoMTFrL2NvcmUuYworKysgYi9kcml2ZXJzL25ldC93aXJlbGVzcy9h
+dGgvYXRoMTFrL2NvcmUuYwpAQCAtODAxLDYgKzgwMSw3IEBAIHN0cnVjdCBhdGgxMWtfYmFzZSAq
+YXRoMTFrX2NvcmVfYWxsb2Moc3RydWN0IGRldmljZSAqZGV2LCBzaXplX3QgcHJpdl9zaXplLAog
+CUlOSVRfTElTVF9IRUFEKCZhYi0+cGVlcnMpOwogCWluaXRfd2FpdHF1ZXVlX2hlYWQoJmFiLT5w
+ZWVyX21hcHBpbmdfd3EpOwogCWluaXRfd2FpdHF1ZXVlX2hlYWQoJmFiLT53bWlfYWIudHhfY3Jl
+ZGl0c193cSk7CisJaW5pdF93YWl0cXVldWVfaGVhZCgmYWItPnFtaS5jb2xkX2Jvb3Rfd2FpdHEp
+OwogCUlOSVRfV09SSygmYWItPnJlc3RhcnRfd29yaywgYXRoMTFrX2NvcmVfcmVzdGFydCk7CiAJ
+dGltZXJfc2V0dXAoJmFiLT5yeF9yZXBsZW5pc2hfcmV0cnksIGF0aDExa19jZV9yeF9yZXBsZW5p
+c2hfcmV0cnksIDApOwogCWFiLT5kZXYgPSBkZXY7CmRpZmYgLS1naXQgYS9kcml2ZXJzL25ldC93
+aXJlbGVzcy9hdGgvYXRoMTFrL2NvcmUuaCBiL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgx
+MWsvY29yZS5oCmluZGV4IGI2Y2NkOWYuLmQ3MzZmYjAgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvbmV0
+L3dpcmVsZXNzL2F0aC9hdGgxMWsvY29yZS5oCisrKyBiL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0
+aC9hdGgxMWsvY29yZS5oCkBAIC05OCw4ICs5OCwxMyBAQCBlbnVtIGF0aDExa19maXJtd2FyZV9t
+b2RlIHsKIAogCS8qIGZhY3RvcnkgdGVzdHMgZXRjICovCiAJQVRIMTFLX0ZJUk1XQVJFX01PREVf
+RlRNLAorCisJLyogQ29sZCBib290IGNhbGlicmF0aW9uICovCisJQVRIMTFLX0ZJUk1XQVJFX01P
+REVfQ09MRF9CT09UID0gNywKIH07CiAKK2V4dGVybiBib29sIGF0aDExa19jb2xkX2Jvb3RfY2Fs
+OworCiAjZGVmaW5lIEFUSDExS19JUlFfTlVNX01BWCA1MgogI2RlZmluZSBBVEgxMUtfRVhUX0lS
+UV9HUlBfTlVNX01BWCAxMQogI2RlZmluZSBBVEgxMUtfRVhUX0lSUV9OVU1fTUFYCTE2CmRpZmYg
+LS1naXQgYS9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL3FtaS5jIGIvZHJpdmVycy9u
+ZXQvd2lyZWxlc3MvYXRoL2F0aDExay9xbWkuYwppbmRleCA1MDgxMmRmLi5mOWRmM2ZkIDEwMDY0
+NAotLS0gYS9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL3FtaS5jCisrKyBiL2RyaXZl
+cnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvcW1pLmMKQEAgLTksNiArOSwxMiBAQAogI2luY2x1
+ZGUgPGxpbnV4L29mLmg+CiAjaW5jbHVkZSA8bGludXgvZmlybXdhcmUuaD4KIAorYm9vbCBhdGgx
+MWtfY29sZF9ib290X2NhbCA9IDE7Cittb2R1bGVfcGFyYW1fbmFtZWQoY29sZF9ib290X2NhbCwg
+YXRoMTFrX2NvbGRfYm9vdF9jYWwsIGJvb2wsIDA2NDQpOworTU9EVUxFX1BBUk1fREVTQyhjb2xk
+X2Jvb3RfY2FsLAorCQkgIkNvbGQgYm9vdCB3aWxsIGJyaW5nIGRvd24gdGhlIGNoYW5uZWwgc3dp
+dGNoIHRpbWUgYnV0ICIKKwkJICJpdCB3aWxsIGluY3JlYXNlIHRoZSBkcml2ZXIgbG9hZCB0aW1l
+IChlbmFibGU6MSwgZGlzYWJsZTowKSIpOworCiBzdGF0aWMgc3RydWN0IHFtaV9lbGVtX2luZm8g
+cW1pX3dsYW5md19ob3N0X2NhcF9yZXFfbXNnX3YwMV9laVtdID0gewogCXsKIAkJLmRhdGFfdHlw
+ZQk9IFFNSV9PUFRfRkxBRywKQEAgLTE2OTIsOSArMTY5OCwxNiBAQCBzdGF0aWMgaW50IGF0aDEx
+a19xbWlfYWxsb2NfdGFyZ2V0X21lbV9jaHVuayhzdHJ1Y3QgYXRoMTFrX2Jhc2UgKmFiKQogCQkJ
+CWF0aDExa193YXJuKGFiLCAicW1pIG1lbSBzaXplIGlzIGxvdyB0byBsb2FkIGNhbGRhdGFcbiIp
+OwogCQkJCXJldHVybiAtRUlOVkFMOwogCQkJfQotCQkJLyogVE9ETyBhdGgxMWsgZG9lcyBub3Qg
+c3VwcG9ydCBjb2xkIGJvb3QgY2FsaWJyYXRpb24gKi8KLQkJCWFiLT5xbWkudGFyZ2V0X21lbVtp
+ZHhdLnBhZGRyID0gMDsKLQkJCWFiLT5xbWkudGFyZ2V0X21lbVtpZHhdLnZhZGRyID0gMDsKKwor
+CQkJaWYgKGF0aDExa19jb2xkX2Jvb3RfY2FsKSB7CisJCQkJYWItPnFtaS50YXJnZXRfbWVtW2lk
+eF0ucGFkZHIgPQorCQkJCQkJICAgICBBVEgxMUtfUU1JX0NBTERCX0FERFJFU1M7CisJCQkJYWIt
+PnFtaS50YXJnZXRfbWVtW2lkeF0udmFkZHIgPQorCQkJCQkJICAgICBBVEgxMUtfUU1JX0NBTERC
+X0FERFJFU1M7CisJCQl9IGVsc2UgeworCQkJCWFiLT5xbWkudGFyZ2V0X21lbVtpZHhdLnBhZGRy
+ID0gMDsKKwkJCQlhYi0+cW1pLnRhcmdldF9tZW1baWR4XS52YWRkciA9IDA7CisJCQl9CiAJCQlh
+Yi0+cW1pLnRhcmdldF9tZW1baWR4XS5zaXplID0gYWItPnFtaS50YXJnZXRfbWVtW2ldLnNpemU7
+CiAJCQlhYi0+cW1pLnRhcmdldF9tZW1baWR4XS50eXBlID0gYWItPnFtaS50YXJnZXRfbWVtW2ld
+LnR5cGU7CiAJCQlpZHgrKzsKQEAgLTIxMTEsNiArMjEyNCwzMiBAQCBpbnQgYXRoMTFrX3FtaV9m
+aXJtd2FyZV9zdGFydChzdHJ1Y3QgYXRoMTFrX2Jhc2UgKmFiLAogCXJldHVybiAwOwogfQogCitz
+dGF0aWMgaW50IGF0aDExa19xbWlfcHJvY2Vzc19jb2xkYm9vdF9jYWxpYnJhdGlvbihzdHJ1Y3Qg
+YXRoMTFrX2Jhc2UgKmFiKQoreworCWludCB0aW1lb3V0OworCWludCByZXQ7CisKKwlyZXQgPSBh
+dGgxMWtfcW1pX3dsYW5md19tb2RlX3NlbmQoYWIsIEFUSDExS19GSVJNV0FSRV9NT0RFX0NPTERf
+Qk9PVCk7CisJaWYgKHJldCA8IDApIHsKKwkJYXRoMTFrX3dhcm4oYWIsICJxbWkgZmFpbGVkIHRv
+IHNlbmQgd2xhbiBmdyBtb2RlOiVkXG4iLCByZXQpOworCQlyZXR1cm4gcmV0OworCX0KKworCWF0
+aDExa193YXJuKGFiLCAiQ29sZGJvb3QgY2FsaWJyYXRpb24gd2FpdCBzdGFydGVkXG4iKTsKKwor
+CXRpbWVvdXQgPSB3YWl0X2V2ZW50X3RpbWVvdXQoYWItPnFtaS5jb2xkX2Jvb3Rfd2FpdHEsCisJ
+CQkJICAgICAoYWItPnFtaS5jYWxfZG9uZSAgPT0gMSksCisJCQkJICAgICBBVEgxMUtfQ09MRF9C
+T09UX0ZXX1JFU0VUX0RFTEFZKTsKKwlpZiAodGltZW91dCA8PSAwKSB7CisJCWF0aDExa193YXJu
+KGFiLCAiQ29sZGJvb3QgQ2FsaWJyYXRpb24gdGltZWQgb3V0XG4iKTsKKwkJcmV0dXJuIC1FVElN
+RURPVVQ7CisJfQorCisJYXRoMTFrX3dhcm4oYWIsICJDb2xkYm9vdCBjYWxpYnJhdGlvbiB3YWl0
+IGVuZGVkXG4iKTsKKworCXJldHVybiAwOworfQorCiBzdGF0aWMgaW50CiBhdGgxMWtfcW1pX2Ry
+aXZlcl9ldmVudF9wb3N0KHN0cnVjdCBhdGgxMWtfcW1pICpxbWksCiAJCQkgICAgIGVudW0gYXRo
+MTFrX3FtaV9ldmVudF90eXBlIHR5cGUsCkBAIC0yMjQ3LDExICsyMjg2LDE4IEBAIHN0YXRpYyB2
+b2lkIGF0aDExa19xbWlfbXNnX2Z3X3JlYWR5X2NiKHN0cnVjdCBxbWlfaGFuZGxlICpxbWlfaGRs
+LAogCWF0aDExa19xbWlfZHJpdmVyX2V2ZW50X3Bvc3QocW1pLCBBVEgxMUtfUU1JX0VWRU5UX0ZX
+X1JFQURZLCBOVUxMKTsKIH0KIAotc3RhdGljIHZvaWQgYXRoMTFrX3FtaV9tc2dfY29sZF9ib290
+X2NhbF9kb25lX2NiKHN0cnVjdCBxbWlfaGFuZGxlICpxbWksCitzdGF0aWMgdm9pZCBhdGgxMWtf
+cW1pX21zZ19jb2xkX2Jvb3RfY2FsX2RvbmVfY2Ioc3RydWN0IHFtaV9oYW5kbGUgKnFtaV9oZGws
+CiAJCQkJCQkgc3RydWN0IHNvY2thZGRyX3FydHIgKnNxLAogCQkJCQkJIHN0cnVjdCBxbWlfdHhu
+ICp0eG4sCiAJCQkJCQkgY29uc3Qgdm9pZCAqZGVjb2RlZCkKIHsKKwlzdHJ1Y3QgYXRoMTFrX3Ft
+aSAqcW1pID0gY29udGFpbmVyX29mKHFtaV9oZGwsCisJCQkJCSAgICAgIHN0cnVjdCBhdGgxMWtf
+cW1pLCBoYW5kbGUpOworCXN0cnVjdCBhdGgxMWtfYmFzZSAqYWIgPSBxbWktPmFiOworCisJYWIt
+PnFtaS5jYWxfZG9uZSA9IDE7CisJd2FrZV91cCgmYWItPnFtaS5jb2xkX2Jvb3Rfd2FpdHEpOwor
+CWF0aDExa19kYmcoYWIsIEFUSDExS19EQkdfUU1JLCAicW1pIGNvbGQgYm9vdCBjYWxpYnJhdGlv
+biBkb25lXG4iKTsKIH0KIAogc3RhdGljIGNvbnN0IHN0cnVjdCBxbWlfbXNnX2hhbmRsZXIgYXRo
+MTFrX3FtaV9tc2dfaGFuZGxlcnNbXSA9IHsKQEAgLTIzNjQsOSArMjQxMCwxNSBAQCBzdGF0aWMg
+dm9pZCBhdGgxMWtfcW1pX2RyaXZlcl9ldmVudF93b3JrKHN0cnVjdCB3b3JrX3N0cnVjdCAqd29y
+aykKIAkJCQlicmVhazsKIAkJCX0KIAotCQkJYXRoMTFrX2NvcmVfcW1pX2Zpcm13YXJlX3JlYWR5
+KGFiKTsKLQkJCWFiLT5xbWkuY2FsX2RvbmUgPSAxOwotCQkJc2V0X2JpdChBVEgxMUtfRkxBR19S
+RUdJU1RFUkVELCAmYWItPmRldl9mbGFncyk7CisJCQlpZiAoYXRoMTFrX2NvbGRfYm9vdF9jYWwg
+JiYgYWItPnFtaS5jYWxfZG9uZSA9PSAwKSB7CisJCQkJYXRoMTFrX3FtaV9wcm9jZXNzX2NvbGRi
+b290X2NhbGlicmF0aW9uKGFiKTsKKwkJCX0gZWxzZSB7CisJCQkJY2xlYXJfYml0KEFUSDExS19G
+TEFHX0NSQVNIX0ZMVVNILAorCQkJCQkgICZhYi0+ZGV2X2ZsYWdzKTsKKwkJCQljbGVhcl9iaXQo
+QVRIMTFLX0ZMQUdfUkVDT1ZFUlksICZhYi0+ZGV2X2ZsYWdzKTsKKwkJCQlhdGgxMWtfY29yZV9x
+bWlfZmlybXdhcmVfcmVhZHkoYWIpOworCQkJCXNldF9iaXQoQVRIMTFLX0ZMQUdfUkVHSVNURVJF
+RCwgJmFiLT5kZXZfZmxhZ3MpOworCQkJfQogCiAJCQlicmVhazsKIAkJY2FzZSBBVEgxMUtfUU1J
+X0VWRU5UX0NPTERfQk9PVF9DQUxfRE9ORToKZGlmZiAtLWdpdCBhL2RyaXZlcnMvbmV0L3dpcmVs
+ZXNzL2F0aC9hdGgxMWsvcW1pLmggYi9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL3Ft
+aS5oCmluZGV4IDMzMDdiZTUuLjAyYzA1Y2MgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvbmV0L3dpcmVs
+ZXNzL2F0aC9hdGgxMWsvcW1pLmgKKysrIGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDEx
+ay9xbWkuaApAQCAtMTIsNiArMTIsNyBAQAogI2RlZmluZSBBVEgxMUtfSE9TVF9WRVJTSU9OX1NU
+UklORwkJIldJTiIKICNkZWZpbmUgQVRIMTFLX1FNSV9XTEFORldfVElNRU9VVF9NUwkJNTAwMAog
+I2RlZmluZSBBVEgxMUtfUU1JX01BWF9CREZfRklMRV9OQU1FX1NJWkUJNjQKKyNkZWZpbmUgQVRI
+MTFLX1FNSV9DQUxEQl9BRERSRVNTCQkweDRCQTAwMDAwCiAjZGVmaW5lIEFUSDExS19RTUlfQkRG
+X01BWF9TSVpFCQkJKDI1NiAqIDEwMjQpCiAjZGVmaW5lIEFUSDExS19RTUlfQ0FMREFUQV9PRkZT
+RVQJCSgxMjggKiAxMDI0KQogI2RlZmluZSBBVEgxMUtfUU1JX1dMQU5GV19NQVhfQlVJTERfSURf
+TEVOX1YwMQkxMjgKQEAgLTMxLDYgKzMyLDcgQEAKICNkZWZpbmUgUU1JX1dMQU5GV19NQVhfREFU
+QV9TSVpFX1YwMQkJNjE0NAogI2RlZmluZSBBVEgxMUtfRklSTVdBUkVfTU9ERV9PRkYJCTQKICNk
+ZWZpbmUgQVRIMTFLX1FNSV9UQVJHRVRfTUVNX01PREVfREVGQVVMVAkwCisjZGVmaW5lIEFUSDEx
+S19DT0xEX0JPT1RfRldfUkVTRVRfREVMQVkJCSg0MCAqIEhaKQogCiBzdHJ1Y3QgYXRoMTFrX2Jh
+c2U7CiAKQEAgLTExMCw2ICsxMTIsNyBAQCBzdHJ1Y3QgYXRoMTFrX3FtaSB7CiAJdTMyIHRhcmdl
+dF9tZW1fbW9kZTsKIAl1OCBjYWxfZG9uZTsKIAlzdHJ1Y3QgdGFyZ2V0X2luZm8gdGFyZ2V0Owor
+CXdhaXRfcXVldWVfaGVhZF90IGNvbGRfYm9vdF93YWl0cTsKIH07CiAKICNkZWZpbmUgUU1JX1dM
+QU5GV19IT1NUX0NBUF9SRVFfTVNHX1YwMV9NQVhfTEVOCQkxODkKLS0gCjIuNy40CgoKLS0gCmF0
+aDExayBtYWlsaW5nIGxpc3QKYXRoMTFrQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3Rz
+LmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9hdGgxMWsK
