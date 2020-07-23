@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from m43-7.mailgun.net ([69.72.43.7])
+Received: from mail29.static.mailgun.info ([104.130.122.29])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jya4Q-0000zH-2b
- for ath11k@lists.infradead.org; Thu, 23 Jul 2020 12:11:33 +0000
+ id 1jya4U-00010s-Jl
+ for ath11k@lists.infradead.org; Thu, 23 Jul 2020 12:11:35 +0000
 From: Anilkumar Kolli <akolli@codeaurora.org>
-Subject: [PATCH v4 3/3] ath11k: add IPQ6018 support
-Date: Thu, 23 Jul 2020 17:41:04 +0530
-Message-Id: <1595506264-6393-4-git-send-email-akolli@codeaurora.org>
+Subject: [PATCH v4 2/3] ath11k: copy ce service configs to hw_params
+Date: Thu, 23 Jul 2020 17:41:03 +0530
+Message-Id: <1595506264-6393-3-git-send-email-akolli@codeaurora.org>
 In-Reply-To: <1595506264-6393-1-git-send-email-akolli@codeaurora.org>
 References: <1595506264-6393-1-git-send-email-akolli@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,195 +25,123 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: devicetree@vger.kernel.org, akolli@codeaurora.org, linux-wireless@vger.kernel.org
 
-IPQ6018 has one 5G and one 2G radio with 2x2,
-shares ipq8074 configurations.
+No functional changes, added target ce service configurations
+to hw_params.
 
 Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
 ---
 V3:
- - rebased on Kalles patches
+ - added ce svc configs in hw_params
 
- drivers/net/wireless/ath/ath11k/ahb.c  | 115 ++++++++++++++++++++++++++++++++-
- drivers/net/wireless/ath/ath11k/core.c |  12 ++++
- drivers/net/wireless/ath/ath11k/core.h |   1 +
- 3 files changed, 126 insertions(+), 2 deletions(-)
+ drivers/net/wireless/ath/ath11k/ahb.c  | 20 +++++++++++++++-----
+ drivers/net/wireless/ath/ath11k/core.c |  8 +-------
+ drivers/net/wireless/ath/ath11k/core.h |  1 +
+ drivers/net/wireless/ath/ath11k/hw.h   |  2 ++
+ 4 files changed, 19 insertions(+), 12 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index aa74d27e5871..21f23ac75650 100644
+index 7e9bfeaaf4d2..aa74d27e5871 100644
 --- a/drivers/net/wireless/ath/ath11k/ahb.c
 +++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -20,6 +20,9 @@ static const struct of_device_id ath11k_ahb_of_match[] = {
- 	{ .compatible = "qcom,ipq8074-wifi",
- 	  .data = (void *)ATH11K_HW_IPQ8074,
- 	},
-+	{ .compatible = "qcom,ipq6018-wifi",
-+	  .data = (void *)ATH11K_HW_IPQ6018,
-+	},
- 	{ }
- };
+@@ -152,7 +152,7 @@ static const struct ce_pipe_config target_ce_config_wlan[] = {
+  * This table is derived from the CE_PCI TABLE, above.
+  * It is passed to the Target at startup for use by firmware.
+  */
+-static const struct service_to_pipe target_service_to_ce_map_wlan[] = {
++static const struct service_to_pipe target_service_to_ce_map_wlan_ipq8074[] = {
+ 	{
+ 		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_VO),
+ 		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
+@@ -644,8 +644,8 @@ static void ath11k_ahb_init_qmi_ce_config(struct ath11k_base *ab)
  
-@@ -264,6 +267,108 @@ static const struct service_to_pipe target_service_to_ce_map_wlan_ipq8074[] = {
- 	{ /* terminator entry */ }
- };
+ 	cfg->tgt_ce_len = ARRAY_SIZE(target_ce_config_wlan) - 1;
+ 	cfg->tgt_ce = target_ce_config_wlan;
+-	cfg->svc_to_ce_map_len = ARRAY_SIZE(target_service_to_ce_map_wlan);
+-	cfg->svc_to_ce_map = target_service_to_ce_map_wlan;
++	cfg->svc_to_ce_map_len = ab->hw_params.svc_to_ce_map_len;
++	cfg->svc_to_ce_map = ab->hw_params.svc_to_ce_map;
+ }
  
-+static const struct service_to_pipe target_service_to_ce_map_wlan_ipq6018[] = {
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_VO),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(3),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_VO),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(2),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_BK),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(3),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_BK),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(2),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_BE),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(3),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_BE),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(2),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_VI),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(3),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_VI),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(2),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_CONTROL),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(3),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_CONTROL),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(2),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_CONTROL_MAC1),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(7),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_CONTROL_MAC1),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(2),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_RSVD_CTRL),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(0),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_RSVD_CTRL),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(1),
-+	},
-+	{ /* not used */
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_TEST_RAW_STREAMS),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(0),
-+	},
-+	{ /* not used */
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_TEST_RAW_STREAMS),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(1),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_HTT_DATA_MSG),
-+		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-+		.pipenum = __cpu_to_le32(4),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_HTT_DATA_MSG),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(1),
-+	},
-+	{
-+		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_PKT_LOG),
-+		.pipedir = __cpu_to_le32(PIPEDIR_IN),	/* in = DL = target -> host */
-+		.pipenum = __cpu_to_le32(5),
-+	},
-+
-+	/* (Additions here) */
-+
-+	{ /* terminator entry */ }
-+};
-+
- #define ATH11K_IRQ_CE0_OFFSET 4
+ static void ath11k_ahb_free_ext_irq(struct ath11k_base *ab)
+@@ -853,8 +853,8 @@ static int ath11k_ahb_map_service_to_pipe(struct ath11k_base *ab, u16 service_id
+ 	bool ul_set = false, dl_set = false;
+ 	int i;
  
- static const char *irq_name[ATH11K_IRQ_NUM_MAX] = {
-@@ -956,9 +1061,15 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
- 		return ret;
+-	for (i = 0; i < ARRAY_SIZE(target_service_to_ce_map_wlan); i++) {
+-		entry = &target_service_to_ce_map_wlan[i];
++	for (i = 0; i < ab->hw_params.svc_to_ce_map_len; i++) {
++		entry = &ab->hw_params.svc_to_ce_map[i];
+ 
+ 		if (__le32_to_cpu(entry->service_id) != service_id)
+ 			continue;
+@@ -950,6 +950,16 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
+ 		goto err_hal_srng_deinit;
  	}
  
--	ab->hw_params.svc_to_ce_map_len =
-+	if (ab->hw_rev == ATH11K_HW_IPQ8074) {
-+		ab->hw_params.svc_to_ce_map_len =
- 			ARRAY_SIZE(target_service_to_ce_map_wlan_ipq8074);
--	ab->hw_params.svc_to_ce_map = target_service_to_ce_map_wlan_ipq8074;
-+		ab->hw_params.svc_to_ce_map = target_service_to_ce_map_wlan_ipq8074;
-+	} else if (ab->hw_rev == ATH11K_HW_IPQ6018) {
-+		ab->hw_params.svc_to_ce_map_len =
-+			ARRAY_SIZE(target_service_to_ce_map_wlan_ipq6018);
-+		ab->hw_params.svc_to_ce_map = target_service_to_ce_map_wlan_ipq6018;
++	ret = ath11k_init_hw_params(ab);
++	if (ret) {
++		ath11k_err(ab, "failed to get hw params %d\n", ret);
++		return ret;
 +	}
- 
++
++	ab->hw_params.svc_to_ce_map_len =
++			ARRAY_SIZE(target_service_to_ce_map_wlan_ipq8074);
++	ab->hw_params.svc_to_ce_map = target_service_to_ce_map_wlan_ipq8074;
++
  	ath11k_ahb_init_qmi_ce_config(ab);
  
+ 	ret = ath11k_core_init(ab);
 diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 0bf8bb1674dc..5f794f97d359 100644
+index 38e830a2395b..0bf8bb1674dc 100644
 --- a/drivers/net/wireless/ath/ath11k/core.c
 +++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -30,6 +30,18 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.bdf_addr = 0x4B0C0000,
- 		.hw_ops = &ipq8074_ops,
- 	},
-+	{
-+		.hw_rev = ATH11K_HW_IPQ6018,
-+		.name = "ipq6018 hw1.0",
-+		.fw = {
-+			.dir = "IPQ6018/hw1.0",
-+			.board_size = 256 * 1024,
-+			.cal_size = 256 * 1024,
-+		},
-+		.max_radios = 2,
-+		.bdf_addr = 0x4ABC0000,
-+		.hw_ops = &ipq6018_ops,
-+	},
- };
+@@ -703,7 +703,7 @@ static void ath11k_core_restart(struct work_struct *work)
+ 	complete(&ab->driver_recovery);
+ }
  
- static int ath11k_core_create_board_name(struct ath11k_base *ab, char *name,
+-static int ath11k_init_hw_params(struct ath11k_base *ab)
++int ath11k_init_hw_params(struct ath11k_base *ab)
+ {
+ 	const struct ath11k_hw_params *hw_params = NULL;
+ 	int i;
+@@ -746,12 +746,6 @@ int ath11k_core_init(struct ath11k_base *ab)
+ 	}
+ 	ab->tgt_rproc = prproc;
+ 
+-	ret = ath11k_init_hw_params(ab);
+-	if (ret) {
+-		ath11k_err(ab, "failed to get hw params %d\n", ret);
+-		return ret;
+-	}
+-
+ 	ret = ath11k_core_soc_create(ab);
+ 	if (ret) {
+ 		ath11k_err(ab, "failed to create soc core: %d\n", ret);
 diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 98b994984c25..fe11fcd9e914 100644
+index b6ccd9f93853..98b994984c25 100644
 --- a/drivers/net/wireless/ath/ath11k/core.h
 +++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -90,6 +90,7 @@ struct ath11k_skb_rxcb {
+@@ -852,6 +852,7 @@ struct ath11k_peer *ath11k_peer_find_by_id(struct ath11k_base *ab, int peer_id);
+ int ath11k_core_qmi_firmware_ready(struct ath11k_base *ab);
+ int ath11k_core_init(struct ath11k_base *ath11k);
+ void ath11k_core_deinit(struct ath11k_base *ath11k);
++int ath11k_init_hw_params(struct ath11k_base *ab);
+ struct ath11k_base *ath11k_core_alloc(struct device *dev, size_t priv_size,
+ 				      enum ath11k_bus bus);
+ void ath11k_core_free(struct ath11k_base *ath11k);
+diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
+index f31d53f6adb8..388cfb42ef93 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.h
++++ b/drivers/net/wireless/ath/ath11k/hw.h
+@@ -116,6 +116,8 @@ struct ath11k_hw_params {
+ 	} fw;
  
- enum ath11k_hw_rev {
- 	ATH11K_HW_IPQ8074,
-+	ATH11K_HW_IPQ6018,
+ 	const struct ath11k_hw_ops *hw_ops;
++	const struct service_to_pipe *svc_to_ce_map;
++	int svc_to_ce_map_len;
  };
  
- enum ath11k_firmware_mode {
+ extern const struct ath11k_hw_ops ipq8074_ops;
 -- 
 2.7.4
 
