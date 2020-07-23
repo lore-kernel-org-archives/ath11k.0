@@ -1,14 +1,19 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail29.static.mailgun.info ([104.130.122.29])
+Received: from mail-il1-f196.google.com ([209.85.166.196])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jya4U-00010s-Jl
- for ath11k@lists.infradead.org; Thu, 23 Jul 2020 12:11:35 +0000
-From: Anilkumar Kolli <akolli@codeaurora.org>
-Subject: [PATCH v4 2/3] ath11k: copy ce service configs to hw_params
-Date: Thu, 23 Jul 2020 17:41:03 +0530
-Message-Id: <1595506264-6393-3-git-send-email-akolli@codeaurora.org>
-In-Reply-To: <1595506264-6393-1-git-send-email-akolli@codeaurora.org>
+ id 1jydY5-0007Oz-2F
+ for ath11k@lists.infradead.org; Thu, 23 Jul 2020 15:54:21 +0000
+Received: by mail-il1-f196.google.com with SMTP id s21so4733592ilk.5
+ for <ath11k@lists.infradead.org>; Thu, 23 Jul 2020 08:54:20 -0700 (PDT)
+Date: Thu, 23 Jul 2020 09:54:18 -0600
+From: Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v4 1/3] dt: bindings: net: update compatible for ath11k
+Message-ID: <20200723155418.GA439882@bogus>
 References: <1595506264-6393-1-git-send-email-akolli@codeaurora.org>
+ <1595506264-6393-2-git-send-email-akolli@codeaurora.org>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <1595506264-6393-2-git-send-email-akolli@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -17,133 +22,51 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: devicetree@vger.kernel.org, akolli@codeaurora.org, linux-wireless@vger.kernel.org
+To: Anilkumar Kolli <akolli@codeaurora.org>
+Cc: devicetree@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-No functional changes, added target ce service configurations
-to hw_params.
+On Thu, 23 Jul 2020 17:41:02 +0530, Anilkumar Kolli wrote:
+> Add IPQ6018 wireless driver support,
+> its based on ath11k driver.
+> 
+> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
+> ---
+> V3:
+>  - Use 'enum' rather than oneOf+const.
+> V4:
+>  - removed oneOf, use just enum (Rob)
+> 
+>  Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
 
-Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
----
-V3:
- - added ce svc configs in hw_params
 
- drivers/net/wireless/ath/ath11k/ahb.c  | 20 +++++++++++++++-----
- drivers/net/wireless/ath/ath11k/core.c |  8 +-------
- drivers/net/wireless/ath/ath11k/core.h |  1 +
- drivers/net/wireless/ath/ath11k/hw.h   |  2 ++
- 4 files changed, 19 insertions(+), 12 deletions(-)
+My bot found errors running 'make dt_binding_check' on your patch:
 
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index 7e9bfeaaf4d2..aa74d27e5871 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.c
-+++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -152,7 +152,7 @@ static const struct ce_pipe_config target_ce_config_wlan[] = {
-  * This table is derived from the CE_PCI TABLE, above.
-  * It is passed to the Target at startup for use by firmware.
-  */
--static const struct service_to_pipe target_service_to_ce_map_wlan[] = {
-+static const struct service_to_pipe target_service_to_ce_map_wlan_ipq8074[] = {
- 	{
- 		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_VO),
- 		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
-@@ -644,8 +644,8 @@ static void ath11k_ahb_init_qmi_ce_config(struct ath11k_base *ab)
- 
- 	cfg->tgt_ce_len = ARRAY_SIZE(target_ce_config_wlan) - 1;
- 	cfg->tgt_ce = target_ce_config_wlan;
--	cfg->svc_to_ce_map_len = ARRAY_SIZE(target_service_to_ce_map_wlan);
--	cfg->svc_to_ce_map = target_service_to_ce_map_wlan;
-+	cfg->svc_to_ce_map_len = ab->hw_params.svc_to_ce_map_len;
-+	cfg->svc_to_ce_map = ab->hw_params.svc_to_ce_map;
- }
- 
- static void ath11k_ahb_free_ext_irq(struct ath11k_base *ab)
-@@ -853,8 +853,8 @@ static int ath11k_ahb_map_service_to_pipe(struct ath11k_base *ab, u16 service_id
- 	bool ul_set = false, dl_set = false;
- 	int i;
- 
--	for (i = 0; i < ARRAY_SIZE(target_service_to_ce_map_wlan); i++) {
--		entry = &target_service_to_ce_map_wlan[i];
-+	for (i = 0; i < ab->hw_params.svc_to_ce_map_len; i++) {
-+		entry = &ab->hw_params.svc_to_ce_map[i];
- 
- 		if (__le32_to_cpu(entry->service_id) != service_id)
- 			continue;
-@@ -950,6 +950,16 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
- 		goto err_hal_srng_deinit;
- 	}
- 
-+	ret = ath11k_init_hw_params(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to get hw params %d\n", ret);
-+		return ret;
-+	}
-+
-+	ab->hw_params.svc_to_ce_map_len =
-+			ARRAY_SIZE(target_service_to_ce_map_wlan_ipq8074);
-+	ab->hw_params.svc_to_ce_map = target_service_to_ce_map_wlan_ipq8074;
-+
- 	ath11k_ahb_init_qmi_ce_config(ab);
- 
- 	ret = ath11k_core_init(ab);
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 38e830a2395b..0bf8bb1674dc 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -703,7 +703,7 @@ static void ath11k_core_restart(struct work_struct *work)
- 	complete(&ab->driver_recovery);
- }
- 
--static int ath11k_init_hw_params(struct ath11k_base *ab)
-+int ath11k_init_hw_params(struct ath11k_base *ab)
- {
- 	const struct ath11k_hw_params *hw_params = NULL;
- 	int i;
-@@ -746,12 +746,6 @@ int ath11k_core_init(struct ath11k_base *ab)
- 	}
- 	ab->tgt_rproc = prproc;
- 
--	ret = ath11k_init_hw_params(ab);
--	if (ret) {
--		ath11k_err(ab, "failed to get hw params %d\n", ret);
--		return ret;
--	}
--
- 	ret = ath11k_core_soc_create(ab);
- 	if (ret) {
- 		ath11k_err(ab, "failed to create soc core: %d\n", ret);
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index b6ccd9f93853..98b994984c25 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -852,6 +852,7 @@ struct ath11k_peer *ath11k_peer_find_by_id(struct ath11k_base *ab, int peer_id);
- int ath11k_core_qmi_firmware_ready(struct ath11k_base *ab);
- int ath11k_core_init(struct ath11k_base *ath11k);
- void ath11k_core_deinit(struct ath11k_base *ath11k);
-+int ath11k_init_hw_params(struct ath11k_base *ab);
- struct ath11k_base *ath11k_core_alloc(struct device *dev, size_t priv_size,
- 				      enum ath11k_bus bus);
- void ath11k_core_free(struct ath11k_base *ath11k);
-diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
-index f31d53f6adb8..388cfb42ef93 100644
---- a/drivers/net/wireless/ath/ath11k/hw.h
-+++ b/drivers/net/wireless/ath/ath11k/hw.h
-@@ -116,6 +116,8 @@ struct ath11k_hw_params {
- 	} fw;
- 
- 	const struct ath11k_hw_ops *hw_ops;
-+	const struct service_to_pipe *svc_to_ce_map;
-+	int svc_to_ce_map_len;
- };
- 
- extern const struct ath11k_hw_ops ipq8074_ops;
--- 
-2.7.4
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml: properties:compatible: [{'enum': ['qcom,ipq8074-wifi', 'qcom,ipq6018-wifi']}] is not of type 'object', 'boolean'
+Documentation/devicetree/bindings/Makefile:20: recipe for target 'Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts' failed
+make[1]: *** [Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts] Error 1
+make[1]: *** Waiting for unfinished jobs....
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml: ignoring, error in schema: properties: compatible
+warning: no schema found in file: ./Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml: ignoring, error in schema: properties: compatible
+warning: no schema found in file: ./Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+Makefile:1347: recipe for target 'dt_binding_check' failed
+make: *** [dt_binding_check] Error 2
+
+
+See https://patchwork.ozlabs.org/patch/1334839
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure dt-schema is up to date:
+
+pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
+
+Please check and re-submit.
 
 
 -- 
