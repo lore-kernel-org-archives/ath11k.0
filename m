@@ -1,14 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from m43-7.mailgun.net ([69.72.43.7])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jya4M-0000za-1s
- for ath11k@lists.infradead.org; Thu, 23 Jul 2020 12:11:29 +0000
+ id 1jya4L-0000zH-Sm
+ for ath11k@lists.infradead.org; Thu, 23 Jul 2020 12:11:27 +0000
 From: Anilkumar Kolli <akolli@codeaurora.org>
-Subject: [PATCH v4 1/3] dt: bindings: net: update compatible for ath11k
-Date: Thu, 23 Jul 2020 17:41:02 +0530
-Message-Id: <1595506264-6393-2-git-send-email-akolli@codeaurora.org>
-In-Reply-To: <1595506264-6393-1-git-send-email-akolli@codeaurora.org>
-References: <1595506264-6393-1-git-send-email-akolli@codeaurora.org>
+Subject: [PATCH v4 0/3] ath11k: Add IPQ6018 support
+Date: Thu, 23 Jul 2020 17:41:01 +0530
+Message-Id: <1595506264-6393-1-git-send-email-akolli@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -25,34 +23,33 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: devicetree@vger.kernel.org, akolli@codeaurora.org, linux-wireless@vger.kernel.org
 
-Add IPQ6018 wireless driver support,
-its based on ath11k driver.
+IPQ6018 has a 5G radio and 2G radio with 2x2
+and shares IPQ8074 configuration.
 
-Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
----
+Tested on: IPQ6018 WLAN.HK.2.2-02134-QCAHKSWPL_SILICONZ-1
+Tested on: IPQ8074 WLAN.HK.2.4.0.1-00009-QCAHKSWPL_SILICONZ-1 
+
+Anilkumar Kolli (3):
+  dt: bindings: net: update compatible for ath11k
+  ath11k: copy ce service configs to hw_params
+  ath11k: add IPQ6018 support
+
+V2:
+ - Added devicetree reviewers 
 V3:
- - Use 'enum' rather than oneOf+const.
+ - addressed dt bindinds comments
+ - Reworked on Kalles patches
+ - copied ce svc configs to hw_params
 V4:
- - removed oneOf, use just enum (Rob)
+ - updated dt patch (Rob)
 
- Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ .../bindings/net/wireless/qcom,ath11k.yaml         |   4 +-
+ drivers/net/wireless/ath/ath11k/ahb.c              | 131 ++++++++++++++++++++-
+ drivers/net/wireless/ath/ath11k/core.c             |  20 ++--
+ drivers/net/wireless/ath/ath11k/core.h             |   2 +
+ drivers/net/wireless/ath/ath11k/hw.h               |   2 +
+ 5 files changed, 146 insertions(+), 13 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-index a1717db36dba..7cd1e323ca56 100644
---- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-+++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-@@ -17,7 +17,9 @@ description: |
- 
- properties:
-   compatible:
--    const: qcom,ipq8074-wifi
-+    - enum:
-+       - qcom,ipq8074-wifi
-+       - qcom,ipq6018-wifi
- 
-   reg:
-     maxItems: 1
 -- 
 2.7.4
 
