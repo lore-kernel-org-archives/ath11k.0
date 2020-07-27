@@ -1,16 +1,11 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from smtprelay0223.hostedemail.com ([216.40.44.223]
- helo=smtprelay.hostedemail.com)
- by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k0931-0007sr-TX
- for ath11k@lists.infradead.org; Mon, 27 Jul 2020 19:44:32 +0000
-Message-ID: <70ed74d65b5909615c7a9430f3479695465d3b1d.camel@perches.com>
-Subject: Re: [PATCH][next] ath11k: Use fallthrough pseudo-keyword
-From: Joe Perches <joe@perches.com>
-Date: Mon, 27 Jul 2020 12:44:26 -0700
-In-Reply-To: <20200727194415.GA1275@embeddedor>
-References: <20200727194415.GA1275@embeddedor>
-MIME-Version: 1.0
+Date: Mon, 27 Jul 2020 12:49:42 -0700 (PDT)
+Message-Id: <20200727.124942.1829978531845134184.davem@davemloft.net>
+Subject: Re: [PATCH] soc: qmi: allow user to set handle wq to hiprio
+From: David Miller <davem@davemloft.net>
+In-Reply-To: <AMoAtwB9DXJsyd-1khUpzqq9.1.1595862196133.Hmail.wenhu.wang@vivo.com>
+References: <AMoAtwB9DXJsyd-1khUpzqq9.1.1595862196133.Hmail.wenhu.wang@vivo.com>
+Mime-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -19,30 +14,30 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="iso-2022-jp"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: "Gustavo A. R. Silva" <gustavoars@kernel.org>, Kalle Valo <kvalo@codeaurora.org>, "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>
-Cc: netdev@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, linux-kernel@vger.kernel.org
+To: wenhu.wang@vivo.com
+Cc: ohad@wizery.com, linux-wireless@vger.kernel.org, alsa-devel@alsa-project.org, elder@kernel.org, linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org, ath10k@lists.infradead.org, bjorn.andersson@linaro.org, agross@kernel.org, srinivas.kandagatla@linaro.org, sibis@codeaurora.org, netdev@vger.kernel.org, kuba@kernel.org, ath11k@lists.infradead.org, kvalo@codeaurora.org
 
-On Mon, 2020-07-27 at 14:44 -0500, Gustavo A. R. Silva wrote:
-> Replace the existing /* fall through */ comments and its variants with
-> the new pseudo-keyword macro fallthrough[1]. Also, remove unnecessary
-> fall-through markings when it is the case.
-[]
-> diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
-[]
-> @@ -159,7 +159,7 @@ int ath11k_dp_srng_setup(struct ath11k_base *ab, struct dp_srng *ring,
->  			break;
->  		}
->  		/* follow through when ring_num >= 3 */
-> -		/* fall through */
-> +		fallthrough;
+From: 王文虎 <wenhu.wang@vivo.com>
+Date: Mon, 27 Jul 2020 23:03:16 +0800 (GMT+08:00)
 
-Likely the /* follow through ... */ comment can be deleted too
+> Currently the qmi_handle is initialized single threaded and strictly
+> ordered with the active set to 1. This is pretty simple and safe but
+> sometimes ineffency. So it is better to allow user to decide whether
+> a high priority workqueue should be used.
+> 
+> Signed-off-by: Wang Wenhu <wenhu.wang@vivo.com>
 
+Every caller sets the new value to "0", so you should submit this when
+you have a cast that actually sets it to "1".
 
+Also, the new argument should be "bool" instead of "unsigned int" and
+use "true" and "false" in the callers.
+
+Thank you.
 
 -- 
 ath11k mailing list
