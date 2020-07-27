@@ -1,11 +1,19 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Date: Mon, 27 Jul 2020 12:49:42 -0700 (PDT)
-Message-Id: <20200727.124942.1829978531845134184.davem@davemloft.net>
-Subject: Re: [PATCH] soc: qmi: allow user to set handle wq to hiprio
-From: David Miller <davem@davemloft.net>
-In-Reply-To: <AMoAtwB9DXJsyd-1khUpzqq9.1.1595862196133.Hmail.wenhu.wang@vivo.com>
-References: <AMoAtwB9DXJsyd-1khUpzqq9.1.1595862196133.Hmail.wenhu.wang@vivo.com>
-Mime-Version: 1.0
+Received: from mail-il1-f193.google.com ([209.85.166.193])
+ by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1k09G7-0000wF-TX
+ for ath11k@lists.infradead.org; Mon, 27 Jul 2020 19:58:04 +0000
+Received: by mail-il1-f193.google.com with SMTP id b18so8987327ilo.12
+ for <ath11k@lists.infradead.org>; Mon, 27 Jul 2020 12:58:03 -0700 (PDT)
+Date: Mon, 27 Jul 2020 13:58:01 -0600
+From: Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v5 1/3] dt: bindings: net: update compatible for ath11k
+Message-ID: <20200727195801.GA780731@bogus>
+References: <1595574325-16300-1-git-send-email-akolli@codeaurora.org>
+ <1595574325-16300-2-git-send-email-akolli@codeaurora.org>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <1595574325-16300-2-git-send-email-akolli@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -14,30 +22,31 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="iso-2022-jp"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: wenhu.wang@vivo.com
-Cc: ohad@wizery.com, linux-wireless@vger.kernel.org, alsa-devel@alsa-project.org, elder@kernel.org, linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org, ath10k@lists.infradead.org, bjorn.andersson@linaro.org, agross@kernel.org, srinivas.kandagatla@linaro.org, sibis@codeaurora.org, netdev@vger.kernel.org, kuba@kernel.org, ath11k@lists.infradead.org, kvalo@codeaurora.org
+To: Anilkumar Kolli <akolli@codeaurora.org>
+Cc: devicetree@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-From: 王文虎 <wenhu.wang@vivo.com>
-Date: Mon, 27 Jul 2020 23:03:16 +0800 (GMT+08:00)
-
-> Currently the qmi_handle is initialized single threaded and strictly
-> ordered with the active set to 1. This is pretty simple and safe but
-> sometimes ineffency. So it is better to allow user to decide whether
-> a high priority workqueue should be used.
+On Fri, 24 Jul 2020 12:35:23 +0530, Anilkumar Kolli wrote:
+> Add IPQ6018 wireless driver support,
+> its based on ath11k driver.
 > 
-> Signed-off-by: Wang Wenhu <wenhu.wang@vivo.com>
+> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
+> ---
+> V3:
+>  - Use 'enum' rather than oneOf+const.
+> V4:
+>  - removed oneOf, use just enum (Rob)
+> V5:
+>  - Fixes errors in 'make dt_binding_check' (Rob)
+> 
+>  Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
 
-Every caller sets the new value to "0", so you should submit this when
-you have a cast that actually sets it to "1".
-
-Also, the new argument should be "bool" instead of "unsigned int" and
-use "true" and "false" in the callers.
-
-Thank you.
+Reviewed-by: Rob Herring <robh@kernel.org>
 
 -- 
 ath11k mailing list
