@@ -2,17 +2,14 @@ Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
  helo=sipsolutions.net)
  by casper.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k170B-0001KH-9V
- for ath11k@lists.infradead.org; Thu, 30 Jul 2020 11:45:37 +0000
-Message-ID: <9271c24316853ac90dd466357ad5845dcc9891c9.camel@sipsolutions.net>
-Subject: Re: [PATCH 1/2] nl80211: vendor-cmd: qca: add command for ap power
- save
+ id 1k185l-0005lk-Lj
+ for ath11k@lists.infradead.org; Thu, 30 Jul 2020 12:55:28 +0000
+Message-ID: <5e0206e79c71ecfeae004dadcebaa44e40d96b8b.camel@sipsolutions.net>
+Subject: Re: [PATCH V2 01/10] nl80211: add basic multiple bssid support
 From: Johannes Berg <johannes@sipsolutions.net>
-Date: Thu, 30 Jul 2020 13:45:19 +0200
-In-Reply-To: <1589954745-12870-1-git-send-email-vnaralas@codeaurora.org>
- (sfid-20200520_080604_936685_6A1D30A3)
-References: <1589954745-12870-1-git-send-email-vnaralas@codeaurora.org>
- (sfid-20200520_080604_936685_6A1D30A3)
+Date: Thu, 30 Jul 2020 14:55:10 +0200
+In-Reply-To: <20200706115219.663650-1-john@phrozen.org>
+References: <20200706115219.663650-1-john@phrozen.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -26,23 +23,72 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Venkateswara Naralasetty <vnaralas@codeaurora.org>, ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
+To: John Crispin <john@phrozen.org>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-On Wed, 2020-05-20 at 11:35 +0530, Venkateswara Naralasetty wrote:
-> This patch is to add vendor command support to enable/disable
-> ap power save.
-> 
-> An example of usage: iw dev wlanx vendor send 0x1374 0x4a ap-ps <val>
-> 
-> 0x1374: vendor id
-> 0x4a: vendor subcmd id
-> val: 0 - disable power save
->      1 - enable power save
 
-This really doesn't pass the bar ...
+> +++ b/include/net/cfg80211.h
+> @@ -604,6 +604,8 @@ struct vif_params {
+>  	u8 macaddr[ETH_ALEN];
+>  	const u8 *vht_mumimo_groups;
+>  	const u8 *vht_mumimo_follow_addr;
+> +	enum nl80211_multi_bssid_mode multi_bssid_mode;
+> +	u32 multi_bssid_parent;
 
-https://wireless.wiki.kernel.org/en/developers/documentation/nl80211#vendor-specific_api
+Can you put this into a(n anonymous) sub-structure?
+
+This also missed kernel-doc.
+
+>   *	unprotected beacon report
+> + * @multi_bssid_mode: Is this a legacy, transmitted or non-transmitted bssid
+> + * @multi_bssid_parent: a non-transmitted bssid has a transmitted parent
+> + * @multi_bssid_list: linked list for tracking parent - child relations.
+
+
+FWIW, you can (now?) write
+
+ * @multi_bssid.list: ...
+
+to document data for anonymous sub-structures.
+
+I started applying this and changed it myself, but am having second
+thoughts on later patches in this series.
+
+> + * @NL80211_ATTR_MULTI_BSSID_MODE: Set the (Non-)Transmitted flag for this
+> + *	BSSIDs beacon.
+> + *
+> + * @NL80211_ATTR_MULTI_BSSID_PARENT: If this is a Non-Transmitted BSSID, define
+> + *	the parent interface.
+
+Maybe clarify
+
+	the parent (transmitted BSSID) interface
+
+or so?
+
+> +/**
+> + * enum nl80211_multi_bssid_mode - Multiple BSSID beacon type
+> + *
+> + * Used by cfg80211_ap_settings
+
+That'd be weird, but it's not true, you have it for
+NL80211_ATTR_MULTI_BSSID_MODE. Actually, that documentation should point
+here and say the values are from this enum.
+
+> + * @MULTIPLE_BSSID_LEGACY: This BSS is not part of a multiple BSSID group
+> + * @MULTIPLE_BSSID_TRANSMITTED: This BSS is broadcasting a multiple BSSID
+> + *                                    beacon
+
+Please just use a single tab there :)
+
+> +	[NL80211_ATTR_MULTI_BSSID_MODE] = NLA_POLICY_RANGE(NLA_U8,
+> +					NL80211_MULTIPLE_BSSID_LEGACY,
+> +					NL80211_MULTIPLE_BSSID_NON_TRANSMITTED),
+
+Maybe nicer as
+
+	[...] = 
+		NLA_POLICY_RANGE(...
 
 johannes
 
