@@ -1,18 +1,19 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail-eopbgr70049.outbound.protection.outlook.com ([40.107.7.49]
- helo=EUR04-HE1-obe.outbound.protection.outlook.com)
+Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k2FVM-0002ki-FI
- for ath11k@lists.infradead.org; Sun, 02 Aug 2020 15:02:31 +0000
-From: Shay Bar <Shay.Bar@celeno.com>
+ id 1k2G6h-0004RR-Go
+ for ath11k@lists.infradead.org; Sun, 02 Aug 2020 15:41:04 +0000
 Subject: Re: [PATCH V2 06/10] ath11k: pass multiple bssid info to FW when a
  new vdev is created
-Date: Sun, 2 Aug 2020 15:02:23 +0000
-Message-ID: <AM0P192MB0468CC75648CE04D26CF58C3E74C0@AM0P192MB0468.EURP192.PROD.OUTLOOK.COM>
 References: <20200706115219.663650-1-john@phrozen.org>
  <20200706115219.663650-6-john@phrozen.org>
-Content-Language: en-US
+ <AM0P192MB0468CC75648CE04D26CF58C3E74C0@AM0P192MB0468.EURP192.PROD.OUTLOOK.COM>
+From: John Crispin <john@phrozen.org>
+Message-ID: <9d6133d4-de34-95a9-709b-781fd45752ab@phrozen.org>
+Date: Sun, 2 Aug 2020 17:40:58 +0200
 MIME-Version: 1.0
+In-Reply-To: <AM0P192MB0468CC75648CE04D26CF58C3E74C0@AM0P192MB0468.EURP192.PROD.OUTLOOK.COM>
+Content-Language: en-US
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -21,60 +22,47 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: John Crispin <john@phrozen.org>, Johannes Berg <johannes@sipsolutions.net>
+To: Shay Bar <Shay.Bar@celeno.com>, Johannes Berg <johannes@sipsolutions.net>
 Cc: "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>, "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
 
-On 06/07/2020 14:52, John Crispin wrote:
-> -static void
-> +static int
->  ath11k_mac_setup_vdev_create_params(struct ath11k_vif *arvif,
->                                     struct vdev_create_params *params)
->  {
->         struct ath11k *ar = arvif->ar;
->         struct ath11k_pdev *pdev = ar->pdev;
-> +       struct ieee80211_vif *parent;
->
->         params->if_id = arvif->vdev_id;
->         params->type = arvif->vdev_type;
->         params->subtype = arvif->vdev_subtype;
->         params->pdev_id = pdev->pdev_id;
-> +       params->vdevid_trans = 0;
-> +       switch (ieee80211_get_multi_bssid_mode(arvif->vif)) {
-> +       case NL80211_MULTIPLE_BSSID_TRANSMITTED:
-> +               params->flags = WMI_HOST_VDEV_FLAGS_TRANSMIT_AP;
-> +               break;
-> +       case NL80211_MULTIPLE_BSSID_NON_TRANSMITTED:
-> +               params->flags = WMI_HOST_VDEV_FLAGS_NON_TRANSMIT_AP;
-> +               parent = ieee80211_get_multi_bssid_parent(arvif->vif);
-> +               if (!parent)
-> +                       return -ENOENT;
-> +               if (ar->hw->wiphy != ieee80211_vif_to_wdev(parent)->wiphy)
-> +                       return -EINVAL;
-> +               params->vdevid_trans = ath11k_vif_to_arvif(parent)->vdev_id;
-> +               break;
-> +       default:
-> +               params->flags = WMI_HOST_VDEV_FLAGS_NON_MBSSID_AP;
-> +               break;
-> +       }
-
-Hi John,
-The ath11k_mac_setup_vdev_create_params() is called from the add_interface hook
-which is called from ieee80211_do_open() which is, for the first (TRANSMITTED)
-interface, before wdev->multi_bssid_mode is set to NL80211_MULTIPLE_BSSID_TRANSMITTED
-(set upon start_ap from hostapd).
-Can you please explain how wdev->multi_bssid_mode can have
-NL80211_MULTIPLE_BSSID_TRANSMITTED value in the above code ?
-
-________________________________
-The information transmitted is intended only for the person or entity to which it is addressed and may contain confidential and/or privileged material. Any retransmission, dissemination, copying or other use of, or taking of any action in reliance upon this information is prohibited. If you received this in error, please contact the sender and delete the material from any computer. Nothing contained herein shall be deemed as a representation, warranty or a commitment by Celeno. No warranties are expressed or implied, including, but not limited to, any implied warranties of non-infringement, merchantability and fitness for a particular purpose.
-________________________________
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+Ck9uIDAyLjA4LjIwIDE3OjAyLCBTaGF5IEJhciB3cm90ZToKPiBPbiAwNi8wNy8yMDIwIDE0OjUy
+LCBKb2huIENyaXNwaW4gd3JvdGU6Cj4+IC1zdGF0aWMgdm9pZAo+PiArc3RhdGljIGludAo+PiAg
+IGF0aDExa19tYWNfc2V0dXBfdmRldl9jcmVhdGVfcGFyYW1zKHN0cnVjdCBhdGgxMWtfdmlmICph
+cnZpZiwKPj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHN0cnVjdCB2ZGV2
+X2NyZWF0ZV9wYXJhbXMgKnBhcmFtcykKPj4gICB7Cj4+ICAgICAgICAgIHN0cnVjdCBhdGgxMWsg
+KmFyID0gYXJ2aWYtPmFyOwo+PiAgICAgICAgICBzdHJ1Y3QgYXRoMTFrX3BkZXYgKnBkZXYgPSBh
+ci0+cGRldjsKPj4gKyAgICAgICBzdHJ1Y3QgaWVlZTgwMjExX3ZpZiAqcGFyZW50Owo+Pgo+PiAg
+ICAgICAgICBwYXJhbXMtPmlmX2lkID0gYXJ2aWYtPnZkZXZfaWQ7Cj4+ICAgICAgICAgIHBhcmFt
+cy0+dHlwZSA9IGFydmlmLT52ZGV2X3R5cGU7Cj4+ICAgICAgICAgIHBhcmFtcy0+c3VidHlwZSA9
+IGFydmlmLT52ZGV2X3N1YnR5cGU7Cj4+ICAgICAgICAgIHBhcmFtcy0+cGRldl9pZCA9IHBkZXYt
+PnBkZXZfaWQ7Cj4+ICsgICAgICAgcGFyYW1zLT52ZGV2aWRfdHJhbnMgPSAwOwo+PiArICAgICAg
+IHN3aXRjaCAoaWVlZTgwMjExX2dldF9tdWx0aV9ic3NpZF9tb2RlKGFydmlmLT52aWYpKSB7Cj4+
+ICsgICAgICAgY2FzZSBOTDgwMjExX01VTFRJUExFX0JTU0lEX1RSQU5TTUlUVEVEOgo+PiArICAg
+ICAgICAgICAgICAgcGFyYW1zLT5mbGFncyA9IFdNSV9IT1NUX1ZERVZfRkxBR1NfVFJBTlNNSVRf
+QVA7Cj4+ICsgICAgICAgICAgICAgICBicmVhazsKPj4gKyAgICAgICBjYXNlIE5MODAyMTFfTVVM
+VElQTEVfQlNTSURfTk9OX1RSQU5TTUlUVEVEOgo+PiArICAgICAgICAgICAgICAgcGFyYW1zLT5m
+bGFncyA9IFdNSV9IT1NUX1ZERVZfRkxBR1NfTk9OX1RSQU5TTUlUX0FQOwo+PiArICAgICAgICAg
+ICAgICAgcGFyZW50ID0gaWVlZTgwMjExX2dldF9tdWx0aV9ic3NpZF9wYXJlbnQoYXJ2aWYtPnZp
+Zik7Cj4+ICsgICAgICAgICAgICAgICBpZiAoIXBhcmVudCkKPj4gKyAgICAgICAgICAgICAgICAg
+ICAgICAgcmV0dXJuIC1FTk9FTlQ7Cj4+ICsgICAgICAgICAgICAgICBpZiAoYXItPmh3LT53aXBo
+eSAhPSBpZWVlODAyMTFfdmlmX3RvX3dkZXYocGFyZW50KS0+d2lwaHkpCj4+ICsgICAgICAgICAg
+ICAgICAgICAgICAgIHJldHVybiAtRUlOVkFMOwo+PiArICAgICAgICAgICAgICAgcGFyYW1zLT52
+ZGV2aWRfdHJhbnMgPSBhdGgxMWtfdmlmX3RvX2FydmlmKHBhcmVudCktPnZkZXZfaWQ7Cj4+ICsg
+ICAgICAgICAgICAgICBicmVhazsKPj4gKyAgICAgICBkZWZhdWx0Ogo+PiArICAgICAgICAgICAg
+ICAgcGFyYW1zLT5mbGFncyA9IFdNSV9IT1NUX1ZERVZfRkxBR1NfTk9OX01CU1NJRF9BUDsKPj4g
+KyAgICAgICAgICAgICAgIGJyZWFrOwo+PiArICAgICAgIH0KPiBIaSBKb2huLAo+IFRoZSBhdGgx
+MWtfbWFjX3NldHVwX3ZkZXZfY3JlYXRlX3BhcmFtcygpIGlzIGNhbGxlZCBmcm9tIHRoZSBhZGRf
+aW50ZXJmYWNlIGhvb2sKPiB3aGljaCBpcyBjYWxsZWQgZnJvbSBpZWVlODAyMTFfZG9fb3Blbigp
+IHdoaWNoIGlzLCBmb3IgdGhlIGZpcnN0IChUUkFOU01JVFRFRCkKPiBpbnRlcmZhY2UsIGJlZm9y
+ZSB3ZGV2LT5tdWx0aV9ic3NpZF9tb2RlIGlzIHNldCB0byBOTDgwMjExX01VTFRJUExFX0JTU0lE
+X1RSQU5TTUlUVEVECj4gKHNldCB1cG9uIHN0YXJ0X2FwIGZyb20gaG9zdGFwZCkuCj4gQ2FuIHlv
+dSBwbGVhc2UgZXhwbGFpbiBob3cgd2Rldi0+bXVsdGlfYnNzaWRfbW9kZSBjYW4gaGF2ZQo+IE5M
+ODAyMTFfTVVMVElQTEVfQlNTSURfVFJBTlNNSVRURUQgdmFsdWUgaW4gdGhlIGFib3ZlIGNvZGUg
+PwoKSGkgU2hheSwKCmh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcGF0Y2gvMTE1ODcwODUv
+CgogwqDCoMKgIEpvaG4KCgotLSAKYXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtAbGlzdHMuaW5m
+cmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2F0
+aDExawo=
