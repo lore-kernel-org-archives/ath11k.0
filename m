@@ -1,16 +1,10 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
- helo=sipsolutions.net)
- by casper.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k19h7-0003s0-Ss
- for ath11k@lists.infradead.org; Thu, 30 Jul 2020 14:38:08 +0000
-Message-ID: <3a608bb13f7115e8b019eea770691239a769dc24.camel@sipsolutions.net>
-Subject: Re: [PATCH V2 01/10] nl80211: add basic multiple bssid support
-From: Johannes Berg <johannes@sipsolutions.net>
-Date: Thu, 30 Jul 2020 16:37:59 +0200
-In-Reply-To: <20200706115219.663650-1-john@phrozen.org>
-References: <20200706115219.663650-1-john@phrozen.org>
+Message-ID: <ADUAnwD8DVByMMSsrG-r3Kri.3.1596374087585.Hmail.wenhu.wang@vivo.com>
+Subject: =?UTF-8?B?UmU6UmU6IFtQQVRDSF0gc29jOiBxbWk6IGFsbG93IHVzZXIgdG8gc2V0IGhhbmRsZSB3cSB0byBoaXByaW8=?=
+In-Reply-To: <20200727204521.GB229995@builder.lan>
 MIME-Version: 1.0
+From: =?UTF-8?B?546L5paH6JmO?= <wenhu.wang@vivo.com>
+Date: Sun, 2 Aug 2020 21:14:47 +0800 (GMT+08:00)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,33 +17,51 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: John Crispin <john@phrozen.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc: ohad@wizery.com, linux-wireless@vger.kernel.org, alsa-devel@alsa-project.org, elder@kernel.org, linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org, ath10k@lists.infradead.org, ath11k@lists.infradead.org, agross@kernel.org, srinivas.kandagatla@linaro.org, sibis@codeaurora.org, netdev@vger.kernel.org, kuba@kernel.org, davem@davemloft.net, kvalo@codeaurora.org
 
-On Mon, 2020-07-06 at 13:52 +0200, John Crispin wrote:
-> 
-> @@ -3761,6 +3765,16 @@ static int nl80211_new_interface(struct sk_buff *skb, struct genl_info *info)
->  	if (err < 0)
->  		return err;
->  
-> +	if (info->attrs[NL80211_ATTR_MULTI_BSSID_MODE])
-> +		params.multi_bssid_mode =
-> +			nla_get_u8(info->attrs[NL80211_ATTR_MULTI_BSSID_MODE]);
-[...]
 
-Oh .. missed this completely until I got to the iw patch :)
+>> Currently the qmi_handle is initialized single threaded and strictly
+>> ordered with the active set to 1. This is pretty simple and safe but
+>> sometimes ineffency. So it is better to allow user to decide whether
+>> a high priority workqueue should be used.
+>
+>Can you please describe a scenario where this is needed/desired and
+>perhaps also comment on why this is not always desired?
+>
 
-Why are you adding this in *new interface? IMHO it would be more
-applicable to "start_ap"? I don't see a reason why an interface couldn't
-change the role here regarding multi-BSSID while it's down?
+Well, one scenario is that when the AP wants to check the status of the
+subsystems and the whole QMI data path. It first sends out an indication
+which asks the subsystems to report their status. After the subsystems send
+responses to the AP, the responses then are queued on the workqueue of
+the QMI handler. Actually the AP is configured to do the check in a specific
+interval regularly. And it check the report counts within a specific delay after
+it sends out the related indication. When the AP has been under a heavy
+load for long, the reports are queue their without CPU resource to update
+the report counts within the specific delay. As a result, the thread that checks
+the report counts takes it misleadingly that the QMI data path or the subsystems
+are crashed.
 
-That might also address some of the whole "cfg80211" vs. "mac80211"
-thing I raised previously, since now cfg80211 would have a lot more
-knowledge about things if the interface is already operating, i.e. it
-could track and validate more of this?
+The patch can really resolve the problem mentioned abolve.
 
-johannes
+For narmal situations, it is enough to just use normal priority QMI workqueue.
 
+>Regards,
+>Bjorn
+>
+>> 
+>> Signed-off-by: Wang Wenhu <wenhu.wang@vivo.com>
+>> ---
+>>  drivers/net/ipa/ipa_qmi.c             | 4 ++--
+>>  drivers/net/wireless/ath/ath10k/qmi.c | 2 +-
+>>  drivers/net/wireless/ath/ath11k/qmi.c | 2 +-
+>>  drivers/remoteproc/qcom_sysmon.c      | 2 +-
+>>  drivers/slimbus/qcom-ngd-ctrl.c       | 4 ++--
+>>  drivers/soc/qcom/pdr_interface.c      | 4 ++--
+>>  drivers/soc/qcom/qmi_interface.c      | 9 +++++++--
+>>  include/linux/soc/qcom/qmi.h          | 3 ++-
+>>  samples/qmi/qmi_sample_client.c       | 4 ++--
+>>  9 files changed, 20 insertions(+), 14 deletions(-)
 
 -- 
 ath11k mailing list
