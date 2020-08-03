@@ -1,19 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k2G6h-0004RR-Go
- for ath11k@lists.infradead.org; Sun, 02 Aug 2020 15:41:04 +0000
-Subject: Re: [PATCH V2 06/10] ath11k: pass multiple bssid info to FW when a
- new vdev is created
-References: <20200706115219.663650-1-john@phrozen.org>
- <20200706115219.663650-6-john@phrozen.org>
- <AM0P192MB0468CC75648CE04D26CF58C3E74C0@AM0P192MB0468.EURP192.PROD.OUTLOOK.COM>
+ id 1k2W0c-0001eb-Px
+ for ath11k@lists.infradead.org; Mon, 03 Aug 2020 08:39:51 +0000
 From: John Crispin <john@phrozen.org>
-Message-ID: <9d6133d4-de34-95a9-709b-781fd45752ab@phrozen.org>
-Date: Sun, 2 Aug 2020 17:40:58 +0200
+Subject: [PATCH V5 1/2] ath11k: switch to using ieee80211_tx_status_ext()
+Date: Mon,  3 Aug 2020 10:39:41 +0200
+Message-Id: <20200803083942.128767-1-john@phrozen.org>
 MIME-Version: 1.0
-In-Reply-To: <AM0P192MB0468CC75648CE04D26CF58C3E74C0@AM0P192MB0468.EURP192.PROD.OUTLOOK.COM>
-Content-Language: en-US
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,47 +16,74 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Shay Bar <Shay.Bar@celeno.com>, Johannes Berg <johannes@sipsolutions.net>
-Cc: "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>, "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
+To: Kalle Valo <kvalo@codeaurora.org>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-Ck9uIDAyLjA4LjIwIDE3OjAyLCBTaGF5IEJhciB3cm90ZToKPiBPbiAwNi8wNy8yMDIwIDE0OjUy
-LCBKb2huIENyaXNwaW4gd3JvdGU6Cj4+IC1zdGF0aWMgdm9pZAo+PiArc3RhdGljIGludAo+PiAg
-IGF0aDExa19tYWNfc2V0dXBfdmRldl9jcmVhdGVfcGFyYW1zKHN0cnVjdCBhdGgxMWtfdmlmICph
-cnZpZiwKPj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHN0cnVjdCB2ZGV2
-X2NyZWF0ZV9wYXJhbXMgKnBhcmFtcykKPj4gICB7Cj4+ICAgICAgICAgIHN0cnVjdCBhdGgxMWsg
-KmFyID0gYXJ2aWYtPmFyOwo+PiAgICAgICAgICBzdHJ1Y3QgYXRoMTFrX3BkZXYgKnBkZXYgPSBh
-ci0+cGRldjsKPj4gKyAgICAgICBzdHJ1Y3QgaWVlZTgwMjExX3ZpZiAqcGFyZW50Owo+Pgo+PiAg
-ICAgICAgICBwYXJhbXMtPmlmX2lkID0gYXJ2aWYtPnZkZXZfaWQ7Cj4+ICAgICAgICAgIHBhcmFt
-cy0+dHlwZSA9IGFydmlmLT52ZGV2X3R5cGU7Cj4+ICAgICAgICAgIHBhcmFtcy0+c3VidHlwZSA9
-IGFydmlmLT52ZGV2X3N1YnR5cGU7Cj4+ICAgICAgICAgIHBhcmFtcy0+cGRldl9pZCA9IHBkZXYt
-PnBkZXZfaWQ7Cj4+ICsgICAgICAgcGFyYW1zLT52ZGV2aWRfdHJhbnMgPSAwOwo+PiArICAgICAg
-IHN3aXRjaCAoaWVlZTgwMjExX2dldF9tdWx0aV9ic3NpZF9tb2RlKGFydmlmLT52aWYpKSB7Cj4+
-ICsgICAgICAgY2FzZSBOTDgwMjExX01VTFRJUExFX0JTU0lEX1RSQU5TTUlUVEVEOgo+PiArICAg
-ICAgICAgICAgICAgcGFyYW1zLT5mbGFncyA9IFdNSV9IT1NUX1ZERVZfRkxBR1NfVFJBTlNNSVRf
-QVA7Cj4+ICsgICAgICAgICAgICAgICBicmVhazsKPj4gKyAgICAgICBjYXNlIE5MODAyMTFfTVVM
-VElQTEVfQlNTSURfTk9OX1RSQU5TTUlUVEVEOgo+PiArICAgICAgICAgICAgICAgcGFyYW1zLT5m
-bGFncyA9IFdNSV9IT1NUX1ZERVZfRkxBR1NfTk9OX1RSQU5TTUlUX0FQOwo+PiArICAgICAgICAg
-ICAgICAgcGFyZW50ID0gaWVlZTgwMjExX2dldF9tdWx0aV9ic3NpZF9wYXJlbnQoYXJ2aWYtPnZp
-Zik7Cj4+ICsgICAgICAgICAgICAgICBpZiAoIXBhcmVudCkKPj4gKyAgICAgICAgICAgICAgICAg
-ICAgICAgcmV0dXJuIC1FTk9FTlQ7Cj4+ICsgICAgICAgICAgICAgICBpZiAoYXItPmh3LT53aXBo
-eSAhPSBpZWVlODAyMTFfdmlmX3RvX3dkZXYocGFyZW50KS0+d2lwaHkpCj4+ICsgICAgICAgICAg
-ICAgICAgICAgICAgIHJldHVybiAtRUlOVkFMOwo+PiArICAgICAgICAgICAgICAgcGFyYW1zLT52
-ZGV2aWRfdHJhbnMgPSBhdGgxMWtfdmlmX3RvX2FydmlmKHBhcmVudCktPnZkZXZfaWQ7Cj4+ICsg
-ICAgICAgICAgICAgICBicmVhazsKPj4gKyAgICAgICBkZWZhdWx0Ogo+PiArICAgICAgICAgICAg
-ICAgcGFyYW1zLT5mbGFncyA9IFdNSV9IT1NUX1ZERVZfRkxBR1NfTk9OX01CU1NJRF9BUDsKPj4g
-KyAgICAgICAgICAgICAgIGJyZWFrOwo+PiArICAgICAgIH0KPiBIaSBKb2huLAo+IFRoZSBhdGgx
-MWtfbWFjX3NldHVwX3ZkZXZfY3JlYXRlX3BhcmFtcygpIGlzIGNhbGxlZCBmcm9tIHRoZSBhZGRf
-aW50ZXJmYWNlIGhvb2sKPiB3aGljaCBpcyBjYWxsZWQgZnJvbSBpZWVlODAyMTFfZG9fb3Blbigp
-IHdoaWNoIGlzLCBmb3IgdGhlIGZpcnN0IChUUkFOU01JVFRFRCkKPiBpbnRlcmZhY2UsIGJlZm9y
-ZSB3ZGV2LT5tdWx0aV9ic3NpZF9tb2RlIGlzIHNldCB0byBOTDgwMjExX01VTFRJUExFX0JTU0lE
-X1RSQU5TTUlUVEVECj4gKHNldCB1cG9uIHN0YXJ0X2FwIGZyb20gaG9zdGFwZCkuCj4gQ2FuIHlv
-dSBwbGVhc2UgZXhwbGFpbiBob3cgd2Rldi0+bXVsdGlfYnNzaWRfbW9kZSBjYW4gaGF2ZQo+IE5M
-ODAyMTFfTVVMVElQTEVfQlNTSURfVFJBTlNNSVRURUQgdmFsdWUgaW4gdGhlIGFib3ZlIGNvZGUg
-PwoKSGkgU2hheSwKCmh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcGF0Y2gvMTE1ODcwODUv
-CgogwqDCoMKgIEpvaG4KCgotLSAKYXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtAbGlzdHMuaW5m
-cmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2F0
-aDExawo=
+This allows us to pass HE rates down into the stack.
+
+Signed-off-by: John Crispin <john@phrozen.org>
+---
+Changes in V5
+* fix sparse warnings
+
+ drivers/net/wireless/ath/ath11k/dp_tx.c | 24 +++++++++++++++++++-----
+ 1 file changed, 19 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
+index 1af76775b1a8..a1f16f589b98 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_tx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
+@@ -393,9 +393,12 @@ static void ath11k_dp_tx_complete_msdu(struct ath11k *ar,
+ 				       struct sk_buff *msdu,
+ 				       struct hal_tx_status *ts)
+ {
++	struct ieee80211_tx_status status = { };
+ 	struct ath11k_base *ab = ar->ab;
+ 	struct ieee80211_tx_info *info;
+ 	struct ath11k_skb_cb *skb_cb;
++	struct ath11k_peer *peer;
++	struct ath11k_sta *arsta;
+ 
+ 	if (WARN_ON_ONCE(ts->buf_rel_source != HAL_WBM_REL_SRC_MODULE_TQM)) {
+ 		/* Must not happen */
+@@ -459,12 +462,23 @@ static void ath11k_dp_tx_complete_msdu(struct ath11k *ar,
+ 		ath11k_dp_tx_cache_peer_stats(ar, msdu, ts);
+ 	}
+ 
+-	/* NOTE: Tx rate status reporting. Tx completion status does not have
+-	 * necessary information (for example nss) to build the tx rate.
+-	 * Might end up reporting it out-of-band from HTT stats.
+-	 */
+ 
+-	ieee80211_tx_status(ar->hw, msdu);
++	spin_lock_bh(&ab->base_lock);
++	peer = ath11k_peer_find_by_id(ab, ts->peer_id);
++	if (peer) {
++		arsta = (struct ath11k_sta *)peer->sta->drv_priv;
++		status.sta = peer->sta;
++		status.skb = msdu;
++		status.info = info;
++		status.rate = &arsta->last_txrate;
++	}
++	rcu_read_unlock();
++	if (peer)
++		ieee80211_tx_status_ext(ar->hw, &status);
++	else
++		dev_kfree_skb_any(msdu);
++	spin_unlock_bh(&ab->base_lock);
++	return;
+ 
+ exit:
+ 	rcu_read_unlock();
+-- 
+2.25.1
+
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
