@@ -2,15 +2,16 @@ Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
  helo=sipsolutions.net)
  by casper.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k2WVz-0004KO-FU
- for ath11k@lists.infradead.org; Mon, 03 Aug 2020 09:12:18 +0000
-Message-ID: <90e2d09f1d175e858964517b7365919c5d2b46f2.camel@sipsolutions.net>
-Subject: Re: [PATCH V5 1/3] nl80211: add support for setting fixed HE
+ id 1k2WZe-0004XR-UU
+ for ath11k@lists.infradead.org; Mon, 03 Aug 2020 09:16:05 +0000
+Message-ID: <f1a40d9caf3b07bffe21f5bf33b2d15c1d3f6769.camel@sipsolutions.net>
+Subject: Re: [PATCH V5 2/3] mac80211: add support for setting fixed HE
  rate/gi/ltf
 From: Johannes Berg <johannes@sipsolutions.net>
-Date: Mon, 03 Aug 2020 11:11:42 +0200
-In-Reply-To: <20200803085127.180550-1-john@phrozen.org>
+Date: Mon, 03 Aug 2020 11:15:41 +0200
+In-Reply-To: <20200803085127.180550-2-john@phrozen.org>
 References: <20200803085127.180550-1-john@phrozen.org>
+ <20200803085127.180550-2-john@phrozen.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -30,20 +31,13 @@ Cc: Miles Hu <milehu@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lis
 On Mon, 2020-08-03 at 10:51 +0200, John Crispin wrote:
 > From: Miles Hu <milehu@codeaurora.org>
 > 
-> This patch adds the nl80211 structs, definitions, policies and parsing
-> code required to pass fixed HE rate, gi and ltf settings.
+> With nl80211 now able to receive fixed HE rate/gi/ltf settings we want to
+> propagate these further down the stack into the mac80211 drivers. This
+> patch copies the values into the sdata struct.
 
-Would be nice to capitalize acronyms like 'GI' and 'LTF' in free text
-... :)
-
->  	[NL80211_TXRATE_VHT] = NLA_POLICY_EXACT_LEN_WARN(sizeof(struct nl80211_txrate_vht)),
->  	[NL80211_TXRATE_GI] = { .type = NLA_U8 },
-> +	[NL80211_TXRATE_HE] = NLA_POLICY_EXACT_LEN_WARN(sizeof(struct nl80211_txrate_he)),
-
-_WARN is for backward compatibility, don't use it for new stuff.
-
-
-But fixed those and applied.
+I do not see any reason for this patch, copying data to a mac80211
+internal structure and then not using it does ... nothing. Dropped this
+patch.
 
 johannes
 
