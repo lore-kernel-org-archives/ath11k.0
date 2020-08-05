@@ -1,14 +1,18 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from nbd.name ([2a01:4f8:221:3d45::2])
+Received: from mail-il1-x142.google.com ([2607:f8b0:4864:20::142])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k3ENc-0004ZN-QP
- for ath11k@lists.infradead.org; Wed, 05 Aug 2020 08:02:35 +0000
-From: John Crispin <john@phrozen.org>
-Subject: [PATCH V3 1/5] nl80211: rename csa counter attributes countdown
- counters
-Date: Wed,  5 Aug 2020 10:02:16 +0200
-Message-Id: <20200805080220.2884582-1-john@phrozen.org>
+ id 1k3JtK-000776-FQ
+ for ath11k@lists.infradead.org; Wed, 05 Aug 2020 13:55:39 +0000
+Received: by mail-il1-x142.google.com with SMTP id p13so8943710ilh.4
+ for <ath11k@lists.infradead.org>; Wed, 05 Aug 2020 06:55:34 -0700 (PDT)
+Subject: Re: [PATCH] soc: qmi: allow user to set handle wq to hiprio
+References: <ADUAnwD8DVByMMSsrG-r3Kri.3.1596374087585.Hmail.wenhu.wang@vivo.com>
+From: Alex Elder <elder@ieee.org>
+Message-ID: <5c6123f2-1a65-8615-9d5d-3bb1d25818b2@ieee.org>
+Date: Wed, 5 Aug 2020 08:55:30 -0500
 MIME-Version: 1.0
+In-Reply-To: <ADUAnwD8DVByMMSsrG-r3Kri.3.1596374087585.Hmail.wenhu.wang@vivo.com>
+Content-Language: en-US
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -17,123 +21,56 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Johannes Berg <johannes@sipsolutions.net>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
+To: =?UTF-8?B?546L5paH6JmO?= <wenhu.wang@vivo.com>, Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc: ohad@wizery.com, linux-wireless@vger.kernel.org, alsa-devel@alsa-project.org, elder@kernel.org, linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org, ath10k@lists.infradead.org, ath11k@lists.infradead.org, agross@kernel.org, srinivas.kandagatla@linaro.org, sibis@codeaurora.org, netdev@vger.kernel.org, kuba@kernel.org, davem@davemloft.net, kvalo@codeaurora.org
 
-We want to reuse the attributes for other counters such as BSS color
-change. Rename them to more generic names.
-
-Signed-off-by: John Crispin <john@phrozen.org>
----
- include/uapi/linux/nl80211.h | 14 ++++++++------
- net/wireless/nl80211.c       | 16 ++++++++--------
- 2 files changed, 16 insertions(+), 14 deletions(-)
-
-diff --git a/include/uapi/linux/nl80211.h b/include/uapi/linux/nl80211.h
-index 631f3a997b3c..bccd16f743b9 100644
---- a/include/uapi/linux/nl80211.h
-+++ b/include/uapi/linux/nl80211.h
-@@ -2082,10 +2082,10 @@ enum nl80211_commands {
-  *	operation).
-  * @NL80211_ATTR_CSA_IES: Nested set of attributes containing the IE information
-  *	for the time while performing a channel switch.
-- * @NL80211_ATTR_CSA_C_OFF_BEACON: An array of offsets (u16) to the channel
-- *	switch counters in the beacons tail (%NL80211_ATTR_BEACON_TAIL).
-- * @NL80211_ATTR_CSA_C_OFF_PRESP: An array of offsets (u16) to the channel
-- *	switch counters in the probe response (%NL80211_ATTR_PROBE_RESP).
-+ * @NL80211_ATTR_CNTDWN_OFFS_BEACON: An array of offsets (u16) to the channel
-+ *	switch or color change counters in the beacons tail (%NL80211_ATTR_BEACON_TAIL).
-+ * @NL80211_ATTR_CNTDWN_OFFS_PRESP: An array of offsets (u16) to the channel
-+ *	switch or color change counters in the probe response (%NL80211_ATTR_PROBE_RESP).
-  *
-  * @NL80211_ATTR_RXMGMT_FLAGS: flags for nl80211_send_mgmt(), u32.
-  *	As specified in the &enum nl80211_rxmgmt_flags.
-@@ -2821,8 +2821,8 @@ enum nl80211_attrs {
- 	NL80211_ATTR_CH_SWITCH_COUNT,
- 	NL80211_ATTR_CH_SWITCH_BLOCK_TX,
- 	NL80211_ATTR_CSA_IES,
--	NL80211_ATTR_CSA_C_OFF_BEACON,
--	NL80211_ATTR_CSA_C_OFF_PRESP,
-+	NL80211_ATTR_CNTDWN_OFFS_BEACON,
-+	NL80211_ATTR_CNTDWN_OFFS_PRESP,
- 
- 	NL80211_ATTR_RXMGMT_FLAGS,
- 
-@@ -3009,6 +3009,8 @@ enum nl80211_attrs {
- #define	NL80211_ATTR_MESH_PARAMS NL80211_ATTR_MESH_CONFIG
- #define NL80211_ATTR_IFACE_SOCKET_OWNER NL80211_ATTR_SOCKET_OWNER
- #define NL80211_ATTR_SAE_DATA NL80211_ATTR_AUTH_DATA
-+#define NL80211_ATTR_CSA_C_OFF_BEACON NL80211_ATTR_CNTDWN_OFFS_BEACON
-+#define NL80211_ATTR_CSA_C_OFF_PRESP NL80211_ATTR_CNTDWN_OFFS_PRESP
- 
- /*
-  * Allow user space programs to use #ifdef on new attributes by defining them
-diff --git a/net/wireless/nl80211.c b/net/wireless/nl80211.c
-index a096682ec0ad..5622e9f012ca 100644
---- a/net/wireless/nl80211.c
-+++ b/net/wireless/nl80211.c
-@@ -567,8 +567,8 @@ static const struct nla_policy nl80211_policy[NUM_NL80211_ATTR] = {
- 	[NL80211_ATTR_CH_SWITCH_COUNT] = { .type = NLA_U32 },
- 	[NL80211_ATTR_CH_SWITCH_BLOCK_TX] = { .type = NLA_FLAG },
- 	[NL80211_ATTR_CSA_IES] = { .type = NLA_NESTED },
--	[NL80211_ATTR_CSA_C_OFF_BEACON] = { .type = NLA_BINARY },
--	[NL80211_ATTR_CSA_C_OFF_PRESP] = { .type = NLA_BINARY },
-+	[NL80211_ATTR_CNTDWN_OFFS_BEACON] = { .type = NLA_BINARY },
-+	[NL80211_ATTR_CNTDWN_OFFS_PRESP] = { .type = NLA_BINARY },
- 	[NL80211_ATTR_STA_SUPPORTED_CHANNELS] = { .type = NLA_BINARY },
- 	[NL80211_ATTR_STA_SUPPORTED_OPER_CLASSES] = { .type = NLA_BINARY },
- 	[NL80211_ATTR_HANDLE_DFS] = { .type = NLA_FLAG },
-@@ -8787,10 +8787,10 @@ static int nl80211_channel_switch(struct sk_buff *skb, struct genl_info *info)
- 	if (err)
- 		return err;
- 
--	if (!csa_attrs[NL80211_ATTR_CSA_C_OFF_BEACON])
-+	if (!csa_attrs[NL80211_ATTR_CNTDWN_OFFS_BEACON])
- 		return -EINVAL;
- 
--	len = nla_len(csa_attrs[NL80211_ATTR_CSA_C_OFF_BEACON]);
-+	len = nla_len(csa_attrs[NL80211_ATTR_CNTDWN_OFFS_BEACON]);
- 	if (!len || (len % sizeof(u16)))
- 		return -EINVAL;
- 
-@@ -8801,7 +8801,7 @@ static int nl80211_channel_switch(struct sk_buff *skb, struct genl_info *info)
- 		return -EINVAL;
- 
- 	params.counter_offsets_beacon =
--		nla_data(csa_attrs[NL80211_ATTR_CSA_C_OFF_BEACON]);
-+		nla_data(csa_attrs[NL80211_ATTR_CNTDWN_OFFS_BEACON]);
- 
- 	/* sanity checks - counters should fit and be the same */
- 	for (i = 0; i < params.n_counter_offsets_beacon; i++) {
-@@ -8814,8 +8814,8 @@ static int nl80211_channel_switch(struct sk_buff *skb, struct genl_info *info)
- 			return -EINVAL;
- 	}
- 
--	if (csa_attrs[NL80211_ATTR_CSA_C_OFF_PRESP]) {
--		len = nla_len(csa_attrs[NL80211_ATTR_CSA_C_OFF_PRESP]);
-+	if (csa_attrs[NL80211_ATTR_CNTDWN_OFFS_PRESP]) {
-+		len = nla_len(csa_attrs[NL80211_ATTR_CNTDWN_OFFS_PRESP]);
- 		if (!len || (len % sizeof(u16)))
- 			return -EINVAL;
- 
-@@ -8826,7 +8826,7 @@ static int nl80211_channel_switch(struct sk_buff *skb, struct genl_info *info)
- 			return -EINVAL;
- 
- 		params.counter_offsets_presp =
--			nla_data(csa_attrs[NL80211_ATTR_CSA_C_OFF_PRESP]);
-+			nla_data(csa_attrs[NL80211_ATTR_CNTDWN_OFFS_PRESP]);
- 
- 		/* sanity checks - counters should fit and be the same */
- 		for (i = 0; i < params.n_counter_offsets_presp; i++) {
--- 
-2.25.1
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+T24gOC8yLzIwIDg6MTQgQU0sIOeOi+aWh+iZjiB3cm90ZToKPiAKPj4+IEN1cnJlbnRseSB0aGUg
+cW1pX2hhbmRsZSBpcyBpbml0aWFsaXplZCBzaW5nbGUgdGhyZWFkZWQgYW5kIHN0cmljdGx5Cj4+
+PiBvcmRlcmVkIHdpdGggdGhlIGFjdGl2ZSBzZXQgdG8gMS4gVGhpcyBpcyBwcmV0dHkgc2ltcGxl
+IGFuZCBzYWZlIGJ1dAo+Pj4gc29tZXRpbWVzIGluZWZmZW5jeS4gU28gaXQgaXMgYmV0dGVyIHRv
+IGFsbG93IHVzZXIgdG8gZGVjaWRlIHdoZXRoZXIKPj4+IGEgaGlnaCBwcmlvcml0eSB3b3JrcXVl
+dWUgc2hvdWxkIGJlIHVzZWQuCj4+Cj4+IENhbiB5b3UgcGxlYXNlIGRlc2NyaWJlIGEgc2NlbmFy
+aW8gd2hlcmUgdGhpcyBpcyBuZWVkZWQvZGVzaXJlZCBhbmQKPj4gcGVyaGFwcyBhbHNvIGNvbW1l
+bnQgb24gd2h5IHRoaXMgaXMgbm90IGFsd2F5cyBkZXNpcmVkPwo+Pgo+IAo+IFdlbGwsIG9uZSBz
+Y2VuYXJpbyBpcyB0aGF0IHdoZW4gdGhlIEFQIHdhbnRzIHRvIGNoZWNrIHRoZSBzdGF0dXMgb2Yg
+dGhlCj4gc3Vic3lzdGVtcyBhbmQgdGhlIHdob2xlIFFNSSBkYXRhIHBhdGguIEl0IGZpcnN0IHNl
+bmRzIG91dCBhbiBpbmRpY2F0aW9uCj4gd2hpY2ggYXNrcyB0aGUgc3Vic3lzdGVtcyB0byByZXBv
+cnQgdGhlaXIgc3RhdHVzLiBBZnRlciB0aGUgc3Vic3lzdGVtcyBzZW5kCj4gcmVzcG9uc2VzIHRv
+IHRoZSBBUCwgdGhlIHJlc3BvbnNlcyB0aGVuIGFyZSBxdWV1ZWQgb24gdGhlIHdvcmtxdWV1ZSBv
+Zgo+IHRoZSBRTUkgaGFuZGxlci4gQWN0dWFsbHkgdGhlIEFQIGlzIGNvbmZpZ3VyZWQgdG8gZG8g
+dGhlIGNoZWNrIGluIGEgc3BlY2lmaWMKPiBpbnRlcnZhbCByZWd1bGFybHkuIEFuZCBpdCBjaGVj
+ayB0aGUgcmVwb3J0IGNvdW50cyB3aXRoaW4gYSBzcGVjaWZpYyBkZWxheSBhZnRlcgo+IGl0IHNl
+bmRzIG91dCB0aGUgcmVsYXRlZCBpbmRpY2F0aW9uLiBXaGVuIHRoZSBBUCBoYXMgYmVlbiB1bmRl
+ciBhIGhlYXZ5Cj4gbG9hZCBmb3IgbG9uZywgdGhlIHJlcG9ydHMgYXJlIHF1ZXVlIHRoZWlyIHdp
+dGhvdXQgQ1BVIHJlc291cmNlIHRvIHVwZGF0ZQo+IHRoZSByZXBvcnQgY291bnRzIHdpdGhpbiB0
+aGUgc3BlY2lmaWMgZGVsYXkuIEFzIGEgcmVzdWx0LCB0aGUgdGhyZWFkIHRoYXQgY2hlY2tzCj4g
+dGhlIHJlcG9ydCBjb3VudHMgdGFrZXMgaXQgbWlzbGVhZGluZ2x5IHRoYXQgdGhlIFFNSSBkYXRh
+IHBhdGggb3IgdGhlIHN1YnN5c3RlbXMKPiBhcmUgY3Jhc2hlZC4KPiAKPiBUaGUgcGF0Y2ggY2Fu
+IHJlYWxseSByZXNvbHZlIHRoZSBwcm9ibGVtIG1lbnRpb25lZCBhYm9sdmUuCgpJcyBpdCB5b3Vy
+IGludGVudGlvbiB0byBzdWJtaXQgY29kZSB0aGF0IGFjdHVhbGx5IGRvZXMgd2hhdCB5b3UgZGVz
+Y3JpYmUKYWJvdmU/ICBJZiBzbywgdGhlbiAoYXMgRGF2aWQgc2FpZCkgeW91IHNob3VsZCBwcm9w
+b3NlIHRoaXMgY2hhbmdlIGF0CnRoZSB0aW1lIGl0IHdpbGwgYmUgbmVlZGVkLS13aGljaCBpcyBh
+dCB0aGUgdGltZSB5b3Ugc2VuZCB0aGF0IG5ldwpjb2RlIG91dCBmb3IgcmV2aWV3LgoKRXZlbiBp
+biB0aGF0IGNhc2UsIEkgZG9uJ3QgYmVsaWV2ZSB1c2luZyBhIGhpZ2ggcHJpb3JpdHkgd29ya3F1
+ZXVlCndvdWxkIGd1YXJhbnRlZSB0aGUgaW1wcm92ZWQgYmVoYXZpb3IgeW91IHRoaW5rIHRoaXMg
+d291bGQgcHJvdmlkZS4KCkluIGNhc2UgaXQgd2Fzbid0IGNsZWFyIGFscmVhZHksIHRoaXMgY2hh
+bmdlIHdvbid0IGJlIGFjY2VwdGVkCmF0IHRoaXMgdGltZSAoZGVzcGl0ZSB5b3VyIGV4cGxhbmF0
+aW9uIGFib3ZlKS4KCgkJCQkJCS1BbGV4Cgo+IAo+IEZvciBuYXJtYWwgc2l0dWF0aW9ucywgaXQg
+aXMgZW5vdWdoIHRvIGp1c3QgdXNlIG5vcm1hbCBwcmlvcml0eSBRTUkgd29ya3F1ZXVlLgo+IAo+
+PiBSZWdhcmRzLAo+PiBCam9ybgo+Pgo+Pj4KPj4+IFNpZ25lZC1vZmYtYnk6IFdhbmcgV2VuaHUg
+PHdlbmh1LndhbmdAdml2by5jb20+Cj4+PiAtLS0KPj4+ICBkcml2ZXJzL25ldC9pcGEvaXBhX3Ft
+aS5jICAgICAgICAgICAgIHwgNCArKy0tCj4+PiAgZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0
+aDEway9xbWkuYyB8IDIgKy0KPj4+ICBkcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL3Ft
+aS5jIHwgMiArLQo+Pj4gIGRyaXZlcnMvcmVtb3RlcHJvYy9xY29tX3N5c21vbi5jICAgICAgfCAy
+ICstCj4+PiAgZHJpdmVycy9zbGltYnVzL3Fjb20tbmdkLWN0cmwuYyAgICAgICB8IDQgKystLQo+
+Pj4gIGRyaXZlcnMvc29jL3Fjb20vcGRyX2ludGVyZmFjZS5jICAgICAgfCA0ICsrLS0KPj4+ICBk
+cml2ZXJzL3NvYy9xY29tL3FtaV9pbnRlcmZhY2UuYyAgICAgIHwgOSArKysrKysrLS0KPj4+ICBp
+bmNsdWRlL2xpbnV4L3NvYy9xY29tL3FtaS5oICAgICAgICAgIHwgMyArKy0KPj4+ICBzYW1wbGVz
+L3FtaS9xbWlfc2FtcGxlX2NsaWVudC5jICAgICAgIHwgNCArKy0tCj4+PiAgOSBmaWxlcyBjaGFu
+Z2VkLCAyMCBpbnNlcnRpb25zKCspLCAxNCBkZWxldGlvbnMoLSkKPiAKCgotLSAKYXRoMTFrIG1h
+aWxpbmcgbGlzdAphdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFk
+ZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2F0aDExawo=
