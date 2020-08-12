@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k5sFT-0007u0-D6
- for ath11k@lists.infradead.org; Wed, 12 Aug 2020 15:01:07 +0000
+ id 1k5sFS-0007ti-Hw
+ for ath11k@lists.infradead.org; Wed, 12 Aug 2020 15:01:04 +0000
 From: John Crispin <john@phrozen.org>
-Subject: [PATCH V3 8/9] ath11k: add EMA beacon support
-Date: Wed, 12 Aug 2020 17:00:49 +0200
-Message-Id: <20200812150050.2683396-9-john@phrozen.org>
+Subject: [PATCH V3 6/9] ath11k: add the multiple bssid WMI commands
+Date: Wed, 12 Aug 2020 17:00:47 +0200
+Message-Id: <20200812150050.2683396-7-john@phrozen.org>
 In-Reply-To: <20200812150050.2683396-1-john@phrozen.org>
 References: <20200812150050.2683396-1-john@phrozen.org>
 MIME-Version: 1.0
@@ -25,57 +25,70 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Johannes Berg <johannes@sipsolutions.net>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-We need to update the beacon in multiple bssid mode after each completion
-event to get the next EMA beacon.
+Add the code to pass the BSS specific multiple bssid info to the FW.
 
 Signed-off-by: John Crispin <john@phrozen.org>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 18 ++++++++++++++----
- 1 file changed, 14 insertions(+), 4 deletions(-)
+ drivers/net/wireless/ath/ath11k/wmi.c |  3 +++
+ drivers/net/wireless/ath/ath11k/wmi.h | 10 ++++++++++
+ 2 files changed, 13 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 08e7f4ac8a26..306f123c09a7 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -791,7 +791,10 @@ static int ath11k_mac_setup_bcn_tmpl(struct ath11k_vif *arvif)
- 	if (arvif->vdev_type != WMI_VDEV_TYPE_AP)
- 		return 0;
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 04ef73d1f032..ffe8d7b1320b 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -641,6 +641,8 @@ int ath11k_wmi_vdev_create(struct ath11k *ar, u8 *macaddr,
+ 	cmd->vdev_subtype = param->subtype;
+ 	cmd->num_cfg_txrx_streams = WMI_NUM_SUPPORTED_BAND_MAX;
+ 	cmd->pdev_id = param->pdev_id;
++	cmd->flags = param->flags;
++	cmd->vdevid_trans = param->vdevid_trans;
+ 	ether_addr_copy(cmd->vdev_macaddr.addr, macaddr);
  
--	bcn = ieee80211_beacon_get_template(hw, vif, &offs);
-+	if (arvif->vif->multiple_bssid.non_transmitted)
-+		return 0;
+ 	ptr = skb->data + sizeof(*cmd);
+@@ -1603,6 +1605,7 @@ int ath11k_wmi_bcn_tmpl(struct ath11k *ar, u32 vdev_id,
+ 	cmd->csa_switch_count_offset = offs->cntdwn_counter_offs[0];
+ 	cmd->ext_csa_switch_count_offset = offs->cntdwn_counter_offs[1];
+ 	cmd->buf_len = bcn->len;
++	cmd->mbssid_ie_offset = offs->multiple_bssid_offset;
+ 
+ 	ptr = skb->data + sizeof(*cmd);
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index a2d81abf6356..ad741add1ebe 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -119,6 +119,12 @@ enum {
+ 	WMI_HOST_WLAN_2G_5G_CAP	= 0x3,
+ };
+ 
++enum {
++	WMI_HOST_VDEV_FLAGS_NON_MBSSID_AP	= 1,
++	WMI_HOST_VDEV_FLAGS_TRANSMIT_AP		= 2,
++	WMI_HOST_VDEV_FLAGS_NON_TRANSMIT_AP	= 4,
++};
 +
-+	bcn = ieee80211_beacon_get_template_ema(hw, vif, &offs);
- 	if (!bcn) {
- 		ath11k_warn(ab, "failed to get beacon template from mac80211\n");
- 		return -EPERM;
-@@ -822,16 +825,23 @@ static int ath11k_mac_setup_bcn_tmpl(struct ath11k_vif *arvif)
- void ath11k_mac_bcn_tx_event(struct ath11k_vif *arvif)
- {
- 	struct ieee80211_vif *vif = arvif->vif;
-+	int multiple_bssid = 0;
+ /*
+  * wmi command groups.
+  */
+@@ -2456,6 +2462,8 @@ struct vdev_create_params {
+ 		u8 rx;
+ 	} chains[NUM_NL80211_BANDS];
+ 	u32 pdev_id;
++	u32 flags;
++	u32 vdevid_trans;
+ };
  
--	if (!vif->cca_active)
-+	if (!vif->multiple_bssid.non_transmitted &&
-+	    !list_empty(&vif->multiple_bssid.list))
-+		multiple_bssid = 1;
-+
-+	if (!multiple_bssid && !vif->cca_active)
- 		return;
+ struct wmi_vdev_create_cmd {
+@@ -2466,6 +2474,8 @@ struct wmi_vdev_create_cmd {
+ 	struct wmi_mac_addr vdev_macaddr;
+ 	u32 num_cfg_txrx_streams;
+ 	u32 pdev_id;
++	u32 flags;
++	u32 vdevid_trans;
+ } __packed;
  
--	if (ieee80211_beacon_cntdwn_is_complete(vif)) {
-+	if (vif->cca_active && ieee80211_beacon_cntdwn_is_complete(vif)) {
- 		ieee80211_cca_finish(vif);
- 		return;
- 	}
- 
--	ieee80211_beacon_update_cntdwn(vif);
-+	if (vif->cca_active)
-+		ieee80211_beacon_update_cntdwn(vif);
-+
- 	ath11k_mac_setup_bcn_tmpl(arvif);
- }
- 
+ struct wmi_vdev_txrx_streams {
 -- 
 2.25.1
 
