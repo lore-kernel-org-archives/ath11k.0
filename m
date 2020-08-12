@@ -1,12 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k5sFS-0007tf-HP
- for ath11k@lists.infradead.org; Wed, 12 Aug 2020 15:01:04 +0000
+ id 1k5sFS-0007tj-Lc
+ for ath11k@lists.infradead.org; Wed, 12 Aug 2020 15:01:05 +0000
 From: John Crispin <john@phrozen.org>
-Subject: [PATCH V3 0/9] mac80211: add multiple bssid / EMA
-Date: Wed, 12 Aug 2020 17:00:41 +0200
-Message-Id: <20200812150050.2683396-1-john@phrozen.org>
+Subject: [PATCH V3 7/9] ath11k: add multiple bssid support to device creation
+Date: Wed, 12 Aug 2020 17:00:48 +0200
+Message-Id: <20200812150050.2683396-8-john@phrozen.org>
+In-Reply-To: <20200812150050.2683396-1-john@phrozen.org>
+References: <20200812150050.2683396-1-john@phrozen.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -23,38 +25,71 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Johannes Berg <johannes@sipsolutions.net>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-This series addss multiple bssid and EMA beacons.
+We need to pass info such as parent device, bssid count/index and
+(non-)transmit mode information to the FW when we create a new vdev.
 
-The V3 series has a lot of changes to V2. The biggest being the added
-support for EMA. As we might have HW that can offload this we need to
-pass the multiple bssid elements to the kernel. This gives us a lot of
-flexibility for supporting different hardware.
+Signed-off-by: John Crispin <john@phrozen.org>
+---
+ drivers/net/wireless/ath/ath11k/mac.c | 22 ++++++++++++++++++++--
+ 1 file changed, 20 insertions(+), 2 deletions(-)
 
-John Crispin (9):
-  nl80211: add basic multiple bssid support
-  mac80211: add multiple bssid support to interface handling
-  mac80211: add multiple bssid support to beacon handling
-  mac80211: add multiple bssid/ema support to bcn templating
-  ath11k: add a struct to pass parameters into ath11k_wmi_vdev_up
-  ath11k: add the multiple bssid WMI commands
-  ath11k: add multiple bssid support to device creation
-  ath11k: add EMA beacon support
-  ath11k: set the multiple bssid hw flags and capabilities
-
- drivers/net/wireless/ath/ath11k/mac.c |  83 ++++++++++++++++---
- drivers/net/wireless/ath/ath11k/wmi.c |  20 +++--
- drivers/net/wireless/ath/ath11k/wmi.h |  22 ++++-
- include/net/cfg80211.h                |  35 ++++++++
- include/net/mac80211.h                |  42 +++++++++-
- include/uapi/linux/nl80211.h          |  22 +++++
- net/mac80211/cfg.c                    | 113 +++++++++++++++++++++++++-
- net/mac80211/debugfs.c                |   1 +
- net/mac80211/ieee80211_i.h            |   2 +
- net/mac80211/iface.c                  |   7 ++
- net/mac80211/tx.c                     |  49 ++++++++++-
- net/wireless/nl80211.c                |  40 +++++++++
- 12 files changed, 408 insertions(+), 28 deletions(-)
-
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 2e4f1966da21..08e7f4ac8a26 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -4269,17 +4269,30 @@ static void ath11k_mac_op_stop(struct ieee80211_hw *hw)
+ 	atomic_set(&ar->num_pending_mgmt_tx, 0);
+ }
+ 
+-static void
++static int
+ ath11k_mac_setup_vdev_create_params(struct ath11k_vif *arvif,
+ 				    struct vdev_create_params *params)
+ {
+ 	struct ath11k *ar = arvif->ar;
++	struct ieee80211_vif *parent;
+ 	struct ath11k_pdev *pdev = ar->pdev;
+ 
+ 	params->if_id = arvif->vdev_id;
+ 	params->type = arvif->vdev_type;
+ 	params->subtype = arvif->vdev_subtype;
+ 	params->pdev_id = pdev->pdev_id;
++	params->vdevid_trans = 0;
++	if (arvif->vif->multiple_bssid.non_transmitted) {
++		params->flags = WMI_HOST_VDEV_FLAGS_NON_TRANSMIT_AP;
++		parent = arvif->vif->multiple_bssid.parent;
++		if (!parent)
++			return -ENOENT;
++		if (ar->hw->wiphy != ieee80211_vif_to_wdev(parent)->wiphy)
++			return -EINVAL;
++		params->vdevid_trans = ath11k_vif_to_arvif(parent)->vdev_id;
++	} else {
++		params->flags = WMI_HOST_VDEV_FLAGS_TRANSMIT_AP;
++	}
+ 
+ 	if (pdev->cap.supported_bands & WMI_HOST_WLAN_2G_CAP) {
+ 		params->chains[NL80211_BAND_2GHZ].tx = ar->num_tx_chains;
+@@ -4294,6 +4307,7 @@ ath11k_mac_setup_vdev_create_params(struct ath11k_vif *arvif,
+ 		params->chains[NL80211_BAND_6GHZ].tx = ar->num_tx_chains;
+ 		params->chains[NL80211_BAND_6GHZ].rx = ar->num_rx_chains;
+ 	}
++	return 0;
+ }
+ 
+ static u32
+@@ -4443,7 +4457,11 @@ static int ath11k_mac_op_add_interface(struct ieee80211_hw *hw,
+ 	for (i = 0; i < ARRAY_SIZE(vif->hw_queue); i++)
+ 		vif->hw_queue[i] = i % (ATH11K_HW_MAX_QUEUES - 1);
+ 
+-	ath11k_mac_setup_vdev_create_params(arvif, &vdev_param);
++	ret = ath11k_mac_setup_vdev_create_params(arvif, &vdev_param);
++	if (ret) {
++		ath11k_warn(ab, "failed to prepare vdev %d\n", ret);
++		goto err;
++	}
+ 
+ 	ret = ath11k_wmi_vdev_create(ar, vif->addr, &vdev_param);
+ 	if (ret) {
 -- 
 2.25.1
 
