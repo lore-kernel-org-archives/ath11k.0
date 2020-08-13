@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from m43-7.mailgun.net ([69.72.43.7])
+Received: from mail29.static.mailgun.info ([104.130.122.29])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k69AI-0006go-HU
- for ath11k@lists.infradead.org; Thu, 13 Aug 2020 09:04:55 +0000
+ id 1k69AA-0006ch-U9
+ for ath11k@lists.infradead.org; Thu, 13 Aug 2020 09:04:44 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 06/10] ath11k: pci: add MSI config initialisation
-Date: Thu, 13 Aug 2020 12:04:22 +0300
-Message-Id: <1597309466-19688-7-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH 07/10] ath11k: implement ath11k_core_pre_init()
+Date: Thu, 13 Aug 2020 12:04:23 +0300
+Message-Id: <1597309466-19688-8-git-send-email-kvalo@codeaurora.org>
 In-Reply-To: <1597309466-19688-1-git-send-email-kvalo@codeaurora.org>
 References: <1597309466-19688-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,174 +25,105 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: linux-wireless@vger.kernel.org
 
-From: Govind Singh <govinds@codeaurora.org>
-
-QCA6390 uses PCI MSI for CE/MHI/DP interrupt.  Add MSI vector mapping and MSI
-enable/disable operations.
+This is needed to initialise hw_params before MHI registration starts. MHI
+needs location of firmware directory and that's delivered via hw_params.
 
 Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
 Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.1.0.1-01238-QCAHKSWPL_SILICONZ-2
 
-Signed-off-by: Govind Singh <govinds@codeaurora.org>
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/debug.h |  1 +
- drivers/net/wireless/ath/ath11k/pci.c   | 69 +++++++++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/pci.h   | 13 +++++++
- 3 files changed, 83 insertions(+)
+ drivers/net/wireless/ath/ath11k/ahb.c  |  4 ++++
+ drivers/net/wireless/ath/ath11k/core.c | 20 ++++++++++++++------
+ drivers/net/wireless/ath/ath11k/core.h |  1 +
+ drivers/net/wireless/ath/ath11k/pci.c  |  7 +++++++
+ 4 files changed, 26 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/debug.h b/drivers/net/wireless/ath/ath11k/debug.h
-index c30085406bfb..1cfe54859388 100644
---- a/drivers/net/wireless/ath/ath11k/debug.h
-+++ b/drivers/net/wireless/ath/ath11k/debug.h
-@@ -25,6 +25,7 @@ enum ath11k_debug_mask {
- 	ATH11K_DBG_REG		= 0x00000200,
- 	ATH11K_DBG_TESTMODE	= 0x00000400,
- 	ATH11k_DBG_HAL		= 0x00000800,
-+	ATH11K_DBG_PCI		= 0x00001000,
- 	ATH11K_DBG_ANY		= 0xffffffff,
- };
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+index 042019de0a81..f4c346bcc676 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.c
++++ b/drivers/net/wireless/ath/ath11k/ahb.c
+@@ -868,6 +868,10 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
+ 	ab->mem_len = resource_size(mem_res);
+ 	platform_set_drvdata(pdev, ab);
  
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index 9b1baf53ac5a..5ebbdbde81ef 100644
---- a/drivers/net/wireless/ath/ath11k/pci.c
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -4,6 +4,7 @@
-  */
- 
- #include <linux/module.h>
-+#include <linux/msi.h>
- #include <linux/pci.h>
- 
- #include "pci.h"
-@@ -22,6 +23,62 @@ static const struct pci_device_id ath11k_pci_id_table[] = {
- 
- MODULE_DEVICE_TABLE(pci, ath11k_pci_id_table);
- 
-+static const struct ath11k_msi_config msi_config = {
-+	.total_vectors = 32,
-+	.total_users = 4,
-+	.users = (struct ath11k_msi_user[]) {
-+		{ .name = "MHI", .num_vectors = 3, .base_vector = 0 },
-+		{ .name = "CE", .num_vectors = 10, .base_vector = 3 },
-+		{ .name = "WAKE", .num_vectors = 1, .base_vector = 13 },
-+		{ .name = "DP", .num_vectors = 18, .base_vector = 14 },
-+	},
-+};
++	ret = ath11k_core_pre_init(ab);
++	if (ret)
++		goto err_core_free;
 +
-+static int ath11k_pci_enable_msi(struct ath11k_pci *ab_pci)
+ 	ret = ath11k_hal_srng_init(ab);
+ 	if (ret)
+ 		goto err_core_free;
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 2dfbe4276514..5c84995baaf9 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -742,6 +742,20 @@ static int ath11k_init_hw_params(struct ath11k_base *ab)
+ 	return 0;
+ }
+ 
++int ath11k_core_pre_init(struct ath11k_base *ab)
 +{
-+	struct ath11k_base *ab = ab_pci->ab;
-+	struct msi_desc *msi_desc;
-+	int num_vectors;
 +	int ret;
 +
-+	num_vectors = pci_alloc_irq_vectors(ab_pci->pdev,
-+					    msi_config.total_vectors,
-+					    msi_config.total_vectors,
-+					    PCI_IRQ_MSI);
-+	if (num_vectors != msi_config.total_vectors) {
-+		ath11k_err(ab, "failed to get %d MSI vectors, only %d available",
-+			   msi_config.total_vectors, num_vectors);
-+
-+		if (num_vectors >= 0)
-+			return -EINVAL;
-+		else
-+			return num_vectors;
++	ret = ath11k_init_hw_params(ab);
++	if (ret) {
++		ath11k_err(ab, "failed to get hw params: %d\n", ret);
++		return ret;
 +	}
-+
-+	msi_desc = irq_get_msi_desc(ab_pci->pdev->irq);
-+	if (!msi_desc) {
-+		ath11k_err(ab, "msi_desc is NULL!\n");
-+		ret = -EINVAL;
-+		goto free_msi_vector;
-+	}
-+
-+	ab_pci->msi_ep_base_data = msi_desc->msg.data;
-+
-+	ath11k_dbg(ab, ATH11K_DBG_PCI, "msi base data is %d\n", ab_pci->msi_ep_base_data);
 +
 +	return 0;
-+
-+free_msi_vector:
-+	pci_free_irq_vectors(ab_pci->pdev);
-+
-+	return ret;
 +}
++EXPORT_SYMBOL(ath11k_core_pre_init);
 +
-+static void ath11k_pci_disable_msi(struct ath11k_pci *ab_pci)
-+{
-+	pci_free_irq_vectors(ab_pci->pdev);
-+}
-+
- static int ath11k_pci_claim(struct ath11k_pci *ab_pci, struct pci_dev *pdev)
+ int ath11k_core_init(struct ath11k_base *ab)
  {
- 	struct ath11k_base *ab = ab_pci->ab;
-@@ -136,6 +193,7 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
- 	ab_pci = ath11k_pci_priv(ab);
- 	ab_pci->dev_id = pci_dev->device;
- 	ab_pci->ab = ab;
-+	ab_pci->pdev = pdev;
- 	pci_set_drvdata(pdev, ab);
+ 	struct device *dev = ab->dev;
+@@ -761,12 +775,6 @@ int ath11k_core_init(struct ath11k_base *ab)
+ 	}
+ 	ab->tgt_rproc = prproc;
  
- 	ret = ath11k_pci_claim(ab_pci, pdev);
-@@ -144,10 +202,20 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
- 		goto err_free_core;
+-	ret = ath11k_init_hw_params(ab);
+-	if (ret) {
+-		ath11k_err(ab, "failed to get hw params %d\n", ret);
+-		return ret;
+-	}
+-
+ 	ret = ath11k_core_soc_create(ab);
+ 	if (ret) {
+ 		ath11k_err(ab, "failed to create soc core: %d\n", ret);
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index ca97ccf250a4..a0a7c7b003c1 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -841,6 +841,7 @@ struct ath11k_peer *ath11k_peer_find_by_addr(struct ath11k_base *ab,
+ 					     const u8 *addr);
+ struct ath11k_peer *ath11k_peer_find_by_id(struct ath11k_base *ab, int peer_id);
+ int ath11k_core_qmi_firmware_ready(struct ath11k_base *ab);
++int ath11k_core_pre_init(struct ath11k_base *ab);
+ int ath11k_core_init(struct ath11k_base *ath11k);
+ void ath11k_core_deinit(struct ath11k_base *ath11k);
+ struct ath11k_base *ath11k_core_alloc(struct device *dev, size_t priv_size,
+diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
+index 5ebbdbde81ef..ff401d2871f3 100644
+--- a/drivers/net/wireless/ath/ath11k/pci.c
++++ b/drivers/net/wireless/ath/ath11k/pci.c
+@@ -208,8 +208,15 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
+ 		goto err_pci_free_region;
  	}
  
-+	ret = ath11k_pci_enable_msi(ab_pci);
-+	if (ret) {
-+		ath11k_err(ab, "failed to enable msi: %d\n", ret);
-+		goto err_pci_free_region;
-+	}
++	ret = ath11k_core_pre_init(ab);
++	if (ret)
++		goto err_pci_disable_msi;
 +
  	return 0;
  
-+err_pci_free_region:
-+	ath11k_pci_free_region(ab_pci);
-+
- err_free_core:
- 	ath11k_core_free(ab);
-+
- 	return ret;
- }
- 
-@@ -157,6 +225,7 @@ static void ath11k_pci_remove(struct pci_dev *pdev)
- 	struct ath11k_pci *ab_pci = ath11k_pci_priv(ab);
- 
- 	set_bit(ATH11K_FLAG_UNREGISTERING, &ab->dev_flags);
++err_pci_disable_msi:
 +	ath11k_pci_disable_msi(ab_pci);
++
+ err_pci_free_region:
  	ath11k_pci_free_region(ab_pci);
- 	ath11k_core_free(ab);
- }
-diff --git a/drivers/net/wireless/ath/ath11k/pci.h b/drivers/net/wireless/ath/ath11k/pci.h
-index dfd30ec09818..db75eae26f71 100644
---- a/drivers/net/wireless/ath/ath11k/pci.h
-+++ b/drivers/net/wireless/ath/ath11k/pci.h
-@@ -5,10 +5,23 @@
  
- #include "core.h"
- 
-+struct ath11k_msi_user {
-+	char *name;
-+	int num_vectors;
-+	u32 base_vector;
-+};
-+
-+struct ath11k_msi_config {
-+	int total_vectors;
-+	int total_users;
-+	struct ath11k_msi_user *users;
-+};
-+
- struct ath11k_pci {
- 	struct pci_dev *pdev;
- 	struct ath11k_base *ab;
- 	u16 dev_id;
-+	u32 msi_ep_base_data;
- };
- 
- static inline struct ath11k_pci *ath11k_pci_priv(struct ath11k_base *ab)
 -- 
 2.7.4
 
