@@ -1,14 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail29.static.mailgun.info ([104.130.122.29])
+Received: from m43-7.mailgun.net ([69.72.43.7])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k69AJ-0006gs-59
- for ath11k@lists.infradead.org; Thu, 13 Aug 2020 09:04:57 +0000
+ id 1k69AV-0006go-Fa
+ for ath11k@lists.infradead.org; Thu, 13 Aug 2020 09:05:06 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 04/10] ath11k: add simple PCI client driver for QCA6390 chipset
-Date: Thu, 13 Aug 2020 12:04:20 +0300
-Message-Id: <1597309466-19688-5-git-send-email-kvalo@codeaurora.org>
-In-Reply-To: <1597309466-19688-1-git-send-email-kvalo@codeaurora.org>
-References: <1597309466-19688-1-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH 00/10] ath11k: initial PCI support
+Date: Thu, 13 Aug 2020 12:04:16 +0300
+Message-Id: <1597309466-19688-1-git-send-email-kvalo@codeaurora.org>
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -17,7 +16,6 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
@@ -25,320 +23,62 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: linux-wireless@vger.kernel.org
 
-From: Govind Singh <govinds@codeaurora.org>
+ath11k: initial PCI support
 
-QCA6390 is a PCI based 11ax chipset, split AHB into own kernel module
-ath11k_ahb.ko and add ath11k_pci.ko for PCI devices.
+QCA6390 is a Wi-Fi 6 device using PCI bus but which accessed using
+Modem Host Interface (MHI) protocol. As the first step to get QCA6390
+working in ath11k add basic support for PCI and MHI.
+
+With this patchset only the simple PCI initialisation works with
+QCA6390. More patches will follow to get more features working with
+QCA6390.
 
 Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
 Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.1.0.1-01238-QCAHKSWPL_SILICONZ-2
 
-Signed-off-by: Govind Singh <govinds@codeaurora.org>
-Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/Kconfig  | 12 +++++
- drivers/net/wireless/ath/ath11k/Makefile |  7 ++-
- drivers/net/wireless/ath/ath11k/ahb.c    |  2 +-
- drivers/net/wireless/ath/ath11k/ce.c     |  2 +
- drivers/net/wireless/ath/ath11k/core.c   |  7 +++
- drivers/net/wireless/ath/ath11k/debug.c  |  5 ++
- drivers/net/wireless/ath/ath11k/dp.c     |  1 +
- drivers/net/wireless/ath/ath11k/hal.c    |  1 +
- drivers/net/wireless/ath/ath11k/hif.h    |  4 ++
- drivers/net/wireless/ath/ath11k/pci.c    | 88 ++++++++++++++++++++++++++++++++
- 10 files changed, 127 insertions(+), 2 deletions(-)
- create mode 100644 drivers/net/wireless/ath/ath11k/pci.c
+Please review.
 
-diff --git a/drivers/net/wireless/ath/ath11k/Kconfig b/drivers/net/wireless/ath/ath11k/Kconfig
-index 0fd44d83e0e9..2a792ddd6fea 100644
---- a/drivers/net/wireless/ath/ath11k/Kconfig
-+++ b/drivers/net/wireless/ath/ath11k/Kconfig
-@@ -12,6 +12,18 @@ config ATH11K
- 
- 	  If you choose to build a module, it'll be called ath11k.
- 
-+config ATH11K_AHB
-+	tristate "Atheros ath11k AHB support"
-+	depends on ATH11K
-+	help
-+	  This module adds support for AHB bus
-+
-+config ATH11K_PCI
-+	tristate "Atheros ath11k PCI support"
-+	depends on ATH11K && PCI
-+	help
-+	  This module adds support for PCIE bus
-+
- config ATH11K_DEBUG
- 	bool "QCA ath11k debugging"
- 	depends on ATH11K
-diff --git a/drivers/net/wireless/ath/ath11k/Makefile b/drivers/net/wireless/ath/ath11k/Makefile
-index ee13a3becbcf..4d1807f52d92 100644
---- a/drivers/net/wireless/ath/ath11k/Makefile
-+++ b/drivers/net/wireless/ath/ath11k/Makefile
-@@ -4,7 +4,6 @@ ath11k-y += core.o \
- 	    hal.o \
- 	    hal_tx.o \
- 	    hal_rx.o \
--	    ahb.o \
- 	    wmi.o \
- 	    mac.o \
- 	    reg.o \
-@@ -25,5 +24,11 @@ ath11k-$(CONFIG_ATH11K_TRACING) += trace.o
- ath11k-$(CONFIG_THERMAL) += thermal.o
- ath11k-$(CONFIG_ATH11K_SPECTRAL) += spectral.o
- 
-+obj-$(CONFIG_ATH11K_AHB) += ath11k_ahb.o
-+ath11k_ahb-y += ahb.o
-+
-+obj-$(CONFIG_ATH11K_PCI) += ath11k_pci.o
-+ath11k_pci-y += pci.o
-+
- # for tracing framework to find trace.h
- CFLAGS_trace.o := -I$(src)
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index e3228a4f485f..042019de0a81 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.c
-+++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -952,5 +952,5 @@ static void ath11k_ahb_exit(void)
- }
- module_exit(ath11k_ahb_exit);
- 
--MODULE_DESCRIPTION("Driver support for Qualcomm Technologies 802.11ax wireless chip");
-+MODULE_DESCRIPTION("Driver support for Qualcomm Technologies 802.11ax WLAN AHB devices");
- MODULE_LICENSE("Dual BSD/GPL");
-diff --git a/drivers/net/wireless/ath/ath11k/ce.c b/drivers/net/wireless/ath/ath11k/ce.c
-index cdd40c8fc867..7ae1bef0ab30 100644
---- a/drivers/net/wireless/ath/ath11k/ce.c
-+++ b/drivers/net/wireless/ath/ath11k/ce.c
-@@ -752,6 +752,7 @@ void ath11k_ce_free_pipes(struct ath11k_base *ab)
- 		}
- 	}
- }
-+EXPORT_SYMBOL(ath11k_ce_free_pipes);
- 
- int ath11k_ce_alloc_pipes(struct ath11k_base *ab)
- {
-@@ -806,3 +807,4 @@ int ath11k_ce_get_attr_flags(int ce_id)
- 
- 	return host_ce_config_wlan[ce_id].flags;
- }
-+EXPORT_SYMBOL(ath11k_ce_get_attr_flags);
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 5638f0731634..2dfbe4276514 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -14,6 +14,7 @@
- #include "hif.h"
- 
- unsigned int ath11k_debug_mask;
-+EXPORT_SYMBOL(ath11k_debug_mask);
- module_param_named(debug_mask, ath11k_debug_mask, uint, 0644);
- MODULE_PARM_DESC(debug_mask, "Debugging mask");
- 
-@@ -788,11 +789,13 @@ void ath11k_core_deinit(struct ath11k_base *ab)
- 	ath11k_mac_destroy(ab);
- 	ath11k_core_soc_destroy(ab);
- }
-+EXPORT_SYMBOL(ath11k_core_deinit);
- 
- void ath11k_core_free(struct ath11k_base *ab)
- {
- 	kfree(ab);
- }
-+EXPORT_SYMBOL(ath11k_core_free);
- 
- struct ath11k_base *ath11k_core_alloc(struct device *dev, size_t priv_size,
- 				      enum ath11k_bus bus)
-@@ -825,3 +828,7 @@ struct ath11k_base *ath11k_core_alloc(struct device *dev, size_t priv_size,
- 	kfree(ab);
- 	return NULL;
- }
-+EXPORT_SYMBOL(ath11k_core_alloc);
-+
-+MODULE_DESCRIPTION("Core module for Qualcomm Atheros 802.11ax wireless LAN cards.");
-+MODULE_LICENSE("Dual BSD/GPL");
-diff --git a/drivers/net/wireless/ath/ath11k/debug.c b/drivers/net/wireless/ath/ath11k/debug.c
-index 62a1aa0565a9..60b961e59189 100644
---- a/drivers/net/wireless/ath/ath11k/debug.c
-+++ b/drivers/net/wireless/ath/ath11k/debug.c
-@@ -62,6 +62,7 @@ void ath11k_info(struct ath11k_base *ab, const char *fmt, ...)
- 	/* TODO: Trace the log */
- 	va_end(args);
- }
-+EXPORT_SYMBOL(ath11k_info);
- 
- void ath11k_err(struct ath11k_base *ab, const char *fmt, ...)
- {
-@@ -76,6 +77,7 @@ void ath11k_err(struct ath11k_base *ab, const char *fmt, ...)
- 	/* TODO: Trace the log */
- 	va_end(args);
- }
-+EXPORT_SYMBOL(ath11k_err);
- 
- void ath11k_warn(struct ath11k_base *ab, const char *fmt, ...)
- {
-@@ -90,6 +92,7 @@ void ath11k_warn(struct ath11k_base *ab, const char *fmt, ...)
- 	/* TODO: Trace the log */
- 	va_end(args);
- }
-+EXPORT_SYMBOL(ath11k_warn);
- 
- #ifdef CONFIG_ATH11K_DEBUG
- void __ath11k_dbg(struct ath11k_base *ab, enum ath11k_debug_mask mask,
-@@ -110,6 +113,7 @@ void __ath11k_dbg(struct ath11k_base *ab, enum ath11k_debug_mask mask,
- 
- 	va_end(args);
- }
-+EXPORT_SYMBOL(__ath11k_dbg);
- 
- void ath11k_dbg_dump(struct ath11k_base *ab,
- 		     enum ath11k_debug_mask mask,
-@@ -138,6 +142,7 @@ void ath11k_dbg_dump(struct ath11k_base *ab,
- 		}
- 	}
- }
-+EXPORT_SYMBOL(ath11k_dbg_dump);
- 
- #endif
- 
-diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
-index 73fcb4f7f3c4..d6a2fd5e641c 100644
---- a/drivers/net/wireless/ath/ath11k/dp.c
-+++ b/drivers/net/wireless/ath/ath11k/dp.c
-@@ -7,6 +7,7 @@
- #include "core.h"
- #include "dp_tx.h"
- #include "hal_tx.h"
-+#include "hif.h"
- #include "debug.h"
- #include "dp_rx.h"
- #include "peer.h"
-diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
-index d63785178afa..c7b26478d3e7 100644
---- a/drivers/net/wireless/ath/ath11k/hal.c
-+++ b/drivers/net/wireless/ath/ath11k/hal.c
-@@ -1133,6 +1133,7 @@ void ath11k_hal_srng_deinit(struct ath11k_base *ab)
- 	ath11k_hal_free_cont_rdp(ab);
- 	ath11k_hal_free_cont_wrp(ab);
- }
-+EXPORT_SYMBOL(ath11k_hal_srng_deinit);
- 
- void ath11k_hal_dump_srng_stats(struct ath11k_base *ab)
- {
-diff --git a/drivers/net/wireless/ath/ath11k/hif.h b/drivers/net/wireless/ath/ath11k/hif.h
-index 165f7e51c238..48ee55cebc81 100644
---- a/drivers/net/wireless/ath/ath11k/hif.h
-+++ b/drivers/net/wireless/ath/ath11k/hif.h
-@@ -3,6 +3,9 @@
-  * Copyright (c) 2019-2020 The Linux Foundation. All rights reserved.
-  */
- 
-+#ifndef _HIF_H_
-+#define _HIF_H_
-+
- #include "core.h"
- 
- struct ath11k_hif_ops {
-@@ -63,3 +66,4 @@ static inline int ath11k_hif_map_service_to_pipe(struct ath11k_base *sc, u16 ser
- {
- 	return sc->hif.ops->map_service_to_pipe(sc, service_id, ul_pipe, dl_pipe);
- }
-+#endif /* _HIF_H_ */
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-new file mode 100644
-index 000000000000..a88536d2c64b
---- /dev/null
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -0,0 +1,88 @@
-+// SPDX-License-Identifier: BSD-3-Clause-Clear
-+/*
-+ * Copyright (c) 2019-2020 The Linux Foundation. All rights reserved.
-+ */
-+
-+#include <linux/module.h>
-+#include <linux/pci.h>
-+
-+#include "core.h"
-+#include "debug.h"
-+
-+#define QCA6390_DEVICE_ID		0x1101
-+
-+static const struct pci_device_id ath11k_pci_id_table[] = {
-+	{ PCI_VDEVICE(QCOM, QCA6390_DEVICE_ID) },
-+	{0}
-+};
-+
-+MODULE_DEVICE_TABLE(pci, ath11k_pci_id_table);
-+
-+static int ath11k_pci_probe(struct pci_dev *pdev,
-+			    const struct pci_device_id *pci_dev)
-+{
-+	struct ath11k_base *ab;
-+	enum ath11k_hw_rev hw_rev;
-+
-+	dev_warn(&pdev->dev, "WARNING: ath11k PCI support is experimental!\n");
-+
-+	switch (pci_dev->device) {
-+	case QCA6390_DEVICE_ID:
-+		hw_rev = ATH11K_HW_QCA6390_HW20;
-+		break;
-+	default:
-+		dev_err(&pdev->dev, "Unknown PCI device found: 0x%x\n",
-+			pci_dev->device);
-+		return -ENOTSUPP;
-+	}
-+
-+	ab = ath11k_core_alloc(&pdev->dev, 0, ATH11K_BUS_PCI);
-+	if (!ab) {
-+		dev_err(&pdev->dev, "failed to allocate ath11k base\n");
-+		return -ENOMEM;
-+	}
-+
-+	ab->dev = &pdev->dev;
-+	ab->hw_rev = hw_rev;
-+	pci_set_drvdata(pdev, ab);
-+
-+	return 0;
-+}
-+
-+static void ath11k_pci_remove(struct pci_dev *pdev)
-+{
-+	struct ath11k_base *ab = pci_get_drvdata(pdev);
-+
-+	set_bit(ATH11K_FLAG_UNREGISTERING, &ab->dev_flags);
-+	ath11k_core_free(ab);
-+}
-+
-+static struct pci_driver ath11k_pci_driver = {
-+	.name = "ath11k_pci",
-+	.id_table = ath11k_pci_id_table,
-+	.probe = ath11k_pci_probe,
-+	.remove = ath11k_pci_remove,
-+};
-+
-+static int ath11k_pci_init(void)
-+{
-+	int ret;
-+
-+	ret = pci_register_driver(&ath11k_pci_driver);
-+	if (ret)
-+		pr_err("failed to register ath11k pci driver: %d\n",
-+		       ret);
-+
-+	return ret;
-+}
-+module_init(ath11k_pci_init);
-+
-+static void ath11k_pci_exit(void)
-+{
-+	pci_unregister_driver(&ath11k_pci_driver);
-+}
-+
-+module_exit(ath11k_pci_exit);
-+
-+MODULE_DESCRIPTION("Driver support for Qualcomm Technologies 802.11ax WLAN PCIe devices");
-+MODULE_LICENSE("Dual BSD/GPL");
+Kalle
+
+Carl Huang (2):
+  ath11k: do not depend on ARCH_QCOM for ath11k
+  ath11k: add hw_params entry for QCA6390
+
+Govind Singh (6):
+  ath11k: add simple PCI client driver for QCA6390 chipset
+  ath11k: pci: setup resources
+  ath11k: pci: add MSI config initialisation
+  ath11k: register MHI controller device for QCA6390
+  ath11k: pci: add HAL, CE and core initialisation
+  ath11k: use remoteproc only with AHB devices
+
+Kalle Valo (2):
+  ath11k: move ring mask definitions to hw_params
+  ath11k: implement ath11k_core_pre_init()
+
+ drivers/net/wireless/ath/ath11k/Kconfig  |  18 +-
+ drivers/net/wireless/ath/ath11k/Makefile |   7 +-
+ drivers/net/wireless/ath/ath11k/ahb.c    | 100 +----
+ drivers/net/wireless/ath/ath11k/ce.c     |   4 +
+ drivers/net/wireless/ath/ath11k/core.c   |  59 ++-
+ drivers/net/wireless/ath/ath11k/core.h   |  22 +-
+ drivers/net/wireless/ath/ath11k/debug.c  |   5 +
+ drivers/net/wireless/ath/ath11k/debug.h  |   1 +
+ drivers/net/wireless/ath/ath11k/dp.c     |  23 +-
+ drivers/net/wireless/ath/ath11k/hal.c    |   2 +
+ drivers/net/wireless/ath/ath11k/hif.h    |   4 +
+ drivers/net/wireless/ath/ath11k/hw.c     |  72 +++
+ drivers/net/wireless/ath/ath11k/hw.h     |  19 +
+ drivers/net/wireless/ath/ath11k/mhi.c    | 423 ++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/mhi.h    |  28 ++
+ drivers/net/wireless/ath/ath11k/pci.c    | 738 +++++++++++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/pci.h    |  44 ++
+ 17 files changed, 1459 insertions(+), 110 deletions(-)
+ create mode 100644 drivers/net/wireless/ath/ath11k/mhi.c
+ create mode 100644 drivers/net/wireless/ath/ath11k/mhi.h
+ create mode 100644 drivers/net/wireless/ath/ath11k/pci.c
+ create mode 100644 drivers/net/wireless/ath/ath11k/pci.h
+
 -- 
 2.7.4
 
