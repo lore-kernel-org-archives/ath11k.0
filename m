@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail29.static.mailgun.info ([104.130.122.29])
+Received: from m43-7.mailgun.net ([69.72.43.7])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k69AA-0006ch-U9
- for ath11k@lists.infradead.org; Thu, 13 Aug 2020 09:04:44 +0000
+ id 1k69AG-0006fr-2J
+ for ath11k@lists.infradead.org; Thu, 13 Aug 2020 09:04:51 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 07/10] ath11k: implement ath11k_core_pre_init()
-Date: Thu, 13 Aug 2020 12:04:23 +0300
-Message-Id: <1597309466-19688-8-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH 10/10] ath11k: use remoteproc only with AHB devices
+Date: Thu, 13 Aug 2020 12:04:26 +0300
+Message-Id: <1597309466-19688-11-git-send-email-kvalo@codeaurora.org>
 In-Reply-To: <1597309466-19688-1-git-send-email-kvalo@codeaurora.org>
 References: <1597309466-19688-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,105 +25,194 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: linux-wireless@vger.kernel.org
 
-This is needed to initialise hw_params before MHI registration starts. MHI
-needs location of firmware directory and that's delivered via hw_params.
+From: Govind Singh <govinds@codeaurora.org>
+
+QCA6390 and other PCI devices use MHI based firmware loading and do not use
+remoteproc, so enable it only for AHB devices.
 
 Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
 Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.1.0.1-01238-QCAHKSWPL_SILICONZ-2
 
+Signed-off-by: Govind Singh <govinds@codeaurora.org>
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/ahb.c  |  4 ++++
- drivers/net/wireless/ath/ath11k/core.c | 20 ++++++++++++++------
- drivers/net/wireless/ath/ath11k/core.h |  1 +
- drivers/net/wireless/ath/ath11k/pci.c  |  7 +++++++
- 4 files changed, 26 insertions(+), 6 deletions(-)
+ drivers/net/wireless/ath/ath11k/Kconfig |  2 +-
+ drivers/net/wireless/ath/ath11k/ahb.c   |  6 +++++-
+ drivers/net/wireless/ath/ath11k/core.c  | 29 ++++++++++++++++++++++++++---
+ drivers/net/wireless/ath/ath11k/core.h  | 10 +++++++++-
+ drivers/net/wireless/ath/ath11k/pci.c   |  7 ++++++-
+ 5 files changed, 47 insertions(+), 7 deletions(-)
 
+diff --git a/drivers/net/wireless/ath/ath11k/Kconfig b/drivers/net/wireless/ath/ath11k/Kconfig
+index 7e5094e0e7bb..ad5cc6cac05b 100644
+--- a/drivers/net/wireless/ath/ath11k/Kconfig
++++ b/drivers/net/wireless/ath/ath11k/Kconfig
+@@ -2,7 +2,6 @@
+ config ATH11K
+ 	tristate "Qualcomm Technologies 802.11ax chipset support"
+ 	depends on MAC80211 && HAS_DMA
+-	depends on REMOTEPROC
+ 	depends on CRYPTO_MICHAEL_MIC
+ 	select ATH_COMMON
+ 	select QCOM_QMI_HELPERS
+@@ -15,6 +14,7 @@ config ATH11K
+ config ATH11K_AHB
+ 	tristate "Atheros ath11k AHB support"
+ 	depends on ATH11K
++	depends on REMOTEPROC
+ 	help
+ 	  This module adds support for AHB bus
+ 
 diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index 042019de0a81..f4c346bcc676 100644
+index f4c346bcc676..f00c4cc76d74 100644
 --- a/drivers/net/wireless/ath/ath11k/ahb.c
 +++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -868,6 +868,10 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
- 	ab->mem_len = resource_size(mem_res);
- 	platform_set_drvdata(pdev, ab);
+@@ -25,6 +25,10 @@ static const struct of_device_id ath11k_ahb_of_match[] = {
  
-+	ret = ath11k_core_pre_init(ab);
-+	if (ret)
-+		goto err_core_free;
+ MODULE_DEVICE_TABLE(of, ath11k_ahb_of_match);
+ 
++static const struct ath11k_bus_params ath11k_ahb_bus_params = {
++	.mhi_support = false,
++};
 +
- 	ret = ath11k_hal_srng_init(ab);
- 	if (ret)
- 		goto err_core_free;
+ /* Target firmware's Copy Engine configuration. */
+ static const struct ce_pipe_config target_ce_config_wlan[] = {
+ 	/* CE0: host->target HTC control and raw streams */
+@@ -855,7 +859,7 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
+ 		return ret;
+ 	}
+ 
+-	ab = ath11k_core_alloc(&pdev->dev, 0, ATH11K_BUS_AHB);
++	ab = ath11k_core_alloc(&pdev->dev, 0, ATH11K_BUS_AHB, &ath11k_ahb_bus_params);
+ 	if (!ab) {
+ 		dev_err(&pdev->dev, "failed to allocate ath11k base\n");
+ 		return -ENOMEM;
 diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 2dfbe4276514..5c84995baaf9 100644
+index 741093de3a83..22657dac7749 100644
 --- a/drivers/net/wireless/ath/ath11k/core.c
 +++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -742,6 +742,20 @@ static int ath11k_init_hw_params(struct ath11k_base *ab)
- 	return 0;
+@@ -756,12 +756,14 @@ int ath11k_core_pre_init(struct ath11k_base *ab)
  }
+ EXPORT_SYMBOL(ath11k_core_pre_init);
  
-+int ath11k_core_pre_init(struct ath11k_base *ab)
-+{
-+	int ret;
-+
-+	ret = ath11k_init_hw_params(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to get hw params: %d\n", ret);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL(ath11k_core_pre_init);
-+
- int ath11k_core_init(struct ath11k_base *ab)
+-int ath11k_core_init(struct ath11k_base *ab)
++static int ath11k_core_get_rproc(struct ath11k_base *ab)
  {
  	struct device *dev = ab->dev;
-@@ -761,12 +775,6 @@ int ath11k_core_init(struct ath11k_base *ab)
+ 	struct rproc *prproc;
+ 	phandle rproc_phandle;
+-	int ret;
++
++	if (ab->bus_params.mhi_support)
++		return 0;
+ 
+ 	if (of_property_read_u32(dev->of_node, "qcom,rproc", &rproc_phandle)) {
+ 		ath11k_err(ab, "failed to get q6_rproc handle\n");
+@@ -775,6 +777,25 @@ int ath11k_core_init(struct ath11k_base *ab)
  	}
  	ab->tgt_rproc = prproc;
  
--	ret = ath11k_init_hw_params(ab);
--	if (ret) {
--		ath11k_err(ab, "failed to get hw params %d\n", ret);
--		return ret;
--	}
--
++	return 0;
++}
++
++int ath11k_core_init(struct ath11k_base *ab)
++{
++	int ret;
++
++	ret = ath11k_core_get_rproc(ab);
++	if (ret) {
++		ath11k_err(ab, "failed to get rproc: %d\n", ret);
++		return ret;
++	}
++
++	ret = ath11k_init_hw_params(ab);
++	if (ret) {
++		ath11k_err(ab, "failed to get hw params %d\n", ret);
++		return ret;
++	}
++
  	ret = ath11k_core_soc_create(ab);
  	if (ret) {
  		ath11k_err(ab, "failed to create soc core: %d\n", ret);
+@@ -807,7 +828,8 @@ void ath11k_core_free(struct ath11k_base *ab)
+ EXPORT_SYMBOL(ath11k_core_free);
+ 
+ struct ath11k_base *ath11k_core_alloc(struct device *dev, size_t priv_size,
+-				      enum ath11k_bus bus)
++				      enum ath11k_bus bus,
++				      const struct ath11k_bus_params *bus_params)
+ {
+ 	struct ath11k_base *ab;
+ 
+@@ -830,6 +852,7 @@ struct ath11k_base *ath11k_core_alloc(struct device *dev, size_t priv_size,
+ 	INIT_WORK(&ab->restart_work, ath11k_core_restart);
+ 	timer_setup(&ab->rx_replenish_retry, ath11k_ce_rx_replenish_retry, 0);
+ 	ab->dev = dev;
++	ab->bus_params = *bus_params;
+ 
+ 	return ab;
+ 
 diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index ca97ccf250a4..a0a7c7b003c1 100644
+index a0a7c7b003c1..0309b13e38c9 100644
 --- a/drivers/net/wireless/ath/ath11k/core.h
 +++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -841,6 +841,7 @@ struct ath11k_peer *ath11k_peer_find_by_addr(struct ath11k_base *ab,
- 					     const u8 *addr);
- struct ath11k_peer *ath11k_peer_find_by_id(struct ath11k_base *ab, int peer_id);
- int ath11k_core_qmi_firmware_ready(struct ath11k_base *ab);
-+int ath11k_core_pre_init(struct ath11k_base *ab);
+@@ -580,6 +580,10 @@ struct ath11k_board_data {
+ 	size_t len;
+ };
+ 
++struct ath11k_bus_params {
++	bool mhi_support;
++};
++
+ /* IPQ8074 HW channel counters frequency value in hertz */
+ #define IPQ8074_CC_FREQ_HERTZ 320000
+ 
+@@ -668,7 +672,10 @@ struct ath11k_base {
+ 	u32 ext_service_bitmap[WMI_SERVICE_EXT_BM_SIZE];
+ 	bool pdevs_macaddr_valid;
+ 	int bd_api;
++
+ 	struct ath11k_hw_params hw_params;
++	struct ath11k_bus_params bus_params;
++
+ 	const struct firmware *cal_file;
+ 
+ 	/* Below regd's are protected by ab->data_lock */
+@@ -845,7 +852,8 @@ int ath11k_core_pre_init(struct ath11k_base *ab);
  int ath11k_core_init(struct ath11k_base *ath11k);
  void ath11k_core_deinit(struct ath11k_base *ath11k);
  struct ath11k_base *ath11k_core_alloc(struct device *dev, size_t priv_size,
+-				      enum ath11k_bus bus);
++				      enum ath11k_bus bus,
++				      const struct ath11k_bus_params *bus_params);
+ void ath11k_core_free(struct ath11k_base *ath11k);
+ int ath11k_core_fetch_bdf(struct ath11k_base *ath11k,
+ 			  struct ath11k_board_data *bd);
 diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index 5ebbdbde81ef..ff401d2871f3 100644
+index d1068766972d..d09faaf747ba 100644
 --- a/drivers/net/wireless/ath/ath11k/pci.c
 +++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -208,8 +208,15 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
- 		goto err_pci_free_region;
+@@ -27,6 +27,10 @@ static const struct pci_device_id ath11k_pci_id_table[] = {
+ 
+ MODULE_DEVICE_TABLE(pci, ath11k_pci_id_table);
+ 
++static const struct ath11k_bus_params ath11k_pci_bus_params = {
++	.mhi_support = true,
++};
++
+ static const struct ath11k_msi_config msi_config = {
+ 	.total_vectors = 32,
+ 	.total_users = 4,
+@@ -594,7 +598,8 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
+ 		return -ENOTSUPP;
  	}
  
-+	ret = ath11k_core_pre_init(ab);
-+	if (ret)
-+		goto err_pci_disable_msi;
-+
- 	return 0;
- 
-+err_pci_disable_msi:
-+	ath11k_pci_disable_msi(ab_pci);
-+
- err_pci_free_region:
- 	ath11k_pci_free_region(ab_pci);
- 
+-	ab = ath11k_core_alloc(&pdev->dev, sizeof(*ab_pci), ATH11K_BUS_PCI);
++	ab = ath11k_core_alloc(&pdev->dev, sizeof(*ab_pci), ATH11K_BUS_PCI,
++			       &ath11k_pci_bus_params);
+ 	if (!ab) {
+ 		dev_err(&pdev->dev, "failed to allocate ath11k base\n");
+ 		return -ENOMEM;
 -- 
 2.7.4
 
