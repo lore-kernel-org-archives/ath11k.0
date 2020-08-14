@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail29.static.mailgun.info ([104.130.122.29])
+Received: from m43-7.mailgun.net ([69.72.43.7])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k6Trr-0008Rf-E6
- for ath11k@lists.infradead.org; Fri, 14 Aug 2020 07:11:16 +0000
+ id 1k6Ts4-0008VS-8Q
+ for ath11k@lists.infradead.org; Fri, 14 Aug 2020 07:11:30 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 10/11] ath11k: enable internal sleep clock
-Date: Fri, 14 Aug 2020 10:10:29 +0300
-Message-Id: <1597389030-13887-11-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH 08/11] ath11k: fix memory OOB access in qmi_decode
+Date: Fri, 14 Aug 2020 10:10:27 +0300
+Message-Id: <1597389030-13887-9-git-send-email-kvalo@codeaurora.org>
 In-Reply-To: <1597389030-13887-1-git-send-email-kvalo@codeaurora.org>
 References: <1597389030-13887-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -27,12 +27,13 @@ Cc: linux-wireless@vger.kernel.org
 
 From: Carl Huang <cjhuang@codeaurora.org>
 
-On x86 and other non-qcom platforms, host needs to explicitly tell the firmware
-to use the internal sleep clock. Some QCA6390 modules have OTP burnt with
-external sleep clock selected, and these modules can't work expectedly unless
-firmware selects internal sleep clock.
+The decoded_size is wrongly assigned in ath11k_qmi_msg_handlers and it results
+in out of boundary access in qmi_decode. The correct decoded_size should be
+calculated from the related ind_msg structure.
 
-Add a field to hw_params to support this difference.
+This issue is exposed with QCA6390 because it needs 11 small memory chunks
+which are stored in qmi_wlanfw_request_mem_ind_msg_v01 and hence the
+decoded_size exceeds the wrongly assigend decoded_size.
 
 Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
 Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.1.0.1-01238-QCAHKSWPL_SILICONZ-2
@@ -40,79 +41,67 @@ Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.1.0.1-01238-QCAHKSWPL_SILICONZ-2
 Signed-off-by: Carl Huang <cjhuang@codeaurora.org>
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/core.c |  2 ++
- drivers/net/wireless/ath/ath11k/hw.h   |  2 ++
- drivers/net/wireless/ath/ath11k/qmi.c  | 17 +++++++++++++++++
- 3 files changed, 21 insertions(+)
+ drivers/net/wireless/ath/ath11k/qmi.c | 8 ++++----
+ drivers/net/wireless/ath/ath11k/qmi.h | 8 ++++++++
+ 2 files changed, 12 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index a3a53debc24f..f1c07583836f 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -31,6 +31,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.bdf_addr = 0x4B0C0000,
- 		.hw_ops = &ipq8074_ops,
- 		.ring_mask = &ath11k_hw_ring_mask_ipq8074,
-+		.internal_sleep_clock = false,
- 	},
- 	{
- 		.name = "qca6390 hw2.0",
-@@ -44,6 +45,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.bdf_addr = 0x4B0C0000,
- 		.hw_ops = &qca6390_ops,
- 		.ring_mask = &ath11k_hw_ring_mask_ipq8074,
-+		.internal_sleep_clock = true,
- 	},
- };
- 
-diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
-index 5b443a212c85..aacd092dbddb 100644
---- a/drivers/net/wireless/ath/ath11k/hw.h
-+++ b/drivers/net/wireless/ath/ath11k/hw.h
-@@ -133,6 +133,8 @@ struct ath11k_hw_params {
- 	const struct ath11k_hw_ops *hw_ops;
- 
- 	const struct ath11k_hw_ring_mask *ring_mask;
-+
-+	bool internal_sleep_clock;
- };
- 
- extern const struct ath11k_hw_ops ipq8074_ops;
 diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index 12991a835b8b..b81897131f0a 100644
+index b386ab4bd806..529886b1f068 100644
 --- a/drivers/net/wireless/ath/ath11k/qmi.c
 +++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -9,6 +9,9 @@
- #include <linux/of.h>
- #include <linux/firmware.h>
- 
-+#define SLEEP_CLOCK_SELECT_INTERNAL_BIT	0x02
-+#define HOST_CSTATE_BIT			0x04
-+
- static struct qmi_elem_info qmi_wlanfw_host_cap_req_msg_v01_ei[] = {
+@@ -2477,21 +2477,21 @@ static const struct qmi_msg_handler ath11k_qmi_msg_handlers[] = {
+ 		.type = QMI_INDICATION,
+ 		.msg_id = QMI_WLFW_REQUEST_MEM_IND_V01,
+ 		.ei = qmi_wlanfw_request_mem_ind_msg_v01_ei,
+-		.decoded_size = sizeof(qmi_wlanfw_request_mem_ind_msg_v01_ei),
++		.decoded_size = sizeof(struct qmi_wlanfw_request_mem_ind_msg_v01),
+ 		.fn = ath11k_qmi_msg_mem_request_cb,
+ 	},
  	{
- 		.data_type	= QMI_OPT_FLAG,
-@@ -1531,6 +1534,20 @@ static int ath11k_qmi_host_cap_send(struct ath11k_base *ab)
- 	req.cal_done_valid = 1;
- 	req.cal_done = ab->qmi.cal_done;
+ 		.type = QMI_INDICATION,
+ 		.msg_id = QMI_WLFW_FW_MEM_READY_IND_V01,
+ 		.ei = qmi_wlanfw_mem_ready_ind_msg_v01_ei,
+-		.decoded_size = sizeof(qmi_wlanfw_mem_ready_ind_msg_v01_ei),
++		.decoded_size = sizeof(struct qmi_wlanfw_fw_mem_ready_ind_msg_v01),
+ 		.fn = ath11k_qmi_msg_mem_ready_cb,
+ 	},
+ 	{
+ 		.type = QMI_INDICATION,
+ 		.msg_id = QMI_WLFW_FW_READY_IND_V01,
+ 		.ei = qmi_wlanfw_fw_ready_ind_msg_v01_ei,
+-		.decoded_size = sizeof(qmi_wlanfw_fw_ready_ind_msg_v01_ei),
++		.decoded_size = sizeof(struct qmi_wlanfw_fw_ready_ind_msg_v01),
+ 		.fn = ath11k_qmi_msg_fw_ready_cb,
+ 	},
+ 	{
+@@ -2499,7 +2499,7 @@ static const struct qmi_msg_handler ath11k_qmi_msg_handlers[] = {
+ 		.msg_id = QMI_WLFW_COLD_BOOT_CAL_DONE_IND_V01,
+ 		.ei = qmi_wlanfw_cold_boot_cal_done_ind_msg_v01_ei,
+ 		.decoded_size =
+-			sizeof(qmi_wlanfw_cold_boot_cal_done_ind_msg_v01_ei),
++			sizeof(struct qmi_wlanfw_fw_cold_cal_done_ind_msg_v01),
+ 		.fn = ath11k_qmi_msg_cold_boot_cal_done_cb,
+ 	},
+ };
+diff --git a/drivers/net/wireless/ath/ath11k/qmi.h b/drivers/net/wireless/ath/ath11k/qmi.h
+index d55ce6cf7222..60e904683165 100644
+--- a/drivers/net/wireless/ath/ath11k/qmi.h
++++ b/drivers/net/wireless/ath/ath11k/qmi.h
+@@ -267,6 +267,14 @@ struct qmi_wlanfw_fw_mem_ready_ind_msg_v01 {
+ 	char placeholder;
+ };
  
-+	if (ab->hw_params.internal_sleep_clock) {
-+		req.nm_modem_valid = 1;
++struct qmi_wlanfw_fw_ready_ind_msg_v01 {
++	char placeholder;
++};
 +
-+		/* Notify firmware that this is non-qualcomm platform. */
-+		req.nm_modem |= HOST_CSTATE_BIT;
++struct qmi_wlanfw_fw_cold_cal_done_ind_msg_v01 {
++	char placeholder;
++};
 +
-+		/* Notify firmware about the sleep clock selection,
-+		 * nm_modem_bit[1] is used for this purpose. Host driver on
-+		 * non-qualcomm platforms should select internal sleep
-+		 * clock.
-+		 */
-+		req.nm_modem |= SLEEP_CLOCK_SELECT_INTERNAL_BIT;
-+	}
-+
- 	ret = qmi_txn_init(&ab->qmi.handle, &txn,
- 			   qmi_wlanfw_host_cap_resp_msg_v01_ei, &resp);
- 	if (ret < 0)
+ #define QMI_WLANFW_CAP_REQ_MSG_V01_MAX_LEN	0
+ #define QMI_WLANFW_CAP_RESP_MSG_V01_MAX_LEN	207
+ #define QMI_WLANFW_CAP_REQ_V01			0x0024
 -- 
 2.7.4
 
