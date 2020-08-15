@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from m43-7.mailgun.net ([69.72.43.7])
+Received: from mail29.static.mailgun.info ([104.130.122.29])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k6qAO-0005XE-Qg
- for ath11k@lists.infradead.org; Sat, 15 Aug 2020 06:59:51 +0000
+ id 1k6qAM-0005Wm-3j
+ for ath11k@lists.infradead.org; Sat, 15 Aug 2020 06:59:48 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 06/12] ath11k: hal: assign msi_addr and msi_data to srng
-Date: Sat, 15 Aug 2020 09:59:06 +0300
-Message-Id: <1597474752-23287-7-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH 07/12] ath11k: ce: get msi_addr and msi_data before srng setup
+Date: Sat, 15 Aug 2020 09:59:07 +0300
+Message-Id: <1597474752-23287-8-git-send-email-kvalo@codeaurora.org>
 In-Reply-To: <1597474752-23287-1-git-send-email-kvalo@codeaurora.org>
 References: <1597474752-23287-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -27,8 +27,8 @@ Cc: linux-wireless@vger.kernel.org
 
 From: Carl Huang <cjhuang@codeaurora.org>
 
-QCA6390 uses MSI interrupt so it needs msi_addr and msi_data
-to generate interrupt.
+Move function to get msi_addr and msi_data before srng setup,
+otherwise srng is setup with no MSI configuration.
 
 Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
 Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.1.0.1-01238-QCAHKSWPL_SILICONZ-2
@@ -36,22 +36,33 @@ Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.1.0.1-01238-QCAHKSWPL_SILICONZ-2
 Signed-off-by: Carl Huang <cjhuang@codeaurora.org>
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/hal.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/net/wireless/ath/ath11k/ce.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
-index 7dcdcc1a72fb..5cd948f55b95 100644
---- a/drivers/net/wireless/ath/ath11k/hal.c
-+++ b/drivers/net/wireless/ath/ath11k/hal.c
-@@ -985,6 +985,8 @@ int ath11k_hal_srng_setup(struct ath11k_base *ab, enum hal_ring_type type,
- 				params->intr_batch_cntr_thres_entries;
- 	srng->intr_timer_thres_us = params->intr_timer_thres_us;
- 	srng->flags = params->flags;
-+	srng->msi_addr = params->msi_addr;
-+	srng->msi_data = params->msi_data;
- 	srng->initialized = 1;
- 	spin_lock_init(&srng->lock);
+diff --git a/drivers/net/wireless/ath/ath11k/ce.c b/drivers/net/wireless/ath/ath11k/ce.c
+index 41c1a6e56596..b2da1f937478 100644
+--- a/drivers/net/wireless/ath/ath11k/ce.c
++++ b/drivers/net/wireless/ath/ath11k/ce.c
+@@ -467,6 +467,9 @@ static int ath11k_ce_init_ring(struct ath11k_base *ab,
+ 	params.ring_base_vaddr = ce_ring->base_addr_owner_space;
+ 	params.num_entries = ce_ring->nentries;
  
++	if (!(CE_ATTR_DIS_INTR & ab->hw_params.host_ce_config[ce_id].flags))
++		ath11k_ce_srng_msi_ring_params_setup(ab, ce_id, &params);
++
+ 	switch (type) {
+ 	case HAL_CE_SRC:
+ 		if (!(CE_ATTR_DIS_INTR & ab->hw_params.host_ce_config[ce_id].flags))
+@@ -500,9 +503,6 @@ static int ath11k_ce_init_ring(struct ath11k_base *ab,
+ 		return ret;
+ 	}
+ 
+-	if (!(CE_ATTR_DIS_INTR & ab->hw_params.host_ce_config[ce_id].flags))
+-		ath11k_ce_srng_msi_ring_params_setup(ab, ce_id, &params);
+-
+ 	ce_ring->hal_ring_id = ret;
+ 
+ 	return 0;
 -- 
 2.7.4
 
