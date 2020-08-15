@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail29.static.mailgun.info ([104.130.122.29])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k6qAO-0005X5-8T
- for ath11k@lists.infradead.org; Sat, 15 Aug 2020 06:59:56 +0000
+ id 1k6qAV-0005Wm-DY
+ for ath11k@lists.infradead.org; Sat, 15 Aug 2020 06:59:57 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 10/12] ath11k: initialize wmi config based on hw_params
-Date: Sat, 15 Aug 2020 09:59:10 +0300
-Message-Id: <1597474752-23287-11-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH 09/12] ath11k: force single pdev only for QCA6390
+Date: Sat, 15 Aug 2020 09:59:09 +0300
+Message-Id: <1597474752-23287-10-git-send-email-kvalo@codeaurora.org>
 In-Reply-To: <1597474752-23287-1-git-send-email-kvalo@codeaurora.org>
 References: <1597474752-23287-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -27,8 +27,8 @@ Cc: linux-wireless@vger.kernel.org
 
 From: Carl Huang <cjhuang@codeaurora.org>
 
-QCA6390 has very different wmi config parameters compared to IPQ8074,
-so use different function to initialize wmi init config parameters.
+For QCA6390, only one pdev is created and only one HW is registered to
+mac80211. This one pdev manages both 2G radio and 5G radio.
 
 Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
 Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.1.0.1-01238-QCAHKSWPL_SILICONZ-2
@@ -36,170 +36,285 @@ Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.1.0.1-01238-QCAHKSWPL_SILICONZ-2
 Signed-off-by: Carl Huang <cjhuang@codeaurora.org>
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/hw.c  | 98 +++++++++++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/hw.h  |  4 ++
- drivers/net/wireless/ath/ath11k/wmi.c |  4 +-
- 3 files changed, 105 insertions(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/core.c |  2 +
+ drivers/net/wireless/ath/ath11k/core.h |  1 +
+ drivers/net/wireless/ath/ath11k/hw.h   |  2 +
+ drivers/net/wireless/ath/ath11k/mac.c  | 33 +++++++++++++
+ drivers/net/wireless/ath/ath11k/wmi.c  | 86 ++++++++++++++++++++++++----------
+ 5 files changed, 98 insertions(+), 26 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/hw.c b/drivers/net/wireless/ath/ath11k/hw.c
-index 5811eabf2275..338b784b0e84 100644
---- a/drivers/net/wireless/ath/ath11k/hw.c
-+++ b/drivers/net/wireless/ath/ath11k/hw.c
-@@ -31,12 +31,110 @@ static u8 ath11k_hw_ipq6018_mac_from_pdev_id(int pdev_idx)
- 	return pdev_idx;
- }
- 
-+static void ath11k_init_wmi_config_qca6390(struct ath11k_base *ab,
-+					   struct target_resource_config *config)
-+{
-+	config->num_vdevs = 4;
-+	config->num_peers = 16;
-+	config->num_tids = 32;
-+
-+	config->num_offload_peers = 3;
-+	config->num_offload_reorder_buffs = 3;
-+	config->num_peer_keys = TARGET_NUM_PEER_KEYS;
-+	config->ast_skid_limit = TARGET_AST_SKID_LIMIT;
-+	config->tx_chain_mask = (1 << ab->target_caps.num_rf_chains) - 1;
-+	config->rx_chain_mask = (1 << ab->target_caps.num_rf_chains) - 1;
-+	config->rx_timeout_pri[0] = TARGET_RX_TIMEOUT_LO_PRI;
-+	config->rx_timeout_pri[1] = TARGET_RX_TIMEOUT_LO_PRI;
-+	config->rx_timeout_pri[2] = TARGET_RX_TIMEOUT_LO_PRI;
-+	config->rx_timeout_pri[3] = TARGET_RX_TIMEOUT_HI_PRI;
-+	config->rx_decap_mode = TARGET_DECAP_MODE_NATIVE_WIFI;
-+	config->scan_max_pending_req = TARGET_SCAN_MAX_PENDING_REQS;
-+	config->bmiss_offload_max_vdev = TARGET_BMISS_OFFLOAD_MAX_VDEV;
-+	config->roam_offload_max_vdev = TARGET_ROAM_OFFLOAD_MAX_VDEV;
-+	config->roam_offload_max_ap_profiles = TARGET_ROAM_OFFLOAD_MAX_AP_PROFILES;
-+	config->num_mcast_groups = 0;
-+	config->num_mcast_table_elems = 0;
-+	config->mcast2ucast_mode = 0;
-+	config->tx_dbg_log_size = TARGET_TX_DBG_LOG_SIZE;
-+	config->num_wds_entries = 0;
-+	config->dma_burst_size = 0;
-+	config->rx_skip_defrag_timeout_dup_detection_check = 0;
-+	config->vow_config = TARGET_VOW_CONFIG;
-+	config->gtk_offload_max_vdev = 2;
-+	config->num_msdu_desc = 0x400;
-+	config->beacon_tx_offload_max_vdev = 2;
-+	config->rx_batchmode = TARGET_RX_BATCHMODE;
-+
-+	config->peer_map_unmap_v2_support = 0;
-+	config->use_pdev_id = 1;
-+	config->max_frag_entries = 0xa;
-+	config->num_tdls_vdevs = 0x1;
-+	config->num_tdls_conn_table_entries = 8;
-+	config->beacon_tx_offload_max_vdev = 0x2;
-+	config->num_multicast_filter_entries = 0x20;
-+	config->num_wow_filters = 0x16;
-+	config->num_keep_alive_pattern = 0x1;
-+	config->num_keep_alive_pattern = 0;
-+}
-+
-+static void ath11k_init_wmi_config_ipq8074(struct ath11k_base *ab,
-+					   struct target_resource_config *config)
-+{
-+	config->num_vdevs = ab->num_radios * TARGET_NUM_VDEVS;
-+
-+	if (ab->num_radios == 2) {
-+		config->num_peers = TARGET_NUM_PEERS(DBS);
-+		config->num_tids = TARGET_NUM_TIDS(DBS);
-+	} else if (ab->num_radios == 3) {
-+		config->num_peers = TARGET_NUM_PEERS(DBS_SBS);
-+		config->num_tids = TARGET_NUM_TIDS(DBS_SBS);
-+	} else {
-+		/* Control should not reach here */
-+		config->num_peers = TARGET_NUM_PEERS(SINGLE);
-+		config->num_tids = TARGET_NUM_TIDS(SINGLE);
-+	}
-+	config->num_offload_peers = TARGET_NUM_OFFLD_PEERS;
-+	config->num_offload_reorder_buffs = TARGET_NUM_OFFLD_REORDER_BUFFS;
-+	config->num_peer_keys = TARGET_NUM_PEER_KEYS;
-+	config->ast_skid_limit = TARGET_AST_SKID_LIMIT;
-+	config->tx_chain_mask = (1 << ab->target_caps.num_rf_chains) - 1;
-+	config->rx_chain_mask = (1 << ab->target_caps.num_rf_chains) - 1;
-+	config->rx_timeout_pri[0] = TARGET_RX_TIMEOUT_LO_PRI;
-+	config->rx_timeout_pri[1] = TARGET_RX_TIMEOUT_LO_PRI;
-+	config->rx_timeout_pri[2] = TARGET_RX_TIMEOUT_LO_PRI;
-+	config->rx_timeout_pri[3] = TARGET_RX_TIMEOUT_HI_PRI;
-+	config->rx_decap_mode = TARGET_DECAP_MODE_NATIVE_WIFI;
-+	config->scan_max_pending_req = TARGET_SCAN_MAX_PENDING_REQS;
-+	config->bmiss_offload_max_vdev = TARGET_BMISS_OFFLOAD_MAX_VDEV;
-+	config->roam_offload_max_vdev = TARGET_ROAM_OFFLOAD_MAX_VDEV;
-+	config->roam_offload_max_ap_profiles = TARGET_ROAM_OFFLOAD_MAX_AP_PROFILES;
-+	config->num_mcast_groups = TARGET_NUM_MCAST_GROUPS;
-+	config->num_mcast_table_elems = TARGET_NUM_MCAST_TABLE_ELEMS;
-+	config->mcast2ucast_mode = TARGET_MCAST2UCAST_MODE;
-+	config->tx_dbg_log_size = TARGET_TX_DBG_LOG_SIZE;
-+	config->num_wds_entries = TARGET_NUM_WDS_ENTRIES;
-+	config->dma_burst_size = TARGET_DMA_BURST_SIZE;
-+	config->rx_skip_defrag_timeout_dup_detection_check =
-+		TARGET_RX_SKIP_DEFRAG_TIMEOUT_DUP_DETECTION_CHECK;
-+	config->vow_config = TARGET_VOW_CONFIG;
-+	config->gtk_offload_max_vdev = TARGET_GTK_OFFLOAD_MAX_VDEV;
-+	config->num_msdu_desc = TARGET_NUM_MSDU_DESC;
-+	config->beacon_tx_offload_max_vdev = ab->num_radios * TARGET_MAX_BCN_OFFLD;
-+	config->rx_batchmode = TARGET_RX_BATCHMODE;
-+	config->peer_map_unmap_v2_support = 1;
-+	config->twt_ap_pdev_count = 2;
-+	config->twt_ap_sta_count = 1000;
-+}
-+
- const struct ath11k_hw_ops ipq8074_ops = {
- 	.get_hw_mac_from_pdev_id = ath11k_hw_ipq8074_mac_from_pdev_id,
-+	.wmi_init_config = ath11k_init_wmi_config_qca6390,
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index c55c886f6276..62fac8bbf221 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -35,6 +35,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.regs = &ipq8074_regs,
+ 		.host_ce_config = ath11k_host_ce_config_ipq8074,
+ 		.ce_count = 12,
++		.single_pdev_only = false,
+ 	},
+ 	{
+ 		.name = "qca6390 hw2.0",
+@@ -52,6 +53,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.regs = &qca6390_regs,
+ 		.host_ce_config = ath11k_host_ce_config_qca6390,
+ 		.ce_count = 9,
++		.single_pdev_only = true,
+ 	},
  };
  
- const struct ath11k_hw_ops ipq6018_ops = {
- 	.get_hw_mac_from_pdev_id = ath11k_hw_ipq6018_mac_from_pdev_id,
-+	.wmi_init_config = ath11k_init_wmi_config_ipq8074,
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index 6e351e7bded8..48bf2954c97c 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -545,6 +545,7 @@ struct ath11k {
  };
  
- const struct ath11k_hw_ops qca6390_ops = {
+ struct ath11k_band_cap {
++	u32 phy_id;
+ 	u32 max_bw_supported;
+ 	u32 ht_cap_info;
+ 	u32 he_cap_info[2];
 diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
-index 3dcd05ceeef7..4651aed2eaf0 100644
+index ef553bafa158..3dcd05ceeef7 100644
 --- a/drivers/net/wireless/ath/ath11k/hw.h
 +++ b/drivers/net/wireless/ath/ath11k/hw.h
-@@ -6,6 +6,8 @@
- #ifndef ATH11K_HW_H
- #define ATH11K_HW_H
- 
-+#include "wmi.h"
+@@ -139,6 +139,8 @@ struct ath11k_hw_params {
+ 	const struct ath11k_hw_regs *regs;
+ 	const struct ce_attr *host_ce_config;
+ 	u32 ce_count;
 +
- /* Target configuration defines */
- 
- /* Num VDEVS per radio */
-@@ -116,6 +118,8 @@ struct ath11k_hw_ring_mask {
- 
- struct ath11k_hw_ops {
- 	u8 (*get_hw_mac_from_pdev_id)(int pdev_id);
-+	void (*wmi_init_config)(struct ath11k_base *ab,
-+				struct target_resource_config *config);
++	bool single_pdev_only;
  };
  
- struct ath11k_hw_params {
+ extern const struct ath11k_hw_ops ipq8074_ops;
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 0fd1f714429c..ec68b5eea847 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -521,6 +521,11 @@ struct ath11k *ath11k_mac_get_ar_by_pdev_id(struct ath11k_base *ab, u32 pdev_id)
+ 	int i;
+ 	struct ath11k_pdev *pdev;
+ 
++	if (ab->hw_params.single_pdev_only) {
++		pdev = rcu_dereference(ab->pdevs_active[0]);
++		return pdev ? pdev->ar : NULL;
++	}
++
+ 	if (WARN_ON(pdev_id > ab->num_radios))
+ 		return NULL;
+ 
+@@ -5821,12 +5826,29 @@ static void ath11k_mac_update_ch_list(struct ath11k *ar,
+ 	}
+ }
+ 
++static u32 ath11k_get_phy_id(struct ath11k *ar, u32 band)
++{
++	struct ath11k_pdev *pdev = ar->pdev;
++	struct ath11k_pdev_cap *pdev_cap = &pdev->cap;
++
++	if (band == WMI_HOST_WLAN_2G_CAP)
++		return pdev_cap->band[NL80211_BAND_2GHZ].phy_id;
++
++	if (band == WMI_HOST_WLAN_5G_CAP)
++		return pdev_cap->band[NL80211_BAND_5GHZ].phy_id;
++
++	ath11k_warn(ar->ab, "unsupported phy cap:%d\n", band);
++
++	return 0;
++}
++
+ static int ath11k_mac_setup_channels_rates(struct ath11k *ar,
+ 					   u32 supported_bands)
+ {
+ 	struct ieee80211_supported_band *band;
+ 	struct ath11k_hal_reg_capabilities_ext *reg_cap;
+ 	void *channels;
++	u32 phy_id;
+ 
+ 	BUILD_BUG_ON((ARRAY_SIZE(ath11k_2ghz_channels) +
+ 		      ARRAY_SIZE(ath11k_5ghz_channels) +
+@@ -5849,6 +5871,11 @@ static int ath11k_mac_setup_channels_rates(struct ath11k *ar,
+ 		band->n_bitrates = ath11k_g_rates_size;
+ 		band->bitrates = ath11k_g_rates;
+ 		ar->hw->wiphy->bands[NL80211_BAND_2GHZ] = band;
++
++		if (ar->ab->hw_params.single_pdev_only) {
++			phy_id = ath11k_get_phy_id(ar, WMI_HOST_WLAN_2G_CAP);
++			reg_cap = &ar->ab->hal_reg_cap[phy_id];
++		}
+ 		ath11k_mac_update_ch_list(ar, band,
+ 					  reg_cap->low_2ghz_chan,
+ 					  reg_cap->high_2ghz_chan);
+@@ -5893,6 +5920,12 @@ static int ath11k_mac_setup_channels_rates(struct ath11k *ar,
+ 			band->n_bitrates = ath11k_a_rates_size;
+ 			band->bitrates = ath11k_a_rates;
+ 			ar->hw->wiphy->bands[NL80211_BAND_5GHZ] = band;
++
++			if (ar->ab->hw_params.single_pdev_only) {
++				phy_id = ath11k_get_phy_id(ar, WMI_HOST_WLAN_5G_CAP);
++				reg_cap = &ar->ab->hal_reg_cap[phy_id];
++			}
++
+ 			ath11k_mac_update_ch_list(ar, band,
+ 						  reg_cap->low_5ghz_chan,
+ 						  reg_cap->high_5ghz_chan);
 diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index c43f54a7c54d..21f9070a1300 100644
+index cd1bdb2a75c9..c43f54a7c54d 100644
 --- a/drivers/net/wireless/ath/ath11k/wmi.c
 +++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -3181,7 +3181,7 @@ static int ath11k_init_cmd_send(struct ath11k_pdev_wmi *wmi,
- 			      (param->num_band_to_mac * sizeof(*band_to_mac));
+@@ -338,7 +338,7 @@ ath11k_pull_mac_phy_cap_svc_ready_ext(struct ath11k_pdev_wmi *wmi_handle,
+ 	mac_phy_caps = wmi_mac_phy_caps + phy_idx;
  
- 	len = sizeof(*cmd) + TLV_HDR_SIZE + sizeof(*cfg) + hw_mode_len +
--	      (sizeof(*host_mem_chunks) * WMI_MAX_MEM_REQS);
-+	      (param->num_mem_chunks ? (sizeof(*host_mem_chunks) * WMI_MAX_MEM_REQS) : 0);
+ 	pdev->pdev_id = mac_phy_caps->pdev_id;
+-	pdev_cap->supported_bands = mac_phy_caps->supported_bands;
++	pdev_cap->supported_bands |= mac_phy_caps->supported_bands;
+ 	pdev_cap->ampdu_density = mac_phy_caps->ampdu_density;
  
- 	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, len);
- 	if (!skb)
-@@ -3387,6 +3387,8 @@ int ath11k_wmi_cmd_init(struct ath11k_base *ab)
- 	config.twt_ap_pdev_count = ab->num_radios;
- 	config.twt_ap_sta_count = 1000;
+ 	/* Take non-zero tx/rx chainmask. If tx/rx chainmask differs from
+@@ -371,27 +371,33 @@ ath11k_pull_mac_phy_cap_svc_ready_ext(struct ath11k_pdev_wmi *wmi_handle,
+ 	pdev_cap->rx_chain_mask_shift =
+ 			find_first_bit((unsigned long *)&pdev_cap->rx_chain_mask, 32);
  
-+	ab->hw_params.hw_ops->wmi_init_config(ab, &config);
+-	cap_band = &pdev_cap->band[NL80211_BAND_2GHZ];
+-	cap_band->max_bw_supported = mac_phy_caps->max_bw_supported_2g;
+-	cap_band->ht_cap_info = mac_phy_caps->ht_cap_info_2g;
+-	cap_band->he_cap_info[0] = mac_phy_caps->he_cap_info_2g;
+-	cap_band->he_cap_info[1] = mac_phy_caps->he_cap_info_2g_ext;
+-	cap_band->he_mcs = mac_phy_caps->he_supp_mcs_2g;
+-	memcpy(cap_band->he_cap_phy_info, &mac_phy_caps->he_cap_phy_info_2g,
+-	       sizeof(u32) * PSOC_HOST_MAX_PHY_SIZE);
+-	memcpy(&cap_band->he_ppet, &mac_phy_caps->he_ppet2g,
+-	       sizeof(struct ath11k_ppe_threshold));
+-
+-	cap_band = &pdev_cap->band[NL80211_BAND_5GHZ];
+-	cap_band->max_bw_supported = mac_phy_caps->max_bw_supported_5g;
+-	cap_band->ht_cap_info = mac_phy_caps->ht_cap_info_5g;
+-	cap_band->he_cap_info[0] = mac_phy_caps->he_cap_info_5g;
+-	cap_band->he_cap_info[1] = mac_phy_caps->he_cap_info_5g_ext;
+-	cap_band->he_mcs = mac_phy_caps->he_supp_mcs_5g;
+-	memcpy(cap_band->he_cap_phy_info, &mac_phy_caps->he_cap_phy_info_5g,
+-	       sizeof(u32) * PSOC_HOST_MAX_PHY_SIZE);
+-	memcpy(&cap_band->he_ppet, &mac_phy_caps->he_ppet5g,
+-	       sizeof(struct ath11k_ppe_threshold));
++	if (mac_phy_caps->supported_bands & WMI_HOST_WLAN_2G_CAP) {
++		cap_band = &pdev_cap->band[NL80211_BAND_2GHZ];
++		cap_band->phy_id = mac_phy_caps->phy_id;
++		cap_band->max_bw_supported = mac_phy_caps->max_bw_supported_2g;
++		cap_band->ht_cap_info = mac_phy_caps->ht_cap_info_2g;
++		cap_band->he_cap_info[0] = mac_phy_caps->he_cap_info_2g;
++		cap_band->he_cap_info[1] = mac_phy_caps->he_cap_info_2g_ext;
++		cap_band->he_mcs = mac_phy_caps->he_supp_mcs_2g;
++		memcpy(cap_band->he_cap_phy_info, &mac_phy_caps->he_cap_phy_info_2g,
++		       sizeof(u32) * PSOC_HOST_MAX_PHY_SIZE);
++		memcpy(&cap_band->he_ppet, &mac_phy_caps->he_ppet2g,
++		       sizeof(struct ath11k_ppe_threshold));
++	}
 +
- 	memcpy(&wmi_sc->wlan_resource_config, &config, sizeof(config));
++	if (mac_phy_caps->supported_bands & WMI_HOST_WLAN_5G_CAP) {
++		cap_band = &pdev_cap->band[NL80211_BAND_5GHZ];
++		cap_band->phy_id = mac_phy_caps->phy_id;
++		cap_band->max_bw_supported = mac_phy_caps->max_bw_supported_5g;
++		cap_band->ht_cap_info = mac_phy_caps->ht_cap_info_5g;
++		cap_band->he_cap_info[0] = mac_phy_caps->he_cap_info_5g;
++		cap_band->he_cap_info[1] = mac_phy_caps->he_cap_info_5g_ext;
++		cap_band->he_mcs = mac_phy_caps->he_supp_mcs_5g;
++		memcpy(cap_band->he_cap_phy_info, &mac_phy_caps->he_cap_phy_info_5g,
++		       sizeof(u32) * PSOC_HOST_MAX_PHY_SIZE);
++		memcpy(&cap_band->he_ppet, &mac_phy_caps->he_ppet5g,
++		       sizeof(struct ath11k_ppe_threshold));
++	}
  
- 	init_param.res_cfg = &wmi_sc->wlan_resource_config;
+ 	cap_band = &pdev_cap->band[NL80211_BAND_6GHZ];
+ 	cap_band->max_bw_supported = mac_phy_caps->max_bw_supported_5g;
+@@ -3388,7 +3394,8 @@ int ath11k_wmi_cmd_init(struct ath11k_base *ab)
+ 	init_param.hw_mode_id = wmi_sc->preferred_hw_mode;
+ 	init_param.mem_chunks = wmi_sc->mem_chunks;
+ 
+-	if (wmi_sc->preferred_hw_mode == WMI_HOST_HW_MODE_SINGLE)
++	if (wmi_sc->preferred_hw_mode == WMI_HOST_HW_MODE_SINGLE ||
++	    ab->hw_params.single_pdev_only)
+ 		init_param.hw_mode_id = WMI_HOST_HW_MODE_MAX;
+ 
+ 	init_param.num_band_to_mac = ab->num_radios;
+@@ -3688,6 +3695,8 @@ static int ath11k_wmi_tlv_hw_mode_caps(struct ath11k_base *soc,
+ 		i++;
+ 	}
+ 
++	ath11k_dbg(soc, ATH11K_DBG_WMI, "preferred_hw_mode:%d\n",
++		   soc->wmi_ab.preferred_hw_mode);
+ 	if (soc->wmi_ab.preferred_hw_mode == WMI_HOST_HW_MODE_MAX)
+ 		return -EINVAL;
+ 
+@@ -3778,6 +3787,7 @@ static int ath11k_wmi_tlv_ext_soc_hal_reg_caps_parse(struct ath11k_base *soc,
+ 	struct wmi_tlv_svc_rdy_ext_parse *svc_rdy_ext = data;
+ 	u8 hw_mode_id = svc_rdy_ext->pref_hw_mode_caps.hw_mode_id;
+ 	u32 phy_id_map;
++	int pdev_index = 0;
+ 	int ret;
+ 
+ 	svc_rdy_ext->soc_hal_reg_caps = (struct wmi_soc_hal_reg_capabilities *)ptr;
+@@ -3793,7 +3803,7 @@ static int ath11k_wmi_tlv_ext_soc_hal_reg_caps_parse(struct ath11k_base *soc,
+ 							    svc_rdy_ext->soc_hal_reg_caps,
+ 							    svc_rdy_ext->mac_phy_caps,
+ 							    hw_mode_id, soc->num_radios,
+-							    &soc->pdevs[soc->num_radios]);
++							    &soc->pdevs[pdev_index]);
+ 		if (ret) {
+ 			ath11k_warn(soc, "failed to extract mac caps, idx :%d\n",
+ 				    soc->num_radios);
+@@ -3802,9 +3812,25 @@ static int ath11k_wmi_tlv_ext_soc_hal_reg_caps_parse(struct ath11k_base *soc,
+ 
+ 		soc->num_radios++;
+ 
++		/* For QCA6390, save mac_phy capability in the same pdev */
++		if (soc->hw_params.single_pdev_only)
++			pdev_index = 0;
++		else
++			pdev_index = soc->num_radios;
++
+ 		/* TODO: mac_phy_cap prints */
+ 		phy_id_map >>= 1;
+ 	}
++
++	/* For QCA6390, set num_radios to 1 because host manages
++	 * both 2G and 5G radio in one pdev.
++	 * Set pdev_id = 0 and 0 means soc level.
++	 */
++	if (soc->hw_params.single_pdev_only) {
++		soc->num_radios = 1;
++		soc->pdevs[0].pdev_id = 0;
++	}
++
+ 	return 0;
+ }
+ 
+@@ -5434,8 +5460,12 @@ static int ath11k_reg_chan_list_event(struct ath11k_base *ab, struct sk_buff *sk
+ 
+ 	pdev_idx = reg_info->phy_id;
+ 
+-	if (pdev_idx >= ab->num_radios)
+-		goto fallback;
++	if (pdev_idx >= ab->num_radios) {
++		if (ab->hw_params.single_pdev_only)
++			goto mem_free;
++		else
++			goto fallback;
++	}
+ 
+ 	/* Avoid multiple overwrites to default regd, during core
+ 	 * stop-start after mac registration.
+@@ -6728,6 +6758,10 @@ int ath11k_wmi_attach(struct ath11k_base *ab)
+ 	ab->wmi_ab.ab = ab;
+ 	ab->wmi_ab.preferred_hw_mode = WMI_HOST_HW_MODE_MAX;
+ 
++	/* It's overwritten when service_ext_ready is handled */
++	if (ab->hw_params.single_pdev_only)
++		ab->wmi_ab.preferred_hw_mode = WMI_HOST_HW_MODE_SINGLE;
++
+ 	/* TODO: Init remaining wmi soc resources required */
+ 	init_completion(&ab->wmi_ab.service_ready);
+ 	init_completion(&ab->wmi_ab.unified_ready);
 -- 
 2.7.4
 
