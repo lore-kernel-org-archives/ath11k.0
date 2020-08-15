@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from m43-7.mailgun.net ([69.72.43.7])
+Received: from mail29.static.mailgun.info ([104.130.122.29])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k6qAl-0005XE-Hy
- for ath11k@lists.infradead.org; Sat, 15 Aug 2020 07:00:14 +0000
+ id 1k6qAq-0005X5-Cb
+ for ath11k@lists.infradead.org; Sat, 15 Aug 2020 07:00:20 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 11/12] ath11k: wmi: put hardware to DBS mode
-Date: Sat, 15 Aug 2020 09:59:11 +0300
-Message-Id: <1597474752-23287-12-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH 04/12] ath11k: ce: remove host_ce_config_wlan macro
+Date: Sat, 15 Aug 2020 09:59:04 +0300
+Message-Id: <1597474752-23287-5-git-send-email-kvalo@codeaurora.org>
 In-Reply-To: <1597474752-23287-1-git-send-email-kvalo@codeaurora.org>
 References: <1597474752-23287-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,84 +25,91 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: linux-wireless@vger.kernel.org
 
-From: Carl Huang <cjhuang@codeaurora.org>
+This macro is evil as it's accesses ab variable in a hidden way. It's better
+for readibility to access ab->hw_params.host_ce_config directly.
 
-For QCA6390, host puts hardware to Dual Band Simultaneous (DBS) mode by default
-so both 2G and 5G bands can be used. Otherwise only the 5G band can be used.
-QCA6390 doesn't provide band_to_mac configuration and firmware will do the
-band_to_mac map.
+This is done in a separate patch to keep the patches simple. No functional changes.
 
 Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
 Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.1.0.1-01238-QCAHKSWPL_SILICONZ-2
 
-Signed-off-by: Carl Huang <cjhuang@codeaurora.org>
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/core.c |  2 ++
- drivers/net/wireless/ath/ath11k/hw.h   |  6 ++++++
- drivers/net/wireless/ath/ath11k/wmi.c  | 10 +++++-----
- 3 files changed, 13 insertions(+), 5 deletions(-)
+ drivers/net/wireless/ath/ath11k/ce.c | 18 ++++++++----------
+ 1 file changed, 8 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 62fac8bbf221..b94630822d1e 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -36,6 +36,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.host_ce_config = ath11k_host_ce_config_ipq8074,
- 		.ce_count = 12,
- 		.single_pdev_only = false,
-+		.needs_band_to_mac = true,
- 	},
- 	{
- 		.name = "qca6390 hw2.0",
-@@ -54,6 +55,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.host_ce_config = ath11k_host_ce_config_qca6390,
- 		.ce_count = 9,
- 		.single_pdev_only = true,
-+		.needs_band_to_mac = false,
- 	},
- };
+diff --git a/drivers/net/wireless/ath/ath11k/ce.c b/drivers/net/wireless/ath/ath11k/ce.c
+index a588e5d0e5e0..c75007e92830 100644
+--- a/drivers/net/wireless/ath/ath11k/ce.c
++++ b/drivers/net/wireless/ath/ath11k/ce.c
+@@ -7,8 +7,6 @@
+ #include "debug.h"
+ #include "hif.h"
  
-diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
-index 4651aed2eaf0..8db9534b176b 100644
---- a/drivers/net/wireless/ath/ath11k/hw.h
-+++ b/drivers/net/wireless/ath/ath11k/hw.h
-@@ -145,6 +145,12 @@ struct ath11k_hw_params {
- 	u32 ce_count;
- 
- 	bool single_pdev_only;
-+
-+	/* For example on QCA6390 struct
-+	 * wmi_init_cmd_param::band_to_mac_config needs to be false as the
-+	 * firmware creates the mapping.
-+	 */
-+	bool needs_band_to_mac;
- };
- 
- extern const struct ath11k_hw_ops ipq8074_ops;
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 21f9070a1300..4e100407fea6 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -3396,13 +3396,13 @@ int ath11k_wmi_cmd_init(struct ath11k_base *ab)
- 	init_param.hw_mode_id = wmi_sc->preferred_hw_mode;
- 	init_param.mem_chunks = wmi_sc->mem_chunks;
- 
--	if (wmi_sc->preferred_hw_mode == WMI_HOST_HW_MODE_SINGLE ||
--	    ab->hw_params.single_pdev_only)
-+	if (wmi_sc->preferred_hw_mode == WMI_HOST_HW_MODE_SINGLE)
- 		init_param.hw_mode_id = WMI_HOST_HW_MODE_MAX;
- 
--	init_param.num_band_to_mac = ab->num_radios;
+-#define host_ce_config_wlan ab->hw_params.host_ce_config
 -
--	ath11k_fill_band_to_mac_param(ab, init_param.band_to_mac);
-+	if (ab->hw_params.needs_band_to_mac) {
-+		init_param.num_band_to_mac = ab->num_radios;
-+		ath11k_fill_band_to_mac_param(ab, init_param.band_to_mac);
-+	}
+ const struct ce_attr ath11k_host_ce_config_ipq8074[] = {
+ 	/* CE0: host->target HTC control and raw streams */
+ 	{
+@@ -471,19 +469,19 @@ static int ath11k_ce_init_ring(struct ath11k_base *ab,
  
- 	return ath11k_init_cmd_send(&wmi_sc->wmi[0], &init_param);
+ 	switch (type) {
+ 	case HAL_CE_SRC:
+-		if (!(CE_ATTR_DIS_INTR & host_ce_config_wlan[ce_id].flags))
++		if (!(CE_ATTR_DIS_INTR & ab->hw_params.host_ce_config[ce_id].flags))
+ 			params.intr_batch_cntr_thres_entries = 1;
+ 		break;
+ 	case HAL_CE_DST:
+-		params.max_buffer_len = host_ce_config_wlan[ce_id].src_sz_max;
+-		if (!(host_ce_config_wlan[ce_id].flags & CE_ATTR_DIS_INTR)) {
++		params.max_buffer_len = ab->hw_params.host_ce_config[ce_id].src_sz_max;
++		if (!(ab->hw_params.host_ce_config[ce_id].flags & CE_ATTR_DIS_INTR)) {
+ 			params.intr_timer_thres_us = 1024;
+ 			params.flags |= HAL_SRNG_FLAGS_LOW_THRESH_INTR_EN;
+ 			params.low_threshold = ce_ring->nentries - 3;
+ 		}
+ 		break;
+ 	case HAL_CE_DST_STATUS:
+-		if (!(host_ce_config_wlan[ce_id].flags & CE_ATTR_DIS_INTR)) {
++		if (!(ab->hw_params.host_ce_config[ce_id].flags & CE_ATTR_DIS_INTR)) {
+ 			params.intr_batch_cntr_thres_entries = 1;
+ 			params.intr_timer_thres_us = 0x1000;
+ 		}
+@@ -502,7 +500,7 @@ static int ath11k_ce_init_ring(struct ath11k_base *ab,
+ 		return ret;
+ 	}
+ 
+-	if (!(CE_ATTR_DIS_INTR & host_ce_config_wlan[ce_id].flags))
++	if (!(CE_ATTR_DIS_INTR & ab->hw_params.host_ce_config[ce_id].flags))
+ 		ath11k_ce_srng_msi_ring_params_setup(ab, ce_id, &params);
+ 
+ 	ce_ring->hal_ring_id = ret;
+@@ -550,7 +548,7 @@ ath11k_ce_alloc_ring(struct ath11k_base *ab, int nentries, int desc_sz)
+ static int ath11k_ce_alloc_pipe(struct ath11k_base *ab, int ce_id)
+ {
+ 	struct ath11k_ce_pipe *pipe = &ab->ce.ce_pipe[ce_id];
+-	const struct ce_attr *attr = &host_ce_config_wlan[ce_id];
++	const struct ce_attr *attr = &ab->hw_params.host_ce_config[ce_id];
+ 	struct ath11k_ce_ring *ring;
+ 	int nentries;
+ 	int desc_sz;
+@@ -877,7 +875,7 @@ int ath11k_ce_alloc_pipes(struct ath11k_base *ab)
+ 	spin_lock_init(&ab->ce.ce_lock);
+ 
+ 	for (i = 0; i < CE_COUNT; i++) {
+-		attr = &host_ce_config_wlan[i];
++		attr = &ab->hw_params.host_ce_config[i];
+ 		pipe = &ab->ce.ce_pipe[i];
+ 		pipe->pipe_num = i;
+ 		pipe->ab = ab;
+@@ -919,6 +917,6 @@ int ath11k_ce_get_attr_flags(struct ath11k_base *ab, int ce_id)
+ 	if (ce_id >= CE_COUNT)
+ 		return -EINVAL;
+ 
+-	return host_ce_config_wlan[ce_id].flags;
++	return ab->hw_params.host_ce_config[ce_id].flags;
  }
+ EXPORT_SYMBOL(ath11k_ce_get_attr_flags);
 -- 
 2.7.4
 
