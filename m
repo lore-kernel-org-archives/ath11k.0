@@ -1,13 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail29.static.mailgun.info ([104.130.122.29])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k7Gf4-0004pN-Dk
+ id 1k7GfZ-0004pD-B7
  for ath11k@lists.infradead.org; Sun, 16 Aug 2020 11:17:49 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH v2 07/12] ath11k: ce: get msi_addr and msi_data before srng
- setup
-Date: Sun, 16 Aug 2020 14:16:34 +0300
-Message-Id: <1597576599-8857-8-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH v2 08/12] ath11k: disable CE interrupt before hif start
+Date: Sun, 16 Aug 2020 14:16:35 +0300
+Message-Id: <1597576599-8857-9-git-send-email-kvalo@codeaurora.org>
 In-Reply-To: <1597576599-8857-1-git-send-email-kvalo@codeaurora.org>
 References: <1597576599-8857-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -28,8 +27,9 @@ Cc: linux-wireless@vger.kernel.org
 
 From: Carl Huang <cjhuang@codeaurora.org>
 
-Move function to get msi_addr and msi_data before srng setup,
-otherwise srng is setup with no MSI configuration.
+Disable CE interrupt otherwise interrupt may come before host
+initialized related context. This also fixes unbalanced interrupt
+enablement.
 
 Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
 Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.1.0.1-01238-QCAHKSWPL_SILICONZ-2
@@ -37,31 +37,19 @@ Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.1.0.1-01238-QCAHKSWPL_SILICONZ-2
 Signed-off-by: Carl Huang <cjhuang@codeaurora.org>
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/ce.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/net/wireless/ath/ath11k/pci.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/ce.c b/drivers/net/wireless/ath/ath11k/ce.c
-index 41c1a6e56596..b2da1f937478 100644
---- a/drivers/net/wireless/ath/ath11k/ce.c
-+++ b/drivers/net/wireless/ath/ath11k/ce.c
-@@ -467,6 +467,9 @@ static int ath11k_ce_init_ring(struct ath11k_base *ab,
- 	params.ring_base_vaddr = ce_ring->base_addr_owner_space;
- 	params.num_entries = ce_ring->nentries;
+diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
+index 37bd385348c3..2b5a8d3162d0 100644
+--- a/drivers/net/wireless/ath/ath11k/pci.c
++++ b/drivers/net/wireless/ath/ath11k/pci.c
+@@ -500,6 +500,7 @@ static int ath11k_pci_config_irq(struct ath11k_base *ab)
+ 		}
  
-+	if (!(CE_ATTR_DIS_INTR & ab->hw_params.host_ce_config[ce_id].flags))
-+		ath11k_ce_srng_msi_ring_params_setup(ab, ce_id, &params);
-+
- 	switch (type) {
- 	case HAL_CE_SRC:
- 		if (!(CE_ATTR_DIS_INTR & ab->hw_params.host_ce_config[ce_id].flags))
-@@ -500,9 +503,6 @@ static int ath11k_ce_init_ring(struct ath11k_base *ab,
- 		return ret;
+ 		ab->irq_num[irq_idx] = irq;
++		ath11k_pci_ce_irq_disable(ab, i);
  	}
- 
--	if (!(CE_ATTR_DIS_INTR & ab->hw_params.host_ce_config[ce_id].flags))
--		ath11k_ce_srng_msi_ring_params_setup(ab, ce_id, &params);
--
- 	ce_ring->hal_ring_id = ret;
  
  	return 0;
 -- 
