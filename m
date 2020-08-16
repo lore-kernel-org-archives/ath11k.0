@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail29.static.mailgun.info ([104.130.122.29])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k7GfB-0004mx-CP
- for ath11k@lists.infradead.org; Sun, 16 Aug 2020 11:17:49 +0000
+ id 1k7GfZ-0004tw-Qf
+ for ath11k@lists.infradead.org; Sun, 16 Aug 2020 11:17:58 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH v2 12/12] ath11k: dp: redefine peer_map and peer_unmap
-Date: Sun, 16 Aug 2020 14:16:39 +0300
-Message-Id: <1597576599-8857-13-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH v2 11/12] ath11k: wmi: put hardware to DBS mode
+Date: Sun, 16 Aug 2020 14:16:38 +0300
+Message-Id: <1597576599-8857-12-git-send-email-kvalo@codeaurora.org>
 In-Reply-To: <1597576599-8857-1-git-send-email-kvalo@codeaurora.org>
 References: <1597576599-8857-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -27,8 +27,10 @@ Cc: linux-wireless@vger.kernel.org
 
 From: Carl Huang <cjhuang@codeaurora.org>
 
-For QCA6390, it uses peer_map and peer_unmap V1. IPQ8074 uses V2.
-Redefine previous definition to peer_map2 and peer_unmap2.
+For QCA6390, host puts hardware to Dual Band Simultaneous (DBS) mode by default
+so both 2G and 5G bands can be used. Otherwise only the 5G band can be used.
+QCA6390 doesn't provide band_to_mac configuration and firmware will do the
+band_to_mac map.
 
 Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
 Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.1.0.1-01238-QCAHKSWPL_SILICONZ-2
@@ -36,50 +38,71 @@ Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.1.0.1-01238-QCAHKSWPL_SILICONZ-2
 Signed-off-by: Carl Huang <cjhuang@codeaurora.org>
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/dp.h    | 6 ++++--
- drivers/net/wireless/ath/ath11k/dp_rx.c | 2 ++
- 2 files changed, 6 insertions(+), 2 deletions(-)
+ drivers/net/wireless/ath/ath11k/core.c |  2 ++
+ drivers/net/wireless/ath/ath11k/hw.h   |  6 ++++++
+ drivers/net/wireless/ath/ath11k/wmi.c  | 10 +++++-----
+ 3 files changed, 13 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
-index 7587862d2e32..07876fd521f7 100644
---- a/drivers/net/wireless/ath/ath11k/dp.h
-+++ b/drivers/net/wireless/ath/ath11k/dp.h
-@@ -936,11 +936,13 @@ struct htt_rx_ring_tlv_filter {
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 62fac8bbf221..b94630822d1e 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -36,6 +36,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.host_ce_config = ath11k_host_ce_config_ipq8074,
+ 		.ce_count = 12,
+ 		.single_pdev_only = false,
++		.needs_band_to_mac = true,
+ 	},
+ 	{
+ 		.name = "qca6390 hw2.0",
+@@ -54,6 +55,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.host_ce_config = ath11k_host_ce_config_qca6390,
+ 		.ce_count = 9,
+ 		.single_pdev_only = true,
++		.needs_band_to_mac = false,
+ 	},
+ };
  
- enum htt_t2h_msg_type {
- 	HTT_T2H_MSG_TYPE_VERSION_CONF,
-+	HTT_T2H_MSG_TYPE_PEER_MAP	= 0x3,
-+	HTT_T2H_MSG_TYPE_PEER_UNMAP	= 0x4,
- 	HTT_T2H_MSG_TYPE_RX_ADDBA	= 0x5,
- 	HTT_T2H_MSG_TYPE_PKTLOG		= 0x8,
- 	HTT_T2H_MSG_TYPE_SEC_IND	= 0xb,
--	HTT_T2H_MSG_TYPE_PEER_MAP	= 0x1e,
--	HTT_T2H_MSG_TYPE_PEER_UNMAP	= 0x1f,
-+	HTT_T2H_MSG_TYPE_PEER_MAP2	= 0x1e,
-+	HTT_T2H_MSG_TYPE_PEER_UNMAP2	= 0x1f,
- 	HTT_T2H_MSG_TYPE_PPDU_STATS_IND = 0x1d,
- 	HTT_T2H_MSG_TYPE_EXT_STATS_CONF = 0x1c,
- 	HTT_T2H_MSG_TYPE_BKPRESSURE_EVENT_IND = 0x24,
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 66002de04aec..6009c26ce525 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -1569,6 +1569,7 @@ void ath11k_dp_htt_htc_t2h_msg_handler(struct ath11k_base *ab,
- 		complete(&dp->htt_tgt_version_received);
- 		break;
- 	case HTT_T2H_MSG_TYPE_PEER_MAP:
-+	case HTT_T2H_MSG_TYPE_PEER_MAP2:
- 		vdev_id = FIELD_GET(HTT_T2H_PEER_MAP_INFO_VDEV_ID,
- 				    resp->peer_map_ev.info);
- 		peer_id = FIELD_GET(HTT_T2H_PEER_MAP_INFO_PEER_ID,
-@@ -1582,6 +1583,7 @@ void ath11k_dp_htt_htc_t2h_msg_handler(struct ath11k_base *ab,
- 		ath11k_peer_map_event(ab, vdev_id, peer_id, mac_addr, ast_hash);
- 		break;
- 	case HTT_T2H_MSG_TYPE_PEER_UNMAP:
-+	case HTT_T2H_MSG_TYPE_PEER_UNMAP2:
- 		peer_id = FIELD_GET(HTT_T2H_PEER_UNMAP_INFO_PEER_ID,
- 				    resp->peer_unmap_ev.info);
- 		ath11k_peer_unmap_event(ab, peer_id);
+diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
+index 4651aed2eaf0..8db9534b176b 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.h
++++ b/drivers/net/wireless/ath/ath11k/hw.h
+@@ -145,6 +145,12 @@ struct ath11k_hw_params {
+ 	u32 ce_count;
+ 
+ 	bool single_pdev_only;
++
++	/* For example on QCA6390 struct
++	 * wmi_init_cmd_param::band_to_mac_config needs to be false as the
++	 * firmware creates the mapping.
++	 */
++	bool needs_band_to_mac;
+ };
+ 
+ extern const struct ath11k_hw_ops ipq8074_ops;
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 21f9070a1300..4e100407fea6 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -3396,13 +3396,13 @@ int ath11k_wmi_cmd_init(struct ath11k_base *ab)
+ 	init_param.hw_mode_id = wmi_sc->preferred_hw_mode;
+ 	init_param.mem_chunks = wmi_sc->mem_chunks;
+ 
+-	if (wmi_sc->preferred_hw_mode == WMI_HOST_HW_MODE_SINGLE ||
+-	    ab->hw_params.single_pdev_only)
++	if (wmi_sc->preferred_hw_mode == WMI_HOST_HW_MODE_SINGLE)
+ 		init_param.hw_mode_id = WMI_HOST_HW_MODE_MAX;
+ 
+-	init_param.num_band_to_mac = ab->num_radios;
+-
+-	ath11k_fill_band_to_mac_param(ab, init_param.band_to_mac);
++	if (ab->hw_params.needs_band_to_mac) {
++		init_param.num_band_to_mac = ab->num_radios;
++		ath11k_fill_band_to_mac_param(ab, init_param.band_to_mac);
++	}
+ 
+ 	return ath11k_init_cmd_send(&wmi_sc->wmi[0], &init_param);
+ }
 -- 
 2.7.4
 
