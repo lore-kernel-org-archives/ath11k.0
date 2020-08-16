@@ -1,14 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from m43-7.mailgun.net ([69.72.43.7])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k6qAp-0005Wo-Qh
- for ath11k@lists.infradead.org; Sat, 15 Aug 2020 07:00:23 +0000
+ id 1k7BGi-00075F-Gk
+ for ath11k@lists.infradead.org; Sun, 16 Aug 2020 05:31:51 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 05/12] ath11k: ce: remove CE_COUNT() macro
-Date: Sat, 15 Aug 2020 09:59:05 +0300
-Message-Id: <1597474752-23287-6-git-send-email-kvalo@codeaurora.org>
-In-Reply-To: <1597474752-23287-1-git-send-email-kvalo@codeaurora.org>
-References: <1597474752-23287-1-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH 2/9] ath11k: don't initialize rxdma1 related ring
+Date: Sun, 16 Aug 2020 08:31:24 +0300
+Message-Id: <1597555891-26112-3-git-send-email-kvalo@codeaurora.org>
+In-Reply-To: <1597555891-26112-1-git-send-email-kvalo@codeaurora.org>
+References: <1597555891-26112-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -25,236 +25,157 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: linux-wireless@vger.kernel.org
 
-This macro is evil as it's accesses ab variable in a hidden way. It's better
-for readibility to access ab->hw_params.ce_count directly.
+From: Carl Huang <cjhuang@codeaurora.org>
 
-This is done in a separate patch to keep the patches simple. No functional changes.
+For QCA6390, it has 2 lmacs and thus 2 rxdmas. However, each rxdma has rxdma0
+only, and doesn't have rxdma1. So for QCA6390, don't initialize rxdma1 related
+rings such as rx_mon_buf_ring, rx_mon_dst_ring and rx_mon_desc_ring.
 
 Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
 Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.1.0.1-01238-QCAHKSWPL_SILICONZ-2
 
+Signed-off-by: Carl Huang <cjhuang@codeaurora.org>
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/ahb.c | 12 ++++++------
- drivers/net/wireless/ath/ath11k/ce.c  | 12 ++++++------
- drivers/net/wireless/ath/ath11k/ce.h  |  1 -
- drivers/net/wireless/ath/ath11k/hal.c |  2 +-
- drivers/net/wireless/ath/ath11k/htc.c |  2 +-
- drivers/net/wireless/ath/ath11k/pci.c | 12 ++++++------
- 6 files changed, 20 insertions(+), 21 deletions(-)
+ drivers/net/wireless/ath/ath11k/core.c  |  2 ++
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 34 +++++++++++++++++++++++++++++++--
+ drivers/net/wireless/ath/ath11k/hw.h    |  2 ++
+ 3 files changed, 36 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index 4bc3558fc300..8466c62a83d6 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.c
-+++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -384,7 +384,7 @@ static void ath11k_ahb_kill_tasklets(struct ath11k_base *ab)
- {
- 	int i;
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 45d16f7ad461..8e9bf0e64a68 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -37,6 +37,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.ce_count = 12,
+ 		.single_pdev_only = false,
+ 		.needs_band_to_mac = true,
++		.rxdma1_enable = true,
+ 	},
+ 	{
+ 		.name = "qca6390 hw2.0",
+@@ -56,6 +57,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.ce_count = 9,
+ 		.single_pdev_only = true,
+ 		.needs_band_to_mac = false,
++		.rxdma1_enable = false,
+ 	},
+ };
  
--	for (i = 0; i < CE_COUNT; i++) {
-+	for (i = 0; i < ab->hw_params.ce_count; i++) {
- 		struct ath11k_ce_pipe *ce_pipe = &ab->ce.ce_pipe[i];
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 6009c26ce525..64aa0077a45d 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -375,6 +375,12 @@ static int ath11k_dp_rxdma_buf_ring_free(struct ath11k *ar,
+ 	idr_destroy(&rx_ring->bufs_idr);
+ 	spin_unlock_bh(&rx_ring->idr_lock);
  
- 		if (ath11k_ce_get_attr_flags(ab, i) & CE_ATTR_DIS_INTR)
-@@ -475,7 +475,7 @@ static void ath11k_ahb_sync_ce_irqs(struct ath11k_base *ab)
- 	int i;
- 	int irq_idx;
++	/* if rxdma1_enable is false, mon_status_refill_ring
++	 * isn't setup, so don't clean.
++	 */
++	if (!ar->ab->hw_params.rxdma1_enable)
++		return 0;
++
+ 	rx_ring = &dp->rx_mon_status_refill_ring;
  
--	for (i = 0; i < CE_COUNT; i++) {
-+	for (i = 0; i < ab->hw_params.ce_count; i++) {
- 		if (ath11k_ce_get_attr_flags(ab, i) & CE_ATTR_DIS_INTR)
- 			continue;
+ 	spin_lock_bh(&rx_ring->idr_lock);
+@@ -390,6 +396,7 @@ static int ath11k_dp_rxdma_buf_ring_free(struct ath11k *ar,
  
-@@ -503,7 +503,7 @@ static void ath11k_ahb_ce_irqs_enable(struct ath11k_base *ab)
- {
- 	int i;
+ 	idr_destroy(&rx_ring->bufs_idr);
+ 	spin_unlock_bh(&rx_ring->idr_lock);
++
+ 	return 0;
+ }
  
--	for (i = 0; i < CE_COUNT; i++) {
-+	for (i = 0; i < ab->hw_params.ce_count; i++) {
- 		if (ath11k_ce_get_attr_flags(ab, i) & CE_ATTR_DIS_INTR)
- 			continue;
- 		ath11k_ahb_ce_irq_enable(ab, i);
-@@ -514,7 +514,7 @@ static void ath11k_ahb_ce_irqs_disable(struct ath11k_base *ab)
- {
- 	int i;
+@@ -431,8 +438,10 @@ static int ath11k_dp_rxdma_pdev_buf_setup(struct ath11k *ar)
  
--	for (i = 0; i < CE_COUNT; i++) {
-+	for (i = 0; i < ab->hw_params.ce_count; i++) {
- 		if (ath11k_ce_get_attr_flags(ab, i) & CE_ATTR_DIS_INTR)
- 			continue;
- 		ath11k_ahb_ce_irq_disable(ab, i);
-@@ -601,7 +601,7 @@ static void ath11k_ahb_free_irq(struct ath11k_base *ab)
- 	int irq_idx;
- 	int i;
+ 	ath11k_dp_rxdma_ring_buf_setup(ar, rx_ring, HAL_RXDMA_BUF);
  
--	for (i = 0; i < CE_COUNT; i++) {
-+	for (i = 0; i < ab->hw_params.ce_count; i++) {
- 		if (ath11k_ce_get_attr_flags(ab, i) & CE_ATTR_DIS_INTR)
- 			continue;
- 		irq_idx = ATH11K_IRQ_CE0_OFFSET + i;
-@@ -756,7 +756,7 @@ static int ath11k_ahb_config_irq(struct ath11k_base *ab)
- 	int ret;
+-	rx_ring = &dp->rxdma_mon_buf_ring;
+-	ath11k_dp_rxdma_ring_buf_setup(ar, rx_ring, HAL_RXDMA_MONITOR_BUF);
++	if (ar->ab->hw_params.rxdma1_enable) {
++		rx_ring = &dp->rxdma_mon_buf_ring;
++		ath11k_dp_rxdma_ring_buf_setup(ar, rx_ring, HAL_RXDMA_MONITOR_BUF);
++	}
  
- 	/* Configure CE irqs */
--	for (i = 0; i < CE_COUNT; i++) {
-+	for (i = 0; i < ab->hw_params.ce_count; i++) {
- 		struct ath11k_ce_pipe *ce_pipe = &ab->ce.ce_pipe[i];
- 
- 		if (ath11k_ce_get_attr_flags(ab, i) & CE_ATTR_DIS_INTR)
-diff --git a/drivers/net/wireless/ath/ath11k/ce.c b/drivers/net/wireless/ath/ath11k/ce.c
-index c75007e92830..41c1a6e56596 100644
---- a/drivers/net/wireless/ath/ath11k/ce.c
-+++ b/drivers/net/wireless/ath/ath11k/ce.c
-@@ -718,7 +718,7 @@ void ath11k_ce_cleanup_pipes(struct ath11k_base *ab)
- 	struct ath11k_ce_pipe *pipe;
- 	int pipe_num;
- 
--	for (pipe_num = 0; pipe_num < CE_COUNT; pipe_num++) {
-+	for (pipe_num = 0; pipe_num < ab->hw_params.ce_count; pipe_num++) {
- 		pipe = &ab->ce.ce_pipe[pipe_num];
- 		ath11k_ce_rx_pipe_cleanup(pipe);
- 
-@@ -736,7 +736,7 @@ void ath11k_ce_rx_post_buf(struct ath11k_base *ab)
- 	int i;
- 	int ret;
- 
--	for (i = 0; i < CE_COUNT; i++) {
-+	for (i = 0; i < ab->hw_params.ce_count; i++) {
- 		pipe = &ab->ce.ce_pipe[i];
- 		ret = ath11k_ce_rx_post_pipe(pipe);
- 		if (ret) {
-@@ -767,7 +767,7 @@ int ath11k_ce_init_pipes(struct ath11k_base *ab)
- 	int i;
- 	int ret;
- 
--	for (i = 0; i < CE_COUNT; i++) {
-+	for (i = 0; i < ab->hw_params.ce_count; i++) {
- 		pipe = &ab->ce.ce_pipe[i];
- 
- 		if (pipe->src_ring) {
-@@ -825,7 +825,7 @@ void ath11k_ce_free_pipes(struct ath11k_base *ab)
- 	int desc_sz;
- 	int i;
- 
--	for (i = 0; i < CE_COUNT; i++) {
-+	for (i = 0; i < ab->hw_params.ce_count; i++) {
- 		pipe = &ab->ce.ce_pipe[i];
- 
- 		if (pipe->src_ring) {
-@@ -874,7 +874,7 @@ int ath11k_ce_alloc_pipes(struct ath11k_base *ab)
- 
- 	spin_lock_init(&ab->ce.ce_lock);
- 
--	for (i = 0; i < CE_COUNT; i++) {
-+	for (i = 0; i < ab->hw_params.ce_count; i++) {
- 		attr = &ab->hw_params.host_ce_config[i];
- 		pipe = &ab->ce.ce_pipe[i];
- 		pipe->pipe_num = i;
-@@ -914,7 +914,7 @@ void ath11k_ce_byte_swap(void *mem, u32 len)
- 
- int ath11k_ce_get_attr_flags(struct ath11k_base *ab, int ce_id)
- {
--	if (ce_id >= CE_COUNT)
-+	if (ce_id >= ab->hw_params.ce_count)
- 		return -EINVAL;
- 
- 	return ab->hw_params.host_ce_config[ce_id].flags;
-diff --git a/drivers/net/wireless/ath/ath11k/ce.h b/drivers/net/wireless/ath/ath11k/ce.h
-index 8feb6e98ea13..cf704f18f3a1 100644
---- a/drivers/net/wireless/ath/ath11k/ce.h
-+++ b/drivers/net/wireless/ath/ath11k/ce.h
-@@ -6,7 +6,6 @@
- #ifndef ATH11K_CE_H
- #define ATH11K_CE_H
- 
--#define CE_COUNT (ab->hw_params.ce_count)
- #define CE_COUNT_MAX 12
- 
- /* Byte swap data words */
-diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
-index cca019cc0234..7dcdcc1a72fb 100644
---- a/drivers/net/wireless/ath/ath11k/hal.c
-+++ b/drivers/net/wireless/ath/ath11k/hal.c
-@@ -1157,7 +1157,7 @@ void ath11k_hal_dump_srng_stats(struct ath11k_base *ab)
- 	int i;
- 
- 	ath11k_err(ab, "Last interrupt received for each CE:\n");
--	for (i = 0; i < CE_COUNT; i++) {
-+	for (i = 0; i < ab->hw_params.ce_count; i++) {
- 		ce_pipe = &ab->ce.ce_pipe[i];
- 
- 		if (ath11k_ce_get_attr_flags(ab, i) & CE_ATTR_DIS_INTR)
-diff --git a/drivers/net/wireless/ath/ath11k/htc.c b/drivers/net/wireless/ath/ath11k/htc.c
-index bc0026c1e4a6..e9e354fc11fa 100644
---- a/drivers/net/wireless/ath/ath11k/htc.c
-+++ b/drivers/net/wireless/ath/ath11k/htc.c
-@@ -478,7 +478,7 @@ int ath11k_htc_wait_target(struct ath11k_htc *htc)
- 	if (!time_left) {
- 		ath11k_warn(ab, "failed to receive control response completion, polling..\n");
- 
--		for (i = 0; i < CE_COUNT; i++)
-+		for (i = 0; i < ab->hw_params.ce_count; i++)
- 			ath11k_ce_per_engine_service(htc->ab, i);
- 
- 		time_left =
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index e4551fb493ff..37bd385348c3 100644
---- a/drivers/net/wireless/ath/ath11k/pci.c
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -393,7 +393,7 @@ static void ath11k_pci_free_irq(struct ath11k_base *ab)
- {
- 	int i, irq_idx;
- 
--	for (i = 0; i < CE_COUNT; i++) {
-+	for (i = 0; i < ab->hw_params.ce_count; i++) {
- 		if (ath11k_ce_get_attr_flags(ab, i) & CE_ATTR_DIS_INTR)
- 			continue;
- 		irq_idx = ATH11K_PCI_IRQ_CE0_OFFSET + i;
-@@ -421,7 +421,7 @@ static void ath11k_pci_ce_irqs_disable(struct ath11k_base *ab)
- {
- 	int i;
- 
--	for (i = 0; i < CE_COUNT; i++) {
-+	for (i = 0; i < ab->hw_params.ce_count; i++) {
- 		if (ath11k_ce_get_attr_flags(ab, i) & CE_ATTR_DIS_INTR)
- 			continue;
- 		ath11k_pci_ce_irq_disable(ab, i);
-@@ -433,7 +433,7 @@ static void ath11k_pci_sync_ce_irqs(struct ath11k_base *ab)
- 	int i;
- 	int irq_idx;
- 
--	for (i = 0; i < CE_COUNT; i++) {
-+	for (i = 0; i < ab->hw_params.ce_count; i++) {
- 		if (ath11k_ce_get_attr_flags(ab, i) & CE_ATTR_DIS_INTR)
- 			continue;
- 
-@@ -477,7 +477,7 @@ static int ath11k_pci_config_irq(struct ath11k_base *ab)
+ 	rx_ring = &dp->rx_mon_status_refill_ring;
+ 	ath11k_dp_rxdma_ring_buf_setup(ar, rx_ring, HAL_RXDMA_MONITOR_STATUS);
+@@ -516,6 +525,14 @@ static int ath11k_dp_rx_pdev_srng_alloc(struct ath11k *ar)
+ 			    "failed to setup rx_mon_status_refill_ring\n");
  		return ret;
+ 	}
++
++	/* if rxdma1_enable is false, then it doesn't need
++	 * to setup rxdam_mon_buf_ring, rxdma_mon_dst_ring
++	 * and rxdma_mon_desc_ring.
++	 */
++	if (!ar->ab->hw_params.rxdma1_enable)
++		return 0;
++
+ 	ret = ath11k_dp_srng_setup(ar->ab,
+ 				   &dp->rxdma_mon_buf_ring.refill_buf_ring,
+ 				   HAL_RXDMA_MONITOR_BUF, 0, dp->mac_id,
+@@ -4129,6 +4146,9 @@ int ath11k_dp_rx_pdev_alloc(struct ath11k_base *ab, int mac_id)
+ 		return ret;
+ 	}
  
- 	/* Configure CE irqs */
--	for (i = 0; i < CE_COUNT; i++) {
-+	for (i = 0; i < ab->hw_params.ce_count; i++) {
- 		msi_data = (i % msi_data_count) + msi_irq_start;
- 		irq = ath11k_pci_get_msi_irq(ab->dev, msi_data);
- 		ce_pipe = &ab->ce.ce_pipe[i];
-@@ -521,7 +521,7 @@ static void ath11k_pci_ce_irqs_enable(struct ath11k_base *ab)
- {
- 	int i;
++	if (!ab->hw_params.rxdma1_enable)
++		goto config_refill_ring;
++
+ 	ring_id = dp->rxdma_mon_buf_ring.refill_buf_ring.ring_id;
+ 	ret = ath11k_dp_tx_htt_srng_setup(ab, ring_id,
+ 					  mac_id, HAL_RXDMA_MONITOR_BUF);
+@@ -4153,6 +4173,8 @@ int ath11k_dp_rx_pdev_alloc(struct ath11k_base *ab, int mac_id)
+ 			    ret);
+ 		return ret;
+ 	}
++
++config_refill_ring:
+ 	ring_id = dp->rx_mon_status_refill_ring.refill_buf_ring.ring_id;
+ 	ret = ath11k_dp_tx_htt_srng_setup(ab, ring_id, mac_id,
+ 					  HAL_RXDMA_MONITOR_STATUS);
+@@ -4162,6 +4184,7 @@ int ath11k_dp_rx_pdev_alloc(struct ath11k_base *ab, int mac_id)
+ 			    ret);
+ 		return ret;
+ 	}
++
+ 	return 0;
+ }
  
--	for (i = 0; i < CE_COUNT; i++) {
-+	for (i = 0; i < ab->hw_params.ce_count; i++) {
- 		if (ath11k_ce_get_attr_flags(ab, i) & CE_ATTR_DIS_INTR)
- 			continue;
- 		ath11k_pci_ce_irq_enable(ab, i);
-@@ -680,7 +680,7 @@ static void ath11k_pci_kill_tasklets(struct ath11k_base *ab)
- {
- 	int i;
+@@ -4834,6 +4857,12 @@ int ath11k_dp_rx_pdev_mon_attach(struct ath11k *ar)
+ 		return ret;
+ 	}
  
--	for (i = 0; i < CE_COUNT; i++) {
-+	for (i = 0; i < ab->hw_params.ce_count; i++) {
- 		struct ath11k_ce_pipe *ce_pipe = &ab->ce.ce_pipe[i];
++	/* if rxdma1_enable is false, no need to setup
++	 * rxdma_mon_desc_ring.
++	 */
++	if (!ar->ab->hw_params.rxdma1_enable)
++		return 0;
++
+ 	dp_srng = &dp->rxdma_mon_desc_ring;
+ 	n_link_desc = dp_srng->size /
+ 		ath11k_hal_srng_get_entrysize(ar->ab, HAL_RXDMA_MONITOR_DESC);
+@@ -4850,6 +4879,7 @@ int ath11k_dp_rx_pdev_mon_attach(struct ath11k *ar)
+ 	pmon->mon_last_linkdesc_paddr = 0;
+ 	pmon->mon_last_buf_cookie = DP_RX_DESC_COOKIE_MAX + 1;
+ 	spin_lock_init(&pmon->mon_lock);
++
+ 	return 0;
+ }
  
- 		if (ath11k_ce_get_attr_flags(ab, i) & CE_ATTR_DIS_INTR)
+diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
+index 1c9176273883..2e88194da329 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.h
++++ b/drivers/net/wireless/ath/ath11k/hw.h
+@@ -151,6 +151,8 @@ struct ath11k_hw_params {
+ 	 * firmware creates the mapping.
+ 	 */
+ 	bool needs_band_to_mac;
++
++	bool rxdma1_enable;
+ };
+ 
+ extern const struct ath11k_hw_ops ipq8074_ops;
 -- 
 2.7.4
 
