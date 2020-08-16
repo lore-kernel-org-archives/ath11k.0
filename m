@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail29.static.mailgun.info ([104.130.122.29])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k7GfZ-0004pD-B7
+ id 1k7GfB-0004mx-CP
  for ath11k@lists.infradead.org; Sun, 16 Aug 2020 11:17:49 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH v2 08/12] ath11k: disable CE interrupt before hif start
-Date: Sun, 16 Aug 2020 14:16:35 +0300
-Message-Id: <1597576599-8857-9-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH v2 12/12] ath11k: dp: redefine peer_map and peer_unmap
+Date: Sun, 16 Aug 2020 14:16:39 +0300
+Message-Id: <1597576599-8857-13-git-send-email-kvalo@codeaurora.org>
 In-Reply-To: <1597576599-8857-1-git-send-email-kvalo@codeaurora.org>
 References: <1597576599-8857-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -27,9 +27,8 @@ Cc: linux-wireless@vger.kernel.org
 
 From: Carl Huang <cjhuang@codeaurora.org>
 
-Disable CE interrupt otherwise interrupt may come before host
-initialized related context. This also fixes unbalanced interrupt
-enablement.
+For QCA6390, it uses peer_map and peer_unmap V1. IPQ8074 uses V2.
+Redefine previous definition to peer_map2 and peer_unmap2.
 
 Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
 Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.1.0.1-01238-QCAHKSWPL_SILICONZ-2
@@ -37,21 +36,50 @@ Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.1.0.1-01238-QCAHKSWPL_SILICONZ-2
 Signed-off-by: Carl Huang <cjhuang@codeaurora.org>
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/pci.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/net/wireless/ath/ath11k/dp.h    | 6 ++++--
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 2 ++
+ 2 files changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index 37bd385348c3..2b5a8d3162d0 100644
---- a/drivers/net/wireless/ath/ath11k/pci.c
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -500,6 +500,7 @@ static int ath11k_pci_config_irq(struct ath11k_base *ab)
- 		}
+diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
+index 7587862d2e32..07876fd521f7 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.h
++++ b/drivers/net/wireless/ath/ath11k/dp.h
+@@ -936,11 +936,13 @@ struct htt_rx_ring_tlv_filter {
  
- 		ab->irq_num[irq_idx] = irq;
-+		ath11k_pci_ce_irq_disable(ab, i);
- 	}
- 
- 	return 0;
+ enum htt_t2h_msg_type {
+ 	HTT_T2H_MSG_TYPE_VERSION_CONF,
++	HTT_T2H_MSG_TYPE_PEER_MAP	= 0x3,
++	HTT_T2H_MSG_TYPE_PEER_UNMAP	= 0x4,
+ 	HTT_T2H_MSG_TYPE_RX_ADDBA	= 0x5,
+ 	HTT_T2H_MSG_TYPE_PKTLOG		= 0x8,
+ 	HTT_T2H_MSG_TYPE_SEC_IND	= 0xb,
+-	HTT_T2H_MSG_TYPE_PEER_MAP	= 0x1e,
+-	HTT_T2H_MSG_TYPE_PEER_UNMAP	= 0x1f,
++	HTT_T2H_MSG_TYPE_PEER_MAP2	= 0x1e,
++	HTT_T2H_MSG_TYPE_PEER_UNMAP2	= 0x1f,
+ 	HTT_T2H_MSG_TYPE_PPDU_STATS_IND = 0x1d,
+ 	HTT_T2H_MSG_TYPE_EXT_STATS_CONF = 0x1c,
+ 	HTT_T2H_MSG_TYPE_BKPRESSURE_EVENT_IND = 0x24,
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 66002de04aec..6009c26ce525 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -1569,6 +1569,7 @@ void ath11k_dp_htt_htc_t2h_msg_handler(struct ath11k_base *ab,
+ 		complete(&dp->htt_tgt_version_received);
+ 		break;
+ 	case HTT_T2H_MSG_TYPE_PEER_MAP:
++	case HTT_T2H_MSG_TYPE_PEER_MAP2:
+ 		vdev_id = FIELD_GET(HTT_T2H_PEER_MAP_INFO_VDEV_ID,
+ 				    resp->peer_map_ev.info);
+ 		peer_id = FIELD_GET(HTT_T2H_PEER_MAP_INFO_PEER_ID,
+@@ -1582,6 +1583,7 @@ void ath11k_dp_htt_htc_t2h_msg_handler(struct ath11k_base *ab,
+ 		ath11k_peer_map_event(ab, vdev_id, peer_id, mac_addr, ast_hash);
+ 		break;
+ 	case HTT_T2H_MSG_TYPE_PEER_UNMAP:
++	case HTT_T2H_MSG_TYPE_PEER_UNMAP2:
+ 		peer_id = FIELD_GET(HTT_T2H_PEER_UNMAP_INFO_PEER_ID,
+ 				    resp->peer_unmap_ev.info);
+ 		ath11k_peer_unmap_event(ab, peer_id);
 -- 
 2.7.4
 
