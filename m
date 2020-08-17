@@ -1,9 +1,9 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 From: Allen Pais <allen.cryptic@gmail.com>
-Subject: [PATCH 08/16] wireless: ipw2x00: convert tasklets to use new
+Subject: [PATCH 09/16] wireless: iwlegacy: convert tasklets to use new
  tasklet_setup() API
-Date: Mon, 17 Aug 2020 14:36:29 +0530
-Message-Id: <20200817090637.26887-9-allen.cryptic@gmail.com>
+Date: Mon, 17 Aug 2020 14:36:30 +0530
+Message-Id: <20200817090637.26887-10-allen.cryptic@gmail.com>
 In-Reply-To: <20200817090637.26887-1-allen.cryptic@gmail.com>
 References: <20200817090637.26887-1-allen.cryptic@gmail.com>
 List-Id: <ath11k.lists.infradead.org>
@@ -32,71 +32,64 @@ and from_tasklet() to pass the tasklet pointer explicitly.
 Signed-off-by: Romain Perier <romain.perier@gmail.com>
 Signed-off-by: Allen Pais <allen.lkml@gmail.com>
 ---
- drivers/net/wireless/intel/ipw2x00/ipw2100.c | 9 ++++-----
- drivers/net/wireless/intel/ipw2x00/ipw2200.c | 7 +++----
- 2 files changed, 7 insertions(+), 9 deletions(-)
+ drivers/net/wireless/intel/iwlegacy/3945-mac.c | 8 +++-----
+ drivers/net/wireless/intel/iwlegacy/4965-mac.c | 8 +++-----
+ 2 files changed, 6 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/net/wireless/intel/ipw2x00/ipw2100.c b/drivers/net/wireless/intel/ipw2x00/ipw2100.c
-index 461e955aa259..b7fbfc77b612 100644
---- a/drivers/net/wireless/intel/ipw2x00/ipw2100.c
-+++ b/drivers/net/wireless/intel/ipw2x00/ipw2100.c
-@@ -3204,9 +3204,9 @@ static void ipw2100_tx_send_data(struct ipw2100_priv *priv)
- 	}
+diff --git a/drivers/net/wireless/intel/iwlegacy/3945-mac.c b/drivers/net/wireless/intel/iwlegacy/3945-mac.c
+index 9167c3d2711d..5fe98bbefc56 100644
+--- a/drivers/net/wireless/intel/iwlegacy/3945-mac.c
++++ b/drivers/net/wireless/intel/iwlegacy/3945-mac.c
+@@ -1374,9 +1374,9 @@ il3945_dump_nic_error_log(struct il_priv *il)
  }
  
--static void ipw2100_irq_tasklet(unsigned long data)
-+static void ipw2100_irq_tasklet(struct tasklet_struct *t)
+ static void
+-il3945_irq_tasklet(unsigned long data)
++il3945_irq_tasklet(struct tasklet_struct *t)
  {
--	struct ipw2100_priv *priv = (struct ipw2100_priv *)data;
-+	struct ipw2100_priv *priv = from_tasklet(priv, t, irq_tasklet);
- 	struct net_device *dev = priv->net_dev;
+-	struct il_priv *il = (struct il_priv *)data;
++	struct il_priv *il = from_tasklet(il, t, irq_tasklet);
+ 	u32 inta, handled = 0;
+ 	u32 inta_fh;
  	unsigned long flags;
- 	u32 inta, tmp;
-@@ -6005,7 +6005,7 @@ static void ipw2100_rf_kill(struct work_struct *work)
- 	spin_unlock_irqrestore(&priv->low_lock, flags);
+@@ -3399,9 +3399,7 @@ il3945_setup_deferred_work(struct il_priv *il)
+ 
+ 	timer_setup(&il->watchdog, il_bg_watchdog, 0);
+ 
+-	tasklet_init(&il->irq_tasklet,
+-		     il3945_irq_tasklet,
+-		     (unsigned long)il);
++	tasklet_setup(&il->irq_tasklet, il3945_irq_tasklet);
  }
  
--static void ipw2100_irq_tasklet(unsigned long data);
-+static void ipw2100_irq_tasklet(struct tasklet_struct *t);
- 
- static const struct net_device_ops ipw2100_netdev_ops = {
- 	.ndo_open		= ipw2100_open,
-@@ -6135,8 +6135,7 @@ static struct net_device *ipw2100_alloc_device(struct pci_dev *pci_dev,
- 	INIT_DELAYED_WORK(&priv->rf_kill, ipw2100_rf_kill);
- 	INIT_DELAYED_WORK(&priv->scan_event, ipw2100_scan_event);
- 
--	tasklet_init(&priv->irq_tasklet,
--		     ipw2100_irq_tasklet, (unsigned long)priv);
-+	tasklet_setup(&priv->irq_tasklet, ipw2100_irq_tasklet);
- 
- 	/* NOTE:  We do not start the deferred work for status checks yet */
- 	priv->stop_rf_kill = 1;
-diff --git a/drivers/net/wireless/intel/ipw2x00/ipw2200.c b/drivers/net/wireless/intel/ipw2x00/ipw2200.c
-index 129ef2f6248a..5af1c548a564 100644
---- a/drivers/net/wireless/intel/ipw2x00/ipw2200.c
-+++ b/drivers/net/wireless/intel/ipw2x00/ipw2200.c
-@@ -1945,9 +1945,9 @@ static void notify_wx_assoc_event(struct ipw_priv *priv)
- 	wireless_send_event(priv->net_dev, SIOCGIWAP, &wrqu, NULL);
+ static void
+diff --git a/drivers/net/wireless/intel/iwlegacy/4965-mac.c b/drivers/net/wireless/intel/iwlegacy/4965-mac.c
+index e73c223a7d28..afc54c63c4c6 100644
+--- a/drivers/net/wireless/intel/iwlegacy/4965-mac.c
++++ b/drivers/net/wireless/intel/iwlegacy/4965-mac.c
+@@ -4344,9 +4344,9 @@ il4965_synchronize_irq(struct il_priv *il)
  }
  
--static void ipw_irq_tasklet(unsigned long data)
-+static void ipw_irq_tasklet(struct tasklet_struct *t)
+ static void
+-il4965_irq_tasklet(unsigned long data)
++il4965_irq_tasklet(struct tasklet_struct *t)
  {
--	struct ipw_priv *priv = (struct ipw_priv *)data;
-+	struct ipw_priv *priv = from_tasklet(priv, t, irq_tasklet);
- 	u32 inta, inta_mask, handled = 0;
+-	struct il_priv *il = (struct il_priv *)data;
++	struct il_priv *il = from_tasklet(il, t, irq_tasklet);
+ 	u32 inta, handled = 0;
+ 	u32 inta_fh;
  	unsigned long flags;
- 	int rc = 0;
-@@ -10673,8 +10673,7 @@ static void ipw_setup_deferred_work(struct ipw_priv *priv)
- 	INIT_WORK(&priv->qos_activate, ipw_bg_qos_activate);
- #endif				/* CONFIG_IPW2200_QOS */
+@@ -6238,9 +6238,7 @@ il4965_setup_deferred_work(struct il_priv *il)
  
--	tasklet_init(&priv->irq_tasklet,
--		     ipw_irq_tasklet, (unsigned long)priv);
-+	tasklet_setup(&priv->irq_tasklet, ipw_irq_tasklet);
+ 	timer_setup(&il->watchdog, il_bg_watchdog, 0);
+ 
+-	tasklet_init(&il->irq_tasklet,
+-		     il4965_irq_tasklet,
+-		     (unsigned long)il);
++	tasklet_setup(&il->irq_tasklet, il4965_irq_tasklet);
  }
  
- static void shim__set_security(struct net_device *dev,
+ static void
 -- 
 2.17.1
 
