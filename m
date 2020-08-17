@@ -1,11 +1,8 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 From: Allen Pais <allen.cryptic@gmail.com>
-Subject: [PATCH 01/16] wireless: ath5k: convert tasklets to use new
- tasklet_setup() API
-Date: Mon, 17 Aug 2020 14:36:22 +0530
-Message-Id: <20200817090637.26887-2-allen.cryptic@gmail.com>
-In-Reply-To: <20200817090637.26887-1-allen.cryptic@gmail.com>
-References: <20200817090637.26887-1-allen.cryptic@gmail.com>
+Subject: [PATCH 00/16] wirless: convert tasklets to use new tasklet_setup()
+Date: Mon, 17 Aug 2020 14:36:21 +0530
+Message-Id: <20200817090637.26887-1-allen.cryptic@gmail.com>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -20,119 +17,86 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: kvalo@codeaurora.org, kuba@kernel.org, jirislaby@kernel.org, mickflemm@gmail.com, mcgrof@kernel.org, chunkeey@googlemail.com, Larry.Finger@lwfinger.net, stas.yakovlev@gmail.com, helmut.schaa@googlemail.com, pkshih@realtek.com, yhchuang@realtek.com, dsd@gentoo.org, kune@deine-taler.de
-Cc: brcm80211-dev-list.pdl@broadcom.com, keescook@chromium.org, netdev@vger.kernel.org, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, brcm80211-dev-list@cypress.com, b43-dev@lists.infradead.org, Allen Pais <allen.lkml@gmail.com>, Romain Perier <romain.perier@gmail.com>, ath11k@lists.infradead.org
+Cc: brcm80211-dev-list.pdl@broadcom.com, keescook@chromium.org, netdev@vger.kernel.org, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, brcm80211-dev-list@cypress.com, b43-dev@lists.infradead.org, Allen Pais <allen.lkml@gmail.com>, ath11k@lists.infradead.org
 
 From: Allen Pais <allen.lkml@gmail.com>
 
-In preparation for unconditionally passing the
-struct tasklet_struct pointer to all tasklet
-callbacks, switch to using the new tasklet_setup()
-and from_tasklet() to pass the tasklet pointer explicitly.
+Commit 12cc923f1ccc ("tasklet: Introduce new initialization API")'
+introduced a new tasklet initialization API. This series converts 
+all the wireless drivers to use the new tasklet_setup() API
 
-Signed-off-by: Romain Perier <romain.perier@gmail.com>
-Signed-off-by: Allen Pais <allen.lkml@gmail.com>
----
- drivers/net/wireless/ath/ath5k/base.c   | 24 ++++++++++++------------
- drivers/net/wireless/ath/ath5k/rfkill.c |  7 +++----
- 2 files changed, 15 insertions(+), 16 deletions(-)
+Allen Pais (16):
+  wireless: ath5k: convert tasklets to use new tasklet_setup() API
+  wireless: ath9k: convert tasklets to use new tasklet_setup() API
+  wireless: ath: convert tasklets to use new tasklet_setup() API
+  wireless: ath11k: convert tasklets to use new tasklet_setup() API
+  wireless: atmel: convert tasklets to use new tasklet_setup() API
+  wireless: b43legacy: convert tasklets to use new tasklet_setup() API
+  wireless: brcm80211: convert tasklets to use new tasklet_setup() API
+  wireless: ipw2x00: convert tasklets to use new tasklet_setup() API
+  wireless: iwlegacy: convert tasklets to use new tasklet_setup() API
+  wireless: intersil: convert tasklets to use new tasklet_setup() API
+  wireless: marvell: convert tasklets to use new tasklet_setup() API
+  wireless: mediatek: convert tasklets to use new tasklet_setup() API
+  wireless: quantenna: convert tasklets to use new tasklet_setup() API
+  wireless: ralink: convert tasklets to use new tasklet_setup() API
+  wireless: realtek: convert tasklets to use new tasklet_setup() API
+  wireless: zydas: convert tasklets to use new tasklet_setup() API
 
-diff --git a/drivers/net/wireless/ath/ath5k/base.c b/drivers/net/wireless/ath/ath5k/base.c
-index 65a4c142640d..2781dcd534a9 100644
---- a/drivers/net/wireless/ath/ath5k/base.c
-+++ b/drivers/net/wireless/ath/ath5k/base.c
-@@ -1536,12 +1536,12 @@ ath5k_set_current_imask(struct ath5k_hw *ah)
- }
- 
- static void
--ath5k_tasklet_rx(unsigned long data)
-+ath5k_tasklet_rx(struct tasklet_struct *t)
- {
- 	struct ath5k_rx_status rs = {};
- 	struct sk_buff *skb, *next_skb;
- 	dma_addr_t next_skb_addr;
--	struct ath5k_hw *ah = (void *)data;
-+	struct ath5k_hw *ah = from_tasklet(ah, t, rxtq);
- 	struct ath_common *common = ath5k_hw_common(ah);
- 	struct ath5k_buf *bf;
- 	struct ath5k_desc *ds;
-@@ -1784,10 +1784,10 @@ ath5k_tx_processq(struct ath5k_hw *ah, struct ath5k_txq *txq)
- }
- 
- static void
--ath5k_tasklet_tx(unsigned long data)
-+ath5k_tasklet_tx(struct tasklet_struct *t)
- {
- 	int i;
--	struct ath5k_hw *ah = (void *)data;
-+	struct ath5k_hw *ah = from_tasklet(ah, t, txtq);
- 
- 	for (i = 0; i < AR5K_NUM_TX_QUEUES; i++)
- 		if (ah->txqs[i].setup && (ah->ah_txq_isr_txok_all & BIT(i)))
-@@ -2176,9 +2176,9 @@ ath5k_beacon_config(struct ath5k_hw *ah)
- 	spin_unlock_bh(&ah->block);
- }
- 
--static void ath5k_tasklet_beacon(unsigned long data)
-+static void ath5k_tasklet_beacon(struct tasklet_struct *t)
- {
--	struct ath5k_hw *ah = (struct ath5k_hw *) data;
-+	struct ath5k_hw *ah = from_tasklet(ah, t, beacontq);
- 
- 	/*
- 	 * Software beacon alert--time to send a beacon.
-@@ -2447,9 +2447,9 @@ ath5k_calibrate_work(struct work_struct *work)
- 
- 
- static void
--ath5k_tasklet_ani(unsigned long data)
-+ath5k_tasklet_ani(struct tasklet_struct *t)
- {
--	struct ath5k_hw *ah = (void *)data;
-+	struct ath5k_hw *ah = from_tasklet(ah, t, ani_tasklet);
- 
- 	ah->ah_cal_mask |= AR5K_CALIBRATION_ANI;
- 	ath5k_ani_calibration(ah);
-@@ -3069,10 +3069,10 @@ ath5k_init(struct ieee80211_hw *hw)
- 		hw->queues = 1;
- 	}
- 
--	tasklet_init(&ah->rxtq, ath5k_tasklet_rx, (unsigned long)ah);
--	tasklet_init(&ah->txtq, ath5k_tasklet_tx, (unsigned long)ah);
--	tasklet_init(&ah->beacontq, ath5k_tasklet_beacon, (unsigned long)ah);
--	tasklet_init(&ah->ani_tasklet, ath5k_tasklet_ani, (unsigned long)ah);
-+	tasklet_setup(&ah->rxtq, ath5k_tasklet_rx);
-+	tasklet_setup(&ah->txtq, ath5k_tasklet_tx);
-+	tasklet_setup(&ah->beacontq, ath5k_tasklet_beacon);
-+	tasklet_setup(&ah->ani_tasklet, ath5k_tasklet_ani);
- 
- 	INIT_WORK(&ah->reset_work, ath5k_reset_work);
- 	INIT_WORK(&ah->calib_work, ath5k_calibrate_work);
-diff --git a/drivers/net/wireless/ath/ath5k/rfkill.c b/drivers/net/wireless/ath/ath5k/rfkill.c
-index 270a319f3aeb..855ed7fc720d 100644
---- a/drivers/net/wireless/ath/ath5k/rfkill.c
-+++ b/drivers/net/wireless/ath/ath5k/rfkill.c
-@@ -73,9 +73,9 @@ ath5k_is_rfkill_set(struct ath5k_hw *ah)
- }
- 
- static void
--ath5k_tasklet_rfkill_toggle(unsigned long data)
-+ath5k_tasklet_rfkill_toggle(struct tasklet_struct *t)
- {
--	struct ath5k_hw *ah = (void *)data;
-+	struct ath5k_hw *ah = from_tasklet(ah, t, rf_kill.toggleq);
- 	bool blocked;
- 
- 	blocked = ath5k_is_rfkill_set(ah);
-@@ -90,8 +90,7 @@ ath5k_rfkill_hw_start(struct ath5k_hw *ah)
- 	ah->rf_kill.gpio = ah->ah_capabilities.cap_eeprom.ee_rfkill_pin;
- 	ah->rf_kill.polarity = ah->ah_capabilities.cap_eeprom.ee_rfkill_pol;
- 
--	tasklet_init(&ah->rf_kill.toggleq, ath5k_tasklet_rfkill_toggle,
--		(unsigned long)ah);
-+	tasklet_setup(&ah->rf_kill.toggleq, ath5k_tasklet_rfkill_toggle);
- 
- 	ath5k_rfkill_disable(ah);
- 
+ drivers/net/wireless/ath/ath11k/ahb.c         |  7 +++---
+ drivers/net/wireless/ath/ath5k/base.c         | 24 +++++++++----------
+ drivers/net/wireless/ath/ath5k/rfkill.c       |  7 +++---
+ drivers/net/wireless/ath/ath9k/ath9k.h        |  4 ++--
+ drivers/net/wireless/ath/ath9k/beacon.c       |  4 ++--
+ drivers/net/wireless/ath/ath9k/htc.h          |  4 ++--
+ drivers/net/wireless/ath/ath9k/htc_drv_init.c |  6 ++---
+ drivers/net/wireless/ath/ath9k/htc_drv_txrx.c |  8 +++----
+ drivers/net/wireless/ath/ath9k/init.c         |  5 ++--
+ drivers/net/wireless/ath/ath9k/main.c         |  4 ++--
+ drivers/net/wireless/ath/ath9k/wmi.c          |  7 +++---
+ drivers/net/wireless/ath/ath9k/wmi.h          |  2 +-
+ drivers/net/wireless/ath/carl9170/usb.c       |  7 +++---
+ drivers/net/wireless/atmel/at76c50x-usb.c     |  9 ++++---
+ .../net/wireless/broadcom/b43legacy/main.c    |  8 +++----
+ drivers/net/wireless/broadcom/b43legacy/pio.c |  7 +++---
+ .../broadcom/brcm80211/brcmsmac/mac80211_if.c |  6 ++---
+ .../broadcom/brcm80211/brcmsmac/mac80211_if.h |  2 +-
+ drivers/net/wireless/intel/ipw2x00/ipw2100.c  |  9 ++++---
+ drivers/net/wireless/intel/ipw2x00/ipw2200.c  |  7 +++---
+ .../net/wireless/intel/iwlegacy/3945-mac.c    |  8 +++----
+ .../net/wireless/intel/iwlegacy/4965-mac.c    |  8 +++----
+ .../net/wireless/intersil/hostap/hostap_hw.c  | 18 +++++++-------
+ drivers/net/wireless/intersil/orinoco/main.c  |  7 +++---
+ drivers/net/wireless/intersil/p54/p54pci.c    |  8 +++----
+ drivers/net/wireless/marvell/mwl8k.c          | 16 ++++++-------
+ drivers/net/wireless/mediatek/mt76/mac80211.c |  2 +-
+ drivers/net/wireless/mediatek/mt76/mt76.h     |  2 +-
+ .../wireless/mediatek/mt76/mt7603/beacon.c    |  4 ++--
+ .../net/wireless/mediatek/mt76/mt7603/init.c  |  3 +--
+ .../wireless/mediatek/mt76/mt7603/mt7603.h    |  2 +-
+ .../net/wireless/mediatek/mt76/mt7615/mmio.c  |  6 ++---
+ .../net/wireless/mediatek/mt76/mt76x02_dfs.c  | 10 ++++----
+ .../net/wireless/mediatek/mt76/mt76x02_mmio.c | 14 +++++------
+ drivers/net/wireless/mediatek/mt76/tx.c       |  4 ++--
+ drivers/net/wireless/mediatek/mt76/usb.c      | 12 +++++-----
+ drivers/net/wireless/mediatek/mt7601u/dma.c   | 12 +++++-----
+ .../quantenna/qtnfmac/pcie/pearl_pcie.c       |  7 +++---
+ .../quantenna/qtnfmac/pcie/topaz_pcie.c       |  7 +++---
+ .../net/wireless/ralink/rt2x00/rt2400pci.c    | 14 ++++++-----
+ .../net/wireless/ralink/rt2x00/rt2500pci.c    | 14 ++++++-----
+ .../net/wireless/ralink/rt2x00/rt2800mmio.c   | 24 +++++++++++--------
+ .../net/wireless/ralink/rt2x00/rt2800mmio.h   | 10 ++++----
+ drivers/net/wireless/ralink/rt2x00/rt2x00.h   | 10 ++++----
+ .../net/wireless/ralink/rt2x00/rt2x00dev.c    |  5 ++--
+ drivers/net/wireless/ralink/rt2x00/rt61pci.c  | 20 +++++++++-------
+ drivers/net/wireless/realtek/rtlwifi/pci.c    | 21 ++++++++--------
+ drivers/net/wireless/realtek/rtlwifi/usb.c    |  9 ++++---
+ drivers/net/wireless/realtek/rtw88/main.c     |  3 +--
+ drivers/net/wireless/realtek/rtw88/tx.c       |  4 ++--
+ drivers/net/wireless/realtek/rtw88/tx.h       |  2 +-
+ drivers/net/wireless/zydas/zd1211rw/zd_usb.c  |  8 +++----
+ 52 files changed, 208 insertions(+), 223 deletions(-)
+
 -- 
 2.17.1
 
