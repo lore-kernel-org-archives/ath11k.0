@@ -1,15 +1,11 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail29.static.mailgun.info ([104.130.122.29])
- by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k7cEZ-0003hx-4q
- for ath11k@lists.infradead.org; Mon, 17 Aug 2020 10:19:22 +0000
-MIME-Version: 1.0
-Subject: Re: [PATCH 01/11] ath11k: add support for m3 firmware
-From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1597389030-13887-2-git-send-email-kvalo@codeaurora.org>
-References: <1597389030-13887-2-git-send-email-kvalo@codeaurora.org>
-Message-Id: <20200817101911.5A3B4C433C6@smtp.codeaurora.org>
-Date: Mon, 17 Aug 2020 10:19:11 +0000 (UTC)
+From: Allen Pais <allen.cryptic@gmail.com>
+Subject: [PATCH 10/16] wireless: intersil: convert tasklets to use new
+ tasklet_setup() API
+Date: Mon, 17 Aug 2020 14:36:31 +0530
+Message-Id: <20200817090637.26887-11-allen.cryptic@gmail.com>
+In-Reply-To: <20200817090637.26887-1-allen.cryptic@gmail.com>
+References: <20200817090637.26887-1-allen.cryptic@gmail.com>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -18,42 +14,146 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: kvalo@codeaurora.org, kuba@kernel.org, jirislaby@kernel.org, mickflemm@gmail.com, mcgrof@kernel.org, chunkeey@googlemail.com, Larry.Finger@lwfinger.net, stas.yakovlev@gmail.com, helmut.schaa@googlemail.com, pkshih@realtek.com, yhchuang@realtek.com, dsd@gentoo.org, kune@deine-taler.de
+Cc: brcm80211-dev-list.pdl@broadcom.com, keescook@chromium.org, netdev@vger.kernel.org, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, brcm80211-dev-list@cypress.com, b43-dev@lists.infradead.org, Allen Pais <allen.lkml@gmail.com>, Romain Perier <romain.perier@gmail.com>, ath11k@lists.infradead.org
 
-Kalle Valo <kvalo@codeaurora.org> wrote:
+From: Allen Pais <allen.lkml@gmail.com>
 
-> PCI devices like QCA6390 have a separate firmware image for the m3
-> micro-controller. Add support to load the firmware using m3.bin file.
-> 
-> Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.1.0.1-01238-QCAHKSWPL_SILICONZ-2
-> 
-> Signed-off-by: Govind Singh <govinds@codeaurora.org>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+In preparation for unconditionally passing the
+struct tasklet_struct pointer to all tasklet
+callbacks, switch to using the new tasklet_setup()
+and from_tasklet() to pass the tasklet pointer explicitly
+and remove .data field.
 
-11 patches applied to ath-next branch of ath.git, thanks.
+Signed-off-by: Romain Perier <romain.perier@gmail.com>
+Signed-off-by: Allen Pais <allen.lkml@gmail.com>
+---
+ .../net/wireless/intersil/hostap/hostap_hw.c   | 18 +++++++++---------
+ drivers/net/wireless/intersil/orinoco/main.c   |  7 +++----
+ drivers/net/wireless/intersil/p54/p54pci.c     |  8 ++++----
+ 3 files changed, 16 insertions(+), 17 deletions(-)
 
-569704544778 ath11k: add support for m3 firmware
-6eb6ea513828 ath11k: add board file support for PCI devices
-eb8de0490e1f ath11k: fill appropriate QMI service instance id for QCA6390
-654e959ae0a1 ath11k: pci: add read32() and write32() hif operations
-c4eacabee224 ath11k: configure copy engine msi address in CE srng
-2c3960c2253d ath11k: setup ce tasklet for control path
-26f3a021b37c ath11k: allocate smaller chunks of memory for firmware
-f44dd33e6336 ath11k: fix memory OOB access in qmi_decode
-6c809d04c542 ath11k: fix KASAN warning of ath11k_qmi_wlanfw_wlan_cfg_send
-727fae1478a5 ath11k: enable internal sleep clock
-f7eb4b04ce6f ath11k: hal: create hw_srng_config dynamically
-
+diff --git a/drivers/net/wireless/intersil/hostap/hostap_hw.c b/drivers/net/wireless/intersil/hostap/hostap_hw.c
+index b6c497ce12e1..ba00a4d8a26f 100644
+--- a/drivers/net/wireless/intersil/hostap/hostap_hw.c
++++ b/drivers/net/wireless/intersil/hostap/hostap_hw.c
+@@ -2083,9 +2083,9 @@ static void hostap_rx_skb(local_info_t *local, struct sk_buff *skb)
+ 
+ 
+ /* Called only as a tasklet (software IRQ) */
+-static void hostap_rx_tasklet(unsigned long data)
++static void hostap_rx_tasklet(struct tasklet_struct *t)
+ {
+-	local_info_t *local = (local_info_t *) data;
++	local_info_t *local = from_tasklet(local, t, rx_tasklet);
+ 	struct sk_buff *skb;
+ 
+ 	while ((skb = skb_dequeue(&local->rx_list)) != NULL)
+@@ -2288,9 +2288,9 @@ static void prism2_tx_ev(local_info_t *local)
+ 
+ 
+ /* Called only as a tasklet (software IRQ) */
+-static void hostap_sta_tx_exc_tasklet(unsigned long data)
++static void hostap_sta_tx_exc_tasklet(struct tasklet_struct *t)
+ {
+-	local_info_t *local = (local_info_t *) data;
++	local_info_t *local = from_tasklet(local, t, sta_tx_exc_tasklet);
+ 	struct sk_buff *skb;
+ 
+ 	while ((skb = skb_dequeue(&local->sta_tx_exc_list)) != NULL) {
+@@ -2390,9 +2390,9 @@ static void prism2_txexc(local_info_t *local)
+ 
+ 
+ /* Called only as a tasklet (software IRQ) */
+-static void hostap_info_tasklet(unsigned long data)
++static void hostap_info_tasklet(struct tasklet_struct *t)
+ {
+-	local_info_t *local = (local_info_t *) data;
++	local_info_t *local = from_tasklet(local, t, info_tasklet);
+ 	struct sk_buff *skb;
+ 
+ 	while ((skb = skb_dequeue(&local->info_list)) != NULL) {
+@@ -2469,9 +2469,9 @@ static void prism2_info(local_info_t *local)
+ 
+ 
+ /* Called only as a tasklet (software IRQ) */
+-static void hostap_bap_tasklet(unsigned long data)
++static void hostap_bap_tasklet(struct tasklet_struct *t)
+ {
+-	local_info_t *local = (local_info_t *) data;
++	local_info_t *local = from_tasklet(local, t, bap_tasklet);
+ 	struct net_device *dev = local->dev;
+ 	u16 ev;
+ 	int frames = 30;
+@@ -3183,7 +3183,7 @@ prism2_init_local_data(struct prism2_helper_functions *funcs, int card_idx,
+ 	/* Initialize tasklets for handling hardware IRQ related operations
+ 	 * outside hw IRQ handler */
+ #define HOSTAP_TASKLET_INIT(q, f, d) \
+-do { memset((q), 0, sizeof(*(q))); (q)->func = (f); (q)->data = (d); } \
++do { memset((q), 0, sizeof(*(q))); (q)->func = (void(*)(unsigned long))(f); } \
+ while (0)
+ 	HOSTAP_TASKLET_INIT(&local->bap_tasklet, hostap_bap_tasklet,
+ 			    (unsigned long) local);
+diff --git a/drivers/net/wireless/intersil/orinoco/main.c b/drivers/net/wireless/intersil/orinoco/main.c
+index 00264a14e52c..78d3cb986c19 100644
+--- a/drivers/net/wireless/intersil/orinoco/main.c
++++ b/drivers/net/wireless/intersil/orinoco/main.c
+@@ -1062,9 +1062,9 @@ static void orinoco_rx(struct net_device *dev,
+ 	stats->rx_dropped++;
+ }
+ 
+-static void orinoco_rx_isr_tasklet(unsigned long data)
++static void orinoco_rx_isr_tasklet(struct tasklet_struct *t)
+ {
+-	struct orinoco_private *priv = (struct orinoco_private *) data;
++	struct orinoco_private *priv = from_tasklet(priv, t, rx_tasklet);
+ 	struct net_device *dev = priv->ndev;
+ 	struct orinoco_rx_data *rx_data, *temp;
+ 	struct hermes_rx_descriptor *desc;
+@@ -2198,8 +2198,7 @@ struct orinoco_private
+ 	INIT_WORK(&priv->wevent_work, orinoco_send_wevents);
+ 
+ 	INIT_LIST_HEAD(&priv->rx_list);
+-	tasklet_init(&priv->rx_tasklet, orinoco_rx_isr_tasklet,
+-		     (unsigned long) priv);
++	tasklet_setup(&priv->rx_tasklet, orinoco_rx_isr_tasklet);
+ 
+ 	spin_lock_init(&priv->scan_lock);
+ 	INIT_LIST_HEAD(&priv->scan_list);
+diff --git a/drivers/net/wireless/intersil/p54/p54pci.c b/drivers/net/wireless/intersil/p54/p54pci.c
+index 9d96c8b8409d..94064d7cff52 100644
+--- a/drivers/net/wireless/intersil/p54/p54pci.c
++++ b/drivers/net/wireless/intersil/p54/p54pci.c
+@@ -278,10 +278,10 @@ static void p54p_check_tx_ring(struct ieee80211_hw *dev, u32 *index,
+ 	}
+ }
+ 
+-static void p54p_tasklet(unsigned long dev_id)
++static void p54p_tasklet(struct tasklet_struct *t)
+ {
+-	struct ieee80211_hw *dev = (struct ieee80211_hw *)dev_id;
+-	struct p54p_priv *priv = dev->priv;
++	struct p54p_priv *priv = from_tasklet(priv, t, tasklet);
++	struct ieee80211_hw *dev = pci_get_drvdata(priv->pdev);
+ 	struct p54p_ring_control *ring_control = priv->ring_control;
+ 
+ 	p54p_check_tx_ring(dev, &priv->tx_idx_mgmt, 3, ring_control->tx_mgmt,
+@@ -620,7 +620,7 @@ static int p54p_probe(struct pci_dev *pdev,
+ 	priv->common.tx = p54p_tx;
+ 
+ 	spin_lock_init(&priv->lock);
+-	tasklet_init(&priv->tasklet, p54p_tasklet, (unsigned long)dev);
++	tasklet_setup(&priv->tasklet, p54p_tasklet);
+ 
+ 	err = request_firmware_nowait(THIS_MODULE, 1, "isl3886pci",
+ 				      &priv->pdev->dev, GFP_KERNEL,
 -- 
-https://patchwork.kernel.org/patch/11713607/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+2.17.1
 
 
 -- 
