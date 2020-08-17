@@ -1,9 +1,9 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 From: Allen Pais <allen.cryptic@gmail.com>
-Subject: [PATCH 05/16] wireless: atmel: convert tasklets to use new
+Subject: [PATCH 06/16] wireless: b43legacy: convert tasklets to use new
  tasklet_setup() API
-Date: Mon, 17 Aug 2020 14:36:26 +0530
-Message-Id: <20200817090637.26887-6-allen.cryptic@gmail.com>
+Date: Mon, 17 Aug 2020 14:36:27 +0530
+Message-Id: <20200817090637.26887-7-allen.cryptic@gmail.com>
 In-Reply-To: <20200817090637.26887-1-allen.cryptic@gmail.com>
 References: <20200817090637.26887-1-allen.cryptic@gmail.com>
 List-Id: <ath11k.lists.infradead.org>
@@ -27,50 +27,68 @@ From: Allen Pais <allen.lkml@gmail.com>
 In preparation for unconditionally passing the
 struct tasklet_struct pointer to all tasklet
 callbacks, switch to using the new tasklet_setup()
-and from_tasklet() to pass the tasklet pointer explicitly
-and remove .data field.
+and from_tasklet() to pass the tasklet pointer explicitly.
 
 Signed-off-by: Romain Perier <romain.perier@gmail.com>
 Signed-off-by: Allen Pais <allen.lkml@gmail.com>
 ---
- drivers/net/wireless/atmel/at76c50x-usb.c | 9 ++++-----
- 1 file changed, 4 insertions(+), 5 deletions(-)
+ drivers/net/wireless/broadcom/b43legacy/main.c | 8 +++-----
+ drivers/net/wireless/broadcom/b43legacy/pio.c  | 7 +++----
+ 2 files changed, 6 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/net/wireless/atmel/at76c50x-usb.c b/drivers/net/wireless/atmel/at76c50x-usb.c
-index a63b5c2f1e17..365c2ee19d03 100644
---- a/drivers/net/wireless/atmel/at76c50x-usb.c
-+++ b/drivers/net/wireless/atmel/at76c50x-usb.c
-@@ -1199,7 +1199,6 @@ static void at76_rx_callback(struct urb *urb)
- {
- 	struct at76_priv *priv = urb->context;
- 
--	priv->rx_tasklet.data = (unsigned long)urb;
- 	tasklet_schedule(&priv->rx_tasklet);
+diff --git a/drivers/net/wireless/broadcom/b43legacy/main.c b/drivers/net/wireless/broadcom/b43legacy/main.c
+index 2eaf481f03f1..15d592cf056c 100644
+--- a/drivers/net/wireless/broadcom/b43legacy/main.c
++++ b/drivers/net/wireless/broadcom/b43legacy/main.c
+@@ -1275,9 +1275,9 @@ static void handle_irq_ucode_debug(struct b43legacy_wldev *dev)
  }
  
-@@ -1545,10 +1544,10 @@ static inline int at76_guess_freq(struct at76_priv *priv)
- 	return ieee80211_channel_to_frequency(channel, NL80211_BAND_2GHZ);
+ /* Interrupt handler bottom-half */
+-static void b43legacy_interrupt_tasklet(unsigned long data)
++static void b43legacy_interrupt_tasklet(struct tasklet_struct *t)
+ {
+-	struct b43legacy_wldev *dev = (struct b43legacy_wldev *)data;
++	struct b43legacy_wldev *dev = from_tasklet(dev, t, isr_tasklet);
+ 	u32 reason;
+ 	u32 dma_reason[ARRAY_SIZE(dev->dma_reason)];
+ 	u32 merged_dma_reason = 0;
+@@ -3741,9 +3741,7 @@ static int b43legacy_one_core_attach(struct ssb_device *dev,
+ 	wldev->wl = wl;
+ 	b43legacy_set_status(wldev, B43legacy_STAT_UNINIT);
+ 	wldev->bad_frames_preempt = modparam_bad_frames_preempt;
+-	tasklet_init(&wldev->isr_tasklet,
+-		     b43legacy_interrupt_tasklet,
+-		     (unsigned long)wldev);
++	tasklet_setup(&wldev->isr_tasklet, b43legacy_interrupt_tasklet);
+ 	if (modparam_pio)
+ 		wldev->__using_pio = true;
+ 	INIT_LIST_HEAD(&wldev->list);
+diff --git a/drivers/net/wireless/broadcom/b43legacy/pio.c b/drivers/net/wireless/broadcom/b43legacy/pio.c
+index cbb761378619..aac413d0f629 100644
+--- a/drivers/net/wireless/broadcom/b43legacy/pio.c
++++ b/drivers/net/wireless/broadcom/b43legacy/pio.c
+@@ -264,9 +264,9 @@ static int pio_tx_packet(struct b43legacy_pio_txpacket *packet)
+ 	return 0;
  }
  
--static void at76_rx_tasklet(unsigned long param)
-+static void at76_rx_tasklet(struct tasklet_struct *t)
+-static void tx_tasklet(unsigned long d)
++static void tx_tasklet(struct tasklet_struct *t)
  {
--	struct urb *urb = (struct urb *)param;
--	struct at76_priv *priv = urb->context;
-+	struct at76_priv *priv = from_tasklet(priv, t, rx_tasklet);
-+	struct urb *urb = priv->rx_urb;
- 	struct at76_rx_buffer *buf;
- 	struct ieee80211_rx_status rx_status = { 0 };
+-	struct b43legacy_pioqueue *queue = (struct b43legacy_pioqueue *)d;
++	struct b43legacy_pioqueue *queue = from_tasklet(queue, t, txtask);
+ 	struct b43legacy_wldev *dev = queue->dev;
+ 	unsigned long flags;
+ 	struct b43legacy_pio_txpacket *packet, *tmp_packet;
+@@ -331,8 +331,7 @@ struct b43legacy_pioqueue *b43legacy_setup_pioqueue(struct b43legacy_wldev *dev,
+ 	INIT_LIST_HEAD(&queue->txfree);
+ 	INIT_LIST_HEAD(&queue->txqueue);
+ 	INIT_LIST_HEAD(&queue->txrunning);
+-	tasklet_init(&queue->txtask, tx_tasklet,
+-		     (unsigned long)queue);
++	tasklet_setup(&queue->txtask, tx_tasklet);
  
-@@ -2215,7 +2214,7 @@ static struct at76_priv *at76_alloc_new_device(struct usb_device *udev)
- 	INIT_WORK(&priv->work_join_bssid, at76_work_join_bssid);
- 	INIT_DELAYED_WORK(&priv->dwork_hw_scan, at76_dwork_hw_scan);
- 
--	tasklet_init(&priv->rx_tasklet, at76_rx_tasklet, 0);
-+	tasklet_setup(&priv->rx_tasklet, at76_rx_tasklet);
- 
- 	priv->pm_mode = AT76_PM_OFF;
- 	priv->pm_period = 0;
+ 	value = b43legacy_read32(dev, B43legacy_MMIO_MACCTL);
+ 	value &= ~B43legacy_MACCTL_BE;
 -- 
 2.17.1
 
