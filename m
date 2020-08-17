@@ -1,9 +1,9 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 From: Allen Pais <allen.cryptic@gmail.com>
-Subject: [PATCH 12/16] wireless: mediatek: convert tasklets to use new
+Subject: [PATCH 14/16] wireless: ralink: convert tasklets to use new
  tasklet_setup() API
-Date: Mon, 17 Aug 2020 14:36:33 +0530
-Message-Id: <20200817090637.26887-13-allen.cryptic@gmail.com>
+Date: Mon, 17 Aug 2020 14:36:35 +0530
+Message-Id: <20200817090637.26887-15-allen.cryptic@gmail.com>
 In-Reply-To: <20200817090637.26887-1-allen.cryptic@gmail.com>
 References: <20200817090637.26887-1-allen.cryptic@gmail.com>
 List-Id: <ath11k.lists.infradead.org>
@@ -32,277 +32,271 @@ and from_tasklet() to pass the tasklet pointer explicitly.
 Signed-off-by: Romain Perier <romain.perier@gmail.com>
 Signed-off-by: Allen Pais <allen.lkml@gmail.com>
 ---
- drivers/net/wireless/mediatek/mt76/mac80211.c      |  2 +-
- drivers/net/wireless/mediatek/mt76/mt76.h          |  2 +-
- drivers/net/wireless/mediatek/mt76/mt7603/beacon.c |  4 ++--
- drivers/net/wireless/mediatek/mt76/mt7603/init.c   |  3 +--
- drivers/net/wireless/mediatek/mt76/mt7603/mt7603.h |  2 +-
- drivers/net/wireless/mediatek/mt76/mt7615/mmio.c   |  6 +++---
- drivers/net/wireless/mediatek/mt76/mt76x02_dfs.c   | 10 +++++-----
- drivers/net/wireless/mediatek/mt76/mt76x02_mmio.c  | 14 ++++++--------
- drivers/net/wireless/mediatek/mt76/tx.c            |  4 ++--
- drivers/net/wireless/mediatek/mt76/usb.c           | 12 ++++++------
- drivers/net/wireless/mediatek/mt7601u/dma.c        | 12 ++++++------
- 11 files changed, 34 insertions(+), 37 deletions(-)
+ .../net/wireless/ralink/rt2x00/rt2400pci.c    | 14 ++++++-----
+ .../net/wireless/ralink/rt2x00/rt2500pci.c    | 14 ++++++-----
+ .../net/wireless/ralink/rt2x00/rt2800mmio.c   | 24 +++++++++++--------
+ .../net/wireless/ralink/rt2x00/rt2800mmio.h   | 10 ++++----
+ drivers/net/wireless/ralink/rt2x00/rt2x00.h   | 10 ++++----
+ .../net/wireless/ralink/rt2x00/rt2x00dev.c    |  5 ++--
+ drivers/net/wireless/ralink/rt2x00/rt61pci.c  | 20 +++++++++-------
+ 7 files changed, 54 insertions(+), 43 deletions(-)
 
-diff --git a/drivers/net/wireless/mediatek/mt76/mac80211.c b/drivers/net/wireless/mediatek/mt76/mac80211.c
-index 3d4bf72700a5..1f62f069a0dc 100644
---- a/drivers/net/wireless/mediatek/mt76/mac80211.c
-+++ b/drivers/net/wireless/mediatek/mt76/mac80211.c
-@@ -439,7 +439,7 @@ mt76_alloc_device(struct device *pdev, unsigned int size,
- 	for (i = 0; i < ARRAY_SIZE(dev->q_rx); i++)
- 		skb_queue_head_init(&dev->rx_skb[i]);
- 
--	tasklet_init(&dev->tx_tasklet, mt76_tx_tasklet, (unsigned long)dev);
-+	tasklet_setup(&dev->tx_tasklet, mt76_tx_tasklet);
- 
- 	dev->wq = alloc_ordered_workqueue("mt76", 0);
- 	if (!dev->wq) {
-diff --git a/drivers/net/wireless/mediatek/mt76/mt76.h b/drivers/net/wireless/mediatek/mt76/mt76.h
-index af35bc388ae2..1ab52fc37a1c 100644
---- a/drivers/net/wireless/mediatek/mt76/mt76.h
-+++ b/drivers/net/wireless/mediatek/mt76/mt76.h
-@@ -899,7 +899,7 @@ void mt76_stop_tx_queues(struct mt76_dev *dev, struct ieee80211_sta *sta,
- 			 bool send_bar);
- void mt76_txq_schedule(struct mt76_phy *phy, enum mt76_txq_id qid);
- void mt76_txq_schedule_all(struct mt76_phy *phy);
--void mt76_tx_tasklet(unsigned long data);
-+void mt76_tx_tasklet(struct tasklet_struct *t);
- void mt76_release_buffered_frames(struct ieee80211_hw *hw,
- 				  struct ieee80211_sta *sta,
- 				  u16 tids, int nframes,
-diff --git a/drivers/net/wireless/mediatek/mt76/mt7603/beacon.c b/drivers/net/wireless/mediatek/mt76/mt7603/beacon.c
-index 7a41cdf1c4ae..ab6771c6d2a6 100644
---- a/drivers/net/wireless/mediatek/mt76/mt7603/beacon.c
-+++ b/drivers/net/wireless/mediatek/mt76/mt7603/beacon.c
-@@ -64,9 +64,9 @@ mt7603_add_buffered_bc(void *priv, u8 *mac, struct ieee80211_vif *vif)
- 	data->count[mvif->idx]++;
+diff --git a/drivers/net/wireless/ralink/rt2x00/rt2400pci.c b/drivers/net/wireless/ralink/rt2x00/rt2400pci.c
+index c1ac933349d1..687a4686f3ae 100644
+--- a/drivers/net/wireless/ralink/rt2x00/rt2400pci.c
++++ b/drivers/net/wireless/ralink/rt2x00/rt2400pci.c
+@@ -1319,9 +1319,10 @@ static inline void rt2400pci_enable_interrupt(struct rt2x00_dev *rt2x00dev,
+ 	spin_unlock_irq(&rt2x00dev->irqmask_lock);
  }
  
--void mt7603_pre_tbtt_tasklet(unsigned long arg)
-+void mt7603_pre_tbtt_tasklet(struct tasklet_struct *t)
+-static void rt2400pci_txstatus_tasklet(unsigned long data)
++static void rt2400pci_txstatus_tasklet(struct tasklet_struct *t)
  {
--	struct mt7603_dev *dev = (struct mt7603_dev *)arg;
-+	struct mt7603_dev *dev = from_tasklet(dev, t, mt76.pre_tbtt_tasklet);
- 	struct mt76_queue *q;
- 	struct beacon_bc_data data = {};
- 	struct sk_buff *skb;
-diff --git a/drivers/net/wireless/mediatek/mt76/mt7603/init.c b/drivers/net/wireless/mediatek/mt76/mt7603/init.c
-index 94196599797e..a5aaa790692a 100644
---- a/drivers/net/wireless/mediatek/mt76/mt7603/init.c
-+++ b/drivers/net/wireless/mediatek/mt76/mt7603/init.c
-@@ -533,8 +533,7 @@ int mt7603_register_device(struct mt7603_dev *dev)
- 	spin_lock_init(&dev->ps_lock);
+-	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
++	struct rt2x00_dev *rt2x00dev = from_tasklet(rt2x00dev, t,
++						    txstatus_tasklet);
+ 	u32 reg;
  
- 	INIT_DELAYED_WORK(&dev->mt76.mac_work, mt7603_mac_work);
--	tasklet_init(&dev->mt76.pre_tbtt_tasklet, mt7603_pre_tbtt_tasklet,
--		     (unsigned long)dev);
-+	tasklet_setup(&dev->mt76.pre_tbtt_tasklet, mt7603_pre_tbtt_tasklet);
- 
- 	/* Check for 7688, which only has 1SS */
- 	dev->mphy.antenna_mask = 3;
-diff --git a/drivers/net/wireless/mediatek/mt76/mt7603/mt7603.h b/drivers/net/wireless/mediatek/mt76/mt7603/mt7603.h
-index c86305241e66..582d356382ed 100644
---- a/drivers/net/wireless/mediatek/mt76/mt7603/mt7603.h
-+++ b/drivers/net/wireless/mediatek/mt76/mt7603/mt7603.h
-@@ -255,7 +255,7 @@ void mt7603_sta_assoc(struct mt76_dev *mdev, struct ieee80211_vif *vif,
- void mt7603_sta_remove(struct mt76_dev *mdev, struct ieee80211_vif *vif,
- 		       struct ieee80211_sta *sta);
- 
--void mt7603_pre_tbtt_tasklet(unsigned long arg);
-+void mt7603_pre_tbtt_tasklet(struct tasklet_struct *t);
- 
- void mt7603_update_channel(struct mt76_dev *mdev);
- 
-diff --git a/drivers/net/wireless/mediatek/mt76/mt7615/mmio.c b/drivers/net/wireless/mediatek/mt76/mt7615/mmio.c
-index 133f93a6ed1b..c081a1c0449c 100644
---- a/drivers/net/wireless/mediatek/mt76/mt7615/mmio.c
-+++ b/drivers/net/wireless/mediatek/mt76/mt7615/mmio.c
-@@ -98,9 +98,9 @@ static irqreturn_t mt7615_irq_handler(int irq, void *dev_instance)
- 	return IRQ_HANDLED;
- }
- 
--static void mt7615_irq_tasklet(unsigned long data)
-+static void mt7615_irq_tasklet(struct tasklet_struct *t)
- {
--	struct mt7615_dev *dev = (struct mt7615_dev *)data;
-+	struct mt7615_dev *dev = from_tasklet(dev, t, irq_tasklet);
- 	u32 intr, mask = 0;
- 
- 	mt76_wr(dev, MT_INT_MASK_CSR, 0);
-@@ -206,7 +206,7 @@ int mt7615_mmio_probe(struct device *pdev, void __iomem *mem_base,
- 
- 	dev = container_of(mdev, struct mt7615_dev, mt76);
- 	mt76_mmio_init(&dev->mt76, mem_base);
--	tasklet_init(&dev->irq_tasklet, mt7615_irq_tasklet, (unsigned long)dev);
-+	tasklet_setup(&dev->irq_tasklet, mt7615_irq_tasklet);
- 
- 	dev->reg_map = map;
- 	dev->ops = ops;
-diff --git a/drivers/net/wireless/mediatek/mt76/mt76x02_dfs.c b/drivers/net/wireless/mediatek/mt76/mt76x02_dfs.c
-index ff6a9e4daac0..d45c5bcda72f 100644
---- a/drivers/net/wireless/mediatek/mt76/mt76x02_dfs.c
-+++ b/drivers/net/wireless/mediatek/mt76/mt76x02_dfs.c
-@@ -609,10 +609,11 @@ static void mt76x02_dfs_check_event_window(struct mt76x02_dev *dev)
+ 	/*
+@@ -1347,17 +1348,18 @@ static void rt2400pci_txstatus_tasklet(unsigned long data)
  	}
  }
  
--static void mt76x02_dfs_tasklet(unsigned long arg)
-+static void mt76x02_dfs_tasklet(struct tasklet_struct *t)
+-static void rt2400pci_tbtt_tasklet(unsigned long data)
++static void rt2400pci_tbtt_tasklet(struct tasklet_struct *t)
  {
--	struct mt76x02_dev *dev = (struct mt76x02_dev *)arg;
--	struct mt76x02_dfs_pattern_detector *dfs_pd = &dev->dfs_pd;
-+	struct mt76x02_dfs_pattern_detector *dfs_pd = from_tasklet(dfs_pd, t,
-+								   dfs_tasklet);
-+	struct mt76x02_dev *dev = container_of(dfs_pd, typeof(*dev), dfs_pd);
- 	u32 engine_mask;
- 	int i;
- 
-@@ -860,8 +861,7 @@ void mt76x02_dfs_init_detector(struct mt76x02_dev *dev)
- 	INIT_LIST_HEAD(&dfs_pd->seq_pool);
- 	dev->mt76.region = NL80211_DFS_UNSET;
- 	dfs_pd->last_sw_check = jiffies;
--	tasklet_init(&dfs_pd->dfs_tasklet, mt76x02_dfs_tasklet,
--		     (unsigned long)dev);
-+	tasklet_setup(&dfs_pd->dfs_tasklet, mt76x02_dfs_tasklet);
+-	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
++	struct rt2x00_dev *rt2x00dev = from_tasklet(rt2x00dev, t, tbtt_tasklet);
+ 	rt2x00lib_beacondone(rt2x00dev);
+ 	if (test_bit(DEVICE_STATE_ENABLED_RADIO, &rt2x00dev->flags))
+ 		rt2400pci_enable_interrupt(rt2x00dev, CSR8_TBCN_EXPIRE);
  }
  
- static void
-diff --git a/drivers/net/wireless/mediatek/mt76/mt76x02_mmio.c b/drivers/net/wireless/mediatek/mt76/mt76x02_mmio.c
-index bacb1f10a699..5a3db4edc265 100644
---- a/drivers/net/wireless/mediatek/mt76/mt76x02_mmio.c
-+++ b/drivers/net/wireless/mediatek/mt76/mt76x02_mmio.c
-@@ -11,9 +11,9 @@
- #include "mt76x02_mcu.h"
- #include "trace.h"
- 
--static void mt76x02_pre_tbtt_tasklet(unsigned long arg)
-+static void mt76x02_pre_tbtt_tasklet(struct tasklet_struct *t)
+-static void rt2400pci_rxdone_tasklet(unsigned long data)
++static void rt2400pci_rxdone_tasklet(struct tasklet_struct *t)
  {
--	struct mt76x02_dev *dev = (struct mt76x02_dev *)arg;
-+	struct mt76x02_dev *dev = from_tasklet(dev, t, mt76.pre_tbtt_tasklet);
- 	struct mt76_queue *q = dev->mt76.q_tx[MT_TXQ_PSD].q;
- 	struct beacon_bc_data data = {};
- 	struct sk_buff *skb;
-@@ -151,9 +151,9 @@ static void mt76x02_process_tx_status_fifo(struct mt76x02_dev *dev)
- 		mt76x02_send_tx_status(dev, &stat, &update);
+-	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
++	struct rt2x00_dev *rt2x00dev = from_tasklet(rt2x00dev, t,
++						    rxdone_tasklet);
+ 	if (rt2x00mmio_rxdone(rt2x00dev))
+ 		tasklet_schedule(&rt2x00dev->rxdone_tasklet);
+ 	else if (test_bit(DEVICE_STATE_ENABLED_RADIO, &rt2x00dev->flags))
+diff --git a/drivers/net/wireless/ralink/rt2x00/rt2500pci.c b/drivers/net/wireless/ralink/rt2x00/rt2500pci.c
+index 0859adebd860..ea06041f594a 100644
+--- a/drivers/net/wireless/ralink/rt2x00/rt2500pci.c
++++ b/drivers/net/wireless/ralink/rt2x00/rt2500pci.c
+@@ -1447,9 +1447,10 @@ static inline void rt2500pci_enable_interrupt(struct rt2x00_dev *rt2x00dev,
+ 	spin_unlock_irq(&rt2x00dev->irqmask_lock);
  }
  
--static void mt76x02_tx_tasklet(unsigned long data)
-+static void mt76x02_tx_tasklet(struct tasklet_struct *t)
+-static void rt2500pci_txstatus_tasklet(unsigned long data)
++static void rt2500pci_txstatus_tasklet(struct tasklet_struct *t)
  {
--	struct mt76x02_dev *dev = (struct mt76x02_dev *)data;
-+	struct mt76x02_dev *dev = from_tasklet(dev, t, mt76.tx_tasklet);
+-	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
++	struct rt2x00_dev *rt2x00dev = from_tasklet(rt2x00dev, t,
++						    txstatus_tasklet);
+ 	u32 reg;
  
- 	mt76x02_mac_poll_tx_status(dev, false);
- 	mt76x02_process_tx_status_fifo(dev);
-@@ -197,10 +197,8 @@ int mt76x02_dma_init(struct mt76x02_dev *dev)
- 	if (!status_fifo)
- 		return -ENOMEM;
- 
--	tasklet_init(&dev->mt76.tx_tasklet, mt76x02_tx_tasklet,
--		     (unsigned long)dev);
--	tasklet_init(&dev->mt76.pre_tbtt_tasklet, mt76x02_pre_tbtt_tasklet,
--		     (unsigned long)dev);
-+	tasklet_setup(&dev->mt76.tx_tasklet, mt76x02_tx_tasklet);
-+	tasklet_setup(&dev->mt76.pre_tbtt_tasklet, mt76x02_pre_tbtt_tasklet);
- 
- 	spin_lock_init(&dev->txstatus_fifo_lock);
- 	kfifo_init(&dev->txstatus_fifo, status_fifo, fifo_size);
-diff --git a/drivers/net/wireless/mediatek/mt76/tx.c b/drivers/net/wireless/mediatek/mt76/tx.c
-index 3afd89ecd6c9..89d99755cf6c 100644
---- a/drivers/net/wireless/mediatek/mt76/tx.c
-+++ b/drivers/net/wireless/mediatek/mt76/tx.c
-@@ -585,9 +585,9 @@ void mt76_txq_schedule_all(struct mt76_phy *phy)
- }
- EXPORT_SYMBOL_GPL(mt76_txq_schedule_all);
- 
--void mt76_tx_tasklet(unsigned long data)
-+void mt76_tx_tasklet(struct tasklet_struct *t)
- {
--	struct mt76_dev *dev = (struct mt76_dev *)data;
-+	struct mt76_dev *dev = from_tasklet(dev, t, tx_tasklet);
- 
- 	mt76_txq_schedule_all(&dev->phy);
- 	if (dev->phy2)
-diff --git a/drivers/net/wireless/mediatek/mt76/usb.c b/drivers/net/wireless/mediatek/mt76/usb.c
-index dcab5993763a..fa63753976c9 100644
---- a/drivers/net/wireless/mediatek/mt76/usb.c
-+++ b/drivers/net/wireless/mediatek/mt76/usb.c
-@@ -669,9 +669,9 @@ mt76u_process_rx_queue(struct mt76_dev *dev, struct mt76_queue *q)
- 		mt76_rx_poll_complete(dev, MT_RXQ_MAIN, NULL);
+ 	/*
+@@ -1475,17 +1476,18 @@ static void rt2500pci_txstatus_tasklet(unsigned long data)
+ 	}
  }
  
--static void mt76u_rx_tasklet(unsigned long data)
-+static void mt76u_rx_tasklet(struct tasklet_struct *t)
+-static void rt2500pci_tbtt_tasklet(unsigned long data)
++static void rt2500pci_tbtt_tasklet(struct tasklet_struct *t)
  {
--	struct mt76_dev *dev = (struct mt76_dev *)data;
-+	struct mt76_dev *dev = from_tasklet(dev, t, usb.rx_tasklet);
- 	int i;
- 
- 	rcu_read_lock();
-@@ -792,9 +792,9 @@ int mt76u_resume_rx(struct mt76_dev *dev)
- }
- EXPORT_SYMBOL_GPL(mt76u_resume_rx);
- 
--static void mt76u_tx_tasklet(unsigned long data)
-+static void mt76u_tx_tasklet(struct tasklet_struct *t)
- {
--	struct mt76_dev *dev = (struct mt76_dev *)data;
-+	struct mt76_dev *dev = from_tasklet(dev, t, tx_tasklet);
- 	struct mt76_queue_entry entry;
- 	struct mt76_sw_queue *sq;
- 	struct mt76_queue *q;
-@@ -1133,8 +1133,8 @@ int mt76u_init(struct mt76_dev *dev,
- 	mt76u_ops.rmw = ext ? mt76u_rmw_ext : mt76u_rmw;
- 	mt76u_ops.write_copy = ext ? mt76u_copy_ext : mt76u_copy;
- 
--	tasklet_init(&usb->rx_tasklet, mt76u_rx_tasklet, (unsigned long)dev);
--	tasklet_init(&dev->tx_tasklet, mt76u_tx_tasklet, (unsigned long)dev);
-+	tasklet_setup(&usb->rx_tasklet, mt76u_rx_tasklet);
-+	tasklet_setup(&dev->tx_tasklet, mt76u_tx_tasklet);
- 	INIT_WORK(&usb->stat_work, mt76u_tx_status_data);
- 
- 	usb->data_len = usb_maxpacket(udev, usb_sndctrlpipe(udev, 0), 1);
-diff --git a/drivers/net/wireless/mediatek/mt7601u/dma.c b/drivers/net/wireless/mediatek/mt7601u/dma.c
-index f6a0454abe04..abeffeb388b7 100644
---- a/drivers/net/wireless/mediatek/mt7601u/dma.c
-+++ b/drivers/net/wireless/mediatek/mt7601u/dma.c
-@@ -212,9 +212,9 @@ static void mt7601u_complete_rx(struct urb *urb)
- 	spin_unlock_irqrestore(&dev->rx_lock, flags);
+-	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
++	struct rt2x00_dev *rt2x00dev = from_tasklet(rt2x00dev, t, tbtt_tasklet);
+ 	rt2x00lib_beacondone(rt2x00dev);
+ 	if (test_bit(DEVICE_STATE_ENABLED_RADIO, &rt2x00dev->flags))
+ 		rt2500pci_enable_interrupt(rt2x00dev, CSR8_TBCN_EXPIRE);
  }
  
--static void mt7601u_rx_tasklet(unsigned long data)
-+static void mt7601u_rx_tasklet(struct tasklet_struct *t)
+-static void rt2500pci_rxdone_tasklet(unsigned long data)
++static void rt2500pci_rxdone_tasklet(struct tasklet_struct *t)
  {
--	struct mt7601u_dev *dev = (struct mt7601u_dev *) data;
-+	struct mt7601u_dev *dev = from_tasklet(dev, t, rx_tasklet);
- 	struct mt7601u_dma_buf_rx *e;
- 
- 	while ((e = mt7601u_rx_get_pending_entry(dev))) {
-@@ -266,9 +266,9 @@ static void mt7601u_complete_tx(struct urb *urb)
- 	spin_unlock_irqrestore(&dev->tx_lock, flags);
+-	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
++	struct rt2x00_dev *rt2x00dev = from_tasklet(rt2x00dev, t,
++						    rxdone_tasklet);
+ 	if (rt2x00mmio_rxdone(rt2x00dev))
+ 		tasklet_schedule(&rt2x00dev->rxdone_tasklet);
+ 	else if (test_bit(DEVICE_STATE_ENABLED_RADIO, &rt2x00dev->flags))
+diff --git a/drivers/net/wireless/ralink/rt2x00/rt2800mmio.c b/drivers/net/wireless/ralink/rt2x00/rt2800mmio.c
+index 110bb391c372..d4fb3cc6d6a3 100644
+--- a/drivers/net/wireless/ralink/rt2x00/rt2800mmio.c
++++ b/drivers/net/wireless/ralink/rt2x00/rt2800mmio.c
+@@ -210,18 +210,19 @@ static inline void rt2800mmio_enable_interrupt(struct rt2x00_dev *rt2x00dev,
+ 	spin_unlock_irq(&rt2x00dev->irqmask_lock);
  }
  
--static void mt7601u_tx_tasklet(unsigned long data)
-+static void mt7601u_tx_tasklet(struct tasklet_struct *t)
+-void rt2800mmio_pretbtt_tasklet(unsigned long data)
++void rt2800mmio_pretbtt_tasklet(struct tasklet_struct *t)
  {
--	struct mt7601u_dev *dev = (struct mt7601u_dev *) data;
-+	struct mt7601u_dev *dev = from_tasklet(dev, t, tx_tasklet);
- 	struct sk_buff_head skbs;
- 	unsigned long flags;
+-	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
++	struct rt2x00_dev *rt2x00dev = from_tasklet(rt2x00dev, t,
++						    pretbtt_tasklet);
+ 	rt2x00lib_pretbtt(rt2x00dev);
+ 	if (test_bit(DEVICE_STATE_ENABLED_RADIO, &rt2x00dev->flags))
+ 		rt2800mmio_enable_interrupt(rt2x00dev, INT_MASK_CSR_PRE_TBTT);
+ }
+ EXPORT_SYMBOL_GPL(rt2800mmio_pretbtt_tasklet);
  
-@@ -507,8 +507,8 @@ int mt7601u_dma_init(struct mt7601u_dev *dev)
+-void rt2800mmio_tbtt_tasklet(unsigned long data)
++void rt2800mmio_tbtt_tasklet(struct tasklet_struct *t)
  {
- 	int ret = -ENOMEM;
+-	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
++	struct rt2x00_dev *rt2x00dev = from_tasklet(rt2x00dev, t, tbtt_tasklet);
+ 	struct rt2800_drv_data *drv_data = rt2x00dev->drv_data;
+ 	u32 reg;
  
--	tasklet_init(&dev->tx_tasklet, mt7601u_tx_tasklet, (unsigned long) dev);
--	tasklet_init(&dev->rx_tasklet, mt7601u_rx_tasklet, (unsigned long) dev);
-+	tasklet_setup(&dev->tx_tasklet, mt7601u_tx_tasklet);
-+	tasklet_setup(&dev->rx_tasklet, mt7601u_rx_tasklet);
+@@ -254,9 +255,10 @@ void rt2800mmio_tbtt_tasklet(unsigned long data)
+ }
+ EXPORT_SYMBOL_GPL(rt2800mmio_tbtt_tasklet);
  
- 	ret = mt7601u_alloc_tx(dev);
- 	if (ret)
+-void rt2800mmio_rxdone_tasklet(unsigned long data)
++void rt2800mmio_rxdone_tasklet(struct tasklet_struct *t)
+ {
+-	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
++	struct rt2x00_dev *rt2x00dev = from_tasklet(rt2x00dev, t,
++						    rxdone_tasklet);
+ 	if (rt2x00mmio_rxdone(rt2x00dev))
+ 		tasklet_schedule(&rt2x00dev->rxdone_tasklet);
+ 	else if (test_bit(DEVICE_STATE_ENABLED_RADIO, &rt2x00dev->flags))
+@@ -264,9 +266,10 @@ void rt2800mmio_rxdone_tasklet(unsigned long data)
+ }
+ EXPORT_SYMBOL_GPL(rt2800mmio_rxdone_tasklet);
+ 
+-void rt2800mmio_autowake_tasklet(unsigned long data)
++void rt2800mmio_autowake_tasklet(struct tasklet_struct *t)
+ {
+-	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
++	struct rt2x00_dev *rt2x00dev = from_tasklet(rt2x00dev, t,
++						    autowake_tasklet);
+ 	rt2800mmio_wakeup(rt2x00dev);
+ 	if (test_bit(DEVICE_STATE_ENABLED_RADIO, &rt2x00dev->flags))
+ 		rt2800mmio_enable_interrupt(rt2x00dev,
+@@ -307,9 +310,10 @@ static void rt2800mmio_fetch_txstatus(struct rt2x00_dev *rt2x00dev)
+ 	spin_unlock_irqrestore(&rt2x00dev->irqmask_lock, flags);
+ }
+ 
+-void rt2800mmio_txstatus_tasklet(unsigned long data)
++void rt2800mmio_txstatus_tasklet(struct tasklet_struct *t)
+ {
+-	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
++	struct rt2x00_dev *rt2x00dev = from_tasklet(rt2x00dev, t,
++						    txstatus_tasklet);
+ 
+ 	rt2800_txdone(rt2x00dev, 16);
+ 
+diff --git a/drivers/net/wireless/ralink/rt2x00/rt2800mmio.h b/drivers/net/wireless/ralink/rt2x00/rt2800mmio.h
+index adcd9d54ac1c..05708950f24d 100644
+--- a/drivers/net/wireless/ralink/rt2x00/rt2800mmio.h
++++ b/drivers/net/wireless/ralink/rt2x00/rt2800mmio.h
+@@ -126,11 +126,11 @@ void rt2800mmio_fill_rxdone(struct queue_entry *entry,
+ 			    struct rxdone_entry_desc *rxdesc);
+ 
+ /* Interrupt functions */
+-void rt2800mmio_txstatus_tasklet(unsigned long data);
+-void rt2800mmio_pretbtt_tasklet(unsigned long data);
+-void rt2800mmio_tbtt_tasklet(unsigned long data);
+-void rt2800mmio_rxdone_tasklet(unsigned long data);
+-void rt2800mmio_autowake_tasklet(unsigned long data);
++void rt2800mmio_txstatus_tasklet(struct tasklet_struct *t);
++void rt2800mmio_pretbtt_tasklet(struct tasklet_struct *t);
++void rt2800mmio_tbtt_tasklet(struct tasklet_struct *t);
++void rt2800mmio_rxdone_tasklet(struct tasklet_struct *t);
++void rt2800mmio_autowake_tasklet(struct tasklet_struct *t);
+ irqreturn_t rt2800mmio_interrupt(int irq, void *dev_instance);
+ void rt2800mmio_toggle_irq(struct rt2x00_dev *rt2x00dev,
+ 			   enum dev_state state);
+diff --git a/drivers/net/wireless/ralink/rt2x00/rt2x00.h b/drivers/net/wireless/ralink/rt2x00/rt2x00.h
+index ecc60d8cbb01..780be81863b6 100644
+--- a/drivers/net/wireless/ralink/rt2x00/rt2x00.h
++++ b/drivers/net/wireless/ralink/rt2x00/rt2x00.h
+@@ -518,11 +518,11 @@ struct rt2x00lib_ops {
+ 	/*
+ 	 * TX status tasklet handler.
+ 	 */
+-	void (*txstatus_tasklet) (unsigned long data);
+-	void (*pretbtt_tasklet) (unsigned long data);
+-	void (*tbtt_tasklet) (unsigned long data);
+-	void (*rxdone_tasklet) (unsigned long data);
+-	void (*autowake_tasklet) (unsigned long data);
++	void (*txstatus_tasklet) (struct tasklet_struct *t);
++	void (*pretbtt_tasklet) (struct tasklet_struct *t);
++	void (*tbtt_tasklet) (struct tasklet_struct *t);
++	void (*rxdone_tasklet) (struct tasklet_struct *t);
++	void (*autowake_tasklet) (struct tasklet_struct *t);
+ 
+ 	/*
+ 	 * Device init handlers.
+diff --git a/drivers/net/wireless/ralink/rt2x00/rt2x00dev.c b/drivers/net/wireless/ralink/rt2x00/rt2x00dev.c
+index 8c6d3099b19d..b04f76551ca4 100644
+--- a/drivers/net/wireless/ralink/rt2x00/rt2x00dev.c
++++ b/drivers/net/wireless/ralink/rt2x00/rt2x00dev.c
+@@ -1167,9 +1167,8 @@ static int rt2x00lib_probe_hw(struct rt2x00_dev *rt2x00dev)
+ 	 */
+ #define RT2X00_TASKLET_INIT(taskletname) \
+ 	if (rt2x00dev->ops->lib->taskletname) { \
+-		tasklet_init(&rt2x00dev->taskletname, \
+-			     rt2x00dev->ops->lib->taskletname, \
+-			     (unsigned long)rt2x00dev); \
++		tasklet_setup(&rt2x00dev->taskletname, \
++			     rt2x00dev->ops->lib->taskletname); \
+ 	}
+ 
+ 	RT2X00_TASKLET_INIT(txstatus_tasklet);
+diff --git a/drivers/net/wireless/ralink/rt2x00/rt61pci.c b/drivers/net/wireless/ralink/rt2x00/rt61pci.c
+index eefce76fc99b..146675ee34c4 100644
+--- a/drivers/net/wireless/ralink/rt2x00/rt61pci.c
++++ b/drivers/net/wireless/ralink/rt2x00/rt61pci.c
+@@ -2190,34 +2190,38 @@ static void rt61pci_enable_mcu_interrupt(struct rt2x00_dev *rt2x00dev,
+ 	spin_unlock_irq(&rt2x00dev->irqmask_lock);
+ }
+ 
+-static void rt61pci_txstatus_tasklet(unsigned long data)
++static void rt61pci_txstatus_tasklet(struct tasklet_struct *t)
+ {
+-	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
++	struct rt2x00_dev *rt2x00dev = from_tasklet(rt2x00dev, t,
++						    txstatus_tasklet);
++
+ 	rt61pci_txdone(rt2x00dev);
+ 	if (test_bit(DEVICE_STATE_ENABLED_RADIO, &rt2x00dev->flags))
+ 		rt61pci_enable_interrupt(rt2x00dev, INT_MASK_CSR_TXDONE);
+ }
+ 
+-static void rt61pci_tbtt_tasklet(unsigned long data)
++static void rt61pci_tbtt_tasklet(struct tasklet_struct *t)
+ {
+-	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
++	struct rt2x00_dev *rt2x00dev = from_tasklet(rt2x00dev, t, tbtt_tasklet);
+ 	rt2x00lib_beacondone(rt2x00dev);
+ 	if (test_bit(DEVICE_STATE_ENABLED_RADIO, &rt2x00dev->flags))
+ 		rt61pci_enable_interrupt(rt2x00dev, INT_MASK_CSR_BEACON_DONE);
+ }
+ 
+-static void rt61pci_rxdone_tasklet(unsigned long data)
++static void rt61pci_rxdone_tasklet(struct tasklet_struct *t)
+ {
+-	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
++	struct rt2x00_dev *rt2x00dev = from_tasklet(rt2x00dev, t,
++						    rxdone_tasklet);
+ 	if (rt2x00mmio_rxdone(rt2x00dev))
+ 		tasklet_schedule(&rt2x00dev->rxdone_tasklet);
+ 	else if (test_bit(DEVICE_STATE_ENABLED_RADIO, &rt2x00dev->flags))
+ 		rt61pci_enable_interrupt(rt2x00dev, INT_MASK_CSR_RXDONE);
+ }
+ 
+-static void rt61pci_autowake_tasklet(unsigned long data)
++static void rt61pci_autowake_tasklet(struct tasklet_struct *t)
+ {
+-	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
++	struct rt2x00_dev *rt2x00dev = from_tasklet(rt2x00dev, t,
++						    autowake_tasklet);
+ 	rt61pci_wakeup(rt2x00dev);
+ 	rt2x00mmio_register_write(rt2x00dev,
+ 				  M2H_CMD_DONE_CSR, 0xffffffff);
 -- 
 2.17.1
 
