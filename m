@@ -1,9 +1,9 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 From: Allen Pais <allen.cryptic@gmail.com>
-Subject: [PATCH 14/16] wireless: ralink: convert tasklets to use new
+Subject: [PATCH 15/16] wireless: realtek: convert tasklets to use new
  tasklet_setup() API
-Date: Mon, 17 Aug 2020 14:36:35 +0530
-Message-Id: <20200817090637.26887-15-allen.cryptic@gmail.com>
+Date: Mon, 17 Aug 2020 14:36:36 +0530
+Message-Id: <20200817090637.26887-16-allen.cryptic@gmail.com>
 In-Reply-To: <20200817090637.26887-1-allen.cryptic@gmail.com>
 References: <20200817090637.26887-1-allen.cryptic@gmail.com>
 List-Id: <ath11k.lists.infradead.org>
@@ -27,276 +27,141 @@ From: Allen Pais <allen.lkml@gmail.com>
 In preparation for unconditionally passing the
 struct tasklet_struct pointer to all tasklet
 callbacks, switch to using the new tasklet_setup()
-and from_tasklet() to pass the tasklet pointer explicitly.
+and from_tasklet() to pass the tasklet pointer explicitly
+and remove .data field.
 
 Signed-off-by: Romain Perier <romain.perier@gmail.com>
 Signed-off-by: Allen Pais <allen.lkml@gmail.com>
 ---
- .../net/wireless/ralink/rt2x00/rt2400pci.c    | 14 ++++++-----
- .../net/wireless/ralink/rt2x00/rt2500pci.c    | 14 ++++++-----
- .../net/wireless/ralink/rt2x00/rt2800mmio.c   | 24 +++++++++++--------
- .../net/wireless/ralink/rt2x00/rt2800mmio.h   | 10 ++++----
- drivers/net/wireless/ralink/rt2x00/rt2x00.h   | 10 ++++----
- .../net/wireless/ralink/rt2x00/rt2x00dev.c    |  5 ++--
- drivers/net/wireless/ralink/rt2x00/rt61pci.c  | 20 +++++++++-------
- 7 files changed, 54 insertions(+), 43 deletions(-)
+ drivers/net/wireless/realtek/rtlwifi/pci.c | 21 ++++++++++-----------
+ drivers/net/wireless/realtek/rtlwifi/usb.c |  9 ++++-----
+ drivers/net/wireless/realtek/rtw88/main.c  |  3 +--
+ drivers/net/wireless/realtek/rtw88/tx.c    |  4 ++--
+ drivers/net/wireless/realtek/rtw88/tx.h    |  2 +-
+ 5 files changed, 18 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/net/wireless/ralink/rt2x00/rt2400pci.c b/drivers/net/wireless/ralink/rt2x00/rt2400pci.c
-index c1ac933349d1..687a4686f3ae 100644
---- a/drivers/net/wireless/ralink/rt2x00/rt2400pci.c
-+++ b/drivers/net/wireless/ralink/rt2x00/rt2400pci.c
-@@ -1319,9 +1319,10 @@ static inline void rt2400pci_enable_interrupt(struct rt2x00_dev *rt2x00dev,
- 	spin_unlock_irq(&rt2x00dev->irqmask_lock);
+diff --git a/drivers/net/wireless/realtek/rtlwifi/pci.c b/drivers/net/wireless/realtek/rtlwifi/pci.c
+index 25335bd2873b..42099369fa35 100644
+--- a/drivers/net/wireless/realtek/rtlwifi/pci.c
++++ b/drivers/net/wireless/realtek/rtlwifi/pci.c
+@@ -1061,16 +1061,18 @@ static irqreturn_t _rtl_pci_interrupt(int irq, void *dev_id)
+ 	return ret;
  }
  
--static void rt2400pci_txstatus_tasklet(unsigned long data)
-+static void rt2400pci_txstatus_tasklet(struct tasklet_struct *t)
+-static void _rtl_pci_irq_tasklet(unsigned long data)
++static void _rtl_pci_irq_tasklet(struct tasklet_struct *t)
  {
--	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
-+	struct rt2x00_dev *rt2x00dev = from_tasklet(rt2x00dev, t,
-+						    txstatus_tasklet);
- 	u32 reg;
- 
- 	/*
-@@ -1347,17 +1348,18 @@ static void rt2400pci_txstatus_tasklet(unsigned long data)
- 	}
+-	struct ieee80211_hw *hw = (struct ieee80211_hw *)data;
++	struct rtl_priv *rtlpriv = from_tasklet(rtlpriv, t, works.irq_tasklet);
++	struct ieee80211_hw *hw = rtlpriv->hw;
+ 	_rtl_pci_tx_chk_waitq(hw);
  }
  
--static void rt2400pci_tbtt_tasklet(unsigned long data)
-+static void rt2400pci_tbtt_tasklet(struct tasklet_struct *t)
+-static void _rtl_pci_prepare_bcn_tasklet(unsigned long data)
++static void _rtl_pci_prepare_bcn_tasklet(struct tasklet_struct *t)
  {
--	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
-+	struct rt2x00_dev *rt2x00dev = from_tasklet(rt2x00dev, t, tbtt_tasklet);
- 	rt2x00lib_beacondone(rt2x00dev);
- 	if (test_bit(DEVICE_STATE_ENABLED_RADIO, &rt2x00dev->flags))
- 		rt2400pci_enable_interrupt(rt2x00dev, CSR8_TBCN_EXPIRE);
+-	struct ieee80211_hw *hw = (struct ieee80211_hw *)data;
+-	struct rtl_priv *rtlpriv = rtl_priv(hw);
++	struct rtl_priv *rtlpriv = from_tasklet(rtlpriv, t,
++						works.irq_prepare_bcn_tasklet);
++	struct ieee80211_hw *hw = rtlpriv->hw;
+ 	struct rtl_pci *rtlpci = rtl_pcidev(rtl_pcipriv(hw));
+ 	struct rtl_mac *mac = rtl_mac(rtl_priv(hw));
+ 	struct rtl8192_tx_ring *ring = NULL;
+@@ -1194,12 +1196,9 @@ static void _rtl_pci_init_struct(struct ieee80211_hw *hw,
+ 	rtlpci->acm_method = EACMWAY2_SW;
+ 
+ 	/*task */
+-	tasklet_init(&rtlpriv->works.irq_tasklet,
+-		     _rtl_pci_irq_tasklet,
+-		     (unsigned long)hw);
+-	tasklet_init(&rtlpriv->works.irq_prepare_bcn_tasklet,
+-		     _rtl_pci_prepare_bcn_tasklet,
+-		     (unsigned long)hw);
++	tasklet_setup(&rtlpriv->works.irq_tasklet, _rtl_pci_irq_tasklet);
++	tasklet_setup(&rtlpriv->works.irq_prepare_bcn_tasklet,
++		     _rtl_pci_prepare_bcn_tasklet);
+ 	INIT_WORK(&rtlpriv->works.lps_change_work,
+ 		  rtl_lps_change_work_callback);
+ }
+diff --git a/drivers/net/wireless/realtek/rtlwifi/usb.c b/drivers/net/wireless/realtek/rtlwifi/usb.c
+index d05e709536ea..8740818e8d87 100644
+--- a/drivers/net/wireless/realtek/rtlwifi/usb.c
++++ b/drivers/net/wireless/realtek/rtlwifi/usb.c
+@@ -289,7 +289,7 @@ static int _rtl_usb_init_tx(struct ieee80211_hw *hw)
+ 	return 0;
  }
  
--static void rt2400pci_rxdone_tasklet(unsigned long data)
-+static void rt2400pci_rxdone_tasklet(struct tasklet_struct *t)
+-static void _rtl_rx_work(unsigned long param);
++static void _rtl_rx_work(struct tasklet_struct *t);
+ 
+ static int _rtl_usb_init_rx(struct ieee80211_hw *hw)
  {
--	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
-+	struct rt2x00_dev *rt2x00dev = from_tasklet(rt2x00dev, t,
-+						    rxdone_tasklet);
- 	if (rt2x00mmio_rxdone(rt2x00dev))
- 		tasklet_schedule(&rt2x00dev->rxdone_tasklet);
- 	else if (test_bit(DEVICE_STATE_ENABLED_RADIO, &rt2x00dev->flags))
-diff --git a/drivers/net/wireless/ralink/rt2x00/rt2500pci.c b/drivers/net/wireless/ralink/rt2x00/rt2500pci.c
-index 0859adebd860..ea06041f594a 100644
---- a/drivers/net/wireless/ralink/rt2x00/rt2500pci.c
-+++ b/drivers/net/wireless/ralink/rt2x00/rt2500pci.c
-@@ -1447,9 +1447,10 @@ static inline void rt2500pci_enable_interrupt(struct rt2x00_dev *rt2x00dev,
- 	spin_unlock_irq(&rt2x00dev->irqmask_lock);
+@@ -310,8 +310,7 @@ static int _rtl_usb_init_rx(struct ieee80211_hw *hw)
+ 	init_usb_anchor(&rtlusb->rx_cleanup_urbs);
+ 
+ 	skb_queue_head_init(&rtlusb->rx_queue);
+-	rtlusb->rx_work_tasklet.func = _rtl_rx_work;
+-	rtlusb->rx_work_tasklet.data = (unsigned long)rtlusb;
++	rtlusb->rx_work_tasklet.func = (void(*)(unsigned long))_rtl_rx_work;
+ 
+ 	return 0;
+ }
+@@ -528,9 +527,9 @@ static void _rtl_rx_pre_process(struct ieee80211_hw *hw, struct sk_buff *skb)
+ 
+ #define __RX_SKB_MAX_QUEUED	64
+ 
+-static void _rtl_rx_work(unsigned long param)
++static void _rtl_rx_work(struct tasklet_struct *t)
+ {
+-	struct rtl_usb *rtlusb = (struct rtl_usb *)param;
++	struct rtl_usb *rtlusb = from_tasklet(rtlusb, t, rx_work_tasklet);
+ 	struct ieee80211_hw *hw = usb_get_intfdata(rtlusb->intf);
+ 	struct sk_buff *skb;
+ 
+diff --git a/drivers/net/wireless/realtek/rtw88/main.c b/drivers/net/wireless/realtek/rtw88/main.c
+index 54044abf30d7..6719c687a322 100644
+--- a/drivers/net/wireless/realtek/rtw88/main.c
++++ b/drivers/net/wireless/realtek/rtw88/main.c
+@@ -1422,8 +1422,7 @@ int rtw_core_init(struct rtw_dev *rtwdev)
+ 
+ 	timer_setup(&rtwdev->tx_report.purge_timer,
+ 		    rtw_tx_report_purge_timer, 0);
+-	tasklet_init(&rtwdev->tx_tasklet, rtw_tx_tasklet,
+-		     (unsigned long)rtwdev);
++	tasklet_setup(&rtwdev->tx_tasklet, rtw_tx_tasklet);
+ 
+ 	INIT_DELAYED_WORK(&rtwdev->watch_dog_work, rtw_watch_dog_work);
+ 	INIT_DELAYED_WORK(&coex->bt_relink_work, rtw_coex_bt_relink_work);
+diff --git a/drivers/net/wireless/realtek/rtw88/tx.c b/drivers/net/wireless/realtek/rtw88/tx.c
+index 7fcc992b01a8..ca8072177ae3 100644
+--- a/drivers/net/wireless/realtek/rtw88/tx.c
++++ b/drivers/net/wireless/realtek/rtw88/tx.c
+@@ -587,9 +587,9 @@ static void rtw_txq_push(struct rtw_dev *rtwdev,
+ 	rcu_read_unlock();
  }
  
--static void rt2500pci_txstatus_tasklet(unsigned long data)
-+static void rt2500pci_txstatus_tasklet(struct tasklet_struct *t)
+-void rtw_tx_tasklet(unsigned long data)
++void rtw_tx_tasklet(struct tasklet_struct *t)
  {
--	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
-+	struct rt2x00_dev *rt2x00dev = from_tasklet(rt2x00dev, t,
-+						    txstatus_tasklet);
- 	u32 reg;
+-	struct rtw_dev *rtwdev = (void *)data;
++	struct rtw_dev *rtwdev = from_tasklet(rtwdev, t, tx_tasklet);
+ 	struct rtw_txq *rtwtxq, *tmp;
  
- 	/*
-@@ -1475,17 +1476,18 @@ static void rt2500pci_txstatus_tasklet(unsigned long data)
- 	}
- }
- 
--static void rt2500pci_tbtt_tasklet(unsigned long data)
-+static void rt2500pci_tbtt_tasklet(struct tasklet_struct *t)
- {
--	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
-+	struct rt2x00_dev *rt2x00dev = from_tasklet(rt2x00dev, t, tbtt_tasklet);
- 	rt2x00lib_beacondone(rt2x00dev);
- 	if (test_bit(DEVICE_STATE_ENABLED_RADIO, &rt2x00dev->flags))
- 		rt2500pci_enable_interrupt(rt2x00dev, CSR8_TBCN_EXPIRE);
- }
- 
--static void rt2500pci_rxdone_tasklet(unsigned long data)
-+static void rt2500pci_rxdone_tasklet(struct tasklet_struct *t)
- {
--	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
-+	struct rt2x00_dev *rt2x00dev = from_tasklet(rt2x00dev, t,
-+						    rxdone_tasklet);
- 	if (rt2x00mmio_rxdone(rt2x00dev))
- 		tasklet_schedule(&rt2x00dev->rxdone_tasklet);
- 	else if (test_bit(DEVICE_STATE_ENABLED_RADIO, &rt2x00dev->flags))
-diff --git a/drivers/net/wireless/ralink/rt2x00/rt2800mmio.c b/drivers/net/wireless/ralink/rt2x00/rt2800mmio.c
-index 110bb391c372..d4fb3cc6d6a3 100644
---- a/drivers/net/wireless/ralink/rt2x00/rt2800mmio.c
-+++ b/drivers/net/wireless/ralink/rt2x00/rt2800mmio.c
-@@ -210,18 +210,19 @@ static inline void rt2800mmio_enable_interrupt(struct rt2x00_dev *rt2x00dev,
- 	spin_unlock_irq(&rt2x00dev->irqmask_lock);
- }
- 
--void rt2800mmio_pretbtt_tasklet(unsigned long data)
-+void rt2800mmio_pretbtt_tasklet(struct tasklet_struct *t)
- {
--	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
-+	struct rt2x00_dev *rt2x00dev = from_tasklet(rt2x00dev, t,
-+						    pretbtt_tasklet);
- 	rt2x00lib_pretbtt(rt2x00dev);
- 	if (test_bit(DEVICE_STATE_ENABLED_RADIO, &rt2x00dev->flags))
- 		rt2800mmio_enable_interrupt(rt2x00dev, INT_MASK_CSR_PRE_TBTT);
- }
- EXPORT_SYMBOL_GPL(rt2800mmio_pretbtt_tasklet);
- 
--void rt2800mmio_tbtt_tasklet(unsigned long data)
-+void rt2800mmio_tbtt_tasklet(struct tasklet_struct *t)
- {
--	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
-+	struct rt2x00_dev *rt2x00dev = from_tasklet(rt2x00dev, t, tbtt_tasklet);
- 	struct rt2800_drv_data *drv_data = rt2x00dev->drv_data;
- 	u32 reg;
- 
-@@ -254,9 +255,10 @@ void rt2800mmio_tbtt_tasklet(unsigned long data)
- }
- EXPORT_SYMBOL_GPL(rt2800mmio_tbtt_tasklet);
- 
--void rt2800mmio_rxdone_tasklet(unsigned long data)
-+void rt2800mmio_rxdone_tasklet(struct tasklet_struct *t)
- {
--	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
-+	struct rt2x00_dev *rt2x00dev = from_tasklet(rt2x00dev, t,
-+						    rxdone_tasklet);
- 	if (rt2x00mmio_rxdone(rt2x00dev))
- 		tasklet_schedule(&rt2x00dev->rxdone_tasklet);
- 	else if (test_bit(DEVICE_STATE_ENABLED_RADIO, &rt2x00dev->flags))
-@@ -264,9 +266,10 @@ void rt2800mmio_rxdone_tasklet(unsigned long data)
- }
- EXPORT_SYMBOL_GPL(rt2800mmio_rxdone_tasklet);
- 
--void rt2800mmio_autowake_tasklet(unsigned long data)
-+void rt2800mmio_autowake_tasklet(struct tasklet_struct *t)
- {
--	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
-+	struct rt2x00_dev *rt2x00dev = from_tasklet(rt2x00dev, t,
-+						    autowake_tasklet);
- 	rt2800mmio_wakeup(rt2x00dev);
- 	if (test_bit(DEVICE_STATE_ENABLED_RADIO, &rt2x00dev->flags))
- 		rt2800mmio_enable_interrupt(rt2x00dev,
-@@ -307,9 +310,10 @@ static void rt2800mmio_fetch_txstatus(struct rt2x00_dev *rt2x00dev)
- 	spin_unlock_irqrestore(&rt2x00dev->irqmask_lock, flags);
- }
- 
--void rt2800mmio_txstatus_tasklet(unsigned long data)
-+void rt2800mmio_txstatus_tasklet(struct tasklet_struct *t)
- {
--	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
-+	struct rt2x00_dev *rt2x00dev = from_tasklet(rt2x00dev, t,
-+						    txstatus_tasklet);
- 
- 	rt2800_txdone(rt2x00dev, 16);
- 
-diff --git a/drivers/net/wireless/ralink/rt2x00/rt2800mmio.h b/drivers/net/wireless/ralink/rt2x00/rt2800mmio.h
-index adcd9d54ac1c..05708950f24d 100644
---- a/drivers/net/wireless/ralink/rt2x00/rt2800mmio.h
-+++ b/drivers/net/wireless/ralink/rt2x00/rt2800mmio.h
-@@ -126,11 +126,11 @@ void rt2800mmio_fill_rxdone(struct queue_entry *entry,
- 			    struct rxdone_entry_desc *rxdesc);
- 
- /* Interrupt functions */
--void rt2800mmio_txstatus_tasklet(unsigned long data);
--void rt2800mmio_pretbtt_tasklet(unsigned long data);
--void rt2800mmio_tbtt_tasklet(unsigned long data);
--void rt2800mmio_rxdone_tasklet(unsigned long data);
--void rt2800mmio_autowake_tasklet(unsigned long data);
-+void rt2800mmio_txstatus_tasklet(struct tasklet_struct *t);
-+void rt2800mmio_pretbtt_tasklet(struct tasklet_struct *t);
-+void rt2800mmio_tbtt_tasklet(struct tasklet_struct *t);
-+void rt2800mmio_rxdone_tasklet(struct tasklet_struct *t);
-+void rt2800mmio_autowake_tasklet(struct tasklet_struct *t);
- irqreturn_t rt2800mmio_interrupt(int irq, void *dev_instance);
- void rt2800mmio_toggle_irq(struct rt2x00_dev *rt2x00dev,
- 			   enum dev_state state);
-diff --git a/drivers/net/wireless/ralink/rt2x00/rt2x00.h b/drivers/net/wireless/ralink/rt2x00/rt2x00.h
-index ecc60d8cbb01..780be81863b6 100644
---- a/drivers/net/wireless/ralink/rt2x00/rt2x00.h
-+++ b/drivers/net/wireless/ralink/rt2x00/rt2x00.h
-@@ -518,11 +518,11 @@ struct rt2x00lib_ops {
- 	/*
- 	 * TX status tasklet handler.
- 	 */
--	void (*txstatus_tasklet) (unsigned long data);
--	void (*pretbtt_tasklet) (unsigned long data);
--	void (*tbtt_tasklet) (unsigned long data);
--	void (*rxdone_tasklet) (unsigned long data);
--	void (*autowake_tasklet) (unsigned long data);
-+	void (*txstatus_tasklet) (struct tasklet_struct *t);
-+	void (*pretbtt_tasklet) (struct tasklet_struct *t);
-+	void (*tbtt_tasklet) (struct tasklet_struct *t);
-+	void (*rxdone_tasklet) (struct tasklet_struct *t);
-+	void (*autowake_tasklet) (struct tasklet_struct *t);
- 
- 	/*
- 	 * Device init handlers.
-diff --git a/drivers/net/wireless/ralink/rt2x00/rt2x00dev.c b/drivers/net/wireless/ralink/rt2x00/rt2x00dev.c
-index 8c6d3099b19d..b04f76551ca4 100644
---- a/drivers/net/wireless/ralink/rt2x00/rt2x00dev.c
-+++ b/drivers/net/wireless/ralink/rt2x00/rt2x00dev.c
-@@ -1167,9 +1167,8 @@ static int rt2x00lib_probe_hw(struct rt2x00_dev *rt2x00dev)
- 	 */
- #define RT2X00_TASKLET_INIT(taskletname) \
- 	if (rt2x00dev->ops->lib->taskletname) { \
--		tasklet_init(&rt2x00dev->taskletname, \
--			     rt2x00dev->ops->lib->taskletname, \
--			     (unsigned long)rt2x00dev); \
-+		tasklet_setup(&rt2x00dev->taskletname, \
-+			     rt2x00dev->ops->lib->taskletname); \
- 	}
- 
- 	RT2X00_TASKLET_INIT(txstatus_tasklet);
-diff --git a/drivers/net/wireless/ralink/rt2x00/rt61pci.c b/drivers/net/wireless/ralink/rt2x00/rt61pci.c
-index eefce76fc99b..146675ee34c4 100644
---- a/drivers/net/wireless/ralink/rt2x00/rt61pci.c
-+++ b/drivers/net/wireless/ralink/rt2x00/rt61pci.c
-@@ -2190,34 +2190,38 @@ static void rt61pci_enable_mcu_interrupt(struct rt2x00_dev *rt2x00dev,
- 	spin_unlock_irq(&rt2x00dev->irqmask_lock);
- }
- 
--static void rt61pci_txstatus_tasklet(unsigned long data)
-+static void rt61pci_txstatus_tasklet(struct tasklet_struct *t)
- {
--	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
-+	struct rt2x00_dev *rt2x00dev = from_tasklet(rt2x00dev, t,
-+						    txstatus_tasklet);
-+
- 	rt61pci_txdone(rt2x00dev);
- 	if (test_bit(DEVICE_STATE_ENABLED_RADIO, &rt2x00dev->flags))
- 		rt61pci_enable_interrupt(rt2x00dev, INT_MASK_CSR_TXDONE);
- }
- 
--static void rt61pci_tbtt_tasklet(unsigned long data)
-+static void rt61pci_tbtt_tasklet(struct tasklet_struct *t)
- {
--	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
-+	struct rt2x00_dev *rt2x00dev = from_tasklet(rt2x00dev, t, tbtt_tasklet);
- 	rt2x00lib_beacondone(rt2x00dev);
- 	if (test_bit(DEVICE_STATE_ENABLED_RADIO, &rt2x00dev->flags))
- 		rt61pci_enable_interrupt(rt2x00dev, INT_MASK_CSR_BEACON_DONE);
- }
- 
--static void rt61pci_rxdone_tasklet(unsigned long data)
-+static void rt61pci_rxdone_tasklet(struct tasklet_struct *t)
- {
--	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
-+	struct rt2x00_dev *rt2x00dev = from_tasklet(rt2x00dev, t,
-+						    rxdone_tasklet);
- 	if (rt2x00mmio_rxdone(rt2x00dev))
- 		tasklet_schedule(&rt2x00dev->rxdone_tasklet);
- 	else if (test_bit(DEVICE_STATE_ENABLED_RADIO, &rt2x00dev->flags))
- 		rt61pci_enable_interrupt(rt2x00dev, INT_MASK_CSR_RXDONE);
- }
- 
--static void rt61pci_autowake_tasklet(unsigned long data)
-+static void rt61pci_autowake_tasklet(struct tasklet_struct *t)
- {
--	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
-+	struct rt2x00_dev *rt2x00dev = from_tasklet(rt2x00dev, t,
-+						    autowake_tasklet);
- 	rt61pci_wakeup(rt2x00dev);
- 	rt2x00mmio_register_write(rt2x00dev,
- 				  M2H_CMD_DONE_CSR, 0xffffffff);
+ 	spin_lock_bh(&rtwdev->txq_lock);
+diff --git a/drivers/net/wireless/realtek/rtw88/tx.h b/drivers/net/wireless/realtek/rtw88/tx.h
+index cfe84eef5923..6673dbcaa21c 100644
+--- a/drivers/net/wireless/realtek/rtw88/tx.h
++++ b/drivers/net/wireless/realtek/rtw88/tx.h
+@@ -94,7 +94,7 @@ void rtw_tx(struct rtw_dev *rtwdev,
+ 	    struct sk_buff *skb);
+ void rtw_txq_init(struct rtw_dev *rtwdev, struct ieee80211_txq *txq);
+ void rtw_txq_cleanup(struct rtw_dev *rtwdev, struct ieee80211_txq *txq);
+-void rtw_tx_tasklet(unsigned long data);
++void rtw_tx_tasklet(struct tasklet_struct *t);
+ void rtw_tx_pkt_info_update(struct rtw_dev *rtwdev,
+ 			    struct rtw_tx_pkt_info *pkt_info,
+ 			    struct ieee80211_sta *sta,
 -- 
 2.17.1
 
