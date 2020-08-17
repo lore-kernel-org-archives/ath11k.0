@@ -1,9 +1,9 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 From: Allen Pais <allen.cryptic@gmail.com>
-Subject: [PATCH 03/16] wireless: ath: convert tasklets to use new
+Subject: [PATCH 05/16] wireless: atmel: convert tasklets to use new
  tasklet_setup() API
-Date: Mon, 17 Aug 2020 14:36:24 +0530
-Message-Id: <20200817090637.26887-4-allen.cryptic@gmail.com>
+Date: Mon, 17 Aug 2020 14:36:26 +0530
+Message-Id: <20200817090637.26887-6-allen.cryptic@gmail.com>
 In-Reply-To: <20200817090637.26887-1-allen.cryptic@gmail.com>
 References: <20200817090637.26887-1-allen.cryptic@gmail.com>
 List-Id: <ath11k.lists.infradead.org>
@@ -27,40 +27,50 @@ From: Allen Pais <allen.lkml@gmail.com>
 In preparation for unconditionally passing the
 struct tasklet_struct pointer to all tasklet
 callbacks, switch to using the new tasklet_setup()
-and from_tasklet() to pass the tasklet pointer explicitly.
+and from_tasklet() to pass the tasklet pointer explicitly
+and remove .data field.
 
 Signed-off-by: Romain Perier <romain.perier@gmail.com>
 Signed-off-by: Allen Pais <allen.lkml@gmail.com>
 ---
- drivers/net/wireless/ath/carl9170/usb.c | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
+ drivers/net/wireless/atmel/at76c50x-usb.c | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/carl9170/usb.c b/drivers/net/wireless/ath/carl9170/usb.c
-index ead79335823a..e4eb666c6eea 100644
---- a/drivers/net/wireless/ath/carl9170/usb.c
-+++ b/drivers/net/wireless/ath/carl9170/usb.c
-@@ -377,9 +377,9 @@ void carl9170_usb_handle_tx_err(struct ar9170 *ar)
- 	}
+diff --git a/drivers/net/wireless/atmel/at76c50x-usb.c b/drivers/net/wireless/atmel/at76c50x-usb.c
+index a63b5c2f1e17..365c2ee19d03 100644
+--- a/drivers/net/wireless/atmel/at76c50x-usb.c
++++ b/drivers/net/wireless/atmel/at76c50x-usb.c
+@@ -1199,7 +1199,6 @@ static void at76_rx_callback(struct urb *urb)
+ {
+ 	struct at76_priv *priv = urb->context;
+ 
+-	priv->rx_tasklet.data = (unsigned long)urb;
+ 	tasklet_schedule(&priv->rx_tasklet);
  }
  
--static void carl9170_usb_tasklet(unsigned long data)
-+static void carl9170_usb_tasklet(struct tasklet_struct *t)
+@@ -1545,10 +1544,10 @@ static inline int at76_guess_freq(struct at76_priv *priv)
+ 	return ieee80211_channel_to_frequency(channel, NL80211_BAND_2GHZ);
+ }
+ 
+-static void at76_rx_tasklet(unsigned long param)
++static void at76_rx_tasklet(struct tasklet_struct *t)
  {
--	struct ar9170 *ar = (struct ar9170 *) data;
-+	struct ar9170 *ar = from_tasklet(ar, t, usb_tasklet);
+-	struct urb *urb = (struct urb *)param;
+-	struct at76_priv *priv = urb->context;
++	struct at76_priv *priv = from_tasklet(priv, t, rx_tasklet);
++	struct urb *urb = priv->rx_urb;
+ 	struct at76_rx_buffer *buf;
+ 	struct ieee80211_rx_status rx_status = { 0 };
  
- 	if (!IS_INITIALIZED(ar))
- 		return;
-@@ -1082,8 +1082,7 @@ static int carl9170_usb_probe(struct usb_interface *intf,
- 	init_completion(&ar->cmd_wait);
- 	init_completion(&ar->fw_boot_wait);
- 	init_completion(&ar->fw_load_wait);
--	tasklet_init(&ar->usb_tasklet, carl9170_usb_tasklet,
--		     (unsigned long)ar);
-+	tasklet_setup(&ar->usb_tasklet, carl9170_usb_tasklet);
+@@ -2215,7 +2214,7 @@ static struct at76_priv *at76_alloc_new_device(struct usb_device *udev)
+ 	INIT_WORK(&priv->work_join_bssid, at76_work_join_bssid);
+ 	INIT_DELAYED_WORK(&priv->dwork_hw_scan, at76_dwork_hw_scan);
  
- 	atomic_set(&ar->tx_cmd_urbs, 0);
- 	atomic_set(&ar->tx_anch_urbs, 0);
+-	tasklet_init(&priv->rx_tasklet, at76_rx_tasklet, 0);
++	tasklet_setup(&priv->rx_tasklet, at76_rx_tasklet);
+ 
+ 	priv->pm_mode = AT76_PM_OFF;
+ 	priv->pm_period = 0;
 -- 
 2.17.1
 
