@@ -1,9 +1,9 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 From: Allen Pais <allen.cryptic@gmail.com>
-Subject: [PATCH 09/16] wireless: iwlegacy: convert tasklets to use new
+Subject: [PATCH 13/16] wireless: quantenna: convert tasklets to use new
  tasklet_setup() API
-Date: Mon, 17 Aug 2020 14:36:30 +0530
-Message-Id: <20200817090637.26887-10-allen.cryptic@gmail.com>
+Date: Mon, 17 Aug 2020 14:36:34 +0530
+Message-Id: <20200817090637.26887-14-allen.cryptic@gmail.com>
 In-Reply-To: <20200817090637.26887-1-allen.cryptic@gmail.com>
 References: <20200817090637.26887-1-allen.cryptic@gmail.com>
 List-Id: <ath11k.lists.infradead.org>
@@ -32,64 +32,62 @@ and from_tasklet() to pass the tasklet pointer explicitly.
 Signed-off-by: Romain Perier <romain.perier@gmail.com>
 Signed-off-by: Allen Pais <allen.lkml@gmail.com>
 ---
- drivers/net/wireless/intel/iwlegacy/3945-mac.c | 8 +++-----
- drivers/net/wireless/intel/iwlegacy/4965-mac.c | 8 +++-----
- 2 files changed, 6 insertions(+), 10 deletions(-)
+ drivers/net/wireless/quantenna/qtnfmac/pcie/pearl_pcie.c | 7 +++----
+ drivers/net/wireless/quantenna/qtnfmac/pcie/topaz_pcie.c | 7 +++----
+ 2 files changed, 6 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/net/wireless/intel/iwlegacy/3945-mac.c b/drivers/net/wireless/intel/iwlegacy/3945-mac.c
-index 9167c3d2711d..5fe98bbefc56 100644
---- a/drivers/net/wireless/intel/iwlegacy/3945-mac.c
-+++ b/drivers/net/wireless/intel/iwlegacy/3945-mac.c
-@@ -1374,9 +1374,9 @@ il3945_dump_nic_error_log(struct il_priv *il)
+diff --git a/drivers/net/wireless/quantenna/qtnfmac/pcie/pearl_pcie.c b/drivers/net/wireless/quantenna/qtnfmac/pcie/pearl_pcie.c
+index eb67b66b846b..9a20c0f29078 100644
+--- a/drivers/net/wireless/quantenna/qtnfmac/pcie/pearl_pcie.c
++++ b/drivers/net/wireless/quantenna/qtnfmac/pcie/pearl_pcie.c
+@@ -1091,9 +1091,9 @@ static void qtnf_pearl_fw_work_handler(struct work_struct *work)
+ 	put_device(&pdev->dev);
  }
  
- static void
--il3945_irq_tasklet(unsigned long data)
-+il3945_irq_tasklet(struct tasklet_struct *t)
+-static void qtnf_pearl_reclaim_tasklet_fn(unsigned long data)
++static void qtnf_pearl_reclaim_tasklet_fn(struct tasklet_struct *t)
  {
--	struct il_priv *il = (struct il_priv *)data;
-+	struct il_priv *il = from_tasklet(il, t, irq_tasklet);
- 	u32 inta, handled = 0;
- 	u32 inta_fh;
- 	unsigned long flags;
-@@ -3399,9 +3399,7 @@ il3945_setup_deferred_work(struct il_priv *il)
+-	struct qtnf_pcie_pearl_state *ps = (void *)data;
++	struct qtnf_pcie_pearl_state *ps = from_tasklet(ps, t, base.reclaim_tq);
  
- 	timer_setup(&il->watchdog, il_bg_watchdog, 0);
+ 	qtnf_pearl_data_tx_reclaim(ps);
+ 	qtnf_en_txdone_irq(ps);
+@@ -1145,8 +1145,7 @@ static int qtnf_pcie_pearl_probe(struct qtnf_bus *bus, unsigned int tx_bd_size,
+ 		return ret;
+ 	}
  
--	tasklet_init(&il->irq_tasklet,
--		     il3945_irq_tasklet,
--		     (unsigned long)il);
-+	tasklet_setup(&il->irq_tasklet, il3945_irq_tasklet);
+-	tasklet_init(&ps->base.reclaim_tq, qtnf_pearl_reclaim_tasklet_fn,
+-		     (unsigned long)ps);
++	tasklet_setup(&ps->base.reclaim_tq, qtnf_pearl_reclaim_tasklet_fn);
+ 	netif_napi_add(&bus->mux_dev, &bus->mux_napi,
+ 		       qtnf_pcie_pearl_rx_poll, 10);
+ 
+diff --git a/drivers/net/wireless/quantenna/qtnfmac/pcie/topaz_pcie.c b/drivers/net/wireless/quantenna/qtnfmac/pcie/topaz_pcie.c
+index d1b850aa4657..4b87d3151017 100644
+--- a/drivers/net/wireless/quantenna/qtnfmac/pcie/topaz_pcie.c
++++ b/drivers/net/wireless/quantenna/qtnfmac/pcie/topaz_pcie.c
+@@ -1105,9 +1105,9 @@ static void qtnf_topaz_fw_work_handler(struct work_struct *work)
+ 	put_device(&pdev->dev);
  }
  
- static void
-diff --git a/drivers/net/wireless/intel/iwlegacy/4965-mac.c b/drivers/net/wireless/intel/iwlegacy/4965-mac.c
-index e73c223a7d28..afc54c63c4c6 100644
---- a/drivers/net/wireless/intel/iwlegacy/4965-mac.c
-+++ b/drivers/net/wireless/intel/iwlegacy/4965-mac.c
-@@ -4344,9 +4344,9 @@ il4965_synchronize_irq(struct il_priv *il)
- }
- 
- static void
--il4965_irq_tasklet(unsigned long data)
-+il4965_irq_tasklet(struct tasklet_struct *t)
+-static void qtnf_reclaim_tasklet_fn(unsigned long data)
++static void qtnf_reclaim_tasklet_fn(struct tasklet_struct *t)
  {
--	struct il_priv *il = (struct il_priv *)data;
-+	struct il_priv *il = from_tasklet(il, t, irq_tasklet);
- 	u32 inta, handled = 0;
- 	u32 inta_fh;
- 	unsigned long flags;
-@@ -6238,9 +6238,7 @@ il4965_setup_deferred_work(struct il_priv *il)
+-	struct qtnf_pcie_topaz_state *ts = (void *)data;
++	struct qtnf_pcie_topaz_state *ts = from_tasklet(ts, t, base.reclaim_tq);
  
- 	timer_setup(&il->watchdog, il_bg_watchdog, 0);
- 
--	tasklet_init(&il->irq_tasklet,
--		     il4965_irq_tasklet,
--		     (unsigned long)il);
-+	tasklet_setup(&il->irq_tasklet, il4965_irq_tasklet);
+ 	qtnf_topaz_data_tx_reclaim(ts);
  }
+@@ -1158,8 +1158,7 @@ static int qtnf_pcie_topaz_probe(struct qtnf_bus *bus,
+ 		return ret;
+ 	}
  
- static void
+-	tasklet_init(&ts->base.reclaim_tq, qtnf_reclaim_tasklet_fn,
+-		     (unsigned long)ts);
++	tasklet_setup(&ts->base.reclaim_tq, qtnf_reclaim_tasklet_fn);
+ 	netif_napi_add(&bus->mux_dev, &bus->mux_napi,
+ 		       qtnf_topaz_rx_poll, 10);
+ 
 -- 
 2.17.1
 
