@@ -1,9 +1,9 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 From: Allen Pais <allen.cryptic@gmail.com>
-Subject: [PATCH 13/16] wireless: quantenna: convert tasklets to use new
+Subject: [PATCH 11/16] wireless: marvell: convert tasklets to use new
  tasklet_setup() API
-Date: Mon, 17 Aug 2020 14:36:34 +0530
-Message-Id: <20200817090637.26887-14-allen.cryptic@gmail.com>
+Date: Mon, 17 Aug 2020 14:36:32 +0530
+Message-Id: <20200817090637.26887-12-allen.cryptic@gmail.com>
 In-Reply-To: <20200817090637.26887-1-allen.cryptic@gmail.com>
 References: <20200817090637.26887-1-allen.cryptic@gmail.com>
 List-Id: <ath11k.lists.infradead.org>
@@ -32,62 +32,53 @@ and from_tasklet() to pass the tasklet pointer explicitly.
 Signed-off-by: Romain Perier <romain.perier@gmail.com>
 Signed-off-by: Allen Pais <allen.lkml@gmail.com>
 ---
- drivers/net/wireless/quantenna/qtnfmac/pcie/pearl_pcie.c | 7 +++----
- drivers/net/wireless/quantenna/qtnfmac/pcie/topaz_pcie.c | 7 +++----
- 2 files changed, 6 insertions(+), 8 deletions(-)
+ drivers/net/wireless/marvell/mwl8k.c | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/net/wireless/quantenna/qtnfmac/pcie/pearl_pcie.c b/drivers/net/wireless/quantenna/qtnfmac/pcie/pearl_pcie.c
-index eb67b66b846b..9a20c0f29078 100644
---- a/drivers/net/wireless/quantenna/qtnfmac/pcie/pearl_pcie.c
-+++ b/drivers/net/wireless/quantenna/qtnfmac/pcie/pearl_pcie.c
-@@ -1091,9 +1091,9 @@ static void qtnf_pearl_fw_work_handler(struct work_struct *work)
- 	put_device(&pdev->dev);
+diff --git a/drivers/net/wireless/marvell/mwl8k.c b/drivers/net/wireless/marvell/mwl8k.c
+index 97f23f93f6e7..23efd7075df6 100644
+--- a/drivers/net/wireless/marvell/mwl8k.c
++++ b/drivers/net/wireless/marvell/mwl8k.c
+@@ -4630,10 +4630,10 @@ static irqreturn_t mwl8k_interrupt(int irq, void *dev_id)
+ 	return IRQ_HANDLED;
  }
  
--static void qtnf_pearl_reclaim_tasklet_fn(unsigned long data)
-+static void qtnf_pearl_reclaim_tasklet_fn(struct tasklet_struct *t)
+-static void mwl8k_tx_poll(unsigned long data)
++static void mwl8k_tx_poll(struct tasklet_struct *t)
  {
--	struct qtnf_pcie_pearl_state *ps = (void *)data;
-+	struct qtnf_pcie_pearl_state *ps = from_tasklet(ps, t, base.reclaim_tq);
+-	struct ieee80211_hw *hw = (struct ieee80211_hw *)data;
+-	struct mwl8k_priv *priv = hw->priv;
++	struct mwl8k_priv *priv = from_tasklet(priv, t, poll_tx_task);
++	struct ieee80211_hw *hw = pci_get_drvdata(priv->pdev);
+ 	int limit;
+ 	int i;
  
- 	qtnf_pearl_data_tx_reclaim(ps);
- 	qtnf_en_txdone_irq(ps);
-@@ -1145,8 +1145,7 @@ static int qtnf_pcie_pearl_probe(struct qtnf_bus *bus, unsigned int tx_bd_size,
- 		return ret;
+@@ -4659,10 +4659,10 @@ static void mwl8k_tx_poll(unsigned long data)
  	}
- 
--	tasklet_init(&ps->base.reclaim_tq, qtnf_pearl_reclaim_tasklet_fn,
--		     (unsigned long)ps);
-+	tasklet_setup(&ps->base.reclaim_tq, qtnf_pearl_reclaim_tasklet_fn);
- 	netif_napi_add(&bus->mux_dev, &bus->mux_napi,
- 		       qtnf_pcie_pearl_rx_poll, 10);
- 
-diff --git a/drivers/net/wireless/quantenna/qtnfmac/pcie/topaz_pcie.c b/drivers/net/wireless/quantenna/qtnfmac/pcie/topaz_pcie.c
-index d1b850aa4657..4b87d3151017 100644
---- a/drivers/net/wireless/quantenna/qtnfmac/pcie/topaz_pcie.c
-+++ b/drivers/net/wireless/quantenna/qtnfmac/pcie/topaz_pcie.c
-@@ -1105,9 +1105,9 @@ static void qtnf_topaz_fw_work_handler(struct work_struct *work)
- 	put_device(&pdev->dev);
  }
  
--static void qtnf_reclaim_tasklet_fn(unsigned long data)
-+static void qtnf_reclaim_tasklet_fn(struct tasklet_struct *t)
+-static void mwl8k_rx_poll(unsigned long data)
++static void mwl8k_rx_poll(struct tasklet_struct *t)
  {
--	struct qtnf_pcie_topaz_state *ts = (void *)data;
-+	struct qtnf_pcie_topaz_state *ts = from_tasklet(ts, t, base.reclaim_tq);
+-	struct ieee80211_hw *hw = (struct ieee80211_hw *)data;
+-	struct mwl8k_priv *priv = hw->priv;
++	struct mwl8k_priv *priv = from_tasklet(priv, t, poll_rx_task);
++	struct ieee80211_hw *hw = pci_get_drvdata(priv->pdev);
+ 	int limit;
  
- 	qtnf_topaz_data_tx_reclaim(ts);
- }
-@@ -1158,8 +1158,7 @@ static int qtnf_pcie_topaz_probe(struct qtnf_bus *bus,
- 		return ret;
- 	}
+ 	limit = 32;
+@@ -6120,9 +6120,9 @@ static int mwl8k_firmware_load_success(struct mwl8k_priv *priv)
+ 	INIT_WORK(&priv->fw_reload, mwl8k_hw_restart_work);
  
--	tasklet_init(&ts->base.reclaim_tq, qtnf_reclaim_tasklet_fn,
--		     (unsigned long)ts);
-+	tasklet_setup(&ts->base.reclaim_tq, qtnf_reclaim_tasklet_fn);
- 	netif_napi_add(&bus->mux_dev, &bus->mux_napi,
- 		       qtnf_topaz_rx_poll, 10);
+ 	/* TX reclaim and RX tasklets.  */
+-	tasklet_init(&priv->poll_tx_task, mwl8k_tx_poll, (unsigned long)hw);
++	tasklet_setup(&priv->poll_tx_task, mwl8k_tx_poll);
+ 	tasklet_disable(&priv->poll_tx_task);
+-	tasklet_init(&priv->poll_rx_task, mwl8k_rx_poll, (unsigned long)hw);
++	tasklet_setup(&priv->poll_rx_task, mwl8k_rx_poll);
+ 	tasklet_disable(&priv->poll_rx_task);
  
+ 	/* Power management cookie */
 -- 
 2.17.1
 
