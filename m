@@ -1,15 +1,20 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail29.static.mailgun.info ([104.130.122.29])
+Received: from mail-qk1-x744.google.com ([2607:f8b0:4864:20::744])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k7cAm-0003IH-Cm
- for ath11k@lists.infradead.org; Mon, 17 Aug 2020 10:15:29 +0000
+ id 1k7cB9-0003KO-Oh
+ for ath11k@lists.infradead.org; Mon, 17 Aug 2020 10:15:49 +0000
+Received: by mail-qk1-x744.google.com with SMTP id b79so14425471qkg.9
+ for <ath11k@lists.infradead.org>; Mon, 17 Aug 2020 03:15:46 -0700 (PDT)
+Subject: Re: [PATCH 07/16] wireless: brcm80211: convert tasklets to use new
+ tasklet_setup() API
+References: <20200817090637.26887-1-allen.cryptic@gmail.com>
+ <20200817090637.26887-8-allen.cryptic@gmail.com>
+From: Arend Van Spriel <arend.vanspriel@broadcom.com>
+Message-ID: <5080db28-3112-7d0a-ec7c-f437f670cfa3@broadcom.com>
+Date: Mon, 17 Aug 2020 12:15:39 +0200
 MIME-Version: 1.0
-Subject: Re: [PATCH 01/10] ath11k: do not depend on ARCH_QCOM for ath11k
-From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1597309466-19688-2-git-send-email-kvalo@codeaurora.org>
-References: <1597309466-19688-2-git-send-email-kvalo@codeaurora.org>
-Message-Id: <20200817101512.BE227C433CB@smtp.codeaurora.org>
-Date: Mon, 17 Aug 2020 10:15:12 +0000 (UTC)
+In-Reply-To: <20200817090637.26887-8-allen.cryptic@gmail.com>
+Content-Language: en-US
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -18,45 +23,28 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: Allen Pais <allen.cryptic@gmail.com>, kvalo@codeaurora.org, kuba@kernel.org, jirislaby@kernel.org, mickflemm@gmail.com, mcgrof@kernel.org, chunkeey@googlemail.com, Larry.Finger@lwfinger.net, stas.yakovlev@gmail.com, helmut.schaa@googlemail.com, pkshih@realtek.com, yhchuang@realtek.com, dsd@gentoo.org, kune@deine-taler.de
+Cc: brcm80211-dev-list.pdl@broadcom.com, keescook@chromium.org, netdev@vger.kernel.org, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, brcm80211-dev-list@cypress.com, b43-dev@lists.infradead.org, Allen Pais <allen.lkml@gmail.com>, Romain Perier <romain.perier@gmail.com>, ath11k@lists.infradead.org
 
-Kalle Valo <kvalo@codeaurora.org> wrote:
-
-> With only IPQ8074 supported ath11k was only usable on Qualcomm architectures.
-> But now that we are adding QCA6390 PCI support to ath11k that's not the case
-> anymore and it can be used on any architecture supporting PCI. So remove the
-> dependency on ARCH_QCOM. After that there is also no need to depend on
-> COMPILE_TEST.
+On 8/17/2020 11:06 AM, Allen Pais wrote:
+> From: Allen Pais <allen.lkml@gmail.com>
 > 
-> Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.1.0.1-01238-QCAHKSWPL_SILICONZ-2
-> 
-> Signed-off-by: Carl Huang <cjhuang@codeaurora.org>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+> In preparation for unconditionally passing the
+> struct tasklet_struct pointer to all tasklet
+> callbacks, switch to using the new tasklet_setup()
+> and from_tasklet() to pass the tasklet pointer explicitly.
 
-10 patches applied to ath-next branch of ath.git, thanks.
-
-322b60ceb0f3 ath11k: do not depend on ARCH_QCOM for ath11k
-9de2ad43d46c ath11k: add hw_params entry for QCA6390
-34d5a3a88436 ath11k: move ring mask definitions to hw_params
-6e0355afaeb2 ath11k: add simple PCI client driver for QCA6390 chipset
-5762613ededb ath11k: pci: setup resources
-5697a564d369 ath11k: pci: add MSI config initialisation
-b8246f884684 ath11k: implement ath11k_core_pre_init()
-1399fb87ea3e ath11k: register MHI controller device for QCA6390
-7f4beda2ba03 ath11k: pci: add HAL, CE and core initialisation
-1ff8ed786d5d ath11k: use remoteproc only with AHB devices
-
--- 
-https://patchwork.kernel.org/patch/11712273/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
+Acked-by: Arend van Spriel <arend.vanspriel@broadcom.com>
+> Signed-off-by: Romain Perier <romain.perier@gmail.com>
+> Signed-off-by: Allen Pais <allen.lkml@gmail.com>
+> ---
+>   .../net/wireless/broadcom/brcm80211/brcmsmac/mac80211_if.c  | 6 +++---
+>   .../net/wireless/broadcom/brcm80211/brcmsmac/mac80211_if.h  | 2 +-
+>   2 files changed, 4 insertions(+), 4 deletions(-)
 
 -- 
 ath11k mailing list
