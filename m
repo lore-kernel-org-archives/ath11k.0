@@ -1,9 +1,9 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 From: Allen Pais <allen.cryptic@gmail.com>
-Subject: [PATCH 06/16] wireless: b43legacy: convert tasklets to use new
+Subject: [PATCH 07/16] wireless: brcm80211: convert tasklets to use new
  tasklet_setup() API
-Date: Mon, 17 Aug 2020 14:36:27 +0530
-Message-Id: <20200817090637.26887-7-allen.cryptic@gmail.com>
+Date: Mon, 17 Aug 2020 14:36:28 +0530
+Message-Id: <20200817090637.26887-8-allen.cryptic@gmail.com>
 In-Reply-To: <20200817090637.26887-1-allen.cryptic@gmail.com>
 References: <20200817090637.26887-1-allen.cryptic@gmail.com>
 List-Id: <ath11k.lists.infradead.org>
@@ -32,63 +32,50 @@ and from_tasklet() to pass the tasklet pointer explicitly.
 Signed-off-by: Romain Perier <romain.perier@gmail.com>
 Signed-off-by: Allen Pais <allen.lkml@gmail.com>
 ---
- drivers/net/wireless/broadcom/b43legacy/main.c | 8 +++-----
- drivers/net/wireless/broadcom/b43legacy/pio.c  | 7 +++----
- 2 files changed, 6 insertions(+), 9 deletions(-)
+ .../net/wireless/broadcom/brcm80211/brcmsmac/mac80211_if.c  | 6 +++---
+ .../net/wireless/broadcom/brcm80211/brcmsmac/mac80211_if.h  | 2 +-
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/net/wireless/broadcom/b43legacy/main.c b/drivers/net/wireless/broadcom/b43legacy/main.c
-index 2eaf481f03f1..15d592cf056c 100644
---- a/drivers/net/wireless/broadcom/b43legacy/main.c
-+++ b/drivers/net/wireless/broadcom/b43legacy/main.c
-@@ -1275,9 +1275,9 @@ static void handle_irq_ucode_debug(struct b43legacy_wldev *dev)
- }
+diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmsmac/mac80211_if.c b/drivers/net/wireless/broadcom/brcm80211/brcmsmac/mac80211_if.c
+index 648efcbc819f..521abe5ce5b8 100644
+--- a/drivers/net/wireless/broadcom/brcm80211/brcmsmac/mac80211_if.c
++++ b/drivers/net/wireless/broadcom/brcm80211/brcmsmac/mac80211_if.c
+@@ -982,11 +982,11 @@ static const struct ieee80211_ops brcms_ops = {
+ 	.set_tim = brcms_ops_beacon_set_tim,
+ };
  
- /* Interrupt handler bottom-half */
--static void b43legacy_interrupt_tasklet(unsigned long data)
-+static void b43legacy_interrupt_tasklet(struct tasklet_struct *t)
+-void brcms_dpc(unsigned long data)
++void brcms_dpc(struct tasklet_struct *t)
  {
--	struct b43legacy_wldev *dev = (struct b43legacy_wldev *)data;
-+	struct b43legacy_wldev *dev = from_tasklet(dev, t, isr_tasklet);
- 	u32 reason;
- 	u32 dma_reason[ARRAY_SIZE(dev->dma_reason)];
- 	u32 merged_dma_reason = 0;
-@@ -3741,9 +3741,7 @@ static int b43legacy_one_core_attach(struct ssb_device *dev,
- 	wldev->wl = wl;
- 	b43legacy_set_status(wldev, B43legacy_STAT_UNINIT);
- 	wldev->bad_frames_preempt = modparam_bad_frames_preempt;
--	tasklet_init(&wldev->isr_tasklet,
--		     b43legacy_interrupt_tasklet,
--		     (unsigned long)wldev);
-+	tasklet_setup(&wldev->isr_tasklet, b43legacy_interrupt_tasklet);
- 	if (modparam_pio)
- 		wldev->__using_pio = true;
- 	INIT_LIST_HEAD(&wldev->list);
-diff --git a/drivers/net/wireless/broadcom/b43legacy/pio.c b/drivers/net/wireless/broadcom/b43legacy/pio.c
-index cbb761378619..aac413d0f629 100644
---- a/drivers/net/wireless/broadcom/b43legacy/pio.c
-+++ b/drivers/net/wireless/broadcom/b43legacy/pio.c
-@@ -264,9 +264,9 @@ static int pio_tx_packet(struct b43legacy_pio_txpacket *packet)
- 	return 0;
- }
+ 	struct brcms_info *wl;
  
--static void tx_tasklet(unsigned long d)
-+static void tx_tasklet(struct tasklet_struct *t)
- {
--	struct b43legacy_pioqueue *queue = (struct b43legacy_pioqueue *)d;
-+	struct b43legacy_pioqueue *queue = from_tasklet(queue, t, txtask);
- 	struct b43legacy_wldev *dev = queue->dev;
- 	unsigned long flags;
- 	struct b43legacy_pio_txpacket *packet, *tmp_packet;
-@@ -331,8 +331,7 @@ struct b43legacy_pioqueue *b43legacy_setup_pioqueue(struct b43legacy_wldev *dev,
- 	INIT_LIST_HEAD(&queue->txfree);
- 	INIT_LIST_HEAD(&queue->txqueue);
- 	INIT_LIST_HEAD(&queue->txrunning);
--	tasklet_init(&queue->txtask, tx_tasklet,
--		     (unsigned long)queue);
-+	tasklet_setup(&queue->txtask, tx_tasklet);
+-	wl = (struct brcms_info *) data;
++	wl = from_tasklet(wl, t, tasklet);
  
- 	value = b43legacy_read32(dev, B43legacy_MMIO_MACCTL);
- 	value &= ~B43legacy_MACCTL_BE;
+ 	spin_lock_bh(&wl->lock);
+ 
+@@ -1149,7 +1149,7 @@ static struct brcms_info *brcms_attach(struct bcma_device *pdev)
+ 	init_waitqueue_head(&wl->tx_flush_wq);
+ 
+ 	/* setup the bottom half handler */
+-	tasklet_init(&wl->tasklet, brcms_dpc, (unsigned long) wl);
++	tasklet_setup(&wl->tasklet, brcms_dpc);
+ 
+ 	spin_lock_init(&wl->lock);
+ 	spin_lock_init(&wl->isr_lock);
+diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmsmac/mac80211_if.h b/drivers/net/wireless/broadcom/brcm80211/brcmsmac/mac80211_if.h
+index 198053dfc310..eaf926a96a88 100644
+--- a/drivers/net/wireless/broadcom/brcm80211/brcmsmac/mac80211_if.h
++++ b/drivers/net/wireless/broadcom/brcm80211/brcmsmac/mac80211_if.h
+@@ -106,7 +106,7 @@ struct brcms_timer *brcms_init_timer(struct brcms_info *wl,
+ void brcms_free_timer(struct brcms_timer *timer);
+ void brcms_add_timer(struct brcms_timer *timer, uint ms, int periodic);
+ bool brcms_del_timer(struct brcms_timer *timer);
+-void brcms_dpc(unsigned long data);
++void brcms_dpc(struct tasklet_struct *t);
+ void brcms_timer(struct brcms_timer *t);
+ void brcms_fatal_error(struct brcms_info *wl);
+ 
 -- 
 2.17.1
 
