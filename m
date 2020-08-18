@@ -2,17 +2,17 @@ Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail2.candelatech.com ([208.74.158.173]
  helo=mail3.candelatech.com)
  by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k8BQF-0002sc-MZ
- for ath11k@lists.infradead.org; Tue, 18 Aug 2020 23:53:44 +0000
+ id 1k8BQW-0002tg-DJ
+ for ath11k@lists.infradead.org; Tue, 18 Aug 2020 23:54:01 +0000
 Received: from [192.168.254.6] (unknown [50.34.202.127])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail3.candelatech.com (Postfix) with ESMTPSA id 5AF8613C2B0
- for <ath11k@lists.infradead.org>; Tue, 18 Aug 2020 16:53:42 -0700 (PDT)
+ by mail3.candelatech.com (Postfix) with ESMTPSA id 868DA13C2B0
+ for <ath11k@lists.infradead.org>; Tue, 18 Aug 2020 16:53:59 -0700 (PDT)
 From: Ben Greear <greearb@candelatech.com>
-Subject: Hastings: kernel bug on rmmod at drivers/pci/msi.c:375
-Message-ID: <1005491c-24ec-1c67-5762-59e337913ff3@candelatech.com>
-Date: Tue, 18 Aug 2020 16:53:41 -0700
+Subject: Board file for Hastings chip
+Message-ID: <bc6d563b-9467-6a6e-adfd-ab94239a0ef0@candelatech.com>
+Date: Tue, 18 Aug 2020 16:53:58 -0700
 MIME-Version: 1.0
 Content-Language: en-MW
 List-Id: <ath11k.lists.infradead.org>
@@ -29,72 +29,83 @@ Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 
-I cloned kvallo's ath tree today and tried it on a system with one of the Hastings
-NICs in it.  Firmware wasn't in my file system, so it didn't load.  I put FW into
-place and did 'rmmod ath11k_pci ath11k' and got the splat below:
+After copying the firmware into place, I get a bit further, but there does not appear
+to be a board file available in ath11k-firmware repo for this chip.  Anyone know
+next steps to get this working?
 
-[  520.273845] ------------[ cut here ]------------
-[  520.273848] kernel BUG at drivers/pci/msi.c:375!
-[  520.277302] invalid opcode: 0000 [#1] PREEMPT SMP
-[  520.280889] CPU: 4 PID: 4760 Comm: rmmod Not tainted 5.8.0-rc7-wt-ath+ #1
-[  520.286566] Hardware name: Default string Default string/SKYBAY, BIOS 5.12 02/19/2019
-[  520.293368] RIP: 0010:free_msi_irqs+0x168/0x190
-[  520.296714] Code: 14 85 c0 0f 84 e4 fe ff ff 31 ed eb 0f 83 c5 01 39 6b 14 0f 86 d4 fe ff ff 8b 7b 10 01 ef e8 9f d0 b3 ff 48 83 78 70 00 74 e3 <0f> 0b 49 8d 
-b5 b0 00 00 00 e8 ca 8e b4 ff e9 d6 fe ff ff 48 8b 7d
-[  520.314895] RSP: 0018:ffffc900068c7de0 EFLAGS: 00010282
-[  520.318990] RAX: ffff8882559acc00 RBX: ffff88825a5b4700 RCX: 0000000000000000
-[  520.325080] RDX: ffff8882543ec6d8 RSI: ffff8882543ec778 RDI: 00000000000000cf
-[  520.331157] RBP: 0000000000000000 R08: ffff8882559acc00 R09: ffffffff82880c88
-[  520.337257] R10: 0000000000000000 R11: 0000000000000000 R12: ffff88825b9424b8
-[  520.343361] R13: ffff88825b942000 R14: ffffffffa0176250 R15: 0000000000000000
-[  520.349427] FS:  00007f518244f740(0000) GS:ffff88826dd00000(0000) knlGS:0000000000000000
-[  520.356533] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[  520.361163] CR2: 00005581d5bdc258 CR3: 00000002558f4003 CR4: 00000000003606e0
-[  520.367254] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-[  520.373354] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-[  520.379456] Call Trace:
-[  520.380653]  ath11k_pci_remove+0x2b/0x90 [ath11k_pci]
-[  520.384565]  pci_device_remove+0x31/0x90
-[  520.387292]  __device_release_driver+0x15a/0x210
-[  520.390742]  driver_detach+0xcf/0x110
-[  520.393210]  bus_remove_driver+0x56/0xca
-[  520.395942]  pci_unregister_driver+0x36/0x80
-[  520.399000]  __do_sys_delete_module.constprop.0+0x16f/0x2b0
-[  520.403439]  ? ktime_get_coarse_real_ts64+0x9/0x40
-[  520.407078]  ? syscall_trace_enter+0x10f/0x240
-[  520.410356]  do_syscall_64+0x56/0xe0
-[  520.412721]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
-[  520.416656] RIP: 0033:0x7f5182577a9b
-[  520.419019] Code: 73 01 c3 48 8b 0d ed 33 0c 00 f7 d8 64 89 01 48 83 c8 ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa b8 b0 00 00 00 0f 05 <48> 3d 01 f0 
-ff ff 73 01 c3 48 8b 0d bd 33 0c 00 f7 d8 64 89 01 48
-[  520.437300] RSP: 002b:00007fff59e06dd8 EFLAGS: 00000206 ORIG_RAX: 00000000000000b0
-[  520.443815] RAX: ffffffffffffffda RBX: 00005581d5bd1830 RCX: 00007f5182577a9b
-[  520.449902] RDX: 000000000000000a RSI: 0000000000000800 RDI: 00005581d5bd1898
-[  520.455967] RBP: 00007fff59e06e38 R08: 0000000000000000 R09: 0000000000000000
-[  520.462076] R10: 00007f51825ebac0 R11: 0000000000000206 R12: 00007fff59e07000
-[  520.468170] R13: 00007fff59e08680 R14: 00005581d5bd12a0 R15: 00005581d5bd1830
-[  520.474255] Modules linked in: nf_conntrack_netlink nf_conntrack nfnetlink nf_defrag_ipv6 nf_defrag_ipv4 bpfilter vrf iwlmvm iwlwifi 8021q garp mrp stp llc 
-macvlan pktgen f71882fg sunrpc snd_hda_codec_hdmi snd_hda_codec_realtek snd_hda_codec_generic ledtrig_audio snd_hda_intel qrtr snd_intel_dspcfg ns snd_hda_codec 
-ath10k_pci ath11k_pci(-) snd_hda_core ath10k_core mhi snd_hwdep ath11k snd_seq iTCO_wdt ath intel_rapl_msr qmi_helpers intel_pmc_bxt snd_seq_device coretemp 
-intel_rapl_common iTCO_vendor_support ee1004 snd_pcm mac80211 snd_timer x86_pkg_temp_thermal snd intel_powerclamp intel_wmi_thunderbolt i2c_i801 cfg80211 
-soundcore i2c_smbus mei_hdcp mei_wdt intel_pch_thermal acpi_pad sch_fq_codel raid1 dm_raid raid456 libcrc32c async_raid6_recov async_memcpy async_pq async_xor 
-xor async_tx raid6_pq igb i915 intel_gtt i2c_algo_bit drm_kms_helper cec rc_core drm ixgbe agpgart mdio hwmon dca xhci_pci i2c_core xhci_pci_renesas wmi video 
-fuse [last unloaded: nf_conntrack]
-[  520.562021] ---[ end trace fe624797b2d2d407 ]---
-[  520.565470] RIP: 0010:free_msi_irqs+0x168/0x190
-[  520.568806] Code: 14 85 c0 0f 84 e4 fe ff ff 31 ed eb 0f 83 c5 01 39 6b 14 0f 86 d4 fe ff ff 8b 7b 10 01 ef e8 9f d0 b3 ff 48 83 78 70 00 74 e3 <0f> 0b 49 8d 
-b5 b0 00 00 00 e8 ca 8e b4 ff e9 d6 fe ff ff 48 8b 7d
-[  520.586960] RSP: 0018:ffffc900068c7de0 EFLAGS: 00010282
-[  520.591023] RAX: ffff8882559acc00 RBX: ffff88825a5b4700 RCX: 0000000000000000
-[  520.597086] RDX: ffff8882543ec6d8 RSI: ffff8882543ec778 RDI: 00000000000000cf
-[  520.603169] RBP: 0000000000000000 R08: ffff8882559acc00 R09: ffffffff82880c88
-[  520.609260] R10: 0000000000000000 R11: 0000000000000000 R12: ffff88825b9424b8
-[  520.615363] R13: ffff88825b942000 R14: ffffffffa0176250 R15: 0000000000000000
-[  520.621444] FS:  00007f518244f740(0000) GS:ffff88826dd00000(0000) knlGS:0000000000000000
-[  520.628534] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[  520.633170] CR2: 00005581d5bdc258 CR3: 00000002558f4003 CR4: 00000000003606e0
-[  520.639303] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-[  520.645366] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+# dmesg|grep ath11k
+[   12.377663] ath11k_pci 0000:14:00.0: WARNING: ath11k PCI support is experimental!
+[   12.377746] ath11k_pci 0000:14:00.0: BAR 0: assigned [mem 0xde000000-0xdeffffff 64bit]
+[   12.729205] ath11k_pci 0000:14:00.0: Respond mem req failed, result: 1, err: 0
+[   12.729233] ath11k_pci 0000:14:00.0: qmi failed to respond fw mem req:-22
+[   12.738436] ath11k_pci 0000:14:00.0: chip_id 0x0 chip_family 0xb board_id 0xff soc_id 0xffffffff
+[   12.738439] ath11k_pci 0000:14:00.0: fw_version 0x101c06cc fw_build_timestamp 2020-06-24 19:50 fw_build_id
+[   12.738589] ath11k_pci 0000:14:00.0: failed to fetch board-2.bin or board.bin from QCA6390/hw2.0
+[   12.747035] ath11k_pci 0000:14:00.0: qmi failed to load bdf:
+[   12.747038] ath11k_pci 0000:14:00.0: qmi failed to load board data file:-2
+
+
+Here is lspci for this device.  It came from "Ofeixin Technology', model number 8291M-PR
+
+
+4:00.0 Unassigned class [ff00]: Qualcomm Device 1101
+	Subsystem: Qualcomm Device 0108
+	Control: I/O- Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr- Stepping- SERR- FastB2B- DisINTx+
+	Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast >TAbort- <TAbort- <MAbort- >SERR- <PERR- INTx-
+	Latency: 0, Cache Line Size: 64 bytes
+	Interrupt: pin ? routed to IRQ 209
+	Region 0: Memory at de000000 (64-bit, non-prefetchable) [size=16M]
+	Capabilities: [40] Power Management version 3
+		Flags: PMEClk- DSI- D1- D2- AuxCurrent=0mA PME(D0+,D1-,D2-,D3hot+,D3cold+)
+		Status: D0 NoSoftRst+ PME-Enable- DSel=0 DScale=0 PME-
+	Capabilities: [50] MSI: Enable+ Count=32/32 Maskable+ 64bit-
+		Address: fee01018  Data: 0000
+		Masking: fe023280  Pending: 00000000
+	Capabilities: [70] Express (v2) Endpoint, MSI 00
+		DevCap:	MaxPayload 128 bytes, PhantFunc 0, Latency L0s unlimited, L1 unlimited
+			ExtTag- AttnBtn- AttnInd- PwrInd- RBE+ FLReset- SlotPowerLimit 25.000W
+		DevCtl:	CorrErr- NonFatalErr- FatalErr- UnsupReq-
+			RlxdOrd+ ExtTag- PhantFunc- AuxPwr- NoSnoop+
+			MaxPayload 128 bytes, MaxReadReq 512 bytes
+		DevSta:	CorrErr- NonFatalErr- FatalErr- UnsupReq- AuxPwr+ TransPend-
+		LnkCap:	Port #0, Speed 8GT/s, Width x1, ASPM L0s L1, Exit Latency L0s <1us, L1 <16us
+			ClockPM- Surprise- LLActRep- BwNot- ASPMOptComp+
+		LnkCtl:	ASPM Disabled; RCB 64 bytes Disabled- CommClk-
+			ExtSynch- ClockPM- AutWidDis- BWInt- AutBWInt-
+		LnkSta:	Speed 5GT/s (downgraded), Width x1 (ok)
+			TrErr- Train- SlotClk+ DLActive- BWMgmt- ABWMgmt-
+		DevCap2: Completion Timeout: Range ABCD, TimeoutDis+, LTR+, OBFF Not Supported
+			 AtomicOpsCap: 32bit- 64bit- 128bitCAS-
+		DevCtl2: Completion Timeout: 50us to 50ms, TimeoutDis-, LTR+, OBFF Disabled
+			 AtomicOpsCtl: ReqEn-
+		LnkCtl2: Target Link Speed: 5GT/s, EnterCompliance- SpeedDis-
+			 Transmit Margin: Normal Operating Range, EnterModifiedCompliance- ComplianceSOS-
+			 Compliance De-emphasis: -6dB
+		LnkSta2: Current De-emphasis Level: -6dB, EqualizationComplete-, EqualizationPhase1-
+			 EqualizationPhase2-, EqualizationPhase3-, LinkEqualizationRequest-
+	Capabilities: [100 v2] Advanced Error Reporting
+		UESta:	DLP- SDES- TLP- FCP- CmpltTO- CmpltAbrt- UnxCmplt- RxOF- MalfTLP- ECRC- UnsupReq- ACSViol-
+		UEMsk:	DLP- SDES- TLP- FCP- CmpltTO- CmpltAbrt- UnxCmplt- RxOF- MalfTLP- ECRC- UnsupReq- ACSViol-
+		UESvrt:	DLP+ SDES+ TLP- FCP+ CmpltTO- CmpltAbrt- UnxCmplt- RxOF+ MalfTLP+ ECRC- UnsupReq- ACSViol-
+		CESta:	RxErr- BadTLP- BadDLLP- Rollover- Timeout- AdvNonFatalErr-
+		CEMsk:	RxErr- BadTLP- BadDLLP- Rollover- Timeout- AdvNonFatalErr+
+		AERCap:	First Error Pointer: 00, ECRCGenCap+ ECRCGenEn- ECRCChkCap+ ECRCChkEn-
+			MultHdrRecCap- MultHdrRecEn- TLPPfxPres- HdrLogCap-
+		HeaderLog: 00000000 00000000 00000000 00000000
+	Capabilities: [148 v1] Secondary PCI Express <?>
+	Capabilities: [158 v1] Transaction Processing Hints
+		No steering table available
+	Capabilities: [1e4 v1] Latency Tolerance Reporting
+		Max snoop latency: 3145728ns
+		Max no snoop latency: 3145728ns
+	Capabilities: [1ec v1] L1 PM Substates
+		L1SubCap: PCI-PM_L1.2+ PCI-PM_L1.1+ ASPM_L1.2+ ASPM_L1.1+ L1_PM_Substates+
+			  PortCommonModeRestoreTime=70us PortTPowerOnTime=0us
+		L1SubCtl1: PCI-PM_L1.2- PCI-PM_L1.1- ASPM_L1.2- ASPM_L1.1-
+			   T_CommonMode=0us LTR1.2_Threshold=0ns
+		L1SubCtl2: T_PwrOn=10us
+	Kernel driver in use: ath11k_pci
+	Kernel modules: ath11k_pci
 
 Thanks,
 Ben
