@@ -1,16 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail29.static.mailgun.info ([104.130.122.29])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k8QkH-0004lL-K4
- for ath11k@lists.infradead.org; Wed, 19 Aug 2020 16:15:27 +0000
+ id 1k8RyH-00019w-HP
+ for ath11k@lists.infradead.org; Wed, 19 Aug 2020 17:33:58 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
 Subject: Re: [PATCH V6 2/2] ath11k: add more HE fields into radiotap header
 References: <20200803145444.473810-1-john@phrozen.org>
  <20200803145444.473810-2-john@phrozen.org>
-Date: Wed, 19 Aug 2020 19:14:58 +0300
+Date: Wed, 19 Aug 2020 20:33:44 +0300
 In-Reply-To: <20200803145444.473810-2-john@phrozen.org> (John Crispin's
  message of "Mon, 3 Aug 2020 16:54:44 +0200")
-Message-ID: <87lfiaipdp.fsf@codeaurora.org>
+Message-ID: <87h7syilqf.fsf@codeaurora.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -38,25 +38,23 @@ John Crispin <john@phrozen.org> writes:
 > Signed-off-by: Miles Hu <milehu@codeaurora.org>
 > Signed-off-by: John Crispin <john@phrozen.org>
 
+On what hardware and firmware was this tested?
+
+I did quite a few cosmetic changes in the pending branch.
+
+> +		value = FIELD_GET(HAL_RX_HE_SIG_A_SU_INFO_INFO0_BSS_COLOR, info0);
+> +		ppdu_info->he_data3 = value;
+> +		value = FIELD_GET(HAL_RX_HE_SIG_A_SU_INFO_INFO0_BEAM_CHANGE, info0);
+> +		value = value << HE_BEAM_CHANGE_SHIFT;
+
 [...]
 
-> @@ -4522,11 +4522,14 @@ ath11k_dp_rx_mon_merg_msdus(struct ath11k *ar,
->  			    struct ieee80211_rx_status *rxs)
->  {
->  	struct sk_buff *msdu, *mpdu_buf, *prev_buf;
-> -	u32 decap_format, wifi_hdr_len;
-> +	u32 decap_format;
->  	struct hal_rx_desc *rx_desc;
->  	char *hdr_desc;
->  	u8 *dest;
->  	struct ieee80211_hdr_3addr *wh;
-> +	static u32 pkt_type;
-> +
-> +	pkt_type++;
+> +#define HAL_RX_HE_SIG_A_SU_INFO_INFO0_BEAM_CHANGE	BIT(1)
+> +#define HE_BEAM_CHANGE_SHIFT 6
 
-We cannot use static non-const variables in ath11k, that would be racy.
-As this seems to be an unused variable I have just removed it in the
-pending branch.
+There's a lot of these shifts which I don't understand. Why not fix the
+actual defines so that FIELD_GET() works correctly and no manual
+shifting is needed? In this example from BIT(1) to BIT(7).
 
 -- 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
