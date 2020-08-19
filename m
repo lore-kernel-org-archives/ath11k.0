@@ -1,20 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail2.candelatech.com ([208.74.158.173]
- helo=mail3.candelatech.com)
- by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k8BQW-0002tg-DJ
- for ath11k@lists.infradead.org; Tue, 18 Aug 2020 23:54:01 +0000
-Received: from [192.168.254.6] (unknown [50.34.202.127])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mail3.candelatech.com (Postfix) with ESMTPSA id 868DA13C2B0
- for <ath11k@lists.infradead.org>; Tue, 18 Aug 2020 16:53:59 -0700 (PDT)
-From: Ben Greear <greearb@candelatech.com>
-Subject: Board file for Hastings chip
-Message-ID: <bc6d563b-9467-6a6e-adfd-ab94239a0ef0@candelatech.com>
-Date: Tue, 18 Aug 2020 16:53:58 -0700
+Received: from mail29.static.mailgun.info ([104.130.122.29])
+ by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1k8E9f-0007FI-Q7
+ for ath11k@lists.infradead.org; Wed, 19 Aug 2020 02:48:49 +0000
 MIME-Version: 1.0
-Content-Language: en-MW
+Date: Tue, 18 Aug 2020 19:48:44 -0700
+From: Aloka Dixit <alokad@codeaurora.org>
+Subject: Re: [PATCH V3 1/9] nl80211: add basic multiple bssid support
+In-Reply-To: <20200812150050.2683396-2-john@phrozen.org>
+References: <20200812150050.2683396-1-john@phrozen.org>
+ <20200812150050.2683396-2-john@phrozen.org>
+Message-ID: <38950cb7375b29f14e7605c76f500cd7@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -27,92 +23,261 @@ Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
+To: John Crispin <john@phrozen.org>
+Cc: linux-wireless-owner@vger.kernel.org, Johannes Berg <johannes@sipsolutions.net>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-After copying the firmware into place, I get a bit further, but there does not appear
-to be a board file available in ath11k-firmware repo for this chip.  Anyone know
-next steps to get this working?
+On 2020-08-12 08:00, John Crispin wrote:
+> This patch adds support for passing the multiple bssid config to the
+> kernel when adding an interface. If the BSS is non-transmitting it 
+> needs
+> to be indicated. A non-transmitting BSSID will have a parent interface,
+> which needs to be transmitting. The multiple bssid elements are passed
+> as an array.
+> 
+> Signed-off-by: John Crispin <john@phrozen.org>
+> ---
+>  include/net/cfg80211.h       | 35 +++++++++++++++++++++++++++++++
+>  include/uapi/linux/nl80211.h | 22 ++++++++++++++++++++
+>  net/wireless/nl80211.c       | 40 ++++++++++++++++++++++++++++++++++++
+>  3 files changed, 97 insertions(+)
+> 
+> diff --git a/include/net/cfg80211.h b/include/net/cfg80211.h
+> index 541dea0fd571..0b0c730dc8d2 100644
+> --- a/include/net/cfg80211.h
+> +++ b/include/net/cfg80211.h
+> @@ -470,6 +470,21 @@ struct ieee80211_supported_band {
+>  	const struct ieee80211_sband_iftype_data *iftype_data;
+>  };
+> 
+> +/**
+> + * struct ieee80211_multiple_bssid - AP settings for multi bssid
+> + *
+> + * @index: the index of this AP in the multi bssid group.
+> + * @count: the total number of multi bssid peer APs.
+> + * @parent: a non-transmitted bssid has a transmitted parent
+> + * @non_transmitted: Is this a non-transmitted bssid
+> + */
+> +struct ieee80211_multiple_bssid {
+> +	u8 index;
+> +	u8 count;
+> +	u32 parent;
+> +	bool non_transmitted;
+> +};
+> +
+>  /**
+>   * ieee80211_get_sband_iftype_data - return sband data for a given 
+> iftype
+>   * @sband: the sband to search for the STA on
+> @@ -614,6 +629,7 @@ static inline void
+> wiphy_read_of_freq_limits(struct wiphy *wiphy)
+>   *	belonging to that MU-MIMO groupID; %NULL if not changed
+>   * @vht_mumimo_follow_addr: MU-MIMO follow address, used for 
+> monitoring
+>   *	MU-MIMO packets going to the specified station; %NULL if not 
+> changed
+> + * @multiple_bssid: AP settings for multiple bssid
+>   */
+>  struct vif_params {
+>  	u32 flags;
+> @@ -621,6 +637,7 @@ struct vif_params {
+>  	u8 macaddr[ETH_ALEN];
+>  	const u8 *vht_mumimo_groups;
+>  	const u8 *vht_mumimo_follow_addr;
+> +	struct ieee80211_multiple_bssid	multiple_bssid;
+>  };
+> 
+>  /**
+> @@ -998,6 +1015,19 @@ struct cfg80211_crypto_settings {
+>  	u8 sae_pwd_len;
+>  };
+> 
+> +/**
+> + * struct cfg80211_multiple_bssid_data - multiple_bssid data
+> + * @ies: array of extra information element(s) to add into Beacon
+> frames for multiple
+> + *	bssid or %NULL
+> + * @len: array of lengths of multiple_bssid.ies in octets
+> + * @cnt: number of entries in multiple_bssid.ies
+> + */
+> +struct cfg80211_multiple_bssid_data {
+> +	u8 *ies[NL80211_MULTIPLE_BSSID_IES_MAX];
+> +	size_t len[NL80211_MULTIPLE_BSSID_IES_MAX];
+> +	int cnt;
+> +};
+> +
+>  /**
+>   * struct cfg80211_beacon_data - beacon data
+>   * @head: head portion of beacon (before TIM IE)
+> @@ -1024,6 +1054,7 @@ struct cfg80211_crypto_settings {
+>   *	Token (measurement type 11)
+>   * @lci_len: LCI data length
+>   * @civicloc_len: Civic location data length
+> + * @multiple_bssid: multiple_bssid data
+>   */
+>  struct cfg80211_beacon_data {
+>  	const u8 *head, *tail;
+> @@ -1042,6 +1073,8 @@ struct cfg80211_beacon_data {
+>  	size_t probe_resp_len;
+>  	size_t lci_len;
+>  	size_t civicloc_len;
+> +
+> +	struct cfg80211_multiple_bssid_data multiple_bssid;
+>  };
+> 
+>  struct mac_address {
+> @@ -1111,6 +1144,7 @@ enum cfg80211_ap_settings_flags {
+>   * @he_obss_pd: OBSS Packet Detection settings
+>   * @he_bss_color: BSS Color settings
+>   * @he_oper: HE operation IE (or %NULL if HE isn't enabled)
+> + * @multiple_bssid: AP settings for multiple bssid
+>   */
+>  struct cfg80211_ap_settings {
+>  	struct cfg80211_chan_def chandef;
+> @@ -1141,6 +1175,7 @@ struct cfg80211_ap_settings {
+>  	u32 flags;
+>  	struct ieee80211_he_obss_pd he_obss_pd;
+>  	struct cfg80211_he_bss_color he_bss_color;
+> +	struct ieee80211_multiple_bssid multiple_bssid;
+>  };
+> 
+>  /**
+> diff --git a/include/uapi/linux/nl80211.h 
+> b/include/uapi/linux/nl80211.h
+> index cade02a0e60e..5bc38d53c78c 100644
+> --- a/include/uapi/linux/nl80211.h
+> +++ b/include/uapi/linux/nl80211.h
+> @@ -2551,6 +2551,20 @@ enum nl80211_commands {
+>   * @NL80211_ATTR_COLOR_CHANGE_ANNOUNCEMENT_C_OFF_PRESP: An array of
+> offsets (u16) to the color
+>   *	switch counters in the probe response (%NL80211_ATTR_PROBE_RESP).
+>   *
+> + * @NL80211_ATTR_MULTIPLE_BSSID_NON_TRANSMITTING: Set the
+> Non-Transmitted flag for this
+> + *	BSSIDs beacon.
+> + *
+> + * @NL80211_ATTR_MULTIPLE_BSSID_PARENT: If this is a Non-Transmitted
+> BSSID, define
+> + *	the parent (transmitting) interface.
+> + *
+> + * @NL80211_ATTR_MULTIPLE_BSSID_INDEX: The index of this BSS inside
+> the multi bssid
+> + *	element.
+> + *
+> + * @NL80211_ATTR_MULTIPLE_BSSID_COUNT: The number of BSSs inside the
+> multi bssid element.
+> + *
+> + * @NL80211_ATTR_MULTIPLE_BSSID_IES: The Elements that describe our
+> multiple BSS group.
+> + *	these get passed separately as the kernel might need to split them
+> up for EMA VAP.
+> + *
+>   * @NUM_NL80211_ATTR: total number of nl80211_attrs available
+>   * @NL80211_ATTR_MAX: highest attribute number currently defined
+>   * @__NL80211_ATTR_AFTER_LAST: internal use
+> @@ -3039,6 +3053,12 @@ enum nl80211_attrs {
+>  	NL80211_ATTR_COLOR_CHANGE_ANNOUNCEMENT_COLOR,
+>  	NL80211_ATTR_COLOR_CHANGE_ANNOUNCEMENT_IES,
+> 
+> +	NL80211_ATTR_MULTIPLE_BSSID_NON_TRANSMITTING,
+> +	NL80211_ATTR_MULTIPLE_BSSID_PARENT,
+> +	NL80211_ATTR_MULTIPLE_BSSID_INDEX,
+> +	NL80211_ATTR_MULTIPLE_BSSID_COUNT,
+> +	NL80211_ATTR_MULTIPLE_BSSID_IES,
+> +
+>  	/* add attributes here, update the policy in nl80211.c */
+> 
+>  	__NL80211_ATTR_AFTER_LAST,
+> @@ -3102,6 +3122,8 @@ enum nl80211_attrs {
+> 
+>  #define NL80211_CQM_TXE_MAX_INTVL		1800
+> 
+> +#define NL80211_MULTIPLE_BSSID_IES_MAX		8
+> +
+>  /**
+>   * enum nl80211_iftype - (virtual) interface types
+>   *
+> diff --git a/net/wireless/nl80211.c b/net/wireless/nl80211.c
+> index 2f0bae3c6572..4ba7203ad0d2 100644
+> --- a/net/wireless/nl80211.c
+> +++ b/net/wireless/nl80211.c
+> @@ -662,6 +662,11 @@ static const struct nla_policy
+> nl80211_policy[NUM_NL80211_ATTR] = {
+>  	[NL80211_ATTR_COLOR_CHANGE_ANNOUNCEMENT_COUNT] = { .type = NLA_U8 },
+>  	[NL80211_ATTR_COLOR_CHANGE_ANNOUNCEMENT_COLOR] = { .type = NLA_U8 },
+>  	[NL80211_ATTR_COLOR_CHANGE_ANNOUNCEMENT_IES] =
+> NLA_POLICY_NESTED(nl80211_policy),
+> +	[NL80211_ATTR_MULTIPLE_BSSID_NON_TRANSMITTING] = { .type = NLA_FLAG 
+> },
+> +	[NL80211_ATTR_MULTIPLE_BSSID_PARENT] = { .type = NLA_U32 },
+> +	[NL80211_ATTR_MULTIPLE_BSSID_INDEX] = { .type = NLA_U8 },
+> +	[NL80211_ATTR_MULTIPLE_BSSID_COUNT] = { .type = NLA_U8 },
+> +	[NL80211_ATTR_MULTIPLE_BSSID_IES] = { .type = NLA_NESTED },
+>  };
+> 
+>  /* policy for the key attributes */
+> @@ -3758,6 +3763,14 @@ static int nl80211_new_interface(struct sk_buff
+> *skb, struct genl_info *info)
+>  			return err;
+>  	}
+> 
+> +	if (info->attrs[NL80211_ATTR_MULTIPLE_BSSID_NON_TRANSMITTING])
+> +		params.multiple_bssid.non_transmitted =
+> +			nla_get_flag(info->attrs[NL80211_ATTR_MULTIPLE_BSSID_NON_TRANSMITTING]);
+> +
+> +	if (info->attrs[NL80211_ATTR_MULTIPLE_BSSID_PARENT])
+> +		params.multiple_bssid.parent =
+> +			nla_get_u8(info->attrs[NL80211_ATTR_MULTIPLE_BSSID_PARENT]);
+This should be nla_get_u32() as per the policy
 
-# dmesg|grep ath11k
-[   12.377663] ath11k_pci 0000:14:00.0: WARNING: ath11k PCI support is experimental!
-[   12.377746] ath11k_pci 0000:14:00.0: BAR 0: assigned [mem 0xde000000-0xdeffffff 64bit]
-[   12.729205] ath11k_pci 0000:14:00.0: Respond mem req failed, result: 1, err: 0
-[   12.729233] ath11k_pci 0000:14:00.0: qmi failed to respond fw mem req:-22
-[   12.738436] ath11k_pci 0000:14:00.0: chip_id 0x0 chip_family 0xb board_id 0xff soc_id 0xffffffff
-[   12.738439] ath11k_pci 0000:14:00.0: fw_version 0x101c06cc fw_build_timestamp 2020-06-24 19:50 fw_build_id
-[   12.738589] ath11k_pci 0000:14:00.0: failed to fetch board-2.bin or board.bin from QCA6390/hw2.0
-[   12.747035] ath11k_pci 0000:14:00.0: qmi failed to load bdf:
-[   12.747038] ath11k_pci 0000:14:00.0: qmi failed to load board data file:-2
-
-
-Here is lspci for this device.  It came from "Ofeixin Technology', model number 8291M-PR
-
-
-4:00.0 Unassigned class [ff00]: Qualcomm Device 1101
-	Subsystem: Qualcomm Device 0108
-	Control: I/O- Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr- Stepping- SERR- FastB2B- DisINTx+
-	Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast >TAbort- <TAbort- <MAbort- >SERR- <PERR- INTx-
-	Latency: 0, Cache Line Size: 64 bytes
-	Interrupt: pin ? routed to IRQ 209
-	Region 0: Memory at de000000 (64-bit, non-prefetchable) [size=16M]
-	Capabilities: [40] Power Management version 3
-		Flags: PMEClk- DSI- D1- D2- AuxCurrent=0mA PME(D0+,D1-,D2-,D3hot+,D3cold+)
-		Status: D0 NoSoftRst+ PME-Enable- DSel=0 DScale=0 PME-
-	Capabilities: [50] MSI: Enable+ Count=32/32 Maskable+ 64bit-
-		Address: fee01018  Data: 0000
-		Masking: fe023280  Pending: 00000000
-	Capabilities: [70] Express (v2) Endpoint, MSI 00
-		DevCap:	MaxPayload 128 bytes, PhantFunc 0, Latency L0s unlimited, L1 unlimited
-			ExtTag- AttnBtn- AttnInd- PwrInd- RBE+ FLReset- SlotPowerLimit 25.000W
-		DevCtl:	CorrErr- NonFatalErr- FatalErr- UnsupReq-
-			RlxdOrd+ ExtTag- PhantFunc- AuxPwr- NoSnoop+
-			MaxPayload 128 bytes, MaxReadReq 512 bytes
-		DevSta:	CorrErr- NonFatalErr- FatalErr- UnsupReq- AuxPwr+ TransPend-
-		LnkCap:	Port #0, Speed 8GT/s, Width x1, ASPM L0s L1, Exit Latency L0s <1us, L1 <16us
-			ClockPM- Surprise- LLActRep- BwNot- ASPMOptComp+
-		LnkCtl:	ASPM Disabled; RCB 64 bytes Disabled- CommClk-
-			ExtSynch- ClockPM- AutWidDis- BWInt- AutBWInt-
-		LnkSta:	Speed 5GT/s (downgraded), Width x1 (ok)
-			TrErr- Train- SlotClk+ DLActive- BWMgmt- ABWMgmt-
-		DevCap2: Completion Timeout: Range ABCD, TimeoutDis+, LTR+, OBFF Not Supported
-			 AtomicOpsCap: 32bit- 64bit- 128bitCAS-
-		DevCtl2: Completion Timeout: 50us to 50ms, TimeoutDis-, LTR+, OBFF Disabled
-			 AtomicOpsCtl: ReqEn-
-		LnkCtl2: Target Link Speed: 5GT/s, EnterCompliance- SpeedDis-
-			 Transmit Margin: Normal Operating Range, EnterModifiedCompliance- ComplianceSOS-
-			 Compliance De-emphasis: -6dB
-		LnkSta2: Current De-emphasis Level: -6dB, EqualizationComplete-, EqualizationPhase1-
-			 EqualizationPhase2-, EqualizationPhase3-, LinkEqualizationRequest-
-	Capabilities: [100 v2] Advanced Error Reporting
-		UESta:	DLP- SDES- TLP- FCP- CmpltTO- CmpltAbrt- UnxCmplt- RxOF- MalfTLP- ECRC- UnsupReq- ACSViol-
-		UEMsk:	DLP- SDES- TLP- FCP- CmpltTO- CmpltAbrt- UnxCmplt- RxOF- MalfTLP- ECRC- UnsupReq- ACSViol-
-		UESvrt:	DLP+ SDES+ TLP- FCP+ CmpltTO- CmpltAbrt- UnxCmplt- RxOF+ MalfTLP+ ECRC- UnsupReq- ACSViol-
-		CESta:	RxErr- BadTLP- BadDLLP- Rollover- Timeout- AdvNonFatalErr-
-		CEMsk:	RxErr- BadTLP- BadDLLP- Rollover- Timeout- AdvNonFatalErr+
-		AERCap:	First Error Pointer: 00, ECRCGenCap+ ECRCGenEn- ECRCChkCap+ ECRCChkEn-
-			MultHdrRecCap- MultHdrRecEn- TLPPfxPres- HdrLogCap-
-		HeaderLog: 00000000 00000000 00000000 00000000
-	Capabilities: [148 v1] Secondary PCI Express <?>
-	Capabilities: [158 v1] Transaction Processing Hints
-		No steering table available
-	Capabilities: [1e4 v1] Latency Tolerance Reporting
-		Max snoop latency: 3145728ns
-		Max no snoop latency: 3145728ns
-	Capabilities: [1ec v1] L1 PM Substates
-		L1SubCap: PCI-PM_L1.2+ PCI-PM_L1.1+ ASPM_L1.2+ ASPM_L1.1+ L1_PM_Substates+
-			  PortCommonModeRestoreTime=70us PortTPowerOnTime=0us
-		L1SubCtl1: PCI-PM_L1.2- PCI-PM_L1.1- ASPM_L1.2- ASPM_L1.1-
-			   T_CommonMode=0us LTR1.2_Threshold=0ns
-		L1SubCtl2: T_PwrOn=10us
-	Kernel driver in use: ath11k_pci
-	Kernel modules: ath11k_pci
-
-Thanks,
-Ben
-
--- 
-Ben Greear <greearb@candelatech.com>
-Candela Technologies Inc  http://www.candelatech.com
+> +
+>  	if (!cfg80211_iftype_allowed(&rdev->wiphy, type, params.use_4addr, 
+> 0))
+>  		return -EOPNOTSUPP;
+> 
+> @@ -4670,6 +4683,21 @@ static int nl80211_parse_beacon(struct
+> cfg80211_registered_device *rdev,
+>  		bcn->ftm_responder = -1;
+>  	}
+> 
+> +	if (attrs[NL80211_ATTR_MULTIPLE_BSSID_IES]) {
+> +		struct nlattr *nl_ie;
+> +		int rem_ie;
+> +
+> +		nla_for_each_nested(nl_ie, attrs[NL80211_ATTR_MULTIPLE_BSSID_IES], 
+> rem_ie) {
+> +			if (bcn->multiple_bssid.cnt > NL80211_MULTIPLE_BSSID_IES_MAX)
+> +				return -EINVAL;
+> +			if (nla_type(nl_ie) != bcn->multiple_bssid.cnt + 1)
+> +				return -EINVAL;
+> +			bcn->multiple_bssid.ies[bcn->multiple_bssid.cnt] = nla_data(nl_ie);
+> +			bcn->multiple_bssid.len[bcn->multiple_bssid.cnt] = nla_len(nl_ie);
+> +			bcn->multiple_bssid.cnt++;
+> +		}
+> +	}
+> +
+>  	return 0;
+>  }
+> 
+> @@ -5032,6 +5060,18 @@ static int nl80211_start_ap(struct sk_buff
+> *skb, struct genl_info *info)
+>  			goto out;
+>  	}
+> 
+> +	if (info->attrs[NL80211_ATTR_MULTIPLE_BSSID_INDEX])
+> +		params.multiple_bssid.index = nla_get_u8(
+> +				info->attrs[NL80211_ATTR_MULTIPLE_BSSID_INDEX]);
+> +
+> +	if (info->attrs[NL80211_ATTR_MULTIPLE_BSSID_COUNT])
+> +		params.multiple_bssid.count = nla_get_u8(
+> +				info->attrs[NL80211_ATTR_MULTIPLE_BSSID_COUNT]);
+> +
+> +	if (params.multiple_bssid.non_transmitted &&
+> +	    !info->attrs[NL80211_ATTR_MULTIPLE_BSSID_PARENT])
+> +		return -EOPNOTSUPP;
+> +
+>  	nl80211_calculate_ap_params(&params);
+> 
+>  	if (info->attrs[NL80211_ATTR_EXTERNAL_AUTH_SUPPORT])
 
 -- 
 ath11k mailing list
