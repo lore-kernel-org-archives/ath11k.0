@@ -1,14 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from youngberry.canonical.com ([91.189.89.112])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k8LuB-0006FP-76
- for ath11k@lists.infradead.org; Wed, 19 Aug 2020 11:05:20 +0000
-From: Colin Ian King <colin.king@canonical.com>
-Subject: re: ath11k: initialize wmi config based on hw_params
-Message-ID: <480d8984-a5fb-be1b-b553-e01609601059@canonical.com>
-Date: Wed, 19 Aug 2020 12:05:17 +0100
+ id 1k8M3U-0007wa-9Q
+ for ath11k@lists.infradead.org; Wed, 19 Aug 2020 11:14:57 +0000
+From: Colin King <colin.king@canonical.com>
+Subject: [PATCH][next] ath11k: fix missing error check on call to
+ ath11k_pci_get_user_msi_assignment
+Date: Wed, 19 Aug 2020 12:14:52 +0100
+Message-Id: <20200819111452.52419-1-colin.king@canonical.com>
 MIME-Version: 1.0
-Content-Language: en-US
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -21,42 +21,46 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>, Carl Huang <cjhuang@codeaurora.org>, "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>, ath11k@lists.infradead.org, "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>, netdev@vger.kernel.org
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+To: Kalle Valo <kvalo@codeaurora.org>, "David S . Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>, Carl Huang <cjhuang@codeaurora.org>, ath11k@lists.infradead.org, linux-wireless@vger.kernel.org, netdev@vger.kernel.org
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 
-Hi,
+From: Colin Ian King <colin.king@canonical.com>
 
-static analysis with Coverity has detected a duplicated assignment issue
-with the following commit:
+The return error check on the call to ath11k_pci_get_user_msi_assignment is
+missing.  If an error does occur, num_vectors is still set to zero and
+later on a division by zero can occur when variable vector is being
+calculated.  Fix this by adding an error check after the call.
 
-commit 2d4bcbed5b7d53e19fc158885e7340b464b64507
-Author: Carl Huang <cjhuang@codeaurora.org>
-Date:   Mon Aug 17 13:31:51 2020 +0300
+Addresses-Coverity: ("Division or modulo by zero")
+Fixes: d4ecb90b3857 ("ath11k: enable DP interrupt setup for QCA6390")
+Signed-off-by: Colin Ian King <colin.king@canonical.com>
+---
+ drivers/net/wireless/ath/ath11k/pci.c | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
-    ath11k: initialize wmi config based on hw_params
+diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
+index ca7012d46c3f..058885776a3a 100644
+--- a/drivers/net/wireless/ath/ath11k/pci.c
++++ b/drivers/net/wireless/ath/ath11k/pci.c
+@@ -648,9 +648,12 @@ static int ath11k_pci_ext_irq_config(struct ath11k_base *ab)
+ 	int i, j, ret, num_vectors = 0;
+ 	u32 user_base_data = 0, base_vector = 0;
+ 
+-	ath11k_pci_get_user_msi_assignment(ath11k_pci_priv(ab), "DP",
+-					   &num_vectors, &user_base_data,
+-					   &base_vector);
++	ret = ath11k_pci_get_user_msi_assignment(ath11k_pci_priv(ab), "DP",
++						 &num_vectors,
++						 &user_base_data,
++						 &base_vector);
++	if (ret < 0)
++		return ret;
+ 
+ 	for (i = 0; i < ATH11K_EXT_IRQ_GRP_NUM_MAX; i++) {
+ 		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
+-- 
+2.27.0
 
-The analysis is as follows:
-
-
- 74        config->beacon_tx_offload_max_vdev = 0x2;
- 75        config->num_multicast_filter_entries = 0x20;
- 76        config->num_wow_filters = 0x16;
-
-Unused value (UNUSED_VALUE)
-assigned_value: Assigning value 1U to config->num_keep_alive_pattern
-here, but that stored value is overwritten before it can be used.
- 77        config->num_keep_alive_pattern = 0x1;
-
-value_overwrite: Overwriting previous write to
-config->num_keep_alive_pattern with value 0U.
-
- 78        config->num_keep_alive_pattern = 0;
-
-
-I'm not sure if one of these assignments is redundant, or perhaps one of
-the assignments is meant to be setting a different structure element.
-
-Colin
 
 -- 
 ath11k mailing list
