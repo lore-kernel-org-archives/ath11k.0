@@ -1,13 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from youngberry.canonical.com ([91.189.89.112])
+Received: from mail29.static.mailgun.info ([104.130.122.29])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k8M3U-0007wa-9Q
- for ath11k@lists.infradead.org; Wed, 19 Aug 2020 11:14:57 +0000
-From: Colin King <colin.king@canonical.com>
-Subject: [PATCH][next] ath11k: fix missing error check on call to
- ath11k_pci_get_user_msi_assignment
-Date: Wed, 19 Aug 2020 12:14:52 +0100
-Message-Id: <20200819111452.52419-1-colin.king@canonical.com>
+ id 1k8QkH-0004lL-K4
+ for ath11k@lists.infradead.org; Wed, 19 Aug 2020 16:15:27 +0000
+From: Kalle Valo <kvalo@codeaurora.org>
+Subject: Re: [PATCH V6 2/2] ath11k: add more HE fields into radiotap header
+References: <20200803145444.473810-1-john@phrozen.org>
+ <20200803145444.473810-2-john@phrozen.org>
+Date: Wed, 19 Aug 2020 19:14:58 +0300
+In-Reply-To: <20200803145444.473810-2-john@phrozen.org> (John Crispin's
+ message of "Mon, 3 Aug 2020 16:54:44 +0200")
+Message-ID: <87lfiaipdp.fsf@codeaurora.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -21,46 +24,42 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>, "David S . Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>, Carl Huang <cjhuang@codeaurora.org>, ath11k@lists.infradead.org, linux-wireless@vger.kernel.org, netdev@vger.kernel.org
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+To: John Crispin <john@phrozen.org>
+Cc: Miles Hu <milehu@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-From: Colin Ian King <colin.king@canonical.com>
+John Crispin <john@phrozen.org> writes:
 
-The return error check on the call to ath11k_pci_get_user_msi_assignment is
-missing.  If an error does occur, num_vectors is still set to zero and
-later on a division by zero can occur when variable vector is being
-calculated.  Fix this by adding an error check after the call.
+> From: Miles Hu <milehu@codeaurora.org>
+>
+> This patch adds code to parse HE fields inside ppdu TLVs. Then it adds the
+> populates the additional info into the ratiotap header. Also fix missing
+> QoS tag in native wifi mode. Finally rssi and tsf are also added.
+>
+> Signed-off-by: Miles Hu <milehu@codeaurora.org>
+> Signed-off-by: John Crispin <john@phrozen.org>
 
-Addresses-Coverity: ("Division or modulo by zero")
-Fixes: d4ecb90b3857 ("ath11k: enable DP interrupt setup for QCA6390")
-Signed-off-by: Colin Ian King <colin.king@canonical.com>
----
- drivers/net/wireless/ath/ath11k/pci.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+[...]
 
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index ca7012d46c3f..058885776a3a 100644
---- a/drivers/net/wireless/ath/ath11k/pci.c
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -648,9 +648,12 @@ static int ath11k_pci_ext_irq_config(struct ath11k_base *ab)
- 	int i, j, ret, num_vectors = 0;
- 	u32 user_base_data = 0, base_vector = 0;
- 
--	ath11k_pci_get_user_msi_assignment(ath11k_pci_priv(ab), "DP",
--					   &num_vectors, &user_base_data,
--					   &base_vector);
-+	ret = ath11k_pci_get_user_msi_assignment(ath11k_pci_priv(ab), "DP",
-+						 &num_vectors,
-+						 &user_base_data,
-+						 &base_vector);
-+	if (ret < 0)
-+		return ret;
- 
- 	for (i = 0; i < ATH11K_EXT_IRQ_GRP_NUM_MAX; i++) {
- 		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
+> @@ -4522,11 +4522,14 @@ ath11k_dp_rx_mon_merg_msdus(struct ath11k *ar,
+>  			    struct ieee80211_rx_status *rxs)
+>  {
+>  	struct sk_buff *msdu, *mpdu_buf, *prev_buf;
+> -	u32 decap_format, wifi_hdr_len;
+> +	u32 decap_format;
+>  	struct hal_rx_desc *rx_desc;
+>  	char *hdr_desc;
+>  	u8 *dest;
+>  	struct ieee80211_hdr_3addr *wh;
+> +	static u32 pkt_type;
+> +
+> +	pkt_type++;
+
+We cannot use static non-const variables in ath11k, that would be racy.
+As this seems to be an unused variable I have just removed it in the
+pending branch.
+
 -- 
-2.27.0
-
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
