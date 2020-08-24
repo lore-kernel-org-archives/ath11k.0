@@ -1,18 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from nbd.name ([2a01:4f8:221:3d45::2])
+Received: from mail29.static.mailgun.info ([104.130.122.29])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kAFCc-0006jV-SD
- for ath11k@lists.infradead.org; Mon, 24 Aug 2020 16:20:11 +0000
-Subject: Re: [PATCH V4 4/5] mac80211: add support for BSS coloring
-References: <20200811080107.3615705-1-john@phrozen.org>
- <20200811080107.3615705-4-john@phrozen.org>
- <fe02e5697e40cb02aa007acc50fb3a60@codeaurora.org>
-From: John Crispin <john@phrozen.org>
-Message-ID: <dcbeb571-854d-b5ad-209d-5f0346da6271@phrozen.org>
-Date: Mon, 24 Aug 2020 18:20:07 +0200
-MIME-Version: 1.0
-In-Reply-To: <fe02e5697e40cb02aa007acc50fb3a60@codeaurora.org>
-Content-Language: en-US
+ id 1kAFaV-0004hO-HP
+ for ath11k@lists.infradead.org; Mon, 24 Aug 2020 16:45:06 +0000
+From: Anilkumar Kolli <akolli@codeaurora.org>
+Subject: [PATCH v6 2/3] ath11k: copy ce service configs to hw_params
+Date: Mon, 24 Aug 2020 22:14:29 +0530
+Message-Id: <1598287470-1871-3-git-send-email-akolli@codeaurora.org>
+In-Reply-To: <1598287470-1871-1-git-send-email-akolli@codeaurora.org>
+References: <1598287470-1871-1-git-send-email-akolli@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -21,107 +17,107 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Karthikeyan periyasamy <periyasa@codeaurora.org>
-Cc: ath11k@lists.infradead.org
+To: ath11k@lists.infradead.org
+Cc: devicetree@vger.kernel.org, Anilkumar Kolli <akolli@codeaurora.org>, linux-wireless@vger.kernel.org
 
-Ck9uIDE0LjA4LjIwIDEwOjQxLCBLYXJ0aGlrZXlhbiBwZXJpeWFzYW15IHdyb3RlOgo+PiBUaGUg
-Q0NBIChjb2xvciBjaGFuZ2UgYW5ub3VuY2VtZW50KSBpcyB2ZXJ5IHNpbWlsYXIgdG8gaG93IENT
-QSB3b3JrcyAKPj4gd2hlcmUKPj4gd2UgaGF2ZSBhbiBJRSB0aGF0IGluY2x1ZGVzIGEgY291bnRl
-ci4gV2hlbiB0aGUgY291bnRlciBoaXRzIDAsIHRoZSBuZXcKPj4gY29sb3IgaXMgYXBwbGllZCB2
-aWEgYW4gdXBkYXRlZCBiZWFjb24uCj4+Cj4+IFRoaXMgcGF0Y2ggbWFrZXMgdGhlIENTQSBjb3Vu
-dGVyIGZ1bmN0aW9uYWxpdHkgcmV1c2FibGUsIHJhdGhlciB0aGFuCj4+IGltcGxlbWVudGluZyBp
-dCBhZ2Fpbi4gVGhpcyBhbHNvIGFsbG93cyBmb3IgZnV0dXJlIHJldXNlIGluY2FzZSBzdXBwb3J0
-Cj4+IGZvciBvdGhlciBjb3VudGVyIElFcyBnZXRzIGFkZGVkLgo+Pgo+PiBTaWduZWQtb2ZmLWJ5
-OiBKb2huIENyaXNwaW4gPGpvaG5AcGhyb3plbi5vcmc+Cj4+IC0tLQo+PiDCoGluY2x1ZGUvbmV0
-L21hYzgwMjExLmjCoMKgwqDCoCB8wqAgMjggKysrKysKPj4gwqBuZXQvbWFjODAyMTEvY2ZnLmPC
-oMKgwqDCoMKgwqDCoMKgIHwgMjI3ICsrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysr
-LS0KPj4gwqBuZXQvbWFjODAyMTEvaWVlZTgwMjExX2kuaCB8wqAgMTIgKysKPj4gwqBuZXQvbWFj
-ODAyMTEvaWZhY2UuY8KgwqDCoMKgwqDCoCB8wqDCoCAzICsKPj4gwqBuZXQvbWFjODAyMTEvdHgu
-Y8KgwqDCoMKgwqDCoMKgwqDCoCB8wqAgMjQgKystLQo+PiDCoDUgZmlsZXMgY2hhbmdlZCwgMjc2
-IGluc2VydGlvbnMoKyksIDE4IGRlbGV0aW9ucygtKQo+IC4uLgo+Pgo+PiArc3RhdGljIGludCBp
-ZWVlODAyMTFfY2NhX2ZpbmFsaXplKHN0cnVjdCBpZWVlODAyMTFfc3ViX2lmX2RhdGEgKnNkYXRh
-KQo+PiArewo+PiArwqDCoMKgIHN0cnVjdCBpZWVlODAyMTFfbG9jYWwgKmxvY2FsID0gc2RhdGEt
-PmxvY2FsOwo+PiArwqDCoMKgIHUzMiBjaGFuZ2VkID0gMDsKPj4gK8KgwqDCoCBpbnQgZXJyOwo+
-PiArCj4+ICvCoMKgwqAgc2RhdGFfYXNzZXJ0X2xvY2soc2RhdGEpOwo+PiArwqDCoMKgIGxvY2tk
-ZXBfYXNzZXJ0X2hlbGQoJmxvY2FsLT5tdHgpOwo+PiArCj4+ICvCoMKgwqAgc2RhdGEtPnZpZi5j
-Y2FfYWN0aXZlID0gZmFsc2U7Cj4+ICsKPj4gK8KgwqDCoCBlcnIgPSBpZWVlODAyMTFfc2V0X2Fm
-dGVyX2NjYV9iZWFjb24oc2RhdGEsICZjaGFuZ2VkKTsKPj4gK8KgwqDCoCBpZiAoZXJyKSB7Cj4+
-ICvCoMKgwqDCoMKgwqDCoCBjZmc4MDIxMV9jb2xvcl9jaGFuZ2VfYWJvcnRlZF9ub3RpZnkoc2Rh
-dGEtPmRldik7Cj4+ICvCoMKgwqDCoMKgwqDCoCByZXR1cm4gZXJyOwo+PiArwqDCoMKgIH0KPj4g
-Kwo+PiArwqDCoMKgIHNkYXRhLT52aWYuYnNzX2NvbmYuaGVfYnNzX2NvbG9yLmNvbG9yID0gc2Rh
-dGEtPnZpZi5jY2FfY29sb3I7Cj4+ICvCoMKgwqAgc2RhdGEtPnZpZi5ic3NfY29uZi5oZV9ic3Nf
-Y29sb3IuZW5hYmxlZCA9IDE7Cj4+ICvCoMKgwqAgY2hhbmdlZCB8PSBCU1NfQ0hBTkdFRF9IRV9C
-U1NfQ09MT1I7Cj4+ICsKPgo+IFdoeSB3ZSBhcmUgbm90IHVwZGF0aW5nIHRoZSBic3MgY29sb3Ig
-aW5mb3JtYXRpb24gaW4gaGVfb3Blci5wYXJhbXMuCj4gSU1ITyByZW1vdmUgdGhlIHJlZHVuZGFu
-dCBpbmZvcm1hdGlvbiBvZiBic3MgY29sb3IgaW4gdGhlICJzdHJ1Y3QgCj4gaWVlZTgwMjExX2Jz
-c19jb25mIiBieSByZW1vdmluZwo+IHRoZSBoZV9ic3NfY29sb3Igc2luY2UgaGVfb3Blci5wYXJh
-bXMgaG9sZHMgbW9yZSBpbmZvcm1hdGlvbiBpbiB1MzIgCj4gaXRzZWxmLgo+IFdoYXQgZG8geW91
-IHRoaW5rPwo+CnRoZSBoZV9vcGVyIGZpZWxkIGlzIGNvbnN0LCBzbyB3ZSBjYW5ub3QgZWFzaWx5
-IHVwZGF0ZSBpdC4gSW4gYW4gQVAgCnNldHVwIHRoZSBjb2xvciB2YWx1ZSB3aWxsIG9ubHkgYmUg
-dXNlZCBvbmNlIGR1cmluZyBzdGFydF9hcCgpIGFuZCAKdXBkYXRlZCB2aWEgZGVkaWNhdGVkIGJz
-c19jb2xvci9ic3NfY29uZmlnIGNoYW5nZSBub3RpZmljYXRpb24uCgppbiBTVEEgbW9yZGUgdGhl
-IHZhbHVlIGlzIGRlcml2ZWQgZnJvbSB0aGUgcmVtb3RlIGJlYWNvbiByeCBldmVudCAod2hpY2gg
-CmlzIHdoeSB3ZSB0cmVhdCBpdCBhcyBjb25zdC4KCmdlbmVyYWxseSB0aGUgYnNzX2NvbmZpZyBj
-aGFuZ2UgaXMgb25seSByZWxhdGVkIHRvIHRoZSBjb2xvciBhbmQgaGVuY2UgCnNob3VsZCBub3Qg
-ZG8gYSBjcm9zcyBsYXllciB0aGluZyB3aXRoIHRoZSBoZV9vcGVyIG1vZGUuCgogwqDCoMKgIEpv
-aG4KCgo+PiArIGllZWU4MDIxMV9ic3NfaW5mb19jaGFuZ2Vfbm90aWZ5KHNkYXRhLCBjaGFuZ2Vk
-KTsKPj4gKwo+PiArwqDCoMKgIGNmZzgwMjExX2NvbG9yX2NoYW5nZV9ub3RpZnkoc2RhdGEtPmRl
-dik7Cj4+ICsKPj4gK8KgwqDCoCByZXR1cm4gMDsKPj4gK30KPj4gKwo+PiArdm9pZCBpZWVlODAy
-MTFfY2NhX2ZpbmFsaXplX3dvcmsoc3RydWN0IHdvcmtfc3RydWN0ICp3b3JrKQo+PiArewo+PiAr
-wqDCoMKgIHN0cnVjdCBpZWVlODAyMTFfc3ViX2lmX2RhdGEgKnNkYXRhID0KPj4gK8KgwqDCoMKg
-wqDCoMKgIGNvbnRhaW5lcl9vZih3b3JrLCBzdHJ1Y3QgaWVlZTgwMjExX3N1Yl9pZl9kYXRhLAo+
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY2NhX2ZpbmFsaXplX3dvcmspOwo+
-PiArwqDCoMKgIHN0cnVjdCBpZWVlODAyMTFfbG9jYWwgKmxvY2FsID0gc2RhdGEtPmxvY2FsOwo+
-PiArCj4+ICvCoMKgwqAgc2RhdGFfbG9jayhzZGF0YSk7Cj4+ICvCoMKgwqAgbXV0ZXhfbG9jaygm
-bG9jYWwtPm10eCk7Cj4+ICsKPj4gK8KgwqDCoCAvKiBBUCBtaWdodCBoYXZlIGJlZW4gc3RvcHBl
-ZCB3aGlsZSB3YWl0aW5nIGZvciB0aGUgbG9jay4gKi8KPj4gK8KgwqDCoCBpZiAoIXNkYXRhLT52
-aWYuY2NhX2FjdGl2ZSkKPj4gK8KgwqDCoMKgwqDCoMKgIGdvdG8gdW5sb2NrOwo+PiArCj4+ICvC
-oMKgwqAgaWYgKCFpZWVlODAyMTFfc2RhdGFfcnVubmluZyhzZGF0YSkpCj4+ICvCoMKgwqDCoMKg
-wqDCoCBnb3RvIHVubG9jazsKPj4gKwo+PiArwqDCoMKgIGllZWU4MDIxMV9jY2FfZmluYWxpemUo
-c2RhdGEpOwo+PiArCj4+ICt1bmxvY2s6Cj4+ICvCoMKgwqAgbXV0ZXhfdW5sb2NrKCZsb2NhbC0+
-bXR4KTsKPj4gK8KgwqDCoCBzZGF0YV91bmxvY2soc2RhdGEpOwo+PiArfQo+PiArCj4+ICt2b2lk
-IGllZWU4MDIxMV9jY2FfZmluaXNoKHN0cnVjdCBpZWVlODAyMTFfdmlmICp2aWYpCj4+ICt7Cj4+
-ICvCoMKgwqAgc3RydWN0IGllZWU4MDIxMV9zdWJfaWZfZGF0YSAqc2RhdGEgPSB2aWZfdG9fc2Rh
-dGEodmlmKTsKPj4gKwo+PiArwqDCoMKgIGllZWU4MDIxMV9xdWV1ZV93b3JrKCZzZGF0YS0+bG9j
-YWwtPmh3LAo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgJnNkYXRhLT5jY2Ff
-ZmluYWxpemVfd29yayk7Cj4+ICt9Cj4+ICtFWFBPUlRfU1lNQk9MX0dQTChpZWVlODAyMTFfY2Nh
-X2ZpbmlzaCk7Cj4+ICsKPj4gK3ZvaWQKPj4gK2llZWVlODAyMTFfb2Jzc19jb2xvcl9jb2xsaXNp
-b25fbm90aWZ5KHN0cnVjdCBpZWVlODAyMTFfdmlmICp2aWYsCj4+ICvCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB1NjQgY29sb3JfYml0bWFwKQo+PiArewo+PiAr
-wqDCoMKgIHN0cnVjdCBpZWVlODAyMTFfc3ViX2lmX2RhdGEgKnNkYXRhID0gdmlmX3RvX3NkYXRh
-KHZpZik7Cj4+ICsKPj4gK8KgwqDCoCBpZiAoc2RhdGEtPnZpZi5jY2FfYWN0aXZlIHx8IHNkYXRh
-LT52aWYuY3NhX2FjdGl2ZSkKPj4gK8KgwqDCoMKgwqDCoMKgIHJldHVybjsKPj4gKwo+PiArwqDC
-oMKgIGNmZzgwMjExX29ic3NfY29sb3JfY29sbGlzaW9uX25vdGlmeShzZGF0YS0+ZGV2LCBjb2xv
-cl9iaXRtYXApOwo+PiArfQo+PiArRVhQT1JUX1NZTUJPTF9HUEwoaWVlZWU4MDIxMV9vYnNzX2Nv
-bG9yX2NvbGxpc2lvbl9ub3RpZnkpOwo+PiArCj4+ICtzdGF0aWMgaW50Cj4+ICtfX2llZWU4MDIx
-MV9jb2xvcl9jaGFuZ2Uoc3RydWN0IHdpcGh5ICp3aXBoeSwgc3RydWN0IG5ldF9kZXZpY2UgKmRl
-diwKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBzdHJ1Y3QgY2ZnODAyMTFfY29sb3JfY2hh
-bmdlX3NldHRpbmdzICpwYXJhbXMpCj4+ICt7Cj4+ICvCoMKgwqAgc3RydWN0IGllZWU4MDIxMV9z
-dWJfaWZfZGF0YSAqc2RhdGEgPSBJRUVFODAyMTFfREVWX1RPX1NVQl9JRihkZXYpOwo+PiArwqDC
-oMKgIHN0cnVjdCBpZWVlODAyMTFfbG9jYWwgKmxvY2FsID0gc2RhdGEtPmxvY2FsOwo+PiArwqDC
-oMKgIHUzMiBjaGFuZ2VkID0gMDsKPj4gK8KgwqDCoCBpbnQgZXJyOwo+PiArCj4+ICvCoMKgwqAg
-c2RhdGFfYXNzZXJ0X2xvY2soc2RhdGEpOwo+PiArwqDCoMKgIGxvY2tkZXBfYXNzZXJ0X2hlbGQo
-JmxvY2FsLT5tdHgpOwo+PiArCj4+ICvCoMKgwqAgLyogZG9uJ3QgYWxsb3cgYW5vdGhlciBjb2xv
-ciBjaGFuZ2UgaWYgb25lIGlzIGFscmVhZHkgYWN0aXZlIG9yIAo+PiBpZiBjc2EKPj4gK8KgwqDC
-oMKgICogaXMgYWN0aXZlCj4+ICvCoMKgwqDCoCAqLwo+PiArwqDCoMKgIGlmIChzZGF0YS0+dmlm
-LmNjYV9hY3RpdmUgfHwgc2RhdGEtPnZpZi5jc2FfYWN0aXZlKQo+PiArwqDCoMKgwqDCoMKgwqAg
-cmV0dXJuIC1FQlVTWTsKPj4gKwo+PiArwqDCoMKgIGVyciA9IGllZWU4MDIxMV9zZXRfY2NhX2Jl
-YWNvbihzZGF0YSwgcGFyYW1zLCAmY2hhbmdlZCk7Cj4+ICvCoMKgwqAgaWYgKGVycikKPj4gK8Kg
-wqDCoMKgwqDCoMKgIHJldHVybiBlcnI7Cj4+ICsKPj4gK8KgwqDCoCBzZGF0YS0+dmlmLmNjYV9h
-Y3RpdmUgPSB0cnVlOwo+PiArwqDCoMKgIHNkYXRhLT52aWYuY2NhX2NvbG9yID0gcGFyYW1zLT5j
-b2xvcjsKPj4gKwo+PiArwqDCoMKgIGNmZzgwMjExX2NvbG9yX2NoYW5nZV9zdGFydGVkX25vdGlm
-eShzZGF0YS0+ZGV2LCBwYXJhbXMtPmNvdW50KTsKPj4gKwo+PiArwqDCoMKgIGlmIChjaGFuZ2Vk
-KSB7Cj4+ICvCoMKgwqDCoMKgwqDCoCBzZGF0YS0+dmlmLmJzc19jb25mLmhlX2Jzc19jb2xvci5l
-bmFibGVkID0gMDsKPj4gK8KgwqDCoMKgwqDCoMKgIGNoYW5nZWQgfD0gQlNTX0NIQU5HRURfSEVf
-QlNTX0NPTE9SOwo+Cj4gc2FtZSBoZXJlCj4KPj4gKyBpZWVlODAyMTFfYnNzX2luZm9fY2hhbmdl
-X25vdGlmeShzZGF0YSwgY2hhbmdlZCk7Cj4+ICvCoMKgwqAgfSBlbHNlIHsKPj4gK8KgwqDCoMKg
-wqDCoMKgIC8qIGlmIHRoZSBiZWFjb24gZGlkbid0IGNoYW5nZSwgd2UgY2FuIGZpbmFsaXplIGlt
-bWVkaWF0ZWx5ICovCj4+ICvCoMKgwqDCoMKgwqDCoCBpZWVlODAyMTFfY2NhX2ZpbmFsaXplKHNk
-YXRhKTsKPj4gK8KgwqDCoCB9Cj4+ICsKPj4gK8KgwqDCoCByZXR1cm4gMDsKPj4gK30KPgo+IFRo
-YW5rcwo+IEthcnRoaWtleWFuIFAKCi0tIAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0
-cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGlu
-Zm8vYXRoMTFrCg==
+No functional changes, added target ce service configurations to hw_params.
+
+Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
+---
+V3:
+ - added ce svc configs in hw_params
+
+ drivers/net/wireless/ath/ath11k/ahb.c  | 14 +++++++++-----
+ drivers/net/wireless/ath/ath11k/core.c |  6 ------
+ drivers/net/wireless/ath/ath11k/hw.h   |  2 ++
+ 3 files changed, 11 insertions(+), 11 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+index 8466c62a83d6..a45a7d62f283 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.c
++++ b/drivers/net/wireless/ath/ath11k/ahb.c
+@@ -159,7 +159,7 @@ static const struct ce_pipe_config target_ce_config_wlan[] = {
+  * This table is derived from the CE_PCI TABLE, above.
+  * It is passed to the Target at startup for use by firmware.
+  */
+-static const struct service_to_pipe target_service_to_ce_map_wlan[] = {
++static const struct service_to_pipe target_service_to_ce_map_wlan_ipq8074[] = {
+ 	{
+ 		.service_id = __cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_VO),
+ 		.pipedir = __cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
+@@ -579,8 +579,8 @@ static void ath11k_ahb_init_qmi_ce_config(struct ath11k_base *ab)
+ 
+ 	cfg->tgt_ce_len = ARRAY_SIZE(target_ce_config_wlan) - 1;
+ 	cfg->tgt_ce = target_ce_config_wlan;
+-	cfg->svc_to_ce_map_len = ARRAY_SIZE(target_service_to_ce_map_wlan);
+-	cfg->svc_to_ce_map = target_service_to_ce_map_wlan;
++	cfg->svc_to_ce_map_len = ab->hw_params.svc_to_ce_map_len;
++	cfg->svc_to_ce_map = ab->hw_params.svc_to_ce_map;
+ 	ab->qmi.service_ins_id = ATH11K_QMI_WLFW_SERVICE_INS_ID_V01_IPQ8074;
+ }
+ 
+@@ -789,8 +789,8 @@ static int ath11k_ahb_map_service_to_pipe(struct ath11k_base *ab, u16 service_id
+ 	bool ul_set = false, dl_set = false;
+ 	int i;
+ 
+-	for (i = 0; i < ARRAY_SIZE(target_service_to_ce_map_wlan); i++) {
+-		entry = &target_service_to_ce_map_wlan[i];
++	for (i = 0; i < ab->hw_params.svc_to_ce_map_len; i++) {
++		entry = &ab->hw_params.svc_to_ce_map[i];
+ 
+ 		if (__le32_to_cpu(entry->service_id) != service_id)
+ 			continue;
+@@ -890,6 +890,10 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
+ 		goto err_hal_srng_deinit;
+ 	}
+ 
++	ab->hw_params.svc_to_ce_map_len =
++			ARRAY_SIZE(target_service_to_ce_map_wlan_ipq8074);
++	ab->hw_params.svc_to_ce_map = target_service_to_ce_map_wlan_ipq8074;
++
+ 	ath11k_ahb_init_qmi_ce_config(ab);
+ 
+ 	ret = ath11k_core_init(ab);
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 437b1123a34f..61a6f395c436 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -812,12 +812,6 @@ int ath11k_core_init(struct ath11k_base *ab)
+ 		return ret;
+ 	}
+ 
+-	ret = ath11k_init_hw_params(ab);
+-	if (ret) {
+-		ath11k_err(ab, "failed to get hw params %d\n", ret);
+-		return ret;
+-	}
+-
+ 	ret = ath11k_core_soc_create(ab);
+ 	if (ret) {
+ 		ath11k_err(ab, "failed to create soc core: %d\n", ret);
+diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
+index d15fa7fd6d5d..ebe691cb4a13 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.h
++++ b/drivers/net/wireless/ath/ath11k/hw.h
+@@ -129,6 +129,8 @@ struct ath11k_hw_params {
+ 	} fw;
+ 
+ 	const struct ath11k_hw_ops *hw_ops;
++	const struct service_to_pipe *svc_to_ce_map;
++	int svc_to_ce_map_len;
+ 
+ 	const struct ath11k_hw_ring_mask *ring_mask;
+ 
+-- 
+2.7.4
+
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
