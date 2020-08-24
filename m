@@ -1,14 +1,18 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from m43-7.mailgun.net ([69.72.43.7])
+Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kA7oU-0008Jj-Qb
- for ath11k@lists.infradead.org; Mon, 24 Aug 2020 08:26:51 +0000
-From: Venkateswara Naralasetty <vnaralas@codeaurora.org>
-Subject: [PATCHv2 2/2] ath11k: Add ap power save support
-Date: Mon, 24 Aug 2020 13:56:29 +0530
-Message-Id: <1598257589-19091-2-git-send-email-vnaralas@codeaurora.org>
-In-Reply-To: <1598257589-19091-1-git-send-email-vnaralas@codeaurora.org>
-References: <1598257589-19091-1-git-send-email-vnaralas@codeaurora.org>
+ id 1kAFCc-0006jV-SD
+ for ath11k@lists.infradead.org; Mon, 24 Aug 2020 16:20:11 +0000
+Subject: Re: [PATCH V4 4/5] mac80211: add support for BSS coloring
+References: <20200811080107.3615705-1-john@phrozen.org>
+ <20200811080107.3615705-4-john@phrozen.org>
+ <fe02e5697e40cb02aa007acc50fb3a60@codeaurora.org>
+From: John Crispin <john@phrozen.org>
+Message-ID: <dcbeb571-854d-b5ad-209d-5f0346da6271@phrozen.org>
+Date: Mon, 24 Aug 2020 18:20:07 +0200
+MIME-Version: 1.0
+In-Reply-To: <fe02e5697e40cb02aa007acc50fb3a60@codeaurora.org>
+Content-Language: en-US
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -17,369 +21,107 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: Venkateswara Naralasetty <vnaralas@codeaurora.org>, linux-wireless@vger.kernel.org
+To: Karthikeyan periyasamy <periyasa@codeaurora.org>
+Cc: ath11k@lists.infradead.org
 
-AP power save where AP goes to power save mode when no stations associate
-to it and come out of power save when any station associate to AP.
-
-This AP power save capability can be used to save power with the drawback
-of reduced range or delayed discovery of the AP
-
-This patch also porvides user configuration to enable/disable
-this feature using vendor command. This feature is disabled by default.
-
-Tested-on: IPQ8074 WLAN.HK.2.1.0.1-01228-QCAHKSWPL_SILICONZ-1
-
-Signed-off-by: Venkateswara Naralasetty <vnaralas@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/Makefile |  3 +-
- drivers/net/wireless/ath/ath11k/core.h   |  8 ++++
- drivers/net/wireless/ath/ath11k/mac.c    | 44 +++++++++++++++++
- drivers/net/wireless/ath/ath11k/mac.h    |  1 +
- drivers/net/wireless/ath/ath11k/vendor.c | 81 ++++++++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/vendor.h | 12 +++++
- drivers/net/wireless/ath/ath11k/wmi.c    | 32 +++++++++++++
- drivers/net/wireless/ath/ath11k/wmi.h    |  7 +++
- 8 files changed, 187 insertions(+), 1 deletion(-)
- create mode 100644 drivers/net/wireless/ath/ath11k/vendor.c
- create mode 100644 drivers/net/wireless/ath/ath11k/vendor.h
-
-diff --git a/drivers/net/wireless/ath/ath11k/Makefile b/drivers/net/wireless/ath/ath11k/Makefile
-index bc4911f..f0b4975 100644
---- a/drivers/net/wireless/ath/ath11k/Makefile
-+++ b/drivers/net/wireless/ath/ath11k/Makefile
-@@ -16,7 +16,8 @@ ath11k-y += core.o \
- 	    ce.o \
- 	    peer.o \
- 	    dbring.o \
--	    hw.o
-+	    hw.o \
-+	    vendor.o
- 
- ath11k-$(CONFIG_ATH11K_DEBUGFS) += debug_htt_stats.o debugfs_sta.o
- ath11k-$(CONFIG_NL80211_TESTMODE) += testmode.o
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index d21191c..827020f 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -23,6 +23,7 @@
- #include "thermal.h"
- #include "dbring.h"
- #include "spectral.h"
-+#include "vendor.h"
- 
- #define SM(_v, _f) (((_v) << _f##_LSB) & _f##_MASK)
- 
-@@ -419,6 +420,11 @@ struct ath11k_vdev_stop_status {
- 	u32  vdev_id;
- };
- 
-+enum ath11k_ap_ps_state {
-+	ATH11K_AP_PS_STATE_OFF,
-+	ATH11K_AP_PS_STATE_ON,
-+};
-+
- struct ath11k {
- 	struct ath11k_base *ab;
- 	struct ath11k_pdev *pdev;
-@@ -543,6 +549,8 @@ struct ath11k {
- #endif
- 	bool dfs_block_radar_events;
- 	struct ath11k_thermal thermal;
-+	int ap_ps_enabled;
-+	enum ath11k_ap_ps_state ap_ps_state;
- };
- 
- struct ath11k_band_cap {
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index f4a085b..1885834 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -2898,6 +2898,33 @@ static void ath11k_mac_dec_num_stations(struct ath11k_vif *arvif,
- 	ar->num_stations--;
- }
- 
-+int ath11k_mac_ap_ps_recalc(struct ath11k *ar)
-+{
-+	struct ath11k_vif *arvif;
-+	bool has_sta_iface = false;
-+	enum ath11k_ap_ps_state state = ATH11K_AP_PS_STATE_OFF;
-+	int ret = 0;
-+
-+	list_for_each_entry(arvif, &ar->arvifs, list) {
-+		if (arvif->vdev_type == WMI_VDEV_TYPE_STA) {
-+			has_sta_iface = true;
-+			break;
-+		}
-+	}
-+
-+	if (!has_sta_iface && !ar->num_stations && ar->ap_ps_enabled)
-+		state = ATH11K_AP_PS_STATE_ON;
-+
-+	if (ar->ap_ps_state == state)
-+		return ret;
-+
-+	ret = ath11k_wmi_pdev_ap_ps_cmd_send(ar, ar->pdev->pdev_id, state);
-+	if (!ret)
-+		ar->ap_ps_state = state;
-+
-+	return ret;
-+}
-+
- static int ath11k_mac_station_add(struct ath11k *ar,
- 				  struct ieee80211_vif *vif,
- 				  struct ieee80211_sta *sta)
-@@ -2937,6 +2964,12 @@ static int ath11k_mac_station_add(struct ath11k *ar,
- 	ath11k_dbg(ab, ATH11K_DBG_MAC, "Added peer: %pM for VDEV: %d\n",
- 		   sta->addr, arvif->vdev_id);
- 
-+	ret = ath11k_mac_ap_ps_recalc(ar);
-+	if (ret) {
-+		ath11k_warn(ar->ab, "failed to send ap ps ret %d\n", ret);
-+		goto exit;
-+	}
-+
- 	if (ath11k_debug_is_extd_tx_stats_enabled(ar)) {
- 		arsta->tx_stats = kzalloc(sizeof(*arsta->tx_stats), GFP_KERNEL);
- 		if (!arsta->tx_stats) {
-@@ -3046,6 +3079,10 @@ static int ath11k_mac_op_sta_state(struct ieee80211_hw *hw,
- 
- 		kfree(arsta->rx_stats);
- 		arsta->rx_stats = NULL;
-+
-+		ret = ath11k_mac_ap_ps_recalc(ar);
-+		if (ret)
-+			ath11k_warn(ar->ab, "failed to send ap ps ret %d\n", ret);
- 	} else if (old_state == IEEE80211_STA_AUTH &&
- 		   new_state == IEEE80211_STA_ASSOC &&
- 		   (vif->type == NL80211_IFTYPE_AP ||
-@@ -4210,6 +4247,7 @@ static void ath11k_mac_op_stop(struct ieee80211_hw *hw)
- 
- 	clear_bit(ATH11K_CAC_RUNNING, &ar->dev_flags);
- 	ar->state = ATH11K_STATE_OFF;
-+	ar->ap_ps_state = ATH11K_AP_PS_STATE_OFF;
- 	mutex_unlock(&ar->conf_mutex);
- 
- 	cancel_delayed_work_sync(&ar->scan.timeout);
-@@ -4533,6 +4571,10 @@ static int ath11k_mac_op_add_interface(struct ieee80211_hw *hw,
- 
- 	ath11k_dp_vdev_tx_attach(ar, arvif);
- 
-+	ret = ath11k_mac_ap_ps_recalc(ar);
-+	if (ret)
-+		ath11k_warn(ar->ab, "failed to set ap ps ret %d\n", ret);
-+
- 	mutex_unlock(&ar->conf_mutex);
- 
- 	return 0;
-@@ -4619,6 +4661,7 @@ static void ath11k_mac_op_remove_interface(struct ieee80211_hw *hw,
- 
- 	/* Recalc txpower for remaining vdev */
- 	ath11k_mac_txpower_recalc(ar);
-+	ath11k_mac_ap_ps_recalc(ar);
- 	clear_bit(ATH11K_FLAG_MONITOR_ENABLED, &ar->monitor_flags);
- 
- 	/* TODO: recal traffic pause state based on the available vdevs */
-@@ -6175,6 +6218,7 @@ static int __ath11k_mac_register(struct ath11k *ar)
- 		ARRAY_SIZE(ath11k_iftypes_ext_capa);
- 
- 	ath11k_reg_init(ar);
-+	ath11k_vendor_register(ar);
- 
- 	/* advertise HW checksum offload capabilities */
- 	ar->hw->netdev_features = NETIF_F_HW_CSUM;
-diff --git a/drivers/net/wireless/ath/ath11k/mac.h b/drivers/net/wireless/ath/ath11k/mac.h
-index 0607479..18d2f28 100644
---- a/drivers/net/wireless/ath/ath11k/mac.h
-+++ b/drivers/net/wireless/ath/ath11k/mac.h
-@@ -146,4 +146,5 @@ int ath11k_mac_tx_mgmt_pending_free(int buf_id, void *skb, void *ctx);
- u8 ath11k_mac_bw_to_mac80211_bw(u8 bw);
- enum ath11k_supported_bw ath11k_mac_mac80211_bw_to_ath11k_bw(enum rate_info_bw bw);
- enum hal_encrypt_type ath11k_dp_tx_get_encrypt_type(u32 cipher);
-+int ath11k_mac_ap_ps_recalc(struct ath11k *ar);
- #endif
-diff --git a/drivers/net/wireless/ath/ath11k/vendor.c b/drivers/net/wireless/ath/ath11k/vendor.c
-new file mode 100644
-index 0000000..b28cc65
---- /dev/null
-+++ b/drivers/net/wireless/ath/ath11k/vendor.c
-@@ -0,0 +1,81 @@
-+// SPDX-License-Identifier: BSD-3-Clause-Clear
-+/*
-+ * Copyright (c) 2019-2020 The Linux Foundation. All rights reserved.
-+ */
-+
-+#include <net/netlink.h>
-+#include <net/mac80211.h>
-+#include <uapi/nl80211-vnd-qca.h>
-+#include "core.h"
-+#include "debug.h"
-+
-+static const struct nla_policy
-+ath11k_vendor_set_wifi_config_policy[QCA_WLAN_VENDOR_ATTR_CONFIG_MAX + 1] = {
-+	[QCA_WLAN_VENDOR_ATTR_CONFIG_GTX] = {.type = NLA_FLAG}
-+};
-+
-+static int ath11k_vendor_set_wifi_config(struct wiphy *wihpy,
-+					 struct wireless_dev *wdev,
-+					 const void *data,
-+					 int data_len)
-+{
-+	struct ieee80211_vif *vif;
-+	struct ath11k_vif *arvif;
-+	struct ath11k *ar;
-+	struct nlattr *tb[QCA_WLAN_VENDOR_ATTR_CONFIG_MAX + 1];
-+	int ret = 0;
-+
-+	if (!wdev)
-+		return -EINVAL;
-+
-+	vif = wdev_to_ieee80211_vif(wdev);
-+	if (!vif)
-+		return -EINVAL;
-+
-+	arvif = (struct ath11k_vif *)vif->drv_priv;
-+	if (!arvif)
-+		return -EINVAL;
-+
-+	ar = arvif->ar;
-+
-+	mutex_lock(&ar->conf_mutex);
-+
-+	ret = nla_parse(tb, QCA_WLAN_VENDOR_ATTR_CONFIG_MAX, data, data_len,
-+			ath11k_vendor_set_wifi_config_policy, NULL);
-+	if (ret) {
-+		ath11k_warn(ar->ab, "invalid set wifi config policy attribute\n");
-+		goto exit;
-+	}
-+
-+	ar->ap_ps_enabled = nla_get_flag(tb[QCA_WLAN_VENDOR_ATTR_CONFIG_GTX]);
-+	ret = ath11k_mac_ap_ps_recalc(ar);
-+	if (ret) {
-+		ath11k_warn(ar->ab, "failed to send ap ps ret %d\n", ret);
-+		goto exit;
-+	}
-+
-+exit:
-+	mutex_unlock(&ar->conf_mutex);
-+	return ret;
-+}
-+
-+static struct wiphy_vendor_command ath11k_vendor_commands[] = {
-+	{
-+		.info.vendor_id = QCA_NL80211_VENDOR_ID,
-+		.info.subcmd = QCA_NL80211_VENDOR_SUBCMD_SET_WIFI_CONFIGURATION,
-+		.flags = WIPHY_VENDOR_CMD_NEED_WDEV |
-+			WIPHY_VENDOR_CMD_NEED_RUNNING,
-+		.doit = ath11k_vendor_set_wifi_config,
-+		.policy = ath11k_vendor_set_wifi_config_policy,
-+		.maxattr = QCA_WLAN_VENDOR_ATTR_CONFIG_MAX
-+	}
-+};
-+
-+int ath11k_vendor_register(struct ath11k *ar)
-+{
-+	ar->hw->wiphy->vendor_commands = ath11k_vendor_commands;
-+	ar->hw->wiphy->n_vendor_commands = ARRAY_SIZE(ath11k_vendor_commands);
-+
-+	return 0;
-+}
-+
-diff --git a/drivers/net/wireless/ath/ath11k/vendor.h b/drivers/net/wireless/ath/ath11k/vendor.h
-new file mode 100644
-index 0000000..6eaf07e
---- /dev/null
-+++ b/drivers/net/wireless/ath/ath11k/vendor.h
-@@ -0,0 +1,12 @@
-+// SPDX-License-Identifier: BSD-3-Clause-Clear
-+/*
-+ * Copyright (c) 2019-2020 The Linux Foundation. All rights reserved.
-+ */
-+
-+#ifndef ATH11K_VENDOR_H
-+#define ATH11K_VENDOR_H
-+
-+int ath11k_vendor_register(struct ath11k *ar);
-+
-+#endif /* QCA_VENDOR_H */
-+
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index a66576f..9aa1718 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -1188,6 +1188,38 @@ ath11k_wmi_rx_reord_queue_remove(struct ath11k *ar,
- 	return ret;
- }
- 
-+int ath11k_wmi_pdev_ap_ps_cmd_send(struct ath11k *ar, u8 pdev_id,
-+				   u32 param_value)
-+{
-+	struct ath11k_pdev_wmi *wmi = ar->wmi;
-+	struct wmi_pdev_ap_ps_cmd *cmd;
-+	struct sk_buff *skb;
-+	int ret;
-+
-+	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, sizeof(*cmd));
-+	if (!skb)
-+		return -ENOMEM;
-+
-+	cmd = (struct wmi_pdev_ap_ps_cmd *)skb->data;
-+	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG,
-+				     WMI_TAG_PDEV_GREEN_AP_PS_ENABLE_CMD) |
-+			  FIELD_PREP(WMI_TLV_LEN, sizeof(*cmd) - TLV_HDR_SIZE);
-+	cmd->pdev_id = pdev_id;
-+	cmd->param_value = param_value;
-+
-+	ret = ath11k_wmi_cmd_send(wmi, skb, WMI_PDEV_GREEN_AP_PS_ENABLE_CMDID);
-+	if (ret) {
-+		ath11k_warn(ar->ab, "failed to send ap ps enable/disable cmd\n");
-+		dev_kfree_skb(skb);
-+	}
-+
-+	ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
-+		   "wmi pdev ap ps set pdev id %d value %d\n",
-+		   pdev_id, param_value);
-+
-+	return ret;
-+}
-+
- int ath11k_wmi_pdev_set_param(struct ath11k *ar, u32 param_id,
- 			      u32 param_value, u8 pdev_id)
- {
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index 5a32ba0..e3a5751 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -2901,6 +2901,12 @@ struct set_fwtest_params {
- 	u32 value;
- };
- 
-+struct wmi_pdev_ap_ps_cmd {
-+	u32 tlv_header;
-+	u32 pdev_id;
-+	u32 param_value;
-+} __packed;
-+
- struct wmi_fwtest_set_param_cmd_param {
- 	u32 tlv_header;
- 	u32 param_id;
-@@ -5121,4 +5127,5 @@ int ath11k_wmi_vdev_spectral_enable(struct ath11k *ar, u32 vdev_id,
- 				    u32 trigger, u32 enable);
- int ath11k_wmi_vdev_spectral_conf(struct ath11k *ar,
- 				  struct ath11k_wmi_vdev_spectral_conf_param *param);
-+int ath11k_wmi_pdev_ap_ps_cmd_send(struct ath11k *ar, u8 pdev_id, u32 value);
- #endif
--- 
-2.7.4
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+Ck9uIDE0LjA4LjIwIDEwOjQxLCBLYXJ0aGlrZXlhbiBwZXJpeWFzYW15IHdyb3RlOgo+PiBUaGUg
+Q0NBIChjb2xvciBjaGFuZ2UgYW5ub3VuY2VtZW50KSBpcyB2ZXJ5IHNpbWlsYXIgdG8gaG93IENT
+QSB3b3JrcyAKPj4gd2hlcmUKPj4gd2UgaGF2ZSBhbiBJRSB0aGF0IGluY2x1ZGVzIGEgY291bnRl
+ci4gV2hlbiB0aGUgY291bnRlciBoaXRzIDAsIHRoZSBuZXcKPj4gY29sb3IgaXMgYXBwbGllZCB2
+aWEgYW4gdXBkYXRlZCBiZWFjb24uCj4+Cj4+IFRoaXMgcGF0Y2ggbWFrZXMgdGhlIENTQSBjb3Vu
+dGVyIGZ1bmN0aW9uYWxpdHkgcmV1c2FibGUsIHJhdGhlciB0aGFuCj4+IGltcGxlbWVudGluZyBp
+dCBhZ2Fpbi4gVGhpcyBhbHNvIGFsbG93cyBmb3IgZnV0dXJlIHJldXNlIGluY2FzZSBzdXBwb3J0
+Cj4+IGZvciBvdGhlciBjb3VudGVyIElFcyBnZXRzIGFkZGVkLgo+Pgo+PiBTaWduZWQtb2ZmLWJ5
+OiBKb2huIENyaXNwaW4gPGpvaG5AcGhyb3plbi5vcmc+Cj4+IC0tLQo+PiDCoGluY2x1ZGUvbmV0
+L21hYzgwMjExLmjCoMKgwqDCoCB8wqAgMjggKysrKysKPj4gwqBuZXQvbWFjODAyMTEvY2ZnLmPC
+oMKgwqDCoMKgwqDCoMKgIHwgMjI3ICsrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysr
+LS0KPj4gwqBuZXQvbWFjODAyMTEvaWVlZTgwMjExX2kuaCB8wqAgMTIgKysKPj4gwqBuZXQvbWFj
+ODAyMTEvaWZhY2UuY8KgwqDCoMKgwqDCoCB8wqDCoCAzICsKPj4gwqBuZXQvbWFjODAyMTEvdHgu
+Y8KgwqDCoMKgwqDCoMKgwqDCoCB8wqAgMjQgKystLQo+PiDCoDUgZmlsZXMgY2hhbmdlZCwgMjc2
+IGluc2VydGlvbnMoKyksIDE4IGRlbGV0aW9ucygtKQo+IC4uLgo+Pgo+PiArc3RhdGljIGludCBp
+ZWVlODAyMTFfY2NhX2ZpbmFsaXplKHN0cnVjdCBpZWVlODAyMTFfc3ViX2lmX2RhdGEgKnNkYXRh
+KQo+PiArewo+PiArwqDCoMKgIHN0cnVjdCBpZWVlODAyMTFfbG9jYWwgKmxvY2FsID0gc2RhdGEt
+PmxvY2FsOwo+PiArwqDCoMKgIHUzMiBjaGFuZ2VkID0gMDsKPj4gK8KgwqDCoCBpbnQgZXJyOwo+
+PiArCj4+ICvCoMKgwqAgc2RhdGFfYXNzZXJ0X2xvY2soc2RhdGEpOwo+PiArwqDCoMKgIGxvY2tk
+ZXBfYXNzZXJ0X2hlbGQoJmxvY2FsLT5tdHgpOwo+PiArCj4+ICvCoMKgwqAgc2RhdGEtPnZpZi5j
+Y2FfYWN0aXZlID0gZmFsc2U7Cj4+ICsKPj4gK8KgwqDCoCBlcnIgPSBpZWVlODAyMTFfc2V0X2Fm
+dGVyX2NjYV9iZWFjb24oc2RhdGEsICZjaGFuZ2VkKTsKPj4gK8KgwqDCoCBpZiAoZXJyKSB7Cj4+
+ICvCoMKgwqDCoMKgwqDCoCBjZmc4MDIxMV9jb2xvcl9jaGFuZ2VfYWJvcnRlZF9ub3RpZnkoc2Rh
+dGEtPmRldik7Cj4+ICvCoMKgwqDCoMKgwqDCoCByZXR1cm4gZXJyOwo+PiArwqDCoMKgIH0KPj4g
+Kwo+PiArwqDCoMKgIHNkYXRhLT52aWYuYnNzX2NvbmYuaGVfYnNzX2NvbG9yLmNvbG9yID0gc2Rh
+dGEtPnZpZi5jY2FfY29sb3I7Cj4+ICvCoMKgwqAgc2RhdGEtPnZpZi5ic3NfY29uZi5oZV9ic3Nf
+Y29sb3IuZW5hYmxlZCA9IDE7Cj4+ICvCoMKgwqAgY2hhbmdlZCB8PSBCU1NfQ0hBTkdFRF9IRV9C
+U1NfQ09MT1I7Cj4+ICsKPgo+IFdoeSB3ZSBhcmUgbm90IHVwZGF0aW5nIHRoZSBic3MgY29sb3Ig
+aW5mb3JtYXRpb24gaW4gaGVfb3Blci5wYXJhbXMuCj4gSU1ITyByZW1vdmUgdGhlIHJlZHVuZGFu
+dCBpbmZvcm1hdGlvbiBvZiBic3MgY29sb3IgaW4gdGhlICJzdHJ1Y3QgCj4gaWVlZTgwMjExX2Jz
+c19jb25mIiBieSByZW1vdmluZwo+IHRoZSBoZV9ic3NfY29sb3Igc2luY2UgaGVfb3Blci5wYXJh
+bXMgaG9sZHMgbW9yZSBpbmZvcm1hdGlvbiBpbiB1MzIgCj4gaXRzZWxmLgo+IFdoYXQgZG8geW91
+IHRoaW5rPwo+CnRoZSBoZV9vcGVyIGZpZWxkIGlzIGNvbnN0LCBzbyB3ZSBjYW5ub3QgZWFzaWx5
+IHVwZGF0ZSBpdC4gSW4gYW4gQVAgCnNldHVwIHRoZSBjb2xvciB2YWx1ZSB3aWxsIG9ubHkgYmUg
+dXNlZCBvbmNlIGR1cmluZyBzdGFydF9hcCgpIGFuZCAKdXBkYXRlZCB2aWEgZGVkaWNhdGVkIGJz
+c19jb2xvci9ic3NfY29uZmlnIGNoYW5nZSBub3RpZmljYXRpb24uCgppbiBTVEEgbW9yZGUgdGhl
+IHZhbHVlIGlzIGRlcml2ZWQgZnJvbSB0aGUgcmVtb3RlIGJlYWNvbiByeCBldmVudCAod2hpY2gg
+CmlzIHdoeSB3ZSB0cmVhdCBpdCBhcyBjb25zdC4KCmdlbmVyYWxseSB0aGUgYnNzX2NvbmZpZyBj
+aGFuZ2UgaXMgb25seSByZWxhdGVkIHRvIHRoZSBjb2xvciBhbmQgaGVuY2UgCnNob3VsZCBub3Qg
+ZG8gYSBjcm9zcyBsYXllciB0aGluZyB3aXRoIHRoZSBoZV9vcGVyIG1vZGUuCgogwqDCoMKgIEpv
+aG4KCgo+PiArIGllZWU4MDIxMV9ic3NfaW5mb19jaGFuZ2Vfbm90aWZ5KHNkYXRhLCBjaGFuZ2Vk
+KTsKPj4gKwo+PiArwqDCoMKgIGNmZzgwMjExX2NvbG9yX2NoYW5nZV9ub3RpZnkoc2RhdGEtPmRl
+dik7Cj4+ICsKPj4gK8KgwqDCoCByZXR1cm4gMDsKPj4gK30KPj4gKwo+PiArdm9pZCBpZWVlODAy
+MTFfY2NhX2ZpbmFsaXplX3dvcmsoc3RydWN0IHdvcmtfc3RydWN0ICp3b3JrKQo+PiArewo+PiAr
+wqDCoMKgIHN0cnVjdCBpZWVlODAyMTFfc3ViX2lmX2RhdGEgKnNkYXRhID0KPj4gK8KgwqDCoMKg
+wqDCoMKgIGNvbnRhaW5lcl9vZih3b3JrLCBzdHJ1Y3QgaWVlZTgwMjExX3N1Yl9pZl9kYXRhLAo+
+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY2NhX2ZpbmFsaXplX3dvcmspOwo+
+PiArwqDCoMKgIHN0cnVjdCBpZWVlODAyMTFfbG9jYWwgKmxvY2FsID0gc2RhdGEtPmxvY2FsOwo+
+PiArCj4+ICvCoMKgwqAgc2RhdGFfbG9jayhzZGF0YSk7Cj4+ICvCoMKgwqAgbXV0ZXhfbG9jaygm
+bG9jYWwtPm10eCk7Cj4+ICsKPj4gK8KgwqDCoCAvKiBBUCBtaWdodCBoYXZlIGJlZW4gc3RvcHBl
+ZCB3aGlsZSB3YWl0aW5nIGZvciB0aGUgbG9jay4gKi8KPj4gK8KgwqDCoCBpZiAoIXNkYXRhLT52
+aWYuY2NhX2FjdGl2ZSkKPj4gK8KgwqDCoMKgwqDCoMKgIGdvdG8gdW5sb2NrOwo+PiArCj4+ICvC
+oMKgwqAgaWYgKCFpZWVlODAyMTFfc2RhdGFfcnVubmluZyhzZGF0YSkpCj4+ICvCoMKgwqDCoMKg
+wqDCoCBnb3RvIHVubG9jazsKPj4gKwo+PiArwqDCoMKgIGllZWU4MDIxMV9jY2FfZmluYWxpemUo
+c2RhdGEpOwo+PiArCj4+ICt1bmxvY2s6Cj4+ICvCoMKgwqAgbXV0ZXhfdW5sb2NrKCZsb2NhbC0+
+bXR4KTsKPj4gK8KgwqDCoCBzZGF0YV91bmxvY2soc2RhdGEpOwo+PiArfQo+PiArCj4+ICt2b2lk
+IGllZWU4MDIxMV9jY2FfZmluaXNoKHN0cnVjdCBpZWVlODAyMTFfdmlmICp2aWYpCj4+ICt7Cj4+
+ICvCoMKgwqAgc3RydWN0IGllZWU4MDIxMV9zdWJfaWZfZGF0YSAqc2RhdGEgPSB2aWZfdG9fc2Rh
+dGEodmlmKTsKPj4gKwo+PiArwqDCoMKgIGllZWU4MDIxMV9xdWV1ZV93b3JrKCZzZGF0YS0+bG9j
+YWwtPmh3LAo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgJnNkYXRhLT5jY2Ff
+ZmluYWxpemVfd29yayk7Cj4+ICt9Cj4+ICtFWFBPUlRfU1lNQk9MX0dQTChpZWVlODAyMTFfY2Nh
+X2ZpbmlzaCk7Cj4+ICsKPj4gK3ZvaWQKPj4gK2llZWVlODAyMTFfb2Jzc19jb2xvcl9jb2xsaXNp
+b25fbm90aWZ5KHN0cnVjdCBpZWVlODAyMTFfdmlmICp2aWYsCj4+ICvCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB1NjQgY29sb3JfYml0bWFwKQo+PiArewo+PiAr
+wqDCoMKgIHN0cnVjdCBpZWVlODAyMTFfc3ViX2lmX2RhdGEgKnNkYXRhID0gdmlmX3RvX3NkYXRh
+KHZpZik7Cj4+ICsKPj4gK8KgwqDCoCBpZiAoc2RhdGEtPnZpZi5jY2FfYWN0aXZlIHx8IHNkYXRh
+LT52aWYuY3NhX2FjdGl2ZSkKPj4gK8KgwqDCoMKgwqDCoMKgIHJldHVybjsKPj4gKwo+PiArwqDC
+oMKgIGNmZzgwMjExX29ic3NfY29sb3JfY29sbGlzaW9uX25vdGlmeShzZGF0YS0+ZGV2LCBjb2xv
+cl9iaXRtYXApOwo+PiArfQo+PiArRVhQT1JUX1NZTUJPTF9HUEwoaWVlZWU4MDIxMV9vYnNzX2Nv
+bG9yX2NvbGxpc2lvbl9ub3RpZnkpOwo+PiArCj4+ICtzdGF0aWMgaW50Cj4+ICtfX2llZWU4MDIx
+MV9jb2xvcl9jaGFuZ2Uoc3RydWN0IHdpcGh5ICp3aXBoeSwgc3RydWN0IG5ldF9kZXZpY2UgKmRl
+diwKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBzdHJ1Y3QgY2ZnODAyMTFfY29sb3JfY2hh
+bmdlX3NldHRpbmdzICpwYXJhbXMpCj4+ICt7Cj4+ICvCoMKgwqAgc3RydWN0IGllZWU4MDIxMV9z
+dWJfaWZfZGF0YSAqc2RhdGEgPSBJRUVFODAyMTFfREVWX1RPX1NVQl9JRihkZXYpOwo+PiArwqDC
+oMKgIHN0cnVjdCBpZWVlODAyMTFfbG9jYWwgKmxvY2FsID0gc2RhdGEtPmxvY2FsOwo+PiArwqDC
+oMKgIHUzMiBjaGFuZ2VkID0gMDsKPj4gK8KgwqDCoCBpbnQgZXJyOwo+PiArCj4+ICvCoMKgwqAg
+c2RhdGFfYXNzZXJ0X2xvY2soc2RhdGEpOwo+PiArwqDCoMKgIGxvY2tkZXBfYXNzZXJ0X2hlbGQo
+JmxvY2FsLT5tdHgpOwo+PiArCj4+ICvCoMKgwqAgLyogZG9uJ3QgYWxsb3cgYW5vdGhlciBjb2xv
+ciBjaGFuZ2UgaWYgb25lIGlzIGFscmVhZHkgYWN0aXZlIG9yIAo+PiBpZiBjc2EKPj4gK8KgwqDC
+oMKgICogaXMgYWN0aXZlCj4+ICvCoMKgwqDCoCAqLwo+PiArwqDCoMKgIGlmIChzZGF0YS0+dmlm
+LmNjYV9hY3RpdmUgfHwgc2RhdGEtPnZpZi5jc2FfYWN0aXZlKQo+PiArwqDCoMKgwqDCoMKgwqAg
+cmV0dXJuIC1FQlVTWTsKPj4gKwo+PiArwqDCoMKgIGVyciA9IGllZWU4MDIxMV9zZXRfY2NhX2Jl
+YWNvbihzZGF0YSwgcGFyYW1zLCAmY2hhbmdlZCk7Cj4+ICvCoMKgwqAgaWYgKGVycikKPj4gK8Kg
+wqDCoMKgwqDCoMKgIHJldHVybiBlcnI7Cj4+ICsKPj4gK8KgwqDCoCBzZGF0YS0+dmlmLmNjYV9h
+Y3RpdmUgPSB0cnVlOwo+PiArwqDCoMKgIHNkYXRhLT52aWYuY2NhX2NvbG9yID0gcGFyYW1zLT5j
+b2xvcjsKPj4gKwo+PiArwqDCoMKgIGNmZzgwMjExX2NvbG9yX2NoYW5nZV9zdGFydGVkX25vdGlm
+eShzZGF0YS0+ZGV2LCBwYXJhbXMtPmNvdW50KTsKPj4gKwo+PiArwqDCoMKgIGlmIChjaGFuZ2Vk
+KSB7Cj4+ICvCoMKgwqDCoMKgwqDCoCBzZGF0YS0+dmlmLmJzc19jb25mLmhlX2Jzc19jb2xvci5l
+bmFibGVkID0gMDsKPj4gK8KgwqDCoMKgwqDCoMKgIGNoYW5nZWQgfD0gQlNTX0NIQU5HRURfSEVf
+QlNTX0NPTE9SOwo+Cj4gc2FtZSBoZXJlCj4KPj4gKyBpZWVlODAyMTFfYnNzX2luZm9fY2hhbmdl
+X25vdGlmeShzZGF0YSwgY2hhbmdlZCk7Cj4+ICvCoMKgwqAgfSBlbHNlIHsKPj4gK8KgwqDCoMKg
+wqDCoMKgIC8qIGlmIHRoZSBiZWFjb24gZGlkbid0IGNoYW5nZSwgd2UgY2FuIGZpbmFsaXplIGlt
+bWVkaWF0ZWx5ICovCj4+ICvCoMKgwqDCoMKgwqDCoCBpZWVlODAyMTFfY2NhX2ZpbmFsaXplKHNk
+YXRhKTsKPj4gK8KgwqDCoCB9Cj4+ICsKPj4gK8KgwqDCoCByZXR1cm4gMDsKPj4gK30KPgo+IFRo
+YW5rcwo+IEthcnRoaWtleWFuIFAKCi0tIAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0
+cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGlu
+Zm8vYXRoMTFrCg==
