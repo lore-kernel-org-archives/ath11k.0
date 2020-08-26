@@ -1,14 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail-lj1-x243.google.com ([2a00:1450:4864:20::243])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kB4LR-0000dd-1G
- for ath11k@lists.infradead.org; Wed, 26 Aug 2020 22:56:41 +0000
-Received: by mail-lj1-x243.google.com with SMTP id t6so4231895ljk.9
- for <ath11k@lists.infradead.org>; Wed, 26 Aug 2020 15:56:39 -0700 (PDT)
+ id 1kB4LW-0000ei-Jl
+ for ath11k@lists.infradead.org; Wed, 26 Aug 2020 22:56:47 +0000
+Received: by mail-lj1-x243.google.com with SMTP id w25so4221347ljo.12
+ for <ath11k@lists.infradead.org>; Wed, 26 Aug 2020 15:56:46 -0700 (PDT)
 From: Rikard Falkeborn <rikard.falkeborn@gmail.com>
-Subject: [PATCH net-next 0/6] drivers/net: constify static ops-variables
-Date: Thu, 27 Aug 2020 00:56:02 +0200
-Message-Id: <20200826225608.90299-1-rikard.falkeborn@gmail.com>
+Subject: [PATCH net-next 6/6] net: ath11k: constify ath11k_thermal_ops
+Date: Thu, 27 Aug 2020 00:56:08 +0200
+Message-Id: <20200826225608.90299-7-rikard.falkeborn@gmail.com>
+In-Reply-To: <20200826225608.90299-1-rikard.falkeborn@gmail.com>
+References: <20200826225608.90299-1-rikard.falkeborn@gmail.com>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -23,27 +25,30 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: "David S . Miller" <davem@davemloft.net>
-Cc: Andrew Lunn <andrew@lunn.ch>, Antoine Tenart <antoine.tenart@bootlin.com>, netdev@vger.kernel.org, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, Rikard Falkeborn <rikard.falkeborn@gmail.com>, Russell King <linux@armlinux.org.uk>, linux-renesas-soc@vger.kernel.org, Sergei Shtylyov <sergei.shtylyov@gmail.com>, Jakub Kicinski <kuba@kernel.org>, ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>, Heiner Kallweit <hkallweit1@gmail.com>
+Cc: netdev@vger.kernel.org, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, Rikard Falkeborn <rikard.falkeborn@gmail.com>, Jakub Kicinski <kuba@kernel.org>, ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>
 
-This series constifies a number of static ops variables, to allow the
-compiler to put them in read-only memory. Compile-tested only.
+The only usage of ath11k_thermal_ops is to pass its address to
+thermal_cooling_device_register() which takes a const pointer. Make it
+const to allow the compiler to put it in read-only memory.
 
-Rikard Falkeborn (6):
-  net: ethernet: qualcomm: constify qca_serdev_ops
-  net: ethernet: ravb: constify bb_ops
-  net: renesas: sh_eth: constify bb_ops
-  net: phy: at803x: constify static regulator_ops
-  net: phy: mscc: macsec: constify vsc8584_macsec_ops
-  net: ath11k: constify ath11k_thermal_ops
-
- drivers/net/ethernet/qualcomm/qca_uart.c  | 2 +-
- drivers/net/ethernet/renesas/ravb_main.c  | 2 +-
- drivers/net/ethernet/renesas/sh_eth.c     | 2 +-
- drivers/net/phy/at803x.c                  | 4 ++--
- drivers/net/phy/mscc/mscc_macsec.c        | 2 +-
+Signed-off-by: Rikard Falkeborn <rikard.falkeborn@gmail.com>
+---
  drivers/net/wireless/ath/ath11k/thermal.c | 2 +-
- 6 files changed, 7 insertions(+), 7 deletions(-)
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/drivers/net/wireless/ath/ath11k/thermal.c b/drivers/net/wireless/ath/ath11k/thermal.c
+index 5a7e150c621b..c96b26f39a25 100644
+--- a/drivers/net/wireless/ath/ath11k/thermal.c
++++ b/drivers/net/wireless/ath/ath11k/thermal.c
+@@ -53,7 +53,7 @@ ath11k_thermal_set_cur_throttle_state(struct thermal_cooling_device *cdev,
+ 	return ret;
+ }
+ 
+-static struct thermal_cooling_device_ops ath11k_thermal_ops = {
++static const struct thermal_cooling_device_ops ath11k_thermal_ops = {
+ 	.get_max_state = ath11k_thermal_get_max_throttle_state,
+ 	.get_cur_state = ath11k_thermal_get_cur_throttle_state,
+ 	.set_cur_state = ath11k_thermal_set_cur_throttle_state,
 -- 
 2.28.0
 
