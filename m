@@ -1,14 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kAZyI-0007IS-Eh
- for ath11k@lists.infradead.org; Tue, 25 Aug 2020 14:30:47 +0000
-Received: by mail-wr1-x441.google.com with SMTP id c15so12909220wrs.11
- for <ath11k@lists.infradead.org>; Tue, 25 Aug 2020 07:30:46 -0700 (PDT)
-From: Alex Dewar <alex.dewar90@gmail.com>
-Subject: [PATCH] ath11k: return error if firmware request fails
-Date: Tue, 25 Aug 2020 15:30:39 +0100
-Message-Id: <20200825143040.233619-1-alex.dewar90@gmail.com>
+ id 1kAoQi-0007Pg-4W
+ for ath11k@lists.infradead.org; Wed, 26 Aug 2020 05:57:05 +0000
+From: John Crispin <john@phrozen.org>
+Subject: [PATCH V5 1/5] nl80211: rename csa counter attributes countdown
+ counters
+Date: Wed, 26 Aug 2020 07:56:46 +0200
+Message-Id: <20200826055650.1101224-1-john@phrozen.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -22,80 +21,116 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-Cc: "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, Alex Dewar <alex.dewar90@gmail.com>, Jakub Kicinski <kuba@kernel.org>, ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>
+To: Johannes Berg <johannes@sipsolutions.net>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
 
-In ath11k_qmi_prepare_bdf_download(), ath11k_core_firmware_request() is
-called, but the returned pointer is not checked for errors. Rather the
-variable ret (which will always be zero) is checked by mistake. Fix
-this and replace the various gotos with simple returns for clarity.
+We want to reuse the attributes for other counters such as BSS color
+change. Rename them to more generic names.
 
-While we are at it, move the call to memset, as variable bd is not used
-on all code paths.
-
-Fixes: 7b57b2ddec21 ("ath11k: create a common function to request all firmware files")
-Signed-off-by: Alex Dewar <alex.dewar90@gmail.com>
+Signed-off-by: John Crispin <john@phrozen.org>
 ---
- drivers/net/wireless/ath/ath11k/qmi.c | 20 +++++++++-----------
- 1 file changed, 9 insertions(+), 11 deletions(-)
+ include/uapi/linux/nl80211.h | 14 ++++++++------
+ net/wireless/nl80211.c       | 16 ++++++++--------
+ 2 files changed, 16 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index 91134510364c..b906b50ee57e 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.c
-+++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -1868,16 +1868,16 @@ ath11k_qmi_prepare_bdf_download(struct ath11k_base *ab, int type,
- 	const struct firmware *fw_entry;
- 	struct ath11k_board_data bd;
- 	u32 fw_size;
--	int ret = 0;
--
--	memset(&bd, 0, sizeof(bd));
-+	int ret;
+diff --git a/include/uapi/linux/nl80211.h b/include/uapi/linux/nl80211.h
+index 631f3a997b3c..bccd16f743b9 100644
+--- a/include/uapi/linux/nl80211.h
++++ b/include/uapi/linux/nl80211.h
+@@ -2082,10 +2082,10 @@ enum nl80211_commands {
+  *	operation).
+  * @NL80211_ATTR_CSA_IES: Nested set of attributes containing the IE information
+  *	for the time while performing a channel switch.
+- * @NL80211_ATTR_CSA_C_OFF_BEACON: An array of offsets (u16) to the channel
+- *	switch counters in the beacons tail (%NL80211_ATTR_BEACON_TAIL).
+- * @NL80211_ATTR_CSA_C_OFF_PRESP: An array of offsets (u16) to the channel
+- *	switch counters in the probe response (%NL80211_ATTR_PROBE_RESP).
++ * @NL80211_ATTR_CNTDWN_OFFS_BEACON: An array of offsets (u16) to the channel
++ *	switch or color change counters in the beacons tail (%NL80211_ATTR_BEACON_TAIL).
++ * @NL80211_ATTR_CNTDWN_OFFS_PRESP: An array of offsets (u16) to the channel
++ *	switch or color change counters in the probe response (%NL80211_ATTR_PROBE_RESP).
+  *
+  * @NL80211_ATTR_RXMGMT_FLAGS: flags for nl80211_send_mgmt(), u32.
+  *	As specified in the &enum nl80211_rxmgmt_flags.
+@@ -2821,8 +2821,8 @@ enum nl80211_attrs {
+ 	NL80211_ATTR_CH_SWITCH_COUNT,
+ 	NL80211_ATTR_CH_SWITCH_BLOCK_TX,
+ 	NL80211_ATTR_CSA_IES,
+-	NL80211_ATTR_CSA_C_OFF_BEACON,
+-	NL80211_ATTR_CSA_C_OFF_PRESP,
++	NL80211_ATTR_CNTDWN_OFFS_BEACON,
++	NL80211_ATTR_CNTDWN_OFFS_PRESP,
  
- 	switch (type) {
- 	case ATH11K_QMI_FILE_TYPE_BDF_GOLDEN:
-+		memset(&bd, 0, sizeof(bd));
-+
- 		ret = ath11k_core_fetch_bdf(ab, &bd);
- 		if (ret) {
- 			ath11k_warn(ab, "qmi failed to load BDF\n");
--			goto out;
-+			return ret;
- 		}
+ 	NL80211_ATTR_RXMGMT_FLAGS,
  
- 		fw_size = min_t(u32, ab->hw_params.fw.board_size, bd.len);
-@@ -1886,10 +1886,11 @@ ath11k_qmi_prepare_bdf_download(struct ath11k_base *ab, int type,
- 		break;
- 	case ATH11K_QMI_FILE_TYPE_CALDATA:
- 		fw_entry = ath11k_core_firmware_request(ab, ATH11K_DEFAULT_CAL_FILE);
--		if (ret) {
-+		if (IS_ERR(fw_entry)) {
-+			ret = PTR_ERR(fw_entry);
- 			ath11k_warn(ab, "failed to load %s: %d\n",
- 				    ATH11K_DEFAULT_CAL_FILE, ret);
--			goto out;
-+			return ret;
- 		}
+@@ -3009,6 +3009,8 @@ enum nl80211_attrs {
+ #define	NL80211_ATTR_MESH_PARAMS NL80211_ATTR_MESH_CONFIG
+ #define NL80211_ATTR_IFACE_SOCKET_OWNER NL80211_ATTR_SOCKET_OWNER
+ #define NL80211_ATTR_SAE_DATA NL80211_ATTR_AUTH_DATA
++#define NL80211_ATTR_CSA_C_OFF_BEACON NL80211_ATTR_CNTDWN_OFFS_BEACON
++#define NL80211_ATTR_CSA_C_OFF_PRESP NL80211_ATTR_CNTDWN_OFFS_PRESP
  
- 		fw_size = min_t(u32, ab->hw_params.fw.board_size,
-@@ -1901,14 +1902,11 @@ ath11k_qmi_prepare_bdf_download(struct ath11k_base *ab, int type,
- 		release_firmware(fw_entry);
- 		break;
- 	default:
--		ret = -EINVAL;
--		goto out;
-+		return -EINVAL;
+ /*
+  * Allow user space programs to use #ifdef on new attributes by defining them
+diff --git a/net/wireless/nl80211.c b/net/wireless/nl80211.c
+index 814e23d3ce7c..e41fcec7c306 100644
+--- a/net/wireless/nl80211.c
++++ b/net/wireless/nl80211.c
+@@ -567,8 +567,8 @@ static const struct nla_policy nl80211_policy[NUM_NL80211_ATTR] = {
+ 	[NL80211_ATTR_CH_SWITCH_COUNT] = { .type = NLA_U32 },
+ 	[NL80211_ATTR_CH_SWITCH_BLOCK_TX] = { .type = NLA_FLAG },
+ 	[NL80211_ATTR_CSA_IES] = { .type = NLA_NESTED },
+-	[NL80211_ATTR_CSA_C_OFF_BEACON] = { .type = NLA_BINARY },
+-	[NL80211_ATTR_CSA_C_OFF_PRESP] = { .type = NLA_BINARY },
++	[NL80211_ATTR_CNTDWN_OFFS_BEACON] = { .type = NLA_BINARY },
++	[NL80211_ATTR_CNTDWN_OFFS_PRESP] = { .type = NLA_BINARY },
+ 	[NL80211_ATTR_STA_SUPPORTED_CHANNELS] = { .type = NLA_BINARY },
+ 	[NL80211_ATTR_STA_SUPPORTED_OPER_CLASSES] = { .type = NLA_BINARY },
+ 	[NL80211_ATTR_HANDLE_DFS] = { .type = NLA_FLAG },
+@@ -8787,10 +8787,10 @@ static int nl80211_channel_switch(struct sk_buff *skb, struct genl_info *info)
+ 	if (err)
+ 		return err;
+ 
+-	if (!csa_attrs[NL80211_ATTR_CSA_C_OFF_BEACON])
++	if (!csa_attrs[NL80211_ATTR_CNTDWN_OFFS_BEACON])
+ 		return -EINVAL;
+ 
+-	len = nla_len(csa_attrs[NL80211_ATTR_CSA_C_OFF_BEACON]);
++	len = nla_len(csa_attrs[NL80211_ATTR_CNTDWN_OFFS_BEACON]);
+ 	if (!len || (len % sizeof(u16)))
+ 		return -EINVAL;
+ 
+@@ -8801,7 +8801,7 @@ static int nl80211_channel_switch(struct sk_buff *skb, struct genl_info *info)
+ 		return -EINVAL;
+ 
+ 	params.counter_offsets_beacon =
+-		nla_data(csa_attrs[NL80211_ATTR_CSA_C_OFF_BEACON]);
++		nla_data(csa_attrs[NL80211_ATTR_CNTDWN_OFFS_BEACON]);
+ 
+ 	/* sanity checks - counters should fit and be the same */
+ 	for (i = 0; i < params.n_counter_offsets_beacon; i++) {
+@@ -8814,8 +8814,8 @@ static int nl80211_channel_switch(struct sk_buff *skb, struct genl_info *info)
+ 			return -EINVAL;
  	}
  
- 	req->total_size = fw_size;
--
--out:
--	return ret;
-+	return 0;
- }
+-	if (csa_attrs[NL80211_ATTR_CSA_C_OFF_PRESP]) {
+-		len = nla_len(csa_attrs[NL80211_ATTR_CSA_C_OFF_PRESP]);
++	if (csa_attrs[NL80211_ATTR_CNTDWN_OFFS_PRESP]) {
++		len = nla_len(csa_attrs[NL80211_ATTR_CNTDWN_OFFS_PRESP]);
+ 		if (!len || (len % sizeof(u16)))
+ 			return -EINVAL;
  
- static int ath11k_qmi_load_bdf_fixed_addr(struct ath11k_base *ab)
+@@ -8826,7 +8826,7 @@ static int nl80211_channel_switch(struct sk_buff *skb, struct genl_info *info)
+ 			return -EINVAL;
+ 
+ 		params.counter_offsets_presp =
+-			nla_data(csa_attrs[NL80211_ATTR_CSA_C_OFF_PRESP]);
++			nla_data(csa_attrs[NL80211_ATTR_CNTDWN_OFFS_PRESP]);
+ 
+ 		/* sanity checks - counters should fit and be the same */
+ 		for (i = 0; i < params.n_counter_offsets_presp; i++) {
 -- 
-2.28.0
+2.25.1
 
 
 -- 
