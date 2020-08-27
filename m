@@ -2,17 +2,17 @@ Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
  helo=sipsolutions.net)
  by casper.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kBGxW-00022J-Ho
- for ath11k@lists.infradead.org; Thu, 27 Aug 2020 12:24:52 +0000
-Message-ID: <c5b79f189345b0fccbe797a8ed158dcae30fdd10.camel@sipsolutions.net>
-Subject: Re: [PATCH V5 3/5] nl80211: add support for BSS coloring
+ id 1kBGz2-0002DC-Oe
+ for ath11k@lists.infradead.org; Thu, 27 Aug 2020 12:26:26 +0000
+Message-ID: <61219c725630447e832839196e20eb433723ed49.camel@sipsolutions.net>
+Subject: Re: [PATCH V5 4/5] mac80211: add support for BSS coloring
 From: Johannes Berg <johannes@sipsolutions.net>
-Date: Thu, 27 Aug 2020 14:24:45 +0200
-In-Reply-To: <20200826055650.1101224-3-john@phrozen.org>
- (sfid-20200826_075709_238174_DD905459)
+Date: Thu, 27 Aug 2020 14:26:18 +0200
+In-Reply-To: <20200826055650.1101224-4-john@phrozen.org>
+ (sfid-20200826_075710_318035_1DE9E6C8)
 References: <20200826055650.1101224-1-john@phrozen.org>
- <20200826055650.1101224-3-john@phrozen.org>
- (sfid-20200826_075709_238174_DD905459)
+ <20200826055650.1101224-4-john@phrozen.org>
+ (sfid-20200826_075710_318035_1DE9E6C8)
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -30,20 +30,26 @@ To: John Crispin <john@phrozen.org>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
 
-> +	if (info->attrs[NL80211_ATTR_CNTDWN_OFFS_PRESP]) {
-> +		params.counter_offset_presp =
-> +			nla_get_u16(info->attrs[NL80211_ATTR_CNTDWN_OFFS_PRESP]);
+> + * @color_change_active: marks whether a color change is going on. Internally it is
+> + *	write-protected by sdata_lock and local->mtx so holding either is fine
+> + *	for read access.
+> 
 
-You need to check the attribute size here, apparently only exactly a
-single counter is supported.
+I started fixing up things like that but then I got annoyed and gave up
+...
 
-I'm not really sure *why* though - wouldn't be that much more difficult
-to add support for an arbitrary number in mac80211?
+Just because checkpatch no longer warns on >80 columns that doesn't mean
+it's suddenly completely acceptable to write very long lines. In flowed
+text like this, it's much nicer to have shorter lines, and long lines
+are just arbitrary.
 
-Either way this is missing a check.
+That's actually in quite a few places in this patch - comments, function
+arguments, etc.
+
+Nothing against going over 80 where that makes the code more readable,
+but long lines for flowed text are *less* readable.
 
 johannes
-
 
 
 -- 
