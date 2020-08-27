@@ -1,16 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from m43-7.mailgun.net ([69.72.43.7])
+Received: from mail29.static.mailgun.info ([104.130.122.29])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kBExh-0005ZW-44
- for ath11k@lists.infradead.org; Thu, 27 Aug 2020 10:16:56 +0000
+ id 1kBF0f-0005zi-TR
+ for ath11k@lists.infradead.org; Thu, 27 Aug 2020 10:20:03 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH 02/16] wireless: ath9k: convert tasklets to use new
- tasklet_setup() API
+Subject: Re: [PATCH] ath11k: return error if firmware request fails
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <20200817090637.26887-3-allen.cryptic@gmail.com>
-References: <20200817090637.26887-3-allen.cryptic@gmail.com>
-Message-Id: <20200827101640.74F89C433CB@smtp.codeaurora.org>
-Date: Thu, 27 Aug 2020 10:16:39 +0000 (UTC)
+In-Reply-To: <20200825143040.233619-1-alex.dewar90@gmail.com>
+References: <20200825143040.233619-1-alex.dewar90@gmail.com>
+Message-Id: <20200827101903.69E95C433A1@smtp.codeaurora.org>
+Date: Thu, 27 Aug 2020 10:19:03 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,26 +22,29 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Allen Pais <allen.cryptic@gmail.com>
-Cc: Allen Pais <allen.lkml@gmail.com>, chunkeey@googlemail.com, jirislaby@kernel.org, brcm80211-dev-list@cypress.com, pkshih@realtek.com, b43-dev@lists.infradead.org, dsd@gentoo.org, ath11k@lists.infradead.org, kune@deine-taler.de, mickflemm@gmail.com, keescook@chromium.org, kuba@kernel.org, brcm80211-dev-list.pdl@broadcom.com, yhchuang@realtek.com, netdev@vger.kernel.org, helmut.schaa@googlemail.com, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, mcgrof@kernel.org, stas.yakovlev@gmail.com, Romain Perier <romain.perier@gmail.com>, Larry.Finger@lwfinger.net
+To: Alex Dewar <alex.dewar90@gmail.com>
+Cc: "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>, ath11k@lists.infradead.org
 
-Allen Pais <allen.cryptic@gmail.com> wrote:
+Alex Dewar <alex.dewar90@gmail.com> wrote:
 
-> In preparation for unconditionally passing the
-> struct tasklet_struct pointer to all tasklet
-> callbacks, switch to using the new tasklet_setup()
-> and from_tasklet() to pass the tasklet pointer explicitly.
+> In ath11k_qmi_prepare_bdf_download(), ath11k_core_firmware_request() is
+> called, but the returned pointer is not checked for errors. Rather the
+> variable ret (which will always be zero) is checked by mistake. Fix
+> this and replace the various gotos with simple returns for clarity.
 > 
-> Signed-off-by: Romain Perier <romain.perier@gmail.com>
-> Signed-off-by: Allen Pais <allen.lkml@gmail.com>
+> While we are at it, move the call to memset, as variable bd is not used
+> on all code paths.
+> 
+> Fixes: 7b57b2ddec21 ("ath11k: create a common function to request all firmware files")
+> Signed-off-by: Alex Dewar <alex.dewar90@gmail.com>
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
 Patch applied to ath-next branch of ath.git, thanks.
 
-f91a35b46af0 ath9k: convert tasklets to use new tasklet_setup() API
+342b6194a75b ath11k: return error if firmware request fails
 
 -- 
-https://patchwork.kernel.org/patch/11717397/
+https://patchwork.kernel.org/patch/11735787/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
