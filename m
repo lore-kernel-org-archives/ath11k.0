@@ -2,12 +2,12 @@ Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
  helo=sipsolutions.net)
  by casper.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kBGz2-0002DC-Oe
- for ath11k@lists.infradead.org; Thu, 27 Aug 2020 12:26:26 +0000
-Message-ID: <61219c725630447e832839196e20eb433723ed49.camel@sipsolutions.net>
+ id 1kBH24-0002Jp-AH
+ for ath11k@lists.infradead.org; Thu, 27 Aug 2020 12:29:34 +0000
+Message-ID: <3f8502b5e185e2d21fe50d9039524d0dc30a0d14.camel@sipsolutions.net>
 Subject: Re: [PATCH V5 4/5] mac80211: add support for BSS coloring
 From: Johannes Berg <johannes@sipsolutions.net>
-Date: Thu, 27 Aug 2020 14:26:18 +0200
+Date: Thu, 27 Aug 2020 14:29:26 +0200
 In-Reply-To: <20200826055650.1101224-4-john@phrozen.org>
  (sfid-20200826_075710_318035_1DE9E6C8)
 References: <20200826055650.1101224-1-john@phrozen.org>
@@ -29,25 +29,18 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: John Crispin <john@phrozen.org>
 Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-
-> + * @color_change_active: marks whether a color change is going on. Internally it is
-> + *	write-protected by sdata_lock and local->mtx so holding either is fine
-> + *	for read access.
+On Wed, 2020-08-26 at 07:56 +0200, John Crispin wrote:
 > 
+> +	INIT_WORK(&sdata->color_change_finalize_work, ieee80211_color_change_finalize_work);
 
-I started fixing up things like that but then I got annoyed and gave up
-...
+Here, for example.
 
-Just because checkpatch no longer warns on >80 columns that doesn't mean
-it's suddenly completely acceptable to write very long lines. In flowed
-text like this, it's much nicer to have shorter lines, and long lines
-are just arbitrary.
+But that wasn't why I replied again.
 
-That's actually in quite a few places in this patch - comments, function
-arguments, etc.
+Do we really need a separate work? We already make quite a few
+assumptions about this not happening in parallel with CSA, and so it
+seems we could even reuse this bit of the code?
 
-Nothing against going over 80 where that makes the code more readable,
-but long lines for flowed text are *less* readable.
 
 johannes
 
