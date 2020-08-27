@@ -2,13 +2,13 @@ Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
  helo=sipsolutions.net)
  by casper.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kBHZU-0004MI-Lh
- for ath11k@lists.infradead.org; Thu, 27 Aug 2020 13:04:06 +0000
-Message-ID: <f74dcc5216cc5a9b14033ce3741216e8bdb88dbe.camel@sipsolutions.net>
+ id 1kBHdv-0004io-QJ
+ for ath11k@lists.infradead.org; Thu, 27 Aug 2020 13:08:42 +0000
+Message-ID: <2f1de2e5672f1516ac1d94520f54b00153fd24f3.camel@sipsolutions.net>
 Subject: Re: [PATCH V3 2/9] mac80211: add multiple bssid support to
  interface handling
 From: Johannes Berg <johannes@sipsolutions.net>
-Date: Thu, 27 Aug 2020 15:03:55 +0200
+Date: Thu, 27 Aug 2020 15:08:33 +0200
 In-Reply-To: <20200812150050.2683396-3-john@phrozen.org>
 References: <20200812150050.2683396-1-john@phrozen.org>
  <20200812150050.2683396-3-john@phrozen.org>
@@ -32,14 +32,54 @@ Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 > +	struct {
 > +		struct ieee80211_vif *parent;
 > +		struct list_head list;
+> +		bool non_transmitted;
+> +	} multiple_bssid;
 
-Is there a lot of value in having a separate list, vs. iterating all
-interfaces and checking the parent pointer?
+Oh, and also - surely parent isn't set for the transmitted BSSID, so the
+bool non_transmitted is redundant? It's basically the same as !!parent?
 
-And exposing the list to the driver seems like a bad idea anyway, they
-can't really get locking right.
+Which also applies at the cfg80211 level.
 
-(to be continued, mail client is acting up)
+> +static int ieee80211_set_multiple_bssid_options(struct ieee80211_sub_if_data *sdata,
+> +						struct vif_params *params)
+> +{
+> +	struct ieee80211_local *local = sdata->local;
+> +	struct wiphy *wiphy = local->hw.wiphy;
+> +	struct net_device *parent;
+> +	struct ieee80211_sub_if_data *psdata;
+> +
+> +	if (!ieee80211_hw_check(&local->hw, SUPPORTS_MULTI_BSSID_AP))
+> +		return 0;
+
+That was probably meant to be an error? Otherwise the function can be
+void.
+
+> +++ b/net/mac80211/iface.c
+> @@ -810,6 +810,13 @@ static void ieee80211_do_stop(struct ieee80211_sub_if_data *sdata,
+>  	bool cancel_scan;
+>  	struct cfg80211_nan_func *func;
+>  
+> +	if (sdata->vif.type == NL80211_IFTYPE_AP &&
+> +	    sdata->vif.multiple_bssid.non_transmitted)
+> +		/* make sure the parent is already down */
+> +		if (sdata->vif.multiple_bssid.parent &&
+> +		    ieee80211_sdata_running(vif_to_sdata(sdata->vif.multiple_bssid.parent)))
+> +			dev_close(vif_to_sdata(sdata->vif.multiple_bssid.parent)->wdev.netdev);
+> +
+> 
+
+This is nice but somewhere you also need to actually NULL the pointer.
+As it is now, it seems you could set up two interfaces, say
+
+wlan_nontx
+wlan_tx
+
+then ifup both, then delete wlan_tx (forcing wlan_nontx down) and then
+set wlan_nontx back up and back down or whatever, but the parent pointer
+wasn't cleared so ... bad things will happen?
+
+Maybe this stuff could even happen at the cfg80211 level? Might be
+useful for others too.
 
 johannes
 
