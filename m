@@ -1,16 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail29.static.mailgun.info ([104.130.122.29])
+Received: from m43-7.mailgun.net ([69.72.43.7])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kBEwh-00054R-Et
- for ath11k@lists.infradead.org; Thu, 27 Aug 2020 10:15:54 +0000
+ id 1kBExh-0005ZW-44
+ for ath11k@lists.infradead.org; Thu, 27 Aug 2020 10:16:56 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH 01/16] wireless: ath5k: convert tasklets to use new
+Subject: Re: [PATCH 02/16] wireless: ath9k: convert tasklets to use new
  tasklet_setup() API
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <20200817090637.26887-2-allen.cryptic@gmail.com>
-References: <20200817090637.26887-2-allen.cryptic@gmail.com>
-Message-Id: <20200827101541.23AA0C433AF@smtp.codeaurora.org>
-Date: Thu, 27 Aug 2020 10:15:40 +0000 (UTC)
+In-Reply-To: <20200817090637.26887-3-allen.cryptic@gmail.com>
+References: <20200817090637.26887-3-allen.cryptic@gmail.com>
+Message-Id: <20200827101640.74F89C433CB@smtp.codeaurora.org>
+Date: Thu, 27 Aug 2020 10:16:39 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -39,10 +39,10 @@ Allen Pais <allen.cryptic@gmail.com> wrote:
 
 Patch applied to ath-next branch of ath.git, thanks.
 
-c068a9ec3c94 ath5k: convert tasklets to use new tasklet_setup() API
+f91a35b46af0 ath9k: convert tasklets to use new tasklet_setup() API
 
 -- 
-https://patchwork.kernel.org/patch/11717393/
+https://patchwork.kernel.org/patch/11717397/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
