@@ -2,12 +2,12 @@ Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail2.candelatech.com ([208.74.158.173]
  helo=mail3.candelatech.com)
  by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kDsxv-0001ng-HX
- for ath11k@lists.infradead.org; Thu, 03 Sep 2020 17:24:05 +0000
+ id 1kDvI2-0000iF-3t
+ for ath11k@lists.infradead.org; Thu, 03 Sep 2020 19:52:58 +0000
 From: greearb@candelatech.com
-Subject: [PATCH] ath11k:  Allow debugfs to work with 2+ radios installed.
-Date: Thu,  3 Sep 2020 10:23:59 -0700
-Message-Id: <20200903172359.29199-1-greearb@candelatech.com>
+Subject: [PATCH] ath11k:  Fix napi related hang
+Date: Thu,  3 Sep 2020 12:52:54 -0700
+Message-Id: <20200903195254.29379-1-greearb@candelatech.com>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -26,85 +26,100 @@ Cc: Ben Greear <greearb@candelatech.com>, linux-wireless@vger.kernel.org
 
 From: Ben Greear <greearb@candelatech.com>
 
-The code is trying to create an ath11k directory on debugfs
-root, but that fails when there is a second radio (and thus
-second instance of the driver).
+Similar to the same bug in ath10k, a napi disable w/out it being enabled
+will hang forever.  I believe I saw this while trying rmmod after driver
+had some failure on startup.  Fix it by keeping state on whether napi is
+enabled or not.
 
-Work around this by finding a free name.  This may fall into
-the HACK category, I'm not really sure what the original design
-is supposed to accomplish.
+And, remove un-used napi pointer in ath10k driver base struct.
 
 Signed-off-by: Ben Greear <greearb@candelatech.com>
 ---
+ drivers/net/wireless/ath/ath11k/ahb.c  | 12 +++++++++---
+ drivers/net/wireless/ath/ath11k/core.h |  2 +-
+ drivers/net/wireless/ath/ath11k/pci.c  | 12 +++++++++---
+ 3 files changed, 19 insertions(+), 7 deletions(-)
 
-NOTE:  A second radio still does not get far enough to fully boot
-the NIC and create a phy* device, but at least system doesn't crash
-hard now.
-
- drivers/net/wireless/ath/ath11k/core.h  |  5 +++--
- drivers/net/wireless/ath/ath11k/debug.c | 23 ++++++++++++++++-------
- 2 files changed, 19 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index bb22b41fefaa..858dfc700d54 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -707,8 +707,9 @@ struct ath11k_base {
- 	/* Current DFS Regulatory */
- 	enum ath11k_dfs_region dfs_region;
- #ifdef CONFIG_ATH11K_DEBUGFS
--	struct dentry *debugfs_soc;
--	struct dentry *debugfs_ath11k;
-+	struct dentry *debugfs_soc; /* child of debugfs_ath11k */
-+	char debugfs_ath11k_fname[36];
-+	struct dentry *debugfs_ath11k; /* per driver instance */
- #endif
- 	struct ath11k_soc_dp_stats soc_stats;
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+index 6380d48e013d7..e667f5f0a0686 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.c
++++ b/drivers/net/wireless/ath/ath11k/ahb.c
+@@ -411,8 +411,11 @@ static void __ath11k_ahb_ext_irq_disable(struct ath11k_base *ab)
  
-diff --git a/drivers/net/wireless/ath/ath11k/debug.c b/drivers/net/wireless/ath/ath11k/debug.c
-index 31978ef9144e..70b4c4837879 100644
---- a/drivers/net/wireless/ath/ath11k/debug.c
-+++ b/drivers/net/wireless/ath/ath11k/debug.c
-@@ -1011,15 +1011,24 @@ void ath11k_debug_pdev_destroy(struct ath11k_base *ab)
+ 		ath11k_ahb_ext_grp_disable(irq_grp);
  
- int ath11k_debug_soc_create(struct ath11k_base *ab)
- {
--	ab->debugfs_ath11k = debugfs_create_dir("ath11k", NULL);
-+	/* We need one of these per driver instance, try until we find an un-used name */
-+	int i;
- 
--	if (IS_ERR_OR_NULL(ab->debugfs_ath11k)) {
--		if (IS_ERR(ab->debugfs_ath11k))
--			return PTR_ERR(ab->debugfs_ath11k);
--		return -ENOMEM;
-+	for (i = 0; i<99; i++) {
-+		snprintf(ab->debugfs_ath11k_fname, sizeof(ab->debugfs_ath11k_fname), "ath11k-%d", i);
-+		ab->debugfs_ath11k = debugfs_create_dir(ab->debugfs_ath11k_fname, NULL);
-+
-+		if (!IS_ERR_OR_NULL(ab->debugfs_ath11k)) {
-+			return 0;
+-		napi_synchronize(&irq_grp->napi);
+-		napi_disable(&irq_grp->napi);
++		if (irq_grp->napi_enabled) {
++			napi_synchronize(&irq_grp->napi);
++			napi_disable(&irq_grp->napi);
++			irq_grp->napi_enabled = false;
 +		}
  	}
- 
--	return 0;
-+	/* Couldn't create one */
-+	ab->debugfs_ath11k_fname[0] = 0;
-+
-+	if (IS_ERR(ab->debugfs_ath11k))
-+		return PTR_ERR(ab->debugfs_ath11k);
-+	return -ENOMEM;
  }
  
- void ath11k_debug_soc_destroy(struct ath11k_base *ab)
-@@ -1228,7 +1237,7 @@ int ath11k_debug_register(struct ath11k *ar)
+@@ -536,7 +539,10 @@ static void ath11k_ahb_ext_irq_enable(struct ath11k_base *ab)
+ 	for (i = 0; i < ATH11K_EXT_IRQ_GRP_NUM_MAX; i++) {
+ 		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
+ 
+-		napi_enable(&irq_grp->napi);
++		if (!irq_grp->napi_enabled) {
++			napi_enable(&irq_grp->napi);
++			irq_grp->napi_enabled = true;
++		}
+ 		ath11k_ahb_ext_grp_enable(irq_grp);
  	}
+ }
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index 858dfc700d54c..ac03c9c0f07ef 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -111,6 +111,7 @@ struct ath11k_ext_irq_grp {
+ 	u32 num_irq;
+ 	u32 grp_id;
+ 	u64 timestamp;
++	bool napi_enabled;
+ 	struct napi_struct napi;
+ 	struct net_device napi_ndev;
+ };
+@@ -674,7 +675,6 @@ struct ath11k_base {
+ 	u32 wlan_init_status;
+ 	int irq_num[ATH11K_IRQ_NUM_MAX];
+ 	struct ath11k_ext_irq_grp ext_irq_grp[ATH11K_EXT_IRQ_GRP_NUM_MAX];
+-	struct napi_struct *napi;
+ 	struct ath11k_targ_cap target_caps;
+ 	u32 ext_service_bitmap[WMI_SERVICE_EXT_BM_SIZE];
+ 	bool pdevs_macaddr_valid;
+diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
+index b3f1c6659f419..1e2fc8932a66e 100644
+--- a/drivers/net/wireless/ath/ath11k/pci.c
++++ b/drivers/net/wireless/ath/ath11k/pci.c
+@@ -569,8 +569,11 @@ static void __ath11k_pci_ext_irq_disable(struct ath11k_base *sc)
  
- 	/* Create a symlink under ieee80211/phy* */
--	snprintf(buf, 100, "../../ath11k/%pd2", ar->debug.debugfs_pdev);
-+	snprintf(buf, 100, "../../%s/%pd2", ab->debugfs_ath11k_fname, ar->debug.debugfs_pdev);
- 	debugfs_create_symlink("ath11k", ar->hw->wiphy->debugfsdir, buf);
+ 		ath11k_pci_ext_grp_disable(irq_grp);
  
- 	ath11k_debug_htt_stats_init(ar);
+-		napi_synchronize(&irq_grp->napi);
+-		napi_disable(&irq_grp->napi);
++		if (irq_grp->napi_enabled) {
++			napi_synchronize(&irq_grp->napi);
++			napi_disable(&irq_grp->napi);
++			irq_grp->napi_enabled = false;
++		}
+ 	}
+ }
+ 
+@@ -589,7 +592,10 @@ static void ath11k_pci_ext_irq_enable(struct ath11k_base *ab)
+ 	for (i = 0; i < ATH11K_EXT_IRQ_GRP_NUM_MAX; i++) {
+ 		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
+ 
+-		napi_enable(&irq_grp->napi);
++		if (!irq_grp->napi_enabled) {
++			napi_enable(&irq_grp->napi);
++			irq_grp->napi_enabled = true;
++		}
+ 		ath11k_pci_ext_grp_enable(irq_grp);
+ 	}
+ }
 -- 
 2.26.2
 
