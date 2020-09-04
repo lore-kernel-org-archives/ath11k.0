@@ -1,17 +1,20 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from a27-185.smtp-out.us-west-2.amazonses.com ([54.240.27.185])
- by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kEEto-00046S-GZ
- for ath11k@lists.infradead.org; Fri, 04 Sep 2020 16:49:17 +0000
-MIME-Version: 1.0
-Date: Fri, 4 Sep 2020 16:49:13 +0000
-From: akolli@codeaurora.org
+Received: from mail2.candelatech.com ([208.74.158.173]
+ helo=mail3.candelatech.com)
+ by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1kEF1v-0004rv-6A
+ for ath11k@lists.infradead.org; Fri, 04 Sep 2020 16:57:40 +0000
 Subject: Re: [PATCH] ath11k: Allow debugfs to work with 2+ radios installed.
-In-Reply-To: <d450eb2d-5c2d-c432-2cd5-b3121c7d27d4@candelatech.com>
 References: <20200903172359.29199-1-greearb@candelatech.com>
  <0101017459a1d409-4d95a8e1-d404-4fba-a25d-b2e3075947e0-000000@us-west-2.amazonses.com>
  <d450eb2d-5c2d-c432-2cd5-b3121c7d27d4@candelatech.com>
-Message-ID: <010101745a05a2b8-94b1cbf4-51b0-4bbe-bbf9-5abfa0c2dce0-000000@us-west-2.amazonses.com>
+ <010101745a05a2fb-24c8bde9-c898-4d53-9416-b48a764f907b-000000@us-west-2.amazonses.com>
+From: Ben Greear <greearb@candelatech.com>
+Message-ID: <b6e833c1-dc07-c29e-7111-b5c915fc6567@candelatech.com>
+Date: Fri, 4 Sep 2020 09:57:33 -0700
+MIME-Version: 1.0
+In-Reply-To: <010101745a05a2fb-24c8bde9-c898-4d53-9416-b48a764f907b-000000@us-west-2.amazonses.com>
+Content-Language: en-MW
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -20,85 +23,62 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Ben Greear <greearb@candelatech.com>
+To: akolli@codeaurora.org
 Cc: linux-wireless-owner@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-On 2020-09-04 21:04, Ben Greear wrote:
-> On 9/4/20 8:00 AM, akolli@codeaurora.org wrote:
->> On 2020-09-03 22:53, greearb@candelatech.com wrote:
->>> From: Ben Greear <greearb@candelatech.com>
->>> 
->>> The code is trying to create an ath11k directory on debugfs
->>> root, but that fails when there is a second radio (and thus
->>> second instance of the driver).
->>> 
->> 
->> Hi Ben,
->> 
->> IPQ8074 is soc and it does not need second debugfs entry, its on AHB.
->> QCA6390 is a pci card and multiple debug entries are needed if 
->> multiple cards are available,
->> I am planning to post a patch with bus specific abstraction function 
->> which creates single debugfs for soc based radios and multiple entries 
->> for PCI based radios.
->> 
->> AHB:
->> debugfs/ath11k/IPQ8074/
->> 
->> PCI
->> debugfs/ath11k/QCA6390_0001:01:00.0/
->> debugfs/ath11k/QCA6390_0000:01:00.0/
-> 
-> I appreciate your feedback on this!
-> 
-> Why not just stick with the way ath10k does, having the ath11k debugfs 
-> entry be
-> under the phy debugfs directory?
-> 
-> Maybe there is a high-level design document for the ath11k driver 
-> somewhere that
-> explains how and why it is architected with the ath11k base object
-> holding multiple
-> phy objects?
-> 
-
-The initial ath11k driver was supporting IPQ8074, its an SOC and has 
-3-radios under wifi0,
-- few entries in debugfs are common for SOC,all these are under
-       debugfs/ath11k/IPQ8074/
-           "simulate_fw_crash"
-           "soc_dp_stats"
-- few entries are per radio, these are under
-       debugfs/ath11k/IPQ8074/mac0/
-             "ext_tx_stats"
-             "ext_rx_stats"
-             "pktlog_filter"
-       debugfs/ath11k/IPQ8074/mac1
-             "ext_tx_stats"
-             "ext_rx_stats"
-             "pktlog_filter"
-       debugfs/ath11k/IPQ8074/mac2
-             "ext_tx_stats"
-             "ext_rx_stats"
-             "pktlog_filter"
-
-> And, very curious to know if you are able to get multiple QCA6390 NICs
-> running on the
-> same system, I'm seeing all sort of problems including NICs not always
-> showing up in lspci
-> and such.
-> 
-I am not aware of this, like to understand the output of, qrtr-lookup 
-cmd
-
-Thanks
-Anil
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+T24gOS80LzIwIDk6NDkgQU0sIGFrb2xsaUBjb2RlYXVyb3JhLm9yZyB3cm90ZToKPiBPbiAyMDIw
+LTA5LTA0IDIxOjA0LCBCZW4gR3JlZWFyIHdyb3RlOgo+PiBPbiA5LzQvMjAgODowMCBBTSwgYWtv
+bGxpQGNvZGVhdXJvcmEub3JnIHdyb3RlOgo+Pj4gT24gMjAyMC0wOS0wMyAyMjo1MywgZ3JlZWFy
+YkBjYW5kZWxhdGVjaC5jb20gd3JvdGU6Cj4+Pj4gRnJvbTogQmVuIEdyZWVhciA8Z3JlZWFyYkBj
+YW5kZWxhdGVjaC5jb20+Cj4+Pj4KPj4+PiBUaGUgY29kZSBpcyB0cnlpbmcgdG8gY3JlYXRlIGFu
+IGF0aDExayBkaXJlY3Rvcnkgb24gZGVidWdmcwo+Pj4+IHJvb3QsIGJ1dCB0aGF0IGZhaWxzIHdo
+ZW4gdGhlcmUgaXMgYSBzZWNvbmQgcmFkaW8gKGFuZCB0aHVzCj4+Pj4gc2Vjb25kIGluc3RhbmNl
+IG9mIHRoZSBkcml2ZXIpLgo+Pj4+Cj4+Pgo+Pj4gSGkgQmVuLAo+Pj4KPj4+IElQUTgwNzQgaXMg
+c29jIGFuZCBpdCBkb2VzIG5vdCBuZWVkIHNlY29uZCBkZWJ1Z2ZzIGVudHJ5LCBpdHMgb24gQUhC
+Lgo+Pj4gUUNBNjM5MCBpcyBhIHBjaSBjYXJkIGFuZCBtdWx0aXBsZSBkZWJ1ZyBlbnRyaWVzIGFy
+ZSBuZWVkZWQgaWYgbXVsdGlwbGUgY2FyZHMgYXJlIGF2YWlsYWJsZSwKPj4+IEkgYW0gcGxhbm5p
+bmcgdG8gcG9zdCBhIHBhdGNoIHdpdGggYnVzIHNwZWNpZmljIGFic3RyYWN0aW9uIGZ1bmN0aW9u
+IHdoaWNoIGNyZWF0ZXMgc2luZ2xlIGRlYnVnZnMgZm9yIHNvYyBiYXNlZCByYWRpb3MgYW5kIG11
+bHRpcGxlIGVudHJpZXMgZm9yIFBDSSBiYXNlZCAKPj4+IHJhZGlvcy4KPj4+Cj4+PiBBSEI6Cj4+
+PiBkZWJ1Z2ZzL2F0aDExay9JUFE4MDc0Lwo+Pj4KPj4+IFBDSQo+Pj4gZGVidWdmcy9hdGgxMWsv
+UUNBNjM5MF8wMDAxOjAxOjAwLjAvCj4+PiBkZWJ1Z2ZzL2F0aDExay9RQ0E2MzkwXzAwMDA6MDE6
+MDAuMC8KPj4KPj4gSSBhcHByZWNpYXRlIHlvdXIgZmVlZGJhY2sgb24gdGhpcyEKPj4KPj4gV2h5
+IG5vdCBqdXN0IHN0aWNrIHdpdGggdGhlIHdheSBhdGgxMGsgZG9lcywgaGF2aW5nIHRoZSBhdGgx
+MWsgZGVidWdmcyBlbnRyeSBiZQo+PiB1bmRlciB0aGUgcGh5IGRlYnVnZnMgZGlyZWN0b3J5Pwo+
+Pgo+PiBNYXliZSB0aGVyZSBpcyBhIGhpZ2gtbGV2ZWwgZGVzaWduIGRvY3VtZW50IGZvciB0aGUg
+YXRoMTFrIGRyaXZlciBzb21ld2hlcmUgdGhhdAo+PiBleHBsYWlucyBob3cgYW5kIHdoeSBpdCBp
+cyBhcmNoaXRlY3RlZCB3aXRoIHRoZSBhdGgxMWsgYmFzZSBvYmplY3QKPj4gaG9sZGluZyBtdWx0
+aXBsZQo+PiBwaHkgb2JqZWN0cz8KPj4KPiAKPiBUaGUgaW5pdGlhbCBhdGgxMWsgZHJpdmVyIHdh
+cyBzdXBwb3J0aW5nIElQUTgwNzQsIGl0cyBhbiBTT0MgYW5kIGhhcyAzLXJhZGlvcyB1bmRlciB3
+aWZpMCwKPiAtIGZldyBlbnRyaWVzIGluIGRlYnVnZnMgYXJlIGNvbW1vbiBmb3IgU09DLGFsbCB0
+aGVzZSBhcmUgdW5kZXIKPiAgwqDCoMKgwqDCoCBkZWJ1Z2ZzL2F0aDExay9JUFE4MDc0Lwo+ICDC
+oMKgwqDCoMKgwqDCoMKgwqAgInNpbXVsYXRlX2Z3X2NyYXNoIgo+ICDCoMKgwqDCoMKgwqDCoMKg
+wqAgInNvY19kcF9zdGF0cyIKCk9rLCBzbyBvbmUgODA3NCBmaXJtd2FyZSBpbnN0YW5jZSBpcyBo
+YW5kbGluZyBtdWx0aXBsZSByYWRpb3MsIGFuZCBpZiBmaXJtd2FyZSBjcmFzaGVzLCB0aGVuCml0
+IHdvdWxkIHRha2UgZG93biBldmVyeSByYWRpbyBhdCBvbmNlPwoKPiAtIGZldyBlbnRyaWVzIGFy
+ZSBwZXIgcmFkaW8sIHRoZXNlIGFyZSB1bmRlcgo+ICDCoMKgwqDCoMKgIGRlYnVnZnMvYXRoMTFr
+L0lQUTgwNzQvbWFjMC8KPiAgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAiZXh0X3R4X3N0YXRzIgo+
+ICDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICJleHRfcnhfc3RhdHMiCj4gIMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqAgInBrdGxvZ19maWx0ZXIiCj4gIMKgwqDCoMKgwqAgZGVidWdmcy9hdGgxMWsvSVBR
+ODA3NC9tYWMxCj4gIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgImV4dF90eF9zdGF0cyIKPiAgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoCAiZXh0X3J4X3N0YXRzIgo+ICDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgICJwa3Rsb2dfZmlsdGVyIgo+ICDCoMKgwqDCoMKgIGRlYnVnZnMvYXRoMTFrL0lQUTgwNzQv
+bWFjMgo+ICDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICJleHRfdHhfc3RhdHMiCj4gIMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqAgImV4dF9yeF9zdGF0cyIKPiAgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAi
+cGt0bG9nX2ZpbHRlciIKPiAKPj4gQW5kLCB2ZXJ5IGN1cmlvdXMgdG8ga25vdyBpZiB5b3UgYXJl
+IGFibGUgdG8gZ2V0IG11bHRpcGxlIFFDQTYzOTAgTklDcwo+PiBydW5uaW5nIG9uIHRoZQo+PiBz
+YW1lIHN5c3RlbSwgSSdtIHNlZWluZyBhbGwgc29ydCBvZiBwcm9ibGVtcyBpbmNsdWRpbmcgTklD
+cyBub3QgYWx3YXlzCj4+IHNob3dpbmcgdXAgaW4gbHNwY2kKPj4gYW5kIHN1Y2guCj4+Cj4gSSBh
+bSBub3QgYXdhcmUgb2YgdGhpcywgbGlrZSB0byB1bmRlcnN0YW5kIHRoZSBvdXRwdXQgb2YsIHFy
+dHItbG9va3VwIGNtZAoKQmFzZWQgb24gbXkgdGVzdGluZyB3aXRoIGRlYnVncywgd2hhdGV2ZXIg
+ZHJpdmVyIEkgcHVsbGVkIGRvd24gZnJvbSB0aGUgYXRoIHRyZWUgaGFkIHplcm8KY2hhbmNlIG9m
+IHdvcmtpbmcgZHVlIHRvIGltbWVkaWF0ZSBjcmFzaC4gIFNvLCBoYXZlIHlvdSBiZWVuIGFibGUg
+dG8gdGVzdCBtdWx0aXBsZQo2MzkwIHJhZGlvcyB5ZXQ/CgpIb3cgZG8gSSBkbyB0aGlzIHFydHIt
+bG9va3VwIGNvbW1hbmQ/CgpUaGFua3MsCkJlbgoKLS0gCkJlbiBHcmVlYXIgPGdyZWVhcmJAY2Fu
+ZGVsYXRlY2guY29tPgpDYW5kZWxhIFRlY2hub2xvZ2llcyBJbmMgIGh0dHA6Ly93d3cuY2FuZGVs
+YXRlY2guY29tCgotLSAKYXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtAbGlzdHMuaW5mcmFkZWFk
+Lm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2F0aDExawo=
