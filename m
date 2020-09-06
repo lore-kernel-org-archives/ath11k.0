@@ -1,19 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from a27-55.smtp-out.us-west-2.amazonses.com ([54.240.27.55])
+Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kEFlv-0007hu-E8
- for ath11k@lists.infradead.org; Fri, 04 Sep 2020 17:45:13 +0000
-MIME-Version: 1.0
-Date: Fri, 4 Sep 2020 17:45:07 +0000
-From: akolli@codeaurora.org
-Subject: Re: [PATCH] ath11k: Allow debugfs to work with 2+ radios installed.
-In-Reply-To: <b6e833c1-dc07-c29e-7111-b5c915fc6567@candelatech.com>
-References: <20200903172359.29199-1-greearb@candelatech.com>
- <0101017459a1d409-4d95a8e1-d404-4fba-a25d-b2e3075947e0-000000@us-west-2.amazonses.com>
- <d450eb2d-5c2d-c432-2cd5-b3121c7d27d4@candelatech.com>
- <010101745a05a2fb-24c8bde9-c898-4d53-9416-b48a764f907b-000000@us-west-2.amazonses.com>
- <b6e833c1-dc07-c29e-7111-b5c915fc6567@candelatech.com>
-Message-ID: <010101745a38d1d8-60e45f3c-bcd3-43ff-9066-013d13101940-000000@us-west-2.amazonses.com>
+ id 1kF2BL-0007l1-7H
+ for ath11k@lists.infradead.org; Sun, 06 Sep 2020 21:26:40 +0000
+Received: by mail-qk1-f200.google.com with SMTP id 196so6677351qkn.6
+ for <ath11k@lists.infradead.org>; Sun, 06 Sep 2020 14:26:31 -0700 (PDT)
+From: trix@redhat.com
+Subject: [PATCH] ath11k: fix a double free and a memory leak
+Date: Sun,  6 Sep 2020 14:26:25 -0700
+Message-Id: <20200906212625.17059-1-trix@redhat.com>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,68 +17,64 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Ben Greear <greearb@candelatech.com>
-Cc: linux-wireless-owner@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: kvalo@codeaurora.org, davem@davemloft.net, kuba@kernel.org, natechancellor@gmail.com, ndesaulniers@google.com, mkenna@codeaurora.org, vnaralas@codeaurora.org, rmanohar@codeaurora.org, john@phrozen.org
+Cc: netdev@vger.kernel.org, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, clang-built-linux@googlegroups.com, Tom Rix <trix@redhat.com>, ath11k@lists.infradead.org
 
-T24gMjAyMC0wOS0wNCAyMjoyNywgQmVuIEdyZWVhciB3cm90ZToKPiBPbiA5LzQvMjAgOTo0OSBB
-TSwgYWtvbGxpQGNvZGVhdXJvcmEub3JnIHdyb3RlOgo+PiBPbiAyMDIwLTA5LTA0IDIxOjA0LCBC
-ZW4gR3JlZWFyIHdyb3RlOgo+Pj4gT24gOS80LzIwIDg6MDAgQU0sIGFrb2xsaUBjb2RlYXVyb3Jh
-Lm9yZyB3cm90ZToKPj4+PiBPbiAyMDIwLTA5LTAzIDIyOjUzLCBncmVlYXJiQGNhbmRlbGF0ZWNo
-LmNvbSB3cm90ZToKPj4+Pj4gRnJvbTogQmVuIEdyZWVhciA8Z3JlZWFyYkBjYW5kZWxhdGVjaC5j
-b20+Cj4+Pj4+IAo+Pj4+PiBUaGUgY29kZSBpcyB0cnlpbmcgdG8gY3JlYXRlIGFuIGF0aDExayBk
-aXJlY3Rvcnkgb24gZGVidWdmcwo+Pj4+PiByb290LCBidXQgdGhhdCBmYWlscyB3aGVuIHRoZXJl
-IGlzIGEgc2Vjb25kIHJhZGlvIChhbmQgdGh1cwo+Pj4+PiBzZWNvbmQgaW5zdGFuY2Ugb2YgdGhl
-IGRyaXZlcikuCj4+Pj4+IAo+Pj4+IAo+Pj4+IEhpIEJlbiwKPj4+PiAKPj4+PiBJUFE4MDc0IGlz
-IHNvYyBhbmQgaXQgZG9lcyBub3QgbmVlZCBzZWNvbmQgZGVidWdmcyBlbnRyeSwgaXRzIG9uIAo+
-Pj4+IEFIQi4KPj4+PiBRQ0E2MzkwIGlzIGEgcGNpIGNhcmQgYW5kIG11bHRpcGxlIGRlYnVnIGVu
-dHJpZXMgYXJlIG5lZWRlZCBpZiAKPj4+PiBtdWx0aXBsZSBjYXJkcyBhcmUgYXZhaWxhYmxlLAo+
-Pj4+IEkgYW0gcGxhbm5pbmcgdG8gcG9zdCBhIHBhdGNoIHdpdGggYnVzIHNwZWNpZmljIGFic3Ry
-YWN0aW9uIGZ1bmN0aW9uIAo+Pj4+IHdoaWNoIGNyZWF0ZXMgc2luZ2xlIGRlYnVnZnMgZm9yIHNv
-YyBiYXNlZCByYWRpb3MgYW5kIG11bHRpcGxlIAo+Pj4+IGVudHJpZXMgZm9yIFBDSSBiYXNlZCBy
-YWRpb3MuCj4+Pj4gCj4+Pj4gQUhCOgo+Pj4+IGRlYnVnZnMvYXRoMTFrL0lQUTgwNzQvCj4+Pj4g
-Cj4+Pj4gUENJCj4+Pj4gZGVidWdmcy9hdGgxMWsvUUNBNjM5MF8wMDAxOjAxOjAwLjAvCj4+Pj4g
-ZGVidWdmcy9hdGgxMWsvUUNBNjM5MF8wMDAwOjAxOjAwLjAvCj4+PiAKPj4+IEkgYXBwcmVjaWF0
-ZSB5b3VyIGZlZWRiYWNrIG9uIHRoaXMhCj4+PiAKPj4+IFdoeSBub3QganVzdCBzdGljayB3aXRo
-IHRoZSB3YXkgYXRoMTBrIGRvZXMsIGhhdmluZyB0aGUgYXRoMTFrIAo+Pj4gZGVidWdmcyBlbnRy
-eSBiZQo+Pj4gdW5kZXIgdGhlIHBoeSBkZWJ1Z2ZzIGRpcmVjdG9yeT8KPj4+IAo+Pj4gTWF5YmUg
-dGhlcmUgaXMgYSBoaWdoLWxldmVsIGRlc2lnbiBkb2N1bWVudCBmb3IgdGhlIGF0aDExayBkcml2
-ZXIgCj4+PiBzb21ld2hlcmUgdGhhdAo+Pj4gZXhwbGFpbnMgaG93IGFuZCB3aHkgaXQgaXMgYXJj
-aGl0ZWN0ZWQgd2l0aCB0aGUgYXRoMTFrIGJhc2Ugb2JqZWN0Cj4+PiBob2xkaW5nIG11bHRpcGxl
-Cj4+PiBwaHkgb2JqZWN0cz8KPj4+IAo+PiAKPj4gVGhlIGluaXRpYWwgYXRoMTFrIGRyaXZlciB3
-YXMgc3VwcG9ydGluZyBJUFE4MDc0LCBpdHMgYW4gU09DIGFuZCBoYXMgCj4+IDMtcmFkaW9zIHVu
-ZGVyIHdpZmkwLAo+PiAtIGZldyBlbnRyaWVzIGluIGRlYnVnZnMgYXJlIGNvbW1vbiBmb3IgU09D
-LGFsbCB0aGVzZSBhcmUgdW5kZXIKPj4gIMKgwqDCoMKgwqAgZGVidWdmcy9hdGgxMWsvSVBRODA3
-NC8KPj4gIMKgwqDCoMKgwqDCoMKgwqDCoCAic2ltdWxhdGVfZndfY3Jhc2giCj4+ICDCoMKgwqDC
-oMKgwqDCoMKgwqAgInNvY19kcF9zdGF0cyIKPiAKPiBPaywgc28gb25lIDgwNzQgZmlybXdhcmUg
-aW5zdGFuY2UgaXMgaGFuZGxpbmcgbXVsdGlwbGUgcmFkaW9zLCBhbmQgaWYKPiBmaXJtd2FyZSBj
-cmFzaGVzLCB0aGVuCj4gaXQgd291bGQgdGFrZSBkb3duIGV2ZXJ5IHJhZGlvIGF0IG9uY2U/Cj4g
-Cj4+IC0gZmV3IGVudHJpZXMgYXJlIHBlciByYWRpbywgdGhlc2UgYXJlIHVuZGVyCj4+ICDCoMKg
-wqDCoMKgIGRlYnVnZnMvYXRoMTFrL0lQUTgwNzQvbWFjMC8KPj4gIMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqAgImV4dF90eF9zdGF0cyIKPj4gIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgImV4dF9yeF9z
-dGF0cyIKPj4gIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgInBrdGxvZ19maWx0ZXIiCj4+ICDCoMKg
-wqDCoMKgIGRlYnVnZnMvYXRoMTFrL0lQUTgwNzQvbWFjMQo+PiAgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoCAiZXh0X3R4X3N0YXRzIgo+PiAgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAiZXh0X3J4X3N0
-YXRzIgo+PiAgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAicGt0bG9nX2ZpbHRlciIKPj4gIMKgwqDC
-oMKgwqAgZGVidWdmcy9hdGgxMWsvSVBRODA3NC9tYWMyCj4+ICDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgICJleHRfdHhfc3RhdHMiCj4+ICDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICJleHRfcnhfc3Rh
-dHMiCj4+ICDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICJwa3Rsb2dfZmlsdGVyIgo+PiAKPj4+IEFu
-ZCwgdmVyeSBjdXJpb3VzIHRvIGtub3cgaWYgeW91IGFyZSBhYmxlIHRvIGdldCBtdWx0aXBsZSBR
-Q0E2MzkwIAo+Pj4gTklDcwo+Pj4gcnVubmluZyBvbiB0aGUKPj4+IHNhbWUgc3lzdGVtLCBJJ20g
-c2VlaW5nIGFsbCBzb3J0IG9mIHByb2JsZW1zIGluY2x1ZGluZyBOSUNzIG5vdCAKPj4+IGFsd2F5
-cwo+Pj4gc2hvd2luZyB1cCBpbiBsc3BjaQo+Pj4gYW5kIHN1Y2guCj4+PiAKPj4gSSBhbSBub3Qg
-YXdhcmUgb2YgdGhpcywgbGlrZSB0byB1bmRlcnN0YW5kIHRoZSBvdXRwdXQgb2YsIHFydHItbG9v
-a3VwIAo+PiBjbWQKPiAKPiBCYXNlZCBvbiBteSB0ZXN0aW5nIHdpdGggZGVidWdzLCB3aGF0ZXZl
-ciBkcml2ZXIgSSBwdWxsZWQgZG93biBmcm9tCj4gdGhlIGF0aCB0cmVlIGhhZCB6ZXJvCj4gY2hh
-bmNlIG9mIHdvcmtpbmcgZHVlIHRvIGltbWVkaWF0ZSBjcmFzaC4gIFNvLCBoYXZlIHlvdSBiZWVu
-IGFibGUgdG8KPiB0ZXN0IG11bHRpcGxlCj4gNjM5MCByYWRpb3MgeWV0Pwo+IApJIGFtIG5vdCB3
-b3JraW5nIG9uIDYzOTAuCgo+IEhvdyBkbyBJIGRvIHRoaXMgcXJ0ci1sb29rdXAgY29tbWFuZD8K
-PiAKaHR0cHM6Ly9naXRodWIuY29tL2FuZGVyc3Nvbi9xcnRyLCB0aGlzIGhhcyB0aGUgdG9vbHMu
-CgpBbHNvIHBsZWFzZSBzaGFyZSB0aGUgZG1lc2cgfCBncmVwIGF0aDExayBsb2cgd2l0aCBib3Ro
-IHJhZGlvcy4KSSB1bmRlcnN0YW5kIGl0cyBjcmFzaGluZywgcGxlYXNlIHNoYXJlIHRoZSBhdGgx
-MWsgYm9vdCBsb2dzLgoKVGhhbmtzCkFuaWwKCi0tIAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDEx
-a0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4v
-bGlzdGluZm8vYXRoMTFrCg==
+From: Tom Rix <trix@redhat.com>
+
+clang static analyzer reports this problem
+
+mac.c:6204:2: warning: Attempt to free released memory
+        kfree(ar->mac.sbands[NL80211_BAND_2GHZ].channels);
+        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The channels pointer is allocated in ath11k_mac_setup_channels_rates()
+When it fails midway, it cleans up the memory it has already allocated.
+So the error handling needs to skip freeing the memory.
+
+There is a second problem.
+ath11k_mac_setup_channels_rates(), allocates 3 channels. err_free
+misses releasing ar->mac.sbands[NL80211_BAND_6GHZ].channels
+
+Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+Signed-off-by: Tom Rix <trix@redhat.com>
+---
+ drivers/net/wireless/ath/ath11k/mac.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index f4a085baff38..f1a964b01a83 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -6089,7 +6089,7 @@ static int __ath11k_mac_register(struct ath11k *ar)
+ 	ret = ath11k_mac_setup_channels_rates(ar,
+ 					      cap->supported_bands);
+ 	if (ret)
+-		goto err_free;
++		goto err;
+ 
+ 	ath11k_mac_setup_ht_vht_cap(ar, cap, &ht_cap);
+ 	ath11k_mac_setup_he_cap(ar, cap);
+@@ -6203,7 +6203,8 @@ static int __ath11k_mac_register(struct ath11k *ar)
+ err_free:
+ 	kfree(ar->mac.sbands[NL80211_BAND_2GHZ].channels);
+ 	kfree(ar->mac.sbands[NL80211_BAND_5GHZ].channels);
+-
++	kfree(ar->mac.sbands[NL80211_BAND_6GHZ].channels);
++err:
+ 	SET_IEEE80211_DEV(ar->hw, NULL);
+ 	return ret;
+ }
+-- 
+2.18.1
+
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
