@@ -1,14 +1,17 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
+Received: from a27-21.smtp-out.us-west-2.amazonses.com ([54.240.27.21])
+ by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1kFKRD-00048S-7Y
+ for ath11k@lists.infradead.org; Mon, 07 Sep 2020 16:56:16 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH 01/16] wireless: ath5k: convert tasklets to use new
- tasklet_setup() API
-References: <20200817090637.26887-2-allen.cryptic@gmail.com>
- <20200827101540.6589BC433CB@smtp.codeaurora.org>
- <CAEogwTB=S6M6Xp4w5dd_W3b6Depmn6Gmu3RmAf96pRankoJQqg@mail.gmail.com>
-Date: Mon, 7 Sep 2020 16:32:21 +0000
-In-Reply-To: <CAEogwTB=S6M6Xp4w5dd_W3b6Depmn6Gmu3RmAf96pRankoJQqg@mail.gmail.com>
- (Allen Pais's message of "Thu, 27 Aug 2020 16:14:45 +0530")
-Message-ID: <0101017469694695-c3bf1ce4-cb67-4ddd-bab9-f1e8031b9bb0-000000@us-west-2.amazonses.com>
+Subject: Re: [PATCH net-next] ath11k: fix uninitialized return in
+ ath11k_spectral_process_data()
+References: <20200619142922.GA267142@mwanda> <87a70vf923.fsf@codeaurora.org>
+ <20200622171846.GE4151@kadam>
+Date: Mon, 7 Sep 2020 16:56:11 +0000
+In-Reply-To: <20200622171846.GE4151@kadam> (Dan Carpenter's message of "Mon,
+ 22 Jun 2020 20:18:47 +0300")
+Message-ID: <01010174697f181b-efa89d13-82cc-409d-82e9-75c87d84cd73-000000@us-west-2.amazonses.com>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -22,39 +25,63 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Allen Pais <allen.cryptic@gmail.com>
-Cc: Allen Pais <allen.lkml@gmail.com>, chunkeey@googlemail.com, jirislaby@kernel.org, brcm80211-dev-list@cypress.com, pkshih@realtek.com, b43-dev@lists.infradead.org, Jakub Kicinski <kuba@kernel.org>, ath11k@lists.infradead.org, stas.yakovlev@gmail.com, mickflemm@gmail.com, Kees Cook <keescook@chromium.org>, dsd@gentoo.org, kune@deine-taler.de, brcm80211-dev-list.pdl@broadcom.com, yhchuang@realtek.com, netdev@vger.kernel.org, linux-wireless@vger.kernel.org, helmut.schaa@googlemail.com, linux-kernel@vger.kernel.org, mcgrof@kernel.org, Romain Perier <romain.perier@gmail.com>, Larry.Finger@lwfinger.net
+To: Dan Carpenter <dan.carpenter@oracle.com>
+Cc: linux-wireless@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>, kernel-janitors@vger.kernel.org, Karthikeyan Periyasamy <periyasa@codeaurora.org>, ath11k@lists.infradead.org
 
-Allen Pais <allen.cryptic@gmail.com> writes:
+Dan Carpenter <dan.carpenter@oracle.com> writes:
 
-> Hi,
->>
->> Allen Pais <allen.cryptic@gmail.com> wrote:
->>
->> > In preparation for unconditionally passing the
->> > struct tasklet_struct pointer to all tasklet
->> > callbacks, switch to using the new tasklet_setup()
->> > and from_tasklet() to pass the tasklet pointer explicitly.
+> On Mon, Jun 22, 2020 at 05:51:16PM +0300, Kalle Valo wrote:
+>> Dan Carpenter <dan.carpenter@oracle.com> writes:
+>> 
+>> > There is a success path where "ret" isn't initialized where we never
+>> > have a ATH11K_SPECTRAL_TAG_SCAN_SEARCH and then ret isn't initialized.
 >> >
->> > Signed-off-by: Romain Perier <romain.perier@gmail.com>
->> > Signed-off-by: Allen Pais <allen.lkml@gmail.com>
->> > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
->>
->> Patch applied to ath-next branch of ath.git, thanks.
->>
->> c068a9ec3c94 ath5k: convert tasklets to use new tasklet_setup() API
->>
->> --
->> https://patchwork.kernel.org/patch/11717393/
->>
->> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+>> > Fixes: 9d11b7bff950 ("ath11k: add support for spectral scan")
+>> > Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
+>> > ---
+>> >  drivers/net/wireless/ath/ath11k/spectral.c | 2 +-
+>> >  1 file changed, 1 insertion(+), 1 deletion(-)
+>> >
+>> > diff --git a/drivers/net/wireless/ath/ath11k/spectral.c b/drivers/net/wireless/ath/ath11k/spectral.c
+>> > index 1c5d65bb411f..bfbf905f7507 100644
+>> > --- a/drivers/net/wireless/ath/ath11k/spectral.c
+>> > +++ b/drivers/net/wireless/ath/ath11k/spectral.c
+>> > @@ -677,7 +677,7 @@ static int ath11k_spectral_process_data(struct ath11k *ar,
+>> >  	u32 data_len, i;
+>> >  	u8 sign, tag;
+>> >  	int tlv_len, sample_sz;
+>> > -	int ret;
+>> > +	int ret = 0;
+>> >  	bool quit = false;
+>> 
+>> I try to avoid initialising ret variables so I would like find another
+>> way. What about doing this (completely untested!) in the end of the
+>> function:
+>> 
+>>         return 0;
+>> 
+>> err:
+>> 	kfree(fft_sample);
+>> unlock:
+>> 	spin_unlock_bh(&ar->spectral.lock);
+>> 	return ret;
 >
-> Could you please drop these and wait for V2. A change was proposed
-> for from_tasklet() api. The new API should be picked shortly. I will send out
-> the updated version early next week.
+> I normally avoid it as well...  If I were to redo this patch, I would
+> probably do:
+>
+> 	ret = 0;
+> err:
+> 	kfree(fft_sample);
+> unlock:
+> 	spin_unlock_bh(&ar->spectral.lock);
+> 	return ret;
+>
+> Would that be better?
 
-Too late, I don't normally rebase my trees as it's just too much of a
-hassle. Please don't submit patches which are not ready to be applied!
+Ah, my proposal was buggy. So yes, this is definitely better :) I
+changed now the patch in the pending branch, please check:
+
+https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=586f8e6779fa75ade112cb48606794e034e0ff1d
 
 -- 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
