@@ -1,17 +1,17 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from a27-186.smtp-out.us-west-2.amazonses.com ([54.240.27.186])
+Received: from a27-56.smtp-out.us-west-2.amazonses.com ([54.240.27.56])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kFEsL-0002kJ-Kw
- for ath11k@lists.infradead.org; Mon, 07 Sep 2020 10:59:54 +0000
+ id 1kFEuJ-0002rT-Is
+ for ath11k@lists.infradead.org; Mon, 07 Sep 2020 11:01:56 +0000
 MIME-Version: 1.0
-Date: Mon, 7 Sep 2020 10:59:49 +0000
+Date: Mon, 7 Sep 2020 11:01:51 +0000
 From: akolli@codeaurora.org
-Subject: Re: [PATCH v6 2/3] ath11k: copy ce service configs to hw_params
-In-Reply-To: <87363t52nj.fsf@codeaurora.org>
+Subject: Re: [PATCH v6 3/3] ath11k: add IPQ6018 support
+In-Reply-To: <87y2ll3nzh.fsf@codeaurora.org>
 References: <1598287470-1871-1-git-send-email-akolli@codeaurora.org>
- <1598287470-1871-3-git-send-email-akolli@codeaurora.org>
- <87363t52nj.fsf@codeaurora.org>
-Message-ID: <010101746838d751-613bfbba-7cfe-496c-9244-41fc2262f665-000000@us-west-2.amazonses.com>
+ <1598287470-1871-4-git-send-email-akolli@codeaurora.org>
+ <87y2ll3nzh.fsf@codeaurora.org>
+Message-ID: <01010174683ab2cc-dbd979bd-d413-4d59-92da-0a887439a75a-000000@us-west-2.amazonses.com>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -27,33 +27,44 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Kalle Valo <kvalo@codeaurora.org>
 Cc: devicetree@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-On 2020-09-07 15:28, Kalle Valo wrote:
+On 2020-09-07 15:30, Kalle Valo wrote:
 > Anilkumar Kolli <akolli@codeaurora.org> writes:
 > 
->> No functional changes, added target ce service configurations to 
->> hw_params.
+>> IPQ6018 has one 5G and one 2G radio with 2x2,
+>> shares ipq8074 configurations.
 >> 
 >> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
 > 
 > [...]
 > 
->> --- a/drivers/net/wireless/ath/ath11k/core.c
->> +++ b/drivers/net/wireless/ath/ath11k/core.c
->> @@ -812,12 +812,6 @@ int ath11k_core_init(struct ath11k_base *ab)
->>  		return ret;
+>> @@ -890,9 +995,15 @@ static int ath11k_ahb_probe(struct 
+>> platform_device *pdev)
+>>  		goto err_hal_srng_deinit;
 >>  	}
 >> 
->> -	ret = ath11k_init_hw_params(ab);
->> -	if (ret) {
->> -		ath11k_err(ab, "failed to get hw params %d\n", ret);
->> -		return ret;
->> -	}
+>> -	ab->hw_params.svc_to_ce_map_len =
+>> +	if (ab->hw_rev == ATH11K_HW_IPQ8074) {
+>> +		ab->hw_params.svc_to_ce_map_len =
+>>  			ARRAY_SIZE(target_service_to_ce_map_wlan_ipq8074);
+>> -	ab->hw_params.svc_to_ce_map = target_service_to_ce_map_wlan_ipq8074;
+>> +		ab->hw_params.svc_to_ce_map = 
+>> target_service_to_ce_map_wlan_ipq8074;
+>> +	} else if (ab->hw_rev == ATH11K_HW_IPQ6018) {
+>> +		ab->hw_params.svc_to_ce_map_len =
+>> +			ARRAY_SIZE(target_service_to_ce_map_wlan_ipq6018);
+>> +		ab->hw_params.svc_to_ce_map = 
+>> target_service_to_ce_map_wlan_ipq6018;
+>> +	}
 > 
-> This is very suspicious.
+> The idea of having ab->hw_params is to avoid the need for hw_rev
+> sprinkled all over the code, this here defeats the purpose. I recommend
+> checking if my proposal from an earlier version is implementable:
+> 
+> "You could copy the map arrays to hw.c, as an example see how
+>  ath11k_hw_ring_mask_ipq8074 is implemented. That way we don't need any
+>  new hw_rev checks."
 
-ath11k_core_pre_init() is calling ath11k_init_hw_params(), again calling 
-same function in ath11k_core_init()
-is not needed. Will send this as a new patch ?
+Thanks for the details, will address and send in next patch set.
 
 Thanks
 Anil
