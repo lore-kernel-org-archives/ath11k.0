@@ -1,14 +1,19 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124])
+Received: from a27-10.smtp-out.us-west-2.amazonses.com ([54.240.27.10])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kF2BL-0007l1-7H
- for ath11k@lists.infradead.org; Sun, 06 Sep 2020 21:26:40 +0000
-Received: by mail-qk1-f200.google.com with SMTP id 196so6677351qkn.6
- for <ath11k@lists.infradead.org>; Sun, 06 Sep 2020 14:26:31 -0700 (PDT)
-From: trix@redhat.com
-Subject: [PATCH] ath11k: fix a double free and a memory leak
-Date: Sun,  6 Sep 2020 14:26:25 -0700
-Message-Id: <20200906212625.17059-1-trix@redhat.com>
+ id 1kFDt1-0006jE-2x
+ for ath11k@lists.infradead.org; Mon, 07 Sep 2020 09:56:32 +0000
+From: Kalle Valo <kvalo@codeaurora.org>
+Subject: Re: [PATCH v3 2/3] ath11k: copy ce service configs to hw_params
+References: <1592458104-2961-1-git-send-email-akolli@codeaurora.org>
+ <1592458104-2961-3-git-send-email-akolli@codeaurora.org>
+ <CAGRGNgV74fCD1gb=rXEe1BMN5+5stYeX3W6eKc4-do76TBmFqA@mail.gmail.com>
+ <34ed705f28b40fab493b8c888138e6a7@codeaurora.org>
+Date: Mon, 7 Sep 2020 09:56:26 +0000
+In-Reply-To: <34ed705f28b40fab493b8c888138e6a7@codeaurora.org>
+ (akolli@codeaurora.org's message of "Fri, 19 Jun 2020 21:54:42 +0530")
+Message-ID: <0101017467fecfa9-377850da-b796-4ec1-a3fc-e5c6ad798692-000000@us-west-2.amazonses.com>
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -17,62 +22,69 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: kvalo@codeaurora.org, davem@davemloft.net, kuba@kernel.org, natechancellor@gmail.com, ndesaulniers@google.com, mkenna@codeaurora.org, vnaralas@codeaurora.org, rmanohar@codeaurora.org, john@phrozen.org
-Cc: netdev@vger.kernel.org, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, clang-built-linux@googlegroups.com, Tom Rix <trix@redhat.com>, ath11k@lists.infradead.org
+To: akolli@codeaurora.org
+Cc: Julian Calaby <julian.calaby@gmail.com>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, devicetree <devicetree@vger.kernel.org>
 
-From: Tom Rix <trix@redhat.com>
+akolli@codeaurora.org writes:
 
-clang static analyzer reports this problem
+> On 2020-06-19 04:40, Julian Calaby wrote:
+>>
+>> On Thu, Jun 18, 2020 at 3:31 PM Anilkumar Kolli
+>> <akolli@codeaurora.org> wrote:
+>>>
+>>> @@ -950,6 +950,16 @@ static int ath11k_ahb_probe(struct
+>>> platform_device *pdev)
+>>>                 goto err_hal_srng_deinit;
+>>>         }
+>>>
+>>> +       ret = ath11k_init_hw_params(ab);
+>>> +       if (ret) {
+>>> +               ath11k_err(ab, "failed to get hw params %d\n", ret);
+>>> +               return ret;
+>>> +       }
+>>> +
+>>> +       ab->hw_params.svc_to_ce_map_len =
+>>> +
+>>> ARRAY_SIZE(target_service_to_ce_map_wlan_ipq8074);
+>>> +       ab->hw_params.svc_to_ce_map =
+>>> target_service_to_ce_map_wlan_ipq8074;
+>>
+>> I think you misunderstood my point about this, the point wasn't to
+>> copy the svc map to hw_params, but define it in hw_params:
+>>
+>> +       {
+>> +               .hw_rev = ATH11K_HW_IPQ6018,
+>> +               .name = "ipq6018 hw1.0",
+>> +               .fw = {
+>> +                       .dir = "IPQ6018/hw1.0",
+>> +                       .board_size = 256 * 1024,
+>> +                       .cal_size = 256 * 1024,
+>> +               },
+>> +               .max_radios = 2,
+>> +               .bdf_addr = 0x4ABC0000,
+>> +               .hw_ops = &ipq6018_ops,
+>> +               .svc_to_ce_map_len =
+>> ARRAY_SIZE(target_service_to_ce_map_wlan_ipq6018,
+>> +               .svc_to_ce_map = target_service_to_ce_map_wlan_ipq6018,
+>> +       },
+>>
+>> That completely eliminates special case code based on the hardware ID
+>> in the driver.
+>>
+> The static array of structures target_service_to_ce_map_wlan_ipq6018[]
+> is defined in ahb.c and hw_params are initialised in core.c, this will
+> not work. no?
 
-mac.c:6204:2: warning: Attempt to free released memory
-        kfree(ar->mac.sbands[NL80211_BAND_2GHZ].channels);
-        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+You could move the map arrays to hw.c, as an example see how
+ath11k_hw_ring_mask_ipq8074 is implemented. That way we don't need any
+new hw_rev checks.
 
-The channels pointer is allocated in ath11k_mac_setup_channels_rates()
-When it fails midway, it cleans up the memory it has already allocated.
-So the error handling needs to skip freeing the memory.
-
-There is a second problem.
-ath11k_mac_setup_channels_rates(), allocates 3 channels. err_free
-misses releasing ar->mac.sbands[NL80211_BAND_6GHZ].channels
-
-Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
-Signed-off-by: Tom Rix <trix@redhat.com>
----
- drivers/net/wireless/ath/ath11k/mac.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index f4a085baff38..f1a964b01a83 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -6089,7 +6089,7 @@ static int __ath11k_mac_register(struct ath11k *ar)
- 	ret = ath11k_mac_setup_channels_rates(ar,
- 					      cap->supported_bands);
- 	if (ret)
--		goto err_free;
-+		goto err;
- 
- 	ath11k_mac_setup_ht_vht_cap(ar, cap, &ht_cap);
- 	ath11k_mac_setup_he_cap(ar, cap);
-@@ -6203,7 +6203,8 @@ static int __ath11k_mac_register(struct ath11k *ar)
- err_free:
- 	kfree(ar->mac.sbands[NL80211_BAND_2GHZ].channels);
- 	kfree(ar->mac.sbands[NL80211_BAND_5GHZ].channels);
--
-+	kfree(ar->mac.sbands[NL80211_BAND_6GHZ].channels);
-+err:
- 	SET_IEEE80211_DEV(ar->hw, NULL);
- 	return ret;
- }
 -- 
-2.18.1
-
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
