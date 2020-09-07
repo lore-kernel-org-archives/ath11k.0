@@ -1,17 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from a27-188.smtp-out.us-west-2.amazonses.com ([54.240.27.188])
+Received: from a27-21.smtp-out.us-west-2.amazonses.com ([54.240.27.21])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kFDxw-0007Lv-Uy
- for ath11k@lists.infradead.org; Mon, 07 Sep 2020 10:01:38 +0000
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH v6 3/3] ath11k: add IPQ6018 support
-References: <1598287470-1871-1-git-send-email-akolli@codeaurora.org>
- <1598287470-1871-4-git-send-email-akolli@codeaurora.org>
-Date: Mon, 7 Sep 2020 10:01:33 +0000
-In-Reply-To: <1598287470-1871-4-git-send-email-akolli@codeaurora.org>
- (Anilkumar Kolli's message of "Mon, 24 Aug 2020 22:14:30 +0530")
-Message-ID: <0101017468037c4f-2de281be-f6fc-4679-bec6-a80ece121dfb-000000@us-west-2.amazonses.com>
+ id 1kFE6y-0000yI-5W
+ for ath11k@lists.infradead.org; Mon, 07 Sep 2020 10:10:57 +0000
 MIME-Version: 1.0
+Subject: Re: [PATCH v2] ath11k: cold boot calibration support
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <1594372049-31480-1-git-send-email-ssreeela@codeaurora.org>
+References: <1594372049-31480-1-git-send-email-ssreeela@codeaurora.org>
+Message-ID: <01010174680c08da-623f3a2b-c060-44ce-bc98-b8820544879b-000000@us-west-2.amazonses.com>
+Date: Mon, 7 Sep 2020 10:10:53 +0000
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -20,51 +18,44 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Anilkumar Kolli <akolli@codeaurora.org>
-Cc: devicetree@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: Sowmiya Sree Elavalagan <ssreeela@codeaurora.org>
+Cc: Govindaraj Saminathan <gsamin@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-Anilkumar Kolli <akolli@codeaurora.org> writes:
-
-> IPQ6018 has one 5G and one 2G radio with 2x2,
-> shares ipq8074 configurations.
->
-> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
-
-[...]
-
-> @@ -890,9 +995,15 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
->  		goto err_hal_srng_deinit;
->  	}
->  
-> -	ab->hw_params.svc_to_ce_map_len =
-> +	if (ab->hw_rev == ATH11K_HW_IPQ8074) {
-> +		ab->hw_params.svc_to_ce_map_len =
->  			ARRAY_SIZE(target_service_to_ce_map_wlan_ipq8074);
-> -	ab->hw_params.svc_to_ce_map = target_service_to_ce_map_wlan_ipq8074;
-> +		ab->hw_params.svc_to_ce_map = target_service_to_ce_map_wlan_ipq8074;
-> +	} else if (ab->hw_rev == ATH11K_HW_IPQ6018) {
-> +		ab->hw_params.svc_to_ce_map_len =
-> +			ARRAY_SIZE(target_service_to_ce_map_wlan_ipq6018);
-> +		ab->hw_params.svc_to_ce_map = target_service_to_ce_map_wlan_ipq6018;
-> +	}
-
-The idea of having ab->hw_params is to avoid the need for hw_rev
-sprinkled all over the code, this here defeats the purpose. I recommend
-checking if my proposal from an earlier version is implementable:
-
-"You could copy the map arrays to hw.c, as an example see how
- ath11k_hw_ring_mask_ipq8074 is implemented. That way we don't need any
- new hw_rev checks."
-
-
--- 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+U293bWl5YSBTcmVlIEVsYXZhbGFnYW4gPHNzcmVlZWxhQGNvZGVhdXJvcmEub3JnPiB3cm90ZToK
+Cj4gRnJvbTogR292aW5kYXJhaiBTYW1pbmF0aGFuIDxnc2FtaW5AY29kZWF1cm9yYS5vcmc+Cj4g
+Cj4gY29sZCBib290IGNhbGlicmF0aW9uIGlzIHRoZSBwcm9jZXNzIHRvIGNhbGlicmF0ZSBhbGwg
+dGhlIGNoYW5uZWxzCj4gZHVyaW5nIHRoZSBib290LXVwIHRvIGF2b2lkIHRoZSBjYWxpYnJhdGlv
+biBkZWxheSBkdXJpbmcgdGhlCj4gY2hhbm5lbCBjaGFuZ2UuCj4gRHVyaW5nIHRoZSBib290LXVw
+LCBmaXJtd2FyZSBzdGFydGVkIHdpdGggbW9kZSDigJxjb2xkX2Jvb3RfY2FsaWJyYXRpb27igJ0K
+PiBGaXJtd2FyZSBjYWxpYnJhdGUgYWxsIGNoYW5uZWxzIGFuZCBnZW5lcmF0ZSBDYWxEYihERFIp
+Lgo+IFN1YnNlcXVlbnQgV0lGSSBPTiB3aWxsIHJldXNlIHRoZSBzYW1lIENhbERiLgo+IEZpcm13
+YXJlIHJlc3RhcnRlZCB3aXRoIE1pc3Npb24gbW9kZSB0byBjb250aW51ZSB0aGUgbm9ybWFsIG9w
+ZXJhdGlvbi4KPiAKPiBjYWxkYiBtZW1vcnkgYWRkcmVzcyBzZW5kIHRvIGZpcm13YXJlIHRocm91
+Z2ggdGhlIFFNSSBtZXNzYWdlLkZpcm13YXJlCj4gdXNlIHRoaXMgYWRkcmVzcyB0byBzdG9yZSB0
+aGUgY2FsZGIgZGF0YSBhbmQgdXNlIGl0IHVudGlsIG5leHQgcmVib290Lgo+IAo+IFRoaXMgd2ls
+bCBnaXZlIHRoZSBpbXByb3ZlbWVudCBkdXJpbmcgdGhlIGNoYW5uZWwgY2hhbmdlLiBCdXQgaXQg
+aXMKPiBpbmNyZWFzaW5nIHRoZSBib290LXVwIHRpbWUodXAgdG8gMTVzZWMgZGVwZW5kIG9uIG51
+bWJlciBvZiByYWRpb3MpLgo+IFNvIGlmIHRoZSB1c2VyIHdhbnQgdG8gcmVkdWNlIHRoZSBib290
+LXVwIHRpbWUgYW5kIGFjY2VwdGluZyBmb3IgY2hhbm5lbAo+IGNoYW5nZSBkZWxheSwgdXNlciBj
+YW4gZGlzYWJsZSB0aGlzIGZlYXR1cmUgdXNpbmcgdGhlIG1vZHVsZSBwYXJhbQo+IGNvbGRfYm9v
+dF9jYWwgPTAuCj4gCj4gU2lnbmVkLW9mZi1ieTogR292aW5kYXJhaiBTYW1pbmF0aGFuIDxnc2Ft
+aW5AY29kZWF1cm9yYS5vcmc+Cj4gQ28tZGV2ZWxvcGVkLWJ5OiBTb3dtaXlhIFNyZWUgRWxhdmFs
+YWdhbiA8c3NyZWVlbGFAY29kZWF1cm9yYS5vcmc+Cj4gU2lnbmVkLW9mZi1ieTogU293bWl5YSBT
+cmVlIEVsYXZhbGFnYW4gPHNzcmVlZWxhQGNvZGVhdXJvcmEub3JnPgoKRmFpbHMgdG8gYXBwbHks
+IHBsZWFzZSByZWJhc2U6CgplcnJvcjogcGF0Y2ggZmFpbGVkOiBkcml2ZXJzL25ldC93aXJlbGVz
+cy9hdGgvYXRoMTFrL2NvcmUuaDo5OAplcnJvcjogZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0
+aDExay9jb3JlLmg6IHBhdGNoIGRvZXMgbm90IGFwcGx5CmVycm9yOiBwYXRjaCBmYWlsZWQ6IGRy
+aXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvcW1pLmM6OQplcnJvcjogZHJpdmVycy9uZXQv
+d2lyZWxlc3MvYXRoL2F0aDExay9xbWkuYzogcGF0Y2ggZG9lcyBub3QgYXBwbHkKZXJyb3I6IHBh
+dGNoIGZhaWxlZDogZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9xbWkuaDoxMTAKZXJy
+b3I6IGRyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvcW1pLmg6IHBhdGNoIGRvZXMgbm90
+IGFwcGx5CnN0ZyBpbXBvcnQ6IERpZmYgZG9lcyBub3QgYXBwbHkgY2xlYW5seQoKUGF0Y2ggc2V0
+IHRvIENoYW5nZXMgUmVxdWVzdGVkLgoKLS0gCmh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcv
+cGF0Y2gvMTE2NTYwODcvCgpodHRwczovL3dpcmVsZXNzLndpa2kua2VybmVsLm9yZy9lbi9kZXZl
+bG9wZXJzL2RvY3VtZW50YXRpb24vc3VibWl0dGluZ3BhdGNoZXMKCgotLSAKYXRoMTFrIG1haWxp
+bmcgbGlzdAphdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFk
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2F0aDExawo=
