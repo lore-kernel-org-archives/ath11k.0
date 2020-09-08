@@ -1,17 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from a27-21.smtp-out.us-west-2.amazonses.com ([54.240.27.21])
+Received: from a27-55.smtp-out.us-west-2.amazonses.com ([54.240.27.55])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kFWvC-0000mj-78
- for ath11k@lists.infradead.org; Tue, 08 Sep 2020 06:16:03 +0000
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH V5 5/5] ath11k: add support for BSS coloring
-References: <20200826055650.1101224-1-john@phrozen.org>
- <20200826055650.1101224-5-john@phrozen.org>
-Date: Tue, 8 Sep 2020 06:15:59 +0000
-In-Reply-To: <20200826055650.1101224-5-john@phrozen.org> (John Crispin's
- message of "Wed, 26 Aug 2020 07:56:50 +0200")
-Message-ID: <010101746c5b565e-df2c005c-72cd-4931-9f27-841e928e3a59-000000@us-west-2.amazonses.com>
-MIME-Version: 1.0
+ id 1kFXB3-0003jP-Tr
+ for ath11k@lists.infradead.org; Tue, 08 Sep 2020 06:32:27 +0000
+From: Venkateswara Naralasetty <vnaralas@codeaurora.org>
+Subject: [PATCHv2] ath11k: add raw mode and software crypto support
+Date: Tue, 8 Sep 2020 06:32:22 +0000
+Message-ID: <010101746c6a54fa-91406158-3f0a-4f10-8328-a7f560dd3feb-000000@us-west-2.amazonses.com>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -20,67 +15,349 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: John Crispin <john@phrozen.org>
-Cc: Johannes Berg <johannes@sipsolutions.net>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: ath11k@lists.infradead.org
+Cc: Venkateswara Naralasetty <vnaralas@codeaurora.org>, Manikanta Pubbisetty <mpubbise@codeaurora.org>, linux-wireless@vger.kernel.org
 
-John Crispin <john@phrozen.org> writes:
+Adding raw mode tx/rx support. Also, adding support
+for software crypto which depends on raw mode.
 
-> Whenever the MAC detects a color collision or any of its associated station
-> detects one the FW will send out an event. Add the code to parse and handle
-> this event. and pass the data up to mac80211.
->
-> The FW does not provide an offload feature such as the one used for CSA. The
-> color change process is hence triggered via the beacon offload tx completion events
-> sent out by the FW.
->
-> Signed-off-by: John Crispin <john@phrozen.org>
+To enable raw mode tx/rx:
+insmod ath11k.ko frame_mode=0
 
-Tested-on tag missing.
+To enable software crypto:
+insmod ath11k.ko crypto_mode=1
 
-I wonder if QCA6390 supports this and are there any regressions, do you
-know?
+These modes could be helpful in debugging crypto related issues.
 
-> @@ -2076,6 +2092,24 @@ static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
->  			if (ret)
->  				ath11k_warn(ar->ab, "failed to set bss color collision on vdev %i: %d\n",
->  					    arvif->vdev_id,  ret);
-> +
-> +			param_id = WMI_VDEV_PARAM_BSS_COLOR;
-> +			if (info->he_bss_color.enabled)
-> +				param_value = info->he_bss_color.color <<
-> +						IEEE80211_HE_OPERATION_BSS_COLOR_OFFSET;
-> +			else
-> +				param_value = IEEE80211_HE_OPERATION_BSS_COLOR_DISABLED;
-> +
-> +			ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
-> +							    param_id,
-> +							    param_value);
-> +			if (ret)
-> +				ath11k_warn(ar->ab,
-> +					    "failed to set bss color param on vdev %i: %d\n",
-> +					    arvif->vdev_id,  ret);
-> +
-> +			ath11k_info(ar->ab, "bss color param 0x%x set on vdev %i\n",
-> +				    param_value, arvif->vdev_id);
+Tested-on: IPQ8074 WLAN.HK.2.1.0.1-01228-QCAHKSWPL_SILICONZ-1
 
-Shouldn't this be a debug message?
+Signed-off-by: Manikanta Pubbisetty <mpubbise@codeaurora.org>
+Signed-off-by: Venkateswara Naralasetty <vnaralas@codeaurora.org>
+---
+v2:
+ * addressed Kalle comments.
 
-> @@ -6083,6 +6117,7 @@ static int __ath11k_mac_register(struct ath11k *ar)
->  
->  	wiphy_ext_feature_set(ar->hw->wiphy, NL80211_EXT_FEATURE_CQM_RSSI_LIST);
->  	wiphy_ext_feature_set(ar->hw->wiphy, NL80211_EXT_FEATURE_STA_TX_PWR);
-> +	wiphy_ext_feature_set(ar->hw->wiphy, NL80211_EXT_FEATURE_BSS_COLOR);
+ drivers/net/wireless/ath/ath11k/core.c  | 27 ++++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/core.h  |  9 ++++++++
+ drivers/net/wireless/ath/ath11k/debug.h |  2 ++
+ drivers/net/wireless/ath/ath11k/dp_rx.c |  7 +++++--
+ drivers/net/wireless/ath/ath11k/dp_tx.c | 37 +++++++++++++++++++++++----------
+ drivers/net/wireless/ath/ath11k/mac.c   | 27 ++++++++++++++++--------
+ drivers/net/wireless/ath/ath11k/wmi.c   |  4 ++++
+ 7 files changed, 91 insertions(+), 22 deletions(-)
 
-So my QCA6390 question above is should we enable this for all hardware
-or just for IPQ8074? If the latter, we should add a boolean to
-hw_params. Or does the firmware advertise if it supports this feature?
-
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 437b112..ea6d1d0 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -18,6 +18,16 @@ EXPORT_SYMBOL(ath11k_debug_mask);
+ module_param_named(debug_mask, ath11k_debug_mask, uint, 0644);
+ MODULE_PARM_DESC(debug_mask, "Debugging mask");
+ 
++static unsigned int ath11k_crypto_mode;
++module_param_named(crypto_mode, ath11k_crypto_mode, uint, 0644);
++MODULE_PARM_DESC(crypto_mode, "crypto mode: 0-hardware, 1-software");
++
++/* frame mode values are mapped as per enum ath11k_hw_txrx_mode */
++unsigned int ath11k_frame_mode = ATH11K_HW_TXRX_NATIVE_WIFI;
++module_param_named(frame_mode, ath11k_frame_mode, uint, 0644);
++MODULE_PARM_DESC(frame_mode,
++		 "Datapath frame mode (0: raw, 1: native wifi (default), 2: ethernet)");
++
+ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 	{
+ 		.hw_rev = ATH11K_HW_IPQ8074,
+@@ -580,6 +590,23 @@ int ath11k_core_qmi_firmware_ready(struct ath11k_base *ab)
+ 		return ret;
+ 	}
+ 
++	switch (ath11k_crypto_mode) {
++	case ATH11K_CRYPT_MODE_SW:
++		set_bit(ATH11K_FLAG_HW_CRYPTO_DISABLED, &ab->dev_flags);
++		set_bit(ATH11K_FLAG_RAW_MODE, &ab->dev_flags);
++		break;
++	case ATH11K_CRYPT_MODE_HW:
++		clear_bit(ATH11K_FLAG_HW_CRYPTO_DISABLED, &ab->dev_flags);
++		clear_bit(ATH11K_FLAG_RAW_MODE, &ab->dev_flags);
++		break;
++	default:
++		ath11k_info(ab, "invalid crypto_mode: %d\n", ath11k_crypto_mode);
++		return -EINVAL;
++	}
++
++	if (ath11k_frame_mode == ATH11K_HW_TXRX_RAW)
++		set_bit(ATH11K_FLAG_RAW_MODE, &ab->dev_flags);
++
+ 	mutex_lock(&ab->core_lock);
+ 	ret = ath11k_core_start(ab, ATH11K_FIRMWARE_MODE_NORMAL);
+ 	if (ret) {
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index d21191c..a8c77de 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -35,6 +35,8 @@
+ 
+ #define ATH11K_INVALID_HW_MAC_ID	0xFF
+ 
++extern unsigned int ath11k_frame_mode;
++
+ enum ath11k_supported_bw {
+ 	ATH11K_BW_20	= 0,
+ 	ATH11K_BW_40	= 1,
+@@ -54,6 +56,13 @@ enum wme_ac {
+ #define ATH11K_VHT_MCS_MAX	9
+ #define ATH11K_HE_MCS_MAX	11
+ 
++enum ath11k_crypt_mode {
++	/* Only use hardware crypto engine */
++	ATH11K_CRYPT_MODE_HW,
++	/* Only use software crypto */
++	ATH11K_CRYPT_MODE_SW,
++};
++
+ static inline enum wme_ac ath11k_tid_to_ac(u32 tid)
+ {
+ 	return (((tid == 0) || (tid == 3)) ? WME_AC_BE :
+diff --git a/drivers/net/wireless/ath/ath11k/debug.h b/drivers/net/wireless/ath/ath11k/debug.h
+index 1cfe548..5571727 100644
+--- a/drivers/net/wireless/ath/ath11k/debug.h
++++ b/drivers/net/wireless/ath/ath11k/debug.h
+@@ -26,6 +26,8 @@ enum ath11k_debug_mask {
+ 	ATH11K_DBG_TESTMODE	= 0x00000400,
+ 	ATH11k_DBG_HAL		= 0x00000800,
+ 	ATH11K_DBG_PCI		= 0x00001000,
++	ATH11K_DBG_DP_TX	= 0x00001000,
++	ATH11K_DBG_DP_RX	= 0x00002000,
+ 	ATH11K_DBG_ANY		= 0xffffffff,
+ };
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index f3ca73d..a507c12 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -2133,8 +2133,6 @@ static void ath11k_dp_rx_h_mpdu(struct ath11k *ar,
+ 	mcast = is_multicast_ether_addr(hdr->addr1);
+ 	fill_crypto_hdr = mcast;
+ 
+-	is_decrypted = ath11k_dp_rx_h_attn_is_decrypted(rx_desc);
+-
+ 	spin_lock_bh(&ar->ab->base_lock);
+ 	peer = ath11k_peer_find_by_addr(ar->ab, hdr->addr2);
+ 	if (peer) {
+@@ -2148,6 +2146,8 @@ static void ath11k_dp_rx_h_mpdu(struct ath11k *ar,
+ 	spin_unlock_bh(&ar->ab->base_lock);
+ 
+ 	err_bitmap = ath11k_dp_rx_h_attn_mpdu_err(rx_desc);
++	if (enctype != HAL_ENCRYPT_TYPE_OPEN && !err_bitmap)
++		is_decrypted = ath11k_dp_rx_h_attn_is_decrypted(rx_desc);
+ 
+ 	/* Clear per-MPDU flags while leaving per-PPDU flags intact */
+ 	rx_status->flag &= ~(RX_FLAG_FAILED_FCS_CRC |
+@@ -2350,6 +2350,9 @@ static void ath11k_dp_rx_deliver_msdu(struct ath11k *ar, struct napi_struct *nap
+ 		   !!(status->flag & RX_FLAG_MMIC_ERROR),
+ 		   !!(status->flag & RX_FLAG_AMSDU_MORE));
+ 
++	ath11k_dbg_dump(ar->ab, ATH11K_DBG_DP_RX, NULL, "dp rx msdu: ",
++			msdu->data, msdu->len);
++
+ 	/* TODO: trace rx packet */
+ 
+ 	ieee80211_rx_napi(ar->hw, NULL, msdu, napi);
+diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
+index a9632b7..6565d98 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_tx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
+@@ -13,6 +13,10 @@ static enum hal_tcl_encap_type
+ ath11k_dp_tx_get_encap_type(struct ath11k_vif *arvif, struct sk_buff *skb)
+ {
+ 	struct ieee80211_tx_info *tx_info = IEEE80211_SKB_CB(skb);
++	struct ath11k_base *ab = arvif->ar->ab;
++
++	if (test_bit(ATH11K_FLAG_RAW_MODE, &ab->dev_flags))
++		return HAL_TCL_ENCAP_TYPE_RAW;
+ 
+ 	if (tx_info->control.flags & IEEE80211_TX_CTRL_HW_80211_ENCAP)
+ 		return HAL_TCL_ENCAP_TYPE_ETHERNET;
+@@ -79,6 +83,7 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
+ 	struct ath11k_dp *dp = &ab->dp;
+ 	struct hal_tx_info ti = {0};
+ 	struct ieee80211_tx_info *info = IEEE80211_SKB_CB(skb);
++	struct ieee80211_key_conf *key = info->control.hw_key;
+ 	struct ath11k_skb_cb *skb_cb = ATH11K_SKB_CB(skb);
+ 	struct hal_srng *tcl_ring;
+ 	struct ieee80211_hdr *hdr = (void *)skb->data;
+@@ -142,11 +147,17 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
+ 	ti.encap_type = ath11k_dp_tx_get_encap_type(arvif, skb);
+ 	ti.meta_data_flags = arvif->tcl_metadata;
+ 
+-	if (info->control.hw_key)
+-		ti.encrypt_type =
+-			ath11k_dp_tx_get_encrypt_type(info->control.hw_key->cipher);
+-	else
+-		ti.encrypt_type = HAL_ENCRYPT_TYPE_OPEN;
++	if (ti.encap_type == HAL_TCL_ENCAP_TYPE_RAW) {
++		if (key) {
++			ti.encrypt_type =
++				ath11k_dp_tx_get_encrypt_type(key->cipher);
++
++			if (ieee80211_has_protected(hdr->frame_control))
++				skb_put(skb, IEEE80211_CCMP_MIC_LEN);
++		} else {
++			ti.encrypt_type = HAL_ENCRYPT_TYPE_OPEN;
++		}
++	}
+ 
+ 	ti.addr_search_flags = arvif->hal_addr_search_flags;
+ 	ti.search_type = arvif->search_type;
+@@ -156,7 +167,8 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
+ 	ti.bss_ast_hash = arvif->ast_hash;
+ 	ti.dscp_tid_tbl_idx = 0;
+ 
+-	if (skb->ip_summed == CHECKSUM_PARTIAL) {
++	if (skb->ip_summed == CHECKSUM_PARTIAL &&
++	    ti.encap_type != HAL_TCL_ENCAP_TYPE_RAW) {
+ 		ti.flags0 |= FIELD_PREP(HAL_TCL_DATA_CMD_INFO1_IP4_CKSUM_EN, 1) |
+ 			     FIELD_PREP(HAL_TCL_DATA_CMD_INFO1_UDP4_CKSUM_EN, 1) |
+ 			     FIELD_PREP(HAL_TCL_DATA_CMD_INFO1_UDP6_CKSUM_EN, 1) |
+@@ -176,10 +188,11 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
+ 		ath11k_dp_tx_encap_nwifi(skb);
+ 		break;
+ 	case HAL_TCL_ENCAP_TYPE_RAW:
+-		/*  TODO: for CHECKSUM_PARTIAL case in raw mode, HW checksum offload
+-		 *	  is not applicable, hence manual checksum calculation using
+-		 *	  skb_checksum_help() is needed
+-		 */
++		if (!test_bit(ATH11K_FLAG_RAW_MODE, &ab->dev_flags)) {
++			ret = -EINVAL;
++			goto fail_remove_idr;
++		}
++		break;
+ 	case HAL_TCL_ENCAP_TYPE_ETHERNET:
+ 		/* no need to encap */
+ 		break;
+@@ -242,6 +255,9 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
+ 
+ 	spin_unlock_bh(&tcl_ring->lock);
+ 
++	ath11k_dbg_dump(ab, ATH11K_DBG_DP_TX, NULL, "dp tx msdu: ",
++			skb->data, skb->len);
++
+ 	atomic_inc(&ar->dp.num_tx_pending);
+ 
+ 	return 0;
+@@ -352,7 +368,6 @@ ath11k_dp_tx_process_htt_tx_complete(struct ath11k_base *ab,
+ 
+ 	wbm_status = FIELD_GET(HTT_TX_WBM_COMP_INFO0_STATUS,
+ 			       status_desc->info0);
+-
+ 	switch (wbm_status) {
+ 	case HAL_WBM_REL_HTT_TX_COMP_STATUS_OK:
+ 	case HAL_WBM_REL_HTT_TX_COMP_STATUS_DROP:
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index f4a085b..75800f3 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -42,12 +42,6 @@
+ 	.max_power              = 30, \
+ }
+ 
+-/* frame mode values are mapped as per enum ath11k_hw_txrx_mode */
+-static unsigned int ath11k_frame_mode = ATH11K_HW_TXRX_NATIVE_WIFI;
+-module_param_named(frame_mode, ath11k_frame_mode, uint, 0644);
+-MODULE_PARM_DESC(frame_mode,
+-		 "Datapath frame mode (0: raw, 1: native wifi (default), 2: ethernet)");
+-
+ static const struct ieee80211_channel ath11k_2ghz_channels[] = {
+ 	CHAN2G(1, 2412, 0),
+ 	CHAN2G(2, 2417, 0),
+@@ -2380,6 +2374,9 @@ static int ath11k_install_key(struct ath11k_vif *arvif,
+ 
+ 	reinit_completion(&ar->install_key_done);
+ 
++	if (test_bit(ATH11K_FLAG_HW_CRYPTO_DISABLED, &ar->ab->dev_flags))
++		return 0;
++
+ 	if (cmd == DISABLE_KEY) {
+ 		/* TODO: Check if FW expects  value other than NONE for del */
+ 		/* arg.key_cipher = WMI_CIPHER_NONE; */
+@@ -2411,8 +2408,13 @@ static int ath11k_install_key(struct ath11k_vif *arvif,
+ 		return -EOPNOTSUPP;
+ 	}
+ 
++	if (test_bit(ATH11K_FLAG_RAW_MODE, &ar->ab->dev_flags))
++		key->flags |= IEEE80211_KEY_FLAG_GENERATE_IV |
++			      IEEE80211_KEY_FLAG_RESERVE_TAILROOM;
++
+ install:
+ 	ret = ath11k_wmi_vdev_install_key(arvif->ar, &arg);
++
+ 	if (ret)
+ 		return ret;
+ 
+@@ -2484,6 +2486,9 @@ static int ath11k_mac_op_set_key(struct ieee80211_hw *hw, enum set_key_cmd cmd,
+ 	    key->cipher == WLAN_CIPHER_SUITE_BIP_CMAC_256)
+ 		return 1;
+ 
++	if (test_bit(ATH11K_FLAG_HW_CRYPTO_DISABLED, &ar->ab->dev_flags))
++		return 1;
++
+ 	if (key->keyidx > WMI_MAX_KEY_INDEX)
+ 		return -ENOSPC;
+ 
+@@ -4436,6 +4441,8 @@ static int ath11k_mac_op_add_interface(struct ieee80211_hw *hw,
+ 
+ 	if (ieee80211_set_hw_80211_encap(vif, hw_encap))
+ 		param_value = ATH11K_HW_TXRX_ETHERNET;
++	else if (test_bit(ATH11K_FLAG_RAW_MODE, &ab->dev_flags))
++		param_value = ATH11K_HW_TXRX_RAW;
+ 	else
+ 		param_value = ATH11K_HW_TXRX_NATIVE_WIFI;
+ 
+@@ -6109,7 +6116,6 @@ static int __ath11k_mac_register(struct ath11k *ar)
+ 	ieee80211_hw_set(ar->hw, HAS_RATE_CONTROL);
+ 	ieee80211_hw_set(ar->hw, AP_LINK_PS);
+ 	ieee80211_hw_set(ar->hw, SPECTRUM_MGMT);
+-	ieee80211_hw_set(ar->hw, SUPPORT_FAST_XMIT);
+ 	ieee80211_hw_set(ar->hw, CONNECTION_MONITOR);
+ 	ieee80211_hw_set(ar->hw, SUPPORTS_PER_STA_GTK);
+ 	ieee80211_hw_set(ar->hw, WANT_MONITOR_VIF);
+@@ -6176,8 +6182,11 @@ static int __ath11k_mac_register(struct ath11k *ar)
+ 
+ 	ath11k_reg_init(ar);
+ 
+-	/* advertise HW checksum offload capabilities */
+-	ar->hw->netdev_features = NETIF_F_HW_CSUM;
++	if (!test_bit(ATH11K_FLAG_RAW_MODE, &ab->dev_flags)) {
++		ar->hw->netdev_features = NETIF_F_HW_CSUM;
++		ieee80211_hw_set(ar->hw, SW_CRYPTO_CONTROL);
++		ieee80211_hw_set(ar->hw, SUPPORT_FAST_XMIT);
++	}
+ 
+ 	ret = ieee80211_register_hw(ar->hw);
+ 	if (ret) {
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index a209e74..adde14a 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -3366,6 +3366,10 @@ int ath11k_wmi_cmd_init(struct ath11k_base *ab)
+ 	config.rx_timeout_pri[2] = TARGET_RX_TIMEOUT_LO_PRI;
+ 	config.rx_timeout_pri[3] = TARGET_RX_TIMEOUT_HI_PRI;
+ 	config.rx_decap_mode = TARGET_DECAP_MODE_NATIVE_WIFI;
++
++	if (test_bit(ATH11K_FLAG_RAW_MODE, &ab->dev_flags))
++		config.rx_decap_mode = TARGET_DECAP_MODE_RAW;
++
+ 	config.scan_max_pending_req = TARGET_SCAN_MAX_PENDING_REQS;
+ 	config.bmiss_offload_max_vdev = TARGET_BMISS_OFFLOAD_MAX_VDEV;
+ 	config.roam_offload_max_vdev = TARGET_ROAM_OFFLOAD_MAX_VDEV;
 -- 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+2.7.4
+
 
 -- 
 ath11k mailing list
