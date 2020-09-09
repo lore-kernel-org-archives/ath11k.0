@@ -1,19 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail-io1-f66.google.com ([209.85.166.66])
+Received: from a27-55.smtp-out.us-west-2.amazonses.com ([54.240.27.55])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kFkKi-0004Bv-Oy
- for ath11k@lists.infradead.org; Tue, 08 Sep 2020 20:35:17 +0000
-Received: by mail-io1-f66.google.com with SMTP id d18so750508iop.13
- for <ath11k@lists.infradead.org>; Tue, 08 Sep 2020 13:35:16 -0700 (PDT)
-Date: Tue, 8 Sep 2020 14:35:14 -0600
-From: Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v7 1/3] dt: bindings: net: update compatible for ath11k
-Message-ID: <20200908203514.GA870402@bogus>
-References: <1599551717-3801-1-git-send-email-akolli@codeaurora.org>
- <010101746cb6751a-ca300933-1174-4534-a01b-b1dbf1c1f305-000000@us-west-2.amazonses.com>
+ id 1kFtvH-0007GO-Jh
+ for ath11k@lists.infradead.org; Wed, 09 Sep 2020 06:49:41 +0000
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <010101746cb6751a-ca300933-1174-4534-a01b-b1dbf1c1f305-000000@us-west-2.amazonses.com>
+Subject: Re: [PATCH net-next] ath11k: fix uninitialized return in
+ ath11k_spectral_process_data()
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <20200619142922.GA267142@mwanda>
+References: <20200619142922.GA267142@mwanda>
+Message-ID: <0101017471a0793c-f633a815-c23b-48d8-b3d0-3161dddc81a9-000000@us-west-2.amazonses.com>
+Date: Wed, 9 Sep 2020 06:49:36 +0000
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -26,32 +23,26 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Anilkumar Kolli <akolli@codeaurora.org>
-Cc: devicetree@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: Dan Carpenter <dan.carpenter@oracle.com>
+Cc: linux-wireless@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>, kernel-janitors@vger.kernel.org, Karthikeyan Periyasamy <periyasa@codeaurora.org>, ath11k@lists.infradead.org
 
-On Tue, 08 Sep 2020 07:55:31 +0000, Anilkumar Kolli wrote:
-> Add IPQ6018 wireless driver support,
-> its based on ath11k driver.
+Dan Carpenter <dan.carpenter@oracle.com> wrote:
+
+> There is a success path where "ret" isn't initialized where we never
+> have a ATH11K_SPECTRAL_TAG_SCAN_SEARCH and then ret isn't initialized.
 > 
-> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
-> ---
-> V3:
->  - Use 'enum' rather than oneOf+const.
-> V4:
->  - removed oneOf, use just enum (Rob)
-> V5:
->  - Fixes errors in 'make dt_binding_check' (Rob)
-> 
->  Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
+> Fixes: 9d11b7bff950 ("ath11k: add support for spectral scan")
+> Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
+> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
+Patch applied to ath-next branch of ath.git, thanks.
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
+c7187acc3cd0 ath11k: fix uninitialized return in ath11k_spectral_process_data()
 
-If a tag was not added on purpose, please state why and what changed.
+-- 
+https://patchwork.kernel.org/patch/11614313/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 
 -- 
