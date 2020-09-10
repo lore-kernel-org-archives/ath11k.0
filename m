@@ -1,12 +1,18 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from a27-21.smtp-out.us-west-2.amazonses.com ([54.240.27.21])
+Received: from a27-18.smtp-out.us-west-2.amazonses.com ([54.240.27.18])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kGGtC-0001zf-9S
- for ath11k@lists.infradead.org; Thu, 10 Sep 2020 07:21:05 +0000
+ id 1kGGvw-0002iG-Ht
+ for ath11k@lists.infradead.org; Thu, 10 Sep 2020 07:23:53 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH] ath11k: fix link error when CONFIG_REMOTEPROC is disabled
-Date: Thu, 10 Sep 2020 07:20:58 +0000
-Message-ID: <0101017476e38e80-84d58edf-641e-492a-95bb-c0d1573f987c-000000@us-west-2.amazonses.com>
+Subject: Re: linux-next: Tree for Sep 9 (ath11k)
+References: <20200909202624.2cc6c3d1@canb.auug.org.au>
+ <3f8649d7-c64a-4b0a-a2db-69f1b11e31e5@infradead.org>
+ <0101017476bd06e1-16ca4de8-647e-4423-9630-753fb5675e8b-000000@us-west-2.amazonses.com>
+Date: Thu, 10 Sep 2020 07:23:48 +0000
+In-Reply-To: <0101017476bd06e1-16ca4de8-647e-4423-9630-753fb5675e8b-000000@us-west-2.amazonses.com>
+ (Kalle Valo's message of "Thu, 10 Sep 2020 06:38:53 +0000")
+Message-ID: <0101017476e6257f-732e9a06-f420-47d0-b7db-36b2e3c2a266-000000@us-west-2.amazonses.com>
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -15,44 +21,39 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
+To: Randy Dunlap <rdunlap@infradead.org>
+Cc: Stephen Rothwell <sfr@canb.auug.org.au>, Linux Next Mailing List <linux-next@vger.kernel.org>, linux-wireless <linux-wireless@vger.kernel.org>, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, ath11k@lists.infradead.org
 
-If CONFIG_REMOTEPROC was disabled the linking failed with:
+Kalle Valo <kvalo@codeaurora.org> writes:
 
-ERROR: modpost: "rproc_get_by_phandle" [drivers/net/wireless/ath/ath11k/ath11k.ko] undefined!
+> Randy Dunlap <rdunlap@infradead.org> writes:
+>
+>> On 9/9/20 3:26 AM, Stephen Rothwell wrote:
+>>> Hi all,
+>>> 
+>>> Changes since 20200908:
+>>> 
+>>
+>> on x86_64:
+>>
+>> ld: drivers/net/wireless/ath/ath11k/core.o: in function `ath11k_core_init':
+>> core.c:(.text+0x121f): undefined reference to `rproc_get_by_phandle'
+>
+> This is because CONFIG_REMOTEPROC is not, I'll fix the dependency in
+> ath11k. Thanks for the report.
 
-Compile tested only.
+Patch sent:
 
-Reported-by: Randy Dunlap <rdunlap@infradead.org>
-Fixes: 1ff8ed786d5d ("ath11k: use remoteproc only with AHB devices")
-Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/core.c | 3 +++
- 1 file changed, 3 insertions(+)
+ath11k: fix link error when CONFIG_REMOTEPROC is disabled
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 437b1123a34f..413811edd083 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -784,6 +784,9 @@ static int ath11k_core_get_rproc(struct ath11k_base *ab)
- 	struct rproc *prproc;
- 	phandle rproc_phandle;
- 
-+	if (!IS_ENABLED(CONFIG_REMOTEPROC))
-+		return 0;
-+
- 	if (ab->bus_params.mhi_support)
- 		return 0;
- 
+https://patchwork.kernel.org/patch/11766849/
+
 -- 
-2.7.4
-
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
