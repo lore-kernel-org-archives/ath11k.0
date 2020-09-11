@@ -1,19 +1,17 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from a27-10.smtp-out.us-west-2.amazonses.com ([54.240.27.10])
+Received: from a27-186.smtp-out.us-west-2.amazonses.com ([54.240.27.186])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kGgKc-00050r-Gj
- for ath11k@lists.infradead.org; Fri, 11 Sep 2020 10:31:03 +0000
+ id 1kGkSe-000879-82
+ for ath11k@lists.infradead.org; Fri, 11 Sep 2020 14:55:37 +0000
+From: Kalle Valo <kvalo@codeaurora.org>
+Subject: Re: drivers/net/wireless/ath/ath11k/ahb.c:919:15: warning: cast to
+ smaller integer type 'enum ath11k_hw_rev' from 'const void
+References: <202009110445.WqWCY2F0%lkp@intel.com>
+Date: Fri, 11 Sep 2020 14:55:33 +0000
+In-Reply-To: <202009110445.WqWCY2F0%lkp@intel.com> (kernel test robot's
+ message of "Fri, 11 Sep 2020 04:52:50 +0800")
+Message-ID: <010101747daa15f7-938f0a66-fdc2-4f89-aa8d-e1eae80507f5-000000@us-west-2.amazonses.com>
 MIME-Version: 1.0
-Date: Fri, 11 Sep 2020 10:30:58 +0000
-From: Wen Gong <wgong@codeaurora.org>
-Subject: Re: [PATCH v2 13/24] mac80211: determine chandef from HE 6 GHz
- operation
-In-Reply-To: <e60a8168e11aa69a9778fae9a29b8735c5f737b5.camel@sipsolutions.net>
-References: <20200528213443.993f108e96ca.I0086ae42d672379380d04ac5effb2f3d5135731b@changeid>
- <20200528213443.25687d2695bc.I3f9747c1147480f65445f13eda5c4a5ed4e86757@changeid>
- <010101747c80076d-8dc8fdae-d89b-497f-81ac-77d2dd7d94b5-000000@us-west-2.amazonses.com>
- <e60a8168e11aa69a9778fae9a29b8735c5f737b5.camel@sipsolutions.net>
-Message-ID: <010101747cb7ddae-b7ebfe3e-1f30-43d5-ae68-cfc8e9478ed1-000000@us-west-2.amazonses.com>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,69 +20,223 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Johannes Berg <johannes@sipsolutions.net>
-Cc: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>, linux-wireless-owner@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, Rajkumar Manoharan <rmanohar@codeaurora.org>
+To: kernel test robot <lkp@intel.com>
+Cc: Maharaja Kennadyrajan <mkenna@codeaurora.org>, Govindaraj Saminathan <gsamin@codeaurora.org>, Julia Lawall <julia.lawall@lip6.fr>, kbuild-all@lists.01.org, Bhagavathi Perumal S <bperumal@codeaurora.org>, Ganesh Sesetti <gseset@codeaurora.org>, Anilkumar Kolli <akolli@codeaurora.org>, linux-kernel@vger.kernel.org, clang-built-linux@googlegroups.com, John Crispin <john@phrozen.org>, Karthikeyan Periyasamy <periyasa@codeaurora.org>, ath11k@lists.infradead.org
 
-On 2020-09-11 18:06, Johannes Berg wrote:
-> On Fri, 2020-09-11 at 09:29 +0000, Wen Gong wrote:
->> On 2020-05-29 03:34, Johannes Berg wrote:
->> > From: Johannes Berg <johannes.berg@intel.com>
->> >
->> > Support connecting to HE 6 GHz APs and mesh networks on 6 GHz,
->> > where the HT/VHT information is missing but instead the HE 6 GHz
->> > band capability is present, and the 6 GHz Operation information
->> > field is used to encode the channel configuration instead of the
->> > HT/VHT operation elements.
->> >
->> > Also add some other bits needed to connect to 6 GHz networks.
->> >
->> > Link:
->> > https://lore.kernel.org/r/1589399105-25472-10-git-send-email-rmanohar@codeaurora.org
->> > Co-developed-by: Rajkumar Manoharan <rmanohar@codeaurora.org>
->> > Signed-off-by: Rajkumar Manoharan <rmanohar@codeaurora.org>
->> > Signed-off-by: Johannes Berg <johannes.berg@intel.com>
->> > ---
->> >  net/mac80211/ieee80211_i.h |   3 ++
->> >  net/mac80211/mesh.c        |   1 +
->> >  net/mac80211/mlme.c        |  69 +++++++++++++++++-------
->> >  net/mac80211/util.c        | 106 +++++++++++++++++++++++++++++++++++++
->> >  4 files changed, 160 insertions(+), 19 deletions(-)
->> >
->> [...]
->> > @@ -4838,21 +4860,23 @@ static int ieee80211_prep_channel(struct
->> > ieee80211_sub_if_data *sdata,
->> >  			  IEEE80211_STA_DISABLE_160MHZ);
->> >
->> >  	/* disable HT/VHT/HE if we don't support them */
->> > -	if (!sband->ht_cap.ht_supported) {
->> > +	if (!sband->ht_cap.ht_supported && !is_6ghz) {
->> >  		ifmgd->flags |= IEEE80211_STA_DISABLE_HT;
->> >  		ifmgd->flags |= IEEE80211_STA_DISABLE_VHT;
->> >  		ifmgd->flags |= IEEE80211_STA_DISABLE_HE;
->> >  	}
->> >
->> > -	if (!sband->vht_cap.vht_supported)
->> > +	if (!sband->vht_cap.vht_supported && !is_6ghz) {
->> >  		ifmgd->flags |= IEEE80211_STA_DISABLE_VHT;
->> > +		ifmgd->flags |= IEEE80211_STA_DISABLE_HE;
->> > +	}
->> when connec to NL80211_BAND_2GHZ, it does not support vht, then it
->> failed for HE and connected with HT mode.
->> I tesed with below change, it fix the issue, it connected with HE mode
->> for NL80211_BAND_2GHZ with an HE mode 11AX AP.
-> 
-> Hmm. Yeah, that seems reasonable. I wonder why/how we never saw this,
-> hm.
-> 
-> Can you send a real patch?
-> 
-yes, patch sent:
-https://lore.kernel.org/linux-wireless/010101747cb617f2-593c5410-1648-4a42-97a0-f3646a5a6dd1-000000@us-west-2.amazonses.com/
-> johannes
++ ath11k
+
+Hi,
+
+can someone look at the ath11k warnings below and send fixes, please?
+Some of them might be already fixed, like the one about enum
+scan_priority.
+
+Kalle
+
+kernel test robot <lkp@intel.com> writes:
+
+> tree:   https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git master
+> head:   7fe10096c1508c7f033d34d0741809f8eecc1ed4
+> commit: d5c65159f2895379e11ca13f62feabe93278985d ath11k: driver for
+> Qualcomm IEEE 802.11ax devices
+> date:   10 months ago
+> config: x86_64-randconfig-a015-20200910 (attached as .config)
+> compiler: clang version 12.0.0 (https://github.com/llvm/llvm-project
+> 0a5dc7effb191eff740e0e7ae7bd8e1f6bdb3ad9)
+> reproduce (this is a W=1 build):
+>         wget
+> https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross
+> -O ~/bin/make.cross
+>         chmod +x ~/bin/make.cross
+>         # install x86_64 cross compiling tool for clang build
+>         # apt-get install binutils-x86-64-linux-gnu
+>         git checkout d5c65159f2895379e11ca13f62feabe93278985d
+>         # save the attached .config to linux build tree
+>         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross ARCH=x86_64 
+>
+> If you fix the issue, kindly add following tag as appropriate
+> Reported-by: kernel test robot <lkp@intel.com>
+>
+> All warnings (new ones prefixed by >>):
+>
+>>> drivers/net/wireless/ath/ath11k/ahb.c:919:15: warning: cast to
+>>> smaller integer type 'enum ath11k_hw_rev' from 'const void *'
+>>> [-Wvoid-pointer-to-enum-cast]
+>            ab->hw_rev = (enum ath11k_hw_rev)of_id->data;
+>                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>    1 warning generated.
+> --
+>>> drivers/net/wireless/ath/ath11k/wmi.c:142:8: warning: format
+>>> specifies type 'unsigned char' but the argument has type 'u16' (aka
+>>> 'unsigned short') [-Wformat]
+>                                       tlv_tag, ptr - begin, len, tlv_len);
+>                                       ^~~~~~~
+>    drivers/net/wireless/ath/ath11k/wmi.c:142:35: warning: format specifies type 'unsigned char' but the argument has type 'u16' (aka 'unsigned short') [-Wformat]
+>                                       tlv_tag, ptr - begin, len, tlv_len);
+>                                                                  ^~~~~~~
+>    drivers/net/wireless/ath/ath11k/wmi.c:150:8: warning: format specifies type 'unsigned char' but the argument has type 'u16' (aka 'unsigned short') [-Wformat]
+>                                       tlv_tag, ptr - begin, tlv_len,
+>                                       ^~~~~~~
+>    drivers/net/wireless/ath/ath11k/wmi.c:150:30: warning: format specifies type 'unsigned char' but the argument has type 'u16' (aka 'unsigned short') [-Wformat]
+>                                       tlv_tag, ptr - begin, tlv_len,
+>                                                             ^~~~~~~
+>    drivers/net/wireless/ath/ath11k/wmi.c:1812:23: warning: implicit conversion from enumeration type 'enum wmi_scan_priority' to different enumeration type 'enum scan_priority' [-Wenum-conversion]
+>            arg->scan_priority = WMI_SCAN_PRIORITY_LOW;
+>                               ~ ^~~~~~~~~~~~~~~~~~~~~
+>    5 warnings generated.
+> --
+>>> drivers/net/wireless/ath/ath11k/mac.c:3970:6: warning: format
+>>> specifies type 'unsigned short' but the argument has type 'u32'
+>>> (aka 'unsigned int') [-Wformat]
+>                       ctx->def.chan->center_freq, ctx->def.width, ctx);
+>                       ^~~~~~~~~~~~~~~~~~~~~~~~~~
+>    drivers/net/wireless/ath/ath11k/debug.h:275:37: note: expanded from macro 'ath11k_dbg'
+>                    __ath11k_dbg(ar, dbg_mask, fmt, ##__VA_ARGS__); \
+>                                               ~~~    ^~~~~~~~~~~
+>    drivers/net/wireless/ath/ath11k/mac.c:3994:6: warning: format specifies type 'unsigned short' but the argument has type 'u32' (aka 'unsigned int') [-Wformat]
+>                       ctx->def.chan->center_freq, ctx->def.width, ctx);
+>                       ^~~~~~~~~~~~~~~~~~~~~~~~~~
+>    drivers/net/wireless/ath/ath11k/debug.h:275:37: note: expanded from macro 'ath11k_dbg'
+>                    __ath11k_dbg(ar, dbg_mask, fmt, ##__VA_ARGS__); \
+>                                               ~~~    ^~~~~~~~~~~
+>    drivers/net/wireless/ath/ath11k/mac.c:4241:7: warning: format specifies type 'unsigned short' but the argument has type 'u32' (aka 'unsigned int') [-Wformat]
+>                               vifs[i].old_ctx->def.chan->center_freq,
+>                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>    drivers/net/wireless/ath/ath11k/debug.h:275:37: note: expanded from macro 'ath11k_dbg'
+>                    __ath11k_dbg(ar, dbg_mask, fmt, ##__VA_ARGS__); \
+>                                               ~~~    ^~~~~~~~~~~
+>    drivers/net/wireless/ath/ath11k/mac.c:4242:7: warning: format specifies type 'unsigned short' but the argument has type 'u32' (aka 'unsigned int') [-Wformat]
+>                               vifs[i].new_ctx->def.chan->center_freq,
+>                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>    drivers/net/wireless/ath/ath11k/debug.h:275:37: note: expanded from macro 'ath11k_dbg'
+>                    __ath11k_dbg(ar, dbg_mask, fmt, ##__VA_ARGS__); \
+>                                               ~~~    ^~~~~~~~~~~
+>    drivers/net/wireless/ath/ath11k/mac.c:4337:6: warning: format specifies type 'unsigned short' but the argument has type 'u32' (aka 'unsigned int') [-Wformat]
+>                       ctx->def.chan->center_freq, ctx->def.width, ctx, changed);
+>                       ^~~~~~~~~~~~~~~~~~~~~~~~~~
+>    drivers/net/wireless/ath/ath11k/debug.h:275:37: note: expanded from macro 'ath11k_dbg'
+>                    __ath11k_dbg(ar, dbg_mask, fmt, ##__VA_ARGS__); \
+>                                               ~~~    ^~~~~~~~~~~
+>>> drivers/net/wireless/ath/ath11k/mac.c:4640:22: warning: format
+>>> specifies type 'unsigned char' but the argument has type 'u32' (aka
+>>> 'unsigned int') [-Wformat]
+>                       arvif->vdev_id, rate, nss, sgi);
+>                                       ^~~~
+>    drivers/net/wireless/ath/ath11k/debug.h:275:37: note: expanded from macro 'ath11k_dbg'
+>                    __ath11k_dbg(ar, dbg_mask, fmt, ##__VA_ARGS__); \
+>                                               ~~~    ^~~~~~~~~~~
+>    6 warnings generated.
+> --
+>>> drivers/net/wireless/ath/ath11k/dp_rx.c:977:8: warning: format specifies type 'unsigned char' but the argument has type 'u16' (aka 'unsigned short') [-Wformat]
+>                                       tlv_tag, ptr - begin, len, tlv_len);
+>                                       ^~~~~~~
+>    drivers/net/wireless/ath/ath11k/dp_rx.c:977:35: warning: format specifies type 'unsigned char' but the argument has type 'u16' (aka 'unsigned short') [-Wformat]
+>                                       tlv_tag, ptr - begin, len, tlv_len);
+>                                                                  ^~~~~~~
+>    2 warnings generated.
+>
+> # https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=d5c65159f2895379e11ca13f62feabe93278985d
+> git remote add linus https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+> git fetch --no-tags linus master
+> git checkout d5c65159f2895379e11ca13f62feabe93278985d
+> vim +919 drivers/net/wireless/ath/ath11k/ahb.c
+>
+>    879	
+>    880	static int ath11k_ahb_probe(struct platform_device *pdev)
+>    881	{
+>    882		struct ath11k_base *ab;
+>    883		const struct of_device_id *of_id;
+>    884		struct resource *mem_res;
+>    885		void __iomem *mem;
+>    886		int ret;
+>    887	
+>    888		of_id = of_match_device(ath11k_ahb_of_match, &pdev->dev);
+>    889		if (!of_id) {
+>    890			dev_err(&pdev->dev, "failed to find matching device tree id\n");
+>    891			return -EINVAL;
+>    892		}
+>    893	
+>    894		mem_res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+>    895		if (!mem_res) {
+>    896			dev_err(&pdev->dev, "failed to get IO memory resource\n");
+>    897			return -ENXIO;
+>    898		}
+>    899	
+>    900		mem = devm_ioremap_resource(&pdev->dev, mem_res);
+>    901		if (IS_ERR(mem)) {
+>    902			dev_err(&pdev->dev, "ioremap error\n");
+>    903			return PTR_ERR(mem);
+>    904		}
+>    905	
+>    906		ret = dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(32));
+>    907		if (ret) {
+>    908			dev_err(&pdev->dev, "failed to set 32-bit consistent dma\n");
+>    909			return ret;
+>    910		}
+>    911	
+>    912		ab = ath11k_core_alloc(&pdev->dev);
+>    913		if (!ab) {
+>    914			dev_err(&pdev->dev, "failed to allocate ath11k base\n");
+>    915			return -ENOMEM;
+>    916		}
+>    917	
+>    918		ab->pdev = pdev;
+>  > 919		ab->hw_rev = (enum ath11k_hw_rev)of_id->data;
+>    920		ab->mem = mem;
+>    921		ab->mem_len = resource_size(mem_res);
+>    922		platform_set_drvdata(pdev, ab);
+>    923	
+>    924		ret = ath11k_hal_srng_init(ab);
+>    925		if (ret)
+>    926			goto err_core_free;
+>    927	
+>    928		ret = ath11k_ce_alloc_pipes(ab);
+>    929		if (ret) {
+>    930			ath11k_err(ab, "failed to allocate ce pipes: %d\n", ret);
+>    931			goto err_hal_srng_deinit;
+>    932		}
+>    933	
+>    934		ath11k_ahb_init_qmi_ce_config(ab);
+>    935	
+>    936		ret = ath11k_ahb_config_irq(ab);
+>    937		if (ret) {
+>    938			ath11k_err(ab, "failed to configure irq: %d\n", ret);
+>    939			goto err_ce_free;
+>    940		}
+>    941	
+>    942		ret = ath11k_core_init(ab);
+>    943		if (ret) {
+>    944			ath11k_err(ab, "failed to init core: %d\n", ret);
+>    945			goto err_ce_free;
+>    946		}
+>    947	
+>    948		return 0;
+>    949	
+>    950	err_ce_free:
+>    951		ath11k_ce_free_pipes(ab);
+>    952	
+>    953	err_hal_srng_deinit:
+>    954		ath11k_hal_srng_deinit(ab);
+>    955	
+>    956	err_core_free:
+>    957		ath11k_core_free(ab);
+>    958		platform_set_drvdata(pdev, NULL);
+>    959	
+>    960		return ret;
+>    961	}
+>    962	
+>
+> ---
+> 0-DAY CI Kernel Test Service, Intel Corporation
+> https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+>
+
+-- 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
