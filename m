@@ -1,13 +1,19 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail29.static.mailgun.info ([104.130.122.29])
+Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kHsA3-0008Le-5b
- for ath11k@lists.infradead.org; Mon, 14 Sep 2020 17:21:08 +0000
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: ath11k: QCA6390 support on Linux
-Date: Mon, 14 Sep 2020 20:20:53 +0300
-Message-ID: <87r1r4nukq.fsf@codeaurora.org>
+ id 1kHsSR-0005HU-N6
+ for ath11k@lists.infradead.org; Mon, 14 Sep 2020 17:40:04 +0000
+Subject: Re: [PATCH V6 2/2] ath11k: add support for setting fixed HE
+ rate/gi/ltf
+References: <20200804081630.2013619-2-john@phrozen.org>
+ <010101746c53c3fc-6b47ad5d-f740-4029-9a89-2ba9bef427f3-000000@us-west-2.amazonses.com>
+ <010101747ecf2d5c-5543939f-2417-438a-8d0a-c31832121a00-000000@us-west-2.amazonses.com>
+From: John Crispin <john@phrozen.org>
+Message-ID: <ebf50ae1-910c-fab4-83e7-24677ae87243@phrozen.org>
+Date: Mon, 14 Sep 2020 19:40:00 +0200
 MIME-Version: 1.0
+In-Reply-To: <010101747ecf2d5c-5543939f-2417-438a-8d0a-c31832121a00-000000@us-west-2.amazonses.com>
+Content-Language: en-US
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -16,71 +22,31 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org
+To: Aloka Dixit <alokad@codeaurora.org>, Kalle Valo <kvalo@codeaurora.org>
+Cc: Miles Hu <milehu@codeaurora.org>, linux-wireless-owner@vger.kernel.org, Johannes Berg <johannes@sipsolutions.net>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-Hi,
-
-some of the Dell XPS 15 9500 models have QCA6390 Wi-Fi 6 device. ath11k
-will be the driver to support QCA6390 and the plan is that Linux v5.10
-(most likely released end of December) will be the first release to
-support it.
-
-But as everything is not ready yet I recommend people to test
-ath11k-qca6390-bringup branch, and specifically tag
-ath11k-qca6390-bringup-202008181507. Below are instructions how to
-install kernel and firmware.
-
-Do note that this is still experimental, there will be bugs but at least
-it should be possible to connect to an AP and have connectivity.
-
-Please send all questions, comments and bug reports to
-ath11k@lists.infradead.org list. I do not have time to reply to private
-email. I have Bcced people who have contacted me privately.
-
-Kalle
-
-# clone kernel
-git clone -b ath11k-qca6390-bringup-202008181507 https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git
-
-# Tag ath11k-qca6390-bringup-202008181507 uses v5.9-rc1 as the baseline
-# which has a regression in nvme subsystem, so this nvme patch might be
-# needed as well:
-# http://git.infradead.org/nvme.git/commitdiff/286155561ecd13b6c85a78eaf2880d3baea03b9e
-
-# clone firmware
-git clone https://github.com/kvalo/ath11k-firmware.git
-
-# Ensure below options are selected in the kernel
-cd ath
-make menuconfig
---> Select Device drivers
-	--> Network device support
-		--> Wireless LAN
-			--> Enable as below
-				<M> Qualcomm Technologies 11ax chipset support
-				<M>       Atheros ath11k PCI support
-				[*]       QCA ath11k debugging
-				[*]       QCA ath11k debugfs support
-				[*]       ath11k tracing support
-				[*]     QCA ath11k spectral scan support
-
-# Build and install the kernel and kernel modules
-
-# Install firmware
-cd ../ath11k-firmware
-sudo mkdir -p /lib/firmware/ath11k/QCA6390/hw2.0/
-sudo cp QCA6390/hw2.0/WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1/*.bin /lib/firmware/ath11k/QCA6390/hw2.0/
-sudo cp QCA6390/hw2.0/WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1/bdwlan.e04 /lib/firmware/ath11k/QCA6390/hw2.0/board.bin
-
--- 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+Ck9uIDExLjA5LjIwIDIyOjE1LCBBbG9rYSBEaXhpdCB3cm90ZToKPiBPbiAyMDIwLTA5LTA3IDIz
+OjA3LCBLYWxsZSBWYWxvIHdyb3RlOgo+PiBKb2huIENyaXNwaW4gPGpvaG5AcGhyb3plbi5vcmc+
+IHdyb3RlOgo+Pgo+Pj4gRnJvbTogTWlsZXMgSHUgPG1pbGVodUBjb2RlYXVyb3JhLm9yZz4KPj4+
+Cj4+PiBUaGlzIHBhdGNoIGFkZHMgYXRoMTFrIHN1cHBvcnQgZm9yIHNldHRpbmcgZml4ZWQgSEUg
+cmF0ZS9naS9sdGYgCj4+PiB2YWx1ZXMgdGhhdAo+Pj4gd2UgYXJlIG5vdyBhYmxlIHRvIHNlbmQg
+dG8gdGhlIGtlcm5lbCB1c2luZyBubDgwMjExLiBUaGUgYWRkZWQgY29kZSBpcwo+Pj4gcmV1c2lu
+ZyBwYXJ0cyBvZiB0aGUgZXhpc3RpbmcgY29kZSBwYXRoIGFscmVhZHkgdXNlZCBmb3IgSFQvVkhU
+LiBUaGUgCj4+PiBuZXcKPj4+IGhlbHBlcnMgYXJlIHN5bW1ldHJpYyB0byBob3cgd2UgZG8gaXQg
+Zm9yIEhUL1ZIVC4KPj4+Cj4+PiBTaWduZWQtb2ZmLWJ5OiBNaWxlcyBIdSA8bWlsZWh1QGNvZGVh
+dXJvcmEub3JnPgo+Pj4gU2lnbmVkLW9mZi1ieTogSm9obiBDcmlzcGluIDxqb2huQHBocm96ZW4u
+b3JnPgo+Pgo+PiBEZXBlbmRzIG9uOgo+Pgo+PiBlYjg5YTZhNmI3YTEgbmw4MDIxMTogYWRkIHN1
+cHBvcnQgZm9yIHNldHRpbmcgZml4ZWQgSEUgcmF0ZS9naS9sdGYKPj4KPj4gQ3VycmVudGx5IGlu
+IG5ldC1uZXh0Lgo+Cj4gSGkgS2FsbGUgYW5kIEpvaG4sCj4gVGhpcyBwYXRjaCBpbmNsdWRlcyBh
+dXRvLXJhdGUgc3VwcG9ydCBhcyB3ZWxsIHdoaWNoIGlzIHBhcnQgb2YgdGhlIENBRiAKPiBjaGFu
+Z2VzIEpvaG4gbWVudGlvbmVkIGluIHY1NSBjaGFuZ2UtbG9nLgo+IEF1dG8tcmF0ZSBwYXJ0IHdh
+cyBhZGRlZCBieSBtZSBpbnRvIENBRi4KPiBQbGVhc2UgYWRkIG15IHNpZ24tb2ZmIG9uIHRoaXMg
+cGF0Y2guCj4gT3IgbGV0IG1lIGtub3cgaWYgeW91IGRlY2lkZSB0byByZW1vdmUgdGhhdCBwYXJ0
+aWN1bGFyIHBvcnRpb24sIHRoZW4gSSAKPiB3aWxsIHNlbmQgYSBzZXBhcmF0ZSBwYXRjaC4KPiBU
+aGFua3MuCgpIaSBLYWxsZSwKCnBsZWFzZSBpZ25vcmUgdGhpcyBwYXRjaCBmb3Igbm93CgogwqDC
+oMKgIEpvaG4KCgotLSAKYXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtAbGlzdHMuaW5mcmFkZWFk
+Lm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2F0aDExawo=
