@@ -1,15 +1,18 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from m43-7.mailgun.net ([69.72.43.7])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kIEGL-0007QM-Vj
- for ath11k@lists.infradead.org; Tue, 15 Sep 2020 16:57:03 +0000
-MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: Add support spectral scan for IPQ6018
+ id 1kIEJq-0007cE-Ob
+ for ath11k@lists.infradead.org; Tue, 15 Sep 2020 17:00:48 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1591688888-30237-1-git-send-email-periyasa@codeaurora.org>
-References: <1591688888-30237-1-git-send-email-periyasa@codeaurora.org>
-Message-Id: <20200915165655.57064C433C8@smtp.codeaurora.org>
-Date: Tue, 15 Sep 2020 16:56:55 +0000 (UTC)
+Subject: Re: [PATCH V6 2/2] ath11k: add support for setting fixed HE
+ rate/gi/ltf
+References: <20200804081630.2013619-1-john@phrozen.org>
+ <20200804081630.2013619-2-john@phrozen.org>
+Date: Tue, 15 Sep 2020 20:00:11 +0300
+In-Reply-To: <20200804081630.2013619-2-john@phrozen.org> (John Crispin's
+ message of "Tue, 4 Aug 2020 10:16:30 +0200")
+Message-ID: <87zh5rkmas.fsf@codeaurora.org>
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,39 +25,49 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Karthikeyan Periyasamy <periyasa@codeaurora.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: John Crispin <john@phrozen.org>
+Cc: Miles Hu <milehu@codeaurora.org>, Johannes Berg <johannes@sipsolutions.net>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-Karthikeyan Periyasamy <periyasa@codeaurora.org> wrote:
+John Crispin <john@phrozen.org> writes:
 
-> IPQ6018 supported with 4 bytes FFT BIN size. so supported 4 bytes
-> parsing logic in FFT report process.
-> 
-> Tested-on: IPQ6018 WLAN.HK.2.1.0.1-01228-QCAHKSWPL_SILICONZ-1
-> 
-> Note: This is based on below patches
-> 	1. ath11k: add IPQ6018 support
-> 	2. ath11k: add support for spectral scan
-> 	3. ath11k: Add direct buffer ring support
-> 
-> Signed-off-by: Karthikeyan Periyasamy <periyasa@codeaurora.org>
+> From: Miles Hu <milehu@codeaurora.org>
+>
+> This patch adds ath11k support for setting fixed HE rate/gi/ltf values that
+> we are now able to send to the kernel using nl80211. The added code is
+> reusing parts of the existing code path already used for HT/VHT. The new
+> helpers are symmetric to how we do it for HT/VHT.
+>
+> Signed-off-by: Miles Hu <milehu@codeaurora.org>
+> Signed-off-by: John Crispin <john@phrozen.org>
 
-Does not apply anymore, please rebase. Also you should investigate how
-it works with QCA6390.
+[...]
 
-error: patch failed: drivers/net/wireless/ath/ath11k/core.c:26
-error: drivers/net/wireless/ath/ath11k/core.c: patch does not apply
-error: patch failed: drivers/net/wireless/ath/ath11k/hw.h:117
-error: drivers/net/wireless/ath/ath11k/hw.h: patch does not apply
-stg import: Diff does not apply cleanly
+> --- a/drivers/net/wireless/ath/ath11k/wmi.h
+> +++ b/drivers/net/wireless/ath/ath11k/wmi.h
+> @@ -119,6 +119,22 @@ enum {
+>  	WMI_HOST_WLAN_2G_5G_CAP	= 0x3,
+>  };
+>  
+> +/* Parameters used for WMI_VDEV_PARAM_AUTORATE_MISC_CFG command.
+> + * Used only for HE auto rate mode.
+> + */
+> +enum {
+> +/* HE LTF related configuration */
+> +	WMI_HE_AUTORATE_LTF_1X = (1 << 0),
+> +	WMI_HE_AUTORATE_LTF_2X = (1 << 1),
+> +	WMI_HE_AUTORATE_LTF_4X = (1 << 2),
+> +
+> +/* HE GI related configuration */
+> +	WMI_AUTORATE_400NS_GI = (1 << 8),
+> +	WMI_AUTORATE_800NS_GI = (1 << 9),
+> +	WMI_AUTORATE_1600NS_GI = (1 << 10),
+> +	WMI_AUTORATE_3200NS_GI = (1 << 11),
+> +};
 
-Patch set to Changes Requested.
+BIT()?
 
 -- 
-https://patchwork.kernel.org/patch/11594815/
-
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
 
 -- 
 ath11k mailing list
