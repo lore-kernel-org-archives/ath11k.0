@@ -1,18 +1,18 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from m43-7.mailgun.net ([69.72.43.7])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kIEJq-0007cE-Ob
- for ath11k@lists.infradead.org; Tue, 15 Sep 2020 17:00:48 +0000
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH V6 2/2] ath11k: add support for setting fixed HE
- rate/gi/ltf
-References: <20200804081630.2013619-1-john@phrozen.org>
- <20200804081630.2013619-2-john@phrozen.org>
-Date: Tue, 15 Sep 2020 20:00:11 +0300
-In-Reply-To: <20200804081630.2013619-2-john@phrozen.org> (John Crispin's
- message of "Tue, 4 Aug 2020 10:16:30 +0200")
-Message-ID: <87zh5rkmas.fsf@codeaurora.org>
+ id 1kIK3O-0000LH-2L
+ for ath11k@lists.infradead.org; Tue, 15 Sep 2020 23:08:03 +0000
 MIME-Version: 1.0
+Date: Tue, 15 Sep 2020 16:07:59 -0700
+From: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
+Subject: Re: [PATCH v5 2/8] ath11k: add support for 6GHz radio in driver
+In-Reply-To: <e08a20b99363d68626bc38b6e3d2fcfd@codeaurora.org>
+References: <20200603001724.12161-1-pradeepc@codeaurora.org>
+ <20200603001724.12161-3-pradeepc@codeaurora.org>
+ <a5cac45b02396c98628738cef7f92ad1@codeaurora.org>
+ <e08a20b99363d68626bc38b6e3d2fcfd@codeaurora.org>
+Message-ID: <0b4f6d618388a97082009ba5380afbf5@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -21,53 +21,50 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: John Crispin <john@phrozen.org>
-Cc: Miles Hu <milehu@codeaurora.org>, Johannes Berg <johannes@sipsolutions.net>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: Wen Gong <wgong@codeaurora.org>
+Cc: linux-wireless-owner@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-John Crispin <john@phrozen.org> writes:
 
-> From: Miles Hu <milehu@codeaurora.org>
->
-> This patch adds ath11k support for setting fixed HE rate/gi/ltf values that
-> we are now able to send to the kernel using nl80211. The added code is
-> reusing parts of the existing code path already used for HT/VHT. The new
-> helpers are symmetric to how we do it for HT/VHT.
->
-> Signed-off-by: Miles Hu <milehu@codeaurora.org>
-> Signed-off-by: John Crispin <john@phrozen.org>
+>>> 
+>>> -	if (cap->supported_bands & WMI_HOST_WLAN_5G_CAP) {
+>>> +	if (cap->supported_bands & WMI_HOST_WLAN_5G_CAP && 
+>>> !ar->supports_6ghz) {
+>>>  		band = &ar->mac.sbands[NL80211_BAND_5GHZ];
+>>>  		ht_cap = cap->band[NL80211_BAND_5GHZ].ht_cap_info;
+>>>  		if (ht_cap_info)
+>> After this change, when 6G is support, it removed HT/VHT of 5G band
+>> from "iw list", when connect to an 11AX AP of 5G, it used non-HT.
+>> caused together with this commit
+>> 75e296e9b22aef6fa467523ace87ef623dac1fad(mac80211: simplify and
+>> improve HT/VHT/HE disable code)
+>> +       /* disable HT/VHT/HE if we don't support them */
+>> +       if (!sband->ht_cap.ht_supported) {
+>> +               ifmgd->flags |= IEEE80211_STA_DISABLE_HT;
+>> +               ifmgd->flags |= IEEE80211_STA_DISABLE_VHT;
+>> +               ifmgd->flags |= IEEE80211_STA_DISABLE_HE;
+>> +       }
+>> 
+>> after remove this change in ath11k, it become correct to HE
+>> iw wls1 station dump:
+>> rx bitrate:     149.7 MBit/s HE-MCS 6 HE-NSS 2 HE-GI 0 HE-DCM 0
+Hi Wen,
 
-[...]
+Do you have 
+https://lore.kernel.org/linux-wireless/20200528213443.25687d2695bc.I3f9747c1147480f65445f13eda5c4a5ed4e86757@changeid/?
 
-> --- a/drivers/net/wireless/ath/ath11k/wmi.h
-> +++ b/drivers/net/wireless/ath/ath11k/wmi.h
-> @@ -119,6 +119,22 @@ enum {
->  	WMI_HOST_WLAN_2G_5G_CAP	= 0x3,
->  };
->  
-> +/* Parameters used for WMI_VDEV_PARAM_AUTORATE_MISC_CFG command.
-> + * Used only for HE auto rate mode.
-> + */
-> +enum {
-> +/* HE LTF related configuration */
-> +	WMI_HE_AUTORATE_LTF_1X = (1 << 0),
-> +	WMI_HE_AUTORATE_LTF_2X = (1 << 1),
-> +	WMI_HE_AUTORATE_LTF_4X = (1 << 2),
-> +
-> +/* HE GI related configuration */
-> +	WMI_AUTORATE_400NS_GI = (1 << 8),
-> +	WMI_AUTORATE_800NS_GI = (1 << 9),
-> +	WMI_AUTORATE_1600NS_GI = (1 << 10),
-> +	WMI_AUTORATE_3200NS_GI = (1 << 11),
-> +};
+>> 
+> Hi Pradeep Kumar Chitrapu,
+> For QCA6390, it is single_pdev, the pdev support all 2G/5G/6G,
+> Is it have 3 pdev/ath11k in your chip for 2G/5G/6G?
+> And the pdev/ath11k of 6G have WMI_HOST_WLAN_5G_CAP of 
+> cap->supported_bands?
+>> [...]
+Yes, ath11k receives WMI_HOST_WLAN_5G_CAP from firmware for 6G as well.
 
-BIT()?
-
--- 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
