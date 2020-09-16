@@ -1,17 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mga11.intel.com ([192.55.52.93])
+Received: from mail29.static.mailgun.info ([104.130.122.29])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kIGzg-0005JD-Sw
- for ath11k@lists.infradead.org; Tue, 15 Sep 2020 19:52:02 +0000
-Date: Wed, 16 Sep 2020 03:51:16 +0800
-From: kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH v3] ath11k: cold boot calibration support
-Message-ID: <202009160303.xwD2GbBx%lkp@intel.com>
-References: <1600163991-2093-1-git-send-email-ssreeela@codeaurora.org>
-MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="AqsLC8rIMeq19msA"
-Content-Disposition: inline
-In-Reply-To: <1600163991-2093-1-git-send-email-ssreeela@codeaurora.org>
+ id 1kIXuY-0000xz-SX
+ for ath11k@lists.infradead.org; Wed, 16 Sep 2020 13:55:56 +0000
+From: Kalle Valo <kvalo@codeaurora.org>
+Subject: [PATCH 1/4] ath11k: refactor debugfs code into debugfs.c
+Date: Wed, 16 Sep 2020 16:55:20 +0300
+Message-Id: <1600264523-12939-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -20,1315 +15,2835 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Sowmiya Sree Elavalagan <ssreeela@codeaurora.org>, ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org, kbuild-all@lists.01.org, Govindaraj Saminathan <gsamin@codeaurora.org>
+To: ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org
 
+If CONFIG_ATH11K_DEBUGFS is disabled there are warnings debug.c:
 
---AqsLC8rIMeq19msA
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+drivers/net/wireless/ath/ath11k/debug.c:36:20: warning: 'htt_bp_lmac_ring' defined but not used [-Wunused-variable]
+   36 | static const char *htt_bp_lmac_ring[HTT_SW_LMAC_RING_IDX_MAX] = {
+      |                    ^~~~~~~~~~~~~~~~
+drivers/net/wireless/ath/ath11k/debug.c:15:20: warning: 'htt_bp_umac_ring' defined but not used [-Wunused-variable]
+   15 | static const char *htt_bp_umac_ring[HTT_SW_UMAC_RING_IDX_MAX] = {
+      |                    ^~~~~~~~~~~~~~~~
 
-Hi Sowmiya,
+Fix this by refactoring debugfs code to debugfs.c. This also reduces the number
+of ifdefs in debug.c and makes it easier to maintain the code.
 
-Thank you for the patch! Yet something to improve:
+No functional changes. Compile tested only.
 
-[auto build test ERROR on ath6kl/ath-next]
-[also build test ERROR on next-20200915]
-[cannot apply to v5.9-rc5]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/0day-ci/linux/commits/Sowmiya-Sree-Elavalagan/ath11k-cold-boot-calibration-support/20200915-180324
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git ath-next
-config: mips-allmodconfig (attached as .config)
-compiler: mips-linux-gcc (GCC) 9.3.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # save the attached .config to linux build tree
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-9.3.0 make.cross ARCH=mips 
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>, old ones prefixed by <<):
-
-ERROR: modpost: "fw_arg3" [drivers/mtd/parsers/bcm63xxpart.ko] undefined!
->> ERROR: modpost: "ath11k_cold_boot_cal" [drivers/net/wireless/ath/ath11k/ath11k_ahb.ko] undefined!
-
+Reported-by: YueHaibing <yuehaibing@huawei.com>
+Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+ drivers/net/wireless/ath/ath11k/Makefile  |    2 +-
+ drivers/net/wireless/ath/ath11k/debug.c   | 1108 +---------------------------
+ drivers/net/wireless/ath/ath11k/debug.h   |  244 +------
+ drivers/net/wireless/ath/ath11k/debugfs.c | 1112 +++++++++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/debugfs.h |  253 +++++++
+ 5 files changed, 1369 insertions(+), 1350 deletions(-)
+ create mode 100644 drivers/net/wireless/ath/ath11k/debugfs.c
+ create mode 100644 drivers/net/wireless/ath/ath11k/debugfs.h
 
---AqsLC8rIMeq19msA
-Content-Type: application/gzip
-Content-Disposition: attachment; filename=".config.gz"
-Content-Transfer-Encoding: base64
+diff --git a/drivers/net/wireless/ath/ath11k/Makefile b/drivers/net/wireless/ath/ath11k/Makefile
+index bc4911f0339d..bb57d0e2dd9f 100644
+--- a/drivers/net/wireless/ath/ath11k/Makefile
++++ b/drivers/net/wireless/ath/ath11k/Makefile
+@@ -18,7 +18,7 @@ ath11k-y += core.o \
+ 	    dbring.o \
+ 	    hw.o
+ 
+-ath11k-$(CONFIG_ATH11K_DEBUGFS) += debug_htt_stats.o debugfs_sta.o
++ath11k-$(CONFIG_ATH11K_DEBUGFS) += debugfs.o debug_htt_stats.o debugfs_sta.o
+ ath11k-$(CONFIG_NL80211_TESTMODE) += testmode.o
+ ath11k-$(CONFIG_ATH11K_TRACING) += trace.o
+ ath11k-$(CONFIG_THERMAL) += thermal.o
+diff --git a/drivers/net/wireless/ath/ath11k/debug.c b/drivers/net/wireless/ath/ath11k/debug.c
+index 0ba234ad99b2..c86de95fbdc5 100644
+--- a/drivers/net/wireless/ath/ath11k/debug.c
++++ b/drivers/net/wireless/ath/ath11k/debug.c
+@@ -6,48 +6,6 @@
+ #include <linux/vmalloc.h>
+ #include "core.h"
+ #include "debug.h"
+-#include "wmi.h"
+-#include "hal_rx.h"
+-#include "dp_tx.h"
+-#include "debug_htt_stats.h"
+-#include "peer.h"
+-
+-static const char *htt_bp_umac_ring[HTT_SW_UMAC_RING_IDX_MAX] = {
+-	"REO2SW1_RING",
+-	"REO2SW2_RING",
+-	"REO2SW3_RING",
+-	"REO2SW4_RING",
+-	"WBM2REO_LINK_RING",
+-	"REO2TCL_RING",
+-	"REO2FW_RING",
+-	"RELEASE_RING",
+-	"PPE_RELEASE_RING",
+-	"TCL2TQM_RING",
+-	"TQM_RELEASE_RING",
+-	"REO_RELEASE_RING",
+-	"WBM2SW0_RELEASE_RING",
+-	"WBM2SW1_RELEASE_RING",
+-	"WBM2SW2_RELEASE_RING",
+-	"WBM2SW3_RELEASE_RING",
+-	"REO_CMD_RING",
+-	"REO_STATUS_RING",
+-};
+-
+-static const char *htt_bp_lmac_ring[HTT_SW_LMAC_RING_IDX_MAX] = {
+-	"FW2RXDMA_BUF_RING",
+-	"FW2RXDMA_STATUS_RING",
+-	"FW2RXDMA_LINK_RING",
+-	"SW2RXDMA_BUF_RING",
+-	"WBM2RXDMA_LINK_RING",
+-	"RXDMA2FW_RING",
+-	"RXDMA2SW_RING",
+-	"RXDMA2RELEASE_RING",
+-	"RXDMA2REO_RING",
+-	"MONITOR_STATUS_RING",
+-	"MONITOR_BUF_RING",
+-	"MONITOR_DESC_RING",
+-	"MONITOR_DEST_RING",
+-};
+ 
+ void ath11k_info(struct ath11k_base *ab, const char *fmt, ...)
+ {
+@@ -95,6 +53,7 @@ void ath11k_warn(struct ath11k_base *ab, const char *fmt, ...)
+ EXPORT_SYMBOL(ath11k_warn);
+ 
+ #ifdef CONFIG_ATH11K_DEBUG
++
+ void __ath11k_dbg(struct ath11k_base *ab, enum ath11k_debug_mask mask,
+ 		  const char *fmt, ...)
+ {
+@@ -144,1067 +103,4 @@ void ath11k_dbg_dump(struct ath11k_base *ab,
+ }
+ EXPORT_SYMBOL(ath11k_dbg_dump);
+ 
+-#endif
+-
+-#ifdef CONFIG_ATH11K_DEBUGFS
+-static void ath11k_fw_stats_pdevs_free(struct list_head *head)
+-{
+-	struct ath11k_fw_stats_pdev *i, *tmp;
+-
+-	list_for_each_entry_safe(i, tmp, head, list) {
+-		list_del(&i->list);
+-		kfree(i);
+-	}
+-}
+-
+-static void ath11k_fw_stats_vdevs_free(struct list_head *head)
+-{
+-	struct ath11k_fw_stats_vdev *i, *tmp;
+-
+-	list_for_each_entry_safe(i, tmp, head, list) {
+-		list_del(&i->list);
+-		kfree(i);
+-	}
+-}
+-
+-static void ath11k_fw_stats_bcn_free(struct list_head *head)
+-{
+-	struct ath11k_fw_stats_bcn *i, *tmp;
+-
+-	list_for_each_entry_safe(i, tmp, head, list) {
+-		list_del(&i->list);
+-		kfree(i);
+-	}
+-}
+-
+-static void ath11k_debug_fw_stats_reset(struct ath11k *ar)
+-{
+-	spin_lock_bh(&ar->data_lock);
+-	ar->debug.fw_stats_done = false;
+-	ath11k_fw_stats_pdevs_free(&ar->debug.fw_stats.pdevs);
+-	ath11k_fw_stats_vdevs_free(&ar->debug.fw_stats.vdevs);
+-	spin_unlock_bh(&ar->data_lock);
+-}
+-
+-void ath11k_debug_fw_stats_process(struct ath11k_base *ab, struct sk_buff *skb)
+-{
+-	struct ath11k_fw_stats stats = {};
+-	struct ath11k *ar;
+-	struct ath11k_pdev *pdev;
+-	bool is_end;
+-	static unsigned int num_vdev, num_bcn;
+-	size_t total_vdevs_started = 0;
+-	int i, ret;
+-
+-	INIT_LIST_HEAD(&stats.pdevs);
+-	INIT_LIST_HEAD(&stats.vdevs);
+-	INIT_LIST_HEAD(&stats.bcn);
+-
+-	ret = ath11k_wmi_pull_fw_stats(ab, skb, &stats);
+-	if (ret) {
+-		ath11k_warn(ab, "failed to pull fw stats: %d\n", ret);
+-		goto free;
+-	}
+-
+-	rcu_read_lock();
+-	ar = ath11k_mac_get_ar_by_pdev_id(ab, stats.pdev_id);
+-	if (!ar) {
+-		rcu_read_unlock();
+-		ath11k_warn(ab, "failed to get ar for pdev_id %d: %d\n",
+-			    stats.pdev_id, ret);
+-		goto free;
+-	}
+-
+-	spin_lock_bh(&ar->data_lock);
+-
+-	if (stats.stats_id == WMI_REQUEST_PDEV_STAT) {
+-		list_splice_tail_init(&stats.pdevs, &ar->debug.fw_stats.pdevs);
+-		ar->debug.fw_stats_done = true;
+-		goto complete;
+-	}
+-
+-	if (stats.stats_id == WMI_REQUEST_VDEV_STAT) {
+-		if (list_empty(&stats.vdevs)) {
+-			ath11k_warn(ab, "empty vdev stats");
+-			goto complete;
+-		}
+-		/* FW sends all the active VDEV stats irrespective of PDEV,
+-		 * hence limit until the count of all VDEVs started
+-		 */
+-		for (i = 0; i < ab->num_radios; i++) {
+-			pdev = rcu_dereference(ab->pdevs_active[i]);
+-			if (pdev && pdev->ar)
+-				total_vdevs_started += ar->num_started_vdevs;
+-		}
+-
+-		is_end = ((++num_vdev) == total_vdevs_started);
+-
+-		list_splice_tail_init(&stats.vdevs,
+-				      &ar->debug.fw_stats.vdevs);
+-
+-		if (is_end) {
+-			ar->debug.fw_stats_done = true;
+-			num_vdev = 0;
+-		}
+-		goto complete;
+-	}
+-
+-	if (stats.stats_id == WMI_REQUEST_BCN_STAT) {
+-		if (list_empty(&stats.bcn)) {
+-			ath11k_warn(ab, "empty bcn stats");
+-			goto complete;
+-		}
+-		/* Mark end until we reached the count of all started VDEVs
+-		 * within the PDEV
+-		 */
+-		is_end = ((++num_bcn) == ar->num_started_vdevs);
+-
+-		list_splice_tail_init(&stats.bcn,
+-				      &ar->debug.fw_stats.bcn);
+-
+-		if (is_end) {
+-			ar->debug.fw_stats_done = true;
+-			num_bcn = 0;
+-		}
+-	}
+-complete:
+-	complete(&ar->debug.fw_stats_complete);
+-	rcu_read_unlock();
+-	spin_unlock_bh(&ar->data_lock);
+-
+-free:
+-	ath11k_fw_stats_pdevs_free(&stats.pdevs);
+-	ath11k_fw_stats_vdevs_free(&stats.vdevs);
+-	ath11k_fw_stats_bcn_free(&stats.bcn);
+-}
+-
+-static int ath11k_debug_fw_stats_request(struct ath11k *ar,
+-					 struct stats_request_params *req_param)
+-{
+-	struct ath11k_base *ab = ar->ab;
+-	unsigned long timeout, time_left;
+-	int ret;
+-
+-	lockdep_assert_held(&ar->conf_mutex);
+-
+-	/* FW stats can get split when exceeding the stats data buffer limit.
+-	 * In that case, since there is no end marking for the back-to-back
+-	 * received 'update stats' event, we keep a 3 seconds timeout in case,
+-	 * fw_stats_done is not marked yet
+-	 */
+-	timeout = jiffies + msecs_to_jiffies(3 * HZ);
+-
+-	ath11k_debug_fw_stats_reset(ar);
+-
+-	reinit_completion(&ar->debug.fw_stats_complete);
+-
+-	ret = ath11k_wmi_send_stats_request_cmd(ar, req_param);
+-
+-	if (ret) {
+-		ath11k_warn(ab, "could not request fw stats (%d)\n",
+-			    ret);
+-		return ret;
+-	}
+-
+-	time_left =
+-	wait_for_completion_timeout(&ar->debug.fw_stats_complete,
+-				    1 * HZ);
+-	if (!time_left)
+-		return -ETIMEDOUT;
+-
+-	for (;;) {
+-		if (time_after(jiffies, timeout))
+-			break;
+-
+-		spin_lock_bh(&ar->data_lock);
+-		if (ar->debug.fw_stats_done) {
+-			spin_unlock_bh(&ar->data_lock);
+-			break;
+-		}
+-		spin_unlock_bh(&ar->data_lock);
+-	}
+-	return 0;
+-}
+-
+-static int ath11k_open_pdev_stats(struct inode *inode, struct file *file)
+-{
+-	struct ath11k *ar = inode->i_private;
+-	struct ath11k_base *ab = ar->ab;
+-	struct stats_request_params req_param;
+-	void *buf = NULL;
+-	int ret;
+-
+-	mutex_lock(&ar->conf_mutex);
+-
+-	if (ar->state != ATH11K_STATE_ON) {
+-		ret = -ENETDOWN;
+-		goto err_unlock;
+-	}
+-
+-	buf = vmalloc(ATH11K_FW_STATS_BUF_SIZE);
+-	if (!buf) {
+-		ret = -ENOMEM;
+-		goto err_unlock;
+-	}
+-
+-	req_param.pdev_id = ar->pdev->pdev_id;
+-	req_param.vdev_id = 0;
+-	req_param.stats_id = WMI_REQUEST_PDEV_STAT;
+-
+-	ret = ath11k_debug_fw_stats_request(ar, &req_param);
+-	if (ret) {
+-		ath11k_warn(ab, "failed to request fw pdev stats: %d\n", ret);
+-		goto err_free;
+-	}
+-
+-	ath11k_wmi_fw_stats_fill(ar, &ar->debug.fw_stats, req_param.stats_id,
+-				 buf);
+-
+-	file->private_data = buf;
+-
+-	mutex_unlock(&ar->conf_mutex);
+-	return 0;
+-
+-err_free:
+-	vfree(buf);
+-
+-err_unlock:
+-	mutex_unlock(&ar->conf_mutex);
+-	return ret;
+-}
+-
+-static int ath11k_release_pdev_stats(struct inode *inode, struct file *file)
+-{
+-	vfree(file->private_data);
+-
+-	return 0;
+-}
+-
+-static ssize_t ath11k_read_pdev_stats(struct file *file,
+-				      char __user *user_buf,
+-				      size_t count, loff_t *ppos)
+-{
+-	const char *buf = file->private_data;
+-	size_t len = strlen(buf);
+-
+-	return simple_read_from_buffer(user_buf, count, ppos, buf, len);
+-}
+-
+-static const struct file_operations fops_pdev_stats = {
+-	.open = ath11k_open_pdev_stats,
+-	.release = ath11k_release_pdev_stats,
+-	.read = ath11k_read_pdev_stats,
+-	.owner = THIS_MODULE,
+-	.llseek = default_llseek,
+-};
+-
+-static int ath11k_open_vdev_stats(struct inode *inode, struct file *file)
+-{
+-	struct ath11k *ar = inode->i_private;
+-	struct stats_request_params req_param;
+-	void *buf = NULL;
+-	int ret;
+-
+-	mutex_lock(&ar->conf_mutex);
+-
+-	if (ar->state != ATH11K_STATE_ON) {
+-		ret = -ENETDOWN;
+-		goto err_unlock;
+-	}
+-
+-	buf = vmalloc(ATH11K_FW_STATS_BUF_SIZE);
+-	if (!buf) {
+-		ret = -ENOMEM;
+-		goto err_unlock;
+-	}
+-
+-	req_param.pdev_id = ar->pdev->pdev_id;
+-	/* VDEV stats is always sent for all active VDEVs from FW */
+-	req_param.vdev_id = 0;
+-	req_param.stats_id = WMI_REQUEST_VDEV_STAT;
+-
+-	ret = ath11k_debug_fw_stats_request(ar, &req_param);
+-	if (ret) {
+-		ath11k_warn(ar->ab, "failed to request fw vdev stats: %d\n", ret);
+-		goto err_free;
+-	}
+-
+-	ath11k_wmi_fw_stats_fill(ar, &ar->debug.fw_stats, req_param.stats_id,
+-				 buf);
+-
+-	file->private_data = buf;
+-
+-	mutex_unlock(&ar->conf_mutex);
+-	return 0;
+-
+-err_free:
+-	vfree(buf);
+-
+-err_unlock:
+-	mutex_unlock(&ar->conf_mutex);
+-	return ret;
+-}
+-
+-static int ath11k_release_vdev_stats(struct inode *inode, struct file *file)
+-{
+-	vfree(file->private_data);
+-
+-	return 0;
+-}
+-
+-static ssize_t ath11k_read_vdev_stats(struct file *file,
+-				      char __user *user_buf,
+-				      size_t count, loff_t *ppos)
+-{
+-	const char *buf = file->private_data;
+-	size_t len = strlen(buf);
+-
+-	return simple_read_from_buffer(user_buf, count, ppos, buf, len);
+-}
+-
+-static const struct file_operations fops_vdev_stats = {
+-	.open = ath11k_open_vdev_stats,
+-	.release = ath11k_release_vdev_stats,
+-	.read = ath11k_read_vdev_stats,
+-	.owner = THIS_MODULE,
+-	.llseek = default_llseek,
+-};
+-
+-static int ath11k_open_bcn_stats(struct inode *inode, struct file *file)
+-{
+-	struct ath11k *ar = inode->i_private;
+-	struct ath11k_vif *arvif;
+-	struct stats_request_params req_param;
+-	void *buf = NULL;
+-	int ret;
+-
+-	mutex_lock(&ar->conf_mutex);
+-
+-	if (ar->state != ATH11K_STATE_ON) {
+-		ret = -ENETDOWN;
+-		goto err_unlock;
+-	}
+-
+-	buf = vmalloc(ATH11K_FW_STATS_BUF_SIZE);
+-	if (!buf) {
+-		ret = -ENOMEM;
+-		goto err_unlock;
+-	}
+-
+-	req_param.stats_id = WMI_REQUEST_BCN_STAT;
+-	req_param.pdev_id = ar->pdev->pdev_id;
+-
+-	/* loop all active VDEVs for bcn stats */
+-	list_for_each_entry(arvif, &ar->arvifs, list) {
+-		if (!arvif->is_up)
+-			continue;
+-
+-		req_param.vdev_id = arvif->vdev_id;
+-		ret = ath11k_debug_fw_stats_request(ar, &req_param);
+-		if (ret) {
+-			ath11k_warn(ar->ab, "failed to request fw bcn stats: %d\n", ret);
+-			goto err_free;
+-		}
+-	}
+-
+-	ath11k_wmi_fw_stats_fill(ar, &ar->debug.fw_stats, req_param.stats_id,
+-				 buf);
+-
+-	/* since beacon stats request is looped for all active VDEVs, saved fw
+-	 * stats is not freed for each request until done for all active VDEVs
+-	 */
+-	spin_lock_bh(&ar->data_lock);
+-	ath11k_fw_stats_bcn_free(&ar->debug.fw_stats.bcn);
+-	spin_unlock_bh(&ar->data_lock);
+-
+-	file->private_data = buf;
+-
+-	mutex_unlock(&ar->conf_mutex);
+-	return 0;
+-
+-err_free:
+-	vfree(buf);
+-
+-err_unlock:
+-	mutex_unlock(&ar->conf_mutex);
+-	return ret;
+-}
+-
+-static int ath11k_release_bcn_stats(struct inode *inode, struct file *file)
+-{
+-	vfree(file->private_data);
+-
+-	return 0;
+-}
+-
+-static ssize_t ath11k_read_bcn_stats(struct file *file,
+-				     char __user *user_buf,
+-				     size_t count, loff_t *ppos)
+-{
+-	const char *buf = file->private_data;
+-	size_t len = strlen(buf);
+-
+-	return simple_read_from_buffer(user_buf, count, ppos, buf, len);
+-}
+-
+-static const struct file_operations fops_bcn_stats = {
+-	.open = ath11k_open_bcn_stats,
+-	.release = ath11k_release_bcn_stats,
+-	.read = ath11k_read_bcn_stats,
+-	.owner = THIS_MODULE,
+-	.llseek = default_llseek,
+-};
+-
+-static ssize_t ath11k_read_simulate_fw_crash(struct file *file,
+-					     char __user *user_buf,
+-					     size_t count, loff_t *ppos)
+-{
+-	const char buf[] =
+-		"To simulate firmware crash write one of the keywords to this file:\n"
+-		"`assert` - this will send WMI_FORCE_FW_HANG_CMDID to firmware to cause assert.\n"
+-		"`hw-restart` - this will simply queue hw restart without fw/hw actually crashing.\n";
+-
+-	return simple_read_from_buffer(user_buf, count, ppos, buf, strlen(buf));
+-}
+-
+-/* Simulate firmware crash:
+- * 'soft': Call wmi command causing firmware hang. This firmware hang is
+- * recoverable by warm firmware reset.
+- * 'hard': Force firmware crash by setting any vdev parameter for not allowed
+- * vdev id. This is hard firmware crash because it is recoverable only by cold
+- * firmware reset.
+- */
+-static ssize_t ath11k_write_simulate_fw_crash(struct file *file,
+-					      const char __user *user_buf,
+-					      size_t count, loff_t *ppos)
+-{
+-	struct ath11k_base *ab = file->private_data;
+-	struct ath11k_pdev *pdev;
+-	struct ath11k *ar = ab->pdevs[0].ar;
+-	char buf[32] = {0};
+-	ssize_t rc;
+-	int i, ret, radioup = 0;
+-
+-	for (i = 0; i < ab->num_radios; i++) {
+-		pdev = &ab->pdevs[i];
+-		ar = pdev->ar;
+-		if (ar && ar->state == ATH11K_STATE_ON) {
+-			radioup = 1;
+-			break;
+-		}
+-	}
+-	/* filter partial writes and invalid commands */
+-	if (*ppos != 0 || count >= sizeof(buf) || count == 0)
+-		return -EINVAL;
+-
+-	rc = simple_write_to_buffer(buf, sizeof(buf) - 1, ppos, user_buf, count);
+-	if (rc < 0)
+-		return rc;
+-
+-	/* drop the possible '\n' from the end */
+-	if (buf[*ppos - 1] == '\n')
+-		buf[*ppos - 1] = '\0';
+-
+-	if (radioup == 0) {
+-		ret = -ENETDOWN;
+-		goto exit;
+-	}
+-
+-	if (!strcmp(buf, "assert")) {
+-		ath11k_info(ab, "simulating firmware assert crash\n");
+-		ret = ath11k_wmi_force_fw_hang_cmd(ar,
+-						   ATH11K_WMI_FW_HANG_ASSERT_TYPE,
+-						   ATH11K_WMI_FW_HANG_DELAY);
+-	} else {
+-		ret = -EINVAL;
+-		goto exit;
+-	}
+-
+-	if (ret) {
+-		ath11k_warn(ab, "failed to simulate firmware crash: %d\n", ret);
+-		goto exit;
+-	}
+-
+-	ret = count;
+-
+-exit:
+-	return ret;
+-}
+-
+-static const struct file_operations fops_simulate_fw_crash = {
+-	.read = ath11k_read_simulate_fw_crash,
+-	.write = ath11k_write_simulate_fw_crash,
+-	.open = simple_open,
+-	.owner = THIS_MODULE,
+-	.llseek = default_llseek,
+-};
+-
+-static ssize_t ath11k_write_enable_extd_tx_stats(struct file *file,
+-						 const char __user *ubuf,
+-						 size_t count, loff_t *ppos)
+-{
+-	struct ath11k *ar = file->private_data;
+-	u32 filter;
+-	int ret;
+-
+-	if (kstrtouint_from_user(ubuf, count, 0, &filter))
+-		return -EINVAL;
+-
+-	mutex_lock(&ar->conf_mutex);
+-
+-	if (ar->state != ATH11K_STATE_ON) {
+-		ret = -ENETDOWN;
+-		goto out;
+-	}
+-
+-	if (filter == ar->debug.extd_tx_stats) {
+-		ret = count;
+-		goto out;
+-	}
+-
+-	ar->debug.extd_tx_stats = filter;
+-	ret = count;
+-
+-out:
+-	mutex_unlock(&ar->conf_mutex);
+-	return ret;
+-}
+-
+-static ssize_t ath11k_read_enable_extd_tx_stats(struct file *file,
+-						char __user *ubuf,
+-						size_t count, loff_t *ppos)
+-
+-{
+-	char buf[32] = {0};
+-	struct ath11k *ar = file->private_data;
+-	int len = 0;
+-
+-	mutex_lock(&ar->conf_mutex);
+-	len = scnprintf(buf, sizeof(buf) - len, "%08x\n",
+-			ar->debug.extd_tx_stats);
+-	mutex_unlock(&ar->conf_mutex);
+-
+-	return simple_read_from_buffer(ubuf, count, ppos, buf, len);
+-}
+-
+-static const struct file_operations fops_extd_tx_stats = {
+-	.read = ath11k_read_enable_extd_tx_stats,
+-	.write = ath11k_write_enable_extd_tx_stats,
+-	.open = simple_open
+-};
+-
+-static ssize_t ath11k_write_extd_rx_stats(struct file *file,
+-					  const char __user *ubuf,
+-					  size_t count, loff_t *ppos)
+-{
+-	struct ath11k *ar = file->private_data;
+-	struct ath11k_base *ab = ar->ab;
+-	struct htt_rx_ring_tlv_filter tlv_filter = {0};
+-	u32 enable, rx_filter = 0, ring_id;
+-	int i;
+-	int ret;
+-
+-	if (kstrtouint_from_user(ubuf, count, 0, &enable))
+-		return -EINVAL;
+-
+-	mutex_lock(&ar->conf_mutex);
+-
+-	if (ar->state != ATH11K_STATE_ON) {
+-		ret = -ENETDOWN;
+-		goto exit;
+-	}
+-
+-	if (enable > 1) {
+-		ret = -EINVAL;
+-		goto exit;
+-	}
+-
+-	if (enable == ar->debug.extd_rx_stats) {
+-		ret = count;
+-		goto exit;
+-	}
+-
+-	if (enable) {
+-		rx_filter =  HTT_RX_FILTER_TLV_FLAGS_MPDU_START;
+-		rx_filter |= HTT_RX_FILTER_TLV_FLAGS_PPDU_START;
+-		rx_filter |= HTT_RX_FILTER_TLV_FLAGS_PPDU_END;
+-		rx_filter |= HTT_RX_FILTER_TLV_FLAGS_PPDU_END_USER_STATS;
+-		rx_filter |= HTT_RX_FILTER_TLV_FLAGS_PPDU_END_USER_STATS_EXT;
+-		rx_filter |= HTT_RX_FILTER_TLV_FLAGS_PPDU_END_STATUS_DONE;
+-
+-		tlv_filter.rx_filter = rx_filter;
+-		tlv_filter.pkt_filter_flags0 = HTT_RX_FP_MGMT_FILTER_FLAGS0;
+-		tlv_filter.pkt_filter_flags1 = HTT_RX_FP_MGMT_FILTER_FLAGS1;
+-		tlv_filter.pkt_filter_flags2 = HTT_RX_FP_CTRL_FILTER_FLASG2;
+-		tlv_filter.pkt_filter_flags3 = HTT_RX_FP_CTRL_FILTER_FLASG3 |
+-			HTT_RX_FP_DATA_FILTER_FLASG3;
+-	} else {
+-		tlv_filter = ath11k_mac_mon_status_filter_default;
+-	}
+-
+-	ar->debug.rx_filter = tlv_filter.rx_filter;
+-
+-	for (i = 0; i < ab->hw_params.num_rxmda_per_pdev; i++) {
+-		ring_id = ar->dp.rx_mon_status_refill_ring[i].refill_buf_ring.ring_id;
+-		ret = ath11k_dp_tx_htt_rx_filter_setup(ar->ab, ring_id, ar->dp.mac_id,
+-						       HAL_RXDMA_MONITOR_STATUS,
+-						       DP_RX_BUFFER_SIZE, &tlv_filter);
+-
+-		if (ret) {
+-			ath11k_warn(ar->ab, "failed to set rx filter for monitor status ring\n");
+-			goto exit;
+-		}
+-	}
+-
+-	ar->debug.extd_rx_stats = enable;
+-	ret = count;
+-exit:
+-	mutex_unlock(&ar->conf_mutex);
+-	return ret;
+-}
+-
+-static ssize_t ath11k_read_extd_rx_stats(struct file *file,
+-					 char __user *ubuf,
+-					 size_t count, loff_t *ppos)
+-{
+-	struct ath11k *ar = file->private_data;
+-	char buf[32];
+-	int len = 0;
+-
+-	mutex_lock(&ar->conf_mutex);
+-	len = scnprintf(buf, sizeof(buf) - len, "%d\n",
+-			ar->debug.extd_rx_stats);
+-	mutex_unlock(&ar->conf_mutex);
+-
+-	return simple_read_from_buffer(ubuf, count, ppos, buf, len);
+-}
+-
+-static const struct file_operations fops_extd_rx_stats = {
+-	.read = ath11k_read_extd_rx_stats,
+-	.write = ath11k_write_extd_rx_stats,
+-	.open = simple_open,
+-};
+-
+-static int ath11k_fill_bp_stats(struct ath11k_base *ab,
+-				struct ath11k_bp_stats *bp_stats,
+-				char *buf, int len, int size)
+-{
+-	lockdep_assert_held(&ab->base_lock);
+-
+-	len += scnprintf(buf + len, size - len, "count: %u\n",
+-			 bp_stats->count);
+-	len += scnprintf(buf + len, size - len, "hp: %u\n",
+-			 bp_stats->hp);
+-	len += scnprintf(buf + len, size - len, "tp: %u\n",
+-			 bp_stats->tp);
+-	len += scnprintf(buf + len, size - len, "seen before: %ums\n\n",
+-			 jiffies_to_msecs(jiffies - bp_stats->jiffies));
+-	return len;
+-}
+-
+-static ssize_t ath11k_debug_dump_soc_ring_bp_stats(struct ath11k_base *ab,
+-						   char *buf, int size)
+-{
+-	struct ath11k_bp_stats *bp_stats;
+-	bool stats_rxd = false;
+-	u8 i, pdev_idx;
+-	int len = 0;
+-
+-	len += scnprintf(buf + len, size - len, "\nBackpressure Stats\n");
+-	len += scnprintf(buf + len, size - len, "==================\n");
+-
+-	spin_lock_bh(&ab->base_lock);
+-	for (i = 0; i < HTT_SW_UMAC_RING_IDX_MAX; i++) {
+-		bp_stats = &ab->soc_stats.bp_stats.umac_ring_bp_stats[i];
+-
+-		if (!bp_stats->count)
+-			continue;
+-
+-		len += scnprintf(buf + len, size - len, "Ring: %s\n",
+-				 htt_bp_umac_ring[i]);
+-		len = ath11k_fill_bp_stats(ab, bp_stats, buf, len, size);
+-		stats_rxd = true;
+-	}
+-
+-	for (i = 0; i < HTT_SW_LMAC_RING_IDX_MAX; i++) {
+-		for (pdev_idx = 0; pdev_idx < MAX_RADIOS; pdev_idx++) {
+-			bp_stats =
+-				&ab->soc_stats.bp_stats.lmac_ring_bp_stats[i][pdev_idx];
+-
+-			if (!bp_stats->count)
+-				continue;
+-
+-			len += scnprintf(buf + len, size - len, "Ring: %s\n",
+-					 htt_bp_lmac_ring[i]);
+-			len += scnprintf(buf + len, size - len, "pdev: %d\n",
+-					 pdev_idx);
+-			len = ath11k_fill_bp_stats(ab, bp_stats, buf, len, size);
+-			stats_rxd = true;
+-		}
+-	}
+-	spin_unlock_bh(&ab->base_lock);
+-
+-	if (!stats_rxd)
+-		len += scnprintf(buf + len, size - len,
+-				 "No Ring Backpressure stats received\n\n");
+-
+-	return len;
+-}
+-
+-static ssize_t ath11k_debug_dump_soc_dp_stats(struct file *file,
+-					      char __user *user_buf,
+-					      size_t count, loff_t *ppos)
+-{
+-	struct ath11k_base *ab = file->private_data;
+-	struct ath11k_soc_dp_stats *soc_stats = &ab->soc_stats;
+-	int len = 0, i, retval;
+-	const int size = 4096;
+-	static const char *rxdma_err[HAL_REO_ENTR_RING_RXDMA_ECODE_MAX] = {
+-			"Overflow", "MPDU len", "FCS", "Decrypt", "TKIP MIC",
+-			"Unencrypt", "MSDU len", "MSDU limit", "WiFi parse",
+-			"AMSDU parse", "SA timeout", "DA timeout",
+-			"Flow timeout", "Flush req"};
+-	static const char *reo_err[HAL_REO_DEST_RING_ERROR_CODE_MAX] = {
+-			"Desc addr zero", "Desc inval", "AMPDU in non BA",
+-			"Non BA dup", "BA dup", "Frame 2k jump", "BAR 2k jump",
+-			"Frame OOR", "BAR OOR", "No BA session",
+-			"Frame SN equal SSN", "PN check fail", "2k err",
+-			"PN err", "Desc blocked"};
+-
+-	char *buf;
+-
+-	buf = kzalloc(size, GFP_KERNEL);
+-	if (!buf)
+-		return -ENOMEM;
+-
+-	len += scnprintf(buf + len, size - len, "SOC RX STATS:\n\n");
+-	len += scnprintf(buf + len, size - len, "err ring pkts: %u\n",
+-			 soc_stats->err_ring_pkts);
+-	len += scnprintf(buf + len, size - len, "Invalid RBM: %u\n\n",
+-			 soc_stats->invalid_rbm);
+-	len += scnprintf(buf + len, size - len, "RXDMA errors:\n");
+-	for (i = 0; i < HAL_REO_ENTR_RING_RXDMA_ECODE_MAX; i++)
+-		len += scnprintf(buf + len, size - len, "%s: %u\n",
+-				 rxdma_err[i], soc_stats->rxdma_error[i]);
+-
+-	len += scnprintf(buf + len, size - len, "\nREO errors:\n");
+-	for (i = 0; i < HAL_REO_DEST_RING_ERROR_CODE_MAX; i++)
+-		len += scnprintf(buf + len, size - len, "%s: %u\n",
+-				 reo_err[i], soc_stats->reo_error[i]);
+-
+-	len += scnprintf(buf + len, size - len, "\nHAL REO errors:\n");
+-	len += scnprintf(buf + len, size - len,
+-			 "ring0: %u\nring1: %u\nring2: %u\nring3: %u\n",
+-			 soc_stats->hal_reo_error[0],
+-			 soc_stats->hal_reo_error[1],
+-			 soc_stats->hal_reo_error[2],
+-			 soc_stats->hal_reo_error[3]);
+-
+-	len += scnprintf(buf + len, size - len, "\nSOC TX STATS:\n");
+-	len += scnprintf(buf + len, size - len, "\nTCL Ring Full Failures:\n");
+-
+-	for (i = 0; i < DP_TCL_NUM_RING_MAX; i++)
+-		len += scnprintf(buf + len, size - len, "ring%d: %u\n",
+-				 i, soc_stats->tx_err.desc_na[i]);
+-
+-	len += scnprintf(buf + len, size - len,
+-			 "\nMisc Transmit Failures: %d\n",
+-			 atomic_read(&soc_stats->tx_err.misc_fail));
+-
+-	len += ath11k_debug_dump_soc_ring_bp_stats(ab, buf + len, size - len);
+-
+-	if (len > size)
+-		len = size;
+-	retval = simple_read_from_buffer(user_buf, count, ppos, buf, len);
+-	kfree(buf);
+-
+-	return retval;
+-}
+-
+-static const struct file_operations fops_soc_dp_stats = {
+-	.read = ath11k_debug_dump_soc_dp_stats,
+-	.open = simple_open,
+-	.owner = THIS_MODULE,
+-	.llseek = default_llseek,
+-};
+-
+-int ath11k_debug_pdev_create(struct ath11k_base *ab)
+-{
+-	if (test_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags))
+-		return 0;
+-
+-	ab->debugfs_soc = debugfs_create_dir(ab->hw_params.name, ab->debugfs_ath11k);
+-
+-	if (IS_ERR_OR_NULL(ab->debugfs_soc)) {
+-		if (IS_ERR(ab->debugfs_soc))
+-			return PTR_ERR(ab->debugfs_soc);
+-		return -ENOMEM;
+-	}
+-
+-	debugfs_create_file("simulate_fw_crash", 0600, ab->debugfs_soc, ab,
+-			    &fops_simulate_fw_crash);
+-
+-	debugfs_create_file("soc_dp_stats", 0600, ab->debugfs_soc, ab,
+-			    &fops_soc_dp_stats);
+-
+-	return 0;
+-}
+-
+-void ath11k_debug_pdev_destroy(struct ath11k_base *ab)
+-{
+-	debugfs_remove_recursive(ab->debugfs_ath11k);
+-	ab->debugfs_ath11k = NULL;
+-}
+-
+-int ath11k_debug_soc_create(struct ath11k_base *ab)
+-{
+-	ab->debugfs_ath11k = debugfs_create_dir("ath11k", NULL);
+-
+-	if (IS_ERR_OR_NULL(ab->debugfs_ath11k)) {
+-		if (IS_ERR(ab->debugfs_ath11k))
+-			return PTR_ERR(ab->debugfs_ath11k);
+-		return -ENOMEM;
+-	}
+-
+-	return 0;
+-}
+-
+-void ath11k_debug_soc_destroy(struct ath11k_base *ab)
+-{
+-	debugfs_remove_recursive(ab->debugfs_soc);
+-	ab->debugfs_soc = NULL;
+-}
+-
+-void ath11k_debug_fw_stats_init(struct ath11k *ar)
+-{
+-	struct dentry *fwstats_dir = debugfs_create_dir("fw_stats",
+-							ar->debug.debugfs_pdev);
+-
+-	ar->debug.fw_stats.debugfs_fwstats = fwstats_dir;
+-
+-	/* all stats debugfs files created are under "fw_stats" directory
+-	 * created per PDEV
+-	 */
+-	debugfs_create_file("pdev_stats", 0600, fwstats_dir, ar,
+-			    &fops_pdev_stats);
+-	debugfs_create_file("vdev_stats", 0600, fwstats_dir, ar,
+-			    &fops_vdev_stats);
+-	debugfs_create_file("beacon_stats", 0600, fwstats_dir, ar,
+-			    &fops_bcn_stats);
+-
+-	INIT_LIST_HEAD(&ar->debug.fw_stats.pdevs);
+-	INIT_LIST_HEAD(&ar->debug.fw_stats.vdevs);
+-	INIT_LIST_HEAD(&ar->debug.fw_stats.bcn);
+-
+-	init_completion(&ar->debug.fw_stats_complete);
+-}
+-
+-static ssize_t ath11k_write_pktlog_filter(struct file *file,
+-					  const char __user *ubuf,
+-					  size_t count, loff_t *ppos)
+-{
+-	struct ath11k *ar = file->private_data;
+-	struct ath11k_base *ab = ar->ab;
+-	struct htt_rx_ring_tlv_filter tlv_filter = {0};
+-	u32 rx_filter = 0, ring_id, filter, mode;
+-	u8 buf[128] = {0};
+-	int i, ret;
+-	ssize_t rc;
+-
+-	mutex_lock(&ar->conf_mutex);
+-	if (ar->state != ATH11K_STATE_ON) {
+-		ret = -ENETDOWN;
+-		goto out;
+-	}
+-
+-	rc = simple_write_to_buffer(buf, sizeof(buf) - 1, ppos, ubuf, count);
+-	if (rc < 0) {
+-		ret = rc;
+-		goto out;
+-	}
+-	buf[rc] = '\0';
+-
+-	ret = sscanf(buf, "0x%x %u", &filter, &mode);
+-	if (ret != 2) {
+-		ret = -EINVAL;
+-		goto out;
+-	}
+-
+-	if (filter) {
+-		ret = ath11k_wmi_pdev_pktlog_enable(ar, filter);
+-		if (ret) {
+-			ath11k_warn(ar->ab,
+-				    "failed to enable pktlog filter %x: %d\n",
+-				    ar->debug.pktlog_filter, ret);
+-			goto out;
+-		}
+-	} else {
+-		ret = ath11k_wmi_pdev_pktlog_disable(ar);
+-		if (ret) {
+-			ath11k_warn(ar->ab, "failed to disable pktlog: %d\n", ret);
+-			goto out;
+-		}
+-	}
+-
+-#define HTT_RX_FILTER_TLV_LITE_MODE \
+-			(HTT_RX_FILTER_TLV_FLAGS_PPDU_START | \
+-			HTT_RX_FILTER_TLV_FLAGS_PPDU_END | \
+-			HTT_RX_FILTER_TLV_FLAGS_PPDU_END_USER_STATS | \
+-			HTT_RX_FILTER_TLV_FLAGS_PPDU_END_USER_STATS_EXT | \
+-			HTT_RX_FILTER_TLV_FLAGS_PPDU_END_STATUS_DONE | \
+-			HTT_RX_FILTER_TLV_FLAGS_MPDU_START)
+-
+-	if (mode == ATH11K_PKTLOG_MODE_FULL) {
+-		rx_filter = HTT_RX_FILTER_TLV_LITE_MODE |
+-			    HTT_RX_FILTER_TLV_FLAGS_MSDU_START |
+-			    HTT_RX_FILTER_TLV_FLAGS_MSDU_END |
+-			    HTT_RX_FILTER_TLV_FLAGS_MPDU_END |
+-			    HTT_RX_FILTER_TLV_FLAGS_PACKET_HEADER |
+-			    HTT_RX_FILTER_TLV_FLAGS_ATTENTION;
+-	} else if (mode == ATH11K_PKTLOG_MODE_LITE) {
+-		ret = ath11k_dp_tx_htt_h2t_ppdu_stats_req(ar,
+-							  HTT_PPDU_STATS_TAG_PKTLOG);
+-		if (ret) {
+-			ath11k_err(ar->ab, "failed to enable pktlog lite: %d\n", ret);
+-			goto out;
+-		}
+-
+-		rx_filter = HTT_RX_FILTER_TLV_LITE_MODE;
+-	} else {
+-		ret = ath11k_dp_tx_htt_h2t_ppdu_stats_req(ar,
+-							  HTT_PPDU_STATS_TAG_DEFAULT);
+-		if (ret) {
+-			ath11k_err(ar->ab, "failed to send htt ppdu stats req: %d\n",
+-				   ret);
+-			goto out;
+-		}
+-	}
+-
+-	tlv_filter.rx_filter = rx_filter;
+-	if (rx_filter) {
+-		tlv_filter.pkt_filter_flags0 = HTT_RX_FP_MGMT_FILTER_FLAGS0;
+-		tlv_filter.pkt_filter_flags1 = HTT_RX_FP_MGMT_FILTER_FLAGS1;
+-		tlv_filter.pkt_filter_flags2 = HTT_RX_FP_CTRL_FILTER_FLASG2;
+-		tlv_filter.pkt_filter_flags3 = HTT_RX_FP_CTRL_FILTER_FLASG3 |
+-					       HTT_RX_FP_DATA_FILTER_FLASG3;
+-	}
+-
+-	for (i = 0; i < ab->hw_params.num_rxmda_per_pdev; i++) {
+-		ring_id = ar->dp.rx_mon_status_refill_ring[i].refill_buf_ring.ring_id;
+-		ret = ath11k_dp_tx_htt_rx_filter_setup(ab, ring_id,
+-						       ar->dp.mac_id + i,
+-						       HAL_RXDMA_MONITOR_STATUS,
+-						       DP_RX_BUFFER_SIZE, &tlv_filter);
+-
+-		if (ret) {
+-			ath11k_warn(ab, "failed to set rx filter for monitor status ring\n");
+-			goto out;
+-		}
+-	}
+-
+-	ath11k_dbg(ab, ATH11K_DBG_WMI, "pktlog filter %d mode %s\n",
+-		   filter, ((mode == ATH11K_PKTLOG_MODE_FULL) ? "full" : "lite"));
+-
+-	ar->debug.pktlog_filter = filter;
+-	ar->debug.pktlog_mode = mode;
+-	ret = count;
+-
+-out:
+-	mutex_unlock(&ar->conf_mutex);
+-	return ret;
+-}
+-
+-static ssize_t ath11k_read_pktlog_filter(struct file *file,
+-					 char __user *ubuf,
+-					 size_t count, loff_t *ppos)
+-
+-{
+-	char buf[32] = {0};
+-	struct ath11k *ar = file->private_data;
+-	int len = 0;
+-
+-	mutex_lock(&ar->conf_mutex);
+-	len = scnprintf(buf, sizeof(buf) - len, "%08x %08x\n",
+-			ar->debug.pktlog_filter,
+-			ar->debug.pktlog_mode);
+-	mutex_unlock(&ar->conf_mutex);
+-
+-	return simple_read_from_buffer(ubuf, count, ppos, buf, len);
+-}
+-
+-static const struct file_operations fops_pktlog_filter = {
+-	.read = ath11k_read_pktlog_filter,
+-	.write = ath11k_write_pktlog_filter,
+-	.open = simple_open
+-};
+-
+-static ssize_t ath11k_write_simulate_radar(struct file *file,
+-					   const char __user *user_buf,
+-					   size_t count, loff_t *ppos)
+-{
+-	struct ath11k *ar = file->private_data;
+-	int ret;
+-
+-	ret = ath11k_wmi_simulate_radar(ar);
+-	if (ret)
+-		return ret;
+-
+-	return count;
+-}
+-
+-static const struct file_operations fops_simulate_radar = {
+-	.write = ath11k_write_simulate_radar,
+-	.open = simple_open
+-};
+-
+-int ath11k_debug_register(struct ath11k *ar)
+-{
+-	struct ath11k_base *ab = ar->ab;
+-	char pdev_name[5];
+-	char buf[100] = {0};
+-
+-	snprintf(pdev_name, sizeof(pdev_name), "%s%d", "mac", ar->pdev_idx);
+-
+-	ar->debug.debugfs_pdev = debugfs_create_dir(pdev_name, ab->debugfs_soc);
+-
+-	if (IS_ERR_OR_NULL(ar->debug.debugfs_pdev)) {
+-		if (IS_ERR(ar->debug.debugfs_pdev))
+-			return PTR_ERR(ar->debug.debugfs_pdev);
+-
+-		return -ENOMEM;
+-	}
+-
+-	/* Create a symlink under ieee80211/phy* */
+-	snprintf(buf, 100, "../../ath11k/%pd2", ar->debug.debugfs_pdev);
+-	debugfs_create_symlink("ath11k", ar->hw->wiphy->debugfsdir, buf);
+-
+-	ath11k_debug_htt_stats_init(ar);
+-
+-	ath11k_debug_fw_stats_init(ar);
+-
+-	debugfs_create_file("ext_tx_stats", 0644,
+-			    ar->debug.debugfs_pdev, ar,
+-			    &fops_extd_tx_stats);
+-	debugfs_create_file("ext_rx_stats", 0644,
+-			    ar->debug.debugfs_pdev, ar,
+-			    &fops_extd_rx_stats);
+-	debugfs_create_file("pktlog_filter", 0644,
+-			    ar->debug.debugfs_pdev, ar,
+-			    &fops_pktlog_filter);
+-
+-	if (ar->hw->wiphy->bands[NL80211_BAND_5GHZ]) {
+-		debugfs_create_file("dfs_simulate_radar", 0200,
+-				    ar->debug.debugfs_pdev, ar,
+-				    &fops_simulate_radar);
+-		debugfs_create_bool("dfs_block_radar_events", 0200,
+-				    ar->debug.debugfs_pdev,
+-				    &ar->dfs_block_radar_events);
+-	}
+-
+-	return 0;
+-}
+-
+-void ath11k_debug_unregister(struct ath11k *ar)
+-{
+-}
+-#endif /* CONFIG_ATH11K_DEBUGFS */
++#endif /* CONFIG_ATH11K_DEBUG */
+diff --git a/drivers/net/wireless/ath/ath11k/debug.h b/drivers/net/wireless/ath/ath11k/debug.h
+index 55717278ec3f..659a275e2eb3 100644
+--- a/drivers/net/wireless/ath/ath11k/debug.h
++++ b/drivers/net/wireless/ath/ath11k/debug.h
+@@ -6,11 +6,8 @@
+ #ifndef _ATH11K_DEBUG_H_
+ #define _ATH11K_DEBUG_H_
+ 
+-#include "hal_tx.h"
+ #include "trace.h"
+-
+-#define ATH11K_TX_POWER_MAX_VAL	70
+-#define ATH11K_TX_POWER_MIN_VAL	0
++#include "debugfs.h"
+ 
+ enum ath11k_debug_mask {
+ 	ATH11K_DBG_AHB		= 0x00000001,
+@@ -31,98 +28,6 @@ enum ath11k_debug_mask {
+ 	ATH11K_DBG_ANY		= 0xffffffff,
+ };
+ 
+-/* htt_dbg_ext_stats_type */
+-enum ath11k_dbg_htt_ext_stats_type {
+-	ATH11K_DBG_HTT_EXT_STATS_RESET                      =  0,
+-	ATH11K_DBG_HTT_EXT_STATS_PDEV_TX                    =  1,
+-	ATH11K_DBG_HTT_EXT_STATS_PDEV_RX                    =  2,
+-	ATH11K_DBG_HTT_EXT_STATS_PDEV_TX_HWQ                =  3,
+-	ATH11K_DBG_HTT_EXT_STATS_PDEV_TX_SCHED              =  4,
+-	ATH11K_DBG_HTT_EXT_STATS_PDEV_ERROR                 =  5,
+-	ATH11K_DBG_HTT_EXT_STATS_PDEV_TQM                   =  6,
+-	ATH11K_DBG_HTT_EXT_STATS_TQM_CMDQ                   =  7,
+-	ATH11K_DBG_HTT_EXT_STATS_TX_DE_INFO                 =  8,
+-	ATH11K_DBG_HTT_EXT_STATS_PDEV_TX_RATE               =  9,
+-	ATH11K_DBG_HTT_EXT_STATS_PDEV_RX_RATE               =  10,
+-	ATH11K_DBG_HTT_EXT_STATS_PEER_INFO                  =  11,
+-	ATH11K_DBG_HTT_EXT_STATS_TX_SELFGEN_INFO            =  12,
+-	ATH11K_DBG_HTT_EXT_STATS_TX_MU_HWQ                  =  13,
+-	ATH11K_DBG_HTT_EXT_STATS_RING_IF_INFO               =  14,
+-	ATH11K_DBG_HTT_EXT_STATS_SRNG_INFO                  =  15,
+-	ATH11K_DBG_HTT_EXT_STATS_SFM_INFO                   =  16,
+-	ATH11K_DBG_HTT_EXT_STATS_PDEV_TX_MU                 =  17,
+-	ATH11K_DBG_HTT_EXT_STATS_ACTIVE_PEERS_LIST          =  18,
+-	ATH11K_DBG_HTT_EXT_STATS_PDEV_CCA_STATS             =  19,
+-	ATH11K_DBG_HTT_EXT_STATS_TWT_SESSIONS               =  20,
+-	ATH11K_DBG_HTT_EXT_STATS_REO_RESOURCE_STATS         =  21,
+-	ATH11K_DBG_HTT_EXT_STATS_TX_SOUNDING_INFO           =  22,
+-	ATH11K_DBG_HTT_EXT_STATS_PDEV_OBSS_PD_STATS	    =  23,
+-	ATH11K_DBG_HTT_EXT_STATS_RING_BACKPRESSURE_STATS    =  24,
+-
+-	/* keep this last */
+-	ATH11K_DBG_HTT_NUM_EXT_STATS,
+-};
+-
+-struct debug_htt_stats_req {
+-	bool done;
+-	u8 pdev_id;
+-	u8 type;
+-	u8 peer_addr[ETH_ALEN];
+-	struct completion cmpln;
+-	u32 buf_len;
+-	u8 buf[];
+-};
+-
+-struct ath_pktlog_hdr {
+-	u16 flags;
+-	u16 missed_cnt;
+-	u16 log_type;
+-	u16 size;
+-	u32 timestamp;
+-	u32 type_specific_data;
+-	u8 payload[];
+-};
+-
+-#define ATH11K_HTT_PEER_STATS_RESET BIT(16)
+-
+-#define ATH11K_HTT_STATS_BUF_SIZE (1024 * 512)
+-#define ATH11K_FW_STATS_BUF_SIZE (1024 * 1024)
+-
+-enum ath11k_pktlog_filter {
+-	ATH11K_PKTLOG_RX		= 0x000000001,
+-	ATH11K_PKTLOG_TX		= 0x000000002,
+-	ATH11K_PKTLOG_RCFIND		= 0x000000004,
+-	ATH11K_PKTLOG_RCUPDATE		= 0x000000008,
+-	ATH11K_PKTLOG_EVENT_SMART_ANT	= 0x000000020,
+-	ATH11K_PKTLOG_EVENT_SW		= 0x000000040,
+-	ATH11K_PKTLOG_ANY		= 0x00000006f,
+-};
+-
+-enum ath11k_pktlog_mode {
+-	ATH11K_PKTLOG_MODE_LITE = 1,
+-	ATH11K_PKTLOG_MODE_FULL = 2,
+-};
+-
+-enum ath11k_pktlog_enum {
+-	ATH11K_PKTLOG_TYPE_TX_CTRL      = 1,
+-	ATH11K_PKTLOG_TYPE_TX_STAT      = 2,
+-	ATH11K_PKTLOG_TYPE_TX_MSDU_ID   = 3,
+-	ATH11K_PKTLOG_TYPE_RX_STAT      = 5,
+-	ATH11K_PKTLOG_TYPE_RC_FIND      = 6,
+-	ATH11K_PKTLOG_TYPE_RC_UPDATE    = 7,
+-	ATH11K_PKTLOG_TYPE_TX_VIRT_ADDR = 8,
+-	ATH11K_PKTLOG_TYPE_RX_CBF       = 10,
+-	ATH11K_PKTLOG_TYPE_RX_STATBUF   = 22,
+-	ATH11K_PKTLOG_TYPE_PPDU_STATS   = 23,
+-	ATH11K_PKTLOG_TYPE_LITE_RX      = 24,
+-};
+-
+-enum ath11k_dbg_aggr_mode {
+-	ATH11K_DBG_AGGR_MODE_AUTO,
+-	ATH11K_DBG_AGGR_MODE_MANUAL,
+-	ATH11K_DBG_AGGR_MODE_MAX,
+-};
+-
+ __printf(2, 3) void ath11k_info(struct ath11k_base *ab, const char *fmt, ...);
+ __printf(2, 3) void ath11k_err(struct ath11k_base *ab, const char *fmt, ...);
+ __printf(2, 3) void ath11k_warn(struct ath11k_base *ab, const char *fmt, ...);
+@@ -153,153 +58,6 @@ static inline void ath11k_dbg_dump(struct ath11k_base *ab,
+ }
+ #endif /* CONFIG_ATH11K_DEBUG */
+ 
+-#ifdef CONFIG_ATH11K_DEBUGFS
+-int ath11k_debug_soc_create(struct ath11k_base *ab);
+-void ath11k_debug_soc_destroy(struct ath11k_base *ab);
+-int ath11k_debug_pdev_create(struct ath11k_base *ab);
+-void ath11k_debug_pdev_destroy(struct ath11k_base *ab);
+-int ath11k_debug_register(struct ath11k *ar);
+-void ath11k_debug_unregister(struct ath11k *ar);
+-void ath11k_dbg_htt_ext_stats_handler(struct ath11k_base *ab,
+-				      struct sk_buff *skb);
+-void ath11k_debug_fw_stats_process(struct ath11k_base *ab, struct sk_buff *skb);
+-
+-void ath11k_debug_fw_stats_init(struct ath11k *ar);
+-int ath11k_dbg_htt_stats_req(struct ath11k *ar);
+-
+-static inline bool ath11k_debug_is_pktlog_lite_mode_enabled(struct ath11k *ar)
+-{
+-	return (ar->debug.pktlog_mode == ATH11K_PKTLOG_MODE_LITE);
+-}
+-
+-static inline bool ath11k_debug_is_pktlog_rx_stats_enabled(struct ath11k *ar)
+-{
+-	return (!ar->debug.pktlog_peer_valid && ar->debug.pktlog_mode);
+-}
+-
+-static inline bool ath11k_debug_is_pktlog_peer_valid(struct ath11k *ar, u8 *addr)
+-{
+-	return (ar->debug.pktlog_peer_valid && ar->debug.pktlog_mode &&
+-		ether_addr_equal(addr, ar->debug.pktlog_peer_addr));
+-}
+-
+-static inline int ath11k_debug_is_extd_tx_stats_enabled(struct ath11k *ar)
+-{
+-	return ar->debug.extd_tx_stats;
+-}
+-
+-static inline int ath11k_debug_is_extd_rx_stats_enabled(struct ath11k *ar)
+-{
+-	return ar->debug.extd_rx_stats;
+-}
+-
+-static inline int ath11k_debug_rx_filter(struct ath11k *ar)
+-{
+-	return ar->debug.rx_filter;
+-}
+-
+-void ath11k_sta_add_debugfs(struct ieee80211_hw *hw, struct ieee80211_vif *vif,
+-			    struct ieee80211_sta *sta, struct dentry *dir);
+-void
+-ath11k_accumulate_per_peer_tx_stats(struct ath11k_sta *arsta,
+-				    struct ath11k_per_peer_tx_stats *peer_stats,
+-				    u8 legacy_rate_idx);
+-void ath11k_update_per_peer_stats_from_txcompl(struct ath11k *ar,
+-					       struct sk_buff *msdu,
+-					       struct hal_tx_status *ts);
+-#else
+-static inline int ath11k_debug_soc_create(struct ath11k_base *ab)
+-{
+-	return 0;
+-}
+-
+-static inline void ath11k_debug_soc_destroy(struct ath11k_base *ab)
+-{
+-}
+-
+-static inline int ath11k_debug_pdev_create(struct ath11k_base *ab)
+-{
+-	return 0;
+-}
+-
+-static inline void ath11k_debug_pdev_destroy(struct ath11k_base *ab)
+-{
+-}
+-
+-static inline int ath11k_debug_register(struct ath11k *ar)
+-{
+-	return 0;
+-}
+-
+-static inline void ath11k_debug_unregister(struct ath11k *ar)
+-{
+-}
+-
+-static inline void ath11k_dbg_htt_ext_stats_handler(struct ath11k_base *ab,
+-						    struct sk_buff *skb)
+-{
+-}
+-
+-static inline void ath11k_debug_fw_stats_process(struct ath11k_base *ab,
+-						 struct sk_buff *skb)
+-{
+-}
+-
+-static inline void ath11k_debug_fw_stats_init(struct ath11k *ar)
+-{
+-}
+-
+-static inline int ath11k_debug_is_extd_tx_stats_enabled(struct ath11k *ar)
+-{
+-	return 0;
+-}
+-
+-static inline int ath11k_debug_is_extd_rx_stats_enabled(struct ath11k *ar)
+-{
+-	return 0;
+-}
+-
+-static inline int ath11k_dbg_htt_stats_req(struct ath11k *ar)
+-{
+-	return 0;
+-}
+-
+-static inline bool ath11k_debug_is_pktlog_lite_mode_enabled(struct ath11k *ar)
+-{
+-	return false;
+-}
+-
+-static inline bool ath11k_debug_is_pktlog_rx_stats_enabled(struct ath11k *ar)
+-{
+-	return false;
+-}
+-
+-static inline bool ath11k_debug_is_pktlog_peer_valid(struct ath11k *ar, u8 *addr)
+-{
+-	return false;
+-}
+-
+-static inline int ath11k_debug_rx_filter(struct ath11k *ar)
+-{
+-	return 0;
+-}
+-
+-static inline void
+-ath11k_accumulate_per_peer_tx_stats(struct ath11k_sta *arsta,
+-				    struct ath11k_per_peer_tx_stats *peer_stats,
+-				    u8 legacy_rate_idx)
+-{
+-}
+-
+-static inline void
+-ath11k_update_per_peer_stats_from_txcompl(struct ath11k *ar,
+-					  struct sk_buff *msdu,
+-					  struct hal_tx_status *ts)
+-{
+-}
+-
+-#endif /* CONFIG_MAC80211_DEBUGFS*/
+-
+ #define ath11k_dbg(ar, dbg_mask, fmt, ...)			\
+ do {								\
+ 	if (ath11k_debug_mask & dbg_mask)			\
+diff --git a/drivers/net/wireless/ath/ath11k/debugfs.c b/drivers/net/wireless/ath/ath11k/debugfs.c
+new file mode 100644
+index 000000000000..b6d00bd6bbd7
+--- /dev/null
++++ b/drivers/net/wireless/ath/ath11k/debugfs.c
+@@ -0,0 +1,1112 @@
++// SPDX-License-Identifier: BSD-3-Clause-Clear
++/*
++ * Copyright (c) 2018-2020 The Linux Foundation. All rights reserved.
++ */
++
++#include "debugfs.h"
++
++#include "core.h"
++#include "debug.h"
++#include "wmi.h"
++#include "hal_rx.h"
++#include "dp_tx.h"
++#include "debug_htt_stats.h"
++#include "peer.h"
++
++static const char *htt_bp_umac_ring[HTT_SW_UMAC_RING_IDX_MAX] = {
++	"REO2SW1_RING",
++	"REO2SW2_RING",
++	"REO2SW3_RING",
++	"REO2SW4_RING",
++	"WBM2REO_LINK_RING",
++	"REO2TCL_RING",
++	"REO2FW_RING",
++	"RELEASE_RING",
++	"PPE_RELEASE_RING",
++	"TCL2TQM_RING",
++	"TQM_RELEASE_RING",
++	"REO_RELEASE_RING",
++	"WBM2SW0_RELEASE_RING",
++	"WBM2SW1_RELEASE_RING",
++	"WBM2SW2_RELEASE_RING",
++	"WBM2SW3_RELEASE_RING",
++	"REO_CMD_RING",
++	"REO_STATUS_RING",
++};
++
++static const char *htt_bp_lmac_ring[HTT_SW_LMAC_RING_IDX_MAX] = {
++	"FW2RXDMA_BUF_RING",
++	"FW2RXDMA_STATUS_RING",
++	"FW2RXDMA_LINK_RING",
++	"SW2RXDMA_BUF_RING",
++	"WBM2RXDMA_LINK_RING",
++	"RXDMA2FW_RING",
++	"RXDMA2SW_RING",
++	"RXDMA2RELEASE_RING",
++	"RXDMA2REO_RING",
++	"MONITOR_STATUS_RING",
++	"MONITOR_BUF_RING",
++	"MONITOR_DESC_RING",
++	"MONITOR_DEST_RING",
++};
++
++static void ath11k_fw_stats_pdevs_free(struct list_head *head)
++{
++	struct ath11k_fw_stats_pdev *i, *tmp;
++
++	list_for_each_entry_safe(i, tmp, head, list) {
++		list_del(&i->list);
++		kfree(i);
++	}
++}
++
++static void ath11k_fw_stats_vdevs_free(struct list_head *head)
++{
++	struct ath11k_fw_stats_vdev *i, *tmp;
++
++	list_for_each_entry_safe(i, tmp, head, list) {
++		list_del(&i->list);
++		kfree(i);
++	}
++}
++
++static void ath11k_fw_stats_bcn_free(struct list_head *head)
++{
++	struct ath11k_fw_stats_bcn *i, *tmp;
++
++	list_for_each_entry_safe(i, tmp, head, list) {
++		list_del(&i->list);
++		kfree(i);
++	}
++}
++
++static void ath11k_debug_fw_stats_reset(struct ath11k *ar)
++{
++	spin_lock_bh(&ar->data_lock);
++	ar->debug.fw_stats_done = false;
++	ath11k_fw_stats_pdevs_free(&ar->debug.fw_stats.pdevs);
++	ath11k_fw_stats_vdevs_free(&ar->debug.fw_stats.vdevs);
++	spin_unlock_bh(&ar->data_lock);
++}
++
++void ath11k_debug_fw_stats_process(struct ath11k_base *ab, struct sk_buff *skb)
++{
++	struct ath11k_fw_stats stats = {};
++	struct ath11k *ar;
++	struct ath11k_pdev *pdev;
++	bool is_end;
++	static unsigned int num_vdev, num_bcn;
++	size_t total_vdevs_started = 0;
++	int i, ret;
++
++	INIT_LIST_HEAD(&stats.pdevs);
++	INIT_LIST_HEAD(&stats.vdevs);
++	INIT_LIST_HEAD(&stats.bcn);
++
++	ret = ath11k_wmi_pull_fw_stats(ab, skb, &stats);
++	if (ret) {
++		ath11k_warn(ab, "failed to pull fw stats: %d\n", ret);
++		goto free;
++	}
++
++	rcu_read_lock();
++	ar = ath11k_mac_get_ar_by_pdev_id(ab, stats.pdev_id);
++	if (!ar) {
++		rcu_read_unlock();
++		ath11k_warn(ab, "failed to get ar for pdev_id %d: %d\n",
++			    stats.pdev_id, ret);
++		goto free;
++	}
++
++	spin_lock_bh(&ar->data_lock);
++
++	if (stats.stats_id == WMI_REQUEST_PDEV_STAT) {
++		list_splice_tail_init(&stats.pdevs, &ar->debug.fw_stats.pdevs);
++		ar->debug.fw_stats_done = true;
++		goto complete;
++	}
++
++	if (stats.stats_id == WMI_REQUEST_VDEV_STAT) {
++		if (list_empty(&stats.vdevs)) {
++			ath11k_warn(ab, "empty vdev stats");
++			goto complete;
++		}
++		/* FW sends all the active VDEV stats irrespective of PDEV,
++		 * hence limit until the count of all VDEVs started
++		 */
++		for (i = 0; i < ab->num_radios; i++) {
++			pdev = rcu_dereference(ab->pdevs_active[i]);
++			if (pdev && pdev->ar)
++				total_vdevs_started += ar->num_started_vdevs;
++		}
++
++		is_end = ((++num_vdev) == total_vdevs_started);
++
++		list_splice_tail_init(&stats.vdevs,
++				      &ar->debug.fw_stats.vdevs);
++
++		if (is_end) {
++			ar->debug.fw_stats_done = true;
++			num_vdev = 0;
++		}
++		goto complete;
++	}
++
++	if (stats.stats_id == WMI_REQUEST_BCN_STAT) {
++		if (list_empty(&stats.bcn)) {
++			ath11k_warn(ab, "empty bcn stats");
++			goto complete;
++		}
++		/* Mark end until we reached the count of all started VDEVs
++		 * within the PDEV
++		 */
++		is_end = ((++num_bcn) == ar->num_started_vdevs);
++
++		list_splice_tail_init(&stats.bcn,
++				      &ar->debug.fw_stats.bcn);
++
++		if (is_end) {
++			ar->debug.fw_stats_done = true;
++			num_bcn = 0;
++		}
++	}
++complete:
++	complete(&ar->debug.fw_stats_complete);
++	rcu_read_unlock();
++	spin_unlock_bh(&ar->data_lock);
++
++free:
++	ath11k_fw_stats_pdevs_free(&stats.pdevs);
++	ath11k_fw_stats_vdevs_free(&stats.vdevs);
++	ath11k_fw_stats_bcn_free(&stats.bcn);
++}
++
++static int ath11k_debug_fw_stats_request(struct ath11k *ar,
++					 struct stats_request_params *req_param)
++{
++	struct ath11k_base *ab = ar->ab;
++	unsigned long timeout, time_left;
++	int ret;
++
++	lockdep_assert_held(&ar->conf_mutex);
++
++	/* FW stats can get split when exceeding the stats data buffer limit.
++	 * In that case, since there is no end marking for the back-to-back
++	 * received 'update stats' event, we keep a 3 seconds timeout in case,
++	 * fw_stats_done is not marked yet
++	 */
++	timeout = jiffies + msecs_to_jiffies(3 * HZ);
++
++	ath11k_debug_fw_stats_reset(ar);
++
++	reinit_completion(&ar->debug.fw_stats_complete);
++
++	ret = ath11k_wmi_send_stats_request_cmd(ar, req_param);
++
++	if (ret) {
++		ath11k_warn(ab, "could not request fw stats (%d)\n",
++			    ret);
++		return ret;
++	}
++
++	time_left =
++	wait_for_completion_timeout(&ar->debug.fw_stats_complete,
++				    1 * HZ);
++	if (!time_left)
++		return -ETIMEDOUT;
++
++	for (;;) {
++		if (time_after(jiffies, timeout))
++			break;
++
++		spin_lock_bh(&ar->data_lock);
++		if (ar->debug.fw_stats_done) {
++			spin_unlock_bh(&ar->data_lock);
++			break;
++		}
++		spin_unlock_bh(&ar->data_lock);
++	}
++	return 0;
++}
++
++static int ath11k_open_pdev_stats(struct inode *inode, struct file *file)
++{
++	struct ath11k *ar = inode->i_private;
++	struct ath11k_base *ab = ar->ab;
++	struct stats_request_params req_param;
++	void *buf = NULL;
++	int ret;
++
++	mutex_lock(&ar->conf_mutex);
++
++	if (ar->state != ATH11K_STATE_ON) {
++		ret = -ENETDOWN;
++		goto err_unlock;
++	}
++
++	buf = vmalloc(ATH11K_FW_STATS_BUF_SIZE);
++	if (!buf) {
++		ret = -ENOMEM;
++		goto err_unlock;
++	}
++
++	req_param.pdev_id = ar->pdev->pdev_id;
++	req_param.vdev_id = 0;
++	req_param.stats_id = WMI_REQUEST_PDEV_STAT;
++
++	ret = ath11k_debug_fw_stats_request(ar, &req_param);
++	if (ret) {
++		ath11k_warn(ab, "failed to request fw pdev stats: %d\n", ret);
++		goto err_free;
++	}
++
++	ath11k_wmi_fw_stats_fill(ar, &ar->debug.fw_stats, req_param.stats_id,
++				 buf);
++
++	file->private_data = buf;
++
++	mutex_unlock(&ar->conf_mutex);
++	return 0;
++
++err_free:
++	vfree(buf);
++
++err_unlock:
++	mutex_unlock(&ar->conf_mutex);
++	return ret;
++}
++
++static int ath11k_release_pdev_stats(struct inode *inode, struct file *file)
++{
++	vfree(file->private_data);
++
++	return 0;
++}
++
++static ssize_t ath11k_read_pdev_stats(struct file *file,
++				      char __user *user_buf,
++				      size_t count, loff_t *ppos)
++{
++	const char *buf = file->private_data;
++	size_t len = strlen(buf);
++
++	return simple_read_from_buffer(user_buf, count, ppos, buf, len);
++}
++
++static const struct file_operations fops_pdev_stats = {
++	.open = ath11k_open_pdev_stats,
++	.release = ath11k_release_pdev_stats,
++	.read = ath11k_read_pdev_stats,
++	.owner = THIS_MODULE,
++	.llseek = default_llseek,
++};
++
++static int ath11k_open_vdev_stats(struct inode *inode, struct file *file)
++{
++	struct ath11k *ar = inode->i_private;
++	struct stats_request_params req_param;
++	void *buf = NULL;
++	int ret;
++
++	mutex_lock(&ar->conf_mutex);
++
++	if (ar->state != ATH11K_STATE_ON) {
++		ret = -ENETDOWN;
++		goto err_unlock;
++	}
++
++	buf = vmalloc(ATH11K_FW_STATS_BUF_SIZE);
++	if (!buf) {
++		ret = -ENOMEM;
++		goto err_unlock;
++	}
++
++	req_param.pdev_id = ar->pdev->pdev_id;
++	/* VDEV stats is always sent for all active VDEVs from FW */
++	req_param.vdev_id = 0;
++	req_param.stats_id = WMI_REQUEST_VDEV_STAT;
++
++	ret = ath11k_debug_fw_stats_request(ar, &req_param);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to request fw vdev stats: %d\n", ret);
++		goto err_free;
++	}
++
++	ath11k_wmi_fw_stats_fill(ar, &ar->debug.fw_stats, req_param.stats_id,
++				 buf);
++
++	file->private_data = buf;
++
++	mutex_unlock(&ar->conf_mutex);
++	return 0;
++
++err_free:
++	vfree(buf);
++
++err_unlock:
++	mutex_unlock(&ar->conf_mutex);
++	return ret;
++}
++
++static int ath11k_release_vdev_stats(struct inode *inode, struct file *file)
++{
++	vfree(file->private_data);
++
++	return 0;
++}
++
++static ssize_t ath11k_read_vdev_stats(struct file *file,
++				      char __user *user_buf,
++				      size_t count, loff_t *ppos)
++{
++	const char *buf = file->private_data;
++	size_t len = strlen(buf);
++
++	return simple_read_from_buffer(user_buf, count, ppos, buf, len);
++}
++
++static const struct file_operations fops_vdev_stats = {
++	.open = ath11k_open_vdev_stats,
++	.release = ath11k_release_vdev_stats,
++	.read = ath11k_read_vdev_stats,
++	.owner = THIS_MODULE,
++	.llseek = default_llseek,
++};
++
++static int ath11k_open_bcn_stats(struct inode *inode, struct file *file)
++{
++	struct ath11k *ar = inode->i_private;
++	struct ath11k_vif *arvif;
++	struct stats_request_params req_param;
++	void *buf = NULL;
++	int ret;
++
++	mutex_lock(&ar->conf_mutex);
++
++	if (ar->state != ATH11K_STATE_ON) {
++		ret = -ENETDOWN;
++		goto err_unlock;
++	}
++
++	buf = vmalloc(ATH11K_FW_STATS_BUF_SIZE);
++	if (!buf) {
++		ret = -ENOMEM;
++		goto err_unlock;
++	}
++
++	req_param.stats_id = WMI_REQUEST_BCN_STAT;
++	req_param.pdev_id = ar->pdev->pdev_id;
++
++	/* loop all active VDEVs for bcn stats */
++	list_for_each_entry(arvif, &ar->arvifs, list) {
++		if (!arvif->is_up)
++			continue;
++
++		req_param.vdev_id = arvif->vdev_id;
++		ret = ath11k_debug_fw_stats_request(ar, &req_param);
++		if (ret) {
++			ath11k_warn(ar->ab, "failed to request fw bcn stats: %d\n", ret);
++			goto err_free;
++		}
++	}
++
++	ath11k_wmi_fw_stats_fill(ar, &ar->debug.fw_stats, req_param.stats_id,
++				 buf);
++
++	/* since beacon stats request is looped for all active VDEVs, saved fw
++	 * stats is not freed for each request until done for all active VDEVs
++	 */
++	spin_lock_bh(&ar->data_lock);
++	ath11k_fw_stats_bcn_free(&ar->debug.fw_stats.bcn);
++	spin_unlock_bh(&ar->data_lock);
++
++	file->private_data = buf;
++
++	mutex_unlock(&ar->conf_mutex);
++	return 0;
++
++err_free:
++	vfree(buf);
++
++err_unlock:
++	mutex_unlock(&ar->conf_mutex);
++	return ret;
++}
++
++static int ath11k_release_bcn_stats(struct inode *inode, struct file *file)
++{
++	vfree(file->private_data);
++
++	return 0;
++}
++
++static ssize_t ath11k_read_bcn_stats(struct file *file,
++				     char __user *user_buf,
++				     size_t count, loff_t *ppos)
++{
++	const char *buf = file->private_data;
++	size_t len = strlen(buf);
++
++	return simple_read_from_buffer(user_buf, count, ppos, buf, len);
++}
++
++static const struct file_operations fops_bcn_stats = {
++	.open = ath11k_open_bcn_stats,
++	.release = ath11k_release_bcn_stats,
++	.read = ath11k_read_bcn_stats,
++	.owner = THIS_MODULE,
++	.llseek = default_llseek,
++};
++
++static ssize_t ath11k_read_simulate_fw_crash(struct file *file,
++					     char __user *user_buf,
++					     size_t count, loff_t *ppos)
++{
++	const char buf[] =
++		"To simulate firmware crash write one of the keywords to this file:\n"
++		"`assert` - this will send WMI_FORCE_FW_HANG_CMDID to firmware to cause assert.\n"
++		"`hw-restart` - this will simply queue hw restart without fw/hw actually crashing.\n";
++
++	return simple_read_from_buffer(user_buf, count, ppos, buf, strlen(buf));
++}
++
++/* Simulate firmware crash:
++ * 'soft': Call wmi command causing firmware hang. This firmware hang is
++ * recoverable by warm firmware reset.
++ * 'hard': Force firmware crash by setting any vdev parameter for not allowed
++ * vdev id. This is hard firmware crash because it is recoverable only by cold
++ * firmware reset.
++ */
++static ssize_t ath11k_write_simulate_fw_crash(struct file *file,
++					      const char __user *user_buf,
++					      size_t count, loff_t *ppos)
++{
++	struct ath11k_base *ab = file->private_data;
++	struct ath11k_pdev *pdev;
++	struct ath11k *ar = ab->pdevs[0].ar;
++	char buf[32] = {0};
++	ssize_t rc;
++	int i, ret, radioup = 0;
++
++	for (i = 0; i < ab->num_radios; i++) {
++		pdev = &ab->pdevs[i];
++		ar = pdev->ar;
++		if (ar && ar->state == ATH11K_STATE_ON) {
++			radioup = 1;
++			break;
++		}
++	}
++	/* filter partial writes and invalid commands */
++	if (*ppos != 0 || count >= sizeof(buf) || count == 0)
++		return -EINVAL;
++
++	rc = simple_write_to_buffer(buf, sizeof(buf) - 1, ppos, user_buf, count);
++	if (rc < 0)
++		return rc;
++
++	/* drop the possible '\n' from the end */
++	if (buf[*ppos - 1] == '\n')
++		buf[*ppos - 1] = '\0';
++
++	if (radioup == 0) {
++		ret = -ENETDOWN;
++		goto exit;
++	}
++
++	if (!strcmp(buf, "assert")) {
++		ath11k_info(ab, "simulating firmware assert crash\n");
++		ret = ath11k_wmi_force_fw_hang_cmd(ar,
++						   ATH11K_WMI_FW_HANG_ASSERT_TYPE,
++						   ATH11K_WMI_FW_HANG_DELAY);
++	} else {
++		ret = -EINVAL;
++		goto exit;
++	}
++
++	if (ret) {
++		ath11k_warn(ab, "failed to simulate firmware crash: %d\n", ret);
++		goto exit;
++	}
++
++	ret = count;
++
++exit:
++	return ret;
++}
++
++static const struct file_operations fops_simulate_fw_crash = {
++	.read = ath11k_read_simulate_fw_crash,
++	.write = ath11k_write_simulate_fw_crash,
++	.open = simple_open,
++	.owner = THIS_MODULE,
++	.llseek = default_llseek,
++};
++
++static ssize_t ath11k_write_enable_extd_tx_stats(struct file *file,
++						 const char __user *ubuf,
++						 size_t count, loff_t *ppos)
++{
++	struct ath11k *ar = file->private_data;
++	u32 filter;
++	int ret;
++
++	if (kstrtouint_from_user(ubuf, count, 0, &filter))
++		return -EINVAL;
++
++	mutex_lock(&ar->conf_mutex);
++
++	if (ar->state != ATH11K_STATE_ON) {
++		ret = -ENETDOWN;
++		goto out;
++	}
++
++	if (filter == ar->debug.extd_tx_stats) {
++		ret = count;
++		goto out;
++	}
++
++	ar->debug.extd_tx_stats = filter;
++	ret = count;
++
++out:
++	mutex_unlock(&ar->conf_mutex);
++	return ret;
++}
++
++static ssize_t ath11k_read_enable_extd_tx_stats(struct file *file,
++						char __user *ubuf,
++						size_t count, loff_t *ppos)
++
++{
++	char buf[32] = {0};
++	struct ath11k *ar = file->private_data;
++	int len = 0;
++
++	mutex_lock(&ar->conf_mutex);
++	len = scnprintf(buf, sizeof(buf) - len, "%08x\n",
++			ar->debug.extd_tx_stats);
++	mutex_unlock(&ar->conf_mutex);
++
++	return simple_read_from_buffer(ubuf, count, ppos, buf, len);
++}
++
++static const struct file_operations fops_extd_tx_stats = {
++	.read = ath11k_read_enable_extd_tx_stats,
++	.write = ath11k_write_enable_extd_tx_stats,
++	.open = simple_open
++};
++
++static ssize_t ath11k_write_extd_rx_stats(struct file *file,
++					  const char __user *ubuf,
++					  size_t count, loff_t *ppos)
++{
++	struct ath11k *ar = file->private_data;
++	struct ath11k_base *ab = ar->ab;
++	struct htt_rx_ring_tlv_filter tlv_filter = {0};
++	u32 enable, rx_filter = 0, ring_id;
++	int i;
++	int ret;
++
++	if (kstrtouint_from_user(ubuf, count, 0, &enable))
++		return -EINVAL;
++
++	mutex_lock(&ar->conf_mutex);
++
++	if (ar->state != ATH11K_STATE_ON) {
++		ret = -ENETDOWN;
++		goto exit;
++	}
++
++	if (enable > 1) {
++		ret = -EINVAL;
++		goto exit;
++	}
++
++	if (enable == ar->debug.extd_rx_stats) {
++		ret = count;
++		goto exit;
++	}
++
++	if (enable) {
++		rx_filter =  HTT_RX_FILTER_TLV_FLAGS_MPDU_START;
++		rx_filter |= HTT_RX_FILTER_TLV_FLAGS_PPDU_START;
++		rx_filter |= HTT_RX_FILTER_TLV_FLAGS_PPDU_END;
++		rx_filter |= HTT_RX_FILTER_TLV_FLAGS_PPDU_END_USER_STATS;
++		rx_filter |= HTT_RX_FILTER_TLV_FLAGS_PPDU_END_USER_STATS_EXT;
++		rx_filter |= HTT_RX_FILTER_TLV_FLAGS_PPDU_END_STATUS_DONE;
++
++		tlv_filter.rx_filter = rx_filter;
++		tlv_filter.pkt_filter_flags0 = HTT_RX_FP_MGMT_FILTER_FLAGS0;
++		tlv_filter.pkt_filter_flags1 = HTT_RX_FP_MGMT_FILTER_FLAGS1;
++		tlv_filter.pkt_filter_flags2 = HTT_RX_FP_CTRL_FILTER_FLASG2;
++		tlv_filter.pkt_filter_flags3 = HTT_RX_FP_CTRL_FILTER_FLASG3 |
++			HTT_RX_FP_DATA_FILTER_FLASG3;
++	} else {
++		tlv_filter = ath11k_mac_mon_status_filter_default;
++	}
++
++	ar->debug.rx_filter = tlv_filter.rx_filter;
++
++	for (i = 0; i < ab->hw_params.num_rxmda_per_pdev; i++) {
++		ring_id = ar->dp.rx_mon_status_refill_ring[i].refill_buf_ring.ring_id;
++		ret = ath11k_dp_tx_htt_rx_filter_setup(ar->ab, ring_id, ar->dp.mac_id,
++						       HAL_RXDMA_MONITOR_STATUS,
++						       DP_RX_BUFFER_SIZE, &tlv_filter);
++
++		if (ret) {
++			ath11k_warn(ar->ab, "failed to set rx filter for monitor status ring\n");
++			goto exit;
++		}
++	}
++
++	ar->debug.extd_rx_stats = enable;
++	ret = count;
++exit:
++	mutex_unlock(&ar->conf_mutex);
++	return ret;
++}
++
++static ssize_t ath11k_read_extd_rx_stats(struct file *file,
++					 char __user *ubuf,
++					 size_t count, loff_t *ppos)
++{
++	struct ath11k *ar = file->private_data;
++	char buf[32];
++	int len = 0;
++
++	mutex_lock(&ar->conf_mutex);
++	len = scnprintf(buf, sizeof(buf) - len, "%d\n",
++			ar->debug.extd_rx_stats);
++	mutex_unlock(&ar->conf_mutex);
++
++	return simple_read_from_buffer(ubuf, count, ppos, buf, len);
++}
++
++static const struct file_operations fops_extd_rx_stats = {
++	.read = ath11k_read_extd_rx_stats,
++	.write = ath11k_write_extd_rx_stats,
++	.open = simple_open,
++};
++
++static int ath11k_fill_bp_stats(struct ath11k_base *ab,
++				struct ath11k_bp_stats *bp_stats,
++				char *buf, int len, int size)
++{
++	lockdep_assert_held(&ab->base_lock);
++
++	len += scnprintf(buf + len, size - len, "count: %u\n",
++			 bp_stats->count);
++	len += scnprintf(buf + len, size - len, "hp: %u\n",
++			 bp_stats->hp);
++	len += scnprintf(buf + len, size - len, "tp: %u\n",
++			 bp_stats->tp);
++	len += scnprintf(buf + len, size - len, "seen before: %ums\n\n",
++			 jiffies_to_msecs(jiffies - bp_stats->jiffies));
++	return len;
++}
++
++static ssize_t ath11k_debug_dump_soc_ring_bp_stats(struct ath11k_base *ab,
++						   char *buf, int size)
++{
++	struct ath11k_bp_stats *bp_stats;
++	bool stats_rxd = false;
++	u8 i, pdev_idx;
++	int len = 0;
++
++	len += scnprintf(buf + len, size - len, "\nBackpressure Stats\n");
++	len += scnprintf(buf + len, size - len, "==================\n");
++
++	spin_lock_bh(&ab->base_lock);
++	for (i = 0; i < HTT_SW_UMAC_RING_IDX_MAX; i++) {
++		bp_stats = &ab->soc_stats.bp_stats.umac_ring_bp_stats[i];
++
++		if (!bp_stats->count)
++			continue;
++
++		len += scnprintf(buf + len, size - len, "Ring: %s\n",
++				 htt_bp_umac_ring[i]);
++		len = ath11k_fill_bp_stats(ab, bp_stats, buf, len, size);
++		stats_rxd = true;
++	}
++
++	for (i = 0; i < HTT_SW_LMAC_RING_IDX_MAX; i++) {
++		for (pdev_idx = 0; pdev_idx < MAX_RADIOS; pdev_idx++) {
++			bp_stats =
++				&ab->soc_stats.bp_stats.lmac_ring_bp_stats[i][pdev_idx];
++
++			if (!bp_stats->count)
++				continue;
++
++			len += scnprintf(buf + len, size - len, "Ring: %s\n",
++					 htt_bp_lmac_ring[i]);
++			len += scnprintf(buf + len, size - len, "pdev: %d\n",
++					 pdev_idx);
++			len = ath11k_fill_bp_stats(ab, bp_stats, buf, len, size);
++			stats_rxd = true;
++		}
++	}
++	spin_unlock_bh(&ab->base_lock);
++
++	if (!stats_rxd)
++		len += scnprintf(buf + len, size - len,
++				 "No Ring Backpressure stats received\n\n");
++
++	return len;
++}
++
++static ssize_t ath11k_debug_dump_soc_dp_stats(struct file *file,
++					      char __user *user_buf,
++					      size_t count, loff_t *ppos)
++{
++	struct ath11k_base *ab = file->private_data;
++	struct ath11k_soc_dp_stats *soc_stats = &ab->soc_stats;
++	int len = 0, i, retval;
++	const int size = 4096;
++	static const char *rxdma_err[HAL_REO_ENTR_RING_RXDMA_ECODE_MAX] = {
++			"Overflow", "MPDU len", "FCS", "Decrypt", "TKIP MIC",
++			"Unencrypt", "MSDU len", "MSDU limit", "WiFi parse",
++			"AMSDU parse", "SA timeout", "DA timeout",
++			"Flow timeout", "Flush req"};
++	static const char *reo_err[HAL_REO_DEST_RING_ERROR_CODE_MAX] = {
++			"Desc addr zero", "Desc inval", "AMPDU in non BA",
++			"Non BA dup", "BA dup", "Frame 2k jump", "BAR 2k jump",
++			"Frame OOR", "BAR OOR", "No BA session",
++			"Frame SN equal SSN", "PN check fail", "2k err",
++			"PN err", "Desc blocked"};
++
++	char *buf;
++
++	buf = kzalloc(size, GFP_KERNEL);
++	if (!buf)
++		return -ENOMEM;
++
++	len += scnprintf(buf + len, size - len, "SOC RX STATS:\n\n");
++	len += scnprintf(buf + len, size - len, "err ring pkts: %u\n",
++			 soc_stats->err_ring_pkts);
++	len += scnprintf(buf + len, size - len, "Invalid RBM: %u\n\n",
++			 soc_stats->invalid_rbm);
++	len += scnprintf(buf + len, size - len, "RXDMA errors:\n");
++	for (i = 0; i < HAL_REO_ENTR_RING_RXDMA_ECODE_MAX; i++)
++		len += scnprintf(buf + len, size - len, "%s: %u\n",
++				 rxdma_err[i], soc_stats->rxdma_error[i]);
++
++	len += scnprintf(buf + len, size - len, "\nREO errors:\n");
++	for (i = 0; i < HAL_REO_DEST_RING_ERROR_CODE_MAX; i++)
++		len += scnprintf(buf + len, size - len, "%s: %u\n",
++				 reo_err[i], soc_stats->reo_error[i]);
++
++	len += scnprintf(buf + len, size - len, "\nHAL REO errors:\n");
++	len += scnprintf(buf + len, size - len,
++			 "ring0: %u\nring1: %u\nring2: %u\nring3: %u\n",
++			 soc_stats->hal_reo_error[0],
++			 soc_stats->hal_reo_error[1],
++			 soc_stats->hal_reo_error[2],
++			 soc_stats->hal_reo_error[3]);
++
++	len += scnprintf(buf + len, size - len, "\nSOC TX STATS:\n");
++	len += scnprintf(buf + len, size - len, "\nTCL Ring Full Failures:\n");
++
++	for (i = 0; i < DP_TCL_NUM_RING_MAX; i++)
++		len += scnprintf(buf + len, size - len, "ring%d: %u\n",
++				 i, soc_stats->tx_err.desc_na[i]);
++
++	len += scnprintf(buf + len, size - len,
++			 "\nMisc Transmit Failures: %d\n",
++			 atomic_read(&soc_stats->tx_err.misc_fail));
++
++	len += ath11k_debug_dump_soc_ring_bp_stats(ab, buf + len, size - len);
++
++	if (len > size)
++		len = size;
++	retval = simple_read_from_buffer(user_buf, count, ppos, buf, len);
++	kfree(buf);
++
++	return retval;
++}
++
++static const struct file_operations fops_soc_dp_stats = {
++	.read = ath11k_debug_dump_soc_dp_stats,
++	.open = simple_open,
++	.owner = THIS_MODULE,
++	.llseek = default_llseek,
++};
++
++int ath11k_debug_pdev_create(struct ath11k_base *ab)
++{
++	if (test_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags))
++		return 0;
++
++	ab->debugfs_soc = debugfs_create_dir(ab->hw_params.name, ab->debugfs_ath11k);
++
++	if (IS_ERR_OR_NULL(ab->debugfs_soc)) {
++		if (IS_ERR(ab->debugfs_soc))
++			return PTR_ERR(ab->debugfs_soc);
++		return -ENOMEM;
++	}
++
++	debugfs_create_file("simulate_fw_crash", 0600, ab->debugfs_soc, ab,
++			    &fops_simulate_fw_crash);
++
++	debugfs_create_file("soc_dp_stats", 0600, ab->debugfs_soc, ab,
++			    &fops_soc_dp_stats);
++
++	return 0;
++}
++
++void ath11k_debug_pdev_destroy(struct ath11k_base *ab)
++{
++	debugfs_remove_recursive(ab->debugfs_ath11k);
++	ab->debugfs_ath11k = NULL;
++}
++
++int ath11k_debug_soc_create(struct ath11k_base *ab)
++{
++	ab->debugfs_ath11k = debugfs_create_dir("ath11k", NULL);
++
++	if (IS_ERR_OR_NULL(ab->debugfs_ath11k)) {
++		if (IS_ERR(ab->debugfs_ath11k))
++			return PTR_ERR(ab->debugfs_ath11k);
++		return -ENOMEM;
++	}
++
++	return 0;
++}
++
++void ath11k_debug_soc_destroy(struct ath11k_base *ab)
++{
++	debugfs_remove_recursive(ab->debugfs_soc);
++	ab->debugfs_soc = NULL;
++}
++
++void ath11k_debug_fw_stats_init(struct ath11k *ar)
++{
++	struct dentry *fwstats_dir = debugfs_create_dir("fw_stats",
++							ar->debug.debugfs_pdev);
++
++	ar->debug.fw_stats.debugfs_fwstats = fwstats_dir;
++
++	/* all stats debugfs files created are under "fw_stats" directory
++	 * created per PDEV
++	 */
++	debugfs_create_file("pdev_stats", 0600, fwstats_dir, ar,
++			    &fops_pdev_stats);
++	debugfs_create_file("vdev_stats", 0600, fwstats_dir, ar,
++			    &fops_vdev_stats);
++	debugfs_create_file("beacon_stats", 0600, fwstats_dir, ar,
++			    &fops_bcn_stats);
++
++	INIT_LIST_HEAD(&ar->debug.fw_stats.pdevs);
++	INIT_LIST_HEAD(&ar->debug.fw_stats.vdevs);
++	INIT_LIST_HEAD(&ar->debug.fw_stats.bcn);
++
++	init_completion(&ar->debug.fw_stats_complete);
++}
++
++static ssize_t ath11k_write_pktlog_filter(struct file *file,
++					  const char __user *ubuf,
++					  size_t count, loff_t *ppos)
++{
++	struct ath11k *ar = file->private_data;
++	struct ath11k_base *ab = ar->ab;
++	struct htt_rx_ring_tlv_filter tlv_filter = {0};
++	u32 rx_filter = 0, ring_id, filter, mode;
++	u8 buf[128] = {0};
++	int i, ret;
++	ssize_t rc;
++
++	mutex_lock(&ar->conf_mutex);
++	if (ar->state != ATH11K_STATE_ON) {
++		ret = -ENETDOWN;
++		goto out;
++	}
++
++	rc = simple_write_to_buffer(buf, sizeof(buf) - 1, ppos, ubuf, count);
++	if (rc < 0) {
++		ret = rc;
++		goto out;
++	}
++	buf[rc] = '\0';
++
++	ret = sscanf(buf, "0x%x %u", &filter, &mode);
++	if (ret != 2) {
++		ret = -EINVAL;
++		goto out;
++	}
++
++	if (filter) {
++		ret = ath11k_wmi_pdev_pktlog_enable(ar, filter);
++		if (ret) {
++			ath11k_warn(ar->ab,
++				    "failed to enable pktlog filter %x: %d\n",
++				    ar->debug.pktlog_filter, ret);
++			goto out;
++		}
++	} else {
++		ret = ath11k_wmi_pdev_pktlog_disable(ar);
++		if (ret) {
++			ath11k_warn(ar->ab, "failed to disable pktlog: %d\n", ret);
++			goto out;
++		}
++	}
++
++#define HTT_RX_FILTER_TLV_LITE_MODE \
++			(HTT_RX_FILTER_TLV_FLAGS_PPDU_START | \
++			HTT_RX_FILTER_TLV_FLAGS_PPDU_END | \
++			HTT_RX_FILTER_TLV_FLAGS_PPDU_END_USER_STATS | \
++			HTT_RX_FILTER_TLV_FLAGS_PPDU_END_USER_STATS_EXT | \
++			HTT_RX_FILTER_TLV_FLAGS_PPDU_END_STATUS_DONE | \
++			HTT_RX_FILTER_TLV_FLAGS_MPDU_START)
++
++	if (mode == ATH11K_PKTLOG_MODE_FULL) {
++		rx_filter = HTT_RX_FILTER_TLV_LITE_MODE |
++			    HTT_RX_FILTER_TLV_FLAGS_MSDU_START |
++			    HTT_RX_FILTER_TLV_FLAGS_MSDU_END |
++			    HTT_RX_FILTER_TLV_FLAGS_MPDU_END |
++			    HTT_RX_FILTER_TLV_FLAGS_PACKET_HEADER |
++			    HTT_RX_FILTER_TLV_FLAGS_ATTENTION;
++	} else if (mode == ATH11K_PKTLOG_MODE_LITE) {
++		ret = ath11k_dp_tx_htt_h2t_ppdu_stats_req(ar,
++							  HTT_PPDU_STATS_TAG_PKTLOG);
++		if (ret) {
++			ath11k_err(ar->ab, "failed to enable pktlog lite: %d\n", ret);
++			goto out;
++		}
++
++		rx_filter = HTT_RX_FILTER_TLV_LITE_MODE;
++	} else {
++		ret = ath11k_dp_tx_htt_h2t_ppdu_stats_req(ar,
++							  HTT_PPDU_STATS_TAG_DEFAULT);
++		if (ret) {
++			ath11k_err(ar->ab, "failed to send htt ppdu stats req: %d\n",
++				   ret);
++			goto out;
++		}
++	}
++
++	tlv_filter.rx_filter = rx_filter;
++	if (rx_filter) {
++		tlv_filter.pkt_filter_flags0 = HTT_RX_FP_MGMT_FILTER_FLAGS0;
++		tlv_filter.pkt_filter_flags1 = HTT_RX_FP_MGMT_FILTER_FLAGS1;
++		tlv_filter.pkt_filter_flags2 = HTT_RX_FP_CTRL_FILTER_FLASG2;
++		tlv_filter.pkt_filter_flags3 = HTT_RX_FP_CTRL_FILTER_FLASG3 |
++					       HTT_RX_FP_DATA_FILTER_FLASG3;
++	}
++
++	for (i = 0; i < ab->hw_params.num_rxmda_per_pdev; i++) {
++		ring_id = ar->dp.rx_mon_status_refill_ring[i].refill_buf_ring.ring_id;
++		ret = ath11k_dp_tx_htt_rx_filter_setup(ab, ring_id,
++						       ar->dp.mac_id + i,
++						       HAL_RXDMA_MONITOR_STATUS,
++						       DP_RX_BUFFER_SIZE, &tlv_filter);
++
++		if (ret) {
++			ath11k_warn(ab, "failed to set rx filter for monitor status ring\n");
++			goto out;
++		}
++	}
++
++	ath11k_dbg(ab, ATH11K_DBG_WMI, "pktlog filter %d mode %s\n",
++		   filter, ((mode == ATH11K_PKTLOG_MODE_FULL) ? "full" : "lite"));
++
++	ar->debug.pktlog_filter = filter;
++	ar->debug.pktlog_mode = mode;
++	ret = count;
++
++out:
++	mutex_unlock(&ar->conf_mutex);
++	return ret;
++}
++
++static ssize_t ath11k_read_pktlog_filter(struct file *file,
++					 char __user *ubuf,
++					 size_t count, loff_t *ppos)
++
++{
++	char buf[32] = {0};
++	struct ath11k *ar = file->private_data;
++	int len = 0;
++
++	mutex_lock(&ar->conf_mutex);
++	len = scnprintf(buf, sizeof(buf) - len, "%08x %08x\n",
++			ar->debug.pktlog_filter,
++			ar->debug.pktlog_mode);
++	mutex_unlock(&ar->conf_mutex);
++
++	return simple_read_from_buffer(ubuf, count, ppos, buf, len);
++}
++
++static const struct file_operations fops_pktlog_filter = {
++	.read = ath11k_read_pktlog_filter,
++	.write = ath11k_write_pktlog_filter,
++	.open = simple_open
++};
++
++static ssize_t ath11k_write_simulate_radar(struct file *file,
++					   const char __user *user_buf,
++					   size_t count, loff_t *ppos)
++{
++	struct ath11k *ar = file->private_data;
++	int ret;
++
++	ret = ath11k_wmi_simulate_radar(ar);
++	if (ret)
++		return ret;
++
++	return count;
++}
++
++static const struct file_operations fops_simulate_radar = {
++	.write = ath11k_write_simulate_radar,
++	.open = simple_open
++};
++
++int ath11k_debug_register(struct ath11k *ar)
++{
++	struct ath11k_base *ab = ar->ab;
++	char pdev_name[5];
++	char buf[100] = {0};
++
++	snprintf(pdev_name, sizeof(pdev_name), "%s%d", "mac", ar->pdev_idx);
++
++	ar->debug.debugfs_pdev = debugfs_create_dir(pdev_name, ab->debugfs_soc);
++
++	if (IS_ERR_OR_NULL(ar->debug.debugfs_pdev)) {
++		if (IS_ERR(ar->debug.debugfs_pdev))
++			return PTR_ERR(ar->debug.debugfs_pdev);
++
++		return -ENOMEM;
++	}
++
++	/* Create a symlink under ieee80211/phy* */
++	snprintf(buf, 100, "../../ath11k/%pd2", ar->debug.debugfs_pdev);
++	debugfs_create_symlink("ath11k", ar->hw->wiphy->debugfsdir, buf);
++
++	ath11k_debug_htt_stats_init(ar);
++
++	ath11k_debug_fw_stats_init(ar);
++
++	debugfs_create_file("ext_tx_stats", 0644,
++			    ar->debug.debugfs_pdev, ar,
++			    &fops_extd_tx_stats);
++	debugfs_create_file("ext_rx_stats", 0644,
++			    ar->debug.debugfs_pdev, ar,
++			    &fops_extd_rx_stats);
++	debugfs_create_file("pktlog_filter", 0644,
++			    ar->debug.debugfs_pdev, ar,
++			    &fops_pktlog_filter);
++
++	if (ar->hw->wiphy->bands[NL80211_BAND_5GHZ]) {
++		debugfs_create_file("dfs_simulate_radar", 0200,
++				    ar->debug.debugfs_pdev, ar,
++				    &fops_simulate_radar);
++		debugfs_create_bool("dfs_block_radar_events", 0200,
++				    ar->debug.debugfs_pdev,
++				    &ar->dfs_block_radar_events);
++	}
++
++	return 0;
++}
++
++void ath11k_debug_unregister(struct ath11k *ar)
++{
++}
+diff --git a/drivers/net/wireless/ath/ath11k/debugfs.h b/drivers/net/wireless/ath/ath11k/debugfs.h
+new file mode 100644
+index 000000000000..ab21d9003938
+--- /dev/null
++++ b/drivers/net/wireless/ath/ath11k/debugfs.h
+@@ -0,0 +1,253 @@
++/* SPDX-License-Identifier: BSD-3-Clause-Clear */
++/*
++ * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
++ */
++
++#ifndef _ATH11K_DEBUGFS_H_
++#define _ATH11K_DEBUGFS_H_
++
++#include "hal_tx.h"
++
++#define ATH11K_TX_POWER_MAX_VAL	70
++#define ATH11K_TX_POWER_MIN_VAL	0
++
++/* htt_dbg_ext_stats_type */
++enum ath11k_dbg_htt_ext_stats_type {
++	ATH11K_DBG_HTT_EXT_STATS_RESET                      =  0,
++	ATH11K_DBG_HTT_EXT_STATS_PDEV_TX                    =  1,
++	ATH11K_DBG_HTT_EXT_STATS_PDEV_RX                    =  2,
++	ATH11K_DBG_HTT_EXT_STATS_PDEV_TX_HWQ                =  3,
++	ATH11K_DBG_HTT_EXT_STATS_PDEV_TX_SCHED              =  4,
++	ATH11K_DBG_HTT_EXT_STATS_PDEV_ERROR                 =  5,
++	ATH11K_DBG_HTT_EXT_STATS_PDEV_TQM                   =  6,
++	ATH11K_DBG_HTT_EXT_STATS_TQM_CMDQ                   =  7,
++	ATH11K_DBG_HTT_EXT_STATS_TX_DE_INFO                 =  8,
++	ATH11K_DBG_HTT_EXT_STATS_PDEV_TX_RATE               =  9,
++	ATH11K_DBG_HTT_EXT_STATS_PDEV_RX_RATE               =  10,
++	ATH11K_DBG_HTT_EXT_STATS_PEER_INFO                  =  11,
++	ATH11K_DBG_HTT_EXT_STATS_TX_SELFGEN_INFO            =  12,
++	ATH11K_DBG_HTT_EXT_STATS_TX_MU_HWQ                  =  13,
++	ATH11K_DBG_HTT_EXT_STATS_RING_IF_INFO               =  14,
++	ATH11K_DBG_HTT_EXT_STATS_SRNG_INFO                  =  15,
++	ATH11K_DBG_HTT_EXT_STATS_SFM_INFO                   =  16,
++	ATH11K_DBG_HTT_EXT_STATS_PDEV_TX_MU                 =  17,
++	ATH11K_DBG_HTT_EXT_STATS_ACTIVE_PEERS_LIST          =  18,
++	ATH11K_DBG_HTT_EXT_STATS_PDEV_CCA_STATS             =  19,
++	ATH11K_DBG_HTT_EXT_STATS_TWT_SESSIONS               =  20,
++	ATH11K_DBG_HTT_EXT_STATS_REO_RESOURCE_STATS         =  21,
++	ATH11K_DBG_HTT_EXT_STATS_TX_SOUNDING_INFO           =  22,
++	ATH11K_DBG_HTT_EXT_STATS_PDEV_OBSS_PD_STATS	    =  23,
++	ATH11K_DBG_HTT_EXT_STATS_RING_BACKPRESSURE_STATS    =  24,
++
++	/* keep this last */
++	ATH11K_DBG_HTT_NUM_EXT_STATS,
++};
++
++struct debug_htt_stats_req {
++	bool done;
++	u8 pdev_id;
++	u8 type;
++	u8 peer_addr[ETH_ALEN];
++	struct completion cmpln;
++	u32 buf_len;
++	u8 buf[];
++};
++
++struct ath_pktlog_hdr {
++	u16 flags;
++	u16 missed_cnt;
++	u16 log_type;
++	u16 size;
++	u32 timestamp;
++	u32 type_specific_data;
++	u8 payload[];
++};
++
++#define ATH11K_HTT_PEER_STATS_RESET BIT(16)
++
++#define ATH11K_HTT_STATS_BUF_SIZE (1024 * 512)
++#define ATH11K_FW_STATS_BUF_SIZE (1024 * 1024)
++
++enum ath11k_pktlog_filter {
++	ATH11K_PKTLOG_RX		= 0x000000001,
++	ATH11K_PKTLOG_TX		= 0x000000002,
++	ATH11K_PKTLOG_RCFIND		= 0x000000004,
++	ATH11K_PKTLOG_RCUPDATE		= 0x000000008,
++	ATH11K_PKTLOG_EVENT_SMART_ANT	= 0x000000020,
++	ATH11K_PKTLOG_EVENT_SW		= 0x000000040,
++	ATH11K_PKTLOG_ANY		= 0x00000006f,
++};
++
++enum ath11k_pktlog_mode {
++	ATH11K_PKTLOG_MODE_LITE = 1,
++	ATH11K_PKTLOG_MODE_FULL = 2,
++};
++
++enum ath11k_pktlog_enum {
++	ATH11K_PKTLOG_TYPE_TX_CTRL      = 1,
++	ATH11K_PKTLOG_TYPE_TX_STAT      = 2,
++	ATH11K_PKTLOG_TYPE_TX_MSDU_ID   = 3,
++	ATH11K_PKTLOG_TYPE_RX_STAT      = 5,
++	ATH11K_PKTLOG_TYPE_RC_FIND      = 6,
++	ATH11K_PKTLOG_TYPE_RC_UPDATE    = 7,
++	ATH11K_PKTLOG_TYPE_TX_VIRT_ADDR = 8,
++	ATH11K_PKTLOG_TYPE_RX_CBF       = 10,
++	ATH11K_PKTLOG_TYPE_RX_STATBUF   = 22,
++	ATH11K_PKTLOG_TYPE_PPDU_STATS   = 23,
++	ATH11K_PKTLOG_TYPE_LITE_RX      = 24,
++};
++
++enum ath11k_dbg_aggr_mode {
++	ATH11K_DBG_AGGR_MODE_AUTO,
++	ATH11K_DBG_AGGR_MODE_MANUAL,
++	ATH11K_DBG_AGGR_MODE_MAX,
++};
++
++#ifdef CONFIG_ATH11K_DEBUGFS
++int ath11k_debug_soc_create(struct ath11k_base *ab);
++void ath11k_debug_soc_destroy(struct ath11k_base *ab);
++int ath11k_debug_pdev_create(struct ath11k_base *ab);
++void ath11k_debug_pdev_destroy(struct ath11k_base *ab);
++int ath11k_debug_register(struct ath11k *ar);
++void ath11k_debug_unregister(struct ath11k *ar);
++void ath11k_dbg_htt_ext_stats_handler(struct ath11k_base *ab,
++				      struct sk_buff *skb);
++void ath11k_debug_fw_stats_process(struct ath11k_base *ab, struct sk_buff *skb);
++
++void ath11k_debug_fw_stats_init(struct ath11k *ar);
++int ath11k_dbg_htt_stats_req(struct ath11k *ar);
++
++static inline bool ath11k_debug_is_pktlog_lite_mode_enabled(struct ath11k *ar)
++{
++	return (ar->debug.pktlog_mode == ATH11K_PKTLOG_MODE_LITE);
++}
++
++static inline bool ath11k_debug_is_pktlog_rx_stats_enabled(struct ath11k *ar)
++{
++	return (!ar->debug.pktlog_peer_valid && ar->debug.pktlog_mode);
++}
++
++static inline bool ath11k_debug_is_pktlog_peer_valid(struct ath11k *ar, u8 *addr)
++{
++	return (ar->debug.pktlog_peer_valid && ar->debug.pktlog_mode &&
++		ether_addr_equal(addr, ar->debug.pktlog_peer_addr));
++}
++
++static inline int ath11k_debug_is_extd_tx_stats_enabled(struct ath11k *ar)
++{
++	return ar->debug.extd_tx_stats;
++}
++
++static inline int ath11k_debug_is_extd_rx_stats_enabled(struct ath11k *ar)
++{
++	return ar->debug.extd_rx_stats;
++}
++
++static inline int ath11k_debug_rx_filter(struct ath11k *ar)
++{
++	return ar->debug.rx_filter;
++}
++
++void ath11k_sta_add_debugfs(struct ieee80211_hw *hw, struct ieee80211_vif *vif,
++			    struct ieee80211_sta *sta, struct dentry *dir);
++void
++ath11k_accumulate_per_peer_tx_stats(struct ath11k_sta *arsta,
++				    struct ath11k_per_peer_tx_stats *peer_stats,
++				    u8 legacy_rate_idx);
++void ath11k_update_per_peer_stats_from_txcompl(struct ath11k *ar,
++					       struct sk_buff *msdu,
++					       struct hal_tx_status *ts);
++#else
++static inline int ath11k_debug_soc_create(struct ath11k_base *ab)
++{
++	return 0;
++}
++
++static inline void ath11k_debug_soc_destroy(struct ath11k_base *ab)
++{
++}
++
++static inline int ath11k_debug_pdev_create(struct ath11k_base *ab)
++{
++	return 0;
++}
++
++static inline void ath11k_debug_pdev_destroy(struct ath11k_base *ab)
++{
++}
++
++static inline int ath11k_debug_register(struct ath11k *ar)
++{
++	return 0;
++}
++
++static inline void ath11k_debug_unregister(struct ath11k *ar)
++{
++}
++
++static inline void ath11k_dbg_htt_ext_stats_handler(struct ath11k_base *ab,
++						    struct sk_buff *skb)
++{
++}
++
++static inline void ath11k_debug_fw_stats_process(struct ath11k_base *ab,
++						 struct sk_buff *skb)
++{
++}
++
++static inline void ath11k_debug_fw_stats_init(struct ath11k *ar)
++{
++}
++
++static inline int ath11k_debug_is_extd_tx_stats_enabled(struct ath11k *ar)
++{
++	return 0;
++}
++
++static inline int ath11k_debug_is_extd_rx_stats_enabled(struct ath11k *ar)
++{
++	return 0;
++}
++
++static inline int ath11k_dbg_htt_stats_req(struct ath11k *ar)
++{
++	return 0;
++}
++
++static inline bool ath11k_debug_is_pktlog_lite_mode_enabled(struct ath11k *ar)
++{
++	return false;
++}
++
++static inline bool ath11k_debug_is_pktlog_rx_stats_enabled(struct ath11k *ar)
++{
++	return false;
++}
++
++static inline bool ath11k_debug_is_pktlog_peer_valid(struct ath11k *ar, u8 *addr)
++{
++	return false;
++}
++
++static inline int ath11k_debug_rx_filter(struct ath11k *ar)
++{
++	return 0;
++}
++
++static inline void
++ath11k_accumulate_per_peer_tx_stats(struct ath11k_sta *arsta,
++				    struct ath11k_per_peer_tx_stats *peer_stats,
++				    u8 legacy_rate_idx)
++{
++}
++
++static inline void
++ath11k_update_per_peer_stats_from_txcompl(struct ath11k *ar,
++					  struct sk_buff *msdu,
++					  struct hal_tx_status *ts)
++{
++}
++
++#endif /* CONFIG_MAC80211_DEBUGFS*/
++
++#endif /* _ATH11K_DEBUGFS_H_ */
+-- 
+2.7.4
 
-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
-3JfiDAXd/wMOeXbwn0QEAA==
-
---AqsLC8rIMeq19msA
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 -- 
 ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
-
---AqsLC8rIMeq19msA--
