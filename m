@@ -1,12 +1,18 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail29.static.mailgun.info ([104.130.122.29])
+Received: from mail-pg1-x542.google.com ([2607:f8b0:4864:20::542])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kIx3W-0005tk-GD
- for ath11k@lists.infradead.org; Thu, 17 Sep 2020 16:46:51 +0000
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH] ath11k: remove redundant num_keep_alive_pattern assignment
-Date: Thu, 17 Sep 2020 19:46:30 +0300
-Message-Id: <1600361190-22047-1-git-send-email-kvalo@codeaurora.org>
+ id 1kIzzc-0001WJ-SQ
+ for ath11k@lists.infradead.org; Thu, 17 Sep 2020 19:54:58 +0000
+Received: by mail-pg1-x542.google.com with SMTP id 34so1968257pgo.13
+ for <ath11k@lists.infradead.org>; Thu, 17 Sep 2020 12:54:54 -0700 (PDT)
+Subject: Re: [PATCH v3] ath11k: cold boot calibration support
+References: <1600163991-2093-1-git-send-email-ssreeela@codeaurora.org>
+From: Peter Oh <peter.oh@eero.com>
+Message-ID: <b0d42c5e-8aac-cea2-bc6d-3a6341689d05@eero.com>
+Date: Thu, 17 Sep 2020 12:54:51 -0700
+MIME-Version: 1.0
+In-Reply-To: <1600163991-2093-1-git-send-email-ssreeela@codeaurora.org>
+Content-Language: en-US
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -15,41 +21,59 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
+To: Sowmiya Sree Elavalagan <ssreeela@codeaurora.org>, ath11k@lists.infradead.org
+Cc: Govindaraj Saminathan <gsamin@codeaurora.org>, linux-wireless@vger.kernel.org
 
-There were two asignments to num_keep_alive_pattern, remove the first one which is wrong.
-
-No functional changes. Compile tested only.
-
-Reported-by: Colin Ian King <colin.king@canonical.com>
-Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/hw.c | 1 -
- 1 file changed, 1 deletion(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/hw.c b/drivers/net/wireless/ath/ath11k/hw.c
-index 5f2eb2032118..4d7d2dc691d2 100644
---- a/drivers/net/wireless/ath/ath11k/hw.c
-+++ b/drivers/net/wireless/ath/ath11k/hw.c
-@@ -74,7 +74,6 @@ static void ath11k_init_wmi_config_qca6390(struct ath11k_base *ab,
- 	config->beacon_tx_offload_max_vdev = 0x2;
- 	config->num_multicast_filter_entries = 0x20;
- 	config->num_wow_filters = 0x16;
--	config->num_keep_alive_pattern = 0x1;
- 	config->num_keep_alive_pattern = 0;
- }
- 
--- 
-2.7.4
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+Ck9uIDkvMTUvMjAgMjo1OSBBTSwgU293bWl5YSBTcmVlIEVsYXZhbGFnYW4gd3JvdGU6Cj4gRnJv
+bTogR292aW5kYXJhaiBTYW1pbmF0aGFuIDxnc2FtaW5AY29kZWF1cm9yYS5vcmc+Cj4KPiBjb2xk
+IGJvb3QgY2FsaWJyYXRpb24gaXMgdGhlIHByb2Nlc3MgdG8gY2FsaWJyYXRlIGFsbCB0aGUgY2hh
+bm5lbHMKPiBkdXJpbmcgdGhlIGJvb3QtdXAgdG8gYXZvaWQgdGhlIGNhbGlicmF0aW9uIGRlbGF5
+IGR1cmluZyB0aGUKPiBjaGFubmVsIGNoYW5nZS4KPiBEdXJpbmcgdGhlIGJvb3QtdXAsIGZpcm13
+YXJlIHN0YXJ0ZWQgd2l0aCBtb2RlIOKAnGNvbGRfYm9vdF9jYWxpYnJhdGlvbuKAnQo+IEZpcm13
+YXJlIGNhbGlicmF0ZSBhbGwgY2hhbm5lbHMgYW5kIGdlbmVyYXRlIENhbERiKEREUikuCj4gU3Vi
+c2VxdWVudCBXSUZJIE9OIHdpbGwgcmV1c2UgdGhlIHNhbWUgQ2FsRGIuCkNhbiB5b3UgY2xhcmlm
+eSB0aGUgZGVmaW5pdGlvbiBvZiAiV0lGSSBPTiI/Cj4gRmlybXdhcmUgcmVzdGFydGVkIHdpdGgg
+TWlzc2lvbiBtb2RlIHRvIGNvbnRpbnVlIHRoZSBub3JtYWwgb3BlcmF0aW9uLgoKUGxlYXNlIGNo
+YW5nZSB0aGUgbWlzc2lvbiBtb2RlIHRvIG5vcm1hbCBhY2NvcmRpbmcgdG8gCkFUSDExS19GSVJN
+V0FSRV9NT0RFX05PUk1BTC4KCldoaWNoIGNvZGUgaXQgc2V0cyBiYWNrIHRvIG5vcm1hbCBtb2Rl
+IGZyb20gY29sZCBib290IG1vZGU/IEkgZG9uJ3Qgc2VlIGl0LgoKPiArc3RhdGljIGludCBhdGgx
+MWtfcW1pX3Byb2Nlc3NfY29sZGJvb3RfY2FsaWJyYXRpb24oc3RydWN0IGF0aDExa19iYXNlICph
+YikKPiArewo+ICsJaW50IHRpbWVvdXQ7Cj4gKwlpbnQgcmV0Owo+ICsKPiArCXJldCA9IGF0aDEx
+a19xbWlfd2xhbmZ3X21vZGVfc2VuZChhYiwgQVRIMTFLX0ZJUk1XQVJFX01PREVfQ09MRF9CT09U
+KTsKPiArCWlmIChyZXQgPCAwKSB7Cj4gKwkJYXRoMTFrX3dhcm4oYWIsICJxbWkgZmFpbGVkIHRv
+IHNlbmQgd2xhbiBmdyBtb2RlOiVkXG4iLCByZXQpOwo+ICsJCXJldHVybiByZXQ7Cj4gKwl9Cj4g
+Kwo+ICsJYXRoMTFrX2RiZyhhYiwgQVRIMTFLX0RCR19RTUksICJDb2xkYm9vdCBjYWxpYnJhdGlv
+biB3YWl0IHN0YXJ0ZWRcbiIpOwo+ICsKPiArCXRpbWVvdXQgPSB3YWl0X2V2ZW50X3RpbWVvdXQo
+YWItPnFtaS5jb2xkX2Jvb3Rfd2FpdHEsCj4gKwkJCQkgICAgIChhYi0+cW1pLmNhbF9kb25lICA9
+PSAxKSwKPiArCQkJCSAgICAgQVRIMTFLX0NPTERfQk9PVF9GV19SRVNFVF9ERUxBWSk7Cj4gKwlp
+ZiAodGltZW91dCA8PSAwKSB7Cj4gKwkJYXRoMTFrX3dhcm4oYWIsICJDb2xkYm9vdCBDYWxpYnJh
+dGlvbiB0aW1lZCBvdXRcbiIpOwo+ICsJCXJldHVybiAtRVRJTUVET1VUOwoKRG9lcyBpdCBtYWtl
+IGF0aDExayBmaXJtd2FyZSBzdGF5IGluIGNvbGQgYm9vdCBtb2RlIHdoZW4gdGltZW91dCBoYXBw
+ZW5zPwoKSWYgc28sIGlzIGl0IHdvcnRoeSB0byBoYXZlIFdMQU4gdXN1YWJsZSBkdWUgdG8gY29s
+ZCBib290IGNhbGlicmF0aW9uIApmYWlsdXJlPwoKQXMgSSB1bmRlcnN0YW5kLCBpbml0aWFsIGNh
+bGlicmF0aW9uIG9uIGN1cnJlbnQgb3BlcmF0aW9uIGNoYW5uZWwgd2lsbCAKYmUgZG9uZSByZWdh
+cmRsZXNzIG9mIGNvbGQgYm9vdCBjYWxpYnJhdGlvbgoKPiArCX0KPiArCj4gKwlhdGgxMWtfZGJn
+KGFiLCBBVEgxMUtfREJHX1FNSSwgIkNvbGRib290IGNhbGlicmF0aW9uIHdhaXQgZW5kZWRcbiIp
+Owo+ICsKPiArCXJldHVybiAwOwo+ICt9Cj4gKwo+ICAgc3RhdGljIGludAo+ICAgYXRoMTFrX3Ft
+aV9kcml2ZXJfZXZlbnRfcG9zdChzdHJ1Y3QgYXRoMTFrX3FtaSAqcW1pLAo+ICAgCQkJICAgICBl
+bnVtIGF0aDExa19xbWlfZXZlbnRfdHlwZSB0eXBlLAo+IEBAIC0yNTk3LDkgKzI2NDMsMTYgQEAg
+c3RhdGljIHZvaWQgYXRoMTFrX3FtaV9kcml2ZXJfZXZlbnRfd29yayhzdHJ1Y3Qgd29ya19zdHJ1
+Y3QgKndvcmspCj4gICAJCQkJYnJlYWs7Cj4gICAJCQl9Cj4gICAKPiAtCQkJYXRoMTFrX2NvcmVf
+cW1pX2Zpcm13YXJlX3JlYWR5KGFiKTsKPiAtCQkJYWItPnFtaS5jYWxfZG9uZSA9IDE7Cj4gLQkJ
+CXNldF9iaXQoQVRIMTFLX0ZMQUdfUkVHSVNURVJFRCwgJmFiLT5kZXZfZmxhZ3MpOwo+ICsJCQlp
+ZiAoYXRoMTFrX2NvbGRfYm9vdF9jYWwgJiYgYWItPnFtaS5jYWxfZG9uZSA9PSAwICYmCj4gKwkJ
+CSAgICBhYi0+aHdfcGFyYW1zLmNvbGRfYm9vdF9jYWxpYikgewo+ICsJCQkJYXRoMTFrX3FtaV9w
+cm9jZXNzX2NvbGRib290X2NhbGlicmF0aW9uKGFiKTsKPiArCQkJfSBlbHNlIHsKPiArCQkJCWNs
+ZWFyX2JpdChBVEgxMUtfRkxBR19DUkFTSF9GTFVTSCwKPiArCQkJCQkgICZhYi0+ZGV2X2ZsYWdz
+KTsKPiArCQkJCWNsZWFyX2JpdChBVEgxMUtfRkxBR19SRUNPVkVSWSwgJmFiLT5kZXZfZmxhZ3Mp
+OwpQbGVhc2Ugc3BsaXQgdGhpcyBwYXRjaCBpbnRvIGEgc2VwYXJhdGUgcGF0Y2guIEl0J3Mgbm90
+IGRpcmVjdGx5IHJlbGF0ZWQgCnRvIGNvbGQgYm9vdC4KPiArCQkJCWF0aDExa19jb3JlX3FtaV9m
+aXJtd2FyZV9yZWFkeShhYik7Cj4gKwkJCQlzZXRfYml0KEFUSDExS19GTEFHX1JFR0lTVEVSRUQs
+ICZhYi0+ZGV2X2ZsYWdzKTsKPiArCQkJfQo+ICAgCj4gICAJCQlicmVhazsKPiAgIAkJY2FzZSBB
+VEgxMUtfUU1JX0VWRU5UX0NPTERfQk9PVF9DQUxfRE9ORToKClRoYW5rcywKClBldGVyCgoKLS0g
+CmF0aDExayBtYWlsaW5nIGxpc3QKYXRoMTFrQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xp
+c3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9hdGgxMWsK
