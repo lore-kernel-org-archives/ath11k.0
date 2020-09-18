@@ -1,18 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail-pg1-x542.google.com ([2607:f8b0:4864:20::542])
+Received: from m43-7.mailgun.net ([69.72.43.7])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kIzzc-0001WJ-SQ
- for ath11k@lists.infradead.org; Thu, 17 Sep 2020 19:54:58 +0000
-Received: by mail-pg1-x542.google.com with SMTP id 34so1968257pgo.13
- for <ath11k@lists.infradead.org>; Thu, 17 Sep 2020 12:54:54 -0700 (PDT)
-Subject: Re: [PATCH v3] ath11k: cold boot calibration support
-References: <1600163991-2093-1-git-send-email-ssreeela@codeaurora.org>
-From: Peter Oh <peter.oh@eero.com>
-Message-ID: <b0d42c5e-8aac-cea2-bc6d-3a6341689d05@eero.com>
-Date: Thu, 17 Sep 2020 12:54:51 -0700
+ id 1kJ923-0001HW-TI
+ for ath11k@lists.infradead.org; Fri, 18 Sep 2020 05:34:05 +0000
 MIME-Version: 1.0
-In-Reply-To: <1600163991-2093-1-git-send-email-ssreeela@codeaurora.org>
-Content-Language: en-US
+Date: Fri, 18 Sep 2020 11:04:01 +0530
+From: vnaralas@codeaurora.org
+Subject: Re: [PATCHv2] ath11k: add raw mode and software crypto support
+In-Reply-To: <871rj0h1oh.fsf@codeaurora.org>
+References: <010101746c6a54fa-91406158-3f0a-4f10-8328-a7f560dd3feb-000000@us-west-2.amazonses.com>
+ <871rj0h1oh.fsf@codeaurora.org>
+Message-ID: <51bbe58e337427f5238a757d8c2c6ee1@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -21,59 +19,63 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Sowmiya Sree Elavalagan <ssreeela@codeaurora.org>, ath11k@lists.infradead.org
-Cc: Govindaraj Saminathan <gsamin@codeaurora.org>, linux-wireless@vger.kernel.org
+To: Kalle Valo <kvalo@codeaurora.org>
+Cc: Manikanta Pubbisetty <mpubbise@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-Ck9uIDkvMTUvMjAgMjo1OSBBTSwgU293bWl5YSBTcmVlIEVsYXZhbGFnYW4gd3JvdGU6Cj4gRnJv
-bTogR292aW5kYXJhaiBTYW1pbmF0aGFuIDxnc2FtaW5AY29kZWF1cm9yYS5vcmc+Cj4KPiBjb2xk
-IGJvb3QgY2FsaWJyYXRpb24gaXMgdGhlIHByb2Nlc3MgdG8gY2FsaWJyYXRlIGFsbCB0aGUgY2hh
-bm5lbHMKPiBkdXJpbmcgdGhlIGJvb3QtdXAgdG8gYXZvaWQgdGhlIGNhbGlicmF0aW9uIGRlbGF5
-IGR1cmluZyB0aGUKPiBjaGFubmVsIGNoYW5nZS4KPiBEdXJpbmcgdGhlIGJvb3QtdXAsIGZpcm13
-YXJlIHN0YXJ0ZWQgd2l0aCBtb2RlIOKAnGNvbGRfYm9vdF9jYWxpYnJhdGlvbuKAnQo+IEZpcm13
-YXJlIGNhbGlicmF0ZSBhbGwgY2hhbm5lbHMgYW5kIGdlbmVyYXRlIENhbERiKEREUikuCj4gU3Vi
-c2VxdWVudCBXSUZJIE9OIHdpbGwgcmV1c2UgdGhlIHNhbWUgQ2FsRGIuCkNhbiB5b3UgY2xhcmlm
-eSB0aGUgZGVmaW5pdGlvbiBvZiAiV0lGSSBPTiI/Cj4gRmlybXdhcmUgcmVzdGFydGVkIHdpdGgg
-TWlzc2lvbiBtb2RlIHRvIGNvbnRpbnVlIHRoZSBub3JtYWwgb3BlcmF0aW9uLgoKUGxlYXNlIGNo
-YW5nZSB0aGUgbWlzc2lvbiBtb2RlIHRvIG5vcm1hbCBhY2NvcmRpbmcgdG8gCkFUSDExS19GSVJN
-V0FSRV9NT0RFX05PUk1BTC4KCldoaWNoIGNvZGUgaXQgc2V0cyBiYWNrIHRvIG5vcm1hbCBtb2Rl
-IGZyb20gY29sZCBib290IG1vZGU/IEkgZG9uJ3Qgc2VlIGl0LgoKPiArc3RhdGljIGludCBhdGgx
-MWtfcW1pX3Byb2Nlc3NfY29sZGJvb3RfY2FsaWJyYXRpb24oc3RydWN0IGF0aDExa19iYXNlICph
-YikKPiArewo+ICsJaW50IHRpbWVvdXQ7Cj4gKwlpbnQgcmV0Owo+ICsKPiArCXJldCA9IGF0aDEx
-a19xbWlfd2xhbmZ3X21vZGVfc2VuZChhYiwgQVRIMTFLX0ZJUk1XQVJFX01PREVfQ09MRF9CT09U
-KTsKPiArCWlmIChyZXQgPCAwKSB7Cj4gKwkJYXRoMTFrX3dhcm4oYWIsICJxbWkgZmFpbGVkIHRv
-IHNlbmQgd2xhbiBmdyBtb2RlOiVkXG4iLCByZXQpOwo+ICsJCXJldHVybiByZXQ7Cj4gKwl9Cj4g
-Kwo+ICsJYXRoMTFrX2RiZyhhYiwgQVRIMTFLX0RCR19RTUksICJDb2xkYm9vdCBjYWxpYnJhdGlv
-biB3YWl0IHN0YXJ0ZWRcbiIpOwo+ICsKPiArCXRpbWVvdXQgPSB3YWl0X2V2ZW50X3RpbWVvdXQo
-YWItPnFtaS5jb2xkX2Jvb3Rfd2FpdHEsCj4gKwkJCQkgICAgIChhYi0+cW1pLmNhbF9kb25lICA9
-PSAxKSwKPiArCQkJCSAgICAgQVRIMTFLX0NPTERfQk9PVF9GV19SRVNFVF9ERUxBWSk7Cj4gKwlp
-ZiAodGltZW91dCA8PSAwKSB7Cj4gKwkJYXRoMTFrX3dhcm4oYWIsICJDb2xkYm9vdCBDYWxpYnJh
-dGlvbiB0aW1lZCBvdXRcbiIpOwo+ICsJCXJldHVybiAtRVRJTUVET1VUOwoKRG9lcyBpdCBtYWtl
-IGF0aDExayBmaXJtd2FyZSBzdGF5IGluIGNvbGQgYm9vdCBtb2RlIHdoZW4gdGltZW91dCBoYXBw
-ZW5zPwoKSWYgc28sIGlzIGl0IHdvcnRoeSB0byBoYXZlIFdMQU4gdXN1YWJsZSBkdWUgdG8gY29s
-ZCBib290IGNhbGlicmF0aW9uIApmYWlsdXJlPwoKQXMgSSB1bmRlcnN0YW5kLCBpbml0aWFsIGNh
-bGlicmF0aW9uIG9uIGN1cnJlbnQgb3BlcmF0aW9uIGNoYW5uZWwgd2lsbCAKYmUgZG9uZSByZWdh
-cmRsZXNzIG9mIGNvbGQgYm9vdCBjYWxpYnJhdGlvbgoKPiArCX0KPiArCj4gKwlhdGgxMWtfZGJn
-KGFiLCBBVEgxMUtfREJHX1FNSSwgIkNvbGRib290IGNhbGlicmF0aW9uIHdhaXQgZW5kZWRcbiIp
-Owo+ICsKPiArCXJldHVybiAwOwo+ICt9Cj4gKwo+ICAgc3RhdGljIGludAo+ICAgYXRoMTFrX3Ft
-aV9kcml2ZXJfZXZlbnRfcG9zdChzdHJ1Y3QgYXRoMTFrX3FtaSAqcW1pLAo+ICAgCQkJICAgICBl
-bnVtIGF0aDExa19xbWlfZXZlbnRfdHlwZSB0eXBlLAo+IEBAIC0yNTk3LDkgKzI2NDMsMTYgQEAg
-c3RhdGljIHZvaWQgYXRoMTFrX3FtaV9kcml2ZXJfZXZlbnRfd29yayhzdHJ1Y3Qgd29ya19zdHJ1
-Y3QgKndvcmspCj4gICAJCQkJYnJlYWs7Cj4gICAJCQl9Cj4gICAKPiAtCQkJYXRoMTFrX2NvcmVf
-cW1pX2Zpcm13YXJlX3JlYWR5KGFiKTsKPiAtCQkJYWItPnFtaS5jYWxfZG9uZSA9IDE7Cj4gLQkJ
-CXNldF9iaXQoQVRIMTFLX0ZMQUdfUkVHSVNURVJFRCwgJmFiLT5kZXZfZmxhZ3MpOwo+ICsJCQlp
-ZiAoYXRoMTFrX2NvbGRfYm9vdF9jYWwgJiYgYWItPnFtaS5jYWxfZG9uZSA9PSAwICYmCj4gKwkJ
-CSAgICBhYi0+aHdfcGFyYW1zLmNvbGRfYm9vdF9jYWxpYikgewo+ICsJCQkJYXRoMTFrX3FtaV9w
-cm9jZXNzX2NvbGRib290X2NhbGlicmF0aW9uKGFiKTsKPiArCQkJfSBlbHNlIHsKPiArCQkJCWNs
-ZWFyX2JpdChBVEgxMUtfRkxBR19DUkFTSF9GTFVTSCwKPiArCQkJCQkgICZhYi0+ZGV2X2ZsYWdz
-KTsKPiArCQkJCWNsZWFyX2JpdChBVEgxMUtfRkxBR19SRUNPVkVSWSwgJmFiLT5kZXZfZmxhZ3Mp
-OwpQbGVhc2Ugc3BsaXQgdGhpcyBwYXRjaCBpbnRvIGEgc2VwYXJhdGUgcGF0Y2guIEl0J3Mgbm90
-IGRpcmVjdGx5IHJlbGF0ZWQgCnRvIGNvbGQgYm9vdC4KPiArCQkJCWF0aDExa19jb3JlX3FtaV9m
-aXJtd2FyZV9yZWFkeShhYik7Cj4gKwkJCQlzZXRfYml0KEFUSDExS19GTEFHX1JFR0lTVEVSRUQs
-ICZhYi0+ZGV2X2ZsYWdzKTsKPiArCQkJfQo+ICAgCj4gICAJCQlicmVhazsKPiAgIAkJY2FzZSBB
-VEgxMUtfUU1JX0VWRU5UX0NPTERfQk9PVF9DQUxfRE9ORToKClRoYW5rcywKClBldGVyCgoKLS0g
-CmF0aDExayBtYWlsaW5nIGxpc3QKYXRoMTFrQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xp
-c3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9hdGgxMWsK
+On 2020-09-17 20:48, Kalle Valo wrote:
+> Venkateswara Naralasetty <vnaralas@codeaurora.org> writes:
+> 
+>> Adding raw mode tx/rx support. Also, adding support
+>> for software crypto which depends on raw mode.
+>> 
+>> To enable raw mode tx/rx:
+>> insmod ath11k.ko frame_mode=0
+>> 
+>> To enable software crypto:
+>> insmod ath11k.ko crypto_mode=1
+>> 
+>> These modes could be helpful in debugging crypto related issues.
+>> 
+>> Tested-on: IPQ8074 WLAN.HK.2.1.0.1-01228-QCAHKSWPL_SILICONZ-1
+>> 
+>> Signed-off-by: Manikanta Pubbisetty <mpubbise@codeaurora.org>
+>> Signed-off-by: Venkateswara Naralasetty <vnaralas@codeaurora.org>
+> 
+> [...]
+> 
+>> --- a/drivers/net/wireless/ath/ath11k/wmi.c
+>> +++ b/drivers/net/wireless/ath/ath11k/wmi.c
+>> @@ -3366,6 +3366,10 @@ int ath11k_wmi_cmd_init(struct ath11k_base *ab)
+>>  	config.rx_timeout_pri[2] = TARGET_RX_TIMEOUT_LO_PRI;
+>>  	config.rx_timeout_pri[3] = TARGET_RX_TIMEOUT_HI_PRI;
+>>  	config.rx_decap_mode = TARGET_DECAP_MODE_NATIVE_WIFI;
+>> +
+>> +	if (test_bit(ATH11K_FLAG_RAW_MODE, &ab->dev_flags))
+>> +		config.rx_decap_mode = TARGET_DECAP_MODE_RAW;
+> 
+> Did you test this at all? Because to me it looks like in
+> ath11k_init_wmi_config_ipq8074() this is overwritten with:
+> 
+> 	config->rx_decap_mode = TARGET_DECAP_MODE_NATIVE_WIFI;
+> 
+> So I can't see how this would even work. I noticed this while I was
+> cleaning up ath11k_wmi_cmd_init(). I'll send a patch soon, please test
+> that and let me know if it works.
+
+My bad it seems my tree is bit older, sorry for the confusion.
+Also I noticed, .wmi_init_config of ipq8074_ops is registered with " 
+ath11k_init_wmi_config_qca6390()" Is that correct?
+If that is correct,  then I don't see ath11k_init_wmi_config_ipq8074() 
+is called from any other place.
+I will send one patch to fix this issue. Please correct me if I am 
+wrong.
+
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
