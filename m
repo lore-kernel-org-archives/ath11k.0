@@ -1,19 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from m43-7.mailgun.net ([69.72.43.7])
+Received: from so254-54.mailgun.net ([198.61.254.54])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kJAd8-0008PX-RU
- for ath11k@lists.infradead.org; Fri, 18 Sep 2020 07:16:31 +0000
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCHv2] ath11k: add raw mode and software crypto support
-References: <010101746c6a54fa-91406158-3f0a-4f10-8328-a7f560dd3feb-000000@us-west-2.amazonses.com>
- <871rj0h1oh.fsf@codeaurora.org>
- <51bbe58e337427f5238a757d8c2c6ee1@codeaurora.org>
-Date: Fri, 18 Sep 2020 10:15:56 +0300
-In-Reply-To: <51bbe58e337427f5238a757d8c2c6ee1@codeaurora.org>
- (vnaralas@codeaurora.org's message of "Fri, 18 Sep 2020 11:04:01
- +0530")
-Message-ID: <87k0wrd07n.fsf@codeaurora.org>
+ id 1kJE5q-00084e-Ns
+ for ath11k@lists.infradead.org; Fri, 18 Sep 2020 10:58:20 +0000
 MIME-Version: 1.0
+Date: Fri, 18 Sep 2020 18:58:13 +0800
+From: Wen Gong <wgong@codeaurora.org>
+Subject: Re: [PATCH V2] ath11k: add tx hw 802.11 encapusaltion offloading
+ support
+In-Reply-To: <20200430152814.18481-1-john@phrozen.org>
+References: <20200430152814.18481-1-john@phrozen.org>
+Message-ID: <0b4abf6c2b7408664cacff5392902720@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,70 +19,50 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: vnaralas@codeaurora.org
-Cc: Manikanta Pubbisetty <mpubbise@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: John Crispin <john@phrozen.org>
+Cc: linux-wireless-owner@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>, Shashidhar Lakkavalli <slakkavalli@datto.com>
 
-vnaralas@codeaurora.org writes:
+On 2020-04-30 23:28, John Crispin wrote:
+> This patch adds support for ethernet rxtx mode to the driver. The 
+> feature
+> is enabled via a new module parameter. If enabled to driver will enable
+> the feature on a per vif basis if all other requirements were met.
+> 
+[...]
+> @@ -4339,7 +4352,22 @@ static int ath11k_mac_op_add_interface(struct
+> ieee80211_hw *hw,
+>  	spin_unlock_bh(&ar->data_lock);
+> 
+>  	param_id = WMI_VDEV_PARAM_TX_ENCAP_TYPE;
+> -	param_value = ATH11K_HW_TXRX_NATIVE_WIFI;
+> +	if (ath11k_ath11k_frame_mode == ATH11K_HW_TXRX_ETHERNET)
+> +		switch (vif->type) {
+> +		case NL80211_IFTYPE_STATION:
+> +		case NL80211_IFTYPE_AP_VLAN:
+> +		case NL80211_IFTYPE_AP:
+> +			hw_encap = 1;
+> +			break;
+> +		default:
+> +			break;
+> +		}
+> +
+> +	if (ieee80211_set_hw_80211_encap(vif, hw_encap))
+I see ieee80211_set_hw_80211_encap have check like this:
+if (key->conf.cipher == WLAN_CIPHER_SUITE_TKIP)
+         enable = false;
 
-> On 2020-09-17 20:48, Kalle Valo wrote:
->> Venkateswara Naralasetty <vnaralas@codeaurora.org> writes:
->>
->>> Adding raw mode tx/rx support. Also, adding support
->>> for software crypto which depends on raw mode.
->>>
->>> To enable raw mode tx/rx:
->>> insmod ath11k.ko frame_mode=0
->>>
->>> To enable software crypto:
->>> insmod ath11k.ko crypto_mode=1
->>>
->>> These modes could be helpful in debugging crypto related issues.
->>>
->>> Tested-on: IPQ8074 WLAN.HK.2.1.0.1-01228-QCAHKSWPL_SILICONZ-1
->>>
->>> Signed-off-by: Manikanta Pubbisetty <mpubbise@codeaurora.org>
->>> Signed-off-by: Venkateswara Naralasetty <vnaralas@codeaurora.org>
->>
->> [...]
->>
->>> --- a/drivers/net/wireless/ath/ath11k/wmi.c
->>> +++ b/drivers/net/wireless/ath/ath11k/wmi.c
->>> @@ -3366,6 +3366,10 @@ int ath11k_wmi_cmd_init(struct ath11k_base *ab)
->>>  	config.rx_timeout_pri[2] = TARGET_RX_TIMEOUT_LO_PRI;
->>>  	config.rx_timeout_pri[3] = TARGET_RX_TIMEOUT_HI_PRI;
->>>  	config.rx_decap_mode = TARGET_DECAP_MODE_NATIVE_WIFI;
->>> +
->>> +	if (test_bit(ATH11K_FLAG_RAW_MODE, &ab->dev_flags))
->>> +		config.rx_decap_mode = TARGET_DECAP_MODE_RAW;
->>
->> Did you test this at all? Because to me it looks like in
->> ath11k_init_wmi_config_ipq8074() this is overwritten with:
->>
->> 	config->rx_decap_mode = TARGET_DECAP_MODE_NATIVE_WIFI;
->>
->> So I can't see how this would even work. I noticed this while I was
->> cleaning up ath11k_wmi_cmd_init(). I'll send a patch soon, please test
->> that and let me know if it works.
->
-> My bad it seems my tree is bit older, sorry for the confusion.
-> Also I noticed, .wmi_init_config of ipq8074_ops is registered with "
-> ath11k_init_wmi_config_qca6390()" Is that correct?
-> If that is correct,  then I don't see ath11k_init_wmi_config_ipq8074()
-> is called from any other place.
-> I will send one patch to fix this issue. Please correct me if I am
-> wrong.
-
-Good catch! Indeed ipq8074_ops should be using
-ath11k_init_wmi_config_ipq8074, just like ipq6018_ops does. Please do
-send a patch to fix that.
-
-
--- 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+so is it beeter to call it after associated/install key?
+> +		param_value = ATH11K_HW_TXRX_ETHERNET;
+> +	else
+> +		param_value = ATH11K_HW_TXRX_NATIVE_WIFI;
+> +
+>  	ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
+>  					    param_id, param_value);
+>  	if (ret) {
 
 -- 
 ath11k mailing list
