@@ -1,15 +1,17 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from z5.mailgun.us ([104.130.96.5])
+Received: from m42-4.mailgun.net ([69.72.42.4])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kKM5p-0002av-9X
- for ath11k@lists.infradead.org; Mon, 21 Sep 2020 13:43:00 +0000
+ id 1kKPVe-0000WU-O6
+ for ath11k@lists.infradead.org; Mon, 21 Sep 2020 17:21:54 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH v3] ath11k: cold boot calibration support
-From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1600163991-2093-1-git-send-email-ssreeela@codeaurora.org>
-References: <1600163991-2093-1-git-send-email-ssreeela@codeaurora.org>
-Message-Id: <20200921134250.0DED4C433C8@smtp.codeaurora.org>
-Date: Mon, 21 Sep 2020 13:42:50 +0000 (UTC)
+Date: Mon, 21 Sep 2020 10:21:34 -0700
+From: Rajkumar Manoharan <rmanohar@codeaurora.org>
+Subject: Re: [PATCH -next] ath11k: Add checked value for ath11k_ahb_remove
+In-Reply-To: <874knr5kfv.fsf@codeaurora.org>
+References: <20200621095136.7xdbzkthoxuw2qow@debian.debian-2>
+ <01010174681bb751-308defb0-0333-43ee-99ef-7f1d1ee3358b-000000@us-west-2.amazonses.com>
+ <874knr5kfv.fsf@codeaurora.org>
+Message-ID: <4cc760ca8f79f1ce9df3aaf9dffe53b3@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -18,40 +20,89 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Sowmiya Sree Elavalagan <ssreeela@codeaurora.org>
-Cc: Govindaraj Saminathan <gsamin@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: Kalle Valo <kvalo@codeaurora.org>
+Cc: linux-wireless@vger.kernel.org, kuba@kernel.org, Bo YU <tsu.yubo@gmail.com>, ath11k@lists.infradead.org, davem@davemloft.net
 
-U293bWl5YSBTcmVlIEVsYXZhbGFnYW4gPHNzcmVlZWxhQGNvZGVhdXJvcmEub3JnPiB3cm90ZToK
-Cj4gRnJvbTogR292aW5kYXJhaiBTYW1pbmF0aGFuIDxnc2FtaW5AY29kZWF1cm9yYS5vcmc+Cj4g
-Cj4gY29sZCBib290IGNhbGlicmF0aW9uIGlzIHRoZSBwcm9jZXNzIHRvIGNhbGlicmF0ZSBhbGwg
-dGhlIGNoYW5uZWxzCj4gZHVyaW5nIHRoZSBib290LXVwIHRvIGF2b2lkIHRoZSBjYWxpYnJhdGlv
-biBkZWxheSBkdXJpbmcgdGhlCj4gY2hhbm5lbCBjaGFuZ2UuCj4gRHVyaW5nIHRoZSBib290LXVw
-LCBmaXJtd2FyZSBzdGFydGVkIHdpdGggbW9kZSDigJxjb2xkX2Jvb3RfY2FsaWJyYXRpb27igJ0K
-PiBGaXJtd2FyZSBjYWxpYnJhdGUgYWxsIGNoYW5uZWxzIGFuZCBnZW5lcmF0ZSBDYWxEYihERFIp
-Lgo+IFN1YnNlcXVlbnQgV0lGSSBPTiB3aWxsIHJldXNlIHRoZSBzYW1lIENhbERiLgo+IEZpcm13
-YXJlIHJlc3RhcnRlZCB3aXRoIE1pc3Npb24gbW9kZSB0byBjb250aW51ZSB0aGUgbm9ybWFsIG9w
-ZXJhdGlvbi4KPiAKPiBjYWxkYiBtZW1vcnkgYWRkcmVzcyBzZW5kIHRvIGZpcm13YXJlIHRocm91
-Z2ggdGhlIFFNSSBtZXNzYWdlLkZpcm13YXJlCj4gdXNlIHRoaXMgYWRkcmVzcyB0byBzdG9yZSB0
-aGUgY2FsZGIgZGF0YSBhbmQgdXNlIGl0IHVudGlsIG5leHQgcmVib290Lgo+IAo+IFRoaXMgd2ls
-bCBnaXZlIHRoZSBpbXByb3ZlbWVudCBkdXJpbmcgdGhlIGNoYW5uZWwgY2hhbmdlLiBCdXQgaXQg
-aXMKPiBpbmNyZWFzaW5nIHRoZSBib290LXVwIHRpbWUodXAgdG8gMTVzZWMgZGVwZW5kIG9uIG51
-bWJlciBvZiByYWRpb3MpLgo+IFNvIGlmIHRoZSB1c2VyIHdhbnQgdG8gcmVkdWNlIHRoZSBib290
-LXVwIHRpbWUgYW5kIGFjY2VwdGluZyBmb3IgY2hhbm5lbAo+IGNoYW5nZSBkZWxheSwgdXNlciBj
-YW4gZGlzYWJsZSB0aGlzIGZlYXR1cmUgdXNpbmcgdGhlIG1vZHVsZSBwYXJhbQo+IGNvbGRfYm9v
-dF9jYWwgPTAuCj4gVGVzdGVkLW9uOiBJUFE4MDc0IFdMQU4uSEsuMi40LjAuMS0wMDE5Mi1RQ0FI
-S1NXUExfU0lMSUNPTlotMQo+IAo+IAo+IFNpZ25lZC1vZmYtYnk6IEdvdmluZGFyYWogU2FtaW5h
-dGhhbiA8Z3NhbWluQGNvZGVhdXJvcmEub3JnPgo+IENvLWRldmVsb3BlZC1ieTogU293bWl5YSBT
-cmVlIEVsYXZhbGFnYW4gPHNzcmVlZWxhQGNvZGVhdXJvcmEub3JnPgo+IFNpZ25lZC1vZmYtYnk6
-IFNvd21peWEgU3JlZSBFbGF2YWxhZ2FuIDxzc3JlZWVsYUBjb2RlYXVyb3JhLm9yZz4KCkZhaWxz
-IHRvIGFwcGx5OgoKZXJyb3I6IHBhdGNoIGZhaWxlZDogZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRo
-L2F0aDExay9haGIuYzo1NzMKZXJyb3I6IGRyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsv
-YWhiLmM6IHBhdGNoIGRvZXMgbm90IGFwcGx5CnN0ZyBpbXBvcnQ6IERpZmYgZG9lcyBub3QgYXBw
-bHkgY2xlYW5seQoKUGF0Y2ggc2V0IHRvIENoYW5nZXMgUmVxdWVzdGVkLgoKLS0gCmh0dHBzOi8v
-cGF0Y2h3b3JrLmtlcm5lbC5vcmcvcGF0Y2gvMTE3NzU5NTMvCgpodHRwczovL3dpcmVsZXNzLndp
-a2kua2VybmVsLm9yZy9lbi9kZXZlbG9wZXJzL2RvY3VtZW50YXRpb24vc3VibWl0dGluZ3BhdGNo
-ZXMKCgotLSAKYXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZwpo
-dHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2F0aDExawo=
+On 2020-09-21 06:27, Kalle Valo wrote:
+> Kalle Valo <kvalo@codeaurora.org> writes:
+> 
+>> + rajkumar
+>> 
+>> Bo YU <tsu.yubo@gmail.com> writes:
+>> 
+>>> Return value form wait_for_completion_timeout should to be checked.
+>>> 
+>>> This is detected by Coverity,#CID:1464479 (CHECKED_RETURN)
+>>> 
+>>> FIXES: d5c65159f2895(ath11k: driver for Qualcomm IEEE 802.11ax 
+>>> devices)
+>> 
+>> This should be
+>> 
+>> Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax 
+>> devices")
+>> 
+>> But I can fix that.
+>> 
+>>> --- a/drivers/net/wireless/ath/ath11k/ahb.c
+>>> +++ b/drivers/net/wireless/ath/ath11k/ahb.c
+>>> @@ -981,12 +981,16 @@ static int ath11k_ahb_probe(struct 
+>>> platform_device *pdev)
+>>> static int ath11k_ahb_remove(struct platform_device *pdev)
+>>> {
+>>> 	struct ath11k_base *ab = platform_get_drvdata(pdev);
+>>> -
+>>> +	int ret = 0;
+>>> 	reinit_completion(&ab->driver_recovery);
+>>> 
+>>> 	if (test_bit(ATH11K_FLAG_RECOVERY, &ab->dev_flags))
+>>> -		wait_for_completion_timeout(&ab->driver_recovery,
+>>> -					    ATH11K_AHB_RECOVERY_TIMEOUT);
+>>> +		if (!wait_for_completion_timeout(&ab->driver_recovery,
+>>> +						 ATH11K_AHB_RECOVERY_TIMEOUT)) {
+>>> + ath11k_warn(ab, "fail to receive recovery response
+>>> completion.\n");
+> 
+
+>>> +			ret = -ETIMEDOUT;
+>>> +		}
+>> 
+>> This is a good find. Rajkumar, can you take a look if this is ok?
+> 
+Sorry for the delay. wait_for_completion status check LGTM. But return 0 
+is
+intentional as it is required to complete platform deinit properly. 
+Better
+to improve the logging message.
+
+>>> 
+>>> 	set_bit(ATH11K_FLAG_UNREGISTERING, &ab->dev_flags);
+>>> 	cancel_work_sync(&ab->restart_work);
+>>> @@ -999,7 +1003,7 @@ static int ath11k_ahb_remove(struct 
+>>> platform_device *pdev)
+>>> 	ath11k_core_free(ab);
+>>> 	platform_set_drvdata(pdev, NULL);
+>>> 
+>>> -	return 0;
+>>> +	return ret;
+>>> }
+>> 
+>> Especially I wonder what happens if ath11k_ahb_remove() returns an
+>> error. Should we just print a warning and return 0 instead?
+> 
+> I changed this patch so that we return 0 even if timeout happens, just
+> to be on the safe side. The patch is now in the pending branch.
+> 
+
+Thanks for taking care of this.
+
+Rajkumar
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
