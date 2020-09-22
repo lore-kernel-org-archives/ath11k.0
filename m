@@ -1,15 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from m42-4.mailgun.net ([69.72.42.4])
+Received: from z5.mailgun.us ([104.130.96.5])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kKcx2-0008A0-Sz
- for ath11k@lists.infradead.org; Tue, 22 Sep 2020 07:43:03 +0000
+ id 1kKcy9-0008PX-Dk
+ for ath11k@lists.infradead.org; Tue, 22 Sep 2020 07:44:16 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH v2] ath11k: Add support spectral scan for IPQ6018
+Subject: Re: [PATCH] ath11k: wmi: remove redundant configuration values from
+ init
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1600236776-4042-1-git-send-email-periyasa@codeaurora.org>
-References: <1600236776-4042-1-git-send-email-periyasa@codeaurora.org>
-Message-Id: <20200922074249.062F7C433F1@smtp.codeaurora.org>
-Date: Tue, 22 Sep 2020 07:42:49 +0000 (UTC)
+In-Reply-To: <1600356507-29237-1-git-send-email-kvalo@codeaurora.org>
+References: <1600356507-29237-1-git-send-email-kvalo@codeaurora.org>
+Message-Id: <20200922074402.D360FC433CB@smtp.codeaurora.org>
+Date: Tue, 22 Sep 2020 07:44:02 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,27 +23,33 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Karthikeyan Periyasamy <periyasa@codeaurora.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: Kalle Valo <kvalo@codeaurora.org>
+Cc: vnaralas@codeaurora.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-Karthikeyan Periyasamy <periyasa@codeaurora.org> wrote:
+Kalle Valo <kvalo@codeaurora.org> wrote:
 
-> IPQ6018 supported with 4 bytes FFT BIN size. so supported 4 bytes
-> parsing logic in FFT report process. since spectral_fft_sz is
-> configured as zero in hw_params, spectral is not supported in
-> QCA6390 platform.
+> In commit 2d4bcbed5b7d ("ath11k: initialize wmi config based on hw_params") the
+> wmi config initialisation was moved to hw_ops->wmi_init_config() but the old
+> initialisation values were accidentally left to ath11k_wmi_cmd_init(). This
+> is very confusing, so remove the redundant values.
 > 
-> Tested-on: IPQ6018 WLAN.HK.2.1.0.1-01228-QCAHKSWPL_SILICONZ-1
+> And this was actually so confusing that in commit aa2092a9bab3 ("ath11k: add
+> raw mode and software crypto support") I actually it caused a bug: when
+> ATH11K_FLAG_RAW_MODE was enabled rx_decap_mode was assigned back to
+> TARGET_DECAP_MODE_NATIVE_WIFI in ath11k_init_wmi_config_ipq8074(). Fix this at
+> the same time.
 > 
-> Signed-off-by: Karthikeyan Periyasamy <periyasa@codeaurora.org>
+> Compile tested only.
+> 
+> Fixes: 2d4bcbed5b7d ("ath11k: initialize wmi config based on hw_params")
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
 Patch applied to ath-next branch of ath.git, thanks.
 
-5cca5fa1c164 ath11k: Add support spectral scan for IPQ6018
+c695faf745f9 ath11k: wmi: remove redundant configuration values from init
 
 -- 
-https://patchwork.kernel.org/patch/11778965/
+https://patchwork.kernel.org/patch/11782889/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
