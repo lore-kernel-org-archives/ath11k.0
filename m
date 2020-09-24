@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from m42-4.mailgun.net ([69.72.42.4])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kL9SO-0000ox-8g
- for ath11k@lists.infradead.org; Wed, 23 Sep 2020 18:25:33 +0000
-From: Karthikeyan Kathirvel <kathirve@codeaurora.org>
-Subject: [PATCH] ath11k: removing the ath11k debugfs dir properly
-Date: Wed, 23 Sep 2020 23:55:19 +0530
-Message-Id: <1600885519-29535-1-git-send-email-kathirve@codeaurora.org>
+ id 1kLPtF-0003Mc-EY
+ for ath11k@lists.infradead.org; Thu, 24 Sep 2020 11:58:23 +0000
+From: Govind Singh <govinds@codeaurora.org>
+Subject: [PATCH] ath11k: Move non-fatal warn logs to dbg level
+Date: Thu, 24 Sep 2020 17:28:11 +0530
+Message-Id: <1600948691-6901-1-git-send-email-govinds@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -21,33 +21,38 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org, Karthikeyan Kathirvel <kathirve@codeaurora.org>
+Cc: Govind Singh <govinds@codeaurora.org>, linux-wireless@vger.kernel.org
 
-ath11k_debug_pdev_destroy was not called for proper cleaning of debug
-files when destroying the pdev, this results in not removing the ath11k
-directory in debugfs folder even after rmmod of ath11k. So when next
-time doing insmod of ath11k prevents creating another ath11k directory,
-hence causing ipq8074_2 to get created in parent dir of debugfs.
+During driver load below warn logs are printed in the console.
+Since driver may not implement all wmi events sent by fw and
+all of them are non-fatal, move this log to debug level to
+remove un-necessary warn message on console.
 
-Signed-off-by: Karthikeyan Kathirvel <kathirve@codeaurora.org>
+[876.898735] ath11k_pci 0000:06:00.0: Unknown eventid: 0x16005
+[879.283250] ath11k_pci 0000:06:00.0: Unknown eventid: 0x1d00a
+
+No functional changes. Compile tested only.
+
+Signed-off-by: Govind Singh <govinds@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/debug.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/net/wireless/ath/ath11k/wmi.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/debug.c b/drivers/net/wireless/ath/ath11k/debug.c
-index 0ba234a..c4759bb 100644
---- a/drivers/net/wireless/ath/ath11k/debug.c
-+++ b/drivers/net/wireless/ath/ath11k/debug.c
-@@ -973,6 +973,7 @@ void ath11k_debug_soc_destroy(struct ath11k_base *ab)
- {
- 	debugfs_remove_recursive(ab->debugfs_soc);
- 	ab->debugfs_soc = NULL;
-+	ath11k_debug_pdev_destroy(ab);
- }
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index adde14a390ec..1e5a46bdaa61 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -6579,7 +6579,7 @@ static void ath11k_wmi_tlv_op_rx(struct ath11k_base *ab, struct sk_buff *skb)
+ 		break;
+ 	/* TODO: Add remaining events */
+ 	default:
+-		ath11k_warn(ab, "Unknown eventid: 0x%x\n", id);
++		ath11k_dbg(ab, ATH11K_DBG_WMI, "Unknown eventid: 0x%x\n", id);
+ 		break;
+ 	}
  
- void ath11k_debug_fw_stats_init(struct ath11k *ar)
 -- 
-2.7.4
+2.22.0
 
 
 -- 
