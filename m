@@ -1,15 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+Received: from z5.mailgun.us ([104.130.96.5])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kMWfk-0000y1-Kv
- for ath11k@lists.infradead.org; Sun, 27 Sep 2020 13:25:01 +0000
-Received: by mail-wm1-x342.google.com with SMTP id a9so3918021wmm.2
- for <ath11k@lists.infradead.org>; Sun, 27 Sep 2020 06:25:00 -0700 (PDT)
-From: Alex Dewar <alex.dewar90@gmail.com>
-Subject: [PATCH] ath11k: Correctly check errors for calls to
- debugfs_create_dir()
-Date: Sun, 27 Sep 2020 14:24:50 +0100
-Message-Id: <20200927132451.585473-1-alex.dewar90@gmail.com>
+ id 1kMnlP-0007Tj-Sh
+ for ath11k@lists.infradead.org; Mon, 28 Sep 2020 07:40:01 +0000
+From: Kalle Valo <kvalo@codeaurora.org>
+Subject: Re: [linux-next:master 9378/11173] ld.lld: error: undefined symbol:
+ ath11k_debugfs_htt_ext_stats_handler
+References: <202009280207.7DOSq33F%lkp@intel.com>
+Date: Mon, 28 Sep 2020 10:39:51 +0300
+In-Reply-To: <202009280207.7DOSq33F%lkp@intel.com> (kernel test robot's
+ message of "Mon, 28 Sep 2020 02:47:11 +0800")
+Message-ID: <87imbyfiyg.fsf@codeaurora.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -23,73 +24,54 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-Cc: "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, Alex Dewar <alex.dewar90@gmail.com>, Jakub Kicinski <kuba@kernel.org>, ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>
+To: kernel test robot <lkp@intel.com>
+Cc: clang-built-linux@googlegroups.com, kbuild-all@lists.01.org, ath11k@lists.infradead.org
 
-debugfs_create_dir() returns an ERR_PTR in case of error, but never a
-null pointer. There are a number of places where error-checking code can
-accordingly be simplified.
++ ath11k
 
-Addresses-Coverity: CID 1497150: Memory - illegal accesses (USE_AFTER_FREE)
-Addresses-Coverity: CID 1497158: Memory - illegal accesses (USE_AFTER_FREE)
-Addresses-Coverity: CID 1497160: Memory - illegal accesses (USE_AFTER_FREE)
-Signed-off-by: Alex Dewar <alex.dewar90@gmail.com>
----
- drivers/net/wireless/ath/ath11k/debugfs.c | 25 +++++------------------
- 1 file changed, 5 insertions(+), 20 deletions(-)
+kernel test robot <lkp@intel.com> writes:
 
-diff --git a/drivers/net/wireless/ath/ath11k/debugfs.c b/drivers/net/wireless/ath/ath11k/debugfs.c
-index 5193b308a992..826dc8ba188f 100644
---- a/drivers/net/wireless/ath/ath11k/debugfs.c
-+++ b/drivers/net/wireless/ath/ath11k/debugfs.c
-@@ -837,12 +837,8 @@ int ath11k_debugfs_pdev_create(struct ath11k_base *ab)
- 		return 0;
- 
- 	ab->debugfs_soc = debugfs_create_dir(ab->hw_params.name, ab->debugfs_ath11k);
--
--	if (IS_ERR_OR_NULL(ab->debugfs_soc)) {
--		if (IS_ERR(ab->debugfs_soc))
--			return PTR_ERR(ab->debugfs_soc);
--		return -ENOMEM;
--	}
-+	if (IS_ERR(ab->debugfs_soc))
-+		return PTR_ERR(ab->debugfs_soc);
- 
- 	debugfs_create_file("simulate_fw_crash", 0600, ab->debugfs_soc, ab,
- 			    &fops_simulate_fw_crash);
-@@ -863,13 +859,7 @@ int ath11k_debugfs_soc_create(struct ath11k_base *ab)
- {
- 	ab->debugfs_ath11k = debugfs_create_dir("ath11k", NULL);
- 
--	if (IS_ERR_OR_NULL(ab->debugfs_ath11k)) {
--		if (IS_ERR(ab->debugfs_ath11k))
--			return PTR_ERR(ab->debugfs_ath11k);
--		return -ENOMEM;
--	}
--
--	return 0;
-+	return PTR_ERR_OR_ZERO(ab->debugfs_ath11k);
- }
- 
- void ath11k_debugfs_soc_destroy(struct ath11k_base *ab)
-@@ -1069,13 +1059,8 @@ int ath11k_debugfs_register(struct ath11k *ar)
- 	snprintf(pdev_name, sizeof(pdev_name), "%s%d", "mac", ar->pdev_idx);
- 
- 	ar->debug.debugfs_pdev = debugfs_create_dir(pdev_name, ab->debugfs_soc);
--
--	if (IS_ERR_OR_NULL(ar->debug.debugfs_pdev)) {
--		if (IS_ERR(ar->debug.debugfs_pdev))
--			return PTR_ERR(ar->debug.debugfs_pdev);
--
--		return -ENOMEM;
--	}
-+	if (IS_ERR(ar->debug.debugfs_pdev))
-+		return PTR_ERR(ar->debug.debugfs_pdev);
- 
- 	/* Create a symlink under ieee80211/phy* */
- 	snprintf(buf, 100, "../../ath11k/%pd2", ar->debug.debugfs_pdev);
+> tree:   https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
+> head:   20dc779fdefc40bf7dd9736cea01704f29228fae
+> commit: 568f06036ee23a003542227975f69a75ac172ba2 [9378/11173] ath11k:
+> debugfs: move some function declarations to correct header files
+> config: x86_64-randconfig-a003-20200927 (attached as .config)
+> compiler: clang version 12.0.0 (https://github.com/llvm/llvm-project
+> 6d374cf78c8a80a0bbfc7ce9bc80b3f183f44c80)
+> reproduce (this is a W=1 build):
+>         wget
+> https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross
+> -O ~/bin/make.cross
+>         chmod +x ~/bin/make.cross
+>         # install x86_64 cross compiling tool for clang build
+>         # apt-get install binutils-x86-64-linux-gnu
+>         #
+> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=568f06036ee23a003542227975f69a75ac172ba2
+>         git remote add linux-next
+> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+>         git fetch --no-tags linux-next master
+>         git checkout 568f06036ee23a003542227975f69a75ac172ba2
+>         # save the attached .config to linux build tree
+>         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross ARCH=x86_64 
+>
+> If you fix the issue, kindly add following tag as appropriate
+> Reported-by: kernel test robot <lkp@intel.com>
+>
+> All errors (new ones prefixed by >>):
+>
+>>> ld.lld: error: undefined symbol: ath11k_debugfs_htt_ext_stats_handler
+>    >>> referenced by dp_rx.c:1662 (drivers/net/wireless/ath/ath11k/dp_rx.c:1662)
+>    >>> net/wireless/ath/ath11k/dp_rx.o:(ath11k_dp_htt_htc_t2h_msg_handler)
+>    >>> in archive drivers/built-in.a
+
+This should be fixed by:
+
+bc8befe6f950 ath11k: fix undefined reference to 'ath11k_debugfs_htt_ext_stats_handler'
+
 -- 
-2.28.0
+https://patchwork.kernel.org/project/linux-wireless/list/
 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
