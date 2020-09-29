@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from m42-4.mailgun.net ([69.72.42.4])
+Received: from z5.mailgun.us ([104.130.96.5])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kNJE9-0000Rg-Ld
- for ath11k@lists.infradead.org; Tue, 29 Sep 2020 17:15:46 +0000
+ id 1kNJEA-0000RF-Q4
+ for ath11k@lists.infradead.org; Tue, 29 Sep 2020 17:15:48 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 2/8] ath11k: fix AP mode for QCA6390
-Date: Tue, 29 Sep 2020 20:15:30 +0300
-Message-Id: <1601399736-3210-3-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH 1/8] ath11k: support loading ELF board files
+Date: Tue, 29 Sep 2020 20:15:29 +0300
+Message-Id: <1601399736-3210-2-git-send-email-kvalo@codeaurora.org>
 In-Reply-To: <1601399736-3210-1-git-send-email-kvalo@codeaurora.org>
 References: <1601399736-3210-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,46 +25,66 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: linux-wireless@vger.kernel.org
 
-From: Carl Huang <cjhuang@codeaurora.org>
+From: Ben Greear <greearb@candelatech.com>
 
-For QCA6390, station vdev needs to delay startup but not for AP mode. On AP
-mode vdev starts up immediately after bss peer is created in chanctx assignment
-context.
-
-This patch does not affect IPQ8074 family of devices.
+The QCA6390 board I have, model 8291M-PR comes with an ELF board file.  To get
+this to at least somewhat work, I renamed bdwlan.e04 to 'board.bin' and then
+added this patch to check for ELF magic string in the beginning of the file.
+If that is found, use type ELF.  After this the driver loads.
 
 Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
 
-Signed-off-by: Carl Huang <cjhuang@codeaurora.org>
+Signed-off-by: Ben Greear <greearb@candelatech.com>
+[kvalo@codeaurora.org: use elf.h, minor cleanup]
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ drivers/net/wireless/ath/ath11k/qmi.c | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 86a1b984859f..32cbe643f734 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -2994,7 +2994,8 @@ static int ath11k_mac_station_add(struct ath11k *ar,
- 		goto free_tx_stats;
- 	}
+diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
+index b906b50ee57e..9144f28b37d1 100644
+--- a/drivers/net/wireless/ath/ath11k/qmi.c
++++ b/drivers/net/wireless/ath/ath11k/qmi.c
+@@ -3,6 +3,8 @@
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+  */
  
--	if (ab->hw_params.vdev_start_delay) {
-+	if (ab->hw_params.vdev_start_delay &&
-+	    arvif->vdev_type != WMI_VDEV_TYPE_AP) {
- 		ret = ath11k_start_vdev_delay(ar->hw, vif);
- 		if (ret) {
- 			ath11k_warn(ab, "failed to delay vdev start: %d\n", ret);
-@@ -5210,7 +5211,8 @@ ath11k_mac_op_assign_vif_chanctx(struct ieee80211_hw *hw,
- 		   ctx, arvif->vdev_id);
++#include <linux/elf.h>
++
+ #include "qmi.h"
+ #include "core.h"
+ #include "debug.h"
+@@ -1990,6 +1992,7 @@ static int ath11k_qmi_load_bdf_qmi(struct ath11k_base *ab)
+ 	struct qmi_txn txn = {};
+ 	int ret;
+ 	const u8 *temp;
++	int bdf_type;
  
- 	/* for QCA6390 bss peer must be created before vdev_start */
--	if (ab->hw_params.vdev_start_delay) {
-+	if (ab->hw_params.vdev_start_delay &&
-+	    arvif->vdev_type != WMI_VDEV_TYPE_AP) {
- 		memcpy(&arvif->chanctx, ctx, sizeof(*ctx));
- 		mutex_unlock(&ar->conf_mutex);
- 		return 0;
+ 	req = kzalloc(sizeof(*req), GFP_KERNEL);
+ 	if (!req)
+@@ -2006,6 +2009,13 @@ static int ath11k_qmi_load_bdf_qmi(struct ath11k_base *ab)
+ 	temp = bd.data;
+ 	remaining = bd.len;
+ 
++	if (bd.len >= SELFMAG && memcmp(bd.data, ELFMAG, SELFMAG) == 0)
++		bdf_type = ATH11K_QMI_BDF_TYPE_ELF;
++	else
++		bdf_type = ATH11K_QMI_BDF_TYPE_BIN;
++
++	ath11k_dbg(ab, ATH11K_DBG_QMI, "qmi bdf_type %d\n", bdf_type);
++
+ 	while (remaining) {
+ 		req->valid = 1;
+ 		req->file_id_valid = 1;
+@@ -2015,7 +2025,7 @@ static int ath11k_qmi_load_bdf_qmi(struct ath11k_base *ab)
+ 		req->seg_id_valid = 1;
+ 		req->data_valid = 1;
+ 		req->data_len = ATH11K_QMI_MAX_BDF_FILE_NAME_SIZE;
+-		req->bdf_type = ATH11K_QMI_BDF_TYPE_BIN;
++		req->bdf_type = bdf_type;
+ 		req->bdf_type_valid = 1;
+ 		req->end_valid = 1;
+ 		req->end = 0;
 -- 
 2.7.4
 
