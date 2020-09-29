@@ -1,19 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
- helo=sipsolutions.net)
+Received: from z5.mailgun.us ([104.130.96.5])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kNAcm-0006qo-3A
- for ath11k@lists.infradead.org; Tue, 29 Sep 2020 08:04:38 +0000
-Message-ID: <d64adff6e323884b0149049ca02f82958a211e2b.camel@sipsolutions.net>
-Subject: Re: [PATCHv2 1/2] nl80211: vendor-cmd: qca: add command for ap
- power save
-From: Johannes Berg <johannes@sipsolutions.net>
-Date: Tue, 29 Sep 2020 10:04:14 +0200
-In-Reply-To: <871rilf2th.fsf@codeaurora.org>
-References: <1598257589-19091-1-git-send-email-vnaralas@codeaurora.org>
- <4b4a0d79a243c1c3b8044730da0493c96ba294bf.camel@sipsolutions.net>
- <871rilf2th.fsf@codeaurora.org>
+ id 1kNB3D-0002uz-J9
+ for ath11k@lists.infradead.org; Tue, 29 Sep 2020 08:31:59 +0000
 MIME-Version: 1.0
+Subject: Re: [PATCH] ath11k: Move non-fatal warn logs to dbg level
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <1600948691-6901-1-git-send-email-govinds@codeaurora.org>
+References: <1600948691-6901-1-git-send-email-govinds@codeaurora.org>
+Message-Id: <20200929083153.73B76C433FF@smtp.codeaurora.org>
+Date: Tue, 29 Sep 2020 08:31:53 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -26,27 +22,32 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: Venkateswara Naralasetty <vnaralas@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: Govind Singh <govinds@codeaurora.org>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-On Tue, 2020-09-29 at 10:40 +0300, Kalle Valo wrote:
-> Johannes Berg <johannes@sipsolutions.net> writes:
+Govind Singh <govinds@codeaurora.org> wrote:
+
+> During driver load below warn logs are printed in the console.
+> Since driver may not implement all wmi events sent by fw and
+> all of them are non-fatal, move this log to debug level to
+> remove un-necessary warn message on console.
 > 
-> > On Mon, 2020-08-24 at 13:56 +0530, Venkateswara Naralasetty wrote:
-> > > AP power save feature is to save power in AP mode, where AP goes
-> > > to power save mode when no stations associate to it and comes out
-> > > of power save when any station associate to AP.
-> > 
-> > Why do you think this requires a vendor command? I mean, that seems like
-> > fairly reasonable - even by default - behaviour?
+> [876.898735] ath11k_pci 0000:06:00.0: Unknown eventid: 0x16005
+> [879.283250] ath11k_pci 0000:06:00.0: Unknown eventid: 0x1d00a
 > 
-> I have not studied the details, but doesn't AP power save break normal
-> functionality? For example, I would guess probe requests from clients
-> would be lost. So there's a major drawback when enabling this, right?
+> No functional changes. Compile tested only.
+> 
+> Signed-off-by: Govind Singh <govinds@codeaurora.org>
+> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-Not the way it's described above?
+Patch applied to ath-next branch of ath.git, thanks.
 
-johannes
+82b4f9b857e7 ath11k: Move non-fatal warn logs to dbg level
+
+-- 
+https://patchwork.kernel.org/patch/11797129/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 
 -- 
