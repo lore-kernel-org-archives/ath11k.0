@@ -1,18 +1,17 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from m42-4.mailgun.net ([69.72.42.4])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kN8yF-00055R-5s
- for ath11k@lists.infradead.org; Tue, 29 Sep 2020 06:18:40 +0000
+ id 1kNAFl-0003hC-Db
+ for ath11k@lists.infradead.org; Tue, 29 Sep 2020 07:40:50 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: linux-next: build failure after merge of the mhi tree
-References: <20200928184230.2d973291@canb.auug.org.au>
- <20200928091035.GA11515@linux> <87eemmfdn3.fsf@codeaurora.org>
- <20200928094704.GB11515@linux> <87a6x9g89a.fsf@codeaurora.org>
- <20200928170403.GA2222@Mani-XPS-13-9360>
-Date: Tue, 29 Sep 2020 09:18:30 +0300
-In-Reply-To: <20200928170403.GA2222@Mani-XPS-13-9360> (Manivannan Sadhasivam's
- message of "Mon, 28 Sep 2020 22:34:04 +0530")
-Message-ID: <875z7xf6mh.fsf@codeaurora.org>
+Subject: Re: [PATCHv2 1/2] nl80211: vendor-cmd: qca: add command for ap power
+ save
+References: <1598257589-19091-1-git-send-email-vnaralas@codeaurora.org>
+ <4b4a0d79a243c1c3b8044730da0493c96ba294bf.camel@sipsolutions.net>
+Date: Tue, 29 Sep 2020 10:40:42 +0300
+In-Reply-To: <4b4a0d79a243c1c3b8044730da0493c96ba294bf.camel@sipsolutions.net>
+ (Johannes Berg's message of "Mon, 28 Sep 2020 13:24:22 +0200")
+Message-ID: <871rilf2th.fsf@codeaurora.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -26,27 +25,22 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Stephen Rothwell <sfr@canb.auug.org.au>, Loic Poulain <loic.poulain@linaro.org>, Networking <netdev@vger.kernel.org>, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, ath11k@lists.infradead.org, Linux Next Mailing List <linux-next@vger.kernel.org>, Govind Singh <govinds@codeaurora.org>, David Miller <davem@davemloft.net>
+To: Johannes Berg <johannes@sipsolutions.net>
+Cc: Venkateswara Naralasetty <vnaralas@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> writes:
+Johannes Berg <johannes@sipsolutions.net> writes:
 
->> I was looking at commit ed39d7816885 ("bus: mhi: Remove auto-start
->> option") and noticed this in the commit log:
->> 
->>     This is really up to the MHI device(channel) driver to manage the state
->>     of its channels.
->> 
->> So does this mean we have to make changes in ath11k to accomodate this?
+> On Mon, 2020-08-24 at 13:56 +0530, Venkateswara Naralasetty wrote:
+>> AP power save feature is to save power in AP mode, where AP goes
+>> to power save mode when no stations associate to it and comes out
+>> of power save when any station associate to AP.
 >
-> Nope. The change is needed in the MHI client driver like qrtr which is already
-> taken care: https://lkml.org/lkml/2020/9/28/30
+> Why do you think this requires a vendor command? I mean, that seems like
+> fairly reasonable - even by default - behaviour?
 
-Ok, that's good.
-
-> Will make sure to include ath11k list for any future API changes.
-
-Thanks!
+I have not studied the details, but doesn't AP power save break normal
+functionality? For example, I would guess probe requests from clients
+would be lost. So there's a major drawback when enabling this, right?
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
