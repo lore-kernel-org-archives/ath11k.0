@@ -1,18 +1,17 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail-pf1-x442.google.com ([2607:f8b0:4864:20::442])
+Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kNHfJ-00042T-67
- for ath11k@lists.infradead.org; Tue, 29 Sep 2020 15:35:42 +0000
-Received: by mail-pf1-x442.google.com with SMTP id x22so4888064pfo.12
- for <ath11k@lists.infradead.org>; Tue, 29 Sep 2020 08:35:40 -0700 (PDT)
-Date: Tue, 29 Sep 2020 21:05:31 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: Re: linux-next: build failure after merge of the mhi tree
-Message-ID: <20200929153531.GB17845@Mani-XPS-13-9360>
-References: <20200928184230.2d973291@canb.auug.org.au>
+ id 1kNIFg-00008S-B5
+ for ath11k@lists.infradead.org; Tue, 29 Sep 2020 16:13:17 +0000
+Date: Tue, 29 Sep 2020 18:13:19 +0200
+From: Greg KH <gregkh@linuxfoundation.org>
+Subject: Re: [PATCH v2 00/21] MHI changes for v5.10
+Message-ID: <20200929161319.GC1326743@kroah.com>
+References: <20200928040951.18207-1-manivannan.sadhasivam@linaro.org>
+ <20200929152834.GA17845@Mani-XPS-13-9360>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200928184230.2d973291@canb.auug.org.au>
+In-Reply-To: <20200929152834.GA17845@Mani-XPS-13-9360>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -25,104 +24,59 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Stephen Rothwell <sfr@canb.auug.org.au>
-Cc: Govind Singh <govinds@codeaurora.org>, Networking <netdev@vger.kernel.org>, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Loic Poulain <loic.poulain@linaro.org>, Linux Next Mailing List <linux-next@vger.kernel.org>, ath11k@lists.infradead.org, David Miller <davem@davemloft.net>, Kalle Valo <kvalo@codeaurora.org>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: jhugo@codeaurora.org, linux-arm-msm@vger.kernel.org, bbhatt@codeaurora.org, linux-kernel@vger.kernel.org, hemantk@codeaurora.org, ath11k@lists.infradead.org, kvalo@codeaurora.org
 
-Hi,
+On Tue, Sep 29, 2020 at 08:58:34PM +0530, Manivannan Sadhasivam wrote:
+> Hi Greg,
+> 
+> On Mon, Sep 28, 2020 at 09:39:30AM +0530, Manivannan Sadhasivam wrote:
+> > Hi Greg,
+> > 
+> > Here is the MHI series for v5.10 cycle. Most of the patches are cleanups
+> > in the MHI stack. Notable changes are below:
+> > 
+> > * Saving the client device hardware information obtained through the BHI
+> >   protocol. This information will be exposed through sysfs to make use in
+> >   the userland applications.
+> > * Introduce sysfs entries to read the serial number and OEM PK hash values
+> >   of the client device obtained from BHI protocol. Relevant API documentation
+> >   is also added.
+> > * Introduce debugfs entries to show MHI states, events, channels, register
+> >   state etc... to aid debug.
+> > * Remove the channel name from MHI device name as the device is not specific
+> >   to channels. Used generic names instead!
+> > * Fix the warning reported by Kbuild bot by using append (+=) Kbuild rule
+> >   to the mhi/core Makefile.
+> > * Introduce APIs to allocate and free MHI controllers. This is done to make
+> >   sure that the allocated structs are initialized to NULL before passing to
+> >   the MHI core.
+> > * Remove the requirement to have a dedicated IRQ for each event ring.
+> >   The MHI controllers can now use a single IRQ for all event rings.
+> > * Remove the auto-start option for MHI channels. This is done to avoid
+> >   receiving spurious uplink from MHI client device when the client driver
+> >   is not up. The corresponding qrtr change is also included with Dave's ACK.
+> > 
+> > Please consider merging!
+> > 
+> 
+> Can you please drop the below two patches while applying this series?
+> 
+> bus: mhi: Remove auto-start option
+> net: qrtr: Start MHI channels during init
+> 
+> We realized that without these patches, net-next will be broken for QCA6390.
+> Proper way to handle this is by using an immutable branch or by carrying the
+> ath11k change through MHI tree. We decided to handle this in next merge window.
+> 
+> Or if you prefer to have a next revision of the series without these patches
+> I can send it. Please let me know!
 
-On Mon, Sep 28, 2020 at 06:42:30PM +1000, Stephen Rothwell wrote:
-> Hi all,
-> 
-> After merging the mhi tree, today's linux-next build (x86_64 allmodconfig)
-> failed like this:
-> 
-> drivers/net/wireless/ath/ath11k/mhi.c:27:4: error: 'struct mhi_channel_config' has no member named 'auto_start'
->    27 |   .auto_start = false,
->       |    ^~~~~~~~~~
-> drivers/net/wireless/ath/ath11k/mhi.c:42:4: error: 'struct mhi_channel_config' has no member named 'auto_start'
->    42 |   .auto_start = false,
->       |    ^~~~~~~~~~
-> drivers/net/wireless/ath/ath11k/mhi.c:57:4: error: 'struct mhi_channel_config' has no member named 'auto_start'
->    57 |   .auto_start = true,
->       |    ^~~~~~~~~~
-> drivers/net/wireless/ath/ath11k/mhi.c:72:4: error: 'struct mhi_channel_config' has no member named 'auto_start'
->    72 |   .auto_start = true,
->       |    ^~~~~~~~~~
-> 
-> Caused by commit
-> 
->   ed39d7816885 ("bus: mhi: Remove auto-start option")
-> 
+Please just send a new series, that way I "know" I got it right.
 
-After having the discussion with Kalle, we decided to drop these offending
-patches from mhi-next (reason is net-next will be broken without these patches).
-So we'll deal with this in next merge window.
+thanks,
 
-Thanks,
-Mani
-
-> interacting with commit
-> 
->   1399fb87ea3e ("ath11k: register MHI controller device for QCA6390")
-> 
-> from the net-next tree.
-> 
-> I applied the following merge fix patch, but maybe more is required.
-> Even if so, this could be fixed now in the net-next tree.
-> 
-> From: Stephen Rothwell <sfr@canb.auug.org.au>
-> Date: Mon, 28 Sep 2020 18:39:41 +1000
-> Subject: [PATCH] fix up for "ath11k: register MHI controller device for QCA6390"
-> 
-> Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
-> ---
->  drivers/net/wireless/ath/ath11k/mhi.c | 4 ----
->  1 file changed, 4 deletions(-)
-> 
-> diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
-> index aded9a719d51..47a1ce1bee4f 100644
-> --- a/drivers/net/wireless/ath/ath11k/mhi.c
-> +++ b/drivers/net/wireless/ath/ath11k/mhi.c
-> @@ -24,7 +24,6 @@ static struct mhi_channel_config ath11k_mhi_channels[] = {
->  		.offload_channel = false,
->  		.doorbell_mode_switch = false,
->  		.auto_queue = false,
-> -		.auto_start = false,
->  	},
->  	{
->  		.num = 1,
-> @@ -39,7 +38,6 @@ static struct mhi_channel_config ath11k_mhi_channels[] = {
->  		.offload_channel = false,
->  		.doorbell_mode_switch = false,
->  		.auto_queue = false,
-> -		.auto_start = false,
->  	},
->  	{
->  		.num = 20,
-> @@ -54,7 +52,6 @@ static struct mhi_channel_config ath11k_mhi_channels[] = {
->  		.offload_channel = false,
->  		.doorbell_mode_switch = false,
->  		.auto_queue = false,
-> -		.auto_start = true,
->  	},
->  	{
->  		.num = 21,
-> @@ -69,7 +66,6 @@ static struct mhi_channel_config ath11k_mhi_channels[] = {
->  		.offload_channel = false,
->  		.doorbell_mode_switch = false,
->  		.auto_queue = true,
-> -		.auto_start = true,
->  	},
->  };
->  
-> -- 
-> 2.28.0
-> 
-> -- 
-> Cheers,
-> Stephen Rothwell
-
-
+greg k-h
 
 -- 
 ath11k mailing list
