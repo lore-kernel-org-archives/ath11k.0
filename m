@@ -1,13 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from z5.mailgun.us ([104.130.96.5])
+Received: from m42-4.mailgun.net ([69.72.42.4])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kNJEE-0000SO-GN
- for ath11k@lists.infradead.org; Tue, 29 Sep 2020 17:15:51 +0000
+ id 1kNJEH-0000Rg-96
+ for ath11k@lists.infradead.org; Tue, 29 Sep 2020 17:15:54 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 6/8] ath11k: change to disable softirqs for ath11k_regd_update
- to solve deadlock
-Date: Tue, 29 Sep 2020 20:15:34 +0300
-Message-Id: <1601399736-3210-7-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH 8/8] ath11k: Use GFP_ATOMIC instead of GFP_KERNEL in idr_alloc
+Date: Tue, 29 Sep 2020 20:15:36 +0300
+Message-Id: <1601399736-3210-9-git-send-email-kvalo@codeaurora.org>
 In-Reply-To: <1601399736-3210-1-git-send-email-kvalo@codeaurora.org>
 References: <1601399736-3210-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -26,130 +25,201 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: linux-wireless@vger.kernel.org
 
-From: Wen Gong <wgong@codeaurora.org>
+From: Govind Singh <govinds@codeaurora.org>
 
-After base_lock which occupy by ath11k_regd_update, the softirq run for
-WMI_REG_CHAN_LIST_CC_EVENTID maybe arrived and it also need to accuire
-the spin lock, then deadlock happend, change to disable softirqis to solve it.
+With SLUB DEBUG CONFIG below crash is seen as kmem_cache_alloc
+is being called in non-atomic context.
+To fix this issue, use GFP_ATOMIC instead of GFP_KERNEL in idr_alloc.
 
-[  235.576990] ================================
-[  235.576991] WARNING: inconsistent lock state
-[  235.576993] 5.9.0-rc5-wt-ath+ #196 Not tainted
-[  235.576994] --------------------------------
-[  235.576995] inconsistent {IN-SOFTIRQ-W} -> {SOFTIRQ-ON-W} usage.
-[  235.576997] kworker/u16:1/98 [HC0[0]:SC0[0]:HE1:SE1] takes:
-[  235.576998] ffff9655f75cad98 (&ab->base_lock){+.?.}-{2:2}, at: ath11k_regd_update+0x28/0x1d0 [ath11k]
-[  235.577009] {IN-SOFTIRQ-W} state was registered at:
-[  235.577013]   __lock_acquire+0x219/0x6e0
-[  235.577015]   lock_acquire+0xb6/0x270
-[  235.577018]   _raw_spin_lock+0x2c/0x70
-[  235.577023]   ath11k_reg_chan_list_event.isra.0+0x10d/0x1e0 [ath11k]
-[  235.577028]   ath11k_wmi_tlv_op_rx+0x3c3/0x560 [ath11k]
-[  235.577033]   ath11k_htc_rx_completion_handler+0x207/0x370 [ath11k]
-[  235.577039]   ath11k_ce_recv_process_cb+0x15e/0x1e0 [ath11k]
-[  235.577041]   ath11k_pci_ce_tasklet+0x10/0x30 [ath11k_pci]
-[  235.577043]   tasklet_action_common.constprop.0+0xd4/0xf0
-[  235.577045]   __do_softirq+0xc9/0x482
-[  235.577046]   asm_call_on_stack+0x12/0x20
-[  235.577048]   do_softirq_own_stack+0x49/0x60
-[  235.577049]   irq_exit_rcu+0x9a/0xd0
-[  235.577050]   common_interrupt+0xa1/0x190
-[  235.577052]   asm_common_interrupt+0x1e/0x40
-[  235.577053]   cpu_idle_poll.isra.0+0x2e/0x60
-[  235.577055]   do_idle+0x5f/0xe0
-[  235.577056]   cpu_startup_entry+0x14/0x20
-[  235.577058]   start_kernel+0x443/0x464
-[  235.577060]   secondary_startup_64+0xa4/0xb0
-[  235.577061] irq event stamp: 432035
-[  235.577063] hardirqs last  enabled at (432035): [<ffffffff968d12b4>] _raw_spin_unlock_irqrestore+0x34/0x40
-[  235.577064] hardirqs last disabled at (432034): [<ffffffff968d10d3>] _raw_spin_lock_irqsave+0x63/0x80
-[  235.577066] softirqs last  enabled at (431998): [<ffffffff967115c1>] inet6_fill_ifla6_attrs+0x3f1/0x430
-[  235.577067] softirqs last disabled at (431996): [<ffffffff9671159f>] inet6_fill_ifla6_attrs+0x3cf/0x430
-[  235.577068]
-[  235.577068] other info that might help us debug this:
-[  235.577069]  Possible unsafe locking scenario:
-[  235.577069]
-[  235.577070]        CPU0
-[  235.577070]        ----
-[  235.577071]   lock(&ab->base_lock);
-[  235.577072]   <Interrupt>
-[  235.577073]     lock(&ab->base_lock);
-[  235.577074]
-[  235.577074]  *** DEADLOCK ***
-[  235.577074]
-[  235.577075] 3 locks held by kworker/u16:1/98:
-[  235.577076]  #0: ffff9655f75b1d48 ((wq_completion)ath11k_qmi_driver_event){+.+.}-{0:0}, at: process_one_work+0x1d3/0x5d0
-[  235.577079]  #1: ffffa33cc02f3e70 ((work_completion)(&ab->qmi.event_work)){+.+.}-{0:0}, at: process_one_work+0x1d3/0x5d0
-[  235.577081]  #2: ffff9655f75cad50 (&ab->core_lock){+.+.}-{3:3}, at: ath11k_core_qmi_firmware_ready.part.0+0x4e/0x160 [ath11k]
-[  235.577087]
-[  235.577087] stack backtrace:
-[  235.577088] CPU: 3 PID: 98 Comm: kworker/u16:1 Not tainted 5.9.0-rc5-wt-ath+ #196
-[  235.577089] Hardware name: Intel(R) Client Systems NUC8i7HVK/NUC8i7HVB, BIOS HNKBLi70.86A.0049.2018.0801.1601 08/01/2018
-[  235.577095] Workqueue: ath11k_qmi_driver_event ath11k_qmi_driver_event_work [ath11k]
-[  235.577096] Call Trace:
-[  235.577100]  dump_stack+0x77/0xa0
-[  235.577102]  mark_lock_irq.cold+0x15/0x3c
-[  235.577104]  mark_lock+0x1d7/0x540
-[  235.577105]  mark_usage+0xc7/0x140
-[  235.577107]  __lock_acquire+0x219/0x6e0
-[  235.577108]  ? sched_clock_cpu+0xc/0xb0
-[  235.577110]  lock_acquire+0xb6/0x270
-[  235.577116]  ? ath11k_regd_update+0x28/0x1d0 [ath11k]
-[  235.577118]  ? atomic_notifier_chain_register+0x2d/0x40
-[  235.577120]  _raw_spin_lock+0x2c/0x70
-[  235.577125]  ? ath11k_regd_update+0x28/0x1d0 [ath11k]
-[  235.577130]  ath11k_regd_update+0x28/0x1d0 [ath11k]
-[  235.577136]  __ath11k_mac_register+0x3fb/0x480 [ath11k]
-[  235.577141]  ath11k_mac_register+0x119/0x180 [ath11k]
-[  235.577146]  ath11k_core_pdev_create+0x17/0xe0 [ath11k]
-[  235.577150]  ath11k_core_qmi_firmware_ready.part.0+0x65/0x160 [ath11k]
-[  235.577155]  ath11k_qmi_driver_event_work+0x1c5/0x230 [ath11k]
-[  235.577158]  process_one_work+0x265/0x5d0
-[  235.577160]  worker_thread+0x49/0x300
-[  235.577161]  ? process_one_work+0x5d0/0x5d0
-[  235.577163]  kthread+0x135/0x150
-[  235.577164]  ? kthread_create_worker_on_cpu+0x60/0x60
-[  235.577166]  ret_from_fork+0x22/0x30
+BUG: sleeping function called from invalid context at mm/slab.h:393
+
+[   59.805451] Call trace:
+[   59.807971]  ___might_sleep+0x110/0x118
+[   59.811915]  __might_sleep+0x50/0x84
+[   59.815593]  kmem_cache_alloc+0x60/0x3e0
+[   59.819630]  radix_tree_node_alloc+0x4c/0xe8
+[   59.824014]  radix_tree_extend+0x8c/0x164
+[   59.828135]  idr_get_free_cmn+0xa4/0x27c
+[   59.832167]  idr_alloc_cmn+0x70/0xe8
+[   59.835856]  ath11k_dp_rxbufs_replenish+0x1e8/0x310 [ath11k]
+[   59.841687]  ath11k_dp_rxdma_ring_buf_setup+0x50/0x60 [ath11k]
+[   59.847693]  ath11k_dp_rx_pdev_alloc+0x260/0x4d8 [ath11k]
+[   59.853248]  ath11k_dp_pdev_alloc+0x40/0xc4 [ath11k]
+[   59.858357]  ath11k_core_qmi_firmware_ready+0x3c4/0x490 [ath11k]
+[   59.864538]  ath11k_qmi_driver_event_work+0x4c8/0x1178 [ath11k]
+[   59.870620]  process_one_work+0x208/0x434
 
 Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
 
-Signed-off-by: Wen Gong <wgong@codeaurora.org>
+Signed-off-by: Govind Singh <govinds@codeaurora.org>
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/reg.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/net/wireless/ath/ath11k/dp.c    |  3 +--
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 28 +++++++++++++---------------
+ drivers/net/wireless/ath/ath11k/dp_rx.h |  6 ++----
+ 3 files changed, 16 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/reg.c b/drivers/net/wireless/ath/ath11k/reg.c
-index 0ba80e6f3979..f6a1f0352989 100644
---- a/drivers/net/wireless/ath/ath11k/reg.c
-+++ b/drivers/net/wireless/ath/ath11k/reg.c
-@@ -206,7 +206,7 @@ int ath11k_regd_update(struct ath11k *ar, bool init)
- 	ab = ar->ab;
- 	pdev_id = ar->pdev_idx;
+diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
+index 677e2d9fec11..29a614227658 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.c
++++ b/drivers/net/wireless/ath/ath11k/dp.c
+@@ -812,8 +812,7 @@ int ath11k_dp_service_srng(struct ath11k_base *ab,
+ 				struct dp_rxdma_ring *rx_ring = &dp->rx_refill_buf_ring;
  
--	spin_lock(&ab->base_lock);
-+	spin_lock_bh(&ab->base_lock);
+ 				ath11k_dp_rxbufs_replenish(ab, id, rx_ring, 0,
+-							   HAL_RX_BUF_RBM_SW3_BM,
+-							   GFP_ATOMIC);
++							   HAL_RX_BUF_RBM_SW3_BM);
+ 			}
+ 		}
+ 	}
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 96828af58d28..37668a2b42cf 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -266,8 +266,7 @@ static u32 ath11k_dp_rxdesc_get_ppduid(struct hal_rx_desc *rx_desc)
+ int ath11k_dp_rxbufs_replenish(struct ath11k_base *ab, int mac_id,
+ 			       struct dp_rxdma_ring *rx_ring,
+ 			       int req_entries,
+-			       enum hal_rx_buf_return_buf_manager mgr,
+-			       gfp_t gfp)
++			       enum hal_rx_buf_return_buf_manager mgr)
+ {
+ 	struct hal_srng *srng;
+ 	u32 *desc;
+@@ -314,7 +313,7 @@ int ath11k_dp_rxbufs_replenish(struct ath11k_base *ab, int mac_id,
  
- 	if (init) {
- 		/* Apply the regd received during init through
-@@ -227,7 +227,7 @@ int ath11k_regd_update(struct ath11k *ar, bool init)
+ 		spin_lock_bh(&rx_ring->idr_lock);
+ 		buf_id = idr_alloc(&rx_ring->bufs_idr, skb, 0,
+-				   rx_ring->bufs_max * 3, gfp);
++				   rx_ring->bufs_max * 3, GFP_ATOMIC);
+ 		spin_unlock_bh(&rx_ring->idr_lock);
+ 		if (buf_id < 0)
+ 			goto fail_dma_unmap;
+@@ -434,7 +433,7 @@ static int ath11k_dp_rxdma_ring_buf_setup(struct ath11k *ar,
  
- 	if (!regd) {
- 		ret = -EINVAL;
--		spin_unlock(&ab->base_lock);
-+		spin_unlock_bh(&ab->base_lock);
- 		goto err;
+ 	rx_ring->bufs_max = num_entries;
+ 	ath11k_dp_rxbufs_replenish(ar->ab, dp->mac_id, rx_ring, num_entries,
+-				   HAL_RX_BUF_RBM_SW3_BM, GFP_KERNEL);
++				   HAL_RX_BUF_RBM_SW3_BM);
+ 	return 0;
+ }
+ 
+@@ -2598,7 +2597,7 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int ring_id,
+ 		rx_ring = &ar->dp.rx_refill_buf_ring;
+ 
+ 		ath11k_dp_rxbufs_replenish(ab, i, rx_ring, num_buffs_reaped[i],
+-					   HAL_RX_BUF_RBM_SW3_BM, GFP_ATOMIC);
++					   HAL_RX_BUF_RBM_SW3_BM);
  	}
  
-@@ -238,7 +238,7 @@ int ath11k_regd_update(struct ath11k *ar, bool init)
- 	if (regd_copy)
- 		ath11k_copy_regd(regd, regd_copy);
+ 	ath11k_dp_rx_process_received_packets(ab, napi, &msdu_list,
+@@ -2680,7 +2679,7 @@ static void ath11k_dp_rx_update_peer_stats(struct ath11k_sta *arsta,
  
--	spin_unlock(&ab->base_lock);
-+	spin_unlock_bh(&ab->base_lock);
+ static struct sk_buff *ath11k_dp_rx_alloc_mon_status_buf(struct ath11k_base *ab,
+ 							 struct dp_rxdma_ring *rx_ring,
+-							 int *buf_id, gfp_t gfp)
++							 int *buf_id)
+ {
+ 	struct sk_buff *skb;
+ 	dma_addr_t paddr;
+@@ -2705,7 +2704,7 @@ static struct sk_buff *ath11k_dp_rx_alloc_mon_status_buf(struct ath11k_base *ab,
  
- 	if (!regd_copy) {
- 		ret = -ENOMEM;
+ 	spin_lock_bh(&rx_ring->idr_lock);
+ 	*buf_id = idr_alloc(&rx_ring->bufs_idr, skb, 0,
+-			    rx_ring->bufs_max, gfp);
++			    rx_ring->bufs_max, GFP_ATOMIC);
+ 	spin_unlock_bh(&rx_ring->idr_lock);
+ 	if (*buf_id < 0)
+ 		goto fail_dma_unmap;
+@@ -2725,8 +2724,7 @@ static struct sk_buff *ath11k_dp_rx_alloc_mon_status_buf(struct ath11k_base *ab,
+ int ath11k_dp_rx_mon_status_bufs_replenish(struct ath11k_base *ab, int mac_id,
+ 					   struct dp_rxdma_ring *rx_ring,
+ 					   int req_entries,
+-					   enum hal_rx_buf_return_buf_manager mgr,
+-					   gfp_t gfp)
++					   enum hal_rx_buf_return_buf_manager mgr)
+ {
+ 	struct hal_srng *srng;
+ 	u32 *desc;
+@@ -2752,7 +2750,7 @@ int ath11k_dp_rx_mon_status_bufs_replenish(struct ath11k_base *ab, int mac_id,
+ 
+ 	while (num_remain > 0) {
+ 		skb = ath11k_dp_rx_alloc_mon_status_buf(ab, rx_ring,
+-							&buf_id, gfp);
++							&buf_id);
+ 		if (!skb)
+ 			break;
+ 		paddr = ATH11K_SKB_RXCB(skb)->paddr;
+@@ -2863,7 +2861,7 @@ static int ath11k_dp_rx_reap_mon_status_ring(struct ath11k_base *ab, int mac_id,
+ 		}
+ move_next:
+ 		skb = ath11k_dp_rx_alloc_mon_status_buf(ab, rx_ring,
+-							&buf_id, GFP_ATOMIC);
++							&buf_id);
+ 
+ 		if (!skb) {
+ 			ath11k_hal_rx_buf_addr_info_set(rx_mon_status_desc, 0, 0,
+@@ -3676,7 +3674,7 @@ int ath11k_dp_process_rx_err(struct ath11k_base *ab, struct napi_struct *napi,
+ 		rx_ring = &ar->dp.rx_refill_buf_ring;
+ 
+ 		ath11k_dp_rxbufs_replenish(ab, i, rx_ring, n_bufs_reaped[i],
+-					   HAL_RX_BUF_RBM_SW3_BM, GFP_ATOMIC);
++					   HAL_RX_BUF_RBM_SW3_BM);
+ 	}
+ 
+ 	return tot_n_bufs_reaped;
+@@ -3972,7 +3970,7 @@ int ath11k_dp_rx_process_wbm_err(struct ath11k_base *ab,
+ 		rx_ring = &ar->dp.rx_refill_buf_ring;
+ 
+ 		ath11k_dp_rxbufs_replenish(ab, i, rx_ring, num_buffs_reaped[i],
+-					   HAL_RX_BUF_RBM_SW3_BM, GFP_ATOMIC);
++					   HAL_RX_BUF_RBM_SW3_BM);
+ 	}
+ 
+ 	rcu_read_lock();
+@@ -4081,7 +4079,7 @@ int ath11k_dp_process_rxdma_err(struct ath11k_base *ab, int mac_id, int budget)
+ 
+ 	if (num_buf_freed)
+ 		ath11k_dp_rxbufs_replenish(ab, mac_id, rx_ring, num_buf_freed,
+-					   HAL_RX_BUF_RBM_SW3_BM, GFP_ATOMIC);
++					   HAL_RX_BUF_RBM_SW3_BM);
+ 
+ 	return budget - quota;
+ }
+@@ -4844,7 +4842,7 @@ static void ath11k_dp_rx_mon_dest_process(struct ath11k *ar, u32 quota,
+ 		ath11k_dp_rxbufs_replenish(ar->ab, dp->mac_id,
+ 					   &dp->rxdma_mon_buf_ring,
+ 					   rx_bufs_used,
+-					   HAL_RX_BUF_RBM_SW3_BM, GFP_ATOMIC);
++					   HAL_RX_BUF_RBM_SW3_BM);
+ 	}
+ }
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.h b/drivers/net/wireless/ath/ath11k/dp_rx.h
+index 88bbcae14e34..fbea45f79c9b 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.h
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.h
+@@ -74,8 +74,7 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int mac_id,
+ int ath11k_dp_rxbufs_replenish(struct ath11k_base *ab, int mac_id,
+ 			       struct dp_rxdma_ring *rx_ring,
+ 			       int req_entries,
+-			       enum hal_rx_buf_return_buf_manager mgr,
+-			       gfp_t gfp);
++			       enum hal_rx_buf_return_buf_manager mgr);
+ int ath11k_dp_htt_tlv_iter(struct ath11k_base *ab, const void *ptr, size_t len,
+ 			   int (*iter)(struct ath11k_base *ar, u16 tag, u16 len,
+ 				       const void *ptr, void *data),
+@@ -87,8 +86,7 @@ int ath11k_dp_rx_process_mon_status(struct ath11k_base *ab, int mac_id,
+ int ath11k_dp_rx_mon_status_bufs_replenish(struct ath11k_base *ab, int mac_id,
+ 					   struct dp_rxdma_ring *rx_ring,
+ 					   int req_entries,
+-					   enum hal_rx_buf_return_buf_manager mgr,
+-					   gfp_t gfp);
++					   enum hal_rx_buf_return_buf_manager mgr);
+ int ath11k_dp_rx_pdev_mon_detach(struct ath11k *ar);
+ int ath11k_dp_rx_pdev_mon_attach(struct ath11k *ar);
+ int ath11k_peer_rx_frag_setup(struct ath11k *ar, const u8 *peer_mac, int vdev_id);
 -- 
 2.7.4
 
