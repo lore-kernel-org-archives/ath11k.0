@@ -1,12 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from z5.mailgun.us ([104.130.96.5])
+Received: from m42-4.mailgun.net ([69.72.42.4])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kNBGx-0001Ln-Nr
- for ath11k@lists.infradead.org; Tue, 29 Sep 2020 08:46:12 +0000
+ id 1kNBL2-0002Gr-Eo
+ for ath11k@lists.infradead.org; Tue, 29 Sep 2020 08:50:21 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH] ath11k: mac: fix parenthesis alignment
-Date: Tue, 29 Sep 2020 11:46:00 +0300
-Message-Id: <1601369160-1252-1-git-send-email-kvalo@codeaurora.org>
+Subject: Re: [PATCH] ath11k: remove auto_start from channel config struct
+References: <20200928101420.18745-1-manivannan.sadhasivam@linaro.org>
+Date: Tue, 29 Sep 2020 11:50:12 +0300
+In-Reply-To: <20200928101420.18745-1-manivannan.sadhasivam@linaro.org>
+ (Manivannan Sadhasivam's message of "Mon, 28 Sep 2020 15:44:20 +0530")
+Message-ID: <87k0wddl17.fsf@codeaurora.org>
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -15,42 +19,31 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: sfr@canb.auug.org.au, govinds@codeaurora.org, netdev@vger.kernel.org, linux-kernel@vger.kernel.org, ath11k@lists.infradead.org, davem@davemloft.net
 
-Commit 6aea26ce5a4c ("mac80211: rework tx encapsulation offload API")
-introduced a new checkpatch warning:
+Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> writes:
 
-drivers/net/wireless/ath/ath11k/mac.c:4354: Alignment should match open parenthesis
+> Recent change in MHI bus removed the option to auto start the channels
+> during MHI driver probe. The channel will only be started when the MHI
+> client driver like QRTR gets probed. So, remove the option from ath11k
+> channel config struct.
+>
+> Fixes: 1399fb87ea3e ("ath11k: register MHI controller device for QCA6390")
+> Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-Fix that.
+In the future please cc linux-wireless so that patchwork sees the patch.
+I'll resend this as v2 and add the cc.
 
-Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/mac.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index e0cac9b61af8..2d8994463b18 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -4351,7 +4351,7 @@ static int ath11k_set_he_mu_sounding_mode(struct ath11k *ar,
- }
- 
- static void ath11k_mac_op_update_vif_offload(struct ieee80211_hw *hw,
--					    struct ieee80211_vif *vif)
-+					     struct ieee80211_vif *vif)
- {
- 	struct ath11k *ar = hw->priv;
- 	struct ath11k_base *ab = ar->ab;
 -- 
-2.7.4
+https://patchwork.kernel.org/project/linux-wireless/list/
 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
