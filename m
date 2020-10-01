@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from m42-4.mailgun.net ([69.72.42.4])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kNuzM-00069H-J4
- for ath11k@lists.infradead.org; Thu, 01 Oct 2020 09:35:02 +0000
+ id 1kNuzP-00069H-0C
+ for ath11k@lists.infradead.org; Thu, 01 Oct 2020 09:35:04 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 2/8] ath11k: enable shadow register configuration and access
-Date: Thu,  1 Oct 2020 12:34:44 +0300
-Message-Id: <1601544890-13450-3-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH 5/8] ath11k: start a timer to update REO cmd ring
+Date: Thu,  1 Oct 2020 12:34:47 +0300
+Message-Id: <1601544890-13450-6-git-send-email-kvalo@codeaurora.org>
 In-Reply-To: <1601544890-13450-1-git-send-email-kvalo@codeaurora.org>
 References: <1601544890-13450-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -27,391 +27,75 @@ Cc: linux-wireless@vger.kernel.org
 
 From: Carl Huang <cjhuang@codeaurora.org>
 
-To enable shadow register access, host needs to pass shadow
-register configuration to firmware via qmi message. Host also
-needs to update ring's HP or TP address to shadow register
-address. The write operation to shadow register will be
-forwarded to target register by hardware automatically, and
-the write operation to shadow register is permitted even
-when the target is in power save or sleep mode.
-
-Update the shadow config whenever power up happens.
-
-This feature is controlled by hw parameter supports_shadow_regs which is only
-enabled for QCA6390.
+Start a timer to update REO HP if HP isn't updated to target.
 
 Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
 
 Signed-off-by: Carl Huang <cjhuang@codeaurora.org>
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/ce.c   |  46 +++++++++++++
- drivers/net/wireless/ath/ath11k/ce.h   |   2 +
- drivers/net/wireless/ath/ath11k/core.c |   4 ++
- drivers/net/wireless/ath/ath11k/hal.c  | 114 ++++++++++++++++++++++++++++++++-
- drivers/net/wireless/ath/ath11k/hal.h  |  17 +++--
- drivers/net/wireless/ath/ath11k/hw.h   |   1 +
- drivers/net/wireless/ath/ath11k/pci.c  |   3 +
- drivers/net/wireless/ath/ath11k/qmi.c  |  13 +++-
- drivers/net/wireless/ath/ath11k/qmi.h  |   2 +-
- 9 files changed, 194 insertions(+), 8 deletions(-)
+ drivers/net/wireless/ath/ath11k/dp.c     | 6 ++++++
+ drivers/net/wireless/ath/ath11k/dp.h     | 2 ++
+ drivers/net/wireless/ath/ath11k/hal_rx.c | 2 ++
+ 3 files changed, 10 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/ce.c b/drivers/net/wireless/ath/ath11k/ce.c
-index b2da1f937478..caa356dde880 100644
---- a/drivers/net/wireless/ath/ath11k/ce.c
-+++ b/drivers/net/wireless/ath/ath11k/ce.c
-@@ -713,6 +713,49 @@ static void ath11k_ce_rx_pipe_cleanup(struct ath11k_ce_pipe *pipe)
- 	}
+diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
+index 868bfa00c8b1..59dd185a0cfc 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.c
++++ b/drivers/net/wireless/ath/ath11k/dp.c
+@@ -313,6 +313,8 @@ static void ath11k_dp_stop_shadow_timers(struct ath11k_base *ab)
+ 
+ 	for (i = 0; i < DP_TCL_NUM_RING_MAX; i++)
+ 		ath11k_dp_shadow_stop_timer(ab, &ab->dp.tx_ring_timer[i]);
++
++	ath11k_dp_shadow_stop_timer(ab, &ab->dp.reo_cmd_timer);
  }
  
-+static void ath11k_ce_shadow_config(struct ath11k_base *ab)
-+{
-+	int i;
-+
-+	for (i = 0; i < ab->hw_params.ce_count; i++) {
-+		if (ab->hw_params.host_ce_config[i].src_nentries)
-+			ath11k_hal_srng_update_shadow_config(ab,
-+							     HAL_CE_SRC, i);
-+
-+		if (ab->hw_params.host_ce_config[i].dest_nentries) {
-+			ath11k_hal_srng_update_shadow_config(ab,
-+							     HAL_CE_DST, i);
-+
-+			ath11k_hal_srng_update_shadow_config(ab,
-+							     HAL_CE_DST_STATUS, i);
-+		}
-+	}
-+}
-+
-+void ath11k_ce_get_shadow_config(struct ath11k_base *ab,
-+				 u32 **shadow_cfg, u32 *shadow_cfg_len)
-+{
-+	if (!ab->hw_params.supports_shadow_regs)
-+		return;
-+
-+	ath11k_hal_srng_get_shadow_config(ab, shadow_cfg, shadow_cfg_len);
-+
-+	/* shadow is already configured */
-+	if (*shadow_cfg_len)
-+		return;
-+
-+	/* shadow isn't configured yet, configure now.
-+	 * non-CE srngs are configured firstly, then
-+	 * all CE srngs.
-+	 */
-+	ath11k_hal_srng_shadow_config(ab);
-+	ath11k_ce_shadow_config(ab);
-+
-+	/* get the shadow configuration */
-+	ath11k_hal_srng_get_shadow_config(ab, shadow_cfg, shadow_cfg_len);
-+}
-+EXPORT_SYMBOL(ath11k_ce_get_shadow_config);
-+
- void ath11k_ce_cleanup_pipes(struct ath11k_base *ab)
- {
- 	struct ath11k_ce_pipe *pipe;
-@@ -767,6 +810,9 @@ int ath11k_ce_init_pipes(struct ath11k_base *ab)
- 	int i;
- 	int ret;
+ static void ath11k_dp_srng_common_cleanup(struct ath11k_base *ab)
+@@ -425,6 +427,10 @@ static int ath11k_dp_srng_common_setup(struct ath11k_base *ab)
+ 	srng = &ab->hal.srng_list[dp->reo_cmd_ring.ring_id];
+ 	ath11k_hal_reo_init_cmd_ring(ab, srng);
  
-+	ath11k_ce_get_shadow_config(ab, &ab->qmi.ce_cfg.shadow_reg_v2,
-+				    &ab->qmi.ce_cfg.shadow_reg_v2_len);
++	ath11k_dp_shadow_init_timer(ab, &dp->reo_cmd_timer,
++				    ATH11K_SHADOW_CTRL_TIMER_INTERVAL,
++				    dp->reo_cmd_ring.ring_id);
 +
- 	for (i = 0; i < ab->hw_params.ce_count; i++) {
- 		pipe = &ab->ce.ce_pipe[i];
+ 	ret = ath11k_dp_srng_setup(ab, &dp->reo_status_ring, HAL_REO_STATUS,
+ 				   0, 0, DP_REO_STATUS_RING_SIZE);
+ 	if (ret) {
+diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
+index 43fa229ccccd..ee8db812589b 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.h
++++ b/drivers/net/wireless/ath/ath11k/dp.h
+@@ -207,6 +207,7 @@ struct ath11k_pdev_dp {
+ #define DP_TX_DESC_ID_POOL_ID GENMASK(20, 19)
  
-diff --git a/drivers/net/wireless/ath/ath11k/ce.h b/drivers/net/wireless/ath/ath11k/ce.h
-index cf704f18f3a1..26ef65e2528e 100644
---- a/drivers/net/wireless/ath/ath11k/ce.h
-+++ b/drivers/net/wireless/ath/ath11k/ce.h
-@@ -187,4 +187,6 @@ void ath11k_ce_poll_send_completed(struct ath11k_base *ab, u8 pipe_id);
- int ath11k_ce_map_service_to_pipe(struct ath11k_base *ab, u16 service_id,
- 				  u8 *ul_pipe, u8 *dl_pipe);
- int ath11k_ce_attr_attach(struct ath11k_base *ab);
-+void ath11k_ce_get_shadow_config(struct ath11k_base *ab,
-+				 u32 **shadow_cfg, u32 *shadow_cfg_len);
- #endif
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 951dca1b66b4..e94d760b21a0 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -63,6 +63,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 					BIT(NL80211_IFTYPE_AP) |
- 					BIT(NL80211_IFTYPE_MESH_POINT),
- 		.supports_monitor = true,
-+		.supports_shadow_regs = false,
- 	},
- 	{
- 		.hw_rev = ATH11K_HW_IPQ6018_HW10,
-@@ -98,6 +99,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 					BIT(NL80211_IFTYPE_AP) |
- 					BIT(NL80211_IFTYPE_MESH_POINT),
- 		.supports_monitor = true,
-+		.supports_shadow_regs = false,
- 	},
- 	{
- 		.name = "qca6390 hw2.0",
-@@ -132,6 +134,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.interface_modes = BIT(NL80211_IFTYPE_STATION) |
- 					BIT(NL80211_IFTYPE_AP),
- 		.supports_monitor = false,
-+		.supports_shadow_regs = true,
- 	},
+ #define ATH11K_SHADOW_DP_TIMER_INTERVAL 20
++#define ATH11K_SHADOW_CTRL_TIMER_INTERVAL 10
+ 
+ struct ath11k_hp_update_timer {
+ 	struct timer_list timer;
+@@ -248,6 +249,7 @@ struct ath11k_dp {
+ 	 * - reo_cmd_cache_flush_count
+ 	 */
+ 	spinlock_t reo_cmd_lock;
++	struct ath11k_hp_update_timer reo_cmd_timer;
+ 	struct ath11k_hp_update_timer tx_ring_timer[DP_TCL_NUM_RING_MAX];
  };
  
-@@ -412,6 +415,7 @@ static void ath11k_core_stop(struct ath11k_base *ab)
- {
- 	if (!test_bit(ATH11K_FLAG_CRASH_FLUSH, &ab->dev_flags))
- 		ath11k_qmi_firmware_stop(ab);
-+
- 	ath11k_hif_stop(ab);
- 	ath11k_wmi_detach(ab);
- 	ath11k_dp_pdev_reo_cleanup(ab);
-diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
-index a23e87910056..d58dfdfe7860 100644
---- a/drivers/net/wireless/ath/ath11k/hal.c
-+++ b/drivers/net/wireless/ath/ath11k/hal.c
-@@ -1020,8 +1020,16 @@ int ath11k_hal_srng_setup(struct ath11k_base *ab, enum hal_ring_type type,
- 						   lmac_idx);
- 			srng->flags |= HAL_SRNG_FLAGS_LMAC_RING;
- 		} else {
--			srng->u.src_ring.hp_addr =
-+			if (!ab->hw_params.supports_shadow_regs)
-+				srng->u.src_ring.hp_addr =
- 				(u32 *)((unsigned long)ab->mem + reg_base);
-+			else
-+				ath11k_dbg(ab, ATH11k_DBG_HAL,
-+					   "hal type %d ring_num %d reg_base 0x%x shadow 0x%lx\n",
-+					   type, ring_num,
-+					   reg_base,
-+					   (unsigned long)srng->u.src_ring.hp_addr -
-+					   (unsigned long)ab->mem);
- 		}
- 	} else {
- 		/* During initialization loop count in all the descriptors
-@@ -1045,9 +1053,18 @@ int ath11k_hal_srng_setup(struct ath11k_base *ab, enum hal_ring_type type,
- 						   lmac_idx);
- 			srng->flags |= HAL_SRNG_FLAGS_LMAC_RING;
- 		} else {
--			srng->u.dst_ring.tp_addr =
-+			if (!ab->hw_params.supports_shadow_regs)
-+				srng->u.dst_ring.tp_addr =
- 				(u32 *)((unsigned long)ab->mem + reg_base +
- 					(HAL_REO1_RING_TP(ab) - HAL_REO1_RING_HP(ab)));
-+			else
-+				ath11k_dbg(ab, ATH11k_DBG_HAL,
-+					   "type %d ring_num %d target_reg 0x%x shadow 0x%lx\n",
-+					   type, ring_num,
-+					   reg_base + (HAL_REO1_RING_TP(ab) -
-+						       HAL_REO1_RING_HP(ab)),
-+					   (unsigned long)srng->u.dst_ring.tp_addr -
-+					   (unsigned long)ab->mem);
- 		}
+diff --git a/drivers/net/wireless/ath/ath11k/hal_rx.c b/drivers/net/wireless/ath/ath11k/hal_rx.c
+index b0d6ece145be..fac2396edf32 100644
+--- a/drivers/net/wireless/ath/ath11k/hal_rx.c
++++ b/drivers/net/wireless/ath/ath11k/hal_rx.c
+@@ -256,6 +256,8 @@ int ath11k_hal_reo_cmd_send(struct ath11k_base *ab, struct hal_srng *srng,
+ 		break;
  	}
  
-@@ -1064,6 +1081,99 @@ int ath11k_hal_srng_setup(struct ath11k_base *ab, enum hal_ring_type type,
- 	return ring_id;
- }
- 
-+static void ath11k_hal_srng_update_hp_tp_addr(struct ath11k_base *ab,
-+					      int shadow_cfg_idx,
-+					  enum hal_ring_type ring_type,
-+					  int ring_num)
-+{
-+	struct hal_srng *srng;
-+	struct ath11k_hal *hal = &ab->hal;
-+	int ring_id;
-+	struct hal_srng_config *srng_config = &hal->srng_config[ring_type];
++	ath11k_dp_shadow_start_timer(ab, srng, &ab->dp.reo_cmd_timer);
 +
-+	ring_id = ath11k_hal_srng_get_ring_id(ab, ring_type, ring_num, 0);
-+	if (ring_id < 0)
-+		return;
-+
-+	srng = &hal->srng_list[ring_id];
-+
-+	if (srng_config->ring_dir == HAL_SRNG_DIR_DST)
-+		srng->u.dst_ring.tp_addr = (u32 *)(HAL_SHADOW_REG(shadow_cfg_idx) +
-+						   (unsigned long)ab->mem);
-+	else
-+		srng->u.src_ring.hp_addr = (u32 *)(HAL_SHADOW_REG(shadow_cfg_idx) +
-+						   (unsigned long)ab->mem);
-+}
-+
-+int ath11k_hal_srng_update_shadow_config(struct ath11k_base *ab,
-+					 enum hal_ring_type ring_type,
-+					 int ring_num)
-+{
-+	struct ath11k_hal *hal = &ab->hal;
-+	struct hal_srng_config *srng_config = &hal->srng_config[ring_type];
-+	int shadow_cfg_idx = hal->num_shadow_reg_configured;
-+	u32 target_reg;
-+
-+	if (shadow_cfg_idx >= HAL_SHADOW_NUM_REGS)
-+		return -EINVAL;
-+
-+	hal->num_shadow_reg_configured++;
-+
-+	target_reg = srng_config->reg_start[HAL_HP_OFFSET_IN_REG_START];
-+	target_reg += srng_config->reg_size[HAL_HP_OFFSET_IN_REG_START] *
-+		ring_num;
-+
-+	/* For destination ring, shadow the TP */
-+	if (srng_config->ring_dir == HAL_SRNG_DIR_DST)
-+		target_reg += HAL_OFFSET_FROM_HP_TO_TP;
-+
-+	hal->shadow_reg_addr[shadow_cfg_idx] = target_reg;
-+
-+	/* update hp/tp addr to hal structure*/
-+	ath11k_hal_srng_update_hp_tp_addr(ab, shadow_cfg_idx, ring_type,
-+					  ring_num);
-+
-+	ath11k_dbg(ab, ATH11k_DBG_HAL,
-+		   "target_reg %x, shadow reg 0x%x shadow_idx 0x%x, ring_type %d, ring num %d",
-+		  target_reg,
-+		  HAL_SHADOW_REG(shadow_cfg_idx),
-+		  shadow_cfg_idx,
-+		  ring_type, ring_num);
-+
-+	return 0;
-+}
-+
-+void ath11k_hal_srng_shadow_config(struct ath11k_base *ab)
-+{
-+	struct ath11k_hal *hal = &ab->hal;
-+	int ring_type, ring_num;
-+
-+	/* update all the non-CE srngs. */
-+	for (ring_type = 0; ring_type < HAL_MAX_RING_TYPES; ring_type++) {
-+		struct hal_srng_config *srng_config = &hal->srng_config[ring_type];
-+
-+		if (ring_type == HAL_CE_SRC ||
-+		    ring_type == HAL_CE_DST ||
-+			ring_type == HAL_CE_DST_STATUS)
-+			continue;
-+
-+		if (srng_config->lmac_ring)
-+			continue;
-+
-+		for (ring_num = 0; ring_num < srng_config->max_rings; ring_num++)
-+			ath11k_hal_srng_update_shadow_config(ab, ring_type, ring_num);
-+	}
-+}
-+
-+void ath11k_hal_srng_get_shadow_config(struct ath11k_base *ab,
-+				       u32 **cfg, u32 *len)
-+{
-+	struct ath11k_hal *hal = &ab->hal;
-+
-+	*len = hal->num_shadow_reg_configured;
-+	*cfg = hal->shadow_reg_addr;
-+}
-+
- static int ath11k_hal_srng_create_config(struct ath11k_base *ab)
- {
- 	struct ath11k_hal *hal = &ab->hal;
-diff --git a/drivers/net/wireless/ath/ath11k/hal.h b/drivers/net/wireless/ath/ath11k/hal.h
-index 85192d170b6b..fe2448b52a7d 100644
---- a/drivers/net/wireless/ath/ath11k/hal.h
-+++ b/drivers/net/wireless/ath/ath11k/hal.h
-@@ -31,8 +31,12 @@ struct ath11k_base;
- #define HAL_DSCP_TID_TBL_SIZE			24
- 
- /* calculate the register address from bar0 of shadow register x */
--#define SHADOW_BASE_ADDRESS			0x00003024
--#define SHADOW_NUM_REGISTERS				36
-+#define HAL_SHADOW_BASE_ADDR			0x000008fc
-+#define HAL_SHADOW_NUM_REGS			36
-+#define HAL_HP_OFFSET_IN_REG_START		1
-+#define HAL_OFFSET_FROM_HP_TO_TP		4
-+
-+#define HAL_SHADOW_REG(x) (HAL_SHADOW_BASE_ADDR + (4 * (x)))
- 
- /* WCSS Relative address */
- #define HAL_SEQ_WCSS_UMAC_REO_REG		0x00a38000
-@@ -882,7 +886,7 @@ struct ath11k_hal {
- 	u8 current_blk_index;
- 
- 	/* shadow register configuration */
--	u32 shadow_reg_addr[SHADOW_NUM_REGISTERS];
-+	u32 shadow_reg_addr[HAL_SHADOW_NUM_REGS];
- 	int num_shadow_reg_configured;
- };
- 
-@@ -935,5 +939,10 @@ int ath11k_hal_srng_setup(struct ath11k_base *ab, enum hal_ring_type type,
- int ath11k_hal_srng_init(struct ath11k_base *ath11k);
- void ath11k_hal_srng_deinit(struct ath11k_base *ath11k);
- void ath11k_hal_dump_srng_stats(struct ath11k_base *ab);
--
-+void ath11k_hal_srng_get_shadow_config(struct ath11k_base *ab,
-+				       u32 **cfg, u32 *len);
-+int ath11k_hal_srng_update_shadow_config(struct ath11k_base *ab,
-+					 enum hal_ring_type ring_type,
-+					int ring_num);
-+void ath11k_hal_srng_shadow_config(struct ath11k_base *ab);
- #endif
-diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
-index a281ad3bdf04..8e908bcd491e 100644
---- a/drivers/net/wireless/ath/ath11k/hw.h
-+++ b/drivers/net/wireless/ath/ath11k/hw.h
-@@ -159,6 +159,7 @@ struct ath11k_hw_params {
- 
- 	u16 interface_modes;
- 	bool supports_monitor;
-+	bool supports_shadow_regs;
- };
- 
- struct ath11k_hw_ops {
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index e72dca4fa577..d7eb6b7160bb 100644
---- a/drivers/net/wireless/ath/ath11k/pci.c
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -614,6 +614,9 @@ static void ath11k_pci_init_qmi_ce_config(struct ath11k_base *ab)
- 	cfg->svc_to_ce_map = ab->hw_params.svc_to_ce_map;
- 	cfg->svc_to_ce_map_len = ab->hw_params.svc_to_ce_map_len;
- 	ab->qmi.service_ins_id = ATH11K_QMI_WLFW_SERVICE_INS_ID_V01_QCA6390;
-+
-+	ath11k_ce_get_shadow_config(ab, &cfg->shadow_reg_v2,
-+				    &cfg->shadow_reg_v2_len);
- }
- 
- static void ath11k_pci_ce_irqs_enable(struct ath11k_base *ab)
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index 9144f28b37d1..c2b165158225 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.c
-+++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -2275,7 +2275,18 @@ static int ath11k_qmi_wlanfw_wlan_cfg_send(struct ath11k_base *ab)
- 		req->svc_cfg[pipe_num].pipe_num = svc_cfg[pipe_num].pipenum;
- 	}
- 	req->shadow_reg_valid = 0;
--	req->shadow_reg_v2_valid = 0;
-+
-+	/* set shadow v2 configuration */
-+	if (ab->hw_params.supports_shadow_regs) {
-+		req->shadow_reg_v2_valid = 1;
-+		req->shadow_reg_v2_len = min_t(u32,
-+					       ab->qmi.ce_cfg.shadow_reg_v2_len,
-+					       QMI_WLANFW_MAX_NUM_SHADOW_REG_V2_V01);
-+		memcpy(&req->shadow_reg_v2, ab->qmi.ce_cfg.shadow_reg_v2,
-+		       sizeof(u32) * req->shadow_reg_v2_len);
-+	} else {
-+		req->shadow_reg_v2_valid = 0;
-+	}
- 
- 	ret = qmi_txn_init(&ab->qmi.handle, &txn,
- 			   qmi_wlanfw_wlan_cfg_resp_msg_v01_ei, &resp);
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.h b/drivers/net/wireless/ath/ath11k/qmi.h
-index 60e904683165..b0a818f0401b 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.h
-+++ b/drivers/net/wireless/ath/ath11k/qmi.h
-@@ -77,7 +77,7 @@ struct ath11k_qmi_ce_cfg {
- 	int svc_to_ce_map_len;
- 	const u8 *shadow_reg;
- 	int shadow_reg_len;
--	u8 *shadow_reg_v2;
-+	u32 *shadow_reg_v2;
- 	int shadow_reg_v2_len;
- };
- 
+ out:
+ 	ath11k_hal_srng_access_end(ab, srng);
+ 	spin_unlock_bh(&srng->lock);
 -- 
 2.7.4
 
