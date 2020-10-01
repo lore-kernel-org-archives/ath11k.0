@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from m42-4.mailgun.net ([69.72.42.4])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kO4Io-00043O-MB
- for ath11k@lists.infradead.org; Thu, 01 Oct 2020 19:31:46 +0000
+ id 1kO4Jj-00043O-5q
+ for ath11k@lists.infradead.org; Thu, 01 Oct 2020 19:32:42 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH 1/8] ath11k: support loading ELF board files
+Subject: Re: [PATCH 1/5] ath11k: add packet log support for QCA6390
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1601399736-3210-2-git-send-email-kvalo@codeaurora.org>
-References: <1601399736-3210-2-git-send-email-kvalo@codeaurora.org>
-Message-Id: <20201001193141.39C41C433CB@smtp.codeaurora.org>
-Date: Thu,  1 Oct 2020 19:31:41 +0000 (UTC)
+In-Reply-To: <1601463073-12106-2-git-send-email-kvalo@codeaurora.org>
+References: <1601463073-12106-2-git-send-email-kvalo@codeaurora.org>
+Message-Id: <20201001193238.3C384C433FE@smtp.codeaurora.org>
+Date: Thu,  1 Oct 2020 19:32:38 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -27,30 +27,38 @@ Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
 Kalle Valo <kvalo@codeaurora.org> wrote:
 
-> The QCA6390 board I have, model 8291M-PR comes with an ELF board file.  To get
-> this to at least somewhat work, I renamed bdwlan.e04 to 'board.bin' and then
-> added this patch to check for ELF magic string in the beginning of the file.
-> If that is found, use type ELF.  After this the driver loads.
+> Add packet log support for QCA6390, otherwise the data connection will stall
+> within a minute or so.  Enable it via debugfs and use trace-cmd to capture the
+> pktlogs.
+> 
+> echo 0xffff 1 > /sys/kernel/debug/ath11k/qca6390\ hw2.0/mac0/pktlog_filter
+> 
+> The mon status ring doesn't support interrupt so far, so host starts
+> a timer to reap this ring. The timer handler also reaps the
+> rxdma_err_dst_ring in case of monitor mode.
+> 
+> As QCA6390 requires bss created ahead of starting vdev, so check
+> vdev_start_delay for monitor mode.
+> 
+> For QCA6390, it uses wbm_desc_rel_ring to return descriptors.
+> It also uses rx_refill_buf_ring to fill mon buffer instead of
+> rxdma_mon_buf_ring.
 > 
 > Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
 > 
-> Signed-off-by: Ben Greear <greearb@candelatech.com>
-> [kvalo@codeaurora.org: use elf.h, minor cleanup]
+> Signed-off-by: Carl Huang <cjhuang@codeaurora.org>
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-8 patches applied to ath-next branch of ath.git, thanks.
+5 patches applied to ath-next branch of ath.git, thanks.
 
-616c16a4b26a ath11k: support loading ELF board files
-b09199248905 ath11k: fix AP mode for QCA6390
-2626c269702e ath11k: add interface_modes to hw_params
-18ac1665e785 ath11k: pci: check TCSR_SOC_HW_VERSION
-3f6e6c3291ed ath11k: disable monitor mode on QCA6390
-df648808c6b9 ath11k: change to disable softirqs for ath11k_regd_update to solve deadlock
-6a8be1baa911 ath11k: Use GFP_ATOMIC instead of GFP_KERNEL in ath11k_dp_htt_get_ppdu_desc
-87e8497a7d46 ath11k: Use GFP_ATOMIC instead of GFP_KERNEL in idr_alloc
+701e48a43e15 ath11k: add packet log support for QCA6390
+6fbd8898b301 ath11k: pci: fix rmmod crash
+7fd85517c359 ath11k: mac: remove unused conf_mutex to solve a deadlock
+2f588660e34a ath11k: fix warning caused by lockdep_assert_held
+089ba909f8d7 ath11k: debugfs: fix crash during rmmod
 
 -- 
-https://patchwork.kernel.org/patch/11806385/
+https://patchwork.kernel.org/patch/11808825/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
