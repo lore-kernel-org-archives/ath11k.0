@@ -1,14 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from z5.mailgun.us ([104.130.96.5])
+Received: from m42-4.mailgun.net ([69.72.42.4])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kNuzV-0006Bi-2r
- for ath11k@lists.infradead.org; Thu, 01 Oct 2020 09:35:09 +0000
+ id 1kNuzV-00069H-Kx
+ for ath11k@lists.infradead.org; Thu, 01 Oct 2020 09:35:15 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 8/8] ath11k: remove unnecessary casts to u32
-Date: Thu,  1 Oct 2020 12:34:50 +0300
-Message-Id: <1601544890-13450-9-git-send-email-kvalo@codeaurora.org>
-In-Reply-To: <1601544890-13450-1-git-send-email-kvalo@codeaurora.org>
-References: <1601544890-13450-1-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH 0/8] ath11k: enable shadow register for QCA6390
+Date: Thu,  1 Oct 2020 12:34:42 +0300
+Message-Id: <1601544890-13450-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -25,55 +23,46 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: linux-wireless@vger.kernel.org
 
-These casts are not needed. No changes in functionality.
+Enable the shadow register feature for QCA6390, so that it can enter idle power
+save mode. Shadow registers can be accessed regardless target's power state,
+and hardware will forward the value to target register automatically.
 
-Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
+Also implement a workaround to fix a shadow register deficit.
 
-Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/hal.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+This depends on patchset: ath11k: qca6390: packet log support and fixes for crashes
 
-diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
-index 20f9cebc86d2..9904c0eb7587 100644
---- a/drivers/net/wireless/ath/ath11k/hal.c
-+++ b/drivers/net/wireless/ath/ath11k/hal.c
-@@ -330,7 +330,7 @@ static void ath11k_hal_srng_dst_hw_init(struct ath11k_base *ab,
- 	if (srng->flags & HAL_SRNG_FLAGS_MSI_INTR) {
- 		ath11k_hif_write32(ab, reg_base +
- 				   HAL_REO1_RING_MSI1_BASE_LSB_OFFSET(ab),
--				   (u32)srng->msi_addr);
-+				   srng->msi_addr);
- 
- 		val = FIELD_PREP(HAL_REO1_RING_MSI1_BASE_MSB_ADDR,
- 				 ((u64)srng->msi_addr >>
-@@ -344,7 +344,7 @@ static void ath11k_hal_srng_dst_hw_init(struct ath11k_base *ab,
- 				   srng->msi_data);
- 	}
- 
--	ath11k_hif_write32(ab, reg_base, (u32)srng->ring_base_paddr);
-+	ath11k_hif_write32(ab, reg_base, srng->ring_base_paddr);
- 
- 	val = FIELD_PREP(HAL_REO1_RING_BASE_MSB_RING_BASE_ADDR_MSB,
- 			 ((u64)srng->ring_base_paddr >>
-@@ -409,7 +409,7 @@ static void ath11k_hal_srng_src_hw_init(struct ath11k_base *ab,
- 	if (srng->flags & HAL_SRNG_FLAGS_MSI_INTR) {
- 		ath11k_hif_write32(ab, reg_base +
- 				   HAL_TCL1_RING_MSI1_BASE_LSB_OFFSET(ab),
--				   (u32)srng->msi_addr);
-+				   srng->msi_addr);
- 
- 		val = FIELD_PREP(HAL_TCL1_RING_MSI1_BASE_MSB_ADDR,
- 				 ((u64)srng->msi_addr >>
-@@ -424,7 +424,7 @@ static void ath11k_hal_srng_src_hw_init(struct ath11k_base *ab,
- 				   srng->msi_data);
- 	}
- 
--	ath11k_hif_write32(ab, reg_base, (u32)srng->ring_base_paddr);
-+	ath11k_hif_write32(ab, reg_base, srng->ring_base_paddr);
- 
- 	val = FIELD_PREP(HAL_TCL1_RING_BASE_MSB_RING_BASE_ADDR_MSB,
- 			 ((u64)srng->ring_base_paddr >>
+Kalle
+
+Carl Huang (7):
+  ath11k: read and write registers below unwindowed address
+  ath11k: enable shadow register configuration and access
+  ath11k: set WMI pipe credit to 1 for QCA6390
+  ath11k: start a timer to update TCL HP
+  ath11k: start a timer to update REO cmd ring
+  ath11k: start a timer to update HP for CE pipe 4
+  ath11k: enable idle power save mode
+
+Kalle Valo (1):
+  ath11k: remove unnecessary casts to u32
+
+ drivers/net/wireless/ath/ath11k/ce.c     |  80 ++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/ce.h     |   3 +
+ drivers/net/wireless/ath/ath11k/core.c   |   7 ++
+ drivers/net/wireless/ath/ath11k/dp.c     |  97 ++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/dp.h     |  24 ++++++
+ drivers/net/wireless/ath/ath11k/dp_tx.c  |   2 +
+ drivers/net/wireless/ath/ath11k/hal.c    | 135 +++++++++++++++++++++++++++++--
+ drivers/net/wireless/ath/ath11k/hal.h    |  19 ++++-
+ drivers/net/wireless/ath/ath11k/hal_rx.c |   2 +
+ drivers/net/wireless/ath/ath11k/htc.c    |   6 ++
+ drivers/net/wireless/ath/ath11k/hw.h     |   2 +
+ drivers/net/wireless/ath/ath11k/mac.c    |   9 +++
+ drivers/net/wireless/ath/ath11k/pci.c    |  38 +++++++++
+ drivers/net/wireless/ath/ath11k/pci.h    |   7 ++
+ drivers/net/wireless/ath/ath11k/qmi.c    |  13 ++-
+ drivers/net/wireless/ath/ath11k/qmi.h    |   2 +-
+ 16 files changed, 434 insertions(+), 12 deletions(-)
+
 -- 
 2.7.4
 
