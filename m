@@ -1,19 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+Received: from youngberry.canonical.com ([91.189.89.112])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kPi6R-00065o-UH
- for ath11k@lists.infradead.org; Tue, 06 Oct 2020 08:13:45 +0000
-Received: by mail-wr1-x443.google.com with SMTP id j2so12371068wrx.7
- for <ath11k@lists.infradead.org>; Tue, 06 Oct 2020 01:13:42 -0700 (PDT)
-From: Alex Dewar <alex.dewar90@gmail.com>
-Date: Tue, 6 Oct 2020 09:13:21 +0100
-Subject: Re: [PATCH 2/2] ath11k: Handle errors if peer creation fails
-Message-ID: <20201006081321.e2tf5xrdhnk4j3nq@medion>
-References: <20201004100218.311653-1-alex.dewar90@gmail.com>
- <87blhfbysb.fsf@codeaurora.org>
+ id 1kPqys-00073j-QE
+ for ath11k@lists.infradead.org; Tue, 06 Oct 2020 17:42:34 +0000
+From: Colin King <colin.king@canonical.com>
+Subject: [PATCH][next] ath11k: fix memory leak of 'combinations'
+Date: Tue,  6 Oct 2020 18:42:25 +0100
+Message-Id: <20201006174225.545919-1-colin.king@canonical.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <87blhfbysb.fsf@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -26,80 +20,41 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: netdev@vger.kernel.org, Carl Huang <cjhuang@codeaurora.org>, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, "David S. Miller" <davem@davemloft.net>, ath11k@lists.infradead.org, Jakub Kicinski <kuba@kernel.org>, Alex Dewar <alex.dewar90@gmail.com>
+To: Kalle Valo <kvalo@codeaurora.org>, "David S . Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>, ath11k@lists.infradead.org, linux-wireless@vger.kernel.org, netdev@vger.kernel.org
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 
-On Tue, Oct 06, 2020 at 10:26:28AM +0300, Kalle Valo wrote:
-> Alex Dewar <alex.dewar90@gmail.com> writes:
-> 
-> > ath11k_peer_create() is called without its return value being checked,
-> > meaning errors will be unhandled. Add missing check and, as the mutex is
-> > unconditionally unlocked on leaving this function, simplify the exit
-> > path.
-> >
-> > Addresses-Coverity-ID: 1497531 ("Code maintainability issues")
-> > Fixes: 701e48a43e15 ("ath11k: add packet log support for QCA6390")
-> > Signed-off-by: Alex Dewar <alex.dewar90@gmail.com>
-> > ---
-> >  drivers/net/wireless/ath/ath11k/mac.c | 21 +++++++++------------
-> >  1 file changed, 9 insertions(+), 12 deletions(-)
-> >
-> > diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-> > index 7f8dd47d2333..58db1b57b941 100644
-> > --- a/drivers/net/wireless/ath/ath11k/mac.c
-> > +++ b/drivers/net/wireless/ath/ath11k/mac.c
-> > @@ -5211,7 +5211,7 @@ ath11k_mac_op_assign_vif_chanctx(struct ieee80211_hw *hw,
-> >  	struct ath11k *ar = hw->priv;
-> >  	struct ath11k_base *ab = ar->ab;
-> >  	struct ath11k_vif *arvif = (void *)vif->drv_priv;
-> > -	int ret;
-> > +	int ret = 0;
-> 
-> I prefer not to initialise the ret variable.
-> 
-> >  	arvif->is_started = true;
-> >  
-> >  	/* TODO: Setup ps and cts/rts protection */
-> >  
-> > -	mutex_unlock(&ar->conf_mutex);
-> > -
-> > -	return 0;
-> > -
-> > -err:
-> > +unlock:
-> >  	mutex_unlock(&ar->conf_mutex);
-> >  
-> >  	return ret;
-> 
-> So in the pending branch I changed this to:
-> 
-> 	ret = 0;
-> 
-> out:
-> 	mutex_unlock(&ar->conf_mutex);
-> 
-> 	return ret;
-> 
-> Please check.
+From: Colin Ian King <colin.king@canonical.com>
 
-Hi Kalle,
+Currently the error return path when 'limits' fails to allocate
+does not free the memory allocated for 'combinations'. Fix this
+by adding a kfree before returning.
 
-I'm afraid you've introduced a bug ;). The body of the first if-statement
-in the function doesn't set ret because no error has occurred. So now
-it'll jump to the label and the function will return ret uninitialized.
+Addresses-Coverity: ("Resource leak")
+Fixes: 2626c269702e ("ath11k: add interface_modes to hw_params")
+Signed-off-by: Colin Ian King <colin.king@canonical.com>
+---
+ drivers/net/wireless/ath/ath11k/mac.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-With the gcc extension, ret will be initialised to zero anyway, so we're
-not saving anything by explicitly assigning to ret later in the
-function.
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 3f63a7bd6b59..7f8dd47d2333 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -6041,8 +6041,10 @@ static int ath11k_mac_setup_iface_combinations(struct ath11k *ar)
+ 	n_limits = 2;
+ 
+ 	limits = kcalloc(n_limits, sizeof(*limits), GFP_KERNEL);
+-	if (!limits)
++	if (!limits) {
++		kfree(combinations);
+ 		return -ENOMEM;
++	}
+ 
+ 	limits[0].max = 1;
+ 	limits[0].types |= BIT(NL80211_IFTYPE_STATION);
+-- 
+2.27.0
 
-Best,
-Alex
-
-> 
-> -- 
-> https://patchwork.kernel.org/project/linux-wireless/list/
-> 
-> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
