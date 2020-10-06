@@ -1,14 +1,10 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
- by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kP0qt-0005Xi-Uk
- for ath11k@lists.infradead.org; Sun, 04 Oct 2020 10:02:49 +0000
-Received: by mail-wr1-x443.google.com with SMTP id g12so924418wrp.10
- for <ath11k@lists.infradead.org>; Sun, 04 Oct 2020 03:02:46 -0700 (PDT)
-From: Alex Dewar <alex.dewar90@gmail.com>
-Subject: [PATCH 2/2] ath11k: Handle errors if peer creation fails
-Date: Sun,  4 Oct 2020 11:02:17 +0100
-Message-Id: <20201004100218.311653-1-alex.dewar90@gmail.com>
+From: Allen Pais <allen.lkml@gmail.com>
+Subject: [PATCH 1/2] ath11k: convert tasklets to use new tasklet_setup() API
+Date: Tue,  6 Oct 2020 11:21:34 +0530
+Message-Id: <20201006055135.291411-2-allen.lkml@gmail.com>
+In-Reply-To: <20201006055135.291411-1-allen.lkml@gmail.com>
+References: <20201006055135.291411-1-allen.lkml@gmail.com>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -22,88 +18,50 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-Cc: "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org, Carl Huang <cjhuang@codeaurora.org>, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, Alex Dewar <alex.dewar90@gmail.com>, Jakub Kicinski <kuba@kernel.org>, ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>
+To: kvalo@codeaurora.org
+Cc: ryder.lee@mediatek.com, netdev@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, matthias.bgg@gmail.com, linux-mediatek@lists.infradead.org, lorenzo.bianconi83@gmail.com, kuba@kernel.org, Romain Perier <romain.perier@gmail.com>, Allen Pais <apais@linux.microsoft.com>, davem@davemloft.net, nbd@nbd.name
 
-ath11k_peer_create() is called without its return value being checked,
-meaning errors will be unhandled. Add missing check and, as the mutex is
-unconditionally unlocked on leaving this function, simplify the exit
-path.
+From: Allen Pais <apais@linux.microsoft.com>
 
-Addresses-Coverity-ID: 1497531 ("Code maintainability issues")
-Fixes: 701e48a43e15 ("ath11k: add packet log support for QCA6390")
-Signed-off-by: Alex Dewar <alex.dewar90@gmail.com>
+In preparation for unconditionally passing the
+struct tasklet_struct pointer to all tasklet
+callbacks, switch to using the new tasklet_setup()
+and from_tasklet() to pass the tasklet pointer explicitly.
+
+Signed-off-by: Romain Perier <romain.perier@gmail.com>
+Signed-off-by: Allen Pais <apais@linux.microsoft.com>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 21 +++++++++------------
- 1 file changed, 9 insertions(+), 12 deletions(-)
+ drivers/net/wireless/ath/ath11k/pci.c | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 7f8dd47d2333..58db1b57b941 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -5211,7 +5211,7 @@ ath11k_mac_op_assign_vif_chanctx(struct ieee80211_hw *hw,
- 	struct ath11k *ar = hw->priv;
- 	struct ath11k_base *ab = ar->ab;
- 	struct ath11k_vif *arvif = (void *)vif->drv_priv;
--	int ret;
-+	int ret = 0;
- 	struct peer_create_params param;
- 
- 	mutex_lock(&ar->conf_mutex);
-@@ -5225,13 +5225,12 @@ ath11k_mac_op_assign_vif_chanctx(struct ieee80211_hw *hw,
- 	    arvif->vdev_type != WMI_VDEV_TYPE_AP &&
- 	    arvif->vdev_type != WMI_VDEV_TYPE_MONITOR) {
- 		memcpy(&arvif->chanctx, ctx, sizeof(*ctx));
--		mutex_unlock(&ar->conf_mutex);
--		return 0;
-+		goto unlock;
+diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
+index d7eb6b716..b75f47dc3 100644
+--- a/drivers/net/wireless/ath/ath11k/pci.c
++++ b/drivers/net/wireless/ath/ath11k/pci.c
+@@ -380,9 +380,9 @@ static void ath11k_pci_sync_ce_irqs(struct ath11k_base *ab)
  	}
+ }
  
- 	if (WARN_ON(arvif->is_started)) {
--		mutex_unlock(&ar->conf_mutex);
--		return -EBUSY;
-+		ret = -EBUSY;
-+		goto unlock;
- 	}
+-static void ath11k_pci_ce_tasklet(unsigned long data)
++static void ath11k_pci_ce_tasklet(struct tasklet_struct *t)
+ {
+-	struct ath11k_ce_pipe *ce_pipe = (struct ath11k_ce_pipe *)data;
++	struct ath11k_ce_pipe *ce_pipe = from_tasklet(ce_pipe, t, intr_tq);
  
- 	if (ab->hw_params.vdev_start_delay) {
-@@ -5239,6 +5238,8 @@ ath11k_mac_op_assign_vif_chanctx(struct ieee80211_hw *hw,
- 		param.peer_type = WMI_PEER_TYPE_DEFAULT;
- 		param.peer_addr = ar->mac_addr;
- 		ret = ath11k_peer_create(ar, arvif, NULL, &param);
-+		if (ret)
-+			goto unlock;
- 	}
+ 	ath11k_ce_per_engine_service(ce_pipe->ab, ce_pipe->pipe_num);
  
- 	ret = ath11k_mac_vdev_start(arvif, &ctx->def);
-@@ -5246,23 +5247,19 @@ ath11k_mac_op_assign_vif_chanctx(struct ieee80211_hw *hw,
- 		ath11k_warn(ab, "failed to start vdev %i addr %pM on freq %d: %d\n",
- 			    arvif->vdev_id, vif->addr,
- 			    ctx->def.chan->center_freq, ret);
--		goto err;
-+		goto unlock;
- 	}
- 	if (arvif->vdev_type == WMI_VDEV_TYPE_MONITOR) {
- 		ret = ath11k_monitor_vdev_up(ar, arvif->vdev_id);
- 		if (ret)
--			goto err;
-+			goto unlock;
- 	}
+@@ -581,8 +581,7 @@ static int ath11k_pci_config_irq(struct ath11k_base *ab)
  
- 	arvif->is_started = true;
+ 		irq_idx = ATH11K_PCI_IRQ_CE0_OFFSET + i;
  
- 	/* TODO: Setup ps and cts/rts protection */
+-		tasklet_init(&ce_pipe->intr_tq, ath11k_pci_ce_tasklet,
+-			     (unsigned long)ce_pipe);
++		tasklet_setup(&ce_pipe->intr_tq, ath11k_pci_ce_tasklet);
  
--	mutex_unlock(&ar->conf_mutex);
--
--	return 0;
--
--err:
-+unlock:
- 	mutex_unlock(&ar->conf_mutex);
- 
- 	return ret;
+ 		ret = request_irq(irq, ath11k_pci_ce_interrupt_handler,
+ 				  IRQF_SHARED, irq_name[irq_idx],
 -- 
-2.28.0
+2.25.1
 
 
 -- 
