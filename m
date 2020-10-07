@@ -1,12 +1,8 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from youngberry.canonical.com ([91.189.89.112])
- by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kPqys-00073j-QE
- for ath11k@lists.infradead.org; Tue, 06 Oct 2020 17:42:34 +0000
-From: Colin King <colin.king@canonical.com>
-Subject: [PATCH][next] ath11k: fix memory leak of 'combinations'
-Date: Tue,  6 Oct 2020 18:42:25 +0100
-Message-Id: <20201006174225.545919-1-colin.king@canonical.com>
+From: Allen Pais <allen.lkml@gmail.com>
+Subject: [PATCH v2 0/3] wireless: convert tasklets to use new
+Date: Wed,  7 Oct 2020 16:03:06 +0530
+Message-Id: <20201007103309.363737-1-allen.lkml@gmail.com>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -20,40 +16,37 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>, "David S . Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>, ath11k@lists.infradead.org, linux-wireless@vger.kernel.org, netdev@vger.kernel.org
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+To: kvalo@codeaurora.org
+Cc: ryder.lee@mediatek.com, netdev@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, matthias.bgg@gmail.com, linux-mediatek@lists.infradead.org, lorenzo.bianconi83@gmail.com, kuba@kernel.org, Allen Pais <apais@linux.microsoft.com>, davem@davemloft.net, nbd@nbd.name
 
-From: Colin Ian King <colin.king@canonical.com>
+From: Allen Pais <apais@linux.microsoft.com>
 
-Currently the error return path when 'limits' fails to allocate
-does not free the memory allocated for 'combinations'. Fix this
-by adding a kfree before returning.
+This series converts the remaining drivers to use new
+tasklet_setup() API.
 
-Addresses-Coverity: ("Resource leak")
-Fixes: 2626c269702e ("ath11k: add interface_modes to hw_params")
-Signed-off-by: Colin Ian King <colin.king@canonical.com>
----
- drivers/net/wireless/ath/ath11k/mac.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+The patches are based on wireless-drivers-next (c2568c8c9e63)
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 3f63a7bd6b59..7f8dd47d2333 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -6041,8 +6041,10 @@ static int ath11k_mac_setup_iface_combinations(struct ath11k *ar)
- 	n_limits = 2;
- 
- 	limits = kcalloc(n_limits, sizeof(*limits), GFP_KERNEL);
--	if (!limits)
-+	if (!limits) {
-+		kfree(combinations);
- 		return -ENOMEM;
-+	}
- 
- 	limits[0].max = 1;
- 	limits[0].types |= BIT(NL80211_IFTYPE_STATION);
+v2:
+  Split mt76 and mt7601u
+
+Allen Pais (3):
+  wireless: mt76: convert tasklets to use new tasklet_setup() API
+  wireless: mt7601u: convert tasklets to use new tasklet_setup() API
+  ath11k: convert tasklets to use new tasklet_setup() API
+
+ drivers/net/wireless/ath/ath11k/pci.c              |  7 +++----
+ drivers/net/wireless/mediatek/mt76/mt7603/beacon.c |  4 ++--
+ drivers/net/wireless/mediatek/mt76/mt7603/init.c   |  3 +--
+ drivers/net/wireless/mediatek/mt76/mt7603/mt7603.h |  2 +-
+ drivers/net/wireless/mediatek/mt76/mt7615/mmio.c   |  6 +++---
+ drivers/net/wireless/mediatek/mt76/mt76x02_dfs.c   | 10 +++++-----
+ drivers/net/wireless/mediatek/mt76/mt76x02_mmio.c  |  7 +++----
+ drivers/net/wireless/mediatek/mt76/usb.c           |  6 +++---
+ drivers/net/wireless/mediatek/mt7601u/dma.c        | 12 ++++++------
+ 9 files changed, 27 insertions(+), 30 deletions(-)
+
 -- 
-2.27.0
+2.25.1
 
 
 -- 
