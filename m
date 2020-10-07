@@ -1,9 +1,8 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 From: Allen Pais <allen.lkml@gmail.com>
-Subject: [PATCH v2 2/3] wireless: mt7601u: convert tasklets to use new
- tasklet_setup() API
-Date: Wed,  7 Oct 2020 16:03:08 +0530
-Message-Id: <20201007103309.363737-3-allen.lkml@gmail.com>
+Subject: [PATCH v2 3/3] ath11k: convert tasklets to use new tasklet_setup() API
+Date: Wed,  7 Oct 2020 16:03:09 +0530
+Message-Id: <20201007103309.363737-4-allen.lkml@gmail.com>
 In-Reply-To: <20201007103309.363737-1-allen.lkml@gmail.com>
 References: <20201007103309.363737-1-allen.lkml@gmail.com>
 MIME-Version: 1.0
@@ -32,48 +31,35 @@ and from_tasklet() to pass the tasklet pointer explicitly.
 Signed-off-by: Romain Perier <romain.perier@gmail.com>
 Signed-off-by: Allen Pais <apais@linux.microsoft.com>
 ---
- drivers/net/wireless/mediatek/mt7601u/dma.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/net/wireless/ath/ath11k/pci.c | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/net/wireless/mediatek/mt7601u/dma.c b/drivers/net/wireless/mediatek/mt7601u/dma.c
-index 09f931d45..5f99054f5 100644
---- a/drivers/net/wireless/mediatek/mt7601u/dma.c
-+++ b/drivers/net/wireless/mediatek/mt7601u/dma.c
-@@ -212,9 +212,9 @@ static void mt7601u_complete_rx(struct urb *urb)
- 	spin_unlock_irqrestore(&dev->rx_lock, flags);
+diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
+index d7eb6b716..b75f47dc3 100644
+--- a/drivers/net/wireless/ath/ath11k/pci.c
++++ b/drivers/net/wireless/ath/ath11k/pci.c
+@@ -380,9 +380,9 @@ static void ath11k_pci_sync_ce_irqs(struct ath11k_base *ab)
+ 	}
  }
  
--static void mt7601u_rx_tasklet(unsigned long data)
-+static void mt7601u_rx_tasklet(struct tasklet_struct *t)
+-static void ath11k_pci_ce_tasklet(unsigned long data)
++static void ath11k_pci_ce_tasklet(struct tasklet_struct *t)
  {
--	struct mt7601u_dev *dev = (struct mt7601u_dev *) data;
-+	struct mt7601u_dev *dev = from_tasklet(dev, t, rx_tasklet);
- 	struct mt7601u_dma_buf_rx *e;
+-	struct ath11k_ce_pipe *ce_pipe = (struct ath11k_ce_pipe *)data;
++	struct ath11k_ce_pipe *ce_pipe = from_tasklet(ce_pipe, t, intr_tq);
  
- 	while ((e = mt7601u_rx_get_pending_entry(dev))) {
-@@ -266,9 +266,9 @@ static void mt7601u_complete_tx(struct urb *urb)
- 	spin_unlock_irqrestore(&dev->tx_lock, flags);
- }
+ 	ath11k_ce_per_engine_service(ce_pipe->ab, ce_pipe->pipe_num);
  
--static void mt7601u_tx_tasklet(unsigned long data)
-+static void mt7601u_tx_tasklet(struct tasklet_struct *t)
- {
--	struct mt7601u_dev *dev = (struct mt7601u_dev *) data;
-+	struct mt7601u_dev *dev = from_tasklet(dev, t, tx_tasklet);
- 	struct sk_buff_head skbs;
- 	unsigned long flags;
+@@ -581,8 +581,7 @@ static int ath11k_pci_config_irq(struct ath11k_base *ab)
  
-@@ -507,8 +507,8 @@ int mt7601u_dma_init(struct mt7601u_dev *dev)
- {
- 	int ret = -ENOMEM;
+ 		irq_idx = ATH11K_PCI_IRQ_CE0_OFFSET + i;
  
--	tasklet_init(&dev->tx_tasklet, mt7601u_tx_tasklet, (unsigned long) dev);
--	tasklet_init(&dev->rx_tasklet, mt7601u_rx_tasklet, (unsigned long) dev);
-+	tasklet_setup(&dev->tx_tasklet, mt7601u_tx_tasklet);
-+	tasklet_setup(&dev->rx_tasklet, mt7601u_rx_tasklet);
+-		tasklet_init(&ce_pipe->intr_tq, ath11k_pci_ce_tasklet,
+-			     (unsigned long)ce_pipe);
++		tasklet_setup(&ce_pipe->intr_tq, ath11k_pci_ce_tasklet);
  
- 	ret = mt7601u_alloc_tx(dev);
- 	if (ret)
+ 		ret = request_irq(irq, ath11k_pci_ce_interrupt_handler,
+ 				  IRQF_SHARED, irq_name[irq_idx],
 -- 
 2.25.1
 
