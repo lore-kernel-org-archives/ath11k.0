@@ -1,13 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from m42-4.mailgun.net ([69.72.42.4])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kQhzC-0008L2-OY
+ id 1kQhzC-0008LA-Pj
  for ath11k@lists.infradead.org; Fri, 09 Oct 2020 02:18:24 +0000
 From: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
-Subject: [PATCH 0/4] ath11k: add support for 256 bitmap in Block ack and
- duration based RTS threshold
-Date: Thu,  8 Oct 2020 19:18:07 -0700
-Message-Id: <20201009021811.18584-1-pradeepc@codeaurora.org>
+Subject: [PATCH 4/4] ath11k: mesh: add support for 256 bitmap in blockack
+ frames in 11ax
+Date: Thu,  8 Oct 2020 19:18:11 -0700
+Message-Id: <20201009021811.18584-5-pradeepc@codeaurora.org>
+In-Reply-To: <20201009021811.18584-1-pradeepc@codeaurora.org>
+References: <20201009021811.18584-1-pradeepc@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -24,30 +26,57 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Johannes Berg <johannes@sipsolutions.net>, ath11k@lists.infradead.org
 Cc: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>, linux-wireless@vger.kernel.org
 
-This series adds support for the configuration of following in
-HE capable ath11k APs:
-1. TXOP duration based RTS threshold using HE Operation parameters in
-   beacons for AP and mesh modes.
-2. BlockAck's bitmap to support upto 256 bits in mesh mode. Without
-   this maximum of 64 bits are supported in BlockAck bitmap.
+Currently 256 bitmap in blockack frames is being set only for AP mode.
+Fix this to set whenever beacon has changed and has HE capability there
+by supporting mesh as well.
 
-mac80211 patch sets he_support flag for mesh BSS and addresses
-previous review comments from https://patchwork.kernel.org/patch/11664077/
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.1.0.1-01228-QCAHKSWPL_SILICONZ-1
 
-Pradeep Kumar Chitrapu (4):
-  mac80211: save HE oper info in BSS config for mesh
-  ath11k: fix incorrect wmi param for configuring HE operation
-  ath11k: support TXOP duration based RTS threshold
-  ath11k: mesh: add support for 256 bitmap in blockack frames in 11ax
+Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
+---
+ drivers/net/wireless/ath/ath11k/mac.c | 22 ++++++++--------------
+ 1 file changed, 8 insertions(+), 14 deletions(-)
 
- drivers/net/wireless/ath/ath11k/mac.c | 40 +++++++++++++++++----------
- drivers/net/wireless/ath/ath11k/wmi.h |  2 +-
- include/net/mac80211.h                |  3 +-
- net/mac80211/mesh.c                   | 30 ++++++++++++++++++++
- 4 files changed, 58 insertions(+), 17 deletions(-)
-
-
-base-commit: ba6ff70a3bb76c1ff440d3a0044b82e97abb648f
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 77d073054ba2..7e8a4dfe49a9 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -1904,20 +1904,6 @@ static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
+ 		if (ret)
+ 			ath11k_warn(ar->ab, "failed to update bcn template: %d\n",
+ 				    ret);
+-
+-		if (vif->bss_conf.he_support) {
+-			ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
+-							    WMI_VDEV_PARAM_BA_MODE,
+-							    WMI_BA_MODE_BUFFER_SIZE_256);
+-			if (ret)
+-				ath11k_warn(ar->ab,
+-					    "failed to set BA BUFFER SIZE 256 for vdev: %d\n",
+-					    arvif->vdev_id);
+-			else
+-				ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
+-					   "Set BA BUFFER SIZE 256 for VDEV: %d\n",
+-					   arvif->vdev_id);
+-		}
+ 	}
+ 
+ 	if (changed & (BSS_CHANGED_BEACON_INFO | BSS_CHANGED_BEACON)) {
+@@ -1953,6 +1939,14 @@ static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
+ 
+ 		if (arvif->is_up && vif->bss_conf.he_support &&
+ 		    vif->bss_conf.he_oper.params) {
++			ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
++							    WMI_VDEV_PARAM_BA_MODE,
++							    WMI_BA_MODE_BUFFER_SIZE_256);
++			if (ret)
++				ath11k_warn(ar->ab,
++					    "failed to set BA BUFFER SIZE 256 for vdev: %d\n",
++					    arvif->vdev_id);
++
+ 			param_id = WMI_VDEV_PARAM_HEOPS_0_31;
+ 			param_value = vif->bss_conf.he_oper.params;
+ 			ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
 -- 
 2.17.1
 
