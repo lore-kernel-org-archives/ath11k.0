@@ -1,12 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from m42-4.mailgun.net ([69.72.42.4])
+Received: from z5.mailgun.us ([104.130.96.5])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kSx3K-0004L2-EV
- for ath11k@lists.infradead.org; Thu, 15 Oct 2020 06:47:58 +0000
-From: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
-Subject: [PATCH] ath11k: Remove unnecessary data sync to cpu on monitor buffer
-Date: Thu, 15 Oct 2020 12:17:34 +0530
-Message-Id: <1602744454-22969-1-git-send-email-vthiagar@codeaurora.org>
+ id 1kT1ZS-0001xP-Gw
+ for ath11k@lists.infradead.org; Thu, 15 Oct 2020 11:37:25 +0000
+MIME-Version: 1.0
+Date: Thu, 15 Oct 2020 17:07:14 +0530
+From: ssreeela@codeaurora.org
+Subject: Re: [PATCH v3] ath11k: cold boot calibration support
+In-Reply-To: <b0d42c5e-8aac-cea2-bc6d-3a6341689d05@eero.com>
+References: <1600163991-2093-1-git-send-email-ssreeela@codeaurora.org>
+ <b0d42c5e-8aac-cea2-bc6d-3a6341689d05@eero.com>
+Message-ID: <66888db2618270660f38a0c89226332f@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -15,45 +19,72 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
+To: Peter Oh <peter.oh@eero.com>
+Cc: Govindaraj Saminathan <gsamin@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-Monitor ring Rx buffer is not really modified between dma map
-and unmap. So remove the unnecssary data sync before dma unmap.
-This does not fix any visible issue, found in code review.
-
-Compile tested only.
-
-Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/dp_rx.c | 4 ----
- 1 file changed, 4 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 0162532..4455e5af 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -2856,10 +2856,6 @@ static int ath11k_dp_rx_reap_mon_status_ring(struct ath11k_base *ab, int mac_id,
- 
- 			rxcb = ATH11K_SKB_RXCB(skb);
- 
--			dma_sync_single_for_cpu(ab->dev, rxcb->paddr,
--						skb->len + skb_tailroom(skb),
--						DMA_FROM_DEVICE);
--
- 			dma_unmap_single(ab->dev, rxcb->paddr,
- 					 skb->len + skb_tailroom(skb),
- 					 DMA_BIDIRECTIONAL);
--- 
-2.7.4
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+T24gMjAyMC0wOS0xOCAwMToyNCwgUGV0ZXIgT2ggd3JvdGU6Cj4gT24gOS8xNS8yMCAyOjU5IEFN
+LCBTb3dtaXlhIFNyZWUgRWxhdmFsYWdhbiB3cm90ZToKPj4gRnJvbTogR292aW5kYXJhaiBTYW1p
+bmF0aGFuIDxnc2FtaW5AY29kZWF1cm9yYS5vcmc+Cj4+IAo+PiBjb2xkIGJvb3QgY2FsaWJyYXRp
+b24gaXMgdGhlIHByb2Nlc3MgdG8gY2FsaWJyYXRlIGFsbCB0aGUgY2hhbm5lbHMKPj4gZHVyaW5n
+IHRoZSBib290LXVwIHRvIGF2b2lkIHRoZSBjYWxpYnJhdGlvbiBkZWxheSBkdXJpbmcgdGhlCj4+
+IGNoYW5uZWwgY2hhbmdlLgo+PiBEdXJpbmcgdGhlIGJvb3QtdXAsIGZpcm13YXJlIHN0YXJ0ZWQg
+d2l0aCBtb2RlIOKAnGNvbGRfYm9vdF9jYWxpYnJhdGlvbuKAnQo+PiBGaXJtd2FyZSBjYWxpYnJh
+dGUgYWxsIGNoYW5uZWxzIGFuZCBnZW5lcmF0ZSBDYWxEYihERFIpLgo+PiBTdWJzZXF1ZW50IFdJ
+RkkgT04gd2lsbCByZXVzZSB0aGUgc2FtZSBDYWxEYi4KPiBDYW4geW91IGNsYXJpZnkgdGhlIGRl
+ZmluaXRpb24gb2YgIldJRkkgT04iPwoKV0lGSSBPTiBoZXJlIHJlZmVycyB0byB3aXJlbGVzcyBp
+bnRlcmZhY2VzIGJyaW5nCnVwKHJlaW5pdGlhbGlzZWQpIGluIG5vcm1hbCBtb2RlCgo+PiBGaXJt
+d2FyZSByZXN0YXJ0ZWQgd2l0aCBNaXNzaW9uIG1vZGUgdG8gY29udGludWUgdGhlIG5vcm1hbCBv
+cGVyYXRpb24uCj4gCj4gUGxlYXNlIGNoYW5nZSB0aGUgbWlzc2lvbiBtb2RlIHRvIG5vcm1hbCBh
+Y2NvcmRpbmcgdG8KPiBBVEgxMUtfRklSTVdBUkVfTU9ERV9OT1JNQUwuCgpTdXJlIHdlIHdpbGwg
+Y2hhbmdlIHRoYXQKPiAKPiBXaGljaCBjb2RlIGl0IHNldHMgYmFjayB0byBub3JtYWwgbW9kZSBm
+cm9tIGNvbGQgYm9vdCBtb2RlPyBJIGRvbid0IHNlZSAKPiBpdC4KPiAKClBsZWFzZSBjaGVjayB0
+aGUgZnVuY3Rpb24gYXRoMTFrX3FtaV9md3Jlc2V0X2Zyb21fY29sZF9ib290IHdoZXJlIApmaXJt
+d2FyZSBpcyByZXNldC4KRHVyaW5nIHJlc3RhcnQsIGZpcm13YXJlIG1vZGUgd2lsbCBiZSByZXNl
+dCB0byBub3JtYWwuCj4+ICtzdGF0aWMgaW50IGF0aDExa19xbWlfcHJvY2Vzc19jb2xkYm9vdF9j
+YWxpYnJhdGlvbihzdHJ1Y3QgYXRoMTFrX2Jhc2UgCj4+ICphYikKPj4gK3sKPj4gKwlpbnQgdGlt
+ZW91dDsKPj4gKwlpbnQgcmV0Owo+PiArCj4+ICsJcmV0ID0gYXRoMTFrX3FtaV93bGFuZndfbW9k
+ZV9zZW5kKGFiLCAKPj4gQVRIMTFLX0ZJUk1XQVJFX01PREVfQ09MRF9CT09UKTsKPj4gKwlpZiAo
+cmV0IDwgMCkgewo+PiArCQlhdGgxMWtfd2FybihhYiwgInFtaSBmYWlsZWQgdG8gc2VuZCB3bGFu
+IGZ3IG1vZGU6JWRcbiIsIHJldCk7Cj4+ICsJCXJldHVybiByZXQ7Cj4+ICsJfQo+PiArCj4+ICsJ
+YXRoMTFrX2RiZyhhYiwgQVRIMTFLX0RCR19RTUksICJDb2xkYm9vdCBjYWxpYnJhdGlvbiB3YWl0
+IAo+PiBzdGFydGVkXG4iKTsKPj4gKwo+PiArCXRpbWVvdXQgPSB3YWl0X2V2ZW50X3RpbWVvdXQo
+YWItPnFtaS5jb2xkX2Jvb3Rfd2FpdHEsCj4+ICsJCQkJICAgICAoYWItPnFtaS5jYWxfZG9uZSAg
+PT0gMSksCj4+ICsJCQkJICAgICBBVEgxMUtfQ09MRF9CT09UX0ZXX1JFU0VUX0RFTEFZKTsKPj4g
+KwlpZiAodGltZW91dCA8PSAwKSB7Cj4+ICsJCWF0aDExa193YXJuKGFiLCAiQ29sZGJvb3QgQ2Fs
+aWJyYXRpb24gdGltZWQgb3V0XG4iKTsKPj4gKwkJcmV0dXJuIC1FVElNRURPVVQ7Cj4gCj4gRG9l
+cyBpdCBtYWtlIGF0aDExayBmaXJtd2FyZSBzdGF5IGluIGNvbGQgYm9vdCBtb2RlIHdoZW4gdGlt
+ZW91dCAKPiBoYXBwZW5zPwo+IAo+IElmIHNvLCBpcyBpdCB3b3J0aHkgdG8gaGF2ZSBXTEFOIHVz
+dWFibGUgZHVlIHRvIGNvbGQgYm9vdCBjYWxpYnJhdGlvbiAKPiBmYWlsdXJlPwo+IAo+IEFzIEkg
+dW5kZXJzdGFuZCwgaW5pdGlhbCBjYWxpYnJhdGlvbiBvbiBjdXJyZW50IG9wZXJhdGlvbiBjaGFu
+bmVsIHdpbGwKPiBiZSBkb25lIHJlZ2FyZGxlc3Mgb2YgY29sZCBib290IGNhbGlicmF0aW9uCj4g
+CgpBZ3JlZWQsIHRoZXNlIGNvbW1lbnRzIHdpbGwgYmUgYWRkcmVzc2VkIGluIHRoZSBuZXh0IHBh
+dGNoIHNldC4KPj4gKwl9Cj4+ICsKPj4gKwlhdGgxMWtfZGJnKGFiLCBBVEgxMUtfREJHX1FNSSwg
+IkNvbGRib290IGNhbGlicmF0aW9uIHdhaXQgZW5kZWRcbiIpOwo+PiArCj4+ICsJcmV0dXJuIDA7
+Cj4+ICt9Cj4+ICsKPj4gICBzdGF0aWMgaW50Cj4+ICAgYXRoMTFrX3FtaV9kcml2ZXJfZXZlbnRf
+cG9zdChzdHJ1Y3QgYXRoMTFrX3FtaSAqcW1pLAo+PiAgIAkJCSAgICAgZW51bSBhdGgxMWtfcW1p
+X2V2ZW50X3R5cGUgdHlwZSwKPj4gQEAgLTI1OTcsOSArMjY0MywxNiBAQCBzdGF0aWMgdm9pZCBh
+dGgxMWtfcW1pX2RyaXZlcl9ldmVudF93b3JrKHN0cnVjdCAKPj4gd29ya19zdHJ1Y3QgKndvcmsp
+Cj4+ICAgCQkJCWJyZWFrOwo+PiAgIAkJCX0KPj4gICAtCQkJYXRoMTFrX2NvcmVfcW1pX2Zpcm13
+YXJlX3JlYWR5KGFiKTsKPj4gLQkJCWFiLT5xbWkuY2FsX2RvbmUgPSAxOwo+PiAtCQkJc2V0X2Jp
+dChBVEgxMUtfRkxBR19SRUdJU1RFUkVELCAmYWItPmRldl9mbGFncyk7Cj4+ICsJCQlpZiAoYXRo
+MTFrX2NvbGRfYm9vdF9jYWwgJiYgYWItPnFtaS5jYWxfZG9uZSA9PSAwICYmCj4+ICsJCQkgICAg
+YWItPmh3X3BhcmFtcy5jb2xkX2Jvb3RfY2FsaWIpIHsKPj4gKwkJCQlhdGgxMWtfcW1pX3Byb2Nl
+c3NfY29sZGJvb3RfY2FsaWJyYXRpb24oYWIpOwo+PiArCQkJfSBlbHNlIHsKPj4gKwkJCQljbGVh
+cl9iaXQoQVRIMTFLX0ZMQUdfQ1JBU0hfRkxVU0gsCj4+ICsJCQkJCSAgJmFiLT5kZXZfZmxhZ3Mp
+Owo+PiArCQkJCWNsZWFyX2JpdChBVEgxMUtfRkxBR19SRUNPVkVSWSwgJmFiLT5kZXZfZmxhZ3Mp
+Owo+IFBsZWFzZSBzcGxpdCB0aGlzIHBhdGNoIGludG8gYSBzZXBhcmF0ZSBwYXRjaC4gSXQncyBu
+b3QgZGlyZWN0bHkKPiByZWxhdGVkIHRvIGNvbGQgYm9vdC4KClRoaXMgcmVzZXRzIHRoZSBmbGFn
+IHRvIGNvbW1lbmNlIG5vcm1hbCBvcGVyYXRpb24gd2hlbiBmaXJtd2FyZSBzd2l0Y2hlcyAKdG8g
+bm9ybWFsIG1vZGUgYWZ0ZXIgY29sZCBib290IGNhbGlicmF0aW9uLgpPbmNlIHRoZSBmaXJtd2Fy
+ZSBpcyByZWFkeSB3ZSBjbGVhciB0aGlzIGZsYWcgc28gdGhhdCBpdCB3aWxsIG5vdCBibG9jayAK
+YW55IGZ1cnRoZXIgY29tbXVuaWNhdGlvbiB3aXRoIGZpcm13YXJlLgo+PiArCQkJCWF0aDExa19j
+b3JlX3FtaV9maXJtd2FyZV9yZWFkeShhYik7Cj4+ICsJCQkJc2V0X2JpdChBVEgxMUtfRkxBR19S
+RUdJU1RFUkVELCAmYWItPmRldl9mbGFncyk7Cj4+ICsJCQl9Cj4+ICAgICAJCQlicmVhazsKPj4g
+ICAJCWNhc2UgQVRIMTFLX1FNSV9FVkVOVF9DT0xEX0JPT1RfQ0FMX0RPTkU6Cj4gCj4gVGhhbmtz
+LAo+IAo+IFBldGVyCgotLSAKYXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtAbGlzdHMuaW5mcmFk
+ZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2F0aDEx
+awo=
