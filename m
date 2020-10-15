@@ -1,18 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from z5.mailgun.us ([104.130.96.5])
+Received: from m42-4.mailgun.net ([69.72.42.4])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kSwZO-0002KD-Th
- for ath11k@lists.infradead.org; Thu, 15 Oct 2020 06:16:59 +0000
-Received: from CHECSTEX0180100-LIN.qca.qualcomm.com
- (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
- (No client certificate requested) (Authenticated sender: vthiagar)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 44C5BC433C9
- for <ath11k@lists.infradead.org>; Thu, 15 Oct 2020 06:16:54 +0000 (UTC)
+ id 1kSx3K-0004L2-EV
+ for ath11k@lists.infradead.org; Thu, 15 Oct 2020 06:47:58 +0000
 From: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
 Subject: [PATCH] ath11k: Remove unnecessary data sync to cpu on monitor buffer
-Date: Thu, 15 Oct 2020 11:46:44 +0530
-Message-Id: <1602742604-22430-1-git-send-email-vthiagar@codeaurora.org>
+Date: Thu, 15 Oct 2020 12:17:34 +0530
+Message-Id: <1602744454-22969-1-git-send-email-vthiagar@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -27,6 +21,7 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org
 
 Monitor ring Rx buffer is not really modified between dma map
 and unmap. So remove the unnecssary data sync before dma unmap.
