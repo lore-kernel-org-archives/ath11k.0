@@ -1,15 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from dvalin.narfation.org ([2a00:17d8:100::8b1])
+Received: from m42-4.mailgun.net ([69.72.42.4])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kT36S-0003Dj-0t
- for ath11k@lists.infradead.org; Thu, 15 Oct 2020 13:15:33 +0000
-From: Sven Eckelmann <sven@narfation.org>
-Subject: [PATCH 2/2] ath11k: search DT for qcom,ath11k-calibration-variant
-Date: Thu, 15 Oct 2020 15:15:01 +0200
-Message-Id: <20201015131501.1939685-2-sven@narfation.org>
-In-Reply-To: <20201015131501.1939685-1-sven@narfation.org>
-References: <20201015131501.1939685-1-sven@narfation.org>
-MIME-Version: 1.0
+ id 1kTRey-0007mT-NW
+ for ath11k@lists.infradead.org; Fri, 16 Oct 2020 15:28:49 +0000
+From: Sowmiya Sree Elavalagan <ssreeela@codeaurora.org>
+Subject: [PATCH v4] ath11k: cold boot calibration support
+Date: Fri, 16 Oct 2020 20:58:31 +0530
+Message-Id: <1602862111-14063-1-git-send-email-ssreeela@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -18,160 +15,309 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: linux-wireless@vger.kernel.org
-Cc: devicetree@vger.kernel.org, Sven Eckelmann <sven@narfation.org>, Rob Herring <robh+dt@kernel.org>, ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>
+To: ath11k@lists.infradead.org
+Cc: Govindaraj Saminathan <gsamin@codeaurora.org>, Sowmiya Sree Elavalagan <ssreeela@codeaurora.org>, linux-wireless@vger.kernel.org
 
-Board Data File (BDF) is loaded upon driver boot-up procedure. The right
-board data file is identified on IPQ6018 using bus, qmi-chip-id and
-qmi-board-id.
+From: Govindaraj Saminathan <gsamin@codeaurora.org>
 
-The problem, however, can occur when the (default) board data file cannot
-fulfill with the vendor requirements and it is necessary to use a different
-board data file.
+cold boot calibration is the process to calibrate all the channels
+during the boot-up to avoid the calibration delay during the
+channel change.
+During the boot-up, firmware started in cold boot calibration mode
+Firmware calibrate all channels and generate CalDb(DDR).
+Subsequent wifi bringup will reuse the same CalDb.
+Firmware is restarted in normal mode to continue the normal operation.
 
-This problem was already solved on ath10k by adding a ",variant=.*" at the
-end of the board name. The same functionality must also be provided for
-ath11k.
+caldb memory address send to firmware through the QMI message.Firmware
+use this address to store the caldb data and use it until next reboot.
 
-The device tree requires an additional string to define the variant name
+This will give the improvement during the channel change. But it is
+increasing the boot-up time(up to 15sec depend on number of radios).
+So if the user want to reduce the boot-up time and accepting for channel
+change delay, user can disable this feature using the module param
+cold_boot_cal=0.
 
-    wifi@c000000 {
-        status = "okay";
-        qcom,ath11k-calibration-variant = "Cigtech-WF-188";
-    };
+Tested-on: IPQ8074 WLAN.HK.2.4.0.1-01162-QCAHKSWPL_SILICONZ-1
 
-This would create the boarddata identifier for the board-2.bin search
-
- *  bus=ahb,qmi-chip-id=0,qmi-board-id=18,variant=Cigtech-WF-188
-
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
+Signed-off-by: Govindaraj Saminathan <gsamin@codeaurora.org>
+Co-developed-by: Sowmiya Sree Elavalagan <ssreeela@codeaurora.org>
+Signed-off-by: Sowmiya Sree Elavalagan <ssreeela@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/core.c | 35 ++++++++++++++++++++++++--
- drivers/net/wireless/ath/ath11k/core.h |  1 +
- drivers/net/wireless/ath/ath11k/qmi.c  |  5 ++++
- drivers/net/wireless/ath/ath11k/qmi.h  |  2 ++
- 4 files changed, 41 insertions(+), 2 deletions(-)
+v2:
+   - Fixed compilations warnings
+     Reported-by: kernel test robot <lkp@intel.com>
+v3:
+   - Rebased
+     Added cold_boot_calib flag in hw params to enable cold boot calibration only for supported hardware
+v4:
+   - Made changes to switch to normal mode on cold boot calibration failure to resume normal operation
+     Reported-by: kernel test robot <lkp@intel.com>
+---
+ drivers/net/wireless/ath/ath11k/ahb.c  | 27 ++++++++++++++
+ drivers/net/wireless/ath/ath11k/core.c |  4 ++
+ drivers/net/wireless/ath/ath11k/core.h |  5 +++
+ drivers/net/wireless/ath/ath11k/hw.h   |  1 +
+ drivers/net/wireless/ath/ath11k/qmi.c  | 68 ++++++++++++++++++++++++++++++----
+ drivers/net/wireless/ath/ath11k/qmi.h  |  3 ++
+ 6 files changed, 101 insertions(+), 7 deletions(-)
 
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+index 430723c..c7843f4 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.c
++++ b/drivers/net/wireless/ath/ath11k/ahb.c
+@@ -340,6 +340,31 @@ static void ath11k_ahb_power_down(struct ath11k_base *ab)
+ 	rproc_shutdown(ab_ahb->tgt_rproc);
+ }
+ 
++static int ath11k_ahb_fwreset_from_cold_boot(struct ath11k_base *ab)
++{
++	int timeout;
++
++	if (ath11k_cold_boot_cal == 0 || ab->qmi.cal_done ||
++	    ab->hw_params.cold_boot_calib == 0)
++		return 0;
++
++	ath11k_dbg(ab, ATH11K_DBG_AHB, "wait for cold boot done\n");
++	timeout = wait_event_timeout(ab->qmi.cold_boot_waitq,
++				     (ab->qmi.cal_done  == 1),
++				     ATH11K_COLD_BOOT_FW_RESET_DELAY);
++	if (timeout <= 0) {
++		ath11k_cold_boot_cal = 0;
++		ath11k_warn(ab, "Coldboot Calibration failed timed out\n");
++	}
++
++	/* reset the firmware */
++	ath11k_ahb_power_down(ab);
++	ath11k_ahb_power_up(ab);
++
++	ath11k_dbg(ab, ATH11K_DBG_AHB, "exited from cold boot mode\n");
++	return 0;
++}
++
+ static void ath11k_ahb_init_qmi_ce_config(struct ath11k_base *ab)
+ {
+ 	struct ath11k_qmi_ce_cfg *cfg = &ab->qmi.ce_cfg;
+@@ -700,6 +725,8 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
+ 		goto err_ce_free;
+ 	}
+ 
++	ath11k_ahb_fwreset_from_cold_boot(ab);
++
+ 	return 0;
+ 
+ err_ce_free:
 diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index ebd6886a8c18..c3af41226379 100644
+index ebd6886..1472d54 100644
 --- a/drivers/net/wireless/ath/ath11k/core.c
 +++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -7,6 +7,7 @@
- #include <linux/slab.h>
- #include <linux/remoteproc.h>
- #include <linux/firmware.h>
-+#include <linux/of.h>
- #include "core.h"
- #include "dp_tx.h"
- #include "dp_rx.h"
-@@ -141,14 +142,44 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+@@ -65,6 +65,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_monitor = true,
+ 		.supports_shadow_regs = false,
+ 		.idle_ps = false,
++		.cold_boot_calib = true,
+ 	},
+ 	{
+ 		.hw_rev = ATH11K_HW_IPQ6018_HW10,
+@@ -102,6 +103,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_monitor = true,
+ 		.supports_shadow_regs = false,
+ 		.idle_ps = false,
++		.cold_boot_calib = true,
+ 	},
+ 	{
+ 		.name = "qca6390 hw2.0",
+@@ -138,6 +140,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_monitor = false,
+ 		.supports_shadow_regs = true,
+ 		.idle_ps = true,
++		.cold_boot_calib = false,
  	},
  };
  
-+int ath11k_core_check_dt(struct ath11k_base *ab)
+@@ -923,6 +926,7 @@ struct ath11k_base *ath11k_core_alloc(struct device *dev, size_t priv_size,
+ 	INIT_LIST_HEAD(&ab->peers);
+ 	init_waitqueue_head(&ab->peer_mapping_wq);
+ 	init_waitqueue_head(&ab->wmi_ab.tx_credits_wq);
++	init_waitqueue_head(&ab->qmi.cold_boot_waitq);
+ 	INIT_WORK(&ab->restart_work, ath11k_core_restart);
+ 	timer_setup(&ab->rx_replenish_retry, ath11k_ce_rx_replenish_retry, 0);
+ 	ab->dev = dev;
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index 18b9742..7721a33 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -111,8 +111,13 @@ enum ath11k_firmware_mode {
+ 
+ 	/* factory tests etc */
+ 	ATH11K_FIRMWARE_MODE_FTM,
++
++	/* Cold boot calibration */
++	ATH11K_FIRMWARE_MODE_COLD_BOOT = 7,
+ };
+ 
++extern bool ath11k_cold_boot_cal;
++
+ #define ATH11K_IRQ_NUM_MAX 52
+ #define ATH11K_EXT_IRQ_NUM_MAX	16
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
+index 1dda425..17c4560 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.h
++++ b/drivers/net/wireless/ath/ath11k/hw.h
+@@ -161,6 +161,7 @@ struct ath11k_hw_params {
+ 	bool supports_monitor;
+ 	bool supports_shadow_regs;
+ 	bool idle_ps;
++	bool cold_boot_calib;
+ };
+ 
+ struct ath11k_hw_ops {
+diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
+index c2b1651..f704617 100644
+--- a/drivers/net/wireless/ath/ath11k/qmi.c
++++ b/drivers/net/wireless/ath/ath11k/qmi.c
+@@ -14,6 +14,13 @@
+ #define SLEEP_CLOCK_SELECT_INTERNAL_BIT	0x02
+ #define HOST_CSTATE_BIT			0x04
+ 
++bool ath11k_cold_boot_cal = 1;
++EXPORT_SYMBOL(ath11k_cold_boot_cal);
++module_param_named(cold_boot_cal, ath11k_cold_boot_cal, bool, 0644);
++MODULE_PARM_DESC(cold_boot_cal,
++		 "Cold boot will bring down the channel switch time but "
++		 "it will increase the driver load time (enable:1, disable:0)");
++
+ static struct qmi_elem_info qmi_wlanfw_host_cap_req_msg_v01_ei[] = {
+ 	{
+ 		.data_type	= QMI_OPT_FLAG,
+@@ -1769,9 +1776,16 @@ static int ath11k_qmi_assign_target_mem_chunk(struct ath11k_base *ab)
+ 				ath11k_warn(ab, "qmi mem size is low to load caldata\n");
+ 				return -EINVAL;
+ 			}
+-			/* TODO ath11k does not support cold boot calibration */
+-			ab->qmi.target_mem[idx].paddr = 0;
+-			ab->qmi.target_mem[idx].vaddr = NULL;
++
++			if (ath11k_cold_boot_cal && ab->hw_params.cold_boot_calib) {
++				ab->qmi.target_mem[idx].paddr =
++						     ATH11K_QMI_CALDB_ADDRESS;
++				ab->qmi.target_mem[idx].vaddr =
++						     (void *)ATH11K_QMI_CALDB_ADDRESS;
++			} else {
++				ab->qmi.target_mem[idx].paddr = 0;
++				ab->qmi.target_mem[idx].vaddr = NULL;
++			}
+ 			ab->qmi.target_mem[idx].size = ab->qmi.target_mem[i].size;
+ 			ab->qmi.target_mem[idx].type = ab->qmi.target_mem[i].type;
+ 			idx++;
+@@ -2352,6 +2366,32 @@ int ath11k_qmi_firmware_start(struct ath11k_base *ab,
+ 	return 0;
+ }
+ 
++static int ath11k_qmi_process_coldboot_calibration(struct ath11k_base *ab)
 +{
-+	size_t max_len = sizeof(ab->qmi.target.bdf_ext);
-+	const char *variant = NULL;
-+	struct device_node *node;
++	int timeout;
++	int ret;
 +
-+	node = ab->dev->of_node;
-+	if (!node)
-+		return -ENOENT;
++	ret = ath11k_qmi_wlanfw_mode_send(ab, ATH11K_FIRMWARE_MODE_COLD_BOOT);
++	if (ret < 0) {
++		ath11k_warn(ab, "qmi failed to send wlan fw mode:%d\n", ret);
++		return ret;
++	}
 +
-+	of_property_read_string(node, "qcom,ath11k-calibration-variant",
-+				&variant);
-+	if (!variant)
-+		return -ENODATA;
++	ath11k_dbg(ab, ATH11K_DBG_QMI, "Coldboot calibration wait started\n");
 +
-+	if (strscpy(ab->qmi.target.bdf_ext, variant, max_len) < 0)
-+		ath11k_dbg(ab, ATH11K_DBG_BOOT,
-+			   "bdf variant string is longer than the buffer can accommodate (variant: %s)\n",
-+			    variant);
++	timeout = wait_event_timeout(ab->qmi.cold_boot_waitq,
++				     (ab->qmi.cal_done  == 1),
++				     ATH11K_COLD_BOOT_FW_RESET_DELAY);
++	if (timeout <= 0) {
++		ath11k_warn(ab, "Coldboot Calibration failed - wait ended\n");
++		return 0;
++	}
++
++	ath11k_dbg(ab, ATH11K_DBG_QMI, "Coldboot calibration done\n");
 +
 +	return 0;
 +}
 +
- static int ath11k_core_create_board_name(struct ath11k_base *ab, char *name,
- 					 size_t name_len)
- {
-+	/* strlen(',variant=') + strlen(ab->qmi.target.bdf_ext) */
-+	char variant[9 + ATH11K_QMI_BDF_EXT_STR_LENGTH] = { 0 };
-+
-+	if (ab->qmi.target.bdf_ext[0] != '\0')
-+		scnprintf(variant, sizeof(variant), ",variant=%s",
-+			  ab->qmi.target.bdf_ext);
-+
- 	scnprintf(name, name_len,
--		  "bus=%s,qmi-chip-id=%d,qmi-board-id=%d",
-+		  "bus=%s,qmi-chip-id=%d,qmi-board-id=%d%s",
- 		  ath11k_bus_str(ab->hif.bus),
- 		  ab->qmi.target.chip_id,
--		  ab->qmi.target.board_id);
-+		  ab->qmi.target.board_id, variant);
- 
- 	ath11k_dbg(ab, ATH11K_DBG_BOOT, "boot using board name '%s'\n", name);
- 
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 18b97420f0d8..18c961c9fd30 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -883,6 +883,7 @@ void ath11k_core_free(struct ath11k_base *ath11k);
- int ath11k_core_fetch_bdf(struct ath11k_base *ath11k,
- 			  struct ath11k_board_data *bd);
- void ath11k_core_free_bdf(struct ath11k_base *ab, struct ath11k_board_data *bd);
-+int ath11k_core_check_dt(struct ath11k_base *ath11k);
- 
- void ath11k_core_halt(struct ath11k *ar);
- 
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index c2b165158225..9fb4dea149bf 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.c
-+++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -1793,6 +1793,7 @@ static int ath11k_qmi_request_target_cap(struct ath11k_base *ab)
- 	struct qmi_wlanfw_cap_resp_msg_v01 resp;
- 	struct qmi_txn txn = {};
- 	int ret = 0;
-+	int r;
- 
- 	memset(&req, 0, sizeof(req));
- 	memset(&resp, 0, sizeof(resp));
-@@ -1858,6 +1859,10 @@ static int ath11k_qmi_request_target_cap(struct ath11k_base *ab)
- 		    ab->qmi.target.fw_build_timestamp,
- 		    ab->qmi.target.fw_build_id);
- 
-+	r = ath11k_core_check_dt(ab);
-+	if (r)
-+		ath11k_dbg(ab, ATH11K_DBG_QMI, "DT bdf variant name not set.\n");
-+
- out:
- 	return ret;
+ static int
+ ath11k_qmi_driver_event_post(struct ath11k_qmi *qmi,
+ 			     enum ath11k_qmi_event_type type,
+@@ -2501,11 +2541,18 @@ static void ath11k_qmi_msg_fw_ready_cb(struct qmi_handle *qmi_hdl,
+ 	ath11k_qmi_driver_event_post(qmi, ATH11K_QMI_EVENT_FW_READY, NULL);
  }
+ 
+-static void ath11k_qmi_msg_cold_boot_cal_done_cb(struct qmi_handle *qmi,
++static void ath11k_qmi_msg_cold_boot_cal_done_cb(struct qmi_handle *qmi_hdl,
+ 						 struct sockaddr_qrtr *sq,
+ 						 struct qmi_txn *txn,
+ 						 const void *decoded)
+ {
++	struct ath11k_qmi *qmi = container_of(qmi_hdl,
++					      struct ath11k_qmi, handle);
++	struct ath11k_base *ab = qmi->ab;
++
++	ab->qmi.cal_done = 1;
++	wake_up(&ab->qmi.cold_boot_waitq);
++	ath11k_dbg(ab, ATH11K_DBG_QMI, "qmi cold boot calibration done\n");
+ }
+ 
+ static const struct qmi_msg_handler ath11k_qmi_msg_handlers[] = {
+@@ -2618,9 +2665,16 @@ static void ath11k_qmi_driver_event_work(struct work_struct *work)
+ 				break;
+ 			}
+ 
+-			ath11k_core_qmi_firmware_ready(ab);
+-			ab->qmi.cal_done = 1;
+-			set_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags);
++			if (ath11k_cold_boot_cal && ab->qmi.cal_done == 0 &&
++			    ab->hw_params.cold_boot_calib) {
++				ath11k_qmi_process_coldboot_calibration(ab);
++			} else {
++				clear_bit(ATH11K_FLAG_CRASH_FLUSH,
++					  &ab->dev_flags);
++				clear_bit(ATH11K_FLAG_RECOVERY, &ab->dev_flags);
++				ath11k_core_qmi_firmware_ready(ab);
++				set_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags);
++			}
+ 
+ 			break;
+ 		case ATH11K_QMI_EVENT_COLD_BOOT_CAL_DONE:
 diff --git a/drivers/net/wireless/ath/ath11k/qmi.h b/drivers/net/wireless/ath/ath11k/qmi.h
-index b0a818f0401b..7b170bc9a913 100644
+index b0a818f..64209ef 100644
 --- a/drivers/net/wireless/ath/ath11k/qmi.h
 +++ b/drivers/net/wireless/ath/ath11k/qmi.h
-@@ -24,6 +24,7 @@
- #define ATH11K_QMI_RESP_LEN_MAX			8192
- #define ATH11K_QMI_WLANFW_MAX_NUM_MEM_SEG_V01	32
- #define ATH11K_QMI_CALDB_SIZE			0x480000
-+#define ATH11K_QMI_BDF_EXT_STR_LENGTH		0x20
+@@ -12,6 +12,7 @@
+ #define ATH11K_HOST_VERSION_STRING		"WIN"
+ #define ATH11K_QMI_WLANFW_TIMEOUT_MS		5000
+ #define ATH11K_QMI_MAX_BDF_FILE_NAME_SIZE	64
++#define ATH11K_QMI_CALDB_ADDRESS		0x4BA00000
+ #define ATH11K_QMI_BDF_MAX_SIZE			(256 * 1024)
+ #define ATH11K_QMI_CALDATA_OFFSET		(128 * 1024)
+ #define ATH11K_QMI_WLANFW_MAX_BUILD_ID_LEN_V01	128
+@@ -33,6 +34,7 @@
+ #define QMI_WLANFW_MAX_DATA_SIZE_V01		6144
+ #define ATH11K_FIRMWARE_MODE_OFF		4
+ #define ATH11K_QMI_TARGET_MEM_MODE_DEFAULT	0
++#define ATH11K_COLD_BOOT_FW_RESET_DELAY		(40 * HZ)
  
- #define QMI_WLFW_REQUEST_MEM_IND_V01		0x0035
- #define QMI_WLFW_FW_MEM_READY_IND_V01		0x0037
-@@ -101,6 +102,7 @@ struct target_info {
- 	u32 fw_version;
- 	char fw_build_timestamp[ATH11K_QMI_WLANFW_MAX_TIMESTAMP_LEN_V01 + 1];
- 	char fw_build_id[ATH11K_QMI_WLANFW_MAX_BUILD_ID_LEN_V01 + 1];
-+	char bdf_ext[ATH11K_QMI_BDF_EXT_STR_LENGTH];
+ struct ath11k_base;
+ 
+@@ -125,6 +127,7 @@ struct ath11k_qmi {
+ 	struct target_info target;
+ 	struct m3_mem_region m3_mem;
+ 	unsigned int service_ins_id;
++	wait_queue_head_t cold_boot_waitq;
  };
  
- struct m3_mem_region {
+ #define QMI_WLANFW_HOST_CAP_REQ_MSG_V01_MAX_LEN		189
 -- 
-2.28.0
+2.7.4
 
 
 -- 
