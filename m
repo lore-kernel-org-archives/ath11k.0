@@ -1,12 +1,19 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from m42-4.mailgun.net ([69.72.42.4])
+Received: from mout01.posteo.de ([185.67.36.65])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kTjH3-0001WZ-N0
- for ath11k@lists.infradead.org; Sat, 17 Oct 2020 10:17:19 +0000
-From: Anilkumar Kolli <akolli@codeaurora.org>
-Subject: [PATCH] ath11k: fix rmmod failure if qmi sequence fails
-Date: Sat, 17 Oct 2020 15:46:57 +0530
-Message-Id: <1602929817-25920-1-git-send-email-akolli@codeaurora.org>
+ id 1kTjyE-0002Zr-Qt
+ for ath11k@lists.infradead.org; Sat, 17 Oct 2020 11:01:56 +0000
+Received: from submission (posteo.de [89.146.220.130]) 
+ by mout01.posteo.de (Postfix) with ESMTPS id 927CE16005C
+ for <ath11k@lists.infradead.org>; Sat, 17 Oct 2020 13:01:48 +0200 (CEST)
+Received: from customer (localhost [127.0.0.1])
+ by submission (posteo.de) with ESMTPSA id 4CD0T81XgPz6tmJ
+ for <ath11k@lists.infradead.org>; Sat, 17 Oct 2020 13:01:47 +0200 (CEST)
+From: Thomas Krause <thomaskrause@posteo.de>
+Subject: pci_alloc_irq_vectors fails ENOSPC for XPS 13 9310
+Message-ID: <2849fd39-a7a6-8366-7c78-fc9fec4dffa4@posteo.de>
+Date: Sat, 17 Oct 2020 13:01:46 +0200
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -15,257 +22,107 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
-Cc: Anilkumar Kolli <akolli@codeaurora.org>, linux-wireless@vger.kernel.org
 
-QMI sequence fails if caldata file is not available.
-It is observed that 'rmmod ath11k' fails if qmi message fails.
-With this patch rmmod/insmod is working.
-
-Logs:
-Direct firmware load for IPQ8074/caldata.bin failed with error -2
-Falling back to user helper
-qmi failed to load CAL: IPQ8074/caldata.bin
-qmi failed to load board data file:-11
-
-Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00009-QCAHKSWPL_SILICONZ-1
-
-Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/ahb.c     |  9 +++++++-
- drivers/net/wireless/ath/ath11k/core.h    |  1 +
- drivers/net/wireless/ath/ath11k/debugfs.c |  1 +
- drivers/net/wireless/ath/ath11k/pci.c     |  8 +++++++
- drivers/net/wireless/ath/ath11k/qmi.c     | 38 +++++++++++++++++++------------
- 5 files changed, 42 insertions(+), 15 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index 430723c64adc..03b75f744025 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.c
-+++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -720,6 +720,13 @@ static int ath11k_ahb_remove(struct platform_device *pdev)
- 	struct ath11k_base *ab = platform_get_drvdata(pdev);
- 	unsigned long left;
- 
-+	if (test_bit(ATH11K_FLAG_QMI_FAIL, &ab->dev_flags)) {
-+		ath11k_ahb_power_down(ab);
-+		ath11k_debugfs_soc_destroy(ab);
-+		ath11k_qmi_deinit_service(ab);
-+		goto qmi_fail;
-+	}
-+
- 	reinit_completion(&ab->driver_recovery);
- 
- 	if (test_bit(ATH11K_FLAG_RECOVERY, &ab->dev_flags)) {
-@@ -733,8 +740,8 @@ static int ath11k_ahb_remove(struct platform_device *pdev)
- 	cancel_work_sync(&ab->restart_work);
- 
- 	ath11k_core_deinit(ab);
-+qmi_fail:
- 	ath11k_ahb_free_irq(ab);
--
- 	ath11k_hal_srng_deinit(ab);
- 	ath11k_ce_free_pipes(ab);
- 	ath11k_core_free(ab);
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 18b97420f0d8..e63d2710f30b 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -178,6 +178,7 @@ enum ath11k_dev_flags {
- 	ATH11K_FLAG_RECOVERY,
- 	ATH11K_FLAG_UNREGISTERING,
- 	ATH11K_FLAG_REGISTERED,
-+	ATH11K_FLAG_QMI_FAIL,
- };
- 
- enum ath11k_monitor_flags {
-diff --git a/drivers/net/wireless/ath/ath11k/debugfs.c b/drivers/net/wireless/ath/ath11k/debugfs.c
-index 1b914e67d314..554feaf1ed5c 100644
---- a/drivers/net/wireless/ath/ath11k/debugfs.c
-+++ b/drivers/net/wireless/ath/ath11k/debugfs.c
-@@ -867,6 +867,7 @@ void ath11k_debugfs_soc_destroy(struct ath11k_base *ab)
- 	debugfs_remove_recursive(ab->debugfs_ath11k);
- 	ab->debugfs_ath11k = NULL;
- }
-+EXPORT_SYMBOL(ath11k_debugfs_soc_destroy);
- 
- void ath11k_debugfs_fw_stats_init(struct ath11k *ar)
- {
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index d7eb6b7160bb..0a6787985726 100644
---- a/drivers/net/wireless/ath/ath11k/pci.c
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -1008,10 +1008,18 @@ static void ath11k_pci_remove(struct pci_dev *pdev)
- 	struct ath11k_base *ab = pci_get_drvdata(pdev);
- 	struct ath11k_pci *ab_pci = ath11k_pci_priv(ab);
- 
-+	if (test_bit(ATH11K_FLAG_QMI_FAIL, &ab->dev_flags)) {
-+		ath11k_pci_power_down(ab);
-+		ath11k_debugfs_soc_destroy(ab);
-+		ath11k_qmi_deinit_service(ab);
-+		goto qmi_fail;
-+	}
-+
- 	set_bit(ATH11K_FLAG_UNREGISTERING, &ab->dev_flags);
- 
- 	ath11k_core_deinit(ab);
- 
-+qmi_fail:
- 	ath11k_mhi_unregister(ab_pci);
- 
- 	ath11k_pci_free_irq(ab);
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index c2b165158225..29ae350e9b80 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.c
-+++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -2375,7 +2375,7 @@ ath11k_qmi_driver_event_post(struct ath11k_qmi *qmi,
- 	return 0;
- }
- 
--static void ath11k_qmi_event_server_arrive(struct ath11k_qmi *qmi)
-+static int ath11k_qmi_event_server_arrive(struct ath11k_qmi *qmi)
- {
- 	struct ath11k_base *ab = qmi->ab;
- 	int ret;
-@@ -2383,17 +2383,19 @@ static void ath11k_qmi_event_server_arrive(struct ath11k_qmi *qmi)
- 	ret = ath11k_qmi_fw_ind_register_send(ab);
- 	if (ret < 0) {
- 		ath11k_warn(ab, "qmi failed to send FW indication QMI:%d\n", ret);
--		return;
-+		return ret;
- 	}
- 
- 	ret = ath11k_qmi_host_cap_send(ab);
- 	if (ret < 0) {
- 		ath11k_warn(ab, "qmi failed to send host cap QMI:%d\n", ret);
--		return;
-+		return ret;
- 	}
-+
-+	return ret;
- }
- 
--static void ath11k_qmi_event_mem_request(struct ath11k_qmi *qmi)
-+static int ath11k_qmi_event_mem_request(struct ath11k_qmi *qmi)
- {
- 	struct ath11k_base *ab = qmi->ab;
- 	int ret;
-@@ -2401,11 +2403,13 @@ static void ath11k_qmi_event_mem_request(struct ath11k_qmi *qmi)
- 	ret = ath11k_qmi_respond_fw_mem_request(ab);
- 	if (ret < 0) {
- 		ath11k_warn(ab, "qmi failed to respond fw mem req:%d\n", ret);
--		return;
-+		return ret;
- 	}
-+
-+	return ret;
- }
- 
--static void ath11k_qmi_event_load_bdf(struct ath11k_qmi *qmi)
-+static int ath11k_qmi_event_load_bdf(struct ath11k_qmi *qmi)
- {
- 	struct ath11k_base *ab = qmi->ab;
- 	int ret;
-@@ -2413,7 +2417,7 @@ static void ath11k_qmi_event_load_bdf(struct ath11k_qmi *qmi)
- 	ret = ath11k_qmi_request_target_cap(ab);
- 	if (ret < 0) {
- 		ath11k_warn(ab, "qmi failed to req target capabilities:%d\n", ret);
--		return;
-+		return ret;
- 	}
- 
- 	if (ab->bus_params.fixed_bdf_addr)
-@@ -2422,14 +2426,16 @@ static void ath11k_qmi_event_load_bdf(struct ath11k_qmi *qmi)
- 		ret = ath11k_qmi_load_bdf_qmi(ab);
- 	if (ret < 0) {
- 		ath11k_warn(ab, "qmi failed to load board data file:%d\n", ret);
--		return;
-+		return ret;
- 	}
- 
- 	ret = ath11k_qmi_wlanfw_m3_info_send(ab);
- 	if (ret < 0) {
- 		ath11k_warn(ab, "qmi failed to send m3 info req:%d\n", ret);
--		return;
-+		return ret;
- 	}
-+
-+	return ret;
- }
- 
- static void ath11k_qmi_msg_mem_request_cb(struct qmi_handle *qmi_hdl,
-@@ -2562,7 +2568,7 @@ static int ath11k_qmi_ops_new_server(struct qmi_handle *qmi_hdl,
- 	ath11k_dbg(ab, ATH11K_DBG_QMI, "qmi wifi fw qmi service connected\n");
- 	ath11k_qmi_driver_event_post(qmi, ATH11K_QMI_EVENT_SERVER_ARRIVE, NULL);
- 
--	return 0;
-+	return ret;
- }
- 
- static void ath11k_qmi_ops_del_server(struct qmi_handle *qmi_hdl,
-@@ -2586,6 +2592,7 @@ static void ath11k_qmi_driver_event_work(struct work_struct *work)
- 					      event_work);
- 	struct ath11k_qmi_driver_event *event;
- 	struct ath11k_base *ab = qmi->ab;
-+	int ret = 0;
- 
- 	spin_lock(&qmi->event_lock);
- 	while (!list_empty(&qmi->event_list)) {
-@@ -2599,17 +2606,17 @@ static void ath11k_qmi_driver_event_work(struct work_struct *work)
- 
- 		switch (event->type) {
- 		case ATH11K_QMI_EVENT_SERVER_ARRIVE:
--			ath11k_qmi_event_server_arrive(qmi);
-+			ret = ath11k_qmi_event_server_arrive(qmi);
- 			break;
- 		case ATH11K_QMI_EVENT_SERVER_EXIT:
- 			set_bit(ATH11K_FLAG_CRASH_FLUSH, &ab->dev_flags);
- 			set_bit(ATH11K_FLAG_RECOVERY, &ab->dev_flags);
- 			break;
- 		case ATH11K_QMI_EVENT_REQUEST_MEM:
--			ath11k_qmi_event_mem_request(qmi);
-+			ret = ath11k_qmi_event_mem_request(qmi);
- 			break;
- 		case ATH11K_QMI_EVENT_FW_MEM_READY:
--			ath11k_qmi_event_load_bdf(qmi);
-+			ret = ath11k_qmi_event_load_bdf(qmi);
- 			break;
- 		case ATH11K_QMI_EVENT_FW_READY:
- 			if (test_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags)) {
-@@ -2621,7 +2628,6 @@ static void ath11k_qmi_driver_event_work(struct work_struct *work)
- 			ath11k_core_qmi_firmware_ready(ab);
- 			ab->qmi.cal_done = 1;
- 			set_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags);
--
- 			break;
- 		case ATH11K_QMI_EVENT_COLD_BOOT_CAL_DONE:
- 			break;
-@@ -2630,6 +2636,9 @@ static void ath11k_qmi_driver_event_work(struct work_struct *work)
- 			break;
- 		}
- 		kfree(event);
-+		if (ret < 0)
-+			set_bit(ATH11K_FLAG_QMI_FAIL, &ab->dev_flags);
-+
- 		spin_lock(&qmi->event_lock);
- 	}
- 	spin_unlock(&qmi->event_lock);
-@@ -2682,4 +2691,5 @@ void ath11k_qmi_deinit_service(struct ath11k_base *ab)
- 	ath11k_qmi_m3_free(ab);
- 	ath11k_qmi_free_target_mem_chunk(ab);
- }
-+EXPORT_SYMBOL(ath11k_qmi_deinit_service);
- 
--- 
-2.7.4
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+SGVsbG8sCgpzb21lIHZhcmlhbnRzIG9mIERlbGwgWFBTIDEzIDkzMTAgbW9kZWwgaGF2ZSBhIFFD
+QTYzOTAgZGV2aWNlIGFuZCBJIHdhcyAKdHJ5aW5nIHRvIG1ha2UgaXQgd29yayB1c2luZyB0aGXC
+oCBhdGguZ2l0IG1hc3RlciBicmFuY2ggKHRhZyAKYXRoLTIwMjAxMDAxMTkzNCkuCgpVbmZvcnR1
+bmF0bHksIEkgZ2V0IHRoZSBmb2xsb3dpbmcgZXJyb3IgbWVzc2FnZXMgd2hlbiBsb2FkaW5nIHRo
+ZSBtb2R1bGU6Cgo+IFvCoCA2NzIuMjc3NzI2XSBhdGgxMWtfcGNpIDAwMDA6NTY6MDAuMDogV0FS
+TklORzogYXRoMTFrIFBDSSBzdXBwb3J0IGlzIAo+IGV4cGVyaW1lbnRhbCEKPiBbwqAgNjcyLjI3
+NzkyNV0gYXRoMTFrX3BjaSAwMDAwOjU2OjAwLjA6IEJBUiAwOiBhc3NpZ25lZCBbbWVtIAo+IDB4
+OGMzMDAwMDAtMHg4YzNmZmZmZiA2NGJpdF0KPiBbwqAgNjcyLjI3ODAyMF0gYXRoMTFrX3BjaSAw
+MDAwOjU2OjAwLjA6IGZhaWxlZCB0byBnZXQgMzIgTVNJIHZlY3RvcnMsIAo+IG9ubHkgLTI4IGF2
+YWlsYWJsZQo+IFvCoCA2NzIuMjc4MDI0XSBhdGgxMWtfcGNpIDAwMDA6NTY6MDAuMDogZmFpbGVk
+IHRvIGVuYWJsZSBtc2k6IC0yOAo+IFvCoCA2NzIuMjc4MTQ0XSBhdGgxMWtfcGNpOiBwcm9iZSBv
+ZiAwMDAwOjU2OjAwLjAgZmFpbGVkIHdpdGggZXJyb3IgLTI4CgotMjggc2VlbXMgdG8gcmVmZXJl
+bmNlIEVOT1NQQywgd2hpY2ggc2VlbXMgdG8gYmUgcmVsYXRlZCB0byB0aGUgbWluaW11bSAKbnVt
+YmVyIG9mIHZlY3RvcnMgbm90IGJlZWluZyBhdmFpbGFibGUuIGxzcGNpIG91dHB1dCBpcwoKPiA1
+NjowMC4wIE5ldHdvcmsgY29udHJvbGxlcjogUXVhbGNvbW0gRGV2aWNlIDExMDEgKHJldiAwMSkK
+PiDCoMKgIMKgU3Vic3lzdGVtOiBSaXZldCBOZXR3b3JrcyBEZXZpY2UgYTUwMQo+IMKgwqAgwqBD
+b250cm9sOiBJL08tIE1lbSsgQnVzTWFzdGVyLSBTcGVjQ3ljbGUtIE1lbVdJTlYtIFZHQVNub29w
+LSAKPiBQYXJFcnItIFN0ZXBwaW5nLSBTRVJSLSBGYXN0QjJCLSBEaXNJTlR4LQo+IMKgwqAgwqBT
+dGF0dXM6IENhcCsgNjZNSHotIFVERi0gRmFzdEIyQi0gUGFyRXJyLSBERVZTRUw9ZmFzdCA+VEFi
+b3J0LSAKPiA8VEFib3J0LSA8TUFib3J0LSA+U0VSUi0gPFBFUlItIElOVHgtCj4gwqDCoCDCoFJl
+Z2lvbiAwOiBNZW1vcnkgYXQgOGMzMDAwMDAgKDY0LWJpdCwgbm9uLXByZWZldGNoYWJsZSkgW3Np
+emU9MU1dCj4gwqDCoCDCoENhcGFiaWxpdGllczogWzQwXSBQb3dlciBNYW5hZ2VtZW50IHZlcnNp
+b24gMwo+IMKgwqAgwqDCoMKgIMKgRmxhZ3M6IFBNRUNsay0gRFNJLSBEMS0gRDItIEF1eEN1cnJl
+bnQ9MG1BIAo+IFBNRShEMCssRDEtLEQyLSxEM2hvdCssRDNjb2xkKykKPiDCoMKgIMKgwqDCoCDC
+oFN0YXR1czogRDAgTm9Tb2Z0UnN0KyBQTUUtRW5hYmxlLSBEU2VsPTAgRFNjYWxlPTAgUE1FLQo+
+IMKgwqAgwqBDYXBhYmlsaXRpZXM6IFs1MF0gTVNJOiBFbmFibGUtIENvdW50PTEvMzIgTWFza2Fi
+bGUrIDY0Yml0LQo+IMKgwqAgwqDCoMKgIMKgQWRkcmVzczogZmVlMDEwMDTCoCBEYXRhOiA0MGVm
+Cj4gwqDCoCDCoMKgwqAgwqBNYXNraW5nOiAwMDAwMDAwMMKgIFBlbmRpbmc6IDAwMDAwMDAwCj4g
+wqDCoCDCoENhcGFiaWxpdGllczogWzcwXSBFeHByZXNzICh2MikgRW5kcG9pbnQsIE1TSSAwMAo+
+IMKgwqAgwqDCoMKgIMKgRGV2Q2FwOsKgwqAgwqBNYXhQYXlsb2FkIDEyOCBieXRlcywgUGhhbnRG
+dW5jIDAsIExhdGVuY3kgTDBzIAo+IHVubGltaXRlZCwgTDEgdW5saW1pdGVkCj4gwqDCoCDCoMKg
+wqAgwqDCoMKgIMKgRXh0VGFnLSBBdHRuQnRuLSBBdHRuSW5kLSBQd3JJbmQtIFJCRSsgRkxSZXNl
+dC0gCj4gU2xvdFBvd2VyTGltaXQgMTAuMDAwVwo+IMKgwqAgwqDCoMKgIMKgRGV2Q3RsOsKgwqAg
+wqBDb3JyRXJyLSBOb25GYXRhbEVyci0gRmF0YWxFcnItIFVuc3VwUmVxLQo+IMKgwqAgwqDCoMKg
+IMKgwqDCoCDCoFJseGRPcmQrIEV4dFRhZy0gUGhhbnRGdW5jLSBBdXhQd3ItIE5vU25vb3ArCj4g
+wqDCoCDCoMKgwqAgwqDCoMKgIMKgTWF4UGF5bG9hZCAxMjggYnl0ZXMsIE1heFJlYWRSZXEgNTEy
+IGJ5dGVzCj4gwqDCoCDCoMKgwqAgwqBEZXZTdGE6wqDCoCDCoENvcnJFcnIrIE5vbkZhdGFsRXJy
+LSBGYXRhbEVyci0gVW5zdXBSZXErIEF1eFB3cisgCj4gVHJhbnNQZW5kLQo+IMKgwqAgwqDCoMKg
+IMKgTG5rQ2FwOsKgwqAgwqBQb3J0ICMwLCBTcGVlZCA4R1QvcywgV2lkdGggeDEsIEFTUE0gTDBz
+IEwxLCBFeGl0IAo+IExhdGVuY3kgTDBzIDwxdXMsIEwxIDw2NHVzCj4gwqDCoCDCoMKgwqAgwqDC
+oMKgIMKgQ2xvY2tQTS0gU3VycHJpc2UtIExMQWN0UmVwLSBCd05vdC0gQVNQTU9wdENvbXArCj4g
+wqDCoCDCoMKgwqAgwqBMbmtDdGw6wqDCoCDCoEFTUE0gTDEgRW5hYmxlZDsgUkNCIDY0IGJ5dGVz
+IERpc2FibGVkLSBDb21tQ2xrKwo+IMKgwqAgwqDCoMKgIMKgwqDCoCDCoEV4dFN5bmNoLSBDbG9j
+a1BNLSBBdXRXaWREaXMtIEJXSW50LSBBdXRCV0ludC0KPiDCoMKgIMKgwqDCoCDCoExua1N0YTrC
+oMKgIMKgU3BlZWQgNUdUL3MgKGRvd25ncmFkZWQpLCBXaWR0aCB4MSAob2spCj4gwqDCoCDCoMKg
+wqAgwqDCoMKgIMKgVHJFcnItIFRyYWluLSBTbG90Q2xrKyBETEFjdGl2ZS0gQldNZ210LSBBQldN
+Z210LQo+IMKgwqAgwqDCoMKgIMKgRGV2Q2FwMjogQ29tcGxldGlvbiBUaW1lb3V0OiBSYW5nZSBB
+QkNELCBUaW1lb3V0RGlzKywgCj4gTlJPUHJQclAtLCBMVFIrCj4gwqDCoCDCoMKgwqAgwqDCoMKg
+IMKgIDEwQml0VGFnQ29tcC0sIDEwQml0VGFnUmVxLSwgT0JGRiBOb3QgU3VwcG9ydGVkLCBFeHRG
+bXQtLCAKPiBFRVRMUFByZWZpeC0KPiDCoMKgIMKgwqDCoCDCoMKgwqAgwqAgRW1lcmdlbmN5UG93
+ZXJSZWR1Y3Rpb24gTm90IFN1cHBvcnRlZCwgCj4gRW1lcmdlbmN5UG93ZXJSZWR1Y3Rpb25Jbml0
+LQo+IMKgwqAgwqDCoMKgIMKgwqDCoCDCoCBGUlMtLCBUUEhDb21wKywgRXh0VFBIQ29tcC0KPiDC
+oMKgIMKgwqDCoCDCoMKgwqAgwqAgQXRvbWljT3BzQ2FwOiAzMmJpdC0gNjRiaXQtIDEyOGJpdENB
+Uy0KPiDCoMKgIMKgwqDCoCDCoERldkN0bDI6IENvbXBsZXRpb24gVGltZW91dDogNTB1cyB0byA1
+MG1zLCBUaW1lb3V0RGlzLSwgTFRSKywgCj4gT0JGRiBEaXNhYmxlZAo+IMKgwqAgwqDCoMKgIMKg
+wqDCoCDCoCBBdG9taWNPcHNDdGw6IFJlcUVuLQo+IMKgwqAgwqDCoMKgIMKgTG5rQ3RsMjogVGFy
+Z2V0IExpbmsgU3BlZWQ6IDVHVC9zLCBFbnRlckNvbXBsaWFuY2UtIFNwZWVkRGlzLQo+IMKgwqAg
+wqDCoMKgIMKgwqDCoCDCoCBUcmFuc21pdCBNYXJnaW46IE5vcm1hbCBPcGVyYXRpbmcgUmFuZ2Us
+IAo+IEVudGVyTW9kaWZpZWRDb21wbGlhbmNlLSBDb21wbGlhbmNlU09TLQo+IMKgwqAgwqDCoMKg
+IMKgwqDCoCDCoCBDb21wbGlhbmNlIERlLWVtcGhhc2lzOiAtNmRCCj4gwqDCoCDCoMKgwqAgwqBM
+bmtTdGEyOiBDdXJyZW50IERlLWVtcGhhc2lzIExldmVsOiAtNmRCLCAKPiBFcXVhbGl6YXRpb25D
+b21wbGV0ZS0sIEVxdWFsaXphdGlvblBoYXNlMS0KPiDCoMKgIMKgwqDCoCDCoMKgwqAgwqAgRXF1
+YWxpemF0aW9uUGhhc2UyLSwgRXF1YWxpemF0aW9uUGhhc2UzLSwgCj4gTGlua0VxdWFsaXphdGlv
+blJlcXVlc3QtCj4gwqDCoCDCoENhcGFiaWxpdGllczogWzEwMCB2Ml0gQWR2YW5jZWQgRXJyb3Ig
+UmVwb3J0aW5nCj4gwqDCoCDCoMKgwqAgwqBVRVN0YTrCoMKgIMKgRExQLSBTREVTLSBUTFAtIEZD
+UC0gQ21wbHRUTy0gQ21wbHRBYnJ0LSBVbnhDbXBsdC0gCj4gUnhPRi0gTWFsZlRMUC0gRUNSQy0g
+VW5zdXBSZXEtIEFDU1Zpb2wtCj4gwqDCoCDCoMKgwqAgwqBVRU1zazrCoMKgIMKgRExQLSBTREVT
+LSBUTFAtIEZDUC0gQ21wbHRUTy0gQ21wbHRBYnJ0LSBVbnhDbXBsdC0gCj4gUnhPRi0gTWFsZlRM
+UC0gRUNSQy0gVW5zdXBSZXEtIEFDU1Zpb2wtCj4gwqDCoCDCoMKgwqAgwqBVRVN2cnQ6wqDCoCDC
+oERMUCsgU0RFUysgVExQLSBGQ1ArIENtcGx0VE8tIENtcGx0QWJydC0gVW54Q21wbHQtIAo+IFJ4
+T0YrIE1hbGZUTFArIEVDUkMtIFVuc3VwUmVxLSBBQ1NWaW9sLQo+IMKgwqAgwqDCoMKgIMKgQ0VT
+dGE6wqDCoCDCoFJ4RXJyLSBCYWRUTFAtIEJhZERMTFAtIFJvbGxvdmVyLSBUaW1lb3V0LSAKPiBB
+ZHZOb25GYXRhbEVycisKPiDCoMKgIMKgwqDCoCDCoENFTXNrOsKgwqAgwqBSeEVyci0gQmFkVExQ
+LSBCYWRETExQLSBSb2xsb3Zlci0gVGltZW91dC0gCj4gQWR2Tm9uRmF0YWxFcnIrCj4gwqDCoCDC
+oMKgwqAgwqBBRVJDYXA6wqDCoCDCoEZpcnN0IEVycm9yIFBvaW50ZXI6IDAwLCBFQ1JDR2VuQ2Fw
+KyBFQ1JDR2VuRW4tIAo+IEVDUkNDaGtDYXArIEVDUkNDaGtFbi0KPiDCoMKgIMKgwqDCoCDCoMKg
+wqAgwqBNdWx0SGRyUmVjQ2FwLSBNdWx0SGRyUmVjRW4tIFRMUFBmeFByZXMtIEhkckxvZ0NhcC0K
+PiDCoMKgIMKgwqDCoCDCoEhlYWRlckxvZzogMDAwMDAwMDAgMDAwMDAwMDAgMDAwMDAwMDAgMDAw
+MDAwMDAKPiDCoMKgIMKgQ2FwYWJpbGl0aWVzOiBbMTQ4IHYxXSBTZWNvbmRhcnkgUENJIEV4cHJl
+c3MKPiDCoMKgIMKgwqDCoCDCoExua0N0bDM6IExua0VxdUludHJydXB0RW4tLCBQZXJmb3JtRXF1
+LQo+IMKgwqAgwqDCoMKgIMKgTGFuZUVyclN0YXQ6IDAKPiDCoMKgIMKgQ2FwYWJpbGl0aWVzOiBb
+MTU4IHYxXSBUcmFuc2FjdGlvbiBQcm9jZXNzaW5nIEhpbnRzCj4gwqDCoCDCoMKgwqAgwqBObyBz
+dGVlcmluZyB0YWJsZSBhdmFpbGFibGUKPiDCoMKgIMKgQ2FwYWJpbGl0aWVzOiBbMWU0IHYxXSBM
+YXRlbmN5IFRvbGVyYW5jZSBSZXBvcnRpbmcKPiDCoMKgIMKgwqDCoCDCoE1heCBzbm9vcCBsYXRl
+bmN5OiAzMTQ1NzI4bnMKPiDCoMKgIMKgwqDCoCDCoE1heCBubyBzbm9vcCBsYXRlbmN5OiAzMTQ1
+NzI4bnMKPiDCoMKgIMKgQ2FwYWJpbGl0aWVzOiBbMWVjIHYxXSBMMSBQTSBTdWJzdGF0ZXMKPiDC
+oMKgIMKgwqDCoCDCoEwxU3ViQ2FwOiBQQ0ktUE1fTDEuMisgUENJLVBNX0wxLjErIEFTUE1fTDEu
+MisgQVNQTV9MMS4xKyAKPiBMMV9QTV9TdWJzdGF0ZXMrCj4gwqDCoCDCoMKgwqAgwqDCoMKgIMKg
+wqAgUG9ydENvbW1vbk1vZGVSZXN0b3JlVGltZT03MHVzIFBvcnRUUG93ZXJPblRpbWU9MHVzCj4g
+wqDCoCDCoMKgwqAgwqBMMVN1YkN0bDE6IFBDSS1QTV9MMS4yKyBQQ0ktUE1fTDEuMSsgQVNQTV9M
+MS4yKyBBU1BNX0wxLjErCj4gwqDCoCDCoMKgwqAgwqDCoMKgIMKgwqDCoCBUX0NvbW1vbk1vZGU9
+MHVzIExUUjEuMl9UaHJlc2hvbGQ9ODE5MjBucwo+IMKgwqAgwqDCoMKgIMKgTDFTdWJDdGwyOiBU
+X1B3ck9uPTQ0dXMKPiDCoMKgIMKgS2VybmVsIG1vZHVsZXM6IGF0aDExa19wY2kKSXQgdGhlcmUg
+YW55dGhpbmcgaW4gbXkgc2lkZSBJIGNhbiB0byB0byBmaXggdGhlIHZlY3RvciBhbGxvY2F0aW9u
+IG9yIGlzIAp0aGUgWFBTIDEzIDkzMTAganVzdCBub3Qgc3VwcG9ydGVkPyBCbHVldG9vdGggd29y
+a3Mgd2l0aCB0aGlzIGtlcm5lbCAKdmVyc2lvbiwgb25seSBXaWZpIGZhaWxzLgoKQmVzdCwKClRo
+b21hcwoKCi0tIAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0cy5pbmZyYWRlYWQub3Jn
+Cmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vYXRoMTFrCg==
