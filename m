@@ -1,13 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from z5.mailgun.us ([104.130.96.5])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kUwQA-0003nJ-LU
+ id 1kUwQ9-0003nG-HN
  for ath11k@lists.infradead.org; Tue, 20 Oct 2020 18:31:45 +0000
 From: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
-Subject: [PATCH v2 4/4] ath11k: mesh: add support for 256 bitmap in blockack
- frames in 11ax
-Date: Tue, 20 Oct 2020 11:31:11 -0700
-Message-Id: <20201020183111.25458-5-pradeepc@codeaurora.org>
+Subject: [PATCH v2 1/4] mac80211: save HE oper info in BSS config for mesh
+Date: Tue, 20 Oct 2020 11:31:08 -0700
+Message-Id: <20201020183111.25458-2-pradeepc@codeaurora.org>
 In-Reply-To: <20201020183111.25458-1-pradeepc@codeaurora.org>
 References: <20201020183111.25458-1-pradeepc@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -26,57 +25,80 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Johannes Berg <johannes@sipsolutions.net>, ath11k@lists.infradead.org
 Cc: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>, linux-wireless@vger.kernel.org
 
-Currently 256 bitmap in blockack frames is being set only for AP mode.
-Fix this to set whenever beacon has changed and has HE capability, there
-by supporting mesh as well.
-
-Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.1.0.1-01228-QCAHKSWPL_SILICONZ-1
+Currently he_support is set only for AP mode. Storing this
+information for mesh BSS as well helps driver to determine
+HE support. Also save HE operation element params in BSS
+conf so that drivers can access this for any configurations
+instead of having to parse the beacon to fetch that info.
 
 Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 22 ++++++++--------------
- 1 file changed, 8 insertions(+), 14 deletions(-)
+ include/net/mac80211.h |  3 ++-
+ net/mac80211/mesh.c    | 30 ++++++++++++++++++++++++++++++
+ 2 files changed, 32 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index b44b67760e02..ecb6cd05efe9 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -1904,20 +1904,6 @@ static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
- 		if (ret)
- 			ath11k_warn(ar->ab, "failed to update bcn template: %d\n",
- 				    ret);
--
--		if (vif->bss_conf.he_support) {
--			ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
--							    WMI_VDEV_PARAM_BA_MODE,
--							    WMI_BA_MODE_BUFFER_SIZE_256);
--			if (ret)
--				ath11k_warn(ar->ab,
--					    "failed to set BA BUFFER SIZE 256 for vdev: %d\n",
--					    arvif->vdev_id);
--			else
--				ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
--					   "Set BA BUFFER SIZE 256 for VDEV: %d\n",
--					   arvif->vdev_id);
--		}
+diff --git a/include/net/mac80211.h b/include/net/mac80211.h
+index e8e295dae744..ee72ea5ec861 100644
+--- a/include/net/mac80211.h
++++ b/include/net/mac80211.h
+@@ -621,7 +621,8 @@ struct ieee80211_fils_discovery {
+  *	nontransmitted BSSIDs
+  * @profile_periodicity: the least number of beacon frames need to be received
+  *	in order to discover all the nontransmitted BSSIDs in the set.
+- * @he_oper: HE operation information of the AP we are connected to
++ * @he_oper: HE operation information of the BSS (AP/Mesh) or of the AP we are
++ *	connected to (STA)
+  * @he_obss_pd: OBSS Packet Detection parameters.
+  * @he_bss_color: BSS coloring settings, if BSS supports HE
+  * @fils_discovery: FILS discovery configuration
+diff --git a/net/mac80211/mesh.c b/net/mac80211/mesh.c
+index ce5825d6f1d1..97095b7c9c64 100644
+--- a/net/mac80211/mesh.c
++++ b/net/mac80211/mesh.c
+@@ -667,6 +667,35 @@ void ieee80211_mesh_root_setup(struct ieee80211_if_mesh *ifmsh)
  	}
+ }
  
- 	if (changed & (BSS_CHANGED_BEACON_INFO | BSS_CHANGED_BEACON)) {
-@@ -1953,6 +1939,14 @@ static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
- 
- 		if (arvif->is_up && vif->bss_conf.he_support &&
- 		    vif->bss_conf.he_oper.params) {
-+			ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
-+							    WMI_VDEV_PARAM_BA_MODE,
-+							    WMI_BA_MODE_BUFFER_SIZE_256);
-+			if (ret)
-+				ath11k_warn(ar->ab,
-+					    "failed to set BA BUFFER SIZE 256 for vdev: %d\n",
-+					    arvif->vdev_id);
++static void
++ieee80211_mesh_update_bss_params(struct ieee80211_sub_if_data *sdata,
++				 u8 *ie, u8 ie_len)
++{
++	struct ieee80211_supported_band *sband;
++	const u8 *cap;
++	const struct ieee80211_he_operation *he_oper = NULL;
 +
- 			param_id = WMI_VDEV_PARAM_HEOPS_0_31;
- 			param_value = vif->bss_conf.he_oper.params;
- 			ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
++	sband = ieee80211_get_sband(sdata);
++	if (!sband)
++		return;
++
++	if (!ieee80211_get_he_iftype_cap(sband, NL80211_IFTYPE_MESH_POINT) ||
++	    sdata->vif.bss_conf.chandef.width == NL80211_CHAN_WIDTH_20_NOHT ||
++	    sdata->vif.bss_conf.chandef.width == NL80211_CHAN_WIDTH_5 ||
++	    sdata->vif.bss_conf.chandef.width == NL80211_CHAN_WIDTH_10)
++		return;
++
++	sdata->vif.bss_conf.he_support = true;
++
++	cap = cfg80211_find_ext_ie(WLAN_EID_EXT_HE_OPERATION, ie, ie_len);
++	if (cap && cap[1] >= ieee80211_he_oper_size(&cap[3]))
++		he_oper = (void *)(cap + 3);
++
++	if (he_oper)
++		sdata->vif.bss_conf.he_oper.params =
++			__le32_to_cpu(he_oper->he_oper_params);
++}
++
+ /**
+  * ieee80211_fill_mesh_addresses - fill addresses of a locally originated mesh frame
+  * @hdr:	802.11 frame header
+@@ -943,6 +972,7 @@ ieee80211_mesh_build_beacon(struct ieee80211_if_mesh *ifmsh)
+ 
+ 	bcn->tail_len = skb->len;
+ 	memcpy(bcn->tail, skb->data, bcn->tail_len);
++	ieee80211_mesh_update_bss_params(sdata, bcn->tail, bcn->tail_len);
+ 	bcn->meshconf = (struct ieee80211_meshconf_ie *)
+ 					(bcn->tail + ifmsh->meshconf_offset);
+ 
 -- 
 2.17.1
 
