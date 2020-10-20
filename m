@@ -1,13 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from z5.mailgun.us ([104.130.96.5])
+Received: from m42-4.mailgun.net ([69.72.42.4])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kUwQC-0003nn-WA
- for ath11k@lists.infradead.org; Tue, 20 Oct 2020 18:31:47 +0000
+ id 1kUwQD-0003nN-7a
+ for ath11k@lists.infradead.org; Tue, 20 Oct 2020 18:31:48 +0000
 From: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
-Subject: [PATCH v2 0/4] ath11k: add support for 256 bitmap in Block ack and
- duration based RTS threshold
-Date: Tue, 20 Oct 2020 11:31:07 -0700
-Message-Id: <20201020183111.25458-1-pradeepc@codeaurora.org>
+Subject: [PATCH v2 2/4] ath11k: fix incorrect wmi param for configuring HE
+ operation
+Date: Tue, 20 Oct 2020 11:31:09 -0700
+Message-Id: <20201020183111.25458-3-pradeepc@codeaurora.org>
+In-Reply-To: <20201020183111.25458-1-pradeepc@codeaurora.org>
+References: <20201020183111.25458-1-pradeepc@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -24,35 +26,35 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Johannes Berg <johannes@sipsolutions.net>, ath11k@lists.infradead.org
 Cc: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>, linux-wireless@vger.kernel.org
 
-This series adds support for the configuration of following in
-HE capable ath11k APs:
-1. TXOP duration based RTS threshold using HE Operation parameters in
-   beacons for AP and mesh modes.
-2. BlockAck's bitmap to support upto 256 bits in mesh mode. Without
-   this maximum of 64 bits are supported in BlockAck bitmap.
+WMI_VDEV_PARAM_TX_OFDMA_CPLEN has been added with incorrect enum
+value. Fix the enum to represent WMI param for configuring HE
+operation field.
 
-mac80211 patch sets he_support flag for mesh BSS and addresses
-previous review comments from https://patchwork.kernel.org/patch/11664077/
+This is applicable to firmwares under
+https://github.com/kvalo/ath11k-firmware/tree/master/IPQ8074/hw2.0
+https://github.com/kvalo/ath11k-firmware/tree/master/IPQ6018/hw1.0
+https://github.com/kvalo/ath11k-firmware/tree/master/QCN9074/hw1.0
 
-changes in v2:
- - fix incorrect bandwidth sanity checks before setting he_support
-   flag (Peter Oh).
- - rebased
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.1.0.1-01228-QCAHKSWPL_SILICONZ-1
 
-Pradeep Kumar Chitrapu (4):
-  mac80211: save HE oper info in BSS config for mesh
-  ath11k: fix incorrect wmi param for configuring HE operation
-  ath11k: support TXOP duration based RTS threshold
-  ath11k: mesh: add support for 256 bitmap in blockack frames in 11ax
+Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
+---
+ drivers/net/wireless/ath/ath11k/wmi.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
- drivers/net/wireless/ath/ath11k/mac.c | 40 +++++++++++++++++----------
- drivers/net/wireless/ath/ath11k/wmi.h |  2 +-
- include/net/mac80211.h                |  3 +-
- net/mac80211/mesh.c                   | 30 ++++++++++++++++++++
- 4 files changed, 58 insertions(+), 17 deletions(-)
-
-
-base-commit: 9ff9b0d392ea08090cd1780fb196f36dbb586529
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index 5a32ba0eb4f5..55b1a5db206a 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -1032,7 +1032,7 @@ enum wmi_tlv_vdev_param {
+ 	WMI_VDEV_PARAM_PROTOTYPE = 0x8000,
+ 	WMI_VDEV_PARAM_BSS_COLOR,
+ 	WMI_VDEV_PARAM_SET_HEMU_MODE,
+-	WMI_VDEV_PARAM_TX_OFDMA_CPLEN,
++	WMI_VDEV_PARAM_HEOPS_0_31 = 0x8003,
+ };
+ 
+ enum wmi_tlv_peer_flags {
 -- 
 2.17.1
 
