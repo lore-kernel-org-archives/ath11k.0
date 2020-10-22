@@ -1,22 +1,23 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail-pf1-x443.google.com ([2607:f8b0:4864:20::443])
+Received: from mail-pg1-x541.google.com ([2607:f8b0:4864:20::541])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kVVWq-0008DB-HU
- for ath11k@lists.infradead.org; Thu, 22 Oct 2020 08:00:58 +0000
-Received: by mail-pf1-x443.google.com with SMTP id 10so648632pfp.5
- for <ath11k@lists.infradead.org>; Thu, 22 Oct 2020 01:00:54 -0700 (PDT)
+ id 1kVVbL-0008Vh-Og
+ for ath11k@lists.infradead.org; Thu, 22 Oct 2020 08:05:36 +0000
+Received: by mail-pg1-x541.google.com with SMTP id j7so480084pgk.5
+ for <ath11k@lists.infradead.org>; Thu, 22 Oct 2020 01:05:35 -0700 (PDT)
 Subject: Re: [PATCHv2 1/2] nl80211: vendor-cmd: qca: add command for ap power
  save
+From: Arend Van Spriel <arend.vanspriel@broadcom.com>
 References: <1598257589-19091-1-git-send-email-vnaralas@codeaurora.org>
  <4b4a0d79a243c1c3b8044730da0493c96ba294bf.camel@sipsolutions.net>
  <871rilf2th.fsf@codeaurora.org>
  <dbaa655c3f15f800f73b7c19f2b1a054@codeaurora.org>
  <87eelr1oq9.fsf@codeaurora.org>
-From: Arend Van Spriel <arend.vanspriel@broadcom.com>
-Message-ID: <f6c148a3-73de-1481-5f63-2deecb599468@broadcom.com>
-Date: Thu, 22 Oct 2020 10:00:49 +0200
+ <f6c148a3-73de-1481-5f63-2deecb599468@broadcom.com>
+Message-ID: <a5a31d7e-343f-1381-37b8-e1ef2c977e8d@broadcom.com>
+Date: Thu, 22 Oct 2020 10:05:30 +0200
 MIME-Version: 1.0
-In-Reply-To: <87eelr1oq9.fsf@codeaurora.org>
+In-Reply-To: <f6c148a3-73de-1481-5f63-2deecb599468@broadcom.com>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -25,59 +26,63 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============2818380692105861423=="
+Content-Type: multipart/mixed; boundary="===============0511114560093193484=="
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Kalle Valo <kvalo@codeaurora.org>, vnaralas@codeaurora.org
 Cc: Johannes Berg <johannes@sipsolutions.net>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
---===============2818380692105861423==
+--===============0511114560093193484==
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="000000000000f40d8505b23ddce5"
+	boundary="000000000000ab47c305b23dedf4"
 
---000000000000f40d8505b23ddce5
+--000000000000ab47c305b23dedf4
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 
-On 10/21/2020 7:19 PM, Kalle Valo wrote:
-> vnaralas@codeaurora.org writes:
-> 
->> On 2020-09-29 13:10, Kalle Valo wrote:
->>> Johannes Berg <johannes@sipsolutions.net> writes:
->>>
->>>> On Mon, 2020-08-24 at 13:56 +0530, Venkateswara Naralasetty wrote:
->>>>> AP power save feature is to save power in AP mode, where AP goes
->>>>> to power save mode when no stations associate to it and comes out
->>>>> of power save when any station associate to AP.
->>>>
->>>> Why do you think this requires a vendor command? I mean, that seems
->>>> like
->>>> fairly reasonable - even by default - behaviour?
->>>
->>> I have not studied the details, but doesn't AP power save break normal
->>> functionality? For example, I would guess probe requests from clients
->>> would be lost. So there's a major drawback when enabling this, right?
+On 10/22/2020 10:00 AM, Arend Van Spriel wrote:
+> On 10/21/2020 7:19 PM, Kalle Valo wrote:
+>> vnaralas@codeaurora.org writes:
 >>
->> This AP power save feature will not break any functionality, Since one
->> chain is always active and all other chains will be disabled when this
->> feature is enabled. AP can still be able to beacon and receive probe
->> request from the clients. The only drawback is reduced network range
->> when this feature is enabled. Hence, we don't want to enable it by
->> default.
+>>> On 2020-09-29 13:10, Kalle Valo wrote:
+>>>> Johannes Berg <johannes@sipsolutions.net> writes:
+>>>>
+>>>>> On Mon, 2020-08-24 at 13:56 +0530, Venkateswara Naralasetty wrote:
+>>>>>> AP power save feature is to save power in AP mode, where AP goes
+>>>>>> to power save mode when no stations associate to it and comes out
+>>>>>> of power save when any station associate to AP.
+>>>>>
+>>>>> Why do you think this requires a vendor command? I mean, that seems
+>>>>> like
+>>>>> fairly reasonable - even by default - behaviour?
+>>>>
+>>>> I have not studied the details, but doesn't AP power save break normal
+>>>> functionality? For example, I would guess probe requests from clients
+>>>> would be lost. So there's a major drawback when enabling this, right?
+>>>
+>>> This AP power save feature will not break any functionality, Since one
+>>> chain is always active and all other chains will be disabled when this
+>>> feature is enabled. AP can still be able to beacon and receive probe
+>>> request from the clients. The only drawback is reduced network range
+>>> when this feature is enabled. Hence, we don't want to enable it by
+>>> default.
+>>
+>> Yeah, we really would not want to enable that by default. But what
+>> should be the path forward, a vendor command or a proper nl80211
+>> command? Any opinions?
 > 
-> Yeah, we really would not want to enable that by default. But what
-> should be the path forward, a vendor command or a proper nl80211
-> command? Any opinions?
+> I would go for a proper nl80211 command or just add an attribute for use 
+> in NL80211_CMD_START_AP or deal with NL80211_CMD_SET_POWERSAVE when 
+> operating in AP mode.
 
-I would go for a proper nl80211 command or just add an attribute for use 
-in NL80211_CMD_START_AP or deal with NL80211_CMD_SET_POWERSAVE when 
-operating in AP mode.
+At first I though this functionality was same as SMPS which is in the 
+802.11 spec, but reading up on it that seems to be a STA feature.
 
 Regards,
 Arend
 
---000000000000f40d8505b23ddce5
+--000000000000ab47c305b23dedf4
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -148,19 +153,19 @@ WwHVQUbAn+xLMIQpycIQFoJIGJX4MeaTSMfLNP2w7nP2uLNgIeleF284vS0XVkBXSCgIGylP4SN+
 HQYrv7fVCbtp+c7nFvP7MYICbzCCAmsCAQEwbTBdMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xv
 YmFsU2lnbiBudi1zYTEzMDEGA1UEAxMqR2xvYmFsU2lnbiBQZXJzb25hbFNpZ24gMiBDQSAtIFNI
 QTI1NiAtIEczAgxR3m7Pj6LvQiWjJy0wDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIE
-IAsQ8/M7id4+Owwuh8gyQAULf2DADQAeuGmR1bILgRT/MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0B
-BwEwHAYJKoZIhvcNAQkFMQ8XDTIwMTAyMjA4MDA1M1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgB
+IGBpfV4gqunlLFoGPduD2PUg0QsrK2Rd6Lp2HLsa5uDHMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0B
+BwEwHAYJKoZIhvcNAQkFMQ8XDTIwMTAyMjA4MDUzM1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgB
 ZQMEASowCwYJYIZIAWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQow
-CwYJKoZIhvcNAQEHMAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQBQgOxsGCpLeGr//+ha
-7PUKDAdOz/p7ubIfSpD2wtuec7POiQbnW2Jk4g2KLAKQx0rkglcehsnue4ljycCHuMN9wg6pOqp3
-Za81lgC4mezY31U655I0cvZeBexJ3JtEh40wGB3Jul9Oe+qxymiFqn6VaMtdtchGuTFuA3DebK03
-mr/pr0HvYR8BY6p/sNcc7V4afbZ20QyjptpXRYQMruFTLjJTbMEdipUd8h6d80DQxT801c8k7+yn
-vHO7+N5djUNnSe82hjoNMWoDH5nltAL50hjUDuLYqU1TK5VTgoNTB8+Gbo7cUTcD9W5bvVfNW8fG
-swDR30vbrhon7XIoNLRI
---000000000000f40d8505b23ddce5--
+CwYJKoZIhvcNAQEHMAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQAd+b9m+glBzUEzLv3F
+N2ctZv06I8OsWqfeLbS8Im9yCWNUJtJLKPS+mR/Do5wgWniS0YPu84OyWVYxJafZ4ss75w7UgUuo
+FWQ4IPfAKp/ZoJyNYicle6SvV4xCXKwYJ023UgcC+sIFuDvPxR2LEzEPzVp5YlOadfrnfbEtAFmC
+854ZsCW0Upc3P3QfGZvb/e/q5FiKCNszMa7w95pRkqAleDGel8DhktI1Rb3u9e1AOtlI6ddmsnqq
+X0nSMJnDfU2oqHaYyxoQRnVqcE6jPZjoSfYhRKPEf/tiF7C2Y+Jrm+UQVm3xkMNHz5Wf+NVauP0z
+TOYymL5ZUrNbui1p+PSu
+--000000000000ab47c305b23dedf4--
 
 
---===============2818380692105861423==
+--===============0511114560093193484==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -171,4 +176,4 @@ ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
 
---===============2818380692105861423==--
+--===============0511114560093193484==--
