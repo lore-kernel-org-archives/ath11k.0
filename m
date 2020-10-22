@@ -1,14 +1,9 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from dvalin.narfation.org ([213.160.73.56])
- by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kVIB5-00077V-Eb
- for ath11k@lists.infradead.org; Wed, 21 Oct 2020 17:45:36 +0000
-From: Sven Eckelmann <sven@narfation.org>
-Subject: Re: IPQ807x: No regulatory rules available in the event info
-Date: Wed, 21 Oct 2020 19:45:26 +0200
-Message-ID: <7780171.8BBbFCJXL2@ripper>
-In-Reply-To: <3358088.zmNjgFgxhd@ripper>
-References: <3358088.zmNjgFgxhd@ripper>
+From: Kalle Valo <kvalo@qca.qualcomm.com>
+Subject: [PULL] ath10k & ath11k firmware 20201022
+Date: Thu, 22 Oct 2020 08:23:01 +0000
+Message-ID: <BYAPR02MB4567892AD5957F360C01E73F921D0@BYAPR02MB4567.namprd02.prod.outlook.com>
+Content-Language: en-US
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -18,67 +13,137 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============8210874186915784464=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org, kvalo@codeaurora.org
+To: "linux-firmware@kernel.org" <linux-firmware@kernel.org>
+Cc: "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>, "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>, "ath10k@lists.infradead.org" <ath10k@lists.infradead.org>
 
---===============8210874186915784464==
-Content-Type: multipart/signed; boundary="nextPart95210947.MAiEPgWyhm"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+Hi linux-firmware maintainers,
 
---nextPart95210947.MAiEPgWyhm
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+here's a pull request for ath10k and ath11k drivers. For ath10k there is a firmware for new hardware QCA6174 hw3.0 SDIO. For ath11k there are firmwares for new hardware IPQ8074 hw2.0, IPQ6018 hw1.0 and QCA6390 hw2.0. And also few updates for existing hardware.
 
-On Wednesday, 21 October 2020 17:51:07 CEST Sven Eckelmann wrote:
-[....]
-> A board.bin is attached which causes the problem. It is just the 
-> bus=ahb,qmi-chip-id=0,qmi-board-id=255.bin (from IPQ8074/hw2.0/board-2.bin) 
-> with the REGULATORY_DB_SECTION.regDbFlag set to 1 and the regdb included.
+I did not include QCA9377 SDIO firmware as I saw Christian submitted a patch adding that.
 
-Ok, it seems like the reg_dmn_pair_id 0 is now forbidden in the 2.4.0.1 
-firmware releases. The entries must now always use a value > 0. My tests now 
-seem to suggest that I am able again to embed the wireless-regdb.
+Please let me know if there are any problems.
 
-Kind regards,
-	Sven
---nextPart95210947.MAiEPgWyhm
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+Kalle
 
------BEGIN PGP SIGNATURE-----
+The following changes since commit 58d41d0facca2478d3e45f6321224361519aee96:
 
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl+Qc7YACgkQXYcKB8Em
-e0Z65hAArFyb4hOYqHlUzapElylZPGZ9rC/yKLzGytX1Kr427T8wzE1Pp5NpN+Uc
-YR1WHkWJLPIpOypkC0u4puCcu5ixPVORuntPbvabebdjthRLUvTEdeGFF3CRtKUI
-5hKIEYXHlfljMLN/vSvnV/14cLG8+3Chy2WBwy//s/pb5WeA45VuRhgr1CaPnwh6
-DSlVy/hSbefTOoiz6vl7CK1gwgoYP1L7xx+UzAeeT2sKVsMxxvxxKVvXajxuxUUZ
-FXd7IGRZlqpfp4OjJqvQ/aapQXhlL1n2F2ynF8qavu/k1rAJlIiOWYpsqISxIVKg
-7AZ4waCuM3w17XcpTneS3H82cKkM6DYXWpom7e5qVVDmqAu5SW3l+CGR5qBOz6yX
-w3oLaeEa7lzEJp4VeApvRb+O+hVLNbGVnZNV9ClaUoWGpqdbNy0Nn14sOwRTY6cM
-f158J8dexsAO+YJDXerewh2Hf8LQrpPBYCkNRitCANO5DCrGO0bTTTcov5XTZPxH
-AImvX81Y/eEmH14bwXmwgtE2wqwsTLKmpejFzxwUMPBlkh/9rmlwA47pO/NAqixK
-DJmCMAaSCPR35URoLfa/5mKJFaI7u7+YXE0KKxt/Dmv/yZrEi+RnFw6/8aY5uJUr
-9kTwrvQ5ZUq8zSlFc8RWtClOcLQFaVzFItW+8HiMCplz+xAUvlM=
-=zgxb
------END PGP SIGNATURE-----
+  ice: Add comms package file for Intel E800 series driver (2020-10-05 08:09:03 -0400)
 
---nextPart95210947.MAiEPgWyhm--
+are available in the git repository at:
 
+  git://git.kernel.org/pub/scm/linux/kernel/git/kvalo/linux-firmware.git ath10k-20201022
 
+for you to fetch changes up to 60cb7a28a5dce0b7da88498ee752d30b692090ba:
 
+  ath11k: QCA6390 hw2.0: add to WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1 (2020-10-22 11:06:49 +0300)
 
+----------------------------------------------------------------
+Kalle Valo (11):
+      ath10k: QCA6174 hw3.0: update firmware-6.bin to WLAN.RM.4.4.1-00157-QCARMSWPZ-1
+      ath10k: QCA6174 hw3.0: update board-2.bin
+      ath10k: QCA9888 hw2.0: update firmware-5.bin to 10.4-3.9.0.2-00131
+      ath10k: QCA9984 hw1.0: update firmware-5.bin to 10.4-3.9.0.2-00131
+      ath10k: QCA6174 hw3.0: add firmware-sdio-6.bin version WLAN.RMH.4.4.1-00077
+      ath11k: IPQ6018 hw1.0: add board-2.bin
+      ath11k: IPQ6018 hw1.0: add to WLAN.HK.2.1.0.1-01238-QCAHKSWPL_SILICONZ-2
+      ath11k: IPQ8074 hw2.0: add board-2.bin
+      ath11k: IPQ8074 hw2.0: add to WLAN.HK.2.1.0.1-01238-QCAHKSWPL_SILICONZ-2
+      ath11k: QCA6390 hw2.0: add board-2.bin
+      ath11k: QCA6390 hw2.0: add to WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
 
---===============8210874186915784464==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+ WHENCE                                             |   57 +-
+ ath10k/QCA6174/hw3.0/board-2.bin                   |  Bin 584036 -> 633360 bytes
+ ath10k/QCA6174/hw3.0/firmware-6.bin                |  Bin 700988 -> 702844 bytes
+ ath10k/QCA6174/hw3.0/firmware-sdio-6.bin           |  Bin 0 -> 604416 bytes
+ .../hw3.0/notice_ath10k_firmware-sdio-6.txt        | 1352 ++++++++++++++
+ ath10k/QCA9888/hw2.0/firmware-5.bin                |  Bin 688140 -> 691292 bytes
+ ath10k/QCA9984/hw1.0/firmware-5.bin                |  Bin 675948 -> 679288 bytes
+ ath11k/IPQ6018/hw1.0/Notice.txt                    |  786 ++++++++
+ ath11k/IPQ6018/hw1.0/board-2.bin                   |  Bin 0 -> 787208 bytes
+ ath11k/IPQ6018/hw1.0/m3_fw.b00                     |  Bin 0 -> 148 bytes
+ ath11k/IPQ6018/hw1.0/m3_fw.b01                     |  Bin 0 -> 6712 bytes
+ ath11k/IPQ6018/hw1.0/m3_fw.b02                     |  Bin 0 -> 294912 bytes
+ ath11k/IPQ6018/hw1.0/m3_fw.flist                   |    3 +
+ ath11k/IPQ6018/hw1.0/m3_fw.mdt                     |  Bin 0 -> 6860 bytes
+ ath11k/IPQ6018/hw1.0/q6_fw.b00                     |  Bin 0 -> 340 bytes
+ ath11k/IPQ6018/hw1.0/q6_fw.b01                     |  Bin 0 -> 7000 bytes
+ ath11k/IPQ6018/hw1.0/q6_fw.b02                     |  Bin 0 -> 4696 bytes
+ ath11k/IPQ6018/hw1.0/q6_fw.b03                     |  Bin 0 -> 2357712 bytes
+ ath11k/IPQ6018/hw1.0/q6_fw.b04                     |  Bin 0 -> 370560 bytes
+ ath11k/IPQ6018/hw1.0/q6_fw.b05                     |  Bin 0 -> 175588 bytes
+ ath11k/IPQ6018/hw1.0/q6_fw.b07                     |  Bin 0 -> 8936 bytes
+ ath11k/IPQ6018/hw1.0/q6_fw.b08                     |  Bin 0 -> 409914 bytes
+ ath11k/IPQ6018/hw1.0/q6_fw.flist                   |    8 +
+ ath11k/IPQ6018/hw1.0/q6_fw.mdt                     |  Bin 0 -> 7340 bytes
+ ath11k/IPQ8074/hw2.0/Notice.txt                    |  786 ++++++++
+ ath11k/IPQ8074/hw2.0/board-2.bin                   |  Bin 0 -> 1311380 bytes
+ ath11k/IPQ8074/hw2.0/m3_fw.b00                     |  Bin 0 -> 148 bytes
+ ath11k/IPQ8074/hw2.0/m3_fw.b01                     |  Bin 0 -> 136 bytes
+ ath11k/IPQ8074/hw2.0/m3_fw.b02                     |  Bin 0 -> 327680 bytes
+ ath11k/IPQ8074/hw2.0/m3_fw.flist                   |    3 +
+ ath11k/IPQ8074/hw2.0/m3_fw.mdt                     |  Bin 0 -> 284 bytes
+ ath11k/IPQ8074/hw2.0/q6_fw.b00                     |  Bin 0 -> 340 bytes
+ ath11k/IPQ8074/hw2.0/q6_fw.b01                     |  Bin 0 -> 328 bytes
+ ath11k/IPQ8074/hw2.0/q6_fw.b02                     |  Bin 0 -> 4696 bytes
+ ath11k/IPQ8074/hw2.0/q6_fw.b03                     |  Bin 0 -> 2589264 bytes
+ ath11k/IPQ8074/hw2.0/q6_fw.b04                     |  Bin 0 -> 985504 bytes
+ ath11k/IPQ8074/hw2.0/q6_fw.b05                     |  Bin 0 -> 387076 bytes
+ ath11k/IPQ8074/hw2.0/q6_fw.b07                     |  Bin 0 -> 7048 bytes
+ ath11k/IPQ8074/hw2.0/q6_fw.b08                     |  Bin 0 -> 424524 bytes
+ ath11k/IPQ8074/hw2.0/q6_fw.flist                   |    8 +
+ ath11k/IPQ8074/hw2.0/q6_fw.mdt                     |  Bin 0 -> 668 bytes
+ ath11k/QCA6390/hw2.0/Notice.txt                    | 1971 ++++++++++++++++++++
+ ath11k/QCA6390/hw2.0/amss.bin                      |  Bin 0 -> 3609456 bytes
+ ath11k/QCA6390/hw2.0/board-2.bin                   |  Bin 0 -> 58016 bytes
+ ath11k/QCA6390/hw2.0/m3.bin                        |  Bin 0 -> 266684 bytes
+ 45 files changed, 4971 insertions(+), 3 deletions(-)
+ create mode 100644 ath10k/QCA6174/hw3.0/firmware-sdio-6.bin
+ create mode 100644 ath10k/QCA6174/hw3.0/notice_ath10k_firmware-sdio-6.txt
+ create mode 100644 ath11k/IPQ6018/hw1.0/Notice.txt
+ create mode 100644 ath11k/IPQ6018/hw1.0/board-2.bin
+ create mode 100644 ath11k/IPQ6018/hw1.0/m3_fw.b00
+ create mode 100644 ath11k/IPQ6018/hw1.0/m3_fw.b01
+ create mode 100644 ath11k/IPQ6018/hw1.0/m3_fw.b02
+ create mode 100644 ath11k/IPQ6018/hw1.0/m3_fw.flist
+ create mode 100644 ath11k/IPQ6018/hw1.0/m3_fw.mdt
+ create mode 100644 ath11k/IPQ6018/hw1.0/q6_fw.b00
+ create mode 100644 ath11k/IPQ6018/hw1.0/q6_fw.b01
+ create mode 100644 ath11k/IPQ6018/hw1.0/q6_fw.b02
+ create mode 100644 ath11k/IPQ6018/hw1.0/q6_fw.b03
+ create mode 100644 ath11k/IPQ6018/hw1.0/q6_fw.b04
+ create mode 100644 ath11k/IPQ6018/hw1.0/q6_fw.b05
+ create mode 100644 ath11k/IPQ6018/hw1.0/q6_fw.b07
+ create mode 100644 ath11k/IPQ6018/hw1.0/q6_fw.b08
+ create mode 100644 ath11k/IPQ6018/hw1.0/q6_fw.flist
+ create mode 100644 ath11k/IPQ6018/hw1.0/q6_fw.mdt
+ create mode 100644 ath11k/IPQ8074/hw2.0/Notice.txt
+ create mode 100644 ath11k/IPQ8074/hw2.0/board-2.bin
+ create mode 100644 ath11k/IPQ8074/hw2.0/m3_fw.b00
+ create mode 100644 ath11k/IPQ8074/hw2.0/m3_fw.b01
+ create mode 100644 ath11k/IPQ8074/hw2.0/m3_fw.b02
+ create mode 100644 ath11k/IPQ8074/hw2.0/m3_fw.flist
+ create mode 100644 ath11k/IPQ8074/hw2.0/m3_fw.mdt
+ create mode 100644 ath11k/IPQ8074/hw2.0/q6_fw.b00
+ create mode 100644 ath11k/IPQ8074/hw2.0/q6_fw.b01
+ create mode 100644 ath11k/IPQ8074/hw2.0/q6_fw.b02
+ create mode 100644 ath11k/IPQ8074/hw2.0/q6_fw.b03
+ create mode 100644 ath11k/IPQ8074/hw2.0/q6_fw.b04
+ create mode 100644 ath11k/IPQ8074/hw2.0/q6_fw.b05
+ create mode 100644 ath11k/IPQ8074/hw2.0/q6_fw.b07
+ create mode 100644 ath11k/IPQ8074/hw2.0/q6_fw.b08
+ create mode 100644 ath11k/IPQ8074/hw2.0/q6_fw.flist
+ create mode 100644 ath11k/IPQ8074/hw2.0/q6_fw.mdt
+ create mode 100644 ath11k/QCA6390/hw2.0/Notice.txt
+ create mode 100644 ath11k/QCA6390/hw2.0/amss.bin
+ create mode 100644 ath11k/QCA6390/hw2.0/board-2.bin
+ create mode 100644 ath11k/QCA6390/hw2.0/m3.bin
 
 -- 
 ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
-
---===============8210874186915784464==--
