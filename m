@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kXCGU-0001VD-21
- for ath11k@lists.infradead.org; Mon, 26 Oct 2020 23:51:21 +0000
+ id 1kXCJE-0002ki-5i
+ for ath11k@lists.infradead.org; Mon, 26 Oct 2020 23:54:17 +0000
 From: Sasha Levin <sashal@kernel.org>
-Subject: [PATCH AUTOSEL 5.9 093/147] ath11k: change to disable softirqs for
+Subject: [PATCH AUTOSEL 5.8 085/132] ath11k: change to disable softirqs for
  ath11k_regd_update to solve deadlock
-Date: Mon, 26 Oct 2020 19:48:11 -0400
-Message-Id: <20201026234905.1022767-93-sashal@kernel.org>
-In-Reply-To: <20201026234905.1022767-1-sashal@kernel.org>
-References: <20201026234905.1022767-1-sashal@kernel.org>
+Date: Mon, 26 Oct 2020 19:51:17 -0400
+Message-Id: <20201026235205.1023962-85-sashal@kernel.org>
+In-Reply-To: <20201026235205.1023962-1-sashal@kernel.org>
+References: <20201026235205.1023962-1-sashal@kernel.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -124,10 +124,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/reg.c b/drivers/net/wireless/ath/ath11k/reg.c
-index 7c9dc91cc48a9..c79a7c7eb56ee 100644
+index 453aa9c069691..dc52d701ad08f 100644
 --- a/drivers/net/wireless/ath/ath11k/reg.c
 +++ b/drivers/net/wireless/ath/ath11k/reg.c
-@@ -206,7 +206,7 @@ int ath11k_regd_update(struct ath11k *ar, bool init)
+@@ -202,7 +202,7 @@ int ath11k_regd_update(struct ath11k *ar, bool init)
  	ab = ar->ab;
  	pdev_id = ar->pdev_idx;
  
@@ -136,7 +136,7 @@ index 7c9dc91cc48a9..c79a7c7eb56ee 100644
  
  	if (init) {
  		/* Apply the regd received during init through
-@@ -227,7 +227,7 @@ int ath11k_regd_update(struct ath11k *ar, bool init)
+@@ -223,7 +223,7 @@ int ath11k_regd_update(struct ath11k *ar, bool init)
  
  	if (!regd) {
  		ret = -EINVAL;
@@ -145,7 +145,7 @@ index 7c9dc91cc48a9..c79a7c7eb56ee 100644
  		goto err;
  	}
  
-@@ -238,7 +238,7 @@ int ath11k_regd_update(struct ath11k *ar, bool init)
+@@ -234,7 +234,7 @@ int ath11k_regd_update(struct ath11k *ar, bool init)
  	if (regd_copy)
  		ath11k_copy_regd(regd, regd_copy);
  
