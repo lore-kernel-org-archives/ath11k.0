@@ -1,16 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail.kernel.org ([198.145.29.99])
- by casper.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kXCJB-0006No-JL
- for ath11k@lists.infradead.org; Mon, 26 Oct 2020 23:53:54 +0000
-From: Sasha Levin <sashal@kernel.org>
-Subject: [PATCH AUTOSEL 5.8 083/132] ath11k: Use GFP_ATOMIC instead of
- GFP_KERNEL in ath11k_dp_htt_get_ppdu_desc
-Date: Mon, 26 Oct 2020 19:51:15 -0400
-Message-Id: <20201026235205.1023962-83-sashal@kernel.org>
-In-Reply-To: <20201026235205.1023962-1-sashal@kernel.org>
-References: <20201026235205.1023962-1-sashal@kernel.org>
-MIME-Version: 1.0
+Received: from m42-4.mailgun.net ([69.72.42.4])
+ by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1kXOeM-0001WS-1C
+ for ath11k@lists.infradead.org; Tue, 27 Oct 2020 13:04:35 +0000
+From: Kalle Valo <kvalo@codeaurora.org>
+Subject: [PATCH] ath11k: remove repeated words in comments and warnings
+Date: Tue, 27 Oct 2020 15:01:45 +0200
+Message-Id: <1603803705-22447-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -19,88 +15,147 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc: Sasha Levin <sashal@kernel.org>, netdev@vger.kernel.org, linux-wireless@vger.kernel.org, Wen Gong <wgong@codeaurora.org>, ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>
+To: ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org
 
-From: Wen Gong <wgong@codeaurora.org>
+Found by latest checkpatch.
 
-[ Upstream commit 6a8be1baa9116a038cb4f6158cc10134387ca0d0 ]
-
-With SLUB DEBUG CONFIG below crash is seen as kmem_cache_alloc
-is being called in non-atomic context.
-
-To fix this issue, use GFP_ATOMIC instead of GFP_KERNEL kzalloc.
-
-[  357.217088] BUG: sleeping function called from invalid context at mm/slab.h:498
-[  357.217091] in_atomic(): 1, irqs_disabled(): 0, non_block: 0, pid: 0, name: swapper/0
-[  357.217092] INFO: lockdep is turned off.
-[  357.217095] CPU: 0 PID: 0 Comm: swapper/0 Tainted: G        W         5.9.0-rc5-wt-ath+ #196
-[  357.217096] Hardware name: Intel(R) Client Systems NUC8i7HVK/NUC8i7HVB, BIOS HNKBLi70.86A.0049.2018.0801.1601 08/01/2018
-[  357.217097] Call Trace:
-[  357.217098]  <IRQ>
-[  357.217107]  ? ath11k_dp_htt_get_ppdu_desc+0xa9/0x170 [ath11k]
-[  357.217110]  dump_stack+0x77/0xa0
-[  357.217113]  ___might_sleep.cold+0xa6/0xb6
-[  357.217116]  kmem_cache_alloc_trace+0x1f2/0x270
-[  357.217122]  ath11k_dp_htt_get_ppdu_desc+0xa9/0x170 [ath11k]
-[  357.217129]  ath11k_htt_pull_ppdu_stats.isra.0+0x96/0x270 [ath11k]
-[  357.217135]  ath11k_dp_htt_htc_t2h_msg_handler+0xe7/0x1d0 [ath11k]
-[  357.217137]  ? trace_hardirqs_on+0x1c/0x100
-[  357.217143]  ath11k_htc_rx_completion_handler+0x207/0x370 [ath11k]
-[  357.217149]  ath11k_ce_recv_process_cb+0x15e/0x1e0 [ath11k]
-[  357.217151]  ? handle_irq_event+0x70/0xa8
-[  357.217154]  ath11k_pci_ce_tasklet+0x10/0x30 [ath11k_pci]
-[  357.217157]  tasklet_action_common.constprop.0+0xd4/0xf0
-[  357.217160]  __do_softirq+0xc9/0x482
-[  357.217162]  asm_call_on_stack+0x12/0x20
-[  357.217163]  </IRQ>
-[  357.217166]  do_softirq_own_stack+0x49/0x60
-[  357.217167]  irq_exit_rcu+0x9a/0xd0
-[  357.217169]  common_interrupt+0xa1/0x190
-[  357.217171]  asm_common_interrupt+0x1e/0x40
-[  357.217173] RIP: 0010:cpu_idle_poll.isra.0+0x2e/0x60
-[  357.217175] Code: 8b 35 26 27 74 69 e8 11 c8 3d ff e8 bc fa 42 ff e8 e7 9f 4a ff fb 65 48 8b 1c 25 80 90 01 00 48 8b 03 a8 08 74 0b eb 1c f3 90 <48> 8b 03 a8 08 75 13 8b 0
-[  357.217177] RSP: 0018:ffffffff97403ee0 EFLAGS: 00000202
-[  357.217178] RAX: 0000000000000001 RBX: ffffffff9742b8c0 RCX: 0000000000b890ca
-[  357.217180] RDX: 0000000000b890ca RSI: 0000000000000001 RDI: ffffffff968d0c49
-[  357.217181] RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000001
-[  357.217182] R10: ffffffff9742b8c0 R11: 0000000000000046 R12: 0000000000000000
-[  357.217183] R13: 0000000000000000 R14: 0000000000000000 R15: 0000000066fdf520
-[  357.217186]  ? cpu_idle_poll.isra.0+0x19/0x60
-[  357.217189]  do_idle+0x5f/0xe0
-[  357.217191]  cpu_startup_entry+0x14/0x20
-[  357.217193]  start_kernel+0x443/0x464
-[  357.217196]  secondary_startup_64+0xa4/0xb0
-
-Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
-
-Signed-off-by: Wen Gong <wgong@codeaurora.org>
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
-Link: https://lore.kernel.org/r/1601399736-3210-8-git-send-email-kvalo@codeaurora.org
-Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/net/wireless/ath/ath11k/dp_rx.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/dp.c       | 2 +-
+ drivers/net/wireless/ath/ath11k/dp.h       | 2 +-
+ drivers/net/wireless/ath/ath11k/dp_rx.c    | 6 +++---
+ drivers/net/wireless/ath/ath11k/hal_desc.h | 2 +-
+ drivers/net/wireless/ath/ath11k/rx_desc.h  | 2 +-
+ drivers/net/wireless/ath/ath11k/testmode.c | 4 ++--
+ drivers/net/wireless/ath/ath11k/wmi.c      | 2 +-
+ 7 files changed, 10 insertions(+), 10 deletions(-)
 
+diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
+index 59dd185a0cfc..f977056ae5e8 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.c
++++ b/drivers/net/wireless/ath/ath11k/dp.c
+@@ -381,7 +381,7 @@ static int ath11k_dp_srng_common_setup(struct ath11k_base *ab)
+ 					   HAL_WBM2SW_RELEASE, i, 0,
+ 					   DP_TX_COMP_RING_SIZE);
+ 		if (ret) {
+-			ath11k_warn(ab, "failed to set up tcl_comp ring ring (%d) :%d\n",
++			ath11k_warn(ab, "failed to set up tcl_comp ring (%d) :%d\n",
+ 				    i, ret);
+ 			goto err;
+ 		}
+diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
+index ee8db812589b..d4fd02375fad 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.h
++++ b/drivers/net/wireless/ath/ath11k/dp.h
+@@ -423,7 +423,7 @@ enum htt_srng_ring_id {
+  *                     Used only by Consumer ring to generate ring_sw_int_p.
+  *                     Ring entries low threshold water mark, that is used
+  *                     in combination with the interrupt timer as well as
+- *                     the the clearing of the level interrupt.
++ *                     the clearing of the level interrupt.
+  *           b'16:18 - prefetch_timer_cfg:
+  *                     Used only by Consumer ring to set timer mode to
+  *                     support Application prefetch handling.
 diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index a54610d75c40a..69cc40cad12fb 100644
+index 01625327eef7..571722baa0b3 100644
 --- a/drivers/net/wireless/ath/ath11k/dp_rx.c
 +++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -1423,7 +1423,7 @@ struct htt_ppdu_stats_info *ath11k_dp_htt_get_ppdu_desc(struct ath11k *ar,
- 	}
- 	spin_unlock_bh(&ar->data_lock);
+@@ -377,7 +377,7 @@ static int ath11k_dp_rxdma_buf_ring_free(struct ath11k *ar,
+ 	spin_lock_bh(&rx_ring->idr_lock);
+ 	idr_for_each_entry(&rx_ring->bufs_idr, skb, buf_id) {
+ 		idr_remove(&rx_ring->bufs_idr, buf_id);
+-		/* TODO: Understand where internal driver does this dma_unmap of
++		/* TODO: Understand where internal driver does this dma_unmap
+ 		 * of rxdma_buffer.
+ 		 */
+ 		dma_unmap_single(ar->ab->dev, ATH11K_SKB_RXCB(skb)->paddr,
+@@ -399,7 +399,7 @@ static int ath11k_dp_rxdma_buf_ring_free(struct ath11k *ar,
+ 	spin_lock_bh(&rx_ring->idr_lock);
+ 	idr_for_each_entry(&rx_ring->bufs_idr, skb, buf_id) {
+ 		idr_remove(&rx_ring->bufs_idr, buf_id);
+-		/* XXX: Understand where internal driver does this dma_unmap of
++		/* XXX: Understand where internal driver does this dma_unmap
+ 		 * of rxdma_buffer.
+ 		 */
+ 		dma_unmap_single(ar->ab->dev, ATH11K_SKB_RXCB(skb)->paddr,
+@@ -960,7 +960,7 @@ int ath11k_peer_rx_tid_setup(struct ath11k *ar, const u8 *peer_mac, int vdev_id,
  
--	ppdu_info = kzalloc(sizeof(*ppdu_info), GFP_KERNEL);
-+	ppdu_info = kzalloc(sizeof(*ppdu_info), GFP_ATOMIC);
- 	if (!ppdu_info)
- 		return NULL;
+ 	rx_tid->ba_win_sz = ba_win_sz;
  
+-	/* TODO: Optimize the memory allocation for qos tid based on the
++	/* TODO: Optimize the memory allocation for qos tid based on
+ 	 * the actual BA window size in REO tid update path.
+ 	 */
+ 	if (tid == HAL_DESC_REO_NON_QOS_TID)
+diff --git a/drivers/net/wireless/ath/ath11k/hal_desc.h b/drivers/net/wireless/ath/ath11k/hal_desc.h
+index 8a592814efa0..ceebdc28ddeb 100644
+--- a/drivers/net/wireless/ath/ath11k/hal_desc.h
++++ b/drivers/net/wireless/ath/ath11k/hal_desc.h
+@@ -716,7 +716,7 @@ struct hal_reo_dest_ring {
+  *
+  * rx_msdu_info
+  *		General information related to the MSDU that is passed
+- *		on from RXDMA all the way to to the REO destination ring.
++ *		on from RXDMA all the way to the REO destination ring.
+  *
+  * queue_addr_lo
+  *		Address (lower 32 bits) of the REO queue descriptor.
+diff --git a/drivers/net/wireless/ath/ath11k/rx_desc.h b/drivers/net/wireless/ath/ath11k/rx_desc.h
+index 1c4264637a41..86494da1069a 100644
+--- a/drivers/net/wireless/ath/ath11k/rx_desc.h
++++ b/drivers/net/wireless/ath/ath11k/rx_desc.h
+@@ -170,7 +170,7 @@ struct rx_attention {
+  *
+  * ast_index_not_found
+  *		Only valid when first_msdu is set. Indicates no AST matching
+- *		entries within the the max search count.
++ *		entries within the max search count.
+  *
+  * ast_index_timeout
+  *		Only valid when first_msdu is set. Indicates an unsuccessful
+diff --git a/drivers/net/wireless/ath/ath11k/testmode.c b/drivers/net/wireless/ath/ath11k/testmode.c
+index d2dc9db01491..4bf1931adbaa 100644
+--- a/drivers/net/wireless/ath/ath11k/testmode.c
++++ b/drivers/net/wireless/ath/ath11k/testmode.c
+@@ -51,7 +51,7 @@ bool ath11k_tm_event_wmi(struct ath11k *ar, u32 cmd_id, struct sk_buff *skb)
+ 	ret = nla_put_u32(nl_skb, ATH11K_TM_ATTR_CMD, ATH11K_TM_CMD_WMI);
+ 	if (ret) {
+ 		ath11k_warn(ar->ab,
+-			    "failed to to put testmode wmi event cmd attribute: %d\n",
++			    "failed to put testmode wmi event cmd attribute: %d\n",
+ 			    ret);
+ 		kfree_skb(nl_skb);
+ 		goto out;
+@@ -60,7 +60,7 @@ bool ath11k_tm_event_wmi(struct ath11k *ar, u32 cmd_id, struct sk_buff *skb)
+ 	ret = nla_put_u32(nl_skb, ATH11K_TM_ATTR_WMI_CMDID, cmd_id);
+ 	if (ret) {
+ 		ath11k_warn(ar->ab,
+-			    "failed to to put testmode wmi even cmd_id: %d\n",
++			    "failed to put testmode wmi even cmd_id: %d\n",
+ 			    ret);
+ 		kfree_skb(nl_skb);
+ 		goto out;
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 8eca92520837..6e173737c0eb 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -362,7 +362,7 @@ ath11k_pull_mac_phy_cap_svc_ready_ext(struct ath11k_pdev_wmi *wmi_handle,
+ 	 * For example, for 4x4 capable macphys, first 4 chains can be used for first
+ 	 * mac and the remaing 4 chains can be used for the second mac or vice-versa.
+ 	 * In this case, tx/rx chainmask 0xf will be advertised for first mac and 0xf0
+-	 * will be advertised for second mac or vice-versa. Compute the shift value for
++	 * will be advertised for second mac or vice-versa. Compute the shift value
+ 	 * for tx/rx chainmask which will be used to advertise supported ht/vht rates to
+ 	 * mac80211.
+ 	 */
 -- 
-2.25.1
+2.7.4
 
 
 -- 
