@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from m42-4.mailgun.net ([69.72.42.4])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kXOeM-0001WS-1C
- for ath11k@lists.infradead.org; Tue, 27 Oct 2020 13:04:35 +0000
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH] ath11k: remove repeated words in comments and warnings
-Date: Tue, 27 Oct 2020 15:01:45 +0200
-Message-Id: <1603803705-22447-1-git-send-email-kvalo@codeaurora.org>
+ id 1kXWJW-00079M-HG
+ for ath11k@lists.infradead.org; Tue, 27 Oct 2020 21:15:33 +0000
+From: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
+Subject: [PATCH] ath11k: fix thermal temperature read
+Date: Tue, 27 Oct 2020 13:48:03 -0700
+Message-Id: <20201027204803.12464-1-pradeepc@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -21,141 +21,103 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
+Cc: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>, linux-wireless@vger.kernel.org
 
-Found by latest checkpatch.
+Fix dangling pointer in thermal temperature event which causes
+incorrect temperature read.
 
-Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+Tested-on: IPQ8074 AHB WLAN.HK.2.4.0.1-00041-QCAHKSWPL_SILICONZ-1
+
+Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/dp.c       | 2 +-
- drivers/net/wireless/ath/ath11k/dp.h       | 2 +-
- drivers/net/wireless/ath/ath11k/dp_rx.c    | 6 +++---
- drivers/net/wireless/ath/ath11k/hal_desc.h | 2 +-
- drivers/net/wireless/ath/ath11k/rx_desc.h  | 2 +-
- drivers/net/wireless/ath/ath11k/testmode.c | 4 ++--
- drivers/net/wireless/ath/ath11k/wmi.c      | 2 +-
- 7 files changed, 10 insertions(+), 10 deletions(-)
+ drivers/net/wireless/ath/ath11k/wmi.c | 53 +++++++++++----------------
+ 1 file changed, 21 insertions(+), 32 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
-index 59dd185a0cfc..f977056ae5e8 100644
---- a/drivers/net/wireless/ath/ath11k/dp.c
-+++ b/drivers/net/wireless/ath/ath11k/dp.c
-@@ -381,7 +381,7 @@ static int ath11k_dp_srng_common_setup(struct ath11k_base *ab)
- 					   HAL_WBM2SW_RELEASE, i, 0,
- 					   DP_TX_COMP_RING_SIZE);
- 		if (ret) {
--			ath11k_warn(ab, "failed to set up tcl_comp ring ring (%d) :%d\n",
-+			ath11k_warn(ab, "failed to set up tcl_comp ring (%d) :%d\n",
- 				    i, ret);
- 			goto err;
- 		}
-diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
-index ee8db812589b..d4fd02375fad 100644
---- a/drivers/net/wireless/ath/ath11k/dp.h
-+++ b/drivers/net/wireless/ath/ath11k/dp.h
-@@ -423,7 +423,7 @@ enum htt_srng_ring_id {
-  *                     Used only by Consumer ring to generate ring_sw_int_p.
-  *                     Ring entries low threshold water mark, that is used
-  *                     in combination with the interrupt timer as well as
-- *                     the the clearing of the level interrupt.
-+ *                     the clearing of the level interrupt.
-  *           b'16:18 - prefetch_timer_cfg:
-  *                     Used only by Consumer ring to set timer mode to
-  *                     support Application prefetch handling.
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 01625327eef7..571722baa0b3 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -377,7 +377,7 @@ static int ath11k_dp_rxdma_buf_ring_free(struct ath11k *ar,
- 	spin_lock_bh(&rx_ring->idr_lock);
- 	idr_for_each_entry(&rx_ring->bufs_idr, skb, buf_id) {
- 		idr_remove(&rx_ring->bufs_idr, buf_id);
--		/* TODO: Understand where internal driver does this dma_unmap of
-+		/* TODO: Understand where internal driver does this dma_unmap
- 		 * of rxdma_buffer.
- 		 */
- 		dma_unmap_single(ar->ab->dev, ATH11K_SKB_RXCB(skb)->paddr,
-@@ -399,7 +399,7 @@ static int ath11k_dp_rxdma_buf_ring_free(struct ath11k *ar,
- 	spin_lock_bh(&rx_ring->idr_lock);
- 	idr_for_each_entry(&rx_ring->bufs_idr, skb, buf_id) {
- 		idr_remove(&rx_ring->bufs_idr, buf_id);
--		/* XXX: Understand where internal driver does this dma_unmap of
-+		/* XXX: Understand where internal driver does this dma_unmap
- 		 * of rxdma_buffer.
- 		 */
- 		dma_unmap_single(ar->ab->dev, ATH11K_SKB_RXCB(skb)->paddr,
-@@ -960,7 +960,7 @@ int ath11k_peer_rx_tid_setup(struct ath11k *ar, const u8 *peer_mac, int vdev_id,
- 
- 	rx_tid->ba_win_sz = ba_win_sz;
- 
--	/* TODO: Optimize the memory allocation for qos tid based on the
-+	/* TODO: Optimize the memory allocation for qos tid based on
- 	 * the actual BA window size in REO tid update path.
- 	 */
- 	if (tid == HAL_DESC_REO_NON_QOS_TID)
-diff --git a/drivers/net/wireless/ath/ath11k/hal_desc.h b/drivers/net/wireless/ath/ath11k/hal_desc.h
-index 8a592814efa0..ceebdc28ddeb 100644
---- a/drivers/net/wireless/ath/ath11k/hal_desc.h
-+++ b/drivers/net/wireless/ath/ath11k/hal_desc.h
-@@ -716,7 +716,7 @@ struct hal_reo_dest_ring {
-  *
-  * rx_msdu_info
-  *		General information related to the MSDU that is passed
-- *		on from RXDMA all the way to to the REO destination ring.
-+ *		on from RXDMA all the way to the REO destination ring.
-  *
-  * queue_addr_lo
-  *		Address (lower 32 bits) of the REO queue descriptor.
-diff --git a/drivers/net/wireless/ath/ath11k/rx_desc.h b/drivers/net/wireless/ath/ath11k/rx_desc.h
-index 1c4264637a41..86494da1069a 100644
---- a/drivers/net/wireless/ath/ath11k/rx_desc.h
-+++ b/drivers/net/wireless/ath/ath11k/rx_desc.h
-@@ -170,7 +170,7 @@ struct rx_attention {
-  *
-  * ast_index_not_found
-  *		Only valid when first_msdu is set. Indicates no AST matching
-- *		entries within the the max search count.
-+ *		entries within the max search count.
-  *
-  * ast_index_timeout
-  *		Only valid when first_msdu is set. Indicates an unsuccessful
-diff --git a/drivers/net/wireless/ath/ath11k/testmode.c b/drivers/net/wireless/ath/ath11k/testmode.c
-index d2dc9db01491..4bf1931adbaa 100644
---- a/drivers/net/wireless/ath/ath11k/testmode.c
-+++ b/drivers/net/wireless/ath/ath11k/testmode.c
-@@ -51,7 +51,7 @@ bool ath11k_tm_event_wmi(struct ath11k *ar, u32 cmd_id, struct sk_buff *skb)
- 	ret = nla_put_u32(nl_skb, ATH11K_TM_ATTR_CMD, ATH11K_TM_CMD_WMI);
- 	if (ret) {
- 		ath11k_warn(ar->ab,
--			    "failed to to put testmode wmi event cmd attribute: %d\n",
-+			    "failed to put testmode wmi event cmd attribute: %d\n",
- 			    ret);
- 		kfree_skb(nl_skb);
- 		goto out;
-@@ -60,7 +60,7 @@ bool ath11k_tm_event_wmi(struct ath11k *ar, u32 cmd_id, struct sk_buff *skb)
- 	ret = nla_put_u32(nl_skb, ATH11K_TM_ATTR_WMI_CMDID, cmd_id);
- 	if (ret) {
- 		ath11k_warn(ar->ab,
--			    "failed to to put testmode wmi even cmd_id: %d\n",
-+			    "failed to put testmode wmi even cmd_id: %d\n",
- 			    ret);
- 		kfree_skb(nl_skb);
- 		goto out;
 diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 8eca92520837..6e173737c0eb 100644
+index 8eca92520837..0008df7458e7 100644
 --- a/drivers/net/wireless/ath/ath11k/wmi.c
 +++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -362,7 +362,7 @@ ath11k_pull_mac_phy_cap_svc_ready_ext(struct ath11k_pdev_wmi *wmi_handle,
- 	 * For example, for 4x4 capable macphys, first 4 chains can be used for first
- 	 * mac and the remaing 4 chains can be used for the second mac or vice-versa.
- 	 * In this case, tx/rx chainmask 0xf will be advertised for first mac and 0xf0
--	 * will be advertised for second mac or vice-versa. Compute the shift value for
-+	 * will be advertised for second mac or vice-versa. Compute the shift value
- 	 * for tx/rx chainmask which will be used to advertise supported ht/vht rates to
- 	 * mac80211.
- 	 */
+@@ -5017,31 +5017,6 @@ int ath11k_wmi_pull_fw_stats(struct ath11k_base *ab, struct sk_buff *skb,
+ 	return 0;
+ }
+ 
+-static int
+-ath11k_pull_pdev_temp_ev(struct ath11k_base *ab, u8 *evt_buf,
+-			 u32 len, const struct wmi_pdev_temperature_event *ev)
+-{
+-	const void **tb;
+-	int ret;
+-
+-	tb = ath11k_wmi_tlv_parse_alloc(ab, evt_buf, len, GFP_ATOMIC);
+-	if (IS_ERR(tb)) {
+-		ret = PTR_ERR(tb);
+-		ath11k_warn(ab, "failed to parse tlv: %d\n", ret);
+-		return ret;
+-	}
+-
+-	ev = tb[WMI_TAG_PDEV_TEMPERATURE_EVENT];
+-	if (!ev) {
+-		ath11k_warn(ab, "failed to fetch pdev temp ev");
+-		kfree(tb);
+-		return -EPROTO;
+-	}
+-
+-	kfree(tb);
+-	return 0;
+-}
+-
+ size_t ath11k_wmi_fw_stats_num_vdevs(struct list_head *head)
+ {
+ 	struct ath11k_fw_stats_vdev *i;
+@@ -6410,23 +6385,37 @@ ath11k_wmi_pdev_temperature_event(struct ath11k_base *ab,
+ 				  struct sk_buff *skb)
+ {
+ 	struct ath11k *ar;
+-	struct wmi_pdev_temperature_event ev = {0};
++	const void **tb;
++	const struct wmi_pdev_temperature_event *ev;
++	int ret;
++
++	tb = ath11k_wmi_tlv_parse_alloc(ab, skb->data, skb->len, GFP_ATOMIC);
++	if (IS_ERR(tb)) {
++		ret = PTR_ERR(tb);
++		ath11k_warn(ab, "failed to parse tlv: %d\n", ret);
++		return;
++	}
+ 
+-	if (ath11k_pull_pdev_temp_ev(ab, skb->data, skb->len, &ev) != 0) {
+-		ath11k_warn(ab, "failed to extract pdev temperature event");
++	ev = tb[WMI_TAG_PDEV_TEMPERATURE_EVENT];
++	if (!ev) {
++		ath11k_warn(ab, "failed to fetch pdev temp ev");
++		kfree(tb);
+ 		return;
+ 	}
+ 
+ 	ath11k_dbg(ab, ATH11K_DBG_WMI,
+-		   "pdev temperature ev temp %d pdev_id %d\n", ev.temp, ev.pdev_id);
++		   "pdev temperature ev temp %d pdev_id %d\n", ev->temp, ev->pdev_id);
+ 
+-	ar = ath11k_mac_get_ar_by_pdev_id(ab, ev.pdev_id);
++	ar = ath11k_mac_get_ar_by_pdev_id(ab, ev->pdev_id);
+ 	if (!ar) {
+-		ath11k_warn(ab, "invalid pdev id in pdev temperature ev %d", ev.pdev_id);
++		ath11k_warn(ab, "invalid pdev id in pdev temperature ev %d", ev->pdev_id);
++		kfree(tb);
+ 		return;
+ 	}
+ 
+-	ath11k_thermal_event_temperature(ar, ev.temp);
++	ath11k_thermal_event_temperature(ar, ev->temp);
++
++	kfree(tb);
+ }
+ 
+ static void ath11k_wmi_tlv_op_rx(struct ath11k_base *ab, struct sk_buff *skb)
+
+base-commit: 3cb12d27ff655e57e8efe3486dca2a22f4e30578
 -- 
-2.7.4
+2.17.1
 
 
 -- 
