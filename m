@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from dvalin.narfation.org ([2a00:17d8:100::8b1])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kYRWa-00045x-VL
- for ath11k@lists.infradead.org; Fri, 30 Oct 2020 10:20:50 +0000
+ id 1kYTbz-0002tr-Or
+ for ath11k@lists.infradead.org; Fri, 30 Oct 2020 12:34:33 +0000
 From: Sven Eckelmann <sven@narfation.org>
-Subject: [PATCH] ath11k: Fix number of rules in filtered ETSI regdomain
-Date: Fri, 30 Oct 2020 11:19:40 +0100
-Message-Id: <20201030101940.2387952-1-sven@narfation.org>
+Subject: Country code setting ignored on bootup
+Date: Fri, 30 Oct 2020 13:34:21 +0100
+Message-ID: <1829665.1PRlr7bOQj@ripper>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -16,76 +16,216 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============2823779715983865177=="
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org, Sven Eckelmann <sven@narfation.org>
+Cc: sw@simonwunderlich.de
 
-The ath11k code will try to insert wheather rader related limits when the
-DFS region is set to ETSI. For this reason, it will add two more entries in
-the array of reg_rules. But the 2.4.0.1 firmware is prefiltering the list
-of reg rules it returns for 2.4GHz PHYs. They will then not contain the
-list of 5GHz rules and thus no wheather radar band rules were inserted by
-this code.
+--===============2823779715983865177==
+Content-Type: multipart/signed; boundary="nextPart1669516.2VI8MhZXb1"; micalg="pgp-sha512"; protocol="application/pgp-signature"
 
-But the code didn't fix the n_reg_rules for this regulatory domain and PHY
-when this happened. This resulted in a rejection by is_valid_rd because it
-found rules which start and end at 0khz. This resulted in a splat like:
+--nextPart1669516.2VI8MhZXb1
+Content-Type: multipart/mixed; boundary="nextPart1843920.GhX3yNMNC5"; protected-headers="v1"
+Content-Transfer-Encoding: 7Bit
+From: Sven Eckelmann <sven@narfation.org>
+To: ath11k@lists.infradead.org
+Cc: sw@simonwunderlich.de
+Subject: Country code setting ignored on bootup
+Date: Fri, 30 Oct 2020 13:34:21 +0100
+Message-ID: <1829665.1PRlr7bOQj@ripper>
 
-  Invalid regulatory domain detected
-  ------------[ cut here ]------------
-  WARNING: at backports-20200628-4.4.60-9a94b73e75/net/wireless/reg.c:3721
-  [...]
-  ath11k c000000.wifi1: failed to perform regd update : -22
+This is a multi-part message in MIME format.
 
-The number of rules must therefore be saved after they were converted from
-the ath11k format to the ieee80211_regdomain format and not before.
+--nextPart1843920.GhX3yNMNC5
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Tested with IPQ8074 WLAN.HK.2.4.0.1.r1-00019-QCAHKSWPL_SILICONZ-1
+Hi,
+
+just tested here with HK01 based board. The firwmare 
+WLAN.HK.2.1.0.1-01228-QCAHKSWPL_SILICONZ-1 doesn't show this problematic 
+behavior all the time but 2.4.0.1.r1-00026-QCAHKSWPL_SILICONZ-2 or WLAN.HK.
+2.4.0.1.r1-00019-QCAHKSWPL_SILICONZ-1 does.
+
+With 2.1.0.1 I could basically do following:
+
+    iw reg set CA
+    echo "c000000.wifi1" > /sys/bus/platform/drivers/ath11k/unbind
+    echo "c000000.wifi1" > /sys/bus/platform/drivers/ath11k/bind
+
+and the global and self managed country codes were still all CA (in many 
+tests). But with 2.4.0.1, they will end up with CA as global and US as self 
+managed. I can see that the country code change is correctly send by cfg80211 
+when the HW is initializes but the 2.4.0.1 firmware just ignores it.
+
+I can see following send command by ath11k in ath11k_wmi_send_init_country_cmd:
+
+    00000000: 38 00 61 02 00 00 00 00 00 00 00 00 43 41 00 00
+
+and I also receive a CA answer for that. But the response from the firmware comes
+in when the ATH11K_FLAG_REGISTERED bit is still not set. Thus it is rejected by
+ath11k_reg_chan_list_event for the regd_update_work.
+
+This seems to be a race between receiving the 
+"ATH11K_QMI_EVENT_FW_READY" event and the ieee80211_register_hw() in 
+__ath11k_mac_register. The ieee80211_register_hw will make the hw responsible 
+for handling the regd updates but they will not be correctly processed until 
+the ATH11K_QMI_EVENT_FW_READY was handled by the firmware. And if the regd 
+change was processed after ath11k_regd_update was called in 
+__ath11k_mac_register (but before the ATH11K_QMI_EVENT_FW_READY was processed)
+then we will just loose the regd change.
+
+So I am a little bit baffled why ATH11K_FLAG_REGISTERED is bound to something 
+which is not related to the  IEEE802211 registration code. Sounds to me like 
+somebody wanted a FW_READY flag but misused the ATH11K_FLAG_REGISTERED flag 
+for this purpose.
+
+Btw. there are similar problems with the use of ATH11K_FLAG_REGISTERED in context
+of ath11k_debug_pdev_create, ath11k_mac_register and ath11k_mac_allocate.
+
+Maybe something like the attached patch could be used to improve this situation.
+
+Kind regards,
+	Sven
+--nextPart1843920.GhX3yNMNC5
+Content-Disposition: attachment; filename="0001-ath11k-Accept-new-regdomain-during-initialization.patch"
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/x-patch; charset="UTF-8"; name="0001-ath11k-Accept-new-regdomain-during-initialization.patch"
+
+From 931e5eb59e64804f3a90598b26c56643c43deb35 Mon Sep 17 00:00:00 2001
+From: Sven Eckelmann <sven@narfation.org>
+Date: Fri, 30 Oct 2020 12:02:21 +0100
+Subject: [RFC PATCH] ath11k: Accept new regdomain during initialization
+
+The driver is registering as iee80211_hw with its OPs and is then able to
+be called by the upper layer. This for example happens early in the phase
+when the correct regulary domain should be set. But the regulary domain
+will only be accepted when the ATH11K_FLAG_REGISTERED flag was set after
+the ATH11K_QMI_EVENT_FW_READY was processed. So it can easily happen that
+the regularly domain is not correctly processed when
+ATH11K_QMI_EVENT_FW_READY isn't handled immediately:
+
+  $ iw reg set CA
+  $ iw reg get|grep country
+  country CA: DFS-FCC
+  country CA: DFS-FCC
+  country CA: DFS-FCC
+
+  $ echo "c000000.wifi1" > /sys/bus/platform/drivers/ath11k/unbind
+  $ echo "c000000.wifi1" > /sys/bus/platform/drivers/ath11k/bind
+  $ iw reg get|grep country
+  country CA: DFS-FCC
+  country US: DFS-FCC
+  country US: DFS-FCC
+
+It is therefore essential to accept the regulatory changes without having
+seen the ATH11K_QMI_EVENT_FW_READY. And since there are also potentially
+more problems in ath11k_debug_pdev_create, ath11k_mac_register and
+ath11k_mac_allocate with their use of ATH11K_FLAG_REGISTERED, it is better
+to move the ATH11K_QMI_EVENT_FW_READY. to a new flag.
+
+Tested with WLAN.HK.2.4.0.1.r1-00019-QCAHKSWPL_SILICONZ-1
 
 Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
 Signed-off-by: Sven Eckelmann <sven@narfation.org>
 ---
- drivers/net/wireless/ath/ath11k/reg.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ drivers/net/wireless/ath/ath11k/core.h | 2 +-
+ drivers/net/wireless/ath/ath11k/mac.c  | 2 ++
+ drivers/net/wireless/ath/ath11k/qmi.c  | 4 ++--
+ 3 files changed, 5 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/reg.c b/drivers/net/wireless/ath/ath11k/reg.c
-index f6a1f0352989..26e7e75191c7 100644
---- a/drivers/net/wireless/ath/ath11k/reg.c
-+++ b/drivers/net/wireless/ath/ath11k/reg.c
-@@ -584,7 +584,6 @@ ath11k_reg_build_regd(struct ath11k_base *ab,
- 	if (!tmp_regd)
- 		goto ret;
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index 18b97420f0d8..1d214eed9ea1 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -170,7 +170,7 @@ enum ath11k_scan_state {
  
--	tmp_regd->n_reg_rules = num_rules;
- 	memcpy(tmp_regd->alpha2, reg_info->alpha2, REG_ALPHA2_LEN + 1);
- 	memcpy(alpha2, reg_info->alpha2, REG_ALPHA2_LEN + 1);
- 	alpha2[2] = '\0';
-@@ -597,7 +596,7 @@ ath11k_reg_build_regd(struct ath11k_base *ab,
- 	/* Update reg_rules[] below. Firmware is expected to
- 	 * send these rules in order(2G rules first and then 5G)
- 	 */
--	for (; i < tmp_regd->n_reg_rules; i++) {
-+	for (; i < num_rules; i++) {
- 		if (reg_info->num_2g_reg_rules &&
- 		    (i < reg_info->num_2g_reg_rules)) {
- 			reg_rule = reg_info->reg_rules_2g_ptr + i;
-@@ -652,6 +651,8 @@ ath11k_reg_build_regd(struct ath11k_base *ab,
- 			   flags);
- 	}
+ enum ath11k_dev_flags {
+ 	ATH11K_CAC_RUNNING,
+-	ATH11K_FLAG_CORE_REGISTERED,
++	ATH11K_FLAG_FW_READY,
+ 	ATH11K_FLAG_CRASH_FLUSH,
+ 	ATH11K_FLAG_RAW_MODE,
+ 	ATH11K_FLAG_HW_CRYPTO_DISABLED,
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 7f8dd47d2333..00aca46505a6 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -6280,6 +6280,8 @@ static int __ath11k_mac_register(struct ath11k *ar)
+ 		 */
+ 		ar->hw->wiphy->interface_modes &= ~BIT(NL80211_IFTYPE_MONITOR);
  
-+	tmp_regd->n_reg_rules = i;
++	set_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags);
 +
- 	if (intersect) {
- 		default_regd = ab->default_regd[reg_info->phy_id];
+ 	/* Apply the regd received during initialization */
+ 	ret = ath11k_regd_update(ar, true);
+ 	if (ret) {
+diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
+index c2b165158225..417f63d9fb6d 100644
+--- a/drivers/net/wireless/ath/ath11k/qmi.c
++++ b/drivers/net/wireless/ath/ath11k/qmi.c
+@@ -2612,7 +2612,7 @@ static void ath11k_qmi_driver_event_work(struct work_struct *work)
+ 			ath11k_qmi_event_load_bdf(qmi);
+ 			break;
+ 		case ATH11K_QMI_EVENT_FW_READY:
+-			if (test_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags)) {
++			if (test_bit(ATH11K_FLAG_FW_READY, &ab->dev_flags)) {
+ 				ath11k_hal_dump_srng_stats(ab);
+ 				queue_work(ab->workqueue, &ab->restart_work);
+ 				break;
+@@ -2620,7 +2620,7 @@ static void ath11k_qmi_driver_event_work(struct work_struct *work)
  
+ 			ath11k_core_qmi_firmware_ready(ab);
+ 			ab->qmi.cal_done = 1;
+-			set_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags);
++			set_bit(ATH11K_FLAG_FW_READY, &ab->dev_flags);
+ 
+ 			break;
+ 		case ATH11K_QMI_EVENT_COLD_BOOT_CAL_DONE:
 -- 
 2.28.0
 
+
+--nextPart1843920.GhX3yNMNC5--
+
+--nextPart1669516.2VI8MhZXb1
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl+cCE0ACgkQXYcKB8Em
+e0ZbWhAAjZ7OGMvFIYXT5cKo0xE5ubbOAtaLxciVgqeaku0ZK34LxJMU4bQm0dXc
+jgVeo5grN26wGcr0kDslbS4RnZ2C8BBxNsHG+e45wKCRCwymnOcpqW566/KjcA61
+ciIy4FU49F36hbrUuWjEMe7kG7XRZVK2ocY3J8Rp5wd8uXYoK374q1yTuGXeIkVb
+vIdT39YJWSTXVEc/62G/l6vfdHmmqQHonsRg0B6KISeyAyuZ69rLjaJIAazb7vOr
+P1lUUrwrXhhkiQ1j2G0Lmmz5qzx+scqCfp8T2l+bTPa1D67ND3dByT1ntVfSuRiS
+7eLFfmWeAtjXxS2fnE5CHnlp94ri845TLQaOVVz3srKCynSxIBd0r5cfTvmSAgkU
+D5IkQu1KqNKVOJeaUw6JpxdOsiBArdhawwxiKjx8oEHgxiiq+uqWDI+W6nqU+ymg
+qZo957qeYHKaiyySv0D93/ykN26tj8iruX4ORJj2XLs9w8a4ER/hjyt6IBYozNWh
+Bh5TSrqZr0NIO9bC1gVO5GNgCu3NTkBh5PznO/ZKkvJCmDObarz+n8R7awsh3PMN
+Pu8PxNPjLAFztCIEKiMaXmYrDhcGSlUCYgAgyLzF4ZNgONs3CzFPWNFfICj54lhB
+MQo0KKKGsRp8h08lSoO36/KKBG3BAKRkAcMGuwRS6L3FAvBhZbc=
+=EGTx
+-----END PGP SIGNATURE-----
+
+--nextPart1669516.2VI8MhZXb1--
+
+
+
+
+
+--===============2823779715983865177==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 -- 
 ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
+
+--===============2823779715983865177==--
