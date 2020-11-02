@@ -1,13 +1,23 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from dvalin.narfation.org ([2a00:17d8:100::8b1])
+Received: from mail-ej1-x635.google.com ([2a00:1450:4864:20::635])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kYTbz-0002tr-Or
- for ath11k@lists.infradead.org; Fri, 30 Oct 2020 12:34:33 +0000
-From: Sven Eckelmann <sven@narfation.org>
-Subject: Country code setting ignored on bootup
-Date: Fri, 30 Oct 2020 13:34:21 +0100
-Message-ID: <1829665.1PRlr7bOQj@ripper>
+ id 1kZX8A-00058x-S8
+ for ath11k@lists.infradead.org; Mon, 02 Nov 2020 10:32:08 +0000
+Received: by mail-ej1-x635.google.com with SMTP id oq3so16326266ejb.7
+ for <ath11k@lists.infradead.org>; Mon, 02 Nov 2020 02:32:04 -0800 (PST)
+Received: from ?IPv6:2a02:a44f:d2f0:0:3dc2:225b:4ecb:cb81?
+ (2a02-a44f-d2f0-0-3dc2-225b-4ecb-cb81.fixed6.kpn.net.
+ [2a02:a44f:d2f0:0:3dc2:225b:4ecb:cb81])
+ by smtp.gmail.com with ESMTPSA id v21sm10091976edt.80.2020.11.02.02.32.02
+ for <ath11k@lists.infradead.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 02 Nov 2020 02:32:02 -0800 (PST)
+From: Pavel Procopiuc <pavel.procopiuc@gmail.com>
+Subject: PROBLEM: unable to get QCA6390 to work
+Message-ID: <fa22cf0f-3bac-add6-8c71-6f6cad5206d8@gmail.com>
+Date: Mon, 2 Nov 2020 11:32:02 +0100
 MIME-Version: 1.0
+Content-Language: en-US
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -16,216 +26,79 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============2823779715983865177=="
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
-Cc: sw@simonwunderlich.de
-
---===============2823779715983865177==
-Content-Type: multipart/signed; boundary="nextPart1669516.2VI8MhZXb1"; micalg="pgp-sha512"; protocol="application/pgp-signature"
-
---nextPart1669516.2VI8MhZXb1
-Content-Type: multipart/mixed; boundary="nextPart1843920.GhX3yNMNC5"; protected-headers="v1"
-Content-Transfer-Encoding: 7Bit
-From: Sven Eckelmann <sven@narfation.org>
-To: ath11k@lists.infradead.org
-Cc: sw@simonwunderlich.de
-Subject: Country code setting ignored on bootup
-Date: Fri, 30 Oct 2020 13:34:21 +0100
-Message-ID: <1829665.1PRlr7bOQj@ripper>
-
-This is a multi-part message in MIME format.
-
---nextPart1843920.GhX3yNMNC5
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
 
 Hi,
 
-just tested here with HK01 based board. The firwmare 
-WLAN.HK.2.1.0.1-01228-QCAHKSWPL_SILICONZ-1 doesn't show this problematic 
-behavior all the time but 2.4.0.1.r1-00026-QCAHKSWPL_SILICONZ-2 or WLAN.HK.
-2.4.0.1.r1-00019-QCAHKSWPL_SILICONZ-1 does.
+I'm unable to get QCA6390 to work on kernel 5.10-rc2.
 
-With 2.1.0.1 I could basically do following:
+I have a Dell XPS 17 laptop with the QCA6390 device and I'm trying to get it to work using 5.10-rc2 kernel. So far I'm 
+getting firmware errors in the log. For the kernel setup and firmware files I was following the guide from 
+https://www.spinics.net/lists/linux-wireless/msg203111.html.
 
-    iw reg set CA
-    echo "c000000.wifi1" > /sys/bus/platform/drivers/ath11k/unbind
-    echo "c000000.wifi1" > /sys/bus/platform/drivers/ath11k/bind
+* The current firmware repo structure is a bit different so I'm using:
+QCA6390/hw2.0/board-2.bin -> /lib/firmware/ath11k/QCA6390/hw2.0/board.bin
+QCA6390/hw2.0/1.0.1/WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1/amss.bin -> /lib/firmware/ath11k/QCA6390/hw2.0/amss.bin
+QCA6390/hw2.0/1.0.1/WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1/m3.bin -> /lib/firmware/ath11k/QCA6390/hw2.0/m3.bin
 
-and the global and self managed country codes were still all CA (in many 
-tests). But with 2.4.0.1, they will end up with CA as global and US as self 
-managed. I can see that the country code change is correctly send by cfg80211 
-when the HW is initializes but the 2.4.0.1 firmware just ignores it.
+* My kernel info:
+Linux razor 5.10.0-rc2 #2 SMP Mon Nov 2 10:38:39 CET 2020 x86_64 Intel(R) Core(TM) i9-10885H CPU @ 2.40GHz GenuineIntel 
+GNU/Linux
 
-I can see following send command by ath11k in ath11k_wmi_send_init_country_cmd:
+* Kernel config:
+# zgrep ATH11K /proc/config.gz
+CONFIG_ATH11K=m
+# CONFIG_ATH11K_AHB is not set
+CONFIG_ATH11K_PCI=m
+CONFIG_ATH11K_DEBUG=y
+CONFIG_ATH11K_DEBUGFS=y
+CONFIG_ATH11K_TRACING=y
+CONFIG_ATH11K_SPECTRAL=y
 
-    00000000: 38 00 61 02 00 00 00 00 00 00 00 00 43 41 00 00
+* Modules:
+# lsmod | grep ath11k
+ath11k_pci             24576  0
+mhi                    69632  2 ath11k_pci,qrtr_mhi
+ath11k                450560  1 ath11k_pci
+mac80211              892928  4 ath11k,rtl_usb,rtl8192cu,rtlwifi
+cfg80211              815104  3 ath11k,rtlwifi,mac80211
+qmi_helpers            28672  1 ath11k
 
-and I also receive a CA answer for that. But the response from the firmware comes
-in when the ATH11K_FLAG_REGISTERED bit is still not set. Thus it is rejected by
-ath11k_reg_chan_list_event for the regd_update_work.
+* Relevant errors from the log:
+# journalctl -b | grep -iP '05:00|ath11k'
+Nov 02 10:41:26 razor kernel: pci 0000:05:00.0: [17cb:1101] type 00 class 0x028000
+Nov 02 10:41:26 razor kernel: pci 0000:05:00.0: reg 0x10: [mem 0xd2100000-0xd21fffff 64bit]
+Nov 02 10:41:26 razor kernel: pci 0000:05:00.0: PME# supported from D0 D3hot D3cold
+Nov 02 10:41:26 razor kernel: pci 0000:05:00.0: 4.000 Gb/s available PCIe bandwidth, limited by 5.0 GT/s PCIe x1 link at 
+0000:00:1c.1 (capable of 7.876 Gb/s with 8.0 GT/s PCIe x1 link)
+Nov 02 10:41:26 razor kernel: pci 0000:05:00.0: Adding to iommu group 21
+Nov 02 10:41:27 razor kernel: ath11k_pci 0000:05:00.0: WARNING: ath11k PCI support is experimental!
+Nov 02 10:41:27 razor kernel: ath11k_pci 0000:05:00.0: BAR 0: assigned [mem 0xd2100000-0xd21fffff 64bit]
+Nov 02 10:41:27 razor kernel: ath11k_pci 0000:05:00.0: enabling device (0000 -> 0002)
+Nov 02 10:41:27 razor kernel: mhi 0000:05:00.0: Requested to power ON
+Nov 02 10:41:27 razor kernel: mhi 0000:05:00.0: Power on setup success
+Nov 02 10:41:27 razor kernel: ath11k_pci 0000:05:00.0: Respond mem req failed, result: 1, err: 0
+Nov 02 10:41:27 razor kernel: ath11k_pci 0000:05:00.0: qmi failed to respond fw mem req:-22
+Nov 02 10:41:32 razor kernel: ath11k_pci 0000:05:00.0: qmi failed memory request, err = -110
+Nov 02 10:41:32 razor kernel: ath11k_pci 0000:05:00.0: qmi failed to respond fw mem req:-110
+Nov 02 10:42:58 razor kernel: mhi 0000:05:00.0: Device failed to exit MHI Reset state
 
-This seems to be a race between receiving the 
-"ATH11K_QMI_EVENT_FW_READY" event and the ieee80211_register_hw() in 
-__ath11k_mac_register. The ieee80211_register_hw will make the hw responsible 
-for handling the regd updates but they will not be correctly processed until 
-the ATH11K_QMI_EVENT_FW_READY was handled by the firmware. And if the regd 
-change was processed after ath11k_regd_update was called in 
-__ath11k_mac_register (but before the ATH11K_QMI_EVENT_FW_READY was processed)
-then we will just loose the regd change.
+# lspci -knn
+...
+05:00.0 Network controller [0280]: Qualcomm Device [17cb:1101] (rev 01)
+         Subsystem: Bigfoot Networks, Inc. Device [1a56:a501]
+         Kernel driver in use: ath11k_pci
+         Kernel modules: ath11k_pci
+...
 
-So I am a little bit baffled why ATH11K_FLAG_REGISTERED is bound to something 
-which is not related to the  IEEE802211 registration code. Sounds to me like 
-somebody wanted a FW_READY flag but misused the ATH11K_FLAG_REGISTERED flag 
-for this purpose.
-
-Btw. there are similar problems with the use of ATH11K_FLAG_REGISTERED in context
-of ath11k_debug_pdev_create, ath11k_mac_register and ath11k_mac_allocate.
-
-Maybe something like the attached patch could be used to improve this situation.
-
-Kind regards,
-	Sven
---nextPart1843920.GhX3yNMNC5
-Content-Disposition: attachment; filename="0001-ath11k-Accept-new-regdomain-during-initialization.patch"
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/x-patch; charset="UTF-8"; name="0001-ath11k-Accept-new-regdomain-during-initialization.patch"
-
-From 931e5eb59e64804f3a90598b26c56643c43deb35 Mon Sep 17 00:00:00 2001
-From: Sven Eckelmann <sven@narfation.org>
-Date: Fri, 30 Oct 2020 12:02:21 +0100
-Subject: [RFC PATCH] ath11k: Accept new regdomain during initialization
-
-The driver is registering as iee80211_hw with its OPs and is then able to
-be called by the upper layer. This for example happens early in the phase
-when the correct regulary domain should be set. But the regulary domain
-will only be accepted when the ATH11K_FLAG_REGISTERED flag was set after
-the ATH11K_QMI_EVENT_FW_READY was processed. So it can easily happen that
-the regularly domain is not correctly processed when
-ATH11K_QMI_EVENT_FW_READY isn't handled immediately:
-
-  $ iw reg set CA
-  $ iw reg get|grep country
-  country CA: DFS-FCC
-  country CA: DFS-FCC
-  country CA: DFS-FCC
-
-  $ echo "c000000.wifi1" > /sys/bus/platform/drivers/ath11k/unbind
-  $ echo "c000000.wifi1" > /sys/bus/platform/drivers/ath11k/bind
-  $ iw reg get|grep country
-  country CA: DFS-FCC
-  country US: DFS-FCC
-  country US: DFS-FCC
-
-It is therefore essential to accept the regulatory changes without having
-seen the ATH11K_QMI_EVENT_FW_READY. And since there are also potentially
-more problems in ath11k_debug_pdev_create, ath11k_mac_register and
-ath11k_mac_allocate with their use of ATH11K_FLAG_REGISTERED, it is better
-to move the ATH11K_QMI_EVENT_FW_READY. to a new flag.
-
-Tested with WLAN.HK.2.4.0.1.r1-00019-QCAHKSWPL_SILICONZ-1
-
-Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
----
- drivers/net/wireless/ath/ath11k/core.h | 2 +-
- drivers/net/wireless/ath/ath11k/mac.c  | 2 ++
- drivers/net/wireless/ath/ath11k/qmi.c  | 4 ++--
- 3 files changed, 5 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 18b97420f0d8..1d214eed9ea1 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -170,7 +170,7 @@ enum ath11k_scan_state {
- 
- enum ath11k_dev_flags {
- 	ATH11K_CAC_RUNNING,
--	ATH11K_FLAG_CORE_REGISTERED,
-+	ATH11K_FLAG_FW_READY,
- 	ATH11K_FLAG_CRASH_FLUSH,
- 	ATH11K_FLAG_RAW_MODE,
- 	ATH11K_FLAG_HW_CRYPTO_DISABLED,
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 7f8dd47d2333..00aca46505a6 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -6280,6 +6280,8 @@ static int __ath11k_mac_register(struct ath11k *ar)
- 		 */
- 		ar->hw->wiphy->interface_modes &= ~BIT(NL80211_IFTYPE_MONITOR);
- 
-+	set_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags);
-+
- 	/* Apply the regd received during initialization */
- 	ret = ath11k_regd_update(ar, true);
- 	if (ret) {
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index c2b165158225..417f63d9fb6d 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.c
-+++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -2612,7 +2612,7 @@ static void ath11k_qmi_driver_event_work(struct work_struct *work)
- 			ath11k_qmi_event_load_bdf(qmi);
- 			break;
- 		case ATH11K_QMI_EVENT_FW_READY:
--			if (test_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags)) {
-+			if (test_bit(ATH11K_FLAG_FW_READY, &ab->dev_flags)) {
- 				ath11k_hal_dump_srng_stats(ab);
- 				queue_work(ab->workqueue, &ab->restart_work);
- 				break;
-@@ -2620,7 +2620,7 @@ static void ath11k_qmi_driver_event_work(struct work_struct *work)
- 
- 			ath11k_core_qmi_firmware_ready(ab);
- 			ab->qmi.cal_done = 1;
--			set_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags);
-+			set_bit(ATH11K_FLAG_FW_READY, &ab->dev_flags);
- 
- 			break;
- 		case ATH11K_QMI_EVENT_COLD_BOOT_CAL_DONE:
--- 
-2.28.0
-
-
---nextPart1843920.GhX3yNMNC5--
-
---nextPart1669516.2VI8MhZXb1
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl+cCE0ACgkQXYcKB8Em
-e0ZbWhAAjZ7OGMvFIYXT5cKo0xE5ubbOAtaLxciVgqeaku0ZK34LxJMU4bQm0dXc
-jgVeo5grN26wGcr0kDslbS4RnZ2C8BBxNsHG+e45wKCRCwymnOcpqW566/KjcA61
-ciIy4FU49F36hbrUuWjEMe7kG7XRZVK2ocY3J8Rp5wd8uXYoK374q1yTuGXeIkVb
-vIdT39YJWSTXVEc/62G/l6vfdHmmqQHonsRg0B6KISeyAyuZ69rLjaJIAazb7vOr
-P1lUUrwrXhhkiQ1j2G0Lmmz5qzx+scqCfp8T2l+bTPa1D67ND3dByT1ntVfSuRiS
-7eLFfmWeAtjXxS2fnE5CHnlp94ri845TLQaOVVz3srKCynSxIBd0r5cfTvmSAgkU
-D5IkQu1KqNKVOJeaUw6JpxdOsiBArdhawwxiKjx8oEHgxiiq+uqWDI+W6nqU+ymg
-qZo957qeYHKaiyySv0D93/ykN26tj8iruX4ORJj2XLs9w8a4ER/hjyt6IBYozNWh
-Bh5TSrqZr0NIO9bC1gVO5GNgCu3NTkBh5PznO/ZKkvJCmDObarz+n8R7awsh3PMN
-Pu8PxNPjLAFztCIEKiMaXmYrDhcGSlUCYgAgyLzF4ZNgONs3CzFPWNFfICj54lhB
-MQo0KKKGsRp8h08lSoO36/KKBG3BAKRkAcMGuwRS6L3FAvBhZbc=
-=EGTx
------END PGP SIGNATURE-----
-
---nextPart1669516.2VI8MhZXb1--
-
-
-
-
-
---===============2823779715983865177==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Regards,
+Pavel
 
 -- 
 ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
-
---===============2823779715983865177==--
