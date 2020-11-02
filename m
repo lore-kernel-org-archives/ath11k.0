@@ -1,16 +1,25 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from z5.mailgun.us ([104.130.96.5])
+Received: from mout-p-101.mailbox.org ([80.241.56.151])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kZdqQ-0003uq-AR
- for ath11k@lists.infradead.org; Mon, 02 Nov 2020 17:42:15 +0000
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: PROBLEM: unable to get QCA6390 to work
-References: <fa22cf0f-3bac-add6-8c71-6f6cad5206d8@gmail.com>
-Date: Mon, 02 Nov 2020 19:42:08 +0200
-In-Reply-To: <fa22cf0f-3bac-add6-8c71-6f6cad5206d8@gmail.com> (Pavel
- Procopiuc's message of "Mon, 2 Nov 2020 11:32:02 +0100")
-Message-ID: <87lffjodu7.fsf@codeaurora.org>
+ id 1kZeO1-0008SR-0o
+ for ath11k@lists.infradead.org; Mon, 02 Nov 2020 18:16:59 +0000
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [80.241.60.241])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4CQ1Mm6hmRzQjy2
+ for <ath11k@lists.infradead.org>; Mon,  2 Nov 2020 19:16:52 +0100 (CET)
+Received: from smtp2.mailbox.org ([80.241.60.241])
+ by spamfilter06.heinlein-hosting.de (spamfilter06.heinlein-hosting.de
+ [80.241.56.125]) (amavisd-new, port 10030)
+ with ESMTP id PTLGW_DRdhtW for <ath11k@lists.infradead.org>;
+ Mon,  2 Nov 2020 19:16:50 +0100 (CET)
+From: Devin Bayer <dev@doubly.so>
+Subject: QCA6391: failed to get 32 MSI vectors, only 1 available
+Message-ID: <ea0f787e-e4f2-2ca1-a1a4-84c9a35f4af6@doubly.so>
+Date: Mon, 2 Nov 2020 19:16:49 +0100
 MIME-Version: 1.0
+Content-Language: en-US
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,47 +32,43 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Pavel Procopiuc <pavel.procopiuc@gmail.com>
-Cc: ath11k@lists.infradead.org
+To: ath11k@lists.infradead.org
 
-Pavel Procopiuc <pavel.procopiuc@gmail.com> writes:
+Hello,
 
-> Hi,
->
-> I'm unable to get QCA6390 to work on kernel 5.10-rc2.
->
-> I have a Dell XPS 17 laptop with the QCA6390 device and I'm trying to
-> get it to work using 5.10-rc2 kernel. So far I'm getting firmware
-> errors in the log. For the kernel setup and firmware files I was
-> following the guide from
-> https://www.spinics.net/lists/linux-wireless/msg203111.html.
->
-> * The current firmware repo structure is a bit different so I'm using:
-> QCA6390/hw2.0/board-2.bin -> /lib/firmware/ath11k/QCA6390/hw2.0/board.bin
-> QCA6390/hw2.0/1.0.1/WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1/amss.bin
-> -> /lib/firmware/ath11k/QCA6390/hw2.0/amss.bin
-> QCA6390/hw2.0/1.0.1/WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1/m3.bin
-> -> /lib/firmware/ath11k/QCA6390/hw2.0/m3.bin
+I am trying to get a QCA6391 card to work with the ath11k driver. It
+recognizes the card since it has the same device ID as the QCA6390.
+However it fails to initialize:
 
-Can you do 'md5sum /lib/firmware/ath11k/QCA6390/hw2.0/*' and send the
-output? Currently ath11k does not check the firmware files in any way
-and I want to make sure they are not corrupted.
+> [    4.241127] ath11k_pci 0000:03:00.0: WARNING: ath11k PCI support is experimental!
+> [    4.258806] ath11k_pci 0000:03:00.0: BAR 0: assigned [mem 0xd0000000-0xd0ffffff 64bit]
+> [    4.258838] ath11k_pci 0000:03:00.0: enabling device (0000 -> 0002)
+> [    4.258987] ath11k_pci 0000:03:00.0: failed to get 32 MSI vectors, only 1 available
+> [    4.258990] ath11k_pci 0000:03:00.0: failed to enable msi: -22
 
-I have:
+I've tried a few different kernel versions up to 5.10-rc2 and they all behave the same.
 
-a101dc90f8e876f39383b60c9da64ec4  amss.bin
-d4c912a3501a3694a3f460d13de06d28  m3.bin
-4c0781f659d2b7d6bef10a2e3d457728  board-2.bin
+Does anyone know if there is anything I can do to get this to work?
 
-Ah, now I noticed that you renamed board-2.bin to board.bin. But you
-need to keep the file as board-2.bin, board-2.bin and board.bin are not
-compatible. I need to send new instructions with the new board-2.bin
-file.
+Thanks,
+Devin
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+Note: I applied a small patch to fix the debug output so it reports
+the correct number of available vectors:
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
+index d7eb6b7160bb..afaacce5a5b6 100644
+--- a/drivers/net/wireless/ath/ath11k/pci.c
++++ b/drivers/net/wireless/ath/ath11k/pci.c
+@@ -638,7 +638,7 @@ static int ath11k_pci_enable_msi(struct ath11k_pci *ab_pci)
+ 	int ret;
+
+ 	num_vectors = pci_alloc_irq_vectors(ab_pci->pdev,
+-					    msi_config.total_vectors,
++					    1,
+ 					    msi_config.total_vectors,
+ 					    PCI_IRQ_MSI);
+ 	if (num_vectors != msi_config.total_vectors) {
 
 -- 
 ath11k mailing list
