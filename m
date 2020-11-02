@@ -1,24 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from m42-4.mailgun.net ([69.72.42.4])
+Received: from mail.kernel.org ([198.145.29.99])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kZfkO-0004fK-5j
- for ath11k@lists.infradead.org; Mon, 02 Nov 2020 19:44:09 +0000
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCHv2 1/2] nl80211: vendor-cmd: qca: add command for ap power
- save
-References: <1598257589-19091-1-git-send-email-vnaralas@codeaurora.org>
- <4b4a0d79a243c1c3b8044730da0493c96ba294bf.camel@sipsolutions.net>
- <871rilf2th.fsf@codeaurora.org>
- <dbaa655c3f15f800f73b7c19f2b1a054@codeaurora.org>
- <87eelr1oq9.fsf@codeaurora.org>
- <f6c148a3-73de-1481-5f63-2deecb599468@broadcom.com>
- <81ced18ac5b87a17cf31797cf91669bc@codeaurora.org>
-Date: Mon, 02 Nov 2020 21:44:01 +0200
-In-Reply-To: <81ced18ac5b87a17cf31797cf91669bc@codeaurora.org>
- (vnaralas@codeaurora.org's message of "Fri, 23 Oct 2020 09:17:09
- +0530")
-Message-ID: <87sg9rtugu.fsf@codeaurora.org>
+ id 1kZgto-0001Bu-9l
+ for ath11k@lists.infradead.org; Mon, 02 Nov 2020 20:57:57 +0000
+Date: Mon, 2 Nov 2020 14:57:52 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+Subject: Re: pci_alloc_irq_vectors fails ENOSPC for XPS 13 9310
+Message-ID: <20201102205752.GA34153@bjorn-Precision-5520>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <871rhbvbjk.fsf@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -31,61 +22,95 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: vnaralas@codeaurora.org
-Cc: Arend Van Spriel <arend.vanspriel@broadcom.com>, linux-wireless@vger.kernel.org, Johannes Berg <johannes@sipsolutions.net>, ath11k@lists.infradead.org
+To: Kalle Valo <kvalo@codeaurora.org>
+Cc: Govind Singh <govinds@codeaurora.org>, linux-pci@vger.kernel.org, linux-wireless@vger.kernel.org, Devin Bayer <dev@doubly.so>, Thomas Krause <thomaskrause@posteo.de>, ath11k@lists.infradead.org
 
-vnaralas@codeaurora.org writes:
+[+cc Govind, author of 5697a564d369 ("ath11k: pci: add MSI config
+initialisation")]
 
-> On 2020-10-22 13:30, Arend Van Spriel wrote:
->> On 10/21/2020 7:19 PM, Kalle Valo wrote:
->>> vnaralas@codeaurora.org writes:
->>>
->>>> On 2020-09-29 13:10, Kalle Valo wrote:
->>>>> Johannes Berg <johannes@sipsolutions.net> writes:
->>>>>
->>>>>> On Mon, 2020-08-24 at 13:56 +0530, Venkateswara Naralasetty wrote:
->>>>>>> AP power save feature is to save power in AP mode, where AP goes
->>>>>>> to power save mode when no stations associate to it and comes out
->>>>>>> of power save when any station associate to AP.
->>>>>>
->>>>>> Why do you think this requires a vendor command? I mean, that seems
->>>>>> like
->>>>>> fairly reasonable - even by default - behaviour?
->>>>>
->>>>> I have not studied the details, but doesn't AP power save break
->>>>> normal
->>>>> functionality? For example, I would guess probe requests from
->>>>> clients
->>>>> would be lost. So there's a major drawback when enabling this,
->>>>> right?
->>>>
->>>> This AP power save feature will not break any functionality, Since
->>>> one
->>>> chain is always active and all other chains will be disabled when
->>>> this
->>>> feature is enabled. AP can still be able to beacon and receive probe
->>>> request from the clients. The only drawback is reduced network range
->>>> when this feature is enabled. Hence, we don't want to enable it by
->>>> default.
->>>
->>> Yeah, we really would not want to enable that by default. But what
->>> should be the path forward, a vendor command or a proper nl80211
->>> command? Any opinions?
->>
->> I would go for a proper nl80211 command or just add an attribute for
->> use in NL80211_CMD_START_AP or deal with NL80211_CMD_SET_POWERSAVE
->> when operating in AP mode.
->>
-> Sure, I will go with the existing NL80211_CMD_SET_POWERSAVE and I will
-> send next version.
+On Mon, Nov 02, 2020 at 08:49:51PM +0200, Kalle Valo wrote:
+> + linux-wireless, linux-pci, devin
+> 
+> Thomas Krause <thomaskrause@posteo.de> writes:
+> 
+> >> I had the same problem as well back in the days, for me enabling
+> >> CONFIG_IRQ_REMAP helped. If it helps for you also I wonder if we should
+> >> mention that in the ath11k warning above :)
+> >
+> > CONFIG_IRQ_REMAP did not do the trick. I noticed that the Wi-Fi card
+> > is behind a PCI bridge which is also disabled, could this be a
+> > problem?
+> >
+> > 00:1c.0 PCI bridge: Intel Corporation Device a0b8 (rev 20) (prog-if 00
+> > [Normal decode])
+> > 	Flags: bus master, fast devsel, latency 0, IRQ 123
+> > 	Bus: primary=00, secondary=56, subordinate=56, sec-latency=0
+> > 	I/O behind bridge: [disabled]
+> > 	Memory behind bridge: 8c300000-8c3fffff [size=1M]
+> > 	Prefetchable memory behind bridge: [disabled]
+> > 	Capabilities: [40] Express Root Port (Slot+), MSI 00
+> > 	Capabilities: [80] MSI: Enable+ Count=1/1 Maskable- 64bit-
+> > 	Capabilities: [90] Subsystem: Dell Device 0991
+> > 	Capabilities: [a0] Power Management version 3
+> > 	Capabilities: [100] Advanced Error Reporting
+> > 	Capabilities: [220] Access Control Services
+> > 	Capabilities: [150] Precision Time Measurement
+> > 	Capabilities: [200] L1 PM Substates
+> > 	Capabilities: [a00] Downstream Port Containment
+> > 	Kernel driver in use: pcieport
+> 
+> I don't know enough about PCI to say if the bridge is a problem or not.
 
-Better to wait first so that we have concensus on this. And need to
-check if NL80211_CMD_SET_POWERSAVE is even suitable for AP mode.
+I don't think the bridge is an issue here.  AFAICT the bridge's I/O
+and prefetchable memory windows are disabled, but the non-prefetchable
+window *is* enabled and contains the space consumed by the ath11k
+device:
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+  00:1c.0 PCI bridge: Intel Corporation Device a0b8 (rev 20)
+	Bus: primary=00, secondary=56, subordinate=56, sec-latency=0
+	Memory behind bridge: 8c300000-8c3fffff [size=1M]
+  56:00.0 Network controller: Qualcomm Device 1101 (rev 01)
+     Region 0: Memory at 8c300000 (64-bit, non-prefetchable) [size=1M]
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+> To summarise: Thomas is reporting[1] a problem with ath11k on QCA6390
+> PCI device where he is not having enough MSI vectors. ath11k needs 32
+> vectors but pci_alloc_irq_vectors() returns -ENOSPC. PCI support is new
+> for ath11k and introduced in v5.10-rc1. The irq allocation code is in
+> drivers/net/wireless/ath/ath11k/pci.c. [2]
+
+This code is needlessly complicated.  If you absolutely need
+msi_config.total_vectors and can't settle for any less, you can do
+this:
+
+  num_vectors = pci_alloc_irq_vectors(ab_pci->pdev,
+                                      msi_config.total_vectors,
+                                      msi_config.total_vectors,
+                                      PCI_IRQ_MSI);
+
+  if (num_vectors < 0) {
+    ath11k_err(ab, "failed to get %d MSI vectors (%d)\n",
+               msi_config.total_vectors, num_vectors);
+    return num_vectors;
+  }
+
+But it seems a little greedy if the device can't operate at all unless
+it gets 32 vectors.  Are you sure that's a hard requirement?  Most
+devices can work with fewer vectors, even if it reduces performance.
+
+> I would first try with a full distro kernel config, just in case there's
+> some another important kernel config missing.
+> 
+> [1] http://lists.infradead.org/pipermail/ath11k/2020-October/000466.html
+
+Tangent: have you considered getting this list archived on
+https://lore.kernel.org/lists.html?
+
+> [2] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/net/wireless/ath/ath11k/pci.c#n633
+> 
+> -- 
+> https://patchwork.kernel.org/project/linux-wireless/list/
+> 
+> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
