@@ -1,15 +1,17 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from z5.mailgun.us ([104.130.96.5])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kZebs-00021C-Dj
- for ath11k@lists.infradead.org; Mon, 02 Nov 2020 18:31:21 +0000
+ id 1kZeew-0002Tj-0Z
+ for ath11k@lists.infradead.org; Mon, 02 Nov 2020 18:34:30 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: QCA6391: failed to get 32 MSI vectors, only 1 available
-References: <ea0f787e-e4f2-2ca1-a1a4-84c9a35f4af6@doubly.so>
-Date: Mon, 02 Nov 2020 20:30:52 +0200
-In-Reply-To: <ea0f787e-e4f2-2ca1-a1a4-84c9a35f4af6@doubly.so> (Devin Bayer's
- message of "Mon, 2 Nov 2020 19:16:49 +0100")
-Message-ID: <87a6vzvcf7.fsf@codeaurora.org>
+Subject: Re: pci_alloc_irq_vectors fails ENOSPC for XPS 13 9310
+References: <2849fd39-a7a6-8366-7c78-fc9fec4dffa4@posteo.de>
+ <87tuuqhc1i.fsf@codeaurora.org>
+ <1ce6f735-21ff-db7e-c8dc-d567761964aa@posteo.de>
+Date: Mon, 02 Nov 2020 20:34:11 +0200
+In-Reply-To: <1ce6f735-21ff-db7e-c8dc-d567761964aa@posteo.de> (Thomas Krause's
+ message of "Tue, 20 Oct 2020 22:46:00 +0200")
+Message-ID: <875z6nvc9o.fsf@codeaurora.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -23,33 +25,29 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Devin Bayer <dev@doubly.so>
+To: Thomas Krause <thomaskrause@posteo.de>
 Cc: ath11k@lists.infradead.org
 
-Devin Bayer <dev@doubly.so> writes:
+Thomas Krause <thomaskrause@posteo.de> writes:
 
-> I am trying to get a QCA6391 card to work with the ath11k driver. It
-> recognizes the card since it has the same device ID as the QCA6390.
-> However it fails to initialize:
+> Am 19.10.20 um 10:09 schrieb Kalle Valo:
+>>> some variants of Dell XPS 13 9310 model have a QCA6390 device
+>> Do you happen to know which models exacly have it? I'm trying to find a
+>> reasonably priced laptop with QCA6390 from Finland or EU, no luck yet.
+>> Apparently there was a certain Dell XPS 15 9500 model but it was almost
+>> 4k EUR.
 >
->> [    4.241127] ath11k_pci 0000:03:00.0: WARNING: ath11k PCI support is experimental!
->> [ 4.258806] ath11k_pci 0000:03:00.0: BAR 0: assigned [mem
->> 0xd0000000-0xd0ffffff 64bit]
->> [    4.258838] ath11k_pci 0000:03:00.0: enabling device (0000 -> 0002)
->> [ 4.258987] ath11k_pci 0000:03:00.0: failed to get 32 MSI vectors,
->> only 1 available
->> [    4.258990] ath11k_pci 0000:03:00.0: failed to enable msi: -22
->
-> I've tried a few different kernel versions up to 5.10-rc2 and they all behave the same.
->
-> Does anyone know if there is anything I can do to get this to work?
+> Dell at least sold the XPS 13 9310 with 32 GB RAM in Germany
+> (https://www.dell.com/de-de/shop/laptops/neu-xps-13/spd/xps-13-9310-laptop/cn93212)
+> with the QCA6390 device. With around 2300 EUR, this offer is still
+> expensive but it's less than the 4000. In the delivery notes they
+> called the Wi-Fi card "Killer Wi-Fi 6 AX500-DBS (2 x 2)" (part number
+> 555-BFPF) but in the current version of the linked listing this is now
+> "Killer Wifi 7 AX500". I'm not sure if the "DBS" part has anything to
+> say.
 
-There's a similar thread ongoing:
-
-http://lists.infradead.org/pipermail/ath11k/2020-October/000467.html
-
-For me CONFIG_IRQ_REMAP helped, but it didn't help for Thomas. I suggest
-to try that first anyway. I'll also include you to the other thread.
+Yeah, that's more reasonable price for a laptop. Thanks, this is very
+good info. I'll try to find one from Finland.
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
