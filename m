@@ -1,18 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from m42-4.mailgun.net ([69.72.42.4])
+Received: from z5.mailgun.us ([104.130.96.5])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kZwMI-0005GL-Fo
- for ath11k@lists.infradead.org; Tue, 03 Nov 2020 13:28:23 +0000
+ id 1kZwMK-0005Gq-2v
+ for ath11k@lists.infradead.org; Tue, 03 Nov 2020 13:28:25 +0000
+From: Kalle Valo <kvalo@codeaurora.org>
+Subject: Re: pci_alloc_irq_vectors fails ENOSPC for XPS 13 9310
+References: <20201102205752.GA34153@bjorn-Precision-5520>
+Date: Tue, 03 Nov 2020 08:49:06 +0200
+In-Reply-To: <20201102205752.GA34153@bjorn-Precision-5520> (Bjorn Helgaas's
+ message of "Mon, 2 Nov 2020 14:57:52 -0600")
+Message-ID: <87k0v3szod.fsf@codeaurora.org>
 MIME-Version: 1.0
-Date: Tue, 03 Nov 2020 16:42:01 +0800
-From: Carl Huang <cjhuang@codeaurora.org>
-Subject: Re: PROBLEM: unable to get QCA6390 to work
-In-Reply-To: <c9cc0ec6-4dda-2608-3575-0e6dfb6d0852@gmail.com>
-References: <fa22cf0f-3bac-add6-8c71-6f6cad5206d8@gmail.com>
- <87lffjodu7.fsf@codeaurora.org>
- <fa338986-8de4-fde1-6805-d46793c947e4@gmail.com>
- <c9cc0ec6-4dda-2608-3575-0e6dfb6d0852@gmail.com>
-Message-ID: <51201ba28aeccb57dabc5e72868a899f@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -21,35 +19,117 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Pavel Procopiuc <pavel.procopiuc@gmail.com>
-Cc: ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Govind Singh <govinds@codeaurora.org>, linux-pci@vger.kernel.org, linux-wireless@vger.kernel.org, Devin Bayer <dev@doubly.so>, Thomas Krause <thomaskrause@posteo.de>, ath11k@lists.infradead.org
 
-On 2020-11-03 05:14, Pavel Procopiuc wrote:
-> After doing some testing I was able to get it running under some
-> specific conditions. I took the v5.9 tag of the main kernel tree and
-> merged in the ath11k-qca6390-bringup-202009250825 tag from the ath
-> tree. I had to fix some trivial conflicts, but the resulting kernel
-> together with the firmware (amss.bin, m3.bin and board-2.bin) gave me
-> a working driver that I was able to use to connect to my AP in both
-> 2,4 and 5GHz.
-> 
-> I then tried to copy over the ath11k driver source resulting from that
-> merge on top of the 5.10-rc2 tag. After fixing some API breakage
-> (IEEE80211_TX_CTRL_HW_80211_ENCAP and ieee80211_set_hw_80211_encap) to
-> make it compile I booted into the resulting kernel, but ath11k driver
-> was giving me the same firmware errors I had initially on 5.10-rc2. So
-> it looks like there might be some change in 5.10 that broke the logic.
-> 
-> Op 02.11.2020 om 19:21 schreef Pavel Procopiuc:
->> Ah, my bad, I've now renamed the board-2.bin file, the md5's match 
->> yours. But it doesn't seem to have a positive effect.
+Bjorn Helgaas <helgaas@kernel.org> writes:
 
-Please set ath11k.ko module parameter debug_mask to 0xffffffff, and then 
-reproduce and share the log.
+> [+cc Govind, author of 5697a564d369 ("ath11k: pci: add MSI config
+> initialisation")]
+>
+> On Mon, Nov 02, 2020 at 08:49:51PM +0200, Kalle Valo wrote:
+>> + linux-wireless, linux-pci, devin
+>> 
+>> Thomas Krause <thomaskrause@posteo.de> writes:
+>> 
+>> >> I had the same problem as well back in the days, for me enabling
+>> >> CONFIG_IRQ_REMAP helped. If it helps for you also I wonder if we should
+>> >> mention that in the ath11k warning above :)
+>> >
+>> > CONFIG_IRQ_REMAP did not do the trick. I noticed that the Wi-Fi card
+>> > is behind a PCI bridge which is also disabled, could this be a
+>> > problem?
+>> >
+>> > 00:1c.0 PCI bridge: Intel Corporation Device a0b8 (rev 20) (prog-if 00
+>> > [Normal decode])
+>> > 	Flags: bus master, fast devsel, latency 0, IRQ 123
+>> > 	Bus: primary=00, secondary=56, subordinate=56, sec-latency=0
+>> > 	I/O behind bridge: [disabled]
+>> > 	Memory behind bridge: 8c300000-8c3fffff [size=1M]
+>> > 	Prefetchable memory behind bridge: [disabled]
+>> > 	Capabilities: [40] Express Root Port (Slot+), MSI 00
+>> > 	Capabilities: [80] MSI: Enable+ Count=1/1 Maskable- 64bit-
+>> > 	Capabilities: [90] Subsystem: Dell Device 0991
+>> > 	Capabilities: [a0] Power Management version 3
+>> > 	Capabilities: [100] Advanced Error Reporting
+>> > 	Capabilities: [220] Access Control Services
+>> > 	Capabilities: [150] Precision Time Measurement
+>> > 	Capabilities: [200] L1 PM Substates
+>> > 	Capabilities: [a00] Downstream Port Containment
+>> > 	Kernel driver in use: pcieport
+>> 
+>> I don't know enough about PCI to say if the bridge is a problem or not.
+>
+> I don't think the bridge is an issue here.  AFAICT the bridge's I/O
+> and prefetchable memory windows are disabled, but the non-prefetchable
+> window *is* enabled and contains the space consumed by the ath11k
+> device:
+>
+>   00:1c.0 PCI bridge: Intel Corporation Device a0b8 (rev 20)
+> 	Bus: primary=00, secondary=56, subordinate=56, sec-latency=0
+> 	Memory behind bridge: 8c300000-8c3fffff [size=1M]
+>   56:00.0 Network controller: Qualcomm Device 1101 (rev 01)
+>      Region 0: Memory at 8c300000 (64-bit, non-prefetchable) [size=1M]
+
+Good to know that the bridge shouldn't be the problem. Do you have any
+ideas how to make more vectors available to ath11k, besides
+CONFIG_IRQ_REMAP? Because QCA6390 works in Windows I doubt this is a
+hardware problem.
+
+>> To summarise: Thomas is reporting[1] a problem with ath11k on QCA6390
+>> PCI device where he is not having enough MSI vectors. ath11k needs 32
+>> vectors but pci_alloc_irq_vectors() returns -ENOSPC. PCI support is new
+>> for ath11k and introduced in v5.10-rc1. The irq allocation code is in
+>> drivers/net/wireless/ath/ath11k/pci.c. [2]
+>
+> This code is needlessly complicated.  If you absolutely need
+> msi_config.total_vectors and can't settle for any less, you can do
+> this:
+>
+>   num_vectors = pci_alloc_irq_vectors(ab_pci->pdev,
+>                                       msi_config.total_vectors,
+>                                       msi_config.total_vectors,
+>                                       PCI_IRQ_MSI);
+>
+>   if (num_vectors < 0) {
+>     ath11k_err(ab, "failed to get %d MSI vectors (%d)\n",
+>                msi_config.total_vectors, num_vectors);
+>     return num_vectors;
+>   }
+
+True, this should be cleaned up. But of course this won't solve the
+actual problem.
+
+> But it seems a little greedy if the device can't operate at all unless
+> it gets 32 vectors.  Are you sure that's a hard requirement?  Most
+> devices can work with fewer vectors, even if it reduces performance.
+
+This was my first reaction as well when I saw the code for the first
+time. And the reply I got is that the firmware needs all 32 vectors, it
+won't work with less.
+
+>> I would first try with a full distro kernel config, just in case there's
+>> some another important kernel config missing.
+>> 
+>> [1] http://lists.infradead.org/pipermail/ath11k/2020-October/000466.html
+>
+> Tangent: have you considered getting this list archived on
+> https://lore.kernel.org/lists.html?
+
+Good point, actually I have not. I'll add both ath10k and ath11k lists
+to lore. It's even more important now that lists.infradead.org had a
+hard drive crash and lost years of archives.
+
+Thanks for the help!
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
