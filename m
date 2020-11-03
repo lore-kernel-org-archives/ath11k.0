@@ -1,19 +1,11 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail-ej1-x62b.google.com ([2a00:1450:4864:20::62b])
- by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kZh9l-0003At-Qc
- for ath11k@lists.infradead.org; Mon, 02 Nov 2020 21:14:27 +0000
-Received: by mail-ej1-x62b.google.com with SMTP id dk16so20236480ejb.12
- for <ath11k@lists.infradead.org>; Mon, 02 Nov 2020 13:14:25 -0800 (PST)
-Subject: Re: PROBLEM: unable to get QCA6390 to work
-From: Pavel Procopiuc <pavel.procopiuc@gmail.com>
-References: <fa22cf0f-3bac-add6-8c71-6f6cad5206d8@gmail.com>
- <87lffjodu7.fsf@codeaurora.org>
- <fa338986-8de4-fde1-6805-d46793c947e4@gmail.com>
-Message-ID: <c9cc0ec6-4dda-2608-3575-0e6dfb6d0852@gmail.com>
-Date: Mon, 2 Nov 2020 22:14:22 +0100
+Subject: Re: [PATCH v2 0/3] wireless: convert tasklets to use new
+References: <20201007103309.363737-1-allen.lkml@gmail.com>
+From: Allen Pais <apais@linux.microsoft.com>
+Message-ID: <c3d71677-a428-f215-2ba8-4dd277a69fb6@linux.microsoft.com>
+Date: Tue, 3 Nov 2020 13:05:23 +0530
 MIME-Version: 1.0
-In-Reply-To: <fa338986-8de4-fde1-6805-d46793c947e4@gmail.com>
+In-Reply-To: <20201007103309.363737-1-allen.lkml@gmail.com>
 Content-Language: en-US
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -27,21 +19,42 @@ Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: ath11k@lists.infradead.org
+To: Allen Pais <allen.lkml@gmail.com>, kvalo@codeaurora.org
+Cc: ryder.lee@mediatek.com, netdev@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, matthias.bgg@gmail.com, linux-mediatek@lists.infradead.org, lorenzo.bianconi83@gmail.com, kuba@kernel.org, davem@davemloft.net, nbd@nbd.name
 
-After doing some testing I was able to get it running under some specific conditions. I took the v5.9 tag of the main 
-kernel tree and merged in the ath11k-qca6390-bringup-202009250825 tag from the ath tree. I had to fix some trivial 
-conflicts, but the resulting kernel together with the firmware (amss.bin, m3.bin and board-2.bin) gave me a working 
-driver that I was able to use to connect to my AP in both 2,4 and 5GHz.
 
-I then tried to copy over the ath11k driver source resulting from that merge on top of the 5.10-rc2 tag. After fixing 
-some API breakage (IEEE80211_TX_CTRL_HW_80211_ENCAP and ieee80211_set_hw_80211_encap) to make it compile I booted into 
-the resulting kernel, but ath11k driver was giving me the same firmware errors I had initially on 5.10-rc2. So it looks 
-like there might be some change in 5.10 that broke the logic.
 
-Op 02.11.2020 om 19:21 schreef Pavel Procopiuc:
-> Ah, my bad, I've now renamed the board-2.bin file, the md5's match yours. But it doesn't seem to have a positive effect. 
+> 
+> This series converts the remaining drivers to use new
+> tasklet_setup() API.
+> 
+> The patches are based on wireless-drivers-next (c2568c8c9e63)
+
+  Is this series queue? I haven't seen any email. This is the last
+series as part of the tasklet conversion effort.
+
+Thanks.
+
+> 
+> v2:
+>    Split mt76 and mt7601u
+> 
+> Allen Pais (3):
+>    wireless: mt76: convert tasklets to use new tasklet_setup() API
+>    wireless: mt7601u: convert tasklets to use new tasklet_setup() API
+>    ath11k: convert tasklets to use new tasklet_setup() API
+> 
+>   drivers/net/wireless/ath/ath11k/pci.c              |  7 +++----
+>   drivers/net/wireless/mediatek/mt76/mt7603/beacon.c |  4 ++--
+>   drivers/net/wireless/mediatek/mt76/mt7603/init.c   |  3 +--
+>   drivers/net/wireless/mediatek/mt76/mt7603/mt7603.h |  2 +-
+>   drivers/net/wireless/mediatek/mt76/mt7615/mmio.c   |  6 +++---
+>   drivers/net/wireless/mediatek/mt76/mt76x02_dfs.c   | 10 +++++-----
+>   drivers/net/wireless/mediatek/mt76/mt76x02_mmio.c  |  7 +++----
+>   drivers/net/wireless/mediatek/mt76/usb.c           |  6 +++---
+>   drivers/net/wireless/mediatek/mt7601u/dma.c        | 12 ++++++------
+>   9 files changed, 27 insertions(+), 30 deletions(-)
+> 
 
 -- 
 ath11k mailing list
