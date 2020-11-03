@@ -1,16 +1,19 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mout-p-202.mailbox.org ([80.241.56.172])
+Received: from z5.mailgun.us ([104.130.96.5])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kZuMR-0004j7-BM
- for ath11k@lists.infradead.org; Tue, 03 Nov 2020 11:20:25 +0000
-Subject: Re: pci_alloc_irq_vectors fails ENOSPC for XPS 13 9310
-References: <20201102205752.GA34153@bjorn-Precision-5520>
-From: Devin Bayer <dev@doubly.so>
-Message-ID: <8996fd9c-0d6c-5c0c-670e-86c537509030@doubly.so>
-Date: Tue, 3 Nov 2020 12:20:16 +0100
+ id 1kZvoO-0008UE-Bv
+ for ath11k@lists.infradead.org; Tue, 03 Nov 2020 12:53:23 +0000
+From: Kalle Valo <kvalo@codeaurora.org>
+Subject: Re: PROBLEM: unable to get QCA6390 to work
+References: <fa22cf0f-3bac-add6-8c71-6f6cad5206d8@gmail.com>
+ <87lffjodu7.fsf@codeaurora.org>
+ <fa338986-8de4-fde1-6805-d46793c947e4@gmail.com>
+ <c9cc0ec6-4dda-2608-3575-0e6dfb6d0852@gmail.com>
+Date: Tue, 03 Nov 2020 08:56:03 +0200
+In-Reply-To: <c9cc0ec6-4dda-2608-3575-0e6dfb6d0852@gmail.com> (Pavel
+ Procopiuc's message of "Mon, 2 Nov 2020 22:14:22 +0100")
+Message-ID: <87ft5rszcs.fsf@codeaurora.org>
 MIME-Version: 1.0
-In-Reply-To: <20201102205752.GA34153@bjorn-Precision-5520>
-Content-Language: en-US
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,39 +26,34 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Bjorn Helgaas <helgaas@kernel.org>, Kalle Valo <kvalo@codeaurora.org>
-Cc: linux-pci@vger.kernel.org, Thomas Krause <thomaskrause@posteo.de>, Govind Singh <govinds@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: Pavel Procopiuc <pavel.procopiuc@gmail.com>
+Cc: ath11k@lists.infradead.org
 
-On 02/11/2020 21.57, Bjorn Helgaas wrote:
->>>
->>> CONFIG_IRQ_REMAP did not do the trick. I noticed that the Wi-Fi card
->>> is behind a PCI bridge which is also disabled, could this be a
->>> problem?
+Pavel Procopiuc <pavel.procopiuc@gmail.com> writes:
 
-Just to provide another case, I have the same issue with this driver.
+> After doing some testing I was able to get it running under some
+> specific conditions. I took the v5.9 tag of the main kernel tree and
+> merged in the ath11k-qca6390-bringup-202009250825 tag from the ath
+> tree. I had to fix some trivial conflicts, but the resulting kernel
+> together with the firmware (amss.bin, m3.bin and board-2.bin) gave me
+> a working driver that I was able to use to connect to my AP in both
+> 2,4 and 5GHz.
+>
+> I then tried to copy over the ath11k driver source resulting from that
+> merge on top of the 5.10-rc2 tag. After fixing some API breakage
+> (IEEE80211_TX_CTRL_HW_80211_ENCAP and ieee80211_set_hw_80211_encap) to
+> make it compile I booted into the resulting kernel, but ath11k driver
+> was giving me the same firmware errors I had initially on 5.10-rc2. So
+> it looks like there might be some change in 5.10 that broke the logic.
 
-CONFIG_IRQ_REMAP=y and doesn't have any effect.
+Interesting, and worrisome. I have not yet tested v5.10-rc releases,
+I'll do that ASAP and try to reproduce your issue. If I see the same
+problem then it should be possible to bisect the issue pretty easily.
 
-I'm unsure if the issue could be my system (Atom / Intel J1900) or the
-that I'm using a slightly different card. Is there anyway to tell from the
-lspci output? Here is what I guess is most relevant:
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-00:1c.2 PCI bridge: Intel Corporation Atom Processor E3800 Series PCI Express Root Port 3 (rev 0e) (prog-if 00 [Normal decode])
-        Memory behind bridge: d0000000-d0ffffff [size=16M]
-        Capabilities: [40] Express (v2) Root Port (Slot+), MSI 00
-        Capabilities: [80] MSI: Enable+ Count=1/1 Maskable- 64bit-
-                Address: fee08004  Data: 4021
-
-03:00.0 Unassigned class [ff00]: Qualcomm Device 1101
-        Subsystem: Qualcomm Device 0108
-        Region 0: Memory at d0000000 (64-bit, non-prefetchable) [size=16M]
-        Capabilities: [50] MSI: Enable+ Count=1/32 Maskable+ 64bit-
-                Address: fee01004  Data: 40ef
-                Masking: ffffffff  Pending: 00000000
-        Capabilities: [70] Express (v2) Endpoint, MSI 00
-
-Thanks,
-Devin
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
