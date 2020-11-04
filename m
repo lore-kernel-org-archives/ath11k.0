@@ -1,13 +1,23 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Subject: Re: [PATCH v2 0/3] wireless: convert tasklets to use new
-References: <20201007103309.363737-1-allen.lkml@gmail.com>
- <c3d71677-a428-f215-2ba8-4dd277a69fb6@linux.microsoft.com>
- <87blgdqdpb.fsf@codeaurora.org>
-From: Allen Pais <apais@linux.microsoft.com>
-Message-ID: <9e9219d9-fab7-404b-0f40-f5721f781a1d@linux.microsoft.com>
-Date: Thu, 5 Nov 2020 09:03:10 +0530
+Received: from mail-ed1-x530.google.com ([2a00:1450:4864:20::530])
+ by casper.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1kaR4d-0006Rp-RP
+ for ath11k@lists.infradead.org; Wed, 04 Nov 2020 22:16:14 +0000
+Received: by mail-ed1-x530.google.com with SMTP id v4so24171720edi.0
+ for <ath11k@lists.infradead.org>; Wed, 04 Nov 2020 14:16:11 -0800 (PST)
+Subject: Re: PROBLEM: unable to get QCA6390 to work
+References: <fa22cf0f-3bac-add6-8c71-6f6cad5206d8@gmail.com>
+ <87lffjodu7.fsf@codeaurora.org>
+ <fa338986-8de4-fde1-6805-d46793c947e4@gmail.com>
+ <c9cc0ec6-4dda-2608-3575-0e6dfb6d0852@gmail.com>
+ <87ft5rszcs.fsf@codeaurora.org> <87ft5qsem9.fsf@codeaurora.org>
+ <f99862f4-9b3a-03e5-cd26-1de6136f9e46@gmail.com>
+ <87blgdscxd.fsf@codeaurora.org>
+From: Pavel Procopiuc <pavel.procopiuc@gmail.com>
+Message-ID: <229c31e7-9aff-18e6-a6db-be7b46331173@gmail.com>
+Date: Wed, 4 Nov 2020 23:15:05 +0100
 MIME-Version: 1.0
-In-Reply-To: <87blgdqdpb.fsf@codeaurora.org>
+In-Reply-To: <87blgdscxd.fsf@codeaurora.org>
 Content-Language: en-US
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -22,23 +32,16 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Kalle Valo <kvalo@codeaurora.org>
-Cc: ryder.lee@mediatek.com, netdev@vger.kernel.org, linux-wireless@vger.kernel.org, Allen Pais <allen.lkml@gmail.com>, davem@davemloft.net, lorenzo.bianconi83@gmail.com, linux-mediatek@lists.infradead.org, matthias.bgg@gmail.com, kuba@kernel.org, ath11k@lists.infradead.org, nbd@nbd.name
+Cc: ath11k@lists.infradead.org
 
->>>
->>> This series converts the remaining drivers to use new
->>> tasklet_setup() API.
->>>
->>> The patches are based on wireless-drivers-next (c2568c8c9e63)
->>
->>   Is this series queue? I haven't seen any email. This is the last
->> series as part of the tasklet conversion effort.
-> 
-> They are queued in linux-wireless patchwork, see the link below. I have
-> lots of patches pending but hopefully I'll tackle most of them soon.
-> 
+Op 04.11.2020 om 10:12 schreef Kalle Valo:
+> Yeah, it is unfortunately time consuming but it is the best way to get
+> bottom of this.
 
-Thank you very much.
+I have found the commit that breaks things for me, it's
+7fef431be9c9ac255838a9578331567b9dba4477 mm/page_alloc: place pages to tail in __free_pages_core()
 
+I've reverted it on top of the 5.10-rc2 and ath11k driver loads fine and I have wifi working.
 
 -- 
 ath11k mailing list
