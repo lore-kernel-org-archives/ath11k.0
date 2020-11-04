@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from m42-4.mailgun.net ([69.72.42.4])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kaMqr-0000aC-0D
- for ath11k@lists.infradead.org; Wed, 04 Nov 2020 17:45:44 +0000
+ id 1kaMsr-0000aC-Ql
+ for ath11k@lists.infradead.org; Wed, 04 Nov 2020 17:47:47 +0000
 From: Karthikeyan Periyasamy <periyasa@codeaurora.org>
-Subject: [PATCH] ath11k: Fix the hal descriptor mask
-Date: Wed,  4 Nov 2020 23:15:21 +0530
-Message-Id: <1604511921-24840-1-git-send-email-periyasa@codeaurora.org>
+Subject: [PATCH] ath11k: fix wmi init configuration
+Date: Wed,  4 Nov 2020 23:17:00 +0530
+Message-Id: <1604512020-25197-1-git-send-email-periyasa@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,56 +23,44 @@ Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 Cc: Karthikeyan Periyasamy <periyasa@codeaurora.org>, linux-wireless@vger.kernel.org
 
-Below listed hal descriptor mask are incorrect, so modify it to correct one
- - CE destination status description meta info mask is increased from
-   8 bits to 16 bits from the 0th bit position
- - Rx Reo queue duplicate count mask is decreased from 22 bits to 16 bits
- - Reo threshold status counter sum mask is increased from 24 bits to 26 bits
-
-No functionality impact, these descriptors are currently not used in any
-supported platform. But in future if someone referred these descriptor then
-ended with wrong values.
+Assign the correct hw_op ath11k_init_wmi_config_ipq8074 to
+the hw IPQ8074. Also update the correct TWT radio count.
+Incorrect TWT radio count cause TWT feature fails on radio2
+because physical device count is hardcoded to 2. so set
+the value dynamically.
 
 Found this during code review.
 
 Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.1.0.1-01238-QCAHKSWPL_SILICONZ-2
 
+Fixes: 2d4bcbed5b7d53e1 ("ath11k: initialize wmi config based on hw_params")
 Signed-off-by: Karthikeyan Periyasamy <periyasa@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/hal_desc.h | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/net/wireless/ath/ath11k/hw.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/hal_desc.h b/drivers/net/wireless/ath/ath11k/hal_desc.h
-index ceebdc2..1b713cb 100644
---- a/drivers/net/wireless/ath/ath11k/hal_desc.h
-+++ b/drivers/net/wireless/ath/ath11k/hal_desc.h
-@@ -1425,7 +1425,7 @@ struct hal_ce_srng_dest_desc {
- #define HAL_CE_DST_STATUS_DESC_FLAGS_GATHER		BIT(11)
- #define HAL_CE_DST_STATUS_DESC_FLAGS_LEN		GENMASK(31, 16)
+diff --git a/drivers/net/wireless/ath/ath11k/hw.c b/drivers/net/wireless/ath/ath11k/hw.c
+index 11a411b..66331da 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.c
++++ b/drivers/net/wireless/ath/ath11k/hw.c
+@@ -127,7 +127,7 @@ static void ath11k_init_wmi_config_ipq8074(struct ath11k_base *ab,
+ 	config->beacon_tx_offload_max_vdev = ab->num_radios * TARGET_MAX_BCN_OFFLD;
+ 	config->rx_batchmode = TARGET_RX_BATCHMODE;
+ 	config->peer_map_unmap_v2_support = 1;
+-	config->twt_ap_pdev_count = 2;
++	config->twt_ap_pdev_count = ab->num_radios;
+ 	config->twt_ap_sta_count = 1000;
+ }
  
--#define HAL_CE_DST_STATUS_DESC_META_INFO_DATA		GENMASK(7, 0)
-+#define HAL_CE_DST_STATUS_DESC_META_INFO_DATA		GENMASK(15, 0)
- #define HAL_CE_DST_STATUS_DESC_META_INFO_RING_ID	GENMASK(27, 20)
- #define HAL_CE_DST_STATUS_DESC_META_INFO_LOOP_CNT	HAL_SRNG_DESC_LOOP_CNT
+@@ -157,7 +157,7 @@ static int ath11k_hw_mac_id_to_srng_id_qca6390(struct ath11k_hw_params *hw,
  
-@@ -1946,7 +1946,7 @@ enum hal_rx_reo_queue_pn_size {
- 
- #define HAL_RX_REO_QUEUE_INFO3_TIMEOUT_COUNT		GENMASK(9, 4)
- #define HAL_RX_REO_QUEUE_INFO3_FWD_DUE_TO_BAR_CNT	GENMASK(15, 10)
--#define HAL_RX_REO_QUEUE_INFO3_DUPLICATE_COUNT		GENMASK(31, 10)
-+#define HAL_RX_REO_QUEUE_INFO3_DUPLICATE_COUNT		GENMASK(31, 16)
- 
- #define HAL_RX_REO_QUEUE_INFO4_FRAME_IN_ORD_COUNT	GENMASK(23, 0)
- #define HAL_RX_REO_QUEUE_INFO4_BAR_RECVD_COUNT		GENMASK(31, 24)
-@@ -2432,7 +2432,7 @@ struct hal_reo_flush_timeout_list_status {
- #define HAL_REO_DESC_THRESH_STATUS_INFO1_LINK_DESC_COUNTER0	GENMASK(23, 0)
- #define HAL_REO_DESC_THRESH_STATUS_INFO2_LINK_DESC_COUNTER1	GENMASK(23, 0)
- #define HAL_REO_DESC_THRESH_STATUS_INFO3_LINK_DESC_COUNTER2	GENMASK(23, 0)
--#define HAL_REO_DESC_THRESH_STATUS_INFO4_LINK_DESC_COUNTER_SUM	GENMASK(23, 0)
-+#define HAL_REO_DESC_THRESH_STATUS_INFO4_LINK_DESC_COUNTER_SUM	GENMASK(25, 0)
- 
- struct hal_reo_desc_thresh_reached_status {
- 	struct hal_reo_status_hdr hdr;
+ const struct ath11k_hw_ops ipq8074_ops = {
+ 	.get_hw_mac_from_pdev_id = ath11k_hw_ipq8074_mac_from_pdev_id,
+-	.wmi_init_config = ath11k_init_wmi_config_qca6390,
++	.wmi_init_config = ath11k_init_wmi_config_ipq8074,
+ 	.mac_id_to_pdev_id = ath11k_hw_mac_id_to_pdev_id_ipq8074,
+ 	.mac_id_to_srng_id = ath11k_hw_mac_id_to_srng_id_ipq8074,
+ };
 -- 
 2.7.4
 
