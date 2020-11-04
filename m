@@ -1,17 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from z5.mailgun.us ([104.130.96.5])
+Received: from m42-4.mailgun.net ([69.72.42.4])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kaLoP-00059A-8i
- for ath11k@lists.infradead.org; Wed, 04 Nov 2020 16:39:07 +0000
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH v2 0/3] wireless: convert tasklets to use new
-References: <20201007103309.363737-1-allen.lkml@gmail.com>
- <c3d71677-a428-f215-2ba8-4dd277a69fb6@linux.microsoft.com>
-Date: Wed, 04 Nov 2020 18:38:56 +0200
-In-Reply-To: <c3d71677-a428-f215-2ba8-4dd277a69fb6@linux.microsoft.com> (Allen
- Pais's message of "Tue, 3 Nov 2020 13:05:23 +0530")
-Message-ID: <87blgdqdpb.fsf@codeaurora.org>
-MIME-Version: 1.0
+ id 1kaMhQ-0006ov-5Y
+ for ath11k@lists.infradead.org; Wed, 04 Nov 2020 17:35:57 +0000
+From: Karthikeyan Periyasamy <periyasa@codeaurora.org>
+Subject: [PATCH] ath11k: Fix single phy hw mode
+Date: Wed,  4 Nov 2020 23:05:31 +0530
+Message-Id: <1604511331-22477-1-git-send-email-periyasa@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -20,31 +15,45 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Allen Pais <apais@linux.microsoft.com>
-Cc: ryder.lee@mediatek.com, netdev@vger.kernel.org, linux-wireless@vger.kernel.org, Allen Pais <allen.lkml@gmail.com>, davem@davemloft.net, lorenzo.bianconi83@gmail.com, linux-mediatek@lists.infradead.org, matthias.bgg@gmail.com, kuba@kernel.org, ath11k@lists.infradead.org, nbd@nbd.name
+To: ath11k@lists.infradead.org
+Cc: Karthikeyan Periyasamy <periyasa@codeaurora.org>, linux-wireless@vger.kernel.org
 
-Allen Pais <apais@linux.microsoft.com> writes:
+driver not able to bootup in the single radio configured board.
+single phy hw mode is converted to invalid hw mode and sent to FW
+through wmi init cmd. In that case driver is not receiving wmi
+ready event which leads to driver bootup fail. single phy hw mode
+is a valid for single radio configured board. so removed the
+conversion logic.
 
->>
->> This series converts the remaining drivers to use new
->> tasklet_setup() API.
->>
->> The patches are based on wireless-drivers-next (c2568c8c9e63)
->
->  Is this series queue? I haven't seen any email. This is the last
-> series as part of the tasklet conversion effort.
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.1.0.1-01238-QCAHKSWPL_SILICONZ-2
 
-They are queued in linux-wireless patchwork, see the link below. I have
-lots of patches pending but hopefully I'll tackle most of them soon.
+Signed-off-by: Karthikeyan Periyasamy <periyasa@codeaurora.org>
+---
+ drivers/net/wireless/ath/ath11k/wmi.c | 3 ---
+ 1 file changed, 3 deletions(-)
 
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 6e17373..1f0c517 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -3351,9 +3351,6 @@ int ath11k_wmi_cmd_init(struct ath11k_base *ab)
+ 	init_param.hw_mode_id = wmi_sc->preferred_hw_mode;
+ 	init_param.mem_chunks = wmi_sc->mem_chunks;
+ 
+-	if (wmi_sc->preferred_hw_mode == WMI_HOST_HW_MODE_SINGLE)
+-		init_param.hw_mode_id = WMI_HOST_HW_MODE_MAX;
+-
+ 	if (ab->hw_params.needs_band_to_mac) {
+ 		init_param.num_band_to_mac = ab->num_radios;
+ 		ath11k_fill_band_to_mac_param(ab, init_param.band_to_mac);
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+2.7.4
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
