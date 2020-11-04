@@ -1,16 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from galois.linutronix.de ([2a0a:51c0:0:12e:550::1])
+Received: from z5.mailgun.us ([104.130.96.5])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kaKgF-0002fJ-QY
- for ath11k@lists.infradead.org; Wed, 04 Nov 2020 15:26:36 +0000
-From: Thomas Gleixner <tglx@linutronix.de>
-Subject: Re: pci_alloc_irq_vectors fails ENOSPC for XPS 13 9310
-In-Reply-To: <fa26ac8b-ed48-7ea3-c21b-b133532716b8@posteo.de>
-References: <20201103160838.GA246433@bjorn-Precision-5520>
- <874km61732.fsf@nanos.tec.linutronix.de>
- <fa26ac8b-ed48-7ea3-c21b-b133532716b8@posteo.de>
-Date: Wed, 04 Nov 2020 16:26:34 +0100
-Message-ID: <87mtzxkus5.fsf@nanos.tec.linutronix.de>
+ id 1kaLQf-0001iq-EB
+ for ath11k@lists.infradead.org; Wed, 04 Nov 2020 16:14:37 +0000
+From: Kalle Valo <kvalo@codeaurora.org>
+Subject: Re: [PATCH] ath11k: Initialize complete alpha2 for regulatory change
+References: <20201021140555.4114715-1-sven@narfation.org>
+Date: Wed, 04 Nov 2020 18:14:12 +0200
+In-Reply-To: <20201021140555.4114715-1-sven@narfation.org> (Sven Eckelmann's
+ message of "Wed, 21 Oct 2020 16:05:55 +0200")
+Message-ID: <87v9elqeuj.fsf@codeaurora.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -24,36 +23,35 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Thomas Krause <thomaskrause@posteo.de>, Bjorn Helgaas <helgaas@kernel.org>, Kalle Valo <kvalo@codeaurora.org>
-Cc: Govind Singh <govinds@codeaurora.org>, linux-pci@vger.kernel.org, linux-wireless@vger.kernel.org, Devin Bayer <dev@doubly.so>, ath11k@lists.infradead.org, Christoph Hellwig <hch@lst.de>, David Woodhouse <dwmw@amazon.co.uk>
+To: Sven Eckelmann <sven@narfation.org>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-On Wed, Nov 04 2020 at 14:04, Thomas Krause wrote:
-> config) but CONFIG_INTEL_IOMMU_DEFAULT_ON needed to be set manually. I 
-> hope this helps, if there is more I can do to debug it on my side I'm 
-> happy to do so.
+Sven Eckelmann <sven@narfation.org> writes:
 
-> [    0.050130] DMAR: [Firmware Bug]: Your BIOS is broken; DMAR reported at address 0!
->                BIOS vendor: Dell Inc.; Ver: 1.1.1; Product Version:
+> The function ath11k_wmi_send_init_country_cmd is taking 3 byte from alpha2
+> of the structure wmi_init_country_params. But the function
+> ath11k_reg_notifier is only initializing 2 bytes. The third byte is
+> therefore always an uninitialized value.
+>
+> The command can happen to look like
+>
+>   0c 00 87 02 01 00 00 00 00 00 00 00 43 41 f8 00
+>
+> instead of
+>
+>   0c 00 87 02 01 00 00 00 00 00 00 00 43 41 00 00
+>
+> Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+> Signed-off-by: Sven Eckelmann <sven@narfation.org>
 
-> [    0.103693] DMAR: Host address width 39
-> [    0.103693] DMAR: DRHD base: 0x000000fed90000 flags: 0x0
-> [    0.103697] DMAR: dmar0: reg_base_addr fed90000 ver 4:0 cap 1c0000c40660462 ecap 69e2ff0505e
-> [    0.103698] DMAR: DRHD base: 0x000000fed84000 flags: 0x0
-> [    0.103701] DMAR: dmar1: reg_base_addr fed84000 ver 1:0 cap d2008c40660462 ecap f050da
-> [    0.103702] DMAR: DRHD base: 0x000000fed86000 flags: 0x0
-> [    0.103706] DMAR: dmar2: reg_base_addr fed86000 ver 1:0 cap d2008c40660462 ecap f050da
-> [    0.103707] DMAR: DRHD base: 0x00000000000000 flags: 0x1
-> [    0.103707] DMAR: Parse DMAR table failure.
+On what hardware and firmware did you test this? I'll add that to the
+commit log. I know it doesn't matter here but I want to have that info
+anyway.
 
-which disables interrupt remapping and therefore the driver gets only
-one MSI which makes it unhappy.
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-Not that I'm surprised, it's Dell.... Can you check whether they have a
-BIOS update for that box?
-
-Thanks,
-
-        tglx
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
