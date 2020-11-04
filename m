@@ -1,16 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from m42-4.mailgun.net ([69.72.42.4])
+Received: from z5.mailgun.us ([104.130.96.5])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kaLbh-0003mP-6s
- for ath11k@lists.infradead.org; Wed, 04 Nov 2020 16:25:58 +0000
+ id 1kaLj3-0004eG-O0
+ for ath11k@lists.infradead.org; Wed, 04 Nov 2020 16:33:35 +0000
+From: Kalle Valo <kvalo@codeaurora.org>
+Subject: Re: ath11k: QCA6390 support on Linux
+References: <87r1r4nukq.fsf@codeaurora.org>
+Date: Wed, 04 Nov 2020 18:33:28 +0200
+In-Reply-To: <87r1r4nukq.fsf@codeaurora.org> (Kalle Valo's message of "Mon, 14
+ Sep 2020 20:20:53 +0300")
+Message-ID: <87mtzxqdyf.fsf@codeaurora.org>
 MIME-Version: 1.0
-Date: Wed, 04 Nov 2020 21:55:53 +0530
-From: Sriram R <srirrama@codeaurora.org>
-Subject: Re: ath11k: Country code setting ignored on bootup
-In-Reply-To: <BYAPR02MB41208890EFBE3E186114FBC1F7EF0@BYAPR02MB4120.namprd02.prod.outlook.com>
-References: <1829665.1PRlr7bOQj@ripper>
- <BYAPR02MB41208890EFBE3E186114FBC1F7EF0@BYAPR02MB4120.namprd02.prod.outlook.com>
-Message-ID: <43403436f6d704fa510cb290872b794a@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -19,57 +19,78 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Sven Eckelmann <sven@narfation.org>, ath11k@lists.infradead.org
-Cc: sw@simonwunderlich.de
+To: ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org
 
-PiBUaGlzIHNlZW1zIHRvIGJlIGEgcmFjZSBiZXR3ZWVuIHJlY2VpdmluZyB0aGUKPiAiQVRIMTFL
-X1FNSV9FVkVOVF9GV19SRUFEWSIgZXZlbnQgYW5kIHRoZSBpZWVlODAyMTFfcmVnaXN0ZXJfaHco
-KSBpbgo+IF9fYXRoMTFrX21hY19yZWdpc3Rlci4gVGhlIGllZWU4MDIxMV9yZWdpc3Rlcl9odyB3
-aWxsIG1ha2UgdGhlIGh3Cj4gcmVzcG9uc2libGUgZm9yIGhhbmRsaW5nIHRoZSByZWdkIHVwZGF0
-ZXMgYnV0IHRoZXkgd2lsbCBub3QgYmUKPiBjb3JyZWN0bHkgcHJvY2Vzc2VkIHVudGlsIHRoZSBB
-VEgxMUtfUU1JX0VWRU5UX0ZXX1JFQURZIHdhcyBoYW5kbGVkIGJ5Cj4gdGhlIGZpcm13YXJlLiBB
-bmQgaWYgdGhlIHJlZ2QgY2hhbmdlIHdhcyBwcm9jZXNzZWQgYWZ0ZXIKPiBhdGgxMWtfcmVnZF91
-cGRhdGUgd2FzIGNhbGxlZCBpbiBfX2F0aDExa19tYWNfcmVnaXN0ZXIgKGJ1dCBiZWZvcmUgdGhl
-Cj4gQVRIMTFLX1FNSV9FVkVOVF9GV19SRUFEWSB3YXMgcHJvY2Vzc2VkKSB0aGVuIHdlIHdpbGwg
-anVzdCBsb29zZSB0aGUKPiByZWdkIGNoYW5nZS4KQWdyZWUgdGhhdCB0aGVyZSBpcyBhIHBvc3Np
-YmlsaXR5IG9mIGEgcmFjZSBiZXR3ZWVuIEZXIHJlZyBldmVudApmb3IgdXNlciByZWdkIHVwZGF0
-ZSBhbmQgd2hlcmXCoHRoZcKgQVRIMTFLX1JFR0lTVEVSRUTCoGZsYWfCoGdldHMKc2V0wqBpbiB0
-aGUgYWJvdmUgc2NlbmFyaW8uCj4gCj4gU28gSSBhbSBhIGxpdHRsZSBiaXQgYmFmZmxlZCB3aHkg
-QVRIMTFLX0ZMQUdfUkVHSVNURVJFRCBpcyBib3VuZCB0bwo+IHNvbWV0aGluZyB3aGljaCBpcyBu
-b3QgcmVsYXRlZCB0byB0aGUgIElFRUU4MDIyMTEgcmVnaXN0cmF0aW9uIGNvZGUuCj4gU291bmRz
-IHRvIG1lIGxpa2Ugc29tZWJvZHkgd2FudGVkIGEgRldfUkVBRFkgZmxhZyBidXQgbWlzdXNlZCB0
-aGUKPiBBVEgxMUtfRkxBR19SRUdJU1RFUkVEIGZsYWcgZm9yIHRoaXMgcHVycG9zZS4KPiAKPiBC
-dHcuIHRoZXJlIGFyZSBzaW1pbGFyIHByb2JsZW1zIHdpdGggdGhlIHVzZSBvZiBBVEgxMUtfRkxB
-R19SRUdJU1RFUkVECj4gaW4gY29udGV4dCBvZiBhdGgxMWtfZGVidWdfcGRldl9jcmVhdGUsIGF0
-aDExa19tYWNfcmVnaXN0ZXIgYW5kCj4gYXRoMTFrX21hY19hbGxvY2F0ZS4KPiAKPiBNYXliZSBz
-b21ldGhpbmcgbGlrZSB0aGUgYXR0YWNoZWQgcGF0Y2ggY291bGQgYmUgdXNlZCB0byBpbXByb3Zl
-IHRoaXMgCj4gc2l0dWF0aW9uLgo+IApXaXRowqBhbmQgd2l0aG91dMKgdGhpc8KgcGF0Y2gsIGnC
-oGFsc2/CoHNlZcKgdGhlcmXCoGFyZcKgc2xpZ2h0wqBjaGFuY2VzwqB0aGUKZGVmYXVsdMKgcmVn
-ZMKgKHByb3ZpZGVkwqBiecKgZncgZHVyaW5nIAppbml0KcKgY2FuwqBnZXTCoG92ZXJ3cml0dGVu
-wqBiecKgbmV3wqByZWfCoHJ1bGVzCmZyb23CoEZXwqBpbiBzaW1pbGFyIHNjZW5hcmlvIHlvdSBo
-YWQgbWVudGlvbmVkLgpCdXQswqBPdmVyd3JpdGluZ8Kgb2bCoGRlZmF1bHTCoHJlZ2TCoGlzwqBu
-b3TCoGFsbG93ZWQuCgpJIGdldCBhIGZlZWxpbmcgdGhhdCB3ZSBjYW4gcmVtb3ZlIHRoZSB1c2Ug
-b2YgQVRIMTFrX0ZMQUdfUkVHSVNURVJFRCBmb3IgCnRoZQpwdXJwb3NlwqBvZsKgY2hlY2tpbmfC
-oHdoZXRoZXIgdG8gdXBkYXRlIGRlZmF1bHQgb3IgbmV3X3JlZ2QuCgpTaW5jZSB0aGUgZGVmYXVs
-dCByZWcgcnVsZXMgd2lsIGJlIHJlY2VpdmVkIG9ubHkgb25jZSBwZXIgcGRldiBvbiBGVyAKbG9h
-ZCwKdGhlIGFib3ZlIGZsYWcgYmFzZWQgY2hlY2sgY2FuIGJlIHJlcGxhY2VkIHdpdGggYSBjaGVj
-ayB0byBzZWUKaWYgZGVmYXVsdF9yZWdkIGlzIGFscmVhZHkgc2V0LCBzbyB0aGF0IHdlIGNhbiBu
-b3cgdXBkYXRlIHRoZSBuZXdfcmVnZC4gCkFsc28gaWYgdGhlCm5ld19yZWdkIGlzIHNldCwgaXJy
-ZXNwZWN0aXZlIG9mIHRoZSBhcmd1bWVudCBpbiBhdGgxMWtfcmVnZF91cGRhdGUoKSB3ZSAKY2Fu
-IHVzZQp0aGXCoG5ld19yZWdkwqBkYXRhwqB0aGVuwqB0b8KgdXBkYXRlIHRoZSByZWcgaW5mbyBm
-b3IgdGhlIHBoeS4KClRoaXMgd291bGQgYXZvaWQgYm90aCBvdmVyd3JpdGluZyBvZiB0aGUgZGVm
-YXVsdCByZWdkIGFzIHdlbGwgYXMgdGhlIApyYWNlIHlvdQpoYWQgbWVudGlvbmVkIGFuZCBhbHNv
-IGEgcG9zc2liaWxpdHkgb2YgYW5vdGhlciBjYXNlIHdoZXJlIGRlZmF1bHRfcmVnZCAKb3Zlcndy
-aXRlcyBuZXdfcmVnZAphZnRlciB0aGUgcHJldmlvdXMgY2FsbCB0byByZWd1bGF0b3J5X3NldF93
-aXBoeV9yZWdkX3N5bmNfcnRubC4KCkRvwqB5b3XCoHNlZcKgYW55wqBpc3N1ZXM/CgpidHcsIGkg
-ZG9udCBzZWUgYW55IHBvc3NpYmxlIGlzc3VlcyBpbiBjdXJyZW50IHVzYWdlIG9mIApBVEgxMWtf
-RkxBR19SRUdJU1RFUkVEIGluCiAgYXRoMTFrX2RlYnVnX3BkZXZfY3JlYXRlLCBhdGgxMWtfbWFj
-X3JlZ2lzdGVyIGFuZCBhdGgxMWtfbWFjX2FsbG9jYXRlCnNpbmNlIHRoZXkgc2VxdWVuY2VkIGFu
-ZCBmYWxsIHdpdGhpbiB0aGUgc2FtZSBjb250ZXh0LiBEbyB5b3UgZmFjZSBhbnkgCmlzc3Vlcz8K
-ClRoYW5rcywKU3JpcmFtLlIKCj4gS2luZCByZWdhcmRzLAo+IFN2ZW4KCi0tIAphdGgxMWsgbWFp
-bGluZyBsaXN0CmF0aDExa0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRl
-YWQub3JnL21haWxtYW4vbGlzdGluZm8vYXRoMTFrCg==
+Kalle Valo <kvalo@codeaurora.org> writes:
+
+> some of the Dell XPS 15 9500 models have QCA6390 Wi-Fi 6 device. ath11k
+> will be the driver to support QCA6390 and the plan is that Linux v5.10
+> (most likely released end of December) will be the first release to
+> support it.
+>
+> But as everything is not ready yet I recommend people to test
+> ath11k-qca6390-bringup branch, and specifically tag
+> ath11k-qca6390-bringup-202008181507. Below are instructions how to
+> install kernel and firmware.
+>
+> Do note that this is still experimental, there will be bugs but at least
+> it should be possible to connect to an AP and have connectivity.
+>
+> Please send all questions, comments and bug reports to
+> ath11k@lists.infradead.org list. I do not have time to reply to private
+> email. I have Bcced people who have contacted me privately.
+
+Some updates:
+
+* QCA6390 support is now in v5.10-rc2
+
+* pull request to linux-firmware sent, not yet pulled
+
+* board-2.bin should be now used instead of board.bin
+
+* there was some reorganisation in ath11k-firmware
+
+Here are updated instructions on how to test ath11k:
+
+# clone kernel
+git clone -b v5.10-rc2 git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+
+# clone firmware
+git clone https://github.com/kvalo/ath11k-firmware.git
+
+# Ensure below options are selected in the kernel
+cd linux
+make menuconfig
+--> Select Device drivers
+	--> Network device support
+		--> Wireless LAN
+			--> Enable as below
+				<M> Qualcomm Technologies 11ax chipset support
+				<M>       Atheros ath11k PCI support
+				[*]       QCA ath11k debugging
+				[*]       QCA ath11k debugfs support
+				[*]       ath11k tracing support
+				[*]     QCA ath11k spectral scan support
+
+# Build and install the kernel and kernel modules
+
+# Install firmware
+cd ../ath11k-firmware
+sudo mkdir -p /lib/firmware/ath11k/QCA6390/hw2.0/
+sudo cp QCA6390/hw2.0/1.0.1/WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1/*.bin /lib/firmware/ath11k/QCA6390/hw2.0/
+sudo cp QCA6390/hw2.0/board-2.bin /lib/firmware/ath11k/QCA6390/hw2.0/
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
