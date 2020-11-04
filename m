@@ -1,23 +1,17 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail-ej1-x631.google.com ([2a00:1450:4864:20::631])
+Received: from galois.linutronix.de ([2a0a:51c0:0:12e:550::1])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kaF9O-0001X8-0n
- for ath11k@lists.infradead.org; Wed, 04 Nov 2020 09:32:18 +0000
-Received: by mail-ej1-x631.google.com with SMTP id p5so28810882ejj.2
- for <ath11k@lists.infradead.org>; Wed, 04 Nov 2020 01:32:17 -0800 (PST)
-Subject: Re: PROBLEM: unable to get QCA6390 to work
-From: Pavel Procopiuc <pavel.procopiuc@gmail.com>
-References: <fa22cf0f-3bac-add6-8c71-6f6cad5206d8@gmail.com>
- <87lffjodu7.fsf@codeaurora.org>
- <fa338986-8de4-fde1-6805-d46793c947e4@gmail.com>
- <c9cc0ec6-4dda-2608-3575-0e6dfb6d0852@gmail.com>
- <87ft5rszcs.fsf@codeaurora.org>
- <c25b5029-4f21-c621-1416-3646d90b6a7f@gmail.com>
-Message-ID: <b1ae1ff4-b768-2db5-a35a-48b9c8f0c55b@gmail.com>
-Date: Wed, 4 Nov 2020 10:32:14 +0100
+ id 1kaKgF-0002fJ-QY
+ for ath11k@lists.infradead.org; Wed, 04 Nov 2020 15:26:36 +0000
+From: Thomas Gleixner <tglx@linutronix.de>
+Subject: Re: pci_alloc_irq_vectors fails ENOSPC for XPS 13 9310
+In-Reply-To: <fa26ac8b-ed48-7ea3-c21b-b133532716b8@posteo.de>
+References: <20201103160838.GA246433@bjorn-Precision-5520>
+ <874km61732.fsf@nanos.tec.linutronix.de>
+ <fa26ac8b-ed48-7ea3-c21b-b133532716b8@posteo.de>
+Date: Wed, 04 Nov 2020 16:26:34 +0100
+Message-ID: <87mtzxkus5.fsf@nanos.tec.linutronix.de>
 MIME-Version: 1.0
-In-Reply-To: <c25b5029-4f21-c621-1416-3646d90b6a7f@gmail.com>
-Content-Language: en-US
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -26,26 +20,40 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: ath11k@lists.infradead.org
+To: Thomas Krause <thomaskrause@posteo.de>, Bjorn Helgaas <helgaas@kernel.org>, Kalle Valo <kvalo@codeaurora.org>
+Cc: Govind Singh <govinds@codeaurora.org>, linux-pci@vger.kernel.org, linux-wireless@vger.kernel.org, Devin Bayer <dev@doubly.so>, ath11k@lists.infradead.org, Christoph Hellwig <hch@lst.de>, David Woodhouse <dwmw@amazon.co.uk>
 
-Op 03.11.2020 om 14:12 schreef Pavel Procopiuc:
-> I have another probably interesting finding. I was trying to create a QCA6390-enabled kernel with the latest stable 
-> version 5.9.3. But I only succeeded in making 5.9.1 work, in 5.9.2 loading the driver resulted in a quite weird behavior:
- > ...
-> That's it, it didn't go any further, no wifi device appeared. But the patch for 5.9.2 is quite big and there is a number 
-> of non-obvious conflicts so that might be just me resolving them incorrectly.
+On Wed, Nov 04 2020 at 14:04, Thomas Krause wrote:
+> config) but CONFIG_INTEL_IOMMU_DEFAULT_ON needed to be set manually. I 
+> hope this helps, if there is more I can do to debug it on my side I'm 
+> happy to do so.
 
-I have found the workaround for that problem. When this happens (no log output after "ath11k_pci 0000:05:00.0: enabling 
-device (0000 -> 0002)") it's enough to just reboot into Windows 10 (that has working driver for the wifi card) and just 
-reboot back into Linux. Loading the driver and firmware goes ok afterwards.
+> [    0.050130] DMAR: [Firmware Bug]: Your BIOS is broken; DMAR reported at address 0!
+>                BIOS vendor: Dell Inc.; Ver: 1.1.1; Product Version:
 
-Just rebooting into Linux without going through Windows doesn't work. Full shutdown and start also doesn't help. So some 
-hardware initialization going wrong I assume.
+> [    0.103693] DMAR: Host address width 39
+> [    0.103693] DMAR: DRHD base: 0x000000fed90000 flags: 0x0
+> [    0.103697] DMAR: dmar0: reg_base_addr fed90000 ver 4:0 cap 1c0000c40660462 ecap 69e2ff0505e
+> [    0.103698] DMAR: DRHD base: 0x000000fed84000 flags: 0x0
+> [    0.103701] DMAR: dmar1: reg_base_addr fed84000 ver 1:0 cap d2008c40660462 ecap f050da
+> [    0.103702] DMAR: DRHD base: 0x000000fed86000 flags: 0x0
+> [    0.103706] DMAR: dmar2: reg_base_addr fed86000 ver 1:0 cap d2008c40660462 ecap f050da
+> [    0.103707] DMAR: DRHD base: 0x00000000000000 flags: 0x1
+> [    0.103707] DMAR: Parse DMAR table failure.
+
+which disables interrupt remapping and therefore the driver gets only
+one MSI which makes it unhappy.
+
+Not that I'm surprised, it's Dell.... Can you check whether they have a
+BIOS update for that box?
+
+Thanks,
+
+        tglx
 
 -- 
 ath11k mailing list
