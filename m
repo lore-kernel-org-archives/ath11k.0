@@ -1,13 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from m42-4.mailgun.net ([69.72.42.4])
+Received: from z5.mailgun.us ([104.130.96.5])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kaLlW-0004hl-St
- for ath11k@lists.infradead.org; Wed, 04 Nov 2020 16:36:14 +0000
+ id 1kaLoP-00059A-8i
+ for ath11k@lists.infradead.org; Wed, 04 Nov 2020 16:39:07 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: QCA6390 failure on unsuspend
-References: <CAKuwtP2UbFTxj7bqXFNckJrYaocp=83Uctmxvwme9CcvcU6fkg@mail.gmail.com>
-Date: Wed, 04 Nov 2020 18:35:36 +0200
-Message-ID: <87ft5pqduv.fsf@codeaurora.org>
+Subject: Re: [PATCH v2 0/3] wireless: convert tasklets to use new
+References: <20201007103309.363737-1-allen.lkml@gmail.com>
+ <c3d71677-a428-f215-2ba8-4dd277a69fb6@linux.microsoft.com>
+Date: Wed, 04 Nov 2020 18:38:56 +0200
+In-Reply-To: <c3d71677-a428-f215-2ba8-4dd277a69fb6@linux.microsoft.com> (Allen
+ Pais's message of "Tue, 3 Nov 2020 13:05:23 +0530")
+Message-ID: <87blgdqdpb.fsf@codeaurora.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -21,31 +24,22 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kenny Johansson <wirehell@gmail.com>
-Cc: ath11k@lists.infradead.org
+To: Allen Pais <apais@linux.microsoft.com>
+Cc: ryder.lee@mediatek.com, netdev@vger.kernel.org, linux-wireless@vger.kernel.org, Allen Pais <allen.lkml@gmail.com>, davem@davemloft.net, lorenzo.bianconi83@gmail.com, linux-mediatek@lists.infradead.org, matthias.bgg@gmail.com, kuba@kernel.org, ath11k@lists.infradead.org, nbd@nbd.name
 
-Kenny Johansson <wirehell@gmail.com> writes:
+Allen Pais <apais@linux.microsoft.com> writes:
 
-> I've tried out the QCA6390 support as described in
-> https://lore.kernel.org/linux-wireless/87r1r4nukq.fsf@codeaurora.org/#t
+>>
+>> This series converts the remaining drivers to use new
+>> tasklet_setup() API.
+>>
+>> The patches are based on wireless-drivers-next (c2568c8c9e63)
 >
-> I was able to get connectivity and experienced no issues while using
-> it for a couple of hours
-> , but after a suspend it stopped working.
+>  Is this series queue? I haven't seen any email. This is the last
+> series as part of the tasklet conversion effort.
 
-Can you try this patch:
-
-https://patchwork.kernel.org/project/linux-wireless/patch/20201030095832.7447-1-cjhuang@codeaurora.org/
-
-And please let me know if it helped or not.
-
-But while writing this I noticed it doesn't apply to v5.10-rc1 directly,
-but the conflict seems to be quite simple to solve. I have asked Carl to
-rebase the patch.
-
-Also updated the instructions how to test latest ath11k:
-
-http://lists.infradead.org/pipermail/ath11k/2020-November/000537.html
+They are queued in linux-wireless patchwork, see the link below. I have
+lots of patches pending but hopefully I'll tackle most of them soon.
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
