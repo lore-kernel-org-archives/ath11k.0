@@ -1,18 +1,19 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124])
+Received: from m42-4.mailgun.net ([69.72.42.4])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kadDD-0006dH-6E
- for ath11k@lists.infradead.org; Thu, 05 Nov 2020 11:13:52 +0000
-Received: by mail-ej1-f69.google.com with SMTP id gj4so450480ejb.13
- for <ath11k@lists.infradead.org>; Thu, 05 Nov 2020 03:13:46 -0800 (PST)
-From: David Hildenbrand <david@redhat.com>
-Mime-Version: 1.0 (1.0)
-Subject: Re: Regression: QCA6390 fails with "mm/page_alloc: place pages to
- tail in __free_pages_core()"
-Date: Thu, 5 Nov 2020 12:13:43 +0100
-Message-Id: <8ACA82DB-D2FE-4599-8A01-D42218FDE1E5@redhat.com>
-References: <d6fb1e30-0d19-9af3-337b-69ff11c2fc6c@suse.cz>
-In-Reply-To: <d6fb1e30-0d19-9af3-337b-69ff11c2fc6c@suse.cz>
+ id 1kadHh-0007J9-Kk
+ for ath11k@lists.infradead.org; Thu, 05 Nov 2020 11:18:34 +0000
+MIME-Version: 1.0
+Date: Thu, 05 Nov 2020 19:17:29 +0800
+From: Carl Huang <cjhuang@codeaurora.org>
+Subject: Re: [RFC 1/2] nl80211: add common API to configure SAR power
+ limitations.
+In-Reply-To: <CA+ASDXNaLvtJyY9_ds9RVL9VTkiYzChsGJS1czhVt-RKitCk5g@mail.gmail.com>
+References: <1600753017-4614-1-git-send-email-cjhuang@codeaurora.org>
+ <CA+ASDXM7TcF-zfbktbdSu-fDBuGe0LAgFq3Qt2zaq6efbWJ=sA@mail.gmail.com>
+ <f3be456c4c748f21836279eb4dc16e5e@codeaurora.org>
+ <CA+ASDXNaLvtJyY9_ds9RVL9VTkiYzChsGJS1czhVt-RKitCk5g@mail.gmail.com>
+Message-ID: <aeac9d9e65e6f39c4cc41c3e76b35894@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -21,72 +22,109 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Vlastimil Babka <vbabka@suse.cz>
-Cc: david@redhat.com, linux-wireless@vger.kernel.org, Pavel Procopiuc <pavel.procopiuc@gmail.com>, linux-kernel@vger.kernel.org, linux-mm@kvack.org, akpm@linux-foundation.org, ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>
+To: Brian Norris <briannorris@chromium.org>
+Cc: Abhishek Kumar <kuabhs@google.com>, linux-wireless <linux-wireless@vger.kernel.org>, ath11k@lists.infradead.org, ath10k <ath10k@lists.infradead.org>, Doug Anderson <dianders@chromium.org>
 
-Cj4gQW0gMDUuMTEuMjAyMCB1bSAxMTo0MiBzY2hyaWViIFZsYXN0aW1pbCBCYWJrYSA8dmJhYmth
-QHN1c2UuY3o+Ogo+IAo+IO+7v09uIDExLzUvMjAgMTA6MDQgQU0sIEthbGxlIFZhbG8gd3JvdGU6
-Cj4+IChjaGFuZ2luZyB0aGUgc3ViamVjdCwgYWRkaW5nIG1vcmUgbGlzdHMgYW5kIHBlb3BsZSkK
-Pj4gUGF2ZWwgUHJvY29waXVjIDxwYXZlbC5wcm9jb3BpdWNAZ21haWwuY29tPiB3cml0ZXM6Cj4+
-PiBPcCAwNC4xMS4yMDIwIG9tIDEwOjEyIHNjaHJlZWYgS2FsbGUgVmFsbzoKPj4+PiBZZWFoLCBp
-dCBpcyB1bmZvcnR1bmF0ZWx5IHRpbWUgY29uc3VtaW5nIGJ1dCBpdCBpcyB0aGUgYmVzdCB3YXkg
-dG8gZ2V0Cj4+Pj4gYm90dG9tIG9mIHRoaXMuCj4+PiAKPj4+IEkgaGF2ZSBmb3VuZCB0aGUgY29t
-bWl0IHRoYXQgYnJlYWtzIHRoaW5ncyBmb3IgbWUsIGl0J3MKPj4+IDdmZWY0MzFiZTljOWFjMjU1
-ODM4YTk1NzgzMzE1NjdiOWRiYTQ0NzcgbW0vcGFnZV9hbGxvYzogcGxhY2UgcGFnZXMgdG8KPj4+
-IHRhaWwgaW4gX19mcmVlX3BhZ2VzX2NvcmUoKQo+Pj4gCj4+PiBJJ3ZlIHJldmVydGVkIGl0IG9u
-IHRvcCBvZiB0aGUgNS4xMC1yYzIgYW5kIGF0aDExayBkcml2ZXIgbG9hZHMgZmluZQo+Pj4gYW5k
-IEkgaGF2ZSB3aWZpIHdvcmtpbmcuCj4+IE9oLCB2ZXJ5IGludGVyZXN0aW5nLiBUaGFua3MgYSBs
-b3QgZm9yIHRoZSBiaXNlY3Rpb24sIG90aGVyd2lzZSB3ZSB3b3VsZAo+PiBoYXZlIG5ldmVyIGZv
-dW5kIG91dCB3aGF0cyBjYXVzaW5nIHRoaXMuCj4+IERhdmlkICYgbW0gZm9sa3M6IFBhdmVsIG5v
-dGljZWQgdGhhdCBoaXMgUUNBNjM5MCBXaS1GaSA2IGRldmljZSAoZHJpdmVyCj4+IGF0aDExaykg
-ZmFpbGVkIG9uIHY1LjEwLXJjMS4gQWZ0ZXIgYmlzZWN0aW5nIGhlIGZvdW5kIHRoYXQgdGhlIGNv
-bW1pdAo+PiBiZWxvdyBjYXVzZXMgdGhlIHJlZ3Jlc3Npb24uIEkgaGF2ZSBub3QgYmVlbiBhYmxl
-IHRvIHJlcHJvZHVjZSB0aGlzIGFuZAo+PiBmb3IgbWUgUUNBNjM5MCB3b3JrcyBmaW5lLiBJIGRv
-bid0IGtub3cgaWYgdGhpcyBuZWVkcyBhIHNwZWNpZmljIGtlcm5lbAo+PiBjb25maWd1cmF0aW9u
-IG9yIHdoYXQncyB0aGUgZGlmZmVyZW5jZSBiZXR3ZWVuIG91ciBzZXR1cHMuCj4+IEFueSBpZGVh
-cyB3aGF0IG1pZ2h0IGNhdXNlIHRoaXMgYW5kIGhvdyB0byBmaXggaXQ/Cj4+IEZ1bGwgZGlzY3Vz
-c2lvbjogaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvcGlwZXJtYWlsL2F0aDExay8yMDIwLU5v
-dmVtYmVyLzAwMDUwMS5odG1sCj4+IGNvbW1pdCA3ZmVmNDMxYmU5YzlhYzI1NTgzOGE5NTc4MzMx
-NTY3YjlkYmE0NDc3Cj4+IEF1dGhvcjogICAgIERhdmlkIEhpbGRlbmJyYW5kIDxkYXZpZEByZWRo
-YXQuY29tPgo+PiBBdXRob3JEYXRlOiBUaHUgT2N0IDE1IDIwOjA5OjM1IDIwMjAgLTA3MDAKPj4g
-Q29tbWl0OiAgICAgTGludXMgVG9ydmFsZHMgPHRvcnZhbGRzQGxpbnV4LWZvdW5kYXRpb24ub3Jn
-Pgo+PiBDb21taXREYXRlOiBGcmkgT2N0IDE2IDExOjExOjE4IDIwMjAgLTA3MDAKPj4gICAgIG1t
-L3BhZ2VfYWxsb2M6IHBsYWNlIHBhZ2VzIHRvIHRhaWwgaW4gX19mcmVlX3BhZ2VzX2NvcmUoKQo+
-IAo+IExldCBtZSBwYXN0ZSBmcm9tIHRoZSBhdGgxMWsgZGlzY3Vzc2lvbjoKPiAKPj4gKiBSZWxl
-dmFudCBlcnJvcnMgZnJvbSB0aGUgbG9nOgo+PiAjIGpvdXJuYWxjdGwgLWIgfCBncmVwIC1pUCAn
-MDU6MDB8YXRoMTFrJwo+PiBOb3YgMDIgMTA6NDE6MjYgcmF6b3Iga2VybmVsOiBwY2kgMDAwMDow
-NTowMC4wOiBbMTdjYjoxMTAxXSB0eXBlIDAwIGNsYXNzIDB4MDI4MDAwCj4+IE5vdiAwMiAxMDo0
-MToyNiByYXpvciBrZXJuZWw6IHBjaSAwMDAwOjA1OjAwLjA6IHJlZyAweDEwOiBbbWVtIDB4ZDIx
-MDAwMDAtMHhkMjFmZmZmZiA2NGJpdF0KPj4gTm92IDAyIDEwOjQxOjI2IHJhem9yIGtlcm5lbDog
-cGNpIDAwMDA6MDU6MDAuMDogUE1FIyBzdXBwb3J0ZWQgZnJvbSBEMCBEM2hvdCBEM2NvbGQKPj4g
-Tm92IDAyIDEwOjQxOjI2IHJhem9yIGtlcm5lbDogcGNpIDAwMDA6MDU6MDAuMDogNC4wMDAgR2Iv
-cyBhdmFpbGFibGUgUENJZSBiYW5kd2lkdGgsIGxpbWl0ZWQgYnkgNS4wIEdUL3MgUENJZSB4MSBs
-aW5rIGF0IDAwMDA6MDA6MWMuMSAoY2FwYWJsZSBvZiA3Ljg3NiBHYi9zIHdpdGggOC4wIEdUL3Mg
-UENJZSB4MSBsaW5rKQo+PiBOb3YgMDIgMTA6NDE6MjYgcmF6b3Iga2VybmVsOiBwY2kgMDAwMDow
-NTowMC4wOiBBZGRpbmcgdG8gaW9tbXUgZ3JvdXAgMjEKPj4gTm92IDAyIDEwOjQxOjI3IHJhem9y
-IGtlcm5lbDogYXRoMTFrX3BjaSAwMDAwOjA1OjAwLjA6IFdBUk5JTkc6IGF0aDExayBQQ0kgc3Vw
-cG9ydCBpcyBleHBlcmltZW50YWwhCj4+IE5vdiAwMiAxMDo0MToyNyByYXpvciBrZXJuZWw6IGF0
-aDExa19wY2kgMDAwMDowNTowMC4wOiBCQVIgMDogYXNzaWduZWQgW21lbSAweGQyMTAwMDAwLTB4
-ZDIxZmZmZmYgNjRiaXRdCj4+IE5vdiAwMiAxMDo0MToyNyByYXpvciBrZXJuZWw6IGF0aDExa19w
-Y2kgMDAwMDowNTowMC4wOiBlbmFibGluZyBkZXZpY2UgKDAwMDAgLT4gMDAwMikKPj4gTm92IDAy
-IDEwOjQxOjI3IHJhem9yIGtlcm5lbDogbWhpIDAwMDA6MDU6MDAuMDogUmVxdWVzdGVkIHRvIHBv
-d2VyIE9OCj4+IE5vdiAwMiAxMDo0MToyNyByYXpvciBrZXJuZWw6IG1oaSAwMDAwOjA1OjAwLjA6
-IFBvd2VyIG9uIHNldHVwIHN1Y2Nlc3MKPj4gTm92IDAyIDEwOjQxOjI3IHJhem9yIGtlcm5lbDog
-YXRoMTFrX3BjaSAwMDAwOjA1OjAwLjA6IFJlc3BvbmQgbWVtIHJlcSBmYWlsZWQsIHJlc3VsdDog
-MSwgZXJyOiAwCj4gCj4gVGhpcyBzZWVtcyB0byBiZSBhdGgxMWtfcW1pX3Jlc3BvbmRfZndfbWVt
-X3JlcXVlc3QoKS4gV2h5IGlzIGl0IGZhaWx1cmUgd2l0aCBlcnJvciAwPyBObyBpZGVhLgo+IAo+
-IFdoYXQgd291bGQgaGFwcGVuIGlmIGFsbCB0aGUgR0ZQX0tFUk5FTCBpbiB0aGUgZmlsZSB3ZXJl
-IGNoYW5nZWQgdG8gR0ZQX0RNQTMyPwo+IAo+IEknbSB0aGlua2luZyB0aGUgaGFyZHdhcmUgcGVy
-aGFwcyBkb2Vzbid0IGxpa2UgdG9vIGhpZ2ggcGh5c2ljYWwgYWRkcmVzc2VzIG9yIHNvbWV0aGlu
-Zy4gQnV0IGlmIEkgdGhpbmsgY29ycmVjdGx5LCBmcmVlaW5nIHRvIHRhaWwgc2hvdWxkIGFjdHVh
-bGx5IG1vdmUgdGhlbSB0b3dhcmRzIGhlYWQuIFNvIGl0J3Mgd2VpcmQuCgpJdCBkZXBlbmRzIGlu
-IHdoaWNoIG9yZGVyIG1lbW9yeSBpcyBleHBvc2VkIHRvIE1NLCB3aGljaCBtaWdodCBkZXBlbmQg
-b24gb3RoZXIgZmFjdG9ycyBpbiBzb21lIGNvbmZpZ3VyYXRpb25zLgoKVGhpcyBzbWVsbHMgbGlr
-ZSBpdCBleHBvc2VzIGFuIGV4aXN0aW5nIGJ1Zy4gQ2FuIHlvdSByZXByb2R1Y2UgYWxzbyB3aXRo
-IHpvbmUgc2h1ZmZsaW5nIGVuYWJsZWQ/CgoKLS0gCmF0aDExayBtYWlsaW5nIGxpc3QKYXRoMTFr
-QGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9hdGgxMWsK
+On 2020-11-05 01:44, Brian Norris wrote:
+> + ath10k
+> 
+> [ I realize I replied to the "wrong" RFC v1; I fell trap to Kalle's 
+> note:
+> 
+> "When you submit a new version mark it as "v2". Otherwise people don't
+> know what's the latest version." ]
+> 
+> On Tue, Nov 3, 2020 at 11:32 PM Carl Huang <cjhuang@codeaurora.org> 
+> wrote:
+>> On 2020-11-04 10:00, Brian Norris wrote:
+>> > What are the ABI guarantees around a given driver/chip's 'sar_capa'?
+>> > Do we guarantee that if the driver supports N ranges of certain bands,
+>> > that it will always continue to support those bands?
+> ...
+>> For a given chip(at least a QCOM chip), we don't see that the
+>> range will grow or change.
+> 
+> That's good to know. But that's not quite the same as an ABI guarantee.
+> 
+>> In addition, with current index-power SET method, it's hard for driver
+>> to know what the index mean given your example. Does the index mean
+>> [5,5 + x] or [5, 5 + x/2] ?  So it's required for user-space to 
+>> specify
+>> all the ranges.
+> 
+> Well, we'd have to change the API (which is why I'm asking now) if we
+> wanted the kernel to handle this gracefully. We'd have to retain the
+> index (which, it sounds like you might be dropping if things go as
+> Johannes suggested), so user space can continue to request the old
+> range even if the driver also splits up a new range.
+> 
+> More explicitly, something like this:
+> 
+> Linux version A:
+> ath10k supports:
+> 0: 2G band
+> 1: 5G band
+> 
+> Linux version B:
+> ath10k supports:
+> 0: 2G band
+> 1: 5G band
+> 2: 1st half of 5G band
+> 3: 2nd half of 5G band
+> 
+> Indexes 2 and 3 would be overlapping with 1 of course, but it does
+> mean that the following SET request will work on both A and B:
+> 
+> SET
+> index 0 -> power X
+> index 1 -> power Y
+> 
+> Notably, that also requires nl80211 allow specifying only a subset of
+> bands in a SET request.
+> 
+> But spelling that out, the proposal sounds more complicated than it's
+> worth -- it's probably better to let user space handle the complexity.
+> So that goes back to making ABI requirements clear, so we don't have
+> kernel/user mixups/regressions down the line.
+> 
+>> The number of ranges is quite small, so the SET itself is not a
+>> problem to specify all.
+> 
+> Sure, but it does mean that if I (user space) don't trust that driver
+> support remains constant, I have to do some negotiation. I would
+> already do some verification via the get/dump API of course, but
+> negotiation is pretty complex if there is unbounded flexibility. It
+> would be nice to spell out what sort of negotiation is reasonable as
+> part of the ABI. For example, it might be reasonable to say that bands
+> should never be combined; only ever added or split.
+> 
+> BTW, considering the possibility of "added" bands, how about this
+> example: if ath10k were to add 6GHz support (and SAR to go with it),
+> user space would have to learn to specify limits for it too, due to
+> the "all or nothing" limitation? It'd be good to be up front about
+> this, similar to the previous paragraph.
+> 
+Like what I've replied in another email. Let's remove "all or nothing"
+limitation. If certain ranges are not SET, then these ranges just don't
+have SAR power limitation.
+
+Just FYI, ath10k will never support 6GHz, it's ath11k to support it.
+
+
+>> Brian, are you fine that we go with this proposal? I'll send
+>> V2 based on the comments from Johannes and Abhishek.
+> 
+> I think I'm fine with it; my main concerns around ambiguities, so
+> maybe it just needs more explicit mentions in the docs (commit
+> messages and/or comments). I'd be happy to see v2 and go from there.
+> 
+> Brian
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
