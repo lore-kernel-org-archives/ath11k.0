@@ -1,19 +1,23 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from m42-4.mailgun.net ([69.72.42.4])
+Received: from z5.mailgun.us ([104.130.96.5])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kaakV-0003jd-Jb
- for ath11k@lists.infradead.org; Thu, 05 Nov 2020 08:36:08 +0000
+ id 1kabCK-00070x-7q
+ for ath11k@lists.infradead.org; Thu, 05 Nov 2020 09:04:49 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [RFC 1/2] nl80211: add common API to configure SAR power
- limitations.
-References: <1600753017-4614-1-git-send-email-cjhuang@codeaurora.org>
- <CA+ASDXM7TcF-zfbktbdSu-fDBuGe0LAgFq3Qt2zaq6efbWJ=sA@mail.gmail.com>
- <f3be456c4c748f21836279eb4dc16e5e@codeaurora.org>
- <CA+ASDXNaLvtJyY9_ds9RVL9VTkiYzChsGJS1czhVt-RKitCk5g@mail.gmail.com>
-Date: Thu, 05 Nov 2020 10:35:56 +0200
-In-Reply-To: <CA+ASDXNaLvtJyY9_ds9RVL9VTkiYzChsGJS1czhVt-RKitCk5g@mail.gmail.com>
- (Brian Norris's message of "Wed, 4 Nov 2020 09:44:55 -0800")
-Message-ID: <877dr0nqtv.fsf@codeaurora.org>
+Subject: Regression: QCA6390 fails with "mm/page_alloc: place pages to tail in
+ __free_pages_core()"
+References: <fa22cf0f-3bac-add6-8c71-6f6cad5206d8@gmail.com>
+ <87lffjodu7.fsf@codeaurora.org>
+ <fa338986-8de4-fde1-6805-d46793c947e4@gmail.com>
+ <c9cc0ec6-4dda-2608-3575-0e6dfb6d0852@gmail.com>
+ <87ft5rszcs.fsf@codeaurora.org> <87ft5qsem9.fsf@codeaurora.org>
+ <f99862f4-9b3a-03e5-cd26-1de6136f9e46@gmail.com>
+ <87blgdscxd.fsf@codeaurora.org>
+ <229c31e7-9aff-18e6-a6db-be7b46331173@gmail.com>
+Date: Thu, 05 Nov 2020 11:04:41 +0200
+In-Reply-To: <229c31e7-9aff-18e6-a6db-be7b46331173@gmail.com> (Pavel
+ Procopiuc's message of "Wed, 4 Nov 2020 23:15:05 +0100")
+Message-ID: <87361onphy.fsf_-_@codeaurora.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -27,39 +31,44 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Brian Norris <briannorris@chromium.org>
-Cc: Carl Huang <cjhuang@codeaurora.org>, linux-wireless <linux-wireless@vger.kernel.org>, Doug Anderson <dianders@chromium.org>, ath10k <ath10k@lists.infradead.org>, ath11k@lists.infradead.org, Abhishek Kumar <kuabhs@google.com>
+To: Pavel Procopiuc <pavel.procopiuc@gmail.com>, david@redhat.com
+Cc: linux-mm@kvack.org, akpm@linux-foundation.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, linux-kernel@vger.kernel.org
 
-Brian Norris <briannorris@chromium.org> writes:
+(changing the subject, adding more lists and people)
 
-> + ath10k
->
-> [ I realize I replied to the "wrong" RFC v1; I fell trap to Kalle's note:
->
-> "When you submit a new version mark it as "v2". Otherwise people don't
-> know what's the latest version." ]
->
-> On Tue, Nov 3, 2020 at 11:32 PM Carl Huang <cjhuang@codeaurora.org> wrote:
->> On 2020-11-04 10:00, Brian Norris wrote:
->> > What are the ABI guarantees around a given driver/chip's 'sar_capa'?
->> > Do we guarantee that if the driver supports N ranges of certain bands,
->> > that it will always continue to support those bands?
-> ...
->> For a given chip(at least a QCOM chip), we don't see that the
->> range will grow or change.
->
-> That's good to know. But that's not quite the same as an ABI guarantee.
+Pavel Procopiuc <pavel.procopiuc@gmail.com> writes:
 
-I'm not sure if I understood Brian's question correctly, but I have
-concerns on the assumption that frequency ranges never change. For
-example, in ath10k we have a patch[1] under discussion which adds more
-channels and in ath11k we added 6 GHz band after initial ath11k support
-landed. And I would not be surprised if in some boards/platforms a
-certain band is disabled due to cotting costs (no antenna etc). My
-preference is to have a robust interface which would be designed to
-handle these kind of changes.
+> Op 04.11.2020 om 10:12 schreef Kalle Valo:
+>> Yeah, it is unfortunately time consuming but it is the best way to get
+>> bottom of this.
+>
+> I have found the commit that breaks things for me, it's
+> 7fef431be9c9ac255838a9578331567b9dba4477 mm/page_alloc: place pages to
+> tail in __free_pages_core()
+>
+> I've reverted it on top of the 5.10-rc2 and ath11k driver loads fine
+> and I have wifi working.
 
-[1] [PATCH] ath10k: enable advertising support for channels 32, 68 and 98
+Oh, very interesting. Thanks a lot for the bisection, otherwise we would
+have never found out whats causing this.
+
+David & mm folks: Pavel noticed that his QCA6390 Wi-Fi 6 device (driver
+ath11k) failed on v5.10-rc1. After bisecting he found that the commit
+below causes the regression. I have not been able to reproduce this and
+for me QCA6390 works fine. I don't know if this needs a specific kernel
+configuration or what's the difference between our setups.
+
+Any ideas what might cause this and how to fix it?
+
+Full discussion: http://lists.infradead.org/pipermail/ath11k/2020-November/000501.html
+
+commit 7fef431be9c9ac255838a9578331567b9dba4477
+Author:     David Hildenbrand <david@redhat.com>
+AuthorDate: Thu Oct 15 20:09:35 2020 -0700
+Commit:     Linus Torvalds <torvalds@linux-foundation.org>
+CommitDate: Fri Oct 16 11:11:18 2020 -0700
+
+    mm/page_alloc: place pages to tail in __free_pages_core()
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
