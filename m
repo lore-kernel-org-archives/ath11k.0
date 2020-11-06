@@ -1,17 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mout-p-103.mailbox.org ([80.241.56.161])
+Received: from www84.your-server.de ([213.133.104.84])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kb0BD-0005Lu-KI
- for ath11k@lists.infradead.org; Fri, 06 Nov 2020 11:45:21 +0000
-From: Devin Bayer <dev@doubly.so>
-Subject: Re: pci_alloc_irq_vectors fails ENOSPC for XPS 13 9310
-References: <20201103160838.GA246433@bjorn-Precision-5520>
- <874km61732.fsf@nanos.tec.linutronix.de>
-Message-ID: <768b2f88-3da3-37bc-f512-f5249a52480e@doubly.so>
-Date: Fri, 6 Nov 2020 12:45:10 +0100
+ id 1kb0Mq-0006z9-8o
+ for ath11k@lists.infradead.org; Fri, 06 Nov 2020 11:57:21 +0000
+Message-ID: <b50d48a67bfb8797a4be0eea64c9514836f847af.camel@seibold.net>
+Subject: Re: Re: pci_alloc_irq_vectors fails ENOSPC for XPS 13 9310
+From: Stefani Seibold <stefani@seibold.net>
+Date: Fri, 06 Nov 2020 12:57:08 +0100
+In-Reply-To: <87wnz0hr9k.fsf@codeaurora.org>
 MIME-Version: 1.0
-In-Reply-To: <874km61732.fsf@nanos.tec.linutronix.de>
-Content-Language: en-US
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -24,24 +21,40 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Thomas Gleixner <tglx@linutronix.de>, Bjorn Helgaas <helgaas@kernel.org>, Kalle Valo <kvalo@codeaurora.org>
-Cc: Govind Singh <govinds@codeaurora.org>, linux-pci@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, Thomas Krause <thomaskrause@posteo.de>, Christoph Hellwig <hch@lst.de>
+To: ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>
 
-On 03/11/2020 22.08, Thomas Gleixner wrote:
-> On Tue, Nov 03 2020 at 10:08, Bjorn Helgaas wrote:
-> 
-> Check the BIOS for a switch which is named 'VT-d' or such. It might
-> depend on 'Intel Virtualization Technology' or such.
-> 
 
-Thanks for this info. The platform I have, J1900, indeed does not support VT-d.
+>> i tried the latest ath11k driver using linux 5.10 rc2 on a new dell
+>> 9310 XPS 13.
+>>
+>> The driver will always complain "failed to get 32 MSI vectors, only
+-28
+>> available".
+>>
+>> I think the -28 is the error code for ENOSPC return by the
+>> pci_alloc_irq_vectors() function.
+>>
 
-So I guess I'm not able to use this card. That's unfortunate.
+>Please try enabling Virtualisation and VT-d in BIOS. And also enable
+>CONFIG_IRQ_REMAP in kernel config.
 
-It doesn't seem like the Windows driver works either. It doesn't give any errors
-but it fails to find any wireless networks.
+Thanks for the advise. I already configured the BIOS and kernel in this
+way. I also update the BIOS XPS 13 9310 Bios to 1.1.1, but the 
 
-~ dev
+ "DMAR: [Firmware Bug]: Your BIOS is broken; DMAR reported at address 0!"
+
+still remains and therefor the 
+
+ "failed to get 32 MSI vectors, only -28 available"
+
+message.
+
+The really bad thing is that the Killer Wi-Fi 6 AX500-DBS QCA6390 is
+solder on the mainboard :-(
+
+- Stefani
+
+
 
 -- 
 ath11k mailing list
