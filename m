@@ -1,14 +1,20 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from www84.your-server.de ([213.133.104.84])
+Received: from mail-ed1-x530.google.com ([2a00:1450:4864:20::530])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kb0Mq-0006z9-8o
- for ath11k@lists.infradead.org; Fri, 06 Nov 2020 11:57:21 +0000
-Message-ID: <b50d48a67bfb8797a4be0eea64c9514836f847af.camel@seibold.net>
-Subject: Re: Re: pci_alloc_irq_vectors fails ENOSPC for XPS 13 9310
-From: Stefani Seibold <stefani@seibold.net>
-Date: Fri, 06 Nov 2020 12:57:08 +0100
-In-Reply-To: <87wnz0hr9k.fsf@codeaurora.org>
+ id 1kb5ba-00009q-Nj
+ for ath11k@lists.infradead.org; Fri, 06 Nov 2020 17:32:56 +0000
+Received: by mail-ed1-x530.google.com with SMTP id y15so1914261ede.11
+ for <ath11k@lists.infradead.org>; Fri, 06 Nov 2020 09:32:53 -0800 (PST)
+From: Pavel Procopiuc <pavel.procopiuc@gmail.com>
+Subject: Re: Regression: QCA6390 fails with "mm/page_alloc: place pages to
+ tail in __free_pages_core()"
+References: <225718f1-c4b0-8683-427a-059148a39350@gmail.com>
+ <C3FD015A-8E51-4752-AD76-6ABE4583E268@redhat.com>
+Message-ID: <15e33a0a-9a76-0966-125a-5941e2cdfb09@gmail.com>
+Date: Fri, 6 Nov 2020 18:32:50 +0100
 MIME-Version: 1.0
+In-Reply-To: <C3FD015A-8E51-4752-AD76-6ABE4583E268@redhat.com>
+Content-Language: en-US
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -17,46 +23,81 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>
+To: David Hildenbrand <david@redhat.com>
+Cc: linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, linux-mm@kvack.org, Vlastimil Babka <vbabka@suse.cz>, akpm@linux-foundation.org, ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>
 
-
->> i tried the latest ath11k driver using linux 5.10 rc2 on a new dell
->> 9310 XPS 13.
->>
->> The driver will always complain "failed to get 32 MSI vectors, only
--28
->> available".
->>
->> I think the -28 is the error code for ENOSPC return by the
->> pci_alloc_irq_vectors() function.
->>
-
->Please try enabling Virtualisation and VT-d in BIOS. And also enable
->CONFIG_IRQ_REMAP in kernel config.
-
-Thanks for the advise. I already configured the BIOS and kernel in this
-way. I also update the BIOS XPS 13 9310 Bios to 1.1.1, but the 
-
- "DMAR: [Firmware Bug]: Your BIOS is broken; DMAR reported at address 0!"
-
-still remains and therefor the 
-
- "failed to get 32 MSI vectors, only -28 available"
-
-message.
-
-The really bad thing is that the Killer Wi-Fi 6 AX500-DBS QCA6390 is
-solder on the mainboard :-(
-
-- Stefani
-
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+T3AgMDUuMTEuMjAyMCBvbSAyMToyMyBzY2hyZWVmIERhdmlkIEhpbGRlbmJyYW5kOgo+PiBTbyBq
+dXN0IHRvIG1ha2Ugc3VyZSBJIHVuZGVyc3RhbmQgeW91IGNvcnJlY3RseSwgeW91J2QgbGlrZSB0
+byBzZWUgaWYgdGhlIHByb2JsZW0gd2l0aCBhdGgxMWsgZHJpdmVyIG9uIG15IGhhcmR3YXJlIHBl
+cnNpc3RzIHdoZW4gSSBib290IHByaXN0aW5lIDUuMTAtcmMyIGtlcm5lbCAod2l0aG91dCByZXZl
+cnRpbmcgY29tbWl0IDdmZWY0MzFiZTljOWFjMjU1ODM4YTk1NzgzMzE1NjdiOWRiYTQ0NzcpIGFu
+ZCB3aXRoIHBhZ2VfYWxsb2Muc2h1ZmZsZT0xLCByaWdodD8KPj4KPiAKPiBSaWdodCwgYnV0IGFz
+IGxpc3RzIGFyZSByYW5kb21pemVkIHRoZW4gaXQgbWlnaHQgdGFrZSBhIGNvdXBsZSBvZiB0cmll
+cyB0byByZXByb2R1Y2UuIEnigJhsbCBoYXZlIGEgbG9vayBhdCB0aGUgZHJpdmVyIGNvZGUgLyBm
+YWlsaW5nIHBhdGggb24gTW9uZGF5LCB3aGVuIGJhY2sgdG8gd29yay4KCkkgaGF2ZSBkb25lIDUg
+Ym9vdHMgb2YgcHJpc3RpbmUgNS4xMC1yYzIgd2l0aCBwYWdlX2FsbG9jLnNodWZmbGU9MS4gT3V0
+IG9mIHRob3NlOiAxc3QsIDJuZCwgNHRoIGFuZCA1dGggcmVzdWx0ZWQgaW4gCndvcmtpbmcgYXRo
+MTFrIGRyaXZlciwgbG9ncyB3ZXJlIHRoZSBzYW1lIGFzIHdpdGggdGhlIGNvbW1pdCA3ZmVmNDMx
+YmU5YzlhYzI1NTgzOGE5NTc4MzMxNTY3YjlkYmE0NDc3IHJldmVydGVkLiBUaGUgM3JkIApvbmUg
+ZmFpbGVkLCBidXQgaW4gYSBkaWZmZXJlbnQgd2F5LCBJIGp1c3QgaGFkIG5vIG91dHB1dCBmcm9t
+IHRoZSBkcml2ZXIgYWZ0ZXIgaW5pdGlhbGl6YXRpb24gbGluZXM6CgpOb3YgMDYgMTg6MTk6NDEg
+cmF6b3Iga2VybmVsOiBMaW51eCB2ZXJzaW9uIDUuMTAuMC1yYzIgKHJvb3RAcmF6b3IpIChnY2Mg
+KEdlbnRvbyA5LjMuMC1yMSBwMykgOS4zLjAsIEdOVSBsZCAoR2VudG9vIDIuMzQgCnA2KSAyLjM0
+LjApICM4IFNNUCBGcmkgTm92IDYgMTg6MTQ6MzYgQ0VUIDIwMjAKTm92IDA2IDE4OjE5OjQxIHJh
+em9yIGtlcm5lbDogcGNpIDAwMDA6MDU6MDAuMDogWzE3Y2I6MTEwMV0gdHlwZSAwMCBjbGFzcyAw
+eDAyODAwMApOb3YgMDYgMTg6MTk6NDEgcmF6b3Iga2VybmVsOiBwY2kgMDAwMDowNTowMC4wOiBy
+ZWcgMHgxMDogW21lbSAweGQyMTAwMDAwLTB4ZDIxZmZmZmYgNjRiaXRdCk5vdiAwNiAxODoxOTo0
+MSByYXpvciBrZXJuZWw6IHBjaSAwMDAwOjA1OjAwLjA6IFBNRSMgc3VwcG9ydGVkIGZyb20gRDAg
+RDNob3QgRDNjb2xkCk5vdiAwNiAxODoxOTo0MSByYXpvciBrZXJuZWw6IHBjaSAwMDAwOjA1OjAw
+LjA6IDQuMDAwIEdiL3MgYXZhaWxhYmxlIFBDSWUgYmFuZHdpZHRoLCBsaW1pdGVkIGJ5IDUuMCBH
+VC9zIFBDSWUgeDEgbGluayBhdCAKMDAwMDowMDoxYy4xIChjYXBhYmxlIG9mIDcuODc2IEdiL3Mg
+d2l0aCA4LjAgR1QvcyBQQ0llIHgxIGxpbmspCk5vdiAwNiAxODoxOTo0MSByYXpvciBrZXJuZWw6
+IHBjaSAwMDAwOjA1OjAwLjA6IEFkZGluZyB0byBpb21tdSBncm91cCAyMQpOb3YgMDYgMTg6MTk6
+NDIgcmF6b3Iga2VybmVsOiBhdGgxMWtfcGNpIDAwMDA6MDU6MDAuMDogV0FSTklORzogYXRoMTFr
+IFBDSSBzdXBwb3J0IGlzIGV4cGVyaW1lbnRhbCEKTm92IDA2IDE4OjE5OjQyIHJhem9yIGtlcm5l
+bDogYXRoMTFrX3BjaSAwMDAwOjA1OjAwLjA6IEJBUiAwOiBhc3NpZ25lZCBbbWVtIDB4ZDIxMDAw
+MDAtMHhkMjFmZmZmZiA2NGJpdF0KTm92IDA2IDE4OjE5OjQyIHJhem9yIGtlcm5lbDogYXRoMTFr
+X3BjaSAwMDAwOjA1OjAwLjA6IGVuYWJsaW5nIGRldmljZSAoMDAwMCAtPiAwMDAyKQpOb3YgMDYg
+MTg6MTk6NDIgcmF6b3Iga2VybmVsOiBtaGkgMDAwMDowNTowMC4wOiBSZXF1ZXN0ZWQgdG8gcG93
+ZXIgT04KTm92IDA2IDE4OjE5OjQyIHJhem9yIGtlcm5lbDogbWhpIDAwMDA6MDU6MDAuMDogUG93
+ZXIgb24gc2V0dXAgc3VjY2VzcwoKSSBoYWQgdGhpcyBiZWZvcmUgYW5kIHVzdWFsbHkgaXQgd2Fz
+IGZpeGVkIGFmdGVyIHJlYm9vdGluZyBpbnRvIFdpbmRvd3MgYW5kIGJhY2suIFRoaXMgdGltZSBJ
+IGp1c3Qgd2VudCBhbmQgcmVib290ZWQgCmludG8gTGludXggYWdhaW4gYW5kIGRyaXZlciB3YXMg
+d29ya2luZyBvbiB0aGF0IGJvb3QgKDR0aCkuCgpBZnRlciB0aGF0IEkgcmVtb3ZlZCBwYWdlX2Fs
+bG9jLnNodWZmbGU9MSBhbmQgZGlkIDIgYWRkaXRpb25hbCBib290cywgYm90aCBvZiB0aGVtIHJl
+c3VsdGVkIGluIGEgbm9uLXdvcmtpbmcgZHJpdmVyIHdpdGggCnRoZSBlcnJvciBtZXNzYWdlcyBh
+Ym91dCBub3QgYmVpbmcgYWJsZSB0byB0YWxrIHRvIGZpcm13YXJlIGxpa2UgSSBoYWQgYmVmb3Jl
+IG9uIHRoZSBjbGVhbiA1LjEwLXJjMjoKCk5vdiAwNiAxODoyNDowNyByYXpvciBrZXJuZWw6IExp
+bnV4IHZlcnNpb24gNS4xMC4wLXJjMiAocm9vdEByYXpvcikgKGdjYyAoR2VudG9vIDkuMy4wLXIx
+IHAzKSA5LjMuMCwgR05VIGxkIChHZW50b28gMi4zNCAKcDYpIDIuMzQuMCkgIzkgU01QIEZyaSBO
+b3YgNiAxODoyMjo0MyBDRVQgMjAyMApOb3YgMDYgMTg6MjQ6MDcgcmF6b3Iga2VybmVsOiBwY2kg
+MDAwMDowNTowMC4wOiBbMTdjYjoxMTAxXSB0eXBlIDAwIGNsYXNzIDB4MDI4MDAwCk5vdiAwNiAx
+ODoyNDowNyByYXpvciBrZXJuZWw6IHBjaSAwMDAwOjA1OjAwLjA6IHJlZyAweDEwOiBbbWVtIDB4
+ZDIxMDAwMDAtMHhkMjFmZmZmZiA2NGJpdF0KTm92IDA2IDE4OjI0OjA3IHJhem9yIGtlcm5lbDog
+cGNpIDAwMDA6MDU6MDAuMDogUE1FIyBzdXBwb3J0ZWQgZnJvbSBEMCBEM2hvdCBEM2NvbGQKTm92
+IDA2IDE4OjI0OjA3IHJhem9yIGtlcm5lbDogcGNpIDAwMDA6MDU6MDAuMDogNC4wMDAgR2IvcyBh
+dmFpbGFibGUgUENJZSBiYW5kd2lkdGgsIGxpbWl0ZWQgYnkgNS4wIEdUL3MgUENJZSB4MSBsaW5r
+IGF0IAowMDAwOjAwOjFjLjEgKGNhcGFibGUgb2YgNy44NzYgR2IvcyB3aXRoIDguMCBHVC9zIFBD
+SWUgeDEgbGluaykKTm92IDA2IDE4OjI0OjA3IHJhem9yIGtlcm5lbDogcGNpIDAwMDA6MDU6MDAu
+MDogQWRkaW5nIHRvIGlvbW11IGdyb3VwIDIxCk5vdiAwNiAxODoyNDowOCByYXpvciBrZXJuZWw6
+IGF0aDExa19wY2kgMDAwMDowNTowMC4wOiBXQVJOSU5HOiBhdGgxMWsgUENJIHN1cHBvcnQgaXMg
+ZXhwZXJpbWVudGFsIQpOb3YgMDYgMTg6MjQ6MDggcmF6b3Iga2VybmVsOiBhdGgxMWtfcGNpIDAw
+MDA6MDU6MDAuMDogQkFSIDA6IGFzc2lnbmVkIFttZW0gMHhkMjEwMDAwMC0weGQyMWZmZmZmIDY0
+Yml0XQpOb3YgMDYgMTg6MjQ6MDggcmF6b3Iga2VybmVsOiBhdGgxMWtfcGNpIDAwMDA6MDU6MDAu
+MDogZW5hYmxpbmcgZGV2aWNlICgwMDAwIC0+IDAwMDIpCk5vdiAwNiAxODoyNDowOCByYXpvciBr
+ZXJuZWw6IG1oaSAwMDAwOjA1OjAwLjA6IFJlcXVlc3RlZCB0byBwb3dlciBPTgpOb3YgMDYgMTg6
+MjQ6MDggcmF6b3Iga2VybmVsOiBtaGkgMDAwMDowNTowMC4wOiBQb3dlciBvbiBzZXR1cCBzdWNj
+ZXNzCk5vdiAwNiAxODoyNDowOCByYXpvciBrZXJuZWw6IGF0aDExa19wY2kgMDAwMDowNTowMC4w
+OiBSZXNwb25kIG1lbSByZXEgZmFpbGVkLCByZXN1bHQ6IDEsIGVycjogMApOb3YgMDYgMTg6MjQ6
+MDggcmF6b3Iga2VybmVsOiBhdGgxMWtfcGNpIDAwMDA6MDU6MDAuMDogcW1pIGZhaWxlZCB0byBy
+ZXNwb25kIGZ3IG1lbSByZXE6LTIyCk5vdiAwNiAxODoyNDoxMyByYXpvciBrZXJuZWw6IGF0aDEx
+a19wY2kgMDAwMDowNTowMC4wOiBxbWkgZmFpbGVkIG1lbW9yeSByZXF1ZXN0LCBlcnIgPSAtMTEw
+Ck5vdiAwNiAxODoyNDoxMyByYXpvciBrZXJuZWw6IGF0aDExa19wY2kgMDAwMDowNTowMC4wOiBx
+bWkgZmFpbGVkIHRvIHJlc3BvbmQgZncgbWVtIHJlcTotMTEwCk5vdiAwNiAxODoyNTozOSByYXpv
+ciBrZXJuZWw6IG1oaSAwMDAwOjA1OjAwLjA6IERldmljZSBmYWlsZWQgdG8gZXhpdCBNSEkgUmVz
+ZXQgc3RhdGUKCi0tIAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0cy5pbmZyYWRlYWQu
+b3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vYXRoMTFrCg==
