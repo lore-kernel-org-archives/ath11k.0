@@ -1,8 +1,8 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 From: Taehee Yoo <ap420073@gmail.com>
-Subject: [PATCH net v2 06/21] i2400m: set .owner to THIS_MODULE
-Date: Sat,  7 Nov 2020 17:21:37 +0000
-Message-Id: <20201107172152.828-7-ap420073@gmail.com>
+Subject: [PATCH net v2 07/21] wlcore: set .owner to THIS_MODULE
+Date: Sat,  7 Nov 2020 17:21:38 +0000
+Message-Id: <20201107172152.828-8-ap420073@gmail.com>
 In-Reply-To: <20201107172152.828-1-ap420073@gmail.com>
 References: <20201107172152.828-1-ap420073@gmail.com>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,7 +25,8 @@ If THIS_MODULE is not set, the module would be removed while debugfs is
 being used.
 It eventually makes kernel panic.
 
-Fixes: c71228caf91e ("i2400m: debugfs controls")
+Fixes: f5fc0f86b02a ("wl1271: add wl1271 driver files")
+Fixes: bcca1bbdd412 ("wlcore: add debugfs macro to help print fw statistics arrays")
 Signed-off-by: Taehee Yoo <ap420073@gmail.com>
 ---
 
@@ -33,29 +34,37 @@ v1 -> v2:
  - Change headline
  - Squash patches into per-driver/subsystem
 
- drivers/net/wimax/i2400m/debugfs.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/net/wireless/ti/wlcore/debugfs.h | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/net/wimax/i2400m/debugfs.c b/drivers/net/wimax/i2400m/debugfs.c
-index 1c640b41ea4c..144f8a7e98af 100644
---- a/drivers/net/wimax/i2400m/debugfs.c
-+++ b/drivers/net/wimax/i2400m/debugfs.c
-@@ -87,6 +87,7 @@ const struct file_operations i2400m_rx_stats_fops = {
- 	.read =		i2400m_rx_stats_read,
- 	.write =	i2400m_rx_stats_write,
- 	.llseek =	default_llseek,
-+	.owner =	THIS_MODULE,
+diff --git a/drivers/net/wireless/ti/wlcore/debugfs.h b/drivers/net/wireless/ti/wlcore/debugfs.h
+index b143293e694f..559c93543247 100644
+--- a/drivers/net/wireless/ti/wlcore/debugfs.h
++++ b/drivers/net/wireless/ti/wlcore/debugfs.h
+@@ -35,6 +35,7 @@ static const struct file_operations name## _ops = {			\
+ 	.read = name## _read,						\
+ 	.open = simple_open,						\
+ 	.llseek	= generic_file_llseek,					\
++	.owner = THIS_MODULE,						\
  };
  
- 
-@@ -140,6 +141,7 @@ const struct file_operations i2400m_tx_stats_fops = {
- 	.read =		i2400m_tx_stats_read,
- 	.write =	i2400m_tx_stats_write,
- 	.llseek =	default_llseek,
-+	.owner =	THIS_MODULE,
+ #define DEBUGFS_ADD(name, parent)					\
+@@ -68,6 +69,7 @@ static const struct file_operations sub## _ ##name## _ops = {		\
+ 	.read = sub## _ ##name## _read,					\
+ 	.open = simple_open,						\
+ 	.llseek	= generic_file_llseek,					\
++	.owner = THIS_MODULE,						\
  };
  
+ #define DEBUGFS_FWSTATS_FILE_ARRAY(sub, name, len, struct_type)		\
+@@ -93,6 +95,7 @@ static const struct file_operations sub## _ ##name## _ops = {		\
+ 	.read = sub## _ ##name## _read,					\
+ 	.open = simple_open,						\
+ 	.llseek	= generic_file_llseek,					\
++	.owner = THIS_MODULE,						\
+ };
  
+ #define DEBUGFS_FWSTATS_ADD(sub, name)					\
 -- 
 2.17.1
 
