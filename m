@@ -1,19 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124])
+Received: from z5.mailgun.us ([104.130.96.5])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kb8YP-0007pY-PO
- for ath11k@lists.infradead.org; Fri, 06 Nov 2020 20:41:51 +0000
-Subject: Re: Regression: QCA6390 fails with "mm/page_alloc: place pages to
- tail in __free_pages_core()"
-References: <225718f1-c4b0-8683-427a-059148a39350@gmail.com>
- <C3FD015A-8E51-4752-AD76-6ABE4583E268@redhat.com>
- <15e33a0a-9a76-0966-125a-5941e2cdfb09@gmail.com>
-From: David Hildenbrand <david@redhat.com>
-Message-ID: <31f66d70-95eb-12dd-1d01-0830d118f55a@redhat.com>
-Date: Fri, 6 Nov 2020 21:41:37 +0100
+ id 1kbJ7r-0007LD-QF
+ for ath11k@lists.infradead.org; Sat, 07 Nov 2020 07:59:10 +0000
 MIME-Version: 1.0
-In-Reply-To: <15e33a0a-9a76-0966-125a-5941e2cdfb09@gmail.com>
-Content-Language: en-US
+Subject: Re: [PATCH v2 3/3] ath11k: convert tasklets to use new tasklet_setup()
+ API
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <20201007103309.363737-4-allen.lkml@gmail.com>
+References: <20201007103309.363737-4-allen.lkml@gmail.com>
+Message-Id: <20201107075906.C3091C433FF@smtp.codeaurora.org>
+Date: Sat,  7 Nov 2020 07:59:06 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,99 +19,35 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Pavel Procopiuc <pavel.procopiuc@gmail.com>
-Cc: linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, linux-mm@kvack.org, Vlastimil Babka <vbabka@suse.cz>, akpm@linux-foundation.org, ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>
+To: Allen Pais <allen.lkml@gmail.com>
+Cc: ryder.lee@mediatek.com, netdev@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, matthias.bgg@gmail.com, linux-mediatek@lists.infradead.org, lorenzo.bianconi83@gmail.com, kuba@kernel.org, Romain Perier <romain.perier@gmail.com>, Allen Pais <apais@linux.microsoft.com>, davem@davemloft.net, nbd@nbd.name
 
-T24gMDYuMTEuMjAgMTg6MzIsIFBhdmVsIFByb2NvcGl1YyB3cm90ZToKPiBPcCAwNS4xMS4yMDIw
-IG9tIDIxOjIzIHNjaHJlZWYgRGF2aWQgSGlsZGVuYnJhbmQ6Cj4+PiBTbyBqdXN0IHRvIG1ha2Ug
-c3VyZSBJIHVuZGVyc3RhbmQgeW91IGNvcnJlY3RseSwgeW91J2QgbGlrZSB0byBzZWUgaWYgdGhl
-IHByb2JsZW0gd2l0aCBhdGgxMWsgZHJpdmVyIG9uIG15IGhhcmR3YXJlIHBlcnNpc3RzIHdoZW4g
-SSBib290IHByaXN0aW5lIDUuMTAtcmMyIGtlcm5lbCAod2l0aG91dCByZXZlcnRpbmcgY29tbWl0
-IDdmZWY0MzFiZTljOWFjMjU1ODM4YTk1NzgzMzE1NjdiOWRiYTQ0NzcpIGFuZCB3aXRoIHBhZ2Vf
-YWxsb2Muc2h1ZmZsZT0xLCByaWdodD8KPj4+Cj4+Cj4+IFJpZ2h0LCBidXQgYXMgbGlzdHMgYXJl
-IHJhbmRvbWl6ZWQgdGhlbiBpdCBtaWdodCB0YWtlIGEgY291cGxlIG9mIHRyaWVzIHRvIHJlcHJv
-ZHVjZS4gSeKAmGxsIGhhdmUgYSBsb29rIGF0IHRoZSBkcml2ZXIgY29kZSAvIGZhaWxpbmcgcGF0
-aCBvbiBNb25kYXksIHdoZW4gYmFjayB0byB3b3JrLgo+IAo+IEkgaGF2ZSBkb25lIDUgYm9vdHMg
-b2YgcHJpc3RpbmUgNS4xMC1yYzIgd2l0aCBwYWdlX2FsbG9jLnNodWZmbGU9MS4gT3V0IG9mIHRo
-b3NlOiAxc3QsIDJuZCwgNHRoIGFuZCA1dGggcmVzdWx0ZWQgaW4KPiB3b3JraW5nIGF0aDExayBk
-cml2ZXIsIGxvZ3Mgd2VyZSB0aGUgc2FtZSBhcyB3aXRoIHRoZSBjb21taXQgN2ZlZjQzMWJlOWM5
-YWMyNTU4MzhhOTU3ODMzMTU2N2I5ZGJhNDQ3NyByZXZlcnRlZC4gVGhlIDNyZAo+IG9uZSBmYWls
-ZWQsIGJ1dCBpbiBhIGRpZmZlcmVudCB3YXksIEkganVzdCBoYWQgbm8gb3V0cHV0IGZyb20gdGhl
-IGRyaXZlciBhZnRlciBpbml0aWFsaXphdGlvbiBsaW5lczoKPiAKPiBOb3YgMDYgMTg6MTk6NDEg
-cmF6b3Iga2VybmVsOiBMaW51eCB2ZXJzaW9uIDUuMTAuMC1yYzIgKHJvb3RAcmF6b3IpIChnY2Mg
-KEdlbnRvbyA5LjMuMC1yMSBwMykgOS4zLjAsIEdOVSBsZCAoR2VudG9vIDIuMzQKPiBwNikgMi4z
-NC4wKSAjOCBTTVAgRnJpIE5vdiA2IDE4OjE0OjM2IENFVCAyMDIwCj4gTm92IDA2IDE4OjE5OjQx
-IHJhem9yIGtlcm5lbDogcGNpIDAwMDA6MDU6MDAuMDogWzE3Y2I6MTEwMV0gdHlwZSAwMCBjbGFz
-cyAweDAyODAwMAo+IE5vdiAwNiAxODoxOTo0MSByYXpvciBrZXJuZWw6IHBjaSAwMDAwOjA1OjAw
-LjA6IHJlZyAweDEwOiBbbWVtIDB4ZDIxMDAwMDAtMHhkMjFmZmZmZiA2NGJpdF0KPiBOb3YgMDYg
-MTg6MTk6NDEgcmF6b3Iga2VybmVsOiBwY2kgMDAwMDowNTowMC4wOiBQTUUjIHN1cHBvcnRlZCBm
-cm9tIEQwIEQzaG90IEQzY29sZAo+IE5vdiAwNiAxODoxOTo0MSByYXpvciBrZXJuZWw6IHBjaSAw
-MDAwOjA1OjAwLjA6IDQuMDAwIEdiL3MgYXZhaWxhYmxlIFBDSWUgYmFuZHdpZHRoLCBsaW1pdGVk
-IGJ5IDUuMCBHVC9zIFBDSWUgeDEgbGluayBhdAo+IDAwMDA6MDA6MWMuMSAoY2FwYWJsZSBvZiA3
-Ljg3NiBHYi9zIHdpdGggOC4wIEdUL3MgUENJZSB4MSBsaW5rKQo+IE5vdiAwNiAxODoxOTo0MSBy
-YXpvciBrZXJuZWw6IHBjaSAwMDAwOjA1OjAwLjA6IEFkZGluZyB0byBpb21tdSBncm91cCAyMQo+
-IE5vdiAwNiAxODoxOTo0MiByYXpvciBrZXJuZWw6IGF0aDExa19wY2kgMDAwMDowNTowMC4wOiBX
-QVJOSU5HOiBhdGgxMWsgUENJIHN1cHBvcnQgaXMgZXhwZXJpbWVudGFsIQo+IE5vdiAwNiAxODox
-OTo0MiByYXpvciBrZXJuZWw6IGF0aDExa19wY2kgMDAwMDowNTowMC4wOiBCQVIgMDogYXNzaWdu
-ZWQgW21lbSAweGQyMTAwMDAwLTB4ZDIxZmZmZmYgNjRiaXRdCj4gTm92IDA2IDE4OjE5OjQyIHJh
-em9yIGtlcm5lbDogYXRoMTFrX3BjaSAwMDAwOjA1OjAwLjA6IGVuYWJsaW5nIGRldmljZSAoMDAw
-MCAtPiAwMDAyKQo+IE5vdiAwNiAxODoxOTo0MiByYXpvciBrZXJuZWw6IG1oaSAwMDAwOjA1OjAw
-LjA6IFJlcXVlc3RlZCB0byBwb3dlciBPTgo+IE5vdiAwNiAxODoxOTo0MiByYXpvciBrZXJuZWw6
-IG1oaSAwMDAwOjA1OjAwLjA6IFBvd2VyIG9uIHNldHVwIHN1Y2Nlc3MKPiAKPiBJIGhhZCB0aGlz
-IGJlZm9yZSBhbmQgdXN1YWxseSBpdCB3YXMgZml4ZWQgYWZ0ZXIgcmVib290aW5nIGludG8gV2lu
-ZG93cyBhbmQgYmFjay4gVGhpcyB0aW1lIEkganVzdCB3ZW50IGFuZCByZWJvb3RlZAo+IGludG8g
-TGludXggYWdhaW4gYW5kIGRyaXZlciB3YXMgd29ya2luZyBvbiB0aGF0IGJvb3QgKDR0aCkuCgpJ
-J20gc29ycnksIGJ1dCAiV0FSTklORzogYXRoMTFrIFBDSSBzdXBwb3J0IGlzIGV4cGVyaW1lbnRh
-bCEiIGFuZCBzdWNoIApvY2Nhc2lvbmFsIGlzc3VlcyBkb24ndCBnaXZlIG1lIHRoZSBiZXN0IGZl
-ZWxpbmcgdGhhdCBldmVyeXRoaW5nIGlzIApvcGVyYXRpbmcgYXMgaXQgc2hvdWxkIDopCgo+IAo+
-IEFmdGVyIHRoYXQgSSByZW1vdmVkIHBhZ2VfYWxsb2Muc2h1ZmZsZT0xIGFuZCBkaWQgMiBhZGRp
-dGlvbmFsIGJvb3RzLCBib3RoIG9mIHRoZW0gcmVzdWx0ZWQgaW4gYSBub24td29ya2luZyBkcml2
-ZXIgd2l0aAo+IHRoZSBlcnJvciBtZXNzYWdlcyBhYm91dCBub3QgYmVpbmcgYWJsZSB0byB0YWxr
-IHRvIGZpcm13YXJlIGxpa2UgSSBoYWQgYmVmb3JlIG9uIHRoZSBjbGVhbiA1LjEwLXJjMjoKPiAK
-PiBOb3YgMDYgMTg6MjQ6MDcgcmF6b3Iga2VybmVsOiBMaW51eCB2ZXJzaW9uIDUuMTAuMC1yYzIg
-KHJvb3RAcmF6b3IpIChnY2MgKEdlbnRvbyA5LjMuMC1yMSBwMykgOS4zLjAsIEdOVSBsZCAoR2Vu
-dG9vIDIuMzQKPiBwNikgMi4zNC4wKSAjOSBTTVAgRnJpIE5vdiA2IDE4OjIyOjQzIENFVCAyMDIw
-Cj4gTm92IDA2IDE4OjI0OjA3IHJhem9yIGtlcm5lbDogcGNpIDAwMDA6MDU6MDAuMDogWzE3Y2I6
-MTEwMV0gdHlwZSAwMCBjbGFzcyAweDAyODAwMAo+IE5vdiAwNiAxODoyNDowNyByYXpvciBrZXJu
-ZWw6IHBjaSAwMDAwOjA1OjAwLjA6IHJlZyAweDEwOiBbbWVtIDB4ZDIxMDAwMDAtMHhkMjFmZmZm
-ZiA2NGJpdF0KPiBOb3YgMDYgMTg6MjQ6MDcgcmF6b3Iga2VybmVsOiBwY2kgMDAwMDowNTowMC4w
-OiBQTUUjIHN1cHBvcnRlZCBmcm9tIEQwIEQzaG90IEQzY29sZAo+IE5vdiAwNiAxODoyNDowNyBy
-YXpvciBrZXJuZWw6IHBjaSAwMDAwOjA1OjAwLjA6IDQuMDAwIEdiL3MgYXZhaWxhYmxlIFBDSWUg
-YmFuZHdpZHRoLCBsaW1pdGVkIGJ5IDUuMCBHVC9zIFBDSWUgeDEgbGluayBhdAo+IDAwMDA6MDA6
-MWMuMSAoY2FwYWJsZSBvZiA3Ljg3NiBHYi9zIHdpdGggOC4wIEdUL3MgUENJZSB4MSBsaW5rKQo+
-IE5vdiAwNiAxODoyNDowNyByYXpvciBrZXJuZWw6IHBjaSAwMDAwOjA1OjAwLjA6IEFkZGluZyB0
-byBpb21tdSBncm91cCAyMQo+IE5vdiAwNiAxODoyNDowOCByYXpvciBrZXJuZWw6IGF0aDExa19w
-Y2kgMDAwMDowNTowMC4wOiBXQVJOSU5HOiBhdGgxMWsgUENJIHN1cHBvcnQgaXMgZXhwZXJpbWVu
-dGFsIQo+IE5vdiAwNiAxODoyNDowOCByYXpvciBrZXJuZWw6IGF0aDExa19wY2kgMDAwMDowNTow
-MC4wOiBCQVIgMDogYXNzaWduZWQgW21lbSAweGQyMTAwMDAwLTB4ZDIxZmZmZmYgNjRiaXRdCj4g
-Tm92IDA2IDE4OjI0OjA4IHJhem9yIGtlcm5lbDogYXRoMTFrX3BjaSAwMDAwOjA1OjAwLjA6IGVu
-YWJsaW5nIGRldmljZSAoMDAwMCAtPiAwMDAyKQo+IE5vdiAwNiAxODoyNDowOCByYXpvciBrZXJu
-ZWw6IG1oaSAwMDAwOjA1OjAwLjA6IFJlcXVlc3RlZCB0byBwb3dlciBPTgo+IE5vdiAwNiAxODoy
-NDowOCByYXpvciBrZXJuZWw6IG1oaSAwMDAwOjA1OjAwLjA6IFBvd2VyIG9uIHNldHVwIHN1Y2Nl
-c3MKPiBOb3YgMDYgMTg6MjQ6MDggcmF6b3Iga2VybmVsOiBhdGgxMWtfcGNpIDAwMDA6MDU6MDAu
-MDogUmVzcG9uZCBtZW0gcmVxIGZhaWxlZCwgcmVzdWx0OiAxLCBlcnI6IDAKPiBOb3YgMDYgMTg6
-MjQ6MDggcmF6b3Iga2VybmVsOiBhdGgxMWtfcGNpIDAwMDA6MDU6MDAuMDogcW1pIGZhaWxlZCB0
-byByZXNwb25kIGZ3IG1lbSByZXE6LTIyCj4gTm92IDA2IDE4OjI0OjEzIHJhem9yIGtlcm5lbDog
-YXRoMTFrX3BjaSAwMDAwOjA1OjAwLjA6IHFtaSBmYWlsZWQgbWVtb3J5IHJlcXVlc3QsIGVyciA9
-IC0xMTAKPiBOb3YgMDYgMTg6MjQ6MTMgcmF6b3Iga2VybmVsOiBhdGgxMWtfcGNpIDAwMDA6MDU6
-MDAuMDogcW1pIGZhaWxlZCB0byByZXNwb25kIGZ3IG1lbSByZXE6LTExMAo+IE5vdiAwNiAxODoy
-NTozOSByYXpvciBrZXJuZWw6IG1oaSAwMDAwOjA1OjAwLjA6IERldmljZSBmYWlsZWQgdG8gZXhp
-dCBNSEkgUmVzZXQgc3RhdGUKPiAKCk9rYXksIHRoYXQgbWVhbnMgdGhhdCB5b3Ugc2hvdWxkIGJl
-IGFibGUgdG8gcmVwcm9kdWNlIApwcmUtN2ZlZjQzMWJlOWM5YWMyNTU4MzhhOTU3ODMzMTU2N2I5
-ZGJhNDQ3NyB3aXRoIHBhZ2VfYWxsb2Muc2h1ZmZsZT0xIAphcyB3ZWxsIC4uLiBpdCBqdXN0IG1p
-Z2h0IHRha2UgYSBsb3Qgb2YgdHJpZXMgdG8gZ2V0IGEgcHJvYmxlbWF0aWMgcGFnZS4KCkkgY291
-bGQgYWxzbyBpbWFnaW5lIHRoYXQgbG9hZGluZyB0aGUgZHJpdmVyIGRlZmVycmVkLCBhZnRlciBx
-dWl0ZSBzb21lIApzeXN0ZW0vbW0gYWN0aXZpdHkgY291bGQgcmVzdWx0IGluIHRoZSBzYW1lIGlz
-c3VlLgoKTG9va3MgbGlrZSBzb21ldGhpbmcgZWl0aGVyIGNhbm5vdCBoYW5kbGUgYSBzcGVjaWZp
-YyBhZGRyZXNzIHdlIHJlY2VpdmVkIAp2aWEgZG1hX2FsbG9jX2NvaGVyZW50KCksIG9yIHNvbWV0
-aGluZyBpcyByZWFkaW5nIG91dCBvZiBib3VuZHMsIGFuZCB0aGUgCmNvbnRlbnQgYWZ0ZXIgb3Vy
-IGFsbG9jYXRlZCBwYWdlIGRvZXNuJ3QgaGF2ZSB0aGUgZXhwZWN0ZWQgdmFsdWUgYW55bW9yZSAK
-KGUuZy4sIHVzZWQgdG8gYmUgemVybywgbm93IG5vIGxvbmdlciB6ZXJvKS4KCldoYXQgcHV6emxl
-cyBtZSBpcyB0aGF0ICJlcnI6IDAiLiBUaGF0IHNob3VsZCBoYXZlIGJlZW4gcHJvcGVybHkgc2V0
-IGJ5IApIVywgbm8/CgotLSAKVGhhbmtzLAoKRGF2aWQgLyBkaGlsZGVuYgoKCi0tIAphdGgxMWsg
-bWFpbGluZyBsaXN0CmF0aDExa0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZy
-YWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vYXRoMTFrCg==
+Allen Pais <allen.lkml@gmail.com> wrote:
+
+> In preparation for unconditionally passing the
+> struct tasklet_struct pointer to all tasklet
+> callbacks, switch to using the new tasklet_setup()
+> and from_tasklet() to pass the tasklet pointer explicitly.
+> 
+> Signed-off-by: Romain Perier <romain.perier@gmail.com>
+> Signed-off-by: Allen Pais <apais@linux.microsoft.com>
+> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+
+Patch applied to ath-next branch of ath.git, thanks.
+
+0f01dcb89b8b ath11k: convert tasklets to use new tasklet_setup() API
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/patch/20201007103309.363737-4-allen.lkml@gmail.com/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
