@@ -1,8 +1,8 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 From: Taehee Yoo <ap420073@gmail.com>
-Subject: [PATCH net v2 19/21] b43: set .owner to THIS_MODULE
-Date: Sat,  7 Nov 2020 17:21:50 +0000
-Message-Id: <20201107172152.828-20-ap420073@gmail.com>
+Subject: [PATCH net v2 20/21] mwifiex: mwifiex: set .owner to THIS_MODULE
+Date: Sat,  7 Nov 2020 17:21:51 +0000
+Message-Id: <20201107172152.828-21-ap420073@gmail.com>
 In-Reply-To: <20201107172152.828-1-ap420073@gmail.com>
 References: <20201107172152.828-1-ap420073@gmail.com>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,28 +25,43 @@ If THIS_MODULE is not set, the module would be removed while debugfs is
 being used.
 It eventually makes kernel panic.
 
-Fixes: e4d6b7951812 ("[B43]: add mac80211-based driver for modern BCM43xx devices")
+Fixes: 5e6e3a92b9a4 ("wireless: mwifiex: initial commit for Marvell mwifiex driver")
 Signed-off-by: Taehee Yoo <ap420073@gmail.com>
 ---
 
 v1 -> v2:
  - Change headline
+ - Squash patches into per-driver/subsystem
 
- drivers/net/wireless/broadcom/b43/debugfs.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/net/wireless/marvell/mwifiex/debugfs.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/net/wireless/broadcom/b43/debugfs.c b/drivers/net/wireless/broadcom/b43/debugfs.c
-index 89a25aefb327..c0d51cb57b27 100644
---- a/drivers/net/wireless/broadcom/b43/debugfs.c
-+++ b/drivers/net/wireless/broadcom/b43/debugfs.c
-@@ -611,6 +611,7 @@ static ssize_t b43_debugfs_write(struct file *file,
- 			.read	= b43_debugfs_read,		\
- 			.write	= b43_debugfs_write,		\
- 			.llseek = generic_file_llseek,		\
-+			.owner = THIS_MODULE,			\
- 		},						\
- 		.file_struct_offset = offsetof(struct b43_dfsentry, \
- 					       file_##name),	\
+diff --git a/drivers/net/wireless/marvell/mwifiex/debugfs.c b/drivers/net/wireless/marvell/mwifiex/debugfs.c
+index dded92db1f37..641113260439 100644
+--- a/drivers/net/wireless/marvell/mwifiex/debugfs.c
++++ b/drivers/net/wireless/marvell/mwifiex/debugfs.c
+@@ -931,18 +931,21 @@ static const struct file_operations mwifiex_dfs_##name##_fops = {       \
+ 	.read = mwifiex_##name##_read,                                  \
+ 	.write = mwifiex_##name##_write,                                \
+ 	.open = simple_open,                                            \
++	.owner = THIS_MODULE,						\
+ };
+ 
+ #define MWIFIEX_DFS_FILE_READ_OPS(name)                                 \
+ static const struct file_operations mwifiex_dfs_##name##_fops = {       \
+ 	.read = mwifiex_##name##_read,                                  \
+ 	.open = simple_open,                                            \
++	.owner = THIS_MODULE,						\
+ };
+ 
+ #define MWIFIEX_DFS_FILE_WRITE_OPS(name)                                \
+ static const struct file_operations mwifiex_dfs_##name##_fops = {       \
+ 	.write = mwifiex_##name##_write,                                \
+ 	.open = simple_open,                                            \
++	.owner = THIS_MODULE,						\
+ };
+ 
+ 
 -- 
 2.17.1
 
