@@ -1,8 +1,8 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 From: Taehee Yoo <ap420073@gmail.com>
-Subject: [PATCH net v2 04/21] netdevsim: set .owner to THIS_MODULE
-Date: Sat,  7 Nov 2020 17:21:35 +0000
-Message-Id: <20201107172152.828-5-ap420073@gmail.com>
+Subject: [PATCH net v2 05/21] ieee802154: set .owner to THIS_MODULE
+Date: Sat,  7 Nov 2020 17:21:36 +0000
+Message-Id: <20201107172152.828-6-ap420073@gmail.com>
 In-Reply-To: <20201107172152.828-1-ap420073@gmail.com>
 References: <20201107172152.828-1-ap420073@gmail.com>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,66 +25,30 @@ If THIS_MODULE is not set, the module would be removed while debugfs is
 being used.
 It eventually makes kernel panic.
 
-Fixes: 82c93a87bf8b ("netdevsim: implement couple of testing devlink health reporters")
-Fixes: 424be63ad831 ("netdevsim: add UDP tunnel port offload support")
-Fixes: 4418f862d675 ("netdevsim: implement support for devlink region and snapshots")
-Fixes: d3cbb907ae57 ("netdevsim: add ACL trap reporting cookie as a metadata")
+Fixes: ded845a781a5 ("ieee802154: Add CA8210 IEEE 802.15.4 device driver")
 Signed-off-by: Taehee Yoo <ap420073@gmail.com>
 ---
 
 v1 -> v2:
  - Change headline
- - Squash patches into per-driver/subsystem
 
- drivers/net/netdevsim/dev.c         | 2 ++
- drivers/net/netdevsim/health.c      | 1 +
- drivers/net/netdevsim/udp_tunnels.c | 1 +
- 3 files changed, 4 insertions(+)
+ drivers/net/ieee802154/ca8210.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/net/netdevsim/dev.c b/drivers/net/netdevsim/dev.c
-index d07061417675..e7972e88ffe0 100644
---- a/drivers/net/netdevsim/dev.c
-+++ b/drivers/net/netdevsim/dev.c
-@@ -96,6 +96,7 @@ static const struct file_operations nsim_dev_take_snapshot_fops = {
- 	.open = simple_open,
- 	.write = nsim_dev_take_snapshot_write,
- 	.llseek = generic_file_llseek,
-+	.owner = THIS_MODULE,
+diff --git a/drivers/net/ieee802154/ca8210.c b/drivers/net/ieee802154/ca8210.c
+index 4eb64709d44c..d7b68c1279e6 100644
+--- a/drivers/net/ieee802154/ca8210.c
++++ b/drivers/net/ieee802154/ca8210.c
+@@ -2672,7 +2672,8 @@ static const struct file_operations test_int_fops = {
+ 	.open =           ca8210_test_int_open,
+ 	.release =        NULL,
+ 	.unlocked_ioctl = ca8210_test_int_ioctl,
+-	.poll =           ca8210_test_int_poll
++	.poll =           ca8210_test_int_poll,
++	.owner =	  THIS_MODULE,
  };
  
- static ssize_t nsim_dev_trap_fa_cookie_read(struct file *file,
-@@ -188,6 +189,7 @@ static const struct file_operations nsim_dev_trap_fa_cookie_fops = {
- 	.read = nsim_dev_trap_fa_cookie_read,
- 	.write = nsim_dev_trap_fa_cookie_write,
- 	.llseek = generic_file_llseek,
-+	.owner = THIS_MODULE,
- };
- 
- static int nsim_dev_debugfs_init(struct nsim_dev *nsim_dev)
-diff --git a/drivers/net/netdevsim/health.c b/drivers/net/netdevsim/health.c
-index 62958b238d50..21e2974660e7 100644
---- a/drivers/net/netdevsim/health.c
-+++ b/drivers/net/netdevsim/health.c
-@@ -261,6 +261,7 @@ static const struct file_operations nsim_dev_health_break_fops = {
- 	.open = simple_open,
- 	.write = nsim_dev_health_break_write,
- 	.llseek = generic_file_llseek,
-+	.owner = THIS_MODULE,
- };
- 
- int nsim_dev_health_init(struct nsim_dev *nsim_dev, struct devlink *devlink)
-diff --git a/drivers/net/netdevsim/udp_tunnels.c b/drivers/net/netdevsim/udp_tunnels.c
-index 6ab023acefd6..02dc3123eb6c 100644
---- a/drivers/net/netdevsim/udp_tunnels.c
-+++ b/drivers/net/netdevsim/udp_tunnels.c
-@@ -124,6 +124,7 @@ static const struct file_operations nsim_udp_tunnels_info_reset_fops = {
- 	.open = simple_open,
- 	.write = nsim_udp_tunnels_info_reset_write,
- 	.llseek = generic_file_llseek,
-+	.owner = THIS_MODULE,
- };
- 
- int nsim_udp_tunnels_info_create(struct nsim_dev *nsim_dev,
+ /* Init/Deinit */
 -- 
 2.17.1
 
