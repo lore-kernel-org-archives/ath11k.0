@@ -1,8 +1,8 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 From: Taehee Yoo <ap420073@gmail.com>
-Subject: [PATCH net v2 16/21] cw1200: set .owner to THIS_MODULE
-Date: Sat,  7 Nov 2020 17:21:47 +0000
-Message-Id: <20201107172152.828-17-ap420073@gmail.com>
+Subject: [PATCH net v2 17/21] brcmfmac: set .owner to THIS_MODULE
+Date: Sat,  7 Nov 2020 17:21:48 +0000
+Message-Id: <20201107172152.828-18-ap420073@gmail.com>
 In-Reply-To: <20201107172152.828-1-ap420073@gmail.com>
 References: <20201107172152.828-1-ap420073@gmail.com>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,28 +25,28 @@ If THIS_MODULE is not set, the module would be removed while debugfs is
 being used.
 It eventually makes kernel panic.
 
-Fixes: a910e4a94f69 ("cw1200: add driver for the ST-E CW1100 & CW1200 WLAN chipsets")
+Fixes: 2f8c8e62cd50 ("brcmfmac: add "reset" debugfs entry for testing reset")
 Signed-off-by: Taehee Yoo <ap420073@gmail.com>
 ---
 
 v1 -> v2:
  - Change headline
 
- drivers/net/wireless/st/cw1200/debug.c | 1 +
+ drivers/net/wireless/broadcom/brcm80211/brcmfmac/core.c | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/drivers/net/wireless/st/cw1200/debug.c b/drivers/net/wireless/st/cw1200/debug.c
-index 8686929c70df..bcb8757c34ae 100644
---- a/drivers/net/wireless/st/cw1200/debug.c
-+++ b/drivers/net/wireless/st/cw1200/debug.c
-@@ -355,6 +355,7 @@ static const struct file_operations fops_wsm_dumps = {
- 	.open = simple_open,
- 	.write = cw1200_wsm_dumps,
- 	.llseek = default_llseek,
+diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/core.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/core.c
+index 3dd28f5fef19..a80b28189c99 100644
+--- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/core.c
++++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/core.c
+@@ -1188,6 +1188,7 @@ static const struct file_operations bus_reset_fops = {
+ 	.open	= simple_open,
+ 	.llseek	= no_llseek,
+ 	.write	= bus_reset_write,
 +	.owner = THIS_MODULE,
  };
  
- int cw1200_debug_init(struct cw1200_common *priv)
+ static int brcmf_bus_started(struct brcmf_pub *drvr, struct cfg80211_ops *ops)
 -- 
 2.17.1
 
