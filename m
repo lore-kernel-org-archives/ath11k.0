@@ -1,21 +1,9 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
- by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kbObQ-0005E4-7i
- for ath11k@lists.infradead.org; Sat, 07 Nov 2020 13:50:01 +0000
-Received: by mail-wr1-x441.google.com with SMTP id b8so4161254wrn.0
- for <ath11k@lists.infradead.org>; Sat, 07 Nov 2020 05:49:58 -0800 (PST)
-From: Alex Dewar <alex.dewar90@gmail.com>
-Date: Sat, 7 Nov 2020 13:49:08 +0000
-Subject: Re: [PATCH 2/2] ath11k: Handle errors if peer creation fails
-Message-ID: <20201107134908.ncne6nm7yyibp3qt@medion>
-References: <20201004100218.311653-1-alex.dewar90@gmail.com>
- <87blhfbysb.fsf@codeaurora.org>
- <20201006081321.e2tf5xrdhnk4j3nq@medion>
- <87pn4pfm19.fsf@codeaurora.org>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <87pn4pfm19.fsf@codeaurora.org>
+From: Taehee Yoo <ap420073@gmail.com>
+Subject: [PATCH net v2 00/21] net: avoid to remove module when its debugfs is
+ being used
+Date: Sat,  7 Nov 2020 17:21:31 +0000
+Message-Id: <20201107172152.828-1-ap420073@gmail.com>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -24,101 +12,153 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: netdev@vger.kernel.org, Carl Huang <cjhuang@codeaurora.org>, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, Alex Dewar <alex.dewar90@gmail.com>, ath11k@lists.infradead.org, Jakub Kicinski <kuba@kernel.org>, "David S. Miller" <davem@davemloft.net>
+To: davem@davemloft.net, kuba@kernel.org, netdev@vger.kernel.org
+Cc: alex.aring@gmail.com, emmanuel.grumbach@intel.com, chi-hsien.lin@infineon.com, amitkarwar@gmail.com, ganapathi.bhat@nxp.com, luciano.coelho@intel.com, ath10k@lists.infradead.org, wcn36xx@lists.infradead.org, stefan@datenfreihafen.org, merez@codeaurora.org, stf_xl@wp.pl, pkshih@realtek.com, nstange@suse.de, chung-hsien.hsu@infineon.com, wright.feng@infineon.com, inaky.perez-gonzalez@intel.com, derosier@gmail.com, David.Laight@aculab.com, b43-dev@lists.infradead.org, ath11k@lists.infradead.org, arend.vanspriel@broadcom.com, johan.hedberg@gmail.com, michael.hennerich@analog.com, marcel@holtmann.org, hante.meuleman@broadcom.com, linux-wimax@intel.com, jukka.rissanen@linux.intel.com, kvalo@codeaurora.org, franky.lin@broadcom.com, huxinming820@gmail.com, linux-wireless@vger.kernel.org, linux-bluetooth@vger.kernel.org, wil6210@qti.qualcomm.com, johannes@sipsolutions.net, Larry.Finger@lwfinger.net, linux-wpan@vger.kernel.org, ap420073@gmail.com, pizza@shaftnet.org
 
-On Sat, Nov 07, 2020 at 01:23:30PM +0200, Kalle Valo wrote:
-> Alex Dewar <alex.dewar90@gmail.com> writes:
-> 
-> > On Tue, Oct 06, 2020 at 10:26:28AM +0300, Kalle Valo wrote:
-> >> Alex Dewar <alex.dewar90@gmail.com> writes:
-> >> 
-> >> > ath11k_peer_create() is called without its return value being checked,
-> >> > meaning errors will be unhandled. Add missing check and, as the mutex is
-> >> > unconditionally unlocked on leaving this function, simplify the exit
-> >> > path.
-> >> >
-> >> > Addresses-Coverity-ID: 1497531 ("Code maintainability issues")
-> >> > Fixes: 701e48a43e15 ("ath11k: add packet log support for QCA6390")
-> >> > Signed-off-by: Alex Dewar <alex.dewar90@gmail.com>
-> >> > ---
-> >> >  drivers/net/wireless/ath/ath11k/mac.c | 21 +++++++++------------
-> >> >  1 file changed, 9 insertions(+), 12 deletions(-)
-> >> >
-> >> > diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-> >> > index 7f8dd47d2333..58db1b57b941 100644
-> >> > --- a/drivers/net/wireless/ath/ath11k/mac.c
-> >> > +++ b/drivers/net/wireless/ath/ath11k/mac.c
-> >> > @@ -5211,7 +5211,7 @@ ath11k_mac_op_assign_vif_chanctx(struct ieee80211_hw *hw,
-> >> >  	struct ath11k *ar = hw->priv;
-> >> >  	struct ath11k_base *ab = ar->ab;
-> >> >  	struct ath11k_vif *arvif = (void *)vif->drv_priv;
-> >> > -	int ret;
-> >> > +	int ret = 0;
-> >> 
-> >> I prefer not to initialise the ret variable.
-> >> 
-> >> >  	arvif->is_started = true;
-> >> >  
-> >> >  	/* TODO: Setup ps and cts/rts protection */
-> >> >  
-> >> > -	mutex_unlock(&ar->conf_mutex);
-> >> > -
-> >> > -	return 0;
-> >> > -
-> >> > -err:
-> >> > +unlock:
-> >> >  	mutex_unlock(&ar->conf_mutex);
-> >> >  
-> >> >  	return ret;
-> >> 
-> >> So in the pending branch I changed this to:
-> >> 
-> >> 	ret = 0;
-> >> 
-> >> out:
-> >> 	mutex_unlock(&ar->conf_mutex);
-> >> 
-> >> 	return ret;
-> >> 
-> >> Please check.
-> >
-> > I'm afraid you've introduced a bug ;). The body of the first if-statement
-> > in the function doesn't set ret because no error has occurred. So now
-> > it'll jump to the label and the function will return ret uninitialized.
-> 
-> Ouch, so I did. Good catch! I would have hoped that GCC warns about that
-> but it didn't.
-> 
-> I fixed the bug and added also a warning messages if peer_create()
-> fails:
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=e3e7b8072fa6bb0928b9066cf76e19e6bd2ec663
-> 
-> Does this look better now? :)
+When debugfs file is opened, its module should not be removed until
+it's closed.
+Because debugfs internally uses the module's data.
+So, it could access freed memory.
 
-LGTM!
+In order to avoid panic, it just sets .owner to THIS_MODULE.
+So that all modules will be held when its debugfs file is opened.
 
-> 
-> > With the gcc extension, ret will be initialised to zero anyway, so we're
-> > not saving anything by explicitly assigning to ret later in the
-> > function.
-> 
-> I prefer not to initialise ret in the beginning of the function and I
-> try to maintain that style in ath11k. I think it's more readable that
-> the error value is assigned just before the goto.
+Test commands:
+cat <<EOF > open.c
+#include <unistd.h>
+#include <fcntl.h>
+#include <stdio.h>
 
-Fair enough. I appreciate that it's a style issue.
+int main(int argc, char *argv[])
+{
+        int fd = open(argv[1], O_RDONLY);
 
-> 
-> -- 
-> https://patchwork.kernel.org/project/linux-wireless/list/
-> 
-> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+        if(fd < 0) {
+                printf("failed to open\n");
+                return 1;
+        }
+
+        usleep(3000000);
+
+        close(fd);
+        return 0;
+}
+EOF
+gcc -o open open.c
+modprobe netdevsim
+echo 1 > /sys/bus/netdevsim/new_device
+./open /sys/kernel/debug/netdevsim/netdevsim1/take_snapshot &
+modprobe -rv netdevsim
+
+Splat looks like:
+[   75.305876][  T662] BUG: unable to handle page fault for address: fffffbfff8096db4
+[   75.308979][  T662] #PF: supervisor read access in kernel mode
+[   75.311311][  T662] #PF: error_code(0x0000) - not-present page
+[   75.313737][  T662] PGD 1237ee067 P4D 1237ee067 PUD 123612067 PMD 100ba7067 PTE 0
+[   75.316858][  T662] Oops: 0000 [#1] SMP DEBUG_PAGEALLOC KASAN PTI
+[   75.319389][  T662] CPU: 1 PID: 662 Comm: open Not tainted 5.10.0-rc2+ #785
+[   75.322312][  T662] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.10.2-1ubuntu1 04/01/2014
+[   75.326429][  T662] RIP: 0010:full_proxy_release+0xca/0x290
+[   75.328712][  T662] Code: c1 ea 03 80 3c 02 00 0f 85 60 01 00 00 49 8d bc 24 80 00 00 00 4c 8b 73 28 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 <80> 3c 02 00 0f 85 71 01 00 00 49 8b 84 24 80 00 00 00 48 85 c0 0f
+[   75.336716][  T662] RSP: 0018:ffff88800400fe48 EFLAGS: 00010a06
+[   75.339153][  T662] RAX: dffffc0000000000 RBX: ffff88810139de00 RCX: ffff88810139de28
+[   75.342419][  T662] RDX: 1ffffffff8096db4 RSI: ffff88810139de00 RDI: ffffffffc04b6da0
+[   75.345629][  T662] RBP: ffff8881168342b0 R08: ffff8881168342b0 R09: ffff888110765300
+[   75.348804][  T662] R10: ffff88800400fe88 R11: ffffed1022ac648a R12: ffffffffc04b6d20
+[   75.352052][  T662] R13: ffff88810139de28 R14: ffff8881054a6d00 R15: ffff888110765300
+[   75.355325][  T662] FS:  00007f937b80f4c0(0000) GS:ffff888118e00000(0000) knlGS:0000000000000000
+[   75.358955][  T662] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   75.361634][  T662] CR2: fffffbfff8096db4 CR3: 0000000004292002 CR4: 00000000003706e0
+[   75.364847][  T662] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[   75.368003][  T662] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[   75.371259][  T662] Call Trace:
+[   75.372655][  T662]  __fput+0x1ff/0x820
+[   75.374316][  T662]  ? _raw_spin_unlock_irq+0x24/0x30
+[   75.376454][  T662]  task_work_run+0xd3/0x170
+[   75.378268][  T662]  exit_to_user_mode_prepare+0x14b/0x150
+[   75.380586][  T662]  syscall_exit_to_user_mode+0x40/0x250
+[   75.383015][  T662]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[   75.385427][  T662] RIP: 0033:0x7f937b3159e4
+[ ... ]
+
+v1 -> v2:
+ - Rebase
+ - Squash patches into per-driver/subsystem
+
+Taehee Yoo (21):
+  net: set .owner to THIS_MODULE
+  mac80211: set .owner to THIS_MODULE
+  cfg80211: set .owner to THIS_MODULE
+  netdevsim: set .owner to THIS_MODULE
+  ieee802154: set .owner to THIS_MODULE
+  i2400m: set .owner to THIS_MODULE
+  wlcore: set .owner to THIS_MODULE
+  wl1251: set .owner to THIS_MODULE
+  iwlwifi: set .owner to THIS_MODULE
+  iwlegacy: set .owner to THIS_MODULE
+  rtlwifi: set .owner to THIS_MODULE
+  ath11k: set .owner to THIS_MODULE
+  ath10k: set .owner to THIS_MODULE
+  wcn36xx: set .owner to THIS_MODULE
+  wil6210: set .owner to THIS_MODULE
+  cw1200: set .owner to THIS_MODULE
+  brcmfmac: set .owner to THIS_MODULE
+  b43legacy: set .owner to THIS_MODULE
+  b43: set .owner to THIS_MODULE
+  mwifiex: mwifiex: set .owner to THIS_MODULE
+  Bluetooth: set .owner to THIS_MODULE
+
+ drivers/net/ieee802154/ca8210.c               |  3 ++-
+ drivers/net/netdevsim/dev.c                   |  2 ++
+ drivers/net/netdevsim/health.c                |  1 +
+ drivers/net/netdevsim/udp_tunnels.c           |  1 +
+ drivers/net/wimax/i2400m/debugfs.c            |  2 ++
+ drivers/net/wireless/ath/ath10k/debug.c       | 15 ++++++++++-----
+ drivers/net/wireless/ath/ath11k/debugfs.c     |  7 +++++--
+ drivers/net/wireless/ath/wcn36xx/debug.c      |  2 ++
+ drivers/net/wireless/ath/wil6210/debugfs.c    | 19 +++++++++++++++++++
+ drivers/net/wireless/broadcom/b43/debugfs.c   |  1 +
+ .../net/wireless/broadcom/b43legacy/debugfs.c |  1 +
+ .../broadcom/brcm80211/brcmfmac/core.c        |  1 +
+ drivers/net/wireless/intel/iwlegacy/3945-rs.c |  1 +
+ drivers/net/wireless/intel/iwlegacy/4965-rs.c |  3 +++
+ drivers/net/wireless/intel/iwlegacy/debug.c   |  3 +++
+ .../net/wireless/intel/iwlwifi/dvm/debugfs.c  |  3 +++
+ drivers/net/wireless/intel/iwlwifi/dvm/rs.c   |  3 +++
+ .../net/wireless/intel/iwlwifi/fw/debugfs.c   |  3 +++
+ .../net/wireless/intel/iwlwifi/mvm/debugfs.c  |  1 +
+ .../net/wireless/intel/iwlwifi/mvm/debugfs.h  |  3 +++
+ drivers/net/wireless/intel/iwlwifi/mvm/rs.c   |  3 +++
+ .../net/wireless/intel/iwlwifi/pcie/trans.c   |  3 +++
+ .../net/wireless/marvell/mwifiex/debugfs.c    |  3 +++
+ drivers/net/wireless/realtek/rtlwifi/debug.c  |  1 +
+ drivers/net/wireless/st/cw1200/debug.c        |  1 +
+ drivers/net/wireless/ti/wl1251/debugfs.c      |  4 ++++
+ drivers/net/wireless/ti/wlcore/debugfs.h      |  3 +++
+ net/6lowpan/debugfs.c                         |  1 +
+ net/batman-adv/log.c                          |  1 +
+ net/bluetooth/6lowpan.c                       |  1 +
+ net/bluetooth/hci_core.c                      |  2 ++
+ net/bluetooth/hci_debugfs.c                   |  6 ++++++
+ net/bluetooth/selftest.c                      |  1 +
+ net/bluetooth/smp.c                           |  2 ++
+ net/mac80211/debugfs.c                        |  7 +++++++
+ net/mac80211/debugfs_key.c                    |  3 +++
+ net/mac80211/debugfs_netdev.c                 |  1 +
+ net/mac80211/debugfs_sta.c                    |  2 ++
+ net/mac80211/rate.c                           |  1 +
+ net/mac80211/rc80211_minstrel_ht_debugfs.c    |  2 ++
+ net/wireless/debugfs.c                        |  2 ++
+ 41 files changed, 117 insertions(+), 8 deletions(-)
+
+-- 
+2.17.1
+
 
 -- 
 ath11k mailing list
