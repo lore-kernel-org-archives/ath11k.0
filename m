@@ -1,8 +1,8 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 From: Taehee Yoo <ap420073@gmail.com>
-Subject: [PATCH net v2 13/21] ath10k: set .owner to THIS_MODULE
-Date: Sat,  7 Nov 2020 17:21:44 +0000
-Message-Id: <20201107172152.828-14-ap420073@gmail.com>
+Subject: [PATCH net v2 14/21] wcn36xx: set .owner to THIS_MODULE
+Date: Sat,  7 Nov 2020 17:21:45 +0000
+Message-Id: <20201107172152.828-15-ap420073@gmail.com>
 In-Reply-To: <20201107172152.828-1-ap420073@gmail.com>
 References: <20201107172152.828-1-ap420073@gmail.com>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,11 +25,7 @@ If THIS_MODULE is not set, the module would be removed while debugfs is
 being used.
 It eventually makes kernel panic.
 
-Fixes: 90174455ae05 ("ath10k: add support to configure pktlog filter")
-Fixes: 63fb32df9786 ("ath10k: add debugfs entry to configure quiet period")
-Fixes: 844fa5722712 ("ath10k: debugfs file to enable Bluetooth coexistence feature")
-Fixes: 348cd95c8196 ("ath10k: add debugfs entry to enable extended tx stats")
-Fixes: cc61a1bbbc0e ("ath10k: enable debugfs provision to enable Peer Stats feature")
+Fixes: 8e84c2582169 ("wcn36xx: mac80211 driver for Qualcomm WCN3660/WCN3680 hardware")
 Signed-off-by: Taehee Yoo <ap420073@gmail.com>
 ---
 
@@ -37,63 +33,29 @@ v1 -> v2:
  - Change headline
  - Squash patches into per-driver/subsystem
 
- drivers/net/wireless/ath/ath10k/debug.c | 15 ++++++++++-----
- 1 file changed, 10 insertions(+), 5 deletions(-)
+ drivers/net/wireless/ath/wcn36xx/debug.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath10k/debug.c b/drivers/net/wireless/ath/ath10k/debug.c
-index e8250a665433..afde3d8048e8 100644
---- a/drivers/net/wireless/ath/ath10k/debug.c
-+++ b/drivers/net/wireless/ath/ath10k/debug.c
-@@ -1911,7 +1911,8 @@ static ssize_t ath10k_read_pktlog_filter(struct file *file, char __user *ubuf,
- static const struct file_operations fops_pktlog_filter = {
- 	.read = ath10k_read_pktlog_filter,
- 	.write = ath10k_write_pktlog_filter,
--	.open = simple_open
-+	.open = simple_open,
+diff --git a/drivers/net/wireless/ath/wcn36xx/debug.c b/drivers/net/wireless/ath/wcn36xx/debug.c
+index 389b5e7129a6..4b78be5c67e8 100644
+--- a/drivers/net/wireless/ath/wcn36xx/debug.c
++++ b/drivers/net/wireless/ath/wcn36xx/debug.c
+@@ -93,6 +93,7 @@ static const struct file_operations fops_wcn36xx_bmps = {
+ 	.open = simple_open,
+ 	.read  =       read_file_bool_bmps,
+ 	.write =       write_file_bool_bmps,
 +	.owner = THIS_MODULE,
  };
  
- static ssize_t ath10k_write_quiet_period(struct file *file,
-@@ -1955,7 +1956,8 @@ static ssize_t ath10k_read_quiet_period(struct file *file, char __user *ubuf,
- static const struct file_operations fops_quiet_period = {
- 	.read = ath10k_read_quiet_period,
- 	.write = ath10k_write_quiet_period,
--	.open = simple_open
-+	.open = simple_open,
+ static ssize_t write_file_dump(struct file *file,
+@@ -134,6 +135,7 @@ static ssize_t write_file_dump(struct file *file,
+ static const struct file_operations fops_wcn36xx_dump = {
+ 	.open = simple_open,
+ 	.write =       write_file_dump,
 +	.owner = THIS_MODULE,
  };
  
- static ssize_t ath10k_write_btcoex(struct file *file,
-@@ -2039,7 +2041,8 @@ static ssize_t ath10k_read_btcoex(struct file *file, char __user *ubuf,
- static const struct file_operations fops_btcoex = {
- 	.read = ath10k_read_btcoex,
- 	.write = ath10k_write_btcoex,
--	.open = simple_open
-+	.open = simple_open,
-+	.owner = THIS_MODULE,
- };
- 
- static ssize_t ath10k_write_enable_extd_tx_stats(struct file *file,
-@@ -2094,7 +2097,8 @@ static ssize_t ath10k_read_enable_extd_tx_stats(struct file *file,
- static const struct file_operations fops_enable_extd_tx_stats = {
- 	.read = ath10k_read_enable_extd_tx_stats,
- 	.write = ath10k_write_enable_extd_tx_stats,
--	.open = simple_open
-+	.open = simple_open,
-+	.owner = THIS_MODULE,
- };
- 
- static ssize_t ath10k_write_peer_stats(struct file *file,
-@@ -2163,7 +2167,8 @@ static ssize_t ath10k_read_peer_stats(struct file *file, char __user *ubuf,
- static const struct file_operations fops_peer_stats = {
- 	.read = ath10k_read_peer_stats,
- 	.write = ath10k_write_peer_stats,
--	.open = simple_open
-+	.open = simple_open,
-+	.owner = THIS_MODULE,
- };
- 
- static ssize_t ath10k_debug_fw_checksums_read(struct file *file,
+ #define ADD_FILE(name, mode, fop, priv_data)		\
 -- 
 2.17.1
 
