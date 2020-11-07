@@ -1,8 +1,8 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 From: Taehee Yoo <ap420073@gmail.com>
-Subject: [PATCH net v2 03/21] cfg80211: set .owner to THIS_MODULE
-Date: Sat,  7 Nov 2020 17:21:34 +0000
-Message-Id: <20201107172152.828-4-ap420073@gmail.com>
+Subject: [PATCH net v2 04/21] netdevsim: set .owner to THIS_MODULE
+Date: Sat,  7 Nov 2020 17:21:35 +0000
+Message-Id: <20201107172152.828-5-ap420073@gmail.com>
 In-Reply-To: <20201107172152.828-1-ap420073@gmail.com>
 References: <20201107172152.828-1-ap420073@gmail.com>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,8 +25,10 @@ If THIS_MODULE is not set, the module would be removed while debugfs is
 being used.
 It eventually makes kernel panic.
 
-Fixes: 1ac61302dcd1 ("mac80211/cfg80211: move wiphy specific debugfs entries to cfg80211")
-Fixes: 80a3511d70e8 ("cfg80211: add debugfs HT40 allow map")
+Fixes: 82c93a87bf8b ("netdevsim: implement couple of testing devlink health reporters")
+Fixes: 424be63ad831 ("netdevsim: add UDP tunnel port offload support")
+Fixes: 4418f862d675 ("netdevsim: implement support for devlink region and snapshots")
+Fixes: d3cbb907ae57 ("netdevsim: add ACL trap reporting cookie as a metadata")
 Signed-off-by: Taehee Yoo <ap420073@gmail.com>
 ---
 
@@ -34,29 +36,55 @@ v1 -> v2:
  - Change headline
  - Squash patches into per-driver/subsystem
 
- net/wireless/debugfs.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/net/netdevsim/dev.c         | 2 ++
+ drivers/net/netdevsim/health.c      | 1 +
+ drivers/net/netdevsim/udp_tunnels.c | 1 +
+ 3 files changed, 4 insertions(+)
 
-diff --git a/net/wireless/debugfs.c b/net/wireless/debugfs.c
-index 76b845f68ac8..eb54c0ac4728 100644
---- a/net/wireless/debugfs.c
-+++ b/net/wireless/debugfs.c
-@@ -26,6 +26,7 @@ static const struct file_operations name## _ops = {			\
- 	.read = name## _read,						\
- 	.open = simple_open,						\
- 	.llseek = generic_file_llseek,					\
-+	.owner = THIS_MODULE,						\
- }
- 
- DEBUGFS_READONLY_FILE(rts_threshold, 20, "%d",
-@@ -97,6 +98,7 @@ static const struct file_operations ht40allow_map_ops = {
- 	.read = ht40allow_map_read,
+diff --git a/drivers/net/netdevsim/dev.c b/drivers/net/netdevsim/dev.c
+index d07061417675..e7972e88ffe0 100644
+--- a/drivers/net/netdevsim/dev.c
++++ b/drivers/net/netdevsim/dev.c
+@@ -96,6 +96,7 @@ static const struct file_operations nsim_dev_take_snapshot_fops = {
  	.open = simple_open,
- 	.llseek = default_llseek,
+ 	.write = nsim_dev_take_snapshot_write,
+ 	.llseek = generic_file_llseek,
 +	.owner = THIS_MODULE,
  };
  
- #define DEBUGFS_ADD(name)						\
+ static ssize_t nsim_dev_trap_fa_cookie_read(struct file *file,
+@@ -188,6 +189,7 @@ static const struct file_operations nsim_dev_trap_fa_cookie_fops = {
+ 	.read = nsim_dev_trap_fa_cookie_read,
+ 	.write = nsim_dev_trap_fa_cookie_write,
+ 	.llseek = generic_file_llseek,
++	.owner = THIS_MODULE,
+ };
+ 
+ static int nsim_dev_debugfs_init(struct nsim_dev *nsim_dev)
+diff --git a/drivers/net/netdevsim/health.c b/drivers/net/netdevsim/health.c
+index 62958b238d50..21e2974660e7 100644
+--- a/drivers/net/netdevsim/health.c
++++ b/drivers/net/netdevsim/health.c
+@@ -261,6 +261,7 @@ static const struct file_operations nsim_dev_health_break_fops = {
+ 	.open = simple_open,
+ 	.write = nsim_dev_health_break_write,
+ 	.llseek = generic_file_llseek,
++	.owner = THIS_MODULE,
+ };
+ 
+ int nsim_dev_health_init(struct nsim_dev *nsim_dev, struct devlink *devlink)
+diff --git a/drivers/net/netdevsim/udp_tunnels.c b/drivers/net/netdevsim/udp_tunnels.c
+index 6ab023acefd6..02dc3123eb6c 100644
+--- a/drivers/net/netdevsim/udp_tunnels.c
++++ b/drivers/net/netdevsim/udp_tunnels.c
+@@ -124,6 +124,7 @@ static const struct file_operations nsim_udp_tunnels_info_reset_fops = {
+ 	.open = simple_open,
+ 	.write = nsim_udp_tunnels_info_reset_write,
+ 	.llseek = generic_file_llseek,
++	.owner = THIS_MODULE,
+ };
+ 
+ int nsim_udp_tunnels_info_create(struct nsim_dev *nsim_dev,
 -- 
 2.17.1
 
