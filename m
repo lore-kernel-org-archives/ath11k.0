@@ -1,18 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from m42-4.mailgun.net ([69.72.42.4])
+Received: from z5.mailgun.us ([104.130.96.5])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kbMKT-0002Vs-MA
- for ath11k@lists.infradead.org; Sat, 07 Nov 2020 11:24:23 +0000
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH 2/2] ath11k: Handle errors if peer creation fails
-References: <20201004100218.311653-1-alex.dewar90@gmail.com>
- <87blhfbysb.fsf@codeaurora.org>
- <20201006081321.e2tf5xrdhnk4j3nq@medion>
-Date: Sat, 07 Nov 2020 13:23:30 +0200
-In-Reply-To: <20201006081321.e2tf5xrdhnk4j3nq@medion> (Alex Dewar's message of
- "Tue, 6 Oct 2020 09:13:21 +0100")
-Message-ID: <87pn4pfm19.fsf@codeaurora.org>
+ id 1kbMPh-0002gx-R3
+ for ath11k@lists.infradead.org; Sat, 07 Nov 2020 11:29:48 +0000
 MIME-Version: 1.0
+Subject: Re: [PATCH v2 2/3] wireless: mt7601u: convert tasklets to use new
+ tasklet_setup() API
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <20201007103309.363737-3-allen.lkml@gmail.com>
+References: <20201007103309.363737-3-allen.lkml@gmail.com>
+Message-Id: <20201107112936.F22F1C433F0@smtp.codeaurora.org>
+Date: Sat,  7 Nov 2020 11:29:36 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -25,90 +23,30 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Alex Dewar <alex.dewar90@gmail.com>
-Cc: netdev@vger.kernel.org, Carl Huang <cjhuang@codeaurora.org>, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>, ath11k@lists.infradead.org
+To: Allen Pais <allen.lkml@gmail.com>
+Cc: ryder.lee@mediatek.com, netdev@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, matthias.bgg@gmail.com, linux-mediatek@lists.infradead.org, lorenzo.bianconi83@gmail.com, kuba@kernel.org, Romain Perier <romain.perier@gmail.com>, Allen Pais <apais@linux.microsoft.com>, davem@davemloft.net, nbd@nbd.name
 
-Alex Dewar <alex.dewar90@gmail.com> writes:
+Allen Pais <allen.lkml@gmail.com> wrote:
 
-> On Tue, Oct 06, 2020 at 10:26:28AM +0300, Kalle Valo wrote:
->> Alex Dewar <alex.dewar90@gmail.com> writes:
->> 
->> > ath11k_peer_create() is called without its return value being checked,
->> > meaning errors will be unhandled. Add missing check and, as the mutex is
->> > unconditionally unlocked on leaving this function, simplify the exit
->> > path.
->> >
->> > Addresses-Coverity-ID: 1497531 ("Code maintainability issues")
->> > Fixes: 701e48a43e15 ("ath11k: add packet log support for QCA6390")
->> > Signed-off-by: Alex Dewar <alex.dewar90@gmail.com>
->> > ---
->> >  drivers/net/wireless/ath/ath11k/mac.c | 21 +++++++++------------
->> >  1 file changed, 9 insertions(+), 12 deletions(-)
->> >
->> > diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
->> > index 7f8dd47d2333..58db1b57b941 100644
->> > --- a/drivers/net/wireless/ath/ath11k/mac.c
->> > +++ b/drivers/net/wireless/ath/ath11k/mac.c
->> > @@ -5211,7 +5211,7 @@ ath11k_mac_op_assign_vif_chanctx(struct ieee80211_hw *hw,
->> >  	struct ath11k *ar = hw->priv;
->> >  	struct ath11k_base *ab = ar->ab;
->> >  	struct ath11k_vif *arvif = (void *)vif->drv_priv;
->> > -	int ret;
->> > +	int ret = 0;
->> 
->> I prefer not to initialise the ret variable.
->> 
->> >  	arvif->is_started = true;
->> >  
->> >  	/* TODO: Setup ps and cts/rts protection */
->> >  
->> > -	mutex_unlock(&ar->conf_mutex);
->> > -
->> > -	return 0;
->> > -
->> > -err:
->> > +unlock:
->> >  	mutex_unlock(&ar->conf_mutex);
->> >  
->> >  	return ret;
->> 
->> So in the pending branch I changed this to:
->> 
->> 	ret = 0;
->> 
->> out:
->> 	mutex_unlock(&ar->conf_mutex);
->> 
->> 	return ret;
->> 
->> Please check.
->
-> I'm afraid you've introduced a bug ;). The body of the first if-statement
-> in the function doesn't set ret because no error has occurred. So now
-> it'll jump to the label and the function will return ret uninitialized.
+> From: Allen Pais <apais@linux.microsoft.com>
+> 
+> In preparation for unconditionally passing the
+> struct tasklet_struct pointer to all tasklet
+> callbacks, switch to using the new tasklet_setup()
+> and from_tasklet() to pass the tasklet pointer explicitly.
+> 
+> Signed-off-by: Romain Perier <romain.perier@gmail.com>
+> Signed-off-by: Allen Pais <apais@linux.microsoft.com>
 
-Ouch, so I did. Good catch! I would have hoped that GCC warns about that
-but it didn't.
+Patch applied to wireless-drivers-next.git, thanks.
 
-I fixed the bug and added also a warning messages if peer_create()
-fails:
-
-https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=e3e7b8072fa6bb0928b9066cf76e19e6bd2ec663
-
-Does this look better now? :)
-
-> With the gcc extension, ret will be initialised to zero anyway, so we're
-> not saving anything by explicitly assigning to ret later in the
-> function.
-
-I prefer not to initialise ret in the beginning of the function and I
-try to maintain that style in ath11k. I think it's more readable that
-the error value is assigned just before the goto.
+7eae05184f3a wireless: mt7601u: convert tasklets to use new tasklet_setup() API
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+https://patchwork.kernel.org/project/linux-wireless/patch/20201007103309.363737-3-allen.lkml@gmail.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
 -- 
 ath11k mailing list
