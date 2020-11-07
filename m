@@ -1,8 +1,8 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 From: Taehee Yoo <ap420073@gmail.com>
-Subject: [PATCH net v2 12/21] ath11k: set .owner to THIS_MODULE
-Date: Sat,  7 Nov 2020 17:21:43 +0000
-Message-Id: <20201107172152.828-13-ap420073@gmail.com>
+Subject: [PATCH net v2 13/21] ath10k: set .owner to THIS_MODULE
+Date: Sat,  7 Nov 2020 17:21:44 +0000
+Message-Id: <20201107172152.828-14-ap420073@gmail.com>
 In-Reply-To: <20201107172152.828-1-ap420073@gmail.com>
 References: <20201107172152.828-1-ap420073@gmail.com>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,7 +25,11 @@ If THIS_MODULE is not set, the module would be removed while debugfs is
 being used.
 It eventually makes kernel panic.
 
-Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+Fixes: 90174455ae05 ("ath10k: add support to configure pktlog filter")
+Fixes: 63fb32df9786 ("ath10k: add debugfs entry to configure quiet period")
+Fixes: 844fa5722712 ("ath10k: debugfs file to enable Bluetooth coexistence feature")
+Fixes: 348cd95c8196 ("ath10k: add debugfs entry to enable extended tx stats")
+Fixes: cc61a1bbbc0e ("ath10k: enable debugfs provision to enable Peer Stats feature")
 Signed-off-by: Taehee Yoo <ap420073@gmail.com>
 ---
 
@@ -33,41 +37,63 @@ v1 -> v2:
  - Change headline
  - Squash patches into per-driver/subsystem
 
- drivers/net/wireless/ath/ath11k/debugfs.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ drivers/net/wireless/ath/ath10k/debug.c | 15 ++++++++++-----
+ 1 file changed, 10 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/debugfs.c b/drivers/net/wireless/ath/ath11k/debugfs.c
-index 1b914e67d314..bce9f9512833 100644
---- a/drivers/net/wireless/ath/ath11k/debugfs.c
-+++ b/drivers/net/wireless/ath/ath11k/debugfs.c
-@@ -593,7 +593,8 @@ static ssize_t ath11k_read_enable_extd_tx_stats(struct file *file,
- static const struct file_operations fops_extd_tx_stats = {
- 	.read = ath11k_read_enable_extd_tx_stats,
- 	.write = ath11k_write_enable_extd_tx_stats,
+diff --git a/drivers/net/wireless/ath/ath10k/debug.c b/drivers/net/wireless/ath/ath10k/debug.c
+index e8250a665433..afde3d8048e8 100644
+--- a/drivers/net/wireless/ath/ath10k/debug.c
++++ b/drivers/net/wireless/ath/ath10k/debug.c
+@@ -1911,7 +1911,8 @@ static ssize_t ath10k_read_pktlog_filter(struct file *file, char __user *ubuf,
+ static const struct file_operations fops_pktlog_filter = {
+ 	.read = ath10k_read_pktlog_filter,
+ 	.write = ath10k_write_pktlog_filter,
 -	.open = simple_open
 +	.open = simple_open,
 +	.owner = THIS_MODULE,
  };
  
- static ssize_t ath11k_write_extd_rx_stats(struct file *file,
-@@ -686,6 +687,7 @@ static const struct file_operations fops_extd_rx_stats = {
- 	.read = ath11k_read_extd_rx_stats,
- 	.write = ath11k_write_extd_rx_stats,
- 	.open = simple_open,
-+	.owner = THIS_MODULE,
- };
- 
- static int ath11k_fill_bp_stats(struct ath11k_base *ab,
-@@ -1047,7 +1049,8 @@ static ssize_t ath11k_write_simulate_radar(struct file *file,
- 
- static const struct file_operations fops_simulate_radar = {
- 	.write = ath11k_write_simulate_radar,
+ static ssize_t ath10k_write_quiet_period(struct file *file,
+@@ -1955,7 +1956,8 @@ static ssize_t ath10k_read_quiet_period(struct file *file, char __user *ubuf,
+ static const struct file_operations fops_quiet_period = {
+ 	.read = ath10k_read_quiet_period,
+ 	.write = ath10k_write_quiet_period,
 -	.open = simple_open
 +	.open = simple_open,
 +	.owner = THIS_MODULE,
  };
  
- int ath11k_debugfs_register(struct ath11k *ar)
+ static ssize_t ath10k_write_btcoex(struct file *file,
+@@ -2039,7 +2041,8 @@ static ssize_t ath10k_read_btcoex(struct file *file, char __user *ubuf,
+ static const struct file_operations fops_btcoex = {
+ 	.read = ath10k_read_btcoex,
+ 	.write = ath10k_write_btcoex,
+-	.open = simple_open
++	.open = simple_open,
++	.owner = THIS_MODULE,
+ };
+ 
+ static ssize_t ath10k_write_enable_extd_tx_stats(struct file *file,
+@@ -2094,7 +2097,8 @@ static ssize_t ath10k_read_enable_extd_tx_stats(struct file *file,
+ static const struct file_operations fops_enable_extd_tx_stats = {
+ 	.read = ath10k_read_enable_extd_tx_stats,
+ 	.write = ath10k_write_enable_extd_tx_stats,
+-	.open = simple_open
++	.open = simple_open,
++	.owner = THIS_MODULE,
+ };
+ 
+ static ssize_t ath10k_write_peer_stats(struct file *file,
+@@ -2163,7 +2167,8 @@ static ssize_t ath10k_read_peer_stats(struct file *file, char __user *ubuf,
+ static const struct file_operations fops_peer_stats = {
+ 	.read = ath10k_read_peer_stats,
+ 	.write = ath10k_write_peer_stats,
+-	.open = simple_open
++	.open = simple_open,
++	.owner = THIS_MODULE,
+ };
+ 
+ static ssize_t ath10k_debug_fw_checksums_read(struct file *file,
 -- 
 2.17.1
 
