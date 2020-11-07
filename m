@@ -1,8 +1,8 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 From: Taehee Yoo <ap420073@gmail.com>
-Subject: [PATCH net v2 05/21] ieee802154: set .owner to THIS_MODULE
-Date: Sat,  7 Nov 2020 17:21:36 +0000
-Message-Id: <20201107172152.828-6-ap420073@gmail.com>
+Subject: [PATCH net v2 06/21] i2400m: set .owner to THIS_MODULE
+Date: Sat,  7 Nov 2020 17:21:37 +0000
+Message-Id: <20201107172152.828-7-ap420073@gmail.com>
 In-Reply-To: <20201107172152.828-1-ap420073@gmail.com>
 References: <20201107172152.828-1-ap420073@gmail.com>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,30 +25,37 @@ If THIS_MODULE is not set, the module would be removed while debugfs is
 being used.
 It eventually makes kernel panic.
 
-Fixes: ded845a781a5 ("ieee802154: Add CA8210 IEEE 802.15.4 device driver")
+Fixes: c71228caf91e ("i2400m: debugfs controls")
 Signed-off-by: Taehee Yoo <ap420073@gmail.com>
 ---
 
 v1 -> v2:
  - Change headline
+ - Squash patches into per-driver/subsystem
 
- drivers/net/ieee802154/ca8210.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/net/wimax/i2400m/debugfs.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/net/ieee802154/ca8210.c b/drivers/net/ieee802154/ca8210.c
-index 4eb64709d44c..d7b68c1279e6 100644
---- a/drivers/net/ieee802154/ca8210.c
-+++ b/drivers/net/ieee802154/ca8210.c
-@@ -2672,7 +2672,8 @@ static const struct file_operations test_int_fops = {
- 	.open =           ca8210_test_int_open,
- 	.release =        NULL,
- 	.unlocked_ioctl = ca8210_test_int_ioctl,
--	.poll =           ca8210_test_int_poll
-+	.poll =           ca8210_test_int_poll,
-+	.owner =	  THIS_MODULE,
+diff --git a/drivers/net/wimax/i2400m/debugfs.c b/drivers/net/wimax/i2400m/debugfs.c
+index 1c640b41ea4c..144f8a7e98af 100644
+--- a/drivers/net/wimax/i2400m/debugfs.c
++++ b/drivers/net/wimax/i2400m/debugfs.c
+@@ -87,6 +87,7 @@ const struct file_operations i2400m_rx_stats_fops = {
+ 	.read =		i2400m_rx_stats_read,
+ 	.write =	i2400m_rx_stats_write,
+ 	.llseek =	default_llseek,
++	.owner =	THIS_MODULE,
  };
  
- /* Init/Deinit */
+ 
+@@ -140,6 +141,7 @@ const struct file_operations i2400m_tx_stats_fops = {
+ 	.read =		i2400m_tx_stats_read,
+ 	.write =	i2400m_tx_stats_write,
+ 	.llseek =	default_llseek,
++	.owner =	THIS_MODULE,
+ };
+ 
+ 
 -- 
 2.17.1
 
