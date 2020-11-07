@@ -1,8 +1,8 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 From: Taehee Yoo <ap420073@gmail.com>
-Subject: [PATCH net v2 07/21] wlcore: set .owner to THIS_MODULE
-Date: Sat,  7 Nov 2020 17:21:38 +0000
-Message-Id: <20201107172152.828-8-ap420073@gmail.com>
+Subject: [PATCH net v2 08/21] wl1251: set .owner to THIS_MODULE
+Date: Sat,  7 Nov 2020 17:21:39 +0000
+Message-Id: <20201107172152.828-9-ap420073@gmail.com>
 In-Reply-To: <20201107172152.828-1-ap420073@gmail.com>
 References: <20201107172152.828-1-ap420073@gmail.com>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,8 +25,8 @@ If THIS_MODULE is not set, the module would be removed while debugfs is
 being used.
 It eventually makes kernel panic.
 
-Fixes: f5fc0f86b02a ("wl1271: add wl1271 driver files")
-Fixes: bcca1bbdd412 ("wlcore: add debugfs macro to help print fw statistics arrays")
+Fixes: 2f01a1f58889 ("wl12xx: add driver")
+Fixes: b7339b1de0f7 ("wl1251: add tx queue status to debugfs")
 Signed-off-by: Taehee Yoo <ap420073@gmail.com>
 ---
 
@@ -34,13 +34,13 @@ v1 -> v2:
  - Change headline
  - Squash patches into per-driver/subsystem
 
- drivers/net/wireless/ti/wlcore/debugfs.h | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/net/wireless/ti/wl1251/debugfs.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/net/wireless/ti/wlcore/debugfs.h b/drivers/net/wireless/ti/wlcore/debugfs.h
-index b143293e694f..559c93543247 100644
---- a/drivers/net/wireless/ti/wlcore/debugfs.h
-+++ b/drivers/net/wireless/ti/wlcore/debugfs.h
+diff --git a/drivers/net/wireless/ti/wl1251/debugfs.c b/drivers/net/wireless/ti/wl1251/debugfs.c
+index d48746e640cc..0a26cee0f287 100644
+--- a/drivers/net/wireless/ti/wl1251/debugfs.c
++++ b/drivers/net/wireless/ti/wl1251/debugfs.c
 @@ -35,6 +35,7 @@ static const struct file_operations name## _ops = {			\
  	.read = name## _read,						\
  	.open = simple_open,						\
@@ -49,22 +49,30 @@ index b143293e694f..559c93543247 100644
  };
  
  #define DEBUGFS_ADD(name, parent)					\
-@@ -68,6 +69,7 @@ static const struct file_operations sub## _ ##name## _ops = {		\
+@@ -67,6 +68,7 @@ static const struct file_operations sub## _ ##name## _ops = {		\
  	.read = sub## _ ##name## _read,					\
  	.open = simple_open,						\
  	.llseek	= generic_file_llseek,					\
 +	.owner = THIS_MODULE,						\
  };
  
- #define DEBUGFS_FWSTATS_FILE_ARRAY(sub, name, len, struct_type)		\
-@@ -93,6 +95,7 @@ static const struct file_operations sub## _ ##name## _ops = {		\
- 	.read = sub## _ ##name## _read,					\
- 	.open = simple_open,						\
- 	.llseek	= generic_file_llseek,					\
-+	.owner = THIS_MODULE,						\
+ #define DEBUGFS_FWSTATS_ADD(sub, name)				\
+@@ -212,6 +214,7 @@ static const struct file_operations tx_queue_len_ops = {
+ 	.read = tx_queue_len_read,
+ 	.open = simple_open,
+ 	.llseek = generic_file_llseek,
++	.owner = THIS_MODULE,
  };
  
- #define DEBUGFS_FWSTATS_ADD(sub, name)					\
+ static ssize_t tx_queue_status_read(struct file *file, char __user *userbuf,
+@@ -234,6 +237,7 @@ static const struct file_operations tx_queue_status_ops = {
+ 	.read = tx_queue_status_read,
+ 	.open = simple_open,
+ 	.llseek = generic_file_llseek,
++	.owner = THIS_MODULE,
+ };
+ 
+ static void wl1251_debugfs_delete_files(struct wl1251 *wl)
 -- 
 2.17.1
 
