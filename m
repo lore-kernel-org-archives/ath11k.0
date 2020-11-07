@@ -1,8 +1,8 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 From: Taehee Yoo <ap420073@gmail.com>
-Subject: [PATCH net v2 17/21] brcmfmac: set .owner to THIS_MODULE
-Date: Sat,  7 Nov 2020 17:21:48 +0000
-Message-Id: <20201107172152.828-18-ap420073@gmail.com>
+Subject: [PATCH net v2 18/21] b43legacy: set .owner to THIS_MODULE
+Date: Sat,  7 Nov 2020 17:21:49 +0000
+Message-Id: <20201107172152.828-19-ap420073@gmail.com>
 In-Reply-To: <20201107172152.828-1-ap420073@gmail.com>
 References: <20201107172152.828-1-ap420073@gmail.com>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,28 +25,28 @@ If THIS_MODULE is not set, the module would be removed while debugfs is
 being used.
 It eventually makes kernel panic.
 
-Fixes: 2f8c8e62cd50 ("brcmfmac: add "reset" debugfs entry for testing reset")
+Fixes: 75388acd0cd8 ("[B43LEGACY]: add mac80211-based driver for legacy BCM43xx devices")
 Signed-off-by: Taehee Yoo <ap420073@gmail.com>
 ---
 
 v1 -> v2:
  - Change headline
 
- drivers/net/wireless/broadcom/brcm80211/brcmfmac/core.c | 1 +
+ drivers/net/wireless/broadcom/b43legacy/debugfs.c | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/core.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/core.c
-index 3dd28f5fef19..a80b28189c99 100644
---- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/core.c
-+++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/core.c
-@@ -1188,6 +1188,7 @@ static const struct file_operations bus_reset_fops = {
- 	.open	= simple_open,
- 	.llseek	= no_llseek,
- 	.write	= bus_reset_write,
-+	.owner = THIS_MODULE,
- };
- 
- static int brcmf_bus_started(struct brcmf_pub *drvr, struct cfg80211_ops *ops)
+diff --git a/drivers/net/wireless/broadcom/b43legacy/debugfs.c b/drivers/net/wireless/broadcom/b43legacy/debugfs.c
+index e7e4293c01f2..7c6e7cfeb822 100644
+--- a/drivers/net/wireless/broadcom/b43legacy/debugfs.c
++++ b/drivers/net/wireless/broadcom/b43legacy/debugfs.c
+@@ -318,6 +318,7 @@ static ssize_t b43legacy_debugfs_write(struct file *file,
+ 			.read	= b43legacy_debugfs_read,		\
+ 			.write	= b43legacy_debugfs_write,		\
+ 			.llseek = generic_file_llseek,			\
++			.owner = THIS_MODULE,				\
+ 		},						\
+ 		.file_struct_offset = offsetof(struct b43legacy_dfsentry, \
+ 					       file_##name),	\
 -- 
 2.17.1
 
