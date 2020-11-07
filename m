@@ -1,8 +1,8 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 From: Taehee Yoo <ap420073@gmail.com>
-Subject: [PATCH net v2 10/21] iwlegacy: set .owner to THIS_MODULE
-Date: Sat,  7 Nov 2020 17:21:41 +0000
-Message-Id: <20201107172152.828-11-ap420073@gmail.com>
+Subject: [PATCH net v2 11/21] rtlwifi: set .owner to THIS_MODULE
+Date: Sat,  7 Nov 2020 17:21:42 +0000
+Message-Id: <20201107172152.828-12-ap420073@gmail.com>
 In-Reply-To: <20201107172152.828-1-ap420073@gmail.com>
 References: <20201107172152.828-1-ap420073@gmail.com>
 List-Id: <ath11k.lists.infradead.org>
@@ -25,88 +25,28 @@ If THIS_MODULE is not set, the module would be removed while debugfs is
 being used.
 It eventually makes kernel panic.
 
-Fixes: be663ab67077 ("iwlwifi: split the drivers for agn and legacy devices 3945/4965")
-Fixes: 4bc85c1324aa ("Revert "iwlwifi: split the drivers for agn and legacy devices 3945/4965"")
+Fixes: 610247f46feb ("rtlwifi: Improve debugging by using debugfs")
 Signed-off-by: Taehee Yoo <ap420073@gmail.com>
 ---
 
 v1 -> v2:
  - Change headline
- - Squash patches into per-driver/subsystem
 
- drivers/net/wireless/intel/iwlegacy/3945-rs.c | 1 +
- drivers/net/wireless/intel/iwlegacy/4965-rs.c | 3 +++
- drivers/net/wireless/intel/iwlegacy/debug.c   | 3 +++
- 3 files changed, 7 insertions(+)
+ drivers/net/wireless/realtek/rtlwifi/debug.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/net/wireless/intel/iwlegacy/3945-rs.c b/drivers/net/wireless/intel/iwlegacy/3945-rs.c
-index b2478cbe558e..b86e8ddc6f76 100644
---- a/drivers/net/wireless/intel/iwlegacy/3945-rs.c
-+++ b/drivers/net/wireless/intel/iwlegacy/3945-rs.c
-@@ -836,6 +836,7 @@ static const struct file_operations rs_sta_dbgfs_stats_table_ops = {
- 	.read = il3945_sta_dbgfs_stats_table_read,
- 	.open = simple_open,
- 	.llseek = default_llseek,
+diff --git a/drivers/net/wireless/realtek/rtlwifi/debug.c b/drivers/net/wireless/realtek/rtlwifi/debug.c
+index 901cdfe3723c..c8ffd4ca9c09 100644
+--- a/drivers/net/wireless/realtek/rtlwifi/debug.c
++++ b/drivers/net/wireless/realtek/rtlwifi/debug.c
+@@ -69,6 +69,7 @@ static const struct file_operations file_ops_common = {
+ 	.read = seq_read,
+ 	.llseek = seq_lseek,
+ 	.release = single_release,
 +	.owner = THIS_MODULE,
  };
  
- static void
-diff --git a/drivers/net/wireless/intel/iwlegacy/4965-rs.c b/drivers/net/wireless/intel/iwlegacy/4965-rs.c
-index 9a491e5db75b..afe0b2121fc9 100644
---- a/drivers/net/wireless/intel/iwlegacy/4965-rs.c
-+++ b/drivers/net/wireless/intel/iwlegacy/4965-rs.c
-@@ -2669,6 +2669,7 @@ static const struct file_operations rs_sta_dbgfs_scale_table_ops = {
- 	.read = il4965_rs_sta_dbgfs_scale_table_read,
- 	.open = simple_open,
- 	.llseek = default_llseek,
-+	.owner = THIS_MODULE,
- };
- 
- static ssize_t
-@@ -2714,6 +2715,7 @@ static const struct file_operations rs_sta_dbgfs_stats_table_ops = {
- 	.read = il4965_rs_sta_dbgfs_stats_table_read,
- 	.open = simple_open,
- 	.llseek = default_llseek,
-+	.owner = THIS_MODULE,
- };
- 
- static ssize_t
-@@ -2742,6 +2744,7 @@ static const struct file_operations rs_sta_dbgfs_rate_scale_data_ops = {
- 	.read = il4965_rs_sta_dbgfs_rate_scale_data_read,
- 	.open = simple_open,
- 	.llseek = default_llseek,
-+	.owner = THIS_MODULE,
- };
- 
- static void
-diff --git a/drivers/net/wireless/intel/iwlegacy/debug.c b/drivers/net/wireless/intel/iwlegacy/debug.c
-index d998a3f1b056..67fae353038c 100644
---- a/drivers/net/wireless/intel/iwlegacy/debug.c
-+++ b/drivers/net/wireless/intel/iwlegacy/debug.c
-@@ -136,6 +136,7 @@ static const struct file_operations il_dbgfs_##name##_ops = {	\
- 	.read = il_dbgfs_##name##_read,				\
- 	.open = simple_open,					\
- 	.llseek = generic_file_llseek,				\
-+	.owner = THIS_MODULE,					\
- };
- 
- #define DEBUGFS_WRITE_FILE_OPS(name)				\
-@@ -144,6 +145,7 @@ static const struct file_operations il_dbgfs_##name##_ops = {	\
- 	.write = il_dbgfs_##name##_write,			\
- 	.open = simple_open,					\
- 	.llseek = generic_file_llseek,				\
-+	.owner = THIS_MODULE,					\
- };
- 
- #define DEBUGFS_READ_WRITE_FILE_OPS(name)			\
-@@ -154,6 +156,7 @@ static const struct file_operations il_dbgfs_##name##_ops = {	\
- 	.read = il_dbgfs_##name##_read,				\
- 	.open = simple_open,					\
- 	.llseek = generic_file_llseek,				\
-+	.owner = THIS_MODULE,					\
- };
- 
- static const char *
+ static int rtl_debug_get_mac_page(struct seq_file *m, void *v)
 -- 
 2.17.1
 
