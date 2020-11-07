@@ -1,16 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from z5.mailgun.us ([104.130.96.5])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kbJ7r-0007LD-QF
- for ath11k@lists.infradead.org; Sat, 07 Nov 2020 07:59:10 +0000
+ id 1kbJ8V-0007cz-7F
+ for ath11k@lists.infradead.org; Sat, 07 Nov 2020 07:59:50 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 3/3] ath11k: convert tasklets to use new tasklet_setup()
- API
+Subject: Re: [PATCH] ath11k: Remove unnecessary data sync to cpu on monitor
+ buffer
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <20201007103309.363737-4-allen.lkml@gmail.com>
-References: <20201007103309.363737-4-allen.lkml@gmail.com>
-Message-Id: <20201107075906.C3091C433FF@smtp.codeaurora.org>
-Date: Sat,  7 Nov 2020 07:59:06 +0000 (UTC)
+In-Reply-To: <1602744454-22969-1-git-send-email-vthiagar@codeaurora.org>
+References: <1602744454-22969-1-git-send-email-vthiagar@codeaurora.org>
+Message-Id: <20201107075934.75936C433F0@smtp.codeaurora.org>
+Date: Sat,  7 Nov 2020 07:59:34 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,26 +23,26 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Allen Pais <allen.lkml@gmail.com>
-Cc: ryder.lee@mediatek.com, netdev@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, matthias.bgg@gmail.com, linux-mediatek@lists.infradead.org, lorenzo.bianconi83@gmail.com, kuba@kernel.org, Romain Perier <romain.perier@gmail.com>, Allen Pais <apais@linux.microsoft.com>, davem@davemloft.net, nbd@nbd.name
+To: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-Allen Pais <allen.lkml@gmail.com> wrote:
+Vasanthakumar Thiagarajan <vthiagar@codeaurora.org> wrote:
 
-> In preparation for unconditionally passing the
-> struct tasklet_struct pointer to all tasklet
-> callbacks, switch to using the new tasklet_setup()
-> and from_tasklet() to pass the tasklet pointer explicitly.
+> Monitor ring Rx buffer is not really modified between dma map
+> and unmap. So remove the unnecssary data sync before dma unmap.
+> This does not fix any visible issue, found in code review.
 > 
-> Signed-off-by: Romain Perier <romain.perier@gmail.com>
-> Signed-off-by: Allen Pais <apais@linux.microsoft.com>
+> Compile tested only.
+> 
+> Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
 Patch applied to ath-next branch of ath.git, thanks.
 
-0f01dcb89b8b ath11k: convert tasklets to use new tasklet_setup() API
+bafdbd79aae4 ath11k: Remove unnecessary data sync to cpu on monitor buffer
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20201007103309.363737-4-allen.lkml@gmail.com/
+https://patchwork.kernel.org/project/linux-wireless/patch/1602744454-22969-1-git-send-email-vthiagar@codeaurora.org/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
