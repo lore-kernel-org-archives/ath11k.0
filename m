@@ -1,13 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-MIME-Version: 1.0
-References: <20201107172152.828-1-ap420073@gmail.com>
- <20201107110522.2a796f1d@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <20201107110522.2a796f1d@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-From: Taehee Yoo <ap420073@gmail.com>
-Date: Sun, 8 Nov 2020 04:52:55 +0900
-Message-ID: <CAMArcTXNMpjEnVA8sz82CTTnCofqEK+hUSSq27mvjqV6QCiAOQ@mail.gmail.com>
-Subject: Re: [PATCH net v2 00/21] net: avoid to remove module when its debugfs
- is being used
+Received: from z5.mailgun.us ([104.130.96.5])
+ by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1kc3ge-0007Vq-EB
+ for ath11k@lists.infradead.org; Mon, 09 Nov 2020 09:42:09 +0000
+From: P Praneesh <ppranees@codeaurora.org>
+Subject: [PATCH v3] ath11k: add processor_id based ring_selector logic
+Date: Mon,  9 Nov 2020 15:11:55 +0530
+Message-Id: <1604914915-12831-1-git-send-email-ppranees@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -16,60 +15,76 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: alex.aring@gmail.com, emmanuel.grumbach@intel.com, chi-hsien.lin@infineon.com, amitkarwar@gmail.com, ganapathi.bhat@nxp.com, Luciano Coelho <luciano.coelho@intel.com>, ath10k@lists.infradead.org, wcn36xx@lists.infradead.org, stefan@datenfreihafen.org, merez@codeaurora.org, stf_xl@wp.pl, pkshih@realtek.com, Nicolai Stange <nstange@suse.de>, chung-hsien.hsu@infineon.com, wright.feng@infineon.com, inaky.perez-gonzalez@intel.com, derosier@gmail.com, David Laight <David.Laight@aculab.com>, b43-dev@lists.infradead.org, ath11k@lists.infradead.org, Arend Van Spriel <arend.vanspriel@broadcom.com>, johan.hedberg@gmail.com, michael.hennerich@analog.com, marcel@holtmann.org, hante.meuleman@broadcom.com, linux-wimax@intel.com, jukka.rissanen@linux.intel.com, Kalle Valo <kvalo@codeaurora.org>, franky.lin@broadcom.com, huxinming820@gmail.com, Netdev <netdev@vger.kernel.org>, linux-wireless@vger.kernel.org, linux-bluetooth@vger.kernel.org, wil6210@qti.qualcomm.com, Johannes Berg <johannes@sipsolutions.net>, Larry Finger <Larry.Finger@lwfinger.net>, linux-wpan@vger.kernel.org, David Miller <davem@davemloft.net>, pizza@shaftnet.org
+To: ath11k@lists.infradead.org
+Cc: P Praneesh <ppranees@codeaurora.org>, linux-wireless@vger.kernel.org
 
-On Sun, 8 Nov 2020 at 04:05, Jakub Kicinski <kuba@kernel.org> wrote:
->
+Current ring selector logic follows round-robin scheduling,
+when a process switch from one processor to another each time,
+the data in the cache would have to be invalidated
+and re-loaded from RAM leads to poor cache utilization.
 
-Hi Jakub,
-Thank you for the review!
+Therefore smp_processor_id() attempt to keep processes
+on the same processor via processor affinity which improves
+cache utilization. Also, ring selection could be chosen round
+robin when the processor_id based ring selection does not
+have the resources.
 
-> On Sat,  7 Nov 2020 17:21:31 +0000 Taehee Yoo wrote:
-> > When debugfs file is opened, its module should not be removed until
-> > it's closed.
-> > Because debugfs internally uses the module's data.
-> > So, it could access freed memory.
-> >
-> > In order to avoid panic, it just sets .owner to THIS_MODULE.
-> > So that all modules will be held when its debugfs file is opened.
->
-> Hm, looks like some of the patches need to be revised because
-> .owner is already set in the ops, and a warning gets generated.
+Tested-on : IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00874-QCAHKSWPL_SILICONZ-1
 
-Thanks, I found my mistake via patchwork.
-I will fix this problem.
+Signed-off-by: P Praneesh <ppranees@codeaurora.org>
+---
+ drivers/net/wireless/ath/ath11k/core.h  | 3 ---
+ drivers/net/wireless/ath/ath11k/dp_tx.c | 8 ++++----
+ 2 files changed, 4 insertions(+), 7 deletions(-)
+---
+v3: corrected commit log.
+v2: corrected tested tags.
+---
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index 1cd9ef3..c2a4a7d 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -714,9 +714,6 @@ struct ath11k_base {
+ 	} stats;
+ 	u32 pktlog_defs_checksum;
+ 
+-	/* Round robbin based TCL ring selector */
+-	atomic_t tcl_ring_selector;
+-
+ 	struct ath11k_dbring_cap *db_caps;
+ 	u32 num_db_cap;
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
+index a9632b7..897c368 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_tx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
+@@ -99,14 +99,14 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
+ 
+ 	pool_id = skb_get_queue_mapping(skb) & (ATH11K_HW_MAX_QUEUES - 1);
+ 
+-	/* Let the default ring selection be based on a round robin
+-	 * fashion where one of the 3 tcl rings are selected based on
+-	 * the tcl_ring_selector counter. In case that ring
++	/* Let the default ring selection be based on current processor
++	 * number, where one of the 3 tcl rings are selected based on
++	 * the smp_processor_id(). In case that ring
+ 	 * is full/busy, we resort to other available rings.
+ 	 * If all rings are full, we drop the packet.
+ 	 * //TODO Add throttling logic when all rings are full
+ 	 */
+-	ring_selector = atomic_inc_return(&ab->tcl_ring_selector);
++	ring_selector = smp_processor_id();
+ 
+ tcl_ring_sel:
+ 	tcl_ring_retry = false;
+-- 
+2.7.4
 
->
-> Also it'd be good to mention why Johannes's approach was abandoned.
-
-I'm sorry about skipping the explanation of the situation,
-Johannes sent RFC[1], which fixes this problem in the debugfs core logic.
-I tested it and it actually avoids this problem well.
-And I think there would be more discussion.
-So, I thought this series' approach is reasonable right now.
-I think setting .owner to THIS_MODULE is a common behavior and it
-doesn't hurt our logic even if Johannes's approach is merged.
-I'm expecting that both approaches of this series and Johannes are
-doing separately.
-
-[1] https://www.spinics.net/lists/linux-wireless/msg204171.html
-
->
-> When you repost please separate out all the patches for
-> drivers/net/wireless/ and send that to Kalle's wireless drivers tree.
-> Patch 1 needs to be split in two. Patches 2 and 3 would go via Johannes.
-> The wimax patch needs to go to staging (wimax code has been moved).
-> The remaining patches can be posted individually, not as a series.
-
-Okay, I will do this.
-
-Thanks a lot!
-Taehee Yoo
 
 -- 
 ath11k mailing list
