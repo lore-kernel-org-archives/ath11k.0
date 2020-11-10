@@ -1,12 +1,19 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Message-ID: <29adbaa7a7f200589e56566069270c857fcba015.camel@sipsolutions.net>
-Subject: Re: [PATCH net v2 00/21] net: avoid to remove module when its
- debugfs is being used
-From: Johannes Berg <johannes@sipsolutions.net>
-Date: Tue, 10 Nov 2020 09:32:49 +0100
-In-Reply-To: <20201107110522.2a796f1d@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-References: <20201107172152.828-1-ap420073@gmail.com>
- <20201107110522.2a796f1d@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+Received: from m42-4.mailgun.net ([69.72.42.4])
+ by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1kcP6H-00061U-Bz
+ for ath11k@lists.infradead.org; Tue, 10 Nov 2020 08:34:03 +0000
+From: Kalle Valo <kvalo@codeaurora.org>
+Subject: Re: pci_alloc_irq_vectors fails ENOSPC for XPS 13 9310
+References: <20201103160838.GA246433@bjorn-Precision-5520>
+ <874km61732.fsf@nanos.tec.linutronix.de>
+ <fa26ac8b-ed48-7ea3-c21b-b133532716b8@posteo.de>
+ <87mtzxkus5.fsf@nanos.tec.linutronix.de>
+ <87wnz0hr9k.fsf@codeaurora.org>
+Date: Tue, 10 Nov 2020 10:33:52 +0200
+In-Reply-To: <87wnz0hr9k.fsf@codeaurora.org> (Kalle Valo's message of "Thu, 05
+ Nov 2020 15:23:03 +0200")
+Message-ID: <87ft5hehlb.fsf@codeaurora.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -20,41 +27,55 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Jakub Kicinski <kuba@kernel.org>, Taehee Yoo <ap420073@gmail.com>
-Cc: alex.aring@gmail.com, emmanuel.grumbach@intel.com, chi-hsien.lin@infineon.com, amitkarwar@gmail.com, ganapathi.bhat@nxp.com, luciano.coelho@intel.com, ath10k@lists.infradead.org, wcn36xx@lists.infradead.org, stefan@datenfreihafen.org, merez@codeaurora.org, stf_xl@wp.pl, pkshih@realtek.com, nstange@suse.de, chung-hsien.hsu@infineon.com, wright.feng@infineon.com, inaky.perez-gonzalez@intel.com, derosier@gmail.com, David.Laight@aculab.com, b43-dev@lists.infradead.org, ath11k@lists.infradead.org, arend.vanspriel@broadcom.com, johan.hedberg@gmail.com, michael.hennerich@analog.com, marcel@holtmann.org, hante.meuleman@broadcom.com, linux-wimax@intel.com, kvalo@codeaurora.org, franky.lin@broadcom.com, huxinming820@gmail.com, netdev@vger.kernel.org, linux-wireless@vger.kernel.org, linux-bluetooth@vger.kernel.org, wil6210@qti.qualcomm.com, jukka.rissanen@linux.intel.com, Larry.Finger@lwfinger.net, linux-wpan@vger.kernel.org, davem@davemloft.net, pizza@shaftnet.org
+To: Thomas Gleixner <tglx@linutronix.de>
+Cc: Govind Singh <govinds@codeaurora.org>, linux-pci@vger.kernel.org, Stefani Seibold <stefani@seibold.net>, linux-wireless@vger.kernel.org, Devin Bayer <dev@doubly.so>, ath11k@lists.infradead.org, Thomas Krause <thomaskrause@posteo.de>, Bjorn Helgaas <helgaas@kernel.org>, Christoph Hellwig <hch@lst.de>, David Woodhouse <dwmw@amazon.co.uk>
 
-On Sat, 2020-11-07 at 11:05 -0800, Jakub Kicinski wrote:
-> On Sat,  7 Nov 2020 17:21:31 +0000 Taehee Yoo wrote:
-> > When debugfs file is opened, its module should not be removed until
-> > it's closed.
-> > Because debugfs internally uses the module's data.
-> > So, it could access freed memory.
-> > 
-> > In order to avoid panic, it just sets .owner to THIS_MODULE.
-> > So that all modules will be held when its debugfs file is opened.
-> 
-> Hm, looks like some of the patches need to be revised because
-> .owner is already set in the ops, and a warning gets generated.
-> 
-> Also it'd be good to mention why Johannes's approach was abandoned.
+Kalle Valo <kvalo@codeaurora.org> writes:
 
-Well, I had two.
+> Thomas Gleixner <tglx@linutronix.de> writes:
+>
+>> On Wed, Nov 04 2020 at 14:04, Thomas Krause wrote:
+>>> config) but CONFIG_INTEL_IOMMU_DEFAULT_ON needed to be set manually. I 
+>>> hope this helps, if there is more I can do to debug it on my side I'm 
+>>> happy to do so.
+>>
+>>> [ 0.050130] DMAR: [Firmware Bug]: Your BIOS is broken; DMAR
+>>> reported at address 0!
+>>>                BIOS vendor: Dell Inc.; Ver: 1.1.1; Product Version:
+>>
+>>> [    0.103693] DMAR: Host address width 39
+>>> [    0.103693] DMAR: DRHD base: 0x000000fed90000 flags: 0x0
+>>> [ 0.103697] DMAR: dmar0: reg_base_addr fed90000 ver 4:0 cap
+>>> 1c0000c40660462 ecap 69e2ff0505e
+>>> [    0.103698] DMAR: DRHD base: 0x000000fed84000 flags: 0x0
+>>> [ 0.103701] DMAR: dmar1: reg_base_addr fed84000 ver 1:0 cap
+>>> d2008c40660462 ecap f050da
+>>> [    0.103702] DMAR: DRHD base: 0x000000fed86000 flags: 0x0
+>>> [ 0.103706] DMAR: dmar2: reg_base_addr fed86000 ver 1:0 cap
+>>> d2008c40660462 ecap f050da
+>>> [    0.103707] DMAR: DRHD base: 0x00000000000000 flags: 0x1
+>>> [    0.103707] DMAR: Parse DMAR table failure.
+>>
+>> which disables interrupt remapping and therefore the driver gets only
+>> one MSI which makes it unhappy.
+>>
+>> Not that I'm surprised, it's Dell.... Can you check whether they have a
+>> BIOS update for that box?
+>
+> I was told that on Dell XPS 15 (with a working QCA6390 setup) there's a
+> separate "Virtualisation" setting in BIOS. See if you have that and try
+> enabling it.
 
-One was awful, and worked in all cases.
+I was informed about another setting to test: try disabling "Enable
+Secure Boot" in the BIOS. I don't know yet why it would help, but that's
+what few people have recommended.
 
-The other was less awful, and didn't work in all cases.
+Please let me know how it goes.
 
-I think both gave Al Viro hives ;-)
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-> Patch 1 needs to be split in two. Patches 2 and 3 would go via Johannes.
-
-FWIW, I'm happy for you to take patches 2 and 3 as well, but I guess if
-patch 1 needs to be split there's a resend coming anyway, so then I'll
-be happy to take the patches 2/3 from a separate set.
-
-johannes
-
-
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
