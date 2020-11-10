@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from z5.mailgun.us ([104.130.96.5])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kcYAv-0000xB-8e
- for ath11k@lists.infradead.org; Tue, 10 Nov 2020 18:15:31 +0000
+ id 1kcYNj-0002Zt-0q
+ for ath11k@lists.infradead.org; Tue, 10 Nov 2020 18:28:41 +0000
 MIME-Version: 1.0
-Subject: Re: [PATCH 2/2] ath11k: Handle errors if peer creation fails
+Subject: Re: [PATCH 1/3] ath11k: vdev delete synchronization with firmware
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <20201004100218.311653-1-alex.dewar90@gmail.com>
-References: <20201004100218.311653-1-alex.dewar90@gmail.com>
-Message-Id: <20201110181500.00772C433C8@smtp.codeaurora.org>
-Date: Tue, 10 Nov 2020 18:14:59 +0000 (UTC)
+In-Reply-To: <1590067829-26109-2-git-send-email-mkenna@codeaurora.org>
+References: <1590067829-26109-2-git-send-email-mkenna@codeaurora.org>
+Message-Id: <20201110182825.11500C433F0@smtp.codeaurora.org>
+Date: Tue, 10 Nov 2020 18:28:25 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,27 +22,39 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Alex Dewar <alex.dewar90@gmail.com>
-Cc: "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org, Carl Huang <cjhuang@codeaurora.org>, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>, ath11k@lists.infradead.org
+To: Maharaja Kennadyrajan <mkenna@codeaurora.org>
+Cc: Ritesh Singh <ritesi@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-Alex Dewar <alex.dewar90@gmail.com> wrote:
+Maharaja Kennadyrajan <mkenna@codeaurora.org> wrote:
 
-> ath11k_peer_create() is called without its return value being checked,
-> meaning errors will be unhandled. Add missing check and, as the mutex is
-> unconditionally unlocked on leaving this function, simplify the exit
-> path.
+> From: Ritesh Singh <ritesi@codeaurora.org>
 > 
-> Addresses-Coverity-ID: 1497531 ("Code maintainability issues")
-> Fixes: 701e48a43e15 ("ath11k: add packet log support for QCA6390")
-> Signed-off-by: Alex Dewar <alex.dewar90@gmail.com>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+> When the interface is added immediately after removing the
+> interface, vdev deletion in firmware might not have been
+> completed.
+> 
+> Hence, add vdev_delete_resp_event and wait_event_timeout
+> to synchronize with firmware.
+> 
+> Tested-on: IPQ8074 WLAN.HK.2.4.0.1-00009-QCAHKSWPL_SILICONZ-1
+> 
+> Signed-off-by: Ritesh Singh <ritesi@codeaurora.org>
+> Signed-off-by: Maharaja Kennadyrajan <mkenna@codeaurora.org>
 
-Patch applied to ath-next branch of ath.git, thanks.
+Does not apply anymore, please rebase.
 
-c134d1f8c436 ath11k: Handle errors if peer creation fails
+error: patch failed: drivers/net/wireless/ath/ath11k/wmi.c:97
+error: drivers/net/wireless/ath/ath11k/wmi.c: patch does not apply
+stg import: Diff does not apply cleanly
+
+3 patches set to Changes Requested.
+
+11562969 [1/3] ath11k: vdev delete synchronization with firmware
+11562967 [2/3] ath11k: peer delete synchronization with firmware
+11562971 [3/3] ath11k: remove "ath11k_mac_get_ar_vdev_stop_status" references
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20201004100218.311653-1-alex.dewar90@gmail.com/
+https://patchwork.kernel.org/project/linux-wireless/patch/1590067829-26109-2-git-send-email-mkenna@codeaurora.org/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
