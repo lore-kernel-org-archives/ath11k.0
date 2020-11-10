@@ -1,15 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail-ed1-x52e.google.com ([2a00:1450:4864:20::52e])
+Received: from z5.mailgun.us ([104.130.96.5])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kcVWE-0004HO-9b
- for ath11k@lists.infradead.org; Tue, 10 Nov 2020 15:25:15 +0000
-Received: by mail-ed1-x52e.google.com with SMTP id o20so13159724eds.3
- for <ath11k@lists.infradead.org>; Tue, 10 Nov 2020 07:25:13 -0800 (PST)
+ id 1kcYAv-0000xB-8e
+ for ath11k@lists.infradead.org; Tue, 10 Nov 2020 18:15:31 +0000
 MIME-Version: 1.0
-From: wi nk <wink@technolu.st>
-Date: Tue, 10 Nov 2020 16:25:01 +0100
-Message-ID: <CAHUdJJU8oyJ1tUoM1wsBfwkv0oADywGB+ndwX_NmXRjy=q5uLQ@mail.gmail.com>
-Subject: xps 13 9310 and MSI vector allocation
+Subject: Re: [PATCH 2/2] ath11k: Handle errors if peer creation fails
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <20201004100218.311653-1-alex.dewar90@gmail.com>
+References: <20201004100218.311653-1-alex.dewar90@gmail.com>
+Message-Id: <20201110181500.00772C433C8@smtp.codeaurora.org>
+Date: Tue, 10 Nov 2020 18:14:59 +0000 (UTC)
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,34 +22,30 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
+To: Alex Dewar <alex.dewar90@gmail.com>
+Cc: "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org, Carl Huang <cjhuang@codeaurora.org>, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>, ath11k@lists.infradead.org
 
-Hello all!
+Alex Dewar <alex.dewar90@gmail.com> wrote:
 
-  I've been running around the internet trying to sort out my wifi
-adapter and I've landed here.  Similar to other reports I have an XPS
-13 that is failing to load the ath11k driver.  The other thread had a
-few suggestions of kernel configuration options to try, and I've
-attempted all of them but I'm still stuck with the driver
-initialization failure:
+> ath11k_peer_create() is called without its return value being checked,
+> meaning errors will be unhandled. Add missing check and, as the mutex is
+> unconditionally unlocked on leaving this function, simplify the exit
+> path.
+> 
+> Addresses-Coverity-ID: 1497531 ("Code maintainability issues")
+> Fixes: 701e48a43e15 ("ath11k: add packet log support for QCA6390")
+> Signed-off-by: Alex Dewar <alex.dewar90@gmail.com>
+> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-[    9.991558] ath11k_pci 0000:55:00.0: WARNING: ath11k PCI support is
-experimental!
-[    9.991984] ath11k_pci 0000:55:00.0: BAR 0: assigned [mem
-0x8e300000-0x8e3fffff 64bit]
-[    9.992003] ath11k_pci 0000:55:00.0: enabling device (0000 -> 0002)
-[    9.992041] ath11k_pci 0000:55:00.0: failed to get 32 MSI vectors,
-only -28 available
-[    9.992043] ath11k_pci 0000:55:00.0: failed to enable msi: -28
-[    9.992056] ath11k_pci: probe of 0000:55:00.0 failed with error -28
+Patch applied to ath-next branch of ath.git, thanks.
 
+c134d1f8c436 ath11k: Handle errors if peer creation fails
 
-I've confirmed I have the VT/VT-d settings enabled in the BIOS.  The
-kernel has the irq/iommu settings from the other thread enabled.  Is
-there anything else to be done to try to make this work?
+-- 
+https://patchwork.kernel.org/project/linux-wireless/patch/20201004100218.311653-1-alex.dewar90@gmail.com/
 
-Thanks!
--Lee
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
 -- 
 ath11k mailing list
