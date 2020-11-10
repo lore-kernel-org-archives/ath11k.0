@@ -1,16 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from z5.mailgun.us ([104.130.96.5])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kcCDT-0007lC-Nm
- for ath11k@lists.infradead.org; Mon, 09 Nov 2020 18:48:36 +0000
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: pci_alloc_irq_vectors fails ENOSPC for XPS 13 9310
-References: <20201103160838.GA246433@bjorn-Precision-5520>
-Date: Mon, 09 Nov 2020 20:48:28 +0200
-In-Reply-To: <20201103160838.GA246433@bjorn-Precision-5520> (Bjorn Helgaas's
- message of "Tue, 3 Nov 2020 10:08:38 -0600")
-Message-ID: <87wnyue58j.fsf@codeaurora.org>
+ id 1kcLkS-0001mE-Q4
+ for ath11k@lists.infradead.org; Tue, 10 Nov 2020 04:59:18 +0000
 MIME-Version: 1.0
+Date: Tue, 10 Nov 2020 10:29:12 +0530
+From: Maharaja Kennadyrajan <mkenna@codeaurora.org>
+Subject: Re: [PATCH] ath11k: Fix the rx_filter flag setting for peer rssi stats
+In-Reply-To: <1604408857-5912-1-git-send-email-mkenna@codeaurora.org>
+References: <1604408857-5912-1-git-send-email-mkenna@codeaurora.org>
+Message-ID: <4d2ad5a7a45c1d8c2550ebdbf634d688@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -19,41 +18,49 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Govind Singh <govinds@codeaurora.org>, linux-pci@vger.kernel.org, linux-wireless@vger.kernel.org, Devin Bayer <dev@doubly.so>, ath11k@lists.infradead.org, Thomas Krause <thomaskrause@posteo.de>, Thomas Gleixner <tglx@linutronix.de>, Christoph Hellwig <hch@lst.de>
+To: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-Bjorn Helgaas <helgaas@kernel.org> writes:
+On 2020-11-03 18:37, Maharaja Kennadyrajan wrote:
+> Set the rx_filter in ath11k_mac_config_mon_status_default(),
+> only when the rx_filter value exists in ath11k_debug_rx_filter().
+> 
+> Without this change, rx_filter gets set to 0 and peer rssi stats
+> aren't updating properly from firmware.
+> 
+> Tested-on: IPQ8074 WLAN.HK.2.1.0.1-01230-QCAHKSWPL_SILICONZ-4
+> 
+> Signed-off-by: Maharaja Kennadyrajan <mkenna@codeaurora.org>
+> ---
+>  drivers/net/wireless/ath/ath11k/mac.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/net/wireless/ath/ath11k/mac.c
+> b/drivers/net/wireless/ath/ath11k/mac.c
+> index 7f8dd47..c2d013a 100644
+> --- a/drivers/net/wireless/ath/ath11k/mac.c
+> +++ b/drivers/net/wireless/ath/ath11k/mac.c
+> @@ -4094,7 +4094,8 @@ static int
+> ath11k_mac_config_mon_status_default(struct ath11k *ar, bool enable)
+> 
+>  	if (enable) {
+>  		tlv_filter = ath11k_mac_mon_status_filter_default;
+> -		tlv_filter.rx_filter = ath11k_debugfs_rx_filter(ar);
+> +		if (ath11k_debug_rx_filter(ar))
+> +			tlv_filter.rx_filter = ath11k_debug_rx_filter(ar);
+>  	}
+> 
+>  	for (i = 0; i < ab->hw_params.num_rxmda_per_pdev; i++) {
 
->> > Tangent: have you considered getting this list archived on
->> > https://lore.kernel.org/lists.html?
->> 
->> Good point, actually I have not. I'll add both ath10k and ath11k lists
->> to lore. It's even more important now that lists.infradead.org had a
->> hard drive crash and lost years of archives.
->
-> Or you could just add linux-wireless, e.g.,
->
->   L:      ath11k@lists.infradead.org
->   L:      linux-wireless@vger.kernel.org
->
-> or even consider moving from ath10k and ath11k to
-> linux-wireless@vger.kernel.org.  I think there's some value in
-> consolidating low-volume lists.  It looks like ath11k had < 90
-> messages for all of October.
+[Maha]: Hi all, please drop this patch as this patch needs a comment to 
+be addressed.
+I will send v2 patch.
 
-The background here is that linux-wireless is quite high volume list and
-not everyone have time to follow that, so having specific ath10k and
-ath11k lists make it easier for those people. So I'm hesitant to
-shutdown driver lists for that reason.
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+Regards,
+Maha
 
 -- 
 ath11k mailing list
