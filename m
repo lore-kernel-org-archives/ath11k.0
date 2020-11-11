@@ -1,26 +1,21 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail-ej1-x643.google.com ([2a00:1450:4864:20::643])
+Received: from mail-ed1-x52f.google.com ([2a00:1450:4864:20::52f])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kcwU1-0003J5-Jf
- for ath11k@lists.infradead.org; Wed, 11 Nov 2020 20:12:46 +0000
-Received: by mail-ej1-x643.google.com with SMTP id dk16so4449658ejb.12
- for <ath11k@lists.infradead.org>; Wed, 11 Nov 2020 12:12:45 -0800 (PST)
+ id 1kcwvu-0006y9-AX
+ for ath11k@lists.infradead.org; Wed, 11 Nov 2020 20:41:36 +0000
+Received: by mail-ed1-x52f.google.com with SMTP id t11so3691108edj.13
+ for <ath11k@lists.infradead.org>; Wed, 11 Nov 2020 12:41:32 -0800 (PST)
+Subject: Re: Regression: QCA6390 fails with "mm/page_alloc: place pages to
+ tail in __free_pages_core()"
+References: <d6fb1e30-0d19-9af3-337b-69ff11c2fc6c@suse.cz>
+ <8ACA82DB-D2FE-4599-8A01-D42218FDE1E5@redhat.com>
+ <87eekz4s04.fsf@codeaurora.org>
+From: Pavel Procopiuc <pavel.procopiuc@gmail.com>
+Message-ID: <9d307c40-5ea1-8938-819d-f1742cb99945@gmail.com>
+Date: Wed, 11 Nov 2020 21:41:29 +0100
 MIME-Version: 1.0
-References: <20201103160838.GA246433@bjorn-Precision-5520>
- <874km61732.fsf@nanos.tec.linutronix.de>
- <fa26ac8b-ed48-7ea3-c21b-b133532716b8@posteo.de>
- <87mtzxkus5.fsf@nanos.tec.linutronix.de>
- <87wnz0hr9k.fsf@codeaurora.org> <87ft5hehlb.fsf@codeaurora.org>
- <6b60c8f1-ec37-d601-92c2-97a485b73431@posteo.de>
- <87v9ec9rk3.fsf@codeaurora.org> <87imab4slq.fsf@codeaurora.org>
- <CAHUdJJVfrBGHcT1Sjmqn=HK4=ptk3xKmAOLrF8Rd=fONUne-0A@mail.gmail.com>
- <CAHUdJJVVj3y-mHxAyUx=P51hG=NspuHe=cOWWRxEjYF0nVquyw@mail.gmail.com>
- <87a6vn4r02.fsf@codeaurora.org>
-In-Reply-To: <87a6vn4r02.fsf@codeaurora.org>
-From: wi nk <wink@technolu.st>
-Date: Wed, 11 Nov 2020 21:12:33 +0100
-Message-ID: <CAHUdJJUh2UtB07xp6fKMHaim1G+nZOLqMvpLyO=U7BMhVCD-Gw@mail.gmail.com>
-Subject: Re: pci_alloc_irq_vectors fails ENOSPC for XPS 13 9310
+In-Reply-To: <87eekz4s04.fsf@codeaurora.org>
+Content-Language: en-US
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -29,128 +24,206 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: Govind Singh <govinds@codeaurora.org>, linux-pci@vger.kernel.org, Stefani Seibold <stefani@seibold.net>, linux-wireless@vger.kernel.org, Devin Bayer <dev@doubly.so>, Christoph Hellwig <hch@lst.de>, Thomas Krause <thomaskrause@posteo.de>, Bjorn Helgaas <helgaas@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, ath11k@lists.infradead.org
+To: Kalle Valo <kvalo@codeaurora.org>, David Hildenbrand <david@redhat.com>
+Cc: linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, linux-mm@kvack.org, akpm@linux-foundation.org, ath11k@lists.infradead.org, Vlastimil Babka <vbabka@suse.cz>
 
-On Wed, Nov 11, 2020 at 8:45 PM Kalle Valo <kvalo@codeaurora.org> wrote:
->
-> (please don't top post, makes it harder to read emails)
->
-> wi nk <wink@technolu.st> writes:
->
-> > Ok with 7fef431be9c9 reverted, it doesn't seem to change the initialization any:
-> >
-> > [    7.961867] ath11k_pci 0000:55:00.0: WARNING: ath11k PCI support is
-> > experimental!
-> > [    7.961913] ath11k_pci 0000:55:00.0: BAR 0: assigned [mem
-> > 0x8e300000-0x8e3fffff 64bit]
-> > [    7.961930] ath11k_pci 0000:55:00.0: enabling device (0000 -> 0002)
-> > [    7.962009] ath11k_pci 0000:55:00.0: MSI vectors: 1
-> > [    8.461553] ath11k_pci 0000:55:00.0: Respond mem req failed,
-> > result: 1, err: 48
-> > [    8.461556] ath11k_pci 0000:55:00.0: qmi failed to respond fw mem req:-22
->
-> I also see this -22 error (see my logs in [1]), even when the firmware
-> reboots normally. Do you see anything after these messages?
->
-> The problem which reverting 7fef431be9c9 helps has these errors:
->
+Op 11.11.2020 om 20:23 schreef Kalle Valo:
+> Pavel, can you test with that patch on v5.10-rc2 and provide the ath11k
+> log messages? Preferably both before and after reverting commit
+> 7fef431be9c9. Do note that I'm not expecting the debug patch to fix
+> anything, in your case it's just for providing more debug info.
+> 
+> With vt-d disabled on v5.10-rc2 before the revert I see:
+> 
+> ath11k_pci 0000:06:00.0: WARNING: ath11k PCI support is experimental!
+> ath11k_pci 0000:06:00.0: BAR 0: assigned [mem 0xdb000000-0xdbffffff 64bit]
+> ath11k_pci 0000:06:00.0: enabling device (0000 -> 0002)
+> ath11k_pci 0000:06:00.0: MSI vectors: 1
+> NET: Registered protocol family 42
+> mhi 0000:06:00.0: Requested to power ON
+> mhi 0000:06:00.0: Power on setup success
+> ath11k_pci 0000:06:00.0: Respond mem req failed, result: 1, err: 0
+> ath11k_pci 0000:06:00.0: qmi failed to respond fw mem req:-22
+> ath11k_pci 0000:06:00.0: req mem_seg[0] 0x1580000 524288 1
+> ath11k_pci 0000:06:00.0: req mem_seg[1] 0x1600000 524288 1
+> ath11k_pci 0000:06:00.0: req mem_seg[2] 0x1680000 524288 1
+> ath11k_pci 0000:06:00.0: req mem_seg[3] 0x1700000 294912 1
+> ath11k_pci 0000:06:00.0: req mem_seg[4] 0x1780000 524288 1
+> ath11k_pci 0000:06:00.0: req mem_seg[5] 0x1800000 524288 1
+> ath11k_pci 0000:06:00.0: req mem_seg[6] 0x1880000 458752 1
+> ath11k_pci 0000:06:00.0: req mem_seg[7] 0x1520000 131072 1
+> ath11k_pci 0000:06:00.0: req mem_seg[8] 0x1900000 524288 4
+> ath11k_pci 0000:06:00.0: req mem_seg[9] 0x1980000 360448 4
+> ath11k_pci 0000:06:00.0: req mem_seg[10] 0x1540000 16384 1
 > ath11k_pci 0000:06:00.0: qmi failed memory request, err = -110
 > ath11k_pci 0000:06:00.0: qmi failed to respond fw mem req:-110
->
-> [1] http://lists.infradead.org/pipermail/ath11k/2020-November/000641.html
->
-> > and just for thoroughness, here are my firmware file checksums (sha256):
-> >
-> > 9cc48d1dce819ead4112c6a8051c51e4d75e2b11f99ba9d8738cf8108967b70e  amss.bin
-> > 5081930c3b207f8ed82ff250f9b90fb77e87b2a92c3cf80ad020a58dea0bc5b7  board.bin
-> > 596482f780d21645f72a48acd9aed6c6fc8cf2d039ac31552a19800674d253cc  m3.bin
->
-> But these do not look same. I have:
->
-> a101dc90f8e876f39383b60c9da64ec4  /lib/firmware/ath11k/QCA6390/hw2.0/amss.bin
-> 4c0781f659d2b7d6bef10a2e3d457728  /lib/firmware/ath11k/QCA6390/hw2.0/board-2.bin
-> d4c912a3501a3694a3f460d13de06d28  /lib/firmware/ath11k/QCA6390/hw2.0/m3.bin
->
-> Download them like this:
->
-> wget https://github.com/kvalo/ath11k-firmware/raw/master/QCA6390/hw2.0/1.0.1/WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1/amss.bin
->
-> wget https://github.com/kvalo/ath11k-firmware/raw/master/QCA6390/hw2.0/1.0.1/WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1/m3.bin
->
-> wget https://github.com/kvalo/ath11k-firmware/raw/master/QCA6390/hw2.0/board-2.bin
->
-> --
-> https://patchwork.kernel.org/project/linux-wireless/list/
->
-> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+> 
+> With vt-d disabled on v5.10-rc2 and reverting commit 7fef431be9c9 I see:
+> 
+> ath11k_pci 0000:06:00.0: WARNING: ath11k PCI support is experimental!
+> ath11k_pci 0000:06:00.0: BAR 0: assigned [mem 0xdb000000-0xdbffffff 64bit]
+> ath11k_pci 0000:06:00.0: MSI vectors: 1
+> mhi 0000:06:00.0: Requested to power ON
+> mhi 0000:06:00.0: Power on setup success
+> ath11k_pci 0000:06:00.0: Respond mem req failed, result: 1, err: 0
+> ath11k_pci 0000:06:00.0: qmi failed to respond fw mem req:-22
+> ath11k_pci 0000:06:00.0: req mem_seg[0] 0x76300000 524288 1
+> ath11k_pci 0000:06:00.0: req mem_seg[1] 0x76380000 524288 1
+> ath11k_pci 0000:06:00.0: req mem_seg[2] 0x76a00000 524288 1
+> ath11k_pci 0000:06:00.0: req mem_seg[3] 0x76a80000 294912 1
+> ath11k_pci 0000:06:00.0: req mem_seg[4] 0x76b00000 524288 1
+> ath11k_pci 0000:06:00.0: req mem_seg[5] 0x76b80000 524288 1
+> ath11k_pci 0000:06:00.0: req mem_seg[6] 0x76400000 458752 1
+> ath11k_pci 0000:06:00.0: req mem_seg[7] 0x761a0000 131072 1
+> ath11k_pci 0000:06:00.0: req mem_seg[8] 0x76480000 524288 4
+> ath11k_pci 0000:06:00.0: req mem_seg[9] 0x76500000 360448 4
+> ath11k_pci 0000:06:00.0: req mem_seg[10] 0x76580000 16384 1
+> ath11k_pci 0000:06:00.0: chip_id 0x0 chip_family 0xb board_id 0xff soc_id 0xffffffff
+> ath11k_pci 0000:06:00.0: fw_version 0x101c06cc fw_build_timestamp 2020-06-24 19:50 fw_build_id
 
-Sorry for the top posting, web email has ruined my mailing list
-etiquette.  It seems having the correct firmware in place has caused
-some forward movement.  I now see this:
+I have had VT-d turned on the whole time in my previous tests. I have tried turning it off for some of this tests and it 
+doesn't seem to affect my main bug. Here are the results:
 
-[    8.513210] ath11k_pci 0000:55:00.0: WARNING: ath11k PCI support is
-experimental!
-[    8.513251] ath11k_pci 0000:55:00.0: BAR 0: assigned [mem
-0x8e300000-0x8e3fffff 64bit]
-[    8.513269] ath11k_pci 0000:55:00.0: enabling device (0000 -> 0002)
-[    8.513348] ath11k_pci 0000:55:00.0: MSI vectors: 1
-[    8.789499] ath11k_pci 0000:55:00.0: Respond mem req failed,
-result: 1, err: 0
-[    8.789500] ath11k_pci 0000:55:00.0: qmi failed to respond fw mem req:-22
-[    8.794236] ath11k_pci 0000:55:00.0: req mem_seg[0] 0x28100000 524288 1
-[    8.794237] ath11k_pci 0000:55:00.0: req mem_seg[1] 0x28180000 524288 1
-[    8.794238] ath11k_pci 0000:55:00.0: req mem_seg[2] 0x28200000 524288 1
-[    8.794238] ath11k_pci 0000:55:00.0: req mem_seg[3] 0x28280000 294912 1
-[    8.794239] ath11k_pci 0000:55:00.0: req mem_seg[4] 0x28300000 524288 1
-[    8.794239] ath11k_pci 0000:55:00.0: req mem_seg[5] 0x28380000 524288 1
-[    8.794240] ath11k_pci 0000:55:00.0: req mem_seg[6] 0x27c00000 458752 1
-[    8.794240] ath11k_pci 0000:55:00.0: req mem_seg[7] 0x27c80000 131072 1
-[    8.794240] ath11k_pci 0000:55:00.0: req mem_seg[8] 0x27d00000 524288 4
-[    8.794241] ath11k_pci 0000:55:00.0: req mem_seg[9] 0x27d80000 360448 4
-[    8.794241] ath11k_pci 0000:55:00.0: req mem_seg[10] 0x28578000 16384 1
-[    8.807053] ath11k_pci 0000:55:00.0: chip_id 0x0 chip_family 0xb
-board_id 0xff soc_id 0xffffffff
-[    8.807054] ath11k_pci 0000:55:00.0: fw_version 0x101c06cc
-fw_build_timestamp 2020-06-24 19:50 fw_build_id
-[    8.910984] ath11k_pci 0000:55:00.0: Unknown eventid: 0x16005
-[    9.446566] ath11k_pci 0000:55:00.0 wlp85s0: renamed from wlan0
-[   11.296620] ath11k_pci 0000:55:00.0: Unknown eventid: 0x1d00a
-[   22.088028] ath11k_pci 0000:55:00.0: wmi command 12290 timeout
-[   22.088030] ath11k_pci 0000:55:00.0: failed to send WMI_STOP_SCAN_CMDID
-[   22.088031] ath11k_pci 0000:55:00.0: failed to stop wmi scan: -11
-[   22.088032] ath11k_pci 0000:55:00.0: failed to stop scan: -11
-[   22.088033] ath11k_pci 0000:55:00.0: failed to start hw scan: -110
-[   28.232066] ath11k_pci 0000:55:00.0: wmi command 12289 timeout
-[   28.232069] ath11k_pci 0000:55:00.0: failed to send WMI_START_SCAN_CMDID
-[   28.232073] ath11k_pci 0000:55:00.0: failed to start hw scan: -11
-[   38.216054] ath11k_pci 0000:55:00.0: wmi command 12289 timeout
-[   38.216057] ath11k_pci 0000:55:00.0: failed to send WMI_START_SCAN_CMDID
-[   38.216061] ath11k_pci 0000:55:00.0: failed to start hw scan: -11
-[   51.783961] ath11k_pci 0000:55:00.0: wmi command 12289 timeout
-[   51.783965] ath11k_pci 0000:55:00.0: failed to send WMI_START_SCAN_CMDID
-[   51.783970] ath11k_pci 0000:55:00.0: failed to start hw scan: -11
-[   71.695627] ath11k_pci 0000:55:00.0: wmi command 12289 timeout
-[   71.695629] ath11k_pci 0000:55:00.0: failed to send WMI_START_SCAN_CMDID
-[   71.695630] ath11k_pci 0000:55:00.0: failed to start hw scan: -11
-[  100.864905] ath11k_pci 0000:55:00.0: wmi command 12289 timeout
-[  100.864909] ath11k_pci 0000:55:00.0: failed to send WMI_START_SCAN_CMDID
-[  100.864913] ath11k_pci 0000:55:00.0: failed to start hw scan: -11
-[  107.306896] mhi 0000:55:00.0: Device failed to exit MHI Reset state
-[  143.868561] ath11k_pci 0000:55:00.0: wmi command 12289 timeout
-[  143.868564] ath11k_pci 0000:55:00.0: failed to send WMI_START_SCAN_CMDID
-[  143.868566] ath11k_pci 0000:55:00.0: failed to start hw scan: -11
-[  199.464250] mhi 0000:55:00.0: Device failed to exit MHI Reset state
-<snip>
+1. Without reverting the 7fef431be9c9, VT-d on (wifi doesn't work):
+Nov 11 21:19:20 razor kernel: Linux version 5.10.0-rc2 (root@razor) (gcc (Gentoo 9.3.0-r1 p3) 9.3.0, GNU ld (Gentoo 2.34 
+p6) 2.34.0) #1 SMP Wed Nov 11 21:12:24 CET 2020
+Nov 11 21:19:20 razor kernel: pci 0000:05:00.0: [17cb:1101] type 00 class 0x028000
+Nov 11 21:19:20 razor kernel: pci 0000:05:00.0: reg 0x10: [mem 0xd2100000-0xd21fffff 64bit]
+Nov 11 21:19:20 razor kernel: pci 0000:05:00.0: PME# supported from D0 D3hot D3cold
+Nov 11 21:19:20 razor kernel: pci 0000:05:00.0: 4.000 Gb/s available PCIe bandwidth, limited by 5.0 GT/s PCIe x1 link at 
+0000:00:1c.1 (capable of 7.876 Gb/s with 8.0 GT/s PCIe x1 link)
+Nov 11 21:19:20 razor kernel: pci 0000:05:00.0: Adding to iommu group 21
+Nov 11 21:19:21 razor kernel: ath11k_pci 0000:05:00.0: WARNING: ath11k PCI support is experimental!
+Nov 11 21:19:21 razor kernel: ath11k_pci 0000:05:00.0: BAR 0: assigned [mem 0xd2100000-0xd21fffff 64bit]
+Nov 11 21:19:21 razor kernel: ath11k_pci 0000:05:00.0: enabling device (0000 -> 0002)
+Nov 11 21:19:21 razor kernel: ath11k_pci 0000:05:00.0: MSI vectors: 32
+Nov 11 21:19:21 razor kernel: mhi 0000:05:00.0: Requested to power ON
+Nov 11 21:19:21 razor kernel: mhi 0000:05:00.0: Power on setup success
+Nov 11 21:19:21 razor kernel: ath11k_pci 0000:05:00.0: Respond mem req failed, result: 1, err: 0
+Nov 11 21:19:21 razor kernel: ath11k_pci 0000:05:00.0: qmi failed to respond fw mem req:-22
+Nov 11 21:19:21 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[0] 0x1500000 524288 1
+Nov 11 21:19:21 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[1] 0x1580000 524288 1
+Nov 11 21:19:21 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[2] 0x1600000 524288 1
+Nov 11 21:19:21 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[3] 0x1680000 294912 1
+Nov 11 21:19:21 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[4] 0x1700000 524288 1
+Nov 11 21:19:21 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[5] 0x1780000 524288 1
+Nov 11 21:19:21 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[6] 0x1800000 458752 1
+Nov 11 21:19:21 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[7] 0x11e0000 131072 1
+Nov 11 21:19:21 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[8] 0x1880000 524288 4
+Nov 11 21:19:21 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[9] 0x1900000 360448 4
+Nov 11 21:19:21 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[10] 0x1980000 16384 1
+Nov 11 21:19:26 razor kernel: ath11k_pci 0000:05:00.0: qmi failed memory request, err = -110
+Nov 11 21:19:26 razor kernel: ath11k_pci 0000:05:00.0: qmi failed to respond fw mem req:-110
 
-Occasionally my kernel is panic'ing at random spots (this is probably
-related to the other patch I guess), but I do have a bit of an adapter
-now ,ifconfig shows it.  I don't seem to be able to find any networks
-with it however.
+2. With reverting 7fef431be9c9, VT-d on (wifi does work):
+Nov 11 21:21:50 razor kernel: Linux version 5.10.0-rc2 (root@razor) (gcc (Gentoo 9.3.0-r1 p3) 9.3.0, GNU ld (Gentoo 2.34 
+p6) 2.34.0) #2 SMP Wed Nov 11 21:20:51 CET 2020
+Nov 11 21:21:50 razor kernel: pci 0000:05:00.0: [17cb:1101] type 00 class 0x028000
+Nov 11 21:21:50 razor kernel: pci 0000:05:00.0: reg 0x10: [mem 0xd2100000-0xd21fffff 64bit]
+Nov 11 21:21:50 razor kernel: pci 0000:05:00.0: PME# supported from D0 D3hot D3cold
+Nov 11 21:21:50 razor kernel: pci 0000:05:00.0: 4.000 Gb/s available PCIe bandwidth, limited by 5.0 GT/s PCIe x1 link at 
+0000:00:1c.1 (capable of 7.876 Gb/s with 8.0 GT/s PCIe x1 link)
+Nov 11 21:21:50 razor kernel: pci 0000:05:00.0: Adding to iommu group 21
+Nov 11 21:21:51 razor kernel: ath11k_pci 0000:05:00.0: WARNING: ath11k PCI support is experimental!
+Nov 11 21:21:51 razor kernel: ath11k_pci 0000:05:00.0: BAR 0: assigned [mem 0xd2100000-0xd21fffff 64bit]
+Nov 11 21:21:51 razor kernel: ath11k_pci 0000:05:00.0: enabling device (0000 -> 0002)
+Nov 11 21:21:51 razor kernel: ath11k_pci 0000:05:00.0: MSI vectors: 32
+Nov 11 21:21:51 razor kernel: mhi 0000:05:00.0: Requested to power ON
+Nov 11 21:21:51 razor kernel: mhi 0000:05:00.0: Power on setup success
+Nov 11 21:21:51 razor kernel: ath11k_pci 0000:05:00.0: Respond mem req failed, result: 1, err: 0
+Nov 11 21:21:51 razor kernel: ath11k_pci 0000:05:00.0: qmi failed to respond fw mem req:-22
+Nov 11 21:21:51 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[0] 0x3f100000 524288 1
+Nov 11 21:21:51 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[1] 0x3f180000 524288 1
+Nov 11 21:21:51 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[2] 0x3f200000 524288 1
+Nov 11 21:21:51 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[3] 0x3f280000 294912 1
+Nov 11 21:21:51 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[4] 0x3f300000 524288 1
+Nov 11 21:21:51 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[5] 0x3f380000 524288 1
+Nov 11 21:21:51 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[6] 0x3fc00000 458752 1
+Nov 11 21:21:51 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[7] 0x3f0c0000 131072 1
+Nov 11 21:21:51 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[8] 0x3fc80000 524288 4
+Nov 11 21:21:51 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[9] 0x3fd00000 360448 4
+Nov 11 21:21:51 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[10] 0x3f0a4000 16384 1
+Nov 11 21:21:51 razor kernel: ath11k_pci 0000:05:00.0: chip_id 0x0 chip_family 0xb board_id 0xff soc_id 0xffffffff
+Nov 11 21:21:51 razor kernel: ath11k_pci 0000:05:00.0: fw_version 0x101c06cc fw_build_timestamp 2020-06-24 19:50 
+fw_build_id
+Nov 11 21:21:53 razor NetworkManager[786]: <info>  [1605126113.1294] rfkill1: found Wi-Fi radio killswitch (at 
+/sys/devices/pci0000:00/0000:00:1c.1/0000:05:00.0/ieee80211/phy0/rfkill1) (driver ath11k_pci)
+Nov 11 21:21:55 razor ModemManager[724]: <info>  Couldn't check support for device 
+'/sys/devices/pci0000:00/0000:00:1c.1/0000:05:00.0': not supported by any plugin
+
+3. Without reverting the 7fef431be9c9, VT-d off (wifi doesn't work):
+Nov 11 21:32:41 razor kernel: Linux version 5.10.0-rc2 (root@razor) (gcc (Gentoo 9.3.0-r1 p3) 9.3.0, GNU ld (Gentoo 2.34 
+p6) 2.34.0) #3 SMP Wed Nov 11 21:31:35 CET 2020
+Nov 11 21:32:41 razor kernel: pci 0000:05:00.0: [17cb:1101] type 00 class 0x028000
+Nov 11 21:32:41 razor kernel: pci 0000:05:00.0: reg 0x10: [mem 0xd2100000-0xd21fffff 64bit]
+Nov 11 21:32:41 razor kernel: pci 0000:05:00.0: PME# supported from D0 D3hot D3cold
+Nov 11 21:32:41 razor kernel: pci 0000:05:00.0: 4.000 Gb/s available PCIe bandwidth, limited by 5.0 GT/s PCIe x1 link at 
+0000:00:1c.1 (capable of 7.876 Gb/s with 8.0 GT/s PCIe x1 link)
+Nov 11 21:32:42 razor kernel: ath11k_pci 0000:05:00.0: WARNING: ath11k PCI support is experimental!
+Nov 11 21:32:42 razor kernel: ath11k_pci 0000:05:00.0: BAR 0: assigned [mem 0xd2100000-0xd21fffff 64bit]
+Nov 11 21:32:42 razor kernel: ath11k_pci 0000:05:00.0: enabling device (0000 -> 0002)
+Nov 11 21:32:42 razor kernel: ath11k_pci 0000:05:00.0: MSI vectors: 1
+Nov 11 21:32:42 razor kernel: mhi 0000:05:00.0: Requested to power ON
+Nov 11 21:32:42 razor kernel: mhi 0000:05:00.0: Power on setup success
+Nov 11 21:32:42 razor kernel: ath11k_pci 0000:05:00.0: Respond mem req failed, result: 1, err: 0
+Nov 11 21:32:42 razor kernel: ath11k_pci 0000:05:00.0: qmi failed to respond fw mem req:-22
+Nov 11 21:32:42 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[0] 0x1480000 524288 1
+Nov 11 21:32:42 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[1] 0x1500000 524288 1
+Nov 11 21:32:42 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[2] 0x1580000 524288 1
+Nov 11 21:32:42 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[3] 0x1600000 294912 1
+Nov 11 21:32:42 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[4] 0x1680000 524288 1
+Nov 11 21:32:42 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[5] 0x1700000 524288 1
+Nov 11 21:32:42 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[6] 0x1780000 458752 1
+Nov 11 21:32:42 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[7] 0x1800000 131072 1
+Nov 11 21:32:42 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[8] 0x1880000 524288 4
+Nov 11 21:32:42 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[9] 0x1900000 360448 4
+Nov 11 21:32:42 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[10] 0x10e4000 16384 1
+Nov 11 21:32:47 razor kernel: ath11k_pci 0000:05:00.0: qmi failed memory request, err = -110
+Nov 11 21:32:47 razor kernel: ath11k_pci 0000:05:00.0: qmi failed to respond fw mem req:-110
+
+4. With reverting 7fef431be9c9, VT-d off (not sure if wifi works, system hung shortly thereafter):
+Nov 11 21:28:16 razor kernel: Linux version 5.10.0-rc2 (root@razor) (gcc (Gentoo 9.3.0-r1 p3) 9.3.0, GNU ld (Gentoo 2.34 
+p6) 2.34.0) #2 SMP Wed Nov 11 21:20:51 CET 2020
+Nov 11 21:28:16 razor kernel: pci 0000:05:00.0: [17cb:1101] type 00 class 0x028000
+Nov 11 21:28:16 razor kernel: pci 0000:05:00.0: reg 0x10: [mem 0xd2100000-0xd21fffff 64bit]
+Nov 11 21:28:16 razor kernel: pci 0000:05:00.0: PME# supported from D0 D3hot D3cold
+Nov 11 21:28:16 razor kernel: pci 0000:05:00.0: 4.000 Gb/s available PCIe bandwidth, limited by 5.0 GT/s PCIe x1 link at 
+0000:00:1c.1 (capable of 7.876 Gb/s with 8.0 GT/s PCIe x1 link)
+Nov 11 21:28:17 razor kernel: ath11k_pci 0000:05:00.0: WARNING: ath11k PCI support is experimental!
+Nov 11 21:28:17 razor kernel: ath11k_pci 0000:05:00.0: BAR 0: assigned [mem 0xd2100000-0xd21fffff 64bit]
+Nov 11 21:28:17 razor kernel: ath11k_pci 0000:05:00.0: enabling device (0000 -> 0002)
+Nov 11 21:28:17 razor kernel: ath11k_pci 0000:05:00.0: MSI vectors: 1
+Nov 11 21:28:17 razor kernel: mhi 0000:05:00.0: Requested to power ON
+Nov 11 21:28:17 razor kernel: mhi 0000:05:00.0: Power on setup success
+Nov 11 21:28:17 razor kernel: ath11k_pci 0000:05:00.0: Respond mem req failed, result: 1, err: 0
+Nov 11 21:28:17 razor kernel: ath11k_pci 0000:05:00.0: qmi failed to respond fw mem req:-22
+Nov 11 21:28:17 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[0] 0x3f900000 524288 1
+Nov 11 21:28:17 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[1] 0x3f980000 524288 1
+Nov 11 21:28:17 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[2] 0x3fa00000 524288 1
+Nov 11 21:28:17 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[3] 0x3fa80000 294912 1
+Nov 11 21:28:17 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[4] 0x3fb00000 524288 1
+Nov 11 21:28:17 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[5] 0x3fb80000 524288 1
+Nov 11 21:28:17 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[6] 0x40800000 458752 1
+Nov 11 21:28:17 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[7] 0x3f8c0000 131072 1
+Nov 11 21:28:17 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[8] 0x40880000 524288 4
+Nov 11 21:28:17 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[9] 0x40900000 360448 4
+Nov 11 21:28:17 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[10] 0x3f8a4000 16384 1
+Nov 11 21:28:17 razor kernel: ath11k_pci 0000:05:00.0: chip_id 0x0 chip_family 0xb board_id 0xff soc_id 0xffffffff
+Nov 11 21:28:17 razor kernel: ath11k_pci 0000:05:00.0: fw_version 0x101c06cc fw_build_timestamp 2020-06-24 19:50 
+fw_build_id
+Nov 11 21:28:19 razor NetworkManager[782]: <info>  [1605126499.2535] rfkill1: found Wi-Fi radio killswitch (at 
+/sys/devices/pci0000:00/0000:00:1c.1/0000:05:00.0/ieee80211/phy0/rfkill1) (driver ath11k_pci)
+Nov 11 21:28:21 razor ModemManager[717]: <info>  Couldn't check support for device 
+'/sys/devices/pci0000:00/0000:00:1c.1/0000:05:00.0': not supported by any plugin
+Nov 11 21:28:58 razor kernel: ath11k_pci 0000:05:00.0: failed to receive scan abort comple: timed out
+Nov 11 21:28:58 razor kernel: ath11k_pci 0000:05:00.0: failed to abort scan: -110
+Nov 11 21:29:01 razor kernel: ath11k_pci 0000:05:00.0: wmi command 12289 timeout
+Nov 11 21:29:01 razor kernel: ath11k_pci 0000:05:00.0: failed to send WMI_START_SCAN_CMDID
+Nov 11 21:29:01 razor kernel: ath11k_pci 0000:05:00.0: failed to start hw scan: -11
 
 -- 
 ath11k mailing list
