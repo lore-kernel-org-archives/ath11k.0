@@ -1,21 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from z5.mailgun.us ([104.130.96.5])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kcYcp-0004EV-55
- for ath11k@lists.infradead.org; Tue, 10 Nov 2020 18:44:16 +0000
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH v10 1/2] bus: mhi: Add mhi_queue_is_full function
-References: <1604424234-24446-1-git-send-email-loic.poulain@linaro.org>
- <20201105165708.31d24782@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
- <20201106051353.GA3473@work>
- <20201106080445.00588690@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
- <B9A7A95E-BD2F-49C0-A28C-56A8E6D903AC@linaro.org>
- <20201106083918.5ea0674b@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-Date: Tue, 10 Nov 2020 20:44:06 +0200
-In-Reply-To: <20201106083918.5ea0674b@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
- (Jakub Kicinski's message of "Fri, 6 Nov 2020 08:39:18 -0800")
-Message-ID: <87a6vp59xl.fsf@tynnyri.adurom.net>
+ id 1kcihQ-00064R-Jt
+ for ath11k@lists.infradead.org; Wed, 11 Nov 2020 05:29:41 +0000
 MIME-Version: 1.0
+Date: Wed, 11 Nov 2020 10:59:32 +0530
+From: Maharaja Kennadyrajan <mkenna@codeaurora.org>
+Subject: Re: [PATCH 1/3] ath11k: vdev delete synchronization with firmware
+In-Reply-To: <20201110182825.3D1C6C433FE@smtp.codeaurora.org>
+References: <1590067829-26109-2-git-send-email-mkenna@codeaurora.org>
+ <20201110182825.3D1C6C433FE@smtp.codeaurora.org>
+Message-ID: <40170802ba4bc4787c126004a42be3e8@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -24,49 +19,48 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: willemdebruijn.kernel@gmail.com, Loic Poulain <loic.poulain@linaro.org>, jhugo@codeaurora.org, netdev@vger.kernel.org, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, bbhatt@codeaurora.org, ath11k@lists.infradead.org, linux-arm-msm@vger.kernel.org, hemantk@codeaurora.org, davem@davemloft.net
+To: Kalle Valo <kvalo@codeaurora.org>
+Cc: Ritesh Singh <ritesi@codeaurora.org>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-+ ath11k list
-
-Jakub Kicinski <kuba@kernel.org> writes:
-
-> On Fri, 06 Nov 2020 21:58:12 +0530 Manivannan Sadhasivam wrote:
->>>> Since you've applied now, what would you propose?  
->>>
->>> Do you need mhi_queue_is_full() in other branches, or are you just
->>> concerned about the conflicts?
+On 2020-11-10 23:58, Kalle Valo wrote:
+> Maharaja Kennadyrajan <mkenna@codeaurora.org> wrote:
+> 
+>> From: Ritesh Singh <ritesi@codeaurora.org>
 >> 
->> Yes, I need this patch in mhi-next.
+>> When the interface is added immediately after removing the
+>> interface, vdev deletion in firmware might not have been
+>> completed.
 >> 
->>> I'm assuming the concern is just about the mhi/core patch, or would 
->>> you need to refactor something in the net driver as well?  
+>> Hence, add vdev_delete_resp_event and wait_event_timeout
+>> to synchronize with firmware.
 >> 
->> Just the mhi_queue_is_full() patch. 
->
-> Okay, I think you can just apply that patch to your tree again and git
-> should figure out it's a duplicate. Not optimal, because the change will
-> have two hashes, but the function is trivial, shouldn't be an issue
-> even if conflict happens.
->
-> Will you need it in wireless (ath11k), or only in other trees?
->
-> If it ends up in the wireless tree Dave or I will do the resolution when
-> we pull from Kalle so it won't even appear to Linus (but then it should
-> go into wireless through an immutable branch).
+>> Tested-on: IPQ8074 WLAN.HK.2.4.0.1-00009-QCAHKSWPL_SILICONZ-1
+>> 
+>> Signed-off-by: Ritesh Singh <ritesi@codeaurora.org>
+>> Signed-off-by: Maharaja Kennadyrajan <mkenna@codeaurora.org>
+> 
+> Does not apply anymore, please rebase.
+> 
+> error: patch failed: drivers/net/wireless/ath/ath11k/wmi.c:97
+> error: drivers/net/wireless/ath/ath11k/wmi.c: patch does not apply
+> stg import: Diff does not apply cleanly
+> 
+> 3 patches set to Changes Requested.
 
-I think in the next few releases we need close coordination between mhi
-and ath11k, both are in active development and there can be changes
-which break ath11k functionality. Let's see how this goes.
+[Maha]: Sure, Kalle. I will rebase and send the next version of this 
+patch.
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+> 11562969 [1/3] ath11k: vdev delete synchronization with firmware
+> 11562967 [2/3] ath11k: peer delete synchronization with firmware
+> 11562971 [3/3] ath11k: remove "ath11k_mac_get_ar_vdev_stop_status" 
+> references
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+Regards,
+Maha
 
 -- 
 ath11k mailing list
