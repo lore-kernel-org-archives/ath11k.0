@@ -1,15 +1,18 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail.boldwhite24.com ([80.211.42.67])
+Received: from m42-4.mailgun.net ([69.72.42.4])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kd8e3-0002KN-6U
- for ath11k@lists.infradead.org; Thu, 12 Nov 2020 09:11:56 +0000
-Received: by mail.boldwhite24.com for <ath11k@lists.infradead.org>;
- Thu, 12 Nov 2020 09:10:52 GMT
-Message-ID: <20201112074500-0.1.25.87d9.0.enjaadz7t4@boldwhite24.com>
-Date: Thu, 12 Nov 2020 09:10:52 GMT
-From: =?UTF-8?Q?"Diego_S=C3=A1nchez"?= <diego.sanchez@boldwhite24.com>
-Subject: Disinfection
+ id 1kdA04-00049N-1J
+ for ath11k@lists.infradead.org; Thu, 12 Nov 2020 10:38:47 +0000
 MIME-Version: 1.0
+Date: Thu, 12 Nov 2020 18:38:27 +0800
+From: Wen Gong <wgong@codeaurora.org>
+Subject: Re: [PATCHv3 1/2] nl80211: add support for mcs masks
+In-Reply-To: <1327767935-16984-2-git-send-email-siwu@hrz.tu-chemnitz.de>
+ (sfid-20120128_172604_145461_197131DD)
+References: <1327767935-16984-1-git-send-email-siwu@hrz.tu-chemnitz.de>
+ <1327767935-16984-2-git-send-email-siwu@hrz.tu-chemnitz.de>
+ (sfid-20120128_172604_145461_197131DD)
+Message-ID: <b7a64b13d38792a97708675dcd8e5f69@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -18,25 +21,95 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
+To: Simon Wunderlich <simon.wunderlich@s2003.tu-chemnitz.de>, Johannes Berg <johannes@sipsolutions.net>
+Cc: Mathias Kretschmer <mathias.kretschmer@fokus.fraunhofer.de>, linux-wireless@vger.kernel.org, linville@tuxdriver.com, Simon Wunderlich <siwu@hrz.tu-chemnitz.de>, linux-wireless-owner@vger.kernel.org, ath10k@lists.infradead.org, ath11k@lists.infradead.org
 
-R29vZCBtb3JuaW5nLAoKbG9va2luZyBmb3IgY29tcGFuaWVzIGludGVyZXN0ZWQgaW4gcmFpc2lu
-ZyBhZGRpdGlvbmFsIGNhcGl0YWwgYnkgZGl2ZXJzaWZ5aW5nIHRoZWlyIG9mZmVyIGluIHNvYXBz
-LCBsaXF1aWRzIGFuZCBnZWxzIGZvciBoYW5kIGRpc2luZmVjdGlvbiBhbmQgY29zbWV0aWNzIGZv
-ciBib2R5IGFuZCBoYWlyIGNhcmUuCgpUaGUgZGlzdHJpYnV0aW9uIG9mIGlubm92YXRpdmUgcHJv
-ZHVjdHMgY29ycmVzcG9uZGluZyB0byB0aGUgY3VycmVudCBwcmVmZXJlbmNlcyBvZiBjdXN0b21l
-cnMgaW4gdGhlIGZpZWxkIG9mIGh5Z2llbmUgYW5kIHByZXZlbnRpdmUgaGVhbHRoY2FyZSBhbGxv
-d3Mgb3VyIHBhcnRuZXJzIHRvIGdhaW4gbmV3IG1hcmtldHMgYW5kIGFjaGlldmUgYmV0dGVyIGVj
-b25vbWljIHJlc3VsdHMuCgpJbiBhZGRpdGlvbiB0byBwcm9kdWN0cyB3aXRoIGJhY3RlcmljaWRh
-bCBhY3Rpb24sIG91ciByYW5nZSBpbmNsdWRlcyBzaG93ZXIgZ2Vscywgc2hhbXBvb3MgYW5kIGhh
-aXIgY29uZGl0aW9uZXJzLCBhcyB3ZWxsIGFzIGVmZmljaWVudCwgY29uY2VudHJhdGVkIGRldGVy
-Z2VudHMuCgpUaGUgdmVyc2F0aWxpdHkgKHN1aXRhYmxlIGZvciBhbGwgc2tpbiB0eXBlcykgY29t
-YmluZWQgd2l0aCBhbiBhZmZvcmRhYmxlIHByaWNlIG1lYW5zIHRoYXQgY3VzdG9tZXJzIG1ha2Ug
-YW4gaW5mb3JtZWQgY2hvaWNlIG9mIGEgcHJvZHVjdCBhbW9uZyBvdGhlcnMgYXZhaWxhYmxlIG9u
-IHRoZSBtYXJrZXQuCgpBcmUgeW91IGludGVyZXN0ZWQgaW4gY29vcGVyYXRpb24/CgpEaWVnbyBT
-w6FuY2hlegoKLS0gCmF0aDExayBtYWlsaW5nIGxpc3QKYXRoMTFrQGxpc3RzLmluZnJhZGVhZC5v
-cmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9hdGgxMWsK
+On 2012-01-29 00:25, Simon Wunderlich wrote:
+> Allow to set mcs masks through nl80211. We also allow to set MCS
+> rates but no legacy rates (and vice versa).
+> 
+> Signed-off-by: Simon Wunderlich <siwu@hrz.tu-chemnitz.de>
+> Signed-off-by: Mathias Kretschmer 
+> <mathias.kretschmer@fokus.fraunhofer.de>
+> ---
+>  include/linux/nl80211.h |    4 +++
+>  include/net/cfg80211.h  |    3 +-
+>  net/wireless/nl80211.c  |   61 
+> ++++++++++++++++++++++++++++++++++++++++++++++-
+>  3 files changed, 65 insertions(+), 3 deletions(-)
+> 
+...
+> @@ -5421,12 +5451,20 @@ static int nl80211_set_tx_bitrate_mask(struct
+> sk_buff *skb,
+>  		sband = rdev->wiphy.bands[i];
+>  		mask.control[i].legacy =
+>  			sband ? (1 << sband->n_bitrates) - 1 : 0;
+> +		if (sband)
+> +			memcpy(mask.control[i].mcs,
+> +			       sband->ht_cap.mcs.rx_mask,
+> +			       sizeof(mask.control[i].mcs));
+when use command: "iw wlan0 set bitrates legacy-5 6", I want to set it 
+fixed in 6M rate.
+this copy mcs rate will add the mcs rate here and condition "if 
+(tb[NL80211_TXRATE_MCS])"
+is false, then mcs rate will not clear and lead a mistake result.
+> +		else
+> +			memset(mask.control[i].mcs, 0,
+> +			       sizeof(mask.control[i].mcs));
+>  	}
+> 
+>  	/*
+>  	 * The nested attribute uses enum nl80211_band as the index. This 
+> maps
+>  	 * directly to the enum ieee80211_band values used in cfg80211.
+>  	 */
+> +	BUILD_BUG_ON(NL80211_MAX_SUPP_HT_RATES > IEEE80211_HT_MCS_MASK_LEN * 
+> 8);
+>  	nla_for_each_nested(tx_rates, info->attrs[NL80211_ATTR_TX_RATES], 
+> rem)
+>  	{
+>  		enum ieee80211_band band = nla_type(tx_rates);
+> @@ -5442,7 +5480,28 @@ static int nl80211_set_tx_bitrate_mask(struct
+> sk_buff *skb,
+>  				sband,
+>  				nla_data(tb[NL80211_TXRATE_LEGACY]),
+>  				nla_len(tb[NL80211_TXRATE_LEGACY]));
+> -			if (mask.control[band].legacy == 0)
+> +		}
+> +		if (tb[NL80211_TXRATE_MCS]) {
+
+false for "iw wlan0 set bitrates legacy-5 6", so ht_rateset_to_mask will 
+not enter and mcs rate will not clear.
+
+> +			if (!ht_rateset_to_mask(
+> +					sband,
+> +					nla_data(tb[NL80211_TXRATE_MCS]),
+> +					nla_len(tb[NL80211_TXRATE_MCS]),
+> +					mask.control[band].mcs))
+> +				return -EINVAL;
+> +		}
+> +
+> +		if (mask.control[band].legacy == 0) {
+> +			/* don't allow empty legacy rates if HT
+> +			 * is not even supported. */
+> +			if (!rdev->wiphy.bands[band]->ht_cap.ht_supported)
+> +				return -EINVAL;
+> +
+> +			for (i = 0; i < IEEE80211_HT_MCS_MASK_LEN; i++)
+> +				if (mask.control[band].mcs[i])
+> +					break;
+> +
+> +			/* legacy and mcs rates may not be both empty */
+> +			if (i == IEEE80211_HT_MCS_MASK_LEN)
+>  				return -EINVAL;
+>  		}
+>  	}
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
