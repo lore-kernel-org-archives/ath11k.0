@@ -1,27 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from z5.mailgun.us ([104.130.96.5])
+Received: from mail.boldwhite24.com ([80.211.42.67])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kd8SZ-000107-Vo
- for ath11k@lists.infradead.org; Thu, 12 Nov 2020 09:00:05 +0000
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: pci_alloc_irq_vectors fails ENOSPC for XPS 13 9310
-References: <20201103160838.GA246433@bjorn-Precision-5520>
- <874km61732.fsf@nanos.tec.linutronix.de>
- <fa26ac8b-ed48-7ea3-c21b-b133532716b8@posteo.de>
- <87mtzxkus5.fsf@nanos.tec.linutronix.de>
- <87wnz0hr9k.fsf@codeaurora.org> <87ft5hehlb.fsf@codeaurora.org>
- <6b60c8f1-ec37-d601-92c2-97a485b73431@posteo.de>
- <87v9ec9rk3.fsf@codeaurora.org> <87imab4slq.fsf@codeaurora.org>
- <b2129a70db2b36c5015b4143a839f47dfc3153af.camel@seibold.net>
- <CAHUdJJVp5r55NtE+BNz5XGtnaks6mDKQBFodz63DdULBVhD0Lg@mail.gmail.com>
- <CAHUdJJXRDKs9NRugUAFgNr51DJ=OcssuiV8ST5CaV1CKiNTFfA@mail.gmail.com>
- <0b58872b4f27dbf5aad2a39f5ec4a066e080d806.camel@seibold.net>
- <875z6b3v22.fsf@codeaurora.org>
- <CAHUdJJVK1vH2_9YkCQ99n5mak3oGN09422gG0APkWwcy=ZDQ-Q@mail.gmail.com>
-Date: Thu, 12 Nov 2020 10:59:53 +0200
-In-Reply-To: <CAHUdJJVK1vH2_9YkCQ99n5mak3oGN09422gG0APkWwcy=ZDQ-Q@mail.gmail.com>
- (wi nk's message of "Thu, 12 Nov 2020 08:41:08 +0100")
-Message-ID: <87pn4j2bna.fsf@codeaurora.org>
+ id 1kd8e3-0002KN-6U
+ for ath11k@lists.infradead.org; Thu, 12 Nov 2020 09:11:56 +0000
+Received: by mail.boldwhite24.com for <ath11k@lists.infradead.org>;
+ Thu, 12 Nov 2020 09:10:52 GMT
+Message-ID: <20201112074500-0.1.25.87d9.0.enjaadz7t4@boldwhite24.com>
+Date: Thu, 12 Nov 2020 09:10:52 GMT
+From: =?UTF-8?Q?"Diego_S=C3=A1nchez"?= <diego.sanchez@boldwhite24.com>
+Subject: Disinfection
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -31,92 +18,25 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: wi nk <wink@technolu.st>
-Cc: Govind Singh <govinds@codeaurora.org>, linux-pci@vger.kernel.org, Stefani Seibold <stefani@seibold.net>, linux-wireless@vger.kernel.org, Devin Bayer <dev@doubly.so>, ath11k@lists.infradead.org, Thomas Krause <thomaskrause@posteo.de>, Bjorn Helgaas <helgaas@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, Christoph Hellwig <hch@lst.de>, David Woodhouse <dwmw@amazon.co.uk>
+To: ath11k@lists.infradead.org
 
-wi nk <wink@technolu.st> writes:
-
-> On Thu, Nov 12, 2020 at 8:15 AM Kalle Valo <kvalo@codeaurora.org> wrote:
->>
->> Stefani Seibold <stefani@seibold.net> writes:
->>
->> > Am Donnerstag, den 12.11.2020, 02:10 +0100 schrieb wi nk:
->> >> I've yet to see any instability after 45 minutes of exercising it, I
->> >> do see a couple of messages that came out of the driver:
->> >>
->> >> [    8.963389] ath11k_pci 0000:55:00.0: Unknown eventid: 0x16005
->> >> [   11.342317] ath11k_pci 0000:55:00.0: Unknown eventid: 0x1d00a
->> >>
->> >> then when it associates:
->> >>
->> >> [   16.718895] wlp85s0: send auth to ec:08:6b:27:01:ea (try 1/3)
->> >> [   16.722636] wlp85s0: authenticated
->> >> [   16.724150] wlp85s0: associate with ec:08:6b:27:01:ea (try 1/3)
->> >> [   16.726486] wlp85s0: RX AssocResp from ec:08:6b:27:01:ea
->> >> (capab=0x411 status=0 aid=8)
->> >> [   16.738443] wlp85s0: associated
->> >> [   16.764966] IPv6: ADDRCONF(NETDEV_CHANGE): wlp85s0: link becomes
->> >> ready
->> >>
->> >> The adapter is achieving around 500 mbps on my gigabit connection, my
->> >> 2018 mbp sees around 650, so it's doing pretty well so far.
->> >>
->> >> Stefani - when you applied the patch that Kalle shared, which branch
->> >> did you apply it to?  I applied it to ath11k-qca6390-bringup and when
->> >> I revert 7fef431be9c9 there is a small merge conflict I needed to
->> >> resolve.  I wonder if either the starting branch, or your chosen
->> >> resolution are related to the instability you see (or I'm just lucky
->> >> so far! :)).
->> >>
->> >
->> > I used the vanilla kernel tree
->> > https://git.kernel.org/torvalds/t/linux-5.10-rc2.tar.gz. On top of this
->> > i applied the
->> >
->> > RFT-ath11k-pci-support-platforms-with-one-MSI-vector.patch
->> >
->> > and reverted the patch 7fef431be9c9
->>
->> I did also my testing on v5.10-rc2 and I recommend to use that as the
->> baseline when debuggin these ath11k problems. It helps to compare the
->> results if everyone have the same baseline.
->>
->> --
->> https://patchwork.kernel.org/project/linux-wireless/list/
->>
->> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
->
-> Absolutely, I'll rebuild to 5.10 later today and apply the same series
-> of patches and report back.
-
-Great, thanks.
-
-> I'll also test out the patch on both versions from Carl to fix
-> resuming. It stands to reason that we may be seeing another regression
-> between Stefani (5.10) and myself (5.9 bringup branch) as I don't see
-> any disconnections or instability once the interface is online.
-
-Yeah, there is something strange happening between v5.9 and v5.10 we
-have not yet figured out. Most likely it has something to do with memory
-allocations and DMA transfers failing, but no clear understanding yet.
-
-But to keep things simple let's only discuss the MSI problem on this
-thread, and discuss the timeouts in the another thread:
-
-http://lists.infradead.org/pipermail/ath11k/2020-November/000641.html
-
-I'll include you and other reporters to that thread.
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+R29vZCBtb3JuaW5nLAoKbG9va2luZyBmb3IgY29tcGFuaWVzIGludGVyZXN0ZWQgaW4gcmFpc2lu
+ZyBhZGRpdGlvbmFsIGNhcGl0YWwgYnkgZGl2ZXJzaWZ5aW5nIHRoZWlyIG9mZmVyIGluIHNvYXBz
+LCBsaXF1aWRzIGFuZCBnZWxzIGZvciBoYW5kIGRpc2luZmVjdGlvbiBhbmQgY29zbWV0aWNzIGZv
+ciBib2R5IGFuZCBoYWlyIGNhcmUuCgpUaGUgZGlzdHJpYnV0aW9uIG9mIGlubm92YXRpdmUgcHJv
+ZHVjdHMgY29ycmVzcG9uZGluZyB0byB0aGUgY3VycmVudCBwcmVmZXJlbmNlcyBvZiBjdXN0b21l
+cnMgaW4gdGhlIGZpZWxkIG9mIGh5Z2llbmUgYW5kIHByZXZlbnRpdmUgaGVhbHRoY2FyZSBhbGxv
+d3Mgb3VyIHBhcnRuZXJzIHRvIGdhaW4gbmV3IG1hcmtldHMgYW5kIGFjaGlldmUgYmV0dGVyIGVj
+b25vbWljIHJlc3VsdHMuCgpJbiBhZGRpdGlvbiB0byBwcm9kdWN0cyB3aXRoIGJhY3RlcmljaWRh
+bCBhY3Rpb24sIG91ciByYW5nZSBpbmNsdWRlcyBzaG93ZXIgZ2Vscywgc2hhbXBvb3MgYW5kIGhh
+aXIgY29uZGl0aW9uZXJzLCBhcyB3ZWxsIGFzIGVmZmljaWVudCwgY29uY2VudHJhdGVkIGRldGVy
+Z2VudHMuCgpUaGUgdmVyc2F0aWxpdHkgKHN1aXRhYmxlIGZvciBhbGwgc2tpbiB0eXBlcykgY29t
+YmluZWQgd2l0aCBhbiBhZmZvcmRhYmxlIHByaWNlIG1lYW5zIHRoYXQgY3VzdG9tZXJzIG1ha2Ug
+YW4gaW5mb3JtZWQgY2hvaWNlIG9mIGEgcHJvZHVjdCBhbW9uZyBvdGhlcnMgYXZhaWxhYmxlIG9u
+IHRoZSBtYXJrZXQuCgpBcmUgeW91IGludGVyZXN0ZWQgaW4gY29vcGVyYXRpb24/CgpEaWVnbyBT
+w6FuY2hlegoKLS0gCmF0aDExayBtYWlsaW5nIGxpc3QKYXRoMTFrQGxpc3RzLmluZnJhZGVhZC5v
+cmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9hdGgxMWsK
