@@ -1,15 +1,28 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from m42-4.mailgun.net ([69.72.42.4])
+Received: from z5.mailgun.us ([104.130.96.5])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kd7GM-0006Ii-Ov
- for ath11k@lists.infradead.org; Thu, 12 Nov 2020 07:43:24 +0000
-From: Maharaja Kennadyrajan <mkenna@codeaurora.org>
-Subject: [PATCH 3/3] ath11k: remove "ath11k_mac_get_ar_vdev_stop_status"
- references
-Date: Thu, 12 Nov 2020 13:13:00 +0530
-Message-Id: <1605166980-29115-4-git-send-email-mkenna@codeaurora.org>
-In-Reply-To: <1605166980-29115-1-git-send-email-mkenna@codeaurora.org>
-References: <1605166980-29115-1-git-send-email-mkenna@codeaurora.org>
+ id 1kd8SZ-000107-Vo
+ for ath11k@lists.infradead.org; Thu, 12 Nov 2020 09:00:05 +0000
+From: Kalle Valo <kvalo@codeaurora.org>
+Subject: Re: pci_alloc_irq_vectors fails ENOSPC for XPS 13 9310
+References: <20201103160838.GA246433@bjorn-Precision-5520>
+ <874km61732.fsf@nanos.tec.linutronix.de>
+ <fa26ac8b-ed48-7ea3-c21b-b133532716b8@posteo.de>
+ <87mtzxkus5.fsf@nanos.tec.linutronix.de>
+ <87wnz0hr9k.fsf@codeaurora.org> <87ft5hehlb.fsf@codeaurora.org>
+ <6b60c8f1-ec37-d601-92c2-97a485b73431@posteo.de>
+ <87v9ec9rk3.fsf@codeaurora.org> <87imab4slq.fsf@codeaurora.org>
+ <b2129a70db2b36c5015b4143a839f47dfc3153af.camel@seibold.net>
+ <CAHUdJJVp5r55NtE+BNz5XGtnaks6mDKQBFodz63DdULBVhD0Lg@mail.gmail.com>
+ <CAHUdJJXRDKs9NRugUAFgNr51DJ=OcssuiV8ST5CaV1CKiNTFfA@mail.gmail.com>
+ <0b58872b4f27dbf5aad2a39f5ec4a066e080d806.camel@seibold.net>
+ <875z6b3v22.fsf@codeaurora.org>
+ <CAHUdJJVK1vH2_9YkCQ99n5mak3oGN09422gG0APkWwcy=ZDQ-Q@mail.gmail.com>
+Date: Thu, 12 Nov 2020 10:59:53 +0200
+In-Reply-To: <CAHUdJJVK1vH2_9YkCQ99n5mak3oGN09422gG0APkWwcy=ZDQ-Q@mail.gmail.com>
+ (wi nk's message of "Thu, 12 Nov 2020 08:41:08 +0100")
+Message-ID: <87pn4j2bna.fsf@codeaurora.org>
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -18,146 +31,90 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
-Cc: Ritesh Singh <ritesi@codeaurora.org>, Maharaja Kennadyrajan <mkenna@codeaurora.org>
+To: wi nk <wink@technolu.st>
+Cc: Govind Singh <govinds@codeaurora.org>, linux-pci@vger.kernel.org, Stefani Seibold <stefani@seibold.net>, linux-wireless@vger.kernel.org, Devin Bayer <dev@doubly.so>, ath11k@lists.infradead.org, Thomas Krause <thomaskrause@posteo.de>, Bjorn Helgaas <helgaas@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, Christoph Hellwig <hch@lst.de>, David Woodhouse <dwmw@amazon.co.uk>
 
-From: Ritesh Singh <ritesi@codeaurora.org>
+wi nk <wink@technolu.st> writes:
 
-Unused structure ath11k_vdev_stop_status is removed.
-'ath11k_mac_get_ar_vdev_stop_status' api has been replaced
-with 'ath11k_mac_get_ar_by_vdev_id' inside vdev_stopped_event.
+> On Thu, Nov 12, 2020 at 8:15 AM Kalle Valo <kvalo@codeaurora.org> wrote:
+>>
+>> Stefani Seibold <stefani@seibold.net> writes:
+>>
+>> > Am Donnerstag, den 12.11.2020, 02:10 +0100 schrieb wi nk:
+>> >> I've yet to see any instability after 45 minutes of exercising it, I
+>> >> do see a couple of messages that came out of the driver:
+>> >>
+>> >> [    8.963389] ath11k_pci 0000:55:00.0: Unknown eventid: 0x16005
+>> >> [   11.342317] ath11k_pci 0000:55:00.0: Unknown eventid: 0x1d00a
+>> >>
+>> >> then when it associates:
+>> >>
+>> >> [   16.718895] wlp85s0: send auth to ec:08:6b:27:01:ea (try 1/3)
+>> >> [   16.722636] wlp85s0: authenticated
+>> >> [   16.724150] wlp85s0: associate with ec:08:6b:27:01:ea (try 1/3)
+>> >> [   16.726486] wlp85s0: RX AssocResp from ec:08:6b:27:01:ea
+>> >> (capab=0x411 status=0 aid=8)
+>> >> [   16.738443] wlp85s0: associated
+>> >> [   16.764966] IPv6: ADDRCONF(NETDEV_CHANGE): wlp85s0: link becomes
+>> >> ready
+>> >>
+>> >> The adapter is achieving around 500 mbps on my gigabit connection, my
+>> >> 2018 mbp sees around 650, so it's doing pretty well so far.
+>> >>
+>> >> Stefani - when you applied the patch that Kalle shared, which branch
+>> >> did you apply it to?  I applied it to ath11k-qca6390-bringup and when
+>> >> I revert 7fef431be9c9 there is a small merge conflict I needed to
+>> >> resolve.  I wonder if either the starting branch, or your chosen
+>> >> resolution are related to the instability you see (or I'm just lucky
+>> >> so far! :)).
+>> >>
+>> >
+>> > I used the vanilla kernel tree
+>> > https://git.kernel.org/torvalds/t/linux-5.10-rc2.tar.gz. On top of this
+>> > i applied the
+>> >
+>> > RFT-ath11k-pci-support-platforms-with-one-MSI-vector.patch
+>> >
+>> > and reverted the patch 7fef431be9c9
+>>
+>> I did also my testing on v5.10-rc2 and I recommend to use that as the
+>> baseline when debuggin these ath11k problems. It helps to compare the
+>> results if everyone have the same baseline.
+>>
+>> --
+>> https://patchwork.kernel.org/project/linux-wireless/list/
+>>
+>> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+>
+> Absolutely, I'll rebuild to 5.10 later today and apply the same series
+> of patches and report back.
 
-Signed-off-by: Ritesh Singh <ritesi@codeaurora.org>
-Signed-off-by: Maharaja Kennadyrajan <mkenna@codeaurora.org>
----
+Great, thanks.
 
-    V2: Rebased on latest ath.git TOT(Addressed Kalle's comment).
+> I'll also test out the patch on both versions from Carl to fix
+> resuming. It stands to reason that we may be seeing another regression
+> between Stefani (5.10) and myself (5.9 bringup branch) as I don't see
+> any disconnections or instability once the interface is online.
 
- drivers/net/wireless/ath/ath11k/core.h |  6 ------
- drivers/net/wireless/ath/ath11k/mac.c  | 36 ----------------------------------
- drivers/net/wireless/ath/ath11k/mac.h  |  2 --
- drivers/net/wireless/ath/ath11k/wmi.c  |  2 +-
- 4 files changed, 1 insertion(+), 45 deletions(-)
+Yeah, there is something strange happening between v5.9 and v5.10 we
+have not yet figured out. Most likely it has something to do with memory
+allocations and DMA transfers failing, but no clear understanding yet.
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index c7ce7c2..f2c05da 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -432,11 +432,6 @@ struct ath11k_per_peer_tx_stats {
- #define ATH11K_FLUSH_TIMEOUT (5 * HZ)
- #define ATH11K_VDEV_DELETE_TIMEOUT_HZ (5 * HZ)
- 
--struct ath11k_vdev_stop_status {
--	bool stop_in_progress;
--	u32  vdev_id;
--};
--
- struct ath11k {
- 	struct ath11k_base *ab;
- 	struct ath11k_pdev *pdev;
-@@ -512,7 +507,6 @@ struct ath11k {
- 	struct completion install_key_done;
- 
- 	int last_wmi_vdev_start_status;
--	struct ath11k_vdev_stop_status vdev_stop_status;
- 	struct completion vdev_setup_done;
- 	struct completion vdev_delete_done;
- 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 10d83a9..29777bc 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -537,31 +537,6 @@ struct ath11k *ath11k_mac_get_ar_by_pdev_id(struct ath11k_base *ab, u32 pdev_id)
- 	return NULL;
- }
- 
--struct ath11k *ath11k_mac_get_ar_vdev_stop_status(struct ath11k_base *ab,
--						  u32 vdev_id)
--{
--	int i;
--	struct ath11k_pdev *pdev;
--	struct ath11k *ar;
--
--	for (i = 0; i < ab->num_radios; i++) {
--		pdev = rcu_dereference(ab->pdevs_active[i]);
--		if (pdev && pdev->ar) {
--			ar = pdev->ar;
--
--			spin_lock_bh(&ar->data_lock);
--			if (ar->vdev_stop_status.stop_in_progress &&
--			    ar->vdev_stop_status.vdev_id == vdev_id) {
--				ar->vdev_stop_status.stop_in_progress = false;
--				spin_unlock_bh(&ar->data_lock);
--				return ar;
--			}
--			spin_unlock_bh(&ar->data_lock);
--		}
--	}
--	return NULL;
--}
--
- static void ath11k_pdev_caps_update(struct ath11k *ar)
- {
- 	struct ath11k_base *ab = ar->ab;
-@@ -5024,13 +4999,6 @@ static int ath11k_mac_vdev_stop(struct ath11k_vif *arvif)
- 
- 	reinit_completion(&ar->vdev_setup_done);
- 
--	spin_lock_bh(&ar->data_lock);
--
--	ar->vdev_stop_status.stop_in_progress = true;
--	ar->vdev_stop_status.vdev_id = arvif->vdev_id;
--
--	spin_unlock_bh(&ar->data_lock);
--
- 	ret = ath11k_wmi_vdev_stop(ar, arvif->vdev_id);
- 	if (ret) {
- 		ath11k_warn(ar->ab, "failed to stop WMI vdev %i: %d\n",
-@@ -5059,10 +5027,6 @@ static int ath11k_mac_vdev_stop(struct ath11k_vif *arvif)
- 
- 	return 0;
- err:
--	spin_lock_bh(&ar->data_lock);
--	ar->vdev_stop_status.stop_in_progress = false;
--	spin_unlock_bh(&ar->data_lock);
--
- 	return ret;
- }
- 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.h b/drivers/net/wireless/ath/ath11k/mac.h
-index 0607479..597104a 100644
---- a/drivers/net/wireless/ath/ath11k/mac.h
-+++ b/drivers/net/wireless/ath/ath11k/mac.h
-@@ -137,8 +137,6 @@ struct ath11k_vif *ath11k_mac_get_arvif_by_vdev_id(struct ath11k_base *ab,
- 						   u32 vdev_id);
- struct ath11k *ath11k_mac_get_ar_by_vdev_id(struct ath11k_base *ab, u32 vdev_id);
- struct ath11k *ath11k_mac_get_ar_by_pdev_id(struct ath11k_base *ab, u32 pdev_id);
--struct ath11k *ath11k_mac_get_ar_vdev_stop_status(struct ath11k_base *ab,
--						  u32 vdev_id);
- 
- void ath11k_mac_drain_tx(struct ath11k *ar);
- void ath11k_mac_peer_cleanup_all(struct ath11k *ar);
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index e374270..f6f7269 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -5856,7 +5856,7 @@ static void ath11k_vdev_stopped_event(struct ath11k_base *ab, struct sk_buff *sk
- 	}
- 
- 	rcu_read_lock();
--	ar = ath11k_mac_get_ar_vdev_stop_status(ab, vdev_id);
-+	ar = ath11k_mac_get_ar_by_vdev_id(ab, vdev_id);
- 	if (!ar) {
- 		ath11k_warn(ab, "invalid vdev id in vdev stopped ev %d",
- 			    vdev_id);
+But to keep things simple let's only discuss the MSI problem on this
+thread, and discuss the timeouts in the another thread:
+
+http://lists.infradead.org/pipermail/ath11k/2020-November/000641.html
+
+I'll include you and other reporters to that thread.
+
 -- 
-2.7.4
+https://patchwork.kernel.org/project/linux-wireless/list/
 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
