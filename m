@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from m42-4.mailgun.net ([69.72.42.4])
+Received: from z5.mailgun.us ([104.130.96.5])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kd7GH-0006Ii-Ch
- for ath11k@lists.infradead.org; Thu, 12 Nov 2020 07:43:18 +0000
+ id 1kd7GL-0006IP-2x
+ for ath11k@lists.infradead.org; Thu, 12 Nov 2020 07:43:23 +0000
 From: Maharaja Kennadyrajan <mkenna@codeaurora.org>
-Subject: [PATCH 1/3] ath11k: vdev delete synchronization with firmware
-Date: Thu, 12 Nov 2020 13:12:58 +0530
-Message-Id: <1605166980-29115-2-git-send-email-mkenna@codeaurora.org>
+Subject: [PATCH 2/3] ath11k: peer delete synchronization with firmware
+Date: Thu, 12 Nov 2020 13:12:59 +0530
+Message-Id: <1605166980-29115-3-git-send-email-mkenna@codeaurora.org>
 In-Reply-To: <1605166980-29115-1-git-send-email-mkenna@codeaurora.org>
 References: <1605166980-29115-1-git-send-email-mkenna@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -27,12 +27,10 @@ Cc: Ritesh Singh <ritesi@codeaurora.org>, Maharaja Kennadyrajan <mkenna@codeauro
 
 From: Ritesh Singh <ritesi@codeaurora.org>
 
-When the interface is added immediately after removing the
-interface, vdev deletion in firmware might not have been
-completed.
-
-Hence, add vdev_delete_resp_event and wait_event_timeout
-to synchronize with firmware.
+Peer creation in firmware fails, if last peer deletion
+is still in progress.
+Hence, add wait for the event after deleting every peer
+from host driver to synchronize with firmware.
 
 Signed-off-by: Ritesh Singh <ritesi@codeaurora.org>
 Signed-off-by: Maharaja Kennadyrajan <mkenna@codeaurora.org>
@@ -41,228 +39,194 @@ Signed-off-by: Maharaja Kennadyrajan <mkenna@codeaurora.org>
     V2: Rebased on latest ath.git TOT(Addressed Kalle's comment).
 
  drivers/net/wireless/ath/ath11k/core.c |  1 +
- drivers/net/wireless/ath/ath11k/core.h |  2 ++
- drivers/net/wireless/ath/ath11k/mac.c  | 29 ++++++++++++----
- drivers/net/wireless/ath/ath11k/wmi.c  | 62 +++++++++++++++++++++++++++++++++-
- drivers/net/wireless/ath/ath11k/wmi.h  |  4 +++
- 5 files changed, 90 insertions(+), 8 deletions(-)
+ drivers/net/wireless/ath/ath11k/core.h |  1 +
+ drivers/net/wireless/ath/ath11k/mac.c  | 17 ++++++++++++-
+ drivers/net/wireless/ath/ath11k/peer.c | 44 +++++++++++++++++++++++++++++++---
+ drivers/net/wireless/ath/ath11k/peer.h |  2 ++
+ drivers/net/wireless/ath/ath11k/wmi.c  | 17 ++++++++++---
+ 6 files changed, 75 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index c23a59a..f792825 100644
+index f792825..da20ed7 100644
 --- a/drivers/net/wireless/ath/ath11k/core.c
 +++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -810,6 +810,7 @@ static void ath11k_core_restart(struct work_struct *work)
+@@ -808,6 +808,7 @@ static void ath11k_core_restart(struct work_struct *work)
+ 		complete(&ar->scan.started);
+ 		complete(&ar->scan.completed);
  		complete(&ar->peer_assoc_done);
++		complete(&ar->peer_delete_done);
  		complete(&ar->install_key_done);
  		complete(&ar->vdev_setup_done);
-+		complete(&ar->vdev_delete_done);
- 		complete(&ar->bss_survey_done);
- 		complete(&ar->thermal.wmi_sync);
- 
+ 		complete(&ar->vdev_delete_done);
 diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 79224ed..714dcb4 100644
+index 714dcb4..c7ce7c2 100644
 --- a/drivers/net/wireless/ath/ath11k/core.h
 +++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -430,6 +430,7 @@ struct ath11k_per_peer_tx_stats {
- };
+@@ -506,6 +506,7 @@ struct ath11k {
+ 	u8 lmac_id;
  
- #define ATH11K_FLUSH_TIMEOUT (5 * HZ)
-+#define ATH11K_VDEV_DELETE_TIMEOUT_HZ (5 * HZ)
+ 	struct completion peer_assoc_done;
++	struct completion peer_delete_done;
  
- struct ath11k_vdev_stop_status {
- 	bool stop_in_progress;
-@@ -512,6 +513,7 @@ struct ath11k {
- 	int last_wmi_vdev_start_status;
- 	struct ath11k_vdev_stop_status vdev_stop_status;
- 	struct completion vdev_setup_done;
-+	struct completion vdev_delete_done;
- 
- 	int num_peers;
- 	int max_num_peers;
+ 	int install_key_status;
+ 	struct completion install_key_done;
 diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index f4aedd5..f0ab88c 100644
+index f0ab88c..10d83a9 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -4664,6 +4664,7 @@ static void ath11k_mac_op_remove_interface(struct ieee80211_hw *hw,
- 	struct ath11k *ar = hw->priv;
- 	struct ath11k_vif *arvif = ath11k_vif_to_arvif(vif);
- 	struct ath11k_base *ab = ar->ab;
-+	unsigned long time_left;
- 	int ret;
- 	int i;
+@@ -4628,8 +4628,22 @@ static int ath11k_mac_op_add_interface(struct ieee80211_hw *hw,
  
-@@ -4672,10 +4673,6 @@ static void ath11k_mac_op_remove_interface(struct ieee80211_hw *hw,
- 	ath11k_dbg(ab, ATH11K_DBG_MAC, "mac remove interface (vdev %d)\n",
- 		   arvif->vdev_id);
- 
--	spin_lock_bh(&ar->data_lock);
--	list_del(&arvif->list);
--	spin_unlock_bh(&ar->data_lock);
--
+ err_peer_del:
  	if (arvif->vdev_type == WMI_VDEV_TYPE_AP) {
- 		ret = ath11k_peer_delete(ar, arvif->vdev_id, vif->addr);
- 		if (ret)
-@@ -4683,16 +4680,33 @@ static void ath11k_mac_op_remove_interface(struct ieee80211_hw *hw,
- 				    arvif->vdev_id, ret);
++		reinit_completion(&ar->peer_delete_done);
++
++		ret = ath11k_wmi_send_peer_delete_cmd(ar, vif->addr,
++						      arvif->vdev_id);
++		if (ret) {
++			ath11k_warn(ar->ab, "failed to delete peer vdev_id %d addr %pM\n",
++				    arvif->vdev_id, vif->addr);
++			return ret;
++		}
++
++		ret = ath11k_wait_for_peer_delete_done(ar, arvif->vdev_id,
++						       vif->addr);
++		if (ret)
++			return ret;
++
+ 		ar->num_peers--;
+-		ath11k_wmi_send_peer_delete_cmd(ar, vif->addr, arvif->vdev_id);
  	}
  
-+	reinit_completion(&ar->vdev_delete_done);
-+
- 	ret = ath11k_wmi_vdev_delete(ar, arvif->vdev_id);
--	if (ret)
-+	if (ret) {
- 		ath11k_warn(ab, "failed to delete WMI vdev %d: %d\n",
- 			    arvif->vdev_id, ret);
-+		goto err_vdev_del;
-+	}
-+
-+	time_left = wait_for_completion_timeout(&ar->vdev_delete_done,
-+						ATH11K_VDEV_DELETE_TIMEOUT_HZ);
-+	if (time_left == 0) {
-+		ath11k_warn(ab, "Timeout in receiving vdev delete response\n");
-+		goto err_vdev_del;
-+	}
- 
-+	ab->free_vdev_map |= 1LL << (arvif->vdev_id);
-+	ar->allocated_vdev_map &= ~(1LL << arvif->vdev_id);
- 	ar->num_created_vdevs--;
-+
- 	ath11k_dbg(ab, ATH11K_DBG_MAC, "vdev %pM deleted, vdev_id %d\n",
- 		   vif->addr, arvif->vdev_id);
--	ar->allocated_vdev_map &= ~(1LL << arvif->vdev_id);
--	ab->free_vdev_map |= 1LL << (arvif->vdev_id);
-+
-+err_vdev_del:
-+	spin_lock_bh(&ar->data_lock);
-+	list_del(&arvif->list);
-+	spin_unlock_bh(&ar->data_lock);
- 
- 	ath11k_peer_cleanup(ar, arvif->vdev_id);
- 
-@@ -6458,6 +6472,7 @@ int ath11k_mac_allocate(struct ath11k_base *ab)
- 		INIT_LIST_HEAD(&ar->ppdu_stats_info);
- 		mutex_init(&ar->conf_mutex);
+ err_vdev_del:
+@@ -6474,6 +6488,7 @@ int ath11k_mac_allocate(struct ath11k_base *ab)
  		init_completion(&ar->vdev_setup_done);
-+		init_completion(&ar->vdev_delete_done);
+ 		init_completion(&ar->vdev_delete_done);
  		init_completion(&ar->peer_assoc_done);
++		init_completion(&ar->peer_delete_done);
  		init_completion(&ar->install_key_done);
  		init_completion(&ar->bss_survey_done);
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index bca66c1..d1175a1 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -126,6 +126,8 @@ static const struct wmi_tlv_policy wmi_tlv_policies[] = {
- 		.min_len = sizeof(struct wmi_fils_discovery_event) },
- 	[WMI_TAG_OFFLOAD_PRB_RSP_TX_STATUS_EVENT] = {
- 		.min_len = sizeof(struct wmi_probe_resp_tx_status_event) },
-+	[WMI_TAG_VDEV_DELETE_RESP_EVENT] = {
-+		.min_len = sizeof(struct wmi_vdev_delete_resp_event) },
- };
- 
- #define PRIMAP(_hw_mode_) \
-@@ -4379,6 +4381,34 @@ static int ath11k_pull_peer_del_resp_ev(struct ath11k_base *ab, struct sk_buff *
- 	return 0;
+ 		init_completion(&ar->scan.started);
+diff --git a/drivers/net/wireless/ath/ath11k/peer.c b/drivers/net/wireless/ath/ath11k/peer.c
+index 61ad930..1866d82 100644
+--- a/drivers/net/wireless/ath/ath11k/peer.c
++++ b/drivers/net/wireless/ath/ath11k/peer.c
+@@ -177,12 +177,36 @@ static int ath11k_wait_for_peer_deleted(struct ath11k *ar, int vdev_id, const u8
+ 	return ath11k_wait_for_peer_common(ar->ab, vdev_id, addr, false);
  }
  
-+static int ath11k_pull_vdev_del_resp_ev(struct ath11k_base *ab,
-+					struct sk_buff *skb,
-+					u32 *vdev_id)
++int ath11k_wait_for_peer_delete_done(struct ath11k *ar, u32 vdev_id,
++				     const u8 *addr)
 +{
-+	const void **tb;
-+	const struct wmi_vdev_delete_resp_event *ev;
 +	int ret;
++	unsigned long time_left;
 +
-+	tb = ath11k_wmi_tlv_parse_alloc(ab, skb->data, skb->len, GFP_ATOMIC);
-+	if (IS_ERR(tb)) {
-+		ret = PTR_ERR(tb);
-+		ath11k_warn(ab, "failed to parse tlv: %d\n", ret);
++	ret = ath11k_wait_for_peer_deleted(ar, vdev_id, addr);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed wait for peer deleted");
 +		return ret;
 +	}
 +
-+	ev = tb[WMI_TAG_VDEV_DELETE_RESP_EVENT];
-+	if (!ev) {
-+		ath11k_warn(ab, "failed to fetch vdev delete resp ev");
-+		kfree(tb);
-+		return -EPROTO;
++	time_left = wait_for_completion_timeout(&ar->peer_delete_done,
++						3 * HZ);
++	if (time_left == 0) {
++		ath11k_warn(ar->ab, "Timeout in receiving peer delete response\n");
++		return -ETIMEDOUT;
 +	}
 +
-+	*vdev_id = ev->vdev_id;
-+
-+	kfree(tb);
 +	return 0;
 +}
 +
- static int ath11k_pull_bcn_tx_status_ev(struct ath11k_base *ab, void *evt_buf,
- 					u32 len, u32 *vdev_id,
- 					u32 *tx_status)
-@@ -5711,6 +5741,34 @@ static void ath11k_peer_delete_resp_event(struct ath11k_base *ab, struct sk_buff
- 	 */
- }
+ int ath11k_peer_delete(struct ath11k *ar, u32 vdev_id, u8 *addr)
+ {
+ 	int ret;
  
-+static void ath11k_vdev_delete_resp_event(struct ath11k_base *ab,
-+					  struct sk_buff *skb)
-+{
+ 	lockdep_assert_held(&ar->conf_mutex);
+ 
++	reinit_completion(&ar->peer_delete_done);
++
+ 	ret = ath11k_wmi_send_peer_delete_cmd(ar, addr, vdev_id);
+ 	if (ret) {
+ 		ath11k_warn(ar->ab,
+@@ -191,7 +215,7 @@ int ath11k_peer_delete(struct ath11k *ar, u32 vdev_id, u8 *addr)
+ 		return ret;
+ 	}
+ 
+-	ret = ath11k_wait_for_peer_deleted(ar, vdev_id, addr);
++	ret = ath11k_wait_for_peer_delete_done(ar, vdev_id, addr);
+ 	if (ret)
+ 		return ret;
+ 
+@@ -247,8 +271,22 @@ int ath11k_peer_create(struct ath11k *ar, struct ath11k_vif *arvif,
+ 		spin_unlock_bh(&ar->ab->base_lock);
+ 		ath11k_warn(ar->ab, "failed to find peer %pM on vdev %i after creation\n",
+ 			    param->peer_addr, param->vdev_id);
+-		ath11k_wmi_send_peer_delete_cmd(ar, param->peer_addr,
+-						param->vdev_id);
++
++		reinit_completion(&ar->peer_delete_done);
++
++		ret = ath11k_wmi_send_peer_delete_cmd(ar, param->peer_addr,
++						      param->vdev_id);
++		if (ret) {
++			ath11k_warn(ar->ab, "failed to delete peer vdev_id %d addr %pM\n",
++				    param->vdev_id, param->peer_addr);
++			return ret;
++		}
++
++		ret = ath11k_wait_for_peer_delete_done(ar, param->vdev_id,
++						       param->peer_addr);
++		if (ret)
++			return ret;
++
+ 		return -ENOENT;
+ 	}
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/peer.h b/drivers/net/wireless/ath/ath11k/peer.h
+index 5d125ce..bba2e00 100644
+--- a/drivers/net/wireless/ath/ath11k/peer.h
++++ b/drivers/net/wireless/ath/ath11k/peer.h
+@@ -41,5 +41,7 @@ void ath11k_peer_cleanup(struct ath11k *ar, u32 vdev_id);
+ int ath11k_peer_delete(struct ath11k *ar, u32 vdev_id, u8 *addr);
+ int ath11k_peer_create(struct ath11k *ar, struct ath11k_vif *arvif,
+ 		       struct ieee80211_sta *sta, struct peer_create_params *param);
++int ath11k_wait_for_peer_delete_done(struct ath11k *ar, u32 vdev_id,
++				     const u8 *addr);
+ 
+ #endif /* _PEER_H_ */
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index d1175a1..e374270 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -5730,15 +5730,26 @@ static int ath11k_ready_event(struct ath11k_base *ab, struct sk_buff *skb)
+ static void ath11k_peer_delete_resp_event(struct ath11k_base *ab, struct sk_buff *skb)
+ {
+ 	struct wmi_peer_delete_resp_event peer_del_resp;
 +	struct ath11k *ar;
-+	u32 vdev_id = 0;
-+
-+	if (ath11k_pull_vdev_del_resp_ev(ab, skb, &vdev_id) != 0) {
-+		ath11k_warn(ab, "failed to extract vdev delete resp");
-+		return;
-+	}
-+
+ 
+ 	if (ath11k_pull_peer_del_resp_ev(ab, skb, &peer_del_resp) != 0) {
+ 		ath11k_warn(ab, "failed to extract peer delete resp");
+ 		return;
+ 	}
+ 
+-	/* TODO: Do we need to validate whether ath11k_peer_find() return NULL
+-	 *	 Why this is needed when there is HTT event for peer delete
+-	 */
 +	rcu_read_lock();
-+	ar = ath11k_mac_get_ar_by_vdev_id(ab, vdev_id);
++	ar = ath11k_mac_get_ar_by_vdev_id(ab, peer_del_resp.vdev_id);
 +	if (!ar) {
-+		ath11k_warn(ab, "invalid vdev id in vdev delete resp ev %d",
-+			    vdev_id);
++		ath11k_warn(ab, "invalid vdev id in peer delete resp ev %d",
++			    peer_del_resp.vdev_id);
 +		rcu_read_unlock();
 +		return;
 +	}
 +
-+	complete(&ar->vdev_delete_done);
-+
++	complete(&ar->peer_delete_done);
 +	rcu_read_unlock();
-+
-+	ath11k_dbg(ab, ATH11K_DBG_WMI, "vdev delete resp for vdev id %d\n",
-+		   vdev_id);
-+}
-+
- static inline const char *ath11k_wmi_vdev_resp_print(u32 vdev_resp_status)
- {
- 	switch (vdev_resp_status) {
-@@ -6722,7 +6780,6 @@ static void ath11k_wmi_tlv_op_rx(struct ath11k_base *ab, struct sk_buff *skb)
- 		break;
- 	/* add Unsupported events here */
- 	case WMI_TBTTOFFSET_EXT_UPDATE_EVENTID:
--	case WMI_VDEV_DELETE_RESP_EVENTID:
- 	case WMI_PEER_OPER_MODE_CHANGE_EVENTID:
- 	case WMI_TWT_ENABLE_EVENTID:
- 	case WMI_TWT_DISABLE_EVENTID:
-@@ -6733,6 +6790,9 @@ static void ath11k_wmi_tlv_op_rx(struct ath11k_base *ab, struct sk_buff *skb)
- 	case WMI_PDEV_DFS_RADAR_DETECTION_EVENTID:
- 		ath11k_wmi_pdev_dfs_radar_detected_event(ab, skb);
- 		break;
-+	case WMI_VDEV_DELETE_RESP_EVENTID:
-+		ath11k_vdev_delete_resp_event(ab, skb);
-+		break;
- 	/* TODO: Add remaining events */
- 	default:
- 		ath11k_dbg(ab, ATH11K_DBG_WMI, "Unknown eventid: 0x%x\n", id);
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index e4cc159..4c802c5 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -4018,6 +4018,10 @@ struct wmi_regulatory_rule_struct {
- 	u32  flag_info;
- };
++	ath11k_dbg(ab, ATH11K_DBG_WMI, "peer delete resp for vdev id %d addr %pM\n",
++		   peer_del_resp.vdev_id, peer_del_resp.peer_macaddr.addr);
+ }
  
-+struct wmi_vdev_delete_resp_event {
-+	u32 vdev_id;
-+} __packed;
-+
- struct wmi_peer_delete_resp_event {
- 	u32 vdev_id;
- 	struct wmi_mac_addr peer_macaddr;
+ static void ath11k_vdev_delete_resp_event(struct ath11k_base *ab,
 -- 
 2.7.4
 
