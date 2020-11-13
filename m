@@ -1,11 +1,17 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
+Received: from mail-ed1-x534.google.com ([2a00:1450:4864:20::534])
+ by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1kdb7x-0006Nj-B1
+ for ath11k@lists.infradead.org; Fri, 13 Nov 2020 15:36:42 +0000
+Received: by mail-ed1-x534.google.com with SMTP id l5so11148921edq.11
+ for <ath11k@lists.infradead.org>; Fri, 13 Nov 2020 07:36:40 -0800 (PST)
+In-Reply-To: <20201112062555.3335-1-cjhuang@codeaurora.org>
+From: Pavel Procopiuc <pavel.procopiuc@gmail.com>
+Subject: Re: [RFC v2] ath11k: enable non-wow suspend and resume
+Message-ID: <2cae4d60-21f3-e248-c5f9-dafd52731008@gmail.com>
+Date: Fri, 13 Nov 2020 16:36:36 +0100
 MIME-Version: 1.0
-References: <BYAPR02MB4567172F4913F68EE61C7EAC921A0@BYAPR02MB4567.namprd02.prod.outlook.com>
-In-Reply-To: <BYAPR02MB4567172F4913F68EE61C7EAC921A0@BYAPR02MB4567.namprd02.prod.outlook.com>
-From: Josh Boyer <jwboyer@kernel.org>
-Date: Fri, 13 Nov 2020 10:13:18 -0500
-Message-ID: <CA+5PVA5vc-oHRnso3Zo7UByqKx+Eh7KRtc9XgXub_5sqSjdXtw@mail.gmail.com>
-Subject: Re: [PULL] ath10k & ath11k firmware 20201023
+Content-Language: en-US
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -14,146 +20,77 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@qca.qualcomm.com>
-Cc: "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>, "ath10k@lists.infradead.org" <ath10k@lists.infradead.org>, "linux-firmware@kernel.org" <linux-firmware@kernel.org>, "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
+To: Carl Huang <cjhuang@codeaurora.org>
+Cc: ath11k@lists.infradead.org
 
-Pulled and pushed out.
+> For QCA6390, it needs to power down target when system suspends and
+> needs to power up target when system resumes in non-wow scenario.
+> 
+> The power up procedure downloads firmware again.
 
-josh
+I've tried the patch against 5.10-rc3 (with 7fef431be9c9 reverted) and resuming from the suspend didn't bring up the 
+wireless card QCA6390 (in Dell XPS 17):
 
-On Fri, Oct 23, 2020 at 11:57 AM Kalle Valo <kvalo@qca.qualcomm.com> wrote:
->
-> Hi linux-firmware maintainers,
->
-> here's a pull request for ath10k and ath11k drivers. For ath10k there is a
-> firmware for new hardware QCA6174 hw3.0 SDIO. For ath11k there are
-> firmwares for new hardware IPQ8074 hw2.0, IPQ6018 hw1.0 and QCA6390
-> hw2.0. And also few updates for existing hardware.
->
-> From previous pull request ath10k-20201022 I fixed the notice files to be
-> valid utf-8 and changed CRLF line endings to LF.
->
-> Please let me know if there are any problems.
->
-> Kalle
->
-> The following changes since commit 58d41d0facca2478d3e45f6321224361519aee96:
->
->   ice: Add comms package file for Intel E800 series driver (2020-10-05 08:09:03 -0400)
->
-> are available in the git repository at:
->
->   git://git.kernel.org/pub/scm/linux/kernel/git/kvalo/linux-firmware.git ath10k-20201023
->
-> for you to fetch changes up to d842d8c5892ea1570eacd01cc274436d1c6e676b:
->
->   ath11k: QCA6390 hw2.0: add to WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1 (2020-10-23 18:42:08 +0300)
->
-> ----------------------------------------------------------------
-> Kalle Valo (11):
->       ath10k: QCA6174 hw3.0: update firmware-6.bin to WLAN.RM.4.4.1-00157-QCARMSWPZ-1
->       ath10k: QCA6174 hw3.0: update board-2.bin
->       ath10k: QCA9888 hw2.0: update firmware-5.bin to 10.4-3.9.0.2-00131
->       ath10k: QCA9984 hw1.0: update firmware-5.bin to 10.4-3.9.0.2-00131
->       ath10k: QCA6174 hw3.0: add firmware-sdio-6.bin version WLAN.RMH.4.4.1-00077
->       ath11k: IPQ6018 hw1.0: add board-2.bin
->       ath11k: IPQ6018 hw1.0: add to WLAN.HK.2.1.0.1-01238-QCAHKSWPL_SILICONZ-2
->       ath11k: IPQ8074 hw2.0: add board-2.bin
->       ath11k: IPQ8074 hw2.0: add to WLAN.HK.2.1.0.1-01238-QCAHKSWPL_SILICONZ-2
->       ath11k: QCA6390 hw2.0: add board-2.bin
->       ath11k: QCA6390 hw2.0: add to WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
->
->  WHENCE                                             |   57 +-
->  ath10k/QCA6174/hw3.0/board-2.bin                   |  Bin 584036 -> 633360 bytes
->  ath10k/QCA6174/hw3.0/firmware-6.bin                |  Bin 700988 -> 702844 bytes
->  ath10k/QCA6174/hw3.0/firmware-sdio-6.bin           |  Bin 0 -> 604416 bytes
->  .../hw3.0/notice_ath10k_firmware-sdio-6.txt        | 1352 ++++++++++++++
->  ath10k/QCA9888/hw2.0/firmware-5.bin                |  Bin 688140 -> 691292 bytes
->  ath10k/QCA9984/hw1.0/firmware-5.bin                |  Bin 675948 -> 679288 bytes
->  ath11k/IPQ6018/hw1.0/Notice.txt                    |  786 ++++++++
->  ath11k/IPQ6018/hw1.0/board-2.bin                   |  Bin 0 -> 787208 bytes
->  ath11k/IPQ6018/hw1.0/m3_fw.b00                     |  Bin 0 -> 148 bytes
->  ath11k/IPQ6018/hw1.0/m3_fw.b01                     |  Bin 0 -> 6712 bytes
->  ath11k/IPQ6018/hw1.0/m3_fw.b02                     |  Bin 0 -> 294912 bytes
->  ath11k/IPQ6018/hw1.0/m3_fw.flist                   |    3 +
->  ath11k/IPQ6018/hw1.0/m3_fw.mdt                     |  Bin 0 -> 6860 bytes
->  ath11k/IPQ6018/hw1.0/q6_fw.b00                     |  Bin 0 -> 340 bytes
->  ath11k/IPQ6018/hw1.0/q6_fw.b01                     |  Bin 0 -> 7000 bytes
->  ath11k/IPQ6018/hw1.0/q6_fw.b02                     |  Bin 0 -> 4696 bytes
->  ath11k/IPQ6018/hw1.0/q6_fw.b03                     |  Bin 0 -> 2357712 bytes
->  ath11k/IPQ6018/hw1.0/q6_fw.b04                     |  Bin 0 -> 370560 bytes
->  ath11k/IPQ6018/hw1.0/q6_fw.b05                     |  Bin 0 -> 175588 bytes
->  ath11k/IPQ6018/hw1.0/q6_fw.b07                     |  Bin 0 -> 8936 bytes
->  ath11k/IPQ6018/hw1.0/q6_fw.b08                     |  Bin 0 -> 409914 bytes
->  ath11k/IPQ6018/hw1.0/q6_fw.flist                   |    8 +
->  ath11k/IPQ6018/hw1.0/q6_fw.mdt                     |  Bin 0 -> 7340 bytes
->  ath11k/IPQ8074/hw2.0/Notice.txt                    |  786 ++++++++
->  ath11k/IPQ8074/hw2.0/board-2.bin                   |  Bin 0 -> 1311380 bytes
->  ath11k/IPQ8074/hw2.0/m3_fw.b00                     |  Bin 0 -> 148 bytes
->  ath11k/IPQ8074/hw2.0/m3_fw.b01                     |  Bin 0 -> 136 bytes
->  ath11k/IPQ8074/hw2.0/m3_fw.b02                     |  Bin 0 -> 327680 bytes
->  ath11k/IPQ8074/hw2.0/m3_fw.flist                   |    3 +
->  ath11k/IPQ8074/hw2.0/m3_fw.mdt                     |  Bin 0 -> 284 bytes
->  ath11k/IPQ8074/hw2.0/q6_fw.b00                     |  Bin 0 -> 340 bytes
->  ath11k/IPQ8074/hw2.0/q6_fw.b01                     |  Bin 0 -> 328 bytes
->  ath11k/IPQ8074/hw2.0/q6_fw.b02                     |  Bin 0 -> 4696 bytes
->  ath11k/IPQ8074/hw2.0/q6_fw.b03                     |  Bin 0 -> 2589264 bytes
->  ath11k/IPQ8074/hw2.0/q6_fw.b04                     |  Bin 0 -> 985504 bytes
->  ath11k/IPQ8074/hw2.0/q6_fw.b05                     |  Bin 0 -> 387076 bytes
->  ath11k/IPQ8074/hw2.0/q6_fw.b07                     |  Bin 0 -> 7048 bytes
->  ath11k/IPQ8074/hw2.0/q6_fw.b08                     |  Bin 0 -> 424524 bytes
->  ath11k/IPQ8074/hw2.0/q6_fw.flist                   |    8 +
->  ath11k/IPQ8074/hw2.0/q6_fw.mdt                     |  Bin 0 -> 668 bytes
->  ath11k/QCA6390/hw2.0/Notice.txt                    | 1971 ++++++++++++++++++++
->  ath11k/QCA6390/hw2.0/amss.bin                      |  Bin 0 -> 3609456 bytes
->  ath11k/QCA6390/hw2.0/board-2.bin                   |  Bin 0 -> 58016 bytes
->  ath11k/QCA6390/hw2.0/m3.bin                        |  Bin 0 -> 266684 bytes
->  45 files changed, 4971 insertions(+), 3 deletions(-)
->  create mode 100644 ath10k/QCA6174/hw3.0/firmware-sdio-6.bin
->  create mode 100644 ath10k/QCA6174/hw3.0/notice_ath10k_firmware-sdio-6.txt
->  create mode 100644 ath11k/IPQ6018/hw1.0/Notice.txt
->  create mode 100644 ath11k/IPQ6018/hw1.0/board-2.bin
->  create mode 100644 ath11k/IPQ6018/hw1.0/m3_fw.b00
->  create mode 100644 ath11k/IPQ6018/hw1.0/m3_fw.b01
->  create mode 100644 ath11k/IPQ6018/hw1.0/m3_fw.b02
->  create mode 100644 ath11k/IPQ6018/hw1.0/m3_fw.flist
->  create mode 100644 ath11k/IPQ6018/hw1.0/m3_fw.mdt
->  create mode 100644 ath11k/IPQ6018/hw1.0/q6_fw.b00
->  create mode 100644 ath11k/IPQ6018/hw1.0/q6_fw.b01
->  create mode 100644 ath11k/IPQ6018/hw1.0/q6_fw.b02
->  create mode 100644 ath11k/IPQ6018/hw1.0/q6_fw.b03
->  create mode 100644 ath11k/IPQ6018/hw1.0/q6_fw.b04
->  create mode 100644 ath11k/IPQ6018/hw1.0/q6_fw.b05
->  create mode 100644 ath11k/IPQ6018/hw1.0/q6_fw.b07
->  create mode 100644 ath11k/IPQ6018/hw1.0/q6_fw.b08
->  create mode 100644 ath11k/IPQ6018/hw1.0/q6_fw.flist
->  create mode 100644 ath11k/IPQ6018/hw1.0/q6_fw.mdt
->  create mode 100644 ath11k/IPQ8074/hw2.0/Notice.txt
->  create mode 100644 ath11k/IPQ8074/hw2.0/board-2.bin
->  create mode 100644 ath11k/IPQ8074/hw2.0/m3_fw.b00
->  create mode 100644 ath11k/IPQ8074/hw2.0/m3_fw.b01
->  create mode 100644 ath11k/IPQ8074/hw2.0/m3_fw.b02
->  create mode 100644 ath11k/IPQ8074/hw2.0/m3_fw.flist
->  create mode 100644 ath11k/IPQ8074/hw2.0/m3_fw.mdt
->  create mode 100644 ath11k/IPQ8074/hw2.0/q6_fw.b00
->  create mode 100644 ath11k/IPQ8074/hw2.0/q6_fw.b01
->  create mode 100644 ath11k/IPQ8074/hw2.0/q6_fw.b02
->  create mode 100644 ath11k/IPQ8074/hw2.0/q6_fw.b03
->  create mode 100644 ath11k/IPQ8074/hw2.0/q6_fw.b04
->  create mode 100644 ath11k/IPQ8074/hw2.0/q6_fw.b05
->  create mode 100644 ath11k/IPQ8074/hw2.0/q6_fw.b07
->  create mode 100644 ath11k/IPQ8074/hw2.0/q6_fw.b08
->  create mode 100644 ath11k/IPQ8074/hw2.0/q6_fw.flist
->  create mode 100644 ath11k/IPQ8074/hw2.0/q6_fw.mdt
->  create mode 100644 ath11k/QCA6390/hw2.0/Notice.txt
->  create mode 100644 ath11k/QCA6390/hw2.0/amss.bin
->  create mode 100644 ath11k/QCA6390/hw2.0/board-2.bin
->  create mode 100644 ath11k/QCA6390/hw2.0/m3.bin
->
+$ journalctl -b | grep -iP '05:00|ath11k|Linux version'
+Nov 13 13:47:51 razor kernel: Linux version 5.10.0-rc3 (root@razor) (gcc (Gentoo 9.3.0-r1 p3) 9.3.0, GNU ld (Gentoo 2.34 
+p6) 2.34.0) #8 SMP Thu Nov 12 13:56:10 CET 2020
+Nov 13 13:47:51 razor kernel: pci 0000:05:00.0: [17cb:1101] type 00 class 0x028000
+Nov 13 13:47:51 razor kernel: pci 0000:05:00.0: reg 0x10: [mem 0xd2100000-0xd21fffff 64bit]
+Nov 13 13:47:51 razor kernel: pci 0000:05:00.0: PME# supported from D0 D3hot D3cold
+Nov 13 13:47:51 razor kernel: pci 0000:05:00.0: 4.000 Gb/s available PCIe bandwidth, limited by 5.0 GT/s PCIe x1 link at 
+0000:00:1c.1 (capable of 7.876 Gb/s with 8.0 GT/s PCIe x1 link)
+Nov 13 13:47:51 razor kernel: pci 0000:05:00.0: Adding to iommu group 21
+Nov 13 13:47:52 razor kernel: ath11k_pci 0000:05:00.0: WARNING: ath11k PCI support is experimental!
+Nov 13 13:47:52 razor kernel: ath11k_pci 0000:05:00.0: BAR 0: assigned [mem 0xd2100000-0xd21fffff 64bit]
+Nov 13 13:47:52 razor kernel: ath11k_pci 0000:05:00.0: enabling device (0000 -> 0002)
+Nov 13 13:47:52 razor kernel: mhi 0000:05:00.0: Requested to power ON
+Nov 13 13:47:52 razor kernel: mhi 0000:05:00.0: Power on setup success
+Nov 13 13:47:52 razor kernel: ath11k_pci 0000:05:00.0: Respond mem req failed, result: 1, err: 0
+Nov 13 13:47:52 razor kernel: ath11k_pci 0000:05:00.0: qmi failed to respond fw mem req:-22
+Nov 13 13:47:52 razor kernel: ath11k_pci 0000:05:00.0: chip_id 0x0 chip_family 0xb board_id 0xff soc_id 0xffffffff
+Nov 13 13:47:52 razor kernel: ath11k_pci 0000:05:00.0: fw_version 0x101c06cc fw_build_timestamp 2020-06-24 19:50 fw_build_id
+Nov 13 13:47:54 razor NetworkManager[791]: <info>  [1605271674.1171] rfkill1: found Wi-Fi radio killswitch (at 
+/sys/devices/pci0000:00/0000:00:1c.1/0000:05:00.0/ieee80211/phy0/rfkill1) (driver ath11k_pci)
+Nov 13 13:47:56 razor ModemManager[728]: <info>  Couldn't check support for device 
+'/sys/devices/pci0000:00/0000:00:1c.1/0000:05:00.0': not supported by any plugin
+
+... suspended and resumed here ...
+
+Nov 13 14:09:13 razor kernel: ath11k_pci 0000:05:00.0: link down error during global reset
+Nov 13 14:09:13 razor kernel: ath11k_pci 0000:05:00.0: link down error during global reset
+Nov 13 14:09:13 razor kernel: DMAR: [INTR-REMAP] Request device [05:00.0] fault index 80 [fault reason 34] Present field 
+in the IRTE entry is clear
+Nov 13 14:09:13 razor kernel: mhi 0000:05:00.0: Requested to power ON
+Nov 13 14:09:13 razor kernel: mhi 0000:05:00.0: Power on setup success
+Nov 13 14:09:13 razor kernel: ath11k_pci 0000:05:00.0: Respond mem req failed, result: 1, err: 0
+Nov 13 14:09:13 razor kernel: ath11k_pci 0000:05:00.0: qmi failed to respond fw mem req:-22
+Nov 13 14:09:13 razor kernel: ath11k_pci 0000:05:00.0: chip_id 0x0 chip_family 0xb board_id 0xff soc_id 0xffffffff
+Nov 13 14:09:13 razor kernel: ath11k_pci 0000:05:00.0: fw_version 0x101c06cc fw_build_timestamp 2020-06-24 19:50 fw_build_id
+Nov 13 14:09:13 razor kernel: ath11k_pci 0000:05:00.0: failed to connect to HTT: -108
+Nov 13 14:09:13 razor kernel: ath11k_pci 0000:05:00.0: failed to start core: -108
+Nov 13 14:09:16 razor ModemManager[728]: <info>  Couldn't check support for device 
+'/sys/devices/pci0000:00/0000:00:1c.1/0000:05:00.0': not supported by any plugin
+Nov 13 14:09:17 razor kernel: ath11k_pci 0000:05:00.0: wait mac start timeout
+Nov 13 14:09:17 razor kernel: ath11k_pci 0000:05:00.0: failed to send WMI_PDEV_SET_PARAM cmd
+Nov 13 14:09:17 razor kernel: ath11k_pci 0000:05:00.0: failed to enable PMF QOS: (-108
+Nov 13 14:09:17 razor kernel: ath11k_pci 0000:05:00.0: failed to send WMI_PDEV_SET_PARAM cmd
+Nov 13 14:09:17 razor kernel: ath11k_pci 0000:05:00.0: failed to enable PMF QOS: (-108
+Nov 13 14:09:17 razor kernel: ath11k_pci 0000:05:00.0: failed to send WMI_PDEV_SET_PARAM cmd
+Nov 13 14:09:17 razor kernel: ath11k_pci 0000:05:00.0: failed to enable PMF QOS: (-108
+Nov 13 14:09:27 razor kernel: ath11k_pci 0000:05:00.0: failed to send WMI_PDEV_SET_PARAM cmd
+Nov 13 14:09:27 razor kernel: ath11k_pci 0000:05:00.0: failed to enable PMF QOS: (-108
+Nov 13 14:09:27 razor kernel: ath11k_pci 0000:05:00.0: failed to send WMI_PDEV_SET_PARAM cmd
+Nov 13 14:09:27 razor kernel: ath11k_pci 0000:05:00.0: failed to enable PMF QOS: (-108
+Nov 13 14:09:37 razor kernel: ath11k_pci 0000:05:00.0: failed to send WMI_PDEV_SET_PARAM cmd
+Nov 13 14:09:37 razor kernel: ath11k_pci 0000:05:00.0: failed to enable PMF QOS: (-108
+Nov 13 14:09:37 razor kernel: ath11k_pci 0000:05:00.0: failed to send WMI_PDEV_SET_PARAM cmd
+Nov 13 14:09:37 razor kernel: ath11k_pci 0000:05:00.0: failed to enable PMF QOS: (-108
+Nov 13 14:09:41 razor NetworkManager[791]: <info>  [1605272981.9889] radio killswitch 
+/sys/devices/pci0000:00/0000:00:1c.1/0000:05:00.0/ieee80211/phy0/rfkill1 disappeared
 
 -- 
 ath11k mailing list
