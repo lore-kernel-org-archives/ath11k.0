@@ -1,30 +1,17 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail-ed1-x532.google.com ([2a00:1450:4864:20::532])
+Received: from z5.mailgun.us ([104.130.96.5])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kdEln-0006Rg-BG
- for ath11k@lists.infradead.org; Thu, 12 Nov 2020 15:44:20 +0000
-Received: by mail-ed1-x532.google.com with SMTP id v4so6812471edi.0
- for <ath11k@lists.infradead.org>; Thu, 12 Nov 2020 07:44:16 -0800 (PST)
+ id 1kdOVk-0000zt-AP
+ for ath11k@lists.infradead.org; Fri, 13 Nov 2020 02:08:25 +0000
 MIME-Version: 1.0
-References: <20201103160838.GA246433@bjorn-Precision-5520>
- <874km61732.fsf@nanos.tec.linutronix.de>
- <fa26ac8b-ed48-7ea3-c21b-b133532716b8@posteo.de>
- <87mtzxkus5.fsf@nanos.tec.linutronix.de>
- <87wnz0hr9k.fsf@codeaurora.org> <87ft5hehlb.fsf@codeaurora.org>
- <6b60c8f1-ec37-d601-92c2-97a485b73431@posteo.de>
- <87v9ec9rk3.fsf@codeaurora.org> <87imab4slq.fsf@codeaurora.org>
- <b2129a70db2b36c5015b4143a839f47dfc3153af.camel@seibold.net>
- <CAHUdJJVp5r55NtE+BNz5XGtnaks6mDKQBFodz63DdULBVhD0Lg@mail.gmail.com>
- <CAHUdJJXRDKs9NRugUAFgNr51DJ=OcssuiV8ST5CaV1CKiNTFfA@mail.gmail.com>
- <0b58872b4f27dbf5aad2a39f5ec4a066e080d806.camel@seibold.net>
- <875z6b3v22.fsf@codeaurora.org>
- <CAHUdJJVK1vH2_9YkCQ99n5mak3oGN09422gG0APkWwcy=ZDQ-Q@mail.gmail.com>
- <87pn4j2bna.fsf@codeaurora.org>
-In-Reply-To: <87pn4j2bna.fsf@codeaurora.org>
-From: wi nk <wink@technolu.st>
-Date: Thu, 12 Nov 2020 16:44:04 +0100
-Message-ID: <CAHUdJJXpfkNikreQ_JdpKDkwjEGN0oY8PyYT=aWsw1armz83Kw@mail.gmail.com>
-Subject: Re: pci_alloc_irq_vectors fails ENOSPC for XPS 13 9310
+Date: Fri, 13 Nov 2020 10:08:13 +0800
+From: Wen Gong <wgong@codeaurora.org>
+Subject: Re: [PATCH v2] mac80211: reject/clear user rate mask if not usable
+In-Reply-To: <5decc452-7b2a-db1d-c5eb-04ab6bb61553@broadcom.com>
+References: <20170308132022.4216-1-johannes@sipsolutions.net>
+ <07179008e9369bc81e152009ca85191d@codeaurora.org>
+ <5decc452-7b2a-db1d-c5eb-04ab6bb61553@broadcom.com>
+Message-ID: <4b8f37fde23262547edb6ed4635cf89b@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -33,106 +20,42 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: Govind Singh <govinds@codeaurora.org>, linux-pci@vger.kernel.org, Stefani Seibold <stefani@seibold.net>, linux-wireless@vger.kernel.org, Devin Bayer <dev@doubly.so>, ath11k@lists.infradead.org, Thomas Krause <thomaskrause@posteo.de>, Bjorn Helgaas <helgaas@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, Christoph Hellwig <hch@lst.de>, David Woodhouse <dwmw@amazon.co.uk>
+To: Arend Van Spriel <arend.vanspriel@broadcom.com>
+Cc: Johannes Berg <johannes.berg@intel.com>, kirtika@google.com, linux-wireless-owner@vger.kernel.org, linux-wireless@vger.kernel.org, ath10k@lists.infradead.org, Johannes Berg <johannes@sipsolutions.net>, ath11k@lists.infradead.org
 
-On Thu, Nov 12, 2020 at 10:00 AM Kalle Valo <kvalo@codeaurora.org> wrote:
->
-> wi nk <wink@technolu.st> writes:
->
-> > On Thu, Nov 12, 2020 at 8:15 AM Kalle Valo <kvalo@codeaurora.org> wrote:
-> >>
-> >> Stefani Seibold <stefani@seibold.net> writes:
-> >>
-> >> > Am Donnerstag, den 12.11.2020, 02:10 +0100 schrieb wi nk:
-> >> >> I've yet to see any instability after 45 minutes of exercising it, I
-> >> >> do see a couple of messages that came out of the driver:
-> >> >>
-> >> >> [    8.963389] ath11k_pci 0000:55:00.0: Unknown eventid: 0x16005
-> >> >> [   11.342317] ath11k_pci 0000:55:00.0: Unknown eventid: 0x1d00a
-> >> >>
-> >> >> then when it associates:
-> >> >>
-> >> >> [   16.718895] wlp85s0: send auth to ec:08:6b:27:01:ea (try 1/3)
-> >> >> [   16.722636] wlp85s0: authenticated
-> >> >> [   16.724150] wlp85s0: associate with ec:08:6b:27:01:ea (try 1/3)
-> >> >> [   16.726486] wlp85s0: RX AssocResp from ec:08:6b:27:01:ea
-> >> >> (capab=0x411 status=0 aid=8)
-> >> >> [   16.738443] wlp85s0: associated
-> >> >> [   16.764966] IPv6: ADDRCONF(NETDEV_CHANGE): wlp85s0: link becomes
-> >> >> ready
-> >> >>
-> >> >> The adapter is achieving around 500 mbps on my gigabit connection, my
-> >> >> 2018 mbp sees around 650, so it's doing pretty well so far.
-> >> >>
-> >> >> Stefani - when you applied the patch that Kalle shared, which branch
-> >> >> did you apply it to?  I applied it to ath11k-qca6390-bringup and when
-> >> >> I revert 7fef431be9c9 there is a small merge conflict I needed to
-> >> >> resolve.  I wonder if either the starting branch, or your chosen
-> >> >> resolution are related to the instability you see (or I'm just lucky
-> >> >> so far! :)).
-> >> >>
-> >> >
-> >> > I used the vanilla kernel tree
-> >> > https://git.kernel.org/torvalds/t/linux-5.10-rc2.tar.gz. On top of this
-> >> > i applied the
-> >> >
-> >> > RFT-ath11k-pci-support-platforms-with-one-MSI-vector.patch
-> >> >
-> >> > and reverted the patch 7fef431be9c9
-> >>
-> >> I did also my testing on v5.10-rc2 and I recommend to use that as the
-> >> baseline when debuggin these ath11k problems. It helps to compare the
-> >> results if everyone have the same baseline.
-> >>
-> >> --
-> >> https://patchwork.kernel.org/project/linux-wireless/list/
-> >>
-> >> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-> >
-> > Absolutely, I'll rebuild to 5.10 later today and apply the same series
-> > of patches and report back.
->
-> Great, thanks.
->
-> > I'll also test out the patch on both versions from Carl to fix
-> > resuming. It stands to reason that we may be seeing another regression
-> > between Stefani (5.10) and myself (5.9 bringup branch) as I don't see
-> > any disconnections or instability once the interface is online.
->
-> Yeah, there is something strange happening between v5.9 and v5.10 we
-> have not yet figured out. Most likely it has something to do with memory
-> allocations and DMA transfers failing, but no clear understanding yet.
->
-> But to keep things simple let's only discuss the MSI problem on this
-> thread, and discuss the timeouts in the another thread:
->
-> http://lists.infradead.org/pipermail/ath11k/2020-November/000641.html
->
-> I'll include you and other reporters to that thread.
->
-> --
-> https://patchwork.kernel.org/project/linux-wireless/list/
->
-> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
-Ok, I've tried a clean checkout of 5.10-rc2 with the one MSI patch
-applied and 7fef431be9c9 reverted.  I can't get my machine to  boot
-into anything usable with that configuration.  I'm running ubuntu so
-its starting right into X and sometime between showing the available
-users and me clicking the icon to login the machine freezes.  I can
-see in the system tray that the wifi adapter is being activated and
-appears to have associated with an AP, I just can't do much beyond
-that as the keyboard backlight wakes up, but the caps lock key doesn't
-work.  I see similar behavior with the 5.9 configuration, but after a
-reboot or two I win whatever race is occuring.  With 5.10, I tried
-maybe 10-15 times with 0 success.
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+T24gMjAyMC0xMS0xMiAyMDo0OSwgQXJlbmQgVmFuIFNwcmllbCB3cm90ZToKPiBPbiAxMS8xMi8y
+MDIwIDExOjU1IEFNLCBXZW4gR29uZyB3cm90ZToKPj4gT24gMjAxNy0wMy0wOCAyMToyMCwgSm9o
+YW5uZXMgQmVyZyB3cm90ZToKPj4+IEZyb206IEpvaGFubmVzIEJlcmcgPGpvaGFubmVzLmJlcmdA
+aW50ZWwuY29tPgo+Pj4gCj4gCj4gWy4uLl0KPiAKPj4+IEBAIC0yNjg1LDYgKzI2ODYsMjEgQEAg
+c3RhdGljIGludCBpZWVlODAyMTFfc2V0X2JpdHJhdGVfbWFzayhzdHJ1Y3QKPj4+IHdpcGh5ICp3
+aXBoeSwKPj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZXR1cm4gcmV0Owo+Pj4gwqDCoMKg
+wqAgfQo+Pj4gCj4+PiArwqDCoMKgIC8qCj4+PiArwqDCoMKgwqAgKiBJZiBhY3RpdmUgdmFsaWRh
+dGUgdGhlIHNldHRpbmcgYW5kIHJlamVjdCBpdCBpZiBpdCBkb2Vzbid0IAo+Pj4gbGVhdmUKPj4+
+ICvCoMKgwqDCoCAqIGF0IGxlYXN0IG9uZSBiYXNpYyByYXRlIHVzYWJsZSwgc2luY2Ugd2UgcmVh
+bGx5IGhhdmUgdG8gYmUgCj4+PiBhYmxlCj4+PiArwqDCoMKgwqAgKiB0byBzZW5kIHNvbWV0aGlu
+ZywgYW5kIGlmIHdlJ3JlIGFuIEFQIHdlIGhhdmUgdG8gYmUgYWJsZSB0byAKPj4+IGRvCj4+PiAr
+wqDCoMKgwqAgKiBzbyBhdCBhIGJhc2ljIHJhdGUgc28gdGhhdCBhbGwgY2xpZW50cyBjYW4gcmVj
+ZWl2ZSBpdC4KPj4+ICvCoMKgwqDCoCAqLwo+Pj4gK8KgwqDCoCBpZiAocmN1X2FjY2Vzc19wb2lu
+dGVyKHNkYXRhLT52aWYuY2hhbmN0eF9jb25mKSAmJgo+Pj4gK8KgwqDCoMKgwqDCoMKgIHNkYXRh
+LT52aWYuYnNzX2NvbmYuY2hhbmRlZi5jaGFuKSB7Cj4+PiArwqDCoMKgwqDCoMKgwqAgdTMyIGJh
+c2ljX3JhdGVzID0gc2RhdGEtPnZpZi5ic3NfY29uZi5iYXNpY19yYXRlczsKPj4+ICvCoMKgwqDC
+oMKgwqDCoCBlbnVtIG5sODAyMTFfYmFuZCBiYW5kID0gCj4+PiBzZGF0YS0+dmlmLmJzc19jb25m
+LmNoYW5kZWYuY2hhbi0+YmFuZDsKPj4+ICsKPj4+ICvCoMKgwqDCoMKgwqDCoCBpZiAoIShtYXNr
+LT5jb250cm9sW2JhbmRdLmxlZ2FjeSAmIGJhc2ljX3JhdGVzKSkKPj4+ICvCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgIHJldHVybiAtRUlOVkFMOwo+PiBJZiB1c2VyIHdhbnQgdG8gdXNlIOKAnGl3IHds
+YW4wIHNldCBiaXRyYXRlcyBsZWdhY3ktNSA1NOKAnSB0byBzZXQgaXQgdG8gCj4+IGZpeGVkIGlu
+IDU0TSBhbmQgNTRNIGlzCj4+IG5vdCBiYXNpYyByYXRlIGluIEFQJ3MgYmVjYW9uIGFzIGV4YW1w
+bGUgb2YgYmVsb3csIHRoZW4gdGhlIGl3IGNvbW1hbmQgCj4+IHdpbGwgZmFpbC4KPiAKPiBXaGlj
+aCB3YXMgdGhlIGludGVudCBvZiB0aGlzIGNoYW5nZSwgd2Fzbid0IGl0PyBZb3Ugd2FudCB0byBh
+bGxvdwo+IGFueXdheSBvciB5b3Ugd2FudCBhIGNsZWFyIGVycm9yIG1lc3NhZ2UgYXMgdG8gd2h5
+IGl0IGZhaWxzPwpXZSBuZWVkIHRvIHNldCB0aGUgdHggcmF0ZSB0byBmaXhlZCBhdCBhIHNpbmds
+ZSByYXRlLCBlLmcuLCAKNTRNLzQ4TS8zNk0uLi4gZm9yIGEgdGVzdCBjYXNlLgpJIGRvIG5vdCB3
+YW50IGEgY2xlYXIgZXJyb3IgbWVzc2FnZSwgSSB3YW50IHRvIHRoZSA1NE0gcmF0ZSBwYXNzL3Nl
+dCAKc3VjY2VzcyB0byBsb3dlciB3bGFuIGRyaXZlci4KVGhlbiBsb3dlciB3bGFuIGRyaXZlciBj
+YW4gaGFuZGxlIGl0Lgo+IAo+IFJlZ2FyZHMsCj4gQXJlbmQKCi0tIAphdGgxMWsgbWFpbGluZyBs
+aXN0CmF0aDExa0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3Jn
+L21haWxtYW4vbGlzdGluZm8vYXRoMTFrCg==
