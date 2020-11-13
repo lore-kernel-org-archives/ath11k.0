@@ -1,23 +1,18 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from z5.mailgun.us ([104.130.96.5])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kdUoU-0005tt-Gv
- for ath11k@lists.infradead.org; Fri, 13 Nov 2020 08:52:13 +0000
+ id 1kdUrk-0006Tt-2J
+ for ath11k@lists.infradead.org; Fri, 13 Nov 2020 08:55:33 +0000
 MIME-Version: 1.0
-Date: Fri, 13 Nov 2020 16:51:17 +0800
+Date: Fri, 13 Nov 2020 16:55:26 +0800
 From: Wen Gong <wgong@codeaurora.org>
-Subject: Re: [PATCH v2] mac80211: reject/clear user rate mask if not usable
-In-Reply-To: <0e60e4cdc036a5ef7394848d212a6e3f499c386f.camel@sipsolutions.net>
-References: <20170308132022.4216-1-johannes@sipsolutions.net>
- <07179008e9369bc81e152009ca85191d@codeaurora.org>
- <5decc452-7b2a-db1d-c5eb-04ab6bb61553@broadcom.com>
- <4b8f37fde23262547edb6ed4635cf89b@codeaurora.org>
- <cfee0b47ad026c74a105d3adf2923357bbc5e96e.camel@sipsolutions.net>
- <83dd20def685d303106f285400367b6e@codeaurora.org>
- <798cea679ae1df5a2ab9b59dd81c8e2b3ca2d6e3.camel@sipsolutions.net>
- <30e2e578983e4df447e0c26c5bba0aba@codeaurora.org>
- <0e60e4cdc036a5ef7394848d212a6e3f499c386f.camel@sipsolutions.net>
-Message-ID: <256c487bb8c8c191a88d806e6125296e@codeaurora.org>
+Subject: Re: [PATCHv3 1/2] nl80211: add support for mcs masks
+In-Reply-To: <b7a64b13d38792a97708675dcd8e5f69@codeaurora.org>
+References: <1327767935-16984-1-git-send-email-siwu@hrz.tu-chemnitz.de>
+ <1327767935-16984-2-git-send-email-siwu@hrz.tu-chemnitz.de>
+ (sfid-20120128_172604_145461_197131DD)
+ <b7a64b13d38792a97708675dcd8e5f69@codeaurora.org>
+Message-ID: <621967ef7bc9209efaa027b7e574c586@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -30,37 +25,96 @@ Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Johannes Berg <johannes@sipsolutions.net>
-Cc: Arend Van Spriel <arend.vanspriel@broadcom.com>, kirtika@google.com, linux-wireless-owner@vger.kernel.org, linux-wireless@vger.kernel.org, ath10k@lists.infradead.org, ath11k@lists.infradead.org
+To: Simon Wunderlich <simon.wunderlich@s2003.tu-chemnitz.de>, Johannes Berg <johannes@sipsolutions.net>
+Cc: Mathias Kretschmer <mathias.kretschmer@fokus.fraunhofer.de>, linux-wireless@vger.kernel.org, linville@tuxdriver.com, ath10k@lists.infradead.org, linux-wireless-owner@vger.kernel.org, Simon Wunderlich <siwu@hrz.tu-chemnitz.de>, ath11k@lists.infradead.org
 
-On 2020-11-13 16:35, Johannes Berg wrote:
-> On Fri, 2020-11-13 at 16:35 +0800, Wen Gong wrote:
+On 2020-11-12 18:38, Wen Gong wrote:
+> On 2012-01-29 00:25, Simon Wunderlich wrote:
+>> Allow to set mcs masks through nl80211. We also allow to set MCS
+>> rates but no legacy rates (and vice versa).
 >> 
->> > I guess if we really want to redefine the user rate mask to not apply
->> > to
->> > control frames, then we can relax this?
->> >
->> Yes, for AP mode, it is hard to calculate the usable rates over all
->> stations.
->> But for STATION mode, it can set 54M because AP support it, so it 
->> should
->> not reject it.
->> If add a check for nl80211_iftype of ieee80211_vif in
->> ieee80211_set_bitrate_mask, it can
->> solve this like this:
->> if (sdata->vif.type != NL80211_IFTYPE_STATION &&
->> !(mask->control[band].legacy & basic_rates))
+>> Signed-off-by: Simon Wunderlich <siwu@hrz.tu-chemnitz.de>
+>> Signed-off-by: Mathias Kretschmer 
+>> <mathias.kretschmer@fokus.fraunhofer.de>
+>> ---
+>>  include/linux/nl80211.h |    4 +++
+>>  include/net/cfg80211.h  |    3 +-
+>>  net/wireless/nl80211.c  |   61 
+>> ++++++++++++++++++++++++++++++++++++++++++++++-
+>>  3 files changed, 65 insertions(+), 3 deletions(-)
+>> 
+> ...
+>> @@ -5421,12 +5451,20 @@ static int nl80211_set_tx_bitrate_mask(struct
+>> sk_buff *skb,
+>>  		sband = rdev->wiphy.bands[i];
+>>  		mask.control[i].legacy =
+>>  			sband ? (1 << sband->n_bitrates) - 1 : 0;
+>> +		if (sband)
+>> +			memcpy(mask.control[i].mcs,
+>> +			       sband->ht_cap.mcs.rx_mask,
+>> +			       sizeof(mask.control[i].mcs));
+> when use command: "iw wlan0 set bitrates legacy-5 6", I want to set it
+> fixed in 6M rate.
+> this copy mcs rate will add the mcs rate here and condition "if
+> (tb[NL80211_TXRATE_MCS])"
+> is false, then mcs rate will not clear and lead a mistake result.
+>> +		else
+>> +			memset(mask.control[i].mcs, 0,
+>> +			       sizeof(mask.control[i].mcs));
+>>  	}
+>> 
+>>  	/*
+>>  	 * The nested attribute uses enum nl80211_band as the index. This 
+>> maps
+>>  	 * directly to the enum ieee80211_band values used in cfg80211.
+>>  	 */
+>> +	BUILD_BUG_ON(NL80211_MAX_SUPP_HT_RATES > IEEE80211_HT_MCS_MASK_LEN * 
+>> 8);
+>>  	nla_for_each_nested(tx_rates, info->attrs[NL80211_ATTR_TX_RATES], 
+>> rem)
+>>  	{
+>>  		enum ieee80211_band band = nla_type(tx_rates);
+>> @@ -5442,7 +5480,28 @@ static int nl80211_set_tx_bitrate_mask(struct
+>> sk_buff *skb,
+>>  				sband,
+>>  				nla_data(tb[NL80211_TXRATE_LEGACY]),
+>>  				nla_len(tb[NL80211_TXRATE_LEGACY]));
+>> -			if (mask.control[band].legacy == 0)
+>> +		}
+>> +		if (tb[NL80211_TXRATE_MCS]) {
 > 
+> false for "iw wlan0 set bitrates legacy-5 6", so ht_rateset_to_mask
+> will not enter and mcs rate will not clear.
+If no tb[NL80211_TXRATE_HT]/tb[NL80211_TXRATE_VHT], it should clear the 
+data like this:
+memset(mcs, 0, IEEE80211_HT_MCS_MASK_LEN) which is in ht_rateset_to_mask 
+and
+memset(mcs, 0, sizeof(u16) * NL80211_VHT_NSS_MAX) which is in 
+vht_set_mcs_mask.
 > 
-> That would forgo the check completely - we'd still need to check 
-> against
-> the *supported* rates.
-> 
-yes.
-It can add check with supp_rates[band] of ieee80211_sta for 
-NL80211_IFTYPE_STATION type.
-for others, check with sdata->vif.bss_conf.basic_rates
-> johannes
+>> +			if (!ht_rateset_to_mask(
+>> +					sband,
+>> +					nla_data(tb[NL80211_TXRATE_MCS]),
+>> +					nla_len(tb[NL80211_TXRATE_MCS]),
+>> +					mask.control[band].mcs))
+>> +				return -EINVAL;
+>> +		}
+>> +
+>> +		if (mask.control[band].legacy == 0) {
+>> +			/* don't allow empty legacy rates if HT
+>> +			 * is not even supported. */
+>> +			if (!rdev->wiphy.bands[band]->ht_cap.ht_supported)
+>> +				return -EINVAL;
+>> +
+>> +			for (i = 0; i < IEEE80211_HT_MCS_MASK_LEN; i++)
+>> +				if (mask.control[band].mcs[i])
+>> +					break;
+>> +
+>> +			/* legacy and mcs rates may not be both empty */
+>> +			if (i == IEEE80211_HT_MCS_MASK_LEN)
+>>  				return -EINVAL;
+>>  		}
+>>  	}
 
 -- 
 ath11k mailing list
