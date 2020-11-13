@@ -1,13 +1,9 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from m42-4.mailgun.net ([69.72.42.4])
- by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kdVHp-0000iV-Rh
- for ath11k@lists.infradead.org; Fri, 13 Nov 2020 09:22:32 +0000
-MIME-Version: 1.0
-Date: Fri, 13 Nov 2020 17:21:43 +0800
-From: Wen Gong <wgong@codeaurora.org>
+Message-ID: <820f10c46841ac79c78d5952ebbc816fd710b4fd.camel@sipsolutions.net>
 Subject: Re: [PATCH v2] mac80211: reject/clear user rate mask if not usable
-In-Reply-To: <e4bd954afa503835e072ef71aa61c59e04ecbc40.camel@sipsolutions.net>
+From: Johannes Berg <johannes@sipsolutions.net>
+Date: Fri, 13 Nov 2020 10:23:05 +0100
+In-Reply-To: <bc1db8cd25acd698ec586ed11c9865ac@codeaurora.org>
 References: <20170308132022.4216-1-johannes@sipsolutions.net>
  <07179008e9369bc81e152009ca85191d@codeaurora.org>
  <5decc452-7b2a-db1d-c5eb-04ab6bb61553@broadcom.com>
@@ -21,7 +17,8 @@ References: <20170308132022.4216-1-johannes@sipsolutions.net>
  <365b1abcfd043a3b0c356ec9f8c7c44acd5a79d2.camel@sipsolutions.net>
  <6caaa87ba3f37bd424e92d03c2340689@codeaurora.org>
  <e4bd954afa503835e072ef71aa61c59e04ecbc40.camel@sipsolutions.net>
-Message-ID: <bc1db8cd25acd698ec586ed11c9865ac@codeaurora.org>
+ <bc1db8cd25acd698ec586ed11c9865ac@codeaurora.org>
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -30,39 +27,29 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Johannes Berg <johannes@sipsolutions.net>
+To: Wen Gong <wgong@codeaurora.org>
 Cc: Arend Van Spriel <arend.vanspriel@broadcom.com>, kirtika@google.com, linux-wireless-owner@vger.kernel.org, linux-wireless@vger.kernel.org, ath10k@lists.infradead.org, ath11k@lists.infradead.org
 
-On 2020-11-13 17:10, Johannes Berg wrote:
-> On Fri, 2020-11-13 at 17:09 +0800, Wen Gong wrote:
->> On 2020-11-13 16:51, Johannes Berg wrote:
->> > On Fri, 2020-11-13 at 16:51 +0800, Wen Gong wrote:
->> >
->> > > yes.
->> > > It can add check with supp_rates[band] of ieee80211_sta for
->> > > NL80211_IFTYPE_STATION type.
->> > > for others, check with sdata->vif.bss_conf.basic_rates
->> >
->> > Right.
->> >
->> > Though, might need to check that only if there's no TDLS station or
->> > something?
->> >
->> yes, I think it should do like that for TDLS:
->> test_sta_flag(sta, WLAN_STA_TDLS_PEER)
-> 
-> Yes but you have to iterate all the stations and check they belong to
-> the interface and all that I think?
-> 
-Maybe not need.
-if NL80211_IFTYPE_STATION and NON-WLAN_STA_TDLS_PEER, it has only 1 
-station for the ieee80211_vif
-by my understand.
-> johannes
+
+> > Yes but you have to iterate all the stations and check they belong to
+> > the interface and all that I think?
+> > 
+> Maybe not need.
+> if NL80211_IFTYPE_STATION and NON-WLAN_STA_TDLS_PEER, it has only 1 
+> station for the ieee80211_vif
+> by my understand.
+
+Well, yes, but there's no counter.
+
+So you need to iterate to see if there are any additional TDLS peers (in
+addition to the STA entry for the AP).
+
+johannes
+
 
 -- 
 ath11k mailing list
