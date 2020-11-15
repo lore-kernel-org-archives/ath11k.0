@@ -1,19 +1,32 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from z5.mailgun.us ([104.130.96.5])
+Received: from mail-ej1-x62c.google.com ([2a00:1450:4864:20::62c])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1keNod-0001Wl-7A
- for ath11k@lists.infradead.org; Sun, 15 Nov 2020 19:36:09 +0000
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: Fwd: XPS 9310 MSI vectors patch for ath11k
-References: <CAJxb_EpOy-CqJhodHMcBDuOgeQoZrtims9stB4uGxz7kCz_Y7Q@mail.gmail.com>
- <877dqn3m3t.fsf@codeaurora.org>
- <CAJxb_EoTvUV3Bwq4O7DMS1AgvWD3VLq9e5Z_Y8FeGbSFxmvzbg@mail.gmail.com>
- <CAJxb_Eq1NemrYh+DzrOiRfagZpcF5E4de=JPuU1EhspFF2nCWA@mail.gmail.com>
-Date: Sun, 15 Nov 2020 21:35:41 +0200
-In-Reply-To: <CAJxb_Eq1NemrYh+DzrOiRfagZpcF5E4de=JPuU1EhspFF2nCWA@mail.gmail.com>
- (Mitchell Nordine's message of "Sun, 15 Nov 2020 16:16:25 +0100")
-Message-ID: <87zh3i1khe.fsf@codeaurora.org>
+ id 1keO7Z-0003RS-JP
+ for ath11k@lists.infradead.org; Sun, 15 Nov 2020 19:55:35 +0000
+Received: by mail-ej1-x62c.google.com with SMTP id o9so21473892ejg.1
+ for <ath11k@lists.infradead.org>; Sun, 15 Nov 2020 11:55:32 -0800 (PST)
 MIME-Version: 1.0
+References: <20201103160838.GA246433@bjorn-Precision-5520>
+ <874km61732.fsf@nanos.tec.linutronix.de>
+ <fa26ac8b-ed48-7ea3-c21b-b133532716b8@posteo.de>
+ <87mtzxkus5.fsf@nanos.tec.linutronix.de>
+ <87wnz0hr9k.fsf@codeaurora.org> <87ft5hehlb.fsf@codeaurora.org>
+ <6b60c8f1-ec37-d601-92c2-97a485b73431@posteo.de>
+ <87v9ec9rk3.fsf@codeaurora.org> <87imab4slq.fsf@codeaurora.org>
+ <b2129a70db2b36c5015b4143a839f47dfc3153af.camel@seibold.net>
+ <CAHUdJJVp5r55NtE+BNz5XGtnaks6mDKQBFodz63DdULBVhD0Lg@mail.gmail.com>
+ <CAHUdJJXRDKs9NRugUAFgNr51DJ=OcssuiV8ST5CaV1CKiNTFfA@mail.gmail.com>
+ <0b58872b4f27dbf5aad2a39f5ec4a066e080d806.camel@seibold.net>
+ <875z6b3v22.fsf@codeaurora.org>
+ <CAHUdJJVK1vH2_9YkCQ99n5mak3oGN09422gG0APkWwcy=ZDQ-Q@mail.gmail.com>
+ <87pn4j2bna.fsf@codeaurora.org>
+ <CAHUdJJXpfkNikreQ_JdpKDkwjEGN0oY8PyYT=aWsw1armz83Kw@mail.gmail.com>
+ <e4ba4457-bd08-42fe-ade7-32059367701a@posteo.de>
+In-Reply-To: <e4ba4457-bd08-42fe-ade7-32059367701a@posteo.de>
+From: wi nk <wink@technolu.st>
+Date: Sun, 15 Nov 2020 20:55:20 +0100
+Message-ID: <CAHUdJJVoi2_BnubtADpdLQoe1xAuHCvkPF-RMX=dnY3nXoTm5g@mail.gmail.com>
+Subject: Re: pci_alloc_irq_vectors fails ENOSPC for XPS 13 9310
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -26,105 +39,142 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Mitchell Nordine <mitchell.nordine@gmail.com>
-Cc: ath11k@lists.infradead.org
+To: Thomas Krause <thomaskrause@posteo.de>
+Cc: Govind Singh <govinds@codeaurora.org>, linux-pci@vger.kernel.org, Stefani Seibold <stefani@seibold.net>, linux-wireless@vger.kernel.org, Devin Bayer <dev@doubly.so>, ath11k@lists.infradead.org, Bjorn Helgaas <helgaas@kernel.org>, David Woodhouse <dwmw@amazon.co.uk>, Thomas Gleixner <tglx@linutronix.de>, Christoph Hellwig <hch@lst.de>, Kalle Valo <kvalo@codeaurora.org>
 
-Mitchell Nordine <mitchell.nordine@gmail.com> writes:
-
-> With Kalle's help I have managed to get wi-fi working on my XPS 13
-> 9310 (with the QCA6390) working on NixOS.
+On Sun, Nov 15, 2020 at 2:30 PM Thomas Krause <thomaskrause@posteo.de> wrote:
 >
-> To do this, I switched to 5.10-rc2 and applied Kalle's patch for the
-> XPS 9310 here[1] and installed the latest version of the firmware
-> following the instructions outlined here[2].
 >
-> However, despite wi-fi working, with these changes my system has
-> become incredibly unstable, often crashing resulting in a frozen
-> desktop with nothing responding and no ability to switch to the other
-> ttys.
+> Am 12.11.20 um 16:44 schrieb wi nk:
+> > On Thu, Nov 12, 2020 at 10:00 AM Kalle Valo <kvalo@codeaurora.org> wrote:
+> >> wi nk <wink@technolu.st> writes:
+> >>
+> >>> On Thu, Nov 12, 2020 at 8:15 AM Kalle Valo <kvalo@codeaurora.org> wrote:
+> >>>> Stefani Seibold <stefani@seibold.net> writes:
+> >>>>
+> >>>>> Am Donnerstag, den 12.11.2020, 02:10 +0100 schrieb wi nk:
+> >>>>>> I've yet to see any instability after 45 minutes of exercising it, I
+> >>>>>> do see a couple of messages that came out of the driver:
+> >>>>>>
+> >>>>>> [    8.963389] ath11k_pci 0000:55:00.0: Unknown eventid: 0x16005
+> >>>>>> [   11.342317] ath11k_pci 0000:55:00.0: Unknown eventid: 0x1d00a
+> >>>>>>
+> >>>>>> then when it associates:
+> >>>>>>
+> >>>>>> [   16.718895] wlp85s0: send auth to ec:08:6b:27:01:ea (try 1/3)
+> >>>>>> [   16.722636] wlp85s0: authenticated
+> >>>>>> [   16.724150] wlp85s0: associate with ec:08:6b:27:01:ea (try 1/3)
+> >>>>>> [   16.726486] wlp85s0: RX AssocResp from ec:08:6b:27:01:ea
+> >>>>>> (capab=0x411 status=0 aid=8)
+> >>>>>> [   16.738443] wlp85s0: associated
+> >>>>>> [   16.764966] IPv6: ADDRCONF(NETDEV_CHANGE): wlp85s0: link becomes
+> >>>>>> ready
+> >>>>>>
+> >>>>>> The adapter is achieving around 500 mbps on my gigabit connection, my
+> >>>>>> 2018 mbp sees around 650, so it's doing pretty well so far.
+> >>>>>>
+> >>>>>> Stefani - when you applied the patch that Kalle shared, which branch
+> >>>>>> did you apply it to?  I applied it to ath11k-qca6390-bringup and when
+> >>>>>> I revert 7fef431be9c9 there is a small merge conflict I needed to
+> >>>>>> resolve.  I wonder if either the starting branch, or your chosen
+> >>>>>> resolution are related to the instability you see (or I'm just lucky
+> >>>>>> so far! :)).
+> >>>>>>
+> >>>>> I used the vanilla kernel tree
+> >>>>> https://git.kernel.org/torvalds/t/linux-5.10-rc2.tar.gz. On top of this
+> >>>>> i applied the
+> >>>>>
+> >>>>> RFT-ath11k-pci-support-platforms-with-one-MSI-vector.patch
+> >>>>>
+> >>>>> and reverted the patch 7fef431be9c9
+> >>>> I did also my testing on v5.10-rc2 and I recommend to use that as the
+> >>>> baseline when debuggin these ath11k problems. It helps to compare the
+> >>>> results if everyone have the same baseline.
+> >>>>
+> >>>> --
+> >>>> https://patchwork.kernel.org/project/linux-wireless/list/
+> >>>>
+> >>>> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+> >>> Absolutely, I'll rebuild to 5.10 later today and apply the same series
+> >>> of patches and report back.
+> >> Great, thanks.
+> >>
+> >>> I'll also test out the patch on both versions from Carl to fix
+> >>> resuming. It stands to reason that we may be seeing another regression
+> >>> between Stefani (5.10) and myself (5.9 bringup branch) as I don't see
+> >>> any disconnections or instability once the interface is online.
+> >> Yeah, there is something strange happening between v5.9 and v5.10 we
+> >> have not yet figured out. Most likely it has something to do with memory
+> >> allocations and DMA transfers failing, but no clear understanding yet.
+> >>
+> >> But to keep things simple let's only discuss the MSI problem on this
+> >> thread, and discuss the timeouts in the another thread:
+> >>
+> >> http://lists.infradead.org/pipermail/ath11k/2020-November/000641.html
+> >>
+> >> I'll include you and other reporters to that thread.
+> >>
+> >> --
+> >> https://patchwork.kernel.org/project/linux-wireless/list/
+> >>
+> >> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+> > Ok, I've tried a clean checkout of 5.10-rc2 with the one MSI patch
+> > applied and 7fef431be9c9 reverted.  I can't get my machine to  boot
+> > into anything usable with that configuration.  I'm running ubuntu so
+> > its starting right into X and sometime between showing the available
+> > users and me clicking the icon to login the machine freezes.  I can
+> > see in the system tray that the wifi adapter is being activated and
+> > appears to have associated with an AP, I just can't do much beyond
+> > that as the keyboard backlight wakes up, but the caps lock key doesn't
+> > work.  I see similar behavior with the 5.9 configuration, but after a
+> > reboot or two I win whatever race is occuring.  With 5.10, I tried
+> > maybe 10-15 times with 0 success.
 >
-> Occasionally however, the system will not crash, and instead the
-> internet will simply drop out (though with GNOME still showing the
-> wi-fi as "connected") with the following errors reported in
-> journalctl:
-
-To pinpoint the problem can you try Carl's suggestion adding
-"memmap=12M\$20M" to kernel parameters:
-
-http://lists.infradead.org/pipermail/ath11k/2020-November/000686.html
-
-Let me know how it goes.
-
-> I've also noticed that on each boot, there appear to be some errors
-> during ath11k_pci initialisation related to a memory request and qmi.
->>From dmesg:
+> I can confirm this behavior on my configuration. I managed to login once
+> and select the Wifi and connect to it. It seemed curiously enough be
+> stable long enough to enter the Wifi passphrase. After the connection
+> was established, the system hang and on each attempt to reboot into the
+> graphical system it would freeze at some point (sometimes even before
+> showing the login screen).
 >
-> [    4.738943] ath11k_pci 0000:56:00.0: Respond mem req failed,
-> result: 1, err: 0
-> [    4.738945] ath11k_pci 0000:56:00.0: qmi failed to respond fw mem
-> req:-22
-
-There's a fix coming for this error.
-
-> [    4.739070] ath11k_pci 0000:56:00.0: req mem_seg[0] 0x5a100000
-> 524288 1
-> [    4.739071] ath11k_pci 0000:56:00.0: req mem_seg[1] 0x5a180000
-> 524288 1
-> [    4.739072] ath11k_pci 0000:56:00.0: req mem_seg[2] 0x5a200000
-> 524288 1
-> [    4.739072] ath11k_pci 0000:56:00.0: req mem_seg[3] 0x5a280000
-> 294912 1
->                       [    4.739073] ath11k_pci 0000:56:00.0: req
-> mem_seg[4] 0x5a300000 524288 1
-> [    4.739073] ath11k_pci 0000:56:00.0: req mem_seg[5] 0x5a380000
-> 524288 1
-> [    4.739074] ath11k_pci 0000:56:00.0: req mem_seg[6] 0x59c00000
-> 458752 1
-> [    4.739074] ath11k_pci 0000:56:00.0: req mem_seg[7] 0x5a5c0000
-> 131072 1
->                       [    4.739075] ath11k_pci 0000:56:00.0: req
-> mem_seg[8] 0x59c80000 524288 4
-> [    4.739075] ath11k_pci 0000:56:00.0: req mem_seg[9] 0x59d00000
-> 360448 4
->                       [    4.739076] ath11k_pci 0000:56:00.0: req
-> mem_seg[10] 0x5a5a4000 16384 1
-
-These are just debug messages to help diagnose the instability issues,
-they will be removed in the final patch.
-
-> For the record, bluetooth still does not appear to be working, though
-> I'm not sure if this is expected or not at this point.
-
-I don't know the status with bluetooth.
-
-> I'm on NixOS, and unfortunately I haven't yet worked out how to enable
-> the ath11k debugging options via `make menuconfig` in a declarative
-> manner for my nix configuration. That said, if there are any other
-> patches you would like me to test just let me know.
+> Kernel was both based on 5.10-rc2 and 5.10-rc3 (I did see the same
+> behavior) with the patch applied, 7fef431be9c9 reverted and firmware
+> downloaded and copied to /lib/firmware/ath11k/QCA6390/hw2.0/.
 >
-> Btw, I tried subscribing to the ath11k mailing list today and
-> yesterday, but haven't received any ack or response, but maybe this is
-> normal over the weekend.
-
-Yes, weekends are normally pretty quiet here.
-
-> In case anyone is interested in following along, I have a draft PR
-> open at the nixos/nixos-hardware repo[3] for the Dell XPS 9310 which
-> includes these WIP patches. This includes a nix module for installing
-> the QCA6390 firmware and Kalle's patch mentioned above.
 >
-> [1]:
-> https://patchwork.kernel.org/project/linux-wireless/patch/1605121102-14352-1-git-send-email-kvalo@codeaurora.org/
-> [2]: http://lists.infradead.org/pipermail/ath11k/2020-November/000537.html
-> [3]: https://github.com/NixOS/nixos-hardware/pull/207
 
-Nice, but do note that these patches are not finalised yet. So there
-will be new versions coming.
+I did a bit more digging to see if I could find any new information,
+I'm not sure I did but here's what I did / found.  I spent the time to
+get a kdump kernel running and enabled, I was able to SysRq-C (both
+via keyboard and echo c > /proc/sysrq-trigger) and generate a crash
+dump.  Actually viewing them at the moment will require reverting a
+couple of patches to printk to fix the file for the crash utility
+(https://github.com/crash-utility/crash/issues/67), but right now
+that's not super important since the mechanism isn't being triggered.
+As reported here and by Mitchell, the adapter will work occasionally,
+but more often it will hang the machine (I too tried 5.10-rc3 with no
+noticable differences).  Whatever is causing the system to hang isn't
+triggering the kdump kernel to take over and dump the vmcore.  I've
+set watchdog=1 , nmi_watchdog=1, hung_task_panic=1, softlockup_panic=1
+trying to convince the kernel to dump it's state during this.  I've
+not been able to make it write a crash, it just sits 'hung'.  One
+interesting observation that may be related, is that if the lockup
+occurs during my login, I can actually see the system grind to a halt
+over the course of a number of frames (the rendering of the login
+animations starts to stutter/get really slow, then after a few frames
+everything is frozen).  If something were spin locking/ed, I'd expect
+the soft lockup panic to find it, but I don't know these mechanisms
+well.
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+The only consistent behavior that I managed to create is that if the
+wifi adapter / machine are in a 'working' state (ie: I can browse the
+internet, etc) and I issue sysrq-c to crash the kernel and then let
+the crash dump write and reboot the machine, once booted the adapter
+is no longer seen by the kernel, and there are zero messages in dmesg
+that match "ath11k".  The driver shows up in lsmod , but it reports
+zero messages and it's like the adapter is completely invisible.  A
+power off and back on of the machine will re-enter it into the
+freezing/wifi working lottery.
 
 -- 
 ath11k mailing list
