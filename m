@@ -1,27 +1,33 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail-ed1-x543.google.com ([2a00:1450:4864:20::543])
+Received: from mout02.posteo.de ([185.67.36.66])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kdbKq-0008S2-P4
- for ath11k@lists.infradead.org; Fri, 13 Nov 2020 15:50:02 +0000
-Received: by mail-ed1-x543.google.com with SMTP id cq7so11225301edb.4
- for <ath11k@lists.infradead.org>; Fri, 13 Nov 2020 07:49:58 -0800 (PST)
+ id 1keI6n-0004P1-1D
+ for ath11k@lists.infradead.org; Sun, 15 Nov 2020 13:30:22 +0000
+Received: from submission (posteo.de [89.146.220.130]) 
+ by mout02.posteo.de (Postfix) with ESMTPS id CED332400FC
+ for <ath11k@lists.infradead.org>; Sun, 15 Nov 2020 14:30:11 +0100 (CET)
+References: <20201103160838.GA246433@bjorn-Precision-5520>
+ <874km61732.fsf@nanos.tec.linutronix.de>
+ <fa26ac8b-ed48-7ea3-c21b-b133532716b8@posteo.de>
+ <87mtzxkus5.fsf@nanos.tec.linutronix.de> <87wnz0hr9k.fsf@codeaurora.org>
+ <87ft5hehlb.fsf@codeaurora.org>
+ <6b60c8f1-ec37-d601-92c2-97a485b73431@posteo.de>
+ <87v9ec9rk3.fsf@codeaurora.org> <87imab4slq.fsf@codeaurora.org>
+ <b2129a70db2b36c5015b4143a839f47dfc3153af.camel@seibold.net>
+ <CAHUdJJVp5r55NtE+BNz5XGtnaks6mDKQBFodz63DdULBVhD0Lg@mail.gmail.com>
+ <CAHUdJJXRDKs9NRugUAFgNr51DJ=OcssuiV8ST5CaV1CKiNTFfA@mail.gmail.com>
+ <0b58872b4f27dbf5aad2a39f5ec4a066e080d806.camel@seibold.net>
+ <875z6b3v22.fsf@codeaurora.org>
+ <CAHUdJJVK1vH2_9YkCQ99n5mak3oGN09422gG0APkWwcy=ZDQ-Q@mail.gmail.com>
+ <87pn4j2bna.fsf@codeaurora.org>
+ <CAHUdJJXpfkNikreQ_JdpKDkwjEGN0oY8PyYT=aWsw1armz83Kw@mail.gmail.com>
+From: Thomas Krause <thomaskrause@posteo.de>
+Subject: Re: pci_alloc_irq_vectors fails ENOSPC for XPS 13 9310
+Message-ID: <e4ba4457-bd08-42fe-ade7-32059367701a@posteo.de>
+Date: Sun, 15 Nov 2020 14:30:05 +0100
 MIME-Version: 1.0
-References: <d6fb1e30-0d19-9af3-337b-69ff11c2fc6c@suse.cz>
- <8ACA82DB-D2FE-4599-8A01-D42218FDE1E5@redhat.com>
- <87eekz4s04.fsf@codeaurora.org>
- <9d307c40-5ea1-8938-819d-f1742cb99945@gmail.com>
- <cd8d1b1d-a646-b9b1-ed2a-4aa7070efe00@redhat.com>
- <dd24598f-7635-c2e2-9c6d-f320770e3b9e@gmail.com>
- <f1f471905ea99ad9b9c8a8eeae616ff9@codeaurora.org>
- <3e30ac52-6ad4-fa7b-8817-bca35a80d268@gmail.com>
- <CAHUdJJXnSd614ff+GDOAtUQV_vdUnOkVooFAzp_LA6CbbW=NDA@mail.gmail.com>
- <719c1497-f48e-9f1e-359b-dbc5e4a4c11a@redhat.com>
-In-Reply-To: <719c1497-f48e-9f1e-359b-dbc5e4a4c11a@redhat.com>
-From: wi nk <wink@technolu.st>
-Date: Fri, 13 Nov 2020 16:49:41 +0100
-Message-ID: <CAHUdJJVu-r6ubP6ekYnJB82rPvtHCnZfg3_0eG1KY0LsAE943Q@mail.gmail.com>
-Subject: Re: Regression: QCA6390 fails with "mm/page_alloc: place pages to
- tail in __free_pages_core()"
+In-Reply-To: <CAHUdJJXpfkNikreQ_JdpKDkwjEGN0oY8PyYT=aWsw1armz83Kw@mail.gmail.com>
+Content-Language: en-US
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -30,107 +36,111 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: David Hildenbrand <david@redhat.com>
-Cc: Pavel Procopiuc <pavel.procopiuc@gmail.com>, Carl Huang <cjhuang@codeaurora.org>, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, linux-mm@kvack.org, Kalle Valo <kvalo@codeaurora.org>, akpm@linux-foundation.org, ath11k@lists.infradead.org, Vlastimil Babka <vbabka@suse.cz>
+To: wi nk <wink@technolu.st>, Kalle Valo <kvalo@codeaurora.org>
+Cc: Govind Singh <govinds@codeaurora.org>, linux-pci@vger.kernel.org, Stefani Seibold <stefani@seibold.net>, linux-wireless@vger.kernel.org, Devin Bayer <dev@doubly.so>, ath11k@lists.infradead.org, Bjorn Helgaas <helgaas@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, Christoph Hellwig <hch@lst.de>, David Woodhouse <dwmw@amazon.co.uk>
 
-On Fri, Nov 13, 2020 at 2:56 PM David Hildenbrand <david@redhat.com> wrote:
->
-> On 13.11.20 14:36, wi nk wrote:
-> > On Fri, Nov 13, 2020 at 1:52 PM Pavel Procopiuc
-> > <pavel.procopiuc@gmail.com> wrote:
-> >>
-> >> Op 13.11.2020 om 12:08 schreef Carl Huang:
-> >>> Checked some logs. Looks when the error happens, the physical address are
-> >>> very small. Its' between 20M - 30M.
-> >>>
-> >>> So could you have a try to reserve the memory starting from 20M?
-> >>> Add "memmap=10M\$20M" to your grub.cfg or edit in kernel parameters. so ath11k
-> >>> can't allocate from these address.
-> >>>
-> >>> Or you can try to reserve even larger memory starting from 20M.
-> >>
-> >> That worked, booting with memmap=12M$20M resulted in the working wifi:
-> >>
-> >> $ journalctl -b | grep -iP '05:00|ath11k|Linux version|memmap'
-> >> Nov 13 13:45:34 razor kernel: Linux version 5.10.0-rc2 (root@razor) (gcc (Gentoo 9.3.0-r1 p3) 9.3.0, GNU ld (Gentoo 2.34
-> >> p6) 2.34.0) #1 SMP Fri Nov 13 13:29:48 CET 2020
-> >> Nov 13 13:45:34 razor kernel: Command line: ro root=/dev/nvme0n1p2 resume=/dev/nvme1n1p1 zram.num_devices=2
-> >> memmap=12M$20M quiet
-> >> Nov 13 13:45:34 razor kernel:   DMA zone: 64 pages used for memmap
-> >> Nov 13 13:45:34 razor kernel:   DMA32 zone: 5165 pages used for memmap
-> >> Nov 13 13:45:34 razor kernel:   Normal zone: 255840 pages used for memmap
-> >> Nov 13 13:45:34 razor kernel: Kernel command line: ro root=/dev/nvme0n1p2 resume=/dev/nvme1n1p1 zram.num_devices=2
-> >> memmap=12M$20M quiet ro root=/dev/nvme0n1p2 resume=/dev/nvme1n1p1 zram.num_devices=2 memmap=12M$20M quiet
-> >> Nov 13 13:45:34 razor kernel: pci 0000:05:00.0: [17cb:1101] type 00 class 0x028000
-> >> Nov 13 13:45:34 razor kernel: pci 0000:05:00.0: reg 0x10: [mem 0xd2100000-0xd21fffff 64bit]
-> >> Nov 13 13:45:34 razor kernel: pci 0000:05:00.0: PME# supported from D0 D3hot D3cold
-> >> Nov 13 13:45:34 razor kernel: pci 0000:05:00.0: 4.000 Gb/s available PCIe bandwidth, limited by 5.0 GT/s PCIe x1 link at
-> >> 0000:00:1c.1 (capable of 7.876 Gb/s with 8.0 GT/s PCIe x1 link)
-> >> Nov 13 13:45:34 razor kernel: pci 0000:05:00.0: Adding to iommu group 21
-> >> Nov 13 13:45:35 razor kernel: ath11k_pci 0000:05:00.0: WARNING: ath11k PCI support is experimental!
-> >> Nov 13 13:45:35 razor kernel: ath11k_pci 0000:05:00.0: BAR 0: assigned [mem 0xd2100000-0xd21fffff 64bit]
-> >> Nov 13 13:45:35 razor kernel: ath11k_pci 0000:05:00.0: enabling device (0000 -> 0002)
-> >> Nov 13 13:45:35 razor kernel: ath11k_pci 0000:05:00.0: MSI vectors: 32
-> >> Nov 13 13:45:35 razor kernel: mhi 0000:05:00.0: Requested to power ON
-> >> Nov 13 13:45:35 razor kernel: mhi 0000:05:00.0: Power on setup success
-> >> Nov 13 13:45:35 razor kernel: ath11k_pci 0000:05:00.0: Respond mem req failed, result: 1, err: 0
-> >> Nov 13 13:45:35 razor kernel: ath11k_pci 0000:05:00.0: qmi failed to respond fw mem req:-22
-> >> Nov 13 13:45:35 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[0] 0x2100000 524288 1
-> >> Nov 13 13:45:35 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[1] 0x2180000 524288 1
-> >> Nov 13 13:45:35 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[2] 0x2200000 524288 1
-> >> Nov 13 13:45:35 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[3] 0x2280000 294912 1
-> >> Nov 13 13:45:35 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[4] 0x2300000 524288 1
-> >> Nov 13 13:45:35 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[5] 0x2380000 524288 1
-> >> Nov 13 13:45:35 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[6] 0x2400000 458752 1
-> >> Nov 13 13:45:35 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[7] 0x20c0000 131072 1
-> >> Nov 13 13:45:35 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[8] 0x2480000 524288 4
-> >> Nov 13 13:45:35 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[9] 0x2500000 360448 4
-> >> Nov 13 13:45:35 razor kernel: ath11k_pci 0000:05:00.0: req mem_seg[10] 0x20a4000 16384 1
-> >> Nov 13 13:45:35 razor kernel: ath11k_pci 0000:05:00.0: chip_id 0x0 chip_family 0xb board_id 0xff soc_id 0xffffffff
-> >> Nov 13 13:45:35 razor kernel: ath11k_pci 0000:05:00.0: fw_version 0x101c06cc fw_build_timestamp 2020-06-24 19:50
-> >> fw_build_id
-> >> Nov 13 13:45:37 razor NetworkManager[782]: <info>  [1605271537.1168] rfkill1: found Wi-Fi radio killswitch (at
-> >> /sys/devices/pci0000:00/0000:00:1c.1/0000:05:00.0/ieee80211/phy0/rfkill1) (driver ath11k_pci)
-> >> Nov 13 13:45:39 razor ModemManager[722]: <info>  Couldn't check support for device
-> >> '/sys/devices/pci0000:00/0000:00:1c.1/0000:05:00.0': not supported by any plugin
-> >> Nov 13 13:45:45 razor kernel: ath11k_pci 0000:05:00.0: failed to enqueue rx buf: -28
-> >>
-> >> --
-> >> ath11k mailing list
-> >> ath11k@lists.infradead.org
-> >> http://lists.infradead.org/mailman/listinfo/ath11k
-> >
-> > When I attempt to boot my 5.10rc2 kernel with that memmap option, my
-> > machine immediately hangs.  That said, it seems to have done something
-> > bizarre, as immediately afterwards, if I remove that option and let
-> > 5.10 boot normally, it seems to boot and bring up the wifi adapter ok
-> > (which didn't happen before).  Now that I've managed to boot 5.10
-> > twice, the first time after a couple of minutes my video started going
-> > nuts and displaying all sorts of artifacts[1].  This time things seem
-> > to be functioning nominally (wifi is online and the machine is
-> > behaving properly).  I may just never turn it off again :D.
->
-> Honestly, that FW sounds horribly flawed. :)
->
-> Would be interesting what happens when you boot back to 5.9 now ...
->
-> --
-> Thanks,
->
-> David / dhildenb
->
 
-Well nothing super interesting....rebooting to 5.9 hard locked the
-machine once the adapter associated, before I could do much.
-Rebooting back to 5.10 and it booted fine (I'm sending this email with
-it).  There's definitely something non deterministic causing the
-driver to work occasionally and fail/panic a bit more often.  Are
-there other memory / device allocation settings I can tweak to see if
-something settles it down?
+Am 12.11.20 um 16:44 schrieb wi nk:
+> On Thu, Nov 12, 2020 at 10:00 AM Kalle Valo <kvalo@codeaurora.org> wrote:
+>> wi nk <wink@technolu.st> writes:
+>>
+>>> On Thu, Nov 12, 2020 at 8:15 AM Kalle Valo <kvalo@codeaurora.org> wrote:
+>>>> Stefani Seibold <stefani@seibold.net> writes:
+>>>>
+>>>>> Am Donnerstag, den 12.11.2020, 02:10 +0100 schrieb wi nk:
+>>>>>> I've yet to see any instability after 45 minutes of exercising it, I
+>>>>>> do see a couple of messages that came out of the driver:
+>>>>>>
+>>>>>> [    8.963389] ath11k_pci 0000:55:00.0: Unknown eventid: 0x16005
+>>>>>> [   11.342317] ath11k_pci 0000:55:00.0: Unknown eventid: 0x1d00a
+>>>>>>
+>>>>>> then when it associates:
+>>>>>>
+>>>>>> [   16.718895] wlp85s0: send auth to ec:08:6b:27:01:ea (try 1/3)
+>>>>>> [   16.722636] wlp85s0: authenticated
+>>>>>> [   16.724150] wlp85s0: associate with ec:08:6b:27:01:ea (try 1/3)
+>>>>>> [   16.726486] wlp85s0: RX AssocResp from ec:08:6b:27:01:ea
+>>>>>> (capab=0x411 status=0 aid=8)
+>>>>>> [   16.738443] wlp85s0: associated
+>>>>>> [   16.764966] IPv6: ADDRCONF(NETDEV_CHANGE): wlp85s0: link becomes
+>>>>>> ready
+>>>>>>
+>>>>>> The adapter is achieving around 500 mbps on my gigabit connection, my
+>>>>>> 2018 mbp sees around 650, so it's doing pretty well so far.
+>>>>>>
+>>>>>> Stefani - when you applied the patch that Kalle shared, which branch
+>>>>>> did you apply it to?  I applied it to ath11k-qca6390-bringup and when
+>>>>>> I revert 7fef431be9c9 there is a small merge conflict I needed to
+>>>>>> resolve.  I wonder if either the starting branch, or your chosen
+>>>>>> resolution are related to the instability you see (or I'm just lucky
+>>>>>> so far! :)).
+>>>>>>
+>>>>> I used the vanilla kernel tree
+>>>>> https://git.kernel.org/torvalds/t/linux-5.10-rc2.tar.gz. On top of this
+>>>>> i applied the
+>>>>>
+>>>>> RFT-ath11k-pci-support-platforms-with-one-MSI-vector.patch
+>>>>>
+>>>>> and reverted the patch 7fef431be9c9
+>>>> I did also my testing on v5.10-rc2 and I recommend to use that as the
+>>>> baseline when debuggin these ath11k problems. It helps to compare the
+>>>> results if everyone have the same baseline.
+>>>>
+>>>> --
+>>>> https://patchwork.kernel.org/project/linux-wireless/list/
+>>>>
+>>>> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+>>> Absolutely, I'll rebuild to 5.10 later today and apply the same series
+>>> of patches and report back.
+>> Great, thanks.
+>>
+>>> I'll also test out the patch on both versions from Carl to fix
+>>> resuming. It stands to reason that we may be seeing another regression
+>>> between Stefani (5.10) and myself (5.9 bringup branch) as I don't see
+>>> any disconnections or instability once the interface is online.
+>> Yeah, there is something strange happening between v5.9 and v5.10 we
+>> have not yet figured out. Most likely it has something to do with memory
+>> allocations and DMA transfers failing, but no clear understanding yet.
+>>
+>> But to keep things simple let's only discuss the MSI problem on this
+>> thread, and discuss the timeouts in the another thread:
+>>
+>> http://lists.infradead.org/pipermail/ath11k/2020-November/000641.html
+>>
+>> I'll include you and other reporters to that thread.
+>>
+>> --
+>> https://patchwork.kernel.org/project/linux-wireless/list/
+>>
+>> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+> Ok, I've tried a clean checkout of 5.10-rc2 with the one MSI patch
+> applied and 7fef431be9c9 reverted.  I can't get my machine to  boot
+> into anything usable with that configuration.  I'm running ubuntu so
+> its starting right into X and sometime between showing the available
+> users and me clicking the icon to login the machine freezes.  I can
+> see in the system tray that the wifi adapter is being activated and
+> appears to have associated with an AP, I just can't do much beyond
+> that as the keyboard backlight wakes up, but the caps lock key doesn't
+> work.  I see similar behavior with the 5.9 configuration, but after a
+> reboot or two I win whatever race is occuring.  With 5.10, I tried
+> maybe 10-15 times with 0 success.
+
+I can confirm this behavior on my configuration. I managed to login once 
+and select the Wifi and connect to it. It seemed curiously enough be 
+stable long enough to enter the Wifi passphrase. After the connection 
+was established, the system hang and on each attempt to reboot into the 
+graphical system it would freeze at some point (sometimes even before 
+showing the login screen).
+
+Kernel was both based on 5.10-rc2 and 5.10-rc3 (I did see the same 
+behavior) with the patch applied, 7fef431be9c9 reverted and firmware 
+downloaded and copied to /lib/firmware/ath11k/QCA6390/hw2.0/.
+
+
 
 -- 
 ath11k mailing list
