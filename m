@@ -1,32 +1,18 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail-ej1-x62c.google.com ([2a00:1450:4864:20::62c])
+Received: from mail-pf1-x441.google.com ([2607:f8b0:4864:20::441])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1keO7Z-0003RS-JP
- for ath11k@lists.infradead.org; Sun, 15 Nov 2020 19:55:35 +0000
-Received: by mail-ej1-x62c.google.com with SMTP id o9so21473892ejg.1
- for <ath11k@lists.infradead.org>; Sun, 15 Nov 2020 11:55:32 -0800 (PST)
+ id 1keWxT-00064s-CY
+ for ath11k@lists.infradead.org; Mon, 16 Nov 2020 05:21:44 +0000
+Received: by mail-pf1-x441.google.com with SMTP id g7so13082998pfc.2
+ for <ath11k@lists.infradead.org>; Sun, 15 Nov 2020 21:21:41 -0800 (PST)
+Date: Mon, 16 Nov 2020 10:51:24 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: Re: [PATCH v2 1/2] bus: mhi: Remove auto-start option
+Message-ID: <20201116052124.GA3926@Mani-XPS-13-9360>
+References: <1600674184-3537-1-git-send-email-loic.poulain@linaro.org>
 MIME-Version: 1.0
-References: <20201103160838.GA246433@bjorn-Precision-5520>
- <874km61732.fsf@nanos.tec.linutronix.de>
- <fa26ac8b-ed48-7ea3-c21b-b133532716b8@posteo.de>
- <87mtzxkus5.fsf@nanos.tec.linutronix.de>
- <87wnz0hr9k.fsf@codeaurora.org> <87ft5hehlb.fsf@codeaurora.org>
- <6b60c8f1-ec37-d601-92c2-97a485b73431@posteo.de>
- <87v9ec9rk3.fsf@codeaurora.org> <87imab4slq.fsf@codeaurora.org>
- <b2129a70db2b36c5015b4143a839f47dfc3153af.camel@seibold.net>
- <CAHUdJJVp5r55NtE+BNz5XGtnaks6mDKQBFodz63DdULBVhD0Lg@mail.gmail.com>
- <CAHUdJJXRDKs9NRugUAFgNr51DJ=OcssuiV8ST5CaV1CKiNTFfA@mail.gmail.com>
- <0b58872b4f27dbf5aad2a39f5ec4a066e080d806.camel@seibold.net>
- <875z6b3v22.fsf@codeaurora.org>
- <CAHUdJJVK1vH2_9YkCQ99n5mak3oGN09422gG0APkWwcy=ZDQ-Q@mail.gmail.com>
- <87pn4j2bna.fsf@codeaurora.org>
- <CAHUdJJXpfkNikreQ_JdpKDkwjEGN0oY8PyYT=aWsw1armz83Kw@mail.gmail.com>
- <e4ba4457-bd08-42fe-ade7-32059367701a@posteo.de>
-In-Reply-To: <e4ba4457-bd08-42fe-ade7-32059367701a@posteo.de>
-From: wi nk <wink@technolu.st>
-Date: Sun, 15 Nov 2020 20:55:20 +0100
-Message-ID: <CAHUdJJVoi2_BnubtADpdLQoe1xAuHCvkPF-RMX=dnY3nXoTm5g@mail.gmail.com>
-Subject: Re: pci_alloc_irq_vectors fails ENOSPC for XPS 13 9310
+Content-Disposition: inline
+In-Reply-To: <1600674184-3537-1-git-send-email-loic.poulain@linaro.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -39,142 +25,105 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Thomas Krause <thomaskrause@posteo.de>
-Cc: Govind Singh <govinds@codeaurora.org>, linux-pci@vger.kernel.org, Stefani Seibold <stefani@seibold.net>, linux-wireless@vger.kernel.org, Devin Bayer <dev@doubly.so>, ath11k@lists.infradead.org, Bjorn Helgaas <helgaas@kernel.org>, David Woodhouse <dwmw@amazon.co.uk>, Thomas Gleixner <tglx@linutronix.de>, Christoph Hellwig <hch@lst.de>, Kalle Valo <kvalo@codeaurora.org>
+To: Loic Poulain <loic.poulain@linaro.org>
+Cc: davem@davemloft.net, linux-arm-msm@vger.kernel.org, bjorn.andersson@linaro.org, netdev@vger.kernel.org, hemantk@codeaurora.org, ath11k@lists.infradead.org
 
-On Sun, Nov 15, 2020 at 2:30 PM Thomas Krause <thomaskrause@posteo.de> wrote:
->
->
-> Am 12.11.20 um 16:44 schrieb wi nk:
-> > On Thu, Nov 12, 2020 at 10:00 AM Kalle Valo <kvalo@codeaurora.org> wrote:
-> >> wi nk <wink@technolu.st> writes:
-> >>
-> >>> On Thu, Nov 12, 2020 at 8:15 AM Kalle Valo <kvalo@codeaurora.org> wrote:
-> >>>> Stefani Seibold <stefani@seibold.net> writes:
-> >>>>
-> >>>>> Am Donnerstag, den 12.11.2020, 02:10 +0100 schrieb wi nk:
-> >>>>>> I've yet to see any instability after 45 minutes of exercising it, I
-> >>>>>> do see a couple of messages that came out of the driver:
-> >>>>>>
-> >>>>>> [    8.963389] ath11k_pci 0000:55:00.0: Unknown eventid: 0x16005
-> >>>>>> [   11.342317] ath11k_pci 0000:55:00.0: Unknown eventid: 0x1d00a
-> >>>>>>
-> >>>>>> then when it associates:
-> >>>>>>
-> >>>>>> [   16.718895] wlp85s0: send auth to ec:08:6b:27:01:ea (try 1/3)
-> >>>>>> [   16.722636] wlp85s0: authenticated
-> >>>>>> [   16.724150] wlp85s0: associate with ec:08:6b:27:01:ea (try 1/3)
-> >>>>>> [   16.726486] wlp85s0: RX AssocResp from ec:08:6b:27:01:ea
-> >>>>>> (capab=0x411 status=0 aid=8)
-> >>>>>> [   16.738443] wlp85s0: associated
-> >>>>>> [   16.764966] IPv6: ADDRCONF(NETDEV_CHANGE): wlp85s0: link becomes
-> >>>>>> ready
-> >>>>>>
-> >>>>>> The adapter is achieving around 500 mbps on my gigabit connection, my
-> >>>>>> 2018 mbp sees around 650, so it's doing pretty well so far.
-> >>>>>>
-> >>>>>> Stefani - when you applied the patch that Kalle shared, which branch
-> >>>>>> did you apply it to?  I applied it to ath11k-qca6390-bringup and when
-> >>>>>> I revert 7fef431be9c9 there is a small merge conflict I needed to
-> >>>>>> resolve.  I wonder if either the starting branch, or your chosen
-> >>>>>> resolution are related to the instability you see (or I'm just lucky
-> >>>>>> so far! :)).
-> >>>>>>
-> >>>>> I used the vanilla kernel tree
-> >>>>> https://git.kernel.org/torvalds/t/linux-5.10-rc2.tar.gz. On top of this
-> >>>>> i applied the
-> >>>>>
-> >>>>> RFT-ath11k-pci-support-platforms-with-one-MSI-vector.patch
-> >>>>>
-> >>>>> and reverted the patch 7fef431be9c9
-> >>>> I did also my testing on v5.10-rc2 and I recommend to use that as the
-> >>>> baseline when debuggin these ath11k problems. It helps to compare the
-> >>>> results if everyone have the same baseline.
-> >>>>
-> >>>> --
-> >>>> https://patchwork.kernel.org/project/linux-wireless/list/
-> >>>>
-> >>>> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-> >>> Absolutely, I'll rebuild to 5.10 later today and apply the same series
-> >>> of patches and report back.
-> >> Great, thanks.
-> >>
-> >>> I'll also test out the patch on both versions from Carl to fix
-> >>> resuming. It stands to reason that we may be seeing another regression
-> >>> between Stefani (5.10) and myself (5.9 bringup branch) as I don't see
-> >>> any disconnections or instability once the interface is online.
-> >> Yeah, there is something strange happening between v5.9 and v5.10 we
-> >> have not yet figured out. Most likely it has something to do with memory
-> >> allocations and DMA transfers failing, but no clear understanding yet.
-> >>
-> >> But to keep things simple let's only discuss the MSI problem on this
-> >> thread, and discuss the timeouts in the another thread:
-> >>
-> >> http://lists.infradead.org/pipermail/ath11k/2020-November/000641.html
-> >>
-> >> I'll include you and other reporters to that thread.
-> >>
-> >> --
-> >> https://patchwork.kernel.org/project/linux-wireless/list/
-> >>
-> >> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-> > Ok, I've tried a clean checkout of 5.10-rc2 with the one MSI patch
-> > applied and 7fef431be9c9 reverted.  I can't get my machine to  boot
-> > into anything usable with that configuration.  I'm running ubuntu so
-> > its starting right into X and sometime between showing the available
-> > users and me clicking the icon to login the machine freezes.  I can
-> > see in the system tray that the wifi adapter is being activated and
-> > appears to have associated with an AP, I just can't do much beyond
-> > that as the keyboard backlight wakes up, but the caps lock key doesn't
-> > work.  I see similar behavior with the 5.9 configuration, but after a
-> > reboot or two I win whatever race is occuring.  With 5.10, I tried
-> > maybe 10-15 times with 0 success.
->
-> I can confirm this behavior on my configuration. I managed to login once
-> and select the Wifi and connect to it. It seemed curiously enough be
-> stable long enough to enter the Wifi passphrase. After the connection
-> was established, the system hang and on each attempt to reboot into the
-> graphical system it would freeze at some point (sometimes even before
-> showing the login screen).
->
-> Kernel was both based on 5.10-rc2 and 5.10-rc3 (I did see the same
-> behavior) with the patch applied, 7fef431be9c9 reverted and firmware
-> downloaded and copied to /lib/firmware/ath11k/QCA6390/hw2.0/.
->
->
++ath11k list
 
-I did a bit more digging to see if I could find any new information,
-I'm not sure I did but here's what I did / found.  I spent the time to
-get a kdump kernel running and enabled, I was able to SysRq-C (both
-via keyboard and echo c > /proc/sysrq-trigger) and generate a crash
-dump.  Actually viewing them at the moment will require reverting a
-couple of patches to printk to fix the file for the crash utility
-(https://github.com/crash-utility/crash/issues/67), but right now
-that's not super important since the mechanism isn't being triggered.
-As reported here and by Mitchell, the adapter will work occasionally,
-but more often it will hang the machine (I too tried 5.10-rc3 with no
-noticable differences).  Whatever is causing the system to hang isn't
-triggering the kdump kernel to take over and dump the vmcore.  I've
-set watchdog=1 , nmi_watchdog=1, hung_task_panic=1, softlockup_panic=1
-trying to convince the kernel to dump it's state during this.  I've
-not been able to make it write a crash, it just sits 'hung'.  One
-interesting observation that may be related, is that if the lockup
-occurs during my login, I can actually see the system grind to a halt
-over the course of a number of frames (the rendering of the login
-animations starts to stutter/get really slow, then after a few frames
-everything is frozen).  If something were spin locking/ed, I'd expect
-the soft lockup panic to find it, but I don't know these mechanisms
-well.
+On Mon, Sep 21, 2020 at 09:43:03AM +0200, Loic Poulain wrote:
+> There is really no point having an auto-start for channels.
+> This is confusing for the device drivers, some have to enable the
+> channels, others don't have... and waste resources (e.g. pre allocated
+> buffers) that may never be used.
+> 
+> This is really up to the MHI device(channel) driver to manage the state
+> of its channels.
+> 
+> Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
 
-The only consistent behavior that I managed to create is that if the
-wifi adapter / machine are in a 'working' state (ie: I can browse the
-internet, etc) and I issue sysrq-c to crash the kernel and then let
-the crash dump write and reboot the machine, once booted the adapter
-is no longer seen by the kernel, and there are zero messages in dmesg
-that match "ath11k".  The driver shows up in lsmod , but it reports
-zero messages and it's like the adapter is completely invisible.  A
-power off and back on of the machine will re-enter it into the
-freezing/wifi working lottery.
+Applied to mhi-ath11k-immutable branch! This branch will get merged into
+mhi-next and ath-next.
+
+Thanks,
+Mani
+
+> ---
+>  v2: split MHI and qrtr changes in dedicated commits
+> 
+>  drivers/bus/mhi/core/init.c     | 9 ---------
+>  drivers/bus/mhi/core/internal.h | 1 -
+>  include/linux/mhi.h             | 2 --
+>  3 files changed, 12 deletions(-)
+> 
+> diff --git a/drivers/bus/mhi/core/init.c b/drivers/bus/mhi/core/init.c
+> index dccc824..8798deb 100644
+> --- a/drivers/bus/mhi/core/init.c
+> +++ b/drivers/bus/mhi/core/init.c
+> @@ -721,7 +721,6 @@ static int parse_ch_cfg(struct mhi_controller *mhi_cntrl,
+>  		mhi_chan->offload_ch = ch_cfg->offload_channel;
+>  		mhi_chan->db_cfg.reset_req = ch_cfg->doorbell_mode_switch;
+>  		mhi_chan->pre_alloc = ch_cfg->auto_queue;
+> -		mhi_chan->auto_start = ch_cfg->auto_start;
+>  
+>  		/*
+>  		 * If MHI host allocates buffers, then the channel direction
+> @@ -1119,11 +1118,6 @@ static int mhi_driver_probe(struct device *dev)
+>  			goto exit_probe;
+>  
+>  		ul_chan->xfer_cb = mhi_drv->ul_xfer_cb;
+> -		if (ul_chan->auto_start) {
+> -			ret = mhi_prepare_channel(mhi_cntrl, ul_chan);
+> -			if (ret)
+> -				goto exit_probe;
+> -		}
+>  	}
+>  
+>  	ret = -EINVAL;
+> @@ -1157,9 +1151,6 @@ static int mhi_driver_probe(struct device *dev)
+>  	if (ret)
+>  		goto exit_probe;
+>  
+> -	if (dl_chan && dl_chan->auto_start)
+> -		mhi_prepare_channel(mhi_cntrl, dl_chan);
+> -
+>  	mhi_device_put(mhi_dev);
+>  
+>  	return ret;
+> diff --git a/drivers/bus/mhi/core/internal.h b/drivers/bus/mhi/core/internal.h
+> index 5a81a42..73b52a0 100644
+> --- a/drivers/bus/mhi/core/internal.h
+> +++ b/drivers/bus/mhi/core/internal.h
+> @@ -563,7 +563,6 @@ struct mhi_chan {
+>  	bool configured;
+>  	bool offload_ch;
+>  	bool pre_alloc;
+> -	bool auto_start;
+>  	bool wake_capable;
+>  };
+>  
+> diff --git a/include/linux/mhi.h b/include/linux/mhi.h
+> index 811e686..0d277c7 100644
+> --- a/include/linux/mhi.h
+> +++ b/include/linux/mhi.h
+> @@ -214,7 +214,6 @@ enum mhi_db_brst_mode {
+>   * @offload_channel: The client manages the channel completely
+>   * @doorbell_mode_switch: Channel switches to doorbell mode on M0 transition
+>   * @auto_queue: Framework will automatically queue buffers for DL traffic
+> - * @auto_start: Automatically start (open) this channel
+>   * @wake-capable: Channel capable of waking up the system
+>   */
+>  struct mhi_channel_config {
+> @@ -232,7 +231,6 @@ struct mhi_channel_config {
+>  	bool offload_channel;
+>  	bool doorbell_mode_switch;
+>  	bool auto_queue;
+> -	bool auto_start;
+>  	bool wake_capable;
+>  };
+>  
+> -- 
+> 2.7.4
+> 
 
 -- 
 ath11k mailing list
