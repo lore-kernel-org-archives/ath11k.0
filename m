@@ -1,17 +1,24 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from z5.mailgun.us ([104.130.96.5])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kex7M-0007Be-8h
- for ath11k@lists.infradead.org; Tue, 17 Nov 2020 09:17:46 +0000
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: linux-next: build failure after merge of the mhi tree
-References: <20201117151225.6a50abf8@canb.auug.org.au>
- <20201117042359.GB7787@work> <20201117042841.GC7787@work>
-Date: Tue, 17 Nov 2020 11:15:55 +0200
-In-Reply-To: <20201117042841.GC7787@work> (Manivannan Sadhasivam's message of
- "Tue, 17 Nov 2020 09:58:41 +0530")
-Message-ID: <87blfwz6lw.fsf@codeaurora.org>
+ id 1kez5B-0005FL-Qy
+ for ath11k@lists.infradead.org; Tue, 17 Nov 2020 11:23:35 +0000
 MIME-Version: 1.0
+Date: Tue, 17 Nov 2020 16:53:31 +0530
+From: vnaralas@codeaurora.org
+Subject: Re: [PATCHv2 1/2] nl80211: vendor-cmd: qca: add command for ap power
+ save
+In-Reply-To: <60c779b7c17b8ea40c2bba08d8fca98e83581580.camel@sipsolutions.net>
+References: <1598257589-19091-1-git-send-email-vnaralas@codeaurora.org>
+ <4b4a0d79a243c1c3b8044730da0493c96ba294bf.camel@sipsolutions.net>
+ <871rilf2th.fsf@codeaurora.org>
+ <dbaa655c3f15f800f73b7c19f2b1a054@codeaurora.org>
+ <87eelr1oq9.fsf@codeaurora.org>
+ <f6c148a3-73de-1481-5f63-2deecb599468@broadcom.com>
+ <81ced18ac5b87a17cf31797cf91669bc@codeaurora.org>
+ <87sg9rtugu.fsf@codeaurora.org>
+ <60c779b7c17b8ea40c2bba08d8fca98e83581580.camel@sipsolutions.net>
+Message-ID: <83bafd0a110106096110afd24b8e1304@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -20,63 +27,76 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Stephen Rothwell <sfr@canb.auug.org.au>, Loic Poulain <loic.poulain@linaro.org>, linux-wireless@vger.kernel.org, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next Mailing List <linux-next@vger.kernel.org>, ath11k@lists.infradead.org
+To: Johannes Berg <johannes@sipsolutions.net>
+Cc: Arend Van Spriel <arend.vanspriel@broadcom.com>, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>
 
-Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> writes:
-
-> On Tue, Nov 17, 2020 at 09:53:59AM +0530, Manivannan Sadhasivam wrote:
->> +ath11k list, kalle
+On 2020-11-06 16:11, Johannes Berg wrote:
+> On Mon, 2020-11-02 at 21:44 +0200, Kalle Valo wrote:
+>> vnaralas@codeaurora.org writes:
 >> 
->
-> Oops... adding now
->
->> On Tue, Nov 17, 2020 at 03:12:25PM +1100, Stephen Rothwell wrote:
->> > Hi all,
->> > 
->> > After merging the mhi tree, today's linux-next build (x86_64 allmodconfig)
->> > failed like this:
->> > 
->> > drivers/net/wireless/ath/ath11k/mhi.c:27:4: error: 'struct
->> > mhi_channel_config' has no member named 'auto_start'
->> >    27 |   .auto_start = false,
->> >       |    ^~~~~~~~~~
->> > drivers/net/wireless/ath/ath11k/mhi.c:42:4: error: 'struct
->> > mhi_channel_config' has no member named 'auto_start'
->> >    42 |   .auto_start = false,
->> >       |    ^~~~~~~~~~
->> > drivers/net/wireless/ath/ath11k/mhi.c:57:4: error: 'struct
->> > mhi_channel_config' has no member named 'auto_start'
->> >    57 |   .auto_start = true,
->> >       |    ^~~~~~~~~~
->> > drivers/net/wireless/ath/ath11k/mhi.c:72:4: error: 'struct
->> > mhi_channel_config' has no member named 'auto_start'
->> >    72 |   .auto_start = true,
->> >       |    ^~~~~~~~~~
->> > 
->> > Caused by commit
->> > 
->> >   0cc1f3a385b2 ("bus: mhi: Remove auto-start option")
->> > 
+>> > On 2020-10-22 13:30, Arend Van Spriel wrote:
+>> > > On 10/21/2020 7:19 PM, Kalle Valo wrote:
+>> > > > vnaralas@codeaurora.org writes:
+>> > > >
+>> > > > > On 2020-09-29 13:10, Kalle Valo wrote:
+>> > > > > > Johannes Berg <johannes@sipsolutions.net> writes:
+>> > > > > >
+>> > > > > > > On Mon, 2020-08-24 at 13:56 +0530, Venkateswara Naralasetty wrote:
+>> > > > > > > > AP power save feature is to save power in AP mode, where AP goes
+>> > > > > > > > to power save mode when no stations associate to it and comes out
+>> > > > > > > > of power save when any station associate to AP.
+>> > > > > > >
+>> > > > > > > Why do you think this requires a vendor command? I mean, that seems
+>> > > > > > > like
+>> > > > > > > fairly reasonable - even by default - behaviour?
+>> > > > > >
+>> > > > > > I have not studied the details, but doesn't AP power save break
+>> > > > > > normal
+>> > > > > > functionality? For example, I would guess probe requests from
+>> > > > > > clients
+>> > > > > > would be lost. So there's a major drawback when enabling this,
+>> > > > > > right?
+>> > > > >
+>> > > > > This AP power save feature will not break any functionality, Since
+>> > > > > one
+>> > > > > chain is always active and all other chains will be disabled when
+>> > > > > this
+>> > > > > feature is enabled. AP can still be able to beacon and receive probe
+>> > > > > request from the clients. The only drawback is reduced network range
+>> > > > > when this feature is enabled. Hence, we don't want to enable it by
+>> > > > > default.
+>> > > >
+>> > > > Yeah, we really would not want to enable that by default. But what
+>> > > > should be the path forward, a vendor command or a proper nl80211
+>> > > > command? Any opinions?
+>> > >
+>> > > I would go for a proper nl80211 command or just add an attribute for
+>> > > use in NL80211_CMD_START_AP or deal with NL80211_CMD_SET_POWERSAVE
+>> > > when operating in AP mode.
+>> > >
+>> > Sure, I will go with the existing NL80211_CMD_SET_POWERSAVE and I will
+>> > send next version.
 >> 
->> The fixing patch [1] should've landed in ath-next. Kalle can you please
->> apply the patch on top of immutable branch?
->> 
->> Stephen, feel free to pick it up in the meantime.
+>> Better to wait first so that we have concensus on this. And need to
+>> check if NL80211_CMD_SET_POWERSAVE is even suitable for AP mode.
+> 
+> I suspect that SET_POWERSAVE might be confusing.
+> 
+> Perhaps just with an attribute used in START_AP (and CHANGE_BEACON if
+> needed) would be sufficient?
 
-I think this fix should be included in commit 0cc1f3a385b2 ("bus: mhi:
-Remove auto-start option"), otherwise the build will always fail. I can
-then pull this commmit from the MHI immutable branch to my ath.git tree
-and from there it will go to wireless-drivers-next.
+Actually this ap power save configuration is applicable for per pdev. 
+So, I don't think we can use START AP command here.
+I would prefer to go with a new NL80211 command. Please share your 
+thoughts on this.
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+> 
+> johannes
 
 -- 
 ath11k mailing list
