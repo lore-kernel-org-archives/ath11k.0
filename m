@@ -1,13 +1,32 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from z5.mailgun.us ([104.130.96.5])
+Received: from galois.linutronix.de ([193.142.43.55])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kf4s7-0003n9-2G
- for ath11k@lists.infradead.org; Tue, 17 Nov 2020 17:34:29 +0000
-From: Bhaumik Bhatt <bbhatt@codeaurora.org>
-Subject: [RESEND PATCH] ath11k: use MHI provided APIs to allocate and free MHI
- controller
-Date: Tue, 17 Nov 2020 09:33:56 -0800
-Message-Id: <1605634436-36506-1-git-send-email-bbhatt@codeaurora.org>
+ id 1kf84e-0004zR-Vd
+ for ath11k@lists.infradead.org; Tue, 17 Nov 2020 20:59:37 +0000
+From: Thomas Gleixner <tglx@linutronix.de>
+Subject: Re: pci_alloc_irq_vectors fails ENOSPC for XPS 13 9310
+In-Reply-To: <CAHUdJJXy4FvmTeO648QMst9-bm1asqjZz=ktkps3ug4Hw=UweQ@mail.gmail.com>
+References: <20201103160838.GA246433@bjorn-Precision-5520>
+ <874km61732.fsf@nanos.tec.linutronix.de>
+ <fa26ac8b-ed48-7ea3-c21b-b133532716b8@posteo.de>
+ <87mtzxkus5.fsf@nanos.tec.linutronix.de> <87wnz0hr9k.fsf@codeaurora.org>
+ <87ft5hehlb.fsf@codeaurora.org>
+ <6b60c8f1-ec37-d601-92c2-97a485b73431@posteo.de>
+ <87v9ec9rk3.fsf@codeaurora.org> <87imab4slq.fsf@codeaurora.org>
+ <b2129a70db2b36c5015b4143a839f47dfc3153af.camel@seibold.net>
+ <CAHUdJJVp5r55NtE+BNz5XGtnaks6mDKQBFodz63DdULBVhD0Lg@mail.gmail.com>
+ <CAHUdJJXRDKs9NRugUAFgNr51DJ=OcssuiV8ST5CaV1CKiNTFfA@mail.gmail.com>
+ <0b58872b4f27dbf5aad2a39f5ec4a066e080d806.camel@seibold.net>
+ <875z6b3v22.fsf@codeaurora.org>
+ <CAHUdJJVK1vH2_9YkCQ99n5mak3oGN09422gG0APkWwcy=ZDQ-Q@mail.gmail.com>
+ <87pn4j2bna.fsf@codeaurora.org>
+ <CAHUdJJXpfkNikreQ_JdpKDkwjEGN0oY8PyYT=aWsw1armz83Kw@mail.gmail.com>
+ <e4ba4457-bd08-42fe-ade7-32059367701a@posteo.de>
+ <CAHUdJJVoi2_BnubtADpdLQoe1xAuHCvkPF-RMX=dnY3nXoTm5g@mail.gmail.com>
+ <CAHUdJJXy4FvmTeO648QMst9-bm1asqjZz=ktkps3ug4Hw=UweQ@mail.gmail.com>
+Date: Tue, 17 Nov 2020 21:59:32 +0100
+Message-ID: <87sg97wvgr.fsf@nanos.tec.linutronix.de>
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -16,67 +35,62 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: kvalo@codeaurora.org, linux-wireless@vger.kernel.org
-Cc: linux-arm-msm@vger.kernel.org, Bhaumik Bhatt <bbhatt@codeaurora.org>, linux-kernel@vger.kernel.org, manivannan.sadhasivam@linaro.org, hemantk@codeaurora.org, ath11k@lists.infradead.org
+To: wi nk <wink@technolu.st>, Thomas Krause <thomaskrause@posteo.de>
+Cc: Govind Singh <govinds@codeaurora.org>, linux-pci@vger.kernel.org, Stefani Seibold <stefani@seibold.net>, linux-wireless@vger.kernel.org, Devin Bayer <dev@doubly.so>, ath11k@lists.infradead.org, Bjorn Helgaas <helgaas@kernel.org>, David Woodhouse <dwmw@amazon.co.uk>, Christoph Hellwig <hch@lst.de>, Kalle Valo <kvalo@codeaurora.org>
 
-Use MHI provided APIs to allocate and free MHI controller to
-improve MHI host driver handling. This also fixes a memory leak
-as the MHI controller was allocated but never freed.
+On Tue, Nov 17 2020 at 16:49, wi nk wrote:
+> On Sun, Nov 15, 2020 at 8:55 PM wi nk <wink@technolu.st> wrote:
+> So up until this point, everything is working without issues.
+> Everything seems to spiral out of control a couple of seconds later
+> when my system attempts to actually bring up the adapter.  In most of
+> the crash states I will see this:
+>
+> [   31.286725] wlp85s0: send auth to ec:08:6b:27:01:ea (try 1/3)
+> [   31.390187] wlp85s0: send auth to ec:08:6b:27:01:ea (try 2/3)
+> [   31.391928] wlp85s0: authenticated
+> [   31.394196] wlp85s0: associate with ec:08:6b:27:01:ea (try 1/3)
+> [   31.396513] wlp85s0: RX AssocResp from ec:08:6b:27:01:ea
+> (capab=0x411 status=0 aid=6)
+> [   31.407730] wlp85s0: associated
+> [   31.434354] IPv6: ADDRCONF(NETDEV_CHANGE): wlp85s0: link becomes ready
+>
+> And then either somewhere in that pile of messages, or a second or two
+> after this my machine will start to stutter as I mentioned before, and
+> then it either hangs, or I see this message (I'm truncating the
+> timestamp):
+>
+> [   35.xxxx ] sched: RT throttling activated
 
-Signed-off-by: Bhaumik Bhatt <bbhatt@codeaurora.org>
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+As this driver uses threaded interrupts, this looks like an interrupt
+storm and the interrupt thread consumes the CPU fully. The RT throttler
+limits the RT runtime of it which allows other tasks make some
+progress. That's what you observe as stutter.
+
+You can apply the hack below so the irq thread(s) run in the SCHED_OTHER
+class which prevents them from monopolizing the CPU. That might make the
+problem simpler to debug.
+
+Thanks,
+
+        tglx
 ---
- drivers/net/wireless/ath/ath11k/mhi.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
-index aded9a7..1c9d9dc 100644
---- a/drivers/net/wireless/ath/ath11k/mhi.c
-+++ b/drivers/net/wireless/ath/ath11k/mhi.c
-@@ -218,7 +218,7 @@ int ath11k_mhi_register(struct ath11k_pci *ab_pci)
- 	struct mhi_controller *mhi_ctrl;
- 	int ret;
+diff --git a/kernel/irq/manage.c b/kernel/irq/manage.c
+index c460e0496006..8473ecacac7a 100644
+--- a/kernel/irq/manage.c
++++ b/kernel/irq/manage.c
+@@ -1320,7 +1320,7 @@ setup_irq_thread(struct irqaction *new, unsigned int irq, bool secondary)
+ 	if (IS_ERR(t))
+ 		return PTR_ERR(t);
  
--	mhi_ctrl = kzalloc(sizeof(*mhi_ctrl), GFP_KERNEL);
-+	mhi_ctrl = mhi_alloc_controller();
- 	if (!mhi_ctrl)
- 		return -ENOMEM;
+-	sched_set_fifo(t);
++	//sched_set_fifo(t);
  
-@@ -234,7 +234,7 @@ int ath11k_mhi_register(struct ath11k_pci *ab_pci)
- 	ret = ath11k_mhi_get_msi(ab_pci);
- 	if (ret) {
- 		ath11k_err(ab, "failed to get msi for mhi\n");
--		kfree(mhi_ctrl);
-+		mhi_free_controller(mhi_ctrl);
- 		return ret;
- 	}
- 
-@@ -252,7 +252,7 @@ int ath11k_mhi_register(struct ath11k_pci *ab_pci)
- 	ret = mhi_register_controller(mhi_ctrl, &ath11k_mhi_config);
- 	if (ret) {
- 		ath11k_err(ab, "failed to register to mhi bus, err = %d\n", ret);
--		kfree(mhi_ctrl);
-+		mhi_free_controller(mhi_ctrl);
- 		return ret;
- 	}
- 
-@@ -265,6 +265,7 @@ void ath11k_mhi_unregister(struct ath11k_pci *ab_pci)
- 
- 	mhi_unregister_controller(mhi_ctrl);
- 	kfree(mhi_ctrl->irq);
-+	mhi_free_controller(mhi_ctrl);
- }
- 
- static char *ath11k_mhi_state_to_str(enum ath11k_mhi_state mhi_state)
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
-
+ 	/*
+ 	 * We keep the reference to the task struct even if
 
 -- 
 ath11k mailing list
