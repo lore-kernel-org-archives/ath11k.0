@@ -1,17 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from m42-4.mailgun.net ([69.72.42.4])
+Received: from z5.mailgun.us ([104.130.96.5])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kevCn-00023L-3G
- for ath11k@lists.infradead.org; Tue, 17 Nov 2020 07:15:10 +0000
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH] ath11k: use MHI provided APIs to allocate and free MHI
- controller
-References: <1605571300-4438-1-git-send-email-bbhatt@codeaurora.org>
-Date: Tue, 17 Nov 2020 09:14:58 +0200
-In-Reply-To: <1605571300-4438-1-git-send-email-bbhatt@codeaurora.org> (Bhaumik
- Bhatt's message of "Mon, 16 Nov 2020 16:01:40 -0800")
-Message-ID: <87tutozc7h.fsf@codeaurora.org>
-MIME-Version: 1.0
+ id 1kewnt-0005pf-9C
+ for ath11k@lists.infradead.org; Tue, 17 Nov 2020 08:57:35 +0000
+From: Karthikeyan Kathirvel <kathirve@codeaurora.org>
+Subject: [PATCH] mac80211: choosing first valid channel from the list
+Date: Tue, 17 Nov 2020 14:27:16 +0530
+Message-Id: <1605603436-12856-1-git-send-email-kathirve@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -20,39 +15,51 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Bhaumik Bhatt <bbhatt@codeaurora.org>
-Cc: jhugo@codeaurora.org, linux-arm-msm@vger.kernel.org, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, manivannan.sadhasivam@linaro.org, hemantk@codeaurora.org, ath11k@lists.infradead.org
+To: johannes@sipsolutions.net
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, Karthikeyan Kathirvel <kathirve@codeaurora.org>
 
-Bhaumik Bhatt <bbhatt@codeaurora.org> writes:
+Though the first channel from sband channel list is invalid
+or disabled still mac80211 is choosing this disabled channel
+as a default channel for monitor interface. This will end-up
+in choosing wrong channel.
 
-> Use MHI provided APIs to allocate and free MHI controller to
-> improve MHI host driver handling.
+Fixed by assigning the first available valid or enabled channel
+to the respective radios.
 
-How does it improve the handling?
+Signed-off-by: Karthikeyan Kathirvel <kathirve@codeaurora.org>
+---
+ net/mac80211/main.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
-> This also fixes a memory leak as the MHI controller was allocated but
-> never freed.
->
-> Signed-off-by: Bhaumik Bhatt <bbhatt@codeaurora.org>
-> ---
->  drivers/net/wireless/ath/ath11k/mhi.c | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
-
-For ath11k patches please CC ath11k and linux-wireless lists so that
-patchwork sees it. So you need to resend this.
-
-Is this a new API? I need to understand if there are any dependencies
-between mhi and ath trees, or if I can apply this directly to my ath.git
-tree.
-
+diff --git a/net/mac80211/main.c b/net/mac80211/main.c
+index 523380a..1dfcccf 100644
+--- a/net/mac80211/main.c
++++ b/net/mac80211/main.c
+@@ -982,8 +982,15 @@ int ieee80211_register_hw(struct ieee80211_hw *hw)
+ 			continue;
+ 
+ 		if (!dflt_chandef.chan) {
++			/*
++			 * Assigning the first enabled channel to dflt_chandef from the
++			 * list of channels available specific to country
++			 */
++			for (i = 0; i < sband->n_channels; i++)
++				if (!(sband->channels[i].flags & IEEE80211_CHAN_DISABLED))
++					break;
+ 			cfg80211_chandef_create(&dflt_chandef,
+-						&sband->channels[0],
++						&sband->channels[i == sband->n_channels ? 0 : i],
+ 						NL80211_CHAN_NO_HT);
+ 			/* init channel we're on */
+ 			if (!local->use_chanctx && !local->_oper_chandef.chan) {
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+2.7.4
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
