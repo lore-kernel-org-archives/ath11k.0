@@ -1,18 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from z5.mailgun.us ([104.130.96.5])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kfpCY-00030k-Lj
- for ath11k@lists.infradead.org; Thu, 19 Nov 2020 19:02:39 +0000
+ id 1kfpv9-000083-0q
+ for ath11k@lists.infradead.org; Thu, 19 Nov 2020 19:48:44 +0000
+From: Kalle Valo <kvalo@codeaurora.org>
+Subject: ath11k-qca6390-bringup-202011191920: new suspend implementation
+Date: Thu, 19 Nov 2020 21:48:36 +0200
+Message-ID: <87sg95t9ez.fsf@codeaurora.org>
 MIME-Version: 1.0
-Date: Thu, 19 Nov 2020 11:02:35 -0800
-From: Bhaumik Bhatt <bbhatt@codeaurora.org>
-Subject: Re: [PATCH] net: qrtr: Unprepare MHI channels during remove
-In-Reply-To: <2019fe3c-55c5-61fe-758c-1e9952e1cb33@codeaurora.org>
-References: <1605723625-11206-1-git-send-email-bbhatt@codeaurora.org>
- <5e94c0be-9402-7309-5d65-857a27d1f491@codeaurora.org>
- <CAMZdPi_b0=qFNGi1yUke3Dip2bi-zW4ULTg8W4nbyPyEsE3D4w@mail.gmail.com>
- <2019fe3c-55c5-61fe-758c-1e9952e1cb33@codeaurora.org>
-Message-ID: <647d1520d0bcefa7ff02d2ef5ee81bd1@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -21,88 +16,43 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Reply-To: bbhatt@codeaurora.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Jeffrey Hugo <jhugo@codeaurora.org>
-Cc: Loic Poulain <loic.poulain@linaro.org>, linux-arm-msm@vger.kernel.org, cjhuang@codeaurora.org, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, clew@codeaurora.org, netdev@vger.kernel.org, manivannan.sadhasivam@linaro.org, hemantk@codeaurora.org, jhugo=codeaurora.org@codeaurora.org, ath11k@lists.infradead.org, kvalo@codeaurora.org
+To: ath11k@lists.infradead.org
 
-T24gMjAyMC0xMS0xOCAxMTozNCBBTSwgSmVmZnJleSBIdWdvIHdyb3RlOgo+IE9uIDExLzE4LzIw
-MjAgMTI6MTQgUE0sIExvaWMgUG91bGFpbiB3cm90ZToKPj4gCj4+IAo+PiBMZcKgbWVyLiAxOCBu
-b3YuIDIwMjAgw6AgMTk6MzQsIEplZmZyZXkgSHVnbyA8amh1Z29AY29kZWF1cm9yYS5vcmcgCj4+
-IDxtYWlsdG86amh1Z29AY29kZWF1cm9yYS5vcmc+PiBhIMOpY3JpdMKgOgo+PiAKPj4gICAgIE9u
-IDExLzE4LzIwMjAgMTE6MjAgQU0sIEJoYXVtaWsgQmhhdHQgd3JvdGU6Cj4+ICAgICAgPiBSZXNl
-dCBNSEkgZGV2aWNlIGNoYW5uZWxzIHdoZW4gZHJpdmVyIHJlbW92ZSBpcyBjYWxsZWQgZHVlIHRv
-Cj4+ICAgICAgPiBtb2R1bGUgdW5sb2FkIG9yIGFueSBjcmFzaCBzY2VuYXJpby4gVGhpcyB3aWxs
-IG1ha2Ugc3VyZSB0aGF0Cj4+ICAgICAgPiBNSEkgY2hhbm5lbHMgbm8gbG9uZ2VyIHJlbWFpbiBl
-bmFibGVkIGZvciB0cmFuc2ZlcnMgc2luY2UgdGhlCj4+ICAgICAgPiBNSEkgc3RhY2sgZG9lcyBu
-b3QgdGFrZSBjYXJlIG9mIHRoaXMgYW55bW9yZSBhZnRlciB0aGUgCj4+IGF1dG8tc3RhcnQKPj4g
-ICAgICA+IGNoYW5uZWxzIGZlYXR1cmUgd2FzIHJlbW92ZWQuCj4+ICAgICAgPgo+PiAgICAgID4g
-U2lnbmVkLW9mZi1ieTogQmhhdW1payBCaGF0dCA8YmJoYXR0QGNvZGVhdXJvcmEub3JnCj4+ICAg
-ICA8bWFpbHRvOmJiaGF0dEBjb2RlYXVyb3JhLm9yZz4+Cj4+ICAgICAgPiAtLS0KPj4gICAgICA+
-wqAgwqBuZXQvcXJ0ci9taGkuYyB8IDEgKwo+PiAgICAgID7CoCDCoDEgZmlsZSBjaGFuZ2VkLCAx
-IGluc2VydGlvbigrKQo+PiAgICAgID4KPj4gICAgICA+IGRpZmYgLS1naXQgYS9uZXQvcXJ0ci9t
-aGkuYyBiL25ldC9xcnRyL21oaS5jCj4+ICAgICAgPiBpbmRleCA3MTAwZjBiLi4yYmYyYjE5IDEw
-MDY0NAo+PiAgICAgID4gLS0tIGEvbmV0L3FydHIvbWhpLmMKPj4gICAgICA+ICsrKyBiL25ldC9x
-cnRyL21oaS5jCj4+ICAgICAgPiBAQCAtMTA0LDYgKzEwNCw3IEBAIHN0YXRpYyB2b2lkIHFjb21f
-bWhpX3FydHJfcmVtb3ZlKHN0cnVjdAo+PiAgICAgbWhpX2RldmljZSAqbWhpX2RldikKPj4gICAg
-ICA+wqAgwqAgwqAgwqBzdHJ1Y3QgcXJ0cl9taGlfZGV2ICpxZGV2ID0gCj4+IGRldl9nZXRfZHJ2
-ZGF0YSgmbWhpX2Rldi0+ZGV2KTsKPj4gICAgICA+Cj4+ICAgICAgPsKgIMKgIMKgIMKgcXJ0cl9l
-bmRwb2ludF91bnJlZ2lzdGVyKCZxZGV2LT5lcCk7Cj4+ICAgICAgPiArwqAgwqAgwqBtaGlfdW5w
-cmVwYXJlX2Zyb21fdHJhbnNmZXIobWhpX2Rldik7Cj4+ICAgICAgPsKgIMKgIMKgIMKgZGV2X3Nl
-dF9kcnZkYXRhKCZtaGlfZGV2LT5kZXYsIE5VTEwpOwo+PiAgICAgID7CoCDCoH0KPj4gICAgICA+
-Cj4+ICAgICAgPgo+PiAKPj4gICAgIEkgYWRtaXQsIEkgZGlkbid0IHBheSBtdWNoIGF0dGVudGlv
-biB0byB0aGUgYXV0by1zdGFydCBiZWluZyAKPj4gcmVtb3ZlZCwKPj4gICAgIGJ1dCB0aGlzIHNl
-ZW1zIG9kZCB0byBtZS4KPj4gCj4+ICAgICBBcyBhIGNsaWVudCwgdGhlIE1ISSBkZXZpY2UgaXMg
-YmVpbmcgcmVtb3ZlZCwgbGlrZWx5IGJlY2F1c2Ugb2YgCj4+IHNvbWUKPj4gICAgIGZhY3RvciBv
-dXRzaWRlIG9mIG15IGNvbnRyb2wsIGJ1dCBJIHN0aWxsIG5lZWQgdG8gY2xlYW4gaXQgdXA/wqAg
-Cj4+IFRoaXMKPj4gICAgIHJlYWxseSBmZWVscyBsaWtlIHNvbWV0aGluZyBNSEkgc2hvdWxkIGJl
-IGhhbmRsaW5nLgo+PiAKPj4gCj4+IEkgdGhpbmsgdGhpcyBpcyBqdXN0IGFib3V0IGJhbGFuY2lu
-ZyBvcGVyYXRpb25zLCB3aGF0IGlzIGRvbmUgaW4gcHJvYmUgCj4+IHNob3VsZCBiZSB1bmRvbmUg
-aW4gcmVtb3ZlLCBzbyBoZXJlIGNoYW5uZWxzIGFyZSBzdGFydGVkIGluIHByb2JlIGFuZCAKPj4g
-c3RvcHBlZC9yZXNldCBpbiByZW1vdmUuCj4gCj4gSSB1bmRlcnN0YW5kIHRoYXQgcGVyc3BlY3Rp
-dmUsIGJ1dCB0aGF0IGRvZXNuJ3QgcXVpdGUgbWF0Y2ggd2hhdCBpcwo+IGdvaW5nIG9uIGhlcmUu
-ICBSZWdhcmRsZXNzIG9mIGlmIHRoZSBjaGFubmVsIHdhcyBzdGFydGVkIChwcmVwYXJlZCkgaW4K
-PiBwcm9iZSwgaXQgbm93IG5lZWRzIHRvIGJlIHN0b3BwZWQgaW4gcmVtb3ZlLiAgVGhhdCBub3Qg
-YmFsYW5jZWQgaW4gYWxsCj4gY2FzZXMKPiAKPiBMZXRzIGFzc3VtZSwgaW4gcmVzcG9uc2UgdG8g
-cHJvYmUoKSwgbXkgY2xpZW50IGRyaXZlciBnb2VzIGFuZCBjcmVhdGVzCj4gc29tZSBvdGhlciBv
-YmplY3QsIG1heWJlIGEgc29ja2V0LiAgSW4gcmVzcG9uc2UgdG8gdGhhdCBzb2NrZXQgYmVpbmcK
-PiBvcGVuZWQvYWN0aXZhdGVkIGJ5IHRoZSBjbGllbnQgb2YgbXkgZHJpdmVyLCBJIGdvIGFuZCBz
-dGFydCB0aGUgbWhpCj4gY2hhbm5lbC4gIE5vdywgbm9ybWFsbHksIHdoZW4gdGhlIHNvY2tldCBp
-cyBjbG9zZWQvZGVhY3RpdmF0ZWQsIEkgc3RvcAo+IHRoZSBNSEkgY2hhbm5lbC4gIEluIHRoaXMg
-Y2FzZSwgc3RvcHBpbmcgdGhlIE1ISSBjaGFubmVsIGluIHJlbW92ZSgpCj4gaXMgdW5iYWxhbmNl
-ZCB3aXRoIHJlc3BlY3QgdG8gcHJvYmUoKSwgYnV0IGlzIG5vdyBhIHJlcXVpcmVtZW50Lgo+IAo+
-IE5vdyB5b3UgbWF5IGFyZ3VlLCBJIHNob3VsZCBjbG9zZSB0aGUgb2JqZWN0IGluIHJlc3BvbnNl
-IHRvIHJlbW92ZSwKPiB3aGljaCB3aWxsIHRoZW4gdHJpZ2dlciB0aGUgc3RvcCBvbiB0aGUgY2hh
-bm5lbC4gIFRoYXQgZG9lc24ndCBhcHBseQo+IHRvIGV2ZXJ5dGhpbmcuICBGb3IgZXhhbXBsZSwg
-eW91IGNhbm5vdCBjbG9zZSBhbiBvcGVuIGZpbGUgaW4gdGhlCj4ga2VybmVsLiBZb3UgbmVlZCB0
-byB3YWl0IGZvciB1c2Vyc3BhY2UgdG8gY2xvc2UgaXQuICBCeSB0aGUgdGltZSB0aGF0Cj4gaGFw
-cGVucywgdGhlIG1oaV9kZXYgaXMgbG9uZyBnb25lIEkgZXhwZWN0Lgo+IAo+IFNvIGlmLCBzb21l
-aG93LCB0aGUgY2xpZW50IGRyaXZlciBpcyB0aGUgb25lIGNhdXNpbmcgdGhlIHJlbW92ZSB0bwo+
-IG9jY3VyLCB0aGVuIHllcyBpdCBzaG91bGQgcHJvYmFibHkgYmUgdGhlIG9uZSBkb2luZyB0aGUg
-c3RvcCwgYnV0Cj4gdGhhdCdzIGEgbmFycm93IHNldCBvZiBjb25kaXRpb25zLCBhbmQgSSB0aGlu
-ayBoYXZpbmcgdGhhdCByZXF1aXJlbWVudAo+IGZvciBhbGwgc2NlbmFyaW9zIGlzIGxpbWl0aW5n
-LgpJdCBzaG91bGQgYmUgdGhlIGNsaWVudCdzIHJlc3BvbnNpYmlsaXR5IHRvIHBlcmZvcm0gYSBj
-bGVhbi11cCB0aG91Z2guCgpXZSBjYW5ub3QgYXNzdW1lIHRoYXQgdGhlIHJlbW92ZSgpIGNhbGwg
-d2FzIGR1ZSB0byBmYWN0b3JzIG91dHNpZGUgb2YgCnRoZQpjbGllbnQncyBjb250cm9sIGF0IGFs
-bCB0aW1lcy4gWW91IG1heSBub3Qga25vdyBpZiB0aGUgcmVtb3ZlKCkgd2FzIGR1ZSAKdG8KZGV2
-aWNlIGFjdHVhbGx5IGNyYXNoaW5nIG9yIGp1c3QgYW4gdW5iaW5kL21vZHVsZSB1bmxvYWQuIFNv
-LCBpdCB3b3VsZCAKYmUKYmV0dGVyIGlmIHlvdSBjYWxsIGl0IGFzIHRoZSBkZXZpY2Ugc2hvdWxk
-IGlkZWFsbHkgbm90IGJlIGxlZnQgd2l0aCBhIApzdGFsZQpjaGFubmVsIGNvbnRleHQuCgpXZSBo
-YWQgYW4gaXNzdWUgd2hlcmUgYSBjbGllbnQgd2FzIGlzc3VpbmcgYSBkcml2ZXIgdW5iaW5kIHdp
-dGhvdXQgCnVucHJlcGFyaW5nCnRoZSBNSEkgY2hhbm5lbHMgYW5kIHdpdGhvdXQgTG9pYydzIHBh
-dGNoIFsxXSwgd2Ugd291bGQgbm90IGlzc3VlIGEgCmNoYW5uZWwKUkVTRVQgdG8gdGhlIGRldmlj
-ZSByZXN1bHRpbmcgaW4gaW5jb21pbmcgZGF0YSB0byB0aGUgaG9zdCBvbiB0aG9zZSAKY2hhbm5l
-bHMKYWZ0ZXIgaG9zdCBjbGVhbi11cCBhbmQgYW4gdW5tYXBwZWQgbWVtb3J5IGFjY2VzcyBhbmQg
-a2VybmVsIHBhbmljLgoKSWYgTUhJIGRldiB3aWxsIGJlIGdvbmUgdGhhdCBOVUxML3N0YXR1cyBj
-aGVjayBtdXN0IGJlIHByZXNlbnQgaW4gCnNvbWV0aGluZyB0aGF0CnVzZXJzcGFjZSBjb3VsZCBw
-b3RlbnRpYWxseSB1c2UuCgpbMV0gCmh0dHBzOi8vZ2l0Lmtlcm5lbC5vcmcvcHViL3NjbS9saW51
-eC9rZXJuZWwvZ2l0L25leHQvbGludXgtbmV4dC5naXQvY29tbWl0L2RyaXZlcnMvYnVzL21oaT9o
-PW5leHQtMjAyMDExMTkmaWQ9YTdmNDIyZjJmODllN2Q0OGFhNjZlNjQ4ODQ0NGE0YzdmMDEyNjlk
-NQoKVGhhbmtzLApCaGF1bWlrCi0tLQpUaGUgUXVhbGNvbW0gSW5ub3ZhdGlvbiBDZW50ZXIsIElu
-Yy4gaXMgYSBtZW1iZXIgb2YgdGhlIENvZGUgQXVyb3JhIApGb3J1bSwKYSBMaW51eCBGb3VuZGF0
-aW9uIENvbGxhYm9yYXRpdmUgUHJvamVjdAoKLS0gCmF0aDExayBtYWlsaW5nIGxpc3QKYXRoMTFr
-QGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9hdGgxMWsK
+(Bcc: people reporting qca6390 problems)
+
+Hi,
+
+I collected all important QCA6390 fixes to ath11k-qca6390 branch so that
+there's a good baseline for all testing:
+
+https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/log/?h=ath11k-qca6390-bringup
+
+At the moment it's based on v5.10-rc4 and I will try to update it to a
+recent -rc release every few weeks or so. Everytime I update the branch
+I create a new tag and the latest tag is now:
+
+ath11k-qca6390-bringup-202011191920
+
+In this tag there's now a brand new implementation for suspend, which
+relies that the platform provides power to QCA6390 during suspend. Not
+all platforms do, but most of them should do that. ath11k also prints a
+warning whenever it notices that the firmware has crashed, but I'm not
+sure yet if it (the MHI subsystem to be exact) can detect every case.
+
+The MSI patch is mostly the same, it had just some refactoring since the
+last version. Unfortunately there's no solution still for the weird
+crashes some people are seeing.
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
