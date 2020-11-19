@@ -1,13 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Date: Thu, 19 Nov 2020 08:11:47 +0000
-From: Christoph Hellwig <hch@infradead.org>
-Subject: Re: [PATCH 1/6] relay: allow the use of const callback structs
-Message-ID: <20201119081147.GA8577@infradead.org>
+Received: from mga03.intel.com ([134.134.136.65])
+ by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1kfgIC-00080q-Kg
+ for ath11k@lists.infradead.org; Thu, 19 Nov 2020 09:31:58 +0000
+From: Jani Nikula <jani.nikula@intel.com>
+Subject: Re: [PATCH 4/6] ath11k: make relay callbacks const
+In-Reply-To: <20201118165320.26829-4-jani.nikula@intel.com>
 References: <20201118165320.26829-1-jani.nikula@intel.com>
- <20201119081120.GA6149@infradead.org>
+ <20201118165320.26829-4-jani.nikula@intel.com>
+Date: Thu, 19 Nov 2020 11:31:43 +0200
+Message-ID: <871rgppu9s.fsf@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201119081120.GA6149@infradead.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -20,14 +23,43 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: Jens Axboe <axboe@kernel.dk>, intel-gfx@lists.freedesktop.org, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, ath10k@lists.infradead.org, QCA ath9k Development <ath9k-devel@qca.qualcomm.com>, linux-block@vger.kernel.org, ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>
+To: linux-kernel@vger.kernel.org
+Cc: intel-gfx@lists.freedesktop.org, ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>
 
-On Thu, Nov 19, 2020 at 08:11:20AM +0000, Christoph Hellwig wrote:
-> Please also add a patch to mark all rchan_callbacks instances const
-> while you're at it.
+On Wed, 18 Nov 2020, Jani Nikula <jani.nikula@intel.com> wrote:
+> Now that relay_open() accepts const callbacks, make relay callbacks
+> const.
+>
+> Cc: Kalle Valo <kvalo@codeaurora.org>
+> Cc: ath11k@lists.infradead.org
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Oops, I just noticed you actually sent that one.
+Kalle, thanks for the acks on the other two ath patches - can I have
+your ack on this one too please?
+
+BR,
+Jani.
+
+> ---
+>  drivers/net/wireless/ath/ath11k/spectral.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/net/wireless/ath/ath11k/spectral.c b/drivers/net/wireless/ath/ath11k/spectral.c
+> index ac2a8cfdc1c0..1afe67759659 100644
+> --- a/drivers/net/wireless/ath/ath11k/spectral.c
+> +++ b/drivers/net/wireless/ath/ath11k/spectral.c
+> @@ -148,7 +148,7 @@ static int remove_buf_file_handler(struct dentry *dentry)
+>  	return 0;
+>  }
+>  
+> -static struct rchan_callbacks rfs_scan_cb = {
+> +static const struct rchan_callbacks rfs_scan_cb = {
+>  	.create_buf_file = create_buf_file_handler,
+>  	.remove_buf_file = remove_buf_file_handler,
+>  };
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 
 -- 
 ath11k mailing list
