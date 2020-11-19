@@ -1,18 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from m42-4.mailgun.net ([69.72.42.4])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kfTDv-0006H8-R6
- for ath11k@lists.infradead.org; Wed, 18 Nov 2020 19:34:37 +0000
-Subject: Re: [PATCH] net: qrtr: Unprepare MHI channels during remove
-References: <1605723625-11206-1-git-send-email-bbhatt@codeaurora.org>
- <5e94c0be-9402-7309-5d65-857a27d1f491@codeaurora.org>
- <CAMZdPi_b0=qFNGi1yUke3Dip2bi-zW4ULTg8W4nbyPyEsE3D4w@mail.gmail.com>
-From: Jeffrey Hugo <jhugo@codeaurora.org>
-Message-ID: <2019fe3c-55c5-61fe-758c-1e9952e1cb33@codeaurora.org>
-Date: Wed, 18 Nov 2020 12:34:27 -0700
-MIME-Version: 1.0
-In-Reply-To: <CAMZdPi_b0=qFNGi1yUke3Dip2bi-zW4ULTg8W4nbyPyEsE3D4w@mail.gmail.com>
-Content-Language: en-US
+ id 1kfb5h-0000SM-7R
+ for ath11k@lists.infradead.org; Thu, 19 Nov 2020 03:58:38 +0000
+From: Anilkumar Kolli <akolli@codeaurora.org>
+Subject: [PATCH] ath11k: add 64bit check before reading msi high addr
+Date: Thu, 19 Nov 2020 09:28:21 +0530
+Message-Id: <1605758301-11249-1-git-send-email-akolli@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -21,67 +15,79 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Loic Poulain <loic.poulain@linaro.org>
-Cc: linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, cjhuang@codeaurora.org, linux-wireless@vger.kernel.org, Bhaumik Bhatt <bbhatt@codeaurora.org>, clew@codeaurora.org, netdev@vger.kernel.org, manivannan.sadhasivam@linaro.org, hemantk@codeaurora.org, ath11k@lists.infradead.org, kvalo@codeaurora.org
+To: ath11k@lists.infradead.org
+Cc: Anilkumar Kolli <akolli@codeaurora.org>, linux-wireless@vger.kernel.org
 
-T24gMTEvMTgvMjAyMCAxMjoxNCBQTSwgTG9pYyBQb3VsYWluIHdyb3RlOgo+IAo+IAo+IExlwqBt
-ZXIuIDE4IG5vdi4gMjAyMCDDoCAxOTozNCwgSmVmZnJleSBIdWdvIDxqaHVnb0Bjb2RlYXVyb3Jh
-Lm9yZyAKPiA8bWFpbHRvOmpodWdvQGNvZGVhdXJvcmEub3JnPj4gYSDDqWNyaXTCoDoKPiAKPiAg
-ICAgT24gMTEvMTgvMjAyMCAxMToyMCBBTSwgQmhhdW1payBCaGF0dCB3cm90ZToKPiAgICAgID4g
-UmVzZXQgTUhJIGRldmljZSBjaGFubmVscyB3aGVuIGRyaXZlciByZW1vdmUgaXMgY2FsbGVkIGR1
-ZSB0bwo+ICAgICAgPiBtb2R1bGUgdW5sb2FkIG9yIGFueSBjcmFzaCBzY2VuYXJpby4gVGhpcyB3
-aWxsIG1ha2Ugc3VyZSB0aGF0Cj4gICAgICA+IE1ISSBjaGFubmVscyBubyBsb25nZXIgcmVtYWlu
-IGVuYWJsZWQgZm9yIHRyYW5zZmVycyBzaW5jZSB0aGUKPiAgICAgID4gTUhJIHN0YWNrIGRvZXMg
-bm90IHRha2UgY2FyZSBvZiB0aGlzIGFueW1vcmUgYWZ0ZXIgdGhlIGF1dG8tc3RhcnQKPiAgICAg
-ID4gY2hhbm5lbHMgZmVhdHVyZSB3YXMgcmVtb3ZlZC4KPiAgICAgID4KPiAgICAgID4gU2lnbmVk
-LW9mZi1ieTogQmhhdW1payBCaGF0dCA8YmJoYXR0QGNvZGVhdXJvcmEub3JnCj4gICAgIDxtYWls
-dG86YmJoYXR0QGNvZGVhdXJvcmEub3JnPj4KPiAgICAgID4gLS0tCj4gICAgICA+wqAgwqBuZXQv
-cXJ0ci9taGkuYyB8IDEgKwo+ICAgICAgPsKgIMKgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9u
-KCspCj4gICAgICA+Cj4gICAgICA+IGRpZmYgLS1naXQgYS9uZXQvcXJ0ci9taGkuYyBiL25ldC9x
-cnRyL21oaS5jCj4gICAgICA+IGluZGV4IDcxMDBmMGIuLjJiZjJiMTkgMTAwNjQ0Cj4gICAgICA+
-IC0tLSBhL25ldC9xcnRyL21oaS5jCj4gICAgICA+ICsrKyBiL25ldC9xcnRyL21oaS5jCj4gICAg
-ICA+IEBAIC0xMDQsNiArMTA0LDcgQEAgc3RhdGljIHZvaWQgcWNvbV9taGlfcXJ0cl9yZW1vdmUo
-c3RydWN0Cj4gICAgIG1oaV9kZXZpY2UgKm1oaV9kZXYpCj4gICAgICA+wqAgwqAgwqAgwqBzdHJ1
-Y3QgcXJ0cl9taGlfZGV2ICpxZGV2ID0gZGV2X2dldF9kcnZkYXRhKCZtaGlfZGV2LT5kZXYpOwo+
-ICAgICAgPgo+ICAgICAgPsKgIMKgIMKgIMKgcXJ0cl9lbmRwb2ludF91bnJlZ2lzdGVyKCZxZGV2
-LT5lcCk7Cj4gICAgICA+ICvCoCDCoCDCoG1oaV91bnByZXBhcmVfZnJvbV90cmFuc2ZlcihtaGlf
-ZGV2KTsKPiAgICAgID7CoCDCoCDCoCDCoGRldl9zZXRfZHJ2ZGF0YSgmbWhpX2Rldi0+ZGV2LCBO
-VUxMKTsKPiAgICAgID7CoCDCoH0KPiAgICAgID4KPiAgICAgID4KPiAKPiAgICAgSSBhZG1pdCwg
-SSBkaWRuJ3QgcGF5IG11Y2ggYXR0ZW50aW9uIHRvIHRoZSBhdXRvLXN0YXJ0IGJlaW5nIHJlbW92
-ZWQsCj4gICAgIGJ1dCB0aGlzIHNlZW1zIG9kZCB0byBtZS4KPiAKPiAgICAgQXMgYSBjbGllbnQs
-IHRoZSBNSEkgZGV2aWNlIGlzIGJlaW5nIHJlbW92ZWQsIGxpa2VseSBiZWNhdXNlIG9mIHNvbWUK
-PiAgICAgZmFjdG9yIG91dHNpZGUgb2YgbXkgY29udHJvbCwgYnV0IEkgc3RpbGwgbmVlZCB0byBj
-bGVhbiBpdCB1cD/CoCBUaGlzCj4gICAgIHJlYWxseSBmZWVscyBsaWtlIHNvbWV0aGluZyBNSEkg
-c2hvdWxkIGJlIGhhbmRsaW5nLgo+IAo+IAo+IEkgdGhpbmsgdGhpcyBpcyBqdXN0IGFib3V0IGJh
-bGFuY2luZyBvcGVyYXRpb25zLCB3aGF0IGlzIGRvbmUgaW4gcHJvYmUgCj4gc2hvdWxkIGJlIHVu
-ZG9uZSBpbiByZW1vdmUsIHNvIGhlcmUgY2hhbm5lbHMgYXJlIHN0YXJ0ZWQgaW4gcHJvYmUgYW5k
-IAo+IHN0b3BwZWQvcmVzZXQgaW4gcmVtb3ZlLgoKSSB1bmRlcnN0YW5kIHRoYXQgcGVyc3BlY3Rp
-dmUsIGJ1dCB0aGF0IGRvZXNuJ3QgcXVpdGUgbWF0Y2ggd2hhdCBpcyAKZ29pbmcgb24gaGVyZS4g
-IFJlZ2FyZGxlc3Mgb2YgaWYgdGhlIGNoYW5uZWwgd2FzIHN0YXJ0ZWQgKHByZXBhcmVkKSBpbiAK
-cHJvYmUsIGl0IG5vdyBuZWVkcyB0byBiZSBzdG9wcGVkIGluIHJlbW92ZS4gIFRoYXQgbm90IGJh
-bGFuY2VkIGluIGFsbCBjYXNlcwoKTGV0cyBhc3N1bWUsIGluIHJlc3BvbnNlIHRvIHByb2JlKCks
-IG15IGNsaWVudCBkcml2ZXIgZ29lcyBhbmQgY3JlYXRlcyAKc29tZSBvdGhlciBvYmplY3QsIG1h
-eWJlIGEgc29ja2V0LiAgSW4gcmVzcG9uc2UgdG8gdGhhdCBzb2NrZXQgYmVpbmcgCm9wZW5lZC9h
-Y3RpdmF0ZWQgYnkgdGhlIGNsaWVudCBvZiBteSBkcml2ZXIsIEkgZ28gYW5kIHN0YXJ0IHRoZSBt
-aGkgCmNoYW5uZWwuICBOb3csIG5vcm1hbGx5LCB3aGVuIHRoZSBzb2NrZXQgaXMgY2xvc2VkL2Rl
-YWN0aXZhdGVkLCBJIHN0b3AgCnRoZSBNSEkgY2hhbm5lbC4gIEluIHRoaXMgY2FzZSwgc3RvcHBp
-bmcgdGhlIE1ISSBjaGFubmVsIGluIHJlbW92ZSgpIGlzIAp1bmJhbGFuY2VkIHdpdGggcmVzcGVj
-dCB0byBwcm9iZSgpLCBidXQgaXMgbm93IGEgcmVxdWlyZW1lbnQuCgpOb3cgeW91IG1heSBhcmd1
-ZSwgSSBzaG91bGQgY2xvc2UgdGhlIG9iamVjdCBpbiByZXNwb25zZSB0byByZW1vdmUsIAp3aGlj
-aCB3aWxsIHRoZW4gdHJpZ2dlciB0aGUgc3RvcCBvbiB0aGUgY2hhbm5lbC4gIFRoYXQgZG9lc24n
-dCBhcHBseSB0byAKZXZlcnl0aGluZy4gIEZvciBleGFtcGxlLCB5b3UgY2Fubm90IGNsb3NlIGFu
-IG9wZW4gZmlsZSBpbiB0aGUga2VybmVsLiAKWW91IG5lZWQgdG8gd2FpdCBmb3IgdXNlcnNwYWNl
-IHRvIGNsb3NlIGl0LiAgQnkgdGhlIHRpbWUgdGhhdCBoYXBwZW5zLCAKdGhlIG1oaV9kZXYgaXMg
-bG9uZyBnb25lIEkgZXhwZWN0LgoKU28gaWYsIHNvbWVob3csIHRoZSBjbGllbnQgZHJpdmVyIGlz
-IHRoZSBvbmUgY2F1c2luZyB0aGUgcmVtb3ZlIHRvIApvY2N1ciwgdGhlbiB5ZXMgaXQgc2hvdWxk
-IHByb2JhYmx5IGJlIHRoZSBvbmUgZG9pbmcgdGhlIHN0b3AsIGJ1dCB0aGF0J3MgCmEgbmFycm93
-IHNldCBvZiBjb25kaXRpb25zLCBhbmQgSSB0aGluayBoYXZpbmcgdGhhdCByZXF1aXJlbWVudCBm
-b3IgYWxsIApzY2VuYXJpb3MgaXMgbGltaXRpbmcuCgoKLS0gCkplZmZyZXkgSHVnbwpRdWFsY29t
-bSBUZWNobm9sb2dpZXMsIEluYy4gaXMgYSBtZW1iZXIgb2YgdGhlCkNvZGUgQXVyb3JhIEZvcnVt
-LCBhIExpbnV4IEZvdW5kYXRpb24gQ29sbGFib3JhdGl2ZSBQcm9qZWN0LgoKLS0gCmF0aDExayBt
-YWlsaW5nIGxpc3QKYXRoMTFrQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJh
-ZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9hdGgxMWsK
+In QCN9074 ath11k boot, firmware crash is observed in 64-bit
+builds and is due to wrong 64 bit MSI address size. This patch
+fixes the firmware crash. Read msi high addr if 64-bit addresses
+allowed on MSI.
+
+Tested-On: QCN9074 hw1.0 PCI WLAN.HK.2.4.0.1.r1-00026-QCAHKSWPL_SILICONZ-2
+
+Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
+---
+
+ drivers/net/wireless/ath/ath11k/pci.c | 11 +++++++++--
+ drivers/net/wireless/ath/ath11k/pci.h |  1 +
+ 2 files changed, 10 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
+index b75f47dc36de..54ac0a861063 100644
+--- a/drivers/net/wireless/ath/ath11k/pci.c
++++ b/drivers/net/wireless/ath/ath11k/pci.c
+@@ -264,13 +264,18 @@ int ath11k_pci_get_msi_irq(struct device *dev, unsigned int vector)
+ static void ath11k_pci_get_msi_address(struct ath11k_base *ab, u32 *msi_addr_lo,
+ 				       u32 *msi_addr_hi)
+ {
++	struct ath11k_pci *ar_pci = ath11k_pci_priv(ab);
+ 	struct pci_dev *pci_dev = to_pci_dev(ab->dev);
+ 
+ 	pci_read_config_dword(pci_dev, pci_dev->msi_cap + PCI_MSI_ADDRESS_LO,
+ 			      msi_addr_lo);
+ 
+-	pci_read_config_dword(pci_dev, pci_dev->msi_cap + PCI_MSI_ADDRESS_HI,
+-			      msi_addr_hi);
++	if (test_bit(ATH11K_PCI_FLAG_IS_MSI_64, &ab_pci->flags)) {
++		pci_read_config_dword(pci_dev, pci_dev->msi_cap + PCI_MSI_ADDRESS_HI,
++				      msi_addr_hi);
++	} else {
++		*msi_addr_hi = 0;
++	}
+ }
+ 
+ int ath11k_pci_get_user_msi_assignment(struct ath11k_pci *ab_pci, char *user_name,
+@@ -658,6 +663,8 @@ static int ath11k_pci_enable_msi(struct ath11k_pci *ab_pci)
+ 	}
+ 
+ 	ab_pci->msi_ep_base_data = msi_desc->msg.data;
++	if (msi_desc->msi_attrib.is_64)
++		set_bit(ATH11K_PCI_FLAG_IS_MSI_64, &ab_pci->flags);
+ 
+ 	ath11k_dbg(ab, ATH11K_DBG_PCI, "msi base data is %d\n", ab_pci->msi_ep_base_data);
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/pci.h b/drivers/net/wireless/ath/ath11k/pci.h
+index 43562f774a37..9c503a17c237 100644
+--- a/drivers/net/wireless/ath/ath11k/pci.h
++++ b/drivers/net/wireless/ath/ath11k/pci.h
+@@ -38,6 +38,7 @@ struct ath11k_msi_config {
+ 
+ enum ath11k_pci_flags {
+ 	ATH11K_PCI_FLAG_INIT_DONE,
++	ATH11K_PCI_FLAG_IS_MSI_64,
+ };
+ 
+ struct ath11k_pci {
+-- 
+2.7.4
+
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
