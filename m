@@ -1,20 +1,17 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail-ej1-x631.google.com ([2a00:1450:4864:20::631])
+Received: from z5.mailgun.us ([104.130.96.5])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kg1am-0005Rs-MG
- for ath11k@lists.infradead.org; Fri, 20 Nov 2020 08:16:29 +0000
-Received: by mail-ej1-x631.google.com with SMTP id 7so11684958ejm.0
- for <ath11k@lists.infradead.org>; Fri, 20 Nov 2020 00:16:27 -0800 (PST)
+ id 1kg2u2-00042F-NC
+ for ath11k@lists.infradead.org; Fri, 20 Nov 2020 09:40:29 +0000
+From: Kalle Valo <kvalo@codeaurora.org>
 Subject: Re: ath11k-qca6390-bringup-202011191920: new suspend implementation
 References: <87sg95t9ez.fsf@codeaurora.org> <87o8jtt98l.fsf@codeaurora.org>
  <ba11dcda-ed2c-6840-e42c-bb3fa4e59cec@gmail.com>
- <CAHUdJJXWSiWz7Te0hJ5uvzk1iAtSdo8QrjBWiTHw_gSt4R+ZSg@mail.gmail.com>
-From: Pavel Procopiuc <pavel.procopiuc@gmail.com>
-Message-ID: <01073455-065a-e45d-3186-6e4109794e3c@gmail.com>
-Date: Fri, 20 Nov 2020 09:16:24 +0100
+Date: Fri, 20 Nov 2020 11:40:19 +0200
+In-Reply-To: <ba11dcda-ed2c-6840-e42c-bb3fa4e59cec@gmail.com> (Pavel
+ Procopiuc's message of "Thu, 19 Nov 2020 23:00:48 +0100")
+Message-ID: <875z60tlh8.fsf@codeaurora.org>
 MIME-Version: 1.0
-In-Reply-To: <CAHUdJJXWSiWz7Te0hJ5uvzk1iAtSdo8QrjBWiTHw_gSt4R+ZSg@mail.gmail.com>
-Content-Language: en-US
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,26 +20,80 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: wi nk <wink@technolu.st>
-Cc: ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>
+To: Pavel Procopiuc <pavel.procopiuc@gmail.com>
+Cc: ath11k@lists.infradead.org
 
-Op 19.11.2020 om 23:11 schreef wi nk:
-> Hi Pavel,
-> 
->    I'm compiling it now as well.  For your testing did you revert
-> 7fef431be9c9ac255838a9578331567b9dba4477 again?  The memmap
-> reservation never functioned for me.
+Pavel Procopiuc <pavel.procopiuc@gmail.com> writes:
 
-No I did not, I'm using the vanilla 5.10-rc4 + the commits from ath11k-qca6390-bringup branch + Bluetooth LE fix [1] 
-(not that it should matter in this case). The memmap=20M$12M option completely (at least for the last 10 or so boots) 
-fixes the problem. I've tried reducing the non-allocatable window and this is the the minimum that works for me reliably 
-so far.
+> Suspend seems to work. The log after booting with memmap=20M$12M and doing suspend:
+> Nov 19 22:47:59 razor kernel: Linux version 5.10.0-rc4 (root@razor)
+> (gcc (Gentoo 9.3.0-r1 p3) 9.3.0, GNU ld (Gentoo 2.34 p6) 2.34.0) #14
+> SMP Thu Nov 19 22:44:32 CET 2020
+> Nov 19 22:47:59 razor kernel: Command line: ro root=/dev/nvme0n1p2
+> resume=/dev/nvme1n1p1 zram.num_devices=2 memmap=20M$12M quiet
+> Nov 19 22:47:59 razor kernel:   DMA zone: 47 pages used for memmap
+> Nov 19 22:47:59 razor kernel:   DMA32 zone: 5149 pages used for memmap
+> Nov 19 22:47:59 razor kernel:   Normal zone: 255840 pages used for memmap
+> Nov 19 22:47:59 razor kernel: Kernel command line: ro
+> root=/dev/nvme0n1p2 resume=/dev/nvme1n1p1 zram.num_devices=2
+> memmap=20M$12M quiet ro root=/dev/nvme0n1p2 resume=/dev/nvme1n1p1
+> zram.num_devices=2 memmap=20M$12M quiet
+> Nov 19 22:47:59 razor kernel: pci 0000:05:00.0: [17cb:1101] type 00 class 0x028000
+> Nov 19 22:47:59 razor kernel: pci 0000:05:00.0: reg 0x10: [mem
+> 0xd2100000-0xd21fffff 64bit]
+> Nov 19 22:47:59 razor kernel: pci 0000:05:00.0: PME# supported from D0 D3hot D3cold
+> Nov 19 22:47:59 razor kernel: pci 0000:05:00.0: 4.000 Gb/s available
+> PCIe bandwidth, limited by 5.0 GT/s PCIe x1 link at 0000:00:1c.1
+> (capable of 7.876 Gb/s with 8.0 GT/s PCIe x1 link)
+> Nov 19 22:47:59 razor kernel: pci 0000:05:00.0: Adding to iommu group 21
+> Nov 19 22:48:00 razor kernel: ath11k_pci 0000:05:00.0: WARNING: ath11k
+> PCI support is experimental!
+> Nov 19 22:48:00 razor kernel: ath11k_pci 0000:05:00.0: BAR 0: assigned
+> [mem 0xd2100000-0xd21fffff 64bit]
+> Nov 19 22:48:00 razor kernel: ath11k_pci 0000:05:00.0: enabling device (0000 -> 0002)
+> Nov 19 22:48:00 razor kernel: ath11k_pci 0000:05:00.0: MSI vectors: 32
+> Nov 19 22:48:00 razor kernel: mhi 0000:05:00.0: Requested to power ON
+> Nov 19 22:48:00 razor kernel: mhi 0000:05:00.0: Power on setup success
+> Nov 19 22:48:00 razor kernel: ath11k_pci 0000:05:00.0: qmi req
+> mem_seg[0] 0x2800000 3522560 1
+> Nov 19 22:48:00 razor kernel: ath11k_pci 0000:05:00.0: qmi req
+> mem_seg[1] 0x2500000 884736 4
+> Nov 19 22:48:00 razor kernel: ath11k_pci 0000:05:00.0: chip_id 0x0
+> chip_family 0xb board_id 0xff soc_id 0xffffffff
+> Nov 19 22:48:00 razor kernel: ath11k_pci 0000:05:00.0: fw_version
+> 0x101c06cc fw_build_timestamp 2020-06-24 19:50 fw_build_id
+> Nov 19 22:48:02 razor NetworkManager[793]: <info>  [1605822482.1378]
+> rfkill1: found Wi-Fi radio killswitch (at
+> /sys/devices/pci0000:00/0000:00:1c.1/0000:05:00.0/ieee80211/phy0/rfkill1)
+> (driver ath11k_pci)
+> Nov 19 22:48:04 razor ModemManager[725]: <info>  Couldn't check
+> support for device
+> '/sys/devices/pci0000:00/0000:00:1c.1/0000:05:00.0': not supported by
+> any plugin
+>
+> ... suspend here ...
+>
+> Nov 19 22:49:30 razor kernel: mhi 0000:05:00.0: Allowing M3 transition
+> Nov 19 22:49:30 razor kernel: mhi 0000:05:00.0: Wait for M3 completion
+> Nov 19 22:49:30 razor kernel: mhi 0000:05:00.0: Entered with PM state:
+> M3, MHI state: M3
+> Nov 19 22:49:33 razor ModemManager[725]: <info>  Couldn't check
+> support for device
+> '/sys/devices/pci0000:00/0000:00:1c.1/0000:05:00.0': not supported by
+> any plugin
 
-[1]: https://patchwork.kernel.org/project/bluetooth/patch/20201022082304.31757-1-sathish.narasimman@intel.com/
+And I guess resume also worked? :) Do you have logs about resume?
+
+You had Dell XPS 17, right?
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
