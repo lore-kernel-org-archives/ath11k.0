@@ -1,19 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail-ed1-x52b.google.com ([2a00:1450:4864:20::52b])
+Received: from z5.mailgun.us ([104.130.96.5])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kft38-0004iB-Iy
- for ath11k@lists.infradead.org; Thu, 19 Nov 2020 23:09:12 +0000
-Received: by mail-ed1-x52b.google.com with SMTP id e18so7620385edy.6
- for <ath11k@lists.infradead.org>; Thu, 19 Nov 2020 15:09:06 -0800 (PST)
+ id 1kfvjg-0002vN-Q4
+ for ath11k@lists.infradead.org; Fri, 20 Nov 2020 02:01:18 +0000
+From: Baochen Qiang <bqiang@codeaurora.org>
+Subject: [PATCH] ath11k: fix "rmmod ath11k_pci" failure after QMI sequence
+ fails
+Date: Fri, 20 Nov 2020 10:00:28 +0800
+Message-Id: <20201120020028.12063-1-bqiang@codeaurora.org>
 MIME-Version: 1.0
-References: <87sg95t9ez.fsf@codeaurora.org> <87o8jtt98l.fsf@codeaurora.org>
- <ba11dcda-ed2c-6840-e42c-bb3fa4e59cec@gmail.com>
- <CAHUdJJXWSiWz7Te0hJ5uvzk1iAtSdo8QrjBWiTHw_gSt4R+ZSg@mail.gmail.com>
-In-Reply-To: <CAHUdJJXWSiWz7Te0hJ5uvzk1iAtSdo8QrjBWiTHw_gSt4R+ZSg@mail.gmail.com>
-From: wi nk <wink@technolu.st>
-Date: Fri, 20 Nov 2020 00:08:54 +0100
-Message-ID: <CAHUdJJVOcwzKg3QTS8=p-C_s11WnpsX3cHJPSDadphrpKim_sA@mail.gmail.com>
-Subject: Re: ath11k-qca6390-bringup-202011191920: new suspend implementation
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -26,279 +21,204 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Pavel Procopiuc <pavel.procopiuc@gmail.com>
-Cc: ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>
+To: ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org
 
-On Thu, Nov 19, 2020 at 11:11 PM wi nk <wink@technolu.st> wrote:
->
-> On Thu, Nov 19, 2020 at 11:00 PM Pavel Procopiuc
-> <pavel.procopiuc@gmail.com> wrote:
-> >
-> > Op 19.11.2020 om 20:52 schreef Kalle Valo:
-> > > Kalle Valo <kvalo@codeaurora.org> writes:
-> > >
-> > >> (Bcc: people reporting qca6390 problems)
-> > >>
-> > >> Hi,
-> > >>
-> > >> I collected all important QCA6390 fixes to ath11k-qca6390 branch so that
-> > >> there's a good baseline for all testing:
-> > >>
-> > >> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/log/?h=ath11k-qca6390-bringup
-> > >>
-> > >> At the moment it's based on v5.10-rc4 and I will try to update it to a
-> > >> recent -rc release every few weeks or so. Everytime I update the branch
-> > >> I create a new tag and the latest tag is now:
-> > >>
-> > >> ath11k-qca6390-bringup-202011191920
-> > >>
-> > >> In this tag there's now a brand new implementation for suspend, which
-> > >> relies that the platform provides power to QCA6390 during suspend. Not
-> > >> all platforms do, but most of them should do that. ath11k also prints a
-> > >> warning whenever it notices that the firmware has crashed, but I'm not
-> > >> sure yet if it (the MHI subsystem to be exact) can detect every case.
-> > >>
-> > >> The MSI patch is mostly the same, it had just some refactoring since the
-> > >> last version. Unfortunately there's no solution still for the weird
-> > >> crashes some people are seeing.
-> > >
-> > > Forgot to mention when debugging ath11k PCI issues it's a good idea to
-> > > enable MHI debug messages. To do that enable CONFIG_MHI_BUS_DEBUG and
-> > > CONFIG_DYNAMIC_DEBUG and run:
-> > >
-> > > sudo sh -c "echo -n 'module mhi +p' > /sys/kernel/debug/dynamic_debug/control"
-> >
-> > Thanks! I gave it a spin. Regarding problems loading the driver, there doesn't seem to be any changes, without the
-> > memmap=20M$12M I'm seeing similar issues as before: inability to load firmware.
-> >
-> > Log with the module autoload at boot:
-> > Nov 19 22:08:15 razor kernel: Linux version 5.10.0-rc4 (root@razor) (gcc (Gentoo 9.3.0-r1 p3) 9.3.0, GNU ld (Gentoo 2.34
-> > p6) 2.34.0) #12 SMP Thu Nov 19 22:03:06 CET 2020
-> > Nov 19 22:08:15 razor kernel:   DMA zone: 64 pages used for memmap
-> > Nov 19 22:08:15 razor kernel:   DMA32 zone: 5213 pages used for memmap
-> > Nov 19 22:08:15 razor kernel:   Normal zone: 255840 pages used for memmap
-> > Nov 19 22:08:15 razor kernel: pci 0000:05:00.0: [17cb:1101] type 00 class 0x028000
-> > Nov 19 22:08:15 razor kernel: pci 0000:05:00.0: reg 0x10: [mem 0xd2100000-0xd21fffff 64bit]
-> > Nov 19 22:08:15 razor kernel: pci 0000:05:00.0: PME# supported from D0 D3hot D3cold
-> > Nov 19 22:08:15 razor kernel: pci 0000:05:00.0: 4.000 Gb/s available PCIe bandwidth, limited by 5.0 GT/s PCIe x1 link at
-> > 0000:00:1c.1 (capable of 7.876 Gb/s with 8.0 GT/s PCIe x1 link)
-> > Nov 19 22:08:15 razor kernel: pci 0000:05:00.0: Adding to iommu group 21
-> > Nov 19 22:08:16 razor kernel: ath11k_pci 0000:05:00.0: WARNING: ath11k PCI support is experimental!
-> > Nov 19 22:08:16 razor kernel: ath11k_pci 0000:05:00.0: BAR 0: assigned [mem 0xd2100000-0xd21fffff 64bit]
-> > Nov 19 22:08:16 razor kernel: ath11k_pci 0000:05:00.0: enabling device (0000 -> 0002)
-> > Nov 19 22:08:16 razor kernel: ath11k_pci 0000:05:00.0: MSI vectors: 32
-> > Nov 19 22:08:16 razor kernel: mhi 0000:05:00.0: Requested to power ON
-> > Nov 19 22:08:16 razor kernel: mhi 0000:05:00.0: Power on setup success
-> > Nov 19 22:08:16 razor kernel: ath11k_pci 0000:05:00.0: qmi req mem_seg[0] 0x1800000 3522560 1
-> > Nov 19 22:08:16 razor kernel: ath11k_pci 0000:05:00.0: qmi req mem_seg[1] 0x1500000 884736 4
-> > Nov 19 22:08:21 razor kernel: ath11k_pci 0000:05:00.0: qmi failed memory request, err = -110
-> > Nov 19 22:08:21 razor kernel: ath11k_pci 0000:05:00.0: qmi failed to respond fw mem req:-110
-> >
-> > Log with manual load with "options ath11k debug_mask=0xffffffff" and after doing "echo -n 'module mhi +p' >
-> > /sys/kernel/debug/dynamic_debug/control":
-> > Nov 19 22:34:07 razor kernel: Linux version 5.10.0-rc4 (root@razor) (gcc (Gentoo 9.3.0-r1 p3) 9.3.0, GNU ld (Gentoo 2.34
-> > p6) 2.34.0) #12 SMP Thu Nov 19 22:03:06 CET 2020
-> > Nov 19 22:34:07 razor kernel:   DMA zone: 64 pages used for memmap
-> > Nov 19 22:34:07 razor kernel:   DMA32 zone: 5213 pages used for memmap
-> > Nov 19 22:34:07 razor kernel:   Normal zone: 255840 pages used for memmap
-> > Nov 19 22:34:07 razor kernel: pci 0000:05:00.0: [17cb:1101] type 00 class 0x028000
-> > Nov 19 22:34:07 razor kernel: pci 0000:05:00.0: reg 0x10: [mem 0xd2100000-0xd21fffff 64bit]
-> > Nov 19 22:34:07 razor kernel: pci 0000:05:00.0: PME# supported from D0 D3hot D3cold
-> > Nov 19 22:34:07 razor kernel: pci 0000:05:00.0: 4.000 Gb/s available PCIe bandwidth, limited by 5.0 GT/s PCIe x1 link at
-> > 0000:00:1c.1 (capable of 7.876 Gb/s with 8.0 GT/s PCIe x1 link)
-> > Nov 19 22:34:07 razor kernel: pci 0000:05:00.0: Adding to iommu group 21
-> > Nov 19 22:34:42 razor sudo[2247]:      pro : TTY=pts/1 ; PWD=/home/pro ; USER=root ; COMMAND=/sbin/modprobe ath11k_pci
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: WARNING: ath11k PCI support is experimental!
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: BAR 0: assigned [mem 0xd2100000-0xd21fffff 64bit]
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: enabling device (0000 -> 0002)
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: boot pci_mem 0x000000003c58b991
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: pci tcsr_soc_hw_version major 2 minor 0
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: MSI vectors: 32
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: msi base data is 0
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: Hardware name qca6390 hw2.0
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: Assign MSI to user: MHI, num_vectors: 3, user_base_data: 0,
-> > base_vector: 0
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: Number of assigned MSI for MHI is 3, base vector is 0
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: target_reg a3b034, shadow reg 0x8fc shadow_idx 0x0, ring_type 0,
-> > ring num 0
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: target_reg a3b03c, shadow reg 0x900 shadow_idx 0x1, ring_type 0,
-> > ring num 1
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: target_reg a3b044, shadow reg 0x904 shadow_idx 0x2, ring_type 0,
-> > ring num 2
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: target_reg a3b04c, shadow reg 0x908 shadow_idx 0x3, ring_type 0,
-> > ring num 3
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: target_reg a3b054, shadow reg 0x90c shadow_idx 0x4, ring_type 1,
-> > ring num 0
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: target_reg a3b028, shadow reg 0x910 shadow_idx 0x5, ring_type 2,
-> > ring num 0
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: target_reg a3b020, shadow reg 0x914 shadow_idx 0x6, ring_type 3,
-> > ring num 0
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: target_reg a3b06c, shadow reg 0x918 shadow_idx 0x7, ring_type 4,
-> > ring num 0
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: target_reg a46000, shadow reg 0x91c shadow_idx 0x8, ring_type 5,
-> > ring num 0
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: target_reg a46008, shadow reg 0x920 shadow_idx 0x9, ring_type 5,
-> > ring num 1
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: target_reg a46010, shadow reg 0x924 shadow_idx 0xa, ring_type 5,
-> > ring num 2
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: target_reg a46018, shadow reg 0x928 shadow_idx 0xb, ring_type 6,
-> > ring num 0
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: target_reg a46034, shadow reg 0x92c shadow_idx 0xc, ring_type 7,
-> > ring num 0
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: target_reg a370b0, shadow reg 0x930 shadow_idx 0xd, ring_type 11,
-> > ring num 0
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: target_reg a37018, shadow reg 0x934 shadow_idx 0xe, ring_type 12,
-> > ring num 0
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: target_reg a370c4, shadow reg 0x938 shadow_idx 0xf, ring_type 13,
-> > ring num 0
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: target_reg a370cc, shadow reg 0x93c shadow_idx 0x10, ring_type
-> > 13, ring num 1
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: target_reg a370d4, shadow reg 0x940 shadow_idx 0x11, ring_type
-> > 13, ring num 2
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: target_reg a370dc, shadow reg 0x944 shadow_idx 0x12, ring_type
-> > 13, ring num 3
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: target_reg a00400, shadow reg 0x948 shadow_idx 0x13, ring_type 8,
-> > ring num 0
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: target_reg a03400, shadow reg 0x94c shadow_idx 0x14, ring_type 9,
-> > ring num 1
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: target_reg a0340c, shadow reg 0x950 shadow_idx 0x15, ring_type
-> > 10, ring num 1
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: target_reg a05400, shadow reg 0x954 shadow_idx 0x16, ring_type 9,
-> > ring num 2
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: target_reg a0540c, shadow reg 0x958 shadow_idx 0x17, ring_type
-> > 10, ring num 2
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: target_reg a06400, shadow reg 0x95c shadow_idx 0x18, ring_type 8,
-> > ring num 3
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: target_reg a08400, shadow reg 0x960 shadow_idx 0x19, ring_type 8,
-> > ring num 4
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: target_reg a0b400, shadow reg 0x964 shadow_idx 0x1a, ring_type 9,
-> > ring num 5
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: target_reg a0b40c, shadow reg 0x968 shadow_idx 0x1b, ring_type
-> > 10, ring num 5
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: target_reg a0e400, shadow reg 0x96c shadow_idx 0x1c, ring_type 8,
-> > ring num 7
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: Assign MSI to user: CE, num_vectors: 10, user_base_data: 3,
-> > base_vector: 3
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: Assign MSI to user: DP, num_vectors: 18, user_base_data: 14,
-> > base_vector: 14
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: irq:229 group:0
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: irq:230 group:1
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: irq:231 group:2
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: irq:233 group:4
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: irq:234 group:5
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: irq:235 group:6
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: irq:236 group:7
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: irq:237 group:8
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: irq:238 group:9
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: irq:239 group:10
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: msi base data is 0
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: MHISTATUS 0xff04
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: cookie:0x0
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: WLAON_WARM_SW_ENTRY 0x0
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: WLAON_WARM_SW_ENTRY 0x0
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: soc reset cause:0
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: setting mhi state: INIT(0)
-> > Nov 19 22:34:42 razor kernel: ath11k_pci 0000:05:00.0: setting mhi state: POWER_ON(2)
-> > Nov 19 22:34:42 razor kernel: mhi 0000:05:00.0: Requested to power ON
-> > Nov 19 22:34:42 razor kernel: mhi 0000:05:00.0: Power on setup success
-> >
-> >
-> > Suspend seems to work. The log after booting with memmap=20M$12M and doing suspend:
-> > Nov 19 22:47:59 razor kernel: Linux version 5.10.0-rc4 (root@razor) (gcc (Gentoo 9.3.0-r1 p3) 9.3.0, GNU ld (Gentoo 2.34
-> > p6) 2.34.0) #14 SMP Thu Nov 19 22:44:32 CET 2020
-> > Nov 19 22:47:59 razor kernel: Command line: ro root=/dev/nvme0n1p2 resume=/dev/nvme1n1p1 zram.num_devices=2
-> > memmap=20M$12M quiet
-> > Nov 19 22:47:59 razor kernel:   DMA zone: 47 pages used for memmap
-> > Nov 19 22:47:59 razor kernel:   DMA32 zone: 5149 pages used for memmap
-> > Nov 19 22:47:59 razor kernel:   Normal zone: 255840 pages used for memmap
-> > Nov 19 22:47:59 razor kernel: Kernel command line: ro root=/dev/nvme0n1p2 resume=/dev/nvme1n1p1 zram.num_devices=2
-> > memmap=20M$12M quiet ro root=/dev/nvme0n1p2 resume=/dev/nvme1n1p1 zram.num_devices=2 memmap=20M$12M quiet
-> > Nov 19 22:47:59 razor kernel: pci 0000:05:00.0: [17cb:1101] type 00 class 0x028000
-> > Nov 19 22:47:59 razor kernel: pci 0000:05:00.0: reg 0x10: [mem 0xd2100000-0xd21fffff 64bit]
-> > Nov 19 22:47:59 razor kernel: pci 0000:05:00.0: PME# supported from D0 D3hot D3cold
-> > Nov 19 22:47:59 razor kernel: pci 0000:05:00.0: 4.000 Gb/s available PCIe bandwidth, limited by 5.0 GT/s PCIe x1 link at
-> > 0000:00:1c.1 (capable of 7.876 Gb/s with 8.0 GT/s PCIe x1 link)
-> > Nov 19 22:47:59 razor kernel: pci 0000:05:00.0: Adding to iommu group 21
-> > Nov 19 22:48:00 razor kernel: ath11k_pci 0000:05:00.0: WARNING: ath11k PCI support is experimental!
-> > Nov 19 22:48:00 razor kernel: ath11k_pci 0000:05:00.0: BAR 0: assigned [mem 0xd2100000-0xd21fffff 64bit]
-> > Nov 19 22:48:00 razor kernel: ath11k_pci 0000:05:00.0: enabling device (0000 -> 0002)
-> > Nov 19 22:48:00 razor kernel: ath11k_pci 0000:05:00.0: MSI vectors: 32
-> > Nov 19 22:48:00 razor kernel: mhi 0000:05:00.0: Requested to power ON
-> > Nov 19 22:48:00 razor kernel: mhi 0000:05:00.0: Power on setup success
-> > Nov 19 22:48:00 razor kernel: ath11k_pci 0000:05:00.0: qmi req mem_seg[0] 0x2800000 3522560 1
-> > Nov 19 22:48:00 razor kernel: ath11k_pci 0000:05:00.0: qmi req mem_seg[1] 0x2500000 884736 4
-> > Nov 19 22:48:00 razor kernel: ath11k_pci 0000:05:00.0: chip_id 0x0 chip_family 0xb board_id 0xff soc_id 0xffffffff
-> > Nov 19 22:48:00 razor kernel: ath11k_pci 0000:05:00.0: fw_version 0x101c06cc fw_build_timestamp 2020-06-24 19:50 fw_build_id
-> > Nov 19 22:48:02 razor NetworkManager[793]: <info>  [1605822482.1378] rfkill1: found Wi-Fi radio killswitch (at
-> > /sys/devices/pci0000:00/0000:00:1c.1/0000:05:00.0/ieee80211/phy0/rfkill1) (driver ath11k_pci)
-> > Nov 19 22:48:04 razor ModemManager[725]: <info>  Couldn't check support for device
-> > '/sys/devices/pci0000:00/0000:00:1c.1/0000:05:00.0': not supported by any plugin
-> >
-> > ... suspend here ...
-> >
-> > Nov 19 22:49:30 razor kernel: mhi 0000:05:00.0: Allowing M3 transition
-> > Nov 19 22:49:30 razor kernel: mhi 0000:05:00.0: Wait for M3 completion
-> > Nov 19 22:49:30 razor kernel: mhi 0000:05:00.0: Entered with PM state: M3, MHI state: M3
-> > Nov 19 22:49:33 razor ModemManager[725]: <info>  Couldn't check support for device
-> > '/sys/devices/pci0000:00/0000:00:1c.1/0000:05:00.0': not supported by any plugin
-> >
-> > --
-> > ath11k mailing list
-> > ath11k@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/ath11k
->
-> Hi Pavel,
->
->   I'm compiling it now as well.  For your testing did you revert
-> 7fef431be9c9ac255838a9578331567b9dba4477 again?  The memmap
-> reservation never functioned for me.
+If board.bin file is missing, QMI sequence fails,
+which results in failure of "rmmod ath11k_pci".
+This patch fixes this issue.
 
-Ok, so I can answer my own question, no I didn't need to revert that
-commit.  That said I seem to be activating the RT throttling message
-way more frequently (4/5 boots, this fifth one was successful).  Kalle
-- following the thought that something is going out of control in the
-irq tasklet stuff, earlier today I was playing with the MSI patch that
-introduces the irq_enable_flag and the functions to set/unset it and
-noticed that in the ath11k_pci_ce_* functions that enable / disable
-IRQs , if I switched the order of the flag assignment and the irq
-enable/disable function call, I saw this behavior more frequently as
-well.  I haven't fully groked the re-entrancy model of these
-functions, but there's definitely a race occuring somehow.  It seems
-to occur mostly during some of the actual 802.11 association:
+Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01230-QCAHSTSWPLZ_V2_TO_X86-1
+Signed-off-by: Baochen Qiang <bqiang@codeaurora.org>
+---
+ drivers/net/wireless/ath/ath11k/core.h  |  3 ++-
+ drivers/net/wireless/ath/ath11k/debug.c |  1 +
+ drivers/net/wireless/ath/ath11k/pci.c   |  9 +++++++
+ drivers/net/wireless/ath/ath11k/qmi.c   | 35 ++++++++++++++++---------
+ 4 files changed, 35 insertions(+), 13 deletions(-)
 
-[   26.945028] ath11k_pci 0000:55:00.0: WARNING: ath11k PCI support is
-experimental!
-[   26.945102] ath11k_pci 0000:55:00.0: BAR 0: assigned [mem
-0x8e300000-0x8e3fffff 64bit]
-[   26.945120] ath11k_pci 0000:55:00.0: enabling device (0000 -> 0002)
-[   26.945207] ath11k_pci 0000:55:00.0: MSI vectors: 1
-[   26.949329] NET: Registered protocol family 42
-[   26.999257] mhi 0000:55:00.0: Requested to power ON
-[   26.999419] mhi 0000:55:00.0: Power on setup success
-[   27.171994] ath11k_pci 0000:55:00.0: qmi req mem_seg[0] 0x27800000 3522560 1
-[   27.171999] ath11k_pci 0000:55:00.0: qmi req mem_seg[1] 0x27d00000 884736 4
-[   27.183341] ath11k_pci 0000:55:00.0: chip_id 0x0 chip_family 0xb
-board_id 0xff soc_id 0xffffffff
-[   27.183345] ath11k_pci 0000:55:00.0: fw_version 0x101c06cc
-fw_build_timestamp 2020-06-24 19:50 fw_build_id
-[   27.387420] ath11k_pci 0000:55:00.0 wlp85s0: renamed from wlan0
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index 11448755c06d..2ddf690a9d21 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -188,7 +188,8 @@ enum ath11k_dev_flags {
+ 	ATH11K_FLAG_REGISTERED,
+ 	ATH11K_FLAG_FW_RESTART_FOR_HOST,
+ 	ATH11K_FLAG_CORE_STOPPED,
+-	ATH11K_FLAG_CORE_STARTING
++	ATH11K_FLAG_CORE_STARTING,
++	ATH11K_FLAG_QMI_FAIL,
+ };
+ 
+ enum ath11k_monitor_flags {
+diff --git a/drivers/net/wireless/ath/ath11k/debug.c b/drivers/net/wireless/ath/ath11k/debug.c
+index 51226a4ec50f..ef8b3a88d342 100644
+--- a/drivers/net/wireless/ath/ath11k/debug.c
++++ b/drivers/net/wireless/ath/ath11k/debug.c
+@@ -1072,6 +1072,7 @@ void ath11k_debug_soc_destroy(struct ath11k_base *ab)
+ 	debugfs_remove_recursive(ab->debugfs_ath11k);
+ 	ab->debugfs_ath11k = NULL;
+ }
++EXPORT_SYMBOL(ath11k_debug_soc_destroy);
+ 
+ void ath11k_debug_fw_stats_init(struct ath11k *ar)
+ {
+diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
+index 43a8bffc4ba0..b59741796ac2 100644
+--- a/drivers/net/wireless/ath/ath11k/pci.c
++++ b/drivers/net/wireless/ath/ath11k/pci.c
+@@ -1184,7 +1184,16 @@ static void ath11k_pci_remove(struct pci_dev *pdev)
+ 	cancel_work_sync(&ab->update_11d_work);
+ 	cancel_work_sync(&ab->rfkill_work);
+ 	cancel_work_sync(&ab->reset_work);
++
++	if (test_bit(ATH11K_FLAG_QMI_FAIL, &ab->dev_flags)) {
++		ath11k_hif_power_down(ab);
++		ath11k_debug_soc_destroy(ab);
++		ath11k_qmi_deinit_service(ab);
++		goto qmi_fail;
++	}
++
+ 	ath11k_core_deinit(ab);
++qmi_fail:
+ 	ath11k_mhi_unregister(ab_pci);
+ 
+ 	ath11k_pci_free_irq(ab);
+diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
+index 83a083a2d097..075fd94d92df 100644
+--- a/drivers/net/wireless/ath/ath11k/qmi.c
++++ b/drivers/net/wireless/ath/ath11k/qmi.c
+@@ -2501,7 +2501,7 @@ ath11k_qmi_driver_event_post(struct ath11k_qmi *qmi,
+ 	return 0;
+ }
+ 
+-static void ath11k_qmi_event_server_arrive(struct ath11k_qmi *qmi)
++static int ath11k_qmi_event_server_arrive(struct ath11k_qmi *qmi)
+ {
+ 	struct ath11k_base *ab = qmi->ab;
+ 	int ret;
+@@ -2509,17 +2509,19 @@ static void ath11k_qmi_event_server_arrive(struct ath11k_qmi *qmi)
+ 	ret = ath11k_qmi_fw_ind_register_send(ab);
+ 	if (ret < 0) {
+ 		ath11k_warn(ab, "qmi failed to send FW indication QMI:%d\n", ret);
+-		return;
++		return ret;
+ 	}
+ 
+ 	ret = ath11k_qmi_host_cap_send(ab);
+ 	if (ret < 0) {
+ 		ath11k_warn(ab, "qmi failed to send host cap QMI:%d\n", ret);
+-		return;
++		return ret;
+ 	}
++
++	return 0;
+ }
+ 
+-static void ath11k_qmi_event_mem_request(struct ath11k_qmi *qmi)
++static int ath11k_qmi_event_mem_request(struct ath11k_qmi *qmi)
+ {
+ 	struct ath11k_base *ab = qmi->ab;
+ 	int ret;
+@@ -2527,11 +2529,13 @@ static void ath11k_qmi_event_mem_request(struct ath11k_qmi *qmi)
+ 	ret = ath11k_qmi_respond_fw_mem_request(ab);
+ 	if (ret < 0) {
+ 		ath11k_warn(ab, "qmi failed to respond fw mem req:%d\n", ret);
+-		return;
++		return ret;
+ 	}
++
++	return 0;
+ }
+ 
+-static void ath11k_qmi_event_load_bdf(struct ath11k_qmi *qmi)
++static int ath11k_qmi_event_load_bdf(struct ath11k_qmi *qmi)
+ {
+ 	struct ath11k_base *ab = qmi->ab;
+ 	int ret;
+@@ -2539,7 +2543,7 @@ static void ath11k_qmi_event_load_bdf(struct ath11k_qmi *qmi)
+ 	ret = ath11k_qmi_request_target_cap(ab);
+ 	if (ret < 0) {
+ 		ath11k_warn(ab, "qmi failed to req target capabilities:%d\n", ret);
+-		return;
++		return ret;
+ 	}
+ 
+ 	if (ab->bus_params.fixed_bdf_addr) {
+@@ -2551,14 +2555,16 @@ static void ath11k_qmi_event_load_bdf(struct ath11k_qmi *qmi)
+ 
+ 	if (ret < 0) {
+ 		ath11k_warn(ab, "qmi failed to load board data file:%d\n", ret);
+-		return;
++		return ret;
+ 	}
+ 
+ 	ret = ath11k_qmi_wlanfw_m3_info_send(ab);
+ 	if (ret < 0) {
+ 		ath11k_warn(ab, "qmi failed to send m3 info req:%d\n", ret);
+-		return;
++		return ret;
+ 	}
++
++	return 0;
+ }
+ 
+ static void ath11k_qmi_msg_mem_request_cb(struct qmi_handle *qmi_hdl,
+@@ -2715,6 +2721,7 @@ static void ath11k_qmi_driver_event_work(struct work_struct *work)
+ 					      event_work);
+ 	struct ath11k_qmi_driver_event *event;
+ 	struct ath11k_base *ab = qmi->ab;
++	int ret = 0;
+ 
+ 	spin_lock(&qmi->event_lock);
+ 	while (!list_empty(&qmi->event_list)) {
+@@ -2730,17 +2737,17 @@ static void ath11k_qmi_driver_event_work(struct work_struct *work)
+ 
+ 		switch (event->type) {
+ 		case ATH11K_QMI_EVENT_SERVER_ARRIVE:
+-			ath11k_qmi_event_server_arrive(qmi);
++			ret = ath11k_qmi_event_server_arrive(qmi);
+ 			break;
+ 		case ATH11K_QMI_EVENT_SERVER_EXIT:
+ 			set_bit(ATH11K_FLAG_CRASH_FLUSH, &ab->dev_flags);
+ 			set_bit(ATH11K_FLAG_RECOVERY, &ab->dev_flags);
+ 			break;
+ 		case ATH11K_QMI_EVENT_REQUEST_MEM:
+-			ath11k_qmi_event_mem_request(qmi);
++			ret = ath11k_qmi_event_mem_request(qmi);
+ 			break;
+ 		case ATH11K_QMI_EVENT_FW_MEM_READY:
+-			ath11k_qmi_event_load_bdf(qmi);
++			ret = ath11k_qmi_event_load_bdf(qmi);
+ 			break;
+ 		case ATH11K_QMI_EVENT_FW_READY:
+ 			if (test_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags) &&
+@@ -2762,6 +2769,7 @@ static void ath11k_qmi_driver_event_work(struct work_struct *work)
+ 			ath11k_core_qmi_firmware_ready(ab);
+ 			ab->qmi.cal_done = 1;
+ 			set_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags);
++			clear_bit(ATH11K_FLAG_QMI_FAIL, &ab->dev_flags);
+ 
+ 			break;
+ 		case ATH11K_QMI_EVENT_COLD_BOOT_CAL_DONE:
+@@ -2771,6 +2779,8 @@ static void ath11k_qmi_driver_event_work(struct work_struct *work)
+ 			break;
+ 		}
+ 		kfree(event);
++		if (ret < 0)
++			set_bit(ATH11K_FLAG_QMI_FAIL, &ab->dev_flags);
+ 		spin_lock(&qmi->event_lock);
+ 	}
+ 	spin_unlock(&qmi->event_lock);
+@@ -2831,4 +2841,5 @@ void ath11k_qmi_deinit_service(struct ath11k_base *ab)
+ 	destroy_workqueue(ab->qmi.event_wq);
+ 	ath11k_qmi_free_resource(ab);
+ }
++EXPORT_SYMBOL(ath11k_qmi_deinit_service);
+ 
+-- 
+2.25.1
 
-<snip>  Some time during the following pile of messages (after some
-seconds) is when I usually experience the machine spinning out and
-freezing.
-
-[   34.843605] wlp85s0: authenticate with ec:08:6b:27:01:ea
-[   34.990949] wlp85s0: send auth to ec:08:6b:27:01:ea (try 1/3)
-[   35.094334] wlp85s0: send auth to ec:08:6b:27:01:ea (try 2/3)
-[   35.096624] wlp85s0: authenticated
-[   35.102421] wlp85s0: associate with ec:08:6b:27:01:ea (try 1/3)
-[   35.105012] wlp85s0: RX AssocResp from ec:08:6b:27:01:ea
-(capab=0x411 status=0 aid=6)
-[   35.116898] wlp85s0: associated
-[   35.154059] IPv6: ADDRCONF(NETDEV_CHANGE): wlp85s0: link becomes ready
-
-If the machine/adapter survives about 10 seconds beyond this, it will
-stay up indefinitely..
 
 -- 
 ath11k mailing list
