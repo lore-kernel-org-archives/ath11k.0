@@ -1,21 +1,20 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail-pl1-x643.google.com ([2607:f8b0:4864:20::643])
+Received: from mail-ej1-x631.google.com ([2a00:1450:4864:20::631])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kfzpc-0002XZ-6U
- for ath11k@lists.infradead.org; Fri, 20 Nov 2020 06:23:40 +0000
-Received: by mail-pl1-x643.google.com with SMTP id s2so4337731plr.9
- for <ath11k@lists.infradead.org>; Thu, 19 Nov 2020 22:23:38 -0800 (PST)
-Date: Fri, 20 Nov 2020 11:53:29 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: Re: [PATCH] net: qrtr: Unprepare MHI channels during remove
-Message-ID: <20201120062329.GC3909@work>
-References: <1605723625-11206-1-git-send-email-bbhatt@codeaurora.org>
- <20201119211046.64294cf6@kicinski-fedora-PC1C0HJN.hsd1.ca.comcast.net>
- <20201120061512.GB3909@work>
- <20201119221828.72ba151a@kicinski-fedora-PC1C0HJN.hsd1.ca.comcast.net>
+ id 1kg1am-0005Rs-MG
+ for ath11k@lists.infradead.org; Fri, 20 Nov 2020 08:16:29 +0000
+Received: by mail-ej1-x631.google.com with SMTP id 7so11684958ejm.0
+ for <ath11k@lists.infradead.org>; Fri, 20 Nov 2020 00:16:27 -0800 (PST)
+Subject: Re: ath11k-qca6390-bringup-202011191920: new suspend implementation
+References: <87sg95t9ez.fsf@codeaurora.org> <87o8jtt98l.fsf@codeaurora.org>
+ <ba11dcda-ed2c-6840-e42c-bb3fa4e59cec@gmail.com>
+ <CAHUdJJXWSiWz7Te0hJ5uvzk1iAtSdo8QrjBWiTHw_gSt4R+ZSg@mail.gmail.com>
+From: Pavel Procopiuc <pavel.procopiuc@gmail.com>
+Message-ID: <01073455-065a-e45d-3186-6e4109794e3c@gmail.com>
+Date: Fri, 20 Nov 2020 09:16:24 +0100
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201119221828.72ba151a@kicinski-fedora-PC1C0HJN.hsd1.ca.comcast.net>
+In-Reply-To: <CAHUdJJXWSiWz7Te0hJ5uvzk1iAtSdo8QrjBWiTHw_gSt4R+ZSg@mail.gmail.com>
+Content-Language: en-US
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -24,25 +23,26 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: loic.poulain@linaro.org, linux-arm-msm@vger.kernel.org, cjhuang@codeaurora.org, linux-wireless@vger.kernel.org, Bhaumik Bhatt <bbhatt@codeaurora.org>, linux-kernel@vger.kernel.org, netdev@vger.kernel.org, hemantk@codeaurora.org, clew@codeaurora.org, ath11k@lists.infradead.org, kvalo@codeaurora.org
+To: wi nk <wink@technolu.st>
+Cc: ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>
 
-On Thu, Nov 19, 2020 at 10:18:28PM -0800, Jakub Kicinski wrote:
-> On Fri, 20 Nov 2020 11:45:12 +0530 Manivannan Sadhasivam wrote:
-> > Jakub, can you please provide your ack so that I can take it?
+Op 19.11.2020 om 23:11 schreef wi nk:
+> Hi Pavel,
 > 
-> Sure:
-> 
-> Acked-by: Jakub Kicinski <kuba@kernel.org>
+>    I'm compiling it now as well.  For your testing did you revert
+> 7fef431be9c9ac255838a9578331567b9dba4477 again?  The memmap
+> reservation never functioned for me.
 
-Patch applied to mhi-ath11k-immutable.
+No I did not, I'm using the vanilla 5.10-rc4 + the commits from ath11k-qca6390-bringup branch + Bluetooth LE fix [1] 
+(not that it should matter in this case). The memmap=20M$12M option completely (at least for the last 10 or so boots) 
+fixes the problem. I've tried reducing the non-allocatable window and this is the the minimum that works for me reliably 
+so far.
 
-Thanks,
-Mani
+[1]: https://patchwork.kernel.org/project/bluetooth/patch/20201022082304.31757-1-sathish.narasimman@intel.com/
 
 -- 
 ath11k mailing list
