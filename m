@@ -1,11 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-From: Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [PATCH 1/6] relay: allow the use of const callback structs
-In-Reply-To: <20201119081120.GA6149@infradead.org>
-References: <20201118165320.26829-1-jani.nikula@intel.com>
- <20201119081120.GA6149@infradead.org>
-Date: Mon, 23 Nov 2020 20:01:17 +0200
-Message-ID: <87pn44lzpu.fsf@intel.com>
+Received: from z5.mailgun.us ([104.130.96.5])
+ by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1khGE5-0000yN-2t
+ for ath11k@lists.infradead.org; Mon, 23 Nov 2020 18:06:12 +0000
+From: Kalle Valo <kvalo@codeaurora.org>
+Subject: Re: [PATCH 0/9] relay: cleanup and const callbacks, take 2
+References: <cover.1606153547.git.jani.nikula@intel.com>
+Date: Mon, 23 Nov 2020 20:06:00 +0200
+In-Reply-To: <cover.1606153547.git.jani.nikula@intel.com> (Jani Nikula's
+ message of "Mon, 23 Nov 2020 19:59:20 +0200")
+Message-ID: <87mtz8q77b.fsf@codeaurora.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -19,33 +23,60 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Christoph Hellwig <hch@infradead.org>
-Cc: Jens Axboe <axboe@kernel.dk>, intel-gfx@lists.freedesktop.org, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, ath10k@lists.infradead.org, QCA ath9k Development <ath9k-devel@qca.qualcomm.com>, linux-block@vger.kernel.org, ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: Jens Axboe <axboe@kernel.dk>, Christoph Hellwig <hch@infradead.org>, intel-gfx@lists.freedesktop.org, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, ath10k@lists.infradead.org, QCA ath9k Development <ath9k-devel@qca.qualcomm.com>, linux-block@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>, ath11k@lists.infradead.org
 
-On Thu, 19 Nov 2020, Christoph Hellwig <hch@infradead.org> wrote:
-> But taking one step back:  All instances implement create_buf_file
-> and remove_buf_file, which makes sense as that is the prime aim
-> of these methods.  So there is no point in making those optional.
-> subbuf_start_callback is overriden by two instances, so making that
-> optional totally makes sense.  buf_mapped and buf_unmapped are
-> never overriden, so they should be removed entirely.
+Jani Nikula <jani.nikula@intel.com> writes:
+
+> This is v2 of [1], with a number of cleanups added first based on
+> Christoph's feedback, making the actual constness patch much smaller and
+> cleaner.
 >
-> More importantly there is no case that passes a NULL rchan_callbacks,
-> which makes complete sense as it wouldn't even create a file.  So
-> remove that case as well and just replace it with a sanity check in
-> relay_open().
+> I don't know who actually maintains relay, it's not in MAINTAINERS -
+> Cc'd Andrew just in case.
+>
+> I'd think it would be simplest to queue patches 5-9 via whichever tree
+> the relay patches get merged. They're all one-liners so neglible
+> conflict potential.
+>
+> BR,
+> Jani.
+>
+>
+> [1] http://lore.kernel.org/r/20201118165320.26829-1-jani.nikula@intel.com
+>
+>
+> Cc: linux-block@vger.kernel.org
+> Cc: Jens Axboe <axboe@kernel.dk>
+> Cc: ath11k@lists.infradead.org
+> Cc: ath10k@lists.infradead.org
+> Cc: Kalle Valo <kvalo@codeaurora.org>
+> Cc: linux-wireless@vger.kernel.org
+> Cc: QCA ath9k Development <ath9k-devel@qca.qualcomm.com>
+> Cc: intel-gfx@lists.freedesktop.org
+> Cc: Christoph Hellwig <hch@infradead.org>
+> Cc: Andrew Morton <akpm@linux-foundation.org>
+>
+>
+> Jani Nikula (9):
+>   relay: remove unused buf_mapped and buf_unmapped callbacks
+>   relay: require non-NULL callbacks in relay_open()
+>   relay: make create_buf_file and remove_buf_file callbacks mandatory
+>   relay: allow the use of const callback structs
+>   drm/i915: make relay callbacks const
+>   ath10k: make relay callbacks const
+>   ath11k: make relay callbacks const
+>   ath9k: make relay callbacks const
+>   blktrace: make relay callbacks const
 
-Many thanks for the feedback; sent v2 [1].
+For ath9k, ath10k & ath11k:
 
-BR,
-Jani.
-
-
-[1] http://lore.kernel.org/r/cover.1606153547.git.jani.nikula@intel.com
-
+Acked-by: Kalle Valo <kvalo@codeaurora.org>
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
