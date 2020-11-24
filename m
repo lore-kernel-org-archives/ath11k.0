@@ -1,12 +1,13 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from m42-4.mailgun.net ([69.72.42.4])
- by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1khRpA-0001SM-M7
- for ath11k@lists.infradead.org; Tue, 24 Nov 2020 06:29:14 +0000
-From: Anilkumar Kolli <akolli@codeaurora.org>
-Subject: [PATCH v2] ath11k: add 64bit check before reading msi high addr
-Date: Tue, 24 Nov 2020 11:58:54 +0530
-Message-Id: <1606199334-18206-1-git-send-email-akolli@codeaurora.org>
+Date: Tue, 24 Nov 2020 09:42:09 +0000
+From: Christoph Hellwig <hch@infradead.org>
+Subject: Re: [PATCH 4/9] relay: allow the use of const callback structs
+Message-ID: <20201124094209.GD31963@infradead.org>
+References: <cover.1606153547.git.jani.nikula@intel.com>
+ <cc3ff292e4eb4fdc56bee3d690c7b8e39209cd37.1606153547.git.jani.nikula@intel.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <cc3ff292e4eb4fdc56bee3d690c7b8e39209cd37.1606153547.git.jani.nikula@intel.com>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -15,79 +16,40 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: Anilkumar Kolli <akolli@codeaurora.org>, linux-wireless@vger.kernel.org
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: Jens Axboe <axboe@kernel.dk>, linux-block@vger.kernel.org, intel-gfx@lists.freedesktop.org, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, ath10k@lists.infradead.org, QCA ath9k Development <ath9k-devel@qca.qualcomm.com>, Christoph Hellwig <hch@infradead.org>, Andrew Morton <akpm@linux-foundation.org>, ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>
 
-In QCN9074 ath11k boot, firmware crash is observed in 64-bit
-builds and is due to wrong 64 bit MSI address size. This patch
-fixes the firmware crash. Read msi high addr if 64-bit addresses
-allowed on MSI.
+> +/* subbuf_start callback wrapper */
+> +static int cb_subbuf_start(struct rchan_buf *buf, void *subbuf,
+> +			   void *prev_subbuf, size_t prev_padding)
 
-Tested-On: QCN9074 hw1.0 PCI WLAN.HK.2.4.0.1.r1-00026-QCAHKSWPL_SILICONZ-2
+I don't think the comment adds any information over just looking at the
+function and the two callers.  I'd also name it relay_subbuf_start
+instead of the cb_ prefix not used anywhere else in the file.
 
-Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
----
-V2:
-  - Fixes compilation issues
 
- drivers/net/wireless/ath/ath11k/pci.c | 11 +++++++++--
- drivers/net/wireless/ath/ath11k/pci.h |  1 +
- 2 files changed, 10 insertions(+), 2 deletions(-)
+>  {
+> +	if (buf->chan->cb->subbuf_start)
+> +		return buf->chan->cb->subbuf_start(buf, subbuf,
+> +						   prev_subbuf, prev_padding);
+> +
+>  	if (relay_buf_full(buf))
+>  		return 0;
 
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index b75f47dc36de..54ac0a861063 100644
---- a/drivers/net/wireless/ath/ath11k/pci.c
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -264,13 +264,18 @@ int ath11k_pci_get_msi_irq(struct device *dev, unsigned int vector)
- static void ath11k_pci_get_msi_address(struct ath11k_base *ab, u32 *msi_addr_lo,
- 				       u32 *msi_addr_hi)
- {
-+	struct ath11k_pci *ab_pci = ath11k_pci_priv(ab);
- 	struct pci_dev *pci_dev = to_pci_dev(ab->dev);
- 
- 	pci_read_config_dword(pci_dev, pci_dev->msi_cap + PCI_MSI_ADDRESS_LO,
- 			      msi_addr_lo);
- 
--	pci_read_config_dword(pci_dev, pci_dev->msi_cap + PCI_MSI_ADDRESS_HI,
--			      msi_addr_hi);
-+	if (test_bit(ATH11K_PCI_FLAG_IS_MSI_64, &ab_pci->flags)) {
-+		pci_read_config_dword(pci_dev, pci_dev->msi_cap + PCI_MSI_ADDRESS_HI,
-+				      msi_addr_hi);
-+	} else {
-+		*msi_addr_hi = 0;
-+	}
- }
- 
- int ath11k_pci_get_user_msi_assignment(struct ath11k_pci *ab_pci, char *user_name,
-@@ -658,6 +663,8 @@ static int ath11k_pci_enable_msi(struct ath11k_pci *ab_pci)
- 	}
- 
- 	ab_pci->msi_ep_base_data = msi_desc->msg.data;
-+	if (msi_desc->msi_attrib.is_64)
-+		set_bit(ATH11K_PCI_FLAG_IS_MSI_64, &ab_pci->flags);
- 
- 	ath11k_dbg(ab, ATH11K_DBG_PCI, "msi base data is %d\n", ab_pci->msi_ep_base_data);
- 
-diff --git a/drivers/net/wireless/ath/ath11k/pci.h b/drivers/net/wireless/ath/ath11k/pci.h
-index 43562f774a37..9c503a17c237 100644
---- a/drivers/net/wireless/ath/ath11k/pci.h
-+++ b/drivers/net/wireless/ath/ath11k/pci.h
-@@ -38,6 +38,7 @@ struct ath11k_msi_config {
- 
- enum ath11k_pci_flags {
- 	ATH11K_PCI_FLAG_INIT_DONE,
-+	ATH11K_PCI_FLAG_IS_MSI_64,
- };
- 
- struct ath11k_pci {
--- 
-2.7.4
+This could also be simplified a bit more to:
 
+	if (!buf->chan->cb->subbuf_start)
+		return !relay_buf_full(buf);
+	return buf->chan->cb->subbuf_start(buf, subbuf, prev_subbuf,
+					   prev_padding);
+
+Otherwise this looks good to me:
+
+Reviewed-by: Christoph Hellwig <hch@lst.de>
 
 -- 
 ath11k mailing list
