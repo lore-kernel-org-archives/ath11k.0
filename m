@@ -1,17 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from z5.mailgun.us ([104.130.96.5])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kjm1H-0001hx-Dg
- for ath11k@lists.infradead.org; Mon, 30 Nov 2020 16:27:25 +0000
+ id 1kjm7t-00031R-7w
+ for ath11k@lists.infradead.org; Mon, 30 Nov 2020 16:34:10 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH v2] ath11k: fix rmmod failure if qmi sequence fails
-References: <1605076699-21924-1-git-send-email-akolli@codeaurora.org>
- <87mtz5pm8a.fsf@codeaurora.org>
- <013d9ee1c0f88863013f2672b6b2197a@codeaurora.org>
-Date: Mon, 30 Nov 2020 18:27:08 +0200
-In-Reply-To: <013d9ee1c0f88863013f2672b6b2197a@codeaurora.org>
- (akolli@codeaurora.org's message of "Mon, 30 Nov 2020 19:25:21 +0530")
-Message-ID: <878saikdyb.fsf@codeaurora.org>
+Subject: ath11k-qca6390-bringup-202011301608: better suspend and smaller fixes
+Date: Mon, 30 Nov 2020 18:34:00 +0200
+Message-ID: <874kl6kdmv.fsf@codeaurora.org>
 MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -25,47 +20,33 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: akolli@codeaurora.org
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+To: ath11k@lists.infradead.org
 
-akolli@codeaurora.org writes:
+(Bcc: people reporting qca6390 problems)
 
-> On 2020-11-25 19:33, Kalle Valo wrote:
->> Anilkumar Kolli <akolli@codeaurora.org> writes:
->>
->>> QMI sequence fails if caldata file is not available.
->>> It is observed that 'rmmod ath11k' fails if qmi message fails.
->>> With this patch rmmod/insmod is working.
->>>
->>> Logs:
->>> Direct firmware load for IPQ8074/caldata.bin failed with error -2
->>> Falling back to user helper
->>> qmi failed to load CAL: IPQ8074/caldata.bin
->>> qmi failed to load board data file:-11
->>>
->>> Tested-on: IPQ8074 hw2.0 AHB
->>> WLAN.HK.2.4.0.1-00009-QCAHKSWPL_SILICONZ-1
->>>
->>> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
->>
->> With this patch reloading ath11k (which has worked fine before) crashes
->> the kernel on QCA6390 hw2.0:
->>
->> Nov 25 16:00:52 nuc1 [  393.188277] BUG: unable to handle page fault
->> for address: ffffffffc05b8e38
->> Nov 25 16:00:52 nuc1 [  393.188300] #PF: supervisor read access in
->> kernel mode
->> Nov 25 16:00:52 nuc1 [  393.188312] #PF: error_code(0x0000) - 
->> not-present page
->
-> I will test this in QCA6390 and update.
-> Which branch should I use for testing. master or
-> ath11k-qca6390-bringup ?
+Hi,
 
-Please use master branch.
+there are updates in ath11k-qca6390-bringup branch[1] and the new tag
+is:
 
-ath11k-qca6390-bringup is just a temporary branch for collecting all
-important QCA6390 patches in one place.
+ath11k-qca6390-bringup-202011301608
+
+Now we have more reliable suspend and fixes to PCI handling.
+Unfortunately still no solution to the kernel crashes people are
+experiencing.
+
+All feedback very welcome, both positive and negative. In the reports
+try to include at least:
+
+* name of the tag
+
+* if there are other changes in the kernel, reverts etc
+
+* make and model of the laptop/computer (eg. Dell XPS 9310)
+
+Kalle
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/log/?h=ath11k-qca6390-bringup
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
