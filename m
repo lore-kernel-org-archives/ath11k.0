@@ -1,15 +1,17 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from m42-5.mailgun.net ([69.72.42.5])
+Received: from mail-ed1-x52c.google.com ([2a00:1450:4864:20::52c])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kkWxU-0007k5-2j
- for ath11k@lists.infradead.org; Wed, 02 Dec 2020 18:34:34 +0000
+ id 1kkXE0-0004tR-8j
+ for ath11k@lists.infradead.org; Wed, 02 Dec 2020 18:51:58 +0000
+Received: by mail-ed1-x52c.google.com with SMTP id b73so1445594edf.13
+ for <ath11k@lists.infradead.org>; Wed, 02 Dec 2020 10:51:31 -0800 (PST)
+In-Reply-To: <87sg95t9ez.fsf@codeaurora.org>
+From: Pavel Procopiuc <pavel.procopiuc@gmail.com>
+Subject: Re: ath11k-qca6390-bringup-202011191920: new suspend implementation
+Message-ID: <70c6bb24-58e0-7d26-5d78-9eae8d59fb93@gmail.com>
+Date: Wed, 2 Dec 2020 19:51:28 +0100
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: dp_rx: fix monitor status dma unmap direction
-From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1606156046-24764-1-git-send-email-kvalo@codeaurora.org>
-References: <1606156046-24764-1-git-send-email-kvalo@codeaurora.org>
-Message-Id: <20201202183418.BA511C433ED@smtp.codeaurora.org>
-Date: Wed,  2 Dec 2020 18:34:18 +0000 (UTC)
+Content-Language: en-US
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -18,110 +20,55 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: Kalle Valo <kvalo@codeaurora.org>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+Cc: ath11k@lists.infradead.org
 
-Kalle Valo <kvalo@codeaurora.org> wrote:
-
-> After enabling CONFIG_DMA_API_DEBUG there was a warning about using
-> dma_unmap_single() in wrong direction from ath11k_dp_rx_process_mon_status().
+> All feedback very welcome, both positive and negative. In the reports
+> try to include at least:
 > 
-> [  140.279477] ------------[ cut here ]------------
-> [  140.279908] DMA-API: ath11k_pci 0000:06:00.0: device driver syncs DMA memory with different direction [device address=0x00000000fac08a40] [size=2176 bytes] [mapped with DMA_FROM_DEVICE] [s
-> [  140.279925] WARNING: CPU: 7 PID: 97 at kernel/dma/debug.c:1120 check_sync+0x494/0x730
-> [  140.279939] Modules linked in: ath11k_pci ath11k mac80211 libarc4 cfg80211 qmi_helpers qrtr_mhi mhi qrtr ns nvme nvme_core
-> [  140.279958] CPU: 7 PID: 97 Comm: kworker/u16:1 Not tainted 5.10.0-rc4+ #262
-> [  140.279968] Hardware name: Intel(R) Client Systems NUC8i7HVK/NUC8i7HVB, BIOS HNKBLi70.86A.0049.2018.0801.1601 08/01/2018
-> [  140.279995] Workqueue: phy0 ieee80211_scan_work [mac80211]
-> [  140.280009] RIP: 0010:check_sync+0x494/0x730
-> [  140.280022] Code: 8b 4c 24 10 4c 8b 44 24 18 4c 8b 54 24 20 48 89 c6 4c 89 54 24 10 4c 89 f9 4c 89 ea 48 c7 c7 40 b9 74 9c 41 56 e8 2f a0 ab 00 <0f> 0b 48 89 ef e8 e5 17 ac 00 41 58 4c 8b
-> [  140.280033] RSP: 0018:ffff9f588024cbd8 EFLAGS: 00010086
-> [  140.280046] RAX: 0000000000000000 RBX: ffff9f588024cc40 RCX: ffff8eed18dd9f98
-> [  140.280057] RDX: 00000000ffffffd8 RSI: 0000000000000027 RDI: ffff8eed18dd9f90
-> [  140.280067] RBP: ffff8eebc1407800 R08: 00000000ffffffea R09: 0000000000000000
-> [  140.280082] R10: 0000000000000003 R11: 3fffffffffffffff R12: ffffffff9e081060
-> [  140.280093] R13: ffff8eebc43908b0 R14: ffffffff9c74c104 R15: 00000000fac08a40
-> [  140.280104] FS:  0000000000000000(0000) GS:ffff8eed18c00000(0000) knlGS:0000000000000000
-> [  140.280115] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> [  140.280127] CR2: 00007f6feafb12a0 CR3: 00000001604ca001 CR4: 00000000003706e0
-> [  140.280138] Call Trace:
-> [  140.280149]  <IRQ>
-> [  140.280161]  debug_dma_sync_single_for_cpu+0x79/0x80
-> [  140.280173]  ? mark_held_locks+0x50/0x80
-> [  140.280185]  ? lockdep_hardirqs_on_prepare.part.0+0x65/0x130
-> [  140.280197]  ? __local_bh_enable_ip+0x6f/0xb0
-> [  140.280215]  ? ath11k_dp_rx_reap_mon_status_ring+0x202/0x340 [ath11k]
-> [  140.280231]  ath11k_dp_rx_reap_mon_status_ring+0x22c/0x340 [ath11k]
-> [  140.280249]  ? ath11k_dp_rx_process_mon_rings+0x1a0/0x1a0 [ath11k]
-> [  140.280265]  ath11k_dp_rx_process_mon_status+0x83/0x3c0 [ath11k]
-> [  140.280278]  ? __lock_acquire+0x3bd/0x6d0
-> [  140.280296]  ? ath11k_dp_rx_process_mon_rings+0x1a0/0x1a0 [ath11k]
-> [  140.280311]  ? ath11k_dp_rx_process_mon_rings+0x1a0/0x1a0 [ath11k]
-> [  140.280326]  ? ath11k_hw_mac_id_to_srng_id_qca6390+0x10/0x10 [ath11k]
-> [  140.280341]  ? ath11k_dp_rx_process_mon_rings+0x4a/0x1a0 [ath11k]
-> [  140.280353]  ? timer_fixup_init+0x30/0x30
-> [  140.280367]  ? ath11k_dp_rx_process_mon_rings+0x1a0/0x1a0 [ath11k]
-> [  140.280385]  ath11k_dp_service_mon_ring+0x2b/0x50 [ath11k]
-> [  140.280400]  ? ath11k_dp_rx_process_mon_rings+0x1a0/0x1a0 [ath11k]
-> [  140.280413]  call_timer_fn+0xb1/0x2d0
-> [  140.280426]  __run_timers.part.0+0x205/0x2f0
-> [  140.280439]  run_timer_softirq+0x21/0x50
-> [  140.280450]  __do_softirq+0xc2/0x454
-> [  140.280463]  asm_call_irq_on_stack+0x12/0x20
-> [  140.280476]  </IRQ>
-> [  140.280488]  do_softirq_own_stack+0x56/0x60
-> [  140.280500]  irq_exit_rcu+0x9a/0xd0
-> [  140.280511]  sysvec_apic_timer_interrupt+0x43/0xa0
-> [  140.280526]  asm_sysvec_apic_timer_interrupt+0x12/0x20
-> [  140.280540] RIP: 0010:_raw_spin_unlock_irqrestore+0x25/0x40
-> [  140.280551] Code: 80 00 00 00 00 55 48 89 fd 48 83 c7 18 53 48 89 f3 48 8b 74 24 10 e8 ca 8f 4b ff 48 89 ef e8 22 dc 4b ff f6 c7 02 75 0c 53 9d <65> ff 0d 04 51 20 64 5b 5d c3 e8 9c 08 56
-> [  140.280563] RSP: 0018:ffff9f58802e7878 EFLAGS: 00000246
-> [  140.280578] RAX: 00000000000435ef RBX: 0000000000000246 RCX: 0000000000000040
-> [  140.280592] RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff9be13e84
-> [  140.280603] RBP: ffff8eed18dde480 R08: 0000000000000001 R09: ffff8eebc2292760
-> [  140.280614] R10: 0000000000000005 R11: ffff8eebc2292760 R12: 0000000000000000
-> [  140.280625] R13: ffff9f58802e7900 R14: ffff8eed18dde480 R15: ffff8eed18dde480
-> [  140.280637]  ? _raw_spin_unlock_irqrestore+0x34/0x40
-> [  140.280649]  __mod_timer+0x274/0x400
-> [  140.280661]  ? wait_for_completion_timeout+0x76/0x110
-> [  140.280675]  schedule_timeout+0xa8/0x140
-> [  140.280687]  ? __next_timer_interrupt+0x100/0x100
-> [  140.280698]  wait_for_completion_timeout+0xa2/0x110
-> [  140.280714]  ath11k_start_scan+0x4c/0xf0 [ath11k]
-> [  140.280730]  ath11k_mac_op_hw_scan+0x1e9/0x2c0 [ath11k]
-> [  140.280763]  drv_hw_scan+0x79/0x260 [mac80211]
-> [  140.280789]  __ieee80211_scan_completed+0x379/0x440 [mac80211]
-> [  140.280816]  ieee80211_scan_work+0x12f/0x330 [mac80211]
-> [  140.280830]  process_one_work+0x279/0x5b0
-> [  140.280842]  worker_thread+0x49/0x300
-> [  140.280854]  ? process_one_work+0x5b0/0x5b0
-> [  140.280868]  kthread+0x135/0x150
-> [  140.280880]  ? __kthread_bind_mask+0x60/0x60
-> [  140.280891]  ret_from_fork+0x22/0x30
-> [  140.280903] irq event stamp: 275961
-> [  140.280918] hardirqs last  enabled at (275960): [<ffffffff9b270f1f>] __local_bh_enable_ip+0x6f/0xb0
-> [  140.280931] hardirqs last disabled at (275961): [<ffffffff9be13ca3>] _raw_spin_lock_irqsave+0x63/0x80
-> [  140.280946] softirqs last  enabled at (275944): [<ffffffffc055288d>] ath11k_ce_send+0x14d/0x260 [ath11k]
-> [  140.280958] softirqs last disabled at (275953): [<ffffffff9c000f72>] asm_call_irq_on_stack+0x12/0x20
-> [  140.280971] ---[ end trace 31cb94e18d401398 ]---
-> 
-> Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
-> 
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+> * name of the tag
 
-Patch applied to ath-next branch of ath.git, thanks.
+ath11k-qca6390-bringup-202011301608 cleanly rebased on top of the vanilla 5.10.0-rc6
 
-cd6181ff7e93 ath11k: dp_rx: fix monitor status dma unmap direction
+> * if there are other changes in the kernel, reverts etc
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/patch/1606156046-24764-1-git-send-email-kvalo@codeaurora.org/
+Only kernel argument memmap=20M$12M is used.
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+> * make and model of the laptop/computer (eg. Dell XPS 9310)
 
+Dell XPS 17 (9700) with i9 CPU (only those come with QCA9390 wifi module), BIOS version: 1.5.0
+
+Everything works perfectly, suspend/resume works too.
+
+Without the aforementioned memmap kernel argument the wireless card firmware doesn't load:
+
+Dec 02 19:37:35 razor kernel: Linux version 5.10.0-rc6 (root@razor) (gcc (Gentoo 9.3.0-r1 p3) 9.3.0, GNU ld (Gentoo 2.34 
+p6) 2.34.0) #6 SMP Wed Dec 2 19:33:41 CET 2020
+Dec 02 19:37:35 razor kernel:   DMA zone: 64 pages used for memmap
+Dec 02 19:37:35 razor kernel:   DMA32 zone: 5213 pages used for memmap
+Dec 02 19:37:35 razor kernel:   Normal zone: 255840 pages used for memmap
+Dec 02 19:37:35 razor kernel: pci 0000:05:00.0: [17cb:1101] type 00 class 0x028000
+Dec 02 19:37:35 razor kernel: pci 0000:05:00.0: reg 0x10: [mem 0xd2100000-0xd21fffff 64bit]
+Dec 02 19:37:35 razor kernel: pci 0000:05:00.0: PME# supported from D0 D3hot D3cold
+Dec 02 19:37:35 razor kernel: pci 0000:05:00.0: 4.000 Gb/s available PCIe bandwidth, limited by 5.0 GT/s PCIe x1 link at 
+0000:00:1c.1 (capable of 7.876 Gb/s with 8.0 GT/s PCIe x1 link)
+Dec 02 19:37:35 razor kernel: pci 0000:05:00.0: Adding to iommu group 21
+Dec 02 19:37:36 razor kernel: ath11k_pci 0000:05:00.0: WARNING: ath11k PCI support is experimental!
+Dec 02 19:37:36 razor kernel: ath11k_pci 0000:05:00.0: BAR 0: assigned [mem 0xd2100000-0xd21fffff 64bit]
+Dec 02 19:37:36 razor kernel: ath11k_pci 0000:05:00.0: enabling device (0000 -> 0002)
+Dec 02 19:37:36 razor kernel: ath11k_pci 0000:05:00.0: MSI vectors: 32
+Dec 02 19:37:36 razor kernel: mhi 0000:05:00.0: Requested to power ON
+Dec 02 19:37:36 razor kernel: mhi 0000:05:00.0: Power on setup success
+Dec 02 19:37:36 razor kernel: ath11k_pci 0000:05:00.0: qmi req mem_seg[0] 0x1800000 3522560 1
+Dec 02 19:37:36 razor kernel: ath11k_pci 0000:05:00.0: qmi req mem_seg[1] 0x1500000 884736 4
+Dec 02 19:37:36 razor kernel: ath11k_pci 0000:05:00.0: firmware crashed: MHI_CB_SYS_ERROR
+Dec 02 19:37:42 razor kernel: ath11k_pci 0000:05:00.0: qmi failed memory request, err = -110
+Dec 02 19:37:42 razor kernel: ath11k_pci 0000:05:00.0: qmi failed to respond fw mem req:-110
+Dec 02 19:39:07 razor kernel: mhi 0000:05:00.0: Device failed to exit MHI Reset state
 
 -- 
 ath11k mailing list
