@@ -1,18 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail-ed1-x541.google.com ([2a00:1450:4864:20::541])
+Received: from m42-5.mailgun.net ([69.72.42.5])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kk2jU-00010p-Iz
- for ath11k@lists.infradead.org; Tue, 01 Dec 2020 10:18:06 +0000
-Received: by mail-ed1-x541.google.com with SMTP id n24so2414162edb.4
- for <ath11k@lists.infradead.org>; Tue, 01 Dec 2020 02:18:02 -0800 (PST)
-MIME-Version: 1.0
-References: <87tut6iy39.fsf@codeaurora.org>
- <CAHUdJJWA=XqYUwYk9deK3UTr9S03rM3L8YZ9_DHJyKh-CVgW-w@mail.gmail.com>
-In-Reply-To: <CAHUdJJWA=XqYUwYk9deK3UTr9S03rM3L8YZ9_DHJyKh-CVgW-w@mail.gmail.com>
-From: wi nk <wink@technolu.st>
-Date: Tue, 1 Dec 2020 11:17:51 +0100
-Message-ID: <CAHUdJJX6_K9X4HeKDg6459atJL=QBo1ouwGWYs6Vk4BMpf5TPw@mail.gmail.com>
-Subject: Re: ath11k: QCA6390 on Dell XPS 13 and kernel crashes
+ id 1kkKAo-0007Mb-My
+ for ath11k@lists.infradead.org; Wed, 02 Dec 2020 04:55:28 +0000
+From: Thiraviyam Mariyappan <tmariyap@codeaurora.org>
+Subject: [PATCH] mac80211: fix rx byte values not updated on mesh link
+Date: Wed,  2 Dec 2020 10:25:12 +0530
+Message-Id: <1606884912-10987-1-git-send-email-tmariyap@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -21,109 +15,162 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: Thomas Krause <thomaskrause@posteo.de>, ath11k@lists.infradead.org
+To: ath11k@lists.infradead.org
+Cc: Thiraviyam Mariyappan <tmariyap@codeaurora.org>, linux-wireless@vger.kernel.org
 
-On Mon, Nov 30, 2020 at 6:02 PM wi nk <wink@technolu.st> wrote:
->
-> On Mon, Nov 30, 2020 at 5:55 PM Kalle Valo <kvalo@codeaurora.org> wrote:
-> >
-> > Hi Wi and Thomas,
-> >
-> > I'll start a new thread about problems on XPS 13. The information is
-> > scattered to different threads and hard to find everything, it's much
-> > easier to have everything in one place. So let's continue the discussion
-> > about the kernel crashes on this thread.
-> >
-> > Here's what I have understood so far:
-> >
-> > * On Dell XPS 15 there are no issues with QCA6390 and it seems to work
-> >   with 32 MSI vectors.
-> >
-> > * On Dell XPS 13 there's a BIOS bug and kernel prints:
-> >
-> > [    0.050130] DMAR: [Firmware Bug]: Your BIOS is broken; DMAR reported at address 0!
-> >                BIOS vendor: Dell Inc.; Ver: 1.1.1; Product Version:
-> >
-> > * Because of this BIOS bug QCA6390 only gets one MSI vector on Dell XPS
-> >   13. We added a hack to ath11k make it work with only vector and after
-> >   that it's possible to boot the firmware, connect to the AP and use the
-> >   device for a while.
-> >
-> > * But the problem now is that the kernel is crashing almost immediately
-> >   and almost every time(?). And these crashes only happen on Dell XPS
-> >   13, all other systems (including Dell XPS 15) seem to work without
-> >   issues.
-> >
-> > Is my understanding correct? Did I miss anything?
-> >
-> > About the symptoms Wi reports:
-> >
-> > ----------------------------------------------------------------------
-> > So up until this point, everything is working without issues.
-> > Everything seems to spiral out of control a couple of seconds later
-> > when my system attempts to actually bring up the adapter.  In most of
-> > the crash states I will see this:
-> >
-> > [   31.286725] wlp85s0: send auth to ec:08:6b:27:01:ea (try 1/3)
-> > [   31.390187] wlp85s0: send auth to ec:08:6b:27:01:ea (try 2/3)
-> > [   31.391928] wlp85s0: authenticated
-> > [   31.394196] wlp85s0: associate with ec:08:6b:27:01:ea (try 1/3)
-> > [   31.396513] wlp85s0: RX AssocResp from ec:08:6b:27:01:ea
-> > (capab=0x411 status=0 aid=6)
-> > [   31.407730] wlp85s0: associated
-> > [   31.434354] IPv6: ADDRCONF(NETDEV_CHANGE): wlp85s0: link becomes ready
-> >
-> > And then either somewhere in that pile of messages, or a second or two
-> > after this my machine will start to stutter as I mentioned before, and
-> > then it either hangs, or I see this message (I'm truncating the
-> > timestamp):
-> >
-> > [   35.xxxx ] sched: RT throttling activated
-> >
-> > After that moment, the machine is unresponsive.  Sorry I can't seem to
-> > extract this data other than screenshots from my phone at the moment,
-> > you can see the dmesg output from 6 different hangs here:
-> >
-> > https://github.com/w1nk/ath11k-debug
-> > ----------------------------------------------------------------------
-> >
-> > And Thomas Krause reports:
-> >
-> > --------------------------------------------------------------------------------
-> > I can confirm this behavior on my configuration. I managed to login
-> > once and select the Wifi and connect to it. It seemed curiously enough
-> > be stable long enough to enter the Wifi passphrase. After the
-> > connection was established, the system hang and on each attempt to
-> > reboot into the graphical system it would freeze at some point
-> > (sometimes even before showing the login screen).
-> > ----------------------------------------------------------------------
-> >
-> > --
-> > https://patchwork.kernel.org/project/linux-wireless/list/
-> >
-> > https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
->
-> Hi Kalle,
->
->   Again, thanks much for your work.  I think you've summarized
-> everything up until this point.  On my XPS 13 9310 The behavior of the
-> RT throttling still exists for me occasionally on loading the
-> driver/associating with an AP.  The throttling consistently occurs
-> after a few sets of the MHI debug printing showing the EE entering an
-> invalid state ( AMSS -> INVALID_EE ).  I'm now building the latest tag
-> to see if there are any differences.
->
-> Thanks!
+In mesh link, rx byte values were not updating though rx packets keep
+increasing in the station dump. This is because of rx_stats were updated
+regardless of USES_RSS flag is enabled/disabled. Solved the issue by
+updating the rx_stats from percpu pointers according to the USES_RSS flag
 
-Just to follow up, the first boot resulted in the RT throttling
-message as the adapter was coming up/associating, shortly after the
-firmware crashed and the kernel didn't fully freeze, but I needed to
-reboot to bring the adapter back.
+Signed-off-by: Thiraviyam Mariyappan <tmariyap@codeaurora.org>
+---
+ net/mac80211/mesh_plink.c |  6 +++++-
+ net/mac80211/rx.c         | 44 ++++++++++++++++++++++++++++++++++----------
+ 2 files changed, 39 insertions(+), 11 deletions(-)
+
+diff --git a/net/mac80211/mesh_plink.c b/net/mac80211/mesh_plink.c
+index aca26df..e840277 100644
+--- a/net/mac80211/mesh_plink.c
++++ b/net/mac80211/mesh_plink.c
+@@ -416,6 +416,7 @@ static void mesh_sta_info_init(struct ieee80211_sub_if_data *sdata,
+ 	struct ieee80211_supported_band *sband;
+ 	u32 rates, basic_rates = 0, changed = 0;
+ 	enum ieee80211_sta_rx_bandwidth bw = sta->sta.bandwidth;
++	struct ieee80211_sta_rx_stats *stats;
+ 
+ 	sband = ieee80211_get_sband(sdata);
+ 	if (!sband)
+@@ -425,7 +426,10 @@ static void mesh_sta_info_init(struct ieee80211_sub_if_data *sdata,
+ 					&basic_rates);
+ 
+ 	spin_lock_bh(&sta->mesh->plink_lock);
+-	sta->rx_stats.last_rx = jiffies;
++	stats = &sta->rx_stats;
++	if (ieee80211_hw_check(&local->hw, USES_RSS))
++		stats = this_cpu_ptr(sta->pcpu_rx_stats);
++	stats->last_rx = jiffies;
+ 
+ 	/* rates and capabilities don't change during peering */
+ 	if (sta->mesh->plink_state == NL80211_PLINK_ESTAB &&
+diff --git a/net/mac80211/rx.c b/net/mac80211/rx.c
+index 062c2b4..1e8851d 100644
+--- a/net/mac80211/rx.c
++++ b/net/mac80211/rx.c
+@@ -2212,6 +2212,7 @@ ieee80211_rx_h_defragment(struct ieee80211_rx_data *rx)
+ 	unsigned int frag, seq;
+ 	struct ieee80211_fragment_entry *entry;
+ 	struct sk_buff *skb;
++	struct ieee80211_sta_rx_stats *stats;
+ 
+ 	hdr = (struct ieee80211_hdr *)rx->skb->data;
+ 	fc = hdr->frame_control;
+@@ -2340,8 +2341,12 @@ ieee80211_rx_h_defragment(struct ieee80211_rx_data *rx)
+  out:
+ 	ieee80211_led_rx(rx->local);
+  out_no_led:
+-	if (rx->sta)
+-		rx->sta->rx_stats.packets++;
++	if (rx->sta) {
++		stats = &rx->sta->rx_stats;
++		if (ieee80211_hw_check(&rx->sdata->local->hw, USES_RSS))
++			stats = this_cpu_ptr(rx->sta->pcpu_rx_stats);
++		stats->packets++;
++	}
+ 	return RX_CONTINUE;
+ }
+ 
+@@ -3134,6 +3139,7 @@ ieee80211_rx_h_action(struct ieee80211_rx_data *rx)
+ 	struct ieee80211_mgmt *mgmt = (struct ieee80211_mgmt *) rx->skb->data;
+ 	struct ieee80211_rx_status *status = IEEE80211_SKB_RXCB(rx->skb);
+ 	int len = rx->skb->len;
++	struct ieee80211_sta_rx_stats *stats;
+ 
+ 	if (!ieee80211_is_action(mgmt->frame_control))
+ 		return RX_CONTINUE;
+@@ -3415,16 +3421,24 @@ ieee80211_rx_h_action(struct ieee80211_rx_data *rx)
+ 	return RX_CONTINUE;
+ 
+  handled:
+-	if (rx->sta)
+-		rx->sta->rx_stats.packets++;
++	if (rx->sta) {
++		stats = &rx->sta->rx_stats;
++		if (ieee80211_hw_check(&local->hw, USES_RSS))
++			stats = this_cpu_ptr(rx->sta->pcpu_rx_stats);
++		stats->packets++;
++	}
+ 	dev_kfree_skb(rx->skb);
+ 	return RX_QUEUED;
+ 
+  queue:
+ 	skb_queue_tail(&sdata->skb_queue, rx->skb);
+ 	ieee80211_queue_work(&local->hw, &sdata->work);
+-	if (rx->sta)
+-		rx->sta->rx_stats.packets++;
++	if (rx->sta) {
++		stats = &rx->sta->rx_stats;
++		if (ieee80211_hw_check(&local->hw, USES_RSS))
++			stats = this_cpu_ptr(rx->sta->pcpu_rx_stats);
++		stats->packets++;
++	}
+ 	return RX_QUEUED;
+ }
+ 
+@@ -3467,6 +3481,7 @@ ieee80211_rx_h_action_post_userspace(struct ieee80211_rx_data *rx)
+ 	struct ieee80211_sub_if_data *sdata = rx->sdata;
+ 	struct ieee80211_mgmt *mgmt = (struct ieee80211_mgmt *) rx->skb->data;
+ 	int len = rx->skb->len;
++	struct ieee80211_sta_rx_stats *stats;
+ 
+ 	if (!ieee80211_is_action(mgmt->frame_control))
+ 		return RX_CONTINUE;
+@@ -3490,8 +3505,12 @@ ieee80211_rx_h_action_post_userspace(struct ieee80211_rx_data *rx)
+ 	return RX_CONTINUE;
+ 
+  handled:
+-	if (rx->sta)
+-		rx->sta->rx_stats.packets++;
++	if (rx->sta) {
++		stats = &rx->sta->rx_stats;
++		if (ieee80211_hw_check(&rx->sdata->local->hw, USES_RSS))
++			stats = this_cpu_ptr(rx->sta->pcpu_rx_stats);
++		stats->packets++;
++	}
+ 	dev_kfree_skb(rx->skb);
+ 	return RX_QUEUED;
+ }
+@@ -3585,6 +3604,7 @@ ieee80211_rx_h_mgmt(struct ieee80211_rx_data *rx)
+ {
+ 	struct ieee80211_sub_if_data *sdata = rx->sdata;
+ 	struct ieee80211_mgmt *mgmt = (void *)rx->skb->data;
++	struct ieee80211_sta_rx_stats *stats;
+ 	__le16 stype;
+ 
+ 	stype = mgmt->frame_control & cpu_to_le16(IEEE80211_FCTL_STYPE);
+@@ -3635,8 +3655,12 @@ ieee80211_rx_h_mgmt(struct ieee80211_rx_data *rx)
+ 	/* queue up frame and kick off work to process it */
+ 	skb_queue_tail(&sdata->skb_queue, rx->skb);
+ 	ieee80211_queue_work(&rx->local->hw, &sdata->work);
+-	if (rx->sta)
+-		rx->sta->rx_stats.packets++;
++	if (rx->sta) {
++		stats = &rx->sta->rx_stats;
++		if (ieee80211_hw_check(&rx->sdata->local->hw, USES_RSS))
++			stats = this_cpu_ptr(rx->sta->pcpu_rx_stats);
++		stats->packets++;
++	}
+ 
+ 	return RX_QUEUED;
+ }
+-- 
+2.7.4
+
 
 -- 
 ath11k mailing list
