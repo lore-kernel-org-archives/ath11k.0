@@ -1,18 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
- helo=sipsolutions.net)
+Received: from a2.mail.mailgun.net ([198.61.254.61])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kkNQk-0007am-AL
- for ath11k@lists.infradead.org; Wed, 02 Dec 2020 08:24:23 +0000
-Message-ID: <9b1543d8798277bbfc891b794362451432d98884.camel@sipsolutions.net>
-Subject: Re: [PATCH] mac80211: fix rx byte values not updated on mesh link
-From: Johannes Berg <johannes@sipsolutions.net>
-Date: Wed, 02 Dec 2020 09:23:57 +0100
-In-Reply-To: <1606884912-10987-1-git-send-email-tmariyap@codeaurora.org>
- (sfid-20201202_055729_704309_A90E5928)
-References: <1606884912-10987-1-git-send-email-tmariyap@codeaurora.org>
- (sfid-20201202_055729_704309_A90E5928)
-MIME-Version: 1.0
+ id 1kkSJn-0000zm-4B
+ for ath11k@lists.infradead.org; Wed, 02 Dec 2020 13:37:16 +0000
+From: Anilkumar Kolli <akolli@codeaurora.org>
+Subject: [PATCH v3] ath11k: fix rmmod failure if qmi sequence fails
+Date: Wed,  2 Dec 2020 19:06:55 +0530
+Message-Id: <1606916215-24643-1-git-send-email-akolli@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -21,51 +15,255 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Thiraviyam Mariyappan <tmariyap@codeaurora.org>, ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
+To: ath11k@lists.infradead.org
+Cc: Anilkumar Kolli <akolli@codeaurora.org>, linux-wireless@vger.kernel.org
 
-On Wed, 2020-12-02 at 10:25 +0530, Thiraviyam Mariyappan wrote:
-> In mesh link, rx byte values were not updating though rx packets keep
-> increasing in the station dump. This is because of rx_stats were updated
-> regardless of USES_RSS flag is enabled/disabled. Solved the issue by
-> updating the rx_stats from percpu pointers according to the USES_RSS flag
+QMI sequence fails if caldata file is not available.
+It is observed that 'rmmod ath11k' fails if qmi message fails.
+With this patch rmmod/insmod is working.
 
-You should write commit logs in imperative voice, e.g. "Solve the
-issue..."
+Logs:
+Direct firmware load for IPQ8074/caldata.bin failed with error -2
+Falling back to user helper
+qmi failed to load CAL: IPQ8074/caldata.bin
+qmi failed to load board data file:-11
 
-> +++ b/net/mac80211/rx.c
-> @@ -2212,6 +2212,7 @@ ieee80211_rx_h_defragment(struct ieee80211_rx_data *rx)
->  	unsigned int frag, seq;
->  	struct ieee80211_fragment_entry *entry;
->  	struct sk_buff *skb;
-> +	struct ieee80211_sta_rx_stats *stats;
->  
->  	hdr = (struct ieee80211_hdr *)rx->skb->data;
->  	fc = hdr->frame_control;
-> @@ -2340,8 +2341,12 @@ ieee80211_rx_h_defragment(struct ieee80211_rx_data *rx)
->   out:
->  	ieee80211_led_rx(rx->local);
->   out_no_led:
-> -	if (rx->sta)
-> -		rx->sta->rx_stats.packets++;
-> +	if (rx->sta) {
-> +		stats = &rx->sta->rx_stats;
-> +		if (ieee80211_hw_check(&rx->sdata->local->hw, USES_RSS))
-> +			stats = this_cpu_ptr(rx->sta->pcpu_rx_stats);
-> +		stats->packets++;
-> +	}
->  	return RX_CONTINUE;
-> 
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00009-QCAHKSWPL_SILICONZ-1
+Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01699-QCAHSTSWPLZ_V2_TO_X86-1
 
-This is certainly not only related to mesh, so the commit log is wrong.
+Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
+---
+V3:
+  - fixed rmmod hang issue(kvalo)
+V2:
+  - Rebased on latest tree
 
-Also, let's not copy/paste this code so much ...
+ drivers/net/wireless/ath/ath11k/ahb.c     |  9 +++++++-
+ drivers/net/wireless/ath/ath11k/core.h    |  1 +
+ drivers/net/wireless/ath/ath11k/debugfs.c |  1 +
+ drivers/net/wireless/ath/ath11k/pci.c     |  8 +++++++
+ drivers/net/wireless/ath/ath11k/qmi.c     | 38 ++++++++++++++++++++-----------
+ 5 files changed, 43 insertions(+), 14 deletions(-)
 
-johannes
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+index 4ac730e70f01..8c9c781afc3e 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.c
++++ b/drivers/net/wireless/ath/ath11k/ahb.c
+@@ -747,6 +747,13 @@ static int ath11k_ahb_remove(struct platform_device *pdev)
+ 	struct ath11k_base *ab = platform_get_drvdata(pdev);
+ 	unsigned long left;
+ 
++	if (test_bit(ATH11K_FLAG_QMI_FAIL, &ab->dev_flags)) {
++		ath11k_ahb_power_down(ab);
++		ath11k_debugfs_soc_destroy(ab);
++		ath11k_qmi_deinit_service(ab);
++		goto qmi_fail;
++	}
++
+ 	reinit_completion(&ab->driver_recovery);
+ 
+ 	if (test_bit(ATH11K_FLAG_RECOVERY, &ab->dev_flags)) {
+@@ -760,8 +767,8 @@ static int ath11k_ahb_remove(struct platform_device *pdev)
+ 	cancel_work_sync(&ab->restart_work);
+ 
+ 	ath11k_core_deinit(ab);
++qmi_fail:
+ 	ath11k_ahb_free_irq(ab);
+-
+ 	ath11k_hal_srng_deinit(ab);
+ 	ath11k_ce_free_pipes(ab);
+ 	ath11k_core_free(ab);
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index 8874fa7b4e53..71033fa59739 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -184,6 +184,7 @@ enum ath11k_dev_flags {
+ 	ATH11K_FLAG_RECOVERY,
+ 	ATH11K_FLAG_UNREGISTERING,
+ 	ATH11K_FLAG_REGISTERED,
++	ATH11K_FLAG_QMI_FAIL,
+ };
+ 
+ enum ath11k_monitor_flags {
+diff --git a/drivers/net/wireless/ath/ath11k/debugfs.c b/drivers/net/wireless/ath/ath11k/debugfs.c
+index 1b914e67d314..554feaf1ed5c 100644
+--- a/drivers/net/wireless/ath/ath11k/debugfs.c
++++ b/drivers/net/wireless/ath/ath11k/debugfs.c
+@@ -867,6 +867,7 @@ void ath11k_debugfs_soc_destroy(struct ath11k_base *ab)
+ 	debugfs_remove_recursive(ab->debugfs_ath11k);
+ 	ab->debugfs_ath11k = NULL;
+ }
++EXPORT_SYMBOL(ath11k_debugfs_soc_destroy);
+ 
+ void ath11k_debugfs_fw_stats_init(struct ath11k *ar)
+ {
+diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
+index 1d3fcf6e6c0c..43a0aa79a13c 100644
+--- a/drivers/net/wireless/ath/ath11k/pci.c
++++ b/drivers/net/wireless/ath/ath11k/pci.c
+@@ -1111,10 +1111,18 @@ static void ath11k_pci_remove(struct pci_dev *pdev)
+ 	struct ath11k_base *ab = pci_get_drvdata(pdev);
+ 	struct ath11k_pci *ab_pci = ath11k_pci_priv(ab);
+ 
++	if (test_bit(ATH11K_FLAG_QMI_FAIL, &ab->dev_flags)) {
++		ath11k_pci_power_down(ab);
++		ath11k_debugfs_soc_destroy(ab);
++		ath11k_qmi_deinit_service(ab);
++		goto qmi_fail;
++	}
++
+ 	set_bit(ATH11K_FLAG_UNREGISTERING, &ab->dev_flags);
+ 
+ 	ath11k_core_deinit(ab);
+ 
++qmi_fail:
+ 	ath11k_mhi_unregister(ab_pci);
+ 
+ 	ath11k_pci_free_irq(ab);
+diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
+index ae14984da91b..e1b032ff23a0 100644
+--- a/drivers/net/wireless/ath/ath11k/qmi.c
++++ b/drivers/net/wireless/ath/ath11k/qmi.c
+@@ -2419,7 +2419,7 @@ ath11k_qmi_driver_event_post(struct ath11k_qmi *qmi,
+ 	return 0;
+ }
+ 
+-static void ath11k_qmi_event_server_arrive(struct ath11k_qmi *qmi)
++static int ath11k_qmi_event_server_arrive(struct ath11k_qmi *qmi)
+ {
+ 	struct ath11k_base *ab = qmi->ab;
+ 	int ret;
+@@ -2427,17 +2427,19 @@ static void ath11k_qmi_event_server_arrive(struct ath11k_qmi *qmi)
+ 	ret = ath11k_qmi_fw_ind_register_send(ab);
+ 	if (ret < 0) {
+ 		ath11k_warn(ab, "qmi failed to send FW indication QMI:%d\n", ret);
+-		return;
++		return ret;
+ 	}
+ 
+ 	ret = ath11k_qmi_host_cap_send(ab);
+ 	if (ret < 0) {
+ 		ath11k_warn(ab, "qmi failed to send host cap QMI:%d\n", ret);
+-		return;
++		return ret;
+ 	}
++
++	return ret;
+ }
+ 
+-static void ath11k_qmi_event_mem_request(struct ath11k_qmi *qmi)
++static int ath11k_qmi_event_mem_request(struct ath11k_qmi *qmi)
+ {
+ 	struct ath11k_base *ab = qmi->ab;
+ 	int ret;
+@@ -2445,11 +2447,13 @@ static void ath11k_qmi_event_mem_request(struct ath11k_qmi *qmi)
+ 	ret = ath11k_qmi_respond_fw_mem_request(ab);
+ 	if (ret < 0) {
+ 		ath11k_warn(ab, "qmi failed to respond fw mem req:%d\n", ret);
+-		return;
++		return ret;
+ 	}
++
++	return ret;
+ }
+ 
+-static void ath11k_qmi_event_load_bdf(struct ath11k_qmi *qmi)
++static int ath11k_qmi_event_load_bdf(struct ath11k_qmi *qmi)
+ {
+ 	struct ath11k_base *ab = qmi->ab;
+ 	int ret;
+@@ -2457,7 +2461,7 @@ static void ath11k_qmi_event_load_bdf(struct ath11k_qmi *qmi)
+ 	ret = ath11k_qmi_request_target_cap(ab);
+ 	if (ret < 0) {
+ 		ath11k_warn(ab, "qmi failed to req target capabilities:%d\n", ret);
+-		return;
++		return ret;
+ 	}
+ 
+ 	if (ab->bus_params.fixed_bdf_addr)
+@@ -2466,14 +2470,16 @@ static void ath11k_qmi_event_load_bdf(struct ath11k_qmi *qmi)
+ 		ret = ath11k_qmi_load_bdf_qmi(ab);
+ 	if (ret < 0) {
+ 		ath11k_warn(ab, "qmi failed to load board data file:%d\n", ret);
+-		return;
++		return ret;
+ 	}
+ 
+ 	ret = ath11k_qmi_wlanfw_m3_info_send(ab);
+ 	if (ret < 0) {
+ 		ath11k_warn(ab, "qmi failed to send m3 info req:%d\n", ret);
+-		return;
++		return ret;
+ 	}
++
++	return ret;
+ }
+ 
+ static void ath11k_qmi_msg_mem_request_cb(struct qmi_handle *qmi_hdl,
+@@ -2613,7 +2619,7 @@ static int ath11k_qmi_ops_new_server(struct qmi_handle *qmi_hdl,
+ 	ath11k_dbg(ab, ATH11K_DBG_QMI, "qmi wifi fw qmi service connected\n");
+ 	ath11k_qmi_driver_event_post(qmi, ATH11K_QMI_EVENT_SERVER_ARRIVE, NULL);
+ 
+-	return 0;
++	return ret;
+ }
+ 
+ static void ath11k_qmi_ops_del_server(struct qmi_handle *qmi_hdl,
+@@ -2637,6 +2643,7 @@ static void ath11k_qmi_driver_event_work(struct work_struct *work)
+ 					      event_work);
+ 	struct ath11k_qmi_driver_event *event;
+ 	struct ath11k_base *ab = qmi->ab;
++	int ret = 0;
+ 
+ 	spin_lock(&qmi->event_lock);
+ 	while (!list_empty(&qmi->event_list)) {
+@@ -2650,19 +2657,20 @@ static void ath11k_qmi_driver_event_work(struct work_struct *work)
+ 
+ 		switch (event->type) {
+ 		case ATH11K_QMI_EVENT_SERVER_ARRIVE:
+-			ath11k_qmi_event_server_arrive(qmi);
++			ret = ath11k_qmi_event_server_arrive(qmi);
+ 			break;
+ 		case ATH11K_QMI_EVENT_SERVER_EXIT:
+ 			set_bit(ATH11K_FLAG_CRASH_FLUSH, &ab->dev_flags);
+ 			set_bit(ATH11K_FLAG_RECOVERY, &ab->dev_flags);
+ 			break;
+ 		case ATH11K_QMI_EVENT_REQUEST_MEM:
+-			ath11k_qmi_event_mem_request(qmi);
++			ret = ath11k_qmi_event_mem_request(qmi);
+ 			break;
+ 		case ATH11K_QMI_EVENT_FW_MEM_READY:
+-			ath11k_qmi_event_load_bdf(qmi);
++			ret = ath11k_qmi_event_load_bdf(qmi);
+ 			break;
+ 		case ATH11K_QMI_EVENT_FW_READY:
++			clear_bit(ATH11K_FLAG_QMI_FAIL, &ab->dev_flags);
+ 			if (test_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags)) {
+ 				ath11k_hal_dump_srng_stats(ab);
+ 				queue_work(ab->workqueue, &ab->restart_work);
+@@ -2688,6 +2696,9 @@ static void ath11k_qmi_driver_event_work(struct work_struct *work)
+ 			break;
+ 		}
+ 		kfree(event);
++		if (ret < 0)
++			set_bit(ATH11K_FLAG_QMI_FAIL, &ab->dev_flags);
++
+ 		spin_lock(&qmi->event_lock);
+ 	}
+ 	spin_unlock(&qmi->event_lock);
+@@ -2740,4 +2751,5 @@ void ath11k_qmi_deinit_service(struct ath11k_base *ab)
+ 	ath11k_qmi_m3_free(ab);
+ 	ath11k_qmi_free_target_mem_chunk(ab);
+ }
++EXPORT_SYMBOL(ath11k_qmi_deinit_service);
+ 
+-- 
+2.7.4
 
 
 -- 
