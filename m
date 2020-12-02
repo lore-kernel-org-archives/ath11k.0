@@ -1,15 +1,14 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from m42-5.mailgun.net ([69.72.42.5])
+Received: from mout-p-201.mailbox.org ([80.241.56.171])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kkWkD-00053o-M0
- for ath11k@lists.infradead.org; Wed, 02 Dec 2020 18:20:52 +0000
+ id 1kkWqP-00063R-Rl
+ for ath11k@lists.infradead.org; Wed, 02 Dec 2020 18:27:15 +0000
+Date: Wed, 2 Dec 2020 19:27:05 +0100
+From: Devin Bayer <dev@doubly.so>
+Subject: [PATCH] add ath11k MODULE_FIRMWARE macros
+Message-ID: <20201202182705.dhkml4nb4rf2vwav@orac>
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: Fix an error handling path
-From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <20201122173943.1366167-1-christophe.jaillet@wanadoo.fr>
-References: <20201122173943.1366167-1-christophe.jaillet@wanadoo.fr>
-Message-Id: <20201202182032.78705C43463@smtp.codeaurora.org>
-Date: Wed,  2 Dec 2020 18:20:32 +0000 (UTC)
+Content-Disposition: inline
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -22,28 +21,41 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Cc: mkenna@codeaurora.org, gsamin@codeaurora.org, kernel-janitors@vger.kernel.org, pradeepc@codeaurora.org, netdev@vger.kernel.org, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, ath11k@lists.infradead.org, gseset@codeaurora.org, slakkavalli@datto.com, kuba@kernel.org, davem@davemloft.net
+To: ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org, kvalo@codeaurora.org
 
-Christophe JAILLET <christophe.jaillet@wanadoo.fr> wrote:
+Hello,
 
-> If 'kzalloc' fails, we must return an error code.
-> 
-> While at it, remove a useless initialization of 'err' which could hide the
-> issue.
-> 
-> Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
-> Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+I am trying to get the ath11k driver to work with VyOS and during the
+build it tries to discover the firmware blobs which drivers require.
 
-Patch applied to ath-next branch of ath.git, thanks.
+This doesn't work with ath11k because it doesn't use the MODULE_FIRMWARE
+macro. This patch fixes that.
 
-e7bcc145bcd0 ath11k: Fix an error handling path
+Thanks,
+Devin
 
+Signed-off-by: Devin Bayer <dev@doubly.so>
+---
+ drivers/net/wireless/ath/ath11k/core.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index af59c23fea56..2add42ce729b 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -991,3 +991,9 @@ EXPORT_SYMBOL(ath11k_core_resume);
+ 
+ MODULE_DESCRIPTION("Core module for Qualcomm Atheros 802.11ax wireless LAN cards.");
+ MODULE_LICENSE("Dual BSD/GPL");
++
++/* QCA639x 2.0 firmware files */
++MODULE_FIRMWARE(ATH11K_FW_DIR "/QCA6390/hw2.0/" ATH11K_BOARD_API2_FILE);
++MODULE_FIRMWARE(ATH11K_FW_DIR "/QCA6390/hw2.0/" ATH11K_AMSS_FILE);
++MODULE_FIRMWARE(ATH11K_FW_DIR "/QCA6390/hw2.0/" ATH11K_M3_FILE);
++
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20201122173943.1366167-1-christophe.jaillet@wanadoo.fr/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+2.25.1
 
 
 -- 
