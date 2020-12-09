@@ -1,12 +1,16 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from so254-31.mailgun.net ([198.61.254.31])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kmpnA-0001Gv-MS
- for ath11k@lists.infradead.org; Wed, 09 Dec 2020 03:05:25 +0000
-From: Wen Gong <wgong@codeaurora.org>
-Subject: [PATCH] mac80211: fix a mistake check for rx_stats update
-Date: Wed,  9 Dec 2020 11:06:29 +0800
-Message-Id: <1607483189-3891-1-git-send-email-wgong@codeaurora.org>
+ id 1kmtPg-00006r-6M
+ for ath11k@lists.infradead.org; Wed, 09 Dec 2020 06:57:25 +0000
+From: Kalle Valo <kvalo@codeaurora.org>
+Subject: Re: [PATCH v3] ath11k: fix rmmod failure if qmi sequence fails
+References: <1606916215-24643-1-git-send-email-akolli@codeaurora.org>
+Date: Wed, 09 Dec 2020 08:57:17 +0200
+In-Reply-To: <1606916215-24643-1-git-send-email-akolli@codeaurora.org>
+ (Anilkumar Kolli's message of "Wed, 2 Dec 2020 19:06:55 +0530")
+Message-ID: <877dprcvqq.fsf@codeaurora.org>
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -15,45 +19,80 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org, ath10k@lists.infradead.org, johannes@sipsolutions.net
-Cc: linux-wireless@vger.kernel.org, wgong@codeaurora.org
+To: Anilkumar Kolli <akolli@codeaurora.org>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-It should be !is_multicast_ether_addr() in ieee80211_rx_h_sta_process()
-for the rx_stats update, below commit remove the !, this patch is to
-change it back.
+Anilkumar Kolli <akolli@codeaurora.org> writes:
 
-It lead the rx rate "iw wlan0 station dump" become invalid for some
-scene when IEEE80211_HW_USES_RSS is set, and the rx rate become valid
-with this patch for the scene.
+> QMI sequence fails if caldata file is not available.
+> It is observed that 'rmmod ath11k' fails if qmi message fails.
+> With this patch rmmod/insmod is working.
+>
+> Logs:
+> Direct firmware load for IPQ8074/caldata.bin failed with error -2
+> Falling back to user helper
+> qmi failed to load CAL: IPQ8074/caldata.bin
+> qmi failed to load board data file:-11
+>
+> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00009-QCAHKSWPL_SILICONZ-1
+> Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01699-QCAHSTSWPLZ_V2_TO_X86-1
+>
+> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
 
-Fixed: 09a740ce352e ("mac80211: receive and process S1G beacons")
+[...]
 
-Signed-off-by: Wen Gong <wgong@codeaurora.org>
----
- net/mac80211/rx.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> @@ -2637,6 +2643,7 @@ static void ath11k_qmi_driver_event_work(struct work_struct *work)
+>  					      event_work);
+>  	struct ath11k_qmi_driver_event *event;
+>  	struct ath11k_base *ab = qmi->ab;
+> +	int ret = 0;
+>  
+>  	spin_lock(&qmi->event_lock);
+>  	while (!list_empty(&qmi->event_list)) {
+> @@ -2650,19 +2657,20 @@ static void ath11k_qmi_driver_event_work(struct work_struct *work)
+>  
+>  		switch (event->type) {
+>  		case ATH11K_QMI_EVENT_SERVER_ARRIVE:
+> -			ath11k_qmi_event_server_arrive(qmi);
+> +			ret = ath11k_qmi_event_server_arrive(qmi);
+>  			break;
+>  		case ATH11K_QMI_EVENT_SERVER_EXIT:
+>  			set_bit(ATH11K_FLAG_CRASH_FLUSH, &ab->dev_flags);
+>  			set_bit(ATH11K_FLAG_RECOVERY, &ab->dev_flags);
+>  			break;
+>  		case ATH11K_QMI_EVENT_REQUEST_MEM:
+> -			ath11k_qmi_event_mem_request(qmi);
+> +			ret = ath11k_qmi_event_mem_request(qmi);
+>  			break;
+>  		case ATH11K_QMI_EVENT_FW_MEM_READY:
+> -			ath11k_qmi_event_load_bdf(qmi);
+> +			ret = ath11k_qmi_event_load_bdf(qmi);
+>  			break;
+>  		case ATH11K_QMI_EVENT_FW_READY:
+> +			clear_bit(ATH11K_FLAG_QMI_FAIL, &ab->dev_flags);
+>  			if (test_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags)) {
+>  				ath11k_hal_dump_srng_stats(ab);
+>  				queue_work(ab->workqueue, &ab->restart_work);
+> @@ -2688,6 +2696,9 @@ static void ath11k_qmi_driver_event_work(struct work_struct *work)
+>  			break;
+>  		}
+>  		kfree(event);
+> +		if (ret < 0)
+> +			set_bit(ATH11K_FLAG_QMI_FAIL, &ab->dev_flags);
+> +
 
-diff --git a/net/mac80211/rx.c b/net/mac80211/rx.c
-index ebd01ca9d2e6..dafde71af50e 100644
---- a/net/mac80211/rx.c
-+++ b/net/mac80211/rx.c
-@@ -1762,7 +1762,7 @@ ieee80211_rx_h_sta_process(struct ieee80211_rx_data *rx)
- 	} else if (rx->sdata->vif.type == NL80211_IFTYPE_OCB) {
- 		sta->rx_stats.last_rx = jiffies;
- 	} else if (!ieee80211_is_s1g_beacon(hdr->frame_control) &&
--		   is_multicast_ether_addr(hdr->addr1)) {
-+		   !is_multicast_ether_addr(hdr->addr1)) {
- 		/*
- 		 * Mesh beacons will update last_rx when if they are found to
- 		 * match the current local configuration when processed.
+In the pending branch I moved the error handling after the function
+calls to make it more visible. Here readibility is more important than
+reducing lines of code.
+
 -- 
-2.23.0
+https://patchwork.kernel.org/project/linux-wireless/list/
 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
