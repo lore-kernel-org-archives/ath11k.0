@@ -1,16 +1,15 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from so254-31.mailgun.net ([198.61.254.31])
+Received: from mail-oi1-x234.google.com ([2607:f8b0:4864:20::234])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kn176-000250-I7
- for ath11k@lists.infradead.org; Wed, 09 Dec 2020 15:10:47 +0000
-From: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: ath11k: QCA6390 on Dell XPS 13 and kernel crashes
-In-Reply-To: <CAE+mCOEX5ccBa2HBYpi_3YpayApyr-C1csBpvvjWZ-hnW38Oqw@mail.gmail.com>
- (Stephen Liang's message of "Wed, 2 Dec 2020 15:49:39 -0800")
-References: <CAE+mCOEX5ccBa2HBYpi_3YpayApyr-C1csBpvvjWZ-hnW38Oqw@mail.gmail.com>
-Date: Wed, 09 Dec 2020 17:09:28 +0200
-Message-ID: <87v9db9ftj.fsf@codeaurora.org>
+ id 1kn1BB-0002Fb-OB
+ for ath11k@lists.infradead.org; Wed, 09 Dec 2020 15:14:59 +0000
+Received: by mail-oi1-x234.google.com with SMTP id q25so2024988oij.10
+ for <ath11k@lists.infradead.org>; Wed, 09 Dec 2020 07:14:55 -0800 (PST)
 MIME-Version: 1.0
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Wed, 9 Dec 2020 18:14:42 +0300
+Message-ID: <CAA8EJpo-QvRkrL_dabY5R_uEh0_aaGEqNC6n_bpj=LR7dUPvvQ@mail.gmail.com>
+Subject: ath11k: additional board files
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -23,44 +22,76 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: Stephen Liang <stephenliang7@gmail.com>
-Cc: ath11k@lists.infradead.org
+To: ath11k@lists.infradead.org
 
-Stephen Liang <stephenliang7@gmail.com> writes:
+Hello,
 
-> For reference, I am running Fedora Rawhide kernel 5.10.0-0.rc6 with
-> commit 59c6d022df8efb450f82d33dd6a6812935bd022f and a revert of
-> 7fef431be9c9 patched in.
->
-> I am able to connect to WiFi and did not receive any immediate
-> freezing, hard kernel panics, etc. Uptime is now going on 35 minutes
-> and able to get 50 up/down throughput.
+I'd like to ask for inclusion of the board data for
+bus=pci,qmi-chip-id=0,qmi-board-id=4 into QCA6390/hw2.0 board data,
+which is necessary to bring up WiFi on Qualcomm's SM8250 SoC.
 
-Thanks, good to know. On what platform is this, can you share more
-details? Is it the new Dell XPS 13 9310 or something else?
+Kernel without board data:
 
-> I  do see a number of taints in dmesg while connecting to an access
-> point but the taint doesn't seem to affect functionality, for example:
-> https://pastebin.com/raw/gbzuvs3q
+# dmesg | grep 1:00
+[    4.188174] pci 0000:01:00.0: [17cb:1101] type 00 class 0xff0000
+[    4.194498] pci 0000:01:00.0: reg 0x10: [mem 0x00000000-0x000fffff 64bit]
+[    4.202474] pci 0000:01:00.0: PME# supported from D0 D3hot D3cold
+[    4.209090] pci 0000:01:00.0: 4.000 Gb/s available PCIe bandwidth,
+limited by 5.0 GT/s PCIe x1 link at 0000:00:00.0 (capable of 7.876
+Gb/s with 8.0 GT/s PCIe x1 link)
+[    4.265964] pci 0000:01:00.0: BAR 0: assigned [mem
+0x60300000-0x603fffff 64bit]
+[    4.311981] ath11k_pci 0000:01:00.0: Adding to iommu group 6
+[    4.317830] ath11k_pci 0000:01:00.0: WARNING: ath11k PCI support is
+experimental!
+[    4.326180] ath11k_pci 0000:01:00.0: BAR 0: assigned [mem
+0x60300000-0x603fffff 64bit]
+[    4.334423] ath11k_pci 0000:01:00.0: enabling device (0000 -> 0002)
+[    4.416053] ath11k_pci 0000:01:00.0: aspm 0x40 changed to 0x40
+[    4.422099] mhi 0000:01:00.0: Requested to power ON
+[    4.429152] mhi 0000:01:00.0: Power on setup success
+[    4.653608] ath11k_pci 0000:01:00.0: chip_id 0x0 chip_family 0xb
+board_id 0x4 soc_id 0xffffffff
+[    4.662558] ath11k_pci 0000:01:00.0: fw_version 0x101c06cc
+fw_build_timestamp 2020-06-24 19:50 fw_build_id
+[    4.672657] ath11k_pci 0000:01:00.0: failed to fetch board data for
+bus=pci,qmi-chip-id=0,qmi-board-id=4 from
+ath11k/QCA6390/hw2.0/board-2.bin
+[   66.625006] ath11k_pci 0000:01:00.0: failed to fetch board-2.bin or
+board.bin from QCA6390/hw2.0
+[   66.634067] ath11k_pci 0000:01:00.0: qmi failed to load bdf:
+[   66.640097] ath11k_pci 0000:01:00.0: qmi failed to load board data file:-11
 
-This commit should fix that:
 
-https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=ath11k-qca6390-bringup&id=fa4eea695afb286ae38beb30dabf251335cb4a62
+Kernel log with proper board file:
 
-I recommend using ath11k-qca6390-bringup branch, it has quite a few
-fixes:
-
-https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/log/?h=ath11k-qca6390-bringup
-
-> Finally, rebooting the computer does require a hard power down.
-
-You mean that the reboot stalls and you need to turn off the laptop
-using power button?
+# dmesg | grep 1:00
+[    4.199993] pci 0000:01:00.0: [17cb:1101] type 00 class 0xff0000
+[    4.206319] pci 0000:01:00.0: reg 0x10: [mem 0x00000000-0x000fffff 64bit]
+[    4.214295] pci 0000:01:00.0: PME# supported from D0 D3hot D3cold
+[    4.220911] pci 0000:01:00.0: 4.000 Gb/s available PCIe bandwidth,
+limited by 5.0 GT/s PCIe x1 link at 0000:00:00.0 (capable of 7.876
+Gb/s with 8.0 GT/s PCIe x1 link)
+[    4.277673] pci 0000:01:00.0: BAR 0: assigned [mem
+0x60300000-0x603fffff 64bit]
+[    4.323674] ath11k_pci 0000:01:00.0: Adding to iommu group 6
+[    4.329522] ath11k_pci 0000:01:00.0: WARNING: ath11k PCI support is
+experimental!
+[    4.338034] ath11k_pci 0000:01:00.0: BAR 0: assigned [mem
+0x60300000-0x603fffff 64bit]
+[    4.346288] ath11k_pci 0000:01:00.0: enabling device (0000 -> 0002)
+[    4.428084] ath11k_pci 0000:01:00.0: aspm 0x40 changed to 0x40
+[    4.434132] mhi 0000:01:00.0: Requested to power ON
+[    4.441169] mhi 0000:01:00.0: Power on setup success
+[    4.664210] ath11k_pci 0000:01:00.0: chip_id 0x0 chip_family 0xb
+board_id 0x4 soc_id 0xffffffff
+[    4.673189] ath11k_pci 0000:01:00.0: fw_version 0x101c06cc
+fw_build_timestamp 2020-06-24 19:50 fw_build_id
+[   10.710139] ath11k_pci 0000:01:00.0 wlp1s0: renamed from wlan0
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+With best wishes
+Dmitry
 
 -- 
 ath11k mailing list
