@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from m43-15.mailgun.net ([69.72.43.15])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1knMZc-0001U3-E5
- for ath11k@lists.infradead.org; Thu, 10 Dec 2020 14:05:37 +0000
+ id 1knMZk-0001T7-5U
+ for ath11k@lists.infradead.org; Thu, 10 Dec 2020 14:05:54 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 5/6] ath11k: pci: disable VDD4BLOW
-Date: Thu, 10 Dec 2020 16:05:23 +0200
-Message-Id: <1607609124-17250-6-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH 4/6] ath11k: pci: fix L1ss clock unstable problem
+Date: Thu, 10 Dec 2020 16:05:22 +0200
+Message-Id: <1607609124-17250-5-git-send-email-kvalo@codeaurora.org>
 In-Reply-To: <1607609124-17250-1-git-send-email-kvalo@codeaurora.org>
 References: <1607609124-17250-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -27,55 +27,125 @@ Cc: linux-wireless@vger.kernel.org
 
 From: Carl Huang <cjhuang@codeaurora.org>
 
-It's recommended to disable VDD4BLOW during initialisation.
+For QCA6390, one PCI related clock drifts sometimes, and
+it makes PCI link difficult to quit L1ss. Fix it by writing
+some registers which are known to fix the problem.
 
 Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
 
 Signed-off-by: Carl Huang <cjhuang@codeaurora.org>
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/pci.c | 10 ++++++++++
- drivers/net/wireless/ath/ath11k/pci.h |  3 +++
- 2 files changed, 13 insertions(+)
+ drivers/net/wireless/ath/ath11k/pci.c | 70 +++++++++++++++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/pci.h | 11 ++++++
+ 2 files changed, 81 insertions(+)
 
 diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index 064c35052697..818e37c32a85 100644
+index 9b6d4bb40e6c..064c35052697 100644
 --- a/drivers/net/wireless/ath/ath11k/pci.c
 +++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -346,6 +346,15 @@ static void ath11k_pci_clear_all_intrs(struct ath11k_base *ab)
- 	ath11k_pci_write32(ab, PCIE_PCIE_INT_ALL_CLEAR, PCIE_INT_CLEAR_ALL);
+@@ -239,6 +239,75 @@ static void ath11k_pci_clear_dbg_registers(struct ath11k_base *ab)
+ 	ath11k_dbg(ab, ATH11K_DBG_PCI, "soc reset cause:%d\n", val);
  }
  
-+static void ath11k_pci_set_wlaon_pwr_ctrl(struct ath11k_base *ab)
++static int ath11k_pci_set_link_reg(struct ath11k_base *ab,
++				   u32 offset, u32 value, u32 mask)
 +{
-+	u32 val;
++	u32 v;
++	int i;
 +
-+	val = ath11k_pci_read32(ab, WLAON_QFPROM_PWR_CTRL_REG);
-+	val &= ~QFPROM_PWR_CTRL_VDD4BLOW_MASK;
-+	ath11k_pci_write32(ab, WLAON_QFPROM_PWR_CTRL_REG, val);
++	v = ath11k_pci_read32(ab, offset);
++	if ((v & mask) == value)
++		return 0;
++
++	for (i = 0; i < 10; i++) {
++		ath11k_pci_write32(ab, offset, (v & ~mask) | value);
++
++		v = ath11k_pci_read32(ab, offset);
++		if ((v & mask) == value)
++			return 0;
++
++		mdelay(2);
++	}
++
++	ath11k_warn(ab, "failed to set pcie link register 0x%08x: 0x%08x != 0x%08x\n",
++		    offset, v & mask, value);
++
++	return -ETIMEDOUT;
 +}
 +
- static void ath11k_pci_force_wake(struct ath11k_base *ab)
++static int ath11k_pci_fix_l1ss(struct ath11k_base *ab)
++{
++	int ret;
++
++	ret = ath11k_pci_set_link_reg(ab,
++				      PCIE_QSERDES_COM_SYSCLK_EN_SEL_REG,
++				      PCIE_QSERDES_COM_SYSCLK_EN_SEL_VAL,
++				      PCIE_QSERDES_COM_SYSCLK_EN_SEL_MSK);
++	if (!ret) {
++		ath11k_warn(ab, "failed to set sysclk: %d\n", ret);
++		return ret;
++	}
++
++	ret = ath11k_pci_set_link_reg(ab,
++				      PCIE_USB3_PCS_MISC_OSC_DTCT_CONFIG1_REG,
++				      PCIE_USB3_PCS_MISC_OSC_DTCT_CONFIG1_VAL,
++				      PCIE_USB3_PCS_MISC_OSC_DTCT_CONFIG_MSK);
++	if (!ret) {
++		ath11k_warn(ab, "failed to set dtct config1 error: %d\n", ret);
++		return ret;
++	}
++
++	ret = ath11k_pci_set_link_reg(ab,
++				      PCIE_USB3_PCS_MISC_OSC_DTCT_CONFIG2_REG,
++				      PCIE_USB3_PCS_MISC_OSC_DTCT_CONFIG2_VAL,
++				      PCIE_USB3_PCS_MISC_OSC_DTCT_CONFIG_MSK);
++	if (!ret) {
++		ath11k_warn(ab, "failed to set dtct config2: %d\n", ret);
++		return ret;
++	}
++
++	ret = ath11k_pci_set_link_reg(ab,
++				      PCIE_USB3_PCS_MISC_OSC_DTCT_CONFIG4_REG,
++				      PCIE_USB3_PCS_MISC_OSC_DTCT_CONFIG4_VAL,
++				      PCIE_USB3_PCS_MISC_OSC_DTCT_CONFIG_MSK);
++	if (!ret) {
++		ath11k_warn(ab, "failed to set dtct config4: %d\n", ret);
++		return ret;
++	}
++
++	return 0;
++}
++
+ static void ath11k_pci_enable_ltssm(struct ath11k_base *ab)
  {
- 	ath11k_pci_write32(ab, PCIE_SOC_WAKE_PCIE_LOCAL_REG, 1);
-@@ -357,6 +366,7 @@ static void ath11k_pci_sw_reset(struct ath11k_base *ab, bool power_on)
+ 	u32 val;
+@@ -288,6 +357,7 @@ static void ath11k_pci_sw_reset(struct ath11k_base *ab, bool power_on)
  	if (power_on) {
  		ath11k_pci_enable_ltssm(ab);
  		ath11k_pci_clear_all_intrs(ab);
-+		ath11k_pci_set_wlaon_pwr_ctrl(ab);
- 		ath11k_pci_fix_l1ss(ab);
++		ath11k_pci_fix_l1ss(ab);
  	}
  
+ 	ath11k_mhi_clear_vector(ab);
 diff --git a/drivers/net/wireless/ath/ath11k/pci.h b/drivers/net/wireless/ath/ath11k/pci.h
-index 6e7cc8904c3d..0432a702416b 100644
+index 296f1ca6b3ec..6e7cc8904c3d 100644
 --- a/drivers/net/wireless/ath/ath11k/pci.h
 +++ b/drivers/net/wireless/ath/ath11k/pci.h
-@@ -45,6 +45,9 @@
- #define PCIE_USB3_PCS_MISC_OSC_DTCT_CONFIG4_VAL	0xff
- #define PCIE_USB3_PCS_MISC_OSC_DTCT_CONFIG_MSK	0x000000ff
+@@ -34,6 +34,17 @@
+ #define PCIE_SMLH_REQ_RST_LINK_DOWN		0x2
+ #define PCIE_INT_CLEAR_ALL			0xffffffff
  
-+#define WLAON_QFPROM_PWR_CTRL_REG		0x01f8031c
-+#define QFPROM_PWR_CTRL_VDD4BLOW_MASK		0x4
++#define PCIE_QSERDES_COM_SYSCLK_EN_SEL_REG	0x01e0c0ac
++#define PCIE_QSERDES_COM_SYSCLK_EN_SEL_VAL	0x10
++#define PCIE_QSERDES_COM_SYSCLK_EN_SEL_MSK	0xffffffff
++#define PCIE_USB3_PCS_MISC_OSC_DTCT_CONFIG1_REG	0x01e0c628
++#define PCIE_USB3_PCS_MISC_OSC_DTCT_CONFIG1_VAL	0x02
++#define PCIE_USB3_PCS_MISC_OSC_DTCT_CONFIG2_REG	0x01e0c62c
++#define PCIE_USB3_PCS_MISC_OSC_DTCT_CONFIG2_VAL	0x52
++#define PCIE_USB3_PCS_MISC_OSC_DTCT_CONFIG4_REG	0x01e0c634
++#define PCIE_USB3_PCS_MISC_OSC_DTCT_CONFIG4_VAL	0xff
++#define PCIE_USB3_PCS_MISC_OSC_DTCT_CONFIG_MSK	0x000000ff
 +
  struct ath11k_msi_user {
  	char *name;
