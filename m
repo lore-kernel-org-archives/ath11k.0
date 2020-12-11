@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from so254-31.mailgun.net ([198.61.254.31])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1knmKt-0006lf-AK
+ id 1knmKq-0006l4-VY
  for ath11k@lists.infradead.org; Fri, 11 Dec 2020 17:36:11 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 05/10] ath11k: htc: implement suspend handling
-Date: Fri, 11 Dec 2020 19:35:45 +0200
-Message-Id: <1607708150-21066-6-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH 02/10] ath11k: hif: implement suspend and resume functions
+Date: Fri, 11 Dec 2020 19:35:42 +0200
+Message-Id: <1607708150-21066-3-git-send-email-kvalo@codeaurora.org>
 In-Reply-To: <1607708150-21066-1-git-send-email-kvalo@codeaurora.org>
 References: <1607708150-21066-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -27,112 +27,92 @@ Cc: linux-wireless@vger.kernel.org
 
 From: Carl Huang <cjhuang@codeaurora.org>
 
-When ath11k sends suspend command to firmware, firmware will
-return suspend_complete events and add handlers for those.
+For suspend support add suspend and resume to HIF layer. These ops are optional
+and, for example, AHB bus driver does not need to implement these.
 
 Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
 
 Signed-off-by: Carl Huang <cjhuang@codeaurora.org>
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/core.c |  2 ++
- drivers/net/wireless/ath/ath11k/core.h |  4 ++++
- drivers/net/wireless/ath/ath11k/htc.c  | 23 ++++++++++++++++++++++-
- drivers/net/wireless/ath/ath11k/htc.h  |  4 +++-
- 4 files changed, 31 insertions(+), 2 deletions(-)
+ drivers/net/wireless/ath/ath11k/hif.h | 18 ++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/pci.c | 20 ++++++++++++++++++++
+ 2 files changed, 38 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 3c28e7ad7d51..1c2789ce6239 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -968,6 +968,8 @@ struct ath11k_base *ath11k_core_alloc(struct device *dev, size_t priv_size,
- 	init_waitqueue_head(&ab->qmi.cold_boot_waitq);
- 	INIT_WORK(&ab->restart_work, ath11k_core_restart);
- 	timer_setup(&ab->rx_replenish_retry, ath11k_ce_rx_replenish_retry, 0);
-+	init_completion(&ab->htc_suspend);
-+
- 	ab->dev = dev;
- 	ab->bus_params = *bus_params;
- 	ab->hif.bus = bus;
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 3f539cf52690..689aa24fe28f 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -186,6 +186,7 @@ enum ath11k_dev_flags {
- 	ATH11K_FLAG_UNREGISTERING,
- 	ATH11K_FLAG_REGISTERED,
- 	ATH11K_FLAG_QMI_FAIL,
-+	ATH11K_FLAG_HTC_SUSPEND_COMPLETE,
- };
- 
- enum ath11k_monitor_flags {
-@@ -732,6 +733,9 @@ struct ath11k_base {
- 	u32 num_db_cap;
- 
- 	struct timer_list mon_reap_timer;
-+
-+	struct completion htc_suspend;
-+
- 	/* must be last */
- 	u8 drv_priv[0] __aligned(sizeof(void *));
- };
-diff --git a/drivers/net/wireless/ath/ath11k/htc.c b/drivers/net/wireless/ath/ath11k/htc.c
-index 6b57dc273e0b..059b48ded5cc 100644
---- a/drivers/net/wireless/ath/ath11k/htc.c
-+++ b/drivers/net/wireless/ath/ath11k/htc.c
-@@ -231,6 +231,18 @@ static int ath11k_htc_process_trailer(struct ath11k_htc *htc,
- 	return status;
+diff --git a/drivers/net/wireless/ath/ath11k/hif.h b/drivers/net/wireless/ath/ath11k/hif.h
+index dbe5568916e8..147f1e802ca9 100644
+--- a/drivers/net/wireless/ath/ath11k/hif.h
++++ b/drivers/net/wireless/ath/ath11k/hif.h
+@@ -17,6 +17,8 @@ struct ath11k_hif_ops {
+ 	void (*stop)(struct ath11k_base *sc);
+ 	int (*power_up)(struct ath11k_base *sc);
+ 	void (*power_down)(struct ath11k_base *sc);
++	int (*suspend)(struct ath11k_base *ab);
++	int (*resume)(struct ath11k_base *ab);
+ 	int (*map_service_to_pipe)(struct ath11k_base *sc, u16 service_id,
+ 				   u8 *ul_pipe, u8 *dl_pipe);
+ 	int (*get_user_msi_vector)(struct ath11k_base *ab, char *user_name,
+@@ -56,6 +58,22 @@ static inline void ath11k_hif_power_down(struct ath11k_base *sc)
+ 	sc->hif.ops->power_down(sc);
  }
  
-+static void ath11k_htc_suspend_complete(struct ath11k_base *ab, bool ack)
++static inline int ath11k_hif_suspend(struct ath11k_base *ab)
 +{
-+	ath11k_dbg(ab, ATH11K_DBG_BOOT, "boot suspend complete %d\n", ack);
++	if (ab->hif.ops->suspend)
++		return ab->hif.ops->suspend(ab);
 +
-+	if (ack)
-+		set_bit(ATH11K_FLAG_HTC_SUSPEND_COMPLETE, &ab->dev_flags);
-+	else
-+		clear_bit(ATH11K_FLAG_HTC_SUSPEND_COMPLETE, &ab->dev_flags);
-+
-+	complete(&ab->htc_suspend);
++	return 0;
 +}
 +
- void ath11k_htc_rx_completion_handler(struct ath11k_base *ab,
- 				      struct sk_buff *skb)
++static inline int ath11k_hif_resume(struct ath11k_base *ab)
++{
++	if (ab->hif.ops->resume)
++		return ab->hif.ops->resume(ab);
++
++	return 0;
++}
++
+ static inline u32 ath11k_hif_read32(struct ath11k_base *sc, u32 address)
  {
-@@ -328,8 +340,17 @@ void ath11k_htc_rx_completion_handler(struct ath11k_base *ab,
+ 	return sc->hif.ops->read32(sc, address);
+diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
+index 818e37c32a85..770cefd53290 100644
+--- a/drivers/net/wireless/ath/ath11k/pci.c
++++ b/drivers/net/wireless/ath/ath11k/pci.c
+@@ -913,6 +913,24 @@ static void ath11k_pci_power_down(struct ath11k_base *ab)
+ 	ath11k_pci_sw_reset(ab_pci->ab, false);
+ }
  
- 			complete(&htc->ctl_resp);
- 			break;
-+		case ATH11K_HTC_MSG_SEND_SUSPEND_COMPLETE:
-+			ath11k_htc_suspend_complete(ab, true);
-+			break;
-+		case ATH11K_HTC_MSG_NACK_SUSPEND:
-+			ath11k_htc_suspend_complete(ab, false);
-+			break;
-+		case ATH11K_HTC_MSG_WAKEUP_FROM_SUSPEND_ID:
-+			break;
- 		default:
--			ath11k_warn(ab, "ignoring unsolicited htc ep0 event\n");
-+			ath11k_warn(ab, "ignoring unsolicited htc ep0 event %ld\n",
-+				    FIELD_GET(HTC_MSG_MESSAGEID, msg->msg_svc_id));
- 			break;
- 		}
- 		goto out;
-diff --git a/drivers/net/wireless/ath/ath11k/htc.h b/drivers/net/wireless/ath/ath11k/htc.h
-index 848147cf81ee..6c8a469d7f9d 100644
---- a/drivers/net/wireless/ath/ath11k/htc.h
-+++ b/drivers/net/wireless/ath/ath11k/htc.h
-@@ -65,7 +65,9 @@ enum ath11k_htc_msg_id {
- 	ATH11K_HTC_MSG_CONNECT_SERVICE_RESP_ID = 3,
- 	ATH11K_HTC_MSG_SETUP_COMPLETE_ID       = 4,
- 	ATH11K_HTC_MSG_SETUP_COMPLETE_EX_ID    = 5,
--	ATH11K_HTC_MSG_SEND_SUSPEND_COMPLETE   = 6
-+	ATH11K_HTC_MSG_SEND_SUSPEND_COMPLETE   = 6,
-+	ATH11K_HTC_MSG_NACK_SUSPEND	       = 7,
-+	ATH11K_HTC_MSG_WAKEUP_FROM_SUSPEND_ID  = 8,
- };
- 
- enum ath11k_htc_version {
++static int ath11k_pci_hif_suspend(struct ath11k_base *ab)
++{
++	struct ath11k_pci *ar_pci = ath11k_pci_priv(ab);
++
++	ath11k_mhi_suspend(ar_pci);
++
++	return 0;
++}
++
++static int ath11k_pci_hif_resume(struct ath11k_base *ab)
++{
++	struct ath11k_pci *ar_pci = ath11k_pci_priv(ab);
++
++	ath11k_mhi_resume(ar_pci);
++
++	return 0;
++}
++
+ static void ath11k_pci_kill_tasklets(struct ath11k_base *ab)
+ {
+ 	int i;
+@@ -997,6 +1015,8 @@ static const struct ath11k_hif_ops ath11k_pci_hif_ops = {
+ 	.write32 = ath11k_pci_write32,
+ 	.power_down = ath11k_pci_power_down,
+ 	.power_up = ath11k_pci_power_up,
++	.suspend = ath11k_pci_hif_suspend,
++	.resume = ath11k_pci_hif_resume,
+ 	.irq_enable = ath11k_pci_ext_irq_enable,
+ 	.irq_disable = ath11k_pci_ext_irq_disable,
+ 	.get_msi_address =  ath11k_pci_get_msi_address,
 -- 
 2.7.4
 
