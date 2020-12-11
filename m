@@ -1,12 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from m43-15.mailgun.net ([69.72.43.15])
+Received: from so254-31.mailgun.net ([198.61.254.31])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1knmL0-0006k8-OU
- for ath11k@lists.infradead.org; Fri, 11 Dec 2020 17:36:18 +0000
+ id 1knmL3-0006iw-1A
+ for ath11k@lists.infradead.org; Fri, 11 Dec 2020 17:36:20 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 10/10] ath11k: implement suspend for QCA6390 PCI devices
-Date: Fri, 11 Dec 2020 19:35:50 +0200
-Message-Id: <1607708150-21066-11-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH 06/10] ath11k: dp: stop rx pktlog before suspend
+Date: Fri, 11 Dec 2020 19:35:46 +0200
+Message-Id: <1607708150-21066-7-git-send-email-kvalo@codeaurora.org>
 In-Reply-To: <1607708150-21066-1-git-send-email-kvalo@codeaurora.org>
 References: <1607708150-21066-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -27,274 +27,122 @@ Cc: linux-wireless@vger.kernel.org
 
 From: Carl Huang <cjhuang@codeaurora.org>
 
-Now that all the needed pieces are in place implement suspend support QCA6390
-PCI devices. All other devices will return -EOPNOTSUPP during suspend. The
-suspend is implemented by switching the firmware to WoW mode during suspend, so
-the firmware will be running on low power mode while host is in suspend.
-
-At the moment we are not able to shutdown and fully power off the device due to
-bugs in MHI subsystem, so WoW mode is a workaround for the time being.
-
-During suspend we enable WoW mode, disable CE irq and DP irq, then put MHI to
-suspend state.  During resume, driver resumes MHI firstly, then enables CE irq
-and dp IRQ, and sends WoW wakeup command to firmware.
+Stop dp rx pktlog when entering suspend and reap the mon_status buffer to keep
+it empty. During resume restart the reap timer.
 
 Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
 
 Signed-off-by: Carl Huang <cjhuang@codeaurora.org>
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/ce.c   |  2 +-
- drivers/net/wireless/ath/ath11k/ce.h   |  2 +
- drivers/net/wireless/ath/ath11k/core.c | 85 ++++++++++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/core.h |  2 +
- drivers/net/wireless/ath/ath11k/dp.c   |  2 +-
- drivers/net/wireless/ath/ath11k/dp.h   |  1 +
- drivers/net/wireless/ath/ath11k/hw.h   |  1 +
- drivers/net/wireless/ath/ath11k/pci.c  | 31 +++++++++++++
- 8 files changed, 124 insertions(+), 2 deletions(-)
+ drivers/net/wireless/ath/ath11k/dp.h    |  1 +
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 48 +++++++++++++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/dp_rx.h |  3 +++
+ drivers/net/wireless/ath/ath11k/mac.c   |  4 +++
+ 4 files changed, 56 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/ce.c b/drivers/net/wireless/ath/ath11k/ce.c
-index 9d730f8ac816..987c65010272 100644
---- a/drivers/net/wireless/ath/ath11k/ce.c
-+++ b/drivers/net/wireless/ath/ath11k/ce.c
-@@ -195,7 +195,7 @@ static bool ath11k_ce_need_shadow_fix(int ce_id)
- 	return false;
- }
- 
--static void ath11k_ce_stop_shadow_timers(struct ath11k_base *ab)
-+void ath11k_ce_stop_shadow_timers(struct ath11k_base *ab)
- {
- 	int i;
- 
-diff --git a/drivers/net/wireless/ath/ath11k/ce.h b/drivers/net/wireless/ath/ath11k/ce.h
-index 269b599ac0b0..d6eeef919349 100644
---- a/drivers/net/wireless/ath/ath11k/ce.h
-+++ b/drivers/net/wireless/ath/ath11k/ce.h
-@@ -190,4 +190,6 @@ int ath11k_ce_map_service_to_pipe(struct ath11k_base *ab, u16 service_id,
- int ath11k_ce_attr_attach(struct ath11k_base *ab);
- void ath11k_ce_get_shadow_config(struct ath11k_base *ab,
- 				 u32 **shadow_cfg, u32 *shadow_cfg_len);
-+void ath11k_ce_stop_shadow_timers(struct ath11k_base *ab);
-+
- #endif
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 451748fa8fff..b97c38b9a270 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -13,6 +13,7 @@
- #include "dp_rx.h"
- #include "debug.h"
- #include "hif.h"
-+#include "wow.h"
- 
- unsigned int ath11k_debug_mask;
- EXPORT_SYMBOL(ath11k_debug_mask);
-@@ -66,6 +67,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.supports_shadow_regs = false,
- 		.idle_ps = false,
- 		.cold_boot_calib = true,
-+		.supports_suspend = false,
- 	},
- 	{
- 		.hw_rev = ATH11K_HW_IPQ6018_HW10,
-@@ -103,6 +105,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.supports_shadow_regs = false,
- 		.idle_ps = false,
- 		.cold_boot_calib = true,
-+		.supports_suspend = false,
- 	},
- 	{
- 		.name = "qca6390 hw2.0",
-@@ -139,9 +142,91 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.supports_shadow_regs = true,
- 		.idle_ps = true,
- 		.cold_boot_calib = false,
-+		.supports_suspend = true,
- 	},
- };
- 
-+int ath11k_core_suspend(struct ath11k_base *ab)
-+{
-+	int ret;
-+
-+	if (!ab->hw_params.supports_suspend)
-+		return -EOPNOTSUPP;
-+
-+	/* TODO: there can frames in queues so for now add delay as a hack.
-+	 * Need to implement to handle and remove this delay.
-+	 */
-+	msleep(500);
-+
-+	ret = ath11k_dp_rx_pktlog_stop(ab, true);
-+	if (ret) {
-+		ath11k_warn(ab, "failed to stop dp rx (and timer) pktlog during suspend: %d\n",
-+			    ret);
-+		return ret;
-+	}
-+
-+	ret = ath11k_wow_enable(ab);
-+	if (ret) {
-+		ath11k_warn(ab, "failed to enable wow during suspend: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = ath11k_dp_rx_pktlog_stop(ab, false);
-+	if (ret) {
-+		ath11k_warn(ab, "failed to stop dp rx pktlog during suspend: %d\n",
-+			    ret);
-+		return ret;
-+	}
-+
-+	ath11k_ce_stop_shadow_timers(ab);
-+	ath11k_dp_stop_shadow_timers(ab);
-+
-+	ath11k_hif_irq_disable(ab);
-+	ath11k_hif_ce_irq_disable(ab);
-+
-+	ret = ath11k_hif_suspend(ab);
-+	if (!ret) {
-+		ath11k_warn(ab, "failed to suspend hif: %d\n", ret);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL(ath11k_core_suspend);
-+
-+int ath11k_core_resume(struct ath11k_base *ab)
-+{
-+	int ret;
-+
-+	if (!ab->hw_params.supports_suspend)
-+		return -EOPNOTSUPP;
-+
-+	ret = ath11k_hif_resume(ab);
-+	if (ret) {
-+		ath11k_warn(ab, "failed to resume hif during resume: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ath11k_hif_ce_irq_enable(ab);
-+	ath11k_hif_irq_enable(ab);
-+
-+	ret = ath11k_dp_rx_pktlog_start(ab);
-+	if (ret) {
-+		ath11k_warn(ab, "failed to start rx pktlog during resume: %d\n",
-+			    ret);
-+		return ret;
-+	}
-+
-+	ret = ath11k_wow_wakeup(ab);
-+	if (ret) {
-+		ath11k_warn(ab, "failed to wakeup wow during resume: %d\n", ret);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL(ath11k_core_resume);
-+
- int ath11k_core_check_dt(struct ath11k_base *ab)
- {
- 	size_t max_len = sizeof(ab->qmi.target.bdf_ext);
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index ba8f2222169d..799bf3de1117 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -897,6 +897,8 @@ void ath11k_core_free_bdf(struct ath11k_base *ab, struct ath11k_board_data *bd);
- int ath11k_core_check_dt(struct ath11k_base *ath11k);
- 
- void ath11k_core_halt(struct ath11k *ar);
-+int ath11k_core_resume(struct ath11k_base *ab);
-+int ath11k_core_suspend(struct ath11k_base *ab);
- 
- const struct firmware *ath11k_core_firmware_request(struct ath11k_base *ab,
- 						    const char *filename);
-diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
-index f977056ae5e8..04f6c4e0658b 100644
---- a/drivers/net/wireless/ath/ath11k/dp.c
-+++ b/drivers/net/wireless/ath/ath11k/dp.c
-@@ -304,7 +304,7 @@ int ath11k_dp_srng_setup(struct ath11k_base *ab, struct dp_srng *ring,
- 	return 0;
- }
- 
--static void ath11k_dp_stop_shadow_timers(struct ath11k_base *ab)
-+void ath11k_dp_stop_shadow_timers(struct ath11k_base *ab)
- {
- 	int i;
- 
 diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
-index 1d9e2d6de3ae..ee768ccce46e 100644
+index d4fd02375fad..1d9e2d6de3ae 100644
 --- a/drivers/net/wireless/ath/ath11k/dp.h
 +++ b/drivers/net/wireless/ath/ath11k/dp.h
-@@ -1641,5 +1641,6 @@ void ath11k_dp_shadow_stop_timer(struct ath11k_base *ab,
- void ath11k_dp_shadow_init_timer(struct ath11k_base *ab,
- 				 struct ath11k_hp_update_timer *update_timer,
- 				 u32 interval, u32 ring_id);
-+void ath11k_dp_stop_shadow_timers(struct ath11k_base *ab);
+@@ -40,6 +40,7 @@ struct dp_rx_tid {
  
- #endif
-diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
-index f33a458a465f..8af0034fdb05 100644
---- a/drivers/net/wireless/ath/ath11k/hw.h
-+++ b/drivers/net/wireless/ath/ath11k/hw.h
-@@ -156,6 +156,7 @@ struct ath11k_hw_params {
- 	bool supports_shadow_regs;
- 	bool idle_ps;
- 	bool cold_boot_calib;
-+	bool supports_suspend;
- };
+ #define DP_REO_DESC_FREE_THRESHOLD  64
+ #define DP_REO_DESC_FREE_TIMEOUT_MS 1000
++#define DP_MON_PURGE_TIMEOUT_MS     100
+ #define DP_MON_SERVICE_BUDGET       128
  
- struct ath11k_hw_ops {
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index e720ac6354fc..857647aa57c8 100644
---- a/drivers/net/wireless/ath/ath11k/pci.c
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -1204,12 +1204,43 @@ static void ath11k_pci_shutdown(struct pci_dev *pdev)
- 	ath11k_pci_power_down(ab);
+ struct dp_reo_cache_flush_elem {
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 5de619d5c4e2..205c0f1a40e9 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -274,6 +274,28 @@ static void ath11k_dp_service_mon_ring(struct timer_list *t)
+ 		  msecs_to_jiffies(ATH11K_MON_TIMER_INTERVAL));
  }
  
-+static __maybe_unused int ath11k_pci_pm_suspend(struct device *dev)
++static int ath11k_dp_purge_mon_ring(struct ath11k_base *ab)
 +{
-+	struct ath11k_base *ab = dev_get_drvdata(dev);
-+	int ret;
++	int i, reaped = 0;
++	unsigned long timeout = jiffies + msecs_to_jiffies(DP_MON_PURGE_TIMEOUT_MS);
 +
-+	ret = ath11k_core_suspend(ab);
-+	if (ret)
-+		ath11k_warn(ab, "failed to suspend core: %d\n", ret);
++	do {
++		for (i = 0; i < ab->hw_params.num_rxmda_per_pdev; i++)
++			reaped += ath11k_dp_rx_process_mon_rings(ab, i,
++								 NULL,
++								 DP_MON_SERVICE_BUDGET);
 +
-+	return ret;
++		/* nothing more to reap */
++		if (reaped < DP_MON_SERVICE_BUDGET)
++			return 0;
++
++	} while (time_before(jiffies, timeout));
++
++	ath11k_warn(ab, "dp mon ring purge timeout");
++
++	return -ETIMEDOUT;
 +}
 +
-+static __maybe_unused int ath11k_pci_pm_resume(struct device *dev)
+ /* Returns number of Rx buffers replenished */
+ int ath11k_dp_rxbufs_replenish(struct ath11k_base *ab, int mac_id,
+ 			       struct dp_rxdma_ring *rx_ring,
+@@ -5026,3 +5048,29 @@ int ath11k_dp_rx_pdev_mon_detach(struct ath11k *ar)
+ 	ath11k_dp_mon_link_free(ar);
+ 	return 0;
+ }
++
++int ath11k_dp_rx_pktlog_start(struct ath11k_base *ab)
 +{
-+	struct ath11k_base *ab = dev_get_drvdata(dev);
-+	int ret;
++	/* start reap timer */
++	mod_timer(&ab->mon_reap_timer,
++		  jiffies + msecs_to_jiffies(ATH11K_MON_TIMER_INTERVAL));
 +
-+	ret = ath11k_core_resume(ab);
-+	if (ret)
-+		ath11k_warn(ab, "failed to resume core: %d\n", ret);
-+
-+	return ret;
++	return 0;
 +}
 +
-+static SIMPLE_DEV_PM_OPS(ath11k_pci_pm_ops,
-+			 ath11k_pci_pm_suspend,
-+			 ath11k_pci_pm_resume);
++int ath11k_dp_rx_pktlog_stop(struct ath11k_base *ab, bool stop_timer)
++{
++	int ret;
 +
- static struct pci_driver ath11k_pci_driver = {
- 	.name = "ath11k_pci",
- 	.id_table = ath11k_pci_id_table,
- 	.probe = ath11k_pci_probe,
- 	.remove = ath11k_pci_remove,
- 	.shutdown = ath11k_pci_shutdown,
-+#ifdef CONFIG_PM
-+	.driver.pm = &ath11k_pci_pm_ops,
-+#endif
- };
++	if (stop_timer)
++		del_timer_sync(&ab->mon_reap_timer);
++
++	/* reap all the monitor related rings */
++	ret = ath11k_dp_purge_mon_ring(ab);
++	if (ret) {
++		ath11k_warn(ab, "failed to purge dp mon ring: %d\n", ret);
++		return ret;
++	}
++
++	return 0;
++}
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.h b/drivers/net/wireless/ath/ath11k/dp_rx.h
+index fbea45f79c9b..bf399312b5ff 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.h
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.h
+@@ -91,4 +91,7 @@ int ath11k_dp_rx_pdev_mon_detach(struct ath11k *ar);
+ int ath11k_dp_rx_pdev_mon_attach(struct ath11k *ar);
+ int ath11k_peer_rx_frag_setup(struct ath11k *ar, const u8 *peer_mac, int vdev_id);
  
- static int ath11k_pci_init(void)
++int ath11k_dp_rx_pktlog_start(struct ath11k_base *ab);
++int ath11k_dp_rx_pktlog_stop(struct ath11k_base *ab, bool stop_timer);
++
+ #endif /* ATH11K_DP_RX_H */
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index d08afa111647..5c175e3e09b2 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -4146,6 +4146,10 @@ static int ath11k_mac_config_mon_status_default(struct ath11k *ar, bool enable)
+ 						       &tlv_filter);
+ 	}
+ 
++	if (enable && !ar->ab->hw_params.rxdma1_enable)
++		mod_timer(&ar->ab->mon_reap_timer, jiffies +
++			  msecs_to_jiffies(ATH11K_MON_TIMER_INTERVAL));
++
+ 	return ret;
+ }
+ 
 -- 
 2.7.4
 
