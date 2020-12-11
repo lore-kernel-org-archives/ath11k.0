@@ -1,13 +1,12 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from so254-31.mailgun.net ([198.61.254.31])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1knmKo-0006iw-A5
- for ath11k@lists.infradead.org; Fri, 11 Dec 2020 17:36:04 +0000
+ id 1knmKt-0006lf-AK
+ for ath11k@lists.infradead.org; Fri, 11 Dec 2020 17:36:11 +0000
 From: Kalle Valo <kvalo@codeaurora.org>
-Subject: [PATCH 03/10] ath11k: pci: read select_window register to ensure
- write is finished
-Date: Fri, 11 Dec 2020 19:35:43 +0200
-Message-Id: <1607708150-21066-4-git-send-email-kvalo@codeaurora.org>
+Subject: [PATCH 05/10] ath11k: htc: implement suspend handling
+Date: Fri, 11 Dec 2020 19:35:45 +0200
+Message-Id: <1607708150-21066-6-git-send-email-kvalo@codeaurora.org>
 In-Reply-To: <1607708150-21066-1-git-send-email-kvalo@codeaurora.org>
 References: <1607708150-21066-1-git-send-email-kvalo@codeaurora.org>
 List-Id: <ath11k.lists.infradead.org>
@@ -28,34 +27,112 @@ Cc: linux-wireless@vger.kernel.org
 
 From: Carl Huang <cjhuang@codeaurora.org>
 
-Just when resume from WoW, the write to select_window doesn't take
-effect immediately, so read the register again to ensure the write
-operation is finished.
-
-Another change is to reset select_window to ZERO because this
-register isn't restored after WoW, so the content of this register
-becomes ZERO too.
+When ath11k sends suspend command to firmware, firmware will
+return suspend_complete events and add handlers for those.
 
 Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
 
 Signed-off-by: Carl Huang <cjhuang@codeaurora.org>
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/pci.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/net/wireless/ath/ath11k/core.c |  2 ++
+ drivers/net/wireless/ath/ath11k/core.h |  4 ++++
+ drivers/net/wireless/ath/ath11k/htc.c  | 23 ++++++++++++++++++++++-
+ drivers/net/wireless/ath/ath11k/htc.h  |  4 +++-
+ 4 files changed, 31 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index 770cefd53290..ee1c2edefa20 100644
---- a/drivers/net/wireless/ath/ath11k/pci.c
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -126,6 +126,7 @@ static inline void ath11k_pci_select_window(struct ath11k_pci *ab_pci, u32 offse
- 	if (window != ab_pci->register_window) {
- 		iowrite32(WINDOW_ENABLE_BIT | window,
- 			  ab->mem + WINDOW_REG_ADDRESS);
-+		ioread32(ab->mem + WINDOW_REG_ADDRESS);
- 		ab_pci->register_window = window;
- 	}
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 3c28e7ad7d51..1c2789ce6239 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -968,6 +968,8 @@ struct ath11k_base *ath11k_core_alloc(struct device *dev, size_t priv_size,
+ 	init_waitqueue_head(&ab->qmi.cold_boot_waitq);
+ 	INIT_WORK(&ab->restart_work, ath11k_core_restart);
+ 	timer_setup(&ab->rx_replenish_retry, ath11k_ce_rx_replenish_retry, 0);
++	init_completion(&ab->htc_suspend);
++
+ 	ab->dev = dev;
+ 	ab->bus_params = *bus_params;
+ 	ab->hif.bus = bus;
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index 3f539cf52690..689aa24fe28f 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -186,6 +186,7 @@ enum ath11k_dev_flags {
+ 	ATH11K_FLAG_UNREGISTERING,
+ 	ATH11K_FLAG_REGISTERED,
+ 	ATH11K_FLAG_QMI_FAIL,
++	ATH11K_FLAG_HTC_SUSPEND_COMPLETE,
+ };
+ 
+ enum ath11k_monitor_flags {
+@@ -732,6 +733,9 @@ struct ath11k_base {
+ 	u32 num_db_cap;
+ 
+ 	struct timer_list mon_reap_timer;
++
++	struct completion htc_suspend;
++
+ 	/* must be last */
+ 	u8 drv_priv[0] __aligned(sizeof(void *));
+ };
+diff --git a/drivers/net/wireless/ath/ath11k/htc.c b/drivers/net/wireless/ath/ath11k/htc.c
+index 6b57dc273e0b..059b48ded5cc 100644
+--- a/drivers/net/wireless/ath/ath11k/htc.c
++++ b/drivers/net/wireless/ath/ath11k/htc.c
+@@ -231,6 +231,18 @@ static int ath11k_htc_process_trailer(struct ath11k_htc *htc,
+ 	return status;
  }
+ 
++static void ath11k_htc_suspend_complete(struct ath11k_base *ab, bool ack)
++{
++	ath11k_dbg(ab, ATH11K_DBG_BOOT, "boot suspend complete %d\n", ack);
++
++	if (ack)
++		set_bit(ATH11K_FLAG_HTC_SUSPEND_COMPLETE, &ab->dev_flags);
++	else
++		clear_bit(ATH11K_FLAG_HTC_SUSPEND_COMPLETE, &ab->dev_flags);
++
++	complete(&ab->htc_suspend);
++}
++
+ void ath11k_htc_rx_completion_handler(struct ath11k_base *ab,
+ 				      struct sk_buff *skb)
+ {
+@@ -328,8 +340,17 @@ void ath11k_htc_rx_completion_handler(struct ath11k_base *ab,
+ 
+ 			complete(&htc->ctl_resp);
+ 			break;
++		case ATH11K_HTC_MSG_SEND_SUSPEND_COMPLETE:
++			ath11k_htc_suspend_complete(ab, true);
++			break;
++		case ATH11K_HTC_MSG_NACK_SUSPEND:
++			ath11k_htc_suspend_complete(ab, false);
++			break;
++		case ATH11K_HTC_MSG_WAKEUP_FROM_SUSPEND_ID:
++			break;
+ 		default:
+-			ath11k_warn(ab, "ignoring unsolicited htc ep0 event\n");
++			ath11k_warn(ab, "ignoring unsolicited htc ep0 event %ld\n",
++				    FIELD_GET(HTC_MSG_MESSAGEID, msg->msg_svc_id));
+ 			break;
+ 		}
+ 		goto out;
+diff --git a/drivers/net/wireless/ath/ath11k/htc.h b/drivers/net/wireless/ath/ath11k/htc.h
+index 848147cf81ee..6c8a469d7f9d 100644
+--- a/drivers/net/wireless/ath/ath11k/htc.h
++++ b/drivers/net/wireless/ath/ath11k/htc.h
+@@ -65,7 +65,9 @@ enum ath11k_htc_msg_id {
+ 	ATH11K_HTC_MSG_CONNECT_SERVICE_RESP_ID = 3,
+ 	ATH11K_HTC_MSG_SETUP_COMPLETE_ID       = 4,
+ 	ATH11K_HTC_MSG_SETUP_COMPLETE_EX_ID    = 5,
+-	ATH11K_HTC_MSG_SEND_SUSPEND_COMPLETE   = 6
++	ATH11K_HTC_MSG_SEND_SUSPEND_COMPLETE   = 6,
++	ATH11K_HTC_MSG_NACK_SUSPEND	       = 7,
++	ATH11K_HTC_MSG_WAKEUP_FROM_SUSPEND_ID  = 8,
+ };
+ 
+ enum ath11k_htc_version {
 -- 
 2.7.4
 
