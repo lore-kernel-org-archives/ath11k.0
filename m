@@ -1,12 +1,18 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
 Received: from so254-31.mailgun.net ([198.61.254.31])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1knbPj-0005Ya-2t
- for ath11k@lists.infradead.org; Fri, 11 Dec 2020 05:56:24 +0000
-From: Carl Huang <cjhuang@codeaurora.org>
-Subject: [PATCH] ath11k: fix crash caused by NULL rx_channel
-Date: Fri, 11 Dec 2020 00:56:13 -0500
-Message-Id: <20201211055613.9310-1-cjhuang@codeaurora.org>
+ id 1knbxZ-0007cd-Pp
+ for ath11k@lists.infradead.org; Fri, 11 Dec 2020 06:31:23 +0000
+From: Kalle Valo <kvalo@codeaurora.org>
+Subject: Re: [PATCH 5/6] ath11k: pci: disable VDD4BLOW
+References: <1607609124-17250-1-git-send-email-kvalo@codeaurora.org>
+ <1607609124-17250-6-git-send-email-kvalo@codeaurora.org>
+ <d9b860d3-4ccc-f16c-9b0c-e0e7a0646e64@eero.com>
+Date: Fri, 11 Dec 2020 08:31:16 +0200
+In-Reply-To: <d9b860d3-4ccc-f16c-9b0c-e0e7a0646e64@eero.com> (Peter Oh's
+ message of "Thu, 10 Dec 2020 14:04:43 -0800")
+Message-ID: <87a6uk97m3.fsf@codeaurora.org>
+MIME-Version: 1.0
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -15,68 +21,29 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
-To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
+To: Peter Oh <peter.oh@eero.com>
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 
-During connect and disconnect stress test, crashed happened
-because ar->rx_channel is NULL. Fix it by checking whether
-ar->rx_channel is NULL.
+Peter Oh <peter.oh@eero.com> writes:
 
-Crash stack is as below:
-RIP: 0010:ath11k_dp_rx_h_ppdu+0x110/0x230 [ath11k]
-[ 5028.808963]  ath11k_dp_rx_wbm_err+0x14a/0x360 [ath11k]
-[ 5028.808970]  ath11k_dp_rx_process_wbm_err+0x41c/0x520 [ath11k]
-[ 5028.808978]  ath11k_dp_service_srng+0x25e/0x2d0 [ath11k]
-[ 5028.808982]  ath11k_pci_ext_grp_napi_poll+0x23/0x80 [ath11k_pci]
-[ 5028.808986]  net_rx_action+0x27e/0x400
-[ 5028.808990]  __do_softirq+0xfd/0x2bb
-[ 5028.808993]  irq_exit+0xa6/0xb0
-[ 5028.808995]  do_IRQ+0x56/0xe0
-[ 5028.808997]  common_interrupt+0xf/0xf
+> On 12/10/20 6:05 AM, Kalle Valo wrote:
+>> From: Carl Huang <cjhuang@codeaurora.org>
+>>
+>> It's recommended to disable VDD4BLOW during initialisation.
+>
+> Can you explain more about "recommended by whom and why"?
 
-Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
+It's coming from the internal teams, I understood the internal driver
+does the same.
 
-Signed-off-by: Carl Huang <cjhuang@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/dp_rx.c | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 2bcaf23f..17c37e2 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -2295,6 +2295,7 @@ static void ath11k_dp_rx_h_ppdu(struct ath11k *ar, struct hal_rx_desc *rx_desc,
- {
- 	u8 channel_num;
- 	u32 center_freq;
-+	struct ieee80211_channel *channel;
- 
- 	rx_status->freq = 0;
- 	rx_status->rate_idx = 0;
-@@ -2315,9 +2316,12 @@ static void ath11k_dp_rx_h_ppdu(struct ath11k *ar, struct hal_rx_desc *rx_desc,
- 		rx_status->band = NL80211_BAND_5GHZ;
- 	} else {
- 		spin_lock_bh(&ar->data_lock);
--		rx_status->band = ar->rx_channel->band;
--		channel_num =
--			ieee80211_frequency_to_channel(ar->rx_channel->center_freq);
-+		channel = ar->rx_channel;
-+		if (channel) {
-+			rx_status->band = channel->band;
-+			channel_num =
-+				ieee80211_frequency_to_channel(channel->center_freq);
-+		}
- 		spin_unlock_bh(&ar->data_lock);
- 		ath11k_dbg_dump(ar->ab, ATH11K_DBG_DATA, NULL, "rx_desc: ",
- 				rx_desc, sizeof(struct hal_rx_desc));
 -- 
-2.7.4
+https://patchwork.kernel.org/project/linux-wireless/list/
 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
