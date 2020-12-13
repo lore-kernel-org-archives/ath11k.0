@@ -1,18 +1,19 @@
 Return-path: <ath11k-bounces+kvalo=adurom.com@lists.infradead.org>
-Received: from mail-oi1-x22d.google.com ([2607:f8b0:4864:20::22d])
+Received: from mx.abraxas.to ([199.167.128.28] helo=abraxas.to)
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1koSzo-0004La-7c
- for ath11k@lists.infradead.org; Sun, 13 Dec 2020 15:09:12 +0000
-Received: by mail-oi1-x22d.google.com with SMTP id d189so16223219oig.11
- for <ath11k@lists.infradead.org>; Sun, 13 Dec 2020 07:09:10 -0800 (PST)
-MIME-Version: 1.0
-References: <CAD_iCC9q9oNNyvKCMSJ-3v41iUjkoFCH4sOub=9sVfJ9uHHvpw@mail.gmail.com>
- <CAD_iCC-dELTdM5p7fc_tyYKCBKdJzT8sxP-PBT28q8h69A61_Q@mail.gmail.com>
-In-Reply-To: <CAD_iCC-dELTdM5p7fc_tyYKCBKdJzT8sxP-PBT28q8h69A61_Q@mail.gmail.com>
-From: Sugandh Huthanahally Mohan <sugandhgowda@gmail.com>
-Date: Sun, 13 Dec 2020 16:08:57 +0100
-Message-ID: <CAD_iCC8+jv=fVw9-V0bO+XsmEHoE_kVn5V-SE=AXK1HzPiq9Zw@mail.gmail.com>
-Subject: Re: ath11k support for QCA6390 and IPQ8074 in AP mode with TWT and FTM
+ id 1koX4L-0006o4-2M
+ for ath11k@lists.infradead.org; Sun, 13 Dec 2020 19:30:09 +0000
+Received: from [192.168.2.136] (pool-71-184-134-153.bstnma.fios.verizon.net
+ [71.184.134.153])
+ (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+ (No client certificate requested) (Authenticated sender: alan)
+ by abraxas.to (Postfix) with ESMTPSA id E24ED28D465A
+ for <ath11k@lists.infradead.org>; Sun, 13 Dec 2020 14:22:49 -0500 (EST)
+From: alan <alan@abraxas.to>
+Mime-Version: 1.0 (Mac OS X Mail 12.2 \(3445.102.3\))
+Subject: Re: Re: ath11k/mhi backtraces on shutdown with linux-next
+Message-Id: <01AD5E2A-6A3A-4F67-B050-70859285A4C0@abraxas.to>
+Date: Sun, 13 Dec 2020 14:22:48 -0500
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=unsubscribe>
@@ -21,47 +22,20 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+kvalo=adurom.com@lists.infradead.org
 To: ath11k@lists.infradead.org
 
-Hello All,
-
-Could anyone please give insights into the question I have asked?
-Thanks in advance.
-
-Thanks and Regards,
-Sugandh
-
-On Thu, Dec 3, 2020 at 1:25 PM Sugandh Huthanahally Mohan
-<sugandhgowda@gmail.com> wrote:
->
-> > We are trying to bring up a WiFi6 AP and need some information.
->
-> > 1. Does ath11k support Qualcomm SoC's QCA6390 and IPQ8074 in AP mode?
-> > 2. Does ath11k provide support for the WiFi6 feature  TWT.?
-> > 3. Does ath drivers support Fine Time Measurement(FTM) ?
->
-> > Thanks in advance
-> Adding to the previous query.
-> If ath drivers supports FTM, does FTM run on 802.11ax?
->
-> On Thu, Dec 3, 2020 at 1:13 PM Sugandh Huthanahally Mohan
-> <sugandhgowda@gmail.com> wrote:
-> >
-> > Hello All,
-> >
-> > We are trying to bring up a WiFi6 AP and need some information.
-> >
-> > 1. Does ath11k support Qualcomm SoC's QCA6390 and IPQ8074 in AP mode?
-> > 2. Does ath11k provide support for the WiFi6 feature  TWT.?
-> > 3. Does ath drivers support Fine Time Measurement(FTM) ?
-> >
-> > Thanks in advance
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+SGVsbG8gS2FsbGUsCgpJIHdhbnQgdG8gdGhhbmsgeW91IGZvciB5b3VyIHdvcmsgb24gYXRoMTFr
+LiAgSSBqdXN0IGJvdWdodCBhIERlbGwgWFBTIDEzIDkzMTAgd2l0aCB0aGUgQVg1MDAgd2lyZWxl
+c3MgY2hpcCBhbmQgd2FzIGRpc2FwcG9pbnRlZCB0byBkaXNjb3ZlciBpdCBkaWRu4oCZdCB3b3Jr
+IHdpdGggbGludXguCkkgaGF2ZSBiZWVuIGZvbGxvd2luZyB0aGUgYXRoMTFrIG1haWxpbmcgbGlz
+dCBhbmQgaXQgYXBwZWFycyB0aGF0IHlvdSBhcmUgZ2V0dGluZyBjbG9zZSB0byBhIHNvbHV0aW9u
+IC0gdGhhdCBvYnNlcnZhdGlvbiBhYm91dCB0aGUgTTIgc3RhdGUgaW4gdGhlIE1ISSBsb29rcyB2
+ZXJ5IHByb21pc2luZy4KClRoYW5rcywKQWxhbiBCbGFuY2hhcmQKVG9wc2ZpZWxkLCBNYXNzYWNo
+dXNldHRzClVTQQoKUFMuICBJIHZpc2l0ZWQgVGFtcGVyZSBvbmNlLCBpbiAxOTk1LiAgSSBnYXZl
+IGEgdGFsayBhdCB0aGUgU2NhbmRpYyBSb3NlbmRhaGwgaW4gUHl5bmlra2kuICBCZWF1dGlmdWwg
+cGxhY2UhCgoKCi0tIAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0cy5pbmZyYWRlYWQu
+b3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vYXRoMTFrCg==
