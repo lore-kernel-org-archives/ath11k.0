@@ -2,81 +2,79 @@ Return-Path: <SRS0=Dsd9=FU=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.6 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	TRACKER_ID,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4842DC4361B
-	for <ath11k@archiver.kernel.org>; Wed, 16 Dec 2020 05:41:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D56C4C4361B
+	for <ath11k@archiver.kernel.org>; Wed, 16 Dec 2020 07:04:16 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E50A823123
-	for <ath11k@archiver.kernel.org>; Wed, 16 Dec 2020 05:41:24 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E50A823123
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 5E1B422EBF
+	for <ath11k@archiver.kernel.org>; Wed, 16 Dec 2020 07:04:15 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5E1B422EBF
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
-	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=cUwf7XJnDvATWYCNAkmYhFoUuM/9HPLcTlp21Z7Q+ro=; b=c90SAukHEBjyR+0WPnuHLk5xs
-	tO1a8YpedjrtT3o0hO5WiUe719CM1OT2GRVaUrLOjpgBrQhuWV/4kSWnyInhgUNyoCeWRpnth9k9w
-	Nw1zZSBf2++jwvageZPBCxqlKXZ4/fZJjuofc6bglzPt9pkGwPLa3fYmW06GfW0I+yVdPGPH7KAdq
-	I1brj7DOHY0QwqYe2BHBy1YzkgGgatsc8t0wh07jsyIeWuSqgW1rgRForGlIxoP8VfzYroJNruATD
-	Gp05fLNVRuK2Trrd0Q+pR7iDb2bXUmwLan8Q/d6MWZD1Ckrhn3K2lXNaSZRJ0oLhfOHiyoO1+J7AR
-	WTVvLwIUQ==;
+	Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe
+	:List-Id:MIME-Version:Message-ID:Date:Subject:To:From:Reply-To:Cc:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=dvF62tG5cVDOKwZzlWsOIvfaeLlKLV68/fT7cHA2WmI=; b=3deDMjQ/RxB7bJyNgI6OGYPm8O
+	7476XQggt7WSGcDUBo9MXLdbgMpEm9imqQX9GaY6603VteLJZJvqtKo/SuTvlaluGbbEDk2tb8Gfh
+	qymMmJRflaprX84h9d/ikURPng8NCeSekMVgnXEml6HiZuiLgQ4dSK5zBFCvvzw4iMX5ja75yKeIZ
+	TySrcWXis00Xc54jTDiZQ6SGExbntdNL2CpRmsLWQPDjMXF5ET/pJ4U8+WPoVDLWukPkAD373q2DE
+	Lgx8M/+BFeR+3FHCnUlvK8DGq++xDepo3qx2Pf+Ypa9VLcYP1kYmDfhc81wTernrQk196nv74Ueif
+	X/Lj1MZA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kpPYv-0000Vn-DB; Wed, 16 Dec 2020 05:41:21 +0000
-Received: from mail-pf1-x436.google.com ([2607:f8b0:4864:20::436])
+	id 1kpQr6-0005DT-8H; Wed, 16 Dec 2020 07:04:12 +0000
+Received: from so254-31.mailgun.net ([198.61.254.31])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kpPYs-0000VG-J4
- for ath11k@lists.infradead.org; Wed, 16 Dec 2020 05:41:19 +0000
-Received: by mail-pf1-x436.google.com with SMTP id d2so15905791pfq.5
- for <ath11k@lists.infradead.org>; Tue, 15 Dec 2020 21:41:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=X0HIKYeScc2vyJWZWSPjJLiARJWHVkKcHistAZIO0ho=;
- b=KB1oehUui34CHq55zhpZVAaXZyGBeq5Ed0rcapLLmmeCBUO7MFCo9KxWkzjnPxWkJK
- aAaogL42jsuoMpMIxkia0/x2ezG8BvBEMn94epPmc9yi6E1UgrbApg9NJLlkdrcb1wR+
- tuj6F52nfJ8SQEl0HEtrNp7OdCHkJI2wA0X7e8Tk+ob2DoF/UTuVwKB6CSH+xrtjD8kj
- m0g5K0dizugf+lfKrdLnzMdQPSPfGGwRek4VFL8S3B5Et1/PaG3M5PaduAf0iKVYDcx+
- kwWBDSrOqM9RUUbxWVxUx22UlMI2kMJgdukmbjr5W28Xet17AQ9BNo5Eg+qF68C/zr5u
- B16w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=X0HIKYeScc2vyJWZWSPjJLiARJWHVkKcHistAZIO0ho=;
- b=ZMyCxKkOZz+7IhiBN6aTb1c51lOwhk0MV51i8w4g2INzv5Fpmkly0NEvfHWp7l0xkh
- Sa6dZIAR+fKjIw+Z25W4JMX5yH+9/PErQgz0QV5YiWuh5XrpcK8PPlk6VXrSFrai9D4P
- 2ttPRQMkKCno8HO8AGf4BM4nMGDyqlOGJAMVQ1NEYqX2EQYiZQdoiVClcn9J00GZyxm4
- ap1k9yycmR+ndq19+4SSLuLWF2noAJ188+za3Mkvn/IMEjG61WE0MmNuWOCqVW+oVz/M
- veO6io2TLySy31wSc/pYzjlXpnIsjQ3EZsMxNx3qTwnkZN0rZtax9db3Vy+F7SfN+t5J
- Suyg==
-X-Gm-Message-State: AOAM532iQ6VNJMTVm5NiWonavGPCjSjM91HILumsOntXwyx9qTi7y0T7
- pnEGTkx84EptQc/UC09aJQnFCpPIWnhe5+ft1oA=
-X-Google-Smtp-Source: ABdhPJwyYAWR6csrxJ98N2FgxePrgBdTcj6BlwrRs/GFk8TamXEZpMcK1tMgN7n4kmOEB1FczBmrlalikB1Mit+Uq60=
-X-Received: by 2002:a05:6a00:22c9:b029:198:15b2:bbd3 with SMTP id
- f9-20020a056a0022c9b029019815b2bbd3mr31100325pfj.64.1608097274766; Tue, 15
- Dec 2020 21:41:14 -0800 (PST)
+ id 1kpQr2-0005C9-BG
+ for ath11k@lists.infradead.org; Wed, 16 Dec 2020 07:04:09 +0000
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
+ q=dns/txt; 
+ s=smtp; t=1608102237; h=Content-Type: MIME-Version: Message-ID: Date:
+ Subject: To: From: Sender;
+ bh=xFnpcIs66mgoI4tzxRmrbTfV3nMvkRMQWfh8wnm6hOM=;
+ b=fh0przar24QOkgzo0JWKXsM/9dnZ9gEymN5h2nJIzqmxoK3CjArCHkDGnB4yp9XRqRuMvzU6
+ yFZZetcio3DJhMQR3X5xd0PJLdB6sY2ps7K3OMQ8FnJUs+pdGAfdTzA9zF9YRtr69QF7D3n2
+ GgqdeN6FXeNOX7uL/U9Bed7F3/E=
+X-Mailgun-Sending-Ip: 198.61.254.31
+X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n08.prod.us-west-2.postgun.com with SMTP id
+ 5fd9b15c93a3d2b1cd349620 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 16 Dec 2020 07:03:56
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+ id B72B0C43462; Wed, 16 Dec 2020 07:03:55 +0000 (UTC)
+Received: from x230.qca.qualcomm.com (88-114-240-156.elisa-laajakaista.fi
+ [88.114.240.156])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested) (Authenticated sender: kvalo)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 59178C433C6;
+ Wed, 16 Dec 2020 07:03:54 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 59178C433C6
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ spf=fail smtp.mailfrom=kvalo@codeaurora.org
+From: Kalle Valo <kvalo@codeaurora.org>
+To: ath10k@lists.infradead.org, ath11k@lists.infradead.org
+Subject: ath10k and ath11k lists added to lore.kernel.org
+Date: Wed, 16 Dec 2020 09:03:51 +0200
+Message-ID: <87ft46grl4.fsf@codeaurora.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
 MIME-Version: 1.0
-References: <87blew3e4q.fsf@codeaurora.org>
- <CAHUdJJXFyNxbf7nBGxw+dsMswcVoxwbQ73U=9=3o+zM7p7kpHg@mail.gmail.com>
-In-Reply-To: <CAHUdJJXFyNxbf7nBGxw+dsMswcVoxwbQ73U=9=3o+zM7p7kpHg@mail.gmail.com>
-From: Stephen Liang <stephenliang7@gmail.com>
-Date: Tue, 15 Dec 2020 21:41:03 -0800
-Message-ID: <CAE+mCOEavJkcsgBvLR1z=kLUEwW9jJzVvi7hoxVrkBYj=pwKSQ@mail.gmail.com>
-Subject: Re: ath11k-qca6390-bringup-202012140938: rebate to v5.10 and MHI M2
- workaround
-To: wi nk <wink@technolu.st>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20201216_004118_663818_DFC629A9 
-X-CRM114-Status: UNSURE (   7.56  )
+X-CRM114-CacheID: sfid-20201216_020408_436694_135B200E 
+X-CRM114-Status: UNSURE (   8.46  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -89,43 +87,30 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Cc: ath11k@lists.infradead.org, Kalle Valo <kvalo@codeaurora.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Uptime has been very good so far at 24 hours, no hangs. I did see a
-backtrace when associating with a different AP, please see:
-https://pastebin.com/raw/5VTAK1mp
+Hi,
 
-This backtrace does not appear to affect functionality and the AP
-associates just fine.
+ath10k and ath11k list archives are now available from lore.kernel.org:
 
-Speedtest.net is giving me 340 mbps down / 185 mbps up, so very good
-throughput. I can do a LAN iperf throughput test later on as well if
-there's interest.
+https://lore.kernel.org/ath10k/
 
-> * name of the bringup branch tag you used
+https://lore.kernel.org/ath11k/
 
-ath11k-qca6390-bringup-202012140938
+They have full archives starting when lists were created (ath10k 2013
+and ath11k 2019). So I recommend using lore archives over
+lists.infradead.org as infradead lost parts of archives during a disk
+crash.
 
-> * if there are other changes in the kernel, patches, reverts etc
+Kalle
 
-Clean copy of Fedora rawhide kernel 5.10.0-0.rc6.20201202git509a15421674.91
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-> * do you use the memmap kernel parameter
-
-No
-
-> * make and model of the laptop/computer (eg. Dell XPS 13 9310)
-
-Dell XPS 9310
-
-> * how much testing you did
-
-Mixed usage, suspend, wake, charge, discharge, etc. WiFi network
-disassociate and associate, etc.
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
