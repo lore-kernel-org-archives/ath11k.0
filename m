@@ -2,79 +2,80 @@ Return-Path: <SRS0=Iy3B=GI=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E451CC433DB
-	for <ath11k@archiver.kernel.org>; Tue,  5 Jan 2021 03:08:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9FC47C433E0
+	for <ath11k@archiver.kernel.org>; Tue,  5 Jan 2021 13:41:10 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A209022573
-	for <ath11k@archiver.kernel.org>; Tue,  5 Jan 2021 03:08:25 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A209022573
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+	by mail.kernel.org (Postfix) with ESMTPS id 55373229C4
+	for <ath11k@archiver.kernel.org>; Tue,  5 Jan 2021 13:41:10 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 55373229C4
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=fzqKfFo5j21MRSxkoHo/gAs7YyliotqaKV0GeYp1nmo=; b=CPiICcvsddGp70WOt1r/GFdtDo
-	SZG7j15FTcm5HhnVl/bHsLvq+7Rtd1dRvrgo7hByli6DXMzFBJst4V3qHDGlp24mb/h4n1+JAchpc
-	nWNdnhXtjmw6MchGuWOEolV8IdnoCEbZ8Kxj5Eh7RzdDdKmm7j6L5eSVa6UBMLcZTqbFJAJrJfIwa
-	ZRKW5AiZA36etI1MWpJa6o94P0GNyXqkguIDYQFagqP4eI6kEk4b/Yv5sQP2yLVVyYImEbGVSpa1L
-	WfZO31kD7JtH1x4X2tRntgledOa4/7ehC3abWkuXoAVbg06dwhtrBmWwO1Epa8x1WmUdgKUsQ/JC0
-	DzTxMOZA==;
+	Content-Type:Cc:Reply-To:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
+	References:MIME-Version:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=2pbwEMSCX7prDMYCDddN5fHkmeOxBS3IvzcKU1Ickz4=; b=Ze4ed39vAXiIMKGGkBGjkLUvi
+	IwRQFPzpJzcljth0Mp9n+ayL+ohQcXkeLYMYPXh3Fa0ryeIoDmBaqbr+hEZBQSFAOjkQTiYg9p1Fe
+	aifOwP9V5mbp/Sc2DXEnLfSVF+ud6jTM+xLw2dc1s+PZRrhwRAzqhgZIVBboowVNhUXK4nIIoVHSP
+	T1h7UcH7E5uIL94fK32705gD+S+Y8ZAn3zI5z1UC5viU8p8CLvKUkByVafZLyYw41KOOQxwx9aK9e
+	p5vbD4hPjv2VMrjNM4Xb4KnOWY4XGjB2Dt9l/CJdjSImgjAWXy5lRh4kCuOGDga31EJW48woRhomf
+	OhJUOIM6w==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kwchp-0008Q0-RV; Tue, 05 Jan 2021 03:08:21 +0000
-Received: from m43-15.mailgun.net ([69.72.43.15])
+	id 1kwmaA-0007Mp-Gt; Tue, 05 Jan 2021 13:41:06 +0000
+Received: from mail-io1-xd32.google.com ([2607:f8b0:4864:20::d32])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kwchK-0007yb-4b
- for ath11k@lists.infradead.org; Tue, 05 Jan 2021 03:07:52 +0000
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
- q=dns/txt; 
- s=smtp; t=1609816071; h=Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=E5vRSnPU8vgOjh0v7w/gEpMKWkN8/JBU7M/qzImgpwg=;
- b=cekGoxiCBrw5j9tblS4FRuWmaM8q9w0xKBz0+yZk5qMAdEBaAJu1PRQacFfoJFluN6jxFpnN
- du0VF/vxYnW4IZGgl73jIDX0ERADcS32tOBM+sZQ7qv6IcJ2hUGqTugENauIuiHgmegDCzw1
- Hfoy7Wf6fUQscB9/BKRF5p01H34=
-X-Mailgun-Sending-Ip: 69.72.43.15
-X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
- 5ff3d7feb100ecf37a7b632f (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 05 Jan 2021 03:07:42
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id DDF93C433C6; Tue,  5 Jan 2021 03:07:41 +0000 (UTC)
-Received: from gongwen-ThinkPad-T420.qca.qualcomm.com (unknown [180.166.53.21])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
- (No client certificate requested) (Authenticated sender: wgong)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 3342DC433ED;
- Tue,  5 Jan 2021 03:07:39 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 3342DC433ED
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- spf=fail smtp.mailfrom=wgong@codeaurora.org
-From: Wen Gong <wgong@codeaurora.org>
-To: ath11k@lists.infradead.org,
-	johannes@sipsolutions.net
-Subject: [PATCH v3 0/2] mac80211: set NSS correct for supported HE-MCS and NSS
- set
-Date: Tue,  5 Jan 2021 11:08:38 +0800
-Message-Id: <1609816120-9411-1-git-send-email-wgong@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
+ id 1kwma7-0007Kp-SA
+ for ath11k@lists.infradead.org; Tue, 05 Jan 2021 13:41:04 +0000
+Received: by mail-io1-xd32.google.com with SMTP id r9so28204877ioo.7
+ for <ath11k@lists.infradead.org>; Tue, 05 Jan 2021 05:40:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:reply-to:from:date:message-id
+ :subject:to:cc;
+ bh=BHYk/pxYuqWXtTS9o1tJecF0BRYBednBn4aqWon7MRE=;
+ b=f45oT3TphGOdr13Q5wNcfJtNJEyemKPHqdZ0QKbP3LMm2FvCwGtgWCli2+NOCGJyKb
+ qxl3SASdQ2nYpXM9GQ7kaUARSRBmBnDwlZQFyvKmcaCugRd6gnC55Ivhe1q5tp9hrUb2
+ V0TEFrFiMO+ePI9mxx6Y9LZXN6/J6DpI5MQaNCF65/nOT9nqFhpnAxkk6aJJb6dEC5Eq
+ 5tgnl9i+5hTf7lFIxJpWf99l4p2sgGcVxuCWcafu7oMh44lCkz1Jw7qcnAbbnSrqcke6
+ BKMHiUk5jY2vCM5Cy7ACEmk6ILMFEGbNnUx2bia9liAdJjLaigGs4RDjLCXsUiPCLq7Z
+ Nh5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
+ :from:date:message-id:subject:to:cc;
+ bh=BHYk/pxYuqWXtTS9o1tJecF0BRYBednBn4aqWon7MRE=;
+ b=kAQZDwo2dJipV3DbGFZ2iiCR6wStcWKhfdhTEYjWfm8NAeGIiBRQ+z13WyQzWUoykd
+ ByoThoOVE0YwbUVsCR+tqddnpWgurb9lgMq8tGUlbFl3nzCKpTr2TUcVLh4Qd7YHpX8X
+ Yf68lTigozYZhIVkD+2bs3XLpoVpveA1vYSt/XMkD9CXxb8m+/PKsCF01dKAd4Dy8f2j
+ 8ldaAs9KX3IHNyZhWY1UT+dKgAHFXMLq7k7+nSDu2CA6qItVjEGLTKNapeXBJ2mZ2BiQ
+ N1byoqnXWTl3gTn4TNdry0/R3tv0YrNcSbbw+zTrueLTAqJu4nec81avge9wXZO4qd2Z
+ VVJg==
+X-Gm-Message-State: AOAM533btNbwlETMLTunOyjV9IDUnZTI8qtVtGuuyaMWziGDvF8tIblz
+ +H78eVvXU40AK/Alp5WKWMJGtBNCm6Lp5+llRb4=
+X-Google-Smtp-Source: ABdhPJwq7X8S7MO/f/miviSdav6uUhMpS9nxePG0fjQ0N/eZXkPfF9K/QkEl8ceH1xFLD+W74C85AbuZgG2uR6WEwqw=
+X-Received: by 2002:a6b:92c4:: with SMTP id u187mr61812978iod.57.1609854047932; 
+ Tue, 05 Jan 2021 05:40:47 -0800 (PST)
+MIME-Version: 1.0
+References: <CAM+r-RhxY4TA4zPm6e6ah9RWdBY67J=5oRS3+=+EQMomKa10QQ@mail.gmail.com>
+ <CA+icZUUM8cPUvwVRFqodZxNs=4pVaBJGCWu6mL=9T5tym_OmeA@mail.gmail.com>
+In-Reply-To: <CA+icZUUM8cPUvwVRFqodZxNs=4pVaBJGCWu6mL=9T5tym_OmeA@mail.gmail.com>
+From: Sedat Dilek <sedat.dilek@gmail.com>
+Date: Tue, 5 Jan 2021 14:40:36 +0100
+Message-ID: <CA+icZUX7+bOgqPTtwNjXO4PCvjAm9T7akWvDxV47QPMR2auiSQ@mail.gmail.com>
+Subject: Re: wireless wiki: ath11k missing in drivers page
+To: Kalle Valo <kvalo@codeaurora.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210104_220751_770883_B09D6321 
-X-CRM114-Status: UNSURE (   8.24  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20210105_084103_941977_444191BB 
+X-CRM114-Status: GOOD (  11.09  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,31 +87,38 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Cc: linux-wireless@vger.kernel.org, wgong@codeaurora.org
-MIME-Version: 1.0
+Reply-To: sedat.dilek@gmail.com
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-The NSS number should be the intersection of peer and own capbility.
+On Sun, Jan 3, 2021 at 1:50 AM Sedat Dilek <sedat.dilek@gmail.com> wrote:
+>
+> Hi,
+>
+> recently someone asked about issues with ath11k devices.
+>
+> So, I checked the wireless wiki pages.
+>
+> In the drivers overview [1] ath10k is listed and linked [2] but not ath11k.
+> Smart enough I found [3].
+>
+> Can you or someone else add the link to athk11 in [1]?
+>
+> Thanks.
+>
+> Regards,
+> - Sedat -
+>
+> [1] https://wireless.wiki.kernel.org/en/users/drivers
+> [2] https://wireless.wiki.kernel.org/en/users/drivers/ath10k
+> [3] https://wireless.wiki.kernel.org/en/users/drivers/ath11k
 
-v3: added "mac80211: remove NSS number of 160MHz if not support 160MHz for HE"
+Thanks to whomever fixed the drivers overview page.
 
-v2: fix build warning
-
-Wen Gong (2):
-  mac80211: remove NSS number of 160MHz if not support 160MHz for HE
-  mac80211: do intersection with he mcs and nss set of peer and own
-
- net/mac80211/he.c          | 94 ++++++++++++++++++++++++++++++++++++++
- net/mac80211/ieee80211_i.h |  5 ++
- net/mac80211/vht.c         |  9 +++-
- 3 files changed, 107 insertions(+), 1 deletion(-)
-
--- 
-2.23.0
-
+- sed@ -
 
 -- 
 ath11k mailing list
