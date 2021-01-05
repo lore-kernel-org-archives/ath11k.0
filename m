@@ -2,64 +2,63 @@ Return-Path: <SRS0=Iy3B=GI=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-17.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-12.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A9C0AC433E6
-	for <ath11k@archiver.kernel.org>; Tue,  5 Jan 2021 03:08:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E451CC433DB
+	for <ath11k@archiver.kernel.org>; Tue,  5 Jan 2021 03:08:25 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 665C122573
-	for <ath11k@archiver.kernel.org>; Tue,  5 Jan 2021 03:08:24 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 665C122573
+	by mail.kernel.org (Postfix) with ESMTPS id A209022573
+	for <ath11k@archiver.kernel.org>; Tue,  5 Jan 2021 03:08:25 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A209022573
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:References:In-Reply-To:Message-Id:Date:Subject:To:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=5IneeaGn/y025f2itXemOdGym7U7DHQp97Raz6CDC4Y=; b=Ug6eHEW2KtJjpF31ks/rhL5L+Q
-	hz21R6kkg92oUiIKjH6rd9TD+07wfEd3aO5hAkZtKMET5kBALbhmUjp8t4bhl3d8seQt7VylxpsZA
-	W82xg0KvOUmiGVwRCZqN0OFqjnNWQJPlxL9Di/8aDf/ruLKzigf4fVe2644n6dEfjptyQkI6oRogk
-	a4v7+aotNavkVXCdvqNdaq9//6Ic/R83IeX5b17TECeTNV5Pxm0EDRhN0XKI4/MFFM88MPE1/Uk1Q
-	DeMFIvyH6o2y2EmrmAtU6H2N2QhuJjZ1aKzmVYDC27DlwOhdJoBSKc+O9bSSeiLNXu8j3yflDyWDe
-	CI9wZMSA==;
+	List-Unsubscribe:List-Id:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=fzqKfFo5j21MRSxkoHo/gAs7YyliotqaKV0GeYp1nmo=; b=CPiICcvsddGp70WOt1r/GFdtDo
+	SZG7j15FTcm5HhnVl/bHsLvq+7Rtd1dRvrgo7hByli6DXMzFBJst4V3qHDGlp24mb/h4n1+JAchpc
+	nWNdnhXtjmw6MchGuWOEolV8IdnoCEbZ8Kxj5Eh7RzdDdKmm7j6L5eSVa6UBMLcZTqbFJAJrJfIwa
+	ZRKW5AiZA36etI1MWpJa6o94P0GNyXqkguIDYQFagqP4eI6kEk4b/Yv5sQP2yLVVyYImEbGVSpa1L
+	WfZO31kD7JtH1x4X2tRntgledOa4/7ehC3abWkuXoAVbg06dwhtrBmWwO1Epa8x1WmUdgKUsQ/JC0
+	DzTxMOZA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kwcho-0008Oz-Nu; Tue, 05 Jan 2021 03:08:20 +0000
+	id 1kwchp-0008Q0-RV; Tue, 05 Jan 2021 03:08:21 +0000
 Received: from m43-15.mailgun.net ([69.72.43.15])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kwchG-0007zu-52
- for ath11k@lists.infradead.org; Tue, 05 Jan 2021 03:07:47 +0000
+ id 1kwchK-0007yb-4b
+ for ath11k@lists.infradead.org; Tue, 05 Jan 2021 03:07:52 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1609816066; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=T3sRsCklDqwEnhFENfjHn40k0ckNHWhDRrRwtrFF/hc=;
- b=clRdVpomT/tE/QshLr+dp5YgAiCicOY/ezgTQqNZuIhG4TE/encpoqyMaplKAtQaxN4irEQ7
- 4lD3jhD55j81hNKX6eyWYWJh9SQqyzvwR0p5e9ByEZ4nVL+KNZCpIabW7i5YFmPMJQJRG8Xn
- WqmWCj2CLmGGa2T9h5Su62VREqU=
+ s=smtp; t=1609816071; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=E5vRSnPU8vgOjh0v7w/gEpMKWkN8/JBU7M/qzImgpwg=;
+ b=cekGoxiCBrw5j9tblS4FRuWmaM8q9w0xKBz0+yZk5qMAdEBaAJu1PRQacFfoJFluN6jxFpnN
+ du0VF/vxYnW4IZGgl73jIDX0ERADcS32tOBM+sZQ7qv6IcJ2hUGqTugENauIuiHgmegDCzw1
+ Hfoy7Wf6fUQscB9/BKRF5p01H34=
 X-Mailgun-Sending-Ip: 69.72.43.15
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
- 5ff3d8013d84969114d32dda (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 05 Jan 2021 03:07:45
+ smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
+ 5ff3d7feb100ecf37a7b632f (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 05 Jan 2021 03:07:42
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 7698AC43461; Tue,  5 Jan 2021 03:07:45 +0000 (UTC)
+ id DDF93C433C6; Tue,  5 Jan 2021 03:07:41 +0000 (UTC)
 Received: from gongwen-ThinkPad-T420.qca.qualcomm.com (unknown [180.166.53.21])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
  (No client certificate requested) (Authenticated sender: wgong)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 855AAC433C6;
- Tue,  5 Jan 2021 03:07:43 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 855AAC433C6
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 3342DC433ED;
+ Tue,  5 Jan 2021 03:07:39 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 3342DC433ED
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
@@ -67,16 +66,15 @@ Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
 From: Wen Gong <wgong@codeaurora.org>
 To: ath11k@lists.infradead.org,
 	johannes@sipsolutions.net
-Subject: [PATCH v3 2/2] mac80211: do intersection with he mcs and nss set of
- peer and own
-Date: Tue,  5 Jan 2021 11:08:40 +0800
-Message-Id: <1609816120-9411-3-git-send-email-wgong@codeaurora.org>
+Subject: [PATCH v3 0/2] mac80211: set NSS correct for supported HE-MCS and NSS
+ set
+Date: Tue,  5 Jan 2021 11:08:38 +0800
+Message-Id: <1609816120-9411-1-git-send-email-wgong@codeaurora.org>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1609816120-9411-1-git-send-email-wgong@codeaurora.org>
-References: <1609816120-9411-1-git-send-email-wgong@codeaurora.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210104_220746_298865_3FD3E7B1 
-X-CRM114-Status: GOOD (  15.47  )
+X-CRM114-CacheID: sfid-20210104_220751_770883_B09D6321 
+X-CRM114-Status: UNSURE (   8.24  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,157 +93,21 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-For VHT capbility, it has intersection of mcs and nss for peer in
-function ieee80211_vht_cap_ie_to_sta_vht_cap. For HE capbility,
-it does not have intersection.
+The NSS number should be the intersection of peer and own capbility.
 
-This patch is do intersection for HE capbility.
+v3: added "mac80211: remove NSS number of 160MHz if not support 160MHz for HE"
 
-Signed-off-by: Wen Gong <wgong@codeaurora.org>
----
+v2: fix build warning
+
+Wen Gong (2):
+  mac80211: remove NSS number of 160MHz if not support 160MHz for HE
+  mac80211: do intersection with he mcs and nss set of peer and own
+
  net/mac80211/he.c          | 94 ++++++++++++++++++++++++++++++++++++++
  net/mac80211/ieee80211_i.h |  5 ++
- 2 files changed, 99 insertions(+)
+ net/mac80211/vht.c         |  9 +++-
+ 3 files changed, 107 insertions(+), 1 deletion(-)
 
-diff --git a/net/mac80211/he.c b/net/mac80211/he.c
-index cc26f239838b..1850f9899726 100644
---- a/net/mac80211/he.c
-+++ b/net/mac80211/he.c
-@@ -52,6 +52,59 @@ ieee80211_update_from_he_6ghz_capa(const struct ieee80211_he_6ghz_capa *he_6ghz_
- 	sta->sta.he_6ghz_capa = *he_6ghz_capa;
- }
- 
-+void
-+ieee80211_he_mcs_disable(u16 *he_mcs)
-+{
-+	u32 i;
-+
-+	for (i = 0; i < 8; i++)
-+		*he_mcs |= cpu_to_le16(IEEE80211_HE_MCS_NOT_SUPPORTED << i * 2);
-+}
-+
-+void
-+ieee80211_he_mcs_intersection(u16 *he_own_rx, u16 *he_peer_rx,
-+			      u16 *he_own_tx, u16 *he_peer_tx)
-+{
-+	u32 i;
-+	u16 own_rx, own_tx, peer_rx, peer_tx;
-+
-+	for (i = 0; i < 8; i++) {
-+		own_rx = le16_to_cpu(*he_own_rx);
-+		own_rx = (own_rx >> i * 2) & IEEE80211_HE_MCS_NOT_SUPPORTED;
-+
-+		own_tx = le16_to_cpu(*he_own_tx);
-+		own_tx = (own_tx >> i * 2) & IEEE80211_HE_MCS_NOT_SUPPORTED;
-+
-+		peer_rx = le16_to_cpu(*he_peer_rx);
-+		peer_rx = (peer_rx >> i * 2) & IEEE80211_HE_MCS_NOT_SUPPORTED;
-+
-+		peer_tx = le16_to_cpu(*he_peer_tx);
-+		peer_tx = (peer_tx >> i * 2) & IEEE80211_HE_MCS_NOT_SUPPORTED;
-+
-+		if (peer_tx != IEEE80211_HE_MCS_NOT_SUPPORTED) {
-+			if (own_rx == IEEE80211_HE_MCS_NOT_SUPPORTED)
-+				peer_tx = IEEE80211_HE_MCS_NOT_SUPPORTED;
-+			else if (own_rx < peer_tx)
-+				peer_tx = own_rx;
-+		}
-+
-+		if (peer_rx != IEEE80211_HE_MCS_NOT_SUPPORTED) {
-+			if (own_tx == IEEE80211_HE_MCS_NOT_SUPPORTED)
-+				peer_rx = IEEE80211_HE_MCS_NOT_SUPPORTED;
-+			else if (own_tx < peer_rx)
-+				peer_rx = own_tx;
-+		}
-+
-+		*he_peer_rx &=
-+			~cpu_to_le16(IEEE80211_HE_MCS_NOT_SUPPORTED << i * 2);
-+		*he_peer_rx |= cpu_to_le16(peer_rx << i * 2);
-+
-+		*he_peer_tx &=
-+			~cpu_to_le16(IEEE80211_HE_MCS_NOT_SUPPORTED << i * 2);
-+		*he_peer_tx |= cpu_to_le16(peer_tx << i * 2);
-+	}
-+}
-+
- void
- ieee80211_he_cap_ie_to_sta_he_cap(struct ieee80211_sub_if_data *sdata,
- 				  struct ieee80211_supported_band *sband,
-@@ -60,10 +113,12 @@ ieee80211_he_cap_ie_to_sta_he_cap(struct ieee80211_sub_if_data *sdata,
- 				  struct sta_info *sta)
- {
- 	struct ieee80211_sta_he_cap *he_cap = &sta->sta.he_cap;
-+	struct ieee80211_sta_he_cap own_he_cap = sband->iftype_data->he_cap;
- 	struct ieee80211_he_cap_elem *he_cap_ie_elem = (void *)he_cap_ie;
- 	u8 he_ppe_size;
- 	u8 mcs_nss_size;
- 	u8 he_total_size;
-+	bool own_160, peer_160, own_80p80, peer_80p80;
- 
- 	memset(he_cap, 0, sizeof(*he_cap));
- 
-@@ -101,6 +156,45 @@ ieee80211_he_cap_ie_to_sta_he_cap(struct ieee80211_sub_if_data *sdata,
- 
- 	if (sband->band == NL80211_BAND_6GHZ && he_6ghz_capa)
- 		ieee80211_update_from_he_6ghz_capa(he_6ghz_capa, sta);
-+
-+	ieee80211_he_mcs_intersection(&own_he_cap.he_mcs_nss_supp.rx_mcs_80,
-+				      &he_cap->he_mcs_nss_supp.rx_mcs_80,
-+				      &own_he_cap.he_mcs_nss_supp.tx_mcs_80,
-+				      &he_cap->he_mcs_nss_supp.tx_mcs_80);
-+
-+	own_160 = !!(own_he_cap.he_cap_elem.phy_cap_info[0] &
-+		  IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_160MHZ_IN_5G);
-+	peer_160 = !!(he_cap->he_cap_elem.phy_cap_info[0] &
-+		  IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_160MHZ_IN_5G);
-+
-+	if (peer_160 && own_160) {
-+		ieee80211_he_mcs_intersection(&own_he_cap.he_mcs_nss_supp.rx_mcs_160,
-+					      &he_cap->he_mcs_nss_supp.rx_mcs_160,
-+					      &own_he_cap.he_mcs_nss_supp.tx_mcs_160,
-+					      &he_cap->he_mcs_nss_supp.tx_mcs_160);
-+	} else if (peer_160 && !own_160) {
-+		ieee80211_he_mcs_disable(&he_cap->he_mcs_nss_supp.rx_mcs_160);
-+		ieee80211_he_mcs_disable(&he_cap->he_mcs_nss_supp.tx_mcs_160);
-+		he_cap->he_cap_elem.phy_cap_info[0] &=
-+			~IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_160MHZ_IN_5G;
-+	}
-+
-+	own_80p80 = !!(own_he_cap.he_cap_elem.phy_cap_info[0] &
-+		  IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_80PLUS80_MHZ_IN_5G);
-+	peer_80p80 = !!(he_cap->he_cap_elem.phy_cap_info[0] &
-+		  IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_80PLUS80_MHZ_IN_5G);
-+
-+	if (peer_80p80 && own_80p80) {
-+		ieee80211_he_mcs_intersection(&own_he_cap.he_mcs_nss_supp.rx_mcs_80p80,
-+					      &he_cap->he_mcs_nss_supp.rx_mcs_80p80,
-+					      &own_he_cap.he_mcs_nss_supp.tx_mcs_80p80,
-+					      &he_cap->he_mcs_nss_supp.tx_mcs_80p80);
-+	} else if (peer_80p80 && !own_80p80) {
-+		ieee80211_he_mcs_disable(&he_cap->he_mcs_nss_supp.rx_mcs_80p80);
-+		ieee80211_he_mcs_disable(&he_cap->he_mcs_nss_supp.tx_mcs_80p80);
-+		he_cap->he_cap_elem.phy_cap_info[0] &=
-+			~IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_80PLUS80_MHZ_IN_5G;
-+	}
- }
- 
- void
-diff --git a/net/mac80211/ieee80211_i.h b/net/mac80211/ieee80211_i.h
-index 2a21226fb518..93c8e8d0b9e3 100644
---- a/net/mac80211/ieee80211_i.h
-+++ b/net/mac80211/ieee80211_i.h
-@@ -1915,6 +1915,11 @@ ieee80211_sta_rx_bw_to_chan_width(struct sta_info *sta);
- 
- /* HE */
- void
-+ieee80211_he_mcs_disable(u16 *he_mcs);
-+void
-+ieee80211_he_mcs_intersection(u16 *he_own_rx, u16 *he_peer_rx,
-+			      u16 *he_own_tx, u16 *he_peer_tx);
-+void
- ieee80211_he_cap_ie_to_sta_he_cap(struct ieee80211_sub_if_data *sdata,
- 				  struct ieee80211_supported_band *sband,
- 				  const u8 *he_cap_ie, u8 he_cap_len,
 -- 
 2.23.0
 
