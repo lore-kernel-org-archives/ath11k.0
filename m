@@ -1,83 +1,88 @@
-Return-Path: <SRS0=HVO4=GN=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=Hkj5=GP=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.7 required=3.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E9221C433E0
-	for <ath11k@archiver.kernel.org>; Sun, 10 Jan 2021 20:57:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 86F7FC433DB
+	for <ath11k@archiver.kernel.org>; Tue, 12 Jan 2021 08:13:47 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8CBD1229C4
-	for <ath11k@archiver.kernel.org>; Sun, 10 Jan 2021 20:57:37 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8CBD1229C4
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 276F622D2C
+	for <ath11k@archiver.kernel.org>; Tue, 12 Jan 2021 08:13:47 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 276F622D2C
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=penguintechs.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:In-Reply-To:
-	References:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=P3HQZFRCyguMS/wAnyhNTFDJpq+vXI/EHaIObFaOftc=; b=YgeDPO7idBqXDoX/Lb7aCmL98
-	bgyROYncRomKKPiTmSjnchAj4vChkiUYJvDxW/Fq13rOzA7pLVk8WnoxXg+Lc9iJYkZgxPi0j5AVD
-	sw4rOzKi2xUEI5pJpBz80U5q2qz8weV6mUATkhPNkNQW88fkfZz+dSeQRasLFGRBsZt9KEZCw+X7P
-	GbOIUjAkP5FFTbKJZD1BOZTyvCpu922fMs7NfZa8q54f2H81MHshjrO+PW1xhVO25aMJMRaBoEqQM
-	DSax57KhQmPbH4vWkldKuI60Zzy3vpHBgvMiXpIVkiCfTd2ym/gj7TYJJg2MpfU0hzypcyFM+74fx
-	5pW2hmdIQ==;
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Date:Message-ID:Subject:From:To:Reply-To:Cc:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=yVtSFaHMD4XGvvVZHKOJgV0PScY6VeKW3qxpftVOHb4=; b=GL55uj66yVzqiUF4Z3L/el4GV8
+	EP//oZ7AkmLNj0JpgTOVKf8Ysel4fT7xPK4Wi5US66whBoikHTn5EF0U5lVsL5zJIBkk4B6XYV3NV
+	PcYaEEvm/3SNnwWHCqGZyMemGvfBvR8rhgp4PQtv1HsYnMCYPMWR2At8Pigd+TIH4L/uhBArWEP0q
+	yxZBVBoHZlvyWlQt/p40KJUlh3KaINZ/jKjvFqVCh5CXF6X+y4p6AeveVlC11nwiZOHh8FnmpWthK
+	on9hwjy/08ymmrvl4o0rPP/xBw+FGwr6SYeWlilZqt1eAlISeLQ0v+2LY49Y7yvQcPVfd0tgh75gK
+	5ma3kSbQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1kyhmG-00044Q-Iq; Sun, 10 Jan 2021 20:57:32 +0000
-Received: from mail-vs1-xe2b.google.com ([2607:f8b0:4864:20::e2b])
+	id 1kzEoA-0007LG-JX; Tue, 12 Jan 2021 08:13:42 +0000
+Received: from mail-pj1-x1036.google.com ([2607:f8b0:4864:20::1036])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1kyhmD-000431-KI
- for ath11k@lists.infradead.org; Sun, 10 Jan 2021 20:57:30 +0000
-Received: by mail-vs1-xe2b.google.com with SMTP id u7so8641404vsg.11
- for <ath11k@lists.infradead.org>; Sun, 10 Jan 2021 12:57:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=bI1dyqszMvncQd81wZke0E6VLoCiKKnOGwF/VN5SClY=;
- b=UBkappg2aa+dBt4O7h/ywUpC8ll8u0HTPqS3uQ9zlBuyMrWzd0OjXEiYTtNnafVVW9
- gj/fx1PUfsH9p4nZnk0XE3deh54XN5ZsyxEnqD5NEIAQz7zhVS67/lo2mgQNdWqny8Dx
- 3D6XwFd+U+QYa2BvP25p4jxm2WMT5Yv9ATLejs8/ITnZYueayqTT8x3HFPJ6PDdh7SDO
- 3lABPHpLbaTTsc5kTG7GX/hzIIQDFjAs3nSqfBJ/Hh58Oc7t9FF0qg+wUcFSrVpOanPo
- vCirC7Lcjz2jafpyDaF+bg4IDAfh7pSsnfUpHXvrzefvg557167HLKrtP9hrlszqol4V
- WOBw==
+ id 1kxJK9-0001a7-Ur
+ for ath11k@lists.infradead.org; Thu, 07 Jan 2021 00:38:47 +0000
+Received: by mail-pj1-x1036.google.com with SMTP id iq13so378397pjb.3
+ for <ath11k@lists.infradead.org>; Wed, 06 Jan 2021 16:38:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=penguintechs.org; s=google;
+ h=to:from:subject:message-id:date:user-agent:mime-version
+ :content-language;
+ bh=gOztGtwNnglgvJQxK2NuLAf3LWy0E4eIVbS2YGUj91Y=;
+ b=Lvhgqt1LlMuHGHiKVUsHGhxs21bDXAvuQ8AvKFYJDeWh8TwkTFR0dATadyjTcyRBgl
+ 064eUK9eBSMj/5ftzijWBG2eejQs4JfGzoaIPZl1p9GvP2abW43n/p3mltUObhhaGtC1
+ xrsV9sJjo3AV5UoZnZ+Xr5txMQHofp0q9P7qY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=bI1dyqszMvncQd81wZke0E6VLoCiKKnOGwF/VN5SClY=;
- b=EBy0rBG3vdaWHtPiM1DenIe1IxJv3blGF7ypJpZZbbqEgQhG3k4jHKluG9Jx096z6i
- NJIvELamQvr/YLvO8cwnuYyAsJKFGeT8Yo5/xmJV9YwYzMlJqRzVUM1LvSMi8l4D4VWm
- x+zWK3AR0JOF5aOHh1c6bk81gImsZnjZ8TiiN95+LCPnI0wE2xkncrsb4lpWe/qyUEVg
- bCJwk6d3MFQ2AqEFTtQt8/7+WRK4kcKblw3zXNKfSDWsadNdAprsxckS7mSjeUeVhYDk
- q2a30MPhHWLN+ZcB8eifWi7eeNRl38V6ZO5wMreayosxn4IJrnGCJBCxi8POUY1lEkaU
- s8eA==
-X-Gm-Message-State: AOAM5319g5Yx+gOXo9UOn74ajhh2RUQnXniWCbZzNh2mEGaAyzzeI/us
- PwC0QOZzmos56DVJ5bSFacpm+NqXmV7u+F92xX8=
-X-Google-Smtp-Source: ABdhPJy2Hdpoct9cPuou6NfVpk4UVoEXbQXro4s4Pv0+OqMFpiH6KHKwqNm5bbqG6pZjVrHmgFxo5sQRkeDkRPTKAZU=
-X-Received: by 2002:a67:32c5:: with SMTP id y188mr10333337vsy.4.1610312246029; 
- Sun, 10 Jan 2021 12:57:26 -0800 (PST)
+ h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+ :mime-version:content-language;
+ bh=gOztGtwNnglgvJQxK2NuLAf3LWy0E4eIVbS2YGUj91Y=;
+ b=bzEYAsFqzde1YCEvv7Ukjw2HyUKvF9Kky6Pu99hb/SpB5c7H5PYx8HPAuqp2dsKSWI
+ +oq0gg+r19hFzRHgxaN4K9G1/GvPcAKBnQWxvdoh/i/wFIjdxEzIy3rfSA9pqEYa+CoV
+ 6xJA/9L6V3NjUE8f928O/WBKT8jah4Ehh0/B4NO2IFJkxTLRsj2Tc2nJdoP2CWOfW7eF
+ 6nY6jFjEFNC8YtWkltU46vFSF1YbiDQKGJ0o4+RHZhmU1VuWDDpzU0xGW/XWsB9xhW1Y
+ bD7qDCteNyVDQxyhZfH4vUmA+CdvKKe29rRz4XNI13IMymmj6OlanXh76W/GcXy0b+4j
+ 4a+A==
+X-Gm-Message-State: AOAM5300Lk+0HKYxSXRdz6azjeHQMkXsiAj5DH4PYzEwJKJZ5kZTY8jA
+ UX+FlUUZu2RxM+n53+a282jxDVL+SSb6/WRb
+X-Google-Smtp-Source: ABdhPJzYRFv6QnDv2hwUFTm2XeBlx3d+jYyOZCleZzZJmbbWamhHNmeNiLHLg0ZJIfeKx+8tsaJCKA==
+X-Received: by 2002:a17:902:599d:b029:da:fcfd:7088 with SMTP id
+ p29-20020a170902599db02900dafcfd7088mr6772041pli.68.1609979922087; 
+ Wed, 06 Jan 2021 16:38:42 -0800 (PST)
+Received: from braindead.localdomain (c-73-158-172-142.hsd1.ca.comcast.net.
+ [73.158.172.142])
+ by smtp.gmail.com with ESMTPSA id k18sm3213991pjz.26.2021.01.06.16.38.40
+ for <ath11k@lists.infradead.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 06 Jan 2021 16:38:41 -0800 (PST)
+To: ath11k@lists.infradead.org
+From: Wren Turkal <wt@penguintechs.org>
+Subject: Dell XPS 13 9310 wifi broken
+Message-ID: <b50f70f1-7f1f-a19c-9747-fd94a33baf97@penguintechs.org>
+Date: Wed, 6 Jan 2021 16:38:39 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
-References: <CAM+r-RhxY4TA4zPm6e6ah9RWdBY67J=5oRS3+=+EQMomKa10QQ@mail.gmail.com>
- <CA+icZUWcuka-6j139+89pSV5Z-r1fYVriz+wJE0gma4RO_PL9Q@mail.gmail.com>
- <CAM+r-Rj3y6DGonMPQ_V7qCwWH7v1bgh5x7YmAzMh5-cY68jJiw@mail.gmail.com>
- <CA+icZUXkwN=WT+hOop2WjwdVOp8UB93XKd07KB_EdCP5U_znsg@mail.gmail.com>
- <CAM+r-RgHsVSOjH8+2jaw6xJAm=ykcJa8Mw65jOma=w_yDyt5hA@mail.gmail.com>
-In-Reply-To: <CAM+r-RgHsVSOjH8+2jaw6xJAm=ykcJa8Mw65jOma=w_yDyt5hA@mail.gmail.com>
-From: Luca Versari <veluca93@gmail.com>
-Date: Sun, 10 Jan 2021 21:57:00 +0100
-Message-ID: <CAM+r-Rh-YmJhbDNEPGDa+=Fntp1ruEf3B6OxUWECXudsi8z04w@mail.gmail.com>
-Subject: Re: [BUG] Stacktrace in ath11k_pci
-To: sedat.dilek@gmail.com
+Content-Type: multipart/mixed; boundary="------------9911155A22F675C742A0E964"
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210110_155729_716789_C7CC070E 
-X-CRM114-Status: GOOD (  10.33  )
+X-CRM114-CacheID: sfid-20210106_193846_055062_474DE2C2 
+X-CRM114-Status: GOOD (  17.25  )
+X-Mailman-Approved-At: Tue, 12 Jan 2021 03:13:40 -0500
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,34 +94,68 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-FYI, the same problem is still happening with linux 5.10.6 and latest firmware.
+This is a multi-part message in MIME format.
+--------------9911155A22F675C742A0E964
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Sun, 3 Jan 2021 at 02:31, Luca Versari <veluca93@gmail.com> wrote:
->
-> I can confirm I have the latest firmware installed (same sha256sum).
->
-> On Sun, 3 Jan 2021 at 01:34, Sedat Dilek <sedat.dilek@gmail.com> wrote:
-> >
-> > On Sun, Jan 3, 2021 at 1:18 AM Luca Versari <veluca93@gmail.com> wrote:
-> > >
-> > > Thanks for the quick reply!
-> > > Unfortunately, this didn't seem to work - I'm still getting the same
-> > > stack trace:
-> > >
-> >
-> > Latest ath11k firmware?
-> >
-> > - Sedat -
-> >
-> > [1] https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/ath11k
+Hi ath11k experts,
+
+I am currently using Fedora rawhide and have installed their
+version of the 5.11-rc2 kernel. The ath11k driver is broken for
+this laptop.
+
+Here's a snippet of the dmesg:
+[    3.845315] ath11k_pci 0000:55:00.0: WARNING: ath11k PCI support is
+experimental![    3.845652] ath11k_pci 0000:55:00.0: BAR 0: assigned [mem
+0x8e300000-0x8e3fffff 64bit]
+[    3.845674] ath11k_pci 0000:55:00.0: enabling device (0000 -> 0002)
+[    3.845708] ath11k_pci 0000:55:00.0: failed to get 32 MSI vectors,
+only -28 available
+[    3.845714] ath11k_pci 0000:55:00.0: failed to enable msi: -28
+[    3.845728] ath11k_pci: probe of 0000:55:00.0 failed with error -28
+
+
+I have also attached a full lspci output for the device in
+question. I did see the previous thread about this hardware,
+and I just wanted to provide another datapoint and see if
+there is any way I can help with this.
+
+wt
+
+--
+You're More Amazing Than You Think!ymatyt.com  <https://ymatyt.com/>
+
+
+--------------9911155A22F675C742A0E964
+Content-Type: text/plain; charset=UTF-8;
+ name="lspci_wifi.txt"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+ filename="lspci_wifi.txt"
+
+MDAwMDo1NTowMC4wIFVuYXNzaWduZWQgY2xhc3MgW2ZmMDBdOiBRdWFsY29tbSBEZXZpY2Ug
+WzE3Y2I6MTEwMV0KCVN1YnN5c3RlbTogUml2ZXQgTmV0d29ya3MgRGV2aWNlIFsxYTU2OmE1
+MDFdCglDb250cm9sOiBJL08tIE1lbSsgQnVzTWFzdGVyLSBTcGVjQ3ljbGUtIE1lbVdJTlYt
+IFZHQVNub29wLSBQYXJFcnItIFN0ZXBwaW5nLSBTRVJSLSBGYXN0QjJCLSBEaXNJTlR4LQoJ
+U3RhdHVzOiBDYXArIDY2TUh6LSBVREYtIEZhc3RCMkItIFBhckVyci0gREVWU0VMPWZhc3Qg
+PlRBYm9ydC0gPFRBYm9ydC0gPE1BYm9ydC0gPlNFUlItIDxQRVJSLSBJTlR4LQoJUmVnaW9u
+IDA6IE1lbW9yeSBhdCA4ZTMwMDAwMCAoNjQtYml0LCBub24tcHJlZmV0Y2hhYmxlKSBbc2l6
+ZT0xTV0KCUNhcGFiaWxpdGllczogPGFjY2VzcyBkZW5pZWQ+CglLZXJuZWwgbW9kdWxlczog
+YXRoMTFrX3BjaQoK
+--------------9911155A22F675C742A0E964
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 -- 
 ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
+
+--------------9911155A22F675C742A0E964--
+
