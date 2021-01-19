@@ -1,84 +1,64 @@
-Return-Path: <SRS0=R0Ww=GV=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=8Utr=GW=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+X-Spam-Status: No, score=-3.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_ADSP_ALL,DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0C012C433E0
-	for <ath11k@archiver.kernel.org>; Mon, 18 Jan 2021 16:38:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EB627C433DB
+	for <ath11k@archiver.kernel.org>; Tue, 19 Jan 2021 15:56:46 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BD07F2245C
-	for <ath11k@archiver.kernel.org>; Mon, 18 Jan 2021 16:38:30 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BD07F2245C
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+	by mail.kernel.org (Postfix) with ESMTPS id A9BD4208E4
+	for <ath11k@archiver.kernel.org>; Tue, 19 Jan 2021 15:56:46 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A9BD4208E4
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=narfation.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:Date:References:
-	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=JvjIsPLbpguz70UGK76G1gTA/O03E74PPjutDwzSUto=; b=MEtsZOGuXsLmgWJpyKky68Hka
-	omXmqeN05FaPIOuvTaqAiJHXkEcwc7GAJT4cW6zwvsiL2wOn1SvCRYyxq1hzxyBfeQvUXzEINETt+
-	hpOMUE0KrriKJxFuXxlbML/7vuNwCjOTmNjVHgF+QbNGRMCvOy5nrDaZFa03vtD4wYc8Ug/hWQCr9
-	EA8LJNll8TgASaDZ83HOGbzl1WMkyPDorhRxv49Y1iz4T4fqkLThwCh3UpDZmiSII0eC4ZtVZpCHT
-	2SblG32LFLHsZ29lJJKTy4f5TqBdUQQ4CwF0V5awdpk3EvUZZ+Tm3ZUEHHRvL3jT9AL0qQXQIxonK
-	ui2rRrcyg==;
+	Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe
+	:List-Id:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:To:From:
+	Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=X1Wr0ViahH0R1X+8smMj/kDvK85IcfHAA+Ws4b3QdnM=; b=wq7MEanqvyxhaxDu4ArzsP9Y1d
+	Q5Ah/FKkQRYlIMlgNN3iUM1Xjmm8DBbgNDtvyBb7Q7mcClpnOX9Y08GwZNs3DZO3/6RO1ec7VmqJ/
+	sfW8LlWDtIetbTsHIfx9iFOgq5ELw+qmhz17cPKKyk0yIDgNWUfzYfFLfEoaCCAAlWJn8H9hB6uEv
+	TEl16CEryVbUnrm90LwxOW2WYoqmbbz5327uoPozDAVnEOzQObPgU6PHWI1UTlsJG1iRsD+VEcjTG
+	0eynKaH+i9CppdVZqiI6lAEKzHyQDelrL0LyQ9pM6BV5t4twKOqrpQOEpXvXTZimxSOc2DD83ee59
+	BryYiSKg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1l1XXv-000688-Ps; Mon, 18 Jan 2021 16:38:27 +0000
-Received: from m43-15.mailgun.net ([69.72.43.15])
+	id 1l1tN5-0006S6-Ba; Tue, 19 Jan 2021 15:56:43 +0000
+Received: from dvalin.narfation.org ([213.160.73.56])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1l1XXs-00067S-G5
- for ath11k@lists.infradead.org; Mon, 18 Jan 2021 16:38:26 +0000
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
- q=dns/txt; 
- s=smtp; t=1610987905; h=Content-Type: MIME-Version: Message-ID:
- In-Reply-To: Date: References: Subject: Cc: To: From: Sender;
- bh=4y4QUpioQ/d+gCmHKOd4UCjbYz4QrhmNC4FQaweBrCk=;
- b=v2C/30P7m+g+BiIWaVd58OXH2m64iOkL/DjSmhwvdGZ5QAmDQZ3maAXnoxAL3T0ToG48C2JM
- lsEaJgfbFeSzBr5r5pzCFq56S7SLlDvBMnMNdXu0RfrBVwNRkklhpevLi/NuN3TbBx08zjN5
- I6uafNfxBrFOaGEwMl4mZ6LqTqY=
-X-Mailgun-Sending-Ip: 69.72.43.15
-X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
- 6005b97eba7f86850652353e (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 18 Jan 2021 16:38:22
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 3E3C5C433ED; Mon, 18 Jan 2021 16:38:21 +0000 (UTC)
-Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi
- [88.114.240.156])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested) (Authenticated sender: kvalo)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 97A0FC433C6;
- Mon, 18 Jan 2021 16:38:19 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 97A0FC433C6
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- spf=fail smtp.mailfrom=kvalo@codeaurora.org
-From: Kalle Valo <kvalo@codeaurora.org>
-To: Wen Gong <wgong@codeaurora.org>
-Subject: Re: [PATCH] ath11k: add ieee80211_unregister_hw to avoid kernel crash
- caused by NULL pointer
-References: <1608607824-16067-1-git-send-email-wgong@codeaurora.org>
-Date: Mon, 18 Jan 2021 18:38:17 +0200
-In-Reply-To: <1608607824-16067-1-git-send-email-wgong@codeaurora.org> (Wen
- Gong's message of "Tue, 22 Dec 2020 11:30:24 +0800")
-Message-ID: <87turefbeu.fsf@codeaurora.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
+ id 1l1tN2-0006QX-Ub
+ for ath11k@lists.infradead.org; Tue, 19 Jan 2021 15:56:41 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+ s=20121; t=1611071799;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=J0EeON1VLipgM+OFbrWo8/GzsNL3uflJtDURi/fEgSY=;
+ b=yA/1A31D2aBoSXc7O1GC6nfAXK/sd6iXWJG2VzEK1vpjUmdAB2NvLaG/EroxSXW2LFfxBJ
+ sgnHz3T2wDnPE+jHzJ6fsKPkmZQp+7KMbJB6uNhK3HxXODQ8YM9ysD/AJ1FgM7kjRfoVFl
+ +1m9zuO++Kdr1T9K34yZtv9BmnOm8MY=
+From: Sven Eckelmann <sven@narfation.org>
+To: ath11k@lists.infradead.org
+Subject: Re: IPQ8074: hw2.0: Wrong mac address for 2.4GHz PHY with firmware
+ 2.5.0.1.r1-00004
+Date: Tue, 19 Jan 2021 16:56:36 +0100
+Message-ID: <15799786.0ZKypZ73Fx@ripper>
+In-Reply-To: <12396947.EVyyLHbfrO@ripper>
+References: <12396947.EVyyLHbfrO@ripper>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210118_113825_565958_2401166F 
-X-CRM114-Status: GOOD (  12.21  )
+X-CRM114-CacheID: sfid-20210119_105641_152321_1CDA660A 
+X-CRM114-Status: UNSURE (   4.99  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,36 +70,26 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Wen Gong <wgong@codeaurora.org> writes:
+On Monday, 18 January 2021 09:14:54 CET Sven Eckelmann wrote:
+>    /sys/class/ieee80211/phy0/macaddress:f8:d9:b8:2e:36:c4 (ath10k)
+>    /sys/class/ieee80211/phy1/macaddress:f8:d9:b8:2e:36:d0
+>    /sys/class/ieee80211/phy2/macaddress:f8:d9:b8:2e:37:c8
 
-> When function return fail to __ath11k_mac_register after success called
-> ieee80211_register_hw, then it set wiphy->dev.parent to NULL by
-> SET_IEEE80211_DEV(ar->hw, NULL) in end of __ath11k_mac_register, then
-> cfg80211_get_drvinfo will be called by below call stack, but the
-> wiphy->dev.parent is NULL, so kernel crash.
+There is a typo in the first list. The last mac should be f8:d9:b8:2e:36:c8. 
+Mixed it up while copying stuff around for the mail. It was mentioned 
+correctly at the end of the original mail.
 
-[...]
+Sorry
 
-> +err_unregister_hw:
-> +		ieee80211_unregister_hw(ar->hw);
-> +
->  err_free_if_combs:
->  	kfree(ar->hw->wiphy->iface_combinations[0].limits);
->  	kfree(ar->hw->wiphy->iface_combinations);
+Kind regards,
+	Sven
 
-Incorrect indentation, I'm surprised checkpatch doesn't catch that. But
-fixed this in the pending branch.
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
