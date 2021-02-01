@@ -1,98 +1,97 @@
-Return-Path: <SRS0=s4Qy=G7=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=JrPu=HD=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-17.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-14.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DC528C433DB
-	for <ath11k@archiver.kernel.org>; Thu, 28 Jan 2021 14:49:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2F479C433DB
+	for <ath11k@archiver.kernel.org>; Mon,  1 Feb 2021 12:26:50 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 78D3764DE7
-	for <ath11k@archiver.kernel.org>; Thu, 28 Jan 2021 14:49:44 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 78D3764DE7
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
+	by mail.kernel.org (Postfix) with ESMTPS id BF71964E97
+	for <ath11k@archiver.kernel.org>; Mon,  1 Feb 2021 12:26:49 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BF71964E97
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=oracle.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:
+	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Subject:To:From:Date:
 	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
 	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=WFsqSyBpXx0fhA+nARfw3ndk622wfEIN3wsq/cNII0g=; b=BAm4v/1I+Dfpx3F8Tbxxj558dz
-	8u2hRglqzTizG3bOPk008i+/PuJnwn+T9urISaUo7k46jrvofgg1JB4NCDOV43YeSvqCy9f7ciy0H
-	JVesZCTy96UzujNwnwnTHkBlB1qnLVnI8m7SRAyFiecUJbysF4DTivdsFtA2fjWrLBCDVtXA10Rtk
-	4t0qkCwu3Eee008/yprhnQGEloLjuk6GFbV1pNtWjFTkpqBsi3lo4gcGQR5g05KwnVNQsANvAu5pQ
-	CwuyaZWJJpeV8kgGjz5OSUQG7jufFMjZUGk24dnDrQtRJyZH8ZBG13eDS2j1i6a2fFT+V0+Xb7zjU
-	QwtckBpg==;
+	bh=1gBecqVs3ebJnO8bFmDr25X+vbz3yBcWJ1oXsbPxja8=; b=TH3BTcjZcyqPXqxdCaeo+w64wm
+	yPOOwpVc6bQ1GzvMKjGvqsxmkax9mPAFx1UdOJDz/Ojsx80TfAWoJZ3EgRILM4KIYz3E1wtHj+gjd
+	5E9wdnxxFba7qvRElOCTFmRj8BPqTRieVacjA/K7zRmr8xrptaGPQ9N7efpWg3Cf+iy+0fmd/We9J
+	Wp2yNRSYEl7g1L7zIUC3pEcD5JmzTOBsucTbEpuRPe+AvAajwaaPcHRtvPpIRyQAAJ2blEDQje+ZG
+	QjRXt+KkturP8CQjeusQWK1T+RJ4xAfgfJ851u7CrJ6CIneSAPOYHByawCM5APtoZ6jm6ywHrcXO1
+	TLOX5R/w==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1l58c9-0000c4-1a; Thu, 28 Jan 2021 14:49:41 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124])
+	id 1l6YI1-0002dA-54; Mon, 01 Feb 2021 12:26:45 +0000
+Received: from userp2130.oracle.com ([156.151.31.86])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1l58c6-0000bX-HE
- for ath11k@lists.infradead.org; Thu, 28 Jan 2021 14:49:39 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1611845377;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=R1wB61RtOlNZBu/4s6IPC3Y9aKTFBZ1hLdvLyyOkKJs=;
- b=V7Dk3hIBXAUpfIb66HFZ1FVxd4b54IR++xNplqMKKh0DRgiAyFHEm1zcXswgkOHAc+YhNQ
- vP9ciXUt5XXBgAKsDVmPvpTDaNd5D7z2qxnxi6NH7WbmGKgOL98yQmaadBH+GP6R43Ez6W
- Hl7QU8Q1vt7Rl9HMt8jAfiCwxcYGvOI=
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com
- [209.85.219.69]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-1-kBpcpgXtOPWo4F-8fhEcMQ-1; Thu, 28 Jan 2021 09:49:35 -0500
-X-MC-Unique: kBpcpgXtOPWo4F-8fhEcMQ-1
-Received: by mail-qv1-f69.google.com with SMTP id ew14so3844648qvb.21
- for <ath11k@lists.infradead.org>; Thu, 28 Jan 2021 06:49:35 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=R1wB61RtOlNZBu/4s6IPC3Y9aKTFBZ1hLdvLyyOkKJs=;
- b=IcuhtyVBn8fceqlOL1B6b/36m0veLOGOrAwHKW15itI0vR2XgFfa9xmirkU+XyOdLb
- YNb8I5N/xOn4Gz0NiIxjiSZcqCVri9RYnNKCFnOEsCEooDFNd52JK/m4XzOOv0A5BP29
- lM1H8WxwFweCtQKvqA4Q7KDIsmgRkbYOupK6+sKnqWMgh+tzpKoRgoBsVs4EjS7y9YYY
- ZwmI+XR9A3f+FmGt0VK2WKDXapGZKS0uCHOLkaKfH9RtC4eH7yPHq6xRxRLVK7mtrFeN
- hpm/imXvkacXz+5OTJUuw+DejyiRJgyQJm5PfJ341kMYE4WibCVxVUaOFDbxViEXr4pl
- vIZA==
-X-Gm-Message-State: AOAM5331rVRAcrDWpuNJXZSq7faIfluq5W7gHRByOk95PF/nMJ0jHdkX
- Q2BDx0klLK78e/hgAjCsYjyCfcd20JbXzSZaungxEAjNrRno3pymGX+427Pwg6QXUn3QvRd0T8Y
- al3ReZS1oI0FeScAe55gbxg==
-X-Received: by 2002:a05:6214:12ab:: with SMTP id
- w11mr15366684qvu.8.1611845375232; 
- Thu, 28 Jan 2021 06:49:35 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxCLuqdGPwPS5PK3P3TXw9Qxq7+q25oB8+s3fAglKWy2HeY2liKG0cQB0vFgfE3eC2o2geTNg==
-X-Received: by 2002:a05:6214:12ab:: with SMTP id
- w11mr15366658qvu.8.1611845374975; 
- Thu, 28 Jan 2021 06:49:34 -0800 (PST)
-Received: from trix.remote.csb (075-142-250-213.res.spectrum.com.
- [75.142.250.213])
- by smtp.gmail.com with ESMTPSA id q25sm3635809qkq.32.2021.01.28.06.49.33
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 28 Jan 2021 06:49:34 -0800 (PST)
-From: trix@redhat.com
-To: kvalo@codeaurora.org,
-	davem@davemloft.net,
-	kuba@kernel.org
-Subject: [PATCH] ath11k: remove h from printk format specifier
-Date: Thu, 28 Jan 2021 06:49:28 -0800
-Message-Id: <20210128144928.2557605-1-trix@redhat.com>
-X-Mailer: git-send-email 2.27.0
+ id 1l6YHy-0002ci-Qi
+ for ath11k@lists.infradead.org; Mon, 01 Feb 2021 12:26:43 +0000
+Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
+ by userp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 111CE8J2173357;
+ Mon, 1 Feb 2021 12:26:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
+ h=date : from : to : cc
+ : subject : message-id : mime-version : content-type; s=corp-2020-01-29;
+ bh=Drq82AAAZybV+JfLoh1I4PB5deHmrlfF6kc31xE4YQ4=;
+ b=fykI8TT8vGGXGX5EZWEiyspa/Gf7gOxE2kOHblTBsGpbzT0i5M39XUKLz3kmssSs2sby
+ iiZX9LZv1f2CxqbCwNqw3xEL3oEAOf2ETrmzcGTHviXfKV+Vag1B5nd+Cf9XrarvI6zf
+ mrpcxC+Z9W4O/J1ebOJA0SIjW8OqC1pZlXVZsSFdBDuBKv+9RjysQ0hN9AXCV4TOuczN
+ SvWdYgBS6cUJDQs2ESW+BwB6QDt4dTRt9e9mUTUfgN8qLRj7pAlTysMYTS4NbJYjYvYS
+ /IhAG4xQ4Amz98Yj+VMTEGcysM7YEhmHOmQEZ9AZ+StuHT007j2GzuEiJvtI9RjuLIbW zQ== 
+Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
+ by userp2130.oracle.com with ESMTP id 36cxvqvyt6-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Mon, 01 Feb 2021 12:26:36 +0000
+Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
+ by userp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 111CA7F1146790;
+ Mon, 1 Feb 2021 12:24:34 GMT
+Received: from aserv0122.oracle.com (aserv0122.oracle.com [141.146.126.236])
+ by userp3020.oracle.com with ESMTP id 36dh7pn35n-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Mon, 01 Feb 2021 12:24:34 +0000
+Received: from abhmp0012.oracle.com (abhmp0012.oracle.com [141.146.116.18])
+ by aserv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 111COXa4012862;
+ Mon, 1 Feb 2021 12:24:33 GMT
+Received: from mwanda (/10.175.186.133)
+ by default (Oracle Beehive Gateway v4.0)
+ with ESMTP ; Mon, 01 Feb 2021 04:24:33 -0800
+Date: Mon, 1 Feb 2021 15:24:27 +0300
+From: Dan Carpenter <dan.carpenter@oracle.com>
+To: Kalle Valo <kvalo@codeaurora.org>
+Subject: [PATCH] ath11k: fix a locking bug in ath11k_mac_op_start()
+Message-ID: <YBfy+zc3XkiyIe6t@mwanda>
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=trix@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
+Content-Disposition: inline
+X-Mailer: git-send-email haha only kidding
+X-Proofpoint-IMR: 1
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9881
+ signatures=668683
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0
+ mlxscore=0
+ suspectscore=0 spamscore=0 mlxlogscore=999 phishscore=0 adultscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2102010064
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9881
+ signatures=668683
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0
+ mlxlogscore=999
+ mlxscore=0 priorityscore=1501 spamscore=0 impostorscore=0 clxscore=1015
+ suspectscore=0 lowpriorityscore=0 phishscore=0 adultscore=0 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
+ definitions=main-2102010064
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210128_094938_612198_D31D89CB 
-X-CRM114-Status: GOOD (  10.79  )
+X-CRM114-CacheID: sfid-20210201_072643_171843_01B3AA7B 
+X-CRM114-Status: GOOD (  19.18  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,157 +103,42 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Cc: netdev@vger.kernel.org, Tom Rix <trix@redhat.com>,
- linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
- linux-kernel@vger.kernel.org
+Cc: kernel-janitors@vger.kernel.org, Carl Huang <cjhuang@codeaurora.org>,
+ linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Tom Rix <trix@redhat.com>
+This error path leads to a Smatch warning:
 
-This change fixes the checkpatch warning described in this commit
-commit cbacb5ab0aa0 ("docs: printk-formats: Stop encouraging use of
-  unnecessary %h[xudi] and %hh[xudi]")
+    drivers/net/wireless/ath/ath11k/mac.c:4269 ath11k_mac_op_start()
+    error: double unlocked '&ar->conf_mutex' (orig line 4251)
 
-Standard integer promotion is already done and %hx and %hhx is useless
-so do not encourage the use of %hh[xudi] or %h[xudi].
+We're not holding the lock when we do the "goto err;" so it leads to a
+double unlock.  We should hold the lock because the error path sets
+"ar->state" so the right fix is to take the lock before doing the goto.
 
-Signed-off-by: Tom Rix <trix@redhat.com>
+Fixes: c83c500b55b6 ("ath11k: enable idle power save mode")
+Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
 ---
- drivers/net/wireless/ath/ath11k/dp_rx.c | 10 +++++-----
- drivers/net/wireless/ath/ath11k/mac.c   | 10 +++++-----
- drivers/net/wireless/ath/ath11k/trace.h |  2 +-
- drivers/net/wireless/ath/ath11k/wmi.c   |  4 ++--
- 4 files changed, 13 insertions(+), 13 deletions(-)
+ drivers/net/wireless/ath/ath11k/mac.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 42328a06107b..859cfcabceb5 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -1292,7 +1292,7 @@ int ath11k_dp_htt_tlv_iter(struct ath11k_base *ab, const void *ptr, size_t len,
- 		len -= sizeof(*tlv);
- 
- 		if (tlv_len > len) {
--			ath11k_err(ab, "htt tlv parse failure of tag %hhu at byte %zd (%zu bytes left, %hhu expected)\n",
-+			ath11k_err(ab, "htt tlv parse failure of tag %u at byte %zd (%zu bytes left, %u expected)\n",
- 				   tlv_tag, ptr - begin, len, tlv_len);
- 			return -EINVAL;
- 		}
-@@ -1381,22 +1381,22 @@ ath11k_update_per_peer_tx_stats(struct ath11k *ar,
- 	 */
- 
- 	if (flags == WMI_RATE_PREAMBLE_HE && mcs > 11) {
--		ath11k_warn(ab, "Invalid HE mcs %hhd peer stats",  mcs);
-+		ath11k_warn(ab, "Invalid HE mcs %d peer stats",  mcs);
- 		return;
- 	}
- 
- 	if (flags == WMI_RATE_PREAMBLE_HE && mcs > ATH11K_HE_MCS_MAX) {
--		ath11k_warn(ab, "Invalid HE mcs %hhd peer stats",  mcs);
-+		ath11k_warn(ab, "Invalid HE mcs %d peer stats",  mcs);
- 		return;
- 	}
- 
- 	if (flags == WMI_RATE_PREAMBLE_VHT && mcs > ATH11K_VHT_MCS_MAX) {
--		ath11k_warn(ab, "Invalid VHT mcs %hhd peer stats",  mcs);
-+		ath11k_warn(ab, "Invalid VHT mcs %d peer stats",  mcs);
- 		return;
- 	}
- 
- 	if (flags == WMI_RATE_PREAMBLE_HT && (mcs > ATH11K_HT_MCS_MAX || nss < 1)) {
--		ath11k_warn(ab, "Invalid HT mcs %hhd nss %hhd peer stats",
-+		ath11k_warn(ab, "Invalid HT mcs %d nss %d peer stats",
- 			    mcs, nss);
- 		return;
- 	}
 diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index c1608f64ea95..9f56e0ad1fee 100644
+index c1608f64ea95..12e981e9e3d7 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -4849,7 +4849,7 @@ static int ath11k_mac_op_add_chanctx(struct ieee80211_hw *hw,
- 	struct ath11k_base *ab = ar->ab;
- 
- 	ath11k_dbg(ab, ATH11K_DBG_MAC,
--		   "mac chanctx add freq %hu width %d ptr %pK\n",
-+		   "mac chanctx add freq %u width %d ptr %pK\n",
- 		   ctx->def.chan->center_freq, ctx->def.width, ctx);
- 
- 	mutex_lock(&ar->conf_mutex);
-@@ -4873,7 +4873,7 @@ static void ath11k_mac_op_remove_chanctx(struct ieee80211_hw *hw,
- 	struct ath11k_base *ab = ar->ab;
- 
- 	ath11k_dbg(ab, ATH11K_DBG_MAC,
--		   "mac chanctx remove freq %hu width %d ptr %pK\n",
-+		   "mac chanctx remove freq %u width %d ptr %pK\n",
- 		   ctx->def.chan->center_freq, ctx->def.width, ctx);
- 
- 	mutex_lock(&ar->conf_mutex);
-@@ -5117,7 +5117,7 @@ ath11k_mac_update_vif_chan(struct ath11k *ar,
- 		arvif = (void *)vifs[i].vif->drv_priv;
- 
- 		ath11k_dbg(ab, ATH11K_DBG_MAC,
--			   "mac chanctx switch vdev_id %i freq %hu->%hu width %d->%d\n",
-+			   "mac chanctx switch vdev_id %i freq %u->%u width %d->%d\n",
- 			   arvif->vdev_id,
- 			   vifs[i].old_ctx->def.chan->center_freq,
- 			   vifs[i].new_ctx->def.chan->center_freq,
-@@ -5214,7 +5214,7 @@ static void ath11k_mac_op_change_chanctx(struct ieee80211_hw *hw,
- 	mutex_lock(&ar->conf_mutex);
- 
- 	ath11k_dbg(ab, ATH11K_DBG_MAC,
--		   "mac chanctx change freq %hu width %d ptr %pK changed %x\n",
-+		   "mac chanctx change freq %u width %d ptr %pK changed %x\n",
- 		   ctx->def.chan->center_freq, ctx->def.width, ctx, changed);
- 
- 	/* This shouldn't really happen because channel switching should use
-@@ -5583,7 +5583,7 @@ static int ath11k_mac_set_fixed_rate_params(struct ath11k_vif *arvif,
- 
- 	lockdep_assert_held(&ar->conf_mutex);
- 
--	ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "mac set fixed rate params vdev %i rate 0x%02hhx nss %hhu sgi %hhu\n",
-+	ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "mac set fixed rate params vdev %i rate 0x%02x nss %u sgi %u\n",
- 		   arvif->vdev_id, rate, nss, sgi);
- 
- 	vdev_param = WMI_VDEV_PARAM_FIXED_RATE;
-diff --git a/drivers/net/wireless/ath/ath11k/trace.h b/drivers/net/wireless/ath/ath11k/trace.h
-index 66d0aae7816c..d2d2a3cb0826 100644
---- a/drivers/net/wireless/ath/ath11k/trace.h
-+++ b/drivers/net/wireless/ath/ath11k/trace.h
-@@ -43,7 +43,7 @@ TRACE_EVENT(ath11k_htt_pktlog,
- 	),
- 
- 	TP_printk(
--		"%s %s size %hu pktlog_checksum %d",
-+		"%s %s size %u pktlog_checksum %d",
- 		__get_str(driver),
- 		__get_str(device),
- 		__entry->buf_len,
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 73869d445c5b..2e6ce28ecc8d 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -169,7 +169,7 @@ ath11k_wmi_tlv_iter(struct ath11k_base *ab, const void *ptr, size_t len,
- 		len -= sizeof(*tlv);
- 
- 		if (tlv_len > len) {
--			ath11k_err(ab, "wmi tlv parse failure of tag %hhu at byte %zd (%zu bytes left, %hhu expected)\n",
-+			ath11k_err(ab, "wmi tlv parse failure of tag %u at byte %zd (%zu bytes left, %u expected)\n",
- 				   tlv_tag, ptr - begin, len, tlv_len);
- 			return -EINVAL;
+@@ -4259,6 +4259,7 @@ static int ath11k_mac_op_start(struct ieee80211_hw *hw)
+ 						1, pdev->pdev_id);
+ 		if (ret) {
+ 			ath11k_err(ab, "failed to enable idle ps: %d\n", ret);
++			mutex_lock(&ar->conf_mutex);
+ 			goto err;
  		}
-@@ -177,7 +177,7 @@ ath11k_wmi_tlv_iter(struct ath11k_base *ab, const void *ptr, size_t len,
- 		if (tlv_tag < ARRAY_SIZE(wmi_tlv_policies) &&
- 		    wmi_tlv_policies[tlv_tag].min_len &&
- 		    wmi_tlv_policies[tlv_tag].min_len > tlv_len) {
--			ath11k_err(ab, "wmi tlv parse failure of tag %hhu at byte %zd (%hhu bytes is less than min length %zu)\n",
-+			ath11k_err(ab, "wmi tlv parse failure of tag %u at byte %zd (%u bytes is less than min length %zu)\n",
- 				   tlv_tag, ptr - begin, tlv_len,
- 				   wmi_tlv_policies[tlv_tag].min_len);
- 			return -EINVAL;
+ 	}
 -- 
-2.27.0
+2.29.2
 
 
 -- 
