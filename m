@@ -1,96 +1,89 @@
-Return-Path: <SRS0=0Mgj=HE=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=XSrc=HF=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-11.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 73243C433E0
-	for <ath11k@archiver.kernel.org>; Tue,  2 Feb 2021 11:32:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 15D97C433DB
+	for <ath11k@archiver.kernel.org>; Wed,  3 Feb 2021 19:29:57 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 35F3764E7B
-	for <ath11k@archiver.kernel.org>; Tue,  2 Feb 2021 11:32:05 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 35F3764E7B
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=oracle.com
+	by mail.kernel.org (Postfix) with ESMTPS id 94D2464E39
+	for <ath11k@archiver.kernel.org>; Wed,  3 Feb 2021 19:29:56 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 94D2464E39
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=eero.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Subject:To:From:Date:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=ODabMlV+hjZT/a+CW0BOLZM4pyR8gsRjkVUNYdTaCAI=; b=WnngGFXdoLBT8HefAuVxLL1dIJ
-	lGx2foYcCM5Z81AYWHJJErBrQDG4mr4hbXMM/UAr13YQVXfFW3vxHn/g7wEbF5X0Kjb57KDwHCzt8
-	Vr6EJ3MaOuTDCUlZ2hdY7rkfsTTNpGIHUQ8UiNCQMCSYFQDdEDcGPk1xKrqSKKF6fhIfyZBnEM9dh
-	4ty6BM5rraIRPqYac2B+v3AOvgAM4QRXtY22DwxkTGOm65edvqGXoxyuub2SrdtNFZtFlk+zGfOX+
-	WbuarLeOBRA3SiE5N6MO231BosLmlrDI8MN1mYlqe/VufinNnI/PfnOXgC+fNXctikHW7b4+38r7L
-	WAc535Cw==;
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=DD5CSU8ZveSUxq407v7i/Jgl9ojyMfAZPxHsPwSt5JM=; b=1YVHIGEpygI280xyVvPLBmNKg
+	/R9hdcSUm6zpOMEXuuY2LaMYDNt/oxPK3a2X3kZV6t73tqhh+eWF9vB5+TSWdNpEutzW3YGqUFLT8
+	Qpwu/HfmhN4gf/Q5fzhIHAt6MSc4RkVMMiHZNJAzcc0QXrWivMSEqm4TvN//EMYRwWOd30GIi8lqS
+	nZu9lwmTgOZz96DApGVOCDYr3ElNNwd1+dU65ZzIPIg+Y08655M8nAD0vYWYRsMO4HSUlZOCl9L2S
+	74E/yEPkL0bb4ML1ITKprhxd8PyzBOPopBXSuLMC+/o0LDN30oAa36MYQ3Xv0f3eU90DyDyFrVqoZ
+	9qzCN1now==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1l6tub-0005SG-My; Tue, 02 Feb 2021 11:32:01 +0000
-Received: from aserp2120.oracle.com ([141.146.126.78])
+	id 1l7Nqb-0001rh-Mz; Wed, 03 Feb 2021 19:29:53 +0000
+Received: from mail-pg1-x533.google.com ([2607:f8b0:4864:20::533])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1l6tuY-0005Ru-Fh
- for ath11k@lists.infradead.org; Tue, 02 Feb 2021 11:31:59 +0000
-Received: from pps.filterd (aserp2120.oracle.com [127.0.0.1])
- by aserp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 112BOwGw190982;
- Tue, 2 Feb 2021 11:31:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
- h=date : from : to : cc
- : subject : message-id : mime-version : content-type; s=corp-2020-01-29;
- bh=mIAj0+BtQpwVNeD3mExb1e30dz1P2CVY0gpH20dJPwM=;
- b=Dl+OduYa/ToMiitDUCbixlER3h2NJcJ6WerwpbuxJaSSf7fAcN1ldv0dSIYcclAgDn92
- FSWG28NHsXdfUDEa3z4NFHQUQXhR/tDN+Dj5DQqrm64A7usugUyPh1qbuo1A3t4tGCgw
- 7oLQyDmKf2yADaQc3WRCqMacmizIEik8dPDf81nwIgXZvcJiu9gZqd+E/eqtK3FpM3PJ
- qGJWl+vvPWJFps3HnS/nsx/qb63Fikoi2b74Wid+YtMkSwl9knxlCEBBipp7pp/6xQYX
- QFmsGL0yFx+CV/k0SkFFUTqGaT1RX1G+aPaT+8UYfmSmhU00+hfXhhClRR7J9qUNxdIB yw== 
-Received: from aserp3020.oracle.com (aserp3020.oracle.com [141.146.126.70])
- by aserp2120.oracle.com with ESMTP id 36cydkt8x7-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 02 Feb 2021 11:31:49 +0000
-Received: from pps.filterd (aserp3020.oracle.com [127.0.0.1])
- by aserp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 112BUwI1059872;
- Tue, 2 Feb 2021 11:31:47 GMT
-Received: from aserv0122.oracle.com (aserv0122.oracle.com [141.146.126.236])
- by aserp3020.oracle.com with ESMTP id 36dhby3rjq-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 02 Feb 2021 11:31:47 +0000
-Received: from abhmp0009.oracle.com (abhmp0009.oracle.com [141.146.116.15])
- by aserv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 112BVjDM023682;
- Tue, 2 Feb 2021 11:31:46 GMT
-Received: from mwanda (/102.36.221.92) by default (Oracle Beehive Gateway v4.0)
- with ESMTP ; Tue, 02 Feb 2021 03:31:45 -0800
-Date: Tue, 2 Feb 2021 14:31:38 +0300
-From: Dan Carpenter <dan.carpenter@oracle.com>
-To: Kalle Valo <kvalo@codeaurora.org>, Peter Oh <peter.oh@eero.com>
-Subject: [PATCH v2] ath11k: fix a locking bug in ath11k_mac_op_start()
-Message-ID: <YBk4GoeE+yc0wlJH@mwanda>
+ id 1l7NqZ-0001pf-2o
+ for ath11k@lists.infradead.org; Wed, 03 Feb 2021 19:29:52 +0000
+Received: by mail-pg1-x533.google.com with SMTP id c132so446358pga.3
+ for <ath11k@lists.infradead.org>; Wed, 03 Feb 2021 11:29:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=eero.com; s=google;
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-transfer-encoding:content-language;
+ bh=iiosoeqvZZM3bn/8qyuaFKyxIlwkumJhKeaE0qsY8nc=;
+ b=Onmq0gObz39UFdM048agTK0US8MnjQTd3TP1ihWh6JZbCm/JyAApe1pgu/R4eavYhU
+ Ag4QUH11CinXtbxR8Rnnc1RpG/NMvG1m+M57/Km0VbDpF5UCUiN/BKR99fYTO45GkK1G
+ iAWA5yxxM6hb//MmTA9vEiq+5CfrM9b8fxlKA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-transfer-encoding
+ :content-language;
+ bh=iiosoeqvZZM3bn/8qyuaFKyxIlwkumJhKeaE0qsY8nc=;
+ b=a0ucLDuBdGynxx7Junhn/6SjPmKDrcvVc7oI+DqlOsdAaRNATggcdSYZnpYZpPHqht
+ V+nIZbzdUJW8OSAPO1EEGDZ/t73JrE9Fojagd/WXTT96YzQzhZBVMoUPvI4NdpzxXfbr
+ 6qkGlESserWpJdxmybrqJh0ocx+p/XQfU7BDarLvuqeLpw0Kd52FEhuM0TnntmDnKhvH
+ /G/ONRBxMGX4Yr1X8SfR4Z5oxlUoEonzb4hzi1hueWbaoFWO4ZsTYcZaRcjf5dmJICoK
+ Z9wZM8jrWruVLFscdlzq1WFBqv0VA1D33cbFAKuWaMuz3i+tumS52hfvDXQycN2oavh5
+ /ZCQ==
+X-Gm-Message-State: AOAM530yI7KzMFH/8ol6YnUxud9LSDeJFVepVYTxkHgEEihWPCRNVwN/
+ IOPqTpbPIqgnSL4UGhz7KCSk4w==
+X-Google-Smtp-Source: ABdhPJyn9O3w3fkrzFlCGEkRxscPsCJoIGaxAw1uvbMtuPTlTvEpbRHHMWHBDWq7eR3kTE0ql0RgKQ==
+X-Received: by 2002:aa7:9596:0:b029:1be:28cc:cfe8 with SMTP id
+ z22-20020aa795960000b02901be28cccfe8mr4278881pfj.49.1612380587114; 
+ Wed, 03 Feb 2021 11:29:47 -0800 (PST)
+Received: from [192.168.4.200]
+ (107-196-182-50.lightspeed.sntcca.sbcglobal.net. [107.196.182.50])
+ by smtp.gmail.com with ESMTPSA id 101sm2777067pjo.38.2021.02.03.11.29.46
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 03 Feb 2021 11:29:46 -0800 (PST)
+Subject: Re: [PATCH] ath11k: Update tx descriptor search index properly
+To: Karthikeyan periyasamy <periyasa@codeaurora.org>
+References: <1608305041-21946-1-git-send-email-periyasa@codeaurora.org>
+ <959ea12a-e35b-5867-c55e-7f62e2956b09@eero.com>
+ <d6cbfd2aff787faa3be69252b2677df9@codeaurora.org>
+From: Peter Oh <peter.oh@eero.com>
+Message-ID: <08ef5e10-de7a-fe13-d23a-d1afa1dbd0e5@eero.com>
+Date: Wed, 3 Feb 2021 11:29:45 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Disposition: inline
-X-Mailer: git-send-email haha only kidding
-X-Proofpoint-IMR: 1
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9882
- signatures=668683
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0
- adultscore=0 suspectscore=0
- spamscore=0 mlxscore=0 malwarescore=0 mlxlogscore=999 phishscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
- definitions=main-2102020080
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9882
- signatures=668683
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0
- adultscore=0
- priorityscore=1501 impostorscore=0 malwarescore=0 clxscore=1011
- spamscore=0 lowpriorityscore=0 phishscore=0 mlxlogscore=999 mlxscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2102020079
+In-Reply-To: <d6cbfd2aff787faa3be69252b2677df9@codeaurora.org>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210202_063158_671544_1417830D 
-X-CRM114-Status: GOOD (  16.83  )
+X-CRM114-CacheID: sfid-20210203_142951_265436_710E29BA 
+X-CRM114-Status: GOOD (  13.97  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,57 +95,38 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Cc: kernel-janitors@vger.kernel.org, Carl Huang <cjhuang@codeaurora.org>,
- linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-This error path leads to a Smatch warning:
-
-	drivers/net/wireless/ath/ath11k/mac.c:4269 ath11k_mac_op_start()
-	error: double unlocked '&ar->conf_mutex' (orig line 4251)
-
-We're not holding the lock when we do the "goto err;" so it leads to a
-double unlock.  The fix is to hold the lock for a little longer.
-
-Fixes: c83c500b55b6 ("ath11k: enable idle power save mode")
-Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
----
-v2: reviewers were concern that v1 was racy
-
- drivers/net/wireless/ath/ath11k/mac.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index c1608f64ea95..464d3425488b 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -4248,8 +4248,6 @@ static int ath11k_mac_op_start(struct ieee80211_hw *hw)
- 	/* Configure the hash seed for hash based reo dest ring selection */
- 	ath11k_wmi_pdev_lro_cfg(ar, ar->pdev->pdev_id);
- 
--	mutex_unlock(&ar->conf_mutex);
--
- 	rcu_assign_pointer(ab->pdevs_active[ar->pdev_idx],
- 			   &ab->pdevs[ar->pdev_idx]);
- 
-@@ -4262,6 +4260,9 @@ static int ath11k_mac_op_start(struct ieee80211_hw *hw)
- 			goto err;
- 		}
- 	}
-+
-+	mutex_unlock(&ar->conf_mutex);
-+
- 	return 0;
- 
- err:
--- 
-2.30.0
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+Ck9uIDEvMjYvMjEgNjo0NiBQTSwgS2FydGhpa2V5YW4gcGVyaXlhc2FteSB3cm90ZToKPiBPbiAy
+MDIwLTEyLTE5IDAwOjUzLCBQZXRlciBPaCB3cm90ZToKPj4gT24gMTIvMTgvMjAgNzoyNCBBTSwg
+S2FydGhpa2V5YW4gUGVyaXlhc2FteSB3cm90ZToKPj4+IFR4IGRlc2NyaXB0b3Igc2VhcmNoIGlu
+ZGV4IGZpZWxkIHNob3VsZCBiZSB1cGRhdGVkIHdpdGggaHcgcGVlciBpZAo+Pj4gYW5kIG5vdCBi
+eSBBU1QgSGFzaC4gSW5jb3JyZWN0IHNlYXJjaCBpbmRleCBjYXVzZXMgdGhyb3VnaHB1dCAKPj4+
+IGRlZ3JhZGF0aW9uCj4+PiBpbiBhbGwgdGhlIHBsYXRmb3Jtcy4gc28gdXBkYXRlZCB0aGUgc2Vh
+cmNoIGluZGV4IGZpZWxkIHdpdGggaHcgcGVlciAKPj4+IGlkLAo+Pj4gd2hpY2ggaXMgYSBjb21t
+b24gY2hhbmdlIGFwcGxpY2FibGUgZm9yIGFsbCB0aGUgcGxhdGZvcm1zLgo+Pj4KPj4+IFRlc3Rl
+ZC1vbjogSVBRODA3NCBodzIuMCBBSEIgV0xBTi5ISy4yLjQuMC4xLTAxNDkyLVFDQUhLU1dQTF9T
+SUxJQ09OWi0xCj4+Pgo+Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9h
+dGgxMWsvcGVlci5jIAo+Pj4gYi9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL3BlZXIu
+Ywo+Pj4gaW5kZXggYjY5ZTdlYi4uZjQ5YWJlZmEgMTAwNjQ0Cj4+PiAtLS0gYS9kcml2ZXJzL25l
+dC93aXJlbGVzcy9hdGgvYXRoMTFrL3BlZXIuYwo+Pj4gKysrIGIvZHJpdmVycy9uZXQvd2lyZWxl
+c3MvYXRoL2F0aDExay9wZWVyLmMKPj4+Cj4+PiBAQCAtMzA5LDcgKzMxMCwxMSBAQCBpbnQgYXRo
+MTFrX3BlZXJfY3JlYXRlKHN0cnVjdCBhdGgxMWsgKmFyLCAKPj4+IHN0cnVjdCBhdGgxMWtfdmlm
+ICphcnZpZiwKPj4+IMKgwqDCoMKgwqDCoMKgIHBlZXItPnBkZXZfaWR4ID0gYXItPnBkZXZfaWR4
+Owo+Pj4gwqDCoMKgwqDCoCBwZWVyLT5zdGEgPSBzdGE7Cj4+PiAtwqDCoMKgIGFydmlmLT5hc3Rf
+aGFzaCA9IHBlZXItPmFzdF9oYXNoOwo+Pj4gKwo+Pj4gK8KgwqDCoCBpZiAoYXJ2aWYtPnZpZi0+
+dHlwZSA9PSBOTDgwMjExX0lGVFlQRV9TVEFUSU9OKSB7Cj4+PiArwqDCoMKgwqDCoMKgwqAgYXJ2
+aWYtPmFzdF9oYXNoID0gcGVlci0+YXN0X2hhc2g7Cj4+PiArwqDCoMKgwqDCoMKgwqAgYXJ2aWYt
+PmFzdF9pZHggPSBwZWVyLT5od19wZWVyX2lkOwo+Pj4gK8KgwqDCoCB9Cj4+Cj4+IEhvdyBhYm91
+dCBub24gU1RBVElPTiB0eXBlPwo+Pgo+Cj4gbm8gbmVlZCBvZiBjb25maWd1cmluZyB0aGUgYXN0
+X2lkeCwgYXN0X2hhc2ggZmllbGQgZm9yIG5vbiBzdGF0aW9uIAo+IHR5cGUuIEl0cyByZWNvbW1l
+bmRlZCBieSBIVy9GVyB0ZWFtLgo+CkNhbiB5b3UgYWRkIHRoaXMgY29tbWVudCBpbiBjb21taXQg
+bWVzc2FnZT8KCkFsc28gY291bGQgeW91IGluY2x1ZGUgdGhlIGFuc3dlciB0byAid2hhdCBjb25k
+aXRpb25zIHlvdSBvYnNlcnZlZCB0aGUKdGhyb3VnaHB1dCBkZWdyYWRhdGlvbj8iIGluIGNvbW1p
+dCBtZXNzYWdlIHRvbz8KCgpUaGFua3MsCgpQZXRlcgoKCi0tIAphdGgxMWsgbWFpbGluZyBsaXN0
+CmF0aDExa0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21h
+aWxtYW4vbGlzdGluZm8vYXRoMTFrCg==
