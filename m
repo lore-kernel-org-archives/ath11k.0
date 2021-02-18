@@ -1,78 +1,83 @@
-Return-Path: <SRS0=IuQG=HT=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=1e+W=HU=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-8.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 89AF1C433DB
-	for <ath11k@archiver.kernel.org>; Wed, 17 Feb 2021 19:17:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 26534C433E0
+	for <ath11k@archiver.kernel.org>; Thu, 18 Feb 2021 06:00:36 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3A44D64E4D
-	for <ath11k@archiver.kernel.org>; Wed, 17 Feb 2021 19:17:02 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3A44D64E4D
+	by mail.kernel.org (Postfix) with ESMTPS id 9B33264E2E
+	for <ath11k@archiver.kernel.org>; Thu, 18 Feb 2021 06:00:34 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9B33264E2E
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=tAnyR2hgJyAFLRUk/BXKurRBf/GP4CXdAcmOLj+3nRo=; b=OmtFlTfg5S+G8HbO/nU2skKbx9
-	BsM3ZJAoHh1QoHV+90YXYNm65N84ts6heRN3mCOB72+c6zlfnyhx4OLd/rZhiyOOkjRgcK7N/a/T4
-	8SP4mzvsqQ0w1LU4CHEc/JMowgMdSS5yqbDjnBE5Odu5aeUSNLzJtN0gzdVea77SgboPFGggQbaAU
-	Il9jfaUmcZfYanhMLEpNLHESeXvdrejh7vLnbKD3C6Wu41z9Q1h6wciX6jJlgWdga5wVMftUfOpvZ
-	uD32B0DBzy0RrpAjYkk+Ip82Gkfs8OnVSqsfzKS8FN9XpqLrBDiPrORypa1OozXiFg+ieScTD4tJp
-	z62w3qxA==;
+	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Date:Message-Id:To:References:In-Reply-To:From:
+	Subject:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=Oq1FIyDiojc+oMp5/+LvFHgPYZtcN6QuixXdZc6OFJQ=; b=ond4qdn4ftLrS0ezQKVjiXIQ8
+	pOpmfBjgKErRpgBTIQfsqgZIOvBDlzCGsEh1PvQJHfQjaIEhtwK5az+3T6fZOtLCRKmy7TU4R8ZbW
+	h2VnlOhysopTZJtriuyL7lSEaxMWjkChF4FXXPKHLZDNJ4N9D37ko8Q0z1KZHbvB3LHec0Jp7rFto
+	umsOTNjcpZ1kpTuSDBdKF6sY/yYG48xInyEaMqhRhLHXSLbIlWu7SlByCriO34YEvqhje5kym6pHz
+	PEy3USpcbXA58PAHLVwBqnrmdNIuOjVjnE4G14V2y6Mvld/Xb5OrJAQ+yFA4M7qKxsD2NY+am1+9z
+	Pd2+V87YQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1lCSJm-00035B-HQ; Wed, 17 Feb 2021 19:16:58 +0000
+	id 1lCcMY-0005Dr-QJ; Thu, 18 Feb 2021 06:00:30 +0000
 Received: from m42-2.mailgun.net ([69.72.42.2])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1lCSJi-00034H-NT
- for ath11k@lists.infradead.org; Wed, 17 Feb 2021 19:16:57 +0000
+ id 1lCcMW-0005DS-4S
+ for ath11k@lists.infradead.org; Thu, 18 Feb 2021 06:00:29 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1613589415; h=Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=+Uv8rzU3yyfu1nObMEb3ysJ1lA3TWYdg3pXEEeXsODg=;
- b=ng8j7V0bH2w2xccHhDY3tLYOLB4mlqNoG1oiBIN06YYAiJKBSAbY+8ukhwJgIW5JIcQ4NVti
- h+5yshhooG9Ch438t/K8Fnm3pZgDU76zslHlWZOjF+NxCrElihEt8qZ1ZM/3Y9/Qtj8VnckX
- T/PXYy2EficnTi9DB6KQnbd9KeY=
+ s=smtp; t=1613628026; h=Date: Message-Id: Cc: To: References:
+ In-Reply-To: From: Subject: Content-Transfer-Encoding: MIME-Version:
+ Content-Type: Sender; bh=kbmqQ+rrzKPwhcJLQHPBo8hn1qn/ROLkdbr/KDtl24k=;
+ b=UV8vHVfiYK5YHFpOdmNX8Qp+/DO3dD28WPIZtenVGHGuTU2ZPd6js/arfBCfa1c55YlubJvz
+ Uo7/QMiKt4h+lSGTgkqGuBG35XOCZG208C9EoyRIg/G1VHjX5e1u1CrzLR9Tmv5hhkkz27y0
+ QNp1V7pmkW48WTpYA+emviOJTpE=
 X-Mailgun-Sending-Ip: 69.72.42.2
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
- 602d6b9c97484ee2ac7c37b1 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 17 Feb 2021 19:16:44
+ smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
+ 602e026597484ee2ac05124c (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 18 Feb 2021 06:00:05
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 4FEDDC433C6; Wed, 17 Feb 2021 19:16:44 +0000 (UTC)
+ id 1231FC433C6; Thu, 18 Feb 2021 06:00:05 +0000 (UTC)
 Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi
  [88.114.240.156])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested) (Authenticated sender: kvalo)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 1BD60C433CA;
- Wed, 17 Feb 2021 19:16:42 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 1BD60C433CA
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 6CBD4C433CA;
+ Thu, 18 Feb 2021 06:00:03 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 6CBD4C433CA
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  spf=fail smtp.mailfrom=kvalo@codeaurora.org
+MIME-Version: 1.0
+Subject: Re: [PATCH] ath11k: Fix sounding dimension config in HE cap
 From: Kalle Valo <kvalo@codeaurora.org>
-To: ath11k@lists.infradead.org
-Subject: [PATCH] ath11k: print hardware name and version during initialisation
-Date: Wed, 17 Feb 2021 21:16:40 +0200
-Message-Id: <1613589400-18891-1-git-send-email-kvalo@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1613460136-7170-1-git-send-email-lavaks@codeaurora.org>
+References: <1613460136-7170-1-git-send-email-lavaks@codeaurora.org>
+To: Lavanya Suresh <lavaks@codeaurora.org>
+User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.5.2
+Message-Id: <20210218060005.1231FC433C6@smtp.codeaurora.org>
+Date: Thu, 18 Feb 2021 06:00:05 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210217_141655_580199_B177DF10 
-X-CRM114-Status: GOOD (  12.67  )
+X-CRM114-CacheID: sfid-20210218_010028_280253_EE0BC2FA 
+X-CRM114-Status: UNSURE (   9.50  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,48 +89,32 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Cc: linux-wireless@vger.kernel.org
-MIME-Version: 1.0
+Cc: Lavanya Suresh <lavaks@codeaurora.org>, linux-wireless@vger.kernel.org,
+ ath11k@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-This way it's easy for the user to find what device is actually installed. This
-also helps reporting bugs.
+Lavanya Suresh <lavaks@codeaurora.org> wrote:
 
-Screenshot:
+> Number of Sounding dimensions config received from firmware for
+> bandwidth above 80MHz is cleared, and proper value is not set again.
+> So not resetting it to accept the config from firmware.
+> 
+> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-01689-QCAHKSWPL_SILICONZ-1
+> 
+> Signed-off-by: Lavanya Suresh <lavaks@codeaurora.org>
+> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-[  459.988812] ath11k_pci 0000:06:00.0: BAR 0: assigned [mem 0xdb000000-0xdbffffff 64bit]
-[  459.988867] ath11k_pci 0000:06:00.0: enabling device (0000 -> 0002)
-[  459.997048] ath11k_pci 0000:06:00.0: qca6390 hw2.0
-[  460.058093] mhi mhi0: Requested to power ON
-[  460.059741] mhi mhi0: Power on setup success
-[  460.476924] ath11k_pci 0000:06:00.0: chip_id 0x0 chip_family 0xb board_id 0xff soc_id 0xffffffff
-[  460.477032] ath11k_pci 0000:06:00.0: fw_version 0x101c06cc fw_build_timestamp 2020-06-24 19:50 fw_build_id
+Patch applied to ath-next branch of ath.git, thanks.
 
-Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
+096b625fab8f ath11k: Fix sounding dimension config in HE cap
 
-Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/core.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index ddedc331edef..77ce3347ab86 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -1017,7 +1017,7 @@ static int ath11k_init_hw_params(struct ath11k_base *ab)
- 
- 	ab->hw_params = *hw_params;
- 
--	ath11k_dbg(ab, ATH11K_DBG_BOOT, "Hardware name %s\n", ab->hw_params.name);
-+	ath11k_info(ab, "%s\n", ab->hw_params.name);
- 
- 	return 0;
- }
 -- 
-2.7.4
+https://patchwork.kernel.org/project/linux-wireless/patch/1613460136-7170-1-git-send-email-lavaks@codeaurora.org/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 
 -- 
