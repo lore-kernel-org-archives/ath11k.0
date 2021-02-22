@@ -2,64 +2,80 @@ Return-Path: <SRS0=2HMb=HY=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_ADSP_ALL,DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-11.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1055FC433E0
-	for <ath11k@archiver.kernel.org>; Mon, 22 Feb 2021 19:26:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 68AABC433E0
+	for <ath11k@archiver.kernel.org>; Mon, 22 Feb 2021 19:27:07 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BBDA064E12
-	for <ath11k@archiver.kernel.org>; Mon, 22 Feb 2021 19:26:42 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BBDA064E12
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=narfation.org
+	by mail.kernel.org (Postfix) with ESMTPS id 0B3BF64E12
+	for <ath11k@archiver.kernel.org>; Mon, 22 Feb 2021 19:27:07 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0B3BF64E12
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:Cc:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:To:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=x5D1InMEimIzl+7+xbKoY2IQuvbA4AVQX4GNzMmSbxU=; b=2vW1CtuNxwTzcPy3PODvIhewd
-	l0ua9ldTj9TTGrxPGoSszvQ2MOG2YE599THU3vdg5+uosCmIZPlMTC711ZRxEANE5YZFQwj3hRjgr
-	xR8egUBPJr+ezxzlqLD3CgHd4eIXFA67Nqp2EFaD7rj+Rb0QO3FhdcFgBgSS5fTWmSaeV0tuZX+fa
-	4CYt0KNGjZ4JAcmTKBpca3CkgIp3c0qs1KjYxPzuqdWs7KAn9ovRUujywHuRO47sXAuL7Y/tXRUN/
-	qqH9Kx4ynatFHig2sByheiVNRs89VYuqXCDBh58VeCoppJjP+0svzSn013sLeT3/lfGY3tKZCn4Cg
-	Dg1SHf9Jw==;
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
+	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=1y3vqG29NxUB1WmvVJSmyWRKHtGZkB5CdzZZR1lVuyg=; b=lDsz7Z0neXK1l4OAJoDLQAm1ra
+	jD5+2W/+hky4IT1gmSoOwQwQTMzmY8XOYnDoRSWHz0PWH4adl4nEmSTLYTx6RkTfPLafpIaeVdzXJ
+	/aaEae775sBcfA95WZLc/JQSwqFCL2Qa69jm7pYowGP4AoI9cPiMw7ofSTtAv5BQoHJG3gF10Jzzb
+	XaRhjiiQ69b/F/1R1S8m9KxmysuJZbZlJ4Uz09iTv0bVXtTiDnXBp2p0+8ENcJRlopoYVv3JjwVdR
+	lDSYpWkmBArctCeLCzaDaui8e7n9OgqMNFm+O8qzCyfV4BfTGojlBPWsJUKmp5oQ2mvfDS2pv4dZV
+	Mbd2MlwA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1lEGqr-0001ET-J0; Mon, 22 Feb 2021 19:26:38 +0000
-Received: from dvalin.narfation.org ([213.160.73.56])
+	id 1lEGrI-0001IM-K8; Mon, 22 Feb 2021 19:27:04 +0000
+Received: from z11.mailgun.us ([104.130.96.11])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1lE8WG-000082-SO
- for ath11k@lists.infradead.org; Mon, 22 Feb 2021 10:32:50 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1613989966;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=RglH45pRougffSqyZRP1V3JRlYZ4dB4gDEVVU9O4+iM=;
- b=0gCgaWoWJjTc3wXul9RJ8DSUdlMySwMY/RV5q2L3llnZ93QCJIARTCbHqjKf6yKImwVQjv
- jg5I8LOVFkJ8a75H0jgr9kB628sh+ADeImcaRS9rkeMD9M0rEKT/srzuGyeP99uQ6Ow0XL
- UIppfF030HFQ+HlsQj0MHxLCROdGGik=
-From: Sven Eckelmann <sven@narfation.org>
-To: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- Maharaja Kennadyrajan <mkenna@codeaurora.org>
-Subject: Re: [PATCH 1/3] nl80211: Add support for beacon tx mode
-Date: Mon, 22 Feb 2021 11:32:43 +0100
-Message-ID: <2718995.X0rUDs3ZmB@ripper>
-In-Reply-To: <1613988573-10839-2-git-send-email-mkenna@codeaurora.org>
-References: <1613988573-10839-1-git-send-email-mkenna@codeaurora.org>
- <1613988573-10839-2-git-send-email-mkenna@codeaurora.org>
+ id 1lEGrG-0001Hs-1y
+ for ath11k@lists.infradead.org; Mon, 22 Feb 2021 19:27:02 +0000
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
+ q=dns/txt; 
+ s=smtp; t=1614022021; h=Content-Transfer-Encoding: MIME-Version:
+ Message-Id: Date: Subject: Cc: To: From: Sender;
+ bh=r5K63Go6dNwm808NunS14UEUj0MvExkwJGR/rs0kO7M=;
+ b=lplxpbjbXIejpVixPFc6qif70pw28NULdzrvJPTKqhc0uuNl/m+hdt0Fut6XK092bp59lc3q
+ a26OLgQVVbifdF46rGX6WCxhLRrEQU+iso8WdXbOaq4myPMwVUNQVcXGNDQ5FCfe5UypQdpB
+ xi67g9gjsCGQVYVxSCXxuRVtXSw=
+X-Mailgun-Sending-Ip: 104.130.96.11
+X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
+ 603405843bd0a42cc991325f (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 22 Feb 2021 19:27:00
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+ id DC9BDC433ED; Mon, 22 Feb 2021 19:26:59 +0000 (UTC)
+Received: from alokad-linux.qualcomm.com (i-global254.qualcomm.com
+ [199.106.103.254])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+ (No client certificate requested) (Authenticated sender: alokad)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 3B515C433CA;
+ Mon, 22 Feb 2021 19:26:59 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 3B515C433CA
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ spf=fail smtp.mailfrom=alokad@codeaurora.org
+From: Aloka Dixit <alokad@codeaurora.org>
+To: kvalo@codeaurora.org
+Subject: [PATCH V5 0/2] WMI and debugfs calls for TWT dialogs
+Date: Mon, 22 Feb 2021 11:26:49 -0800
+Message-Id: <20210222192651.1782-1-alokad@codeaurora.org>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210222_053249_261902_D472A2D0 
-X-CRM114-Status: UNSURE (   9.51  )
+X-CRM114-CacheID: sfid-20210222_142702_182425_8F1E4866 
+X-CRM114-Status: UNSURE (   8.03  )
 X-CRM114-Notice: Please train this message.
-X-Mailman-Approved-At: Mon, 22 Feb 2021 14:26:36 -0500
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,80 +87,35 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Cc: Maharaja Kennadyrajan <mkenna@codeaurora.org>
-Content-Type: multipart/mixed; boundary="===============2565928843249656890=="
+Cc: Aloka Dixit <alokad@codeaurora.org>, linux-wireless@vger.kernel.org,
+ ath11k@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
---===============2565928843249656890==
-Content-Type: multipart/signed; boundary="nextPart3417114.ojRXWDtZ2E"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+This patchset adds support for TWT dialogs using debugfs.
+Individual patch files show changes in V5.
 
---nextPart3417114.ojRXWDtZ2E
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Sven Eckelmann <sven@narfation.org>
-To: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org, Maharaja Kennadyrajan <mkenna@codeaurora.org>
-Cc: Maharaja Kennadyrajan <mkenna@codeaurora.org>
-Subject: Re: [PATCH 1/3] nl80211: Add support for beacon tx mode
-Date: Mon, 22 Feb 2021 11:32:43 +0100
-Message-ID: <2718995.X0rUDs3ZmB@ripper>
-In-Reply-To: <1613988573-10839-2-git-send-email-mkenna@codeaurora.org>
-References: <1613988573-10839-1-git-send-email-mkenna@codeaurora.org> <1613988573-10839-2-git-send-email-mkenna@codeaurora.org>
+John Crispin (2):
+  ath11k: add WMI calls to manually add/del/pause/resume TWT dialogs
+  ath11k: add debugfs for TWT debug calls
 
-On Monday, 22 February 2021 11:09:31 CET Maharaja Kennadyrajan wrote:
-> User can configure the beacon tx mode while bring-up the AP
-> or MESH. Hence, added the support in the nl80211/cfg80211
-> layer to honour the beacon tx mode configuration and pass
-> this value to the driver.
-
-There is not a definition what this actually means. But I am guessing that you 
-are mean the way the HW sends our the beacons for a multivif (beaconing) 
-setup. And in this case, it is a per "phy" setting and not a per AP/meshpoint 
-setting, right?
-
-Kind regards,
-	Sven
---nextPart3417114.ojRXWDtZ2E
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmAziEsACgkQXYcKB8Em
-e0ZQTxAAtiTmU3DFj/tOFyPxV9hZjvEjOkxWpqeVy6RHr0kwYcaoFUbTGOjkbqhQ
-1dSmGXPze3L0cN7+hC9ZMhY8t7PZlJJ45roFFfnyq4FEmNIkDkb3ZYH9H+d4oq1H
-D0AjvMSSx9yh+t9abzYQ+DcoEcmTa1oT6++XS9sDTzGP3hhA9/4pPxx49KF+XNUN
-7L97eNbzIYI/A4aVkglI9hildlP0HtxNvufItM4uN1B0ap2bmfrT1N0RLaggcgpK
-o9Z9nuGH0LZEpjs1J+qUgp15UhcQwfasFQ/vrow5lluIx0zUqy+6EUc0MXgNimN1
-mzjg0jfCt8sbBfb6lGaWWJZzsGY11eVs3r65L36prSy1INLLlfP/NGwWDotP0uAK
-xpWUWjA7rr831iufT3qwrJrLrumpAFM57EXhu/cPBOnfI1a7Nmvsiqo8157PnOrx
-L1/VtL5b2gAcEOPGab3W/YCCOmg6GRyrZIa8L6PiSDFKNLNKnECmBmDeD2Gq7RI3
-dSzX9Su9IrYCsAdO9RuFmRtNCWzusMQxo0jXnwpsDU0drQ8yk0iJlQ/K6r5m3nXP
-c29xVsZvLFsUK1FqlAcddM/M+mZVDVpoxC6MjvlR3nABDfUIFo068NbXRGCrUq4p
-njLGrX40P3HaUnmlcRSDtTxkyIfw8ZwJCnhB9sjS33UBsU5yI2Q=
-=eyjT
------END PGP SIGNATURE-----
-
---nextPart3417114.ojRXWDtZ2E--
+ drivers/net/wireless/ath/ath11k/core.h  |   4 +
+ drivers/net/wireless/ath/ath11k/debug.c | 224 ++++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/debug.h |  13 ++
+ drivers/net/wireless/ath/ath11k/mac.c   |   3 +
+ drivers/net/wireless/ath/ath11k/wmi.c   | 218 ++++++++++++++++++++++-
+ drivers/net/wireless/ath/ath11k/wmi.h   | 114 ++++++++++++
+ 6 files changed, 572 insertions(+), 4 deletions(-)
 
 
+base-commit: f5242d42da02730c67d517a7402015c13f59deee
+-- 
+2.25.0
 
-
-
---===============2565928843249656890==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 -- 
 ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
-
---===============2565928843249656890==--
-
-
-
-
