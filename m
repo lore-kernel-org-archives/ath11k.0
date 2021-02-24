@@ -1,83 +1,83 @@
-Return-Path: <SRS0=2HMb=HY=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=NPuH=H2=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-8.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BD86EC433E0
-	for <ath11k@archiver.kernel.org>; Mon, 22 Feb 2021 19:27:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 068EBC433DB
+	for <ath11k@archiver.kernel.org>; Wed, 24 Feb 2021 06:37:53 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5E02F64DB1
-	for <ath11k@archiver.kernel.org>; Mon, 22 Feb 2021 19:27:14 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5E02F64DB1
+	by mail.kernel.org (Postfix) with ESMTPS id 7450A64DCF
+	for <ath11k@archiver.kernel.org>; Wed, 24 Feb 2021 06:37:52 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7450A64DCF
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
 	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:Message-Id:Date:
-	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:Date:Message-Id:To:References:In-Reply-To:From:
+	Subject:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=Tl6tBkSu3yx0Nq72bDddzMhoK5TLSAiCj4P8kqJbki8=; b=DhH1Z3o2IXCdUGrOlE4WLQAjI
-	C4z858vqP4J7sRXwzp390ViMWU/7IuipBPJptmqg/rqQ+TeBX06bgQ/V5H+NmI0VMGb44kficSYrZ
-	ajfrG2c6aZQdOJbsVnxGscd0nk5eDj9CCd/TQeZUmXiV6O20X9J3wZYlXCl836AdaJ991jivp/+ve
-	WJd33e3fJ4v219ro1+b6xHTcvQ4u1I98PEA1NgpK8VrmFplfqtwTs24aCiQ7khXda0P1heElgACyA
-	fg0ti150Nm17yTmNBNNLm+HPXNkyKm3xLtwzH1j1l1XMXC3s3RDSNPIDDZczUROR5gpFM7SHlPjuU
-	t8J8YX+nQ==;
+	 bh=PzJsP2Q3lQw8911b4itWkZU7zAhEIeTd92dktY3tbUg=; b=VWdt567D5CdBiXBenkqDtHN0k
+	J0UAj1NEwjhbRZZZCHf7UU7KT80nP7RjIqcNpm/uNQ2paBuDbY9oQ6jIIX0qCLBBSny4dSBMpNlcr
+	xvUnTA7CiLoq91q99I8t3foirJQpAd4pjlqGPdYuLZ+hBzT3oJjnBqgO6ZsY5YxMInfj+rWtG934a
+	SHYho8Zl/zkMLJcqYJ+gC//1YRQLvCt6VWJn/plEzy2gzVevcAFCRlIzurxBscH+HSFsLIYEFrGTV
+	V1w4cnbvqCJFrIk3Ujnmeo8T61wabhSNyQSstgCIcbCq97VyMLyEBLqp5CI3fdLIL0nTkLaCX6J9q
+	aRYErNX9A==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1lEGrP-0001KH-NX; Mon, 22 Feb 2021 19:27:11 +0000
+	id 1lEnnw-0003zn-36; Wed, 24 Feb 2021 06:37:48 +0000
 Received: from m42-2.mailgun.net ([69.72.42.2])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1lEGrK-0001IL-TM
- for ath11k@lists.infradead.org; Mon, 22 Feb 2021 19:27:10 +0000
+ id 1lEnns-0003zN-28
+ for ath11k@lists.infradead.org; Wed, 24 Feb 2021 06:37:46 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1614022028; h=Content-Transfer-Encoding: MIME-Version:
- References: In-Reply-To: Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=IX9/8b+sT2Rp5j9PYi1XWhnvdUpFFf9cnUQo415HNIE=;
- b=cliZS6w0AY3UQTcWg6Jbqd1jzZKDDKJSwQuoTAyR06NpjrvuaoEC25OzpKf6MWBVvAGsNBjv
- x66eoRyv2hka7IhKvJpiFBxtgJL7pmvDzIIAwtUIEWJXcN7THlN9ZIBYJt+ZlzWyIDGnuIlg
- Sh1tP58MMwUuZTIR1H29J6VoAXo=
+ s=smtp; t=1614148664; h=Date: Message-Id: Cc: To: References:
+ In-Reply-To: From: Subject: Content-Transfer-Encoding: MIME-Version:
+ Content-Type: Sender; bh=48yz8jIM52Gzthc3eIwA3MFNH39afr9/7f7lqtwUPCM=;
+ b=g30qqi1VGSOY0e+vIYH36vpwc8PU/UMF8bfp0sXZA0wQrQ4TPXvbXknR5JELr1orJCRP+s0p
+ 189my179PVWby7TUaORKwK32kGtU4gfUazdbNM/+KIqj9bQ5tIUDFAlv00Kb/ihYqYFYHlxS
+ ZDVPNGjSR2Gnfyw/7bJr8S4eJpE=
 X-Mailgun-Sending-Ip: 69.72.42.2
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
- 60340586ba086638309f1bc7 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 22 Feb 2021 19:27:02
+ smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
+ 6035f431090a774287901683 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 24 Feb 2021 06:37:37
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id CEFE0C43464; Mon, 22 Feb 2021 19:27:02 +0000 (UTC)
-Received: from alokad-linux.qualcomm.com (i-global254.qualcomm.com
- [199.106.103.254])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
- (No client certificate requested) (Authenticated sender: alokad)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id A4FBDC433CA;
- Mon, 22 Feb 2021 19:27:00 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org A4FBDC433CA
+ id 853EFC43461; Wed, 24 Feb 2021 06:37:36 +0000 (UTC)
+Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi
+ [88.114.240.156])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested) (Authenticated sender: kvalo)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 25611C433CA;
+ Wed, 24 Feb 2021 06:37:33 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 25611C433CA
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- spf=fail smtp.mailfrom=alokad@codeaurora.org
-From: Aloka Dixit <alokad@codeaurora.org>
-To: kvalo@codeaurora.org
-Subject: [PATCH V5 1/2] ath11k: add WMI calls to manually add/del/pause/resume
- TWT dialogs
-Date: Mon, 22 Feb 2021 11:26:50 -0800
-Message-Id: <20210222192651.1782-2-alokad@codeaurora.org>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20210222192651.1782-1-alokad@codeaurora.org>
-References: <20210222192651.1782-1-alokad@codeaurora.org>
+ spf=fail smtp.mailfrom=kvalo@codeaurora.org
 MIME-Version: 1.0
+Subject: Re: [PATCH] ath11k: qmi: use %pad to format dma_addr_t
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <20210221182754.2071863-1-geert@linux-m68k.org>
+References: <20210221182754.2071863-1-geert@linux-m68k.org>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.5.2
+Message-Id: <20210224063736.853EFC43461@smtp.codeaurora.org>
+Date: Wed, 24 Feb 2021 06:37:36 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210222_142709_302193_2A5EE209 
-X-CRM114-Status: GOOD (  18.35  )
+X-CRM114-CacheID: sfid-20210224_013744_825096_A0B6872C 
+X-CRM114-Status: UNSURE (   8.88  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,442 +89,45 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Cc: Aloka Dixit <alokad@codeaurora.org>, linux-wireless@vger.kernel.org,
- ath11k@lists.infradead.org, John Crispin <john@phrozen.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: netdev@vger.kernel.org, linux-wireless@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ath11k@lists.infradead.org,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Jakub Kicinski <kuba@kernel.org>,
+ "David S . Miller" <davem@davemloft.net>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: John Crispin <john@phrozen.org>
-
-These calls are used for debugging and will be required for WFA
-certification tests.
-
-Signed-off-by: John Crispin <john@phrozen.org>
-Co-developed-by: Aloka Dixit <alokad@codeaurora.org>
-Signed-off-by: Aloka Dixit <alokad@codeaurora.org>
----
-Changes in V5
-* Setting and resetting of twt_enabled in WMI functions
-* ath11k_dbg() instead of ath11k_info() in ath11k_wmi_twt_add_dialog_event()
-* Made WMI error messages more readable
----
- drivers/net/wireless/ath/ath11k/core.h |   1 +
- drivers/net/wireless/ath/ath11k/wmi.c  | 218 ++++++++++++++++++++++++-
- drivers/net/wireless/ath/ath11k/wmi.h  | 114 +++++++++++++
- 3 files changed, 329 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 9cdc4f0b0690..a7d5333485aa 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -564,6 +564,7 @@ struct ath11k {
- #endif
- 	bool dfs_block_radar_events;
- 	struct ath11k_thermal thermal;
-+	u8 twt_enabled;
- };
- 
- struct ath11k_band_cap {
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index cccfd3bd4d27..1cac37d9c701 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -2897,11 +2897,12 @@ ath11k_wmi_send_twt_enable_cmd(struct ath11k *ar, u32 pdev_id)
- 	/* TODO add MBSSID support */
- 	cmd->mbss_support = 0;
- 
--	ret = ath11k_wmi_cmd_send(wmi, skb,
--				  WMI_TWT_ENABLE_CMDID);
-+	ret = ath11k_wmi_cmd_send(wmi, skb, WMI_TWT_ENABLE_CMDID);
- 	if (ret) {
- 		ath11k_warn(ab, "Failed to send WMI_TWT_ENABLE_CMDID");
- 		dev_kfree_skb(skb);
-+	} else {
-+		ar->twt_enabled = 1;
- 	}
- 	return ret;
- }
-@@ -2926,11 +2927,180 @@ ath11k_wmi_send_twt_disable_cmd(struct ath11k *ar, u32 pdev_id)
- 			  FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
- 	cmd->pdev_id = pdev_id;
- 
--	ret = ath11k_wmi_cmd_send(wmi, skb,
--				  WMI_TWT_DISABLE_CMDID);
-+	ret = ath11k_wmi_cmd_send(wmi, skb, WMI_TWT_DISABLE_CMDID);
- 	if (ret) {
- 		ath11k_warn(ab, "Failed to send WMI_TWT_DISABLE_CMDID");
- 		dev_kfree_skb(skb);
-+	} else {
-+		ar->twt_enabled = 0;
-+	}
-+	return ret;
-+}
-+
-+int ath11k_wmi_send_twt_add_dialog_cmd(struct ath11k *ar,
-+				       struct wmi_twt_add_dialog_params *params)
-+{
-+	struct ath11k_pdev_wmi *wmi = ar->wmi;
-+	struct ath11k_base *ab = wmi->wmi_ab->ab;
-+	struct wmi_twt_add_dialog_params_cmd *cmd;
-+	struct sk_buff *skb;
-+	int ret, len;
-+
-+	len = sizeof(*cmd);
-+
-+	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, len);
-+	if (!skb)
-+		return -ENOMEM;
-+
-+	cmd = (struct wmi_twt_add_dialog_params_cmd *)skb->data;
-+	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_TWT_ADD_DIALOG_CMD) |
-+			  FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
-+
-+	cmd->vdev_id = params->vdev_id;
-+	ether_addr_copy(cmd->peer_macaddr.addr, params->peer_macaddr);
-+	cmd->dialog_id = params->dialog_id;
-+	cmd->wake_intvl_us = params->wake_intvl_us;
-+	cmd->wake_intvl_mantis = params->wake_intvl_mantis;
-+	cmd->wake_dura_us = params->wake_dura_us;
-+	cmd->sp_offset_us = params->sp_offset_us;
-+	cmd->flags = params->twt_cmd;
-+	if (params->flag_bcast)
-+		cmd->flags |= WMI_TWT_ADD_DIALOG_FLAG_BCAST;
-+	if (params->flag_trigger)
-+		cmd->flags |= WMI_TWT_ADD_DIALOG_FLAG_TRIGGER;
-+	if (params->flag_flow_type)
-+		cmd->flags |= WMI_TWT_ADD_DIALOG_FLAG_FLOW_TYPE;
-+	if (params->flag_protection)
-+		cmd->flags |= WMI_TWT_ADD_DIALOG_FLAG_PROTECTION;
-+
-+	ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
-+		   "WMI add TWT dialog, vdev %u, dialog id %u,\n"
-+		   "wake interval %u, mantissa %u, wake duration %u,\n"
-+		   "service period offset %u, flags 0x%x\n",
-+		   cmd->vdev_id, cmd->dialog_id, cmd->wake_intvl_us,
-+		   cmd->wake_intvl_mantis, cmd->wake_dura_us, cmd->sp_offset_us,
-+		   cmd->flags);
-+
-+	ret = ath11k_wmi_cmd_send(wmi, skb, WMI_TWT_ADD_DIALOG_CMDID);
-+
-+	if (ret) {
-+		ath11k_warn(ab,
-+			    "Failed to send WMI command to add TWT dialog\n");
-+		dev_kfree_skb(skb);
-+	}
-+	return ret;
-+}
-+
-+int ath11k_wmi_send_twt_del_dialog_cmd(struct ath11k *ar,
-+				       struct wmi_twt_del_dialog_params *params)
-+{
-+	struct ath11k_pdev_wmi *wmi = ar->wmi;
-+	struct ath11k_base *ab = wmi->wmi_ab->ab;
-+	struct wmi_twt_del_dialog_params_cmd *cmd;
-+	struct sk_buff *skb;
-+	int ret, len;
-+
-+	len = sizeof(*cmd);
-+
-+	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, len);
-+	if (!skb)
-+		return -ENOMEM;
-+
-+	cmd = (struct wmi_twt_del_dialog_params_cmd *)skb->data;
-+	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_TWT_DEL_DIALOG_CMD) |
-+			  FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
-+
-+	cmd->vdev_id = params->vdev_id;
-+	ether_addr_copy(cmd->peer_macaddr.addr, params->peer_macaddr);
-+	cmd->dialog_id = params->dialog_id;
-+
-+	ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
-+		   "WMI delete TWT dialog, vdev %u, dialog id %u\n",
-+		   cmd->vdev_id, cmd->dialog_id);
-+
-+	ret = ath11k_wmi_cmd_send(wmi, skb, WMI_TWT_DEL_DIALOG_CMDID);
-+	if (ret) {
-+		ath11k_warn(ab,
-+			    "Failed to send WMI command to delete TWT dialog\n");
-+		dev_kfree_skb(skb);
-+	}
-+	return ret;
-+}
-+
-+int ath11k_wmi_send_twt_pause_dialog_cmd(struct ath11k *ar,
-+					 struct wmi_twt_pause_dialog_params *params)
-+{
-+	struct ath11k_pdev_wmi *wmi = ar->wmi;
-+	struct ath11k_base *ab = wmi->wmi_ab->ab;
-+	struct wmi_twt_pause_dialog_params_cmd *cmd;
-+	struct sk_buff *skb;
-+	int ret, len;
-+
-+	len = sizeof(*cmd);
-+
-+	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, len);
-+	if (!skb)
-+		return -ENOMEM;
-+
-+	cmd = (struct wmi_twt_pause_dialog_params_cmd *)skb->data;
-+	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG,
-+				     WMI_TAG_TWT_PAUSE_DIALOG_CMD) |
-+			  FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
-+
-+	cmd->vdev_id = params->vdev_id;
-+	ether_addr_copy(cmd->peer_macaddr.addr, params->peer_macaddr);
-+	cmd->dialog_id = params->dialog_id;
-+
-+	ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
-+		   "WMI pause TWT dialog, vdev %u, dialog id %u\n",
-+		   cmd->vdev_id, cmd->dialog_id);
-+
-+	ret = ath11k_wmi_cmd_send(wmi, skb, WMI_TWT_PAUSE_DIALOG_CMDID);
-+	if (ret) {
-+		ath11k_warn(ab,
-+			    "Failed to send WMI command to pause TWT dialog\n");
-+		dev_kfree_skb(skb);
-+	}
-+	return ret;
-+}
-+
-+int ath11k_wmi_send_twt_resume_dialog_cmd(struct ath11k *ar,
-+					  struct wmi_twt_resume_dialog_params *params)
-+{
-+	struct ath11k_pdev_wmi *wmi = ar->wmi;
-+	struct ath11k_base *ab = wmi->wmi_ab->ab;
-+	struct wmi_twt_resume_dialog_params_cmd *cmd;
-+	struct sk_buff *skb;
-+	int ret, len;
-+
-+	len = sizeof(*cmd);
-+
-+	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, len);
-+	if (!skb)
-+		return -ENOMEM;
-+
-+	cmd = (struct wmi_twt_resume_dialog_params_cmd *)skb->data;
-+	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG,
-+				     WMI_TAG_TWT_RESUME_DIALOG_CMD) |
-+			  FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
-+
-+	cmd->vdev_id = params->vdev_id;
-+	ether_addr_copy(cmd->peer_macaddr.addr, params->peer_macaddr);
-+	cmd->dialog_id = params->dialog_id;
-+	cmd->sp_offset_us = params->sp_offset_us;
-+	cmd->next_twt_size = params->next_twt_size;
-+
-+	ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
-+		   "WMI resume TWT dialog, vdev %u, dialog id %u,\n"
-+		   "service period offset %u, next TWT subfield size %u\n",
-+		   cmd->vdev_id, cmd->dialog_id, cmd->sp_offset_us,
-+		   cmd->next_twt_size);
-+
-+	ret = ath11k_wmi_cmd_send(wmi, skb, WMI_TWT_RESUME_DIALOG_CMDID);
-+	if (ret) {
-+		ath11k_warn(ab,
-+			    "Failed to send WMI command to resume TWT dialog\n");
-+		dev_kfree_skb(skb);
- 	}
- 	return ret;
- }
-@@ -6983,6 +7153,40 @@ static void ath11k_wmi_event_wow_wakeup_host(struct ath11k_base *ab, struct sk_b
- 	complete(&ab->wow.wakeup_completed);
- }
- 
-+static void ath11k_wmi_twt_add_dialog_event(struct ath11k_base *ab,
-+					    struct sk_buff *skb)
-+{
-+	const char *status[] = {
-+		"OK", "TWT_NOT_ENABLED", "USED_DIALOG_ID", "INVALID_PARAM",
-+		"NOT_READY", "NO_RESOURCE", "NO_ACK", "NO_RESPONSE",
-+		"DENIED", "UNKNOWN_ERROR"
-+	};
-+	const void **tb;
-+	const struct wmi_twt_add_dialog_event *ev;
-+	int ret;
-+
-+	tb = ath11k_wmi_tlv_parse_alloc(ab, skb->data, skb->len, GFP_ATOMIC);
-+	if (IS_ERR(tb)) {
-+		ret = PTR_ERR(tb);
-+		ath11k_warn(ab,
-+			    "failed to parse TWT add dialog status event tlv: %d\n", ret);
-+		return;
-+	}
-+
-+	ev = tb[WMI_TAG_TWT_ADD_DIALOG_COMPLETE_EVENT];
-+	if (!ev) {
-+		ath11k_warn(ab, "failed to fetch TWT add dialog event\n");
-+		goto exit;
-+	}
-+
-+	ath11k_dbg(ab, ATH11K_DBG_WMI,
-+		   "TWT Add Dialog Event - vdev: %d, dialog id: %d, status: %s\n",
-+		   ev->vdev_id, ev->dialog_id, status[ev->status]);
-+
-+exit:
-+	kfree(tb);
-+}
-+
- static void ath11k_wmi_tlv_op_rx(struct ath11k_base *ab, struct sk_buff *skb)
- {
- 	struct wmi_cmd_hdr *cmd_hdr;
-@@ -7075,11 +7279,17 @@ static void ath11k_wmi_tlv_op_rx(struct ath11k_base *ab, struct sk_buff *skb)
- 	case WMI_OFFLOAD_PROB_RESP_TX_STATUS_EVENTID:
- 		ath11k_probe_resp_tx_status_event(ab, skb);
- 		break;
-+	case WMI_TWT_ADD_DIALOG_EVENTID:
-+		ath11k_wmi_twt_add_dialog_event(ab, skb);
-+		break;
- 	/* add Unsupported events here */
- 	case WMI_TBTTOFFSET_EXT_UPDATE_EVENTID:
- 	case WMI_PEER_OPER_MODE_CHANGE_EVENTID:
- 	case WMI_TWT_ENABLE_EVENTID:
- 	case WMI_TWT_DISABLE_EVENTID:
-+	case WMI_TWT_DEL_DIALOG_EVENTID:
-+	case WMI_TWT_PAUSE_DIALOG_EVENTID:
-+	case WMI_TWT_RESUME_DIALOG_EVENTID:
- 	case WMI_PDEV_DMA_RING_CFG_RSP_EVENTID:
- 		ath11k_dbg(ab, ATH11K_DBG_WMI,
- 			   "ignoring unsupported event 0x%x\n", id);
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index 3ade1ddd35c9..eb573dad67c5 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -4791,6 +4791,112 @@ struct wmi_twt_disable_params_cmd {
- 	u32 pdev_id;
- } __packed;
- 
-+enum WMI_HOST_TWT_COMMAND {
-+	WMI_HOST_TWT_COMMAND_REQUEST_TWT = 0,
-+	WMI_HOST_TWT_COMMAND_SUGGEST_TWT,
-+	WMI_HOST_TWT_COMMAND_DEMAND_TWT,
-+	WMI_HOST_TWT_COMMAND_TWT_GROUPING,
-+	WMI_HOST_TWT_COMMAND_ACCEPT_TWT,
-+	WMI_HOST_TWT_COMMAND_ALTERNATE_TWT,
-+	WMI_HOST_TWT_COMMAND_DICTATE_TWT,
-+	WMI_HOST_TWT_COMMAND_REJECT_TWT,
-+};
-+
-+#define WMI_TWT_ADD_DIALOG_FLAG_BCAST           BIT(8)
-+#define WMI_TWT_ADD_DIALOG_FLAG_TRIGGER         BIT(9)
-+#define WMI_TWT_ADD_DIALOG_FLAG_FLOW_TYPE       BIT(10)
-+#define WMI_TWT_ADD_DIALOG_FLAG_PROTECTION      BIT(11)
-+
-+struct wmi_twt_add_dialog_params_cmd {
-+	u32 tlv_header;
-+	u32 vdev_id;
-+	struct wmi_mac_addr peer_macaddr;
-+	u32 dialog_id;
-+	u32 wake_intvl_us;
-+	u32 wake_intvl_mantis;
-+	u32 wake_dura_us;
-+	u32 sp_offset_us;
-+	u32 flags;
-+} __packed;
-+
-+struct wmi_twt_add_dialog_params {
-+	u32 vdev_id;
-+	u8 peer_macaddr[ETH_ALEN];
-+	u32 dialog_id;
-+	u32 wake_intvl_us;
-+	u32 wake_intvl_mantis;
-+	u32 wake_dura_us;
-+	u32 sp_offset_us;
-+	u8 twt_cmd;
-+	u8 flag_bcast;
-+	u8 flag_trigger;
-+	u8 flag_flow_type;
-+	u8 flag_protection;
-+} __packed;
-+
-+enum  wmi_twt_add_dialog_status {
-+	WMI_ADD_TWT_STATUS_OK,
-+	WMI_ADD_TWT_STATUS_TWT_NOT_ENABLED,
-+	WMI_ADD_TWT_STATUS_USED_DIALOG_ID,
-+	WMI_ADD_TWT_STATUS_INVALID_PARAM,
-+	WMI_ADD_TWT_STATUS_NOT_READY,
-+	WMI_ADD_TWT_STATUS_NO_RESOURCE,
-+	WMI_ADD_TWT_STATUS_NO_ACK,
-+	WMI_ADD_TWT_STATUS_NO_RESPONSE,
-+	WMI_ADD_TWT_STATUS_DENIED,
-+	WMI_ADD_TWT_STATUS_UNKNOWN_ERROR,
-+};
-+
-+struct wmi_twt_add_dialog_event {
-+	u32 vdev_id;
-+	struct wmi_mac_addr peer_macaddr;
-+	u32 dialog_id;
-+	u32 status;
-+} __packed;
-+
-+struct wmi_twt_del_dialog_params {
-+	u32 vdev_id;
-+	u8 peer_macaddr[ETH_ALEN];
-+	u32 dialog_id;
-+} __packed;
-+
-+struct wmi_twt_del_dialog_params_cmd {
-+	u32 tlv_header;
-+	u32 vdev_id;
-+	struct wmi_mac_addr peer_macaddr;
-+	u32 dialog_id;
-+} __packed;
-+
-+struct wmi_twt_pause_dialog_params {
-+	u32 vdev_id;
-+	u8 peer_macaddr[ETH_ALEN];
-+	u32 dialog_id;
-+} __packed;
-+
-+struct wmi_twt_pause_dialog_params_cmd {
-+	u32 tlv_header;
-+	u32 vdev_id;
-+	struct wmi_mac_addr peer_macaddr;
-+	u32 dialog_id;
-+} __packed;
-+
-+struct wmi_twt_resume_dialog_params {
-+	u32 vdev_id;
-+	u8 peer_macaddr[ETH_ALEN];
-+	u32 dialog_id;
-+	u32 sp_offset_us;
-+	u32 next_twt_size;
-+} __packed;
-+
-+struct wmi_twt_resume_dialog_params_cmd {
-+	u32 tlv_header;
-+	u32 vdev_id;
-+	struct wmi_mac_addr peer_macaddr;
-+	u32 dialog_id;
-+	u32 sp_offset_us;
-+	u32 next_twt_size;
-+} __packed;
-+
- struct wmi_obss_spatial_reuse_params_cmd {
- 	u32 tlv_header;
- 	u32 pdev_id;
-@@ -5339,6 +5445,14 @@ void ath11k_wmi_fw_stats_fill(struct ath11k *ar,
- int ath11k_wmi_simulate_radar(struct ath11k *ar);
- int ath11k_wmi_send_twt_enable_cmd(struct ath11k *ar, u32 pdev_id);
- int ath11k_wmi_send_twt_disable_cmd(struct ath11k *ar, u32 pdev_id);
-+int ath11k_wmi_send_twt_add_dialog_cmd(struct ath11k *ar,
-+				       struct wmi_twt_add_dialog_params *params);
-+int ath11k_wmi_send_twt_del_dialog_cmd(struct ath11k *ar,
-+				       struct wmi_twt_del_dialog_params *params);
-+int ath11k_wmi_send_twt_pause_dialog_cmd(struct ath11k *ar,
-+					 struct wmi_twt_pause_dialog_params *params);
-+int ath11k_wmi_send_twt_resume_dialog_cmd(struct ath11k *ar,
-+					  struct wmi_twt_resume_dialog_params *params);
- int ath11k_wmi_send_obss_spr_cmd(struct ath11k *ar, u32 vdev_id,
- 				 struct ieee80211_he_obss_pd *he_obss_pd);
- int ath11k_wmi_pdev_set_srg_bss_color_bitmap(struct ath11k *ar, u32 *bitmap);
--- 
-2.25.0
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+R2VlcnQgVXl0dGVyaG9ldmVuIDxnZWVydEBsaW51eC1tNjhrLm9yZz4gd3JvdGU6Cgo+IElmIENP
+TkZJR19BUkNIX0RNQV9BRERSX1RfNjRCSVQ9bjoKPiAKPiAgICAgZHJpdmVycy9uZXQvd2lyZWxl
+c3MvYXRoL2F0aDExay9xbWkuYzogSW4gZnVuY3Rpb24g4oCYYXRoMTFrX3FtaV9yZXNwb25kX2Z3
+X21lbV9yZXF1ZXN04oCZOgo+ICAgICBkcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL3Ft
+aS5jOjE2OTA6ODogd2FybmluZzogZm9ybWF0IOKAmCVsbHjigJkgZXhwZWN0cyBhcmd1bWVudCBv
+ZiB0eXBlIOKAmGxvbmcgbG9uZyB1bnNpZ25lZCBpbnTigJksIGJ1dCBhcmd1bWVudCA1IGhhcyB0
+eXBlIOKAmGRtYV9hZGRyX3TigJkge2FrYSDigJh1bnNpZ25lZCBpbnTigJl9IFstV2Zvcm1hdD1d
+Cj4gICAgICAxNjkwIHwgICAgICAgICJxbWkgcmVxIG1lbV9zZWdbJWRdIDB4JWxseCAldSAldVxu
+IiwgaSwKPiAJICB8ICAgICAgICBefn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn4K
+PiAgICAgIDE2OTEgfCAgICAgICAgIGFiLT5xbWkudGFyZ2V0X21lbVtpXS5wYWRkciwKPiAJICB8
+ICAgICAgICAgfn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+Cj4gCSAgfCAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgIHwKPiAJICB8ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZG1h
+X2FkZHJfdCB7YWthIHVuc2lnbmVkIGludH0KPiAgICAgZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRo
+L2F0aDExay9kZWJ1Zy5oOjY0OjMwOiBub3RlOiBpbiBkZWZpbml0aW9uIG9mIG1hY3JvIOKAmGF0
+aDExa19kYmfigJkKPiAgICAgICAgNjQgfCAgIF9fYXRoMTFrX2RiZyhhciwgZGJnX21hc2ssIGZt
+dCwgIyNfX1ZBX0FSR1NfXyk7IFwKPiAJICB8ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+Xn5+Cj4gICAgIGRyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvcW1pLmM6MTY5MDozNDog
+bm90ZTogZm9ybWF0IHN0cmluZyBpcyBkZWZpbmVkIGhlcmUKPiAgICAgIDE2OTAgfCAgICAgICAg
+InFtaSByZXEgbWVtX3NlZ1slZF0gMHglbGx4ICV1ICV1XG4iLCBpLAo+IAkgIHwgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgfn5+Xgo+IAkgIHwgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgfAo+IAkgIHwgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbG9uZyBs
+b25nIHVuc2lnbmVkIGludAo+IAkgIHwgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgJXgK
+PiAKPiBGaXhlczogZDUzOTVhNTQ4NjU5NjMwOCAoImF0aDExazogcW1pOiBhZGQgZGVidWcgbWVz
+c2FnZSBmb3IgYWxsb2NhdGVkIG1lbW9yeSBzZWdtZW50IGFkZHJlc3NlcyBhbmQgc2l6ZXMiKQo+
+IFNpZ25lZC1vZmYtYnk6IEdlZXJ0IFV5dHRlcmhvZXZlbiA8Z2VlcnRAbGludXgtbTY4ay5vcmc+
+CgpQYXRjaCBhcHBsaWVkIHRvIHdpcmVsZXNzLWRyaXZlcnMuZ2l0LCB0aGFua3MuCgplYmI5ZDM0
+ZTA3M2QgYXRoMTFrOiBxbWk6IHVzZSAlcGFkIHRvIGZvcm1hdCBkbWFfYWRkcl90CgotLSAKaHR0
+cHM6Ly9wYXRjaHdvcmsua2VybmVsLm9yZy9wcm9qZWN0L2xpbnV4LXdpcmVsZXNzL3BhdGNoLzIw
+MjEwMjIxMTgyNzU0LjIwNzE4NjMtMS1nZWVydEBsaW51eC1tNjhrLm9yZy8KCmh0dHBzOi8vd2ly
+ZWxlc3Mud2lraS5rZXJuZWwub3JnL2VuL2RldmVsb3BlcnMvZG9jdW1lbnRhdGlvbi9zdWJtaXR0
+aW5ncGF0Y2hlcwoKCi0tIAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0cy5pbmZyYWRl
+YWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vYXRoMTFr
+Cg==
