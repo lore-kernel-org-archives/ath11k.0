@@ -2,77 +2,95 @@ Return-Path: <SRS0=NPuH=H2=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5FA34C433E0
-	for <ath11k@archiver.kernel.org>; Wed, 24 Feb 2021 09:56:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 068BFC433E0
+	for <ath11k@archiver.kernel.org>; Wed, 24 Feb 2021 21:33:16 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DCB43601FC
-	for <ath11k@archiver.kernel.org>; Wed, 24 Feb 2021 09:56:10 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DCB43601FC
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+	by mail.kernel.org (Postfix) with ESMTPS id 7B44A64F08
+	for <ath11k@archiver.kernel.org>; Wed, 24 Feb 2021 21:33:15 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7B44A64F08
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=justinmp.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=4ONyzRygCUeASH8s2xx5XtlyqKeGQX7TYifUU3Mtbag=; b=C2ZwLIhoyYDHsa8EkWG+XsNtdy
-	N9vfvCxiGZNXNmcbsun7hAfgvRzpzfBDuoUziJzg2VXqTyaejbfzprUGL2Exaqo7vH5pIOg6k14aW
-	zLFq9R1zGYToRdzlYucgYnUbj7TDtdayVybR3S9H41cLIRDLFwDHkZPLPt44nqtFiPtrkgDKGy1vL
-	WSCT0P8cJy9xRCrqp5+6b6qFGAu6P28s6oxYcpLgZVwT74Yh3gzW3tPRI6iemoz/kUE0kFfa083mD
-	/kYY2U7qVsAHri7YvvW2WKVIgavNxkoqnl3MnN5kniApvPyfJDNU+E7T3gE+nRpYHaowOYFGsWO+W
-	bnREmA1g==;
+	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=OJq/ZWT0CBB/uIpfly7Ys+/iBGWhambTAI05XroZwdc=; b=ZUKpmHOpaMOQdD7n+9gIM7H7v
+	1VqmWeJ++Wf84KAd29vNo+YHKPlgccgLt7GBSsQwzpewOqGRpPMX9ZdSSMF1Dt8SAoBAuVxkuxx4U
+	T2TP75jWj6esjva8nqhjCWzbZla736sXku2vDzfYo5RnZEwuaeO3fKLrSv2sOneRfECE8TSo+L7mJ
+	cNObFAwcSozx10D6chAGM3k88IvblJFYbcthxw4pjIyURPLDun0JehVbzZQ5S+tFi8/KDxgjuVFeY
+	JSokTLf42/2g9N7sdRxeFah4sVpVvX6VuZdWxP764Q9dR8082sL3uChrf6Duni+7rjP59ZTUA5RJU
+	kMRxcsbQA==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1lEqtq-0005MV-Dh; Wed, 24 Feb 2021 09:56:06 +0000
-Received: from z11.mailgun.us ([104.130.96.11])
+	id 1lF1mQ-0001Fp-0P; Wed, 24 Feb 2021 21:33:10 +0000
+Received: from mail-qk1-x730.google.com ([2607:f8b0:4864:20::730])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1lEqtn-0005Lw-Dx
- for ath11k@lists.infradead.org; Wed, 24 Feb 2021 09:56:05 +0000
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
- q=dns/txt; 
- s=smtp; t=1614160563; h=Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=4OX1dbijW82l7e2CtJ3oWvUe+S26p9ku+mLbyAlkAUs=;
- b=jQWl4Md5kiXia0YLczds0vDnh3QjGCUZROYHGkRHYFgzeMMyaC33fE/Aj/+gwotzJQfPd/qG
- RVKz3uEFNTq75BIUZWltBC9mKo3tfLixykwolvLhm3fPOLs7OVrxSWb7ieV/vzhNEBvJnwOL
- rUspKjP6zRCO4op8uAnSR37hAJE=
-X-Mailgun-Sending-Ip: 104.130.96.11
-X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
- 603622af095efe18163b0270 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 24 Feb 2021 09:55:59
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id CE6D8C43462; Wed, 24 Feb 2021 09:55:59 +0000 (UTC)
-Received: from vnaralas-linux.qualcomm.com
- (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
- (No client certificate requested) (Authenticated sender: akolli)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 89DF9C433ED;
- Wed, 24 Feb 2021 09:55:57 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 89DF9C433ED
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- spf=fail smtp.mailfrom=akolli@codeaurora.org
-From: Anilkumar Kolli <akolli@codeaurora.org>
-To: ath11k@lists.infradead.org
-Subject: [PATCH] ath11k: update debugfs support for mupltiple radios in PCI bus
-Date: Wed, 24 Feb 2021 15:25:42 +0530
-Message-Id: <1614160542-27882-1-git-send-email-akolli@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
+ id 1lF1mO-0001FT-Ct
+ for ath11k@lists.infradead.org; Wed, 24 Feb 2021 21:33:09 +0000
+Received: by mail-qk1-x730.google.com with SMTP id x124so3769042qkc.1
+ for <ath11k@lists.infradead.org>; Wed, 24 Feb 2021 13:33:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=justinmp-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-transfer-encoding:content-language;
+ bh=ICYIbeNFNzXmRJUUcT3KdZBRagHVM9z74L/nhn21k9o=;
+ b=ibx3hTIKXmcXfZy+UUUuIlEQo6VUJDyxfPHHMJMO9R6ZXxAsRPk/DWR90Xe9l5bZsa
+ Qe4iPxjvvwth9XaQKJwCb992E2OiarBbFU3ueardp8YIqDyucWLQw8/SlXbZly3Pi8ex
+ n2ELirx72rjibJh2DUFtuVIXGcsWFSiwTq9XTtw3IOa8L6GZh+Vp/DrW5yKM/kVXfkMv
+ 2lFiKUlxBygJphH/OQjxw4ghNt3r2mOx+2+UN83BKZl9ivXaBDJhbevJHin+Ic1airgn
+ PrkxBJbqh4pGoK5ykTTODBrwe5uZVmglR3cP9bBtYoXpMhz/vPb3ExfRQQcHR4kUEV6K
+ 7JOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-transfer-encoding
+ :content-language;
+ bh=ICYIbeNFNzXmRJUUcT3KdZBRagHVM9z74L/nhn21k9o=;
+ b=NpzYMWkM3o6p0bmE7ZD8vKLjcnOJeO0yKDGTGGC0QFqjEswrBVZP12/fk201xGnRw1
+ 2RctR/6Z/WW5nUvQ1JZjUk17RjCnGDnz1TKym7rdKnXOyZjp0O/GLXZZwJH3rHwShRqw
+ 7Il3sssgGhNGPvxTQwOkn6hjz/vbX2yzrqm2ZzuMTuMtl0gypX5cPKI2NZ/yIhKNFiRU
+ 2kCzVq/03wL9OYWxOCpD/TLXZ0NwEbpK++4h3mr/HOVp9+B8Yin6V743cfRLBYItT8zP
+ QMTD77m7Es5RhriQ3G/A7CE/ea3gGhibRv8VOX3Zqg7h2Hoat4snCKBJl4Jz1Eh6sS6h
+ D+FA==
+X-Gm-Message-State: AOAM533mZNrdJudVWmzf8GkJUcxHzhciwEqlJf7CEv+HapYTVUP1B8WO
+ 4rvKkvuf0LRii0uSXhX7IiN+pA==
+X-Google-Smtp-Source: ABdhPJy0QyuTor04w/aHosIsj24C1cbPZUwmfGC1CsEOcDznfu/JyFJDJjzGWHhjGSrSI4NfPM8zOQ==
+X-Received: by 2002:a05:620a:2041:: with SMTP id
+ d1mr32793008qka.326.1614202385664; 
+ Wed, 24 Feb 2021 13:33:05 -0800 (PST)
+Received: from ?IPv6:2601:184:4a7f:a732::1f1? ([2601:184:4a7f:a732::1f1])
+ by smtp.gmail.com with ESMTPSA id 14sm2106086qtx.84.2021.02.24.13.33.04
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 24 Feb 2021 13:33:04 -0800 (PST)
+Subject: Re: Ordering Dell XPS 13 9310 to test QCA6390
+To: Stelian Pop <stelian@popies.net>, ath11k@lists.infradead.org
+References: <tQQZLjnfaM2XZ-LdgoSYE_9yQQmGCtzT108xBh-SzpRhHN7o6_w_jdIcfp67hVNe-kkiNC72u_rhyo1AtUw-41nvcCo_K3pUhkR__6VF6ig=@mitchellnordine.com>
+ <87mtydwy7v.fsf@codeaurora.org> <87h7nli16d.fsf@codeaurora.org>
+ <CAHUdJJWpHWznHOhdtuRjbH2tr9F5kagGUbNsFO_f7MfY=w_3Gg@mail.gmail.com>
+ <878s8xhx1s.fsf@codeaurora.org>
+ <CAHUdJJVk3jDY9FGjPTuDTF2+QK+B8f8s6ZqMA+8uH-7Yd==Mmw@mail.gmail.com>
+ <87czwshyn3.fsf@codeaurora.org> <20210224091444.GA30965@calypso>
+From: Justin Mazzola Paluska <jmp@justinmp.com>
+Message-ID: <bbec5e34-49e4-1e80-0420-63cb046a2c2b@justinmp.com>
+Date: Wed, 24 Feb 2021 16:33:03 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
+MIME-Version: 1.0
+In-Reply-To: <20210224091444.GA30965@calypso>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210224_045604_054116_7AC5E174 
-X-CRM114-Status: GOOD (  19.44  )
+X-CRM114-CacheID: sfid-20210224_163308_551264_07D8361C 
+X-CRM114-Status: UNSURE (   9.09  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,225 +102,20 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Cc: Anilkumar Kolli <akolli@codeaurora.org>, linux-wireless@vger.kernel.org
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: kvalo@codeaurora.org
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-debugfs_ath11k struct is moved to ath11k_core, since its common
-for both pci and ahb.
-
-Current ath11k_pci insmod fails if there are multiple PCI rdaios,
-
- ath11k_pci 0000:01:00.0: Hardware name qcn9074 hw1.0
- debugfs: Directory 'ath11k' with parent '/' already present!
- ath11k_pci 0000:01:00.0: failed to create ath11k debugfs
- ath11k_pci 0000:01:00.0: failed to create soc core: -17
- ath11k_pci 0000:01:00.0: failed to init core: -17
- ath11k_pci: probe of 0000:01:00.0 failed with error -17
-
-To avoid the failure, debugfs directory is created with soc_name
-and bus_id to allow creating debugfs directory for second PCI radio.
-
-with this Debugfs entries looks like,
- # ls -l /sys/kernel/debug/ath11k/
- ipq8074 hw2.0 qcn9000 hw1.0_0000:01:00.0 qcn9000 hw1.0_0001:01:00.0
-
- # ls -l /sys/kernel/debug/ath11k/ipq8074 hw2.0/
-  mac0  mac1 simulate_fw_crash soc_dp_stats
-
- # ls -l /sys/kernel/debug/ath11k/qcn9000 hw1.0_0000:01:00.0
-  mac0 simulate_fw_crash soc_dp_stats
-
- # /sys/kernel/debug/ath11k/qcn9000 hw1.0_0001:01:00.0:
-   mac0  simulate_fw_crash soc_dp_stats
-
-Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.4.0.1.r2-00012-QCAHKSWPL_SILICONZ-1
-
-Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/core.c    | 12 +++++++
- drivers/net/wireless/ath/ath11k/core.h    |  1 -
- drivers/net/wireless/ath/ath11k/debugfs.c | 57 +++++++++++++++++++++++++------
- drivers/net/wireless/ath/ath11k/debugfs.h | 11 ++++++
- 4 files changed, 70 insertions(+), 11 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 77ce3347ab86..d121fa1fd6d7 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -1111,5 +1111,17 @@ struct ath11k_base *ath11k_core_alloc(struct device *dev, size_t priv_size,
- }
- EXPORT_SYMBOL(ath11k_core_alloc);
- 
-+static int ath11k_init(void)
-+{
-+	return ath11k_debugfs_create();
-+}
-+module_init(ath11k_init);
-+
-+static void ath11k_exit(void)
-+{
-+	ath11k_debugfs_destroy();
-+}
-+module_exit(ath11k_exit);
-+
- MODULE_DESCRIPTION("Core module for Qualcomm Atheros 802.11ax wireless LAN cards.");
- MODULE_LICENSE("Dual BSD/GPL");
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 9cdc4f0b0690..2672448d7848 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -723,7 +723,6 @@ struct ath11k_base {
- 	enum ath11k_dfs_region dfs_region;
- #ifdef CONFIG_ATH11K_DEBUGFS
- 	struct dentry *debugfs_soc;
--	struct dentry *debugfs_ath11k;
- #endif
- 	struct ath11k_soc_dp_stats soc_stats;
- 
-diff --git a/drivers/net/wireless/ath/ath11k/debugfs.c b/drivers/net/wireless/ath/ath11k/debugfs.c
-index 554feaf1ed5c..02694f8d33d2 100644
---- a/drivers/net/wireless/ath/ath11k/debugfs.c
-+++ b/drivers/net/wireless/ath/ath11k/debugfs.c
-@@ -13,6 +13,8 @@
- #include "debugfs_htt_stats.h"
- #include "peer.h"
- 
-+struct dentry *debugfs_ath11k;
-+
- static const char *htt_bp_umac_ring[HTT_SW_UMAC_RING_IDX_MAX] = {
- 	"REO2SW1_RING",
- 	"REO2SW2_RING",
-@@ -836,10 +838,6 @@ int ath11k_debugfs_pdev_create(struct ath11k_base *ab)
- 	if (test_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags))
- 		return 0;
- 
--	ab->debugfs_soc = debugfs_create_dir(ab->hw_params.name, ab->debugfs_ath11k);
--	if (IS_ERR(ab->debugfs_soc))
--		return PTR_ERR(ab->debugfs_soc);
--
- 	debugfs_create_file("simulate_fw_crash", 0600, ab->debugfs_soc, ab,
- 			    &fops_simulate_fw_crash);
- 
-@@ -851,24 +849,58 @@ int ath11k_debugfs_pdev_create(struct ath11k_base *ab)
- 
- void ath11k_debugfs_pdev_destroy(struct ath11k_base *ab)
- {
--	debugfs_remove_recursive(ab->debugfs_soc);
--	ab->debugfs_soc = NULL;
- }
- 
- int ath11k_debugfs_soc_create(struct ath11k_base *ab)
- {
--	ab->debugfs_ath11k = debugfs_create_dir("ath11k", NULL);
-+	struct device *dev = ab->dev;
-+	char soc_name[64] = {0};
-+
-+	if (!(IS_ERR_OR_NULL(ab->debugfs_soc)))
-+		return 0;
-+
-+	if (ab->hif.bus == ATH11K_BUS_AHB) {
-+		snprintf(soc_name, sizeof(soc_name), "%s", ab->hw_params.name);
-+	} else {
-+		snprintf(soc_name, sizeof(soc_name), "%s_%s",
-+			 ab->hw_params.name, dev_name(dev));
-+	}
- 
--	return PTR_ERR_OR_ZERO(ab->debugfs_ath11k);
-+	ab->debugfs_soc = debugfs_create_dir(soc_name, debugfs_ath11k);
-+	if (IS_ERR_OR_NULL(ab->debugfs_soc)) {
-+		if (IS_ERR(ab->debugfs_soc))
-+			return PTR_ERR(ab->debugfs_soc);
-+		return -ENOMEM;
-+	}
-+
-+	return 0;
- }
- 
- void ath11k_debugfs_soc_destroy(struct ath11k_base *ab)
- {
--	debugfs_remove_recursive(ab->debugfs_ath11k);
--	ab->debugfs_ath11k = NULL;
-+	debugfs_remove_recursive(ab->debugfs_soc);
-+	ab->debugfs_soc = NULL;
- }
- EXPORT_SYMBOL(ath11k_debugfs_soc_destroy);
- 
-+int ath11k_debugfs_create(void)
-+{
-+	debugfs_ath11k = debugfs_create_dir("ath11k", NULL);
-+	if (IS_ERR_OR_NULL(debugfs_ath11k)) {
-+		if (IS_ERR(debugfs_ath11k))
-+			return PTR_ERR(debugfs_ath11k);
-+		return -ENOMEM;
-+	}
-+
-+	return 0;
-+}
-+
-+void ath11k_debugfs_destroy(void)
-+{
-+	debugfs_remove_recursive(debugfs_ath11k);
-+	debugfs_ath11k = NULL;
-+}
-+
- void ath11k_debugfs_fw_stats_init(struct ath11k *ar)
- {
- 	struct dentry *fwstats_dir = debugfs_create_dir("fw_stats",
-@@ -1057,6 +1089,9 @@ int ath11k_debugfs_register(struct ath11k *ar)
- 	char pdev_name[5];
- 	char buf[100] = {0};
- 
-+	if (!(IS_ERR_OR_NULL(ar->debug.debugfs_pdev)))
-+		return 0;
-+
- 	snprintf(pdev_name, sizeof(pdev_name), "%s%d", "mac", ar->pdev_idx);
- 
- 	ar->debug.debugfs_pdev = debugfs_create_dir(pdev_name, ab->debugfs_soc);
-@@ -1095,4 +1130,6 @@ int ath11k_debugfs_register(struct ath11k *ar)
- 
- void ath11k_debugfs_unregister(struct ath11k *ar)
- {
-+	debugfs_remove_recursive(ar->debug.debugfs_pdev);
-+	ar->debug.debugfs_pdev = NULL;
- }
-diff --git a/drivers/net/wireless/ath/ath11k/debugfs.h b/drivers/net/wireless/ath/ath11k/debugfs.h
-index e5346af71f24..5882a6761a5a 100644
---- a/drivers/net/wireless/ath/ath11k/debugfs.h
-+++ b/drivers/net/wireless/ath/ath11k/debugfs.h
-@@ -104,6 +104,8 @@ enum ath11k_dbg_aggr_mode {
- };
- 
- #ifdef CONFIG_ATH11K_DEBUGFS
-+int ath11k_debugfs_create(void);
-+void ath11k_debugfs_destroy(void);
- int ath11k_debugfs_soc_create(struct ath11k_base *ab);
- void ath11k_debugfs_soc_destroy(struct ath11k_base *ab);
- int ath11k_debugfs_pdev_create(struct ath11k_base *ab);
-@@ -146,6 +148,15 @@ static inline int ath11k_debugfs_rx_filter(struct ath11k *ar)
- }
- 
- #else
-+static inline int ath11k_debugfs_create(void)
-+{
-+	return 0;
-+}
-+
-+static inline void ath11k_debugfs_destroy(void)
-+{
-+}
-+
- static inline int ath11k_debugfs_soc_create(struct ath11k_base *ab)
- {
- 	return 0;
--- 
-2.7.4
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+T24gMi8yNC8yMSA0OjE0IEFNLCBTdGVsaWFuIFBvcCB3cm90ZToKPiBUaGVyZSBhcmUgcHJvYmFi
+bHkgbXVsdGlwbGUgaXNzdWVzLCB0aGUgZmlyc3Qgb2Ygd2hpY2ggaXMgdGhlIG9uZSBKdXN0aW4K
+PiByZXBvcnRlZCAodW5hYmxlIHRvIGdvIHRvIHNsZWVwIHdoZW4gYXRoMTFrIGlzIGxvYWRlZCku
+IEkgc3VnZ2VzdCB5b3UKPiBsb29rIGludG8gdGhpcyBCRUZPUkUgdXBkYXRpbmcgdGhlIEJJT1Mu
+Li4KClRvIGJlIGNsZWFyLCBzMmlkbGUgd29ya3MgKGFuZCBJIGRvIGdldCBpbnRvIFMwaXggc3Rh
+dGVzIHdoZW4gZG9pbmcgCnMyaWRsZSBzdXNwZW5kKSBmb3IgbWUgd2l0aCB0aGUgcHJlLTIuMC4w
+IEJJT1MuCgpXaGF0IGRvZXNuJ3Qgd29yayBpcyBvcHBvcnR1bmlzdGljIFMwaXggc3RhdGVzICh3
+aGVyZSB0aGUgbWFjaGluZSBnb2VzIAppbnRvIHZlcnkgbG93IHBvd2VyIHN0YXRlcyB3aGVuIG5v
+dCBzdXNwZW5kZWQpLgogwqDCoMKgIC0tSnVzdGluCgotLSAKYXRoMTFrIG1haWxpbmcgbGlzdAph
+dGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL2F0aDExawo=
