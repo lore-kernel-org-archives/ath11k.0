@@ -2,79 +2,71 @@ Return-Path: <SRS0=NPuH=H2=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5F40AC433E0
-	for <ath11k@archiver.kernel.org>; Wed, 24 Feb 2021 09:03:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A8354C433E0
+	for <ath11k@archiver.kernel.org>; Wed, 24 Feb 2021 09:15:29 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D378364D74
-	for <ath11k@archiver.kernel.org>; Wed, 24 Feb 2021 09:03:19 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D378364D74
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+	by mail.kernel.org (Postfix) with ESMTPS id 303CF60241
+	for <ath11k@archiver.kernel.org>; Wed, 24 Feb 2021 09:15:29 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 303CF60241
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=popies.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Transfer-Encoding:
-	Content-Type:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=eifCzEzn2cyuAWHRgPEN6fm8kds4jBjuy52nazgWuGE=; b=LgTEKfyRj5CM/TD63RTqiGtmCg
-	ex4YZekDNtHhYjXoH4AOUH0T7PUAdyoBrwlZBrddOR9kNSvfmYNMVgtain6uWKufENjnw5wF24MJA
-	ao2dWNM1Yu7Q2+kZtdzKwdS9xTwxGYD6nVwG3mLDWginoIxHfdatUqWUba6EqyS171jWSaawmgFZV
-	9emT3SAPhHspozrF6P+oX7RN9yfG9Vtx+XeAu+d2NVscgrgm2jI+5OZi7groQpwnJaKK/g4O5d4tn
-	C4S6CJST4+BXHhMws1YkmlAAW4SgOvdMcUiPy9vsEI2Ufy2sxNC0gVJfBfItjPk3OHj4qikeIJC9J
-	sc8WdxXg==;
+	Content-Type:Cc:Reply-To:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
+	Subject:To:From:Date:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=7xJN6gACHmzVlT1A69X+rGVOQcCn2IgeVH5ZSsol5E0=; b=aPTWLloy4Di7TI1/g0wfMUhS14
+	S6npnkdRTlbkXxI55syHVMWts2pEx1ebcTpd5QgQ9s71TYYgpSBbfJpAHS1VToEAMnxUfuOFSUjjX
+	J3EnLsfoxNvsLv22R8mqvStJbhKAMdCRZKbbRkXw+e9Malc8ouwxlIGeoPnpi23yb3SIUZ12it06T
+	g4gxFL1pj+epn3BnawpDFQwQWbUnUH993URDRhInRVK1Nqe/sj6HyM/isFFTqls5KAvepcTnwD1va
+	koOOcasR7HFzfCMRLTjeJhIBrZevjtyhkprC9fp3rrsC3lFfJgeP+z6IlWU9WVerCP7JvVLS0BquV
+	2v2GynHg==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1lEq4h-0008Kq-KF; Wed, 24 Feb 2021 09:03:15 +0000
-Received: from z11.mailgun.us ([104.130.96.11])
+	id 1lEqGS-0000uZ-Eg; Wed, 24 Feb 2021 09:15:24 +0000
+Received: from mail.popies.net ([163.172.86.50])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1lEq4a-0008KH-JB
- for ath11k@lists.infradead.org; Wed, 24 Feb 2021 09:03:13 +0000
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
- q=dns/txt; 
- s=smtp; t=1614157389; h=Content-Transfer-Encoding: MIME-Version:
- Message-Id: Date: Subject: Cc: To: From: Sender;
- bh=YRxvTR20LHpJd1ZWsBssRKEezPu9/gSPDA1gGcTYECU=;
- b=IyIUQcnLd2VB+DTu/ONEQ2beCKDMAaJi0RBpyeIaFI/ZcFnZJqekjfkepPy4EFNnaO+z2/1K
- ubnla39ojK+jxTuH3DcMtd4edJ/ljkyqj4Z7wPmwo9bhKTYGazpJS0mSalgau7HTfdcaQFYq
- Y2vHdWhEikFxIzUo6JcFTM/eybk=
-X-Mailgun-Sending-Ip: 104.130.96.11
-X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
- 60361647e9080d5ff79daf07 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 24 Feb 2021 09:03:03
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id AB782C433ED; Wed, 24 Feb 2021 09:03:02 +0000 (UTC)
-Received: from checstp253621-lin.qualcomm.com
- (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
- (No client certificate requested) (Authenticated sender: srirrama)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id BD7A8C433CA;
- Wed, 24 Feb 2021 09:03:00 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org BD7A8C433CA
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- spf=fail smtp.mailfrom=srirrama@codeaurora.org
-From: Sriram R <srirrama@codeaurora.org>
-To: kvalo@codeaurora.org
-Subject: [PATCH] ath11k: Update signal filled flag during sta_statistics drv op
-Date: Wed, 24 Feb 2021 14:32:41 +0530
-Message-Id: <20210224090241.3098-1-srirrama@codeaurora.org>
-X-Mailer: git-send-email 2.29.0
+ id 1lEqGQ-0000tK-84
+ for ath11k@lists.infradead.org; Wed, 24 Feb 2021 09:15:23 +0000
+Received: from localhost (localhost [127.0.0.1])
+ by mail.popies.net (Postfix) with ESMTP id 5ABCC1E801A1;
+ Wed, 24 Feb 2021 10:14:47 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at popies.net
+Received: from mail.popies.net ([127.0.0.1])
+ by localhost (sd-111039.dedibox.fr [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id eA6OT1oC4GSY; Wed, 24 Feb 2021 10:14:44 +0100 (CET)
+Received: from calypso (82-64-68-144.subs.proxad.net [82.64.68.144])
+ (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested) (Authenticated sender: stelian)
+ by mail.popies.net (Postfix) with ESMTPSA id B7DDE1E8019D;
+ Wed, 24 Feb 2021 10:14:44 +0100 (CET)
+Received: by calypso (Postfix, from userid 1000)
+ id 6A5CE28C009A; Wed, 24 Feb 2021 10:14:44 +0100 (CET)
+Date: Wed, 24 Feb 2021 10:14:44 +0100
+From: Stelian Pop <stelian@popies.net>
+To: ath11k@lists.infradead.org
+Subject: Re: Ordering Dell XPS 13 9310 to test QCA6390
+Message-ID: <20210224091444.GA30965@calypso>
+References: <tQQZLjnfaM2XZ-LdgoSYE_9yQQmGCtzT108xBh-SzpRhHN7o6_w_jdIcfp67hVNe-kkiNC72u_rhyo1AtUw-41nvcCo_K3pUhkR__6VF6ig=@mitchellnordine.com>
+ <87mtydwy7v.fsf@codeaurora.org> <87h7nli16d.fsf@codeaurora.org>
+ <CAHUdJJWpHWznHOhdtuRjbH2tr9F5kagGUbNsFO_f7MfY=w_3Gg@mail.gmail.com>
+ <878s8xhx1s.fsf@codeaurora.org>
+ <CAHUdJJVk3jDY9FGjPTuDTF2+QK+B8f8s6ZqMA+8uH-7Yd==Mmw@mail.gmail.com>
+ <87czwshyn3.fsf@codeaurora.org>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <87czwshyn3.fsf@codeaurora.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210224_040309_746218_7514FEFC 
-X-CRM114-Status: GOOD (  13.07  )
+X-CRM114-CacheID: sfid-20210224_041522_436788_0FE7C7FF 
+X-CRM114-Status: GOOD (  12.88  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,40 +78,46 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
- Sriram R <srirrama@codeaurora.org>
+Reply-To: Stelian Pop <stelian@popies.net>
+Cc: kvalo@codeaurora.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Currently, though the peer rssi information is updated to station dump
-from driver sta_statistics mac op, the info doesn't get updated
-since the NL80211_STA_INFO_SIGNAL filled flag is not set in station
-info. Hence update this flag while filling the rssi info.
+Hi Kalle,
 
-Tested on: IPQ8074 WLAN.HK.2.1.0.1-01213-QCAHKSWPL_SILICONZ-1
+On Mon, Feb 22, 2021 at 06:10:08PM +0200, Kalle Valo wrote:
+> 
+> Heh, "next few days" ended to be a month :) But anyway, I have been
+> using the laptop quite a lot during the last month. Windows seems to
+> update the BIOS without asking me and now I'm at "BIOS 1.2.5
+> 12/10/2020". I reliably get 32 MSI vectors and I haven't see any of the
+> M2 kernel crashes.
+[...]
 
-Signed-off-by: Sriram R <srirrama@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/mac.c | 1 +
- 1 file changed, 1 insertion(+)
+FYI, I have the same hardware, but with the BIOS updated to v2.0.0.
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index de6c132..6c4049d 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -5610,6 +5610,7 @@ static void ath11k_mac_op_sta_statistics(struct ieee80211_hw *hw,
- 
- 	/* TODO: Use real NF instead of default one. */
- 	sinfo->signal = arsta->rssi_comb + ATH11K_DEFAULT_NOISE_FLOOR;
-+	sinfo->filled |= BIT_ULL(NL80211_STA_INFO_SIGNAL);
- }
- 
- static const struct ieee80211_ops ath11k_ops = {
+No issues whatsoever with ath11k on either the ath11k-qca6390-bringup-202012140938
+branch or plain v5.11.0 kernel.
+
+But, and it's a big but, suspend is really broken: I cannot enter S0ix, and
+sometimes I found the laptop completly frozen in the morning (maybe it did
+finally enter s2idle and has trouble exiting ?).
+
+I don't know if this is related to the ath11k driver, some other driver or
+the new BIOS version.
+
+There are probably multiple issues, the first of which is the one Justin
+reported (unable to go to sleep when ath11k is loaded). I suggest you
+look into this BEFORE updating the BIOS...
+
+I have a bug on kernel bugzilla wrt to the S0ix issue:
+https://bugzilla.kernel.org/show_bug.cgi?id=211879
+
+Stelian.
 -- 
-2.7.4
-
+Stelian Pop <stelian@popies.net>
 
 -- 
 ath11k mailing list
