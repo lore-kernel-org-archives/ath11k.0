@@ -7,14 +7,14 @@ X-Spam-Status: No, score=-8.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 66399C433E0
-	for <ath11k@archiver.kernel.org>; Wed, 24 Feb 2021 06:38:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AD440C433E0
+	for <ath11k@archiver.kernel.org>; Wed, 24 Feb 2021 06:52:50 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id F04E964DCF
-	for <ath11k@archiver.kernel.org>; Wed, 24 Feb 2021 06:38:37 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F04E964DCF
+	by mail.kernel.org (Postfix) with ESMTPS id 2C99264E2B
+	for <ath11k@archiver.kernel.org>; Wed, 24 Feb 2021 06:52:50 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2C99264E2B
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,60 +23,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:Date:Message-Id:To:References:In-Reply-To:From:
 	Subject:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=Iwk8GPU6Yz5Nx++/lA/s8NuOerSH8vU0rNXKBWKPijI=; b=GPYs0IesmclIaZdCUILZnObSf
-	KyPf+xvGmKogeGzsAKdKj1ZFMVdmES37FW4F69+2wmo1prF7jZlJp9qo2pwBVrS3VHdrqxmIdCltr
-	41gg9nzjDPfsn66MIH/bqJXyMc3xkFhZF9mk4S5yFlfGrbQMWL0tLWfBViqodkJBthL1+SkxDPqsB
-	8UF/uqdRulK36q6vT0qf/OCt5e0yVWHKUQyjiWC7vmxuR9eZO48m5d0k9xte4XyNqJNmTOqNd7O/M
-	Th2/hkir5NvDHIfC+Kl1IhjFZXPb77y+UVY9mv+aULvyHWqtGyQJ5ytKCYbJUQrPa5NJpL1J3S1I+
-	hfmYdnW4Q==;
+	 bh=xgf+qQ639H87zEyEMRODEVNwB4QG/3LyKWwklRcGFVY=; b=ZVln+LvguojffIcuQzcP7E3Tf
+	hc4Vf3OpkYLToJr7356XKuatlPnas46T6EYc6RTlBjpdPXqo+T4u9Ff3+XEk61ZBz1mB9S+amgOLe
+	6XYXLldIy3cO6sPTQXws3drFjGeJIy3gh8oa07mGfGjqLrG/nRQElRpS8/fGl2h1jjYHgXdZ6U/4B
+	/Qq2E7cVKIJV02zjvcGq85KHFa1X7Z26qtGR4jvdauGGDFW5fPcUwnImf4sfChAHxB6EY67y3uywL
+	l1Kj5zQTL4JpE0pU1rsjpJ1YKZXYOtQol+asEkgFq4phJT+dHgRu7AA2MvHfw3TroD+R7SK6NuYUS
+	TyIRs15tQ==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1lEnof-00042F-O6; Wed, 24 Feb 2021 06:38:33 +0000
-Received: from m42-2.mailgun.net ([69.72.42.2])
+	id 1lEo2Q-0005Ko-UT; Wed, 24 Feb 2021 06:52:47 +0000
+Received: from z11.mailgun.us ([104.130.96.11])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1lEnod-0003zN-RC
- for ath11k@lists.infradead.org; Wed, 24 Feb 2021 06:38:32 +0000
+ id 1lEo2O-0005KE-Dw
+ for ath11k@lists.infradead.org; Wed, 24 Feb 2021 06:52:46 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1614148711; h=Date: Message-Id: Cc: To: References:
+ s=smtp; t=1614149563; h=Date: Message-Id: Cc: To: References:
  In-Reply-To: From: Subject: Content-Transfer-Encoding: MIME-Version:
- Content-Type: Sender; bh=8Pydcp9COoIGHDaoT0QgAMFt7/h/mut2grD4T9bcAEo=;
- b=H8I/+YQByoNamCJOxXPFSBd/6Rxj6HLYYS5s/7pPcTkfE3iJ+TFcOrxSLsekWAtOAbYysnp7
- BibBPxeF/xsLamtS39Q4f9xLBmDkpK64Y8N40nFFvjTWyECRHkuHEIDE8F7JezwRN82IYDia
- 4Gste+IvhHqzrRTKDGjWJWXQfHQ=
-X-Mailgun-Sending-Ip: 69.72.42.2
+ Content-Type: Sender; bh=HiqdAfaO+QlNjNRJjL7NW+saAsZWa3q1nNLfJxYwlWE=;
+ b=J3VsQXii/H6nlV4OKunFqWesK/jfbhlzWwv9F6WPKrbpHXSx1zXrvLeYj7i7k04ny+FWjKc7
+ WmM1O/+4wnbEnzkZwHeEzINwYQXGw7bGU3FzLBxCz5TWqNS6SLOCup/68OmAUYQssoF6LT1c
+ dhzXJhiVhyDmYlHbYBTpf0JQ3vI=
+X-Mailgun-Sending-Ip: 104.130.96.11
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
- 6035f4674511108a815991e4 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 24 Feb 2021 06:38:31
+ smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
+ 6035f7babf31d00be0eb760a (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 24 Feb 2021 06:52:42
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 9C5C1C433ED; Wed, 24 Feb 2021 06:38:30 +0000 (UTC)
+ id B29BFC433CA; Wed, 24 Feb 2021 06:52:41 +0000 (UTC)
 Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi
  [88.114.240.156])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested) (Authenticated sender: kvalo)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 59EF1C433CA;
- Wed, 24 Feb 2021 06:38:29 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 59EF1C433CA
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 79224C433ED;
+ Wed, 24 Feb 2021 06:52:40 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 79224C433ED
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  spf=fail smtp.mailfrom=kvalo@codeaurora.org
 MIME-Version: 1.0
-Subject: Re: [PATCH 5.12] ath11k: fix AP mode for QCA6390
+Subject: Re: [PATCH 1/2] ath11k: qmi: add more debug messages
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1614006849-25764-1-git-send-email-kvalo@codeaurora.org>
-References: <1614006849-25764-1-git-send-email-kvalo@codeaurora.org>
+In-Reply-To: <1613569421-14177-1-git-send-email-kvalo@codeaurora.org>
+References: <1613569421-14177-1-git-send-email-kvalo@codeaurora.org>
 To: Kalle Valo <kvalo@codeaurora.org>
 User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.5.2
-Message-Id: <20210224063830.9C5C1C433ED@smtp.codeaurora.org>
-Date: Wed, 24 Feb 2021 06:38:30 +0000 (UTC)
+Message-Id: <20210224065241.B29BFC433CA@smtp.codeaurora.org>
+Date: Wed, 24 Feb 2021 06:52:41 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210224_013831_982916_47B5E000 
-X-CRM114-Status: GOOD (  13.63  )
+X-CRM114-CacheID: sfid-20210224_015244_535201_B339D9BD 
+X-CRM114-Status: UNSURE (   7.80  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,40 +97,19 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 Kalle Valo <kvalo@codeaurora.org> wrote:
 
-> Commit c134d1f8c436 ("ath11k: Handle errors if peer creation fails") completely
-> broke AP mode on QCA6390:
+> To make it easier to follow the qmi event flow.
 > 
-> kernel: [  151.230734] ath11k_pci 0000:06:00.0: failed to create peer after vdev start delay: -22
-> wpa_supplicant[2307]: Failed to set beacon parameters
-> wpa_supplicant[2307]: Interface initialization failed
-> wpa_supplicant[2307]: wlan0: interface state UNINITIALIZED->DISABLED
-> wpa_supplicant[2307]: wlan0: AP-DISABLED
-> wpa_supplicant[2307]: wlan0: Unable to setup interface.
-> wpa_supplicant[2307]: Failed to initialize AP interface
+> No functional changes, compile tested only.
 > 
-> This was because commit c134d1f8c436 ("ath11k: Handle errors if peer creation
-> fails") added error handling for ath11k_peer_create(), which had been failing
-> all along but was unnoticed due to the missing error handling. The actual bug
-> was introduced already in commit aa44b2f3ecd4 ("ath11k: start vdev if a bss peer is
-> already created").
-> 
-> ath11k_peer_create() was failing because for AP mode the peer is created
-> already earlier op_add_interface() and we should skip creation here, but the
-> check for modes was wrong.  Fixing that makes AP mode work again.
-> 
-> This shouldn't affect IPQ8074 nor QCN9074 as they have hw_params.vdev_start_delay disabled.
-> 
-> Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
-> 
-> Fixes: c134d1f8c436 ("ath11k: Handle errors if peer creation fails")
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-Patch applied to wireless-drivers.git, thanks.
+2 patches applied to ath-next branch of ath.git, thanks.
 
-77d7e87128d4 ath11k: fix AP mode for QCA6390
+bf458d79cfc4 ath11k: qmi: add more debug messages
+097e9f071455 ath11k: qmi: cosmetic changes to error messages
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/1614006849-25764-1-git-send-email-kvalo@codeaurora.org/
+https://patchwork.kernel.org/project/linux-wireless/patch/1613569421-14177-1-git-send-email-kvalo@codeaurora.org/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
