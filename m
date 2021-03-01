@@ -7,14 +7,14 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1C621C433DB
-	for <ath11k@archiver.kernel.org>; Mon,  1 Mar 2021 18:53:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2D3C7C433DB
+	for <ath11k@archiver.kernel.org>; Mon,  1 Mar 2021 18:57:07 +0000 (UTC)
 Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 960CB64DDC
-	for <ath11k@archiver.kernel.org>; Mon,  1 Mar 2021 18:53:48 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 960CB64DDC
+	by mail.kernel.org (Postfix) with ESMTPS id C5D90614A7
+	for <ath11k@archiver.kernel.org>; Mon,  1 Mar 2021 18:57:06 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C5D90614A7
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,44 +23,44 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:
 	Subject:To:From:Date:MIME-Version:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=/vdVQJGOgLncC2552mOvvVDmX7FzkN7G/QGKMkjmG6U=; b=VRTVPYjRXsl/HHko3D1tF5AiU
-	xdjwevU/Zfqgx9+RvqPEAS1qk4K5D2wohSyO/FHCXextOCg/SVPjocDFUkH2MvYfZ8UMvTg15/x4p
-	1w3DEan/PykAjRlJ4D9u2oLZxxPEs4h99MdJG2/P3aWpNEgIfatFudoXDK+a+NWQQSo4dAlTtOiYH
-	eDltapQ4e63PPRVH+tfRuHRNzlALFNI+zHuYoMAoU+s1VqNGZWLp/agwDgD+DVosLU7LmT3jLFKXI
-	Ha1DCKKLrKBhE6WjoebfRIerOP22FzvmG6qhtBUA7+KggIVaRwg8N81WImV4ZPAwmDq968GoGeSVk
-	+nq+FNQMg==;
+	 bh=8dsWteQnbr3LO3wrFZdNB1r1njxrk7IIIQxHhAQDSgY=; b=RKLeBfSADEq0mGV4z/foAyoXe
+	qK0+dRIDx3IFVinUD3JBxJO6OIHp+VwZ+w1fzXqljbQGB3Il9f3YHkdA8QV/wE6tFfb4JR/ja4ydt
+	FMykwN67tHe0MGka7EKrgEmKIO6WudEIE3eX9I51P3gQFLquP902i7ZZMyTR5DeMoItNmIQtJ62HC
+	OTX8UyrhVbJgZBR8ItzGUolN/mEO0U9PoD57mXIuzMCgvIofhJhWng/1rYrtYBc+EOSc4BMvfzaPL
+	ss9qiGRkGTRiDMAXeHtd6khyoKRLEvxJZV8ecwQmPx7icMgkezuPaMENWgJkS/nReSccgORECkvkE
+	QMYPHo37A==;
 Received: from localhost ([::1] helo=merlin.infradead.org)
 	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1lGnft-0000tw-JG; Mon, 01 Mar 2021 18:53:45 +0000
+	id 1lGnj5-00018o-Q1; Mon, 01 Mar 2021 18:57:03 +0000
 Received: from z11.mailgun.us ([104.130.96.11])
  by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1lGnfr-0000tD-Jm
- for ath11k@lists.infradead.org; Mon, 01 Mar 2021 18:53:44 +0000
+ id 1lGnj3-00018Q-LY
+ for ath11k@lists.infradead.org; Mon, 01 Mar 2021 18:57:03 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1614624823; h=Message-ID: References: In-Reply-To: Reply-To:
+ s=smtp; t=1614625022; h=Message-ID: References: In-Reply-To: Reply-To:
  Subject: Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=KSg5oH4X6//QQtRCFOsAbFS/Ie1r+zQNgZC5L1HJUJE=;
- b=PUbbvJHBemEjsp92IrjRwkPp5GKpEFt42TEl5N4RYDfQuOMsPVzL6ZeyAWT/5BSHiNlD5g5n
- eMGgq2K3QBGnVEHdHErePYMv7ZFy67jFOVMV/hdgABUUfSMm0uBry0R1TUY3fUYlnftj0h8K
- hOIC9OW5v95SjEdhkd4krCAqk+8=
+ MIME-Version: Sender; bh=BWk43ZFWyb8uTChKPh44k6+sSYpbD1HwdQ8/aJZG5+A=;
+ b=plpM0Vu163AGXlVoKIteAN6f6tdHLVa66c1shmljGL10Y0q0Gy3vA3WwHmCqO+EoGGAtMSr5
+ W7o54fGnsSKPGeJNYDx8pBCHjnb5D+sHt2lwoI8PqSqlZdTHWOWhbztJG16J0w3MzLUbyDmH
+ jyAfnn1HPuz5jA4zYQ84AlJAAiU=
 X-Mailgun-Sending-Ip: 104.130.96.11
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
- 603d3835f94cdd00609b4cfc (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 01 Mar 2021 18:53:41
+ smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
+ 603d38fa12935cdcee0e9b38 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 01 Mar 2021 18:56:58
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id B55F4C433CA; Mon,  1 Mar 2021 18:53:40 +0000 (UTC)
+ id 06B0BC43461; Mon,  1 Mar 2021 18:56:58 +0000 (UTC)
 Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
  (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested) (Authenticated sender: bbhatt)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 985D2C433CA;
- Mon,  1 Mar 2021 18:53:39 +0000 (UTC)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 6D148C433ED;
+ Mon,  1 Mar 2021 18:56:57 +0000 (UTC)
 MIME-Version: 1.0
-Date: Mon, 01 Mar 2021 10:53:39 -0800
+Date: Mon, 01 Mar 2021 10:56:57 -0800
 From: Bhaumik Bhatt <bbhatt@codeaurora.org>
 To: Kalle Valo <kvalo@codeaurora.org>
 Subject: Re: [PATCH v2] bus: mhi: core: Add unique qrtr node id support
@@ -72,12 +72,12 @@ References: <1614336169-31467-1-git-send-email-gokulsri@codeaurora.org>
  <20210226145245.GB70936@thinkpad> <87k0qrceih.fsf@tynnyri.adurom.net>
  <10e511e8dfa8d393ec4c4765668fe229@codeaurora.org>
  <87o8g291d1.fsf@codeaurora.org>
-Message-ID: <f23d6a9a331aa76fbe9b8afb5ecc6dd2@codeaurora.org>
+Message-ID: <e1ee69381ff328712fa010a3de44f70a@codeaurora.org>
 X-Sender: bbhatt@codeaurora.org
 User-Agent: Roundcube Webmail/1.3.9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210301_135343_705024_70B4548E 
-X-CRM114-Status: GOOD (  26.13  )
+X-CRM114-CacheID: sfid-20210301_135702_346599_5AA33551 
+X-CRM114-Status: GOOD (  26.24  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,7 +91,7 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
 Reply-To: bbhatt@codeaurora.org
 Cc: jhugo@codeaurora.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, kvalo=codeaurora.org@codeaurora.org,
+ linux-kernel@vger.kernel.org,
  Gokul Sriram Palanisamy <gokulsri@codeaurora.org>,
  Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
  hemantk@codeaurora.org, sricharan@codeaurora.org, ath11k@lists.infradead.org
@@ -99,6 +99,8 @@ Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
+
+Hi Kalle,
 
 On 2021-03-01 10:26 AM, Kalle Valo wrote:
 > Bhaumik Bhatt <bbhatt@codeaurora.org> writes:
