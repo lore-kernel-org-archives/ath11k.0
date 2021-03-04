@@ -1,85 +1,81 @@
-Return-Path: <SRS0=Rum7=H7=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=vfh3=IC=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2D3C7C433DB
-	for <ath11k@archiver.kernel.org>; Mon,  1 Mar 2021 18:57:07 +0000 (UTC)
-Received: from merlin.infradead.org (merlin.infradead.org [205.233.59.134])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CBE22C433E0
+	for <ath11k@archiver.kernel.org>; Thu,  4 Mar 2021 15:05:31 +0000 (UTC)
+Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C5D90614A7
-	for <ath11k@archiver.kernel.org>; Mon,  1 Mar 2021 18:57:06 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C5D90614A7
+	by mail.kernel.org (Postfix) with ESMTPS id 720FB64F68
+	for <ath11k@archiver.kernel.org>; Thu,  4 Mar 2021 15:05:31 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 720FB64F68
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=merlin.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:
-	Subject:To:From:Date:MIME-Version:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=8dsWteQnbr3LO3wrFZdNB1r1njxrk7IIIQxHhAQDSgY=; b=RKLeBfSADEq0mGV4z/foAyoXe
-	qK0+dRIDx3IFVinUD3JBxJO6OIHp+VwZ+w1fzXqljbQGB3Il9f3YHkdA8QV/wE6tFfb4JR/ja4ydt
-	FMykwN67tHe0MGka7EKrgEmKIO6WudEIE3eX9I51P3gQFLquP902i7ZZMyTR5DeMoItNmIQtJ62HC
-	OTX8UyrhVbJgZBR8ItzGUolN/mEO0U9PoD57mXIuzMCgvIofhJhWng/1rYrtYBc+EOSc4BMvfzaPL
-	ss9qiGRkGTRiDMAXeHtd6khyoKRLEvxJZV8ecwQmPx7icMgkezuPaMENWgJkS/nReSccgORECkvkE
-	QMYPHo37A==;
-Received: from localhost ([::1] helo=merlin.infradead.org)
-	by merlin.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1lGnj5-00018o-Q1; Mon, 01 Mar 2021 18:57:03 +0000
+	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
+	:Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=xuYsaISlQsq4k7weOYwwCWjl9nmeUdpdNEI+zvohg90=; b=H2HHgLxG/VUjsA7TUYg+nYwi32
+	ZavtGSwAhxjkZ9g/t2WYucd3EXP7f9dYv9evdz7TsktPawm9WVbJBcwfD3c0UsxbMJvaDc6U0Lc+2
+	PPPkkDZBFSLkUFmHMkgKC+m50Cc6WB84AtohZDmzanYLd/uCxXoQwxsqzSxt2b/LFjO2hbJUqLung
+	dU8FClyBRuRcFWKqUYgmgLOWTdGfhKdBKleUg0gPpbuRNuokqncN66Gdgnx33FIY6mefHoh8+vEp4
+	6VuyiFnyda3/DbLKGwdKNoeDaCf9eTUPdiSNmJjea3ojtrhdmSTYUtIw7WTv2zncvmzsXTMFX+eLr
+	oIfqUJkQ==;
+Received: from localhost ([::1] helo=desiato.infradead.org)
+	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
+	id 1lHpXX-008zO6-UK; Thu, 04 Mar 2021 15:05:24 +0000
 Received: from z11.mailgun.us ([104.130.96.11])
- by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1lGnj3-00018Q-LY
- for ath11k@lists.infradead.org; Mon, 01 Mar 2021 18:57:03 +0000
+ by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
+ id 1lHpXQ-008zMo-Si
+ for ath11k@lists.infradead.org; Thu, 04 Mar 2021 15:05:21 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1614625022; h=Message-ID: References: In-Reply-To: Reply-To:
- Subject: Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=BWk43ZFWyb8uTChKPh44k6+sSYpbD1HwdQ8/aJZG5+A=;
- b=plpM0Vu163AGXlVoKIteAN6f6tdHLVa66c1shmljGL10Y0q0Gy3vA3WwHmCqO+EoGGAtMSr5
- W7o54fGnsSKPGeJNYDx8pBCHjnb5D+sHt2lwoI8PqSqlZdTHWOWhbztJG16J0w3MzLUbyDmH
- jyAfnn1HPuz5jA4zYQ84AlJAAiU=
+ s=smtp; t=1614870318; h=Content-Type: MIME-Version: Message-ID: Date:
+ Subject: Cc: To: From: Sender;
+ bh=Mp4y3XuQs2v0QqRomuzbqm4+HVvWzdxfT00QrRzr04M=;
+ b=U3R3ygmvatyy7RKRqkQtc+k+wS7oTfCVBOUMI321IoGvm2HQPGrh8+8ELMxqc+NGUbv8MIcP
+ poSzAcVmSsW/UIpbfZfOPGXDHDHAPqPsIyGnD+cw10lJj6vM0qPWdYsftzVDBbUDy3FSf6pm
+ OCbva9xHVcgNe8EOddIlDtRZYZ0=
 X-Mailgun-Sending-Ip: 104.130.96.11
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
- 603d38fa12935cdcee0e9b38 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 01 Mar 2021 18:56:58
+ smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
+ 6040f5dac862e1b9fd0854f2 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 04 Mar 2021 14:59:38
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 06B0BC43461; Mon,  1 Mar 2021 18:56:58 +0000 (UTC)
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
- (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
- (No client certificate requested) (Authenticated sender: bbhatt)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 6D148C433ED;
- Mon,  1 Mar 2021 18:56:57 +0000 (UTC)
+ id EC150C43463; Thu,  4 Mar 2021 14:59:37 +0000 (UTC)
+Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi
+ [88.114.240.156])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested) (Authenticated sender: kvalo)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 56864C433C6;
+ Thu,  4 Mar 2021 14:59:35 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 56864C433C6
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ spf=fail smtp.mailfrom=kvalo@codeaurora.org
+From: Kalle Valo <kvalo@codeaurora.org>
+To: manivannan.sadhasivam@linaro.org, Hemant Kumar <hemantk@codeaurora.org>,
+ Bhaumik Bhatt <bbhatt@codeaurora.org>
+Cc: linux-arm-msm@vger.kernel.org, ath11k@lists.infradead.org
+Subject: [regression] mhi: mhi_pm_st_worker blocked for more than 61 seconds.
+Date: Thu, 04 Mar 2021 16:59:33 +0200
+Message-ID: <87im6755ii.fsf@codeaurora.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
 MIME-Version: 1.0
-Date: Mon, 01 Mar 2021 10:56:57 -0800
-From: Bhaumik Bhatt <bbhatt@codeaurora.org>
-To: Kalle Valo <kvalo@codeaurora.org>
-Subject: Re: [PATCH v2] bus: mhi: core: Add unique qrtr node id support
-Organization: Qualcomm Innovation Center, Inc.
-Mail-Reply-To: bbhatt@codeaurora.org
-In-Reply-To: <87o8g291d1.fsf@codeaurora.org>
-References: <1614336169-31467-1-git-send-email-gokulsri@codeaurora.org>
- <1614336169-31467-2-git-send-email-gokulsri@codeaurora.org>
- <20210226145245.GB70936@thinkpad> <87k0qrceih.fsf@tynnyri.adurom.net>
- <10e511e8dfa8d393ec4c4765668fe229@codeaurora.org>
- <87o8g291d1.fsf@codeaurora.org>
-Message-ID: <e1ee69381ff328712fa010a3de44f70a@codeaurora.org>
-X-Sender: bbhatt@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210301_135702_346599_5AA33551 
-X-CRM114-Status: GOOD (  26.24  )
 X-BeenThere: ath11k@lists.infradead.org
-X-Mailman-Version: 2.1.29
+X-Mailman-Version: 2.1.34
 Precedence: list
 List-Id: <ath11k.lists.infradead.org>
 List-Unsubscribe: <http://lists.infradead.org/mailman/options/ath11k>,
@@ -89,167 +85,138 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Reply-To: bbhatt@codeaurora.org
-Cc: jhugo@codeaurora.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- Gokul Sriram Palanisamy <gokulsri@codeaurora.org>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- hemantk@codeaurora.org, sricharan@codeaurora.org, ath11k@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi Kalle,
+Hi MHI folks,
 
-On 2021-03-01 10:26 AM, Kalle Valo wrote:
-> Bhaumik Bhatt <bbhatt@codeaurora.org> writes:
-> 
->> On 2021-03-01 03:14 AM, Kalle Valo wrote:
->>> + ath11k list
->>> 
->>> Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> writes:
->>> 
->>>> On Fri, Feb 26, 2021 at 04:12:49PM +0530, Gokul Sriram Palanisamy
->>>> wrote:
->>>>> On platforms with two or more identical mhi
->>>>> devices, qmi service will run with identical
->>>>> qrtr-node-id. Because of this identical ID,
->>>>> host qrtr-lookup cannot register more than one
->>>>> qmi service with identical node ID. Ultimately,
->>>>> only one qmi service will be avilable for the
->>>>> underlying drivers to communicate with.
->>>>> 
->>>>> On QCN9000, it implements a unique qrtr-node-id
->>>>> and qmi instance ID using a unique instance ID
->>>>> written to a debug register from host driver
->>>>> soon after SBL is loaded.
->>>>> 
->>>>> This change generates a unique instance ID from
->>>>> PCIe domain number and bus number, writes to the
->>>>> given debug register just after SBL is loaded so
->>>>> that it is available for FW when the QMI service
->>>>> is spawned.
->>>>> 
->>>>> sample:
->>>>> root@OpenWrt:/# qrtr-lookup
->>>>>   Service Version Instance Node  Port
->>>>>        15       1        0    8     1 Test service
->>>>>        69       1        8    8     2 ATH10k WLAN firmware service
->>>>>        15       1        0   24     1 Test service
->>>>>        69       1       24   24     2 ATH10k WLAN firmware service
->>>>> 
->>>>> Here 8 and 24 on column 3 (QMI Instance ID)
->>>>> and 4 (QRTR Node ID) are the node IDs that
->>>>> is unique per mhi device.
->>>>> 
->>>>> Signed-off-by: Gokul Sriram Palanisamy <gokulsri@codeaurora.org>
->>>>> ---
->>>>>  drivers/bus/mhi/core/boot.c | 14 ++++++++++++++
->>>>>  1 file changed, 14 insertions(+)
->>>>> 
->>>>> diff --git a/drivers/bus/mhi/core/boot.c
->>>>> b/drivers/bus/mhi/core/boot.c
->>>>> index c2546bf..5e5dad5 100644
->>>>> --- a/drivers/bus/mhi/core/boot.c
->>>>> +++ b/drivers/bus/mhi/core/boot.c
->>>>> @@ -16,8 +16,12 @@
->>>>>  #include <linux/random.h>
->>>>>  #include <linux/slab.h>
->>>>>  #include <linux/wait.h>
->>>>> +#include <linux/pci.h>
->>>>>  #include "internal.h"
->>>>> 
->>>>> +#define QRTR_INSTANCE_MASK	0x000000FF
->>>>> +#define QRTR_INSTANCE_SHIFT	0
->>>>> +
->>>>>  /* Setup RDDM vector table for RDDM transfer and program RXVEC */
->>>>>  void mhi_rddm_prepare(struct mhi_controller *mhi_cntrl,
->>>>>  		      struct image_info *img_info)
->>>>> @@ -391,6 +395,9 @@ void mhi_fw_load_handler(struct mhi_controller
->>>>> *mhi_cntrl)
->>>>>  	const struct firmware *firmware = NULL;
->>>>>  	struct image_info *image_info;
->>>>>  	struct device *dev = &mhi_cntrl->mhi_dev->dev;
->>>>> +	struct pci_dev *pci_dev = to_pci_dev(mhi_cntrl->cntrl_dev);
->>>>> +	struct pci_bus *bus = pci_dev->bus;
->>>>> +	uint32_t instance;
->>>>>  	const char *fw_name;
->>>>>  	void *buf;
->>>>>  	dma_addr_t dma_addr;
->>>>> @@ -466,6 +473,13 @@ void mhi_fw_load_handler(struct
->>>>> mhi_controller *mhi_cntrl)
->>>>>  		return;
->>>>>  	}
->>>>> 
->>>>> +	instance = ((pci_domain_nr(bus) & 0xF) << 4) | (bus->number & 
->>>>> 0xF);
->>>>> +	instance &= QRTR_INSTANCE_MASK;
->>>>> +
->>>>> +	mhi_write_reg_field(mhi_cntrl, mhi_cntrl->bhi,
->>>>> +			    BHI_ERRDBG2, QRTR_INSTANCE_MASK,
->>>>> +			    QRTR_INSTANCE_SHIFT, instance);
->>>> 
->>>> You cannot not do this in MHI stack. Why can't you do this in the
->>>> MHI controller
->>>> specific to QCN9000? And btw, is QCN9000 supported in mainline?
->>> 
->>> I'm not sure what QCN9000 means but I'm guessing it's QCN9074. We 
->>> have
->>> initial QCN9074 support in ath11k but there are some issues still so
->>> it's not enabled by default (yet):
->>> 
->>> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=ath-next&id=4e80946197a83a6115e308334618449b77696d6a
->>> 
->>> And I suspect we have this same qrtr issue with any ath11k PCI 
->>> device,
->>> including QCA6390, so this is not a QCN9074 specific problem.
->>> 
->>> BTW Gokul, please always CC the ath11k list when submitting patches
->>> which are related to ath11k.
->> 
->> QRTR sits on top of MHI so shouldn't this be handled outside of MHI
->> after MHI is operational? We cannot allow PCI code in MHI core driver
->> but this can be handled pre or post MHI power-up in whatever way you
->> desire that does not have to directly involve MHI.
-> 
-> Sure, makes sense. I was just replying to Mani's question about status
-> of QCN9000 upstream support.
-> 
-> So should we handle this within ath11k, is that the right approach? I
-> also suspect that for QCN9074 and QCA6390 we have to do this a bit
-> differently, so it would be easier to handle the differences between
-> devices (and firmware versions) inside ath11k.
+I upgraded my QCA6390 x86 test box to v5.12-rc1 and started seeing
+kernel crashes when testing ath11k. I don't recall seeing this on v5.11
+so it looks like a new problem, but I cannot be 100% sure. Netconsole
+output is below. I have most of the kernel debug functionality enabled
+(KASAN etc).
 
-Yes, I feel it would be better handled within ath11k. AFAIK, device 
-(QCA/QCN)
-populates the BHI ERRDBG registers when it wants to communicate a 
-certain
-problem/status to the host and it should not be used the other way 
-round,
-where host writes a configuration cookie for the device to boot-up in a
-particular way. It feels hacky as of now unless an actual configuration
-register is used.
+I can fairly easy reproduce this by looping insmod and rmmod of mhi,
+wireless and ath11k modules. It does not happen every time, but I would
+say I can reproduce the problem within 10 test loops or so.
 
-As per BHI specification, these registers are permitted to be read-only 
-for
-the host and Read/Write for device only. I also don't see any BHI
-configuration or general purpose registers that can be used to notify 
-this
-cookie. If one is found, we can talk about how to use them and can 
-introduce
-MHI patches for those.
+Any ideas what could cause this? I have not bisected this due to lack of
+time, but I can test patches etc.
 
-I suggest exploring alternatives to this. I think Hemant and are in 
-agreement
-on this.
+Kalle
 
-Thanks,
-Bhaumik
----
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora 
-Forum,
-a Linux Foundation Collaborative Project
+[  385.427842] ath11k_pci 0000:06:00.0: BAR 0: assigned [mem 0xdb000000-0xdbffffff 64bit]
+[  385.513269] mhi mhi0: Requested to power ON
+[  385.519621] mhi mhi0: Power on setup success
+[  386.754217] rmmod ath11k_pci
+[  554.714680] INFO: task kworker/u17:0:94 blocked for more than 61 seconds.
+[  554.714745]       Tainted: G    B             5.12.0-rc1+ #412
+[  554.714785] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+[  554.714824] task:kworker/u17:0   state:D stack:23960 pid:   94 ppid:     2 flags:0x00004000
+[  554.714870] Workqueue: mhi_hiprio_wq mhi_pm_st_worker [mhi]
+[  554.714923] Call Trace:
+[  554.714963]  __schedule+0x555/0x1250
+[  554.715005]  ? io_schedule_timeout+0x140/0x140
+[  554.715045]  ? trace_hardirqs_on+0x1c/0x120
+[  554.715086]  schedule+0xcb/0x270
+[  554.715124]  schedule_timeout+0x116/0x200
+[  554.715162]  ? usleep_range+0x140/0x140
+[  554.715200]  ? __next_timer_interrupt+0x160/0x160
+[  554.715239]  ? __wake_up_locked_sync_key+0x20/0x20
+[  554.715279]  ? trace_hardirqs_on+0x1c/0x120
+[  554.715319]  mhi_fw_load_bhie+0x4bd/0x5c0 [mhi]
+[  554.715363]  ? __mhi_download_rddm_in_panic+0x560/0x560 [mhi]
+[  554.715405]  ? finish_wait+0xb2/0x260
+[  554.715444]  ? finish_wait+0x260/0x260
+[  554.715483]  ? _raw_spin_lock_irqsave+0x55/0x80
+[  554.715525]  mhi_fw_load_handler+0x67a/0xd90 [mhi]
+[  554.715569]  ? mhi_alloc_bhie_table+0x4c0/0x4c0 [mhi]
+[  554.715613]  ? finish_wait+0x260/0x260
+[  554.715652]  ? mhi_register_controller+0x11f0/0x11f0 [mhi]
+[  554.715709]  mhi_pm_st_worker+0x425/0x720 [mhi]
+[  554.715758]  ? mhi_pm_mission_mode_transition.isra.0+0x710/0x710 [mhi]
+[  554.715803]  ? lock_acquire+0x19d/0x200
+[  554.715842]  ? process_one_work+0x77f/0x1370
+[  554.715885]  process_one_work+0x833/0x1370
+[  554.715925]  ? pwq_dec_nr_in_flight+0x260/0x260
+[  554.715964]  ? lock_acquire+0x19d/0x200
+[  554.716004]  ? worker_thread+0x23d/0xc90
+[  554.716044]  worker_thread+0xd5/0xc90
+[  554.716083]  ? process_one_work+0x1370/0x1370
+[  554.716123]  kthread+0x361/0x430
+[  554.716162]  ? _raw_spin_unlock_irq+0x1f/0x30
+[  554.716199]  ? __kthread_bind_mask+0x90/0x90
+[  554.716241]  ret_from_fork+0x22/0x30
+[  554.716337] INFO: lockdep is turned off.
+[  554.716374] Kernel panic - not syncing: hung_task: blocked tasks
+[  554.716411] CPU: 0 PID: 53 Comm: khungtaskd Tainted: G    B             5.12.0-rc1+ #412
+[  554.716451] Hardware name: Intel(R) Client Systems NUC8i7HVK/NUC8i7HVB, BIOS HNKBLi70.86A.0049.2018.0801.1601 08/01/2018
+[  554.716488] Call Trace:
+[  554.716524]  dump_stack+0xa5/0xe6
+[  554.716564]  panic+0x211/0x459
+[  554.716601]  ? __warn_printk+0xee/0xee
+[  554.716639]  ? memcpy+0x39/0x60
+[  554.716680]  check_hung_uninterruptible_tasks.cold+0x11/0x11
+[  554.716719]  watchdog+0xef/0x120
+[  554.716757]  ? check_hung_uninterruptible_tasks+0x490/0x490
+[  554.716795]  kthread+0x361/0x430
+[  554.716832]  ? _raw_spin_unlock_irq+0x1f/0x30
+[  554.716868]  ? __kthread_bind_mask+0x90/0x90
+[  554.716906]  ret_from_fork+0x22/0x30
+[  554.717950] Kernel Offset: 0x2e200000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0xffffffffbfffffff)
+[  554.717993] Rebooting in 10 seconds..
+[  564.791281] list_add double add: new=ffffffffb26a8520, prev=ffffffffb2684f88, next=ffffffffb26a8520.
+[  564.791331] ------------[ cut here ]------------
+[  564.791365] kernel BUG at lib/list_debug.c:29!
+[  564.791403] invalid opcode: 0000 [#1] SMP DEBUG_PAGEALLOC KASAN PTI
+[  564.791439] CPU: 0 PID: 53 Comm: khungtaskd Tainted: G    B             5.12.0-rc1+ #412
+[  564.791476] Hardware name: Intel(R) Client Systems NUC8i7HVK/NUC8i7HVB, BIOS HNKBLi70.86A.0049.2018.0801.1601 08/01/2018
+[  564.791511] RIP: 0010:__list_add_valid.cold+0x26/0x3c
+[  564.791547] Code: fb ed 8e fe 4c 89 e1 48 c7 c7 a0 ec db b1 e8 aa 5b fe ff 0f 0b 48 89 f2 4c 89 e1 48 89 ee 48 c7 c7 e0 ed db b1 e8 93 5b fe ff <0f> 0b 48 89 f1 48 c7 c7 60 ed db b1 4c 89 e6 e8 7f 5b fe ff 0f 0b
+[  564.791794] RSP: 0018:ffffc90000477c98 EFLAGS: 00010082
+[  564.791831] RAX: 0000000000000058 RBX: ffffffffb26a8520 RCX: 0000000000000000
+[  564.791865] RDX: 0000000000000027 RSI: 0000000000000004 RDI: fffff5200008ef86
+[  564.791899] RBP: ffffffffb26a8520 R08: 0000000000000058 R09: ffff88822dde57bb
+[  564.791951] R10: ffffed1045bbcaf7 R11: 0000000000000001 R12: ffffffffb26a8520
+[  564.792010] R13: 0000000000000048 R14: 0000000000000046 R15: ffffffffb2684f40
+[  564.792061] FS:  0000000000000000(0000) GS:ffff88822dc00000(0000) knlGS:0000000000000000
+[  564.792112] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  564.792163] CR2: 00005645180f8d58 CR3: 000000011e83a006 CR4: 00000000003706f0
+[  564.792399] Call Trace:
+[  564.792450]  __register_nmi_handler+0x1f4/0x370
+[  564.792506]  nmi_shootdown_cpus+0x91/0x100
+[  564.792558]  native_machine_emergency_restart+0x405/0x4f0
+[  564.792609]  ? nmi_shootdown_cpus+0x100/0x100
+[  564.792657]  ? kmsg_dump+0x3d/0x350
+[  564.792707]  ? kmsg_dump+0x250/0x350
+[  564.792756]  panic+0x3bc/0x459
+[  564.792804]  ? __warn_printk+0xee/0xee
+[  564.792853]  ? memcpy+0x39/0x60
+[  564.792903]  check_hung_uninterruptible_tasks.cold+0x11/0x11
+[  564.792953]  watchdog+0xef/0x120
+[  564.793001]  ? check_hung_uninterruptible_tasks+0x490/0x490
+[  564.793050]  kthread+0x361/0x430
+[  564.793099]  ? _raw_spin_unlock_irq+0x1f/0x30
+[  564.793149]  ? __kthread_bind_mask+0x90/0x90
+[  564.793199]  ret_from_fork+0x22/0x30
+[  564.793250] Modules linked in: ath11k_pci(-) ath11k mac80211 libarc4 cfg80211 qmi_helpers qrtr_mhi mhi qrtr ns mos7840 usbserial nvme nvme_core [last unloaded: mhi]
+[  564.793326] ---[ end trace 71395487ba9b6a13 ]---
+[  564.793376] RIP: 0010:__list_add_valid.cold+0x26/0x3c
+[  564.793427] Code: fb ed 8e fe 4c 89 e1 48 c7 c7 a0 ec db b1 e8 aa 5b fe ff 0f 0b 48 89 f2 4c 89 e1 48 89 ee 48 c7 c7 e0 ed db b1 e8 93 5b fe ff <0f> 0b 48 89 f1 48 c7 c7 60 ed db b1 4c 89 e6 e8 7f 5b fe ff 0f 0b
+[  564.793490] RSP: 0018:ffffc90000477c98 EFLAGS: 00010082
+[  564.793540] RAX: 0000000000000058 RBX: ffffffffb26a8520 RCX: 0000000000000000
+[  564.793589] RDX: 0000000000000027 RSI: 0000000000000004 RDI: fffff5200008ef86
+[  564.794009] RBP: ffffffffb26a8520 R08: 0000000000000058 R09: ffff88822dde57bb
+[  564.794061] R10: ffffed1045bbcaf7 R11: 0000000000000001 R12: ffffffffb26a8520
+[  564.794111] R13: 0000000000000048 R14: 0000000000000046 R15: ffffffffb2684f40
+[  564.794159] FS:  0000000000000000(0000) GS:ffff88822dc00000(0000) knlGS:0000000000000000
+[  564.794208] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  564.794257] CR2: 00005645180f8d58 CR3: 000000011e83a006 CR4: 00000000003706f0
+[  564.794306] Kernel panic - not syncing: Fatal exception
+[  564.794356] Kernel Offset: 0x2e200000 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0xffffffffbfffffff)
+[  564.794412] Rebooting in 10 seconds..
 
 -- 
 ath11k mailing list
