@@ -3,83 +3,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 819A2C433DB
-	for <ath11k@archiver.kernel.org>; Tue,  9 Mar 2021 11:04:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1D8BFC433E0
+	for <ath11k@archiver.kernel.org>; Tue,  9 Mar 2021 16:44:28 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0E32B65253
-	for <ath11k@archiver.kernel.org>; Tue,  9 Mar 2021 11:04:04 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0E32B65253
+	by mail.kernel.org (Postfix) with ESMTPS id AEC6764F09
+	for <ath11k@archiver.kernel.org>; Tue,  9 Mar 2021 16:44:27 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AEC6764F09
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
 	:Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Date:Message-Id:Cc:To:References:In-Reply-To:From:
-	Subject:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:Date:References:
+	Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=bcqpTbAAcVcSntsyf4e7+iiKq19HUA8p9EmeGfr79XQ=; b=RNo8PaxMF1A1rFpyWzXRv7Omv
-	m2CpfpqF6ccK+22AO3CHdNrv/LROZ4grOxFu2tLHp+EGOWZNHGiOmDlekmp2C7+vzQRrMe6q51Q36
-	h2KHNv6UmtuCfxik4Q48OQrq9I8/moS4MT622bI+oM58OB6SPXdUO37A6q0wO33anpuKG0HUCfuYP
-	ZG2LpLUIs0USlwo/BQODHt7Ml2sqHRKZW7wbD3Vp9Nb+Nuwamh+cVAb7eIUBFU5eGDIg3DHLMf3fp
-	o0mLE4R4OWJldpkCVaS+oZFpP/kJYWOCySbbn+W00ywFU2O7CSdhMwJUsCzFJpahAXG8KzXpXhUhS
-	z6ZzjKtLw==;
+	 bh=R2PArqB/SqdUoBSNP7vWrchgy4uDHBTUy6uCfCX/ylc=; b=XjMAg5ErWsM7i7QAsASnUtG4Z
+	z7HmPugRECPi64Rl9W2nzY6wUL+JvsK0EqRG6UIysD3AzMHbo/kssagnBBby4Z0ljhn1pKx0BqhAL
+	RwRQxTD+O5sN2gZrR60LrWlmRt0IRQrdOctFxkQUqPW3WY0EWXuzCSo7CGQo2F3KTkKavRAyX3TUn
+	+XaDBvRkyHSI6H2nZbjww/VUMPodoJzre+x1BblQbCYOqy+jorCgyn5Xt1N5laVqR/cSZDEzR4I0a
+	ISCN7aC+5Ob7rV2MpI/TGO9lD3RgAlu71S7dyG6dbWYBJJXwaP/Mr4xsOJJdYO2DlcnvQcNiv7HcN
+	TpOvcc/8A==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lJa9d-004Fpr-I1; Tue, 09 Mar 2021 11:03:57 +0000
+	id 1lJfT3-00575d-LQ; Tue, 09 Mar 2021 16:44:21 +0000
 Received: from m42-2.mailgun.net ([69.72.42.2])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lJa9U-004Fdk-NF
- for ath11k@lists.infradead.org; Tue, 09 Mar 2021 11:03:55 +0000
+ id 1lJfSy-00574l-1D
+ for ath11k@lists.infradead.org; Tue, 09 Mar 2021 16:44:20 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1615287830; h=Date: Message-Id: Cc: To: References:
- In-Reply-To: From: Subject: Content-Transfer-Encoding: MIME-Version:
- Content-Type: Sender; bh=IGZc1gOCO6ryrX2y2Ulh5Hjc13TCZJDZVJpHST0oSik=;
- b=WzQSNdTWYTU674cbArMbt8swg1jgzTj60DOppzl5E6L0zryuLfqAfcdilYxblsMwW9ur43a0
- awpdA4Hh0JAweo6jJQgpH8AsmazzjXapnzNy1bNd6GBiYa8KMNGAJYcIVk8aw9g0g2kakid8
- GoizCj1HO4t1IK7wnZBYk2I0RUs=
+ s=smtp; t=1615308258; h=Content-Type: MIME-Version: Message-ID:
+ In-Reply-To: Date: References: Subject: Cc: To: From: Sender;
+ bh=1fSVIh5EXxPn36xIZwKFO2lOSLwOP2U8a9bxpnqzJZg=;
+ b=YoPety6QBC+14jUefoS09LgsE4ZNWCm6q0y0He378w9toOdper8/X2GzSkn2UKQqxxcB0VYk
+ AYG6ZMmyuli3lUbFNLsvVOavNCCuCQcGz1DMmaiMoxiujMNqTUl0JffJFBziTSUiczClx5m9
+ AofQEK1kOA4+SlRvtCPtJO768xs=
 X-Mailgun-Sending-Ip: 69.72.42.2
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
- 604755df6df184e952c6bf42 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 09 Mar 2021 11:02:55
+ smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
+ 6047a5d8155a7cd2343500bf (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 09 Mar 2021 16:44:08
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 4B60EC43462; Tue,  9 Mar 2021 11:02:54 +0000 (UTC)
+ id D274DC433CA; Tue,  9 Mar 2021 16:44:08 +0000 (UTC)
 Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi
  [88.114.240.156])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested) (Authenticated sender: kvalo)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id D078FC433C6;
- Tue,  9 Mar 2021 11:02:52 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org D078FC433C6
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 5F28AC433C6;
+ Tue,  9 Mar 2021 16:44:06 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 5F28AC433C6
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  spf=fail smtp.mailfrom=kvalo@codeaurora.org
-MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: Add support for STA to handle beacon miss
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1614340859-28867-1-git-send-email-lavaks@codeaurora.org>
-References: <1614340859-28867-1-git-send-email-lavaks@codeaurora.org>
-To: Lavanya Suresh <lavaks@codeaurora.org>
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- Lavanya Suresh <lavaks@codeaurora.org>
-User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.5.2
-Message-Id: <20210309110254.4B60EC43462@smtp.codeaurora.org>
-Date: Tue,  9 Mar 2021 11:02:54 +0000 (UTC)
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Hemant Kumar <hemantk@codeaurora.org>,
+ Bhaumik Bhatt <bbhatt@codeaurora.org>, linux-arm-msm@vger.kernel.org,
+ ath11k@lists.infradead.org
+Subject: Re: [regression] mhi: mhi_pm_st_worker blocked for more than 61
+ seconds.
+References: <87im6755ii.fsf@codeaurora.org> <20210304151004.GA29563@work>
+ <87blby6dir.fsf@codeaurora.org>
+Date: Tue, 09 Mar 2021 18:44:04 +0200
+In-Reply-To: <87blby6dir.fsf@codeaurora.org> (Kalle Valo's message of "Thu, 04
+ Mar 2021 19:21:16 +0200")
+Message-ID: <87k0qgz38r.fsf@codeaurora.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210309_110352_984083_AE67541B 
-X-CRM114-Status: UNSURE (   8.41  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20210309_164418_468783_0C36F2C3 
+X-CRM114-Status: GOOD (  25.52  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,30 +99,167 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Lavanya Suresh <lavaks@codeaurora.org> wrote:
+Kalle Valo <kvalo@codeaurora.org> writes:
 
-> When AP goes down without any indication to STA, firmware detects
-> missing beacon, and sends wmi roam event with reason BEACON_MISS
-> to the host.
-> 
-> Added support for STA mode to trigger disassociation from AP,
-> on receiving this event from firmware.
-> 
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-01717-QCAHKSWPL_SILICONZ-1
-> Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
-> 
-> Signed-off-by: Lavanya Suresh <lavaks@codeaurora.org>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+> Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> writes:
+>
+>> Hi Kalle,
+>>
+>> On Thu, Mar 04, 2021 at 04:59:33PM +0200, Kalle Valo wrote:
+>>> Hi MHI folks,
+>>> 
+>>> I upgraded my QCA6390 x86 test box to v5.12-rc1 and started seeing
+>>> kernel crashes when testing ath11k. I don't recall seeing this on v5.11
+>>> so it looks like a new problem, but I cannot be 100% sure. Netconsole
+>>> output is below. I have most of the kernel debug functionality enabled
+>>> (KASAN etc).
+>>> 
+>>> I can fairly easy reproduce this by looping insmod and rmmod of mhi,
+>>> wireless and ath11k modules. It does not happen every time, but I would
+>>> say I can reproduce the problem within 10 test loops or so.
+>>> 
+>>> Any ideas what could cause this? I have not bisected this due to lack of
+>>> time, but I can test patches etc.
+>>> 
+>>
+>> Not sure if this is related, Loic sent a patch which fixes an issue with
+>> "mhi_pm_state_worker":
+>>
+>> https://patchwork.kernel.org/project/linux-arm-msm/patch/1614161930-8513-1-git-send-email-loic.poulain@linaro.org/
+>>
+>> Can you please test see if it fixes your issue also?
+>
+> Thanks for the link, but unfortunately not :( I was able to reproduce
+> the issue just after 3 insmod/rmmod loops.
 
-Patch applied to ath-next branch of ath.git, thanks.
+I investigated this a bit more, I was actually able to reproduce this in
+v5.11 as well. So this is not a new regression. The reason why I started
+seeing this until now is that I enable more debug options in the kernel,
+the diff below. Without those changes I don't see the problem.
 
-26f697923729 ath11k: Add support for STA to handle beacon miss
+I also found a workround, if I add sleep(1) after insmod ath11k_pci in
+my test script I see 200 loops without crashes. But when I removed the
+sleep the test script crashed only after 19 loops. So there definitely
+is a race condition somewhere, just don't know where. I don't have time
+to investigate this more, so I'll just use the workaround for the time
+being.
+
+--- ../configs/nuc-debug-5.11	2021-02-21 08:55:53.836061988 +0200
++++ .config	2021-03-09 16:22:53.598684524 +0200
+@@ -12,6 +12,7 @@
+ CONFIG_CC_CAN_LINK_STATIC=y
+ CONFIG_CC_HAS_ASM_GOTO=y
+ CONFIG_CC_HAS_ASM_INLINE=y
++CONFIG_CONSTRUCTORS=y
+ CONFIG_IRQ_WORK=y
+ CONFIG_BUILDTIME_TABLE_SORT=y
+ CONFIG_THREAD_INFO_IN_TASK=y
+@@ -280,6 +281,7 @@
+ CONFIG_ARCH_WANT_GENERAL_HUGETLB=y
+ CONFIG_ZONE_DMA32=y
+ CONFIG_AUDIT_ARCH=y
++CONFIG_KASAN_SHADOW_OFFSET=0xdffffc0000000000
+ CONFIG_HAVE_INTEL_TXT=y
+ CONFIG_X86_64_SMP=y
+ CONFIG_ARCH_SUPPORTS_UPROBES=y
+@@ -748,8 +750,7 @@
+ # CONFIG_MODULE_SIG is not set
+ # CONFIG_MODULE_COMPRESS is not set
+ # CONFIG_MODULE_ALLOW_MISSING_NAMESPACE_IMPORTS is not set
+-# CONFIG_UNUSED_SYMBOLS is not set
+-# CONFIG_TRIM_UNUSED_KSYMS is not set
++CONFIG_UNUSED_SYMBOLS=y
+ CONFIG_MODULES_TREE_LOOKUP=y
+ CONFIG_BLOCK=y
+ CONFIG_BLK_SCSI_REQUEST=y
+@@ -1164,7 +1165,6 @@
+ # CONFIG_NET_NCSI is not set
+ CONFIG_RPS=y
+ CONFIG_RFS_ACCEL=y
+-CONFIG_SOCK_RX_QUEUE_MAPPING=y
+ CONFIG_XPS=y
+ # CONFIG_CGROUP_NET_PRIO is not set
+ # CONFIG_CGROUP_NET_CLASSID is not set
+@@ -1685,7 +1685,6 @@
+ #
+ # Distributed Switch Architecture drivers
+ #
+-# CONFIG_NET_DSA_MV88E6XXX_PTP is not set
+ # end of Distributed Switch Architecture drivers
+ 
+ CONFIG_ETHERNET=y
+@@ -1700,6 +1699,7 @@
+ # CONFIG_NET_VENDOR_AQUANTIA is not set
+ # CONFIG_NET_VENDOR_ARC is not set
+ # CONFIG_NET_VENDOR_ATHEROS is not set
++# CONFIG_NET_VENDOR_AURORA is not set
+ # CONFIG_NET_VENDOR_BROADCOM is not set
+ CONFIG_NET_VENDOR_BROCADE=y
+ # CONFIG_BNA is not set
+@@ -1914,7 +1914,6 @@
+ # CONFIG_MT7615E is not set
+ # CONFIG_MT7663U is not set
+ # CONFIG_MT7915E is not set
+-# CONFIG_MT7921E is not set
+ # CONFIG_WLAN_VENDOR_MICROCHIP is not set
+ CONFIG_WLAN_VENDOR_RALINK=y
+ # CONFIG_RT2X00 is not set
+@@ -4500,7 +4499,7 @@
+ CONFIG_DEBUG_INFO_COMPRESSED=y
+ # CONFIG_DEBUG_INFO_SPLIT is not set
+ # CONFIG_DEBUG_INFO_DWARF4 is not set
+-# CONFIG_GDB_SCRIPTS is not set
++CONFIG_GDB_SCRIPTS=y
+ CONFIG_FRAME_WARN=2048
+ # CONFIG_STRIP_ASM_SYMS is not set
+ # CONFIG_READABLE_ASM is not set
+@@ -4540,13 +4539,13 @@
+ CONFIG_DEBUG_PAGEALLOC_ENABLE_DEFAULT=y
+ CONFIG_PAGE_OWNER=y
+ CONFIG_PAGE_POISONING=y
+-# CONFIG_DEBUG_PAGE_REF is not set
++CONFIG_DEBUG_PAGE_REF=y
+ # CONFIG_DEBUG_RODATA_TEST is not set
+ CONFIG_ARCH_HAS_DEBUG_WX=y
+ CONFIG_DEBUG_WX=y
+ CONFIG_GENERIC_PTDUMP=y
+ CONFIG_PTDUMP_CORE=y
+-# CONFIG_PTDUMP_DEBUGFS is not set
++CONFIG_PTDUMP_DEBUGFS=y
+ CONFIG_DEBUG_OBJECTS=y
+ # CONFIG_DEBUG_OBJECTS_SELFTEST is not set
+ CONFIG_DEBUG_OBJECTS_FREE=y
+@@ -4568,8 +4567,8 @@
+ CONFIG_ARCH_HAS_DEBUG_VM_PGTABLE=y
+ CONFIG_DEBUG_VM=y
+ CONFIG_DEBUG_VM_VMACACHE=y
+-# CONFIG_DEBUG_VM_RB is not set
+-# CONFIG_DEBUG_VM_PGFLAGS is not set
++CONFIG_DEBUG_VM_RB=y
++CONFIG_DEBUG_VM_PGFLAGS=y
+ CONFIG_DEBUG_VM_PGTABLE=y
+ CONFIG_ARCH_HAS_DEBUG_VIRTUAL=y
+ CONFIG_DEBUG_VIRTUAL=y
+@@ -4581,7 +4580,13 @@
+ CONFIG_HAVE_ARCH_KASAN_VMALLOC=y
+ CONFIG_CC_HAS_KASAN_GENERIC=y
+ CONFIG_CC_HAS_WORKING_NOSANITIZE_ADDRESS=y
+-# CONFIG_KASAN is not set
++CONFIG_KASAN=y
++CONFIG_KASAN_GENERIC=y
++# CONFIG_KASAN_OUTLINE is not set
++CONFIG_KASAN_INLINE=y
++CONFIG_KASAN_STACK=1
++CONFIG_KASAN_VMALLOC=y
++# CONFIG_TEST_KASAN_MODULE is not set
+ # end of Memory Debugging
+ 
+ CONFIG_DEBUG_SHIRQ=y
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/1614340859-28867-1-git-send-email-lavaks@codeaurora.org/
+https://patchwork.kernel.org/project/linux-wireless/list/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
 
 -- 
 ath11k mailing list
