@@ -7,82 +7,78 @@ X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1D8BFC433E0
-	for <ath11k@archiver.kernel.org>; Tue,  9 Mar 2021 16:44:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C50A7C433DB
+	for <ath11k@archiver.kernel.org>; Tue,  9 Mar 2021 18:08:14 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id AEC6764F09
-	for <ath11k@archiver.kernel.org>; Tue,  9 Mar 2021 16:44:27 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AEC6764F09
+	by mail.kernel.org (Postfix) with ESMTPS id 65CAE6525F
+	for <ath11k@archiver.kernel.org>; Tue,  9 Mar 2021 18:08:14 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 65CAE6525F
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
-	:Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:Date:References:
-	Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=R2PArqB/SqdUoBSNP7vWrchgy4uDHBTUy6uCfCX/ylc=; b=XjMAg5ErWsM7i7QAsASnUtG4Z
-	z7HmPugRECPi64Rl9W2nzY6wUL+JvsK0EqRG6UIysD3AzMHbo/kssagnBBby4Z0ljhn1pKx0BqhAL
-	RwRQxTD+O5sN2gZrR60LrWlmRt0IRQrdOctFxkQUqPW3WY0EWXuzCSo7CGQo2F3KTkKavRAyX3TUn
-	+XaDBvRkyHSI6H2nZbjww/VUMPodoJzre+x1BblQbCYOqy+jorCgyn5Xt1N5laVqR/cSZDEzR4I0a
-	ISCN7aC+5Ob7rV2MpI/TGO9lD3RgAlu71S7dyG6dbWYBJJXwaP/Mr4xsOJJdYO2DlcnvQcNiv7HcN
-	TpOvcc/8A==;
+	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:
+	Subject:Cc:To:From:Date:MIME-Version:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=9aXiax5Pke8mABWLCbfIv6N2ka4wrXengBYYUWN1AsQ=; b=dTR4KLB1uM3Qlr
+	VU3AcqOPUAQEOBqenU+sc0nmnVxBdFyKHzWBqxWFc807Wd2z5FSLqU51xAuM7Ku1SOHxSMOzL1DGj
+	JuENdjRUF1+IXqyWdqqa+axuPZfHXTpQVoyXNEcDnki8dMybYmysSAezIDdPnXY2e2PvbhlQaBt9t
+	DhHV5j0akVLgtO0cVxZ+ZsWZNXQggVgIUGbO+TZrzwcr0jzcH0JZAMP+bqWykh6V6P8rMn5aYYtEA
+	MjETwujLd/QfPfyQ9REmJRMG49VAmLSywcHeb3T8BTStpNmOkDac9QJycoOr22Tu6cDC8eXJiz0my
+	LjX9nP6AvbHqCiaycTuw==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lJfT3-00575d-LQ; Tue, 09 Mar 2021 16:44:21 +0000
-Received: from m42-2.mailgun.net ([69.72.42.2])
+	id 1lJgm8-005EIG-2M; Tue, 09 Mar 2021 18:08:08 +0000
+Received: from z11.mailgun.us ([104.130.96.11])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lJfSy-00574l-1D
- for ath11k@lists.infradead.org; Tue, 09 Mar 2021 16:44:20 +0000
+ id 1lJgm2-005EHE-1H
+ for ath11k@lists.infradead.org; Tue, 09 Mar 2021 18:08:05 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1615308258; h=Content-Type: MIME-Version: Message-ID:
- In-Reply-To: Date: References: Subject: Cc: To: From: Sender;
- bh=1fSVIh5EXxPn36xIZwKFO2lOSLwOP2U8a9bxpnqzJZg=;
- b=YoPety6QBC+14jUefoS09LgsE4ZNWCm6q0y0He378w9toOdper8/X2GzSkn2UKQqxxcB0VYk
- AYG6ZMmyuli3lUbFNLsvVOavNCCuCQcGz1DMmaiMoxiujMNqTUl0JffJFBziTSUiczClx5m9
- AofQEK1kOA4+SlRvtCPtJO768xs=
-X-Mailgun-Sending-Ip: 69.72.42.2
+ s=smtp; t=1615313283; h=Message-ID: References: In-Reply-To: Reply-To:
+ Subject: Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=Y4KeOfpkZTj5+LOTg2wydvLswiN6LaDodSLe+3I8/jE=;
+ b=MN/jS7X7tbIHY2WJ7nMI655cx6eg13HhQdzBxQOibtybesVWlnWKKWmYT4PfRS4mq3gjRqsD
+ tv400wfWtY36ikSWML7x8E+JAMaqerv92b9I0lIloZv4ve09qQvBZsUI8qIVs/DhOa96THEH
+ gW4unrVcsSXAH13icy7230Tn29Y=
+X-Mailgun-Sending-Ip: 104.130.96.11
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
- 6047a5d8155a7cd2343500bf (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 09 Mar 2021 16:44:08
+ smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
+ 6047b975fa6ebd85e8844e69 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 09 Mar 2021 18:07:49
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id D274DC433CA; Tue,  9 Mar 2021 16:44:08 +0000 (UTC)
-Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi
- [88.114.240.156])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested) (Authenticated sender: kvalo)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 5F28AC433C6;
- Tue,  9 Mar 2021 16:44:06 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 5F28AC433C6
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- spf=fail smtp.mailfrom=kvalo@codeaurora.org
-From: Kalle Valo <kvalo@codeaurora.org>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Hemant Kumar <hemantk@codeaurora.org>,
- Bhaumik Bhatt <bbhatt@codeaurora.org>, linux-arm-msm@vger.kernel.org,
- ath11k@lists.infradead.org
+ id 1026EC433ED; Tue,  9 Mar 2021 18:07:49 +0000 (UTC)
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+ (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+ (No client certificate requested) (Authenticated sender: bbhatt)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 110CAC433CA;
+ Tue,  9 Mar 2021 18:07:48 +0000 (UTC)
+MIME-Version: 1.0
+Date: Tue, 09 Mar 2021 10:07:48 -0800
+From: Bhaumik Bhatt <bbhatt@codeaurora.org>
+To: Kalle Valo <kvalo@codeaurora.org>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Hemant Kumar
+ <hemantk@codeaurora.org>, linux-arm-msm@vger.kernel.org,
+ ath11k@lists.infradead.org, kvalo=codeaurora.org@codeaurora.org
 Subject: Re: [regression] mhi: mhi_pm_st_worker blocked for more than 61
  seconds.
+Organization: Qualcomm Innovation Center, Inc.
+Mail-Reply-To: bbhatt@codeaurora.org
+In-Reply-To: <87k0qgz38r.fsf@codeaurora.org>
 References: <87im6755ii.fsf@codeaurora.org> <20210304151004.GA29563@work>
- <87blby6dir.fsf@codeaurora.org>
-Date: Tue, 09 Mar 2021 18:44:04 +0200
-In-Reply-To: <87blby6dir.fsf@codeaurora.org> (Kalle Valo's message of "Thu, 04
- Mar 2021 19:21:16 +0200")
-Message-ID: <87k0qgz38r.fsf@codeaurora.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
-MIME-Version: 1.0
+ <87blby6dir.fsf@codeaurora.org> <87k0qgz38r.fsf@codeaurora.org>
+Message-ID: <f682aa375f6501ff27aceaa687e5d694@codeaurora.org>
+X-Sender: bbhatt@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210309_164418_468783_0C36F2C3 
-X-CRM114-Status: GOOD (  25.52  )
+X-CRM114-CacheID: sfid-20210309_180803_991868_A7E17F0B 
+X-CRM114-Status: GOOD (  28.71  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,172 +90,188 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: bbhatt@codeaurora.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Kalle Valo <kvalo@codeaurora.org> writes:
-
-> Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> writes:
->
->> Hi Kalle,
->>
->> On Thu, Mar 04, 2021 at 04:59:33PM +0200, Kalle Valo wrote:
->>> Hi MHI folks,
+On 2021-03-09 08:44 AM, Kalle Valo wrote:
+> Kalle Valo <kvalo@codeaurora.org> writes:
+> 
+>> Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> writes:
+>> 
+>>> Hi Kalle,
 >>> 
->>> I upgraded my QCA6390 x86 test box to v5.12-rc1 and started seeing
->>> kernel crashes when testing ath11k. I don't recall seeing this on v5.11
->>> so it looks like a new problem, but I cannot be 100% sure. Netconsole
->>> output is below. I have most of the kernel debug functionality enabled
->>> (KASAN etc).
+>>> On Thu, Mar 04, 2021 at 04:59:33PM +0200, Kalle Valo wrote:
+>>>> Hi MHI folks,
+>>>> 
+>>>> I upgraded my QCA6390 x86 test box to v5.12-rc1 and started seeing
+>>>> kernel crashes when testing ath11k. I don't recall seeing this on 
+>>>> v5.11
+>>>> so it looks like a new problem, but I cannot be 100% sure. 
+>>>> Netconsole
+>>>> output is below. I have most of the kernel debug functionality 
+>>>> enabled
+>>>> (KASAN etc).
+>>>> 
+>>>> I can fairly easy reproduce this by looping insmod and rmmod of mhi,
+>>>> wireless and ath11k modules. It does not happen every time, but I 
+>>>> would
+>>>> say I can reproduce the problem within 10 test loops or so.
+>>>> 
+>>>> Any ideas what could cause this? I have not bisected this due to 
+>>>> lack of
+>>>> time, but I can test patches etc.
+>>>> 
 >>> 
->>> I can fairly easy reproduce this by looping insmod and rmmod of mhi,
->>> wireless and ath11k modules. It does not happen every time, but I would
->>> say I can reproduce the problem within 10 test loops or so.
+>>> Not sure if this is related, Loic sent a patch which fixes an issue 
+>>> with
+>>> "mhi_pm_state_worker":
 >>> 
->>> Any ideas what could cause this? I have not bisected this due to lack of
->>> time, but I can test patches etc.
+>>> https://patchwork.kernel.org/project/linux-arm-msm/patch/1614161930-8513-1-git-send-email-loic.poulain@linaro.org/
 >>> 
->>
->> Not sure if this is related, Loic sent a patch which fixes an issue with
->> "mhi_pm_state_worker":
->>
->> https://patchwork.kernel.org/project/linux-arm-msm/patch/1614161930-8513-1-git-send-email-loic.poulain@linaro.org/
->>
->> Can you please test see if it fixes your issue also?
->
-> Thanks for the link, but unfortunately not :( I was able to reproduce
-> the issue just after 3 insmod/rmmod loops.
+>>> Can you please test see if it fixes your issue also?
+>> 
+>> Thanks for the link, but unfortunately not :( I was able to reproduce
+>> the issue just after 3 insmod/rmmod loops.
+> 
+> I investigated this a bit more, I was actually able to reproduce this 
+> in
+> v5.11 as well. So this is not a new regression. The reason why I 
+> started
+> seeing this until now is that I enable more debug options in the 
+> kernel,
+> the diff below. Without those changes I don't see the problem.
+> 
+> I also found a workround, if I add sleep(1) after insmod ath11k_pci in
+> my test script I see 200 loops without crashes. But when I removed the
+> sleep the test script crashed only after 19 loops. So there definitely
+> is a race condition somewhere, just don't know where. I don't have time
+> to investigate this more, so I'll just use the workaround for the time
+> being.
+> 
+> --- ../configs/nuc-debug-5.11	2021-02-21 08:55:53.836061988 +0200
+> +++ .config	2021-03-09 16:22:53.598684524 +0200
+> @@ -12,6 +12,7 @@
+>  CONFIG_CC_CAN_LINK_STATIC=y
+>  CONFIG_CC_HAS_ASM_GOTO=y
+>  CONFIG_CC_HAS_ASM_INLINE=y
+> +CONFIG_CONSTRUCTORS=y
+>  CONFIG_IRQ_WORK=y
+>  CONFIG_BUILDTIME_TABLE_SORT=y
+>  CONFIG_THREAD_INFO_IN_TASK=y
+> @@ -280,6 +281,7 @@
+>  CONFIG_ARCH_WANT_GENERAL_HUGETLB=y
+>  CONFIG_ZONE_DMA32=y
+>  CONFIG_AUDIT_ARCH=y
+> +CONFIG_KASAN_SHADOW_OFFSET=0xdffffc0000000000
+>  CONFIG_HAVE_INTEL_TXT=y
+>  CONFIG_X86_64_SMP=y
+>  CONFIG_ARCH_SUPPORTS_UPROBES=y
+> @@ -748,8 +750,7 @@
+>  # CONFIG_MODULE_SIG is not set
+>  # CONFIG_MODULE_COMPRESS is not set
+>  # CONFIG_MODULE_ALLOW_MISSING_NAMESPACE_IMPORTS is not set
+> -# CONFIG_UNUSED_SYMBOLS is not set
+> -# CONFIG_TRIM_UNUSED_KSYMS is not set
+> +CONFIG_UNUSED_SYMBOLS=y
+>  CONFIG_MODULES_TREE_LOOKUP=y
+>  CONFIG_BLOCK=y
+>  CONFIG_BLK_SCSI_REQUEST=y
+> @@ -1164,7 +1165,6 @@
+>  # CONFIG_NET_NCSI is not set
+>  CONFIG_RPS=y
+>  CONFIG_RFS_ACCEL=y
+> -CONFIG_SOCK_RX_QUEUE_MAPPING=y
+>  CONFIG_XPS=y
+>  # CONFIG_CGROUP_NET_PRIO is not set
+>  # CONFIG_CGROUP_NET_CLASSID is not set
+> @@ -1685,7 +1685,6 @@
+>  #
+>  # Distributed Switch Architecture drivers
+>  #
+> -# CONFIG_NET_DSA_MV88E6XXX_PTP is not set
+>  # end of Distributed Switch Architecture drivers
+> 
+>  CONFIG_ETHERNET=y
+> @@ -1700,6 +1699,7 @@
+>  # CONFIG_NET_VENDOR_AQUANTIA is not set
+>  # CONFIG_NET_VENDOR_ARC is not set
+>  # CONFIG_NET_VENDOR_ATHEROS is not set
+> +# CONFIG_NET_VENDOR_AURORA is not set
+>  # CONFIG_NET_VENDOR_BROADCOM is not set
+>  CONFIG_NET_VENDOR_BROCADE=y
+>  # CONFIG_BNA is not set
+> @@ -1914,7 +1914,6 @@
+>  # CONFIG_MT7615E is not set
+>  # CONFIG_MT7663U is not set
+>  # CONFIG_MT7915E is not set
+> -# CONFIG_MT7921E is not set
+>  # CONFIG_WLAN_VENDOR_MICROCHIP is not set
+>  CONFIG_WLAN_VENDOR_RALINK=y
+>  # CONFIG_RT2X00 is not set
+> @@ -4500,7 +4499,7 @@
+>  CONFIG_DEBUG_INFO_COMPRESSED=y
+>  # CONFIG_DEBUG_INFO_SPLIT is not set
+>  # CONFIG_DEBUG_INFO_DWARF4 is not set
+> -# CONFIG_GDB_SCRIPTS is not set
+> +CONFIG_GDB_SCRIPTS=y
+>  CONFIG_FRAME_WARN=2048
+>  # CONFIG_STRIP_ASM_SYMS is not set
+>  # CONFIG_READABLE_ASM is not set
+> @@ -4540,13 +4539,13 @@
+>  CONFIG_DEBUG_PAGEALLOC_ENABLE_DEFAULT=y
+>  CONFIG_PAGE_OWNER=y
+>  CONFIG_PAGE_POISONING=y
+> -# CONFIG_DEBUG_PAGE_REF is not set
+> +CONFIG_DEBUG_PAGE_REF=y
+>  # CONFIG_DEBUG_RODATA_TEST is not set
+>  CONFIG_ARCH_HAS_DEBUG_WX=y
+>  CONFIG_DEBUG_WX=y
+>  CONFIG_GENERIC_PTDUMP=y
+>  CONFIG_PTDUMP_CORE=y
+> -# CONFIG_PTDUMP_DEBUGFS is not set
+> +CONFIG_PTDUMP_DEBUGFS=y
+>  CONFIG_DEBUG_OBJECTS=y
+>  # CONFIG_DEBUG_OBJECTS_SELFTEST is not set
+>  CONFIG_DEBUG_OBJECTS_FREE=y
+> @@ -4568,8 +4567,8 @@
+>  CONFIG_ARCH_HAS_DEBUG_VM_PGTABLE=y
+>  CONFIG_DEBUG_VM=y
+>  CONFIG_DEBUG_VM_VMACACHE=y
+> -# CONFIG_DEBUG_VM_RB is not set
+> -# CONFIG_DEBUG_VM_PGFLAGS is not set
+> +CONFIG_DEBUG_VM_RB=y
+> +CONFIG_DEBUG_VM_PGFLAGS=y
+>  CONFIG_DEBUG_VM_PGTABLE=y
+>  CONFIG_ARCH_HAS_DEBUG_VIRTUAL=y
+>  CONFIG_DEBUG_VIRTUAL=y
+> @@ -4581,7 +4580,13 @@
+>  CONFIG_HAVE_ARCH_KASAN_VMALLOC=y
+>  CONFIG_CC_HAS_KASAN_GENERIC=y
+>  CONFIG_CC_HAS_WORKING_NOSANITIZE_ADDRESS=y
+> -# CONFIG_KASAN is not set
+> +CONFIG_KASAN=y
+> +CONFIG_KASAN_GENERIC=y
+> +# CONFIG_KASAN_OUTLINE is not set
+> +CONFIG_KASAN_INLINE=y
+> +CONFIG_KASAN_STACK=1
+> +CONFIG_KASAN_VMALLOC=y
+> +# CONFIG_TEST_KASAN_MODULE is not set
+>  # end of Memory Debugging
+> 
+>  CONFIG_DEBUG_SHIRQ=y
 
-I investigated this a bit more, I was actually able to reproduce this in
-v5.11 as well. So this is not a new regression. The reason why I started
-seeing this until now is that I enable more debug options in the kernel,
-the diff below. Without those changes I don't see the problem.
+Thanks Kalle. We will have to try to reproduce and investigate this on a
+different controller as well to dive in and fix any race if seen.
 
-I also found a workround, if I add sleep(1) after insmod ath11k_pci in
-my test script I see 200 loops without crashes. But when I removed the
-sleep the test script crashed only after 19 loops. So there definitely
-is a race condition somewhere, just don't know where. I don't have time
-to investigate this more, so I'll just use the workaround for the time
-being.
-
---- ../configs/nuc-debug-5.11	2021-02-21 08:55:53.836061988 +0200
-+++ .config	2021-03-09 16:22:53.598684524 +0200
-@@ -12,6 +12,7 @@
- CONFIG_CC_CAN_LINK_STATIC=y
- CONFIG_CC_HAS_ASM_GOTO=y
- CONFIG_CC_HAS_ASM_INLINE=y
-+CONFIG_CONSTRUCTORS=y
- CONFIG_IRQ_WORK=y
- CONFIG_BUILDTIME_TABLE_SORT=y
- CONFIG_THREAD_INFO_IN_TASK=y
-@@ -280,6 +281,7 @@
- CONFIG_ARCH_WANT_GENERAL_HUGETLB=y
- CONFIG_ZONE_DMA32=y
- CONFIG_AUDIT_ARCH=y
-+CONFIG_KASAN_SHADOW_OFFSET=0xdffffc0000000000
- CONFIG_HAVE_INTEL_TXT=y
- CONFIG_X86_64_SMP=y
- CONFIG_ARCH_SUPPORTS_UPROBES=y
-@@ -748,8 +750,7 @@
- # CONFIG_MODULE_SIG is not set
- # CONFIG_MODULE_COMPRESS is not set
- # CONFIG_MODULE_ALLOW_MISSING_NAMESPACE_IMPORTS is not set
--# CONFIG_UNUSED_SYMBOLS is not set
--# CONFIG_TRIM_UNUSED_KSYMS is not set
-+CONFIG_UNUSED_SYMBOLS=y
- CONFIG_MODULES_TREE_LOOKUP=y
- CONFIG_BLOCK=y
- CONFIG_BLK_SCSI_REQUEST=y
-@@ -1164,7 +1165,6 @@
- # CONFIG_NET_NCSI is not set
- CONFIG_RPS=y
- CONFIG_RFS_ACCEL=y
--CONFIG_SOCK_RX_QUEUE_MAPPING=y
- CONFIG_XPS=y
- # CONFIG_CGROUP_NET_PRIO is not set
- # CONFIG_CGROUP_NET_CLASSID is not set
-@@ -1685,7 +1685,6 @@
- #
- # Distributed Switch Architecture drivers
- #
--# CONFIG_NET_DSA_MV88E6XXX_PTP is not set
- # end of Distributed Switch Architecture drivers
- 
- CONFIG_ETHERNET=y
-@@ -1700,6 +1699,7 @@
- # CONFIG_NET_VENDOR_AQUANTIA is not set
- # CONFIG_NET_VENDOR_ARC is not set
- # CONFIG_NET_VENDOR_ATHEROS is not set
-+# CONFIG_NET_VENDOR_AURORA is not set
- # CONFIG_NET_VENDOR_BROADCOM is not set
- CONFIG_NET_VENDOR_BROCADE=y
- # CONFIG_BNA is not set
-@@ -1914,7 +1914,6 @@
- # CONFIG_MT7615E is not set
- # CONFIG_MT7663U is not set
- # CONFIG_MT7915E is not set
--# CONFIG_MT7921E is not set
- # CONFIG_WLAN_VENDOR_MICROCHIP is not set
- CONFIG_WLAN_VENDOR_RALINK=y
- # CONFIG_RT2X00 is not set
-@@ -4500,7 +4499,7 @@
- CONFIG_DEBUG_INFO_COMPRESSED=y
- # CONFIG_DEBUG_INFO_SPLIT is not set
- # CONFIG_DEBUG_INFO_DWARF4 is not set
--# CONFIG_GDB_SCRIPTS is not set
-+CONFIG_GDB_SCRIPTS=y
- CONFIG_FRAME_WARN=2048
- # CONFIG_STRIP_ASM_SYMS is not set
- # CONFIG_READABLE_ASM is not set
-@@ -4540,13 +4539,13 @@
- CONFIG_DEBUG_PAGEALLOC_ENABLE_DEFAULT=y
- CONFIG_PAGE_OWNER=y
- CONFIG_PAGE_POISONING=y
--# CONFIG_DEBUG_PAGE_REF is not set
-+CONFIG_DEBUG_PAGE_REF=y
- # CONFIG_DEBUG_RODATA_TEST is not set
- CONFIG_ARCH_HAS_DEBUG_WX=y
- CONFIG_DEBUG_WX=y
- CONFIG_GENERIC_PTDUMP=y
- CONFIG_PTDUMP_CORE=y
--# CONFIG_PTDUMP_DEBUGFS is not set
-+CONFIG_PTDUMP_DEBUGFS=y
- CONFIG_DEBUG_OBJECTS=y
- # CONFIG_DEBUG_OBJECTS_SELFTEST is not set
- CONFIG_DEBUG_OBJECTS_FREE=y
-@@ -4568,8 +4567,8 @@
- CONFIG_ARCH_HAS_DEBUG_VM_PGTABLE=y
- CONFIG_DEBUG_VM=y
- CONFIG_DEBUG_VM_VMACACHE=y
--# CONFIG_DEBUG_VM_RB is not set
--# CONFIG_DEBUG_VM_PGFLAGS is not set
-+CONFIG_DEBUG_VM_RB=y
-+CONFIG_DEBUG_VM_PGFLAGS=y
- CONFIG_DEBUG_VM_PGTABLE=y
- CONFIG_ARCH_HAS_DEBUG_VIRTUAL=y
- CONFIG_DEBUG_VIRTUAL=y
-@@ -4581,7 +4580,13 @@
- CONFIG_HAVE_ARCH_KASAN_VMALLOC=y
- CONFIG_CC_HAS_KASAN_GENERIC=y
- CONFIG_CC_HAS_WORKING_NOSANITIZE_ADDRESS=y
--# CONFIG_KASAN is not set
-+CONFIG_KASAN=y
-+CONFIG_KASAN_GENERIC=y
-+# CONFIG_KASAN_OUTLINE is not set
-+CONFIG_KASAN_INLINE=y
-+CONFIG_KASAN_STACK=1
-+CONFIG_KASAN_VMALLOC=y
-+# CONFIG_TEST_KASAN_MODULE is not set
- # end of Memory Debugging
- 
- CONFIG_DEBUG_SHIRQ=y
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+Thanks,
+Bhaumik
+---
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora 
+Forum,
+a Linux Foundation Collaborative Project
 
 -- 
 ath11k mailing list
