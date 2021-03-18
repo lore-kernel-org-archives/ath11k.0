@@ -2,60 +2,81 @@ Return-Path: <SRS0=hMZx=IQ=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-4.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-	autolearn_force=no version=3.4.0
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 65088C433E0
-	for <ath11k@archiver.kernel.org>; Thu, 18 Mar 2021 16:30:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 034CCC433DB
+	for <ath11k@archiver.kernel.org>; Thu, 18 Mar 2021 20:25:15 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id F1DEB64DDD
-	for <ath11k@archiver.kernel.org>; Thu, 18 Mar 2021 16:30:32 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F1DEB64DDD
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=mitchellnordine.com
+	by mail.kernel.org (Postfix) with ESMTPS id 9856C64EB9
+	for <ath11k@archiver.kernel.org>; Thu, 18 Mar 2021 20:25:14 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9856C64EB9
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
-	:Content-Type:Reply-To:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Subject:Cc:From:To:Date:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=9uaypvEI4keS2JErM/vc5ZSZFQykFS4l0wAoTGQapjE=; b=J9LZwW/89XvQ9nl3mdNRYseeGq
-	NQl2plr03hNVo1Bk9VULwJRmTgIqtb9zl6abna6faVz/frk5xTn+MlZSFk4utkgXMsID2rTN6ubNR
-	grb1gGIxCNVFrZIhBJHQOQ6GvvRSn7e3LnSc2vySt+hU5lsNoIP4gILe2eqH3sMk7rZQabqIIjEAH
-	ZNE6adnQZ6atku/AATNH56h1+gg1iy1TPjPyqzLp0uicwfYu6eMu2RQSrStkEfCUjbrnJSAlKN6c0
-	hXKyRozgoIBRroi+FW+bCncRElCG+y8pqc0EufUwHthrR/xodsAVW6FV7RS2YW6TJJjgVvbnpH8oB
-	lFxyKANQ==;
+	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:Cc:To:From
+	:Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=RvRWX2tH/klgkY6u0cGD2nP6EwvnNU42V2QwHVvJ5H8=; b=cSs6D36DAGQjj2fKiJQ945cYm
+	GYJyLlu9KXiJa1qGFN5xC9u3TNbEjCbGHn/GHCgfxfOoeJStGMb9Icxf/ipbCb/EfOVpD0CbV0JMn
+	zK81XOyvM1hje2C2HzdYHA87oDNJT41g8KpVitWcPYoMNT8KOks5ZdKwDmasynb/FLMLTLKum/MZT
+	RAm/IB0vHMZ1GNxF9lPaiPbIcTyZlySo7bh82uAj5Jt2y9oahRBLJpPsssZiN9qVpYkqxAFXAr82S
+	gUGDuKS3rdneg2/spc2/DTJ2q7CiWc3qszxNABdMInYIS4CmpgSFFcx3W3AV/XTWgGnqZSdqaOKtw
+	+KIFRMWqQ==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lMvXW-005cli-Uh; Thu, 18 Mar 2021 16:30:27 +0000
-Received: from mail-40134.protonmail.ch ([185.70.40.134])
+	id 1lMzCe-005zNj-GN; Thu, 18 Mar 2021 20:25:08 +0000
+Received: from m43-7.mailgun.net ([69.72.43.7])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lMvXR-005clB-Pd
- for ath11k@lists.infradead.org; Thu, 18 Mar 2021 16:30:24 +0000
-Date: Thu, 18 Mar 2021 16:30:15 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mitchellnordine.com;
- s=protonmail; t=1616085019;
- bh=b+aAYGnze/KRBJMotAaJdmyLHF53JgQMQSnaBvHFzrw=;
- h=Date:To:From:Cc:Reply-To:Subject:From;
- b=BPinz6SJN32Fwwo4OZe53U2EjWDQU8p6UvGHDOaPR+q+h7nMScefeThzZs6gJ2d+O
- 10PUoCRLPs3ZRSmxZSwoP+s1l16wZhc6/lhVfMCuEF+Z+Dfqw8g7Ikh4fE3ol/7wUg
- WdegZkGdwU45r1BLxRFrV3V6Tfwwl5d1pMPQQWo0Wj5rbrZyML+26/0lyzEhmn0GeE
- Eh9UtMVggarrykzQc2R2/j2zua7TFCjYOGjlqs+G26tycL/5pxYis/nAH6T+3YeoY9
- doCnXXZfWEbStycFi9mPgG0RLXB08rI1Vq5omPmRe+4ITvBDrmRdaJPprMuTsWBrPG
- tgYjfRHSKl7Pw==
-To: Kalle Valo <kvalo@codeaurora.org>, wi nk <wink@technolu.st>
-From: Mitchell Nordine <mail@mitchellnordine.com>
-Cc: "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
-Subject: Have the QCA6390 patches for XPS 9310 landed yet?
-Message-ID: <bP3y5saYYXBGS8eME0-maHlpNyii00kJNgq58St0q7PDo9pXsMd5zmUI-0Jou4dCD91Jf5fjwyPlQb8PaTOGvBBRu0FjYoW1XCjWpzZm-6E=@mitchellnordine.com>
+ id 1lMzCY-005zN6-QE
+ for ath11k@lists.infradead.org; Thu, 18 Mar 2021 20:25:06 +0000
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
+ q=dns/txt; 
+ s=smtp; t=1616099104; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=jnf5OevRfRzndK6VJ9m/LFXR55ww48JvW9oCoFKzSGM=;
+ b=hMn3/8e785h7dWD5QwXUshY/781jdF4jgvPTrmc9EdxR5YWypEWer0oZMc2NEZq4osl3zJI8
+ PfuqGqrSrXyqgJ63H8BUCspNFkcQ1lv8iupVj6Eht8tLDRqXnow2esbi+UIvOOruC4JKThLj
+ WhYS7n2mrq35Ei1F7BrS8rMxibQ=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
+ 6053b70e21031618f668ceb1 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 18 Mar 2021 20:24:46
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+ id 6EF69C433CA; Thu, 18 Mar 2021 20:24:46 +0000 (UTC)
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+ (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+ (No client certificate requested) (Authenticated sender: pradeepc)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id B7227C433C6;
+ Thu, 18 Mar 2021 20:24:44 +0000 (UTC)
 MIME-Version: 1.0
+Date: Thu, 18 Mar 2021 13:24:44 -0700
+From: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
+To: Karthikeyan periyasamy <periyasa@codeaurora.org>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org, Miles Hu
+ <milehu@codeaurora.org>, John Crispin <john@phrozen.org>,
+ pradeepc=codeaurora.org@codeaurora.org
+Subject: Re: [PATCH v7 1/3] ath11k: switch to using ieee80211_tx_status_ext()
+In-Reply-To: <65a8f70609a1758611c97205abd205f2@codeaurora.org>
+References: <20210305230337.23047-1-pradeepc@codeaurora.org>
+ <20210305230337.23047-2-pradeepc@codeaurora.org>
+ <65a8f70609a1758611c97205abd205f2@codeaurora.org>
+Message-ID: <dde25ece7fcbc6a0f268c98aa461d792@codeaurora.org>
+X-Sender: pradeepc@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210318_163022_397840_D415C7E9 
-X-CRM114-Status: UNSURE (   4.13  )
+X-CRM114-CacheID: sfid-20210318_202504_806576_F8B3CE67 
+X-CRM114-Status: UNSURE (   8.00  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -68,25 +89,36 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Reply-To: Mitchell Nordine <mail@mitchellnordine.com>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi kvalo and wink!
+>> +	spin_lock_bh(&ab->base_lock);
+>> +	peer = ath11k_peer_find_by_id(ab, ts->peer_id);
+>> +	if (peer) {
+>> +		arsta = (struct ath11k_sta *)peer->sta->drv_priv;
+>> +		status.sta = peer->sta;
+>> +		status.skb = msdu;
+>> +		status.info = info;
+>> +		status.rate = &arsta->last_txrate;
+>> +	}
+>> +	rcu_read_unlock();
+>> +	if (peer)
+>> +		ieee80211_tx_status_ext(ar->hw, &status);
+>> +	else
+>> +		dev_kfree_skb_any(msdu);
+>> +	spin_unlock_bh(&ab->base_lock);
+> 
+> Why ieee80211_tx_status_ext() kept under spin_lock?
+> 
+> Thanks,
+> Karthikeyan P
+Thanks Karthikeyan for the review..Yes, spin lock could be avoided for
+ieee80211_tx_status_ext(). I will address this in next revision.
 
-It's been a while since I've had a chance to check in on this - have I missed any QCA6390 progress?
-
-Currently the nixos-hardware repo is fixed to 5.10.18 along with most of the patches on ath11k-qca6390-bringup, apart from two commits that I'm sure were merged a while ago.
-
-https://github.com/NixOS/nixos-hardware/blob/31f61b90ddb9257b94888ee17ccf96236e180c76/dell/xps/13-9310/default.nix#L14
-
-Just wondering if the rest of the patches or some alternative fixes have landed in a more recent version of the kernel yet, and whether it's worth diving in and updating our nix expr yet?
-
-Cheers,
-
-Mitch
+Thanks
+pradeep
 
 -- 
 ath11k mailing list
