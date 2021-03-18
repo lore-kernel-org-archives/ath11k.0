@@ -1,80 +1,96 @@
-Return-Path: <SRS0=2oQt=IO=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=hMZx=IQ=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-4.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-	version=3.4.0
+	SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=no
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0BF30C433DB
-	for <ath11k@archiver.kernel.org>; Tue, 16 Mar 2021 17:45:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D5965C433E0
+	for <ath11k@archiver.kernel.org>; Thu, 18 Mar 2021 13:14:01 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 63D276511D
-	for <ath11k@archiver.kernel.org>; Tue, 16 Mar 2021 17:45:40 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 63D276511D
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+	by mail.kernel.org (Postfix) with ESMTPS id 50F7F64E86
+	for <ath11k@archiver.kernel.org>; Thu, 18 Mar 2021 13:14:01 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 50F7F64E86
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=oracle.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:Cc:To:From
-	:Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=UAzrATcerMLKYaDGi6CJ48WodR2qETbW3KwhCnBjeQI=; b=IxK9DhDkH7bS0V0s/9qFBLSjs
-	6CsMEx5Ul6FNFzLcdKwcGBE+gtILLUD3Es7zUib8OTG5USO9d2RV0sbUhpAsANUzFw+Zy6gIHsM7K
-	wb8OiWXji73FiNabg56+qwhUcFzW3eNs7tMqYKP7/5q1ciJ2CiXwnhLIvXSrR7SyHTJ9jqALOV6h/
-	+POSfXL0dOJtH3NRFql2AbgVdWrc8YU4OFX9F2r4r5JSIBYCnkqdXSao8+Tx8auXATO+r9N+WLuZH
-	erMh8Y7I7mN2m1Br7wTU63NqF3EtD35aZ1UbqyuEulplVNNHfTMVE52uNnHGGG6SdEgrBSsOQls+u
-	07ZF3bL+w==;
+	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
+	:Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Subject:Cc:To:From:Date:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=eYBf3NTwHZGQ44zNRYk2ljX6OWiyu3b41Ifqg5Zf/n4=; b=kw078sEvC2I6PbhFYA2opdI4EU
+	71tclSykzvwI7zS9BDjoS3VxDnGkH3LytweN+7bp9ifmxzjsRymipOnVfG230Ghlb5xN8T5Bcu0z9
+	z6sgnYe+/3GR2KPjo88GNF7TINdxwPU/UNKqcZz4Ad46IGUMmP7A/5Je1/MY8ei3GIQTq3wzF5bfW
+	QynpT+HhcXJVgdC/38JLhRADPiODAAkqqWTBZEv1cd2YcwEwiQvo0CFe6qM/DPPbKTSMDMxYZqFAg
+	uo1QMPf7LCg9olY+ckmj4VAaHRXXTupia18Hf+GHSkXDN2j0NydV2M93fovqXSx2Cpo3Q+tPCNh3o
+	KFGGnJWw==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lMDl6-001Qlc-Hy; Tue, 16 Mar 2021 17:45:34 +0000
-Received: from m42-2.mailgun.net ([69.72.42.2])
+	id 1lMsTM-005LGy-1t; Thu, 18 Mar 2021 13:13:56 +0000
+Received: from userp2120.oracle.com ([156.151.31.85])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lMDl2-001QkP-DY
- for ath11k@lists.infradead.org; Tue, 16 Mar 2021 17:45:30 +0000
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
- q=dns/txt; 
- s=smtp; t=1615916727; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=cG9vldJJ1LkzKM/FgVY+2KK5neliGdtcrk5p6nSslQU=;
- b=q+9DvnGHLLY2eJj0ipuQL0yF432jGznBmc0eF/lCDSiwFqJD0rQEsN3wsXd8h1guCwyqPbqc
- oycftw7z5nw/EJmz0O4JdlIKrfgNFMEvh1AHNvSFQ2dIs4yTQUYdeBZifFBBgWFQN2eZkKis
- Sqf3vO/jroDXvtB8mgFMT54XfEg=
-X-Mailgun-Sending-Ip: 69.72.42.2
-X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
- 6050eeb03f267701a4ca1f86 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 16 Mar 2021 17:45:20
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 4BF6CC43461; Tue, 16 Mar 2021 17:45:20 +0000 (UTC)
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
- (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
- (No client certificate requested) (Authenticated sender: gsamin)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 0D5C7C433C6;
- Tue, 16 Mar 2021 17:45:19 +0000 (UTC)
+ id 1lMsTG-005LEF-Lj
+ for ath11k@lists.infradead.org; Thu, 18 Mar 2021 13:13:53 +0000
+Received: from pps.filterd (userp2120.oracle.com [127.0.0.1])
+ by userp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 12IDCTbp153588;
+ Thu, 18 Mar 2021 13:13:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
+ h=date : from : to : cc
+ : subject : message-id : mime-version : content-type; s=corp-2020-01-29;
+ bh=sqyksj0dhPopzTl7wJTpKWRxWiebRVeERb0ufk8IRX8=;
+ b=Ua0wvnzBj57yVibAf/AJ7RWeI9RbAgVwVohVjbaT92meF257o8hSPFIwsyV/pk9+BXYY
+ 40CcwD+SbzGBRWqYZWHFhVC4t60TT9pNf2Lq7yNqJp7kT34+HyDZiyPYJGzv+hNF9ChX
+ nqAaa7fBI737rsiMUjfdNlTM24YZPKeVVxTt3jXRjFvM0EcT11EKcbl2OgFX29hRbLeW
+ dds/mG2gilK/ub/IF1HyppNZbAYm4qZHdGh694EK/gBha5XF53fQcelsZ39HUhEHcZtH
+ MNr9TsF6otJCN1dhW8s5Vsvlgk37Y4Dlkewvh/P1zQXAmMcV+D8uFmNjFJGQw5KMG8OS iw== 
+Received: from userp3030.oracle.com (userp3030.oracle.com [156.151.31.80])
+ by userp2120.oracle.com with ESMTP id 378p1nyda6-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Thu, 18 Mar 2021 13:13:43 +0000
+Received: from pps.filterd (userp3030.oracle.com [127.0.0.1])
+ by userp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 12ID66V6027660;
+ Thu, 18 Mar 2021 13:13:42 GMT
+Received: from aserv0121.oracle.com (aserv0121.oracle.com [141.146.126.235])
+ by userp3030.oracle.com with ESMTP id 3797b2wqja-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Thu, 18 Mar 2021 13:13:41 +0000
+Received: from abhmp0006.oracle.com (abhmp0006.oracle.com [141.146.116.12])
+ by aserv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 12IDDceo023719;
+ Thu, 18 Mar 2021 13:13:39 GMT
+Received: from mwanda (/102.36.221.92) by default (Oracle Beehive Gateway v4.0)
+ with ESMTP ; Thu, 18 Mar 2021 06:13:38 -0700
+Date: Thu, 18 Mar 2021 16:13:31 +0300
+From: Dan Carpenter <dan.carpenter@oracle.com>
+To: akolli@codeaurora.org
+Cc: ath11k@lists.infradead.org
+Subject: [bug report] ath11k: Add qcn9074 mhi controller config
+Message-ID: <YFNR+z1gab7MKkQv@mwanda>
 MIME-Version: 1.0
-Date: Tue, 16 Mar 2021 23:15:19 +0530
-From: Govindaraj Saminathan <gsamin@codeaurora.org>
-To: Johannes Berg <johannes@sipsolutions.net>
-Cc: linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
-Subject: Re: [PATCH] mac80211: fix low throughput due to invalid addba
- extension
-In-Reply-To: <e38a1ff5efbe5532a97310c053b50c6ce5ef027e.camel@sipsolutions.net>
-References: <1615909674-13412-1-git-send-email-gsamin@codeaurora.org>
- <e38a1ff5efbe5532a97310c053b50c6ce5ef027e.camel@sipsolutions.net>
-Message-ID: <631e58cbfc146db2a6ca70ffc8b90648@codeaurora.org>
-X-Sender: gsamin@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Disposition: inline
+X-Proofpoint-IMR: 1
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9926
+ signatures=668683
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0
+ spamscore=0 bulkscore=0
+ malwarescore=0 adultscore=0 mlxscore=0 mlxlogscore=893 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
+ definitions=main-2103180097
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9926
+ signatures=668683
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0
+ suspectscore=0 adultscore=0
+ spamscore=0 clxscore=1011 phishscore=0 malwarescore=0 priorityscore=1501
+ bulkscore=0 mlxlogscore=795 lowpriorityscore=0 impostorscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
+ definitions=main-2103180097
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210316_174528_631851_ED4CB062 
-X-CRM114-Status: GOOD (  13.43  )
+X-CRM114-CacheID: sfid-20210318_131351_880328_F52F4C45 
+X-CRM114-Status: GOOD (  12.59  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,33 +102,53 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-T24gMjAyMS0wMy0xNiAyMToyMSwgSm9oYW5uZXMgQmVyZyB3cm90ZToKPiBPbiBUdWUsIDIwMjEt
-MDMtMTYgYXQgMjE6MTcgKzA1MzAsIEdvdmluZGFyYWogd3JvdGU6Cj4+IEFkZGJhIHJlcXVlc3Qg
-YWN0aW9uIGZyYW1lIHJlY2VpdmVkIHdpdGggdGhlIGV4dGVuc2lvbiBlbGVtZW50IGZyb20KPj4g
-Y2VydGFpbiAxMWFjIHN0YXRpb25zLAo+PiAKPiAKPiBQbGVhc2UgaW5kaWNhdGUgd2hpY2ggc28g
-d2UgaGF2ZSBhIHJlY29yZCBvZiB3aG8ncyBzaGlwcGluZyBicm9rZW4gCj4ganVuay4KPiAKPj4g
-YnV0IHRoZSBjbWQgaWQgYW5kIGxlbmd0aCBub3QgbWF0Y2hpbmcgdG8gYWRkYmEKPj4gZXh0ZW5z
-aW9uIGFuZCBpdCBmYWlsaW5nIGluIGVsZW1lbnQgcGFyc2luZy4KPiAKPj4gRHVlIHRvIHRoaXMs
-IGFkZGJhIHJlcXVlc3QKPj4gbm90IGFja25vd2xlZGdlZCBhbmQgYWdncmVnYXRpb24gbm90IHN0
-YXJ0ZWQgd2hpY2ggaXMgY2F1c2luZyBsb3cKPj4gdGhyb3VnaHB1dC4gSGVuY2UgdmFsaWRhdGlu
-ZyB0aGUgY21kIGlkIGJlZm9yZSBwcm9jZXNzaW5nIGFkZGJhIAo+PiBleHRlbnNpb24uCj4gCj4+
-IMKgCWllc19sZW4gPSBsZW4gLSBvZmZzZXRvZihzdHJ1Y3QgaWVlZTgwMjExX21nbXQsCj4+IMKg
-CQkJCSB1LmFjdGlvbi51LmFkZGJhX3JlcS52YXJpYWJsZSk7Cj4+IC0JaWYgKGllc19sZW4pIHsK
-Pj4gKwlpZiAoaWVzX2xlbiAmJgo+PiArCSAgICBtZ210LT51LmFjdGlvbi51LmFkZGJhX3JlcS52
-YXJpYWJsZVswXSA9PSBXTEFOX0VJRF9BRERCQV9FWFQpIHsKPj4gwqAJCWllZWU4MDJfMTFfcGFy
-c2VfZWxlbXMobWdtdC0+dS5hY3Rpb24udS5hZGRiYV9yZXEudmFyaWFibGUsCj4+IMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oGllc19sZW4sIHRydWUsICZlbGVtcywgbWdtdC0+YnNzaWQsIAo+PiBOVUxMKTsKPj4gwqAJCWlm
-IChlbGVtcy5wYXJzZV9lcnJvcikKPiAKPiBTbyB3ZSBnZXQgaW50byBwYXJzZV9lcnJvciB3aXRo
-b3V0IHRoaXM/Cnllcywgd2UgZ2V0dGluZyBwYXJzZSBlcnJvci4KPiAKPiBXaGF0IGFyZSB0aGV5
-IHB1dHRpbmcgdGhlcmUgaW5zdGVhZD8KZmlyc3QgOSBieXRlcyBhcmUgYWRkYmEgcmVxdWVzdCBh
-Y3Rpb24gZnJhbWUgYW5kIHJlbWFpbmluZyA3IGJ5dGVzIApleHRlbnNpb24gY2F1c2luZyBmb3Ig
-cGFyc2UgZXJyb3IuCjAzIDAwIDAxIDAyIDEwIDAwIDAwIGUwIDBhIGNmIDA4IDA2IDExYSA0NiAw
-OSBmZQo+IAo+IGpvaGFubmVzCgotLSAKYXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtAbGlzdHMu
-aW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2F0aDExawo=
+Hello Anilkumar Kolli,
+
+The patch a233811ef600: "ath11k: Add qcn9074 mhi controller config"
+from Feb 16, 2021, leads to the following static checker warning:
+
+	drivers/net/wireless/ath/ath11k/mhi.c:357 ath11k_mhi_register()
+	error: uninitialized symbol 'ath11k_mhi_config'.
+
+drivers/net/wireless/ath/ath11k/mhi.c
+   342          mhi_ctrl->iova_stop = 0xffffffff;
+   343          mhi_ctrl->sbl_size = SZ_512K;
+   344          mhi_ctrl->seg_len = SZ_512K;
+   345          mhi_ctrl->fbc_download = true;
+   346          mhi_ctrl->runtime_get = ath11k_mhi_op_runtime_get;
+   347          mhi_ctrl->runtime_put = ath11k_mhi_op_runtime_put;
+   348          mhi_ctrl->status_cb = ath11k_mhi_op_status_cb;
+   349          mhi_ctrl->read_reg = ath11k_mhi_op_read_reg;
+   350          mhi_ctrl->write_reg = ath11k_mhi_op_write_reg;
+   351  
+   352          if (ab->hw_rev == ATH11K_HW_QCA6390_HW20)
+   353                  ath11k_mhi_config = &ath11k_mhi_config_qca6390;
+   354          else if (ab->hw_rev == ATH11K_HW_QCN9074_HW10)
+   355                  ath11k_mhi_config = &ath11k_mhi_config_qcn9074;
+
+ath11k_mhi_config not initialized for other revs.  Which seem to exist
+so this seems like it could be a real bug?
+
+   356  
+   357          ret = mhi_register_controller(mhi_ctrl, ath11k_mhi_config);
+   358          if (ret) {
+   359                  ath11k_err(ab, "failed to register to mhi bus, err = %d\n", ret);
+   360                  mhi_free_controller(mhi_ctrl);
+   361                  return ret;
+   362          }
+   363  
+   364          return 0;
+   365  }
+
+regards,
+dan carpenter
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
