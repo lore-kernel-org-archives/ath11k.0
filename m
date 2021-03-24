@@ -7,14 +7,14 @@ X-Spam-Status: No, score=-4.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 498C6C433DB
-	for <ath11k@archiver.kernel.org>; Wed, 24 Mar 2021 09:12:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5E349C433C1
+	for <ath11k@archiver.kernel.org>; Wed, 24 Mar 2021 10:40:13 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C47DD619F9
-	for <ath11k@archiver.kernel.org>; Wed, 24 Mar 2021 09:12:20 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C47DD619F9
+	by mail.kernel.org (Postfix) with ESMTPS id F284A61A01
+	for <ath11k@archiver.kernel.org>; Wed, 24 Mar 2021 10:40:12 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F284A61A01
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=ACULAB.COM
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,32 +23,32 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:Message-ID:Date:
 	Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=5a2CT0BJxRodaaabGqj+8Qw3ztuCY0GsNtVA+Z9kEFY=; b=dr7U9F36K4JWCXwPba4SrTkSS
-	yVTe4Y5/Pu259N3VC8DvqL8HOkgqBV3LNT7Fj4pPhBbJeRMAXUSnbGHbQFOYN0NLrBswfpfU0KM3B
-	DCVh/kqBOkI4eCSYfPtBGkTYGSb2G8sE4GBQMuWUR5oB+H3tcV4BN4NSbp/JmBztNqEI/hu/FrDXt
-	xBZ0s5cuu8yh4WHeBUzB6CLsBGeQfKIb9E5W1xOC4vrfbS9yQO9Dt0RNXtKo/TFuze8/3ZHXRenNM
-	Ljr+YDcw2H3nOLDQWG3708NUG/aVbRJ9+hcbfP3p8PnCjhbKjtYHIlI2L8hG9VTGsS8cm0GWK+xBZ
-	MxxgH/Vfw==;
+	 bh=tmQ6mrfLM1TSmQLZDMHcQXsnQUcDwnbkHTGhjRzEP+I=; b=Tf8tS4KUtI3Ia9HM+p76fIJa3
+	Zc33CrVeoWpApAhnappQ93AmFI5uTZh4Aqzjj6oZ6VFMIwvahZEeSwIJyw5sjdZHd1huBLsur79Eg
+	X/NGqbM6CuMbbXabwgotX0jeJi7Uu+3xqUOwsmjmTQLV6hPUx4Z7U9BDPZCmvb+PU0UFawT38tX9Z
+	q/FRIQDDMxxjdEYFts6y2sMoWNAuXQCuwypxyHOgtzOFosdx1gd1uPpl7bsDOKH7DrvghdEqei6Sw
+	8orpuOQTYNDYYrFebAMhqoXmxQg4Cqs+vgmldE4s7GP4M49PFUXYLeJsZW7vvGX2UNKNNH7dn2BTP
+	QjAAD1WmQ==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lOzYl-00GhLQ-RN; Wed, 24 Mar 2021 09:12:16 +0000
-Received: from eu-smtp-delivery-151.mimecast.com ([185.58.85.151])
+	id 1lP0vn-00GrPM-OB; Wed, 24 Mar 2021 10:40:07 +0000
+Received: from eu-smtp-delivery-151.mimecast.com ([185.58.86.151])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lOzYV-00GhHb-N7
- for ath11k@lists.infradead.org; Wed, 24 Mar 2021 09:12:02 +0000
+ id 1lP0vh-00GrO6-IZ
+ for ath11k@lists.infradead.org; Wed, 24 Mar 2021 10:40:03 +0000
 Received: from AcuMS.aculab.com (156.67.243.126 [156.67.243.126]) (Using
  TLS) by relay.mimecast.com with ESMTP id
- uk-mta-70-F_iQyAaGNv6_r3BEezM2zQ-1; Wed, 24 Mar 2021 09:11:56 +0000
-X-MC-Unique: F_iQyAaGNv6_r3BEezM2zQ-1
+ uk-mta-129-cK_RaveBM8aprN2x6jOm4g-1; Wed, 24 Mar 2021 10:39:58 +0000
+X-MC-Unique: cK_RaveBM8aprN2x6jOm4g-1
 Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) by
  AcuMS.aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) with Microsoft SMTP
- Server (TLS) id 15.0.1497.2; Wed, 24 Mar 2021 09:11:55 +0000
+ Server (TLS) id 15.0.1497.2; Wed, 24 Mar 2021 10:39:57 +0000
 Received: from AcuMS.Aculab.com ([fe80::994c:f5c2:35d6:9b65]) by
  AcuMS.aculab.com ([fe80::994c:f5c2:35d6:9b65%12]) with mapi id
- 15.00.1497.012; Wed, 24 Mar 2021 09:11:55 +0000
+ 15.00.1497.012; Wed, 24 Mar 2021 10:39:57 +0000
 From: David Laight <David.Laight@ACULAB.COM>
-To: 'Martin Sebor' <msebor@gmail.com>, Ingo Molnar <mingo@kernel.org>, "Arnd
- Bergmann" <arnd@kernel.org>
+To: David Laight <David.Laight@ACULAB.COM>, 'Martin Sebor' <msebor@gmail.com>, 
+ Ingo Molnar <mingo@kernel.org>, Arnd Bergmann <arnd@kernel.org>
 CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "Martin
  Sebor" <msebor@gcc.gnu.org>, Ning Sun <ning.sun@intel.com>, Thomas Gleixner
  <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, Borislav Petkov
@@ -73,14 +73,15 @@ CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "Martin
  <baolu.lu@linux.intel.com>, Will Deacon <will@kernel.org>
 Subject: RE: [PATCH 02/11] x86: tboot: avoid Wstringop-overread-warning
 Thread-Topic: [PATCH 02/11] x86: tboot: avoid Wstringop-overread-warning
-Thread-Index: AQHXH2fn7jNrPkUb50e9k3rL2a+D9qqS2/oQ
-Date: Wed, 24 Mar 2021 09:11:55 +0000
-Message-ID: <0aa198a1dd904231bcc29454bf19a812@AcuMS.aculab.com>
+Thread-Index: AQHXH2fn7jNrPkUb50e9k3rL2a+D9qqS2/oQgAAX0+A=
+Date: Wed, 24 Mar 2021 10:39:57 +0000
+Message-ID: <7e05de6cbb554b09ac532c073fab7386@AcuMS.aculab.com>
 References: <20210322160253.4032422-1-arnd@kernel.org>
  <20210322160253.4032422-3-arnd@kernel.org>
  <20210322202958.GA1955909@gmail.com>
  <b944a853-0e4b-b767-0175-cc2c1edba759@gmail.com>
-In-Reply-To: <b944a853-0e4b-b767-0175-cc2c1edba759@gmail.com>
+ <0aa198a1dd904231bcc29454bf19a812@AcuMS.aculab.com>
+In-Reply-To: <0aa198a1dd904231bcc29454bf19a812@AcuMS.aculab.com>
 Accept-Language: en-GB, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -93,8 +94,8 @@ X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: aculab.com
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210324_091200_546955_B6585E37 
-X-CRM114-Status: GOOD (  10.65  )
+X-CRM114-CacheID: sfid-20210324_104001_809383_8EA13149 
+X-CRM114-Status: GOOD (  15.78  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,23 +112,33 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Martin Sebor
-> Sent: 22 March 2021 22:08
-...
-> In GCC 11, all access warnings expect objects to be either declared
-> or allocated.  Pointers with constant values are taken to point to
-> nothing valid (as Arnd mentioned above, this is to detect invalid
-> accesses to members of structs at address zero).
+From: David Laight
+> Sent: 24 March 2021 09:12
 > 
-> One possible solution to the known address problem is to extend GCC
-> attributes address and io that pin an object to a hardwired address
-> to all targets (at the moment they're supported on just one or two
-> targets).  I'm not sure this can still happen before GCC 11 releases
-> sometime in April or May.
+> From: Martin Sebor
+> > Sent: 22 March 2021 22:08
+> ...
+> > In GCC 11, all access warnings expect objects to be either declared
+> > or allocated.  Pointers with constant values are taken to point to
+> > nothing valid (as Arnd mentioned above, this is to detect invalid
+> > accesses to members of structs at address zero).
+> >
+> > One possible solution to the known address problem is to extend GCC
+> > attributes address and io that pin an object to a hardwired address
+> > to all targets (at the moment they're supported on just one or two
+> > targets).  I'm not sure this can still happen before GCC 11 releases
+> > sometime in April or May.
+> 
+> A different solution is to define a normal C external data item
+> and then assign a fixed address with an asm statement or in
+> the linker script.
 
-A different solution is to define a normal C external data item
-and then assign a fixed address with an asm statement or in
-the linker script.
+Or stop gcc tracking the value by using:
+	struct foo *foo = (void *)xxxxx;
+	asm ("", "+r" (foo));
+
+If the address is used more than once forcing it into
+a register is also likely to generate better code.
 
 	David
 
