@@ -2,71 +2,101 @@ Return-Path: <SRS0=wXcr=JT=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_ADSP_ALL,DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+X-Spam-Status: No, score=-8.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4A2D7C433ED
-	for <ath11k@archiver.kernel.org>; Thu, 22 Apr 2021 14:00:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 464EEC433B4
+	for <ath11k@archiver.kernel.org>; Thu, 22 Apr 2021 14:04:09 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 60D07613C8
-	for <ath11k@archiver.kernel.org>; Thu, 22 Apr 2021 14:00:35 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 60D07613C8
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=narfation.org
+	by mail.kernel.org (Postfix) with ESMTPS id E127C61404
+	for <ath11k@archiver.kernel.org>; Thu, 22 Apr 2021 14:04:08 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E127C61404
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-	References:List-Owner; bh=zytz9poUW+vw8q+sqDqLYvu8p2KsCTAEneyGTf4gKwA=; b=GrP
-	GG6opfHhONdtMh+LB1EQzE7RURFVaLNWTY1jn/kHCvWkYIaK45mMQNsFLRjA+wMyaJBH/1x7DVBO6
-	VVRg4sLQbhIxt1k7OUmiq1mVxx7YzZvigZuq+2PfJV5n7oBlR4FYsVyGu6XwHUWgE7LKbGh9CgMu0
-	+x2WSAAJz4ImlEi8Jw/I6mftHNsEiFeguOlHr4Z3yha2FhlMvR3o6a9YVVLc41fBGEeY1XmpYS2Mk
-	3zurbRObmVh1n9j/7akcfoJZZ2+6i4KGBECBWcoCxoa87IFqyJqNKAOHOO90O+tyWGMMCe6RNX5KV
-	GLj9F052s7/JAtfWSfLGd82Bz703/0g==;
+	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
+	:Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Date:Message-Id:Cc:To:References:In-Reply-To:From:
+	Subject:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=C21n4Tm7c1IBzDTZVnZdGJdw2uxDqodxNtEysA7Xakw=; b=Sv+E5CX3rmQ+sEis2FDAWueoX
+	NWdY2ZXsaUr+DVYRdd5TVCbWYorWQ0h+7mnzeJKofAwvlMFTSPLlyQP15BO5n/wG8spCTGK9+8wX3
+	sCrjsvnrLOaUXBC550so/r1krDzM54v1j7j/+N8XqqYpgP+S2qKRqAX3oQLLUaQ9U1IsNrgBByiZM
+	/7OcuRrrzeaORVGoUiVA6L3oNcHcMUKDzCzUh4fYCfcRK2XNMW0+NhaByVH2VYSIqyt7FR5jXK2GP
+	XkBIGgLCpqJIgCfdNT3vHOh1wbHfR6KObjfK4nlGmJeHNrEN936HTMPR8dTk2XyGEkcZKoUOWpPyq
+	ydmCgeVrg==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1lZZsa-00GqQl-Lb; Thu, 22 Apr 2021 14:00:28 +0000
+	id 1lZZw4-00Gqdx-2a; Thu, 22 Apr 2021 14:04:04 +0000
 Received: from bombadil.infradead.org ([2607:7c80:54:e::133])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lZH7f-00EvbQ-V0; Wed, 21 Apr 2021 17:58:48 +0000
+ id 1lZZw2-00Gqdp-HH
+ for ath11k@desiato.infradead.org; Thu, 22 Apr 2021 14:04:02 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Type:MIME-Version:Message-ID:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:In-Reply-To:References;
- bh=FK9hCB1qSvp764+HNpPPNyfTo/MJos7VQXdYDeP7mM8=; b=lc9FbocnkqipyuVKecZarKuXf+
- EOhcy3AXqLDl9nucwsMuG7ho4ELI9Z41V/nFARuWahM5ua9IZDqoufCURt9UemBbPaxXJoJrNDcSf
- Pcwl46TttktosK4hKzDze0BYx1vbgHujKXBf24utN+5819i4p2ss/izM9xiH0cTcgGUA71KRI4g41
- lyapkp3Pxxt7lBv2mcF4RFkk2HK0GYYTGtt3cnlggJjmFF6YvWjvQqQh/4UEUMohNEdVEAaQmscQt
- 4U1VS3gqpZLK5eEMOdSmJsxQynEo/yUlF1kZ8iwhHUliMij9x9Awrxm4bNjlSe+TYCnIkO1alcaV0
- ZS600JAg==;
-Received: from dvalin.narfation.org ([2a00:17d8:100::8b1])
+ d=infradead.org; s=bombadil.20210309; h=Date:Message-Id:Cc:To:References:
+ In-Reply-To:From:Subject:Content-Transfer-Encoding:MIME-Version:Content-Type:
+ Sender:Reply-To:Content-ID:Content-Description;
+ bh=4HMCjdtvHaTSyjFKUDRAhNbN/Lc1AjfSDQkLeUEgxs4=; b=d1I0d+o3+jhRHJOWj2VImHl13P
+ ggrn/4v40Xj5Z/CeNOittdZqVWJbTgH+lPhQ4avpQzI5lMWIoyL8kAx2KrdtL8oouZTT1N5OhimsK
+ Y2V+2OwCAYk1nViCafxG8pfEMei9Vbv8acEB5rFcYdyodF5Cdmp82i3yNZZcmfpl6Pt0GW9pqeDy6
+ H2FZlhKWTWoX01tOvAfVak9giaodJOrakF7t5dwkJqgdnHBRVhUmzLVnUhqR3zPSaUmo9irxieyt2
+ XhFkf87JUbzLcmRN7Q/HSXG8l2EZ9ipO63Todb823rsGvt9uhwQmNBmXACMpskWUULmm196yMOt5A
+ Se4vQ5hw==;
+Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lZH7c-00D5Jd-TH; Wed, 21 Apr 2021 17:58:46 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1619027919;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type;
- bh=FK9hCB1qSvp764+HNpPPNyfTo/MJos7VQXdYDeP7mM8=;
- b=gw+QjwJz2tLfjfIZoNPr/NrsOpOH1OU1lO8CVG+tR6ujJ6Asyu86wMip4pXoiBFlRRcV0M
- qyyYGLNFpgujWk6PHr0nssltf2mEA2PRWpt4KymDdL+/kXh/x+6enudU7mK5PJZ62lJUIn
- 3eOe1S9M8cSxHH7rDici4XmDam8WPB8=
-From: Sven Eckelmann <sven@narfation.org>
-To: hostap@lists.infradead.org
-Cc: ath11k@lists.infradead.org
-Subject: hostapd: config_reload: Switch from WPA to open leaves keys
-Date: Wed, 21 Apr 2021 19:58:32 +0200
-Message-ID: <7827540.TDG2QzLjjR@ripper>
+ id 1lZZvv-00Dk4P-AQ
+ for ath11k@lists.infradead.org; Thu, 22 Apr 2021 14:04:01 +0000
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
+ q=dns/txt; 
+ s=smtp; t=1619100239; h=Date: Message-Id: Cc: To: References:
+ In-Reply-To: From: Subject: Content-Transfer-Encoding: MIME-Version:
+ Content-Type: Sender; bh=4HMCjdtvHaTSyjFKUDRAhNbN/Lc1AjfSDQkLeUEgxs4=;
+ b=Cl+kFTxLlXYQGo3RTdi1AOuYnohfnfesAeFza0cFyqiMn8kwLpRAQf0z6OsBPAr5Gzqb2fwB
+ J7OOCi4lmHj3nvInnLQ+xVK1VwVVgCDcoDq1/Rhv7zEjyAO5447X2ir1ieXY/zVmA2XwsCcH
+ 8pBlzeXWUZNTAUE4td4ZgJIQcHQ=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
+ 6081823bc39407c327093328 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 22 Apr 2021 14:03:39
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+ id D0B52C43460; Thu, 22 Apr 2021 14:03:38 +0000 (UTC)
+Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi
+ [88.114.240.156])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested) (Authenticated sender: kvalo)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 35198C433F1;
+ Thu, 22 Apr 2021 14:03:35 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 35198C433F1
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ spf=fail smtp.mailfrom=kvalo@codeaurora.org
 MIME-Version: 1.0
+Subject: Re: [PATCH][next] ath11k: qmi: Fix spelling mistake "requeqst" ->
+ "request"
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <20210316091924.15627-1-colin.king@canonical.com>
+References: <20210316091924.15627-1-colin.king@canonical.com>
+To: Colin King <colin.king@canonical.com>
+Cc: "David S . Miller" <davem@davemloft.net>,
+ Jakub Kicinski <kuba@kernel.org>, ath11k@lists.infradead.org,
+ linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+ kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.5.2
+Message-Id: <20210422140338.D0B52C43460@smtp.codeaurora.org>
+Date: Thu, 22 Apr 2021 14:03:38 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210421_105845_280285_F50510C0 
-X-CRM114-Status: GOOD (  14.12  )
-X-Mailman-Approved-At: Thu, 22 Apr 2021 15:00:27 +0100
+X-CRM114-CacheID: sfid-20210422_070359_999358_2C5E5501 
+X-CRM114-Status: UNSURE (   5.97  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,103 +108,29 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============0025835813974401310=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
---===============0025835813974401310==
-Content-Type: multipart/signed; boundary="nextPart5607402.45CjJggNyN"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+Colin King <colin.king@canonical.com> wrote:
 
---nextPart5607402.45CjJggNyN
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Sven Eckelmann <sven@narfation.org>
-To: hostap@lists.infradead.org
-Cc: ath11k@lists.infradead.org
-Subject: hostapd: config_reload: Switch from WPA to open leaves keys
-Date: Wed, 21 Apr 2021 19:58:32 +0200
-Message-ID: <7827540.TDG2QzLjjR@ripper>
+> There is a spelling mistake in an ath11k_warn message. Fix it.
+> 
+> Signed-off-by: Colin Ian King <colin.king@canonical.com>
+> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-Hi,
+Patch applied to ath-next branch of ath.git, thanks.
 
-it was noticed that the hostapd runtime switch (config reload) from an AP 
-config with a WPA2 PSK to an open AP created a non-working AP interface. The 
-driver was ath11k in this case and the client just connected to the open AP 
-and tried a link local IPv6 (ping ff02::1%wlan0). The AP could receive the 
-unencrypted data but the AP was unable to send back unencrypted (solicitation) 
-packets - the multicast data packets were still encrypted
+6dc89f070d28 ath11k: qmi: Fix spelling mistake "requeqst" -> "request"
 
-I could see that following happened when changing from PSK to PSK:
+-- 
+https://patchwork.kernel.org/project/linux-wireless/patch/20210316091924.15627-1-colin.king@canonical.com/
 
-* nl80211_new_key
-* ...
-* ath11k_install_key (DISABLE_KEY)
-* ath11k_install_key (SET_KEY)
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
-Nothing like this happened when switching from PSK to Open. It is still 
-possible to see the old key in /sys/kernel/debug/ieee80211/phy1/keys/0/
-
-An investigation showed that the relevant code to delete this information from 
-the kernel is #ifdef'ed out in hostapd (CONFIG_WEP was not in my config) since 
-commit 200c7693c9a1 ("Make WEP functionality an optional build parameter").
-
-If I enable it again then I can see that the key is removed correctly by 
-hostapd_broadcast_wep_clear -> hostapd_broadcast_key_clear_iface.
-
-This also triggers the removal in ath11k but it afterwards still not able to 
-transmit data to the client because it still encrypts mcast frames. I haven't 
-checked this part in detail but at least the re-enabling of this code path
-fixed it for ath10k. For ath11k, I still have to restart the whole vif or
-otherwise I will only see encrypted multicast frames from the AP (and no 
-unicast).
-
-Kind regards,
-	Sven
-
-
-
-
---nextPart5607402.45CjJggNyN
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmCAZ8gACgkQXYcKB8Em
-e0YjjA/7BGsMgMxmERiprihrc4fHyXjZkmJJXiSEN/lihP4bv3SyGartcSzK2EW6
-++k5Zy6UNjahrCsw5dnYcSUVclsjYp55mjtxekDabT2HqdtYn3i3MLj5iB3IK6FJ
-oWQ7RH2Q+/1rw//a+6veufuyC7PNQQWWsKjcKLn6J1BaxDP175lVqQW0VN/W69Tw
-0E+C7EctmalMQFo7vDEAILPZ/NSD8B6Oi6zApKGdVX2DfyqUCZxEKMg1/HSXs7Fo
-hPFwCk9ja8F2dpYtRjdEOfGcAZR1pRV51vNc3isdk/nrAyP5yJIy1TlaDPojMz+E
-hItv5IPbDdT4yLSxL+4+ewMGSMF6gtjWmdBsaBpGMD3K1YxPg1MV4S/xF0BejQOr
-ZC9528Mh1c/OuiR6r/JFSjCsVuwMNPic51f+K1SG2nOXUm7zfKdTSXd8GH7uqVTx
-qaWiTmWQwa6rGOuIeThBN3qgg+vkify5OLuILeX4lODU3qKKEc6uGaVEhJGuzfrI
-yQlREXWPPPvGQMwpKjpdc/tdIYc6Av5AzrdpuJ00QOXsrmyW9AKBxonr1ZouPfe6
-K9NTmsDCvC//bn/c/CPg+r253YUebSOrjr2gKPMzVKqsY+iwpuoX+xkA5Xh+GX6F
-D35qT1JDu1HOirho8bNJT3Af1PT6AWgverqaTvIS6ltA69wt8tE=
-=1Bd6
------END PGP SIGNATURE-----
-
---nextPart5607402.45CjJggNyN--
-
-
-
-
-
---===============0025835813974401310==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 -- 
 ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
-
---===============0025835813974401310==--
-
-
-
-
