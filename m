@@ -2,79 +2,78 @@ Return-Path: <SRS0=LAxC=J7=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BDB8CC433ED
-	for <ath11k@archiver.kernel.org>; Tue,  4 May 2021 23:38:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EB849C43460
+	for <ath11k@archiver.kernel.org>; Tue,  4 May 2021 23:38:26 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1DDEB613DD
-	for <ath11k@archiver.kernel.org>; Tue,  4 May 2021 23:38:25 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1DDEB613DD
+	by mail.kernel.org (Postfix) with ESMTPS id 68991613DD
+	for <ath11k@archiver.kernel.org>; Tue,  4 May 2021 23:38:26 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 68991613DD
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
 	:Content-Type:MIME-Version:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:References:In-Reply-To:Message-Id:Date:Subject:Cc:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ZJK3R+DcSP+48Z0M0df1sqV5vXWNEWUQ4l18eE+udZI=; b=LUx5N8+WAeYry7LK8kn3nFYCqu
-	Gjvb3gWN4BX0D3i8l30HLZvJyXgo8GPwIDXh5O49eblVzrqErE/H7kkdJdkT3VrdAbktF7cRAxDNT
-	gLHDylVTqmmgKrmdscS7SxWBHtqqHgbebai0DxeDJHEuodNPD8i8J86HfG8j9LlmVfOsrMemq84n1
-	dTyzUFE2kuRz4rVp9uFY1CcaZ8SWvVRlUbHNhf69rwMnyCeO6orCjvDk9fNoSFvQqwepEIwrOXGWU
-	gADjufi6m7iTCLoLfCfocIdKHXlTjADS7YTQfsWYkGkRZVM9h+j8ny1dNlgiahj3F23ZLnSMq+qA0
-	r6Rz26sA==;
+	List-Unsubscribe:List-Id:Message-Id:Date:Subject:Cc:To:From:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=WUxEX5R0r+FyzO1HCPijjJDWf00LHdwwnHO9ZT/M6FE=; b=rC+50BLXIHBFstzBrsEj1lKtmR
+	Cfpg6+sGGgCSKqJa7cS4wM2G1uSPLikCnFwETdRJhqxCnaVualAPnH9aEuLIF4yII1TAE4SOIFVQu
+	97okQP8s3HilLxSg7xlBo84SXspT2EJsJi4uEMjFWw4PXPhXTIkIs2iQ7UdaNYvNUAhBfOHH56Ujj
+	on7l4OwwTy567R9W6y7qbA51Jqk774z6SqELL/GbiiSaoJ9IsYj/WNBrCTMUU29byux46rAUzA9GC
+	NI/KZpAzfqC8JRKxa8RNmhs8rJ+5CdPRfyVCtdfZtgdoZUXUyP7+0ptt2FliB4IcZgXEYeLLLiPZA
+	tOMTPWnA==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1le4cK-00HNDE-Dn; Tue, 04 May 2021 23:38:18 +0000
+	id 1le4cP-00HNDX-7F; Tue, 04 May 2021 23:38:21 +0000
 Received: from bombadil.infradead.org ([2607:7c80:54:e::133])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1le4cG-00HNCT-37
+ id 1le4cG-00HNCU-52
  for ath11k@desiato.infradead.org; Tue, 04 May 2021 23:38:12 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=References:In-Reply-To:Message-Id:
- Date:Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=8Skz9Xf7R3TKF0meTNKBjx7NrjKcGugqSKALGry+O8g=; b=vLAxFDscYNZSUy/2chynkHPd3o
- HhUPIcfgGKOAeM5cHPVdcysePZQ/UF/ZdDzVHAIg2C+iymrwIQb51eBpQp/DLU9Wo9pKI6Dz+Tv3v
- kpK3LCV+Oi+uU9+faxQZUCK1rIKTdGg5ODmdSRgINhEVK9qLKhXrBrfGYyUFK0eTrltPMXRLwg0OO
- LwhZA0TiRQ8vqMA2nT4mkVX5o9GhsRxt8zDjDTVsBliNhq9it95EcYEga+9U/2/nXxrkhvLfT0Oyr
- 1bFi3WBb0qcYI0DlOOBibnfJepJ7BOUlhACZX+mCyCpfZsuZMBo1OfgxoKeV9QYElXIn0GWBS6Ogc
- TwlMN9WQ==;
+ d=infradead.org; s=bombadil.20210309; h=Message-Id:Date:Subject:Cc:To:From:
+ Sender:Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding:
+ Content-ID:Content-Description:In-Reply-To:References;
+ bh=38TiQyyKps9JXnzJlaf2DPTrGl1O6bLoBL9k01Yhxmk=; b=x2FT9jfOuDje4qnNQbUP7mkheO
+ yD3hbou8tyyMLoCdE8HTICVhXjxe0vjDNvssSU2ltHVIMd+1g5aYERs1eyCr+FCMFqW8cIpBen9vY
+ F5UlevenHKDCThGD4QrH3eRd8kLVW6YgSzt9jQULtmsJP5lPQWfHJe01hYg9MymV7drDswmYRZamP
+ XQ+jBnhZxgFgqM9rkeHkuI6okK9CuLp2FmVzZvqsvBl15QRO1WcViW2rHY8TwrH0QHmq1aiDXoY/j
+ VR7d7C3EVQYc7UAz+dczQ+zw/ejq96K/NRZGiADMO8lRUSsbXlX9JKK9HFmXuCM8pJWwl0du/Z5hn
+ NRNmZWew==;
 Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1le4cD-004Kn2-Bi
+ id 1le4cD-004Kn1-Bi
  for ath11k@lists.infradead.org; Tue, 04 May 2021 23:38:10 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1620171489; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=8Skz9Xf7R3TKF0meTNKBjx7NrjKcGugqSKALGry+O8g=;
- b=lShh5d2n+lwi44WIb5ekP2VdWA/oebGue/V96gXHBLDnRS2BZWu8R18ucaEeh06GOqfxUrOu
- ZzCDy7h4CDBVmU+6s2ZF/DWuBpCDEYjo9NMb1bi2fgOEEwXZ8j+FTGuTqawjL0eU/7Pf2qId
- 1KfZei/JODbe84xErbkhEsHK7dY=
+ s=smtp; t=1620171489; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=38TiQyyKps9JXnzJlaf2DPTrGl1O6bLoBL9k01Yhxmk=;
+ b=ba1zpmfHyZRZdK88h/QltrCdq7PPqIZL3erjKNhk3JbnLNHH29Bq5cw5XhrpHvlRM8eEcjnk
+ rp61RtpJdd38xP8rKcF/NXYBRGEcXXCGQL5vis7l80vnYU68RQcZDshdyF4UWwkCWBoNMv4N
+ lwNLJEn/yU+vmQ/BRryIBRRqx9c=
 X-Mailgun-Sending-Ip: 69.72.43.7
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
- 6091dae08807bcde1d9ae5e6 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 04 May 2021 23:38:08
+ smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
+ 6091dadef34440a9d4e2c7b4 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 04 May 2021 23:38:06
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 52382C43144; Tue,  4 May 2021 23:38:08 +0000 (UTC)
+ id 487F7C4323A; Tue,  4 May 2021 23:38:06 +0000 (UTC)
 Received: from malabar-linux.qualcomm.com (i-global254.qualcomm.com
  [199.106.103.254])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
  (No client certificate requested) (Authenticated sender: bbhatt)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 64686C43460;
- Tue,  4 May 2021 23:38:07 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 64686C43460
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 2B21BC43460;
+ Tue,  4 May 2021 23:38:05 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 2B21BC43460
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
@@ -86,16 +85,13 @@ Cc: linux-arm-msm@vger.kernel.org, hemantk@codeaurora.org,
  loic.poulain@linaro.org, linux-wireless@vger.kernel.org,
  kvalo@codeaurora.org, ath11k@lists.infradead.org,
  Bhaumik Bhatt <bbhatt@codeaurora.org>
-Subject: [PATCH v2 3/6] bus: mhi: Add MMIO region length to controller
- structure
-Date: Tue,  4 May 2021 16:37:55 -0700
-Message-Id: <1620171478-35679-4-git-send-email-bbhatt@codeaurora.org>
+Subject: [PATCH v2 0/6] BHI/BHIe improvements for MHI power purposes
+Date: Tue,  4 May 2021 16:37:52 -0700
+Message-Id: <1620171478-35679-1-git-send-email-bbhatt@codeaurora.org>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1620171478-35679-1-git-send-email-bbhatt@codeaurora.org>
-References: <1620171478-35679-1-git-send-email-bbhatt@codeaurora.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210504_163809_485490_B2AF79C5 
-X-CRM114-Status: GOOD (  12.47  )
+X-CRM114-CacheID: sfid-20210504_163809_781170_419863BE 
+X-CRM114-Status: GOOD (  13.79  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,36 +109,36 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Make controller driver specify the MMIO register region length
-for range checking of BHI or BHIe space. This can help validate
-that offsets are in acceptable memory region or not and avoid any
-boot-up issues due to BHI or BHIe memory accesses.
+This patch series improves the power up behavior by allowing MHI host driver to
+set BHI and/or BHIe offsets early on in the preparation phase and fail pre-power
+up if offsets are not found or not within a limited MMIO region. This also
+allows MHI host to clean up the offsets in the unprepare after power down phase.
 
-Signed-off-by: Bhaumik Bhatt <bbhatt@codeaurora.org>
----
- include/linux/mhi.h | 2 ++
- 1 file changed, 2 insertions(+)
+Going forward, controllers will be required to specify a reg_len field which
+will be used to check whether the BHI/BHIe offsets are in range or not.
 
-diff --git a/include/linux/mhi.h b/include/linux/mhi.h
-index 944aa3a..f6901db 100644
---- a/include/linux/mhi.h
-+++ b/include/linux/mhi.h
-@@ -293,6 +293,7 @@ struct mhi_controller_config {
-  * @mhi_dev: MHI device instance for the controller
-  * @debugfs_dentry: MHI controller debugfs directory
-  * @regs: Base address of MHI MMIO register space (required)
-+ * @reg_len: Length of the MHI MMIO region (required)
-  * @bhi: Points to base of MHI BHI register space
-  * @bhie: Points to base of MHI BHIe register space
-  * @wake_db: MHI WAKE doorbell register address
-@@ -386,6 +387,7 @@ struct mhi_controller {
- 	size_t rddm_size;
- 	size_t sbl_size;
- 	size_t seg_len;
-+	size_t reg_len;
- 	struct image_info *fbc_image;
- 	struct image_info *rddm_image;
- 	struct mhi_chan *mhi_chan;
+This series has been tested on X86_64 architecture with the PCI generic driver
+as controller and an SDX55 device.
+
+v2:
+-Added reviewed-by tags
+-Moved reg_len entry in mhi_controller structure to allow for a packed struct
+
+Bhaumik Bhatt (6):
+  bus: mhi: core: Set BHI/BHIe offsets on power up preparation
+  bus: mhi: core: Set BHI and BHIe pointers to NULL in clean-up
+  bus: mhi: Add MMIO region length to controller structure
+  ath11k: set register access length for MHI driver
+  bus: mhi: pci_generic: Set register access length for MHI driver
+  bus: mhi: core: Add range checks for BHI and BHIe
+
+ drivers/bus/mhi/core/init.c           | 58 +++++++++++++++++++++++------------
+ drivers/bus/mhi/core/pm.c             | 28 +++--------------
+ drivers/bus/mhi/pci_generic.c         |  1 +
+ drivers/net/wireless/ath/ath11k/mhi.c |  1 +
+ include/linux/mhi.h                   |  2 ++
+ 5 files changed, 47 insertions(+), 43 deletions(-)
+
 -- 
 The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
 a Linux Foundation Collaborative Project
