@@ -2,89 +2,73 @@ Return-Path: <SRS0=LAxC=J7=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-6.0 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+	NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=no
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 88917C43461
-	for <ath11k@archiver.kernel.org>; Tue,  4 May 2021 16:35:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 09F49C433B4
+	for <ath11k@archiver.kernel.org>; Tue,  4 May 2021 16:50:34 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id EA6B361153
-	for <ath11k@archiver.kernel.org>; Tue,  4 May 2021 16:35:54 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EA6B361153
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=sartura.hr
+	by mail.kernel.org (Postfix) with ESMTPS id 4C711613BE
+	for <ath11k@archiver.kernel.org>; Tue,  4 May 2021 16:50:33 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4C711613BE
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=phrozen.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
-	:Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:MIME-Version:
-	Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=kHmsSoP3g8jlrM5NKNmR4xxBrsObPzZc4g8+Eg93S+c=; b=akXJYY2MKlqqKQ
-	/mQfxUnL82IGhrgmCF1t+GDKFFL9r5JZM68Zh4GNWcmVac5IaOr3LGfH7ul8C1yMS92P6cwRWHFe1
-	4ckBP6FOlp0g8YblzGDjAoa2y16ARUx15oXPDYpoMF9CCurZDBqerkaGS/JMmspHpyFhJ4OfOiIWq
-	NnKczsxvkurnxrBnn4VHy193afhNIoKEl8fQ0Syf+4hYArukjK8+mYqhLg65dSlzDrPcxwIfDN5Na
-	S/8SrdqgGJLO9QpS8IskTZqJeGtKOuPqQZuG9/Be2fgDuPcDs/NuziUSH3IusW/ZwA+B2XS+7Kmx9
-	CPnYYe2opbFLE1JpDhMw==;
+	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=ukBj4GSr/Egt4FPTvsSdvwy95FcfBNgyinackAg9S7o=; b=VcyA9AstTwpsGjhsUtnCybYpa
+	lz1DFDxDN7TpCrdaPgVFLQ31IbiH3NLdESclLDkYRZLG/zLtv0fftBFJXlOaDKA7Nat2SazRJFbpE
+	DMeqr3F7rEga4D3CHTKSp1vOhta9cPst8mBS86vKwORzj0OyR+L2QjvXtR+UaDCBOWBbgg2CycwPd
+	QsZ7nocbBJ9VnSw4IeEfEl7BGQu/HkfzkexEhw8qmYW6VmYPmpqRQWv6PDZBvf8Zb1nAVUXgk9GBl
+	n2zSSPJmZfFpWgSMWmUPYSuqu73b3guXUDQ9qIVfuZV1BPPPK2Mnr/q6BUMBDHphCh3XJcvIQtuZ6
+	YmPPLJElw==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1ldy1V-00GYMt-Qj; Tue, 04 May 2021 16:35:49 +0000
+	id 1ldyFg-00Gao2-5L; Tue, 04 May 2021 16:50:28 +0000
 Received: from bombadil.infradead.org ([2607:7c80:54:e::133])
  by desiato.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1ldy1S-00GYMY-L0
- for ath11k@desiato.infradead.org; Tue, 04 May 2021 16:35:48 +0000
+ id 1ldyFd-00GanL-Sa
+ for ath11k@desiato.infradead.org; Tue, 04 May 2021 16:50:26 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Type:To:Subject:Message-ID:
- Date:From:MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:
- Content-ID:Content-Description:In-Reply-To:References;
- bh=9rcK99+rqp0Z3nf2VaLpfZNCCCsNG5LTS71sBR/AvcQ=; b=q0bwn4JV/e4KkNbOfwiVWFhF4i
- ocIqAjc4BiJj7JwCVfgZumj0BtIED4W6vFieuK1saA9yxVnT2WPfbZyO8InTRDoTkoBjFVQzYgoqt
- ie7PmQWfWkmop/QHNVmXYRy17H+igJ8VDMKIMYKpS+0nGTVBEIhSLFOAPk9KS9iSPjcp4HDuo/2Qw
- qG1in3nFUpMkZVj0FgwLi2phFNfBKkgaKaf5mhiHSDB2V5goEFdG04ep+pn3PrlDgWe9a3O4jcm94
- ynrWOhtlUVPUVItFR6EzdFs5J+vsr+2X9/2BU3/gzgBxZDHBynOBlAWs7j6GPlshnYMBMWhtNQG4A
- knuGCRQw==;
-Received: from mail-lf1-x141.google.com ([2a00:1450:4864:20::141])
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:
+ Subject:Sender:Reply-To:Cc:Content-ID:Content-Description;
+ bh=SEFTAPkse7bB9Zz1SwKPqf1wJ62BleY1QO4ZO+qmBDU=; b=V+uczr/VtVX0/mUtAV8lHBcEl9
+ V5P0i973Bm7eg3zb2krfadqrL+pa18U7FltRcIw3GSvHNsCVWu4liEjUAWDIm0VjKB6AnrnuMWUkZ
+ Yi7Y3DPQLVQEjxGxp991DnWjsH3MqntzpWy0ESk+caPI+YTkKebmomCv6h2pCiWG37gqYF4x4wGfL
+ ulc27oXx9YJal1tmfSHeqt8/OwgrnLkUhRaMB6D+3eJ/pQslZhf68lCPQil9xwzIPP4+uHOl8GH2j
+ BD29w9ttblcffaI3Lc3g/C1AwNJXbwtrT1Vy9EwhwR4h3zo4GEukAEc4TaTezeSp6VNZald6+GrU3
+ mZlCI/0w==;
+Received: from nbd.name ([2a01:4f8:221:3d45::2])
  by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1ldy1P-0046uI-IE
- for ath11k@lists.infradead.org; Tue, 04 May 2021 16:35:45 +0000
-Received: by mail-lf1-x141.google.com with SMTP id n138so14252143lfa.3
- for <ath11k@lists.infradead.org>; Tue, 04 May 2021 09:35:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=sartura-hr.20150623.gappssmtp.com; s=20150623;
- h=mime-version:from:date:message-id:subject:to;
- bh=9rcK99+rqp0Z3nf2VaLpfZNCCCsNG5LTS71sBR/AvcQ=;
- b=tbBi3UowgyeHBdhlhwe9NsgJMicqgc6XBToY87INliM/f+DHT6AldWDo0Ac6QBKaeI
- K3AbQLAs9wfgWzUDb4ArC6D33XLg8Wf1EUkGRDtdE0Ij/v34kb58mVb6tsOz1TaE/na1
- S1C9oQmF5JYc5iaCTNQX2EBVOHPqjyhrx7OrT98xfOYBuUIsvGsczWEQ5S+xClXWLgGb
- 3CbvLF722XpTPiOT+eZdmQt2xNU9XDgWV5m1qC/k/0B5kulRPX96iXVUZL52GjEhM8TR
- rHxcDnkLLFW2lojwaqwy028k7eTZVZj2Y1Fh3xpJhW0KfKJNviWtuf/RFJD+9yCzX72+
- ag5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=9rcK99+rqp0Z3nf2VaLpfZNCCCsNG5LTS71sBR/AvcQ=;
- b=d+hX0xUujGEv/c0mroTHMm9pFcEFzPDidYoWrcC9PXyFo3p0QBRBjdFUVUd16sbKr7
- 1NaW+NlZcsFckFLzEDm5BQUgK8rcQEdTaesjoKHZEz9TfWBdLas/EDO3rThJF1otjric
- 4PB8QiXWptu/wzJc3+nM466lPL+ruBkD3uTd7CvK5q0GT9NqzLAMis8YuhZ+QPOX7O/1
- w4ejUZV42gmc4NDESmmyc4646UJrClkaBj0Ru2RVlq/fOiyyqDXocPoITax6QoWrUEqE
- /HqIpEggfEiDggKM+BEsdcxT6+GC7HdRYtpaTMBRN6p83YM5V8rXeGQrfBrv/rP96Fp3
- IhXQ==
-X-Gm-Message-State: AOAM5300t6rG2fjDnHs5Octfal3TqkXtJYXHvmGpWyqFF6wLp6anwPR3
- 5L+O9FLpVvJkatT5XZfubTx44+9F5j9t/kN3ivu79fiGl90PnOH10h4=
-X-Google-Smtp-Source: ABdhPJxxvVdnjKR1P0U5Abgs9ikR+bcZ8PNBVCnZPHJmGAs0665JYiSXUSCZ0E7ancAKHhp/ZreLwmLQ5udx5Y6QUAk=
-X-Received: by 2002:a19:ee1a:: with SMTP id g26mr3597087lfb.158.1620146141306; 
- Tue, 04 May 2021 09:35:41 -0700 (PDT)
-MIME-Version: 1.0
-From: Robert Marko <robert.marko@sartura.hr>
-Date: Tue, 4 May 2021 18:35:30 +0200
-Message-ID: <CA+HBbNHYiULJ2T1Q3dmmXZSYb3gLajr2m86HTvCO-ud0GwkaZA@mail.gmail.com>
-Subject: IPQ6018 issues
+ id 1ldyFZ-0047NS-SD
+ for ath11k@lists.infradead.org; Tue, 04 May 2021 16:50:24 +0000
+Received: from 95.81.21.172.dynamic-pppoe.dt.ipv4.wtnet.de ([95.81.21.172]
+ helo=[192.168.178.183])
+ by ds12 with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+ (Exim 4.89) (envelope-from <john@phrozen.org>) id 1ldyFT-0002t0-Nz
+ for ath11k@lists.infradead.org; Tue, 04 May 2021 18:50:15 +0200
+Subject: Re: IPQ6018 issues
 To: ath11k@lists.infradead.org
+References: <CA+HBbNHYiULJ2T1Q3dmmXZSYb3gLajr2m86HTvCO-ud0GwkaZA@mail.gmail.com>
+From: John Crispin <john@phrozen.org>
+Message-ID: <724315d2-c542-617a-cfce-001c7e1b0f74@phrozen.org>
+Date: Tue, 4 May 2021 18:50:15 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
+MIME-Version: 1.0
+In-Reply-To: <CA+HBbNHYiULJ2T1Q3dmmXZSYb3gLajr2m86HTvCO-ud0GwkaZA@mail.gmail.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210504_093543_633490_4702A753 
-X-CRM114-Status: GOOD (  10.77  )
+X-CRM114-CacheID: sfid-20210504_095022_118931_96B23923 
+X-CRM114-Status: GOOD (  18.76  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,115 +80,88 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-I am trying to use ath11k on multiple IPQ6018 and IPQ6010 boards,
-unfortunately, they will all fail like this:
->
-> # echo c000000.wifi > /sys/bus/platform/drivers/ath11k/bind
-> [   12.417214] ath11k c000000.wifi: event type: 0
-> [   12.417557] ath11k c000000.wifi: qmi ignore invalid mem req type 3
-> [   12.420605] ath11k c000000.wifi: event type: 2
-> [   12.427191] ath11k c000000.wifi: event type: 3
-> [   12.431312] ath11k c000000.wifi: chip_id 0x0 chip_family 0x4 board_id 0xff soc_id 0xffffffff
-> [   12.435626] ath11k c000000.wifi: fw_version 0x240606c6 fw_build_timestamp 2021-02-12 03:17 fw_build_id QC_IMAGE_VERSION_STRING=WLAN.HK.2.4.0.1-01734-QCAHKSWPL_SILICONZ-1
-> [   12.447560] ath11k c000000.wifi: event type: 4
-> [   12.459215] ath11k c000000.wifi: ATH11K_QMI_EVENT_FW_READY
-> [   12.463551] ath11k c000000.wifi: ath11k_core_qmi_firmware_ready
-> [   12.469013] ath11k c000000.wifi: ath11k_core_qmi_firmware_ready start
-> [   12.474900] ath11k c000000.wifi: ath11k_ce_init_pipes pass
-> # [   12.491124] ath11k c000000.wifi: ath11k_crypto_mode: 0
->
-> Format: Log Type - Time(microsec) - Message - Optional Info
-> Log Type: B - Since Boot(Power On Reset),  D - Delta,  S - Statistic
-> S - QC_IMAGE_VERSION_STRING=BOOT.XF.0.3-00098-IPQ60xxLZB-1
-> S - IMAGE_VARIANT_STRING=IPQ6018LA
-> S - OEM_IMAGE_VERSION_STRING=crm-ubuntu121
-> S - Boot Interface: SPI
-> S - Secure Boot: Off
-> S - Boot Config @ 0x000a602c = 0x000002e1
-> S - JTAG ID @ 0x000a607c = 0x0013a0e1
-> S - OEM ID @ 0x000a6080 = 0x00000000
-> S - Serial Number @ 0x000a4128 = 0xd92ca102
-> S - OEM Config Row 0 @ 0x000a4188 = 0x0000000000000000
-> S - OEM Config Row 1 @ 0x000a4190 = 0x0000000000000000
-> S - Feature Config Row 0 @ 0x000a4130 = 0x0000000008000001
-> S - Feature Config Row 1 @ 0x000a4138 = 0x02c3e83383000009
-> S - PBL Patch Ver: 1
-> S - I-cache: On
-> S - D-cache: On
-> B -      3413 - PBL, Start
-> B -       592 - bootable_media_detect_entry, Start
-> B -      4339 - bootable_media_detect_success, Start
-> B -      4435 - elf_loader_entry, Start
-> B -      4607 - auth_hash_seg_entry, Start
-> B -     10854 - auth_hash_seg_exit, Start
-> B -     11350 - elf_segs_hash_verify_entry, Start
-> B -    357983 - elf_segs_hash_verify_exit, Start
-> B -    362173 - auth_xbl_sec_hash_seg_entry, Start
-> B -    362318 - auth_xbl_sec_hash_seg_exit, Start
-> B -    368868 - xbl_sec_segs_hash_verify_entry, Start
-> B -    368869 - xbl_sec_segs_hash_verify_exit, Start
-> B -    369798 - PBL, End
-> B -    296002 - SBL1, Start
-> B -    435814 - GCC [RstStat:0x2, RstDbg:0x420100] WDog Stat : 0x4
-> B -    438254 - clock_init, Start
-> D -      3812 - clock_init, Delta
-> B -    447862 - boot_flash_init, Start
-> D -      8082 - boot_flash_init, Delta
-> B -    458201 - sbl1_ddr_set_default_params, Start
-> D -       274 - sbl1_ddr_set_default_params, Delta
-> B -    464820 - boot_config_data_table_init, Start
-> D -      1891 - boot_config_data_table_init, Delta - (575 Bytes)
-> B -    473970 - CDT Version:2,Platform ID:8,Major ID:3,Minor ID:0,Subtype:0
-> B -    479490 - Image Load, Start
-> D -      6619 - OEM_MISC Image Loaded, Delta - (0 Bytes)
-> B -    488823 - Image Load, Start
-> D -      5063 - PMIC Image Loaded, Delta - (0 Bytes)
-> B -    496692 - sbl1_ddr_set_params, Start
-> B -    501694 - CPR configuration: 0x366
-> B -    504897 - Pre_DDR_clock_init, Start
-> D -       183 - Pre_DDR_clock_init, Delta
-> D -         0 - sbl1_ddr_set_params, Delta
-
-
-I added most of the prints to figure out where it dies.
-If cold-boot calibration is enabled then it will die on the
-ath11k_qmi_process_coldboot_calibration(), to be exact on the
->
-> ret = ath11k_qmi_wlanfw_mode_send(ab, ATH11K_FIRMWARE_MODE_COLD_BOOT);
-
-
-But, if cold-boot calibration is disabled then ti will fail in
-ath11k_core_qmi_firmware_ready at or after ath11k_crypto_mode switch.
-
-A big issue is that it will crash the board and it will get stuck in
-SBL, only removing the power will help.
-
-The hardware I tried on is:
-* Wallys CP01-C1
-* Wallys CP03-C1
-* Alfa AP1800C-AX PRO
-
-I also tried fw versions from 2.1.0.1 to 2.5.0.1-R2
-
-Does anybody have an idea how to solve this?
-
--- 
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+Ck9uIDA0LjA1LjIxIDE4OjM1LCBSb2JlcnQgTWFya28gd3JvdGU6Cj4gSGksCj4KPiBJIGFtIHRy
+eWluZyB0byB1c2UgYXRoMTFrIG9uIG11bHRpcGxlIElQUTYwMTggYW5kIElQUTYwMTAgYm9hcmRz
+LAo+IHVuZm9ydHVuYXRlbHksIHRoZXkgd2lsbCBhbGwgZmFpbCBsaWtlIHRoaXM6CgpJIGhhdmUg
+b2JzZXJ2ZWQgdGhlIHNhbWUgb24gaXBxODA3eC4gVGhpcyBjcmFzaCBoYXBwZW5zIHdoZW4gdGhl
+IGRyaXZlciAKZG9lcyB0aGUgZmlyc3QgYWNjZXNzIHRvIEFIQiBtZW1vcnkgaWYgaSByZWNhbGwg
+Y29ycmVjdGx5CgogwqDCoMKgIEpvaG4KCgo+PiAjIGVjaG8gYzAwMDAwMC53aWZpID4gL3N5cy9i
+dXMvcGxhdGZvcm0vZHJpdmVycy9hdGgxMWsvYmluZAo+PiBbICAgMTIuNDE3MjE0XSBhdGgxMWsg
+YzAwMDAwMC53aWZpOiBldmVudCB0eXBlOiAwCj4+IFsgICAxMi40MTc1NTddIGF0aDExayBjMDAw
+MDAwLndpZmk6IHFtaSBpZ25vcmUgaW52YWxpZCBtZW0gcmVxIHR5cGUgMwo+PiBbICAgMTIuNDIw
+NjA1XSBhdGgxMWsgYzAwMDAwMC53aWZpOiBldmVudCB0eXBlOiAyCj4+IFsgICAxMi40MjcxOTFd
+IGF0aDExayBjMDAwMDAwLndpZmk6IGV2ZW50IHR5cGU6IDMKPj4gWyAgIDEyLjQzMTMxMl0gYXRo
+MTFrIGMwMDAwMDAud2lmaTogY2hpcF9pZCAweDAgY2hpcF9mYW1pbHkgMHg0IGJvYXJkX2lkIDB4
+ZmYgc29jX2lkIDB4ZmZmZmZmZmYKPj4gWyAgIDEyLjQzNTYyNl0gYXRoMTFrIGMwMDAwMDAud2lm
+aTogZndfdmVyc2lvbiAweDI0MDYwNmM2IGZ3X2J1aWxkX3RpbWVzdGFtcCAyMDIxLTAyLTEyIDAz
+OjE3IGZ3X2J1aWxkX2lkIFFDX0lNQUdFX1ZFUlNJT05fU1RSSU5HPVdMQU4uSEsuMi40LjAuMS0w
+MTczNC1RQ0FIS1NXUExfU0lMSUNPTlotMQo+PiBbICAgMTIuNDQ3NTYwXSBhdGgxMWsgYzAwMDAw
+MC53aWZpOiBldmVudCB0eXBlOiA0Cj4+IFsgICAxMi40NTkyMTVdIGF0aDExayBjMDAwMDAwLndp
+Zmk6IEFUSDExS19RTUlfRVZFTlRfRldfUkVBRFkKPj4gWyAgIDEyLjQ2MzU1MV0gYXRoMTFrIGMw
+MDAwMDAud2lmaTogYXRoMTFrX2NvcmVfcW1pX2Zpcm13YXJlX3JlYWR5Cj4+IFsgICAxMi40Njkw
+MTNdIGF0aDExayBjMDAwMDAwLndpZmk6IGF0aDExa19jb3JlX3FtaV9maXJtd2FyZV9yZWFkeSBz
+dGFydAo+PiBbICAgMTIuNDc0OTAwXSBhdGgxMWsgYzAwMDAwMC53aWZpOiBhdGgxMWtfY2VfaW5p
+dF9waXBlcyBwYXNzCj4+ICMgWyAgIDEyLjQ5MTEyNF0gYXRoMTFrIGMwMDAwMDAud2lmaTogYXRo
+MTFrX2NyeXB0b19tb2RlOiAwCj4+Cj4+IEZvcm1hdDogTG9nIFR5cGUgLSBUaW1lKG1pY3Jvc2Vj
+KSAtIE1lc3NhZ2UgLSBPcHRpb25hbCBJbmZvCj4+IExvZyBUeXBlOiBCIC0gU2luY2UgQm9vdChQ
+b3dlciBPbiBSZXNldCksICBEIC0gRGVsdGEsICBTIC0gU3RhdGlzdGljCj4+IFMgLSBRQ19JTUFH
+RV9WRVJTSU9OX1NUUklORz1CT09ULlhGLjAuMy0wMDA5OC1JUFE2MHh4TFpCLTEKPj4gUyAtIElN
+QUdFX1ZBUklBTlRfU1RSSU5HPUlQUTYwMThMQQo+PiBTIC0gT0VNX0lNQUdFX1ZFUlNJT05fU1RS
+SU5HPWNybS11YnVudHUxMjEKPj4gUyAtIEJvb3QgSW50ZXJmYWNlOiBTUEkKPj4gUyAtIFNlY3Vy
+ZSBCb290OiBPZmYKPj4gUyAtIEJvb3QgQ29uZmlnIEAgMHgwMDBhNjAyYyA9IDB4MDAwMDAyZTEK
+Pj4gUyAtIEpUQUcgSUQgQCAweDAwMGE2MDdjID0gMHgwMDEzYTBlMQo+PiBTIC0gT0VNIElEIEAg
+MHgwMDBhNjA4MCA9IDB4MDAwMDAwMDAKPj4gUyAtIFNlcmlhbCBOdW1iZXIgQCAweDAwMGE0MTI4
+ID0gMHhkOTJjYTEwMgo+PiBTIC0gT0VNIENvbmZpZyBSb3cgMCBAIDB4MDAwYTQxODggPSAweDAw
+MDAwMDAwMDAwMDAwMDAKPj4gUyAtIE9FTSBDb25maWcgUm93IDEgQCAweDAwMGE0MTkwID0gMHgw
+MDAwMDAwMDAwMDAwMDAwCj4+IFMgLSBGZWF0dXJlIENvbmZpZyBSb3cgMCBAIDB4MDAwYTQxMzAg
+PSAweDAwMDAwMDAwMDgwMDAwMDEKPj4gUyAtIEZlYXR1cmUgQ29uZmlnIFJvdyAxIEAgMHgwMDBh
+NDEzOCA9IDB4MDJjM2U4MzM4MzAwMDAwOQo+PiBTIC0gUEJMIFBhdGNoIFZlcjogMQo+PiBTIC0g
+SS1jYWNoZTogT24KPj4gUyAtIEQtY2FjaGU6IE9uCj4+IEIgLSAgICAgIDM0MTMgLSBQQkwsIFN0
+YXJ0Cj4+IEIgLSAgICAgICA1OTIgLSBib290YWJsZV9tZWRpYV9kZXRlY3RfZW50cnksIFN0YXJ0
+Cj4+IEIgLSAgICAgIDQzMzkgLSBib290YWJsZV9tZWRpYV9kZXRlY3Rfc3VjY2VzcywgU3RhcnQK
+Pj4gQiAtICAgICAgNDQzNSAtIGVsZl9sb2FkZXJfZW50cnksIFN0YXJ0Cj4+IEIgLSAgICAgIDQ2
+MDcgLSBhdXRoX2hhc2hfc2VnX2VudHJ5LCBTdGFydAo+PiBCIC0gICAgIDEwODU0IC0gYXV0aF9o
+YXNoX3NlZ19leGl0LCBTdGFydAo+PiBCIC0gICAgIDExMzUwIC0gZWxmX3NlZ3NfaGFzaF92ZXJp
+ZnlfZW50cnksIFN0YXJ0Cj4+IEIgLSAgICAzNTc5ODMgLSBlbGZfc2Vnc19oYXNoX3ZlcmlmeV9l
+eGl0LCBTdGFydAo+PiBCIC0gICAgMzYyMTczIC0gYXV0aF94Ymxfc2VjX2hhc2hfc2VnX2VudHJ5
+LCBTdGFydAo+PiBCIC0gICAgMzYyMzE4IC0gYXV0aF94Ymxfc2VjX2hhc2hfc2VnX2V4aXQsIFN0
+YXJ0Cj4+IEIgLSAgICAzNjg4NjggLSB4Ymxfc2VjX3NlZ3NfaGFzaF92ZXJpZnlfZW50cnksIFN0
+YXJ0Cj4+IEIgLSAgICAzNjg4NjkgLSB4Ymxfc2VjX3NlZ3NfaGFzaF92ZXJpZnlfZXhpdCwgU3Rh
+cnQKPj4gQiAtICAgIDM2OTc5OCAtIFBCTCwgRW5kCj4+IEIgLSAgICAyOTYwMDIgLSBTQkwxLCBT
+dGFydAo+PiBCIC0gICAgNDM1ODE0IC0gR0NDIFtSc3RTdGF0OjB4MiwgUnN0RGJnOjB4NDIwMTAw
+XSBXRG9nIFN0YXQgOiAweDQKPj4gQiAtICAgIDQzODI1NCAtIGNsb2NrX2luaXQsIFN0YXJ0Cj4+
+IEQgLSAgICAgIDM4MTIgLSBjbG9ja19pbml0LCBEZWx0YQo+PiBCIC0gICAgNDQ3ODYyIC0gYm9v
+dF9mbGFzaF9pbml0LCBTdGFydAo+PiBEIC0gICAgICA4MDgyIC0gYm9vdF9mbGFzaF9pbml0LCBE
+ZWx0YQo+PiBCIC0gICAgNDU4MjAxIC0gc2JsMV9kZHJfc2V0X2RlZmF1bHRfcGFyYW1zLCBTdGFy
+dAo+PiBEIC0gICAgICAgMjc0IC0gc2JsMV9kZHJfc2V0X2RlZmF1bHRfcGFyYW1zLCBEZWx0YQo+
+PiBCIC0gICAgNDY0ODIwIC0gYm9vdF9jb25maWdfZGF0YV90YWJsZV9pbml0LCBTdGFydAo+PiBE
+IC0gICAgICAxODkxIC0gYm9vdF9jb25maWdfZGF0YV90YWJsZV9pbml0LCBEZWx0YSAtICg1NzUg
+Qnl0ZXMpCj4+IEIgLSAgICA0NzM5NzAgLSBDRFQgVmVyc2lvbjoyLFBsYXRmb3JtIElEOjgsTWFq
+b3IgSUQ6MyxNaW5vciBJRDowLFN1YnR5cGU6MAo+PiBCIC0gICAgNDc5NDkwIC0gSW1hZ2UgTG9h
+ZCwgU3RhcnQKPj4gRCAtICAgICAgNjYxOSAtIE9FTV9NSVNDIEltYWdlIExvYWRlZCwgRGVsdGEg
+LSAoMCBCeXRlcykKPj4gQiAtICAgIDQ4ODgyMyAtIEltYWdlIExvYWQsIFN0YXJ0Cj4+IEQgLSAg
+ICAgIDUwNjMgLSBQTUlDIEltYWdlIExvYWRlZCwgRGVsdGEgLSAoMCBCeXRlcykKPj4gQiAtICAg
+IDQ5NjY5MiAtIHNibDFfZGRyX3NldF9wYXJhbXMsIFN0YXJ0Cj4+IEIgLSAgICA1MDE2OTQgLSBD
+UFIgY29uZmlndXJhdGlvbjogMHgzNjYKPj4gQiAtICAgIDUwNDg5NyAtIFByZV9ERFJfY2xvY2tf
+aW5pdCwgU3RhcnQKPj4gRCAtICAgICAgIDE4MyAtIFByZV9ERFJfY2xvY2tfaW5pdCwgRGVsdGEK
+Pj4gRCAtICAgICAgICAgMCAtIHNibDFfZGRyX3NldF9wYXJhbXMsIERlbHRhCj4KPiBJIGFkZGVk
+IG1vc3Qgb2YgdGhlIHByaW50cyB0byBmaWd1cmUgb3V0IHdoZXJlIGl0IGRpZXMuCj4gSWYgY29s
+ZC1ib290IGNhbGlicmF0aW9uIGlzIGVuYWJsZWQgdGhlbiBpdCB3aWxsIGRpZSBvbiB0aGUKPiBh
+dGgxMWtfcW1pX3Byb2Nlc3NfY29sZGJvb3RfY2FsaWJyYXRpb24oKSwgdG8gYmUgZXhhY3Qgb24g
+dGhlCj4+IHJldCA9IGF0aDExa19xbWlfd2xhbmZ3X21vZGVfc2VuZChhYiwgQVRIMTFLX0ZJUk1X
+QVJFX01PREVfQ09MRF9CT09UKTsKPgo+IEJ1dCwgaWYgY29sZC1ib290IGNhbGlicmF0aW9uIGlz
+IGRpc2FibGVkIHRoZW4gdGkgd2lsbCBmYWlsIGluCj4gYXRoMTFrX2NvcmVfcW1pX2Zpcm13YXJl
+X3JlYWR5IGF0IG9yIGFmdGVyIGF0aDExa19jcnlwdG9fbW9kZSBzd2l0Y2guCj4KPiBBIGJpZyBp
+c3N1ZSBpcyB0aGF0IGl0IHdpbGwgY3Jhc2ggdGhlIGJvYXJkIGFuZCBpdCB3aWxsIGdldCBzdHVj
+ayBpbgo+IFNCTCwgb25seSByZW1vdmluZyB0aGUgcG93ZXIgd2lsbCBoZWxwLgo+Cj4gVGhlIGhh
+cmR3YXJlIEkgdHJpZWQgb24gaXM6Cj4gKiBXYWxseXMgQ1AwMS1DMQo+ICogV2FsbHlzIENQMDMt
+QzEKPiAqIEFsZmEgQVAxODAwQy1BWCBQUk8KPgo+IEkgYWxzbyB0cmllZCBmdyB2ZXJzaW9ucyBm
+cm9tIDIuMS4wLjEgdG8gMi41LjAuMS1SMgo+Cj4gRG9lcyBhbnlib2R5IGhhdmUgYW4gaWRlYSBo
+b3cgdG8gc29sdmUgdGhpcz8KPgoKLS0gCmF0aDExayBtYWlsaW5nIGxpc3QKYXRoMTFrQGxpc3Rz
+LmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9hdGgxMWsK
