@@ -5,16 +5,16 @@ X-Spam-Level:
 X-Spam-Status: No, score=-14.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.0
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A219AC433B4
-	for <ath11k@archiver.kernel.org>; Fri, 21 May 2021 13:52:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 086A1C433ED
+	for <ath11k@archiver.kernel.org>; Fri, 21 May 2021 13:54:57 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 731356008E
-	for <ath11k@archiver.kernel.org>; Fri, 21 May 2021 13:52:37 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 731356008E
+	by mail.kernel.org (Postfix) with ESMTPS id C227C6008E
+	for <ath11k@archiver.kernel.org>; Fri, 21 May 2021 13:54:56 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C227C6008E
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,53 +23,52 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
 	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=eYxjbR2b3c4guzOo0+FbN/XNSWG4zUKoIDqtfsRbG1Y=; b=Hj8lJ/P2uVmAY7CdQv0c6u0F4l
-	C2L6NGdtwXgdMHHQttz5sK4IrgdU0m/oMOVJ65iMIoXp+rNzzii4o8kEaRYRHNB2YVU5jTq4sDNNo
-	9hvzJzcunEGrmoq2pJCYm9/5jj0uZB7m1d+McB60FfPMNp3PoRQeQmh1nUOUUp5WF3fJNVlSMIXOK
-	ibBZwzYhv0AvkazMJKh8q/ggov22X+rN9nkEpnLy5UbI9Dg6LnydNbzp7TK1pmdzVh3qWnUxmXW81
-	3bfv8VtjOjO1W2N3nkhCUhfBbr54/MYsXhadfTV/KuPRFRaZuYy4pSRfI87n6QJT4Fcve+55YkAa3
-	O5in+BFg==;
+	bh=TvHA9Anylhw+h5VOZj/bWFWBKWV3VYhH5bsmyXgXpC8=; b=Gj2c81CIxRRNvfPoiDiQcNSPAJ
+	jhvfjw/KLGu0ftjRXb8ZtCP07MTy5wYofNj17AxajWQBywgh1Sz3OzbhdzA2ygtGfKJ5pEPKeNy67
+	gptxfM/LiBGVlxfdHHAW5GLHn6n8fLzB3Szxr0dlEjGUm+FTbdyKQofgzklw31IYLKXYt4PBt+5J3
+	ra9XL5SqrS95XyhExr7E0z4yBstfLv52NvVmc1FgUcWs/ZJv95Pweb9ogBHVDAgfN3CO1ouuYD5k6
+	t1veb3VHNvMD/tXpaTiQo9jMn2z/4uZgMSSpm96J0uqi243WXqZyv02ic/uRqHbAaPLbfm7seFycP
+	pHsYEBZg==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lk5Zn-005fOE-Rs; Fri, 21 May 2021 13:52:32 +0000
+	id 1lk5c4-005gCt-7Z; Fri, 21 May 2021 13:54:52 +0000
 Received: from bombadil.infradead.org ([2607:7c80:54:e::133])
  by desiato.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lk5Zk-005fN7-LL
- for ath11k@desiato.infradead.org; Fri, 21 May 2021 13:52:28 +0000
+ id 1lk5c3-005gAe-JF
+ for ath11k@desiato.infradead.org; Fri, 21 May 2021 13:54:51 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
  :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
  Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=TcwP1dX6Hmmu0yeIeVFrztjTkgb6kTE/rM0lZcvtSG4=; b=wDWZ8MCKPhZP4JkejbcQLHI2NV
- XM/54kJrT5pmxr7NSjNii6gGDdEn4FkAFxTnrw22XAZ7VPF74oOlozuy1qATCSvw00ZbW2yIG4gzy
- 4N/WStp8la9lfpzRoFlDhjcMqypwL0F/2Xl0/rJvCB+3Lcj3rG6bp3TLZ/dnHaXvva+xgfhKWAv2S
- 6131ES1/oD1S7SXW1d/soELspLbAfGTsfog2sfXIg4MKqXDm8NxrrH3w5DTe4kfAhPSJDtjVzRNxe
- v5b95BlhkwxnjRSDrkrJQpQ8d2FLNx+5RsoZrKgTw5/2ihLynjcW+3EYdGjRQW3tu//L9pJ4nCF54
- hbfiTBRA==;
+ bh=wkGvXHvkyimelGMbBI0CIKCZGsdF+l1lKO17gNouNsA=; b=B4T98+0NMKV6tWMmDJVSrp5KpG
+ 9Fi/0fuq802EylMu/gswCELS69s974afNgvhjFRA+5ZlMuqGuJ6UfuXtoqguduIi/OljhqJQn/WjQ
+ 8GlFTZ1WIFtZQc7AAc9fxax6TMCQWMx1X6Q8gQVGdxqGz+h11IvCZJoPkLXPOzLQm23e+UJ2VGrkK
+ pBndGaHu/oBsjiod8TL5TprrJTaoBxU5pf8u4gtucScdQ5QBS4MH8Bu9dfQ2DGnpxMQw7YAuoabE/
+ p+ghJFyBOL56txK9EaZRPen8Y9chXc3sxpV67bTTzGpe0M74AbTw8K/9YOXzjI8JGTzAaLxMy+TBN
+ lLAj3x0w==;
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lk5Zi-00HAYi-7P
- for ath11k@lists.infradead.org; Fri, 21 May 2021 13:52:27 +0000
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 191086008E;
- Fri, 21 May 2021 13:52:21 +0000 (UTC)
-Date: Fri, 21 May 2021 19:22:18 +0530
+ id 1lk5by-00HAhD-Nu
+ for ath11k@lists.infradead.org; Fri, 21 May 2021 13:54:50 +0000
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 66940611AD;
+ Fri, 21 May 2021 13:54:42 +0000 (UTC)
+Date: Fri, 21 May 2021 19:24:37 +0530
 From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To: Bhaumik Bhatt <bbhatt@codeaurora.org>
 Cc: linux-arm-msm@vger.kernel.org, hemantk@codeaurora.org,
  jhugo@codeaurora.org, linux-kernel@vger.kernel.org,
  loic.poulain@linaro.org, linux-wireless@vger.kernel.org,
  kvalo@codeaurora.org, ath11k@lists.infradead.org
-Subject: Re: [PATCH v4 5/6] bus: mhi: pci_generic: Set register access length
- for MHI driver
-Message-ID: <20210521135218.GM70095@thinkpad>
+Subject: Re: [PATCH v4 6/6] bus: mhi: core: Add range checks for BHI and BHIe
+Message-ID: <20210521135437.GN70095@thinkpad>
 References: <1620330705-40192-1-git-send-email-bbhatt@codeaurora.org>
- <1620330705-40192-6-git-send-email-bbhatt@codeaurora.org>
+ <1620330705-40192-7-git-send-email-bbhatt@codeaurora.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <1620330705-40192-6-git-send-email-bbhatt@codeaurora.org>
+In-Reply-To: <1620330705-40192-7-git-send-email-bbhatt@codeaurora.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210521_065226_307543_2F3E2792 
-X-CRM114-Status: GOOD (  15.88  )
+X-CRM114-CacheID: sfid-20210521_065446_817371_D704BF3C 
+X-CRM114-Status: GOOD (  18.75  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,15 +85,16 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Thu, May 06, 2021 at 12:51:44PM -0700, Bhaumik Bhatt wrote:
-> MHI driver requires register space length to add range checks and
-> prevent memory region accesses outside of that for MMIO space.
-> Set it from the PCI generic controller driver before registering
-> the MHI controller.
+On Thu, May 06, 2021 at 12:51:45PM -0700, Bhaumik Bhatt wrote:
+> When obtaining the BHI or BHIe offsets during the power up
+> preparation phase, range checks are missing. These can help
+> controller drivers avoid accessing any address outside of the
+> MMIO region. Ensure that mhi_cntrl->reg_len is set before MHI
+> registration as it is a required field and range checks will
+> fail without it.
 > 
 > Signed-off-by: Bhaumik Bhatt <bbhatt@codeaurora.org>
-> Reviewed-by: Hemant Kumar <hemantk@codeaurora.org>
-> Reviewed-by: Loic Poulain <loic.poulain@linaro.org>
+> Reviewed-by: Jeffrey Hugo <quic_jhugo@quicinc.com>
 
 Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
@@ -102,21 +102,52 @@ Thanks,
 Mani
 
 > ---
->  drivers/bus/mhi/pci_generic.c | 1 +
->  1 file changed, 1 insertion(+)
+>  drivers/bus/mhi/core/init.c | 18 +++++++++++++++++-
+>  1 file changed, 17 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/bus/mhi/pci_generic.c b/drivers/bus/mhi/pci_generic.c
-> index 7c810f0..fb7889f 100644
-> --- a/drivers/bus/mhi/pci_generic.c
-> +++ b/drivers/bus/mhi/pci_generic.c
-> @@ -463,6 +463,7 @@ static int mhi_pci_claim(struct mhi_controller *mhi_cntrl,
->  		return err;
->  	}
->  	mhi_cntrl->regs = pcim_iomap_table(pdev)[bar_num];
-> +	mhi_cntrl->reg_len = pci_resource_len(pdev, bar_num);
+> diff --git a/drivers/bus/mhi/core/init.c b/drivers/bus/mhi/core/init.c
+> index 1cc2f22..aeb1e3c 100644
+> --- a/drivers/bus/mhi/core/init.c
+> +++ b/drivers/bus/mhi/core/init.c
+> @@ -885,7 +885,8 @@ int mhi_register_controller(struct mhi_controller *mhi_cntrl,
+>  	if (!mhi_cntrl || !mhi_cntrl->cntrl_dev || !mhi_cntrl->regs ||
+>  	    !mhi_cntrl->runtime_get || !mhi_cntrl->runtime_put ||
+>  	    !mhi_cntrl->status_cb || !mhi_cntrl->read_reg ||
+> -	    !mhi_cntrl->write_reg || !mhi_cntrl->nr_irqs || !mhi_cntrl->irq)
+> +	    !mhi_cntrl->write_reg || !mhi_cntrl->nr_irqs ||
+> +	    !mhi_cntrl->irq || !mhi_cntrl->reg_len)
+>  		return -EINVAL;
 >  
->  	err = pci_set_dma_mask(pdev, dma_mask);
->  	if (err) {
+>  	ret = parse_config(mhi_cntrl, config);
+> @@ -1077,6 +1078,13 @@ int mhi_prepare_for_power_up(struct mhi_controller *mhi_cntrl)
+>  		dev_err(dev, "Error getting BHI offset\n");
+>  		goto error_reg_offset;
+>  	}
+> +
+> +	if (bhi_off >= mhi_cntrl->reg_len) {
+> +		dev_err(dev, "BHI offset: 0x%x is out of range: 0x%zx\n",
+> +			bhi_off, mhi_cntrl->reg_len);
+> +		ret = -EINVAL;
+> +		goto error_reg_offset;
+> +	}
+>  	mhi_cntrl->bhi = mhi_cntrl->regs + bhi_off;
+>  
+>  	if (mhi_cntrl->fbc_download || mhi_cntrl->rddm_size) {
+> @@ -1086,6 +1094,14 @@ int mhi_prepare_for_power_up(struct mhi_controller *mhi_cntrl)
+>  			dev_err(dev, "Error getting BHIE offset\n");
+>  			goto error_reg_offset;
+>  		}
+> +
+> +		if (bhie_off >= mhi_cntrl->reg_len) {
+> +			dev_err(dev,
+> +				"BHIe offset: 0x%x is out of range: 0x%zx\n",
+> +				bhie_off, mhi_cntrl->reg_len);
+> +			ret = -EINVAL;
+> +			goto error_reg_offset;
+> +		}
+>  		mhi_cntrl->bhie = mhi_cntrl->regs + bhie_off;
+>  	}
+>  
 > -- 
 > The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
 > a Linux Foundation Collaborative Project
