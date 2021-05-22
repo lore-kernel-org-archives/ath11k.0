@@ -1,74 +1,80 @@
-Return-Path: <SRS0=pS/N=KQ=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=CS+C=KR=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 086A1C433ED
-	for <ath11k@archiver.kernel.org>; Fri, 21 May 2021 13:54:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 05156C2B9F2
+	for <ath11k@archiver.kernel.org>; Sat, 22 May 2021 09:58:47 +0000 (UTC)
 Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C227C6008E
-	for <ath11k@archiver.kernel.org>; Fri, 21 May 2021 13:54:56 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C227C6008E
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
+	by mail.kernel.org (Postfix) with ESMTPS id 941BF6105A
+	for <ath11k@archiver.kernel.org>; Sat, 22 May 2021 09:58:46 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 941BF6105A
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=wanadoo.fr
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=desiato.20200630; h=Sender:Content-Transfer-Encoding
 	:Content-Type:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=TvHA9Anylhw+h5VOZj/bWFWBKWV3VYhH5bsmyXgXpC8=; b=Gj2c81CIxRRNvfPoiDiQcNSPAJ
-	jhvfjw/KLGu0ftjRXb8ZtCP07MTy5wYofNj17AxajWQBywgh1Sz3OzbhdzA2ygtGfKJ5pEPKeNy67
-	gptxfM/LiBGVlxfdHHAW5GLHn6n8fLzB3Szxr0dlEjGUm+FTbdyKQofgzklw31IYLKXYt4PBt+5J3
-	ra9XL5SqrS95XyhExr7E0z4yBstfLv52NvVmc1FgUcWs/ZJv95Pweb9ogBHVDAgfN3CO1ouuYD5k6
-	t1veb3VHNvMD/tXpaTiQo9jMn2z/4uZgMSSpm96J0uqi243WXqZyv02ic/uRqHbAaPLbfm7seFycP
-	pHsYEBZg==;
+	List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=8tW2ddwUjFwazGYnk2/kv2/dKp+D7Y3Pv69PyuY15OQ=; b=UppJE7L/oA4QsbuIVR7cGh5FJn
+	rQ6n2PxRlwb40fVQ8sQE+Jqk/nS08++1dQxeFFhGE+kYCAZLDKeJDHBEfRaEqDbDfMzIeKd+kOkji
+	NTQGAE3DHLKz1PvwrmwGe4FPuii1dCcGqTJP92FQ/fAC2uctJQfAx/iDML2tyKiXqzPGzkahH2rO8
+	ZDQAdyNmuC+poIWx8kMK2mLkl/P1TIG9O/tLQJysKZrpVujhc+Y9JLuNlDzBEDOqfNCIWufOpFjdE
+	29oKpwxsg2492nqug2p1ulAs9sbuLpSVI4Zj5co7wz48/Bbzom56qZDnRi1wQe+JEsWmb4EADaTL1
+	Dq3Z6eZw==;
 Received: from localhost ([::1] helo=desiato.infradead.org)
 	by desiato.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lk5c4-005gCt-7Z; Fri, 21 May 2021 13:54:52 +0000
+	id 1lkOP1-002Fxj-4k; Sat, 22 May 2021 09:58:39 +0000
 Received: from bombadil.infradead.org ([2607:7c80:54:e::133])
  by desiato.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lk5c3-005gAe-JF
- for ath11k@desiato.infradead.org; Fri, 21 May 2021 13:54:51 +0000
+ id 1lkOOz-002FxK-Ae
+ for ath11k@desiato.infradead.org; Sat, 22 May 2021 09:58:37 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
- :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=wkGvXHvkyimelGMbBI0CIKCZGsdF+l1lKO17gNouNsA=; b=B4T98+0NMKV6tWMmDJVSrp5KpG
- 9Fi/0fuq802EylMu/gswCELS69s974afNgvhjFRA+5ZlMuqGuJ6UfuXtoqguduIi/OljhqJQn/WjQ
- 8GlFTZ1WIFtZQc7AAc9fxax6TMCQWMx1X6Q8gQVGdxqGz+h11IvCZJoPkLXPOzLQm23e+UJ2VGrkK
- pBndGaHu/oBsjiod8TL5TprrJTaoBxU5pf8u4gtucScdQ5QBS4MH8Bu9dfQ2DGnpxMQw7YAuoabE/
- p+ghJFyBOL56txK9EaZRPen8Y9chXc3sxpV67bTTzGpe0M74AbTw8K/9YOXzjI8JGTzAaLxMy+TBN
- lLAj3x0w==;
-Received: from mail.kernel.org ([198.145.29.99])
- by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1lk5by-00HAhD-Nu
- for ath11k@lists.infradead.org; Fri, 21 May 2021 13:54:50 +0000
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 66940611AD;
- Fri, 21 May 2021 13:54:42 +0000 (UTC)
-Date: Fri, 21 May 2021 19:24:37 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Bhaumik Bhatt <bbhatt@codeaurora.org>
-Cc: linux-arm-msm@vger.kernel.org, hemantk@codeaurora.org,
- jhugo@codeaurora.org, linux-kernel@vger.kernel.org,
- loic.poulain@linaro.org, linux-wireless@vger.kernel.org,
- kvalo@codeaurora.org, ath11k@lists.infradead.org
-Subject: Re: [PATCH v4 6/6] bus: mhi: core: Add range checks for BHI and BHIe
-Message-ID: <20210521135437.GN70095@thinkpad>
-References: <1620330705-40192-1-git-send-email-bbhatt@codeaurora.org>
- <1620330705-40192-7-git-send-email-bbhatt@codeaurora.org>
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ MIME-Version:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
+ Content-ID:Content-Description:In-Reply-To:References;
+ bh=6ymeZkKOXsAgSgZMe7yXMaLic9U0Ma+obPKDFUgBF/Y=; b=ZSQnBKQOAyuD/95JsaoQ+hjVs3
+ BgPxN6cr+IxgPCE+TQlrkTVz5ZRGmKL03/i0fr3SGqqtAd+yteQjR8FUxOiakcwLCNr8AfMp/oY/p
+ BypMwXPa+/2gZ675/HaFB/fc22J7ros6TdISSzFnIUu8By74NO9C4evxtkVFpHLVtW89R0Pe4cNyf
+ QgteTJ29KAm6/NwltSECCA2JD88ElsdDFbYKut3uGhKUoiF94rlnC2UabnuTtV/TE44fMeoHMqVH3
+ iq7DG2ETgvBQuzhUtm8CPRQqWZvvqJsrY5yYR2GE1OtBth5XNjGL6RNeT6d+umnuvSNrF7xd0g8fL
+ 0E+M9Kpg==;
+Received: from smtp05.smtpout.orange.fr ([80.12.242.127]
+ helo=smtp.smtpout.orange.fr)
+ by bombadil.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
+ id 1lkOOw-0004Ry-IC
+ for ath11k@lists.infradead.org; Sat, 22 May 2021 09:58:36 +0000
+Received: from localhost.localdomain ([86.243.172.93]) by mwinf5d40 with ME
+ id 7lqu2500J21Fzsu03lqumV; Sat, 22 May 2021 11:51:00 +0200
+X-ME-Helo: localhost.localdomain
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Sat, 22 May 2021 11:51:00 +0200
+X-ME-IP: 86.243.172.93
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+To: kvalo@codeaurora.org, davem@davemloft.net, kuba@kernel.org,
+ bperumal@codeaurora.org, akolli@codeaurora.org, milehu@codeaurora.org,
+ lkp@intel.com
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ kernel-janitors@vger.kernel.org,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Subject: [PATCH] ath11k: Fix an error handling path in
+ 'ath11k_core_fetch_board_data_api_n()'
+Date: Sat, 22 May 2021 11:50:54 +0200
+Message-Id: <e959eb544f3cb04258507d8e25a6f12eab126bde.1621676864.git.christophe.jaillet@wanadoo.fr>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1620330705-40192-7-git-send-email-bbhatt@codeaurora.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210521_065446_817371_D704BF3C 
-X-CRM114-Status: GOOD (  18.75  )
+X-CRM114-CacheID: sfid-20210522_025834_755884_63D188E0 
+X-CRM114-Status: UNSURE (   8.69  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,73 +91,33 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Thu, May 06, 2021 at 12:51:45PM -0700, Bhaumik Bhatt wrote:
-> When obtaining the BHI or BHIe offsets during the power up
-> preparation phase, range checks are missing. These can help
-> controller drivers avoid accessing any address outside of the
-> MMIO region. Ensure that mhi_cntrl->reg_len is set before MHI
-> registration as it is a required field and range checks will
-> fail without it.
-> 
-> Signed-off-by: Bhaumik Bhatt <bbhatt@codeaurora.org>
-> Reviewed-by: Jeffrey Hugo <quic_jhugo@quicinc.com>
+All error paths but this one 'goto err' in order to release some
+resources.
+Fix this.
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+---
+ drivers/net/wireless/ath/ath11k/core.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-Thanks,
-Mani
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 77ce3347ab86..595e83fe0990 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -488,7 +488,8 @@ static int ath11k_core_fetch_board_data_api_n(struct ath11k_base *ab,
+ 		if (len < ALIGN(ie_len, 4)) {
+ 			ath11k_err(ab, "invalid length for board ie_id %d ie_len %zu len %zu\n",
+ 				   ie_id, ie_len, len);
+-			return -EINVAL;
++			ret = -EINVAL;
++			goto err;
+ 		}
+ 
+ 		switch (ie_id) {
+-- 
+2.30.2
 
-> ---
->  drivers/bus/mhi/core/init.c | 18 +++++++++++++++++-
->  1 file changed, 17 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/bus/mhi/core/init.c b/drivers/bus/mhi/core/init.c
-> index 1cc2f22..aeb1e3c 100644
-> --- a/drivers/bus/mhi/core/init.c
-> +++ b/drivers/bus/mhi/core/init.c
-> @@ -885,7 +885,8 @@ int mhi_register_controller(struct mhi_controller *mhi_cntrl,
->  	if (!mhi_cntrl || !mhi_cntrl->cntrl_dev || !mhi_cntrl->regs ||
->  	    !mhi_cntrl->runtime_get || !mhi_cntrl->runtime_put ||
->  	    !mhi_cntrl->status_cb || !mhi_cntrl->read_reg ||
-> -	    !mhi_cntrl->write_reg || !mhi_cntrl->nr_irqs || !mhi_cntrl->irq)
-> +	    !mhi_cntrl->write_reg || !mhi_cntrl->nr_irqs ||
-> +	    !mhi_cntrl->irq || !mhi_cntrl->reg_len)
->  		return -EINVAL;
->  
->  	ret = parse_config(mhi_cntrl, config);
-> @@ -1077,6 +1078,13 @@ int mhi_prepare_for_power_up(struct mhi_controller *mhi_cntrl)
->  		dev_err(dev, "Error getting BHI offset\n");
->  		goto error_reg_offset;
->  	}
-> +
-> +	if (bhi_off >= mhi_cntrl->reg_len) {
-> +		dev_err(dev, "BHI offset: 0x%x is out of range: 0x%zx\n",
-> +			bhi_off, mhi_cntrl->reg_len);
-> +		ret = -EINVAL;
-> +		goto error_reg_offset;
-> +	}
->  	mhi_cntrl->bhi = mhi_cntrl->regs + bhi_off;
->  
->  	if (mhi_cntrl->fbc_download || mhi_cntrl->rddm_size) {
-> @@ -1086,6 +1094,14 @@ int mhi_prepare_for_power_up(struct mhi_controller *mhi_cntrl)
->  			dev_err(dev, "Error getting BHIE offset\n");
->  			goto error_reg_offset;
->  		}
-> +
-> +		if (bhie_off >= mhi_cntrl->reg_len) {
-> +			dev_err(dev,
-> +				"BHIe offset: 0x%x is out of range: 0x%zx\n",
-> +				bhie_off, mhi_cntrl->reg_len);
-> +			ret = -EINVAL;
-> +			goto error_reg_offset;
-> +		}
->  		mhi_cntrl->bhie = mhi_cntrl->regs + bhie_off;
->  	}
->  
-> -- 
-> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-> a Linux Foundation Collaborative Project
-> 
 
 -- 
 ath11k mailing list
