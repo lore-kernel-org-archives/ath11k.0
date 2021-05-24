@@ -2,81 +2,91 @@ Return-Path: <SRS0=yLF1=KT=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-17.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 068BEC04FF3
-	for <ath11k@archiver.kernel.org>; Mon, 24 May 2021 17:08:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6475EC04FF3
+	for <ath11k@archiver.kernel.org>; Mon, 24 May 2021 17:25:17 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C09A56140E
-	for <ath11k@archiver.kernel.org>; Mon, 24 May 2021 17:08:52 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C09A56140E
+	by mail.kernel.org (Postfix) with ESMTPS id 0481461260
+	for <ath11k@archiver.kernel.org>; Mon, 24 May 2021 17:25:16 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0481461260
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=iVUImuB1yNmXMpnQYW3U3TP9c4xAt8gx9GrQWB71LDI=; b=THRdgBioKnQbBd
-	cW1R9Dl4IAMu7fFP0+j8M6tP2kP2VvTmOIfXDdJ0HRU7UPblMBZEQgSDEUN+fThctfKjPhO17w/39
-	d/E4JEs6qdmN+3jQ7d6/YeJOV3KMsPPWvj0pQ7fzFBUI3ez3Pcd2M1juFP+pGXEYtqb2xfte9DT2B
-	WhzOOky463MIyn6AfSOecBJQq65BjSzT4Njzzt3BSghwrJVVIFRyT8XcyBtOVM7TBRmM8EImDgz9z
-	X84oyVCEXkuhPes8qtJs+6v8ZDUIbISKgVfst1m4lVCjaRvFylLsSg1BrGLbZGIoc2UeZ/1KFlurf
-	UQh40ohL17a4MqD5Dgww==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=LMNMRrRHoGtTGIzwz1Z5c7hy/I7Q2j0hN4lLQERHa9Y=; b=UtrdUs6SU6PyqK
+	hMQbSFopzTCEIslx1bkia1YAAUHLxlUmbHYM5khyB4J5Z55mxSxXHxyMIgdq6bwGZ3PfFXk/Ss8LY
+	rBqfkMVwPzI07kYWDlQ3y5d2FCO9sa4k+MdYpFdM6GOdwDL2S2sdb5RsjYZ1Eno0M3Fu5QORjG4Ai
+	RKjNXMc6iffguPvSKRTvINMTKiXpytnMZf03d808GtAIwL+r4dlYWuXCTtdjGSBDkHrEDtmxGq40O
+	JUoLRHmeNPa7g7kJZ5CV46jxGH2g63RAQ+DU62l4C6QbNwgJ/zR+eBDiIV8JzYPEdEl6WW3+K++uI
+	2S8qJnvmJjBHsFfHfSSA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94 #2 (Red Hat Linux))
-	id 1llE4P-001DiX-23; Mon, 24 May 2021 17:08:49 +0000
-Received: from m43-7.mailgun.net ([69.72.43.7])
+	id 1llEKI-001GZA-8S; Mon, 24 May 2021 17:25:14 +0000
+Received: from so254-9.mailgun.net ([198.61.254.9])
  by bombadil.infradead.org with esmtps (Exim 4.94 #2 (Red Hat Linux))
- id 1ll1oH-000fuz-Te
- for ath11k@lists.infradead.org; Mon, 24 May 2021 04:03:23 +0000
+ id 1ll3Zg-000hsA-Fy
+ for ath11k@lists.infradead.org; Mon, 24 May 2021 05:56:27 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1621829001; h=Content-Transfer-Encoding: MIME-Version:
- Message-Id: Date: Subject: Cc: To: From: Sender;
- bh=qJyT7ZMqzWN/xyhBNw4dAHIGfNS/+50PSHAczgqPi3c=;
- b=VvWCmBYk1vfKGJg09V0sCigtTc0/11Zfx3rrfKiv56S7rDLe59dubdwWSfuQ6QIEdSHbvF/h
- 5iqadWmNgKQxZjfoZmCr2nppNUVgklHW40fM2OfzO8rSdXlRuBaC6pTeiz1PYVlSEKSBr1AR
- fsu06srDZIUFpEQS/C/rnHqZAq0=
-X-Mailgun-Sending-Ip: 69.72.43.7
+ s=smtp; t=1621835785; h=Content-Type: MIME-Version: Message-ID:
+ In-Reply-To: Date: References: Subject: Cc: To: From: Sender;
+ bh=be4eKo2P5DdMYwKNrNDybOr8ySR6R9EZI7Dx3bWOIS4=;
+ b=dAGWkr7CnqB3XkdzZpyA/pJApxJN4moqY/TOuFc+q8DR+Z0e+bq9ar1eo+rpL/7FFsQQO4+Y
+ 3BWX4RXT4PfmuJCR9EkSVgdTVLG2B+73nBS3AFuj31lNhkcc3XyMPyihLJmHnT9rXtcEBAha
+ ynyFL+OtK883FYISiwdmFzjeoec=
+X-Mailgun-Sending-Ip: 198.61.254.9
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
- 60ab2588063320cd139355e3 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 24 May 2021 04:03:20
+ smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
+ 60ab4004c229adfeff1085d8 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 24 May 2021 05:56:20
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 7F2CFC4338A; Mon, 24 May 2021 04:03:19 +0000 (UTC)
-Received: from bqiang-Celadon-RN.qca.qualcomm.com (unknown [180.166.53.21])
+ id E45F4C43143; Mon, 24 May 2021 05:56:19 +0000 (UTC)
+Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi
+ [88.114.240.156])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested) (Authenticated sender: bqiang)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 4486CC433D3;
- Mon, 24 May 2021 04:03:17 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 4486CC433D3
+ (No client certificate requested) (Authenticated sender: kvalo)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 887CBC433D3;
+ Mon, 24 May 2021 05:56:16 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 887CBC433D3
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- spf=fail smtp.mailfrom=bqiang@codeaurora.org
-From: Baochen Qiang <bqiang@codeaurora.org>
-To: manivannan.sadhasivam@linaro.org
-Cc: hemantk@codeaurora.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, ath11k@lists.infradead.org,
+ spf=fail smtp.mailfrom=kvalo@codeaurora.org
+From: Kalle Valo <kvalo@codeaurora.org>
+To: Greg KH <gregkh@linuxfoundation.org>
+Cc: Bhaumik Bhatt <bbhatt@codeaurora.org>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Loic Poulain <loic.poulain@linaro.org>, ath11k@lists.infradead.org,
+ linux-wireless@vger.kernel.org, regressions@lists.linux.dev,
  stable@vger.kernel.org
-Subject: [PATCH v2] bus: mhi: Wait for M2 state during system resume
-Date: Mon, 24 May 2021 12:03:12 +0800
-Message-Id: <20210524040312.14409-1-bqiang@codeaurora.org>
-X-Mailer: git-send-email 2.25.1
+Subject: Re: [regressions] ath11k: v5.12.3 mhi regression
+References: <87v97dhh2u.fsf@codeaurora.org> <YKYzwBJNTy4Czd1A@kroah.com>
+ <20210520104313.GA128703@thinkpad> <87r1i1h9an.fsf@codeaurora.org>
+ <3e8bac3b02e3549a55b7c9b78b699965@codeaurora.org>
+ <YKajWVPUSTzNVVm8@kroah.com>
+ <608474b9b9feae5bd0616ad16d6d6bbd@codeaurora.org>
+ <YKanuzzvDhztYxm/@kroah.com>
+Date: Mon, 24 May 2021 08:56:14 +0300
+In-Reply-To: <YKanuzzvDhztYxm/@kroah.com> (Greg KH's message of "Thu, 20 May
+ 2021 20:17:31 +0200")
+Message-ID: <87eedwhdz5.fsf@codeaurora.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210523_210322_050179_19CFEE61 
-X-CRM114-Status: GOOD (  13.53  )
+X-CRM114-CacheID: sfid-20210523_225625_530215_4050E2D1 
+X-CRM114-Status: GOOD (  31.41  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,62 +103,88 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-During system resume, MHI host triggers M3->M0 transition and then waits
-for target device to enter M0 state. Once done, the device queues a state
-change event into ctrl event ring and notifies MHI host by raising an
-interrupt, where a tasklet is scheduled to process this event. In most cases,
-the tasklet is served timely and wait operation succeeds.
+Greg KH <gregkh@linuxfoundation.org> writes:
 
-However, there are cases where CPU is busy and cannot serve this tasklet
-for some time. Once delay goes long enough, the device moves itself to M1
-state and also interrupts MHI host after inserting a new state change
-event to ctrl ring. Later CPU finally has time to process the ring, however
-there are two events in it now:
-	1. for M3->M0 event, which is processed first as queued first,
-	   tasklet handler updates device state to M0 and wakes up the task,
-	   i.e., the MHI host.
-	2. for M0->M1 event, which is processed later, tasklet handler
-	   triggers M1->M2 transition and updates device state to M2 directly,
-	   then wakes up the MHI host(if still sleeping on this wait queue).
-Note that although MHI host has been woken up while processing the first
-event, it may still has no chance to run before the second event is processed.
-In other words, MHI host has to keep waiting till timeout cause the M0 state
-has been missed.
+> On Thu, May 20, 2021 at 11:04:05AM -0700, Bhaumik Bhatt wrote:
+>> On 2021-05-20 10:58 AM, Greg KH wrote:
+>> > On Thu, May 20, 2021 at 10:38:12AM -0700, Bhaumik Bhatt wrote:
+>> > > On 2021-05-20 05:36 AM, Kalle Valo wrote:
+>> > > > Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> writes:
+>> > > >
+>> > > > > On Thu, May 20, 2021 at 12:02:40PM +0200, Greg KH wrote:
+>> > > > > > On Thu, May 20, 2021 at 12:47:53PM +0300, Kalle Valo wrote:
+>> > > > > > > Hi,
+>> > > > > > >
+>> > > > > > > I got several reports that this mhi commit broke ath11k in v5.12.3:
+>> > > > > > >
+>> > > > > > > commit 29b9829718c5e9bd68fc1c652f5e0ba9b9a64fed
+>> > > > > > > Author: Bhaumik Bhatt <bbhatt@codeaurora.org>
+>> > > > > > > Date:   Wed Feb 24 15:23:04 2021 -0800
+>> > > > > > >
+>> > > > > > >     bus: mhi: core: Process execution environment changes serially
+>> > > > > > >
+>> > > > > > >     [ Upstream commit ef2126c4e2ea2b92f543fae00a2a0332e4573c48 ]
+>> > > > > > >
+>> > > > > > > Here are the reports:
+>> > > > > > >
+>> > > > > > > https://bugzilla.kernel.org/show_bug.cgi?id=213055
+>> > > > > > >
+>> > > > > > > https://bugzilla.kernel.org/show_bug.cgi?id=212187
+>> > > > > > >
+>> > > > > > > https://bugs.archlinux.org/task/70849?project=1&string=linux
+>> > > > > > >
+>> > > > > > > Interestingly v5.13-rc1 seems to work fine, at least for me, though I
+>> > > > > > > have not tested v5.12.3 myself. Can someone revert this commit in the
+>> > > > > > > stable release so that people get their wifi working again, please?
+>> > > > > >
+>> > > > > > How does the mhi bus code relate to a ath11k driver?  What bus
+>> > > > > > is that
+>> > > > > > on?
+>> > > > > >
+>> > > > >
+>> > > > > MHI is the transport used by the ath11k driver to work with the WLAN
+>> > > > > devices
+>> > > > > over PCIe.
+>> > > > >
+>> > > > > Regarding the bug, I'd suggest to wait for Bhaumik (the author of
+>> > > > > 29b9829718c5)
+>> > > > > to comment on the possible commit which needs backporting from
+>> > > > > mainline.
+>> > > >
+>> > > > Ok, but if a quick fix is not available I think we should just revert
+>> > > > this in the stable releases. I also got a report that v5.11.21 is
+>> > > > broken:
+>> > > >
+>> > > > https://bugzilla.kernel.org/show_bug.cgi?id=213055#c11
+>> > > 
+>> > > Please pick [1] as the dependency to [ Upstream commit
+>> > > ef2126c4e2ea2b92f543fae00a2a0332e4573c48 ].
+>> > 
+>> > what is [1]???
+>> > 
+>> > What commit do I need to backport, a commit id would be nice...
+>> > 
+>> > thanks,
+>> > 
+>> > greg k-h
+>> Sure Greg. Commit id is: 4884362f6977fc05cbec736625665241c0e0732f
+>> 
+>> Title of patch:
+>> bus: mhi: core: Download AMSS image from appropriate function
+>> 
+>> It was supposed to be a link but not sure why it's not seen.
+>
+> Text email doesn't have links :)
+>
+> Anyway, thanks, now queued up.
 
-kernel log here:
-...
-Apr 15 01:45:14 test-NUC8i7HVK kernel: [ 4247.911251] mhi 0000:06:00.0: Entered with PM state: M3, MHI state: M3
-Apr 15 01:45:14 test-NUC8i7HVK kernel: [ 4247.917762] mhi 0000:06:00.0: State change event to state: M0
-Apr 15 01:45:14 test-NUC8i7HVK kernel: [ 4247.917767] mhi 0000:06:00.0: State change event to state: M1
-Apr 15 01:45:14 test-NUC8i7HVK kernel: [ 4338.788231] mhi 0000:06:00.0: Did not enter M0 state, MHI state: M2, PM state: M2
-...
+I'm now getting confirmations that this issue is fixed in v5.12.6.
+Thanks for the quick fix and the quick new release!
 
-Fix this issue by simply adding M2 as a valid state for resume.
-
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
-
-Fixes: 0c6b20a1d720 ("bus: mhi: core: Add support for MHI suspend and resume")
-Signed-off-by: Baochen Qiang <bqiang@codeaurora.org>
-Reviewed-by: Hemant Kumar <hemantk@codeaurora.org>
----
- drivers/bus/mhi/core/pm.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/bus/mhi/core/pm.c b/drivers/bus/mhi/core/pm.c
-index e2e59a341fef..59b009a3ee9b 100644
---- a/drivers/bus/mhi/core/pm.c
-+++ b/drivers/bus/mhi/core/pm.c
-@@ -934,6 +934,7 @@ int mhi_pm_resume(struct mhi_controller *mhi_cntrl)
- 
- 	ret = wait_event_timeout(mhi_cntrl->state_event,
- 				 mhi_cntrl->dev_state == MHI_STATE_M0 ||
-+				 mhi_cntrl->dev_state == MHI_STATE_M2 ||
- 				 MHI_PM_IN_ERROR_STATE(mhi_cntrl->pm_state),
- 				 msecs_to_jiffies(mhi_cntrl->timeout_ms));
- 
 -- 
-2.25.1
+https://patchwork.kernel.org/project/linux-wireless/list/
 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
