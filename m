@@ -1,85 +1,87 @@
-Return-Path: <SRS0=4E4+=LI=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=wUnC=LJ=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.0
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 900EBC2B9F4
-	for <ath11k@archiver.kernel.org>; Mon, 14 Jun 2021 17:50:06 +0000 (UTC)
-Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5229F611EE
-	for <ath11k@archiver.kernel.org>; Mon, 14 Jun 2021 17:50:06 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5229F611EE
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 52EC6C48BDF
+	for <ath11k@archiver.kernel.org>; Tue, 15 Jun 2021 16:17:47 +0000 (UTC)
+X-Greylist: delayed 645 seconds by postgrey-1.34 at mail.kernel.org; Tue, 15 Jun 2021 16:17:47 UTC
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 123836162E
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
+Received: from bombadil.infradead.org (unknown [198.137.202.133])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mail.kernel.org (Postfix) with ESMTPS id 123836162E
+	for <ath11k@archiver.kernel.org>; Tue, 15 Jun 2021 16:17:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:
-	Subject:Cc:To:From:Date:MIME-Version:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=YQioN9deCZqEjDt+Zj5qzq5RxtmB+gOxa98ueQMnrzI=; b=zSES173+D45sy3
-	wSlSNoOippMUhkmJmmq0l1On+mbNDuUTi2K03FYC4kMN/Q32FUqu4r+9TsLs+buSSqopQQ0m/o/dl
-	fmgebWCrKEdf1Dc/KPWYphRm1PSFvoOsHR6bnVjOUL81AGjMDZy3HNkx6rkdC2C/bTQSzcmVfYDRN
-	5+TnxcUrkNy5mLhgCRjas3iLVBqryGOSMUoqxC4gKulcVtj5To9U+0weayP40/Gq0DxD9zEEBat8c
-	8KK/Q/DFZbtWLBtgM8fB7n+fxHjSoZXErlpWlIGldT0RQnS31lF1OB4HcJeTjLvMoFP5iPPau7sc8
-	BEYWLPOIQpl0xsKOITNA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-Id:Cc:To:References:
+	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=P1LGbWsWcADSu+1eH0FzXpgLLxBlJ5beVL5VMz99jL0=; b=FIPDm6KUYThVCc
+	RNHYrKwoo2FFbjd3SoXp0SQprj7D8IJaXRBbtlZhSr1gaAY+KWoPbufxZIBZpINdPfOceRMYiU4Kl
+	sMqLQWr3J/ciFhihQQ7in0NITLVPLF3bG8nNN5Plq8nXx71Uv0QdY6Z8SKzd4DPPJSLtspP48VeHT
+	XjUrm5rO5whx6czD/MSDm+RN187YYR+HNme2Rqy45r83cT0BbiCg5qhkZH3DybRIyAvmUd9oTZ4qQ
+	4b2tRpbzZRMWvLASw7f8zVGYGhqv+SX2gCLDEXzQsmqNd4Hq4ZrKOE1xYrbhEGVPCmpAohq/N6ZC1
+	n9tHmPvJtcpATV85Xt7g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lsqip-00FUyB-Fr; Mon, 14 Jun 2021 17:50:03 +0000
-Received: from so254-9.mailgun.net ([198.61.254.9])
+	id 1ltBku-001I55-I8; Tue, 15 Jun 2021 16:17:36 +0000
+Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lsqik-00FUwl-2B
- for ath11k@lists.infradead.org; Mon, 14 Jun 2021 17:50:02 +0000
+ id 1lt9h9-000R2G-WC
+ for ath11k@lists.infradead.org; Tue, 15 Jun 2021 14:05:37 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1623692999; h=Message-ID: References: In-Reply-To: Reply-To:
- Subject: Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=KEdYtHQyiUtt7ZlGjdInmYZxYY3b99OgSBMH10I1Gwk=;
- b=fIRfhLkhnrYPyeBXE9vEM47GTPU0+UjUj+EcXJCdD/040u+ZVwKwtMXckoQBX8pjqOzJb/dp
- PMMHQHm3UXP5pn9BhEyxahLKB679oOEXvFEXb+OQ0KIKrmjjEQZMWAFfYDPirgTiukmnMsvp
- kdsSWvyfyk/hN4go20HW8h79sdI=
-X-Mailgun-Sending-Ip: 198.61.254.9
+ s=smtp; t=1623765936; h=Date: Message-Id: Cc: To: References:
+ In-Reply-To: From: Subject: Content-Transfer-Encoding: MIME-Version:
+ Content-Type: Sender; bh=9AgMzAz+BYPyVtXVbJ/ZdRQwrE9673LawqRFb/0yWOY=;
+ b=X0+1ZSlncMktoOdymp7HvFyxJCr+28IWGUgzht1U6uyVwwyTOdkHZVsgXfsHvhDdwm43DkOi
+ q99r3oY+BStdR1T4dE4YUXhPw1NsTk4xvadVAkWTdLxWQM/OhfQtlY/uftPnKTtI081F1QzY
+ BTuZ3wu07EtndyYuVy0QI3s9wlI=
+X-Mailgun-Sending-Ip: 69.72.43.7
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
- 60c796c2e27c0cc77f42f545 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 14 Jun 2021 17:49:54
+ smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
+ 60c8b3afed59bf69cc1dfde6 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 15 Jun 2021 14:05:35
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 5A09DC433D3; Mon, 14 Jun 2021 17:49:53 +0000 (UTC)
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
- (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
- (No client certificate requested) (Authenticated sender: bbhatt)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 837CFC4338A;
- Mon, 14 Jun 2021 17:49:51 +0000 (UTC)
+ id 4E674C43144; Tue, 15 Jun 2021 14:05:35 +0000 (UTC)
+Received: from tykki.adurom.net (tynnyri.adurom.net [51.15.11.48])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested) (Authenticated sender: kvalo)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 61454C43460;
+ Tue, 15 Jun 2021 14:05:33 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 61454C43460
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ spf=fail smtp.mailfrom=kvalo@codeaurora.org
 MIME-Version: 1.0
-Date: Mon, 14 Jun 2021 10:49:51 -0700
-From: Bhaumik Bhatt <bbhatt@codeaurora.org>
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- linux-arm-msm@vger.kernel.org, hemantk@codeaurora.org, jhugo@codeaurora.org,
- linux-kernel@vger.kernel.org, loic.poulain@linaro.org,
- linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
-Subject: Re: [PATCH v4 4/6] ath11k: set register access length for MHI driver
-Organization: Qualcomm Innovation Center, Inc.
-Mail-Reply-To: bbhatt@codeaurora.org
-In-Reply-To: <87h7i0juxt.fsf@codeaurora.org>
-References: <1620330705-40192-1-git-send-email-bbhatt@codeaurora.org>
- <1620330705-40192-5-git-send-email-bbhatt@codeaurora.org>
- <20210521135152.GL70095@thinkpad> <87h7i0juxt.fsf@codeaurora.org>
-Message-ID: <37184e28dcc952ba9ad5ed0dc2c1a6da@codeaurora.org>
-X-Sender: bbhatt@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Subject: Re: [PATCH] ath11k: send beacon template after vdev_start/restart
+ during csa
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <20210525133028.2805615-1-sven@narfation.org>
+References: <20210525133028.2805615-1-sven@narfation.org>
+To: Sven Eckelmann <sven@narfation.org>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ Seevalamuthu Mariappan <seevalam@codeaurora.org>,
+ Sven Eckelmann <sven@narfation.org>
+User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-Id: <20210615140535.4E674C43144@smtp.codeaurora.org>
+Date: Tue, 15 Jun 2021 14:05:35 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210614_104959_543308_0DBC55EC 
-X-CRM114-Status: GOOD (  26.64  )
+X-CRM114-CacheID: sfid-20210615_070536_399614_A809EE40 
+X-CRM114-Status: UNSURE (   9.88  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,74 +93,40 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Reply-To: bbhatt@codeaurora.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi Kalle,
+Sven Eckelmann <sven@narfation.org> wrote:
 
-On 2021-06-14 09:02 AM, Kalle Valo wrote:
-> Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> writes:
+> Firmware has added assert if beacon template is received after
+> vdev_down. Firmware expects beacon template after vdev_start
+> and before vdev_up. This change is needed to support MBSSID EMA
+> cases in firmware.
 > 
->> On Thu, May 06, 2021 at 12:51:43PM -0700, Bhaumik Bhatt wrote:
->>> MHI driver requires register space length to add range checks and
->>> prevent memory region accesses outside of that for MMIO space.
->>> Set it before registering the MHI controller.
->>> 
->>> Signed-off-by: Bhaumik Bhatt <bbhatt@codeaurora.org>
->>> Reviewed-by: Hemant Kumar <hemantk@codeaurora.org>
->> 
->> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
->> 
->> Kalle, should we do immutable branch for this patch or I can pick it 
->> up via MHI
->> tree (if there are no other patches expected from ath11k for this 
->> controller)?
+> Hence, Change the sequence in ath11k as expected from firmware.
+> This new change is not causing any issues with older
+> firmware.
 > 
-> I'm not expecting any conflicts with this, and if there are, they 
-> should
-> be easy for Stephen or Linus to fix. So it's easiest to route this via
-> your tree. But I'm not giving my ack yet, see below.
+> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1.r3-00011-QCAHKSWPL_SILICONZ-1
+> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1.r4-00008-QCAHKSWPL_SILICONZ-1
 > 
-> I'm worried that this patchset breaks bisect. Every patch in the
-> patchset should not break existing functionality, what if only patches
-> 1-3 are included in the tree but not patch 4? Wouldn't ath11k be broken
-> then? I didn't review the whole patchset, but I suspect the fix is to
-> include the ath11k change in the actual mhi patch which changes the
-> functionality. So that way we would not have a separate ath11k patch at
-> all.
-> 
-> Also I'm not able to test this patchset at the moment. Can someone else
-> help and do a quick test with QCA6390 to verify these doesn't break
-> ath11k?
+> Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+> Signed-off-by: Seevalamuthu Mariappan <seevalam@codeaurora.org>
+> [sven@narfation.org: added tested-on/fixes information]
+> Signed-off-by: Sven Eckelmann <sven@narfation.org>
+> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-I have requested someone to try and test this patch series with QCA6390.
+Patch applied to ath-next branch of ath.git, thanks.
 
-I or the testers will get back to you with the test results when they 
-are
-available.
+979ebc54cf13 ath11k: send beacon template after vdev_start/restart during csa
 
-As far as your concerns go, you can choose to pick patches 1-3 and that 
-would
-be just fine.
+-- 
+https://patchwork.kernel.org/project/linux-wireless/patch/20210525133028.2805615-1-sven@narfation.org/
 
-Things will break if patchset 4 is _not_ in place with patchset 6 being 
-part of
-the tree.
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
-It would, however, be nice to pick the whole series instead and ensure 
-that
-the functionality MHI introduces for boot-up sanity is in place for any
-controllers such as ath11k.
-
-Thanks,
-Bhaumik
----
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora 
-Forum,
-a Linux Foundation Collaborative Project
 
 -- 
 ath11k mailing list
