@@ -2,88 +2,92 @@ Return-Path: <SRS0=wUnC=LJ=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 02155C48BE5
-	for <ath11k@archiver.kernel.org>; Tue, 15 Jun 2021 18:02:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 60B45C48BE5
+	for <ath11k@archiver.kernel.org>; Tue, 15 Jun 2021 18:52:48 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C1D636109D
-	for <ath11k@archiver.kernel.org>; Tue, 15 Jun 2021 18:02:03 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C1D636109D
+	by mail.kernel.org (Postfix) with ESMTPS id 25D306128C
+	for <ath11k@archiver.kernel.org>; Tue, 15 Jun 2021 18:52:48 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 25D306128C
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-Id:Cc:To:References:
-	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5aVIJGXUtb6WXqAAwzmtGde2JDiS406IHQ0vqrsxG+E=; b=DBReW9+isRuGAq
-	qiJdlOXYklw8asXTl55jGOHkD8J7zb9Rf2TsbSSXEfxbAgmeXtyvVwJDkZ4VONdes+0tiWTtdwhtW
-	UtoOrhEQi3/JiJncRlkZ1x9eRvEPBvIdvsv/GynoYavjon6cO9tDnYD1OEgafiDPv9mJI3k10N2db
-	87HpB26pfZlBSmKqKF7wOOrCWoIAbipfFo5yje1oIYe7AedKe3saQJiy6eopLS2RIVhxTbHjMI1NO
-	Zk6Ac5pfymK/hLHukKihAknwgrcNxN7jaa9Lxs1C5wcE8bWxmB3OaF3C6FeXfG2ZHayodrMz8kjW3
-	iQL4jXlE4kTZPG64uPlQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:Cc:To:From
+	:Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=MZ5btdeg5LcsQZLQRaALqE/XqUffC7mmRrxOKUgdoXI=; b=eNRCfWHQxXmS58AM3vzi2SItiK
+	Rw5MbXDdXg1xS/l1m+AZqMi1QityxtMqU0xZUMyGDORcv/bvQQdHPWqR8HTgPcNt9ZR4JE58UCd/K
+	lyY1ndYUnVqyFA6Q2oA66MJLNKvvpv/nNg2tMrTslAo38nuST1w/nGWkvhFqPYhOr5ILaGAzq3Z04
+	Hw0UfXLNehe/uLenT2dkdoyNpRaJEk3dn+gNu2lzKwhoniU+x8xKtwJTbSuxXAR9eVCcsbXLfBE9G
+	E5rAI9/DIpwYF9ipsovkd1M7GOr6y3nA04jyWuDXuMgmDZAdRuo7uYrs7qUQcLYOIZr1VANkmzw4O
+	K0mcI4QQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ltBaJ-001DXs-SH; Tue, 15 Jun 2021 16:06:39 +0000
-Received: from so254-9.mailgun.net ([198.61.254.9])
+	id 1ltEB3-002Foz-CM; Tue, 15 Jun 2021 18:52:45 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lt9eq-000QQY-Tn
- for ath11k@lists.infradead.org; Tue, 15 Jun 2021 14:03:25 +0000
+ id 1lt9In-000DDm-Fu
+ for ath11k@bombadil.infradead.org; Tue, 15 Jun 2021 13:40:28 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=desiato.20200630; h=Message-ID:References:In-Reply-To:
+ Subject:Cc:To:From:Date:Content-Transfer-Encoding:Content-Type:MIME-Version:
+ Sender:Reply-To:Content-ID:Content-Description;
+ bh=UfurvAI5gmjvhKXSvBE1vk57GCtIEol3U/zXy9tzXcI=; b=hC1DxIpvO0Eu6ENmvfKHp8oecr
+ NxvoibX1vgrDqjlZqfLJHpUNBTSo24hE5w6G5KN+eYLQLrrRMvYJagZxDsKJvMggMSD58rbYpLhAN
+ yNw2I9KlewXnyp+ipp2RAt6p6sbC/6PsZ6P8s/QMAeim0uiFcFahep6FxvGr8brvyIuVOnqYJjwZv
+ kII50mdHGdyVow7KmXrsso50cmHVrVAvGdI/LIApnuPF8rXxHNsUcXWdAkmVaKwYhlUnQtWqKDYYe
+ X2MwG+nv2sGB/xOIpVX69gIXTTViNhN6YT5hi4y4Aw+A3YjCnjs5VsmuFjRv+VTI3WmeqDbKd9HSj
+ ZK0COMDQ==;
+Received: from so254-9.mailgun.net ([198.61.254.9])
+ by desiato.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1lt4nm-007X79-Si
+ for ath11k@lists.infradead.org; Tue, 15 Jun 2021 08:52:15 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1623765803; h=Date: Message-Id: Cc: To: References:
- In-Reply-To: From: Subject: Content-Transfer-Encoding: MIME-Version:
- Content-Type: Sender; bh=uSOjW2PIXQ8WAoXFoxYSHFnVzsjgBvCSgyXBJHrOxfM=;
- b=nC2iRaMpNRTjs3yQsHAyTpP7vKi2H9FPenh39hrK8cevWk2iAwIutkWp0uKpmdeX0qiaPcYf
- VXhdFjnL7SR9823whIPw2OeFduzCMx+EFCVZ63SPor5e/rH8vqZrxJuGoE68QYsZxG7KYS1G
- VEQ9f32xYE8/qVNJIC48nD1zuak=
+ s=smtp; t=1623747131; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=UfurvAI5gmjvhKXSvBE1vk57GCtIEol3U/zXy9tzXcI=;
+ b=cEstZqKEKDfoDnySPUvKX3h4MVftorwTtniLlWrzmMlqk+JB9Tg6DPACMcm2ar6Oes/vobnJ
+ mzszNTgwIbRhjf7MzH6QOBGCHaUb32qrKNEkoJNs+9pnkp4Q6kXwyIF6DRQbXPRTygeyxep3
+ EvMPeRReVC9T99WT0ddDV7gC5ks=
 X-Mailgun-Sending-Ip: 198.61.254.9
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
- 60c8b2e7abfd22a3dcaf45dd (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 15 Jun 2021 14:02:15
+ smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
+ 60c86a32ed59bf69ccdd2355 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 15 Jun 2021 08:52:02
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 70E91C4360C; Tue, 15 Jun 2021 14:02:14 +0000 (UTC)
-Received: from tykki.adurom.net (tynnyri.adurom.net [51.15.11.48])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested) (Authenticated sender: kvalo)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id CA6C8C433D3;
- Tue, 15 Jun 2021 14:02:10 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org CA6C8C433D3
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- spf=fail smtp.mailfrom=kvalo@codeaurora.org
+ id B216BC43143; Tue, 15 Jun 2021 08:52:01 +0000 (UTC)
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+ (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+ (No client certificate requested) (Authenticated sender: wgong)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 17A99C43145;
+ Tue, 15 Jun 2021 08:52:00 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: Fix an error handling path in
- 'ath11k_core_fetch_board_data_api_n()'
-From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <e959eb544f3cb04258507d8e25a6f12eab126bde.1621676864.git.christophe.jaillet@wanadoo.fr>
-References: <e959eb544f3cb04258507d8e25a6f12eab126bde.1621676864.git.christophe.jaillet@wanadoo.fr>
-To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Cc: davem@davemloft.net, kuba@kernel.org, bperumal@codeaurora.org,
- akolli@codeaurora.org, milehu@codeaurora.org, lkp@intel.com,
- ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- kernel-janitors@vger.kernel.org,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-Id: <20210615140214.70E91C4360C@smtp.codeaurora.org>
-Date: Tue, 15 Jun 2021 14:02:14 +0000 (UTC)
+Date: Tue, 15 Jun 2021 16:52:00 +0800
+From: Wen Gong <wgong@codeaurora.org>
+To: ath11k@lists.infradead.org, johannes@sipsolutions.net
+Cc: linux-wireless@vger.kernel.org
+Subject: Re: [PATCH 0/9] cfg80211/mac80211: Add support for 6GHZ STA for
+ various modes : LPI, SP and VLP
+In-Reply-To: <6add42222bd66655fe76ce62676bd105@codeaurora.org>
+References: <20210517201932.8860-1-wgong@codeaurora.org>
+ <6add42222bd66655fe76ce62676bd105@codeaurora.org>
+Message-ID: <06f396f96870a57b9139095c550ee61a@codeaurora.org>
+X-Sender: wgong@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210615_070324_114300_9C993033 
-X-CRM114-Status: UNSURE (   7.21  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20210615_095213_872335_7159C479 
+X-CRM114-Status: GOOD (  10.72  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,30 +99,43 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Christophe JAILLET <christophe.jaillet@wanadoo.fr> wrote:
+On 2021-05-25 18:04, Wen Gong wrote:
+> On 2021-05-18 04:19, Wen Gong wrote:
+>> It introduced some new concept:
+>> power type of AP(STANDARD_POWER_AP, INDOOR_AP, VERY_LOW_POWER_AP)
+>> power type of STATION(DEFAULT_CLIENT, SUBORDINATE_CLIENT)
+>> power spectral density(psd)
+>> 
+>> This patchset for cfg80211/mac80211 is to add the definition of new
+>> concept of 6G and add basic parse of IE(transmit power envelope
+>> element) in beacon and save power spectral density(psd) reported
+>> by lower-driver for 6G channel, the info will be passed to lower
+>> driver when connecting to 6G AP.
+>> 
+>> Wen Gong (9):
+>>   cfg80211: add power type definition for 6G Hz
+>>   mac80211: add definition of regulatory info in 6G Hz operation
+>>     information
+>>   mac80211: add parse regulatory info in 6G Hz operation information
+>>   cfg80211: add definition for 6G power spectral density(psd)
+>>   cfg80211: save power spectral density(psd) of regulatory rule
+>>   mac80211: add definition for transmit power envelope element
+>>   mac80211: add parse transmit power envelope element
+>>   mac80211: add transmit power envelope element and power constraint 
+>> in
+>>     bss_conf
+>>   mac80211: save transmit power envelope element and power constraint
+>> 
+> ...
+> Nobody have comments?
+Hi Johannes Berg,
 
-> All error paths but this one 'goto err' in order to release some
-> resources.
-> Fix this.
-> 
-> Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
-> Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
-
-Patch applied to ath-next branch of ath.git, thanks.
-
-515bda1d1e51 ath11k: Fix an error handling path in ath11k_core_fetch_board_data_api_n()
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/patch/e959eb544f3cb04258507d8e25a6f12eab126bde.1621676864.git.christophe.jaillet@wanadoo.fr/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
+Do you have comments?
 
 -- 
 ath11k mailing list
