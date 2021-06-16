@@ -1,85 +1,88 @@
-Return-Path: <SRS0=wUnC=LJ=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=tth9=LK=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BCCA1C48BDF
-	for <ath11k@archiver.kernel.org>; Tue, 15 Jun 2021 22:45:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 73AECC48BE6
+	for <ath11k@archiver.kernel.org>; Wed, 16 Jun 2021 17:38:11 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8B28A61246
-	for <ath11k@archiver.kernel.org>; Tue, 15 Jun 2021 22:45:13 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8B28A61246
+	by mail.kernel.org (Postfix) with ESMTPS id 26BC8610A1
+	for <ath11k@archiver.kernel.org>; Wed, 16 Jun 2021 17:38:11 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 26BC8610A1
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:
+	Subject:Cc:To:From:Date:MIME-Version:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=4KuoHgd0p0plPS45CRlcOZ7sr8xs27hJoedPm8blNzU=; b=z+npRelrHp8Ps5
-	8F/F2MdOZoAidhkv/wAUP5w56trxQcXsNnag6qnWvu6BPdeyCq8eKQx3HiAPUIgRvMSr3ubaLBh2k
-	QqUWmnAZeFiw54SXYZZQOaJL/XVc1dxnyxmXM0acrt/032ptc6EJ2JHp+eA7BcC4jcMDHvl+u7Qcy
-	haVUMckg784X+7GQrfluQJ8NQ1/pC7gi8w6rEMHqx4SZKly5yyZ/clqXMURK+XNGc0kB963MlvLuF
-	6Tk5nn7vPunvxamjh+vzICTzWPh8htZxQ8/CCCLVKc0PTbkweX5oDsY48QgvFXFjczi8GmNAgug59
-	kqgDmJDUh0mdC886LfRA==;
+	List-Owner; bh=UW8rFLSrDi2k3Ac4nDdL1O8ZIashhIl0hwiFbB1fy+s=; b=zyWqH54xIsGLqU
+	j1OWZARz2pE2J0nVMNiyQZkjhq7XWJIazzPpVVFlzRHzpZumsd9DIjlvs3/fH6lwj6dfMCDbzRA5U
+	UstLADmxYyxL6aOusykbSb1paf5VfcrDS6DWKbLVIr6Taj7K01L1M+XpnClGODMiwDlA1rUE0NJqg
+	GIXol0PantGwj71GfiGaY+SEJLxjvnJiuOnXfizS25sXo1U30sj2aUk8s4+zDzWnP+V16CJJ7m78e
+	gLtTCaLPrGrLWvKaE5IWe46PoyWgaZuFYzp8M2O8ztv7DUJuIUxOvLkJLIVNaF5FZTQ1CLEZM0HlU
+	i2c48hS5DL4V0kpQX6RQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ltHnw-003fdF-Kh; Tue, 15 Jun 2021 22:45:08 +0000
+	id 1ltZUO-007LiN-Rp; Wed, 16 Jun 2021 17:38:08 +0000
 Received: from so254-9.mailgun.net ([198.61.254.9])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1ltGOk-0033xY-Fa
- for ath11k@lists.infradead.org; Tue, 15 Jun 2021 21:15:06 +0000
+ id 1ltZUM-007LhL-2Z
+ for ath11k@lists.infradead.org; Wed, 16 Jun 2021 17:38:07 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1623791704; h=Content-Transfer-Encoding: MIME-Version:
- References: In-Reply-To: Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=PweW9X1A3aOlLVXUb/xcnljlu5UdX6c93+2YDKIb3tU=;
- b=UgfESDGij2SuXgtkTEK4JpHrbpZ4XJf7hkVOkgSIq++trThfgwU86SX+O36Uc4OVjlOGn6Kk
- EdaxXOd8i+D/e4QLpSkwazT8eNoJT2gn4qA7MvoqxODFKVNV/tnFuMX9ie5JfkBGa9tvC92G
- Xg6bE+weYK+jyAoVPtV+WrVIGMk=
+ s=smtp; t=1623865085; h=Message-ID: References: In-Reply-To: Reply-To:
+ Subject: Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=TABrvwCzw7wuTAokLpE+jbKeoDKxrwFh4qxRG/wt1+U=;
+ b=pXE5OeqEA/MKNjnfkSVjjzhG4YMvx4bB7OPLlZv8lp6bvilx43K6VCJaHweh/xqS+0R2ACBe
+ mo0AW3xIGzQGqXtQ7kwAJJQ4RrBuxa/my3ds/e7zsUHGNHqQUfrpgDApOhoPZjWLgQqQG9Kt
+ M74hfCZqo75AV5iXzn+LEMdOR3c=
 X-Mailgun-Sending-Ip: 198.61.254.9
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
- 60c91851ed59bf69cc3725c5 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 15 Jun 2021 21:14:57
+ smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
+ 60ca36fbabfd22a3dca18c64 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 16 Jun 2021 17:38:03
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id DA644C43143; Tue, 15 Jun 2021 21:14:57 +0000 (UTC)
-Received: from jouni.codeaurora.org (85-76-78-13-nat.elisa-mobile.fi
- [85.76.78.13])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested) (Authenticated sender: jouni)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 2313AC43144;
- Tue, 15 Jun 2021 21:14:54 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 2313AC43144
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- spf=fail smtp.mailfrom=jouni@codeaurora.org
-From: Jouni Malinen <jouni@codeaurora.org>
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- P Praneesh <ppranees@codeaurora.org>, Sriram R <srirrama@codeaurora.org>,
- Jouni Malinen <jouni@codeaurora.org>
-Subject: [PATCH 11/12] ath11k: add branch predictors in dp_tx path
-Date: Wed, 16 Jun 2021 00:14:06 +0300
-Message-Id: <20210615211407.92233-12-jouni@codeaurora.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210615211407.92233-1-jouni@codeaurora.org>
-References: <20210615211407.92233-1-jouni@codeaurora.org>
+ id 0F988C4338A; Wed, 16 Jun 2021 17:38:03 +0000 (UTC)
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+ (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+ (No client certificate requested) (Authenticated sender: bbhatt)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 55446C433F1;
+ Wed, 16 Jun 2021 17:38:01 +0000 (UTC)
 MIME-Version: 1.0
+Date: Wed, 16 Jun 2021 10:38:01 -0700
+From: Bhaumik Bhatt <bbhatt@codeaurora.org>
+To: Kalle Valo <kvalo@codeaurora.org>, Manivannan Sadhasivam
+ <manivannan.sadhasivam@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, hemantk@codeaurora.org,
+ jhugo@codeaurora.org, linux-kernel@vger.kernel.org, loic.poulain@linaro.org,
+ linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+ bbhatt=codeaurora.org@codeaurora.org, lilic@codeaurora.org,
+ kangxu@codeaurora.org
+Subject: Re: [PATCH v4 4/6] ath11k: set register access length for MHI driver
+Organization: Qualcomm Innovation Center, Inc.
+Mail-Reply-To: bbhatt@codeaurora.org
+In-Reply-To: <37184e28dcc952ba9ad5ed0dc2c1a6da@codeaurora.org>
+References: <1620330705-40192-1-git-send-email-bbhatt@codeaurora.org>
+ <1620330705-40192-5-git-send-email-bbhatt@codeaurora.org>
+ <20210521135152.GL70095@thinkpad> <87h7i0juxt.fsf@codeaurora.org>
+ <37184e28dcc952ba9ad5ed0dc2c1a6da@codeaurora.org>
+Message-ID: <6ed9fe90f40e5f8151d3a028abf0acd1@codeaurora.org>
+X-Sender: bbhatt@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210615_141504_365338_A52FAE82 
-X-CRM114-Status: GOOD (  18.42  )
+X-CRM114-CacheID: sfid-20210616_103806_224129_8FFA1760 
+X-CRM114-Status: GOOD (  31.11  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,198 +94,94 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: bbhatt@codeaurora.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: P Praneesh <ppranees@codeaurora.org>
+Hi Kalle/Mani,
 
-Add branch prediciton in dp_tx code path in tx and tx completion
-handler.
+On 2021-06-14 10:49 AM, Bhaumik Bhatt wrote:
+> Hi Kalle,
+> 
+> On 2021-06-14 09:02 AM, Kalle Valo wrote:
+>> Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> writes:
+>> 
+>>> On Thu, May 06, 2021 at 12:51:43PM -0700, Bhaumik Bhatt wrote:
+>>>> MHI driver requires register space length to add range checks and
+>>>> prevent memory region accesses outside of that for MMIO space.
+>>>> Set it before registering the MHI controller.
+>>>> 
+>>>> Signed-off-by: Bhaumik Bhatt <bbhatt@codeaurora.org>
+>>>> Reviewed-by: Hemant Kumar <hemantk@codeaurora.org>
+>>> 
+>>> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+>>> 
+>>> Kalle, should we do immutable branch for this patch or I can pick it 
+>>> up via MHI
+>>> tree (if there are no other patches expected from ath11k for this 
+>>> controller)?
+>> 
+>> I'm not expecting any conflicts with this, and if there are, they 
+>> should
+>> be easy for Stephen or Linus to fix. So it's easiest to route this via
+>> your tree. But I'm not giving my ack yet, see below.
+>> 
+>> I'm worried that this patchset breaks bisect. Every patch in the
+>> patchset should not break existing functionality, what if only patches
+>> 1-3 are included in the tree but not patch 4? Wouldn't ath11k be 
+>> broken
+>> then? I didn't review the whole patchset, but I suspect the fix is to
+>> include the ath11k change in the actual mhi patch which changes the
+>> functionality. So that way we would not have a separate ath11k patch 
+>> at
+>> all.
+>> 
+>> Also I'm not able to test this patchset at the moment. Can someone 
+>> else
+>> help and do a quick test with QCA6390 to verify these doesn't break
+>> ath11k?
+> 
+> I have requested someone to try and test this patch series with 
+> QCA6390.
+> 
+> I or the testers will get back to you with the test results when they 
+> are
+> available.
+> 
+> As far as your concerns go, you can choose to pick patches 1-3 and that 
+> would
+> be just fine.
+> 
+> Things will break if patchset 4 is _not_ in place with patchset 6 being 
+> part of
+> the tree.
+> 
+> It would, however, be nice to pick the whole series instead and ensure 
+> that
+> the functionality MHI introduces for boot-up sanity is in place for any
+> controllers such as ath11k.
+> 
+> Thanks,
+> Bhaumik
+> ---
+> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora 
+> Forum,
+> a Linux Foundation Collaborative Project
 
-Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-01734-QCAHKSWPL_SILICONZ-1 v2
+Just got confirmation that the whole patch series was tested for 
+functional sanity on
+Dell E7590 + QCA6390 with Ubuntu18.04 and patch 4/6 is also good to go.
 
-Co-developed-by: Sriram R <srirrama@codeaurora.org>
-Signed-off-by: Sriram R <srirrama@codeaurora.org>
-Signed-off-by: P Praneesh <ppranees@codeaurora.org>
-Signed-off-by: Jouni Malinen <jouni@codeaurora.org>
+Can you please ACK and pick up this series?
+
+Thanks,
+Bhaumik
 ---
- drivers/net/wireless/ath/ath11k/dp_tx.c | 45 +++++++++++++------------
- drivers/net/wireless/ath/ath11k/mac.c   |  2 +-
- 2 files changed, 24 insertions(+), 23 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
-index 8bba5234f81f..ab9ccf0eb274 100644
---- a/drivers/net/wireless/ath/ath11k/dp_tx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
-@@ -95,11 +95,11 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
- 	u8 ring_selector = 0, ring_map = 0;
- 	bool tcl_ring_retry;
- 
--	if (test_bit(ATH11K_FLAG_CRASH_FLUSH, &ar->ab->dev_flags))
-+	if (unlikely(test_bit(ATH11K_FLAG_CRASH_FLUSH, &ar->ab->dev_flags)))
- 		return -ESHUTDOWN;
- 
--	if (!(info->flags & IEEE80211_TX_CTL_HW_80211_ENCAP) &&
--	    !ieee80211_is_data(hdr->frame_control))
-+	if (unlikely(!(info->flags & IEEE80211_TX_CTL_HW_80211_ENCAP) &&
-+		     !ieee80211_is_data(hdr->frame_control)))
- 		return -ENOTSUPP;
- 
- 	pool_id = skb_get_queue_mapping(skb) & (ATH11K_HW_MAX_QUEUES - 1);
-@@ -130,7 +130,7 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
- 			DP_TX_IDR_SIZE - 1, GFP_ATOMIC);
- 	spin_unlock_bh(&tx_ring->tx_idr_lock);
- 
--	if (ret < 0) {
-+	if (unlikely(ret < 0)) {
- 		if (ring_map == (BIT(DP_TCL_NUM_RING_MAX) - 1)) {
- 			atomic_inc(&ab->soc_stats.tx_err.misc_fail);
- 			return -ENOSPC;
-@@ -147,7 +147,7 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
- 	ti.encap_type = ath11k_dp_tx_get_encap_type(arvif, skb);
- 	ti.meta_data_flags = arvif->tcl_metadata;
- 
--	if (ti.encap_type == HAL_TCL_ENCAP_TYPE_RAW) {
-+	if (unlikely(ti.encap_type == HAL_TCL_ENCAP_TYPE_RAW)) {
- 		if (skb_cb->flags & ATH11K_SKB_CIPHER_SET) {
- 			ti.encrypt_type =
- 				ath11k_dp_tx_get_encrypt_type(skb_cb->cipher);
-@@ -168,8 +168,8 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
- 	ti.bss_ast_idx = arvif->ast_idx;
- 	ti.dscp_tid_tbl_idx = 0;
- 
--	if (skb->ip_summed == CHECKSUM_PARTIAL &&
--	    ti.encap_type != HAL_TCL_ENCAP_TYPE_RAW) {
-+	if (likely(skb->ip_summed == CHECKSUM_PARTIAL &&
-+		   ti.encap_type != HAL_TCL_ENCAP_TYPE_RAW)) {
- 		ti.flags0 |= FIELD_PREP(HAL_TCL_DATA_CMD_INFO1_IP4_CKSUM_EN, 1) |
- 			     FIELD_PREP(HAL_TCL_DATA_CMD_INFO1_UDP4_CKSUM_EN, 1) |
- 			     FIELD_PREP(HAL_TCL_DATA_CMD_INFO1_UDP6_CKSUM_EN, 1) |
-@@ -206,7 +206,7 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
- 	}
- 
- 	ti.paddr = dma_map_single(ab->dev, skb->data, skb->len, DMA_TO_DEVICE);
--	if (dma_mapping_error(ab->dev, ti.paddr)) {
-+	if (unlikely(dma_mapping_error(ab->dev, ti.paddr))) {
- 		atomic_inc(&ab->soc_stats.tx_err.misc_fail);
- 		ath11k_warn(ab, "failed to DMA map data Tx buffer\n");
- 		ret = -ENOMEM;
-@@ -226,7 +226,7 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
- 	ath11k_hal_srng_access_begin(ab, tcl_ring);
- 
- 	hal_tcl_desc = (void *)ath11k_hal_srng_src_get_next_entry(ab, tcl_ring);
--	if (!hal_tcl_desc) {
-+	if (unlikely(!hal_tcl_desc)) {
- 		/* NOTE: It is highly unlikely we'll be running out of tcl_ring
- 		 * desc because the desc is directly enqueued onto hw queue.
- 		 */
-@@ -240,8 +240,8 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
- 		 * checking this ring earlier for each pkt tx.
- 		 * Restart ring selection if some rings are not checked yet.
- 		 */
--		if (ring_map != (BIT(DP_TCL_NUM_RING_MAX) - 1) &&
--		    !ar->ab->hw_params.tcl_0_only) {
-+		if (unlikely(ring_map != (BIT(DP_TCL_NUM_RING_MAX) - 1) &&
-+			     !ar->ab->hw_params.tcl_0_only)) {
- 			tcl_ring_retry = true;
- 			ring_selector++;
- 		}
-@@ -322,7 +322,7 @@ ath11k_dp_tx_htt_tx_complete_buf(struct ath11k_base *ab,
- 
- 	spin_lock_bh(&tx_ring->tx_idr_lock);
- 	msdu = idr_find(&tx_ring->txbuf_idr, ts->msdu_id);
--	if (!msdu) {
-+	if (unlikely(!msdu)) {
- 		ath11k_warn(ab, "htt tx completion for unknown msdu_id %d\n",
- 			    ts->msdu_id);
- 		spin_unlock_bh(&tx_ring->tx_idr_lock);
-@@ -432,12 +432,12 @@ static void ath11k_dp_tx_complete_msdu(struct ath11k *ar,
- 
- 	rcu_read_lock();
- 
--	if (!rcu_dereference(ab->pdevs_active[ar->pdev_idx])) {
-+	if (unlikely(!rcu_dereference(ab->pdevs_active[ar->pdev_idx]))) {
- 		dev_kfree_skb_any(msdu);
- 		goto exit;
- 	}
- 
--	if (!skb_cb->vif) {
-+	if (unlikely(!skb_cb->vif)) {
- 		dev_kfree_skb_any(msdu);
- 		goto exit;
- 	}
-@@ -460,7 +460,7 @@ static void ath11k_dp_tx_complete_msdu(struct ath11k *ar,
- 	    (info->flags & IEEE80211_TX_CTL_NO_ACK))
- 		info->flags |= IEEE80211_TX_STAT_NOACK_TRANSMITTED;
- 
--	if (ath11k_debugfs_is_extd_tx_stats_enabled(ar)) {
-+	if (unlikely(ath11k_debugfs_is_extd_tx_stats_enabled(ar))) {
- 		if (ts->flags & HAL_TX_STATUS_FLAGS_FIRST_MSDU) {
- 			if (ar->last_ppdu_id == 0) {
- 				ar->last_ppdu_id = ts->ppdu_id;
-@@ -500,11 +500,11 @@ static inline void ath11k_dp_tx_status_parse(struct ath11k_base *ab,
- {
- 	ts->buf_rel_source =
- 		FIELD_GET(HAL_WBM_RELEASE_INFO0_REL_SRC_MODULE, desc->info0);
--	if (ts->buf_rel_source != HAL_WBM_REL_SRC_MODULE_FW &&
--	    ts->buf_rel_source != HAL_WBM_REL_SRC_MODULE_TQM)
-+	if (unlikely(ts->buf_rel_source != HAL_WBM_REL_SRC_MODULE_FW &&
-+		     ts->buf_rel_source != HAL_WBM_REL_SRC_MODULE_TQM))
- 		return;
- 
--	if (ts->buf_rel_source == HAL_WBM_REL_SRC_MODULE_FW)
-+	if (unlikely(ts->buf_rel_source == HAL_WBM_REL_SRC_MODULE_FW))
- 		return;
- 
- 	ts->status = FIELD_GET(HAL_WBM_RELEASE_INFO0_TQM_RELEASE_REASON,
-@@ -551,8 +551,9 @@ void ath11k_dp_tx_completion_handler(struct ath11k_base *ab, int ring_id)
- 			ATH11K_TX_COMPL_NEXT(tx_ring->tx_status_head);
- 	}
- 
--	if ((ath11k_hal_srng_dst_peek(ab, status_ring) != NULL) &&
--	    (ATH11K_TX_COMPL_NEXT(tx_ring->tx_status_head) == tx_ring->tx_status_tail)) {
-+	if (unlikely((ath11k_hal_srng_dst_peek(ab, status_ring) != NULL) &&
-+		     (ATH11K_TX_COMPL_NEXT(tx_ring->tx_status_head) ==
-+		      tx_ring->tx_status_tail))) {
- 		/* TODO: Process pending tx_status messages when kfifo_is_full() */
- 		ath11k_warn(ab, "Unable to process some of the tx_status ring desc because status_fifo is full\n");
- 	}
-@@ -575,7 +576,7 @@ void ath11k_dp_tx_completion_handler(struct ath11k_base *ab, int ring_id)
- 		mac_id = FIELD_GET(DP_TX_DESC_ID_MAC_ID, desc_id);
- 		msdu_id = FIELD_GET(DP_TX_DESC_ID_MSDU_ID, desc_id);
- 
--		if (ts.buf_rel_source == HAL_WBM_REL_SRC_MODULE_FW) {
-+		if (unlikely(ts.buf_rel_source == HAL_WBM_REL_SRC_MODULE_FW)) {
- 			ath11k_dp_tx_process_htt_tx_complete(ab,
- 							     (void *)tx_status,
- 							     mac_id, msdu_id,
-@@ -585,7 +586,7 @@ void ath11k_dp_tx_completion_handler(struct ath11k_base *ab, int ring_id)
- 
- 		spin_lock_bh(&tx_ring->tx_idr_lock);
- 		msdu = idr_find(&tx_ring->txbuf_idr, msdu_id);
--		if (!msdu) {
-+		if (unlikely(!msdu)) {
- 			ath11k_warn(ab, "tx completion for unknown msdu_id %d\n",
- 				    msdu_id);
- 			spin_unlock_bh(&tx_ring->tx_idr_lock);
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index eb52332dbe3f..32e90b13fac0 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -4333,7 +4333,7 @@ static void ath11k_mac_op_tx(struct ieee80211_hw *hw,
- 	}
- 
- 	ret = ath11k_dp_tx(ar, arvif, skb);
--	if (ret) {
-+	if (unlikely(ret)) {
- 		ath11k_warn(ar->ab, "failed to transmit frame %d\n", ret);
- 		ieee80211_free_txskb(ar->hw, skb);
- 	}
--- 
-2.25.1
-
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora 
+Forum,
+a Linux Foundation Collaborative Project
 
 -- 
 ath11k mailing list
