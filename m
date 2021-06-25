@@ -7,14 +7,14 @@ X-Spam-Status: No, score=-17.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
 	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 53D61C2B9F4
-	for <ath11k@archiver.kernel.org>; Fri, 25 Jun 2021 12:34:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4717BC2B9F4
+	for <ath11k@archiver.kernel.org>; Fri, 25 Jun 2021 12:34:44 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1B9B361883
-	for <ath11k@archiver.kernel.org>; Fri, 25 Jun 2021 12:34:24 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1B9B361883
+	by mail.kernel.org (Postfix) with ESMTPS id 0A5BB6191A
+	for <ath11k@archiver.kernel.org>; Fri, 25 Jun 2021 12:34:44 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0A5BB6191A
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,70 +23,69 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=1AcbqkqF9mZlohZe+gN5RtY0zH96K76wTSBlpEKMOaU=; b=lypW50dB5HdMOC
-	i0lMX2QVtAGPogUDJJlQlKfe+Em1kKh9VOIjsbuFMEgaAJcGOVG9KAv1oay0kNin2cgy7LvY+N8v/
-	ZDxqCiANG3+DpvzIxWEAFck0r9k4u+5O6bhCgsZ/Vd4Nmql/eYqkyFpAtGzBaUBE0qebMK0ILXkz1
-	cD0/KKwoBHFzKt0qf4GWy3m999lp/vlewwStUmteLYcXwyfgt5rtLj5+d+gOMNWKODDYsTKkVC5lh
-	yUKtkFrxo2LwsVJDue2MoTU6HM9ypasJijCwEY9fNrmYihSGA2q5y6f9Qtzo1dYsNXjeLlnreGBQz
-	Em9JDewjMQEiTUwfjO7Q==;
+	List-Owner; bh=Xsn/v+lfeslxDr/gGJByfVVtPqENQefFXce0l9FI3r4=; b=ueiCbaggERwuVu
+	rAHs7gERFClv0ZwzZc2x50wvX4qP98f6yYF7KeAj5OGrW2Lh4Tt3v7mCIZy2q0ZuSYl5LME3+2u47
+	h5CPxfI/lZD5YzNjZ+D2L2GVURBf3zYX2hVNxfeMOxCb+LbyPQQ/npl6s+Uw637Ib+gIOv9iGNnm3
+	oyjxjHQRPdrldzhsq8NWLfZ95/q/gpyk/u01uRiBv6eZb8sG5EOO2oR8ILdqJZGD6bDQMzksdxtP8
+	08JprHAszu9Z86jicJs+zCHylgtMeqZyZ8bzqNFfaVWs20NelvwXstqXCMnul8LdBaUIKirlY9Xru
+	I8DIdqjVTT21czWaBhcw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lwl2L-001T3d-VI; Fri, 25 Jun 2021 12:34:22 +0000
-Received: from mail-pg1-x52a.google.com ([2607:f8b0:4864:20::52a])
+	id 1lwl2f-001TCE-QH; Fri, 25 Jun 2021 12:34:41 +0000
+Received: from mail-pg1-x535.google.com ([2607:f8b0:4864:20::535])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lwl2H-001T1I-5I
- for ath11k@lists.infradead.org; Fri, 25 Jun 2021 12:34:21 +0000
-Received: by mail-pg1-x52a.google.com with SMTP id u14so1001174pga.11
- for <ath11k@lists.infradead.org>; Fri, 25 Jun 2021 05:34:16 -0700 (PDT)
+ id 1lwl2M-001T3s-Qo
+ for ath11k@lists.infradead.org; Fri, 25 Jun 2021 12:34:24 +0000
+Received: by mail-pg1-x535.google.com with SMTP id e20so7502889pgg.0
+ for <ath11k@lists.infradead.org>; Fri, 25 Jun 2021 05:34:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=hj7+vE89NLcN6VtiJk8liEDNDGGaHkJP2vUV3wC5YME=;
- b=hiT+ldacaYWUgBD9Aop2Z0rZq+1KBV2BrcyDluGMooPqHzj4xQEhy91jM41LMO40YL
- 5h23h+xhkWLqhSCIjniylNnTByCSIIPo5i/GcOyzSV8ku/xM2Pc94fZYy6mdfrPjGPuu
- bGQvSGWYNuoWN7hHfAIfRaMlffyRK9jqlfBvhAdvu01b2YRp2uZih7PLh3osBYmcy1d8
- zasIV9yTEc8Z9sG+QBLJgSo4j+yTKe8yxI6RKuxh2dsW9oFIEMKefv5mlSoT7O015vle
- G5tzqe3JNIfmCekQnh8ddk4wW4MckttCW4MPTtnTXT9OLHXtIjm3HXDVBONstSdB87Jt
- RcXA==
+ bh=EZYNDb4xzGmZSM7Z9Ig9ZvRwbBZW3WBf8mohzvqiLTM=;
+ b=QQoylyQ6iGE2SvHaMCWeJfomUftn2k0LasW46c6SKrq/J9S7wGJJlSB8rHITNMMEmF
+ snljNt7VBX/5Il4gh2S5BAWvEs5U1LR+SLyGbVUjmAMQKuo9o5cPtjmOVdQKxfAD9xYf
+ 8oIOdHdMbc7tSsANE9eDoruleL+l17eRTuMnm0Vcgp2Msq6nZ52gpSE5Aqsd14sNnOcT
+ wCbO8o/Q4Qlge7N0nmqpHXUB5pWLv4yXaGf7lL8jZRR8+yNFoS5+4t6aNzP46F+HZDso
+ GAxl7L+fzMLJu3xhEtguQDB/jcwhDG5SuwfSV1s2T2tKo1USAnDThgGevKy/ljU6nhIC
+ +Luw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=hj7+vE89NLcN6VtiJk8liEDNDGGaHkJP2vUV3wC5YME=;
- b=n14UtFAs/yYv0BzI42t6hrt/vP5DecK7YWYVE7gSH7X5ifiZNVEWagoUzvI1cwzsPc
- JZeYqx/TBoG8fxhFGt1zKmVU1IwSqvF3mFtl3sITBP9BZWWIxLWC5mu8C8H8aN2ZbwqG
- y6vvOOXukIJAxg/uCU0BLXQM7B+evgZ+vJWUUhwCyuzYQT4Y2RR1xJN4etuKMZ+q4dhG
- UD707tMAM0Lt7wkn4dDbd4pFOY+JMv0v8+PvzcdfP5y3cXfa52zt4DRHhU3VAu349hdB
- ww8dthw6YdFhylWXzs4f3DqC2o3iLYvPNJmc6tAuFr+Bkdi8ohWE5UDDa7A9ZX1tBlJi
- Ak5A==
-X-Gm-Message-State: AOAM532MjgECKVpt4zHbYRepvV99Vmm6HFfsnOj00eAATyFj9/S7Thsi
- uDL2tcomrEc2dp0OojIFVQzE
-X-Google-Smtp-Source: ABdhPJyjqOlTULFpol+Xs4Wosx3XebgfiArnJfF9WCCaC7Y7zYefUtzJ64pH+8YHnN4ZVtnhu5Xhyw==
-X-Received: by 2002:a05:6a00:810:b029:301:f08c:6b0d with SMTP id
- m16-20020a056a000810b0290301f08c6b0dmr10387776pfk.8.1624624456392; 
- Fri, 25 Jun 2021 05:34:16 -0700 (PDT)
+ bh=EZYNDb4xzGmZSM7Z9Ig9ZvRwbBZW3WBf8mohzvqiLTM=;
+ b=h7kExMcfw8fQIpldaGRrxAaYbW28tI9qauUN4ftoLFK7GOaOojuoBs7YGGRj7P9rgt
+ w27B81HEvlw0NG5i8dZqKpYxAwqOsg/pdp5E5d4SpEIzDXbUUre8UVCLF4d1d/FtOxgh
+ MnRqRPm9qrm7L0+USugcfhxJKoyMxf0lyzBj76xh9J3KGjpsXLFkNUyv+LyXW/EC7LCU
+ Dxky2ordB4dQMvbuX9djo4KHzJVj6ilBn3fKECnC4UcH04QVNA4fMgdDYIIqrFtaZ4v0
+ c4M9v/k235Z1fl35k0vl4uwve3Efe9KZ4MSv+qF1GZZl7538UKaicF1StBBpU5B27WK2
+ 6axA==
+X-Gm-Message-State: AOAM5314XiNteMoX//YkQ6ZKaYtXrP7oC89ij646Pj3uj4is1S8nxO6/
+ GJlSoAxINHVdvyMES1AAIMjT
+X-Google-Smtp-Source: ABdhPJwikdDmUjUTMGNdR7IoTEhspPdwbMZ81uSgM+SBleVnKdbOnrOrC6KQq+kD+x7PZfyLqcG8XQ==
+X-Received: by 2002:a65:4ccb:: with SMTP id n11mr2064153pgt.231.1624624462039; 
+ Fri, 25 Jun 2021 05:34:22 -0700 (PDT)
 Received: from localhost.localdomain ([2409:4072:600b:2a0:ed5d:53e7:c64e:1bac])
- by smtp.gmail.com with ESMTPSA id y7sm6077780pfy.153.2021.06.25.05.34.11
+ by smtp.gmail.com with ESMTPSA id y7sm6077780pfy.153.2021.06.25.05.34.16
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 25 Jun 2021 05:34:15 -0700 (PDT)
+ Fri, 25 Jun 2021 05:34:21 -0700 (PDT)
 From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To: gregkh@linuxfoundation.org
 Cc: hemantk@codeaurora.org, bbhatt@codeaurora.org,
  linux-arm-msm@vger.kernel.org, jhugo@codeaurora.org,
  linux-kernel@vger.kernel.org, loic.poulain@linaro.org,
- kvalo@codeaurora.org, ath11k@lists.infradead.org,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Jakub Kicinski <kuba@kernel.org>
-Subject: [PATCH 01/10] bus: mhi: Add inbound buffers allocation flag
-Date: Fri, 25 Jun 2021 18:03:46 +0530
-Message-Id: <20210625123355.11578-2-manivannan.sadhasivam@linaro.org>
+ kvalo@codeaurora.org, ath11k@lists.infradead.org, stable@vger.kernel.org,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH 02/10] bus: mhi: pci_generic: Apply no-op for wake using
+ sideband wake boolean
+Date: Fri, 25 Jun 2021 18:03:47 +0530
+Message-Id: <20210625123355.11578-3-manivannan.sadhasivam@linaro.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210625123355.11578-1-manivannan.sadhasivam@linaro.org>
 References: <20210625123355.11578-1-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210625_053417_251398_CAFE237C 
-X-CRM114-Status: GOOD (  18.33  )
+X-CRM114-CacheID: sfid-20210625_053422_930417_310FB98F 
+X-CRM114-Status: GOOD (  13.79  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,147 +102,112 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Loic Poulain <loic.poulain@linaro.org>
+From: Bhaumik Bhatt <bbhatt@codeaurora.org>
 
-Currently, the MHI controller driver defines which channels should
-have their inbound buffers allocated and queued. But ideally, this is
-something that should be decided by the MHI device driver instead,
-which actually deals with that buffers.
+Devices such as SDX24 do not have the provision for inband wake
+doorbell in the form of channel 127 and instead have a sideband
+GPIO for it. Newer devices such as SDX55 or SDX65 support inband
+wake method by default. Ensure the functionality is used based on
+this such that device wake stays held when a client driver uses
+mhi_device_get() API or the equivalent debugfs entry.
 
-Add a flag parameter to mhi_prepare_for_transfer allowing to specify
-if buffers have to be allocated and queued by the MHI stack.
-
-Keep auto_queue flag for now, but should be removed at some point.
-
-Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
-Tested-by: Bhaumik Bhatt <bbhatt@codeaurora.org>
-Reviewed-by: Bhaumik Bhatt <bbhatt@codeaurora.org>
-Reviewed-by: Hemant Kumar <hemantk@codeaurora.org>
+Cc: stable@vger.kernel.org
+Fixes: e3e5e6508fc1 ("bus: mhi: pci_generic: No-Op for device_wake operations")
+Signed-off-by: Bhaumik Bhatt <bbhatt@codeaurora.org>
 Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Acked-by: Jakub Kicinski <kuba@kernel.org>
-Link: https://lore.kernel.org/r/1624566520-20406-1-git-send-email-loic.poulain@linaro.org
+Link: https://lore.kernel.org/r/1624560809-30610-1-git-send-email-bbhatt@codeaurora.org
 Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 ---
- drivers/bus/mhi/core/internal.h  | 2 +-
- drivers/bus/mhi/core/main.c      | 9 ++++++---
- drivers/net/mhi/net.c            | 2 +-
- drivers/net/wwan/mhi_wwan_ctrl.c | 2 +-
- include/linux/mhi.h              | 7 ++++++-
- net/qrtr/mhi.c                   | 2 +-
- 6 files changed, 16 insertions(+), 8 deletions(-)
+ drivers/bus/mhi/pci_generic.c | 27 +++++++++++++++++++--------
+ 1 file changed, 19 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/bus/mhi/core/internal.h b/drivers/bus/mhi/core/internal.h
-index 5b9ea66b92dc..bc239a11aa69 100644
---- a/drivers/bus/mhi/core/internal.h
-+++ b/drivers/bus/mhi/core/internal.h
-@@ -682,7 +682,7 @@ void mhi_rddm_prepare(struct mhi_controller *mhi_cntrl,
- 		      struct image_info *img_info);
- void mhi_fw_load_handler(struct mhi_controller *mhi_cntrl);
- int mhi_prepare_channel(struct mhi_controller *mhi_cntrl,
--			struct mhi_chan *mhi_chan);
-+			struct mhi_chan *mhi_chan, unsigned int flags);
- int mhi_init_chan_ctxt(struct mhi_controller *mhi_cntrl,
- 		       struct mhi_chan *mhi_chan);
- void mhi_deinit_chan_ctxt(struct mhi_controller *mhi_cntrl,
-diff --git a/drivers/bus/mhi/core/main.c b/drivers/bus/mhi/core/main.c
-index 22acde118bc3..69cd9dcde6d8 100644
---- a/drivers/bus/mhi/core/main.c
-+++ b/drivers/bus/mhi/core/main.c
-@@ -1423,7 +1423,7 @@ static void mhi_unprepare_channel(struct mhi_controller *mhi_cntrl,
- }
- 
- int mhi_prepare_channel(struct mhi_controller *mhi_cntrl,
--			struct mhi_chan *mhi_chan)
-+			struct mhi_chan *mhi_chan, unsigned int flags)
- {
- 	int ret = 0;
- 	struct device *dev = &mhi_chan->mhi_dev->dev;
-@@ -1448,6 +1448,9 @@ int mhi_prepare_channel(struct mhi_controller *mhi_cntrl,
- 	if (ret)
- 		goto error_pm_state;
- 
-+	if (mhi_chan->dir == DMA_FROM_DEVICE)
-+		mhi_chan->pre_alloc = !!(flags & MHI_CH_INBOUND_ALLOC_BUFS);
-+
- 	/* Pre-allocate buffer for xfer ring */
- 	if (mhi_chan->pre_alloc) {
- 		int nr_el = get_nr_avail_ring_elements(mhi_cntrl,
-@@ -1603,7 +1606,7 @@ void mhi_reset_chan(struct mhi_controller *mhi_cntrl, struct mhi_chan *mhi_chan)
- }
- 
- /* Move channel to start state */
--int mhi_prepare_for_transfer(struct mhi_device *mhi_dev)
-+int mhi_prepare_for_transfer(struct mhi_device *mhi_dev, unsigned int flags)
- {
- 	int ret, dir;
- 	struct mhi_controller *mhi_cntrl = mhi_dev->mhi_cntrl;
-@@ -1614,7 +1617,7 @@ int mhi_prepare_for_transfer(struct mhi_device *mhi_dev)
- 		if (!mhi_chan)
- 			continue;
- 
--		ret = mhi_prepare_channel(mhi_cntrl, mhi_chan);
-+		ret = mhi_prepare_channel(mhi_cntrl, mhi_chan, flags);
- 		if (ret)
- 			goto error_open_chan;
- 	}
-diff --git a/drivers/net/mhi/net.c b/drivers/net/mhi/net.c
-index 0d8293a47a56..774e32960e09 100644
---- a/drivers/net/mhi/net.c
-+++ b/drivers/net/mhi/net.c
-@@ -327,7 +327,7 @@ static int mhi_net_probe(struct mhi_device *mhi_dev,
- 	u64_stats_init(&mhi_netdev->stats.tx_syncp);
- 
- 	/* Start MHI channels */
--	err = mhi_prepare_for_transfer(mhi_dev);
-+	err = mhi_prepare_for_transfer(mhi_dev, 0);
- 	if (err)
- 		goto out_err;
- 
-diff --git a/drivers/net/wwan/mhi_wwan_ctrl.c b/drivers/net/wwan/mhi_wwan_ctrl.c
-index 1bc6b69aa530..1e18420ce404 100644
---- a/drivers/net/wwan/mhi_wwan_ctrl.c
-+++ b/drivers/net/wwan/mhi_wwan_ctrl.c
-@@ -110,7 +110,7 @@ static int mhi_wwan_ctrl_start(struct wwan_port *port)
- 	int ret;
- 
- 	/* Start mhi device's channel(s) */
--	ret = mhi_prepare_for_transfer(mhiwwan->mhi_dev);
-+	ret = mhi_prepare_for_transfer(mhiwwan->mhi_dev, 0);
- 	if (ret)
- 		return ret;
- 
-diff --git a/include/linux/mhi.h b/include/linux/mhi.h
-index 944aa3aa3035..5e08468854db 100644
---- a/include/linux/mhi.h
-+++ b/include/linux/mhi.h
-@@ -719,8 +719,13 @@ void mhi_device_put(struct mhi_device *mhi_dev);
-  *                            host and device execution environments match and
-  *                            channels are in a DISABLED state.
-  * @mhi_dev: Device associated with the channels
-+ * @flags: MHI channel flags
+diff --git a/drivers/bus/mhi/pci_generic.c b/drivers/bus/mhi/pci_generic.c
+index d84b74396c6a..eac4d10f99c9 100644
+--- a/drivers/bus/mhi/pci_generic.c
++++ b/drivers/bus/mhi/pci_generic.c
+@@ -32,6 +32,8 @@
+  * @edl: emergency download mode firmware path (if any)
+  * @bar_num: PCI base address register to use for MHI MMIO register space
+  * @dma_data_width: DMA transfer word size (32 or 64 bits)
++ * @sideband_wake: Devices using dedicated sideband GPIO for wakeup instead
++ *		   of inband wake support (such as sdx24)
   */
--int mhi_prepare_for_transfer(struct mhi_device *mhi_dev);
-+int mhi_prepare_for_transfer(struct mhi_device *mhi_dev,
-+			     unsigned int flags);
+ struct mhi_pci_dev_info {
+ 	const struct mhi_controller_config *config;
+@@ -40,6 +42,7 @@ struct mhi_pci_dev_info {
+ 	const char *edl;
+ 	unsigned int bar_num;
+ 	unsigned int dma_data_width;
++	bool sideband_wake;
+ };
+ 
+ #define MHI_CHANNEL_CONFIG_UL(ch_num, ch_name, el_count, ev_ring) \
+@@ -242,7 +245,8 @@ static const struct mhi_pci_dev_info mhi_qcom_sdx65_info = {
+ 	.edl = "qcom/sdx65m/edl.mbn",
+ 	.config = &modem_qcom_v1_mhiv_config,
+ 	.bar_num = MHI_PCI_DEFAULT_BAR_NUM,
+-	.dma_data_width = 32
++	.dma_data_width = 32,
++	.sideband_wake = false,
+ };
+ 
+ static const struct mhi_pci_dev_info mhi_qcom_sdx55_info = {
+@@ -251,7 +255,8 @@ static const struct mhi_pci_dev_info mhi_qcom_sdx55_info = {
+ 	.edl = "qcom/sdx55m/edl.mbn",
+ 	.config = &modem_qcom_v1_mhiv_config,
+ 	.bar_num = MHI_PCI_DEFAULT_BAR_NUM,
+-	.dma_data_width = 32
++	.dma_data_width = 32,
++	.sideband_wake = false,
+ };
+ 
+ static const struct mhi_pci_dev_info mhi_qcom_sdx24_info = {
+@@ -259,7 +264,8 @@ static const struct mhi_pci_dev_info mhi_qcom_sdx24_info = {
+ 	.edl = "qcom/prog_firehose_sdx24.mbn",
+ 	.config = &modem_qcom_v1_mhiv_config,
+ 	.bar_num = MHI_PCI_DEFAULT_BAR_NUM,
+-	.dma_data_width = 32
++	.dma_data_width = 32,
++	.sideband_wake = true,
+ };
+ 
+ static const struct mhi_channel_config mhi_quectel_em1xx_channels[] = {
+@@ -301,7 +307,8 @@ static const struct mhi_pci_dev_info mhi_quectel_em1xx_info = {
+ 	.edl = "qcom/prog_firehose_sdx24.mbn",
+ 	.config = &modem_quectel_em1xx_config,
+ 	.bar_num = MHI_PCI_DEFAULT_BAR_NUM,
+-	.dma_data_width = 32
++	.dma_data_width = 32,
++	.sideband_wake = true,
+ };
+ 
+ static const struct mhi_channel_config mhi_foxconn_sdx55_channels[] = {
+@@ -339,7 +346,8 @@ static const struct mhi_pci_dev_info mhi_foxconn_sdx55_info = {
+ 	.edl = "qcom/sdx55m/edl.mbn",
+ 	.config = &modem_foxconn_sdx55_config,
+ 	.bar_num = MHI_PCI_DEFAULT_BAR_NUM,
+-	.dma_data_width = 32
++	.dma_data_width = 32,
++	.sideband_wake = false,
+ };
+ 
+ static const struct pci_device_id mhi_pci_id_table[] = {
+@@ -640,9 +648,12 @@ static int mhi_pci_probe(struct pci_dev *pdev, const struct pci_device_id *id)
+ 	mhi_cntrl->status_cb = mhi_pci_status_cb;
+ 	mhi_cntrl->runtime_get = mhi_pci_runtime_get;
+ 	mhi_cntrl->runtime_put = mhi_pci_runtime_put;
+-	mhi_cntrl->wake_get = mhi_pci_wake_get_nop;
+-	mhi_cntrl->wake_put = mhi_pci_wake_put_nop;
+-	mhi_cntrl->wake_toggle = mhi_pci_wake_toggle_nop;
 +
-+/* Automatically allocate and queue inbound buffers */
-+#define MHI_CH_INBOUND_ALLOC_BUFS BIT(0)
++	if (info->sideband_wake) {
++		mhi_cntrl->wake_get = mhi_pci_wake_get_nop;
++		mhi_cntrl->wake_put = mhi_pci_wake_put_nop;
++		mhi_cntrl->wake_toggle = mhi_pci_wake_toggle_nop;
++	}
  
- /**
-  * mhi_unprepare_from_transfer - Reset UL and DL channels for data transfer.
-diff --git a/net/qrtr/mhi.c b/net/qrtr/mhi.c
-index fa611678af05..29b4fa3b72ab 100644
---- a/net/qrtr/mhi.c
-+++ b/net/qrtr/mhi.c
-@@ -79,7 +79,7 @@ static int qcom_mhi_qrtr_probe(struct mhi_device *mhi_dev,
- 	int rc;
- 
- 	/* start channels */
--	rc = mhi_prepare_for_transfer(mhi_dev);
-+	rc = mhi_prepare_for_transfer(mhi_dev, MHI_CH_INBOUND_ALLOC_BUFS);
- 	if (rc)
- 		return rc;
- 
+ 	err = mhi_pci_claim(mhi_cntrl, info->bar_num, DMA_BIT_MASK(info->dma_data_width));
+ 	if (err)
 -- 
 2.25.1
 
