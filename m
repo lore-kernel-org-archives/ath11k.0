@@ -7,14 +7,14 @@ X-Spam-Status: No, score=-17.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 256C0C2B9F4
-	for <ath11k@archiver.kernel.org>; Fri, 25 Jun 2021 12:34:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 923FCC48BC2
+	for <ath11k@archiver.kernel.org>; Fri, 25 Jun 2021 12:34:58 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id ED0436191B
-	for <ath11k@archiver.kernel.org>; Fri, 25 Jun 2021 12:34:52 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org ED0436191B
+	by mail.kernel.org (Postfix) with ESMTPS id 5CAC761925
+	for <ath11k@archiver.kernel.org>; Fri, 25 Jun 2021 12:34:58 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5CAC761925
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,70 +23,70 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=HPs6B2PCPcCLiu32gN/11y59YBnaiFVpC6iSetcBHuw=; b=Yicn9+MPpa4lo/
-	kChgH9WcQh2Z/zC0W7Zm7cAQ5mRiHM7SK0llDFZIwWdRQWO4hIVpea3A791AvyI2y49yq/8cFXojK
-	CwLNhCX8CbLjCPhLsor4laYgyRGMxT4kDJQl73M6zMG4FDT1YSCu2NyfcKRbIYsCJWkXyNi9RGlk7
-	52LeRQbupU720kLF8qKe4eDZZXJdNMdK3urhzXagKJnYz7RkDkdkyjIA91/jzdPXW1x3jKfr0gzJY
-	es1BfQPJtWh7AxVnj0j3qCV1BhzUq0p5V4dJ1B8VFJV+qVHTmPfWEbzOnVskNscIHsG/mMLmqHhyg
-	T6n+/aBlZb/921JK9twQ==;
+	List-Owner; bh=Yz0l7Sm8Xb1NmOKbdwc6/atLFXEAgxJhjAFxmHTESzg=; b=cgpXAv5u1rDYOZ
+	/QuzjFPYc9EncgZvNR3KIYhJ4SmJwpuh+JtFQZZWDN4+eYkb1/nTqmEYuJ8/XxpnX9ZkOFzRYbjcl
+	Zt/CnvAjGN7k83zz/1HsX0lmP393NyEwPN9Quk/ygilenJbiAELGMhz7+Vaafhg652mTYDdKQ6gf2
+	EyRSRRDRAd9pjd4JQTeGQBNL59djtjT5jrRRu+5LVallxEVoJXJ6hXrekZ3FGC1wwumWOvTxJWD22
+	pUV/lPJCMOPjoBF5l409CYxLW2j2mg4C4oA3o/P5GC4PTPBTSCp5atjUT+Xq32ZIEEUXq5j1ymI7J
+	vdpJN88rPXr9NoebDZag==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lwl2o-001TJS-MI; Fri, 25 Jun 2021 12:34:50 +0000
-Received: from mail-pf1-x42f.google.com ([2607:f8b0:4864:20::42f])
+	id 1lwl2u-001TNV-8Y; Fri, 25 Jun 2021 12:34:56 +0000
+Received: from mail-pf1-x42e.google.com ([2607:f8b0:4864:20::42e])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lwl2k-001TFz-IW
- for ath11k@lists.infradead.org; Fri, 25 Jun 2021 12:34:49 +0000
-Received: by mail-pf1-x42f.google.com with SMTP id q192so7926526pfc.7
- for <ath11k@lists.infradead.org>; Fri, 25 Jun 2021 05:34:46 -0700 (PDT)
+ id 1lwl2q-001TKi-FE
+ for ath11k@lists.infradead.org; Fri, 25 Jun 2021 12:34:55 +0000
+Received: by mail-pf1-x42e.google.com with SMTP id s137so306653pfc.4
+ for <ath11k@lists.infradead.org>; Fri, 25 Jun 2021 05:34:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=sNO7OvoezOyKwRQqQPCTAGHXfd3P08Ex5P2XMikHwWs=;
- b=e9MtdpfGHP20g++UmMZA7v/PwkSWPmVAUxQ1kUZC76KT2yBOov0+XQs6prxQxXR2JU
- J0RlewuEWXnVf2dy2yeBZdZvVDfV1jC9PF/xziGneT/XMx/iRdxdAEc1r96xrIy9l816
- 0FUtsFEgPVbP2Xzfvlg3QF9t/1vkQYKDmQATgckKnyMnzIATgGlSYnDkUEwedWOUS8QP
- H/5EMgjlapCD/mrgLvIj1zFWhWCdZo4jYMFjww3c4QC8gjDF54bKWDxx9HVEicB4mjjK
- l/AVlaKHWQaTME7XvE/XUSA8Lu219Qp/aiGadiyAhw1kKyHSIgoqN+r9Cl7BBUEHpIWf
- QHnQ==
+ bh=4vCP14x51ZT3xHTsGRwNOFfupBHNf+HcNjz+uJv37tc=;
+ b=ktHLP1O9pdgttROJ/3d/zqYT2d35eagqTUHjpN0GfpcWbPh7NmalFXQtu1zu/5tXsw
+ Xvbdhc4o67mkTGwm6o+sVB7IRHNMPMtU4HvrruA2ocB4SRyeqMtU8VsZ00zxspnkPavM
+ Z60HD6xD5u9uBTB0ChMeaNa2cPkxVXw3wW2Ync+7cJu+5qb+VHjaPRyLjXiVgdXzKldw
+ 1EB63Ag0x8+SRu0ahaJJnn3nBZXkzSYipqu/XKY5IrbCXV1RM/6nGJZc8otYplg1zgiI
+ 5Uk/i8znvTY2xXXPPpmko1myRwptIkqzqj42Yr5iri2at2qR6RSBmHN5oUXnWSHaUmLZ
+ SGjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=sNO7OvoezOyKwRQqQPCTAGHXfd3P08Ex5P2XMikHwWs=;
- b=aNCjuEsnkBy6hnDAyPakQf9eV6th86arR+xFvXCRHdJyyKX3IWlpX+AvPL7JULzzDj
- 9dYRkIE+4tGEjdLKjgJgQ455WWGCWmfoqqM6An3uLswop7pObCHMlFziNKipxVG/Qyj3
- w4ZNRD+5v5sEWM8y7nzJsIZDN8YZpyCQMumhu2cOPaPSbYcgOcxufSiQZBZGs9x45Ipq
- 71ZPlsMNU0OJI/hUotjYT7p/G+Ro9Z6yUo7XMxfPQTrLoPWQiL7Mmpi1+PlvPVUSKzmK
- Y4rUaiqOfv/GeGSlhHVqJJ9KixUlc/akv8tBEsSvevP16XyCPdc2K0j8cTv6YdHhN8/I
- livA==
-X-Gm-Message-State: AOAM532nGepeemWPLWmJy1GH0/rlNYevYvuIvo4AgB4JX4hkaaWyEx6f
- 6O1IX2Y/7s6smGvFZ+L0gw+7
-X-Google-Smtp-Source: ABdhPJxG2i6xZEvuWCUBDKfc9EaIHgiHlAUIJ5/atMQPCixk52P1mNDwspVOrh28gdRWtiQ4AGZbpw==
-X-Received: by 2002:a63:7404:: with SMTP id p4mr9338107pgc.405.1624624485806; 
- Fri, 25 Jun 2021 05:34:45 -0700 (PDT)
+ bh=4vCP14x51ZT3xHTsGRwNOFfupBHNf+HcNjz+uJv37tc=;
+ b=KAk2uUsVxZuaw5FYaSC7gkYqAgqfa7Xdz0IVJTDlWkkASgA4FCtaBPxbgNCN+t2g+X
+ FlqLcjbQnnU6ll6VZlgeBhkLK93Y2bAOYKEjpCcJkbosCIqS678Qxy/a/P0hq0D3K9kp
+ rLXMQ02dB3kAl7rgkLzAyteNxkPMZanbKMHBjCZoNsZOAth27Eh0WqReZXI74IfpIJRy
+ 5GEIxLtGYycLP5GA3Lg+ghsS8/ejCGnvrZYSF1+O93UYjUUnJ61g2ZxB2ho3Xr+V04J8
+ z+HMOfYTyehLhh4XOv39AU2XhjB4e7ea6Cxzevo9iQlTsS5ErK+9BoOBrAJgmDv2G2bY
+ hjiw==
+X-Gm-Message-State: AOAM532YFlK9dWUxOh2AwiO3cS3TNUFQYUeadUp5fAayiUOkDWNXM2Gy
+ aUVLHloN30B1xH0cMmL7ZyxP
+X-Google-Smtp-Source: ABdhPJxOLpaI+xyCcJi2T4fIruA0AEc9zcnx9kzOu5Fnn388vqnpNnzKNpU+fs7F08jiVCaAIDup0A==
+X-Received: by 2002:a62:53c1:0:b029:2ef:25e8:d9e5 with SMTP id
+ h184-20020a6253c10000b02902ef25e8d9e5mr10439876pfb.74.1624624491735; 
+ Fri, 25 Jun 2021 05:34:51 -0700 (PDT)
 Received: from localhost.localdomain ([2409:4072:600b:2a0:ed5d:53e7:c64e:1bac])
- by smtp.gmail.com with ESMTPSA id y7sm6077780pfy.153.2021.06.25.05.34.39
+ by smtp.gmail.com with ESMTPSA id y7sm6077780pfy.153.2021.06.25.05.34.46
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 25 Jun 2021 05:34:45 -0700 (PDT)
+ Fri, 25 Jun 2021 05:34:51 -0700 (PDT)
 From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To: gregkh@linuxfoundation.org
 Cc: hemantk@codeaurora.org, bbhatt@codeaurora.org,
  linux-arm-msm@vger.kernel.org, jhugo@codeaurora.org,
  linux-kernel@vger.kernel.org, loic.poulain@linaro.org,
- kvalo@codeaurora.org, ath11k@lists.infradead.org, stable@vger.kernel.org,
+ kvalo@codeaurora.org, ath11k@lists.infradead.org,
  Jeffrey Hugo <quic_jhugo@quicinc.com>,
  Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH 06/10] bus: mhi: core: Set BHI and BHIe pointers to NULL in
- clean-up
-Date: Fri, 25 Jun 2021 18:03:51 +0530
-Message-Id: <20210625123355.11578-7-manivannan.sadhasivam@linaro.org>
+Subject: [PATCH 07/10] bus: mhi: Add MMIO region length to controller structure
+Date: Fri, 25 Jun 2021 18:03:52 +0530
+Message-Id: <20210625123355.11578-8-manivannan.sadhasivam@linaro.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210625123355.11578-1-manivannan.sadhasivam@linaro.org>
 References: <20210625123355.11578-1-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210625_053446_655172_82837C1C 
-X-CRM114-Status: UNSURE (   8.44  )
+X-CRM114-CacheID: sfid-20210625_053452_544573_088A0EAE 
+X-CRM114-Status: UNSURE (   9.49  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -106,36 +106,41 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 From: Bhaumik Bhatt <bbhatt@codeaurora.org>
 
-Set the BHI and BHIe pointers to NULL as part of clean-up. This
-makes sure that stale pointers are not accessed after powering
-MHI down.
+Make controller driver specify the MMIO register region length
+for range checking of BHI or BHIe space. This can help validate
+that offsets are in acceptable memory region or not and avoid any
+boot-up issues due to BHI or BHIe memory accesses.
 
-Cc: stable@vger.kernel.org
-Suggested-by: Hemant Kumar <hemantk@codeaurora.org>
 Signed-off-by: Bhaumik Bhatt <bbhatt@codeaurora.org>
 Reviewed-by: Jeffrey Hugo <quic_jhugo@quicinc.com>
 Reviewed-by: Hemant Kumar <hemantk@codeaurora.org>
 Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Link: https://lore.kernel.org/r/1620330705-40192-3-git-send-email-bbhatt@codeaurora.org
+Link: https://lore.kernel.org/r/1620330705-40192-4-git-send-email-bbhatt@codeaurora.org
 Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 ---
- drivers/bus/mhi/core/init.c | 3 +++
- 1 file changed, 3 insertions(+)
+ include/linux/mhi.h | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/bus/mhi/core/init.c b/drivers/bus/mhi/core/init.c
-index 11c7a3d3c9bf..1cc2f225d3d1 100644
---- a/drivers/bus/mhi/core/init.c
-+++ b/drivers/bus/mhi/core/init.c
-@@ -1132,6 +1132,9 @@ void mhi_unprepare_after_power_down(struct mhi_controller *mhi_cntrl)
- 		mhi_cntrl->rddm_image = NULL;
- 	}
- 
-+	mhi_cntrl->bhi = NULL;
-+	mhi_cntrl->bhie = NULL;
-+
- 	mhi_deinit_dev_ctxt(mhi_cntrl);
- }
- EXPORT_SYMBOL_GPL(mhi_unprepare_after_power_down);
+diff --git a/include/linux/mhi.h b/include/linux/mhi.h
+index 5e08468854db..b8ca6943f0b7 100644
+--- a/include/linux/mhi.h
++++ b/include/linux/mhi.h
+@@ -303,6 +303,7 @@ struct mhi_controller_config {
+  * @rddm_size: RAM dump size that host should allocate for debugging purpose
+  * @sbl_size: SBL image size downloaded through BHIe (optional)
+  * @seg_len: BHIe vector size (optional)
++ * @reg_len: Length of the MHI MMIO region (required)
+  * @fbc_image: Points to firmware image buffer
+  * @rddm_image: Points to RAM dump buffer
+  * @mhi_chan: Points to the channel configuration table
+@@ -386,6 +387,7 @@ struct mhi_controller {
+ 	size_t rddm_size;
+ 	size_t sbl_size;
+ 	size_t seg_len;
++	size_t reg_len;
+ 	struct image_info *fbc_image;
+ 	struct image_info *rddm_image;
+ 	struct mhi_chan *mhi_chan;
 -- 
 2.25.1
 
