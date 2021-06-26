@@ -1,92 +1,64 @@
-Return-Path: <SRS0=ORoY=LT=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=D7u2=LU=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-17.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B098DC2B9F4
-	for <ath11k@archiver.kernel.org>; Fri, 25 Jun 2021 13:03:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C9F21C49EA5
+	for <ath11k@archiver.kernel.org>; Sat, 26 Jun 2021 15:32:57 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 802EF61929
-	for <ath11k@archiver.kernel.org>; Fri, 25 Jun 2021 13:03:57 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 802EF61929
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
+	by mail.kernel.org (Postfix) with ESMTPS id 5A77461C40
+	for <ath11k@archiver.kernel.org>; Sat, 26 Jun 2021 15:32:57 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5A77461C40
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=wanadoo.fr
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=r6rp0oFEDRlKufGVUA+85rFj1+zh5NsjmajDFu2TeEw=; b=qmf2WO3z28L7OV
-	4KIbKB8WI6SZI4Pg/OXOQEVFLbEOCQP82fxVkNV4EPYpf7wAu4mfMU7WvczmWbgwaa9We2KMtdfuC
-	4bUIa85b5vkaS+hV74YZdxQ6OsIBJa/S90WM7o15Ee7sAFqk6kWnQDTnZzAd/yxClyZYkQp+gnJST
-	Q3R0R284QcPPNAzgneZDWhq+pvH7XZCsvZn7SVNK3QvgfsiJOEsM0kQSpBHq3ZbutwxL+qlCQH84F
-	Cbc9fGcOxKMApW6aCgerTA62/JHqn7emK+P434JRc6ceCQ3JbfNlaqs3qi3fZ98GlD6vzMc9E8Wzg
-	PTnlzOv9GSAUYMKw0HIA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=avTILwB1C+rl19t0XboyZM9fC5t1n/GkutERhuCB6Y8=; b=3xQNj6EufKGioz
+	tk+38oV9IX34yVCoBqgqjD62h0qlvFryr44r7ms5nn6+OJUdqj9ml1+CFagqjQql5TagVVS6ysMCV
+	FK77C8efpH7+GsWl275SUGUIYHnOoelBXjFCnSgIMTS9hHLU7LonN9pPxwP9XNTczxj1SE2HlUCyf
+	A7Vqzjt54yHN7BQq1KITiXgtsfJIRoapR0wr1b4OmiUTwpilA8rMHrQ+0x4R2qp8HtAcHuw83eoNX
+	4C54H5w6rAdbZMQNhyF3vOMMkAoBiRwtz5qWbrp6l8NxBvqomKKD0jbc6m6x5KkQ8AI5GiPbCcety
+	TXpcLhehCux2DcHj+vmQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lwlUx-001aGp-05; Fri, 25 Jun 2021 13:03:55 +0000
-Received: from mail-pf1-x429.google.com ([2607:f8b0:4864:20::429])
- by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lwlUt-001aFy-Pg
- for ath11k@lists.infradead.org; Fri, 25 Jun 2021 13:03:53 +0000
-Received: by mail-pf1-x429.google.com with SMTP id y4so7976428pfi.9
- for <ath11k@lists.infradead.org>; Fri, 25 Jun 2021 06:03:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=Rtsnu8VD33EKMaZf3cpQ8efCBZxp+xhAKR5JoGpX5Eo=;
- b=QyicnVxC5A1fEGp5XtFu3wD2OgDufaG+KE0JJ9KpzGa7lNZMm/POMik2AXOxX1zkTG
- 3J1IUFt9eeLSs/W1TxbtnzkxWiHFHRoseNrxBhaRZHMOz6MBCT6fQt7ROrqIOUqttUZw
- QU8itF6xaMwH0rMf7sAxh58f2tTPEKeert6XLTeTlx+kPxk4jBP6NSAlQUCkl/f4Rl/o
- tvN7rnm43Rwy6RxxZbZnRGq2tHOSGNX4NtjwUxcvJixa4Efap/fpKanlZ1kQGKEU1pLX
- z1blAIpYshe2WZpwUDCgSw2TaFR3hgGkF+y0iIHjiodOYRZzn+PQyEuiGu3LF/YpNVya
- xC6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=Rtsnu8VD33EKMaZf3cpQ8efCBZxp+xhAKR5JoGpX5Eo=;
- b=jcEfDdX4hq6y3Wm0WmTtvYohnS2Vngwv/kTBQObRDC3phKko4/ppCPPu0ESsAynZCm
- 1UGExdrT6LwUYN3pjQLq3bZ5kxyCcG0I3iDIBGfiPs90leIeboxjWtyHUiX5jD1yN7EH
- Z825dxYA0hPorQYUzJX01vyLOND9XsyhRdjEGRkitDqDgu919wGP3JxkdRDclBymqpNe
- QWL6TIDDWFmDYO9z2VmbW1cl/zMMt3kJYpI985nrWRYBfESJf+iILzOuIAx+T3YvwiRG
- jXWpqoloMfWWTHCJELVTZxL2FJevGuMM78YwusEcYLmT0lF4SXx4AyGbVlZu5IQjMoIA
- Y1pg==
-X-Gm-Message-State: AOAM533FbrrTgRrcGMkR9DIKDfQ27R33JN3hRZhd0M6fBTRUdp8BtZGe
- 0pyYij6VFNN6Qc5SiEyDSd9K
-X-Google-Smtp-Source: ABdhPJwUAHDHJd41dGZtRGQ/ranfWCHDBM1qzYWPFiEQHKE+umUBbxrpcg2Kbl/SsPWdegV92WZ1kg==
-X-Received: by 2002:a63:185b:: with SMTP id 27mr9809644pgy.164.1624626231083; 
- Fri, 25 Jun 2021 06:03:51 -0700 (PDT)
-Received: from thinkpad ([2409:4072:600b:2a0:ed5d:53e7:c64e:1bac])
- by smtp.gmail.com with ESMTPSA id e4sm5903958pfa.29.2021.06.25.06.03.45
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 25 Jun 2021 06:03:50 -0700 (PDT)
-Date: Fri, 25 Jun 2021 18:33:43 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Greg KH <gregkh@linuxfoundation.org>
-Cc: hemantk@codeaurora.org, bbhatt@codeaurora.org,
- linux-arm-msm@vger.kernel.org, jhugo@codeaurora.org,
- linux-kernel@vger.kernel.org, loic.poulain@linaro.org,
- kvalo@codeaurora.org, ath11k@lists.infradead.org,
- stable@vger.kernel.org, Jeffrey Hugo <quic_jhugo@quicinc.com>
-Subject: Re: [PATCH 06/10] bus: mhi: core: Set BHI and BHIe pointers to NULL
- in clean-up
-Message-ID: <20210625130343.GA13833@thinkpad>
-References: <20210625123355.11578-1-manivannan.sadhasivam@linaro.org>
- <20210625123355.11578-7-manivannan.sadhasivam@linaro.org>
- <YNXOYkj9TWZgYAG3@kroah.com>
+	id 1lxAIg-004MWO-BG; Sat, 26 Jun 2021 15:32:54 +0000
+Received: from smtp02.smtpout.orange.fr ([80.12.242.124]
+ helo=smtp.smtpout.orange.fr)
+ by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1lxAIc-004MT7-V5
+ for ath11k@lists.infradead.org; Sat, 26 Jun 2021 15:32:53 +0000
+Received: from localhost.localdomain ([86.243.172.93]) by mwinf5d78 with ME
+ id MrR62500921Fzsu03rR6lY; Sat, 26 Jun 2021 17:25:11 +0200
+X-ME-Helo: localhost.localdomain
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Sat, 26 Jun 2021 17:25:11 +0200
+X-ME-IP: 86.243.172.93
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+To: kvalo@codeaurora.org, davem@davemloft.net, kuba@kernel.org,
+ jirislaby@kernel.org, mickflemm@gmail.com, mcgrof@kernel.org
+Cc: ath9k-devel@qca.qualcomm.com, ath10k@lists.infradead.org,
+ ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ kernel-janitors@vger.kernel.org,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Subject: [PATCH] ath: switch from 'pci_' to 'dma_' API
+Date: Sat, 26 Jun 2021 17:25:04 +0200
+Message-Id: <9150bd6cde9ad592aff8ee3ad94dffa90b004e89.1624720959.git.christophe.jaillet@wanadoo.fr>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <YNXOYkj9TWZgYAG3@kroah.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210625_060351_879924_5B960D62 
-X-CRM114-Status: GOOD (  13.93  )
+X-CRM114-CacheID: sfid-20210626_083251_338027_90F48A86 
+X-CRM114-Status: GOOD (  11.09  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,37 +75,225 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Fri, Jun 25, 2021 at 02:38:58PM +0200, Greg KH wrote:
-> On Fri, Jun 25, 2021 at 06:03:51PM +0530, Manivannan Sadhasivam wrote:
-> > From: Bhaumik Bhatt <bbhatt@codeaurora.org>
-> > 
-> > Set the BHI and BHIe pointers to NULL as part of clean-up. This
-> > makes sure that stale pointers are not accessed after powering
-> > MHI down.
-> > 
-> > Cc: stable@vger.kernel.org
-> 
-> Why is this needed for stable, but patch 5/10 is not?
-> 
+The wrappers in include/linux/pci-dma-compat.h should go away.
 
-Shoot! This one relies on 5/10 and fixes a corner case where the BHI/BHIe
-pointers might be used after MHI powerdown. But this requires backporting
-the patches 5-10 cleanly (a series).
+The patch has been generated with the coccinelle script below.
 
-So I guess the stable tag should be removed for this patch. We will test this
-series on stable kernels (on how far) and make sure this doesn't break anything.
-Then we can share the commit IDs to be backported with details?
+While at it, some 'dma_set_mask()/dma_set_coherent_mask()' have been
+updated to a much less verbose 'dma_set_mask_and_coherent()'.
 
-Thanks,
-Mani 
+@@ @@
+-    PCI_DMA_BIDIRECTIONAL
++    DMA_BIDIRECTIONAL
 
-> And what commit does this fix?  How far back should it go?
-> 
-> And is this really fixing anything?
-> 
-> thanks,
-> 
-> greg k-h
+@@ @@
+-    PCI_DMA_TODEVICE
++    DMA_TO_DEVICE
+
+@@ @@
+-    PCI_DMA_FROMDEVICE
++    DMA_FROM_DEVICE
+
+@@ @@
+-    PCI_DMA_NONE
++    DMA_NONE
+
+@@
+expression e1, e2, e3;
+@@
+-    pci_alloc_consistent(e1, e2, e3)
++    dma_alloc_coherent(&e1->dev, e2, e3, GFP_)
+
+@@
+expression e1, e2, e3;
+@@
+-    pci_zalloc_consistent(e1, e2, e3)
++    dma_alloc_coherent(&e1->dev, e2, e3, GFP_)
+
+@@
+expression e1, e2, e3, e4;
+@@
+-    pci_free_consistent(e1, e2, e3, e4)
++    dma_free_coherent(&e1->dev, e2, e3, e4)
+
+@@
+expression e1, e2, e3, e4;
+@@
+-    pci_map_single(e1, e2, e3, e4)
++    dma_map_single(&e1->dev, e2, e3, e4)
+
+@@
+expression e1, e2, e3, e4;
+@@
+-    pci_unmap_single(e1, e2, e3, e4)
++    dma_unmap_single(&e1->dev, e2, e3, e4)
+
+@@
+expression e1, e2, e3, e4, e5;
+@@
+-    pci_map_page(e1, e2, e3, e4, e5)
++    dma_map_page(&e1->dev, e2, e3, e4, e5)
+
+@@
+expression e1, e2, e3, e4;
+@@
+-    pci_unmap_page(e1, e2, e3, e4)
++    dma_unmap_page(&e1->dev, e2, e3, e4)
+
+@@
+expression e1, e2, e3, e4;
+@@
+-    pci_map_sg(e1, e2, e3, e4)
++    dma_map_sg(&e1->dev, e2, e3, e4)
+
+@@
+expression e1, e2, e3, e4;
+@@
+-    pci_unmap_sg(e1, e2, e3, e4)
++    dma_unmap_sg(&e1->dev, e2, e3, e4)
+
+@@
+expression e1, e2, e3, e4;
+@@
+-    pci_dma_sync_single_for_cpu(e1, e2, e3, e4)
++    dma_sync_single_for_cpu(&e1->dev, e2, e3, e4)
+
+@@
+expression e1, e2, e3, e4;
+@@
+-    pci_dma_sync_single_for_device(e1, e2, e3, e4)
++    dma_sync_single_for_device(&e1->dev, e2, e3, e4)
+
+@@
+expression e1, e2, e3, e4;
+@@
+-    pci_dma_sync_sg_for_cpu(e1, e2, e3, e4)
++    dma_sync_sg_for_cpu(&e1->dev, e2, e3, e4)
+
+@@
+expression e1, e2, e3, e4;
+@@
+-    pci_dma_sync_sg_for_device(e1, e2, e3, e4)
++    dma_sync_sg_for_device(&e1->dev, e2, e3, e4)
+
+@@
+expression e1, e2;
+@@
+-    pci_dma_mapping_error(e1, e2)
++    dma_mapping_error(&e1->dev, e2)
+
+@@
+expression e1, e2;
+@@
+-    pci_set_dma_mask(e1, e2)
++    dma_set_mask(&e1->dev, e2)
+
+@@
+expression e1, e2;
+@@
+-    pci_set_consistent_dma_mask(e1, e2)
++    dma_set_coherent_mask(&e1->dev, e2)
+
+Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+---
+ drivers/net/wireless/ath/ath10k/pci.c |  9 +--------
+ drivers/net/wireless/ath/ath11k/pci.c | 10 ++--------
+ drivers/net/wireless/ath/ath5k/pci.c  |  2 +-
+ drivers/net/wireless/ath/ath9k/pci.c  |  8 +-------
+ 4 files changed, 5 insertions(+), 24 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath10k/pci.c b/drivers/net/wireless/ath/ath10k/pci.c
+index 71878ab35b93..4d4e2f91e15c 100644
+--- a/drivers/net/wireless/ath/ath10k/pci.c
++++ b/drivers/net/wireless/ath/ath10k/pci.c
+@@ -3393,19 +3393,12 @@ static int ath10k_pci_claim(struct ath10k *ar)
+ 	}
+ 
+ 	/* Target expects 32 bit DMA. Enforce it. */
+-	ret = pci_set_dma_mask(pdev, DMA_BIT_MASK(32));
++	ret = dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(32));
+ 	if (ret) {
+ 		ath10k_err(ar, "failed to set dma mask to 32-bit: %d\n", ret);
+ 		goto err_region;
+ 	}
+ 
+-	ret = pci_set_consistent_dma_mask(pdev, DMA_BIT_MASK(32));
+-	if (ret) {
+-		ath10k_err(ar, "failed to set consistent dma mask to 32-bit: %d\n",
+-			   ret);
+-		goto err_region;
+-	}
+-
+ 	pci_set_master(pdev);
+ 
+ 	/* Arrange for access to Target SoC registers. */
+diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
+index 646ad79f309c..5abb38cc3b55 100644
+--- a/drivers/net/wireless/ath/ath11k/pci.c
++++ b/drivers/net/wireless/ath/ath11k/pci.c
+@@ -933,20 +933,14 @@ static int ath11k_pci_claim(struct ath11k_pci *ab_pci, struct pci_dev *pdev)
+ 		goto disable_device;
+ 	}
+ 
+-	ret = pci_set_dma_mask(pdev, DMA_BIT_MASK(ATH11K_PCI_DMA_MASK));
++	ret = dma_set_mask_and_coherent(&pdev->dev,
++					DMA_BIT_MASK(ATH11K_PCI_DMA_MASK));
+ 	if (ret) {
+ 		ath11k_err(ab, "failed to set pci dma mask to %d: %d\n",
+ 			   ATH11K_PCI_DMA_MASK, ret);
+ 		goto release_region;
+ 	}
+ 
+-	ret = pci_set_consistent_dma_mask(pdev, DMA_BIT_MASK(ATH11K_PCI_DMA_MASK));
+-	if (ret) {
+-		ath11k_err(ab, "failed to set pci consistent dma mask to %d: %d\n",
+-			   ATH11K_PCI_DMA_MASK, ret);
+-		goto release_region;
+-	}
+-
+ 	pci_set_master(pdev);
+ 
+ 	ab->mem_len = pci_resource_len(pdev, ATH11K_PCI_BAR_NUM);
+diff --git a/drivers/net/wireless/ath/ath5k/pci.c b/drivers/net/wireless/ath/ath5k/pci.c
+index 43b4ae86e5fb..86b8cb975b1a 100644
+--- a/drivers/net/wireless/ath/ath5k/pci.c
++++ b/drivers/net/wireless/ath/ath5k/pci.c
+@@ -191,7 +191,7 @@ ath5k_pci_probe(struct pci_dev *pdev,
+ 	}
+ 
+ 	/* XXX 32-bit addressing only */
+-	ret = pci_set_dma_mask(pdev, DMA_BIT_MASK(32));
++	ret = dma_set_mask(&pdev->dev, DMA_BIT_MASK(32));
+ 	if (ret) {
+ 		dev_err(&pdev->dev, "32-bit DMA not available\n");
+ 		goto err_dis;
+diff --git a/drivers/net/wireless/ath/ath9k/pci.c b/drivers/net/wireless/ath/ath9k/pci.c
+index cff9af3af38d..a074e23013c5 100644
+--- a/drivers/net/wireless/ath/ath9k/pci.c
++++ b/drivers/net/wireless/ath/ath9k/pci.c
+@@ -896,18 +896,12 @@ static int ath_pci_probe(struct pci_dev *pdev, const struct pci_device_id *id)
+ 	if (pcim_enable_device(pdev))
+ 		return -EIO;
+ 
+-	ret =  pci_set_dma_mask(pdev, DMA_BIT_MASK(32));
++	ret = dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(32));
+ 	if (ret) {
+ 		pr_err("32-bit DMA not available\n");
+ 		return ret;
+ 	}
+ 
+-	ret = pci_set_consistent_dma_mask(pdev, DMA_BIT_MASK(32));
+-	if (ret) {
+-		pr_err("32-bit DMA consistent DMA enable failed\n");
+-		return ret;
+-	}
+-
+ 	/*
+ 	 * Cache line size is used to size and align various
+ 	 * structures used to communicate with the hardware.
+-- 
+2.30.2
+
 
 -- 
 ath11k mailing list
