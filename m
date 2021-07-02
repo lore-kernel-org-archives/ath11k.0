@@ -1,67 +1,87 @@
-Return-Path: <SRS0=ylbk=LY=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=ApGg=L2=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-14.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5E265C11F68
-	for <ath11k@archiver.kernel.org>; Wed, 30 Jun 2021 13:26:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2CB48C11F69
+	for <ath11k@archiver.kernel.org>; Fri,  2 Jul 2021 11:40:23 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 25D8E615A0
-	for <ath11k@archiver.kernel.org>; Wed, 30 Jun 2021 13:26:03 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 25D8E615A0
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linuxfoundation.org
+	by mail.kernel.org (Postfix) with ESMTPS id E880F61413
+	for <ath11k@archiver.kernel.org>; Fri,  2 Jul 2021 11:40:22 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E880F61413
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=K9d9NfZypWHBFaHvUdK6Fe1bf49cTl1dwvOpDxWfO0o=; b=YqT220cv3bwMk+
-	And7wYgxDnLsvo+6zlEPr2w99Pfa6jjiw7QwtExOy2OcF1U7vfRjJ9aw31zodLNXDCvP4lsY8SR3+
-	nxS5HoNqKyKJOIMzWX1gzTZ8T5C/TYbEw/5ec6KvWqxDalM+Gl9XCAo3fzjk73gUMB7CZCGDBrJ1Z
-	+xWEGrtFq5UleZ0HuAYKwYla43JP0qLeD+QHq+qiwAfRH4KcVKivtb8Drbe1PC71wR8TG+cP/knZ4
-	eLrA0k7cF5k4drIj/jnbzz9nmwR3WdqeSADCROm0z3WgPhYxEl0kNSOZ8KYaJ697p5kaMBEtlJLPR
-	Kc7Kxj5AG5YLd9bEadiw==;
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-Id:Cc:To:References:
+	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=tVeCx7DovtkmDeclJKdMlYjsvAcS8XZzHmQvhYcNaBA=; b=ok0UAEUg/3uvBz
+	w3q2MNp1YlmPvESLvwP7Te5YjCLSkZqWgFOiEdPN5tUbu63VB1ODC3rrcfVCy+v1mu6H218aOry64
+	QYvEMZPgo/3i7MuiV729PHaWeaoVBPn4TnUo7Na7QT4EngKw389dFnojTiQ5keTuRmszUK5Qdq8eW
+	s8McEROe2ltfcJnbAJG4JG1Wnzkn0fXHCGFdvZbAgsMZM/wPjXpB1VHBS0e7Ny7he8T9jROpmWfVd
+	PtEPXPzJ3tJ81KNAgC8IUpxmG8AoVFsn7e5pSl+Zircgeu/MHqB0AuACDu38uixNqvCxcy9qfuUHp
+	BbxNOpOX+xoOkrte6+lQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1lyaE4-00E0be-Ve; Wed, 30 Jun 2021 13:26:01 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1lzHWu-002uaC-GF; Fri, 02 Jul 2021 11:40:20 +0000
+Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1lyaE2-00E0b7-0d
- for ath11k@lists.infradead.org; Wed, 30 Jun 2021 13:25:59 +0000
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0CEF461356;
- Wed, 30 Jun 2021 13:25:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1625059557;
- bh=pRhoVxlakzjKTDZATJX0RBmkzXc/Et5u5tXuaooYvmE=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=TtS1IQVYWhlv5akhEgO1oz7Ti4RAmmmQ/cZVK9hPwByYRFeFKJyMRwlor3jLEdk6f
- 7YMC8RYS4YLMEQQ7LoviuJbLbXc3URJrqN0nTeVGHFPZ1AjUV5hSmCIj1dYQhFGrU0
- BL/qXPWm5N4icmsjOLnA54MCN4pkgN9six8kcTgw=
-Date: Wed, 30 Jun 2021 15:25:55 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: hemantk@codeaurora.org, bbhatt@codeaurora.org,
- linux-arm-msm@vger.kernel.org, jhugo@codeaurora.org,
- linux-kernel@vger.kernel.org, loic.poulain@linaro.org,
- kvalo@codeaurora.org, ath11k@lists.infradead.org
-Subject: Re: [PATCH 00/10] MHI patches for v5.14 - Take 2
-Message-ID: <YNxw4wc1nvwMnaS6@kroah.com>
-References: <20210625123355.11578-1-manivannan.sadhasivam@linaro.org>
- <20210630131656.GA18484@workstation>
+ id 1lzHWr-002uZQ-UW
+ for ath11k@lists.infradead.org; Fri, 02 Jul 2021 11:40:19 +0000
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
+ q=dns/txt; 
+ s=smtp; t=1625226017; h=Date: Message-Id: Cc: To: References:
+ In-Reply-To: From: Subject: Content-Transfer-Encoding: MIME-Version:
+ Content-Type: Sender; bh=x4sJmKz4TgXmvZOqdVsvHIG8pJ3tkqQDFIdfRP1qrGs=;
+ b=a3f+MOqcJAsqJ5qk+YYzo2OYESB9ZcVQLv5/gz3RoSQbO1GCziDg8/txYV/G8VrOrmiPxOvS
+ SFZ3z3bSBFcMCue06DxzcD4H9kNdef+4ghhznpyEAsbdWHz/n8rIh7NGAT4n1y7uDS0wwuA1
+ IfBkmVSo/KYeusm2MvBF68tPgE8=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
+ 60defb204ca9face341bc158 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 02 Jul 2021 11:40:16
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+ id 72B02C4338A; Fri,  2 Jul 2021 11:40:15 +0000 (UTC)
+Received: from tykki.adurom.net (tynnyri.adurom.net [51.15.11.48])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested) (Authenticated sender: kvalo)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 64BD3C433F1;
+ Fri,  2 Jul 2021 11:40:11 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 64BD3C433F1
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ spf=fail smtp.mailfrom=kvalo@codeaurora.org
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210630131656.GA18484@workstation>
+Subject: Re: [PATCH] ath: switch from 'pci_' to 'dma_' API
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <9150bd6cde9ad592aff8ee3ad94dffa90b004e89.1624720959.git.christophe.jaillet@wanadoo.fr>
+References: <9150bd6cde9ad592aff8ee3ad94dffa90b004e89.1624720959.git.christophe.jaillet@wanadoo.fr>
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Cc: davem@davemloft.net, kuba@kernel.org, jirislaby@kernel.org,
+ mickflemm@gmail.com, mcgrof@kernel.org, ath9k-devel@qca.qualcomm.com,
+ ath10k@lists.infradead.org, ath11k@lists.infradead.org,
+ linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-Id: <20210702114015.72B02C4338A@smtp.codeaurora.org>
+Date: Fri,  2 Jul 2021 11:40:15 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210630_062558_114580_A83F5950 
-X-CRM114-Status: GOOD (  24.62  )
+X-CRM114-CacheID: sfid-20210702_044018_085536_E37D297B 
+X-CRM114-Status: GOOD (  10.36  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,61 +98,139 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed, Jun 30, 2021 at 06:46:56PM +0530, Manivannan Sadhasivam wrote:
-> Hi Greg,
+Christophe JAILLET <christophe.jaillet@wanadoo.fr> wrote:
+
+> The wrappers in include/linux/pci-dma-compat.h should go away.
 > 
-> On Fri, Jun 25, 2021 at 06:03:45PM +0530, Manivannan Sadhasivam wrote:
-> > Hi Greg,
-> > 
-> > Please find the remaining MHI patches for v5.14. This series has the left over
-> > patches from the previous patchset and one new series that was reviewed a
-> > while ago and put on hold for Ack from Kalle Valo for ath11k.
-> > 
-> > Summary:
-> > 
-> > 1. Added validation for the channel ID read from event ring. If we get events
-> > from an invalid channel, we throw an error message and skip the event.
-> > 
-> > 2. Fixed the MHI wake routines used for the newer modems such as SDX55 and
-> > SDX65 by using no-op routines only for the older modems and then relying on
-> > the default routines provided by MHI stack for newer ones.
-> > 
-> > 3. Added support for processing the events based on the priorities. Earlier
-> > a fixed priority was used for all events.
-> > 
-> > 4. Added a dedicated flag to the MHI client transfer APIs for inbound
-> > buffer allocation by the MHI stack. Since this patch modifies the MHI
-> > client drivers under "net/", Ack has been collected from the netdev
-> > maintainer.
-> > 
-> > 5. Added support for Cinterion MV31-W modem in pci_generic controller:
-> > https://www.thalesgroup.com/en/markets/digital-identity-and-security/iot/iot-connectivity/products/iot-products/mv31-w-ultra-high
-> > 
-> > 6. Rearranged the setting of BHI/BHIe offsets for better validation of the
-> > register values read from MMIO
-> > 
-> > 7. Cleanup of the BHI/BHIe pointers by setting them to NULL to prevent access
-> > after power down.
-> > 
-> > 8. Added support for getting the MMIO register length from the controller
-> > drivers. This helps in validation of the read offsets from MMIO registers.
-> > Since this patch touches ath11k, Ack has been collected from Kalle Valo.
-> > 
-> > 9. With the help of above register length, added check for BHI/BHIe offsets.
-> > 
+> The patch has been generated with the coccinelle script below.
 > 
-> Is this series on your queue for 5.14?
+> While at it, some 'dma_set_mask()/dma_set_coherent_mask()' have been
+> updated to a much less verbose 'dma_set_mask_and_coherent()'.
+> 
+> @@ @@
+> -    PCI_DMA_BIDIRECTIONAL
+> +    DMA_BIDIRECTIONAL
+> 
+> @@ @@
+> -    PCI_DMA_TODEVICE
+> +    DMA_TO_DEVICE
+> 
+> @@ @@
+> -    PCI_DMA_FROMDEVICE
+> +    DMA_FROM_DEVICE
+> 
+> @@ @@
+> -    PCI_DMA_NONE
+> +    DMA_NONE
+> 
+> @@
+> expression e1, e2, e3;
+> @@
+> -    pci_alloc_consistent(e1, e2, e3)
+> +    dma_alloc_coherent(&e1->dev, e2, e3, GFP_)
+> 
+> @@
+> expression e1, e2, e3;
+> @@
+> -    pci_zalloc_consistent(e1, e2, e3)
+> +    dma_alloc_coherent(&e1->dev, e2, e3, GFP_)
+> 
+> @@
+> expression e1, e2, e3, e4;
+> @@
+> -    pci_free_consistent(e1, e2, e3, e4)
+> +    dma_free_coherent(&e1->dev, e2, e3, e4)
+> 
+> @@
+> expression e1, e2, e3, e4;
+> @@
+> -    pci_map_single(e1, e2, e3, e4)
+> +    dma_map_single(&e1->dev, e2, e3, e4)
+> 
+> @@
+> expression e1, e2, e3, e4;
+> @@
+> -    pci_unmap_single(e1, e2, e3, e4)
+> +    dma_unmap_single(&e1->dev, e2, e3, e4)
+> 
+> @@
+> expression e1, e2, e3, e4, e5;
+> @@
+> -    pci_map_page(e1, e2, e3, e4, e5)
+> +    dma_map_page(&e1->dev, e2, e3, e4, e5)
+> 
+> @@
+> expression e1, e2, e3, e4;
+> @@
+> -    pci_unmap_page(e1, e2, e3, e4)
+> +    dma_unmap_page(&e1->dev, e2, e3, e4)
+> 
+> @@
+> expression e1, e2, e3, e4;
+> @@
+> -    pci_map_sg(e1, e2, e3, e4)
+> +    dma_map_sg(&e1->dev, e2, e3, e4)
+> 
+> @@
+> expression e1, e2, e3, e4;
+> @@
+> -    pci_unmap_sg(e1, e2, e3, e4)
+> +    dma_unmap_sg(&e1->dev, e2, e3, e4)
+> 
+> @@
+> expression e1, e2, e3, e4;
+> @@
+> -    pci_dma_sync_single_for_cpu(e1, e2, e3, e4)
+> +    dma_sync_single_for_cpu(&e1->dev, e2, e3, e4)
+> 
+> @@
+> expression e1, e2, e3, e4;
+> @@
+> -    pci_dma_sync_single_for_device(e1, e2, e3, e4)
+> +    dma_sync_single_for_device(&e1->dev, e2, e3, e4)
+> 
+> @@
+> expression e1, e2, e3, e4;
+> @@
+> -    pci_dma_sync_sg_for_cpu(e1, e2, e3, e4)
+> +    dma_sync_sg_for_cpu(&e1->dev, e2, e3, e4)
+> 
+> @@
+> expression e1, e2, e3, e4;
+> @@
+> -    pci_dma_sync_sg_for_device(e1, e2, e3, e4)
+> +    dma_sync_sg_for_device(&e1->dev, e2, e3, e4)
+> 
+> @@
+> expression e1, e2;
+> @@
+> -    pci_dma_mapping_error(e1, e2)
+> +    dma_mapping_error(&e1->dev, e2)
+> 
+> @@
+> expression e1, e2;
+> @@
+> -    pci_set_dma_mask(e1, e2)
+> +    dma_set_mask(&e1->dev, e2)
+> 
+> @@
+> expression e1, e2;
+> @@
+> -    pci_set_consistent_dma_mask(e1, e2)
+> +    dma_set_coherent_mask(&e1->dev, e2)
+> 
+> Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-It's too late for 5.14-rc1, patches had to be in linux-next way before
-5.13-final was out.
+Patch applied to ath-next branch of ath.git, thanks.
 
-I can take these after 5.14-rc1 is out for 5.15-rc1, or you can split
-them up into bugfixes and features and resend two series, one for
-5.14-final and one for 5.15-rc1, which ever you want.
+923a134647a0 ath: switch from 'pci_' to 'dma_' API
 
-thanks,
+-- 
+https://patchwork.kernel.org/project/linux-wireless/patch/9150bd6cde9ad592aff8ee3ad94dffa90b004e89.1624720959.git.christophe.jaillet@wanadoo.fr/
 
-greg k-h
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
 -- 
 ath11k mailing list
