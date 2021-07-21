@@ -7,14 +7,14 @@ X-Spam-Status: No, score=-18.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 16736C6377D
-	for <ath11k@archiver.kernel.org>; Wed, 21 Jul 2021 21:21:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E6D94C6377A
+	for <ath11k@archiver.kernel.org>; Wed, 21 Jul 2021 21:21:23 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D6244611C1
-	for <ath11k@archiver.kernel.org>; Wed, 21 Jul 2021 21:21:16 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D6244611C1
+	by mail.kernel.org (Postfix) with ESMTPS id B1F2B61208
+	for <ath11k@archiver.kernel.org>; Wed, 21 Jul 2021 21:21:23 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B1F2B61208
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,44 +23,44 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=JrMeUXec5MwpDH2idJZBFLEUnw3RbrlpJspBeAO+QOw=; b=cVzHwGlLJpGfPt
-	6j3yOYnlby7605BR9owUAQVmYFXTI2w+MLn8OvBVSLLw3wIdIcBmRvjL0Ry59gse/w3YmWC4/kxuT
-	AyTZt/4u8mCiw6Mzfpo4BsD3eyg0ngtiufA8IijrTZLjDYI6TLswgl43Bf7+yQ1qAEveQxT84Lxen
-	Pg/e2oI2d2gCdF4NCa4JFhbBe5FoMXG8ob7eAv2E4SltuF7+G9Otu8zceDNO8MSY83MkiO1Z9nVbH
-	hwZXQ+6cSAysyuAep8DGrrQwkn8+zT6/6/GWS6Et3L1XnJ+6TyksB3WLk0CeVT9xd5V5yJ8IFkSmD
-	txRkGjeDhS8i5X8cbZ+Q==;
+	List-Owner; bh=ysh/mY5MV4tV3z1/BOcbOZPeMQ6TWzHFGhuYobivF/I=; b=lln8DAwbXEhBEB
+	u82BmKOUtPM+nAZtvAQwgB5ejp3unUP0fTBbWjN6PRbRDl6tlha4Bpfc//stcomzCC4aI5/T0oNk2
+	lTsf77daIzafElVXxqdHZgFbUX81WulYcbglskPFI/e4f9wxcAwFAMQmmicRuFUYeAX/i3JiuDjzU
+	N3bXtXGfY1784qmRdMxaEVmF+MMPLnlByoe3fzAmOsz+tt4LxiWFfVrZcpr5fx+bVPlTChMorvssm
+	VclZTJjQbVkSQDiSPWisc0bRX+DYaEaopuhSzM0BK8jVq0RA5HtWvEdutpaj4Rx0HGT9i6vCwnAWz
+	EiZQ6RjnH2WFoxCv3cpw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1m6JeU-00HIaT-V2; Wed, 21 Jul 2021 21:21:15 +0000
+	id 1m6Jeb-00HIer-KA; Wed, 21 Jul 2021 21:21:21 +0000
 Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1m6JeQ-00HIMr-N4
- for ath11k@lists.infradead.org; Wed, 21 Jul 2021 21:21:13 +0000
+ id 1m6JeV-00HIMr-OT
+ for ath11k@lists.infradead.org; Wed, 21 Jul 2021 21:21:20 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1626902472; h=Content-Transfer-Encoding: MIME-Version:
+ s=smtp; t=1626902478; h=Content-Transfer-Encoding: MIME-Version:
  References: In-Reply-To: Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=l7xcrTU8m14XMQJypurQwvT9aOgURPSR0kG022TbR3U=;
- b=m2NilDM4AYwZ2RBX8qXO5yPTkyR7+LopMn3s9ljyZ7qg3Q/+mlanWUWBh1vNDAJPlJuIkt/n
- GT1G6vZXS3YYmy3hISC+PmgJU5bn9A2gUgq3NqG+UJK97sRhmXhpr9dy/OsHRDisrjIRtce3
- HQxE9eTfVIWNmTCQufnDEwKtWA8=
+ Sender; bh=zjV4jmZT73UwCRIovvhGz/A7dljJJOvqTPpXAp2qC80=;
+ b=EBdhKSPrAjHGpnRoukTk+fBY8/8FcN3ONeWBHzoZkD3xosFmx98/YUVgXir7L2Yc/3tRL3Wl
+ ZyfcsvkyrMXxkNIph64CWqdWhnw0iF7qv4GN5g+YWdXawN7v6cd0fJ/+5hJdMGSpzGfMkLvD
+ ooL88pPwrs1+5WQlskALuQR0X40=
 X-Mailgun-Sending-Ip: 69.72.43.7
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
  smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
- 60f88fc2b653fbdadd8edfa2 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 21 Jul 2021 21:21:06
+ 60f88fc1b653fbdadd8edb39 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 21 Jul 2021 21:21:05
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id D5A06C43144; Wed, 21 Jul 2021 21:21:05 +0000 (UTC)
+ id C5481C43145; Wed, 21 Jul 2021 21:21:04 +0000 (UTC)
 Received: from jouni.codeaurora.org (85-76-67-217-nat.elisa-mobile.fi
  [85.76.67.217])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested) (Authenticated sender: jouni)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 98F11C4314A;
- Wed, 21 Jul 2021 21:21:03 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 98F11C4314A
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 49F98C4360C;
+ Wed, 21 Jul 2021 21:21:01 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 49F98C4360C
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
@@ -68,20 +68,18 @@ Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
 From: Jouni Malinen <jouni@codeaurora.org>
 To: Kalle Valo <kvalo@codeaurora.org>
 Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- Rameshkumar Sundaram <ramess@codeaurora.org>,
- Sathishkumar Muruganandam <murugana@codeaurora.org>,
- Jouni Malinen <jouni@codeaurora.org>
-Subject: [PATCH 10/12] ath11k: Send PPDU_STATS_CFG with proper pdev mask to
- firmware
-Date: Thu, 22 Jul 2021 00:20:27 +0300
-Message-Id: <20210721212029.142388-10-jouni@codeaurora.org>
+ P Praneesh <ppranees@codeaurora.org>, Jouni Malinen <jouni@codeaurora.org>
+Subject: [PATCH 09/12] ath11k: Add wmi peer create conf event in
+ wmi_tlv_event_id
+Date: Thu, 22 Jul 2021 00:20:26 +0300
+Message-Id: <20210721212029.142388-9-jouni@codeaurora.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210721212029.142388-1-jouni@codeaurora.org>
 References: <20210721212029.142388-1-jouni@codeaurora.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210721_142112_439067_6D6AA9DD 
-X-CRM114-Status: GOOD (  13.52  )
+X-CRM114-CacheID: sfid-20210721_142119_093536_EEBB5B90 
+X-CRM114-Status: GOOD (  13.07  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,54 +96,55 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Rameshkumar Sundaram <ramess@codeaurora.org>
+From: P Praneesh <ppranees@codeaurora.org>
 
-HTT_PPDU_STATS_CFG_PDEV_ID bit mask for target FW PPDU stats request
-message was set as bit 8 to 15. Bit 8 is reserved for soc stats and
-pdev id starts from bit 9. Hence change the bitmask as bit 9 to 15
-and fill the proper pdev id in the request message.
+When the driver sends a peer create cmd, the firmware responds with
+WMI_PEER_CREATE_CONF_EVENTID to confirm the firmware received
+WMI_PEER_CREATE_CMDID. Since the peer create conf event is not handled
+in ath11k_wmi_tlv_op_rx, we are getting unknown event id warning prints
+during peer creation.
 
-Tested on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1-01092-QCAHKSWPL_SILICONZ-1
-Tested on: IPQ6018 hw1.0 WLAN.HK.2.5.0.1-01067-QCAHKSWPL_SILICONZ-1
+Add WMI_PEER_CREATE_CONF_EVENTID in wmi_tlv_event_id and handle
+the same as unsupported event id under wmi logs.
 
-Fixes: 701e48a43e15 ("ath11k: add packet log support for QCA6390")
+warning prints:
+[ 4382.230817] ath11k_pci 0000:01:00.0: Unknown eventid: 0x601a
 
-Co-developed-by: Sathishkumar Muruganandam <murugana@codeaurora.org>
-Signed-off-by: Sathishkumar Muruganandam <murugana@codeaurora.org>
-Signed-off-by: Rameshkumar Sundaram <ramess@codeaurora.org>
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-01695-QCAHKSWPL_SILICONZ-1
+
+Signed-off-by: P Praneesh <ppranees@codeaurora.org>
 Signed-off-by: Jouni Malinen <jouni@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/dp.h    | 3 ++-
- drivers/net/wireless/ath/ath11k/dp_tx.c | 2 +-
- 2 files changed, 3 insertions(+), 2 deletions(-)
+ drivers/net/wireless/ath/ath11k/wmi.c | 1 +
+ drivers/net/wireless/ath/ath11k/wmi.h | 3 +++
+ 2 files changed, 4 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
-index b2e7621969c5..522d3a6ce253 100644
---- a/drivers/net/wireless/ath/ath11k/dp.h
-+++ b/drivers/net/wireless/ath/ath11k/dp.h
-@@ -541,7 +541,8 @@ struct htt_ppdu_stats_cfg_cmd {
- } __packed;
- 
- #define HTT_PPDU_STATS_CFG_MSG_TYPE		GENMASK(7, 0)
--#define HTT_PPDU_STATS_CFG_PDEV_ID		GENMASK(15, 8)
-+#define HTT_PPDU_STATS_CFG_SOC_STATS		BIT(8)
-+#define HTT_PPDU_STATS_CFG_PDEV_ID		GENMASK(15, 9)
- #define HTT_PPDU_STATS_CFG_TLV_TYPE_BITMASK	GENMASK(31, 16)
- 
- enum htt_ppdu_stats_tag_type {
-diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
-index b00e78de36bc..125a9a8a5b0a 100644
---- a/drivers/net/wireless/ath/ath11k/dp_tx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
-@@ -906,7 +906,7 @@ int ath11k_dp_tx_htt_h2t_ppdu_stats_req(struct ath11k *ar, u32 mask)
- 		cmd->msg = FIELD_PREP(HTT_PPDU_STATS_CFG_MSG_TYPE,
- 				      HTT_H2T_MSG_TYPE_PPDU_STATS_CFG);
- 
--		pdev_mask = 1 << (i + 1);
-+		pdev_mask = 1 << (ar->pdev_idx + i);
- 		cmd->msg |= FIELD_PREP(HTT_PPDU_STATS_CFG_PDEV_ID, pdev_mask);
- 		cmd->msg |= FIELD_PREP(HTT_PPDU_STATS_CFG_TLV_TYPE_BITMASK, mask);
- 
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 020b2b7ee3c8..6d2696db1e07 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -7130,6 +7130,7 @@ static void ath11k_wmi_tlv_op_rx(struct ath11k_base *ab, struct sk_buff *skb)
+ 	case WMI_TWT_ENABLE_EVENTID:
+ 	case WMI_TWT_DISABLE_EVENTID:
+ 	case WMI_PDEV_DMA_RING_CFG_RSP_EVENTID:
++	case WMI_PEER_CREATE_CONF_EVENTID:
+ 		ath11k_dbg(ab, ATH11K_DBG_WMI,
+ 			   "ignoring unsupported event 0x%x\n", id);
+ 		break;
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index 16b3f48bb378..2587d22f42ce 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -663,6 +663,9 @@ enum wmi_tlv_event_id {
+ 	WMI_PEER_RESERVED9_EVENTID,
+ 	WMI_PEER_RESERVED10_EVENTID,
+ 	WMI_PEER_OPER_MODE_CHANGE_EVENTID,
++	WMI_PEER_TX_PN_RESPONSE_EVENTID,
++	WMI_PEER_CFR_CAPTURE_EVENTID,
++	WMI_PEER_CREATE_CONF_EVENTID,
+ 	WMI_MGMT_RX_EVENTID = WMI_TLV_CMD(WMI_GRP_MGMT),
+ 	WMI_HOST_SWBA_EVENTID,
+ 	WMI_TBTTOFFSET_UPDATE_EVENTID,
 -- 
 2.25.1
 
