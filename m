@@ -7,14 +7,14 @@ X-Spam-Status: No, score=-18.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
 	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 057EEC6377C
-	for <ath11k@archiver.kernel.org>; Wed, 21 Jul 2021 21:21:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6704AC6377B
+	for <ath11k@archiver.kernel.org>; Wed, 21 Jul 2021 21:21:03 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C17D561208
-	for <ath11k@archiver.kernel.org>; Wed, 21 Jul 2021 21:21:01 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C17D561208
+	by mail.kernel.org (Postfix) with ESMTPS id 3289D61208
+	for <ath11k@archiver.kernel.org>; Wed, 21 Jul 2021 21:21:03 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3289D61208
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,44 +23,44 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0QNDgJrVAno+hVCKZFgBqIhduUvCv/3cZn7e0gcgQjk=; b=n7d0FvKHX1w9mF
-	rUyW6tL++yhHQ62jE28fCpuOPEyGIUybEJc9x65T3RDRrBuZ89tuLk5tXK2SZ3atD65oY/sy3x2N3
-	yZhq2oK4yCw301NpyvognLzmn4qWCSumE6ORFASCnkSNgoQ5pGOy6nVaf3X7ZIMwaBM45FgUuplbe
-	MTX5aAZ2kO7FuS4G1pYvxCYe5U/wqdLJ/KM4+Af4OurMxpmYleoqFIPZVlEBsRwZfHZgdtVp7ZClM
-	gmWB7h59f/DN7wR89QeYa5mAL+i5yHVnKoPl7Z7ujPrlGNIme+oK4L5wcWtU0c+aW8X5ccdftAjdH
-	iW4C+4oLnPs3b5vaYgDA==;
+	List-Owner; bh=741ESSuNLu3qbxYZZYt797WPQj/XNLz5w7Gj/oP6DfY=; b=C84jjXmo0dwxpv
+	1IQH/OtzmGSKvaF2UsTbnSJs4UUIi37cfMxTaNyVIfp9LbEViSXZEPIHWER1dSccJKw8huB8WoJi1
+	ICWy3XSOxtjYk5mUR6XMB0/PQTgW5s1RuSAw+zdWATDZuSOvp+XANH3N7C/ARAhRtcABJ1DB8hgbM
+	qb/Jdb/29ctEv0tr9GZ9GY/Q67MFHxmIdRdgAOpfVfYPYlwPR+TCS+GZ5gP+6y1RhoFhPq8dE15fM
+	raa1Ra+Qr5g/mbrwsQtoil/JPfmmeLGjg3nVfS2qh0GQjzpjWROkycX6t2F1vKnvIsGkOAU3PKDna
+	wetSpIFI8Zh096+wwhGw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1m6JeC-00HIOB-Lb; Wed, 21 Jul 2021 21:20:56 +0000
-Received: from so254-9.mailgun.net ([198.61.254.9])
+	id 1m6JeF-00HIOl-4h; Wed, 21 Jul 2021 21:20:59 +0000
+Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1m6Je7-00HIMB-P4
- for ath11k@lists.infradead.org; Wed, 21 Jul 2021 21:20:55 +0000
+ id 1m6JeA-00HIMr-1S
+ for ath11k@lists.infradead.org; Wed, 21 Jul 2021 21:20:56 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1626902453; h=Content-Transfer-Encoding: MIME-Version:
+ s=smtp; t=1626902452; h=Content-Transfer-Encoding: MIME-Version:
  References: In-Reply-To: Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=Ggt97fu/Cj/UvFw7ZpzBspFgBHsb5c6WnND4cxYkuBI=;
- b=Q6RoTWEknGIu3aCHbeztupT5pXUpuPUTw9sgz4OTAmtEK2Tn5RjoLcQEb5Af7r4fZOSTh21I
- fcoEJtgkB9avOyd5O2vjGzwsiA9eTxvwqdMKw1m8sJgT07tRg6Yt31hWV6SF6VPUPRkrAh+Q
- YnTy00H3ehle4DSyLzUGVq0C/ps=
-X-Mailgun-Sending-Ip: 198.61.254.9
+ Sender; bh=ZNqUb9UHUwfNPy7Oe0uKc3fVtisXthGHPhG2433Lw7M=;
+ b=BxmP8qgeQwPy+j8xwDn5I9u04WyYM9mfGRHkMLYk7ynFiPVMrm0fZ+GMm37/qrDwe3VdTWYA
+ UDuR60claCzXA+ZGfIche9RVsj8sfULXb89c783SUSKAOfsmWDMYWvys7aaaezBgJDBnNTJM
+ qqp/VLXnVeiWA/FAQQ4FMA9W9A0=
+X-Mailgun-Sending-Ip: 69.72.43.7
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
- 60f88fad290ea35ee64153e8 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 21 Jul 2021 21:20:45
+ smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
+ 60f88fb01dd16c8788c36291 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 21 Jul 2021 21:20:48
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 2C449C433D3; Wed, 21 Jul 2021 21:20:45 +0000 (UTC)
+ id 14EA2C4338A; Wed, 21 Jul 2021 21:20:48 +0000 (UTC)
 Received: from jouni.codeaurora.org (85-76-67-217-nat.elisa-mobile.fi
  [85.76.67.217])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested) (Authenticated sender: jouni)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id C7EEFC433F1;
- Wed, 21 Jul 2021 21:20:42 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org C7EEFC433F1
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 3B34DC433D3;
+ Wed, 21 Jul 2021 21:20:46 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 3B34DC433D3
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
@@ -69,16 +69,16 @@ From: Jouni Malinen <jouni@codeaurora.org>
 To: Kalle Valo <kvalo@codeaurora.org>
 Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
  Sriram R <srirrama@codeaurora.org>, Jouni Malinen <jouni@codeaurora.org>
-Subject: [PATCH 02/12] ath11k: Update pdev tx and rx firmware stats
-Date: Thu, 22 Jul 2021 00:20:19 +0300
-Message-Id: <20210721212029.142388-2-jouni@codeaurora.org>
+Subject: [PATCH 03/12] ath11k: Avoid reg rules update during firmware recovery
+Date: Thu, 22 Jul 2021 00:20:20 +0300
+Message-Id: <20210721212029.142388-3-jouni@codeaurora.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210721212029.142388-1-jouni@codeaurora.org>
 References: <20210721212029.142388-1-jouni@codeaurora.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210721_142053_222048_8020D5C3 
-X-CRM114-Status: GOOD (  16.07  )
+X-CRM114-CacheID: sfid-20210721_142054_218163_8BADEB43 
+X-CRM114-Status: GOOD (  15.93  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,256 +97,69 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 From: Sriram R <srirrama@codeaurora.org>
 
-Update the fields of pdev tx and tx firmware stats structure.
-Missing fields resulted in wrong fw stats to be displayed as below.
+During firmware recovery, the default reg rules which are
+received via WMI_REG_CHAN_LIST_CC_EVENT can overwrite
+the currently configured user regd.
 
-root@OpenWrt:/# cat /sys/kernel/debug/ath11k/
-		ipq8074\ hw2.0/mac0/fw_stats/pdev_stats | grep Illegal
-Illegal rate phy errors   36839112
+See below snap for example,
 
-Note that this struct was missing its members from initial driver
-support and this change doesn't introduce/modify the structure for
-firmware changes.
+root@OpenWrt:/# iw reg get | grep country
+country FR: DFS-ETSI
+country FR: DFS-ETSI
+country FR: DFS-ETSI
+country FR: DFS-ETSI
 
-Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-01734-QCAHKSWPL_SILICONZ-1 v2
+root@OpenWrt:/# echo assert > /sys/kernel/debug/ath11k/ipq8074\ hw2.0/simulate_f
+w_crash
+<snip>
+[ 5290.471696] ath11k c000000.wifi1: pdev 1 successfully recovered
 
+root@OpenWrt:/# iw reg get | grep country
+country FR: DFS-ETSI
+country US: DFS-FCC
+country US: DFS-FCC
+country US: DFS-FCC
+
+In the above, the user configured country 'FR' is overwritten
+when the rules of default country 'US' are received and updated during
+recovery. Hence avoid processing of these rules in general
+during firmware recovery as they have been already applied during
+driver registration or after last set user country is configured.
+
+This scenario applies for both AP and STA devices basically because
+cfg80211 is not aware of the recovery and only the driver recovers, but
+changing or resetting of the reg domain during recovery is not needed so
+as to continue with the configured regdomain currently in use.
+
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-01460-QCAHKSWPL_SILICONZ-1
 Signed-off-by: Sriram R <srirrama@codeaurora.org>
 Signed-off-by: Jouni Malinen <jouni@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/core.h | 29 ++++++++++++++++++
- drivers/net/wireless/ath/ath11k/wmi.c  | 41 ++++++++++++++++++++++++-
- drivers/net/wireless/ath/ath11k/wmi.h  | 42 ++++++++++++++++++++++++++
- 3 files changed, 111 insertions(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/wmi.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 9d97da2a3ba8..394ba7b9c8ab 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -802,12 +802,15 @@ struct ath11k_fw_stats_pdev {
- 	s32 hw_reaped;
- 	/* Num underruns */
- 	s32 underrun;
-+	/* Num hw paused */
-+	u32 hw_paused;
- 	/* Num PPDUs cleaned up in TX abort */
- 	s32 tx_abort;
- 	/* Num MPDUs requeued by SW */
- 	s32 mpdus_requeued;
- 	/* excessive retries */
- 	u32 tx_ko;
-+	u32 tx_xretry;
- 	/* data hw rate code */
- 	u32 data_rc;
- 	/* Scheduler self triggers */
-@@ -828,6 +831,30 @@ struct ath11k_fw_stats_pdev {
- 	u32 phy_underrun;
- 	/* MPDU is more than txop limit */
- 	u32 txop_ovf;
-+	/* Num sequences posted */
-+	u32 seq_posted;
-+	/* Num sequences failed in queueing */
-+	u32 seq_failed_queueing;
-+	/* Num sequences completed */
-+	u32 seq_completed;
-+	/* Num sequences restarted */
-+	u32 seq_restarted;
-+	/* Num of MU sequences posted */
-+	u32 mu_seq_posted;
-+	/* Num MPDUs flushed by SW, HWPAUSED, SW TXABORT
-+	 * (Reset,channel change)
-+	 */
-+	s32 mpdus_sw_flush;
-+	/* Num MPDUs filtered by HW, all filter condition (TTL expired) */
-+	s32 mpdus_hw_filter;
-+	/* Num MPDUs truncated by PDG (TXOP, TBTT,
-+	 * PPDU_duration based on rate, dyn_bw)
-+	 */
-+	s32 mpdus_truncated;
-+	/* Num MPDUs that was tried but didn't receive ACK or BA */
-+	s32 mpdus_ack_failed;
-+	/* Num MPDUs that was dropped du to expiry. */
-+	s32 mpdus_expired;
- 
- 	/* PDEV RX stats */
- 	/* Cnts any change in ring routing mid-ppdu */
-@@ -853,6 +880,8 @@ struct ath11k_fw_stats_pdev {
- 	s32 phy_err_drop;
- 	/* Number of mpdu errors - FCS, MIC, ENC etc. */
- 	s32 mpdu_errs;
-+	/* Num overflow errors */
-+	s32 rx_ovfl_errs;
- };
- 
- struct ath11k_fw_stats_vdev {
 diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 7ac84ac86aab..a95756dc14a1 100644
+index a95756dc14a1..6880c7527df8 100644
 --- a/drivers/net/wireless/ath/ath11k/wmi.c
 +++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -5251,9 +5251,11 @@ ath11k_wmi_pull_pdev_stats_tx(const struct wmi_pdev_stats_tx *src,
- 	dst->hw_queued = src->hw_queued;
- 	dst->hw_reaped = src->hw_reaped;
- 	dst->underrun = src->underrun;
-+	dst->hw_paused = src->hw_paused;
- 	dst->tx_abort = src->tx_abort;
- 	dst->mpdus_requeued = src->mpdus_requeued;
- 	dst->tx_ko = src->tx_ko;
-+	dst->tx_xretry = src->tx_xretry;
- 	dst->data_rc = src->data_rc;
- 	dst->self_triggers = src->self_triggers;
- 	dst->sw_retry_failure = src->sw_retry_failure;
-@@ -5264,6 +5266,16 @@ ath11k_wmi_pull_pdev_stats_tx(const struct wmi_pdev_stats_tx *src,
- 	dst->stateless_tid_alloc_failure = src->stateless_tid_alloc_failure;
- 	dst->phy_underrun = src->phy_underrun;
- 	dst->txop_ovf = src->txop_ovf;
-+	dst->seq_posted = src->seq_posted;
-+	dst->seq_failed_queueing = src->seq_failed_queueing;
-+	dst->seq_completed = src->seq_completed;
-+	dst->seq_restarted = src->seq_restarted;
-+	dst->mu_seq_posted = src->mu_seq_posted;
-+	dst->mpdus_sw_flush = src->mpdus_sw_flush;
-+	dst->mpdus_hw_filter = src->mpdus_hw_filter;
-+	dst->mpdus_truncated = src->mpdus_truncated;
-+	dst->mpdus_ack_failed = src->mpdus_ack_failed;
-+	dst->mpdus_expired = src->mpdus_expired;
- }
+@@ -5848,6 +5848,17 @@ static int ath11k_reg_chan_list_event(struct ath11k_base *ab, struct sk_buff *sk
  
- static void ath11k_wmi_pull_pdev_stats_rx(const struct wmi_pdev_stats_rx *src,
-@@ -5283,6 +5295,7 @@ static void ath11k_wmi_pull_pdev_stats_rx(const struct wmi_pdev_stats_rx *src,
- 	dst->phy_errs = src->phy_errs;
- 	dst->phy_err_drop = src->phy_err_drop;
- 	dst->mpdu_errs = src->mpdu_errs;
-+	dst->rx_ovfl_errs = src->rx_ovfl_errs;
- }
+ 	pdev_idx = reg_info->phy_id;
  
- static void
-@@ -5519,12 +5532,16 @@ ath11k_wmi_fw_pdev_tx_stats_fill(const struct ath11k_fw_stats_pdev *pdev,
- 			 "PPDUs reaped", pdev->hw_reaped);
- 	len += scnprintf(buf + len, buf_len - len, "%30s %10d\n",
- 			 "Num underruns", pdev->underrun);
-+	len += scnprintf(buf + len, buf_len - len, "%30s %10d\n",
-+			 "Num HW Paused", pdev->hw_paused);
- 	len += scnprintf(buf + len, buf_len - len, "%30s %10d\n",
- 			 "PPDUs cleaned", pdev->tx_abort);
- 	len += scnprintf(buf + len, buf_len - len, "%30s %10d\n",
- 			 "MPDUs requeued", pdev->mpdus_requeued);
- 	len += scnprintf(buf + len, buf_len - len, "%30s %10u\n",
--			 "Excessive retries", pdev->tx_ko);
-+			 "PPDU OK", pdev->tx_ko);
-+	len += scnprintf(buf + len, buf_len - len, "%30s %10u\n",
-+			 "Excessive retries", pdev->tx_xretry);
- 	len += scnprintf(buf + len, buf_len - len, "%30s %10u\n",
- 			 "HW rate", pdev->data_rc);
- 	len += scnprintf(buf + len, buf_len - len, "%30s %10u\n",
-@@ -5548,6 +5565,26 @@ ath11k_wmi_fw_pdev_tx_stats_fill(const struct ath11k_fw_stats_pdev *pdev,
- 			 "PHY underrun", pdev->phy_underrun);
- 	len += scnprintf(buf + len, buf_len - len, "%30s %10u\n",
- 			 "MPDU is more than txop limit", pdev->txop_ovf);
-+	len += scnprintf(buf + len, buf_len - len, "%30s %10u\n",
-+			 "Num sequences posted", pdev->seq_posted);
-+	len += scnprintf(buf + len, buf_len - len, "%30s %10u\n",
-+			 "Num seq failed queueing ", pdev->seq_failed_queueing);
-+	len += scnprintf(buf + len, buf_len - len, "%30s %10u\n",
-+			 "Num sequences completed ", pdev->seq_completed);
-+	len += scnprintf(buf + len, buf_len - len, "%30s %10u\n",
-+			 "Num sequences restarted ", pdev->seq_restarted);
-+	len += scnprintf(buf + len, buf_len - len, "%30s %10u\n",
-+			 "Num of MU sequences posted ", pdev->mu_seq_posted);
-+	len += scnprintf(buf + len, buf_len - len, "%30s %10u\n",
-+			 "Num of MPDUS SW flushed ", pdev->mpdus_sw_flush);
-+	len += scnprintf(buf + len, buf_len - len, "%30s %10u\n",
-+			 "Num of MPDUS HW filtered ", pdev->mpdus_hw_filter);
-+	len += scnprintf(buf + len, buf_len - len, "%30s %10u\n",
-+			 "Num of MPDUS truncated ", pdev->mpdus_truncated);
-+	len += scnprintf(buf + len, buf_len - len, "%30s %10u\n",
-+			 "Num of MPDUS ACK failed ", pdev->mpdus_ack_failed);
-+	len += scnprintf(buf + len, buf_len - len, "%30s %10u\n",
-+			 "Num of MPDUS expired ", pdev->mpdus_expired);
- 	*length = len;
- }
- 
-@@ -5592,6 +5629,8 @@ ath11k_wmi_fw_pdev_rx_stats_fill(const struct ath11k_fw_stats_pdev *pdev,
- 			 "PHY errors drops", pdev->phy_err_drop);
- 	len += scnprintf(buf + len, buf_len - len, "%30s %10d\n",
- 			 "MPDU errors (FCS, MIC, ENC)", pdev->mpdu_errs);
-+	len += scnprintf(buf + len, buf_len - len, "%30s %10d\n",
-+			 "Overflow errors", pdev->rx_ovfl_errs);
- 	*length = len;
- }
- 
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index fb27a8d0f0fd..1fff74b2b476 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -4221,6 +4221,9 @@ struct wmi_pdev_stats_tx {
- 	/* Num underruns */
- 	s32 underrun;
- 
-+	/* Num hw paused */
-+	u32 hw_paused;
-+
- 	/* Num PPDUs cleaned up in TX abort */
- 	s32 tx_abort;
- 
-@@ -4230,6 +4233,8 @@ struct wmi_pdev_stats_tx {
- 	/* excessive retries */
- 	u32 tx_ko;
- 
-+	u32 tx_xretry;
-+
- 	/* data hw rate code */
- 	u32 data_rc;
- 
-@@ -4259,6 +4264,40 @@ struct wmi_pdev_stats_tx {
- 
- 	/* MPDU is more than txop limit */
- 	u32 txop_ovf;
-+
-+	/* Num sequences posted */
-+	u32 seq_posted;
-+
-+	/* Num sequences failed in queueing */
-+	u32 seq_failed_queueing;
-+
-+	/* Num sequences completed */
-+	u32 seq_completed;
-+
-+	/* Num sequences restarted */
-+	u32 seq_restarted;
-+
-+	/* Num of MU sequences posted */
-+	u32 mu_seq_posted;
-+
-+	/* Num MPDUs flushed by SW, HWPAUSED, SW TXABORT
-+	 * (Reset,channel change)
++	/* Avoid default reg rule updates sent during FW recovery if
++	 * it is already available
 +	 */
-+	s32 mpdus_sw_flush;
++	spin_lock(&ab->base_lock);
++	if (test_bit(ATH11K_FLAG_RECOVERY, &ab->dev_flags) &&
++	    ab->default_regd[pdev_idx]) {
++		spin_unlock(&ab->base_lock);
++		goto mem_free;
++	}
++	spin_unlock(&ab->base_lock);
 +
-+	/* Num MPDUs filtered by HW, all filter condition (TTL expired) */
-+	s32 mpdus_hw_filter;
-+
-+	/* Num MPDUs truncated by PDG (TXOP, TBTT,
-+	 * PPDU_duration based on rate, dyn_bw)
-+	 */
-+	s32 mpdus_truncated;
-+
-+	/* Num MPDUs that was tried but didn't receive ACK or BA */
-+	s32 mpdus_ack_failed;
-+
-+	/* Num MPDUs that was dropped du to expiry. */
-+	s32 mpdus_expired;
- } __packed;
- 
- struct wmi_pdev_stats_rx {
-@@ -4293,6 +4332,9 @@ struct wmi_pdev_stats_rx {
- 
- 	/* Number of mpdu errors - FCS, MIC, ENC etc. */
- 	s32 mpdu_errs;
-+
-+	/* Num overflow errors */
-+	s32 rx_ovfl_errs;
- } __packed;
- 
- struct wmi_pdev_stats {
+ 	if (pdev_idx >= ab->num_radios) {
+ 		/* Process the event for phy0 only if single_pdev_only
+ 		 * is true. If pdev_idx is valid but not 0, discard the
 -- 
 2.25.1
 
