@@ -2,66 +2,65 @@ Return-Path: <SRS0=H079=MN=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	UNWANTED_LANGUAGE_BODY,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6D3A1C6377A
-	for <ath11k@archiver.kernel.org>; Wed, 21 Jul 2021 20:20:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8585BC6377B
+	for <ath11k@archiver.kernel.org>; Wed, 21 Jul 2021 20:42:39 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2DCE96124B
-	for <ath11k@archiver.kernel.org>; Wed, 21 Jul 2021 20:20:21 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2DCE96124B
+	by mail.kernel.org (Postfix) with ESMTPS id 3836161222
+	for <ath11k@archiver.kernel.org>; Wed, 21 Jul 2021 20:42:39 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3836161222
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=TsdhWLGYSY7wpt5gJAsLrZDbFq/CUOcRxwW+Tv0utcg=; b=oDiUCYYEfZ/sgs
-	wvIgLsOX6eXeSLeisIJmjNTlIacsye5pPz0svCPW0gJ+kj0AxuseLuiADMB9sr60r4Em47xoCQsFu
-	stlsTfVHZB+oCJLpAvxgQ2qo2oIMF7tzhC9DC4MNuTjMcvq/MAtQpFHG6NQ2Ecz2YuROBv4X/iMy2
-	Hg8qU8FVdcsvOVVdM271NqhBAp1BFemv+FWmrA06X8PucO6Q4QuUqrnCJma/shYVwtAZOcbDqLYBZ
-	0nY0J+X4tCxEIFA5BnwLdWMlZVSZSW0IC9mJ9HaU8+cHGmDtDvTO3Rv7ap1LOr6EW7m9H4Brsc90c
-	PtWXlcdphosDB0H3rJlw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=26KkGCyIC/zxDen+LkRsvD9aC4OfkqII0n0t1mppkuc=; b=nWOHxAUnNFNdxN
+	YAKkvsxjSOzWbpfHD3TtypGpHOYs9rMMPBU74y+9P1Lt+jlJUkZ16oy7Ci0srm3eqpL7BIuVoq5yb
+	1E7DZCxLnTx6NUA1+6oGtKAbPtwBUlhUU152JqLcPOGj0H72BNjYAUxTXbBVu5PtLkoY9FqNMDTMP
+	6o1lbL1pwRiDfQ91JYL7gdbz/tfcVI3vnXhtiIt2h/beN8yZgTffKYyLxTqJYihdoAc9QOR2ZJFoX
+	5yjs5WLtLvc771udwzU5V8XjS1lpYPqSPmg7ktBEiY+fAvlaM8lkGLfw4w9FsAPSU551jBLre53T0
+	mBv3Ra1SvBddrRj7wsew==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1m6IhX-00H6PG-33; Wed, 21 Jul 2021 20:20:19 +0000
+	id 1m6J36-00H8do-E0; Wed, 21 Jul 2021 20:42:36 +0000
 Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1m6IhQ-00H6Fp-6M
- for ath11k@lists.infradead.org; Wed, 21 Jul 2021 20:20:18 +0000
+ id 1m6J2y-00H8cZ-OG
+ for ath11k@lists.infradead.org; Wed, 21 Jul 2021 20:42:33 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1626898816; h=Content-Transfer-Encoding: MIME-Version:
- References: In-Reply-To: Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=zUf+qNoI5wXRIPUqFqapB0CxcB8l5/hPYDWvyfn9EB0=;
- b=jD2pfryMvAc6jJt4KlGL1tkRC2S4oSNS4EaqqS3PFk/8AlKgI5VPRI3pYXkvZvPJswWKHO1M
- FNQlxHr4i2BN9BYQSq/PGyCyV+sNhxxXByFOlz1PpQqaOUhd+VJk1XpW4VPbMIa1LVmQZG1t
- rWZqqE2oLDYpuCoivnuSy7X2Dpk=
+ s=smtp; t=1626900150; h=Content-Transfer-Encoding: MIME-Version:
+ Message-Id: Date: Subject: Cc: To: From: Sender;
+ bh=dOpbjWX75vcH6GHTDr/3tHY6iueQn45Aq4Zx3YlKKYY=;
+ b=ElKdJFc52+vVHthobSy0G2LeMBI/QwFITYBLMEvEGAGX4EMn8QE8D5WF2Md5++ltGVFbmKE8
+ 46ofdaBhwUNRa8xuJkr6sFvVc3oiTwKeeifEIpWZ4u/tP97U4vwkgrKwWRwKG59dWzSBiMN7
+ jg1Hx2rcQDpW+zQzP+AgO+bbMlM=
 X-Mailgun-Sending-Ip: 69.72.43.7
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
- 60f8817196a66e66b2976819 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 21 Jul 2021 20:20:01
+ smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
+ 60f886afe31d882d18f8dc79 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 21 Jul 2021 20:42:23
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 947D4C433F1; Wed, 21 Jul 2021 20:20:01 +0000 (UTC)
+ id 9A7AFC43217; Wed, 21 Jul 2021 20:42:23 +0000 (UTC)
 Received: from jouni.codeaurora.org (85-76-67-217-nat.elisa-mobile.fi
  [85.76.67.217])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested) (Authenticated sender: jouni)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id D9790C43217;
- Wed, 21 Jul 2021 20:19:59 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org D9790C43217
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 73C7CC4338A;
+ Wed, 21 Jul 2021 20:42:20 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 73C7CC4338A
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
@@ -69,18 +68,17 @@ Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
 From: Jouni Malinen <jouni@codeaurora.org>
 To: Kalle Valo <kvalo@codeaurora.org>
 Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- Anilkumar Kolli <akolli@codeaurora.org>,
+ Sriram R <srirrama@codeaurora.org>,
+ Manikanta Pubbisetty <mpubbise@codeaurora.org>,
  Jouni Malinen <jouni@codeaurora.org>
-Subject: [PATCH 3/4] ath11k: add caldata file for multiple radios
-Date: Wed, 21 Jul 2021 23:19:26 +0300
-Message-Id: <20210721201927.100369-4-jouni@codeaurora.org>
+Subject: [PATCH] ath11k: Add support for RX decapsulation offload
+Date: Wed, 21 Jul 2021 23:42:17 +0300
+Message-Id: <20210721204217.120572-1-jouni@codeaurora.org>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210721201927.100369-1-jouni@codeaurora.org>
-References: <20210721201927.100369-1-jouni@codeaurora.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210721_132016_980088_58681972 
-X-CRM114-Status: GOOD (  15.49  )
+X-CRM114-CacheID: sfid-20210721_134231_009682_8E543000 
+X-CRM114-Status: GOOD (  25.64  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,71 +95,607 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Anilkumar Kolli <akolli@codeaurora.org>
+From: Sriram R <srirrama@codeaurora.org>
 
-If multiple PCI cards are attached, each needs its own caldata file.
+Add support for rx decapsulation offload by advertising
+the support to mac80211 during registration. Also ensure
+the frames have the RX_FLAG_8023 flag set in decap offload
+frames before passing to mac80211.
 
-Added new Caldata file name,
-PCI Bus:
-        cal-pci-0001:01:00.0.bin
-        cal-pci-0000:01:00.0.bin
-AHB Bus:
-	cal-ahb-c000000.wifi1.bin
+Since the packets delivered to the driver are in 802.3 format, these
+can be sent to the network core with minimal processing in mac80211.
+This helps in releasing some CPU cycles in the host processor and
+thereby improving the performance.
 
-Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00009-QCAHKSWPL_SILICONZ-1
-Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.4.0.1-01838-QCAHKSWPL_SILICONZ-1
+Two exceptions are made before passing decap frames, one is
+for EAPOL packets since mac80211 8023 fast rx for the sta
+is set only after authorization, other case is for multicast
+packets to validate PN in mac80211. In both the cases the
+decap frames are converted to 80211 frame and sent to mac80211.
 
-Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
+Ethernet decap can be enabled by using a modparam as shown below:
+insmod ath11k frame_mode=2
+
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1-00844-QCAHKSWPL_SILICONZ-1 v2
+
+Co-developed-by: Manikanta Pubbisetty <mpubbise@codeaurora.org>
+Signed-off-by: Manikanta Pubbisetty <mpubbise@codeaurora.org>
+Signed-off-by: Sriram R <srirrama@codeaurora.org>
 Signed-off-by: Jouni Malinen <jouni@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/qmi.c | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
+ drivers/net/wireless/ath/ath11k/core.h     |   4 +
+ drivers/net/wireless/ath/ath11k/dp_rx.c    | 194 +++++++++++++--------
+ drivers/net/wireless/ath/ath11k/hal_desc.h |   2 +
+ drivers/net/wireless/ath/ath11k/hw.c       |  43 +++++
+ drivers/net/wireless/ath/ath11k/hw.h       |   2 +
+ drivers/net/wireless/ath/ath11k/mac.c      |  25 ++-
+ 6 files changed, 198 insertions(+), 72 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index a24a6647ba52..381ae70e45ff 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.c
-+++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -2027,6 +2027,7 @@ static int ath11k_qmi_load_file_target_mem(struct ath11k_base *ab,
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index c73001014795..9d97da2a3ba8 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -93,6 +93,8 @@ struct ath11k_skb_rxcb {
+ 	bool is_first_msdu;
+ 	bool is_last_msdu;
+ 	bool is_continuation;
++	bool is_mcbc;
++	bool is_eapol;
+ 	struct hal_rx_desc *rx_desc;
+ 	u8 err_rel_src;
+ 	u8 err_code;
+@@ -100,6 +102,8 @@ struct ath11k_skb_rxcb {
+ 	u8 unmapped;
+ 	u8 is_frag;
+ 	u8 tid;
++	u16 peer_id;
++	u16 seq_no;
+ };
  
- static int ath11k_qmi_load_bdf_qmi(struct ath11k_base *ab)
+ enum ath11k_hw_rev {
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 587690bec595..cc53432827e5 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -270,6 +270,18 @@ static bool ath11k_dp_rx_h_attn_is_mcbc(struct ath11k_base *ab,
+ 		 __le32_to_cpu(attn->info1)));
+ }
+ 
++static bool ath11k_dp_rxdesc_mac_addr2_valid(struct ath11k_base *ab,
++					     struct hal_rx_desc *desc)
++{
++	return ab->hw_params.hw_ops->rx_desc_mac_addr2_valid(desc);
++}
++
++static u8 *ath11k_dp_rxdesc_mpdu_start_addr2(struct ath11k_base *ab,
++					     struct hal_rx_desc *desc)
++{
++	return ab->hw_params.hw_ops->rx_desc_mpdu_start_addr2(desc);
++}
++
+ static void ath11k_dp_service_mon_ring(struct timer_list *t)
  {
-+	struct device *dev = ab->dev;
- 	char filename[ATH11K_QMI_MAX_BDF_FILE_NAME_SIZE];
- 	const struct firmware *fw_entry;
- 	struct ath11k_board_data bd;
-@@ -2061,6 +2062,14 @@ static int ath11k_qmi_load_bdf_qmi(struct ath11k_base *ab)
- 		goto out;
+ 	struct ath11k_base *ab = from_timer(ab, t, mon_reap_timer);
+@@ -2156,6 +2168,7 @@ static void ath11k_dp_rx_h_undecap(struct ath11k *ar, struct sk_buff *msdu,
+ {
+ 	u8 *first_hdr;
+ 	u8 decap;
++	struct ethhdr *ehdr;
  
- 	file_type = ATH11K_QMI_FILE_TYPE_CALDATA;
+ 	first_hdr = ath11k_dp_rx_h_80211_hdr(ar->ab, rx_desc);
+ 	decap = ath11k_dp_rx_h_msdu_start_decap_type(ar->ab, rx_desc);
+@@ -2170,9 +2183,22 @@ static void ath11k_dp_rx_h_undecap(struct ath11k *ar, struct sk_buff *msdu,
+ 					   decrypted);
+ 		break;
+ 	case DP_RX_DECAP_TYPE_ETHERNET2_DIX:
+-		/* TODO undecap support for middle/last msdu's of amsdu */
+-		ath11k_dp_rx_h_undecap_eth(ar, msdu, first_hdr,
+-					   enctype, status);
++		ehdr = (struct ethhdr *)msdu->data;
 +
-+	/* cal-<bus>-<id>.bin */
-+	snprintf(filename, sizeof(filename), "cal-%s-%s.bin",
-+		 ath11k_bus_str(ab->hif.bus), dev_name(dev));
-+	fw_entry = ath11k_core_firmware_request(ab, filename);
-+	if (!IS_ERR(fw_entry))
-+		goto success;
++		/* mac80211 allows fast path only for authorized STA */
++		if (ehdr->h_proto == cpu_to_be16(ETH_P_PAE)) {
++			ATH11K_SKB_RXCB(msdu)->is_eapol = true;
++			ath11k_dp_rx_h_undecap_eth(ar, msdu, first_hdr,
++						   enctype, status);
++			break;
++		}
 +
- 	fw_entry = ath11k_core_firmware_request(ab, ATH11K_DEFAULT_CAL_FILE);
- 	if (IS_ERR(fw_entry)) {
- 		ret = PTR_ERR(fw_entry);
-@@ -2070,6 +2079,7 @@ static int ath11k_qmi_load_bdf_qmi(struct ath11k_base *ab)
- 		goto out;
++		/* PN for mcast packets will be validated in mac80211;
++		 * remove eth header and add 802.11 header.
++		 */
++		if (ATH11K_SKB_RXCB(msdu)->is_mcbc && decrypted)
++			ath11k_dp_rx_h_undecap_eth(ar, msdu, first_hdr,
++						   enctype, status);
+ 		break;
+ 	case DP_RX_DECAP_TYPE_8023:
+ 		/* TODO: Handle undecap for these formats */
+@@ -2180,35 +2206,62 @@ static void ath11k_dp_rx_h_undecap(struct ath11k *ar, struct sk_buff *msdu,
+ 	}
+ }
+ 
++static struct ath11k_peer *
++ath11k_dp_rx_h_find_peer(struct ath11k_base *ab, struct sk_buff *msdu)
++{
++	struct ath11k_skb_rxcb *rxcb = ATH11K_SKB_RXCB(msdu);
++	struct hal_rx_desc *rx_desc = rxcb->rx_desc;
++	struct ath11k_peer *peer = NULL;
++
++	lockdep_assert_held(&ab->base_lock);
++
++	if (rxcb->peer_id)
++		peer = ath11k_peer_find_by_id(ab, rxcb->peer_id);
++
++	if (peer)
++		return peer;
++
++	if (!rx_desc || !(ath11k_dp_rxdesc_mac_addr2_valid(ab, rx_desc)))
++		return NULL;
++
++	peer = ath11k_peer_find_by_addr(ab,
++					ath11k_dp_rxdesc_mpdu_start_addr2(ab, rx_desc));
++	return peer;
++}
++
+ static void ath11k_dp_rx_h_mpdu(struct ath11k *ar,
+ 				struct sk_buff *msdu,
+ 				struct hal_rx_desc *rx_desc,
+ 				struct ieee80211_rx_status *rx_status)
+ {
+-	bool  fill_crypto_hdr, mcast;
++	bool  fill_crypto_hdr;
+ 	enum hal_encrypt_type enctype;
+ 	bool is_decrypted = false;
++	struct ath11k_skb_rxcb *rxcb;
+ 	struct ieee80211_hdr *hdr;
+ 	struct ath11k_peer *peer;
+ 	struct rx_attention *rx_attention;
+ 	u32 err_bitmap;
+ 
+-	hdr = (struct ieee80211_hdr *)msdu->data;
+-
+ 	/* PN for multicast packets will be checked in mac80211 */
++	rxcb = ATH11K_SKB_RXCB(msdu);
++	fill_crypto_hdr = ath11k_dp_rx_h_attn_is_mcbc(ar->ab, rx_desc);
++	rxcb->is_mcbc = fill_crypto_hdr;
+ 
+-	mcast = is_multicast_ether_addr(hdr->addr1);
+-	fill_crypto_hdr = mcast;
++	if (rxcb->is_mcbc) {
++		rxcb->peer_id = ath11k_dp_rx_h_mpdu_start_peer_id(ar->ab, rx_desc);
++		rxcb->seq_no = ath11k_dp_rx_h_mpdu_start_seq_no(ar->ab, rx_desc);
++	}
+ 
+ 	spin_lock_bh(&ar->ab->base_lock);
+-	peer = ath11k_peer_find_by_addr(ar->ab, hdr->addr2);
++	peer = ath11k_dp_rx_h_find_peer(ar->ab, msdu);
+ 	if (peer) {
+-		if (mcast)
++		if (rxcb->is_mcbc)
+ 			enctype = peer->sec_type_grp;
+ 		else
+ 			enctype = peer->sec_type;
+ 	} else {
+-		enctype = HAL_ENCRYPT_TYPE_OPEN;
++		enctype = ath11k_dp_rx_h_mpdu_start_enctype(ar->ab, rx_desc);
+ 	}
+ 	spin_unlock_bh(&ar->ab->base_lock);
+ 
+@@ -2247,8 +2300,11 @@ static void ath11k_dp_rx_h_mpdu(struct ath11k *ar,
+ 	if (!is_decrypted || fill_crypto_hdr)
+ 		return;
+ 
+-	hdr = (void *)msdu->data;
+-	hdr->frame_control &= ~__cpu_to_le16(IEEE80211_FCTL_PROTECTED);
++	if (ath11k_dp_rx_h_msdu_start_decap_type(ar->ab, rx_desc) !=
++	    DP_RX_DECAP_TYPE_ETHERNET2_DIX) {
++		hdr = (void *)msdu->data;
++		hdr->frame_control &= ~__cpu_to_le16(IEEE80211_FCTL_PROTECTED);
++	}
+ }
+ 
+ static void ath11k_dp_rx_h_rate(struct ath11k *ar, struct hal_rx_desc *rx_desc,
+@@ -2362,51 +2418,49 @@ static void ath11k_dp_rx_h_ppdu(struct ath11k *ar, struct hal_rx_desc *rx_desc,
+ 	ath11k_dp_rx_h_rate(ar, rx_desc, rx_status);
+ }
+ 
+-static char *ath11k_print_get_tid(struct ieee80211_hdr *hdr, char *out,
+-				  size_t size)
+-{
+-	u8 *qc;
+-	int tid;
+-
+-	if (!ieee80211_is_data_qos(hdr->frame_control))
+-		return "";
+-
+-	qc = ieee80211_get_qos_ctl(hdr);
+-	tid = *qc & IEEE80211_QOS_CTL_TID_MASK;
+-	snprintf(out, size, "tid %d", tid);
+-
+-	return out;
+-}
+-
+ static void ath11k_dp_rx_deliver_msdu(struct ath11k *ar, struct napi_struct *napi,
+-				      struct sk_buff *msdu)
++				      struct sk_buff *msdu,
++				      struct ieee80211_rx_status *status)
+ {
+ 	static const struct ieee80211_radiotap_he known = {
+ 		.data1 = cpu_to_le16(IEEE80211_RADIOTAP_HE_DATA1_DATA_MCS_KNOWN |
+ 				     IEEE80211_RADIOTAP_HE_DATA1_BW_RU_ALLOC_KNOWN),
+ 		.data2 = cpu_to_le16(IEEE80211_RADIOTAP_HE_DATA2_GI_KNOWN),
+ 	};
+-	struct ieee80211_rx_status *status;
+-	struct ieee80211_hdr *hdr = (struct ieee80211_hdr *)msdu->data;
++	struct ieee80211_rx_status *rx_status;
+ 	struct ieee80211_radiotap_he *he = NULL;
+-	char tid[32];
++	struct ieee80211_sta *pubsta = NULL;
++	struct ath11k_peer *peer;
++	struct ath11k_skb_rxcb *rxcb = ATH11K_SKB_RXCB(msdu);
++	u8 decap = DP_RX_DECAP_TYPE_RAW;
++	bool is_mcbc = rxcb->is_mcbc;
++	bool is_eapol = rxcb->is_eapol;
+ 
+-	status = IEEE80211_SKB_RXCB(msdu);
+-	if (status->encoding == RX_ENC_HE) {
++	if (status->encoding == RX_ENC_HE &&
++	    !(status->flag & RX_FLAG_RADIOTAP_HE) &&
++	    !(status->flag & RX_FLAG_SKIP_MONITOR)) {
+ 		he = skb_push(msdu, sizeof(known));
+ 		memcpy(he, &known, sizeof(known));
+ 		status->flag |= RX_FLAG_RADIOTAP_HE;
  	}
  
-+success:
- 	fw_size = min_t(u32, ab->hw_params.fw.board_size, fw_entry->size);
- 	ret = ath11k_qmi_load_file_target_mem(ab, fw_entry->data, fw_size, file_type);
- 	if (ret < 0) {
-@@ -2077,8 +2087,7 @@ static int ath11k_qmi_load_bdf_qmi(struct ath11k_base *ab)
- 		goto out_qmi_cal;
++	if (!(status->flag & RX_FLAG_ONLY_MONITOR))
++		decap = ath11k_dp_rx_h_msdu_start_decap_type(ar->ab, rxcb->rx_desc);
++
++	spin_lock_bh(&ar->ab->base_lock);
++	peer = ath11k_dp_rx_h_find_peer(ar->ab, msdu);
++	if (peer && peer->sta)
++		pubsta = peer->sta;
++	spin_unlock_bh(&ar->ab->base_lock);
++
+ 	ath11k_dbg(ar->ab, ATH11K_DBG_DATA,
+-		   "rx skb %pK len %u peer %pM %s %s sn %u %s%s%s%s%s%s%s %srate_idx %u vht_nss %u freq %u band %u flag 0x%x fcs-err %i mic-err %i amsdu-more %i\n",
++		   "rx skb %pK len %u peer %pM %d %s sn %u %s%s%s%s%s%s%s %srate_idx %u vht_nss %u freq %u band %u flag 0x%x fcs-err %i mic-err %i amsdu-more %i\n",
+ 		   msdu,
+ 		   msdu->len,
+-		   ieee80211_get_SA(hdr),
+-		   ath11k_print_get_tid(hdr, tid, sizeof(tid)),
+-		   is_multicast_ether_addr(ieee80211_get_DA(hdr)) ?
+-							"mcast" : "ucast",
+-		   (__le16_to_cpu(hdr->seq_ctrl) & IEEE80211_SCTL_SEQ) >> 4,
++		   peer ? peer->addr : NULL,
++		   rxcb->tid,
++		   is_mcbc ? "mcast" : "ucast",
++		   rxcb->seq_no,
+ 		   (status->encoding == RX_ENC_LEGACY) ? "legacy" : "",
+ 		   (status->encoding == RX_ENC_HT) ? "ht" : "",
+ 		   (status->encoding == RX_ENC_VHT) ? "vht" : "",
+@@ -2426,22 +2480,32 @@ static void ath11k_dp_rx_deliver_msdu(struct ath11k *ar, struct napi_struct *nap
+ 	ath11k_dbg_dump(ar->ab, ATH11K_DBG_DP_RX, NULL, "dp rx msdu: ",
+ 			msdu->data, msdu->len);
+ 
++	rx_status = IEEE80211_SKB_RXCB(msdu);
++	*rx_status = *status;
++
+ 	/* TODO: trace rx packet */
+ 
+-	ieee80211_rx_napi(ar->hw, NULL, msdu, napi);
++	/* PN for multicast packets are not validate in HW,
++	 * so skip 802.3 rx path
++	 * Also, fast_rx expectes the STA to be authorized, hence
++	 * eapol packets are sent in slow path.
++	 */
++	if (decap == DP_RX_DECAP_TYPE_ETHERNET2_DIX && !is_eapol &&
++	    !(is_mcbc && rx_status->flag & RX_FLAG_DECRYPTED))
++		rx_status->flag |= RX_FLAG_8023;
++
++	ieee80211_rx_napi(ar->hw, pubsta, msdu, napi);
+ }
+ 
+ static int ath11k_dp_rx_process_msdu(struct ath11k *ar,
+ 				     struct sk_buff *msdu,
+-				     struct sk_buff_head *msdu_list)
++				     struct sk_buff_head *msdu_list,
++				     struct ieee80211_rx_status *rx_status)
+ {
+ 	struct ath11k_base *ab = ar->ab;
+ 	struct hal_rx_desc *rx_desc, *lrx_desc;
+ 	struct rx_attention *rx_attention;
+-	struct ieee80211_rx_status rx_status = {0};
+-	struct ieee80211_rx_status *status;
+ 	struct ath11k_skb_rxcb *rxcb;
+-	struct ieee80211_hdr *hdr;
+ 	struct sk_buff *last_buf;
+ 	u8 l3_pad_bytes;
+ 	u8 *hdr_status;
+@@ -2497,19 +2561,11 @@ static int ath11k_dp_rx_process_msdu(struct ath11k *ar,
+ 		}
  	}
  
--	ath11k_dbg(ab, ATH11K_DBG_QMI, "qmi caldata downloaded: type: %u\n",
--		   file_type);
-+	ath11k_dbg(ab, ATH11K_DBG_QMI, "qmi caldata type: %u\n", file_type);
+-	hdr = (struct ieee80211_hdr *)msdu->data;
+-
+-	/* Process only data frames */
+-	if (!ieee80211_is_data(hdr->frame_control))
+-		return -EINVAL;
+-
+-	ath11k_dp_rx_h_ppdu(ar, rx_desc, &rx_status);
+-	ath11k_dp_rx_h_mpdu(ar, msdu, rx_desc, &rx_status);
++	ath11k_dp_rx_h_ppdu(ar, rx_desc, rx_status);
++	ath11k_dp_rx_h_mpdu(ar, msdu, rx_desc, rx_status);
  
- out_qmi_cal:
- 	release_firmware(fw_entry);
+-	rx_status.flag |= RX_FLAG_SKIP_MONITOR | RX_FLAG_DUP_VALIDATED;
++	rx_status->flag |= RX_FLAG_SKIP_MONITOR | RX_FLAG_DUP_VALIDATED;
+ 
+-	status = IEEE80211_SKB_RXCB(msdu);
+-	*status = rx_status;
+ 	return 0;
+ 
+ free_out:
+@@ -2524,6 +2580,7 @@ static void ath11k_dp_rx_process_received_packets(struct ath11k_base *ab,
+ 	struct ath11k_skb_rxcb *rxcb;
+ 	struct sk_buff *msdu;
+ 	struct ath11k *ar;
++	struct ieee80211_rx_status rx_status = {0};
+ 	u8 mac_id;
+ 	int ret;
+ 
+@@ -2546,7 +2603,7 @@ static void ath11k_dp_rx_process_received_packets(struct ath11k_base *ab,
+ 			continue;
+ 		}
+ 
+-		ret = ath11k_dp_rx_process_msdu(ar, msdu, msdu_list);
++		ret = ath11k_dp_rx_process_msdu(ar, msdu, msdu_list, &rx_status);
+ 		if (ret) {
+ 			ath11k_dbg(ab, ATH11K_DBG_DATA,
+ 				   "Unable to process msdu %d", ret);
+@@ -2554,7 +2611,7 @@ static void ath11k_dp_rx_process_received_packets(struct ath11k_base *ab,
+ 			continue;
+ 		}
+ 
+-		ath11k_dp_rx_deliver_msdu(ar, napi, msdu);
++		ath11k_dp_rx_deliver_msdu(ar, napi, msdu, &rx_status);
+ 		(*quota)--;
+ 	}
+ 
+@@ -2636,10 +2693,14 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int ring_id,
+ 					RX_MSDU_DESC_INFO0_LAST_MSDU_IN_MPDU);
+ 		rxcb->is_continuation = !!(desc.rx_msdu_info.info0 &
+ 					   RX_MSDU_DESC_INFO0_MSDU_CONTINUATION);
+-		rxcb->mac_id = mac_id;
++		rxcb->peer_id = FIELD_GET(RX_MPDU_DESC_META_DATA_PEER_ID,
++					  desc.rx_mpdu_info.meta_data);
++		rxcb->seq_no = FIELD_GET(RX_MPDU_DESC_INFO0_SEQ_NUM,
++					 desc.rx_mpdu_info.info0);
+ 		rxcb->tid = FIELD_GET(HAL_REO_DEST_RING_INFO0_RX_QUEUE_NUM,
+ 				      desc.info0);
+ 
++		rxcb->mac_id = mac_id;
+ 		__skb_queue_tail(&msdu_list, msdu);
+ 
+ 		if (total_msdu_reaped >= quota && !rxcb->is_continuation) {
+@@ -3991,7 +4052,6 @@ static void ath11k_dp_rx_wbm_err(struct ath11k *ar,
+ {
+ 	struct ath11k_skb_rxcb *rxcb = ATH11K_SKB_RXCB(msdu);
+ 	struct ieee80211_rx_status rxs = {0};
+-	struct ieee80211_rx_status *status;
+ 	bool drop = true;
+ 
+ 	switch (rxcb->err_rel_src) {
+@@ -4011,10 +4071,7 @@ static void ath11k_dp_rx_wbm_err(struct ath11k *ar,
+ 		return;
+ 	}
+ 
+-	status = IEEE80211_SKB_RXCB(msdu);
+-	*status = rxs;
+-
+-	ath11k_dp_rx_deliver_msdu(ar, napi, msdu);
++	ath11k_dp_rx_deliver_msdu(ar, napi, msdu, &rxs);
+ }
+ 
+ int ath11k_dp_rx_process_wbm_err(struct ath11k_base *ab,
+@@ -4898,7 +4955,7 @@ static int ath11k_dp_rx_mon_deliver(struct ath11k *ar, u32 mac_id,
+ {
+ 	struct ath11k_pdev_dp *dp = &ar->dp;
+ 	struct sk_buff *mon_skb, *skb_next, *header;
+-	struct ieee80211_rx_status *rxs = &dp->rx_status, *status;
++	struct ieee80211_rx_status *rxs = &dp->rx_status;
+ 
+ 	mon_skb = ath11k_dp_rx_mon_merg_msdus(ar, mac_id, head_msdu,
+ 					      tail_msdu, rxs);
+@@ -4924,10 +4981,7 @@ static int ath11k_dp_rx_mon_deliver(struct ath11k *ar, u32 mac_id,
+ 		}
+ 		rxs->flag |= RX_FLAG_ONLY_MONITOR;
+ 
+-		status = IEEE80211_SKB_RXCB(mon_skb);
+-		*status = *rxs;
+-
+-		ath11k_dp_rx_deliver_msdu(ar, napi, mon_skb);
++		ath11k_dp_rx_deliver_msdu(ar, napi, mon_skb, rxs);
+ 		mon_skb = skb_next;
+ 	} while (mon_skb);
+ 	rxs->flag = 0;
+diff --git a/drivers/net/wireless/ath/ath11k/hal_desc.h b/drivers/net/wireless/ath/ath11k/hal_desc.h
+index 0be0e8939783..406767672844 100644
+--- a/drivers/net/wireless/ath/ath11k/hal_desc.h
++++ b/drivers/net/wireless/ath/ath11k/hal_desc.h
+@@ -496,6 +496,8 @@ struct hal_tlv_hdr {
+ #define RX_MPDU_DESC_INFO0_DA_IDX_TIMEOUT	BIT(29)
+ #define RX_MPDU_DESC_INFO0_RAW_MPDU		BIT(30)
+ 
++#define RX_MPDU_DESC_META_DATA_PEER_ID		GENMASK(15, 0)
++
+ struct rx_mpdu_desc {
+ 	u32 info0; /* %RX_MPDU_DESC_INFO */
+ 	u32 meta_data;
+diff --git a/drivers/net/wireless/ath/ath11k/hw.c b/drivers/net/wireless/ath/ath11k/hw.c
+index 9dd02f8b1dd2..7a343db1dde8 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.c
++++ b/drivers/net/wireless/ath/ath11k/hw.c
+@@ -374,6 +374,17 @@ static void ath11k_hw_ipq8074_rx_desc_set_msdu_len(struct hal_rx_desc *desc, u16
+ 	desc->u.ipq8074.msdu_start.info1 = __cpu_to_le32(info);
+ }
+ 
++static bool ath11k_hw_ipq8074_rx_desc_mac_addr2_valid(struct hal_rx_desc *desc)
++{
++	return __le32_to_cpu(desc->u.ipq8074.mpdu_start.info1) &
++	       RX_MPDU_START_INFO1_MAC_ADDR2_VALID;
++}
++
++static u8 *ath11k_hw_ipq8074_rx_desc_mpdu_start_addr2(struct hal_rx_desc *desc)
++{
++	return desc->u.ipq8074.mpdu_start.addr2;
++}
++
+ static
+ struct rx_attention *ath11k_hw_ipq8074_rx_desc_get_attention(struct hal_rx_desc *desc)
+ {
+@@ -545,6 +556,17 @@ static u8 *ath11k_hw_qcn9074_rx_desc_get_msdu_payload(struct hal_rx_desc *desc)
+ 	return &desc->u.qcn9074.msdu_payload[0];
+ }
+ 
++static bool ath11k_hw_ipq9074_rx_desc_mac_addr2_valid(struct hal_rx_desc *desc)
++{
++	return __le32_to_cpu(desc->u.qcn9074.mpdu_start.info11) &
++	       RX_MPDU_START_INFO11_MAC_ADDR2_VALID;
++}
++
++static u8 *ath11k_hw_ipq9074_rx_desc_mpdu_start_addr2(struct hal_rx_desc *desc)
++{
++	return desc->u.qcn9074.mpdu_start.addr2;
++}
++
+ static bool ath11k_hw_wcn6855_rx_desc_get_first_msdu(struct hal_rx_desc *desc)
+ {
+ 	return !!FIELD_GET(RX_MSDU_END_INFO2_FIRST_MSDU_WCN6855,
+@@ -705,6 +727,17 @@ static u8 *ath11k_hw_wcn6855_rx_desc_get_msdu_payload(struct hal_rx_desc *desc)
+ 	return &desc->u.wcn6855.msdu_payload[0];
+ }
+ 
++static bool ath11k_hw_wcn6855_rx_desc_mac_addr2_valid(struct hal_rx_desc *desc)
++{
++	return __le32_to_cpu(desc->u.wcn6855.mpdu_start.info1) &
++	       RX_MPDU_START_INFO1_MAC_ADDR2_VALID;
++}
++
++static u8 *ath11k_hw_wcn6855_rx_desc_mpdu_start_addr2(struct hal_rx_desc *desc)
++{
++	return desc->u.wcn6855.mpdu_start.addr2;
++}
++
+ static void ath11k_hw_wcn6855_reo_setup(struct ath11k_base *ab)
+ {
+ 	u32 reo_base = HAL_SEQ_WCSS_UMAC_REO_REG;
+@@ -801,6 +834,8 @@ const struct ath11k_hw_ops ipq8074_ops = {
+ 	.rx_desc_get_msdu_payload = ath11k_hw_ipq8074_rx_desc_get_msdu_payload,
+ 	.reo_setup = ath11k_hw_ipq8074_reo_setup,
+ 	.mpdu_info_get_peerid = ath11k_hw_ipq8074_mpdu_info_get_peerid,
++	.rx_desc_mac_addr2_valid = ath11k_hw_ipq8074_rx_desc_mac_addr2_valid,
++	.rx_desc_mpdu_start_addr2 = ath11k_hw_ipq8074_rx_desc_mpdu_start_addr2,
+ };
+ 
+ const struct ath11k_hw_ops ipq6018_ops = {
+@@ -837,6 +872,8 @@ const struct ath11k_hw_ops ipq6018_ops = {
+ 	.rx_desc_get_msdu_payload = ath11k_hw_ipq8074_rx_desc_get_msdu_payload,
+ 	.reo_setup = ath11k_hw_ipq8074_reo_setup,
+ 	.mpdu_info_get_peerid = ath11k_hw_ipq8074_mpdu_info_get_peerid,
++	.rx_desc_mac_addr2_valid = ath11k_hw_ipq8074_rx_desc_mac_addr2_valid,
++	.rx_desc_mpdu_start_addr2 = ath11k_hw_ipq8074_rx_desc_mpdu_start_addr2,
+ };
+ 
+ const struct ath11k_hw_ops qca6390_ops = {
+@@ -873,6 +910,8 @@ const struct ath11k_hw_ops qca6390_ops = {
+ 	.rx_desc_get_msdu_payload = ath11k_hw_ipq8074_rx_desc_get_msdu_payload,
+ 	.reo_setup = ath11k_hw_ipq8074_reo_setup,
+ 	.mpdu_info_get_peerid = ath11k_hw_ipq8074_mpdu_info_get_peerid,
++	.rx_desc_mac_addr2_valid = ath11k_hw_ipq8074_rx_desc_mac_addr2_valid,
++	.rx_desc_mpdu_start_addr2 = ath11k_hw_ipq8074_rx_desc_mpdu_start_addr2,
+ };
+ 
+ const struct ath11k_hw_ops qcn9074_ops = {
+@@ -909,6 +948,8 @@ const struct ath11k_hw_ops qcn9074_ops = {
+ 	.rx_desc_get_msdu_payload = ath11k_hw_qcn9074_rx_desc_get_msdu_payload,
+ 	.reo_setup = ath11k_hw_ipq8074_reo_setup,
+ 	.mpdu_info_get_peerid = ath11k_hw_ipq8074_mpdu_info_get_peerid,
++	.rx_desc_mac_addr2_valid = ath11k_hw_ipq9074_rx_desc_mac_addr2_valid,
++	.rx_desc_mpdu_start_addr2 = ath11k_hw_ipq9074_rx_desc_mpdu_start_addr2,
+ };
+ 
+ const struct ath11k_hw_ops wcn6855_ops = {
+@@ -945,6 +986,8 @@ const struct ath11k_hw_ops wcn6855_ops = {
+ 	.rx_desc_get_msdu_payload = ath11k_hw_wcn6855_rx_desc_get_msdu_payload,
+ 	.reo_setup = ath11k_hw_wcn6855_reo_setup,
+ 	.mpdu_info_get_peerid = ath11k_hw_wcn6855_mpdu_info_get_peerid,
++	.rx_desc_mac_addr2_valid = ath11k_hw_wcn6855_rx_desc_mac_addr2_valid,
++	.rx_desc_mpdu_start_addr2 = ath11k_hw_wcn6855_rx_desc_mpdu_start_addr2,
+ };
+ 
+ #define ATH11K_TX_RING_MASK_0 0x1
+diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
+index 3a03e09563e7..8a75afae11db 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.h
++++ b/drivers/net/wireless/ath/ath11k/hw.h
+@@ -210,6 +210,8 @@ struct ath11k_hw_ops {
+ 	u8 *(*rx_desc_get_msdu_payload)(struct hal_rx_desc *desc);
+ 	void (*reo_setup)(struct ath11k_base *ab);
+ 	u16 (*mpdu_info_get_peerid)(u8 *tlv_data);
++	bool (*rx_desc_mac_addr2_valid)(struct hal_rx_desc *desc);
++	u8* (*rx_desc_mpdu_start_addr2)(struct hal_rx_desc *desc);
+ };
+ 
+ extern const struct ath11k_hw_ops ipq8074_ops;
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 11d919d3c23e..55bc45f8fe92 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -5313,7 +5313,8 @@ static void ath11k_mac_op_update_vif_offload(struct ieee80211_hw *hw,
+ 	if (ath11k_frame_mode != ATH11K_HW_TXRX_ETHERNET ||
+ 	    (vif->type != NL80211_IFTYPE_STATION &&
+ 	     vif->type != NL80211_IFTYPE_AP))
+-		vif->offload_flags &= ~IEEE80211_OFFLOAD_ENCAP_ENABLED;
++		vif->offload_flags &= ~(IEEE80211_OFFLOAD_ENCAP_ENABLED |
++					IEEE80211_OFFLOAD_DECAP_ENABLED);
+ 
+ 	if (vif->offload_flags & IEEE80211_OFFLOAD_ENCAP_ENABLED)
+ 		param_value = ATH11K_HW_TXRX_ETHERNET;
+@@ -5329,6 +5330,22 @@ static void ath11k_mac_op_update_vif_offload(struct ieee80211_hw *hw,
+ 			    arvif->vdev_id, ret);
+ 		vif->offload_flags &= ~IEEE80211_OFFLOAD_ENCAP_ENABLED;
+ 	}
++
++	param_id = WMI_VDEV_PARAM_RX_DECAP_TYPE;
++	if (vif->offload_flags & IEEE80211_OFFLOAD_DECAP_ENABLED)
++		param_value = ATH11K_HW_TXRX_ETHERNET;
++	else if (test_bit(ATH11K_FLAG_RAW_MODE, &ab->dev_flags))
++		param_value = ATH11K_HW_TXRX_RAW;
++	else
++		param_value = ATH11K_HW_TXRX_NATIVE_WIFI;
++
++	ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
++					    param_id, param_value);
++	if (ret) {
++		ath11k_warn(ab, "failed to set vdev %d rx decap mode: %d\n",
++			    arvif->vdev_id, ret);
++		vif->offload_flags &= ~IEEE80211_OFFLOAD_DECAP_ENABLED;
++	}
+ }
+ 
+ static int ath11k_mac_op_add_interface(struct ieee80211_hw *hw,
+@@ -7448,7 +7465,11 @@ static int __ath11k_mac_register(struct ath11k *ar)
+ 	ieee80211_hw_set(ar->hw, QUEUE_CONTROL);
+ 	ieee80211_hw_set(ar->hw, SUPPORTS_TX_FRAG);
+ 	ieee80211_hw_set(ar->hw, REPORTS_LOW_ACK);
+-	ieee80211_hw_set(ar->hw, SUPPORTS_TX_ENCAP_OFFLOAD);
++
++	if (ath11k_frame_mode == ATH11K_HW_TXRX_ETHERNET) {
++		ieee80211_hw_set(ar->hw, SUPPORTS_TX_ENCAP_OFFLOAD);
++		ieee80211_hw_set(ar->hw, SUPPORTS_RX_DECAP_OFFLOAD);
++	}
+ 
+ 	if (cap->nss_ratio_enabled)
+ 		ieee80211_hw_set(ar->hw, SUPPORTS_VHT_EXT_NSS_BW);
 -- 
 2.25.1
 
