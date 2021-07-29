@@ -2,84 +2,79 @@ Return-Path: <SRS0=vn8y=MV=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 18485C4338F
-	for <ath11k@archiver.kernel.org>; Thu, 29 Jul 2021 00:06:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 99AB8C4338F
+	for <ath11k@archiver.kernel.org>; Thu, 29 Jul 2021 22:26:13 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CACFF6103C
-	for <ath11k@archiver.kernel.org>; Thu, 29 Jul 2021 00:06:43 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org CACFF6103C
+	by mail.kernel.org (Postfix) with ESMTPS id 6023360F46
+	for <ath11k@archiver.kernel.org>; Thu, 29 Jul 2021 22:26:13 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 6023360F46
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Reply-To:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:
-	Subject:Cc:To:From:Date:MIME-Version:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9KdPnlz4PcFXodcYivrs5eVsnz0ZSH9NdnHUXkZbHV8=; b=ap89Z5gWbvorCv
-	uv/JuuTvNU9xqRfC/L9QkPanS1IDS0nV0V5jWiB3jzauhVeRtHe91y++8Fxh4MrYEjpabr1DOzcUM
-	cTmC2YjtBzBBkUYAsgkZD4xR2YQGjvs+MtrfULMDEOjuZQw2TbpxmuLTTWiNhwSGGfNjJNaS0Ytsp
-	UFXq5ve5yAkwHtKkDeP7bxqm+5UkGTng4WD6OkeWdni01lBqMJIKsnvBRTyO/FuI8Xbt9ChsoKTW6
-	JFVDgBBeZfbbrs5czKPjX7d2jvIWhUzkGsvUhF+3uCqcjaVenNYR/op7U/Yv/ltvT8v2cJ+7vSzN5
-	tYRLFeyEY1ZKIxMbKDaw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:Subject:Cc:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=wscNAfRZzBRDlLzvizC2UT585qmXXqOl7rW1+aw9qns=; b=nt/CfLopSt5WeV
+	NL7bjMUfbyqHCxwkXU8uem0NaaUh3M1AHGrh/XoGawEw95TedlAtugh7wZCMnwiV3YBGfM6AmO9FA
+	+ctd8EicsH0Jr67ypJNiKygMrXrHBVDUaIMa4hpVi54/7jfP00YOanJZQJRL/S/QWgal1VqJQYsUq
+	Yvbu/2WnbFaaXQoUIBOc4mvuL8wIxD9eQrnRkuQ4H3cz1dzN6QpqLm3SIYRAzHZr2pKclMsHBaBP6
+	BiPfkPv/34ny4QXMol52Fiw1pCf2bi/N8yzHalyptIfnN2jMGWAahgcm2gbGX7MI+jYr3ZLRCM3uE
+	XRGg78LcwyrG0W/sjrpA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1m8tZQ-002e3Y-0m; Thu, 29 Jul 2021 00:06:40 +0000
+	id 1m9ETi-006DHt-FP; Thu, 29 Jul 2021 22:26:10 +0000
 Received: from so254-9.mailgun.net ([198.61.254.9])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1m8tZK-002e34-0L
- for ath11k@lists.infradead.org; Thu, 29 Jul 2021 00:06:37 +0000
+ id 1m9ETf-006DHU-KI
+ for ath11k@lists.infradead.org; Thu, 29 Jul 2021 22:26:09 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1627517195; h=Message-ID: References: In-Reply-To: Reply-To:
- Subject: Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=0Qnv3g6Y4e2x53HIT6VYGOhkktWjimmtW9iO/zRgVgc=;
- b=xcct6Dd97/1zu7ckQoZSBUefOvq0pi5bnoD7mNzq1ZGjxdIT6v1q4xlZJ4JE4covBtS5NdQi
- TOlTc8NofEl/3aHPIv4/eDeguXDPxDuY/l+LnRsp82rovJ0nxpflcQY+W9HRL6RQpPXtZ7+s
- LIYlz/q024LO3bzoveBJT2Ou0LA=
+ s=smtp; t=1627597567; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=HkCvaMrGnSzCF4urr4g5xdMktrSk3shrrWsCei9ytdA=;
+ b=bdtxy1ACzBtyT6u+T5vQR3og00CPJNYjXMzblpOcdevpMr+kh0DhT0qzXFe9OTWoKOHCt0HU
+ TOQtrxwY5Wk+LcCFa1bVDJVVUWLbf5CP7bOrndTcuX+MtN1luzhaW3+CrX/pO1nGsW3a4IY6
+ 5bbG2IH7oByC03O+qaa3attdn0g=
 X-Mailgun-Sending-Ip: 198.61.254.9
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
- 6101f10217c2b4047dc9bacc (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 29 Jul 2021 00:06:26
+ smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
+ 61032afe9771b05b248a226b (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 29 Jul 2021 22:26:06
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id DD8D9C43217; Thu, 29 Jul 2021 00:06:25 +0000 (UTC)
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
- (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
- (No client certificate requested) (Authenticated sender: bbhatt)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 659CDC433D3;
- Thu, 29 Jul 2021 00:06:24 +0000 (UTC)
-MIME-Version: 1.0
-Date: Wed, 28 Jul 2021 17:06:24 -0700
-From: Bhaumik Bhatt <bbhatt@codeaurora.org>
-To: kvalo@codeaurora.org, ath11k@lists.infradead.org
-Cc: linux-arm-msm@vger.kernel.org, hemantk@codeaurora.org,
- linux-kernel@vger.kernel.org, Manivannan Sadhasivam
- <manivannan.sadhasivam@linaro.org>, linux-wireless@vger.kernel.org
-Subject: Re: [PATCH v5] bus: mhi: core: Add support for processing priority of
- event ring
-Organization: Qualcomm Innovation Center, Inc.
-Mail-Reply-To: bbhatt@codeaurora.org
-In-Reply-To: <9300cf49a498521f471d6106131bd675@codeaurora.org>
-References: <1624641728-3886-1-git-send-email-bbhatt@codeaurora.org>
- <20210716114926.GH3323@workstation>
- <9300cf49a498521f471d6106131bd675@codeaurora.org>
-Message-ID: <9561c5a41e1707d694b1c872fea399de@codeaurora.org>
-X-Sender: bbhatt@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+ id 9A18DC433D3; Thu, 29 Jul 2021 22:26:05 +0000 (UTC)
+Received: from msinada-linux.qualcomm.com (i-global254.qualcomm.com
+ [199.106.103.254])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+ (No client certificate requested) (Authenticated sender: msinada)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id AEBA1C433F1;
+ Thu, 29 Jul 2021 22:26:04 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org AEBA1C433F1
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ spf=fail smtp.mailfrom=msinada@codeaurora.org
+From: Muna Sinada <msinada@codeaurora.org>
+To: ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org,
+	Muna Sinada <msinada@codeaurora.org>
+Subject: [PATCH] ath11k: Add HE UL MU fixed rate setting
+Date: Thu, 29 Jul 2021 15:25:58 -0700
+Message-Id: <1627597558-25144-1-git-send-email-msinada@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210728_170635_906273_2C31C85E 
-X-CRM114-Status: GOOD (  34.97  )
+X-CRM114-CacheID: sfid-20210729_152607_764692_845164C1 
+X-CRM114-Status: GOOD (  17.89  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,345 +86,184 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Reply-To: bbhatt@codeaurora.org
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi Kalle,
+This patch adds ath11k support for setting HE UL MU fixed rate.
+HE UL MU fixed rate is informed to HE STA by HE Basic Trigger frame.
+The added code is reusing parts of the existing code path used for
+HE fixed rate.
 
-On 2021-07-16 11:22 AM, Bhaumik Bhatt wrote:
-> Hi Mani,
-> 
-> On 2021-07-16 04:49 AM, Manivannan Sadhasivam wrote:
->> On Fri, Jun 25, 2021 at 10:22:08AM -0700, Bhaumik Bhatt wrote:
->>> From: Hemant Kumar <hemantk@codeaurora.org>
->>> 
->>> Event ring priorities are currently set to 1 and are unused.
->>> Default processing priority for event rings is set to regular
->>> tasklet. Controllers can choose to use high priority tasklet
->>> scheduling for certain event rings critical for processing such
->>> as ones transporting control information if they wish to avoid
->>> system scheduling delays for those packets. In order to support
->>> these use cases, allow controllers to set event ring priority to
->>> high.
->>> 
->> 
->> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
->> 
->> Just curious, what are the event rings you are going to make as high
->> priority? If you are going to do that for existing controllers, please
->> submit a patch now itself.
->> 
->> Thanks,
->> Mani
->> 
-> Idea for this patch came from 914b72a6948b ("bus: mhi: Wait for M2
-> state during system resume").
-> 
-> If WLAN ath11k controller driver wants to avoid the scenario mentioned 
-> in
-> the above patch, it will help them to have a high priority for their 
-> dedicated
-> control events ring.
-> 
-> I would defer to Kalle and others in ath11k, whether or not they are
-> OK to take that route.
-> as an update to priority will just help return from resume faster.
-> It will also depend on system load/reproducibility rate of the 
-> scenario.
-> 
-> I can provide a patch for them to review/test since I do not have the
-> setup for it.
-> 
-Would you like to try this patch out? It basically increases the 
-priority
-at which the control events for M0/M1/M3 state changes are handled.
+Utilizing iw command, HE UL MU fixed rate can be set:
+	iw dev wlanX set bitrates he-ul-mcs-<5/2.4> <NSS:MCS>
 
-Let me know if you have any questions.
+	Example: iw dev wlan0 set bitrates he-ul-mcs-5 2:5
 
->>> Signed-off-by: Hemant Kumar <hemantk@codeaurora.org>
->>> Signed-off-by: Bhaumik Bhatt <bbhatt@codeaurora.org>
->>> ---
->>> v5:
->>> -Add controller changes and enable usage of event ring configuration 
->>> priorities
->>> -Fix nitpick, use high instead of hi in kdoc
->>> 
->>> v4:
->>> -Update fixed priority for all events to default to fix bug in v3
->>> -Supply changelog
->>> 
->>> v3:
->>> -Revert to enum approach
->>> -Use 0 as default and 1 as high in enum
->>> -Do not use config values for event rings
->>> 
->>> v2:
->>> -Use boolean approach for easy maintenance as controllers do not need 
->>> updates
->>> 
->>> 
->>> 
->>>  drivers/bus/mhi/core/init.c           |  3 +-
->>>  drivers/bus/mhi/core/internal.h       |  2 +-
->>>  drivers/bus/mhi/core/main.c           | 19 ++++++++--
->>>  drivers/bus/mhi/pci_generic.c         | 66 
->>> +++++++++++++++++------------------
->>>  drivers/net/wireless/ath/ath11k/mhi.c |  4 +--
->>>  include/linux/mhi.h                   | 14 ++++++--
->>>  6 files changed, 65 insertions(+), 43 deletions(-)
->>> 
->>> diff --git a/drivers/bus/mhi/core/init.c 
->>> b/drivers/bus/mhi/core/init.c
->>> index c81b377..4446760 100644
->>> --- a/drivers/bus/mhi/core/init.c
->>> +++ b/drivers/bus/mhi/core/init.c
->>> @@ -673,8 +673,7 @@ static int parse_ev_cfg(struct mhi_controller 
->>> *mhi_cntrl,
->>>  				&mhi_cntrl->mhi_chan[mhi_event->chan];
->>>  		}
->>> 
->>> -		/* Priority is fixed to 1 for now */
->>> -		mhi_event->priority = 1;
->>> +		mhi_event->priority = event_cfg->priority;
->>> 
->>>  		mhi_event->db_cfg.brstmode = event_cfg->mode;
->>>  		if (MHI_INVALID_BRSTMODE(mhi_event->db_cfg.brstmode))
->>> diff --git a/drivers/bus/mhi/core/internal.h 
->>> b/drivers/bus/mhi/core/internal.h
->>> index 672052f..666e102 100644
->>> --- a/drivers/bus/mhi/core/internal.h
->>> +++ b/drivers/bus/mhi/core/internal.h
->>> @@ -535,7 +535,7 @@ struct mhi_event {
->>>  	u32 intmod;
->>>  	u32 irq;
->>>  	int chan; /* this event ring is dedicated to a channel (optional) 
->>> */
->>> -	u32 priority;
->>> +	enum mhi_er_priority priority;
->>>  	enum mhi_er_data_type data_type;
->>>  	struct mhi_ring ring;
->>>  	struct db_cfg db_cfg;
->>> diff --git a/drivers/bus/mhi/core/main.c 
->>> b/drivers/bus/mhi/core/main.c
->>> index 8ac73f9..bfc9776 100644
->>> --- a/drivers/bus/mhi/core/main.c
->>> +++ b/drivers/bus/mhi/core/main.c
->>> @@ -425,10 +425,11 @@ void mhi_create_devices(struct mhi_controller 
->>> *mhi_cntrl)
->>>  	}
->>>  }
->>> 
->>> -irqreturn_t mhi_irq_handler(int irq_number, void *dev)
->>> +irqreturn_t mhi_irq_handler(int irq_number, void *priv)
->>>  {
->>> -	struct mhi_event *mhi_event = dev;
->>> +	struct mhi_event *mhi_event = priv;
->>>  	struct mhi_controller *mhi_cntrl = mhi_event->mhi_cntrl;
->>> +	struct device *dev = &mhi_cntrl->mhi_dev->dev;
->>>  	struct mhi_event_ctxt *er_ctxt =
->>>  		&mhi_cntrl->mhi_ctxt->er_ctxt[mhi_event->er_index];
->>>  	struct mhi_ring *ev_ring = &mhi_event->ring;
->>> @@ -454,8 +455,20 @@ irqreturn_t mhi_irq_handler(int irq_number, void 
->>> *dev)
->>> 
->>>  		if (mhi_dev)
->>>  			mhi_notify(mhi_dev, MHI_CB_PENDING_DATA);
->>> -	} else {
->>> +
->>> +		return IRQ_HANDLED;
->>> +	}
->>> +
->>> +	switch (mhi_event->priority) {
->>> +	case MHI_ER_PRIORITY_HI:
->>> +		tasklet_hi_schedule(&mhi_event->task);
->>> +		break;
->>> +	case MHI_ER_PRIORITY_DEFAULT:
->>>  		tasklet_schedule(&mhi_event->task);
->>> +		break;
->>> +	default:
->>> +		dev_err(dev, "Skip event of unknown priority\n");
->>> +		break;
->>>  	}
->>> 
->>>  	return IRQ_HANDLED;
->>> diff --git a/drivers/bus/mhi/pci_generic.c 
->>> b/drivers/bus/mhi/pci_generic.c
->>> index 31360a2..5886547 100644
->>> --- a/drivers/bus/mhi/pci_generic.c
->>> +++ b/drivers/bus/mhi/pci_generic.c
->>> @@ -74,17 +74,17 @@ struct mhi_pci_dev_info {
->>>  		.doorbell_mode_switch = false,		\
->>>  	}
->>> 
->>> -#define MHI_EVENT_CONFIG_CTRL(ev_ring, el_count) \
->>> -	{					\
->>> -		.num_elements = el_count,	\
->>> -		.irq_moderation_ms = 0,		\
->>> -		.irq = (ev_ring) + 1,		\
->>> -		.priority = 1,			\
->>> -		.mode = MHI_DB_BRST_DISABLE,	\
->>> -		.data_type = MHI_ER_CTRL,	\
->>> -		.hardware_event = false,	\
->>> -		.client_managed = false,	\
->>> -		.offload_channel = false,	\
->>> +#define MHI_EVENT_CONFIG_CTRL(ev_ring, el_count)	\
->>> +	{						\
->>> +		.num_elements = el_count,		\
->>> +		.irq_moderation_ms = 0,			\
->>> +		.irq = (ev_ring) + 1,			\
->>> +		.priority = MHI_ER_PRIORITY_DEFAULT,	\
->>> +		.mode = MHI_DB_BRST_DISABLE,		\
->>> +		.data_type = MHI_ER_CTRL,		\
->>> +		.hardware_event = false,		\
->>> +		.client_managed = false,		\
->>> +		.offload_channel = false,		\
->>>  	}
->>> 
->>>  #define MHI_CHANNEL_CONFIG_HW_UL(ch_num, ch_name, el_count, ev_ring) 
->>> \
->>> @@ -177,31 +177,31 @@ struct mhi_pci_dev_info {
->>>  		.doorbell_mode_switch = false,		\
->>>  	}
->>> 
->>> -#define MHI_EVENT_CONFIG_DATA(ev_ring, el_count) \
->>> -	{					\
->>> -		.num_elements = el_count,	\
->>> -		.irq_moderation_ms = 5,		\
->>> -		.irq = (ev_ring) + 1,		\
->>> -		.priority = 1,			\
->>> -		.mode = MHI_DB_BRST_DISABLE,	\
->>> -		.data_type = MHI_ER_DATA,	\
->>> -		.hardware_event = false,	\
->>> -		.client_managed = false,	\
->>> -		.offload_channel = false,	\
->>> +#define MHI_EVENT_CONFIG_DATA(ev_ring, el_count)	\
->>> +	{						\
->>> +		.num_elements = el_count,		\
->>> +		.irq_moderation_ms = 5,			\
->>> +		.irq = (ev_ring) + 1,			\
->>> +		.priority = MHI_ER_PRIORITY_DEFAULT,	\
->>> +		.mode = MHI_DB_BRST_DISABLE,		\
->>> +		.data_type = MHI_ER_DATA,		\
->>> +		.hardware_event = false,		\
->>> +		.client_managed = false,		\
->>> +		.offload_channel = false,		\
->>>  	}
->>> 
->>>  #define MHI_EVENT_CONFIG_HW_DATA(ev_ring, el_count, ch_num) \
->>> -	{					\
->>> -		.num_elements = el_count,	\
->>> -		.irq_moderation_ms = 1,		\
->>> -		.irq = (ev_ring) + 1,		\
->>> -		.priority = 1,			\
->>> -		.mode = MHI_DB_BRST_DISABLE,	\
->>> -		.data_type = MHI_ER_DATA,	\
->>> -		.hardware_event = true,		\
->>> -		.client_managed = false,	\
->>> -		.offload_channel = false,	\
->>> -		.channel = ch_num,		\
->>> +	{						\
->>> +		.num_elements = el_count,		\
->>> +		.irq_moderation_ms = 1,			\
->>> +		.irq = (ev_ring) + 1,			\
->>> +		.priority = MHI_ER_PRIORITY_DEFAULT,	\
->>> +		.mode = MHI_DB_BRST_DISABLE,		\
->>> +		.data_type = MHI_ER_DATA,		\
->>> +		.hardware_event = true,			\
->>> +		.client_managed = false,		\
->>> +		.offload_channel = false,		\
->>> +		.channel = ch_num,			\
->>>  	}
->>> 
->>>  static const struct mhi_channel_config modem_qcom_v1_mhi_channels[] 
->>> = {
->>> diff --git a/drivers/net/wireless/ath/ath11k/mhi.c 
->>> b/drivers/net/wireless/ath/ath11k/mhi.c
->>> index 27b394d..b7864fc 100644
->>> --- a/drivers/net/wireless/ath/ath11k/mhi.c
->>> +++ b/drivers/net/wireless/ath/ath11k/mhi.c
->>> @@ -86,7 +86,7 @@ static struct mhi_event_config 
->>> ath11k_mhi_events_qca6390[] = {
->>>  		.irq_moderation_ms = 1,
->>>  		.irq = 2,
->>>  		.mode = MHI_DB_BRST_DISABLE,
->>> -		.priority = 1,
->>> +		.priority = MHI_ER_PRIORITY_DEFAULT,
->>>  		.hardware_event = false,
->>>  		.client_managed = false,
->>>  		.offload_channel = false,
->>> @@ -179,7 +179,7 @@ static struct mhi_event_config 
->>> ath11k_mhi_events_qcn9074[] = {
->>>  		.irq_moderation_ms = 1,
->>>  		.irq = 2,
->>>  		.mode = MHI_DB_BRST_DISABLE,
->>> -		.priority = 1,
->>> +		.priority = MHI_ER_PRIORITY_DEFAULT,
->>>  		.hardware_event = false,
->>>  		.client_managed = false,
->>>  		.offload_channel = false,
->>> diff --git a/include/linux/mhi.h b/include/linux/mhi.h
->>> index 86cea52..3e92e85 100644
->>> --- a/include/linux/mhi.h
->>> +++ b/include/linux/mhi.h
->>> @@ -198,6 +198,16 @@ enum mhi_er_data_type {
->>>  };
->>> 
->>>  /**
->>> + * enum mhi_er_priority - Event ring processing priority
->>> + * @MHI_ER_PRIORITY_DEFAULT: processed by regular tasklet
->>> + * @MHI_ER_PRIORITY_HI: processed by high priority tasklet
->>> + */
->>> +enum mhi_er_priority {
->>> +	MHI_ER_PRIORITY_DEFAULT,
->>> +	MHI_ER_PRIORITY_HI,
->>> +};
->>> +
->>> +/**
->>>   * enum mhi_db_brst_mode - Doorbell mode
->>>   * @MHI_DB_BRST_DISABLE: Burst mode disable
->>>   * @MHI_DB_BRST_ENABLE: Burst mode enable
->>> @@ -250,7 +260,7 @@ struct mhi_channel_config {
->>>   * @irq_moderation_ms: Delay irq for additional events to be 
->>> aggregated
->>>   * @irq: IRQ associated with this ring
->>>   * @channel: Dedicated channel number. U32_MAX indicates a 
->>> non-dedicated ring
->>> - * @priority: Priority of this ring. Use 1 for now
->>> + * @priority: Processing priority of this ring.
->>>   * @mode: Doorbell mode
->>>   * @data_type: Type of data this ring will process
->>>   * @hardware_event: This ring is associated with hardware channels
->>> @@ -262,7 +272,7 @@ struct mhi_event_config {
->>>  	u32 irq_moderation_ms;
->>>  	u32 irq;
->>>  	u32 channel;
->>> -	u32 priority;
->>> +	enum mhi_er_priority priority;
->>>  	enum mhi_db_brst_mode mode;
->>>  	enum mhi_er_data_type data_type;
->>>  	bool hardware_event;
->>> --
->>> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora 
->>> Forum,
->>> a Linux Foundation Collaborative Project
->>> 
-> 
-> Thanks,
-> Bhaumik
-> ---
-> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora 
-> Forum,
-> a Linux Foundation Collaborative Project
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00356-QCAHKSWPL_SILICONZ-1
 
-Thanks,
-Bhaumik
+Signed-off-by: Muna Sinada <msinada@codeaurora.org>
 ---
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora 
-Forum,
-a Linux Foundation Collaborative Project
+ drivers/net/wireless/ath/ath11k/mac.c | 74 ++++++++++++++++++++++++++++++++---
+ drivers/net/wireless/ath/ath11k/wmi.h |  1 +
+ 2 files changed, 69 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 0a65ff4e9091..8651dcff0a25 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -3021,6 +3021,20 @@ ath11k_mac_bitrate_mask_num_he_rates(struct ath11k *ar,
+ }
+ 
+ static int
++ath11k_mac_bitrate_mask_num_he_ul_rates(struct ath11k *ar,
++					enum nl80211_band band,
++				       const struct cfg80211_bitrate_mask *mask)
++{
++	int num_rates = 0;
++	int i;
++
++	for (i = 0; i < ARRAY_SIZE(mask->control[band].he_ul_mcs); i++)
++		num_rates += hweight16(mask->control[band].he_ul_mcs[i]);
++
++	return num_rates;
++}
++
++static int
+ ath11k_mac_set_peer_vht_fixed_rate(struct ath11k_vif *arvif,
+ 				   struct ieee80211_sta *sta,
+ 				   const struct cfg80211_bitrate_mask *mask,
+@@ -6029,10 +6043,11 @@ ath11k_mac_get_single_legacy_rate(struct ath11k *ar,
+ 
+ static int ath11k_mac_set_fixed_rate_params(struct ath11k_vif *arvif,
+ 					    u32 rate, u8 nss, u8 sgi, u8 ldpc,
+-					    u8 he_gi, u8 he_ltf)
++					    u8 he_gi, u8 he_ltf, u32 he_ul_rate,
++					    u8 he_ul_nss)
+ {
+ 	struct ath11k *ar = arvif->ar;
+-	u32 vdev_param;
++	u32 vdev_param, rate_code;
+ 	int ret;
+ 
+ 	lockdep_assert_held(&ar->conf_mutex);
+@@ -6105,6 +6120,17 @@ static int ath11k_mac_set_fixed_rate_params(struct ath11k_vif *arvif,
+ 		}
+ 	}
+ 
++	rate_code = ATH11K_HW_RATE_CODE(he_ul_rate, he_ul_nss - 1,
++					WMI_RATE_PREAMBLE_HE);
++	vdev_param = WMI_VDEV_PARAM_UL_FIXED_RATE;
++	ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id, vdev_param,
++					    rate_code);
++
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to set HE UL fixed rate %d: %d\n",
++			    rate_code, ret);
++	}
++
+ 	return 0;
+ }
+ 
+@@ -6158,6 +6184,22 @@ ath11k_mac_he_mcs_range_present(struct ath11k *ar,
+ 	return true;
+ }
+ 
++static bool
++ath11k_mac_he_ul_mcs_present(struct ath11k *ar,
++			     enum nl80211_band band,
++			     const struct cfg80211_bitrate_mask *mask)
++{
++	int i;
++
++	for (i = 0; i < NL80211_HE_NSS_MAX; i++) {
++		if (mask->control[band].he_ul_mcs[i])
++			return true;
++	}
++
++	return false;
++}
++
++
+ static void ath11k_mac_set_bitrate_mask_iter(void *data,
+ 					     struct ieee80211_sta *sta)
+ {
+@@ -6203,12 +6245,12 @@ ath11k_mac_op_set_bitrate_mask(struct ieee80211_hw *hw,
+ 	const u16 *he_mcs_mask;
+ 	u8 he_ltf = 0;
+ 	u8 he_gi = 0;
+-	u32 rate;
+-	u8 nss;
++	u32 rate, he_ul_rate;
++	u8 nss, he_ul_nss;
+ 	u8 sgi;
+ 	u8 ldpc;
+ 	int single_nss;
+-	int ret;
++	int ret, i;
+ 	int num_rates;
+ 
+ 	if (ath11k_mac_vif_chan(vif, &def))
+@@ -6227,6 +6269,15 @@ ath11k_mac_op_set_bitrate_mask(struct ieee80211_hw *hw,
+ 	he_gi = mask->control[band].he_gi;
+ 	he_ltf = mask->control[band].he_ltf;
+ 
++	for (i = 0; i < ARRAY_SIZE(mask->control[band].he_ul_mcs); i++) {
++		if (hweight16(mask->control[band].he_ul_mcs[i]) == 1) {
++			he_ul_nss = i + 1;
++			he_ul_rate = ffs((int)
++					 mask->control[band].he_ul_mcs[i]) - 1;
++			break;
++		}
++	}
++
+ 	/* mac80211 doesn't support sending a fixed HT/VHT MCS alone, rather it
+ 	 * requires passing atleast one of used basic rates along with them.
+ 	 * Fixed rate setting across different preambles(legacy, HT, VHT) is
+@@ -6300,6 +6351,16 @@ ath11k_mac_op_set_bitrate_mask(struct ieee80211_hw *hw,
+ 			return -EINVAL;
+ 		}
+ 
++		num_rates = ath11k_mac_bitrate_mask_num_he_ul_rates(ar, band,
++								    mask);
++
++		if (ath11k_mac_he_ul_mcs_present(ar, band, mask) &&
++		    num_rates != 1) {
++			ath11k_warn(ar->ab,
++				    "Setting HE UL MCS Fixed Rate range is not supported in fw.\n");
++			return -EINVAL;
++		}
++
+ 		ieee80211_iterate_stations_atomic(ar->hw,
+ 						  ath11k_mac_disable_peer_fixed_rate,
+ 						  arvif);
+@@ -6317,7 +6378,8 @@ ath11k_mac_op_set_bitrate_mask(struct ieee80211_hw *hw,
+ 	mutex_lock(&ar->conf_mutex);
+ 
+ 	ret = ath11k_mac_set_fixed_rate_params(arvif, rate, nss, sgi, ldpc,
+-					       he_gi, he_ltf);
++					       he_gi, he_ltf, he_ul_rate,
++					       he_ul_nss);
+ 	if (ret) {
+ 		ath11k_warn(ar->ab, "failed to set fixed rate params on vdev %i: %d\n",
+ 			    arvif->vdev_id, ret);
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index 5ff52f5649da..98e7ef7e6459 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -1047,6 +1047,7 @@ enum wmi_tlv_vdev_param {
+ 	WMI_VDEV_PARAM_HE_LTF = 0x74,
+ 	WMI_VDEV_PARAM_BA_MODE = 0x7e,
+ 	WMI_VDEV_PARAM_SET_HE_SOUNDING_MODE = 0x87,
++	WMI_VDEV_PARAM_UL_FIXED_RATE,
+ 	WMI_VDEV_PARAM_6GHZ_PARAMS = 0x99,
+ 	WMI_VDEV_PARAM_PROTOTYPE = 0x8000,
+ 	WMI_VDEV_PARAM_BSS_COLOR,
+-- 
+2.7.4
+
 
 -- 
 ath11k mailing list
