@@ -2,81 +2,83 @@ Return-Path: <SRS0=zwws=MW=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-9.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-	version=3.4.0
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 24874C4338F
-	for <ath11k@archiver.kernel.org>; Fri, 30 Jul 2021 10:48:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 551D5C4338F
+	for <ath11k@archiver.kernel.org>; Fri, 30 Jul 2021 20:01:13 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D83E860524
-	for <ath11k@archiver.kernel.org>; Fri, 30 Jul 2021 10:48:23 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org D83E860524
+	by mail.kernel.org (Postfix) with ESMTPS id 184CC60EB7
+	for <ath11k@archiver.kernel.org>; Fri, 30 Jul 2021 20:01:13 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 184CC60EB7
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:Cc:To:From
-	:Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=7SLRjR7D9AXYNzkIuWBedbNPVTsy21qwMJtoCH4DmYU=; b=f/4IlDtITwMwDYu9Hj+OfJ5/hI
-	HJR6cqh+Fj3ZWTJGdGDGE69o3BdqTtf5Prqy+2KPOXx0GjQa+dRVJwBGUtq4YG+9okZGHyOWZb4dZ
-	Lq2Je4OloMRjtat8CDwAdvDgGmaCJxl81YIuVnPaW/bQbhXTk7YtI5AKODy6dsuwfO4g5nDom0uXt
-	qVzTtR5jTC4txKQsbGFQb7pnAtxcgFgLKBCM7ysE8eHe2XNaQ0GwAub8SZxd8kV+Mp/xpIyPzSjXU
-	E8I5vNPp8Hlg/NvhocH7BlDe6LhfWLjsgbgIzCiBYHQ9AgCdYpiWbIqq03ZYzq+TNFqyd3yGzo6NH
-	K4ShgiMg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=WDhxatjTscd2YDa3un/UdALwov9JWDtC27KkAFxPxe4=; b=dZaXzmsRcnqfvU
+	bxdNC7MTd0bvhpv9MxpgKFMYUviZt0KbHHSnIFdkl+vCnSLyv/jZVT4+CJDUzrJC1dJD7KrsCXFpI
+	vv6reQF8qr8UJyAvXb1T8NRwdCSAC9avz3b+SeqMOD9rJ3Qtaub25qsN4Zl6r8/IUoRzkRctDoQDW
+	qbaVyz2lvRQZShS8wVoJnL7kEJdOAi5mDAwHcKWG4UKqqW46RyUrtDZs1X5XEIU3IqYh1Z9r15Hh1
+	oM6zy8RC9ZFB3LgMhFY3b6thPlALYFpXAcZNP6f8DfDz8ESiwgVdkWOivgJ+HVpw29rX3hikzhYfS
+	dx4Di4UQVqqivADyvfzA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1m9Q3x-008BWs-Ot; Fri, 30 Jul 2021 10:48:21 +0000
-Received: from m43-7.mailgun.net ([69.72.43.7])
+	id 1m9Ygv-00ABTF-FQ; Fri, 30 Jul 2021 20:01:09 +0000
+Received: from so254-9.mailgun.net ([198.61.254.9])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1m9Q3s-008BVk-AH
- for ath11k@lists.infradead.org; Fri, 30 Jul 2021 10:48:20 +0000
+ id 1m9Ygr-00ABS4-Az
+ for ath11k@lists.infradead.org; Fri, 30 Jul 2021 20:01:07 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1627642099; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=KPA3LodHkc04ZU8j2SDJLqtUxvbS2oNhwgR78eyJ3QI=;
- b=K7PvRgzwNtSTGYmrj0NvxxRTMQKHiHzGrwEKsDbGnSNDUUXX/C+3GViyZB61bhhXkdXrSQnS
- Hjhdxs5iQ50egY2KZjufSCuQFOhguW5mexHPxoA8wYFWpXqFPRaPu7UhmreJkITU6j6VIrjw
- 4StDjCrZYlQpxJBf8vALP3BNIQ4=
-X-Mailgun-Sending-Ip: 69.72.43.7
+ s=smtp; t=1627675266; h=Content-Type: MIME-Version: Message-ID:
+ In-Reply-To: Date: References: Subject: Cc: To: From: Sender;
+ bh=duJSLC6ov4Eaz1LQV0Go5JO5CWXRxwosUBhtlDbauqg=;
+ b=vxHthygY580qo5VW/QJgwXWZUqqZc/J4+oyQVa2yNt0mgMg+HCeoQcNSjA6b3csDLSBLiGyP
+ 9SMrP3hMd4QNKx95WQkP0QYxsJOPVFTtYq+bhPaWQO6i8xnRvHYq4Vb5VtDv5XTUQrX++Eu+
+ L104PqFkP/sGpsWnrhzJbB/fyCY=
+X-Mailgun-Sending-Ip: 198.61.254.9
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
- 6103d8d7b653fbdaddf77075 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 30 Jul 2021 10:47:51
+ smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
+ 61045a7617c2b4047df34730 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 30 Jul 2021 20:00:54
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 13508C43217; Fri, 30 Jul 2021 10:47:51 +0000 (UTC)
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
- (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
- (No client certificate requested) (Authenticated sender: wgong)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 967B8C43460;
- Fri, 30 Jul 2021 10:47:50 +0000 (UTC)
+ id B0857C433D3; Fri, 30 Jul 2021 20:00:53 +0000 (UTC)
+Received: from tykki (tynnyri.adurom.net [51.15.11.48])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested) (Authenticated sender: kvalo)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 521D5C433F1;
+ Fri, 30 Jul 2021 20:00:52 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 521D5C433F1
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ spf=fail smtp.mailfrom=kvalo@codeaurora.org
+From: Kalle Valo <kvalo@codeaurora.org>
+To: Mitchell Nordine <mail@mitchellnordine.com>
+Cc: wi nk <wink@technolu.st>,
+ "ath11k\@lists.infradead.org" <ath11k@lists.infradead.org>
+Subject: Re: Have the QCA6390 patches for XPS 9310 landed yet?
+References: <bP3y5saYYXBGS8eME0-maHlpNyii00kJNgq58St0q7PDo9pXsMd5zmUI-0Jou4dCD91Jf5fjwyPlQb8PaTOGvBBRu0FjYoW1XCjWpzZm-6E=@mitchellnordine.com>
+Date: Fri, 30 Jul 2021 23:00:48 +0300
+In-Reply-To: <bP3y5saYYXBGS8eME0-maHlpNyii00kJNgq58St0q7PDo9pXsMd5zmUI-0Jou4dCD91Jf5fjwyPlQb8PaTOGvBBRu0FjYoW1XCjWpzZm-6E=@mitchellnordine.com>
+ (Mitchell Nordine's message of "Thu, 18 Mar 2021 16:30:15 +0000")
+Message-ID: <87y29nefm7.fsf@codeaurora.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-Date: Fri, 30 Jul 2021 18:47:50 +0800
-From: Wen Gong <wgong@codeaurora.org>
-To: Johannes Berg <johannes@sipsolutions.net>
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
-Subject: Re: [PATCH 9/9] mac80211: save transmit power envelope element and
- power constraint
-In-Reply-To: <d9491db4ece67ac78eb39a1078b91a106770fbb0.camel@sipsolutions.net>
-References: <20210517201932.8860-1-wgong@codeaurora.org>
- <20210517201932.8860-10-wgong@codeaurora.org>
- (sfid-20210517_222034_029448_A9A89D57)
- <d9491db4ece67ac78eb39a1078b91a106770fbb0.camel@sipsolutions.net>
-Message-ID: <1126f8d996e895ae048092b3f8aad19b@codeaurora.org>
-X-Sender: wgong@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210730_034819_301139_30088A0E 
-X-CRM114-Status: GOOD (  25.74  )
+X-CRM114-CacheID: sfid-20210730_130106_163284_ACC7C640 
+X-CRM114-Status: GOOD (  15.71  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,93 +90,37 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 2021-07-23 17:38, Johannes Berg wrote:
-> On Mon, 2021-05-17 at 16:19 -0400, Wen Gong wrote:
->> 
->> +		if (is_6ghz) {
->> +			struct ieee802_11_elems elems;
->> +			struct ieee80211_bss_conf *bss_conf;
->> +			u8 i, n;
->> +
->> +			ieee802_11_parse_elems(ies->data, ies->len, false, &elems,
->> +					       NULL, NULL);
->> +			bss_conf = &sdata->vif.bss_conf;
->> +			bss_conf->pwr_reduction = 0;
->> +			if (elems.pwr_constr_elem)
->> +				bss_conf->pwr_reduction = *elems.pwr_constr_elem;
->> +
->> +			memset(bss_conf->tx_pwr_env, 0, sizeof(bss_conf->tx_pwr_env));
->> +			bss_conf->tx_pwr_env_num = elems.tx_pwr_env_num;
->> +			n = min_t(u8, elems.tx_pwr_env_num,
->> +				  ARRAY_SIZE(elems.tx_pwr_env));
-> 
-> If anything, that min_t would make sense only if you were actually 
-> using
-> ARRAY_SIZE(bss_conf->tx_pwr_env), but like this it's quite pointless,
-> just checking again if the element parsing was internally consistent?
-> 
-> I'd probably remove it and throw in a
-> 
-> 	BUILD_BUG_ON(ARRAY_SIZE(bss_conf->tx_pwr_env) !=
->                      ARRAY_SIZE(elems.tx_pwr_env));
-> 
-> instead.
-> 
->> +			for (i = 0; i < n; i++)
->> +				memcpy(&bss_conf->tx_pwr_env[i], elems.tx_pwr_env[i],
->> +				       elems.tx_pwr_env_len[i]);
-> 
-> You also never validated that the element wasn't too long!
-> 
-will change it.
-> 
-> If you connect to 6 Ghz with this, and then again to another AP that
-> doesn't, you'll have it stuck at the old values. You need to reset at
-> some point (during disconnect).
-> 
-will change to reset it in ieee80211_prep_channel outside is_6ghz{}.
-Then it will be reset for each connection.
-> And then two more questions:
-> 
-> 1) Could this information change? Should we track it in beacons?
-> 
+Mitchell Nordine <mail@mitchellnordine.com> writes:
 
-The information is from AP side, it should be not changed untill the AP 
-restart.
-If someone want to change configure of AP, the AP should restart and 
-then take effect by my understand.
-Is it have some case for this information change?
+> Hi kvalo and wink!
+>
+> It's been a while since I've had a chance to check in on this - have I
+> missed any QCA6390 progress?
+>
+> Currently the nixos-hardware repo is fixed to 5.10.18 along with most
+> of the patches on ath11k-qca6390-bringup, apart from two commits that
+> I'm sure were merged a while ago.
+>
+> https://github.com/NixOS/nixos-hardware/blob/31f61b90ddb9257b94888ee17ccf96236e180c76/dell/xps/13-9310/default.nix#L14
+>
+> Just wondering if the rest of the patches or some alternative fixes
+> have landed in a more recent version of the kernel yet, and whether
+> it's worth diving in and updating our nix expr yet?
 
+Basically all you need is a BIOS update for XPS 9310 (to get 32 MSI
+vectors working) and a recent Linux release. I don't remember the exact
+kernel release, and can't check it now, but something like v5.12 or
+v5.13 should work without extra patches.
 
-> 2) Should we at least check it again from the protected beacon or such
-> after association, so we don't blindly trust the probe response or
-> beacon (received during scan, not validated) at least when BIGTK is in
-> use?
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-May we add support for BIGTK in future with another patch?
-The info(pwr_reduction and tx_pwr_env) is used by lower driver such as 
-ath11k.
-If the info changed after association, then how to notify lower driver?
-Do it like below in ieee80211_rx_mgmt_beacon()?
-And use BSS_CHANGED_TXPOWER or a new enum in ieee80211_bss_change?
-
-ieee80211_rx_mgmt_beacon{
-	changed |= ieee80211_handle_pwr_constr(sdata, chan, mgmt,
-					       elems.country_elem,
-					       elems.country_elem_len,
-					       elems.pwr_constr_elem,
-					       elems.cisco_dtpc_elem);
-
-	ieee80211_bss_info_change_notify(sdata, changed);
-}
-
-> 
-> johannes
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
