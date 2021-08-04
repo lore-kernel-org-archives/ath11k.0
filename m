@@ -5,16 +5,16 @@ X-Spam-Level:
 X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8F5A7C4320A
-	for <ath11k@archiver.kernel.org>; Wed,  4 Aug 2021 18:12:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C99C1C4320A
+	for <ath11k@archiver.kernel.org>; Wed,  4 Aug 2021 18:12:57 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5BEC660EB2
-	for <ath11k@archiver.kernel.org>; Wed,  4 Aug 2021 18:12:45 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 5BEC660EB2
+	by mail.kernel.org (Postfix) with ESMTPS id 91A7D60F35
+	for <ath11k@archiver.kernel.org>; Wed,  4 Aug 2021 18:12:57 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 91A7D60F35
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,44 +23,44 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=aX4TjV9F3W5+jYJUCc36LWnpzNNSdst1H6IorI3QJy0=; b=lNp3zwDFDcd/SW
-	Aw2TRdXrRXgL6/JL+woa2iO6jb3UitgzAm0+Gx1lpOHJLvyXthyTgR6S7IvwdC8sT9KBt4IICvXK1
-	f4X7GKJfdE/oDm8APrM6dZ07+L09n3iGHhGjoQ21Phtcf7WI/HDS6nJsKS36yzUc7OsnEg0Kh6ACx
-	cKaxtdC57Wi9X/F4Il9A5uh2iZ/dUiO9jdcJBFxnCg8/Z9w86pX5etDTeTjGp6Oe3bvS2+kFJ2q0j
-	RlHT8eGzE9wVKaMZOW5c9Yh9ToyP+orp+S7+TzCiShyEkVc1FHK0qizgrXWNGGFoKia96nPzloolQ
-	FRJcSw4uXsQk1YQt11Rg==;
+	List-Owner; bh=Kwfhw6GtfK9Sd0i+ZVRFyuEJVz1L0C+H8V6AVCyp9t0=; b=iQhqj5bLt/pLbe
+	oPYDyyoZKEz95hWtYugpZ4ZXLQSEvYOBUHJHUV9dB9cGzF8PEHKrj5GGKCeuOJwc3E7uJN3eLeTV9
+	FqOyprezpqpfMrY/nSI+rgd71ZV93UeplMe8PIbbZhdulGM+WJYeETCt5jUafOWHSQc3Bytl/wkyh
+	MYT7ysZMaFgKNVeOndbr7aDLxJ3RqfztJZ+hllEj6jBIdrBJ/W0Pa1cIGwTWuBUNNWm07YhRBi8Oq
+	3EFyF97XIoClQWrdLM3h3l/mkT8UeS3YV2Gps38uJqhObkE7sjOYg3LSp75UEaolbJ7WgFL8nDEmB
+	CaFIP0dy7k8PB9XvSsZQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mBLNj-0078fe-B3; Wed, 04 Aug 2021 18:12:43 +0000
-Received: from m43-7.mailgun.net ([69.72.43.7])
+	id 1mBLNv-0078ih-Mo; Wed, 04 Aug 2021 18:12:55 +0000
+Received: from so254-9.mailgun.net ([198.61.254.9])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mBLNf-0078eU-5v
- for ath11k@lists.infradead.org; Wed, 04 Aug 2021 18:12:42 +0000
+ id 1mBLNo-0078dq-4w
+ for ath11k@lists.infradead.org; Wed, 04 Aug 2021 18:12:53 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1628100761; h=Content-Transfer-Encoding: MIME-Version:
+ s=smtp; t=1628100772; h=Content-Transfer-Encoding: MIME-Version:
  References: In-Reply-To: Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=cDAGFRmSgjMmOG4WH5Mc+HJAvd0xDlgPyVDPrnt/2hI=;
- b=n4APyMqT2jTsM0yEd7HB0W4QSYk3J0gNVGyWOm6cg4GebI6I2AXsWGYeEzlFbEXiwEBuEvT8
- G03m27tOw1ZIKvPgzGHO1pPhjCT5AT0kN6/7ZI7x8R74b4CfEBFOurupQ8YggoS77F18bzVV
- L9MiLP+1y+0Xh1Gx7wDGmllJzb8=
-X-Mailgun-Sending-Ip: 69.72.43.7
+ Sender; bh=YHpXMJRZpoJmaQV1ah1HjLRlJ7e+sclU9XDYMISB9O0=;
+ b=uQ3fnQcvAJLGUgCekbSiu9C3WHUMpQYP+Bv2cNXaMip7kh2lW2lXb9OKJcpE3Ozy3U++SZMC
+ Fwkv93AZKymSqMt+Hnc8JfFCLEVf1XZnz3mih+fi02OH+zSgfa9fD5uIH+t/upYYHKizsdr0
+ gQp9BEikgtvvvlUf/dMhpVgPF48=
+X-Mailgun-Sending-Ip: 198.61.254.9
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
- 610ad88f041a739c46c17f46 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 04 Aug 2021 18:12:31
+ smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
+ 610ad8911a9008a23ebe9c69 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 04 Aug 2021 18:12:33
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id B878BC43217; Wed,  4 Aug 2021 18:12:30 +0000 (UTC)
+ id 2816CC433D3; Wed,  4 Aug 2021 18:12:33 +0000 (UTC)
 Received: from jouni.codeaurora.org (85-76-77-199-nat.elisa-mobile.fi
  [85.76.77.199])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested) (Authenticated sender: jouni)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 97971C43460;
- Wed,  4 Aug 2021 18:12:28 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 97971C43460
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 4236EC43460;
+ Wed,  4 Aug 2021 18:12:31 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 4236EC43460
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
@@ -69,16 +69,16 @@ From: Jouni Malinen <jouni@codeaurora.org>
 To: Kalle Valo <kvalo@codeaurora.org>
 Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
  Wen Gong <wgong@codeaurora.org>, Jouni Malinen <jouni@codeaurora.org>
-Subject: [PATCH 1/3] ath11k: re-enable ht_cap/vht_cap for 5G band for WCN6855
-Date: Wed,  4 Aug 2021 21:12:15 +0300
-Message-Id: <20210804181217.88751-2-jouni@codeaurora.org>
+Subject: [PATCH 2/3] ath11k: enable 6G channels for WCN6855
+Date: Wed,  4 Aug 2021 21:12:16 +0300
+Message-Id: <20210804181217.88751-3-jouni@codeaurora.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210804181217.88751-1-jouni@codeaurora.org>
 References: <20210804181217.88751-1-jouni@codeaurora.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210804_111241_225916_794AD1B3 
-X-CRM114-Status: GOOD (  13.96  )
+X-CRM114-CacheID: sfid-20210804_111252_568058_5B9B8B0A 
+X-CRM114-Status: GOOD (  17.15  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,35 +97,99 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 From: Wen Gong <wgong@codeaurora.org>
 
-WCN6855 uses single_pdev_only, so it supports both the 5G and 6G bands
-in the same ath11k/pdev and it needs to enable ht_cap/vht_cap for the 5G
-band, otherwise it will downgrade to non-HT mode for the 5G band. Some
-chips like QCN9074 only support the 6G band, not the 5G band, and use
-the flag ar->supports_6ghz which is true to discard ht_cap/vht_cap.
+For some chips such as WCN6855, single_pdev_only is set in struct
+ath11k_hw_params which means ath11k calls ieee80211_register_hw() only
+once and create only one device interface, and that device interface
+supports all 2G/5G/6G channels.
+
+ath11k_mac_setup_channels_rates() sets up the channels and it is called
+for each device interface. It is called only once for single_pdev_only,
+and then set up all channels for 2G/5G/6G. The logic of
+ath11k_mac_setup_channels_rates() is not suitable for single_pdev_only,
+it leads to all 6G channels being disabled for the device interface
+which is single_pdev_only such as WCN6855.
+
+Add channel frequency checks for the 6G band and enable the 6G channels
+properly based on what is supported by the chip.
 
 Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
 
 Signed-off-by: Wen Gong <wgong@codeaurora.org>
 Signed-off-by: Jouni Malinen <jouni@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/mac.c | 25 ++++++++++++++++---------
+ 1 file changed, 16 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 133ecb351365..c83a968fc7ba 100644
+index c83a968fc7ba..04a8f82e3a17 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -4491,7 +4491,9 @@ static void ath11k_mac_setup_ht_vht_cap(struct ath11k *ar,
- 						    rate_cap_rx_chainmask);
+@@ -7213,7 +7213,7 @@ static int ath11k_mac_setup_channels_rates(struct ath11k *ar,
+ 					   u32 supported_bands)
+ {
+ 	struct ieee80211_supported_band *band;
+-	struct ath11k_hal_reg_capabilities_ext *reg_cap;
++	struct ath11k_hal_reg_capabilities_ext *reg_cap, *temp_reg_cap;
+ 	void *channels;
+ 	u32 phy_id;
+ 
+@@ -7223,6 +7223,7 @@ static int ath11k_mac_setup_channels_rates(struct ath11k *ar,
+ 		     ATH11K_NUM_CHANS);
+ 
+ 	reg_cap = &ar->ab->hal_reg_cap[ar->pdev_idx];
++	temp_reg_cap = reg_cap;
+ 
+ 	if (supported_bands & WMI_HOST_WLAN_2G_CAP) {
+ 		channels = kmemdup(ath11k_2ghz_channels,
+@@ -7241,11 +7242,11 @@ static int ath11k_mac_setup_channels_rates(struct ath11k *ar,
+ 
+ 		if (ar->ab->hw_params.single_pdev_only) {
+ 			phy_id = ath11k_get_phy_id(ar, WMI_HOST_WLAN_2G_CAP);
+-			reg_cap = &ar->ab->hal_reg_cap[phy_id];
++			temp_reg_cap = &ar->ab->hal_reg_cap[phy_id];
+ 		}
+ 		ath11k_mac_update_ch_list(ar, band,
+-					  reg_cap->low_2ghz_chan,
+-					  reg_cap->high_2ghz_chan);
++					  temp_reg_cap->low_2ghz_chan,
++					  temp_reg_cap->high_2ghz_chan);
  	}
  
--	if (cap->supported_bands & WMI_HOST_WLAN_5G_CAP && !ar->supports_6ghz) {
-+	if (cap->supported_bands & WMI_HOST_WLAN_5G_CAP &&
-+	    (ar->ab->hw_params.single_pdev_only ||
-+	     !ar->supports_6ghz)) {
- 		band = &ar->mac.sbands[NL80211_BAND_5GHZ];
- 		ht_cap = cap->band[NL80211_BAND_5GHZ].ht_cap_info;
- 		if (ht_cap_info)
+ 	if (supported_bands & WMI_HOST_WLAN_5G_CAP) {
+@@ -7265,9 +7266,15 @@ static int ath11k_mac_setup_channels_rates(struct ath11k *ar,
+ 			band->n_bitrates = ath11k_a_rates_size;
+ 			band->bitrates = ath11k_a_rates;
+ 			ar->hw->wiphy->bands[NL80211_BAND_6GHZ] = band;
++
++			if (ar->ab->hw_params.single_pdev_only) {
++				phy_id = ath11k_get_phy_id(ar, WMI_HOST_WLAN_5G_CAP);
++				temp_reg_cap = &ar->ab->hal_reg_cap[phy_id];
++			}
++
+ 			ath11k_mac_update_ch_list(ar, band,
+-						  reg_cap->low_5ghz_chan,
+-						  reg_cap->high_5ghz_chan);
++						  temp_reg_cap->low_5ghz_chan,
++						  temp_reg_cap->high_5ghz_chan);
+ 		}
+ 
+ 		if (reg_cap->low_5ghz_chan < ATH11K_MIN_6G_FREQ) {
+@@ -7290,12 +7297,12 @@ static int ath11k_mac_setup_channels_rates(struct ath11k *ar,
+ 
+ 			if (ar->ab->hw_params.single_pdev_only) {
+ 				phy_id = ath11k_get_phy_id(ar, WMI_HOST_WLAN_5G_CAP);
+-				reg_cap = &ar->ab->hal_reg_cap[phy_id];
++				temp_reg_cap = &ar->ab->hal_reg_cap[phy_id];
+ 			}
+ 
+ 			ath11k_mac_update_ch_list(ar, band,
+-						  reg_cap->low_5ghz_chan,
+-						  reg_cap->high_5ghz_chan);
++						  temp_reg_cap->low_5ghz_chan,
++						  temp_reg_cap->high_5ghz_chan);
+ 		}
+ 	}
+ 
 -- 
 2.25.1
 
