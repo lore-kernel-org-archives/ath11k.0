@@ -2,65 +2,82 @@ Return-Path: <SRS0=Cifq=M3=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 18918C4338F
-	for <ath11k@archiver.kernel.org>; Wed,  4 Aug 2021 13:06:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 27CE1C4320A
+	for <ath11k@archiver.kernel.org>; Wed,  4 Aug 2021 18:12:39 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A697E60F35
-	for <ath11k@archiver.kernel.org>; Wed,  4 Aug 2021 13:06:44 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org A697E60F35
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=mitchellnordine.com
+	by mail.kernel.org (Postfix) with ESMTPS id EA51760F35
+	for <ath11k@archiver.kernel.org>; Wed,  4 Aug 2021 18:12:38 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org EA51760F35
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:
-	In-Reply-To:Message-ID:Subject:Cc:From:To:Date:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=PsYWBW7U6AdbPqxhcbWjwLTvn7+xazikwXCUzXG6YPk=; b=pp/d5ZkEKJ9HiV
-	fa4u5+hT/hSjZLdoz7IW4fG06QEDyIOL6CJXaB5Q37sKmMaDNkvJH5T5aIB8NX3q+9eV5JLoBFaRx
-	yxBMvprATIE9/g8HhPnsEwJTpHq32JYf8SYfFfA9B5eZMSQ/hcoOSdvv3y9XCGVO0+BEhc3572cZQ
-	Z2cKA0x9TjQau+vcHoBJ/JXMUias3rHPsY3rYvHotkkuawi72w3rM58VDxMSsoZA7qjMDpL8k80RG
-	LJ8sr9KwgCjtyys0A7CBzqjysa5Ym/cjY2juGIiWxWsUwWFWopewNNhzqG0GeWby1MvjlPgNi/1Xg
-	4/9Y8ZmvkZspJM9eJ1LA==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=HzY3B8BIet6mlA6gfecNou3Xszt4txBjH791ghQ+6UE=; b=nTdRykslPFoPrX
+	meUiUEvldirRiL1+f47wW4++uMrlEJxV0Zs/vPfRW5dftefLLJiVjSDR7k1arSynYFbS1+RgCFJ9D
+	u33tLvIr9P+LFJ3aEwCaLUTC8030vDIqaIFAXQhRmOt+lTA+XGMjkkfOURXJzZeQkOrf/62CR6dEZ
+	ccno10JoGhxvqVzrW/bWaGiOa3yOM4kL3BPidTXJG7dTLEFJuDTP4sMm3Eq2hxO62lpilZFS3ZfYh
+	BOzn7EsZlKCt+uoKi6cCTnmsUXMHMZeIiDNjdvOkRdJDl5MtONAzTM1i/sfLCm+/PW/ll4dN970cX
+	pSd3w5qrDHFi9idMUCSQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mBGbZ-0064yo-Cx; Wed, 04 Aug 2021 13:06:41 +0000
-Received: from mail-40131.protonmail.ch ([185.70.40.131])
+	id 1mBLNb-0078eH-WB; Wed, 04 Aug 2021 18:12:36 +0000
+Received: from so254-9.mailgun.net ([198.61.254.9])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mBGbT-0064xs-3l
- for ath11k@lists.infradead.org; Wed, 04 Aug 2021 13:06:39 +0000
-Date: Wed, 04 Aug 2021 13:06:25 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mitchellnordine.com;
- s=protonmail2; t=1628082387;
- bh=nqLH0SjiI0EjmoOlae/fDsZ+qbbRQjnA0ka/h3fe9YU=;
- h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
- b=nZquwlIn7yb+h1r6lZbnrDnB+pfjpuMBZQpGAV6QK0cyK6Y//eZChDvfAkeuNnDXo
- I+X9dDHoxLVh3JQk3DDt3wUVAokAL8bb28waXLuZboZclRLIRZtVIe39kyVda9S8QX
- j33sXY4TDyaJ+1h951LJ8hUpBBAN6vxo84F9Pp8a+MVbeRVO6BuytBhYc00yNMX69v
- rStJT3Y5ByuBrjid7pGrxCDiTdG+QzQy4U4bdR9Inz407lFzcX3x1M2mbjjMYKa59f
- BVxZoZDPejYLHQvd4ZU4nE4rxXon4Az0cPvKmvheplTAi4RQL0PTAMGO6deQMnLAGS
- psj82LPW9GdPQ==
-To: wi nk <wink@technolu.st>
-From: Mitchell Nordine <mail@mitchellnordine.com>
-Cc: Kalle Valo <kvalo@codeaurora.org>,
- "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
-Subject: Re: Have the QCA6390 patches for XPS 9310 landed yet?
-Message-ID: <UUsN-OH9rM-606TuwUORGzSqrxv4eWc3pX5FYhYcS2eM9gpEG5NrqDgXKkhdkNDwdk_mEaoRoFhBlRahF_Pak_cI0YILecZzkAhEMfH6LZU=@mitchellnordine.com>
-In-Reply-To: <CAHUdJJWAbwnjUgSXEwVCu7TL6byD26FxZyMN4ZaR4o1eHQypYA@mail.gmail.com>
-References: <bP3y5saYYXBGS8eME0-maHlpNyii00kJNgq58St0q7PDo9pXsMd5zmUI-0Jou4dCD91Jf5fjwyPlQb8PaTOGvBBRu0FjYoW1XCjWpzZm-6E=@mitchellnordine.com>
- <87y29nefm7.fsf@codeaurora.org>
- <CAHUdJJWAbwnjUgSXEwVCu7TL6byD26FxZyMN4ZaR4o1eHQypYA@mail.gmail.com>
+ id 1mBLNZ-0078dq-Tj
+ for ath11k@lists.infradead.org; Wed, 04 Aug 2021 18:12:35 +0000
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
+ q=dns/txt; 
+ s=smtp; t=1628100753; h=Content-Transfer-Encoding: MIME-Version:
+ Message-Id: Date: Subject: Cc: To: From: Sender;
+ bh=BWdiYkAiGSM6BDwi0I+lmrjBqe8ZGMPFNU7wGl8me9A=;
+ b=Bmr6yR3CjkHbjsQ9O1T258uqE+Ie8kqp78DiWsFPaSYKCoeKoIinCNv+xqUh/eBr4XvR3e3p
+ JbmpWa+Lhrafc7fjJSfNXRBCDFAu29/SwR8wUPFcKJ+3BMCx6FyN0dAc5s+O+0eRNZQ5/naY
+ H4en5YDmZZl7HS8xbpxt1O3lv08=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
+ 610ad88b8caa8fb7f5906697 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 04 Aug 2021 18:12:27
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+ id EAADEC43460; Wed,  4 Aug 2021 18:12:26 +0000 (UTC)
+Received: from jouni.codeaurora.org (85-76-77-199-nat.elisa-mobile.fi
+ [85.76.77.199])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested) (Authenticated sender: jouni)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 0B954C433D3;
+ Wed,  4 Aug 2021 18:12:24 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 0B954C433D3
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ spf=fail smtp.mailfrom=jouni@codeaurora.org
+From: Jouni Malinen <jouni@codeaurora.org>
+To: Kalle Valo <kvalo@codeaurora.org>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ Wen Gong <wgong@codeaurora.org>
+Subject: [PATCH 0/3] ath11k: enable support of 6G band for WCN6855
+Date: Wed,  4 Aug 2021 21:12:14 +0300
+Message-Id: <20210804181217.88751-1-jouni@codeaurora.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210804_060636_635523_8031587A 
-X-CRM114-Status: GOOD (  12.04  )
+X-CRM114-CacheID: sfid-20210804_111234_147638_39BEA10C 
+X-CRM114-Status: UNSURE (   8.48  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,56 +89,33 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Reply-To: Mitchell Nordine <mail@mitchellnordine.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-PiBJJ3ZlIGJlZW4gcnVubmluZyA1LjEyIGFuZCA1LjEzIHdpdGhvdXQgV0lGSSBpc3N1ZXMuIE9j
-Y2FzaW9uYWxseSBJCj4gc3RpbGwgaGF2ZSBibHVldG9vdGggcHJvYmxlbXMgYW5kIHRoZSBpOTE1
-IGRyaXZlcnMgYXJlIGNhdXNpbmcgdmlkZW8KPiBhcnRpZmFjdHMgcmFuZG9tbHksIGJ1dCB0aGUg
-d2lyZWxlc3MgY29ubmVjdGlvbiBzZWVtcyBwcmV0dHkgc29saWQgYXQKPiB0aGlzIHBvaW50LgoK
-VGhhbmtzIGZvciB0aGUgdWRwYXRlIQoKUmVjZW50bHkgYSBjb2xsYWJvcmF0b3IgdXBkYXRlZCB0
-aGUgYG5peG9zL25peG9zLWhhcmR3YXJlYCByZXBvJ3Mga2VybmVsIHZlcnNpb24gdG8gYDUuMTIu
-OWAgZm9yIHRoZSB4cHMgOTMxMCBhcyB3aWZpIGFuZCBibHVldG9vdGggaXMgd29ya2luZyBvdXQt
-b2YtdGhlLWJveCBmb3IgdGhlbSBub3cuIEkgd2FzIGV4Y2l0ZWQgdG8gdXBkYXRlIGFuZCB0cnkg
-dGhpcyBteXNlbGYsIGhvd2V2ZXIgZGVzcGl0ZSBoYXZpbmcgdGhlIHNhbWUga2VybmVsIHZlcnNp
-b24gKDUuMTIuOSksIHRoZSBzYW1lIHFjYTYzOTAgZncgdmVyc2lvbiAoZndfdmVyc2lvbiAweDEw
-MWMwNmNjIGZ3X2J1aWxkX3RpbWVzdGFtcCAyMDIwLTA2LTI0IDE5OjUwKSBhbmQgYWxtb3N0IHRo
-ZSBzYW1lIHN5c3RlbSBmaXJtd2FyZSB2ZXJzaW9uICh0aGVtIDMuMC4zLCBtZSAzLjAuNCkgSSdt
-IHJ1bm5pbmcgaW50byBhbiBpc3N1ZSB3aGVyZSBJIGdldCBzb21lIGBxbWlgIGVycm9ycyBhbmQg
-dGhlbiB0aGUgd2lmaSBmaXJtd2FyZSBlbmRzIHVwIGNyYXNoaW5nLiBIZXJlJ3MgdGhlIHJlbGV2
-YW50IGRtZXNnIG91dHB1dCBvbiBteSBzeXN0ZW06CgokIGRtZXNnIHwgZ3JlcCAtZSBhdGgxMQpb
-ICAgIDMuOTM3MTI5XSBhdGgxMWtfcGNpIDAwMDA6NzI6MDAuMDogQkFSIDA6IGFzc2lnbmVkIFtt
-ZW0gMHhhMjUwMDAwMC0weGEyNWZmZmZmIDY0Yml0XQpbICAgIDMuOTM3MTQ3XSBhdGgxMWtfcGNp
-IDAwMDA6NzI6MDAuMDogZW5hYmxpbmcgZGV2aWNlICgwMDAwIC0+IDAwMDIpClsgICAgNC4yMDM1
-OTZdIGF0aDExa19wY2kgMDAwMDo3MjowMC4wOiBjaGlwX2lkIDB4MCBjaGlwX2ZhbWlseSAweGIg
-Ym9hcmRfaWQgMHhmZiBzb2NfaWQgMHhmZmZmZmZmZgpbICAgIDQuMjA3MDA1XSBhdGgxMWtfcGNp
-IDAwMDA6NzI6MDAuMDogZndfdmVyc2lvbiAweDEwMWMwNmNjIGZ3X2J1aWxkX3RpbWVzdGFtcCAy
-MDIwLTA2LTI0IDE5OjUwIGZ3X2J1aWxkX2lkClsgICAgOS4yOTEyODFdIGF0aDExa19wY2kgMDAw
-MDo3MjowMC4wOiBxbWkgZmFpbGVkIHNldCBtb2RlIHJlcXVlc3QsIG1vZGU6IDAsIGVyciA9IC0x
-MTAKWyAgICA5LjI5MTI5M10gYXRoMTFrX3BjaSAwMDAwOjcyOjAwLjA6IHFtaSBmYWlsZWQgdG8g
-c2VuZCB3bGFuIGZ3IG1vZGU6LTExMApbICAgIDkuMjkxMjk3XSBhdGgxMWtfcGNpIDAwMDA6NzI6
-MDAuMDogZmFpbGVkIHRvIGF0dGFjaCB3bWk6IC0xMTAKWyAgICA5LjI5MTMwNV0gYXRoMTFrX3Bj
-aSAwMDAwOjcyOjAwLjA6IGZhaWxlZCB0byBzdGFydCBjb3JlOiAtMTEwClsgICAyMC4yNTA3Mjld
-IGF0aDExa19wY2kgMDAwMDo3MjowMC4wOiBmaXJtd2FyZSBjcmFzaGVkOiBNSElfQ0JfU1lTX0VS
-Uk9SCgpNeSBjb2xsYWJvcmF0b3IncyBzeXN0ZW0gKHdob3NlIHdpZmkgaXMgd29ya2luZykgaGFz
-IHRoZSBzYW1lIG91dHB1dCwgYnV0IHdpdGhvdXQgdGhlIGxhc3QgNSBsaW5lcyBvZiBlcnJvcnM6
-Cgp+IMK7IGRtZXNnIHwgZ3JlcCAtZSBhdGgxMQpbICAgMTkuODcyNTk5XSBhdGgxMWtfcGNpIDAw
-MDA6NzI6MDAuMDogQkFSIDA6IGFzc2lnbmVkIFttZW0gMHhhMjUwMDAwMC0weGEyNWZmZmZmIDY0
-Yml0XQpbICAgMTkuODcyNjE3XSBhdGgxMWtfcGNpIDAwMDA6NzI6MDAuMDogZW5hYmxpbmcgZGV2
-aWNlICgwMDAwIC0+IDAwMDIpClsgICAyMC4zODAxNjhdIGF0aDExa19wY2kgMDAwMDo3MjowMC4w
-OiBjaGlwX2lkIDB4MCBjaGlwX2ZhbWlseSAweGIgYm9hcmRfaWQgMHhmZiBzb2NfaWQgMHhmZmZm
-ZmZmZgpbICAgMjAuMzgwMTcxXSBhdGgxMWtfcGNpIDAwMDA6NzI6MDAuMDogZndfdmVyc2lvbiAw
-eDEwMWMwNmNjIGZ3X2J1aWxkX3RpbWVzdGFtcCAyMDIwLTA2LTI0IDE5OjUwIGZ3X2J1aWxkX2lk
-CgpIZXJlJ3MgdGhlaXIgUFIgdGhhdCByZW1vdmVzIHRoZSBwYXRjaGVzIGFuZCB1cGRhdGVzIHRv
-IHRoZSA1LjEyIGtlcm5lbC4gaHR0cHM6Ly9naXRodWIuY29tL05peE9TL25peG9zLWhhcmR3YXJl
-L3B1bGwvMjk4CgpJIGNoZWNrZWQgb3V0IHRoZSBidWcgcmVwb3J0IG1lbnRpb25lZCBieSBqdXN0
-aW4gKGh0dHBzOi8vYnVnemlsbGEua2VybmVsLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MjEyMDU5KSBo
-b3dldmVyIGl0IGFwcGVhcnMgdG8gYmUgdW5yZWxhdGVkLi4uIGF0IGxlYXN0IEkgZG9uJ3Qgc2Vl
-IGFueSBvZiB0aGUgc2FtZSBgcW1pYCBlcnJvcnMsIGFuZCB0aGVpciBmaXJtd2FyZSBhdCBsZWFz
-dCBydW5zIGxvbmcgZW5vdWdoIHRoYXQgdGhleSBjYW4gY29ubmVjdCB0byBhIDIuNEdIeiBuZXR3
-b3JrLgoKQW55IGlkZWFzIHdoYXQgbWlnaHQgYmUgZ29pbmcgb24gaGVyZT8KCgotLSAKYXRoMTFr
-IG1haWxpbmcgbGlzdAphdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5m
-cmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2F0aDExawo=
+From: Wen Gong <wgong@codeaurora.org>
+
+This depends on the following patches:
+
+Pradeep Kumar Chitrapu:
+ath11k: add channel 2 into 6 GHz channel list
+ath11k: fix packet drops due to incorrect 6 GHz freq value in rx status
+
+Wen Gong (3):
+  ath11k: re-enable ht_cap/vht_cap for 5G band for WCN6855
+  ath11k: enable 6G channels for WCN6855
+  ath11k: copy cap info of 6G band under WMI_HOST_WLAN_5G_CAP for WCN6855
+
+ drivers/net/wireless/ath/ath11k/mac.c |   29 +++++++++++++++++++----------
+ drivers/net/wireless/ath/ath11k/wmi.c |   22 +++++++++++-----------
+ 2 files changed, 30 insertions(+), 21 deletions(-)
+
+-- 
+2.31.1
+
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
