@@ -7,14 +7,14 @@ X-Spam-Status: No, score=-4.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 52598C4338F
-	for <ath11k@archiver.kernel.org>; Tue, 10 Aug 2021 08:34:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7296EC4338F
+	for <ath11k@archiver.kernel.org>; Tue, 10 Aug 2021 08:34:33 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 171A961075
-	for <ath11k@archiver.kernel.org>; Tue, 10 Aug 2021 08:34:29 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 171A961075
+	by mail.kernel.org (Postfix) with ESMTPS id 30DA36108F
+	for <ath11k@archiver.kernel.org>; Tue, 10 Aug 2021 08:34:33 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 30DA36108F
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,59 +23,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:Cc:To:From
 	:Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Vz7Tj2uGG5A229NIVrAg3BybvuWpGXCEFNv77QflpPI=; b=kN3+cwg5K9GsjxHUZGSaTmHWcD
-	LG5gsMbo8rch9AjWRiJgvmldKWfOkgKve6cUW0vC2HBNWthIJ3mAI51khDOvlxKLnCzoFBnltV9pS
-	9nGKEtw8sqA7sjn6uHrPVReF7pwcuWex+yHuGqgZSjys8PfDk5klqqI2/zjmBKG1VQUMN/WvHqm8l
-	XqB/nGOSPVXLcbTv1TbKUdQvU+oJdwgPtk2q4bVDaGHZXNuOQkgLSXdUgno8h+DyoPEEGVXBxPCOy
-	OXtf+4GWa3Wg0fN10BeF+k0m3702TSNIWWeW7aqeCCHtSDLCcVI5r5wm2tYnLGscXUseLce87s4W8
-	YRTZm8Fw==;
+	bh=f+yQBKo8XNlleRtZPfK6I9Hdc2n2tg2YhkENAlvKWSs=; b=GN0VM5xL7g9nEEo6rvABJP5a0f
+	LKYHDi7w4LkMCHd7+Sf6mqayr/YlESdOxAmqlfq6iEYAkQHUquzoawwzPwFKSBqulmDhn74HWLlO5
+	8YxBhxeWnEujwZkXULtipsQ7vt/Pjk+3sUMKAFMssbuvpglLqfSDTj1ZC2EzMXwckQgapx0FW9N5V
+	E2TBzb51/D8fjKubSQuP2FdskKy646eoT8YyCnz5jh1RiKYhIZ6pvattDXyHll1MeFBj98XM5dBTV
+	VDwQiRPlkDAGbo82LFfg1jzSOQydkzsXLgM8+++GK18Enen5pRcaZZTMSv56uw5TRjxTEizjt9EKQ
+	sCHcmK/Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mDNDL-0032QW-UV; Tue, 10 Aug 2021 08:34:24 +0000
+	id 1mDNDR-0032Tv-Gv; Tue, 10 Aug 2021 08:34:29 +0000
 Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mDNAy-00314U-An
- for ath11k@lists.infradead.org; Tue, 10 Aug 2021 08:32:00 +0000
+ id 1mDNBl-00314U-GB
+ for ath11k@lists.infradead.org; Tue, 10 Aug 2021 08:32:51 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1628584313; h=Message-ID: References: In-Reply-To: Subject:
+ s=smtp; t=1628584368; h=Message-ID: References: In-Reply-To: Subject:
  Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=k8fAPXmJhs2qAvhPhJBwaZE1UtzhiWWsv7aTQpRafF8=;
- b=nWongZVKH0Gr9XXOzFJGm+FPm7wUzAmGzZkX0UoAKLPwBEAA8nDA0h4yieXU/iFRPWdw3Q6J
- KtLm2UDcVbN34ib7McxnUr6agacSh4P1zOvuEF2zY9fwORIX6mfXshVGCVaup+tMAIpFU14P
- AJ/n6KTQUtj2Re7PVxQ4neRlq98=
+ MIME-Version: Sender; bh=Vdw6tPm4oPokrFtxSREvD0rum2LAN2Ai75BjwbZLPCQ=;
+ b=ifH1eUUT9lpuODn9QUPK1St6MGXYUUnoJRNMeJxCt7kp5BaB9uSbgTFu4wdZa8EXrbm31T8r
+ nhTOszhiGsN2IcUD0v6JWnbBOx8HX/f13qc3fukIfAn+7iEa46t2MkrvMnGN/V1H8mwsk0+r
+ ouhvwba5NTkCITuwe6MaZ7bOwVw=
 X-Mailgun-Sending-Ip: 69.72.43.7
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
- 6112396bb14e7e2ecbb0e321 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 10 Aug 2021 08:31:39
+ smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
+ 611239a776c3a9a17262e7a2 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 10 Aug 2021 08:32:39
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 53886C43148; Tue, 10 Aug 2021 08:31:38 +0000 (UTC)
+ id AE696C43144; Tue, 10 Aug 2021 08:32:38 +0000 (UTC)
 Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
  (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested) (Authenticated sender: mkenna)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id C64CEC43143;
- Tue, 10 Aug 2021 08:31:37 +0000 (UTC)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id BE660C43144;
+ Tue, 10 Aug 2021 08:32:36 +0000 (UTC)
 MIME-Version: 1.0
-Date: Tue, 10 Aug 2021 14:01:37 +0530
+Date: Tue, 10 Aug 2021 14:02:36 +0530
 From: Maharaja Kennadyrajan <mkenna@codeaurora.org>
-To: Johannes Berg <johannes@sipsolutions.net>
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
+To: Felix Fietkau <nbd@nbd.name>
+Cc: Johannes Berg <johannes@sipsolutions.net>, ath11k@lists.infradead.org,
+ linux-wireless@vger.kernel.org
 Subject: Re: [PATCH v4 1/3] nl80211: Add support for beacon tx mode
-In-Reply-To: <f14e6e6b81978ace4580774981a7e032b4001182.camel@sipsolutions.net>
+In-Reply-To: <0e3d0abd-a895-77d8-d3a6-ef6d2616b7db@nbd.name>
 References: <1623164855-15910-1-git-send-email-mkenna@codeaurora.org>
  <1623164855-15910-2-git-send-email-mkenna@codeaurora.org>
- (sfid-20210608_171052_201356_8AEA5406)
  <f14e6e6b81978ace4580774981a7e032b4001182.camel@sipsolutions.net>
-Message-ID: <65b594ccab0a30bfb5bc2122cbf73f20@codeaurora.org>
+ <0e3d0abd-a895-77d8-d3a6-ef6d2616b7db@nbd.name>
+Message-ID: <0430f508f293d0b5b0d82cc1da78284d@codeaurora.org>
 X-Sender: mkenna@codeaurora.org
 User-Agent: Roundcube Webmail/1.3.9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210810_013156_502166_F7445700 
-X-CRM114-Status: GOOD (  17.62  )
+X-CRM114-CacheID: sfid-20210810_013248_250469_BCF408F9 
+X-CRM114-Status: GOOD (  13.57  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,42 +93,22 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 2021-06-23 16:46, Johannes Berg wrote:
-> First, I'd like to see some input from other vendors - is this useful?
-> 
-> I have no objections to it and it comes with an in-kernel driver, so 
-> I'm
-> inclined to accept it, but maybe we should have other modes, etc.?
-> 
-> 
->> + * @NL80211_ATTR_BEACON_TX_MODE: used to configure the beacon tx mode 
->> as
->> + *      staggered mode = 1 or burst mode = 2 in %NL80211_CMD_START_AP 
->> or
->> + *      %NL80211_CMD_JOIN_MESH from user-space.
-> 
-[Maha]: will replace the hard-coded values with enum here.
-> 
-> This should refer to the enum, not the hard-coded constants.
+On 2021-06-29 23:14, Felix Fietkau wrote:
+> On 2021-06-23 13:16, Johannes Berg wrote:
+>> First, I'd like to see some input from other vendors - is this useful?
 >> 
->> +/**
->> + * enum nl80211_beacon_tx_mode - Beacon Tx Mode enum.
->> + *      Used to configure beacon staggered mode or beacon burst mode.
->> + */
->> +enum nl80211_beacon_tx_mode {
+>> I have no objections to it and it comes with an in-kernel driver, so 
+>> I'm
+>> inclined to accept it, but maybe we should have other modes, etc.?
+> I haven't seen any config option like this outside of QCA stuff.
+> It seems to me that before getting merged, the documentation should at
+> least cover when and why the *user* would configure this implementation
+> detail, instead of having the driver/fw make a reasonable decision on
+> its own.
 > 
-> 
-> That's missing kernel-doc, and you also don't specify what default
-> means. Why is it even here?
-> 
-[Maha]: sure, I will add the same in the kernel-doc.
->> +	[NL80211_ATTR_BEACON_TX_MODE] = NLA_POLICY_RANGE(NLA_U32, 1,
-> 2),
-> 
-> That really also needs to use the enum, not hard-coded constants...
-[Maha]: will replace the hard-coded values with enum also here.
-> 
-> johannes
+> - Felix
+[Maha]: I will do the documentation for this in the next version 
+patchset.
 
 -- 
 ath11k mailing list
