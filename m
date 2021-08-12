@@ -1,80 +1,181 @@
-Return-Path: <SRS0=0MIV=NB=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=nEgM=ND=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	INCLUDES_PATCH,MAILING_LIST_MULTI,MSGID_FROM_MTA_HEADER,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 40486C4338F
-	for <ath11k@archiver.kernel.org>; Tue, 10 Aug 2021 15:55:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 80242C4338F
+	for <ath11k@archiver.kernel.org>; Thu, 12 Aug 2021 07:29:58 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D0E0F60E97
-	for <ath11k@archiver.kernel.org>; Tue, 10 Aug 2021 15:55:04 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org D0E0F60E97
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+	by mail.kernel.org (Postfix) with ESMTPS id 384EE6103A
+	for <ath11k@archiver.kernel.org>; Thu, 12 Aug 2021 07:29:58 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 384EE6103A
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=oracle.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:Cc:To:From
-	:Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=5iTE+RBGuNRDjIp3/N+UkdXjHwG1Vy9DdmLjoyhUg+c=; b=pBPH9BZwEJBz/WWjflIYPouOhW
-	oBu/eZ/UQN20Cgq/LwKPt8KRM7UiOZE5qhAPchJsbJlem87/9RiUdUXoXOXhqoyp8S0RiE/sCh/fo
-	6Vb7jRoNaiN8J/ZfVW/pu3izOWTFzIgmAyMvwT4RW2h+LSa/DlXBF3oDAXwMi67fct8/X8u6xYTGy
-	02PS1KcI8UdMCZll8tOR2EAT4D9qSbZlZvqSYybFOICmt+1CJk4hbEHYXRb6Ic6ibpMp68lWjFHiR
-	UgWkriplysVJAyhC4TsfI38Z1wAmiB55DkZUGC1mg/50ORTlTSQZ+puX1+pMIgIFkX8qtlmsoqyMb
-	RqSMkjzw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=40ib8wL23fM3Vj94DBOLsFe3BgLDYsWRsJ/WlULuIm4=; b=CNio1reD8Crb0u
+	/nKovqYQBvpGVfg5nhFAcyVTls2dhmLP/s//Ue1WGePeDTr7TcpA8WSkKl5A4oE/hF+C7neYb9O0q
+	nIcw0sqv1tSh/+hpzRBpBIheg5P2PzTbdanjZIwgVfdctjShx7C+7IXPKvKC3pmnqrKDAMxU0MkpV
+	r7oVXoIepBvLttAv93X0VMxRG8DV6MIKDEaXQojs4Udcyef3w4l1rtJJqJCcodO4V+RzVsG2oX7ff
+	xDYDm5zlpEPaYTz+vvSjk6RZDTdmjg8rFDfZ0/9NEcBG7WJ9ro9P2Vy67aOGJptqwrBnJBrv6PMKu
+	YxrsD6qqO+u1HWJ3qR4A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mDU5m-004Nc7-6o; Tue, 10 Aug 2021 15:55:02 +0000
-Received: from m43-7.mailgun.net ([69.72.43.7])
+	id 1mE5A2-008uL4-4y; Thu, 12 Aug 2021 07:29:54 +0000
+Received: from mx0a-00069f02.pphosted.com ([205.220.165.32])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mDU5a-004NZx-MI
- for ath11k@lists.infradead.org; Tue, 10 Aug 2021 15:55:01 +0000
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
- q=dns/txt; 
- s=smtp; t=1628610898; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=0EHxLVlZlJBMo/aM7aac2qrxctgwztSCU2PKgDLdGHw=;
- b=WwNSO0hFx6N5A80MWG8J0fqFRNBcHh5iNgXITzRJZrTgY9vAtSYSoXTvDmvW7yNGRmtlGDNd
- AsnlPsOEvYzxn0KsOF8T1loqCfXKBaHc3zAlN7BDw57fv0hasPtbz00tt3sIzW28mvVaUpv3
- 1udy8rW+aHYKEnXcA1YSGSuKseA=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
- 6112a14076c3a9a17216b92d (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 10 Aug 2021 15:54:40
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 57875C433D3; Tue, 10 Aug 2021 15:54:39 +0000 (UTC)
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
- (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
- (No client certificate requested) (Authenticated sender: jjohnson)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 8E2C9C433F1;
- Tue, 10 Aug 2021 15:54:37 +0000 (UTC)
+ id 1mE4lq-008q06-6R
+ for ath11k@lists.infradead.org; Thu, 12 Aug 2021 07:04:55 +0000
+Received: from pps.filterd (m0246617.ppops.net [127.0.0.1])
+ by mx0b-00069f02.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id
+ 17C721E5020347; Thu, 12 Aug 2021 07:04:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
+ h=date : from : to : cc
+ : subject : message-id : content-type : mime-version; s=corp-2021-07-09;
+ bh=TZ5DSYzh8zYRrliwcZqORlQ6v/S2ORhsa/Gx7YJhXNA=;
+ b=RHbDuIYgFPhNGWzfZ+3J6akk0bnc+uz6+ZwPafP0eVGtdub3q9iwCULgZMgNoGpMzTg6
+ tFesrVDMWFjblMbvybJAZHsULGYdBtXj7h0VvuipJflaBkJikJGAryqT4ScMB3MZQyz6
+ 2QAuiOYc8A+W9po9MYxQIIKEo608bs1iIkxUjEnwbUAgDyXamTe3ZAxlvAA4mIiAyyfa
+ JSReWDq7tZ9svGrKX1gdPY4MXknQVdm9Bj04g1tVokLUz1iIq24XZTbheNyqsI9OWfzO
+ xMF3eU8/Fpn8/jKX4/c/Pifh98C6FVsGnkp/ogeKQJ+sZxmGe7JVfJ6p1s34Zu1osTrc QQ== 
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
+ h=date : from : to : cc
+ : subject : message-id : content-type : mime-version; s=corp-2020-01-29;
+ bh=TZ5DSYzh8zYRrliwcZqORlQ6v/S2ORhsa/Gx7YJhXNA=;
+ b=PnJsNmdaZ+Tr80Kq6ndh+nMrJ8c/mlaT3GDOJV65Aq2YvSzCP+O9gak87zBU28K6DqPf
+ sCPf9PTznMGgq6DGC3J514M1bU8QCfVkfSK0+V73PPUg2ffnSWfv/byzfHEgpnEcfl9f
+ mc3wHenyPLqxedpCKAWL0XwAm2uX6WCekWsXB+2Zzf043HcAMdQ+JHp2lckxtL/UtkPT
+ swD0JcEZwypGhrGnW5mupQtFCq29JQKXWv9YgYPKHD9uqf7bD/03Bf9RT0xgujy48Y50
+ kR7F7V8dovRcCVsAYZO57pxY4pMzBiABvJvYTOgojB9sZ6OLJF1qhQLlq8r/066lW/5r 6A== 
+Received: from aserp3030.oracle.com (aserp3030.oracle.com [141.146.126.71])
+ by mx0b-00069f02.pphosted.com with ESMTP id 3abwqgv44q-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Thu, 12 Aug 2021 07:04:49 +0000
+Received: from pps.filterd (aserp3030.oracle.com [127.0.0.1])
+ by aserp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 17C70fdJ167466;
+ Thu, 12 Aug 2021 07:04:48 GMT
+Received: from nam11-dm6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11lp2174.outbound.protection.outlook.com [104.47.57.174])
+ by aserp3030.oracle.com with ESMTP id 3abx3xapgm-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Thu, 12 Aug 2021 07:04:48 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YsnDX2ld293knjZqyLTRUQ7edTV8n1W0DD91Bzj4BqiZA/KNpBnJpqIWeKiuG0yffI7GP9VKWZ4WHNA64pV07XpP4O08l2j3eTIdy+H3+9sLKdXrR+BhALpgh4NFfKrn6BOmQZheDjzL3dzcObyB9y8rCtKOj8GZhA7tYTN2iWCwy0j16DtKGbDbmFDBItY+THMRLXmFRIxqPdBiFE0EtmqKMv1AlDw+GJyTG3rQRqHXe/xEynt8GUSJw14jUIKQbJ828qusqx+BOJB16ap5BlMJPJNIAX3R9e4WUZSpuoIh5uT4CZQ5YoEo3R5ew5DTTP51oLJHaDjMUep5JMsisA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TZ5DSYzh8zYRrliwcZqORlQ6v/S2ORhsa/Gx7YJhXNA=;
+ b=llq9j9gtLilReYTbDWyy/fpf4hcuWAicESYEgWecHt6QjT/HDp9z45OQgurLbJoebBom1eZuieWZxu9FkINUFiWmv9JcEyaktckmAKoK13HNwI+C8tVfwMysGkwU4bmlrgRwrJQisVmm0C4Z46Sc9BgES0262s5+0UCZn1KfLO0Wev5tOYZwiQo9jI14yfwGN5uypEy41DEeqSqotncWUXiUamPMgbZM4W+BDZKXyRmA/zwSpVOjRZSrRarXUpKrPeyj2S7ggeUCJr2CgYHAkO1slExsQtVgucUhOI+n3QkErk8fruGd1ZDhdh+88XIcVOz60fxU6FfBLORUORs/WQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
+ dkim=pass header.d=oracle.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TZ5DSYzh8zYRrliwcZqORlQ6v/S2ORhsa/Gx7YJhXNA=;
+ b=zq/yYuFCHS4SAkDaG2U8wWiSolDEOb8BOOkl9AaeatZb1vUgMwHW8KRJa3Pkim/UkN98NAqIm11j0OWfO8lakHag+vAEGRZRX3jnANfxOsZpmT23s9VJez5xobj9j7FxD5B58dpwCKXJbEgnAHL3nxW80FpG5tm0CbJwNrhv4go=
+Authentication-Results: codeaurora.org; dkim=none (message not signed)
+ header.d=none;codeaurora.org; dmarc=none action=none header.from=oracle.com;
+Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
+ (2603:10b6:301:2d::28) by MWHPR10MB1488.namprd10.prod.outlook.com
+ (2603:10b6:300:23::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.17; Thu, 12 Aug
+ 2021 07:04:46 +0000
+Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
+ ([fe80::5820:e42b:73d7:4268]) by MWHPR1001MB2365.namprd10.prod.outlook.com
+ ([fe80::5820:e42b:73d7:4268%7]) with mapi id 15.20.4415.016; Thu, 12 Aug 2021
+ 07:04:45 +0000
+Date: Thu, 12 Aug 2021 10:04:34 +0300
+From: Dan Carpenter <dan.carpenter@oracle.com>
+To: Kalle Valo <kvalo@codeaurora.org>,
+ Karthikeyan Periyasamy <periyasa@codeaurora.org>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ kernel-janitors@vger.kernel.org
+Subject: [PATCH] ath11k: fix some sleeping in atomic bugs
+Message-ID: <20210812070434.GE31863@kili>
+Content-Disposition: inline
+X-Mailer: git-send-email haha only kidding
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-ClientProxiedBy: ZR0P278CA0147.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:41::21) To MWHPR1001MB2365.namprd10.prod.outlook.com
+ (2603:10b6:301:2d::28)
 MIME-Version: 1.0
-Date: Tue, 10 Aug 2021 08:54:37 -0700
-From: Jeff Johnson <jjohnson@codeaurora.org>
-To: Maharaja Kennadyrajan <mkenna@codeaurora.org>
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org, ath11k
- <ath11k-bounces@lists.infradead.org>
-Subject: Re: [PATCH v5 3/3] ath11k: Add support for beacon tx mode
-In-Reply-To: <1628585783-21139-4-git-send-email-mkenna@codeaurora.org>
-References: <1628585783-21139-1-git-send-email-mkenna@codeaurora.org>
- <1628585783-21139-4-git-send-email-mkenna@codeaurora.org>
-Message-ID: <f5df29c9e3322a82198bf21689779326@codeaurora.org>
-X-Sender: jjohnson@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from kili (62.8.83.99) by ZR0P278CA0147.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:41::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.16 via Frontend
+ Transport; Thu, 12 Aug 2021 07:04:42 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 90928358-b9b8-42b7-e6f1-08d95d5f7773
+X-MS-TrafficTypeDiagnostic: MWHPR10MB1488:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <MWHPR10MB14887A733FE1E32A1318E7DF8EF99@MWHPR10MB1488.namprd10.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: lrsUsJPlRLa7ZWTnFVIcL8gxemtHOZsVU9miii1dW4li+EtpHz26c0w39D4wK8Di4T/pIf+pw7wNY88bccyZI4GH6iUXZRqe4B4HILZ6uFUX8/FGOSNWP1dpq7R7nJpqRHnKr/ku0HAjg16UFBUfePhtnkO9ZQDI7cALQmwh/ZE4sPLiNDHJ4eva+PhVBuRKuKqasHwkhSCTEeYS2/r6K8vZkFyqrDZzVG+0Ov1JXLId87wZSapSHidG59wNsQQkavVTDhBD+mg92qOZHHjE1Zugx1ya+GED5sjoHKJZEJkIPS/PbRqMDlTsQyPYAHCjZndEgl9HQmOFvgBOUOOHk1EH3N5txiXPtbJU/fJRJGZWyXfI/DiL5Urm8NabrRDuPSXdSYsLy1BOMGPnSuIsWk7aolCpa/hXo1mhe4Xu++4uPxV2egOJkaHrOJXIYGpIJYB6TJl7oaIJz++by2tiElQdBu244n1SbHfB719+1Ih6WIPgFdAYuwvS9wzW3hud7jWB/3I9mwwhsVqCZ6MMUZMri97tEgNRzmLe6oE/wEIg5SElrdYuSNdEj2r0Gt23vZHQK0kVWAF5gasZdx3YEXJIZ4sXxw4xuI7mB4pJEPTp89z77+/HfeOyqqzjrd0CyP5J2rFj8mT/8PgRW6y9v0lyvqan06Q52dVnZimFEAPhQIgpywrHvUDlmi4gwmLlWG6YHd52xI1qMci5souZbw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MWHPR1001MB2365.namprd10.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(396003)(366004)(346002)(136003)(376002)(39860400002)(4326008)(52116002)(9576002)(86362001)(33716001)(316002)(6666004)(33656002)(6496006)(8676002)(26005)(8936002)(110136005)(66476007)(38350700002)(66556008)(66946007)(38100700002)(478600001)(186003)(9686003)(1076003)(44832011)(956004)(55016002)(2906002)(5660300002)(83380400001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?T1GBDiNvrGzLEWEFo77NbB05FDvAaK0d5QSZDCv5tOqHoo+vnvDXyoE83B/P?=
+ =?us-ascii?Q?MLrbX/6tPKkY6catsjE0Y1OO7invN4bbfTE0xZCkyIFzW3q3zaljs5O65ztk?=
+ =?us-ascii?Q?5YGt04ki5SOT2xmAV99fAY0XA0ib0egEUY3QNDweQrjiIVTQnoo9eurGUA7P?=
+ =?us-ascii?Q?tfjy1Iw8u0AtnEnmkkQ9K/hgMt0YDxXDPW0L2iMJ69VPewd/LcZdnMPT3D22?=
+ =?us-ascii?Q?oJNaCc1p6dyxgyIpj2qL9KiJDqc2RXtDOMUW9u7YD1ZIJGqMzS4qRb+2TSuC?=
+ =?us-ascii?Q?QQZvO6slK4xe+wtWjj11BMOa3V/m+uq71VXqfk6uZJpt5g3QC739NTNANkAd?=
+ =?us-ascii?Q?SaQnrCZ+TeW1on0t/UayR1Qiedo0n5p+1mt0w+1XdpIXXGd4fo+uIcl+z00/?=
+ =?us-ascii?Q?PyTMF0pSzykJsPLN67zLEDYUyyNy81Psu2rVBoiDm4q36XTkrwNEHwFX54bl?=
+ =?us-ascii?Q?JgdR/tGGn51oF7XeYxZPj4FqoE5XD/ORXstR5/SFirA5Qe8wgWps7/gYYwaE?=
+ =?us-ascii?Q?XS/EshGY0f8dnzKmvPthovvE1MJrS+ipsrjR8t0KNqac2dD1pkf4Bh3sY+8g?=
+ =?us-ascii?Q?whG1J5roi1h7BTeA77CgUXQfV0TWk1nPtdC26qAchP51xFEsuyNbWKENP/bO?=
+ =?us-ascii?Q?UYGvmrLKnQ3LeQwP5kjseDbaca0x5KMtilB34JdHWQQQ0ylnOVV3zUGGHJyN?=
+ =?us-ascii?Q?6vrjMPXs4K4bOhYJks6voTejhEltY+X0eH5+GthV2gPzG+DCwbHmoOUhK7j6?=
+ =?us-ascii?Q?zJ+u4ti7eugd7dE+dA4vGTnRiRkIF8C3RJKKbmQ2y4rUHtGaLx7F3eRkCtxa?=
+ =?us-ascii?Q?9cz28GKcU2XVS/d552GWWlzf4rIrdW6cmgFDKcQJjxa1fnYbUHfipVDShoQx?=
+ =?us-ascii?Q?e+STwtLKdozqt+G5x8jJp69RuGwX6MPJ/TRFhXRmT3ej42DwP6+Iws0bmsL5?=
+ =?us-ascii?Q?Ez34e0muqzdDkvlUULzM29v7HKWuR2LSc4KNVwBZly7etfZQgCHwuBL6lPSn?=
+ =?us-ascii?Q?2wVqJXgcJvyOihwiAplkOU3GVTQAPtwlu85ZU8IUwQ1XszIpw2y/XMmlUi+0?=
+ =?us-ascii?Q?fa4yEUkAmNsJobDLQIGk1z80TvVZKMSdHieV43hlXdu0oplrk5sZ8r8Sa6RU?=
+ =?us-ascii?Q?z4YUySU5njkWQxYWI9RXfYM+p4v3I9Osh0SMLhnlslYR6H+Hwdka7j0tt/pg?=
+ =?us-ascii?Q?C1XAA3Sx0xEv9d3iF3dFnTLZ3VnUZS357bET/Nnb65f5AbV/d3K3R36AXZq/?=
+ =?us-ascii?Q?4UcWBVxrKvONINN+O7aAecfdb4fu9td1yT1z1m5u3DdTkDoTds2ujyiacrVx?=
+ =?us-ascii?Q?gdJnUGc8JCFzEXRnE4Qn2izK?=
+X-OriginatorOrg: oracle.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 90928358-b9b8-42b7-e6f1-08d95d5f7773
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2365.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Aug 2021 07:04:45.7896 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: PXDAtWVavdg+7bXvINmhTWl0MekKfA6Pkj4fky+v6hRCb3wW+Uearqwq0O2MSQMDlWyKEZNxC8NYvmHh8JaW+T1CVLRHKWwSjnobNsUbDa0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR10MB1488
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=10073
+ signatures=668682
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0
+ mlxscore=0 bulkscore=0
+ spamscore=0 phishscore=0 mlxlogscore=999 suspectscore=0 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2107140000
+ definitions=main-2108120045
+X-Proofpoint-ORIG-GUID: KOmZNDPfb7AByaS-GKAq6xCduIrgqIyP
+X-Proofpoint-GUID: KOmZNDPfb7AByaS-GKAq6xCduIrgqIyP
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210810_085458_335860_ECD96B13 
-X-CRM114-Status: GOOD (  21.32  )
+X-CRM114-CacheID: sfid-20210812_000454_325326_A350649E 
+X-CRM114-Status: GOOD (  15.95  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,79 +187,92 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 2021-08-10 01:56, Maharaja Kennadyrajan wrote:
-> Add support to configure the beacon tx mode in
-> the driver.
-> 
-> Beacons can be sent out in burst(continuously in a single shot
-> one after another) or staggered (equally spread out over beacon
-> interval) mode.
-> 
-> Use the below configuration in the hostapd/wpa_supplicant
-> for AP/MESH mode to configure the beacon tx mode.
-> 
-> "beacon_tx_mode=N", where N = 1 for STAGGERED beacon mode
-> and N = 2 for BURST beacon mode.
-> 
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1-00480-QCAHKSWPL_SILICONZ-1
-> 
-> Signed-off-by: Maharaja Kennadyrajan <mkenna@codeaurora.org>
-> ---
->  drivers/net/wireless/ath/ath11k/mac.c | 10 +++++++---
->  1 file changed, 7 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/net/wireless/ath/ath11k/mac.c
-> b/drivers/net/wireless/ath/ath11k/mac.c
-> index e9b3689..2eda788 100644
-> --- a/drivers/net/wireless/ath/ath11k/mac.c
-> +++ b/drivers/net/wireless/ath/ath11k/mac.c
-> @@ -2136,7 +2136,10 @@ static void 
-> ath11k_mac_op_bss_info_changed(struct
-> ieee80211_hw *hw,
-> 
->  	if (changed & BSS_CHANGED_BEACON) {
->  		param_id = WMI_PDEV_PARAM_BEACON_TX_MODE;
-> -		param_value = WMI_BEACON_STAGGERED_MODE;
-> +		if (info->beacon_tx_mode == NL80211_BEACON_BURST_MODE)
-> +			param_value = WMI_BEACON_BURST_MODE;
-> +		else
-> +			param_value = WMI_BEACON_STAGGERED_MODE;
->  		ret = ath11k_wmi_pdev_set_param(ar, param_id,
->  						param_value,
-> ar->pdev->pdev_id);
->  		if (ret)
-> @@ -2144,8 +2147,9 @@ static void ath11k_mac_op_bss_info_changed(struct
-> ieee80211_hw *hw,
->  				    arvif->vdev_id);
->  		else
->  			ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
-> -				   "Set staggered beacon mode for VDEV:
-> %d\n",
-> -				   arvif->vdev_id);
-> +				   "Set %s beacon mode for VDEV: %d mode:
-> %d\n",
-> +				   param_value ? "burst" : "staggered",
+The ath11k_dbring_bufs_replenish() and ath11k_dbring_fill_bufs()
+take a "gfp" parameter but they since they take spinlocks, the
+allocations they do have to be atomic.  This causes a bug because
+ath11k_dbring_buf_setup passes GFP_KERNEL for the gfp flags.
 
-Suggest this should be param_value == WMI_BEACON_BURST_MODE ?
-or other similar logic since ideally code should avoid making 
-assumptions about the values assigned to enumerators
+The fix is to use GFP_ATOMIC and remove the unused parameters.
 
-> +				   arvif->vdev_id, param_value);
-> 
->  		ret = ath11k_mac_setup_bcn_tmpl(arvif);
->  		if (ret)
-> --
-> 2.7.4
+Fixes: bd6478559e27 ("ath11k: Add direct buffer ring support")
+Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
+---
+ drivers/net/wireless/ath/ath11k/dbring.c | 16 +++++++---------
+ 1 file changed, 7 insertions(+), 9 deletions(-)
 
+diff --git a/drivers/net/wireless/ath/ath11k/dbring.c b/drivers/net/wireless/ath/ath11k/dbring.c
+index 5e1f5437b418..fd98ba5b1130 100644
+--- a/drivers/net/wireless/ath/ath11k/dbring.c
++++ b/drivers/net/wireless/ath/ath11k/dbring.c
+@@ -8,8 +8,7 @@
+ 
+ static int ath11k_dbring_bufs_replenish(struct ath11k *ar,
+ 					struct ath11k_dbring *ring,
+-					struct ath11k_dbring_element *buff,
+-					gfp_t gfp)
++					struct ath11k_dbring_element *buff)
+ {
+ 	struct ath11k_base *ab = ar->ab;
+ 	struct hal_srng *srng;
+@@ -35,7 +34,7 @@ static int ath11k_dbring_bufs_replenish(struct ath11k *ar,
+ 		goto err;
+ 
+ 	spin_lock_bh(&ring->idr_lock);
+-	buf_id = idr_alloc(&ring->bufs_idr, buff, 0, ring->bufs_max, gfp);
++	buf_id = idr_alloc(&ring->bufs_idr, buff, 0, ring->bufs_max, GFP_ATOMIC);
+ 	spin_unlock_bh(&ring->idr_lock);
+ 	if (buf_id < 0) {
+ 		ret = -ENOBUFS;
+@@ -72,8 +71,7 @@ static int ath11k_dbring_bufs_replenish(struct ath11k *ar,
+ }
+ 
+ static int ath11k_dbring_fill_bufs(struct ath11k *ar,
+-				   struct ath11k_dbring *ring,
+-				   gfp_t gfp)
++				   struct ath11k_dbring *ring)
+ {
+ 	struct ath11k_dbring_element *buff;
+ 	struct hal_srng *srng;
+@@ -92,11 +90,11 @@ static int ath11k_dbring_fill_bufs(struct ath11k *ar,
+ 	size = sizeof(*buff) + ring->buf_sz + align - 1;
+ 
+ 	while (num_remain > 0) {
+-		buff = kzalloc(size, gfp);
++		buff = kzalloc(size, GFP_ATOMIC);
+ 		if (!buff)
+ 			break;
+ 
+-		ret = ath11k_dbring_bufs_replenish(ar, ring, buff, gfp);
++		ret = ath11k_dbring_bufs_replenish(ar, ring, buff);
+ 		if (ret) {
+ 			ath11k_warn(ar->ab, "failed to replenish db ring num_remain %d req_ent %d\n",
+ 				    num_remain, req_entries);
+@@ -176,7 +174,7 @@ int ath11k_dbring_buf_setup(struct ath11k *ar,
+ 	ring->hp_addr = ath11k_hal_srng_get_hp_addr(ar->ab, srng);
+ 	ring->tp_addr = ath11k_hal_srng_get_tp_addr(ar->ab, srng);
+ 
+-	ret = ath11k_dbring_fill_bufs(ar, ring, GFP_KERNEL);
++	ret = ath11k_dbring_fill_bufs(ar, ring);
+ 
+ 	return ret;
+ }
+@@ -322,7 +320,7 @@ int ath11k_dbring_buffer_release_event(struct ath11k_base *ab,
+ 		}
+ 
+ 		memset(buff, 0, size);
+-		ath11k_dbring_bufs_replenish(ar, ring, buff, GFP_ATOMIC);
++		ath11k_dbring_bufs_replenish(ar, ring, buff);
+ 	}
+ 
+ 	spin_unlock_bh(&srng->lock);
 -- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora 
-Forum,
-a Linux Foundation Collaborative Project
+2.20.1
+
 
 -- 
 ath11k mailing list
