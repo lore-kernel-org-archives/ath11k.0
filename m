@@ -7,66 +7,58 @@ X-Spam-Status: No, score=-4.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BC7A4C4338F
-	for <ath11k@archiver.kernel.org>; Fri, 13 Aug 2021 09:17:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 11DA7C4338F
+	for <ath11k@archiver.kernel.org>; Fri, 13 Aug 2021 10:12:07 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7863360EB5
-	for <ath11k@archiver.kernel.org>; Fri, 13 Aug 2021 09:17:17 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 7863360EB5
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+	by mail.kernel.org (Postfix) with ESMTPS id D38A460F21
+	for <ath11k@archiver.kernel.org>; Fri, 13 Aug 2021 10:12:06 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org D38A460F21
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=sipsolutions.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:Cc:To:From
-	:Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=gdsk6jwsB1zVnU2slJyrlEw8UQqmfCKF89kByj3IldQ=; b=GjzusodsJerAlWI864WxibXLSG
-	VtLvU1hQfvBjQ8gIaSyXW2x1LpVUPVBcj7dr3OhIku84OqlLjOhsW89RSj+CQj+hNXxP9OGlQgKde
-	iy8AD7srv0WaQT1lV/IQa1JC98cBRHJ7jj6P3Nf7DJCDv6PGcsCVfSNg0RPmC2DEMKVmbGkr94T6f
-	1JsHSTMF0sUu8h5eS7k3ZS73UxyO28gBWJfV1cJREbuzXtFwPEdl1fNIB+02ksHbffp2x9fl4MVfv
-	c0aOlBcdrdMrcSWpUWnlNWjPRXrYDazIcrLXP2awLk8FpBXqrfNsU8yrlldODCXDGhvw1neP76Rft
-	Z/UNAWdQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=jB+4b+3I+8M7IghUpQmhLtNrvVMifj0AV0zhGbVS9eg=; b=19GuI1tr8lYUyJ
+	cYdWOCDFokluUb9K70rWtC8dtJEvQCBQwg/2u5FzQgaki9LSWjd4lEvCZIs0+hHDYRJoBGD2M/LAw
+	yCDNNWA2dfMRykOPCfcnfJVDFdK0I1WpPhJfikfm8itDFHj5Vy/czhHeayZ0dDIqHY3647DhPJ2jS
+	a4JljSo6Q/YNbBUJlkSD8/Pb+a1v7dUti+jGczUb1cyeso7OwpOTQnees6Kfkzth4vr5/HFQaqB1v
+	TixASdUunYN7pOicdssdPyqnVW70vYZtMs51ToFi7IOYY2fNZ5rO88EvozY6GeihS+xmbnpbONpXp
+	QVjhmorsEZlRuT61Ld9g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mETJS-00CIeI-SM; Fri, 13 Aug 2021 09:17:14 +0000
-Received: from so254-9.mailgun.net ([198.61.254.9])
+	id 1mEUAW-00CQPv-C8; Fri, 13 Aug 2021 10:12:04 +0000
+Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
+ helo=sipsolutions.net)
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mETJK-00CIdr-JQ
- for ath11k@lists.infradead.org; Fri, 13 Aug 2021 09:17:12 +0000
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
- q=dns/txt; 
- s=smtp; t=1628846228; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=fx6grdp4Bl6eyW5Q7Xj5xAn+VMkAsb769KNlsKMiU7o=;
- b=I8TDR8u3I+vAhaUL5M0dPmIPoHZxqv4J/Aw1IJOboIM1AZD9WTy8EFuHt4vtNJEdfziAMnO/
- P5DDnc+Jni3ZITYlrUTBtwQpBVI1ko1rc+mcTJtl4sOvtk+l3Yj5aZT8OOi+OkjqXXtVnt0V
- lmbv9R4L7Xw49iCJ7wjUnmf1108=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
- 61163885b14e7e2ecbd07d66 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 13 Aug 2021 09:16:53
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id AD632C433D3; Fri, 13 Aug 2021 09:16:52 +0000 (UTC)
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
- (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
- (No client certificate requested) (Authenticated sender: wgong)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id D944AC433F1;
- Fri, 13 Aug 2021 09:16:51 +0000 (UTC)
-MIME-Version: 1.0
-Date: Fri, 13 Aug 2021 17:16:51 +0800
-From: Wen Gong <wgong@codeaurora.org>
-To: Johannes Berg <johannes@sipsolutions.net>
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
+ id 1mEUAP-00CQPH-3B
+ for ath11k@lists.infradead.org; Fri, 13 Aug 2021 10:12:03 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=sipsolutions.net; s=mail; h=Content-Transfer-Encoding:MIME-Version:
+ Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
+ :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
+ Resent-Cc:Resent-Message-ID; bh=yxqGznKpFcy90u/i72TSHu+ZUzJFayVrCEeLw+E0YvY=; 
+ t=1628849516; x=1630059116; b=EkUowBjvFx/xiSKjMtuE7jAE/JIurCOkWe8rAWR8/qvi6lT
+ 8twoq9RuijpBfqf0+91b5SRH6eJKiG5Vu1dwNRZcR3QIPHK6IE0uvSn12ClBHq+T0C0cSN8D/aZFm
+ ujU/99k8IzqTK6kOu4yaKbk2zMM5/Yi/Hee6/XMQS1c+qf6vKQ93JXwWrtSIK7TaM3Zau89rjACNg
+ 8WC0gfHbrorDlwuDFWMVotA6N5710rgfHXF6hyHuFkofP8yfPSAnxXEr2P7XQpNSC34dVSJxInz0d
+ DyvN3wVCu6fQTEjZmcmt6wk1CLZp9Ss7V8tTgXBzp8w076g/QaKsowHxLT6gMqDQ==;
+Received: by sipsolutions.net with esmtpsa
+ (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+ (Exim 4.94.2) (envelope-from <johannes@sipsolutions.net>)
+ id 1mEUAK-00ABs5-Rs; Fri, 13 Aug 2021 12:11:52 +0200
+Message-ID: <569d85aec8fecc836b5a6f9d40b53dff6e41c1b1.camel@sipsolutions.net>
 Subject: Re: [PATCH 9/9] mac80211: save transmit power envelope element and
  power constraint
-In-Reply-To: <f61cdc7bae2dd2a645e164ca143b9db402472559.camel@sipsolutions.net>
+From: Johannes Berg <johannes@sipsolutions.net>
+To: Wen Gong <wgong@codeaurora.org>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
+Date: Fri, 13 Aug 2021 12:11:52 +0200
+In-Reply-To: <465b6b8535fc17ae51ee2f3116af87bb@codeaurora.org>
 References: <20210517201932.8860-1-wgong@codeaurora.org>
  <20210517201932.8860-10-wgong@codeaurora.org>
  (sfid-20210517_222034_029448_A9A89D57)
@@ -76,12 +68,13 @@ References: <20210517201932.8860-1-wgong@codeaurora.org>
  <1273cc1a399a7457c3d908648a7651c8fe9b93f3.camel@sipsolutions.net>
  <a056e32d4911400fb0822bf02167e91c@codeaurora.org>
  <f61cdc7bae2dd2a645e164ca143b9db402472559.camel@sipsolutions.net>
-Message-ID: <465b6b8535fc17ae51ee2f3116af87bb@codeaurora.org>
-X-Sender: wgong@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+ <465b6b8535fc17ae51ee2f3116af87bb@codeaurora.org>
+User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
+MIME-Version: 1.0
+X-malware-bazaar: not-scanned
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210813_021709_175977_F7632FB6 
-X-CRM114-Status: GOOD (  37.90  )
+X-CRM114-CacheID: sfid-20210813_031157_184397_04CE788D 
+X-CRM114-Status: GOOD (  12.11  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,126 +86,42 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 2021-08-13 16:53, Johannes Berg wrote:
-> On Fri, 2021-08-13 at 16:47 +0800, Wen Gong wrote:
->> > > > > 2) Should we at least check it again from the protected beacon or such
->> > > > > after association, so we don't blindly trust the probe response or
->> > > > > beacon (received during scan, not validated) at least when BIGTK is in
->> > > > > use?
->> > > >
->> > > > May we add support for BIGTK in future with another patch?
->> > >
->> > > We already have BIGTK support in mac80211, so if we don't do that now
->> > > we're almost certainly not going to do it, so I'd really prefer if you
->> > > did it here, or if a separate patch still did it now.
->> >
->> > Actually, I should say though - the question was more whether we even
->> > need/want that, rather than whether we can do it later or not.
->> >
->> > If we should protect this data/information then IMHO we should do it
->> > now, but it's not clear to me that we should, given that we also don't
->> > have encrypted association response and we still take information from
->> > there too, etc.
->> >
->> > johannes
->> I prefer to add a new enum(not use BSS_CHANGED_TXPOWER),e.g,
->> BSS_CHANGED_PWR_ENV.
->> And add check in ieee80211_rx_mgmt_beacon() as well as
->> ieee80211_handle_pwr_constr(),
->> when the value of pwr_reduction or content of elems.tx_pwr_env 
->> changed,
->> save the pwr_reduction and elems.tx_pwr_env to ieee80211_bss_conf, and
->> notify lower
->> driver with BSS_CHANGED_PWR_ENV, then lower driver will do next 
->> action.
->> 
-> I don't really have any objection to this, but OTOH it feels like
-> drivers will probably not really listen to this if it can only happen
-> due to BIGTK?
-yes, it should have some flag/logic to check whether it is BIGTK.
-If you know it, you can tell me. :)
+On Fri, 2021-08-13 at 17:16 +0800, Wen Gong wrote:
 > 
-> And if we always defer this until the first beacon, that also feels
-> wrong and bad?
-It can not defer this untill the 1st beacon which pass BIGTK verify.
-Lower driver need this info to set power before TX data include EAPOL.
-> 
-> I'm not sure what the right answer here is, TBH.
-> 
-> Maybe the right answer is to indeed ignore beacon protection for this,
-> and do exactly what you did here, and say that the TX power envelope
-> thing is just not meant to be protected, because the protection is 
-> meant
-> to protect the connection etc. and not the performance (and 
-> regulatory?)
-Yes, the lower driver also have the max power limit itself. If power 
-calulated
-from the fake beacon is bigger than the max power limit, then it will be
-ignored.
-> 
-> Do we get this *only* in the beacon, or also in the association
-> response? If it's also in the association response we could use the 
-> data
-> from *there*, and basically say that the association response might 
-> need
-> some protection (later) anyway?
-> 
-The Transmit Power Envelope is not existed in the assoc response, it is 
-existed
-in beacon. So it can not use assoc response.
+> yes, it should have some flag/logic to check whether it is BIGTK.
+> If you know it, you can tell me. :)
 
-beacon:
-IEEE 802.11 wireless LAN
-     Fixed parameters (12 bytes)
-         Timestamp: 0x0000005070684036
-         Beacon Interval: 0.102400 [Seconds]
-         Capabilities Information: 0x0511
-     Tagged parameters (264 bytes)
-         Tag: SSID parameter set: Renhui-6G
-         Tag: Supported Rates and BSS Membership Selectors 6.0(B), 9, 
-12.0(B), 18, 24(B), 36, 48, 54, [Mbit/sec]
-         Tag: Traffic Indication Map (TIM): DTIM 0 of
-         Tag: Country Information: Country Code US, Environment Unknown 
-(0x04)
-         Tag: Power Constraint: 3
-         Tag: TPC Report Transmit Power: 17, Link Margin: 0
-         Tag: Extended Supported Rates and BSS Membership Selectors BSS 
-requires support for direct hashing to elements in SAE, [Mbit/sec]
-         Tag: RSN Information
-         Tag: Extended Capabilities (11 octets)
-         Tag: Transmit Power Envelope
-         Tag: Transmit Power Envelope
-         Ext Tag: Reserved (55)
-         Ext Tag: HE Capabilities (IEEE Std 802.11ax/D2.0)
-         Ext Tag: HE Operation (IEEE Std 802.11ax/D2.0)
-         Ext Tag: Spatial Reuse Parameter Set
-         Ext Tag: MU EDCA Parameter Set
-         Ext Tag: 6GHz Band Capabilities
+Uh, actually, we don't have a secure indication of BIGTK getting used
+until after the 4-way-HS.
 
-assoc response:
-IEEE 802.11 wireless LAN
-     Fixed parameters (6 bytes)
-         Capabilities Information: 0x0511
-         Status code: Successful (0x0000)
-         ..00 0000 0001 0001 = Association ID: 0x0011
-     Tagged parameters (169 bytes)
-         Tag: Supported Rates and BSS Membership Selectors 6.0(B), 9, 
-12.0(B), 18, 24(B), 36, 48, 54, [Mbit/sec]
-         Tag: Extended Supported Rates and BSS Membership Selectors BSS 
-requires support for direct hashing to elements in SAE, [Mbit/sec]
-         Tag: Extended Capabilities (11 octets)
-         Ext Tag: HE Capabilities (IEEE Std 802.11ax/D2.0)
-         Ext Tag: HE Operation (IEEE Std 802.11ax/D2.0)
-         Ext Tag: Spatial Reuse Parameter Set
-         Ext Tag: MU EDCA Parameter Set
-         Ext Tag: 6GHz Band Capabilities
+> > 
+> Yes, the lower driver also have the max power limit itself. If power 
+> calulated
+> from the fake beacon is bigger than the max power limit, then it will be
+> ignored.
 
-> johannes
+Right.
+
+> > 
+> The Transmit Power Envelope is not existed in the assoc response, it is 
+> existed
+> in beacon. So it can not use assoc response.
+
+Right.
+
+
+Given this discussion, I think we should just leave it as is, and simply
+not assume that the TPE is protected by beacon protection or such. There
+are a number of other similar parameters, and doing some real protection
+at this level would likely require further spec changes.
+
+johannes
+
 
 -- 
 ath11k mailing list
