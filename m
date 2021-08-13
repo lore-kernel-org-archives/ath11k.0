@@ -7,58 +7,66 @@ X-Spam-Status: No, score=-4.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 11DA7C4338F
-	for <ath11k@archiver.kernel.org>; Fri, 13 Aug 2021 10:12:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8FCA0C4338F
+	for <ath11k@archiver.kernel.org>; Fri, 13 Aug 2021 10:29:45 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D38A460F21
-	for <ath11k@archiver.kernel.org>; Fri, 13 Aug 2021 10:12:06 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org D38A460F21
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=sipsolutions.net
+	by mail.kernel.org (Postfix) with ESMTPS id 509826109D
+	for <ath11k@archiver.kernel.org>; Fri, 13 Aug 2021 10:29:45 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 509826109D
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jB+4b+3I+8M7IghUpQmhLtNrvVMifj0AV0zhGbVS9eg=; b=19GuI1tr8lYUyJ
-	cYdWOCDFokluUb9K70rWtC8dtJEvQCBQwg/2u5FzQgaki9LSWjd4lEvCZIs0+hHDYRJoBGD2M/LAw
-	yCDNNWA2dfMRykOPCfcnfJVDFdK0I1WpPhJfikfm8itDFHj5Vy/czhHeayZ0dDIqHY3647DhPJ2jS
-	a4JljSo6Q/YNbBUJlkSD8/Pb+a1v7dUti+jGczUb1cyeso7OwpOTQnees6Kfkzth4vr5/HFQaqB1v
-	TixASdUunYN7pOicdssdPyqnVW70vYZtMs51ToFi7IOYY2fNZ5rO88EvozY6GeihS+xmbnpbONpXp
-	QVjhmorsEZlRuT61Ld9g==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:Cc:To:From
+	:Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=gol5/L1q8M5vmbtrddsIWHRWOYa+VlVvWhAHSY+wtVU=; b=h3fydm8tg6x0Cagsfn5SwqWXxa
+	LQrjgtYSPxaWuT/2V8E5qV7Q5VHdyLLZ1yCFPJ2f/xLjQjwTUBel+leDDUQaJO9hN6dJps0NQ6zWl
+	byXPjjp5xd1sbiwF+DmmKlFcIpcHiLsxZKYu2WdIhpnAHV3Hs14k/9XvPnW0Ey/gTWpeSBZD5VQFG
+	ZYAb26NAd33ScwNeYd3aTGAq+CNqdZI8s2vUMW1qrmNht2d2SVPfhOulUCUqwATqoFxn1tfu/2Ve3
+	fxCApBhpIZYI5/lqMOaom2uUOrfXYwqeedLI3TXCsM1KjwWlaapZerMjNq+b2chGG0vM5SOfsWyEB
+	Sowytg+Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mEUAW-00CQPv-C8; Fri, 13 Aug 2021 10:12:04 +0000
-Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
- helo=sipsolutions.net)
+	id 1mEURa-00CS8v-KU; Fri, 13 Aug 2021 10:29:42 +0000
+Received: from so254-9.mailgun.net ([198.61.254.9])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mEUAP-00CQPH-3B
- for ath11k@lists.infradead.org; Fri, 13 Aug 2021 10:12:03 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sipsolutions.net; s=mail; h=Content-Transfer-Encoding:MIME-Version:
- Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
- :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
- Resent-Cc:Resent-Message-ID; bh=yxqGznKpFcy90u/i72TSHu+ZUzJFayVrCEeLw+E0YvY=; 
- t=1628849516; x=1630059116; b=EkUowBjvFx/xiSKjMtuE7jAE/JIurCOkWe8rAWR8/qvi6lT
- 8twoq9RuijpBfqf0+91b5SRH6eJKiG5Vu1dwNRZcR3QIPHK6IE0uvSn12ClBHq+T0C0cSN8D/aZFm
- ujU/99k8IzqTK6kOu4yaKbk2zMM5/Yi/Hee6/XMQS1c+qf6vKQ93JXwWrtSIK7TaM3Zau89rjACNg
- 8WC0gfHbrorDlwuDFWMVotA6N5710rgfHXF6hyHuFkofP8yfPSAnxXEr2P7XQpNSC34dVSJxInz0d
- DyvN3wVCu6fQTEjZmcmt6wk1CLZp9Ss7V8tTgXBzp8w076g/QaKsowHxLT6gMqDQ==;
-Received: by sipsolutions.net with esmtpsa
- (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
- (Exim 4.94.2) (envelope-from <johannes@sipsolutions.net>)
- id 1mEUAK-00ABs5-Rs; Fri, 13 Aug 2021 12:11:52 +0200
-Message-ID: <569d85aec8fecc836b5a6f9d40b53dff6e41c1b1.camel@sipsolutions.net>
+ id 1mEURV-00CS7r-23
+ for ath11k@lists.infradead.org; Fri, 13 Aug 2021 10:29:41 +0000
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
+ q=dns/txt; 
+ s=smtp; t=1628850577; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=JMbb3u1CBTlERu7OfhgTVF+ONjo8s0o9ICBhT6ODPf8=;
+ b=NyKALiXfLZKFHokP9mJbwK03BZjVESzpTuPcA1kL/bILV5yctUdYibfCxL+cTG8a0rzT49qk
+ /sMNEAfO/D67JL2Pd5RHR2NkR4V6dzGrB29mbJCDToxwJ7CF+fSxGVuDcO57KpyvCSkhmtut
+ ut7LC49o1X/fUn4uKFKGitCa2xw=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
+ 6116498cb14e7e2ecb11452e (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 13 Aug 2021 10:29:32
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+ id 9E3FDC43460; Fri, 13 Aug 2021 10:29:32 +0000 (UTC)
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+ (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+ (No client certificate requested) (Authenticated sender: wgong)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 48B69C4338A;
+ Fri, 13 Aug 2021 10:29:31 +0000 (UTC)
+MIME-Version: 1.0
+Date: Fri, 13 Aug 2021 18:29:31 +0800
+From: Wen Gong <wgong@codeaurora.org>
+To: Johannes Berg <johannes@sipsolutions.net>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
 Subject: Re: [PATCH 9/9] mac80211: save transmit power envelope element and
  power constraint
-From: Johannes Berg <johannes@sipsolutions.net>
-To: Wen Gong <wgong@codeaurora.org>
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
-Date: Fri, 13 Aug 2021 12:11:52 +0200
-In-Reply-To: <465b6b8535fc17ae51ee2f3116af87bb@codeaurora.org>
+In-Reply-To: <569d85aec8fecc836b5a6f9d40b53dff6e41c1b1.camel@sipsolutions.net>
 References: <20210517201932.8860-1-wgong@codeaurora.org>
  <20210517201932.8860-10-wgong@codeaurora.org>
  (sfid-20210517_222034_029448_A9A89D57)
@@ -69,12 +77,13 @@ References: <20210517201932.8860-1-wgong@codeaurora.org>
  <a056e32d4911400fb0822bf02167e91c@codeaurora.org>
  <f61cdc7bae2dd2a645e164ca143b9db402472559.camel@sipsolutions.net>
  <465b6b8535fc17ae51ee2f3116af87bb@codeaurora.org>
-User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
-MIME-Version: 1.0
-X-malware-bazaar: not-scanned
+ <569d85aec8fecc836b5a6f9d40b53dff6e41c1b1.camel@sipsolutions.net>
+Message-ID: <24bcb0c5da824f830f31328781c634b9@codeaurora.org>
+X-Sender: wgong@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210813_031157_184397_04CE788D 
-X-CRM114-Status: GOOD (  12.11  )
+X-CRM114-CacheID: sfid-20210813_032937_685709_97D8C588 
+X-CRM114-Status: GOOD (  17.77  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,42 +95,50 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Fri, 2021-08-13 at 17:16 +0800, Wen Gong wrote:
+On 2021-08-13 18:11, Johannes Berg wrote:
+> On Fri, 2021-08-13 at 17:16 +0800, Wen Gong wrote:
+>> 
+>> yes, it should have some flag/logic to check whether it is BIGTK.
+>> If you know it, you can tell me. :)
 > 
-> yes, it should have some flag/logic to check whether it is BIGTK.
-> If you know it, you can tell me. :)
-
-Uh, actually, we don't have a secure indication of BIGTK getting used
-until after the 4-way-HS.
-
-> > 
-> Yes, the lower driver also have the max power limit itself. If power 
-> calulated
-> from the fake beacon is bigger than the max power limit, then it will be
-> ignored.
-
-Right.
-
-> > 
-> The Transmit Power Envelope is not existed in the assoc response, it is 
-> existed
-> in beacon. So it can not use assoc response.
-
-Right.
-
-
-Given this discussion, I think we should just leave it as is, and simply
-not assume that the TPE is protected by beacon protection or such. There
-are a number of other similar parameters, and doing some real protection
-at this level would likely require further spec changes.
-
-johannes
-
+> Uh, actually, we don't have a secure indication of BIGTK getting used
+> until after the 4-way-HS.
+> 
+>> >
+>> Yes, the lower driver also have the max power limit itself. If power
+>> calulated
+>> from the fake beacon is bigger than the max power limit, then it will 
+>> be
+>> ignored.
+> 
+> Right.
+> 
+>> >
+>> The Transmit Power Envelope is not existed in the assoc response, it 
+>> is
+>> existed
+>> in beacon. So it can not use assoc response.
+> 
+> Right.
+> 
+> 
+> Given this discussion, I think we should just leave it as is, and 
+> simply
+> not assume that the TPE is protected by beacon protection or such. 
+> There
+> are a number of other similar parameters, and doing some real 
+> protection
+> at this level would likely require further spec changes.
+> 
+Thanks.
+I will leave it as is without change for BIGTK.
+I will change others patch and send new version.
+> johannes
 
 -- 
 ath11k mailing list
