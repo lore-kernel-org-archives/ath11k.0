@@ -5,16 +5,16 @@ X-Spam-Level:
 X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1D404C4320A
-	for <ath11k@archiver.kernel.org>; Fri, 20 Aug 2021 12:21:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CFA1CC43214
+	for <ath11k@archiver.kernel.org>; Fri, 20 Aug 2021 12:21:09 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DC58560FE7
-	for <ath11k@archiver.kernel.org>; Fri, 20 Aug 2021 12:21:07 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org DC58560FE7
+	by mail.kernel.org (Postfix) with ESMTPS id A554F60F45
+	for <ath11k@archiver.kernel.org>; Fri, 20 Aug 2021 12:21:09 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org A554F60F45
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,44 +23,44 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=h9l+1JiqAUW12tDBOfEl+Cw6BH0UnVssIbsH+fH3hc8=; b=Zm2kuhYE5UasTm
-	EXyKhUxuKYLhBQaX7LF7MdUWBYC6c//22RypyPfh2+vbAhlcVVeQJGysIvBsngmS0cNcZZ/btZj0z
-	GMIOEEvBz+6T9xzxRWB4WFgMYzhavtfOBY0eSTp7i+dT0CgwM1civbX4VM+xN4vsAFUZQNvSlNfR8
-	S3hxaPF7h91M2hzeYYTECdhMF6IV9vVLWgbDt/RQppwUG/mceS5Gj3d7NQJUFTNUBlLwLRiYd/E64
-	B/PhKBMfbIeTD8xzO4ceddBdzW9EJwl+777ARrjkpnwswYN2DQDqaBHquF/F1uAYCc9m4uSHk+K/4
-	jLgMyUsxtUWHJo1j9L1A==;
+	List-Owner; bh=Fp5itxca2RXMYjoAlRE2KPoZ8vHJx1SIiwwjxlujqQk=; b=eO1bzPgq8zpLcr
+	+RVHKRlkvLKoDxM+SQAgeL1k3AZ3R3zwRq+0Gv72qCWDOOED1W4R8ETN4Ujt8QbBsreVghPbcUzcv
+	PJn6w12jKXBf9EFsQe58ES0cQNihmKJDM0gHazjfEffNbQapAciyknf/Aop4wcKPYJvHYUQ3W5zWk
+	CqEuy5RQ7xS2cm5ni00bSPkMBWRtxDqSVjJcGusO6Uo4ZI+xzlq+Sj2+8zKbj1bw8H39cEh/W9esN
+	B+A3G4iR+xW7Y4dS9Bg7fMWtOmcaXUthWiYhDHYKnqRas6HL1OiTFFOK0O0P7USDNSOE170MGtO/b
+	pZnubxxSZ4U02Qw628rg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mH3WC-00B6cm-PC; Fri, 20 Aug 2021 12:21:04 +0000
-Received: from so254-9.mailgun.net ([198.61.254.9])
+	id 1mH3WF-00B6dL-0y; Fri, 20 Aug 2021 12:21:07 +0000
+Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mH3W1-00B6aG-TX
- for ath11k@lists.infradead.org; Fri, 20 Aug 2021 12:21:01 +0000
+ id 1mH3W6-00B6az-Lg
+ for ath11k@lists.infradead.org; Fri, 20 Aug 2021 12:21:02 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
  s=smtp; t=1629462057; h=Content-Transfer-Encoding: MIME-Version:
  References: In-Reply-To: Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=B1eeBXXRanM2y/whbXRJaHJkVYC5X+/SfXDWh1SVWAw=;
- b=tt5/YL7e5DErVTIqfqn/8dzVGPEGUAq4TYoNmWZWw7fGkv2AGc8I3cf9qpMFPr32xUvqIEnx
- EXjoHkcWGU1WPqCapE1O3N0uvWLdOOE6cS42ISyu6yr6AHCtHPZ0mnnBf3KYzOBnjOLL7JPs
- wq4XG1FW8OK7S4YCrdEdKh7KCac=
-X-Mailgun-Sending-Ip: 198.61.254.9
+ Sender; bh=RTUiezN9FbKIsshyxNe23rZMeP1NaJDLEYiD0lv96m4=;
+ b=TNpf0Q4qdys87UQc+CGKxaDNO6+QGpuLzaj+SzZgAfD+dKZHFxPZCmqYQWrwlncQT2Z7yoTw
+ y3g7JASHY5xp91Tji/BHW932b6qnA6eG2pAR/AYbhYfiZ1Lijy1ITRD3g6PdaVNcB//CTGFM
+ ZQx00iqDUHwnYVslgHDxJHZzOgo=
+X-Mailgun-Sending-Ip: 69.72.43.7
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
- 611f9e230f9b337f11cd073a (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 20 Aug 2021 12:20:51
+ smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
+ 611f9e2989fbdf3ffe7b8cc1 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 20 Aug 2021 12:20:57
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 81BE4C43616; Fri, 20 Aug 2021 12:20:50 +0000 (UTC)
+ id A2B8FC4360D; Fri, 20 Aug 2021 12:20:56 +0000 (UTC)
 Received: from wgong-HP3-Z230-SFF-Workstation.qca.qualcomm.com (unknown
  [180.166.53.21])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
  (No client certificate requested) (Authenticated sender: wgong)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id A3166C43460;
- Fri, 20 Aug 2021 12:20:48 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org A3166C43460
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id E2EF4C4360D;
+ Fri, 20 Aug 2021 12:20:54 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org E2EF4C4360D
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
@@ -70,16 +70,17 @@ To: johannes@sipsolutions.net,
 	ath11k@lists.infradead.org
 Cc: linux-wireless@vger.kernel.org,
 	wgong@codeaurora.org
-Subject: [PATCH v2 1/8] cfg80211: add power type definition for 6 GHz
-Date: Fri, 20 Aug 2021 08:20:34 -0400
-Message-Id: <20210820122041.12157-2-wgong@codeaurora.org>
+Subject: [PATCH v2 5/8] cfg80211: save power spectral density(psd) of
+ regulatory rule
+Date: Fri, 20 Aug 2021 08:20:38 -0400
+Message-Id: <20210820122041.12157-6-wgong@codeaurora.org>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210820122041.12157-1-wgong@codeaurora.org>
 References: <20210820122041.12157-1-wgong@codeaurora.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210820_052058_054009_CBB0B919 
-X-CRM114-Status: GOOD (  12.79  )
+X-CRM114-CacheID: sfid-20210820_052058_840687_231B8E5D 
+X-CRM114-Status: GOOD (  12.11  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,83 +97,68 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-6 GHz regulatory domains introduces different modes for 6 GHz AP
-operations Low Power Indoor(LPI), Standard Power(SP) and Very Low
-Power(VLP). 6 GHz STAs could be operated as either Regular or
-Subordinate clients. This patch is define the flags for power type
-of AP and STATION mode.
+The power spectral density(psd) of regulatory rule should be take
+effect to the channels. This patch is to save the values to the
+channel which has psd value.
 
 Signed-off-by: Wen Gong <wgong@codeaurora.org>
 ---
- include/net/cfg80211.h       |  2 ++
- include/uapi/linux/nl80211.h | 34 ++++++++++++++++++++++++++++++++++
- 2 files changed, 36 insertions(+)
+ net/wireless/reg.c | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-diff --git a/include/net/cfg80211.h b/include/net/cfg80211.h
-index 58c2cd417e89..f17a4d1202fc 100644
---- a/include/net/cfg80211.h
-+++ b/include/net/cfg80211.h
-@@ -676,6 +676,7 @@ struct key_params {
-  *	chan will define the primary channel and all other
-  *	parameters are ignored.
-  * @freq1_offset: offset from @center_freq1, in KHz
-+ * @power_type: power type of BSS for 6 GHz
-  */
- struct cfg80211_chan_def {
- 	struct ieee80211_channel *chan;
-@@ -684,6 +685,7 @@ struct cfg80211_chan_def {
- 	u32 center_freq2;
- 	struct ieee80211_edmg edmg;
- 	u16 freq1_offset;
-+	enum nl80211_ap_reg_power power_type;
- };
+diff --git a/net/wireless/reg.c b/net/wireless/reg.c
+index 0406ce7334fa..602d95e8bde6 100644
+--- a/net/wireless/reg.c
++++ b/net/wireless/reg.c
+@@ -1583,6 +1583,8 @@ static u32 map_regdom_flags(u32 rd_flags)
+ 		channel_flags |= IEEE80211_CHAN_NO_160MHZ;
+ 	if (rd_flags & NL80211_RRF_NO_HE)
+ 		channel_flags |= IEEE80211_CHAN_NO_HE;
++	if (rd_flags & NL80211_RRF_PSD)
++		channel_flags |= IEEE80211_CHAN_PSD;
+ 	return channel_flags;
+ }
  
- /*
-diff --git a/include/uapi/linux/nl80211.h b/include/uapi/linux/nl80211.h
-index f962c06e9818..ab1d4aa85272 100644
---- a/include/uapi/linux/nl80211.h
-+++ b/include/uapi/linux/nl80211.h
-@@ -4088,6 +4088,40 @@ enum nl80211_dfs_regions {
- 	NL80211_DFS_JP		= 3,
- };
+@@ -1787,6 +1789,9 @@ static void handle_channel_single_rule(struct wiphy *wiphy,
+ 				chan->dfs_cac_ms = reg_rule->dfs_cac_ms;
+ 		}
  
-+/**
-+ * enum nl80211_ap_reg_power - regulatory power for a Access Point
-+ *
-+ * @NL80211_REG_UNSET_AP: Access Point has no regulatory power mode
-+ * @NL80211_REG_LPI: Indoor Access Point
-+ * @NL80211_REG_SP: Standard power Access Point
-+ * @NL80211_REG_VLP: Very low power Access Point
-+ */
-+enum nl80211_ap_reg_power {
-+	NL80211_REG_UNSET_AP,
-+	NL80211_REG_LPI_AP,
-+	NL80211_REG_SP_AP,
-+	NL80211_REG_VLP_AP,
-+	NL80211_REG_AP_POWER_AFTER_LAST,
-+	NL80211_REG_AP_POWER_MAX =
-+		NL80211_REG_AP_POWER_AFTER_LAST - 1,
-+};
++		if (chan->flags & IEEE80211_CHAN_PSD)
++			chan->psd = reg_rule->psd;
 +
-+/**
-+ * enum nl80211_client_reg_power - regulatory power for a client
-+ *
-+ * @NL80211_REG_UNSET_CLIENT: Client has no regulatory power mode
-+ * @NL80211_REG_DEFAULT_CLIENT: Default Client
-+ * @NL80211_REG_SUBORDINATE_CLIENT: Subordinate Client
-+ */
-+enum nl80211_client_reg_power {
-+	NL80211_REG_UNSET_CLIENT,
-+	NL80211_REG_DEFAULT_CLIENT,
-+	NL80211_REG_SUBORDINATE_CLIENT,
-+	NL80211_REG_CLIENT_POWER_AFTER_LAST,
-+	NL80211_REG_CLIENT_POWER_MAX =
-+		NL80211_REG_CLIENT_POWER_AFTER_LAST - 1,
-+};
+ 		return;
+ 	}
+ 
+@@ -1807,6 +1812,9 @@ static void handle_channel_single_rule(struct wiphy *wiphy,
+ 			chan->dfs_cac_ms = IEEE80211_DFS_MIN_CAC_TIME_MS;
+ 	}
+ 
++	if (chan->flags & IEEE80211_CHAN_PSD)
++		chan->psd = reg_rule->psd;
 +
- /**
-  * enum nl80211_user_reg_hint_type - type of user regulatory hint
-  *
+ 	if (chan->orig_mpwr) {
+ 		/*
+ 		 * Devices that use REGULATORY_COUNTRY_IE_FOLLOW_POWER
+@@ -1876,6 +1884,9 @@ static void handle_channel_adjacent_rules(struct wiphy *wiphy,
+ 							 rrule2->dfs_cac_ms);
+ 		}
+ 
++		if (chan->flags & IEEE80211_CHAN_PSD)
++			chan->psd = min_t(s8, rrule1->psd, rrule1->psd);
++
+ 		return;
+ 	}
+ 
+@@ -2533,6 +2544,9 @@ static void handle_channel_custom(struct wiphy *wiphy,
+ 			chan->dfs_cac_ms = IEEE80211_DFS_MIN_CAC_TIME_MS;
+ 	}
+ 
++	if (chan->flags & IEEE80211_CHAN_PSD)
++		chan->psd = reg_rule->psd;
++
+ 	chan->max_power = chan->max_reg_power;
+ }
+ 
 -- 
 2.31.1
 
