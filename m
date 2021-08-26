@@ -7,66 +7,75 @@ X-Spam-Status: No, score=-4.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D004EC432BE
-	for <ath11k@archiver.kernel.org>; Thu, 26 Aug 2021 08:30:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 70795C432BE
+	for <ath11k@archiver.kernel.org>; Thu, 26 Aug 2021 10:43:15 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9738C60F4A
-	for <ath11k@archiver.kernel.org>; Thu, 26 Aug 2021 08:30:43 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 9738C60F4A
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=sipsolutions.net
+	by mail.kernel.org (Postfix) with ESMTPS id 409256109F
+	for <ath11k@archiver.kernel.org>; Thu, 26 Aug 2021 10:43:15 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 409256109F
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Ok7Vx2nS260pyCSzsCUl3x/WaA87/EO0PPL2oSDJdoc=; b=MIYDA8yoXAEUnK
-	Z1THaslaHBSi9I3dPDyewBGtCrTzDmJa0Sr2IQlbEEhOrKkG78XJ4H+8wnBZjhLUzZ05RakY7nKVK
-	ph4NdG28BWBk4j64GqYnGx2Z5AaoWmgilmCE+UD8JxeSbxOxtZmVkKjFCbesPCkkwt1obwACciRQY
-	UIkRMX89GncKwFqbX0wZOtJRsgMgqrf3ZVkvz/4CiFlsBboIqA5+uscGBQ3RyTfwWGudzOXfUdAPV
-	QF1wKo8JgEmjuoYLsbiVdsSt88yxTsQ4U66GyPhZCBikpErbq4mWvGG9GeZwVY0FiM5tVUtw2gnc3
-	aRH5jvNqnbFGCWsg5UgA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:Cc:To:From
+	:Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=uAP4Fk7arJ8q0U7ZKdAPtcrauPJYmaHIa9kCWtLhGUQ=; b=RJNrt/R9ELgylRN46yKZxhqCdj
+	YO0PJIIqcORqB8Pw1Y1Lh78tKvkCZ1wi8K+xKgQlcv5zQvWy4+wsZcydUOigOZ0OUKt/lp/LyoWe6
+	qsB5bKBMZ/DDCkQzw7HChHyqAQqfGZioVIourk3wdi8NujIOAyMBA1EcH5SbuufuTIADxUscYWxOC
+	0l5DZVoMvhVzUFG2wEw6V2+Sf3P8sZxHaswuYNOYNXcv2Pq7IQ78sZ71QqokAzXVqEBsLtqKpjBEm
+	/nm6cUbvWgda86Wz0Dc9poO4VoJPrhqktmiOvVKx/EW3XtgGRYTmgR9xbH47caoEY+UtZJ83x67Ox
+	mnprG1bQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mJAmX-009YOy-K0; Thu, 26 Aug 2021 08:30:41 +0000
-Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
- helo=sipsolutions.net)
+	id 1mJCqm-009pV6-6r; Thu, 26 Aug 2021 10:43:12 +0000
+Received: from so254-9.mailgun.net ([198.61.254.9])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mJAmR-009YOS-NB
- for ath11k@lists.infradead.org; Thu, 26 Aug 2021 08:30:39 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sipsolutions.net; s=mail; h=Content-Transfer-Encoding:MIME-Version:
- Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
- :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
- Resent-Cc:Resent-Message-ID; bh=xmX32MGO2AKihv8f66b1MAJsZEvCTBwLG94/AXPlyvs=; 
- t=1629966635; x=1631176235; b=kDdY6kj5J/nrzsKYyaoWlfAPJG4WQ3gnJ5iSx3CvQTg1IXk
- yDXRDKhaVAFZqBdyuXJGzzmxzPViw4meSatdeUCtdWgJkj7DDZT24v/57O1+2qpDoyj+XyCBpimHp
- rHIlClvkA8QwSzMFzEirEWMgg39hV3PB/Fzd0VHaquDTR5i1hZDy6Wt0V4mDP8aCKTyOsvghr5CTn
- fTW25wqrQVVUCda+Q/wr4YJY+9Zr0h0VCka0EhOOtPImYw4SR+tNx6/bug+fpgzaY2LBPot1uJWcG
- VWbCCzg9H6f4CBNuUWB1Eb9PxHg4Z0GbT+1CeukbEMDYljYn0+KJSnpgxf3VKqIA==;
-Received: by sipsolutions.net with esmtpsa
- (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
- (Exim 4.94.2) (envelope-from <johannes@sipsolutions.net>)
- id 1mJAmQ-00G4uU-6g; Thu, 26 Aug 2021 10:30:34 +0200
-Message-ID: <ab8ec9741e01bad0857e165ca35d968e8dc9dee7.camel@sipsolutions.net>
-Subject: Re: [PATCH v2 6/8] mac80211: add definition for transmit power
- envelope element
-From: Johannes Berg <johannes@sipsolutions.net>
-To: Wen Gong <wgong@codeaurora.org>, ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
-Date: Thu, 26 Aug 2021 10:30:33 +0200
-In-Reply-To: <20210820122041.12157-7-wgong@codeaurora.org>
-References: <20210820122041.12157-1-wgong@codeaurora.org>
- <20210820122041.12157-7-wgong@codeaurora.org>
-User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
+ id 1mJCqg-009pU3-J3
+ for ath11k@lists.infradead.org; Thu, 26 Aug 2021 10:43:10 +0000
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
+ q=dns/txt; 
+ s=smtp; t=1629974586; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=jxQj+Qq58uCngE8BIFIYp5sPKXbtHgYgxSLMFmISMug=;
+ b=niTR1FDWsTO0QhqY02vdvhBhwVoQDEqu50vPTKRg7/xgYOPW4KjUv82D2lOzUDi5sSxfMRKu
+ WSQVIGVbEXmuME673P63dsagpA0pzAXM/QaFWdZ6OcOquuZm1AC/sIqUzYq+4piccU7sdLEh
+ RoObTRHqavvZs5U4ETiDLPyrgp8=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
+ 61277037d6653df767d0b904 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 26 Aug 2021 10:43:03
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+ id 34923C4360D; Thu, 26 Aug 2021 10:43:03 +0000 (UTC)
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+ (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+ (No client certificate requested) (Authenticated sender: wgong)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id BE528C4338F;
+ Thu, 26 Aug 2021 10:43:02 +0000 (UTC)
 MIME-Version: 1.0
-X-malware-bazaar: not-scanned
+Date: Thu, 26 Aug 2021 18:43:02 +0800
+From: Wen Gong <wgong@codeaurora.org>
+To: Johannes Berg <johannes@sipsolutions.net>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
+Subject: Re: [PATCH v2 5/8] cfg80211: save power spectral density(psd) of
+ regulatory rule
+In-Reply-To: <101b523a6fe06fea3e1c9642a1bf5e85a9d0e680.camel@sipsolutions.net>
+References: <20210820122041.12157-1-wgong@codeaurora.org>
+ <20210820122041.12157-6-wgong@codeaurora.org>
+ <101b523a6fe06fea3e1c9642a1bf5e85a9d0e680.camel@sipsolutions.net>
+Message-ID: <4eca272868dae4f7a923656a12b03024@codeaurora.org>
+X-Sender: wgong@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210826_013035_794355_FCAAE4F9 
-X-CRM114-Status: UNSURE (   9.35  )
+X-CRM114-CacheID: sfid-20210826_034306_727288_81B6ACF1 
+X-CRM114-Status: UNSURE (   9.11  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -79,24 +88,39 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-T24gRnJpLCAyMDIxLTA4LTIwIGF0IDA4OjIwIC0wNDAwLCBXZW4gR29uZyB3cm90ZToKPiBJRUVF
-IFN0ZCA4MDIuMTFheOKEoi0yMDIxIGhhdmUgc29tZSBjaGFuZ2UgZm9yIHRyYW5zbWl0IHBvd2Vy
-IGVudmVsb3BlCj4gZWxlbWVudC4gVGhpcyBwYXRjaCB0byBhZGQgdGhlIGRlZmluaXRpb24gb2Yg
-aXQuCj4gCgpHZW5lcmFsbHk6IEknbSBzdXJlIEthbGxlIGhhcyBzb21lIHBhZ2Ugb24gdGhpcywg
-YnV0IHlvdXIgY29tbWl0Cm1lc3NhZ2VzIGNvdWxkIHVzZSBzb21lIHdvcmsgLSB5b3UgZG9uJ3Qg
-bmVlZCB0byBzYXkgInRoaXMgcGF0Y2giIGZvcgpleGFtcGxlLCB0aGF0J3MgZW50aXJlbHkgb2J2
-aW91cyA6KQoKCj4gCj4gKy8qKgoKbm90IGFjdHVhbGx5IGtlcm5lbC1kb2MsIGJ1dCBJIGNhbiBm
-aXggCgo+ICsgKiBJbiAiOS40LjIuMTYxIFRyYW5zbWl0IFBvd2VyIEVudmVsb3BlIGVsZW1lbnQi
-IG9mICJJRUVFIFN0ZCA4MDIuMTFheC0yMDIxIiwKPiArICogaXQgc2hvdyA0IHR5cGVzIGluICJU
-YWJsZSA5LTI3NWEtTWF4aW11bSBUcmFuc21pdCBQb3dlciBJbnRlcnByZXRhdGlvbiBzdWJmaWVs
-ZCBlbmNvZGluZyIuCj4gKyAqIEFuZCBpdCBoYXMgMiBjYXRlZ29yeSBmb3IgZWFjaCB0eXBlIGlu
-ICJUYWJsZSBFLTEyLVJlZ3VsYXRvcnkgSW5mbyBzdWJmaWVsZCBlbmNvZGluZyBpbiB0aGUgVW5p
-dGVkIFN0YXRlcyIuCj4gKyAqIFNvIGl0IGl0IHRvdGFsbHkgbWF4IDggVHJhbnNtaXQgUG93ZXIg
-RW52ZWxvcGUgZWxlbWVudC4KCnZlcnkgbG9uZyBsaW5lcywgd2lsbCBmaXggdGhhdCB0b28KCmpv
-aGFubmVzCgoKLS0gCmF0aDExayBtYWlsaW5nIGxpc3QKYXRoMTFrQGxpc3RzLmluZnJhZGVhZC5v
-cmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9hdGgxMWsK
+On 2021-08-26 16:25, Johannes Berg wrote:
+> I was going to apply this and patch 4 squashed, saying:
+> 
+> 
+>     cfg80211: regulatory: handle 6 GHz power spectral density (PSD)
+> 
+>     6 GHz regulatory domains introduce power spectral density (PSD).
+>     Allow wiphy-specific regulatory rules to specify these values.
+> 
+> but ...
+>> 
+>> +		if (chan->flags & IEEE80211_CHAN_PSD)
+>> +			chan->psd = min_t(s8, rrule1->psd, rrule1->psd);
+>> +
+> 
+> This is obviously wrong?
+Yes it should change like this:
+
+	if ((rrule1->flags & NL80211_RRF_PSD) && (rrule1->flags & 
+NL80211_RRF_PSD))
+		chan->psd = min_t(s8, rrule1->psd, rrule1->psd);
+	else
+		chan->flags &= ~NL80211_RRF_PSD;
+
+> 
+> johannes
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
