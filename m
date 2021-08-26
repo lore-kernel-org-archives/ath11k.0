@@ -1,84 +1,71 @@
-Return-Path: <SRS0=KApm=NQ=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=rto1=NR=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.7 required=3.0 tests=BAYES_00,
-	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-9.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8656DC432BE
-	for <ath11k@archiver.kernel.org>; Wed, 25 Aug 2021 23:01:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 611F8C4320A
+	for <ath11k@archiver.kernel.org>; Thu, 26 Aug 2021 08:20:22 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3107361073
-	for <ath11k@archiver.kernel.org>; Wed, 25 Aug 2021 23:01:48 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 3107361073
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 00EDD610A7
+	for <ath11k@archiver.kernel.org>; Thu, 26 Aug 2021 08:20:21 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 00EDD610A7
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=sipsolutions.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hniIg6k/TNsZBe04GGyMV57XHDWlXTpYWH8Uq5uOJZU=; b=b9APPsol6YA1UZ
-	qFpiTo1jPW1TyRCPEU52dNoo/m7UR2+IkT7R1AJS6KZbxPd+lUdSXz54M+ez3downtTXRgN5Sb8YB
-	SWIruC/3GdRH1VNiSNQBYRobEMzXPGiOdkqMoPfRHsbO6vSOOsWAUpfeODKLllUEFEwyvbnsj5/Nd
-	J89auofIFcjqdeaiW40rJU5uuzKC7StiRNt9JkWpTTcvgXBsT2N/RkI2G7ItcEHh+hrbohU84QWnH
-	3OxQXGVouJMZwqMvlgw2yQzx/nHHjXlLbNYWPQjNRe91QkxwcihCkfmJmCwuAcng/VZS4OqRxjJWA
-	Km4m5jG/uIyV0JfgVpBA==;
+	List-Owner; bh=dlOGK3iAE6WuloKOGs0cUWKBhfsc1cGr3nICkZ+NWIs=; b=ELz9EqVtBiGgju
+	P5UprGJjD8onTM5LLlmpA0DCfKBBQnPlWnSpW+G71mbH0O1Y86jPHGp+EtB5XbP1WRI8AgnIrIBcU
+	SLXEZ1Hn2aSp1sFzbVpm1XQoGEr0cqOV41/Mv2XIUWnEfJTXFCyn6VbNFMn26qplTIndzUdhER2Tq
+	Rfyr8nR3Y4kBsjGSB6SL9INqElAuF9DcQQUvH1KuNOokH9WKFGlJNxFXd4XV1mpdOeDlrnWN76Gwb
+	8z08Rz4dQUnnqUXNFJfTWuC2aTLv2bvmrM5WjJSDJHPFXQW+e2wejesFxq2pVDflRCGI1slgIgJYw
+	GT78zJEAQB9maA9z3O9Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mJ1tx-008fGQ-QE; Wed, 25 Aug 2021 23:01:45 +0000
-Received: from mail-oi1-x232.google.com ([2607:f8b0:4864:20::232])
+	id 1mJAcU-009XMw-RF; Thu, 26 Aug 2021 08:20:18 +0000
+Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
+ helo=sipsolutions.net)
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mJ1tv-008fFV-5a
- for ath11k@lists.infradead.org; Wed, 25 Aug 2021 23:01:44 +0000
-Received: by mail-oi1-x232.google.com with SMTP id s20so1733917oiw.3
- for <ath11k@lists.infradead.org>; Wed, 25 Aug 2021 16:01:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=c7HZlWC8KJohv3wxpeiYZ8xLIfggzme+ADhSLyEO+Yg=;
- b=kzEpcmV5cjVZjLrrDSrvWkwENdpxVZywXviL2w13mDb8LhPUcHx18eBMtuuR/U7BqI
- ZBKvsv64+VAjwxU4viRTT4nf5zu4onbxB+qAxSJpNMlD1DJGNen7l30Cp1ht2ou31L9H
- VKHIM2jFvbsin05OfbFvHhuCQOxJ7R44MPwzLP1C6tQaQwwxGAlnCE7hi4FGjLz8u16+
- OC6z0MJYoQwJMM962U3yNW4tfxBcXfqbOgrBOn/dv8pSDftHpuji1V6yPx38fG5JbX89
- XmiOpYmlNVouCymyfVL4YxXrnc64+dqvTc5elJ/n5Hm7zJJjk9L4nkvyosV+9WmN9zRc
- I51A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=c7HZlWC8KJohv3wxpeiYZ8xLIfggzme+ADhSLyEO+Yg=;
- b=SSy3iZK34x2OLVg33hHfyA69y/2shNcrW52yyPHswVZd/obxbql3eg2c2VSLSFPtBL
- irTsF345tRH9MsH84xa1E/syjqqsC3255xcCkU/89EQgW69DLFBkIzRc4qDRznhh0CwF
- w28G5tYmy5wiP8rq9VhqtgZPXyiGogb38cG99Oscqb8YzzEyWI6rO4PmFpXfQfdtulvh
- CZVyC4+jGqRrX0ijMynI3wGeaVdjFUszcw+GL4dt9vIrE0S0BxEkdu4aJmMFEvIIHUVs
- x6e925u1z64/4SVWb65kTl7ZesOAypF2gxZhL1QpFV6yDa7F8xxJn8oI3l0+pxHxR/3j
- VaUQ==
-X-Gm-Message-State: AOAM531buUSw4k3F4y7cXyJIr3qrxpr3uMKwM9TBYSF0ye6e1nqXqXRK
- 5MxS7Tzy2bZAH+f1oh4ygonlpnjBuML6Qjx4FtiG0pRbZG8=
-X-Google-Smtp-Source: ABdhPJyfWdhuq7QS8eNXfpfLZpVi4hXUbiV4Dx7xPMWbM48ok62/D1CS1zZm7aUrNajAyCd9p7QK3U39GoarGOwR24M=
-X-Received: by 2002:aca:3488:: with SMTP id b130mr8461960oia.17.1629932500628; 
- Wed, 25 Aug 2021 16:01:40 -0700 (PDT)
+ id 1mJAcP-009XMZ-IY
+ for ath11k@lists.infradead.org; Thu, 26 Aug 2021 08:20:17 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=sipsolutions.net; s=mail; h=Content-Transfer-Encoding:MIME-Version:
+ Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
+ :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
+ Resent-Cc:Resent-Message-ID; bh=b8XUGoFPW6vRAEsN3iQ2xKUBOJTnFrxIvxTg5qvp850=; 
+ t=1629966011; x=1631175611; b=huQq3pyeQyyEhPIzrnUNP9E4dNHaMfjDIq3MeB1M1E8ZrX1
+ ND4noXfMjsOEaYmZzUVtwyFV51ZhFV5+ZsCHaA3W10rvZxCoQu0UaxIyrnEFoA2XAfz0ewyBO1cpF
+ zv9COSqYzxrHVQVbBHZOyA5WNjQ9SdWShxonb22g7FkLnkiCkNo+R+wIIZlyKV1L67MIHCa6AEjgC
+ Htc/kMzcewZi1LBTYzxXPE2oKvSp1IZQTHLfnzT70+kArSKdYLufpOj/SpHjFt406zLnHQ7yfdkXJ
+ 9EtFo1uhxnri46Up+KrD4rQ8YOfyXOuTmNFmyuIIln2laHRuX4FxHYxDtNisZgUw==;
+Received: by sipsolutions.net with esmtpsa
+ (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+ (Exim 4.94.2) (envelope-from <johannes@sipsolutions.net>)
+ id 1mJAcK-00G4bP-Ji; Thu, 26 Aug 2021 10:20:08 +0200
+Message-ID: <b6ba152ce1efde5863cae53a94728e8472ba53c0.camel@sipsolutions.net>
+Subject: Re: [PATCH v2 1/8] cfg80211: add power type definition for 6 GHz
+From: Johannes Berg <johannes@sipsolutions.net>
+To: Wen Gong <wgong@codeaurora.org>, ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org
+Date: Thu, 26 Aug 2021 10:20:07 +0200
+In-Reply-To: <20210820122041.12157-2-wgong@codeaurora.org>
+References: <20210820122041.12157-1-wgong@codeaurora.org>
+ <20210820122041.12157-2-wgong@codeaurora.org>
+User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
 MIME-Version: 1.0
-References: <1629884277-18759-1-git-send-email-ppranees@codeaurora.org>
- <1629884277-18759-12-git-send-email-ppranees@codeaurora.org>
-In-Reply-To: <1629884277-18759-12-git-send-email-ppranees@codeaurora.org>
-From: Sergey Ryazanov <ryazanov.s.a@gmail.com>
-Date: Thu, 26 Aug 2021 02:02:10 +0300
-Message-ID: <CAHNKnsRi9CYH4vZfgpEUTJEHJfb-Av24dyE-_7pc7KMKy3S8VA@mail.gmail.com>
-Subject: Re: [PATCH v2 11/12] ath11k: add branch predictors in dp_tx path
-To: P Praneesh <ppranees@codeaurora.org>
-Cc: Kalle Valo <kvalo@codeaurora.org>, ath11k@lists.infradead.org, 
- linux-wireless@vger.kernel.org, Sriram R <srirrama@codeaurora.org>, 
- Jouni Malinen <jouni@codeaurora.org>
+X-malware-bazaar: not-scanned
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210825_160143_263100_A7AB8897 
-X-CRM114-Status: GOOD (  15.27  )
+X-CRM114-CacheID: sfid-20210826_012013_720484_8F59E40F 
+X-CRM114-Status: GOOD (  10.08  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,54 +77,28 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed, Aug 25, 2021 at 12:39 PM P Praneesh <ppranees@codeaurora.org> wrote:
-> Add branch prediction in dp_tx code path in
-> tx and tx completion handlers.
->
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-01734-QCAHKSWPL_SILICONZ-1 v2
->
-> Co-developed-by: Sriram R <srirrama@codeaurora.org>
-> Signed-off-by: Sriram R <srirrama@codeaurora.org>
-> Signed-off-by: Jouni Malinen <jouni@codeaurora.org>
-> Signed-off-by: P Praneesh <ppranees@codeaurora.org>
-> ---
->  drivers/net/wireless/ath/ath11k/dp_tx.c | 45 +++++++++++++++++----------------
->  drivers/net/wireless/ath/ath11k/mac.c   |  2 +-
->  2 files changed, 24 insertions(+), 23 deletions(-)
->
-> diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
-> index 8bba523..ab9ccf0 100644
-> --- a/drivers/net/wireless/ath/ath11k/dp_tx.c
-> +++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
-
-[skipped]
-
-> @@ -432,12 +432,12 @@ static void ath11k_dp_tx_complete_msdu(struct ath11k *ar,
->
->         rcu_read_lock();
->
-> -       if (!rcu_dereference(ab->pdevs_active[ar->pdev_idx])) {
-> +       if (unlikely(!rcu_dereference(ab->pdevs_active[ar->pdev_idx]))) {
->                 dev_kfree_skb_any(msdu);
->                 goto exit;
->         }
-
-This is another place where rcu_dereference() could be replaced by the
-rcu_access_pointer() and the whole block could be moved above the
-rcu_read_lock().
-
-On the other hand this is an _unlikely_ path, so it looks like a
-matter of taste which macro to use here.
-
--- 
-Sergey
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+Cj4gwqBzdHJ1Y3QgY2ZnODAyMTFfY2hhbl9kZWYgewo+IMKgCXN0cnVjdCBpZWVlODAyMTFfY2hh
+bm5lbCAqY2hhbjsKPiBAQCAtNjg0LDYgKzY4NSw3IEBAIHN0cnVjdCBjZmc4MDIxMV9jaGFuX2Rl
+ZiB7Cj4gwqAJdTMyIGNlbnRlcl9mcmVxMjsKPiDCoAlzdHJ1Y3QgaWVlZTgwMjExX2VkbWcgZWRt
+ZzsKPiDCoAl1MTYgZnJlcTFfb2Zmc2V0Owo+ICsJZW51bSBubDgwMjExX2FwX3JlZ19wb3dlciBw
+b3dlcl90eXBlOwoKSSdtIG5vdCBzdXJlIHdoeSB0aGlzIHNob3VsZCBiZSBpbiB0aGUgY2hhbmRl
+ZiwgdGhlcmUncyBubyB3YXkgdGhhdAphbnl0aGluZyBpbiBjZmc4MDIxMSBpcyBldmVyIHVzaW5n
+IGl0IHRoZXJlLCBhdCBsZWFzdCBpbiB5b3VyIHBhdGNoZXMuCgo+ICsvKioKPiArICogZW51bSBu
+bDgwMjExX2FwX3JlZ19wb3dlciAtIHJlZ3VsYXRvcnkgcG93ZXIgZm9yIGEgQWNjZXNzIFBvaW50
+Cj4gKyAqCj4gKyAqIEBOTDgwMjExX1JFR19VTlNFVF9BUDogQWNjZXNzIFBvaW50IGhhcyBubyBy
+ZWd1bGF0b3J5IHBvd2VyIG1vZGUKPiArICogQE5MODAyMTFfUkVHX0xQSTogSW5kb29yIEFjY2Vz
+cyBQb2ludAo+ICsgKiBATkw4MDIxMV9SRUdfU1A6IFN0YW5kYXJkIHBvd2VyIEFjY2VzcyBQb2lu
+dAo+ICsgKiBATkw4MDIxMV9SRUdfVkxQOiBWZXJ5IGxvdyBwb3dlciBBY2Nlc3MgUG9pbnQKPiAr
+ICovCj4gK2VudW0gbmw4MDIxMV9hcF9yZWdfcG93ZXIgewo+ICsJTkw4MDIxMV9SRUdfVU5TRVRf
+QVAsCj4gKwlOTDgwMjExX1JFR19MUElfQVAsCj4gKwlOTDgwMjExX1JFR19TUF9BUCwKPiArCU5M
+ODAyMTFfUkVHX1ZMUF9BUCwKPiArCU5MODAyMTFfUkVHX0FQX1BPV0VSX0FGVEVSX0xBU1QsCj4g
+KwlOTDgwMjExX1JFR19BUF9QT1dFUl9NQVggPQo+ICsJCU5MODAyMTFfUkVHX0FQX1BPV0VSX0FG
+VEVSX0xBU1QgLSAxLAo+ICt9OwoKU2ltaWxhcmx5IGhlcmUgKGFuZCB0aGUgb3RoZXIgZW51bSks
+IHdoeSBpcyB0aGlzIGluIG5sODAyMTEgaWYgaXQncwpuZXZlciB1c2VkIGluIG5sODAyMTE/Cgpq
+b2hhbm5lcwoKCi0tIAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0cy5pbmZyYWRlYWQu
+b3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vYXRoMTFrCg==
