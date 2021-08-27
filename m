@@ -6,58 +6,66 @@ X-Spam-Status: No, score=-4.5 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
 	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AA343C432BE
-	for <ath11k@archiver.kernel.org>; Fri, 27 Aug 2021 08:30:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AA94EC432BE
+	for <ath11k@archiver.kernel.org>; Fri, 27 Aug 2021 08:47:32 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 71C9160F92
-	for <ath11k@archiver.kernel.org>; Fri, 27 Aug 2021 08:30:25 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 71C9160F92
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=sipsolutions.net
+	by mail.kernel.org (Postfix) with ESMTPS id 6EFCD60187
+	for <ath11k@archiver.kernel.org>; Fri, 27 Aug 2021 08:47:32 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 6EFCD60187
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=tdAy609yzt6prYECrmrrr/pSyt5DLQFRP4XoOa6/ZUs=; b=MsXdi4OmPixkBv
-	x0V8KzLGoIxgMRquPUxd+W6kE1ALuiLjhwZbrm414agrutveePjvqzq9FVBT+QwXwjTYGk9R28Z8+
-	D7cgssLyu+ep447snmVG881EUyjDtOQJI1wN/9cii5APqlztQXI5A+zSZB/cH9Tq75UofQVtOCC3W
-	royGTopE+kg3S3nw36lR3ox1y9upR8+AUwWqq5En6G1/JbHlXq368/+0O4PJsHSzuC6B5bKQYhltG
-	jYaDlVu4nTpySHUSL+bDued+x5os5ntkAjaDau3CoiBs4FCliROEhliwkQf9mAnElzsXlNjwzlutb
-	nayevgsQgx0ahWTZxHgQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:Cc:To:From
+	:Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=jQhhupnDzV2blFecp3QWTtAUZPdArLF90FZ7ildx6ZA=; b=cSFFvPdP67+W34f0/4+SJb7Ukg
+	pE8DwDz7CMBcai3SQUXHn3i5Q6+izo/REc98+oQEYVdzFxMKIMeg0IEPj/fSKFqW2J/f+JzBlzTQE
+	cwTfYyyMf802MfDOcdxGmUNUXDdETyoOqorHKMlNM769eaNtHV4GcrR7/RVHIi4J16UQnvdEkKkuy
+	aoJjIcug+9Zoh930iVYFglS7MCT3SJL9Eba10sQdWrxRFOEWSRLBxlUlD+FMFtLnx+Zbrpoj+Iwr7
+	Up9nvGaEeyL5sQKo9AuXVfZ2DEGWeLcUIhemOj70KTHc/yfps3yyuazNh/wmY5FT+iTMNL48Fm/LT
+	Km1RIVQQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mJXFn-00BxS3-BV; Fri, 27 Aug 2021 08:30:23 +0000
-Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
- helo=sipsolutions.net)
+	id 1mJXWM-00ByfT-6K; Fri, 27 Aug 2021 08:47:30 +0000
+Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mJXFh-00BxRD-FN
- for ath11k@lists.infradead.org; Fri, 27 Aug 2021 08:30:21 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sipsolutions.net; s=mail; h=Content-Transfer-Encoding:MIME-Version:
- Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
- :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
- Resent-Cc:Resent-Message-ID; bh=NPI1DWHvxdOXdaAuD4n6bQ7bx+Wi8FJBMBcsb3Gyodc=; 
- t=1630053017; x=1631262617; b=Ovy8akFPj2JXzjXXip259WeW1akPqxSPUr4vJ/h0UAdfmJf
- XtNe0iOKVDjxk6052G7MmyhPwqPyxCCqppwo5mbXpnJVFhQComcDiwJDGynAQtgxbswBeLd2C28Op
- CJcYLSw56fFFSR0XYjLTeM82aba2I5DTu+9Xjei0dcIHiSzbLNUPzXebf9CUhBAPWgKeJcvMwygZO
- kU/SDi5SY7WodXY30vwBxrU98QErLUth+iNx1uIBS60iyRzkEnYdN93y5elx4if6ggWoKP+rqb7Js
- 9PXyoQCdYy1aScROhxAZuJcU5WDGgK1mHIi8eZ5koLPVFRInarE6nz3kGvUtVd5g==;
-Received: by sipsolutions.net with esmtpsa
- (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
- (Exim 4.94.2) (envelope-from <johannes@sipsolutions.net>)
- id 1mJXFf-00GXJu-1g; Fri, 27 Aug 2021 10:30:15 +0200
-Message-ID: <e985d4aa1556e9660cc7d4a3ff348d64764c4ad8.camel@sipsolutions.net>
-Subject: Re: [PATCH v2 8/8] mac80211: save transmit power envelope element
- and power constraint
-From: Johannes Berg <johannes@sipsolutions.net>
-To: Wen Gong <wgong@codeaurora.org>
+ id 1mJXWD-00Byf5-K2
+ for ath11k@lists.infradead.org; Fri, 27 Aug 2021 08:47:29 +0000
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
+ q=dns/txt; 
+ s=smtp; t=1630054045; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=nuWZZjA/CahwoY0D3QK4iRrNop3uymnaep3vKQXmInE=;
+ b=l84KS48wiwTvetnGeTUF5GvTX0rVDTiF7I1iK1qcdyAqniCGcHiRiDRu8P2rFOrdB6lwTt6L
+ lJtVq4XCfidpqElZa1UgZEIIQ9l2hU7nOs2dy5VE0yyqTnhu9GTp0T4skUcYxLF+wPC8NrHU
+ TUDI9ICjnJPpohyEr62c2pkBGBo=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
+ 6128a692d6653df767fa6ec2 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 27 Aug 2021 08:47:14
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+ id ECC7DC4360D; Fri, 27 Aug 2021 08:47:13 +0000 (UTC)
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+ (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+ (No client certificate requested) (Authenticated sender: wgong)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id B3DC0C4338F;
+ Fri, 27 Aug 2021 08:47:13 +0000 (UTC)
+MIME-Version: 1.0
+Date: Fri, 27 Aug 2021 16:47:13 +0800
+From: Wen Gong <wgong@codeaurora.org>
+To: Johannes Berg <johannes@sipsolutions.net>
 Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
-Date: Fri, 27 Aug 2021 10:30:14 +0200
-In-Reply-To: <40e8c88cec2d3601afbfe187c57fac6b@codeaurora.org>
+Subject: Re: [PATCH v2 8/8] mac80211: save transmit power envelope element and
+ power constraint
+In-Reply-To: <e985d4aa1556e9660cc7d4a3ff348d64764c4ad8.camel@sipsolutions.net>
 References: <20210820122041.12157-1-wgong@codeaurora.org>
  <20210820122041.12157-9-wgong@codeaurora.org>
  <dfe27f657b4615369cf751d394f5cba75f5fdcc1.camel@sipsolutions.net>
@@ -70,13 +78,13 @@ References: <20210820122041.12157-1-wgong@codeaurora.org>
  <01d9e4eadbb0d87edbc026fc719858a3@codeaurora.org>
  <3483aeb87a81dea538af3a2640cd49831274320f.camel@sipsolutions.net>
  <40e8c88cec2d3601afbfe187c57fac6b@codeaurora.org>
-User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
-MIME-Version: 1.0
-X-malware-bazaar: not-scanned
+ <e985d4aa1556e9660cc7d4a3ff348d64764c4ad8.camel@sipsolutions.net>
+Message-ID: <c2362285a37a21bb3d4131d84bd3db60@codeaurora.org>
+X-Sender: wgong@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210827_013017_569600_02AD3D5E 
-X-CRM114-Status: UNSURE (   6.41  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20210827_014725_434248_1EF8A524 
+X-CRM114-Status: GOOD (  10.73  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,23 +96,27 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Fri, 2021-08-27 at 16:28 +0800, Wen Gong wrote:
+On 2021-08-27 16:30, Johannes Berg wrote:
+> On Fri, 2021-08-27 at 16:28 +0800, Wen Gong wrote:
+>> 
+>> the TPE is only 8 pointer in the struct ieee802_11_elems.
 > 
-> the TPE is only 8 pointer in the struct ieee802_11_elems.
-
-
-I know, but it's showing _just_ above the threshold for the warning now,
-so if it was _just_ below the threshold before, adding 64 bytes could
-still do that. 64 bytes is a lot, after all, the threshold is only 512 I
-think.
-
-johannes
-
+> 
+> I know, but it's showing _just_ above the threshold for the warning 
+> now,
+> so if it was _just_ below the threshold before, adding 64 bytes could
+> still do that. 64 bytes is a lot, after all, the threshold is only 512 
+> I
+> think.
+> 
+Yes, I will change to below in next version.
+"struct ieee802_11_elems *elems = kzalloc(sizeof(*elems))"
+> johannes
 
 -- 
 ath11k mailing list
