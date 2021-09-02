@@ -7,14 +7,14 @@ X-Spam-Status: No, score=-17.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
 	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F40C0C4320A
-	for <ath11k@archiver.kernel.org>; Thu,  2 Sep 2021 05:35:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A5333C432BE
+	for <ath11k@archiver.kernel.org>; Thu,  2 Sep 2021 05:35:15 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B8D3860FC0
-	for <ath11k@archiver.kernel.org>; Thu,  2 Sep 2021 05:35:06 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org B8D3860FC0
+	by mail.kernel.org (Postfix) with ESMTPS id 6C729610C8
+	for <ath11k@archiver.kernel.org>; Thu,  2 Sep 2021 05:35:15 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 6C729610C8
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,44 +23,44 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Post:List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=GXh6iu6DJINUVCSw7H+Mm6Kt15gw3R42B7Ncmi13SYc=; b=Ox7FNNE8AQF5JO
-	c2TU7Mz2bqV1u4en+8WAufKPBqMk+SUZzLUaE6I7lgQESQeIzanAAIasUFNrFjt2pq4bd9rrRzS6p
-	164OOEAbskS3c/tpRJsYWEDR3QnjzD2w77ssF78zbxRd1iDARjgteaE/T0TZpl9368qDb2E6IvNGH
-	3GydVDRtP7f+n6+bfHTSr/4WEShDIw/XOa1LTgaXhktyqgqkYbesOXmC57LFjaf3uQlIjZCN7Oivo
-	Z70Lpc1eTTBUkBPaHFVGO0a+TxZOnb2c29IOBo6XvGKuN+4BxuEyhPbxTkudshkFPt8tLrIvIfUB6
-	Jlp+nFzXkkAmExWup/gw==;
+	List-Owner; bh=mwIcF50PE3s6kF+B6xEUNxvThpDymuXec/tCv2t6Rag=; b=hw5+OqsMaTYdE7
+	TyjW/ENZ3WB1rDnNIL64mWWfBvhW75aO+Cg+D3WGUn+bsR7QyBwIf/7oX5Af7DqUEBOiNH2OZVRif
+	J+SvCxlNkphZqMnBVgGIT03C/9Y50/wPjH8s+uuSj4JAwhs6tmfKD0jMj2GLD3PT1uYeDUq1V0jjn
+	jau/3Ft73lup0R6BEkEqoVTUJCflwsmKKVYKk89gRGEpDhawQbb2SNDWCQLuhmM7pF1WcRd3hPToE
+	iynS3xoqGFPQ0O7SpPYoQljD60Wt6uhLpqyVGGefAv0SvQIV7w5c0poJ8qs3g5F2cXG/0MFYRjDhZ
+	7IczpghtlOQG4IMYl8Sw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mLfNQ-008Z1D-SH; Thu, 02 Sep 2021 05:35:04 +0000
+	id 1mLfNZ-008Z6h-Aw; Thu, 02 Sep 2021 05:35:13 +0000
 Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mLfNJ-008YwH-FF
- for ath11k@lists.infradead.org; Thu, 02 Sep 2021 05:35:03 +0000
+ id 1mLfNS-008YwE-6P
+ for ath11k@lists.infradead.org; Thu, 02 Sep 2021 05:35:11 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1630560899; h=References: In-Reply-To: Message-Id: Date:
+ s=smtp; t=1630560907; h=References: In-Reply-To: Message-Id: Date:
  Subject: Cc: To: From: Sender;
- bh=GFoJidY/sdda2ISwneKC1H4HOktMe1hobz2cQIftxOY=;
- b=mK/v0rv+0a1J82f2lG1q9CsVct2rt3pES4Kr43sMyE/YQ2kVaJGsRHc0j86Bg7VQzpJbbIT3
- sDMD/Qj4r4dSQ7dLXaOg/1yXxU7pSgNqrOh3jUCh5U25ubfSDIytEv/o9pTmH9S8K4bxZJKO
- owxvvAw91UYWZDS21gNCDKt+kSY=
+ bh=hu/mxWASfGvzpqe/GpnCNsQQ5v0oR6qGppRWgtylL7k=;
+ b=hadAe7t4OWBmZCB6BhHwp7W+AXIFl9OYIrqZdEMc4eM/IIuws3uGoZ1gJ4SF1SE1DY5to0n0
+ GiOrFUuHQ7ASW5btQCU18NgyIixLsSmK+Za+0Ak/WuGOHlkwOyeL2lGdFkm+ZukWgudqFSfL
+ 53QMKcd/w/V57t8yurc0V6xjlEY=
 X-Mailgun-Sending-Ip: 69.72.43.7
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
- 613062786fc2cf7ad9208b14 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 02 Sep 2021 05:34:48
+ smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
+ 6130627ee0fcecca1999cdd6 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 02 Sep 2021 05:34:54
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id B236AC4360C; Thu,  2 Sep 2021 05:34:47 +0000 (UTC)
+ id A8E2CC43617; Thu,  2 Sep 2021 05:34:53 +0000 (UTC)
 Received: from ppranees-linux.qualcomm.com
  (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
  (No client certificate requested) (Authenticated sender: ppranees)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id DF1F0C43460;
- Thu,  2 Sep 2021 05:34:44 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org DF1F0C43460
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 88DE5C4360D;
+ Thu,  2 Sep 2021 05:34:50 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 88DE5C4360D
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
@@ -70,15 +70,15 @@ To: kvalo@codeaurora.org
 Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
  P Praneesh <ppranees@codeaurora.org>, Sriram R <srirrama@codeaurora.org>,
  Jouni Malinen <jouni@codeaurora.org>
-Subject: [PATCH v3 03/12] ath11k: modify dp_rx desc access wrapper calls inline
-Date: Thu,  2 Sep 2021 11:03:31 +0530
-Message-Id: <1630560820-21905-4-git-send-email-ppranees@codeaurora.org>
+Subject: [PATCH v3 05/12] ath11k: avoid active pdev check for each msdu
+Date: Thu,  2 Sep 2021 11:03:33 +0530
+Message-Id: <1630560820-21905-6-git-send-email-ppranees@codeaurora.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1630560820-21905-1-git-send-email-ppranees@codeaurora.org>
 References: <1630560820-21905-1-git-send-email-ppranees@codeaurora.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210901_223459_938350_EFF6B5B7 
-X-CRM114-Status: GOOD (  10.95  )
+X-CRM114-CacheID: sfid-20210901_223507_707584_5F271455 
+X-CRM114-Status: GOOD (  16.80  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,8 +96,10 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-In data path, to reduce the CPU cycles spending on descriptor access
-wrapper function, changed those functions as static inline.
+The Active Pdev and CAC check are done for each msdu in
+ath11k_dp_rx_process_received_packets which is a overhead.
+To avoid this overhead, collect all msdus in a per mac msdu
+list and pass to function.
 
 Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.4.0.1.r2-00012-QCAHKSWPL_SILICONZ-1
 Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-01695-QCAHKSWPL_SILICONZ-1
@@ -107,274 +109,154 @@ Signed-off-by: Sriram R <srirrama@codeaurora.org>
 Signed-off-by: Jouni Malinen <jouni@codeaurora.org>
 Signed-off-by: P Praneesh <ppranees@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/dp_rx.c | 114 +++++++++++++++++---------------
- 1 file changed, 59 insertions(+), 55 deletions(-)
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 66 ++++++++++++++++-----------------
+ 1 file changed, 32 insertions(+), 34 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 9a22481..b84c2db 100644
+index 994959b..1d85e10 100644
 --- a/drivers/net/wireless/ath/ath11k/dp_rx.c
 +++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -20,13 +20,15 @@
- 
- #define ATH11K_DP_RX_FRAGMENT_TIMEOUT_MS (2 * HZ)
- 
--static u8 *ath11k_dp_rx_h_80211_hdr(struct ath11k_base *ab, struct hal_rx_desc *desc)
-+static inline
-+u8 *ath11k_dp_rx_h_80211_hdr(struct ath11k_base *ab, struct hal_rx_desc *desc)
+@@ -2523,12 +2523,10 @@ static int ath11k_dp_rx_process_msdu(struct ath11k *ar,
+ static void ath11k_dp_rx_process_received_packets(struct ath11k_base *ab,
+ 						  struct napi_struct *napi,
+ 						  struct sk_buff_head *msdu_list,
+-						  int *quota, int ring_id)
++						  int *quota, int mac_id)
  {
- 	return ab->hw_params.hw_ops->rx_desc_get_hdr_status(desc);
- }
+-	struct ath11k_skb_rxcb *rxcb;
+ 	struct sk_buff *msdu;
+ 	struct ath11k *ar;
+-	u8 mac_id;
+ 	int ret;
  
--static enum hal_encrypt_type ath11k_dp_rx_h_mpdu_start_enctype(struct ath11k_base *ab,
--							       struct hal_rx_desc *desc)
-+static inline
-+enum hal_encrypt_type ath11k_dp_rx_h_mpdu_start_enctype(struct ath11k_base *ab,
-+							struct hal_rx_desc *desc)
- {
- 	if (!ab->hw_params.hw_ops->rx_desc_encrypt_valid(desc))
- 		return HAL_ENCRYPT_TYPE_OPEN;
-@@ -34,32 +36,34 @@ static enum hal_encrypt_type ath11k_dp_rx_h_mpdu_start_enctype(struct ath11k_bas
- 	return ab->hw_params.hw_ops->rx_desc_get_encrypt_type(desc);
- }
+ 	if (skb_queue_empty(msdu_list))
+@@ -2536,20 +2534,20 @@ static void ath11k_dp_rx_process_received_packets(struct ath11k_base *ab,
  
--static u8 ath11k_dp_rx_h_msdu_start_decap_type(struct ath11k_base *ab,
--					       struct hal_rx_desc *desc)
-+static inline u8 ath11k_dp_rx_h_msdu_start_decap_type(struct ath11k_base *ab,
-+						      struct hal_rx_desc *desc)
- {
- 	return ab->hw_params.hw_ops->rx_desc_get_decap_type(desc);
- }
+ 	rcu_read_lock();
  
--static u8 ath11k_dp_rx_h_msdu_start_mesh_ctl_present(struct ath11k_base *ab,
--						     struct hal_rx_desc *desc)
-+static inline
-+u8 ath11k_dp_rx_h_msdu_start_mesh_ctl_present(struct ath11k_base *ab,
-+					      struct hal_rx_desc *desc)
- {
- 	return ab->hw_params.hw_ops->rx_desc_get_mesh_ctl(desc);
- }
+-	while (*quota && (msdu = __skb_dequeue(msdu_list))) {
+-		rxcb = ATH11K_SKB_RXCB(msdu);
+-		mac_id = rxcb->mac_id;
+-		ar = ab->pdevs[mac_id].ar;
+-		if (!rcu_dereference(ab->pdevs_active[mac_id])) {
+-			dev_kfree_skb_any(msdu);
+-			continue;
+-		}
++	ar = ab->pdevs[mac_id].ar;
++	if (!rcu_dereference(ab->pdevs_active[mac_id])) {
++		__skb_queue_purge(msdu_list);
++		rcu_read_unlock();
++		return;
++	}
  
--static bool ath11k_dp_rx_h_mpdu_start_seq_ctrl_valid(struct ath11k_base *ab,
--						     struct hal_rx_desc *desc)
-+static inline
-+bool ath11k_dp_rx_h_mpdu_start_seq_ctrl_valid(struct ath11k_base *ab,
-+					      struct hal_rx_desc *desc)
- {
- 	return ab->hw_params.hw_ops->rx_desc_get_mpdu_seq_ctl_vld(desc);
- }
+-		if (test_bit(ATH11K_CAC_RUNNING, &ar->dev_flags)) {
+-			dev_kfree_skb_any(msdu);
+-			continue;
+-		}
++	if (test_bit(ATH11K_CAC_RUNNING, &ar->dev_flags)) {
++		__skb_queue_purge(msdu_list);
++		rcu_read_unlock();
++		return;
++	}
  
--static bool ath11k_dp_rx_h_mpdu_start_fc_valid(struct ath11k_base *ab,
--					       struct hal_rx_desc *desc)
-+static inline bool ath11k_dp_rx_h_mpdu_start_fc_valid(struct ath11k_base *ab,
-+						      struct hal_rx_desc *desc)
- {
- 	return ab->hw_params.hw_ops->rx_desc_get_mpdu_fc_valid(desc);
- }
++	while ((msdu = __skb_dequeue(msdu_list))) {
+ 		ret = ath11k_dp_rx_process_msdu(ar, msdu, msdu_list);
+ 		if (ret) {
+ 			ath11k_dbg(ab, ATH11K_DBG_DATA,
+@@ -2571,7 +2569,7 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int ring_id,
+ 	struct ath11k_dp *dp = &ab->dp;
+ 	struct dp_rxdma_ring *rx_ring;
+ 	int num_buffs_reaped[MAX_RADIOS] = {0};
+-	struct sk_buff_head msdu_list;
++	struct sk_buff_head msdu_list[MAX_RADIOS];
+ 	struct ath11k_skb_rxcb *rxcb;
+ 	int total_msdu_reaped = 0;
+ 	struct hal_srng *srng;
+@@ -2580,10 +2578,13 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int ring_id,
+ 	bool done = false;
+ 	int buf_id, mac_id;
+ 	struct ath11k *ar;
+-	u32 *rx_desc;
++	struct hal_reo_dest_ring *desc;
++	enum hal_reo_dest_ring_push_reason push_reason;
++	u32 cookie;
+ 	int i;
  
--static bool ath11k_dp_rx_h_mpdu_start_more_frags(struct ath11k_base *ab,
--						 struct sk_buff *skb)
-+static inline bool ath11k_dp_rx_h_mpdu_start_more_frags(struct ath11k_base *ab,
-+							struct sk_buff *skb)
- {
- 	struct ieee80211_hdr *hdr;
+-	__skb_queue_head_init(&msdu_list);
++	for (i = 0; i < MAX_RADIOS; i++)
++		__skb_queue_head_init(&msdu_list[i]);
  
-@@ -67,8 +71,8 @@ static bool ath11k_dp_rx_h_mpdu_start_more_frags(struct ath11k_base *ab,
- 	return ieee80211_has_morefrags(hdr->frame_control);
- }
+ 	srng = &ab->hal.srng_list[dp->reo_dst_ring[ring_id].ring_id];
  
--static u16 ath11k_dp_rx_h_mpdu_start_frag_no(struct ath11k_base *ab,
--					     struct sk_buff *skb)
-+static inline u16 ath11k_dp_rx_h_mpdu_start_frag_no(struct ath11k_base *ab,
-+						    struct sk_buff *skb)
- {
- 	struct ieee80211_hdr *hdr;
+@@ -2592,13 +2593,11 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int ring_id,
+ 	ath11k_hal_srng_access_begin(ab, srng);
  
-@@ -76,37 +80,37 @@ static u16 ath11k_dp_rx_h_mpdu_start_frag_no(struct ath11k_base *ab,
- 	return le16_to_cpu(hdr->seq_ctrl) & IEEE80211_SCTL_FRAG;
- }
+ try_again:
+-	while ((rx_desc = ath11k_hal_srng_dst_get_next_entry(ab, srng))) {
+-		struct hal_reo_dest_ring desc = *(struct hal_reo_dest_ring *)rx_desc;
+-		enum hal_reo_dest_ring_push_reason push_reason;
+-		u32 cookie;
+-
++	while (likely(desc =
++	      (struct hal_reo_dest_ring *)ath11k_hal_srng_dst_get_next_entry(ab,
++									     srng))) {
+ 		cookie = FIELD_GET(BUFFER_ADDR_INFO1_SW_COOKIE,
+-				   desc.buf_addr_info.info1);
++				   desc->buf_addr_info.info1);
+ 		buf_id = FIELD_GET(DP_RXDMA_BUF_COOKIE_BUF_ID,
+ 				   cookie);
+ 		mac_id = FIELD_GET(DP_RXDMA_BUF_COOKIE_PDEV_ID, cookie);
+@@ -2625,7 +2624,7 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int ring_id,
+ 		num_buffs_reaped[mac_id]++;
  
--static u16 ath11k_dp_rx_h_mpdu_start_seq_no(struct ath11k_base *ab,
--					    struct hal_rx_desc *desc)
-+static inline u16 ath11k_dp_rx_h_mpdu_start_seq_no(struct ath11k_base *ab,
-+						   struct hal_rx_desc *desc)
- {
- 	return ab->hw_params.hw_ops->rx_desc_get_mpdu_start_seq_no(desc);
- }
+ 		push_reason = FIELD_GET(HAL_REO_DEST_RING_INFO0_PUSH_REASON,
+-					desc.info0);
++					desc->info0);
+ 		if (push_reason !=
+ 		    HAL_REO_DEST_RING_PUSH_REASON_ROUTING_INSTRUCTION) {
+ 			dev_kfree_skb_any(msdu);
+@@ -2633,17 +2632,17 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int ring_id,
+ 			continue;
+ 		}
  
--static void *ath11k_dp_rx_get_attention(struct ath11k_base *ab,
--					struct hal_rx_desc *desc)
-+static inline void *ath11k_dp_rx_get_attention(struct ath11k_base *ab,
-+					       struct hal_rx_desc *desc)
- {
- 	return ab->hw_params.hw_ops->rx_desc_get_attention(desc);
- }
+-		rxcb->is_first_msdu = !!(desc.rx_msdu_info.info0 &
++		rxcb->is_first_msdu = !!(desc->rx_msdu_info.info0 &
+ 					 RX_MSDU_DESC_INFO0_FIRST_MSDU_IN_MPDU);
+-		rxcb->is_last_msdu = !!(desc.rx_msdu_info.info0 &
++		rxcb->is_last_msdu = !!(desc->rx_msdu_info.info0 &
+ 					RX_MSDU_DESC_INFO0_LAST_MSDU_IN_MPDU);
+-		rxcb->is_continuation = !!(desc.rx_msdu_info.info0 &
++		rxcb->is_continuation = !!(desc->rx_msdu_info.info0 &
+ 					   RX_MSDU_DESC_INFO0_MSDU_CONTINUATION);
+ 		rxcb->mac_id = mac_id;
+ 		rxcb->tid = FIELD_GET(HAL_REO_DEST_RING_INFO0_RX_QUEUE_NUM,
+-				      desc.info0);
++				      desc->info0);
  
--static bool ath11k_dp_rx_h_attn_msdu_done(struct rx_attention *attn)
-+static inline bool ath11k_dp_rx_h_attn_msdu_done(struct rx_attention *attn)
- {
- 	return !!FIELD_GET(RX_ATTENTION_INFO2_MSDU_DONE,
- 			   __le32_to_cpu(attn->info2));
- }
+-		__skb_queue_tail(&msdu_list, msdu);
++		__skb_queue_tail(&msdu_list[mac_id], msdu);
  
--static bool ath11k_dp_rx_h_attn_l4_cksum_fail(struct rx_attention *attn)
-+static inline bool ath11k_dp_rx_h_attn_l4_cksum_fail(struct rx_attention *attn)
- {
- 	return !!FIELD_GET(RX_ATTENTION_INFO1_TCP_UDP_CKSUM_FAIL,
- 			   __le32_to_cpu(attn->info1));
- }
+ 		if (rxcb->is_continuation) {
+ 			done = false;
+@@ -2678,16 +2677,15 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int ring_id,
+ 		if (!num_buffs_reaped[i])
+ 			continue;
  
--static bool ath11k_dp_rx_h_attn_ip_cksum_fail(struct rx_attention *attn)
-+static inline bool ath11k_dp_rx_h_attn_ip_cksum_fail(struct rx_attention *attn)
- {
- 	return !!FIELD_GET(RX_ATTENTION_INFO1_IP_CKSUM_FAIL,
- 			   __le32_to_cpu(attn->info1));
- }
++		ath11k_dp_rx_process_received_packets(ab, napi, &msdu_list[i],
++						      &quota, i);
++
+ 		ar = ab->pdevs[i].ar;
+ 		rx_ring = &ar->dp.rx_refill_buf_ring;
  
--static bool ath11k_dp_rx_h_attn_is_decrypted(struct rx_attention *attn)
-+static inline bool ath11k_dp_rx_h_attn_is_decrypted(struct rx_attention *attn)
- {
- 	return (FIELD_GET(RX_ATTENTION_INFO2_DCRYPT_STATUS_CODE,
- 			  __le32_to_cpu(attn->info2)) ==
-@@ -142,68 +146,68 @@ static u32 ath11k_dp_rx_h_attn_mpdu_err(struct rx_attention *attn)
- 	return errmap;
- }
- 
--static u16 ath11k_dp_rx_h_msdu_start_msdu_len(struct ath11k_base *ab,
--					      struct hal_rx_desc *desc)
-+static inline u16 ath11k_dp_rx_h_msdu_start_msdu_len(struct ath11k_base *ab,
-+						     struct hal_rx_desc *desc)
- {
- 	return ab->hw_params.hw_ops->rx_desc_get_msdu_len(desc);
- }
- 
--static u8 ath11k_dp_rx_h_msdu_start_sgi(struct ath11k_base *ab,
--					struct hal_rx_desc *desc)
-+static inline u8 ath11k_dp_rx_h_msdu_start_sgi(struct ath11k_base *ab,
-+					       struct hal_rx_desc *desc)
- {
- 	return ab->hw_params.hw_ops->rx_desc_get_msdu_sgi(desc);
- }
- 
--static u8 ath11k_dp_rx_h_msdu_start_rate_mcs(struct ath11k_base *ab,
--					     struct hal_rx_desc *desc)
-+static inline u8 ath11k_dp_rx_h_msdu_start_rate_mcs(struct ath11k_base *ab,
-+						    struct hal_rx_desc *desc)
- {
- 	return ab->hw_params.hw_ops->rx_desc_get_msdu_rate_mcs(desc);
- }
- 
--static u8 ath11k_dp_rx_h_msdu_start_rx_bw(struct ath11k_base *ab,
--					  struct hal_rx_desc *desc)
-+static inline u8 ath11k_dp_rx_h_msdu_start_rx_bw(struct ath11k_base *ab,
-+						 struct hal_rx_desc *desc)
- {
- 	return ab->hw_params.hw_ops->rx_desc_get_msdu_rx_bw(desc);
- }
- 
--static u32 ath11k_dp_rx_h_msdu_start_freq(struct ath11k_base *ab,
--					  struct hal_rx_desc *desc)
-+static inline u32 ath11k_dp_rx_h_msdu_start_freq(struct ath11k_base *ab,
-+						 struct hal_rx_desc *desc)
- {
- 	return ab->hw_params.hw_ops->rx_desc_get_msdu_freq(desc);
- }
- 
--static u8 ath11k_dp_rx_h_msdu_start_pkt_type(struct ath11k_base *ab,
--					     struct hal_rx_desc *desc)
-+static inline u8 ath11k_dp_rx_h_msdu_start_pkt_type(struct ath11k_base *ab,
-+						    struct hal_rx_desc *desc)
- {
- 	return ab->hw_params.hw_ops->rx_desc_get_msdu_pkt_type(desc);
- }
- 
--static u8 ath11k_dp_rx_h_msdu_start_nss(struct ath11k_base *ab,
--					struct hal_rx_desc *desc)
-+static inline u8 ath11k_dp_rx_h_msdu_start_nss(struct ath11k_base *ab,
-+					       struct hal_rx_desc *desc)
- {
- 	return hweight8(ab->hw_params.hw_ops->rx_desc_get_msdu_nss(desc));
- }
- 
--static u8 ath11k_dp_rx_h_mpdu_start_tid(struct ath11k_base *ab,
--					struct hal_rx_desc *desc)
-+static inline u8 ath11k_dp_rx_h_mpdu_start_tid(struct ath11k_base *ab,
-+					       struct hal_rx_desc *desc)
- {
- 	return ab->hw_params.hw_ops->rx_desc_get_mpdu_tid(desc);
- }
- 
--static u16 ath11k_dp_rx_h_mpdu_start_peer_id(struct ath11k_base *ab,
--					     struct hal_rx_desc *desc)
-+static inline u16 ath11k_dp_rx_h_mpdu_start_peer_id(struct ath11k_base *ab,
-+						    struct hal_rx_desc *desc)
- {
- 	return ab->hw_params.hw_ops->rx_desc_get_mpdu_peer_id(desc);
- }
- 
--static u8 ath11k_dp_rx_h_msdu_end_l3pad(struct ath11k_base *ab,
--					struct hal_rx_desc *desc)
-+static inline u8 ath11k_dp_rx_h_msdu_end_l3pad(struct ath11k_base *ab,
-+					       struct hal_rx_desc *desc)
- {
- 	return ab->hw_params.hw_ops->rx_desc_get_l3_pad_bytes(desc);
- }
- 
--static bool ath11k_dp_rx_h_msdu_end_first_msdu(struct ath11k_base *ab,
--					       struct hal_rx_desc *desc)
-+static inline bool ath11k_dp_rx_h_msdu_end_first_msdu(struct ath11k_base *ab,
-+						      struct hal_rx_desc *desc)
- {
- 	return ab->hw_params.hw_ops->rx_desc_get_first_msdu(desc);
- }
-@@ -221,14 +225,14 @@ static void ath11k_dp_rx_desc_end_tlv_copy(struct ath11k_base *ab,
- 	ab->hw_params.hw_ops->rx_desc_copy_attn_end_tlv(fdesc, ldesc);
- }
- 
--static u32 ath11k_dp_rxdesc_get_mpdulen_err(struct rx_attention *attn)
-+static inline u32 ath11k_dp_rxdesc_get_mpdulen_err(struct rx_attention *attn)
- {
- 	return FIELD_GET(RX_ATTENTION_INFO1_MPDU_LEN_ERR,
- 			 __le32_to_cpu(attn->info1));
- }
- 
--static u8 *ath11k_dp_rxdesc_get_80211hdr(struct ath11k_base *ab,
--					 struct hal_rx_desc *rx_desc)
-+static inline u8 *ath11k_dp_rxdesc_get_80211hdr(struct ath11k_base *ab,
-+						struct hal_rx_desc *rx_desc)
- {
- 	u8 *rx_pkt_hdr;
- 
-@@ -237,8 +241,8 @@ static u8 *ath11k_dp_rxdesc_get_80211hdr(struct ath11k_base *ab,
- 	return rx_pkt_hdr;
- }
- 
--static bool ath11k_dp_rxdesc_mpdu_valid(struct ath11k_base *ab,
--					struct hal_rx_desc *rx_desc)
-+static inline bool ath11k_dp_rxdesc_mpdu_valid(struct ath11k_base *ab,
-+					       struct hal_rx_desc *rx_desc)
- {
- 	u32 tlv_tag;
- 
-@@ -247,15 +251,15 @@ static bool ath11k_dp_rxdesc_mpdu_valid(struct ath11k_base *ab,
- 	return tlv_tag == HAL_RX_MPDU_START;
- }
- 
--static u32 ath11k_dp_rxdesc_get_ppduid(struct ath11k_base *ab,
--				       struct hal_rx_desc *rx_desc)
-+static inline u32 ath11k_dp_rxdesc_get_ppduid(struct ath11k_base *ab,
-+					      struct hal_rx_desc *rx_desc)
- {
- 	return ab->hw_params.hw_ops->rx_desc_get_mpdu_ppdu_id(rx_desc);
- }
- 
--static void ath11k_dp_rxdesc_set_msdu_len(struct ath11k_base *ab,
--					  struct hal_rx_desc *desc,
--					  u16 len)
-+static inline void ath11k_dp_rxdesc_set_msdu_len(struct ath11k_base *ab,
-+						 struct hal_rx_desc *desc,
-+						 u16 len)
- {
- 	ab->hw_params.hw_ops->rx_desc_set_msdu_len(desc, len);
+ 		ath11k_dp_rxbufs_replenish(ab, i, rx_ring, num_buffs_reaped[i],
+ 					   HAL_RX_BUF_RBM_SW3_BM);
+ 	}
+-
+-	ath11k_dp_rx_process_received_packets(ab, napi, &msdu_list,
+-					      &quota, ring_id);
+-
+ exit:
+ 	return budget - quota;
  }
 -- 
 2.7.4
