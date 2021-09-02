@@ -5,16 +5,16 @@ X-Spam-Level:
 X-Spam-Status: No, score=-17.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 34605C4320A
-	for <ath11k@archiver.kernel.org>; Thu,  2 Sep 2021 05:35:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F40C0C4320A
+	for <ath11k@archiver.kernel.org>; Thu,  2 Sep 2021 05:35:06 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id EBBA060FC0
-	for <ath11k@archiver.kernel.org>; Thu,  2 Sep 2021 05:35:03 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org EBBA060FC0
+	by mail.kernel.org (Postfix) with ESMTPS id B8D3860FC0
+	for <ath11k@archiver.kernel.org>; Thu,  2 Sep 2021 05:35:06 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org B8D3860FC0
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,44 +23,44 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Post:List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=kQM15dMad1vzCgbJipKStyTnehwtImw2iaI+8J6biX8=; b=AxTHkJHKAMGBfO
-	KK8wH5zmXOonBMK/dUkzuANDpz8XxD2+vNzReUrQypHq2/U6cCEtivqWmOH7MWMGGvBK+L/7a+sRR
-	ul1T3qn3pf0Qg81j/nSruMRguHAqsRPTU5A0ej8bAMDU42CCLPiiZ9Td6CZktRYSJep+hwn4Fbro/
-	m6DD7NrNmqgd55NS6G7tfG2oN89KCrfsDpzYoNAJm4vp0hUdC77JDe3VXSqp03CX/OTwU009fN9lV
-	oNZTztTFrWr55HeGYsiKZVys587+vSIBJjqhc0c0TMKMYVtNDtI4yxmuz9dTVBoVEeouCwAxrjYxq
-	EftfhqezugHqO7gdT/4w==;
+	List-Owner; bh=GXh6iu6DJINUVCSw7H+Mm6Kt15gw3R42B7Ncmi13SYc=; b=Ox7FNNE8AQF5JO
+	c2TU7Mz2bqV1u4en+8WAufKPBqMk+SUZzLUaE6I7lgQESQeIzanAAIasUFNrFjt2pq4bd9rrRzS6p
+	164OOEAbskS3c/tpRJsYWEDR3QnjzD2w77ssF78zbxRd1iDARjgteaE/T0TZpl9368qDb2E6IvNGH
+	3GydVDRtP7f+n6+bfHTSr/4WEShDIw/XOa1LTgaXhktyqgqkYbesOXmC57LFjaf3uQlIjZCN7Oivo
+	Z70Lpc1eTTBUkBPaHFVGO0a+TxZOnb2c29IOBo6XvGKuN+4BxuEyhPbxTkudshkFPt8tLrIvIfUB6
+	Jlp+nFzXkkAmExWup/gw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mLfNN-008Yz9-Vt; Thu, 02 Sep 2021 05:35:01 +0000
+	id 1mLfNQ-008Z1D-SH; Thu, 02 Sep 2021 05:35:04 +0000
 Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mLfNJ-008YwE-5J
- for ath11k@lists.infradead.org; Thu, 02 Sep 2021 05:35:01 +0000
+ id 1mLfNJ-008YwH-FF
+ for ath11k@lists.infradead.org; Thu, 02 Sep 2021 05:35:03 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1630560897; h=References: In-Reply-To: Message-Id: Date:
+ s=smtp; t=1630560899; h=References: In-Reply-To: Message-Id: Date:
  Subject: Cc: To: From: Sender;
- bh=bsGMbyWywydWGJhRTYNtR6DN+KlBZGWOkqhwezkLGG8=;
- b=PW/ZGfilQWtkSKp1faSWqyX31HPG3bruHGJzU9tB/Zcb6daBldmhKWjY8SEm7zJTx065uA9d
- el6A07cxw3AX6c5SABoqj1adDJzOT/PODa1e4VrpLuwnthIBaVrT8P4yAnfTxfZ9QpsJFuCX
- sD1XSpuw+iFrYc1cxnLd4oTTA9Q=
+ bh=GFoJidY/sdda2ISwneKC1H4HOktMe1hobz2cQIftxOY=;
+ b=mK/v0rv+0a1J82f2lG1q9CsVct2rt3pES4Kr43sMyE/YQ2kVaJGsRHc0j86Bg7VQzpJbbIT3
+ sDMD/Qj4r4dSQ7dLXaOg/1yXxU7pSgNqrOh3jUCh5U25ubfSDIytEv/o9pTmH9S8K4bxZJKO
+ owxvvAw91UYWZDS21gNCDKt+kSY=
 X-Mailgun-Sending-Ip: 69.72.43.7
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
- 6130628040d2129ac13af82c (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 02 Sep 2021 05:34:56
+ smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
+ 613062786fc2cf7ad9208b14 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 02 Sep 2021 05:34:48
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 36B5EC43617; Thu,  2 Sep 2021 05:34:56 +0000 (UTC)
+ id B236AC4360C; Thu,  2 Sep 2021 05:34:47 +0000 (UTC)
 Received: from ppranees-linux.qualcomm.com
  (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
  (No client certificate requested) (Authenticated sender: ppranees)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 642EEC4360C;
- Thu,  2 Sep 2021 05:34:53 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 642EEC4360C
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id DF1F0C43460;
+ Thu,  2 Sep 2021 05:34:44 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org DF1F0C43460
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
@@ -70,16 +70,15 @@ To: kvalo@codeaurora.org
 Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
  P Praneesh <ppranees@codeaurora.org>, Sriram R <srirrama@codeaurora.org>,
  Jouni Malinen <jouni@codeaurora.org>
-Subject: [PATCH v3 06/12] ath11k: remove usage quota while processing rx
- packets
-Date: Thu,  2 Sep 2021 11:03:34 +0530
-Message-Id: <1630560820-21905-7-git-send-email-ppranees@codeaurora.org>
+Subject: [PATCH v3 03/12] ath11k: modify dp_rx desc access wrapper calls inline
+Date: Thu,  2 Sep 2021 11:03:31 +0530
+Message-Id: <1630560820-21905-4-git-send-email-ppranees@codeaurora.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1630560820-21905-1-git-send-email-ppranees@codeaurora.org>
 References: <1630560820-21905-1-git-send-email-ppranees@codeaurora.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210901_223457_304895_9EA706C9 
-X-CRM114-Status: GOOD (  12.75  )
+X-CRM114-CacheID: sfid-20210901_223459_938350_EFF6B5B7 
+X-CRM114-Status: GOOD (  10.95  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,10 +96,8 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-The usage of quota variable inside ath11k_dp_rx_process_received_packets()
-is redundant. Since we would queue only max packets to the list before
-calling this function so it would never exceed quota. Hence removing
-usage of quota variable.
+In data path, to reduce the CPU cycles spending on descriptor access
+wrapper function, changed those functions as static inline.
 
 Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.4.0.1.r2-00012-QCAHKSWPL_SILICONZ-1
 Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-01695-QCAHKSWPL_SILICONZ-1
@@ -110,57 +107,275 @@ Signed-off-by: Sriram R <srirrama@codeaurora.org>
 Signed-off-by: Jouni Malinen <jouni@codeaurora.org>
 Signed-off-by: P Praneesh <ppranees@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/dp_rx.c | 9 +++------
- 1 file changed, 3 insertions(+), 6 deletions(-)
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 114 +++++++++++++++++---------------
+ 1 file changed, 59 insertions(+), 55 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 1d85e10..e105bdc 100644
+index 9a22481..b84c2db 100644
 --- a/drivers/net/wireless/ath/ath11k/dp_rx.c
 +++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -2523,7 +2523,7 @@ static int ath11k_dp_rx_process_msdu(struct ath11k *ar,
- static void ath11k_dp_rx_process_received_packets(struct ath11k_base *ab,
- 						  struct napi_struct *napi,
- 						  struct sk_buff_head *msdu_list,
--						  int *quota, int mac_id)
-+						  int mac_id)
+@@ -20,13 +20,15 @@
+ 
+ #define ATH11K_DP_RX_FRAGMENT_TIMEOUT_MS (2 * HZ)
+ 
+-static u8 *ath11k_dp_rx_h_80211_hdr(struct ath11k_base *ab, struct hal_rx_desc *desc)
++static inline
++u8 *ath11k_dp_rx_h_80211_hdr(struct ath11k_base *ab, struct hal_rx_desc *desc)
  {
- 	struct sk_buff *msdu;
- 	struct ath11k *ar;
-@@ -2557,7 +2557,6 @@ static void ath11k_dp_rx_process_received_packets(struct ath11k_base *ab,
- 		}
- 
- 		ath11k_dp_rx_deliver_msdu(ar, napi, msdu);
--		(*quota)--;
- 	}
- 
- 	rcu_read_unlock();
-@@ -2574,7 +2573,6 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int ring_id,
- 	int total_msdu_reaped = 0;
- 	struct hal_srng *srng;
- 	struct sk_buff *msdu;
--	int quota = budget;
- 	bool done = false;
- 	int buf_id, mac_id;
- 	struct ath11k *ar;
-@@ -2677,8 +2675,7 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int ring_id,
- 		if (!num_buffs_reaped[i])
- 			continue;
- 
--		ath11k_dp_rx_process_received_packets(ab, napi, &msdu_list[i],
--						      &quota, i);
-+		ath11k_dp_rx_process_received_packets(ab, napi, &msdu_list[i], i);
- 
- 		ar = ab->pdevs[i].ar;
- 		rx_ring = &ar->dp.rx_refill_buf_ring;
-@@ -2687,7 +2684,7 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int ring_id,
- 					   HAL_RX_BUF_RBM_SW3_BM);
- 	}
- exit:
--	return budget - quota;
-+	return total_msdu_reaped;
+ 	return ab->hw_params.hw_ops->rx_desc_get_hdr_status(desc);
  }
  
- static void ath11k_dp_rx_update_peer_stats(struct ath11k_sta *arsta,
+-static enum hal_encrypt_type ath11k_dp_rx_h_mpdu_start_enctype(struct ath11k_base *ab,
+-							       struct hal_rx_desc *desc)
++static inline
++enum hal_encrypt_type ath11k_dp_rx_h_mpdu_start_enctype(struct ath11k_base *ab,
++							struct hal_rx_desc *desc)
+ {
+ 	if (!ab->hw_params.hw_ops->rx_desc_encrypt_valid(desc))
+ 		return HAL_ENCRYPT_TYPE_OPEN;
+@@ -34,32 +36,34 @@ static enum hal_encrypt_type ath11k_dp_rx_h_mpdu_start_enctype(struct ath11k_bas
+ 	return ab->hw_params.hw_ops->rx_desc_get_encrypt_type(desc);
+ }
+ 
+-static u8 ath11k_dp_rx_h_msdu_start_decap_type(struct ath11k_base *ab,
+-					       struct hal_rx_desc *desc)
++static inline u8 ath11k_dp_rx_h_msdu_start_decap_type(struct ath11k_base *ab,
++						      struct hal_rx_desc *desc)
+ {
+ 	return ab->hw_params.hw_ops->rx_desc_get_decap_type(desc);
+ }
+ 
+-static u8 ath11k_dp_rx_h_msdu_start_mesh_ctl_present(struct ath11k_base *ab,
+-						     struct hal_rx_desc *desc)
++static inline
++u8 ath11k_dp_rx_h_msdu_start_mesh_ctl_present(struct ath11k_base *ab,
++					      struct hal_rx_desc *desc)
+ {
+ 	return ab->hw_params.hw_ops->rx_desc_get_mesh_ctl(desc);
+ }
+ 
+-static bool ath11k_dp_rx_h_mpdu_start_seq_ctrl_valid(struct ath11k_base *ab,
+-						     struct hal_rx_desc *desc)
++static inline
++bool ath11k_dp_rx_h_mpdu_start_seq_ctrl_valid(struct ath11k_base *ab,
++					      struct hal_rx_desc *desc)
+ {
+ 	return ab->hw_params.hw_ops->rx_desc_get_mpdu_seq_ctl_vld(desc);
+ }
+ 
+-static bool ath11k_dp_rx_h_mpdu_start_fc_valid(struct ath11k_base *ab,
+-					       struct hal_rx_desc *desc)
++static inline bool ath11k_dp_rx_h_mpdu_start_fc_valid(struct ath11k_base *ab,
++						      struct hal_rx_desc *desc)
+ {
+ 	return ab->hw_params.hw_ops->rx_desc_get_mpdu_fc_valid(desc);
+ }
+ 
+-static bool ath11k_dp_rx_h_mpdu_start_more_frags(struct ath11k_base *ab,
+-						 struct sk_buff *skb)
++static inline bool ath11k_dp_rx_h_mpdu_start_more_frags(struct ath11k_base *ab,
++							struct sk_buff *skb)
+ {
+ 	struct ieee80211_hdr *hdr;
+ 
+@@ -67,8 +71,8 @@ static bool ath11k_dp_rx_h_mpdu_start_more_frags(struct ath11k_base *ab,
+ 	return ieee80211_has_morefrags(hdr->frame_control);
+ }
+ 
+-static u16 ath11k_dp_rx_h_mpdu_start_frag_no(struct ath11k_base *ab,
+-					     struct sk_buff *skb)
++static inline u16 ath11k_dp_rx_h_mpdu_start_frag_no(struct ath11k_base *ab,
++						    struct sk_buff *skb)
+ {
+ 	struct ieee80211_hdr *hdr;
+ 
+@@ -76,37 +80,37 @@ static u16 ath11k_dp_rx_h_mpdu_start_frag_no(struct ath11k_base *ab,
+ 	return le16_to_cpu(hdr->seq_ctrl) & IEEE80211_SCTL_FRAG;
+ }
+ 
+-static u16 ath11k_dp_rx_h_mpdu_start_seq_no(struct ath11k_base *ab,
+-					    struct hal_rx_desc *desc)
++static inline u16 ath11k_dp_rx_h_mpdu_start_seq_no(struct ath11k_base *ab,
++						   struct hal_rx_desc *desc)
+ {
+ 	return ab->hw_params.hw_ops->rx_desc_get_mpdu_start_seq_no(desc);
+ }
+ 
+-static void *ath11k_dp_rx_get_attention(struct ath11k_base *ab,
+-					struct hal_rx_desc *desc)
++static inline void *ath11k_dp_rx_get_attention(struct ath11k_base *ab,
++					       struct hal_rx_desc *desc)
+ {
+ 	return ab->hw_params.hw_ops->rx_desc_get_attention(desc);
+ }
+ 
+-static bool ath11k_dp_rx_h_attn_msdu_done(struct rx_attention *attn)
++static inline bool ath11k_dp_rx_h_attn_msdu_done(struct rx_attention *attn)
+ {
+ 	return !!FIELD_GET(RX_ATTENTION_INFO2_MSDU_DONE,
+ 			   __le32_to_cpu(attn->info2));
+ }
+ 
+-static bool ath11k_dp_rx_h_attn_l4_cksum_fail(struct rx_attention *attn)
++static inline bool ath11k_dp_rx_h_attn_l4_cksum_fail(struct rx_attention *attn)
+ {
+ 	return !!FIELD_GET(RX_ATTENTION_INFO1_TCP_UDP_CKSUM_FAIL,
+ 			   __le32_to_cpu(attn->info1));
+ }
+ 
+-static bool ath11k_dp_rx_h_attn_ip_cksum_fail(struct rx_attention *attn)
++static inline bool ath11k_dp_rx_h_attn_ip_cksum_fail(struct rx_attention *attn)
+ {
+ 	return !!FIELD_GET(RX_ATTENTION_INFO1_IP_CKSUM_FAIL,
+ 			   __le32_to_cpu(attn->info1));
+ }
+ 
+-static bool ath11k_dp_rx_h_attn_is_decrypted(struct rx_attention *attn)
++static inline bool ath11k_dp_rx_h_attn_is_decrypted(struct rx_attention *attn)
+ {
+ 	return (FIELD_GET(RX_ATTENTION_INFO2_DCRYPT_STATUS_CODE,
+ 			  __le32_to_cpu(attn->info2)) ==
+@@ -142,68 +146,68 @@ static u32 ath11k_dp_rx_h_attn_mpdu_err(struct rx_attention *attn)
+ 	return errmap;
+ }
+ 
+-static u16 ath11k_dp_rx_h_msdu_start_msdu_len(struct ath11k_base *ab,
+-					      struct hal_rx_desc *desc)
++static inline u16 ath11k_dp_rx_h_msdu_start_msdu_len(struct ath11k_base *ab,
++						     struct hal_rx_desc *desc)
+ {
+ 	return ab->hw_params.hw_ops->rx_desc_get_msdu_len(desc);
+ }
+ 
+-static u8 ath11k_dp_rx_h_msdu_start_sgi(struct ath11k_base *ab,
+-					struct hal_rx_desc *desc)
++static inline u8 ath11k_dp_rx_h_msdu_start_sgi(struct ath11k_base *ab,
++					       struct hal_rx_desc *desc)
+ {
+ 	return ab->hw_params.hw_ops->rx_desc_get_msdu_sgi(desc);
+ }
+ 
+-static u8 ath11k_dp_rx_h_msdu_start_rate_mcs(struct ath11k_base *ab,
+-					     struct hal_rx_desc *desc)
++static inline u8 ath11k_dp_rx_h_msdu_start_rate_mcs(struct ath11k_base *ab,
++						    struct hal_rx_desc *desc)
+ {
+ 	return ab->hw_params.hw_ops->rx_desc_get_msdu_rate_mcs(desc);
+ }
+ 
+-static u8 ath11k_dp_rx_h_msdu_start_rx_bw(struct ath11k_base *ab,
+-					  struct hal_rx_desc *desc)
++static inline u8 ath11k_dp_rx_h_msdu_start_rx_bw(struct ath11k_base *ab,
++						 struct hal_rx_desc *desc)
+ {
+ 	return ab->hw_params.hw_ops->rx_desc_get_msdu_rx_bw(desc);
+ }
+ 
+-static u32 ath11k_dp_rx_h_msdu_start_freq(struct ath11k_base *ab,
+-					  struct hal_rx_desc *desc)
++static inline u32 ath11k_dp_rx_h_msdu_start_freq(struct ath11k_base *ab,
++						 struct hal_rx_desc *desc)
+ {
+ 	return ab->hw_params.hw_ops->rx_desc_get_msdu_freq(desc);
+ }
+ 
+-static u8 ath11k_dp_rx_h_msdu_start_pkt_type(struct ath11k_base *ab,
+-					     struct hal_rx_desc *desc)
++static inline u8 ath11k_dp_rx_h_msdu_start_pkt_type(struct ath11k_base *ab,
++						    struct hal_rx_desc *desc)
+ {
+ 	return ab->hw_params.hw_ops->rx_desc_get_msdu_pkt_type(desc);
+ }
+ 
+-static u8 ath11k_dp_rx_h_msdu_start_nss(struct ath11k_base *ab,
+-					struct hal_rx_desc *desc)
++static inline u8 ath11k_dp_rx_h_msdu_start_nss(struct ath11k_base *ab,
++					       struct hal_rx_desc *desc)
+ {
+ 	return hweight8(ab->hw_params.hw_ops->rx_desc_get_msdu_nss(desc));
+ }
+ 
+-static u8 ath11k_dp_rx_h_mpdu_start_tid(struct ath11k_base *ab,
+-					struct hal_rx_desc *desc)
++static inline u8 ath11k_dp_rx_h_mpdu_start_tid(struct ath11k_base *ab,
++					       struct hal_rx_desc *desc)
+ {
+ 	return ab->hw_params.hw_ops->rx_desc_get_mpdu_tid(desc);
+ }
+ 
+-static u16 ath11k_dp_rx_h_mpdu_start_peer_id(struct ath11k_base *ab,
+-					     struct hal_rx_desc *desc)
++static inline u16 ath11k_dp_rx_h_mpdu_start_peer_id(struct ath11k_base *ab,
++						    struct hal_rx_desc *desc)
+ {
+ 	return ab->hw_params.hw_ops->rx_desc_get_mpdu_peer_id(desc);
+ }
+ 
+-static u8 ath11k_dp_rx_h_msdu_end_l3pad(struct ath11k_base *ab,
+-					struct hal_rx_desc *desc)
++static inline u8 ath11k_dp_rx_h_msdu_end_l3pad(struct ath11k_base *ab,
++					       struct hal_rx_desc *desc)
+ {
+ 	return ab->hw_params.hw_ops->rx_desc_get_l3_pad_bytes(desc);
+ }
+ 
+-static bool ath11k_dp_rx_h_msdu_end_first_msdu(struct ath11k_base *ab,
+-					       struct hal_rx_desc *desc)
++static inline bool ath11k_dp_rx_h_msdu_end_first_msdu(struct ath11k_base *ab,
++						      struct hal_rx_desc *desc)
+ {
+ 	return ab->hw_params.hw_ops->rx_desc_get_first_msdu(desc);
+ }
+@@ -221,14 +225,14 @@ static void ath11k_dp_rx_desc_end_tlv_copy(struct ath11k_base *ab,
+ 	ab->hw_params.hw_ops->rx_desc_copy_attn_end_tlv(fdesc, ldesc);
+ }
+ 
+-static u32 ath11k_dp_rxdesc_get_mpdulen_err(struct rx_attention *attn)
++static inline u32 ath11k_dp_rxdesc_get_mpdulen_err(struct rx_attention *attn)
+ {
+ 	return FIELD_GET(RX_ATTENTION_INFO1_MPDU_LEN_ERR,
+ 			 __le32_to_cpu(attn->info1));
+ }
+ 
+-static u8 *ath11k_dp_rxdesc_get_80211hdr(struct ath11k_base *ab,
+-					 struct hal_rx_desc *rx_desc)
++static inline u8 *ath11k_dp_rxdesc_get_80211hdr(struct ath11k_base *ab,
++						struct hal_rx_desc *rx_desc)
+ {
+ 	u8 *rx_pkt_hdr;
+ 
+@@ -237,8 +241,8 @@ static u8 *ath11k_dp_rxdesc_get_80211hdr(struct ath11k_base *ab,
+ 	return rx_pkt_hdr;
+ }
+ 
+-static bool ath11k_dp_rxdesc_mpdu_valid(struct ath11k_base *ab,
+-					struct hal_rx_desc *rx_desc)
++static inline bool ath11k_dp_rxdesc_mpdu_valid(struct ath11k_base *ab,
++					       struct hal_rx_desc *rx_desc)
+ {
+ 	u32 tlv_tag;
+ 
+@@ -247,15 +251,15 @@ static bool ath11k_dp_rxdesc_mpdu_valid(struct ath11k_base *ab,
+ 	return tlv_tag == HAL_RX_MPDU_START;
+ }
+ 
+-static u32 ath11k_dp_rxdesc_get_ppduid(struct ath11k_base *ab,
+-				       struct hal_rx_desc *rx_desc)
++static inline u32 ath11k_dp_rxdesc_get_ppduid(struct ath11k_base *ab,
++					      struct hal_rx_desc *rx_desc)
+ {
+ 	return ab->hw_params.hw_ops->rx_desc_get_mpdu_ppdu_id(rx_desc);
+ }
+ 
+-static void ath11k_dp_rxdesc_set_msdu_len(struct ath11k_base *ab,
+-					  struct hal_rx_desc *desc,
+-					  u16 len)
++static inline void ath11k_dp_rxdesc_set_msdu_len(struct ath11k_base *ab,
++						 struct hal_rx_desc *desc,
++						 u16 len)
+ {
+ 	ab->hw_params.hw_ops->rx_desc_set_msdu_len(desc, len);
+ }
 -- 
 2.7.4
 
