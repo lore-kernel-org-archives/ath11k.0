@@ -7,14 +7,14 @@ X-Spam-Status: No, score=-17.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
 	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 94F18C433F5
-	for <ath11k@archiver.kernel.org>; Fri,  3 Sep 2021 11:49:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4F829C4332F
+	for <ath11k@archiver.kernel.org>; Fri,  3 Sep 2021 11:49:08 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5F49A60FDC
-	for <ath11k@archiver.kernel.org>; Fri,  3 Sep 2021 11:49:07 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 5F49A60FDC
+	by mail.kernel.org (Postfix) with ESMTPS id 1873D60FDC
+	for <ath11k@archiver.kernel.org>; Fri,  3 Sep 2021 11:49:08 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 1873D60FDC
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,44 +23,44 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ez5irkJ0US62pH1pLsu2WG8Ey8fLuIyE+gJ9zhOEHoc=; b=sV2p1/sqpWTg6m
-	yx9fBvpjkVM4dLiZfCwBv72eCMUqMnrwbyC+eTwSlARSRgA3ZM+OAIqxI5zmxbJA091VyW6rNII/V
-	c500Zv+WRVjAsuag6FDEhupYl3qRRNu9jDBpqdmnycSTMVCLIocXXLjece1OxGeXGhOg3eDCATrK5
-	6AkqQzp9LEZX0li6ta3KBOteyc0twXmxn29HDSNjK7XLcdKIt3r8dfoxxPLNqDY7N94Tu+IbfjecO
-	YPGCwtCZMWklJ58HE8XthG8mVlRD5fEg2cXoWePcRzxR94xDMwop1JhJ71z74xZUxBNqCLPRXXfYa
-	iRguw8bA38Bj4d45hlhg==;
+	List-Owner; bh=ObX1ocXbTa4Z6P0IJUbIgb0d1QQ5+3yHMTJ44mRpTC8=; b=sXxUBBJEtA5e97
+	a+b2ViAlvOYRIgXg0uYEJgOjNOOAIEMsYlEeG7tNVZLxpVWgM2zeVENsdpbDcLqv48hZg3IWvUDed
+	vAx7sP6+i1BlyNps9j9WvZ+zdehvU0QhpB/nEbulr9LY5tK6y+khAPLI0ouMCORTgToJF2eaDGOJM
+	KxgjSVrdokaR7K34rYMljAOMTboQ9lO6zimDM/l4gdZsnkgY00AnUF9CyHPMDpjzwUiDLQy2fhqPd
+	utiua7BTQBwtZN8EgnFCSBUAnskY0uHxi+C+YmcI7mk2aL4V+/Tp2sZs3l4vLJnrlZ0rJlD+cm5PW
+	Gjw6dJbfOgQFYi5QOtiA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mM7gv-00BpkK-Eu; Fri, 03 Sep 2021 11:49:05 +0000
-Received: from so254-9.mailgun.net ([198.61.254.9])
+	id 1mM7gw-00Bpkp-0K; Fri, 03 Sep 2021 11:49:06 +0000
+Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mM7go-00BpOH-D3
- for ath11k@lists.infradead.org; Fri, 03 Sep 2021 11:49:01 +0000
+ id 1mM7gr-00BpOT-5U
+ for ath11k@lists.infradead.org; Fri, 03 Sep 2021 11:49:03 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1630669740; h=Content-Transfer-Encoding: MIME-Version:
+ s=smtp; t=1630669742; h=Content-Transfer-Encoding: MIME-Version:
  References: In-Reply-To: Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=L0D+wO9kLSIqvuf/i4348J2+bF82B4cbC78mzqFBkMQ=;
- b=vZB0dVrpbIHlajFq3Oi9OaUBDTOmfvPP8Mu1G7JcaHWgyxFdIVobMmUMbfn6m65DdTUAmwR4
- PfrZq9tjLm5vNiTUdDjdUUAq/jtUvdAxjZrdNRKR12lWtFYfdES1bZtfjlq3jY+yOmrlWstt
- wEN3ZMFqoRTauyjD6iTkA0z/Qwg=
-X-Mailgun-Sending-Ip: 198.61.254.9
+ Sender; bh=MII1jvCgs+l0Vv+ZFpi/PRCGlZgAoEL+LQqoA/PUiCE=;
+ b=F4ubLwyo7Q8/j0rVk27Mydze5P0vVN1cwj+uT7WCbFFEUTgOt1RN19wl3FX743IWv2Jsn8px
+ qJUjHLPelh3wtyGsaAXcYZ+95Loe+XYOZnHXRcPnqKEob2EdndbwyoLBvQD0MlcMwkYYykah
+ NDEU55K+qpa8ZLCqo9dRJobtn4U=
+X-Mailgun-Sending-Ip: 69.72.43.7
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
  smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
- 61320b8e1567234b8c8fc774 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 03 Sep 2021 11:48:30
+ 61320b9a1567234b8c8feb56 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 03 Sep 2021 11:48:42
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 08CB9C4338F; Fri,  3 Sep 2021 11:48:30 +0000 (UTC)
+ id 31011C4338F; Fri,  3 Sep 2021 11:48:42 +0000 (UTC)
 Received: from wgong-HP3-Z230-SFF-Workstation.qca.qualcomm.com (unknown
  [180.166.53.21])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
  (No client certificate requested) (Authenticated sender: wgong)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 9328FC4360D;
- Fri,  3 Sep 2021 11:48:28 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 9328FC4360D
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id BBED6C4360C;
+ Fri,  3 Sep 2021 11:48:40 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org BBED6C4360C
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
@@ -70,16 +70,17 @@ To: johannes@sipsolutions.net,
 	ath11k@lists.infradead.org
 Cc: linux-wireless@vger.kernel.org,
 	wgong@codeaurora.org
-Subject: [PATCH v3 1/9] mac80211: add power type definition for 6 GHz
-Date: Fri,  3 Sep 2021 07:48:13 -0400
-Message-Id: <20210903114821.23346-2-wgong@codeaurora.org>
+Subject: [PATCH v3 9/9] mac80211: save transmit power envelope element and
+ power constraint
+Date: Fri,  3 Sep 2021 07:48:21 -0400
+Message-Id: <20210903114821.23346-10-wgong@codeaurora.org>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210903114821.23346-1-wgong@codeaurora.org>
 References: <20210903114821.23346-1-wgong@codeaurora.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210903_044900_418717_FB8A79D8 
-X-CRM114-Status: GOOD (  12.88  )
+X-CRM114-CacheID: sfid-20210903_044902_437730_074FE1AF 
+X-CRM114-Status: GOOD (  15.21  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,83 +97,95 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-6 GHz regulatory domains introduces different modes for 6 GHz AP
-operations Low Power Indoor(LPI), Standard Power(SP) and Very Low
-Power(VLP). 6 GHz STAs could be operated as either Regular or
-Subordinate clients. This patch is define the flags for power type
-of AP and STATION mode.
+This is to save the transmit power envelope element and power
+constraint in struct ieee80211_bss_conf for 6 GHz. Lower driver
+will use this info to calculate the power limit.
 
 Signed-off-by: Wen Gong <wgong@codeaurora.org>
 ---
- include/linux/ieee80211.h | 34 ++++++++++++++++++++++++++++++++++
- include/net/mac80211.h    |  2 ++
+ include/net/mac80211.h |  6 ++++++
+ net/mac80211/mlme.c    | 30 ++++++++++++++++++++++++++++++
  2 files changed, 36 insertions(+)
 
-diff --git a/include/linux/ieee80211.h b/include/linux/ieee80211.h
-index 68d8b9cdd3b8..2bab84297407 100644
---- a/include/linux/ieee80211.h
-+++ b/include/linux/ieee80211.h
-@@ -1942,6 +1942,40 @@ int ieee80211_get_vht_max_nss(struct ieee80211_vht_cap *cap,
- 			      int mcs, bool ext_nss_bw_capable,
- 			      unsigned int max_vht_nss);
- 
-+/**
-+ * enum ieee80211_ap_reg_power - regulatory power for a Access Point
-+ *
-+ * @IEEE80211_REG_UNSET_AP: Access Point has no regulatory power mode
-+ * @IEEE80211_REG_LPI: Indoor Access Point
-+ * @IEEE80211_REG_SP: Standard power Access Point
-+ * @IEEE80211_REG_VLP: Very low power Access Point
-+ */
-+enum ieee80211_ap_reg_power {
-+	IEEE80211_REG_UNSET_AP,
-+	IEEE80211_REG_LPI_AP,
-+	IEEE80211_REG_SP_AP,
-+	IEEE80211_REG_VLP_AP,
-+	IEEE80211_REG_AP_POWER_AFTER_LAST,
-+	IEEE80211_REG_AP_POWER_MAX =
-+		IEEE80211_REG_AP_POWER_AFTER_LAST - 1,
-+};
-+
-+/**
-+ * enum ieee80211_client_reg_power - regulatory power for a client
-+ *
-+ * @IEEE80211_REG_UNSET_CLIENT: Client has no regulatory power mode
-+ * @IEEE80211_REG_DEFAULT_CLIENT: Default Client
-+ * @IEEE80211_REG_SUBORDINATE_CLIENT: Subordinate Client
-+ */
-+enum ieee80211_client_reg_power {
-+	IEEE80211_REG_UNSET_CLIENT,
-+	IEEE80211_REG_DEFAULT_CLIENT,
-+	IEEE80211_REG_SUBORDINATE_CLIENT,
-+	IEEE80211_REG_CLIENT_POWER_AFTER_LAST,
-+	IEEE80211_REG_CLIENT_POWER_MAX =
-+		IEEE80211_REG_CLIENT_POWER_AFTER_LAST - 1,
-+};
-+
- /* 802.11ax HE MAC capabilities */
- #define IEEE80211_HE_MAC_CAP0_HTC_HE				0x01
- #define IEEE80211_HE_MAC_CAP0_TWT_REQ				0x02
 diff --git a/include/net/mac80211.h b/include/net/mac80211.h
-index e89530d0d9c6..d0522d7f3351 100644
+index d0522d7f3351..0ac6fe7b8f99 100644
 --- a/include/net/mac80211.h
 +++ b/include/net/mac80211.h
-@@ -631,6 +631,7 @@ struct ieee80211_fils_discovery {
-  * @s1g: BSS is S1G BSS (affects Association Request format).
+@@ -632,6 +632,9 @@ struct ieee80211_fils_discovery {
   * @beacon_tx_rate: The configured beacon transmit rate that needs to be passed
   *	to driver when rate control is offloaded to firmware.
-+ * @power_type: power type of BSS for 6 GHz
+  * @power_type: power type of BSS for 6 GHz
++ * @tx_pwr_env: transmit power envelope array of BSS.
++ * @tx_pwr_env_num: number of @tx_pwr_env.
++ * @pwr_reduction: power constraint of BSS.
   */
  struct ieee80211_bss_conf {
  	const u8 *bssid;
-@@ -700,6 +701,7 @@ struct ieee80211_bss_conf {
- 	u32 unsol_bcast_probe_resp_interval;
+@@ -702,6 +705,9 @@ struct ieee80211_bss_conf {
  	bool s1g;
  	struct cfg80211_bitrate_mask beacon_tx_rate;
-+	enum ieee80211_ap_reg_power power_type;
+ 	enum ieee80211_ap_reg_power power_type;
++	struct ieee80211_tx_pwr_env tx_pwr_env[IEEE80211_TPE_MAX_IE_COUNT];
++	u8 tx_pwr_env_num;
++	u8 pwr_reduction;
  };
  
  /**
+diff --git a/net/mac80211/mlme.c b/net/mac80211/mlme.c
+index 6b32cdd590cd..cda28ec58a31 100644
+--- a/net/mac80211/mlme.c
++++ b/net/mac80211/mlme.c
+@@ -2340,6 +2340,7 @@ static void ieee80211_set_disassoc(struct ieee80211_sub_if_data *sdata,
+ {
+ 	struct ieee80211_if_managed *ifmgd = &sdata->u.mgd;
+ 	struct ieee80211_local *local = sdata->local;
++	struct ieee80211_bss_conf *bss_conf;
+ 	u32 changed = 0;
+ 
+ 	sdata_assert_lock(sdata);
+@@ -2483,6 +2484,11 @@ static void ieee80211_set_disassoc(struct ieee80211_sub_if_data *sdata,
+ 	cancel_delayed_work_sync(&ifmgd->tx_tspec_wk);
+ 
+ 	sdata->encrypt_headroom = IEEE80211_ENCRYPT_HEADROOM;
++
++	bss_conf = &sdata->vif.bss_conf;
++	bss_conf->pwr_reduction = 0;
++	bss_conf->tx_pwr_env_num = 0;
++	memset(bss_conf->tx_pwr_env, 0, sizeof(bss_conf->tx_pwr_env));
+ }
+ 
+ static void ieee80211_reset_ap_probe(struct ieee80211_sub_if_data *sdata)
+@@ -5087,6 +5093,30 @@ static int ieee80211_prep_channel(struct ieee80211_sub_if_data *sdata,
+ 		else
+ 			he_oper = NULL;
+ 
++		if (is_6ghz) {
++			struct ieee80211_bss_conf *bss_conf;
++			u8 i, j = 0;
++
++			bss_conf = &sdata->vif.bss_conf;
++
++			if (elems->pwr_constr_elem)
++				bss_conf->pwr_reduction = *elems->pwr_constr_elem;
++
++			BUILD_BUG_ON(ARRAY_SIZE(bss_conf->tx_pwr_env) !=
++				     ARRAY_SIZE(elems->tx_pwr_env));
++
++			for (i = 0; i < elems->tx_pwr_env_num; i++) {
++				if (elems->tx_pwr_env_len[i] >
++				    sizeof(bss_conf->tx_pwr_env[j]))
++					continue;
++
++				bss_conf->tx_pwr_env_num++;
++				memcpy(&bss_conf->tx_pwr_env[j], elems->tx_pwr_env[i],
++				       elems->tx_pwr_env_len[i]);
++				j++;
++			}
++		}
++
+ 		if (!ieee80211_verify_sta_he_mcs_support(sband, he_oper))
+ 			ifmgd->flags |= IEEE80211_STA_DISABLE_HE;
+ 	}
 -- 
 2.31.1
 
