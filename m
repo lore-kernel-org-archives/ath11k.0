@@ -5,16 +5,16 @@ X-Spam-Level:
 X-Spam-Status: No, score=-17.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2FEB0C43217
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1FF7CC4332F
 	for <ath11k@archiver.kernel.org>; Fri,  3 Sep 2021 11:48:45 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DE31560FDC
+	by mail.kernel.org (Postfix) with ESMTPS id D786761051
 	for <ath11k@archiver.kernel.org>; Fri,  3 Sep 2021 11:48:44 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org DE31560FDC
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org D786761051
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,44 +23,44 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=p2qRKeKxIg0WxCj0KghTcUjDfRRJ8xYDLftypF7DiAI=; b=Wuh156uMnqC/KK
-	2cPG9HvDTxNEVPENBYv6IJHOlia7SrQ04h/+GfEjtfMFDTrq9XfKJSav/h4ZgS3kfVMiphQu5SN+N
-	pcl6v/grrVtOsoKGaaJQsrNYuryUG5UW+uGASwO5YLWAwOkqrYUh6uznRjGfreTp/E2oLKcLR2lvB
-	w2jNma5cF07SBv6wUcZIc2ZfPixofzHSq/snHu8MBTvAIK8nst5aFUa36/SliG+WIoCP0sfXwizFP
-	0EM5QqTOq8AsKuLULO470FFBcVmco5A11VcZTXpLC8DHErAJA1bH/D1OQnF+Evg0DgppyE9FA/HQ4
-	8ncVaDyMYfZawTAe2ztg==;
+	List-Owner; bh=LvsCGWNumWQGeHVH/D1w878F6QACTYmG9uqQeUJmMgs=; b=O6Du9734E4vjAj
+	b2UAPfii/wJblV/5bIFSALSq4PhPP/W1gCt91U+Dry9QHPehd+eqXS7/hlkR38bE14KU3JHP/zO+c
+	g+VUS+4X4sE6GLAldBjIqzq1xCByqJGJMdvgEKMdMF+4gIKuJdEzrEMUj1Saf1xKDfGyGIf0ryING
+	Fxl2mWEkzqpw7crmxVEyh45nUaTPw7gShSdgKuGHqAxMJTPutrxOak34a3ZgCuWjbQnF/5Jhn+MYl
+	PyWQES2AAXMGlE720BimcuAIRiS2HuLIryF0LgTHnH+8Ct33+IMlOazW7Qz/7R2DaFPrAWEZkSh5R
+	D2+gTocMCdxHRA8QFs3A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mM7gY-00BpQd-N5; Fri, 03 Sep 2021 11:48:42 +0000
+	id 1mM7gY-00BpQX-BP; Fri, 03 Sep 2021 11:48:42 +0000
 Received: from so254-9.mailgun.net ([198.61.254.9])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mM7gU-00BpOH-TC
+ id 1mM7gU-00BpNx-Tq
  for ath11k@lists.infradead.org; Fri, 03 Sep 2021 11:48:40 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1630669717; h=Content-Transfer-Encoding: MIME-Version:
+ s=smtp; t=1630669715; h=Content-Transfer-Encoding: MIME-Version:
  References: In-Reply-To: Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=HdzZuCNAC1xDlrRxaW72yXJ2nEZjm7iGv5mmFGp4lPo=;
- b=pFmGCApAJ5/c2+ak+SBcYNxYLi174Ob5GC/WqWYmMZAHcAgt/i0QmQIlCig/OEr+9dDDk7X8
- PF68cRpYvJmpEWvCliS5QuJKFM2+dH37yn2aMJ5Lh8XfMRKTQupfZH3abgOXwahcKb7uw7Xx
- LYPmHLRKtuxll376bvBoHlXBqTg=
+ Sender; bh=dGN37s3jyUX7eiqRdMr8/XPiuEfd1mFm9MFNpMM8P24=;
+ b=ZWhiXkl+iTGnceV44hTwiu+/FxfKkrIpMdaadQShQbQ0Hac8090Xa2HtuHG6aV73HRRZgQ9T
+ Yq916Djyj/zGorQeetc4E57ZuQVikSWFhLmOFAWg7sQq1BOQ3vpcTbhXxS3RAxk23u6JldJo
+ D7gCqjmzsTEav3NukT4Xe8OY9+Q=
 X-Mailgun-Sending-Ip: 198.61.254.9
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
- 61320b93cd680e8969afd875 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 03 Sep 2021 11:48:35
+ smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
+ 61320b9189cdb62061a5419e (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 03 Sep 2021 11:48:33
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id A7C71C43460; Fri,  3 Sep 2021 11:48:34 +0000 (UTC)
+ id 4B163C4360D; Fri,  3 Sep 2021 11:48:33 +0000 (UTC)
 Received: from wgong-HP3-Z230-SFF-Workstation.qca.qualcomm.com (unknown
  [180.166.53.21])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
  (No client certificate requested) (Authenticated sender: wgong)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 1E12CC43616;
- Fri,  3 Sep 2021 11:48:32 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 1E12CC43616
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 9857CC43460;
+ Fri,  3 Sep 2021 11:48:31 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 9857CC43460
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
@@ -70,17 +70,17 @@ To: johannes@sipsolutions.net,
 	ath11k@lists.infradead.org
 Cc: linux-wireless@vger.kernel.org,
 	wgong@codeaurora.org
-Subject: [PATCH v3 4/9] cfg80211: add definition for 6 GHz power spectral
- density(psd)
-Date: Fri,  3 Sep 2021 07:48:16 -0400
-Message-Id: <20210903114821.23346-5-wgong@codeaurora.org>
+Subject: [PATCH v3 3/9] mac80211: add parse regulatory info in 6 GHz operation
+ information
+Date: Fri,  3 Sep 2021 07:48:15 -0400
+Message-Id: <20210903114821.23346-4-wgong@codeaurora.org>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210903114821.23346-1-wgong@codeaurora.org>
 References: <20210903114821.23346-1-wgong@codeaurora.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210903_044839_073334_7B32FC4C 
-X-CRM114-Status: GOOD (  13.37  )
+X-CRM114-CacheID: sfid-20210903_044839_078711_D03A414D 
+X-CRM114-Status: GOOD (  11.89  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,85 +97,45 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-6 GHz regulatory domains introduces power spectral density(psd). This
-patch is define the flags for psd.
+This patch is to convert the regulatory info subfield in HE operation
+element to power type and save in struct cfg80211_chan_def.
 
 Signed-off-by: Wen Gong <wgong@codeaurora.org>
 ---
- include/net/cfg80211.h       | 5 +++++
- include/net/regulatory.h     | 1 +
- include/uapi/linux/nl80211.h | 2 ++
- 3 files changed, 8 insertions(+)
+ net/mac80211/util.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-diff --git a/include/net/cfg80211.h b/include/net/cfg80211.h
-index 58c2cd417e89..a03a0b84b44e 100644
---- a/include/net/cfg80211.h
-+++ b/include/net/cfg80211.h
-@@ -108,6 +108,8 @@ struct wiphy;
-  *	on this channel.
-  * @IEEE80211_CHAN_16MHZ: 16 MHz bandwidth is permitted
-  *	on this channel.
-+ * @IEEE80211_CHAN_PSD: power spectral density (in dBm)
-+ *	on this channel.
-  *
-  */
- enum ieee80211_channel_flags {
-@@ -130,6 +132,7 @@ enum ieee80211_channel_flags {
- 	IEEE80211_CHAN_4MHZ		= 1<<16,
- 	IEEE80211_CHAN_8MHZ		= 1<<17,
- 	IEEE80211_CHAN_16MHZ		= 1<<18,
-+	IEEE80211_CHAN_PSD		= 1<<19,
- };
+diff --git a/net/mac80211/util.c b/net/mac80211/util.c
+index 93d96a4f9c3e..04f2ba530d4f 100644
+--- a/net/mac80211/util.c
++++ b/net/mac80211/util.c
+@@ -3352,6 +3352,7 @@ bool ieee80211_chandef_he_6ghz_oper(struct ieee80211_sub_if_data *sdata,
+ 	const struct ieee80211_sta_he_cap *he_cap;
+ 	struct cfg80211_chan_def he_chandef = *chandef;
+ 	const struct ieee80211_he_6ghz_oper *he_6ghz_oper;
++	struct ieee80211_bss_conf *bss_conf;
+ 	bool support_80_80, support_160;
+ 	u8 he_phy_cap;
+ 	u32 freq;
+@@ -3395,6 +3396,18 @@ bool ieee80211_chandef_he_6ghz_oper(struct ieee80211_sub_if_data *sdata,
+ 					      NL80211_BAND_6GHZ);
+ 	he_chandef.chan = ieee80211_get_channel(sdata->local->hw.wiphy, freq);
  
- #define IEEE80211_CHAN_NO_HT40 \
-@@ -163,6 +166,7 @@ enum ieee80211_channel_flags {
-  *	on this channel.
-  * @dfs_state_entered: timestamp (jiffies) when the dfs state was entered.
-  * @dfs_cac_ms: DFS CAC time in milliseconds, this is valid for DFS channels.
-+ * @psd: power spectral density (in dBm)
-  */
- struct ieee80211_channel {
- 	enum nl80211_band band;
-@@ -179,6 +183,7 @@ struct ieee80211_channel {
- 	enum nl80211_dfs_state dfs_state;
- 	unsigned long dfs_state_entered;
- 	unsigned int dfs_cac_ms;
-+	s8 psd;
- };
- 
- /**
-diff --git a/include/net/regulatory.h b/include/net/regulatory.h
-index 47f06f6f5a67..ed20004fb6a9 100644
---- a/include/net/regulatory.h
-+++ b/include/net/regulatory.h
-@@ -221,6 +221,7 @@ struct ieee80211_reg_rule {
- 	u32 flags;
- 	u32 dfs_cac_ms;
- 	bool has_wmm;
-+	s8 psd;
- };
- 
- struct ieee80211_regdomain {
-diff --git a/include/uapi/linux/nl80211.h b/include/uapi/linux/nl80211.h
-index f962c06e9818..78b0f3a6cc13 100644
---- a/include/uapi/linux/nl80211.h
-+++ b/include/uapi/linux/nl80211.h
-@@ -4043,6 +4043,7 @@ enum nl80211_sched_scan_match_attr {
-  * @NL80211_RRF_NO_80MHZ: 80MHz operation not allowed
-  * @NL80211_RRF_NO_160MHZ: 160MHz operation not allowed
-  * @NL80211_RRF_NO_HE: HE operation not allowed
-+ * @NL80211_RRF_PSD: channels has power spectral density value
-  */
- enum nl80211_reg_rule_flags {
- 	NL80211_RRF_NO_OFDM		= 1<<0,
-@@ -4061,6 +4062,7 @@ enum nl80211_reg_rule_flags {
- 	NL80211_RRF_NO_80MHZ		= 1<<15,
- 	NL80211_RRF_NO_160MHZ		= 1<<16,
- 	NL80211_RRF_NO_HE		= 1<<17,
-+	NL80211_RRF_PSD		= 1<<18,
- };
- 
- #define NL80211_RRF_PASSIVE_SCAN	NL80211_RRF_NO_IR
++	bss_conf = &sdata->vif.bss_conf;
++
++	switch (u8_get_bits(he_6ghz_oper->control,
++			    IEEE80211_HE_6GHZ_OPER_CTRL_REG_INFO)) {
++	case IEEE80211_6GHZ_CTRL_REG_LPI_AP:
++		bss_conf->power_type = IEEE80211_REG_LPI_AP;
++		break;
++	case IEEE80211_6GHZ_CTRL_REG_SP_AP:
++		bss_conf->power_type = IEEE80211_REG_SP_AP;
++		break;
++	}
++
+ 	switch (u8_get_bits(he_6ghz_oper->control,
+ 			    IEEE80211_HE_6GHZ_OPER_CTRL_CHANWIDTH)) {
+ 	case IEEE80211_HE_6GHZ_OPER_CTRL_CHANWIDTH_20MHZ:
 -- 
 2.31.1
 
