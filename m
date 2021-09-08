@@ -1,90 +1,80 @@
-Return-Path: <SRS0=J1Y+=N2=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=P3pu=N6=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.7 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-17.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 855E3C433F5
-	for <ath11k@archiver.kernel.org>; Sat,  4 Sep 2021 11:50:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CDFF8C433F5
+	for <ath11k@archiver.kernel.org>; Wed,  8 Sep 2021 06:53:15 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3527760FDC
-	for <ath11k@archiver.kernel.org>; Sat,  4 Sep 2021 11:50:28 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 3527760FDC
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmx.com
+	by mail.kernel.org (Postfix) with ESMTPS id 8B5AB61104
+	for <ath11k@archiver.kernel.org>; Wed,  8 Sep 2021 06:53:15 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 8B5AB61104
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:Subject:Cc:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=sEbLK0cJtjs1B2JxQMeBb5ZEaShdqi8oUbrtulG9cuc=; b=N1DTdiT13RovHQ
-	EJbF9yyith2FxXaucgHR+N38goaHLA5S8DjbS9LlYuIF5peUitteWEJN14m/2TUCqA8QHU/zMtcfL
-	MJHVh9nzJZBeXIxynACFfl0Hkz7c1HXkHVzTXj56j1f3UaaxRBBPe0dhCXsg+bZxYGCRlsnaxGKPv
-	g5/f4X19WvA117e+1tzctQQRPA0DbnicRXv7DnlGIHvypU6x+VehGsvMJADDXzdenPeYE10UZN10x
-	vtJX5mt6yaqgJOfOW4qVIkWZbWatKRVHYOSA7kCI6E3A4UCItprmU5+3qmPnYT7gC2VPv4dmlUaJw
-	185RVQk+lOqCR4EO11cg==;
+	List-Owner; bh=bVwYF62YLC/HWvpSAnQweKqttzztl3oqnM5STlHXgPI=; b=aJInjdZBB/RIxR
+	8826ujysYlUEaOH9+QF/sLWYOiScmZtJZAbH8oIda8ytxwMHm3iCpCoM+WLwNGNn6yiy8qHufQo/U
+	YTTWY6DGZ1Y93lNzgl7KZ4q/iEwZY4EMSlIj/KTD+qawd47SoSMflqRqbx92ekBej+4HmO8pOHHcw
+	Lv6WPJGnt3Wws1cMoh6ToQ+/149nvJc2W0f7OaeaQ1HHmZ58ZVNbpsHqMTrmb2PF2kjel/F8huaVF
+	/e3I+5lv7hU7ZfiCU+oDWLbTuSTx8uEBA8TMT8DJQnjHaGQKCfeKstrM8nTcqJWGARWXxfEOhc+Ha
+	TgZKqh4izNzhUe/y9+lw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mMUBk-00E4dy-Kq; Sat, 04 Sep 2021 11:50:24 +0000
-Received: from mout.gmx.net ([212.227.15.15])
+	id 1mNrSK-005g1o-Ma; Wed, 08 Sep 2021 06:53:12 +0000
+Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mMUBg-00E4dd-U6
- for ath11k@lists.infradead.org; Sat, 04 Sep 2021 11:50:23 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
- s=badeba3b8450; t=1630756195;
- bh=v23ee+m+JJjtewkqOV9p0pm3JlwVl9WxkFvaAGuX1Ok=;
- h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
- b=aFui8fkZ7Z58f+hoFtAARRQYR9O68rtrzMTniksFo0yE+lIEfO8ModCfBVi3mXR5i
- EiOQClEbqBjrK4Gn5fkW3frJ1W1wJ28rxOIoMIaAkazaBm4BVzWTUpmsjw9B6B7DvV
- +BTYZq34iQwbt2CERbZuU6dSHBuhNNARphYOxqDg=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from localhost.localdomain ([79.150.72.99]) by mail.gmx.net
- (mrgmx004 [212.227.17.184]) with ESMTPSA (Nemesis) id
- 1MNKhs-1mbF5F0Vek-00OpPE; Sat, 04 Sep 2021 13:49:55 +0200
-From: Len Baker <len.baker@gmx.com>
-To: Kalle Valo <kvalo@codeaurora.org>, "David S. Miller" <davem@davemloft.net>,
- Jakub Kicinski <kuba@kernel.org>
-Cc: Len Baker <len.baker@gmx.com>,
- "Gustavo A. R. Silva" <gustavo@embeddedor.com>,
- Kees Cook <keescook@chromium.org>, ath11k@lists.infradead.org,
- linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
- linux-hardening@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] ath11k: Replace one-element array with flexible-array member
-Date: Sat,  4 Sep 2021 13:49:37 +0200
-Message-Id: <20210904114937.6644-1-len.baker@gmx.com>
-X-Mailer: git-send-email 2.25.1
-MIME-Version: 1.0
-X-Provags-ID: V03:K1:80dhGiw6SsS128pziswnDI1u80tDjGhkmv0etse23Btp6AiuXMU
- erX4Fha1+Rio79fF8pR8DDJ243friSWaqCt5kJWcTfJS8wa/JbBXL4tgdUSUZYaPB9y7t0X
- 9ZEW64C2K3McSXftObLTHx2lBttv0XJ/hCJFeLcUY4zh87JmoJAlgu26uWiTJbTQJy6b4hi
- SILt2HJn0e/o9Q3rmEX8w==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:hwJ/wysCuJA=:gLwWR3WSAne682ae3N83h7
- 50mzDgEeO35RizI+pFCaDClySune61eyNXfXjLGv6+ZINVl5WeMkJTnPUt+6yi6iloIqsY1Bo
- 3oEgJpt+dDyr33uMSv10s3FwMTuBd+b3R+KBHY2fFqSVHuI6DKRQICn+TrH+k/U5ftBNaaHhb
- sju5YC9m1VdKaetngY17T8nk28xhEZCAYKpsYvYNuVoLYu4b8Y122XoJq2NCNbhJlHKFtWTUQ
- 6wlAv7cn+wobzXEc1s4XmWZNF5dMwSmrSv5wYpBP/jlCUvh/wV1NcwYpWPz+UhZWdkuZpVMEN
- Jd7AF4eu4eXPmLexUxlWjZfuw7mwsxoWiyWT8+0mZT5RFufCGtdJV2MS1gAgK7/vtScsB3fBo
- +CBPGDQxKx046dbIJYdy81lWeSDDdn9HGLCeSvZdNrFtIlNYwYQkCKOWgsvbxOUYMm8z9+ZWs
- 1/ghu6bCKaR9DSMjZ1Y4/en4DCsoOS6o2ExUB5DCL6ZTCizzqsPCZuBk+Jn2toPzILlSJiujM
- 3qI4SwhsxWgjMaOQl8sWt//D9QYjh7ILxAljt7JMEfuDmsQd37zETumtwPmq9MqADN1JnPQCf
- PEJ7+Epmtn9Q8NuHDceo3VwcbtG1BPh4CfQkyt9R2e6JweyG69DslwhMhFiP1OG8OFKsLAjoq
- Ll5CkkmUvYz2eQy/0Ir/ZQg8BMAXp4K+ODHOsTYq3Q/dmz7bMYRZlHVasI5iWQwegyhLRgA4J
- 0qI0Z/Ppfx3xXsBJnnJBn8q50MP30dlVQ6APQm8uvH52NUZ7wqGebKiKPEecS18MFHIlLO8mC
- xqJL1by3fzzt8VWO8+6pTSN99WU4chbNeaS3+8ntlhIoOcEu2VK0Xg9xOzNGCu/69ZG2zNlss
- W5gftl2UUdcsuZv10FcUv2tiNEcB58aL5bHPNyUAbzPuexYpcxrVUj+5m5Yb8dLzbCDuY68TD
- R7xEjJB3zUAyDJ77S4e3lrUoOWJQQu41sVXPm1Pu0JuKGbr06Pk5rh1I8edO/OnbcYSyPSSMe
- VzUVBm+roYpznFZXx6FxTnuataFDQOcwfoWxNbh2Q/3YfR5E4xVGCAzmb0e3ZwmPa9Fy6oIBc
- spnMijX1mfCTHO9cQgrpNdhlNAB4gtHtDXSthY1/3jqmx+N4q4T9CiZTw==
+ id 1mNrRp-005fsF-80
+ for ath11k@lists.infradead.org; Wed, 08 Sep 2021 06:52:43 +0000
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
+ q=dns/txt; 
+ s=smtp; t=1631083959; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=4ComFDH4pRgFVNF7I/lbDBeEjfrqcJGOv45xw9dj6Ck=;
+ b=BtKv0xqtuFic4TCoHuaPgA68QeAfefiA/At9fyrW/J+P+TOB/Jd2IsLKYPSSBtbs3IU/a7tg
+ s6sTu1QQ2NbwvopqQnTRwUYYprqizei4ViNy9V5OBJtfV+L/IFifPbJQVFt78Dbf1rcu8Qcg
+ mzYs53JaBw5rAydIsCOw/TVC1c8=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
+ 61385db6d15f4d68a2ec2807 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 08 Sep 2021 06:52:38
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+ id 3299EC4360D; Wed,  8 Sep 2021 06:52:38 +0000 (UTC)
+Received: from blr-ubuntu-subratm.qualcomm.com
+ (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+ (No client certificate requested) (Authenticated sender: subratm)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id C9E54C43616;
+ Wed,  8 Sep 2021 06:52:35 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org C9E54C43616
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ spf=fail smtp.mailfrom=codeaurora.org
+From: Subrat Mishra <subratm@codeaurora.org>
+To: linux-wireless@vger.kernel.org,
+	ath11k@lists.infradead.org
+Cc: Subrat Mishra <subratm@codeaurora.org>
+Subject: [PATCH] cfg80211: AP mode driver offload for FILS association crypto
+Date: Wed,  8 Sep 2021 12:22:02 +0530
+Message-Id: <1631083922-24136-1-git-send-email-subratm@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210904_045021_312503_B1D05DF9 
-X-CRM114-Status: GOOD (  10.82  )
+X-CRM114-CacheID: sfid-20210907_235241_423918_4CDC004F 
+X-CRM114-Status: GOOD (  23.57  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,68 +86,273 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-There is a regular need in the kernel to provide a way to declare having
-a dynamically sized set of trailing elements in a structure. Kernel code
-should always use "flexible array members"[1] for these cases. The older
-style of one-element or zero-length arrays should no longer be used[2].
+Add a driver FILS crypto offload extended capability flag to indicate
+that the driver running in AP mode is capable of handling encryption
+and decryption of (Re)Association request and response frames.
+Add a command to set FILS AAD data to driver.
 
-Also, refactor the code a bit to make use of the struct_size() helper in
-kzalloc().
+This feature is supported on drivers running in AP mode only.
+This extended capability is exchanged with hostapd during cfg80211
+init. If the driver indicates this capability, then before sending the
+Authentication response frame, hostapd sets FILS AAD data to the
+driver. This allows the driver to decrypt (Re)Association Request
+frame and encrypt (Re)Association Response frame. FILS Key derivation
+will still be done in hostapd.
 
-[1] https://en.wikipedia.org/wiki/Flexible_array_member
-[2] https://www.kernel.org/doc/html/v5.14/process/deprecated.html#zero-length-and-one-element-arrays
+Signed-off-by: Subrat Mishra <subratm@codeaurora.org>
 
-Signed-off-by: Len Baker <len.baker@gmx.com>
----
- drivers/net/wireless/ath/ath11k/reg.c | 7 ++-----
- drivers/net/wireless/ath/ath11k/wmi.h | 2 +-
- 2 files changed, 3 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/reg.c b/drivers/net/wireless/ath/ath11k/reg.c
-index e1a1df169034..c83d265185f1 100644
---- a/drivers/net/wireless/ath/ath11k/reg.c
-+++ b/drivers/net/wireless/ath/ath11k/reg.c
-@@ -97,7 +97,6 @@ int ath11k_reg_update_chan_list(struct ath11k *ar)
- 	struct channel_param *ch;
- 	enum nl80211_band band;
- 	int num_channels = 0;
--	int params_len;
- 	int i, ret;
-
- 	bands = hw->wiphy->bands;
-@@ -117,10 +116,8 @@ int ath11k_reg_update_chan_list(struct ath11k *ar)
- 	if (WARN_ON(!num_channels))
- 		return -EINVAL;
-
--	params_len = sizeof(struct scan_chan_list_params) +
--			num_channels * sizeof(struct channel_param);
--	params = kzalloc(params_len, GFP_KERNEL);
--
-+	params = kzalloc(struct_size(params, ch_param, num_channels),
-+			 GFP_KERNEL);
- 	if (!params)
- 		return -ENOMEM;
-
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index d35c47e0b19d..d9c83726f65d 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -3608,7 +3608,7 @@ struct wmi_stop_scan_cmd {
- struct scan_chan_list_params {
- 	u32 pdev_id;
- 	u16 nallchans;
--	struct channel_param ch_param[1];
-+	struct channel_param ch_param[];
+diff --git a/include/net/cfg80211.h b/include/net/cfg80211.h
+index 62dd842..48b9027 100644
+--- a/include/net/cfg80211.h
++++ b/include/net/cfg80211.h
+@@ -740,6 +740,22 @@ struct cfg80211_tid_config {
  };
-
- struct wmi_scan_chan_list_cmd {
---
-2.25.1
+ 
+ /**
++ * struct cfg80211_fils_aad - FILS AAD data
++ * @macaddr: STA MAC address
++ * @kek: FILS KEK
++ * @kek_len: FILS KEK length
++ * @snonce: STA Nonce
++ * @anonce: AP Nonce
++ */
++struct cfg80211_fils_aad {
++	const u8 *macaddr;
++	const u8 *kek;
++	u8 kek_len;
++	const u8 *snonce;
++	const u8 *anonce;
++}
++
++/**
+  * cfg80211_get_chandef_type - return old channel type from chandef
+  * @chandef: the channel definition
+  *
+@@ -4018,6 +4034,10 @@ struct mgmt_frame_regs {
+  * @set_sar_specs: Update the SAR (TX power) settings.
+  *
+  * @color_change: Initiate a color change.
++ *
++ * @set_fils_aad: Set FILS AAD data to the AP driver so that the driver can use
++ * 	those to decrypt (Re)Association Request and encrypt (Re)Association
++ * 	Response frame.
+  */
+ struct cfg80211_ops {
+ 	int	(*suspend)(struct wiphy *wiphy, struct cfg80211_wowlan *wow);
+@@ -4348,6 +4368,8 @@ struct cfg80211_ops {
+ 	int	(*color_change)(struct wiphy *wiphy,
+ 				struct net_device *dev,
+ 				struct cfg80211_color_change_settings *params);
++	int     (*set_fils_aad)(struct wiphy *wiphy, struct net_device *dev,
++				struct cfg80211_fils_aad *fils_aad);
+ };
+ 
+ /*
+diff --git a/include/uapi/linux/nl80211.h b/include/uapi/linux/nl80211.h
+index c2efea9..e89bbf8 100644
+--- a/include/uapi/linux/nl80211.h
++++ b/include/uapi/linux/nl80211.h
+@@ -301,6 +301,29 @@
+  */
+ 
+ /**
++ * DOC: FILS shared key crypto offload
++ *
++ * This feature is applicable to drivers running in AP mode.
++ *
++ * FILS shared key crypto offload can be advertised by drivers by setting
++ * @NL80211_EXT_FEATURE_FILS_CRYPTO_OFFLOAD flag. The drivers that support
++ * FILS shared key crypto offload should be able to encrypt and decrypt
++ * association frames for FILS shared key authentication as per IEEE 802.11ai.
++ * With this capability, for FILS key derivation, drivers depend on userspace.
++ *
++ * After FILS key derivation, userspace shares the FILS AAD details with the
++ * driver and the driver stores the same to use in decryption of association
++ * request and in encryption of association response. The below parameters
++ * should be given to the driver in %NL80211_CMD_SET_FILS_AAD.
++ *	%NL80211_ATTR_MAC - STA MAC address, used for storing FILS AAD per STA
++ *	%NL80211_ATTR_FILS_KEK - Used for encryption or decryption
++ *	%NL80211_ATTR_FILS_NONCES - Used for encryption or decryption
++ *			(STA Nonce 16 bytes followed by AP Nonce 16 bytes)
++ *
++ * Once the association is done, the driver cleans the FILS AAD data.
++ */
++
++/**
+  * enum nl80211_commands - supported nl80211 commands
+  *
+  * @NL80211_CMD_UNSPEC: unspecified command to catch errors
+@@ -1200,6 +1223,12 @@
+  * @NL80211_CMD_COLOR_CHANGE_COMPLETED: Notify userland that the color change
+  *	has completed
+  *
++ * @NL80211_CMD_SET_FILS_AAD: Set FILS AAD data to the driver using -
++ *	&NL80211_ATTR_MAC - for STA MAC address
++ *	&NL80211_ATTR_FILS_KEK - for KEK
++ *	&NL80211_ATTR_FILS_NONCES - for FILS Nonces
++ *		(STA Nonce 16 bytes followed by AP Nonce 16 bytes)
++ *
+  * @NL80211_CMD_MAX: highest used command number
+  * @__NL80211_CMD_AFTER_LAST: internal use
+  */
+@@ -1440,6 +1469,8 @@ enum nl80211_commands {
+ 	NL80211_CMD_COLOR_CHANGE_ABORTED,
+ 	NL80211_CMD_COLOR_CHANGE_COMPLETED,
+ 
++	NL80211_CMD_SET_FILS_AAD,
++
+ 	/* add new commands above here */
+ 
+ 	/* used to define NL80211_CMD_MAX below */
+@@ -5995,6 +6026,11 @@ enum nl80211_feature_flags {
+  * @NL80211_EXT_FEATURE_BSS_COLOR: The driver supports BSS color collision
+  *	detection and change announcemnts.
+  *
++ * @NL80211_EXT_FEATURE_FILS_CRYPTO_OFFLOAD: Driver running in AP mode supports
++ *	FILS encryption and decryption for (Re)Association Request and Response
++ *	frames. Userspace has to share FILS AAD details to the driver by using
++ *	@NL80211_CMD_SET_FILS_AAD.
++ *
+  * @NUM_NL80211_EXT_FEATURES: number of extended features.
+  * @MAX_NL80211_EXT_FEATURES: highest extended feature index.
+  */
+@@ -6060,6 +6096,7 @@ enum nl80211_ext_feature_index {
+ 	NL80211_EXT_FEATURE_SECURE_RTT,
+ 	NL80211_EXT_FEATURE_PROT_RANGE_NEGO_AND_MEASURE,
+ 	NL80211_EXT_FEATURE_BSS_COLOR,
++	NL80211_EXT_FEATURE_FILS_CRYPTO_OFFLOAD,
+ 
+ 	/* add new features before the definition below */
+ 	NUM_NL80211_EXT_FEATURES,
+diff --git a/net/wireless/nl80211.c b/net/wireless/nl80211.c
+index bf7cd47..e287ee5 100644
+--- a/net/wireless/nl80211.c
++++ b/net/wireless/nl80211.c
+@@ -14904,6 +14904,29 @@ static int nl80211_color_change(struct sk_buff *skb, struct genl_info *info)
+ 	return err;
+ }
+ 
++static int nl80211_set_fils_aad(struct sk_buff *skb,
++				struct genl_info *info)
++{
++	struct cfg80211_registered_device *rdev = info->user_ptr[0];
++	struct net_device *dev = info->user_ptr[1];
++	struct cfg80211_fils_aad fils_aad = {};
++	u8 *nonces;
++
++	if (!info->attrs[NL80211_ATTR_MAC] ||
++	    !info->attrs[NL80211_ATTR_FILS_KEK] ||
++	    !info->attrs[NL80211_ATTR_FILS_NONCES])
++		return -EINVAL;
++
++	fils_aad.macaddr = nla_data(info->attrs[NL80211_ATTR_MAC]);
++	fils_aad.kek_len = nla_len(info->attrs[NL80211_ATTR_FILS_KEK]);
++	fils_aad.kek = nla_data(info->attrs[NL80211_ATTR_FILS_KEK]);
++	nonces = nla_data(info->attrs[NL80211_ATTR_FILS_NONCES]);
++	fils_aad.snonce = nonces;
++	fils_aad.anonce = nonces + FILS_NONCE_LEN;
++
++	return rdev_set_fils_aad(rdev, dev, &fils_aad);
++}
++
+ #define NL80211_FLAG_NEED_WIPHY		0x01
+ #define NL80211_FLAG_NEED_NETDEV	0x02
+ #define NL80211_FLAG_NEED_RTNL		0x04
+@@ -15907,6 +15930,14 @@ static const struct genl_small_ops nl80211_small_ops[] = {
+ 		.internal_flags = NL80211_FLAG_NEED_NETDEV_UP |
+ 				  NL80211_FLAG_NEED_RTNL,
+ 	},
++	{
++		.cmd = NL80211_CMD_SET_FILS_AAD,
++		.validate = GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
++		.doit = nl80211_set_fils_aad,
++		.flags = GENL_UNS_ADMIN_PERM,
++		.internal_flags = NL80211_FLAG_NEED_NETDEV_UP |
++				  NL80211_FLAG_NEED_RTNL,
++	},
+ };
+ 
+ static struct genl_family nl80211_fam __ro_after_init = {
+diff --git a/net/wireless/rdev-ops.h b/net/wireless/rdev-ops.h
+index ce6bf21..cc1efec 100644
+--- a/net/wireless/rdev-ops.h
++++ b/net/wireless/rdev-ops.h
+@@ -1381,4 +1381,18 @@ static inline int rdev_color_change(struct cfg80211_registered_device *rdev,
+ 	return ret;
+ }
+ 
++static inline int
++rdev_set_fils_aad(struct cfg80211_registered_device *rdev,
++		  struct net_device *dev, struct cfg80211_fils_aad *fils_aad)
++{
++	int ret = -EOPNOTSUPP;
++
++	trace_rdev_set_fils_aad(&rdev->wiphy, dev, fils_aad);
++	if (rdev->ops->set_fils_aad)
++		ret = rdev->ops->set_fils_aad(&rdev->wiphy, dev, fils_aad);
++	trace_rdev_return_int(&rdev->wiphy, ret);
++
++	return ret;
++}
++
+ #endif /* __CFG80211_RDEV_OPS */
+diff --git a/net/wireless/trace.h b/net/wireless/trace.h
+index 19b78d4..b6eb23b 100644
+--- a/net/wireless/trace.h
++++ b/net/wireless/trace.h
+@@ -167,6 +167,19 @@
+ 			__entry->center_freq1, __entry->freq1_offset,	\
+ 			__entry->center_freq2
+ 
++#define FILS_AAD_ASSIGN(fa)                                                  \
++	do {                                                                 \
++		if (fa) {                                                    \
++			ether_addr_copy(__entry->macaddr, fa->macaddr);      \
++			__entry->kek_len = fa->kek_len;                      \
++		} else {                                                     \
++			eth_zero_addr(__entry->macaddr);                     \
++			__entry->kek_len = 0;                                \
++		}                                                            \
++	} while (0)
++#define FILS_AAD_PR_FMT                                                      \
++	"macaddr: %pM, kek_len: %d"
++
+ #define SINFO_ENTRY __field(int, generation)	    \
+ 		    __field(u32, connected_time)    \
+ 		    __field(u32, inactive_time)	    \
+@@ -2614,6 +2627,24 @@ DEFINE_EVENT(wiphy_wdev_cookie_evt, rdev_abort_pmsr,
+ 	TP_ARGS(wiphy, wdev, cookie)
+ );
+ 
++TRACE_EVENT(rdev_set_fils_aad,
++	TP_PROTO(struct wiphy *wiphy, struct net_device *netdev,
++		 struct cfg80211_fils_aad *fils_aad),
++	TP_ARGS(wiphy, netdev, fils_aad),
++	TP_STRUCT__entry(WIPHY_ENTRY
++			 NETDEV_ENTRY
++			 __array(u8, macaddr, ETH_ALEN)
++			 __field(u8, kek_len)
++	),
++	TP_fast_assign(WIPHY_ASSIGN;
++		       NETDEV_ASSIGN;
++		       FILS_AAD_ASSIGN(fils_aad);
++	),
++	TP_printk(WIPHY_PR_FMT ", " NETDEV_PR_FMT ", " FILS_AAD_PR_FMT,
++		  WIPHY_PR_ARG, NETDEV_PR_ARG, __entry->macaddr,
++		  __entry->kek_len)
++);
++
+ /*************************************************************
+  *	     cfg80211 exported functions traces		     *
+  *************************************************************/
+-- 
+2.7.4
 
 
 -- 
