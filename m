@@ -1,106 +1,85 @@
-Return-Path: <SRS0=7g+G=OC=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=KMo3=OD=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-24.2 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,NICE_REPLY_A,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=3.4.0
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BCDE9C433F5
-	for <ath11k@archiver.kernel.org>; Sun, 12 Sep 2021 19:40:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2AA31C433F5
+	for <ath11k@archiver.kernel.org>; Mon, 13 Sep 2021 17:55:39 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7F40C61050
-	for <ath11k@archiver.kernel.org>; Sun, 12 Sep 2021 19:40:31 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 7F40C61050
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=embeddedor.com
+	by mail.kernel.org (Postfix) with ESMTPS id EC570610CE
+	for <ath11k@archiver.kernel.org>; Mon, 13 Sep 2021 17:55:38 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org EC570610CE
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:Cc:To:Subject:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=BGFGvWpego2CcDsgIMdjNQIm36OkVbQzQdt9geWNcJg=; b=g0Tbx3U71bAs8DHtXq48Z9RHZ6
-	xOsJm4v4B2a1TQKYLcfzoDiS+cKTvmjKpNNukjo/BNr1lEQh+WpSxsrkclxB7tG4a+TenVGJPGXln
-	JFrnXEo+tp0Gh98heLCzKwhpmE42rS6G2NwBaD+CxZuQGkfWxGpvqG7q2NUOlQesP4G/8XGbwe+1V
-	H0I6fyRdpnGFnuykrL36bXZ6QzaC1ZSm8pbvP+A25tf2nh5uLrfdpgzP/uGN1BN2K+vVL99p/9VB3
-	dRp66lyHpiF48ZUFjscDLGZZ5Tp4Dz2AGxk6OGmee3qJB8/k0SackyL4CT+IwVeLfMWIJ388byJLF
-	YCCkH3YQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=KiTUXf2MzeHtuOdI0L+nTOMwa4MwwWgDRjLQDeSUV4U=; b=yQqKiPc7QOJ0Wq
+	gMHrMnFhm07O6GjdtBMQmAp+WAcxvvCLRUSzAqtjGBtzxe5IkKylZjbKC6wBM9DL//Y8kGPzXHTgz
+	ketuuDhOkhhxIQLbCesyLDQzUcC+DdXQt4RG+bOsmAwG7L+HMZk2Z4nmpGl3pQmONmWEhFREy/Ozr
+	rve8YJVDYoAI88SKfQ1weP8Lh33NWSU9auU42kp9kOsKEXaQQJLLt9yKmceTzS59m9NMYTx1d3ww/
+	34xQ6ozFodZoAU25ATMQ3IThnwULcxBC4pzJwBnu5SrdbGYfm8SEY+e9prCEq3P9IkT9pYlCu3+/E
+	Cnug/dN7ztT6JJbtpQDw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mPVL3-00H3u1-CQ; Sun, 12 Sep 2021 19:40:29 +0000
-Received: from gateway24.websitewelcome.com ([192.185.51.31])
+	id 1mPqB6-002rA4-Cd; Mon, 13 Sep 2021 17:55:36 +0000
+Received: from so254-9.mailgun.net ([198.61.254.9])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mPVKz-00H3tP-Nl
- for ath11k@lists.infradead.org; Sun, 12 Sep 2021 19:40:27 +0000
-Received: from cm17.websitewelcome.com (cm17.websitewelcome.com [100.42.49.20])
- by gateway24.websitewelcome.com (Postfix) with ESMTP id D8FE118E9
- for <ath11k@lists.infradead.org>; Sun, 12 Sep 2021 14:40:24 -0500 (CDT)
-Received: from gator4166.hostgator.com ([108.167.133.22]) by cmsmtp with SMTP
- id PVKymKfBQMGeEPVKymQcE3; Sun, 12 Sep 2021 14:40:24 -0500
-X-Authority-Reason: nr=8
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=embeddedor.com; s=default; h=Content-Transfer-Encoding:Content-Type:
- In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
- :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=xInK5cuk9Z7/fptDNUK7EUbuavajlWn9R4gJKnXzcjI=; b=e37OC2gnfebZs70nDOnYTwxBbU
- fsRKqZqk3EuCpZBEZWFUz4qcFPaw2KQtlyh1WI/B1tcLiNo4+nQKmlG7Sw8+EROVh4iy7qiF/91aw
- ka9mbtcOF6SH+x0IpnZpql3NOyIVmrbmND16jIzAxWKSZCU/MfXHYdE/sbjUhKhUzA76SqxaJymrX
- wnD7eyuaJxA09HEoAJ+iUp9i/Zf/Ts8wHAnZdP9O/BLzUHDmNry8ASb48oCj6awSuBHQtvCK5Rbd3
- X2lGrK4KfWmw8iRZ5BO4qWQHblMvGT4wZYPi52IktSNLeQ38BFLto1lrqF6nmIEJidQ8hmPPMhjqw
- D38axj5Q==;
-Received: from 187-162-31-110.static.axtel.net ([187.162.31.110]:57046
- helo=[192.168.15.9])
- by gator4166.hostgator.com with esmtpsa (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.94.2)
- (envelope-from <gustavo@embeddedor.com>)
- id 1mPVKy-003pWr-Cw; Sun, 12 Sep 2021 14:40:24 -0500
-Subject: Re: [PATCH][next] ath11k: Replace one-element array with
- flexible-array member
-To: "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- Kalle Valo <kvalo@codeaurora.org>, "David S. Miller" <davem@davemloft.net>,
- Jakub Kicinski <kuba@kernel.org>
+ id 1mPqB3-002r8x-Kt
+ for ath11k@lists.infradead.org; Mon, 13 Sep 2021 17:55:34 +0000
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
+ q=dns/txt; 
+ s=smtp; t=1631555731; h=Content-Transfer-Encoding: MIME-Version:
+ Message-Id: Date: Subject: Cc: To: From: Sender;
+ bh=x4JYpC4AekhJRX+KOkQHy1gLl2sQLOisRGN89DCrN/I=;
+ b=wGX4u3tAc+2f0uEb+Ip06mOecW+2Gxqei2oghPdo5QgdKYhG78GYb2W+DRh8mvF4NCayrZ7Y
+ cO+Jr/ksXw4HZa4b6lu8qvPJLnxrulJXFrITdcFMv2eSjUoaKopcMNH/BVu48E6JKK+T2iX0
+ rQAGhQlRwZNY/S/ZU7EuWpyX28Q=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
+ 613f9092ec62f57c9a248540 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 13 Sep 2021 17:55:30
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+ id E5A49C43616; Mon, 13 Sep 2021 17:55:29 +0000 (UTC)
+Received: from jouni.codeaurora.org (85-76-72-211-nat.elisa-mobile.fi
+ [85.76.72.211])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested) (Authenticated sender: jouni)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id D89E3C4338F;
+ Mon, 13 Sep 2021 17:55:25 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org D89E3C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ spf=fail smtp.mailfrom=codeaurora.org
+From: Jouni Malinen <jouni@codeaurora.org>
+To: Kalle Valo <kvalo@codeaurora.org>
 Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org
-References: <20210823172159.GA25800@embeddedor>
-From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
-Message-ID: <6e8229a1-187c-cd69-ad1c-018737e5e455@embeddedor.com>
-Date: Sun, 12 Sep 2021 14:44:07 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+ Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>,
+ Jouni Malinen <jouni@codeaurora.org>
+Subject: [PATCH 1/3] ieee80211: Add new A-MPDU factor macro for HE 6 GHz peer
+ caps
+Date: Mon, 13 Sep 2021 20:55:08 +0300
+Message-Id: <20210913175510.193005-1-jouni@codeaurora.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20210823172159.GA25800@embeddedor>
-Content-Language: en-US
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - gator4166.hostgator.com
-X-AntiAbuse: Original Domain - lists.infradead.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - embeddedor.com
-X-BWhitelist: no
-X-Source-IP: 187.162.31.110
-X-Source-L: No
-X-Exim-ID: 1mPVKy-003pWr-Cw
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: 187-162-31-110.static.axtel.net ([192.168.15.9])
- [187.162.31.110]:57046
-X-Source-Auth: gustavo@embeddedor.com
-X-Email-Count: 17
-X-Source-Cap: Z3V6aWRpbmU7Z3V6aWRpbmU7Z2F0b3I0MTY2Lmhvc3RnYXRvci5jb20=
-X-Local-Domain: yes
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210912_124025_940647_4D459FD0 
-X-CRM114-Status: GOOD (  22.13  )
+X-CRM114-CacheID: sfid-20210913_105533_771126_D41AD92C 
+X-CRM114-Status: UNSURE (   9.83  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,159 +96,32 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi Kalle,
+From: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
 
-I wonder if you can take this patch, please.
+Add IEEE80211_HE_6GHZ_MAX_AMPDU_FACTOR as per IEEE Std 802.11ax-2021,
+9.4.2.263 to use for peer max A-MPDU factor in 6 GHz band.
 
-Thanks
---
-Gustavo
+Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
+Signed-off-by: Jouni Malinen <jouni@codeaurora.org>
+---
+ include/linux/ieee80211.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-On 8/23/21 12:21, Gustavo A. R. Silva wrote:
-> There is a regular need in the kernel to provide a way to declare having a
-> dynamically sized set of trailing elements in a structure. Kernel code
-> should always use "flexible array members"[1] for these cases. The older
-> style of one-element or zero-length arrays should no longer be used[2].
-> 
-> Refactor the code a bit according to the use of a flexible-array member in
-> struct scan_chan_list_params instead of a one-element array, and use the
-> struct_size() helper.
-> 
-> Also, save 25 (too many) bytes that were being allocated:
-> 
-> $ pahole -C channel_param drivers/net/wireless/ath/ath11k/reg.o
-> struct channel_param {
-> 	u8                         chan_id;              /*     0     1 */
-> 	u8                         pwr;                  /*     1     1 */
-> 	u32                        mhz;                  /*     2     4 */
-> 
-> 	/* Bitfield combined with next fields */
-> 
-> 	u32                        half_rate:1;          /*     4:16  4 */
-> 	u32                        quarter_rate:1;       /*     4:17  4 */
-> 	u32                        dfs_set:1;            /*     4:18  4 */
-> 	u32                        dfs_set_cfreq2:1;     /*     4:19  4 */
-> 	u32                        is_chan_passive:1;    /*     4:20  4 */
-> 	u32                        allow_ht:1;           /*     4:21  4 */
-> 	u32                        allow_vht:1;          /*     4:22  4 */
-> 	u32                        allow_he:1;           /*     4:23  4 */
-> 	u32                        set_agile:1;          /*     4:24  4 */
-> 	u32                        psc_channel:1;        /*     4:25  4 */
-> 
-> 	/* XXX 6 bits hole, try to pack */
-> 
-> 	u32                        phy_mode;             /*     8     4 */
-> 	u32                        cfreq1;               /*    12     4 */
-> 	u32                        cfreq2;               /*    16     4 */
-> 	char                       maxpower;             /*    20     1 */
-> 	char                       minpower;             /*    21     1 */
-> 	char                       maxregpower;          /*    22     1 */
-> 	u8                         antennamax;           /*    23     1 */
-> 	u8                         reg_class_id;         /*    24     1 */
-> 
-> 	/* size: 25, cachelines: 1, members: 21 */
-> 	/* sum members: 23 */
-> 	/* sum bitfield members: 10 bits, bit holes: 1, sum bit holes: 6 bits */
-> 	/* last cacheline: 25 bytes */
-> } __attribute__((__packed__));
-> 
-> as previously, sizeof(struct scan_chan_list_params) was 32 bytes:
-> 
-> $ pahole -C scan_chan_list_params drivers/net/wireless/ath/ath11k/reg.o
-> struct scan_chan_list_params {
-> 	u32                        pdev_id;              /*     0     4 */
-> 	u16                        nallchans;            /*     4     2 */
-> 	struct channel_param       ch_param[1];          /*     6    25 */
-> 
-> 	/* size: 32, cachelines: 1, members: 3 */
-> 	/* padding: 1 */
-> 	/* last cacheline: 32 bytes */
-> };
-> 
-> and now with the flexible array transformation it is just 8 bytes:
-> 
-> $ pahole -C scan_chan_list_params drivers/net/wireless/ath/ath11k/reg.o
-> struct scan_chan_list_params {
-> 	u32                        pdev_id;              /*     0     4 */
-> 	u16                        nallchans;            /*     4     2 */
-> 	struct channel_param       ch_param[];           /*     6     0 */
-> 
-> 	/* size: 8, cachelines: 1, members: 3 */
-> 	/* padding: 2 */
-> 	/* last cacheline: 8 bytes */
-> };
-> 
-> This helps with the ongoing efforts to globally enable -Warray-bounds and
-> get us closer to being able to tighten the FORTIFY_SOURCE routines on
-> memcpy().
-> 
-> This issue was found with the help of Coccinelle and audited and fixed,
-> manually.
-> 
-> [1] https://en.wikipedia.org/wiki/Flexible_array_member
-> [2] https://www.kernel.org/doc/html/v5.10/process/deprecated.html#zero-length-and-one-element-arrays
-> 
-> Link: https://github.com/KSPP/linux/issues/79
-> Link: https://github.com/KSPP/linux/issues/109
-> Signed-off-by: Gustavo A. R. Silva <gustavoars@kernel.org>
-> ---
->  drivers/net/wireless/ath/ath11k/reg.c | 7 ++-----
->  drivers/net/wireless/ath/ath11k/wmi.c | 2 +-
->  drivers/net/wireless/ath/ath11k/wmi.h | 2 +-
->  3 files changed, 4 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/net/wireless/ath/ath11k/reg.c b/drivers/net/wireless/ath/ath11k/reg.c
-> index e1a1df169034..c83d265185f1 100644
-> --- a/drivers/net/wireless/ath/ath11k/reg.c
-> +++ b/drivers/net/wireless/ath/ath11k/reg.c
-> @@ -97,7 +97,6 @@ int ath11k_reg_update_chan_list(struct ath11k *ar)
->  	struct channel_param *ch;
->  	enum nl80211_band band;
->  	int num_channels = 0;
-> -	int params_len;
->  	int i, ret;
->  
->  	bands = hw->wiphy->bands;
-> @@ -117,10 +116,8 @@ int ath11k_reg_update_chan_list(struct ath11k *ar)
->  	if (WARN_ON(!num_channels))
->  		return -EINVAL;
->  
-> -	params_len = sizeof(struct scan_chan_list_params) +
-> -			num_channels * sizeof(struct channel_param);
-> -	params = kzalloc(params_len, GFP_KERNEL);
-> -
-> +	params = kzalloc(struct_size(params, ch_param, num_channels),
-> +			 GFP_KERNEL);
->  	if (!params)
->  		return -ENOMEM;
->  
-> diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-> index 6c253eae9d06..0a634ba04509 100644
-> --- a/drivers/net/wireless/ath/ath11k/wmi.c
-> +++ b/drivers/net/wireless/ath/ath11k/wmi.c
-> @@ -2285,7 +2285,7 @@ int ath11k_wmi_send_scan_chan_list_cmd(struct ath11k *ar,
->  	u16 num_send_chans, num_sends = 0, max_chan_limit = 0;
->  	u32 *reg1, *reg2;
->  
-> -	tchan_info = &chan_list->ch_param[0];
-> +	tchan_info = chan_list->ch_param;
->  	while (chan_list->nallchans) {
->  		len = sizeof(*cmd) + TLV_HDR_SIZE;
->  		max_chan_limit = (wmi->wmi_ab->max_msg_len[ar->pdev_idx] - len) /
-> diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-> index d35c47e0b19d..d9c83726f65d 100644
-> --- a/drivers/net/wireless/ath/ath11k/wmi.h
-> +++ b/drivers/net/wireless/ath/ath11k/wmi.h
-> @@ -3608,7 +3608,7 @@ struct wmi_stop_scan_cmd {
->  struct scan_chan_list_params {
->  	u32 pdev_id;
->  	u16 nallchans;
-> -	struct channel_param ch_param[1];
-> +	struct channel_param ch_param[];
->  };
->  
->  struct wmi_scan_chan_list_cmd {
-> 
+diff --git a/include/linux/ieee80211.h b/include/linux/ieee80211.h
+index 694264503119..a1a7eda35cb5 100644
+--- a/include/linux/ieee80211.h
++++ b/include/linux/ieee80211.h
+@@ -2084,6 +2084,7 @@ int ieee80211_get_vht_max_nss(struct ieee80211_vht_cap *cap,
+ 
+ #define IEEE80211_HE_VHT_MAX_AMPDU_FACTOR	20
+ #define IEEE80211_HE_HT_MAX_AMPDU_FACTOR	16
++#define IEEE80211_HE_6GHZ_MAX_AMPDU_FACTOR	13
+ 
+ /* 802.11ax HE PHY capabilities */
+ #define IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_40MHZ_IN_2G		0x02
+-- 
+2.25.1
+
 
 -- 
 ath11k mailing list
