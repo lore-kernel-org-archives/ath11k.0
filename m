@@ -2,19 +2,19 @@ Return-Path: <SRS0=KMo3=OD=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-17.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-12.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 53EBCC433EF
-	for <ath11k@archiver.kernel.org>; Mon, 13 Sep 2021 18:11:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6E1CEC433F5
+	for <ath11k@archiver.kernel.org>; Mon, 13 Sep 2021 22:32:28 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1761360F51
-	for <ath11k@archiver.kernel.org>; Mon, 13 Sep 2021 18:11:57 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 1761360F51
+	by mail.kernel.org (Postfix) with ESMTPS id 2DDE8610A6
+	for <ath11k@archiver.kernel.org>; Mon, 13 Sep 2021 22:32:28 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 2DDE8610A6
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,44 +23,44 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=zECX3hi/ib5CS/9WjrvgwOuKhfPhtrqw8etpfWXeIYg=; b=FNpQZJrnvLr+0C
-	lVIJKfLMiqyoIiS4xzN3Dzk3y/3oh23D7afGqlRVYamwDb1K5nP26Wx8TWXeNw4PpvNJIvO4Sv05C
-	nwXvDr/yqBgYadl9mGMK3wtnzJP2Cg5ClNZSVvkz6nMzjyLD+vMeO9/SWpnwMZx+rFXEGdRzIi7/Y
-	ytAO9RBEdOxErjG/9/qPmn0SUZv4mfS8sN/jwK0WXA8IjuP0KEGcIX+J1edwnisABpd3epOztH9ln
-	IP6ly4Ron63ehm6Oo4tDO6lLYT11rVX8XGikOlzRT8z2eFVGe5FMaiZdwz7mUBrjY34IWO5IQj4oS
-	PPk5J5CEFfsqwSHkwWeQ==;
+	List-Owner; bh=Px9WghsESxonM9CaCpWOetR5Ajd4W07lFydMIhpmaGQ=; b=RVUU6GxRdrV3fd
+	wGXnZYH/ah8Jpj6YNsjq7GokQP8DWnOcU/dgzrS+Q0Hj+28DBNk818Pqr+Cvfe0c1/fhViYykEsup
+	T5vVwOcMyTv1/6/N09PeJt5xbMHZjY0KbAmA5GUDs6C8Q7AXPL5rV09DAU8SVTdl+nnUoYw9BJJfG
+	evD3Bo+lL21DAWnsqK7d+Q8GO4jVMqbP9YteAoo8kD23W9xk3syOOMdg6354Y0cXu8uoEsHPg+xms
+	ICwAu+Y63AK1f4cwgWUK1uqreDu5AZCAVa0hRlVwUBCwcjWqjdijOSy7lDr1otMBe4K4tQrDMpaia
+	/4FMr8lhnUD5Chl7DIYQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mPqQs-002tsf-TH; Mon, 13 Sep 2021 18:11:54 +0000
-Received: from m43-7.mailgun.net ([69.72.43.7])
+	id 1mPuUz-003Q0j-RM; Mon, 13 Sep 2021 22:32:25 +0000
+Received: from so254-9.mailgun.net ([198.61.254.9])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mPqQm-002ts2-A3
- for ath11k@lists.infradead.org; Mon, 13 Sep 2021 18:11:53 +0000
+ id 1mPuUx-003Q05-5m
+ for ath11k@lists.infradead.org; Mon, 13 Sep 2021 22:32:25 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1631556711; h=Content-Transfer-Encoding: MIME-Version:
+ s=smtp; t=1631572343; h=Content-Transfer-Encoding: MIME-Version:
  Message-Id: Date: Subject: Cc: To: From: Sender;
- bh=FX/1sta2YnAZClmgdE6oKf2tiE1gnDdzAL7dWMqTYQc=;
- b=xNLZLpqe955tWAvx0EY7jR2/CGc7PjVSTZAQc79YUZsM+QNbiSKO9ApqAuLe//NBAu7xBOXD
- wAL37m5DR6M8cPOEARzh8xxTFmkE6Rpp902v0+NJr3xsO8Q8D3c6Q47XjTZ2OS1o+0Vam9F+
- 087VTgQtG110tml2DIvQ9rNdRIw=
-X-Mailgun-Sending-Ip: 69.72.43.7
+ bh=+IIrtwkfgZjcd2GkgtaMi+ekH0Vm4CAKO94p+w0YbFk=;
+ b=SzZUCSNbKTcFheHyEB992upF5lesdpz4WZKGvrtEpzPPNFcxscZVIzrWLTpJJPZGqjpbDoY6
+ IWyo33/dGJItW7tIpykgVVXR6d/Euqlmi/VRFFWlMP3Ozz8bfrgz7U/K41Jwp5GCRqMmF11p
+ ysfYvXJ4nhNZ+LqwXFlMc49QgO8=
+X-Mailgun-Sending-Ip: 198.61.254.9
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
  smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
- 613f9458648642cc1c7b5c05 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 13 Sep 2021 18:11:36
+ 613fd166648642cc1c624dc2 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 13 Sep 2021 22:32:06
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 2B0B9C43460; Mon, 13 Sep 2021 18:11:36 +0000 (UTC)
+ id 48940C43616; Mon, 13 Sep 2021 22:32:06 +0000 (UTC)
 Received: from jouni.codeaurora.org (85-76-72-211-nat.elisa-mobile.fi
  [85.76.72.211])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested) (Authenticated sender: jouni)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 3257EC4338F;
- Mon, 13 Sep 2021 18:11:33 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 3257EC4338F
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 2A4BFC4338F;
+ Mon, 13 Sep 2021 22:32:03 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 2A4BFC4338F
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
@@ -68,16 +68,16 @@ Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
 From: Jouni Malinen <jouni@codeaurora.org>
 To: Kalle Valo <kvalo@codeaurora.org>
 Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- Wen Gong <wgong@codeaurora.org>, Jouni Malinen <jouni@codeaurora.org>
-Subject: [PATCH] ath11k: add string type to search board data in board-2.bin
- for WCN6855
-Date: Mon, 13 Sep 2021 21:11:31 +0300
-Message-Id: <20210913181131.194024-1-jouni@codeaurora.org>
+ Seevalamuthu Mariappan <seevalam@codeaurora.org>
+Subject: [PATCH 0/5] ath11k: Change htt stats display logic
+Date: Tue, 14 Sep 2021 01:31:43 +0300
+Message-Id: <20210913223148.208026-1-jouni@codeaurora.org>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210913_111151_604375_103B9464 
-X-CRM114-Status: GOOD (  18.45  )
+X-CRM114-CacheID: sfid-20210913_153224_012217_B45717D9 
+X-CRM114-Status: UNSURE (   9.13  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,151 +94,27 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Wen Gong <wgong@codeaurora.org>
+From: Seevalamuthu Mariappan <seevalam@codeaurora.org>
 
-Currently ath11k only support string type with bus, chip id and board id
-such as "bus=ahb,qmi-chip-id=1,qmi-board-id=4" for ahb bus chip and
-"bus=pci,qmi-chip-id=0,qmi-board-id=255" for PCIe bus chip in
-board-2.bin. For WCN6855, it is not enough to distinguish all different
-chips.
+This patchsets modified htt stats display logic by removing
+all temporary array usage to avoid stats truncation.
 
-This is to add a new string type which include bus, chip id, board id,
-vendor, device, subsystem-vendor and subsystem-device for WCN6855.
+Seevalamuthu Mariappan (4):
+  ath11k: Rename macro ARRAY_TO_STRING to PRINT_ARRAY_TO_BUF
+  ath11k: Replace HTT_DBG_OUT with scnprintf
+  ath11k: Remove htt stats fixed size array usage
+  ath11k: Change masking and shifting in htt stats
 
-ath11k will first load board-2.bin and search in it for the board data
-with the above parameters, if matched one board data, then download it
-to firmware, if not matched any one, then ath11k will download the file
-board.bin to firmware.
+Venkateswara Naralasetty (1):
+  ath11k: add HTT stats support for new stats
 
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+ drivers/net/wireless/ath/ath11k/debugfs.h     |    4 +
+ .../wireless/ath/ath11k/debugfs_htt_stats.c   | 4344 +++++++++--------
+ .../wireless/ath/ath11k/debugfs_htt_stats.h   |  226 +
+ drivers/net/wireless/ath/ath11k/debugfs_sta.c |    8 +-
+ drivers/net/wireless/ath/ath11k/dp.h          |    7 +
+ 5 files changed, 2463 insertions(+), 2126 deletions(-)
 
-Signed-off-by: Wen Gong <wgong@codeaurora.org>
-Signed-off-by: Jouni Malinen <jouni@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/core.c | 27 ++++++++++++++++++++------
- drivers/net/wireless/ath/ath11k/core.h | 13 +++++++++++++
- drivers/net/wireless/ath/ath11k/pci.c  | 10 ++++++++++
- drivers/net/wireless/ath/ath11k/qmi.h  |  3 +++
- 4 files changed, 47 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 8f09ae827170..a8c6f7cf33d5 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -406,11 +406,26 @@ static int ath11k_core_create_board_name(struct ath11k_base *ab, char *name,
- 		scnprintf(variant, sizeof(variant), ",variant=%s",
- 			  ab->qmi.target.bdf_ext);
- 
--	scnprintf(name, name_len,
--		  "bus=%s,qmi-chip-id=%d,qmi-board-id=%d%s",
--		  ath11k_bus_str(ab->hif.bus),
--		  ab->qmi.target.chip_id,
--		  ab->qmi.target.board_id, variant);
-+	switch (ab->id.bdf_search) {
-+	case ATH11K_BDF_SEARCH_BUS_AND_BOARD:
-+		scnprintf(name, name_len,
-+			  "bus=%s,vendor=%04x,device=%04x,subsystem-vendor=%04x,subsystem-device=%04x,qmi-chip-id=%d,qmi-board-id=%d%s",
-+			  ath11k_bus_str(ab->hif.bus),
-+			  ab->id.vendor, ab->id.device,
-+			  ab->id.subsystem_vendor,
-+			  ab->id.subsystem_device,
-+			  FIELD_GET(ATH11K_CHIP_ID_MASK, ab->qmi.target.chip_id),
-+			  ab->qmi.target.board_id & 0xFF,
-+			  variant);
-+		break;
-+	default:
-+		scnprintf(name, name_len,
-+			  "bus=%s,qmi-chip-id=%d,qmi-board-id=%d%s",
-+			  ath11k_bus_str(ab->hif.bus),
-+			  ab->qmi.target.chip_id,
-+			  ab->qmi.target.board_id, variant);
-+		break;
-+	}
- 
- 	ath11k_dbg(ab, ATH11K_DBG_BOOT, "boot using board name '%s'\n", name);
- 
-@@ -647,7 +662,7 @@ static int ath11k_core_fetch_board_data_api_1(struct ath11k_base *ab,
- 	return 0;
- }
- 
--#define BOARD_NAME_SIZE 100
-+#define BOARD_NAME_SIZE 200
- int ath11k_core_fetch_bdf(struct ath11k_base *ab, struct ath11k_board_data *bd)
- {
- 	char boardname[BOARD_NAME_SIZE];
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index d58ca38d78c7..eda90776cee1 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -47,6 +47,11 @@ enum ath11k_supported_bw {
- 	ATH11K_BW_160	= 3,
- };
- 
-+enum ath11k_bdf_search {
-+	ATH11K_BDF_SEARCH_DEFAULT,
-+	ATH11K_BDF_SEARCH_BUS_AND_BOARD,
-+};
-+
- enum wme_ac {
- 	WME_AC_BE,
- 	WME_AC_BK,
-@@ -761,6 +766,14 @@ struct ath11k_base {
- 	struct completion htc_suspend;
- 	struct ath11k_num_vdevs_peers num_vdevs_peers;
- 
-+	struct {
-+		enum ath11k_bdf_search bdf_search;
-+		u32 vendor;
-+		u32 device;
-+		u32 subsystem_vendor;
-+		u32 subsystem_device;
-+	} id;
-+
- 	/* must be last */
- 	u8 drv_priv[0] __aligned(sizeof(void *));
- };
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index c6540d562c42..40f7e70693c0 100644
---- a/drivers/net/wireless/ath/ath11k/pci.c
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -1290,6 +1290,15 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
- 		goto err_free_core;
- 	}
- 
-+	ath11k_dbg(ab, ATH11K_DBG_BOOT, "pci probe %04x:%04x %04x:%04x\n",
-+		   pdev->vendor, pdev->device,
-+		   pdev->subsystem_vendor, pdev->subsystem_device);
-+
-+	ab->id.vendor = pdev->vendor;
-+	ab->id.device = pdev->device;
-+	ab->id.subsystem_vendor = pdev->subsystem_vendor;
-+	ab->id.subsystem_device = pdev->subsystem_device;
-+
- 	switch (pci_dev->device) {
- 	case QCA6390_DEVICE_ID:
- 		ath11k_pci_read_hw_version(ab, &soc_hw_version_major,
-@@ -1312,6 +1321,7 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
- 		ab->hw_rev = ATH11K_HW_QCN9074_HW10;
- 		break;
- 	case WCN6855_DEVICE_ID:
-+		ab->id.bdf_search = ATH11K_BDF_SEARCH_BUS_AND_BOARD;
- 		ath11k_pci_read_hw_version(ab, &soc_hw_version_major,
- 					   &soc_hw_version_minor);
- 		switch (soc_hw_version_major) {
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.h b/drivers/net/wireless/ath/ath11k/qmi.h
-index 3bb0f9ef7996..a7c01b51d9a6 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.h
-+++ b/drivers/net/wireless/ath/ath11k/qmi.h
-@@ -97,6 +97,9 @@ struct target_mem_chunk {
- 	u32 *vaddr;
- };
- 
-+/* used to get the chip id in struct target_info */
-+#define ATH11K_CHIP_ID_MASK 0x10
-+
- struct target_info {
- 	u32 chip_id;
- 	u32 chip_family;
 -- 
 2.25.1
 
