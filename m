@@ -7,14 +7,14 @@ X-Spam-Status: No, score=-17.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
 	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 35C27C433F5
-	for <ath11k@archiver.kernel.org>; Mon, 13 Sep 2021 17:55:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 10C21C433EF
+	for <ath11k@archiver.kernel.org>; Mon, 13 Sep 2021 17:55:56 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 00B50610CE
-	for <ath11k@archiver.kernel.org>; Mon, 13 Sep 2021 17:55:49 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 00B50610CE
+	by mail.kernel.org (Postfix) with ESMTPS id CABA260E97
+	for <ath11k@archiver.kernel.org>; Mon, 13 Sep 2021 17:55:55 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org CABA260E97
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,44 +23,44 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=WT/cQLG4WwaYX5yAaBhTJspfNDvLVyuzs4kYd6NJ6WY=; b=aycq7gYQr4Bzul
-	HMDk4SEdxZ0zKDl8DID0vLBC6LUuLr44NnCJZ6kTlo4gWTYN/umihkyO7ahYSc4Dn3sx6ak4jPfis
-	IrZ4I6ICiKkuCQzQaa6ef24+LR4j4AyQ/dKkStTw+ffawr3VINdfsM386JgeTHXL1q3RSLvD3pu9R
-	Qmszt8/dUE/0kyNJMItD0fcsNGFJBOID5Hljf4x3uDY1ocq1AB3mIWC7uAptedCZsCJcDiSSAzHg0
-	uv4IM8XQlJi57FD7hGwayY4rgJCyP1VBTr5w/Xci4WmndquBEiIr+1ttqubHzYCXzlciKnzUyhDud
-	M1TWAtIidnWiyQFGNnlg==;
+	List-Owner; bh=L/LJUG0IZEtYRh9JMa8LzaBpGNYDO0LSOwQetvmk42g=; b=OTRR1KQtxrLfoE
+	RFzStMa4aM/sq9aQrm09/y0WMd/kpFUKr2N7LW28AbaY9WZ4unqUTy+0On57or023IeV/caQ7jPBL
+	P1f20yMkclcW0b/41C6yCCpToCWV/2w7ewzvj1QKv0NmLPGC6bgPtsNnR0Uw8k62oRtpsu4JGwytK
+	Boib4euPncs58+vqatLnui2ghAwNF/UNnjg4XtjfdND3rZ11Nw8wpyYvE/BIuhpb1CYqvu9ETYcAq
+	xb+siP4lbIxG7XYQITN+JbgCsm6eMPEhXSLJdOTHHLv4JGIVsh+bYhvy5t58ehhv1ULiDH2sw3Acf
+	D/Jw7c4czEwV4Gh4fkPA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mPqBI-002rEZ-05; Mon, 13 Sep 2021 17:55:48 +0000
+	id 1mPqBN-002rHK-IU; Mon, 13 Sep 2021 17:55:53 +0000
 Received: from so254-9.mailgun.net ([198.61.254.9])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mPqBC-002r8x-Pd
- for ath11k@lists.infradead.org; Mon, 13 Sep 2021 17:55:47 +0000
+ id 1mPqBI-002r8x-NF
+ for ath11k@lists.infradead.org; Mon, 13 Sep 2021 17:55:52 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1631555745; h=Content-Transfer-Encoding: MIME-Version:
+ s=smtp; t=1631555750; h=Content-Transfer-Encoding: MIME-Version:
  References: In-Reply-To: Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=jHdzBSk4cdbPQS53S9z++PaBwDY9pMm0fESyUzRwxzk=;
- b=GRaYjpD/N2B4CIlRWs6O9Ms2ZG+VxV6xg2R3Z4ylEo7b18csO15ikrdmRENZ9U/5awhzDQIE
- xda0Xe9UtrLCNnyuINoFsfVf2qk19StJ0CtVV0cPArQ46mxX341nQtoXnk2CulaWwfBNfGji
- SqkVQGB7Mpn6DFVVHOPcfg23osA=
+ Sender; bh=4lG+14AjO4exeuH4NX4A70HcE5SBnuRaGtpVJmPEi1o=;
+ b=M0/GuRFUvgStDHzhFuT0aXGbgGUNYoAH0ELF8yAZp4S1kDCDF49rsDmMQH9UuGxnQOr6CZU2
+ rgQV8Z8vfFIaNUWydeb5xSk43l/Ybc7cK9DZ50bA+oM+hF7029+kpNQ+/K1rfPTXS9iKK8kk
+ McHgN05w5LvUnbcV8WwbB+92a/8=
 X-Mailgun-Sending-Ip: 198.61.254.9
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
- 613f9094648642cc1c69234a (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 13 Sep 2021 17:55:32
+ smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
+ 613f9095e0f78151d6c1de15 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 13 Sep 2021 17:55:33
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 06863C4360D; Mon, 13 Sep 2021 17:55:32 +0000 (UTC)
+ id B3FA4C43460; Mon, 13 Sep 2021 17:55:33 +0000 (UTC)
 Received: from jouni.codeaurora.org (85-76-72-211-nat.elisa-mobile.fi
  [85.76.72.211])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested) (Authenticated sender: jouni)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id D69D6C43460;
- Mon, 13 Sep 2021 17:55:29 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org D69D6C43460
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id B1EC4C4338F;
+ Mon, 13 Sep 2021 17:55:31 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org B1EC4C4338F
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
@@ -70,16 +70,16 @@ To: Kalle Valo <kvalo@codeaurora.org>
 Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
  Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>,
  Jouni Malinen <jouni@codeaurora.org>
-Subject: [PATCH 2/3] ath11k: add 6 GHz params in peer assoc command
-Date: Mon, 13 Sep 2021 20:55:09 +0300
-Message-Id: <20210913175510.193005-2-jouni@codeaurora.org>
+Subject: [PATCH 3/3] ath11k: support SMPS configuration for 6 GHz
+Date: Mon, 13 Sep 2021 20:55:10 +0300
+Message-Id: <20210913175510.193005-3-jouni@codeaurora.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210913175510.193005-1-jouni@codeaurora.org>
 References: <20210913175510.193005-1-jouni@codeaurora.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210913_105545_684974_2F3A3FAC 
-X-CRM114-Status: GOOD (  15.26  )
+X-CRM114-CacheID: sfid-20210913_105550_766195_E3832558 
+X-CRM114-Status: GOOD (  15.78  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,95 +98,94 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 From: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
 
-Currently A-MPDU aggregation parameters are not being configured
-during peer association for 6 GHz band. Hence, extract these
-parameters from station's capabilities received in association
-request and send to firmware. Without this, A-MPDU aggregation
-is not happening in 6 GHz band.
+Parse SMPS configuration from IEs and configure. Without this,
+SMPS is not enabled for 6 GHz band.
 
 Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.4.0.1-01386-QCAHKSWPL_SILICONZ-1
 
 Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
 Signed-off-by: Jouni Malinen <jouni@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 50 ++++++++++++++++++++++++++-
- 1 file changed, 49 insertions(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/mac.c | 31 ++++++++++++++++++---------
+ 1 file changed, 21 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 04a8f82e3a17..aba005241095 100644
+index aba005241095..155ca6af1b45 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -1959,6 +1959,53 @@ static void ath11k_peer_assoc_h_he(struct ath11k *ar,
- 		   arg->peer_bw_rxnss_override);
- }
+@@ -2012,11 +2012,16 @@ static void ath11k_peer_assoc_h_smps(struct ieee80211_sta *sta,
+ 	const struct ieee80211_sta_ht_cap *ht_cap = &sta->ht_cap;
+ 	int smps;
  
-+static void ath11k_peer_assoc_h_he_6ghz(struct ath11k *ar,
-+					struct ieee80211_vif *vif,
-+					struct ieee80211_sta *sta,
-+					struct peer_assoc_params *arg)
-+{
-+	const struct ieee80211_sta_he_cap *he_cap = &sta->he_cap;
-+	struct cfg80211_chan_def def;
-+	enum nl80211_band band;
-+	u8  ampdu_factor;
-+
-+	if (WARN_ON(ath11k_mac_vif_chan(vif, &def)))
-+		return;
-+
-+	band = def.chan->band;
-+
-+	if (!arg->he_flag || band != NL80211_BAND_6GHZ || !sta->he_6ghz_capa.capa)
-+		return;
-+
-+	if (sta->bandwidth == IEEE80211_STA_RX_BW_80)
-+		arg->bw_80 = true;
-+
-+	if (sta->bandwidth == IEEE80211_STA_RX_BW_160)
-+		arg->bw_160 = true;
-+
-+	arg->peer_he_caps_6ghz = le16_to_cpu(sta->he_6ghz_capa.capa);
-+	arg->peer_mpdu_density =
-+		ath11k_parse_mpdudensity(FIELD_GET(IEEE80211_HE_6GHZ_CAP_MIN_MPDU_START,
-+						   arg->peer_he_caps_6ghz));
-+
-+	/* From IEEE Std 802.11ax-2021 - Section 10.12.2: An HE STA shall be capable of
-+	 * receiving A-MPDU where the A-MPDU pre-EOF padding length is up to the value
-+	 * indicated by the Maximum A-MPDU Length Exponent Extension field in the HE
-+	 * Capabilities element and the Maximum A-MPDU Length Exponent field in HE 6 GHz
-+	 * Band Capabilities element in the 6 GHz band.
-+	 *
-+	 * Here, we are extracting the Max A-MPDU Exponent Extension from HE caps and
-+	 * factor is the Maximum A-MPDU Length Exponent from HE 6 GHZ Band capability.
-+	 */
-+	ampdu_factor = FIELD_GET(IEEE80211_HE_MAC_CAP3_MAX_AMPDU_LEN_EXP_MASK,
-+				 he_cap->he_cap_elem.mac_cap_info[3]) +
-+			FIELD_GET(IEEE80211_HE_6GHZ_CAP_MAX_AMPDU_LEN_EXP,
-+				  arg->peer_he_caps_6ghz);
-+
-+	arg->peer_max_mpdu = (1u << (IEEE80211_HE_6GHZ_MAX_AMPDU_FACTOR +
-+				     ampdu_factor)) - 1;
-+}
-+
- static void ath11k_peer_assoc_h_smps(struct ieee80211_sta *sta,
- 				     struct peer_assoc_params *arg)
+-	if (!ht_cap->ht_supported)
++	if (!ht_cap->ht_supported && !sta->he_6ghz_capa.capa)
+ 		return;
+ 
+-	smps = ht_cap->cap & IEEE80211_HT_CAP_SM_PS;
+-	smps >>= IEEE80211_HT_CAP_SM_PS_SHIFT;
++	if (ht_cap->ht_supported) {
++		smps = ht_cap->cap & IEEE80211_HT_CAP_SM_PS;
++		smps >>= IEEE80211_HT_CAP_SM_PS_SHIFT;
++	} else {
++		smps = FIELD_GET(IEEE80211_HE_6GHZ_CAP_SM_PS,
++				 le16_to_cpu(sta->he_6ghz_capa.capa));
++	}
+ 
+ 	switch (smps) {
+ 	case WLAN_HT_CAP_SM_PS_STATIC:
+@@ -2304,15 +2309,20 @@ static void ath11k_peer_assoc_prepare(struct ath11k *ar,
+ 
+ static int ath11k_setup_peer_smps(struct ath11k *ar, struct ath11k_vif *arvif,
+ 				  const u8 *addr,
+-				  const struct ieee80211_sta_ht_cap *ht_cap)
++				  const struct ieee80211_sta_ht_cap *ht_cap,
++				  u16 he_6ghz_capa)
  {
-@@ -2248,6 +2295,7 @@ static void ath11k_peer_assoc_prepare(struct ath11k *ar,
- 	ath11k_peer_assoc_h_ht(ar, vif, sta, arg);
- 	ath11k_peer_assoc_h_vht(ar, vif, sta, arg);
- 	ath11k_peer_assoc_h_he(ar, vif, sta, arg);
-+	ath11k_peer_assoc_h_he_6ghz(ar, vif, sta, arg);
- 	ath11k_peer_assoc_h_qos(ar, vif, sta, arg);
- 	ath11k_peer_assoc_h_smps(sta, arg);
+ 	int smps;
  
-@@ -7496,7 +7544,7 @@ static int __ath11k_mac_register(struct ath11k *ar)
- 	if (cap->nss_ratio_enabled)
- 		ieee80211_hw_set(ar->hw, SUPPORTS_VHT_EXT_NSS_BW);
+-	if (!ht_cap->ht_supported)
++	if (!ht_cap->ht_supported && !he_6ghz_capa)
+ 		return 0;
  
--	if (ht_cap & WMI_HT_CAP_ENABLED) {
-+	if ((ht_cap & WMI_HT_CAP_ENABLED) || ar->supports_6ghz) {
- 		ieee80211_hw_set(ar->hw, AMPDU_AGGREGATION);
- 		ieee80211_hw_set(ar->hw, TX_AMPDU_SETUP_IN_HW);
- 		ieee80211_hw_set(ar->hw, SUPPORTS_REORDERING_BUFFER);
+-	smps = ht_cap->cap & IEEE80211_HT_CAP_SM_PS;
+-	smps >>= IEEE80211_HT_CAP_SM_PS_SHIFT;
++	if (ht_cap->ht_supported) {
++		smps = ht_cap->cap & IEEE80211_HT_CAP_SM_PS;
++		smps >>= IEEE80211_HT_CAP_SM_PS_SHIFT;
++	} else {
++		smps = FIELD_GET(IEEE80211_HE_6GHZ_CAP_SM_PS, he_6ghz_capa);
++	}
+ 
+ 	if (smps >= ARRAY_SIZE(ath11k_smps_map))
+ 		return -EINVAL;
+@@ -2366,7 +2376,8 @@ static void ath11k_bss_assoc(struct ieee80211_hw *hw,
+ 	}
+ 
+ 	ret = ath11k_setup_peer_smps(ar, arvif, bss_conf->bssid,
+-				     &ap_sta->ht_cap);
++				     &ap_sta->ht_cap,
++				     le16_to_cpu(ap_sta->he_6ghz_capa.capa));
+ 	if (ret) {
+ 		ath11k_warn(ar->ab, "failed to setup peer SMPS for vdev %d: %d\n",
+ 			    arvif->vdev_id, ret);
+@@ -3656,7 +3667,7 @@ static int ath11k_station_assoc(struct ath11k *ar,
+ 		return 0;
+ 
+ 	ret = ath11k_setup_peer_smps(ar, arvif, sta->addr,
+-				     &sta->ht_cap);
++				     &sta->ht_cap, le16_to_cpu(sta->he_6ghz_capa.capa));
+ 	if (ret) {
+ 		ath11k_warn(ar->ab, "failed to setup peer SMPS for vdev %d: %d\n",
+ 			    arvif->vdev_id, ret);
+@@ -7559,7 +7570,7 @@ static int __ath11k_mac_register(struct ath11k *ar)
+ 	 * for each band for a dual band capable radio. It will be tricky to
+ 	 * handle it when the ht capability different for each band.
+ 	 */
+-	if (ht_cap & WMI_HT_CAP_DYNAMIC_SMPS)
++	if (ht_cap & WMI_HT_CAP_DYNAMIC_SMPS || ar->supports_6ghz)
+ 		ar->hw->wiphy->features |= NL80211_FEATURE_DYNAMIC_SMPS;
+ 
+ 	ar->hw->wiphy->max_scan_ssids = WLAN_SCAN_PARAMS_MAX_SSID;
 -- 
 2.25.1
 
