@@ -5,16 +5,16 @@ X-Spam-Level:
 X-Spam-Status: No, score=-17.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 85284C433F5
-	for <ath11k@archiver.kernel.org>; Mon, 13 Sep 2021 18:09:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E4E3EC433F5
+	for <ath11k@archiver.kernel.org>; Mon, 13 Sep 2021 18:09:40 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3E87960EE9
-	for <ath11k@archiver.kernel.org>; Mon, 13 Sep 2021 18:09:34 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 3E87960EE9
+	by mail.kernel.org (Postfix) with ESMTPS id 8830D60EE9
+	for <ath11k@archiver.kernel.org>; Mon, 13 Sep 2021 18:09:40 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 8830D60EE9
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,44 +23,44 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8kvKjV+TD+VktWaaVT/auwOAzX9bHAO/YOSUQRJh+kY=; b=iS2/AXgqkKk9Ti
-	Q3mfDPhiLSWOuwIMQ7gMloiK62mnoSNt9T2NAAaTvKC6UAj7RQ43ci8CFuCc9/pnbRk8FYdXxqKI3
-	8qx61v6EnyotqmzwavigjLTAOUc9+702nbBvp5mlXns0fc7/X0fGNCC50VXXGNAt7AZvGquDqXb1J
-	MDoYSL6Ld/vnS6wxwcM0xQvfNzYgMg/57vpqt89hKdGkHiHeJSiTiM81EtGMe89qKIKk46NeMA4O3
-	+qEP2+U3uiA+nZHJwR1iwEBuB59Cq18+nP0g9KvTH6NtDWwumiiHAMvfrTMd4LyMR30b02seHNcr1
-	3I88jnfgDzb/vySC5riw==;
+	List-Owner; bh=GVgtzf5KjyRC+W72szOBtj5+a17+aQquHW2g2J+btMA=; b=RsxIBT77W4PuVf
+	WqLYUADRHrOqqtXv6YdrQZYILDuALnZa7QlM3VUXFHpqOfCDh7qKW4RYe0moXoR3nlQY56QcPxl3n
+	sW8oYMlDFPzJ3PHrNGhCSUBSvr//Qw9Y6dFKfvWIgT6FXbEN4WUkKZvr3z73vLa3zNIjH4UiXtMfd
+	krn8PewGZK88TsvsB/B1KDAqio6EYzF72xQsGpGC2vClcsb38a1secXrxxSBKLMp0+2OOCIMv3fbV
+	GOlZ1EBT3fHOkQ7DEeUeJy7HBoMg51OvrXAF+VhlKp219J+J8Zw8uD5+arfiJKny/enS2O+RjtgGX
+	jiXlK5364545RP9BiRVA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mPqOa-002ta5-BN; Mon, 13 Sep 2021 18:09:32 +0000
-Received: from m43-7.mailgun.net ([69.72.43.7])
+	id 1mPqOg-002tc2-Ly; Mon, 13 Sep 2021 18:09:38 +0000
+Received: from so254-9.mailgun.net ([198.61.254.9])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mPqOU-002tXs-SM
- for ath11k@lists.infradead.org; Mon, 13 Sep 2021 18:09:30 +0000
+ id 1mPqOY-002tZl-Cy
+ for ath11k@lists.infradead.org; Mon, 13 Sep 2021 18:09:36 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1631556569; h=Content-Transfer-Encoding: MIME-Version:
+ s=smtp; t=1631556574; h=Content-Transfer-Encoding: MIME-Version:
  References: In-Reply-To: Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=UDyTXV2qIFPeqGGM5DT0KdVaxQKpk0kdL/OeV+VHVSo=;
- b=aJE2cNL4ltGfOYjaJ50gdcm8691F2EgKnnBhSeqXIvazg4loo+19/TpzmB+sE4K9IpB0HXo3
- maw/fz4z8IZnPTm8IxjpySVI7Lv0A85xhQMgt+a3M/RA1ASp5Vzi8Qhu9DSoxyLnGU84VOeS
- tUsFJNx4WTspwxhQOD/9/1a8q9w=
-X-Mailgun-Sending-Ip: 69.72.43.7
+ Sender; bh=IVXJisfKkO+ojMe7txf1Qnyporkoe2DhbAz2JfqYtz0=;
+ b=c7ywUhNwyIDt1JnY2ySuX53yEfGDKDoc/zoVK6/1T1PXy8NlqKFORdgRrZPY+Z3RGrDcXQ8X
+ /R5S6GfCZXKZPsOB++XuvOGb3iH8ogE7vAviUtDrJpib+hShB4Ah/9OqJEGdI9F8D6mY2Xcd
+ RfVkxSuZpoM6Z8wt4bB46hiE0tg=
+X-Mailgun-Sending-Ip: 198.61.254.9
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
- 613f93ce507800c880726173 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 13 Sep 2021 18:09:18
+ smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
+ 613f93d3d914b0518272444e (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 13 Sep 2021 18:09:23
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 1A3B8C4338F; Mon, 13 Sep 2021 18:09:18 +0000 (UTC)
+ id BF466C43460; Mon, 13 Sep 2021 18:09:22 +0000 (UTC)
 Received: from jouni.codeaurora.org (85-76-72-211-nat.elisa-mobile.fi
  [85.76.72.211])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested) (Authenticated sender: jouni)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 48BDEC43460;
- Mon, 13 Sep 2021 18:09:16 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 48BDEC43460
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 0022FC4360D;
+ Mon, 13 Sep 2021 18:09:19 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 0022FC4360D
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
@@ -69,16 +69,16 @@ From: Jouni Malinen <jouni@codeaurora.org>
 To: Kalle Valo <kvalo@codeaurora.org>
 Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
  Baochen Qiang <bqiang@codeaurora.org>, Jouni Malinen <jouni@codeaurora.org>
-Subject: [PATCH 1/3] ath11k: Split PCI write/read functions
-Date: Mon, 13 Sep 2021 21:09:00 +0300
-Message-Id: <20210913180902.193874-2-jouni@codeaurora.org>
+Subject: [PATCH 3/3] ath11k: Implement sram dump interface
+Date: Mon, 13 Sep 2021 21:09:02 +0300
+Message-Id: <20210913180902.193874-4-jouni@codeaurora.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210913180902.193874-1-jouni@codeaurora.org>
 References: <20210913180902.193874-1-jouni@codeaurora.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210913_110929_470988_1074D31E 
-X-CRM114-Status: GOOD (  17.62  )
+X-CRM114-CacheID: sfid-20210913_110935_065023_0FA335B5 
+X-CRM114-Status: GOOD (  21.23  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,14 +97,7 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 From: Baochen Qiang <bqiang@codeaurora.org>
 
-ath11k_pci_write32/read32 tries to wake up MHI before doing actual
-write/read work, which means each time a u32 is written/read, MHI
-wake up is performed. This is not necessary in case where we do a
-large amount of write/read, cause only one time of wake up is needed.
-So split each one into two parts, the first part does MHI get/put
-and the second one does actual write/read work.
-
-Also avoid the put operation if the previous get operation fails.
+Currently this feature is enabled for QCA6390/WCN6855.
 
 Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
 Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
@@ -112,107 +105,294 @@ Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE
 Signed-off-by: Baochen Qiang <bqiang@codeaurora.org>
 Signed-off-by: Jouni Malinen <jouni@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/pci.c | 61 ++++++++++++++++++---------
- 1 file changed, 42 insertions(+), 19 deletions(-)
+ drivers/net/wireless/ath/ath11k/core.c    |  8 +++
+ drivers/net/wireless/ath/ath11k/debugfs.c | 64 +++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/debugfs.h |  5 ++
+ drivers/net/wireless/ath/ath11k/hif.h     | 10 ++++
+ drivers/net/wireless/ath/ath11k/hw.c      | 10 ++++
+ drivers/net/wireless/ath/ath11k/hw.h      |  8 +++
+ drivers/net/wireless/ath/ath11k/pci.c     | 30 +++++++++++
+ 7 files changed, 135 insertions(+)
 
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 59fa0ff06dff..8f09ae827170 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -81,6 +81,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_suspend = false,
+ 		.hal_desc_sz = sizeof(struct hal_rx_desc_ipq8074),
+ 		.fix_l1ss = true,
++		.sram_dump = NULL,
+ 	},
+ 	{
+ 		.hw_rev = ATH11K_HW_IPQ6018_HW10,
+@@ -129,6 +130,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_suspend = false,
+ 		.hal_desc_sz = sizeof(struct hal_rx_desc_ipq8074),
+ 		.fix_l1ss = true,
++		.sram_dump = NULL,
+ 	},
+ 	{
+ 		.name = "qca6390 hw2.0",
+@@ -176,6 +178,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_suspend = true,
+ 		.hal_desc_sz = sizeof(struct hal_rx_desc_ipq8074),
+ 		.fix_l1ss = true,
++		.sram_dump = &sram_dump_qca6390,
+ 	},
+ 	{
+ 		.name = "qcn9074 hw1.0",
+@@ -223,6 +226,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.fw_mem_mode = 2,
+ 		.hal_desc_sz = sizeof(struct hal_rx_desc_qcn9074),
+ 		.fix_l1ss = true,
++		.sram_dump = NULL,
+ 	},
+ 	{
+ 		.name = "wcn6855 hw2.0",
+@@ -269,6 +273,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.fw_mem_mode = 0,
+ 		.hal_desc_sz = sizeof(struct hal_rx_desc_wcn6855),
+ 		.fix_l1ss = false,
++		.sram_dump = &sram_dump_wcn6855,
+ 	},
+ };
+ 
+@@ -707,6 +712,9 @@ static int ath11k_core_soc_create(struct ath11k_base *ab)
+ 		goto err_debugfs_reg;
+ 	}
+ 
++	if (ab->hw_params.sram_dump)
++		ath11k_debugfs_sram_dump_create(ab);
++
+ 	ret = ath11k_hif_power_up(ab);
+ 	if (ret) {
+ 		ath11k_err(ab, "failed to power up :%d\n", ret);
+diff --git a/drivers/net/wireless/ath/ath11k/debugfs.c b/drivers/net/wireless/ath/ath11k/debugfs.c
+index cdc492421807..871445f4e96a 100644
+--- a/drivers/net/wireless/ath/ath11k/debugfs.c
++++ b/drivers/net/wireless/ath/ath11k/debugfs.c
+@@ -12,6 +12,7 @@
+ #include "dp_tx.h"
+ #include "debugfs_htt_stats.h"
+ #include "peer.h"
++#include "hif.h"
+ 
+ static const char *htt_bp_umac_ring[HTT_SW_UMAC_RING_IDX_MAX] = {
+ 	"REO2SW1_RING",
+@@ -1122,3 +1123,66 @@ int ath11k_debugfs_register(struct ath11k *ar)
+ void ath11k_debugfs_unregister(struct ath11k *ar)
+ {
+ }
++
++static int ath11k_open_sram_dump(struct inode *inode, struct file *file)
++{
++	struct ath11k_base *ab = inode->i_private;
++	u8 *buf;
++	u32 start, end;
++	int ret;
++
++	start = ab->hw_params.sram_dump->start;
++	end = ab->hw_params.sram_dump->end;
++
++	buf = vmalloc(end - start + 1);
++	if (!buf)
++		return -ENOMEM;
++
++	ret = ath11k_hif_dump_sram(ab, buf, start, end);
++	if (ret) {
++		ath11k_err(ab, "failed to dump sram: %d\n", ret);
++		vfree(buf);
++		return ret;
++	}
++
++	file->private_data = buf;
++	return 0;
++}
++
++static ssize_t ath11k_read_sram_dump(struct file *file,
++				     char __user *user_buf,
++				     size_t count, loff_t *ppos)
++{
++	struct ath11k_base *ab = file->f_inode->i_private;
++	const char *buf = file->private_data;
++	int len;
++	u32 start, end;
++
++	start = ab->hw_params.sram_dump->start;
++	end = ab->hw_params.sram_dump->end;
++	len = end - start + 1;
++
++	return simple_read_from_buffer(user_buf, count, ppos, buf, len);
++}
++
++static int ath11k_release_sram_dump(struct inode *inode, struct file *file)
++{
++	vfree(file->private_data);
++	file->private_data = NULL;
++
++	return 0;
++}
++
++static const struct file_operations fops_sram_dump = {
++	.open = ath11k_open_sram_dump,
++	.read = ath11k_read_sram_dump,
++	.release = ath11k_release_sram_dump,
++	.owner = THIS_MODULE,
++	.llseek = default_llseek,
++};
++
++void ath11k_debugfs_sram_dump_create(struct ath11k_base *ab)
++{
++	debugfs_create_file("sram", 0400, ab->debugfs_soc, ab,
++			    &fops_sram_dump);
++}
+diff --git a/drivers/net/wireless/ath/ath11k/debugfs.h b/drivers/net/wireless/ath/ath11k/debugfs.h
+index 47b96848cf0a..7b9c5e465208 100644
+--- a/drivers/net/wireless/ath/ath11k/debugfs.h
++++ b/drivers/net/wireless/ath/ath11k/debugfs.h
+@@ -147,6 +147,7 @@ static inline int ath11k_debugfs_rx_filter(struct ath11k *ar)
+ 
+ void ath11k_debugfs_crash_trigger_create(struct ath11k_base *ab);
+ void ath11k_debugfs_dp_stats_create(struct ath11k_base *ab);
++void ath11k_debugfs_sram_dump_create(struct ath11k_base *ab);
+ #else
+ static inline int ath11k_debugfs_soc_create(struct ath11k_base *ab)
+ {
+@@ -221,6 +222,10 @@ static inline void ath11k_debugfs_crash_trigger_create(struct ath11k_base *ab)
+ static inline void ath11k_debugfs_dp_stats_create(struct ath11k_base *ab)
+ {
+ }
++
++static inline void ath11k_debugfs_sram_dump_create(struct ath11k_base *ab)
++{
++}
+ #endif /* CONFIG_MAC80211_DEBUGFS*/
+ 
+ #endif /* _ATH11K_DEBUGFS_H_ */
+diff --git a/drivers/net/wireless/ath/ath11k/hif.h b/drivers/net/wireless/ath/ath11k/hif.h
+index e9366f786fbb..8fcf7500e5c6 100644
+--- a/drivers/net/wireless/ath/ath11k/hif.h
++++ b/drivers/net/wireless/ath/ath11k/hif.h
+@@ -29,6 +29,7 @@ struct ath11k_hif_ops {
+ 	void (*ce_irq_enable)(struct ath11k_base *ab);
+ 	void (*ce_irq_disable)(struct ath11k_base *ab);
+ 	void (*get_ce_msi_idx)(struct ath11k_base *ab, u32 ce_id, u32 *msi_idx);
++	int (*dump_sram)(struct ath11k_base *ab, u8 *buf, u32 start, u32 end);
+ };
+ 
+ static inline void ath11k_hif_ce_irq_enable(struct ath11k_base *ab)
+@@ -134,4 +135,13 @@ static inline void ath11k_get_ce_msi_idx(struct ath11k_base *ab, u32 ce_id,
+ 	else
+ 		*msi_data_idx = ce_id;
+ }
++
++static inline int ath11k_hif_dump_sram(struct ath11k_base *ab, u8 *buf,
++				       u32 start, u32 end)
++{
++	if (!ab->hif.ops->dump_sram)
++		return -EOPNOTSUPP;
++
++	return ab->hif.ops->dump_sram(ab, buf, start, end);
++}
+ #endif /* _HIF_H_ */
+diff --git a/drivers/net/wireless/ath/ath11k/hw.c b/drivers/net/wireless/ath/ath11k/hw.c
+index e54b02fd2cc3..57fab9d085d0 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.c
++++ b/drivers/net/wireless/ath/ath11k/hw.c
+@@ -2124,3 +2124,13 @@ const struct ath11k_hw_regs wcn6855_regs = {
+ 	.pcie_qserdes_sysclk_en_sel = 0x01e0c0ac,
+ 	.pcie_pcs_osc_dtct_config_base = 0x01e0c628,
+ };
++
++const struct ath11k_hw_sram_dump sram_dump_qca6390 = {
++	.start = 0x01400000,
++	.end = 0x0171ffff,
++};
++
++const struct ath11k_hw_sram_dump sram_dump_wcn6855 = {
++	.start = 0x01400000,
++	.end = 0x0177ffff,
++};
+diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
+index a1be4f79acb4..484c0bcec86d 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.h
++++ b/drivers/net/wireless/ath/ath11k/hw.h
+@@ -120,6 +120,11 @@ struct ath11k_hw_ring_mask {
+ 	u8 host2rxdma[ATH11K_EXT_IRQ_GRP_NUM_MAX];
+ };
+ 
++struct ath11k_hw_sram_dump {
++	u32 start;
++	u32 end;
++};
++
+ struct ath11k_hw_params {
+ 	const char *name;
+ 	u16 hw_rev;
+@@ -173,6 +178,7 @@ struct ath11k_hw_params {
+ 	bool supports_suspend;
+ 	u32 hal_desc_sz;
+ 	bool fix_l1ss;
++	const struct ath11k_hw_sram_dump *sram_dump;
+ };
+ 
+ struct ath11k_hw_ops {
+@@ -336,4 +342,6 @@ extern const struct ath11k_hw_regs qca6390_regs;
+ extern const struct ath11k_hw_regs qcn9074_regs;
+ extern const struct ath11k_hw_regs wcn6855_regs;
+ 
++extern const struct ath11k_hw_sram_dump sram_dump_qca6390;
++extern const struct ath11k_hw_sram_dump sram_dump_wcn6855;
+ #endif
 diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index 1094b53465bc..5c3ec3e7be89 100644
+index 5c3ec3e7be89..c6540d562c42 100644
 --- a/drivers/net/wireless/ath/ath11k/pci.c
 +++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -174,18 +174,11 @@ static inline u32 ath11k_pci_get_window_start(struct ath11k_base *ab,
- 	return window_start;
+@@ -273,6 +273,35 @@ u32 ath11k_pci_read32(struct ath11k_base *ab, u32 offset)
+ 	return val;
  }
  
--void ath11k_pci_write32(struct ath11k_base *ab, u32 offset, u32 value)
-+void ath11k_pci_do_write32(struct ath11k_base *ab, u32 offset, u32 value)
- {
- 	struct ath11k_pci *ab_pci = ath11k_pci_priv(ab);
- 	u32 window_start;
- 
--	/* for offset beyond BAR + 4K - 32, may
--	 * need to wakeup MHI to access.
--	 */
--	if (test_bit(ATH11K_PCI_FLAG_INIT_DONE, &ab_pci->flags) &&
--	    offset >= ACCESS_ALWAYS_OFF)
--		mhi_device_get_sync(ab_pci->mhi_ctrl->mhi_dev);
--
- 	if (offset < WINDOW_START) {
- 		iowrite32(value, ab->mem  + offset);
- 	} else {
-@@ -205,23 +198,33 @@ void ath11k_pci_write32(struct ath11k_base *ab, u32 offset, u32 value)
- 				  (offset & WINDOW_RANGE_MASK));
- 		}
- 	}
--
--	if (test_bit(ATH11K_PCI_FLAG_INIT_DONE, &ab_pci->flags) &&
--	    offset >= ACCESS_ALWAYS_OFF)
--		mhi_device_put(ab_pci->mhi_ctrl->mhi_dev);
- }
- 
--u32 ath11k_pci_read32(struct ath11k_base *ab, u32 offset)
-+void ath11k_pci_write32(struct ath11k_base *ab, u32 offset, u32 value)
- {
- 	struct ath11k_pci *ab_pci = ath11k_pci_priv(ab);
--	u32 val, window_start;
-+	bool wakeup_required;
-+	int ret;
- 
- 	/* for offset beyond BAR + 4K - 32, may
- 	 * need to wakeup MHI to access.
- 	 */
--	if (test_bit(ATH11K_PCI_FLAG_INIT_DONE, &ab_pci->flags) &&
--	    offset >= ACCESS_ALWAYS_OFF)
--		mhi_device_get_sync(ab_pci->mhi_ctrl->mhi_dev);
-+	wakeup_required = test_bit(ATH11K_PCI_FLAG_INIT_DONE, &ab_pci->flags) &&
-+			  offset >= ACCESS_ALWAYS_OFF;
-+
-+	if (wakeup_required)
-+		ret = mhi_device_get_sync(ab_pci->mhi_ctrl->mhi_dev);
-+
-+	ath11k_pci_do_write32(ab, offset, value);
-+
-+	if (wakeup_required && !ret)
-+		mhi_device_put(ab_pci->mhi_ctrl->mhi_dev);
-+}
-+
-+u32 ath11k_pci_do_read32(struct ath11k_base *ab, u32 offset)
++static int ath11k_pci_dump_sram(struct ath11k_base *ab, u8 *buf,
++				u32 start, u32 end)
 +{
 +	struct ath11k_pci *ab_pci = ath11k_pci_priv(ab);
-+	u32 val, window_start;
- 
- 	if (offset < WINDOW_START) {
- 		val = ioread32(ab->mem + offset);
-@@ -243,8 +246,28 @@ u32 ath11k_pci_read32(struct ath11k_base *ab, u32 offset)
- 		}
- 	}
- 
--	if (test_bit(ATH11K_PCI_FLAG_INIT_DONE, &ab_pci->flags) &&
--	    offset >= ACCESS_ALWAYS_OFF)
-+	return val;
-+}
-+
-+u32 ath11k_pci_read32(struct ath11k_base *ab, u32 offset)
-+{
-+	struct ath11k_pci *ab_pci = ath11k_pci_priv(ab);
-+	u32 val;
-+	bool wakeup_required;
++	u32 i;
 +	int ret;
++	bool wakeup_required;
++	u32 *data = (u32 *)buf;
 +
 +	/* for offset beyond BAR + 4K - 32, may
 +	 * need to wakeup MHI to access.
 +	 */
 +	wakeup_required = test_bit(ATH11K_PCI_FLAG_INIT_DONE, &ab_pci->flags) &&
-+			  offset >= ACCESS_ALWAYS_OFF;
-+
-+	if (wakeup_required)
++			  end >= ACCESS_ALWAYS_OFF;
++	if (wakeup_required) {
 +		ret = mhi_device_get_sync(ab_pci->mhi_ctrl->mhi_dev);
++		if (ret)
++			ath11k_warn(ab, "%s: failed to wakeup MHI: %d\n", __func__, ret);
++	}
 +
-+	val = ath11k_pci_do_read32(ab, offset);
++	for (i = start; i < end + 1; i += 4)
++		*data++ = ath11k_pci_do_read32(ab, i);
 +
 +	if (wakeup_required && !ret)
- 		mhi_device_put(ab_pci->mhi_ctrl->mhi_dev);
++		mhi_device_put(ab_pci->mhi_ctrl->mhi_dev);
++
++	return 0;
++}
++
+ static void ath11k_pci_soc_global_reset(struct ath11k_base *ab)
+ {
+ 	u32 val, delay;
+@@ -1213,6 +1242,7 @@ static const struct ath11k_hif_ops ath11k_pci_hif_ops = {
+ 	.ce_irq_enable = ath11k_pci_hif_ce_irq_enable,
+ 	.ce_irq_disable = ath11k_pci_hif_ce_irq_disable,
+ 	.get_ce_msi_idx = ath11k_pci_get_ce_msi_idx,
++	.dump_sram = ath11k_pci_dump_sram,
+ };
  
- 	return val;
+ static void ath11k_pci_read_hw_version(struct ath11k_base *ab, u32 *major, u32 *minor)
 -- 
 2.25.1
 
