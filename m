@@ -7,14 +7,14 @@ X-Spam-Status: No, score=-17.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
 	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0A6D3C433FE
-	for <ath11k@archiver.kernel.org>; Mon, 13 Sep 2021 18:03:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 86E59C4332F
+	for <ath11k@archiver.kernel.org>; Mon, 13 Sep 2021 18:03:25 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CBAC160F3A
-	for <ath11k@archiver.kernel.org>; Mon, 13 Sep 2021 18:03:23 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org CBAC160F3A
+	by mail.kernel.org (Postfix) with ESMTPS id 521FA60EE9
+	for <ath11k@archiver.kernel.org>; Mon, 13 Sep 2021 18:03:25 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 521FA60EE9
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,44 +23,44 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Y36JjoLLpi1inct3anzp5MeZcB0MCFB6kBqMuII3Ed8=; b=ax8wXYqgCU8KPu
-	wEl/UDxfI0qSkNMKUlRy6jdyxRtWW2z15dGEwLjXYfkSkb4YSJ3PccNtSqUKdwAkVd5i/BXdbt4EJ
-	Z+cSFCq87UIwo0Xlqd33tYjFEpP4Bkn9hDaXn9Fx9SrYsPWT5xONrNqaGIZ5kkSBi91SW4d3PrxgN
-	vgrjm6sVNj4nzMil+QRX7ufHq1hpU1ZxJMBujm9iarQKI/coZiWrCznp50qZOWgOibYY498lf9mhy
-	syFJ+G4xFLa4qQnzXjLGiarYw2stDFn2dSAeV0m8Q+yFOinxwOY5dIkOqgkc3Wp9az8nI+TDna67s
-	P5Da4bkMKHYAktHH9rpg==;
+	List-Owner; bh=I7PT/Lwp4pNYaIhvboIQhb/dfC69aqA18iDDVDpAvGg=; b=W90a3FmpZJ6jQ7
+	83aQvCVoMRHMo1Jy90J/k8HYHhIWMt5JKgFbHwEXZLyqgIsb7/f2xICiFnzxPbgc31s4w8B9ZO+e7
+	+rVQpkahzPy4kvCHL7ictud0PHrUku2G07UAT45yced6oosehw942DioOLqhS2F6h8pO7KlwneElE
+	PnzvDPiDFPEJK88NjAcww7knvx29XK1d6INaOZAIX3xHU1Fizb6v0QRRFkmwKysOoSfOxWyM3o1dk
+	TUgbPGgatw0D08OLu/o8T+RujeEvaEkrRJrZTgvj+OO27wByQQqcJ9AcVuVQqU5EdMUJlnRvM7cvg
+	CJDWOklvBncBAcuI9AlA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mPqIb-002t1w-V1; Mon, 13 Sep 2021 18:03:21 +0000
+	id 1mPqId-002t2P-BA; Mon, 13 Sep 2021 18:03:23 +0000
 Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mPqIV-002t0x-OT
- for ath11k@lists.infradead.org; Mon, 13 Sep 2021 18:03:20 +0000
+ id 1mPqIX-002t16-II
+ for ath11k@lists.infradead.org; Mon, 13 Sep 2021 18:03:22 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1631556198; h=Content-Transfer-Encoding: MIME-Version:
+ s=smtp; t=1631556200; h=Content-Transfer-Encoding: MIME-Version:
  References: In-Reply-To: Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=WrTk85o6jVDyoyJoxKXGeRyBbmUALZxD8Ub4V/fI9HA=;
- b=N2wWjMm7gF0CLPNQGRJsL0cuDsdtSWfXtqot+GKN91gzWOSoyAGFjGN+lntG9AcnYRkUH00x
- Z2w++u87Yx9Ty6QUIflc0FnsBghucj35YADK78DkPU4ZLnqq/Dceq1G++qHj4UdRny829jap
- teQw+NDhesCAsz4LwlWm57Vfebc=
+ Sender; bh=QoSTpIAMWKIF35clN5Hl3YPd5ziftjbn1GcRrPdFY3U=;
+ b=mwLMGOdGgvgf3MraEXLncP+JsN+r4TednUSMZUDus/42cEX0hh5huJ7OAnhQZdJ073bsrOCe
+ 6KDOBt85LvDVTz0LoE0mLWOcNuMw11qas2kN7CT6vl7lMzZcpRocM45tnXMy1HyJjcN7Yoo7
+ aHuc0zsp0y5Xuh4fktl7xX6xsec=
 X-Mailgun-Sending-Ip: 69.72.43.7
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
- 613f9255b585cc7d240f6d83 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 13 Sep 2021 18:03:01
+ smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
+ 613f9257648642cc1c713548 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 13 Sep 2021 18:03:03
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 948B1C4338F; Mon, 13 Sep 2021 18:03:01 +0000 (UTC)
+ id 85975C43616; Mon, 13 Sep 2021 18:03:03 +0000 (UTC)
 Received: from jouni.codeaurora.org (85-76-72-211-nat.elisa-mobile.fi
  [85.76.72.211])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested) (Authenticated sender: jouni)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id CDEA1C4360D;
- Mon, 13 Sep 2021 18:02:59 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org CDEA1C4360D
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id BA270C4338F;
+ Mon, 13 Sep 2021 18:03:01 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org BA270C4338F
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
@@ -69,16 +69,16 @@ From: Jouni Malinen <jouni@codeaurora.org>
 To: Kalle Valo <kvalo@codeaurora.org>
 Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
  Baochen Qiang <bqiang@codeaurora.org>, Jouni Malinen <jouni@codeaurora.org>
-Subject: [PATCH 2/5] ath11k: Drop MSDU with length error in DP rx path
-Date: Mon, 13 Sep 2021 21:02:43 +0300
-Message-Id: <20210913180246.193388-2-jouni@codeaurora.org>
+Subject: [PATCH 3/5] ath11k: Fix inaccessible debug registers
+Date: Mon, 13 Sep 2021 21:02:44 +0300
+Message-Id: <20210913180246.193388-3-jouni@codeaurora.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210913180246.193388-1-jouni@codeaurora.org>
 References: <20210913180246.193388-1-jouni@codeaurora.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210913_110318_925784_3790E513 
-X-CRM114-Status: GOOD (  12.93  )
+X-CRM114-CacheID: sfid-20210913_110320_862496_CDA927DD 
+X-CRM114-Status: GOOD (  13.50  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,58 +97,47 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 From: Baochen Qiang <bqiang@codeaurora.org>
 
-There are MSDUs whose length are invalid. For example,
-attackers may inject on purpose truncated A-MSDUs with
-invalid MSDU length.
+Current code clears debug registers after SOC global reset performed
+in ath11k_pci_sw_reset. However at that time those registers are
+not accessible due to reset, thus they are actually not cleared at all.
+For WCN6855, it may cause target fail to initialize. This issue can be
+fixed by moving clear action ahead.
 
-Such MSDUs are marked with an err bit set in rx attention
-tlvs, so we can check and drop them.
+In addition, on some specific platforms, need to add delay to wait
+those registers to become accessible.
 
-Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
 Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
 
 Signed-off-by: Baochen Qiang <bqiang@codeaurora.org>
 Signed-off-by: Jouni Malinen <jouni@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/dp_rx.c | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+ drivers/net/wireless/ath/ath11k/pci.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 0c27eead3e02..c50f70913583 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -142,6 +142,18 @@ static u32 ath11k_dp_rx_h_attn_mpdu_err(struct rx_attention *attn)
- 	return errmap;
- }
+diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
+index 5abb38cc3b55..7b3bce0ba76e 100644
+--- a/drivers/net/wireless/ath/ath11k/pci.c
++++ b/drivers/net/wireless/ath/ath11k/pci.c
+@@ -430,6 +430,8 @@ static void ath11k_pci_force_wake(struct ath11k_base *ab)
  
-+static bool ath11k_dp_rx_h_attn_msdu_len_err(struct ath11k_base *ab,
-+					     struct hal_rx_desc *desc)
-+{
-+	struct rx_attention *rx_attention;
-+	u32 errmap;
-+
-+	rx_attention = ath11k_dp_rx_get_attention(ab, desc);
-+	errmap = ath11k_dp_rx_h_attn_mpdu_err(rx_attention);
-+
-+	return errmap & DP_RX_MPDU_ERR_MSDU_LEN;
-+}
-+
- static u16 ath11k_dp_rx_h_msdu_start_msdu_len(struct ath11k_base *ab,
- 					      struct hal_rx_desc *desc)
+ static void ath11k_pci_sw_reset(struct ath11k_base *ab, bool power_on)
  {
-@@ -2525,6 +2537,12 @@ static int ath11k_dp_rx_process_msdu(struct ath11k *ar,
++	mdelay(100);
++
+ 	if (power_on) {
+ 		ath11k_pci_enable_ltssm(ab);
+ 		ath11k_pci_clear_all_intrs(ab);
+@@ -439,9 +441,9 @@ static void ath11k_pci_sw_reset(struct ath11k_base *ab, bool power_on)
  	}
  
- 	rx_desc = (struct hal_rx_desc *)msdu->data;
-+	if (ath11k_dp_rx_h_attn_msdu_len_err(ab, rx_desc)) {
-+		ath11k_warn(ar->ab, "msdu len not valid\n");
-+		ret = -EIO;
-+		goto free_out;
-+	}
-+
- 	lrx_desc = (struct hal_rx_desc *)last_buf->data;
- 	rx_attention = ath11k_dp_rx_get_attention(ab, lrx_desc);
- 	if (!ath11k_dp_rx_h_attn_msdu_done(rx_attention)) {
+ 	ath11k_mhi_clear_vector(ab);
++	ath11k_pci_clear_dbg_registers(ab);
+ 	ath11k_pci_soc_global_reset(ab);
+ 	ath11k_mhi_set_mhictrl_reset(ab);
+-	ath11k_pci_clear_dbg_registers(ab);
+ }
+ 
+ int ath11k_pci_get_msi_irq(struct device *dev, unsigned int vector)
 -- 
 2.25.1
 
