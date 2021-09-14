@@ -5,16 +5,16 @@ X-Spam-Level:
 X-Spam-Status: No, score=-17.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C0FCBC433F5
-	for <ath11k@archiver.kernel.org>; Tue, 14 Sep 2021 16:37:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E22C8C433EF
+	for <ath11k@archiver.kernel.org>; Tue, 14 Sep 2021 16:38:04 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5255D60FD7
-	for <ath11k@archiver.kernel.org>; Tue, 14 Sep 2021 16:37:57 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 5255D60FD7
+	by mail.kernel.org (Postfix) with ESMTPS id A46DF60EB6
+	for <ath11k@archiver.kernel.org>; Tue, 14 Sep 2021 16:38:04 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org A46DF60EB6
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -23,44 +23,44 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ksxloNm/rbgKMpB5/MmcDxfw46J92b0LYLwiG/5JMfs=; b=P+VqfbtZDaoUWq
-	oCZnpbVplfXX/ugppgeVL8nYQAbbZnI+v5shCMfqtX6DRrSBVrkDQ4A87InL/c/fziowrbNaGy4Es
-	AbBV9LvWhb8GOe7mst8WRvCuEO/PTNYEhMNH9sIk/Rb5oyf8EQC6rbShW2wF9j9LD7TPidPaEWum1
-	NtTa3csGsXqX9NByvXq1Do6+HlEzAMzRGBE/udPXfCKCO7jXOkVM+0RsVPhozbhbLeUiZew66CHNd
-	BPWqKLoFdhLt9Uqcyb3D1sSJx3GxNcsaFgCh+9duauhpws86AnfmC487htAD+QVrmOfmzuSvxQ5oZ
-	RfCV2u3F4pnaIDnSA3UQ==;
+	List-Owner; bh=M/P106B2Wz3ap3JKoSxLq40Jyg24galGo8DyeKMN9LA=; b=Y+bgxW5dRTc4Aq
+	guZ2MmrbOige6mu4fOktGlbvNXxRtq2mr5PndfOd5A9urNX4mvxGPhMoaKR4bhHGiiUMEVCEOhtIs
+	1ePWUxhVT/U0DpIEHKS1cMCgxcJ+NdG8GHdAQOuhZK6Gk46tNG4FyBkKbPnOkKzxDIW2WM9MAtre0
+	K07atFeT7koUpZBWVCJFzBJxWcNrLptD5oM4iSF0WE/B5t+copo4taoJvrZwFYaY69OcM1LEarx7q
+	JnlFuRrXloaF6whWzp3vkR2qgCpg5pfsHQghSQjrKIY8guIdS+e8LyNyl8lMu3p5CuUtPdKst+oH8
+	RK2VMy2x6Q7vI5kXWD0Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mQBRT-006TbL-BD; Tue, 14 Sep 2021 16:37:55 +0000
+	id 1mQBRa-006TeX-O0; Tue, 14 Sep 2021 16:38:02 +0000
 Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mQBRM-006TZd-PE
- for ath11k@lists.infradead.org; Tue, 14 Sep 2021 16:37:54 +0000
+ id 1mQBRU-006TZP-DU
+ for ath11k@lists.infradead.org; Tue, 14 Sep 2021 16:38:01 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1631637472; h=Content-Transfer-Encoding: MIME-Version:
+ s=smtp; t=1631637480; h=Content-Transfer-Encoding: MIME-Version:
  References: In-Reply-To: Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=AjZNeG4oyZL3KsTyL0XmdkrRRy3JrzKv2gwNejDOtCQ=;
- b=go5EiQYsAq+YccemcraoEr1rM2/LKib+homtVaLdmtB/r2Hkd1X1EvubNmj2FOPRlKlPMVUY
- J9aKr5jiZXwWgDOTXWD8iLMKXmIWBq2c4BFTgFdGH/fJYIUnPtYqI+hXxRE0aVCDtZwFmKSo
- q/rA0lu1CjF792jtnuu33MPW6kA=
+ Sender; bh=wIoJOvqF8dE6kwZEz+Y+D1Dd0q2DEPU/2+Tzin+CbL0=;
+ b=kPhUhOAZpMbz2oFF6j1oSlkTmOGKN0ayLbZHhRgoAryCeOrIMOaXPA9ytcbnP7pFbcmUCfVV
+ AMv1JYgID+Pwgp9JIdqJBosvHFtmfQYQ1voZUutUkEw+LosBcbR2Gvazg15AD0Bv4s6e+fmb
+ fPksWoQmvg0+rW83qEVYQfW9FDA=
 X-Mailgun-Sending-Ip: 69.72.43.7
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
- 6140cfd1c1b30e2f02fd63ca (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 14 Sep 2021 16:37:37
+ smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
+ 6140cfd3507800c880b23b17 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 14 Sep 2021 16:37:39
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 20185C43618; Tue, 14 Sep 2021 16:37:37 +0000 (UTC)
+ id 9D466C43618; Tue, 14 Sep 2021 16:37:38 +0000 (UTC)
 Received: from jouni.codeaurora.org (85-76-72-211-nat.elisa-mobile.fi
  [85.76.72.211])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested) (Authenticated sender: jouni)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id B3501C4361A;
- Tue, 14 Sep 2021 16:37:34 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org B3501C4361A
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id A46D4C43460;
+ Tue, 14 Sep 2021 16:37:36 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org A46D4C43460
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
@@ -68,17 +68,18 @@ Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
 From: Jouni Malinen <jouni@codeaurora.org>
 To: Kalle Valo <kvalo@codeaurora.org>
 Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- Baochen Qiang <bqiang@codeaurora.org>, Jouni Malinen <jouni@codeaurora.org>
-Subject: [PATCH 2/3] ath11k: change return buffer manager for QCA6390
-Date: Tue, 14 Sep 2021 19:37:25 +0300
-Message-Id: <20210914163726.38604-2-jouni@codeaurora.org>
+ Wen Gong <wgong@codeaurora.org>, Jouni Malinen <jouni@codeaurora.org>
+Subject: [PATCH 3/3] ath11k: set correct NL80211_FEATURE_DYNAMIC_SMPS for
+ WCN6855
+Date: Tue, 14 Sep 2021 19:37:26 +0300
+Message-Id: <20210914163726.38604-3-jouni@codeaurora.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210914163726.38604-1-jouni@codeaurora.org>
 References: <20210914163726.38604-1-jouni@codeaurora.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210914_093752_426064_302580D2 
-X-CRM114-Status: GOOD (  18.39  )
+X-CRM114-CacheID: sfid-20210914_093800_139531_BB57813F 
+X-CRM114-Status: GOOD (  16.47  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,261 +96,67 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Baochen Qiang <bqiang@codeaurora.org>
+From: Wen Gong <wgong@codeaurora.org>
 
-QCA6390 firmware uses HAL_RX_BUF_RBM_SW1_BM, not HAL_RX_BUF_RBM_SW3_BM.
+Commit "ath11k: support SMPS configuration for 6 GHz" changed "if
+(ht_cap & WMI_HT_CAP_DYNAMIC_SMPS)" to "if (ht_cap &
+WMI_HT_CAP_DYNAMIC_SMPS || ar->supports_6ghz)" which means
+NL80211_FEATURE_DYNAMIC_SMPS is enabled for all chips which support 6
+GHz. However, WCN6855 supports 6 GHz but it does not support feature
+NL80211_FEATURE_DYNAMIC_SMPS, and this can lead to MU-MIMO test failures
+for WCN6855.
 
-Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
+Disable NL80211_FEATURE_DYNAMIC_SMPS for WCN6855 since its ht_cap does
+not support WMI_HT_CAP_DYNAMIC_SMPS.
 
-Signed-off-by: Baochen Qiang <bqiang@codeaurora.org>
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+
+Signed-off-by: Wen Gong <wgong@codeaurora.org>
 Signed-off-by: Jouni Malinen <jouni@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/core.c   |  5 +++++
- drivers/net/wireless/ath/ath11k/dp.c     |  2 +-
- drivers/net/wireless/ath/ath11k/dp_rx.c  | 22 +++++++++++-----------
- drivers/net/wireless/ath/ath11k/hal.c    |  8 ++++++++
- drivers/net/wireless/ath/ath11k/hal.h    |  7 +++++++
- drivers/net/wireless/ath/ath11k/hal_rx.c |  2 +-
- drivers/net/wireless/ath/ath11k/hw.c     |  3 ++-
- drivers/net/wireless/ath/ath11k/hw.h     |  1 +
- 8 files changed, 36 insertions(+), 14 deletions(-)
+ drivers/net/wireless/ath/ath11k/core.c | 1 +
+ drivers/net/wireless/ath/ath11k/hw.h   | 1 +
+ drivers/net/wireless/ath/ath11k/mac.c  | 3 ++-
+ 3 files changed, 4 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index af76e37d11ae..265ff225bd81 100644
+index 265ff225bd81..2bae8c5184d4 100644
 --- a/drivers/net/wireless/ath/ath11k/core.c
 +++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -82,6 +82,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.fix_l1ss = true,
- 		.sram_dump = NULL,
- 		.max_tx_ring = DP_TCL_NUM_RING_MAX,
-+		.hal_params = &ath11k_hal_params_ipq8074,
- 	},
- 	{
- 		.hw_rev = ATH11K_HW_IPQ6018_HW10,
-@@ -131,6 +132,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.fix_l1ss = true,
- 		.sram_dump = NULL,
- 		.max_tx_ring = DP_TCL_NUM_RING_MAX,
-+		.hal_params = &ath11k_hal_params_ipq8074,
- 	},
- 	{
- 		.name = "qca6390 hw2.0",
-@@ -179,6 +181,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.fix_l1ss = true,
- 		.sram_dump = &sram_dump_qca6390,
- 		.max_tx_ring = DP_TCL_NUM_RING_MAX_QCA6390,
-+		.hal_params = &ath11k_hal_params_qca6390,
- 	},
- 	{
- 		.name = "qcn9074 hw1.0",
-@@ -227,6 +230,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.fix_l1ss = true,
- 		.sram_dump = NULL,
- 		.max_tx_ring = DP_TCL_NUM_RING_MAX,
-+		.hal_params = &ath11k_hal_params_ipq8074,
- 	},
- 	{
- 		.name = "wcn6855 hw2.0",
-@@ -274,6 +278,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.fix_l1ss = false,
+@@ -279,6 +279,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
  		.sram_dump = &sram_dump_wcn6855,
  		.max_tx_ring = DP_TCL_NUM_RING_MAX_QCA6390,
-+		.hal_params = &ath11k_hal_params_qca6390,
+ 		.hal_params = &ath11k_hal_params_qca6390,
++		.check_dynamic_smps = true,
  	},
  };
  
-diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
-index f7049a13973d..4a4f30e933a3 100644
---- a/drivers/net/wireless/ath/ath11k/dp.c
-+++ b/drivers/net/wireless/ath/ath11k/dp.c
-@@ -822,7 +822,7 @@ int ath11k_dp_service_srng(struct ath11k_base *ab,
- 				struct dp_rxdma_ring *rx_ring = &dp->rx_refill_buf_ring;
- 
- 				ath11k_dp_rxbufs_replenish(ab, id, rx_ring, 0,
--							   HAL_RX_BUF_RBM_SW3_BM);
-+							   ab->hw_params.hal_params->rx_buf_rbm);
- 			}
- 		}
- 	}
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index c50f70913583..913e8a9878eb 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -499,7 +499,7 @@ static int ath11k_dp_rxdma_ring_buf_setup(struct ath11k *ar,
- 
- 	rx_ring->bufs_max = num_entries;
- 	ath11k_dp_rxbufs_replenish(ar->ab, dp->mac_id, rx_ring, num_entries,
--				   HAL_RX_BUF_RBM_SW3_BM);
-+				   ar->ab->hw_params.hal_params->rx_buf_rbm);
- 	return 0;
- }
- 
-@@ -2756,7 +2756,7 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int ring_id,
- 		rx_ring = &ar->dp.rx_refill_buf_ring;
- 
- 		ath11k_dp_rxbufs_replenish(ab, i, rx_ring, num_buffs_reaped[i],
--					   HAL_RX_BUF_RBM_SW3_BM);
-+					   ab->hw_params.hal_params->rx_buf_rbm);
- 	}
- 
- 	ath11k_dp_rx_process_received_packets(ab, napi, &msdu_list,
-@@ -3070,7 +3070,7 @@ static int ath11k_dp_rx_reap_mon_status_ring(struct ath11k_base *ab, int mac_id,
- 
- 		if (!skb) {
- 			ath11k_hal_rx_buf_addr_info_set(rx_mon_status_desc, 0, 0,
--							HAL_RX_BUF_RBM_SW3_BM);
-+							ab->hw_params.hal_params->rx_buf_rbm);
- 			num_buffs_reaped++;
- 			break;
- 		}
-@@ -3080,7 +3080,7 @@ static int ath11k_dp_rx_reap_mon_status_ring(struct ath11k_base *ab, int mac_id,
- 			 FIELD_PREP(DP_RXDMA_BUF_COOKIE_BUF_ID, buf_id);
- 
- 		ath11k_hal_rx_buf_addr_info_set(rx_mon_status_desc, rxcb->paddr,
--						cookie, HAL_RX_BUF_RBM_SW3_BM);
-+						cookie, ab->hw_params.hal_params->rx_buf_rbm);
- 		ath11k_hal_srng_src_get_next_entry(ab, srng);
- 		num_buffs_reaped++;
- 	}
-@@ -3469,7 +3469,7 @@ static int ath11k_dp_rx_h_defrag_reo_reinject(struct ath11k *ar, struct dp_rx_ti
- 	cookie = FIELD_PREP(DP_RXDMA_BUF_COOKIE_PDEV_ID, dp->mac_id) |
- 		 FIELD_PREP(DP_RXDMA_BUF_COOKIE_BUF_ID, buf_id);
- 
--	ath11k_hal_rx_buf_addr_info_set(msdu0, paddr, cookie, HAL_RX_BUF_RBM_SW3_BM);
-+	ath11k_hal_rx_buf_addr_info_set(msdu0, paddr, cookie, ab->hw_params.hal_params->rx_buf_rbm);
- 
- 	/* Fill mpdu details into reo entrace ring */
- 	srng = &ab->hal.srng_list[ab->dp.reo_reinject_ring.ring_id];
-@@ -3846,7 +3846,7 @@ int ath11k_dp_process_rx_err(struct ath11k_base *ab, struct napi_struct *napi,
- 		ath11k_hal_rx_msdu_link_info_get(link_desc_va, &num_msdus, msdu_cookies,
- 						 &rbm);
- 		if (rbm != HAL_RX_BUF_RBM_WBM_IDLE_DESC_LIST &&
--		    rbm != HAL_RX_BUF_RBM_SW3_BM) {
-+		    rbm != ab->hw_params.hal_params->rx_buf_rbm) {
- 			ab->soc_stats.invalid_rbm++;
- 			ath11k_warn(ab, "invalid return buffer manager %d\n", rbm);
- 			ath11k_dp_rx_link_desc_return(ab, desc,
-@@ -3902,7 +3902,7 @@ int ath11k_dp_process_rx_err(struct ath11k_base *ab, struct napi_struct *napi,
- 		rx_ring = &ar->dp.rx_refill_buf_ring;
- 
- 		ath11k_dp_rxbufs_replenish(ab, i, rx_ring, n_bufs_reaped[i],
--					   HAL_RX_BUF_RBM_SW3_BM);
-+					   ab->hw_params.hal_params->rx_buf_rbm);
- 	}
- 
- 	return tot_n_bufs_reaped;
-@@ -4198,7 +4198,7 @@ int ath11k_dp_rx_process_wbm_err(struct ath11k_base *ab,
- 		rx_ring = &ar->dp.rx_refill_buf_ring;
- 
- 		ath11k_dp_rxbufs_replenish(ab, i, rx_ring, num_buffs_reaped[i],
--					   HAL_RX_BUF_RBM_SW3_BM);
-+					   ab->hw_params.hal_params->rx_buf_rbm);
- 	}
- 
- 	rcu_read_lock();
-@@ -4307,7 +4307,7 @@ int ath11k_dp_process_rxdma_err(struct ath11k_base *ab, int mac_id, int budget)
- 
- 	if (num_buf_freed)
- 		ath11k_dp_rxbufs_replenish(ab, mac_id, rx_ring, num_buf_freed,
--					   HAL_RX_BUF_RBM_SW3_BM);
-+					   ab->hw_params.hal_params->rx_buf_rbm);
- 
- 	return budget - quota;
- }
-@@ -5101,12 +5101,12 @@ static void ath11k_dp_rx_mon_dest_process(struct ath11k *ar, int mac_id,
- 			ath11k_dp_rxbufs_replenish(ar->ab, dp->mac_id,
- 						   &dp->rxdma_mon_buf_ring,
- 						   rx_bufs_used,
--						   HAL_RX_BUF_RBM_SW3_BM);
-+						   ar->ab->hw_params.hal_params->rx_buf_rbm);
- 		else
- 			ath11k_dp_rxbufs_replenish(ar->ab, dp->mac_id,
- 						   &dp->rx_refill_buf_ring,
- 						   rx_bufs_used,
--						   HAL_RX_BUF_RBM_SW3_BM);
-+						   ar->ab->hw_params.hal_params->rx_buf_rbm);
- 	}
- }
- 
-diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
-index eaa0edca5576..f1492cde84ed 100644
---- a/drivers/net/wireless/ath/ath11k/hal.c
-+++ b/drivers/net/wireless/ath/ath11k/hal.c
-@@ -189,6 +189,14 @@ static const struct hal_srng_config hw_srng_config_template[] = {
- 	},
- };
- 
-+const struct hal_param ath11k_hal_params_ipq8074 = {
-+	.rx_buf_rbm = HAL_RX_BUF_RBM_SW3_BM,
-+};
-+
-+const struct hal_param ath11k_hal_params_qca6390 = {
-+	.rx_buf_rbm = HAL_RX_BUF_RBM_SW1_BM,
-+};
-+
- static int ath11k_hal_alloc_cont_rdp(struct ath11k_base *ab)
- {
- 	struct ath11k_hal *hal = &ab->hal;
-diff --git a/drivers/net/wireless/ath/ath11k/hal.h b/drivers/net/wireless/ath/ath11k/hal.h
-index 35ed3a14e200..1bf6e040120f 100644
---- a/drivers/net/wireless/ath/ath11k/hal.h
-+++ b/drivers/net/wireless/ath/ath11k/hal.h
-@@ -903,6 +903,13 @@ struct ath11k_hal {
- 	int num_shadow_reg_configured;
- };
- 
-+struct hal_param {
-+	enum hal_rx_buf_return_buf_manager rx_buf_rbm;
-+};
-+
-+extern const struct hal_param ath11k_hal_params_ipq8074;
-+extern const struct hal_param ath11k_hal_params_qca6390;
-+
- u32 ath11k_hal_reo_qdesc_size(u32 ba_window_size, u8 tid);
- void ath11k_hal_reo_qdesc_setup(void *vaddr, int tid, u32 ba_window_size,
- 				u32 start_seq, enum hal_pn_type type);
-diff --git a/drivers/net/wireless/ath/ath11k/hal_rx.c b/drivers/net/wireless/ath/ath11k/hal_rx.c
-index f072c95e7434..d4d1c4a9785f 100644
---- a/drivers/net/wireless/ath/ath11k/hal_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/hal_rx.c
-@@ -372,7 +372,7 @@ int ath11k_hal_wbm_desc_parse_err(struct ath11k_base *ab, void *desc,
- 		return -EINVAL;
- 
- 	if (FIELD_GET(BUFFER_ADDR_INFO1_RET_BUF_MGR,
--		      wbm_desc->buf_addr_info.info1) != HAL_RX_BUF_RBM_SW3_BM) {
-+		      wbm_desc->buf_addr_info.info1) != ab->hw_params.hal_params->rx_buf_rbm) {
- 		ab->soc_stats.invalid_rbm++;
- 		return -EINVAL;
- 	}
-diff --git a/drivers/net/wireless/ath/ath11k/hw.c b/drivers/net/wireless/ath/ath11k/hw.c
-index 57fab9d085d0..fdfb379b4d08 100644
---- a/drivers/net/wireless/ath/ath11k/hw.c
-+++ b/drivers/net/wireless/ath/ath11k/hw.c
-@@ -7,10 +7,11 @@
- #include <linux/bitops.h>
- #include <linux/bitfield.h>
- 
--#include "hw.h"
- #include "core.h"
- #include "ce.h"
- #include "hif.h"
-+#include "hal.h"
-+#include "hw.h"
- 
- /* Map from pdev index to hw mac index */
- static u8 ath11k_hw_ipq8074_mac_from_pdev_id(int pdev_idx)
 diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
-index 6e68c5b60eaa..c6831fb110ba 100644
+index c6831fb110ba..7463b96770b7 100644
 --- a/drivers/net/wireless/ath/ath11k/hw.h
 +++ b/drivers/net/wireless/ath/ath11k/hw.h
-@@ -179,6 +179,7 @@ struct ath11k_hw_params {
- 	bool fix_l1ss;
+@@ -180,6 +180,7 @@ struct ath11k_hw_params {
  	const struct ath11k_hw_sram_dump *sram_dump;
  	u8 max_tx_ring;
-+	const struct hal_param *hal_params;
+ 	const struct hal_param *hal_params;
++	bool check_dynamic_smps;
  };
  
  struct ath11k_hw_ops {
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 1f4765e43546..97a2c92b7b9b 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -7570,7 +7570,8 @@ static int __ath11k_mac_register(struct ath11k *ar)
+ 	 * for each band for a dual band capable radio. It will be tricky to
+ 	 * handle it when the ht capability different for each band.
+ 	 */
+-	if (ht_cap & WMI_HT_CAP_DYNAMIC_SMPS || ar->supports_6ghz)
++	if (ht_cap & WMI_HT_CAP_DYNAMIC_SMPS ||
++	    (ar->supports_6ghz && !ab->hw_params.check_dynamic_smps))
+ 		ar->hw->wiphy->features |= NL80211_FEATURE_DYNAMIC_SMPS;
+ 
+ 	ar->hw->wiphy->max_scan_ssids = WLAN_SCAN_PARAMS_MAX_SSID;
 -- 
 2.25.1
 
