@@ -2,88 +2,82 @@ Return-Path: <SRS0=aNMw=OE=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-14.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4E003C433EF
-	for <ath11k@archiver.kernel.org>; Tue, 14 Sep 2021 07:08:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E3759C433EF
+	for <ath11k@archiver.kernel.org>; Tue, 14 Sep 2021 08:36:47 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1FBD7610A6
-	for <ath11k@archiver.kernel.org>; Tue, 14 Sep 2021 07:08:21 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 1FBD7610A6
+	by mail.kernel.org (Postfix) with ESMTPS id A0FD56044F
+	for <ath11k@archiver.kernel.org>; Tue, 14 Sep 2021 08:36:47 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org A0FD56044F
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0MxUL0zvvJ67WM1V6olSoqSpRFEOuW/AlZLxuJ4VHPY=; b=O7fdWEKufAkxme
-	2OHIHFvfyKtKqVpmrHfO47quPt/u99A0w0+qRt1W6zHIp55JWlXMq1+xVoh5eQhJxdHIyCTUAQHD0
-	FjBFGg6dBvcHB3iDTawAEL6BZXnxSqTNSdbAYtgFBgFXwMywktlT1SUBLH7Cmb/0xTHdrV0mBcfEE
-	+WphR9DEGtXXTCFRPBFuFFo8d25wX+NQbCqGzbQ5HRni26/CILPjte88QVBxvSpETJUZK8khwuO2r
-	vES8LG19GZiHuEo6B27yTuiGqosHI6a4DIMM/7A/LDGwJPRaN1hHXAnKPSYumaaV1F45rdMuC059C
-	nNNLzUsAK75he28ELg8g==;
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-Id:Cc:To:References:
+	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=ZSKEDOkhfbNSLJFyv5tmeHIXFjPTOI7Fdodx/SCPha0=; b=Y/ek9AFEwddJjy
+	lSeNa9vXqe8KvGwXoAVJt0m0XzuBuydn/GI4MhPhmUAo3u1xqGL4UWuYhdInmdijz6tEIdEyl9KNJ
+	8rYvl8BbkMv8n+dGIuybteJlJVA3wN3siLVEQXaemY1yiFmSxva9Ijtd9xbNB4rEprLWQD4wjoON9
+	t+nI/KPywBt9JreLFZZTD95qxyN5lYzyNuzXgywc1OhmIgIH0eAjfsf6Ei1c+LjJjF91OrYxtlqEf
+	NfIAwIMd1neQgvQf6N087wH+2UNmJoETPwBz6JMuPe5DZ/huokLX7mn9xITl1Vf6L2S0m0r5PY7i1
+	+DqR3DGe0ahWyfYdFjMw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mQ2YE-004O0j-UY; Tue, 14 Sep 2021 07:08:18 +0000
+	id 1mQ3vp-004iwX-1S; Tue, 14 Sep 2021 08:36:45 +0000
 Received: from so254-9.mailgun.net ([198.61.254.9])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mQ2Y3-004Nyk-AE
- for ath11k@lists.infradead.org; Tue, 14 Sep 2021 07:08:18 +0000
+ id 1mQ3vl-004ivD-Oy
+ for ath11k@lists.infradead.org; Tue, 14 Sep 2021 08:36:43 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1631603296; h=Content-Type: MIME-Version: Message-ID:
- In-Reply-To: Date: References: Subject: Cc: To: From: Sender;
- bh=1yGBAOzykoPqaL8kTyOrJfYcrmW40BB4LnelYchb6Y4=;
- b=tzxgYNlOjmPOVAW/fM1YRGuxf1kA5WXZmZ4UYqi42tD7fs6SWXkDhERj3YCKpJb4r4zOUeAb
- 1UmNxhCkRCaJSHTvPzCywepSw8xz4nbqshHsXGM9w2s7z+gvHwNgEbskadRaeYnSGk1A4C1G
- 9yom42EtI7Yl33haK/6B1l4cHz4=
+ s=smtp; t=1631608601; h=Date: Message-Id: Cc: To: References:
+ In-Reply-To: From: Subject: Content-Transfer-Encoding: MIME-Version:
+ Content-Type: Sender; bh=ThxMhkVj/OTj4p4TH0zWh6uCc1CbZd7A1TXlOIaUUwU=;
+ b=Z42GcYdQZJLJDM5Nw3Ob0Ax0W4wW/HUBbur1ICP8X1dC3k28pjcaJsWuIwKTb014OZVj/MQW
+ m2C8cgRK94idMc77OWLvf61PU8KEYBajLcMF+sESTxR4TADdorWgfLuaJoXGAK1s1ajPN4u+
+ /rlczhO56kgX0NwB6Wa7yOInPp4=
 X-Mailgun-Sending-Ip: 198.61.254.9
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
- 61404a43e0f78151d6227c48 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 14 Sep 2021 07:07:47
+ smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
+ 61405f18507800c880500db5 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 14 Sep 2021 08:36:40
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 78B87C43616; Tue, 14 Sep 2021 07:07:47 +0000 (UTC)
-Received: from tykki (tynnyri.adurom.net [51.15.11.48])
+ id 466C7C4360D; Tue, 14 Sep 2021 08:36:39 +0000 (UTC)
+Received: from tykki.adurom.net (tynnyri.adurom.net [51.15.11.48])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested) (Authenticated sender: kvalo)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id C8918C4338F;
- Tue, 14 Sep 2021 07:07:44 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org C8918C4338F
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 6F3F1C4338F;
+ Tue, 14 Sep 2021 08:36:37 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 6F3F1C4338F
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  spf=fail smtp.mailfrom=codeaurora.org
-From: Kalle Valo <kvalo@codeaurora.org>
-To: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
-Cc: "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
- ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org
-Subject: Re: [PATCH][next] ath11k: Replace one-element array with
- flexible-array member
-References: <20210823172159.GA25800@embeddedor>
- <6e8229a1-187c-cd69-ad1c-018737e5e455@embeddedor.com>
-Date: Tue, 14 Sep 2021 10:07:40 +0300
-In-Reply-To: <6e8229a1-187c-cd69-ad1c-018737e5e455@embeddedor.com> (Gustavo A.
- R. Silva's message of "Sun, 12 Sep 2021 14:44:07 -0500")
-Message-ID: <87r1dr1vpf.fsf@codeaurora.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
+Subject: Re: [PATCH 1/3] ath11k: Split PCI write/read functions
+From: Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <20210913180902.193874-2-jouni@codeaurora.org>
+References: <20210913180902.193874-2-jouni@codeaurora.org>
+To: Jouni Malinen <jouni@codeaurora.org>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ Baochen Qiang <bqiang@codeaurora.org>, Jouni Malinen <jouni@codeaurora.org>
+User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-Id: <20210914083639.466C7C4360D@smtp.codeaurora.org>
+Date: Tue, 14 Sep 2021 08:36:39 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210914_000816_816929_88E98E92 
-X-CRM114-Status: UNSURE (   7.55  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20210914_013641_928681_ADAB568B 
+X-CRM114-Status: GOOD (  13.32  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,16 +94,58 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-"Gustavo A. R. Silva" <gustavo@embeddedor.com> writes:
+Jouni Malinen <jouni@codeaurora.org> wrote:
 
-> I wonder if you can take this patch, please.
+> ath11k_pci_write32/read32 tries to wake up MHI before doing actual
+> write/read work, which means each time a u32 is written/read, MHI
+> wake up is performed. This is not necessary in case where we do a
+> large amount of write/read, cause only one time of wake up is needed.
+> So split each one into two parts, the first part does MHI get/put
+> and the second one does actual write/read work.
+> 
+> Also avoid the put operation if the previous get operation fails.
+> 
+> Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
+> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+> 
+> Signed-off-by: Baochen Qiang <bqiang@codeaurora.org>
+> Signed-off-by: Jouni Malinen <jouni@codeaurora.org>
+> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-This is in my queue, please do not take ath11k patches.
+This causes new warnings:
+
+drivers/net/wireless/ath/ath11k/pci.c:177:6: error: no previous prototype for 'ath11k_pci_do_write32' [-Werror=missing-prototypes]
+drivers/net/wireless/ath/ath11k/pci.c:224:5: error: no previous prototype for 'ath11k_pci_do_read32' [-Werror=missing-prototypes]
+
+I fixed them in the pending branch like this:
+
+--- a/drivers/net/wireless/ath/ath11k/pci.c
++++ b/drivers/net/wireless/ath/ath11k/pci.c
+@@ -174,7 +174,7 @@ static inline u32 ath11k_pci_get_window_start(struct ath11k_base *ab,
+        return window_start;
+ }
+ 
+-void ath11k_pci_do_write32(struct ath11k_base *ab, u32 offset, u32 value)
++static void ath11k_pci_do_write32(struct ath11k_base *ab, u32 offset, u32 value)
+ {
+        struct ath11k_pci *ab_pci = ath11k_pci_priv(ab);
+        u32 window_start;
+@@ -221,7 +221,7 @@ void ath11k_pci_write32(struct ath11k_base *ab, u32 offset, u32 value)
+                mhi_device_put(ab_pci->mhi_ctrl->mhi_dev);
+ }
+ 
+-u32 ath11k_pci_do_read32(struct ath11k_base *ab, u32 offset)
++static u32 ath11k_pci_do_read32(struct ath11k_base *ab, u32 offset)
+ {
+        struct ath11k_pci *ab_pci = ath11k_pci_priv(ab);
+        u32 val, window_start;
+
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+https://patchwork.kernel.org/project/linux-wireless/patch/20210913180902.193874-2-jouni@codeaurora.org/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
 -- 
 ath11k mailing list
