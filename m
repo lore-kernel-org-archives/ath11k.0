@@ -2,73 +2,92 @@ Return-Path: <SRS0=kuZe=OG=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8FB15C433F5
-	for <ath11k@archiver.kernel.org>; Thu, 16 Sep 2021 16:02:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 85349C433EF
+	for <ath11k@archiver.kernel.org>; Thu, 16 Sep 2021 16:35:42 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BB63861241
-	for <ath11k@archiver.kernel.org>; Thu, 16 Sep 2021 16:02:28 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org BB63861241
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=sipsolutions.net
+	by mail.kernel.org (Postfix) with ESMTPS id 4FF6161929
+	for <ath11k@archiver.kernel.org>; Thu, 16 Sep 2021 16:35:42 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 4FF6161929
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=PUcVQvxJcl+qpSlxUjA9REIA6JmhZdVBHcFvh0SHDgo=; b=HqjXefsZqLvupI
-	9QKAq0KP3uGurTNJJ4tf+DDCXQwm4Am4v+KCZlsrN5Uah9oFcVlEsXTolvMnFz6GL9Fsssx8ImmCJ
-	hOEQjSV9vw9+fqpWtAKHr/gmXVSdj4K13YplowmZr9A7/Mm0Y544OMShbVtDxTPxThbh/NprMV1lD
-	27jdWiLGUMxwLGcok/5HXrXdfkMuh0rczRoGjEDyjYbrdW7E+kla2kEHoFyHPoK7QiOh9GZJp3zyj
-	kmQRsbGfQpRfeyTb/tQtJBEbKac3jT7+j0WN7FL559o1Gq1yEwlalGD0+rpsTm/Jq+EM6Js36tD2W
-	czRCgL0D2v5xv8+AaDHg==;
+	List-Owner; bh=JmCbf0S+ThTmO1o2WlM1nA4E4aBlqAe1fIIdS2u8E+w=; b=LTH4kSpTztWme0
+	uflzlx7mXbwXH+II8eFflFCaShqJf81rcfI60Wz2/qfsDNEFN/KkbDn7UDk8JtX7+lsPp1qzM9CXL
+	7V0PIBxPzAFZcFveQO1vOtkPF0GgxJNnFNzgpZ1posPSDq5iXEDH3m+1afME+jQJFujRnTnxb9Ea3
+	h4z5g1yJNgaInewmSj1PjLvhEwq9vFIsI5Yh0mcubPeXXBAP+2xMWGU4Yk5M7bGvSWnjz2M11+bkU
+	q9q5ywDFvtsNtSYhbvGLjQ5HjKFaXZXyfkYSm9DOSTuXvWtWxbicHAtlIArcUnaM0fvCQe7PQUcIY
+	c7OEIO3SSq9dk9Hy9bTw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mQtqD-00BZSg-LE; Thu, 16 Sep 2021 16:02:25 +0000
-Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
- helo=sipsolutions.net)
+	id 1mQuMN-00Bi27-1D; Thu, 16 Sep 2021 16:35:39 +0000
+Received: from mail-pj1-x1029.google.com ([2607:f8b0:4864:20::1029])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mQtq9-00BZSC-G2
- for ath11k@lists.infradead.org; Thu, 16 Sep 2021 16:02:24 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sipsolutions.net; s=mail; h=Content-Transfer-Encoding:MIME-Version:
- Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
- :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
- Resent-Cc:Resent-Message-ID; bh=fSVySNBHzy+tCJVdmsFE9bKP/0IBbKfnrmCay+KMMFI=; 
- t=1631808140; x=1633017740; b=YECA/sf4t+K1mSqrtXPnssgm/ZtaXxUzmZNbzrpDacf9GFf
- KPFsE6eLum1ZndxvPUPj9+l3D1TDzqqW94cgZTpSkC8TdI1SO1KR6LYaklGjZPuj8aG01FRR7HDii
- SykfU5uPE6vbkyigWr7ZqVfaSAA3dvyX3LCFZHlcnXRFy+qlfGRxCeSf2w1czV4MbaaiH03yF5oVE
- E/LhPxmqg0gMaDwatMrobrIjSgK5FRGY/pnEHOBNPWCy3xtMP01G6eSUjOSY4BdG20Rx7VypaFk9o
- tO6YvGyXn0rLZqurZmnsnkdsFDHLA4DxZdl70itKwPSyg1B9/SIs4clULAf5qRFQ==;
-Received: by sipsolutions.net with esmtpsa
- (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
- (Exim 4.95-RC2) (envelope-from <johannes@sipsolutions.net>)
- id 1mQtq3-007nkC-Mt; Thu, 16 Sep 2021 18:02:15 +0200
-Message-ID: <a3df1f072600e79bac0a247b905fec8b946f0729.camel@sipsolutions.net>
-Subject: Re: [PATCH 1/3] ieee80211: Add new A-MPDU factor macro for HE 6 GHz
- peer caps
-From: Johannes Berg <johannes@sipsolutions.net>
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org, Pradeep
- Kumar Chitrapu <pradeepc@codeaurora.org>, Jouni Malinen
- <jouni@codeaurora.org>
-Date: Thu, 16 Sep 2021 18:02:14 +0200
-In-Reply-To: <87wnngy2ro.fsf@codeaurora.org>
-References: <20210913175510.193005-1-jouni@codeaurora.org>
- <87wnngy2ro.fsf@codeaurora.org>
-User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
+ id 1mQuMJ-00Bhzo-5u
+ for ath11k@lists.infradead.org; Thu, 16 Sep 2021 16:35:36 +0000
+Received: by mail-pj1-x1029.google.com with SMTP id
+ u13-20020a17090abb0db0290177e1d9b3f7so7953040pjr.1
+ for <ath11k@lists.infradead.org>; Thu, 16 Sep 2021 09:35:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=gt+r7rB7pOJSQ7W9DGYo66pY6w1yXmUEGm3iewZagGs=;
+ b=YOO6pC2z+QRaJL2FP1+cetlhoPONSQZg7eY2yLDK8roGPWbc9sigaVpjLo8GpopAEt
+ 6dpX5ls6QlvN8297Oc21azN16SHcgPDMJcitwRcy5ANGXg3bnVq3Rlc7QGoiwCwDQOsi
+ JNRPNZabX30oyA2uOTy4d0YnMNkpTLESRpv498IMBHqFIS9ZtJLpLwMudRhZqv9+4ZyD
+ W0F7vw7P+YsluTgr+ojS0mc5DXmGSLwQKhwpk7PYW4vV3cTbrCrXJqPWDxuqZYo6NQuv
+ ZvsPwmplyQK4fMp5EMraC3ntygo3wZs+GpSUOYXxvIn4Nr1DmeIDAlH9qcIQ80FO7PCN
+ l4yA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=gt+r7rB7pOJSQ7W9DGYo66pY6w1yXmUEGm3iewZagGs=;
+ b=F0QFoJRXixI/EaGk6rHQ/jk3eksTuaErPdbo9twW6a2sZtZoXzoOrfW5jCo3JLXS4V
+ nl+/VRug//1/6deTT2g+oq/KVlp7PORM5p1Tcv2Iu9dCYtBF9kqOOMGaKeTGr29zFMJj
+ KMSNenaIjX3+mR65EW4v6nwuKTfgoBwk+vTETz0nhFdGc2h0aPiA0/wfh3Lj2x8z4egn
+ x/Dwgf7xm1isaD1d2ZI5GjjaFAiVV4cvkQVcSoJicUe83BJhV4LQ60s22ts2qOdIbVHA
+ 94EIaulYSfUt3U75iVoHJfKV/DWURH791z7VBlPPS8pp0OPeGrzUBBmYb1TSogvUJvwk
+ DLDw==
+X-Gm-Message-State: AOAM530ndvm0zOspoMU+xZw0ilei3VFtbRveAo4yj0UrcqZVYlFMlen4
+ r/mtoHwPxNBpRGLUGa7Xbvn/8bWKPBKM
+X-Google-Smtp-Source: ABdhPJwLv1/q2iNeC58++mRrmPhb6MJdsEz0qlcZ2ADeRpdVKbb2FXjiUMui5WtQU9sga1edO/Q9Vg==
+X-Received: by 2002:a17:90a:ea8b:: with SMTP id
+ h11mr7127110pjz.124.1631810134300; 
+ Thu, 16 Sep 2021 09:35:34 -0700 (PDT)
+Received: from thinkpad ([117.193.213.12])
+ by smtp.gmail.com with ESMTPSA id m28sm3751263pgl.9.2021.09.16.09.35.31
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 16 Sep 2021 09:35:33 -0700 (PDT)
+Date: Thu, 16 Sep 2021 22:05:29 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Loic Poulain <loic.poulain@linaro.org>
+Cc: Kalle Valo <kvalo@codeaurora.org>, ath11k@lists.infradead.org,
+ linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+ linux-wireless@vger.kernel.org, regressions@lists.linux.dev
+Subject: Re: [regression] mhi: ath11k resume fails on some devices
+Message-ID: <20210916163529.GA9027@thinkpad>
+References: <871r5p0x2u.fsf@codeaurora.org>
+ <CAMZdPi8UJLvBFQd8-nf-iHAQh8cEuihq97PUFfZ7Q=rxRQoPsg@mail.gmail.com>
+ <20210916111218.GA12918@thinkpad>
+ <CAMZdPi94607mZorp+Zmkw3seWXak6p9Jr05CQ5hhfgKQoG8n7Q@mail.gmail.com>
 MIME-Version: 1.0
-X-malware-bazaar: not-scanned
+Content-Disposition: inline
+In-Reply-To: <CAMZdPi94607mZorp+Zmkw3seWXak6p9Jr05CQ5hhfgKQoG8n7Q@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210916_090221_577744_578A47D8 
-X-CRM114-Status: GOOD (  13.09  )
+X-CRM114-CacheID: sfid-20210916_093535_302387_70978846 
+X-CRM114-Status: GOOD (  11.09  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,26 +104,18 @@ Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-T24gVGh1LCAyMDIxLTA5LTE2IGF0IDE4OjEwICswMzAwLCBLYWxsZSBWYWxvIHdyb3RlOgo+IEpv
-dW5pIE1hbGluZW4gPGpvdW5pQGNvZGVhdXJvcmEub3JnPiB3cml0ZXM6Cj4gCj4gPiBGcm9tOiBQ
-cmFkZWVwIEt1bWFyIENoaXRyYXB1IDxwcmFkZWVwY0Bjb2RlYXVyb3JhLm9yZz4KPiA+IAo+ID4g
-QWRkIElFRUU4MDIxMV9IRV82R0haX01BWF9BTVBEVV9GQUNUT1IgYXMgcGVyIElFRUUgU3RkIDgw
-Mi4xMWF4LTIwMjEsCj4gPiA5LjQuMi4yNjMgdG8gdXNlIGZvciBwZWVyIG1heCBBLU1QRFUgZmFj
-dG9yIGluIDYgR0h6IGJhbmQuCj4gPiAKPiA+IFNpZ25lZC1vZmYtYnk6IFByYWRlZXAgS3VtYXIg
-Q2hpdHJhcHUgPHByYWRlZXBjQGNvZGVhdXJvcmEub3JnPgo+ID4gU2lnbmVkLW9mZi1ieTogSm91
-bmkgTWFsaW5lbiA8am91bmlAY29kZWF1cm9yYS5vcmc+Cj4gPiAtLS0KPiA+IMKgaW5jbHVkZS9s
-aW51eC9pZWVlODAyMTEuaCB8IDEgKwo+ID4gwqAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24o
-KykKPiA+IAo+ID4gZGlmZiAtLWdpdCBhL2luY2x1ZGUvbGludXgvaWVlZTgwMjExLmggYi9pbmNs
-dWRlL2xpbnV4L2llZWU4MDIxMS5oCj4gPiBpbmRleCA2OTQyNjQ1MDMxMTkuLmExYTdlZGEzNWNi
-NSAxMDA2NDQKPiA+IC0tLSBhL2luY2x1ZGUvbGludXgvaWVlZTgwMjExLmgKPiA+ICsrKyBiL2lu
-Y2x1ZGUvbGludXgvaWVlZTgwMjExLmgKPiA+IEBAIC0yMDg0LDYgKzIwODQsNyBAQCBpbnQgaWVl
-ZTgwMjExX2dldF92aHRfbWF4X25zcyhzdHJ1Y3QgaWVlZTgwMjExX3ZodF9jYXAgKmNhcCwKPiA+
-IMKgCj4gPiAKPiA+IAo+ID4gCj4gPiDCoCNkZWZpbmUgSUVFRTgwMjExX0hFX1ZIVF9NQVhfQU1Q
-RFVfRkFDVE9SCTIwCj4gPiDCoCNkZWZpbmUgSUVFRTgwMjExX0hFX0hUX01BWF9BTVBEVV9GQUNU
-T1IJMTYKPiA+ICsjZGVmaW5lIElFRUU4MDIxMV9IRV82R0haX01BWF9BTVBEVV9GQUNUT1IJMTMK
-PiAKPiBKb2hhbm5lcywgY2FuIEkgdGFrZSB0aGlzIHZpYSBteSBhdGggdHJlZT8gSSB0aGluayB0
-aGF0J3MgdGhlIGVhc2llc3QgYXMKPiB0aGUgYXRoMTFrIHBhdGNoZXMgZGVwZW5kIG9uIHRoaXMu
-Cj4gClN1cmUsIGxvb2tzIGZpbmUuCgpBY2tlZC1ieTogSm9oYW5uZXMgQmVyZyA8am9oYW5uZXNA
-c2lwc29sdXRpb25zLm5ldD4KCmpvaGFubmVzCgoKLS0gCmF0aDExayBtYWlsaW5nIGxpc3QKYXRo
-MTFrQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9hdGgxMWsK
+T24gVGh1LCBTZXAgMTYsIDIwMjEgYXQgMDE6MTg6MjJQTSArMDIwMCwgTG9pYyBQb3VsYWluIHdy
+b3RlOgo+IExlIGpldS4gMTYgc2VwdC4gMjAyMSDDoCAxMzoxMiwgTWFuaXZhbm5hbiBTYWRoYXNp
+dmFtIDwKPiBtYW5pdmFubmFuLnNhZGhhc2l2YW1AbGluYXJvLm9yZz4gYSDDqWNyaXQgOgo+IAoK
+Wy4uLl0KCj4gPiBJZiB0aGluZ3Mgc2VlbXMgdG8gd29yayBmaW5lIHdpdGhvdXQgdGhhdCBwYXRj
+aCwgdGhlbiBpdCBpbXBsaWVzIHRoYXQKPiA+IHNldHRpbmcgTTAKPiA+IHN0YXRlIHdvcmtzIGR1
+cmluZyByZXN1bWUuIEkgdGhpbmsgd2Ugc2hvdWxkIGp1c3QgcmV2ZXJ0IHRoYXQgcGF0Y2guCj4g
+Pgo+ID4gTG9pYywgZGlkIHRoYXQgcGF0Y2ggZml4IGFueSBpc3N1ZSBmb3IgeW91IG9yIGl0IHdh
+cyBhIGNvc21ldGljIGZpeCBvbmx5Pwo+IAo+IAo+IEl0IGZpeGVzIHNkeCBtb2RlbSByZXN1bWlu
+ZyBpc3N1ZSwgd2l0aG91dCB0aGF0IHdlIGRvbuKAmXQga25vdyBtb2RlbSBuZWVkcwo+IHRvIGJl
+IHJlaW5pdGlhbGl6ZWQuCj4gCgpPa2F5LiBUaGVuIGluIHRoYXQgY2FzZSwgdGhlIHJlY292ZXJ5
+IG1lY2hhbmlzbSBoYXMgdG8gYmUgYWRkZWQgdG8gdGhlIGF0aDExawpNSEkgY29udHJvbGxlci4K
+CklmIHRoYXQncyB0b28gbXVjaCBvZiB3b3JrIGZvciBLYWxsZSwgdGhlbiBJJ2xsIGxvb2sgaW50
+byBpdC4gQnV0IEkgbWlnaHQgZ2V0CnRpbWUgb25seSBhZnRlciBQbHVtYmVycy4KClRoYW5rcywK
+TWFuaQoKLS0gCmF0aDExayBtYWlsaW5nIGxpc3QKYXRoMTFrQGxpc3RzLmluZnJhZGVhZC5vcmcK
+aHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9hdGgxMWsK
