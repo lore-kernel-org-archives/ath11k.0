@@ -2,75 +2,65 @@ Return-Path: <SRS0=w2Qz=OR=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E1B41C433F5
-	for <ath11k@archiver.kernel.org>; Mon, 27 Sep 2021 13:42:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 649EDC433FE
+	for <ath11k@archiver.kernel.org>; Mon, 27 Sep 2021 15:01:42 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A627660F39
-	for <ath11k@archiver.kernel.org>; Mon, 27 Sep 2021 13:42:44 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org A627660F39
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+	by mail.kernel.org (Postfix) with ESMTPS id D8B4660EE2
+	for <ath11k@archiver.kernel.org>; Mon, 27 Sep 2021 15:01:41 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org D8B4660EE2
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=sipsolutions.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:Subject:Cc:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=oq1/IO89tLPA0tq5AEbgkoFlwS9f38ElT+ksJmdPWA0=; b=Ep/k8vXGZ55N3b
-	TLB3ZlL832HUO7/zIo7bXFd8CfuyDupVf3OL3L3zytgi5jCsTgFoHT5uMKMyWwbsARYRk+x/jstOM
-	gNdF+yCAx0b0k6UZmmCjxvJkeHJqG5cp6BnRZxY0/DlTQ1+jvn/63Dn3xy9iyp1tJXaOhhkJ50Muf
-	aZE5/5d1LWR8xQevErEPLA4nGUNCsxyzeTjO+qdCD3qg5Cs6xw1WziCZP/dvQegXFsZa2A2zoSnXE
-	XnJmGJ2CU8OSltvR4iIBRqo79kqOPtHkHA/2gayXBJLfIR8nuXenALxqg/f+K8QVc88jYg1p9QVL0
-	zzfez80BK8RQEwVuFPiA==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=rvTOPCIiZf3Xnm4F//bBaso8d6PqjrgqUpnyUzJIgkg=; b=znP2BoaBPZR0zO
+	cUXQ73N2JGDfrfyOGymGqLoaed/82oqnfboNYwp9Q6A1sUKiKe6cfpPYqj/vvkWqhNOkfumbHQS7I
+	cD8RFBQACheUuoZZTFe+DY+Qg7/1uAn9XC5zyQ6uEmyqVgm/+vNhph1mvggwDWIdyPk22EDEkuNJl
+	at3mr0PeiI1212Vis/fHRq4QG4wXIDqNwtU3h/vFRCtM32DDXzZFsJTcq/z2MwcG9eCC5bC7v7qxv
+	jZrsrk5GmE6myc1AtxM5CrMickmfSapQ5siNC2CZjuC7aQNDAIgWKTNZtVEHnifJxFkIkmtEcN0jq
+	jrNqnFi6rx7yrWyCy9OA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mUqu2-002n1O-Cl; Mon, 27 Sep 2021 13:42:42 +0000
-Received: from m43-7.mailgun.net ([69.72.43.7])
+	id 1mUs8R-00306D-4Z; Mon, 27 Sep 2021 15:01:39 +0000
+Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
+ helo=sipsolutions.net)
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mUqtu-002mwG-0P
- for ath11k@lists.infradead.org; Mon, 27 Sep 2021 13:42:41 +0000
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
- q=dns/txt; 
- s=smtp; t=1632750160; h=Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=Z37yVYh8YICEJtn+fkhkvwtyMzcivSLYdi245wxWQ6w=;
- b=gXDS0L1SEOOeu6X7AP/Z5c5EV05IVFCvRa6RdhqiNiWkViMDOMPs3vnyyfVm5JpzFK14QZyu
- Dd/lpB+51QsCjSP7etmnaAsKw44UD7pk3WwwCdW2Dhxjsqp8zNiapuokKEZWVLInipwL/C8r
- teKRkfJscg/WiFVwn1Z99A8H31s=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
- 6151ca23713d5d6f96d4c813 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 27 Sep 2021 13:41:55
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 15774C43460; Mon, 27 Sep 2021 13:41:55 +0000 (UTC)
-Received: from cdchalpyex0390930-lin.qualcomm.com
- (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
- (No client certificate requested) (Authenticated sender: tmariyap)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 5F0F2C4360C;
- Mon, 27 Sep 2021 13:41:53 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 5F0F2C4360C
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- spf=fail smtp.mailfrom=codeaurora.org
-From: Thiraviyam Mariyappan <tmariyap@codeaurora.org>
-To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org,
- Thiraviyam Mariyappan <tmariyap@codeaurora.org>
-Subject: [PATCH] mac80211: fix incorrect nss config
-Date: Mon, 27 Sep 2021 19:11:44 +0530
-Message-Id: <1632750104-1722-1-git-send-email-tmariyap@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
+ id 1mUs8O-00304J-Py
+ for ath11k@lists.infradead.org; Mon, 27 Sep 2021 15:01:38 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=sipsolutions.net; s=mail; h=Content-Transfer-Encoding:MIME-Version:
+ Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
+ :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
+ Resent-Cc:Resent-Message-ID; bh=AmafM7oTsaSvRec3LgbJaU361CT7WRh5EiFpJgFNI7I=; 
+ t=1632754896; x=1633964496; b=E9d5k2CH5EjJRwBDV3pKdQSzF/FtUMsN0YM2Oues6jb2Deb
+ 7HKz1glb8NmirZhpWvWkCzBk8BQBKu1twVJmMLMqnsEcM7PC/VWMN8pQgvokKoLkEqimml6f9Ol0N
+ d58kSB1yTx+9ILQIU1lrK821yykFkzU2JUSckT8oyO9zOooLdvSwkOdwIffGyPrEgj/RQc0EjggY4
+ 5ZJUVfT3qJ/n7URBYh4zqNgv3FA2AJClh93WA+Tciq/WW9itCq6CIdXe4ZKpCes5LuQaybKPS9y5u
+ KsZDHOV/510ZpcEIWVbwBYk1gj1JFf3xDDtb4ZFHijo1+czfBn9qvVTm1/wMulrQ==;
+Received: by sipsolutions.net with esmtpsa
+ (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+ (Exim 4.95-RC2) (envelope-from <johannes@sipsolutions.net>)
+ id 1mUs8L-00CTDL-PA; Mon, 27 Sep 2021 17:01:33 +0200
+Message-ID: <f300c9d2aae4b9b0e654f8a1e26c6e64beef7132.camel@sipsolutions.net>
+Subject: Re: [PATCH] mac80211: fix incorrect nss config
+From: Johannes Berg <johannes@sipsolutions.net>
+To: Thiraviyam Mariyappan <tmariyap@codeaurora.org>, 
+ ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org
+Date: Mon, 27 Sep 2021 17:01:32 +0200
+In-Reply-To: <1632750104-1722-1-git-send-email-tmariyap@codeaurora.org>
+References: <1632750104-1722-1-git-send-email-tmariyap@codeaurora.org>
+User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
+MIME-Version: 1.0
+X-malware-bazaar: not-scanned
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210927_064240_411727_FC7666FF 
-X-CRM114-Status: UNSURE (   9.11  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20210927_080136_861409_AA13B8E3 
+X-CRM114-Status: GOOD (  14.80  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,46 +72,32 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-In HE capabilities, HE-MCS Rx map field filled with value 0x3 for all eight
-spatial streams if txrx chains configured as incorrect value.
-This patch changes configure at least single spatial stream for HE-MCS
-0 to 7 in all supported channel widths if nss configured as incorrect
-value.
-
-Signed-off-by: Thiraviyam Mariyappan <tmariyap@codeaurora.org>
----
- net/mac80211/he.c | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/net/mac80211/he.c b/net/mac80211/he.c
-index c05af70..ee113ff5 100644
---- a/net/mac80211/he.c
-+++ b/net/mac80211/he.c
-@@ -151,6 +151,13 @@ ieee80211_he_cap_ie_to_sta_he_cap(struct ieee80211_sub_if_data *sdata,
- 		       &he_cap_ie[sizeof(he_cap->he_cap_elem) + mcs_nss_size],
- 		       he_ppe_size);
- 
-+	if (he_cap->he_mcs_nss_supp.rx_mcs_80 == cpu_to_le16(0xFFFF)) {
-+		he_cap->has_he = false;
-+		sdata_info(sdata, "Ignoring HE IE from %pM due to incorrect rx_mcs_80\n",
-+			   sta->addr);
-+		return;
-+	}
-+
- 	he_cap->has_he = true;
- 
- 	sta->cur_max_bandwidth = ieee80211_sta_cap_rx_bw(sta);
--- 
-2.7.4
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+T24gTW9uLCAyMDIxLTA5LTI3IGF0IDE5OjExICswNTMwLCBUaGlyYXZpeWFtIE1hcml5YXBwYW4g
+d3JvdGU6Cj4gSW4gSEUgY2FwYWJpbGl0aWVzLCBIRS1NQ1MgUnggbWFwIGZpZWxkIGZpbGxlZCB3
+aXRoIHZhbHVlIDB4MyBmb3IgYWxsIGVpZ2h0Cj4gc3BhdGlhbCBzdHJlYW1zIGlmIHR4cnggY2hh
+aW5zIGNvbmZpZ3VyZWQgYXMgaW5jb3JyZWN0IHZhbHVlLgo+IFRoaXMgcGF0Y2ggY2hhbmdlcyBj
+b25maWd1cmUgYXQgbGVhc3Qgc2luZ2xlIHNwYXRpYWwgc3RyZWFtIGZvciBIRS1NQ1MKPiAwIHRv
+IDcgaW4gYWxsIHN1cHBvcnRlZCBjaGFubmVsIHdpZHRocyBpZiBuc3MgY29uZmlndXJlZCBhcyBp
+bmNvcnJlY3QKPiB2YWx1ZS4KPiAKPiBTaWduZWQtb2ZmLWJ5OiBUaGlyYXZpeWFtIE1hcml5YXBw
+YW4gPHRtYXJpeWFwQGNvZGVhdXJvcmEub3JnPgo+IC0tLQo+IMKgbmV0L21hYzgwMjExL2hlLmMg
+fCA3ICsrKysrKysKPiDCoDEgZmlsZSBjaGFuZ2VkLCA3IGluc2VydGlvbnMoKykKPiAKPiBkaWZm
+IC0tZ2l0IGEvbmV0L21hYzgwMjExL2hlLmMgYi9uZXQvbWFjODAyMTEvaGUuYwo+IGluZGV4IGMw
+NWFmNzAuLmVlMTEzZmY1IDEwMDY0NAo+IC0tLSBhL25ldC9tYWM4MDIxMS9oZS5jCj4gKysrIGIv
+bmV0L21hYzgwMjExL2hlLmMKPiBAQCAtMTUxLDYgKzE1MSwxMyBAQCBpZWVlODAyMTFfaGVfY2Fw
+X2llX3RvX3N0YV9oZV9jYXAoc3RydWN0IGllZWU4MDIxMV9zdWJfaWZfZGF0YSAqc2RhdGEsCj4g
+wqAJCSAgICAgICAmaGVfY2FwX2llW3NpemVvZihoZV9jYXAtPmhlX2NhcF9lbGVtKSArIG1jc19u
+c3Nfc2l6ZV0sCj4gwqAJCSAgICAgICBoZV9wcGVfc2l6ZSk7Cj4gwqAKPiAKPiArCWlmIChoZV9j
+YXAtPmhlX21jc19uc3Nfc3VwcC5yeF9tY3NfODAgPT0gY3B1X3RvX2xlMTYoMHhGRkZGKSkgewo+
+ICsJCWhlX2NhcC0+aGFzX2hlID0gZmFsc2U7Cj4gKwkJc2RhdGFfaW5mbyhzZGF0YSwgIklnbm9y
+aW5nIEhFIElFIGZyb20gJXBNIGR1ZSB0byBpbmNvcnJlY3QgcnhfbWNzXzgwXG4iLAo+ICsJCQkg
+ICBzdGEtPmFkZHIpOwo+ICsJCXJldHVybjsKPiArCX0KCkxpa2Ugc28gbWFueSBvdGhlciB3b3Jr
+YXJvdW5kcywgdGhpcyBzaG91bGQgcHJvYmFibHkgY29tZSB3aXRoIGEgY29tbWVudAphcyB0byBf
+d2h5XyB3ZSdyZSBkb2luZyB0aGlzLCBpZGVhbGx5IGluY2x1ZGluZyB0aGUgbW9kZWwvZmlybXdh
+cmUKdmVyc2lvbiAuLi4KCmpvaGFubmVzCgoKLS0gCmF0aDExayBtYWlsaW5nIGxpc3QKYXRoMTFr
+QGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9hdGgxMWsK
