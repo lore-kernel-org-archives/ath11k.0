@@ -2,79 +2,69 @@ Return-Path: <SRS0=G+gt=OV=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5FB7CC433F5
-	for <ath11k@archiver.kernel.org>; Fri,  1 Oct 2021 06:38:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A0AECC433F5
+	for <ath11k@archiver.kernel.org>; Fri,  1 Oct 2021 07:01:12 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1B1AB61425
-	for <ath11k@archiver.kernel.org>; Fri,  1 Oct 2021 06:38:24 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 1B1AB61425
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+	by mail.kernel.org (Postfix) with ESMTPS id 56AA461A71
+	for <ath11k@archiver.kernel.org>; Fri,  1 Oct 2021 07:01:12 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 56AA461A71
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=sipsolutions.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=05tWAO5fKTN8dA7nyYicGMg67wuU2wt15McS1nCtrOI=; b=nctbaxM0N8s0I6
-	8nH0dysAYcyxgERvoDb/atoXlNoyQQVTVcMiCAOCjdMGTrv8mD9PhTQVOD7Zswr/rkMzyaYysqO06
-	Oa/tu+yJfAQrxjepAILdQOTICE5uJDFI3pByBQFgsESRd4VhRN+m9yXLwHaCOMR5eDXaTw4tVK4io
-	fNkIeaOK1RcUhRGSs5h9ASdWhuhKtNmbWGks7lnrdpoGdZb48DM3HeUz0V4cUrZsY6HGt11QyPkEL
-	TKrmQ1XDj165ZBQ3xAztmiUGpwgB6BuiHWpc+ztGgaNUQYPfYYfMkxidsciqYlVgCrfP60r7Fs00Y
-	IsFQG3j1pOR/ndZE6u0A==;
+	List-Owner; bh=VF1CAmgs0+pZ/dduK5PyQoTHrdYXqvjtt24Fn7Cpl0M=; b=yisZ5VHFL19fyr
+	EFw7QZk51eyIyVnjxxHdMwYNMvbKYe1pPzTctAnTF0SErA9pXA99jNQr8xrW1EOpfJK9axtZUFRuK
+	CF1VVwZCfp6gbI/aDVo0p/Zft7d2UTA0glIqOSckMOGxzqbKQBHjJkjgPZZ0syEnfmvBcmtMQMMZD
+	HTrCHnu52RA9hYKErYVWHzrIzQY4TBK9GM5MtA6LJ/my0DKuwt9piCgHKxheXj2RJhZ4DBbhFcSvy
+	X2nzTrhuW7F8NWip/qe8LmUmxpbiqCzNEetSFcuSCVqwTFjAdC1ut7YqA1T4ZzZr/TXsE2mctYgd0
+	OZFy0eXbWpy7mZxh1CqQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mWCBa-00Gobr-38; Fri, 01 Oct 2021 06:38:22 +0000
-Received: from so254-9.mailgun.net ([198.61.254.9])
+	id 1mWCXd-00GrVE-NP; Fri, 01 Oct 2021 07:01:09 +0000
+Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
+ helo=sipsolutions.net)
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mWCBX-00Goai-Ep
- for ath11k@lists.infradead.org; Fri, 01 Oct 2021 06:38:21 +0000
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
- q=dns/txt; 
- s=smtp; t=1633070298; h=Content-Transfer-Encoding: Content-Type:
- MIME-Version: Message-ID: In-Reply-To: Date: References: Subject: Cc:
- To: From: Sender; bh=zwE1UcSRKjH4fdXGIfTb0HNedDc6r4BlZz/g6kDw5TA=;
- b=gGrqpEa2MgJcnfl8iuZFe2Z88NoBQ6i4cOJfcpp+drdLMk0epyY4oyyQhZ+U8WmxXZEGrfl/
- lED9PTQl8lSS0CBzOSY7R33Tx7+ImSEXY1qkKAz4acUWCiDKhJqZ4GXowdUrkS79xHfHK4QX
- 59jZcCcWwldQ2/DJFpf37IGx43w=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
- 6156acd89ffb41314965ce27 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 01 Oct 2021 06:38:16
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id C54F3C43616; Fri,  1 Oct 2021 06:38:15 +0000 (UTC)
-Received: from tynnyri.adurom.net (tynnyri.adurom.net [51.15.11.48])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested) (Authenticated sender: kvalo)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id DBEA4C4338F;
- Fri,  1 Oct 2021 06:38:13 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org DBEA4C4338F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- spf=fail smtp.mailfrom=codeaurora.org
-From: Kalle Valo <kvalo@codeaurora.org>
-To: Maurice Smulders <Maurice.Smulders@windtalker.com>
-Cc: "linux-wireless\@vger.kernel.org" <linux-wireless@vger.kernel.org>,
- ath10k@lists.infradead.org, ath11k@lists.infradead.org
-Subject: Re: Qualcomm Atheros Ath10k and Ath11k CE Buffer DMA alignment issues
- on Raspberry PI CM4 - Aarch64 architecture
-References: <35F57D80-C7F7-47B2-BEC8-533006C72E2A@windtalker.com>
-Date: Fri, 01 Oct 2021 09:38:11 +0300
-In-Reply-To: <35F57D80-C7F7-47B2-BEC8-533006C72E2A@windtalker.com> (Maurice
- Smulders's message of "Thu, 16 Sep 2021 14:38:14 +0000")
-Message-ID: <87lf3d5jxo.fsf@tynnyri.adurom.net>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+ id 1mWCXb-00GrRs-B2
+ for ath11k@lists.infradead.org; Fri, 01 Oct 2021 07:01:09 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=sipsolutions.net; s=mail; h=Content-Transfer-Encoding:MIME-Version:
+ Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
+ :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
+ Resent-Cc:Resent-Message-ID; bh=NJr5xpW7MZSkW7xFINyqHqDBDFCpW/nUdFRJKEADvuc=; 
+ t=1633071666; x=1634281266; b=lc+bF+uLFAx9LLyCoeBiafqcWqXydduR0UjkOFKmdpmWqqP
+ g70yrYVnPyKz7A8jZ7zRlv/mv2k5K8R3nhvICXIrplZJO/WYQ/50N9qX6LpRMKnTLqRjwntSsiuHf
+ Ry2+yZSY/ZD3sIGOegyrdLb1V7o3M9mIjlEH+bw1iuAbIpi4Gvjc4ETG3h3tKDmJFsFFEhHLwXcdj
+ iMU53gLPwVfEcPeC+Zxh1oBmZnif2ga9hCwBcHhVMGAH6WuZyjV7Cy/rR+qFERcK7gJ2bCaFImI6J
+ stMzWmkr/WjzuNnhUlWghUYp6bFk2bVlPNKrornW9LYM+QL71fn2alVln3usZzaQ==;
+Received: by sipsolutions.net with esmtpsa
+ (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+ (Exim 4.95-RC2) (envelope-from <johannes@sipsolutions.net>)
+ id 1mWCXX-00E6g7-PG; Fri, 01 Oct 2021 09:01:03 +0200
+Message-ID: <93c99a81d89aafed21e8e22157b3bf21526be716.camel@sipsolutions.net>
+Subject: Re: [PATCH v3 2/2] mac80211: do intersection with he mcs and nss
+ set of peer and own
+From: Johannes Berg <johannes@sipsolutions.net>
+To: Kalle Valo <kvalo@codeaurora.org>, Wen Gong <wgong@codeaurora.org>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
+Date: Fri, 01 Oct 2021 09:01:02 +0200
+In-Reply-To: <87bl49mf02.fsf@codeaurora.org>
+References: <1609816120-9411-1-git-send-email-wgong@codeaurora.org>
+ <1609816120-9411-3-git-send-email-wgong@codeaurora.org>
+ <b6c96c4ecdf9ec175d7f89e8600fb53768287cc2.camel@sipsolutions.net>
+ <facd18458a7ecfc0afbfd06c8a57d849@codeaurora.org>
+ <87bl49mf02.fsf@codeaurora.org>
+User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
 MIME-Version: 1.0
+X-malware-bazaar: not-scanned
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20210930_233819_573349_784B975C 
-X-CRM114-Status: GOOD (  17.96  )
+X-CRM114-CacheID: sfid-20211001_000107_449436_9B09F073 
+X-CRM114-Status: GOOD (  12.35  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,73 +76,59 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-TWF1cmljZSBTbXVsZGVycyA8TWF1cmljZS5TbXVsZGVyc0B3aW5kdGFsa2VyLmNvbT4gd3JpdGVz
-OgoKPiBJIGFtIHRyeWluZyB0byB1c2UgdGhlIFFDQTYxNzRBIGFuZCB0aGUgUUNBNjM5MCBvbiBh
-IGN1c3RvbSBib2FyZCB1c2luZyBhIFBDSWUgc3dpdGNoIC0gYnV0IHRoYXQgZG9lc24ndCBtYXR0
-ZXIgLSBJdCBzdGlsbCBmYWlscyB3L28gdGhlIHN3aXRjaDoKPgo+IGxzcGNpCj4gMDA6MDAuMCBQ
-Q0kgYnJpZGdlOiBCcm9hZGNvbSBJbmMuIGFuZCBzdWJzaWRpYXJpZXMgQkNNMjcxMSBQQ0llIEJy
-aWRnZSAocmV2IDIwKQo+IDAxOjAwLjAgUENJIGJyaWRnZTogUGVyaWNvbSBTZW1pY29uZHVjdG9y
-IFBJN0M5WDJHNjA4R1AgUENJZTIgNi1Qb3J0LzgtTGFuZSBQYWNrZXQgU3dpdGNoCj4gMDI6MDEu
-MCBQQ0kgYnJpZGdlOiBQZXJpY29tIFNlbWljb25kdWN0b3IgUEk3QzlYMkc2MDhHUCBQQ0llMiA2
-LVBvcnQvOC1MYW5lIFBhY2tldCBTd2l0Y2gKPiAwMjowMi4wIFBDSSBicmlkZ2U6IFBlcmljb20g
-U2VtaWNvbmR1Y3RvciBQSTdDOVgyRzYwOEdQIFBDSWUyIDYtUG9ydC84LUxhbmUgUGFja2V0IFN3
-aXRjaAo+IDAyOjAzLjAgUENJIGJyaWRnZTogUGVyaWNvbSBTZW1pY29uZHVjdG9yIFBJN0M5WDJH
-NjA4R1AgUENJZTIgNi1Qb3J0LzgtTGFuZSBQYWNrZXQgU3dpdGNoCj4gMDI6MDQuMCBQQ0kgYnJp
-ZGdlOiBQZXJpY29tIFNlbWljb25kdWN0b3IgUEk3QzlYMkc2MDhHUCBQQ0llMiA2LVBvcnQvOC1M
-YW5lIFBhY2tldCBTd2l0Y2gKPiAwMjowNS4wIFBDSSBicmlkZ2U6IFBlcmljb20gU2VtaWNvbmR1
-Y3RvciBQSTdDOVgyRzYwOEdQIFBDSWUyIDYtUG9ydC84LUxhbmUgUGFja2V0IFN3aXRjaAo+IDA1
-OjAwLjAgVW5hc3NpZ25lZCBjbGFzcyBbZmYwMF06IFF1YWxjb21tIFFDQTYzOTAgV2lyZWxlc3Mg
-TmV0d29yayBBZGFwdGVyIFtBWDUwMC1EQlMgKDJ4MildCj4gMDY6MDAuMCBOZXR3b3JrIGNvbnRy
-b2xsZXI6IFF1YWxjb21tIEF0aGVyb3MgUUNBNjE3NCA4MDIuMTFhYyBXaXJlbGVzcyBOZXR3b3Jr
-IEFkYXB0ZXIgKHJldiAzMikKPgo+IEJvdGggZGV2aWNlIGRyaXZlcnMgZG8gbm90IHdvcmsuIEkg
-Y2hhbmdlZCB0aGUgQ0UgY29kZSB0byB1c2UgdGhlIEdGUF9ETUEzMiBmbGFnIGFzIGFuIGF0dGVt
-cHQgdG8gYWxsb2NhdGUgdGhlIG1lbW9yeSBjb3JyZWN0bHksIGJ1dCBETUVTRyBzaG93cwo+Cj4g
-W3BpQG5vZGU2NzQ1IH5dJCBkbWVzZyB8IGdyZXAgYXRoCj4gW8KgwqDCoMKgNS44MDE4OTZdIGF0
-aDEwa19wY2kgMDAwMDowNjowMC4wOiBhdGgxMGtfY2VfYWxsb2Nfc3JjX3Jpbmc6IE5vdCB1bmFs
-aWduZWQgPC0tLSBVc2VyIG1lc3NhZ2UgZXhpdCBmcm9tIHRoaXMgZnVuY3Rpb24KPiBbwqDCoMKg
-wqA1LjgwNDI4NF0gYXRoMTBrX3BjaSAwMDAwOjA2OjAwLjA6IGZhaWxlZCB0byBhbGxvYyBDRSBz
-cmMgcmluZyAwOiAtMTIKPiBbwqDCoMKgwqA1LjgxMzEzOF0gYXRoMTBrX3BjaSAwMDAwOjA2OjAw
-LjA6IGZhaWxlZCB0byBhbGxvY2F0ZSBjb3B5IGVuZ2luZSBwaXBlIDA6IC0xMgo+IFvCoMKgwqDC
-oDUuODE1NDE0XSBhdGgxMGtfcGNpIDAwMDA6MDY6MDAuMDogZmFpbGVkIHRvIGFsbG9jYXRlIGNv
-cHkgZW5naW5lIHBpcGVzOiAtMTIKPiBbwqDCoMKgwqA1LjgxODAwMl0gYXRoMTBrX3BjaSAwMDAw
-OjA2OjAwLjA6IGZhaWxlZCB0byBzZXR1cCByZXNvdXJjZTogLTEyCj4gW8KgwqDCoMKgNS44MjY5
-NTNdIGF0aDEwa19wY2k6IHByb2JlIG9mIDAwMDA6MDY6MDAuMCBmYWlsZWQgd2l0aCBlcnJvciAt
-MTIKPiBbwqDCoMKgwqA1Ljg1NTk5M10gYXRoMTFrX3BjaSAwMDAwOjA1OjAwLjA6IFdBUk5JTkc6
-IGF0aDExayBQQ0kgc3VwcG9ydCBpcyBleHBlcmltZW50YWwhCj4gW8KgwqDCoMKgNS44OTYxNDhd
-IGF0aDExa19wY2kgMDAwMDowNTowMC4wOiBCQVIgMDogYXNzaWduZWQgW21lbSAweDYwMDAwMDAw
-MC0weDYwMGZmZmZmZiA2NGJpdF0KPiBbwqDCoMKgwqA1LjkwMDIzNl0gYXRoMTFrX3BjaSAwMDAw
-OjA1OjAwLjA6IGVuYWJsaW5nIGRldmljZSAoMDAwMCAtPiAwMDAyKQo+IFvCoMKgwqDCoDUuOTE0
-MDUwXSBhdGgxMWtfcGNpOiBwcm9iZSBvZiAwMDAwOjA1OjAwLjAgZmFpbGVkIHdpdGggZXJyb3Ig
-LTEyCj4KPiBFcnJvciAtMTIgKEVOT01FTSkgZ2V0cyByZXR1cm5lZCBhbmQgdGhlIGRyaXZlciBk
-b2Vzbid0IHdvcmsuLi4KPgo+IDA1OjAwLjAgVW5hc3NpZ25lZCBjbGFzcyBbZmYwMF06IFF1YWxj
-b21tIFFDQTYzOTAgV2lyZWxlc3MgTmV0d29yayBBZGFwdGVyIFtBWDUwMC1EQlMgKDJ4MildCj4g
-U3Vic3lzdGVtOiBRdWFsY29tbSBEZXZpY2UgMDEwOAo+IENvbnRyb2w6IEkvTy0gTWVtKyBCdXNN
-YXN0ZXItIFNwZWNDeWNsZS0gTWVtV0lOVi0gVkdBU25vb3AtIFBhckVyci0gU3RlcHBpbmctIFNF
-UlItIEZhc3RCMkItIERpc0lOVHgtCj4gU3RhdHVzOiBDYXArIDY2TUh6LSBVREYtIEZhc3RCMkIt
-IFBhckVyci0gREVWU0VMPWZhc3QgPlRBYm9ydC0gPFRBYm9ydC0gPE1BYm9ydC0gPlNFUlItIDxQ
-RVJSLSBJTlR4LQo+IFJlZ2lvbiAwOiBNZW1vcnkgYXQgNjAwMDAwMDAwICg2NC1iaXQsIG5vbi1w
-cmVmZXRjaGFibGUpIFtzaXplPTE2TV0KPiBDYXBhYmlsaXRpZXM6IDxhY2Nlc3MgZGVuaWVkPgo+
-IEtlcm5lbCBtb2R1bGVzOiBhdGgxMWtfcGNpCj4KPiAwNjowMC4wIE5ldHdvcmsgY29udHJvbGxl
-cjogUXVhbGNvbW0gQXRoZXJvcyBRQ0E2MTc0IDgwMi4xMWFjIFdpcmVsZXNzIE5ldHdvcmsgQWRh
-cHRlciAocmV2IDMyKQo+IFN1YnN5c3RlbTogQVNVU1RlSyBDb21wdXRlciBJbmMuIERldmljZSA4
-NmUwCj4gQ29udHJvbDogSS9PLSBNZW0tIEJ1c01hc3Rlci0gU3BlY0N5Y2xlLSBNZW1XSU5WLSBW
-R0FTbm9vcC0gUGFyRXJyLSBTdGVwcGluZy0gU0VSUi0gRmFzdEIyQi0gRGlzSU5UeC0KPiBTdGF0
-dXM6IENhcCsgNjZNSHotIFVERi0gRmFzdEIyQi0gUGFyRXJyLSBERVZTRUw9ZmFzdCA+VEFib3J0
-LSA8VEFib3J0LSA8TUFib3J0LSA+U0VSUi0gPFBFUlItIElOVHgtCj4gSW50ZXJydXB0OiBwaW4g
-QSByb3V0ZWQgdG8gSVJRIDQ4Cj4gUmVnaW9uIDA6IE1lbW9yeSBhdCA2MDEwMDAwMDAgKDY0LWJp
-dCwgbm9uLXByZWZldGNoYWJsZSkgW2Rpc2FibGVkXSBbc2l6ZT0yTV0KPiBDYXBhYmlsaXRpZXM6
-IDxhY2Nlc3MgZGVuaWVkPgo+IEtlcm5lbCBtb2R1bGVzOiBhdGgxMGtfcGNpCj4KPiBJIGFtIGF0
-IGEgbG9zcyB3aGF0IHRvIGRvIGhlcmUuIFRoZSBhdGgxMWsgZHJpdmVyIGhhcyB0aGUgU0lOR0xF
-IE1TSSBmaXggYnVpbHQgaW4uwqAKPgo+IEFueSBpZGVhcycgd2hhdCBJIGNhbiB0cnkgdG8gZml4
-IHRoaXMgcHJvYmxlbSBvbiB0aGUgcmFzcGJlcnJ5IFBpIENNND8KClNvcnJ5LCBubyBpZGVhcy4g
-QnV0IGFkZGluZyBhdGgxMGsgYW5kIGF0aDExayBsaXN0cywgbWF5YmUgcGVvcGxlIHRoZXJlCmNh
-biBwcm9wb3NlIHNvbWV0aGluZy4KCi0tIApodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3By
-b2plY3QvbGludXgtd2lyZWxlc3MvbGlzdC8KCmh0dHBzOi8vd2lyZWxlc3Mud2lraS5rZXJuZWwu
-b3JnL2VuL2RldmVsb3BlcnMvZG9jdW1lbnRhdGlvbi9zdWJtaXR0aW5ncGF0Y2hlcwoKLS0gCmF0
-aDExayBtYWlsaW5nIGxpc3QKYXRoMTFrQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3Rz
-LmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9hdGgxMWsK
+On Fri, 2021-10-01 at 09:32 +0300, Kalle Valo wrote:
+> > 
+> > Add "__packed" before the "__le16 *" should solve this warning by my
+> > understand like this:
+
+[snip]
+> > 
+> > -static void ieee80211_he_mcs_disable(__le16 *he_mcs)
+> > +static void ieee80211_he_mcs_disable(__packed __le16 *he_mcs)
+> > 
+
+[snip]
+
+> I don't know what Johannes thinks, but to me that looks like an ugly
+> hack. Wouldn't use get_unaligned() or similar be cleaner?
+> 
+Well, then we've have to pass an untyped pointer (void *), which I guess
+is fine? Since we do all kinds of le16_to_cpu() with it anyway, that'd
+just become get_unaligned_le16().
+
+That's probably the better choice.
+
+But regardless, would the __packed even *work*? __attribute__((packed))
+is documented as:
+
+   This attribute, attached to a struct, union, or C++ class type
+   definition, specifies that each of its members (other than zero-width
+   bit-fields) is placed to minimize the memory required. This is
+   equivalent to specifying the packed attribute on each of the members.
+   
+   When attached to an enum definition, the packed attribute indicates that
+   the smallest integral type should be used. Specifying the -fshort-enums
+   flag on the command line is equivalent to specifying the packed
+   attribute on all enum definitions. 
+   
+   [snip example]
+   
+   You may only specify the packed attribute on the definition of an enum,
+   struct, union, or class, not on a typedef that does not also define the
+   enumerated type, structure, union, or class. 
+
+So I'm not convinced it would actually *do* anything here at all, in the
+proposed context?
+
+johannes
+
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
