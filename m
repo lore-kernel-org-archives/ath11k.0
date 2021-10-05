@@ -2,14 +2,14 @@ Return-Path: <SRS0=ASgL=OZ=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9B378C433FE
-	for <ath11k@archiver.kernel.org>; Tue,  5 Oct 2021 14:07:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CBB1FC433F5
+	for <ath11k@archiver.kernel.org>; Tue,  5 Oct 2021 14:10:17 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 675856115B
-	for <ath11k@archiver.kernel.org>; Tue,  5 Oct 2021 14:07:55 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 675856115B
+	by mail.kernel.org (Postfix) with ESMTPS id 8D6B86115B
+	for <ath11k@archiver.kernel.org>; Tue,  5 Oct 2021 14:10:17 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 8D6B86115B
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -18,43 +18,43 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
 	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Oc6f9yXtol4bcpl3eA+q0+GrC4rFv7Xo3eAzUTTnrtU=; b=gKLjpMoyzf2n5k
-	KV2OFzW+jFHrXVkViUNuhON6jbXkPUYE08KZ/S+5DZu6si5rZnvf4LoRNfcImoWLnkFD6Ylq64A2S
-	NaPmGIQFCCdHSoMm2kCXc0vpKhErBcua2dugh3bb6b6yT0UeBMV0u3L5H4uzP4iRQm4YjIZgW3QV+
-	cVMbeLLbLJYE0NJeKa4riI7kvJKfTr6dBqa9byIyfo7BM++VhV+7GbbNUkhDpzn7MY2e4Sq1OYbq8
-	x9X284oxZB1aE3m2wSxfr13PHuMcN/SIzKY2p3ppL/lyQYHuvx22Cz/mpceyDjxiGwHTn7bMpSb0y
-	ckB8ISYCSbxqZeC5gwNw==;
+	List-Owner; bh=/lyvx+IzrKQFA+FPqeQtuhdheLjXwImoar0N1HFchjg=; b=kP/FykKt1mGjug
+	sYgvhqMIlfYgu9DFrwLpWLgN3D3FzfchMKRkyxOOB3EloDr2KoMMI04H4UjGuUAn1mgWP/JUHCugt
+	2YVCLyl+/EE1PhpG+h+M8uRH/6/DD4bAul9bxqqZXtXul/fb+nbTiLzGZYgQB5V5qSHlmCzK7BfbG
+	3mpm370UDX/oTlaARCFxvF/eNR1IkM3ehsw+3acN4lCu18utiCONjUKyD7ECe1+6bNODxNrJH97qE
+	xim95uZlTNL45JaT8tyuek6qLpBDfDWwLDdNaH4D+UBcdASpy/Dz/LZNETUD0WcPXUY7+YeY0Vb1d
+	AnbR1l730nUFSLUTKzrA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mXl6m-00AnY0-4s; Tue, 05 Oct 2021 14:07:52 +0000
-Received: from so254-9.mailgun.net ([198.61.254.9])
+	id 1mXl95-00AnrC-KZ; Tue, 05 Oct 2021 14:10:15 +0000
+Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mXl6E-00AnPO-LA
- for ath11k@lists.infradead.org; Tue, 05 Oct 2021 14:07:50 +0000
+ id 1mXl92-00Anql-NH
+ for ath11k@lists.infradead.org; Tue, 05 Oct 2021 14:10:14 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1633442867; h=Content-Type: MIME-Version: Message-ID:
+ s=smtp; t=1633443013; h=Content-Type: MIME-Version: Message-ID:
  In-Reply-To: Date: References: Subject: Cc: To: From: Sender;
- bh=Jg3m/g25bkbWNO+TyC8tvVbjrTAyib8vW1P1iQJqXDQ=;
- b=ShEbaqzQjk8VDHMpjeKFbjjQZyeUsBBQ+pHY3GDQi4H+NqrKTo86Bbd6ovQgesq9PCQgRjsv
- ucPcxeAC85dGuGb5JwaN8/kYlyggoi88hNIyVJileBClPdknCWAPrzvJL5gwnlswkXrrkv9F
- EhLkH4Bni1f3GWO6d8O7tap2sSc=
-X-Mailgun-Sending-Ip: 198.61.254.9
+ bh=sAflXWHFCtPcPvvfMZVY7wWrYE1ggRKCVsd3OOu3EpA=;
+ b=jntK5X0427DB3E/BXIO3RYELkiPwo8q9IhU9/hy6+QEcc3dZqufSZW/CYLsiyNYRm5Yfgaeq
+ BgB1XQezrTT7mlk0THX+G5q017q73rDkYiHTa/P5L415Zjv+dw4q4x2U7BGKlNzvx8Bi3Sq2
+ zSXfl7s4AXecg18n4Gohi46dPDY=
+X-Mailgun-Sending-Ip: 69.72.43.7
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n02.prod.us-east-1.postgun.com with SMTP id
- 615c5bd7b8ab9916b394a062 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 05 Oct 2021 14:06:15
+ smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
+ 615c5cc28ea00a941f5d2446 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 05 Oct 2021 14:10:10
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 25BA8C4314B; Tue,  5 Oct 2021 14:06:14 +0000 (UTC)
+ id 68EE8C43619; Tue,  5 Oct 2021 14:10:10 +0000 (UTC)
 Received: from tykki (tynnyri.adurom.net [51.15.11.48])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested) (Authenticated sender: kvalo)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 82AE6C43460;
- Tue,  5 Oct 2021 14:06:12 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 82AE6C43460
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id ED045C4360D;
+ Tue,  5 Oct 2021 14:10:08 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org ED045C4360D
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
@@ -63,19 +63,20 @@ From: Kalle Valo <kvalo@codeaurora.org>
 To: bqiang@codeaurora.org
 Cc: Jouni Malinen <jouni@codeaurora.org>, ath11k@lists.infradead.org,
  linux-wireless@vger.kernel.org
-Subject: Re: [PATCH 1/3] ath11k: Change number of TCL rings to one for QCA6390
+Subject: Re: [PATCH 2/3] ath11k: change return buffer manager for QCA6390
 References: <20210914163726.38604-1-jouni@codeaurora.org>
- <87tui4pwdz.fsf@codeaurora.org>
- <42fa097a799050100b6978ef0ab4e8b8@codeaurora.org>
-Date: Tue, 05 Oct 2021 17:06:09 +0300
-In-Reply-To: <42fa097a799050100b6978ef0ab4e8b8@codeaurora.org> (bqiang's
- message of "Wed, 29 Sep 2021 10:15:45 +0800")
-Message-ID: <87ee8zftwu.fsf@codeaurora.org>
+ <20210914163726.38604-2-jouni@codeaurora.org>
+ <87pmsspwa9.fsf@codeaurora.org>
+ <43fd66ccc28fe80b3ef00e5f1c7e6fbb@codeaurora.org>
+Date: Tue, 05 Oct 2021 17:10:06 +0300
+In-Reply-To: <43fd66ccc28fe80b3ef00e5f1c7e6fbb@codeaurora.org> (bqiang's
+ message of "Wed, 29 Sep 2021 10:42:43 +0800")
+Message-ID: <87a6jnftq9.fsf@codeaurora.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211005_070747_932878_84368D40 
-X-CRM114-Status: GOOD (  13.83  )
+X-CRM114-CacheID: sfid-20211005_071013_359015_16919A20 
+X-CRM114-Status: GOOD (  11.13  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,14 +95,13 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 bqiang@codeaurora.org writes:
 
-> On 2021-09-28 23:12, Kalle Valo wrote:
+> On 2021-09-28 23:14, Kalle Valo wrote:
 >> Jouni Malinen <jouni@codeaurora.org> writes:
 >>
 >>> From: Baochen Qiang <bqiang@codeaurora.org>
 >>>
->>> Some targets, QCA6390 for example, use only one TCL ring,
->>> it is better to initialize only one ring and leave others
->>> untouched for such targets.
+>>> QCA6390 firmware uses HAL_RX_BUF_RBM_SW1_BM, not
+>>> HAL_RX_BUF_RBM_SW3_BM.
 >>>
 >>> Tested-on: QCA6390 hw2.0 PCI
 >>> WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
@@ -109,23 +109,16 @@ bqiang@codeaurora.org writes:
 >>> Signed-off-by: Baochen Qiang <bqiang@codeaurora.org>
 >>> Signed-off-by: Jouni Malinen <jouni@codeaurora.org>
 >>
->> It's better? Please be more specific. Does this fix a bug or is this
->> just a theoretical fix you found during code review?
+>> Same question as in patch 1, does this fix a bug or is just a
+>> theoretical issue found during code review?
 >
-> Yes, this is just a theoretical fix. By "better" I mean there is no
-> need to initialize
-> the other two TCL rings for QCA6390 since they are not used.
+> Yes, this patch did fix a bug.
+>
+> QCA6390 firmware expects some specific packets from WBM2SW1 ring,
+> which, however, will not happen because they are routed directly to
+> host through WBM2SW3 ring due to wrong configuration of RBM.
 
-Thanks, I changed the commit log now to this:
-
-    ath11k: Change number of TCL rings to one for QCA6390
-    
-    Some targets, QCA6390 for example, use only one TCL ring, it is better to
-    initialize only one ring and leave others untouched for such targets.
-    
-    This is a theoretical fix found during code review, no visible impact.
-    
-    Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
+What specific packets exactly?
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
