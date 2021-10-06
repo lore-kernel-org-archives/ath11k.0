@@ -1,82 +1,69 @@
-Return-Path: <SRS0=ASgL=OZ=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=PBC3=O2=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EE20CC433EF
-	for <ath11k@archiver.kernel.org>; Tue,  5 Oct 2021 19:33:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A7AD9C433EF
+	for <ath11k@archiver.kernel.org>; Wed,  6 Oct 2021 08:32:30 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BDF6161211
-	for <ath11k@archiver.kernel.org>; Tue,  5 Oct 2021 19:33:22 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org BDF6161211
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 70E1A610A8
+	for <ath11k@archiver.kernel.org>; Wed,  6 Oct 2021 08:32:30 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 70E1A610A8
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=canonical.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Date:Message-ID:Subject:From:To:
-	Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=PuXkvijcdgdMNv0w73i9JO5CIPYaXg5BNBhdrieiFcI=; b=1ATZl2Zszn5cew
-	9LQDLYCJLPDHzTXURifyLzRzox6e02befursoqYr1ACvZN5twxEs7EGI/zaCPvnf/luRAr/BzMDb4
-	iUijNGFIRPa9QCJbF+aQeOeS4xeLeKMg5c3qWUbAmVfhpu2NytW4iPfS8PE1WvoOUMQSkF/NpfsfN
-	8dKZOoiQniSug8KydIxdz2+v9GvrqKbA+yLQN4g6yYsFgzbQbnZFydqreKI8Z9DGAZrPrz16otA8H
-	TDkU57XbrLCGqZfrHrmQFtW2favPR6J1XdpchQLUCAmbk2upbV+gW2ZzdnRX2eXgs9yq+UAlcyyED
-	BwDBmI/ZkgrBS2UQmGqQ==;
+	List-Owner; bh=U/qHyyRWtlitBfK5Xc3HEfV5eEqQv71A3IwvT6mhLDs=; b=MeaZQb3tw/pir+
+	GdOoDyAH/PMFzpuu2ylEWaWYikLfbcUZdCxMZRa/5H4qwaZvcdWk5TibgqeJ36GUCm1xbJNQpeRax
+	op2k3oxL7gVrTtQcaVd6zN64TXCznQTSIzjJzzNF9i/OaJvzEkBsgzOT7Ugcz2/vAgk19DzOkejhS
+	Jt2WTX49u4D/1tDh7J3/GEBsADNQ1Y/0okxieW8Hn1ZPenEl30IV3erQCrf/7B+UmqWLKexLE7IAO
+	Cmn942R1HCl3qhXXs70BS+ItLo+lNz/CBaXSHuugYTOiyM70DlEiRqj7V5hWwi/TabZQLQ9F/RFXt
+	brgB/2LtRg63/H0hOGew==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mXqBk-00Bf3c-Ao; Tue, 05 Oct 2021 19:33:20 +0000
-Received: from mail-lf1-x129.google.com ([2a00:1450:4864:20::129])
+	id 1mY2Lj-00DU88-Oj; Wed, 06 Oct 2021 08:32:27 +0000
+Received: from smtp-relay-canonical-0.canonical.com ([185.125.188.120])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mXqBZ-00Bf1D-88
- for ath11k@lists.infradead.org; Tue, 05 Oct 2021 19:33:10 +0000
-Received: by mail-lf1-x129.google.com with SMTP id m3so515793lfu.2
- for <ath11k@lists.infradead.org>; Tue, 05 Oct 2021 12:33:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=to:from:subject:message-id:date:user-agent:mime-version
- :content-transfer-encoding:content-language;
- bh=v714AywBE/FULAo7cASQBxwzLaVYGVajKvbpkGZEAa8=;
- b=WMOothVu4zeFHN2uzWtrWtLQPzr2reXiter2EDXKZb+l4c8+pkLqS50d3pb5kaKClF
- SOruDYY5gyGhWEbnOcUkgx0BlVdmlMMIIjf0QNIKpB2Nh928/qNBxGK2G2rj9G1JG13u
- 3gC8vR/L5dDdjTs6eU/18waUzVGnxxdvUdodT++Arx4L9giCPzuSwm/zQKS6tz7AANp7
- IoSoxR4MpaowCFxtj9nJtCN4wHbqBQm9awpZr5M9yOhi3G9/oOCBjM/MaWI/yx2QkmUM
- BUKsLLmhVXlzdvUa45uNEIm8ibr0saNkEpKDfCOe6pj/lROEmwl38MzK4NFJRH17h5rg
- 7TSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:to:from:subject:message-id:date:user-agent
- :mime-version:content-transfer-encoding:content-language;
- bh=v714AywBE/FULAo7cASQBxwzLaVYGVajKvbpkGZEAa8=;
- b=BBuImSVMsIV4a0G7nNKoXp2G5+KpbNzCRgHc9LJKYSdAGTKA7+YQa+N17+yhi6mICW
- 9ei17lFTgV88mroqNdvuALWed0LKK+pgAKWr/DN3mhqm8Pl0Fe0uPcXLAIa97sbUlNH8
- qs0KnBfxehJ/QNgqpKjZuKSnSx/jfUnzpmdB4u7+CZYt6c4xSq3x0ROxbru9lCjDuncU
- klkky9Xv0FU29jpjjpKdr689KxptD7a0OBQhe1Q5rgZSv58JgMVvO/EB6/mD/Nb+23NR
- UhVKfwpakG36HQu4ZOMEszdRf/wg5yotRPUIkue7TBgLp408ikgvV/uGwkvAgfhslteI
- /9Fg==
-X-Gm-Message-State: AOAM530jchaFzRY2aDmiSG7D0JHOqEcLqwj41+X9Bstys3KQ655/Dnuk
- /yHouLaxyXqnJ/p9+vMyZ5POavH9t2dMaDLy
-X-Google-Smtp-Source: ABdhPJwKsf/8gWNkGWBaN8AcDOAKpM7MLKvIKC1cbsOGysvtl6/Aqkr2NMfdwtIyuzPy2yDyeBJrew==
-X-Received: by 2002:a05:6512:ba4:: with SMTP id
- b36mr5206226lfv.177.1633462387071; 
- Tue, 05 Oct 2021 12:33:07 -0700 (PDT)
-Received: from [192.168.2.114] ([109.106.141.149])
- by smtp.gmail.com with ESMTPSA id i25sm2046946lfc.105.2021.10.05.12.33.06
- for <ath11k@lists.infradead.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 05 Oct 2021 12:33:06 -0700 (PDT)
-To: ath11k@lists.infradead.org
-From: Mark Herbert <mark.herbert42@gmail.com>
-Subject: Can not unload ath11k_pci and load it back
-Message-ID: <190a1b14-0a8c-f1fb-9f0d-e25cc57034a7@gmail.com>
-Date: Tue, 5 Oct 2021 22:32:43 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+ id 1mY2Lg-00DU5y-Uc
+ for ath11k@lists.infradead.org; Wed, 06 Oct 2021 08:32:26 +0000
+Received: from localhost (1.general.cking.uk.vpn [10.172.193.212])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest
+ SHA256) (No client certificate requested)
+ by smtp-relay-canonical-0.canonical.com (Postfix) with ESMTPSA id 2ACBA3F045; 
+ Wed,  6 Oct 2021 08:32:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+ s=20210705; t=1633509138;
+ bh=i7pqd94h/7qZqSjsnCqUp64WqQ62M3udKtVgH1QlXY0=;
+ h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type;
+ b=fIGo8D9Wb4Jk7Owrre+K9F6b7d8Zg67da3as0qK6DmFvoeQTgboIWbLvh3a+Owdrq
+ XQ0L2XFdeNcV7jJRshKfACKxnoEV5hlB2PlqTxJcPkOZfsvivT5QV/Bt7szVwaSeb+
+ /6g8cbSOfjLNQCDmRZP7gnjSULaF/SX5Dg+cNcSsX2W+2CYH8HVlWwzFAE3XLhyFsT
+ MGA6siYJP6QJNG+PTD2hNOdfn1kbkx2CfEKaE1xVAcID0EY5jbEuVyTAAzqnwNekSc
+ FbB0qWUYlsdTgzxG/TcVJWfnGHZcQZeazFoJfv4/viEcfeBBBXaaFxQV3N8x4Zz9Fz
+ 7bsmBI6NgyIhA==
+From: Colin King <colin.king@canonical.com>
+To: Kalle Valo <kvalo@codeaurora.org>,
+ "David S . Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
+ ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ netdev@vger.kernel.org
+Cc: kernel-janitors@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH][next] ath11k: Fix spelling mistake "incompaitiblity" ->
+ "incompatibility"
+Date: Wed,  6 Oct 2021 09:32:17 +0100
+Message-Id: <20211006083217.349596-1-colin.king@canonical.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211005_123309_309937_92B43749 
-X-CRM114-Status: GOOD (  10.06  )
+X-CRM114-CacheID: sfid-20211006_013225_168147_17993439 
+X-CRM114-Status: UNSURE (   9.29  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,26 +75,38 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-RGVhciBhdGgxMWsgdGVhbSwKClRoZSBtYWluIGlzc3VlIGlzIEkgY2FuIG5vdCBoaWJlcm5hdGUg
-YW5kIHdha2UgdXAgbXkgWFBTIDEzIDkzMTAuwqAgSWYgSSAKa2VlcCBtb2R1bGUgbG9hZGVkIGl0
-IGhpYmVybmF0ZS4gQnUgaGFuZ3Mgb24gcmVzdW1lLiBJZiBJIHVubG9hZCBtb2R1bGUgCi0gaXQg
-cmVzdW1lcyBPSyBidXQgdGhlcmUgaXMgbm8gY2hhbmNlIHRvIGhhdmUgV0lGSSBiYWNrIHdpdGhv
-dXQgcmVib290LgoKSWYgSSBkbyBybW1vZCBhdGgxMWtfcGNpIC0gaXQgc2hvd3MgZXJyb3JzIGlu
-IGRtZXNnOgoKW8KgwqAgNDguODAxNTA0XSBhdGgxMWtfcGNpIDAwMDA6NzI6MDAuMDogbGluayBk
-b3duIGVycm9yIGR1cmluZyBnbG9iYWwgcmVzZXQKW8KgwqAgNDguODAxNzAwXSBETUFSOiBEUkhE
-OiBoYW5kbGluZyBmYXVsdCBzdGF0dXMgcmVnIDIKW8KgwqAgNDguODAxNzA5XSBETUFSOiBbSU5U
-Ui1SRU1BUF0gUmVxdWVzdCBkZXZpY2UgWzB4NzI6MHgwMC4wXSBmYXVsdCAKaW5kZXggMHg2MCBb
-ZmF1bHQgcmVhc29uIDB4MjJdIFByZXNlbnQgZmllbGQgaW4gdGhlIElSVEUgZW50cnkgaXMgY2xl
-YXIKCklmIEkgZG8gbW9kcHJvYmUgaW1tZWRpYXRlbHkgaXQgZG9lcyBsb2FkIG1vZHVsZSBidXQg
-Y2FyZCB3aWxsIG5vdCBjb21lIApiYWNrIGFnYWluLgoKSW4gQXJjaCB3aWtpIHJlbG9hZGluZyBt
-b2R1bGVzIHdhcyBleHBsYWluZWQgYXMgYSB3b3JrYXJvdW5kIHRvIApzdXNwZW5kLXJlc3VtZSA5
-MzEwLCBidXQgbG9va3MgbGlrZSBpdCBkb2VzIG5vdCB3b3JrIGFueW1vcmUuIFN1c3BlbmQgdG8g
-CmlkbGUgd29ya3MgZmluZSAtIG5vIG1vZHVsZSB1bmxvYWRpbmcgbmVlZGVkLgoKCktpbmQgcmVn
-YXJkcwoKTWFyay4KCgoKCi0tIAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0cy5pbmZy
-YWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vYXRo
-MTFrCg==
+From: Colin Ian King <colin.king@canonical.com>
+
+There is a spelling mistake in an ath11k_warn message. Fix it.
+
+Signed-off-by: Colin Ian King <colin.king@canonical.com>
+---
+ drivers/net/wireless/ath/ath11k/mac.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 31f0cfba5bf5..89ab2fa7557c 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -7081,7 +7081,7 @@ ath11k_mac_op_set_bitrate_mask(struct ieee80211_hw *hw,
+ 
+ 		if (!ath11k_mac_validate_vht_he_fixed_rate_settings(ar, band, mask))
+ 			ath11k_warn(ar->ab,
+-				    "could not update fixed rate settings to all peers due to mcs/nss incompaitiblity\n");
++				    "could not update fixed rate settings to all peers due to mcs/nss incompatibility\n");
+ 		nss = min_t(u32, ar->num_tx_chains,
+ 			    max(max(ath11k_mac_max_ht_nss(ht_mcs_mask),
+ 				    ath11k_mac_max_vht_nss(vht_mcs_mask)),
+-- 
+2.32.0
+
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
