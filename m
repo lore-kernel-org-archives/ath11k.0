@@ -1,64 +1,78 @@
-Return-Path: <SRS0=PBC3=O2=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=tHTJ=O3=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ECF3CC433EF
-	for <ath11k@archiver.kernel.org>; Wed,  6 Oct 2021 18:08:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EE0C7C433EF
+	for <ath11k@archiver.kernel.org>; Thu,  7 Oct 2021 06:23:03 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BD02F61027
-	for <ath11k@archiver.kernel.org>; Wed,  6 Oct 2021 18:08:04 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org BD02F61027
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	by mail.kernel.org (Postfix) with ESMTPS id 6FC1361215
+	for <ath11k@archiver.kernel.org>; Thu,  7 Oct 2021 06:23:03 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 6FC1361215
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=N138P1VKOJgKheCRsqRxnkQx18z86bjtWV+g9Qm1qGg=; b=dp74gcN7ILPBaI
-	Rxuf0rG1r6qJmHWbprf5ivCjNicXOSJini+/w2I97IZCnBh1m4WZ1MEp1hLv7Q/wC1yUfgllYG8Kr
-	FQaYee6WijYs0T5UNffJ5AywQ5KMxC3OQ+zfBVK0V9CcDvWw1a74B8P49jTsn1Wb+x5QrjVtFWlnk
-	pWAvtf0nOgFOPASQhiFRKhdDXXoZQQfkju2Nd3S0cIj696xgMeCdzEy8guQHed3e5s6UhEClI/SbN
-	lmEKrROb2MPr6jxY1gnK7M/mAX5uYzcjaGhudwcMIq/gQdPxv18fuydHe8mfRrsQfD8B0bkxywY33
-	rlqo3vDaY5JvtAc68rHA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=0edLVokeAhh6xgmX4Ga8kH19yEduN9FssdAd2jyfGWo=; b=V8EVUeCkYz/Cvv
+	sQCgo1xzhG7JDU3qs+IVU1hpw6UXY5UDIqFXa2cCjYhBYCbYSaBeCiSFuqbgQmBFldp2UrvbOSEEp
+	c8+P3DoSkt8AmM358PuRcW8Idp12g3g5d3NDDMTBdbaTpkUbCYFIrVlYc5iEYrR+M3oWRWKvyDwW6
+	PBkKUpYCps3dhb8WirnmH8T3va2+Cgq55xL8zxHBDQlJXB5MHGxGoh+ikV6FTuuEbnkvMZYTjTDq4
+	mdi2mn5xaB+KZeL3d+4SF2p1UGEPz8CNOPpFZ/SgNOIbNa7V/Pw2a6uW7JaJoFKQFj0rEjMWv5R69
+	r4p8dO8IRzROc0ekHl8g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mYBKk-00FIZP-6S; Wed, 06 Oct 2021 18:08:02 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1mYMo0-00GGdi-Dh; Thu, 07 Oct 2021 06:23:00 +0000
+Received: from so254-9.mailgun.net ([198.61.254.9])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mYBKi-00FIZ1-2p
- for ath11k@lists.infradead.org; Wed, 06 Oct 2021 18:08:01 +0000
-Received: by mail.kernel.org (Postfix) with ESMTPSA id F174961039;
- Wed,  6 Oct 2021 18:07:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1633543679;
- bh=4H3UbAzOvhL7VvGwxsIUhSjoYwJuXz+t9/UCE0IhIcA=;
- h=Date:From:To:Cc:Subject:From;
- b=A/Y1PTcGhYR2SWXNRvxtC7lddnL5VsWZ80djNr0oiFXb2HltlVb9hQaiTTsd0abpP
- xmBVlcixn0lMZHFcOMtx1M9eLLABaseXSlE9NIlqoM/SGyD55xAVlkBH7l7x306x6d
- 2bNEQOklusyFgJqhpk8aJYWAlKG3FeXVAkbiejBlbu7SazegjcXXZaF1xUoHL5Htop
- wqo8U+OEM0a12bY2L4xO4Ok9zYzIuHOgOG7Xkxkt2daPpUfRjIibM6mA7ww1vCSClN
- g4VOrH6k+fbV6eRET7p6upCT5/3dt+85rKjoQgSIlVdTM6W9n7ENm2bLh+pkxdUlwF
- pI+trbHwr/emw==
-Date: Wed, 6 Oct 2021 13:12:04 -0500
-From: "Gustavo A. R. Silva" <gustavoars@kernel.org>
-To: Kalle Valo <kvalo@codeaurora.org>, "David S. Miller" <davem@davemloft.net>,
- Jakub Kicinski <kuba@kernel.org>
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- linux-hardening@vger.kernel.org
-Subject: [PATCH][next] ath11k: Use kcalloc() instead of kzalloc()
-Message-ID: <20211006181204.GA913553@embeddedor>
+ id 1mYMnw-00GGdE-SM
+ for ath11k@lists.infradead.org; Thu, 07 Oct 2021 06:22:58 +0000
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
+ q=dns/txt; 
+ s=smtp; t=1633587776; h=Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Message-ID: In-Reply-To: Date: References: Subject: Cc:
+ To: From: Sender; bh=V6w5blgkN0H+KSS+qJxQJbAKjfmF5qphFIcpWhNKI4Q=;
+ b=eL86eU1Ip1vVFpkSOE0CwajHZneMTFsnAIsl7C19KAuHIlUSVUD/zzeJWP6MDjbFGpYCX23d
+ 43Q++eEHMt5R6je1vd3NSPv+2LpfbovI4jhfAKVaaR/MqY4ojFc+3abEFRu17MjlU1swE//u
+ Zjui4EjWZjxkkh+V6qlRo4IPib8=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
+ 615e923f09ab5538895e5340 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 07 Oct 2021 06:22:55
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+ id 58CE1C43460; Thu,  7 Oct 2021 06:22:54 +0000 (UTC)
+Received: from tykki (tynnyri.adurom.net [51.15.11.48])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested) (Authenticated sender: kvalo)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 49394C4338F;
+ Thu,  7 Oct 2021 06:22:53 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 49394C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ spf=fail smtp.mailfrom=codeaurora.org
+From: Kalle Valo <kvalo@codeaurora.org>
+To: Mark Herbert <mark.herbert42@gmail.com>
+Cc: ath11k@lists.infradead.org
+Subject: Re: Can not unload ath11k_pci and load it back
+References: <190a1b14-0a8c-f1fb-9f0d-e25cc57034a7@gmail.com>
+Date: Thu, 07 Oct 2021 09:22:49 +0300
+In-Reply-To: <190a1b14-0a8c-f1fb-9f0d-e25cc57034a7@gmail.com> (Mark Herbert's
+ message of "Tue, 5 Oct 2021 22:32:43 +0300")
+Message-ID: <875yu9e4li.fsf@codeaurora.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-Content-Disposition: inline
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211006_110800_167821_69C30FC6 
-X-CRM114-Status: UNSURE (   8.00  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20211006_232257_014648_6BA8CF73 
+X-CRM114-Status: GOOD (  18.00  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,51 +84,43 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Use 2-factor multiplication argument form kcalloc() instead
-of kzalloc().
-
-Link: https://github.com/KSPP/linux/issues/162
-Signed-off-by: Gustavo A. R. Silva <gustavoars@kernel.org>
----
- drivers/net/wireless/ath/ath11k/wmi.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 6c253eae9d06..0bbda81117df 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -4046,8 +4046,8 @@ static int ath11k_wmi_tlv_mac_phy_caps_parse(struct ath11k_base *soc,
- 
- 	len = min_t(u16, len, sizeof(struct wmi_mac_phy_capabilities));
- 	if (!svc_rdy_ext->n_mac_phy_caps) {
--		svc_rdy_ext->mac_phy_caps = kzalloc((svc_rdy_ext->tot_phy_id) * len,
--						    GFP_ATOMIC);
-+		svc_rdy_ext->mac_phy_caps = kcalloc(svc_rdy_ext->tot_phy_id,
-+						    len, GFP_ATOMIC);
- 		if (!svc_rdy_ext->mac_phy_caps)
- 			return -ENOMEM;
- 	}
-@@ -4447,8 +4447,8 @@ static struct cur_reg_rule
- 	struct cur_reg_rule *reg_rule_ptr;
- 	u32 count;
- 
--	reg_rule_ptr =  kzalloc((num_reg_rules * sizeof(*reg_rule_ptr)),
--				GFP_ATOMIC);
-+	reg_rule_ptr = kcalloc(num_reg_rules, sizeof(*reg_rule_ptr),
-+			       GFP_ATOMIC);
- 
- 	if (!reg_rule_ptr)
- 		return NULL;
--- 
-2.27.0
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+TWFyayBIZXJiZXJ0IDxtYXJrLmhlcmJlcnQ0MkBnbWFpbC5jb20+IHdyaXRlczoKCj4gRGVhciBh
+dGgxMWsgdGVhbSwKPgo+IFRoZSBtYWluIGlzc3VlIGlzIEkgY2FuIG5vdCBoaWJlcm5hdGUgYW5k
+IHdha2UgdXAgbXkgWFBTIDEzIDkzMTAuwqAgSWYKPiBJIGtlZXAgbW9kdWxlIGxvYWRlZCBpdCBo
+aWJlcm5hdGUuIEJ1IGhhbmdzIG9uIHJlc3VtZS4KCkp1c3QgdG8gYXZvaWQgY29uZnVzaW9ucyB3
+aXRoIHRlcm1pbm9sb2d5LCB3aXRoIGhpYmVybmF0ZSB5b3UgbWVhbgpzdG9yaW5nIHRoZSBzeXN0
+ZW0gc3RhdGUgdG8gYSBkaXNrIGFuZCBjb21wbGV0ZWx5IHBvd2VyaW5nIG9mZiB0aGUKbGFwdG9w
+PwoKSSBhc3N1bWUgaGliZXJuYXRpb24gZmFpbHMgYmVjYXVzZSBhdGgxMWsga2VlcHMgdGhlIGZp
+cm13YXJlIHJ1bm5pbmcKZHVyaW5nIHN1c3BlbmQgYW5kIGF0aDExayBpcyBub3QgYWJsZSB0byBy
+ZWNvdmVyIGlmIHRoZSBmaXJtd2FyZSBpcyBkZWFkCmR1cmluZyByZXN1bWUuCgpDYW4geW91IGZp
+bGUgYSBidWcgYWJvdXQgdGhpcywgaW5zdHJ1Y3Rpb25zIGhlcmU6CgpodHRwczovL3dpcmVsZXNz
+Lndpa2kua2VybmVsLm9yZy9lbi91c2Vycy9kcml2ZXJzL2F0aDExay9idWdyZXBvcnQKCj4gSWYg
+SSB1bmxvYWQgbW9kdWxlIC0gaXQgcmVzdW1lcyBPSyBidXQgdGhlcmUgaXMgbm8gY2hhbmNlIHRv
+IGhhdmUgV0lGSQo+IGJhY2sgd2l0aG91dCByZWJvb3QuCj4KPiBJZiBJIGRvIHJtbW9kIGF0aDEx
+a19wY2kgLSBpdCBzaG93cyBlcnJvcnMgaW4gZG1lc2c6Cj4KPiBbwqDCoCA0OC44MDE1MDRdIGF0
+aDExa19wY2kgMDAwMDo3MjowMC4wOiBsaW5rIGRvd24gZXJyb3IgZHVyaW5nIGdsb2JhbCByZXNl
+dAo+IFvCoMKgIDQ4LjgwMTcwMF0gRE1BUjogRFJIRDogaGFuZGxpbmcgZmF1bHQgc3RhdHVzIHJl
+ZyAyCj4gW8KgwqAgNDguODAxNzA5XSBETUFSOiBbSU5UUi1SRU1BUF0gUmVxdWVzdCBkZXZpY2Ug
+WzB4NzI6MHgwMC4wXSBmYXVsdAo+IGluZGV4IDB4NjAgW2ZhdWx0IHJlYXNvbiAweDIyXSBQcmVz
+ZW50IGZpZWxkIGluIHRoZSBJUlRFIGVudHJ5IGlzCj4gY2xlYXIKPgo+IElmIEkgZG8gbW9kcHJv
+YmUgaW1tZWRpYXRlbHkgaXQgZG9lcyBsb2FkIG1vZHVsZSBidXQgY2FyZCB3aWxsIG5vdAo+IGNv
+bWUgYmFjayBhZ2Fpbi4KPgo+IEluIEFyY2ggd2lraSByZWxvYWRpbmcgbW9kdWxlcyB3YXMgZXhw
+bGFpbmVkIGFzIGEgd29ya2Fyb3VuZCB0bwo+IHN1c3BlbmQtcmVzdW1lIDkzMTAsIGJ1dCBsb29r
+cyBsaWtlIGl0IGRvZXMgbm90IHdvcmsgYW55bW9yZS4gU3VzcGVuZAo+IHRvIGlkbGUgd29ya3Mg
+ZmluZSAtIG5vIG1vZHVsZSB1bmxvYWRpbmcgbmVlZGVkLgoKSSBoYXZlIGFuIFhQUyAxMyA5MzEw
+IGFzIHdlbGwgYnV0IEkgY2FuJ3QgdGVzdCB0aGlzIHJpZ2h0IG5vdy4gQ2FuIHlvdQpwcm92aWRl
+IG1vcmUgaW5mb3JtYXRpb24gYWJvdXQgdGhlIGNhcmQgbm90IGdldHRpbmcgYmFjayBhZnRlciBt
+b2Rwcm9iZT8KV2hhdCBleGFjdCBrZXJuZWwgYW5kIEJJT1MgdmVyc2lvbnMgYXJlIHlvdSB1c2lu
+Zz8gV2hhdCBsb2cgbWVzc2FnZXMgeW91CmdldCBmcm9tIGF0aDExaz8gUHJlZmVyYWJseSB0aGUg
+ZXhhY3QgY29tbWFuZHMgeW91IHVzZSBhbmQgdGhlIG91dHB1dAp5b3UgZ2V0IGZyb20gYXRoMTFr
+IHdvdWxkIGhlbHAgYSBsb3QgdG8gdW5kZXJzdGFuZCB3aGF0J3MgaGFwcGVuaW5nLgoKLS0gCmh0
+dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcHJvamVjdC9saW51eC13aXJlbGVzcy9saXN0LwoK
+aHR0cHM6Ly93aXJlbGVzcy53aWtpLmtlcm5lbC5vcmcvZW4vZGV2ZWxvcGVycy9kb2N1bWVudGF0
+aW9uL3N1Ym1pdHRpbmdwYXRjaGVzCgotLSAKYXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtAbGlz
+dHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL2F0aDExawo=
