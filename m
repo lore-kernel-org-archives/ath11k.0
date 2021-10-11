@@ -2,76 +2,72 @@ Return-Path: <SRS0=85K5=O7=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 27EC0C433EF
-	for <ath11k@archiver.kernel.org>; Mon, 11 Oct 2021 08:59:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E42FAC433F5
+	for <ath11k@archiver.kernel.org>; Mon, 11 Oct 2021 11:06:55 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DEB0160EBD
-	for <ath11k@archiver.kernel.org>; Mon, 11 Oct 2021 08:59:23 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org DEB0160EBD
+	by mail.kernel.org (Postfix) with ESMTPS id 9EFBA60EB4
+	for <ath11k@archiver.kernel.org>; Mon, 11 Oct 2021 11:06:55 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 9EFBA60EB4
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:Subject:Cc:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=lvvOLunSjOqbDYIcc26kTNiD4HsGZczrrpAcIdX14Z8=; b=fpxHVQMHqTG8q/
-	GiM1GDnIReektz8mBOTISYCNqMNJuwotGIKzjA51uLUAfDpb3ZfOnpRCl24ptbvm2AHgl2d6grz7V
-	qJ0MmyMho09lmfm6LsFprh7eqFwc2xQlIGtCarPr9thYMNx56LgztklS/gEdS75hLCjew+GYnGg15
-	1dASwnb+Ov9Sc6+hLe7mt5CuNWdeUJq3U35/wi5UYKagQgGkaqE7tXZ4E7dBXsLGOwHpZUjurnyCA
-	YKIJM7o1R2MFcR0MzoibH008j+8M1fXilFOYuQetqpqJrKbhtyybsGFcNMO8AaO4NNbged2o4vrac
-	q46ywRzdnTC5BgKKM4TA==;
+	List-Owner; bh=G6zstdJspnOyApeObuGJz+/ssdQ0ytqHoOQcphLcfqg=; b=wYedYSNN3PZzKz
+	31AzkSlTK8VllpePPrYxH+NVvVA2VP0yFjTARaUykZA6j91Jogr+uel5BOQ4LTO0GwgMDtMzLN0uD
+	lgJ7a0fTciR1nrncpN0wudse7XcN0KQVI7txtLqKNqEgcQkeS+Aeq9PNmT34rwawfF37jgykdgMPx
+	bmSGdngrGrx4fIYRfyugXwq9Mh1YTB+SR/uOuz8UP/S8cteEM9OkgUGtukzA8TWeyQnuXaca91h4i
+	xZ7AbRydwstEOLisXru8NWGWY22oWPT8rnGaIR2CbiNgmunYjdiDX1rGE0cqOyZ+kYm1V6ZiSyXTF
+	oniAM4gLW1/jib1FOD7w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mZr9V-008THn-Lf; Mon, 11 Oct 2021 08:59:21 +0000
+	id 1mZt8u-0090B4-VK; Mon, 11 Oct 2021 11:06:52 +0000
 Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mZr9R-008TFq-H6
- for ath11k@lists.infradead.org; Mon, 11 Oct 2021 08:59:21 +0000
+ id 1mZt8h-00906E-Lc
+ for ath11k@lists.infradead.org; Mon, 11 Oct 2021 11:06:51 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1633942758; h=Content-Transfer-Encoding: MIME-Version:
- Message-Id: Date: Subject: Cc: To: From: Sender;
- bh=v9WMpdNVufoENl6Wl3y5AEDzggPWWsUfibC/ch8ZnD0=;
- b=DhJEu4pZ9nQaJFjdyXsy10CEKB5wHMtNbiCFg7g39JMYnVxfPM664pWLaoxJZrJHiC5xeet2
- 4KE2wAkSM2jU9NDoQRse7gDfBnrpM1LZ9oUfOVQAwi12KmIdrlbKw9JFzgwRYmUCvBRjr3cS
- Y2fqPdtHnrIA6ID32Pa1MetPpP8=
+ s=smtp; t=1633950404; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=ezeZl4XrLVsW1PG+y11ZDRYlks5U+Sk5/zTWfQIE2xk=;
+ b=bLwTZtMN/TQDD+A9QY5ul4sINfiEy1BUfFpzVhBOx8EkUfbWLIfwm4nHEI0A0kKWYzUBv3fY
+ bXfEVQ4Uun90nXdVX9/1tb/nMkx2T9MSeE2qkIoTepdV4ZByENOMjBxiMLxxmTQCjXfDhSnt
+ Z/gOrPpni3Yz19QqkoPPG0pOMsE=
 X-Mailgun-Sending-Ip: 69.72.43.7
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
- 6163fcdd22fe3a98e542f6ae (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 11 Oct 2021 08:59:09
+ smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
+ 61641a94ff0285fb0a0d8cf7 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 11 Oct 2021 11:05:56
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 561ECC4360D; Mon, 11 Oct 2021 08:59:08 +0000 (UTC)
-Received: from wgong-HP3-Z230-SFF-Workstation.qca.qualcomm.com (unknown
- [180.166.53.21])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
- (No client certificate requested) (Authenticated sender: wgong)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 8C6CEC4338F;
- Mon, 11 Oct 2021 08:59:05 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 8C6CEC4338F
+ id 33719C4360C; Mon, 11 Oct 2021 11:05:56 +0000 (UTC)
+Received: from cjhuang-Inspiron-7590.qca.qualcomm.com (unknown [180.166.53.21])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested) (Authenticated sender: cjhuang)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id B6CFDC4360C;
+ Mon, 11 Oct 2021 11:05:54 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org B6CFDC4360C
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  spf=fail smtp.mailfrom=codeaurora.org
-From: Wen Gong <wgong@codeaurora.org>
+From: Carl Huang <cjhuang@codeaurora.org>
 To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org,
-	wgong@codeaurora.org
-Subject: [PATCH] ath11k: report tx bitrate for iw wlan station dump
-Date: Mon, 11 Oct 2021 04:58:58 -0400
-Message-Id: <20211011085858.31269-1-wgong@codeaurora.org>
-X-Mailer: git-send-email 2.31.1
-MIME-Version: 1.0
+Cc: linux-wireless@vger.kernel.org
+Subject: [PATCH] ath11k: enable power save in station mode
+Date: Mon, 11 Oct 2021 15:06:25 -0400
+Message-Id: <20211011190625.4463-1-cjhuang@codeaurora.org>
+X-Mailer: git-send-email 2.17.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211011_015918_833819_D59FD947 
-X-CRM114-Status: GOOD (  23.10  )
+X-CRM114-CacheID: sfid-20211011_040644_396410_A1C911C7 
+X-CRM114-Status: GOOD (  20.04  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,555 +79,277 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-HTT_T2H_MSG_TYPE_PPDU_STATS_IND is a message which include the ppdu
-info, currently it is not report from firmware for ath11k, then the
-tx bitrate of "iw wlan0 station dump" always show an invalid value
-"tx bitrate: 6.0 MBit/s".
+Enable power save in station mode.
 
-To address the issue, this is to parse the info of tx complete report
-from firmware and indicate the tx rate to mac80211.
-
-After that, "iw wlan0 station dump" show the correct tx bit rate such
-as "tx bitrate: 1921.5 MBit/s 160MHz HE-MCS 9 HE-NSS 2 HE-GI 0 HE-DCM 0".
+Run "iw dev wls1 set power_save off",  check there is no NULL Data frame
+from sniffer. Run "iw dev wls1 set power_save on", check there is NULL
+Data frame from sniffer.
 
 Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
 
-Signed-off-by: Wen Gong <wgong@codeaurora.org>
+Signed-off-by: Carl Huang <cjhuang@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/core.h        |   1 +
- drivers/net/wireless/ath/ath11k/debugfs_sta.c |  78 +------------
- drivers/net/wireless/ath/ath11k/debugfs_sta.h |   2 -
- drivers/net/wireless/ath/ath11k/dp_rx.c       |  28 +----
- drivers/net/wireless/ath/ath11k/dp_tx.c       | 106 +++++++++++++++++-
- drivers/net/wireless/ath/ath11k/dp_tx.h       |   1 +
- drivers/net/wireless/ath/ath11k/hal_rx.c      |   4 +-
- drivers/net/wireless/ath/ath11k/hal_rx.h      |  27 -----
- drivers/net/wireless/ath/ath11k/mac.c         |  93 +++++++++++++++
- drivers/net/wireless/ath/ath11k/mac.h         |   3 +
- 10 files changed, 210 insertions(+), 133 deletions(-)
+ drivers/net/wireless/ath/ath11k/core.c |  5 ++
+ drivers/net/wireless/ath/ath11k/core.h |  1 +
+ drivers/net/wireless/ath/ath11k/hw.h   |  1 +
+ drivers/net/wireless/ath/ath11k/mac.c  | 99 ++++++++++++++++++++++++++++++++--
+ drivers/net/wireless/ath/ath11k/wmi.c  | 33 ++++++++++++
+ drivers/net/wireless/ath/ath11k/wmi.h  |  3 +-
+ 6 files changed, 137 insertions(+), 5 deletions(-)
 
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 6120382..7e4b5b3 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -67,6 +67,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_monitor = true,
+ 		.supports_shadow_regs = false,
+ 		.idle_ps = false,
++		.protocol_ps = false,
+ 		.cold_boot_calib = true,
+ 		.supports_suspend = false,
+ 		.hal_desc_sz = sizeof(struct hal_rx_desc_ipq8074),
+@@ -108,6 +109,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_monitor = true,
+ 		.supports_shadow_regs = false,
+ 		.idle_ps = false,
++		.protocol_ps = false,
+ 		.cold_boot_calib = true,
+ 		.supports_suspend = false,
+ 		.hal_desc_sz = sizeof(struct hal_rx_desc_ipq8074),
+@@ -149,6 +151,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_monitor = false,
+ 		.supports_shadow_regs = true,
+ 		.idle_ps = true,
++		.protocol_ps = true,
+ 		.cold_boot_calib = false,
+ 		.supports_suspend = true,
+ 		.hal_desc_sz = sizeof(struct hal_rx_desc_ipq8074),
+@@ -187,6 +190,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_monitor = true,
+ 		.supports_shadow_regs = false,
+ 		.idle_ps = false,
++		.protocol_ps = false,
+ 		.cold_boot_calib = false,
+ 		.supports_suspend = false,
+ 		.hal_desc_sz = sizeof(struct hal_rx_desc_qcn9074),
+@@ -227,6 +231,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_monitor = false,
+ 		.supports_shadow_regs = true,
+ 		.idle_ps = true,
++		.protocol_ps = true,
+ 		.cold_boot_calib = false,
+ 		.supports_suspend = true,
+ 		.hal_desc_sz = sizeof(struct hal_rx_desc_wcn6855),
 diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 0f316dd1e3f9..8a5c7e034fdd 100644
+index f0a4b90..61e9684 100644
 --- a/drivers/net/wireless/ath/ath11k/core.h
 +++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -406,6 +406,7 @@ struct ath11k_sta {
- 
- 	struct work_struct update_wk;
- 	struct rate_info txrate;
-+	u32 peer_nss;
- 	struct rate_info last_txrate;
- 	u64 rx_duration;
- 	u64 tx_duration;
-diff --git a/drivers/net/wireless/ath/ath11k/debugfs_sta.c b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-index 270c0edbb10f..263f30ec9e34 100644
---- a/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-+++ b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
-@@ -126,85 +126,9 @@ void ath11k_debugfs_sta_add_tx_stats(struct ath11k_sta *arsta,
- }
- 
- void ath11k_debugfs_sta_update_txcompl(struct ath11k *ar,
--				       struct sk_buff *msdu,
- 				       struct hal_tx_status *ts)
- {
--	struct ath11k_base *ab = ar->ab;
--	struct ath11k_per_peer_tx_stats *peer_stats = &ar->cached_stats;
--	enum hal_tx_rate_stats_pkt_type pkt_type;
--	enum hal_tx_rate_stats_sgi sgi;
--	enum hal_tx_rate_stats_bw bw;
--	struct ath11k_peer *peer;
--	struct ath11k_sta *arsta;
--	struct ieee80211_sta *sta;
--	u16 rate;
--	u8 rate_idx = 0;
--	int ret;
--	u8 mcs;
--
--	rcu_read_lock();
--	spin_lock_bh(&ab->base_lock);
--	peer = ath11k_peer_find_by_id(ab, ts->peer_id);
--	if (!peer || !peer->sta) {
--		ath11k_warn(ab, "failed to find the peer\n");
--		spin_unlock_bh(&ab->base_lock);
--		rcu_read_unlock();
--		return;
--	}
--
--	sta = peer->sta;
--	arsta = (struct ath11k_sta *)sta->drv_priv;
--
--	memset(&arsta->txrate, 0, sizeof(arsta->txrate));
--	pkt_type = FIELD_GET(HAL_TX_RATE_STATS_INFO0_PKT_TYPE,
--			     ts->rate_stats);
--	mcs = FIELD_GET(HAL_TX_RATE_STATS_INFO0_MCS,
--			ts->rate_stats);
--	sgi = FIELD_GET(HAL_TX_RATE_STATS_INFO0_SGI,
--			ts->rate_stats);
--	bw = FIELD_GET(HAL_TX_RATE_STATS_INFO0_BW, ts->rate_stats);
--
--	if (pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11A ||
--	    pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11B) {
--		ret = ath11k_mac_hw_ratecode_to_legacy_rate(mcs,
--							    pkt_type,
--							    &rate_idx,
--							    &rate);
--		if (ret < 0)
--			goto err_out;
--		arsta->txrate.legacy = rate;
--	} else if (pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11N) {
--		if (mcs > 7) {
--			ath11k_warn(ab, "Invalid HT mcs index %d\n", mcs);
--			goto err_out;
--		}
--
--		arsta->txrate.mcs = mcs + 8 * (arsta->last_txrate.nss - 1);
--		arsta->txrate.flags = RATE_INFO_FLAGS_MCS;
--		if (sgi)
--			arsta->txrate.flags |= RATE_INFO_FLAGS_SHORT_GI;
--	} else if (pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11AC) {
--		if (mcs > 9) {
--			ath11k_warn(ab, "Invalid VHT mcs index %d\n", mcs);
--			goto err_out;
--		}
--
--		arsta->txrate.mcs = mcs;
--		arsta->txrate.flags = RATE_INFO_FLAGS_VHT_MCS;
--		if (sgi)
--			arsta->txrate.flags |= RATE_INFO_FLAGS_SHORT_GI;
--	} else if (pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11AX) {
--		/* TODO */
--	}
--
--	arsta->txrate.nss = arsta->last_txrate.nss;
--	arsta->txrate.bw = ath11k_mac_bw_to_mac80211_bw(bw);
--
--	ath11k_debugfs_sta_add_tx_stats(arsta, peer_stats, rate_idx);
--
--err_out:
--	spin_unlock_bh(&ab->base_lock);
--	rcu_read_unlock();
-+	ath11k_dp_tx_update_txcompl(ar, ts);
- }
- 
- static ssize_t ath11k_dbg_sta_dump_tx_stats(struct file *file,
-diff --git a/drivers/net/wireless/ath/ath11k/debugfs_sta.h b/drivers/net/wireless/ath/ath11k/debugfs_sta.h
-index 18dc65d9edcf..e6c11b3a40aa 100644
---- a/drivers/net/wireless/ath/ath11k/debugfs_sta.h
-+++ b/drivers/net/wireless/ath/ath11k/debugfs_sta.h
-@@ -19,7 +19,6 @@ void ath11k_debugfs_sta_add_tx_stats(struct ath11k_sta *arsta,
- 				     struct ath11k_per_peer_tx_stats *peer_stats,
- 				     u8 legacy_rate_idx);
- void ath11k_debugfs_sta_update_txcompl(struct ath11k *ar,
--				       struct sk_buff *msdu,
- 				       struct hal_tx_status *ts);
- 
- #else /* CONFIG_ATH11K_DEBUGFS */
-@@ -34,7 +33,6 @@ ath11k_debugfs_sta_add_tx_stats(struct ath11k_sta *arsta,
- }
- 
- static inline void ath11k_debugfs_sta_update_txcompl(struct ath11k *ar,
--						     struct sk_buff *msdu,
- 						     struct hal_tx_status *ts)
- {
- }
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 11dfafd011d0..6d769ba1ca2b 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -1332,25 +1332,6 @@ int ath11k_dp_htt_tlv_iter(struct ath11k_base *ab, const void *ptr, size_t len,
+@@ -276,6 +276,7 @@ struct ath11k_vif {
+ 	bool is_started;
+ 	bool is_up;
+ 	bool spectral_enabled;
++	bool ps;
+ 	u32 aid;
+ 	u8 bssid[ETH_ALEN];
+ 	struct cfg80211_bitrate_mask bitrate_mask;
+diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
+index 7a5101d..d4ad6f2 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.h
++++ b/drivers/net/wireless/ath/ath11k/hw.h
+@@ -167,6 +167,7 @@ struct ath11k_hw_params {
+ 	bool supports_monitor;
+ 	bool supports_shadow_regs;
+ 	bool idle_ps;
++	bool protocol_ps;
+ 	bool cold_boot_calib;
+ 	bool supports_suspend;
+ 	u32 hal_desc_sz;
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index d02823f..a254ef3 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -883,12 +883,93 @@ static int ath11k_monitor_vdev_up(struct ath11k *ar, int vdev_id)
  	return 0;
  }
  
--static inline u32 ath11k_he_gi_to_nl80211_he_gi(u8 sgi)
--{
--	u32 ret = 0;
--
--	switch (sgi) {
--	case RX_MSDU_START_SGI_0_8_US:
--		ret = NL80211_RATE_INFO_HE_GI_0_8;
--		break;
--	case RX_MSDU_START_SGI_1_6_US:
--		ret = NL80211_RATE_INFO_HE_GI_1_6;
--		break;
--	case RX_MSDU_START_SGI_3_2_US:
--		ret = NL80211_RATE_INFO_HE_GI_3_2;
--		break;
--	}
--
--	return ret;
--}
--
- static void
- ath11k_update_per_peer_tx_stats(struct ath11k *ar,
- 				struct htt_ppdu_stats *ppdu_stats, u8 user)
-@@ -1474,14 +1455,15 @@ ath11k_update_per_peer_tx_stats(struct ath11k *ar,
- 		arsta->txrate.mcs = mcs;
- 		arsta->txrate.flags = RATE_INFO_FLAGS_HE_MCS;
- 		arsta->txrate.he_dcm = dcm;
--		arsta->txrate.he_gi = ath11k_he_gi_to_nl80211_he_gi(sgi);
--		arsta->txrate.he_ru_alloc = ath11k_he_ru_tones_to_nl80211_he_ru_alloc(
--						(user_rate->ru_end -
-+		arsta->txrate.he_gi = ath11k_mac_he_gi_to_nl80211_he_gi(sgi);
-+		arsta->txrate.he_ru_alloc = ath11k_mac_phy_he_ru_to_nl80211_he_ru_alloc
-+						((user_rate->ru_end -
- 						 user_rate->ru_start) + 1);
- 		break;
++static int ath11k_mac_vif_setup_ps(struct ath11k_vif *arvif)
++{
++	struct ath11k *ar = arvif->ar;
++	struct ieee80211_vif *vif = arvif->vif;
++	struct ieee80211_conf *conf = &ar->hw->conf;
++	enum wmi_sta_powersave_param param;
++	enum wmi_sta_ps_mode psmode;
++	int ret;
++	int ps_timeout;
++	bool enable_ps;
++
++	lockdep_assert_held(&arvif->ar->conf_mutex);
++
++	if (arvif->vif->type != NL80211_IFTYPE_STATION)
++		return 0;
++
++	enable_ps = arvif->ps;
++
++	/* need to check if multiple vdev ps setting is supported */
++
++	if (!arvif->is_started) {
++		/* mac80211 can update vif powersave state while disconnected.
++		 * Firmware doesn't behave nicely and consumes more power than
++		 * necessary if PS is disabled on a non-started vdev. Hence
++		 * force-enable PS for non-running vdevs.
++		 */
++		psmode = WMI_STA_PS_MODE_ENABLED;
++	} else if (enable_ps) {
++		psmode = WMI_STA_PS_MODE_ENABLED;
++		param = WMI_STA_PS_PARAM_INACTIVITY_TIME;
++
++		ps_timeout = conf->dynamic_ps_timeout;
++		if (ps_timeout == 0) {
++			/* Firmware doesn't like 0 */
++			ps_timeout = ieee80211_tu_to_usec(
++				vif->bss_conf.beacon_int) / 1000;
++		}
++
++		ret = ath11k_wmi_set_sta_ps_param(ar, arvif->vdev_id, param,
++						  ps_timeout);
++		if (ret) {
++			ath11k_warn(ar->ab, "failed to set inactivity time for vdev %d: %i\n",
++				    arvif->vdev_id, ret);
++			return ret;
++		}
++	} else {
++		psmode = WMI_STA_PS_MODE_DISABLED;
++	}
++
++	ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "mac vdev %d psmode %s\n",
++		   arvif->vdev_id, psmode ? "enable" : "disable");
++	ret = ath11k_wmi_set_psmode(ar, arvif->vdev_id, psmode);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to set PS Mode %d for vdev %d: %d\n",
++			    psmode, arvif->vdev_id, ret);
++		return ret;
++	}
++
++	return 0;
++}
++
++static int ath11k_config_ps(struct ath11k *ar)
++{
++	struct ath11k_vif *arvif;
++	int ret = 0;
++
++	lockdep_assert_held(&ar->conf_mutex);
++
++	list_for_each_entry(arvif, &ar->arvifs, list) {
++		ret = ath11k_mac_vif_setup_ps(arvif);
++		if (ret) {
++			ath11k_warn(ar->ab, "failed to setup powersave: %d\n", ret);
++			break;
++		}
++	}
++
++	return ret;
++}
++
+ static int ath11k_mac_op_config(struct ieee80211_hw *hw, u32 changed)
+ {
+-	/* mac80211 requires this op to be present and that's why
+-	 * there's an empty function, this can be extended when
+-	 * required.
+-	 */
++	struct ath11k *ar = hw->priv;
++
++	mutex_lock(&ar->conf_mutex);
++	if (changed & IEEE80211_CONF_CHANGE_PS)
++		ath11k_config_ps(ar);
++	mutex_unlock(&ar->conf_mutex);
+ 
+ 	return 0;
+ }
+@@ -2610,6 +2691,16 @@ static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
+ 		}
  	}
  
- 	arsta->txrate.nss = nss;
++	if (changed & BSS_CHANGED_PS &&
++	    ar->ab->hw_params.protocol_ps) {
++		arvif->ps = vif->bss_conf.ps;
 +
- 	arsta->txrate.bw = ath11k_mac_bw_to_mac80211_bw(bw);
- 	arsta->tx_duration += tx_duration;
- 	memcpy(&arsta->last_txrate, &arsta->txrate, sizeof(struct rate_info));
-@@ -2317,7 +2299,7 @@ static void ath11k_dp_rx_h_rate(struct ath11k *ar, struct hal_rx_desc *rx_desc,
- 		}
- 		rx_status->encoding = RX_ENC_HE;
- 		rx_status->nss = nss;
--		rx_status->he_gi = ath11k_he_gi_to_nl80211_he_gi(sgi);
-+		rx_status->he_gi = ath11k_mac_he_gi_to_nl80211_he_gi(sgi);
- 		rx_status->bw = ath11k_mac_bw_to_mac80211_bw(bw);
- 		break;
- 	}
-diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
-index 9164f3ee5270..37f53884e188 100644
---- a/drivers/net/wireless/ath/ath11k/dp_tx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
-@@ -414,6 +414,105 @@ static void ath11k_dp_tx_cache_peer_stats(struct ath11k *ar,
- 	}
++		ret = ath11k_config_ps(ar);
++		if (ret)
++			ath11k_warn(ar->ab, "failed to setup ps on vdev %i: %d\n",
++				    arvif->vdev_id, ret);
++	}
++
+ 	if (changed & BSS_CHANGED_MCAST_RATE &&
+ 	    !ath11k_mac_vif_chan(arvif->vif, &def)) {
+ 		band = def.chan->band;
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 27ae944..8f46864 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -1419,6 +1419,39 @@ int ath11k_wmi_send_set_ap_ps_param_cmd(struct ath11k *ar, u8 *peer_addr,
+ 	return ret;
  }
  
-+void ath11k_dp_tx_update_txcompl(struct ath11k *ar, struct hal_tx_status *ts)
++int ath11k_wmi_set_psmode(struct ath11k *ar, u32 vdev_id,
++			  enum wmi_sta_ps_mode psmode)
 +{
-+	struct ath11k_base *ab = ar->ab;
-+	struct ath11k_per_peer_tx_stats *peer_stats = &ar->cached_stats;
-+	enum hal_tx_rate_stats_pkt_type pkt_type;
-+	enum hal_tx_rate_stats_sgi sgi;
-+	enum hal_tx_rate_stats_bw bw;
-+	struct ath11k_peer *peer;
-+	struct ath11k_sta *arsta;
-+	struct ieee80211_sta *sta;
-+	u16 rate, ru_tones;
-+	u8 mcs, rate_idx, ofdma;
++	struct ath11k_pdev_wmi *wmi = ar->wmi;
++	struct wmi_sta_powersave_mode_cmd *cmd;
++	struct sk_buff *skb;
 +	int ret;
 +
-+	rcu_read_lock();
-+	spin_lock_bh(&ab->base_lock);
-+	peer = ath11k_peer_find_by_id(ab, ts->peer_id);
-+	if (!peer || !peer->sta) {
-+		ath11k_warn(ab, "failed to find the peer by id %u\n", ts->peer_id);
-+		goto err_out;
-+	}
++	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, sizeof(*cmd));
++	if (!skb)
++		return -ENOMEM;
 +
-+	sta = peer->sta;
-+	arsta = (struct ath11k_sta *)sta->drv_priv;
++	cmd = (struct wmi_sta_powersave_mode_cmd *)skb->data;
++	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG,
++				     WMI_TAG_STA_POWERSAVE_MODE_CMD) |
++			  FIELD_PREP(WMI_TLV_LEN, sizeof(*cmd) - TLV_HDR_SIZE);
 +
-+	memset(&arsta->txrate, 0, sizeof(arsta->txrate));
-+	pkt_type = FIELD_GET(HAL_TX_RATE_STATS_INFO0_PKT_TYPE,
-+			     ts->rate_stats);
-+	mcs = FIELD_GET(HAL_TX_RATE_STATS_INFO0_MCS,
-+			ts->rate_stats);
-+	sgi = FIELD_GET(HAL_TX_RATE_STATS_INFO0_SGI,
-+			ts->rate_stats);
-+	bw = FIELD_GET(HAL_TX_RATE_STATS_INFO0_BW, ts->rate_stats);
-+	ru_tones = FIELD_GET(HAL_TX_RATE_STATS_INFO0_TONES_IN_RU, ts->rate_stats);
-+	ofdma = FIELD_GET(HAL_TX_RATE_STATS_INFO0_OFDMA_TX, ts->rate_stats);
++	cmd->vdev_id = vdev_id;
++	cmd->sta_ps_mode = psmode;
 +
-+	if (pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11A ||
-+	    pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11B) {
-+		ret = ath11k_mac_hw_ratecode_to_legacy_rate(mcs,
-+							    pkt_type,
-+							    &rate_idx,
-+							    &rate);
-+		if (ret < 0)
-+			goto err_out;
-+		arsta->txrate.legacy = rate;
-+	} else if (pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11N) {
-+		if (mcs > 7) {
-+			ath11k_warn(ab, "Invalid HT mcs index %d\n", mcs);
-+			goto err_out;
-+		}
++	ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
++		   "WMI set sta ps vdev_id %d ps %d\n",
++		   vdev_id, psmode);
 +
-+		arsta->txrate.mcs = mcs + 8 * (arsta->last_txrate.nss - 1);
-+		arsta->txrate.flags = RATE_INFO_FLAGS_MCS;
-+		if (sgi)
-+			arsta->txrate.flags |= RATE_INFO_FLAGS_SHORT_GI;
-+	} else if (pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11AC) {
-+		if (mcs > 9) {
-+			ath11k_warn(ab, "Invalid VHT mcs index %d\n", mcs);
-+			goto err_out;
-+		}
-+
-+		arsta->txrate.mcs = mcs;
-+		arsta->txrate.flags = RATE_INFO_FLAGS_VHT_MCS;
-+		if (sgi)
-+			arsta->txrate.flags |= RATE_INFO_FLAGS_SHORT_GI;
-+	} else if (pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11AX) {
-+		if (mcs > 11) {
-+			ath11k_warn(ab, "Invalid HE mcs index %d\n", mcs);
-+			goto err_out;
-+		}
-+
-+		arsta->txrate.mcs = mcs;
-+		arsta->txrate.flags = RATE_INFO_FLAGS_HE_MCS;
-+		arsta->txrate.he_gi = ath11k_mac_he_gi_to_nl80211_he_gi(sgi);
-+	}
-+
-+	/* This is to prefer choose the real NSS value arsta->last_txrate.nss,
-+	 * if it is invalid, then choose the NSS value while assoc.
-+	 */
-+	if (arsta->last_txrate.nss)
-+		arsta->txrate.nss = arsta->last_txrate.nss;
-+	else
-+		arsta->txrate.nss = arsta->peer_nss;
-+
-+	arsta->txrate.bw = ath11k_mac_bw_to_mac80211_bw(bw);
-+	if (ofdma && pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11AX) {
-+		arsta->txrate.bw = RATE_INFO_BW_HE_RU;
-+		arsta->txrate.he_ru_alloc =
-+			ath11k_mac_he_ru_tones_to_nl80211_he_ru_alloc(ru_tones);
-+	}
-+
-+	if (ath11k_debugfs_is_extd_tx_stats_enabled(ar))
-+		ath11k_debugfs_sta_add_tx_stats(arsta, peer_stats, rate_idx);
-+
-+err_out:
-+	spin_unlock_bh(&ab->base_lock);
-+	rcu_read_unlock();
-+}
-+
- static void ath11k_dp_tx_complete_msdu(struct ath11k *ar,
- 				       struct sk_buff *msdu,
- 				       struct hal_tx_status *ts)
-@@ -461,7 +560,8 @@ static void ath11k_dp_tx_complete_msdu(struct ath11k *ar,
- 	    (info->flags & IEEE80211_TX_CTL_NO_ACK))
- 		info->flags |= IEEE80211_TX_STAT_NOACK_TRANSMITTED;
- 
--	if (ath11k_debugfs_is_extd_tx_stats_enabled(ar)) {
-+	if (ath11k_debugfs_is_extd_tx_stats_enabled(ar) ||
-+	    ab->hw_params.single_pdev_only) {
- 		if (ts->flags & HAL_TX_STATUS_FLAGS_FIRST_MSDU) {
- 			if (ar->last_ppdu_id == 0) {
- 				ar->last_ppdu_id = ts->ppdu_id;
-@@ -469,12 +569,12 @@ static void ath11k_dp_tx_complete_msdu(struct ath11k *ar,
- 				   ar->cached_ppdu_id == ar->last_ppdu_id) {
- 				ar->cached_ppdu_id = ar->last_ppdu_id;
- 				ar->cached_stats.is_ampdu = true;
--				ath11k_debugfs_sta_update_txcompl(ar, msdu, ts);
-+				ath11k_dp_tx_update_txcompl(ar, ts);
- 				memset(&ar->cached_stats, 0,
- 				       sizeof(struct ath11k_per_peer_tx_stats));
- 			} else {
- 				ar->cached_stats.is_ampdu = false;
--				ath11k_debugfs_sta_update_txcompl(ar, msdu, ts);
-+				ath11k_dp_tx_update_txcompl(ar, ts);
- 				memset(&ar->cached_stats, 0,
- 				       sizeof(struct ath11k_per_peer_tx_stats));
- 			}
-diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.h b/drivers/net/wireless/ath/ath11k/dp_tx.h
-index f8a9f9c8e444..41455bc1c3eb 100644
---- a/drivers/net/wireless/ath/ath11k/dp_tx.h
-+++ b/drivers/net/wireless/ath/ath11k/dp_tx.h
-@@ -15,6 +15,7 @@ struct ath11k_dp_htt_wbm_tx_status {
- 	int ack_rssi;
- };
- 
-+void ath11k_dp_tx_update_txcompl(struct ath11k *ar, struct hal_tx_status *ts);
- int ath11k_dp_tx_htt_h2t_ver_req_msg(struct ath11k_base *ab);
- int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
- 		 struct sk_buff *skb);
-diff --git a/drivers/net/wireless/ath/ath11k/hal_rx.c b/drivers/net/wireless/ath/ath11k/hal_rx.c
-index 45c2f303891e..fd95bddee285 100644
---- a/drivers/net/wireless/ath/ath11k/hal_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/hal_rx.c
-@@ -1037,7 +1037,9 @@ ath11k_hal_rx_parse_mon_status_tlv(struct ath11k_base *ab,
- 
- 		ru_tones = FIELD_GET(HAL_RX_HE_SIG_B1_MU_INFO_INFO0_RU_ALLOCATION,
- 				     info0);
--		ppdu_info->ru_alloc = ath11k_he_ru_tones_to_nl80211_he_ru_alloc(ru_tones);
-+		ppdu_info->ru_alloc =
-+			ath11k_mac_phy_he_ru_to_nl80211_he_ru_alloc(ru_tones);
-+
- 		ppdu_info->reception_type = HAL_RX_RECEPTION_TYPE_MU_MIMO;
- 		break;
- 	}
-diff --git a/drivers/net/wireless/ath/ath11k/hal_rx.h b/drivers/net/wireless/ath/ath11k/hal_rx.h
-index 46597b15fb33..cd179dcb45a5 100644
---- a/drivers/net/wireless/ath/ath11k/hal_rx.h
-+++ b/drivers/net/wireless/ath/ath11k/hal_rx.h
-@@ -346,33 +346,6 @@ ath11k_hal_rx_parse_mon_status(struct ath11k_base *ab,
- 			       struct hal_rx_mon_ppdu_info *ppdu_info,
- 			       struct sk_buff *skb);
- 
--static inline u32 ath11k_he_ru_tones_to_nl80211_he_ru_alloc(u16 ru_tones)
--{
--	u32 ret = 0;
--
--	switch (ru_tones) {
--	case RU_26:
--		ret = NL80211_RATE_INFO_HE_RU_ALLOC_26;
--		break;
--	case RU_52:
--		ret = NL80211_RATE_INFO_HE_RU_ALLOC_52;
--		break;
--	case RU_106:
--		ret = NL80211_RATE_INFO_HE_RU_ALLOC_106;
--		break;
--	case RU_242:
--		ret = NL80211_RATE_INFO_HE_RU_ALLOC_242;
--		break;
--	case RU_484:
--		ret = NL80211_RATE_INFO_HE_RU_ALLOC_484;
--		break;
--	case RU_996:
--		ret = NL80211_RATE_INFO_HE_RU_ALLOC_996;
--		break;
--	}
--	return ret;
--}
--
- #define REO_QUEUE_DESC_MAGIC_DEBUG_PATTERN_0 0xDDBEEF
- #define REO_QUEUE_DESC_MAGIC_DEBUG_PATTERN_1 0xADBEEF
- #define REO_QUEUE_DESC_MAGIC_DEBUG_PATTERN_2 0xBDBEEF
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index daf964f34ea6..06ec80dd3c32 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -246,6 +246,93 @@ static const u32 ath11k_smps_map[] = {
- static int ath11k_start_vdev_delay(struct ieee80211_hw *hw,
- 				   struct ieee80211_vif *vif);
- 
-+enum nl80211_he_ru_alloc ath11k_mac_phy_he_ru_to_nl80211_he_ru_alloc(u16 ru_phy)
-+{
-+	enum nl80211_he_ru_alloc ret;
-+
-+	switch (ru_phy) {
-+	case RU_26:
-+		ret = NL80211_RATE_INFO_HE_RU_ALLOC_26;
-+		break;
-+	case RU_52:
-+		ret = NL80211_RATE_INFO_HE_RU_ALLOC_52;
-+		break;
-+	case RU_106:
-+		ret = NL80211_RATE_INFO_HE_RU_ALLOC_106;
-+		break;
-+	case RU_242:
-+		ret = NL80211_RATE_INFO_HE_RU_ALLOC_242;
-+		break;
-+	case RU_484:
-+		ret = NL80211_RATE_INFO_HE_RU_ALLOC_484;
-+		break;
-+	case RU_996:
-+		ret = NL80211_RATE_INFO_HE_RU_ALLOC_996;
-+		break;
-+	default:
-+		ret = NL80211_RATE_INFO_HE_RU_ALLOC_26;
-+		break;
++	ret = ath11k_wmi_cmd_send(wmi, skb, WMI_STA_POWERSAVE_MODE_CMDID);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to send WMI_STA_POWERSAVE_PARAM_CMDID");
++		dev_kfree_skb(skb);
 +	}
 +
 +	return ret;
 +}
 +
-+enum nl80211_he_ru_alloc ath11k_mac_he_ru_tones_to_nl80211_he_ru_alloc(u16 ru_tones)
-+{
-+	enum nl80211_he_ru_alloc ret;
-+
-+	switch (ru_tones) {
-+	case 26:
-+		ret = NL80211_RATE_INFO_HE_RU_ALLOC_26;
-+		break;
-+	case 52:
-+		ret = NL80211_RATE_INFO_HE_RU_ALLOC_52;
-+		break;
-+	case 106:
-+		ret = NL80211_RATE_INFO_HE_RU_ALLOC_106;
-+		break;
-+	case 242:
-+		ret = NL80211_RATE_INFO_HE_RU_ALLOC_242;
-+		break;
-+	case 484:
-+		ret = NL80211_RATE_INFO_HE_RU_ALLOC_484;
-+		break;
-+	case 996:
-+		ret = NL80211_RATE_INFO_HE_RU_ALLOC_996;
-+		break;
-+	case (996 * 2):
-+		ret = NL80211_RATE_INFO_HE_RU_ALLOC_2x996;
-+		break;
-+	default:
-+		ret = NL80211_RATE_INFO_HE_RU_ALLOC_26;
-+		break;
-+	}
-+
-+	return ret;
-+}
-+
-+enum nl80211_he_gi ath11k_mac_he_gi_to_nl80211_he_gi(u8 sgi)
-+{
-+	enum nl80211_he_gi ret;
-+
-+	switch (sgi) {
-+	case RX_MSDU_START_SGI_0_8_US:
-+		ret = NL80211_RATE_INFO_HE_GI_0_8;
-+		break;
-+	case RX_MSDU_START_SGI_1_6_US:
-+		ret = NL80211_RATE_INFO_HE_GI_1_6;
-+		break;
-+	case RX_MSDU_START_SGI_3_2_US:
-+		ret = NL80211_RATE_INFO_HE_GI_3_2;
-+		break;
-+	default:
-+		ret = NL80211_RATE_INFO_HE_GI_0_8;
-+		break;
-+	}
-+
-+	return ret;
-+}
-+
- u8 ath11k_mac_bw_to_mac80211_bw(u8 bw)
+ int ath11k_wmi_set_sta_ps_param(struct ath11k *ar, u32 vdev_id,
+ 				u32 param, u32 param_value)
  {
- 	u8 ret = 0;
-@@ -1819,8 +1906,12 @@ static void ath11k_peer_assoc_prepare(struct ath11k *ar,
- 				      struct peer_assoc_params *arg,
- 				      bool reassoc)
- {
-+	struct ath11k_sta *arsta;
-+
- 	lockdep_assert_held(&ar->conf_mutex);
- 
-+	arsta = (struct ath11k_sta *)sta->drv_priv;
-+
- 	memset(arg, 0, sizeof(*arg));
- 
- 	reinit_completion(&ar->peer_assoc_done);
-@@ -1837,6 +1928,8 @@ static void ath11k_peer_assoc_prepare(struct ath11k *ar,
- 	ath11k_peer_assoc_h_phymode(ar, vif, sta, arg);
- 	ath11k_peer_assoc_h_smps(sta, arg);
- 
-+	arsta->peer_nss = arg->peer_nss;
-+
- 	/* TODO: amsdu_disable req? */
- }
- 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.h b/drivers/net/wireless/ath/ath11k/mac.h
-index 0b2a1612f745..5bc227cb715f 100644
---- a/drivers/net/wireless/ath/ath11k/mac.h
-+++ b/drivers/net/wireless/ath/ath11k/mac.h
-@@ -161,6 +161,9 @@ void ath11k_mac_drain_tx(struct ath11k *ar);
- void ath11k_mac_peer_cleanup_all(struct ath11k *ar);
- int ath11k_mac_tx_mgmt_pending_free(int buf_id, void *skb, void *ctx);
- u8 ath11k_mac_bw_to_mac80211_bw(u8 bw);
-+u32 ath11k_mac_he_gi_to_nl80211_he_gi(u8 sgi);
-+enum nl80211_he_ru_alloc ath11k_mac_phy_he_ru_to_nl80211_he_ru_alloc(u16 ru_phy);
-+enum nl80211_he_ru_alloc ath11k_mac_he_ru_tones_to_nl80211_he_ru_alloc(u16 ru_tones);
- enum ath11k_supported_bw ath11k_mac_mac80211_bw_to_ath11k_bw(enum rate_info_bw bw);
- enum hal_encrypt_type ath11k_dp_tx_get_encrypt_type(u32 cipher);
- void ath11k_mac_handle_beacon(struct ath11k *ar, struct sk_buff *skb);
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index 0730bdb..e2cce86 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -5600,7 +5600,8 @@ int ath11k_wmi_send_peer_create_cmd(struct ath11k *ar,
+ 				    struct peer_create_params *param);
+ int ath11k_wmi_vdev_set_param_cmd(struct ath11k *ar, u32 vdev_id,
+ 				  u32 param_id, u32 param_value);
+-
++int ath11k_wmi_set_psmode(struct ath11k *ar, u32 vdev_id,
++			  enum wmi_sta_ps_mode psmode);
+ int ath11k_wmi_set_sta_ps_param(struct ath11k *ar, u32 vdev_id,
+ 				u32 param, u32 param_value);
+ int ath11k_wmi_force_fw_hang_cmd(struct ath11k *ar, u32 type, u32 delay_time_ms);
 -- 
-2.31.1
+2.7.4
 
 
 -- 
