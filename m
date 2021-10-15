@@ -2,60 +2,60 @@ Return-Path: <SRS0=wjaP=PD=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B8AA8C433F5
-	for <ath11k@archiver.kernel.org>; Fri, 15 Oct 2021 03:55:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 43E0BC433FE
+	for <ath11k@archiver.kernel.org>; Fri, 15 Oct 2021 03:55:28 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 787B0610D2
+	by mail.kernel.org (Postfix) with ESMTPS id 07B32611C2
 	for <ath11k@archiver.kernel.org>; Fri, 15 Oct 2021 03:55:27 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 787B0610D2
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 07B32611C2
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Xtn74Vnq/9ostqOldlslmWC5gn9oH8tgINnAIyAp5vk=; b=UlZ96n2SGFkVVz
-	K4/rMHoNT6gmEKcimsGBAu16EpMe5iI5Le+TcVU1WptCK2dtnLZdDBfEA6wEXaLZSdnwLEjmK+pQD
-	5FbZ54c6kieAs/6Yx0N+Prw4+54xhgqYpQ/MI2e5aKIEJ20O5XgHch1aDRHf+UtAV8BIB3wg3fCqL
-	nHwndWpy11AIPHmIFwR+6UXqCiP/DpeJex3zJB3sBf0JPtKVqdhi6Meim1YNf20p/vMKDgP0ahUYu
-	VP/I0cJxH21HYG51oGmnq8MiPYHhTR7ZgjJCKcxnGn9vyCCpvFSWZvXPcY5EiWSA2j8mgGRaKxpzC
-	SW3UU65iRxgk4uTxKkVw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=uXajX/rYNASHAbRnR0f7y0gnw5GLAX+JoGlP9MRgPw4=; b=UedqBmmqQ946Ip
+	uzo27WSn6jI0am3gU4yMPd74A2csGCj86yOTTQeTDW6EjUxluvdVQYsXlL8S3iSyMwvFWIZLNtRyk
+	sZNqviyhWwBFKzt3NAbDRVv9x3FOsov2yCPn07xzEHBx4YBURrOO+0oV6su85E3WfNCYQUyr9ANHx
+	VpuDRKzxywDOkEuowGiQYDYXrsX6/Y79opnFebL5US0/CjXwbio1MVg8hdxCFKA2BKFo0jFJ2NTQV
+	CKioWKLgCMwnw9ffE5pknXzbPBu8FRKQoL/HRQ/HqSrOxxc9lTlsxxr8tqnOS/rXHLci7AJBbIEGd
+	HtKyp5XPs1IT98kTbtGA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mbEJY-005MBM-Gs; Fri, 15 Oct 2021 03:55:24 +0000
+	id 1mbEJZ-005MBl-W5; Fri, 15 Oct 2021 03:55:26 +0000
 Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mbEJV-005M9z-PW
- for ath11k@lists.infradead.org; Fri, 15 Oct 2021 03:55:23 +0000
+ id 1mbEJW-005MAG-0b
+ for ath11k@lists.infradead.org; Fri, 15 Oct 2021 03:55:24 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1634270119; h=Content-Transfer-Encoding: MIME-Version:
- References: In-Reply-To: Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=NKjINc10uiFVeRg2qAip+GjaVZ3fwRUD4LX83LqycvY=;
- b=cA1/mPpUTd2W7hSOPWxpWj+FtlRP0tdayNXKVkpUk4FO9UxdT1+SK6Xn7T/z9bf1M6/n1N26
- FZSId4zsf8Mwyc9rfGWqKYHEp5F7ymBKixUhUEQgjFzNNbXg7UWTgQd9T5aHou9Bm9lEFpE3
- 4mZFOf/c2Ldiz92FNQXOVHEeokc=
+ s=smtp; t=1634270123; h=Content-Transfer-Encoding: MIME-Version:
+ Message-Id: Date: Subject: Cc: To: From: Sender;
+ bh=PqZ6qTJznNJhvuHlYwRdlrFeqJiXau1Qh7HXyhbQVcY=;
+ b=ROIttnhc9yRbu9C08IqGhYMHU17WWK8RuZJxfffNamnv4cKpKMmr2nY6HKFKC7jeL5i+B87M
+ vOaUNw/9n257QYp7/j35K7EZ5M2NE4wPMSSp0Bg2t5miajLomurDD12Un2Szqq2NGHFPqntU
+ sYSIIrZL+dazckVDQPTAH3lFye0=
 X-Mailgun-Sending-Ip: 69.72.43.7
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
  smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
- 6168fba6446c6db0cb3469bd (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 15 Oct 2021 03:55:18
+ 6168fba2446c6db0cb346036 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 15 Oct 2021 03:55:14
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 32B09C4360C; Fri, 15 Oct 2021 03:55:18 +0000 (UTC)
+ id 3CBDBC43460; Fri, 15 Oct 2021 03:55:13 +0000 (UTC)
 Received: from wgong-HP3-Z230-SFF-Workstation.qca.qualcomm.com (unknown
  [180.166.53.21])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
  (No client certificate requested) (Authenticated sender: wgong)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 5D187C4338F;
- Fri, 15 Oct 2021 03:55:16 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 5D187C4338F
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 07AB9C4338F;
+ Fri, 15 Oct 2021 03:55:11 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 07AB9C4338F
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
@@ -64,17 +64,15 @@ From: Wen Gong <wgong@codeaurora.org>
 To: ath11k@lists.infradead.org
 Cc: linux-wireless@vger.kernel.org,
 	wgong@codeaurora.org
-Subject: [PATCH v3 3/3] ath11k: add synchronization operation between
- reconfigure of mac80211 and ath11k_base
-Date: Thu, 14 Oct 2021 23:54:59 -0400
-Message-Id: <20211015035459.14190-4-wgong@codeaurora.org>
+Subject: [PATCH v3 0/3] ath11k: add feature for device recovery
+Date: Thu, 14 Oct 2021 23:54:56 -0400
+Message-Id: <20211015035459.14190-1-wgong@codeaurora.org>
 X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20211015035459.14190-1-wgong@codeaurora.org>
-References: <20211015035459.14190-1-wgong@codeaurora.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211014_205521_943684_95283928 
-X-CRM114-Status: GOOD (  20.03  )
+X-CRM114-CacheID: sfid-20211014_205523_393233_C4D0E25F 
+X-CRM114-Status: UNSURE (   9.58  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,187 +89,31 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-ieee80211_reconfig() of mac80211 is the main function for recovery of
-each ieee80211_hw and ath11k, and ath11k_core_reconfigure_on_crash()
-is the main function for recovery of ath11k_base, it has more than
-one ieee80211_hw and ath11k for each ath11k_base, so it need to add
-synchronization between them, otherwise it has many issue.
+From: Wen Gong <quic_wgong@quicinc.com>
 
-For example, when ath11k_core_reconfigure_on_crash() is not complete,
-mac80211 send a hw scan request to ath11k, it leads firmware crash,
-because firmware has not been initialized at that moment, firmware
-is only finished downloaded and loaded, it can not receive scan
-command.
+v3: remove time_left set but not used in
+    "ath11k: add synchronization operation between reconfigure of mac80211 and ath11k_base"
 
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+v2: s/initilized/initialized in commit log of patch
+    "ath11k: add synchronization operation between reconfigure of mac80211 and ath11k_base"
 
-Signed-off-by: Wen Gong <wgong@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/core.c | 52 ++++++++++++++++++++++----
- drivers/net/wireless/ath/ath11k/core.h |  5 +++
- drivers/net/wireless/ath/ath11k/mac.c  | 22 +++++++++++
- 3 files changed, 71 insertions(+), 8 deletions(-)
+Add support for device recovery.
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index be788ec08200..0dc489d5c259 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -965,12 +965,11 @@ void ath11k_core_halt(struct ath11k *ar)
- 	idr_init(&ar->txmgmt_idr);
- }
- 
--static void ath11k_core_restart(struct work_struct *work)
-+static void ath11k_core_pre_reconfigure_recovery(struct ath11k_base *ab)
- {
--	struct ath11k_base *ab = container_of(work, struct ath11k_base, restart_work);
- 	struct ath11k *ar;
- 	struct ath11k_pdev *pdev;
--	int i, ret = 0;
-+	int i;
- 
- 	spin_lock_bh(&ab->base_lock);
- 	ab->stats.fw_crash_counter++;
-@@ -1002,12 +1001,13 @@ static void ath11k_core_restart(struct work_struct *work)
- 
- 	wake_up(&ab->wmi_ab.tx_credits_wq);
- 	wake_up(&ab->peer_mapping_wq);
-+}
- 
--	ret = ath11k_core_reconfigure_on_crash(ab);
--	if (ret) {
--		ath11k_err(ab, "failed to reconfigure driver on crash recovery\n");
--		return;
--	}
-+static void ath11k_core_post_reconfigure_recovery(struct ath11k_base *ab)
-+{
-+	struct ath11k *ar;
-+	struct ath11k_pdev *pdev;
-+	int i;
- 
- 	for (i = 0; i < ab->num_radios; i++) {
- 		pdev = &ab->pdevs[i];
-@@ -1043,6 +1043,27 @@ static void ath11k_core_restart(struct work_struct *work)
- 	complete(&ab->driver_recovery);
- }
- 
-+static void ath11k_core_restart(struct work_struct *work)
-+{
-+	struct ath11k_base *ab = container_of(work, struct ath11k_base, restart_work);
-+	int ret;
-+
-+	if (!ab->is_reset)
-+		ath11k_core_pre_reconfigure_recovery(ab);
-+
-+	ret = ath11k_core_reconfigure_on_crash(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to reconfigure driver on crash recovery\n");
-+		return;
-+	}
-+
-+	if (ab->is_reset)
-+		complete_all(&ab->reconfigure_complete);
-+
-+	if (!ab->is_reset)
-+		ath11k_core_post_reconfigure_recovery(ab);
-+}
-+
- static void ath11k_core_reset(struct work_struct *work)
- {
- 	struct ath11k_base *ab = container_of(work, struct ath11k_base, reset_work);
-@@ -1095,6 +1116,19 @@ static void ath11k_core_reset(struct work_struct *work)
- 	ab->is_reset = true;
- 	atomic_set(&ab->recovery_count, 0);
- 
-+	ath11k_core_pre_reconfigure_recovery(ab);
-+
-+	reinit_completion(&ab->reconfigure_complete);
-+	ath11k_core_post_reconfigure_recovery(ab);
-+
-+	reinit_completion(&ab->recovery_start);
-+	atomic_set(&ab->recovery_start_count, 0);
-+
-+	ath11k_dbg(ab, ATH11K_DBG_BOOT, "waiting recovery start...\n");
-+
-+	time_left = wait_for_completion_timeout(&ab->recovery_start,
-+						ATH11K_RECOVER_START_TIMEOUT_HZ);
-+
- 	ath11k_hif_power_down(ab);
- 	ath11k_qmi_free_resource(ab);
- 	ath11k_hif_power_up(ab);
-@@ -1198,6 +1232,8 @@ struct ath11k_base *ath11k_core_alloc(struct device *dev, size_t priv_size,
- 	mutex_init(&ab->core_lock);
- 	spin_lock_init(&ab->base_lock);
- 	init_completion(&ab->reset_complete);
-+	init_completion(&ab->reconfigure_complete);
-+	init_completion(&ab->recovery_start);
- 
- 	INIT_LIST_HEAD(&ab->peers);
- 	init_waitqueue_head(&ab->peer_mapping_wq);
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 9a9f8f24d407..95b9ebcd0e35 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -43,6 +43,8 @@ extern unsigned int ath11k_frame_mode;
- #define ATH11K_RESET_MAX_FAIL_COUNT_FIRST 3
- #define ATH11K_RESET_MAX_FAIL_COUNT_FINAL 5
- #define ATH11K_RESET_FAIL_TIMEOUT_HZ (20 * HZ)
-+#define ATH11K_RECONFIGURE_TIMEOUT_HZ (10 * HZ)
-+#define ATH11K_RECOVER_START_TIMEOUT_HZ (20 * HZ)
- 
- enum ath11k_supported_bw {
- 	ATH11K_BW_20	= 0,
-@@ -742,8 +744,11 @@ struct ath11k_base {
- 	struct work_struct reset_work;
- 	atomic_t reset_count;
- 	atomic_t recovery_count;
-+	atomic_t recovery_start_count;
- 	bool is_reset;
- 	struct completion reset_complete;
-+	struct completion reconfigure_complete;
-+	struct completion recovery_start;
- 	/* continuous recovery fail count */
- 	atomic_t fail_cont_count;
- 	unsigned long reset_fail_timeout;
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index b0a2f257f328..a680def29bb9 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -4377,6 +4377,27 @@ static int ath11k_mac_config_mon_status_default(struct ath11k *ar, bool enable)
- 	return ret;
- }
- 
-+static void ath11k_mac_wait_reconfigure(struct ath11k_base *ab)
-+{
-+	int recovery_start_count;
-+
-+	if (!ab->is_reset)
-+		return;
-+
-+	recovery_start_count = atomic_inc_return(&ab->recovery_start_count);
-+	ath11k_dbg(ab, ATH11K_DBG_MAC, "recovery start count %d\n", recovery_start_count);
-+
-+	if (recovery_start_count == ab->num_radios) {
-+		complete(&ab->recovery_start);
-+		ath11k_dbg(ab, ATH11K_DBG_MAC, "recovery started success\n");
-+	}
-+
-+	ath11k_dbg(ab, ATH11K_DBG_MAC, "waiting reconfigure...\n");
-+
-+	wait_for_completion_timeout(&ab->reconfigure_complete,
-+				    ATH11K_RECONFIGURE_TIMEOUT_HZ);
-+}
-+
- static int ath11k_mac_op_start(struct ieee80211_hw *hw)
- {
- 	struct ath11k *ar = hw->priv;
-@@ -4393,6 +4414,7 @@ static int ath11k_mac_op_start(struct ieee80211_hw *hw)
- 		break;
- 	case ATH11K_STATE_RESTARTING:
- 		ar->state = ATH11K_STATE_RESTARTED;
-+		ath11k_mac_wait_reconfigure(ab);
- 		break;
- 	case ATH11K_STATE_RESTARTED:
- 	case ATH11K_STATE_WEDGED:
+Wen Gong (3):
+  ath11k: add ath11k_qmi_free_resource() for recovery
+  ath11k: add support for device recovery for QCA6390
+  ath11k: add synchronization operation between reconfigure of mac80211
+    and ath11k_base
+
+ drivers/net/wireless/ath/ath11k/core.c | 119 +++++++++++++++++++++++--
+ drivers/net/wireless/ath/ath11k/core.h |  18 ++++
+ drivers/net/wireless/ath/ath11k/mac.c  |  40 +++++++++
+ drivers/net/wireless/ath/ath11k/mhi.c  |  33 +++++++
+ drivers/net/wireless/ath/ath11k/pci.c  |   3 +
+ drivers/net/wireless/ath/ath11k/qmi.c  |   5 ++
+ drivers/net/wireless/ath/ath11k/qmi.h  |   1 +
+ 7 files changed, 211 insertions(+), 8 deletions(-)
+
 -- 
 2.31.1
 
