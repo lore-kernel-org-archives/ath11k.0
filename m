@@ -2,78 +2,77 @@ Return-Path: <SRS0=5A3f=PK=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 03641C433F5
-	for <ath11k@archiver.kernel.org>; Fri, 22 Oct 2021 08:14:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 78F5BC433F5
+	for <ath11k@archiver.kernel.org>; Fri, 22 Oct 2021 12:39:33 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BC43B61056
-	for <ath11k@archiver.kernel.org>; Fri, 22 Oct 2021 08:14:35 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org BC43B61056
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	by mail.kernel.org (Postfix) with ESMTPS id 45C706109E
+	for <ath11k@archiver.kernel.org>; Fri, 22 Oct 2021 12:39:33 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 45C706109E
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ujyRBn610mNbTVjd8wArmudtNVn+hxF5d9Avg+TzDjM=; b=Y3dxMLTyq0UWUL
-	ZwG/U/ELuJ/+AYLD81I+BUA2sOjmEaVEZAbr7EumbTbRLX9H3iY7U7VaWSPSvSAUgN0zUBnrPF+2T
-	iFYEtpZmbfsQOX8DWY5z2YYf1bD2gOapmv+u8K6ZLp1slRngYGLTJ5T41Q/iWhFtaQwiXVM+jNf8i
-	saxxQvS2sBdqqzlRusdv4qyoNhTOpPPcvdAr5jLcrLUE43Bp5Gv2PR8X0pAyIY3rcDvuRh7PZKi6G
-	tV5l7WMsF6aFER3HhFsvNBACLSkO8dLRaAJQnRilgcBgLsxpVj01IreRnn1zI6hi5Jbs8dDrHsYPR
-	Kt/vleQU5f3mC2r6TWiA==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:Subject:Cc:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=I4hwC1LEVE8kdEuYSTXrVZvf3P3uklDOXPYEBq7VBV0=; b=V9Kx/7j+8M+QiL
+	6oN1jYEFxrC3MfiuyGxNvd6sZYGSgeb9MRs/CKmdb1Jf09hJcRn77Yuj1dwP9vfgqdzQ/UsWvaz5E
+	WUyPQyexvFIMbVK0PlwbSTcErmHysespSiwGQ8K6TOQYzhGRRd4+cTBaLToc5ev25G2VkBYf9H+68
+	zleQX9OU/yfTMZtNMtlmy9cxCip7rgapO7Krhgmn/YfaB4s6madj4ut8CvDS59fC+dixMll6ix5Um
+	N8YGX686oOAZblVNDAwh+OiXhA6dR2Stgoz5zI6GFA3oWoTxXt7N/j/ALlcsLrK7FTofavC43h7J4
+	/pvZG8Qb2Q5x5cvhvqsA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mdphB-00AA3y-5O; Fri, 22 Oct 2021 08:14:33 +0000
-Received: from mail-lf1-x131.google.com ([2a00:1450:4864:20::131])
+	id 1mdtpa-00Au3H-NL; Fri, 22 Oct 2021 12:39:30 +0000
+Received: from so254-9.mailgun.net ([198.61.254.9])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mdpXv-00A6Zz-5b
- for ath11k@lists.infradead.org; Fri, 22 Oct 2021 08:05:00 +0000
-Received: by mail-lf1-x131.google.com with SMTP id bq11so1089620lfb.10
- for <ath11k@lists.infradead.org>; Fri, 22 Oct 2021 01:04:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=J7oRwF5ruTykuTdKEmW48jFK5feApA/qAili2vpUmyI=;
- b=TSqHD752YHVW2pf926w27u2nU3GApZpMtErj93posI7K+me0unUQkec5W5VLwKl8Pt
- IhJciX5qHJ1t4oU+dOyMilFN/CwLJV5nsa41GmLKQ3yBCDtvnHDxlX9ZBG3sA03RnyZb
- OLHf8QYcXNjj1tAglae3EG+m3fIXwvgJePWS9tdKvO/YbJxdawrY3R9LG5W0L0zkbTh+
- rd7/e06uZ4SAblOwo0OuC5ZkguPy7UT3Wwg+byUkNDU8deI+KRSpSJaRxBJ0D3ygH/EC
- u4h7AJJq7X5Nm3uwq7m+F6dI6ZenkBZnPeZDIN8xcDSg6cqfM/Tt9EKyoE5gLI+m0TMa
- Wfxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=J7oRwF5ruTykuTdKEmW48jFK5feApA/qAili2vpUmyI=;
- b=Xm49XRupPNaSR2sZlzFTQ7JQABD/kytb82opy8LzUt/DW84JO3LwalJFCCHFUL3yha
- bWzH84gVQ6gGXsPO/Y0r9nsJsaky7kZfhqx5gJvxQabT2YAfkKZm5MAOjsJQ4zudFxr7
- ITUDpo2GnLAymUNJ/LETM+jFB8QrtJs1YiAoNeQL3qglOcGc9R+t+Z26Gxnx1kjNcJwk
- G+01zPLH6cu3LcGzXi7e62+sThyygtVJS2ND/7a8l7+EbW0HqtrqMy3nUHN6VDT3C4CB
- h6KmveSaAKmRkBnF9lanff6/ZtjWexyY5cAQ3beM2YnoQ4jz4KIHWl217OuS8SwPCInS
- zyvA==
-X-Gm-Message-State: AOAM530WWkakSzRaqIPPEvqpWbv8VR060SQfvnMJkPXlPdoxuh1F6PtA
- IJrBietQ06SGqf/Gl7X/CpCEqiKaszQpBgIrG50=
-X-Google-Smtp-Source: ABdhPJxjr/cjSRuV2wHb2JgJAUevX0GYc7hIZ0wHDdgsLdju+LgfTC02GZaQRy/fJ+obTWHsiMhkgSm8uJrbi+sZMp4=
-X-Received: by 2002:a05:6512:3f0:: with SMTP id
- n16mr8518158lfq.514.1634889897620; 
- Fri, 22 Oct 2021 01:04:57 -0700 (PDT)
-MIME-Version: 1.0
-References: <20201223030225.2345-1-cjhuang@codeaurora.org>
- <87czx7t748.fsf@codeaurora.org>
-In-Reply-To: <87czx7t748.fsf@codeaurora.org>
-From: Janusz Dziedzic <janusz.dziedzic@gmail.com>
-Date: Fri, 22 Oct 2021 10:04:46 +0200
-Message-ID: <CAFED-jnaYfXvz8S7d8orJmY+_=T-MRZ+v-c9OJFCg78HqS7=cw@mail.gmail.com>
-Subject: Re: [PATCH 0/6] ath11k: support one MSI vector
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: Carl Huang <cjhuang@codeaurora.org>, ath11k@lists.infradead.org, 
- linux-wireless <linux-wireless@vger.kernel.org>
+ id 1mdtpW-00Au0w-Q5
+ for ath11k@lists.infradead.org; Fri, 22 Oct 2021 12:39:28 +0000
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
+ q=dns/txt; 
+ s=smtp; t=1634906366; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=qVNec6QWGpzrB+x5tAsrYszgLkbhZwBZq/zeaJmayUo=;
+ b=WhAUWv7Bx7At0qGjtJQhAB9TW9w4a+cLMz4ecXX1muoCgOBhni2EPQ86XSngmfA8d8VD8dnh
+ /puhkAzGF+e+am4W5Soq+88w853ueivk8V2m7SRyPijxJ3Mc1B9HD25YMcIjPsvqit1YLc4E
+ gqHobuP7u79WSohyN9/mNs73orw=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
+ 6172b0e95ca800b6c1bf3d05 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 22 Oct 2021 12:39:05
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+ id C93A3C43460; Fri, 22 Oct 2021 12:39:04 +0000 (UTC)
+Received: from ppranees-linux.qualcomm.com
+ (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+ (No client certificate requested) (Authenticated sender: ppranees)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 03B40C4360D;
+ Fri, 22 Oct 2021 12:39:02 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 03B40C4360D
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ spf=fail smtp.mailfrom=codeaurora.org
+From: P Praneesh <ppranees@codeaurora.org>
+To: ath11k@lists.infradead.org,
+	johannes@sipsolutions.net
+Cc: linux-wireless@vger.kernel.org,
+	P Praneesh <ppranees@codeaurora.org>
+Subject: [PATCH v3 0/3] mac80211: Add extended ROC support for 40-80 MHz
+ bandwidth
+Date: Fri, 22 Oct 2021 18:07:04 +0530
+Message-Id: <1634906227-22028-1-git-send-email-ppranees@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211022_010459_250131_D3D288D2 
-X-CRM114-Status: GOOD (  12.53  )
+X-CRM114-CacheID: sfid-20211022_053926_953182_32F2DF3E 
+X-CRM114-Status: UNSURE (   9.55  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,35 +84,63 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Y3p3LiwgMTEgbHV0IDIwMjEgbyAwODoxMCBLYWxsZSBWYWxvIDxrdmFsb0Bjb2RlYXVyb3JhLm9y
-Zz4gbmFwaXNhxYIoYSk6Cj4KPiBDYXJsIEh1YW5nIDxjamh1YW5nQGNvZGVhdXJvcmEub3JnPiB3
-cml0ZXM6Cj4KPiA+IFRoaXMgcGF0Y2ggc2V0IGlzIHRvIHN1cHBvcnQgb25lIE1TSSB2ZWN0b3Ig
-Zm9yIFFDQTYzOTAuCj4gPgo+ID4gQ2FybCBIdWFuZyAoNik6Cj4gPiAgIGF0aDExazogZ2V0IG1z
-aV9kYXRhIGFnYWluIGFmdGVyIHJlcXVlc3RfaXJxIGlzIGNhbGxlZAo+ID4gICBhdGgxMWs6IGFk
-ZCBjZSBhbmQgZXh0IGlycSBmbGFnIHRvIGluZGljYXRlIGlycV9oYW5kbGVyCj4gPiAgIGF0aDEx
-azogdXNlIEFUSDExS19QQ0lfSVJRX0RQX09GRlNFVCBmb3IgZHAgaXJxeAo+ID4gICBhdGgxMWs6
-IHJlZmFjdG9yIG11bGl0cGxlIG1zaSB2ZWN0b3IgaW1wbGVtZW50YXRpb24KPiA+ICAgYXRoMTFr
-OiBzdXBwb3J0cyBvbmUgTVNJIHZlY3Rvcgo+ID4gICBhdGgxMWs6IGRvIG5vdCByZXN0b3JlIEFT
-UE0gaW4gY2FzZSBvZiBzaW5nbGUgTVNJIHZlY3Rvcgo+Cj4gSSBkaWQgc29tZSBjbGVhbnVwIGFu
-ZCBiZWZvcmUgc3VibWl0dGluZyB2MiBJIG5vdGljZWQgdGhlIHBhdGNoc2V0IChib3RoCj4gdjEg
-YW5kIHYyKSBpcyBjcmFzaGluZyBkdXJpbmcgc3VzcGVuZCBvbiBteSBEZWxsIFhQUyAxMyA5MzEw
-LiBXZSBhcmUKPiBpbnZlc3RpZ2F0aW5nIHRoZSByZWFzb24gZm9yIHRoYXQgYW5kIHdpbGwgc3Vi
-bWl0IHYyIG9uY2UgdGhvc2UgYXJlCj4gZml4ZWQuCj4KSGVsbG8gS2FsbGUsCgpXaGF0IGlzIHN0
-YXR1cyBmb3IgdGhpcyBzZXJpZXM/CkkgYW0gdXNpbmcgYXRoMTFrIGluIG15IGJhbmFuYS1waS1y
-NjQgKGJhY2twb3J0cy01LjE1LXJjNikgYm9hcmQgYW5kIGhpdDoKWyAgMTYyLjM5MjA0M10gYXRo
-MTFrX3BjaSAwMDAwOjAxOjAwLjA6IGZhaWxlZCB0byBnZXQgMzIgTVNJIHZlY3RvcnMsCm9ubHkg
-LTI4IGF2YWlsYWJsZQpbICAxNjIuMzk5OTI3XSBhdGgxMWtfcGNpIDAwMDA6MDE6MDAuMDogZmFp
-bGVkIHRvIGVuYWJsZSBtc2k6IC0yOApbICAxNjIuNDA1Nzc4XSBhdGgxMWtfcGNpIDAwMDA6MDE6
-MDAuMDogZGlzYWJsaW5nIGJ1cyBtYXN0ZXJpbmcKWyAgMTYyLjQxMTQ4MV0gYXRoMTFrX3BjaTog
-cHJvYmUgb2YgMDAwMDowMTowMC4wIGZhaWxlZCB3aXRoIGVycm9yIC0yOAoKSSBzdXNwZWN0IHRo
-aXMgc2VyaWVzIHNob3VsZCBmaXggbXkgaXNzdWU/CgpCUgpKYW51c3oKCj4gLS0KPiBodHRwczov
-L3BhdGNod29yay5rZXJuZWwub3JnL3Byb2plY3QvbGludXgtd2lyZWxlc3MvbGlzdC8KPgo+IGh0
-dHBzOi8vd2lyZWxlc3Mud2lraS5rZXJuZWwub3JnL2VuL2RldmVsb3BlcnMvZG9jdW1lbnRhdGlv
-bi9zdWJtaXR0aW5ncGF0Y2hlcwoKCgotLSAKSmFudXN6IER6aWVkemljCgotLSAKYXRoMTFrIG1h
-aWxpbmcgbGlzdAphdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFk
-ZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2F0aDExawo=
+This patch add extended roc support for 40 and 80 Mhz bandwidth.
+It helps to handle remain on channel for wide band scan in ath11k.
+---
+v3:
+	- addressed Johannes comment to use ROC instead of SCAN command and
+	  changed cover letter title from 'add Wide Band Scan support' to
+	  'mac80211: Add extended ROC support for 40-80 MHz bandwidth'
+v2:
+	- updated message on cover letter.
+---
+
+P Praneesh (3):
+  nl80211: Extended ROC support for 40-80 MHz bandwidth
+  ath11k: Refactor update channel list function
+  ath11k: Add ROC support for wide band scan
+
+ drivers/net/wireless/ath/ath10k/mac.c              |   3 +-
+ drivers/net/wireless/ath/ath11k/core.c             |   1 +
+ drivers/net/wireless/ath/ath11k/mac.c              | 203 ++++++++++++++++++---
+ drivers/net/wireless/ath/ath11k/reg.c              |  99 +---------
+ drivers/net/wireless/ath/ath11k/reg.h              |   1 -
+ drivers/net/wireless/ath/ath11k/wmi.c              | 160 +++++++++++++++-
+ drivers/net/wireless/ath/ath11k/wmi.h              |  31 +++-
+ drivers/net/wireless/ath/ath6kl/cfg80211.c         |   3 +-
+ drivers/net/wireless/ath/ath9k/main.c              |   4 +-
+ drivers/net/wireless/ath/wil6210/cfg80211.c        |   3 +-
+ .../net/wireless/broadcom/brcm80211/brcmfmac/p2p.c |   3 +-
+ .../net/wireless/broadcom/brcm80211/brcmfmac/p2p.h |   2 +-
+ drivers/net/wireless/intel/iwlwifi/mvm/mac80211.c  |   3 +-
+ drivers/net/wireless/mac80211_hwsim.c              |   3 +-
+ drivers/net/wireless/marvell/mwifiex/cfg80211.c    |   3 +-
+ drivers/net/wireless/mediatek/mt76/mt7615/main.c   |   3 +-
+ drivers/net/wireless/microchip/wilc1000/cfg80211.c |   3 +-
+ drivers/net/wireless/rsi/rsi_91x_mac80211.c        |   3 +-
+ drivers/net/wireless/ti/wlcore/main.c              |   3 +-
+ include/net/cfg80211.h                             |   2 +-
+ include/net/mac80211.h                             |   2 +-
+ net/mac80211/driver-ops.h                          |   6 +-
+ net/mac80211/ieee80211_i.h                         |   4 +-
+ net/mac80211/offchannel.c                          |  56 ++++--
+ net/mac80211/trace.h                               |  11 +-
+ net/wireless/nl80211.c                             |   2 +-
+ net/wireless/rdev-ops.h                            |   6 +-
+ net/wireless/trace.h                               |   6 +-
+ 28 files changed, 452 insertions(+), 177 deletions(-)
+
+-- 
+2.7.4
+
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
