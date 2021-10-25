@@ -1,87 +1,69 @@
-Return-Path: <SRS0=JYJ7=PM=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=kw9f=PN=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D3C36C433EF
-	for <ath11k@archiver.kernel.org>; Sun, 24 Oct 2021 05:22:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3CA0EC433EF
+	for <ath11k@archiver.kernel.org>; Mon, 25 Oct 2021 10:08:52 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 83ACF60C40
-	for <ath11k@archiver.kernel.org>; Sun, 24 Oct 2021 05:22:17 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 83ACF60C40
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	by mail.kernel.org (Postfix) with ESMTPS id ECE4661029
+	for <ath11k@archiver.kernel.org>; Mon, 25 Oct 2021 10:08:51 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org ECE4661029
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=quicinc.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:References:
-	Cc:To:Subject:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=juEqwOF3D61KhK0M/wkvLUIOHFza9ZJJbXufrfdtpiU=; b=ktF74ouUCD3G+Zk5hoyh/YJz+D
-	lQYdzmnFINURIlkWNBZkjUkFWbqvCaZxM9Wn4wq0gsb02J9IVbXf+Suh6u73UxWA2j5DKREgjqlAe
-	HY4P0sj3TbYfy8nmVKZt/ExhUVH00WF6SUVlakI2gCTRMaiJcGpy7xeAH1474rpoa5HGUCL3lc2g0
-	rgbGYHOs24nX+RfLwet7DPWKk6cd4Aae+8pvxf2Ur8fuMd1A4J5r/FAQicjTqjp/V4Xe+RAE5VMBL
-	cO7q/0cvXObhOo26fWzQWD++kgQtOmpSq5d2LAvGmjYAMEC9kEJPYpgOD5bYcvjfq4hAOs3u4qH42
-	3whgihJQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=icFR3h6lQN+PhiO5Zgs2zlf6JMtOT+anI7f8oodpJ7o=; b=F1HLl9vVZisxt0
+	7okxRmNQNn1WaMzg5AwqMAXpsJtGVttWhLMuqEeVH14TgTHfEi/BR7DYz6uDzVdnl5TPGFeBKhn6K
+	i7Z2+o0NjP/LIkNDLc4Y2ME9pQHzgebz7TfGWPes6j/yXgYuXijfJr/30bkKUdI1DsH/pggQoqZVu
+	onFNSfboTOtFijZhHzxzwQHoISI40rkCu3Bouk8hkfrS/Bq9LgSb1lBl+G65EbecyDqiVCoIFAGhd
+	LCkDu/5zR3C0oifxdTCJq1Y9CNOE++VeQy0coQ5RHRiW3KR9bjc6oXRQsAFIPfUCMdJbSSc2ACRbB
+	UkOw+FuLeh3aX/TQ8+oQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1meVxW-00DhmJ-1Y; Sun, 24 Oct 2021 05:22:14 +0000
-Received: from mail-lj1-x22c.google.com ([2a00:1450:4864:20::22c])
+	id 1mewuP-00G3PJ-7z; Mon, 25 Oct 2021 10:08:49 +0000
+Received: from alexa-out.qualcomm.com ([129.46.98.28])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1meVxT-00Dhlz-0W
- for ath11k@lists.infradead.org; Sun, 24 Oct 2021 05:22:12 +0000
-Received: by mail-lj1-x22c.google.com with SMTP id u5so5566954ljo.8
- for <ath11k@lists.infradead.org>; Sat, 23 Oct 2021 22:22:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:subject:to:cc:references:message-id:date:user-agent
- :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=zvbSw0Fzkc4vs/mCxvP08xvphC+SUe3Sqtw2KBPI8xA=;
- b=oYn8Uld2Pwgqw9kuS/5LgQ/WQD/GgKbUz57WpOYlkL1466ySZC6Kk65Ee8HkC5pIY+
- zqNjX1r+Oijppl5AsxeAzfuBAh6i+NP8xscS+rzs9SSYFdiz0QfMBItSA9AU+f5AAQRh
- IGoN7p0xyJesDyvq0dewnNoMJj607+F88hzHijKbYXY+CvD7dI7k7MPoxQ6rvP+qL9gJ
- 33tAJBdoxcFCqIHVltCEZ8+xy4EChvhMPkoH9VOH1MxjozxEv7+/DaB0fHxYUqlQXkNW
- NIWfffDWo612sPpS0vN5m0ciXp2q0AXsBJ89Ex4qa2Sd8nYyTdXME/XRlTdXm2vS7CnS
- 8Xuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:subject:to:cc:references:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=zvbSw0Fzkc4vs/mCxvP08xvphC+SUe3Sqtw2KBPI8xA=;
- b=xg4b1yusZV/Bfr/e5RfcAKxqw/oyW5T0vVb0OQ0k80jxH7owyTs8tDoN1yY8xSvKCl
- j0I/lsWt3SNclwG/A/sb0dv5d+NQQnn4j2BHJLaU5bOkbRnrmF9yCMr/AzAXbBwzck1B
- zdzs74emIJV5muI2AIh2jGonFfsd0S+f/GZbQafw5UGrCSUuu3muC2MKWmc6gYiHBF1+
- EsGXmV8aFv6gs7yfxi6oyLNwejrXxUtpXIPKrFedtJqwVMaBY338cDPSJhumjyy7h043
- 01JQziUUpntGWdMXvBQwSIU0uFVh3sQUAPeFrnDnHZmYazjZeAiGxj+KLXZaeWWLAdMa
- 2Now==
-X-Gm-Message-State: AOAM530KSksk7uUiINTSEJ5KWbJmj4ydCkmCNeiqN/sRlFrceLBCE7W6
- quB8BYX0IFhQofzl6iGp3n8cRCkcYolkWYBW
-X-Google-Smtp-Source: ABdhPJxzxSJy1p8pDt9rh+99xUDjcTPb4wbw2JLuo8B6cbLD9WKjXlYvx70Oqq26K+13XbjMm+sE7g==
-X-Received: by 2002:a2e:a5c4:: with SMTP id n4mr7859644ljp.72.1635052928503;
- Sat, 23 Oct 2021 22:22:08 -0700 (PDT)
-Received: from [192.168.2.114] ([109.106.143.2])
- by smtp.gmail.com with ESMTPSA id a16sm1313812ljk.100.2021.10.23.22.22.07
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sat, 23 Oct 2021 22:22:07 -0700 (PDT)
-From: Mark Herbert <mark.herbert42@gmail.com>
-Subject: Re: Can not unload ath11k_pci and load it back
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: ath11k@lists.infradead.org
-References: <190a1b14-0a8c-f1fb-9f0d-e25cc57034a7@gmail.com>
- <875yu9e4li.fsf@codeaurora.org>
- <8324ec52-303d-ea04-b635-a550e83ad47c@gmail.com>
- <87y275cm2x.fsf@codeaurora.org>
-Message-ID: <1dc6dc61-78a8-9693-b334-97b43f35cf9d@gmail.com>
-Date: Sun, 24 Oct 2021 08:22:06 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+ id 1mewuL-00G3OB-Cd
+ for ath11k@lists.infradead.org; Mon, 25 Oct 2021 10:08:47 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+ t=1635156525; x=1666692525;
+ h=from:to:cc:subject:date:message-id:mime-version;
+ bh=A5yz19X0HG7dClTVjBpPyqsAtGRxZsmTtn7aiY/s05E=;
+ b=tE54qQVN+jG/R3YLPO2B2/KBzUpJXUbLcVmB3kd3g/d489J2xgq11bHf
+ nTF7rfRt4Vmf/5kA6xsDO3IsQVaYUw4PcgEoWvPm4Q4EN1zO5bB+kAdAL
+ JA+ysdvNzTF0TDqF9C0u47Wl3M5eOyllgU0iN8IuJ4r3X5pjdpaK2UMcK U=;
+Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
+ by alexa-out.qualcomm.com with ESMTP; 25 Oct 2021 03:08:43 -0700
+X-QCInternal: smtphost
+Received: from nalasex01a.na.qualcomm.com ([10.47.209.196])
+ by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2021 03:08:42 -0700
+Received: from ppranees-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.7; 
+ Mon, 25 Oct 2021 03:08:40 -0700
+From: P Praneesh <quic_ppranees@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, P Praneesh <quic_ppranees@quicinc.com>, 
+ Pravas Kumar Panda <kumarpan@codeaurora.org>
+Subject: [PATCH] ath11k: Disabling credit flow for WMI path
+Date: Mon, 25 Oct 2021 15:38:14 +0530
+Message-ID: <1635156494-20059-1-git-send-email-quic_ppranees@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-In-Reply-To: <87y275cm2x.fsf@codeaurora.org>
-Content-Language: en-US
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211023_222211_104283_5084D0EC 
-X-CRM114-Status: GOOD (  24.36  )
+X-CRM114-CacheID: sfid-20211025_030845_582666_C3045126 
+X-CRM114-Status: GOOD (  22.80  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,86 +75,524 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-QXBwbGllZCBzZXZlcmFsIHBhdGNoZXMgc2VyaWVzIGZyb20gbGF0ZXN0IG1haWxpbmcgbGlzdAoK
-YXRoMTFrOiBhZGQgZmVhdHVyZSBmb3IgZGV2aWNlIHJlY292ZXJ5ICgzIHBhdGhlcykKCmF0aDEx
-azogc3VwcG9ydCBmb3IgV29XIGZ1bmN0aW9uYWxpdGllcyAoNiBwYXRjaGVzKQoKYXRoMTFrOiBB
-ZHZlcnRpc2UgUExBVEZPUk0gQ0FQIFBDSUUgR0xPQkFMIFJFU0VULgoKCkJlZm9yZSB0aG9zZSB0
-aGUgc3lzdGVtIHdhcyBkZWFkbHkgc3R1Y2sgb24gcmVzdW1lIGZyb20gaGliZXJuYXRpb24gLSAK
-YnV0IG5vdyBpdCBnaXZlcyBjb250cm9sIGJhY2ssIHNvIEkgY2FuIHNlZSB0aGUgZXJyb3IgbG9n
-IGluIERNRVNHLsKgIFRoZSAKY2FyZCBpcyBub3Qgd2Fpa2luZyB1cCAsIGFuZCBJIHN0aWxsIGNh
-biBub3QgdW5sb2FkL3JlbG9hZCB0aGUgCmF0aDExa19wY2kgbW9kdWxlIHRvIGdldCBkZXZpY2Ug
-YmFjay4gQnV0IGhlcmUgaXMgdGhlIGxvZ8KgIC0gbWF5YmUgaXQgCndpbGwgZ2l2ZSBzb21lIGlk
-ZWFzLgoKClsxMzc2OTguMzAxOTc0XSBBQ1BJOiBFQzogaW50ZXJydXB0IHVuYmxvY2tlZApbMTM3
-Njk4LjQ5ODExOV0gdXNiIHVzYjE6IHJvb3QgaHViIGxvc3QgcG93ZXIgb3Igd2FzIHJlc2V0Clsx
-Mzc2OTguNDk4MTIyXSB1c2IgdXNiMjogcm9vdCBodWIgbG9zdCBwb3dlciBvciB3YXMgcmVzZXQK
-WzEzNzY5OC40OTgxODZdIHVzYiB1c2IzOiByb290IGh1YiBsb3N0IHBvd2VyIG9yIHdhcyByZXNl
-dApbMTM3Njk4LjQ5ODE5NV0gdXNiIHVzYjQ6IHJvb3QgaHViIGxvc3QgcG93ZXIgb3Igd2FzIHJl
-c2V0ClsxMzc2OTguNDk4MjMxXSBhdGgxMWtfcGNpIDAwMDA6NzI6MDAuMDogZmFpbGVkIHRvIHNl
-dCBtaGkgc3RhdGU6IFJFU1VNRSg2KQpbMTM3Njk4LjUyMjg3MV0gbnZtZSBudm1lMDogNy8wLzAg
-ZGVmYXVsdC9yZWFkL3BvbGwgcXVldWVzClsxMzc2OTguNjU2ODQzXSBpOTE1IDAwMDA6MDA6MDIu
-MDogW2RybV0gR3VDIGZpcm13YXJlIAppOTE1L3RnbF9ndWNfNjIuMC4wLmJpbiB2ZXJzaW9uIDYy
-LjAgc3VibWlzc2lvbjpkaXNhYmxlZApbMTM3Njk4LjY1Njg0OV0gaTkxNSAwMDAwOjAwOjAyLjA6
-IFtkcm1dIEd1QyBTTFBDOiBkaXNhYmxlZApbMTM3Njk4LjY1Njg1MF0gaTkxNSAwMDAwOjAwOjAy
-LjA6IFtkcm1dIEh1QyBmaXJtd2FyZSAKaTkxNS90Z2xfaHVjXzcuOS4zLmJpbiB2ZXJzaW9uIDcu
-OSBhdXRoZW50aWNhdGVkOnllcwpbMTM3Njk4Ljg0ODcyNV0gdXNiIDMtNjogcmVzZXQgaGlnaC1z
-cGVlZCBVU0IgZGV2aWNlIG51bWJlciAzIHVzaW5nIHhoY2lfaGNkClsxMzc2OTkuMDQyMzQ3XSB1
-c2IgMy02OiByZXN0b3JpbmcgY29udHJvbCAKMDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAw
-MDAwMTAxLzEwLzUKWzEzNzY5OS4wNDIzNTZdIHVzYiAzLTY6IHJlc3RvcmluZyBjb250cm9sIAow
-MDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAxMDEvMTIvMTEKWzEzNzY5OS4xNzg5MzRd
-IHVzYiAzLTM6IHJlc2V0IGZ1bGwtc3BlZWQgVVNCIGRldmljZSBudW1iZXIgMiB1c2luZyB4aGNp
-X2hjZApbMTM3NzAxLjU0ODU4OV0gYXRoMTFrX3BjaSAwMDAwOjcyOjAwLjA6IHRpbWVkIG91dCB3
-aGlsZSB3YWl0aW5nIGZvciB3b3cgCndha2V1cCBjb21wbGV0aW9uClsxMzc3MDEuNTQ4NTk2XSBh
-dGgxMWtfcGNpIDAwMDA6NzI6MDAuMDogZmFpbGVkIHRvIHdha2V1cCB3b3cgZHVyaW5nIApyZXN1
-bWU6IC0xMTAKWzEzNzcwMS41NDg1OTldIGF0aDExa19wY2kgMDAwMDo3MjowMC4wOiBmYWlsZWQg
-dG8gcmVzdW1lIGNvcmU6IC0xMTAKWzEzNzcwMS41NDg2MDFdIFBNOiBkcG1fcnVuX2NhbGxiYWNr
-KCk6IHBjaV9wbV9yZXN0b3JlKzB4MC8weGQwIHJldHVybnMgLTExMApbMTM3NzAxLjU0ODYyMV0g
-YXRoMTFrX3BjaSAwMDAwOjcyOjAwLjA6IFBNOiBmYWlsZWQgdG8gcmVzdG9yZSBhc3luYzogCmVy
-cm9yIC0xMTAKWzEzNzcwMS41NTcxMTBdIFBNOiBoaWJlcm5hdGlvbjogQmFzaWMgbWVtb3J5IGJp
-dG1hcHMgZnJlZWQKWzEzNzcwMS41NTcxMTNdIE9PTSBraWxsZXIgZW5hYmxlZC4KWzEzNzcwMS41
-NTcxMTVdIFJlc3RhcnRpbmcgdGFza3MgLi4uIGRvbmUuClsxMzc3MDEuNjE5OTQ4XSBQTTogaGli
-ZXJuYXRpb246IGhpYmVybmF0aW9uIGV4aXQKWzEzNzcwMS42MjQ0MDldIHVzYmNvcmU6IHJlZ2lz
-dGVyZWQgbmV3IGludGVyZmFjZSBkcml2ZXIgYnR1c2IKWzEzNzcwNC42Njg3MzldIGF0aDExa19w
-Y2kgMDAwMDo3MjowMC4wOiB3bWkgY29tbWFuZCAxNjM4NyB0aW1lb3V0ClsxMzc3MDQuNjY4Nzgx
-XSBhdGgxMWtfcGNpIDAwMDA6NzI6MDAuMDogZmFpbGVkIHRvIHNlbmQgCldNSV9QREVWX1NFVF9Q
-QVJBTSBjbWQKWzEzNzcwNC42Njg3OTVdIGF0aDExa19wY2kgMDAwMDo3MjowMC4wOiBmYWlsZWQg
-dG8gZW5hYmxlIFBNRiBRT1M6ICgtMTEKCgpPbiAwNy4xMC4yMDIxIDEwOjQ4LCBLYWxsZSBWYWxv
-IHdyb3RlOgo+IE1hcmsgSGVyYmVydCA8bWFyay5oZXJiZXJ0NDJAZ21haWwuY29tPiB3cml0ZXM6
-Cj4KPj4gSSd2ZSBmb3VuZCBzaW1pbGFyIGJ1ZyBmaWxlcyBhbHJlYWR5IC0gc28gbm90IHRvIGNy
-ZWF0ZSBkdXBsaWNhdGVzCj4+IHNpbXBseSBjb21tZW50ZWQgdGhlcmUKPj4KPj4gaHR0cHM6Ly9i
-dWd6aWxsYS5rZXJuZWwub3JnL3Nob3dfYnVnLmNnaT9pZD0yMTQ1NDEKPj4KPj4gRXhhY3RseSAt
-IGhpYmVybmF0aW9uIG1lYW5zIHNhdmluZyBzdGF0ZSBvbiBkaXNrIGFuZCByZXN1bWluZyBsYXRl
-ciwKPj4gaXQgaXMgYSB2ZXJ5IHVzZWZ1bGwgZmVhdHVyZSB3aGVuIHlvdSBhcmUgcnVubmluZyBv
-dXQgb2YgYmF0dGVyeSBhbmQKPj4gd2FudCB0byBzYXZlIHlvdXIgd29yay4KPiBHb3QgaXQsIHRo
-YW5rcy4gU28gaXQgc2VlbXMgd2UgaGF2ZSB0d28gaXNzdWVzIGhlcmU6IGF0aDExayBkb2VzIG5v
-dAo+IHN1cHBvcnQgaGliZXJuYXRpb24gYW5kIGF0aDExayBtb2R1bGUgcmVsb2FkIGZhaWxpbmcu
-IExldCdzIGhhbmRsZSB0aGUKPiBtb2R1bGUgcmVsb2FkIGZhaWxpbmcgaW4gYnVnICMyMTQ1NDEs
-IGJ1dCBjYW4geW91IGZpbGUgYW5vdGhlciBidWcgYWJvdXQKPiB0aGUgbWlzc2luZyBzdXBwb3J0
-IGZvciBoaWJlcm5hdGlvbj8gTGV0J3MgaGF2ZSBvbmUgaXNzdWUgcGVyIGJ1Zwo+IHJlcG9ydCwg
-aXQncyBlYXNpZXIgdG8gbWFuYWdlIGJ1Z3ppbGxhIHRoYXQgd2F5Lgo+Cj4+IEFsc28gb25lIG1v
-cmUgcG9pbnQgSSd2ZSBmb3VuZCAtIGlmIE1ISSBpcyBjb25maWd1cmVkIGluIHRoZSBrZXJuZWwg
-LQo+PiB0aGUgY2FyZCBpcyBzdGFydGluZyB1cCBvbiB0aHIgZmlyc3QgYm9vdCBhbmQgd29ya3Mu
-IEJ1dCBpZiBpCj4+IGNvbmZpZ3VyZSBNSEkgYXMgYSBtb2R1bGUgLSBpdCBkb2VzIG5vdC4gTUhJ
-IG1vZHVsZSBkbyBsb2FkLiBTbyBkbwo+PiBhdGgxMWsgYW5kIGF0aDExa19wY2kuwqAgQnV0IHRo
-ZSBsYXN0IGF0aDExayBkbWVzZyBzYXlzIDoKPj4KPj4gbWhpIG1oaTA6IFdhaXQgZm9yIGRldmlj
-ZSB0byBlbnRlciBTQkwgb3IgTWlzc2lvbiBtb2RlCj4+Cj4+IEV4YWN0bHkgYXMgaWYgScKgIGRv
-IHJtbW9kL21vZHByb2JlIHNlcXVlbmNlLgo+Pgo+PiBJIHVzZSBsYXRlc3QgQklPUyBmcm9tIERl
-bGwgKGluIGZhY3QgdXBncmFkaW5nIDMuMC40IHRvIDMuMS4wIGRpZCBub3QKPj4gY2FuZ2UgYW55
-dGhuZykgLMKgIGFuZCBoYXZlIHRyaWVkIG11bHRpcGxlIGtlcm5lbHMuIFN0YWJsZSA1LjE0IHNl
-cmllcwo+PiBhbmQgYXRoMTFrIGdpdCB0cmVlIChuZXh0IGFuZCBtYXN0ZXItcGVuZGluZykuIE5v
-dGhpbmcgaGVscHMuCj4+IFNvbWV0aW1lcyBpdCB3b2tzIG91dCAtIEkgaGFkIGNvdXBsZSBvZiB0
-aW1lcyBzdWNjZXNzZnVsbHkKPj4gcm1tb2QvbW9kcHJvYmUgYXRoMTFrX3BjaSBidXQgaXQgcyBh
-IGtpbmQgb2YgcmFuZG9tIGFuZCB2ZXJ5IHJhcmUKPj4gZXZlbnQgKCBJIGhhZCBpdCAyIHRpbWVz
-IG9ubHkpLgo+Pgo+PiBTbyBmb3IgbWUgaXQgbG9va3MgbGlrZSBhbiBpc3N1ZSBiZXR3ZWVuIE1I
-SSBhbmQgYXRoMTFrICwgYnV0Cj4+IHViZm9ydHVuYXRlbHkgbXkga25vd2xlZGdlIGlzIG5vdCBl
-bm91Z2ggdG8gcHJvcG9zZSBhbnkgc29sdXRpb24gaGVyZS4KPiBPbiBteSBOVUMgeDg2IHRlc3Qg
-Ym94IEkgcmVsb2FkIGF0aDExayBtb2R1bGVzIHNldmVyYWwgdGltZXMgYSBkYXkgd2hpbGUKPiBJ
-IHRlc3QgYXRoMTFrIGJ1dCBJIGFsd2F5cyByZWxvYWQgdGhlIG1oaSBtb2R1bGVzIGF0IHRoZSBz
-YW1lIHRpbWUsCj4gbWF5YmUgdGhhdCBtYWtlcyB0aGUgZGlmZmVyZW5jZT8gT3IgWFBTIDEzIDkz
-MTAgd29ya3MgZGlmZmVyZW50bHkgZnJvbQo+IE5VQywgdGhhdCdzIGFsc28gcG9zc2libGUuCj4K
-Ci0tIAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6
-Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vYXRoMTFrCg==
+Firmware credit flow control is enabled for WMI control services,
+which expects available tokens should be acquired before sending a
+command to the target. Also the token gets released when firmware
+receives the command.
+
+This credit-based flow limits driver to send WMI command only
+when the token available which is causing WMI commands to timeout and
+return -EAGAIN, whereas firmware has enough capability to process the
+WMI command. To fix this Tx starvation issue, introduce the ability to
+disable the credit flow for the WMI path.
+
+The driver sends WMI configuration for disabling credit flow to firmware
+by two ways.
+	1. By using a global flag
+		(HTC_MSG_SETUP_COMPLETE_EX_ID msg type flags)
+	2. By using a local flag
+		(ATH11K_HTC_CONN_FLAGS_DISABLE_CREDIT_FLOW_CTRL = 1 << 3)
+
+Ath11k uses both these configurations to disable credit flow for the
+WMI path completely.
+
+Also added a hw_param member for credit flow control by which we can
+enable or disable it based on per-target basis. Currently we are disabling
+credit flow for IPQ8074, IPQ6018, and QCN9074 as recommended by firmware.
+
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-01492-QCAHKSWPL_SILICONZ-1
+Tested-on: IPQ6018 hw1.0 AHB WLAN.HK.2.4.0.1-00330-QCAHKSWPL_SILICONZ-1
+
+Co-developed-by: Pravas Kumar Panda <kumarpan@codeaurora.org>
+Signed-off-by: Pravas Kumar Panda <kumarpan@codeaurora.org>
+Signed-off-by: P Praneesh <quic_ppranees@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/ce.c   | 37 ++++++++++++++----
+ drivers/net/wireless/ath/ath11k/ce.h   |  3 +-
+ drivers/net/wireless/ath/ath11k/core.c |  5 +++
+ drivers/net/wireless/ath/ath11k/htc.c  | 71 +++++++++++++++++++++++++---------
+ drivers/net/wireless/ath/ath11k/htc.h  |  9 +++--
+ drivers/net/wireless/ath/ath11k/hw.h   |  1 +
+ drivers/net/wireless/ath/ath11k/wmi.c  | 54 +++++++++++++++++++++++---
+ drivers/net/wireless/ath/ath11k/wmi.h  |  1 +
+ 8 files changed, 146 insertions(+), 35 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/ce.c b/drivers/net/wireless/ath/ath11k/ce.c
+index de8b632..5a7aacc 100644
+--- a/drivers/net/wireless/ath/ath11k/ce.c
++++ b/drivers/net/wireless/ath/ath11k/ce.c
+@@ -14,6 +14,7 @@ const struct ce_attr ath11k_host_ce_config_ipq8074[] = {
+ 		.src_nentries = 16,
+ 		.src_sz_max = 2048,
+ 		.dest_nentries = 0,
++		.send_cb = ath11k_htc_tx_completion_handler,
+ 	},
+ 
+ 	/* CE1: target->host HTT + HTC control */
+@@ -40,6 +41,7 @@ const struct ce_attr ath11k_host_ce_config_ipq8074[] = {
+ 		.src_nentries = 32,
+ 		.src_sz_max = 2048,
+ 		.dest_nentries = 0,
++		.send_cb = ath11k_htc_tx_completion_handler,
+ 	},
+ 
+ 	/* CE4: host->target HTT */
+@@ -73,6 +75,7 @@ const struct ce_attr ath11k_host_ce_config_ipq8074[] = {
+ 		.src_nentries = 32,
+ 		.src_sz_max = 2048,
+ 		.dest_nentries = 0,
++		.send_cb = ath11k_htc_tx_completion_handler,
+ 	},
+ 
+ 	/* CE8: target autonomous hif_memcpy */
+@@ -89,6 +92,7 @@ const struct ce_attr ath11k_host_ce_config_ipq8074[] = {
+ 		.src_nentries = 32,
+ 		.src_sz_max = 2048,
+ 		.dest_nentries = 0,
++		.send_cb = ath11k_htc_tx_completion_handler,
+ 	},
+ 
+ 	/* CE10: target->host HTT */
+@@ -142,6 +146,7 @@ const struct ce_attr ath11k_host_ce_config_qca6390[] = {
+ 		.src_nentries = 32,
+ 		.src_sz_max = 2048,
+ 		.dest_nentries = 0,
++		.send_cb = ath11k_htc_tx_completion_handler,
+ 	},
+ 
+ 	/* CE4: host->target HTT */
+@@ -175,6 +180,7 @@ const struct ce_attr ath11k_host_ce_config_qca6390[] = {
+ 		.src_nentries = 32,
+ 		.src_sz_max = 2048,
+ 		.dest_nentries = 0,
++		.send_cb = ath11k_htc_tx_completion_handler,
+ 	},
+ 
+ 	/* CE8: target autonomous hif_memcpy */
+@@ -220,6 +226,7 @@ const struct ce_attr ath11k_host_ce_config_qcn9074[] = {
+ 		.src_nentries = 32,
+ 		.src_sz_max = 2048,
+ 		.dest_nentries = 0,
++		.send_cb = ath11k_htc_tx_completion_handler,
+ 	},
+ 
+ 	/* CE4: host->target HTT */
+@@ -489,18 +496,32 @@ static struct sk_buff *ath11k_ce_completed_send_next(struct ath11k_ce_pipe *pipe
+ 	return skb;
+ }
+ 
+-static void ath11k_ce_send_done_cb(struct ath11k_ce_pipe *pipe)
++static void ath11k_ce_tx_process_cb(struct ath11k_ce_pipe *pipe)
+ {
+ 	struct ath11k_base *ab = pipe->ab;
+ 	struct sk_buff *skb;
++	struct sk_buff_head list;
+ 
++	__skb_queue_head_init(&list);
+ 	while (!IS_ERR(skb = ath11k_ce_completed_send_next(pipe))) {
+ 		if (!skb)
+ 			continue;
+ 
+ 		dma_unmap_single(ab->dev, ATH11K_SKB_CB(skb)->paddr, skb->len,
+ 				 DMA_TO_DEVICE);
+-		dev_kfree_skb_any(skb);
++
++		if ((!pipe->send_cb) || ab->hw_params.credit_flow) {
++			dev_kfree_skb_any(skb);
++			continue;
++		}
++
++		__skb_queue_tail(&list, skb);
++	}
++
++	while ((skb = __skb_dequeue(&list))) {
++		ath11k_dbg(ab, ATH11K_DBG_AHB, "tx ce pipe %d len %d\n",
++			   pipe->pipe_num, skb->len);
++		pipe->send_cb(ab, skb);
+ 	}
+ }
+ 
+@@ -636,7 +657,7 @@ static int ath11k_ce_alloc_pipe(struct ath11k_base *ab, int ce_id)
+ 	pipe->attr_flags = attr->flags;
+ 
+ 	if (attr->src_nentries) {
+-		pipe->send_cb = ath11k_ce_send_done_cb;
++		pipe->send_cb = attr->send_cb;
+ 		nentries = roundup_pow_of_two(attr->src_nentries);
+ 		desc_sz = ath11k_hal_ce_get_desc_size(HAL_CE_DESC_SRC);
+ 		ring = ath11k_ce_alloc_ring(ab, nentries, desc_sz);
+@@ -667,9 +688,10 @@ static int ath11k_ce_alloc_pipe(struct ath11k_base *ab, int ce_id)
+ void ath11k_ce_per_engine_service(struct ath11k_base *ab, u16 ce_id)
+ {
+ 	struct ath11k_ce_pipe *pipe = &ab->ce.ce_pipe[ce_id];
++	const struct ce_attr *attr = &ab->hw_params.host_ce_config[ce_id];
+ 
+-	if (pipe->send_cb)
+-		pipe->send_cb(pipe);
++	if (attr->src_nentries)
++		ath11k_ce_tx_process_cb(pipe);
+ 
+ 	if (pipe->recv_cb)
+ 		ath11k_ce_recv_process_cb(pipe);
+@@ -678,9 +700,10 @@ void ath11k_ce_per_engine_service(struct ath11k_base *ab, u16 ce_id)
+ void ath11k_ce_poll_send_completed(struct ath11k_base *ab, u8 pipe_id)
+ {
+ 	struct ath11k_ce_pipe *pipe = &ab->ce.ce_pipe[pipe_id];
++	const struct ce_attr *attr =  &ab->hw_params.host_ce_config[pipe_id];
+ 
+-	if ((pipe->attr_flags & CE_ATTR_DIS_INTR) && pipe->send_cb)
+-		pipe->send_cb(pipe);
++	if ((pipe->attr_flags & CE_ATTR_DIS_INTR) && attr->src_nentries)
++		ath11k_ce_tx_process_cb(pipe);
+ }
+ EXPORT_SYMBOL(ath11k_ce_per_engine_service);
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/ce.h b/drivers/net/wireless/ath/ath11k/ce.h
+index 713f766..8255b6c 100644
+--- a/drivers/net/wireless/ath/ath11k/ce.h
++++ b/drivers/net/wireless/ath/ath11k/ce.h
+@@ -101,6 +101,7 @@ struct ce_attr {
+ 	unsigned int dest_nentries;
+ 
+ 	void (*recv_cb)(struct ath11k_base *, struct sk_buff *);
++	void (*send_cb)(struct ath11k_base *, struct sk_buff *);
+ };
+ 
+ #define CE_DESC_RING_ALIGN 8
+@@ -154,7 +155,7 @@ struct ath11k_ce_pipe {
+ 	unsigned int buf_sz;
+ 	unsigned int rx_buf_needed;
+ 
+-	void (*send_cb)(struct ath11k_ce_pipe *);
++	void (*send_cb)(struct ath11k_base *, struct sk_buff *);
+ 	void (*recv_cb)(struct ath11k_base *, struct sk_buff *);
+ 
+ 	struct tasklet_struct intr_tq;
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index b0d6922..cbfa62e 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -80,6 +80,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_suspend = false,
+ 		.hal_desc_sz = sizeof(struct hal_rx_desc_ipq8074),
+ 		.fix_l1ss = true,
++		.credit_flow = false,
+ 		.max_tx_ring = DP_TCL_NUM_RING_MAX,
+ 	},
+ 	{
+@@ -128,6 +129,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_suspend = false,
+ 		.hal_desc_sz = sizeof(struct hal_rx_desc_ipq8074),
+ 		.fix_l1ss = true,
++		.credit_flow = false,
+ 		.max_tx_ring = DP_TCL_NUM_RING_MAX,
+ 	},
+ 	{
+@@ -175,6 +177,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_suspend = true,
+ 		.hal_desc_sz = sizeof(struct hal_rx_desc_ipq8074),
+ 		.fix_l1ss = true,
++		.credit_flow = true,
+ 		.max_tx_ring = DP_TCL_NUM_RING_MAX_QCA6390,
+ 	},
+ 	{
+@@ -222,6 +225,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_suspend = false,
+ 		.hal_desc_sz = sizeof(struct hal_rx_desc_qcn9074),
+ 		.fix_l1ss = true,
++		.credit_flow = false,
+ 		.max_tx_ring = DP_TCL_NUM_RING_MAX,
+ 	},
+ 	{
+@@ -269,6 +273,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_suspend = true,
+ 		.hal_desc_sz = sizeof(struct hal_rx_desc_wcn6855),
+ 		.fix_l1ss = false,
++		.credit_flow = true,
+ 		.max_tx_ring = DP_TCL_NUM_RING_MAX_QCA6390,
+ 	},
+ };
+diff --git a/drivers/net/wireless/ath/ath11k/htc.c b/drivers/net/wireless/ath/ath11k/htc.c
+index 54b1d34..6913b74 100644
+--- a/drivers/net/wireless/ath/ath11k/htc.c
++++ b/drivers/net/wireless/ath/ath11k/htc.c
+@@ -81,6 +81,8 @@ int ath11k_htc_send(struct ath11k_htc *htc,
+ 	struct ath11k_base *ab = htc->ab;
+ 	int credits = 0;
+ 	int ret;
++	bool credit_flow_enabled = (ab->hw_params.credit_flow &&
++				    ep->tx_credit_flow_enabled);
+ 
+ 	if (eid >= ATH11K_HTC_EP_COUNT) {
+ 		ath11k_warn(ab, "Invalid endpoint id: %d\n", eid);
+@@ -89,7 +91,7 @@ int ath11k_htc_send(struct ath11k_htc *htc,
+ 
+ 	skb_push(skb, sizeof(struct ath11k_htc_hdr));
+ 
+-	if (ep->tx_credit_flow_enabled) {
++	if (credit_flow_enabled) {
+ 		credits = DIV_ROUND_UP(skb->len, htc->target_credit_size);
+ 		spin_lock_bh(&htc->tx_lock);
+ 		if (ep->tx_credits < credits) {
+@@ -126,7 +128,7 @@ int ath11k_htc_send(struct ath11k_htc *htc,
+ err_unmap:
+ 	dma_unmap_single(dev, skb_cb->paddr, skb->len, DMA_TO_DEVICE);
+ err_credits:
+-	if (ep->tx_credit_flow_enabled) {
++	if (credit_flow_enabled) {
+ 		spin_lock_bh(&htc->tx_lock);
+ 		ep->tx_credits += credits;
+ 		ath11k_dbg(ab, ATH11K_DBG_HTC,
+@@ -203,23 +205,25 @@ static int ath11k_htc_process_trailer(struct ath11k_htc *htc,
+ 			break;
+ 		}
+ 
+-		switch (record->hdr.id) {
+-		case ATH11K_HTC_RECORD_CREDITS:
+-			len = sizeof(struct ath11k_htc_credit_report);
+-			if (record->hdr.len < len) {
+-				ath11k_warn(ab, "Credit report too long\n");
+-				status = -EINVAL;
++		if (ab->hw_params.credit_flow) {
++			switch (record->hdr.id) {
++			case ATH11K_HTC_RECORD_CREDITS:
++				len = sizeof(struct ath11k_htc_credit_report);
++				if (record->hdr.len < len) {
++					ath11k_warn(ab, "Credit report too long\n");
++					status = -EINVAL;
++					break;
++				}
++				ath11k_htc_process_credit_report(htc,
++								 record->credit_report,
++								 record->hdr.len,
++								 src_eid);
++				break;
++			default:
++				ath11k_warn(ab, "Unhandled record: id:%d length:%d\n",
++					    record->hdr.id, record->hdr.len);
+ 				break;
+ 			}
+-			ath11k_htc_process_credit_report(htc,
+-							 record->credit_report,
+-							 record->hdr.len,
+-							 src_eid);
+-			break;
+-		default:
+-			ath11k_warn(ab, "Unhandled record: id:%d length:%d\n",
+-				    record->hdr.id, record->hdr.len);
+-			break;
+ 		}
+ 
+ 		if (status)
+@@ -245,6 +249,29 @@ static void ath11k_htc_suspend_complete(struct ath11k_base *ab, bool ack)
+ 	complete(&ab->htc_suspend);
+ }
+ 
++void ath11k_htc_tx_completion_handler(struct ath11k_base *ab,
++				      struct sk_buff *skb)
++{
++	struct ath11k_htc *htc = &ab->htc;
++	struct ath11k_htc_ep *ep;
++	void (*ep_tx_complete)(struct ath11k_base *, struct sk_buff *);
++	u8 eid;
++
++	eid = ATH11K_SKB_CB(skb)->eid;
++	if (eid >= ATH11K_HTC_EP_COUNT)
++		return;
++
++	ep = &htc->endpoint[eid];
++	spin_lock_bh(&htc->tx_lock);
++	ep_tx_complete = ep->ep_ops.ep_tx_complete;
++	spin_unlock_bh(&htc->tx_lock);
++	if (!ep_tx_complete) {
++		dev_kfree_skb_any(skb);
++		return;
++	}
++	ep_tx_complete(htc->ab, skb);
++}
++
+ void ath11k_htc_rx_completion_handler(struct ath11k_base *ab,
+ 				      struct sk_buff *skb)
+ {
+@@ -607,6 +634,11 @@ int ath11k_htc_connect_service(struct ath11k_htc *htc,
+ 		disable_credit_flow_ctrl = true;
+ 	}
+ 
++	if (!ab->hw_params.credit_flow) {
++		flags |= ATH11K_HTC_CONN_FLAGS_DISABLE_CREDIT_FLOW_CTRL;
++		disable_credit_flow_ctrl = true;
++	}
++
+ 	req_msg->flags_len = FIELD_PREP(HTC_SVC_MSG_CONNECTIONFLAGS, flags);
+ 	req_msg->msg_svc_id |= FIELD_PREP(HTC_SVC_MSG_SERVICE_ID,
+ 					  conn_req->service_id);
+@@ -732,7 +764,10 @@ int ath11k_htc_start(struct ath11k_htc *htc)
+ 	msg->msg_id = FIELD_PREP(HTC_MSG_MESSAGEID,
+ 				 ATH11K_HTC_MSG_SETUP_COMPLETE_EX_ID);
+ 
+-	ath11k_dbg(ab, ATH11K_DBG_HTC, "HTC is using TX credit flow control\n");
++	if (ab->hw_params.credit_flow)
++		ath11k_dbg(ab, ATH11K_DBG_HTC, "HTC is using TX credit flow control\n");
++	else
++		msg->flags |= ATH11K_GLOBAL_DISABLE_CREDIT_FLOW;
+ 
+ 	status = ath11k_htc_send(htc, ATH11K_HTC_EP_0, skb);
+ 	if (status) {
+diff --git a/drivers/net/wireless/ath/ath11k/htc.h b/drivers/net/wireless/ath/ath11k/htc.h
+index 6c8a469..f429b37 100644
+--- a/drivers/net/wireless/ath/ath11k/htc.h
++++ b/drivers/net/wireless/ath/ath11k/htc.h
+@@ -83,8 +83,8 @@ enum ath11k_htc_conn_flags {
+ 	ATH11K_HTC_CONN_FLAGS_THRESHOLD_LEVEL_ONE_HALF      = 0x1,
+ 	ATH11K_HTC_CONN_FLAGS_THRESHOLD_LEVEL_THREE_FOURTHS = 0x2,
+ 	ATH11K_HTC_CONN_FLAGS_THRESHOLD_LEVEL_UNITY         = 0x3,
+-	ATH11K_HTC_CONN_FLAGS_REDUCE_CREDIT_DRIBBLE    = 1 << 2,
+-	ATH11K_HTC_CONN_FLAGS_DISABLE_CREDIT_FLOW_CTRL = 1 << 3
++	ATH11K_HTC_CONN_FLAGS_REDUCE_CREDIT_DRIBBLE	    = 0x4,
++	ATH11K_HTC_CONN_FLAGS_DISABLE_CREDIT_FLOW_CTRL	    = 0x8,
+ };
+ 
+ enum ath11k_htc_conn_svc_status {
+@@ -116,6 +116,8 @@ struct ath11k_htc_conn_svc_resp {
+ 	u32 svc_meta_pad;
+ } __packed;
+ 
++#define ATH11K_GLOBAL_DISABLE_CREDIT_FLOW BIT(1)
++
+ struct ath11k_htc_setup_complete_extended {
+ 	u32 msg_id;
+ 	u32 flags;
+@@ -305,5 +307,6 @@ int ath11k_htc_send(struct ath11k_htc *htc, enum ath11k_htc_ep_id eid,
+ struct sk_buff *ath11k_htc_alloc_skb(struct ath11k_base *ar, int size);
+ void ath11k_htc_rx_completion_handler(struct ath11k_base *ar,
+ 				      struct sk_buff *skb);
+-
++void ath11k_htc_tx_completion_handler(struct ath11k_base *ab,
++				      struct sk_buff *skb);
+ #endif
+diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
+index 8f92210..7429b49 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.h
++++ b/drivers/net/wireless/ath/ath11k/hw.h
+@@ -169,6 +169,7 @@ struct ath11k_hw_params {
+ 	bool supports_suspend;
+ 	u32 hal_desc_sz;
+ 	bool fix_l1ss;
++	bool credit_flow;
+ 	u8 max_tx_ring;
+ };
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 5ae2ef4..8a33704 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -267,21 +267,39 @@ int ath11k_wmi_cmd_send(struct ath11k_pdev_wmi *wmi, struct sk_buff *skb,
+ {
+ 	struct ath11k_wmi_base *wmi_sc = wmi->wmi_ab;
+ 	int ret = -EOPNOTSUPP;
++	struct ath11k_base *ab = wmi_sc->ab;
+ 
+ 	might_sleep();
+ 
+-	wait_event_timeout(wmi_sc->tx_credits_wq, ({
+-		ret = ath11k_wmi_cmd_send_nowait(wmi, skb, cmd_id);
++	if (ab->hw_params.credit_flow) {
++		wait_event_timeout(wmi_sc->tx_credits_wq, ({
++			ret = ath11k_wmi_cmd_send_nowait(wmi, skb, cmd_id);
++
++			if (ret && test_bit(ATH11K_FLAG_CRASH_FLUSH,
++					    &wmi_sc->ab->dev_flags))
++				ret = -ESHUTDOWN;
+ 
+-		if (ret && test_bit(ATH11K_FLAG_CRASH_FLUSH, &wmi_sc->ab->dev_flags))
+-			ret = -ESHUTDOWN;
++			(ret != -EAGAIN);
++			}), WMI_SEND_TIMEOUT_HZ);
++	} else {
++		wait_event_timeout(wmi->tx_ce_desc_wq, ({
++			ret = ath11k_wmi_cmd_send_nowait(wmi, skb, cmd_id);
+ 
+-		(ret != -EAGAIN);
+-	}), WMI_SEND_TIMEOUT_HZ);
++			if (ret && test_bit(ATH11K_FLAG_CRASH_FLUSH,
++					    &wmi_sc->ab->dev_flags))
++				ret = -ESHUTDOWN;
++
++			(ret != -ENOBUFS);
++			}), WMI_SEND_TIMEOUT_HZ);
++	}
+ 
+ 	if (ret == -EAGAIN)
+ 		ath11k_warn(wmi_sc->ab, "wmi command %d timeout\n", cmd_id);
+ 
++	if (ret == -ENOBUFS)
++		ath11k_warn(wmi_sc->ab, "ce desc not available for wmi command %d\n",
++			    cmd_id);
++
+ 	return ret;
+ }
+ 
+@@ -5813,7 +5831,30 @@ static void ath11k_wmi_op_ep_tx_credits(struct ath11k_base *ab)
+ static void ath11k_wmi_htc_tx_complete(struct ath11k_base *ab,
+ 				       struct sk_buff *skb)
+ {
++	struct ath11k_pdev_wmi *wmi = NULL;
++	u32 i;
++	u8 wmi_ep_count;
++	u8 eid;
++
++	eid = ATH11K_SKB_CB(skb)->eid;
+ 	dev_kfree_skb(skb);
++
++	if (eid >= ATH11K_HTC_EP_COUNT)
++		return;
++
++	wmi_ep_count = ab->htc.wmi_ep_count;
++	if (wmi_ep_count > ab->hw_params.max_radios)
++		return;
++
++	for (i = 0; i < ab->htc.wmi_ep_count; i++) {
++		if (ab->wmi_ab.wmi[i].eid == eid) {
++			wmi = &ab->wmi_ab.wmi[i];
++			break;
++		}
++	}
++
++	if (wmi)
++		wake_up(&wmi->tx_ce_desc_wq);
+ }
+ 
+ static bool ath11k_reg_is_world_alpha(char *alpha)
+@@ -7199,6 +7240,7 @@ static int ath11k_connect_pdev_htc_service(struct ath11k_base *ab,
+ 	ab->wmi_ab.wmi_endpoint_id[pdev_idx] = conn_resp.eid;
+ 	ab->wmi_ab.wmi[pdev_idx].eid = conn_resp.eid;
+ 	ab->wmi_ab.max_msg_len[pdev_idx] = conn_resp.max_msg_len;
++	init_waitqueue_head(&ab->wmi_ab.wmi[pdev_idx].tx_ce_desc_wq);
+ 
+ 	return 0;
+ }
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index 0584e68..55a04f0 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -2522,6 +2522,7 @@ struct ath11k_pdev_wmi {
+ 	enum ath11k_htc_ep_id eid;
+ 	const struct wmi_peer_flags_map *peer_flags;
+ 	u32 rx_decap_mode;
++	wait_queue_head_t tx_ce_desc_wq;
+ };
+ 
+ struct vdev_create_params {
+-- 
+2.7.4
+
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
