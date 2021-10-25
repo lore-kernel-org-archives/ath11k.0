@@ -2,14 +2,14 @@ Return-Path: <SRS0=kw9f=PN=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 51DC2C4332F
-	for <ath11k@archiver.kernel.org>; Mon, 25 Oct 2021 12:17:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 63766C433EF
+	for <ath11k@archiver.kernel.org>; Mon, 25 Oct 2021 12:19:10 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 21D4C60C49
-	for <ath11k@archiver.kernel.org>; Mon, 25 Oct 2021 12:17:36 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 21D4C60C49
+	by mail.kernel.org (Postfix) with ESMTPS id 2AF6960ED4
+	for <ath11k@archiver.kernel.org>; Mon, 25 Oct 2021 12:19:10 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 2AF6960ED4
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=quicinc.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -18,52 +18,52 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Xf9PVGDbLwT2Jrj8vQPUPtdOK2RYduArdvLmZZTbEw4=; b=lQAxjHWH2OCz1R
-	Nihi1msFAGpzWnFIRCvNRj71yN9bDTXsfJQ63QrImuPAgb3yAPj58IQFHTvd5Zudz+jZu83mXQPUG
-	PcRPsrb/cCZdDw2A61j4MrIfxGMPDBF/HNWXRNN+Tg86Ot479oPkws7pE6LazKbx0ozW9e7pVQVWa
-	DYulgidwkEG8zkzvCsag+JqIlpsccx2VQ9Ojau7ASM+HEm3YHc/AW8y++SAYaNp2uQVMtCR6BTUaQ
-	m4+eYsVMqGXi1lm21Yr7T8Z/VbKGv08hH8fcNoP4KpnFjK6EjX8cuitNi4LNl5PCXLHPhKLtkGu2Y
-	tZXscUNEWpr+IDxFK66Q==;
+	List-Owner; bh=5Ae6ZMrNpyxh4vnxUwWh70NcjGpWhj6YSR+j+EmI0y4=; b=dZUcC5eGrppeZb
+	WrKS0S1MVjyUsS8kb+UL2vhQy3CAP7M+B4cj89Rn/4NApFEWFr40YYFyqqfLZqgIj45uJtxTMBvcu
+	p3CHR2Npry1EzladNcn+0nSG+MabGBqqZyc3z3Mx6LFSz4Fzdn76E84qlPhZfHNVBxp9YwL4AWYlD
+	eoCfJqDtzKGYbAczvuLe+YzLZuAJEyw+mgOOwvyAogHJkHHvDhujn6sio2WE0fkJ3//dA3s8zYgty
+	+S9rjGJFXjJ2s7gHoB6whntmNRv0YxsZxocO6xVpqUIqkMd8ITLeZYf8RpxUdmIFx21gZ4wDBRZiB
+	Tmmr5FU2FzkIgUfF2FDw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1meyv0-00GO8R-3i; Mon, 25 Oct 2021 12:17:34 +0000
+	id 1meywV-00GOTS-UJ; Mon, 25 Oct 2021 12:19:07 +0000
 Received: from alexa-out.qualcomm.com ([129.46.98.28])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1meyuy-00GO7K-1p
- for ath11k@lists.infradead.org; Mon, 25 Oct 2021 12:17:33 +0000
+ id 1meyw9-00GOOH-Qs
+ for ath11k@lists.infradead.org; Mon, 25 Oct 2021 12:18:47 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1635164252; x=1666700252;
+ t=1635164326; x=1666700326;
  h=from:to:cc:subject:date:message-id:mime-version;
- bh=CoO8fG3XYZh2qdyBkOvtTBsE0q5aPqOPTI8LniuqIwM=;
- b=tDtTPXXrufqxlMmQNlKuwPRj+cBrXVN2IzXltm/ANI3DhzJKmo8nUeZU
- Q2YNDJzW428MB4omTzLI/9q4leVz1TPWufOkMPIoPQBlwoRZYVAmcnZTQ
- rwPyDv3ihiF18RyVq+qv4pMyyf7eLXcZPk7VuZTkBUBuoGO5/i8jMHCi9 g=;
+ bh=v913O6TZg9mjOWfV0M9rxJlvONiHOMOkvmcQ0L/hh0Y=;
+ b=fCRr7iaMvqZWn0qynVDDK6J59CaYJqgSKEQI8Azkt/zh9Vfej47ykiZA
+ 0Ut1EJEA2LK44V6IaaBahBxucVpdFqkbt7zvVacibLZaGiAGrdbYt+maa
+ 029lWyiFnoMEdVbiLN9kTmMXOojTZCyExniTKAtG+IFy9U3je+SwgEtdy U=;
 Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
- by alexa-out.qualcomm.com with ESMTP; 25 Oct 2021 05:17:32 -0700
+ by alexa-out.qualcomm.com with ESMTP; 25 Oct 2021 05:18:45 -0700
 X-QCInternal: smtphost
 Received: from nalasex01a.na.qualcomm.com ([10.47.209.196])
  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2021 05:17:32 -0700
+ 25 Oct 2021 05:18:45 -0700
 Received: from ppranees-linux.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.7; 
- Mon, 25 Oct 2021 05:17:29 -0700
+ Mon, 25 Oct 2021 05:18:43 -0700
 From: P Praneesh <quic_ppranees@quicinc.com>
 To: <ath11k@lists.infradead.org>
 CC: <linux-wireless@vger.kernel.org>, P Praneesh <quic_ppranees@quicinc.com>, 
- Lavanya Suresh <lavaks@codeaurora.org>
-Subject: [PATCH] ath11k: send proper txpower and maxregpower values to firmware
-Date: Mon, 25 Oct 2021 17:47:09 +0530
-Message-ID: <1635164229-22880-1-git-send-email-quic_ppranees@quicinc.com>
+ Sriram R <quic_srirrama@quicinc.com>
+Subject: [PATCH] ath11k: Add provision to configure rx hashmap
+Date: Mon, 25 Oct 2021 17:48:36 +0530
+Message-ID: <1635164316-27055-1-git-send-email-quic_ppranees@quicinc.com>
 X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211025_051732_191466_F32CEDCE 
-X-CRM114-Status: GOOD (  10.02  )
+X-CRM114-CacheID: sfid-20211025_051845_990583_C6EB0ACA 
+X-CRM114-Status: GOOD (  18.62  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,68 +80,211 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Set proper values for max_regpower, max_power, max_antenna_gain as it
-is because firmware will convert power values to 0.5dbm steps by
-multiplying it with 2.
+Currently the hashmap is set to default during REO setup and all REO
+rings are equally distributed across 32 hash values.
 
-If txpower is not set, it will lead to cca stuck resulting in latency
-issues for QCN9074.
+In multiple radio cases, 40MHz+80MHz+160MHz, distributing received
+packets across all the CPU will cause CPU overhead. In this case,
+during runtime we can span 40MHz and 80MHz among 2 cores and remaining
+2 cores are equally distributed for 160MHz by using register mapping.
 
-Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.4.0.1-01386-QCAHKSWPL_SILICONZ-1
+Add provision to configure the hashmap during runtime through debugfs
+for improving flexibility to control the destination HW rx queues/rings,
+so that affinity could be used to assign those interrupts to specific
+rings. Setting 0 will disable hash based steering.
 
-Co-developed-by: Lavanya Suresh <lavaks@codeaurora.org>
-Signed-off-by: Lavanya Suresh <lavaks@codeaurora.org>
+echo "hashmap" > /sys/kernel/debug/ath11k/ipq8074\ hw2.0/rx_hash
+
+Developers who are aware of hardware register mapping can leverage
+this rx_hash debugfs.
+
+Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.4.0.1.r2-00012-QCAHKSWPL_SILICONZ-1
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-01695-QCAHKSWPL_SILICONZ-1
+
+Co-developed-by: Sriram R <quic_srirrama@quicinc.com>
+Signed-off-by: Sriram R <quic_srirrama@quicinc.com>
 Signed-off-by: P Praneesh <quic_ppranees@quicinc.com>
 ---
-Depends-on: "ath11k: Add ROC support for wide band scan"
----
- drivers/net/wireless/ath/ath11k/mac.c | 12 ++++++------
- drivers/net/wireless/ath/ath11k/wmi.c |  2 ++
- 2 files changed, 8 insertions(+), 6 deletions(-)
+ drivers/net/wireless/ath/ath11k/core.h    |  4 ++
+ drivers/net/wireless/ath/ath11k/debugfs.c | 64 +++++++++++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/hal.h     |  1 +
+ drivers/net/wireless/ath/ath11k/hal_rx.c  | 10 +++++
+ drivers/net/wireless/ath/ath11k/hw.c      | 18 +--------
+ 5 files changed, 81 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 3d197d8..e0dae04 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -775,9 +775,9 @@ static int ath11k_mac_monitor_vdev_start(struct ath11k *ar, int vdev_id,
- 	arg.channel.chan_radar = !!(channel->flags & IEEE80211_CHAN_RADAR);
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index 31d234a..81867ac 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -36,6 +36,9 @@
+ #define ATH11K_INVALID_HW_MAC_ID	0xFF
+ #define ATH11K_CONNECTION_LOSS_HZ	(3 * HZ)
  
- 	arg.channel.min_power = 0;
--	arg.channel.max_power = channel->max_power * 2;
--	arg.channel.max_reg_power = channel->max_reg_power * 2;
--	arg.channel.max_antenna_gain = channel->max_antenna_gain * 2;
-+	arg.channel.max_power = channel->max_power;
-+	arg.channel.max_reg_power = channel->max_reg_power;
-+	arg.channel.max_antenna_gain = channel->max_antenna_gain;
++/* Shift value to set the dest rings hash map to the dest control register */
++#define HAL_REO_DEST_RING_CTRL_HASH_RING_SHIFT 8
++
+ extern unsigned int ath11k_frame_mode;
  
- 	arg.pref_tx_streams = ar->num_tx_chains;
- 	arg.pref_rx_streams = ar->num_rx_chains;
-@@ -6127,9 +6127,9 @@ ath11k_mac_vdev_start_restart(struct ath11k_vif *arvif,
- 		ath11k_phymodes[chandef->chan->band][chandef->width];
+ #define ATH11K_MON_TIMER_INTERVAL  10
+@@ -759,6 +762,7 @@ struct ath11k_base {
  
- 	arg.channel.min_power = 0;
--	arg.channel.max_power = chandef->chan->max_power * 2;
--	arg.channel.max_reg_power = chandef->chan->max_reg_power * 2;
--	arg.channel.max_antenna_gain = chandef->chan->max_antenna_gain * 2;
-+	arg.channel.max_power = chandef->chan->max_power;
-+	arg.channel.max_reg_power = chandef->chan->max_reg_power;
-+	arg.channel.max_antenna_gain = chandef->chan->max_antenna_gain;
+ 	struct completion htc_suspend;
  
- 	arg.pref_tx_streams = ar->num_tx_chains;
- 	arg.pref_rx_streams = ar->num_rx_chains;
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index c428a025..242990e 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -2535,6 +2535,8 @@ int ath11k_wmi_send_scan_chan_list_cmd(struct ath11k *ar,
- 					    tchan_info->reg_class_id);
- 			*reg2 |= FIELD_PREP(WMI_CHAN_REG_INFO2_ANT_MAX,
- 					    tchan_info->antennamax);
-+			*reg2 |= FIELD_PREP(WMI_CHAN_REG_INFO2_MAX_TX_PWR,
-+					    tchan_info->maxregpower);
++	u32 rx_hash;
+ 	/* must be last */
+ 	u8 drv_priv[0] __aligned(sizeof(void *));
+ };
+diff --git a/drivers/net/wireless/ath/ath11k/debugfs.c b/drivers/net/wireless/ath/ath11k/debugfs.c
+index 80afd35..7c2d49c 100644
+--- a/drivers/net/wireless/ath/ath11k/debugfs.c
++++ b/drivers/net/wireless/ath/ath11k/debugfs.c
+@@ -831,6 +831,67 @@ static const struct file_operations fops_soc_dp_stats = {
+ 	.llseek = default_llseek,
+ };
  
- 			ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
- 				   "WMI chan scan list chan[%d] = %u, chan_info->info %8x\n",
++static ssize_t ath11k_write_rx_hash(struct file *file,
++				    const char __user *ubuf,
++				    size_t count, loff_t *ppos)
++{
++	struct ath11k_base *ab = file->private_data;
++	struct ath11k_pdev *pdev;
++	u32 rx_hash;
++	u8 buf[128] = {0};
++	int ret, i;
++
++	for (i = 0; i < ab->num_radios; i++) {
++		pdev = &ab->pdevs[i];
++		if (pdev && pdev->ar)
++			break;
++	}
++
++	if (i == ab->num_radios) {
++		ath11k_err(ab, "radio is not up\n");
++		ret = -ENETDOWN;
++		goto exit;
++	}
++
++	ret = simple_write_to_buffer(buf, sizeof(buf) - 1, ppos, ubuf, count);
++	if (ret < 0)
++		goto exit;
++
++	buf[ret] = '\0';
++	ret = kstrtou32(buf, 0, &rx_hash);
++	if (ret) {
++		ret = -EINVAL;
++		goto exit;
++	}
++
++	if (rx_hash != ab->rx_hash) {
++		ab->rx_hash = rx_hash;
++		if (rx_hash)
++			ath11k_hal_reo_hash_setup(ab, rx_hash);
++	}
++	ret = count;
++exit:
++	return ret;
++}
++
++static ssize_t ath11k_read_rx_hash(struct file *file,
++				   char __user *ubuf,
++				   size_t count, loff_t *ppos)
++{
++	struct ath11k_base *ab = file->private_data;
++	int len = 0;
++	char buf[32];
++
++	len = scnprintf(buf, sizeof(buf) - len, "0x%x\n", ab->rx_hash);
++	return simple_read_from_buffer(ubuf, count, ppos, buf, len);
++}
++
++static const struct file_operations fops_soc_rx_hash = {
++	.read = ath11k_read_rx_hash,
++	.write = ath11k_write_rx_hash,
++	.open = simple_open,
++};
++
+ int ath11k_debugfs_pdev_create(struct ath11k_base *ab)
+ {
+ 	if (test_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags))
+@@ -846,6 +907,9 @@ int ath11k_debugfs_pdev_create(struct ath11k_base *ab)
+ 	debugfs_create_file("soc_dp_stats", 0600, ab->debugfs_soc, ab,
+ 			    &fops_soc_dp_stats);
+ 
++	debugfs_create_file("rx_hash", 0600, ab->debugfs_soc, ab,
++			    &fops_soc_rx_hash);
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/hal.h b/drivers/net/wireless/ath/ath11k/hal.h
+index 35ed3a1..bc9b321 100644
+--- a/drivers/net/wireless/ath/ath11k/hal.h
++++ b/drivers/net/wireless/ath/ath11k/hal.h
+@@ -908,6 +908,7 @@ void ath11k_hal_reo_qdesc_setup(void *vaddr, int tid, u32 ba_window_size,
+ 				u32 start_seq, enum hal_pn_type type);
+ void ath11k_hal_reo_init_cmd_ring(struct ath11k_base *ab,
+ 				  struct hal_srng *srng);
++void ath11k_hal_reo_hash_setup(struct ath11k_base *ab, u32 ring_hash_map);
+ void ath11k_hal_setup_link_idle_list(struct ath11k_base *ab,
+ 				     struct hal_wbm_idle_scatter_list *sbuf,
+ 				     u32 nsbufs, u32 tot_link_desc,
+diff --git a/drivers/net/wireless/ath/ath11k/hal_rx.c b/drivers/net/wireless/ath/ath11k/hal_rx.c
+index 325055c..25d0981 100644
+--- a/drivers/net/wireless/ath/ath11k/hal_rx.c
++++ b/drivers/net/wireless/ath/ath11k/hal_rx.c
+@@ -801,6 +801,16 @@ void ath11k_hal_reo_init_cmd_ring(struct ath11k_base *ab,
+ 	}
+ }
+ 
++void ath11k_hal_reo_hash_setup(struct ath11k_base *ab, u32 ring_hash_map)
++{
++	u32 reo_base = HAL_SEQ_WCSS_UMAC_REO_REG;
++
++	ath11k_hif_write32(ab, reo_base + HAL_REO1_DEST_RING_CTRL_IX_2,
++			   ring_hash_map << HAL_REO_DEST_RING_CTRL_HASH_RING_SHIFT);
++	ath11k_hif_write32(ab, reo_base + HAL_REO1_DEST_RING_CTRL_IX_3,
++			   ring_hash_map << HAL_REO_DEST_RING_CTRL_HASH_RING_SHIFT);
++}
++
+ static enum hal_rx_mon_status
+ ath11k_hal_rx_parse_mon_status_tlv(struct ath11k_base *ab,
+ 				   struct hal_rx_mon_ppdu_info *ppdu_info,
+diff --git a/drivers/net/wireless/ath/ath11k/hw.c b/drivers/net/wireless/ath/ath11k/hw.c
+index 7a343db..61562e8 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.c
++++ b/drivers/net/wireless/ath/ath11k/hw.c
+@@ -132,18 +132,7 @@ static void ath11k_hw_ipq8074_reo_setup(struct ath11k_base *ab)
+ 	ath11k_hif_write32(ab, reo_base + HAL_REO1_AGING_THRESH_IX_3(ab),
+ 			   HAL_DEFAULT_REO_TIMEOUT_USEC);
+ 
+-	ath11k_hif_write32(ab, reo_base + HAL_REO1_DEST_RING_CTRL_IX_0,
+-			   FIELD_PREP(HAL_REO_DEST_RING_CTRL_HASH_RING_MAP,
+-				      ring_hash_map));
+-	ath11k_hif_write32(ab, reo_base + HAL_REO1_DEST_RING_CTRL_IX_1,
+-			   FIELD_PREP(HAL_REO_DEST_RING_CTRL_HASH_RING_MAP,
+-				      ring_hash_map));
+-	ath11k_hif_write32(ab, reo_base + HAL_REO1_DEST_RING_CTRL_IX_2,
+-			   FIELD_PREP(HAL_REO_DEST_RING_CTRL_HASH_RING_MAP,
+-				      ring_hash_map));
+-	ath11k_hif_write32(ab, reo_base + HAL_REO1_DEST_RING_CTRL_IX_3,
+-			   FIELD_PREP(HAL_REO_DEST_RING_CTRL_HASH_RING_MAP,
+-				      ring_hash_map));
++	ath11k_hal_reo_hash_setup(ab, ring_hash_map);
+ }
+ 
+ static void ath11k_init_wmi_config_ipq8074(struct ath11k_base *ab,
+@@ -771,10 +760,7 @@ static void ath11k_hw_wcn6855_reo_setup(struct ath11k_base *ab)
+ 	ath11k_hif_write32(ab, reo_base + HAL_REO1_AGING_THRESH_IX_3(ab),
+ 			   HAL_DEFAULT_REO_TIMEOUT_USEC);
+ 
+-	ath11k_hif_write32(ab, reo_base + HAL_REO1_DEST_RING_CTRL_IX_2,
+-			   ring_hash_map);
+-	ath11k_hif_write32(ab, reo_base + HAL_REO1_DEST_RING_CTRL_IX_3,
+-			   ring_hash_map);
++	ath11k_hal_reo_hash_setup(ab, ring_hash_map);
+ }
+ 
+ static u16 ath11k_hw_ipq8074_mpdu_info_get_peerid(u8 *tlv_data)
 -- 
 2.7.4
 
