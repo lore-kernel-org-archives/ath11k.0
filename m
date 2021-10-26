@@ -2,14 +2,14 @@ Return-Path: <SRS0=4fK3=PO=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D9CA2C43217
-	for <ath11k@archiver.kernel.org>; Tue, 26 Oct 2021 11:20:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0F753C433FE
+	for <ath11k@archiver.kernel.org>; Tue, 26 Oct 2021 11:20:02 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9D16A60232
-	for <ath11k@archiver.kernel.org>; Tue, 26 Oct 2021 11:20:00 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 9D16A60232
+	by mail.kernel.org (Postfix) with ESMTPS id C6CA760232
+	for <ath11k@archiver.kernel.org>; Tue, 26 Oct 2021 11:20:01 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org C6CA760232
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=quicinc.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -18,45 +18,44 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FHIn8Jyo4Ob/SN79d4w+xmmvdP80XN/GgLuWOnQEhWA=; b=PLXbpZKvhcXvpJ
-	M0rLtyDui4VQ6t0aVRHMDERLNNHbx1dhS0gwcS5JTCZ7DVm8SGF8X0zJ8vs+hb4oy7zGzzqaROv5i
-	6z7wF7pxt6YiPjFhXVoH6kPLP66mtgnoBfGBDYZmtW5Imjn4W+8UwNBZfeQZRLnQ1SM6gBzoaOhbL
-	YV2EA2t+0vfTVU9m10NzG8UGAG8Kir64B80rxo+ZGnQ8xad9GMUHskX/ZYzSFnsjohVSzF3KbJZ3D
-	0zvDNR9ugRILMxAhSjTMtNTYp0jiNs4FI0RJEPhtaFTI1M2A4uvzgcrFfBK5tpKieL4udRkbjkhBZ
-	qQjIX5nWvCfWoevCAPqw==;
+	List-Owner; bh=Ob05nj8Nz8uAV+6LJXVxhYXd0Y0wZSB1vb3MRYQbEDY=; b=tnhdmcHC6xnvlO
+	tOCCKPeRuyX392XxUESXXbz4hwa29Q9GDM5eGwLy+j8ovO6ExmIB60Z/3LKyyQTPh5+aEb0GStY+B
+	qOVx2VjM6qdaCldajWXJhtAhRQGk7f4ITO0ECVPDD1126B64NxkfbUgvKtGHuD9uSdxIrEMhxNA1H
+	nY27cRb3N2WZhle5pJIx/NNYTRQkA/KsKuz4votrh1ZJSetN226ACmnk20nDna72LRltqCaAzKtWQ
+	XWhm1M1MYjbetWQnekbt0Ti3Gd3pJPQchuVYcH7yk7nggSfu5XkCuWq7kIq2RDq9+D+kC2POqyMNv
+	IDAR8VHF/cn99Zw3uetQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mfKUn-001cJr-PP; Tue, 26 Oct 2021 11:19:57 +0000
+	id 1mfKUo-001cKf-OS; Tue, 26 Oct 2021 11:19:58 +0000
 Received: from alexa-out.qualcomm.com ([129.46.98.28])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mfKUk-001cGs-0E
+ id 1mfKUj-001cGS-37
  for ath11k@lists.infradead.org; Tue, 26 Oct 2021 11:19:55 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1635247194; x=1666783194;
+ t=1635247193; x=1666783193;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=3D/VUADKnb7G3mKyABz343EVM5vSqCrGoJnBl084SOo=;
- b=IZKv7VU41I8/dKqYpnHxJEAwF+ZOC/GwA+DoQkyXZkoOY4/P0ZOGE5zh
- Z3g/SieOWZzZHqv1yG317XrX5UrRV05c2f8AGyAN7ixwlZZzZeWbPEVcb
- pXyU9zfAhhHWCHuObkZdHFVWqE8TNpUD5+kfXsf0thYhN+HsJdt/PJjae 0=;
-Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
- by alexa-out.qualcomm.com with ESMTP; 26 Oct 2021 04:19:53 -0700
+ bh=fxTQpgOq/Gf7CwIaKwgi78/KG8G+NnCRuF/yoWfnnMA=;
+ b=Qp8Ilk0oiIqnX4r1rHjR8swDTleM3gPgBwvfp/1nc2+p9RoDgHRcE/fr
+ D7excLkPwXjZgloRbZ4pBoVFPMc/5xIrwuYy//SSiob5aqCnZ0XmapSHR
+ WvjduGbQz+n6NBpmRLEolQzR7Ah2rlYO73f2CNWqzdij6NhaFkTn+3Nqn U=;
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+ by alexa-out.qualcomm.com with ESMTP; 26 Oct 2021 04:19:52 -0700
 X-QCInternal: smtphost
 Received: from nalasex01a.na.qualcomm.com ([10.47.209.196])
- by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2021 04:19:54 -0700
+ by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2021 04:19:52 -0700
 Received: from wgong-HP3-Z230-SFF-Workstation.qca.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.7; 
- Tue, 26 Oct 2021 04:19:52 -0700
+ Tue, 26 Oct 2021 04:19:50 -0700
 From: Wen Gong <quic_wgong@quicinc.com>
 To: <ath11k@lists.infradead.org>
 CC: <linux-wireless@vger.kernel.org>, <quic_wgong@quicinc.com>
-Subject: [PATCH 04/15] ath11k: allow only one interface up simultaneously for
- WCN6855
-Date: Tue, 26 Oct 2021 07:19:02 -0400
-Message-ID: <20211026111913.7346-5-quic_wgong@quicinc.com>
+Subject: [PATCH 03/15] ath11k: add support to select 6 GHz Regulatory type
+Date: Tue, 26 Oct 2021 07:19:01 -0400
+Message-ID: <20211026111913.7346-4-quic_wgong@quicinc.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20211026111913.7346-1-quic_wgong@quicinc.com>
 References: <20211026111913.7346-1-quic_wgong@quicinc.com>
@@ -65,8 +64,8 @@ X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211026_041954_133842_ED170A6B 
-X-CRM114-Status: GOOD (  13.94  )
+X-CRM114-CacheID: sfid-20211026_041953_256162_AFA7C4A5 
+X-CRM114-Status: GOOD (  17.77  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,68 +82,469 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Currently ath11k support both station/AP mode for WCN6855, and it is
-configured with single_pdev_only, it means it has only one ath11k
-and one ieee80211_hw which registered in mac80211 and one wiphy
-registered in cfg80211. Now it does not have requirement to start
-up both station and AP interface simultaneously for WCN6855, this
-is to disable station and AP concurrency mode.
-
-After this patch, when station interface is up, then AP interface
-can not start up. AP interface can start up after station interface
-down. Also when AP interface is up, station interface can not start
-up. station interface can start up after AP interface down.
+There are 3 types of regulatory rules for AP mode and 6 type for
+station mode. Add wmi_vdev_type and ieee80211_ap_reg_power to
+select the exact reg rules.
 
 Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
 
 Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
 ---
- drivers/net/wireless/ath/ath11k/core.h |  5 +++++
- drivers/net/wireless/ath/ath11k/mac.c  | 17 ++++++++++++++++-
- 2 files changed, 21 insertions(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/reg.c |  61 ++++++--
+ drivers/net/wireless/ath/ath11k/reg.h |   6 +-
+ drivers/net/wireless/ath/ath11k/wmi.c | 192 +++++++++++++++++++++++++-
+ drivers/net/wireless/ath/ath11k/wmi.h |  25 +++-
+ 4 files changed, 268 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index a65f7d00eea2..e6c4963e41ac 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -972,4 +972,9 @@ static inline bool ath11k_support_cc_ext(struct ath11k_base *ab)
- 	       test_bit(WMI_TLV_SERVICE_REG_CC_EXT_EVENT_SUPPORT, ab->wmi_ab.svc_map);
+diff --git a/drivers/net/wireless/ath/ath11k/reg.c b/drivers/net/wireless/ath/ath11k/reg.c
+index efd047ccf0df..4992f498c8a7 100644
+--- a/drivers/net/wireless/ath/ath11k/reg.c
++++ b/drivers/net/wireless/ath/ath11k/reg.c
+@@ -577,16 +577,33 @@ ath11k_reg_update_weather_radar_band(struct ath11k_base *ab,
+ 	*rule_idx = i;
  }
  
-+static inline bool ath11k_support_6G_cc_ext(struct ath11k *ar)
++enum wmi_reg_6g_ap_type
++ath11k_ieee80211_ap_pwr_type_convert(enum ieee80211_ap_reg_power power_type)
 +{
-+	return ath11k_support_cc_ext(ar->ab) && ar->supports_6ghz;
++	switch (power_type) {
++	case IEEE80211_REG_LPI_AP:
++		return WMI_REG_INDOOR_AP;
++	case IEEE80211_REG_SP_AP:
++		return WMI_REG_STANDARD_POWER_AP;
++	case IEEE80211_REG_VLP_AP:
++		return WMI_REG_VERY_LOW_POWER_AP;
++	default:
++		return WMI_REG_MAX_AP_TYPE;
++	}
 +}
 +
- #endif /* _CORE_H_ */
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 61e70f3b4a7c..2d96eea9300d 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -6431,7 +6431,22 @@ static int ath11k_mac_setup_iface_combinations(struct ath11k *ar)
+ struct ieee80211_regdomain *
+ ath11k_reg_build_regd(struct ath11k_base *ab,
+-		      struct cur_regulatory_info *reg_info, bool intersect)
++		      struct cur_regulatory_info *reg_info, bool intersect,
++		      enum wmi_vdev_type vdev_type,
++		      enum ieee80211_ap_reg_power power_type)
+ {
+ 	struct ieee80211_regdomain *tmp_regd, *default_regd, *new_regd = NULL;
+-	struct cur_reg_rule *reg_rule;
++	struct cur_reg_rule *reg_rule, *reg_rule_6g;
+ 	u8 i = 0, j = 0, k = 0;
+ 	u8 num_rules;
+ 	u16 max_bw;
+-	u32 flags;
++	u32 flags, reg_6g_number, max_bw_6g;
+ 	char alpha2[3];
  
- 	combinations[0].limits = limits;
- 	combinations[0].n_limits = n_limits;
--	combinations[0].max_interfaces = 16;
+ 	num_rules = reg_info->num_5g_reg_rules + reg_info->num_2g_reg_rules;
+@@ -595,8 +612,32 @@ ath11k_reg_build_regd(struct ath11k_base *ab,
+ 	 * This can be updated to choose the combination dynamically based on AP
+ 	 * type and client type, after complete 6 GHz regulatory support is added.
+ 	 */
+-	if (reg_info->is_ext_reg_event)
+-		num_rules += reg_info->num_6g_reg_rules_ap[WMI_REG_INDOOR_AP];
++	if (reg_info->is_ext_reg_event) {
++		if (vdev_type == WMI_VDEV_TYPE_STA) {
++			enum wmi_reg_6g_ap_type ap_type;
 +
-+	/* When single pdev is set, there is only one ieee80211_hw/wiphy
-+	 * of mac80211/cfg80211, and it has only one reg rules stored
-+	 * The reg rules of 6 GHz is different for station and AP, please
-+	 * refer WMI_REG_CHAN_LIST_CC_EXT_EVENTID handler.
-+	 * When start station/AP simultaneously, there is not more
-+	 * struct to store the second reg rules in cfg80211.
-+	 * Also it does not have requirement for station/AP concurrency
-+	 * for WCN6855, so disable it currently.
-+	 */
-+	if (ab->hw_params.single_pdev_only &&
-+	    ath11k_support_6G_cc_ext(ar))
-+		combinations[0].max_interfaces = 1;
-+	else
-+		combinations[0].max_interfaces = 16;
++			ap_type = ath11k_ieee80211_ap_pwr_type_convert(power_type);
 +
- 	combinations[0].num_different_channels = 1;
- 	combinations[0].beacon_int_infra_match = true;
- 	combinations[0].beacon_int_min_gcd = 100;
++			if (ap_type == WMI_REG_MAX_AP_TYPE)
++				ap_type = WMI_REG_INDOOR_AP;
++			reg_6g_number = reg_info->num_6g_reg_rules_client
++					[ap_type][WMI_REG_DEFAULT_CLIENT];
++			if (reg_6g_number == 0) {
++				ap_type = WMI_REG_INDOOR_AP;
++				reg_6g_number = reg_info->num_6g_reg_rules_client
++						[ap_type][WMI_REG_DEFAULT_CLIENT];
++			}
++			reg_rule_6g = reg_info->reg_rules_6g_client_ptr
++					[ap_type][WMI_REG_DEFAULT_CLIENT];
++			max_bw_6g = reg_info->max_bw_6g_client
++					[ap_type][WMI_REG_DEFAULT_CLIENT];
++		} else {
++			reg_6g_number = reg_info->num_6g_reg_rules_ap[WMI_REG_INDOOR_AP];
++			reg_rule_6g = reg_info->reg_rules_6g_ap_ptr[WMI_REG_INDOOR_AP];
++			max_bw_6g = reg_info->max_bw_6g_ap[WMI_REG_INDOOR_AP];
++		}
++		num_rules += reg_6g_number;
++	}
+ 
+ 	if (!num_rules)
+ 		goto ret;
+@@ -643,12 +684,10 @@ ath11k_reg_build_regd(struct ath11k_base *ab,
+ 			 * per other BW rule flags we pass from here
+ 			 */
+ 			flags = NL80211_RRF_AUTO_BW;
+-		} else if (reg_info->is_ext_reg_event &&
+-			   reg_info->num_6g_reg_rules_ap[WMI_REG_INDOOR_AP] &&
+-			   (k < reg_info->num_6g_reg_rules_ap[WMI_REG_INDOOR_AP])) {
+-			reg_rule = reg_info->reg_rules_6g_ap_ptr[WMI_REG_INDOOR_AP] + k++;
+-			max_bw = min_t(u16, reg_rule->max_bw,
+-				       reg_info->max_bw_6g_ap[WMI_REG_INDOOR_AP]);
++		} else if (reg_info->is_ext_reg_event && reg_6g_number &&
++			   (k < reg_6g_number)) {
++			reg_rule = reg_rule_6g + k++;
++			max_bw = min_t(u16, reg_rule->max_bw, max_bw_6g);
+ 			flags = NL80211_RRF_AUTO_BW;
+ 		} else {
+ 			break;
+diff --git a/drivers/net/wireless/ath/ath11k/reg.h b/drivers/net/wireless/ath/ath11k/reg.h
+index 65d56d44796f..3c8af2924290 100644
+--- a/drivers/net/wireless/ath/ath11k/reg.h
++++ b/drivers/net/wireless/ath/ath11k/reg.h
+@@ -30,7 +30,11 @@ void ath11k_reg_free(struct ath11k_base *ab);
+ void ath11k_regd_update_work(struct work_struct *work);
+ struct ieee80211_regdomain *
+ ath11k_reg_build_regd(struct ath11k_base *ab,
+-		      struct cur_regulatory_info *reg_info, bool intersect);
++		      struct cur_regulatory_info *reg_info, bool intersect,
++		      enum wmi_vdev_type vdev_type,
++		      enum ieee80211_ap_reg_power power_type);
++enum wmi_reg_6g_ap_type
++ath11k_ieee80211_ap_pwr_type_convert(enum ieee80211_ap_reg_power power_type);
+ int ath11k_regd_update(struct ath11k *ar, bool init);
+ int ath11k_reg_update_chan_list(struct ath11k *ar);
+ #endif
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index ff3a7bbbb27e..3a286b70c73f 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -4522,6 +4522,26 @@ static struct cur_reg_rule
+ 	return reg_rule_ptr;
+ }
+ 
++static char *ath11k_cc_status_to_str(enum cc_setting_code code)
++{
++	switch (code) {
++	case REG_SET_CC_STATUS_PASS:
++		return "REG_SET_CC_STATUS_PASS";
++	case REG_CURRENT_ALPHA2_NOT_FOUND:
++		return "REG_CURRENT_ALPHA2_NOT_FOUND";
++	case REG_INIT_ALPHA2_NOT_FOUND:
++		return "REG_INIT_ALPHA2_NOT_FOUND";
++	case REG_SET_CC_CHANGE_NOT_ALLOWED:
++		return "REG_SET_CC_CHANGE_NOT_ALLOWED";
++	case REG_SET_CC_STATUS_NO_MEMORY:
++		return "REG_SET_CC_STATUS_NO_MEMORY";
++	case REG_SET_CC_STATUS_FAIL:
++		return "REG_SET_CC_STATUS_FAIL";
++	default:
++		return "unknown cc status";
++	}
++};
++
+ static int ath11k_pull_reg_chan_list_update_ev(struct ath11k_base *ab,
+ 					       struct sk_buff *skb,
+ 					       struct cur_regulatory_info *reg_info)
+@@ -4588,6 +4608,10 @@ static int ath11k_pull_reg_chan_list_update_ev(struct ath11k_base *ab,
+ 	num_2g_reg_rules = reg_info->num_2g_reg_rules;
+ 	num_5g_reg_rules = reg_info->num_5g_reg_rules;
+ 
++	ath11k_dbg(ab, ATH11K_DBG_WMI,
++		   "%s: status_code %s", __func__,
++		   ath11k_cc_status_to_str(reg_info->status_code));
++
+ 	ath11k_dbg(ab, ATH11K_DBG_WMI,
+ 		   "%s:cc %s dsf %d BW: min_2g %d max_2g %d min_5g %d max_5g %d",
+ 		   __func__, reg_info->alpha2, reg_info->dfs_region,
+@@ -4630,6 +4654,99 @@ static int ath11k_pull_reg_chan_list_update_ev(struct ath11k_base *ab,
+ 	return 0;
+ }
+ 
++static char *ath11k_super_reg_6g_to_str(enum reg_super_domain_6g domain_id)
++{
++	switch (domain_id) {
++	case FCC1_6G:
++		return "FCC1_6G";
++	case ETSI1_6G:
++		return "ETSI1_6G";
++	case ETSI2_6G:
++		return "ETSI2_6G";
++	case APL1_6G:
++		return "APL1_6G";
++	case FCC1_6G_CL:
++		return "FCC1_6G_CL";
++	default:
++		return "unknown domain id";
++	}
++};
++
++static char *ath11k_6g_client_type_to_str(enum wmi_reg_6g_client_type type)
++{
++	switch (type) {
++	case WMI_REG_DEFAULT_CLIENT:
++		return "DEFAULT CLIENT";
++	case WMI_REG_SUBORDINATE_CLIENT:
++		return "SUBORDINATE CLIENT";
++	default:
++		return "unknown client type";
++	}
++};
++
++static char *ath11k_6g_ap_type_to_str(enum wmi_reg_6g_ap_type type)
++{
++	switch (type) {
++	case WMI_REG_INDOOR_AP:
++		return "INDOOR AP";
++	case WMI_REG_STANDARD_POWER_AP:
++		return "STANDARD POWER AP";
++	case WMI_REG_VERY_LOW_POWER_AP:
++		return "VERY LOW POWER AP";
++	default:
++		return "unknown AP type";
++	}
++};
++
++static char *ath11k_sub_reg_6g_to_str(enum reg_subdomains_6g sub_id)
++{
++	switch (sub_id) {
++	case FCC1_CLIENT_LPI_REGULAR_6G:
++		return "FCC1_CLIENT_LPI_REGULAR_6G";
++	case FCC1_CLIENT_SP_6G:
++		return "FCC1_CLIENT_SP_6G";
++	case FCC1_AP_LPI_6G:
++		return "FCC1_AP_LPI_6G/FCC1_CLIENT_LPI_SUBORDINATE";
++	case FCC1_AP_SP_6G:
++		return "FCC1_AP_SP_6G";
++	case ETSI1_LPI_6G:
++		return "ETSI1_LPI_6G";
++	case ETSI1_VLP_6G:
++		return "ETSI1_VLP_6G";
++	case ETSI2_LPI_6G:
++		return "ETSI2_LPI_6G";
++	case ETSI2_VLP_6G:
++		return "ETSI2_VLP_6G";
++	case APL1_LPI_6G:
++		return "APL1_LPI_6G";
++	case APL1_VLP_6G:
++		return "APL1_VLP_6G";
++	case EMPTY_6G:
++		return "N/A";
++	default:
++		return "unknown sub reg id";
++	}
++};
++
++static void ath11k_print_reg_rule(struct ath11k_base *ab, char *prev,
++				  u32 num_reg_rules,
++				  struct cur_reg_rule *reg_rule_ptr)
++{
++	struct cur_reg_rule *reg_rule = reg_rule_ptr;
++	u32 count;
++
++	ath11k_dbg(ab, ATH11K_DBG_WMI, "%s reg rules number %d\n", prev, num_reg_rules);
++
++	for (count = 0; count < num_reg_rules; count++) {
++		ath11k_dbg(ab, ATH11K_DBG_WMI,
++			   "reg rule %d: (%d - %d @ %d) (%d, %d) (FLAGS %d) (psd flag %d EIRP %d dB/MHz)\n",
++			   count + 1, reg_rule->start_freq, reg_rule->end_freq,
++			   reg_rule->max_bw, reg_rule->ant_gain, reg_rule->reg_power,
++			   reg_rule->flags, reg_rule->psd_flag, reg_rule->psd_eirp);
++		reg_rule++;
++	}
++}
++
+ static struct cur_reg_rule
+ *create_ext_reg_rules_from_wmi(u32 num_reg_rules,
+ 			       struct wmi_regulatory_ext_rule *wmi_reg_rule)
+@@ -4787,6 +4904,10 @@ static int ath11k_pull_reg_chan_list_ext_update_ev(struct ath11k_base *ab,
+ 	 * from 5 GHz rules list.
+ 	 */
+ 	if (memcmp(reg_info->alpha2, "US", 2) == 0) {
++		ath11k_dbg(ab, ATH11K_DBG_WMI,
++			   "US 5g reg rules number %d from firmware",
++			   reg_info->num_5g_reg_rules);
++
+ 		reg_info->num_5g_reg_rules = REG_US_5G_NUM_REG_RULES;
+ 		num_5g_reg_rules = reg_info->num_5g_reg_rules;
+ 	}
+@@ -4819,6 +4940,10 @@ static int ath11k_pull_reg_chan_list_ext_update_ev(struct ath11k_base *ab,
+ 		break;
+ 	}
+ 
++	ath11k_dbg(ab, ATH11K_DBG_WMI,
++		   "%s: status_code %s", __func__,
++		   ath11k_cc_status_to_str(reg_info->status_code));
++
+ 	reg_info->is_ext_reg_event = true;
+ 
+ 	reg_info->min_bw_2g = ext_chan_list_event_hdr->min_bw_2g;
+@@ -4838,6 +4963,15 @@ static int ath11k_pull_reg_chan_list_ext_update_ev(struct ath11k_base *ab,
+ 	reg_info->max_bw_6g_ap[WMI_REG_VERY_LOW_POWER_AP] =
+ 			ext_chan_list_event_hdr->max_bw_6g_ap_vlp;
+ 
++	ath11k_dbg(ab, ATH11K_DBG_WMI,
++		   "6 GHz AP BW: lpi %d - %d sp %d - %d vlp %d - %d\n",
++		   ext_chan_list_event_hdr->min_bw_6g_ap_lpi,
++		   ext_chan_list_event_hdr->max_bw_6g_ap_lpi,
++		   ext_chan_list_event_hdr->min_bw_6g_ap_sp,
++		   ext_chan_list_event_hdr->max_bw_6g_ap_sp,
++		   ext_chan_list_event_hdr->min_bw_6g_ap_vlp,
++		   ext_chan_list_event_hdr->max_bw_6g_ap_vlp);
++
+ 	for (i = 0; i < WMI_REG_MAX_CLIENT_TYPE; i++) {
+ 		reg_info->min_bw_6g_client[WMI_REG_INDOOR_AP][i] =
+ 				ext_chan_list_event_hdr->min_bw_6g_client_lpi[i];
+@@ -4851,6 +4985,17 @@ static int ath11k_pull_reg_chan_list_ext_update_ev(struct ath11k_base *ab,
+ 				ext_chan_list_event_hdr->min_bw_6g_client_vlp[i];
+ 		reg_info->max_bw_6g_client[WMI_REG_VERY_LOW_POWER_AP][i] =
+ 				ext_chan_list_event_hdr->max_bw_6g_client_vlp[i];
++
++		ath11k_dbg(ab, ATH11K_DBG_WMI,
++			   "6 GHz %s BW: lpi (%d - %d) sp (%d - %d) vlp (%d - %d)\n",
++			   ath11k_6g_client_type_to_str(i),
++			   ext_chan_list_event_hdr->min_bw_6g_client_lpi[i],
++			   ext_chan_list_event_hdr->max_bw_6g_client_lpi[i],
++			   ext_chan_list_event_hdr->min_bw_6g_client_sp[i],
++			   ext_chan_list_event_hdr->max_bw_6g_client_sp[i],
++			   ext_chan_list_event_hdr->min_bw_6g_client_vlp[i],
++			   ext_chan_list_event_hdr->max_bw_6g_client_vlp[i]);
++
+ 	}
+ 
+ 	ath11k_dbg(ab, ATH11K_DBG_WMI,
+@@ -4893,6 +5038,9 @@ static int ath11k_pull_reg_chan_list_ext_update_ev(struct ath11k_base *ab,
+ 			ath11k_warn(ab, "Unable to Allocate memory for 2g rules\n");
+ 			return -ENOMEM;
+ 		}
++		ath11k_print_reg_rule(ab, "2g",
++				      num_2g_reg_rules,
++				      reg_info->reg_rules_2g_ptr);
+ 	}
+ 
+ 	if (num_5g_reg_rules) {
+@@ -4906,6 +5054,9 @@ static int ath11k_pull_reg_chan_list_ext_update_ev(struct ath11k_base *ab,
+ 			ath11k_warn(ab, "Unable to Allocate memory for 5g rules\n");
+ 			return -ENOMEM;
+ 		}
++		ath11k_print_reg_rule(ab, "5g",
++				      num_5g_reg_rules,
++				      reg_info->reg_rules_5g_ptr);
+ 	}
+ 
+ 	ext_wmi_reg_rule += num_5g_reg_rules;
+@@ -4921,10 +5072,17 @@ static int ath11k_pull_reg_chan_list_ext_update_ev(struct ath11k_base *ab,
+ 			return -ENOMEM;
+ 		}
+ 
++		ath11k_print_reg_rule(ab, ath11k_6g_ap_type_to_str(i),
++				      num_6g_reg_rules_ap[i],
++				      reg_info->reg_rules_6g_ap_ptr[i]);
++
+ 		ext_wmi_reg_rule += num_6g_reg_rules_ap[i];
+ 	}
+ 
+ 	for (j = 0; j < WMI_REG_CURRENT_MAX_AP_TYPE; j++) {
++		ath11k_dbg(ab, ATH11K_DBG_WMI,
++			   "AP type %s", ath11k_6g_ap_type_to_str(j));
++
+ 		for (i = 0; i < WMI_REG_MAX_CLIENT_TYPE; i++) {
+ 			reg_info->reg_rules_6g_client_ptr[j][i] =
+ 				create_ext_reg_rules_from_wmi(num_6g_client[j][i],
+@@ -4936,6 +5094,10 @@ static int ath11k_pull_reg_chan_list_ext_update_ev(struct ath11k_base *ab,
+ 				return -ENOMEM;
+ 			}
+ 
++			ath11k_print_reg_rule(ab, ath11k_6g_client_type_to_str(i),
++					      num_6g_client[j][i],
++					      reg_info->reg_rules_6g_client_ptr[j][i]);
++
+ 			ext_wmi_reg_rule += num_6g_client[j][i];
+ 		}
+ 	}
+@@ -4951,6 +5113,18 @@ static int ath11k_pull_reg_chan_list_ext_update_ev(struct ath11k_base *ab,
+ 	reg_info->domain_code_6g_ap[WMI_REG_VERY_LOW_POWER_AP] =
+ 			ext_chan_list_event_hdr->domain_code_6g_ap_vlp;
+ 
++	ath11k_dbg(ab, ATH11K_DBG_WMI,
++		   "6 GHz reg info client type %s rnr_tpe_usable %d unspecified_ap_usable %d AP sub domain: lpi %s , sp %s , vlp %s\n",
++		   ath11k_6g_client_type_to_str(reg_info->client_type),
++		   reg_info->rnr_tpe_usable,
++		   reg_info->unspecified_ap_usable,
++		   ath11k_sub_reg_6g_to_str
++		   (ext_chan_list_event_hdr->domain_code_6g_ap_lpi),
++		   ath11k_sub_reg_6g_to_str
++		   (ext_chan_list_event_hdr->domain_code_6g_ap_sp),
++		   ath11k_sub_reg_6g_to_str
++		   (ext_chan_list_event_hdr->domain_code_6g_ap_vlp));
++
+ 	for (i = 0; i < WMI_REG_MAX_CLIENT_TYPE; i++) {
+ 		reg_info->domain_code_6g_client[WMI_REG_INDOOR_AP][i] =
+ 				ext_chan_list_event_hdr->domain_code_6g_client_lpi[i];
+@@ -4958,13 +5132,24 @@ static int ath11k_pull_reg_chan_list_ext_update_ev(struct ath11k_base *ab,
+ 				ext_chan_list_event_hdr->domain_code_6g_client_sp[i];
+ 		reg_info->domain_code_6g_client[WMI_REG_VERY_LOW_POWER_AP][i] =
+ 				ext_chan_list_event_hdr->domain_code_6g_client_vlp[i];
++
++		ath11k_dbg(ab, ATH11K_DBG_WMI,
++			   "6 GHz client type %s client sub domain: lpi %s , sp %s , vlp %s\n",
++			   ath11k_6g_client_type_to_str(i),
++			   ath11k_sub_reg_6g_to_str
++			   (ext_chan_list_event_hdr->domain_code_6g_client_lpi[i]),
++			   ath11k_sub_reg_6g_to_str
++			   (ext_chan_list_event_hdr->domain_code_6g_client_sp[i]),
++			   ath11k_sub_reg_6g_to_str
++			   (ext_chan_list_event_hdr->domain_code_6g_client_vlp[i]));
+ 	}
+ 
+ 	reg_info->domain_code_6g_super_id =
+ 			ext_chan_list_event_hdr->domain_code_6g_super_id;
+ 
+-	ath11k_dbg(ab, ATH11K_DBG_WMI, "6 GHz client_type: %d domain_code_6g_super_id: %d",
+-		   reg_info->client_type, reg_info->domain_code_6g_super_id);
++	ath11k_dbg(ab, ATH11K_DBG_WMI, "6 GHz client type %s 6 GHz super domain %s",
++		   ath11k_6g_client_type_to_str(reg_info->client_type),
++		   ath11k_super_reg_6g_to_str(reg_info->domain_code_6g_super_id));
+ 
+ 	ath11k_dbg(ab, ATH11K_DBG_WMI, "processed regulatory ext channel list\n");
+ 
+@@ -6217,7 +6402,8 @@ static int ath11k_reg_chan_list_event(struct ath11k_base *ab,
+ 	    !ath11k_reg_is_world_alpha((char *)reg_info->alpha2))
+ 		intersect = true;
+ 
+-	regd = ath11k_reg_build_regd(ab, reg_info, intersect);
++	regd = ath11k_reg_build_regd(ab, reg_info, intersect,
++				     WMI_VDEV_TYPE_AP, IEEE80211_REG_UNSET_AP);
+ 	if (!regd) {
+ 		ath11k_warn(ab, "failed to build regd from reg_info\n");
+ 		goto fallback;
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index 53aa4167db7f..c346937b8d4e 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -4041,7 +4041,30 @@ struct cur_reg_rule {
+ 	u8 ant_gain;
+ 	u16 flags;
+ 	bool psd_flag;
+-	u16 psd_eirp;
++	s8 psd_eirp;
++};
++
++enum reg_subdomains_6g {
++	EMPTY_6G = 0x0,
++	FCC1_CLIENT_LPI_REGULAR_6G = 0x01,
++	FCC1_CLIENT_SP_6G = 0x02,
++	FCC1_AP_LPI_6G = 0x03,
++	FCC1_CLIENT_LPI_SUBORDINATE = FCC1_AP_LPI_6G,
++	FCC1_AP_SP_6G = 0x04,
++	ETSI1_LPI_6G = 0x10,
++	ETSI1_VLP_6G = 0x11,
++	ETSI2_LPI_6G = 0x12,
++	ETSI2_VLP_6G = 0x13,
++	APL1_LPI_6G = 0x20,
++	APL1_VLP_6G = 0x21,
++};
++
++enum reg_super_domain_6g {
++	FCC1_6G = 0x01,
++	ETSI1_6G = 0x02,
++	ETSI2_6G = 0x03,
++	APL1_6G = 0x04,
++	FCC1_6G_CL = 0x05,
+ };
+ 
+ struct cur_regulatory_info {
 -- 
 2.31.1
 
