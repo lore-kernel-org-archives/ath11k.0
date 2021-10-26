@@ -2,14 +2,14 @@ Return-Path: <SRS0=4fK3=PO=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C62B9C433F5
-	for <ath11k@archiver.kernel.org>; Tue, 26 Oct 2021 11:20:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B4E1CC433FE
+	for <ath11k@archiver.kernel.org>; Tue, 26 Oct 2021 11:20:15 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 94D4160238
-	for <ath11k@archiver.kernel.org>; Tue, 26 Oct 2021 11:20:13 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 94D4160238
+	by mail.kernel.org (Postfix) with ESMTPS id 7AAF960232
+	for <ath11k@archiver.kernel.org>; Tue, 26 Oct 2021 11:20:15 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 7AAF960232
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=quicinc.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -18,45 +18,45 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=a0bRj5Ul5dXreXo5gB9h8d+DY9aUs2+732qSSepr8UA=; b=ySl47jtWbVcmU7
-	1FoAc09dYQahh4yQ8xmz+VxeGuZcutteOCsFNWsis6qhPsNOZ6fA0Gfa/KxF9BaEgm21wQr5WqkA0
-	cdM01wxawSPjEyDltXiEBdtq2y6U80bk2E7fg0+cwmlWXcf5eRx7pMrIY8QFiJiIwZZPy5YffkkKj
-	avAyVtWkCgd7tEdmPm78/eNYakFDEzQLdflBmfOHG10xgIQcWK3kAXDpU2yLCZan6n/loHfe/j6EI
-	8c1uFV2NRVRyvIHjRzHc4V6HcGTtwLG3CUXTGkDdaLd9nMnUGJX8UomdO0UPU84TYra+DQusdWcU5
-	QubNt8Jxj1p3f57O3DyA==;
+	List-Owner; bh=dF8gClO7/Y9JIR3m1pOdzZCWWpWaPQXAoHm2JyYnEZM=; b=qQaeH4yqjSNyUF
+	4iH478mIT77meXZmUhXwW1ausDfszK8ev2Su5gGGXL48PuZc/KVeulwQqTtuP2HcYahYzP+zzCmiY
+	9q86D/mX2frzz9T3AlFnOOo9L1XdmU2DIKqWmzcPa3ORrtdVTsbac09DIa6FD/cSoqi6UMzyIVE8H
+	LE1gd2JHiuuBtC3Ksq2mkHsRh5MXDCrQ6sJ1uV/k0viRb6TqDGQ8jVQSp9Sp5Y/WexwVMvjRvcDlf
+	GX46ONhR4DsUTlCLt0h8TGGqcwWnlW4m8TY470saG37IYirwuVaWuwWwMFi/jRgQ/0AQCz9yX/H8p
+	TKEbN0zugUm5T+IH7P+g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mfKV1-001cZd-35; Tue, 26 Oct 2021 11:20:11 +0000
+	id 1mfKV2-001caw-D0; Tue, 26 Oct 2021 11:20:12 +0000
 Received: from alexa-out.qualcomm.com ([129.46.98.28])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mfKUs-001cOz-OI
- for ath11k@lists.infradead.org; Tue, 26 Oct 2021 11:20:04 +0000
+ id 1mfKUt-001cGS-L5
+ for ath11k@lists.infradead.org; Tue, 26 Oct 2021 11:20:05 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1635247202; x=1666783202;
+ t=1635247204; x=1666783204;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/VdXjZeertDBhheMPWEn+odbnDuSPrVDKp4B0qugQGw=;
- b=r6viQJzKSPubsqhVyhoYhvd9sqSi3KCJkoYbv2520C4pvze0TL9EisgI
- umGbmlVi7uPi7Nn8OmIZT631YY7h+Y4XjQlSQ/xn9o6hbrIDHRh0uODu3
- GYlifkdJwV/lTV838wIH4LLjU5sCphyUVIjgIvG2UxrAdb5qi+hxoFAOY c=;
-Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
- by alexa-out.qualcomm.com with ESMTP; 26 Oct 2021 04:20:02 -0700
+ bh=sbpeQREjnVTq37wlxm8JLwp65pWdIgu7PDfdXTli39I=;
+ b=i37mdkoKh2TOMJnGf6LAa5PgWJYUIm1qZlnNC1mFfvhIarRdDmBluZUh
+ Rq9OI53xqtceUfN5WICP1SYLXMeUzr7dkEQOm5WW2JagKZsUagHzjFdep
+ iQFhFNR/+mXhBupd7OGjURc4aoUPhO57CzK/ihErodGY+m4hwadaJyF8D E=;
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+ by alexa-out.qualcomm.com with ESMTP; 26 Oct 2021 04:20:04 -0700
 X-QCInternal: smtphost
 Received: from nalasex01a.na.qualcomm.com ([10.47.209.196])
- by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2021 04:20:02 -0700
+ by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2021 04:20:03 -0700
 Received: from wgong-HP3-Z230-SFF-Workstation.qca.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.7; 
- Tue, 26 Oct 2021 04:20:00 -0700
+ Tue, 26 Oct 2021 04:20:02 -0700
 From: Wen Gong <quic_wgong@quicinc.com>
 To: <ath11k@lists.infradead.org>
 CC: <linux-wireless@vger.kernel.org>, <quic_wgong@quicinc.com>
-Subject: [PATCH 10/15] ath11k: save max tx power in vdev start response event
- from firmware
-Date: Tue, 26 Oct 2021 07:19:08 -0400
-Message-ID: <20211026111913.7346-11-quic_wgong@quicinc.com>
+Subject: [PATCH 11/15] ath11k: fill parameters for vdev_set_tpc_power wmi
+ command
+Date: Tue, 26 Oct 2021 07:19:09 -0400
+Message-ID: <20211026111913.7346-12-quic_wgong@quicinc.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20211026111913.7346-1-quic_wgong@quicinc.com>
 References: <20211026111913.7346-1-quic_wgong@quicinc.com>
@@ -65,8 +65,8 @@ X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211026_042002_905875_348394A7 
-X-CRM114-Status: GOOD (  12.21  )
+X-CRM114-CacheID: sfid-20211026_042003_814033_B85DD7CB 
+X-CRM114-Status: GOOD (  19.06  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,64 +83,319 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Save the max tx power received in the vdev start response event from
-firmware. A subsequent patch will use this to calculate the final power
-value for WMI_VDEV_SET_TPC_POWER_CMDID.
+Prepare the parameters which is needed for wmi cmd vdev_set_tpc_power.
 
 Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
 
 Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
 ---
- drivers/net/wireless/ath/ath11k/core.h | 1 +
- drivers/net/wireless/ath/ath11k/wmi.c  | 3 ++-
- drivers/net/wireless/ath/ath11k/wmi.h  | 1 +
- 3 files changed, 4 insertions(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/mac.c | 280 ++++++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/mac.h |   3 +
+ 2 files changed, 283 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 94516d14f89b..6969e0a6fc7b 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -605,6 +605,7 @@ struct ath11k {
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 71991178a830..ed2dc4c81de8 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -5651,6 +5651,286 @@ static u8 ath11k_mac_get_num_pwr_levels(struct cfg80211_chan_def *chan_def)
+ 	return num_pwr_levels;
+ }
+ 
++static u16 ath11k_mac_get_6g_start_frequency(struct cfg80211_chan_def *chan_def)
++{
++	u16 diff_seq;
++
++	/* It is to get the lowest channel number's center frequency of the chan.
++	 * For example,
++	 * bandwidth=40 MHz, center frequency is 5965, lowest channel is 1
++	 * with center frequency 5955, its diff is 5965 - 5955 = 10.
++	 * bandwidth=80 MHz, center frequency is 5985, lowest channel is 1
++	 * with center frequency 5955, its diff is 5985 - 5955 = 30.
++	 * bandwidth=160 MHz, center frequency is 6025, lowest channel is 1
++	 * with center frequency 5955, its diff is 6025 - 5955 = 70.
++	 */
++	switch (chan_def->width) {
++	case NL80211_CHAN_WIDTH_160:
++		diff_seq = 70;
++		break;
++	case NL80211_CHAN_WIDTH_80:
++	case NL80211_CHAN_WIDTH_80P80:
++		diff_seq = 30;
++		break;
++	case NL80211_CHAN_WIDTH_40:
++		diff_seq = 10;
++		break;
++	default:
++		diff_seq = 0;
++	}
++
++	return chan_def->center_freq1 - diff_seq;
++}
++
++static u16 ath11k_mac_get_seg_freq(struct cfg80211_chan_def *chan_def,
++				   u16 start_seq, u8 seq)
++{
++	u16 seg_seq;
++
++	/* It is to get the center frequency of the specific bandwidth.
++	 * start_seq means the lowest channel number's center frequency.
++	 * seq 0/1/2/3 means 20 MHz/40 MHz/80 MHz/160 MHz&80P80.
++	 * For example,
++	 * lowest channel is 1, its center frequency 5955,
++	 * center frequency is 5955 when bandwidth=20 MHz, its diff is 5955 - 5955 = 0.
++	 * lowest channel is 1, its center frequency 5955,
++	 * center frequency is 5965 when bandwidth=40 MHz, its diff is 5965 - 5955 = 10.
++	 * lowest channel is 1, its center frequency 5955,
++	 * center frequency is 5985 when bandwidth=80 MHz, its diff is 5985 - 5955 = 30.
++	 * lowest channel is 1, its center frequency 5955,
++	 * center frequency is 6025 when bandwidth=160 MHz, its diff is 6025 - 5955 = 70.
++	 */
++	if (chan_def->width == NL80211_CHAN_WIDTH_80P80 && seq == 3)
++		return chan_def->center_freq2;
++
++	seg_seq = 10 * (BIT(seq) - 1);
++	return seg_seq + start_seq;
++}
++
++static void ath11k_mac_get_psd_channel(struct ath11k *ar,
++				       u16 step_freq,
++				       u16 *start_freq,
++				       u16 *center_freq,
++				       u8 i,
++				       struct ieee80211_channel **temp_chan,
++				       s8 *tx_power)
++{
++	/* It is to get the the center frequency for each 20 MHz.
++	 * For example, if the chan is 160 MHz and center frequency is 6025,
++	 * then it include 8 channels, they are 1/5/9/13/17/21/25/29,
++	 * channel number 1's center frequency is 5955, it is parameter start_freq.
++	 * parameter i is the step of the 8 channels. i is 0~7 for the 8 channels.
++	 * the channel 1/5/9/13/17/21/25/29 maps i=0/1/2/3/4/5/6/7,
++	 * and maps its center frequency is 5955/5975/5995/6015/6035/6055/6075/6095,
++	 * the gap is 20 for each channel, parameter step_freq means the gap.
++	 * after get the center frequency of each channel, it is easy to find the
++	 * struct ieee80211_channel of it and get the max_reg_power.
++	 */
++	*center_freq = *start_freq + i * step_freq;
++	*temp_chan = ieee80211_get_channel(ar->hw->wiphy, *center_freq);
++	*tx_power = (*temp_chan)->max_reg_power;
++}
++
++static void ath11k_mac_get_eirp_power(struct ath11k *ar,
++				      u16 *start_freq,
++				      u16 *center_freq,
++				      u8 i,
++				      struct ieee80211_channel **temp_chan,
++				      struct cfg80211_chan_def *def,
++				      s8 *tx_power)
++{
++	/* It is to get the the center frequency for 20 MHz/40 MHz/80 MHz/
++	 * 160 MHz&80P80 bandwidth, and then plus 10 to the center frequency,
++	 * it is the center frequency of a channel number.
++	 * For example, when configured channel number is 1.
++	 * center frequency is 5965 when bandwidth=40 MHz, after plus 10, it is 5975,
++	 * then it is channel number 5.
++	 * center frequency is 5985 when bandwidth=80 MHz, after plus 10, it is 5995,
++	 * then it is channel number 9.
++	 * center frequency is 6025 when bandwidth=160 MHz, after plus 10, it is 6035,
++	 * then it is channel number 17.
++	 * after get the center frequency of each channel, it is easy to find the
++	 * struct ieee80211_channel of it and get the max_reg_power.
++	 */
++	*center_freq = ath11k_mac_get_seg_freq(def, *start_freq, i);
++
++	/* For the 20 MHz, its center frequency is same with same channel */
++	if (i != 0)
++		*center_freq += 10;
++
++	*temp_chan = ieee80211_get_channel(ar->hw->wiphy, *center_freq);
++	*tx_power = (*temp_chan)->max_reg_power;
++}
++
++void ath11k_mac_fill_reg_tpc_info(struct ath11k *ar,
++				  struct ieee80211_vif *vif,
++				  struct ieee80211_chanctx_conf *ctx)
++{
++	struct ath11k_base *ab = ar->ab;
++	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	struct ieee80211_bss_conf *bss_conf = &vif->bss_conf;
++	struct ath11k_reg_tpc_power_info *reg_tpc_info = &arvif->reg_tpc_info;
++	struct ieee80211_channel *chan, *temp_chan;
++	u8 pwr_lvl_idx, num_pwr_levels, pwr_reduction;
++	bool is_psd_power = false, is_tpe_present = false;
++	s8 max_tx_power[IEEE80211_MAX_NUM_PWR_LEVEL],
++		psd_power, tx_power, eirp_power;
++	u16 oper_freq, start_freq, center_freq;
++
++	chan = ctx->def.chan;
++	oper_freq = ctx->def.chan->center_freq;
++	start_freq = ath11k_mac_get_6g_start_frequency(&ctx->def);
++	pwr_reduction = bss_conf->pwr_reduction;
++
++	if (arvif->reg_tpc_info.num_pwr_levels) {
++		is_tpe_present = true;
++		num_pwr_levels = arvif->reg_tpc_info.num_pwr_levels;
++	} else {
++		num_pwr_levels = ath11k_mac_get_num_pwr_levels(&ctx->def);
++	}
++
++	for (pwr_lvl_idx = 0; pwr_lvl_idx < num_pwr_levels; pwr_lvl_idx++) {
++		/* STA received TPE IE*/
++		if (is_tpe_present) {
++			/* local power is PSD power*/
++			if (chan->flags & IEEE80211_CHAN_PSD) {
++				/* Connecting AP is psd power */
++				if (reg_tpc_info->is_psd_power) {
++					is_psd_power = true;
++					ath11k_mac_get_psd_channel(ar, 20,
++								   &start_freq,
++								   &center_freq,
++								   pwr_lvl_idx,
++								   &temp_chan,
++								   &tx_power);
++					psd_power = temp_chan->psd;
++					eirp_power = tx_power;
++					max_tx_power[pwr_lvl_idx] =
++						min_t(s8,
++						      psd_power,
++						      reg_tpc_info->tpe[pwr_lvl_idx]);
++				/* Connecting AP is not psd power */
++				} else {
++					ath11k_mac_get_eirp_power(ar,
++								  &start_freq,
++								  &center_freq,
++								  pwr_lvl_idx,
++								  &temp_chan,
++								  &ctx->def,
++								  &tx_power);
++					psd_power = temp_chan->psd;
++					/* convert psd power to EIRP power based
++					 * on channel width
++					 */
++					tx_power =
++						min_t(s8, tx_power,
++						      psd_power + 13 + pwr_lvl_idx * 3);
++					max_tx_power[pwr_lvl_idx] =
++						min_t(s8,
++						      tx_power,
++						      reg_tpc_info->tpe[pwr_lvl_idx]);
++				}
++			/* local power is not PSD power */
++			} else {
++				/* Connecting AP is psd power */
++				if (reg_tpc_info->is_psd_power) {
++					is_psd_power = true;
++					ath11k_mac_get_psd_channel(ar, 20,
++								   &start_freq,
++								   &center_freq,
++								   pwr_lvl_idx,
++								   &temp_chan,
++								   &tx_power);
++					eirp_power = tx_power;
++					max_tx_power[pwr_lvl_idx] =
++						reg_tpc_info->tpe[pwr_lvl_idx];
++				/* Connecting AP is not psd power */
++				} else {
++					ath11k_mac_get_eirp_power(ar,
++								  &start_freq,
++								  &center_freq,
++								  pwr_lvl_idx,
++								  &temp_chan,
++								  &ctx->def,
++								  &tx_power);
++					max_tx_power[pwr_lvl_idx] =
++						min_t(s8,
++						      tx_power,
++						      reg_tpc_info->tpe[pwr_lvl_idx]);
++				}
++			}
++		/* STA not received TPE IE */
++		} else {
++			/* local power is PSD power*/
++			if (chan->flags & IEEE80211_CHAN_PSD) {
++				is_psd_power = true;
++				ath11k_mac_get_psd_channel(ar, 20,
++							   &start_freq,
++							   &center_freq,
++							   pwr_lvl_idx,
++							   &temp_chan,
++							   &tx_power);
++				psd_power = temp_chan->psd;
++				eirp_power = tx_power;
++				max_tx_power[pwr_lvl_idx] = psd_power;
++			} else {
++				ath11k_mac_get_eirp_power(ar,
++							  &start_freq,
++							  &center_freq,
++							  pwr_lvl_idx,
++							  &temp_chan,
++							  &ctx->def,
++							  &tx_power);
++				max_tx_power[pwr_lvl_idx] =
++					min_t(s8,
++					      tx_power,
++					      reg_tpc_info->tpe[pwr_lvl_idx]);
++			}
++		}
++
++		if (is_psd_power) {
++			/* If AP local power constraint is present */
++			if (pwr_reduction)
++				eirp_power = eirp_power - pwr_reduction;
++
++			/* If firmware updated max tx power is non zero, then take
++			 * the min of firmware updated ap tx power
++			 * and max power derived from above mentioned parameters.
++			 */
++			ath11k_dbg(ab, ATH11K_DBG_MAC,
++				   "eirp power : %d firmware report power : %d\n",
++				   eirp_power, ar->max_allowed_tx_power);
++			if (ar->max_allowed_tx_power)
++				eirp_power = min_t(s8,
++						   eirp_power,
++						   ar->max_allowed_tx_power);
++		} else {
++			/* If AP local power constraint is present */
++			if (pwr_reduction)
++				max_tx_power[pwr_lvl_idx] =
++					max_tx_power[pwr_lvl_idx] - pwr_reduction;
++			/* If firmware updated max tx power is non zero, then take
++			 * the min of firmware updated ap tx power
++			 * and max power derived from above mentioned parameters.
++			 */
++			if (ar->max_allowed_tx_power)
++				max_tx_power[pwr_lvl_idx] =
++					min_t(s8,
++					      max_tx_power[pwr_lvl_idx],
++					      ar->max_allowed_tx_power);
++		}
++		reg_tpc_info->chan_power_info[pwr_lvl_idx].chan_cfreq = center_freq;
++		reg_tpc_info->chan_power_info[pwr_lvl_idx].tx_power =
++			max_tx_power[pwr_lvl_idx];
++	}
++
++	reg_tpc_info->num_pwr_levels = num_pwr_levels;
++	reg_tpc_info->is_psd_power = is_psd_power;
++	reg_tpc_info->eirp_power = eirp_power;
++	reg_tpc_info->power_type_6g =
++		ath11k_ieee80211_ap_pwr_type_convert(vif->bss_conf.power_type);
++}
++
+ static void ath11k_mac_parse_tx_pwr_env(struct ath11k *ar,
+ 					struct ieee80211_vif *vif,
+ 					struct ieee80211_chanctx_conf *ctx)
+diff --git a/drivers/net/wireless/ath/ath11k/mac.h b/drivers/net/wireless/ath/ath11k/mac.h
+index 6d308267e4b8..1c26934729df 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.h
++++ b/drivers/net/wireless/ath/ath11k/mac.h
+@@ -152,4 +152,7 @@ enum ath11k_supported_bw ath11k_mac_mac80211_bw_to_ath11k_bw(enum rate_info_bw b
+ enum hal_encrypt_type ath11k_dp_tx_get_encrypt_type(u32 cipher);
+ void ath11k_mac_handle_beacon(struct ath11k *ar, struct sk_buff *skb);
+ void ath11k_mac_handle_beacon_miss(struct ath11k *ar, u32 vdev_id);
++void ath11k_mac_fill_reg_tpc_info(struct ath11k *ar,
++				  struct ieee80211_vif *vif,
++				  struct ieee80211_chanctx_conf *ctx);
  #endif
- 	bool dfs_block_radar_events;
- 	struct ath11k_thermal thermal;
-+	s8 max_allowed_tx_power;
- };
- 
- struct ath11k_band_cap {
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 2684c042bbad..985035fab744 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -4484,6 +4484,7 @@ static int ath11k_pull_vdev_start_resp_tlv(struct ath11k_base *ab, struct sk_buf
- 	vdev_rsp->mac_id = ev->mac_id;
- 	vdev_rsp->cfgd_tx_streams = ev->cfgd_tx_streams;
- 	vdev_rsp->cfgd_rx_streams = ev->cfgd_rx_streams;
-+	vdev_rsp->max_allowed_tx_power = ev->max_allowed_tx_power;
- 
- 	kfree(tb);
- 	return 0;
-@@ -6655,7 +6656,7 @@ static void ath11k_vdev_start_resp_event(struct ath11k_base *ab, struct sk_buff
- 	}
- 
- 	ar->last_wmi_vdev_start_status = 0;
--
-+	ar->max_allowed_tx_power = vdev_start_resp.max_allowed_tx_power;
- 	status = vdev_start_resp.status;
- 
- 	if (WARN_ON_ONCE(status)) {
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index c62c9e1982ce..2fc48aa662c6 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -3975,6 +3975,7 @@ struct wmi_vdev_start_resp_event {
- 	};
- 	u32 cfgd_tx_streams;
- 	u32 cfgd_rx_streams;
-+	s32 max_allowed_tx_power;
- } __packed;
- 
- /* VDEV start response status codes */
 -- 
 2.31.1
 
