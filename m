@@ -2,73 +2,73 @@ Return-Path: <SRS0=748x=PQ=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C97D8C433F5
-	for <ath11k@archiver.kernel.org>; Thu, 28 Oct 2021 02:48:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0F4CFC433F5
+	for <ath11k@archiver.kernel.org>; Thu, 28 Oct 2021 05:23:54 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8BE6A610FF
-	for <ath11k@archiver.kernel.org>; Thu, 28 Oct 2021 02:48:15 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 8BE6A610FF
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=quicinc.com
+	by mail.kernel.org (Postfix) with ESMTPS id 9C8946103B
+	for <ath11k@archiver.kernel.org>; Thu, 28 Oct 2021 05:23:53 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 9C8946103B
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=utCY3rLr9UQb8TsTHqV7EbEyP6wOp6nHP+Ubm7+FpRk=; b=Ep/E/EI3qtlg27
-	Uqgahptx1eD9Ayea7Atr7Q6a7T7jyoO4wZL6s9hWQwLs8jsXYj+2CPd/MEXbf9DzFz9+weC2H1IvA
-	xblT1Xjvj00H4yw+uZxjTMPRC7mENxV7BCDZxNOXTlLcK9ZDHIul7XKktSCD6nXWEt7vzB8wnLB0k
-	jY4vfeZY2ftKT6D2lz3NaHuXfJ6xTVgMCycjWc9cwW9tGB95DX48z0yAF2AORTq5N2Cu4nKLZHtcc
-	CqNxn/Lzhoz0kFZoVwruMNe56CrC8OTVFnm4h9aqFEoAXipSiW6ZI0DlJY6DCYnDIqqd/+qshn7GO
-	QawiWok57fLsajeAgMsQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:Cc:To:From
+	:Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=073M7xqu6Z6n3zElJtn/eO52De1qhL1ZP192gDRb6hs=; b=SNxrFhB6pZxx5Q226Wdeh+KLx+
+	kg3Vjbl9orQ3RH7ptXYp8Wm8Zu+uOS3SYO0DsIoRIgoQSabvWF6IYvWDhiSK7kYQLC9Qd2RFKQc53
+	vvRy62PwU0mFYjeeJ5/n2p4CEc2lDxsiteok2TPtGMMbXLnoeb8N+X9z5ITmqAGmOSurS3DzdpFn8
+	3g4xJEZY1uYvtoZRzXE6gfF73dqo8rJRxiE3GeTS9/Hv5P0EF1Xv/u4EUgV/KryhAdMGYnYNH3kns
+	8iVDAjUO1CbFP7OKQjFy8lTzY51upoNvA0o7D48SuKtA8IsvxygH4yLdoLIbzQsHpIb61tHqTlT5f
+	9nIfjKxQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mfvSe-006kO2-1H; Thu, 28 Oct 2021 02:48:12 +0000
-Received: from alexa-out.qualcomm.com ([129.46.98.28])
+	id 1mfxtF-006tPl-UO; Thu, 28 Oct 2021 05:23:49 +0000
+Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mfvSa-006kMZ-QB
- for ath11k@lists.infradead.org; Thu, 28 Oct 2021 02:48:10 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1635389288; x=1666925288;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=h3qcP1eJIif59J3YuE0ozu1JxO8u8oMGwSmyPSlHp30=;
- b=ldwtthKwvjIoJ3e15KnW6pgFn8BWW2CwWvMjnslWGgTjmcndzANNA475
- xpjjf59g/DgJpWLif92rm4nuDilZDcJpHVTyrdh4AMOyZHHAfojL/SXQJ
- n33EJttG/wJ0470cAOPD4FProAgL+OwwCG5jh5Y8btToS2P3JERXCX47x 4=;
-Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
- by alexa-out.qualcomm.com with ESMTP; 27 Oct 2021 19:48:07 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg08-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2021 19:48:07 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.7; 
- Wed, 27 Oct 2021 19:48:06 -0700
-Received: from wgong-HP3-Z230-SFF-Workstation.qca.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.7; 
- Wed, 27 Oct 2021 19:48:05 -0700
-From: Wen Gong <quic_wgong@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, <quic_wgong@quicinc.com>
-Subject: [PATCH] ath11k: fix read fail for htt_stats and htt_peer_stats for
- single pdev
-Date: Wed, 27 Oct 2021 22:47:49 -0400
-Message-ID: <20211028024749.15039-1-quic_wgong@quicinc.com>
-X-Mailer: git-send-email 2.31.1
+ id 1mfxtA-006tOk-Fh
+ for ath11k@lists.infradead.org; Thu, 28 Oct 2021 05:23:48 +0000
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
+ q=dns/txt; 
+ s=smtp; t=1635398626; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=EVBTlUK38PAZK5v/OskJjcVaupQIXbPn9UjTbHxWtHQ=;
+ b=XUH/fMGQW0g4jfemcvLwKEPFJrMXg9jP0EbtF9l2oY2MJrEMz7Xtqt/jnHBfRQwUVH1/YhPv
+ BFSRy9UIRsIJm7myauJuIMMny6cO6iSAQjJVCFoTgv31Pqv583ZNuXJLQzAilRigP8QBrWjj
+ IWf4g0avOFtck3MqYfItUYfIsls=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
+ 617a33d8900d71ea1e48568e (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 28 Oct 2021 05:23:36
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+ id 0646CC4360D; Thu, 28 Oct 2021 05:23:36 +0000 (UTC)
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+ (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+ (No client certificate requested) (Authenticated sender: mpubbise)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id C5A2AC4338F;
+ Thu, 28 Oct 2021 05:23:34 +0000 (UTC)
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+Date: Thu, 28 Oct 2021 10:53:34 +0530
+From: mpubbise@codeaurora.org
+To: Carl Huang <cjhuang@codeaurora.org>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ cjhuang=codeaurora.org@codeaurora.org
+Subject: Re: [PATCH] ath11k: enable power save in station mode
+In-Reply-To: <20211011190625.4463-1-cjhuang@codeaurora.org>
+References: <20211011190625.4463-1-cjhuang@codeaurora.org>
+Message-ID: <f4457c0027a70d996eb5930a334a9832@codeaurora.org>
+X-Sender: mpubbise@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211027_194808_943821_7EE11E80 
-X-CRM114-Status: GOOD (  17.85  )
+X-CRM114-CacheID: sfid-20211027_222346_543457_3C9941B3 
+X-CRM114-Status: GOOD (  28.73  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,224 +80,279 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-The pdev id is set to 0 for single pdev configured hardware, the real
-pdev id is not 0 in firmware, for example, its pdev id is 1 for 5G/6G
-phy and 2 for 2G band phy. For HTT_H2T_MSG_TYPE_EXT_STATS_CFG message,
-firmware parse the pdev_mask to its pdev id, ath11k set it to 0 for
-single pdev, it is not correct, need set it with the real pdev id of
-firmware.
+On 2021-10-12 00:36, Carl Huang wrote:
+> Enable power save in station mode.
+> 
+> Run "iw dev wls1 set power_save off",  check there is no NULL Data 
+> frame
+> from sniffer. Run "iw dev wls1 set power_save on", check there is NULL
+> Data frame from sniffer.
+> 
+> Tested-on: QCA6390 hw2.0 PCI 
+> WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
+> 
+> Signed-off-by: Carl Huang <cjhuang@codeaurora.org>
+> ---
+>  drivers/net/wireless/ath/ath11k/core.c |  5 ++
+>  drivers/net/wireless/ath/ath11k/core.h |  1 +
+>  drivers/net/wireless/ath/ath11k/hw.h   |  1 +
+>  drivers/net/wireless/ath/ath11k/mac.c  | 99 
+> ++++++++++++++++++++++++++++++++--
+>  drivers/net/wireless/ath/ath11k/wmi.c  | 33 ++++++++++++
+>  drivers/net/wireless/ath/ath11k/wmi.h  |  3 +-
+>  6 files changed, 137 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/net/wireless/ath/ath11k/core.c
+> b/drivers/net/wireless/ath/ath11k/core.c
+> index 6120382..7e4b5b3 100644
+> --- a/drivers/net/wireless/ath/ath11k/core.c
+> +++ b/drivers/net/wireless/ath/ath11k/core.c
+> @@ -67,6 +67,7 @@ static const struct ath11k_hw_params 
+> ath11k_hw_params[] = {
+>  		.supports_monitor = true,
+>  		.supports_shadow_regs = false,
+>  		.idle_ps = false,
+> +		.protocol_ps = false,
+>  		.cold_boot_calib = true,
+>  		.supports_suspend = false,
+>  		.hal_desc_sz = sizeof(struct hal_rx_desc_ipq8074),
+> @@ -108,6 +109,7 @@ static const struct ath11k_hw_params 
+> ath11k_hw_params[] = {
+>  		.supports_monitor = true,
+>  		.supports_shadow_regs = false,
+>  		.idle_ps = false,
+> +		.protocol_ps = false,
+>  		.cold_boot_calib = true,
+>  		.supports_suspend = false,
+>  		.hal_desc_sz = sizeof(struct hal_rx_desc_ipq8074),
+> @@ -149,6 +151,7 @@ static const struct ath11k_hw_params 
+> ath11k_hw_params[] = {
+>  		.supports_monitor = false,
+>  		.supports_shadow_regs = true,
+>  		.idle_ps = true,
+> +		.protocol_ps = true,
+>  		.cold_boot_calib = false,
+>  		.supports_suspend = true,
+>  		.hal_desc_sz = sizeof(struct hal_rx_desc_ipq8074),
+> @@ -187,6 +190,7 @@ static const struct ath11k_hw_params 
+> ath11k_hw_params[] = {
+>  		.supports_monitor = true,
+>  		.supports_shadow_regs = false,
+>  		.idle_ps = false,
+> +		.protocol_ps = false,
+>  		.cold_boot_calib = false,
+>  		.supports_suspend = false,
+>  		.hal_desc_sz = sizeof(struct hal_rx_desc_qcn9074),
+> @@ -227,6 +231,7 @@ static const struct ath11k_hw_params 
+> ath11k_hw_params[] = {
+>  		.supports_monitor = false,
+>  		.supports_shadow_regs = true,
+>  		.idle_ps = true,
+> +		.protocol_ps = true,
+>  		.cold_boot_calib = false,
+>  		.supports_suspend = true,
+>  		.hal_desc_sz = sizeof(struct hal_rx_desc_wcn6855),
+> diff --git a/drivers/net/wireless/ath/ath11k/core.h
+> b/drivers/net/wireless/ath/ath11k/core.h
+> index f0a4b90..61e9684 100644
+> --- a/drivers/net/wireless/ath/ath11k/core.h
+> +++ b/drivers/net/wireless/ath/ath11k/core.h
+> @@ -276,6 +276,7 @@ struct ath11k_vif {
+>  	bool is_started;
+>  	bool is_up;
+>  	bool spectral_enabled;
+> +	bool ps;
+>  	u32 aid;
+>  	u8 bssid[ETH_ALEN];
+>  	struct cfg80211_bitrate_mask bitrate_mask;
+> diff --git a/drivers/net/wireless/ath/ath11k/hw.h
+> b/drivers/net/wireless/ath/ath11k/hw.h
+> index 7a5101d..d4ad6f2 100644
+> --- a/drivers/net/wireless/ath/ath11k/hw.h
+> +++ b/drivers/net/wireless/ath/ath11k/hw.h
+> @@ -167,6 +167,7 @@ struct ath11k_hw_params {
+>  	bool supports_monitor;
+>  	bool supports_shadow_regs;
+>  	bool idle_ps;
+> +	bool protocol_ps;
+>  	bool cold_boot_calib;
+>  	bool supports_suspend;
+>  	u32 hal_desc_sz;
+> diff --git a/drivers/net/wireless/ath/ath11k/mac.c
+> b/drivers/net/wireless/ath/ath11k/mac.c
+> index d02823f..a254ef3 100644
+> --- a/drivers/net/wireless/ath/ath11k/mac.c
+> +++ b/drivers/net/wireless/ath/ath11k/mac.c
+> @@ -883,12 +883,93 @@ static int ath11k_monitor_vdev_up(struct ath11k
+> *ar, int vdev_id)
+>  	return 0;
+>  }
+> 
+> +static int ath11k_mac_vif_setup_ps(struct ath11k_vif *arvif)
+> +{
+> +	struct ath11k *ar = arvif->ar;
+> +	struct ieee80211_vif *vif = arvif->vif;
+> +	struct ieee80211_conf *conf = &ar->hw->conf;
+> +	enum wmi_sta_powersave_param param;
+> +	enum wmi_sta_ps_mode psmode;
+> +	int ret;
+> +	int ps_timeout;
+> +	bool enable_ps;
+> +
+> +	lockdep_assert_held(&arvif->ar->conf_mutex);
+> +
+> +	if (arvif->vif->type != NL80211_IFTYPE_STATION)
+> +		return 0;
+> +
+> +	enable_ps = arvif->ps;
+> +
+> +	/* need to check if multiple vdev ps setting is supported */
+> +
+> +	if (!arvif->is_started) {
+> +		/* mac80211 can update vif powersave state while disconnected.
+> +		 * Firmware doesn't behave nicely and consumes more power than
+> +		 * necessary if PS is disabled on a non-started vdev. Hence
+> +		 * force-enable PS for non-running vdevs.
+> +		 */
+> +		psmode = WMI_STA_PS_MODE_ENABLED;
+> +	} else if (enable_ps) {
+> +		psmode = WMI_STA_PS_MODE_ENABLED;
+> +		param = WMI_STA_PS_PARAM_INACTIVITY_TIME;
+> +
+> +		ps_timeout = conf->dynamic_ps_timeout;
+> +		if (ps_timeout == 0) {
+> +			/* Firmware doesn't like 0 */
+> +			ps_timeout = ieee80211_tu_to_usec(
+> +				vif->bss_conf.beacon_int) / 1000;
+> +		}
+> +
+> +		ret = ath11k_wmi_set_sta_ps_param(ar, arvif->vdev_id, param,
+> +						  ps_timeout);
+> +		if (ret) {
+> +			ath11k_warn(ar->ab, "failed to set inactivity time for vdev %d: 
+> %i\n",
+> +				    arvif->vdev_id, ret);
+> +			return ret;
+> +		}
+> +	} else {
+> +		psmode = WMI_STA_PS_MODE_DISABLED;
+> +	}
+> +
+> +	ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "mac vdev %d psmode %s\n",
+> +		   arvif->vdev_id, psmode ? "enable" : "disable");
+> +	ret = ath11k_wmi_set_psmode(ar, arvif->vdev_id, psmode);
+> +	if (ret) {
+> +		ath11k_warn(ar->ab, "failed to set PS Mode %d for vdev %d: %d\n",
+> +			    psmode, arvif->vdev_id, ret);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int ath11k_config_ps(struct ath11k *ar)
+> +{
+> +	struct ath11k_vif *arvif;
+> +	int ret = 0;
+> +
+> +	lockdep_assert_held(&ar->conf_mutex);
+> +
+> +	list_for_each_entry(arvif, &ar->arvifs, list) {
+> +		ret = ath11k_mac_vif_setup_ps(arvif);
+> +		if (ret) {
+> +			ath11k_warn(ar->ab, "failed to setup powersave: %d\n", ret);
+> +			break;
+> +		}
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+>  static int ath11k_mac_op_config(struct ieee80211_hw *hw, u32 changed)
+>  {
+> -	/* mac80211 requires this op to be present and that's why
+> -	 * there's an empty function, this can be extended when
+> -	 * required.
+> -	 */
+> +	struct ath11k *ar = hw->priv;
+> +
+> +	mutex_lock(&ar->conf_mutex);
+> +	if (changed & IEEE80211_CONF_CHANGE_PS)
+> +		ath11k_config_ps(ar);
+> +	mutex_unlock(&ar->conf_mutex);
+> 
+>  	return 0;
+>  }
+> @@ -2610,6 +2691,16 @@ static void
+> ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
+>  		}
+>  	}
+> 
+> +	if (changed & BSS_CHANGED_PS &&
+> +	    ar->ab->hw_params.protocol_ps) {
+> +		arvif->ps = vif->bss_conf.ps;
+> +
+> +		ret = ath11k_config_ps(ar);
+> +		if (ret)
+> +			ath11k_warn(ar->ab, "failed to setup ps on vdev %i: %d\n",
+> +				    arvif->vdev_id, ret);
+> +	}
+> +
+>  	if (changed & BSS_CHANGED_MCAST_RATE &&
+>  	    !ath11k_mac_vif_chan(arvif->vif, &def)) {
+>  		band = def.chan->band;
+> diff --git a/drivers/net/wireless/ath/ath11k/wmi.c
+> b/drivers/net/wireless/ath/ath11k/wmi.c
+> index 27ae944..8f46864 100644
+> --- a/drivers/net/wireless/ath/ath11k/wmi.c
+> +++ b/drivers/net/wireless/ath/ath11k/wmi.c
+> @@ -1419,6 +1419,39 @@ int ath11k_wmi_send_set_ap_ps_param_cmd(struct
+> ath11k *ar, u8 *peer_addr,
+>  	return ret;
+>  }
+> 
+> +int ath11k_wmi_set_psmode(struct ath11k *ar, u32 vdev_id,
+> +			  enum wmi_sta_ps_mode psmode)
+> +{
+> +	struct ath11k_pdev_wmi *wmi = ar->wmi;
+> +	struct wmi_sta_powersave_mode_cmd *cmd;
+> +	struct sk_buff *skb;
+> +	int ret;
+> +
+> +	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, sizeof(*cmd));
+> +	if (!skb)
+> +		return -ENOMEM;
+> +
+> +	cmd = (struct wmi_sta_powersave_mode_cmd *)skb->data;
+> +	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG,
+> +				     WMI_TAG_STA_POWERSAVE_MODE_CMD) |
+> +			  FIELD_PREP(WMI_TLV_LEN, sizeof(*cmd) - TLV_HDR_SIZE);
+> +
+> +	cmd->vdev_id = vdev_id;
+> +	cmd->sta_ps_mode = psmode;
+> +
+> +	ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
+> +		   "WMI set sta ps vdev_id %d ps %d\n",
+> +		   vdev_id, psmode);
+> +
+> +	ret = ath11k_wmi_cmd_send(wmi, skb, WMI_STA_POWERSAVE_MODE_CMDID);
+> +	if (ret) {
+> +		ath11k_warn(ar->ab, "failed to send WMI_STA_POWERSAVE_PARAM_CMDID");
+> +		dev_kfree_skb(skb);
+> +	}
+> +
+> +	return ret;
+> +}
 
-Save the real pdev id report by firmware and set it correctly.
+An API which does this is already present in ATH11K, you may have to 
+take a look at ath11k_wmi_pdev_set_ps_mode() ?
 
-Below commands run success with this patch:
-cat /sys/kernel/debug/ieee80211/phy0/ath11k/htt_stats
-cat /sys/kernel/debug/ieee80211/phy0/netdev\:wls1/stations/00\:03\:7f\:75\:59\:85/htt_peer_stats
-
-Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
-
-Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/core.h  |  5 ++
- drivers/net/wireless/ath/ath11k/dp_tx.c |  9 +++-
- drivers/net/wireless/ath/ath11k/mac.c   | 61 +++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/mac.h   |  4 ++
- drivers/net/wireless/ath/ath11k/wmi.c   |  6 +++
- drivers/net/wireless/ath/ath11k/wmi.h   |  4 +-
- 6 files changed, 86 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index c6ea362f24fb..be475a0bc112 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -755,6 +755,11 @@ struct ath11k_base {
- 	/* Protects data like peers */
- 	spinlock_t base_lock;
- 	struct ath11k_pdev pdevs[MAX_RADIOS];
-+	struct {
-+		enum WMI_HOST_WLAN_BAND supported_bands;
-+		u32 pdev_id;
-+	} target_pdev_ids[MAX_RADIOS];
-+	u8 target_pdev_count;
- 	struct ath11k_pdev __rcu *pdevs_active[MAX_RADIOS];
- 	struct ath11k_hal_reg_capabilities_ext hal_reg_cap[MAX_RADIOS];
- 	unsigned long long free_vdev_map;
-diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
-index 8bba5234f81f..9164f3ee5270 100644
---- a/drivers/net/wireless/ath/ath11k/dp_tx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
-@@ -9,6 +9,7 @@
- #include "debugfs_sta.h"
- #include "hw.h"
- #include "peer.h"
-+#include "mac.h"
- 
- static enum hal_tcl_encap_type
- ath11k_dp_tx_get_encap_type(struct ath11k_vif *arvif, struct sk_buff *skb)
-@@ -985,6 +986,7 @@ ath11k_dp_tx_htt_h2t_ext_stats_req(struct ath11k *ar, u8 type,
- 	struct ath11k_dp *dp = &ab->dp;
- 	struct sk_buff *skb;
- 	struct htt_ext_stats_cfg_cmd *cmd;
-+	u32 pdev_id;
- 	int len = sizeof(*cmd);
- 	int ret;
- 
-@@ -998,7 +1000,12 @@ ath11k_dp_tx_htt_h2t_ext_stats_req(struct ath11k *ar, u8 type,
- 	memset(cmd, 0, sizeof(*cmd));
- 	cmd->hdr.msg_type = HTT_H2T_MSG_TYPE_EXT_STATS_CFG;
- 
--	cmd->hdr.pdev_mask = 1 << ar->pdev->pdev_id;
-+	if (ab->hw_params.single_pdev_only)
-+		pdev_id = ath11k_mac_get_target_pdev_id(ar);
-+	else
-+		pdev_id = ar->pdev->pdev_id;
-+
-+	cmd->hdr.pdev_mask = 1 << pdev_id;
- 
- 	cmd->hdr.stats_type = type;
- 	cmd->cfg_param0 = cfg_params->cfg0;
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index ad3510bec4da..7f3439f87d45 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -552,6 +552,67 @@ struct ath11k *ath11k_mac_get_ar_by_pdev_id(struct ath11k_base *ab, u32 pdev_id)
- 	return NULL;
- }
- 
-+struct ath11k_vif *ath11k_mac_get_vif_up(struct ath11k_base *ab)
-+{
-+	struct ath11k *ar;
-+	struct ath11k_pdev *pdev;
-+	struct ath11k_vif *arvif;
-+	int i;
-+
-+	for (i = 0; i < ab->num_radios; i++) {
-+		pdev = &ab->pdevs[i];
-+		ar = pdev->ar;
-+		list_for_each_entry(arvif, &ar->arvifs, list) {
-+			if (arvif->is_up)
-+				return arvif;
-+		}
-+	}
-+
-+	return NULL;
-+}
-+
-+static bool ath11k_mac_band_match(enum nl80211_band band1, enum WMI_HOST_WLAN_BAND band2)
-+{
-+	return (((band1 == NL80211_BAND_2GHZ) && (band2 & WMI_HOST_WLAN_2G_CAP)) ||
-+		(((band1 == NL80211_BAND_5GHZ) || (band1 == NL80211_BAND_6GHZ)) &&
-+		   (band2 & WMI_HOST_WLAN_5G_CAP)));
-+}
-+
-+u8 ath11k_mac_get_target_pdev_id_from_vif(struct ath11k_vif *arvif)
-+{
-+	struct ath11k *ar = arvif->ar;
-+	struct ath11k_base *ab = ar->ab;
-+	struct ieee80211_vif *vif = arvif->vif;
-+	struct cfg80211_chan_def def;
-+	enum nl80211_band band;
-+	u8 pdev_id = ab->target_pdev_ids[0].pdev_id;
-+	int i;
-+
-+	if (WARN_ON(ath11k_mac_vif_chan(vif, &def)))
-+		return pdev_id;
-+
-+	band = def.chan->band;
-+
-+	for (i = 0; i < ab->target_pdev_count; i++) {
-+		if (ath11k_mac_band_match(band, ab->target_pdev_ids[i].supported_bands))
-+			return ab->target_pdev_ids[i].pdev_id;
-+	}
-+
-+	return pdev_id;
-+}
-+
-+u8 ath11k_mac_get_target_pdev_id(struct ath11k *ar)
-+{
-+	struct ath11k_vif *arvif;
-+
-+	arvif = ath11k_mac_get_vif_up(ar->ab);
-+
-+	if (arvif)
-+		return ath11k_mac_get_target_pdev_id_from_vif(arvif);
-+	else
-+		return ar->ab->target_pdev_ids[0].pdev_id;
-+}
-+
- static void ath11k_pdev_caps_update(struct ath11k *ar)
- {
- 	struct ath11k_base *ab = ar->ab;
-diff --git a/drivers/net/wireless/ath/ath11k/mac.h b/drivers/net/wireless/ath/ath11k/mac.h
-index 86a186d32e99..0b2a1612f745 100644
---- a/drivers/net/wireless/ath/ath11k/mac.h
-+++ b/drivers/net/wireless/ath/ath11k/mac.h
-@@ -150,6 +150,10 @@ int ath11k_mac_rfkill_config(struct ath11k *ar);
- struct ath11k_vif *ath11k_mac_get_arvif(struct ath11k *ar, u32 vdev_id);
- struct ath11k_vif *ath11k_mac_get_arvif_by_vdev_id(struct ath11k_base *ab,
- 						   u32 vdev_id);
-+u8 ath11k_mac_get_target_pdev_id(struct ath11k *ar);
-+u8 ath11k_mac_get_target_pdev_id_from_vif(struct ath11k_vif *arvif);
-+struct ath11k_vif *ath11k_mac_get_vif_up(struct ath11k_base *ab);
-+
- struct ath11k *ath11k_mac_get_ar_by_vdev_id(struct ath11k_base *ab, u32 vdev_id);
- struct ath11k *ath11k_mac_get_ar_by_pdev_id(struct ath11k_base *ab, u32 pdev_id);
- enum wmi_vdev_type ath11k_mac_get_ar_vdev_type(struct ath11k *ar);
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index cef140e8aa6e..e4e3f6696e48 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -320,6 +320,7 @@ ath11k_pull_mac_phy_cap_svc_ready_ext(struct ath11k_pdev_wmi *wmi_handle,
- 				      struct ath11k_pdev *pdev)
- {
- 	struct wmi_mac_phy_capabilities *mac_phy_caps;
-+	struct ath11k_base *ab = wmi_handle->wmi_ab->ab;
- 	struct ath11k_band_cap *cap_band;
- 	struct ath11k_pdev_cap *pdev_cap = &pdev->cap;
- 	u32 phy_map;
-@@ -351,6 +352,10 @@ ath11k_pull_mac_phy_cap_svc_ready_ext(struct ath11k_pdev_wmi *wmi_handle,
- 	pdev->pdev_id = mac_phy_caps->pdev_id;
- 	pdev_cap->supported_bands |= mac_phy_caps->supported_bands;
- 	pdev_cap->ampdu_density = mac_phy_caps->ampdu_density;
-+	ab->target_pdev_ids[ab->target_pdev_count].supported_bands =
-+		mac_phy_caps->supported_bands;
-+	ab->target_pdev_ids[ab->target_pdev_count].pdev_id = mac_phy_caps->pdev_id;
-+	ab->target_pdev_count++;
- 
- 	/* Take non-zero tx/rx chainmask. If tx/rx chainmask differs from
- 	 * band to band for a single radio, need to see how this should be
-@@ -4306,6 +4311,7 @@ static int ath11k_wmi_tlv_ext_soc_hal_reg_caps_parse(struct ath11k_base *soc,
- 	svc_rdy_ext->param.num_phy = svc_rdy_ext->soc_hal_reg_caps->num_phy;
- 
- 	soc->num_radios = 0;
-+	soc->target_pdev_count = 0;
- 	phy_id_map = svc_rdy_ext->pref_hw_mode_caps.phy_id_map;
- 
- 	while (phy_id_map && soc->num_radios < MAX_RADIOS) {
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index f9ac109fc7c1..ef7b20ba8c95 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -115,10 +115,10 @@ enum wmi_host_hw_mode_priority {
- 	WMI_HOST_HW_MODE_MAX_PRI
- };
- 
--enum {
-+enum WMI_HOST_WLAN_BAND {
- 	WMI_HOST_WLAN_2G_CAP	= 0x1,
- 	WMI_HOST_WLAN_5G_CAP	= 0x2,
--	WMI_HOST_WLAN_2G_5G_CAP	= 0x3,
-+	WMI_HOST_WLAN_2G_5G_CAP	= WMI_HOST_WLAN_2G_CAP | WMI_HOST_WLAN_5G_CAP,
- };
- 
- /*
--- 
-2.31.1
-
+Manikanta
 
 -- 
 ath11k mailing list
