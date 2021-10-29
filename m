@@ -1,60 +1,77 @@
-Return-Path: <SRS0=748x=PQ=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=n+kH=PR=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 53588C433EF
-	for <ath11k@archiver.kernel.org>; Thu, 28 Oct 2021 13:21:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6B441C433EF
+	for <ath11k@archiver.kernel.org>; Fri, 29 Oct 2021 02:30:50 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id F40D660FC4
-	for <ath11k@archiver.kernel.org>; Thu, 28 Oct 2021 13:21:10 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org F40D660FC4
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=narfation.org
+	by mail.kernel.org (Postfix) with ESMTPS id 2B336610C7
+	for <ath11k@archiver.kernel.org>; Fri, 29 Oct 2021 02:30:50 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 2B336610C7
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=B87G2QaH+z0f9maDl5Qovqc2MwPCRQ7ZSLg/1wFyyqo=; b=dS5o3C9uFGNb3pEn1fvi3JnWg3
-	pg/mzbKkbvp/6D2J1DBdv5cnXQCMBdzjOx579Jw4yjWzX2LCKeAFB9rDDqmjKt0tJg12oasPYQN6c
-	SdD1QHon9acl6hdUq1Gg9MdTchsI8FgnPwDZY3/k2/T9cr5VN5j2lDJlMbQBAI4+3IGS3brZcz0XF
-	fp9vfOcSgehKYMbOqEod85GX7lqIBOokqhP8kdhE1FlWYH1BYp7zaF3EwIw3pqmsCMTQVsJX4VEzB
-	LtKXZhiDurSNx/zYnV5LYttVLXMTRevftRy9Pg+XybzSYQBk2eA9rS7zYUII5ZpcLQd7VuOjFzCy1
-	TWQZKZTQ==;
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:Cc:To:From
+	:Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=cXou7rx8jMIiGgUBrWekrGyxwBASvJrwQxiWJA3Od+E=; b=n0/1+vw4dgeZKg1kjJrtJtT0Ie
+	PbHXG8RTQjK/j49ULxnxotnMV5Ql6fyfByIdd7+1IT6PfYuenas5j6//52RFXTfpIE6ci7q+8JFzt
+	YzKwdhURE5Vwes9erPLp8JDXOmSLFLnh6M00/6SzrUNELvdKg7TwmF9eTHBFIWon4f5kxqesh7JnB
+	mnWjH/xc7NNQSZrh2y0iSCVrMKDcYSDpBy5b8mDTsXjjizVhvP/IebYpFG70ALOv5jp31rTBBNQdZ
+	0889mNWe17Fr95tPHMukHjsFnD/kDGeGOaiP7WhMgEwpc8zEVqkmfsfuXauqqLnMDHVbhF1+Td0UK
+	2oaGyTfA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mg5LA-007ugM-Ia; Thu, 28 Oct 2021 13:21:08 +0000
-Received: from dvalin.narfation.org ([213.160.73.56])
+	id 1mgHfK-009agA-Tv; Fri, 29 Oct 2021 02:30:46 +0000
+Received: from so254-9.mailgun.net ([198.61.254.9])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mg4kd-007o8o-UO
- for ath11k@lists.infradead.org; Thu, 28 Oct 2021 12:43:25 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1635424999;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=QoC3OLStbdQmvaOCAZZzBXCDyQBKZIDqUoI7nwVlY8I=;
- b=zRm2ZI6QBNV6gGXFufelafWy8ObcMPbfARLivD/K8NdPZ5z8pHTNifc9+WErcZ6X/R3PVl
- W9grdB0IpcoUzFmB1jNJXXfpF9jmdXypizFYI4LB7NHIcYLNmT/abruzmYxm3nzBA858ft
- zJimoW54ApW1DH9unUJFiY/affwVMD4=
-From: Sven Eckelmann <sven@narfation.org>
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- Karthikeyan Kathirvel <kathirve@codeaurora.org>
-Subject: Re: [PATCH] ath11k: clear the keys properly when DISABLE_KEY
-Date: Thu, 28 Oct 2021 14:43:16 +0200
-Message-ID: <4399157.2QDAq5Xuus@ripper>
-In-Reply-To: <87sfwl494s.fsf@codeaurora.org>
-References: <20211026155446.457935-1-sven@narfation.org>
- <26869605.A2Tbvc0WiF@ripper> <87sfwl494s.fsf@codeaurora.org>
+ id 1mgHfH-009afb-R0
+ for ath11k@lists.infradead.org; Fri, 29 Oct 2021 02:30:45 +0000
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
+ q=dns/txt; 
+ s=smtp; t=1635474642; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=wcrDjJzQSDlZlOocrUwmswx3ElWAGGaa4tJSF8O252E=;
+ b=E7ZciZJOtt8aLwRmL7y18s1E6CcVOD80Juga2F+jLJdH8LodTDlEe5HN/T5xS4aNVqzpuvv4
+ 4rX+WiASMPbocm85SfT9WPz6Zu9knhThBvlr9fMWCIkGA6TroEezg+NwJHNg+N2DtrgVIv/Y
+ VXwbFD8ymmCGE5HgcAw5NFy6Ec4=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
+ 617b5ccc648aeeca5c52f91b (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 29 Oct 2021 02:30:36
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+ id 02A72C43460; Fri, 29 Oct 2021 02:30:36 +0000 (UTC)
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+ (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+ (No client certificate requested) (Authenticated sender: wgong)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 28E3FC4338F;
+ Fri, 29 Oct 2021 02:30:34 +0000 (UTC)
 MIME-Version: 1.0
+Date: Fri, 29 Oct 2021 10:30:34 +0800
+From: Wen Gong <wgong@codeaurora.org>
+To: Kalle Valo <kvalo@codeaurora.org>
+Cc: Jouni Malinen <jouni@codeaurora.org>, ath11k@lists.infradead.org,
+ linux-wireless@vger.kernel.org
+Subject: Re: [PATCH 3/3] ath11k: set correct NL80211_FEATURE_DYNAMIC_SMPS for
+ WCN6855
+In-Reply-To: <87a6it5upc.fsf@codeaurora.org>
+References: <20210914163726.38604-1-jouni@codeaurora.org>
+ <20210914163726.38604-3-jouni@codeaurora.org>
+ <87a6it5upc.fsf@codeaurora.org>
+Message-ID: <50c21cd4f727e61c7602a61fe37258df@codeaurora.org>
+X-Sender: wgong@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211028_054324_189268_2B06CB2F 
-X-CRM114-Status: GOOD (  15.10  )
-X-Mailman-Approved-At: Thu, 28 Oct 2021 06:21:07 -0700
+X-CRM114-CacheID: sfid-20211028_193043_981880_50D6ECA7 
+X-CRM114-Status: GOOD (  12.90  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -66,85 +83,44 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============8540076497450653726=="
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
---===============8540076497450653726==
-Content-Type: multipart/signed; boundary="nextPart3426232.laXtC95Ive"; micalg="pgp-sha512"; protocol="application/pgp-signature"
-
---nextPart3426232.laXtC95Ive
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Sven Eckelmann <sven@narfation.org>
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org, Karthikeyan Kathirvel <kathirve@codeaurora.org>
-Subject: Re: [PATCH] ath11k: clear the keys properly when DISABLE_KEY
-Date: Thu, 28 Oct 2021 14:43:16 +0200
-Message-ID: <4399157.2QDAq5Xuus@ripper>
-In-Reply-To: <87sfwl494s.fsf@codeaurora.org>
-References: <20211026155446.457935-1-sven@narfation.org> <26869605.A2Tbvc0WiF@ripper> <87sfwl494s.fsf@codeaurora.org>
-
-On Thursday, 28 October 2021 14:38:27 CEST Kalle Valo wrote:
-[...]
-> But it doesn't either break anything either, right? So in that respect I
-> would like to keep the Tested-on tag in the commit log to document how
-> it was tested.
+On 2021-10-28 18:07, Kalle Valo wrote:
+> Jouni Malinen <jouni@codeaurora.org> writes:
 > 
-> Though I'm not sure what I do now, do you think I should the patch still
-> or should I drop it?
-
-It seems like QCA wanted to have a look again at the problem. So I would 
-suggest to drop it or mark it as "Changes Requested".
-
-I cannot make any statements about whether it actually clears anything 
-in the firmware because I neither have documentation nor source code of 
-it. So only persons which have more knowledge about it can work on this 
-problem.
-
-Kind regards,
-	Sven
---nextPart3426232.laXtC95Ive
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmF6muQACgkQXYcKB8Em
-e0Ybjg//UfH7a6x1M+B5p+UecsGikje4Z3pmYm6nbdZbseYEhgYra7DAdgi3wAZy
-v2EW914tFvNo2v1aW9ALhAEJG0sDBnPmmlp3RBvtyVd4y55NNtXlWeX/6eTjyRty
-K43725qiOa5EA4pTF4WINwzzZuUqQIx+XplPm9MI5PL7bW9hxR0FP3xMP/F4rtUQ
-cjlGL8XeD4NiugM48Y8BENgPFOLWwEsMtd+UbUyKxuOAXEHNO2dunQ9OqMdyMiLf
-U+KTTiTq65sS38KlrwOrPQD+Wnqlozd+TXYab1oIhpriYzabLoQMxMst4ak1sXaY
-2Pga+m95mAuxjX1qct3LlgpiZb3ei5DYEMki2BeSTTSZQ/dgL3CgfUbVuMhLoRXb
-99+Rw7G9+zLxXP+zPk4gRArGkRPFv/N15IYaOHNG/U2QYdokH1q7u62anbkmHfBt
-y7eheiGdP+NHvP4i7Mf2jmVNkMit2V7m7nMoPBq4vJOaJHbVk8e//1cLpN/6EUo8
-l+Q6NFL0uhusJhNJgejdqwQSXasqJSkjUaG+9/rE0ZzbQBkNwSEZL+7Siow+3mdy
-yirVqmCReuLmG4cIrSJb5baYU5IIt0q32zYoju2wdt0xIUQpgMiDcx0Grg8QzueX
-C7lAgXuYeqra72CVwUPLDs/krNg/LhFYdH6lUFU4Mukn9sXzuFI=
-=F+Gz
------END PGP SIGNATURE-----
-
---nextPart3426232.laXtC95Ive--
-
-
-
-
-
---===============8540076497450653726==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+>> From: Wen Gong <wgong@codeaurora.org>
+>> 
+...
+>> diff --git a/drivers/net/wireless/ath/ath11k/mac.c 
+>> b/drivers/net/wireless/ath/ath11k/mac.c
+>> index 1f4765e43546..97a2c92b7b9b 100644
+>> --- a/drivers/net/wireless/ath/ath11k/mac.c
+>> +++ b/drivers/net/wireless/ath/ath11k/mac.c
+>> @@ -7570,7 +7570,8 @@ static int __ath11k_mac_register(struct ath11k 
+>> *ar)
+>>  	 * for each band for a dual band capable radio. It will be tricky to
+>>  	 * handle it when the ht capability different for each band.
+>>  	 */
+>> -	if (ht_cap & WMI_HT_CAP_DYNAMIC_SMPS || ar->supports_6ghz)
+>> +	if (ht_cap & WMI_HT_CAP_DYNAMIC_SMPS ||
+>> +	    (ar->supports_6ghz && !ab->hw_params.check_dynamic_smps))
+>>  		ar->hw->wiphy->features |= NL80211_FEATURE_DYNAMIC_SMPS;
+> 
+> Instead of a "negative" flag I reverted the test and renamed the flag 
+> to
+> supports_dynamic_smps_6ghz. AFAIK QCN9074 is the only device supporting
+> 6 GHz band so I enabled the flag only for it.
+> 
+> Please review my changes in the pending branch:
+Thanks.
+the change is OK for WCN6855/QCA6390.
+> 
+> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=cc692cfb9f2981691b39b601b37e4544ecf01136
 
 -- 
 ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
-
---===============8540076497450653726==--
-
-
-
-
