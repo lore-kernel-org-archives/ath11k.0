@@ -2,14 +2,14 @@ Return-Path: <SRS0=ve4P=P4=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 338C5C433EF
-	for <ath11k@archiver.kernel.org>; Tue,  9 Nov 2021 01:05:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8D307C433EF
+	for <ath11k@archiver.kernel.org>; Tue,  9 Nov 2021 01:05:45 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0313061A89
-	for <ath11k@archiver.kernel.org>; Tue,  9 Nov 2021 01:05:29 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 0313061A89
+	by mail.kernel.org (Postfix) with ESMTPS id 5BE93614C8
+	for <ath11k@archiver.kernel.org>; Tue,  9 Nov 2021 01:05:45 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 5BE93614C8
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -18,43 +18,42 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=t9vX1xQem9EtSDyyN0K4FOlBZjOnkV3F+zuzU1q0XXs=; b=EFJr+3De8UiNoe
-	IXjgvfnHO3MLJfKK06/cm6uCTfJwJPWHJzDb/HMHe3Rb5IgJAT1Ir3nd9DQZKUHxylP90ySPMaud2
-	9a9VZ/+7hl/c1MyB0u1cRsKeAyDaGMJs51WXEtFeG9F6A4VGYWwtpQ9IZ2HwENnTCRtrnIai+x2a3
-	oBctD/82E106MW7IABXf/XVSjkoiWBTbhUJnVG1g1iyPiAgfuCUJfLWwShJjXmO2JKqhBxW0sW2g+
-	H7FX9fsFP7IVoSunMc3o+E+MKy47++KHfrGI3BH3w0BizJU8lTY/avJid3JKr4LMlJKI/VPVajxuo
-	+XDO8HyH7ebXateaLpag==;
+	List-Owner; bh=2zgNDDpfs2KjX9Se+SMAXwQK12BZ+TQqV77wuAj9suY=; b=qwxsp1TK8TPTAl
+	gsstfrjpJPtboL/IL461rE6/JR4ZzKeE9wleMO1OqH2tD9McBVdKS/QjHFwH+hQwAli4kzMYuVEgK
+	c2A5irRl4IsqKxQ5YDXN5tuonTnucmyOBxLBoXyjuhLmFDdNNxFVCkkI1ukk+SZLRxHevhj1qQSiS
+	SNODsgFiVZ2zfmKBpLzO45ycoe+NtkxaK8z+nOw8tV6vNAysGCH3d0iEAZbL8FT3tW6wN0dM0h7qu
+	jt88raG68Yir9SwtjI94kD4QJTCofcnUPpBZjYoCDDAjSPBQ++stfA8lp/uAhucHEjgjOq/AmMB8E
+	z3Mb07uophc9zPDNaPzg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mkFZl-000Cma-Jc; Tue, 09 Nov 2021 01:05:25 +0000
+	id 1mkFa2-000CsK-1e; Tue, 09 Nov 2021 01:05:42 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mkFUm-000AUn-R8
- for ath11k@lists.infradead.org; Tue, 09 Nov 2021 01:00:18 +0000
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 22FE66120D;
- Tue,  9 Nov 2021 01:00:15 +0000 (UTC)
+ id 1mkFVR-000Aiz-U6
+ for ath11k@lists.infradead.org; Tue, 09 Nov 2021 01:00:59 +0000
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4CB2A6134F;
+ Tue,  9 Nov 2021 01:00:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1636419616;
- bh=qT2SY6fv46Gn9/Bc1mnjMQbsZb5EuuRuEpMBD50gTC8=;
+ s=k20201202; t=1636419657;
+ bh=j4DogJZl2Vu+zsxMLerayzNIup6aEJcDiqFmY097EUs=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=CiGVtf9abLz8uIziTafzisavopJVzeGyVqWRlteTQW58nHzaDMqL3aD1wad+Xuje0
- RPwUJl/ppWz2cYbopLDeio6uElPRYj57oRczF+qg9ISFZU9yYHtXsrzP6urPfAmS+x
- qeZFH6/WLQqI2CnTVw122cwj08MHiN/Oup8b25Y/bb0vpLKFolMjDyX74Xo4/50mCZ
- lIfMFQ7dxc9Q14k7+WkmND7oStQud51McTcKMg5ReSsB8l+k3gQERU2aCzFNshtVIb
- Vi+0mynkpELQK0r2pWjusMkTaotHyC2gBFlSf5ZPtHyXluLL1Emxr29jLVWsPu0VEW
- FJtoF7YkocC6A==
+ b=jr/BBwlZUhINg51Yg3cpPZcrf+XQEtnjGfJJ3EKze+6vf9sgLpvQcbG6V79j0mEfw
+ sYh3WChTYIV+4WBj2HmMEEtn3uQ/tRcyK44EE/tJIewahdHYmF4I0bsXIgvrCTMO2a
+ ubg7XEF2ntoUDIJzdi7QLGn8ssks595CgKiXFv1MdPVTxRfKyZjeHkLQigJ2E1prfw
+ Vq6AYBgwprkMVMZDfPo/22cAekvSjhBjwdqHZ5igerlM5mTnE9vkVfCCmykehaXNj4
+ QX2OGL0oFtXvTLSDGwUUKI/Kh+PDPrguyuRmKHzF4T6KB9F87KMDT1wykl5gNyXy3h
+ FQMgHDpe1uLeg==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Seevalamuthu Mariappan <seevalam@codeaurora.org>,
- Ritesh Singh <ritesi@codeaurora.org>, Jouni Malinen <jouni@codeaurora.org>,
+Cc: Sriram R <srirrama@codeaurora.org>, Jouni Malinen <jouni@codeaurora.org>,
  Kalle Valo <kvalo@codeaurora.org>, Sasha Levin <sashal@kernel.org>,
  davem@davemloft.net, kuba@kernel.org, ath11k@lists.infradead.org,
  linux-wireless@vger.kernel.org, netdev@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.15 019/146] ath11k: Align bss_chan_info structure
- with firmware
-Date: Mon,  8 Nov 2021 12:42:46 -0500
-Message-Id: <20211108174453.1187052-19-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.15 033/146] ath11k: Avoid reg rules update during
+ firmware recovery
+Date: Mon,  8 Nov 2021 12:43:00 -0500
+Message-Id: <20211108174453.1187052-33-sashal@kernel.org>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20211108174453.1187052-1-sashal@kernel.org>
 References: <20211108174453.1187052-1-sashal@kernel.org>
@@ -62,8 +61,8 @@ MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211108_170016_970047_F80DE638 
-X-CRM114-Status: GOOD (  10.45  )
+X-CRM114-CacheID: sfid-20211108_170058_049531_D1630540 
+X-CRM114-Status: GOOD (  12.28  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,71 +79,77 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Seevalamuthu Mariappan <seevalam@codeaurora.org>
+From: Sriram R <srirrama@codeaurora.org>
 
-[ Upstream commit feab5bb8f1d4621025dceae7eef62d5f92de34ac ]
+[ Upstream commit 69a0fcf8a9f2273040d03e5ee77c9689c09e9d3a ]
 
-pdev_id in structure 'wmi_pdev_bss_chan_info_event' is wrongly placed
-at the beginning. This causes invalid values in survey dump. Hence, align
-the structure with the firmware.
+During firmware recovery, the default reg rules which are
+received via WMI_REG_CHAN_LIST_CC_EVENT can overwrite
+the currently configured user regd.
 
-Note: The firmware releases follow this order since the feature was
-implemented. Also, it is not changing across the branches including
-QCA6390.
+See below snap for example,
 
-Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.1.0.1-01228-QCAHKSWPL_SILICONZ-1
+root@OpenWrt:/# iw reg get | grep country
+country FR: DFS-ETSI
+country FR: DFS-ETSI
+country FR: DFS-ETSI
+country FR: DFS-ETSI
 
-Signed-off-by: Ritesh Singh <ritesi@codeaurora.org>
-Signed-off-by: Seevalamuthu Mariappan <seevalam@codeaurora.org>
+root@OpenWrt:/# echo assert > /sys/kernel/debug/ath11k/ipq8074\ hw2.0/simulate_f
+w_crash
+<snip>
+[ 5290.471696] ath11k c000000.wifi1: pdev 1 successfully recovered
+
+root@OpenWrt:/# iw reg get | grep country
+country FR: DFS-ETSI
+country US: DFS-FCC
+country US: DFS-FCC
+country US: DFS-FCC
+
+In the above, the user configured country 'FR' is overwritten
+when the rules of default country 'US' are received and updated during
+recovery. Hence avoid processing of these rules in general
+during firmware recovery as they have been already applied during
+driver registration or after last set user country is configured.
+
+This scenario applies for both AP and STA devices basically because
+cfg80211 is not aware of the recovery and only the driver recovers, but
+changing or resetting of the reg domain during recovery is not needed so
+as to continue with the configured regdomain currently in use.
+
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-01460-QCAHKSWPL_SILICONZ-1
+
+Signed-off-by: Sriram R <srirrama@codeaurora.org>
 Signed-off-by: Jouni Malinen <jouni@codeaurora.org>
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
-Link: https://lore.kernel.org/r/20210720214922.118078-3-jouni@codeaurora.org
+Link: https://lore.kernel.org/r/20210721212029.142388-3-jouni@codeaurora.org
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/net/wireless/ath/ath11k/wmi.c | 1 +
- drivers/net/wireless/ath/ath11k/wmi.h | 3 ++-
- 2 files changed, 3 insertions(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/wmi.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
 diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 6c253eae9d069..27c060dd3fb47 100644
+index 27c060dd3fb47..fa27115483c6c 100644
 --- a/drivers/net/wireless/ath/ath11k/wmi.c
 +++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -1339,6 +1339,7 @@ int ath11k_wmi_pdev_bss_chan_info_request(struct ath11k *ar,
- 				     WMI_TAG_PDEV_BSS_CHAN_INFO_REQUEST) |
- 			  FIELD_PREP(WMI_TLV_LEN, sizeof(*cmd) - TLV_HDR_SIZE);
- 	cmd->req_type = type;
-+	cmd->pdev_id = ar->pdev->pdev_id;
+@@ -5793,6 +5793,17 @@ static int ath11k_reg_chan_list_event(struct ath11k_base *ab, struct sk_buff *sk
  
- 	ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
- 		   "WMI bss chan info req type %d\n", type);
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index d35c47e0b19d4..0b7d337b36930 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -2960,6 +2960,7 @@ struct wmi_pdev_bss_chan_info_req_cmd {
- 	u32 tlv_header;
- 	/* ref wmi_bss_chan_info_req_type */
- 	u32 req_type;
-+	u32 pdev_id;
- } __packed;
+ 	pdev_idx = reg_info->phy_id;
  
- struct wmi_ap_ps_peer_cmd {
-@@ -4056,7 +4057,6 @@ struct wmi_vdev_stopped_event {
- } __packed;
- 
- struct wmi_pdev_bss_chan_info_event {
--	u32 pdev_id;
- 	u32 freq;	/* Units in MHz */
- 	u32 noise_floor;	/* units are dBm */
- 	/* rx clear - how often the channel was unused */
-@@ -4074,6 +4074,7 @@ struct wmi_pdev_bss_chan_info_event {
- 	/*rx_cycle cnt for my bss in 64bits format */
- 	u32 rx_bss_cycle_count_low;
- 	u32 rx_bss_cycle_count_high;
-+	u32 pdev_id;
- } __packed;
- 
- #define WMI_VDEV_INSTALL_KEY_COMPL_STATUS_SUCCESS 0
++	/* Avoid default reg rule updates sent during FW recovery if
++	 * it is already available
++	 */
++	spin_lock(&ab->base_lock);
++	if (test_bit(ATH11K_FLAG_RECOVERY, &ab->dev_flags) &&
++	    ab->default_regd[pdev_idx]) {
++		spin_unlock(&ab->base_lock);
++		goto mem_free;
++	}
++	spin_unlock(&ab->base_lock);
++
+ 	if (pdev_idx >= ab->num_radios) {
+ 		/* Process the event for phy0 only if single_pdev_only
+ 		 * is true. If pdev_idx is valid but not 0, discard the
 -- 
 2.33.0
 
