@@ -2,86 +2,75 @@ Return-Path: <SRS0=ve4P=P4=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A7BECC433F5
-	for <ath11k@archiver.kernel.org>; Tue,  9 Nov 2021 06:09:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 75A3FC433FE
+	for <ath11k@archiver.kernel.org>; Tue,  9 Nov 2021 06:32:31 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6009361184
-	for <ath11k@archiver.kernel.org>; Tue,  9 Nov 2021 06:09:53 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 6009361184
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
+	by mail.kernel.org (Postfix) with ESMTPS id 04A526101C
+	for <ath11k@archiver.kernel.org>; Tue,  9 Nov 2021 06:32:30 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 04A526101C
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=quicinc.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BWBkrkrg1lM/yYXlqqmuib3qlhhHw+wuW5ijOYQ/fCY=; b=u89Yx0x/06Qhzd
-	Z/2bwE8gvbkHY1xTGkB4YDEsmJf/TzuKMUwM9M3Aq9YmIjHZbwz+yBQwyTUhq2Sw4LDYm90TQkito
-	3LdPrSGrSwm7GbGRfhKESkBswZeX5BR61XDfg3gOANx5/7fua1d1KYPnqV5u2STcnn/u1O4R2yXR0
-	0XjiBSbSSy4eh9xh91thm8uABtfqPddkv/vrzOE66g4+v51p7PCN+n58AgSl1Tw6lCd5KpYNlx99+
-	6505H1f5VBZeYFW3DheDeCNeWRd/lPW6BZyV5gMh7DMO0ZcASQVsyOxwnFgwKCoOtHXr86ZZnJv8H
-	M3vNOSAOnqXbN7A4I01g==;
+	List-Owner; bh=BMbSxtrGyhxYqgaD5dmwxHDHlA1UDG31mZHtqOt03Rw=; b=NI1+tR8yC5kR7H
+	7G36V3UWk1v1u5/Yt1JjW2d8IUfp4z4RUZLIJA+1U7C6E0zQrMsB1OVXvX54nBFgx1rc8iKjqqQHW
+	b1IsP9lxKU1qWW4rbOnIumWQcLsZRHJOYRGbPAwF0hj8klpF7B1L6RjRTyho5bO45Z+W0WOK8amSX
+	75quPiIxk9dAMc5vQ+ZAFmWbdA2TQG3rcwWkrunBO81ECEmK4+jKlhXWjVpH3R06kvR2Uk7B2NcZf
+	bGa/KnpJRYaywiMk33GtGr8WfiTrDX4WYhvlLApnydvTADJQuVZRj8k/xgaKlPeWB6lbnbGJAgGMC
+	7cTEAZo5Y8hrvAifop3A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mkKKM-000n3C-Gy; Tue, 09 Nov 2021 06:09:50 +0000
-Received: from mail-pl1-x62f.google.com ([2607:f8b0:4864:20::62f])
+	id 1mkKgG-000nxO-Md; Tue, 09 Nov 2021 06:32:28 +0000
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mkKKK-000n2c-1d
- for ath11k@lists.infradead.org; Tue, 09 Nov 2021 06:09:49 +0000
-Received: by mail-pl1-x62f.google.com with SMTP id k4so19009974plx.8
- for <ath11k@lists.infradead.org>; Mon, 08 Nov 2021 22:09:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=3UMQ+IMa+soVBoyYN64G/6OyoEqBBdIjr60HkQKpNx8=;
- b=KZaPR85qHnb2yKJr4Zb3HksFeFbhp9G5ogo/MdQMtO2WH0hekoook0Vt4487LMv3DI
- EZ0IKoPmpz97Jb1XZ4sLl3X7/CAkjjsXH2vl5hzq6NE9fJDEPnlKhvOa7B3kiDVm6oxW
- EBstH3kSpqCyMwchR7NYBfno3q91DaVpBmKgc9HrHV8U9liDb+9Sz8Nvg/etv3fB0J82
- J62zQAeQDIJuNE/w/tCzN41cPMRJGyxZGWn6tp4GSsf3Zs/fa33GTpD4LdPiEnwVbgzR
- 1PnxMKpiC510UXvkja82txpR8AqL0dO2xA1tZ/jotq5gaVtCGLxD0jKI7sv+7lc0W0EY
- suzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=3UMQ+IMa+soVBoyYN64G/6OyoEqBBdIjr60HkQKpNx8=;
- b=cjEfq0sx67MPV/csIrYVv2gawBbyI6dGPyWy7XJscfeYA6nbFybGzQerrjOjyHy5PW
- zZ6+5fPNu5TOQazyUNjNDtL8WdN8tFKuvh7sELNUnC61rsAsAgqugXaXTzsfvsSe6DYk
- F9+y0w+1rqoes0jzCd0CqYgPJH90t5mzWM/2cPOewdoefCKVAjMQ7qUoM5oSMfQ2sEqY
- WrWeTzzk4ClvqnMxiz4u4XTcpz+D0NchscBtD5rw/w7HgagxIUdvkMshyednpqZTYxPY
- mAxI5rMN8RL0NdRjXqQ4E8McJ9hpr0BwGO6owhky/Ww4IdRsM2D8p0flnzK7qGjhd2ex
- ZYnA==
-X-Gm-Message-State: AOAM5302C0cZRfar8xUv8e9hxkZmHDu11/c3QZOSrNxXmiHZpsL+DKWA
- qXZnsZRUB3uvNAgN1LNEujiN
-X-Google-Smtp-Source: ABdhPJwNKVQwXClKhZuDD23mjW/GMmAAsVvWIADqtgxcYdFWepoXh4uyRFP3LuTv+g5FdbftBBcsaw==
-X-Received: by 2002:a17:903:2093:b0:142:7dff:f7de with SMTP id
- d19-20020a170903209300b001427dfff7demr4995953plc.75.1636438186599; 
- Mon, 08 Nov 2021 22:09:46 -0800 (PST)
-Received: from thinkpad ([117.217.177.76])
- by smtp.gmail.com with ESMTPSA id l11sm18755948pfu.129.2021.11.08.22.09.42
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 08 Nov 2021 22:09:46 -0800 (PST)
-Date: Tue, 9 Nov 2021 11:39:38 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Anilkumar Kolli <akolli@codeaurora.org>
-Cc: Rob Herring <robh@kernel.org>, ath11k@lists.infradead.org,
- linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
- mhi@lists.linux.dev
-Subject: Re: [PATCH 1/2] dt: bindings: add new DT entry for ath11k PCI device
- support
-Message-ID: <20211109060938.GA5235@thinkpad>
-References: <1635175648-23491-1-git-send-email-akolli@codeaurora.org>
- <YYBPd+Z/dA/pTReo@robh.at.kernel.org>
- <b142a4850d9cbc3bb451a78b488688cc@codeaurora.org>
+ id 1mkKgD-000nwQ-Bh
+ for ath11k@lists.infradead.org; Tue, 09 Nov 2021 06:32:27 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+ t=1636439545; x=1667975545;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version;
+ bh=DKN3CVNkHIpjYImKJDD80xrhDAZRv6vAVHCOWCTUPJQ=;
+ b=JkFHnH4eJBLMJylLX80V+CwactozAOG9YOpGnBQ6wnxhnpQMATtOiFP2
+ ywKvBWFYhkQ2VizLSOXchTZNKkrF66MMr4j4+a1pLgt4gbQcO8TwdYEGL
+ tC5hOSAQ/ntQSkRwbD+R8U0PkHtSj9cAZd5zQXL3v1NS+4IBmWYzP+4fk k=;
+Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
+ by alexa-out-sd-02.qualcomm.com with ESMTP; 08 Nov 2021 22:32:21 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+ by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Nov 2021 22:32:21 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.7; 
+ Mon, 8 Nov 2021 22:32:20 -0800
+Received: from vnaralas-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.7; 
+ Mon, 8 Nov 2021 22:32:18 -0800
+From: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, Venkateswara Naralasetty
+ <quic_vnaralas@quicinc.com>
+Subject: [PATCH 2/2] ath11k: add spectral/CFR buffer validation support
+Date: Tue, 9 Nov 2021 12:02:02 +0530
+Message-ID: <1636439522-14509-2-git-send-email-quic_vnaralas@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1636439522-14509-1-git-send-email-quic_vnaralas@quicinc.com>
+References: <1636439522-14509-1-git-send-email-quic_vnaralas@quicinc.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <b142a4850d9cbc3bb451a78b488688cc@codeaurora.org>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211108_220948_118469_AAA27FD6 
-X-CRM114-Status: GOOD (  25.42  )
+X-CRM114-CacheID: sfid-20211108_223225_473371_FC8C0334 
+X-CRM114-Status: GOOD (  15.16  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,91 +87,123 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Tue, Nov 09, 2021 at 10:33:58AM +0530, Anilkumar Kolli wrote:
-> On 2021-11-02 02:05, Rob Herring wrote:
-> > On Mon, Oct 25, 2021 at 08:57:27PM +0530, Anilkumar Kolli wrote:
-> > > Ath11k driver supports PCI devices such as QCN9074/QCA6390.
-> > > Ath11k firmware uses host DDR memory, DT entry is used to reserve
-> > > these host DDR memory regions, send these memory base
-> > > addresses using DT entries.
-> > > 
-> > > Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
-> > > ---
-> > >  .../bindings/net/wireless/qcom,ath11k.yaml         | 38
-> > > ++++++++++++++++++++++
-> > >  1 file changed, 38 insertions(+)
-> > > 
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-> > > b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-> > > index 5ac9616c9239..c7e6612e949c 100644
-> > > --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-> > > +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-> > > @@ -19,6 +19,10 @@ description: |
-> > >    These devices use HOST DDR memory, HOST DDR memory can be reserved
-> > >    and send to ath11k driver from DT.
-> > > 
-> > > +  ATH11K supports PCI devices like QCA6390,QCN9074.
-> > > +  These devices use host DDR memory, host DDR memory can be reserved
-> > > +  and send to ath11k driver from DT.
-> > > +
-> > >  properties:
-> > >    compatible:
-> > >      enum:
-> > > @@ -177,6 +181,29 @@ properties:
-> > >      description:
-> > >        HOST DDR end address.
-> > > 
-> > > +  qcom,base-addr:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    description:
-> > > +      Host DDR base address for firmware. QCN9074 firmware uses 45
-> > > MB of host
-> > > +      DDR memory in mode-0 and 15 MB of host DDR memory in mode-2.
-> > > +
-> > > +  qcom,caldb-addr:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    description:
-> > > +      Host DDR address to store CALDB. CALDB is calibration data base
-> > > +      for WLAN channel and tx power.
-> > > +
-> > 
-> > Use /reserved-memory entries for these.
-> > 
-> 
-> Sure.
-> 
-> > > +  qcom,start-addr:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    description:
-> > > +      Host DDR start address. For example on x86 it is 0x0,
-> > > +      on IPQ8074 it is 0x41000000.
-> > > +
-> > > +  qcom,end-addr:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    description:
-> > > +      Host DDR end address.
-> > 
-> > Nak. I don't know what you are doing with these 2, but it's wrong.
-> > 
-> 
-> The DDR start address and end address are sent to MHI control bus,
-> For x86 platform code snip in ath11k/mhi.c
-> 
->         mhi_ctrl->iova_start = 0;
->         mhi_ctrl->iova_stop = 0xffffffff;
-> 
-> Similarly for ARM platfroms, send DDR addresses from DT entry.
-> 
+Currently there is no validation on the spectral/CFR report
+over the db ring buffers from the hardware. Improper/incomplete
+DMA by the target can result in invalid data received by host.
+Due to this we may populate incorrect data to user space.
 
-You can use the reserved memory node for ddr address also. In the ath11k driver,
-use devicetree APIs for fetching the start and end addresses.
+This buffer validation support fix this issues by filling some
+magic value in the buffer during buffer replenish and check for
+the magic value in the buffer received by the target. If host
+detect magic value in the received buffer it will drop the buffer.
 
-Thanks,
-Mani
+Tested-on: IPQ8074 WLAN.HK.2.4.0.1-01467-QCAHKSWPL_SILICONZ-1
 
-> Thanks
-> Anil
+Signed-off-by: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/dbring.c   | 32 ++++++++++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/dbring.h   |  1 +
+ drivers/net/wireless/ath/ath11k/spectral.c | 10 ++++++++++
+ 3 files changed, 43 insertions(+)
+
+diff --git a/drivers/net/wireless/ath/ath11k/dbring.c b/drivers/net/wireless/ath/ath11k/dbring.c
+index d043f4e..ec04367 100644
+--- a/drivers/net/wireless/ath/ath11k/dbring.c
++++ b/drivers/net/wireless/ath/ath11k/dbring.c
+@@ -6,6 +6,37 @@
+ #include "core.h"
+ #include "debug.h"
+ 
++#define ATH11K_DB_MAGIC_VALUE 0xdeadbeaf
++
++int ath11k_dbring_validate_buffer(struct ath11k *ar, void *buffer, u32 size)
++{
++	u32 *temp;
++	int idx;
++
++	size = size >> 2;
++
++	for (idx = 0, temp = buffer; idx < size; idx++, temp++) {
++		if (*temp == ATH11K_DB_MAGIC_VALUE) {
++			ath11k_warn(ar->ab, "found magic value in the buffer\n");
++			return -EINVAL;
++		}
++	}
++
++	return 0;
++}
++
++static void ath11k_dbring_fill_magic_value(struct ath11k *ar,
++					   void *buffer, u32 size)
++{
++	u32 *temp;
++	int idx;
++
++	size = size >> 2;
++
++	for (idx = 0, temp = buffer; idx < size; idx++, temp++)
++		*temp++ = ATH11K_DB_MAGIC_VALUE;
++}
++
+ static int ath11k_dbring_bufs_replenish(struct ath11k *ar,
+ 					struct ath11k_dbring *ring,
+ 					struct ath11k_dbring_element *buff,
+@@ -27,6 +58,7 @@ static int ath11k_dbring_bufs_replenish(struct ath11k *ar,
+ 
+ 	ptr_unaligned = buff->payload;
+ 	ptr_aligned = PTR_ALIGN(ptr_unaligned, ring->buf_align);
++	ath11k_dbring_fill_magic_value(ar, ptr_aligned, ring->buf_sz);
+ 	paddr = dma_map_single(ab->dev, ptr_aligned, ring->buf_sz,
+ 			       DMA_FROM_DEVICE);
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/dbring.h b/drivers/net/wireless/ath/ath11k/dbring.h
+index f7fce9e..8c372d7 100644
+--- a/drivers/net/wireless/ath/ath11k/dbring.h
++++ b/drivers/net/wireless/ath/ath11k/dbring.h
+@@ -76,4 +76,5 @@ int ath11k_dbring_get_cap(struct ath11k_base *ab,
+ 			  struct ath11k_dbring_cap *db_cap);
+ void ath11k_dbring_srng_cleanup(struct ath11k *ar, struct ath11k_dbring *ring);
+ void ath11k_dbring_buf_cleanup(struct ath11k *ar, struct ath11k_dbring *ring);
++int ath11k_dbring_validate_buffer(struct ath11k *ar, void *data, u32 size);
+ #endif /* ATH11K_DBRING_H */
+diff --git a/drivers/net/wireless/ath/ath11k/spectral.c b/drivers/net/wireless/ath/ath11k/spectral.c
+index ac4da99..b65e23d 100644
+--- a/drivers/net/wireless/ath/ath11k/spectral.c
++++ b/drivers/net/wireless/ath/ath11k/spectral.c
+@@ -581,6 +581,7 @@ int ath11k_spectral_process_fft(struct ath11k *ar,
+ 	u16 length, freq;
+ 	u8 chan_width_mhz, bin_sz;
+ 	int ret;
++	u32 check_length;
+ 
+ 	lockdep_assert_held(&ar->spectral.lock);
+ 
+@@ -614,6 +615,11 @@ int ath11k_spectral_process_fft(struct ath11k *ar,
+ 		return -EINVAL;
+ 	}
+ 
++	check_length = sizeof(*fft_report) + (num_bins * ab->hw_params.spectral.fft_sz);
++	ret = ath11k_dbring_validate_buffer(ar, data, check_length);
++	if (ret)
++		return ret;
++
+ 	ret = ath11k_spectral_pull_search(ar, data, &search);
+ 	if (ret) {
+ 		ath11k_warn(ab, "failed to pull search report %d\n", ret);
+@@ -747,6 +753,10 @@ static int ath11k_spectral_process_data(struct ath11k *ar,
+ 				goto err;
+ 			}
+ 
++			ret = ath11k_dbring_validate_buffer(ar, data, tlv_len);
++			if (ret)
++				goto err;
++
+ 			summary = (struct spectral_summary_fft_report *)tlv;
+ 			ath11k_spectral_pull_summary(ar, &param->meta,
+ 						     summary, &summ_rpt);
+-- 
+2.7.4
+
 
 -- 
 ath11k mailing list
