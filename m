@@ -2,78 +2,73 @@ Return-Path: <SRS0=jp2b=P5=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 06356C433EF
-	for <ath11k@archiver.kernel.org>; Wed, 10 Nov 2021 12:41:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D3141C433F5
+	for <ath11k@archiver.kernel.org>; Wed, 10 Nov 2021 14:23:57 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BBF16611AD
-	for <ath11k@archiver.kernel.org>; Wed, 10 Nov 2021 12:41:28 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org BBF16611AD
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+	by mail.kernel.org (Postfix) with ESMTPS id 70D3D61106
+	for <ath11k@archiver.kernel.org>; Wed, 10 Nov 2021 14:23:57 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 70D3D61106
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=quicinc.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
-	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=3sDZHbFjvVGsnjk8Fx3D/0ruxfF7WqCyfqeUCWrg0ho=; b=KegJPUpL1Azc1T
-	aKc/sVnY1Xoc6GvcKqTRuba2DV7Pt4cV23BJn32GOM2IBQ0qrlBz27SOuFFQdIO95bt4lBzHBfwA2
-	tuiotZs7LKdmfb/YdA/2foKFNNNKbJMQxkwxdTmOFxPhtdx77dAxkUCmc0ud6HwmPDife7G+h2y5E
-	m9aKq8nDDzLvkkpDlJDwc8MH95+bccefiUvJEZnG+u1wR8bqa1c5U7EBi0tGMOjU/sLFSu/hjbT3Z
-	0yfsPtCAQNDAJmxTOIkamOPWu0Ws+DrYAivouHlsCMakdkbZPaZQdHCmyf+mHT+5GufgYw2Cxoc+g
-	526va2mgV37xfLrhxpHw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=qNwPJflD6FFj4B0YjB1f6GLZ24qDEqvg8M2d2ylPYaM=; b=3vdxEIpEjhUVf6
+	zIoaKYzW179pdVQi5s+7Uu4KyP7yB8mWUwi99RJSmu/fx0Fb9GZ/CBRQkMtDI/rrozRqFkYwDUMyz
+	KZG7Rzql2ZgX1ZneiB823y+5r4oYuqTmNylC+Fpntz0SNZKnCFPq2ZRSnLGeVZGIGjGh1XKnB9yjA
+	HCfQv6qwjVn8P+1oNS8RIrfIXUGxsHG4fExXFaeWxfZV+Tww4tfGBezXMNYbgMRsJG+5Ha/7wzQ5v
+	U36mdzh02+Z4hJHmehm+D7bye2JmRfRQQ68Qe2W4bpXHRV8r8qzJ1FuNf6ipcRgp0HQF6CkBOjG4F
+	LlDSdxZB3/QgKHUZuqEQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mkmus-005SuF-Hm; Wed, 10 Nov 2021 12:41:26 +0000
-Received: from so254-9.mailgun.net ([198.61.254.9])
+	id 1mkoW2-005cmW-QI; Wed, 10 Nov 2021 14:23:54 +0000
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mkmul-005SrZ-Kn
- for ath11k@lists.infradead.org; Wed, 10 Nov 2021 12:41:24 +0000
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
- q=dns/txt; 
- s=smtp; t=1636548083; h=Date: Message-ID: Cc: To: References:
- In-Reply-To: From: Subject: Content-Transfer-Encoding: MIME-Version:
- Content-Type: Sender; bh=71jw/lvo7olzfBamJSKGYUkIRP6+OiLdjF2zXGUMSzE=;
- b=la/3eRG9eQMWRk9OaRfb9FgNIj4U6d7h/8WFJdTdphLNkPtoVHoLUYtFaIib0bPg0kW1Yq3j
- x9PoGpqIz9LMzGlnYNHvtaqFTc223F+/0OIiS8kq5vvJQ+Vj+wrBaAKkAfqp1KhtIaa+5nIc
- QVKNBWb4oaQ7bz211HL27W2UBNc=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
- 618bbdd6335d9047e17e6e1e (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 10 Nov 2021 12:40:54
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id A248FC43460; Wed, 10 Nov 2021 12:40:54 +0000 (UTC)
-Received: from tykki.adurom.net (tynnyri.adurom.net [51.15.11.48])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested) (Authenticated sender: kvalo)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 2D745C4360D;
- Wed, 10 Nov 2021 12:40:52 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 2D745C4360D
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- spf=fail smtp.mailfrom=codeaurora.org
+ id 1mkoVz-005cm8-IC
+ for ath11k@lists.infradead.org; Wed, 10 Nov 2021 14:23:53 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+ t=1636554231; x=1668090231;
+ h=from:to:cc:subject:date:message-id:mime-version;
+ bh=q3qNSKFcQq+TiIPXfvsf2+AVEG8VEuKs5xVYnQ4oWI0=;
+ b=bJhpq7pX/wv7ceBqXHEkip3+3JMLIT6Pnvqmz1imLq2unBSfZ4RCUAYy
+ g7wE/FRBc3h0+sGItTEMvEV/0SwtRuFykZTd15+eqt0Z6aRvu9q1xI0Yp
+ 7PWD5ere9GDFy2hmgBgEqCo8Qg8WkB2bQGmwr3MwH4XkHRKLICirbtJVP 0=;
+Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
+ by alexa-out-sd-02.qualcomm.com with ESMTP; 10 Nov 2021 06:23:48 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+ by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2021 06:23:48 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.7; 
+ Wed, 10 Nov 2021 06:23:48 -0800
+Received: from periyasa-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.7; 
+ Wed, 10 Nov 2021 06:23:45 -0800
+From: Karthikeyan Periyasamy <quic_periyasa@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, Karthikeyan Periyasamy
+ <quic_periyasa@quicinc.com>
+Subject: [PATCH] ath11k: fix fw crash due to peer get authorized before key
+ install
+Date: Wed, 10 Nov 2021 19:53:20 +0530
+Message-ID: <1636554200-12345-1-git-send-email-quic_periyasa@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 1/2] ath11k: convert ath11k_wmi_pdev_set_ps_mode() to
- use enum wmi_sta_ps_mode
-From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <20211108123826.8463-1-kvalo@codeaurora.org>
-References: <20211108123826.8463-1-kvalo@codeaurora.org>
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
-User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <163654804727.31349.15237326190281352213.kvalo@codeaurora.org>
-Date: Wed, 10 Nov 2021 12:40:54 +0000 (UTC)
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211110_044123_510005_B54D1A0E 
-X-CRM114-Status: UNSURE (   8.13  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20211110_062351_675025_E81AA3B6 
+X-CRM114-Status: GOOD (  14.84  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,24 +85,118 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Kalle Valo <kvalo@codeaurora.org> wrote:
+Firmware expects host to authorize the peer after the successful key
+install. But host authorize the peer before the key install, this trigger
+the firmware assert which leads to Q6 crash. To avoid this Q6 crash, host
+should authorize the peer after the key install. So introduce is_authorized
+in peer object to identify that peer is authorize or not. When
+IEEE80211_STA_CONTROL_PORT flag is unset, peer move to authorize state
+before the vdev up. When the same flag is set then peer move to authorize
+state after vdev up. So added authorise check in ath11k_bss_assoc() to
+handle the earlier state transition case. Also added the WMI authorize
+procedure in ath11k_mac_op_sta_state() to handle the non-earlier state
+transition case.
 
-> It's more descriptive to use the actual enum used by the firmware instead of a
-> boolean so change ath11k_wmi_pdev_set_ps_mode() to use a boolean.
-> 
-> Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
-> 
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-01492-QCAHKSWPL_SILICONZ-1
 
-2 patches applied to ath-next branch of ath.git, thanks.
+Signed-off-by: Karthikeyan Periyasamy <quic_periyasa@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/mac.c  | 53 +++++++++++++++++++++++++++++-----
+ drivers/net/wireless/ath/ath11k/peer.h |  1 +
+ 2 files changed, 47 insertions(+), 7 deletions(-)
 
-af3d89649bb6 ath11k: convert ath11k_wmi_pdev_set_ps_mode() to use enum wmi_sta_ps_mode
-b2beffa7d9a6 ath11k: enable 802.11 power save mode in station mode
-
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 50a6f88..5d860fe 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -2397,6 +2397,8 @@ static void ath11k_bss_assoc(struct ieee80211_hw *hw,
+ 	struct ath11k_vif *arvif = (void *)vif->drv_priv;
+ 	struct peer_assoc_params peer_arg;
+ 	struct ieee80211_sta *ap_sta;
++	struct ath11k_peer *peer;
++	bool is_auth = false;
+ 	int ret;
+ 
+ 	lockdep_assert_held(&ar->conf_mutex);
+@@ -2458,13 +2460,22 @@ static void ath11k_bss_assoc(struct ieee80211_hw *hw,
+ 		   "mac vdev %d up (associated) bssid %pM aid %d\n",
+ 		   arvif->vdev_id, bss_conf->bssid, bss_conf->aid);
+ 
+-	/* Authorize BSS Peer */
+-	ret = ath11k_wmi_set_peer_param(ar, arvif->bssid,
+-					arvif->vdev_id,
+-					WMI_PEER_AUTHORIZE,
+-					1);
+-	if (ret)
+-		ath11k_warn(ar->ab, "Unable to authorize BSS peer: %d\n", ret);
++	spin_lock_bh(&ar->ab->base_lock);
++
++	peer = ath11k_peer_find(ar->ab, arvif->vdev_id, arvif->bssid);
++	if (peer && peer->is_authorized)
++		is_auth = true;
++
++	spin_unlock_bh(&ar->ab->base_lock);
++
++	if (is_auth) {
++		ret = ath11k_wmi_set_peer_param(ar, arvif->bssid,
++						arvif->vdev_id,
++						WMI_PEER_AUTHORIZE,
++						1);
++		if (ret)
++			ath11k_warn(ar->ab, "Unable to authorize BSS peer: %d\n", ret);
++	}
+ 
+ 	ret = ath11k_wmi_send_obss_spr_cmd(ar, arvif->vdev_id,
+ 					   &bss_conf->he_obss_pd);
+@@ -4131,6 +4142,34 @@ static int ath11k_mac_op_sta_state(struct ieee80211_hw *hw,
+ 			ath11k_warn(ar->ab, "Failed to associate station: %pM\n",
+ 				    sta->addr);
+ 	} else if (old_state == IEEE80211_STA_ASSOC &&
++		   new_state == IEEE80211_STA_AUTHORIZED) {
++		spin_lock_bh(&ar->ab->base_lock);
++
++		peer = ath11k_peer_find(ar->ab, arvif->vdev_id, sta->addr);
++		if (peer)
++			peer->is_authorized = true;
++
++		spin_unlock_bh(&ar->ab->base_lock);
++
++		if (vif->type == NL80211_IFTYPE_STATION && arvif->is_up) {
++			ret = ath11k_wmi_set_peer_param(ar, sta->addr,
++							arvif->vdev_id,
++							WMI_PEER_AUTHORIZE,
++							1);
++			if (ret)
++				ath11k_warn(ar->ab, "Unable to authorize peer %pM vdev %d: %d\n",
++					    sta->addr, arvif->vdev_id, ret);
++		}
++	} else if (old_state == IEEE80211_STA_AUTHORIZED &&
++		   new_state == IEEE80211_STA_ASSOC) {
++		spin_lock_bh(&ar->ab->base_lock);
++
++		peer = ath11k_peer_find(ar->ab, arvif->vdev_id, sta->addr);
++		if (peer)
++			peer->is_authorized = false;
++
++		spin_unlock_bh(&ar->ab->base_lock);
++	} else if (old_state == IEEE80211_STA_ASSOC &&
+ 		   new_state == IEEE80211_STA_AUTH &&
+ 		   (vif->type == NL80211_IFTYPE_AP ||
+ 		    vif->type == NL80211_IFTYPE_MESH_POINT ||
+diff --git a/drivers/net/wireless/ath/ath11k/peer.h b/drivers/net/wireless/ath/ath11k/peer.h
+index 619db00..63fe566 100644
+--- a/drivers/net/wireless/ath/ath11k/peer.h
++++ b/drivers/net/wireless/ath/ath11k/peer.h
+@@ -28,6 +28,7 @@ struct ath11k_peer {
+ 	u8 ucast_keyidx;
+ 	u16 sec_type;
+ 	u16 sec_type_grp;
++	bool is_authorized;
+ };
+ 
+ void ath11k_peer_unmap_event(struct ath11k_base *ab, u16 peer_id);
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20211108123826.8463-1-kvalo@codeaurora.org/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+2.7.4
 
 
 -- 
