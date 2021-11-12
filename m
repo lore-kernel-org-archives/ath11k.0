@@ -2,78 +2,56 @@ Return-Path: <SRS0=U53r=P7=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0B923C433F5
-	for <ath11k@archiver.kernel.org>; Fri, 12 Nov 2021 13:09:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C0922C433EF
+	for <ath11k@archiver.kernel.org>; Fri, 12 Nov 2021 15:32:37 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B67DB61073
-	for <ath11k@archiver.kernel.org>; Fri, 12 Nov 2021 13:09:30 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org B67DB61073
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+	by mail.kernel.org (Postfix) with ESMTPS id 8157B60C40
+	for <ath11k@archiver.kernel.org>; Fri, 12 Nov 2021 15:32:37 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 8157B60C40
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=narfation.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FTShcce9RLZYXtXXAnRYArEyQNFngRdO1Ge465NGk0o=; b=Z5h2lTjD6zaOTd
-	EpHWs9t6qnLooBQi+lIG54gxSSeJAnSc4+b7AfzXJ2XntVZcwTObR6dp0yiMABEXFg5p9p18JScnH
-	S1j+t8RE4VJ8hK9uaA28tNc6yCW6oGyqmzGBy2/6UJ53bmQ54DuZotMvEiAnM9mnzgEFfFPe6Ja+N
-	ceADmKSvGW+r5l6g9Z7yneRgcAKR8TGC6F9jBhaSh7TsW1R4xGVzCVxot/tuKw06oILXtLy7gz7lv
-	sXiYAQJTy9w/oqExZtyVPTwsXzJRqbYvFbNcpZGtDzJ0ynlBxfw6ZKYEID2pC3NHULLMR+2WYnUkl
-	HmEBjrnUOnvd0VaLumtw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=PcU7u0nlGtu8WmXZteHf6b80rXR76kmUfNQrdObil1U=; b=4N01d6DXBPylpX
+	IEv+ggMQWmj/1KO1dwkhb9FjpA9JKI4FKmKSh9Sk2tLSoOmK5onm04bKMPxLbGQ/YzhirE5g30DIZ
+	H8ybTquv/DsxI6z01eAsPGJsrNQkVB6gfPdzWiglJWOGeYMtrjn8//amv6hLuZK8vmzmRSgRCS1ML
+	SVYkYk5vKKXVdLdapVVWB7em7HwKraEXz/GlySm2WdrEnldgdpm/oFACogn+vBCbFek5+k2WtnttR
+	QZcNVYxci4+OvfrJ6ngOCzN2pPbNHnTjUJPrdjai4+uUPx6LVG9dOfk1xKmRTBvVC/xRSRZZun5yk
+	j3K5uwMxPVpiJIaMN0og==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mlWJ5-00ATnD-Ew; Fri, 12 Nov 2021 13:09:27 +0000
-Received: from so254-9.mailgun.net ([198.61.254.9])
+	id 1mlYXa-00B6Fd-CR; Fri, 12 Nov 2021 15:32:34 +0000
+Received: from dvalin.narfation.org ([213.160.73.56])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mlWHp-00ATRu-9c
- for ath11k@lists.infradead.org; Fri, 12 Nov 2021 13:08:11 +0000
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
- q=dns/txt; 
- s=smtp; t=1636722488; h=Content-Type: MIME-Version: Message-ID:
- In-Reply-To: Date: References: Subject: Cc: To: From: Sender;
- bh=idTeMM7ZAuNiYybOeMEMu2LLBS1k4AQg85DiyOvbLmI=;
- b=Wihh/7j6W1mCAWUBdJ5mvbg5RWbYJsfrTXp6j2LPrjXxYnxyTRDPEgeLvQry3jF2j2snU9uw
- 0KKr6AcUficZ9OcR+iH6TmA7Z4YeFGOLLeziTMH8jRVbE64p6jgfcUDeR6Ickbtu+SVQaN1A
- tMo4IX/5R/i3xXrE7roht/Iz4Qw=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n02.prod.us-east-1.postgun.com with SMTP id
- 618e6734a445961e72f3beb2 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 12 Nov 2021 13:08:04
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 198C9C43460; Fri, 12 Nov 2021 13:08:04 +0000 (UTC)
-Received: from tykki (tynnyri.adurom.net [51.15.11.48])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested) (Authenticated sender: kvalo)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 67F4DC4338F;
- Fri, 12 Nov 2021 13:08:01 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 67F4DC4338F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- spf=fail smtp.mailfrom=codeaurora.org
-From: Kalle Valo <kvalo@codeaurora.org>
-To: P Praneesh <ppranees@codeaurora.org>
-Cc: ath11k@lists.infradead.org,  linux-wireless@vger.kernel.org
-Subject: Re: [PATCH v3 00/12] ath11k: optimizations in data path
-References: <1630560820-21905-1-git-send-email-ppranees@codeaurora.org>
-Date: Fri, 12 Nov 2021 15:07:56 +0200
-In-Reply-To: <1630560820-21905-1-git-send-email-ppranees@codeaurora.org> (P.
- Praneesh's message of "Thu, 2 Sep 2021 11:03:28 +0530")
-Message-ID: <87sfw1iksz.fsf@codeaurora.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+ id 1mlYXW-00B6CD-24
+ for ath11k@lists.infradead.org; Fri, 12 Nov 2021 15:32:32 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+ s=20121; t=1636731141;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=oHqfDu/AzlIIJ7kJWRvWS79eoKm0cbRICNb1jk+xitA=;
+ b=QcxgTgtUlyXNy5WQL+HLDH08b/xtVIevhpQATuhOx1ydUSKdszhvhpZwXwoQO6YajcE44M
+ ZxrForTEDSbDg0ewdn/v6X0/tUqzAFbLruW76huN+w/XEO2/egNP0LiAxknVbhFwgf0rX8
+ s4RipvwxFT/ecJd/iL80lK1oLkTVeSg=
+From: Sven Eckelmann <sven@narfation.org>
+To: ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org,
+	Sven Eckelmann <sven@narfation.org>
+Subject: [PATCH] ath11k: Fix ETSI regd with weather radar overlap
+Date: Fri, 12 Nov 2021 16:31:16 +0100
+Message-Id: <20211112153116.1214421-1-sven@narfation.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211112_050809_436640_96D93CF5 
-X-CRM114-Status: UNSURE (   9.54  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20211112_073230_611452_DF3901EA 
+X-CRM114-Status: GOOD (  15.18  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,108 +68,234 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-P Praneesh <ppranees@codeaurora.org> writes:
+Some ETSI countries have a small overlap in the wireless-regdb with an ETSI
+channel (5590-5650). A good example is Australia:
 
-> This patchset covers optimizations in rx (first 7 patches)
-> and tx (remaining 5 patches) data path.
->
-> Running UDP DL/UL traffic on IPQ8074 5G radio showed an average 5-10%
-> improvement on a 4 core platform
+  country AU: DFS-ETSI
+  	(2400 - 2483.5 @ 40), (36)
+  	(5150 - 5250 @ 80), (23), NO-OUTDOOR, AUTO-BW
+  	(5250 - 5350 @ 80), (20), NO-OUTDOOR, AUTO-BW, DFS
+  	(5470 - 5600 @ 80), (27), DFS
+  	(5650 - 5730 @ 80), (27), DFS
+  	(5730 - 5850 @ 80), (36)
+  	(57000 - 66000 @ 2160), (43), NO-OUTDOOR
 
-These had multiple conflicts but luckily they were relatively easy to
-fix. But please do check my changes in the pending branch:
+If the firmware (or the BDF) is shipped with these rules then there is only
+a 10 MHz overlap with the weather radar:
 
-https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/log/?h=pending
+* below: 5470 - 5590
+* weather radar: 5590 - 5600
+* above: (none for the rule "5470 - 5600 @ 80")
 
-Here's where I had conflicts:
+There are several wrong assumption in the ath11k code:
 
-Applying: ath11k: allocate dst ring descriptors from cacheable memory
-Using index info to reconstruct a base tree...
-M	drivers/net/wireless/ath/ath11k/core.c
-M	drivers/net/wireless/ath/ath11k/dp.c
-M	drivers/net/wireless/ath/ath11k/dp.h
-M	drivers/net/wireless/ath/ath11k/hw.h
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/net/wireless/ath/ath11k/hw.h
-CONFLICT (content): Merge conflict in drivers/net/wireless/ath/ath11k/hw.h
-Auto-merging drivers/net/wireless/ath/ath11k/dp.h
-Auto-merging drivers/net/wireless/ath/ath11k/dp.c
-Auto-merging drivers/net/wireless/ath/ath11k/core.c
-CONFLICT (content): Merge conflict in drivers/net/wireless/ath/ath11k/core.c
-Recorded preimage for 'drivers/net/wireless/ath/ath11k/core.c'
-Recorded preimage for 'drivers/net/wireless/ath/ath11k/hw.h'
-error: Failed to merge in the changes.
-Patch failed at 0002 ath11k: allocate dst ring descriptors from cacheable memory
+* there is always a valid range below the weather radar
+  (actually: there could be no range below the weather radar range OR range
+   could be smaller than 20 MHz)
+* intersected range in the weather radar range is valid
+  (actually: the range could be smaller than 20 MHz)
+* range above weather radar is either empty or valid
+  (actually: the range could be smaller than 20 MHz)
 
+These wrong assumption will lead in this example to a rule
 
-Applying: ath11k: modify dp_rx desc access wrapper calls inline
-Using index info to reconstruct a base tree...
-M	drivers/net/wireless/ath/ath11k/dp_rx.c
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/net/wireless/ath/ath11k/dp_rx.c
-CONFLICT (content): Merge conflict in drivers/net/wireless/ath/ath11k/dp_rx.c
-Recorded preimage for 'drivers/net/wireless/ath/ath11k/dp_rx.c'
-error: Failed to merge in the changes.
-Patch failed at 0003 ath11k: modify dp_rx desc access wrapper calls inline
+  (5590 - 5600 @ 20), (N/A, 27), (600000 ms), DFS, AUTO-BW
 
-Applying: ath11k: avoid additional access to ath11k_hal_srng_dst_num_free
-Using index info to reconstruct a base tree...
-M	drivers/net/wireless/ath/ath11k/dp_rx.c
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/net/wireless/ath/ath11k/dp_rx.c
-Applying: ath11k: avoid active pdev check for each msdu
-Using index info to reconstruct a base tree...
-M	drivers/net/wireless/ath/ath11k/dp_rx.c
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/net/wireless/ath/ath11k/dp_rx.c
-CONFLICT (content): Merge conflict in drivers/net/wireless/ath/ath11k/dp_rx.c
-Recorded preimage for 'drivers/net/wireless/ath/ath11k/dp_rx.c'
-error: Failed to merge in the changes.
-Patch failed at 0005 ath11k: avoid active pdev check for each msdu
+which is invalid according to is_valid_reg_rule() because the freq_diff is
+only 10 MHz but the max_bandwidth is set to 20 MHz. Which results in a
+rejection like:
 
-Applying: ath11k: remove usage quota while processing rx packets
-Using index info to reconstruct a base tree...
-M	drivers/net/wireless/ath/ath11k/dp_rx.c
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/net/wireless/ath/ath11k/dp_rx.c
-CONFLICT (content): Merge conflict in drivers/net/wireless/ath/ath11k/dp_rx.c
-Recorded preimage for 'drivers/net/wireless/ath/ath11k/dp_rx.c'
-error: Failed to merge in the changes.
-Patch failed at 0006 ath11k: remove usage quota while processing rx packets
+  WARNING: at backports-20210222_001-4.4.60-b157d2276/net/wireless/reg.c:3984
+  [...]
+  Call trace:
+  [<ffffffbffc3d2e50>] reg_get_max_bandwidth+0x300/0x3a8 [cfg80211]
+  [<ffffffbffc3d3d0c>] regulatory_set_wiphy_regd_sync+0x3c/0x98 [cfg80211]
+  [<ffffffbffc651598>] ath11k_regd_update+0x1a8/0x210 [ath11k]
+  [<ffffffbffc652108>] ath11k_regd_update_work+0x18/0x20 [ath11k]
+  [<ffffffc0000a93e0>] process_one_work+0x1f8/0x340
+  [<ffffffc0000a9784>] worker_thread+0x25c/0x448
+  [<ffffffc0000aedc8>] kthread+0xd0/0xd8
+  [<ffffffc000085550>] ret_from_fork+0x10/0x40
+  ath11k c000000.wifi: failed to perform regd update : -22
+  Invalid regulatory domain detected
 
-Applying: ath11k: add branch predictors in process_rx
-Using index info to reconstruct a base tree...
-M	drivers/net/wireless/ath/ath11k/dp_rx.c
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/net/wireless/ath/ath11k/dp_rx.c
-CONFLICT (content): Merge conflict in drivers/net/wireless/ath/ath11k/dp_rx.c
-Recorded preimage for 'drivers/net/wireless/ath/ath11k/dp_rx.c'
-error: Failed to merge in the changes.
-Patch failed at 0007 ath11k: add branch predictors in process_rx
+To avoid this, the algorithm has to be changed slightly. Instead of
+splitting a rule which overlaps with the weather radar range into 3 pieces
+and accepting the first two parts blindly, it must actually be checked for
+each piece whether it is a valid range. And only if it is valid, add it to
+the output array.
 
-Applying: ath11k: avoid while loop in ring selection of tx completion interrupt
-error: sha1 information is lacking or useless (drivers/net/wireless/ath/ath11k/dp.c).
-error: could not build fake ancestor
-Patch failed at 0010 ath11k: avoid while loop in ring selection of tx completion interrupt
+When these checks are in place, the processed rules for AU would end up as
 
-Applying: ath11k: add branch predictors in dp_tx path
-Using index info to reconstruct a base tree...
-M	drivers/net/wireless/ath/ath11k/dp_tx.c
-M	drivers/net/wireless/ath/ath11k/mac.c
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/net/wireless/ath/ath11k/mac.c
-CONFLICT (content): Merge conflict in drivers/net/wireless/ath/ath11k/mac.c
-Auto-merging drivers/net/wireless/ath/ath11k/dp_tx.c
-CONFLICT (content): Merge conflict in drivers/net/wireless/ath/ath11k/dp_tx.c
-Recorded preimage for 'drivers/net/wireless/ath/ath11k/dp_tx.c'
-Recorded preimage for 'drivers/net/wireless/ath/ath11k/mac.c'
-error: Failed to merge in the changes.
-Patch failed at 0011 ath11k: add branch predictors in dp_tx path
+  country AU: DFS-ETSI
+          (2400 - 2483 @ 40), (N/A, 36), (N/A)
+          (5150 - 5250 @ 80), (6, 23), (N/A), NO-OUTDOOR, AUTO-BW
+          (5250 - 5350 @ 80), (6, 20), (0 ms), NO-OUTDOOR, DFS, AUTO-BW
+          (5470 - 5590 @ 80), (6, 27), (0 ms), DFS, AUTO-BW
+          (5650 - 5730 @ 80), (6, 27), (0 ms), DFS, AUTO-BW
+          (5730 - 5850 @ 80), (6, 36), (N/A), AUTO-BW
 
+and will be accepted by the wireless regulatory code.
+
+Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+Signed-off-by: Sven Eckelmann <sven@narfation.org>
+---
+ drivers/net/wireless/ath/ath11k/reg.c | 103 ++++++++++++++------------
+ 1 file changed, 56 insertions(+), 47 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/reg.c b/drivers/net/wireless/ath/ath11k/reg.c
+index a66b5bdd2167..8606170ba80d 100644
+--- a/drivers/net/wireless/ath/ath11k/reg.c
++++ b/drivers/net/wireless/ath/ath11k/reg.c
+@@ -456,6 +456,9 @@ ath11k_reg_adjust_bw(u16 start_freq, u16 end_freq, u16 max_bw)
+ {
+ 	u16 bw;
+ 
++	if (end_freq <= start_freq)
++		return 0;
++
+ 	bw = end_freq - start_freq;
+ 	bw = min_t(u16, bw, max_bw);
+ 
+@@ -463,8 +466,10 @@ ath11k_reg_adjust_bw(u16 start_freq, u16 end_freq, u16 max_bw)
+ 		bw = 80;
+ 	else if (bw >= 40 && bw < 80)
+ 		bw = 40;
+-	else if (bw < 40)
++	else if (bw >= 20 && bw < 40)
+ 		bw = 20;
++	else
++		bw = 0;
+ 
+ 	return bw;
+ }
+@@ -488,73 +493,77 @@ ath11k_reg_update_weather_radar_band(struct ath11k_base *ab,
+ 				     struct cur_reg_rule *reg_rule,
+ 				     u8 *rule_idx, u32 flags, u16 max_bw)
+ {
++	u32 start_freq;
+ 	u32 end_freq;
+ 	u16 bw;
+ 	u8 i;
+ 
+ 	i = *rule_idx;
+ 
++	/* there might be situations when even the input rule must be dropped */
++	i--;
++
++	/* frequencies below weather radar */
+ 	bw = ath11k_reg_adjust_bw(reg_rule->start_freq,
+ 				  ETSI_WEATHER_RADAR_BAND_LOW, max_bw);
++	if (bw > 0) {
++		i++;
+ 
+-	ath11k_reg_update_rule(regd->reg_rules + i, reg_rule->start_freq,
+-			       ETSI_WEATHER_RADAR_BAND_LOW, bw,
+-			       reg_rule->ant_gain, reg_rule->reg_power,
+-			       flags);
++		ath11k_reg_update_rule(regd->reg_rules + i,
++				       reg_rule->start_freq,
++				       ETSI_WEATHER_RADAR_BAND_LOW, bw,
++				       reg_rule->ant_gain, reg_rule->reg_power,
++				       flags);
+ 
+-	ath11k_dbg(ab, ATH11K_DBG_REG,
+-		   "\t%d. (%d - %d @ %d) (%d, %d) (%d ms) (FLAGS %d)\n",
+-		   i + 1, reg_rule->start_freq, ETSI_WEATHER_RADAR_BAND_LOW,
+-		   bw, reg_rule->ant_gain, reg_rule->reg_power,
+-		   regd->reg_rules[i].dfs_cac_ms,
+-		   flags);
+-
+-	if (reg_rule->end_freq > ETSI_WEATHER_RADAR_BAND_HIGH)
+-		end_freq = ETSI_WEATHER_RADAR_BAND_HIGH;
+-	else
+-		end_freq = reg_rule->end_freq;
++		ath11k_dbg(ab, ATH11K_DBG_REG,
++			   "\t%d. (%d - %d @ %d) (%d, %d) (%d ms) (FLAGS %d)\n",
++			   i + 1, reg_rule->start_freq,
++			   ETSI_WEATHER_RADAR_BAND_LOW, bw, reg_rule->ant_gain,
++			   reg_rule->reg_power, regd->reg_rules[i].dfs_cac_ms,
++			   flags);
++	}
+ 
+-	bw = ath11k_reg_adjust_bw(ETSI_WEATHER_RADAR_BAND_LOW, end_freq,
+-				  max_bw);
++	/* weather radar frequencies */
++	start_freq = max_t(u32, reg_rule->start_freq,
++			   ETSI_WEATHER_RADAR_BAND_LOW);
++	end_freq = min_t(u32, reg_rule->end_freq, ETSI_WEATHER_RADAR_BAND_HIGH);
+ 
+-	i++;
++	bw = ath11k_reg_adjust_bw(start_freq, end_freq, max_bw);
++	if (bw > 0) {
++		i++;
+ 
+-	ath11k_reg_update_rule(regd->reg_rules + i,
+-			       ETSI_WEATHER_RADAR_BAND_LOW, end_freq, bw,
+-			       reg_rule->ant_gain, reg_rule->reg_power,
+-			       flags);
++		ath11k_reg_update_rule(regd->reg_rules + i, start_freq,
++				       end_freq, bw, reg_rule->ant_gain,
++				       reg_rule->reg_power, flags);
+ 
+-	regd->reg_rules[i].dfs_cac_ms = ETSI_WEATHER_RADAR_BAND_CAC_TIMEOUT;
++		regd->reg_rules[i].dfs_cac_ms = ETSI_WEATHER_RADAR_BAND_CAC_TIMEOUT;
+ 
+-	ath11k_dbg(ab, ATH11K_DBG_REG,
+-		   "\t%d. (%d - %d @ %d) (%d, %d) (%d ms) (FLAGS %d)\n",
+-		   i + 1, ETSI_WEATHER_RADAR_BAND_LOW, end_freq,
+-		   bw, reg_rule->ant_gain, reg_rule->reg_power,
+-		   regd->reg_rules[i].dfs_cac_ms,
+-		   flags);
+-
+-	if (end_freq == reg_rule->end_freq) {
+-		regd->n_reg_rules--;
+-		*rule_idx = i;
+-		return;
++		ath11k_dbg(ab, ATH11K_DBG_REG,
++			   "\t%d. (%d - %d @ %d) (%d, %d) (%d ms) (FLAGS %d)\n",
++			   i + 1, start_freq, end_freq, bw,
++			   reg_rule->ant_gain, reg_rule->reg_power,
++			   regd->reg_rules[i].dfs_cac_ms, flags);
+ 	}
+ 
++	/* frequencies above weather radar */
+ 	bw = ath11k_reg_adjust_bw(ETSI_WEATHER_RADAR_BAND_HIGH,
+ 				  reg_rule->end_freq, max_bw);
++	if (bw > 0) {
++		i++;
+ 
+-	i++;
+-
+-	ath11k_reg_update_rule(regd->reg_rules + i, ETSI_WEATHER_RADAR_BAND_HIGH,
+-			       reg_rule->end_freq, bw,
+-			       reg_rule->ant_gain, reg_rule->reg_power,
+-			       flags);
++		ath11k_reg_update_rule(regd->reg_rules + i,
++				       ETSI_WEATHER_RADAR_BAND_HIGH,
++				       reg_rule->end_freq, bw,
++				       reg_rule->ant_gain, reg_rule->reg_power,
++				       flags);
+ 
+-	ath11k_dbg(ab, ATH11K_DBG_REG,
+-		   "\t%d. (%d - %d @ %d) (%d, %d) (%d ms) (FLAGS %d)\n",
+-		   i + 1, ETSI_WEATHER_RADAR_BAND_HIGH, reg_rule->end_freq,
+-		   bw, reg_rule->ant_gain, reg_rule->reg_power,
+-		   regd->reg_rules[i].dfs_cac_ms,
+-		   flags);
++		ath11k_dbg(ab, ATH11K_DBG_REG,
++			   "\t%d. (%d - %d @ %d) (%d, %d) (%d ms) (FLAGS %d)\n",
++			   i + 1, ETSI_WEATHER_RADAR_BAND_HIGH,
++			   reg_rule->end_freq, bw, reg_rule->ant_gain,
++			   reg_rule->reg_power, regd->reg_rules[i].dfs_cac_ms,
++			   flags);
++	}
+ 
+ 	*rule_idx = i;
+ }
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+2.30.2
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
