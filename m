@@ -2,14 +2,14 @@ Return-Path: <SRS0=utSp=QC=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8C6FEC433EF
-	for <ath11k@archiver.kernel.org>; Mon, 15 Nov 2021 09:51:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E5696C433EF
+	for <ath11k@archiver.kernel.org>; Mon, 15 Nov 2021 09:55:18 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 50F5461BA9
-	for <ath11k@archiver.kernel.org>; Mon, 15 Nov 2021 09:51:23 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 50F5461BA9
+	by mail.kernel.org (Postfix) with ESMTPS id A33A161BCF
+	for <ath11k@archiver.kernel.org>; Mon, 15 Nov 2021 09:55:18 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org A33A161BCF
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -18,62 +18,62 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
 	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Ew2fmfjSv2kOpMMd8UStnMdJ7eZ+CQ2MEC3b6Db1IjE=; b=xKQiIFhw2L4Bhn
-	+YlfyFjolTf2odUCZp+3+yHxwRQZWU7pWCJHeuKuAz0G/62pfbPYhxK0cP5O8hxhKBoKVTjTwreqr
-	ckK0fnzBotKz0EfVon7GECcy8dApUbezrziWQX8jvSKHHAZpYz7wnRfM6Zb8MI/3aa3iu9oTvjGhC
-	A5sktqo2iHztuK5QSmNxBCSWhuUTjL4DLycw7V4L9D6aYDZHwrKYq+BfUGqtGMfPImzeQk0bS8e9s
-	H9J9e0dI6R3SymBOcEkdcYkAyqRr3KNnGaLKY6krpK2HvJi0mxV3FerJ+5aa7hj5lLjA1l7q/cMde
-	ByriWobnxirLIeohjllw==;
+	List-Owner; bh=7KvAM8+ugV/J9cClB+q+mdNH7oiYi/odoxSSb2efFP8=; b=ZUFBu82YbDJSbj
+	/oYsyjfYaMbnOLBSh8yVTNwmApRMuxVXFIUEIstgtNfTvPNnyamXj8RqXEX785eL0xG5D1xY7ZQJ5
+	8Ma2hblMnDEAq8E+noiAA3M1zFXoqk48qmwoSIf3+ZhsizOrArSUv0aT6hucL0wHC42RsLXjYv6Vx
+	UfzHo1dkFfUgQSRTX9yV+16G7w1jUNdk1DL1DfM2TiAJgsItYxyDVQl3qGMlgFM9iL5fpil0rKDsK
+	VuA8ipHfMul2dZPQCI+X2rjz8FC7H2F36lA8UhGz1IrEhhtV7XQ7wKiKP6mkx3aIR7xU2g24erHLH
+	qoOLz/TEKBj7D4bePr/w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mmYdz-00F14j-Qu; Mon, 15 Nov 2021 09:51:19 +0000
+	id 1mmYhn-00F278-Lz; Mon, 15 Nov 2021 09:55:15 +0000
 Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mmYE5-00Eu63-U6
- for ath11k@lists.infradead.org; Mon, 15 Nov 2021 09:24:35 +0000
+ id 1mmYEW-00Eu63-8x
+ for ath11k@lists.infradead.org; Mon, 15 Nov 2021 09:25:01 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1636968273; h=Date: Message-ID: Cc: To: References:
+ s=smtp; t=1636968300; h=Date: Message-ID: Cc: To: References:
  In-Reply-To: From: Subject: Content-Transfer-Encoding: MIME-Version:
- Content-Type: Sender; bh=8t4DsSMao2L6j1TNomnRPPNMD+XcxA54KH3dyo9sTQQ=;
- b=MtOIbdn88n02q1eeLMpINnyrR8+FyrdzBXvv4orrWLBDP9w/J8Rp0O93+API2c291sEOQzmY
- rJCdYAfcd9oc0PabxSs42/dMLJZDDjRDHoxNKPPHHnjDhXr3TxEEWvxEc1SbL5w5YzjFUs30
- J05ZCU0X80aagis9dFZceqUMr9c=
+ Content-Type: Sender; bh=ZDq5DiJo9AZ+O1M/OjrNb9yaoqv4B7MNAgAj8mSGGNQ=;
+ b=UXcusCKTZFXHtKSQkMEgAknn1wI/xrip3Z08voaahsbjrFsoojzVhePzDw4IHx8V+P5Qbzo5
+ qu2cocCDx2B+s1Dk51kmSAvjOnCQF3+MwIPlzMg2GO7KHmzt7+tSGYqYtcaIr7ll7Dg+rgw9
+ DlHylj2NxOEGjCoCcYae/E1AdeY=
 X-Mailgun-Sending-Ip: 69.72.43.7
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
- 61922751a9c3e8b85b388869 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 15 Nov 2021 09:24:33
+ smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
+ 6192276b4db4233966986a91 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 15 Nov 2021 09:24:59
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id E22F5C43460; Mon, 15 Nov 2021 09:24:32 +0000 (UTC)
+ id 78511C43460; Mon, 15 Nov 2021 09:24:59 +0000 (UTC)
 Received: from tykki.adurom.net (tynnyri.adurom.net [51.15.11.48])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested) (Authenticated sender: kvalo)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 2BA95C4338F;
- Mon, 15 Nov 2021 09:24:30 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 2BA95C4338F
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 052B7C43617;
+ Mon, 15 Nov 2021 09:24:57 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 052B7C43617
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  spf=fail smtp.mailfrom=codeaurora.org
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: move peer delete after vdev stop of station for
- QCA6390 and WCN6855
+Subject: Re: [PATCH] ath11k: fix FCS_ERR flag in radio tap header
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <20211027093825.12167-1-quic_wgong@quicinc.com>
-References: <20211027093825.12167-1-quic_wgong@quicinc.com>
-To: Wen Gong <quic_wgong@quicinc.com>
+In-Reply-To: <1635164060-18423-1-git-send-email-quic_ppranees@quicinc.com>
+References: <1635164060-18423-1-git-send-email-quic_ppranees@quicinc.com>
+To: P Praneesh <quic_ppranees@quicinc.com>
 Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- <quic_wgong@quicinc.com>
+ P Praneesh <quic_ppranees@quicinc.com>
 User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <163696826945.13305.8157275042821853526.kvalo@codeaurora.org>
-Date: Mon, 15 Nov 2021 09:24:32 +0000 (UTC)
+Message-ID: <163696829613.13305.16363787111446411919.kvalo@codeaurora.org>
+Date: Mon, 15 Nov 2021 09:24:59 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211115_012434_098504_1E410F27 
-X-CRM114-Status: GOOD (  10.91  )
+X-CRM114-CacheID: sfid-20211115_012500_488193_1A59E164 
+X-CRM114-Status: UNSURE (   6.92  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,52 +90,26 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Wen Gong <quic_wgong@quicinc.com> wrote:
+P Praneesh <quic_ppranees@quicinc.com> wrote:
 
-> When station connect to AP, the wmi command sequence is:
+> In radio tap header, BAD FCS flag is not updated properly because
+> driver failed to update FCS_ERR flag in monitor mode.
 > 
-> peer_create->vdev_start->vdev_up
+> In rx_desc, FCS_ERR information is available in rx_attention
+> structure and presence of this field indicates corresponding frame
+> failed FCS check.
 > 
-> and sequence of station disconnect fo AP is:
+> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-01695-QCAHKSWPL_SILICONZ-1
 > 
-> peer_delete->vdev_down->vdev_stop
-> 
-> The sequence of disconnect is not opposite of connect, it caused firmware
-> crash when it handle wmi vdev stop cmd when the AP is support TWT of
-> 802.11 ax, because firmware need access the bss peer for vdev stop cmd.
-> 
-> [  390.438564] ath11k_pci 0000:05:00.0: wmi cmd send 0x6001 ret 0
-> [  390.438567] ath11k_pci 0000:05:00.0: WMI peer create vdev_id 0 peer_addr c4:04:15:3b:e0:39
-> [  390.472724] ath11k_pci 0000:05:00.0: mac vdev 0 start center_freq 2437 phymode 11ax-he20-2g
-> [  390.472731] ath11k_pci 0000:05:00.0: wmi cmd send 0x5003 ret 0
-> [  390.560849] ath11k_pci 0000:05:00.0: wmi cmd send 0x5005 ret 0
-> [  390.560850] ath11k_pci 0000:05:00.0: WMI mgmt vdev up id 0x0 assoc id 1 bssid c4:04:15:3b:e0:39
-> 
-> [  399.432896] ath11k_pci 0000:05:00.0: WMI peer delete vdev_id 0 peer_addr c4:04:15:3b:e0:39
-> [  399.432902] ath11k_pci 0000:05:00.0: wmi cmd send 0x6002 ret 0
-> [  399.441380] ath11k_pci 0000:05:00.0: wmi cmd send 0x5007 ret 0
-> [  399.441381] ath11k_pci 0000:05:00.0: WMI vdev down id 0x0
-> [  399.454681] ath11k_pci 0000:05:00.0: wmi cmd send 0x5006 ret 0
-> [  399.454682] ath11k_pci 0000:05:00.0: WMI vdev stop id 0x0
-> 
-> The opposite sequence of disconnect should be:
-> 
-> vdev_down->vdev_stop->peer_delete
-> 
-> This patch change the sequence of disconnect for station as above
-> opposite sequence for QCA6390, firmware not crash again with this patch.
-> 
-> Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
-> 
-> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
+> Signed-off-by: P Praneesh <quic_ppranees@quicinc.com>
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
 Patch applied to ath-next branch of ath.git, thanks.
 
-b4a0f54156ac ath11k: move peer delete after vdev stop of station for QCA6390 and WCN6855
+787264893c69 ath11k: fix FCS_ERR flag in radio tap header
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20211027093825.12167-1-quic_wgong@quicinc.com/
+https://patchwork.kernel.org/project/linux-wireless/patch/1635164060-18423-1-git-send-email-quic_ppranees@quicinc.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
