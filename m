@@ -2,14 +2,14 @@ Return-Path: <SRS0=utSp=QC=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 96D77C433EF
-	for <ath11k@archiver.kernel.org>; Mon, 15 Nov 2021 12:33:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B167CC433EF
+	for <ath11k@archiver.kernel.org>; Mon, 15 Nov 2021 12:53:22 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 59ED8619E5
-	for <ath11k@archiver.kernel.org>; Mon, 15 Nov 2021 12:33:42 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 59ED8619E5
+	by mail.kernel.org (Postfix) with ESMTPS id 6D69F61B39
+	for <ath11k@archiver.kernel.org>; Mon, 15 Nov 2021 12:53:22 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 6D69F61B39
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -18,62 +18,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
 	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BjGCLmJFeMr2LKo7Fv3HN46M5Mm0cJoJChO3hOQuRwI=; b=gwJ9BOy4lI/d1z
-	RHtuTCc55fB4s7sXlek/unQTwfd07MNvSnmn4Mm6e8Ip4wWDWvU7t5iJx4mkxYQ+514JHNCf5XCOl
-	uPpSJkDF3IjYfaQd5hk55+RgyYnY/fxHJ9r/f4lO5XwvLSXPiwkkEkG7Cwutwm6mVsBqIpWm+s6a+
-	M3pZq0E7Sf2p6V4oR51uNMYz6z3yizKYsLnEoYu96eoZuBXTl7wTx7CxDRhOgbfy8o1wj6Fmou8zu
-	31AdMegvgcPwmKx+uzYX2irClBd4NEz6gocVUiVVJ7X9rjlJ447baOrv+2xdSlPS/7LP+fIV0gfBz
-	8GS6Be4epTBFVdm5wcJw==;
+	List-Owner; bh=j4NJwoKQtnb1VhtZUXPqiOmO9MT+DMvhlnQtSIdk9DE=; b=uGT5fu+BW0hsoe
+	VmgZ7B1xJT2tg9hNgtP7O+/cXDxvJGLltBL5JJ955Na56KTpJE6nvE6wYcqV0WFUIpbyw0LwRz9x5
+	7p6J7oNewsHdVJsrQ9zknJx5l825iY9zaiSXhV5gi2wcJlLmUbPhXF+RHycM65elENT04yP8u43zS
+	UZ4ztIhm2z4F2WKmCna+yPlQAIpBgm+04WyLkOYJ64OrHSh6gS/GG0KDDCa3rwlrzVXbyNdzymiFx
+	SyC9qGGJW5AgP5etL8WUF9NKFawERS4UnkNGrPwY9y0hPkquIbsHoKJ9j51I+gYtcz57p6Hi2VJsh
+	LmhqHmuAkEdUQVfgl16w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mmbB4-00FWMr-Cx; Mon, 15 Nov 2021 12:33:38 +0000
-Received: from m43-7.mailgun.net ([69.72.43.7])
+	id 1mmbU7-00FYPj-M6; Mon, 15 Nov 2021 12:53:19 +0000
+Received: from so254-9.mailgun.net ([198.61.254.9])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mmbB2-00FWMV-6t
- for ath11k@lists.infradead.org; Mon, 15 Nov 2021 12:33:37 +0000
+ id 1mmbU4-00FYPP-6R
+ for ath11k@lists.infradead.org; Mon, 15 Nov 2021 12:53:17 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1636979614; h=Content-Type: MIME-Version: Message-ID:
+ s=smtp; t=1636980795; h=Content-Type: MIME-Version: Message-ID:
  In-Reply-To: Date: References: Subject: Cc: To: From: Sender;
- bh=gE7WOtuGMUbwrv9NMhWGakPOiySEjRXkywfT11D4RW8=;
- b=j59X2dkishaymSeCwqyR+8FLaFlyRRPC82tuNP1sXGCTs++k9NIIhegfJ1A+ajsL1NTgaIQ+
- LR7I1uBbWvtwmqBAVffho5/NzncNDnRl2aG1xVK1s+JkATAGUztsdEm51Tyc8fDkoB5/MXWO
- Zb7DGI3DyOmMY6R9TV9RMFTj4jI=
-X-Mailgun-Sending-Ip: 69.72.43.7
+ bh=MLo0Cr7KEDi5L0cuCBguP+bU0UNznjkDCKx2UliDxFw=;
+ b=pxDc4Ld/5q7XMkbORwhPdcuD/cupVi7UYG94rN+VJbn98q4TIDecFUV57YiJGkL9b6WqslrI
+ ps+apk67ODG4w+GekfNYyox6pi8zR33vn/BdfcL6DieVh/N/VtU+tRV8pqDskdw2/mw4Fffd
+ q9bYLxRp/2MFmL6iRZg1ffTgF2Q=
+X-Mailgun-Sending-Ip: 198.61.254.9
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
- 6192539d11cd6d4077153aad (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 15 Nov 2021 12:33:33
+ smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
+ 6192583ae0b76a7314522dd2 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 15 Nov 2021 12:53:14
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 5CD10C43460; Mon, 15 Nov 2021 12:33:33 +0000 (UTC)
+ id 7B7B9C43460; Mon, 15 Nov 2021 12:53:13 +0000 (UTC)
 Received: from tykki (tynnyri.adurom.net [51.15.11.48])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested) (Authenticated sender: kvalo)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 14E82C4338F;
- Mon, 15 Nov 2021 12:33:31 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 14E82C4338F
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id CF7A2C4338F;
+ Mon, 15 Nov 2021 12:53:11 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org CF7A2C4338F
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  spf=fail smtp.mailfrom=codeaurora.org
 From: Kalle Valo <kvalo@codeaurora.org>
-To: Wen Gong <quic_wgong@quicinc.com>
-Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
-Subject: Re: [PATCH v2] ath11k: add string type to search board data in
- board-2.bin for WCN6855
-References: <20211111065340.20187-1-quic_wgong@quicinc.com>
-Date: Mon, 15 Nov 2021 14:33:29 +0200
-In-Reply-To: <20211111065340.20187-1-quic_wgong@quicinc.com> (Wen Gong's
- message of "Thu, 11 Nov 2021 01:53:40 -0500")
-Message-ID: <87sfvxha3q.fsf@codeaurora.org>
+To: Wen Gong <wgong@codeaurora.org>
+Cc: ath11k@lists.infradead.org,  linux-wireless@vger.kernel.org
+Subject: Re: [PATCH v3 0/3] ath11k: add feature for device recovery
+References: <20211015035459.14190-1-wgong@codeaurora.org>
+Date: Mon, 15 Nov 2021 14:53:07 +0200
+In-Reply-To: <20211015035459.14190-1-wgong@codeaurora.org> (Wen Gong's message
+ of "Thu, 14 Oct 2021 23:54:56 -0400")
+Message-ID: <87h7cdh970.fsf@codeaurora.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211115_043336_347515_E6001383 
-X-CRM114-Status: GOOD (  22.49  )
+X-CRM114-CacheID: sfid-20211115_045316_313260_119005BE 
+X-CRM114-Status: GOOD (  14.08  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,58 +89,53 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Wen Gong <quic_wgong@quicinc.com> writes:
+Wen Gong <wgong@codeaurora.org> writes:
 
-> Currently ath11k only support string type with bus, chip id and board id
-> such as "bus=ahb,qmi-chip-id=1,qmi-board-id=4" for ahb bus chip and
-> "bus=pci,qmi-chip-id=0,qmi-board-id=255" for PCIe bus chip in
-> board-2.bin. For WCN6855, it is not enough to distinguish all different
-> chips.
+> From: Wen Gong <quic_wgong@quicinc.com>
 >
-> This is to add a new string type which include bus, chip id, board id,
-> vendor, device, subsystem-vendor and subsystem-device for WCN6855.
+> v3: remove time_left set but not used in
+>     "ath11k: add synchronization operation between reconfigure of mac80211 and ath11k_base"
 >
-> ath11k will first load board-2.bin and search in it for the board data
-> with the above parameters, if matched one board data, then download it
-> to firmware, if not matched any one, then ath11k will download the file
-> board.bin to firmware.
+> v2: s/initilized/initialized in commit log of patch
+>     "ath11k: add synchronization operation between reconfigure of mac80211 and ath11k_base"
 >
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+> Add support for device recovery.
 >
-> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
-> Signed-off-by: Jouni Malinen <quic_jouni@quicinc.com>
-> ---
-> v2: remove the mask of chip id and board id in ath11k_core_create_board_name()
->
->  drivers/net/wireless/ath/ath11k/core.c | 27 ++++++++++++++++++++------
->  drivers/net/wireless/ath/ath11k/core.h | 13 +++++++++++++
->  drivers/net/wireless/ath/ath11k/pci.c  | 10 ++++++++++
->  3 files changed, 44 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-> index 2012b0170e3c..3ac0dca997e1 100644
-> --- a/drivers/net/wireless/ath/ath11k/core.c
-> +++ b/drivers/net/wireless/ath/ath11k/core.c
-> @@ -473,11 +473,26 @@ static int ath11k_core_create_board_name(struct ath11k_base *ab, char *name,
->  		scnprintf(variant, sizeof(variant), ",variant=%s",
->  			  ab->qmi.target.bdf_ext);
->  
-> -	scnprintf(name, name_len,
-> -		  "bus=%s,qmi-chip-id=%d,qmi-board-id=%d%s",
-> -		  ath11k_bus_str(ab->hif.bus),
-> -		  ab->qmi.target.chip_id,
-> -		  ab->qmi.target.board_id, variant);
-> +	switch (ab->id.bdf_search) {
-> +	case ATH11K_BDF_SEARCH_BUS_AND_BOARD:
-> +		scnprintf(name, name_len,
-> +			  "bus=%s,vendor=%04x,device=%04x,subsystem-vendor=%04x,subsystem-device=%04x,qmi-chip-id=%04x,qmi-board-id=%04x%s",
+> Wen Gong (3):
+>   ath11k: add ath11k_qmi_free_resource() for recovery
+>   ath11k: add support for device recovery for QCA6390
+>   ath11k: add synchronization operation between reconfigure of mac80211
+>     and ath11k_base
 
-For consistency I changed qmi-chip-id and qmi-board-id to use %d, like
-before:
+I did some quick testing (commit 4716d5bb1e16 in pending branch) and it
+does not seem to work for me:
 
- "bus=%s,vendor=%04x,device=%04x,subsystem-vendor=%04x,subsystem-device=%04x,qmi-chip-id=%d,qmi-board-id=%d%s",
+oot@nuc1:~# echo assert > /sys/kernel/debug/ath11k/qca6390\ hw2.0/simulate_fw_crash
+root@nuc1:~# iw wlan0 scan
+command failed: Connection timed out (-110)
+root@nuc1:~# 
 
-This is now in the pending branch.
+Kernel logs have:
+
+[  118.903092] ath11k_pci 0000:06:00.0: BAR 0: assigned [mem 0xdb000000-0xdbffffff 64bit]
+[  118.925164] ath11k_pci 0000:06:00.0: MSI vectors: 32
+[  118.925285] ath11k_pci 0000:06:00.0: qca6390 hw2.0
+[  119.093214] mhi mhi0: Requested to power ON
+[  119.095430] mhi mhi0: Power on setup success
+[  119.423735] mhi mhi0: Wait for device to enter SBL or Mission mode
+[  119.543030] ath11k_pci 0000:06:00.0: chip_id 0x0 chip_family 0xb board_id 0xff soc_id 0xffffffff
+[  119.543197] ath11k_pci 0000:06:00.0: fw_version 0x101c06cc fw_build_timestamp 2020-06-24 19:50 fw_build_id 
+[  230.101077] ip (2367) used greatest stack depth: 24384 bytes left
+[  283.663895] ath11k_pci 0000:06:00.0: simulating firmware assert crash
+[  283.738422] ath11k_pci 0000:06:00.0: firmware crashed: MHI_CB_SYS_ERROR
+[  295.236831] ath11k_pci 0000:06:00.0: wmi command 12290 timeout
+[  295.237937] ath11k_pci 0000:06:00.0: failed to send WMI_STOP_SCAN_CMDID
+[  295.238467] ath11k_pci 0000:06:00.0: failed to stop wmi scan: -11
+[  295.240049] ath11k_pci 0000:06:00.0: failed to stop scan: -11
+[  295.240558] ath11k_pci 0000:06:00.0: failed to start hw scan: -110
+
+Also there should be a clear ath11k_warn() message when firmware
+recovery was successful, I could not find one from patches.
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
