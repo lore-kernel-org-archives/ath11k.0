@@ -2,14 +2,14 @@ Return-Path: <SRS0=S5NU=QD=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 99BB2C433FE
-	for <ath11k@archiver.kernel.org>; Tue, 16 Nov 2021 08:29:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4A2D6C433EF
+	for <ath11k@archiver.kernel.org>; Tue, 16 Nov 2021 11:10:25 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5BAEA61104
-	for <ath11k@archiver.kernel.org>; Tue, 16 Nov 2021 08:29:37 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 5BAEA61104
+	by mail.kernel.org (Postfix) with ESMTPS id 00DBD61BE5
+	for <ath11k@archiver.kernel.org>; Tue, 16 Nov 2021 11:10:24 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 00DBD61BE5
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=quicinc.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -18,49 +18,49 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:Subject:Cc:To
 	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=oyaFMJ1rjdkXEmHL/E3lehBLgt6qH4yI9rJ41h6KYb8=; b=aHYBeSSy3z8lK6
-	wclpTHhQkp6DUIzMTyJ0QAqRkuRCKOrRS0AhIIvo3qKbCS1qeASCtyVEImXb/B6nRrERERnP7w7Mg
-	8fEEXzGsQhQzCOnOelUMMhfc+U5QFfGXE65+hI9PcmFl0i0gAHLwQo7zXv6msJFYFRYM1djRj042a
-	gYVw8Q5Lb+ViRZSD8Oep9H+aFCHo03CovprEFpdpnzFhH8WvaYJOxvrxO0PyDVJRaMy5Aj/JuYTmZ
-	P6nrxD9HIoj5a72Pt43my6aaNK2icp4uRh+WgzKg1Rp6RedEjpNY3+8WbGOvczeoJAb8/7osCIFU9
-	55PLvRpVdiil0IVcZxVg==;
+	List-Owner; bh=Dmmr2cTw8Vxc47nX+Dwh/IYQ1g+ZktukOVN9vNTWbXc=; b=Nh2yU0mWFgucW3
+	S2Ke/ZelVKhVStf6pdtp+qBggClsQvH3bOdZpLV0X/+B8anBKuW7pLzjfXfbfRHrCaJh2V3hVzIjz
+	QW/9nqmX8px/g+QIMx8OHEIf9/PCtQK4Mhm6mXekCXlU977uSOAE1/R0ZBKdnek/PkeRX6X8xJsrV
+	DUSQRkbpWkgvFGkjvxYkqPK12Lg12tf+WMaAQdPkhAqLhXH+77jHjnyfChYkb+rXLwW5xztCAD2AK
+	MexEfZh4S4h0/8Qr/WRHHCWAmVqc6CqiyJcN1yjdzOayGsyWhrnlqLKHwkFotwp0qSoOQ2DwY5Aqr
+	6xCSmjktnFAKty3H6cQQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mmtqR-000iuf-3X; Tue, 16 Nov 2021 08:29:35 +0000
+	id 1mmwM2-001LNI-F0; Tue, 16 Nov 2021 11:10:22 +0000
 Received: from alexa-out.qualcomm.com ([129.46.98.28])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mmtqM-000irq-9D
- for ath11k@lists.infradead.org; Tue, 16 Nov 2021 08:29:31 +0000
+ id 1mmwLz-001LMi-LK
+ for ath11k@lists.infradead.org; Tue, 16 Nov 2021 11:10:21 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1637051370; x=1668587370;
+ t=1637061020; x=1668597020;
  h=from:to:cc:subject:date:message-id;
- bh=cSgJke0QMG1KWogss1ZFzWebUpsEGINRXz9AVqdkDm4=;
- b=oPG6dSEoRCSaywWdtTlUkQWMorBylxJHRuJUVxj02cdtRicdtV9F30cC
- 5VjZX02oPlpNock4PKr6hUYGQmF/+mnmMW81GMuW5TF9ysEdN3QXZz0Af
- RsyMB17w1RrGXrCBC2GIAOplrpKML/a0oK2ZtSO75Qd264W0hjijS+eEC k=;
-Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
- by alexa-out.qualcomm.com with ESMTP; 16 Nov 2021 00:29:29 -0800
+ bh=Byblo48bKcddKTlVQzm0QIaAC+nMiH+tXNfSmbq0aVY=;
+ b=BJvgVdZd6+0lPP3upV3qh8WxaxUCBXY4BgHeMdUb33uc9medm4K0SUbj
+ EM91DaOf/GlnSxQ6W8gG+9WRafoBLB3HXowRekPkYt7EJAQbfY54bV7R1
+ JIcdDrJIXnH2zP3353N6g1JaJSq8kMiNnDNWjQSkYGkVruauO1OSOxf3U 8=;
+Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
+ by alexa-out.qualcomm.com with ESMTP; 16 Nov 2021 03:10:18 -0800
 X-QCInternal: smtphost
 Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
- by ironmsg09-lv.qualcomm.com with ESMTP/TLS/AES256-SHA;
- 16 Nov 2021 00:14:11 -0800
+ by ironmsg08-lv.qualcomm.com with ESMTP/TLS/AES256-SHA;
+ 16 Nov 2021 03:10:17 -0800
 X-QCInternal: smtphost
 Received: from akalaise-linux.qualcomm.com ([10.201.26.157])
- by ironmsg02-blr.qualcomm.com with ESMTP; 16 Nov 2021 13:44:06 +0530
+ by ironmsg02-blr.qualcomm.com with ESMTP; 16 Nov 2021 16:40:11 +0530
 Received: by akalaise-linux.qualcomm.com (Postfix, from userid 2376239)
- id 30271221A0; Tue, 16 Nov 2021 13:44:05 +0530 (IST)
+ id 2E24B221AE; Tue, 16 Nov 2021 16:40:10 +0530 (IST)
 From: Karthikeyan Kathirvel <quic_kathirve@quicinc.com>
 To: ath11k@lists.infradead.org
 Cc: linux-wireless@vger.kernel.org,
- Karthikeyan Kathirvel <kathirve@codeaurora.org>
-Subject: [PATCHv1 05/16] ath11k: fix destination monitor ring out of sync
-Date: Tue, 16 Nov 2021 13:43:25 +0530
-Message-Id: <1637050405-28137-1-git-send-email-quic_kathirve@quicinc.com>
+ Karthikeyan Kathirvel <quic_kathirve@quicinc.com>
+Subject: [PATCH v2] ath11k: fix destination monitor ring out of sync
+Date: Tue, 16 Nov 2021 16:40:07 +0530
+Message-Id: <1637061007-28663-1-git-send-email-quic_kathirve@quicinc.com>
 X-Mailer: git-send-email 2.7.4
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211116_002930_426630_0614E6E3 
-X-CRM114-Status: GOOD (  15.03  )
+X-CRM114-CacheID: sfid-20211116_031019_786138_27F9AF2E 
+X-CRM114-Status: GOOD (  15.42  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,8 +78,6 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Karthikeyan Kathirvel <kathirve@codeaurora.org>
-
 More than 20000 PPDU id jumping causing status ring and destination
 ring processing not sync. The status ring is processed and the
 destination ring is not processed. Since destination is not reaped for
@@ -89,18 +87,10 @@ To address this issue update the PPDU id with the latest PPDU, this
 will allow the destination ring to be reaped and will prevent the
 rings from getting out of sync.
 
-Signed-off-by: Karthikeyan Kathirvel <kathirve@codeaurora.org>
+Signed-off-by: Karthikeyan Kathirvel <quic_kathirve@quicinc.com>
 ---
-v1 :
-Addressed the below comments from Jouni Malinen and it is Rebased
-0005-ath11k-fix-destination-monitor-ring-out-of-sync.patch
-- dp_rx.c comment could be cleaned up:
-+/* The destination ring processing is stuck if the destination is not
-+ * moving while status ring moves 16 PPDU. the destination ring processing
-+ * skips this destination ring PPDU as workaround
-  "PPDU. the" --> "PPDU. The"
-  "as workaround" --> "as a workaround."
-- fine to send out with that addressed
+v2:
+	Corrected the signed off details
 
  drivers/net/wireless/ath/ath11k/dp.h    |  3 +++
  drivers/net/wireless/ath/ath11k/dp_rx.c | 42 ++++++++++++++++++++++++++++-----
