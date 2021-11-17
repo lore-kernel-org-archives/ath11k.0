@@ -1,76 +1,61 @@
-Return-Path: <SRS0=L+f/=QE=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=Pndp=QF=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 42B01C433EF
-	for <ath11k@archiver.kernel.org>; Wed, 17 Nov 2021 09:35:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9A658C433F5
+	for <ath11k@archiver.kernel.org>; Thu, 18 Nov 2021 09:41:50 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 02CF7619E5
-	for <ath11k@archiver.kernel.org>; Wed, 17 Nov 2021 09:35:52 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 02CF7619E5
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+	by mail.kernel.org (Postfix) with ESMTPS id 51EF3613B1
+	for <ath11k@archiver.kernel.org>; Thu, 18 Nov 2021 09:41:50 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 51EF3613B1
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=narfation.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:Cc:To:From
-	:Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=kj8znDo46mmNM0fXNWWf0mijlr9jTOuBvg1HHvA8o94=; b=ON1zuUbY6JxG5gad0T60oOaEB0
-	qzLcPxtTolZI9jobnFVSnj9WVFXVbTzCtitkZexE6FZ1f12bfc8nsIYgHBwEmxj1b/1Gpg7VSr1am
-	JSI+x4gPLK4cwdZGvr5ER4C7IylQRx7/9vcWyOSATh8SGpnbBD/yNTDLrUmYjqh39EjMKPodaoIjg
-	QYm3KKvonrZS5W5W5VO3MdjMI99FcAftI5T1EICUTxu4jDXWENihAxczOGwC5KRkXE3qV03hke9Ry
-	YLQNL50Kq11aJOXke8VNu0XTfoknLcueuzUZ+SiapltdcyECYLFC+fCXxYUsgnU6cxzqnKCr36s1Y
-	vLKEhN/A==;
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=egLTY84zS3eCEkbrmarD0ditu8THo9uCr7kLMuWQP/M=; b=WuoaN+rHKAYTlMjTepYSl4hjLP
+	MGVNr7kVrU9hEeHi+o6upT9bl91/2ztK4340fQ20a8xpOrj1fufxb2usSR+etv9Hhao51y/WBZLHc
+	mq2tvAew+lcRSk4XrLHhZDP2uwxDv1Sv2ZFRp9S0NXzal5Jbd1YafRwqAz65JmLWWv5xEzp1gTvyu
+	3AEFCToNN6dChAEM8+sUJJnwvmicYw0I3Em+OkWbEexWMO6Jy0mUWHTNGB+mAH9Q7a/yyxd4hh39X
+	+yuHQASTko36pLyUqtt7X2C6IsGRx9awBlHrq3o5205bDA/QCttaqY7dQ7nhY5165Wpm0IR4/e6uW
+	1XkFbJiw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mnHM6-004IAJ-TA; Wed, 17 Nov 2021 09:35:50 +0000
-Received: from so254-9.mailgun.net ([198.61.254.9])
+	id 1mndvO-007Mb3-SF; Thu, 18 Nov 2021 09:41:46 +0000
+Received: from dvalin.narfation.org ([2a00:17d8:100::8b1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mnHLs-004I5h-CF
- for ath11k@lists.infradead.org; Wed, 17 Nov 2021 09:35:48 +0000
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
- q=dns/txt; 
- s=smtp; t=1637141746; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=J9v9JrVfSADEur5gzTe1RmMYOu6pmmlAHUSlI2g3aXo=;
- b=mmJx6xKRvZkP5JgQMlSanUpnjhllwvSl6CD3ossSfyhPV+TWwONtpsVt/ZKHtDsTKfM+G6mU
- dyIInvYP0AJadzogo9RT5qjIGJFR//LXUlG4WrBQVpah9LgxLzFEadvwDg5DwLDQCT/TDGSA
- 8qFfDIj/DWLiJWTmNEYO4vz/Oqc=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
- 6194ccd3c48ba488840962ad (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 17 Nov 2021 09:35:15
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 8C2BDC43617; Wed, 17 Nov 2021 09:35:15 +0000 (UTC)
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
- (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
- (No client certificate requested) (Authenticated sender: wgong)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id CCE7BC43618;
- Wed, 17 Nov 2021 09:35:14 +0000 (UTC)
-MIME-Version: 1.0
-Date: Wed, 17 Nov 2021 17:35:14 +0800
-From: Wen Gong <wgong@codeaurora.org>
+ id 1mnGaG-0040HH-KH
+ for ath11k@lists.infradead.org; Wed, 17 Nov 2021 08:46:26 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+ s=20121; t=1637138779;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=iuXwVFGg3YCBDP5Ljt+fN+IuTJFfYGidqYCQ28UJkMI=;
+ b=SjOfvxAsD0LBx0uQdbTga4tT6i0tdDeoNHhK7u0DXneeTQaDb76bDTVZ1VSlFkhai1YNvX
+ +EN4wlcRW/DdFvJwlqLtIyH3xA3HTQo2yJrzRFZTwKW8SsVm7kgJaXSkeFOJewiz3uYAAV
+ yPa8S+ZxCPRRty+suS758rG0iMPXCyc=
+From: Sven Eckelmann <sven@narfation.org>
 To: Kalle Valo <kvalo@codeaurora.org>
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
-Subject: Re: [PATCH v3 0/3] ath11k: add feature for device recovery
-In-Reply-To: <87sfvvdx1f.fsf@codeaurora.org>
-References: <20211015035459.14190-1-wgong@codeaurora.org>
- <87h7cdh970.fsf@codeaurora.org>
- <a9efda4011061f2f0d57ea597b9b8f0e@codeaurora.org>
- <87sfvvdx1f.fsf@codeaurora.org>
-Message-ID: <21a93f4c93e636b47bd04e75cae90461@codeaurora.org>
-X-Sender: wgong@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Cc: ath11k@lists.infradead.org, Wen Gong <quic_wgong@quicinc.com>,
+ linux-wireless@vger.kernel.org, Jason Gunthorpe <jgg@ziepe.ca>,
+ Joe Perches <joe@perches.com>, Jonathan Corbet <corbet@lwn.net>
+Subject: Re: [PATCH v4 3/4] ath11k: add support for device recovery for QCA6390
+Date: Wed, 17 Nov 2021 09:46:08 +0100
+Message-ID: <2357945.8AGfkZV0UB@sven-desktop>
+In-Reply-To: <87mtm3dwu0.fsf@codeaurora.org>
+References: <20211116041522.23529-1-quic_wgong@quicinc.com>
+ <1752085.FWK5zBq28I@ripper> <87mtm3dwu0.fsf@codeaurora.org>
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211117_013547_386673_34780DD5 
-X-CRM114-Status: GOOD (  16.22  )
+X-CRM114-CacheID: sfid-20211117_004625_012841_92938E5D 
+X-CRM114-Status: GOOD (  13.51  )
+X-Mailman-Approved-At: Thu, 18 Nov 2021 01:41:46 -0800
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,65 +67,151 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: multipart/mixed; boundary="===============2521584702334667147=="
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 2021-11-17 16:08, Kalle Valo wrote:
-> Wen Gong <wgong@codeaurora.org> writes:
-> 
->> On 2021-11-15 20:53, Kalle Valo wrote:
->>> Wen Gong <wgong@codeaurora.org> writes:
->>> 
->>>> From: Wen Gong <quic_wgong@quicinc.com>
->>>> 
-...
->>> 
->> 
->> I have sent v4, it is not to fix your fail:)
->> It added patch "ath11k: fix invalid m3 buffer address".
->> https://patchwork.kernel.org/project/linux-wireless/cover/20211116041522.23529-1-quic_wgong@quicinc.com/
->> 
->> 
->>> Also there should be a clear ath11k_warn() message when firmware
->>> recovery was successful, I could not find one from patches.
->> 
->> Yes, if recovery succes, it will have "success" log.
-> 
-> Where are the printouts? I cannot find any ath11k_warn() messages in 
-> v4.
-> Basically I would want to see something like this when the firmware
-> crashes:
+--===============2521584702334667147==
+Content-Type: multipart/signed; boundary="nextPart1845216.Og6EX3yCZx"; micalg="pgp-sha512"; protocol="application/pgp-signature"
 
-It is not print in this patch.
-It is here:
+--nextPart1845216.Og6EX3yCZx
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
+From: Sven Eckelmann <sven@narfation.org>
+To: Kalle Valo <kvalo@codeaurora.org>
+Cc: ath11k@lists.infradead.org, Wen Gong <quic_wgong@quicinc.com>, linux-wireless@vger.kernel.org, Jason Gunthorpe <jgg@ziepe.ca>, Joe Perches <joe@perches.com>, Jonathan Corbet <corbet@lwn.net>
+Subject: Re: [PATCH v4 3/4] ath11k: add support for device recovery for QCA6390
+Date: Wed, 17 Nov 2021 09:46:08 +0100
+Message-ID: <2357945.8AGfkZV0UB@sven-desktop>
+In-Reply-To: <87mtm3dwu0.fsf@codeaurora.org>
+References: <20211116041522.23529-1-quic_wgong@quicinc.com> <1752085.FWK5zBq28I@ripper> <87mtm3dwu0.fsf@codeaurora.org>
 
-ath11k_mac_op_reconfig_complete(struct ieee80211_hw *hw,
-				enum ieee80211_reconfig_type reconfig_type)
-	if (ar->state == ATH11K_STATE_RESTARTED) {
-		ath11k_warn(ar->ab, "pdev %d successfully recovered\n",
-			    ar->pdev->pdev_id);
-
+On Wednesday, 17 November 2021 09:12:55 CET Kalle Valo wrote:
+> > https://www.kernel.org/doc/html/v5.15/process/coding-style.html#using-bool
+[...]
 > 
-> firmware crashed, restarting it
-> 
-> And once the firmware is running again:
-> 
-> firmware restarted succesfully
+> Yeah, I have been worried about this as well and we should fix this. But
+> instead of u8 I would prefer to use bool like mt76 uses:
+[...]
+> I didn't even know using bool is legal until I saw it in mt76.
 
-"firmware crashed" log is here:
-static void ath11k_mhi_op_status_cb(struct mhi_controller *mhi_cntrl,
-				    enum mhi_callback cb)
-{
-	struct ath11k_base *ab = dev_get_drvdata(mhi_cntrl->cntrl_dev);
-	struct ath11k_pci *ar_pci = ath11k_pci_priv(ab);
+Interesting, I was also not aware of it. And it also seems to have some 
+interesting implications when assigning values to it (example 4):
 
-	switch (cb) {
-	case MHI_CB_SYS_ERROR:
-		ath11k_warn(ab, "firmware crashed: MHI_CB_SYS_ERROR\n");
+    #include <stdbool.h>
+    #include <stdint.h>
+    #include <stdio.h>
+    
+    struct test {
+    	uint8_t u:1;
+    	uint8_t u2:1;
+    	bool b:1;
+    	bool b2:1;
+    };
+    
+    int main(void)
+    {
+    	struct test x;
+    
+    	x.u = false;
+    	x.b = false;
+    	printf("u %u b %u\n", x.u, x.b);
+    
+    	x.u = true;
+    	x.b = true;
+    	printf("u %u b %u\n", x.u, x.b);
+    
+    	x.u = 0;
+    	x.b = 0;
+    	printf("u %u b %u\n", x.u, x.b);
+    
+    	x.u = 8;
+    	x.b = 8;
+    	printf("u %u b %u\n", x.u, x.b);
+    
+    	return 0;
+    }
+
+
+Result:
+
+    u 0 b 0
+    u 1 b 1
+    u 0 b 0
+    u 0 b 1
+
+
+The last example is basically the reason we see stuff like
+
+    boolean_like_value = !!(some_retrieved_value);
+
+when using unsigned bitfields instead of bool (bitfields).
+
+
+And the memory layout (on x86-64):
+
+    $ pahole test.o                                    
+    struct test {
+            uint8_t                    u:1;                  /*     0: 0  1 */
+            uint8_t                    u2:1;                 /*     0: 1  1 */
+            _Bool                      b:1;                  /*     0: 2  1 */
+            _Bool                      b2:1;                 /*     0: 3  1 */
+    
+            /* size: 1, cachelines: 1, members: 4 */
+            /* bit_padding: 4 bits */
+            /* last cacheline: 1 bytes */
+    };
+
+
+To my surprise, it was already mentioned in one of the discussions [1].
+Was there anything in the discussion which I might have missed and 
+is a good reason to not use "bool ...:1" in structs?
+
+Kind regards,
+	Sven
+
+[1] https://lore.kernel.org/all/CA+55aFwVZk1OfB9T2v014PTAKFhtVan_Zj2dOjnCy3x6E4UJfA@mail.gmail.com/T/#u
+--nextPart1845216.Og6EX3yCZx
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmGUwVAACgkQXYcKB8Em
+e0b6JBAA0zifY/YwpDdxoScQKo9J5bG4vN1SEnMchgKICaNa7P1e97sJ1ogkhj+8
+pq+5krHbE35vopH96mFTvQ0JZVze3m8kom0TXSnN+erwjzV/JrO8vF4qg6Wac2c3
+U5ySpWWS8/a2ziipcB5YrLEJzjNzxpJb20hKxE5juJ1gwhmay97wsVFzbnFX403v
+ceDIN+fmcRtUg3LGpVXsUQIjIKHb6T/21ud5Cjv6rx/1SsUUrRRvokKWJuvU5JKD
+MYbzS2xnleofgJKCjk1/LM4V9F3s0qR7sQYxGr2jlA6MebMer4E8iY2sXuSULdRt
+1YbSd0TN535hMprBCmj/lhmWiC0OIwbw1zagjWAbFdB9sksF9eEka6nbXoTzH9w9
+q1CLX8uhBgChYXhT5CSAHiv4KtlfrjqAsYsPbuYALMo9G+Pqwtnf0WArWeloPbPu
+4ll2X5jOptPpKIPvHvI+FWY/XNJG1DYFQKsXMs2s8A7iSidaKcPj62sLLql4tMsr
+zt5ZyQa4gLvI0A4mUQ5uoXgz5AfspFfNPQqsybjs/0/H/B+HIUAfsD+B7Gi/LSlj
+SKyYs4ChOowKTR/aYvZZ9RDXOvW0lLS6Ma7hZEAH2cRwZKR+Uc6x86n453wiTB1y
+z4Dq/G+v1SiwRNRPbOSE2tyT2gqPEPlAXghdT4rUcyoGiaxXFqc=
+=Gdz9
+-----END PGP SIGNATURE-----
+
+--nextPart1845216.Og6EX3yCZx--
+
+
+
+
+
+--===============2521584702334667147==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 -- 
 ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
+
+--===============2521584702334667147==--
+
+
+
+
