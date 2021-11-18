@@ -2,74 +2,89 @@ Return-Path: <SRS0=Pndp=QF=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5EE79C433EF
-	for <ath11k@archiver.kernel.org>; Thu, 18 Nov 2021 15:33:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CE121C433EF
+	for <ath11k@archiver.kernel.org>; Thu, 18 Nov 2021 17:41:57 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1A85E6126A
-	for <ath11k@archiver.kernel.org>; Thu, 18 Nov 2021 15:33:00 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 1A85E6126A
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+	by mail.kernel.org (Postfix) with ESMTPS id 8F93E615E3
+	for <ath11k@archiver.kernel.org>; Thu, 18 Nov 2021 17:41:57 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 8F93E615E3
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:Subject:Cc:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=H0FqWTGvSvHVUYS8vW6EzpSW6oLsndPBFUsrkbwJKRc=; b=RGblFrhexwseuR
-	MxhLgdfu29VkbA0raDYtrCCTc3AOHZrNizw8g+auMfLPNn9JZT1Wo87Io2hJSx3/E44gTP7+ds7+p
-	7X+3niPkac/uPw1cCr4503q9I+MeRcAjja47aR51QthJMHt9pFkWNPg7mxPMJcF1qRe7RzSdDXkiC
-	L0nTFTqxJ/ijcCMW7Q4GtUpJfQB9iIAIqQnSiEdtIUsxJO5vmJGHMM/QNqO1Z7h6F+I0kyrmn17td
-	x6fgZahdJS2F6SSJ1NcEv9xMm2AMfMFkYX+p1YLEQ5TjYibxNLPG+Vl2mAoxH5IAjJX73tPNofQa2
-	q0BdjHeKm44+UlSEA8JA==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=NJ90clie78SNgOsXbHc1WZME15ACciDNTTJoD1mvkrE=; b=mQA6DHozUCny2h
+	4KolGid4DYGhZD9jqElVxrGASXsMr4PzdMjJ6hGeW6uMM74mu7EfmxEI2/IbLFyV+WT4yLXhuw/jy
+	L+Ffqn9a8idPlnTvjCH8RH9HMaymE17xTs5hNAUBGv9io6JLNLdBHwKON2B/QAtTM6PTSGhTxmekA
+	85Qz5/ua4eKbbqmUKYQ8gQkzcIp+IMO8uJpvyPEIiU89Uj66z+ISoFI8s29bvvhYQgnmXGr/7zoh9
+	tAaTvO/VPUmeC3EbzS9Faer+WCUM8Aj1Q1/tzbJf1/7xYL/cArDDqfGekIDbPvGCtYrr4QZ7MGT3o
+	lFZpBWDoi51bTWMnwfMA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mnjPG-008HeT-5g; Thu, 18 Nov 2021 15:32:58 +0000
-Received: from m43-7.mailgun.net ([69.72.43.7])
+	id 1mnlQ2-008TMd-Ub; Thu, 18 Nov 2021 17:41:54 +0000
+Received: from mail-pj1-x1031.google.com ([2607:f8b0:4864:20::1031])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mnjPC-008HFm-H1
- for ath11k@lists.infradead.org; Thu, 18 Nov 2021 15:32:57 +0000
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
- q=dns/txt; 
- s=smtp; t=1637249576; h=Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=NgvtXY9KWVGF6KT9hm449US8KRw0C+HqpFgweiRfv2s=;
- b=o5VJuEaOnzDbaTsBio73GuQChJqHLzZzBfaVrMoQFvHOgnQUREiv44ok+kkFbZjeNYuX7+ye
- bHpC21CdBPx8LM9fPysf4UY+LbbN5TSMRUInRaoPZP5wC9Tcyn1xeolDOKRndBpjseqHwkmk
- IM92VaeFrZBaDn1sHHpFCcRJg1g=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n02.prod.us-east-1.postgun.com with SMTP id
- 61967222638a2f4d61428aaf (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 18 Nov 2021 15:32:50
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 6F99AC43616; Thu, 18 Nov 2021 15:32:49 +0000 (UTC)
-Received: from akolli-linux.qualcomm.com
- (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
- (No client certificate requested) (Authenticated sender: akolli)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id BA322C4338F;
- Thu, 18 Nov 2021 15:32:47 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org BA322C4338F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- spf=fail smtp.mailfrom=codeaurora.org
-From: Anilkumar Kolli <akolli@codeaurora.org>
-To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org,
-	Anilkumar Kolli <akolli@codeaurora.org>
-Subject: [PATCH] ath11k: Use host CE parameters for CE interrupts configuration
-Date: Thu, 18 Nov 2021 21:02:38 +0530
-Message-Id: <1637249558-12793-1-git-send-email-akolli@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
+ id 1mnlQ0-008TL9-0F
+ for ath11k@lists.infradead.org; Thu, 18 Nov 2021 17:41:53 +0000
+Received: by mail-pj1-x1031.google.com with SMTP id gt5so5720341pjb.1
+ for <ath11k@lists.infradead.org>; Thu, 18 Nov 2021 09:41:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=8ciIRwy+yxvWn2LwEQWDIz+C3VSCgM6erWfnwc1pCQE=;
+ b=Po2980MK3nArAg5kgUQyTvOoghzp/so1mpxQqFmgkHfEuiVm8w/dsmqAfsmBEK0PsS
+ t8cSYt5UI3z/+ZqDacYoUWritLHHkVDbZ9H8o9dp/O9FE2zwEefIwO2aYxWPBOIDi0K+
+ Q6hRyiEXWNyugSaBdzEw/qLSH/sOZJ2SYBgfg+OKWsSQamHGH9lENraxerysU0vcMk+Q
+ gndcskSMDwvdRTBfqcZ/DzJsMtzISsqSBCwYI5CaincTsqedpUpjUlPSNAVWCz32JR6l
+ sapZEjrhakrT/HOKweuJvuRS6yVR6zqLJ7XwBGb7SQS30043DmQ13cwyhGCRWf9lL4m9
+ Y6mw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=8ciIRwy+yxvWn2LwEQWDIz+C3VSCgM6erWfnwc1pCQE=;
+ b=iKTiCpRo3CqUJ0U5UvJfdwhE3YZBhhm6S7+nZKiBIlkORfOEkf9ZnkvFIoza7pUM2P
+ olXxOsTirgp4DhBFZfYMOyJz1Ehik0aG3UV1r2A8CefZGfXVPwwF9l/LvhHQ3VigLMtk
+ DBcbLLSc0PUc6eGKUohCSyjgnr58acKyDTFbOIgk+D8TnRUZb3jWMOAeVH130/o2OFGR
+ z5SsJ3B+1CzroEqXY5Gf9Nkxz/eNXaXFfujHuauppX9Yyh1bxth1ueUqvWM0xJB/bJEL
+ IBgVg0x1RI4JeseyluDEEY1eeou7puhA/jrbNKTeOphe2mu3bwV2PPT4ivSAWeYKAlJ0
+ 0GXQ==
+X-Gm-Message-State: AOAM530iAKTJZ8YtGdC9JfwQ/B1XkxN2Pw+Y3T5vgaG626fYv5uY4OhK
+ VJCznFMKiNgX4XyopdkSInVolWIUcOud
+X-Google-Smtp-Source: ABdhPJz4ckUHzppPNRFH93bqoC4QHvF8HTUl6iWPtRcLKk0HfikDz9RyuU6wf05bW3QmHIX+Gogc6A==
+X-Received: by 2002:a17:90a:a396:: with SMTP id
+ x22mr12624056pjp.14.1637257310302; 
+ Thu, 18 Nov 2021 09:41:50 -0800 (PST)
+Received: from thinkpad ([117.202.188.63])
+ by smtp.gmail.com with ESMTPSA id h6sm271494pfh.82.2021.11.18.09.41.47
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 18 Nov 2021 09:41:49 -0800 (PST)
+Date: Thu, 18 Nov 2021 23:11:45 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Kalle Valo <kvalo@codeaurora.org>
+Cc: Loic Poulain <loic.poulain@linaro.org>, ath11k@lists.infradead.org,
+ linux-wireless@vger.kernel.org,
+ linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+ regressions@lists.linux.dev, mhi <mhi@lists.linux.dev>
+Subject: Re: [regression] mhi: ath11k resume fails on some devices
+Message-ID: <20211118174145.GA31300@thinkpad>
+References: <871r5p0x2u.fsf@codeaurora.org>
+ <CAMZdPi8UJLvBFQd8-nf-iHAQh8cEuihq97PUFfZ7Q=rxRQoPsg@mail.gmail.com>
+ <877df6tlnq.fsf@codeaurora.org>
+ <CAMZdPi8P7YZPhPir+WfS3cY_a7He1m2Pq2uqBhczPdEeoNRb0Q@mail.gmail.com>
+ <87a6jl9ndo.fsf@codeaurora.org> <87ee8hgqni.fsf@codeaurora.org>
+ <20211021100305.GD7580@workstation>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20211021100305.GD7580@workstation>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211118_073256_284741_E2F88534 
-X-CRM114-Status: GOOD (  10.82  )
+X-CRM114-CacheID: sfid-20211118_094152_130998_6659B471 
+X-CRM114-Status: GOOD (  31.11  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,79 +96,82 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-CE interrupt configuration uses host ce parameters to assign/free
-interrupts. Use host ce parameters to enable/disable interrupts.
-This patch fixes below BUG,
+On Thu, Oct 21, 2021 at 03:33:05PM +0530, Manivannan Sadhasivam wrote:
+> On Tue, Oct 19, 2021 at 03:12:01PM +0300, Kalle Valo wrote:
+> > Kalle Valo <kvalo@codeaurora.org> writes:
+> > 
+> > > (adding the new mhi list, yay)
+> > >
+> > > Hi Loic,
+> > >
+> > > Loic Poulain <loic.poulain@linaro.org> writes:
+> > >
+> > >>> Loic Poulain <loic.poulain@linaro.org> writes:
+> > >>>
+> > >>> > On Thu, 16 Sept 2021 at 10:00, Kalle Valo <kvalo@codeaurora.org> wrote:
+> > >>>
+> > >>> >> At the moment I'm running my tests with commit 020d3b26c07a reverted and
+> > >>> >> everything works without problems. Is there a simple way to fix this? Or
+> > >>> >> maybe we should just revert the commit? Commit log and kernel logs from
+> > >>> >> a failing case below.
+> > >>> >
+> > >>> > Do you have log of success case?
+> > >>>
+> > >>> A log from a successful case in the end of email, using v5.15-rc1 plus
+> > >>> revert of commit 020d3b26c07abe27.
+> > >>>
+> > >>> > To me, the device loses power, that is why MHI resuming is failing.
+> > >>> > Normally the device should be properly recovered/reinitialized. Before
+> > >>> > that patch the power loss was simply not detected (or handled at
+> > >>> > higher stack level).
+> > >>>
+> > >>> Currently in ath11k we always keep the firmware running when in suspend,
+> > >>> this is a workaround due to problems between mac80211 and MHI stack.
+> > >>> IIRC the problem was something related MHI creating struct device during
+> > >>> resume or something like that.
+> > >>
+> > >> Could you give a try with the attached patch? It should solve your
+> > >> issue without breaking modem support.
+> > >
+> > > Sorry for taking so long, but I now tested your patch on top of
+> > > v5.15-rc3 and, as expected, everything works as before with QCA6390 on
+> > > NUC x86 testbox.
+> > >
+> > > Tested-by: Kalle Valo <kvalo@codeaurora.org>
+> > 
+> > I doubt we will find enough time to fully debug this mhi issue anytime
+> > soon. Can we commit Loic's patch so that this regression is resolved?
+> > 
+> 
+> Sorry no :( Eventhough Loic's patch is working, I want to understand the
+> issue properly so that we could add a proper fix or patch the firmware
+> if possible.
+> 
+> Let's try to get the debug logs as I requested.
+> 
 
-BUG: KASAN: global-out-of-bounds in 0xffffffbffdfb035c at addr
-ffffffbffde6eeac
- Read of size 4 by task kworker/u8:2/132
- Address belongs to variable ath11k_core_qmi_firmware_ready+0x1b0/0x5bc [ath11k]
+I'm able to reproduce the issue on my NUC. I'm still investigating on how to
+properly fix this issue. Expect a patch soon.
 
-OOB is due to ath11k_ahb_ce_irqs_enable() iterates ce_count(which is 12)
-times and accessing 12th element in target_ce_config
-(which has only 11 elements) from ath11k_ahb_ce_irq_enable().
+Thanks,
+Mani 
 
-With this change host ce configs are used to enable/disable interrupts.
-
-Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1-00471-QCAHKSWPL_SILICONZ-1
-
-Fixes: 967c1d1131fa ("ath11k: move target ce configs to hw_params")
-
-Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
----
- drivers/net/wireless/ath/ath11k/ahb.c | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index 8c9c781afc3e..096c502cce38 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.c
-+++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -206,13 +206,13 @@ static void ath11k_ahb_clearbit32(struct ath11k_base *ab, u8 bit, u32 offset)
- 
- static void ath11k_ahb_ce_irq_enable(struct ath11k_base *ab, u16 ce_id)
- {
--	const struct ce_pipe_config *ce_config;
-+	const struct ce_attr *ce_attr;
- 
--	ce_config = &ab->hw_params.target_ce_config[ce_id];
--	if (__le32_to_cpu(ce_config->pipedir) & PIPEDIR_OUT)
-+	ce_attr = &ab->hw_params.host_ce_config[ce_id];
-+	if (ce_attr->src_nentries)
- 		ath11k_ahb_setbit32(ab, ce_id, CE_HOST_IE_ADDRESS);
- 
--	if (__le32_to_cpu(ce_config->pipedir) & PIPEDIR_IN) {
-+	if (ce_attr->dest_nentries) {
- 		ath11k_ahb_setbit32(ab, ce_id, CE_HOST_IE_2_ADDRESS);
- 		ath11k_ahb_setbit32(ab, ce_id + CE_HOST_IE_3_SHIFT,
- 				    CE_HOST_IE_3_ADDRESS);
-@@ -221,13 +221,13 @@ static void ath11k_ahb_ce_irq_enable(struct ath11k_base *ab, u16 ce_id)
- 
- static void ath11k_ahb_ce_irq_disable(struct ath11k_base *ab, u16 ce_id)
- {
--	const struct ce_pipe_config *ce_config;
-+	const struct ce_attr *ce_attr;
- 
--	ce_config = &ab->hw_params.target_ce_config[ce_id];
--	if (__le32_to_cpu(ce_config->pipedir) & PIPEDIR_OUT)
-+	ce_attr = &ab->hw_params.host_ce_config[ce_id];
-+	if (ce_attr->src_nentries)
- 		ath11k_ahb_clearbit32(ab, ce_id, CE_HOST_IE_ADDRESS);
- 
--	if (__le32_to_cpu(ce_config->pipedir) & PIPEDIR_IN) {
-+	if (ce_attr->dest_nentries) {
- 		ath11k_ahb_clearbit32(ab, ce_id, CE_HOST_IE_2_ADDRESS);
- 		ath11k_ahb_clearbit32(ab, ce_id + CE_HOST_IE_3_SHIFT,
- 				      CE_HOST_IE_3_ADDRESS);
--- 
-2.7.4
-
+> Thanks,
+> Mani
+> 
+> > At the moment I'm doing all my regression testing with commit
+> > 020d3b26c07abe27 reverted. That's a risk, I would prefer to do my
+> > testing without any hacks.
+> > 
+> > -- 
+> > https://patchwork.kernel.org/project/linux-wireless/list/
+> > 
+> > https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
