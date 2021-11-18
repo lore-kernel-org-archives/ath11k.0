@@ -2,94 +2,74 @@ Return-Path: <SRS0=Pndp=QF=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E059DC433EF
-	for <ath11k@archiver.kernel.org>; Thu, 18 Nov 2021 20:24:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 88A44C433F5
+	for <ath11k@archiver.kernel.org>; Thu, 18 Nov 2021 22:10:15 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A5EEA610C8
-	for <ath11k@archiver.kernel.org>; Thu, 18 Nov 2021 20:24:26 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org A5EEA610C8
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=chromium.org
+	by mail.kernel.org (Postfix) with ESMTPS id 5071261504
+	for <ath11k@archiver.kernel.org>; Thu, 18 Nov 2021 22:10:15 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 5071261504
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=dP//MJwETODDBXHkdId6sTiBomnD5Si2/Ur8hyLzIxE=; b=OEjxvYxeolynTh
-	Dwh4Jf76M5ERsNyu434xQulmn1ru4SwOwPt33MVpqJPmgQXBIas394y6TOlgwCiKy04xw0vERV47S
-	krkULe5F6MLDH1/cQriNJzwnkdX3b/fPsdUNVR7+kUmNQsPwbu/mPBL4BO0xxMPerK870F3rX6WKv
-	YsYO+NX0xFAqX/+sX8fhEfATQDEBpZppLfolCTiUC5yF06Ow+goxIwXzumdAwqXDza/E42ctIVIpT
-	J/PbMaQVqdL47DWTPAWEoIXkRQRn27qRCsJPTkKzmVei8eS/HgEmBOvVDHdqf4+q8PK0C7ODyAxLM
-	AELfD1CBnbFjJaXhnHIQ==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:Subject:
+	References:In-Reply-To:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=vS+FcMbwa6LKFpF5X5AJch6kuyjHQYfwp9Yzrs7LziI=; b=0BeXkeHYJOYL68
+	yeyviB0+XnG6lDYWLP5bwopRC3uQUCGFKPJTf4DW2EEmoVAQSC5lPqgFzp/M6z7RAVre4OCutUP+n
+	hLz2FzCZTl5Ky4R0geZHICfdvnzteTPJVuUvLo/dAOg2FLixJ1z53xY5J+05pM4G9seyp2XRc7+QN
+	y5m6YABwRUgqzhDdAGwFk+HdnmsQWf/CV8dh2NUkPSPouiF/swZn8PJW7CZf+Hie2FPAQLXdA52Ie
+	k4nBhZIIBNAuwE/eewit12DyqQrS/Nq8pGmsB4DDX3yy2RbCHIaKBWLiTFE7fyrNLKI0AEVF+VqUR
+	5V0Izm/4twIgBo0RUobw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mnnxI-008pWk-0O; Thu, 18 Nov 2021 20:24:24 +0000
-Received: from mail-pf1-x42f.google.com ([2607:f8b0:4864:20::42f])
+	id 1mnpbg-008wxQ-CK; Thu, 18 Nov 2021 22:10:12 +0000
+Received: from mail-ot1-f44.google.com ([209.85.210.44])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mnnxE-008pVj-OE
- for ath11k@lists.infradead.org; Thu, 18 Nov 2021 20:24:22 +0000
-Received: by mail-pf1-x42f.google.com with SMTP id x5so7238391pfr.0
- for <ath11k@lists.infradead.org>; Thu, 18 Nov 2021 12:24:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=hMf1gD24yauyF3KjKslZWaFebiMpm2AYS7vHEx/kuE4=;
- b=bryfhy3Nc6TJ17719nhq/O5sCfMOdnRykXJxQ9YepGvk5JLK83TDfVSPhR9ucyp16t
- Zz03k6JIcai4+Wzo/DaNuqbLea/sCf/OlrjfbeLXeb9z8wNPvUyI5JVgjV0kiSsPP+HP
- cmgNsUmIFo8pXtPaKiDbxDkdHRHNhDGoWAL48=
+ id 1mnpbS-008wtZ-FY
+ for ath11k@lists.infradead.org; Thu, 18 Nov 2021 22:10:01 +0000
+Received: by mail-ot1-f44.google.com with SMTP id
+ u18-20020a9d7212000000b00560cb1dc10bso13430967otj.11
+ for <ath11k@lists.infradead.org>; Thu, 18 Nov 2021 14:09:57 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=hMf1gD24yauyF3KjKslZWaFebiMpm2AYS7vHEx/kuE4=;
- b=vUmRp4d25Fo2TmKlwHcABMD9tc3JvrTesgFNz9qSeZgaFzjNBy088NVU5q2NnhdFPE
- fikzP/PRARE1WPOmAhBsEospiGL8pCEqVzoMUOggSUISas9e3GQegTopPCyqgMzcGBD7
- VhSN9vbV0JFo1KKb888LBdDNih22YR+TtFo7SflnUyRIDfDPAYK1qkrokZsWJuAwPKZf
- UcoV9rNcTjecbkio0UTlCdELk7JTwscCchxg9r+Mbz0QKZeueEwGhHD2FIxelIPuqHbr
- 9TXdcnR78zHLTxiIBJQV8nagtpXzOwU3O5jfyqaXnrxCo1QU14ahGFR2mLHzeTuUgCAF
- qiAw==
-X-Gm-Message-State: AOAM530nqWffcxaGO5WWEjWI212Zmz81zXjrJLwSW20dItCVBKwQh1CR
- rr2Lgh5qNlaBf9O5EpbuNNOrY1r5pQBYIw==
-X-Google-Smtp-Source: ABdhPJxKIqpIeEh5v/1ZnJSnPEj5hFi4bW/UQYeypi4NAfAxQoU+NV4DHrHpGVvINMedRZP5FQ1Glw==
-X-Received: by 2002:a05:6a00:230d:b0:49f:b8ad:ae23 with SMTP id
- h13-20020a056a00230d00b0049fb8adae23mr17761516pfh.80.1637267059566; 
- Thu, 18 Nov 2021 12:24:19 -0800 (PST)
-Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
- by smtp.gmail.com with ESMTPSA id k2sm385162pfc.9.2021.11.18.12.24.19
+ h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+ :message-id;
+ bh=wyaKU21KsPhRsL8O46dW6nI8PJL6dJM95EyvFAPc4RU=;
+ b=c56ik/FFGwzASrnoa3FVIeAkulc57f5RMyST6hodsz0EguLBngW9VZAuVJY46q3uMr
+ mXRcgUH1gZt89U0NDhSZ4WuYnZXnqVrKoP0R79Bdf+vlez8xH8vb9LEk61GHhFR2R8oH
+ Yw14kLdhlqFev4FwnpbC7BVQZNv2wbS6fyzwGjx5krYGd9ddjlRxfKmW2HLJl2w+/zvD
+ kEYH1I7Z6B1rORLa7DO8r061zRaSb5pYbcFuOB3hYKdbojDKFbkN5b4hGgInZFHNzGx+
+ mJX1KagWIkA+iv9GXgHKpiGSezTT+J3IxfSzJEx+JLJBu/7RMgoUeu+iiTzmxHv+FxAp
+ TooA==
+X-Gm-Message-State: AOAM532cmIe+EIZ8hBudytdUeLQ/jz2yK0S7zb/RhW5wp8LJdDNSB1vc
+ meI2wd3uAVXSyDU8GYb7cUdHl4rcGQ==
+X-Google-Smtp-Source: ABdhPJzhb/Rj2EsCodTBxBTM+tZP3sxLb26m+PQkfobY+xof43b9OGeWF22/ZARCzu17SIqhtH8YZQ==
+X-Received: by 2002:a9d:4f0e:: with SMTP id d14mr490282otl.137.1637273397095; 
+ Thu, 18 Nov 2021 14:09:57 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net.
+ [66.90.148.213])
+ by smtp.gmail.com with ESMTPSA id x28sm220382ote.24.2021.11.18.14.09.56
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 18 Nov 2021 12:24:19 -0800 (PST)
-From: Kees Cook <keescook@chromium.org>
-To: Kalle Valo <kvalo@codeaurora.org>
-Cc: Kees Cook <keescook@chromium.org>, "David S. Miller" <davem@davemloft.net>,
- Jakub Kicinski <kuba@kernel.org>, linux-kernel@vger.kernel.org,
- ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- netdev@vger.kernel.org, linux-hardening@vger.kernel.org
-Subject: [PATCH] ath11k: Use memset_startat() for clearing queue descriptors
-Date: Thu, 18 Nov 2021 12:24:16 -0800
-Message-Id: <20211118202416.1286046-1-keescook@chromium.org>
-X-Mailer: git-send-email 2.30.2
-MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3154; h=from:subject;
- bh=Z7ww62H2LCcWjbE7PDOS85aSn8pEtYcisufGb7NuKpM=;
- b=owEBbQKS/ZANAwAKAYly9N/cbcAmAcsmYgBhlrZvPaK6H9IfHnqcjxvW6VHMgSx/+zSIUUBsGrBv
- LkmvTcGJAjMEAAEKAB0WIQSlw/aPIp3WD3I+bhOJcvTf3G3AJgUCYZa2bwAKCRCJcvTf3G3AJl3SD/
- 4pqvkd2z1L/ax9cY37TqcgdUqtA+JYMgutREFg1df1xVUyL5EsVAnS70cGNgGfY688VlzwH4K61UYN
- XCqte++H2Bfi2XOUmy5cG5cLVMno0eLpt9cMNt7URQR7oTrgQ8981uQHB0J6HEcrbv1jKBdX46EzXX
- s14R4t/cMGGV0DsqT4Aq+twUuWeaHNX7mYL7jDCEllw5asIe0TrZm6x7FDdAHhGGpGW9UgLPzyqdX/
- GNEQZ0gNJv89AjPlYeCyP2YxFeNs4Q3KnWJ1EdOM5ArTTsbPOjYqcYK5UMjx18PWYTWB6IyAxzIJ/0
- 9ojSRaQbabNnn/DblIsUhEmzUcTUXAsGskbpnfa/Q16EMgyxF5r3s8I/hIL+oGzDnAqQSwW1mJyB8C
- xnX0gi3QzgR6kDHOFkrzrIJHO4b/lcsOZIHkN7RP/Mj34DgOmFcR9mWMBirn3tT9abIQIVbU83IC2c
- guZE+H0/Zh4BvIiDIsygyaOG9cb/yScax1g83Mr56XO7zGlNmjamPAtRX9Y+dpfik9P1rgJIWVBoZR
- 08QZpDXSW3nbYC71q4kGQQgeW5ZZnCRhJP6bwz721f5a5DSusAQmVtxpcpTFe6LgmtRAPiXgSfGGb7
- wq1VyLZaDxM0twr/10q3AkOo3VYoyAUAh/MyPjd87n36C1EPX6DkRSugAVcQ==
-X-Developer-Key: i=keescook@chromium.org; a=openpgp;
- fpr=A5C3F68F229DD60F723E6E138972F4DFDC6DC026
+ Thu, 18 Nov 2021 14:09:56 -0800 (PST)
+Received: (nullmailer pid 1841666 invoked by uid 1000);
+ Thu, 18 Nov 2021 22:09:54 -0000
+From: Rob Herring <robh@kernel.org>
+To: Anilkumar Kolli <akolli@codeaurora.org>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ devicetree@vger.kernel.org
+In-Reply-To: <1637244892-27267-1-git-send-email-akolli@codeaurora.org>
+References: <1637244892-27267-1-git-send-email-akolli@codeaurora.org>
+Subject: Re: [PATH v3 1/2] dt: bindings: add new DT entry for ath11k PCI
+ device support
+Date: Thu, 18 Nov 2021 16:09:54 -0600
+Message-Id: <1637273394.267065.1841665.nullmailer@robh.at.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211118_122420_823987_070D46D4 
-X-CRM114-Status: GOOD (  10.26  )
+X-CRM114-CacheID: sfid-20211118_140958_553467_C16F4220 
+X-CRM114-Status: GOOD (  10.66  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,80 +81,69 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-In preparation for FORTIFY_SOURCE performing compile-time and run-time
-field bounds checking for memset(), avoid intentionally writing across
-neighboring fields.
+On Thu, 18 Nov 2021 19:44:51 +0530, Anilkumar Kolli wrote:
+> Ath11k driver supports PCI devices such as QCN9074/QCA6390.
+> Ath11k firmware uses host DDR memory, DT entry is used to reserve
+> these host DDR memory regions, send these memory base
+> addresses using DT entries.
+> 
+> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
+> ---
+> V2:
+>   - Use reserved-memory (Rob)
+> 
+>  .../bindings/net/wireless/qcom,ath11k.yaml         | 48 ++++++++++++++++++++++
+>  1 file changed, 48 insertions(+)
+> 
 
-Use memset_startat() so memset() doesn't get confused about writing
-beyond the destination member that is intended to be the starting point
-of zeroing through the end of the struct. Additionally split up a later
-field-spanning memset() so that memset() can reason about the size.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Signed-off-by: Kees Cook <keescook@chromium.org>
----
- drivers/net/wireless/ath/ath11k/hal_rx.c | 13 ++++++-------
- 1 file changed, 6 insertions(+), 7 deletions(-)
+yamllint warnings/errors:
 
-diff --git a/drivers/net/wireless/ath/ath11k/hal_rx.c b/drivers/net/wireless/ath/ath11k/hal_rx.c
-index 329c404cfa80..0e43e215c10a 100644
---- a/drivers/net/wireless/ath/ath11k/hal_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/hal_rx.c
-@@ -29,8 +29,7 @@ static int ath11k_hal_reo_cmd_queue_stats(struct hal_tlv_hdr *tlv,
- 		  FIELD_PREP(HAL_TLV_HDR_LEN, sizeof(*desc));
- 
- 	desc = (struct hal_reo_get_queue_stats *)tlv->value;
--	memset(&desc->queue_addr_lo, 0,
--	       (sizeof(*desc) - sizeof(struct hal_reo_cmd_hdr)));
-+	memset_startat(desc, 0, queue_addr_lo);
- 
- 	desc->cmd.info0 &= ~HAL_REO_CMD_HDR_INFO0_STATUS_REQUIRED;
- 	if (cmd->flag & HAL_REO_CMD_FLG_NEED_STATUS)
-@@ -62,8 +61,7 @@ static int ath11k_hal_reo_cmd_flush_cache(struct ath11k_hal *hal, struct hal_tlv
- 		  FIELD_PREP(HAL_TLV_HDR_LEN, sizeof(*desc));
- 
- 	desc = (struct hal_reo_flush_cache *)tlv->value;
--	memset(&desc->cache_addr_lo, 0,
--	       (sizeof(*desc) - sizeof(struct hal_reo_cmd_hdr)));
-+	memset_startat(desc, 0, cache_addr_lo);
- 
- 	desc->cmd.info0 &= ~HAL_REO_CMD_HDR_INFO0_STATUS_REQUIRED;
- 	if (cmd->flag & HAL_REO_CMD_FLG_NEED_STATUS)
-@@ -101,8 +99,7 @@ static int ath11k_hal_reo_cmd_update_rx_queue(struct hal_tlv_hdr *tlv,
- 		  FIELD_PREP(HAL_TLV_HDR_LEN, sizeof(*desc));
- 
- 	desc = (struct hal_reo_update_rx_queue *)tlv->value;
--	memset(&desc->queue_addr_lo, 0,
--	       (sizeof(*desc) - sizeof(struct hal_reo_cmd_hdr)));
-+	memset_startat(desc, 0, queue_addr_lo);
- 
- 	desc->cmd.info0 &= ~HAL_REO_CMD_HDR_INFO0_STATUS_REQUIRED;
- 	if (cmd->flag & HAL_REO_CMD_FLG_NEED_STATUS)
-@@ -764,15 +761,17 @@ void ath11k_hal_reo_qdesc_setup(void *vaddr, int tid, u32 ba_window_size,
- 	 * size changes and also send WMI message to FW to change the REO
- 	 * queue descriptor in Rx peer entry as part of dp_rx_tid_update.
- 	 */
--	memset(ext_desc, 0, 3 * sizeof(*ext_desc));
-+	memset(ext_desc, 0, sizeof(*ext_desc));
- 	ath11k_hal_reo_set_desc_hdr(&ext_desc->desc_hdr, HAL_DESC_REO_OWNED,
- 				    HAL_DESC_REO_QUEUE_EXT_DESC,
- 				    REO_QUEUE_DESC_MAGIC_DEBUG_PATTERN_1);
- 	ext_desc++;
-+	memset(ext_desc, 0, sizeof(*ext_desc));
- 	ath11k_hal_reo_set_desc_hdr(&ext_desc->desc_hdr, HAL_DESC_REO_OWNED,
- 				    HAL_DESC_REO_QUEUE_EXT_DESC,
- 				    REO_QUEUE_DESC_MAGIC_DEBUG_PATTERN_2);
- 	ext_desc++;
-+	memset(ext_desc, 0, sizeof(*ext_desc));
- 	ath11k_hal_reo_set_desc_hdr(&ext_desc->desc_hdr, HAL_DESC_REO_OWNED,
- 				    HAL_DESC_REO_QUEUE_EXT_DESC,
- 				    REO_QUEUE_DESC_MAGIC_DEBUG_PATTERN_3);
--- 
-2.30.2
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:160.13-31: Warning (reg_format): /example-0/pcie0_rp:reg: property has invalid length (20 bytes) (#address-cells == 1, #size-cells == 1)
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:164.17-36: Warning (reg_format): /example-0/pcie0_rp/ath11k@0:reg: property has invalid length (20 bytes) (#address-cells == 2, #size-cells == 1)
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:170.13-31: Warning (reg_format): /example-0/pcie1_rp:reg: property has invalid length (20 bytes) (#address-cells == 1, #size-cells == 1)
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:174.17-36: Warning (reg_format): /example-0/pcie1_rp/ath11k@1:reg: property has invalid length (20 bytes) (#address-cells == 2, #size-cells == 1)
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:138.16-141.11: Warning (unit_address_vs_reg): /example-0/memory: node has a reg or ranges property, but no unit name
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:159.28-167.11: Warning (unit_address_vs_reg): /example-0/pcie0_rp: node has a reg or ranges property, but no unit name
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:169.28-177.11: Warning (unit_address_vs_reg): /example-0/pcie1_rp: node has a reg or ranges property, but no unit name
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:163.32-166.15: Warning (avoid_default_addr_size): /example-0/pcie0_rp/ath11k@0: Relying on default #address-cells value
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:163.32-166.15: Warning (avoid_default_addr_size): /example-0/pcie0_rp/ath11k@0: Relying on default #size-cells value
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:173.32-176.15: Warning (avoid_default_addr_size): /example-0/pcie1_rp/ath11k@1: Relying on default #address-cells value
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:173.32-176.15: Warning (avoid_default_addr_size): /example-0/pcie1_rp/ath11k@1: Relying on default #size-cells value
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml: Warning (unique_unit_address): Failed prerequisite 'avoid_default_addr_size'
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml: reserved-memory: qcn9074_pcie0@51100000:reg:0: [0, 1360003072, 0, 55574528] is too long
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml: reserved-memory: qcn9074_pcie1@54600000:reg:0: [0, 1415577600, 0, 55574528] is too long
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1556692
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
 
 -- 
