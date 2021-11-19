@@ -2,14 +2,14 @@ Return-Path: <SRS0=20C1=QG=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 27EA6C433F5
-	for <ath11k@archiver.kernel.org>; Fri, 19 Nov 2021 08:21:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B9F46C433F5
+	for <ath11k@archiver.kernel.org>; Fri, 19 Nov 2021 08:41:35 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DC36461A8A
-	for <ath11k@archiver.kernel.org>; Fri, 19 Nov 2021 08:21:19 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org DC36461A8A
+	by mail.kernel.org (Postfix) with ESMTPS id 7E03A61AED
+	for <ath11k@archiver.kernel.org>; Fri, 19 Nov 2021 08:41:35 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 7E03A61AED
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -18,59 +18,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:Cc:To:From
 	:Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=hMrGqy1v6wOX3wZRtRIWMoXVHa72ZP/k4KF/wDpBYnc=; b=HgImawJj8CMTAP7LpiMSt8jO1J
-	V99cllev3tug+FNqgukWMtNQBQSMffgda/lWfmY87zBeTHvKM8OzBJHyZkvfTJCrsfO2LchUr8AUR
-	e47ku9YbFfu17Ri4Xbq6+Bcoc5FnA8e+7F7bSLTLSkVz7TMysmql4FRnyQ7Oqu2H/nKQJ7gGeyV8M
-	ApJDp74ooesDB7N/uM90C+RQauFYesC6Rcw5eSVIoRvOVDbTsZnFX5TW62nEa4/8yG1J8FaF6WLYK
-	Q76MncnwM3BLWeHuXePn+ZVQAlqNSW8tO+cg1OST76fARhgX8OmrmUukf+Y7CIQ27lcy/3s1mMFUq
-	aTCpB6Gw==;
+	bh=0y1U5hmc7lVRps4YfJvbPIzy7HnhaxYkYAq8Q4vBkV8=; b=cdKw2rsX3LI8mBHBOc/d7flv6m
+	FKg2jnumK62y0xDze5YSgepUM6pugoaXuVVX5O2AhvWI/pWzKf+IIOt4E6cN8lkvr3Z8uFX6cKp3D
+	CEriNHb727qxsNoz/t3SAVMXyp/kWnfcLI/fmiN74vOcXdK7M1NM44JrCYCPWLt0V33Iy7yqx4aCR
+	Ztjg2EAREXnGewoSPr+666crGq/9ddi6AfCxeoHxZ14al4vposeXyFuYGpPARF6kQY6B0oMMhaKAF
+	ZbSZ+Y3HfNiG2ynGCW57a1e7FMsjO6dyKvMSQ7O997W4j+TI4ffGfuRPSX7g+RNwiMDDklDO4n0uc
+	KTStloSA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mnz93-009k4I-Gc; Fri, 19 Nov 2021 08:21:17 +0000
+	id 1mnzSf-009ng2-D9; Fri, 19 Nov 2021 08:41:33 +0000
 Received: from so254-9.mailgun.net ([198.61.254.9])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mnz90-009k3T-7c
- for ath11k@lists.infradead.org; Fri, 19 Nov 2021 08:21:16 +0000
+ id 1mnzSb-009nes-3x
+ for ath11k@lists.infradead.org; Fri, 19 Nov 2021 08:41:31 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1637310074; h=Message-ID: References: In-Reply-To: Subject:
+ s=smtp; t=1637311289; h=Message-ID: References: In-Reply-To: Subject:
  Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=qPRQ8GT1EoqJcWnMwOwKF9zdY1ZKDhNu/XlFvKEQsVU=;
- b=bVszgf6zjEERem4mL6kCgJI7LSkt3ExnIw8ZkV39X64G8GMmqABIZG8wQ9JgzqZfWEM2BheA
- r8hwGplMJebejlvYLE6hvW3s4kz4LwbQyfo6jBlTODBlwarDAzFV2i8wLmhMrOYNrq2zI1aO
- 9OdaJgIcjMt+Vp8g+XMnGDApDQ0=
+ MIME-Version: Sender; bh=TJDfJQzNs0P8ZTjwfGv8Cr99h3avRBPf0A8lWovZM4o=;
+ b=alJM0ubNU0vBljOJ2agCs6p4CHQaq7lhj3YnevJ2AMIanuetv7ZA9yzh6iSpVpVu+ueAkzdK
+ q2AvCUzpeLgjd8lWgQSa5o+6SeEOkhNwukMgFzeixwSpJcySWso9HGthhEMPfKs2jA6jFUfn
+ PsqU7hdx5jCD4lCAAsQMSKB7iqg=
 X-Mailgun-Sending-Ip: 198.61.254.9
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
- 61975e791e1d2f5233a2aa7e (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 19 Nov 2021 08:21:13
+ smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
+ 61976338665450d43aefcea5 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 19 Nov 2021 08:41:28
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 2186CC4360D; Fri, 19 Nov 2021 08:21:13 +0000 (UTC)
+ id 49BE8C4360D; Fri, 19 Nov 2021 08:41:27 +0000 (UTC)
 Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
  (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
  (No client certificate requested) (Authenticated sender: akolli)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 5DEADC4338F;
- Fri, 19 Nov 2021 08:21:12 +0000 (UTC)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id D2BEAC4338F;
+ Fri, 19 Nov 2021 08:41:26 +0000 (UTC)
 MIME-Version: 1.0
-Date: Fri, 19 Nov 2021 13:51:12 +0530
+Date: Fri, 19 Nov 2021 14:11:26 +0530
 From: Anilkumar Kolli <akolli@codeaurora.org>
 To: Rob Herring <robh@kernel.org>
 Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
  devicetree@vger.kernel.org
 Subject: Re: [PATH v3 1/2] dt: bindings: add new DT entry for ath11k PCI
  device support
-In-Reply-To: <1637273394.267065.1841665.nullmailer@robh.at.kernel.org>
+In-Reply-To: <YZbds1DgmwbFPQdM@robh.at.kernel.org>
 References: <1637244892-27267-1-git-send-email-akolli@codeaurora.org>
- <1637273394.267065.1841665.nullmailer@robh.at.kernel.org>
-Message-ID: <c53e9299093a315f997c17048872aeff@codeaurora.org>
+ <YZbds1DgmwbFPQdM@robh.at.kernel.org>
+Message-ID: <f71ed4a924adcc026c6b0f29809f3b7d@codeaurora.org>
 X-Sender: akolli@codeaurora.org
 User-Agent: Roundcube Webmail/1.3.9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211119_002114_391619_4F17B69A 
-X-CRM114-Status: GOOD (  16.48  )
+X-CRM114-CacheID: sfid-20211119_004129_249482_6CF5EA2C 
+X-CRM114-Status: GOOD (  22.22  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,8 +87,8 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 2021-11-19 03:39, Rob Herring wrote:
-> On Thu, 18 Nov 2021 19:44:51 +0530, Anilkumar Kolli wrote:
+On 2021-11-19 04:41, Rob Herring wrote:
+> On Thu, Nov 18, 2021 at 07:44:51PM +0530, Anilkumar Kolli wrote:
 >> Ath11k driver supports PCI devices such as QCN9074/QCA6390.
 >> Ath11k firmware uses host DDR memory, DT entry is used to reserve
 >> these host DDR memory regions, send these memory base
@@ -103,86 +103,121 @@ On 2021-11-19 03:39, Rob Herring wrote:
 >> ++++++++++++++++++++++
 >>  1 file changed, 48 insertions(+)
 >> 
+>> diff --git 
+>> a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml 
+>> b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+>> index 85c2f699d602..5a8994f6cb10 100644
+>> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+>> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+>> @@ -150,6 +150,12 @@ properties:
+>>        string to uniquely identify variant of the calibration data in 
+>> the
+>>        board-2.bin for designs with colliding bus and device specific 
+>> ids
+>> 
+>> +  memory-region:
+>> +    maxItems: 1
+>> +    description:
+>> +      phandle to a node describing reserved memory (System RAM 
+>> memory)
+>> +      used by ath11k firmware (see 
+>> bindings/reserved-memory/reserved-memory.txt)
+>> +
+>>  required:
+>>    - compatible
+>>    - reg
+>> @@ -279,3 +285,45 @@ examples:
+>>                            "tcl2host-status-ring";
+>>          qcom,rproc = <&q6v5_wcss>;
+>>      };
+>> +
 > 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> This looks like a separate example. Please split to its own entry.
 > 
-> yamllint warnings/errors:
+>> +    memory {
+>> +        device_type = "memory";
+>> +        reg = <0x0 0x40000000 0x0 0x20000000>;
+>> +    };
 > 
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:160.13-31:
-> Warning (reg_format): /example-0/pcie0_rp:reg: property has invalid
-> length (20 bytes) (#address-cells == 1, #size-cells == 1)
-> Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:164.17-36:
-> Warning (reg_format): /example-0/pcie0_rp/ath11k@0:reg: property has
-> invalid length (20 bytes) (#address-cells == 2, #size-cells == 1)
-> Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:170.13-31:
-> Warning (reg_format): /example-0/pcie1_rp:reg: property has invalid
-> length (20 bytes) (#address-cells == 1, #size-cells == 1)
-> Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:174.17-36:
-> Warning (reg_format): /example-0/pcie1_rp/ath11k@1:reg: property has
-> invalid length (20 bytes) (#address-cells == 2, #size-cells == 1)
-> Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:138.16-141.11:
-> Warning (unit_address_vs_reg): /example-0/memory: node has a reg or
-> ranges property, but no unit name
-> Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:159.28-167.11:
-> Warning (unit_address_vs_reg): /example-0/pcie0_rp: node has a reg or
-> ranges property, but no unit name
-> Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:169.28-177.11:
-> Warning (unit_address_vs_reg): /example-0/pcie1_rp: node has a reg or
-> ranges property, but no unit name
-> Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml:
-> Warning (pci_device_reg): Failed prerequisite 'reg_format'
-> Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml:
-> Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-> Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml:
-> Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-> Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml:
-> Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-> Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml:
-> Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-> Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:163.32-166.15:
-> Warning (avoid_default_addr_size): /example-0/pcie0_rp/ath11k@0:
-> Relying on default #address-cells value
-> Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:163.32-166.15:
-> Warning (avoid_default_addr_size): /example-0/pcie0_rp/ath11k@0:
-> Relying on default #size-cells value
-> Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:173.32-176.15:
-> Warning (avoid_default_addr_size): /example-0/pcie1_rp/ath11k@1:
-> Relying on default #address-cells value
-> Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:173.32-176.15:
-> Warning (avoid_default_addr_size): /example-0/pcie1_rp/ath11k@1:
-> Relying on default #size-cells value
-> Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml:
-> Warning (unique_unit_address): Failed prerequisite
-> 'avoid_default_addr_size'
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml:
-> reserved-memory: qcn9074_pcie0@51100000:reg:0: [0, 1360003072, 0,
-> 55574528] is too long
-> 	From schema: 
-> /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml:
-> reserved-memory: qcn9074_pcie1@54600000:reg:0: [0, 1415577600, 0,
-> 55574528] is too long
-> 	From schema: 
-> /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+> Outside the scope of what's needed in the example.
 > 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/patch/1556692
-> 
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
+Yes, memory entry is available in 
+"arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi"
+Since its used in ath11k patch, added example.
+I will remove in next version.
 
-Sure, I will post v2 with fixes.
+>> +
+>> +    reserved-memory {
+>> +        #address-cells = <1>;
+>> +        #size-cells = <1>;
+>> +        ranges;
+>> +
+>> +        qcn9074_pcie0: qcn9074_pcie0@51100000 {
+>> +            no-map;
+>> +            reg = <0x0 0x51100000 0x0 0x03500000>;
+>> +        };
+>> +
+>> +        qcn9074_pcie1: qcn9074_pcie1@54600000 {
+>> +            no-map;
+>> +            reg = <0x0 0x54600000 0x0 0x03500000>;
+>> +        };
+>> +    };
+> 
+> As is this really.
+> 
+ipq8074-hk10.dtsi board supports two PCI bus and QCN9074 on each PCI.
+So added two separate entries to reserves memory for each QCN9074.
+
+>> +
+>> +    pcie0_rp: pcie0_rp {
+>> +        reg = <0 0 0 0 0>;
+> 
+> This isn't a valid PCI bus binding.
+> 
+Got it, let me rework in next patch.
+
+>> +
+>> +        status = "ok";
+> 
+> Don't need status.
+
+Sure, will remove in next patch.
+
+> 
+>> +        ath11k_0: ath11k@0 {
+> 
+> wifi@0
+> 
+>> +            reg = <0 0 0 0 0 >;
+>> +            memory-region = <&qcn9074_pcie0>;
+>> +        };
+>> +    };
+>> +
+>> +    pcie1_rp: pcie1_rp {
+>> +        reg = <0 0 0 0 0>;
+>> +
+>> +        status = "ok";
+>> +        ath11k_1: ath11k@1 {
+>> +            reg = <0 0 0 0 0 >;
+> 
+> unit-address and reg don't match.
+> 
+will update in next patch.
+
+> Why do we need 2 nodes in the first place?
+> 
+ipq8074-hk10.dtsi board supports two PCI bus and QCN9074 on each PCI.
+So added two separate entries to reserves memory for each QCN9074.
+
+Since its example, Shall I remove one ?
+
+>> +            memory-region = <&qcn9074_pcie1>;
+>> +        };
+>> +    };
+>> +
+>> --
+>> 2.7.4
+>> 
 
 - Anil.
 
