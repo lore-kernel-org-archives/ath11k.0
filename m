@@ -1,76 +1,76 @@
-Return-Path: <SRS0=Pndp=QF=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=20C1=QG=lists.infradead.org=ath11k-bounces+ath11k=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1893CC433F5
-	for <ath11k@archiver.kernel.org>; Thu, 18 Nov 2021 23:11:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 95AC1C433F5
+	for <ath11k@archiver.kernel.org>; Fri, 19 Nov 2021 07:58:51 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CB07161994
-	for <ath11k@archiver.kernel.org>; Thu, 18 Nov 2021 23:11:58 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org CB07161994
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	by mail.kernel.org (Postfix) with ESMTPS id 5798F60EBD
+	for <ath11k@archiver.kernel.org>; Fri, 19 Nov 2021 07:58:51 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 5798F60EBD
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=E1XDWs9VkNVMzxM1NUfzzjLc1QowdBNSTr+c7pwiyls=; b=YjrU9WJMxEAFQg
-	GH8up7gWitpg9tDAiDy0OJRib2Sur4aG9BIWWASAygmRj/9l/nZ0KHbUUDnBhEKFNrNHLMmkL8BE2
-	ETiZgfLrN2APtjKEkrVE2jXYKymBLi5nkEk83Sxj6szLI8Ee11e9gWNfVQLrGe6jD79zNeJY1sxGO
-	/b6hcF9XuRqB7M6/ZT5bVKKKvviSlOypu0gljJDmWQ0Mvt4XLnjzsscluMKYWM2Z3Y/FALguwarRh
-	aZMbxNJNX4vH7JBmfh5pSVg6RfoPBfHGBAUhWoOb2M57zriBNphycvnOxBJpAa2whSjlq/6tp74hj
-	Yfl+guq25N4chXAudX+g==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:Cc:To:From
+	:Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=AOyl5M1addv3tq+zQGaSe9QlJMztGYPpfEOnbNh3Jvs=; b=WxHy0rGnSVHbVVj6NzMse2riZq
+	nLEK0704J/CYr2wZGcEWQDu9Rj6RoXfFEG8NvdopM/06ehDjkwSnSCUe2bG0PIvhCBvdp4KbkaC+f
+	zCL9W60LQAcll+jcII2ryszD20IRnaPlNv4gMUWLLkUtOMOZYloAW62DGzK5xdKsHE8DuXy5ple9G
+	g00LO2jEC8v1vvKh7NDhQEDeNvl8Gb1GEFhoXmuzUs7OnhYedL3gmXB/xAq5AdBodeULOoinihcCT
+	NLVfAqijvIbyAIY/f3sBKYKAJzKMTsY7BdC43CuSwXoRr5Kg617etjl4rcNfG7uxi/3IYkLzwWtwy
+	Q3WX1BHw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mnqZP-00929n-QV; Thu, 18 Nov 2021 23:11:55 +0000
-Received: from mail-oi1-f169.google.com ([209.85.167.169])
+	id 1mnynI-009gGa-33; Fri, 19 Nov 2021 07:58:48 +0000
+Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mnqZN-009298-S3
- for ath11k@lists.infradead.org; Thu, 18 Nov 2021 23:11:55 +0000
-Received: by mail-oi1-f169.google.com with SMTP id bj13so17832917oib.4
- for <ath11k@lists.infradead.org>; Thu, 18 Nov 2021 15:11:49 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=6myScuq3nOr20A1Ksiuor/A5GOiLxa2QAT4GCP9Aq+0=;
- b=xXIEeszxEPwvFTVDXspK0Q7Z2iR8e0RTK7UHRi8B4X4qe19P/peagHPnq+Q1wFC4c8
- 4RVynyS7n2zEaJOZY52wyXPo1G1VmlmLNd5OofzGaVG0iMYq0K5F/qsxmV6UQQqNAHQO
- sHlZfSI1tVbXCKSSq1Bi1XCRsXf67G4ZFLp238E6ETBLsBuQ1g8b4V8inZUOSKqouFPd
- 3Z7B+oDJDPa9wVVDIx2QlFDomSzbqjFqnNF+5fHVjGVLMaDvYLakQfCZVleiMcJTko+C
- JOW00wJbgXvpKz8LWod5Zni1JaRcuxWC1SGKaa9RN/VrTNb2ocZFom4I+Jh4YIQZ4afo
- OAwQ==
-X-Gm-Message-State: AOAM532SH650aFomkLACZFe0OkHNvKDRG3gk9eSB48ojsrfgwNNbuTNC
- 1MGk9a7ZqyX7UON0cho3PMjqa8I7Mw==
-X-Google-Smtp-Source: ABdhPJwxQ48ocNKAXi7TijyVJEySn66JtgRGmKvzqJt1ZKcDAHTqHqWYMJK5dMvuEoa0aB95rK+6Kw==
-X-Received: by 2002:aca:4307:: with SMTP id q7mr686998oia.3.1637277109242;
- Thu, 18 Nov 2021 15:11:49 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net.
- [66.90.148.213])
- by smtp.gmail.com with ESMTPSA id o6sm218385oou.41.2021.11.18.15.11.48
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 18 Nov 2021 15:11:48 -0800 (PST)
-Received: (nullmailer pid 1944164 invoked by uid 1000);
- Thu, 18 Nov 2021 23:11:47 -0000
-Date: Thu, 18 Nov 2021 17:11:47 -0600
-From: Rob Herring <robh@kernel.org>
-To: Anilkumar Kolli <akolli@codeaurora.org>
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATH v3 1/2] dt: bindings: add new DT entry for ath11k PCI
- device support
-Message-ID: <YZbds1DgmwbFPQdM@robh.at.kernel.org>
-References: <1637244892-27267-1-git-send-email-akolli@codeaurora.org>
+ id 1mnynF-009gFp-Q9
+ for ath11k@lists.infradead.org; Fri, 19 Nov 2021 07:58:47 +0000
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
+ q=dns/txt; 
+ s=smtp; t=1637308725; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=tkMTrgPDznBkag7N8PY4gBko+1tUGKNQ/pYo04ktkzk=;
+ b=FsCSRmtg3spx0Hom0gO+h5yBZki/RWb2pVgoc+RI53YJZejdnitfH0dQCOxs6oxwnu5+gx64
+ MKI9tHdltkUmLDZ5Zo0wtQpz51NRjNF/7rekYZEdhIRwqsb2cJOkQNzDYPFbx7XVfbUMghYW
+ x3+N2UUCGOtIX6StjbG16Kxbr0M=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
+ 61975934f5c956d49e80b7fa (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 19 Nov 2021 07:58:44
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+ id DA692C4360D; Fri, 19 Nov 2021 07:58:43 +0000 (UTC)
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+ (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+ (No client certificate requested) (Authenticated sender: wgong)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 72BBDC4338F;
+ Fri, 19 Nov 2021 07:58:43 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1637244892-27267-1-git-send-email-akolli@codeaurora.org>
+Date: Fri, 19 Nov 2021 15:58:43 +0800
+From: Wen Gong <wgong@codeaurora.org>
+To: Kalle Valo <kvalo@codeaurora.org>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
+Subject: Re: [PATCH] ath11k: add read variant from SMBIOS for download board
+ data
+In-Reply-To: <d9ff63f49c50b0561932be77bed5ce87@codeaurora.org>
+References: <20211011082433.30415-1-wgong@codeaurora.org>
+ <163713928364.10263.15372409026240983506.kvalo@codeaurora.org>
+ <d9ff63f49c50b0561932be77bed5ce87@codeaurora.org>
+Message-ID: <9abb629d45130da8847679e090c3e4cf@codeaurora.org>
+X-Sender: wgong@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211118_151153_941408_E74791DD 
-X-CRM114-Status: GOOD (  21.40  )
+X-CRM114-CacheID: sfid-20211118_235845_961663_F4E06CD2 
+X-CRM114-Status: GOOD (  17.09  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,115 +82,75 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Thu, Nov 18, 2021 at 07:44:51PM +0530, Anilkumar Kolli wrote:
-> Ath11k driver supports PCI devices such as QCN9074/QCA6390.
-> Ath11k firmware uses host DDR memory, DT entry is used to reserve
-> these host DDR memory regions, send these memory base
-> addresses using DT entries.
+On 2021-11-18 18:25, Wen Gong wrote:
+> On 2021-11-17 16:54, Kalle Valo wrote:
+>> Wen Gong <wgong@codeaurora.org> wrote:
+>> 
+>>> This is to read variant from SMBIOS such as read from DT, the variant
+>>> string will be used to one part of string which used to search board
+>>> data from board-2.bin.
+>>> 
+>>> Tested-on: WCN6855 hw2.0 PCI 
+>>> WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+>>> 
+>>> Signed-off-by: Wen Gong <wgong@codeaurora.org>
+>> 
+>> I'm dropping all patches listed below in one go. I didn't manage to
+>> apply any of these without conflicts, please remember to always use
+>> ath.git master branch as the baseline to avoid conflicts.
+>> 
+>> 9 patches set to Changes Requested.
+>> 
+>> 12549401 ath11k: add read variant from SMBIOS for download board data
+>> 12549415 ath11k: add wait operation for tx management packets for
+>> flush from mac80211
+>> 12549419 ath11k: change to treat alpha code na as world wide regdomain
+>> 12549431 ath11k: report rssi of each chain to mac80211
+>> 12549433 ath11k: Add signal report to mac80211 for QCA6390 and WCN6855
+>> 12549449 ath11k: report tx bitrate for iw wlan station dump
+>> 12554953 ath11k: add support for hardware rfkill for QCA6390
+>> 12583807 ath11k: add 11d scan offload support
+>> 12583809 ath11k: calculate the correct NSS of peer for HE capabilities
 > 
-> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
-> ---
-> V2:
->   - Use reserved-memory (Rob)
+> I have rebased to latest ath.git master ath-202111170737 and resend v2
+> for below patches:
+> [v2] ath11k: report rssi of each chain to mac80211
+> [v2,0/2] ath11k: add 11d scan offload support for QCA6390/WCN6855
+> [v2] ath11k: add read variant from SMBIOS for download board data
+> [v2] ath11k: skip sending vdev down for channel switch
+> [v2] ath11k: fix read fail for htt_stats and htt_peer_stats for single 
+> pdev
+> [v2] ath11k: calculate the correct NSS of peer for HE capabilities
+> [v2] ath11k: add wait operation for tx management packets for flush
+> from mac80211
+> [v2] ath11k: change to treat alpha code na as world wide regdomain
 > 
->  .../bindings/net/wireless/qcom,ath11k.yaml         | 48 ++++++++++++++++++++++
->  1 file changed, 48 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-> index 85c2f699d602..5a8994f6cb10 100644
-> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-> @@ -150,6 +150,12 @@ properties:
->        string to uniquely identify variant of the calibration data in the
->        board-2.bin for designs with colliding bus and device specific ids
->  
-> +  memory-region:
-> +    maxItems: 1
-> +    description:
-> +      phandle to a node describing reserved memory (System RAM memory)
-> +      used by ath11k firmware (see bindings/reserved-memory/reserved-memory.txt)
-> +
->  required:
->    - compatible
->    - reg
-> @@ -279,3 +285,45 @@ examples:
->                            "tcl2host-status-ring";
->          qcom,rproc = <&q6v5_wcss>;
->      };
-> +
+> I will rebase the left patches after these patches upstream, otherwise
+> the left patches will have conflict with these patches
+> because they change same location but actually have no logic relation.
 
-This looks like a separate example. Please split to its own entry.
+Hi Kalle,
 
-> +    memory {
-> +        device_type = "memory";
-> +        reg = <0x0 0x40000000 0x0 0x20000000>;
-> +    };
+I have tested in my local git, all the above v2 patches only have one 
+conflict
+between "[v2,2/2] ath11k: add 11d scan offload support"
+and "[v2] ath11k: report rssi of each chain to mac80211"
+in wmi_tlv_policies of wmi.c because they both add a item in the struct.
+patch -p1 -i xxx.patch will auto fix this type conflict.
 
-Outside the scope of what's needed in the example.
++       [WMI_TAG_11D_NEW_COUNTRY_EVENT] = {
++               .min_len = sizeof(struct wmi_11d_new_cc_ev) },
 
-> +
-> +    reserved-memory {
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        ranges;
-> +
-> +        qcn9074_pcie0: qcn9074_pcie0@51100000 {
-> +            no-map;
-> +            reg = <0x0 0x51100000 0x0 0x03500000>;
-> +        };
-> +
-> +        qcn9074_pcie1: qcn9074_pcie1@54600000 {
-> +            no-map;
-> +            reg = <0x0 0x54600000 0x0 0x03500000>;
-> +        };
-> +    };
++       [WMI_TAG_PER_CHAIN_RSSI_STATS] = {
++               .min_len = sizeof(struct wmi_per_chain_rssi_stats) },
 
-As is this really.
 
-> +
-> +    pcie0_rp: pcie0_rp {
-> +        reg = <0 0 0 0 0>;
 
-This isn't a valid PCI bus binding.
-
-> +
-> +        status = "ok";
-
-Don't need status.
-
-> +        ath11k_0: ath11k@0 {
-
-wifi@0
-
-> +            reg = <0 0 0 0 0 >;
-> +            memory-region = <&qcn9074_pcie0>;
-> +        };
-> +    };
-> +
-> +    pcie1_rp: pcie1_rp {
-> +        reg = <0 0 0 0 0>;
-> +
-> +        status = "ok";
-> +        ath11k_1: ath11k@1 {
-> +            reg = <0 0 0 0 0 >;
-
-unit-address and reg don't match.
-
-Why do we need 2 nodes in the first place?
-
-> +            memory-region = <&qcn9074_pcie1>;
-> +        };
-> +    };
-> +
-> -- 
-> 2.7.4
-> 
-> 
 
 -- 
 ath11k mailing list
