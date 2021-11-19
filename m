@@ -2,14 +2,14 @@ Return-Path: <SRS0=20C1=QG=lists.infradead.org=ath11k-bounces+ath11k=archiver.ke
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1596EC433EF
-	for <ath11k@archiver.kernel.org>; Fri, 19 Nov 2021 09:57:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B4A11C433EF
+	for <ath11k@archiver.kernel.org>; Fri, 19 Nov 2021 12:31:16 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CD4E561AD2
-	for <ath11k@archiver.kernel.org>; Fri, 19 Nov 2021 09:57:33 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org CD4E561AD2
+	by mail.kernel.org (Postfix) with ESMTPS id 729C561353
+	for <ath11k@archiver.kernel.org>; Fri, 19 Nov 2021 12:31:16 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mail.kernel.org 729C561353
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -18,66 +18,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
 	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=bQ3t8j09Iwp1/cSXgf1gj4hENLjC3gUzxOA/VMlh05g=; b=RZeLEyz9urlcaI
-	9qD26fAbx1wHip3+sivQHSQg1GLxphy/R6me6xreUjY8/fJMO2meRCg9ZR75Ozz0gCt/V5yoTRrKn
-	DQ/grxMfQe3Lfck8vha8U+tWP06ElA/uHYnTPl3B4QeGshox6/PM1VmaE9JzY+YPjCIq0Y5zEElds
-	ypOl0uRu4rxsrbac1TEpsJg/AXQ9Ife0AK91e5B6RIrzfXv+/CHJMwpve5vB10H9X37HfuTrGNw1S
-	it/vbsxUV1HM8+o4fysd/tOLv+ITKppvhhOUxHq5Cgc3tFhg128p8HYhAiLUXqNy45s2fuZK9N6V1
-	LONbPk2ae/uMim/gBu7g==;
+	List-Owner; bh=zJzoz4knIC26fVK+H/1woKjh/dXFuJzxWwfzljD5e4w=; b=L63StfBbGPm0ux
+	vgSSNYIFSWomM7mbYjq2cv1GM3UxheZXfOvB5kXToF3FrxiK2GETr73XTUso1htLX/RCCR6Vd5vyx
+	pjxV1ztTtG7Vkn8Bg/NYi5Qxcz4mrU2bkoFXDhCjblW2zUV4lYTpEFuIZA66wZmq0P0SYkNsbaPD3
+	3ww5RkbnUqaWaPzWOc/AZ6zjxsDStdUgVcp97kvLC64KxQbNk6v6BCc8hOqLVRR9LdFGL3eIKpmiX
+	OM7eTMg5/kAa1BVHly+PER5nL/yVga8GdYBm5zaDC88Vu+DPJjaxNspB6L2upnHXyogbifxATYRQP
+	XVddwpJ7QUDbUmZa9YwA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mo0eB-00A3ie-M4; Fri, 19 Nov 2021 09:57:31 +0000
+	id 1mo32v-00ANuP-Hk; Fri, 19 Nov 2021 12:31:13 +0000
 Received: from so254-9.mailgun.net ([198.61.254.9])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mo0e8-00A3hi-8Y
- for ath11k@lists.infradead.org; Fri, 19 Nov 2021 09:57:29 +0000
+ id 1mo32s-00ANtn-Fq
+ for ath11k@lists.infradead.org; Fri, 19 Nov 2021 12:31:12 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1637315847; h=Content-Type: MIME-Version: Message-ID:
+ s=smtp; t=1637325068; h=Content-Type: MIME-Version: Message-ID:
  In-Reply-To: Date: References: Subject: Cc: To: From: Sender;
- bh=IEO46rDtgspzaK/zNqTgOWED7gSik+/ygymaEd5+7Tk=;
- b=XB/GN1M5C9hsmoZs2J5xLYbaunCvOWc+pk00g7jtsS/8xac4svmr+Mry6jq5alrlX19F3/2T
- aCfkPsUZE2aVJsfcoMiLRSdjL7puFeVE8KMWUIzxtKNwQqu8ElW/E3T4Uex6PMm57k4yH0iV
- rLL0bZcSt5acFKtR3AOYQZeq1JY=
+ bh=TFZh9Hncx+RwLUP8/sm4gFsZtAnZ+rgc6Kbset6/D6Q=;
+ b=jpnYX3mm5TKrGUIroAvUwZVKZRXdUL9XFuRGyMZiNDoC7CxlyoP65QL2A/CxtegUjsGU7Wfs
+ mdMK8lktziwA4sh7NyTTb6Q0lU1G+IRK59Uh2zi28DYmSi8553OLSkpkr3NdAYa/K7FnNGUS
+ 07II43HiW+JdYfzRgLPGAX0Y7bM=
 X-Mailgun-Sending-Ip: 198.61.254.9
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
- 619775061e1d2f5233d3f553 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 19 Nov 2021 09:57:26
+ smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
+ 6197990a5bbbed1f70398ce1 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 19 Nov 2021 12:31:06
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 83F9FC43616; Fri, 19 Nov 2021 09:57:26 +0000 (UTC)
+ id EB8F2C4360D; Fri, 19 Nov 2021 12:31:05 +0000 (UTC)
 Received: from tykki (tynnyri.adurom.net [51.15.11.48])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested) (Authenticated sender: kvalo)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 9E005C4338F;
- Fri, 19 Nov 2021 09:57:23 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 9E005C4338F
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 9C9EDC43616;
+ Fri, 19 Nov 2021 12:31:04 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 9C9EDC43616
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  spf=fail smtp.mailfrom=codeaurora.org
 From: Kalle Valo <kvalo@codeaurora.org>
-To: kernel test robot <lkp@intel.com>
-Cc: Seevalamuthu Mariappan <seevalam@codeaurora.org>, llvm@lists.linux.dev,
- kbuild-all@lists.01.org, linux-kernel@vger.kernel.org,
- Miles Hu <milehu@codeaurora.org>,
- Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>,
- Jouni Malinen <jouni@codeaurora.org>, ath11k@lists.infradead.org
-Subject: Re: drivers/net/wireless/ath/ath11k/mac.c:5408:22: warning: parameter
- 'changed_flags' set but not used
-References: <202111190031.U5H7J6W3-lkp@intel.com>
-Date: Fri, 19 Nov 2021 11:57:19 +0200
-In-Reply-To: <202111190031.U5H7J6W3-lkp@intel.com> (kernel test robot's
- message of "Fri, 19 Nov 2021 00:53:41 +0800")
-Message-ID: <8735nseadc.fsf@codeaurora.org>
+To: Baochen Qiang <bqiang@codeaurora.org>
+Cc: ath11k@lists.infradead.org,  linux-wireless@vger.kernel.org
+Subject: Re: [PATCH 0/7] ath11k: support one MSI vector
+References: <20211026041616.4956-1-bqiang@codeaurora.org>
+ <878rxpiudp.fsf@codeaurora.org>
+ <72c4443df7de4f6fa4b87d2244766c85@codeaurora.org>
+Date: Fri, 19 Nov 2021 14:31:00 +0200
+In-Reply-To: <72c4443df7de4f6fa4b87d2244766c85@codeaurora.org> (Baochen
+ Qiang's message of "Tue, 16 Nov 2021 10:50:00 +0800")
+Message-ID: <87tug8coor.fsf@codeaurora.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211119_015728_379776_4ED39110 
-X-CRM114-Status: GOOD (  14.84  )
+X-CRM114-CacheID: sfid-20211119_043110_619414_8D2DF85A 
+X-CRM114-Status: GOOD (  19.71  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,36 +91,67 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-kernel test robot <lkp@intel.com> writes:
+Baochen Qiang <bqiang@codeaurora.org> writes:
 
-> tree:   https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git master
-> head:   42eb8fdac2fc5d62392dcfcf0253753e821a97b0
-> commit: 689a5e6fff75229ac7c2af7a9c51dc2d3ca1882b ath11k: monitor mode clean up to use separate APIs
-> date:   8 weeks ago
-> config: x86_64-randconfig-a006-20211118 (attached as .config)
-> compiler: clang version 14.0.0 (https://github.com/llvm/llvm-project c46becf500df2a7fb4b4fce16178a036c344315a)
-> reproduce (this is a W=1 build):
->         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
->         chmod +x ~/bin/make.cross
->         # https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=689a5e6fff75229ac7c2af7a9c51dc2d3ca1882b
->         git remote add linus https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
->         git fetch --no-tags linus master
->         git checkout 689a5e6fff75229ac7c2af7a9c51dc2d3ca1882b
->         # save the attached .config to linux build tree
->         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 ARCH=x86_64 
+> On 2021-11-15 18:30, Kalle Valo wrote:
+>> Baochen Qiang <bqiang@codeaurora.org> writes:
+>>
+>>> This patch set is to support one MSI vector for QCA6390.
+>>>
+>>> Depends-On:
+>>>   1. ath11k: Fix crash caused by uninitialized TX ring
+>>>   https://patchwork.kernel.org/project/linux-wireless/patch/20211026011605.58615-1-quic_bqiang@quicinc.com/
+>>>
+>>> Baochen Qiang (1):
+>>>   ath11k: Set IRQ affinity to CPU0 in case of one MSI vector
+>>>
+>>> Carl Huang (6):
+>>>   ath11k: get msi_data again after request_irq is called
+>>>   ath11k: add CE and ext IRQ flag to indicate irq_handler
+>>>   ath11k: use ATH11K_PCI_IRQ_DP_OFFSET for DP IRQ
+>>>   ath11k: refactor multiple MSI vector implementation
+>>>   ath11k: supports one MSI vector
+>>>   ath11k: do not restore ASPM in case of single MSI vector
+>>
+>> I assume this is v2 of Carl's patchset:
+>>
+>> https://patchwork.kernel.org/project/linux-wireless/cover/20201223030225.2345-1-cjhuang@codeaurora.org/
+>>
+>> Can you provide a changelog? No need to resend because of that, just a
+>> reply to this thread enough.
 >
-> If you fix the issue, kindly add following tag as appropriate
-> Reported-by: kernel test robot <lkp@intel.com>
+> Hi Kalle, this is the changelog:
 >
-> All warnings (new ones prefixed by >>):
+> 1. changes by Kalle based on Carl's v1:
 >
->>> drivers/net/wireless/ath/ath11k/mac.c:5408:22: warning: parameter 'changed_flags' set but not used [-Wunused-but-set-parameter]
->                                               unsigned int changed_flags,
->                                                            ^
+> * add a log message for MSI vector count
+> * add a log message when disabling ASPM
+> * patch 1: fix error handling in ath11k_pci_probe()
+> * patch 1: simplify ath11k_pci_config_msi_data()
+> * patch 2: convert booleans to set_bit() & co for atomic access
+> * patch 2:__ath11k_pci_ext_irq_disable(): fix compilation
+> * patch 4: bool vectors_32_capability to set_bit() for atomic access
+> * patch 4: ath11k_mhi_get_msi(): don't use ? operator
+> * improve commits logs a bit
+>
+> 2. changes by Baochen based on Kalle's version:
+>
+> * add a new patch: "ath11k: Set IRQ affinity to CPU0 in case of one
+> MSI vector"
+> * address Jeff's comments on "ath11k: do not restore ASPM in case of
+> single MSI vector":
+> 	change debug info from "disabling PCI ASPM ..." to "leaving
+> PCI ASPM disabled ..."
+> * change error handling in patch "ath11k: get msi_data again after
+> request_irq is called"
+> * address Vasanth's comments on "ath11k: refactor multiple msi vector
+> implementation"
 
-The commit below should fix this:
-
-https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=ath-next&id=624e0a317030
+Thanks. I shortly tested this patchset (commit 5d9dd5b3db33 in
+master-pending) on a NUC x86 box and Dell XPS 13 9310 laptop using
+QCA6390 hw2.0, both with 32 MSI vectors (VT-d enabled in BIOS) and 1 MSI
+vector (VT-d disabled in BIOS). No issues found, and also suspend works
+fine for me. So I think we have solved all the stability issues.
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
