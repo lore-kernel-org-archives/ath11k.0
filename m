@@ -4,70 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B446C433F5
-	for <ath11k@archiver.kernel.org>; Mon, 22 Nov 2021 14:35:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42D1BC433FE
+	for <ath11k@archiver.kernel.org>; Mon, 22 Nov 2021 17:59:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
-	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=PbCdVi7nC0cdhGhT1f26zt1G/uwdjzRxibGMZjr3jyI=; b=2MSQuuhTYUL4qP
-	lOD1TSYhpORscOquysT0nsvDsWL5Joc1TEo19Ag4uvyuRkKGcTuDVnzCeVMViOp42CXvIezUstOas
-	4eVwOt2+1tQU9pwXnM1AUQBjTB//p8t2z93n7jFaluBoT6RjbtxXtbU1bYoy3VocZC7UkomoiUtUM
-	gmDOk3tNtrPKUZhbPCA+zn/myUZ+E6ST+JsTFHpgIarmuB4aygfrpDnBO0vBR+u0Gni5KVRzovZya
-	dl7jcUT3F5rR0Jz/WwqwMazLa4yJKzsv/aLj9g0+3JXmEHKH01VUXJZihThYdIfiRbtgZ67T8F62B
-	i4BtqTJvBl+325qOR95A==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:Cc:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=jCMkxD+Cvq/pU0kU3arOfxPv/q3Muiii6EtDdIxqQNs=; b=0pxn1Y037ypLsuPllE9ceEA5nX
+	En1nniZiEIgimDntQfVHN+Y1Xmxs6A6Um/KgJXQzGa9JBg+nKhIjH1bNDgnD7sikSbcmT6ziIOiRr
+	oJQlCy3/8ChO0uiNsZzx3Hx8yZpp42Q8C0uuBx9pekhreqH8xA4sIEtafbVTAob+sc57/j96wNsUF
+	wWyYrwfQ/Y2LXyLUesn1LMUGeLFjG/Bb9uCXztZFAgPT23xjN5VdfzwhWLE+doUwLHbm2eIoz6d61
+	/wo2TuA+PsjoAgXqLooVw5i2q/o9/Gf4TX71Ey1aMlvaezylb7bb+Z/f4fipezxJJCqq5+gKTT4RM
+	/c/Kj/jg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mpAQE-00Gsz6-Cg; Mon, 22 Nov 2021 14:35:54 +0000
-Received: from m43-7.mailgun.net ([69.72.43.7])
+	id 1mpDat-00HI8k-Bf; Mon, 22 Nov 2021 17:59:07 +0000
+Received: from mail-lf1-x134.google.com ([2a00:1450:4864:20::134])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mpAQ9-00GsxU-94
- for ath11k@lists.infradead.org; Mon, 22 Nov 2021 14:35:53 +0000
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
- q=dns/txt; 
- s=smtp; t=1637591749; h=Date: Message-ID: Cc: To: References:
- In-Reply-To: From: Subject: Content-Transfer-Encoding: MIME-Version:
- Content-Type: Sender; bh=oDco1W0yo0ZflzwxdmHUbxk06U3HPk3Nol4h3voQ7lI=;
- b=QHJkb9UPCfZAKNmfcznJc373bP23Plo3wHSNBRfmj4teGu+QPS0Pmu8g6BEEbAfoQDO8QXU1
- PsammGqKy9PQ9NPCRFD0AlSZCdbR1YrjSo9qpbTwYNSbHKZTuLJBVD2CrwWH9WBvQyhesWT2
- YD/kj+umJ/+NBiUoV0qRktOwXIg=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
- 619baac3bebfa3d4d54bc080 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 22 Nov 2021 14:35:47
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 933EAC4360D; Mon, 22 Nov 2021 14:35:47 +0000 (UTC)
-Received: from tykki.adurom.net (tynnyri.adurom.net [51.15.11.48])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested) (Authenticated sender: kvalo)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id EF9F7C4338F;
- Mon, 22 Nov 2021 14:35:45 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org EF9F7C4338F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- spf=fail smtp.mailfrom=codeaurora.org
+ id 1mpDar-00HI7w-AY
+ for ath11k@lists.infradead.org; Mon, 22 Nov 2021 17:59:06 +0000
+Received: by mail-lf1-x134.google.com with SMTP id bu18so84417194lfb.0
+ for <ath11k@lists.infradead.org>; Mon, 22 Nov 2021 09:59:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-transfer-encoding:content-language;
+ bh=Gko20DS1AZDMNnuAhnKTds8S3OUfVzVKr6Ai4EtHDgY=;
+ b=od268HEAyAG6omdAhFW36mjc+TQ3DOz2cZ8OcvJm1lKz/WouAcejdRomllgHKMaZRi
+ PdDmbb9RFd+SRMWfqH0wjG9RFdRqg/ba7WI5A9vpJQkKAMO4vpSBFi9R1pL7Xq8vh/ps
+ 0+bLK4rKKizIU3ewRtyWAuTo0KiifRnXSHzFh1IWltuJvQqfo1EG48WKJdqG6aipbeOj
+ 34lYIQ+vrgGXv1GLgDfgOzVvGRp7D04rSYgpg3RP64F1UWUyoGX4uW2Hzxghxbd83FJf
+ wwrvjlZxgE0MrSD4UdnNPh4puVamS1iI8OL0jXtZTzR48k9gUV21fE7K8MpuBVMt+rNX
+ 6NNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-transfer-encoding
+ :content-language;
+ bh=Gko20DS1AZDMNnuAhnKTds8S3OUfVzVKr6Ai4EtHDgY=;
+ b=enoGsmF2tOzzZky9cF+INhhJJg4kqa6/leMY1+ecJPcAEmDEEz1p6AaGvVbWolCNCl
+ YErRVZvFsEWo28bfEhH66IUH25fQ2O+0HF+1TVmDvc49xdm3L3liBSzKxfc14nuOJ/Y/
+ F5qSjHaIFFbE8gghtEibPNZG1CqbdHC5AJEBMvZS1PvisMcrrGDudlAEWUw6divYvIZP
+ WMPogd2uQnyTOVrDpJ0ktH4FbB7Sr/iE4e7nyPadT0HqYwHu3ki2ZSl6+7EyE3KgpQWq
+ 9PfHu48uXHHKLsZAPwIj1oIWhHtbfYPYmoil4xdl9ZFpGZORChtLSbtRW7XRtRzoudLZ
+ ylMg==
+X-Gm-Message-State: AOAM533ip8yLvgjFFhbw/Wq/ykX+89OYZJWkF8a1WU3Il63rrajfJKIg
+ pzfH2JU8vlHD9ETn6tTRAkdBK/LHbbVs3g==
+X-Google-Smtp-Source: ABdhPJyGxpAfOgl9P8QMQ82zXTMzVAq8nHh2+R7/htbbbXz33Hxw+Mec7Zc6ARRsZxV2tIqb0XPoOQ==
+X-Received: by 2002:ac2:4d29:: with SMTP id h9mr58142252lfk.633.1637603942278; 
+ Mon, 22 Nov 2021 09:59:02 -0800 (PST)
+Received: from [192.168.8.100] ([176.59.41.199])
+ by smtp.gmail.com with ESMTPSA id c34sm1036390lfv.83.2021.11.22.09.59.00
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 22 Nov 2021 09:59:01 -0800 (PST)
+Subject: Re: [PATCH v2] ath11k: add read variant from SMBIOS for download
+ board data
+To: Kalle Valo <kvalo@codeaurora.org>, Wen Gong <quic_wgong@quicinc.com>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
+References: <20211118100033.8384-1-quic_wgong@quicinc.com>
+ <163759171706.17469.3004620526954131593.kvalo@codeaurora.org>
+From: Mark Herbert <mark.herbert42@gmail.com>
+Message-ID: <f237c04d-6574-ec9a-ebca-65d2d9ff9edd@gmail.com>
+Date: Mon, 22 Nov 2021 20:58:56 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: Fix mon status ring rx tlv processing
-From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1637249433-10316-1-git-send-email-akolli@codeaurora.org>
-References: <1637249433-10316-1-git-send-email-akolli@codeaurora.org>
-To: Anilkumar Kolli <akolli@codeaurora.org>
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- Anilkumar Kolli <akolli@codeaurora.org>
-User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <163759174403.17469.952754430187601558.kvalo@codeaurora.org>
-Date: Mon, 22 Nov 2021 14:35:47 +0000 (UTC)
+In-Reply-To: <163759171706.17469.3004620526954131593.kvalo@codeaurora.org>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211122_063549_453218_08E3DED1 
-X-CRM114-Status: UNSURE (   7.96  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20211122_095905_389501_F1C47F70 
+X-CRM114-Status: GOOD (  12.28  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,38 +86,35 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Anilkumar Kolli <akolli@codeaurora.org> wrote:
-
-> In HE monitor capture, HAL_TLV_STATUS_PPDU_DONE is received
-> on processing multiple skb. Do not clear the ppdu_info
-> till the HAL_TLV_STATUS_PPDU_DONE is received.
-> 
-> This fixes below warning and packet drops in monitor mode.
->  "Rate marked as an HE rate but data is invalid: MCS: 6, NSS: 0"
->  WARNING: at
->  PC is at ieee80211_rx_napi+0x624/0x840 [mac80211]
-> 
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-01693-QCAHKSWPL_SILICONZ-1
-> 
-> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
-
-Patch applied to ath-next branch of ath.git, thanks.
-
-09f16f7390f3 ath11k: Fix mon status ring rx tlv processing
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/patch/1637249433-10316-1-git-send-email-akolli@codeaurora.org/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+VHJpZWQgdGhpcyBvbiBEZWxsIFhQUyAxMyA5MzEwCgpNYXliZSB0aGlzIHBhdGNoIGlzIGdvb2Qg
+Zm9yIDY4NTUsIGJ1dCA2MzkwIGluIERlbGwgc2VlbXMgdG8gYmUga2lsbGVkIApjb21wbGV0ZWx5
+IHdpdGggaXQuIFJldmVydGluZyBpdCBtYWtlcyB0aGluZ3Mgd29yayBhZ2Fpbi4KClvCoMKgwqAg
+NS41MzcwMzRdIGF0aDExa19wY2kgMDAwMDo3MjowMC4wOiBjaGlwX2lkIDB4MCBjaGlwX2ZhbWls
+eSAweGIgCmJvYXJkX2lkIDB4ZmYgc29jX2lkIDB4ZmZmZmZmZmYKW8KgwqDCoCA1LjUzNzAzOF0g
+YXRoMTFrX3BjaSAwMDAwOjcyOjAwLjA6IGZ3X3ZlcnNpb24gMHgxMDFjMDZjYyAKZndfYnVpbGRf
+dGltZXN0YW1wIDIwMjAtMDYtMjQgMTk6NTAgZndfYnVpbGRfaWQKW8KgwqDCoCA1LjUzNzIzNl0g
+YXRoMTFrX3BjaSAwMDAwOjcyOjAwLjA6IGZhaWxlZCB0byBmZXRjaCBib2FyZCBkYXRhIGZvciAK
+YnVzPXBjaSxxbWktY2hpcC1pZD0wLHFtaS1ib2FyZC1pZD0yNTUsdmFyaWFudD1ERV8xOTAxIGZy
+b20gCmF0aDExay9RQ0E2MzkwL2h3Mi4wL2JvYXJkLTIuYmluClvCoMKgwqAgNS41MzcyNTVdIGF0
+aDExa19wY2kgMDAwMDo3MjowMC4wOiBmYWlsZWQgdG8gZmV0Y2ggYm9hcmQtMi5iaW4gb3IgCmJv
+YXJkLmJpbiBmcm9tIFFDQTYzOTAvaHcyLjAKW8KgwqDCoCA1LjUzNzI1N10gYXRoMTFrX3BjaSAw
+MDAwOjcyOjAwLjA6IHFtaSBmYWlsZWQgdG8gZmV0Y2ggYm9hcmQgZmlsZTogLTIKW8KgwqDCoCA1
+LjUzNzI1OF0gYXRoMTFrX3BjaSAwMDAwOjcyOjAwLjA6IGZhaWxlZCB0byBsb2FkIGJvYXJkIGRh
+dGEgZmlsZTogLTIKCk9uIDIyLjExLjIwMjEgMTc6MzUsIEthbGxlIFZhbG8gd3JvdGU6Cj4gV2Vu
+IEdvbmcgPHF1aWNfd2dvbmdAcXVpY2luYy5jb20+IHdyb3RlOgo+Cj4+IFRoaXMgaXMgdG8gcmVh
+ZCB2YXJpYW50IGZyb20gU01CSU9TIHN1Y2ggYXMgcmVhZCBmcm9tIERULCB0aGUgdmFyaWFudAo+
+PiBzdHJpbmcgd2lsbCBiZSB1c2VkIHRvIG9uZSBwYXJ0IG9mIHN0cmluZyB3aGljaCB1c2VkIHRv
+IHNlYXJjaCBib2FyZAo+PiBkYXRhIGZyb20gYm9hcmQtMi5iaW4uCj4+Cj4+IFRlc3RlZC1vbjog
+V0NONjg1NSBodzIuMCBQQ0kgV0xBTi5IU1AuMS4xLTAxNzIwLjEtUUNBSFNQU1dQTF9WMV9WMl9T
+SUxJQ09OWl9MSVRFLTEKPj4KPj4gU2lnbmVkLW9mZi1ieTogV2VuIEdvbmcgPHF1aWNfd2dvbmdA
+cXVpY2luYy5jb20+Cj4+IFNpZ25lZC1vZmYtYnk6IEthbGxlIFZhbG8gPGt2YWxvQGNvZGVhdXJv
+cmEub3JnPgo+IFBhdGNoIGFwcGxpZWQgdG8gYXRoLW5leHQgYnJhbmNoIG9mIGF0aC5naXQsIHRo
+YW5rcy4KPgo+IDQ2ZTQ2ZGIzMTNhMiBhdGgxMWs6IGFkZCByZWFkIHZhcmlhbnQgZnJvbSBTTUJJ
+T1MgZm9yIGRvd25sb2FkIGJvYXJkIGRhdGEKPgoKLS0gCmF0aDExayBtYWlsaW5nIGxpc3QKYXRo
+MTFrQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9hdGgxMWsK
