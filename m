@@ -4,70 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99549C433EF
-	for <ath11k@archiver.kernel.org>; Tue, 23 Nov 2021 11:29:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AA61C4332F
+	for <ath11k@archiver.kernel.org>; Tue, 23 Nov 2021 18:51:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=gHDoT63AU38Zc69SE0Pulz2SpzV2sADGbKVFrb/nAho=; b=uaxWsWg4OfZzEn
-	0+ydxa+KlCFi1Ukac+GuBZke20a/pusS8h3mysrlTElQFkNHEbMn2W6KNCimVKrD3Zq2T/WnYcZwG
-	8h/a8XbcffYHwvdDXKGiTBEOxMYUkypssOVbCNfsM2ThluzA7iqScQXBur5mdG8OLIAtfH7/QGo/Y
-	RxONp5cARfKz2pzaPXE1ibkj2JzfRSV3yBWNzVMproRAG4Uz5Nn3Ln9sK0f9y0dSZk+b+xONostlU
-	KXwgW3FO/M6nxIqqnhUM5s0h88DpozeRo23BPtT2ezp4qvW47LD1zJaI/m+P687ORQ7PC/2TYjSXI
-	2eAjiBNfnay8WGvaGbKA==;
+	List-Owner; bh=6GjqaqH/yuFrFLvDikPFGUkezZFxWVQ6H4ZPycKU3hw=; b=IJWcMgN+QtuRUW
+	gvd+PHbFqFMdel3hEh0d7rlse1FbPHNPRKeMuTeRtMPXGIPPhtEq/AP7V1DkUrMD20Lhs9n40qpZm
+	6lKcEFH92dqc+XZUVeN0dnyGPkvPwe8yFgdxVOnJNB9W7X7aiarwU0aA30FgIieKBE+gJYPWJnCV2
+	6/xK7bKokEiKAa/L62Hqprx1ntHqHB3+Zu8x3yzcZjGUuQCTe6iHYADVUZRC2QrBiWRqBP3M/wKvE
+	0p/XfMjaCRPZvtskGRp5bndKfBl2lZnuyr+5JH57OPM0fJ+EE41sp4oKP+XwF42/xS4BiIpYir4i4
+	10lgkc6HP8x0ZMEGzCXg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mpTzC-001uwr-F1; Tue, 23 Nov 2021 11:29:18 +0000
-Received: from m43-7.mailgun.net ([69.72.43.7])
+	id 1mpat2-003FAz-IM; Tue, 23 Nov 2021 18:51:24 +0000
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mpTz9-001uuT-NP
- for ath11k@lists.infradead.org; Tue, 23 Nov 2021 11:29:17 +0000
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
- q=dns/txt; 
- s=smtp; t=1637666955; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=2XigKEVdFq+ANDrhknH8yojhpb6+T2i0GSFrAfZYOXE=;
- b=xNZb8KaskQ9qcR4dnqqjlL+bPOFd5XV7qMpCOu3JlvxlFrrANtrxhYvXCgLUyxsg5VBBsuPi
- bUpwjp5j34Wy/MbUNBkHOtuQ0j+t4b3Y9OqrYHh/31i3sF6+Tq2UUaCbkrcgnfIDQvHBAU3d
- 6ISqSjqsoT0ygh9mdWkN+MmMABg=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
- 619cd08b4fca5da46d0cd60f (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 23 Nov 2021 11:29:15
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 1FE12C4338F; Tue, 23 Nov 2021 11:29:15 +0000 (UTC)
-Received: from akolli-linux.qualcomm.com
- (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
- (No client certificate requested) (Authenticated sender: akolli)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 334B9C4360C;
- Tue, 23 Nov 2021 11:29:11 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 334B9C4360C
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- spf=fail smtp.mailfrom=codeaurora.org
-From: Anilkumar Kolli <akolli@codeaurora.org>
-To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
- robh@kernel.org, Anilkumar Kolli <akolli@codeaurora.org>
-Subject: [PATCH v5 2/2] ath11k: Use reserved host DDR addresses from DT for
- PCI devices
-Date: Tue, 23 Nov 2021 16:59:00 +0530
-Message-Id: <1637666940-30548-2-git-send-email-akolli@codeaurora.org>
+ id 1mpasy-003F9l-JD
+ for ath11k@lists.infradead.org; Tue, 23 Nov 2021 18:51:22 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+ t=1637693480; x=1669229480;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version;
+ bh=YPZNfR+NBZoUuWTEYHSGlP/l8VNDLWrMtbh6tqx3rC8=;
+ b=fO92RQQ2vGLo3cMmQ55+nsyqV9ekY+Sg/TN1ZyXgvU+tJpkDcobd/xgp
+ 3/Hkzcw0C3GCYlPb5h3nJ7cnmqsBdeiqERb/oMRhEuJLPBNP4p2+33aXd
+ 0ktFi+iUvgxRWgC3it/BrWnYIqMFzYqoRwoei+30uFuDvwmfH/Q0xK9Fx 0=;
+Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
+ by alexa-out-sd-02.qualcomm.com with ESMTP; 23 Nov 2021 10:51:19 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+ by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Nov 2021 10:51:19 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Tue, 23 Nov 2021 10:51:18 -0800
+Received: from mpubbise-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Tue, 23 Nov 2021 10:51:16 -0800
+From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <robh@kernel.org>, Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+Subject: [PATCH 01/19] ath11k: PCI changes to support WCN6750
+Date: Wed, 24 Nov 2021 00:20:16 +0530
+Message-ID: <1637693434-15462-2-git-send-email-quic_mpubbise@quicinc.com>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1637666940-30548-1-git-send-email-akolli@codeaurora.org>
-References: <1637666940-30548-1-git-send-email-akolli@codeaurora.org>
+In-Reply-To: <1637693434-15462-1-git-send-email-quic_mpubbise@quicinc.com>
+References: <1637693434-15462-1-git-send-email-quic_mpubbise@quicinc.com>
+MIME-Version: 1.0
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211123_032915_873471_40E57862 
-X-CRM114-Status: GOOD (  24.87  )
+X-CRM114-CacheID: sfid-20211123_105120_708257_F9A2BB3A 
+X-CRM114-Status: GOOD (  18.63  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,286 +76,396 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Host DDR memory (contiguous 45 MB in mode-0 or 15 MB in mode-2)
-is reserved through DT entries for firmware usage. Send the base
-address from DT entries.
-If DT entry is available, PCI device will work with
-fixed_mem_region else host allocates multiple segments.
+In order to support hybrid bus devices like WCN6750, it is
+required to move certain PCI definitions to the header file.
+As a result, add ATH11K_PCI_* prefix to these definitions.
 
-IPQ8074 on HK10 board supports multiple PCI devices.
-IPQ8074 + QCN9074 is tested with this patch.
+Also, change the PCI APIs that are required to enable WCN6750
+from static to extern.
 
-Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.4.0.1-01838-QCAHKSWPL_SILICONZ-1
+Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00573-QCAMSLSWPLZ-1
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
 
-Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
+Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
 ---
-V5:
-  - Use of_address_to_resource() (Sven)
-V4:
-  - Update code review comments to handle return (Kalle)
-V3:
-  - remove type cast and use of_property_read_u32_array() (Kalle)
-V2:
-  - Use of_ API to read from dt node (Rob)
+ drivers/net/wireless/ath/ath11k/pci.c | 109 +++++++++++++++-------------------
+ drivers/net/wireless/ath/ath11k/pci.h |  35 +++++++++++
+ 2 files changed, 84 insertions(+), 60 deletions(-)
 
- drivers/net/wireless/ath/ath11k/core.h |  1 +
- drivers/net/wireless/ath/ath11k/mhi.c  | 34 ++++++++++++++-
- drivers/net/wireless/ath/ath11k/pci.c  | 11 ++++-
- drivers/net/wireless/ath/ath11k/qmi.c  | 76 +++++++++++++++++++++++++++++-----
- drivers/net/wireless/ath/ath11k/qmi.h  |  1 +
- 5 files changed, 110 insertions(+), 13 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 2f1e10b7cc17..8492ca7efb92 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -194,6 +194,7 @@ enum ath11k_dev_flags {
- 	ATH11K_FLAG_REGISTERED,
- 	ATH11K_FLAG_QMI_FAIL,
- 	ATH11K_FLAG_HTC_SUSPEND_COMPLETE,
-+	ATH11K_FLAG_FIXED_MEM_RGN,
- };
- 
- enum ath11k_monitor_flags {
-diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
-index 26c7ae242db6..b6003406e2a1 100644
---- a/drivers/net/wireless/ath/ath11k/mhi.c
-+++ b/drivers/net/wireless/ath/ath11k/mhi.c
-@@ -3,6 +3,9 @@
- 
- #include <linux/msi.h>
- #include <linux/pci.h>
-+#include <linux/of.h>
-+#include <linux/of_address.h>
-+#include <linux/ioport.h>
- 
- #include "core.h"
- #include "debug.h"
-@@ -311,6 +314,26 @@ static void ath11k_mhi_op_write_reg(struct mhi_controller *mhi_cntrl,
- 	writel(val, addr);
- }
- 
-+static int ath11k_mhi_read_addr_from_dt(struct mhi_controller *mhi_ctrl)
-+{
-+	struct device_node *np;
-+	struct resource res;
-+	int ret;
-+
-+	np = of_find_node_by_type(NULL, "memory");
-+	if (!np)
-+		return -ENOENT;
-+
-+	ret = of_address_to_resource(np, 0, &res);
-+	if (ret)
-+		return ret;
-+
-+	mhi_ctrl->iova_start = res.start + 0x1000000;
-+	mhi_ctrl->iova_stop = res.end;
-+
-+	return 0;
-+}
-+
- int ath11k_mhi_register(struct ath11k_pci *ab_pci)
- {
- 	struct ath11k_base *ab = ab_pci->ab;
-@@ -339,8 +362,15 @@ int ath11k_mhi_register(struct ath11k_pci *ab_pci)
- 		return ret;
- 	}
- 
--	mhi_ctrl->iova_start = 0;
--	mhi_ctrl->iova_stop = 0xffffffff;
-+	if ((test_bit(ATH11K_FLAG_FIXED_MEM_RGN, &ab->dev_flags))) {
-+		ret = ath11k_mhi_read_addr_from_dt(mhi_ctrl);
-+		if (ret < 0)
-+			return ret;
-+	} else {
-+		mhi_ctrl->iova_start = 0;
-+		mhi_ctrl->iova_stop = 0xFFFFFFFF;
-+	}
-+
- 	mhi_ctrl->sbl_size = SZ_512K;
- 	mhi_ctrl->seg_len = SZ_512K;
- 	mhi_ctrl->fbc_download = true;
 diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index 3d353e7c9d5c..e12d9753f113 100644
+index 1898b1a..a95616f 100644
 --- a/drivers/net/wireless/ath/ath11k/pci.c
 +++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -6,6 +6,7 @@
+@@ -1,6 +1,7 @@
+ // SPDX-License-Identifier: BSD-3-Clause-Clear
+ /*
+  * Copyright (c) 2019-2020 The Linux Foundation. All rights reserved.
++ * Copyright (c) 2021, Qualcomm Innovation Center, Inc. All rights reserved.
+  */
+ 
  #include <linux/module.h>
- #include <linux/msi.h>
- #include <linux/pci.h>
-+#include <linux/of.h>
+@@ -17,24 +18,10 @@
+ #define ATH11K_PCI_DMA_MASK		32
  
- #include "pci.h"
- #include "core.h"
-@@ -1225,7 +1226,7 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
+ #define ATH11K_PCI_IRQ_CE0_OFFSET	3
+-#define ATH11K_PCI_IRQ_DP_OFFSET	14
+-
+-#define WINDOW_ENABLE_BIT		0x40000000
+-#define WINDOW_REG_ADDRESS		0x310c
+-#define WINDOW_VALUE_MASK		GENMASK(24, 19)
+-#define WINDOW_START			0x80000
+-#define WINDOW_RANGE_MASK		GENMASK(18, 0)
+-
+ #define TCSR_SOC_HW_VERSION		0x0224
+ #define TCSR_SOC_HW_VERSION_MAJOR_MASK	GENMASK(16, 8)
+ #define TCSR_SOC_HW_VERSION_MINOR_MASK	GENMASK(7, 0)
+ 
+-/* BAR0 + 4k is always accessible, and no
+- * need to force wakeup.
+- * 4K - 32 = 0xFE0
+- */
+-#define ACCESS_ALWAYS_OFF 0xFE0
+-
+ #define QCA6390_DEVICE_ID		0x1101
+ #define QCN9074_DEVICE_ID		0x1104
+ #define WCN6855_DEVICE_ID		0x1103
+@@ -146,27 +133,30 @@ static inline void ath11k_pci_select_window(struct ath11k_pci *ab_pci, u32 offse
  {
- 	struct ath11k_base *ab;
- 	struct ath11k_pci *ab_pci;
--	u32 soc_hw_version_major, soc_hw_version_minor;
-+	u32 soc_hw_version_major, soc_hw_version_minor, addr;
- 	int ret;
+ 	struct ath11k_base *ab = ab_pci->ab;
  
- 	ab = ath11k_core_alloc(&pdev->dev, sizeof(*ab_pci), ATH11K_BUS_PCI,
-@@ -1245,6 +1246,14 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
- 	pci_set_drvdata(pdev, ab);
- 	spin_lock_init(&ab_pci->window_lock);
+-	u32 window = FIELD_GET(WINDOW_VALUE_MASK, offset);
++	u32 window = FIELD_GET(ATH11K_PCI_WINDOW_VALUE_MASK, offset);
  
-+	/* Set fixed_mem_region to true for platforms support reserved memory
-+	 * from DT. If memory is reserved from DT for FW, ath11k driver need not
-+	 * allocate memory.
-+	 */
-+	ret = of_property_read_u32(ab->dev->of_node, "memory-region", &addr);
-+	if (!ret)
-+		set_bit(ATH11K_FLAG_FIXED_MEM_RGN, &ab->dev_flags);
-+
- 	ret = ath11k_pci_claim(ab_pci, pdev);
- 	if (ret) {
- 		ath11k_err(ab, "failed to claim device: %d\n", ret);
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index fa73118de6db..6923bf033726 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.c
-+++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -9,6 +9,8 @@
- #include "core.h"
- #include "debug.h"
- #include <linux/of.h>
-+#include <linux/of_address.h>
-+#include <linux/ioport.h>
- #include <linux/firmware.h>
+ 	lockdep_assert_held(&ab_pci->window_lock);
  
- #define SLEEP_CLOCK_SELECT_INTERNAL_BIT	0x02
-@@ -1749,7 +1751,9 @@ static int ath11k_qmi_respond_fw_mem_request(struct ath11k_base *ab)
- 	 * failure to FW and FW will then request mulitple blocks of small
- 	 * chunk size memory.
+ 	if (window != ab_pci->register_window) {
+-		iowrite32(WINDOW_ENABLE_BIT | window,
+-			  ab->mem + WINDOW_REG_ADDRESS);
+-		ioread32(ab->mem + WINDOW_REG_ADDRESS);
++		iowrite32(ATH11K_PCI_WINDOW_ENABLE_BIT | window,
++			  ab->mem + ATH11K_PCI_WINDOW_REG_ADDRESS);
++		ioread32(ab->mem + ATH11K_PCI_WINDOW_REG_ADDRESS);
+ 		ab_pci->register_window = window;
+ 	}
+ }
+ 
+ static inline void ath11k_pci_select_static_window(struct ath11k_pci *ab_pci)
+ {
+-	u32 umac_window = FIELD_GET(WINDOW_VALUE_MASK, HAL_SEQ_WCSS_UMAC_OFFSET);
+-	u32 ce_window = FIELD_GET(WINDOW_VALUE_MASK, HAL_CE_WFSS_CE_REG_BASE);
++	u32 umac_window;
++	u32 ce_window;
+ 	u32 window;
+ 
++	umac_window = FIELD_GET(ATH11K_PCI_WINDOW_VALUE_MASK, HAL_SEQ_WCSS_UMAC_OFFSET);
++	ce_window = FIELD_GET(ATH11K_PCI_WINDOW_VALUE_MASK, HAL_CE_WFSS_CE_REG_BASE);
+ 	window = (umac_window << 12) | (ce_window << 6);
+ 
+-	iowrite32(WINDOW_ENABLE_BIT | window, ab_pci->ab->mem + WINDOW_REG_ADDRESS);
++	iowrite32(ATH11K_PCI_WINDOW_ENABLE_BIT | window,
++		  ab_pci->ab->mem + ATH11K_PCI_WINDOW_REG_ADDRESS);
+ }
+ 
+ static inline u32 ath11k_pci_get_window_start(struct ath11k_base *ab,
+@@ -175,13 +165,13 @@ static inline u32 ath11k_pci_get_window_start(struct ath11k_base *ab,
+ 	u32 window_start;
+ 
+ 	/* If offset lies within DP register range, use 3rd window */
+-	if ((offset ^ HAL_SEQ_WCSS_UMAC_OFFSET) < WINDOW_RANGE_MASK)
+-		window_start = 3 * WINDOW_START;
++	if ((offset ^ HAL_SEQ_WCSS_UMAC_OFFSET) < ATH11K_PCI_WINDOW_RANGE_MASK)
++		window_start = 3 * ATH11K_PCI_WINDOW_START;
+ 	/* If offset lies within CE register range, use 2nd window */
+-	else if ((offset ^ HAL_CE_WFSS_CE_REG_BASE) < WINDOW_RANGE_MASK)
+-		window_start = 2 * WINDOW_START;
++	else if ((offset ^ HAL_CE_WFSS_CE_REG_BASE) < ATH11K_PCI_WINDOW_RANGE_MASK)
++		window_start = 2 * ATH11K_PCI_WINDOW_START;
+ 	else
+-		window_start = WINDOW_START;
++		window_start = ATH11K_PCI_WINDOW_START;
+ 
+ 	return window_start;
+ }
+@@ -196,32 +186,32 @@ void ath11k_pci_write32(struct ath11k_base *ab, u32 offset, u32 value)
  	 */
--	if (!ab->bus_params.fixed_mem_region && ab->qmi.target_mem_delayed) {
-+	if (!(ab->bus_params.fixed_mem_region ||
-+	      test_bit(ATH11K_FLAG_FIXED_MEM_RGN, &ab->dev_flags)) &&
-+	      ab->qmi.target_mem_delayed) {
- 		delayed = true;
- 		ath11k_dbg(ab, ATH11K_DBG_QMI, "qmi delays mem_request %d\n",
- 			   ab->qmi.mem_seg_count);
-@@ -1815,10 +1819,12 @@ static void ath11k_qmi_free_target_mem_chunk(struct ath11k_base *ab)
+ 	if (ab->hw_params.wakeup_mhi &&
+ 	    test_bit(ATH11K_PCI_FLAG_INIT_DONE, &ab_pci->flags) &&
+-	    offset >= ACCESS_ALWAYS_OFF)
++	    offset >= ATH11K_PCI_ACCESS_ALWAYS_OFF)
+ 		mhi_device_get_sync(ab_pci->mhi_ctrl->mhi_dev);
+ 
+-	if (offset < WINDOW_START) {
++	if (offset < ATH11K_PCI_WINDOW_START) {
+ 		iowrite32(value, ab->mem  + offset);
+ 	} else {
+ 		if (ab->bus_params.static_window_map)
+ 			window_start = ath11k_pci_get_window_start(ab, offset);
+ 		else
+-			window_start = WINDOW_START;
++			window_start = ATH11K_PCI_WINDOW_START;
+ 
+-		if (window_start == WINDOW_START) {
++		if (window_start == ATH11K_PCI_WINDOW_START) {
+ 			spin_lock_bh(&ab_pci->window_lock);
+ 			ath11k_pci_select_window(ab_pci, offset);
+ 			iowrite32(value, ab->mem + window_start +
+-				  (offset & WINDOW_RANGE_MASK));
++				  (offset & ATH11K_PCI_WINDOW_RANGE_MASK));
+ 			spin_unlock_bh(&ab_pci->window_lock);
+ 		} else {
+ 			iowrite32(value, ab->mem + window_start +
+-				  (offset & WINDOW_RANGE_MASK));
++				  (offset & ATH11K_PCI_WINDOW_RANGE_MASK));
+ 		}
+ 	}
+ 
+ 	if (ab->hw_params.wakeup_mhi &&
+ 	    test_bit(ATH11K_PCI_FLAG_INIT_DONE, &ab_pci->flags) &&
+-	    offset >= ACCESS_ALWAYS_OFF)
++	    offset >= ATH11K_PCI_ACCESS_ALWAYS_OFF)
+ 		mhi_device_put(ab_pci->mhi_ctrl->mhi_dev);
+ }
+ 
+@@ -235,32 +225,32 @@ u32 ath11k_pci_read32(struct ath11k_base *ab, u32 offset)
+ 	 */
+ 	if (ab->hw_params.wakeup_mhi &&
+ 	    test_bit(ATH11K_PCI_FLAG_INIT_DONE, &ab_pci->flags) &&
+-	    offset >= ACCESS_ALWAYS_OFF)
++	    offset >= ATH11K_PCI_ACCESS_ALWAYS_OFF)
+ 		mhi_device_get_sync(ab_pci->mhi_ctrl->mhi_dev);
+ 
+-	if (offset < WINDOW_START) {
++	if (offset < ATH11K_PCI_WINDOW_START) {
+ 		val = ioread32(ab->mem + offset);
+ 	} else {
+ 		if (ab->bus_params.static_window_map)
+ 			window_start = ath11k_pci_get_window_start(ab, offset);
+ 		else
+-			window_start = WINDOW_START;
++			window_start = ATH11K_PCI_WINDOW_START;
+ 
+-		if (window_start == WINDOW_START) {
++		if (window_start == ATH11K_PCI_WINDOW_START) {
+ 			spin_lock_bh(&ab_pci->window_lock);
+ 			ath11k_pci_select_window(ab_pci, offset);
+ 			val = ioread32(ab->mem + window_start +
+-				       (offset & WINDOW_RANGE_MASK));
++				       (offset & ATH11K_PCI_WINDOW_RANGE_MASK));
+ 			spin_unlock_bh(&ab_pci->window_lock);
+ 		} else {
+ 			val = ioread32(ab->mem + window_start +
+-				       (offset & WINDOW_RANGE_MASK));
++				       (offset & ATH11K_PCI_WINDOW_RANGE_MASK));
+ 		}
+ 	}
+ 
+ 	if (ab->hw_params.wakeup_mhi &&
+ 	    test_bit(ATH11K_PCI_FLAG_INIT_DONE, &ab_pci->flags) &&
+-	    offset >= ACCESS_ALWAYS_OFF)
++	    offset >= ATH11K_PCI_ACCESS_ALWAYS_OFF)
+ 		mhi_device_put(ab_pci->mhi_ctrl->mhi_dev);
+ 
+ 	return val;
+@@ -469,8 +459,8 @@ int ath11k_pci_get_msi_irq(struct device *dev, unsigned int vector)
+ 	return pci_irq_vector(pci_dev, vector);
+ }
+ 
+-static void ath11k_pci_get_msi_address(struct ath11k_base *ab, u32 *msi_addr_lo,
+-				       u32 *msi_addr_hi)
++void ath11k_pci_get_msi_address(struct ath11k_base *ab, u32 *msi_addr_lo,
++				u32 *msi_addr_hi)
+ {
+ 	struct ath11k_pci *ab_pci = ath11k_pci_priv(ab);
+ 	struct pci_dev *pci_dev = to_pci_dev(ab->dev);
+@@ -514,8 +504,7 @@ int ath11k_pci_get_user_msi_assignment(struct ath11k_pci *ab_pci, char *user_nam
+ 	return -EINVAL;
+ }
+ 
+-static void ath11k_pci_get_ce_msi_idx(struct ath11k_base *ab, u32 ce_id,
+-				      u32 *msi_idx)
++void ath11k_pci_get_ce_msi_idx(struct ath11k_base *ab, u32 ce_id, u32 *msi_idx)
+ {
+ 	u32 i, msi_data_idx;
+ 
+@@ -531,9 +520,9 @@ static void ath11k_pci_get_ce_msi_idx(struct ath11k_base *ab, u32 ce_id,
+ 	*msi_idx = msi_data_idx;
+ }
+ 
+-static int ath11k_get_user_msi_assignment(struct ath11k_base *ab, char *user_name,
+-					  int *num_vectors, u32 *user_base_data,
+-					  u32 *base_vector)
++int ath11k_get_user_msi_assignment(struct ath11k_base *ab, char *user_name,
++				   int *num_vectors, u32 *user_base_data,
++				   u32 *base_vector)
+ {
+ 	struct ath11k_pci *ab_pci = ath11k_pci_priv(ab);
+ 
+@@ -556,7 +545,7 @@ static void ath11k_pci_free_ext_irq(struct ath11k_base *ab)
+ 	}
+ }
+ 
+-static void ath11k_pci_free_irq(struct ath11k_base *ab)
++void ath11k_pci_free_irq(struct ath11k_base *ab)
+ {
+ 	int i, irq_idx;
+ 
+@@ -702,7 +691,7 @@ static void ath11k_pci_ext_grp_enable(struct ath11k_ext_irq_grp *irq_grp)
+ 		enable_irq(irq_grp->ab->irq_num[irq_grp->irqs[i]]);
+ }
+ 
+-static void ath11k_pci_ext_irq_enable(struct ath11k_base *ab)
++void ath11k_pci_ext_irq_enable(struct ath11k_base *ab)
  {
  	int i;
  
--	if (ab->bus_params.fixed_mem_region)
--		return;
--
- 	for (i = 0; i < ab->qmi.mem_seg_count; i++) {
-+		if ((ab->bus_params.fixed_mem_region ||
-+		     test_bit(ATH11K_FLAG_FIXED_MEM_RGN, &ab->dev_flags)) &&
-+		     ab->qmi.target_mem[i].iaddr)
-+			iounmap(ab->qmi.target_mem[i].iaddr);
-+
- 		if (!ab->qmi.target_mem[i].vaddr)
- 			continue;
- 
-@@ -1866,10 +1872,53 @@ static int ath11k_qmi_alloc_target_mem_chunk(struct ath11k_base *ab)
- 
- static int ath11k_qmi_assign_target_mem_chunk(struct ath11k_base *ab)
- {
--	int i, idx;
-+	struct device *dev = ab->dev;
-+	struct device_node *hremote_node = NULL;
-+	struct resource res;
-+	phandle hremote_phandle;
-+	u32 host_ddr_sz;
-+	int i, idx, ret;
- 
- 	for (i = 0, idx = 0; i < ab->qmi.mem_seg_count; i++) {
- 		switch (ab->qmi.target_mem[i].type) {
-+		case HOST_DDR_REGION_TYPE:
-+			ret = of_property_read_u32(dev->of_node, "memory-region",
-+						   &hremote_phandle);
-+			if (ret) {
-+				ath11k_dbg(ab, ATH11K_DBG_QMI,
-+					   "qmi fail to get hremote phandle\n");
-+				return ret;
-+			}
-+
-+			hremote_node = of_find_node_by_phandle(hremote_phandle);
-+			if (!hremote_node) {
-+				ath11k_dbg(ab, ATH11K_DBG_QMI,
-+					   "qmi fail to get hremote_node\n");
-+				return ret;
-+			}
-+
-+			ret = of_address_to_resource(hremote_node, 0, &res);
-+			if (ret) {
-+				ath11k_dbg(ab, ATH11K_DBG_QMI,
-+					   "qmi fail to get reg from hremote\n");
-+				return ret;
-+			}
-+
-+			if (res.end - res.start + 1 < ab->qmi.target_mem[i].size) {
-+				ath11k_dbg(ab, ATH11K_DBG_QMI,
-+					   "qmi fail to assign memory of sz\n");
-+				return -EINVAL;
-+			}
-+
-+			ab->qmi.target_mem[idx].paddr = res.start;
-+			ab->qmi.target_mem[idx].iaddr =
-+				ioremap(ab->qmi.target_mem[idx].paddr,
-+					ab->qmi.target_mem[i].size);
-+			ab->qmi.target_mem[idx].size = ab->qmi.target_mem[i].size;
-+			host_ddr_sz = ab->qmi.target_mem[i].size;
-+			ab->qmi.target_mem[idx].type = ab->qmi.target_mem[i].type;
-+			idx++;
-+			break;
- 		case BDF_MEM_REGION_TYPE:
- 			ab->qmi.target_mem[idx].paddr = ab->hw_params.bdf_addr;
- 			ab->qmi.target_mem[idx].vaddr = NULL;
-@@ -1884,10 +1933,16 @@ static int ath11k_qmi_assign_target_mem_chunk(struct ath11k_base *ab)
- 			}
- 
- 			if (ath11k_cold_boot_cal && ab->hw_params.cold_boot_calib) {
--				ab->qmi.target_mem[idx].paddr =
--						     ATH11K_QMI_CALDB_ADDRESS;
--				ab->qmi.target_mem[idx].vaddr =
--						     (void *)ATH11K_QMI_CALDB_ADDRESS;
-+				if (hremote_node) {
-+					ab->qmi.target_mem[idx].paddr =
-+							res.start + host_ddr_sz;
-+					ab->qmi.target_mem[idx].iaddr =
-+						ioremap(ab->qmi.target_mem[idx].paddr,
-+							ab->qmi.target_mem[i].size);
-+				} else {
-+					ab->qmi.target_mem[idx].paddr =
-+						ATH11K_QMI_CALDB_ADDRESS;
-+				}
- 			} else {
- 				ab->qmi.target_mem[idx].paddr = 0;
- 				ab->qmi.target_mem[idx].vaddr = NULL;
-@@ -2614,7 +2669,8 @@ static void ath11k_qmi_msg_mem_request_cb(struct qmi_handle *qmi_hdl,
- 			   msg->mem_seg[i].type, msg->mem_seg[i].size);
+@@ -730,7 +719,7 @@ static void ath11k_pci_sync_ext_irqs(struct ath11k_base *ab)
  	}
+ }
  
--	if (ab->bus_params.fixed_mem_region) {
-+	if (ab->bus_params.fixed_mem_region ||
-+	    test_bit(ATH11K_FLAG_FIXED_MEM_RGN, &ab->dev_flags)) {
- 		ret = ath11k_qmi_assign_target_mem_chunk(ab);
- 		if (ret) {
- 			ath11k_warn(ab, "failed to assign qmi target memory: %d\n",
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.h b/drivers/net/wireless/ath/ath11k/qmi.h
-index 3bb0f9ef7996..f8d45b7dc821 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.h
-+++ b/drivers/net/wireless/ath/ath11k/qmi.h
-@@ -95,6 +95,7 @@ struct target_mem_chunk {
- 	u32 type;
- 	dma_addr_t paddr;
- 	u32 *vaddr;
-+	void __iomem *iaddr;
- };
+-static void ath11k_pci_ext_irq_disable(struct ath11k_base *ab)
++void ath11k_pci_ext_irq_disable(struct ath11k_base *ab)
+ {
+ 	__ath11k_pci_ext_irq_disable(ab);
+ 	ath11k_pci_sync_ext_irqs(ab);
+@@ -843,8 +832,8 @@ static int ath11k_pci_ext_irq_config(struct ath11k_base *ab)
+ 	return 0;
+ }
  
- struct target_info {
+-static int ath11k_pci_set_irq_affinity_hint(struct ath11k_pci *ab_pci,
+-					    const struct cpumask *m)
++int ath11k_pci_set_irq_affinity_hint(struct ath11k_pci *ab_pci,
++				     const struct cpumask *m)
+ {
+ 	if (test_bit(ATH11K_PCI_FLAG_MULTI_MSI_VECTORS, &ab_pci->flags))
+ 		return 0;
+@@ -852,7 +841,7 @@ static int ath11k_pci_set_irq_affinity_hint(struct ath11k_pci *ab_pci,
+ 	return irq_set_affinity_hint(ab_pci->pdev->irq, m);
+ }
+ 
+-static int ath11k_pci_config_irq(struct ath11k_base *ab)
++int ath11k_pci_config_irq(struct ath11k_base *ab)
+ {
+ 	struct ath11k_pci *ab_pci = ath11k_pci_priv(ab);
+ 	struct ath11k_ce_pipe *ce_pipe;
+@@ -928,7 +917,7 @@ static void ath11k_pci_init_qmi_ce_config(struct ath11k_base *ab)
+ 				    &cfg->shadow_reg_v2_len);
+ }
+ 
+-static void ath11k_pci_ce_irqs_enable(struct ath11k_base *ab)
++void ath11k_pci_ce_irqs_enable(struct ath11k_base *ab)
+ {
+ 	int i;
+ 
+@@ -1140,7 +1129,7 @@ static void ath11k_pci_aspm_disable(struct ath11k_pci *ab_pci)
+ 	set_bit(ATH11K_PCI_ASPM_RESTORE, &ab_pci->flags);
+ }
+ 
+-static void ath11k_pci_aspm_restore(struct ath11k_pci *ab_pci)
++void ath11k_pci_aspm_restore(struct ath11k_pci *ab_pci)
+ {
+ 	if (test_and_clear_bit(ATH11K_PCI_ASPM_RESTORE, &ab_pci->flags))
+ 		pcie_capability_write_word(ab_pci->pdev, PCI_EXP_LNKCTL,
+@@ -1223,20 +1212,20 @@ static void ath11k_pci_kill_tasklets(struct ath11k_base *ab)
+ 	}
+ }
+ 
+-static void ath11k_pci_ce_irq_disable_sync(struct ath11k_base *ab)
++void ath11k_pci_ce_irq_disable_sync(struct ath11k_base *ab)
+ {
+ 	ath11k_pci_ce_irqs_disable(ab);
+ 	ath11k_pci_sync_ce_irqs(ab);
+ 	ath11k_pci_kill_tasklets(ab);
+ }
+ 
+-static void ath11k_pci_stop(struct ath11k_base *ab)
++void ath11k_pci_stop(struct ath11k_base *ab)
+ {
+ 	ath11k_pci_ce_irq_disable_sync(ab);
+ 	ath11k_ce_cleanup_pipes(ab);
+ }
+ 
+-static int ath11k_pci_start(struct ath11k_base *ab)
++int ath11k_pci_start(struct ath11k_base *ab)
+ {
+ 	struct ath11k_pci *ab_pci = ath11k_pci_priv(ab);
+ 
+@@ -1266,8 +1255,8 @@ static void ath11k_pci_hif_ce_irq_disable(struct ath11k_base *ab)
+ 	ath11k_pci_ce_irq_disable_sync(ab);
+ }
+ 
+-static int ath11k_pci_map_service_to_pipe(struct ath11k_base *ab, u16 service_id,
+-					  u8 *ul_pipe, u8 *dl_pipe)
++int ath11k_pci_map_service_to_pipe(struct ath11k_base *ab, u16 service_id,
++				   u8 *ul_pipe, u8 *dl_pipe)
+ {
+ 	const struct service_to_pipe *entry;
+ 	bool ul_set = false, dl_set = false;
+diff --git a/drivers/net/wireless/ath/ath11k/pci.h b/drivers/net/wireless/ath/ath11k/pci.h
+index 61d67b2..4869384 100644
+--- a/drivers/net/wireless/ath/ath11k/pci.h
++++ b/drivers/net/wireless/ath/ath11k/pci.h
+@@ -1,6 +1,7 @@
+ /* SPDX-License-Identifier: BSD-3-Clause-Clear */
+ /*
+  * Copyright (c) 2019-2020 The Linux Foundation. All rights reserved.
++ * Copyright (c) 2021, Qualcomm Innovation Center, Inc. All rights reserved.
+  */
+ #ifndef _ATH11K_PCI_H
+ #define _ATH11K_PCI_H
+@@ -52,6 +53,21 @@
+ #define WLAON_QFPROM_PWR_CTRL_REG		0x01f8031c
+ #define QFPROM_PWR_CTRL_VDD4BLOW_MASK		0x4
+ 
++#define ATH11K_PCI_IRQ_CE0_OFFSET	3
++#define ATH11K_PCI_IRQ_DP_OFFSET	14
++
++#define ATH11K_PCI_WINDOW_ENABLE_BIT		0x40000000
++#define ATH11K_PCI_WINDOW_REG_ADDRESS		0x310c
++#define ATH11K_PCI_WINDOW_VALUE_MASK		GENMASK(24, 19)
++#define ATH11K_PCI_WINDOW_START			0x80000
++#define ATH11K_PCI_WINDOW_RANGE_MASK		GENMASK(18, 0)
++
++/* BAR0 + 4k is always accessible, and no
++ * need to force wakeup.
++ * 4K - 32 = 0xFE0
++ */
++#define ATH11K_PCI_ACCESS_ALWAYS_OFF 0xFE0
++
+ struct ath11k_msi_user {
+ 	char *name;
+ 	int num_vectors;
+@@ -103,5 +119,24 @@ int ath11k_pci_get_user_msi_assignment(struct ath11k_pci *ar_pci, char *user_nam
+ int ath11k_pci_get_msi_irq(struct device *dev, unsigned int vector);
+ void ath11k_pci_write32(struct ath11k_base *ab, u32 offset, u32 value);
+ u32 ath11k_pci_read32(struct ath11k_base *ab, u32 offset);
++void ath11k_pci_get_msi_address(struct ath11k_base *ab, u32 *msi_addr_lo,
++				u32 *msi_addr_hi);
++void ath11k_pci_get_ce_msi_idx(struct ath11k_base *ab, u32 ce_id, u32 *msi_idx);
++void ath11k_pci_free_irq(struct ath11k_base *ab);
++int ath11k_pci_config_irq(struct ath11k_base *ab);
++void ath11k_pci_ext_irq_enable(struct ath11k_base *ab);
++void ath11k_pci_ext_irq_disable(struct ath11k_base *ab);
++void ath11k_pci_stop(struct ath11k_base *ab);
++int ath11k_pci_start(struct ath11k_base *ab);
++int ath11k_pci_map_service_to_pipe(struct ath11k_base *ab, u16 service_id,
++				   u8 *ul_pipe, u8 *dl_pipe);
++void ath11k_pci_ce_irqs_enable(struct ath11k_base *ab);
++void ath11k_pci_ce_irq_disable_sync(struct ath11k_base *ab);
++int ath11k_get_user_msi_assignment(struct ath11k_base *ab, char *user_name,
++				   int *num_vectors, u32 *user_base_data,
++				   u32 *base_vector);
++void ath11k_pci_aspm_restore(struct ath11k_pci *ab_pci);
++int ath11k_pci_set_irq_affinity_hint(struct ath11k_pci *ab_pci,
++				     const struct cpumask *m);
+ 
+ #endif
 -- 
 2.7.4
 
