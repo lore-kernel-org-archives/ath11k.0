@@ -4,53 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CBD8C433F5
-	for <ath11k@archiver.kernel.org>; Wed, 24 Nov 2021 07:34:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 393A2C433EF
+	for <ath11k@archiver.kernel.org>; Wed, 24 Nov 2021 07:40:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=5/3FZBsp1PeEa8kMPB+IsM8FsAL1Tt6fZt1UEVDuODs=; b=PAv7Xj7HDFk5m3ydpV2/ep/yF+
-	BLxlEUTLXb0ec0NC/UAhToIKfS9EY6jUomK7hbxS/+S2koGxyzUIMJhCm1d6WdtxnQ/nklfZuOepG
-	FTKXzF2N0kMbu+FSBNTTP4gl21Ujggn1GxB4WwOvX66mBYueMz1d2wAojRG/0hRugw6utGWwMD2EK
-	zGG+9f+LKVZP4meQ129KIdS1yt/C+fTztJMyj/i99d6vgT0QpTgVqH0Fv6u7huo3UeoPlYAem8pdR
-	PExKDP6p//s6/tE0BrrWz78vI1l63FhRpGFUkVHq7VHI5UOgrRdgodkyJ5PvsmuviMR8tQZpdoX82
-	EswIHN2Q==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=pUkchy1nUZdI4C/wRapeeZZHLAGuHHwS1K0zncqW7r0=; b=buXk4qTK1SgC7h
+	5qRk1NtBMhgNGBgNnREYHFoOxYiVEfPDXbnyO8k8UXMsUfxJYH+a63Q0G+9T08+5p/wX1/D2TPSwU
+	ovabC+l+JjAC7oCwGQ/6FXM2cXRw+wYctWaVBTTovxa4gc2lCJkkcEHWMsdfDBUvfCQgbxU85KR5m
+	CShG6xM4KoJGD86bStU01NfM6GVFsu7TcOl0DA8DlORvPx1iFnOO4dqn+3MxKzC+ohZ9KJyMC4aBn
+	w+JDw1D2AmSC0zfcOclRmz7a2IzKCKp2XH8szew2NkpMtv20bqLUciBB3uOA60gCl9P5AgegJFyo1
+	p9mqif5ICzGeH9uKhnIg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mpmnY-0045Uh-9L; Wed, 24 Nov 2021 07:34:32 +0000
-Received: from dvalin.narfation.org ([213.160.73.56])
+	id 1mpmsx-0048Ey-VL; Wed, 24 Nov 2021 07:40:08 +0000
+Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mpVQh-002FL2-Ip
- for ath11k@lists.infradead.org; Tue, 23 Nov 2021 13:01:49 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1637672502;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=3bXSoijhcsdVseGfeNV9VthAVOTN6+8WFm2JTxPImEc=;
- b=t1qGzy6dQIGokgeXiy83J6z7zvdnHyXgIoP0i7C4RuTPoZcxErUDBOo2UDhMhgjdf5YvUP
- /eOiAILGUpk1GW03KVRklb2BJXKsiOMOR8ODS1jcoWu0mhihlHETsqMjbIA5K8mAopGEAu
- lEZ12cwDpXQuWp9vXXKzOS5YKEJ3n/s=
-From: Sven Eckelmann <sven@narfation.org>
-To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org, devicetree@vger.kernel.org, robh@kernel.org,
- Anilkumar Kolli <akolli@codeaurora.org>
-Subject: Re: [PATCH v5 2/2] ath11k: Use reserved host DDR addresses from DT
- for PCI devices
-Date: Tue, 23 Nov 2021 14:01:34 +0100
-Message-ID: <74442923.uYUSDj6SXF@ripper>
-In-Reply-To: <1637666940-30548-2-git-send-email-akolli@codeaurora.org>
-References: <1637666940-30548-1-git-send-email-akolli@codeaurora.org>
- <1637666940-30548-2-git-send-email-akolli@codeaurora.org>
+ id 1mpmst-00489h-Ua
+ for ath11k@lists.infradead.org; Wed, 24 Nov 2021 07:40:05 +0000
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
+ q=dns/txt; 
+ s=smtp; t=1637739599; h=Content-Type: MIME-Version: Message-ID:
+ In-Reply-To: Date: References: Subject: Cc: To: From: Sender;
+ bh=KlBt6VrXCvps14JV6wK6+MGAbpn/eHc4WVGnRxXnBXM=;
+ b=oADJpJHcdO9rookz7UZiextgp2Y2VTcDLTIG5dNRUp3ABtPXuaIv1zxQk47om4SjGRh1IjsG
+ gKnKxbHFfWqpB9wWRwyIRmL5zBQCYWkytmITVCyRtBgEr/AyUsJk1sBeh7fqIiJW33Tp0EZa
+ OhjvQNcmKOugSkGmF7PpfWndRhI=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n08.prod.us-east-1.postgun.com with SMTP id
+ 619dec4edf12ba53c4e87be4 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 24 Nov 2021 07:39:58
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+ id 12F57C43619; Wed, 24 Nov 2021 07:39:58 +0000 (UTC)
+Received: from tykki (tynnyri.adurom.net [51.15.11.48])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested) (Authenticated sender: kvalo)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id CF5F1C4360D;
+ Wed, 24 Nov 2021 07:39:55 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org CF5F1C4360D
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ spf=fail smtp.mailfrom=codeaurora.org
+From: Kalle Valo <kvalo@codeaurora.org>
+To: Wen Gong <quic_wgong@quicinc.com>
+Cc: P Praneesh <ppranees@codeaurora.org>, <ath11k@lists.infradead.org>,
+ <johannes@sipsolutions.net>, <linux-wireless@vger.kernel.org>,
+ Karthikeyan Periyasamy <periyasa@codeaurora.org>
+Subject: Re: [PATCH v3 2/3] ath11k: Refactor update channel list function
+References: <1634906227-22028-1-git-send-email-ppranees@codeaurora.org>
+ <1634906227-22028-3-git-send-email-ppranees@codeaurora.org>
+ <0fb4fec3-4fd0-6e92-b1d9-5bffc0958e97@quicinc.com>
+Date: Wed, 24 Nov 2021 09:39:50 +0200
+In-Reply-To: <0fb4fec3-4fd0-6e92-b1d9-5bffc0958e97@quicinc.com> (Wen Gong's
+ message of "Wed, 24 Nov 2021 11:50:05 +0800")
+Message-ID: <87pmqq6lyx.fsf@codeaurora.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211123_050147_913691_E8D66D69 
-X-CRM114-Status: UNSURE (   9.03  )
-X-CRM114-Notice: Please train this message.
-X-Mailman-Approved-At: Tue, 23 Nov 2021 23:34:31 -0800
+X-CRM114-CacheID: sfid-20211123_234004_121214_DCCCB152 
+X-CRM114-Status: GOOD (  13.84  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -62,88 +82,48 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============7863824016012359069=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
---===============7863824016012359069==
-Content-Type: multipart/signed; boundary="nextPart8316323.Rvb1ZgBP0e"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+Wen Gong <quic_wgong@quicinc.com> writes:
 
---nextPart8316323.Rvb1ZgBP0e
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Sven Eckelmann <sven@narfation.org>
-To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org, devicetree@vger.kernel.org, robh@kernel.org, Anilkumar Kolli <akolli@codeaurora.org>
-Subject: Re: [PATCH v5 2/2] ath11k: Use reserved host DDR addresses from DT for PCI devices
-Date: Tue, 23 Nov 2021 14:01:34 +0100
-Message-ID: <74442923.uYUSDj6SXF@ripper>
-In-Reply-To: <1637666940-30548-2-git-send-email-akolli@codeaurora.org>
-References: <1637666940-30548-1-git-send-email-akolli@codeaurora.org> <1637666940-30548-2-git-send-email-akolli@codeaurora.org>
+> On 10/22/2021 8:37 PM, P Praneesh wrote:
+>
+> ...
+>
+>> ---
+>> ...
+>> -			ch->maxpower = channel->max_power * 2;
+>> -			ch->maxregpower = channel->max_reg_power * 2;
+>> -			ch->antennamax = channel->max_antenna_gain * 2;
+>> ...
+>>   +int ath11k_wmi_update_scan_chan_list(struct ath11k *ar,
+>> +				     struct scan_req_params *arg)
+>> ...
+>> +			ch->maxpower = channel->max_power;
+>> +			ch->maxregpower = channel->max_reg_power;
+>> +			ch->antennamax = channel->max_antenna_gain;
+>> +
+>> ...
+>
+> I see it also have another patch to remove the "*2" for power.
+> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?id=9212c1b9e80a869e732769a4fe7f82d392b219be
+>
+> ath11k: send proper txpower and maxregpower values to firmware.
+>
+> so are you the same reason to remove "*2" ?
 
-On Tuesday, 23 November 2021 12:29:00 CET Anilkumar Kolli wrote:
-> +                       ret = of_property_read_u32(dev->of_node, "memory-region",
-> +                                                  &hremote_phandle);
-> +                       if (ret) {
-> +                               ath11k_dbg(ab, ATH11K_DBG_QMI,
-> +                                          "qmi fail to get hremote phandle\n");
-> +                               return ret;
-> +                       }
-> +
-> +                       hremote_node = of_find_node_by_phandle(hremote_phandle);
-> +                       if (!hremote_node) {
-> +                               ath11k_dbg(ab, ATH11K_DBG_QMI,
-> +                                          "qmi fail to get hremote_node\n");
-> +                               return ret;
-> +                       }
+I'm not quite getting what you are saying, can you elaborate more? Did
+this patch break something?
 
-Afaik, this can be combined via
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-    hremote_node = of_parse_phandle(dev->of_node, "memory-region", 0);
-
-Kind regards,
-	Sven
---nextPart8316323.Rvb1ZgBP0e
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmGc5i4ACgkQXYcKB8Em
-e0ZyPQ/8CbZDas4jD05U2eurivg669Wkd8ldicZqVa9YAcUJWEYYE2zMgWFuVnfJ
-4z3fPpQd1Mtp8KRrayLCfOi5HOpK8uOGH+JLodjwX0aBewI8EZiHL/8onrpuqtNe
-tKEiWZG5WTA0ltntf6SqeV5TF2L5R+ySknNPk4LKYsP6/E7iZ4EM2TM6FTxzbc+h
-z2xeFWViRbGTw23qJBb0DKtagzQVScoGvEktpDy79HdAEntUbDlQSerS8kiXd7Ll
-yh+dgg+piQ9VS3E+KZ6NhR/2CnWYFI0xBFggxGIX5/VVJxD8GK+zlkkYTbtXUGPE
-vu1NoJtQNqfJsdzvVVxWMY5t6VFa8uBreo3C7PSUK+gR9Cg7vL1A13BYn8npdloH
-V4DcB/USCX8yyhozQMwfEojvCRfG5uvAM0untitGwYqNRAMrHsQgL57rJ/gdemhX
-SROOFG2wZI4VW5DQru/BRf5HEj2fTRNAqnctJX6mYZVjg9Kt5vdMij1AXQrvUl8A
-qrGuu634XlfqCHBld3CxTu08lxaK6tOlD34vRAZL3cC1MT7FMYY5zOd/9tcvpph8
-GgEk5fxrr6wXpw+S722w2Y4KCw+3tMAzl1mpKJ/V7+y/SdqZBBCPE720e9zf4w+L
-TYTN7y18wTfMVqF1n/WvhBc2ZYeBpxRnt7If7EIssZiB0RGJiPU=
-=LV2O
------END PGP SIGNATURE-----
-
---nextPart8316323.Rvb1ZgBP0e--
-
-
-
-
-
---===============7863824016012359069==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
-
---===============7863824016012359069==--
-
-
-
-
