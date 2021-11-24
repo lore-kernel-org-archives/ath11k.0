@@ -4,71 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E49AC433EF
-	for <ath11k@archiver.kernel.org>; Wed, 24 Nov 2021 17:08:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B3D9C433F5
+	for <ath11k@archiver.kernel.org>; Wed, 24 Nov 2021 17:08:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
 	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Wjkmdfpf4X3ODC+8P1LbHhdP45Hq9EzTJQPD6x/lep0=; b=DREdVTBOayHZ3B
-	N6YIP5faSKC9qElJYNNUG3A1z8m5yAN+DSAYZrgCf0qyNoZF0WiWqy3g3cc2fgviN5jhwXgMyxwwL
-	VyHJvgduaUdTyfRs4wcO8SoxKLBWnF/Klyf0dAx4Lbq5pN0xCb1DyUqoqibVC/ucvTIMgpJ0A96Vf
-	0gXfbcnK6rcYLhabxVuQg1znJRqOLCEXyQODqJM9T7sqv4IavtyAlvI41nlhpBSkk14FU16/iOi9K
-	J67zWncX3uLeZ4eCzW9yHZOzUodIeNYvnP7jLlig3E1ncguM9REVwNUBYsYa/zA/4ESUn6oEBDE7/
-	XIaeao5Mg6wXXuY016zQ==;
+	List-Owner; bh=mOtYMVi1MhfF1Dtp2P85ujU/Q/zphbUsWst2lN60rTw=; b=VAmavxmIBAGU1J
+	khLX8WcVGmkkN+hTT6CM8GybmmQXGZdcr6IwN61CuQzqpo2mqvjODY4ise3j62pOy03oz/mGF2GrV
+	ARQ3OVeQLTi3FEbSliqZoGzIUmSTSD+CwmmrMlx7epOcMgkBqVDaVJiJqrhLIq5QR+3ke0SY2qRmc
+	V936OZ2qoOMqlaxZFbR21VHxIuTBSh3v5sV93WgeX8YveV0vA1TJuQKxUHi2HyyUISBMGB4IVJmPl
+	ZjMMZQ+NWH6p09o4PwH5ygUIBFA6VgvY5ou8P/4WRE0zS5lsXFWrg6ewAaspTt4hyjAP01G0LrZni
+	bHTFYzTKWVlfKeBxWTLQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mpvku-005Mvo-EL; Wed, 24 Nov 2021 17:08:24 +0000
-Received: from m43-7.mailgun.net ([69.72.43.7])
+	id 1mpvlR-005N8C-Ad; Wed, 24 Nov 2021 17:08:57 +0000
+Received: from so254-9.mailgun.net ([198.61.254.9])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mpvki-005Ms1-1e
- for ath11k@lists.infradead.org; Wed, 24 Nov 2021 17:08:18 +0000
+ id 1mpvlO-005N6q-AK
+ for ath11k@lists.infradead.org; Wed, 24 Nov 2021 17:08:55 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1637773697; h=Date: Message-ID: Cc: To: References:
+ s=smtp; t=1637773734; h=Date: Message-ID: Cc: To: References:
  In-Reply-To: From: Subject: Content-Transfer-Encoding: MIME-Version:
- Content-Type: Sender; bh=SsOaG4KKtTF23YA9l/Oy/286NVV7+qx2t9Mwy5ADN0k=;
- b=I2uA0hCBuwJNc8HxemIgLX2n9J+OwdHQtp81k+M+IwAE4XEtuhlbey3mZ1xsOxtFk15xGD0i
- V79qPH6LGV9j36S1H3EEIFeSFFBC81HBC3dova6AHS8CuEYN8vIhBz2QtbSHVX1bceU/4+O/
- f4ZV1zGC8VyQuyGcvHhUUD4TgKY=
-X-Mailgun-Sending-Ip: 69.72.43.7
+ Content-Type: Sender; bh=yxb1QCPPnimeUoylr8y1OsQSAvXk+mRQpEio9CtKgTA=;
+ b=CD7geyHMkX0HVbimTQUUWOddNRiRpTrUc2BIhbITyIOwnGPabXdKErUS6aVWGVOjoNMok2l3
+ STIqxI5s3v6fdMvyvPf+sVqEdbrtbWYDT4qehkGTNSuctsXVOlf9EDbwzEr2hqgqdR8i1+2J
+ wVIov/3T3wEbCXZOH/gUQQjSw1M=
+X-Mailgun-Sending-Ip: 198.61.254.9
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
- 619e7167db3ac5552a3833b1 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 24 Nov 2021 17:07:51
+ smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
+ 619e71a5465c4a723b0c1c9e (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 24 Nov 2021 17:08:53
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id C1EA7C4361B; Wed, 24 Nov 2021 17:07:51 +0000 (UTC)
+ id 654B3C43616; Wed, 24 Nov 2021 17:08:53 +0000 (UTC)
 Received: from tykki.adurom.net (tynnyri.adurom.net [51.15.11.48])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested) (Authenticated sender: kvalo)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 2F8F1C43616;
- Wed, 24 Nov 2021 17:07:48 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 2F8F1C43616
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 9483CC43616;
+ Wed, 24 Nov 2021 17:08:50 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 9483CC43616
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  spf=fail smtp.mailfrom=codeaurora.org
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: Fix spelling mistake "detetction" -> "detection"
+Subject: Re: [PATCH] ath11k: Use memset_startat() for clearing queue
+ descriptors
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <20211123090431.165103-1-colin.i.king@gmail.com>
-References: <20211123090431.165103-1-colin.i.king@gmail.com>
-To: Colin Ian King <colin.i.king@googlemail.com>
-Cc: "David S . Miller" <davem@davemloft.net>,
- Jakub Kicinski <kuba@kernel.org>, ath11k@lists.infradead.org,
+In-Reply-To: <20211118202416.1286046-1-keescook@chromium.org>
+References: <20211118202416.1286046-1-keescook@chromium.org>
+To: Kees Cook <keescook@chromium.org>
+Cc: Kees Cook <keescook@chromium.org>,
+ "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
+ linux-kernel@vger.kernel.org, ath11k@lists.infradead.org,
  linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
- kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+ linux-hardening@vger.kernel.org
 User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <163777366728.11557.16795024043918994213.kvalo@codeaurora.org>
-Date: Wed, 24 Nov 2021 17:07:51 +0000 (UTC)
+Message-ID: <163777372886.11557.5551795598856429949.kvalo@codeaurora.org>
+Date: Wed, 24 Nov 2021 17:08:53 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211124_090817_317071_80F851F1 
-X-CRM114-Status: UNSURE (   6.35  )
+X-CRM114-CacheID: sfid-20211124_090854_456645_6755CD58 
+X-CRM114-Status: UNSURE (   9.26  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -86,19 +88,26 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Colin Ian King <colin.i.king@googlemail.com> wrote:
+Kees Cook <keescook@chromium.org> wrote:
 
-> There is a spelling mistake in an ath11k_warn message. Fix it.
+> In preparation for FORTIFY_SOURCE performing compile-time and run-time
+> field bounds checking for memset(), avoid intentionally writing across
+> neighboring fields.
 > 
-> Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
+> Use memset_startat() so memset() doesn't get confused about writing
+> beyond the destination member that is intended to be the starting point
+> of zeroing through the end of the struct. Additionally split up a later
+> field-spanning memset() so that memset() can reason about the size.
+> 
+> Signed-off-by: Kees Cook <keescook@chromium.org>
 > Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
 Patch applied to ath-next branch of ath.git, thanks.
 
-c27506cc7733 ath11k: Fix spelling mistake "detetction" -> "detection"
+d5549e9a6b86 ath11k: Use memset_startat() for clearing queue descriptors
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20211123090431.165103-1-colin.i.king@gmail.com/
+https://patchwork.kernel.org/project/linux-wireless/patch/20211118202416.1286046-1-keescook@chromium.org/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
