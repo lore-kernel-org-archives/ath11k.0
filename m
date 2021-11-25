@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EA1BC433F5
-	for <ath11k@archiver.kernel.org>; Thu, 25 Nov 2021 11:01:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0368AC433F5
+	for <ath11k@archiver.kernel.org>; Thu, 25 Nov 2021 11:01:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=uredw5Mfr6tNDXQ4j2SpQvFxbs4X+INhlz61Xc6z+Ik=; b=lccnFZNcnCA1Aa
-	7oB25hfMaC8dIx3phQH08XcyWMwOJlSOVXBKDa4o3XxfVJhlaCZydIyFDH6MsdHFeIqblSPmiZIJl
-	j3pgeY5fxj20n7JEx5IdSIeQJm43WJ91ISnCz90qU33f2vDrkEm7e2gYewsUi/c+eYSE0uLe6OWko
-	+NmXh8KHuC4vFKiCVtsR4QNuTY6Hy7Olhwe1HVj0gvMGVMxf5sIk3C3FyHLXt2YpiEwG6fBzq8eSS
-	gaH05hNX7mwfM77fuSpZ9w7P3vD71iLQBGFiZ/Q44CjTMPj/YC1hyyMc9F4qrBD8JQWvMy/z5DYlc
-	Eucteo08tzfoIDtdQH1A==;
+	List-Owner; bh=aWloEY7qeqcFC2MIjOimdZ7oWgBfegVhyTHhSQAuV6U=; b=TZUXy7s61PyKlL
+	uGgY9QLHBMTt/kVtANPZuyqm0JKsNfBLQuRxddYc2kREcl6NMslCnY/mTQeSqNSIl8qRNpVAdFSvp
+	WRjIiAZne3pVt0howruurXPOO72ik8luclSJUhmBwKfzGkxB/XKifenLBfSPtg2y9zGtL/4sWIIry
+	KQQesSyh1Aj2XScV/rh0G7D4Eu1iySVH+aoqPQG0MZe56q68x/yaBz9mESy9r9cJUqpv+Wbwya8Ad
+	FBzv9Q7rbL35wqSDvf8SRFzLGeQ+SUwm1nTwcCDPZcuOLj3Yjy2er5DVlsipZY7JDdxOKZW9Oi2Ge
+	ciA73t1THmzYtGEf7fEQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mqCV7-0078vV-FW; Thu, 25 Nov 2021 11:01:13 +0000
+	id 1mqCVJ-0078zQ-W1; Thu, 25 Nov 2021 11:01:26 +0000
 Received: from alexa-out.qualcomm.com ([129.46.98.28])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mqCV3-0078uW-TP
- for ath11k@lists.infradead.org; Thu, 25 Nov 2021 11:01:12 +0000
+ id 1mqCVH-0078xw-23
+ for ath11k@lists.infradead.org; Thu, 25 Nov 2021 11:01:25 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1637838070; x=1669374070;
+ t=1637838083; x=1669374083;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=xSmKiNzx+YljSq6QsLsppoSM/bpVlO41k94i3j7v6iA=;
- b=nviYm8KX0pUKv80DiqwJChZYYY/QtX9OrdD+G8zIRCxRFdAc3BeQ6tm+
- amHWMxiG+ieKwcGtW1YN1R48aBcSuDfvmf0KjA55Kz64jPcSBDsykAMQc
- TvxuzsIF0xhi0uZQDpYXNLCrld69IPz8pusnvRNUHBzFxZlrb2uh9fixK w=;
-Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
- by alexa-out.qualcomm.com with ESMTP; 25 Nov 2021 03:01:07 -0800
+ bh=+k9s9kKikdZSyyorrt8K7iu8JdtYihS25/Lkkr4MmeM=;
+ b=OMJX+LACFvvE7AwyxeiNZ16RZqQNUlUm6yAmCX+hB2PAd37BoVQYvZns
+ qsQEX7t9ZbJQBZ4jiZDFHyet3i1G3ZA/8CaCI+DpmkpTLwljdqO39JxMx
+ V4C9Tpu5xkyrY4hEYVe6fLmIbtmn8tGfBHoOKDtUo6nkX730m4fPiI6Me 8=;
+Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
+ by alexa-out.qualcomm.com with ESMTP; 25 Nov 2021 03:01:22 -0800
 X-QCInternal: smtphost
 Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2021 03:01:07 -0800
+ by ironmsg08-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2021 03:01:22 -0800
 Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
  nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Thu, 25 Nov 2021 03:01:06 -0800
+ 15.2.922.19; Thu, 25 Nov 2021 03:01:22 -0800
 Received: from [10.231.195.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
  (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Thu, 25 Nov
- 2021 03:00:28 -0800
-Message-ID: <7488dae3-d605-f407-2cb8-8cdbbbfad9ea@quicinc.com>
-Date: Thu, 25 Nov 2021 19:00:26 +0800
+ 2021 03:01:20 -0800
+Message-ID: <6cd986ed-8fa7-895e-2d9f-67886f9f8083@quicinc.com>
+Date: Thu, 25 Nov 2021 19:01:18 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.3.0
@@ -66,8 +66,8 @@ X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211125_030110_062952_1994C8A3 
-X-CRM114-Status: GOOD (  14.15  )
+X-CRM114-CacheID: sfid-20211125_030123_212969_BEF3791E 
+X-CRM114-Status: GOOD (  14.63  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,8 +84,10 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-I am afraid you hit the issue same with below patch, they looks similar, 
-but I am not sure it is same root cause.
+Hi Kalle,
+
+I am afraid you hit same issue of below patch, they looks similar, but I 
+am not sure they are the same root cause.
 
 https://patchwork.kernel.org/project/linux-wireless/patch/1608617166-17180-1-git-send-email-wgong@codeaurora.org/
 
