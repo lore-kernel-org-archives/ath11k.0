@@ -4,77 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DB6CC433F5
-	for <ath11k@archiver.kernel.org>; Thu, 25 Nov 2021 09:53:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EA1BC433F5
+	for <ath11k@archiver.kernel.org>; Thu, 25 Nov 2021 11:01:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:Cc:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=veDQhO24SLUW9a4MMogzmLdsqcnDqyJgaZXVrA/urFQ=; b=aNpVhO+dewADvL+DDhWSB637WC
-	fmKLyspAI+rnVFDwAiLc8MMWd2S6w29cV5iGPV2xPSn6HXkcmhqCu1zzbkCeXFGEt2U2x+t5532fz
-	caT58YJA/RTHcJpiPFeqCEWeHW05CxJP6Y/YOSlOydl1URTMAHXkBzdL/JQYltZ7eZGSh9jqHTTFw
-	+M571w3TrAhum2H8u/Pcsy8zuy2NYljDt/iSclavxQuHCyQtLHDmCRZ8vfpZ21RGZVjqt6aYGb0b/
-	Q0ojRv/TkVoed8lPgu/DObKcGinUGraxYdni5L1iZOGsq1SsPrd4PlixzST9ZDypqmSgHCN/su5Vw
-	knfE6yOw==;
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=uredw5Mfr6tNDXQ4j2SpQvFxbs4X+INhlz61Xc6z+Ik=; b=lccnFZNcnCA1Aa
+	7oB25hfMaC8dIx3phQH08XcyWMwOJlSOVXBKDa4o3XxfVJhlaCZydIyFDH6MsdHFeIqblSPmiZIJl
+	j3pgeY5fxj20n7JEx5IdSIeQJm43WJ91ISnCz90qU33f2vDrkEm7e2gYewsUi/c+eYSE0uLe6OWko
+	+NmXh8KHuC4vFKiCVtsR4QNuTY6Hy7Olhwe1HVj0gvMGVMxf5sIk3C3FyHLXt2YpiEwG6fBzq8eSS
+	gaH05hNX7mwfM77fuSpZ9w7P3vD71iLQBGFiZ/Q44CjTMPj/YC1hyyMc9F4qrBD8JQWvMy/z5DYlc
+	Eucteo08tzfoIDtdQH1A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mqBR6-006ycm-8n; Thu, 25 Nov 2021 09:53:00 +0000
-Received: from mail-lj1-x22d.google.com ([2a00:1450:4864:20::22d])
+	id 1mqCV7-0078vV-FW; Thu, 25 Nov 2021 11:01:13 +0000
+Received: from alexa-out.qualcomm.com ([129.46.98.28])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mqBQh-006yTp-TQ
- for ath11k@lists.infradead.org; Thu, 25 Nov 2021 09:52:37 +0000
-Received: by mail-lj1-x22d.google.com with SMTP id t11so11398644ljh.6
- for <ath11k@lists.infradead.org>; Thu, 25 Nov 2021 01:52:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=Szrqz9P+dt9sVGFiSoPelkYacT5d0NeogTG3nDY8S1w=;
- b=XORrXAs7yJcgbFEo6HIc9T4/qMyIznOPju41fI7yg0+OoJwfHsOE4KU3KWCxVjlVYh
- kuiKtQrPMZwi/vxGnCrvbywMhPwUJJVMMVcG+D+FaKutB13I5rQIdx3zYViZtIC27XVo
- lHOkIluPN7q91VL87r4k61Hnh4npHckEh6h/VgJTAlQ41dJ6MOpi8Kqc3X1sFe//Io7n
- HnavY3ntjj35aHfMHNUMxW49UZn4IGWjIw+2WiwDfqUvtpiLQuda40wqxCYThso1j+43
- djzhe6xYEDgfvQvkHkMSqCv7/keKbtHBnmtFgcPIMxkqAc8MBExYfEHj9CndWrPeVmfX
- C/FA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=Szrqz9P+dt9sVGFiSoPelkYacT5d0NeogTG3nDY8S1w=;
- b=n6QFDHJQ6DY4tFq6PjAkFD0phGyNAuHiKAeBJZBvzvhIE4ZtqGxVGRU7EK72/kZwaU
- kE//4j3BA0zEAYrs2zF7lUTMvkSDyQw8ft/pLTFprQdk9zvZALETWkukUAwTVIXt0v6B
- UaiTMGbmDk8qpy8y7x1GGGD5AmND9cEvKD89eNytVbbqokvNQa1Zp9I8J1S625SDQKa6
- mpJtORZG4FoGgfukzzJ1qRFi/un7IAmbo1w3Bm4/KVzygK3NCl1Mo3sgpOM0FJLp3Eiw
- 9ytZMByHFGdj0i9/Na5LRQYmMaMR4H0nMQPBC2ydqHeYPMDMe+BKvfuR8ZSv4ju7e2SB
- ElJA==
-X-Gm-Message-State: AOAM5336eT7IqO+5mu2JXQOk3UQt73cxPuweggggwNS0JPn1qmtGlUG4
- ptZrFriQZibDyKdqSGQCUQQ=
-X-Google-Smtp-Source: ABdhPJwbQ6uucyLdeNXvpvD2Zh/kpv+3edb8XMiUW3ZzdPWCZ8fnS48J6yK+cpdRvwxHb/2l8lo/dQ==
-X-Received: by 2002:a2e:bc1c:: with SMTP id b28mr24264339ljf.500.1637833949871; 
- Thu, 25 Nov 2021 01:52:29 -0800 (PST)
-Received: from ?IPv6:2a02:2168:88a0:5e00:a4c7:4ba3:4116:5?
- ([2a02:2168:88a0:5e00:a4c7:4ba3:4116:5])
- by smtp.gmail.com with ESMTPSA id z5sm223553lfj.8.2021.11.25.01.52.28
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 25 Nov 2021 01:52:29 -0800 (PST)
-Subject: Re: [PATCH v3 0/2] ath11k: add handler for board-2.bin without
- variant and read SMBIOS
-To: Wen Gong <quic_wgong@quicinc.com>, ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
-References: <20211125084458.16352-1-quic_wgong@quicinc.com>
-From: Mark Herbert <mark.herbert42@gmail.com>
-Message-ID: <e4edd060-8dcb-e1f9-27f4-3ba8c94404ea@gmail.com>
-Date: Thu, 25 Nov 2021 12:52:28 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+ id 1mqCV3-0078uW-TP
+ for ath11k@lists.infradead.org; Thu, 25 Nov 2021 11:01:12 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+ t=1637838070; x=1669374070;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=xSmKiNzx+YljSq6QsLsppoSM/bpVlO41k94i3j7v6iA=;
+ b=nviYm8KX0pUKv80DiqwJChZYYY/QtX9OrdD+G8zIRCxRFdAc3BeQ6tm+
+ amHWMxiG+ieKwcGtW1YN1R48aBcSuDfvmf0KjA55Kz64jPcSBDsykAMQc
+ TvxuzsIF0xhi0uZQDpYXNLCrld69IPz8pusnvRNUHBzFxZlrb2uh9fixK w=;
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+ by alexa-out.qualcomm.com with ESMTP; 25 Nov 2021 03:01:07 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+ by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2021 03:01:07 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Thu, 25 Nov 2021 03:01:06 -0800
+Received: from [10.231.195.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Thu, 25 Nov
+ 2021 03:00:28 -0800
+Message-ID: <7488dae3-d605-f407-2cb8-8cdbbbfad9ea@quicinc.com>
+Date: Thu, 25 Nov 2021 19:00:26 +0800
 MIME-Version: 1.0
-In-Reply-To: <20211125084458.16352-1-quic_wgong@quicinc.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Subject: Re: [PATCH v2 0/2] ath11k: add 11d scan offload support for
+ QCA6390/WCN6855
 Content-Language: en-US
+To: Kalle Valo <kvalo@codeaurora.org>
+CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
+References: <20211118100557.9029-1-quic_wgong@quicinc.com>
+ <87wnl08jcy.fsf@codeaurora.org>
+From: Wen Gong <quic_wgong@quicinc.com>
+In-Reply-To: <87wnl08jcy.fsf@codeaurora.org>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211125_015235_986333_2839AD53 
-X-CRM114-Status: GOOD (  13.70  )
+X-CRM114-CacheID: sfid-20211125_030110_062952_1994C8A3 
+X-CRM114-Status: GOOD (  14.15  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,34 +79,214 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-VHJpZWQgb24gbXkgRGVsbCA5MzEwLiBJdCB3b3JrcyBub3cuCgpHaXZlcyB0aGUgd2FybmluZyB0
-aGF0IFNNQklPUyByZWNvbW1lbmRlZCBmaXJtd2FyZSBub3QgZm91bmQgYnV0IApzdWNjZXNmdWx5
-IGZhbGxiYWNrIHRvIGdlbmVyaWMgbW9kZSBhbmQgc3RhcnRzLgoKW8KgIDExOC40MjI2MDFdIGF0
-aDExa19wY2kgMDAwMDo3MjowMC4wOiBjaGlwX2lkIDB4MCBjaGlwX2ZhbWlseSAweGIgCmJvYXJk
-X2lkIDB4ZmYgc29jX2lkIDB4ZmZmZmZmZmYKW8KgIDExOC40MjI2MTZdIGF0aDExa19wY2kgMDAw
-MDo3MjowMC4wOiBmd192ZXJzaW9uIDB4MTAxMTAzNDEgCmZ3X2J1aWxkX3RpbWVzdGFtcCAyMDIx
-LTA1LTAyIDE1OjE2IGZ3X2J1aWxkX2lkClvCoCAxMTguNDIyNzc4XSBhdGgxMWtfcGNpIDAwMDA6
-NzI6MDAuMDogZmFpbGVkIHRvIGZldGNoIGJvYXJkIGRhdGEgZm9yIApidXM9cGNpLHFtaS1jaGlw
-LWlkPTAscW1pLWJvYXJkLWlkPTI1NSx2YXJpYW50PURFXzE5MDEgZnJvbSAKYXRoMTFrL1FDQTYz
-OTAvaHcyLjAvYm9hcmQtMi5iaW4KCk9uIDI1LjExLjIwMjEgMTE6NDQsIFdlbiBHb25nIHdyb3Rl
-Ogo+IHYzOgo+ICAgICAxLiBhZGQgcGF0Y2ggImF0aDExazogYWRkIGZhbGxiYWNrIGJvYXJkIG5h
-bWUgd2l0aG91dCB2YXJpYW50IHdoaWxlIHNlYXJjaGluZyBib2FyZC0yLmJpbiIKPiAgICAgMi4g
-cmVhYnNlZCB0byBsYXRlc3QgYXRoLmdpdCBtYXN0ZXIgYXRoLTIwMjExMTIyMTQzNgo+Cj4gdjI6
-IHJlYmFzZWQgdG8gbGF0ZXN0IGF0aC5naXQgbWFzdGVyIGF0aC0yMDIxMTExNzA3MzcKPgo+IFdo
-ZW4gaXQgZG9lcyBub3QgaGF2ZSBtYXRjaGVkIGJvYXJkIG5hbWUgd2l0aCB2YXJpYW50IGluIGJv
-YXJkLTIuYmluLAo+IGF0aDExayB3aWxsIGZhbGxiYWNrIHRvIHNlYXJjaCB3aXRob3V0IHZhcmlh
-bnQuCj4KPiBBbHNvIHJlYWQgdGhlIHZhcmlhbnQgZnJvbSBTTUJJT1MuCj4KPiBXZW4gR29uZyAo
-Mik6Cj4gICAgYXRoMTFrOiBhZGQgZmFsbGJhY2sgYm9hcmQgbmFtZSB3aXRob3V0IHZhcmlhbnQg
-d2hpbGUgc2VhcmNoaW5nCj4gICAgICBib2FyZC0yLmJpbgo+ICAgIGF0aDExazogYWRkIHJlYWQg
-dmFyaWFudCBmcm9tIFNNQklPUyBmb3IgZG93bmxvYWQgYm9hcmQgZGF0YQo+Cj4gICBkcml2ZXJz
-L25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL2NvcmUuYyB8IDkzICsrKysrKysrKysrKysrKysrKysr
-KysrKy0tCj4gICBkcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL2NvcmUuaCB8IDExICsr
-Kwo+ICAgZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9xbWkuYyAgfCAgNCArKwo+ICAg
-MyBmaWxlcyBjaGFuZ2VkLCAxMDQgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkKPgoKLS0g
-CmF0aDExayBtYWlsaW5nIGxpc3QKYXRoMTFrQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xp
-c3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9hdGgxMWsK
+I am afraid you hit the issue same with below patch, they looks similar, 
+but I am not sure it is same root cause.
+
+https://patchwork.kernel.org/project/linux-wireless/patch/1608617166-17180-1-git-send-email-wgong@codeaurora.org/
+
+[RFC] ath11k: fix blocked for more than 120 seconds caused by reg update
+
+On 11/22/2021 8:28 PM, Kalle Valo wrote:
+> Wen Gong <quic_wgong@quicinc.com> writes:
+>
+>> v2:
+>>     1. rebased to latest ath.git master ath-202111170737
+>>     2. add "ath11k: add configure country code for QCA6390 and WCN6855", it is needed for
+>>        patch "ath11k: add 11d scan offload support"
+>>
+>> Wen Gong (2):
+>>    ath11k: add configure country code for QCA6390 and WCN6855
+>>    ath11k: add 11d scan offload support
+>>
+>>   drivers/net/wireless/ath/ath11k/core.c |  30 +++++
+>>   drivers/net/wireless/ath/ath11k/core.h |   9 ++
+>>   drivers/net/wireless/ath/ath11k/mac.c  | 162 ++++++++++++++++++++++++-
+>>   drivers/net/wireless/ath/ath11k/mac.h  |   7 ++
+>>   drivers/net/wireless/ath/ath11k/pci.c  |   1 +
+>>   drivers/net/wireless/ath/ath11k/reg.c  |  15 +++
+>>   drivers/net/wireless/ath/ath11k/wmi.c  | 145 ++++++++++++++++++++++
+>>   drivers/net/wireless/ath/ath11k/wmi.h  |  39 ++++++
+>>   8 files changed, 407 insertions(+), 1 deletion(-)
+> I suspect this patch adds a new lockdep warning on my NUC testbox.
+>
+> Tag:	ath-202111221111
+>
+> [   87.034989] ath11k_pci 0000:06:00.0: MSI vectors: 32
+> [   87.035059] ath11k_pci 0000:06:00.0: qca6390 hw2.0
+> [   87.684032] ath11k_pci 0000:06:00.0: chip_id 0x0 chip_family 0xb board_id 0xff soc_id 0xffffffff
+> [   87.684277] ath11k_pci 0000:06:00.0: fw_version 0x101c06cc fw_build_timestamp 2020-06-24 19:50 fw_build
+>
+> [...]
+>
+> [  527.024672] ======================================================
+> [  527.024708] WARNING: possible circular locking dependency detected
+> [  527.024746] 5.16.0-rc1-wt-ath+ #528 Not tainted
+> [  527.024785] ------------------------------------------------------
+> [  527.024819] wpa_supplicant/2309 is trying to acquire lock:
+> [  527.024857] ffff88811fe6f148 ((wq_completion)phy0){+.+.}-{0:0}, at: flush_workqueue+0xd9/0x1340
+> [  527.024901]
+>                 but task is already holding lock:
+> [  527.024934] ffff8881563b07d0 (&rdev->wiphy.mtx){+.+.}-{3:3}, at: ieee80211_stop+0xa0/0x680 [mac80211]
+> [  527.025023]
+>                 which lock already depends on the new lock.
+>
+> [  527.025058]
+>                 the existing dependency chain (in reverse order) is:
+> [  527.025091]
+>                 -> #3 (&rdev->wiphy.mtx){+.+.}-{3:3}:
+> [  527.025129]        __lock_acquire+0xb72/0x1870
+> [  527.025166]        lock_acquire.part.0+0x117/0x340
+> [  527.025219]        __mutex_lock+0x15a/0x1610
+> [  527.025267]        reg_process_self_managed_hints+0x5e/0x130 [cfg80211]
+> [  527.025343]        wiphy_register+0x1607/0x2640 [cfg80211]
+> [  527.025409]        ieee80211_register_hw+0x17d5/0x3150 [mac80211]
+> [  527.025481]        __ath11k_mac_register+0x1944/0x25c0 [ath11k]
+> [  527.025530]        ath11k_mac_register+0x2ee/0x610 [ath11k]
+> [  527.025578]        ath11k_core_qmi_firmware_ready.part.0+0x9e/0x2b0 [ath11k]
+> [  527.025626]        ath11k_qmi_driver_event_work+0x49c/0xa80 [ath11k]
+> [  527.025674]        process_one_work+0x866/0x1490
+> [  527.026142]        worker_thread+0x596/0x1010
+> [  527.026180]        kthread+0x35d/0x420
+> [  527.026247]        ret_from_fork+0x22/0x30
+> [  527.026282]
+>                 -> #2 (rtnl_mutex){+.+.}-{3:3}:
+> [  527.026319]        __lock_acquire+0xb72/0x1870
+> [  527.026355]        lock_acquire.part.0+0x117/0x340
+> [  527.026388]        __mutex_lock+0x15a/0x1610
+> [  527.026423]        ath11k_regd_update+0x1ce/0x580 [ath11k]
+> [  527.026471]        process_one_work+0x866/0x1490
+> [  527.026505]        worker_thread+0x596/0x1010
+> [  527.026540]        kthread+0x35d/0x420
+> [  527.026574]        ret_from_fork+0x22/0x30
+> [  527.026608]
+>                 -> #1 ((work_completion)(&ar->regd_update_work)){+.+.}-{0:0}:
+> [  527.026645]        __lock_acquire+0xb72/0x1870
+> [  527.026679]        lock_acquire.part.0+0x117/0x340
+> [  527.026714]        process_one_work+0x7f6/0x1490
+> [  527.026748]        worker_thread+0x596/0x1010
+> [  527.026782]        kthread+0x35d/0x420
+> [  527.026814]        ret_from_fork+0x22/0x30
+> [  527.026848]
+>                 -> #0 ((wq_completion)phy0){+.+.}-{0:0}:
+> [  527.026883]        check_prev_add+0x15e/0x20f0
+> [  527.026917]        validate_chain+0xf7f/0x1b30
+> [  527.026957]        __lock_acquire+0xb72/0x1870
+> [  527.026992]        lock_acquire.part.0+0x117/0x340
+> [  527.027026]        flush_workqueue+0xfc/0x1340
+> [  527.027061]        ieee80211_stop_device+0x50/0x60 [mac80211]
+> [  527.027142]        ieee80211_do_stop+0x11cf/0x1a20 [mac80211]
+> [  527.027248]        ieee80211_stop+0xad/0x680 [mac80211]
+> [  527.027322]        __dev_close_many+0x18f/0x2a0
+> [  527.027357]        __dev_change_flags+0x264/0x680
+> [  527.027391]        dev_change_flags+0x86/0x150
+> [  527.027425]        devinet_ioctl+0xfbb/0x18f0
+> [  527.027460]        inet_ioctl+0x2ae/0x2f0
+> [  527.027493]        sock_do_ioctl+0xd5/0x1d0
+> [  527.027527]        sock_ioctl+0x1c1/0x570
+> [  527.027561]        __x64_sys_ioctl+0x122/0x190
+> [  527.027598]        do_syscall_64+0x3b/0x90
+> [  527.027631]        entry_SYSCALL_64_after_hwframe+0x44/0xae
+> [  527.027666]
+>                 other info that might help us debug this:
+>
+> [  527.027700] Chain exists of:
+>                   (wq_completion)phy0 --> rtnl_mutex --> &rdev->wiphy.mtx
+>
+> [  527.027739]  Possible unsafe locking scenario:
+>
+> [  527.027772]        CPU0                    CPU1
+> [  527.027808]        ----                    ----
+> [  527.027841]   lock(&rdev->wiphy.mtx);
+> [  527.027880]                                lock(rtnl_mutex);
+> [  527.027916]                                lock(&rdev->wiphy.mtx);
+> [  527.027950]   lock((wq_completion)phy0);
+> [  527.027984]
+>                  *** DEADLOCK ***
+>
+> [  527.028017] 2 locks held by wpa_supplicant/2309:
+> [  527.028051]  #0: ffffffff8ff3cb70 (rtnl_mutex){+.+.}-{3:3}, at: devinet_ioctl+0x182/0x18f0
+> [  527.029006]  #1: ffff8881563b07d0 (&rdev->wiphy.mtx){+.+.}-{3:3}, at: ieee80211_stop+0xa0/0x680 [mac80211]
+> [  527.029087]
+>                 stack backtrace:
+> [  527.029121] CPU: 6 PID: 2309 Comm: wpa_supplicant Kdump: loaded Not tainted 5.16.0-rc1-wt-ath+ #528
+> [  527.029158] Hardware name: Intel(R) Client Systems NUC8i7HVK/NUC8i7HVB, BIOS HNKBLi70.86A.0067.2021.0528.1339 05/28/2021
+> [  527.029211] Call Trace:
+> [  527.029246]  <TASK>
+> [  527.029292]  dump_stack_lvl+0x57/0x7d
+> [  527.029328]  check_noncircular+0x26a/0x310
+> [  527.029363]  ? print_circular_bug+0x450/0x450
+> [  527.029403]  ? __kernel_text_address+0x9/0x30
+> [  527.029439]  ? alloc_chain_hlocks+0x1de/0x530
+> [  527.029474]  check_prev_add+0x15e/0x20f0
+> [  527.029511]  ? __lock_acquire+0xb72/0x1870
+> [  527.029547]  validate_chain+0xf7f/0x1b30
+> [  527.029583]  ? check_prev_add+0x20f0/0x20f0
+> [  527.029618]  ? __lock_release+0x4bd/0x9f0
+> [  527.029655]  __lock_acquire+0xb72/0x1870
+> [  527.029691]  lock_acquire.part.0+0x117/0x340
+> [  527.029727]  ? flush_workqueue+0xd9/0x1340
+> [  527.029763]  ? rcu_read_unlock+0x40/0x40
+> [  527.029799]  ? rcu_read_lock_sched_held+0x3a/0x70
+> [  527.029833]  ? lock_acquire+0x1a8/0x210
+> [  527.029868]  ? flush_workqueue+0xd9/0x1340
+> [  527.029903]  flush_workqueue+0xfc/0x1340
+> [  527.029936]  ? flush_workqueue+0xd9/0x1340
+> [  527.029970]  ? mark_held_locks+0xa5/0xe0
+> [  527.030009]  ? lockdep_hardirqs_on_prepare.part.0+0x18c/0x370
+> [  527.030044]  ? check_flush_dependency+0x350/0x350
+> [  527.030082]  ? ath11k_mac_op_remove_interface+0x58b/0xa20 [ath11k]
+> [  527.030131]  ? ieee80211_stop_device+0x50/0x60 [mac80211]
+> [  527.030241]  ieee80211_stop_device+0x50/0x60 [mac80211]
+> [  527.030321]  ieee80211_do_stop+0x11cf/0x1a20 [mac80211]
+> [  527.030397]  ? mutex_lock_io_nested+0x1470/0x1470
+> [  527.030436]  ? lock_downgrade+0x130/0x130
+> [  527.030473]  ? ieee80211_adjust_monitor_flags+0x1f0/0x1f0 [mac80211]
+> [  527.030547]  ? mark_held_locks+0xa5/0xe0
+> [  527.030583]  ? lockdep_hardirqs_on_prepare.part.0+0x18c/0x370
+> [  527.030618]  ? __local_bh_enable_ip+0xa0/0x110
+> [  527.030654]  ieee80211_stop+0xad/0x680 [mac80211]
+> [  527.030728]  __dev_close_many+0x18f/0x2a0
+> [  527.030764]  ? unregister_netdevice_notifier+0x150/0x150
+> [  527.030799]  ? lockdep_hardirqs_on_prepare.part.0+0x18c/0x370
+> [  527.030834]  ? __local_bh_enable_ip+0xa0/0x110
+> [  527.030869]  __dev_change_flags+0x264/0x680
+> [  527.030903]  ? dev_set_allmulti+0x10/0x10
+> [  527.030940]  dev_change_flags+0x86/0x150
+> [  527.030976]  devinet_ioctl+0xfbb/0x18f0
+> [  527.031011]  inet_ioctl+0x2ae/0x2f0
+> [  527.031048]  ? inet_dgram_connect+0x220/0x220
+> [  527.031087]  ? lock_downgrade+0x130/0x130
+> [  527.032054]  ? __might_fault+0xb3/0x160
+> [  527.032090]  ? __might_fault+0xb3/0x160
+> [  527.032124]  ? _copy_to_user+0x94/0xb0
+> [  527.032160]  sock_do_ioctl+0xd5/0x1d0
+> [  527.032216]  ? put_user_ifreq+0x70/0x70
+> [  527.032279]  ? vfs_fileattr_set+0x930/0x930
+> [  527.032314]  ? selinux_file_ioctl+0x375/0x520
+> [  527.032350]  sock_ioctl+0x1c1/0x570
+> [  527.032385]  ? br_ioctl_call+0x90/0x90
+> [  527.032420]  ? __ia32_sys_sendmmsg+0xeb/0xf0
+> [  527.032454]  ? __sys_recvmsg_sock+0x10/0x10
+> [  527.032492]  __x64_sys_ioctl+0x122/0x190
+> [  527.032527]  do_syscall_64+0x3b/0x90
+> [  527.032562]  entry_SYSCALL_64_after_hwframe+0x44/0xae
+> [  527.032597] RIP: 0033:0x7fd37113850b
+> [  527.032636] Code: 0f 1e fa 48 8b 05 85 39 0d 00 64 c7 00 26 00 00 00 48 c7 c0 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa b8 10 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 55 39 0d 00 f7 d8 64 89 01 48
+> [  527.032679] RSP: 002b:00007ffd0174b258 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+> [  527.032718] RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007fd37113850b
+> [  527.032755] RDX: 00007ffd0174b260 RSI: 0000000000008914 RDI: 0000000000000008
+> [  527.032790] RBP: 0000000000000008 R08: 0000000000000007 R09: 00007fd37120cb80
+> [  527.032824] R10: 0000000000000007 R11: 0000000000000246 R12: 0000000000000000
+> [  527.032857] R13: 00005641e16bfa70 R14: 00007ffd0174b260 R15: 00005641e16b4840
+> [  527.032894]  </TASK>
+>
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
