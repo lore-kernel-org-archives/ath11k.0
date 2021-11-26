@@ -4,72 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C9FAC433F5
-	for <ath11k@archiver.kernel.org>; Fri, 26 Nov 2021 10:27:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90AABC433EF
+	for <ath11k@archiver.kernel.org>; Fri, 26 Nov 2021 10:52:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
-	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dQWFPliR9pL44y+aexOSCdeLSsGV/+YSuG89e9yj/8M=; b=WgV0FZd7amFKaM
-	aPbjCeBeh8/6EH7qD7iF5XaRmHtTVBdQs2QY97sBSEhybrt8iYPSkRIIUkrurrpJeMEhCzxjNFmH3
-	jKMZWby5EL18OQhy8SXUky+r7y2h4jjkCDtPSFZibqIQP9gBaBO7dQ50l0siJDQU716hBRN/fSSRT
-	EO4NTQ1SHsYZdXNarbP44qwrcZQ7TnDQNkMNb9n9UWDCBXzGpET6LoTV0YTP+gmErph1xo1f1WcIo
-	idJy1/CB47529bpXuVriyqnzEGkUm0BO1jPO8DkDLFPNA2iikY9uE/pYVe8HUtJ2XNwjaYuqBjjg8
-	Awp8OUdUWxhrAIaPQsSg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=NvOF85nnStGKC19M4YF/tK07JL056P03dhNY5Wx7AWI=; b=4A75H/tBvIAGc6
+	PSJSv9VvKI6EoR6wFOpjrm2T6b97AHoq7LFM8g5TOIqpx9N0dwlnHlxDVpsdRKcKqVQG8z71cpA/z
+	u+w3OUEDLQUghKGoSydvNsdndMNCXnN77t9ABTBOzS/fvard1MWUYBSAKaqeSJT04oIWxbRbMAI+j
+	i+SdRSH87/E8Nag9PP7utknn5dD3P74aY+0QZiduMK3Eql1ZB2CHySEU7X0PoP8TYewwbO7yrmnSu
+	fyZ2/WRl7dO7CifVO3sG9FIrMyC1n+xoPoPdmsB3ko7Lsjn7aCA/DHJXBXtUUku0mC8OwHm4oRZlr
+	1AIwvNei0XfhPaXpTIww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mqYRW-00A0aW-6x; Fri, 26 Nov 2021 10:26:58 +0000
-Received: from m43-7.mailgun.net ([69.72.43.7])
+	id 1mqYqb-00A6Nu-C9; Fri, 26 Nov 2021 10:52:53 +0000
+Received: from dvalin.narfation.org ([213.160.73.56])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mqYRT-00A0ZC-4A
- for ath11k@lists.infradead.org; Fri, 26 Nov 2021 10:26:56 +0000
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
- q=dns/txt; 
- s=smtp; t=1637922414; h=Date: Message-ID: Cc: To: References:
- In-Reply-To: From: Subject: Content-Transfer-Encoding: MIME-Version:
- Content-Type: Sender; bh=D36i+TEzYvAfF+8CwLgTruoyqqi5b/grJJSwC8YVulc=;
- b=vSVJt4Gad3DK3vTwETeD5j5xKUdtgoGAbT7J+2AlxKTctQIkzgopkztEqAYAnd0SprYCStfc
- TONUiQPzHtcZvjr5Y2eXPbcO2ZsBGJos3u5nlcvRY962GAHXIxDKMipTykpeXBMN6eg9xv6r
- MigbmCOjjQW1Iiwb3DkCyxQRoiY=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
- 61a0b66edb3ac5552a267167 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 26 Nov 2021 10:26:54
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 01DB2C447B4; Fri, 26 Nov 2021 10:26:53 +0000 (UTC)
-Received: from tykki.adurom.net (tynnyri.adurom.net [51.15.11.48])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested) (Authenticated sender: kvalo)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id C7042C4363B;
- Fri, 26 Nov 2021 10:26:50 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org C7042C4363B
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- spf=fail smtp.mailfrom=codeaurora.org
+ id 1mqYqY-00A6Jp-2D
+ for ath11k@lists.infradead.org; Fri, 26 Nov 2021 10:52:52 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+ s=20121; t=1637923964;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=bSnXsxwb+gy1W/+vQK1jvpC2Bp2mf3UF+9Aza3cq0w0=;
+ b=jSjgxiFx8LtK5IC8QeMCyOMEU8XUxCFASfYBC/6+oEBV9tHAWruib+8UOjEyg2mXdulQgu
+ FkOI5quyNU6FF1g0YP8upwXEAGjmwyHHk1aBVY3S1D9RLdX3/+fsxXIIoc5JsJBm1DfScN
+ dT+CknhSij3FJDKF/s75NXHorySl0Sk=
+From: Sven Eckelmann <sven@narfation.org>
+To: ath11k@lists.infradead.org, Lavanya Suresh <lavaks@codeaurora.org>
+Cc: kvalo@codeaurora.org
+Subject: ath11k: QCN9074: Incompatible board-2.bin for 6GHz
+Date: Fri, 26 Nov 2021 11:52:42 +0100
+Message-ID: <2091899.pNsEtq2SQc@ripper>
 MIME-Version: 1.0
-Subject: Re: [PATCH v6 1/2] dt: bindings: add new DT entry for ath11k PCI
- device support
-From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1637839211-1503-1-git-send-email-akolli@codeaurora.org>
-References: <1637839211-1503-1-git-send-email-akolli@codeaurora.org>
-To: Anilkumar Kolli <akolli@codeaurora.org>
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- devicetree@vger.kernel.org, robh@kernel.org,
- Anilkumar Kolli <akolli@codeaurora.org>
-User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <163792240626.28516.5997258436480035214.kvalo@codeaurora.org>
-Date: Fri, 26 Nov 2021 10:26:53 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211126_022655_263479_E9F7AD4C 
-X-CRM114-Status: UNSURE (   7.40  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20211126_025250_478886_6D45DE49 
+X-CRM114-Status: GOOD (  13.79  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,32 +60,59 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Anilkumar Kolli <akolli@codeaurora.org> wrote:
+Hi,
 
-> Ath11k driver supports PCI devices such as QCN9074/QCA6390.
-> Ath11k firmware uses host DDR memory, DT entry is used to
-> reserve host DDR memory regions, send these memory base
-> addresses using DT entries.
-> 
-> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
+I wanted to use an 8devices Pineapple6 device on x86. But the board_id of this 
+card came always in as 255 (and not as a valid 6GHz capable board_id). I've 
+contacted the support and they told me to use the QCA BDF with the board_id 
+162 for this card. So I've downloaded 
+2.4.0.1.r1/WLAN.HK.2.4.0.1.r1-00019-QCAHKSWPL_SILICONZ-1/board-2.bin [1], 
+extracted it and moved it to /lib/firmware/ath11k/QCN9074/hw1.0/board.bin. 
+I've also added the (not yet upstreamed) 6GHz regulatory support to 
+ath11k [2]. But to my surprise, the WMI_REG_CHAN_LIST_CC_EXT_EVENTID never 
+came in. Instead, a WMI_REG_CHAN_LIST_CC_EVENTID was received. This resulted 
+in a output like:
 
-Failed to apply, remember to use ath.git master branch as the baseline.
+    ath11k_pci 0000:01:00.0: No reg rules available
+    ath11k_pci 0000:01:00.0: failed to extract regulatory info from received event
+    ------------[ cut here ]------------
+    WARNING: at drivers/net/wireless/ath/ath11k/wmi.c:7255
 
-error: patch failed: drivers/net/wireless/ath/ath11k/core.h:194
-error: drivers/net/wireless/ath/ath11k/core.h: patch does not apply
-error: patch failed: drivers/net/wireless/ath/ath11k/mhi.c:339
-error: drivers/net/wireless/ath/ath11k/mhi.c: patch does not apply
-stg import: Diff does not apply cleanly
+The warning from ath11k (which breaks the device btw) is from
 
-2 patches set to Changes Requested.
+    if (!(reg_info->num_2g_reg_rules + reg_info->num_5g_reg_rules)) {
+    	ath11k_warn(ab, "No regulatory rules available in the event info\n");
+    	kfree(tb);
+    	return -EINVAL;
+    }
 
-12638957 [v6,1/2] dt: bindings: add new DT entry for ath11k PCI device support
-12638955 [v6,2/2] ath11k: Use reserved host DDR addresses from DT for PCI devices
+I found out that this is actually caused by the BDF. If I've extracted the 
+board.bin from the TIP board-2.bin [3] (which seems to come from the QCA 
+ATH.11.4 CS release). With this version, it seems to work fine. I haven't yet 
+found out what the relevant change is - but if someone has hints then this 
+would could be interesting for other devices which should be added to things 
+like OpenWrt.
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/patch/1637839211-1503-1-git-send-email-akolli@codeaurora.org/
+Maybe Kalle Valo could upload a new board-2.bin for QCN9074 hw1.0 which has
+the problem solved.
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
+And it would also be nice when the authors of the 
+WMI_REG_CHAN_LIST_CC_EXT_EVENTID support would send this stuff upstream. I 
+just find it interesting that the assoc patches are already part of
+upstream [4,5] - even when the reg support is still missing. There are a lot 
+more patches in there which are missing upstream.
+
+Kind regards,
+	Sven
+
+[1] https://github.com/kvalo/ath11k-firmware/commit/ae4f4f64ed14097dc24a8d686fa60e932cba4868/QCN9074/hw1.0/testing/2.4.0.1.r1/WLAN.HK.2.4.0.1.r1-00019-QCAHKSWPL_SILICONZ-1/board-2.bin
+[2] https://source.codeaurora.org/quic/qsdk/oss/system/feeds/wlan-open/tree/mac80211/patches/302-ath11k-Add-support-to-parse-new-wmi-event-for-6G-reg.patch?h=NHSS.QSDK.11.4.0.5
+[3] https://github.com/Telecominfraproject/wlan-ap/blob/main/feeds/wifi-ax/ath11k-firmware/files/QCN9000/board-2.bin
+[4] https://source.codeaurora.org/quic/qsdk/oss/system/feeds/wlan-open/tree/mac80211/patches/206-ath11k-add-6ghz-params-in-peer-assoc-cmd.patch?h=NHSS.QSDK.11.4.0.5
+[5] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=c3a7d7eb4c9853bb457b792cef42ddd4a029a914
+[6] https://source.codeaurora.org/quic/qsdk/oss/system/feeds/wlan-open/tree/mac80211/patches/302-ath11k-add-177-channel-to-5G-channel-list.patch?h=NHSS.QSDK.11.4.0.5
+
 
 
 -- 
