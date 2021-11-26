@@ -4,70 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9F3FC433EF
-	for <ath11k@archiver.kernel.org>; Fri, 26 Nov 2021 10:19:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C9FAC433F5
+	for <ath11k@archiver.kernel.org>; Fri, 26 Nov 2021 10:27:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
 	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=EF7QRYL/m6S54t8z6qdQjBXVk4YXecBM5uj6L3f/Mcg=; b=WGP/M93Jbkp40h
-	w7mWRVTD0hdsFnPy8+R92k38+llcwb6VsseMfi9KDm2VMPe+hmIlm0yXC/hlOXrlXEA+vJ7EagCRO
-	rcZvy/CLRMjsjicZLDWwGWFkM8AdzfjLbZnhJwNWKSW7divKdNS72NHjh5ZPykI2+0TmSNeXm2Zx5
-	zbzKMSn677pa6JF1kWfe1EyWTuIYrTOpmTk6HGb3MRXFDxo8mUH8bF54lfLQtk4Ll9brVWLitCtRo
-	TF5tyDNymZkEFKX/3BEClUSHa93qWoCNQxPT1dnifo88IABjexzuU77qrPb2VH5pRiyo76KlNtx40
-	treqhRQ5kvzCX7XAfOhQ==;
+	List-Owner; bh=dQWFPliR9pL44y+aexOSCdeLSsGV/+YSuG89e9yj/8M=; b=WgV0FZd7amFKaM
+	aPbjCeBeh8/6EH7qD7iF5XaRmHtTVBdQs2QY97sBSEhybrt8iYPSkRIIUkrurrpJeMEhCzxjNFmH3
+	jKMZWby5EL18OQhy8SXUky+r7y2h4jjkCDtPSFZibqIQP9gBaBO7dQ50l0siJDQU716hBRN/fSSRT
+	EO4NTQ1SHsYZdXNarbP44qwrcZQ7TnDQNkMNb9n9UWDCBXzGpET6LoTV0YTP+gmErph1xo1f1WcIo
+	idJy1/CB47529bpXuVriyqnzEGkUm0BO1jPO8DkDLFPNA2iikY9uE/pYVe8HUtJ2XNwjaYuqBjjg8
+	Awp8OUdUWxhrAIaPQsSg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mqYJx-009xoS-Bd; Fri, 26 Nov 2021 10:19:09 +0000
-Received: from so254-9.mailgun.net ([198.61.254.9])
+	id 1mqYRW-00A0aW-6x; Fri, 26 Nov 2021 10:26:58 +0000
+Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mqYJt-009xml-S4
- for ath11k@lists.infradead.org; Fri, 26 Nov 2021 10:19:07 +0000
+ id 1mqYRT-00A0ZC-4A
+ for ath11k@lists.infradead.org; Fri, 26 Nov 2021 10:26:56 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1637921945; h=Date: Message-ID: Cc: To: References:
+ s=smtp; t=1637922414; h=Date: Message-ID: Cc: To: References:
  In-Reply-To: From: Subject: Content-Transfer-Encoding: MIME-Version:
- Content-Type: Sender; bh=9w6CUHr3DnghWuXieLVzyi3+m3hj9sDLHN8VY6VfoAU=;
- b=QlLUXmNagebIYw+pv34FZ2ZGY8f5XB3K9o+rkQU033PqfylFoZ7ltAEijZYya3SLE543fgEB
- uOy+d3kCL6bDGiW5c2l0sZo2WCMZrEi3cQvq7D5tJvV3aJoHWCz7P3fr3Wi6mrFiPv4xAYT9
- F++tHchsT0tkl+75OtkCjf1M+t8=
-X-Mailgun-Sending-Ip: 198.61.254.9
+ Content-Type: Sender; bh=D36i+TEzYvAfF+8CwLgTruoyqqi5b/grJJSwC8YVulc=;
+ b=vSVJt4Gad3DK3vTwETeD5j5xKUdtgoGAbT7J+2AlxKTctQIkzgopkztEqAYAnd0SprYCStfc
+ TONUiQPzHtcZvjr5Y2eXPbcO2ZsBGJos3u5nlcvRY962GAHXIxDKMipTykpeXBMN6eg9xv6r
+ MigbmCOjjQW1Iiwb3DkCyxQRoiY=
+X-Mailgun-Sending-Ip: 69.72.43.7
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
  smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
- 61a0b498db3ac5552a21e413 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 26 Nov 2021 10:19:04
+ 61a0b66edb3ac5552a267167 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 26 Nov 2021 10:26:54
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 4F395C4360D; Fri, 26 Nov 2021 10:19:04 +0000 (UTC)
+ id 01DB2C447B4; Fri, 26 Nov 2021 10:26:53 +0000 (UTC)
 Received: from tykki.adurom.net (tynnyri.adurom.net [51.15.11.48])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested) (Authenticated sender: kvalo)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 9CC81C4338F;
- Fri, 26 Nov 2021 10:19:02 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 9CC81C4338F
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id C7042C4363B;
+ Fri, 26 Nov 2021 10:26:50 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org C7042C4363B
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  spf=fail smtp.mailfrom=codeaurora.org
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: Use host CE parameters for CE interrupts
- configuration
+Subject: Re: [PATCH v6 1/2] dt: bindings: add new DT entry for ath11k PCI
+ device support
 From: Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <1637249558-12793-1-git-send-email-akolli@codeaurora.org>
-References: <1637249558-12793-1-git-send-email-akolli@codeaurora.org>
+In-Reply-To: <1637839211-1503-1-git-send-email-akolli@codeaurora.org>
+References: <1637839211-1503-1-git-send-email-akolli@codeaurora.org>
 To: Anilkumar Kolli <akolli@codeaurora.org>
 Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ devicetree@vger.kernel.org, robh@kernel.org,
  Anilkumar Kolli <akolli@codeaurora.org>
 User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <163792194060.23943.15273022078446639620.kvalo@codeaurora.org>
-Date: Fri, 26 Nov 2021 10:19:04 +0000 (UTC)
+Message-ID: <163792240626.28516.5997258436480035214.kvalo@codeaurora.org>
+Date: Fri, 26 Nov 2021 10:26:53 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211126_021906_000288_D2EA8F33 
-X-CRM114-Status: UNSURE (   9.15  )
+X-CRM114-CacheID: sfid-20211126_022655_263479_E9F7AD4C 
+X-CRM114-Status: UNSURE (   7.40  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -87,33 +88,28 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 Anilkumar Kolli <akolli@codeaurora.org> wrote:
 
-> CE interrupt configuration uses host ce parameters to assign/free
-> interrupts. Use host ce parameters to enable/disable interrupts.
-> This patch fixes below BUG,
+> Ath11k driver supports PCI devices such as QCN9074/QCA6390.
+> Ath11k firmware uses host DDR memory, DT entry is used to
+> reserve host DDR memory regions, send these memory base
+> addresses using DT entries.
 > 
-> BUG: KASAN: global-out-of-bounds in 0xffffffbffdfb035c at addr
-> ffffffbffde6eeac
->  Read of size 4 by task kworker/u8:2/132
->  Address belongs to variable ath11k_core_qmi_firmware_ready+0x1b0/0x5bc [ath11k]
-> 
-> OOB is due to ath11k_ahb_ce_irqs_enable() iterates ce_count(which is 12)
-> times and accessing 12th element in target_ce_config
-> (which has only 11 elements) from ath11k_ahb_ce_irq_enable().
-> 
-> With this change host ce configs are used to enable/disable interrupts.
-> 
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1-00471-QCAHKSWPL_SILICONZ-1
-> 
-> Fixes: 967c1d1131fa ("ath11k: move target ce configs to hw_params")
 > Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-Patch applied to ath-next branch of ath.git, thanks.
+Failed to apply, remember to use ath.git master branch as the baseline.
 
-b689f091aafd ath11k: Use host CE parameters for CE interrupts configuration
+error: patch failed: drivers/net/wireless/ath/ath11k/core.h:194
+error: drivers/net/wireless/ath/ath11k/core.h: patch does not apply
+error: patch failed: drivers/net/wireless/ath/ath11k/mhi.c:339
+error: drivers/net/wireless/ath/ath11k/mhi.c: patch does not apply
+stg import: Diff does not apply cleanly
+
+2 patches set to Changes Requested.
+
+12638957 [v6,1/2] dt: bindings: add new DT entry for ath11k PCI device support
+12638955 [v6,2/2] ath11k: Use reserved host DDR addresses from DT for PCI devices
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/1637249558-12793-1-git-send-email-akolli@codeaurora.org/
+https://patchwork.kernel.org/project/linux-wireless/patch/1637839211-1503-1-git-send-email-akolli@codeaurora.org/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
