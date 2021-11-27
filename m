@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E42CC433F5
-	for <ath11k@archiver.kernel.org>; Sat, 27 Nov 2021 01:19:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67947C43217
+	for <ath11k@archiver.kernel.org>; Sat, 27 Nov 2021 01:19:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:MIME-Version:References:Subject:Cc
 	:To:From:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-	List-Owner; bh=0KtiXuubh1gzmkqLjWaWKHm+HfOIuOpOU9FBRxvFvjo=; b=GZgnl7XLZStmAV
-	4KXK1XGbMMI2ySbqjubkAmroXl5no9j5g0xDgfTMcUNyXspbJVCBAFaNluNOsO4L5xG10A1F/crNF
-	bgicwkmpJ4cD6LsY3R71z42d1FjOV2ZzcD8oVONxNHVKAp8RQ0lCiDgsPov5qv3K5c1DU7fyEhJMd
-	g0zPO7bn6dvg3vO1rijxZoQH6x3z4Z+yVbqoBii5oo5QtiYylg0UqyW2rTGOiktsL0f8yRm6UO293
-	t1npdvAaXGdFgP+HoyMBWXgRnknTjo2yGfF6Fk2/Pru5lzgkuuDGDW97PHS8oj73qirF0gaLpxoEv
-	nbhKCE6DVG9/7RI53Mmg==;
+	List-Owner; bh=Op9rfPeLO5/STRcwXoumsGPsDbLMZt3gifuqVvj8NQY=; b=IKKtmP5RjYzZtH
+	ci/mLWFrLQLtDr2DwGiGQyQbQ/MtnLgQsdbrHmTy+XatCD96fz009TgwKI/NJ7Hp5c5PCDuJwQZn4
+	+ryl3pJ4Ef8GFKo2MQma+OQ54chyPZMianCj7J+zGARYnf209JXoNCgB4B5jKenvdL3Xvb8k2E4ck
+	wYFdqClD6/iRmVE+0itJSRuzCZTdf/au+J/fgFeM8C2a89mzjl2yggHcI72Loh2ICB/AvjtdMRjIu
+	qo5L6wUGysZ6Nw94bPUt54bjIiaPqlupXI2BFdHbMXYMOWArJKKKGp7vxDEVTG2fQ7VueERXolTH4
+	5FZGRxqWyI/fl9o1Ew0g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mqmMs-00C7kM-9Q; Sat, 27 Nov 2021 01:19:06 +0000
-Received: from galois.linutronix.de ([2a0a:51c0:0:12e:550::1])
+	id 1mqmMv-00C7p3-85; Sat, 27 Nov 2021 01:19:09 +0000
+Received: from galois.linutronix.de ([193.142.43.55])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mqmMk-00C7Ym-QS
- for ath11k@lists.infradead.org; Sat, 27 Nov 2021 01:19:01 +0000
-Message-ID: <20211126223824.855947162@linutronix.de>
+ id 1mqmMo-00C7eb-Kc
+ for ath11k@lists.infradead.org; Sat, 27 Nov 2021 01:19:04 +0000
+Message-ID: <20211126223825.034426787@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1637975935;
+ s=2020; t=1637975940;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- references:references; bh=lhIUE61Y2ARmaAA3RG1h6L7zHDs4cKgQsOndAjR5STU=;
- b=yoS0BgXw6njThHf+Kcu+0fhiWKN/AUUQyrhRnyP005hqMqVamE0iJS9Nymvj7WrdKiNPm9
- 0mkqTv8z1FNG/R4t2Fb6c/SNDfW7kY+rGDzKX04havRRDKZzlJgNXPOOfjLye4/WFJKJfP
- xcx9BSS5LKHxoE2JVqPQ+trXGuk8vUYn7URN+PrSM7NPKPbRnZx0hNWCcZeSi04qCE5Oel
- Y9mNYAqJgytmNlLxc+cRQ+JOuNk/T63yzW8ubMu6NjUJqGwyZOKHP2t1qinSdVRhJwmcXC
- H2q4r2C5Ug8hjBbQvmRgnBEn2dAl8pePx8S03VEkIoCUjdrHK0EN0Pjw6qJTBw==
+ references:references; bh=/hUtpZoje77D8jXpCF4dVmu6dIuQVzxr12Tf8gEZrmw=;
+ b=hNIt8OdQYSBdhy1LPCcMUGRBqnREBl3UBjJaNo48wU+yitHyucClBw2FatgmLhmT+NU3Ql
+ 4sNgzJGJwZh/ha6ppJ940OFjIokFLOJZrrZ9Hn+cAi1F4FyEZB5/WZGbdWx/0rI4gSVYXH
+ 0ZAueHlXhJYar/+0Pt78nugjpObRWsEEvTI82qsArEFCxNUEKE1CjeVxpOaurVu/heD40x
+ svbwdGhLpDr+48E2XA7s2rBrW/D9QDT1vecScPJtMzmkyrDlH0t6HEPyqjKucfxxETkZq3
+ M3K9th4jI9ae1bWlJd5NI+WypKa6K5lyXJE2P5xEhwaQn0Ti6cqyZ6VpLW9nNw==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1637975935;
+ s=2020e; t=1637975940;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- references:references; bh=lhIUE61Y2ARmaAA3RG1h6L7zHDs4cKgQsOndAjR5STU=;
- b=Jl/BK00H8LeQTqtN+ZwcnoSd8mGeJ2yjBlN3eDYCTgWb72N+GwWWz/rF3WttD4qNLnGKTb
- /KKLjL7as1fFZ/DQ==
+ references:references; bh=/hUtpZoje77D8jXpCF4dVmu6dIuQVzxr12Tf8gEZrmw=;
+ b=VuXwjFCkRtJzwgPzd13igAMoSEEMu4NeLAa9wdlctBYjILYD2dtuDp0HaXuKf26rChjrKM
+ 6+NREzi1mLkFLdBg==
 From: Thomas Gleixner <tglx@linutronix.de>
 To: LKML <linux-kernel@vger.kernel.org>
 Cc: Bjorn Helgaas <helgaas@kernel.org>, Marc Zygnier <maz@kernel.org>,
@@ -61,14 +61,13 @@ Cc: Bjorn Helgaas <helgaas@kernel.org>, Marc Zygnier <maz@kernel.org>,
  linux-hyperv@vger.kernel.org, Juergen Gross <jgross@suse.com>,
  Christian Borntraeger <borntraeger@de.ibm.com>,
  Heiko Carstens <hca@linux.ibm.com>
-Subject: [patch 13/22] PCI/MSI: Cleanup include zoo
+Subject: [patch 16/22] PCI/MSI: Split out CONFIG_PCI_MSI independent part
 References: <20211126222700.862407977@linutronix.de>
 MIME-Version: 1.0
-Date: Sat, 27 Nov 2021 02:18:54 +0100 (CET)
+Date: Sat, 27 Nov 2021 02:18:59 +0100 (CET)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211126_171859_116100_A14B4980 
-X-CRM114-Status: UNSURE (   6.85  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20211126_171902_889254_5FB1EEC7 
+X-CRM114-Status: GOOD (  12.85  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,42 +84,123 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Get rid of the pile of unneeded includes which accumulated over time.
+These functions are required even when CONFIG_PCI_MSI is not set. Move them
+to their own file.
 
 Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
 ---
- drivers/pci/msi.c |   16 ++++------------
- 1 file changed, 4 insertions(+), 12 deletions(-)
+ drivers/pci/msi/Makefile     |    3 ++-
+ drivers/pci/msi/msi.c        |   39 ---------------------------------------
+ drivers/pci/msi/pcidev_msi.c |   43 +++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 45 insertions(+), 40 deletions(-)
 
---- a/drivers/pci/msi.c
-+++ b/drivers/pci/msi.c
-@@ -7,22 +7,14 @@
-  * Copyright (C) 2016 Christoph Hellwig.
-  */
+--- a/drivers/pci/msi/Makefile
++++ b/drivers/pci/msi/Makefile
+@@ -1,4 +1,5 @@
+ # SPDX-License-Identifier: GPL-2.0
+ #
+ # Makefile for the PCI/MSI
+-obj-$(CONFIG_PCI)		+= msi.o
++obj-$(CONFIG_PCI)		+= pcidev_msi.o
++obj-$(CONFIG_PCI_MSI)		+= msi.o
+--- a/drivers/pci/msi/msi.c
++++ b/drivers/pci/msi/msi.c
+@@ -18,8 +18,6 @@
  
-+#include <linux/acpi_iort.h>
- #include <linux/err.h>
--#include <linux/mm.h>
--#include <linux/irq.h>
--#include <linux/interrupt.h>
- #include <linux/export.h>
--#include <linux/ioport.h>
--#include <linux/pci.h>
--#include <linux/proc_fs.h>
--#include <linux/msi.h>
--#include <linux/smp.h>
--#include <linux/errno.h>
--#include <linux/io.h>
--#include <linux/acpi_iort.h>
--#include <linux/slab.h>
-+#include <linux/irq.h>
- #include <linux/irqdomain.h>
-+#include <linux/msi.h>
- #include <linux/of_irq.h>
-+#include <linux/pci.h>
+ #include "../pci.h"
  
- #include "pci.h"
+-#ifdef CONFIG_PCI_MSI
+-
+ static int pci_msi_enable = 1;
+ int pci_msi_ignore_mask;
  
+@@ -1479,40 +1477,3 @@ bool pci_dev_has_special_msi_domain(stru
+ }
+ 
+ #endif /* CONFIG_PCI_MSI_IRQ_DOMAIN */
+-#endif /* CONFIG_PCI_MSI */
+-
+-void pci_msi_init(struct pci_dev *dev)
+-{
+-	u16 ctrl;
+-
+-	/*
+-	 * Disable the MSI hardware to avoid screaming interrupts
+-	 * during boot.  This is the power on reset default so
+-	 * usually this should be a noop.
+-	 */
+-	dev->msi_cap = pci_find_capability(dev, PCI_CAP_ID_MSI);
+-	if (!dev->msi_cap)
+-		return;
+-
+-	pci_read_config_word(dev, dev->msi_cap + PCI_MSI_FLAGS, &ctrl);
+-	if (ctrl & PCI_MSI_FLAGS_ENABLE)
+-		pci_write_config_word(dev, dev->msi_cap + PCI_MSI_FLAGS,
+-				      ctrl & ~PCI_MSI_FLAGS_ENABLE);
+-
+-	if (!(ctrl & PCI_MSI_FLAGS_64BIT))
+-		dev->no_64bit_msi = 1;
+-}
+-
+-void pci_msix_init(struct pci_dev *dev)
+-{
+-	u16 ctrl;
+-
+-	dev->msix_cap = pci_find_capability(dev, PCI_CAP_ID_MSIX);
+-	if (!dev->msix_cap)
+-		return;
+-
+-	pci_read_config_word(dev, dev->msix_cap + PCI_MSIX_FLAGS, &ctrl);
+-	if (ctrl & PCI_MSIX_FLAGS_ENABLE)
+-		pci_write_config_word(dev, dev->msix_cap + PCI_MSIX_FLAGS,
+-				      ctrl & ~PCI_MSIX_FLAGS_ENABLE);
+-}
+--- /dev/null
++++ b/drivers/pci/msi/pcidev_msi.c
+@@ -0,0 +1,43 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * MSI[X} related functions which are available unconditionally.
++ */
++#include "../pci.h"
++
++/*
++ * Disable the MSI[X] hardware to avoid screaming interrupts during boot.
++ * This is the power on reset default so usually this should be a noop.
++ */
++
++void pci_msi_init(struct pci_dev *dev)
++{
++	u16 ctrl;
++
++	dev->msi_cap = pci_find_capability(dev, PCI_CAP_ID_MSI);
++	if (!dev->msi_cap)
++		return;
++
++	pci_read_config_word(dev, dev->msi_cap + PCI_MSI_FLAGS, &ctrl);
++	if (ctrl & PCI_MSI_FLAGS_ENABLE) {
++		pci_write_config_word(dev, dev->msi_cap + PCI_MSI_FLAGS,
++				      ctrl & ~PCI_MSI_FLAGS_ENABLE);
++	}
++
++	if (!(ctrl & PCI_MSI_FLAGS_64BIT))
++		dev->no_64bit_msi = 1;
++}
++
++void pci_msix_init(struct pci_dev *dev)
++{
++	u16 ctrl;
++
++	dev->msix_cap = pci_find_capability(dev, PCI_CAP_ID_MSIX);
++	if (!dev->msix_cap)
++		return;
++
++	pci_read_config_word(dev, dev->msix_cap + PCI_MSIX_FLAGS, &ctrl);
++	if (ctrl & PCI_MSIX_FLAGS_ENABLE) {
++		pci_write_config_word(dev, dev->msix_cap + PCI_MSIX_FLAGS,
++				      ctrl & ~PCI_MSIX_FLAGS_ENABLE);
++	}
++}
 
 
 -- 
