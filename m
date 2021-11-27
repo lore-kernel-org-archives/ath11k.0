@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C74FC433EF
-	for <ath11k@archiver.kernel.org>; Sat, 27 Nov 2021 01:19:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E42CC433F5
+	for <ath11k@archiver.kernel.org>; Sat, 27 Nov 2021 01:19:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:MIME-Version:References:Subject:Cc
 	:To:From:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-	List-Owner; bh=QA1mhyNHH8afOpoUP97418XJ7Ja82hAV1d0OCy018BQ=; b=xAukDjDw4WGp3Q
-	JjrRAdRVbDLuD1hQLbXrSyrS2N7qiu40zSwmQOYe1B1vZQhmzXbkru4iPb5hB+yZ7EblSoxW2UBPI
-	PidS4E2KM5YiFIB6U75uWCVOhwQY5SwbAf9jlITKLj3IV5EAK4awbzxh4jzmfNHdwqWH9Zm3VA/xb
-	X9InRso1qD8v81zRPm0TZIiwBDEOLZJyck575JYwRFa7Vus9RaGIxoptxf+wbo9RFyoE65vYed+7f
-	Ghc40u9z+0wQVoAya/cYPwxt3h1xQWdnBDsvCpouC2OaxFDkT81UKSETSkQVqnuYJ9hL+G2TRzNjg
-	spqATROXpIdVGtqX6lTA==;
+	List-Owner; bh=0KtiXuubh1gzmkqLjWaWKHm+HfOIuOpOU9FBRxvFvjo=; b=GZgnl7XLZStmAV
+	4KXK1XGbMMI2ySbqjubkAmroXl5no9j5g0xDgfTMcUNyXspbJVCBAFaNluNOsO4L5xG10A1F/crNF
+	bgicwkmpJ4cD6LsY3R71z42d1FjOV2ZzcD8oVONxNHVKAp8RQ0lCiDgsPov5qv3K5c1DU7fyEhJMd
+	g0zPO7bn6dvg3vO1rijxZoQH6x3z4Z+yVbqoBii5oo5QtiYylg0UqyW2rTGOiktsL0f8yRm6UO293
+	t1npdvAaXGdFgP+HoyMBWXgRnknTjo2yGfF6Fk2/Pru5lzgkuuDGDW97PHS8oj73qirF0gaLpxoEv
+	nbhKCE6DVG9/7RI53Mmg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mqmMq-00C7ij-Nx; Sat, 27 Nov 2021 01:19:04 +0000
-Received: from galois.linutronix.de ([193.142.43.55])
+	id 1mqmMs-00C7kM-9Q; Sat, 27 Nov 2021 01:19:06 +0000
+Received: from galois.linutronix.de ([2a0a:51c0:0:12e:550::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mqmMk-00C7Yk-Io
+ id 1mqmMk-00C7Ym-QS
  for ath11k@lists.infradead.org; Sat, 27 Nov 2021 01:19:01 +0000
-Message-ID: <20211126223824.914161382@linutronix.de>
+Message-ID: <20211126223824.855947162@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1637975937;
+ s=2020; t=1637975935;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- references:references; bh=HvFnLhSNQWkY7FyV6dqkmiDpk27hPnt+iT7sMKioVYY=;
- b=S54cLFbDUKq5nFn79t2f2+gRu/qeyK47uzVuwGG/moNnGbWQ4ZXxrGLGZV0feqpma6dc8c
- tOmoQ3dSStV4MaqLjWDZXKaaGyCwX7m94K4qqRySR0BCHLTvcjw3G47NJ26H+hsoAdCwsM
- cv+9tx7mmof5+QOUdVY/+1T0cNRVxXwhPtyxroAGiNse2fIX1QlrCzLeu3Jfd74tKTTftr
- gZ6ccrLlloBq2oYXiRYcEnr5LUlrJVQ+CWtNb1ATwviM4hfbaAFMfb8iZfk/cGVc9v3d10
- WklJDWGfj+DFOMLZ5ka3pAgMhNG2Zn0Csvy5rIU6a0UpiSNBS1+AmB0BnCVaZw==
+ references:references; bh=lhIUE61Y2ARmaAA3RG1h6L7zHDs4cKgQsOndAjR5STU=;
+ b=yoS0BgXw6njThHf+Kcu+0fhiWKN/AUUQyrhRnyP005hqMqVamE0iJS9Nymvj7WrdKiNPm9
+ 0mkqTv8z1FNG/R4t2Fb6c/SNDfW7kY+rGDzKX04havRRDKZzlJgNXPOOfjLye4/WFJKJfP
+ xcx9BSS5LKHxoE2JVqPQ+trXGuk8vUYn7URN+PrSM7NPKPbRnZx0hNWCcZeSi04qCE5Oel
+ Y9mNYAqJgytmNlLxc+cRQ+JOuNk/T63yzW8ubMu6NjUJqGwyZOKHP2t1qinSdVRhJwmcXC
+ H2q4r2C5Ug8hjBbQvmRgnBEn2dAl8pePx8S03VEkIoCUjdrHK0EN0Pjw6qJTBw==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1637975937;
+ s=2020e; t=1637975935;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- references:references; bh=HvFnLhSNQWkY7FyV6dqkmiDpk27hPnt+iT7sMKioVYY=;
- b=TDa4ILzwayLrgVPnZsKOtHgUePuy50wAzaCSVtRqj9WSzHaJh3r5YZZigx7IJQ0xPWCSIA
- LZRjcdcylCSboTCA==
+ references:references; bh=lhIUE61Y2ARmaAA3RG1h6L7zHDs4cKgQsOndAjR5STU=;
+ b=Jl/BK00H8LeQTqtN+ZwcnoSd8mGeJ2yjBlN3eDYCTgWb72N+GwWWz/rF3WttD4qNLnGKTb
+ /KKLjL7as1fFZ/DQ==
 From: Thomas Gleixner <tglx@linutronix.de>
 To: LKML <linux-kernel@vger.kernel.org>
 Cc: Bjorn Helgaas <helgaas@kernel.org>, Marc Zygnier <maz@kernel.org>,
@@ -61,13 +61,13 @@ Cc: Bjorn Helgaas <helgaas@kernel.org>, Marc Zygnier <maz@kernel.org>,
  linux-hyperv@vger.kernel.org, Juergen Gross <jgross@suse.com>,
  Christian Borntraeger <borntraeger@de.ibm.com>,
  Heiko Carstens <hca@linux.ibm.com>
-Subject: [patch 14/22] PCI/MSI: Make msix_update_entries() smarter
+Subject: [patch 13/22] PCI/MSI: Cleanup include zoo
 References: <20211126222700.862407977@linutronix.de>
 MIME-Version: 1.0
-Date: Sat, 27 Nov 2021 02:18:56 +0100 (CET)
+Date: Sat, 27 Nov 2021 02:18:54 +0100 (CET)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211126_171858_825175_27D05D34 
-X-CRM114-Status: UNSURE (   9.09  )
+X-CRM114-CacheID: sfid-20211126_171859_116100_A14B4980 
+X-CRM114-Status: UNSURE (   6.85  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -85,27 +85,42 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-No need to walk the descriptors and check for each one whether the entries
-pointer function argument is NULL. Do it once.
+Get rid of the pile of unneeded includes which accumulated over time.
 
 Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
 ---
- drivers/pci/msi.c |    4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/pci/msi.c |   16 ++++------------
+ 1 file changed, 4 insertions(+), 12 deletions(-)
 
 --- a/drivers/pci/msi.c
 +++ b/drivers/pci/msi.c
-@@ -642,8 +642,8 @@ static void msix_update_entries(struct p
- {
- 	struct msi_desc *entry;
+@@ -7,22 +7,14 @@
+  * Copyright (C) 2016 Christoph Hellwig.
+  */
  
--	for_each_pci_msi_entry(entry, dev) {
--		if (entries) {
-+	if (entries) {
-+		for_each_pci_msi_entry(entry, dev) {
- 			entries->vector = entry->irq;
- 			entries++;
- 		}
++#include <linux/acpi_iort.h>
+ #include <linux/err.h>
+-#include <linux/mm.h>
+-#include <linux/irq.h>
+-#include <linux/interrupt.h>
+ #include <linux/export.h>
+-#include <linux/ioport.h>
+-#include <linux/pci.h>
+-#include <linux/proc_fs.h>
+-#include <linux/msi.h>
+-#include <linux/smp.h>
+-#include <linux/errno.h>
+-#include <linux/io.h>
+-#include <linux/acpi_iort.h>
+-#include <linux/slab.h>
++#include <linux/irq.h>
+ #include <linux/irqdomain.h>
++#include <linux/msi.h>
+ #include <linux/of_irq.h>
++#include <linux/pci.h>
+ 
+ #include "pci.h"
+ 
 
 
 -- 
