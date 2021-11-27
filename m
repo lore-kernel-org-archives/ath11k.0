@@ -4,78 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3E27C433F5
-	for <ath11k@archiver.kernel.org>; Fri, 26 Nov 2021 15:55:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3AFCC433F5
+	for <ath11k@archiver.kernel.org>; Sat, 27 Nov 2021 01:18:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:Cc:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=FCjBv9cAwc2S5K2+Vr/RqI+9YIRWGjT3befKvfQgE5g=; b=peTULEtCL3c8zu1rt+V9oEQrE3
-	jUBFN9OEAALy41EaCxaBjOv+dqVJahKhtH/7IIAlOU4CoRyGy0jEG+2qLubezL7yShwJSjOCDbPjN
-	3hnKT9tBdidC556A+p5aqYnQcPJHj8X6lCiewgSu/F3e71CqzL0jhox3ELAZCkOJ/epqy5muxDJrx
-	1HyvjNj7+5ll1gkyDp2JQ3mWc7lunxqKqxhtcSqIpiBHaWXA4tZQSH4HEGuxf2trLx9sTO9bwWS1j
-	v+OsiEumaHV5FLgyrF8/HHxNdFDNANFRecaojYsPDxzcddODcSQnq7eBHfxqPxPYP+isiE6NUqvWI
-	1F4qWMog==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Date:MIME-Version:References:Subject:Cc
+	:To:From:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	List-Owner; bh=CbYdhIyV5I6Z8C7GfyktE8nFfRC+d0REQrBs7X9wyxg=; b=r2HU58sEqupDIL
+	oRf8bW0fx9zD8xETH2FUXunQ9yIuv6zTAA7eQj5ZtoxCH1UIhdkJhn7AzoMOFTuyYarIx/rAbFxxG
+	nH7bQO1i+JwyWUQH6eR2Kek1TqWJQXprRtOdl1x+di8JtdgTdh/aEfFC7pPHHdbyUTwp+oXeK8grT
+	m9PejnAGNd70NXy9oDSK6wpBjPGtxAsN0uyOGMz2K1sAbjdQI0uzxLEhFoxJev7nhk7WvZcKbcdmv
+	o7YyheIk/QPphxY36HDskDubISE8qWvAA/srZbDTCSw0Zntws2VvMi88fBDQ0oB8kzra7KNoSpF1z
+	2wROTU4NqhJDomf/PYAg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mqdZZ-00B2iI-H9; Fri, 26 Nov 2021 15:55:37 +0000
-Received: from mail-lf1-x12b.google.com ([2a00:1450:4864:20::12b])
+	id 1mqmMV-00C7Gx-Lx; Sat, 27 Nov 2021 01:18:43 +0000
+Received: from galois.linutronix.de ([193.142.43.55])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mqdZW-00B2hV-Tr
- for ath11k@lists.infradead.org; Fri, 26 Nov 2021 15:55:36 +0000
-Received: by mail-lf1-x12b.google.com with SMTP id c32so25385403lfv.4
- for <ath11k@lists.infradead.org>; Fri, 26 Nov 2021 07:55:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=rtiEsz0yu8XkSOFsF65caP+MO5fDQ7PkY/VasdH0S0o=;
- b=Fi1aYVUCTMJLuu5+pg4Z+8wqAfBoYNmWtjrYZS0QgM/JGIBfrvzMIqwhJqYRCS5fPT
- xoQST12f5YpZPEcW2Gf7FUmqjQxdajD6tNybnnbLbI3WHqInX18yFkRte7SJd2Rp0SQD
- CuNPM9hQU0karpHkl8lywX3oNO6jnv1HPXzIdDRQ8QCoyu34Y/JYwmXeUE+U8O4INSZX
- zMFutUg/lO1mf5wQoDUwkbLhsdWeGai4+exZJKvddxObCc1fIWVBWnk1PEQDQV1CIg0i
- 3BMVSwhuwZ7edIz/p+cAOragWpwFeiO9f4X/26QlD7n8+FA2/qM5qWqgy1wH2wm3tbs0
- CnpA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=rtiEsz0yu8XkSOFsF65caP+MO5fDQ7PkY/VasdH0S0o=;
- b=d4agEHlJ9l3A37CnZJp2tcX5nFYB0OAbOQ6SlFedd1oBGRGFs+/TdwVcHYjfhIUDmu
- gP1+nIssw98EJPeVuCRuTSXsSdcr48LsiMnUwPCHBalf6fFedmcyB1wGaJ9tMYmyRKjl
- FbJFJ3b2qpkCtHhEaYXu1a7C5jrIQqNgFSrNbGl5Sd8vqz0j7FfGMhGPv7OIq1IgR2Cs
- vuXp2JfBQWD1MJRyvyOHf1klqDWMv+DiFoFVAPZL1dOAHpjIB2nx+JxdxubX8vRyCFKi
- Cpn9V8/7B2PaPZPDyeTefKA+3CPnGnGl4rS4VsmEC+nAr4WtBnzWwXrlf9XUIXzzbjkG
- vhcA==
-X-Gm-Message-State: AOAM532xQAfPGeNfPkKjNHrIrns/uwtT+A4dXe5UVDYkiLWIw9pf8dY9
- QvXPyB+saAHLiK0DIXUfPhA=
-X-Google-Smtp-Source: ABdhPJyO8k5H1lFvYmQIrTzseXJxSijGEvKCtoekt41+bjazqWng+y92tvFwzU+WyS/2IzqJsrubjw==
-X-Received: by 2002:a05:6512:3e2a:: with SMTP id
- i42mr30673512lfv.77.1637942132086; 
- Fri, 26 Nov 2021 07:55:32 -0800 (PST)
-Received: from [192.168.8.100] ([176.59.55.141])
- by smtp.gmail.com with ESMTPSA id z23sm539088ljn.23.2021.11.26.07.55.30
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 26 Nov 2021 07:55:31 -0800 (PST)
-Subject: Re: ath11k: QCN9074: Incompatible board-2.bin for 6GHz
-To: John Crispin <john@phrozen.org>, Sven Eckelmann <sven@narfation.org>,
- ath11k@lists.infradead.org, Lavanya Suresh <lavaks@codeaurora.org>
-Cc: kvalo@codeaurora.org
-References: <2091899.pNsEtq2SQc@ripper>
- <4c778b39-3c32-2b7c-9f91-4aba49fbe4ca@phrozen.org>
-From: Mark Herbert <mark.herbert42@gmail.com>
-Message-ID: <45a609a1-60ce-4f14-3008-3daf8be75247@gmail.com>
-Date: Fri, 26 Nov 2021 18:55:29 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+ id 1mqmMT-00C7Fs-6r
+ for ath11k@lists.infradead.org; Sat, 27 Nov 2021 01:18:42 +0000
+Message-ID: <20211126223824.204004845@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1637975918;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ references:references; bh=yyhtvslqP4HLRieVFfAZFU9HV4/e0iOdDJgsQQb4EZc=;
+ b=MSnZxqs36ngrl9esIIYADuLZ5UnosIcrhDvAVsnJuf2st6ZzR4E0B8BK0WhsczGF2aQGRB
+ 5xqOQF7gKjLg5HtkIGZlL6qPaoikrc//4NAmvgkfntQGveJ1vh93/nybm8ts4T5eKLbe2a
+ FLC989xEGaNa67pn5Vg0kHFoSDs27rxgxD2Rnj0isODzxt0/Sbu19k1Ip1s3c4baRK4jif
+ 2Yl57PGritygSsdkg6F0Zs/thARyj0yJ2lkp6xOmLTci5ES3K6dmvTb8S/jWtOyJovQflo
+ 8tWJ8Gc9G8/Jsut61YVS4TsADPfWGLjLS9cFYLeUo18ZyEvWefuwbblT+T30NQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1637975918;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ references:references; bh=yyhtvslqP4HLRieVFfAZFU9HV4/e0iOdDJgsQQb4EZc=;
+ b=pxjlR8C9JsyjjdEic60Abn3AE0T4g0tEBV+QqXtyNfpm9QMaaFULGX1MUnX49YqwF0yZy0
+ u2vfAxS294gl3eBw==
+From: Thomas Gleixner <tglx@linutronix.de>
+To: LKML <linux-kernel@vger.kernel.org>
+Cc: Bjorn Helgaas <helgaas@kernel.org>, Marc Zygnier <maz@kernel.org>,
+ Alex Williamson <alex.williamson@redhat.com>,
+ Kevin Tian <kevin.tian@intel.com>, Jason Gunthorpe <jgg@nvidia.com>,
+ Megha Dey <megha.dey@intel.com>, Ashok Raj <ashok.raj@intel.com>,
+ linux-pci@vger.kernel.org, Michael Ellerman <mpe@ellerman.id.au>,
+ Paul Mackerras <paulus@samba.org>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+ linuxppc-dev@lists.ozlabs.org,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ linux-mips@vger.kernel.org,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ sparclinux@vger.kernel.org, x86@kernel.org, xen-devel@lists.xenproject.org,
+ ath11k@lists.infradead.org, Wei Liu <wei.liu@kernel.org>,
+ linux-hyperv@vger.kernel.org, Juergen Gross <jgross@suse.com>,
+ Christian Borntraeger <borntraeger@de.ibm.com>,
+ Heiko Carstens <hca@linux.ibm.com>
+Subject: [patch 02/22] PCI/MSI: Fix pci_irq_vector()/pci_irq_get_attinity()
+References: <20211126222700.862407977@linutronix.de>
 MIME-Version: 1.0
-In-Reply-To: <4c778b39-3c32-2b7c-9f91-4aba49fbe4ca@phrozen.org>
-Content-Language: en-US
+Date: Sat, 27 Nov 2021 02:18:37 +0100 (CET)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211126_075534_990330_0CE8A49E 
-X-CRM114-Status: GOOD (  14.83  )
+X-CRM114-CacheID: sfid-20211126_171841_421648_A21E5197 
+X-CRM114-Status: GOOD (  14.82  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,27 +79,92 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-V2lsbCB0aGVyZSBiZSBhIG5ldyBGVyBmb3IgUUNBNjM5MD/CoCBJdCBzZWVtcyB0byBiZSB0aGUg
-bW9zdCBvdXRkYXRlZCBpbiAKS2FsbGUncyByZXBvIDooCgpPbiAyNi4xMS4yMDIxIDE3OjU0LCBK
-b2huIENyaXNwaW4gd3JvdGU6Cj4KPgo+IE9uIDI2LjExLjIxIDExOjUyLCBTdmVuIEVja2VsbWFu
-biB3cm90ZToKPj4gSSBmb3VuZCBvdXQgdGhhdCB0aGlzIGlzIGFjdHVhbGx5IGNhdXNlZCBieSB0
-aGUgQkRGLiBJZiBJJ3ZlIAo+PiBleHRyYWN0ZWQgdGhlCj4+IGJvYXJkLmJpbiBmcm9tIHRoZSBU
-SVAgYm9hcmQtMi5iaW4gWzNdICh3aGljaCBzZWVtcyB0byBjb21lIGZyb20gdGhlIFFDQQo+PiBB
-VEguMTEuNCBDUyByZWxlYXNlKS4gV2l0aCB0aGlzIHZlcnNpb24sIGl0IHNlZW1zIHRvIHdvcmsg
-ZmluZS4gSSAKPj4gaGF2ZW4ndCB5ZXQKPj4gZm91bmQgb3V0IHdoYXQgdGhlIHJlbGV2YW50IGNo
-YW5nZSBpcyAtIGJ1dCBpZiBzb21lb25lIGhhcyBoaW50cyB0aGVuIAo+PiB0aGlzCj4+IHdvdWxk
-IGNvdWxkIGJlIGludGVyZXN0aW5nIGZvciBvdGhlciBkZXZpY2VzIHdoaWNoIHNob3VsZCBiZSBh
-ZGRlZCB0byAKPj4gdGhpbmdzCj4+IGxpa2UgT3BlbldydC4KPgo+IEthbGxlJ3MgcmVwbyBpcyBv
-dXRkYXRlZCBieSBzZXZlcmFsIHJlbGVhc2VzLiBUaGlzIGlzIHRoZSBuZXcgdXBzdHJlYW0gCj4g
-cmVwby4KPgo+IHRoZSBlcnJvciB5b3UgYXJlIHNlZWluZyBpcyBhbiBBQkkgYnJlYWthZ2UgYmV0
-d2VlbiBwcmUvcG9zdCBzZnAxMS40IAo+IGZ3L2JkZi4gdXNpbmcgYSBmdyA+PSAyLjUueCByZXF1
-aXJlcyBhIEJERiBnZW5lcmF0ZWQgd2l0aCAvIGRlcnZpY2VkIAo+IGZyb20gPj0gc2ZwMTEuNAo+
-Cj4gdGhlIEJERnMgaW5zaWRlIHRoZSBUSVAgcmVwbyBjb21lIGZyb20gaGVyZQo+IC0tPiBodHRw
-czovL2dpdGh1Yi5jb20vcXVpYy91cHN0cmVhbS13aWZpLWZ3Lwo+Cj4gwqDCoMKgwqBKb2huCj4K
-Ci0tIAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6
-Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vYXRoMTFrCg==
+pci_irq_vector() and pci_irq_get_affinity() use the list position to find the
+MSI-X descriptor at a given index. That's correct for the normal case where
+the entry number is the same as the list position.
+
+But it's wrong for cases where MSI-X was allocated with an entries array
+describing sparse entry numbers into the hardware message descriptor
+table. That's inconsistent at best.
+
+Make it always check the entry number because that's what the zero base
+index really means. This change won't break existing users which use a
+sparse entries array for allocation because these users retrieve the Linux
+interrupt number from the entries array after allocation and none of them
+uses pci_irq_vector() or pci_irq_get_affinity().
+
+Fixes: aff171641d18 ("PCI: Provide sensible IRQ vector alloc/free routines")
+Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
+---
+ drivers/pci/msi.c |   26 ++++++++++++++++++--------
+ 1 file changed, 18 insertions(+), 8 deletions(-)
+
+--- a/drivers/pci/msi.c
++++ b/drivers/pci/msi.c
+@@ -1187,19 +1187,24 @@ EXPORT_SYMBOL(pci_free_irq_vectors);
+ 
+ /**
+  * pci_irq_vector - return Linux IRQ number of a device vector
+- * @dev: PCI device to operate on
+- * @nr: device-relative interrupt vector index (0-based).
++ * @dev:	PCI device to operate on
++ * @nr:		Interrupt vector index (0-based)
++ *
++ * @nr has the following meanings depending on the interrupt mode:
++ *   MSI-X:	The index in the MSI-X vector table
++ *   MSI:	The index of the enabled MSI vectors
++ *   INTx:	Must be 0
++ *
++ * Return: The Linux interrupt number or -EINVAl if @nr is out of range.
+  */
+ int pci_irq_vector(struct pci_dev *dev, unsigned int nr)
+ {
+ 	if (dev->msix_enabled) {
+ 		struct msi_desc *entry;
+-		int i = 0;
+ 
+ 		for_each_pci_msi_entry(entry, dev) {
+-			if (i == nr)
++			if (entry->msi_attrib.entry_nr == nr)
+ 				return entry->irq;
+-			i++;
+ 		}
+ 		WARN_ON_ONCE(1);
+ 		return -EINVAL;
+@@ -1223,17 +1228,22 @@ EXPORT_SYMBOL(pci_irq_vector);
+  * pci_irq_get_affinity - return the affinity of a particular MSI vector
+  * @dev:	PCI device to operate on
+  * @nr:		device-relative interrupt vector index (0-based).
++ *
++ * @nr has the following meanings depending on the interrupt mode:
++ *   MSI-X:	The index in the MSI-X vector table
++ *   MSI:	The index of the enabled MSI vectors
++ *   INTx:	Must be 0
++ *
++ * Return: A cpumask pointer or NULL if @nr is out of range
+  */
+ const struct cpumask *pci_irq_get_affinity(struct pci_dev *dev, int nr)
+ {
+ 	if (dev->msix_enabled) {
+ 		struct msi_desc *entry;
+-		int i = 0;
+ 
+ 		for_each_pci_msi_entry(entry, dev) {
+-			if (i == nr)
++			if (entry->msi_attrib.entry_nr == nr)
+ 				return &entry->affinity->mask;
+-			i++;
+ 		}
+ 		WARN_ON_ONCE(1);
+ 		return NULL;
+
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
