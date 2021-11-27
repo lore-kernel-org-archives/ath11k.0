@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61624C433EF
-	for <ath11k@archiver.kernel.org>; Sat, 27 Nov 2021 01:20:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2045DC433EF
+	for <ath11k@archiver.kernel.org>; Sat, 27 Nov 2021 01:20:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:MIME-Version:References:Subject:Cc
 	:To:From:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-	List-Owner; bh=sgv91BfLwzbbf8c719gZfnCOf8e/q5kUP/bbamciL0M=; b=MqslW5Mq8sKPUU
-	gHBkW8SDRv5nMCxXNiYmoVgj1VSAFcT3e6Ls1di+4oskaT5ob/y1KkcafnDjiVVW3xa5T1Py1+06z
-	A/JUZc/PNdGNok7AsUWunFsDRUQYOwZzS8j7LcWsQH2bKX/ueMDOfcqRlPE/O5nEKugCFB+RP+RoA
-	b96xS83riYNOcTAjg5en83TjHHNxY/wU7/+pbKc+RR4FkhMkKnKpZ/4n4WWZnpyTUG4uJPuypCX7C
-	IMji11iwnYfyMwSgPZRK6/sFMbPmXrVuul2S25s+B1VAiipmryboIc53zJnLTJrcq9AbvkGB34z2i
-	F3MKMO8Mv172MAKKuz4A==;
+	List-Owner; bh=Uh2rUQngkacJZFrIFUNDwGaT5xw33CVU6hPuYp11yDA=; b=CMtrEuphPjD827
+	2ydfvL4tlNFtCijVa2E+4Wlv9hFKO3oyTZlV8RSWesGlJlkHqvkUH0+1PbIspm7eSaNz6AfLazbJA
+	qhgUu0Gq2OivtTed4u5FVwWxAskhsdbaUg2yOkUVJwuybijVvasejeZVXGlp4C6U5ElOcsBbN+dHi
+	CWNSoTyrrvfCuq2mz4isj70INrF7sjvrvcSeehEpyW7NVCDudHI82WPcXoKR1do2j6kQfowzOkVCI
+	ptMnBBRDsC3YQLWXMpCvzJOINyW5JbRwhdqecXXzpMeijogiPYBFNMufiepRETSWIO2Kxy+T+ULEw
+	e+THawhY1y7HR/z1e/QA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mqmOA-00C9KA-F7; Sat, 27 Nov 2021 01:20:26 +0000
+	id 1mqmOF-00C9RK-Nk; Sat, 27 Nov 2021 01:20:31 +0000
 Received: from galois.linutronix.de ([193.142.43.55])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mqmNZ-00C8gZ-H5
- for ath11k@lists.infradead.org; Sat, 27 Nov 2021 01:19:52 +0000
-Message-ID: <20211126223825.093887718@linutronix.de>
+ id 1mqmNc-00C8jI-9B
+ for ath11k@lists.infradead.org; Sat, 27 Nov 2021 01:19:54 +0000
+Message-ID: <20211126223825.205369150@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1637975987;
+ s=2020; t=1637975990;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- references:references; bh=Fm5t3j//2ZJWIAwQC/lUTYq1h7igaXJ6yKKmISA8BnE=;
- b=XewWMxW5OXAStB0a9VBLtnJFYMcyg2xjonhAMfou6065fbYQjfHi8Lit1HZBQyqQR/DwAG
- AwiCmSKB1q6Lr6nKj7wU20vZFduCOoVx0VbByG6OY0h00lNOZQhxvSwMuWdcFJXAmB8cfg
- +7/g89QG+yr4AVj2jdOh6hqABN0N3084KlzXsDKwc0qPDNpytYYmYCfIk9qNoboQ87IiZk
- sbLzMNeDCVjvhFz+QWxGbYx5STnHWlXZxQAeMopOaJhHalb7kQdDHgdwZOcrsif7RgT5TZ
- B56dtCmWetc6Z8ZH8LlG56HbbscyTZghWaS14wSjTSdZ9jG1gcJlz4dBE/gGEw==
+ references:references; bh=nFqFw10FNB3YOwALwDw82lvlHKuNVaj2KNOVAS+AX+k=;
+ b=XxApkOzom8INqALAoCZXnrM4Gnfq0P5GFuHbGcbsFfXChmsBjBRR8Zre+TuXWv4z5oHF/D
+ 27C5TK24a23MOmJBeYVaW9cCplXJLITNdKg10JEBz8oTehDPyyfs3FciGiHEms5WL8JDag
+ 52S+Frofyun05kxZ+YWSxvjUyOIel0FxMfLXiEs3TDVLbwr55wPMh/3rPSf2nT/i2JzwLL
+ zftakULTHTxPert40kEEFdjOny39idUZcd25undSrm5WMAU87UNDGUGbSd6C5shoMJVpZk
+ a/+xgaOEsYDt53mm6tVNNHcfadUk2EMQ02Z8BgKKcXGB4JY6BzIjRA3g4H6V/A==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1637975987;
+ s=2020e; t=1637975990;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- references:references; bh=Fm5t3j//2ZJWIAwQC/lUTYq1h7igaXJ6yKKmISA8BnE=;
- b=2kvzmjSCRTIwQTLiZ9EP0jBkv9lEpqmZpcE4KzPVxgkd40dev6IU63cDMgceYYfHXEdk3z
- cvOO1KoLp1BLPQBg==
+ references:references; bh=nFqFw10FNB3YOwALwDw82lvlHKuNVaj2KNOVAS+AX+k=;
+ b=Vi13o2zcshu0Zxixi8TKOXGvkRDXe53XxUuH+PoNwGcyMUye1tI4Lhz4L+Jh6z/xJGTC6x
+ SgID9tLyCfbnS1CQ==
 From: Thomas Gleixner <tglx@linutronix.de>
 To: LKML <linux-kernel@vger.kernel.org>
 Cc: Bjorn Helgaas <helgaas@kernel.org>, Marc Zygnier <maz@kernel.org>,
@@ -61,13 +61,13 @@ Cc: Bjorn Helgaas <helgaas@kernel.org>, Marc Zygnier <maz@kernel.org>,
  linux-hyperv@vger.kernel.org, Juergen Gross <jgross@suse.com>,
  Christian Borntraeger <borntraeger@de.ibm.com>,
  Heiko Carstens <hca@linux.ibm.com>
-Subject: [patch 17/22] PCI/MSI: Split out !IRQDOMAIN code
+Subject: [patch 19/22] PCI/MSI: Sanitize MSIX table map handling
 References: <20211126222700.862407977@linutronix.de>
 MIME-Version: 1.0
-Date: Sat, 27 Nov 2021 02:19:47 +0100 (CET)
+Date: Sat, 27 Nov 2021 02:19:50 +0100 (CET)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211126_171949_780348_AB580EA4 
-X-CRM114-Status: GOOD (  15.20  )
+X-CRM114-CacheID: sfid-20211126_171952_494850_5F008F78 
+X-CRM114-Status: GOOD (  11.16  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,137 +83,80 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
-Message-ID: <20211127011947.4Qk-VeEmKNpZqty5fLPJb_lo8pIEzBMU0T6F_3JNLAQ@z>
+Message-ID: <20211127011950.zTU3BOeBr7rcCpSTglDdJcaaUEEgg4dMxj16JNVFTGU@z>
 
-Split out the non irqdomain code into its own file.
+Unmapping the MSIX base mapping in the loops which allocate/free MSI
+desciptors is daft and in the way of allowing runtime expansion of MSI-X
+descriptors.
+
+Store the mapping in struct pci_dev and free it after freeing the MSI-X
+descriptors.
 
 Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
 ---
- drivers/pci/msi/Makefile |    5 ++--
- drivers/pci/msi/legacy.c |   51 +++++++++++++++++++++++++++++++++++++++++++++++
- drivers/pci/msi/msi.c    |   46 ------------------------------------------
- 3 files changed, 54 insertions(+), 48 deletions(-)
+ drivers/pci/msi/msi.c |   18 ++++++++----------
+ include/linux/pci.h   |    1 +
+ 2 files changed, 9 insertions(+), 10 deletions(-)
 
---- a/drivers/pci/msi/Makefile
-+++ b/drivers/pci/msi/Makefile
-@@ -1,5 +1,6 @@
- # SPDX-License-Identifier: GPL-2.0
- #
- # Makefile for the PCI/MSI
--obj-$(CONFIG_PCI)		+= pcidev_msi.o
--obj-$(CONFIG_PCI_MSI)		+= msi.o
-+obj-$(CONFIG_PCI)			+= pcidev_msi.o
-+obj-$(CONFIG_PCI_MSI)			+= msi.o
-+obj-$(CONFIG_PCI_MSI_ARCH_FALLBACKS)	+= legacy.o
---- /dev/null
-+++ b/drivers/pci/msi/legacy.c
-@@ -0,0 +1,51 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * PCI Message Signaled Interrupt (MSI).
-+ *
-+ * Legacy architecture specific setup and teardown mechanism.
-+ */
-+#include "msi.h"
-+
-+/* Arch hooks */
-+int __weak arch_setup_msi_irq(struct pci_dev *dev, struct msi_desc *desc)
-+{
-+	return -EINVAL;
-+}
-+
-+void __weak arch_teardown_msi_irq(unsigned int irq)
-+{
-+}
-+
-+int __weak arch_setup_msi_irqs(struct pci_dev *dev, int nvec, int type)
-+{
-+	struct msi_desc *desc;
-+	int ret;
-+
-+	/*
-+	 * If an architecture wants to support multiple MSI, it needs to
-+	 * override arch_setup_msi_irqs()
-+	 */
-+	if (type == PCI_CAP_ID_MSI && nvec > 1)
-+		return 1;
-+
-+	for_each_pci_msi_entry(desc, dev) {
-+		ret = arch_setup_msi_irq(dev, desc);
-+		if (ret)
-+			return ret < 0 ? ret : -ENOSPC;
-+	}
-+
-+	return 0;
-+}
-+
-+void __weak arch_teardown_msi_irqs(struct pci_dev *dev)
-+{
-+	struct msi_desc *desc;
-+	int i;
-+
-+	for_each_pci_msi_entry(desc, dev) {
-+		if (desc->irq) {
-+			for (i = 0; i < entry->nvec_used; i++)
-+				arch_teardown_msi_irq(desc->irq + i);
-+		}
-+	}
-+}
 --- a/drivers/pci/msi/msi.c
 +++ b/drivers/pci/msi/msi.c
-@@ -50,52 +50,6 @@ static void pci_msi_teardown_msi_irqs(st
- #define pci_msi_teardown_msi_irqs	arch_teardown_msi_irqs
- #endif
+@@ -241,14 +241,14 @@ static void free_msi_irqs(struct pci_dev
+ 	pci_msi_teardown_msi_irqs(dev);
  
--#ifdef CONFIG_PCI_MSI_ARCH_FALLBACKS
--/* Arch hooks */
--int __weak arch_setup_msi_irq(struct pci_dev *dev, struct msi_desc *desc)
--{
--	return -EINVAL;
--}
+ 	list_for_each_entry_safe(entry, tmp, msi_list, list) {
+-		if (entry->pci.msi_attrib.is_msix) {
+-			if (list_is_last(&entry->list, msi_list))
+-				iounmap(entry->pci.mask_base);
+-		}
 -
--void __weak arch_teardown_msi_irq(unsigned int irq)
--{
--}
--
--int __weak arch_setup_msi_irqs(struct pci_dev *dev, int nvec, int type)
--{
--	struct msi_desc *entry;
--	int ret;
--
--	/*
--	 * If an architecture wants to support multiple MSI, it needs to
--	 * override arch_setup_msi_irqs()
--	 */
--	if (type == PCI_CAP_ID_MSI && nvec > 1)
--		return 1;
--
--	for_each_pci_msi_entry(entry, dev) {
--		ret = arch_setup_msi_irq(dev, entry);
--		if (ret < 0)
--			return ret;
--		if (ret > 0)
--			return -ENOSPC;
--	}
--
--	return 0;
--}
--
--void __weak arch_teardown_msi_irqs(struct pci_dev *dev)
--{
--	int i;
--	struct msi_desc *entry;
--
--	for_each_pci_msi_entry(entry, dev)
--		if (entry->irq)
--			for (i = 0; i < entry->nvec_used; i++)
--				arch_teardown_msi_irq(entry->irq + i);
--}
--#endif /* CONFIG_PCI_MSI_ARCH_FALLBACKS */
--
- /*
-  * PCI 2.3 does not specify mask bits for each MSI interrupt.  Attempting to
-  * mask all MSI interrupts by clearing the MSI enable bit does not work
+ 		list_del(&entry->list);
+ 		free_msi_entry(entry);
+ 	}
++
++	if (dev->msix_base) {
++		iounmap(dev->msix_base);
++		dev->msix_base = NULL;
++	}
+ }
+ 
+ static void pci_intx_for_msi(struct pci_dev *dev, int enable)
+@@ -501,10 +501,6 @@ static int msix_setup_entries(struct pci
+ 	for (i = 0, curmsk = masks; i < nvec; i++) {
+ 		entry = alloc_msi_entry(&dev->dev, 1, curmsk);
+ 		if (!entry) {
+-			if (!i)
+-				iounmap(base);
+-			else
+-				free_msi_irqs(dev);
+ 			/* No enough memory. Don't try again */
+ 			ret = -ENOMEM;
+ 			goto out;
+@@ -602,12 +598,14 @@ static int msix_capability_init(struct p
+ 		goto out_disable;
+ 	}
+ 
++	dev->msix_base = base;
++
+ 	/* Ensure that all table entries are masked. */
+ 	msix_mask_all(base, tsize);
+ 
+ 	ret = msix_setup_entries(dev, base, entries, nvec, affd);
+ 	if (ret)
+-		goto out_disable;
++		goto out_free;
+ 
+ 	ret = pci_msi_setup_msi_irqs(dev, nvec, PCI_CAP_ID_MSIX);
+ 	if (ret)
+--- a/include/linux/pci.h
++++ b/include/linux/pci.h
+@@ -473,6 +473,7 @@ struct pci_dev {
+ 	u8		ptm_granularity;
+ #endif
+ #ifdef CONFIG_PCI_MSI
++	void __iomem	*msix_base;
+ 	const struct attribute_group **msi_irq_groups;
+ #endif
+ 	struct pci_vpd	vpd;
 
 
 -- 
