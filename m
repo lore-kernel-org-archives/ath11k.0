@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3AFCC433F5
-	for <ath11k@archiver.kernel.org>; Sat, 27 Nov 2021 01:18:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 275CBC433FE
+	for <ath11k@archiver.kernel.org>; Sat, 27 Nov 2021 01:18:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:MIME-Version:References:Subject:Cc
 	:To:From:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-	List-Owner; bh=CbYdhIyV5I6Z8C7GfyktE8nFfRC+d0REQrBs7X9wyxg=; b=r2HU58sEqupDIL
-	oRf8bW0fx9zD8xETH2FUXunQ9yIuv6zTAA7eQj5ZtoxCH1UIhdkJhn7AzoMOFTuyYarIx/rAbFxxG
-	nH7bQO1i+JwyWUQH6eR2Kek1TqWJQXprRtOdl1x+di8JtdgTdh/aEfFC7pPHHdbyUTwp+oXeK8grT
-	m9PejnAGNd70NXy9oDSK6wpBjPGtxAsN0uyOGMz2K1sAbjdQI0uzxLEhFoxJev7nhk7WvZcKbcdmv
-	o7YyheIk/QPphxY36HDskDubISE8qWvAA/srZbDTCSw0Zntws2VvMi88fBDQ0oB8kzra7KNoSpF1z
-	2wROTU4NqhJDomf/PYAg==;
+	List-Owner; bh=xlqPpLanh5vvxKR2ZfUXZUTker4Sy+8H/1Q/SehXILs=; b=cC1tuxGJOF1+wu
+	0tjdOPrTRBq6fKqzLo/LiIJqVIUied+TmVTIRz2SLbMnQBCg1hbyFxrMTxq55Sp6id/aM/JUrd8Bi
+	BaTBn5pOp62wtZqD4GZHTeVLiUGR0s6IwbNGE8hdkw8xqhfVH2L+mfnV/1SJzw0Vwkm/OK7fUKbqB
+	EOWj2QBLyApnn4TWTDo3dy/QAkOfdSy9Slpb8oO8nkFnhjOERlvpg1fp0xfYRHXrwuV9JYcL5OyV2
+	p7cG9AhcG4EVfYFomzYoSKxNE+VzFwpYXgzCFAxyED5ZYWh3BIaqL7z3jTniZG9WnQwMtCyOBfCA9
+	XsWhHSTKXstNJR1ci2oA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mqmMV-00C7Gx-Lx; Sat, 27 Nov 2021 01:18:43 +0000
-Received: from galois.linutronix.de ([193.142.43.55])
+	id 1mqmMW-00C7H4-1M; Sat, 27 Nov 2021 01:18:44 +0000
+Received: from galois.linutronix.de ([2a0a:51c0:0:12e:550::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mqmMT-00C7Fs-6r
+ id 1mqmMT-00C7Fu-3K
  for ath11k@lists.infradead.org; Sat, 27 Nov 2021 01:18:42 +0000
-Message-ID: <20211126223824.204004845@linutronix.de>
+Message-ID: <20211126223824.263656943@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1637975918;
+ s=2020; t=1637975919;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- references:references; bh=yyhtvslqP4HLRieVFfAZFU9HV4/e0iOdDJgsQQb4EZc=;
- b=MSnZxqs36ngrl9esIIYADuLZ5UnosIcrhDvAVsnJuf2st6ZzR4E0B8BK0WhsczGF2aQGRB
- 5xqOQF7gKjLg5HtkIGZlL6qPaoikrc//4NAmvgkfntQGveJ1vh93/nybm8ts4T5eKLbe2a
- FLC989xEGaNa67pn5Vg0kHFoSDs27rxgxD2Rnj0isODzxt0/Sbu19k1Ip1s3c4baRK4jif
- 2Yl57PGritygSsdkg6F0Zs/thARyj0yJ2lkp6xOmLTci5ES3K6dmvTb8S/jWtOyJovQflo
- 8tWJ8Gc9G8/Jsut61YVS4TsADPfWGLjLS9cFYLeUo18ZyEvWefuwbblT+T30NQ==
+ references:references; bh=7H7+YC/Q3X3DUjW7OFUmpmZxFX8YbEmXXunUPCxWTOo=;
+ b=Q/BWnFgpqlk/Xfzvk8Enumd9Tv9t7JEEp0DHi4rSBSx9/fQFTFOMhfhrRh+HvFyTryJZg6
+ 2H6cR7D0a+EEDQ8oQg0OU7d/nbqiZhQyNFyo4bhXjmQLINx5jNITNbKUROyMi6k5AylsFk
+ GuHYww9m3gcDcaQkDt89XO76miQ2YMD954fX/YwE6Q6bHL3HhsHaFps2ULrwJQWThfnBPG
+ 3yUvPsmNh5MonSc8cW1Dzr6keAHLf3o1bfK6y28a4Y/W5AQZNjHBs9tfcg+nJDTYJSjRF0
+ mmE0bpwDggg4+Lb75ngYAkUXqkaFYQLfA0sUdXi6vjtaa9R6ZCz5sQ03QYCLSg==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1637975918;
+ s=2020e; t=1637975919;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- references:references; bh=yyhtvslqP4HLRieVFfAZFU9HV4/e0iOdDJgsQQb4EZc=;
- b=pxjlR8C9JsyjjdEic60Abn3AE0T4g0tEBV+QqXtyNfpm9QMaaFULGX1MUnX49YqwF0yZy0
- u2vfAxS294gl3eBw==
+ references:references; bh=7H7+YC/Q3X3DUjW7OFUmpmZxFX8YbEmXXunUPCxWTOo=;
+ b=lOPEaRrjbm3G3ojV4Pxdg64aaahnAv+fh0zcGZd7hniH2wr2smlEjYaa9TlnTbAnZ42z1s
+ Y9bOJ0tKC/T204Cg==
 From: Thomas Gleixner <tglx@linutronix.de>
 To: LKML <linux-kernel@vger.kernel.org>
 Cc: Bjorn Helgaas <helgaas@kernel.org>, Marc Zygnier <maz@kernel.org>,
@@ -61,13 +61,14 @@ Cc: Bjorn Helgaas <helgaas@kernel.org>, Marc Zygnier <maz@kernel.org>,
  linux-hyperv@vger.kernel.org, Juergen Gross <jgross@suse.com>,
  Christian Borntraeger <borntraeger@de.ibm.com>,
  Heiko Carstens <hca@linux.ibm.com>
-Subject: [patch 02/22] PCI/MSI: Fix pci_irq_vector()/pci_irq_get_attinity()
+Subject: [patch 03/22] genirq/msi: Guard sysfs code
 References: <20211126222700.862407977@linutronix.de>
 MIME-Version: 1.0
-Date: Sat, 27 Nov 2021 02:18:37 +0100 (CET)
+Date: Sat, 27 Nov 2021 02:18:39 +0100 (CET)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211126_171841_421648_A21E5197 
-X-CRM114-Status: GOOD (  14.82  )
+X-CRM114-CacheID: sfid-20211126_171841_519228_3962DD74 
+X-CRM114-Status: UNSURE (   6.99  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,84 +85,54 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-pci_irq_vector() and pci_irq_get_affinity() use the list position to find the
-MSI-X descriptor at a given index. That's correct for the normal case where
-the entry number is the same as the list position.
+No point in building unused code when CONFIG_SYSFS=n.
 
-But it's wrong for cases where MSI-X was allocated with an entries array
-describing sparse entry numbers into the hardware message descriptor
-table. That's inconsistent at best.
-
-Make it always check the entry number because that's what the zero base
-index really means. This change won't break existing users which use a
-sparse entries array for allocation because these users retrieve the Linux
-interrupt number from the entries array after allocation and none of them
-uses pci_irq_vector() or pci_irq_get_affinity().
-
-Fixes: aff171641d18 ("PCI: Provide sensible IRQ vector alloc/free routines")
 Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
 ---
- drivers/pci/msi.c |   26 ++++++++++++++++++--------
- 1 file changed, 18 insertions(+), 8 deletions(-)
+ include/linux/msi.h |   10 ++++++++++
+ kernel/irq/msi.c    |    2 ++
+ 2 files changed, 12 insertions(+)
 
---- a/drivers/pci/msi.c
-+++ b/drivers/pci/msi.c
-@@ -1187,19 +1187,24 @@ EXPORT_SYMBOL(pci_free_irq_vectors);
+--- a/include/linux/msi.h
++++ b/include/linux/msi.h
+@@ -239,9 +239,19 @@ void __pci_write_msi_msg(struct msi_desc
+ void pci_msi_mask_irq(struct irq_data *data);
+ void pci_msi_unmask_irq(struct irq_data *data);
  
- /**
-  * pci_irq_vector - return Linux IRQ number of a device vector
-- * @dev: PCI device to operate on
-- * @nr: device-relative interrupt vector index (0-based).
-+ * @dev:	PCI device to operate on
-+ * @nr:		Interrupt vector index (0-based)
-+ *
-+ * @nr has the following meanings depending on the interrupt mode:
-+ *   MSI-X:	The index in the MSI-X vector table
-+ *   MSI:	The index of the enabled MSI vectors
-+ *   INTx:	Must be 0
-+ *
-+ * Return: The Linux interrupt number or -EINVAl if @nr is out of range.
-  */
- int pci_irq_vector(struct pci_dev *dev, unsigned int nr)
++#ifdef CONFIG_SYSFS
+ const struct attribute_group **msi_populate_sysfs(struct device *dev);
+ void msi_destroy_sysfs(struct device *dev,
+ 		       const struct attribute_group **msi_irq_groups);
++#else
++static inline const struct attribute_group **msi_populate_sysfs(struct device *dev)
++{
++	return NULL;
++}
++static inline void msi_destroy_sysfs(struct device *dev, const struct attribute_group **msi_irq_groups)
++{
++}
++#endif
+ 
+ /*
+  * The arch hooks to setup up msi irqs. Default functions are implemented
+--- a/kernel/irq/msi.c
++++ b/kernel/irq/msi.c
+@@ -72,6 +72,7 @@ void get_cached_msi_msg(unsigned int irq
+ }
+ EXPORT_SYMBOL_GPL(get_cached_msi_msg);
+ 
++#ifdef CONFIG_SYSFS
+ static ssize_t msi_mode_show(struct device *dev, struct device_attribute *attr,
+ 			     char *buf)
  {
- 	if (dev->msix_enabled) {
- 		struct msi_desc *entry;
--		int i = 0;
+@@ -204,6 +205,7 @@ void msi_destroy_sysfs(struct device *de
+ 		kfree(msi_irq_groups);
+ 	}
+ }
++#endif
  
- 		for_each_pci_msi_entry(entry, dev) {
--			if (i == nr)
-+			if (entry->msi_attrib.entry_nr == nr)
- 				return entry->irq;
--			i++;
- 		}
- 		WARN_ON_ONCE(1);
- 		return -EINVAL;
-@@ -1223,17 +1228,22 @@ EXPORT_SYMBOL(pci_irq_vector);
-  * pci_irq_get_affinity - return the affinity of a particular MSI vector
-  * @dev:	PCI device to operate on
-  * @nr:		device-relative interrupt vector index (0-based).
-+ *
-+ * @nr has the following meanings depending on the interrupt mode:
-+ *   MSI-X:	The index in the MSI-X vector table
-+ *   MSI:	The index of the enabled MSI vectors
-+ *   INTx:	Must be 0
-+ *
-+ * Return: A cpumask pointer or NULL if @nr is out of range
-  */
- const struct cpumask *pci_irq_get_affinity(struct pci_dev *dev, int nr)
- {
- 	if (dev->msix_enabled) {
- 		struct msi_desc *entry;
--		int i = 0;
- 
- 		for_each_pci_msi_entry(entry, dev) {
--			if (i == nr)
-+			if (entry->msi_attrib.entry_nr == nr)
- 				return &entry->affinity->mask;
--			i++;
- 		}
- 		WARN_ON_ONCE(1);
- 		return NULL;
+ #ifdef CONFIG_GENERIC_MSI_IRQ_DOMAIN
+ static inline void irq_chip_write_msi_msg(struct irq_data *data,
 
 
 -- 
