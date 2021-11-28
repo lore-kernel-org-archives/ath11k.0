@@ -4,71 +4,144 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EE85C28D13
-	for <ath11k@archiver.kernel.org>; Sat, 27 Nov 2021 01:21:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE462C433F5
+	for <ath11k@archiver.kernel.org>; Sun, 28 Nov 2021 00:08:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:MIME-Version:References:Subject:Cc
-	:To:From:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-	List-Owner; bh=IlHHkslWubHZgQ0596wHLYf4tKorHbmtqa36l4JoyH0=; b=UXx7Gd0WLAOes1
-	OUfVR742Yej6LzlCW3Hll52p8CbyhHqZBdQ81/y2Sbb6iDWF2X9ZCMy9Iz7/OUKx0AG04PS90zc4a
-	9jklIm1U/2JJ47tZqHuwKiNFNqpoAyXf4H2t7/PxiOnfhiG+8I2HW55EkKwHlwP/auihzoDal1ybe
-	odeH6dwy0BERLKU5mJEzatPQYwuDlTL6fsnEPDEz9Zm3MdPf8aQedCLzmnoe06Wz1cedx9oEqxlnY
-	Pjs8vUFskhJude1B8jG5pibZDWALxiV08zXjvIeAInjgski/3euODAmOEm/OhSSE7voCMuEybuhMJ
-	i3F549aJNCXe6pB+BH3A==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=MvCIK3sLu9fWrUV88hoxJeoWTGDF+Byk3Qcvnz8Ex3M=; b=ky6XZqufoTXJvZ
+	fhG9GAcrHvw+wsbaNhgCKOzqRJ6N3a7iq0ll3+VaxUS8q17hJGTcXK3RgsUgi6cmHWfo/4YIEOniN
+	M69jK9cOdtM0A3118ri/reUtZAv9hCxUElaAayRUGfumzAVaHnCFDKUWqz8WVyt7fyjpbGOTws5Ro
+	q5YFM11JnTfxuAATYhD5rl0ONTJa3wFFFdGRGSnTs1cPQLQy8R+XvjsRb7XhpjWl48AK39tlHnf7o
+	l7yO7hLNF4p3/zb1Xv4FaQ67bNIPQzeBrVi/aYrjLhjkb0LEMaDYXi0Q3ji0YJ4kDlKDsLHMIH2Oa
+	R4CvBzUTEIMPP2Xya6mQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mqmOm-00CA9H-JI; Sat, 27 Nov 2021 01:21:04 +0000
-Received: from galois.linutronix.de ([2a0a:51c0:0:12e:550::1])
+	id 1mr7jy-00EfgV-Tm; Sun, 28 Nov 2021 00:08:22 +0000
+Received: from mail-dm6nam10on2046.outbound.protection.outlook.com
+ ([40.107.93.46] helo=NAM10-DM6-obe.outbound.protection.outlook.com)
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mqmNh-00C8oF-5P
- for ath11k@lists.infradead.org; Sat, 27 Nov 2021 01:20:02 +0000
-Message-ID: <20211126223825.375987680@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1637975995;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- references:references; bh=b2AUMZ8n+35cpll0aGngdLAswuTgfFiNP2Zkn1C/x7I=;
- b=ey9VYVwJMRVwcfksR95/YBZo1QlvbZYZfkgR7eb1Bag9qzNXJVS4jhzTRW9yLHvexEKDVG
- NdZfvT2UsBn5RL0J1M+rpZkuXtbS5nqVETijSbR74gN4IMGuh2X3TA+zCERUnJLGu6r7QS
- xejJUwLGFdc68/9VQGrA+Irdjq4KBqDAprh9jYxhOBi5rbMrlRWDhET/p4bI3lf3w6YD4h
- E9/b6kmGP1Gy0ecl+kxuinGZvO3BSkQDIvqLkXs3Q4djlmfg3lY4IS8xh0nFZuCKSVYsOi
- TM8bL2+caOtSm9X4D68tGdAABZpJEayGt8Qun72Z1DAX05A5ADO4k3hxbtYqrQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1637975995;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- references:references; bh=b2AUMZ8n+35cpll0aGngdLAswuTgfFiNP2Zkn1C/x7I=;
- b=esFpcWNsvZJ3Th+y6sturNxS1eWHYEkG46onG7uJo3BAZF4nhSHejJp0haubUPknhdF5iT
- ic49rCWGRUTIKJBw==
-From: Thomas Gleixner <tglx@linutronix.de>
-To: LKML <linux-kernel@vger.kernel.org>
-Cc: Bjorn Helgaas <helgaas@kernel.org>, Marc Zygnier <maz@kernel.org>,
+ id 1mr7jw-00Efg0-5c
+ for ath11k@lists.infradead.org; Sun, 28 Nov 2021 00:08:21 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=OwWXat6A8f77a1be4zN8r/W7UCTCFCivHEsJTo2KzaMI43ALhEoG9APFH+uJenG7WRkOUCKy5rGKKgl4B6owou6LoukxjO+IAnq5x3V6C6oz34LjeUY6MClO689f00Jh03HajKPXQ3Tb+cQcpL7eDEZyU/1Ao9O1rb69YRvwY5wYn4kIGOP+kvobg5Zgkqry9ND3RVWKsb9t0RoNb9qBFMeu763nkTU1CcCrB7QG+9EM0g9oDidPHKgiUFD5/jYxfPdTdA/6v8Q8aHcZ/LQZ2DdBk73CkJ68PawicBBFZWkvAf1vmKFSX/VVM5rOwO1zsZwBQIJApHredUcfyrnOdA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/pVvssknBhQqmkjfnAH5n58/RZ+BO9TWp89tWLupnzQ=;
+ b=P/hkSjwfJGBTpTJXufoHTH7AtR2UVP7ItmyXw5kSPTC0iTP4VwSGnKtS4bvo4LhSHGdFfoaMhTgqZTh3+ZISzPc+XtsTuetK6jp5XpLAXfUIE/hYPQXcPYroK2ysamuO6nliyy0g40MGQSzu6AmnU2KZkSHwHnxfbmFWfKbn/twMd13edddm14tDnxgEfwYbIum275bEiO7gtU/bsa+it2LvS9h00GNaRNP4kvBHQVRBVxYvHKqQdRqpXo2MYVFL0fPCy+w2c6U0SyYhb8BgC3d95nFiqdMU6v3zEBzTsfGoemvTHaZNC+2WzCIM79db8vDmvTIF2e/U7yWj4kBtjQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/pVvssknBhQqmkjfnAH5n58/RZ+BO9TWp89tWLupnzQ=;
+ b=RVDBhQIJLpb/y3N2LbOgQo7eiW0h6ojygnfnOpizZ2NyZmxrVovkV7yJuJbE/Ahsq7bTG4Peu/BfoSgEq9A5WvGqFT0yJNzeEEEfDqHn6dPUAPfSOu7Bnq5DtAllCXDidCMPESU2Vo+stMR8f6yqnz3tk8QF08xSRLRCyA43RdvGT0BhxgjiipAkme3i+qCDmfFOQxZa344PBHduNACryrSAkB9tX1+zwtFiF3dUo94flyVCe67w8nvAQ53oCx0yMs6h1E6qzvBSTZtqr4bayHTJFWAIraIAhv/PVP5/JYlWMU69JAhm71rIy4ECQJGE6VyT4VJ6UNG0tyB1XsYXjA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from BL0PR12MB5506.namprd12.prod.outlook.com (2603:10b6:208:1cb::22)
+ by BL1PR12MB5080.namprd12.prod.outlook.com (2603:10b6:208:30a::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.23; Sun, 28 Nov
+ 2021 00:08:15 +0000
+Received: from BL0PR12MB5506.namprd12.prod.outlook.com
+ ([fe80::5897:83b2:a704:7909]) by BL0PR12MB5506.namprd12.prod.outlook.com
+ ([fe80::5897:83b2:a704:7909%8]) with mapi id 15.20.4734.023; Sun, 28 Nov 2021
+ 00:08:15 +0000
+Date: Sat, 27 Nov 2021 20:08:13 -0400
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Thomas Gleixner <tglx@linutronix.de>
+Cc: LKML <linux-kernel@vger.kernel.org>, Bjorn Helgaas <helgaas@kernel.org>,
+ Marc Zygnier <maz@kernel.org>,
  Alex Williamson <alex.williamson@redhat.com>,
- Kevin Tian <kevin.tian@intel.com>, Jason Gunthorpe <jgg@nvidia.com>,
- Megha Dey <megha.dey@intel.com>, Ashok Raj <ashok.raj@intel.com>,
- linux-pci@vger.kernel.org, Michael Ellerman <mpe@ellerman.id.au>,
- Paul Mackerras <paulus@samba.org>,
+ Kevin Tian <kevin.tian@intel.com>, Megha Dey <megha.dey@intel.com>,
+ Ashok Raj <ashok.raj@intel.com>, linux-pci@vger.kernel.org,
+ Michael Ellerman <mpe@ellerman.id.au>, Paul Mackerras <paulus@samba.org>,
  Benjamin Herrenschmidt <benh@kernel.crashing.org>,
  linuxppc-dev@lists.ozlabs.org,
  Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
  linux-mips@vger.kernel.org,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- sparclinux@vger.kernel.org, x86@kernel.org, xen-devel@lists.xenproject.org,
- ath11k@lists.infradead.org, Wei Liu <wei.liu@kernel.org>,
- linux-hyperv@vger.kernel.org, Juergen Gross <jgross@suse.com>,
+ sparclinux@vger.kernel.org, x86@kernel.org,
+ xen-devel@lists.xenproject.org, ath11k@lists.infradead.org,
+ Wei Liu <wei.liu@kernel.org>, linux-hyperv@vger.kernel.org,
+ Juergen Gross <jgross@suse.com>,
  Christian Borntraeger <borntraeger@de.ibm.com>,
  Heiko Carstens <hca@linux.ibm.com>
-Subject: [patch 22/22] PCI/MSI: Move descriptor counting on allocation fail to
- the legacy code
+Subject: Re: [patch 00/22] genirq/msi, PCI/MSI: Spring cleaning - Part 1
+Message-ID: <20211128000813.GS4670@nvidia.com>
 References: <20211126222700.862407977@linutronix.de>
+Content-Disposition: inline
+In-Reply-To: <20211126222700.862407977@linutronix.de>
+X-ClientProxiedBy: MN2PR11CA0016.namprd11.prod.outlook.com
+ (2603:10b6:208:23b::21) To BL0PR12MB5506.namprd12.prod.outlook.com
+ (2603:10b6:208:1cb::22)
 MIME-Version: 1.0
-Date: Sat, 27 Nov 2021 02:19:55 +0100 (CET)
+Received: from mlx.ziepe.ca (142.162.113.129) by
+ MN2PR11CA0016.namprd11.prod.outlook.com (2603:10b6:208:23b::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.22 via Frontend
+ Transport; Sun, 28 Nov 2021 00:08:14 +0000
+Received: from jgg by mlx with local (Exim 4.94)	(envelope-from
+ <jgg@nvidia.com>)	id 1mr7jp-003n9O-MC; Sat, 27 Nov 2021 20:08:13 -0400
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 50ccafd9-0d25-48b3-c9df-08d9b2032c60
+X-MS-TrafficTypeDiagnostic: BL1PR12MB5080:
+X-Microsoft-Antispam-PRVS: <BL1PR12MB5080742C64AE7A468452A1C9C2659@BL1PR12MB5080.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: MCH67MnKWwoeJ0tJBUuCQtLpOse7q2gKhtHcZ9w4HVT9WLdyV6PDyjjzhRxGHcn1YhsXHnEm38E01Izt9ff6llf8Q3/ZVS3SHbOy1QUg7ZXp5IHSr6m4OiE7Iip6xKIF6BP6fLwGT9b3DbdiSv+JPtjKP6GknFIZP09Cf3qirh9eRARcpKThk4zj8bU7FcG1z6rxPoaNvLiuFGXUyJBSjB9D3VvsAk9gFNDRatiB2lsUu5XrFAFQwKDCXI3ZDPsyncKCILtridE0wmFzwksd59bDSy2IiZfO13XX82Tr/Bygxfl41gHHEEaweudYBMPx9VBvhRRjShfP9I4AlxYrDm1qpl2p3w9lPaZq/aMhJxX4uHcr5PR3La/0TsecikyEZvlAjXHGRt8sraUonrazIKOp1dVQ9omcSvL+gowlW2l37OX+aVgrR9jn5fw3svsbtQ7yZysn1CX9wvmC0Fm0XvfITmM3GrceITHiuXzzRIRnVIV1c/+0ntPNBh20S9GU0spzIBkpgEItTX1eiWgGIF501zcTvDigMeEAYaj1376VEzgzcvICDse+mpfI2wggPhiVYJ8Rg9eZYr/KjN2YRajKKOAKPCStk7LtAKEWfaIB+0+xz2hCmzan8KIWw46Hm6gSJN04AFB19Uvnv0RMHQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL0PR12MB5506.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(316002)(6916009)(1076003)(36756003)(8676002)(2616005)(2906002)(426003)(9746002)(5660300002)(508600001)(7416002)(83380400001)(9786002)(8936002)(4326008)(33656002)(86362001)(186003)(38100700002)(66556008)(66476007)(26005)(54906003)(66946007);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?vUZwGTckNFwtDHLpp8y68okFCMHSSqDEP2vmNjrr6VWsoONo5iK+BFLRuK/+?=
+ =?us-ascii?Q?zc+UsCbFZfwgHkdDYCBbzdLpod8RhooTjzyuiPFGIU/B9JAx42nsQOURYYF0?=
+ =?us-ascii?Q?/7H+3j0qC6XIzfP+CTH8rYFge05Tm9GZKaP2bYd9A+MnFRZCHkzwkxhcen76?=
+ =?us-ascii?Q?0rdbS8rmAOzS0NbkdtifZdRszQCFPAwxhyRGrPFUKnfdOzvwHj8j9LxDCXrg?=
+ =?us-ascii?Q?6pVWQFZNjb2bLR8DAd0JJK0HQEdDpLBkeGTplFqYpdHV10rFQiSNOMZ1iOa/?=
+ =?us-ascii?Q?oPjSlchM4dbFODya1Lb8TwYrpfsE5nr9rqY8CfGPn5YULdvG9iM8EnMZ1obq?=
+ =?us-ascii?Q?dk5+6YBl2wcudgAi49Dx4m+1lL1rnHewAxGLL3G0vu1bKBqFCubFDN12yQg8?=
+ =?us-ascii?Q?FNvVaueuWrA+qSYKx8edbOuIzsRcNDET0yQHWs/SywnR3iRvOf690ukf8qP/?=
+ =?us-ascii?Q?Mm+NUCHkpN9CM4wJX0wgpKbfKbsQzNrf8IfDZ7rIv0MGEg+VtBfAaKPR95KJ?=
+ =?us-ascii?Q?lEhk3decDeRZB5Bjs1a2IFq/IhrmSpd/Anf6Q4+UDpJvFCZE4vRQ7QNOZIcw?=
+ =?us-ascii?Q?9PqPupphnqEVTXzDRuR+MScsy66X6qDHLUM0omg2xVSWGlyq/JCRKBw6rgyu?=
+ =?us-ascii?Q?8sMSL5L4VyHW4P6yZ/iTeb+5FmtEQBaOH3tMaUZz0zbdcLodmfyJ/LYBokmk?=
+ =?us-ascii?Q?K2dHFvr19g1Lvpvc4mHrjcUJxzDCdbJNmuk25u/EN2648vfc5IHmkRNOu0/0?=
+ =?us-ascii?Q?Fo6yRikSczn+NlItKqDK2aLoY3AysUZ8sG0P4J92yV1g4KRPs8WxulK6htDP?=
+ =?us-ascii?Q?zgcQEn+AA8XIe1JGGPTcZSNrcePOPEorVEDIvv1YzY55RvFVzjQUYxId+T0o?=
+ =?us-ascii?Q?KAuTccqXq6prZYKFp/7P/ncx9XRAKwchMBu8iux+Goe8mKn742tkuItafklG?=
+ =?us-ascii?Q?Z7pyi4d8uvY8Whq4O4L+gdYYd22QxMMSggA+fgiSIVwnmvrCnbCkygYwZBPJ?=
+ =?us-ascii?Q?QaqDZjdm9j/me2mASEp7tPHNkasRfGJ0Uf7VEb8C2ixA01TZB2RdeGQwbxnM?=
+ =?us-ascii?Q?CaA66SHSrILKwav0Spi2AzIxDo3aul4UKSnTL3K/twUV6S7NsNCTvu/Qko8Y?=
+ =?us-ascii?Q?VXgMe6mV82/WeHoKS0S+ssocDdytgZ8G4ZwySJxpKuFtY/IJCql0PKSw3KAG?=
+ =?us-ascii?Q?PAmC+eS4YH+lvSiPOdChM+w5ICxWz+in6BGZnGO0JzUrBEBhcH4ufQm3pLkC?=
+ =?us-ascii?Q?vkZkobKtuHhO5owViup90DzMJC6jFx+dZMLzivhW7XgkLkpk7Kt+k8csozzv?=
+ =?us-ascii?Q?TtB4dlRwnelTePkLTn1AAJ3Lkk5DCtuq+bHwjZ5gfU84NAQvxkhUMNUGnXXC?=
+ =?us-ascii?Q?0XgYbp7gPW8MwZvXEWYWYUbanV6lYCrtKD+8gIK4lqt3JUrJJSQCHw8VzZ79?=
+ =?us-ascii?Q?Dfp0nf+Qvn24AqVjh/ZC/t0yQ3e0jzoW/BrGYETnMjfp6B0sbVDBwbRasjXw?=
+ =?us-ascii?Q?sYmd9E32yVQ5+xW//CLD7cYgUEyPwH5Zukdhk8ZNYyDWrFTftgPmgtyIfcgK?=
+ =?us-ascii?Q?/3Z6HeQPURCRkqBr+Rw=3D?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 50ccafd9-0d25-48b3-c9df-08d9b2032c60
+X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB5506.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Nov 2021 00:08:15.0505 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: /J4TPudRgMIfuhU0HwQ/2RR9GYPr9SHY8H5kT0rLiX1UHTG8TZiZUz4yF4x9T+FI
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5080
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211126_171957_402161_63475D52 
-X-CRM114-Status: GOOD (  13.14  )
+X-CRM114-CacheID: sfid-20211127_160820_411136_E880A352 
+X-CRM114-Status: GOOD (  22.32  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,84 +157,52 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
-Message-ID: <20211127011955.BefU86RBGS2xC1LDUCikMvVhdesJ4Mj1mvGgjgPRB-k@z>
 
-The irqdomain code already returns the information. Move the loop to the
-legacy code.
+On Sat, Nov 27, 2021 at 02:18:34AM +0100, Thomas Gleixner wrote:
+> The [PCI] MSI code has gained quite some warts over time. A recent
+> discussion unearthed a shortcoming: the lack of support for expanding
+> PCI/MSI-X vectors after initialization of MSI-X.
+> 
+> PCI/MSI-X has no requirement to setup all vectors when MSI-X is enabled in
+> the device. The non-used vectors have just to be masked in the vector
+> table. For PCI/MSI this is not possible because the number of vectors
+> cannot be changed after initialization.
+> 
+> The PCI/MSI code, but also the core MSI irq domain code are built around
+> the assumption that all required vectors are installed at initialization
+> time and freed when the device is shut down by the driver.
+> 
+> Supporting dynamic expansion at least for MSI-X is important for VFIO so
+> that the host side interrupts for passthrough devices can be installed on
+> demand.
+> 
+> This is the first part of a large (total 101 patches) series which
+> refactors the [PCI]MSI infrastructure to make runtime expansion of MSI-X
+> vectors possible. The last part (10 patches) provide this functionality.
+> 
+> The first part is mostly a cleanup which consolidates code, moves the PCI
+> MSI code into a separate directory and splits it up into several parts.
+> 
+> No functional change intended except for patch 2/N which changes the
+> behaviour of pci_get_vector()/affinity() to get rid of the assumption that
+> the provided index is the "index" into the descriptor list instead of using
+> it as the actual MSI[X] index as seen by the hardware. This would break
+> users of sparse allocated MSI-X entries, but non of them use these
+> functions.
 
-Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
----
- drivers/pci/msi/legacy.c |   20 +++++++++++++++++++-
- drivers/pci/msi/msi.c    |   19 +------------------
- 2 files changed, 20 insertions(+), 19 deletions(-)
+I don't know all the irqdomain stuff all that well anymore, but I read
+through all the patches and only noticed a small spello
 
---- a/drivers/pci/msi/legacy.c
-+++ b/drivers/pci/msi/legacy.c
-@@ -50,9 +50,27 @@ void __weak arch_teardown_msi_irqs(struc
- 	}
- }
- 
-+static int pci_msi_setup_check_result(struct pci_dev *dev, int type, int ret)
-+{
-+	struct msi_desc *entry;
-+	int avail = 0;
-+
-+	if (type != PCI_CAP_ID_MSIX || ret >= 0)
-+		return ret;
-+
-+	/* Scan the MSI descriptors for successfully allocated ones. */
-+	for_each_pci_msi_entry(entry, dev) {
-+		if (entry->irq != 0)
-+			avail++;
-+	}
-+	return avail ? avail : ret;
-+}
-+
- int pci_msi_legacy_setup_msi_irqs(struct pci_dev *dev, int nvec, int type)
- {
--	return arch_setup_msi_irqs(dev, nvec, type);
-+	int ret = arch_setup_msi_irqs(dev, nvec, type);
-+
-+	return pci_msi_setup_check_result(dev, type, ret);
- }
- 
- void pci_msi_legacy_teardown_msi_irqs(struct pci_dev *dev)
---- a/drivers/pci/msi/msi.c
-+++ b/drivers/pci/msi/msi.c
-@@ -609,7 +609,7 @@ static int msix_capability_init(struct p
- 
- 	ret = pci_msi_setup_msi_irqs(dev, nvec, PCI_CAP_ID_MSIX);
- 	if (ret)
--		goto out_avail;
-+		goto out_free;
- 
- 	/* Check if all MSI entries honor device restrictions */
- 	ret = msi_verify_entries(dev);
-@@ -634,23 +634,6 @@ static int msix_capability_init(struct p
- 	pcibios_free_irq(dev);
- 	return 0;
- 
--out_avail:
--	if (ret < 0) {
--		/*
--		 * If we had some success, report the number of IRQs
--		 * we succeeded in setting up.
--		 */
--		struct msi_desc *entry;
--		int avail = 0;
--
--		for_each_pci_msi_entry(entry, dev) {
--			if (entry->irq != 0)
--				avail++;
--		}
--		if (avail != 0)
--			ret = avail;
--	}
--
- out_free:
- 	free_msi_irqs(dev);
- 
+[patch 02/22] PCI/MSI: Fix pci_irq_vector()/pci_irq_get_attinity()
+                                                         ^^^^ ff
 
+It all seems good, I especially like the splitting of msi.c and
+removal of ops..
+
+Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+
+Thanks,
+Jason
 
 -- 
 ath11k mailing list
