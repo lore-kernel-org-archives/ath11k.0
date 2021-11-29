@@ -4,64 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C602DC433F5
-	for <ath11k@archiver.kernel.org>; Mon, 29 Nov 2021 03:02:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAD53C433F5
+	for <ath11k@archiver.kernel.org>; Mon, 29 Nov 2021 07:33:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=IN25Y9cKRu0H3OkQ9ZqIjHJLiuUkY8yDjwAngUyM98Y=; b=FgTpeMCl/26Veb
-	Z/bKAXJiEQPH7q3OgwDcBz9TrUrpuxQFobE9ELt6t9ZxuGD9FPerVT4rsP96vNBwB/yBdJ3K8rIP7
-	eBOmJmQYF3Bl1BGrUM5VCRMJHBfOhg8ATeQQVVxP1v/tlgPgTOQ39JuKAzDtDV7OUvgDVqf7zobsX
-	6VIb7AShKgB2V+naFQjRjBvLj5psDmNBaNB5PAD4GS1ilqOB/QSgKqC+UdcM2X2iM076NcdtwE/mL
-	UkFajJ0DBegsWHu8/vN6KzWkX41/M60ayLLuuCz/+VUbpeWdJNOBgUSm6O4/e29BPwj1UGhtZaVMV
-	sth/C9q+bLkacAZRYPFA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=DLu0XmWDQ1YUShSn3X2pmyJkh2/1dp/BQHz1NaIyB10=; b=BSxAjsTJzud30b
+	dyCmyDd4R9e5uIX5xi8IRIkql54jX4hAyIuN4BonrNgSzQwi28L8h9jQ1AvOeXEXRuKFsCZcJ2906
+	mRj/JOTKTl9IK13QtjPHWljDAgTSVbqvlNFCw3s6sUOaPeiZglZqhwlYpHrRX7Fj4sDkxICeHyIsd
+	HbmDV9j4wLukPwTZdmdy+iaAMu0N3Jc/uCLUMUzj73HgfBbw41hgXUSVX1UpDCQH2L9cvf+Gb2NlJ
+	hcEplqr6gdufKX5WZe4pQEYyVCi5OfgXitGZcECHwcMsgKO7TGpLX/hehk2T7vpbWbws9S2wN7cNv
+	Ne2DHVPGPqSDyXHT3oQg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mrWw8-00HAEd-Hl; Mon, 29 Nov 2021 03:02:36 +0000
-Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38])
+	id 1mrbAd-0002Bm-P4; Mon, 29 Nov 2021 07:33:51 +0000
+Received: from 10.mo548.mail-out.ovh.net ([46.105.77.235])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mrWw5-00HAE8-Nv
- for ath11k@lists.infradead.org; Mon, 29 Nov 2021 03:02:35 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1638154953; x=1669690953;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=lfFh2HdaEX3b8LxDEEOvBRtH25acbpNHiPOC24X6Las=;
- b=emdv7Nqrj2gV2JTCdQIcFjkrQCIMVYhzPj7FlLuet5II0MzNEvALWBJX
- OniZ1TyLdoJoju8StWQ3NWSQF/KQn++NjTgwXkcN27naGEkkt+GEWNgEM
- y1bN5l8AFYHJ7YW1s/JQ8HnA8TBijl1m6MXFt5uZa34IHWnibNR8/51pZ 8=;
-Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
- by alexa-out-sd-01.qualcomm.com with ESMTP; 28 Nov 2021 19:02:32 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2021 19:02:32 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Sun, 28 Nov 2021 19:02:01 -0800
-Received: from bqiang-Celadon-RN.qca.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Sun, 28 Nov 2021 19:02:00 -0800
-From: Baochen Qiang <quic_bqiang@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>
-Subject: [PATCH] ath11k: add support for WCN6855 hw2.1
-Date: Mon, 29 Nov 2021 10:56:12 +0800
-Message-ID: <20211129025613.21594-1-quic_bqiang@quicinc.com>
-X-Mailer: git-send-email 2.25.1
+ id 1mrbAa-0002BG-An
+ for ath11k@lists.infradead.org; Mon, 29 Nov 2021 07:33:50 +0000
+Received: from mxplan5.mail.ovh.net (unknown [10.108.20.7])
+ by mo548.mail-out.ovh.net (Postfix) with ESMTPS id D10AB2064C;
+ Mon, 29 Nov 2021 07:33:34 +0000 (UTC)
+Received: from kaod.org (37.59.142.103) by DAG4EX1.mxp5.local (172.16.2.31)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.20; Mon, 29 Nov
+ 2021 08:33:33 +0100
+Authentication-Results: garm.ovh; auth=pass
+ (GARM-103G0058ffb0110-7673-40ee-a51a-c9a65a45fa89,
+ 3279756C2EB34864E332BB908A933B747C53BE44) smtp.auth=clg@kaod.org
+X-OVh-ClientIp: 82.64.250.170
+Message-ID: <b1a6d267-c7b4-c4b9-ab0e-f5cc32bfe9bf@kaod.org>
+Date: Mon, 29 Nov 2021 08:33:33 +0100
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Subject: Re: [patch 05/22] genirq/msi: Fixup includes
+Content-Language: en-US
+To: Thomas Gleixner <tglx@linutronix.de>, LKML <linux-kernel@vger.kernel.org>
+CC: <linux-hyperv@vger.kernel.org>, Paul Mackerras <paulus@samba.org>,
+ <sparclinux@vger.kernel.org>, Wei Liu <wei.liu@kernel.org>, Ashok Raj
+ <ashok.raj@intel.com>, Marc Zygnier <maz@kernel.org>, <x86@kernel.org>,
+ Christian Borntraeger <borntraeger@de.ibm.com>, Bjorn Helgaas
+ <helgaas@kernel.org>, Jason Gunthorpe <jgg@nvidia.com>,
+ <linux-pci@vger.kernel.org>, <xen-devel@lists.xenproject.org>,
+ <ath11k@lists.infradead.org>, Kevin Tian <kevin.tian@intel.com>, Heiko
+ Carstens <hca@linux.ibm.com>, Alex Williamson <alex.williamson@redhat.com>,
+ Megha Dey <megha.dey@intel.com>, Juergen Gross <jgross@suse.com>, Thomas
+ Bogendoerfer <tsbogend@alpha.franken.de>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, <linux-mips@vger.kernel.org>,
+ <linuxppc-dev@lists.ozlabs.org>
+References: <20211126222700.862407977@linutronix.de>
+ <20211126223824.382273262@linutronix.de>
+From: =?UTF-8?Q?C=c3=a9dric_Le_Goater?= <clg@kaod.org>
+In-Reply-To: <20211126223824.382273262@linutronix.de>
+X-Originating-IP: [37.59.142.103]
+X-ClientProxiedBy: DAG1EX2.mxp5.local (172.16.2.2) To DAG4EX1.mxp5.local
+ (172.16.2.31)
+X-Ovh-Tracer-GUID: 67cb6c92-6833-4394-901b-34c8b386eb6d
+X-Ovh-Tracer-Id: 9389442276353674140
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvuddrheekgdegjecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfhfhfgjtgfgihesthekredttdefjeenucfhrhhomhepveorughrihgtpgfnvggpifhorghtvghruceotghlgheskhgrohgurdhorhhgqeenucggtffrrghtthgvrhhnpeeigedvffekgeeftedutddttdevudeihfegudffkeeitdekkeetkefhffelveelleenucfkpheptddrtddrtddrtddpfeejrdehledrudegvddruddtfeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghlohepmhigphhlrghnhedrmhgrihhlrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegtlhhgsehkrghougdrohhrghdprhgtphhtthhopehlihhnuhigphhptgdquggvvheslhhishhtshdrohiilhgrsghsrdhorhhg
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211128_190233_854699_C828452D 
-X-CRM114-Status: GOOD (  15.68  )
+X-CRM114-CacheID: sfid-20211128_233348_702974_4BB52B63 
+X-CRM114-Status: GOOD (  14.03  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,169 +82,38 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Ath11k fails to probe WCN6855 hw2.1 chip:
-
-[ 6.983821] ath11k_pci 0000:06:00.0: enabling device (0000 -> 0002)
-[ 6.983841] ath11k_pci 0000:06:00.0: Unsupported WCN6855 SOC hardware version: 18 17
-
-This is caused by the wrong bit mask setting of hardware major version:
-for QCA6390/QCN6855, it should be BIT8-11, not BIT8-16, so change the
-definition to GENMASK(11, 8).
-
-Also, add a separate entry for WCN6855 hw2.1 in ath11k_hw_params.
-
-Please note that currently WCN6855 hw2.1 shares the same firmwares
-as hw2.0, so users of this chip need to create a symlink as below:
-
-	ln -s hw2.0 hw2.1
-
-Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
-Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
-
-Fixes: 18ac1665e785 ("ath11k: pci: check TCSR_SOC_HW_VERSION")
-Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/core.c | 53 ++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/core.h |  1 +
- drivers/net/wireless/ath/ath11k/mhi.c  |  1 +
- drivers/net/wireless/ath/ath11k/pci.c  | 16 +++++++-
- 4 files changed, 69 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index dd1a1bb078c3..5f6bdee26f31 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -284,6 +284,59 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 			.max_fft_bins = 0,
- 		},
- 
-+		.interface_modes = BIT(NL80211_IFTYPE_STATION) |
-+					BIT(NL80211_IFTYPE_AP),
-+		.supports_monitor = false,
-+		.supports_shadow_regs = true,
-+		.idle_ps = true,
-+		.supports_sta_ps = true,
-+		.cold_boot_calib = false,
-+		.supports_suspend = true,
-+		.hal_desc_sz = sizeof(struct hal_rx_desc_wcn6855),
-+		.fix_l1ss = false,
-+		.credit_flow = true,
-+		.max_tx_ring = DP_TCL_NUM_RING_MAX_QCA6390,
-+		.hal_params = &ath11k_hw_hal_params_qca6390,
-+		.supports_dynamic_smps_6ghz = false,
-+		.alloc_cacheable_memory = false,
-+		.wakeup_mhi = true,
-+	},
-+	{
-+		.name = "wcn6855 hw2.1",
-+		.hw_rev = ATH11K_HW_WCN6855_HW21,
-+		.fw = {
-+			.dir = "WCN6855/hw2.1",
-+			.board_size = 256 * 1024,
-+			.cal_offset = 128 * 1024,
-+		},
-+		.max_radios = 3,
-+		.bdf_addr = 0x4B0C0000,
-+		.hw_ops = &wcn6855_ops,
-+		.ring_mask = &ath11k_hw_ring_mask_qca6390,
-+		.internal_sleep_clock = true,
-+		.regs = &wcn6855_regs,
-+		.qmi_service_ins_id = ATH11K_QMI_WLFW_SERVICE_INS_ID_V01_QCA6390,
-+		.host_ce_config = ath11k_host_ce_config_qca6390,
-+		.ce_count = 9,
-+		.target_ce_config = ath11k_target_ce_config_wlan_qca6390,
-+		.target_ce_count = 9,
-+		.svc_to_ce_map = ath11k_target_service_to_ce_map_wlan_qca6390,
-+		.svc_to_ce_map_len = 14,
-+		.single_pdev_only = true,
-+		.rxdma1_enable = false,
-+		.num_rxmda_per_pdev = 2,
-+		.rx_mac_buf_ring = true,
-+		.vdev_start_delay = true,
-+		.htt_peer_map_v2 = false,
-+
-+		.spectral = {
-+			.fft_sz = 0,
-+			.fft_pad_sz = 0,
-+			.summary_pad_sz = 0,
-+			.fft_hdr_len = 0,
-+			.max_fft_bins = 0,
-+		},
-+
- 		.interface_modes = BIT(NL80211_IFTYPE_STATION) |
- 					BIT(NL80211_IFTYPE_AP),
- 		.supports_monitor = false,
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index bbfc10fd5c6d..b25f18589e29 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -117,6 +117,7 @@ enum ath11k_hw_rev {
- 	ATH11K_HW_IPQ6018_HW10,
- 	ATH11K_HW_QCN9074_HW10,
- 	ATH11K_HW_WCN6855_HW20,
-+	ATH11K_HW_WCN6855_HW21,
- };
- 
- enum ath11k_firmware_mode {
-diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
-index 26c7ae242db6..03e432f415d3 100644
---- a/drivers/net/wireless/ath/ath11k/mhi.c
-+++ b/drivers/net/wireless/ath/ath11k/mhi.c
-@@ -356,6 +356,7 @@ int ath11k_mhi_register(struct ath11k_pci *ab_pci)
- 		break;
- 	case ATH11K_HW_QCA6390_HW20:
- 	case ATH11K_HW_WCN6855_HW20:
-+	case ATH11K_HW_WCN6855_HW21:
- 		ath11k_mhi_config = &ath11k_mhi_config_qca6390;
- 		break;
- 	default:
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index c2af8184e4a2..c17a6c56b145 100644
---- a/drivers/net/wireless/ath/ath11k/pci.c
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -25,7 +25,7 @@
- #define WINDOW_RANGE_MASK		GENMASK(18, 0)
- 
- #define TCSR_SOC_HW_VERSION		0x0224
--#define TCSR_SOC_HW_VERSION_MAJOR_MASK	GENMASK(16, 8)
-+#define TCSR_SOC_HW_VERSION_MAJOR_MASK	GENMASK(11, 8)
- #define TCSR_SOC_HW_VERSION_MINOR_MASK	GENMASK(7, 0)
- 
- /* BAR0 + 4k is always accessible, and no
-@@ -1291,9 +1291,21 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
- 					   &soc_hw_version_minor);
- 		switch (soc_hw_version_major) {
- 		case 2:
--			ab->hw_rev = ATH11K_HW_WCN6855_HW20;
-+			switch (soc_hw_version_minor) {
-+			case 0x00:
-+			case 0x01:
-+				ab->hw_rev = ATH11K_HW_WCN6855_HW20;
-+				break;
-+			case 0x10:
-+			case 0x11:
-+				ab->hw_rev = ATH11K_HW_WCN6855_HW21;
-+				break;
-+			default:
-+				goto unsupported_wcn6855_soc;
-+			}
- 			break;
- 		default:
-+unsupported_wcn6855_soc:
- 			dev_err(&pdev->dev, "Unsupported WCN6855 SOC hardware version: %d %d\n",
- 				soc_hw_version_major, soc_hw_version_minor);
- 			ret = -EOPNOTSUPP;
--- 
-2.25.1
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+T24gMTEvMjcvMjEgMDI6MTgsIFRob21hcyBHbGVpeG5lciB3cm90ZToKPiBSZW1vdmUgdGhlIGtv
+YmplY3QuaCBpbmNsdWRlIGZyb20gbXNpLmggYXMgaXQncyBub3QgcmVxdWlyZWQgYW5kIGFkZCBh
+Cj4gc3lzZnMuaCBpbmNsdWRlIHRvIHRoZSBjb3JlIGNvZGUgaW5zdGVhZC4KPiAKPiBTaWduZWQt
+b2ZmLWJ5OiBUaG9tYXMgR2xlaXhuZXIgPHRnbHhAbGludXRyb25peC5kZT4KCgpUaGlzIHBhdGNo
+IGJyZWFrcyBjb21waWxlIG9uIHBvd2VycGMgOgoKICAgQ0MgICAgICBhcmNoL3Bvd2VycGMva2Vy
+bmVsL21zaS5vCkluIGZpbGUgaW5jbHVkZWQgZnJvbSAuLi9hcmNoL3Bvd2VycGMva2VybmVsL21z
+aS5jOjc6Ci4uL2luY2x1ZGUvbGludXgvbXNpLmg6NDEwOjY1OiBlcnJvcjog4oCYc3RydWN0IGNw
+dW1hc2vigJkgZGVjbGFyZWQgaW5zaWRlIHBhcmFtZXRlciBsaXN0IHdpbGwgbm90IGJlIHZpc2li
+bGUgb3V0c2lkZSBvZiB0aGlzIGRlZmluaXRpb24gb3IgZGVjbGFyYXRpb24gWy1XZXJyb3JdCiAg
+IDQxMCB8IGludCBtc2lfZG9tYWluX3NldF9hZmZpbml0eShzdHJ1Y3QgaXJxX2RhdGEgKmRhdGEs
+IGNvbnN0IHN0cnVjdCBjcHVtYXNrICptYXNrLAogICAgICAgfCAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXn5+fn5+fgpjYzE6
+IGFsbCB3YXJuaW5ncyBiZWluZyB0cmVhdGVkIGFzIGVycm9ycwoKQmVsb3cgaXMgZml4IHlvdSBj
+YW4gbWVyZ2UgaW4gcGF0Y2ggNS4KClRoYW5rcywKCkMuCgotLS0gYS9pbmNsdWRlL2xpbnV4L21z
+aS5oCisrKyBiL2luY2x1ZGUvbGludXgvbXNpLmgKQEAgLTIsNiArMiw3IEBACiAgI2lmbmRlZiBM
+SU5VWF9NU0lfSAogICNkZWZpbmUgTElOVVhfTVNJX0gKICAKKyNpbmNsdWRlIDxsaW51eC9jcHVt
+YXNrLmg+CiAgI2luY2x1ZGUgPGxpbnV4L2xpc3QuaD4KICAjaW5jbHVkZSA8YXNtL21zaS5oPgoK
+PiAtLS0KPiAgIGluY2x1ZGUvbGludXgvbXNpLmggfCAgICAxIC0KPiAgIGtlcm5lbC9pcnEvbXNp
+LmMgICAgfCAgICAxICsKPiAgIDIgZmlsZXMgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVs
+ZXRpb24oLSkKPiAKPiAtLS0gYS9pbmNsdWRlL2xpbnV4L21zaS5oCj4gKysrIGIvaW5jbHVkZS9s
+aW51eC9tc2kuaAo+IEBAIC0yLDcgKzIsNiBAQAo+ICAgI2lmbmRlZiBMSU5VWF9NU0lfSAo+ICAg
+I2RlZmluZSBMSU5VWF9NU0lfSAo+ICAgCj4gLSNpbmNsdWRlIDxsaW51eC9rb2JqZWN0Lmg+Cj4g
+ICAjaW5jbHVkZSA8bGludXgvbGlzdC5oPgo+ICAgI2luY2x1ZGUgPGFzbS9tc2kuaD4KPiAgIAo+
+IC0tLSBhL2tlcm5lbC9pcnEvbXNpLmMKPiArKysgYi9rZXJuZWwvaXJxL21zaS5jCj4gQEAgLTE0
+LDYgKzE0LDcgQEAKPiAgICNpbmNsdWRlIDxsaW51eC9pcnFkb21haW4uaD4KPiAgICNpbmNsdWRl
+IDxsaW51eC9tc2kuaD4KPiAgICNpbmNsdWRlIDxsaW51eC9zbGFiLmg+Cj4gKyNpbmNsdWRlIDxs
+aW51eC9zeXNmcy5oPgo+ICAgI2luY2x1ZGUgPGxpbnV4L3BjaS5oPgo+ICAgCj4gICAjaW5jbHVk
+ZSAiaW50ZXJuYWxzLmgiCj4gCgoKLS0gCmF0aDExayBtYWlsaW5nIGxpc3QKYXRoMTFrQGxpc3Rz
+LmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9hdGgxMWsK
