@@ -4,66 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A990C433EF
-	for <ath11k@archiver.kernel.org>; Mon, 29 Nov 2021 10:14:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECE05C433EF
+	for <ath11k@archiver.kernel.org>; Mon, 29 Nov 2021 10:22:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=F1A340omC0FDlARKbqj2eDKEfp7dtUfrHZUtjSw6s1Y=; b=cMdqPsQa7dC90N
-	amh9o7AqRuZMA/AljdVx+KaSd4N903b8xcRBF1XHVx4M/WO4Hk7xiz8lkQdnPiYWra/FxFG+h+JEw
-	2amLAezcZsxqbza0JxlKxxhAJmcq/rZff3nB9u0hvDifPln+U89h3QJC2q94OnkIVyXf/ZtsQOnER
-	qngx+VbOovAb1qViVtYILznx2qP5DjMDHr4s77JkXx64fXADdu/mtJXM32Vrp4oyUiwxqUp7WIAL7
-	WioA7zMNOIszrttrKcYwhA7a1+tAXrY7X0lzk1DSv3+0UVUb8RBOgpg5uL0oa+xXJshtO+Fde5cBd
-	xslwgqdmeacBLKscip7A==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=eQN/uFosKhSlk41o35ej20H8SnSY5aTV+GwHmfN7R3I=; b=F6bgPYgNuFjxH3
+	mefTUBgsUuPkm1Z60Aea+2kj92JYgFrTln6byzt5Idw5pW4iJsINnyjvEbTmHgy2T8Mg2nQwSMpPK
+	nAOj6zaYNEqCR8y1BTgt+bh3wCEw8XI4ki/3L/GuAw7LmU83s3IeTHk4zTgNu6Z/SUwuysGIDkhFE
+	prFssPoTcJ6q5TcTtMdwv7yBuZpKG3bes1ZZ35NwsbMRsIVARWxk52HmbTcIK3cbGJ8jEZwyewXiS
+	eBZ4JKAJYBkdsXMquoynXbUhl3LDIcDYhu42Dk6CTNl3UvB/K5IcHJqoy5aJy39/jnNDB2Bd3t7Dw
+	i+EC+wwRfsNltZ5RiBlg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mrdg6-000Mae-Tk; Mon, 29 Nov 2021 10:14:30 +0000
-Received: from alexa-out.qualcomm.com ([129.46.98.28])
- by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mrdg4-000MaI-7G
- for ath11k@lists.infradead.org; Mon, 29 Nov 2021 10:14:29 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1638180868; x=1669716868;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=eghArX8uLVAeCkugUgFj1dfdhI9ykBs3dPHaiS6PlT4=;
- b=cbbicq5vSmpxHl8K73cyKfA3rVJRCZ2PQ48UxEMSsI1+ti5uQ9TDW3rs
- mNoZhryhFp2DvlP/l1QLxP4ZrZj+fgyC8ZYYavIzn++/9KsoM3IU1infb
- b7ujICp6ZSTzbr+ggT849WpW6qCAXA4QOqbLiuU9cdeeMMNkU2X9eY4XF k=;
-Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
- by alexa-out.qualcomm.com with ESMTP; 29 Nov 2021 02:14:26 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg08-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Nov 2021 02:14:26 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Mon, 29 Nov 2021 02:13:25 -0800
-Received: from wgong-HP3-Z230-SFF-Workstation.qca.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Mon, 29 Nov 2021 02:13:24 -0800
-From: Wen Gong <quic_wgong@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, <quic_wgong@quicinc.com>
-Subject: [PATCH] ath11k: enable IEEE80211_HW_SINGLE_SCAN_ON_ALL_BANDS for
- WCN6855
-Date: Mon, 29 Nov 2021 05:13:09 -0500
-Message-ID: <20211129101309.2931-1-quic_wgong@quicinc.com>
-X-Mailer: git-send-email 2.31.1
+	id 1mrdnT-000OBZ-4X; Mon, 29 Nov 2021 10:22:07 +0000
+Received: from elvis.franken.de ([193.175.24.41])
+ by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1mrdnP-000O6f-9R
+ for ath11k@lists.infradead.org; Mon, 29 Nov 2021 10:22:05 +0000
+Received: from uucp (helo=alpha)
+ by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
+ id 1mrdmz-0004dt-00; Mon, 29 Nov 2021 11:21:37 +0100
+Received: by alpha.franken.de (Postfix, from userid 1000)
+ id 5E79DC2F89; Mon, 29 Nov 2021 11:21:16 +0100 (CET)
+Date: Mon, 29 Nov 2021 11:21:16 +0100
+From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To: Thomas Gleixner <tglx@linutronix.de>
+Cc: LKML <linux-kernel@vger.kernel.org>, Bjorn Helgaas <helgaas@kernel.org>,
+ Marc Zygnier <maz@kernel.org>,
+ Alex Williamson <alex.williamson@redhat.com>,
+ Kevin Tian <kevin.tian@intel.com>, Jason Gunthorpe <jgg@nvidia.com>,
+ Megha Dey <megha.dey@intel.com>, Ashok Raj <ashok.raj@intel.com>,
+ linux-pci@vger.kernel.org, linux-mips@vger.kernel.org,
+ Michael Ellerman <mpe@ellerman.id.au>, Paul Mackerras <paulus@samba.org>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+ linuxppc-dev@lists.ozlabs.org,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ sparclinux@vger.kernel.org, x86@kernel.org,
+ xen-devel@lists.xenproject.org, ath11k@lists.infradead.org,
+ Wei Liu <wei.liu@kernel.org>, linux-hyperv@vger.kernel.org,
+ Juergen Gross <jgross@suse.com>,
+ Christian Borntraeger <borntraeger@de.ibm.com>,
+ Heiko Carstens <hca@linux.ibm.com>
+Subject: Re: [patch 09/22] MIPS: Octeon: Use arch_setup_msi_irq()
+Message-ID: <20211129102116.GA6158@alpha.franken.de>
+References: <20211126222700.862407977@linutronix.de>
+ <20211126223824.618089023@linutronix.de>
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+Content-Disposition: inline
+In-Reply-To: <20211126223824.618089023@linutronix.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211129_021428_367031_3EE3AF6C 
-X-CRM114-Status: UNSURE (   9.66  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20211129_022203_665547_188F43A9 
+X-CRM114-Status: GOOD (  20.79  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,44 +76,73 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Currently mac80211 will send 3 scan request for each scan of WCN6855,
-they are 2.4 GHz/5 GHz/6 GHz band scan. Firmware of WCN6855 will
-cache the RNR IE(Reduced Neighbor Report element) which exist in the
-beacon of 2.4 GHz/5 GHz of the AP which is co-located with 6 GHz,
-and then use the cache to scan in 6 GHz band scan if the 6 GHz scan
-is in the same scan with the 2.4 GHz/5 GHz band, this will helpful to
-search more AP of 6 GHz. Also it will decrease the time cost of scan
-because firmware will use dual-band scan for the 2.4 GHz/5 GHz, it
-means the 2.4 GHz and 5 GHz scans are doing simultaneously.
+On Sat, Nov 27, 2021 at 02:18:48AM +0100, Thomas Gleixner wrote:
+> The core code provides the same loop code except for the MSI-X reject. Move
+> that to arch_setup_msi_irq() and remove the duplicated code.
+> 
+> No functional change.
+> 
+> Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
+> Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+> Cc: linux-mips@vger.kernel.org
+> ---
+>  arch/mips/pci/msi-octeon.c |   32 +++-----------------------------
+>  1 file changed, 3 insertions(+), 29 deletions(-)
+> 
+> --- a/arch/mips/pci/msi-octeon.c
+> +++ b/arch/mips/pci/msi-octeon.c
+> @@ -68,6 +68,9 @@ int arch_setup_msi_irq(struct pci_dev *d
+>  	u64 search_mask;
+>  	int index;
+>  
+> +	if (desc->pci.msi_attrib.is_msix)
+> +		return -EINVAL;
+> +
+>  	/*
+>  	 * Read the MSI config to figure out how many IRQs this device
+>  	 * wants.  Most devices only want 1, which will give
+> @@ -182,35 +185,6 @@ int arch_setup_msi_irq(struct pci_dev *d
+>  	return 0;
+>  }
+>  
+> -int arch_setup_msi_irqs(struct pci_dev *dev, int nvec, int type)
+> -{
+> -	struct msi_desc *entry;
+> -	int ret;
+> -
+> -	/*
+> -	 * MSI-X is not supported.
+> -	 */
+> -	if (type == PCI_CAP_ID_MSIX)
+> -		return -EINVAL;
+> -
+> -	/*
+> -	 * If an architecture wants to support multiple MSI, it needs to
+> -	 * override arch_setup_msi_irqs()
+> -	 */
+> -	if (type == PCI_CAP_ID_MSI && nvec > 1)
+> -		return 1;
+> -
+> -	for_each_pci_msi_entry(entry, dev) {
+> -		ret = arch_setup_msi_irq(dev, entry);
+> -		if (ret < 0)
+> -			return ret;
+> -		if (ret > 0)
+> -			return -ENOSPC;
+> -	}
+> -
+> -	return 0;
+> -}
+> -
+>  /**
+>   * Called when a device no longer needs its MSI interrupts. All
+>   * MSI interrupts for the device are freed.
 
-Set the flag IEEE80211_HW_SINGLE_SCAN_ON_ALL_BANDS for WCN6855 since
-it supports 2.4 GHz/5 GHz/6 GHz and it is single pdev which means
-all the 2.4 GHz/5 GHz/6 GHz exist in the same wiphy/ieee80211_hw.
+Acked-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
 
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
-
-Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/mac.c | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 06d20658586a..8218ea52f285 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -7915,6 +7915,9 @@ static int __ath11k_mac_register(struct ath11k *ar)
- 
- 	ar->hw->wiphy->interface_modes = ab->hw_params.interface_modes;
- 
-+	if (ab->hw_params.single_pdev_only && ar->supports_6ghz)
-+		ieee80211_hw_set(ar->hw, SINGLE_SCAN_ON_ALL_BANDS);
-+
- 	ieee80211_hw_set(ar->hw, SIGNAL_DBM);
- 	ieee80211_hw_set(ar->hw, SUPPORTS_PS);
- 	ieee80211_hw_set(ar->hw, SUPPORTS_DYNAMIC_PS);
 -- 
-2.31.1
-
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
 
 -- 
 ath11k mailing list
