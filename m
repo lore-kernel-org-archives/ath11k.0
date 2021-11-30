@@ -4,66 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45B85C433F5
-	for <ath11k@archiver.kernel.org>; Tue, 30 Nov 2021 17:51:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 748EBC433FE
+	for <ath11k@archiver.kernel.org>; Tue, 30 Nov 2021 21:48:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=TtuES99Fc6wiJbcN8j9kWBCBSgI+YSW4jr8FmBoorS0=; b=lMx1gVVgTlfoqI
-	0lhn0QWeiXGctM1JPfT2TA58o1XiXnv07kF4LX/auLRAHRCVUp5qJrf8MxF/LQyw4GepSH6QZ322I
-	ZY/8PreN86v/2g7qudBAiO0dafsJswS6bXsnopFhH1CphErXWqKu/Az7qEDA2Zgq79PCd3zxbpygq
-	/RbC7BaYXV0KhBjsSjPkIkEMPS274BJYo2Bx+mX984y5bs+p6UxOF3iDeNrqzshxWFgshlui/53jc
-	AuoOonOb7Mo1nOtRcBF82XSsVJgDY4jBI1c4Sbb9gM/rrq2KCwKRkOIUqXhhfjTBdE43OjF6W9R23
-	0gVWKf1Rygaj2cwkRMeA==;
+	List-Owner; bh=glWb3Y5w5JGiFORH2HwnRqwuYJR4cibh7KOOx8xpccM=; b=euIUonzav7jHl7
+	Ku93aQ3r62RbQV2HBrdEu+mE+ZMVKSiOBves0PC0CLCJQjHlGt+tqwRiT83FKt2uMg9DMPWDOn8o6
+	DTh+xLg8qH4YnpzEdvpIAGhyPM8SBMmCITVYlKwdmy+LmJKMpNAhd5QeLy4ct0ABnVKBKXlgo5Ky7
+	/+bJsUq4MCwP2YYTtc4E537nibaKn2X2RXpjF/e+gQ9exkqNTz82aNHAHBjYw+Q2h0NaC87c7bE12
+	0kFyeo3MVRhxi99atH7UYYwfx/kIP2hpwD+FQPbXrw2tKFPEhj8raDlEODDKpS4mmXUqOb8+ye9Sj
+	57aFFfG0duPpqXgkBi4w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ms7Hp-006Ox2-8p; Tue, 30 Nov 2021 17:51:25 +0000
-Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39])
+	id 1msAzL-006pcL-MR; Tue, 30 Nov 2021 21:48:35 +0000
+Received: from 10.mo552.mail-out.ovh.net ([87.98.187.244])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1ms7Hm-006OvB-7t
- for ath11k@lists.infradead.org; Tue, 30 Nov 2021 17:51:23 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1638294682; x=1669830682;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version;
- bh=7C9yaLF8HRZcTFko5EAEXspKBHdav//DPFs6qRGyTRg=;
- b=UoFIX4wuwIx5m6vyPEuXLTmZVxevCjL38q3WtBeKBWNm5mGp8mov34u2
- M3cFl5MppDE+vYLgHdcJl5fpe772bvy2aPtmgS3060UkTM5I7PzCGx5vI
- GoLJgFkCr6AJURJF3gPXt0s7jbi1Z7vjrB/pQthlF/WsgAecprpgn/XQE o=;
-Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
- by alexa-out-sd-02.qualcomm.com with ESMTP; 30 Nov 2021 09:51:21 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2021 09:51:21 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Tue, 30 Nov 2021 09:51:21 -0800
-Received: from ppranees-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Tue, 30 Nov 2021 09:51:19 -0800
-From: P Praneesh <quic_ppranees@quicinc.com>
-To: <ath11k@lists.infradead.org>, <johannes@sipsolutions.net>
-CC: <linux-wireless@vger.kernel.org>, P Praneesh <quic_ppranees@quicinc.com>
-Subject: [PATCH 2/2] ath11k: add LDPC FEC type in 802.11 radiotap header
-Date: Tue, 30 Nov 2021 23:20:48 +0530
-Message-ID: <1638294648-844-3-git-send-email-quic_ppranees@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1638294648-844-1-git-send-email-quic_ppranees@quicinc.com>
-References: <1638294648-844-1-git-send-email-quic_ppranees@quicinc.com>
+ id 1msAzI-006pZI-2a
+ for ath11k@lists.infradead.org; Tue, 30 Nov 2021 21:48:34 +0000
+Received: from mxplan5.mail.ovh.net (unknown [10.109.143.123])
+ by mo552.mail-out.ovh.net (Postfix) with ESMTPS id 0AD47216DE;
+ Tue, 30 Nov 2021 21:48:24 +0000 (UTC)
+Received: from kaod.org (37.59.142.99) by DAG4EX1.mxp5.local (172.16.2.31)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.20; Tue, 30 Nov
+ 2021 22:48:23 +0100
+Authentication-Results: garm.ovh; auth=pass
+ (GARM-99G00338e8fa02-b36d-46a2-a9ce-03d85f7b4222,
+ 1FE831E2BDC1BE20692CF32662DF656E64B35270) smtp.auth=clg@kaod.org
+X-OVh-ClientIp: 90.11.56.15
+Message-ID: <524d9b84-caa8-dd6f-bb5e-9fc906d279c0@kaod.org>
+Date: Tue, 30 Nov 2021 22:48:22 +0100
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Subject: Re: [patch 05/22] genirq/msi: Fixup includes
+Content-Language: en-US
+To: Thomas Gleixner <tglx@linutronix.de>, LKML <linux-kernel@vger.kernel.org>
+CC: <linux-hyperv@vger.kernel.org>, Paul Mackerras <paulus@samba.org>,
+ <sparclinux@vger.kernel.org>, Wei Liu <wei.liu@kernel.org>, Ashok Raj
+ <ashok.raj@intel.com>, Marc Zygnier <maz@kernel.org>, <x86@kernel.org>,
+ Christian Borntraeger <borntraeger@de.ibm.com>, Bjorn Helgaas
+ <helgaas@kernel.org>, Jason Gunthorpe <jgg@nvidia.com>,
+ <linux-pci@vger.kernel.org>, <xen-devel@lists.xenproject.org>,
+ <ath11k@lists.infradead.org>, Kevin Tian <kevin.tian@intel.com>, Heiko
+ Carstens <hca@linux.ibm.com>, Alex Williamson <alex.williamson@redhat.com>,
+ Megha Dey <megha.dey@intel.com>, Juergen Gross <jgross@suse.com>, Thomas
+ Bogendoerfer <tsbogend@alpha.franken.de>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, <linux-mips@vger.kernel.org>,
+ <linuxppc-dev@lists.ozlabs.org>
+References: <20211126222700.862407977@linutronix.de>
+ <20211126223824.382273262@linutronix.de>
+ <b1a6d267-c7b4-c4b9-ab0e-f5cc32bfe9bf@kaod.org> <87tufud4m3.ffs@tglx>
+From: =?UTF-8?Q?C=c3=a9dric_Le_Goater?= <clg@kaod.org>
+In-Reply-To: <87tufud4m3.ffs@tglx>
+X-Originating-IP: [37.59.142.99]
+X-ClientProxiedBy: DAG3EX2.mxp5.local (172.16.2.22) To DAG4EX1.mxp5.local
+ (172.16.2.31)
+X-Ovh-Tracer-GUID: 16c7449c-9f55-435d-bf3c-7f66bf2ab8fd
+X-Ovh-Tracer-Id: 11252243670229552028
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvuddriedugdduheehucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfuffvfhfhjggtgfhisehtkeertddtfeejnecuhfhrohhmpeevrogurhhitggpnfgvpgfiohgrthgvrhcuoegtlhhgsehkrghougdrohhrgheqnecuggftrfgrthhtvghrnhepjeekvdfgudevkeefkeeltdejteekvdegffegudetgeettdffjeefheekfeelffdtnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucfkpheptddrtddrtddrtddpfeejrdehledrudegvddrleelnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopehmgihplhgrnhehrdhmrghilhdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheptghlgheskhgrohgurdhorhhgpdhrtghpthhtoheplhhinhhugihpphgtqdguvghvsehlihhsthhsrdhoiihlrggsshdrohhrgh
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211130_095122_396238_570BA5C8 
-X-CRM114-Status: GOOD (  13.49  )
+X-CRM114-CacheID: sfid-20211130_134832_446273_F5E0C425 
+X-CRM114-Status: GOOD (  13.15  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,141 +83,33 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-LDPC is one the FEC type advertised in msdu_start info2 for HT packet
-type. Hence, add hardware specific callback for fetching LDPC
-support from msdu start and enable RX_ENC_FLAG_LDPC flag while passing
-rx status to mac80211.
-
-Tested-on: IPQ8074 WLAN.HK.2.4.0.1-01467-QCAHKSWPL_SILICONZ-1
-
-Signed-off-by: P Praneesh <quic_ppranees@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/dp_rx.c | 12 +++++++++++-
- drivers/net/wireless/ath/ath11k/hw.c    | 16 ++++++++++++++++
- drivers/net/wireless/ath/ath11k/hw.h    |  1 +
- 3 files changed, 28 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 40f1c86..ed14a90 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -43,6 +43,13 @@ static inline u8 ath11k_dp_rx_h_msdu_start_decap_type(struct ath11k_base *ab,
- }
- 
- static inline
-+bool ath11k_dp_rx_h_msdu_start_ldpc_support(struct ath11k_base *ab,
-+					    struct hal_rx_desc *desc)
-+{
-+	return ab->hw_params.hw_ops->rx_desc_get_ldpc_support(desc);
-+}
-+
-+static inline
- u8 ath11k_dp_rx_h_msdu_start_mesh_ctl_present(struct ath11k_base *ab,
- 					      struct hal_rx_desc *desc)
- {
-@@ -2331,7 +2338,7 @@ static void ath11k_dp_rx_h_rate(struct ath11k *ar, struct hal_rx_desc *rx_desc,
- 	u8 bw;
- 	u8 rate_mcs, nss;
- 	u8 sgi;
--	bool is_cck;
-+	bool is_cck, is_ldpc;
- 
- 	pkt_type = ath11k_dp_rx_h_msdu_start_pkt_type(ar->ab, rx_desc);
- 	bw = ath11k_dp_rx_h_msdu_start_rx_bw(ar->ab, rx_desc);
-@@ -2373,6 +2380,9 @@ static void ath11k_dp_rx_h_rate(struct ath11k *ar, struct hal_rx_desc *rx_desc,
- 		if (sgi)
- 			rx_status->enc_flags |= RX_ENC_FLAG_SHORT_GI;
- 		rx_status->bw = ath11k_mac_bw_to_mac80211_bw(bw);
-+		is_ldpc = ath11k_dp_rx_h_msdu_start_ldpc_support(ar->ab, rx_desc);
-+		if (is_ldpc)
-+			rx_status->enc_flags |= RX_ENC_FLAG_LDPC;
- 		break;
- 	case RX_MSDU_START_PKT_TYPE_11AX:
- 		rx_status->rate_idx = rate_mcs;
-diff --git a/drivers/net/wireless/ath/ath11k/hw.c b/drivers/net/wireless/ath/ath11k/hw.c
-index 2f0b526..25e902d 100644
---- a/drivers/net/wireless/ath/ath11k/hw.c
-+++ b/drivers/net/wireless/ath/ath11k/hw.c
-@@ -273,6 +273,12 @@ static u8 ath11k_hw_ipq8074_rx_desc_get_mesh_ctl(struct hal_rx_desc *desc)
- 			 __le32_to_cpu(desc->u.ipq8074.msdu_start.info2));
- }
- 
-+static bool ath11k_hw_ipq8074_rx_desc_get_ldpc_support(struct hal_rx_desc *desc)
-+{
-+	return FIELD_GET(RX_MSDU_START_INFO2_LDPC,
-+			 __le32_to_cpu(desc->u.ipq8074.msdu_start.info2));
-+}
-+
- static bool ath11k_hw_ipq8074_rx_desc_get_mpdu_seq_ctl_vld(struct hal_rx_desc *desc)
- {
- 	return !!FIELD_GET(RX_MPDU_START_INFO1_MPDU_SEQ_CTRL_VALID,
-@@ -444,6 +450,12 @@ static u8 ath11k_hw_qcn9074_rx_desc_get_mesh_ctl(struct hal_rx_desc *desc)
- 			 __le32_to_cpu(desc->u.qcn9074.msdu_start.info2));
- }
- 
-+static bool ath11k_hw_qcn9074_rx_desc_get_ldpc_support(struct hal_rx_desc *desc)
-+{
-+	return FIELD_GET(RX_MSDU_START_INFO2_LDPC,
-+			 __le32_to_cpu(desc->u.qcn9074.msdu_start.info2));
-+}
-+
- static bool ath11k_hw_qcn9074_rx_desc_get_mpdu_seq_ctl_vld(struct hal_rx_desc *desc)
- {
- 	return !!FIELD_GET(RX_MPDU_START_INFO11_MPDU_SEQ_CTRL_VALID,
-@@ -815,6 +827,7 @@ const struct ath11k_hw_ops ipq8074_ops = {
- 	.rx_desc_get_encrypt_type = ath11k_hw_ipq8074_rx_desc_get_encrypt_type,
- 	.rx_desc_get_decap_type = ath11k_hw_ipq8074_rx_desc_get_decap_type,
- 	.rx_desc_get_mesh_ctl = ath11k_hw_ipq8074_rx_desc_get_mesh_ctl,
-+	.rx_desc_get_ldpc_support = ath11k_hw_ipq8074_rx_desc_get_ldpc_support,
- 	.rx_desc_get_mpdu_seq_ctl_vld = ath11k_hw_ipq8074_rx_desc_get_mpdu_seq_ctl_vld,
- 	.rx_desc_get_mpdu_fc_valid = ath11k_hw_ipq8074_rx_desc_get_mpdu_fc_valid,
- 	.rx_desc_get_mpdu_start_seq_no = ath11k_hw_ipq8074_rx_desc_get_mpdu_start_seq_no,
-@@ -853,6 +866,7 @@ const struct ath11k_hw_ops ipq6018_ops = {
- 	.rx_desc_get_encrypt_type = ath11k_hw_ipq8074_rx_desc_get_encrypt_type,
- 	.rx_desc_get_decap_type = ath11k_hw_ipq8074_rx_desc_get_decap_type,
- 	.rx_desc_get_mesh_ctl = ath11k_hw_ipq8074_rx_desc_get_mesh_ctl,
-+	.rx_desc_get_ldpc_support = ath11k_hw_ipq8074_rx_desc_get_ldpc_support,
- 	.rx_desc_get_mpdu_seq_ctl_vld = ath11k_hw_ipq8074_rx_desc_get_mpdu_seq_ctl_vld,
- 	.rx_desc_get_mpdu_fc_valid = ath11k_hw_ipq8074_rx_desc_get_mpdu_fc_valid,
- 	.rx_desc_get_mpdu_start_seq_no = ath11k_hw_ipq8074_rx_desc_get_mpdu_start_seq_no,
-@@ -891,6 +905,7 @@ const struct ath11k_hw_ops qca6390_ops = {
- 	.rx_desc_get_encrypt_type = ath11k_hw_ipq8074_rx_desc_get_encrypt_type,
- 	.rx_desc_get_decap_type = ath11k_hw_ipq8074_rx_desc_get_decap_type,
- 	.rx_desc_get_mesh_ctl = ath11k_hw_ipq8074_rx_desc_get_mesh_ctl,
-+	.rx_desc_get_ldpc_support = ath11k_hw_ipq8074_rx_desc_get_ldpc_support,
- 	.rx_desc_get_mpdu_seq_ctl_vld = ath11k_hw_ipq8074_rx_desc_get_mpdu_seq_ctl_vld,
- 	.rx_desc_get_mpdu_fc_valid = ath11k_hw_ipq8074_rx_desc_get_mpdu_fc_valid,
- 	.rx_desc_get_mpdu_start_seq_no = ath11k_hw_ipq8074_rx_desc_get_mpdu_start_seq_no,
-@@ -929,6 +944,7 @@ const struct ath11k_hw_ops qcn9074_ops = {
- 	.rx_desc_get_encrypt_type = ath11k_hw_qcn9074_rx_desc_get_encrypt_type,
- 	.rx_desc_get_decap_type = ath11k_hw_qcn9074_rx_desc_get_decap_type,
- 	.rx_desc_get_mesh_ctl = ath11k_hw_qcn9074_rx_desc_get_mesh_ctl,
-+	.rx_desc_get_ldpc_support = ath11k_hw_qcn9074_rx_desc_get_ldpc_support,
- 	.rx_desc_get_mpdu_seq_ctl_vld = ath11k_hw_qcn9074_rx_desc_get_mpdu_seq_ctl_vld,
- 	.rx_desc_get_mpdu_fc_valid = ath11k_hw_qcn9074_rx_desc_get_mpdu_fc_valid,
- 	.rx_desc_get_mpdu_start_seq_no = ath11k_hw_qcn9074_rx_desc_get_mpdu_start_seq_no,
-diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
-index 2c9d232..e025eda 100644
---- a/drivers/net/wireless/ath/ath11k/hw.h
-+++ b/drivers/net/wireless/ath/ath11k/hw.h
-@@ -199,6 +199,7 @@ struct ath11k_hw_ops {
- 	u32 (*rx_desc_get_encrypt_type)(struct hal_rx_desc *desc);
- 	u8 (*rx_desc_get_decap_type)(struct hal_rx_desc *desc);
- 	u8 (*rx_desc_get_mesh_ctl)(struct hal_rx_desc *desc);
-+	bool (*rx_desc_get_ldpc_support)(struct hal_rx_desc *desc);
- 	bool (*rx_desc_get_mpdu_seq_ctl_vld)(struct hal_rx_desc *desc);
- 	bool (*rx_desc_get_mpdu_fc_valid)(struct hal_rx_desc *desc);
- 	u16 (*rx_desc_get_mpdu_start_seq_no)(struct hal_rx_desc *desc);
--- 
-2.7.4
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+T24gMTEvMjkvMjEgMjI6MzgsIFRob21hcyBHbGVpeG5lciB3cm90ZToKPiBDZWRyaWMsCj4gCj4g
+T24gTW9uLCBOb3YgMjkgMjAyMSBhdCAwODozMywgQ8OpZHJpYyBMZSBHb2F0ZXIgd3JvdGU6Cj4+
+IE9uIDExLzI3LzIxIDAyOjE4LCBUaG9tYXMgR2xlaXhuZXIgd3JvdGU6Cj4+PiBSZW1vdmUgdGhl
+IGtvYmplY3QuaCBpbmNsdWRlIGZyb20gbXNpLmggYXMgaXQncyBub3QgcmVxdWlyZWQgYW5kIGFk
+ZCBhCj4+PiBzeXNmcy5oIGluY2x1ZGUgdG8gdGhlIGNvcmUgY29kZSBpbnN0ZWFkLgo+Pj4KPj4+
+IFNpZ25lZC1vZmYtYnk6IFRob21hcyBHbGVpeG5lciA8dGdseEBsaW51dHJvbml4LmRlPgo+Pgo+
+Pgo+PiBUaGlzIHBhdGNoIGJyZWFrcyBjb21waWxlIG9uIHBvd2VycGMgOgo+Pgo+PiAgICAgQ0Mg
+ICAgICBhcmNoL3Bvd2VycGMva2VybmVsL21zaS5vCj4+IEluIGZpbGUgaW5jbHVkZWQgZnJvbSAu
+Li9hcmNoL3Bvd2VycGMva2VybmVsL21zaS5jOjc6Cj4+IC4uL2luY2x1ZGUvbGludXgvbXNpLmg6
+NDEwOjY1OiBlcnJvcjog4oCYc3RydWN0IGNwdW1hc2vigJkgZGVjbGFyZWQgaW5zaWRlIHBhcmFt
+ZXRlciBsaXN0IHdpbGwgbm90IGJlIHZpc2libGUgb3V0c2lkZSBvZiB0aGlzIGRlZmluaXRpb24g
+b3IgZGVjbGFyYXRpb24gWy1XZXJyb3JdCj4+ICAgICA0MTAgfCBpbnQgbXNpX2RvbWFpbl9zZXRf
+YWZmaW5pdHkoc3RydWN0IGlycV9kYXRhICpkYXRhLCBjb25zdCBzdHJ1Y3QgY3B1bWFzayAqbWFz
+aywKPj4gICAgICAgICB8ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICBefn5+fn5+Cj4+IGNjMTogYWxsIHdhcm5pbmdzIGJlaW5n
+IHRyZWF0ZWQgYXMgZXJyb3JzCj4+Cj4+IEJlbG93IGlzIGZpeCB5b3UgY2FuIG1lcmdlIGluIHBh
+dGNoIDUuCj4gCj4gdGhhbmtzIGZvciBoYXZpbmcgYSBsb29rLiBJIGZpeGVkIHVwIHRoaXMgYW5k
+IG90aGVyIGZhbGxvdXQgYW5kIHB1c2hlZCBvdXQgYW4KPiB1cGRhdGVkIHNlcmllcyAoYWxsIDQg
+cGFydHMpIHRvOgo+IAo+ICAgICAgICAgIGdpdDovL2dpdC5rZXJuZWwub3JnL3B1Yi9zY20vbGlu
+dXgva2VybmVsL2dpdC90Z2x4L2RldmVsIG1zaQoKcFNlcmllcyBmYWlscyB0byBhbGxvY2F0ZSBN
+U0lzIHN0YXJ0aW5nIHdpdGggdGhpcyBwYXRjaCA6CgogIFtQQVRDSCAwNDkvMTAxXSBwb3dlcnBj
+L3BzZXJpZXMvbXNpOiBMZXQgY29yZSBjb2RlIGNoZWNrIGZvciBjb250aWd1b3VzIC4uLgoKSSB3
+aWxsIGRpZyBpbiBsYXRlciBvbi4KCkMuCgotLSAKYXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtA
+bGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL2F0aDExawo=
