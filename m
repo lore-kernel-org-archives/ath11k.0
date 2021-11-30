@@ -4,74 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 748EBC433FE
-	for <ath11k@archiver.kernel.org>; Tue, 30 Nov 2021 21:48:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C8A3C433F5
+	for <ath11k@archiver.kernel.org>; Tue, 30 Nov 2021 22:26:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=glWb3Y5w5JGiFORH2HwnRqwuYJR4cibh7KOOx8xpccM=; b=euIUonzav7jHl7
-	Ku93aQ3r62RbQV2HBrdEu+mE+ZMVKSiOBves0PC0CLCJQjHlGt+tqwRiT83FKt2uMg9DMPWDOn8o6
-	DTh+xLg8qH4YnpzEdvpIAGhyPM8SBMmCITVYlKwdmy+LmJKMpNAhd5QeLy4ct0ABnVKBKXlgo5Ky7
-	/+bJsUq4MCwP2YYTtc4E537nibaKn2X2RXpjF/e+gQ9exkqNTz82aNHAHBjYw+Q2h0NaC87c7bE12
-	0kFyeo3MVRhxi99atH7UYYwfx/kIP2hpwD+FQPbXrw2tKFPEhj8raDlEODDKpS4mmXUqOb8+ye9Sj
-	57aFFfG0duPpqXgkBi4w==;
+	List-Owner; bh=3LtXhw3Y06ECXvIuK2i09Rf35rD97zCBC/16rRYjI+0=; b=cbh8nzScx4yPZO
+	V6TM7MHCKNVstQgIZsllASvycoIxCCvdq1ih5Ibd7FMpSDPKWMcM27RXEtQD5hYXcmCGNZm9kAEgZ
+	g0PBrDrohj3nqXvlfUB/1VZjoodf00Yug0huuBsX5KWiFNeVFfhZuHL9DaDYs4VmCvLwxT3SUaDIG
+	8lRzyEbtK2wD9NTZIW2rw6/p8/gSZek8KTUdYjlf+/GXaaYGuSvN38IXWsOo5hyDLrFIKT1KjzsXm
+	SGYiEE4lfzwHbCstfukZk7WLPU773Cqnxdj359+tfW9JxoUbbC0KOSvJyBs/0Feq4I3A4uxX8pW8o
+	HfwKVCNWDm+EmoRZQtoA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1msAzL-006pcL-MR; Tue, 30 Nov 2021 21:48:35 +0000
-Received: from 10.mo552.mail-out.ovh.net ([87.98.187.244])
+	id 1msBaQ-0071pT-GZ; Tue, 30 Nov 2021 22:26:54 +0000
+Received: from galois.linutronix.de ([2a0a:51c0:0:12e:550::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1msAzI-006pZI-2a
- for ath11k@lists.infradead.org; Tue, 30 Nov 2021 21:48:34 +0000
-Received: from mxplan5.mail.ovh.net (unknown [10.109.143.123])
- by mo552.mail-out.ovh.net (Postfix) with ESMTPS id 0AD47216DE;
- Tue, 30 Nov 2021 21:48:24 +0000 (UTC)
-Received: from kaod.org (37.59.142.99) by DAG4EX1.mxp5.local (172.16.2.31)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.20; Tue, 30 Nov
- 2021 22:48:23 +0100
-Authentication-Results: garm.ovh; auth=pass
- (GARM-99G00338e8fa02-b36d-46a2-a9ce-03d85f7b4222,
- 1FE831E2BDC1BE20692CF32662DF656E64B35270) smtp.auth=clg@kaod.org
-X-OVh-ClientIp: 90.11.56.15
-Message-ID: <524d9b84-caa8-dd6f-bb5e-9fc906d279c0@kaod.org>
-Date: Tue, 30 Nov 2021 22:48:22 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Subject: Re: [patch 05/22] genirq/msi: Fixup includes
-Content-Language: en-US
-To: Thomas Gleixner <tglx@linutronix.de>, LKML <linux-kernel@vger.kernel.org>
-CC: <linux-hyperv@vger.kernel.org>, Paul Mackerras <paulus@samba.org>,
- <sparclinux@vger.kernel.org>, Wei Liu <wei.liu@kernel.org>, Ashok Raj
- <ashok.raj@intel.com>, Marc Zygnier <maz@kernel.org>, <x86@kernel.org>,
+ id 1msBKp-006vmn-Bq
+ for ath11k@lists.infradead.org; Tue, 30 Nov 2021 22:10:48 +0000
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1638310245;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=iQwNm3evMDmCqqNj6SOBSL2raZeNEDMRyVYLWo7plsQ=;
+ b=cfCUOIaPomiZCO9d79k8QaTA54iAEZbQY4lmYzVXbCZ99fBBPE+xqpOo1m4nSfa3KPq6+6
+ pI8jqClQqAQ6e9xEzGMdMDMlM7PO3wO+IzFhUB7wl4w2H81v2euyyU8OpSzUxgKY+0HqOn
+ tbRxYHYo0OtQnM7fMd/Q2RflLcOK0WEbJRcLaARC9aG5kGkie13cZuSuCFIva1m+TA616i
+ dV35DJLlXGyNBE5vTnPj0hgLjo4pBUrYZ1WEUXNY8Y4DNEBT5I7kTI7Vt9Tc5Lg2J+Di+B
+ X84UlqMbc2Q4lC6o9mfXgbNv2vVK1HCIjDj9nJ/ptp3y+rYMnW5ZpEnm9xcPOg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1638310245;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=iQwNm3evMDmCqqNj6SOBSL2raZeNEDMRyVYLWo7plsQ=;
+ b=OS4mhIe7yFZLurVEyelXc9LbdOQ2hxFAIJTEo5kZyIy2QO7wrWZZMF3x6KmDym+n1S953w
+ D2cPy3zCOhdCl9Bg==
+To: =?utf-8?Q?C=C3=A9dric?= Le Goater <clg@kaod.org>, LKML
+ <linux-kernel@vger.kernel.org>
+Cc: linux-hyperv@vger.kernel.org, Paul Mackerras <paulus@samba.org>,
+ sparclinux@vger.kernel.org, Wei Liu <wei.liu@kernel.org>, Ashok Raj
+ <ashok.raj@intel.com>, Marc Zygnier <maz@kernel.org>, x86@kernel.org,
  Christian Borntraeger <borntraeger@de.ibm.com>, Bjorn Helgaas
  <helgaas@kernel.org>, Jason Gunthorpe <jgg@nvidia.com>,
- <linux-pci@vger.kernel.org>, <xen-devel@lists.xenproject.org>,
- <ath11k@lists.infradead.org>, Kevin Tian <kevin.tian@intel.com>, Heiko
+ linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
+ ath11k@lists.infradead.org, Kevin Tian <kevin.tian@intel.com>, Heiko
  Carstens <hca@linux.ibm.com>, Alex Williamson <alex.williamson@redhat.com>,
  Megha Dey <megha.dey@intel.com>, Juergen Gross <jgross@suse.com>, Thomas
  Bogendoerfer <tsbogend@alpha.franken.de>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, <linux-mips@vger.kernel.org>,
- <linuxppc-dev@lists.ozlabs.org>
+ <gregkh@linuxfoundation.org>, linux-mips@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org
+Subject: Re: [patch 05/22] genirq/msi: Fixup includes
+In-Reply-To: <524d9b84-caa8-dd6f-bb5e-9fc906d279c0@kaod.org>
 References: <20211126222700.862407977@linutronix.de>
  <20211126223824.382273262@linutronix.de>
  <b1a6d267-c7b4-c4b9-ab0e-f5cc32bfe9bf@kaod.org> <87tufud4m3.ffs@tglx>
-From: =?UTF-8?Q?C=c3=a9dric_Le_Goater?= <clg@kaod.org>
-In-Reply-To: <87tufud4m3.ffs@tglx>
-X-Originating-IP: [37.59.142.99]
-X-ClientProxiedBy: DAG3EX2.mxp5.local (172.16.2.22) To DAG4EX1.mxp5.local
- (172.16.2.31)
-X-Ovh-Tracer-GUID: 16c7449c-9f55-435d-bf3c-7f66bf2ab8fd
-X-Ovh-Tracer-Id: 11252243670229552028
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvuddriedugdduheehucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfuffvfhfhjggtgfhisehtkeertddtfeejnecuhfhrohhmpeevrogurhhitggpnfgvpgfiohgrthgvrhcuoegtlhhgsehkrghougdrohhrgheqnecuggftrfgrthhtvghrnhepjeekvdfgudevkeefkeeltdejteekvdegffegudetgeettdffjeefheekfeelffdtnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucfkpheptddrtddrtddrtddpfeejrdehledrudegvddrleelnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopehmgihplhgrnhehrdhmrghilhdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheptghlgheskhgrohgurdhorhhgpdhrtghpthhtoheplhhinhhugihpphgtqdguvghvsehlihhsthhsrdhoiihlrggsshdrohhrgh
+ <524d9b84-caa8-dd6f-bb5e-9fc906d279c0@kaod.org>
+Date: Tue, 30 Nov 2021 23:10:45 +0100
+Message-ID: <87czmhb8gq.ffs@tglx>
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211130_134832_446273_F5E0C425 
-X-CRM114-Status: GOOD (  13.15  )
+X-CRM114-CacheID: sfid-20211130_141047_604296_E33668FC 
+X-CRM114-Status: UNSURE (   8.42  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,33 +85,20 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-T24gMTEvMjkvMjEgMjI6MzgsIFRob21hcyBHbGVpeG5lciB3cm90ZToKPiBDZWRyaWMsCj4gCj4g
-T24gTW9uLCBOb3YgMjkgMjAyMSBhdCAwODozMywgQ8OpZHJpYyBMZSBHb2F0ZXIgd3JvdGU6Cj4+
-IE9uIDExLzI3LzIxIDAyOjE4LCBUaG9tYXMgR2xlaXhuZXIgd3JvdGU6Cj4+PiBSZW1vdmUgdGhl
-IGtvYmplY3QuaCBpbmNsdWRlIGZyb20gbXNpLmggYXMgaXQncyBub3QgcmVxdWlyZWQgYW5kIGFk
-ZCBhCj4+PiBzeXNmcy5oIGluY2x1ZGUgdG8gdGhlIGNvcmUgY29kZSBpbnN0ZWFkLgo+Pj4KPj4+
-IFNpZ25lZC1vZmYtYnk6IFRob21hcyBHbGVpeG5lciA8dGdseEBsaW51dHJvbml4LmRlPgo+Pgo+
-Pgo+PiBUaGlzIHBhdGNoIGJyZWFrcyBjb21waWxlIG9uIHBvd2VycGMgOgo+Pgo+PiAgICAgQ0Mg
-ICAgICBhcmNoL3Bvd2VycGMva2VybmVsL21zaS5vCj4+IEluIGZpbGUgaW5jbHVkZWQgZnJvbSAu
-Li9hcmNoL3Bvd2VycGMva2VybmVsL21zaS5jOjc6Cj4+IC4uL2luY2x1ZGUvbGludXgvbXNpLmg6
-NDEwOjY1OiBlcnJvcjog4oCYc3RydWN0IGNwdW1hc2vigJkgZGVjbGFyZWQgaW5zaWRlIHBhcmFt
-ZXRlciBsaXN0IHdpbGwgbm90IGJlIHZpc2libGUgb3V0c2lkZSBvZiB0aGlzIGRlZmluaXRpb24g
-b3IgZGVjbGFyYXRpb24gWy1XZXJyb3JdCj4+ICAgICA0MTAgfCBpbnQgbXNpX2RvbWFpbl9zZXRf
-YWZmaW5pdHkoc3RydWN0IGlycV9kYXRhICpkYXRhLCBjb25zdCBzdHJ1Y3QgY3B1bWFzayAqbWFz
-aywKPj4gICAgICAgICB8ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICBefn5+fn5+Cj4+IGNjMTogYWxsIHdhcm5pbmdzIGJlaW5n
-IHRyZWF0ZWQgYXMgZXJyb3JzCj4+Cj4+IEJlbG93IGlzIGZpeCB5b3UgY2FuIG1lcmdlIGluIHBh
-dGNoIDUuCj4gCj4gdGhhbmtzIGZvciBoYXZpbmcgYSBsb29rLiBJIGZpeGVkIHVwIHRoaXMgYW5k
-IG90aGVyIGZhbGxvdXQgYW5kIHB1c2hlZCBvdXQgYW4KPiB1cGRhdGVkIHNlcmllcyAoYWxsIDQg
-cGFydHMpIHRvOgo+IAo+ICAgICAgICAgIGdpdDovL2dpdC5rZXJuZWwub3JnL3B1Yi9zY20vbGlu
-dXgva2VybmVsL2dpdC90Z2x4L2RldmVsIG1zaQoKcFNlcmllcyBmYWlscyB0byBhbGxvY2F0ZSBN
-U0lzIHN0YXJ0aW5nIHdpdGggdGhpcyBwYXRjaCA6CgogIFtQQVRDSCAwNDkvMTAxXSBwb3dlcnBj
-L3BzZXJpZXMvbXNpOiBMZXQgY29yZSBjb2RlIGNoZWNrIGZvciBjb250aWd1b3VzIC4uLgoKSSB3
-aWxsIGRpZyBpbiBsYXRlciBvbi4KCkMuCgotLSAKYXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtA
-bGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL2F0aDExawo=
+T24gVHVlLCBOb3YgMzAgMjAyMSBhdCAyMjo0OCwgQ8OpZHJpYyBMZSBHb2F0ZXIgd3JvdGU6Cj4g
+T24gMTEvMjkvMjEgMjI6MzgsIFRob21hcyBHbGVpeG5lciB3cm90ZToKPj4gT24gTW9uLCBOb3Yg
+MjkgMjAyMSBhdCAwODozMywgQ8OpZHJpYyBMZSBHb2F0ZXIgd3JvdGU6Cj4+IHRoYW5rcyBmb3Ig
+aGF2aW5nIGEgbG9vay4gSSBmaXhlZCB1cCB0aGlzIGFuZCBvdGhlciBmYWxsb3V0IGFuZCBwdXNo
+ZWQgb3V0IGFuCj4+IHVwZGF0ZWQgc2VyaWVzIChhbGwgNCBwYXJ0cykgdG86Cj4+IAo+PiAgICAg
+ICAgICBnaXQ6Ly9naXQua2VybmVsLm9yZy9wdWIvc2NtL2xpbnV4L2tlcm5lbC9naXQvdGdseC9k
+ZXZlbCBtc2kKPgo+IHBTZXJpZXMgZmFpbHMgdG8gYWxsb2NhdGUgTVNJcyBzdGFydGluZyB3aXRo
+IHRoaXMgcGF0Y2ggOgo+Cj4gICBbUEFUQ0ggMDQ5LzEwMV0gcG93ZXJwYy9wc2VyaWVzL21zaTog
+TGV0IGNvcmUgY29kZSBjaGVjayBmb3IgY29udGlndW91cyAuLi4KPgo+IEkgd2lsbCBkaWcgaW4g
+bGF0ZXIgb24uCgpMZXQgbWUgc3RhcmUgYXQgdGhlIGNvcmUgZnVuY3Rpb24uLgoKLS0gCmF0aDEx
+ayBtYWlsaW5nIGxpc3QKYXRoMTFrQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmlu
+ZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9hdGgxMWsK
