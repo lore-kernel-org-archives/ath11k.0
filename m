@@ -4,63 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74615C433EF
-	for <ath11k@archiver.kernel.org>; Tue, 30 Nov 2021 17:51:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2043C433EF
+	for <ath11k@archiver.kernel.org>; Tue, 30 Nov 2021 17:51:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=QDId89axsBtDkFPE243VcjHZryU/f95+Yf9mBmBynJk=; b=rDvZr6e6iJ7C41
-	+qneMPtypKmh/u+TKKZq8LYqTnUEU8llRXN2aK/fGkU5TyW0KtrjNLGdg1lJFZ2HI9B8b5un6HEeG
-	Jp31vC+E3l13gIPqw0oNj+PREoUR+wC4sHfV82OD4nL7x06lBK6YEvhS7HwOCR7UvcU97gtImJcIm
-	ZmJzWsgSwyXnf/mP4VK8aWsLnY4IdDuaaI5rqDducWe4ZkpCsFLRVGPjj5tL3wzLf6SNmqLiK7bPt
-	slWN3RHTIKL7hKOgTl9cAyJKEcGRzzWTBkDs1JPmFnRsNWGdjlhF0p8EE6kb6z84ZtkFRHLyUmmsq
-	GZAokSg1INTMpEeCVQtQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=fqFTihPoB6NWJ7vEzleHRX9StOWvNHIHR55MT2iPZ0s=; b=I+RYtIKf6k+soP
+	FnEJ8C0XdUBClrgRMrEMCifUNr2WVmYpTeYpiYxzs6qkN23QFs2YwbJb7RQuySjlqLo/vhOpYga6X
+	bWWo/EEAq0kDKHN/VNMIi5uNBOIK3kCRUp59Ug8WUCximA9mY/FuJQhYPIuhr0UAxE1K3ZqYPcG1a
+	+3Xy8Zmjk1O7O1r99WR9PI2jLXqkBacj+tyXRv5d/HtWlW231MtIt6fyyOw3Y8MIOkqHiB3VdGp7f
+	FCLqLG3nIluQjLKG/zLB/COHYV0+ybp/lZTNLPDxnKPf+Fppi0BaWopb+d8ehKoeKRSpD0S5/M++a
+	SaLdtUcPH1fVMn6G83hQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ms7Hj-006OuO-CW; Tue, 30 Nov 2021 17:51:19 +0000
-Received: from alexa-out.qualcomm.com ([129.46.98.28])
+	id 1ms7Hn-006Ovu-RG; Tue, 30 Nov 2021 17:51:23 +0000
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1ms7Hf-006OtP-TR
- for ath11k@lists.infradead.org; Tue, 30 Nov 2021 17:51:17 +0000
+ id 1ms7Hk-006Ou2-SJ
+ for ath11k@lists.infradead.org; Tue, 30 Nov 2021 17:51:22 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1638294676; x=1669830676;
- h=from:to:cc:subject:date:message-id:mime-version;
- bh=2IKdhhCjaL2qt7idoUOQkSwxJJjrvzuuIwI6+Uzmgfg=;
- b=zI2olSkQyprTJmF4gclIQhuzFhj/5kYkEdntXZUA7vXkz8DfTNIETDvF
- syztO0CuWq96kWx07UVqPy9dKcscvjyAwk6yREGDHHDiQI8qi+am3uaO1
- d5aeNuwWVkeXGhLTLBGDDtISWhw20+MSah0ggrxPKxVmoG6FrFR22rsJ+ 8=;
-Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
- by alexa-out.qualcomm.com with ESMTP; 30 Nov 2021 09:51:13 -0800
+ t=1638294680; x=1669830680;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version;
+ bh=AehaPN9mAVpFKqjj4RHvCuU9GRZ7+GwKC1WV+P6Ie5U=;
+ b=exqxTjiXaoC4zLavwgHU2xJZWUE/qUp3QQs8vWv7Js1BXKquS3sWhvoB
+ pp18m1sEijGGUp0DroJad2rYNQTfY9mXxb9DtBBNxKBR79FKYgv6cZeV/
+ 91mvIfd93sTf3LQqtBBaVWGQeZEb6qewouarhqSsho8P3fIsDqxOEEZja U=;
+Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
+ by alexa-out-sd-02.qualcomm.com with ESMTP; 30 Nov 2021 09:51:17 -0800
 X-QCInternal: smtphost
 Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2021 09:51:13 -0800
+ by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2021 09:51:17 -0800
 Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
  nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Tue, 30 Nov 2021 09:51:12 -0800
+ 15.2.922.19; Tue, 30 Nov 2021 09:51:17 -0800
 Received: from ppranees-linux.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Tue, 30 Nov 2021 09:51:10 -0800
+ 15.2.922.19; Tue, 30 Nov 2021 09:51:15 -0800
 From: P Praneesh <quic_ppranees@quicinc.com>
 To: <ath11k@lists.infradead.org>, <johannes@sipsolutions.net>
 CC: <linux-wireless@vger.kernel.org>, P Praneesh <quic_ppranees@quicinc.com>
-Subject: [PATCH 0/2] mac80211/ath11k: add FEC type in radiotap header
-Date: Tue, 30 Nov 2021 23:20:46 +0530
-Message-ID: <1638294648-844-1-git-send-email-quic_ppranees@quicinc.com>
+Subject: [PATCH 1/2] mac80211: fix FEC flag in radio tap header
+Date: Tue, 30 Nov 2021 23:20:47 +0530
+Message-ID: <1638294648-844-2-git-send-email-quic_ppranees@quicinc.com>
 X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1638294648-844-1-git-send-email-quic_ppranees@quicinc.com>
+References: <1638294648-844-1-git-send-email-quic_ppranees@quicinc.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211130_095116_038669_0F34B38A 
-X-CRM114-Status: UNSURE (   8.19  )
+X-CRM114-CacheID: sfid-20211130_095120_977495_DEDD16D4 
+X-CRM114-Status: UNSURE (   9.47  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -78,19 +81,34 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-This patch series adds LDPC FEC type in 802.11 radiotap header
-in the captured packets.
+In mac80211, while building radiotap header
+IEEE80211_RADIOTAP_MCS_HAVE_FEC flag is missing when LDPC enabled
+from driver, hence LDPC is not updated properly in radiotap header.
+Fix that by adding HAVE_FEC flag while building radiotap header.
 
-P Praneesh (2):
-  mac80211: fix FEC flag in radio tap header
-  ath11k: add LDPC FEC type in 802.11 radiotap header
+Signed-off-by: P Praneesh <quic_ppranees@quicinc.com>
+---
+ net/mac80211/rx.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
- drivers/net/wireless/ath/ath11k/dp_rx.c | 12 +++++++++++-
- drivers/net/wireless/ath/ath11k/hw.c    | 16 ++++++++++++++++
- drivers/net/wireless/ath/ath11k/hw.h    |  1 +
- net/mac80211/rx.c                       |  7 ++++++-
- 4 files changed, 34 insertions(+), 2 deletions(-)
-
+diff --git a/net/mac80211/rx.c b/net/mac80211/rx.c
+index 9541a4c..be12fa8 100644
+--- a/net/mac80211/rx.c
++++ b/net/mac80211/rx.c
+@@ -465,7 +465,12 @@ ieee80211_add_rx_radiotap_header(struct ieee80211_local *local,
+ 		unsigned int stbc;
+ 
+ 		rthdr->it_present |= cpu_to_le32(BIT(IEEE80211_RADIOTAP_MCS));
+-		*pos++ = local->hw.radiotap_mcs_details;
++		*pos = local->hw.radiotap_mcs_details;
++		if (status->enc_flags & RX_ENC_FLAG_HT_GF)
++			*pos |= IEEE80211_RADIOTAP_MCS_HAVE_FMT;
++		if (status->enc_flags & RX_ENC_FLAG_LDPC)
++			*pos |= IEEE80211_RADIOTAP_MCS_HAVE_FEC;
++		pos++;
+ 		*pos = 0;
+ 		if (status->enc_flags & RX_ENC_FLAG_SHORT_GI)
+ 			*pos |= IEEE80211_RADIOTAP_MCS_SGI;
 -- 
 2.7.4
 
