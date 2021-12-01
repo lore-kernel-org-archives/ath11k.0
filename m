@@ -4,67 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E536CC433EF
-	for <ath11k@archiver.kernel.org>; Wed,  1 Dec 2021 07:18:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92E48C433EF
+	for <ath11k@archiver.kernel.org>; Wed,  1 Dec 2021 07:34:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Subject:From:References:Cc:
+	To:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BT3oHFeD1tsdEfC8wgr9ZQPxMWg1vThSsjqYLUige9M=; b=GxiNdbdjbWipJl
-	ZKCCyTvdwpj2GU81FGN9i7KnslUJaSToVqPRBr8c5JQZ5/QisuDj0m67DPRGOVXTyXX+1avxc5SxU
-	ayVb8Jc1cIKsg3QDILtoev43biuOOM9/LVeWNIZW1u+5ZinFbYeTI7lbUkhZBzDHvAnenBNjx6qO6
-	Ja7wL4qNkLYPseYNceIOYz1wuyGf7dT2hidRfOp8LguODYN3lXcgCMi/Ub838EWyszNvxLK2rHOkH
-	BQ6bifZjan0Y4E46VXWCUzsA63dDS6PJV8wD8Yew5WZYHOlKWpsVfmpWLAcFetRcli3bWK3wpKJbz
-	q1qRMswgFkQDlS2QRDDg==;
+	List-Owner; bh=LzcF2aN+KSV6sj9/+suslHyvSNjOd1i9sICevqwSD8w=; b=y4O1eyt9/nvov4
+	PpFkQku2oK4HT8sODMyZIvionXIdsFd9jC3/ymFj5gS/jEAbfFWXkhzJQBEoi93cIwhYlgd4kgT8T
+	Gfab2XcfTCsatGRf1GPZQodpL3E5Y6pYKVLweZV90sFzdhYOhRGFn7AsRZnT8tuQIPqQiueCdmWMX
+	rdJnSw5VKp6ugcpRl5HSAQbaQ5qnWLnqFuHgjGUOF8loPhR8dVLIudntnCrzOb2hwxJI8G2Z8xw7y
+	dwUzr++5EWUZyNdk9D4KazVGYmtCPJSfPGiRdDW0rbaGNUYyOGLkG0680aRMi1YQnYMOL2m4fqHaE
+	gErQZiQplfG5BwlJZveg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1msJsg-007d1L-Vp; Wed, 01 Dec 2021 07:18:18 +0000
-Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38])
+	id 1msK8C-007gBT-2F; Wed, 01 Dec 2021 07:34:20 +0000
+Received: from wp530.webpack.hosteurope.de ([2a01:488:42:1000:50ed:8234::])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1msJse-007cx0-Bz
- for ath11k@lists.infradead.org; Wed, 01 Dec 2021 07:18:17 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1638343096; x=1669879096;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=BI3+p8GiIRT8JMKUpL6ZylF63LhDqLtXXrqbjg8P1MU=;
- b=jc0egiHzd4xutp4wmtG6YH61/pcxjFcC96J6CUN0U3Hf3IpQYZCa2Lcv
- 4sr7CL7kB8soav9yEpLR+MA/0Z4kVJN0vTVytipZgw1TtAgzUdY8VWM9r
- 22q4xD3Dzu6PcIuaFrW5ge67tYBJcKGg0Fhjis0W2qUp0JKhRHwO2Y52L A=;
-Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
- by alexa-out-sd-01.qualcomm.com with ESMTP; 30 Nov 2021 23:18:06 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2021 23:18:06 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Tue, 30 Nov 2021 23:18:05 -0800
-Received: from wgong-HP3-Z230-SFF-Workstation.qca.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Tue, 30 Nov 2021 23:18:04 -0800
-From: Wen Gong <quic_wgong@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, <quic_wgong@quicinc.com>
-Subject: [PATCH v3 2/3] ath11k: add configure country code for QCA6390 and
- WCN6855
-Date: Wed, 1 Dec 2021 02:17:44 -0500
-Message-ID: <20211201071745.17746-3-quic_wgong@quicinc.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20211201071745.17746-1-quic_wgong@quicinc.com>
-References: <20211201071745.17746-1-quic_wgong@quicinc.com>
+ id 1msK87-007g7U-Fh
+ for ath11k@lists.infradead.org; Wed, 01 Dec 2021 07:34:18 +0000
+Received: from ip4d173d4a.dynamic.kabel-deutschland.de ([77.23.61.74]
+ helo=[192.168.66.200]); authenticated
+ by wp530.webpack.hosteurope.de running ExIM with esmtpsa
+ (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+ id 1msK83-0000cS-8F; Wed, 01 Dec 2021 08:34:11 +0100
+Message-ID: <915c3760-181e-bbac-aec4-1e20d0dab2a9@leemhuis.info>
+Date: Wed, 1 Dec 2021 08:34:09 +0100
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Content-Language: en-BS
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Kalle Valo <kvalo@codeaurora.org>
+Cc: Loic Poulain <loic.poulain@linaro.org>, ath11k@lists.infradead.org,
+ linux-wireless@vger.kernel.org, linux-arm-msm
+ <linux-arm-msm@vger.kernel.org>, regressions@lists.linux.dev,
+ mhi <mhi@lists.linux.dev>
+References: <871r5p0x2u.fsf@codeaurora.org>
+ <CAMZdPi8UJLvBFQd8-nf-iHAQh8cEuihq97PUFfZ7Q=rxRQoPsg@mail.gmail.com>
+ <877df6tlnq.fsf@codeaurora.org>
+ <CAMZdPi8P7YZPhPir+WfS3cY_a7He1m2Pq2uqBhczPdEeoNRb0Q@mail.gmail.com>
+ <87a6jl9ndo.fsf@codeaurora.org> <87ee8hgqni.fsf@codeaurora.org>
+ <20211021100305.GD7580@workstation> <20211118174145.GA31300@thinkpad>
+From: Thorsten Leemhuis <regressions@leemhuis.info>
+Subject: Re: [regression] mhi: ath11k resume fails on some devices
+In-Reply-To: <20211118174145.GA31300@thinkpad>
+X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1638344055;
+ a952094f; 
+X-HE-SMSGID: 1msK83-0000cS-8F
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211130_231816_463097_F07F2D02 
-X-CRM114-Status: GOOD (  10.33  )
+X-CRM114-CacheID: sfid-20211130_233415_749145_85608B95 
+X-CRM114-Status: GOOD (  26.22  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,98 +73,100 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Add handler to send WMI_SET_CURRENT_COUNTRY_CMDID to firmware which
-is used for QCA6390 and WCN6855.
+Hi, this is your Linux kernel regression tracker speaking, this time
+looking for a status update.
 
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
-Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
+On 18.11.21 18:41, Manivannan Sadhasivam wrote:
+> On Thu, Oct 21, 2021 at 03:33:05PM +0530, Manivannan Sadhasivam wrote:
+>> On Tue, Oct 19, 2021 at 03:12:01PM +0300, Kalle Valo wrote:
+>>> Kalle Valo <kvalo@codeaurora.org> writes:
+>>>
+>>>> (adding the new mhi list, yay)
+>>>>
+>>>> Hi Loic,
+>>>>
+>>>> Loic Poulain <loic.poulain@linaro.org> writes:
+>>>>
+>>>>>> Loic Poulain <loic.poulain@linaro.org> writes:
+>>>>>>
+>>>>>>> On Thu, 16 Sept 2021 at 10:00, Kalle Valo <kvalo@codeaurora.org> wrote:
+>>>>>>
+>>>>>>>> At the moment I'm running my tests with commit 020d3b26c07a reverted and
+>>>>>>>> everything works without problems. Is there a simple way to fix this? Or
+>>>>>>>> maybe we should just revert the commit? Commit log and kernel logs from
+>>>>>>>> a failing case below.
+>>>>>>>
+>>>>>>> Do you have log of success case?
+>>>>>>
+>>>>>> A log from a successful case in the end of email, using v5.15-rc1 plus
+>>>>>> revert of commit 020d3b26c07abe27.
+>>>>>>
+>>>>>>> To me, the device loses power, that is why MHI resuming is failing.
+>>>>>>> Normally the device should be properly recovered/reinitialized. Before
+>>>>>>> that patch the power loss was simply not detected (or handled at
+>>>>>>> higher stack level).
+>>>>>>
+>>>>>> Currently in ath11k we always keep the firmware running when in suspend,
+>>>>>> this is a workaround due to problems between mac80211 and MHI stack.
+>>>>>> IIRC the problem was something related MHI creating struct device during
+>>>>>> resume or something like that.
+>>>>>
+>>>>> Could you give a try with the attached patch? It should solve your
+>>>>> issue without breaking modem support.
+>>>>
+>>>> Sorry for taking so long, but I now tested your patch on top of
+>>>> v5.15-rc3 and, as expected, everything works as before with QCA6390 on
+>>>> NUC x86 testbox.
+>>>>
+>>>> Tested-by: Kalle Valo <kvalo@codeaurora.org>
+>>>
+>>> I doubt we will find enough time to fully debug this mhi issue anytime
+>>> soon. Can we commit Loic's patch so that this regression is resolved?
+>>>
+>>
+>> Sorry no :( Eventhough Loic's patch is working, I want to understand the
+>> issue properly so that we could add a proper fix or patch the firmware
+>> if possible.
+>>
+>> Let's try to get the debug logs as I requested.
+> 
+> I'm able to reproduce the issue on my NUC. I'm still investigating on how to
+> properly fix this issue. Expect a patch soon.
 
-Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/wmi.c | 36 +++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/wmi.h | 12 +++++++++
- 2 files changed, 48 insertions(+)
+Was there some progress? This issue was reported 75 days ago and still
+is not fixed. From the point of the Linux kernel regression tracker I'd
+say: it should not take this long. Looking back at it I wonder if
+'reverted the culprit and reapply later together with a proper fix'
+would have been the better strategy. I wonder if that still would be the
+best way forward if no patch is forthcoming soon.
 
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index a3a8c49b3329..47361256bfeb 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -2798,6 +2798,42 @@ ath11k_wmi_send_init_country_cmd(struct ath11k *ar,
- 	return ret;
- }
- 
-+int ath11k_wmi_send_set_current_country_cmd(struct ath11k *ar,
-+					    struct wmi_set_current_country_params *param)
-+{
-+	struct ath11k_pdev_wmi *wmi = ar->wmi;
-+	struct wmi_set_current_country_cmd *cmd;
-+	struct sk_buff *skb;
-+	int ret;
-+
-+	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, sizeof(*cmd));
-+	if (!skb)
-+		return -ENOMEM;
-+
-+	cmd = (struct wmi_set_current_country_cmd *)skb->data;
-+	cmd->tlv_header =
-+		FIELD_PREP(WMI_TLV_TAG, WMI_TAG_SET_CURRENT_COUNTRY_CMD) |
-+		FIELD_PREP(WMI_TLV_LEN, sizeof(*cmd) - TLV_HDR_SIZE);
-+
-+	cmd->pdev_id = ar->pdev->pdev_id;
-+	memcpy(&cmd->new_alpha2, &param->alpha2, 3);
-+	ret = ath11k_wmi_cmd_send(wmi, skb, WMI_SET_CURRENT_COUNTRY_CMDID);
-+
-+	ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
-+		   "set current country pdev id %d alpha2 %c%c\n",
-+		   ar->pdev->pdev_id,
-+		   param->alpha2[0],
-+		   param->alpha2[1]);
-+
-+	if (ret) {
-+		ath11k_warn(ar->ab,
-+			    "failed to send WMI_SET_CURRENT_COUNTRY_CMDID: %d\n", ret);
-+		dev_kfree_skb(skb);
-+	}
-+
-+	return ret;
-+}
-+
- int
- ath11k_wmi_send_thermal_mitigation_param_cmd(struct ath11k *ar,
- 					     struct thermal_mitigation_params *param)
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index 8e8bac1b7370..49db414d0bf3 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -3770,6 +3770,16 @@ struct stats_request_params {
- 	u32 pdev_id;
- };
- 
-+struct wmi_set_current_country_params {
-+	u8 alpha2[3];
-+};
-+
-+struct wmi_set_current_country_cmd {
-+	u32 tlv_header;
-+	u32 pdev_id;
-+	u32 new_alpha2;
-+} __packed;
-+
- enum set_init_cc_type {
- 	WMI_COUNTRY_INFO_TYPE_ALPHA,
- 	WMI_COUNTRY_INFO_TYPE_COUNTRY_CODE,
-@@ -5433,6 +5443,8 @@ int ath11k_wmi_delba_send(struct ath11k *ar, u32 vdev_id, const u8 *mac,
- 			  u32 tid, u32 initiator, u32 reason);
- int ath11k_wmi_send_bcn_offload_control_cmd(struct ath11k *ar,
- 					    u32 vdev_id, u32 bcn_ctrl_op);
-+int ath11k_wmi_send_set_current_country_cmd(struct ath11k *ar,
-+					    struct wmi_set_current_country_params *param);
- int
- ath11k_wmi_send_init_country_cmd(struct ath11k *ar,
- 				 struct wmi_init_country_params init_cc_param);
--- 
-2.31.1
+Ciao, Thorsten
 
+#regzbot poke
+
+>>> At the moment I'm doing all my regression testing with commit
+>>> 020d3b26c07abe27 reverted. That's a risk, I would prefer to do my
+>>> testing without any hacks.
+>>>
+>>> -- 
+>>> https://patchwork.kernel.org/project/linux-wireless/list/
+>>>
+>>> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
+P.S.: As a Linux kernel regression tracker I'm getting a lot of reports
+on my table. I can only look briefly into most of them. Unfortunately
+therefore I sometimes will get things wrong or miss something important.
+I hope that's not the case here; if you think it is, don't hesitate to
+tell me about it in a public reply. That's in everyone's interest, as
+what I wrote above might be misleading to everyone reading this; any
+suggestion I gave they thus might sent someone reading this down the
+wrong rabbit hole, which none of us wants.
+
+BTW, I have no personal interest in this issue, which is tracked using
+regzbot, my Linux kernel regression tracking bot
+(https://linux-regtracking.leemhuis.info/regzbot/). I'm only posting
+this mail to get things rolling again and hence don't need to be CC on
+all further activities wrt to this regression.
 
 -- 
 ath11k mailing list
