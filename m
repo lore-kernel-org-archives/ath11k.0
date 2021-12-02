@@ -4,79 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C424AC43217
-	for <ath11k@archiver.kernel.org>; Thu,  2 Dec 2021 14:36:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9BA9C433F5
+	for <ath11k@archiver.kernel.org>; Thu,  2 Dec 2021 14:43:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0TExXHXXFryxoDDnOyEXmcmHtT5gpilZQkvEf7ogz3w=; b=IfG0y+50hKX2nd
-	LCn3PwQL3gwcU0EFcSJQu5qfoZBQ9hJyU3tBIwTbPegW5eSEoHt07ZEnEpL5VfI32UfSG1mbye/pI
-	BvNafbnczoee1p1meHIslTIrYxcsRk7tn0WNmJTV1cCf6QEfakOFIzaJZUGEBeQht8AQH1XPRzqZ1
-	mt2SxrDO5vmi1uT2hgHrJKbaMvsjB7LN9g++OZ6DRCtPUTmZf0beM/bkp4ba3byBjjr0O89/NBYoo
-	IRMkbEcB7aFofhKdne6t3AvfMqRQg3VIUP3QfN0OtmWEaJWVAX5eJ4X9qvxc0CvqTPEsdzOluWtGe
-	D04agPEbGX+FoWPSpwaw==;
+	List-Owner; bh=5JO750yjmnKfsNn8F64RNZur0WBHzIh26SAzpp18b7M=; b=fQVKHaIt5b5flL
+	YSmNS1UMZn4EsN7Vl74SPBDnN9I29nmASH2RF3MHT1fnoDX2BFqjyI2Ri5dR8D5lz9qazZbroT9mz
+	OvKwVCRpRsqlG2wwPl/+9/WJqGtvduDrHN32qp5vMONY++kaNXF98ofELDvTgIX1r4G6s21bmY0Kt
+	FXm7qm6E20a5LMDiY6Pd2VdlmjHoFsBjv1+yDVK+xNXghtp8dSAoimwQSlFuT8KUnlCX92bwFvO+S
+	wWESkG0IuE15do4mxM80t0iJM3Dy9+uz/OZgD9lnrQaIQsYS9kNJnoqmIVIOyL6Rscy1tWg63rim0
+	kibhQeS/EttRFj2SHicw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1msnCM-00Ca2u-SC; Thu, 02 Dec 2021 14:36:34 +0000
-Received: from mail-wr1-f46.google.com ([209.85.221.46])
+	id 1msnIy-00CcAU-By; Thu, 02 Dec 2021 14:43:24 +0000
+Received: from dvalin.narfation.org ([2a00:17d8:100::8b1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1msnCK-00Ca1q-Op
- for ath11k@lists.infradead.org; Thu, 02 Dec 2021 14:36:33 +0000
-Received: by mail-wr1-f46.google.com with SMTP id s13so60150919wrb.3
- for <ath11k@lists.infradead.org>; Thu, 02 Dec 2021 06:36:31 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=Xh3pKbxTnj8e62DOcRXknPoUROM+BODLvzmQyRbbH8s=;
- b=GFtEimln4cnLv8R/Gjy0WlBhCtzzli05YKCh3nhKOV6+0jZmhxfuTNPjhrGN9RiRbP
- 7VWQQweM+KE4hjmGy+GLZoerhJCLjO0lO/MvLDVP1GKhlhyX2BBLBPUlhrkFxXW4mc0x
- i/qx0LyNix30w3XDXb1RE/mRalGUYo2M+Ipm6lmDMdAtWoF8PNFVokySMMN6A9iXTafy
- rkZgfwG2IL8kYiyQPUAOLFYATLrmqNwhoRwr1JMykwoZUHzh6UUf4k8JIEJru0CUCOpY
- HJazMdGoRvUAnxh1kVEag5JsjZhwmOxDUnMq+Tt96PfwxUfo0zALLafLQtBRSdr5gtYR
- zuKw==
-X-Gm-Message-State: AOAM530Vca8yW0brfo2J2Pd/ptOAz/c4Na+8ok9ObWPFGegCES2aFgno
- 0+BhSjOPdhbSAgALXfC18F4=
-X-Google-Smtp-Source: ABdhPJwNpcGjwNKyiVWqPz1WBsz/Qi/GLv2M+5yPM20JS1pf2ye6xEbrzai84zM0oO2HmmRa7dC8TQ==
-X-Received: by 2002:adf:fb0c:: with SMTP id c12mr15988721wrr.614.1638455790749; 
- Thu, 02 Dec 2021 06:36:30 -0800 (PST)
-Received: from liuwe-devbox-debian-v2 ([51.145.34.42])
- by smtp.gmail.com with ESMTPSA id q4sm2636132wrs.56.2021.12.02.06.36.29
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 02 Dec 2021 06:36:29 -0800 (PST)
-Date: Thu, 2 Dec 2021 14:36:28 +0000
-From: Wei Liu <wei.liu@kernel.org>
-To: Thomas Gleixner <tglx@linutronix.de>
-Cc: LKML <linux-kernel@vger.kernel.org>, Bjorn Helgaas <helgaas@kernel.org>,
- Marc Zygnier <maz@kernel.org>,
- Alex Williamson <alex.williamson@redhat.com>,
- Kevin Tian <kevin.tian@intel.com>, Jason Gunthorpe <jgg@nvidia.com>,
- Megha Dey <megha.dey@intel.com>, Ashok Raj <ashok.raj@intel.com>,
- Wei Liu <wei.liu@kernel.org>, x86@kernel.org,
- linux-hyperv@vger.kernel.org, linux-pci@vger.kernel.org,
- Michael Ellerman <mpe@ellerman.id.au>, Paul Mackerras <paulus@samba.org>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- linuxppc-dev@lists.ozlabs.org,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- linux-mips@vger.kernel.org,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- sparclinux@vger.kernel.org, xen-devel@lists.xenproject.org,
- ath11k@lists.infradead.org, Juergen Gross <jgross@suse.com>,
- Christian Borntraeger <borntraeger@de.ibm.com>,
- Heiko Carstens <hca@linux.ibm.com>
-Subject: Re: [patch 11/22] x86/hyperv: Refactor hv_msi_domain_free_irqs()
-Message-ID: <20211202143628.dgiikgujigylogoz@liuwe-devbox-debian-v2>
-References: <20211126222700.862407977@linutronix.de>
- <20211126223824.737214551@linutronix.de>
+ id 1msnIl-00Cc5f-I3
+ for ath11k@lists.infradead.org; Thu, 02 Dec 2021 14:43:13 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+ s=20121; t=1638456186;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=LUT7ChpLHr4+4yI9EmMSvNvg4fd1GnziTLzfhcjP4bQ=;
+ b=Qk+ZoOCtFGBqhia3wZZaK09ebAFimD1gq+NYnoFPglHkmuws3QPB5gaRYeG7k8wGhfjBwk
+ vcRBpM+ELS+dW7pTdoBkvCN9fxoIk+nehWV6IDic3n9y0AkLcTHeRUtN8uIuWJJSDISAs0
+ ZhmXdLCnCujfxjojJBadRXZcljNM9YA=
+From: Sven Eckelmann <sven@narfation.org>
+To: ath11k@lists.infradead.org, Wen Gong <quic_wgong@quicinc.com>
+Subject: Re: ath11k: incorrect board_id retrieval
+Date: Thu, 02 Dec 2021 15:43:03 +0100
+Message-ID: <3014977.PoT5AKhg5k@ripper>
+In-Reply-To: <1734146.k9CKHTOI9D@ripper>
+References: <1734146.k9CKHTOI9D@ripper>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20211126223824.737214551@linutronix.de>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211202_063632_828922_5CF09F82 
-X-CRM114-Status: UNSURE (   7.88  )
+X-CRM114-CacheID: sfid-20211202_064311_952249_0F6EE454 
+X-CRM114-Status: UNSURE (   9.64  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -94,15 +63,41 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Sat, Nov 27, 2021 at 02:18:51AM +0100, Thomas Gleixner wrote:
-> No point in looking up things over and over. Just look up the associated
-> irq data and work from there.
-> 
-> No functional change.
-> 
-> Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
+On Friday, 26 November 2021 15:48:17 CET Sven Eckelmann wrote:
+> I've noticed that manufacturers of cards gave me various information what 
+> board_id they expected a device (QCN9074) is detected as. But ath11k only 
+> retrieves the board id as 0xff - thus the ath11k driver is always loading the 
+> wrong BDF. Commercially available boards with a problem like this are:
+>
+> * 8devices Pineapple
+>   - 2GHz: 160 (0xa0)
+>   - 5GHz: 161 (0xa1)
+>   - 6GHz: 162 (0xa2)
+> * Compex WLE3000H5
+> * (maybe there is not a single one which works?)
 
-Acked-by: Wei Liu <wei.liu@kernel.org>
+Just retrieved the next card (EmWicon WMX7205 - could be the same as jjPlus 
+WMX7205) and it has exactly the same problem:
+
+    ath11k_pci 0000:05:00.0: failed to fetch board data for bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=0108,qmi-chip-id=2,qmi-board-id=255 from ath11k/WCN6855/hw2.0/board-2.bin
+    ath11k_pci 0000:05:00.0: failed to fetch board-2.bin or board.bin from WCN6855/hw2.
+
+Of course, the only provided keys (all with board_id != 255) are:
+
+* bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=3374,qmi-chip-id=2,qmi-board-id=262
+* bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=3374,qmi-chip-id=2,qmi-board-id=266
+* bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=3374,qmi-chip-id=18,qmi-board-id=266
+
+So until now, I could not find a single card for which ath11k returned a 
+board-id != 255 (unless it was overwritten via the devicetree).
+
+> So my question would be: Is the ath11k based board_id retrieval just broken? 
+> Or are these cards broken?
+
+Kind regards,
+	Sven
+
+
 
 -- 
 ath11k mailing list
