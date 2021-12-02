@@ -4,65 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03339C433EF
-	for <ath11k@archiver.kernel.org>; Thu,  2 Dec 2021 06:37:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9D7AC433F5
+	for <ath11k@archiver.kernel.org>; Thu,  2 Dec 2021 08:37:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=ooPOd56dEcVC0eFxv+7sorGwNf7a8+2sPeK59tO5GVg=; b=ZNkpJzZhLHh5Ci
-	LrYv2jSGvZkQb1icm2M4Xlh1KL0B5RLXuzXOlZEGbHv0owTw+Z8yAXjqjdCZadh1iFYIibNRCIVeu
-	MlgSwQUBYIscXCvubuxMs8cCs5lAOGVfgVVqS/yn2WL2oqag8LJKmwsMMfdROwhcYwueIvA3IZLNU
-	kJtFaXze1dUCR1Woqu85ZFJz3IeORrsHCrou1khcgOtDRywqp6TTg3nUxy6Ed6mC4dj37LUl97w23
-	aon/lT5Aif6MWe/7vV7Xw2w6VdoEGkn/QDtJwM/J0AnmNkOazwtpRj9mHOKBm03BSLUskHCKYKEpZ
-	ETQnrgUAO1/tWfgHkY+Q==;
+	List-Owner; bh=BoT+qOO5bz8Wv/IL05+SzRQz7m/EC+MDkskiqn/50G0=; b=ZJtU7H7C4KgH25
+	LFmBtJ3sNz677fsV2aMQQRoxnsngnw5Z/ieY3WOCn3yoIqaYAOPQGfpSFbSFKJ1M4TBPpmrA0gL8i
+	6lW7rDNFRRqzBBfic6PXwoZLy96pyNaxpeQVfk+NZADF5QPd93hjxQmSBYizNREOMGqobLdQyWmHv
+	LnRa0iNv9Hzu8tOcXaLd+JlrByERnLOhOZiGjW82pvg+VtnQXTQAPQvAybTwJ+JR+aH8rpA2UGlOS
+	YNol+2KJN38lcXD1x9VnnZSoxE9rYu5UXnaEv9FxCxry03YUfPIjHEBtzTYQQ3M6jhKfgqIOiOOvU
+	a23wWXGbEUyxtMNXjYnA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1msfim-00B6Qu-0f; Thu, 02 Dec 2021 06:37:32 +0000
-Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38])
+	id 1mshbD-00BQak-2N; Thu, 02 Dec 2021 08:37:51 +0000
+Received: from alexa-out.qualcomm.com ([129.46.98.28])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1msfii-00B6QY-R2
- for ath11k@lists.infradead.org; Thu, 02 Dec 2021 06:37:30 +0000
+ id 1msha8-00BQ7K-Hn
+ for ath11k@lists.infradead.org; Thu, 02 Dec 2021 08:36:46 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1638427048; x=1669963048;
+ t=1638434204; x=1669970204;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=9XQDJQzAkgsjlCbOcVP4ei8bFcm0EeInom/RLRLxZwo=;
- b=FP+3GeybI254iZXKB8IUDc5pWRuzNWd25tv0M95gy3jDup6sS3DUN9w+
- hkuFsMike7Hi1P/7IwM63JxV4OVV0VRayo813PkReHvkAeY/kSXdXj2MD
- ylD84zqry7Q+CPj6YBQk7sr1VUPRa+4q+W/wG+JKmte/dM7adEIy9Tg7p I=;
-Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
- by alexa-out-sd-01.qualcomm.com with ESMTP; 01 Dec 2021 22:37:26 -0800
+ bh=JXveHdo2NanSwyJKUg6M4GaejzAJwxakgF2GaMRdF4Y=;
+ b=BuhF3D2Xy8qsu4h/3daO5+L6WasoxJAddjYtOvHxFvJo7lDZxrkVKsDy
+ WhUMpRTjCtwFgtkEJ4QLnjorKVNyzZEsL75orQzJRz6pvVqZGhpHrQoQH
+ lkNc1OWknpPLn+bjl2iaI5SvunnAaxiRQFSyIS/au0AX+SJsSbQ8JCp4r c=;
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+ by alexa-out.qualcomm.com with ESMTP; 02 Dec 2021 00:36:42 -0800
 X-QCInternal: smtphost
 Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2021 22:37:23 -0800
+ by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2021 00:36:43 -0800
 Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
  nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Wed, 1 Dec 2021 22:37:22 -0800
+ 15.2.922.19; Thu, 2 Dec 2021 00:36:42 -0800
 Received: from wgong-HP3-Z230-SFF-Workstation.qca.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Wed, 1 Dec 2021 22:37:20 -0800
+ 15.2.922.19; Thu, 2 Dec 2021 00:36:40 -0800
 From: Wen Gong <quic_wgong@quicinc.com>
 To: <ath11k@lists.infradead.org>
 CC: <linux-wireless@vger.kernel.org>, <quic_wgong@quicinc.com>
-Subject: [PATCH v4] ath11k: add wait operation for tx management packets for
- flush from mac80211
-Date: Thu, 2 Dec 2021 01:37:05 -0500
-Message-ID: <20211202063705.14321-1-quic_wgong@quicinc.com>
+Subject: [PATCH] ath11k: add regdb.bin download for regdb offload
+Date: Thu, 2 Dec 2021 03:36:16 -0500
+Message-ID: <20211202083616.15406-1-quic_wgong@quicinc.com>
 X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211201_223728_954751_6C57A410 
-X-CRM114-Status: GOOD (  17.45  )
+X-CRM114-CacheID: sfid-20211202_003644_713089_C3B2F059 
+X-CRM114-Status: GOOD (  22.29  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,245 +78,227 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-In ath11k, tx of management packet is doing in a work queue. Sometimes
-the workqueue does not finish tx immediately, then it lead after the next
-step of vdev delete finished, it start to send the management packet to
-firmware and lead firmware crash.
+The regdomain is self-managed type for ath11k, the regdomain info is
+reported from firmware, it is not from wireless regdb. Firmware fetch
+the regdomain info from board data file before. Currently most of the
+regdomain info has moved to another file regdb.bin from board data
+file for some chips such as QCA6390 and WCN6855, so the regdomain info
+left in board data file is not enough to support the feature which need
+more reg rules such as 6 GHz LPI, SP and VLP.
 
-ieee80211_set_disassoc() have logic of ieee80211_flush_queues() after
-it send_deauth_disassoc() to ath11k, its purpose is make sure the
-deauth was actually sent, so it need to change ath11k to match the
-purpose of mac80211.
+After download regdb.bin, firmware will fetch the regdomain info from
+regdb.bin instead of board data file and report to ath11k. If it does
+not have the file regdb.bin, it also can initialize wlan success and
+firmware then fetch regdomain info from board data file.
 
-To address these issue wait for tx mgmt as well as tx data packets.
+Add download the regdb.bin before download board data for some specific
+chip which support supports_regdb in hardware parameters.
 
-dmesg log of connect/disconnect to AP:
-[  307.522226] wls1: authenticate with 62:66:e4:e9:6a:a9
-[  307.586565] wls1: send auth to 62:66:e4:e9:6a:a9 (try 1/3)
-[  307.586581] ath11k_pci 0000:05:00.0: mac tx mgmt frame, buf id 0
-[  307.586922] ath11k_pci 0000:05:00.0: mac tx mgmt frame, vdev_id 0
-[  307.590179] ath11k_pci 0000:05:00.0: wmi mgmt tx comp pending 0 desc id 0
-[  307.590181] ath11k_pci 0000:05:00.0: mgmt tx compl ev pdev_id 2, desc_id 0, status 0
-[  307.598699] wls1: authenticated
-[  307.599483] wls1: associate with 62:66:e4:e9:6a:a9 (try 1/3)
-[  307.599506] ath11k_pci 0000:05:00.0: mac tx mgmt frame, buf id 0
-[  307.599519] ath11k_pci 0000:05:00.0: mac tx mgmt frame, vdev_id 0
-[  307.603059] ath11k_pci 0000:05:00.0: wmi mgmt tx comp pending 0 desc id 0
-[  307.603063] ath11k_pci 0000:05:00.0: mgmt tx compl ev pdev_id 2, desc_id 0, status 0
-[  307.637105] wls1: associated
-[  317.365239] wls1: deauthenticating from 62:66:e4:e9:6a:a9 by local choice (Reason: 3=DEAUTH_LEAVING)
-[  317.368104] ath11k_pci 0000:05:00.0: mac tx mgmt frame, buf id 0
-[  317.372622] ath11k_pci 0000:05:00.0: mac tx mgmt frame, vdev_id 0
-[  317.378320] ath11k_pci 0000:05:00.0: wmi mgmt tx comp pending 0 desc id 0
-[  317.378330] ath11k_pci 0000:05:00.0: mgmt tx compl ev pdev_id 2, desc_id 0, status 0
-[  317.378359] ath11k_pci 0000:05:00.0: mac mgmt tx flush mgmt pending 0
-[  317.421066] ath11k_pci 0000:05:00.0: mac mgmt tx flush mgmt pending 0
-[  317.421427] ath11k_pci 0000:05:00.0: mac remove interface (vdev 0)
+download regdb.bin log:
+[430082.334162] ath11k_pci 0000:05:00.0: chip_id 0x2 chip_family 0xb board_id 0x106 soc_id 0x400c0200
+[430082.334169] ath11k_pci 0000:05:00.0: fw_version 0x110c8b4c fw_build_timestamp 2021-10-25 07:41 fw_build_id QC_IMAGE_VERSION_STRING=WLAN.HSP.1.1-02892-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
+[430082.334414] ath11k_pci 0000:05:00.0: boot firmware request ath11k/WCN6855/hw2.0/regdb.bin size 24310
 
-Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01230-QCAHSTSWPLZ_V2_TO_X86-1
+output of "iw reg get"
+global
+country US: DFS-FCC
+        (2402 - 2472 @ 40), (N/A, 30), (N/A)
+        (5170 - 5250 @ 80), (N/A, 23), (N/A), AUTO-BW
+        (5250 - 5330 @ 80), (N/A, 23), (0 ms), DFS, AUTO-BW
+        (5490 - 5730 @ 160), (N/A, 23), (0 ms), DFS
+        (5735 - 5835 @ 80), (N/A, 30), (N/A)
+        (57240 - 63720 @ 2160), (N/A, 40), (N/A)
+
+phy#0 (self-managed)
+country US: DFS-FCC
+        (2402 - 2472 @ 40), (6, 30), (N/A)
+        (5170 - 5250 @ 80), (N/A, 24), (N/A), AUTO-BW
+        (5250 - 5330 @ 80), (N/A, 24), (0 ms), DFS, AUTO-BW
+        (5490 - 5730 @ 160), (N/A, 24), (0 ms), DFS, AUTO-BW
+        (5735 - 5895 @ 160), (N/A, 30), (N/A), AUTO-BW
+        (5945 - 7125 @ 160), (N/A, 24), (N/A), NO-OUTDOOR, AUTO-BW
+
+Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
 Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
 
 Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
 ---
-v4: rebased to ath.git master ath-202111291547
-
-v3:
-   1. rebased to latest ath.git master ath-202111221436
-   2. fix the inc twice of num_pending_mgmt_tx issue
-   3. change commit log
-
-v2: rebased to latest ath.git master ath-202111170737
-
- drivers/net/wireless/ath/ath11k/core.c |  1 +
- drivers/net/wireless/ath/ath11k/core.h |  1 +
- drivers/net/wireless/ath/ath11k/mac.c  | 51 +++++++++++++++++++++-----
- drivers/net/wireless/ath/ath11k/wmi.c  | 12 +++++-
- 4 files changed, 55 insertions(+), 10 deletions(-)
+ drivers/net/wireless/ath/ath11k/core.c | 15 +++++++++++----
+ drivers/net/wireless/ath/ath11k/core.h |  3 +++
+ drivers/net/wireless/ath/ath11k/hw.h   |  2 ++
+ drivers/net/wireless/ath/ath11k/qmi.c  | 24 ++++++++++++++++++++----
+ drivers/net/wireless/ath/ath11k/qmi.h  |  1 +
+ 5 files changed, 37 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index dd1a1bb078c3..ce53cd4504b7 100644
+index dd1a1bb078c3..42a147063502 100644
 --- a/drivers/net/wireless/ath/ath11k/core.c
 +++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -1083,6 +1083,7 @@ static void ath11k_core_restart(struct work_struct *work)
- 		idr_for_each(&ar->txmgmt_idr,
- 			     ath11k_mac_tx_mgmt_pending_free, ar);
- 		idr_destroy(&ar->txmgmt_idr);
-+		wake_up(&ar->txmgmt_empty_waitq);
- 	}
+@@ -87,6 +87,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_dynamic_smps_6ghz = false,
+ 		.alloc_cacheable_memory = true,
+ 		.wakeup_mhi = false,
++		.supports_regdb = false,
+ 	},
+ 	{
+ 		.hw_rev = ATH11K_HW_IPQ6018_HW10,
+@@ -141,6 +142,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_dynamic_smps_6ghz = false,
+ 		.alloc_cacheable_memory = true,
+ 		.wakeup_mhi = false,
++		.supports_regdb = false,
+ 	},
+ 	{
+ 		.name = "qca6390 hw2.0",
+@@ -194,6 +196,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_dynamic_smps_6ghz = false,
+ 		.alloc_cacheable_memory = false,
+ 		.wakeup_mhi = true,
++		.supports_regdb = true,
+ 	},
+ 	{
+ 		.name = "qcn9074 hw1.0",
+@@ -247,6 +250,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_dynamic_smps_6ghz = true,
+ 		.alloc_cacheable_memory = true,
+ 		.wakeup_mhi = false,
++		.supports_regdb = false,
+ 	},
+ 	{
+ 		.name = "wcn6855 hw2.0",
+@@ -300,6 +304,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_dynamic_smps_6ghz = false,
+ 		.alloc_cacheable_memory = false,
+ 		.wakeup_mhi = true,
++		.supports_regdb = true,
+ 	},
+ };
  
- 	wake_up(&ab->wmi_ab.tx_credits_wq);
+@@ -660,10 +665,12 @@ static int ath11k_core_fetch_board_data_api_n(struct ath11k_base *ab,
+ 	return ret;
+ }
+ 
+-static int ath11k_core_fetch_board_data_api_1(struct ath11k_base *ab,
+-					      struct ath11k_board_data *bd)
++int ath11k_core_fetch_board_data_api_1(struct ath11k_base *ab,
++				       struct ath11k_board_data *bd,
++				       const char *name)
+ {
+-	bd->fw = ath11k_core_firmware_request(ab, ATH11K_DEFAULT_BOARD_FILE);
++	bd->fw = ath11k_core_firmware_request(ab, name);
++
+ 	if (IS_ERR(bd->fw))
+ 		return PTR_ERR(bd->fw);
+ 
+@@ -691,7 +698,7 @@ int ath11k_core_fetch_bdf(struct ath11k_base *ab, struct ath11k_board_data *bd)
+ 		goto success;
+ 
+ 	ab->bd_api = 1;
+-	ret = ath11k_core_fetch_board_data_api_1(ab, bd);
++	ret = ath11k_core_fetch_board_data_api_1(ab, bd, ATH11K_DEFAULT_BOARD_FILE);
+ 	if (ret) {
+ 		ath11k_err(ab, "failed to fetch board-2.bin or board.bin from %s\n",
+ 			   ab->hw_params.fw.dir);
 diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 0103cfd0508d..86afb0da9677 100644
+index 0103cfd0508d..bbf7ff1f9f48 100644
 --- a/drivers/net/wireless/ath/ath11k/core.h
 +++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -549,6 +549,7 @@ struct ath11k {
- 	/* protects txmgmt_idr data */
- 	spinlock_t txmgmt_idr_lock;
- 	atomic_t num_pending_mgmt_tx;
-+	wait_queue_head_t txmgmt_empty_waitq;
+@@ -957,6 +957,9 @@ struct ath11k_base *ath11k_core_alloc(struct device *dev, size_t priv_size,
+ void ath11k_core_free(struct ath11k_base *ath11k);
+ int ath11k_core_fetch_bdf(struct ath11k_base *ath11k,
+ 			  struct ath11k_board_data *bd);
++int ath11k_core_fetch_board_data_api_1(struct ath11k_base *ab,
++				       struct ath11k_board_data *bd,
++				       const char *name);
+ void ath11k_core_free_bdf(struct ath11k_base *ab, struct ath11k_board_data *bd);
+ int ath11k_core_check_dt(struct ath11k_base *ath11k);
  
- 	/* cycle count is reported twice for each visited channel during scan.
- 	 * access protected by data_lock
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 0050e2c84888..ecdc220eab17 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -5225,6 +5225,21 @@ static int __ath11k_set_antenna(struct ath11k *ar, u32 tx_ant, u32 rx_ant)
- 	return 0;
+diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
+index 2c9d232ebfed..5cc0c5b91973 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.h
++++ b/drivers/net/wireless/ath/ath11k/hw.h
+@@ -77,6 +77,7 @@
+ #define ATH11K_DEFAULT_CAL_FILE		"caldata.bin"
+ #define ATH11K_AMSS_FILE		"amss.bin"
+ #define ATH11K_M3_FILE			"m3.bin"
++#define ATH11K_REGDB_FILE_NAME		"regdb.bin"
+ 
+ enum ath11k_hw_rate_cck {
+ 	ATH11K_HW_RATE_CCK_LP_11M = 0,
+@@ -181,6 +182,7 @@ struct ath11k_hw_params {
+ 	bool supports_dynamic_smps_6ghz;
+ 	bool alloc_cacheable_memory;
+ 	bool wakeup_mhi;
++	bool supports_regdb;
+ };
+ 
+ struct ath11k_hw_ops {
+diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
+index 25eb22cbeaeb..311beeace9b7 100644
+--- a/drivers/net/wireless/ath/ath11k/qmi.c
++++ b/drivers/net/wireless/ath/ath11k/qmi.c
+@@ -2115,7 +2115,8 @@ static int ath11k_qmi_load_file_target_mem(struct ath11k_base *ab,
+ 	return ret;
  }
  
-+static void ath11k_mgmt_over_wmi_tx_drop(struct ath11k *ar, struct sk_buff *skb)
-+{
-+	int num_mgmt;
-+
-+	ieee80211_free_txskb(ar->hw, skb);
-+
-+	num_mgmt = atomic_dec_if_positive(&ar->num_pending_mgmt_tx);
-+
-+	if (num_mgmt < 0)
-+		WARN_ON_ONCE(1);
-+
-+	if (!num_mgmt)
-+		wake_up(&ar->txmgmt_empty_waitq);
-+}
-+
- static void ath11k_mac_tx_mgmt_free(struct ath11k *ar, int buf_id)
+-static int ath11k_qmi_load_bdf_qmi(struct ath11k_base *ab)
++static int ath11k_qmi_load_bdf_qmi(struct ath11k_base *ab,
++				   bool regdb)
  {
- 	struct sk_buff *msdu;
-@@ -5243,7 +5258,7 @@ static void ath11k_mac_tx_mgmt_free(struct ath11k *ar, int buf_id)
- 	info = IEEE80211_SKB_CB(msdu);
- 	memset(&info->status, 0, sizeof(info->status));
+ 	struct device *dev = ab->dev;
+ 	char filename[ATH11K_QMI_MAX_BDF_FILE_NAME_SIZE];
+@@ -2126,13 +2127,25 @@ static int ath11k_qmi_load_bdf_qmi(struct ath11k_base *ab)
+ 	const u8 *tmp;
  
--	ieee80211_free_txskb(ar->hw, msdu);
-+	ath11k_mgmt_over_wmi_tx_drop(ar, msdu);
- }
- 
- int ath11k_mac_tx_mgmt_pending_free(int buf_id, void *skb, void *ctx)
-@@ -5283,6 +5298,10 @@ static int ath11k_mac_mgmt_tx_wmi(struct ath11k *ar, struct ath11k_vif *arvif,
- 	buf_id = idr_alloc(&ar->txmgmt_idr, skb, 0,
- 			   ATH11K_TX_MGMT_NUM_PENDING_MAX, GFP_ATOMIC);
- 	spin_unlock_bh(&ar->txmgmt_idr_lock);
+ 	memset(&bd, 0, sizeof(bd));
+-	ret = ath11k_core_fetch_bdf(ab, &bd);
 +
-+	ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
-+		   "mac tx mgmt frame, buf id %d\n", buf_id);
++	if (regdb) {
++		ret = ath11k_core_fetch_board_data_api_1(ab, &bd,
++							 ATH11K_REGDB_FILE_NAME);
++		if (ret)
++			ath11k_dbg(ab, ATH11K_DBG_QMI, "failed to fetch %s from %s\n",
++				   ATH11K_REGDB_FILE_NAME, ab->hw_params.fw.dir);
++	} else {
++		ret = ath11k_core_fetch_bdf(ab, &bd);
++	}
 +
- 	if (buf_id < 0)
- 		return -ENOSPC;
- 
-@@ -5329,7 +5348,7 @@ static void ath11k_mgmt_over_wmi_tx_purge(struct ath11k *ar)
- 	struct sk_buff *skb;
- 
- 	while ((skb = skb_dequeue(&ar->wmi_mgmt_tx_queue)) != NULL)
--		ieee80211_free_txskb(ar->hw, skb);
-+		ath11k_mgmt_over_wmi_tx_drop(ar, skb);
- }
- 
- static void ath11k_mgmt_over_wmi_tx_work(struct work_struct *work)
-@@ -5344,29 +5363,29 @@ static void ath11k_mgmt_over_wmi_tx_work(struct work_struct *work)
- 		skb_cb = ATH11K_SKB_CB(skb);
- 		if (!skb_cb->vif) {
- 			ath11k_warn(ar->ab, "no vif found for mgmt frame\n");
--			ieee80211_free_txskb(ar->hw, skb);
-+			ath11k_mgmt_over_wmi_tx_drop(ar, skb);
- 			continue;
- 		}
- 
- 		arvif = ath11k_vif_to_arvif(skb_cb->vif);
- 		if (ar->allocated_vdev_map & (1LL << arvif->vdev_id) &&
- 		    arvif->is_started) {
--			atomic_inc(&ar->num_pending_mgmt_tx);
- 			ret = ath11k_mac_mgmt_tx_wmi(ar, arvif, skb);
- 			if (ret) {
--				if (atomic_dec_if_positive(&ar->num_pending_mgmt_tx) < 0)
--					WARN_ON_ONCE(1);
--
- 				ath11k_warn(ar->ab, "failed to tx mgmt frame, vdev_id %d :%d\n",
- 					    arvif->vdev_id, ret);
--				ieee80211_free_txskb(ar->hw, skb);
-+				ath11k_mgmt_over_wmi_tx_drop(ar, skb);
-+			} else {
-+				ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
-+					   "mac tx mgmt frame, vdev_id %d\n",
-+					   arvif->vdev_id);
- 			}
- 		} else {
- 			ath11k_warn(ar->ab,
- 				    "dropping mgmt frame for vdev %d, is_started %d\n",
- 				    arvif->vdev_id,
- 				    arvif->is_started);
--			ieee80211_free_txskb(ar->hw, skb);
-+			ath11k_mgmt_over_wmi_tx_drop(ar, skb);
- 		}
- 	}
- }
-@@ -5397,6 +5416,7 @@ static int ath11k_mac_mgmt_tx(struct ath11k *ar, struct sk_buff *skb,
+ 	if (ret) {
+ 		ath11k_warn(ab, "qmi failed to fetch board file: %d\n", ret);
+ 		goto out;
  	}
  
- 	skb_queue_tail(q, skb);
-+	atomic_inc(&ar->num_pending_mgmt_tx);
- 	ieee80211_queue_work(ar->hw, &ar->wmi_mgmt_tx_work);
- 
- 	return 0;
-@@ -6855,6 +6875,17 @@ static void ath11k_mac_op_flush(struct ieee80211_hw *hw, struct ieee80211_vif *v
- 				       ATH11K_FLUSH_TIMEOUT);
- 	if (time_left == 0)
- 		ath11k_warn(ar->ab, "failed to flush transmit queue %ld\n", time_left);
-+
-+	time_left = wait_event_timeout(ar->txmgmt_empty_waitq,
-+				       (atomic_read(&ar->num_pending_mgmt_tx) == 0),
-+				       ATH11K_FLUSH_TIMEOUT);
-+	if (time_left == 0)
-+		ath11k_warn(ar->ab, "failed to flush mgmt transmit queue %ld\n",
-+			    time_left);
-+
-+	ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
-+		   "mac mgmt tx flush mgmt pending %d\n",
-+		   atomic_read(&ar->num_pending_mgmt_tx));
- }
- 
- static int
-@@ -8093,6 +8124,8 @@ int ath11k_mac_register(struct ath11k_base *ab)
- 		ret = __ath11k_mac_register(ar);
- 		if (ret)
- 			goto err_cleanup;
-+
-+		init_waitqueue_head(&ar->txmgmt_empty_waitq);
+-	if (bd.len >= SELFMAG && memcmp(bd.data, ELFMAG, SELFMAG) == 0)
++	if (regdb)
++		bdf_type = ATH11K_QMI_BDF_TYPE_REGDB;
++	else if (bd.len >= SELFMAG && memcmp(bd.data, ELFMAG, SELFMAG) == 0)
+ 		bdf_type = ATH11K_QMI_BDF_TYPE_ELF;
+ 	else
+ 		bdf_type = ATH11K_QMI_BDF_TYPE_BIN;
+@@ -2580,7 +2593,10 @@ static int ath11k_qmi_event_load_bdf(struct ath11k_qmi *qmi)
+ 		return ret;
  	}
  
- 	return 0;
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 5b8c506633d1..1d7ba6f3dbe1 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -4873,6 +4873,7 @@ static int wmi_process_mgmt_tx_comp(struct ath11k *ar, u32 desc_id,
- 	struct sk_buff *msdu;
- 	struct ieee80211_tx_info *info;
- 	struct ath11k_skb_cb *skb_cb;
-+	int num_mgmt;
- 
- 	spin_lock_bh(&ar->txmgmt_idr_lock);
- 	msdu = idr_find(&ar->txmgmt_idr, desc_id);
-@@ -4896,10 +4897,19 @@ static int wmi_process_mgmt_tx_comp(struct ath11k *ar, u32 desc_id,
- 
- 	ieee80211_tx_status_irqsafe(ar->hw, msdu);
- 
-+	num_mgmt = atomic_dec_if_positive(&ar->num_pending_mgmt_tx);
+-	ret = ath11k_qmi_load_bdf_qmi(ab);
++	if (ab->hw_params.supports_regdb)
++		ath11k_qmi_load_bdf_qmi(ab, true);
 +
- 	/* WARN when we received this event without doing any mgmt tx */
--	if (atomic_dec_if_positive(&ar->num_pending_mgmt_tx) < 0)
-+	if (num_mgmt < 0)
- 		WARN_ON_ONCE(1);
++	ret = ath11k_qmi_load_bdf_qmi(ab, false);
+ 	if (ret < 0) {
+ 		ath11k_warn(ab, "failed to load board data file: %d\n", ret);
+ 		return ret;
+diff --git a/drivers/net/wireless/ath/ath11k/qmi.h b/drivers/net/wireless/ath/ath11k/qmi.h
+index 3bb0f9ef7996..9ba499ce3b78 100644
+--- a/drivers/net/wireless/ath/ath11k/qmi.h
++++ b/drivers/net/wireless/ath/ath11k/qmi.h
+@@ -49,6 +49,7 @@ enum ath11k_qmi_file_type {
+ enum ath11k_qmi_bdf_type {
+ 	ATH11K_QMI_BDF_TYPE_BIN			= 0,
+ 	ATH11K_QMI_BDF_TYPE_ELF			= 1,
++	ATH11K_QMI_BDF_TYPE_REGDB		= 4,
+ };
  
-+	ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
-+		   "wmi mgmt tx comp pending %d desc id %d\n",
-+		   num_mgmt, desc_id);
-+
-+	if (!num_mgmt)
-+		wake_up(&ar->txmgmt_empty_waitq);
-+
- 	return 0;
- }
- 
+ enum ath11k_qmi_event_type {
 -- 
 2.31.1
 
