@@ -4,70 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9DCDC433F5
-	for <ath11k@archiver.kernel.org>; Mon,  6 Dec 2021 11:15:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68EBBC433F5
+	for <ath11k@archiver.kernel.org>; Mon,  6 Dec 2021 16:11:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=6HYf8RLPs3c6nrq6Ecuh5t9vh/poaDq0hpfmRUj0R+A=; b=lv0cVhqiDkMR1Q
-	8TECAEQezwyRVr0l20KwI1bYgNg5vhj2aO9waSfUmQpCcfzs6RHJwRdFxdxvRtY8+9EhqDix9e98q
-	SuMweQb9PacV7oOcwgsLZWIF6XTo6VCgNEpV8D3P1XjCVmXeFW/oKVtl8Drdm+WY6dLl5R891xxRg
-	BFcdqrQ1qFvfY6KPBW1ySPU1bDtArcPpz43/6Yr7vxclW8NGHBQMvGj9rHWIHxO02hOMaxS84r8Wu
-	yom8PjRI4E+b7pdtFSjN5yDfXBHM9fL08LMzL7QRzIh49HBQki4O+uq4wHlUWNA7kD4rh9BB+ZqP8
-	0bVZfECEysPTYn55FJsg==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=UuwpQggVWw6ze5r97sLSdH2u8sXfNJDDviTihr3rfrg=; b=jcssadasTm+loP
+	a/JAddhyZShvJz0Q4tonpcMQio36WeMxQX5q+1oBTvS0EBVKxpnYXQAbhK7YiWA7hrgjIm+6z7CMO
+	iAHhXkKqvObYv9xIrh7JuIK4zp+pHXNdeotwVwiRHePvoPqjpZI8pB5sar6kKtLm2FV/dEoiUA/TV
+	U7a6kQ2ny6Nbf1c0izsDnt6MyZUEGR7dPlphq88YMjZRA4LZZIPyhtUiBv7UHd7TNLezHB/68LN2K
+	Ibiqq9JxI3rIhX5VzzOYUV/v8yBD49qDZ5SRf25Ps7RIiDBc3lcxKo49XBBCqcesaLskYfs4Fquvc
+	kNORW5xEtMIL1rll2rwA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1muByC-003Wr3-G8; Mon, 06 Dec 2021 11:15:44 +0000
-Received: from m43-7.mailgun.net ([69.72.43.7])
+	id 1muGa8-004gRa-3e; Mon, 06 Dec 2021 16:11:12 +0000
+Received: from mail-pf1-x42c.google.com ([2607:f8b0:4864:20::42c])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1muBy8-003WoU-QD
- for ath11k@lists.infradead.org; Mon, 06 Dec 2021 11:15:42 +0000
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
- q=dns/txt; 
- s=smtp; t=1638789340; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=q7uCSHF218rkMbu+VPHBuPtWxRa1uNY08sDk4YN8Cmw=;
- b=UGFSdtbCoSmlm/tVQ3yYIGXCN2Memn0lFTOExmjHOFbhBW11N5Rsb/u5LDlKS5gYtzTD5wUi
- II5e5oN9O7o65TsW/Ps6HyVgTWgpWLcthJNpg0ovXqqG93s81Wfkg8eGlAIKlZ7sC2Fz57EG
- X6VFxelcANOXm7ZAhcjM2xZCeio=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
- 61adf0dc642caac3182c7e13 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 06 Dec 2021 11:15:40
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id A110BC4338F; Mon,  6 Dec 2021 11:15:39 +0000 (UTC)
-Received: from akolli-linux.qualcomm.com
- (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
- (No client certificate requested) (Authenticated sender: akolli)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id C17FBC4338F;
- Mon,  6 Dec 2021 11:15:36 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org C17FBC4338F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
- spf=fail smtp.mailfrom=codeaurora.org
-From: Anilkumar Kolli <akolli@codeaurora.org>
-To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
- robh@kernel.org, Anilkumar Kolli <akolli@codeaurora.org>
-Subject: [PATCH v7 2/2] ath11k: Use reserved host DDR addresses from DT for
- PCI devices
-Date: Mon,  6 Dec 2021 16:45:19 +0530
-Message-Id: <1638789319-2950-2-git-send-email-akolli@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1638789319-2950-1-git-send-email-akolli@codeaurora.org>
-References: <1638789319-2950-1-git-send-email-akolli@codeaurora.org>
+ id 1muGa4-004gQw-SN
+ for ath11k@lists.infradead.org; Mon, 06 Dec 2021 16:11:10 +0000
+Received: by mail-pf1-x42c.google.com with SMTP id k26so6208034pfp.10
+ for <ath11k@lists.infradead.org>; Mon, 06 Dec 2021 08:11:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=/dZMe5fXW3JmkstQUnuTxaguikQO8croA43e/A9yBnw=;
+ b=wsxIo8iRiao/IrGDfq47xrllVJ4TjbrPMq5pi3ujnxN/VKCJ3gsfxKRCeoeCqPfYQu
+ kOwY5U32UUnpRggGW8w10rv9Qb+gMMChBODZE8cet49sqH0aXLIuy3Hy/fNcF2I49xtW
+ w/tPBkVH6OZ0gml4qbyNHA2LKoSRu2Duh75QZw7O02/WxlK7y7iu/eS+gRwq5vnZ0TMf
+ 4NrQWs80FVlPsg+02Ay9mkBOTx6d4n9cp8+8F0Dpa7NfdGkA7BMrgrVXUDuNa+sp9Oa0
+ tBWh2Wm8WKIWHNKf1R7ackwqOJUltuACyxAA6XpX27PTUDAPkFN9K/s0tPCDvwcBdLVB
+ v8Ww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=/dZMe5fXW3JmkstQUnuTxaguikQO8croA43e/A9yBnw=;
+ b=xvRjy2guRz25D0FBbORA2ztcYMKw7uiti6HEj5mD6o/6mqBb9VTMFOW/wi3xTdmdOf
+ rpoUu0AbFRKz0pUXCKxOIoKOdOiGzYDss1vzH6olvJtkMiqMrkIphjDe5k03/VrOLDlO
+ nQlG8fbSy2B1kr6LYW1I2BY8zloqJ1PrVyM0vfnU2wFIMIQbEsS523t3qTviRl9ADdwS
+ VfTqW8rpbicmKl/XvSpG7AzTIRAyNquq6KuP1sLeTg6YJqJ1AyfVa5Iebi9lJMCswCse
+ b11hUwQRfvktiWweEnTIjZsrTlAfwFkJ2/MOdwYMCfq5DikUqRvdLDQbTysokT0IJkj/
+ ZbNA==
+X-Gm-Message-State: AOAM530TD1Bm2ev2p/j7O9cn8OY6CxpC926rKaaN8pieRXGzFnXiwIT3
+ ZkbWg5bXVhpuU0MCsSJ0I7/+
+X-Google-Smtp-Source: ABdhPJzHztOd8XGPiN1RUx+EQUVKeXqRT/D1cHtxog5GiB7PeT8WgTwjvv+39GKJ//C4Nqx58PR66g==
+X-Received: by 2002:a05:6a00:1594:b0:4ae:dc6:f344 with SMTP id
+ u20-20020a056a00159400b004ae0dc6f344mr7919655pfk.56.1638807066912; 
+ Mon, 06 Dec 2021 08:11:06 -0800 (PST)
+Received: from localhost.localdomain ([117.217.176.38])
+ by smtp.gmail.com with ESMTPSA id lr6sm11288968pjb.0.2021.12.06.08.11.02
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 06 Dec 2021 08:11:06 -0800 (PST)
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: mhi@lists.linux.dev
+Cc: hemantk@codeaurora.org, bbhatt@codeaurora.org, loic.poulain@linaro.org,
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ kvalo@codeaurora.org, stable@vger.kernel.org,
+ Pengyu Ma <mapengyu@gmail.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH] bus: mhi: core: Add support for forced PM resume
+Date: Mon,  6 Dec 2021 21:40:59 +0530
+Message-Id: <20211206161059.107007-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211206_031540_974434_8FACF049 
-X-CRM114-Status: GOOD (  23.77  )
+X-CRM114-CacheID: sfid-20211206_081108_946575_B3D8F315 
+X-CRM114-Status: GOOD (  15.12  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,284 +85,113 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Host DDR memory (contiguous 45 MB in mode-0 or 15 MB in mode-2)
-is reserved through DT entries for firmware usage. Send the base
-address from DT entries.
-If DT entry is available, PCI device will work with
-fixed_mem_region else host allocates multiple segments.
+From: Loic Poulain <loic.poulain@linaro.org>
 
-IPQ8074 on HK10 board supports multiple PCI devices.
-IPQ8074 + QCN9074 is tested with this patch.
+For whatever reason, some devices like QCA6390, WCN6855 using ath11k
+are not in M3 state during PM resume, but still functional. The
+mhi_pm_resume should then not fail in those cases, and let the higher
+level device specific stack continue resuming process.
 
-Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.4.0.1-01838-QCAHKSWPL_SILICONZ-1
+Add a new parameter to mhi_pm_resume, to force resuming, whatever the
+current MHI state is. This fixes a regression with non functional
+ath11k WiFi after suspend/resume cycle on some machines.
 
-Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
+Bug report: https://bugzilla.kernel.org/show_bug.cgi?id=214179
+
+Cc: stable@vger.kernel.org #5.13
+Fixes: 020d3b26c07a ("bus: mhi: Early MHI resume failure in non M3 state")
+Reported-by: Kalle Valo <kvalo@codeaurora.org>
+Reported-by: Pengyu Ma <mapengyu@gmail.com>
+Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
+[mani: Added comment, bug report, added reported-by tags and CCed stable]
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 ---
-V7:
-  - Rebase on latest ath.git (Kalle)
-V6:
-  - Use of_parse_phandle() (Sven)
-V5:
-  - Use of_address_to_resource() (Sven)
-V4:
-  - Update code review comments to handle return (Kalle)
-V3:
-  - remove type cast and use of_property_read_u32_array() (Kalle)
-V2:
-  - Use of_ API to read from dt node (Rob)
+ drivers/bus/mhi/core/pm.c             | 10 +++++++---
+ drivers/bus/mhi/pci_generic.c         |  2 +-
+ drivers/net/wireless/ath/ath11k/mhi.c |  6 +++++-
+ include/linux/mhi.h                   |  3 ++-
+ 4 files changed, 15 insertions(+), 6 deletions(-)
 
-
- drivers/net/wireless/ath/ath11k/core.h |  1 +
- drivers/net/wireless/ath/ath11k/mhi.c  | 34 ++++++++++++++++-
- drivers/net/wireless/ath/ath11k/pci.c  | 11 +++++-
- drivers/net/wireless/ath/ath11k/qmi.c  | 67 +++++++++++++++++++++++++++++-----
- drivers/net/wireless/ath/ath11k/qmi.h  |  1 +
- 5 files changed, 101 insertions(+), 13 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 0103cfd0508d..e8157db337c7 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -201,6 +201,7 @@ enum ath11k_dev_flags {
- 	ATH11K_FLAG_HTC_SUSPEND_COMPLETE,
- 	ATH11K_FLAG_CE_IRQ_ENABLED,
- 	ATH11K_FLAG_EXT_IRQ_ENABLED,
-+	ATH11K_FLAG_FIXED_MEM_RGN,
- };
+diff --git a/drivers/bus/mhi/core/pm.c b/drivers/bus/mhi/core/pm.c
+index 7464f5d09973..4ddd266e042e 100644
+--- a/drivers/bus/mhi/core/pm.c
++++ b/drivers/bus/mhi/core/pm.c
+@@ -881,7 +881,7 @@ int mhi_pm_suspend(struct mhi_controller *mhi_cntrl)
+ }
+ EXPORT_SYMBOL_GPL(mhi_pm_suspend);
  
- enum ath11k_monitor_flags {
+-int mhi_pm_resume(struct mhi_controller *mhi_cntrl)
++int mhi_pm_resume(struct mhi_controller *mhi_cntrl, bool force)
+ {
+ 	struct mhi_chan *itr, *tmp;
+ 	struct device *dev = &mhi_cntrl->mhi_dev->dev;
+@@ -898,8 +898,12 @@ int mhi_pm_resume(struct mhi_controller *mhi_cntrl)
+ 	if (MHI_PM_IN_ERROR_STATE(mhi_cntrl->pm_state))
+ 		return -EIO;
+ 
+-	if (mhi_get_mhi_state(mhi_cntrl) != MHI_STATE_M3)
+-		return -EINVAL;
++	if (mhi_get_mhi_state(mhi_cntrl) != MHI_STATE_M3) {
++		dev_warn(dev, "Resuming from non M3 state (%s)\n",
++			 TO_MHI_STATE_STR(mhi_get_mhi_state(mhi_cntrl)));
++		if (!force)
++			return -EINVAL;
++	}
+ 
+ 	/* Notify clients about exiting LPM */
+ 	list_for_each_entry_safe(itr, tmp, &mhi_cntrl->lpm_chans, node) {
+diff --git a/drivers/bus/mhi/pci_generic.c b/drivers/bus/mhi/pci_generic.c
+index 9ef41354237c..efd1da66fdf9 100644
+--- a/drivers/bus/mhi/pci_generic.c
++++ b/drivers/bus/mhi/pci_generic.c
+@@ -959,7 +959,7 @@ static int __maybe_unused mhi_pci_runtime_resume(struct device *dev)
+ 		return 0; /* Nothing to do at MHI level */
+ 
+ 	/* Exit M3, transition to M0 state */
+-	err = mhi_pm_resume(mhi_cntrl);
++	err = mhi_pm_resume(mhi_cntrl, false);
+ 	if (err) {
+ 		dev_err(&pdev->dev, "failed to resume device: %d\n", err);
+ 		goto err_recovery;
 diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
-index d0f94a785a59..5f2789c40125 100644
+index 26c7ae242db6..f1f2fa2d690d 100644
 --- a/drivers/net/wireless/ath/ath11k/mhi.c
 +++ b/drivers/net/wireless/ath/ath11k/mhi.c
-@@ -3,6 +3,9 @@
+@@ -533,7 +533,11 @@ static int ath11k_mhi_set_state(struct ath11k_pci *ab_pci,
+ 		ret = mhi_pm_suspend(ab_pci->mhi_ctrl);
+ 		break;
+ 	case ATH11K_MHI_RESUME:
+-		ret = mhi_pm_resume(ab_pci->mhi_ctrl);
++		/* Do force MHI resume as some devices like QCA6390, WCN6855
++		 * are not in M3 state but they are functional. So just ignore
++		 * the MHI state while resuming.
++		 */
++		ret = mhi_pm_resume(ab_pci->mhi_ctrl, true);
+ 		break;
+ 	case ATH11K_MHI_TRIGGER_RDDM:
+ 		ret = mhi_force_rddm_mode(ab_pci->mhi_ctrl);
+diff --git a/include/linux/mhi.h b/include/linux/mhi.h
+index 723985879035..102303288cee 100644
+--- a/include/linux/mhi.h
++++ b/include/linux/mhi.h
+@@ -660,8 +660,9 @@ int mhi_pm_suspend(struct mhi_controller *mhi_cntrl);
+ /**
+  * mhi_pm_resume - Resume MHI from suspended state
+  * @mhi_cntrl: MHI controller
++ * @force: Force resuming to M0 irrespective of the device MHI state
+  */
+-int mhi_pm_resume(struct mhi_controller *mhi_cntrl);
++int mhi_pm_resume(struct mhi_controller *mhi_cntrl, bool force);
  
- #include <linux/msi.h>
- #include <linux/pci.h>
-+#include <linux/of.h>
-+#include <linux/of_address.h>
-+#include <linux/ioport.h>
- 
- #include "core.h"
- #include "debug.h"
-@@ -318,6 +321,26 @@ static void ath11k_mhi_op_write_reg(struct mhi_controller *mhi_cntrl,
- 	writel(val, addr);
- }
- 
-+static int ath11k_mhi_read_addr_from_dt(struct mhi_controller *mhi_ctrl)
-+{
-+	struct device_node *np;
-+	struct resource res;
-+	int ret;
-+
-+	np = of_find_node_by_type(NULL, "memory");
-+	if (!np)
-+		return -ENOENT;
-+
-+	ret = of_address_to_resource(np, 0, &res);
-+	if (ret)
-+		return ret;
-+
-+	mhi_ctrl->iova_start = res.start + 0x1000000;
-+	mhi_ctrl->iova_stop = res.end;
-+
-+	return 0;
-+}
-+
- int ath11k_mhi_register(struct ath11k_pci *ab_pci)
- {
- 	struct ath11k_base *ab = ab_pci->ab;
-@@ -349,8 +372,15 @@ int ath11k_mhi_register(struct ath11k_pci *ab_pci)
- 	if (!test_bit(ATH11K_PCI_FLAG_MULTI_MSI_VECTORS, &ab_pci->flags))
- 		mhi_ctrl->irq_flags = IRQF_SHARED | IRQF_NOBALANCING;
- 
--	mhi_ctrl->iova_start = 0;
--	mhi_ctrl->iova_stop = 0xffffffff;
-+	if ((test_bit(ATH11K_FLAG_FIXED_MEM_RGN, &ab->dev_flags))) {
-+		ret = ath11k_mhi_read_addr_from_dt(mhi_ctrl);
-+		if (ret < 0)
-+			return ret;
-+	} else {
-+		mhi_ctrl->iova_start = 0;
-+		mhi_ctrl->iova_stop = 0xFFFFFFFF;
-+	}
-+
- 	mhi_ctrl->sbl_size = SZ_512K;
- 	mhi_ctrl->seg_len = SZ_512K;
- 	mhi_ctrl->fbc_download = true;
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index 1898b1a33960..83ee14623468 100644
---- a/drivers/net/wireless/ath/ath11k/pci.c
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -6,6 +6,7 @@
- #include <linux/module.h>
- #include <linux/msi.h>
- #include <linux/pci.h>
-+#include <linux/of.h>
- 
- #include "pci.h"
- #include "core.h"
-@@ -1347,7 +1348,7 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
- {
- 	struct ath11k_base *ab;
- 	struct ath11k_pci *ab_pci;
--	u32 soc_hw_version_major, soc_hw_version_minor;
-+	u32 soc_hw_version_major, soc_hw_version_minor, addr;
- 	int ret;
- 
- 	ab = ath11k_core_alloc(&pdev->dev, sizeof(*ab_pci), ATH11K_BUS_PCI,
-@@ -1367,6 +1368,14 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
- 	pci_set_drvdata(pdev, ab);
- 	spin_lock_init(&ab_pci->window_lock);
- 
-+	/* Set fixed_mem_region to true for platforms support reserved memory
-+	 * from DT. If memory is reserved from DT for FW, ath11k driver need not
-+	 * allocate memory.
-+	 */
-+	ret = of_property_read_u32(ab->dev->of_node, "memory-region", &addr);
-+	if (!ret)
-+		set_bit(ATH11K_FLAG_FIXED_MEM_RGN, &ab->dev_flags);
-+
- 	ret = ath11k_pci_claim(ab_pci, pdev);
- 	if (ret) {
- 		ath11k_err(ab, "failed to claim device: %d\n", ret);
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index 25eb22cbeaeb..625d525a86b9 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.c
-+++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -9,6 +9,8 @@
- #include "core.h"
- #include "debug.h"
- #include <linux/of.h>
-+#include <linux/of_address.h>
-+#include <linux/ioport.h>
- #include <linux/firmware.h>
- 
- #define SLEEP_CLOCK_SELECT_INTERNAL_BIT	0x02
-@@ -1751,7 +1753,9 @@ static int ath11k_qmi_respond_fw_mem_request(struct ath11k_base *ab)
- 	 * failure to FW and FW will then request mulitple blocks of small
- 	 * chunk size memory.
- 	 */
--	if (!ab->bus_params.fixed_mem_region && ab->qmi.target_mem_delayed) {
-+	if (!(ab->bus_params.fixed_mem_region ||
-+	      test_bit(ATH11K_FLAG_FIXED_MEM_RGN, &ab->dev_flags)) &&
-+	      ab->qmi.target_mem_delayed) {
- 		delayed = true;
- 		ath11k_dbg(ab, ATH11K_DBG_QMI, "qmi delays mem_request %d\n",
- 			   ab->qmi.mem_seg_count);
-@@ -1818,10 +1822,12 @@ static void ath11k_qmi_free_target_mem_chunk(struct ath11k_base *ab)
- {
- 	int i;
- 
--	if (ab->bus_params.fixed_mem_region)
--		return;
--
- 	for (i = 0; i < ab->qmi.mem_seg_count; i++) {
-+		if ((ab->bus_params.fixed_mem_region ||
-+		     test_bit(ATH11K_FLAG_FIXED_MEM_RGN, &ab->dev_flags)) &&
-+		     ab->qmi.target_mem[i].iaddr)
-+			iounmap(ab->qmi.target_mem[i].iaddr);
-+
- 		if (!ab->qmi.target_mem[i].vaddr)
- 			continue;
- 
-@@ -1869,10 +1875,44 @@ static int ath11k_qmi_alloc_target_mem_chunk(struct ath11k_base *ab)
- 
- static int ath11k_qmi_assign_target_mem_chunk(struct ath11k_base *ab)
- {
--	int i, idx;
-+	struct device *dev = ab->dev;
-+	struct device_node *hremote_node = NULL;
-+	struct resource res;
-+	u32 host_ddr_sz;
-+	int i, idx, ret;
- 
- 	for (i = 0, idx = 0; i < ab->qmi.mem_seg_count; i++) {
- 		switch (ab->qmi.target_mem[i].type) {
-+		case HOST_DDR_REGION_TYPE:
-+			hremote_node = of_parse_phandle(dev->of_node, "memory-region", 0);
-+			if (!hremote_node) {
-+				ath11k_dbg(ab, ATH11K_DBG_QMI,
-+					   "qmi fail to get hremote_node\n");
-+				return ret;
-+			}
-+
-+			ret = of_address_to_resource(hremote_node, 0, &res);
-+			if (ret) {
-+				ath11k_dbg(ab, ATH11K_DBG_QMI,
-+					   "qmi fail to get reg from hremote\n");
-+				return ret;
-+			}
-+
-+			if (res.end - res.start + 1 < ab->qmi.target_mem[i].size) {
-+				ath11k_dbg(ab, ATH11K_DBG_QMI,
-+					   "qmi fail to assign memory of sz\n");
-+				return -EINVAL;
-+			}
-+
-+			ab->qmi.target_mem[idx].paddr = res.start;
-+			ab->qmi.target_mem[idx].iaddr =
-+				ioremap(ab->qmi.target_mem[idx].paddr,
-+					ab->qmi.target_mem[i].size);
-+			ab->qmi.target_mem[idx].size = ab->qmi.target_mem[i].size;
-+			host_ddr_sz = ab->qmi.target_mem[i].size;
-+			ab->qmi.target_mem[idx].type = ab->qmi.target_mem[i].type;
-+			idx++;
-+			break;
- 		case BDF_MEM_REGION_TYPE:
- 			ab->qmi.target_mem[idx].paddr = ab->hw_params.bdf_addr;
- 			ab->qmi.target_mem[idx].vaddr = NULL;
-@@ -1887,10 +1927,16 @@ static int ath11k_qmi_assign_target_mem_chunk(struct ath11k_base *ab)
- 			}
- 
- 			if (ath11k_cold_boot_cal && ab->hw_params.cold_boot_calib) {
--				ab->qmi.target_mem[idx].paddr =
--						     ATH11K_QMI_CALDB_ADDRESS;
--				ab->qmi.target_mem[idx].vaddr =
--						     (void *)ATH11K_QMI_CALDB_ADDRESS;
-+				if (hremote_node) {
-+					ab->qmi.target_mem[idx].paddr =
-+							res.start + host_ddr_sz;
-+					ab->qmi.target_mem[idx].iaddr =
-+						ioremap(ab->qmi.target_mem[idx].paddr,
-+							ab->qmi.target_mem[i].size);
-+				} else {
-+					ab->qmi.target_mem[idx].paddr =
-+						ATH11K_QMI_CALDB_ADDRESS;
-+				}
- 			} else {
- 				ab->qmi.target_mem[idx].paddr = 0;
- 				ab->qmi.target_mem[idx].vaddr = NULL;
-@@ -2621,7 +2667,8 @@ static void ath11k_qmi_msg_mem_request_cb(struct qmi_handle *qmi_hdl,
- 			   msg->mem_seg[i].type, msg->mem_seg[i].size);
- 	}
- 
--	if (ab->bus_params.fixed_mem_region) {
-+	if (ab->bus_params.fixed_mem_region ||
-+	    test_bit(ATH11K_FLAG_FIXED_MEM_RGN, &ab->dev_flags)) {
- 		ret = ath11k_qmi_assign_target_mem_chunk(ab);
- 		if (ret) {
- 			ath11k_warn(ab, "failed to assign qmi target memory: %d\n",
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.h b/drivers/net/wireless/ath/ath11k/qmi.h
-index 3bb0f9ef7996..f8d45b7dc821 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.h
-+++ b/drivers/net/wireless/ath/ath11k/qmi.h
-@@ -95,6 +95,7 @@ struct target_mem_chunk {
- 	u32 type;
- 	dma_addr_t paddr;
- 	u32 *vaddr;
-+	void __iomem *iaddr;
- };
- 
- struct target_info {
+ /**
+  * mhi_download_rddm_image - Download ramdump image from device for
 -- 
-2.7.4
+2.25.1
 
 
 -- 
