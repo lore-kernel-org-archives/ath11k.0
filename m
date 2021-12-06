@@ -4,59 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31546C433F5
-	for <ath11k@archiver.kernel.org>; Mon,  6 Dec 2021 23:10:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAFCAC433F5
+	for <ath11k@archiver.kernel.org>; Mon,  6 Dec 2021 23:30:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:MIME-Version:References:Subject:Cc
 	:To:From:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-	List-Owner; bh=WlRXiu+pDaeMMrztsfOL5/kSOvEb6JfRSGmoQrejIA8=; b=oxIU6Osra8gGtm
-	sCyqzfm0YRbML0XVB+lssK50heEteOWLHFIDUfS7aEbwtbiJEn7IG7V9H7DQnERXs2ifKedsKVcTO
-	/hzPbGMKBcGnZS3n5FfihlpJ/a+oRHUYFHeJ6KRxjOT+5+L7prZjU8j1bgyf0p9kgcXWOkQcc1Z57
-	/zp1k/vaoReSyQbonJr5AE4EYzVdq5WbndrH2fjmmuRaflQqdsvCcGAAkKbfd1OLO7I0/2WonuOmB
-	5z2IJ619uQZQtCQj93w6Sga2Xna4qdA/MB0FvlHoxc35zy23G2UKSAi/T0YETURF92V0B4Il3kUcJ
-	6tsJZXf5TGmpRiWup19A==;
+	List-Owner; bh=yaD0yzYN8YYeQkuBG3PO6ZuAMjSIqVCSUlhg3l2ai50=; b=bpn/TSaeydX1ad
+	5AVYxZfbE675GrJhhQ7ttIw15NTKbxHwdkzpXWBv/ZnaFhg27EK9iBVH/uFKQTRSNRv4qUMfZ/Fqd
+	W6OQR0rojfLssq5cZFXd1Wn0L7Dtkx6A8oVmvTR2d8C4+KfSflZzSXybGnrWFr0qtY1Ch4dVbb5sM
+	CV/MhGTj4MQHjxekoimzp4np35o+dPtU60N6B2KlVwJBtDa37TMqDP55bDQjL+NpAR7zWNi0rG1wy
+	NJtV694DKN3B01HnYEoJNzRnt9swX6nNBMThKvApxzQVxHl8BuJRUXzFH20ssWslrQe9/GTsxZvmw
+	vClnvdMumF2/gRGC1r0Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1muN7c-006TOr-H8; Mon, 06 Dec 2021 23:10:12 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1muNR6-006VtA-OO; Mon, 06 Dec 2021 23:30:20 +0000
+Received: from galois.linutronix.de ([2a0a:51c0:0:12e:550::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1muN3k-006Rjq-0K
- for ath11k@bombadil.infradead.org; Mon, 06 Dec 2021 23:06:12 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=desiato.20200630; h=Date:Content-Type:MIME-Version:
- References:Subject:Cc:To:From:Message-ID:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description:In-Reply-To;
- bh=yrY1ZB0NumM3iY3b+dL6tdvji5YdLo8YZzow0Pc98K0=; b=fJVDjXHGMYsDRfABqiUPxEWmHv
- LTKvj7wziddRlHc2CD3lUs5chHw9J1pgUDEXHo/V2ps4FmSS0uthFDfGECaBdNfXLRjlrWHqZz5+r
- 4Zt5qaDMDl4OrnkVAy9wpbpx2al9aJPaoNgeVPV5OZk32bdQ8WU8KrIDt0mxa0wTQSGA5uU0ouLOS
- W6Z+k6hIDC5FG+Q615SbJvJX8Q0yIAuvr4q4W+uYWHFuIS22BlAMWxV+Ixb5Y9j00M0YCAgcF+7hS
- RSuWRJJeKi/6VfubwMUs5jActgNB9RK/asltQWEegYwS2qszPcd4CpEpov9atNZJjC7HwaAEK8TvE
- AJduR4Sg==;
-Received: from galois.linutronix.de ([193.142.43.55])
- by desiato.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1muMSf-002eFz-3z
- for ath11k@lists.infradead.org; Mon, 06 Dec 2021 22:27:55 +0000
-Message-ID: <20211206210224.763574089@linutronix.de>
+ id 1muMSY-006CwI-IC
+ for ath11k@lists.infradead.org; Mon, 06 Dec 2021 22:27:52 +0000
+Message-ID: <20211206210224.539281124@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1638829671;
+ s=2020; t=1638829665;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- references:references; bh=yrY1ZB0NumM3iY3b+dL6tdvji5YdLo8YZzow0Pc98K0=;
- b=yogWCLClZ5HawXr86pUvSu27UdiujY09fLCr9qODZ6WHG6tdy1jo4R5oUed+NZBlb4D+aL
- 7QpxacnGafJnNFuGA3Qr4uuaCUoNpqcC0RQIn/nv2i/ZqqOPRpDk41N3evYyZcNUIORUqQ
- RmyJmVXQ4SgC9OEaoFrfssQoJ8Xwn+4ZyexyySLnXH1jXW3w7H7gjCvNcp6z/9YZb3iZef
- SnjRI8A4v1jtxW1cvkAQLxfhlEO0mCCMG5y3BXvNH9MRSgIaMFqX4JKVHvpx5vMHBoS0Bb
- XHborQKOUtJXUnqPXT77WiZSbh3UWDmLFWdvo+NEVEOm05/Ol4MBGoFkTWQRhw==
+ references:references; bh=fpyg7awX8dijQzBRp+WIS78Jmos3C/8mTMn+TSrhxD8=;
+ b=pnGIDteYP84F0igC2k+ACUhibYQ3881OhRiiuaVIOBjTshXhjGeVdgZAA/lcK5sjvLEMoj
+ ROvDFYYNJX0JhR2QOKUEjXyWb04lLq7PP9xV81Z0D1FytvGg8OABck9JmC/ylB+YU2AvRJ
+ PZVaY5Ia3WuXqX49dyC//GQiLcA+5A6GZy5/1+M3d4XVPgxEHo1T/dGhvFuUZ1a4SJvQjn
+ ICbirvZcyT0c9k1KJC4jGdKAhnGZprc4Xqsi6XNBDU2/0hwWf55EV2aY3VwLmgUvxv9n/d
+ Nfe/m+FudbplubW4O/Khqp8m6T0J7JnGYcrRL/PejELQssL7PtUMHvHQVkjmhA==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1638829671;
+ s=2020e; t=1638829665;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- references:references; bh=yrY1ZB0NumM3iY3b+dL6tdvji5YdLo8YZzow0Pc98K0=;
- b=xWk0QhW9rvUKaVhvOUrP23TOY6t2RbQv3eb8/ILfXzb+qQTtu1Dgw8jDLlkSfce65pUPAy
- AUFj7t7KeK1aKUCQ==
+ references:references; bh=fpyg7awX8dijQzBRp+WIS78Jmos3C/8mTMn+TSrhxD8=;
+ b=RuOHGkoAA1Vj7KuipSnVapOZhwsUvKElxjyliNOso5sc0g+RXjuUG8oJb8SOmIunMIh0Pt
+ uWzxF181jxyPh3AQ==
 From: Thomas Gleixner <tglx@linutronix.de>
 To: LKML <linux-kernel@vger.kernel.org>
 Cc: Bjorn Helgaas <helgaas@kernel.org>, Marc Zygnier <maz@kernel.org>,
@@ -76,13 +62,14 @@ Cc: Bjorn Helgaas <helgaas@kernel.org>, Marc Zygnier <maz@kernel.org>,
  linux-hyperv@vger.kernel.org,
  Christian Borntraeger <borntraeger@de.ibm.com>,
  Heiko Carstens <hca@linux.ibm.com>
-Subject: [patch V2 17/23] PCI/MSI: Split out !IRQDOMAIN code
+Subject: [patch V2 13/23] PCI/MSI: Cleanup include zoo
 References: <20211206210147.872865823@linutronix.de>
 MIME-Version: 1.0
-Date: Mon,  6 Dec 2021 23:27:51 +0100 (CET)
+Date: Mon,  6 Dec 2021 23:27:44 +0100 (CET)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211206_222753_379550_0D7EF7C2 
-X-CRM114-Status: GOOD (  15.18  )
+X-CRM114-CacheID: sfid-20211206_142746_832676_E30B1DF6 
+X-CRM114-Status: UNSURE (   6.93  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,140 +86,46 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Split out the non irqdomain code into its own file.
+Get rid of the pile of unneeded includes which accumulated over time.
 
 Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
 Tested-by: Juergen Gross <jgross@suse.com>
 Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
 ---
-V2: Add proper includes and fix variable name - Cedric
+V2: Address build fail on powerpc - Cedric
 ---
- drivers/pci/msi/Makefile |    5 ++--
- drivers/pci/msi/legacy.c |   52 +++++++++++++++++++++++++++++++++++++++++++++++
- drivers/pci/msi/msi.c    |   46 -----------------------------------------
- 3 files changed, 55 insertions(+), 48 deletions(-)
+ drivers/pci/msi.c |   16 ++++------------
+ 1 file changed, 4 insertions(+), 12 deletions(-)
 
---- a/drivers/pci/msi/Makefile
-+++ b/drivers/pci/msi/Makefile
-@@ -1,5 +1,6 @@
- # SPDX-License-Identifier: GPL-2.0
- #
- # Makefile for the PCI/MSI
--obj-$(CONFIG_PCI)		+= pcidev_msi.o
--obj-$(CONFIG_PCI_MSI)		+= msi.o
-+obj-$(CONFIG_PCI)			+= pcidev_msi.o
-+obj-$(CONFIG_PCI_MSI)			+= msi.o
-+obj-$(CONFIG_PCI_MSI_ARCH_FALLBACKS)	+= legacy.o
---- /dev/null
-+++ b/drivers/pci/msi/legacy.c
-@@ -0,0 +1,52 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * PCI Message Signaled Interrupt (MSI).
-+ *
-+ * Legacy architecture specific setup and teardown mechanism.
-+ */
-+#include <linux/msi.h>
-+#include <linux/pci.h>
-+
-+/* Arch hooks */
-+int __weak arch_setup_msi_irq(struct pci_dev *dev, struct msi_desc *desc)
-+{
-+	return -EINVAL;
-+}
-+
-+void __weak arch_teardown_msi_irq(unsigned int irq)
-+{
-+}
-+
-+int __weak arch_setup_msi_irqs(struct pci_dev *dev, int nvec, int type)
-+{
-+	struct msi_desc *desc;
-+	int ret;
-+
-+	/*
-+	 * If an architecture wants to support multiple MSI, it needs to
-+	 * override arch_setup_msi_irqs()
-+	 */
-+	if (type == PCI_CAP_ID_MSI && nvec > 1)
-+		return 1;
-+
-+	for_each_pci_msi_entry(desc, dev) {
-+		ret = arch_setup_msi_irq(dev, desc);
-+		if (ret)
-+			return ret < 0 ? ret : -ENOSPC;
-+	}
-+
-+	return 0;
-+}
-+
-+void __weak arch_teardown_msi_irqs(struct pci_dev *dev)
-+{
-+	struct msi_desc *desc;
-+	int i;
-+
-+	for_each_pci_msi_entry(desc, dev) {
-+		if (desc->irq) {
-+			for (i = 0; i < desc->nvec_used; i++)
-+				arch_teardown_msi_irq(desc->irq + i);
-+		}
-+	}
-+}
---- a/drivers/pci/msi/msi.c
-+++ b/drivers/pci/msi/msi.c
-@@ -50,52 +50,6 @@ static void pci_msi_teardown_msi_irqs(st
- #define pci_msi_teardown_msi_irqs	arch_teardown_msi_irqs
- #endif
+--- a/drivers/pci/msi.c
++++ b/drivers/pci/msi.c
+@@ -7,22 +7,14 @@
+  * Copyright (C) 2016 Christoph Hellwig.
+  */
  
--#ifdef CONFIG_PCI_MSI_ARCH_FALLBACKS
--/* Arch hooks */
--int __weak arch_setup_msi_irq(struct pci_dev *dev, struct msi_desc *desc)
--{
--	return -EINVAL;
--}
--
--void __weak arch_teardown_msi_irq(unsigned int irq)
--{
--}
--
--int __weak arch_setup_msi_irqs(struct pci_dev *dev, int nvec, int type)
--{
--	struct msi_desc *entry;
--	int ret;
--
--	/*
--	 * If an architecture wants to support multiple MSI, it needs to
--	 * override arch_setup_msi_irqs()
--	 */
--	if (type == PCI_CAP_ID_MSI && nvec > 1)
--		return 1;
--
--	for_each_pci_msi_entry(entry, dev) {
--		ret = arch_setup_msi_irq(dev, entry);
--		if (ret < 0)
--			return ret;
--		if (ret > 0)
--			return -ENOSPC;
--	}
--
--	return 0;
--}
--
--void __weak arch_teardown_msi_irqs(struct pci_dev *dev)
--{
--	int i;
--	struct msi_desc *entry;
--
--	for_each_pci_msi_entry(entry, dev)
--		if (entry->irq)
--			for (i = 0; i < entry->nvec_used; i++)
--				arch_teardown_msi_irq(entry->irq + i);
--}
--#endif /* CONFIG_PCI_MSI_ARCH_FALLBACKS */
--
- /*
-  * PCI 2.3 does not specify mask bits for each MSI interrupt.  Attempting to
-  * mask all MSI interrupts by clearing the MSI enable bit does not work
++#include <linux/acpi_iort.h>
+ #include <linux/err.h>
+-#include <linux/mm.h>
+-#include <linux/irq.h>
+-#include <linux/interrupt.h>
+ #include <linux/export.h>
+-#include <linux/ioport.h>
+-#include <linux/pci.h>
+-#include <linux/proc_fs.h>
+-#include <linux/msi.h>
+-#include <linux/smp.h>
+-#include <linux/errno.h>
+-#include <linux/io.h>
+-#include <linux/acpi_iort.h>
+-#include <linux/slab.h>
++#include <linux/irq.h>
+ #include <linux/irqdomain.h>
++#include <linux/msi.h>
+ #include <linux/of_irq.h>
++#include <linux/pci.h>
+ 
+ #include "pci.h"
+ 
 
 
 -- 
