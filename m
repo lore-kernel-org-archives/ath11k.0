@@ -4,73 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47C8DC433F5
-	for <ath11k@archiver.kernel.org>; Tue,  7 Dec 2021 07:48:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD590C433FE
+	for <ath11k@archiver.kernel.org>; Tue,  7 Dec 2021 09:08:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=13qjnHyLVXeoIjrhy0Ky+hCOLzEuYZwKKMq9cz15m0Y=; b=Ow/fjRXIvBVQad
-	8/WEl3YVX5xByuYhR7/upgMwkQ6ArVKs0DlRTLmSqdRa/Uo18+ExLd1bEARPPtooxg1eopAAMJy4p
-	XfIHLsM06yqIajIMhrf+x1xOBNNtKnuxdXE8dJCMnwjUga4jUu3AMixF+zDFDGFB0GMrgUflRLgXP
-	i9poRLhMFUUEZhkEfHDGM8bZFLzKcmLEuhoimfT7gtlJ7EgHv6ePqcjntv5lSlU/jqJwXXKcpMTqO
-	IEPqqqxnKQoZ7kefTRkTQd81bZJnV+kz6HW3/eNjiXF6Xwex7Q69wuOA7nQ5gFBN6Yi+S0c6gqUdA
-	d4HgzimV0rCfAE8lDbhA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=pMx5oFilV6V1Qmsie2GxNPG1+GZZmsPAD9wxki59CIk=; b=hGVYdFaxqKk4HYz8c35/Rkfwhg
+	Lx7ZD0vrXw6SARrUT5kEFhLofxxBfTf8JEXbgkk6sifyrSOiIfGM0vuccorYqEuiaPbGDUSlux5An
+	3uIpvQYaW6Zmbbo6Q+dIw3sCXtSRShZA0cnuzAsPdo7X3mGKj19ppmeBMbTFS0QGRv7cAb1hueyIt
+	tGgh29XzqXLmP97QgIXTdgz6TFq/AH7LQ7q/UZ/Qo7c0akorTJie7mwArjo4scJ+MzQBeNXZqgmiT
+	lQFWEGqK2ptO5aeM6ZE7FqSE8ZpoozI8e2lahSHSizVczJHat2O0yj6qbnVIDHJ6TeD5LTqtLi/EV
+	YuRgCJZg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1muVDR-007HHU-1O; Tue, 07 Dec 2021 07:48:45 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1muWSJ-007iBD-PH; Tue, 07 Dec 2021 09:08:11 +0000
+Received: from dvalin.narfation.org ([2a00:17d8:100::8b1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1muVDO-007HEq-54
- for ath11k@lists.infradead.org; Tue, 07 Dec 2021 07:48:43 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id D954AB80E8B;
- Tue,  7 Dec 2021 07:48:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33958C341C1;
- Tue,  7 Dec 2021 07:48:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1638863319;
- bh=WhRceJhmzxjby5fPejJ6zCulOVcJWw8H5bLGS/3QcH8=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=SWIJfmNGJimxpVxVrmep8jDL+8fq/9M8tTEfUWTU7yrf8FEhCukCMCNYwcchrGZil
- KTC2GFjwOHm5Vp8ki83GFWK0/anM//KXBF0T7w4Aubbsae5n/x81pWpLxBWXyc+O0d
- AKTd3slwt1mIBdgwhnTy90iEA7VRwneYulUqX2fg=
-Date: Tue, 7 Dec 2021 08:48:37 +0100
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Thomas Gleixner <tglx@linutronix.de>
-Cc: LKML <linux-kernel@vger.kernel.org>, Bjorn Helgaas <helgaas@kernel.org>,
- Marc Zygnier <maz@kernel.org>,
- Alex Williamson <alex.williamson@redhat.com>,
- Kevin Tian <kevin.tian@intel.com>, Jason Gunthorpe <jgg@nvidia.com>,
- Megha Dey <megha.dey@intel.com>, Ashok Raj <ashok.raj@intel.com>,
- linux-pci@vger.kernel.org, Cedric Le Goater <clg@kaod.org>,
- Juergen Gross <jgross@suse.com>, Michael Ellerman <mpe@ellerman.id.au>,
- Paul Mackerras <paulus@samba.org>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- linuxppc-dev@lists.ozlabs.org,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- linux-mips@vger.kernel.org, Kalle Valo <kvalo@codeaurora.org>,
- sparclinux@vger.kernel.org, x86@kernel.org,
- xen-devel@lists.xenproject.org, ath11k@lists.infradead.org,
- Wei Liu <wei.liu@kernel.org>, linux-hyperv@vger.kernel.org,
- Christian Borntraeger <borntraeger@de.ibm.com>,
- Heiko Carstens <hca@linux.ibm.com>
-Subject: Re: [patch V2 23/23] PCI/MSI: Move descriptor counting on allocation
- fail to the legacy code
-Message-ID: <Ya8R1eosQhOZbj1q@kroah.com>
-References: <20211206210147.872865823@linutronix.de>
- <20211206210225.101336873@linutronix.de>
+ id 1mu7vB-002ida-Sa
+ for ath11k@lists.infradead.org; Mon, 06 Dec 2021 06:56:23 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+ s=20121; t=1638773776;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=Pv8TB+g588DsnRCeOefbPFBHB+8AgUI3a/uGs3NBbgI=;
+ b=DU5yfbpKJd0GFi5j+ONXubahVsZsCyY3m+agwScwy8rSeoR8+EYzoFSYen7KAdvqAfCWL5
+ 1iUdHkBgeDUqsc/toKJ9mGMM5tqtoTRBpyMZ6Swe20X/78ynnzBgDRqxFk+K/yvk8DNrR/
+ 1uuWoovjCq5SEKQ2vYAz83gBlmxk2b8=
+From: Sven Eckelmann <sven@narfation.org>
+To: ath11k@lists.infradead.org, Wen Gong <quic_wgong@quicinc.com>
+Cc: linux-wireless@vger.kernel.org
+Subject: Re: [PATCH] ath11k: enable IEEE80211_HW_SINGLE_SCAN_ON_ALL_BANDS for
+ WCN6855
+Date: Mon, 06 Dec 2021 07:56:11 +0100
+Message-ID: <7418334.kqliQQpNxi@ripper>
+In-Reply-To: <7318ffac-f5ec-4c1b-3e80-c816bdb28a79@quicinc.com>
+References: <20211129101309.2931-1-quic_wgong@quicinc.com>
+ <1854698.r8H18GsEis@ripper>
+ <7318ffac-f5ec-4c1b-3e80-c816bdb28a79@quicinc.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20211206210225.101336873@linutronix.de>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211206_234842_360701_EEFC243A 
-X-CRM114-Status: UNSURE (   9.07  )
+X-CRM114-CacheID: sfid-20211205_225622_174761_F8274F46 
+X-CRM114-Status: UNSURE (   9.50  )
 X-CRM114-Notice: Please train this message.
+X-Mailman-Approved-At: Tue, 07 Dec 2021 01:08:01 -0800
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,24 +62,82 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============9127845996649053436=="
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Mon, Dec 06, 2021 at 11:28:00PM +0100, Thomas Gleixner wrote:
-> The irqdomain code already returns the information. Move the loop to the
-> legacy code.
+--===============9127845996649053436==
+Content-Type: multipart/signed; boundary="nextPart6005903.RJP74QPFIO"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+
+--nextPart6005903.RJP74QPFIO
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
+From: Sven Eckelmann <sven@narfation.org>
+To: ath11k@lists.infradead.org, Wen Gong <quic_wgong@quicinc.com>
+Cc: linux-wireless@vger.kernel.org
+Subject: Re: [PATCH] ath11k: enable IEEE80211_HW_SINGLE_SCAN_ON_ALL_BANDS for WCN6855
+Date: Mon, 06 Dec 2021 07:56:11 +0100
+Message-ID: <7418334.kqliQQpNxi@ripper>
+In-Reply-To: <7318ffac-f5ec-4c1b-3e80-c816bdb28a79@quicinc.com>
+References: <20211129101309.2931-1-quic_wgong@quicinc.com> <1854698.r8H18GsEis@ripper> <7318ffac-f5ec-4c1b-3e80-c816bdb28a79@quicinc.com>
+
+On Monday, 6 December 2021 04:29:39 CET Wen Gong wrote:
+[...]
+> I did test in my setup, not see the crash.
 > 
-> Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
-> Tested-by: Juergen Gross <jgross@suse.com>
-> Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+> I am afraid you also need this patch("ath11k: change to use dynamic 
+> memory for channel list of scan",
+> 
+> https://patchwork.kernel.org/project/linux-wireless/patch/20211129110939.15711-1-quic_wgong@quicinc.com 
+> )
+> 
+> Could you apply this patch and try again?
 
-Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Tried it and I see the same problem.
+
+Kind regards,
+	Sven
+--nextPart6005903.RJP74QPFIO
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmGttAsACgkQXYcKB8Em
+e0ZZSA//WgYpkZW20C/AjhjDjbPmw9hGD93VZxE4PwscESBViXDLXTCCFMqB+jJt
+x5sjOPQfIg6hXEkfIIUtW8tQi87/kmVh+LtLFZmnw/4yoYJjZoC17X8UQPjXGpXL
+EMvrvi2N1hyY8K3H5Ke7AFsfYe7CdkcOGPkfbH/LZRD74Zw1ZB68ddkCHfLLeLDJ
+WClfy25kzqU3sTTa7kCpMgs/QiYvOIhGPLBpNdhOKUmFSL9yrSeE5C2BRp7vkfh1
+cu0WNjC4gWGn5h0zbYeZbUkzpSGB1THkLAMXCKX6/UEPXLFKkZ1kP/bCa9u/lduR
+snFMov44SE+YGDssKdoxw9rZM5XlGb9+rwNSQu46vyY63XX/28Zc8ijvh+gWxUO5
+kLvOsJBxrAWNAgD/gVn4uZmIYMb2dOggMXyESzJBjKv/XK4vpqrNbI+/eEWtzyUy
+tBP3IV5VW3O/5/8qBxYIlBNO29TW0MDdWEUkPZlZJvAgqA4/rlXft8kdlOBVPgmi
+dwVQ+yZ9c+10lqgD8UBO6nk+3Nfep5SdHR0SkVktH/E7/NA3khrAk694xgSibTpb
+qWj7TEKoUIg9RbC22b/WeSWzPmuiM4j7lEA/g6M91WLkEeNkysdy2v+xb7/pVKFD
+jQ+rRR28z+nsF6eNPZwKsM5z1ZRfREmgGUT7EsJibGAb3ihz/2M=
+=LrIj
+-----END PGP SIGNATURE-----
+
+--nextPart6005903.RJP74QPFIO--
 
 
+
+
+
+--===============9127845996649053436==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 -- 
 ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
+
+--===============9127845996649053436==--
+
+
+
+
