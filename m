@@ -4,54 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64E8BC433EF
-	for <ath11k@archiver.kernel.org>; Mon,  6 Dec 2021 17:39:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3EDCC2BA4C
+	for <ath11k@archiver.kernel.org>; Mon,  6 Dec 2021 22:27:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=CtaPWkGnAzSlmqPa9LMhH1TEKDpdMPFTT9sEjNQ9wbg=; b=jk5c8KptxAmxG6
-	xe0BQu2PysO5lId3crJCiNHL2G9bfH80ewYaWqtCyZAp6Pl7amIa3bhSGwMst1lvJ1YaCOOwvCvcT
-	+81leJBtvTe08yhHIaeDAUaqYf/z5VUQtH/EQfRhfCwKfF6KQErDYf+ir9oV9lL5qCPWgS75e3Rwz
-	SCxSZNeX9D7KMBzE0e3VjHTmGPGJQZMUC7dNVaspbPhX8yKhB50wgI2fVsPdzJPrqCNnKL74S+bOy
-	jKdmkssy/moEssU98JkzYhsSgHJV/rlwH4OwQWGUsCOLJEr/kwtNi9TJC33KYHJtuCD4fkBXIdgzZ
-	QVcujsg5iHxYpGlPxO7A==;
+	List-Archive:List-Unsubscribe:List-Id:Date:MIME-Version:References:Subject:Cc
+	:To:From:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	List-Owner; bh=NRd5/p7AjEqWQbA+7LgrIGNaiQFixNzcV3PiKBxO2zw=; b=E/wRjzRLbeDZNg
+	YwzR3DdKUF7kT8per6wYTD2iv83vztE02k9vcAEvp3dGevq8Zo0SdjZqY3IFtBkTwXNOQxJUiuiO3
+	k6IxtXArTiCMLmvpVNr75ra0PrR0TMAJLEZgGaXUAejq0QkhTkFISlAT8T4+E1aD/o7c059xEcitN
+	IZOAMw+InY3+9UliC6J+/7qb49MynwEAu0hR64pVf+LG2uDK3iSmBlEnnVWDB8X0nom6JeksBWO4E
+	52gYNSMw51vYf8patUkGwxGhGqQpqA8MnqJejiV3BShsAM5ume9HTbbh3XR99KR8ag2p+GFT7WwxV
+	i/9RpJu5YpES2Wtua3UA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1muHxc-0056L1-2G; Mon, 06 Dec 2021 17:39:32 +0000
-Received: from wp530.webpack.hosteurope.de ([2a01:488:42:1000:50ed:8234::])
+	id 1muMSJ-006Ccv-Po; Mon, 06 Dec 2021 22:27:31 +0000
+Received: from galois.linutronix.de ([193.142.43.55])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1muHxW-0056JI-OL
- for ath11k@lists.infradead.org; Mon, 06 Dec 2021 17:39:29 +0000
-Received: from ip4d173d4a.dynamic.kabel-deutschland.de ([77.23.61.74]
- helo=[192.168.66.200]); authenticated
- by wp530.webpack.hosteurope.de running ExIM with esmtpsa
- (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
- id 1muHxR-0004bW-B6; Mon, 06 Dec 2021 18:39:21 +0100
-Message-ID: <2a181fd4-9248-d68d-7eee-43b19db96461@leemhuis.info>
-Date: Mon, 6 Dec 2021 18:39:19 +0100
+ id 1muMSG-006Ca3-GZ
+ for ath11k@lists.infradead.org; Mon, 06 Dec 2021 22:27:30 +0000
+Message-ID: <20211206210223.929792157@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1638829647;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ references:references; bh=wYOapsewmvCjRKNhvhV0vpzUO9z80CJEqQBEg5ZWMSo=;
+ b=cLSzakHMaYNtI4aJ6BLkP0Y1ckKByNqQRdbeialjjHb7VsdJKr1LXNnGFwD5jPorL/dB3X
+ r8LL7BBEXT9ttMDduYesmAWnKu89MMUh+WbP//3UR9Oqi8u6Ke9f0j6kvDzk55pgKJlLw8
+ pXM/pbZ+DKZAxpGnovR5d0BXBdradoJwITrMoZLhwgv5vAP0K0ZMzZys/cJmxk0kAoxLqB
+ 9HeDnDnYxU3SNfvQbR+KwVpjQ6g9EPn1CLChmqViSe3oPCpxc2+ZyZ9945UmAuQkVFQb/B
+ Ms+5OGgiP91cMgej9Fb+5+mTuU/pnBqgmKdO+oCNOau73VDp3kwOD/z+rrVPrQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1638829647;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ references:references; bh=wYOapsewmvCjRKNhvhV0vpzUO9z80CJEqQBEg5ZWMSo=;
+ b=AC1UyRei3djvmFCd8sCxirgN9BF19ZHUhoSg/ujiTsv7YGfDjxkFl5ncJxZvQt8R7ZWn4X
+ QnYXgZVa/LFvUdBg==
+From: Thomas Gleixner <tglx@linutronix.de>
+To: LKML <linux-kernel@vger.kernel.org>
+Cc: Bjorn Helgaas <helgaas@kernel.org>, Marc Zygnier <maz@kernel.org>,
+ Alex Williamson <alex.williamson@redhat.com>,
+ Kevin Tian <kevin.tian@intel.com>, Jason Gunthorpe <jgg@nvidia.com>,
+ Megha Dey <megha.dey@intel.com>, Ashok Raj <ashok.raj@intel.com>,
+ linux-pci@vger.kernel.org, Cedric Le Goater <clg@kaod.org>,
+ Juergen Gross <jgross@suse.com>, Michael Ellerman <mpe@ellerman.id.au>,
+ Paul Mackerras <paulus@samba.org>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+ linuxppc-dev@lists.ozlabs.org,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ linux-mips@vger.kernel.org, Kalle Valo <kvalo@codeaurora.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ sparclinux@vger.kernel.org, x86@kernel.org, xen-devel@lists.xenproject.org,
+ ath11k@lists.infradead.org, Wei Liu <wei.liu@kernel.org>,
+ linux-hyperv@vger.kernel.org,
+ Christian Borntraeger <borntraeger@de.ibm.com>,
+ Heiko Carstens <hca@linux.ibm.com>
+Subject: [patch V2 02/23] PCI/MSI: Fix pci_irq_vector()/pci_irq_get_affinity()
+References: <20211206210147.872865823@linutronix.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Subject: Re: [PATCH] bus: mhi: core: Add support for forced PM resume
-Content-Language: en-BS
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- mhi@lists.linux.dev
-Cc: hemantk@codeaurora.org, bbhatt@codeaurora.org, loic.poulain@linaro.org,
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- kvalo@codeaurora.org, stable@vger.kernel.org, Pengyu Ma <mapengyu@gmail.com>
-References: <20211206161059.107007-1-manivannan.sadhasivam@linaro.org>
-From: Thorsten Leemhuis <regressions@leemhuis.info>
-In-Reply-To: <20211206161059.107007-1-manivannan.sadhasivam@linaro.org>
-X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1638812366;
- c43d493f; 
-X-HE-SMSGID: 1muHxR-0004bW-B6
+Date: Mon,  6 Dec 2021 23:27:26 +0100 (CET)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211206_093926_989240_1D8FFBC6 
-X-CRM114-Status: GOOD (  21.98  )
+X-CRM114-CacheID: sfid-20211206_142728_743370_7E277700 
+X-CRM114-Status: GOOD (  14.71  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -63,76 +80,96 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-CkhpLCB0aGlzIGlzIHlvdXIgTGludXgga2VybmVsIHJlZ3Jlc3Npb24gdHJhY2tlciBzcGVha2lu
-Zy4KCk9uIDA2LjEyLjIxIDE3OjEwLCBNYW5pdmFubmFuIFNhZGhhc2l2YW0gd3JvdGU6Cj4gRnJv
-bTogTG9pYyBQb3VsYWluIDxsb2ljLnBvdWxhaW5AbGluYXJvLm9yZz4KPiAKPiBGb3Igd2hhdGV2
-ZXIgcmVhc29uLCBzb21lIGRldmljZXMgbGlrZSBRQ0E2MzkwLCBXQ042ODU1IHVzaW5nIGF0aDEx
-awo+IGFyZSBub3QgaW4gTTMgc3RhdGUgZHVyaW5nIFBNIHJlc3VtZSwgYnV0IHN0aWxsIGZ1bmN0
-aW9uYWwuIFRoZQo+IG1oaV9wbV9yZXN1bWUgc2hvdWxkIHRoZW4gbm90IGZhaWwgaW4gdGhvc2Ug
-Y2FzZXMsIGFuZCBsZXQgdGhlIGhpZ2hlcgo+IGxldmVsIGRldmljZSBzcGVjaWZpYyBzdGFjayBj
-b250aW51ZSByZXN1bWluZyBwcm9jZXNzLgo+IAo+IEFkZCBhIG5ldyBwYXJhbWV0ZXIgdG8gbWhp
-X3BtX3Jlc3VtZSwgdG8gZm9yY2UgcmVzdW1pbmcsIHdoYXRldmVyIHRoZQo+IGN1cnJlbnQgTUhJ
-IHN0YXRlIGlzLiBUaGlzIGZpeGVzIGEgcmVncmVzc2lvbiB3aXRoIG5vbiBmdW5jdGlvbmFsCj4g
-YXRoMTFrIFdpRmkgYWZ0ZXIgc3VzcGVuZC9yZXN1bWUgY3ljbGUgb24gc29tZSBtYWNoaW5lcy4K
-PiAKPiBCdWcgcmVwb3J0OiBodHRwczovL2J1Z3ppbGxhLmtlcm5lbC5vcmcvc2hvd19idWcuY2dp
-P2lkPTIxNDE3OQo+IAo+IENjOiBzdGFibGVAdmdlci5rZXJuZWwub3JnICM1LjEzCj4gRml4ZXM6
-IDAyMGQzYjI2YzA3YSAoImJ1czogbWhpOiBFYXJseSBNSEkgcmVzdW1lIGZhaWx1cmUgaW4gbm9u
-IE0zIHN0YXRlIikKPiBSZXBvcnRlZC1ieTogS2FsbGUgVmFsbyA8a3ZhbG9AY29kZWF1cm9yYS5v
-cmc+Cj4gUmVwb3J0ZWQtYnk6IFBlbmd5dSBNYSA8bWFwZW5neXVAZ21haWwuY29tPgoKRldJVzog
-SW4gY2FzZSB5b3UgbmVlZCB0byBzZW5kIGFuIGltcHJvdmVkIHBhdGNoLCBjb3VsZCB5b3UgcGxl
-YXNlIGFkZAp0aGlzIGJlZm9yZSB0aGUgJ1JlcG9ydGVkLWJ5OicgKHNlZSAowrkpIGJlbG93IGZv
-ciB0aGUgcmVhc29uaW5nKToKCkxpbms6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL3JlZ3Jlc3Np
-b25zLzg3MXI1cDB4MnUuZnNmQGNvZGVhdXJvcmEub3JnLwoKQW5kIGlmIHRoZSBwYXRjaCBpcyBh
-bHJlYWR5IGdvb2QgdG8gZ286IGNvdWxkIHRoZSBzdWJzeXN0ZW0gbWFpbnRhaW5lcgpwbGVhc2Ug
-YWRkIGl0IHdoZW4gYXBwbHlpbmc/IFNlZSjCuSkgZm9yIHRoZSByZWFzb25pbmcuCgpUaHguCgpD
-aWFvLCBUaG9yc3RlbiwgeW91ciBMaW51eCBrZXJuZWwgcmVncmVzc2lvbiB0cmFja2VyLgoKKMK5
-KSBMb25nIHN0b3J5OiBUaGUgY29tbWl0IG1lc3NhZ2Ugd291bGQgYmVuZWZpdCBmcm9tIGEgbGlu
-ayB0byB0aGUKcmVncmVzc2lvbiByZXBvcnQgb24gdGhlIG1haWxpbmcgbGlzdCwgZm9yIHJlYXNv
-bnMgZXhwbGFpbmVkIGluCkRvY3VtZW50YXRpb24vcHJvY2Vzcy9zdWJtaXR0aW5nLXBhdGNoZXMu
-cnN0LiBUbyBxdW90ZToKCmBgYApJZiByZWxhdGVkIGRpc2N1c3Npb25zIG9yIGFueSBvdGhlciBi
-YWNrZ3JvdW5kIGluZm9ybWF0aW9uIGJlaGluZCB0aGUKY2hhbmdlIGNhbiBiZSBmb3VuZCBvbiB0
-aGUgd2ViLCBhZGQgJ0xpbms6JyB0YWdzIHBvaW50aW5nIHRvIGl0LiBJbiBjYXNlCnlvdXIgcGF0
-Y2ggZml4ZXMgYSBidWcsIGZvciBleGFtcGxlLCBhZGQgYSB0YWcgd2l0aCBhIFVSTCByZWZlcmVu
-Y2luZwp0aGUgcmVwb3J0IGluIHRoZSBtYWlsaW5nIGxpc3QgYXJjaGl2ZXMgb3IgYSBidWcgdHJh
-Y2tlcjsKYGBgCgpUaGlzIGNvbmNlcHQgaXMgb2xkLCBidXQgdGhlIHRleHQgd2FzIHJld29ya2Vk
-IHJlY2VudGx5IHRvIG1ha2UgdGhpcyB1c2UKY2FzZSBmb3IgdGhlIExpbms6IHRhZyBjbGVhcmVy
-LiBGb3IgZGV0YWlscyBzZWU6Cmh0dHBzOi8vZ2l0Lmtlcm5lbC5vcmcvbGludXMvMWY1N2JkNDJi
-NzdjCgpZZXMsIHRoYXQgIkxpbms6IiBpcyBub3QgcmVhbGx5IGNydWNpYWw7IGJ1dCBpdCdzIGdv
-b2QgdG8gaGF2ZSBpZgpzb21lb25lIG5lZWRzIHRvIGxvb2sgaW50byB0aGUgYmFja3N0b3J5IG9m
-IHRoaXMgY2hhbmdlIHNvbWV0aW1lIGluIHRoZQpmdXR1cmUuIEJ1dCBJIGNhcmUgZm9yIGEgZGlm
-ZmVyZW50IHJlYXNvbi4gSSdtIHRyYWNraW5nIHRoaXMgcmVncmVzc2lvbgooYW5kIG90aGVycykg
-d2l0aCByZWd6Ym90LCBteSBMaW51eCBrZXJuZWwgcmVncmVzc2lvbiB0cmFja2luZyBib3QuIFRo
-aXMKYm90IHdpbGwgbm90aWNlIGlmIGEgcGF0Y2ggd2l0aCBhIExpbms6IHRhZyB0byBhIHRyYWNr
-ZWQgcmVncmVzc2lvbiBnZXRzCnBvc3RlZCBhbmQgcmVjb3JkIHRoYXQsIHdoaWNoIGFsbG93ZWQg
-YW55b25lIGxvb2tpbmcgaW50byB0aGUgcmVncmVzc2lvbgp0byBxdWlja2x5IGdhc3AgdGhlIGN1
-cnJlbnQgc3RhdHVzIGZyb20gcmVnemJvdCdzIHdlYnVpCihodHRwczovL2xpbnV4LXJlZ3RyYWNr
-aW5nLmxlZW1odWlzLmluZm8vcmVnemJvdCApIG9yIGl0cyByZXBvcnRzLiBUaGUKYm90IHdpbGwg
-YWxzbyBub3RpY2UgaWYgYSBjb21taXQgd2l0aCBhIExpbms6IHRhZyB0byBhIHJlZ3Jlc3Npb24g
-cmVwb3J0CmlzIGFwcGxpZWQgYnkgTGludXMgYW5kIHRoZW4gYXV0b21hdGljYWxseSBtYXJrIHRo
-ZSByZWdyZXNzaW9uIGFzCnJlc29sdmVkIHRoZW4uCgpJT1c6IHRoaXMgdGFnIG1ha2VzIG15IGxp
-ZmUgYSByZWdyZXNzaW9uIHRyYWNrZXIgYSBsb3QgZWFzaWVyLCBhcyBJCm90aGVyd2lzZSBoYXZl
-IHRvIHRlbGwgcmVnemJvdCBtYW51YWxseSB3aGVuIHRoZSBmaXggbGFuZHMuIDotLwoKUC5TLjog
-QXMgYSBMaW51eCBrZXJuZWwgcmVncmVzc2lvbiB0cmFja2VyIEknbSBnZXR0aW5nIGEgbG90IG9m
-IHJlcG9ydHMKb24gbXkgdGFibGUuIEkgY2FuIG9ubHkgbG9vayBicmllZmx5IGludG8gbW9zdCBv
-ZiB0aGVtLiBVbmZvcnR1bmF0ZWx5CnRoZXJlZm9yZSBJIHNvbWV0aW1lcyB3aWxsIGdldCB0aGlu
-Z3Mgd3Jvbmcgb3IgbWlzcyBzb21ldGhpbmcgaW1wb3J0YW50LgpJIGhvcGUgdGhhdCdzIG5vdCB0
-aGUgY2FzZSBoZXJlOyBpZiB5b3UgdGhpbmsgaXQgaXMsIGRvbid0IGhlc2l0YXRlIHRvCnRlbGwg
-bWUgYWJvdXQgaXQgaW4gYSBwdWJsaWMgcmVwbHkuIFRoYXQncyBpbiBldmVyeW9uZSdzIGludGVy
-ZXN0LCBhcwp3aGF0IEkgd3JvdGUgYWJvdmUgbWlnaHQgYmUgbWlzbGVhZGluZyB0byBldmVyeW9u
-ZSByZWFkaW5nIHRoaXM7IGFueQpzdWdnZXN0aW9uIEkgZ2F2ZSB0aGV5IHRodXMgbWlnaHQgc2Vu
-dCBzb21lb25lIHJlYWRpbmcgdGhpcyBkb3duIHRoZQp3cm9uZyByYWJiaXQgaG9sZSwgd2hpY2gg
-bm9uZSBvZiB1cyB3YW50cy4KCkJUVywgSSBoYXZlIG5vIHBlcnNvbmFsIGludGVyZXN0IGluIHRo
-aXMgaXNzdWUsIHdoaWNoIGlzIHRyYWNrZWQgdXNpbmcKcmVnemJvdCwgbXkgTGludXgga2VybmVs
-IHJlZ3Jlc3Npb24gdHJhY2tpbmcgYm90CihodHRwczovL2xpbnV4LXJlZ3RyYWNraW5nLmxlZW1o
-dWlzLmluZm8vcmVnemJvdC8pLiBJJ20gb25seSBwb3N0aW5nCnRoaXMgbWFpbCB0byBnZXQgdGhp
-bmdzIHJvbGxpbmcgYWdhaW4gYW5kIGhlbmNlIGRvbid0IG5lZWQgdG8gYmUgQ0Mgb24KYWxsIGZ1
-cnRoZXIgYWN0aXZpdGllcyB3cnQgdG8gdGhpcyByZWdyZXNzaW9uLgoKI3JlZ3pib3QgXmJhY2tt
-b25pdG9yOgpodHRwczovL2xvcmUua2VybmVsLm9yZy9yZWdyZXNzaW9ucy84NzFyNXAweDJ1LmZz
-ZkBjb2RlYXVyb3JhLm9yZy8KCi0tIAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0cy5p
-bmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8v
-YXRoMTFrCg==
+pci_irq_vector() and pci_irq_get_affinity() use the list position to find the
+MSI-X descriptor at a given index. That's correct for the normal case where
+the entry number is the same as the list position.
+
+But it's wrong for cases where MSI-X was allocated with an entries array
+describing sparse entry numbers into the hardware message descriptor
+table. That's inconsistent at best.
+
+Make it always check the entry number because that's what the zero base
+index really means. This change won't break existing users which use a
+sparse entries array for allocation because these users retrieve the Linux
+interrupt number from the entries array after allocation and none of them
+uses pci_irq_vector() or pci_irq_get_affinity().
+
+Fixes: aff171641d18 ("PCI: Provide sensible IRQ vector alloc/free routines")
+Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
+Tested-by: Juergen Gross <jgross@suse.com>
+Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+---
+V2: Fix typo in subject - Jason
+---
+ drivers/pci/msi.c |   26 ++++++++++++++++++--------
+ 1 file changed, 18 insertions(+), 8 deletions(-)
+
+--- a/drivers/pci/msi.c
++++ b/drivers/pci/msi.c
+@@ -1187,19 +1187,24 @@ EXPORT_SYMBOL(pci_free_irq_vectors);
+ 
+ /**
+  * pci_irq_vector - return Linux IRQ number of a device vector
+- * @dev: PCI device to operate on
+- * @nr: device-relative interrupt vector index (0-based).
++ * @dev:	PCI device to operate on
++ * @nr:		Interrupt vector index (0-based)
++ *
++ * @nr has the following meanings depending on the interrupt mode:
++ *   MSI-X:	The index in the MSI-X vector table
++ *   MSI:	The index of the enabled MSI vectors
++ *   INTx:	Must be 0
++ *
++ * Return: The Linux interrupt number or -EINVAl if @nr is out of range.
+  */
+ int pci_irq_vector(struct pci_dev *dev, unsigned int nr)
+ {
+ 	if (dev->msix_enabled) {
+ 		struct msi_desc *entry;
+-		int i = 0;
+ 
+ 		for_each_pci_msi_entry(entry, dev) {
+-			if (i == nr)
++			if (entry->msi_attrib.entry_nr == nr)
+ 				return entry->irq;
+-			i++;
+ 		}
+ 		WARN_ON_ONCE(1);
+ 		return -EINVAL;
+@@ -1223,17 +1228,22 @@ EXPORT_SYMBOL(pci_irq_vector);
+  * pci_irq_get_affinity - return the affinity of a particular MSI vector
+  * @dev:	PCI device to operate on
+  * @nr:		device-relative interrupt vector index (0-based).
++ *
++ * @nr has the following meanings depending on the interrupt mode:
++ *   MSI-X:	The index in the MSI-X vector table
++ *   MSI:	The index of the enabled MSI vectors
++ *   INTx:	Must be 0
++ *
++ * Return: A cpumask pointer or NULL if @nr is out of range
+  */
+ const struct cpumask *pci_irq_get_affinity(struct pci_dev *dev, int nr)
+ {
+ 	if (dev->msix_enabled) {
+ 		struct msi_desc *entry;
+-		int i = 0;
+ 
+ 		for_each_pci_msi_entry(entry, dev) {
+-			if (i == nr)
++			if (entry->msi_attrib.entry_nr == nr)
+ 				return &entry->affinity->mask;
+-			i++;
+ 		}
+ 		WARN_ON_ONCE(1);
+ 		return NULL;
+
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
