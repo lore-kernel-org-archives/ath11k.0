@@ -4,73 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2880BC433F5
-	for <ath11k@archiver.kernel.org>; Mon,  6 Dec 2021 07:10:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A567C433F5
+	for <ath11k@archiver.kernel.org>; Mon,  6 Dec 2021 08:48:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=1jeEOV2sXOVh4ICN3Fu5ofWcLWDZpvj+TKbzbcjHT48=; b=HTrbd0tDVorTsI
-	DlOadYXPPMl3Jitz5HXUD5ehnzXbQUw9/Ivr/j/y8jAhHpjov+0rsccvaibeANwZ8M0dK3LebMqOs
-	pdijb8oMfzYbb01TnuxMYcQKcIu68QXsTczIHhpIgz1XCfOPODW9DVk7+e18111eB+XlFcJwwnhk/
-	S7XB0WckTDv1OdWa1dVcr0Wph1RdD2ckjXWWRWn2d47LlMs9d9WjhJk5XX6ii8LSvv9VZ4EPTnBlh
-	F9SHVOxgKeNCZkD9lb2a8ORAnGQ05nmPZtGuYM6MxPUoNowHknByyVCNBJV3BPmPo3YSnUUc1w0qC
-	DWi5NN3LASKrFjnisfuw==;
+	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:Cc:To:From
+	:Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=yAqzmCWAQExczwth+n4y/PtCNKyoE5CJKOJEpMYH7dQ=; b=Y6wyC+PtZG9BdgVgwBuyX1hRDs
+	+hpIIFgxv/+KEYMwTVDDQUa/DnFcEBK2fwwGGwSnXUA1GFhjaR4Tw/VQlfuqIM7aw/QhXPDUVc25S
+	Obsg9m5SAOvwJ9rpXX6pieHdShFriCmhWrSUuC7gnL2/QLKJw4kIh76T6sdKrUYbHNjfYdlyJMEyd
+	saYffG8Zy7z8VKEmu8oz9n+KvLYqE0gtDVQgWoRDPvGN6HyiHqlNdL627G0Flp1AFl7KaVmhFqOd1
+	QhpGnisrjg67Nespx0jedRL661I6XADOmIikhSw4GO0fUHMEFS0Eik80DgGZTiModeTMJGp8LiGgk
+	8W09mFjQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mu89A-002k4a-Ql; Mon, 06 Dec 2021 07:10:48 +0000
-Received: from alexa-out.qualcomm.com ([129.46.98.28])
+	id 1mu9fP-0031uA-CT; Mon, 06 Dec 2021 08:48:11 +0000
+Received: from so254-9.mailgun.net ([198.61.254.9])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mu898-002k48-4t
- for ath11k@lists.infradead.org; Mon, 06 Dec 2021 07:10:47 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1638774646; x=1670310646;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=fbVwg0B5GwJLw1W8+Pmo/+Yfmm7M604GMenCQ8i1h8I=;
- b=EpIqTo5+7uVfl8s5CDzPczZMGi2p3oYCd8TLfDmaC9qjhgewMa1MsbZl
- ZeOND9ZCJwJhA0e4UaEbvB/MJgXFeXITwPuRIA/TBEP+YE21TH3RNWwI8
- IVOATWymPwAKGSY2Z3MrxNdmhsP5IJnBq2t3rkVW+FBUrrmJYHFUp1ocA s=;
-Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
- by alexa-out.qualcomm.com with ESMTP; 05 Dec 2021 23:10:44 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2021 23:10:44 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Sun, 5 Dec 2021 23:10:43 -0800
-Received: from [10.231.195.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Sun, 5 Dec 2021
- 23:10:42 -0800
-Message-ID: <71ee85b5-8d8c-c6e5-20a2-d225800de2ba@quicinc.com>
-Date: Mon, 6 Dec 2021 15:10:40 +0800
+ id 1mu9fL-0031sr-Mw
+ for ath11k@lists.infradead.org; Mon, 06 Dec 2021 08:48:09 +0000
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
+ q=dns/txt; 
+ s=smtp; t=1638780486; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=RgEGARtdX8Ecq3hZIc6J30SsDuIyhFkmJZWmTKtHbWs=;
+ b=fcXT3zSLo8oO8yG+d96ydAMT+gKAIlwwuU1hsJKSwdrtpQYv3DoSv3TmDLQcck7whRvnmt3M
+ tDOr0wIz0IC/WS+nS8akZxe4glpJInvFRqHhIVDYCQZ2HGlirXY0Z1JWita43v16kY1AuZNr
+ xmAZvMXXA3ajUhgxyqyXP/s5r4U=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
+ 61adce46642caac318c04256 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 06 Dec 2021 08:48:06
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+ id 3E552C43616; Mon,  6 Dec 2021 08:48:05 +0000 (UTC)
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+ (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+ (No client certificate requested) (Authenticated sender: wgong)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id CEA78C4360C;
+ Mon,  6 Dec 2021 08:48:04 +0000 (UTC)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Subject: Re: [PATCH] ath11k: enable IEEE80211_HW_SINGLE_SCAN_ON_ALL_BANDS for
- WCN6855
-Content-Language: en-US
-To: Sven Eckelmann <sven@narfation.org>, <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>
-References: <20211129101309.2931-1-quic_wgong@quicinc.com>
- <1854698.r8H18GsEis@ripper>
- <7318ffac-f5ec-4c1b-3e80-c816bdb28a79@quicinc.com>
- <7418334.kqliQQpNxi@ripper>
-From: Wen Gong <quic_wgong@quicinc.com>
-In-Reply-To: <7418334.kqliQQpNxi@ripper>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+Date: Mon, 06 Dec 2021 16:48:04 +0800
+From: Wen Gong <wgong@codeaurora.org>
+To: Johannes Berg <johannes@sipsolutions.net>
+Cc: Venkateswara Naralasetty <vnaralas@qti.qualcomm.com>, Venkateswara
+ Naralasetty <vnaralas@codeaurora.org>, ath11k@lists.infradead.org,
+ linux-wireless@vger.kernel.org, wgong=codeaurora.org@codeaurora.org
+Subject: Re: [PATCH v5] cfg80211: save power spectral density(psd) of
+ regulatory rule
+In-Reply-To: <6053b0963612057267f00b89e14b9e15@codeaurora.org>
+References: <20210928085211.26186-1-wgong@codeaurora.org>
+ <bd649a3d2cf2ea9064d427d633055891@codeaurora.org>
+ <cb20427eae96c4551084e4c899618b94@codeaurora.org>
+ <2afb1bf6f06cb53f43fe0d354afa4e7c@codeaurora.org>
+ <2ed76cff292dcca18326de0407a93821@codeaurora.org>
+ <1222384c2bc7d80bf572b65ab17660477bb27300.camel@sipsolutions.net>
+ <562080d7fc3b7568811c47a8e8e79156@codeaurora.org>
+ <DM8PR02MB8154258563A4F7C805C84B4BE6B59@DM8PR02MB8154.namprd02.prod.outlook.com>
+ <0b05f6e555bcb89c49f56279c077ce63@codeaurora.org>
+ <18363bc18538ea9b7e8fe28f4c5595c54f3b93d3.camel@sipsolutions.net>
+ <67936afa5545b9a5d6eb5ad6931026d7@codeaurora.org>
+ <6053b0963612057267f00b89e14b9e15@codeaurora.org>
+Message-ID: <68b700b371399db0ed4174d20ddd0b8b@codeaurora.org>
+X-Sender: wgong@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211205_231046_291621_861492AB 
-X-CRM114-Status: UNSURE (   6.27  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20211206_004807_864925_5836FC63 
+X-CRM114-Status: GOOD (  21.64  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,23 +92,98 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 12/6/2021 2:56 PM, Sven Eckelmann wrote:
-> On Monday, 6 December 2021 04:29:39 CET Wen Gong wrote:
-> [...]
->> I did test in my setup, not see the crash.
->>
->> I am afraid you also need this patch("ath11k: change to use dynamic
->> memory for channel list of scan",
->>
->> https://patchwork.kernel.org/project/linux-wireless/patch/20211129110939.15711-1-quic_wgong@quicinc.com
->> )
->>
->> Could you apply this patch and try again?
-> Tried it and I see the same problem.
-Could you tell what is your test steps?
->
-> Kind regards,
-> 	Sven
+Hi Johannes,
+
+Are you waiting for the AP/STA concurrency patches, then apply this 
+patch?
+
+On 2021-11-09 17:57, Wen Gong wrote:
+> Hi Johannes,
+> 
+> do you have comments about my description for PSD?
+> 
+> On 2021-10-26 19:26, Wen Gong wrote:
+>> On 2021-10-26 04:09, Johannes Berg wrote:
+>>> On Mon, 2021-10-11 at 15:48 +0800, Wen Gong wrote:
+>>>> 
+>>>> > IMO, Only power rules and PSD info might vary for AP and STATION. Rest
+>>>> > of the rules will remains same right?
+>>>> >
+>>>> The freq_range may also be different for AP and STATION.
+>>>> and reg_rules number also may also be different for AP and STATION.
+>>>> 
+>>>> for example:
+>>>> SUBORDINATE CLIENT of STANDARD POWER reg rules number 2
+>>>> reg rule 1: (5945 - 6425 @ 160) (0, 30) (FLAGS 0) (psd flag 1 EIRP 
+>>>> 17
+>>>> dB/MHz)
+>>>> reg rule 2: (6525 - 6885 @ 160) (0, 30) (FLAGS 0) (psd flag 1 EIRP 
+>>>> 17
+>>>> dB/MHz)
+>>>> 
+>>>> INDOOR AP reg rules number 1
+>>>> reg rule 1: (5945 - 7125 @ 160) (0, 24) (FLAGS 0) (psd flag 0 EIRP 0
+>>>> dB/MHz)
+>>> 
+>>> That seems right, but isn't that an orthogonal question?
+>>> 
+>>> Here, on this patch, we're discussing what data we should have in the
+>>> channel information, and it would seem that if it's different for
+>>> AP/client, then we do need both information stored, so that we can 
+>>> cope
+>>> with concurrency between AP and client?
+>>> 
+>>> If we additionally need to have different data for the regulatory 
+>>> rules
+>>> for AP and client, that might mean we need to go back and actually
+>>> change the code there *as well*, and then fill in the right fields in
+>>> this patch?
+>>> 
+>>> Unless somehow we're convinced that for this feature we don't need to
+>>> worry about concurrently using AP and client modes?
+>>> 
+>>> johannes
+>> 
+>> Currently these patches of mac80211/cfg80211/ieee80211 for LPI/SP/VLP 
+>> is
+>> the base patches, to enable the feature of LPI/SP/VLP, it still need 
+>> other
+>> patches of lower drivers such as ath11k to enable it. It will not have
+>> LPI/SP/VLP without patches of ath11k, it means all these patches will
+>> not take effect.
+>> 
+>> When lower driver such as ath11k set max_interfaces of
+>> ieee80211_iface_combination
+>> to 1, then it can not start more than 1 interface on the same
+>> ieee80211_hw/wiphy.
+>> When STATION interface is up, then AP interface can not start up. AP 
+>> interface
+>> can start up after STATION interfacedown. Also when AP interface is 
+>> up,
+>> STATION interface can not start up. STATION interface can start up 
+>> after
+>> AP interface down.
+>> 
+>> I have sent out my ath11k
+>> patches(https://lore.kernel.org/linux-wireless/20211026111913.7346-1-quic_wgong@quicinc.com/),
+>> it will allow only one interface
+>> up simultaneously for the chip which enable LPI/SP/VLP feature in this
+>> patch: "ath11k: allow only one interface up simultaneously for 
+>> WCN6855"
+>> https://lore.kernel.org/linux-wireless/20211026111913.7346-5-quic_wgong@quicinc.com/
+>> It means it will not have both AP/STA together and these patches of 
+>> mac80211/
+>> cfg80211/ieee80211 not need changes and it will not have bugs.
+>> 
+>> If there are some chip want to both enable LPI/SP/VLP feature and
+>> enable AP/STA simultaneously in same ieee80211_hw/wiphy in future,
+>> then he/she need to refine reg rules and channels of 
+>> mac80211/cfg80211/
+>> ieee80211, but at that moment, this patch "cfg80211: save power
+>> spectral density(psd) of regulatory rule" still not need change.
+>> Because this patch is change in each reg rule/each channel in a
+>> low layer, the refine reg rules and channels is a high layer, they
+>> have no intersection.
 
 -- 
 ath11k mailing list
