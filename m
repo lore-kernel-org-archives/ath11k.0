@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF5DDC433FE
-	for <ath11k@archiver.kernel.org>; Mon,  6 Dec 2021 22:27:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3DA7C433FE
+	for <ath11k@archiver.kernel.org>; Mon,  6 Dec 2021 22:27:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:MIME-Version:References:Subject:Cc
 	:To:From:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-	List-Owner; bh=q+Fu2TW7WUU32K2dO4cs8xq7OkFcE1aTXZzizFRQQJ4=; b=i2jzO/Ng/uB9vW
-	cSgo/zZYbV45d+83DqWz4FxQ007qto81LI+0KHPx0kbJ44ib0ZE8hRihmUoq9xaroRiUEoyxEsrCh
-	8fk55JQQaS6MFmNmOGBey50NAFMinus8NEkjXuKb9MNtmYozmqItpZuZ737mWNONEHTiJjYgFbW4g
-	I1XskPRghb/G7qzcTkf/buPK4FvHJEakWHQsdqAXhhVbEjxOGjD4yBA+c+x9KA3IjE9sZQI1JQAvC
-	wYekzcE37RO2GGxdPuyhLK54VQfteSnGM4Z2Hyp5TlUNsXy2OUmWTGjvI5ocZf1aeazXERdWW6D/p
-	jVYtOZrRvBgmitik6VLA==;
+	List-Owner; bh=GQQ0EgJmTcEMiZk+0kZ4sRmMAMz0wq9G1nXzW7o4sFg=; b=ZHnEVNPNPPhoa6
+	VzWlmtMKmrffxYJVwwvjcxQ1mGsttmhpC6cdl/92LcahEHODVwYoAmYamlHkLBu4GNBLRsixx7/g2
+	J/lDwDujGZ/yG/504mFZdIHrFKzWYlT7RCGBMjpeuW82P0HDH62EGZ8XzS/biB9Ooq9McWMUnMKen
+	Yg85oVEZtQsdfg2fFbd2naXICqYvuVDFS2hvvEShFFr4XMtTnw7Xz9/9SLGPIQJpz7TsjqeMwuYeN
+	wwMuvYUzpxbpnBAOiL3m/Tw4O4mLPAsvxduKaJUAjDuW8MOrYJ2nDbm5UJbGl3EjIOWqor//QIhVL
+	gpG29FPX/dyZYZUC7ytA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1muMSX-006CwD-EK; Mon, 06 Dec 2021 22:27:45 +0000
-Received: from galois.linutronix.de ([193.142.43.55])
+	id 1muMSd-006D5A-Mi; Mon, 06 Dec 2021 22:27:51 +0000
+Received: from galois.linutronix.de ([2a0a:51c0:0:12e:550::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1muMSS-006Clh-1z
- for ath11k@lists.infradead.org; Mon, 06 Dec 2021 22:27:41 +0000
-Message-ID: <20211206210224.319201379@linutronix.de>
+ id 1muMSX-006CuO-44
+ for ath11k@lists.infradead.org; Mon, 06 Dec 2021 22:27:49 +0000
+Message-ID: <20211206210224.485668098@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1638829658;
+ s=2020; t=1638829663;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- references:references; bh=gOhEwOl7pWXAdyfdjPv/xL32Zd5rtVvQRFE5wZzX1CM=;
- b=dvaOjaxxL6xiDQA7FFy4cxQQ/uHU9sUdt6e/yyFwN1tu+bJ1yi46Si+LsK8MUpqWL66GBZ
- 2vYuDYX1gMzlWrQlXSNF7Gy5YE1JoRbELnLUr87259Kjgtgb01AkT3/PzG4pDRcVNe6nnu
- ivxMXrLRTAd3saTznKV7mbiAHy2Rtw3hMMQvRO+thrnTc3FA0K+E4ppbPA/2gfw4NYQ+xk
- oJH8E0LDjQDUOmg7euoxTjnOnIPyEBUSb+AO4mByR8WoxcxvvNGBpWjsmNaE7QFybpIRFg
- x8MhqCDCTsZoEj80vUenfUClW3vGGZTwtNcCQ4Iw5T8t8x7oh0OUHc455oO1Ww==
+ references:references; bh=72+QGnlfGFYAah1BUmp4cO4oz9eONu1lmUkDHP/6Oes=;
+ b=MTZjX5pNCpaLIFSorwc1uUDuJV8DuheJ4/PGRwS1V0RSzJLru3QK+UoDdKktWtJ56DE+pU
+ XMpfnvWnX2DR2KWbp528BWcbOq9/jHSo0OnwKIJ8pTjKPXuby1tve6XYSQnjznzx4p1fBU
+ w9WdmdFGIspyqZDGRSwYdx6WrLg3PlS+GMjjb4rlRHfSZXzCU3kz76eVMP7TXFSr/bxAqB
+ hknvBA5hjCwrysbiAFo8k4a+IMj8BlgkaRUzgsM4eFkl42Z3vu1UzIfASxszOhpin7rnmz
+ 04sigZF0h+k3QB7F9/sJJGfxNvzCN++bfCAbCCj0/SAXu469vIUDg9AhAd93Ag==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1638829658;
+ s=2020e; t=1638829663;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- references:references; bh=gOhEwOl7pWXAdyfdjPv/xL32Zd5rtVvQRFE5wZzX1CM=;
- b=jqiplyDoFdSA46RvOetOaqUacacbKtOW+CT5oA5zeEczBM+vXFTNHE6+JVcjlrsieqeQMT
- qjTsGymloYl2PTAw==
+ references:references; bh=72+QGnlfGFYAah1BUmp4cO4oz9eONu1lmUkDHP/6Oes=;
+ b=TNvJwf8MfIZ37eFOPxUxrqpZTcApvnb0v/Ziy52Uyn6Q/lFKZMvbhi8K0X/S9Y8AgRN6JC
+ cp1HJaq7RkboAqDA==
 From: Thomas Gleixner <tglx@linutronix.de>
 To: LKML <linux-kernel@vger.kernel.org>
 Cc: Bjorn Helgaas <helgaas@kernel.org>, Marc Zygnier <maz@kernel.org>,
@@ -50,25 +50,25 @@ Cc: Bjorn Helgaas <helgaas@kernel.org>, Marc Zygnier <maz@kernel.org>,
  Kevin Tian <kevin.tian@intel.com>, Jason Gunthorpe <jgg@nvidia.com>,
  Megha Dey <megha.dey@intel.com>, Ashok Raj <ashok.raj@intel.com>,
  linux-pci@vger.kernel.org, Cedric Le Goater <clg@kaod.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- linux-mips@vger.kernel.org, Michael Ellerman <mpe@ellerman.id.au>,
+ Juergen Gross <jgross@suse.com>, x86@kernel.org,
+ xen-devel@lists.xenproject.org,
+ Christian Borntraeger <borntraeger@de.ibm.com>,
+ Heiko Carstens <hca@linux.ibm.com>, Michael Ellerman <mpe@ellerman.id.au>,
  Paul Mackerras <paulus@samba.org>,
  Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- linuxppc-dev@lists.ozlabs.org, Juergen Gross <jgross@suse.com>,
- Kalle Valo <kvalo@codeaurora.org>,
+ linuxppc-dev@lists.ozlabs.org,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ linux-mips@vger.kernel.org, Kalle Valo <kvalo@codeaurora.org>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- sparclinux@vger.kernel.org, x86@kernel.org, xen-devel@lists.xenproject.org,
- ath11k@lists.infradead.org, Wei Liu <wei.liu@kernel.org>,
- linux-hyperv@vger.kernel.org,
- Christian Borntraeger <borntraeger@de.ibm.com>,
- Heiko Carstens <hca@linux.ibm.com>
-Subject: [patch V2 09/23] MIPS: Octeon: Use arch_setup_msi_irq()
+ sparclinux@vger.kernel.org, ath11k@lists.infradead.org,
+ Wei Liu <wei.liu@kernel.org>, linux-hyperv@vger.kernel.org
+Subject: [patch V2 12/23] PCI/MSI: Make arch_restore_msi_irqs() less horrible.
 References: <20211206210147.872865823@linutronix.de>
 MIME-Version: 1.0
-Date: Mon,  6 Dec 2021 23:27:38 +0100 (CET)
+Date: Mon,  6 Dec 2021 23:27:42 +0100 (CET)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211206_142740_299302_05751039 
-X-CRM114-Status: GOOD (  11.41  )
+X-CRM114-CacheID: sfid-20211206_142745_532738_389210EE 
+X-CRM114-Status: GOOD (  20.62  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,67 +85,281 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-The core code provides the same loop code except for the MSI-X reject. Move
-that to arch_setup_msi_irq() and remove the duplicated code.
-
-No functional change.
+Make arch_restore_msi_irqs() return a boolean which indicates whether the
+core code should restore the MSI message or not. Get rid of the indirection
+in x86.
 
 Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
+Tested-by: Juergen Gross <jgross@suse.com>
 Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
-Acked-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: linux-mips@vger.kernel.org
+Cc: x86@kernel.org
+Cc: xen-devel@lists.xenproject.org
+Cc: Christian Borntraeger <borntraeger@de.ibm.com>
+Cc: Heiko Carstens <hca@linux.ibm.com>
 ---
- arch/mips/pci/msi-octeon.c |   32 +++-----------------------------
- 1 file changed, 3 insertions(+), 29 deletions(-)
+ arch/s390/pci/pci_irq.c               |    4 +-
+ arch/x86/include/asm/x86_init.h       |    6 ---
+ arch/x86/include/asm/xen/hypervisor.h |    8 +++++
+ arch/x86/kernel/apic/msi.c            |    6 +++
+ arch/x86/kernel/x86_init.c            |   12 -------
+ arch/x86/pci/xen.c                    |   13 ++++----
+ drivers/pci/msi.c                     |   54 +++++++++++-----------------------
+ include/linux/msi.h                   |    7 +---
+ 8 files changed, 45 insertions(+), 65 deletions(-)
 
---- a/arch/mips/pci/msi-octeon.c
-+++ b/arch/mips/pci/msi-octeon.c
-@@ -68,6 +68,9 @@ int arch_setup_msi_irq(struct pci_dev *d
- 	u64 search_mask;
- 	int index;
- 
-+	if (desc->pci.msi_attrib.is_msix)
-+		return -EINVAL;
-+
- 	/*
- 	 * Read the MSI config to figure out how many IRQs this device
- 	 * wants.  Most devices only want 1, which will give
-@@ -182,35 +185,6 @@ int arch_setup_msi_irq(struct pci_dev *d
- 	return 0;
+--- a/arch/s390/pci/pci_irq.c
++++ b/arch/s390/pci/pci_irq.c
+@@ -387,13 +387,13 @@ void arch_teardown_msi_irqs(struct pci_d
+ 		airq_iv_free(zpci_ibv[0], zdev->msi_first_bit, zdev->msi_nr_irqs);
  }
  
--int arch_setup_msi_irqs(struct pci_dev *dev, int nvec, int type)
+-void arch_restore_msi_irqs(struct pci_dev *pdev)
++bool arch_restore_msi_irqs(struct pci_dev *pdev)
+ {
+ 	struct zpci_dev *zdev = to_zpci(pdev);
+ 
+ 	if (!zdev->irqs_registered)
+ 		zpci_set_irq(zdev);
+-	default_restore_msi_irqs(pdev);
++	return true;
+ }
+ 
+ static struct airq_struct zpci_airq = {
+--- a/arch/x86/include/asm/x86_init.h
++++ b/arch/x86/include/asm/x86_init.h
+@@ -289,12 +289,6 @@ struct x86_platform_ops {
+ 	struct x86_hyper_runtime hyper;
+ };
+ 
+-struct pci_dev;
+-
+-struct x86_msi_ops {
+-	void (*restore_msi_irqs)(struct pci_dev *dev);
+-};
+-
+ struct x86_apic_ops {
+ 	unsigned int	(*io_apic_read)   (unsigned int apic, unsigned int reg);
+ 	void		(*restore)(void);
+--- a/arch/x86/include/asm/xen/hypervisor.h
++++ b/arch/x86/include/asm/xen/hypervisor.h
+@@ -57,6 +57,14 @@ static inline bool __init xen_x2apic_par
+ }
+ #endif
+ 
++struct pci_dev;
++
++#ifdef CONFIG_XEN_DOM0
++bool xen_initdom_restore_msi(struct pci_dev *dev);
++#else
++static inline bool xen_initdom_restore_msi(struct pci_dev *dev) { return true; }
++#endif
++
+ #ifdef CONFIG_HOTPLUG_CPU
+ void xen_arch_register_cpu(int num);
+ void xen_arch_unregister_cpu(int num);
+--- a/arch/x86/kernel/apic/msi.c
++++ b/arch/x86/kernel/apic/msi.c
+@@ -19,6 +19,7 @@
+ #include <asm/hw_irq.h>
+ #include <asm/apic.h>
+ #include <asm/irq_remapping.h>
++#include <asm/xen/hypervisor.h>
+ 
+ struct irq_domain *x86_pci_msi_default_domain __ro_after_init;
+ 
+@@ -345,3 +346,8 @@ void dmar_free_hwirq(int irq)
+ 	irq_domain_free_irqs(irq, 1);
+ }
+ #endif
++
++bool arch_restore_msi_irqs(struct pci_dev *dev)
++{
++	return xen_initdom_restore_msi(dev);
++}
+--- a/arch/x86/kernel/x86_init.c
++++ b/arch/x86/kernel/x86_init.c
+@@ -145,18 +145,6 @@ struct x86_platform_ops x86_platform __r
+ 
+ EXPORT_SYMBOL_GPL(x86_platform);
+ 
+-#if defined(CONFIG_PCI_MSI)
+-struct x86_msi_ops x86_msi __ro_after_init = {
+-	.restore_msi_irqs	= default_restore_msi_irqs,
+-};
+-
+-/* MSI arch specific hooks */
+-void arch_restore_msi_irqs(struct pci_dev *dev)
+-{
+-	x86_msi.restore_msi_irqs(dev);
+-}
+-#endif
+-
+ struct x86_apic_ops x86_apic_ops __ro_after_init = {
+ 	.io_apic_read	= native_io_apic_read,
+ 	.restore	= native_restore_boot_irq_mode,
+--- a/arch/x86/pci/xen.c
++++ b/arch/x86/pci/xen.c
+@@ -351,10 +351,13 @@ static int xen_initdom_setup_msi_irqs(st
+ 	return ret;
+ }
+ 
+-static void xen_initdom_restore_msi_irqs(struct pci_dev *dev)
++bool xen_initdom_restore_msi(struct pci_dev *dev)
+ {
+ 	int ret = 0;
+ 
++	if (!xen_initial_domain())
++		return true;
++
+ 	if (pci_seg_supported) {
+ 		struct physdev_pci_device restore_ext;
+ 
+@@ -375,10 +378,10 @@ static void xen_initdom_restore_msi_irqs
+ 		ret = HYPERVISOR_physdev_op(PHYSDEVOP_restore_msi, &restore);
+ 		WARN(ret && ret != -ENOSYS, "restore_msi -> %d\n", ret);
+ 	}
++	return false;
+ }
+ #else /* CONFIG_XEN_PV_DOM0 */
+ #define xen_initdom_setup_msi_irqs	NULL
+-#define xen_initdom_restore_msi_irqs	NULL
+ #endif /* !CONFIG_XEN_PV_DOM0 */
+ 
+ static void xen_teardown_msi_irqs(struct pci_dev *dev)
+@@ -466,12 +469,10 @@ static __init struct irq_domain *xen_cre
+ static __init void xen_setup_pci_msi(void)
+ {
+ 	if (xen_pv_domain()) {
+-		if (xen_initial_domain()) {
++		if (xen_initial_domain())
+ 			xen_msi_ops.setup_msi_irqs = xen_initdom_setup_msi_irqs;
+-			x86_msi.restore_msi_irqs = xen_initdom_restore_msi_irqs;
+-		} else {
++		else
+ 			xen_msi_ops.setup_msi_irqs = xen_setup_msi_irqs;
+-		}
+ 		xen_msi_ops.teardown_msi_irqs = xen_pv_teardown_msi_irqs;
+ 		pci_msi_ignore_mask = 1;
+ 	} else if (xen_hvm_domain()) {
+--- a/drivers/pci/msi.c
++++ b/drivers/pci/msi.c
+@@ -106,29 +106,6 @@ void __weak arch_teardown_msi_irqs(struc
+ }
+ #endif /* CONFIG_PCI_MSI_ARCH_FALLBACKS */
+ 
+-static void default_restore_msi_irq(struct pci_dev *dev, int irq)
 -{
 -	struct msi_desc *entry;
--	int ret;
 -
--	/*
--	 * MSI-X is not supported.
--	 */
--	if (type == PCI_CAP_ID_MSIX)
--		return -EINVAL;
--
--	/*
--	 * If an architecture wants to support multiple MSI, it needs to
--	 * override arch_setup_msi_irqs()
--	 */
--	if (type == PCI_CAP_ID_MSI && nvec > 1)
--		return 1;
--
--	for_each_pci_msi_entry(entry, dev) {
--		ret = arch_setup_msi_irq(dev, entry);
--		if (ret < 0)
--			return ret;
--		if (ret > 0)
--			return -ENOSPC;
+-	entry = NULL;
+-	if (dev->msix_enabled) {
+-		for_each_pci_msi_entry(entry, dev) {
+-			if (irq == entry->irq)
+-				break;
+-		}
+-	} else if (dev->msi_enabled)  {
+-		entry = irq_get_msi_desc(irq);
 -	}
 -
--	return 0;
+-	if (entry)
+-		__pci_write_msi_msg(entry, &entry->msg);
 -}
 -
- /**
-  * Called when a device no longer needs its MSI interrupts. All
-  * MSI interrupts for the device are freed.
+-void __weak arch_restore_msi_irqs(struct pci_dev *dev)
+-{
+-	return default_restore_msi_irqs(dev);
+-}
+-
+ /*
+  * PCI 2.3 does not specify mask bits for each MSI interrupt.  Attempting to
+  * mask all MSI interrupts by clearing the MSI enable bit does not work
+@@ -242,14 +219,6 @@ void pci_msi_unmask_irq(struct irq_data
+ }
+ EXPORT_SYMBOL_GPL(pci_msi_unmask_irq);
+ 
+-void default_restore_msi_irqs(struct pci_dev *dev)
+-{
+-	struct msi_desc *entry;
+-
+-	for_each_pci_msi_entry(entry, dev)
+-		default_restore_msi_irq(dev, entry->irq);
+-}
+-
+ void __pci_read_msi_msg(struct msi_desc *entry, struct msi_msg *msg)
+ {
+ 	struct pci_dev *dev = msi_desc_to_pci_dev(entry);
+@@ -403,10 +372,19 @@ static void pci_msi_set_enable(struct pc
+ 	pci_write_config_word(dev, dev->msi_cap + PCI_MSI_FLAGS, control);
+ }
+ 
++/*
++ * Architecture override returns true when the PCI MSI message should be
++ * written by the generic restore function.
++ */
++bool __weak arch_restore_msi_irqs(struct pci_dev *dev)
++{
++	return true;
++}
++
+ static void __pci_restore_msi_state(struct pci_dev *dev)
+ {
+-	u16 control;
+ 	struct msi_desc *entry;
++	u16 control;
+ 
+ 	if (!dev->msi_enabled)
+ 		return;
+@@ -415,7 +393,8 @@ static void __pci_restore_msi_state(stru
+ 
+ 	pci_intx_for_msi(dev, 0);
+ 	pci_msi_set_enable(dev, 0);
+-	arch_restore_msi_irqs(dev);
++	if (arch_restore_msi_irqs(dev))
++		__pci_write_msi_msg(entry, &entry->msg);
+ 
+ 	pci_read_config_word(dev, dev->msi_cap + PCI_MSI_FLAGS, &control);
+ 	pci_msi_update_mask(entry, 0, 0);
+@@ -437,6 +416,7 @@ static void pci_msix_clear_and_set_ctrl(
+ static void __pci_restore_msix_state(struct pci_dev *dev)
+ {
+ 	struct msi_desc *entry;
++	bool write_msg;
+ 
+ 	if (!dev->msix_enabled)
+ 		return;
+@@ -447,9 +427,13 @@ static void __pci_restore_msix_state(str
+ 	pci_msix_clear_and_set_ctrl(dev, 0,
+ 				PCI_MSIX_FLAGS_ENABLE | PCI_MSIX_FLAGS_MASKALL);
+ 
+-	arch_restore_msi_irqs(dev);
+-	for_each_pci_msi_entry(entry, dev)
++	write_msg = arch_restore_msi_irqs(dev);
++
++	for_each_pci_msi_entry(entry, dev) {
++		if (write_msg)
++			__pci_write_msi_msg(entry, &entry->msg);
+ 		pci_msix_write_vector_ctrl(entry, entry->pci.msix_ctrl);
++	}
+ 
+ 	pci_msix_clear_and_set_ctrl(dev, PCI_MSIX_FLAGS_MASKALL, 0);
+ }
+--- a/include/linux/msi.h
++++ b/include/linux/msi.h
+@@ -273,11 +273,10 @@ static inline void arch_teardown_msi_irq
+ #endif
+ 
+ /*
+- * The restore hooks are still available as they are useful even
+- * for fully irq domain based setups. Courtesy to XEN/X86.
++ * The restore hook is still available even for fully irq domain based
++ * setups. Courtesy to XEN/X86.
+  */
+-void arch_restore_msi_irqs(struct pci_dev *dev);
+-void default_restore_msi_irqs(struct pci_dev *dev);
++bool arch_restore_msi_irqs(struct pci_dev *dev);
+ 
+ #ifdef CONFIG_GENERIC_MSI_IRQ_DOMAIN
+ 
 
 
 -- 
