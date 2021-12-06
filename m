@@ -4,76 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68EBBC433F5
-	for <ath11k@archiver.kernel.org>; Mon,  6 Dec 2021 16:11:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64E8BC433EF
+	for <ath11k@archiver.kernel.org>; Mon,  6 Dec 2021 17:39:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=UuwpQggVWw6ze5r97sLSdH2u8sXfNJDDviTihr3rfrg=; b=jcssadasTm+loP
-	a/JAddhyZShvJz0Q4tonpcMQio36WeMxQX5q+1oBTvS0EBVKxpnYXQAbhK7YiWA7hrgjIm+6z7CMO
-	iAHhXkKqvObYv9xIrh7JuIK4zp+pHXNdeotwVwiRHePvoPqjpZI8pB5sar6kKtLm2FV/dEoiUA/TV
-	U7a6kQ2ny6Nbf1c0izsDnt6MyZUEGR7dPlphq88YMjZRA4LZZIPyhtUiBv7UHd7TNLezHB/68LN2K
-	Ibiqq9JxI3rIhX5VzzOYUV/v8yBD49qDZ5SRf25Ps7RIiDBc3lcxKo49XBBCqcesaLskYfs4Fquvc
-	kNORW5xEtMIL1rll2rwA==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=CtaPWkGnAzSlmqPa9LMhH1TEKDpdMPFTT9sEjNQ9wbg=; b=jk5c8KptxAmxG6
+	xe0BQu2PysO5lId3crJCiNHL2G9bfH80ewYaWqtCyZAp6Pl7amIa3bhSGwMst1lvJ1YaCOOwvCvcT
+	+81leJBtvTe08yhHIaeDAUaqYf/z5VUQtH/EQfRhfCwKfF6KQErDYf+ir9oV9lL5qCPWgS75e3Rwz
+	SCxSZNeX9D7KMBzE0e3VjHTmGPGJQZMUC7dNVaspbPhX8yKhB50wgI2fVsPdzJPrqCNnKL74S+bOy
+	jKdmkssy/moEssU98JkzYhsSgHJV/rlwH4OwQWGUsCOLJEr/kwtNi9TJC33KYHJtuCD4fkBXIdgzZ
+	QVcujsg5iHxYpGlPxO7A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1muGa8-004gRa-3e; Mon, 06 Dec 2021 16:11:12 +0000
-Received: from mail-pf1-x42c.google.com ([2607:f8b0:4864:20::42c])
+	id 1muHxc-0056L1-2G; Mon, 06 Dec 2021 17:39:32 +0000
+Received: from wp530.webpack.hosteurope.de ([2a01:488:42:1000:50ed:8234::])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1muGa4-004gQw-SN
- for ath11k@lists.infradead.org; Mon, 06 Dec 2021 16:11:10 +0000
-Received: by mail-pf1-x42c.google.com with SMTP id k26so6208034pfp.10
- for <ath11k@lists.infradead.org>; Mon, 06 Dec 2021 08:11:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=/dZMe5fXW3JmkstQUnuTxaguikQO8croA43e/A9yBnw=;
- b=wsxIo8iRiao/IrGDfq47xrllVJ4TjbrPMq5pi3ujnxN/VKCJ3gsfxKRCeoeCqPfYQu
- kOwY5U32UUnpRggGW8w10rv9Qb+gMMChBODZE8cet49sqH0aXLIuy3Hy/fNcF2I49xtW
- w/tPBkVH6OZ0gml4qbyNHA2LKoSRu2Duh75QZw7O02/WxlK7y7iu/eS+gRwq5vnZ0TMf
- 4NrQWs80FVlPsg+02Ay9mkBOTx6d4n9cp8+8F0Dpa7NfdGkA7BMrgrVXUDuNa+sp9Oa0
- tBWh2Wm8WKIWHNKf1R7ackwqOJUltuACyxAA6XpX27PTUDAPkFN9K/s0tPCDvwcBdLVB
- v8Ww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=/dZMe5fXW3JmkstQUnuTxaguikQO8croA43e/A9yBnw=;
- b=xvRjy2guRz25D0FBbORA2ztcYMKw7uiti6HEj5mD6o/6mqBb9VTMFOW/wi3xTdmdOf
- rpoUu0AbFRKz0pUXCKxOIoKOdOiGzYDss1vzH6olvJtkMiqMrkIphjDe5k03/VrOLDlO
- nQlG8fbSy2B1kr6LYW1I2BY8zloqJ1PrVyM0vfnU2wFIMIQbEsS523t3qTviRl9ADdwS
- VfTqW8rpbicmKl/XvSpG7AzTIRAyNquq6KuP1sLeTg6YJqJ1AyfVa5Iebi9lJMCswCse
- b11hUwQRfvktiWweEnTIjZsrTlAfwFkJ2/MOdwYMCfq5DikUqRvdLDQbTysokT0IJkj/
- ZbNA==
-X-Gm-Message-State: AOAM530TD1Bm2ev2p/j7O9cn8OY6CxpC926rKaaN8pieRXGzFnXiwIT3
- ZkbWg5bXVhpuU0MCsSJ0I7/+
-X-Google-Smtp-Source: ABdhPJzHztOd8XGPiN1RUx+EQUVKeXqRT/D1cHtxog5GiB7PeT8WgTwjvv+39GKJ//C4Nqx58PR66g==
-X-Received: by 2002:a05:6a00:1594:b0:4ae:dc6:f344 with SMTP id
- u20-20020a056a00159400b004ae0dc6f344mr7919655pfk.56.1638807066912; 
- Mon, 06 Dec 2021 08:11:06 -0800 (PST)
-Received: from localhost.localdomain ([117.217.176.38])
- by smtp.gmail.com with ESMTPSA id lr6sm11288968pjb.0.2021.12.06.08.11.02
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 06 Dec 2021 08:11:06 -0800 (PST)
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: mhi@lists.linux.dev
+ id 1muHxW-0056JI-OL
+ for ath11k@lists.infradead.org; Mon, 06 Dec 2021 17:39:29 +0000
+Received: from ip4d173d4a.dynamic.kabel-deutschland.de ([77.23.61.74]
+ helo=[192.168.66.200]); authenticated
+ by wp530.webpack.hosteurope.de running ExIM with esmtpsa
+ (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+ id 1muHxR-0004bW-B6; Mon, 06 Dec 2021 18:39:21 +0100
+Message-ID: <2a181fd4-9248-d68d-7eee-43b19db96461@leemhuis.info>
+Date: Mon, 6 Dec 2021 18:39:19 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Subject: Re: [PATCH] bus: mhi: core: Add support for forced PM resume
+Content-Language: en-BS
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ mhi@lists.linux.dev
 Cc: hemantk@codeaurora.org, bbhatt@codeaurora.org, loic.poulain@linaro.org,
  linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
  ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- kvalo@codeaurora.org, stable@vger.kernel.org,
- Pengyu Ma <mapengyu@gmail.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH] bus: mhi: core: Add support for forced PM resume
-Date: Mon,  6 Dec 2021 21:40:59 +0530
-Message-Id: <20211206161059.107007-1-manivannan.sadhasivam@linaro.org>
-X-Mailer: git-send-email 2.25.1
-MIME-Version: 1.0
+ kvalo@codeaurora.org, stable@vger.kernel.org, Pengyu Ma <mapengyu@gmail.com>
+References: <20211206161059.107007-1-manivannan.sadhasivam@linaro.org>
+From: Thorsten Leemhuis <regressions@leemhuis.info>
+In-Reply-To: <20211206161059.107007-1-manivannan.sadhasivam@linaro.org>
+X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1638812366;
+ c43d493f; 
+X-HE-SMSGID: 1muHxR-0004bW-B6
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211206_081108_946575_B3D8F315 
-X-CRM114-Status: GOOD (  15.12  )
+X-CRM114-CacheID: sfid-20211206_093926_989240_1D8FFBC6 
+X-CRM114-Status: GOOD (  21.98  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,116 +63,76 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Loic Poulain <loic.poulain@linaro.org>
-
-For whatever reason, some devices like QCA6390, WCN6855 using ath11k
-are not in M3 state during PM resume, but still functional. The
-mhi_pm_resume should then not fail in those cases, and let the higher
-level device specific stack continue resuming process.
-
-Add a new parameter to mhi_pm_resume, to force resuming, whatever the
-current MHI state is. This fixes a regression with non functional
-ath11k WiFi after suspend/resume cycle on some machines.
-
-Bug report: https://bugzilla.kernel.org/show_bug.cgi?id=214179
-
-Cc: stable@vger.kernel.org #5.13
-Fixes: 020d3b26c07a ("bus: mhi: Early MHI resume failure in non M3 state")
-Reported-by: Kalle Valo <kvalo@codeaurora.org>
-Reported-by: Pengyu Ma <mapengyu@gmail.com>
-Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
-[mani: Added comment, bug report, added reported-by tags and CCed stable]
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
- drivers/bus/mhi/core/pm.c             | 10 +++++++---
- drivers/bus/mhi/pci_generic.c         |  2 +-
- drivers/net/wireless/ath/ath11k/mhi.c |  6 +++++-
- include/linux/mhi.h                   |  3 ++-
- 4 files changed, 15 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/bus/mhi/core/pm.c b/drivers/bus/mhi/core/pm.c
-index 7464f5d09973..4ddd266e042e 100644
---- a/drivers/bus/mhi/core/pm.c
-+++ b/drivers/bus/mhi/core/pm.c
-@@ -881,7 +881,7 @@ int mhi_pm_suspend(struct mhi_controller *mhi_cntrl)
- }
- EXPORT_SYMBOL_GPL(mhi_pm_suspend);
- 
--int mhi_pm_resume(struct mhi_controller *mhi_cntrl)
-+int mhi_pm_resume(struct mhi_controller *mhi_cntrl, bool force)
- {
- 	struct mhi_chan *itr, *tmp;
- 	struct device *dev = &mhi_cntrl->mhi_dev->dev;
-@@ -898,8 +898,12 @@ int mhi_pm_resume(struct mhi_controller *mhi_cntrl)
- 	if (MHI_PM_IN_ERROR_STATE(mhi_cntrl->pm_state))
- 		return -EIO;
- 
--	if (mhi_get_mhi_state(mhi_cntrl) != MHI_STATE_M3)
--		return -EINVAL;
-+	if (mhi_get_mhi_state(mhi_cntrl) != MHI_STATE_M3) {
-+		dev_warn(dev, "Resuming from non M3 state (%s)\n",
-+			 TO_MHI_STATE_STR(mhi_get_mhi_state(mhi_cntrl)));
-+		if (!force)
-+			return -EINVAL;
-+	}
- 
- 	/* Notify clients about exiting LPM */
- 	list_for_each_entry_safe(itr, tmp, &mhi_cntrl->lpm_chans, node) {
-diff --git a/drivers/bus/mhi/pci_generic.c b/drivers/bus/mhi/pci_generic.c
-index 9ef41354237c..efd1da66fdf9 100644
---- a/drivers/bus/mhi/pci_generic.c
-+++ b/drivers/bus/mhi/pci_generic.c
-@@ -959,7 +959,7 @@ static int __maybe_unused mhi_pci_runtime_resume(struct device *dev)
- 		return 0; /* Nothing to do at MHI level */
- 
- 	/* Exit M3, transition to M0 state */
--	err = mhi_pm_resume(mhi_cntrl);
-+	err = mhi_pm_resume(mhi_cntrl, false);
- 	if (err) {
- 		dev_err(&pdev->dev, "failed to resume device: %d\n", err);
- 		goto err_recovery;
-diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
-index 26c7ae242db6..f1f2fa2d690d 100644
---- a/drivers/net/wireless/ath/ath11k/mhi.c
-+++ b/drivers/net/wireless/ath/ath11k/mhi.c
-@@ -533,7 +533,11 @@ static int ath11k_mhi_set_state(struct ath11k_pci *ab_pci,
- 		ret = mhi_pm_suspend(ab_pci->mhi_ctrl);
- 		break;
- 	case ATH11K_MHI_RESUME:
--		ret = mhi_pm_resume(ab_pci->mhi_ctrl);
-+		/* Do force MHI resume as some devices like QCA6390, WCN6855
-+		 * are not in M3 state but they are functional. So just ignore
-+		 * the MHI state while resuming.
-+		 */
-+		ret = mhi_pm_resume(ab_pci->mhi_ctrl, true);
- 		break;
- 	case ATH11K_MHI_TRIGGER_RDDM:
- 		ret = mhi_force_rddm_mode(ab_pci->mhi_ctrl);
-diff --git a/include/linux/mhi.h b/include/linux/mhi.h
-index 723985879035..102303288cee 100644
---- a/include/linux/mhi.h
-+++ b/include/linux/mhi.h
-@@ -660,8 +660,9 @@ int mhi_pm_suspend(struct mhi_controller *mhi_cntrl);
- /**
-  * mhi_pm_resume - Resume MHI from suspended state
-  * @mhi_cntrl: MHI controller
-+ * @force: Force resuming to M0 irrespective of the device MHI state
-  */
--int mhi_pm_resume(struct mhi_controller *mhi_cntrl);
-+int mhi_pm_resume(struct mhi_controller *mhi_cntrl, bool force);
- 
- /**
-  * mhi_download_rddm_image - Download ramdump image from device for
--- 
-2.25.1
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+CkhpLCB0aGlzIGlzIHlvdXIgTGludXgga2VybmVsIHJlZ3Jlc3Npb24gdHJhY2tlciBzcGVha2lu
+Zy4KCk9uIDA2LjEyLjIxIDE3OjEwLCBNYW5pdmFubmFuIFNhZGhhc2l2YW0gd3JvdGU6Cj4gRnJv
+bTogTG9pYyBQb3VsYWluIDxsb2ljLnBvdWxhaW5AbGluYXJvLm9yZz4KPiAKPiBGb3Igd2hhdGV2
+ZXIgcmVhc29uLCBzb21lIGRldmljZXMgbGlrZSBRQ0E2MzkwLCBXQ042ODU1IHVzaW5nIGF0aDEx
+awo+IGFyZSBub3QgaW4gTTMgc3RhdGUgZHVyaW5nIFBNIHJlc3VtZSwgYnV0IHN0aWxsIGZ1bmN0
+aW9uYWwuIFRoZQo+IG1oaV9wbV9yZXN1bWUgc2hvdWxkIHRoZW4gbm90IGZhaWwgaW4gdGhvc2Ug
+Y2FzZXMsIGFuZCBsZXQgdGhlIGhpZ2hlcgo+IGxldmVsIGRldmljZSBzcGVjaWZpYyBzdGFjayBj
+b250aW51ZSByZXN1bWluZyBwcm9jZXNzLgo+IAo+IEFkZCBhIG5ldyBwYXJhbWV0ZXIgdG8gbWhp
+X3BtX3Jlc3VtZSwgdG8gZm9yY2UgcmVzdW1pbmcsIHdoYXRldmVyIHRoZQo+IGN1cnJlbnQgTUhJ
+IHN0YXRlIGlzLiBUaGlzIGZpeGVzIGEgcmVncmVzc2lvbiB3aXRoIG5vbiBmdW5jdGlvbmFsCj4g
+YXRoMTFrIFdpRmkgYWZ0ZXIgc3VzcGVuZC9yZXN1bWUgY3ljbGUgb24gc29tZSBtYWNoaW5lcy4K
+PiAKPiBCdWcgcmVwb3J0OiBodHRwczovL2J1Z3ppbGxhLmtlcm5lbC5vcmcvc2hvd19idWcuY2dp
+P2lkPTIxNDE3OQo+IAo+IENjOiBzdGFibGVAdmdlci5rZXJuZWwub3JnICM1LjEzCj4gRml4ZXM6
+IDAyMGQzYjI2YzA3YSAoImJ1czogbWhpOiBFYXJseSBNSEkgcmVzdW1lIGZhaWx1cmUgaW4gbm9u
+IE0zIHN0YXRlIikKPiBSZXBvcnRlZC1ieTogS2FsbGUgVmFsbyA8a3ZhbG9AY29kZWF1cm9yYS5v
+cmc+Cj4gUmVwb3J0ZWQtYnk6IFBlbmd5dSBNYSA8bWFwZW5neXVAZ21haWwuY29tPgoKRldJVzog
+SW4gY2FzZSB5b3UgbmVlZCB0byBzZW5kIGFuIGltcHJvdmVkIHBhdGNoLCBjb3VsZCB5b3UgcGxl
+YXNlIGFkZAp0aGlzIGJlZm9yZSB0aGUgJ1JlcG9ydGVkLWJ5OicgKHNlZSAowrkpIGJlbG93IGZv
+ciB0aGUgcmVhc29uaW5nKToKCkxpbms6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL3JlZ3Jlc3Np
+b25zLzg3MXI1cDB4MnUuZnNmQGNvZGVhdXJvcmEub3JnLwoKQW5kIGlmIHRoZSBwYXRjaCBpcyBh
+bHJlYWR5IGdvb2QgdG8gZ286IGNvdWxkIHRoZSBzdWJzeXN0ZW0gbWFpbnRhaW5lcgpwbGVhc2Ug
+YWRkIGl0IHdoZW4gYXBwbHlpbmc/IFNlZSjCuSkgZm9yIHRoZSByZWFzb25pbmcuCgpUaHguCgpD
+aWFvLCBUaG9yc3RlbiwgeW91ciBMaW51eCBrZXJuZWwgcmVncmVzc2lvbiB0cmFja2VyLgoKKMK5
+KSBMb25nIHN0b3J5OiBUaGUgY29tbWl0IG1lc3NhZ2Ugd291bGQgYmVuZWZpdCBmcm9tIGEgbGlu
+ayB0byB0aGUKcmVncmVzc2lvbiByZXBvcnQgb24gdGhlIG1haWxpbmcgbGlzdCwgZm9yIHJlYXNv
+bnMgZXhwbGFpbmVkIGluCkRvY3VtZW50YXRpb24vcHJvY2Vzcy9zdWJtaXR0aW5nLXBhdGNoZXMu
+cnN0LiBUbyBxdW90ZToKCmBgYApJZiByZWxhdGVkIGRpc2N1c3Npb25zIG9yIGFueSBvdGhlciBi
+YWNrZ3JvdW5kIGluZm9ybWF0aW9uIGJlaGluZCB0aGUKY2hhbmdlIGNhbiBiZSBmb3VuZCBvbiB0
+aGUgd2ViLCBhZGQgJ0xpbms6JyB0YWdzIHBvaW50aW5nIHRvIGl0LiBJbiBjYXNlCnlvdXIgcGF0
+Y2ggZml4ZXMgYSBidWcsIGZvciBleGFtcGxlLCBhZGQgYSB0YWcgd2l0aCBhIFVSTCByZWZlcmVu
+Y2luZwp0aGUgcmVwb3J0IGluIHRoZSBtYWlsaW5nIGxpc3QgYXJjaGl2ZXMgb3IgYSBidWcgdHJh
+Y2tlcjsKYGBgCgpUaGlzIGNvbmNlcHQgaXMgb2xkLCBidXQgdGhlIHRleHQgd2FzIHJld29ya2Vk
+IHJlY2VudGx5IHRvIG1ha2UgdGhpcyB1c2UKY2FzZSBmb3IgdGhlIExpbms6IHRhZyBjbGVhcmVy
+LiBGb3IgZGV0YWlscyBzZWU6Cmh0dHBzOi8vZ2l0Lmtlcm5lbC5vcmcvbGludXMvMWY1N2JkNDJi
+NzdjCgpZZXMsIHRoYXQgIkxpbms6IiBpcyBub3QgcmVhbGx5IGNydWNpYWw7IGJ1dCBpdCdzIGdv
+b2QgdG8gaGF2ZSBpZgpzb21lb25lIG5lZWRzIHRvIGxvb2sgaW50byB0aGUgYmFja3N0b3J5IG9m
+IHRoaXMgY2hhbmdlIHNvbWV0aW1lIGluIHRoZQpmdXR1cmUuIEJ1dCBJIGNhcmUgZm9yIGEgZGlm
+ZmVyZW50IHJlYXNvbi4gSSdtIHRyYWNraW5nIHRoaXMgcmVncmVzc2lvbgooYW5kIG90aGVycykg
+d2l0aCByZWd6Ym90LCBteSBMaW51eCBrZXJuZWwgcmVncmVzc2lvbiB0cmFja2luZyBib3QuIFRo
+aXMKYm90IHdpbGwgbm90aWNlIGlmIGEgcGF0Y2ggd2l0aCBhIExpbms6IHRhZyB0byBhIHRyYWNr
+ZWQgcmVncmVzc2lvbiBnZXRzCnBvc3RlZCBhbmQgcmVjb3JkIHRoYXQsIHdoaWNoIGFsbG93ZWQg
+YW55b25lIGxvb2tpbmcgaW50byB0aGUgcmVncmVzc2lvbgp0byBxdWlja2x5IGdhc3AgdGhlIGN1
+cnJlbnQgc3RhdHVzIGZyb20gcmVnemJvdCdzIHdlYnVpCihodHRwczovL2xpbnV4LXJlZ3RyYWNr
+aW5nLmxlZW1odWlzLmluZm8vcmVnemJvdCApIG9yIGl0cyByZXBvcnRzLiBUaGUKYm90IHdpbGwg
+YWxzbyBub3RpY2UgaWYgYSBjb21taXQgd2l0aCBhIExpbms6IHRhZyB0byBhIHJlZ3Jlc3Npb24g
+cmVwb3J0CmlzIGFwcGxpZWQgYnkgTGludXMgYW5kIHRoZW4gYXV0b21hdGljYWxseSBtYXJrIHRo
+ZSByZWdyZXNzaW9uIGFzCnJlc29sdmVkIHRoZW4uCgpJT1c6IHRoaXMgdGFnIG1ha2VzIG15IGxp
+ZmUgYSByZWdyZXNzaW9uIHRyYWNrZXIgYSBsb3QgZWFzaWVyLCBhcyBJCm90aGVyd2lzZSBoYXZl
+IHRvIHRlbGwgcmVnemJvdCBtYW51YWxseSB3aGVuIHRoZSBmaXggbGFuZHMuIDotLwoKUC5TLjog
+QXMgYSBMaW51eCBrZXJuZWwgcmVncmVzc2lvbiB0cmFja2VyIEknbSBnZXR0aW5nIGEgbG90IG9m
+IHJlcG9ydHMKb24gbXkgdGFibGUuIEkgY2FuIG9ubHkgbG9vayBicmllZmx5IGludG8gbW9zdCBv
+ZiB0aGVtLiBVbmZvcnR1bmF0ZWx5CnRoZXJlZm9yZSBJIHNvbWV0aW1lcyB3aWxsIGdldCB0aGlu
+Z3Mgd3Jvbmcgb3IgbWlzcyBzb21ldGhpbmcgaW1wb3J0YW50LgpJIGhvcGUgdGhhdCdzIG5vdCB0
+aGUgY2FzZSBoZXJlOyBpZiB5b3UgdGhpbmsgaXQgaXMsIGRvbid0IGhlc2l0YXRlIHRvCnRlbGwg
+bWUgYWJvdXQgaXQgaW4gYSBwdWJsaWMgcmVwbHkuIFRoYXQncyBpbiBldmVyeW9uZSdzIGludGVy
+ZXN0LCBhcwp3aGF0IEkgd3JvdGUgYWJvdmUgbWlnaHQgYmUgbWlzbGVhZGluZyB0byBldmVyeW9u
+ZSByZWFkaW5nIHRoaXM7IGFueQpzdWdnZXN0aW9uIEkgZ2F2ZSB0aGV5IHRodXMgbWlnaHQgc2Vu
+dCBzb21lb25lIHJlYWRpbmcgdGhpcyBkb3duIHRoZQp3cm9uZyByYWJiaXQgaG9sZSwgd2hpY2gg
+bm9uZSBvZiB1cyB3YW50cy4KCkJUVywgSSBoYXZlIG5vIHBlcnNvbmFsIGludGVyZXN0IGluIHRo
+aXMgaXNzdWUsIHdoaWNoIGlzIHRyYWNrZWQgdXNpbmcKcmVnemJvdCwgbXkgTGludXgga2VybmVs
+IHJlZ3Jlc3Npb24gdHJhY2tpbmcgYm90CihodHRwczovL2xpbnV4LXJlZ3RyYWNraW5nLmxlZW1o
+dWlzLmluZm8vcmVnemJvdC8pLiBJJ20gb25seSBwb3N0aW5nCnRoaXMgbWFpbCB0byBnZXQgdGhp
+bmdzIHJvbGxpbmcgYWdhaW4gYW5kIGhlbmNlIGRvbid0IG5lZWQgdG8gYmUgQ0Mgb24KYWxsIGZ1
+cnRoZXIgYWN0aXZpdGllcyB3cnQgdG8gdGhpcyByZWdyZXNzaW9uLgoKI3JlZ3pib3QgXmJhY2tt
+b25pdG9yOgpodHRwczovL2xvcmUua2VybmVsLm9yZy9yZWdyZXNzaW9ucy84NzFyNXAweDJ1LmZz
+ZkBjb2RlYXVyb3JhLm9yZy8KCi0tIAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0cy5p
+bmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8v
+YXRoMTFrCg==
