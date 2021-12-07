@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A28CC433F5
-	for <ath11k@archiver.kernel.org>; Tue,  7 Dec 2021 12:55:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 930CEC433EF
+	for <ath11k@archiver.kernel.org>; Tue,  7 Dec 2021 12:55:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/jIFVw9EvFzHNhVhV+OuxKhLPwqPste6FeIoqmQ+MAM=; b=0ot9clZNO3ytl2
-	PnUOPkbciP3dYJ4whZj/dV7Yo1exN+TKU1ROGRwi7ctlIavQAVP+BDWIFr4yj3p7VH1Bm3yR1mhJt
-	DHbs5SbC4e5PT7hcnLukAslSJK07VUsWMxIYEy0X5uhNI02ZlMv1OkdUPP/a+1ZKGDMrqqVPazyKg
-	OgVmim9JlNOLlAcAYuqpdPObHon1V1CTX5dRyK1PRzEEfNjSBPRM+h8qVDhQgKa1PxzLfJlUWZdnk
-	PuEQX87iwr+Nl5Iv6ZzEeA4NxVgXAGThy8xtdcx1X6hIze1ljHwmJu86XwNmaTzh6mov0xYfg4M9O
-	KqJljTV4GDFYnAz0l/bw==;
+	List-Owner; bh=aaErJZIE6JaEu5dedXlwEYwv5URmmpvZD/EnpvCDcKE=; b=uCokZQAo25EaX9
+	0HGZgUXa1SrAjcqtlreXwwBi+H3GzYHAlAFiT36axvqX8tH6xqyJ4UNpg3IB9hy8KtcpGi1GgOquT
+	RHcCaVUgqIkNA+rK6Xr1oPHA5wAsY1SUQNnAi661zUVIwgXZ33+PTfhDuSyM4/zye4MFX6edeY+aV
+	IWlEwfWiip9ibP8V3GiQzXBfSpEHlGEcRWFFXSkuoLnTPB1EusN58EAHDwLTmfqUyQqe+ycEzBEf3
+	ZPqgwnpJ9czP3BPNQwu7hbvggVEita57EX2nZHCPv+6GRLbbL7ks+FL79eP6tfZ7aWaJgl2QYcacJ
+	cMvRiAGqPCZVuZkFQAyw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mua0d-008ZE8-PY; Tue, 07 Dec 2021 12:55:51 +0000
-Received: from so254-9.mailgun.net ([198.61.254.9])
+	id 1mua0g-008ZFD-6v; Tue, 07 Dec 2021 12:55:54 +0000
+Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mua01-008Yyo-4W
- for ath11k@lists.infradead.org; Tue, 07 Dec 2021 12:55:14 +0000
+ id 1mua01-008Z0a-DV
+ for ath11k@lists.infradead.org; Tue, 07 Dec 2021 12:55:15 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1638881713; h=References: In-Reply-To: Message-Id: Date:
+ s=smtp; t=1638881712; h=References: In-Reply-To: Message-Id: Date:
  Subject: Cc: To: From: Sender;
- bh=WEJ0/ZFtyQS3WqQORa4Z21qWdgkBHxpeHse109EMgLc=;
- b=OYTAY5k/GpSTYn6sF/NV/LYn45gEl1xQ+jJNYsbYnirAaVhAU1aSRt5WpaNFGvyPU8c15GZC
- uQnovmvD1KfI6VnFelSQSugSQotJtrPKo3I1HToQxf/Uk7HYseImSRPPTiTaONeV0paj0JU9
- CjEJL2et3Xf/Bmvj6N4yH1b83Ck=
-X-Mailgun-Sending-Ip: 198.61.254.9
+ bh=LrghA2BPxZFpQjzDKAGFKVXBwdp+/5HlSkw9Xdxl0cM=;
+ b=EvTpUxPoJZNCZz17zcJG7f5q9zn2YRmrVQ0UbM+Sui75RRBojAV5Zcj7wVjBB0jHXBz+2BPu
+ NHheR3MO6RxY/TO8lqHtA6CKaqMXBUjIvZo+Qjnq/BUjjP+GD9KQURe8uqWEkhXJ1ITueKgn
+ 8F296bdDusjiCI8kOt3gvRZZBpo=
+X-Mailgun-Sending-Ip: 69.72.43.7
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
- 61af59b0642caac3180a1317 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 07 Dec 2021 12:55:12
+ smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
+ 61af59afdf12ba53c4dafcde (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 07 Dec 2021 12:55:11
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 83ED0C4360D; Tue,  7 Dec 2021 12:55:11 +0000 (UTC)
+ id B5ABDC4338F; Tue,  7 Dec 2021 12:55:09 +0000 (UTC)
 Received: from akolli-linux.qualcomm.com
  (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
  (No client certificate requested) (Authenticated sender: akolli)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 5D5ECC43618;
- Tue,  7 Dec 2021 12:55:09 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 5D5ECC43618
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 5BA26C43616;
+ Tue,  7 Dec 2021 12:55:07 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 5BA26C43616
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
@@ -58,16 +58,15 @@ From: Anilkumar Kolli <akolli@codeaurora.org>
 To: ath11k@lists.infradead.org
 Cc: linux-wireless@vger.kernel.org,
 	Anilkumar Kolli <akolli@codeaurora.org>
-Subject: [PATCH v2 2/3] ath11k: add software monitor ring descriptor for full
- monitor
-Date: Tue,  7 Dec 2021 18:24:54 +0530
-Message-Id: <1638881695-22155-3-git-send-email-akolli@codeaurora.org>
+Subject: [PATCH v2 1/3] ath11k: Add htt cmd to enable full monitor mode
+Date: Tue,  7 Dec 2021 18:24:53 +0530
+Message-Id: <1638881695-22155-2-git-send-email-akolli@codeaurora.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1638881695-22155-1-git-send-email-akolli@codeaurora.org>
 References: <1638881695-22155-1-git-send-email-akolli@codeaurora.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211207_045513_270222_0B0D217A 
-X-CRM114-Status: GOOD (  11.65  )
+X-CRM114-CacheID: sfid-20211207_045513_575213_81ED7C18 
+X-CRM114-Status: GOOD (  19.28  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,136 +84,201 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-In full monitor mode, monitor destination ring is read in
-software monitor ring descriptor format instead of
-reo_entrance_ring format. Add new sw_mon_ring descriptor.
+A new hw_param full_monitor_mode is added to enable full
+monitor support for QCN9074.
+HTT_H2T_MSG_TYPE_RX_FULL_MONITOR_MODE cmd is sent to FW
+to enable the full monitor mode.
 
 Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.4.0.1-01734-QCAHKSWPL_SILICONZ-1
 
 Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
 ---
- drivers/net/wireless/ath/ath11k/hal_desc.h | 19 +++++++++++++
- drivers/net/wireless/ath/ath11k/hal_rx.c   | 44 ++++++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/hal_rx.h   | 17 ++++++++++++
- 3 files changed, 80 insertions(+)
+V2:
+  - Rebase on latest ath.git
 
-diff --git a/drivers/net/wireless/ath/ath11k/hal_desc.h b/drivers/net/wireless/ath/ath11k/hal_desc.h
-index 00b595b84939..406767672844 100644
---- a/drivers/net/wireless/ath/ath11k/hal_desc.h
-+++ b/drivers/net/wireless/ath/ath11k/hal_desc.h
-@@ -858,6 +858,25 @@ struct hal_reo_entrance_ring {
-  *		this ring has looped around the ring.
-  */
- 
-+#define HAL_SW_MON_RING_INFO0_RXDMA_PUSH_REASON	GENMASK(1, 0)
-+#define HAL_SW_MON_RING_INFO0_RXDMA_ERROR_CODE	GENMASK(6, 2)
-+#define HAL_SW_MON_RING_INFO0_MPDU_FRAG_NUMBER	GENMASK(10, 7)
-+#define HAL_SW_MON_RING_INFO0_FRAMELESS_BAR	BIT(11)
-+#define HAL_SW_MON_RING_INFO0_STATUS_BUF_CNT	GENMASK(15, 12)
-+#define HAL_SW_MON_RING_INFO0_END_OF_PPDU	BIT(16)
-+
-+#define HAL_SW_MON_RING_INFO1_PHY_PPDU_ID	GENMASK(15, 0)
-+#define HAL_SW_MON_RING_INFO1_RING_ID		GENMASK(27, 20)
-+#define HAL_SW_MON_RING_INFO1_LOOPING_COUNT	GENMASK(31, 28)
-+
-+struct hal_sw_monitor_ring {
-+	struct ath11k_buffer_addr buf_addr_info;
-+	struct rx_mpdu_desc rx_mpdu_info;
-+	struct ath11k_buffer_addr status_buf_addr_info;
-+	u32 info0;
-+	u32 info1;
-+} __packed;
-+
- #define HAL_REO_CMD_HDR_INFO0_CMD_NUMBER	GENMASK(15, 0)
- #define HAL_REO_CMD_HDR_INFO0_STATUS_REQUIRED	BIT(16)
- 
-diff --git a/drivers/net/wireless/ath/ath11k/hal_rx.c b/drivers/net/wireless/ath/ath11k/hal_rx.c
-index 0e43e215c10a..1e279e99baa8 100644
---- a/drivers/net/wireless/ath/ath11k/hal_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/hal_rx.c
-@@ -1185,3 +1185,47 @@ void ath11k_hal_rx_reo_ent_buf_paddr_get(void *rx_desc, dma_addr_t *paddr,
- 
- 	*pp_buf_addr = (void *)buf_addr_info;
- }
-+
-+void
-+ath11k_hal_rx_sw_mon_ring_buf_paddr_get(void *rx_desc,
-+					struct hal_sw_mon_ring_entries *sw_mon_entries)
-+{
-+	struct hal_sw_monitor_ring *sw_mon_ring = rx_desc;
-+	struct ath11k_buffer_addr *buf_addr_info;
-+	struct ath11k_buffer_addr *status_buf_addr_info;
-+	struct rx_mpdu_desc *rx_mpdu_desc_info_details;
-+
-+	rx_mpdu_desc_info_details = &sw_mon_ring->rx_mpdu_info;
-+
-+	sw_mon_entries->msdu_cnt = FIELD_GET(RX_MPDU_DESC_INFO0_MSDU_COUNT,
-+					     rx_mpdu_desc_info_details->info0);
-+
-+	buf_addr_info = &sw_mon_ring->buf_addr_info;
-+	status_buf_addr_info = &sw_mon_ring->status_buf_addr_info;
-+
-+	sw_mon_entries->mon_dst_paddr = (((u64)FIELD_GET(BUFFER_ADDR_INFO1_ADDR,
-+					buf_addr_info->info1)) << 32) |
-+					FIELD_GET(BUFFER_ADDR_INFO0_ADDR,
-+						  buf_addr_info->info0);
-+
-+	sw_mon_entries->mon_status_paddr =
-+			(((u64)FIELD_GET(BUFFER_ADDR_INFO1_ADDR,
-+					 status_buf_addr_info->info1)) << 32) |
-+				FIELD_GET(BUFFER_ADDR_INFO0_ADDR,
-+					  status_buf_addr_info->info0);
-+
-+	sw_mon_entries->mon_dst_sw_cookie = FIELD_GET(BUFFER_ADDR_INFO1_SW_COOKIE,
-+						      buf_addr_info->info1);
-+
-+	sw_mon_entries->mon_status_sw_cookie = FIELD_GET(BUFFER_ADDR_INFO1_SW_COOKIE,
-+							 status_buf_addr_info->info1);
-+
-+	sw_mon_entries->status_buf_count = FIELD_GET(HAL_SW_MON_RING_INFO0_STATUS_BUF_CNT,
-+						     sw_mon_ring->info0);
-+
-+	sw_mon_entries->dst_buf_addr_info = buf_addr_info;
-+	sw_mon_entries->status_buf_addr_info = status_buf_addr_info;
-+
-+	sw_mon_entries->ppdu_id =
-+		FIELD_GET(HAL_SW_MON_RING_INFO1_PHY_PPDU_ID, sw_mon_ring->info1);
-+}
-diff --git a/drivers/net/wireless/ath/ath11k/hal_rx.h b/drivers/net/wireless/ath/ath11k/hal_rx.h
-index 0f1f04b812b9..8db420ef6351 100644
---- a/drivers/net/wireless/ath/ath11k/hal_rx.h
-+++ b/drivers/net/wireless/ath/ath11k/hal_rx.h
-@@ -77,6 +77,20 @@ enum hal_rx_mon_status {
- 	HAL_RX_MON_STATUS_BUF_DONE,
+ drivers/net/wireless/ath/ath11k/core.c  |  5 ++++
+ drivers/net/wireless/ath/ath11k/dp.h    | 28 +++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/dp_tx.c | 48 +++++++++++++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/dp_tx.h |  2 ++
+ drivers/net/wireless/ath/ath11k/hw.h    |  1 +
+ 5 files changed, 84 insertions(+)
+
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index dd1a1bb078c3..072387bcdeb5 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -74,6 +74,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 					BIT(NL80211_IFTYPE_AP) |
+ 					BIT(NL80211_IFTYPE_MESH_POINT),
+ 		.supports_monitor = true,
++		.full_monitor_mode = false,
+ 		.supports_shadow_regs = false,
+ 		.idle_ps = false,
+ 		.supports_sta_ps = false,
+@@ -128,6 +129,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 					BIT(NL80211_IFTYPE_AP) |
+ 					BIT(NL80211_IFTYPE_MESH_POINT),
+ 		.supports_monitor = true,
++		.full_monitor_mode = false,
+ 		.supports_shadow_regs = false,
+ 		.idle_ps = false,
+ 		.supports_sta_ps = false,
+@@ -181,6 +183,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.interface_modes = BIT(NL80211_IFTYPE_STATION) |
+ 					BIT(NL80211_IFTYPE_AP),
+ 		.supports_monitor = false,
++		.full_monitor_mode = false,
+ 		.supports_shadow_regs = true,
+ 		.idle_ps = true,
+ 		.supports_sta_ps = true,
+@@ -234,6 +237,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 					BIT(NL80211_IFTYPE_AP) |
+ 					BIT(NL80211_IFTYPE_MESH_POINT),
+ 		.supports_monitor = true,
++		.full_monitor_mode = true,
+ 		.supports_shadow_regs = false,
+ 		.idle_ps = false,
+ 		.supports_sta_ps = false,
+@@ -287,6 +291,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.interface_modes = BIT(NL80211_IFTYPE_STATION) |
+ 					BIT(NL80211_IFTYPE_AP),
+ 		.supports_monitor = false,
++		.full_monitor_mode = false,
+ 		.supports_shadow_regs = true,
+ 		.idle_ps = true,
+ 		.supports_sta_ps = true,
+diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
+index a4c36a9be338..10f234b3f11c 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.h
++++ b/drivers/net/wireless/ath/ath11k/dp.h
+@@ -292,6 +292,7 @@ enum htt_h2t_msg_type {
+ 	HTT_H2T_MSG_TYPE_RX_RING_SELECTION_CFG	= 0xc,
+ 	HTT_H2T_MSG_TYPE_EXT_STATS_CFG		= 0x10,
+ 	HTT_H2T_MSG_TYPE_PPDU_STATS_CFG		= 0x11,
++	HTT_H2T_MSG_TYPE_RX_FULL_MONITOR_MODE	= 0x17,
  };
  
-+struct hal_sw_mon_ring_entries {
-+	dma_addr_t mon_dst_paddr;
-+	dma_addr_t mon_status_paddr;
-+	u32 mon_dst_sw_cookie;
-+	u32 mon_status_sw_cookie;
-+	void *dst_buf_addr_info;
-+	void *status_buf_addr_info;
-+	u16 ppdu_id;
-+	u8 status_buf_count;
-+	u8 msdu_cnt;
-+	bool end_of_ppdu;
-+	bool drop_ppdu;
+ #define HTT_VER_REQ_INFO_MSG_ID		GENMASK(7, 0)
+@@ -957,6 +958,33 @@ struct htt_rx_ring_tlv_filter {
+ 	u32 pkt_filter_flags3; /* DATA */
+ };
+ 
++#define HTT_RX_FULL_MON_MODE_CFG_CMD_INFO0_MSG_TYPE	GENMASK(7, 0)
++#define HTT_RX_FULL_MON_MODE_CFG_CMD_INFO0_PDEV_ID	GENMASK(15, 8)
++
++#define HTT_RX_FULL_MON_MODE_CFG_CMD_CFG_ENABLE			BIT(0)
++#define HTT_RX_FULL_MON_MODE_CFG_CMD_CFG_ZERO_MPDUS_END		BIT(1)
++#define HTT_RX_FULL_MON_MODE_CFG_CMD_CFG_NON_ZERO_MPDUS_END	BIT(2)
++#define HTT_RX_FULL_MON_MODE_CFG_CMD_CFG_RELEASE_RING		GENMASK(10, 3)
++
++/**
++ * Enumeration for full monitor mode destination ring select
++ * 0 - REO destination ring select
++ * 1 - FW destination ring select
++ * 2 - SW destination ring select
++ * 3 - Release destination ring select
++ */
++enum htt_rx_full_mon_release_ring {
++	HTT_RX_MON_RING_REO,
++	HTT_RX_MON_RING_FW,
++	HTT_RX_MON_RING_SW,
++	HTT_RX_MON_RING_RELEASE,
 +};
 +
- struct hal_rx_mon_ppdu_info {
- 	u32 ppdu_id;
- 	u32 ppdu_ts;
-@@ -331,6 +345,9 @@ void ath11k_hal_rx_reo_ent_buf_paddr_get(void *rx_desc,
- 					 dma_addr_t *paddr, u32 *sw_cookie,
- 					 void **pp_buf_addr_info, u8 *rbm,
- 					 u32 *msdu_cnt);
-+void
-+ath11k_hal_rx_sw_mon_ring_buf_paddr_get(void *rx_desc,
-+					struct hal_sw_mon_ring_entries *sw_mon_ent);
- enum hal_rx_mon_status
- ath11k_hal_rx_parse_mon_status(struct ath11k_base *ab,
- 			       struct hal_rx_mon_ppdu_info *ppdu_info,
++struct htt_rx_full_monitor_mode_cfg_cmd {
++	u32 info0;
++	u32 cfg;
++} __packed;
++
+ /* HTT message target->host */
+ 
+ enum htt_t2h_msg_type {
+diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
+index 7587e1679ec3..8560f3b33812 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_tx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
+@@ -1033,6 +1033,15 @@ int ath11k_dp_tx_htt_monitor_mode_ring_config(struct ath11k *ar, bool reset)
+ 	struct htt_rx_ring_tlv_filter tlv_filter = {0};
+ 	int ret = 0, ring_id = 0, i;
+ 
++	if (ab->hw_params.full_monitor_mode) {
++		ret = ath11k_dp_tx_htt_rx_full_mon_setup(ab,
++							 dp->mac_id, !reset);
++		if (ret < 0) {
++			ath11k_err(ab, "failed to setup full monitor %d\n", ret);
++			return ret;
++		}
++	}
++
+ 	ring_id = dp->rxdma_mon_buf_ring.refill_buf_ring.ring_id;
+ 
+ 	if (!reset) {
+@@ -1098,3 +1107,42 @@ int ath11k_dp_tx_htt_monitor_mode_ring_config(struct ath11k *ar, bool reset)
+ 
+ 	return ret;
+ }
++
++int ath11k_dp_tx_htt_rx_full_mon_setup(struct ath11k_base *ab, int mac_id,
++				       bool config)
++{
++	struct htt_rx_full_monitor_mode_cfg_cmd *cmd;
++	struct sk_buff *skb;
++	int ret, len = sizeof(*cmd);
++
++	skb = ath11k_htc_alloc_skb(ab, len);
++	if (!skb)
++		return -ENOMEM;
++
++	skb_put(skb, len);
++	cmd = (struct htt_rx_full_monitor_mode_cfg_cmd *)skb->data;
++	memset(cmd, 0, sizeof(*cmd));
++	cmd->info0 = FIELD_PREP(HTT_RX_FULL_MON_MODE_CFG_CMD_INFO0_MSG_TYPE,
++				HTT_H2T_MSG_TYPE_RX_FULL_MONITOR_MODE);
++
++	cmd->info0 |= FIELD_PREP(HTT_RX_FULL_MON_MODE_CFG_CMD_INFO0_PDEV_ID, mac_id);
++
++	cmd->cfg = HTT_RX_FULL_MON_MODE_CFG_CMD_CFG_ENABLE |
++		   FIELD_PREP(HTT_RX_FULL_MON_MODE_CFG_CMD_CFG_RELEASE_RING,
++			      HTT_RX_MON_RING_SW);
++	if (config) {
++		cmd->cfg |= HTT_RX_FULL_MON_MODE_CFG_CMD_CFG_ZERO_MPDUS_END |
++			    HTT_RX_FULL_MON_MODE_CFG_CMD_CFG_NON_ZERO_MPDUS_END;
++	}
++
++	ret = ath11k_htc_send(&ab->htc, ab->dp.eid, skb);
++	if (ret)
++		goto err_free;
++
++	return 0;
++
++err_free:
++	dev_kfree_skb_any(skb);
++
++	return ret;
++}
+diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.h b/drivers/net/wireless/ath/ath11k/dp_tx.h
+index 698b907b878d..e373dbccf417 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_tx.h
++++ b/drivers/net/wireless/ath/ath11k/dp_tx.h
+@@ -37,4 +37,6 @@ int ath11k_dp_tx_htt_rx_filter_setup(struct ath11k_base *ab, u32 ring_id,
+ 				     int rx_buf_size,
+ 				     struct htt_rx_ring_tlv_filter *tlv_filter);
+ 
++int ath11k_dp_tx_htt_rx_full_mon_setup(struct ath11k_base *ab, int mac_id,
++				       bool config);
+ #endif
+diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
+index 2c9d232ebfed..fe6e0cb9476c 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.h
++++ b/drivers/net/wireless/ath/ath11k/hw.h
+@@ -168,6 +168,7 @@ struct ath11k_hw_params {
+ 
+ 	u16 interface_modes;
+ 	bool supports_monitor;
++	bool full_monitor_mode;
+ 	bool supports_shadow_regs;
+ 	bool idle_ps;
+ 	bool supports_sta_ps;
 -- 
 2.7.4
 
