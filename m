@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3350EC433F5
-	for <ath11k@archiver.kernel.org>; Tue,  7 Dec 2021 20:57:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 568FAC433F5
+	for <ath11k@archiver.kernel.org>; Tue,  7 Dec 2021 20:57:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Message-ID:
 	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-	List-Owner; bh=xptbWOo/vusdkLpgVh81+o130idtvFfrtNxcVGLOULU=; b=YBi/u5AhYZWfD7
-	EqCL+lL4nmU/3EmZvsXEhJBgwCd5Lgt+td9wZtLmznTWUDXEQRzAf4L8W9A8q6yFkxpTljGpy6axt
-	g2zOK3ynsOrb1F3RBmi8n7mM4ep5E6p5T9e5HQwkeUZERRgJlJnCSZgYMnJCzmkCbhQQmC/tuC+oy
-	qddh/Glq2RzgnEnrzadT3PWwwJGYT6UUfWaYxWEV7p3vpXPgVbtqTWrmq9hiLARjk8qYIE9IJjHcA
-	t7zlIqNUwcwTosB+dEdSogVv8dCAEkRUd3/+mUZ/SOmaxbbZE8b1kTxLzMLLUxF4QSeW3ndvdMLjF
-	9oLGkqX2R5KAFrBkoVRw==;
+	List-Owner; bh=YLwEpDujXKGgx4e2JuwjYR3XRu9idTQolk4xzZWWseA=; b=grIub5Ncu9askQ
+	p97M7biYLfLGV3iGh1+xQOXjsWTpnfsxskgUstolaFSECeoA3L/VlFPkosM32D0PvpDOkm237KdPa
+	l2jbgDMkcH1hXIMVru675WgmO+bZdjcaacMD5ISaym3KaiFMD+RArc7wfpJLSVSPVpuv+msLwNQoa
+	xELTcL7npDqjlJ125z6aiw+j3Ym9QJn6Z7ztTrGrcdI9la+simVfzmZ6eJ/VExBeplW1KfRBWgZ5l
+	tS5IeM636bNaT+Wg04Qmf62XOlmx90OrCPPdVfNyr1oZkAbwmIBVOKhqDqFQ710RCXFvOUP0genAp
+	eBz3EIx9ZnnSpp1hkf7A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1muhWO-00A4hy-Ux; Tue, 07 Dec 2021 20:57:08 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1muhWg-00A4qD-3x; Tue, 07 Dec 2021 20:57:26 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1muhWM-00A4gM-7z
- for ath11k@lists.infradead.org; Tue, 07 Dec 2021 20:57:07 +0000
+ id 1muhWd-00A4oz-A6
+ for ath11k@lists.infradead.org; Tue, 07 Dec 2021 20:57:24 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id EDE53B81E82;
- Tue,  7 Dec 2021 20:57:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43DACC341C1;
- Tue,  7 Dec 2021 20:57:04 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 0B7F8B81E94;
+ Tue,  7 Dec 2021 20:57:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58C95C341C8;
+ Tue,  7 Dec 2021 20:57:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1638910624;
- bh=XrslgRHtCWkizJFdxh4LYx0Ea6YIT+zkeRKUg8jgH50=;
+ s=k20201202; t=1638910641;
+ bh=p4nzpRhPjzZYY/2joI+5ST1wSIqa+dnFOH02Wt6TY90=;
  h=Date:From:To:Cc:Subject:In-Reply-To:From;
- b=oNWOya01lPJvnE3tH25W+i5fvBukvCWqbSt8o6DALtpqSoHuRmTol41FHNBbcEmwf
- ndqs+TUJ09ke7BxWb8HjaLc/fY3tO470dZ4Qyno4Wpq5/bEnoEjzOjsbXmUV1qPZIo
- hVQXatTYM8u7grl3xYsaQbLBxtsdENIZvu9pTIxNja33qod3Ecev9Ir5ev8d5C96pY
- 0IK/7dJ9j/4mbDBL0nO4T+nU7isZp4iut/H/gQt557Of3NPt7vq7/9Jpi+jESYyg4O
- IkM/M8qlqvOoGLJfagsdSI/guqcNiYtMrzlfaFPpkvCs0s96NJKjtT7Cv9aAODCAWZ
- Q3dkMDUriYcZA==
-Date: Tue, 7 Dec 2021 14:57:03 -0600
+ b=TBxT84AbL5Gep1COvq7TErtiHgXwTDw0MqC9DWEsU3bt1FgCmBhl92LueC5uhijkJ
+ /AD3uh3vlBBztJBVIuEXGD39HkvRqAw2mmADUNrbGv8igflwAI51FTrrlhOCh7CDjA
+ JipWm7z8+pwAofUYL8YQ4KeHO2uQrmr42qs33txntiRVsX4QM5pQiASWsxcQeT9JnJ
+ Q7nKN6B9u2c3unSau2PIUrC+WNRDmQr0NBXm2YWSOwlW431/1LNllTpk2xQvdwBDWx
+ jRXpt3dwtRz/SnDxd9nv1DqQPFXA2DpbOUl8hDquMhSry+d0h0MDbGrJJ0q+aeDGbe
+ C0zQ+0ViJLMag==
+Date: Tue, 7 Dec 2021 14:57:20 -0600
 From: Bjorn Helgaas <helgaas@kernel.org>
 To: Thomas Gleixner <tglx@linutronix.de>
 Cc: LKML <linux-kernel@vger.kernel.org>, Marc Zygnier <maz@kernel.org>,
@@ -62,14 +62,14 @@ Cc: LKML <linux-kernel@vger.kernel.org>, Marc Zygnier <maz@kernel.org>,
  Wei Liu <wei.liu@kernel.org>, linux-hyperv@vger.kernel.org,
  Christian Borntraeger <borntraeger@de.ibm.com>,
  Heiko Carstens <hca@linux.ibm.com>
-Subject: Re: [patch V2 13/23] PCI/MSI: Cleanup include zoo
-Message-ID: <20211207205703.GA76805@bhelgaas>
+Subject: Re: [patch V2 14/23] PCI/MSI: Make msix_update_entries() smarter
+Message-ID: <20211207205720.GA76876@bhelgaas>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20211206210224.539281124@linutronix.de>
+In-Reply-To: <20211206210224.600351129@linutronix.de>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211207_125706_453367_20D272C8 
-X-CRM114-Status: GOOD (  12.81  )
+X-CRM114-CacheID: sfid-20211207_125723_516942_8FB0633D 
+X-CRM114-Status: GOOD (  14.83  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,8 +86,9 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Mon, Dec 06, 2021 at 11:27:44PM +0100, Thomas Gleixner wrote:
-> Get rid of the pile of unneeded includes which accumulated over time.
+On Mon, Dec 06, 2021 at 11:27:46PM +0100, Thomas Gleixner wrote:
+> No need to walk the descriptors and check for each one whether the entries
+> pointer function argument is NULL. Do it once.
 > 
 > Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
 > Tested-by: Juergen Gross <jgross@suse.com>
@@ -95,43 +96,23 @@ On Mon, Dec 06, 2021 at 11:27:44PM +0100, Thomas Gleixner wrote:
 
 Acked-by: Bjorn Helgaas <bhelgaas@google.com>
 
-Nice, thanks!
-
 > ---
-> V2: Address build fail on powerpc - Cedric
-> ---
->  drivers/pci/msi.c |   16 ++++------------
->  1 file changed, 4 insertions(+), 12 deletions(-)
+>  drivers/pci/msi.c |    4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
 > --- a/drivers/pci/msi.c
 > +++ b/drivers/pci/msi.c
-> @@ -7,22 +7,14 @@
->   * Copyright (C) 2016 Christoph Hellwig.
->   */
+> @@ -642,8 +642,8 @@ static void msix_update_entries(struct p
+>  {
+>  	struct msi_desc *entry;
 >  
-> +#include <linux/acpi_iort.h>
->  #include <linux/err.h>
-> -#include <linux/mm.h>
-> -#include <linux/irq.h>
-> -#include <linux/interrupt.h>
->  #include <linux/export.h>
-> -#include <linux/ioport.h>
-> -#include <linux/pci.h>
-> -#include <linux/proc_fs.h>
-> -#include <linux/msi.h>
-> -#include <linux/smp.h>
-> -#include <linux/errno.h>
-> -#include <linux/io.h>
-> -#include <linux/acpi_iort.h>
-> -#include <linux/slab.h>
-> +#include <linux/irq.h>
->  #include <linux/irqdomain.h>
-> +#include <linux/msi.h>
->  #include <linux/of_irq.h>
-> +#include <linux/pci.h>
->  
->  #include "pci.h"
->  
+> -	for_each_pci_msi_entry(entry, dev) {
+> -		if (entries) {
+> +	if (entries) {
+> +		for_each_pci_msi_entry(entry, dev) {
+>  			entries->vector = entry->irq;
+>  			entries++;
+>  		}
 > 
 
 -- 
