@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 170A1C433F5
-	for <ath11k@archiver.kernel.org>; Tue,  7 Dec 2021 20:55:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E6FCC433F5
+	for <ath11k@archiver.kernel.org>; Tue,  7 Dec 2021 20:55:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Message-ID:
 	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-	List-Owner; bh=hSac0aT672L0vnO3KIrkgjN1LRiaGqAur8Nr5pxsH9M=; b=B/WAWXYqji655T
-	yMbvq67IdyzWxEXw/sPj20fr+Rof3fX77UgGUKnBj5/Swiic39SFJUxzvwgqfCpR9G9gfV0Yg8sm5
-	g90uyuhpVtDySthmzR6xg+uDbR8i9Kv3m9yv2IX5xI8FpQkf1eF729SfVQaWPiQ1n3Ei9rSBYfd/Y
-	eXevfIug9y/epG++L3eDbCxH0G0Vm/WclvcXm4BqBCGZDOlzzvQF12BM4KBxx1pM4x/QA63ib+JQH
-	nwer4NSo2D2xGW9NfPgpsr79EjO/QFr1jccblm7WJKqfNi57361JfNzUehCzMlgyX+yEmeUFOJSY1
-	NOB+IZ6J3rYKBRntIFqw==;
+	List-Owner; bh=hrxsabGjPUYhk5AL+pmpZRj3VsFPKIsZol4JVO/Mwm4=; b=h1Zce8N1i6s5Yl
+	Zh+Ua7X9ES+Yae7jx+v3EYQF5GOBAMkIs2XvF1tfx7KHxVPL9gtJ5ayhoPPN/+V83P2pNl2mvC9pR
+	E/m9g3GBBTtS3OMK86ffTNES5UiI6+1K/FoLw/ZQw0pNABgOi1IDT2+uAAZ0AR7oG0STgCv9b4oD6
+	Ik/mJaKpxa5vE1uzjsZNTSG4lo8H9Se3fIWbLt5jtMxlKgqVVjrk+oZhn9mWO7u7lMMyZqgaOsBpR
+	0A8LnjmSVI3lrY8ftKBMqdgznwKGZ0Kip61NpJOAH+QP/d77KNfthnZFsys8FiGNEwzpwrVwWi4Fw
+	tRQww22qVhM8bi6MgcFQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1muhUM-00A3vz-3l; Tue, 07 Dec 2021 20:55:02 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1muhUS-00A3yt-IE; Tue, 07 Dec 2021 20:55:08 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1muhU5-00A3sQ-V1
- for ath11k@lists.infradead.org; Tue, 07 Dec 2021 20:54:47 +0000
+ id 1muhUQ-00A3xG-4i
+ for ath11k@lists.infradead.org; Tue, 07 Dec 2021 20:55:07 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id A0A5AB81858;
- Tue,  7 Dec 2021 20:54:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E222C341C3;
- Tue,  7 Dec 2021 20:54:43 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id D73F3B81E7F;
+ Tue,  7 Dec 2021 20:55:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A28BC341CA;
+ Tue,  7 Dec 2021 20:55:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1638910483;
- bh=2TCFm6oMcOo2j9kU57EKGsnY8fkR6JvmY5FAYrIs66g=;
+ s=k20201202; t=1638910503;
+ bh=Fa6UchSERsdNVXky6PNS2vCw8nCpV4RsTu7TPsjmB4I=;
  h=Date:From:To:Cc:Subject:In-Reply-To:From;
- b=nsS3jKJ7qQGHDYJB47kov7AVBhzyG091DRuFfOsLF+34ALijihn9KZtlp+GJ6IKE8
- kwldgAGONyoShIXShWCqK6l38EuYcxpvxsfxzUOfye0qv3FNym4mEgnKFN3S4deZJn
- MK94vwclzEowmaVdB2cGhf7Z0a7/o3/oMmVUhVyJY2de/L6mR980HgZkZTFIElzJ/+
- epdz+yWDLvAPCET9jF0AcFlWO/tiWh+A6jWW8FLHS0WZbyvHO0pmCIW6QBNlbIsCJM
- H+HIHHhPv17Z3oQSzspeU71bWUAG5BFut+e0szyhVsCnMRESKTLgg/mxRT13eAuaiM
- cbQlCTOqnZvyg==
-Date: Tue, 7 Dec 2021 14:54:41 -0600
+ b=dvUfGzkAJKzccQlv0HtPexRzXLWw3+BexhSfcjdhY9OELj9M9shyPr2oxlHYgishh
+ t4D2z7Bdr+ncSq9kKTlJ1eWwQvEyIE70QCOcHPfTkykUuEbmkImTsvOBxAh+YrDT2N
+ e2tXRjJ7AyPRQqOviSDYGDRtTGTym9+e84h6CsKaxpAqC8y47ShWjPbJ5Wc+6tQEDN
+ O+w8x6jcjhb24uXwmpRRwPhRkrIfIv7GvPutd6orOK9sOuf81nkdYTyVSsRwR7X0hy
+ UTGVn2mumg3zTPmrl6DdJIgD9FUL38mTDmd4Yy4CHa5XbrINFDsrU5l0x2T6JYzzJO
+ QyWBUWsq4OuoA==
+Date: Tue, 7 Dec 2021 14:55:02 -0600
 From: Bjorn Helgaas <helgaas@kernel.org>
 To: Thomas Gleixner <tglx@linutronix.de>
 Cc: LKML <linux-kernel@vger.kernel.org>, Marc Zygnier <maz@kernel.org>,
@@ -62,14 +62,14 @@ Cc: LKML <linux-kernel@vger.kernel.org>, Marc Zygnier <maz@kernel.org>,
  Wei Liu <wei.liu@kernel.org>, linux-hyperv@vger.kernel.org,
  Christian Borntraeger <borntraeger@de.ibm.com>,
  Heiko Carstens <hca@linux.ibm.com>
-Subject: Re: [patch V2 06/23] PCI/MSI: Make pci_msi_domain_write_msg() static
-Message-ID: <20211207205441.GA76497@bhelgaas>
+Subject: Re: [patch V2 07/23] PCI/MSI: Remove msi_desc_to_pci_sysdata()
+Message-ID: <20211207205502.GA76553@bhelgaas>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20211206210224.157070464@linutronix.de>
+In-Reply-To: <20211206210224.210768199@linutronix.de>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211207_125446_316890_E8129695 
-X-CRM114-Status: GOOD (  18.08  )
+X-CRM114-CacheID: sfid-20211207_125506_346464_A943871E 
+X-CRM114-Status: GOOD (  13.80  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,75 +86,53 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Mon, Dec 06, 2021 at 11:27:33PM +0100, Thomas Gleixner wrote:
-> There is no point to have this function public as it is set by the PCI core
-> anyway when a PCI/MSI irqdomain is created.
+On Mon, Dec 06, 2021 at 11:27:34PM +0100, Thomas Gleixner wrote:
+> Last user is gone long ago.
 > 
 > Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
 > Tested-by: Juergen Gross <jgross@suse.com>
 > Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
 
-Acked-by: Bjorn Helgaas <bhelgaas@google.com>	# PCI
+Acked-by: Bjorn Helgaas <bhelgaas@google.com>
 
 > ---
->  drivers/irqchip/irq-gic-v2m.c            |    1 -
->  drivers/irqchip/irq-gic-v3-its-pci-msi.c |    1 -
->  drivers/irqchip/irq-gic-v3-mbi.c         |    1 -
->  drivers/pci/msi.c                        |    2 +-
->  include/linux/msi.h                      |    1 -
->  5 files changed, 1 insertion(+), 5 deletions(-)
+>  drivers/pci/msi.c   |    8 --------
+>  include/linux/msi.h |    5 -----
+>  2 files changed, 13 deletions(-)
 > 
-> --- a/drivers/irqchip/irq-gic-v2m.c
-> +++ b/drivers/irqchip/irq-gic-v2m.c
-> @@ -88,7 +88,6 @@ static struct irq_chip gicv2m_msi_irq_ch
->  	.irq_mask		= gicv2m_mask_msi_irq,
->  	.irq_unmask		= gicv2m_unmask_msi_irq,
->  	.irq_eoi		= irq_chip_eoi_parent,
-> -	.irq_write_msi_msg	= pci_msi_domain_write_msg,
->  };
->  
->  static struct msi_domain_info gicv2m_msi_domain_info = {
-> --- a/drivers/irqchip/irq-gic-v3-its-pci-msi.c
-> +++ b/drivers/irqchip/irq-gic-v3-its-pci-msi.c
-> @@ -28,7 +28,6 @@ static struct irq_chip its_msi_irq_chip
->  	.irq_unmask		= its_unmask_msi_irq,
->  	.irq_mask		= its_mask_msi_irq,
->  	.irq_eoi		= irq_chip_eoi_parent,
-> -	.irq_write_msi_msg	= pci_msi_domain_write_msg,
->  };
->  
->  static int its_pci_msi_vec_count(struct pci_dev *pdev, void *data)
-> --- a/drivers/irqchip/irq-gic-v3-mbi.c
-> +++ b/drivers/irqchip/irq-gic-v3-mbi.c
-> @@ -171,7 +171,6 @@ static struct irq_chip mbi_msi_irq_chip
->  	.irq_unmask		= mbi_unmask_msi_irq,
->  	.irq_eoi		= irq_chip_eoi_parent,
->  	.irq_compose_msi_msg	= mbi_compose_msi_msg,
-> -	.irq_write_msi_msg	= pci_msi_domain_write_msg,
->  };
->  
->  static struct msi_domain_info mbi_msi_domain_info = {
 > --- a/drivers/pci/msi.c
 > +++ b/drivers/pci/msi.c
-> @@ -1281,7 +1281,7 @@ EXPORT_SYMBOL_GPL(msi_desc_to_pci_sysdat
->   * @irq_data:	Pointer to interrupt data of the MSI interrupt
->   * @msg:	Pointer to the message
->   */
-> -void pci_msi_domain_write_msg(struct irq_data *irq_data, struct msi_msg *msg)
-> +static void pci_msi_domain_write_msg(struct irq_data *irq_data, struct msi_msg *msg)
->  {
->  	struct msi_desc *desc = irq_data_get_msi_desc(irq_data);
+> @@ -1267,14 +1267,6 @@ struct pci_dev *msi_desc_to_pci_dev(stru
+>  }
+>  EXPORT_SYMBOL(msi_desc_to_pci_dev);
 >  
+> -void *msi_desc_to_pci_sysdata(struct msi_desc *desc)
+> -{
+> -	struct pci_dev *dev = msi_desc_to_pci_dev(desc);
+> -
+> -	return dev->bus->sysdata;
+> -}
+> -EXPORT_SYMBOL_GPL(msi_desc_to_pci_sysdata);
+> -
+>  #ifdef CONFIG_PCI_MSI_IRQ_DOMAIN
+>  /**
+>   * pci_msi_domain_write_msg - Helper to write MSI message to PCI config space
 > --- a/include/linux/msi.h
 > +++ b/include/linux/msi.h
-> @@ -455,7 +455,6 @@ void *platform_msi_get_host_data(struct
->  #endif /* CONFIG_GENERIC_MSI_IRQ_DOMAIN */
+> @@ -218,13 +218,8 @@ static inline void msi_desc_set_iommu_co
+>  	for_each_msi_entry((desc), &(pdev)->dev)
 >  
->  #ifdef CONFIG_PCI_MSI_IRQ_DOMAIN
-> -void pci_msi_domain_write_msg(struct irq_data *irq_data, struct msi_msg *msg);
->  struct irq_domain *pci_msi_create_irq_domain(struct fwnode_handle *fwnode,
->  					     struct msi_domain_info *info,
->  					     struct irq_domain *parent);
+>  struct pci_dev *msi_desc_to_pci_dev(struct msi_desc *desc);
+> -void *msi_desc_to_pci_sysdata(struct msi_desc *desc);
+>  void pci_write_msi_msg(unsigned int irq, struct msi_msg *msg);
+>  #else /* CONFIG_PCI_MSI */
+> -static inline void *msi_desc_to_pci_sysdata(struct msi_desc *desc)
+> -{
+> -	return NULL;
+> -}
+>  static inline void pci_write_msi_msg(unsigned int irq, struct msi_msg *msg)
+>  {
+>  }
 > 
 
 -- 
