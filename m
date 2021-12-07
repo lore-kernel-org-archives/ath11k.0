@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 930CEC433EF
-	for <ath11k@archiver.kernel.org>; Tue,  7 Dec 2021 12:55:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45A2AC4332F
+	for <ath11k@archiver.kernel.org>; Tue,  7 Dec 2021 12:55:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
 	List-Post:List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=aaErJZIE6JaEu5dedXlwEYwv5URmmpvZD/EnpvCDcKE=; b=uCokZQAo25EaX9
-	0HGZgUXa1SrAjcqtlreXwwBi+H3GzYHAlAFiT36axvqX8tH6xqyJ4UNpg3IB9hy8KtcpGi1GgOquT
-	RHcCaVUgqIkNA+rK6Xr1oPHA5wAsY1SUQNnAi661zUVIwgXZ33+PTfhDuSyM4/zye4MFX6edeY+aV
-	IWlEwfWiip9ibP8V3GiQzXBfSpEHlGEcRWFFXSkuoLnTPB1EusN58EAHDwLTmfqUyQqe+ycEzBEf3
-	ZPqgwnpJ9czP3BPNQwu7hbvggVEita57EX2nZHCPv+6GRLbbL7ks+FL79eP6tfZ7aWaJgl2QYcacJ
-	cMvRiAGqPCZVuZkFQAyw==;
+	List-Owner; bh=KxyFZzhfa5VD5ndRHUGoj/QPamBXR2jl/ijsQDtGzJE=; b=wbvdr01sNV2N6d
+	rejRbTUMe5MhGDAzkt3+tSOmTcOWEM/+3aXH2kdgmEla/oMVosQHYvyzZ2GdfdRveknY5bs7EsYVb
+	XAw66lS32dgQT11ZOiZF4I8ILGBQVrIoOERBmMumDAPojHL+EcAiNfSodYxYEb0kp0XVQFFPlQdVK
+	KT3KPJ2dEX4NUdZF1lJbxW8FnFwdUoH2ECa/e88xg9dkaujald8WHuNHYAYXUf+tehR2kUdK5Hlb4
+	NQl00ii8fPvb2NAsCJvFjLEpCHi5dvgi3F1mJvsTXOQGb/Izm381Yd+xuxC+akJ8AdBlYgp/CwOp5
+	cA+EmI8U8Dey53djQIpg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mua0g-008ZFD-6v; Tue, 07 Dec 2021 12:55:54 +0000
-Received: from m43-7.mailgun.net ([69.72.43.7])
+	id 1mua0i-008ZGD-8O; Tue, 07 Dec 2021 12:55:56 +0000
+Received: from so254-9.mailgun.net ([198.61.254.9])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mua01-008Z0a-DV
- for ath11k@lists.infradead.org; Tue, 07 Dec 2021 12:55:15 +0000
+ id 1mua03-008Z1a-2a
+ for ath11k@lists.infradead.org; Tue, 07 Dec 2021 12:55:17 +0000
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
  q=dns/txt; 
- s=smtp; t=1638881712; h=References: In-Reply-To: Message-Id: Date:
+ s=smtp; t=1638881715; h=References: In-Reply-To: Message-Id: Date:
  Subject: Cc: To: From: Sender;
- bh=LrghA2BPxZFpQjzDKAGFKVXBwdp+/5HlSkw9Xdxl0cM=;
- b=EvTpUxPoJZNCZz17zcJG7f5q9zn2YRmrVQ0UbM+Sui75RRBojAV5Zcj7wVjBB0jHXBz+2BPu
- NHheR3MO6RxY/TO8lqHtA6CKaqMXBUjIvZo+Qjnq/BUjjP+GD9KQURe8uqWEkhXJ1ITueKgn
- 8F296bdDusjiCI8kOt3gvRZZBpo=
-X-Mailgun-Sending-Ip: 69.72.43.7
+ bh=WF6hobX6IpfquU2tMmcJSVCOpFtuiwuoVd4nIbekEIE=;
+ b=raYHpuiKkEzLAPtvRvfSKOnCigF0AlarU/lWH5TPgXnUAv6YVg5xYxd2vBqs+WuOhcksEhp0
+ UaRMBqVlaiKiNEFsrvRJYTF4Lh335WxCJGEdHbOzAYNYxR3ybxtC6MGRzAlI/zg4sR5H0kmn
+ XemzCu5m1dTqAWRuQlREmOdbMjQ=
+X-Mailgun-Sending-Ip: 198.61.254.9
 X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
- 61af59afdf12ba53c4dafcde (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 07 Dec 2021 12:55:11
+ smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
+ 61af59b203b7c5d147f52c83 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 07 Dec 2021 12:55:14
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id B5ABDC4338F; Tue,  7 Dec 2021 12:55:09 +0000 (UTC)
+ id 1AD13C43618; Tue,  7 Dec 2021 12:55:14 +0000 (UTC)
 Received: from akolli-linux.qualcomm.com
  (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
  (No client certificate requested) (Authenticated sender: akolli)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 5BA26C43616;
- Tue,  7 Dec 2021 12:55:07 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 5BA26C43616
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 5F4F4C4361A;
+ Tue,  7 Dec 2021 12:55:11 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 5F4F4C4361A
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
  dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
@@ -58,15 +58,15 @@ From: Anilkumar Kolli <akolli@codeaurora.org>
 To: ath11k@lists.infradead.org
 Cc: linux-wireless@vger.kernel.org,
 	Anilkumar Kolli <akolli@codeaurora.org>
-Subject: [PATCH v2 1/3] ath11k: Add htt cmd to enable full monitor mode
-Date: Tue,  7 Dec 2021 18:24:53 +0530
-Message-Id: <1638881695-22155-2-git-send-email-akolli@codeaurora.org>
+Subject: [PATCH v2 3/3] ath11k: Process full monitor mode rx support
+Date: Tue,  7 Dec 2021 18:24:55 +0530
+Message-Id: <1638881695-22155-4-git-send-email-akolli@codeaurora.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1638881695-22155-1-git-send-email-akolli@codeaurora.org>
 References: <1638881695-22155-1-git-send-email-akolli@codeaurora.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211207_045513_575213_81ED7C18 
-X-CRM114-Status: GOOD (  19.28  )
+X-CRM114-CacheID: sfid-20211207_045515_313294_E7545284 
+X-CRM114-Status: GOOD (  24.55  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,201 +84,576 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-A new hw_param full_monitor_mode is added to enable full
-monitor support for QCN9074.
-HTT_H2T_MSG_TYPE_RX_FULL_MONITOR_MODE cmd is sent to FW
-to enable the full monitor mode.
+In full monitor mode, monitor destination ring is read before monitor
+status ring. mon_dst_ring has ppdu id, reap till the end of PPDU. Add
+all the MPDUs to list. Start processing the status ring, if PPDU id in
+status ring is lagging behind, reap the status ring, once the PPDU ID
+matches, deliver the MSDU to upper layer. If status PPDU id leading,
+reap the mon_dst_ring.
+
+The advantage with full monitor mode is hardware has status buffers
+available for all the MPDUs in mon_dst_ring, which makes it possible
+to deliver more frames to be seen on sniffer.
 
 Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.4.0.1-01734-QCAHKSWPL_SILICONZ-1
 
 Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
 ---
 V2:
-  - Rebase on latest ath.git
+  - Update commit log (Kalle)
 
- drivers/net/wireless/ath/ath11k/core.c  |  5 ++++
- drivers/net/wireless/ath/ath11k/dp.h    | 28 +++++++++++++++++++
- drivers/net/wireless/ath/ath11k/dp_tx.c | 48 +++++++++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/dp_tx.h |  2 ++
- drivers/net/wireless/ath/ath11k/hw.h    |  1 +
- 5 files changed, 84 insertions(+)
+ drivers/net/wireless/ath/ath11k/dp.c    |   1 +
+ drivers/net/wireless/ath/ath11k/dp.h    |  26 +-
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 409 +++++++++++++++++++++++++++++++-
+ 3 files changed, 433 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index dd1a1bb078c3..072387bcdeb5 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -74,6 +74,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 					BIT(NL80211_IFTYPE_AP) |
- 					BIT(NL80211_IFTYPE_MESH_POINT),
- 		.supports_monitor = true,
-+		.full_monitor_mode = false,
- 		.supports_shadow_regs = false,
- 		.idle_ps = false,
- 		.supports_sta_ps = false,
-@@ -128,6 +129,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 					BIT(NL80211_IFTYPE_AP) |
- 					BIT(NL80211_IFTYPE_MESH_POINT),
- 		.supports_monitor = true,
-+		.full_monitor_mode = false,
- 		.supports_shadow_regs = false,
- 		.idle_ps = false,
- 		.supports_sta_ps = false,
-@@ -181,6 +183,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.interface_modes = BIT(NL80211_IFTYPE_STATION) |
- 					BIT(NL80211_IFTYPE_AP),
- 		.supports_monitor = false,
-+		.full_monitor_mode = false,
- 		.supports_shadow_regs = true,
- 		.idle_ps = true,
- 		.supports_sta_ps = true,
-@@ -234,6 +237,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 					BIT(NL80211_IFTYPE_AP) |
- 					BIT(NL80211_IFTYPE_MESH_POINT),
- 		.supports_monitor = true,
-+		.full_monitor_mode = true,
- 		.supports_shadow_regs = false,
- 		.idle_ps = false,
- 		.supports_sta_ps = false,
-@@ -287,6 +291,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.interface_modes = BIT(NL80211_IFTYPE_STATION) |
- 					BIT(NL80211_IFTYPE_AP),
- 		.supports_monitor = false,
-+		.full_monitor_mode = false,
- 		.supports_shadow_regs = true,
- 		.idle_ps = true,
- 		.supports_sta_ps = true,
+diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
+index 81b0b2baa461..8b790ce72e5d 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.c
++++ b/drivers/net/wireless/ath/ath11k/dp.c
+@@ -1051,6 +1051,7 @@ int ath11k_dp_alloc(struct ath11k_base *ab)
+ 
+ 	INIT_LIST_HEAD(&dp->reo_cmd_list);
+ 	INIT_LIST_HEAD(&dp->reo_cmd_cache_flush_list);
++	INIT_LIST_HEAD(&dp->dp_full_mon_mpdu_list);
+ 	spin_lock_init(&dp->reo_cmd_lock);
+ 
+ 	dp->reo_cmd_cache_flush_count = 0;
 diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
-index a4c36a9be338..10f234b3f11c 100644
+index 10f234b3f11c..409d6cc5a1d5 100644
 --- a/drivers/net/wireless/ath/ath11k/dp.h
 +++ b/drivers/net/wireless/ath/ath11k/dp.h
-@@ -292,6 +292,7 @@ enum htt_h2t_msg_type {
- 	HTT_H2T_MSG_TYPE_RX_RING_SELECTION_CFG	= 0xc,
- 	HTT_H2T_MSG_TYPE_EXT_STATS_CFG		= 0x10,
- 	HTT_H2T_MSG_TYPE_PPDU_STATS_CFG		= 0x11,
-+	HTT_H2T_MSG_TYPE_RX_FULL_MONITOR_MODE	= 0x17,
+@@ -89,6 +89,19 @@ struct dp_tx_ring {
+ 	int tx_status_tail;
  };
  
- #define HTT_VER_REQ_INFO_MSG_ID		GENMASK(7, 0)
-@@ -957,6 +958,33 @@ struct htt_rx_ring_tlv_filter {
- 	u32 pkt_filter_flags3; /* DATA */
- };
- 
-+#define HTT_RX_FULL_MON_MODE_CFG_CMD_INFO0_MSG_TYPE	GENMASK(7, 0)
-+#define HTT_RX_FULL_MON_MODE_CFG_CMD_INFO0_PDEV_ID	GENMASK(15, 8)
-+
-+#define HTT_RX_FULL_MON_MODE_CFG_CMD_CFG_ENABLE			BIT(0)
-+#define HTT_RX_FULL_MON_MODE_CFG_CMD_CFG_ZERO_MPDUS_END		BIT(1)
-+#define HTT_RX_FULL_MON_MODE_CFG_CMD_CFG_NON_ZERO_MPDUS_END	BIT(2)
-+#define HTT_RX_FULL_MON_MODE_CFG_CMD_CFG_RELEASE_RING		GENMASK(10, 3)
-+
-+/**
-+ * Enumeration for full monitor mode destination ring select
-+ * 0 - REO destination ring select
-+ * 1 - FW destination ring select
-+ * 2 - SW destination ring select
-+ * 3 - Release destination ring select
-+ */
-+enum htt_rx_full_mon_release_ring {
-+	HTT_RX_MON_RING_REO,
-+	HTT_RX_MON_RING_FW,
-+	HTT_RX_MON_RING_SW,
-+	HTT_RX_MON_RING_RELEASE,
++enum dp_mon_status_buf_state {
++	/* PPDU id matches in dst ring and status ring */
++	DP_MON_STATUS_MATCH,
++	/* status ring dma is not done */
++	DP_MON_STATUS_NO_DMA,
++	/* status ring is lagging, reap status ring */
++	DP_MON_STATUS_LAG,
++	/* status ring is leading, reap dst ring and drop */
++	DP_MON_STATUS_LEAD,
++	/* replinish monitor status ring */
++	DP_MON_STATUS_REPLINISH,
 +};
 +
-+struct htt_rx_full_monitor_mode_cfg_cmd {
-+	u32 info0;
-+	u32 cfg;
-+} __packed;
+ struct ath11k_pdev_mon_stats {
+ 	u32 status_ppdu_state;
+ 	u32 status_ppdu_start;
+@@ -104,6 +117,12 @@ struct ath11k_pdev_mon_stats {
+ 	u32 dup_mon_buf_cnt;
+ };
+ 
++struct dp_full_mon_mpdu {
++	struct list_head list;
++	struct sk_buff *head;
++	struct sk_buff *tail;
++};
 +
- /* HTT message target->host */
+ struct dp_link_desc_bank {
+ 	void *vaddr_unaligned;
+ 	void *vaddr;
+@@ -135,7 +154,11 @@ struct ath11k_mon_data {
+ 	u32 mon_last_buf_cookie;
+ 	u64 mon_last_linkdesc_paddr;
+ 	u16 chan_noise_floor;
+-
++	bool hold_mon_dst_ring;
++	enum dp_mon_status_buf_state buf_state;
++	dma_addr_t mon_status_paddr;
++	struct dp_full_mon_mpdu *mon_mpdu;
++	struct hal_sw_mon_ring_entries sw_mon_entries;
+ 	struct ath11k_pdev_mon_stats rx_mon_stats;
+ 	/* lock for monitor data */
+ 	spinlock_t mon_lock;
+@@ -245,6 +268,7 @@ struct ath11k_dp {
+ 	struct hal_wbm_idle_scatter_list scatter_list[DP_IDLE_SCATTER_BUFS_MAX];
+ 	struct list_head reo_cmd_list;
+ 	struct list_head reo_cmd_cache_flush_list;
++	struct list_head dp_full_mon_mpdu_list;
+ 	u32 reo_cmd_cache_flush_count;
+ 	/**
+ 	 * protects access to below fields,
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 40f1c8607389..38eeb6e7c6b6 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -2942,6 +2942,43 @@ int ath11k_dp_rx_mon_status_bufs_replenish(struct ath11k_base *ab, int mac_id,
+ 	return req_entries - num_remain;
+ }
  
- enum htt_t2h_msg_type {
-diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
-index 7587e1679ec3..8560f3b33812 100644
---- a/drivers/net/wireless/ath/ath11k/dp_tx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
-@@ -1033,6 +1033,15 @@ int ath11k_dp_tx_htt_monitor_mode_ring_config(struct ath11k *ar, bool reset)
- 	struct htt_rx_ring_tlv_filter tlv_filter = {0};
- 	int ret = 0, ring_id = 0, i;
++#define ATH11K_DP_RX_FULL_MON_PPDU_ID_WRAP 32535
++
++static void
++ath11k_dp_rx_mon_update_status_buf_state(struct ath11k_mon_data *pmon,
++					 struct hal_tlv_hdr *tlv)
++{
++	struct hal_rx_ppdu_start *ppdu_start;
++	u16 ppdu_id_diff, ppdu_id, tlv_len;
++	u8 *ptr;
++
++	/* PPDU id is part of second tlv, move ptr to second tlv */
++	tlv_len = FIELD_GET(HAL_TLV_HDR_LEN, tlv->tl);
++	ptr = (u8 *)tlv;
++	ptr += sizeof(*tlv) + tlv_len;
++	tlv = (struct hal_tlv_hdr *)ptr;
++
++	if (FIELD_GET(HAL_TLV_HDR_TAG, tlv->tl) != HAL_RX_PPDU_START)
++		return;
++
++	ptr += sizeof(*tlv);
++	ppdu_start = (struct hal_rx_ppdu_start *)ptr;
++	ppdu_id = FIELD_GET(HAL_RX_PPDU_START_INFO0_PPDU_ID,
++			    __le32_to_cpu(ppdu_start->info0));
++
++	if (pmon->sw_mon_entries.ppdu_id < ppdu_id) {
++		pmon->buf_state = DP_MON_STATUS_LEAD;
++		ppdu_id_diff = ppdu_id - pmon->sw_mon_entries.ppdu_id;
++		if (ppdu_id_diff > ATH11K_DP_RX_FULL_MON_PPDU_ID_WRAP)
++			pmon->buf_state = DP_MON_STATUS_LAG;
++	} else if (pmon->sw_mon_entries.ppdu_id > ppdu_id) {
++		pmon->buf_state = DP_MON_STATUS_LAG;
++		ppdu_id_diff = pmon->sw_mon_entries.ppdu_id - ppdu_id;
++		if (ppdu_id_diff > ATH11K_DP_RX_FULL_MON_PPDU_ID_WRAP)
++			pmon->buf_state = DP_MON_STATUS_LEAD;
++	}
++}
++
+ static int ath11k_dp_rx_reap_mon_status_ring(struct ath11k_base *ab, int mac_id,
+ 					     int *budget, struct sk_buff_head *skb_list)
+ {
+@@ -2949,6 +2986,7 @@ static int ath11k_dp_rx_reap_mon_status_ring(struct ath11k_base *ab, int mac_id,
+ 	const struct ath11k_hw_hal_params *hal_params;
+ 	struct ath11k_pdev_dp *dp;
+ 	struct dp_rxdma_ring *rx_ring;
++	struct ath11k_mon_data *pmon;
+ 	struct hal_srng *srng;
+ 	void *rx_mon_status_desc;
+ 	struct sk_buff *skb;
+@@ -2962,6 +3000,7 @@ static int ath11k_dp_rx_reap_mon_status_ring(struct ath11k_base *ab, int mac_id,
  
-+	if (ab->hw_params.full_monitor_mode) {
-+		ret = ath11k_dp_tx_htt_rx_full_mon_setup(ab,
-+							 dp->mac_id, !reset);
-+		if (ret < 0) {
-+			ath11k_err(ab, "failed to setup full monitor %d\n", ret);
-+			return ret;
+ 	ar = ab->pdevs[ath11k_hw_mac_id_to_pdev_id(&ab->hw_params, mac_id)].ar;
+ 	dp = &ar->dp;
++	pmon = &dp->mon_data;
+ 	srng_id = ath11k_hw_mac_id_to_srng_id(&ab->hw_params, mac_id);
+ 	rx_ring = &dp->rx_mon_status_refill_ring[srng_id];
+ 
+@@ -2974,8 +3013,10 @@ static int ath11k_dp_rx_reap_mon_status_ring(struct ath11k_base *ab, int mac_id,
+ 		*budget -= 1;
+ 		rx_mon_status_desc =
+ 			ath11k_hal_srng_src_peek(ab, srng);
+-		if (!rx_mon_status_desc)
++		if (!rx_mon_status_desc) {
++			pmon->buf_state = DP_MON_STATUS_REPLINISH;
+ 			break;
++		}
+ 
+ 		ath11k_hal_rx_buf_addr_info_get(rx_mon_status_desc, &paddr,
+ 						&cookie, &rbm);
+@@ -2988,6 +3029,7 @@ static int ath11k_dp_rx_reap_mon_status_ring(struct ath11k_base *ab, int mac_id,
+ 				ath11k_warn(ab, "rx monitor status with invalid buf_id %d\n",
+ 					    buf_id);
+ 				spin_unlock_bh(&rx_ring->idr_lock);
++				pmon->buf_state = DP_MON_STATUS_REPLINISH;
+ 				goto move_next;
+ 			}
+ 
+@@ -3007,10 +3049,18 @@ static int ath11k_dp_rx_reap_mon_status_ring(struct ath11k_base *ab, int mac_id,
+ 					    FIELD_GET(HAL_TLV_HDR_TAG,
+ 						      tlv->tl));
+ 				dev_kfree_skb_any(skb);
++				pmon->buf_state = DP_MON_STATUS_NO_DMA;
+ 				goto move_next;
+ 			}
+ 
++			if (ab->hw_params.full_monitor_mode) {
++				ath11k_dp_rx_mon_update_status_buf_state(pmon, tlv);
++				if (paddr == pmon->mon_status_paddr)
++					pmon->buf_state = DP_MON_STATUS_MATCH;
++			}
+ 			__skb_queue_tail(skb_list, skb);
++		} else {
++			pmon->buf_state = DP_MON_STATUS_REPLINISH;
+ 		}
+ move_next:
+ 		skb = ath11k_dp_rx_alloc_mon_status_buf(ab, rx_ring,
+@@ -5098,6 +5148,357 @@ static void ath11k_dp_rx_mon_status_process_tlv(struct ath11k *ar,
+ 	}
+ }
+ 
++static u32
++ath11k_dp_rx_full_mon_mpdu_pop(struct ath11k *ar,
++			       void *ring_entry, struct sk_buff **head_msdu,
++			       struct sk_buff **tail_msdu,
++			       struct hal_sw_mon_ring_entries *sw_mon_entries)
++{
++	struct ath11k_pdev_dp *dp = &ar->dp;
++	struct ath11k_mon_data *pmon = &dp->mon_data;
++	struct dp_rxdma_ring *rx_ring = &dp->rxdma_mon_buf_ring;
++	struct sk_buff *msdu = NULL, *last = NULL;
++	struct hal_sw_monitor_ring *sw_desc = ring_entry;
++	struct hal_rx_msdu_list msdu_list;
++	struct hal_rx_desc *rx_desc;
++	struct ath11k_skb_rxcb *rxcb;
++	void *rx_msdu_link_desc;
++	void *p_buf_addr_info, *p_last_buf_addr_info;
++	int buf_id, i = 0;
++	u32 rx_buf_size, rx_pkt_offset, l2_hdr_offset;
++	u32 rx_bufs_used = 0, msdu_cnt = 0;
++	u32 total_len = 0, frag_len = 0, sw_cookie;
++	u16 num_msdus = 0;
++	u8 rxdma_err, rbm;
++	bool is_frag, is_first_msdu;
++	bool drop_mpdu = false;
++
++	ath11k_hal_rx_sw_mon_ring_buf_paddr_get(ring_entry, sw_mon_entries);
++
++	sw_cookie = sw_mon_entries->mon_dst_sw_cookie;
++	sw_mon_entries->end_of_ppdu = false;
++	sw_mon_entries->drop_ppdu = false;
++	p_last_buf_addr_info = sw_mon_entries->dst_buf_addr_info;
++	msdu_cnt = sw_mon_entries->msdu_cnt;
++
++	sw_mon_entries->end_of_ppdu =
++		FIELD_GET(HAL_SW_MON_RING_INFO0_END_OF_PPDU, sw_desc->info0);
++	if (sw_mon_entries->end_of_ppdu)
++		return rx_bufs_used;
++
++	if (FIELD_GET(HAL_SW_MON_RING_INFO0_RXDMA_PUSH_REASON,
++		      sw_desc->info0) ==
++		      HAL_REO_DEST_RING_PUSH_REASON_ERR_DETECTED) {
++		rxdma_err =
++			FIELD_GET(HAL_SW_MON_RING_INFO0_RXDMA_ERROR_CODE,
++				  sw_desc->info0);
++		if (rxdma_err == HAL_REO_ENTR_RING_RXDMA_ECODE_FLUSH_REQUEST_ERR ||
++		    rxdma_err == HAL_REO_ENTR_RING_RXDMA_ECODE_MPDU_LEN_ERR ||
++		    rxdma_err == HAL_REO_ENTR_RING_RXDMA_ECODE_OVERFLOW_ERR) {
++			pmon->rx_mon_stats.dest_mpdu_drop++;
++			drop_mpdu = true;
 +		}
 +	}
 +
- 	ring_id = dp->rxdma_mon_buf_ring.refill_buf_ring.ring_id;
- 
- 	if (!reset) {
-@@ -1098,3 +1107,42 @@ int ath11k_dp_tx_htt_monitor_mode_ring_config(struct ath11k *ar, bool reset)
- 
- 	return ret;
- }
++	is_frag = false;
++	is_first_msdu = true;
 +
-+int ath11k_dp_tx_htt_rx_full_mon_setup(struct ath11k_base *ab, int mac_id,
-+				       bool config)
++	do {
++		rx_msdu_link_desc =
++			(u8 *)pmon->link_desc_banks[sw_cookie].vaddr +
++			(sw_mon_entries->mon_dst_paddr -
++			 pmon->link_desc_banks[sw_cookie].paddr);
++
++		ath11k_hal_rx_msdu_list_get(ar, rx_msdu_link_desc, &msdu_list,
++					    &num_msdus);
++
++		for (i = 0; i < num_msdus; i++) {
++			buf_id = FIELD_GET(DP_RXDMA_BUF_COOKIE_BUF_ID,
++					   msdu_list.sw_cookie[i]);
++
++			spin_lock_bh(&rx_ring->idr_lock);
++			msdu = idr_find(&rx_ring->bufs_idr, buf_id);
++			if (!msdu) {
++				ath11k_dbg(ar->ab, ATH11K_DBG_DATA,
++					   "full mon msdu_pop: invalid buf_id %d\n",
++					    buf_id);
++				spin_unlock_bh(&rx_ring->idr_lock);
++				break;
++			}
++			idr_remove(&rx_ring->bufs_idr, buf_id);
++			spin_unlock_bh(&rx_ring->idr_lock);
++
++			rxcb = ATH11K_SKB_RXCB(msdu);
++			if (!rxcb->unmapped) {
++				dma_unmap_single(ar->ab->dev, rxcb->paddr,
++						 msdu->len +
++						 skb_tailroom(msdu),
++						 DMA_FROM_DEVICE);
++				rxcb->unmapped = 1;
++			}
++			if (drop_mpdu) {
++				ath11k_dbg(ar->ab, ATH11K_DBG_DATA,
++					   "full mon: i %d drop msdu %p *ppdu_id %x\n",
++					   i, msdu, sw_mon_entries->ppdu_id);
++				dev_kfree_skb_any(msdu);
++				msdu_cnt--;
++				goto next_msdu;
++			}
++
++			rx_desc = (struct hal_rx_desc *)msdu->data;
++
++			rx_pkt_offset = sizeof(struct hal_rx_desc);
++			l2_hdr_offset = ath11k_dp_rx_h_msdu_end_l3pad(ar->ab, rx_desc);
++
++			if (is_first_msdu) {
++				if (!ath11k_dp_rxdesc_mpdu_valid(ar->ab, rx_desc)) {
++					drop_mpdu = true;
++					dev_kfree_skb_any(msdu);
++					msdu = NULL;
++					goto next_msdu;
++				}
++				is_first_msdu = false;
++			}
++
++			ath11k_dp_mon_get_buf_len(&msdu_list.msdu_info[i],
++						  &is_frag, &total_len,
++						  &frag_len, &msdu_cnt);
++
++			rx_buf_size = rx_pkt_offset + l2_hdr_offset + frag_len;
++
++			ath11k_dp_pkt_set_pktlen(msdu, rx_buf_size);
++
++			if (!(*head_msdu))
++				*head_msdu = msdu;
++			else if (last)
++				last->next = msdu;
++
++			last = msdu;
++next_msdu:
++			rx_bufs_used++;
++		}
++
++		ath11k_dp_rx_mon_next_link_desc_get(rx_msdu_link_desc,
++						    &sw_mon_entries->mon_dst_paddr,
++						    &sw_mon_entries->mon_dst_sw_cookie,
++						    &rbm,
++						    &p_buf_addr_info);
++
++		if (ath11k_dp_rx_monitor_link_desc_return(ar,
++							  p_last_buf_addr_info,
++							  dp->mac_id))
++			ath11k_dbg(ar->ab, ATH11K_DBG_DATA,
++				   "full mon: dp_rx_monitor_link_desc_return failed\n");
++
++		p_last_buf_addr_info = p_buf_addr_info;
++
++	} while (sw_mon_entries->mon_dst_paddr && msdu_cnt);
++
++	if (last)
++		last->next = NULL;
++
++	*tail_msdu = msdu;
++
++	return rx_bufs_used;
++}
++
++static int ath11k_dp_rx_full_mon_prepare_mpdu(struct ath11k_dp *dp,
++					      struct dp_full_mon_mpdu *mon_mpdu,
++					      struct sk_buff *head,
++					      struct sk_buff *tail)
 +{
-+	struct htt_rx_full_monitor_mode_cfg_cmd *cmd;
-+	struct sk_buff *skb;
-+	int ret, len = sizeof(*cmd);
-+
-+	skb = ath11k_htc_alloc_skb(ab, len);
-+	if (!skb)
++	mon_mpdu = kzalloc(sizeof(*mon_mpdu), GFP_ATOMIC);
++	if (!mon_mpdu)
 +		return -ENOMEM;
 +
-+	skb_put(skb, len);
-+	cmd = (struct htt_rx_full_monitor_mode_cfg_cmd *)skb->data;
-+	memset(cmd, 0, sizeof(*cmd));
-+	cmd->info0 = FIELD_PREP(HTT_RX_FULL_MON_MODE_CFG_CMD_INFO0_MSG_TYPE,
-+				HTT_H2T_MSG_TYPE_RX_FULL_MONITOR_MODE);
-+
-+	cmd->info0 |= FIELD_PREP(HTT_RX_FULL_MON_MODE_CFG_CMD_INFO0_PDEV_ID, mac_id);
-+
-+	cmd->cfg = HTT_RX_FULL_MON_MODE_CFG_CMD_CFG_ENABLE |
-+		   FIELD_PREP(HTT_RX_FULL_MON_MODE_CFG_CMD_CFG_RELEASE_RING,
-+			      HTT_RX_MON_RING_SW);
-+	if (config) {
-+		cmd->cfg |= HTT_RX_FULL_MON_MODE_CFG_CMD_CFG_ZERO_MPDUS_END |
-+			    HTT_RX_FULL_MON_MODE_CFG_CMD_CFG_NON_ZERO_MPDUS_END;
-+	}
-+
-+	ret = ath11k_htc_send(&ab->htc, ab->dp.eid, skb);
-+	if (ret)
-+		goto err_free;
++	list_add_tail(&mon_mpdu->list, &dp->dp_full_mon_mpdu_list);
++	mon_mpdu->head = head;
++	mon_mpdu->tail = tail;
 +
 +	return 0;
++}
 +
-+err_free:
-+	dev_kfree_skb_any(skb);
++static void ath11k_dp_rx_full_mon_drop_ppdu(struct ath11k_dp *dp,
++					    struct dp_full_mon_mpdu *mon_mpdu)
++{
++	struct dp_full_mon_mpdu *tmp;
++	struct sk_buff *tmp_msdu, *skb_next;
++
++	if (list_empty(&dp->dp_full_mon_mpdu_list))
++		return;
++
++	list_for_each_entry_safe(mon_mpdu, tmp, &dp->dp_full_mon_mpdu_list, list) {
++		list_del(&mon_mpdu->list);
++
++		tmp_msdu = mon_mpdu->head;
++		while (tmp_msdu) {
++			skb_next = tmp_msdu->next;
++			dev_kfree_skb_any(tmp_msdu);
++			tmp_msdu = skb_next;
++		}
++
++		kfree(mon_mpdu);
++	}
++}
++
++static int ath11k_dp_rx_full_mon_deliver_ppdu(struct ath11k *ar,
++					      int mac_id,
++					      struct ath11k_mon_data *pmon,
++					      struct napi_struct *napi)
++{
++	struct ath11k_pdev_mon_stats *rx_mon_stats;
++	struct dp_full_mon_mpdu *tmp;
++	struct dp_full_mon_mpdu *mon_mpdu = pmon->mon_mpdu;
++	struct sk_buff *head_msdu, *tail_msdu;
++	struct ath11k_base *ab = ar->ab;
++	struct ath11k_dp *dp = &ab->dp;
++	int ret;
++
++	rx_mon_stats = &pmon->rx_mon_stats;
++
++	list_for_each_entry_safe(mon_mpdu, tmp, &dp->dp_full_mon_mpdu_list, list) {
++		list_del(&mon_mpdu->list);
++		head_msdu = mon_mpdu->head;
++		tail_msdu = mon_mpdu->tail;
++		if (head_msdu && tail_msdu) {
++			ret = ath11k_dp_rx_mon_deliver(ar, mac_id, head_msdu,
++						       tail_msdu, napi);
++			rx_mon_stats->dest_mpdu_done++;
++			ath11k_dbg(ar->ab, ATH11K_DBG_DATA, "full mon: deliver ppdu\n");
++		}
++		kfree(mon_mpdu);
++	}
 +
 +	return ret;
 +}
-diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.h b/drivers/net/wireless/ath/ath11k/dp_tx.h
-index 698b907b878d..e373dbccf417 100644
---- a/drivers/net/wireless/ath/ath11k/dp_tx.h
-+++ b/drivers/net/wireless/ath/ath11k/dp_tx.h
-@@ -37,4 +37,6 @@ int ath11k_dp_tx_htt_rx_filter_setup(struct ath11k_base *ab, u32 ring_id,
- 				     int rx_buf_size,
- 				     struct htt_rx_ring_tlv_filter *tlv_filter);
++
++static int
++ath11k_dp_rx_process_full_mon_status_ring(struct ath11k_base *ab, int mac_id,
++					  struct napi_struct *napi, int budget)
++{
++	struct ath11k *ar = ab->pdevs[mac_id].ar;
++	struct ath11k_pdev_dp *dp = &ar->dp;
++	struct ath11k_mon_data *pmon = &dp->mon_data;
++	struct hal_sw_mon_ring_entries *sw_mon_entries;
++	int quota = 0, work = 0, count;
++
++	sw_mon_entries = &pmon->sw_mon_entries;
++
++	while (pmon->hold_mon_dst_ring) {
++		quota = ath11k_dp_rx_process_mon_status(ab, mac_id,
++							napi, 1);
++		if (pmon->buf_state == DP_MON_STATUS_MATCH) {
++			count = sw_mon_entries->status_buf_count;
++			if (count > 1) {
++				quota += ath11k_dp_rx_process_mon_status(ab, mac_id,
++									 napi, count);
++			}
++
++			ath11k_dp_rx_full_mon_deliver_ppdu(ar, dp->mac_id,
++							   pmon, napi);
++			pmon->hold_mon_dst_ring = false;
++		} else if (!pmon->mon_status_paddr ||
++			   pmon->buf_state == DP_MON_STATUS_LEAD) {
++			sw_mon_entries->drop_ppdu = true;
++			pmon->hold_mon_dst_ring = false;
++		}
++
++		if (!quota)
++			break;
++
++		work += quota;
++	}
++
++	if (sw_mon_entries->drop_ppdu)
++		ath11k_dp_rx_full_mon_drop_ppdu(&ab->dp, pmon->mon_mpdu);
++
++	return work;
++}
++
++static int ath11k_dp_full_mon_process_rx(struct ath11k_base *ab, int mac_id,
++					 struct napi_struct *napi, int budget)
++{
++	struct ath11k *ar = ab->pdevs[mac_id].ar;
++	struct ath11k_pdev_dp *dp = &ar->dp;
++	struct ath11k_mon_data *pmon = &dp->mon_data;
++	struct hal_sw_mon_ring_entries *sw_mon_entries;
++	struct ath11k_pdev_mon_stats *rx_mon_stats;
++	struct sk_buff *head_msdu, *tail_msdu;
++	void *mon_dst_srng = &ar->ab->hal.srng_list[dp->rxdma_mon_dst_ring.ring_id];
++	void *ring_entry;
++	u32 rx_bufs_used = 0, mpdu_rx_bufs_used;
++	int quota = 0, ret;
++	bool break_dst_ring = false;
++
++	spin_lock_bh(&pmon->mon_lock);
++
++	sw_mon_entries = &pmon->sw_mon_entries;
++	rx_mon_stats = &pmon->rx_mon_stats;
++
++	if (pmon->hold_mon_dst_ring) {
++		spin_unlock_bh(&pmon->mon_lock);
++		goto reap_status_ring;
++	}
++
++	ath11k_hal_srng_access_begin(ar->ab, mon_dst_srng);
++	while ((ring_entry = ath11k_hal_srng_dst_peek(ar->ab, mon_dst_srng))) {
++		head_msdu = NULL;
++		tail_msdu = NULL;
++
++		mpdu_rx_bufs_used = ath11k_dp_rx_full_mon_mpdu_pop(ar, ring_entry,
++								   &head_msdu,
++								   &tail_msdu,
++								   sw_mon_entries);
++		rx_bufs_used += mpdu_rx_bufs_used;
++
++		if (!sw_mon_entries->end_of_ppdu) {
++			if (head_msdu) {
++				ret = ath11k_dp_rx_full_mon_prepare_mpdu(&ab->dp,
++									 pmon->mon_mpdu,
++									 head_msdu,
++									 tail_msdu);
++				if (ret)
++					break_dst_ring = true;
++			}
++
++			goto next_entry;
++		} else {
++			if (!sw_mon_entries->ppdu_id &&
++			    !sw_mon_entries->mon_status_paddr) {
++				break_dst_ring = true;
++				goto next_entry;
++			}
++		}
++
++		rx_mon_stats->dest_ppdu_done++;
++		pmon->mon_ppdu_status = DP_PPDU_STATUS_START;
++		pmon->buf_state = DP_MON_STATUS_LAG;
++		pmon->mon_status_paddr = sw_mon_entries->mon_status_paddr;
++		pmon->hold_mon_dst_ring = true;
++next_entry:
++		ring_entry = ath11k_hal_srng_dst_get_next_entry(ar->ab,
++								mon_dst_srng);
++		if (break_dst_ring)
++			break;
++	}
++
++	ath11k_hal_srng_access_end(ar->ab, mon_dst_srng);
++	spin_unlock_bh(&pmon->mon_lock);
++
++	if (rx_bufs_used) {
++		ath11k_dp_rxbufs_replenish(ar->ab, dp->mac_id,
++					   &dp->rxdma_mon_buf_ring,
++					   rx_bufs_used,
++					   HAL_RX_BUF_RBM_SW3_BM);
++	}
++
++reap_status_ring:
++	quota = ath11k_dp_rx_process_full_mon_status_ring(ab, mac_id,
++							  napi, budget);
++
++	return quota;
++}
++
+ static int ath11k_dp_mon_process_rx(struct ath11k_base *ab, int mac_id,
+ 				    struct napi_struct *napi, int budget)
+ {
+@@ -5120,10 +5521,14 @@ int ath11k_dp_rx_process_mon_rings(struct ath11k_base *ab, int mac_id,
+ 	struct ath11k *ar = ath11k_ab_to_ar(ab, mac_id);
+ 	int ret = 0;
  
-+int ath11k_dp_tx_htt_rx_full_mon_setup(struct ath11k_base *ab, int mac_id,
-+				       bool config);
- #endif
-diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
-index 2c9d232ebfed..fe6e0cb9476c 100644
---- a/drivers/net/wireless/ath/ath11k/hw.h
-+++ b/drivers/net/wireless/ath/ath11k/hw.h
-@@ -168,6 +168,7 @@ struct ath11k_hw_params {
+-	if (test_bit(ATH11K_FLAG_MONITOR_STARTED, &ar->monitor_flags))
++	if (test_bit(ATH11K_FLAG_MONITOR_STARTED, &ar->monitor_flags) &&
++	    ab->hw_params.full_monitor_mode)
++		ret = ath11k_dp_full_mon_process_rx(ab, mac_id, napi, budget);
++	else if (test_bit(ATH11K_FLAG_MONITOR_STARTED, &ar->monitor_flags))
+ 		ret = ath11k_dp_mon_process_rx(ab, mac_id, napi, budget);
+ 	else
+ 		ret = ath11k_dp_rx_process_mon_status(ab, mac_id, napi, budget);
++
+ 	return ret;
+ }
  
- 	u16 interface_modes;
- 	bool supports_monitor;
-+	bool full_monitor_mode;
- 	bool supports_shadow_regs;
- 	bool idle_ps;
- 	bool supports_sta_ps;
 -- 
 2.7.4
 
