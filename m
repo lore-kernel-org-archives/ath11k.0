@@ -4,73 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8668CC433EF
-	for <ath11k@archiver.kernel.org>; Tue,  7 Dec 2021 21:02:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 128B5C433EF
+	for <ath11k@archiver.kernel.org>; Tue,  7 Dec 2021 23:41:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-	List-Owner; bh=uvIt8qdy53tHqScYFREJN9f1nk0LTquwFCCDRqFspno=; b=NBtWRTrU06H7fK
-	IQwglg3FBDXNt02kmIXqMyLPxuQYDGhROOjaCLc4p9nKskk3GtSUeQEkPCAkKioKHxD4P7ncj+Jbx
-	pU+90kEBlbzoMkwgZ6qISvBUoZvVm2dXqjPYUSb2cvCyprXQNGebRARaQhU43ca/1PWH+ue/V+HEI
-	C6Ata/LGQHYqA4DqH0DVd71XbFCAU/4ukAsZYOp5M6Y8Jwl+f17lLtA96GYzIvxKdIdnQKNRCu72m
-	YxXCEbSCNlFEDEpQ+q1atyPu+H8wQVofIgVDo+5ijF2jhoBSU3yum8G0CZg/HlD0O4k04Vn2YvS1j
-	bFDJhQRweOLtPm1R3Exg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:Cc:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=kwyBw9pQpMDz+LO50KK6UN/1eIUGguLlVolZBudZXHo=; b=nu4aTglwUu/r9ASUF0DuzAQ62d
+	nrtBeHlxNcfkiRIfpFeAhnKorPkueNaQWtm5TznYXgWvYCA5LgDXKyVZMfTngO8Hgoy7FeGX1xMft
+	k/SQwaHfU8tEegRhpAu9/kLzNsLrCDHqaJ8XYSp1PkRMerm1pAtBwpKGxQeV891O3IaWPHlItDZJ1
+	rQaXCDiiU3KTd3ggvkU6Swn5VBBX+jyGjCCxcIi8U8B4MHHGnV75OoCvJrVOECObpPD4XiKTv+V82
+	0iSk5oFUPbpNzmiAGK0RzOzfpF8AjUAuKqikRQ3cKxJ9ZHq4qX8egMYeqBa5D6Quh3g7ci/GLEk2k
+	jHdpAkBA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1muhbp-00A6nf-In; Tue, 07 Dec 2021 21:02:45 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1muk5n-00ALif-WB; Tue, 07 Dec 2021 23:41:52 +0000
+Received: from so254-9.mailgun.net ([198.61.254.9])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1muhbm-00A6lY-BA
- for ath11k@lists.infradead.org; Tue, 07 Dec 2021 21:02:43 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 0ED39B81E85;
- Tue,  7 Dec 2021 21:02:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5DF0FC341C1;
- Tue,  7 Dec 2021 21:02:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1638910959;
- bh=xQoYzuJZBtazlb9l9/rEZFpq4l8ZITO51ml+vNgPc6M=;
- h=Date:From:To:Cc:Subject:In-Reply-To:From;
- b=e153nty81BUAPS50lzOeG3i/XMpm26Pk8TGxhpDoheH+aGOAhJjiCObFncc/cOH46
- OXARkgcqJJlGa0F/Bsl/N/Hr8iyx5YBElDJEc4KBNNajc4emj6cdjk7cQoxzm32rM6
- wS8QDvcYSbelmRSilLFSFpzwM4nEMGo1OciLG1fy1ib0RAXNhpEhAgwC7XOVLwtEMg
- hUh+UVjgpZDPJcdCSkYndl3E5r7GBkkzKgk8s3NaLe/CmCRfbyieQFOca/oFRIERXj
- HKyqHP6oyciLgO6YSOX23lsQkoLBX7Z1J+QJANGpc3FC3xvrJLcihkCi836KsOw4gQ
- 4SgZq/E6VBAOQ==
-Date: Tue, 7 Dec 2021 15:02:38 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Thomas Gleixner <tglx@linutronix.de>
-Cc: LKML <linux-kernel@vger.kernel.org>, Marc Zygnier <maz@kernel.org>,
- Alex Williamson <alex.williamson@redhat.com>,
- Kevin Tian <kevin.tian@intel.com>, Jason Gunthorpe <jgg@nvidia.com>,
- Megha Dey <megha.dey@intel.com>, Ashok Raj <ashok.raj@intel.com>,
- linux-pci@vger.kernel.org, Cedric Le Goater <clg@kaod.org>,
- Juergen Gross <jgross@suse.com>, Michael Ellerman <mpe@ellerman.id.au>,
- Paul Mackerras <paulus@samba.org>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- linuxppc-dev@lists.ozlabs.org,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- linux-mips@vger.kernel.org, Kalle Valo <kvalo@codeaurora.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- sparclinux@vger.kernel.org, x86@kernel.org,
- xen-devel@lists.xenproject.org, ath11k@lists.infradead.org,
- Wei Liu <wei.liu@kernel.org>, linux-hyperv@vger.kernel.org,
- Christian Borntraeger <borntraeger@de.ibm.com>,
- Heiko Carstens <hca@linux.ibm.com>
-Subject: Re: [patch V2 23/23] PCI/MSI: Move descriptor counting on allocation
- fail to the legacy code
-Message-ID: <20211207210238.GA77554@bhelgaas>
+ id 1muk5k-00ALhr-AX
+ for ath11k@lists.infradead.org; Tue, 07 Dec 2021 23:41:50 +0000
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
+ q=dns/txt; 
+ s=smtp; t=1638920505; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=DKZYj2D2ozIike5afQtrah0cMUGtTdAKUDAOIu8jYCg=;
+ b=H4Qk6yngVWJ4uOB8/ir/mN8N9m8O8uBwEfCGHtNjeB2tGQH7MF0U12oA+slqTInRuHJ4qPb2
+ tBcH2nNOJHsWmhCwJb1x0mQyLFdZRGzBUZEzc4M/9RwBiFdmNq0KKS0e1+6oIQFgU9+qIaap
+ wSU8Ei5jZV/FRA2U9gqmpl62CAo=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
+ 61aff1384fca5da46df1b36e (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 07 Dec 2021 23:41:44
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+ id B8A2DC43617; Tue,  7 Dec 2021 23:41:44 +0000 (UTC)
+Received: from [10.110.103.130] (i-global254.qualcomm.com [199.106.103.254])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested) (Authenticated sender: hemantk)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id C55B2C4338F;
+ Tue,  7 Dec 2021 23:41:42 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org C55B2C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ spf=fail smtp.mailfrom=codeaurora.org
+Subject: Re: [PATCH] bus: mhi: core: Add support for forced PM resume
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ mhi@lists.linux.dev
+Cc: bbhatt@codeaurora.org, loic.poulain@linaro.org,
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ kvalo@codeaurora.org, stable@vger.kernel.org, Pengyu Ma <mapengyu@gmail.com>
+References: <20211206161059.107007-1-manivannan.sadhasivam@linaro.org>
+From: Hemant Kumar <hemantk@codeaurora.org>
+Message-ID: <7eb05d7c-ddda-5ec1-73a0-e696d2b5a236@codeaurora.org>
+Date: Tue, 7 Dec 2021 15:41:42 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20211206210225.101336873@linutronix.de>
+In-Reply-To: <20211206161059.107007-1-manivannan.sadhasivam@linaro.org>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211207_130242_697528_055B1996 
-X-CRM114-Status: GOOD (  20.70  )
+X-CRM114-CacheID: sfid-20211207_154148_473911_7F87C6D4 
+X-CRM114-Status: GOOD (  24.79  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,93 +83,80 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Mon, Dec 06, 2021 at 11:28:00PM +0100, Thomas Gleixner wrote:
-> The irqdomain code already returns the information. Move the loop to the
-> legacy code.
+Hi Mani,
+
+On 12/6/2021 8:10 AM, Manivannan Sadhasivam wrote:
+> From: Loic Poulain <loic.poulain@linaro.org>
 > 
-> Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
-> Tested-by: Juergen Gross <jgross@suse.com>
-> Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
-
-Acked-by: Bjorn Helgaas <bhelgaas@google.com>
-
+> For whatever reason, some devices like QCA6390, WCN6855 using ath11k
+> are not in M3 state during PM resume, but still functional. The
+> mhi_pm_resume should then not fail in those cases, and let the higher
+> level device specific stack continue resuming process.
+> 
+> Add a new parameter to mhi_pm_resume, to force resuming, whatever the
+> current MHI state is. This fixes a regression with non functional
+> ath11k WiFi after suspend/resume cycle on some machines.
+> 
+> Bug report: https://bugzilla.kernel.org/show_bug.cgi?id=214179
+> 
+> Cc: stable@vger.kernel.org #5.13
+> Fixes: 020d3b26c07a ("bus: mhi: Early MHI resume failure in non M3 state")
+> Reported-by: Kalle Valo <kvalo@codeaurora.org>
+> Reported-by: Pengyu Ma <mapengyu@gmail.com>
+> Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
+> [mani: Added comment, bug report, added reported-by tags and CCed stable]
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > ---
->  drivers/pci/msi/legacy.c |   20 +++++++++++++++++++-
->  drivers/pci/msi/msi.c    |   19 +------------------
->  2 files changed, 20 insertions(+), 19 deletions(-)
+>   drivers/bus/mhi/core/pm.c             | 10 +++++++---
+>   drivers/bus/mhi/pci_generic.c         |  2 +-
+>   drivers/net/wireless/ath/ath11k/mhi.c |  6 +++++-
+>   include/linux/mhi.h                   |  3 ++-
+>   4 files changed, 15 insertions(+), 6 deletions(-)
 > 
-> --- a/drivers/pci/msi/legacy.c
-> +++ b/drivers/pci/msi/legacy.c
-> @@ -50,9 +50,27 @@ void __weak arch_teardown_msi_irqs(struc
->  	}
->  }
->  
-> +static int pci_msi_setup_check_result(struct pci_dev *dev, int type, int ret)
-> +{
-> +	struct msi_desc *entry;
-> +	int avail = 0;
-> +
-> +	if (type != PCI_CAP_ID_MSIX || ret >= 0)
-> +		return ret;
-> +
-> +	/* Scan the MSI descriptors for successfully allocated ones. */
-> +	for_each_pci_msi_entry(entry, dev) {
-> +		if (entry->irq != 0)
-> +			avail++;
+> diff --git a/drivers/bus/mhi/core/pm.c b/drivers/bus/mhi/core/pm.c
+> index 7464f5d09973..4ddd266e042e 100644
+> --- a/drivers/bus/mhi/core/pm.c
+> +++ b/drivers/bus/mhi/core/pm.c
+> @@ -881,7 +881,7 @@ int mhi_pm_suspend(struct mhi_controller *mhi_cntrl)
+>   }
+>   EXPORT_SYMBOL_GPL(mhi_pm_suspend);
+>   
+> -int mhi_pm_resume(struct mhi_controller *mhi_cntrl)
+> +int mhi_pm_resume(struct mhi_controller *mhi_cntrl, bool force)
+>   {
+>   	struct mhi_chan *itr, *tmp;
+>   	struct device *dev = &mhi_cntrl->mhi_dev->dev;
+> @@ -898,8 +898,12 @@ int mhi_pm_resume(struct mhi_controller *mhi_cntrl)
+>   	if (MHI_PM_IN_ERROR_STATE(mhi_cntrl->pm_state))
+>   		return -EIO;
+>   
+> -	if (mhi_get_mhi_state(mhi_cntrl) != MHI_STATE_M3)
+> -		return -EINVAL;
+> +	if (mhi_get_mhi_state(mhi_cntrl) != MHI_STATE_M3) {
+	in case if mhi_get_mhi_state(mhi_cntrl) returns SYS_ERR (assuming while 
+doing this check SYS_ERR is set) do we still want to continue pm resume 
+when force is true? Just want to make sure SYS_ERR handling with and 
+without this change remains the same or atleast does not cause any 
+regression with this change. or if we need to continue pm resume only 
+for MHI_STATE_RESET when MHI_STATE_M3 is not set?
+> +		dev_warn(dev, "Resuming from non M3 state (%s)\n",
+> +			 TO_MHI_STATE_STR(mhi_get_mhi_state(mhi_cntrl)));
+> +		if (!force)
+> +			return -EINVAL;
 > +	}
-> +	return avail ? avail : ret;
-> +}
-> +
->  int pci_msi_legacy_setup_msi_irqs(struct pci_dev *dev, int nvec, int type)
->  {
-> -	return arch_setup_msi_irqs(dev, nvec, type);
-> +	int ret = arch_setup_msi_irqs(dev, nvec, type);
-> +
-> +	return pci_msi_setup_check_result(dev, type, ret);
->  }
->  
->  void pci_msi_legacy_teardown_msi_irqs(struct pci_dev *dev)
-> --- a/drivers/pci/msi/msi.c
-> +++ b/drivers/pci/msi/msi.c
-> @@ -609,7 +609,7 @@ static int msix_capability_init(struct p
->  
->  	ret = pci_msi_setup_msi_irqs(dev, nvec, PCI_CAP_ID_MSIX);
->  	if (ret)
-> -		goto out_avail;
-> +		goto out_free;
->  
->  	/* Check if all MSI entries honor device restrictions */
->  	ret = msi_verify_entries(dev);
-> @@ -634,23 +634,6 @@ static int msix_capability_init(struct p
->  	pcibios_free_irq(dev);
->  	return 0;
->  
-> -out_avail:
-> -	if (ret < 0) {
-> -		/*
-> -		 * If we had some success, report the number of IRQs
-> -		 * we succeeded in setting up.
-> -		 */
-> -		struct msi_desc *entry;
-> -		int avail = 0;
-> -
-> -		for_each_pci_msi_entry(entry, dev) {
-> -			if (entry->irq != 0)
-> -				avail++;
-> -		}
-> -		if (avail != 0)
-> -			ret = avail;
-> -	}
-> -
->  out_free:
->  	free_msi_irqs(dev);
->  
-> 
+>   
+[..]
+
+Thanks,
+Hemant
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora 
+Forum, a Linux Foundation Collaborative Project
 
 -- 
 ath11k mailing list
