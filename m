@@ -4,59 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC786C433F5
-	for <ath11k@archiver.kernel.org>; Tue,  7 Dec 2021 16:40:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFB84C433F5
+	for <ath11k@archiver.kernel.org>; Tue,  7 Dec 2021 16:56:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
 	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ATphLe1xZvrruGlc6uiKQ3ME94uOHRV52UqVAZ0CA1o=; b=b89mr0CtNlHQ1m
-	8gFUbXI++LkfcoWaU7/0qGFMjebLsp17PlV0AaHxn7+DOl5FZ1Q6uCqAR21i8vynR6PzKJ362eYZ3
-	LFjHRBsz/PW+IWxmP7zKcZWa84TiMdkx1YCHmwrlpbk/V2CW+swsFcx9+Rk/YoUZh9cXovv6V4gNg
-	mzZW/sNk1MBbrsXlik3QxKf1mFC7Nf3C61noiez9BQYQVli5s4GlxjWguoKDDcUtF3HESruj00UUX
-	/imxlaXdkwsCaW+o1Xd/3GCd1LVdpn/d/yFv19258E0Xnx5aHiBfRwkj9hIbr+ww41PZI25On4+ei
-	fYAdhe7Ob97a0/lukvww==;
+	List-Owner; bh=S7he3eUull6nT8t4c+sXg429HA8nbC+tb5sReLoRMtE=; b=s9fdD/JU7YY1PC
+	jvYtXfwTnFT+JdhyWChYGiSJ8O2Y1jI3n5PCEHvRrqswjof0U4JvpE2slPG1S9FuCZuyQFJ1b7Hou
+	V3LYBhCKeIebvDOjCjp3ZTOGIOzsn2SFvSsYbMJZwQzeKYGA+n24Duyc98cCHzxQAQaLzoRuh5dz7
+	jOm26kdfipOgB5McKlQR7lTI4ADlaws9xetYsvlduRQ+EjOROlCyF1pynQl71MKuZTV1ioXqxWvFm
+	jrUVsTrdIS45aUhLjZ/8voItvZe+JfDkaacliN+wh0FrcWxNSJkrGplqD0mNeKoIz1nkE5H9FoJhc
+	dFsvZScZEepMXVqWSWPQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mudVZ-009TaA-9c; Tue, 07 Dec 2021 16:40:01 +0000
+	id 1mudl0-009V8N-Be; Tue, 07 Dec 2021 16:55:58 +0000
 Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mudVW-009TZD-14
- for ath11k@lists.infradead.org; Tue, 07 Dec 2021 16:39:59 +0000
+ id 1mudkw-009V7t-MQ
+ for ath11k@lists.infradead.org; Tue, 07 Dec 2021 16:55:56 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 7FE2AB816F8;
- Tue,  7 Dec 2021 16:39:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5DACEC341C1;
- Tue,  7 Dec 2021 16:39:54 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 55786B816F8;
+ Tue,  7 Dec 2021 16:55:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40E1CC341C3;
+ Tue,  7 Dec 2021 16:55:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1638895195;
- bh=1spnHwy4th204lc7pdZzCubOOyR435yRFE5cuojtAT4=;
+ s=k20201202; t=1638896152;
+ bh=9wwvZs+yVczrOqKsz4pGQrP1UKcx4uLoOGbsJoo8H2M=;
  h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
- b=AnkrF1MHMmZ3aeaNmmg4u3PjbksJowuUf70GOulIAYKB01Z4QpjfOgz05Lm0aGI0I
- 8Lr/eLqjdBGQTL9buA4OodT0pNF78KGJxS+vrfcfGgsgfjWpAk7oDAkudDJ9BUe2G/
- ciJnovd8VHowdEvTqLJhMB0li/rnBYigxuQllFprkRbZ67dLrlY4XSNobtGEHBHfaP
- HJV5flOf1gw5ar+GxLrALmpT8yWtywyE8g1rOXTVzCo7bVgCuguvorvFNCXx6Q5ucW
- 5A4VbJ63vsSWiSkEu5aoA9EV8M9wonxZSErl7Oe4iMM/vNxMRLY13Q3PAxoXdy5WCe
- 5MfR9NvpEnsYA==
+ b=nphsx6Rd66rCNlNGdY6Dp8ERYk2ICqU46OAl6F5yIA+xN3Cl9+fIX9AeAtqMAshAi
+ lvYfYhC/qmypiJUwE2QPpRLpctqMYHq7Psygdx3PGPLt/o+lp0pUDf70QAxpJIbPzV
+ y7vbiT2IXaXTrA8JYpFulTEFMPsk8q5WMAXETD9Jpi6XrtUDEZOox6luwIjyg5U1KT
+ AsfR+16jrxtfexkKLPaPvQxtCnWkv9F2H7nndbopwSryDxUxDsQkaaV0ozMr3rp5ir
+ Y2DIBaRb9usDvYsoqru/h+N2HbVYcsXMTJcn0uJmJcW6HL/4NlSO5w5sMfpEL4fEF1
+ JQVnkA0sjjHcQ==
 From: Kalle Valo <kvalo@kernel.org>
 To: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
 Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
-Subject: Re: [PATCHv2 1/2] ath11k: add dbring debug support
+Subject: Re: [PATCHv2 2/2] ath11k: add spectral/CFR buffer validation support
 References: <1637312901-10279-1-git-send-email-quic_vnaralas@quicinc.com>
-Date: Tue, 07 Dec 2021 18:39:49 +0200
-In-Reply-To: <1637312901-10279-1-git-send-email-quic_vnaralas@quicinc.com>
- (Venkateswara Naralasetty's message of "Fri, 19 Nov 2021 14:38:20
+ <1637312901-10279-2-git-send-email-quic_vnaralas@quicinc.com>
+Date: Tue, 07 Dec 2021 18:55:46 +0200
+In-Reply-To: <1637312901-10279-2-git-send-email-quic_vnaralas@quicinc.com>
+ (Venkateswara Naralasetty's message of "Fri, 19 Nov 2021 14:38:21
  +0530")
-Message-ID: <8735n4nzca.fsf@codeaurora.org>
+Message-ID: <87y24wmk19.fsf@codeaurora.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211207_083958_386477_E1F93CAA 
-X-CRM114-Status: GOOD (  20.38  )
+X-CRM114-CacheID: sfid-20211207_085554_901884_66BBFD5E 
+X-CRM114-Status: GOOD (  21.90  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,72 +76,54 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 Venkateswara Naralasetty <quic_vnaralas@quicinc.com> writes:
 
-> Target copies spectral report and CFR report through dbring to
-> host for further processing. This mechanism involves ring and
-> buffer management in the Host, FW, and uCode, where improper
-> tail pointer update issues are seen.
+> Currently there is no validation on the spectral/CFR report
+> over the db ring buffers from the hardware. Improper/incomplete
+> DMA by the target can result in invalid data received by host.
+> Due to this we may populate incorrect data to user space.
 >
-> This dbring debug support help to debug such issues by tracking
-> head and tail pointer movement along with the timestamp at which
-> each buffer is received and replenished.
->
-> Usage:
->
-> echo <module_id> <val> > /sys/kernel/debug/ath11k/ipq8074_2/
-> mac0/enable_dbr_debug
->
-> module_id: 0 for spectral and 1 for CFR
-> val: 0 - disable, 1 - enable.
+> This buffer validation support fix this issues by filling some
+> magic value in the buffer during buffer replenish and check for
+> the magic value in the buffer received by the target. If host
+> detect magic value in the received buffer it will drop the buffer.
 >
 > Tested-on: IPQ8074 WLAN.HK.2.4.0.1-01467-QCAHKSWPL_SILICONZ-1
 >
 > Signed-off-by: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
-
-The commit log is really minimal and is not really describing the whole
-implementation. For example, I see that you create a new directory
-debugfs and the commit log mentions nothing about that.
-
-What about other hardware like QCA6390 or WCN6855? You mention nothing
-about those, how are they affected?
-
-And to be honest, I'm not sure if this debug feature is really worth to
-have in upstream due to the extra complexity it creates.
-
-Also usually it's a good idea to have the fix first in the patchset and
-then extra patches after the fixes. That way it's easy to take the fixes
-and skip the extra patches.
-
-Few comments when I was skimming this over:
-
-> --- a/drivers/net/wireless/ath/ath11k/core.h
-> +++ b/drivers/net/wireless/ath/ath11k/core.h
-> @@ -442,6 +442,7 @@ struct ath11k_debug {
->  	u32 pktlog_peer_valid;
->  	u8 pktlog_peer_addr[ETH_ALEN];
->  	u32 rx_filter;
-> +	struct ath11k_db_module_debug *module_debug[WMI_DIRECT_BUF_MAX];
-
-module_debug is not really a descriptive name for a field.
-
-> --- a/drivers/net/wireless/ath/ath11k/debugfs.c
-> +++ b/drivers/net/wireless/ath/ath11k/debugfs.c
-> @@ -50,6 +50,45 @@ static const char *htt_bp_lmac_ring[HTT_SW_LMAC_RING_IDX_MAX] = {
->  	"MONITOR_DEST_RING",
->  };
+> ---
+> v2:
+>  * Rebased on TOT
+>
+>  drivers/net/wireless/ath/ath11k/dbring.c   | 32 ++++++++++++++++++++++++++++++
+>  drivers/net/wireless/ath/ath11k/dbring.h   |  1 +
+>  drivers/net/wireless/ath/ath11k/spectral.c | 10 ++++++++++
+>  3 files changed, 43 insertions(+)
+>
+> diff --git a/drivers/net/wireless/ath/ath11k/dbring.c b/drivers/net/wireless/ath/ath11k/dbring.c
+> index 31cf7ac..5c07442 100644
+> --- a/drivers/net/wireless/ath/ath11k/dbring.c
+> +++ b/drivers/net/wireless/ath/ath11k/dbring.c
+> @@ -6,6 +6,37 @@
+>  #include "core.h"
+>  #include "debug.h"
 >  
-> +void ath11k_dbring_add_debug_entry(struct ath11k *ar,
-> +				   enum wmi_direct_buffer_module id,
-> +				   enum ath11k_db_ring_dbg_event event,
-> +				   struct hal_srng *srng)
+> +#define ATH11K_DB_MAGIC_VALUE 0xdeadbeaf
+> +
+> +int ath11k_dbring_validate_buffer(struct ath11k *ar, void *buffer, u32 size)
 > +{
+> +	u32 *temp;
+> +	int idx;
+> +
+> +	size = size >> 2;
+> +
+> +	for (idx = 0, temp = buffer; idx < size; idx++, temp++) {
+> +		if (*temp == ATH11K_DB_MAGIC_VALUE) {
+> +			ath11k_warn(ar->ab, "found magic value in the buffer\n");
 
-The style used in ath11k is that the second word describes the filename
-the function is in. So this should be something like
-ath11k_debugfs_add_dbring_entry().
+I moved the warning message to the callers to make it easier to identify
+where the corruption is happening and also added the word "dropping" to
+make the message clearer for the user.
 
-> +	struct ath11k_db_module_debug *db_module_debug;
-
-Similar naming for structs, please.
+https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=6c90df4c7aca225c4c486f31ca956ae6c08abe59
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
