@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09B56C433F5
-	for <ath11k@archiver.kernel.org>; Tue,  7 Dec 2021 07:46:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4902CC433EF
+	for <ath11k@archiver.kernel.org>; Tue,  7 Dec 2021 07:46:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0Z9KtXBcE/lMgQyRro6Qq6spCLgoCmoJxVwe/U+Pi50=; b=aAvtj1HDJonUv4
-	1Ev3uvU3Ov1NKetiYiIvdUsVoAJXDyMNBSB3/M79QQhuJwve9P83Qhd/hMmuy+uyj6UJRnRLK7WcC
-	633pyflFeVuTkzoKmUNVBlvHLilJoITRWfVtsGWKYCRqsbAQVDh7cbeAYC2J4aHgYvtnfUS2jAmf7
-	yCVray1Lkh0jScxrOAUIXSna66I9pVHdsbd03vl+gUFDrsLrf5l8ejZ+6jQYWHcsvWcaiKap1VjB9
-	wsRr2Mkb9BQUj+pFUJIV5r9gMCGgfD4unZcC9A78SkJ5ZPX4EcS8xidCZV14dlB5rF9XyrNtuPPhr
-	WRhqxkZnf8qkE60RyRyg==;
+	List-Owner; bh=wUfhRDOmlk4PWzwp6QJRAqhBbfBreiGsEtGqfRoYTII=; b=qaHxaejwTdyN0z
+	6QsnlKNjg4EHVe7YlZKDGACsl7XXzOj/yPSgfbJoydr6zpFErzezjO2EM365XSFwdlsVZfFsN8R81
+	6t9qSUKRdFEuRZHUB6l9H7N0GO7BPe3Lt/IWk2iRwONZc8TshyFZF4MDYyYxIdWPcxWgGDDsOinCZ
+	FbN9Xw9jSQupX/D9ThU9AK9zRawsSVF8+M35Ex1zUeKE2iywQ6s07+OZXY5uldmOIqQu+8/MVZx9O
+	XfEASU8XjEgrri/cowY5gSE/VBZ+IWvfH0ngyq6rK8u7azna/q1XegapiLw41PEc13TdcUIIxrgOe
+	XymCjgrhrIyW6CuMHITQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1muVAm-007GR8-0a; Tue, 07 Dec 2021 07:46:00 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1muVBa-007Gbh-AJ; Tue, 07 Dec 2021 07:46:50 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1muVAj-007GQ3-Kk
- for ath11k@lists.infradead.org; Tue, 07 Dec 2021 07:45:59 +0000
+ id 1muVBW-007Ga8-9C
+ for ath11k@lists.infradead.org; Tue, 07 Dec 2021 07:46:48 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 57B9CB816A7;
- Tue,  7 Dec 2021 07:45:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71F0FC341C3;
- Tue,  7 Dec 2021 07:45:54 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 0A8E0B816C2;
+ Tue,  7 Dec 2021 07:46:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 316F4C341C3;
+ Tue,  7 Dec 2021 07:46:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1638863155;
- bh=gRy6TW9oSvfP7dg3zhkuzychOXyAHsIOP80ZNfLYfos=;
+ s=korg; t=1638863203;
+ bh=XYTXXWRy+9YqYUEnMANtgMz2OiDj8LhJM0fhnz6BZfk=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=SiqDsJQkbNZ0TkHVyhqD8eHIjknQi5V0JuRjw6ygTj9D2zKPOwQURIy7jo57+w2du
- ZMCTZHvOwWB7jQV72lXakTsB1GLsVP+TrRykUHY6K5a3U3G0G39PJ3woVfTktTJ7Iv
- JNlX2AYmusSMwGbHuVxEc8Oqqs3RKuuhG7eHXMdI=
-Date: Tue, 7 Dec 2021 08:45:52 +0100
+ b=MG3AiqTQwZNqxKk2vJDV2iPvDHwnIDTDlZbDtWj1PANq3S81yMDYHPPCHBmVaryz7
+ XV4KY7K+917sMh3tQ3NZlb/gP1jjxq/WP+H9oKvY+3iXQJfkC4Jb6xKzFeP5wxol9J
+ 2t4bPREpWjYIKSrgRe1fdUC23vxeTGIaXPYH8W6o=
+Date: Tue, 7 Dec 2021 08:46:41 +0100
 From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To: Thomas Gleixner <tglx@linutronix.de>
 Cc: LKML <linux-kernel@vger.kernel.org>, Bjorn Helgaas <helgaas@kernel.org>,
@@ -59,16 +59,16 @@ Cc: LKML <linux-kernel@vger.kernel.org>, Bjorn Helgaas <helgaas@kernel.org>,
  Wei Liu <wei.liu@kernel.org>, linux-hyperv@vger.kernel.org,
  Christian Borntraeger <borntraeger@de.ibm.com>,
  Heiko Carstens <hca@linux.ibm.com>
-Subject: Re: [patch V2 17/23] PCI/MSI: Split out !IRQDOMAIN code
-Message-ID: <Ya8RME4tz+LZD7+h@kroah.com>
+Subject: Re: [patch V2 18/23] PCI/MSI: Split out irqdomain code
+Message-ID: <Ya8RYToy04z6lRIx@kroah.com>
 References: <20211206210147.872865823@linutronix.de>
- <20211206210224.763574089@linutronix.de>
+ <20211206210224.817754783@linutronix.de>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20211206210224.763574089@linutronix.de>
+In-Reply-To: <20211206210224.817754783@linutronix.de>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211206_234557_862453_BE3CD19A 
-X-CRM114-Status: UNSURE (   8.03  )
+X-CRM114-CacheID: sfid-20211206_234646_484313_F7E4003B 
+X-CRM114-Status: UNSURE (   8.12  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -86,14 +86,15 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Mon, Dec 06, 2021 at 11:27:51PM +0100, Thomas Gleixner wrote:
-> Split out the non irqdomain code into its own file.
+On Mon, Dec 06, 2021 at 11:27:52PM +0100, Thomas Gleixner wrote:
+> Move the irqdomain specific code into it's own file.
 > 
 > Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
 > Tested-by: Juergen Gross <jgross@suse.com>
 > Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
 
 Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+
 
 
 -- 
