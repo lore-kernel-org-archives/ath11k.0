@@ -4,48 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A18CDC4332F
-	for <ath11k@archiver.kernel.org>; Tue,  7 Dec 2021 14:57:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CFFDC433F5
+	for <ath11k@archiver.kernel.org>; Tue,  7 Dec 2021 15:09:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=a7wXF6wfZ4V9dT2qqbn7ZBNiYJhG8y966t5HEtwPq64=; b=HZ+DNU4obSnpDT
-	g9VX9b4AOnW2naznO/ybWHNLnWanO9j/O8i2s9NZNUHDx5YEJKPGGybpPHHmFWp/BEEa/49BF694a
-	r6XpM480tj6shjFziNag6YtPpGUlG24gtNIHegDlYc2q20wY17ER+LSyCxXYG/+NsqfvIQ4qB/xTa
-	usS8p88NvxnDPEel8Wpdjfpk4KxvaJxK5FdB6GwXKcucOozJSCZEzzhnpXV53wcWbF0vFBE2DQaYg
-	CLxYv++VxYsfrz37pieLL8N0qELcyULSMTrwYgPOE4f8TRwmFEjxNlvNmLh8gfcwxw1EejjvTLeIS
-	dsDTWWxCUuDvSmglpJLA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=noFt3AsPBgayXMGuqpnnSkMwg7L+7lU5slAJ8ML6mJE=; b=jtg8XPZIM83iuD
+	tDdXMj4+Ef6cx7p+i8ndQlMkx3bTvpdyBAEUTCzEmq3nx/Bi/h0vHKrZRlrhrp4VV0scQV9wHLTpv
+	eiuwkHWQ3aNZxUkFyL97dKbCYfeCjaABfJ2yuoyUz0gcdBrZY1BoCCX/rT/ej4gYQcsmxnHkOICiy
+	MUH4xCMKDB9ZKQ+gFYysKr9nyi4svs1AzCysVmpCMbjI4Nx5sVOXK6BuTNoKKoTksL5TzKdsbOUO4
+	KXQpUG/sa0mmsu6sIOoUYxKnIZLwVvgFBAcS3K9D994tIUm2zjG48vU8yFM3lzQ68CHJJGXKwxwHk
+	8cZdANgEBJMZUzVGzryQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mubu8-0093J8-De; Tue, 07 Dec 2021 14:57:16 +0000
-Received: from dvalin.narfation.org ([2a00:17d8:100::8b1])
+	id 1muc5R-0096iA-LC; Tue, 07 Dec 2021 15:08:57 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mubUK-008waz-SY
- for ath11k@lists.infradead.org; Tue, 07 Dec 2021 14:30:38 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1638887433;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding;
- bh=M/6VW7i7W+xthc4rrARhEy/BbZdY9QLtRROjfHQerbo=;
- b=UzoljNDWkgQnQwRzMb4XekfUMSiDgAsdMPdJhoqkHCuIkUdlVBnh/SqIbGLiNg8hBSNC9Y
- BL6JAUVjz6FgCYWG5guqnc4QvA9CdSuaaiVl/4WStufgvwPnxaSNgHMubcSDjkjsDb10U5
- HTORV6os2TbTUmEcrHvUZzHqk74QZ0Y=
-From: Sven Eckelmann <sven@narfation.org>
-To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org, Wen Gong <quic_wgong@quicinc.com>,
- Sven Eckelmann <sven@narfation.org>, stable@vger.kernel.org
-Subject: [PATCH] ath11k: Fix buffer overflow when scanning with extraie
-Date: Tue,  7 Dec 2021 15:29:13 +0100
-Message-Id: <20211207142913.1734635-1-sven@narfation.org>
-X-Mailer: git-send-email 2.30.2
+ id 1mubl1-0090Ro-1C
+ for ath11k@lists.infradead.org; Tue, 07 Dec 2021 14:47:52 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 0B5DFB80782;
+ Tue,  7 Dec 2021 14:47:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E422C341C5;
+ Tue,  7 Dec 2021 14:47:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1638888467;
+ bh=u4WpnIP/o6TXEfTfxB1pdkIBKTMxbE9JzDtO7Q8LGY8=;
+ h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+ b=BHwzZaUvYEJBPdkY29edXrrIzNxbqF3c2GIHQhelBbf0o83fviJEkGmWTcjamgyqm
+ mrgcdS4nNcZdIC+5w7HVXtKw33DnoQLYytjDdEoz459JmfnOLhg7QDmxQ2AlQG4CY/
+ DwucZPElGRLQMCkh936aYOUdUogaDvh+fYCKTrc9q2XLcbWr/kQKWuO5D/sRVsaf5y
+ nrqvOuLYM0/r+MCq+ZgPXDgZO7y672LcoUblh1I3jiiKGbF2Mmu+fdtGRwTK0PywMe
+ lGgv7c6AD40cKjRWSdIJc47ZIIEWiAhlGvc0vZxCm6MjV3EY6M9OIEndS9Gj79UJPt
+ +8bvZikxOHiyQ==
+From: Kalle Valo <kvalo@kernel.org>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: mhi@lists.linux.dev, hemantk@codeaurora.org, bbhatt@codeaurora.org,
+ loic.poulain@linaro.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ath11k@lists.infradead.org,
+ linux-wireless@vger.kernel.org, stable@vger.kernel.org,
+ Pengyu Ma <mapengyu@gmail.com>
+Subject: Re: [PATCH] bus: mhi: core: Add support for forced PM resume
+References: <20211206161059.107007-1-manivannan.sadhasivam@linaro.org>
+Date: Tue, 07 Dec 2021 16:47:42 +0200
+In-Reply-To: <20211206161059.107007-1-manivannan.sadhasivam@linaro.org>
+ (Manivannan Sadhasivam's message of "Mon, 6 Dec 2021 21:40:59 +0530")
+Message-ID: <871r2otqsx.fsf@codeaurora.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211207_063037_151538_BDA6BAE6 
-X-CRM114-Status: GOOD (  15.61  )
+X-CRM114-CacheID: sfid-20211207_064751_301305_8A877323 
+X-CRM114-Status: GOOD (  15.32  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -62,75 +76,46 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-If cfg80211 is providing extraie's for a scanning process then ath11k will
-copy that over to the firmware. The extraie.len is a 32 bit value in struct
-element_info and describes the amount of bytes for the vendor information
-elements.
+Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> writes:
 
-The WMI_TLV packet is having a special WMI_TAG_ARRAY_BYTE section. This
-section can have a (payload) length up to 65535 bytes because the
-WMI_TLV_LEN can store up to 16 bits. The code was missing such a check and
-could have created a scan request which cannot be parsed correctly by the
-firmware.
+> From: Loic Poulain <loic.poulain@linaro.org>
+>
+> For whatever reason, some devices like QCA6390, WCN6855 using ath11k
+> are not in M3 state during PM resume, but still functional. The
+> mhi_pm_resume should then not fail in those cases, and let the higher
+> level device specific stack continue resuming process.
+>
+> Add a new parameter to mhi_pm_resume, to force resuming, whatever the
+> current MHI state is. This fixes a regression with non functional
+> ath11k WiFi after suspend/resume cycle on some machines.
+>
+> Bug report: https://bugzilla.kernel.org/show_bug.cgi?id=214179
+>
+> Cc: stable@vger.kernel.org #5.13
+> Fixes: 020d3b26c07a ("bus: mhi: Early MHI resume failure in non M3 state")
+> Reported-by: Kalle Valo <kvalo@codeaurora.org>
+> Reported-by: Pengyu Ma <mapengyu@gmail.com>
+> Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
+> [mani: Added comment, bug report, added reported-by tags and CCed stable]
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-But the bigger problem was the allocation of the buffer. It has to align
-the TLV sections by 4 bytes. But the code was using an u8 to store the
-newly calculated length of this section (with alignment). And the new
-calculated length was then used to allocate the skbuff. But the actual code
-to copy in the data is using the extraie.len and not the calculated
-"aligned" length.
+Thanks! I now tested this patch on top v5.16-rc4 using QCA6390 and
+firmware WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1, no issues found:
 
-The length of extraie with IEEE80211_HW_SINGLE_SCAN_ON_ALL_BANDS enabled
-was 264 bytes during tests with a QCA Milan card. But it only allocated 8
-bytes (264 bytes % 256) for it. As consequence, the code to memcpy the
-extraie into the skb was then just overwriting data after skb->end. Things
-like shinfo were therefore corrupted. This could usually be seen by a crash
-in skb_zcopy_clear which tried to call a ubuf_info callback (using a bogus
-address).
+Tested-by: Kalle Valo <kvalo@kernel.org>
 
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-02892.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+I'm not expecting any conflicts with ath11k, so please take this via the
+mhi tree. It would be really good to get this regression fixed in v5.16,
+so is it possible to send this to -rc releases?
 
-Cc: stable@vger.kernel.org
-Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
-Signed-off-by: Sven Eckelmann <sven@narfation.org>
----
- drivers/net/wireless/ath/ath11k/wmi.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+For the ath11k part:
 
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 6da16d095e37..d817ea468ab5 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -2115,7 +2115,7 @@ int ath11k_wmi_send_scan_start_cmd(struct ath11k *ar,
- 	void *ptr;
- 	int i, ret, len;
- 	u32 *tmp_ptr;
--	u8 extraie_len_with_pad = 0;
-+	u16 extraie_len_with_pad = 0;
- 	struct hint_short_ssid *s_ssid = NULL;
- 	struct hint_bssid *hint_bssid = NULL;
- 
-@@ -2134,7 +2134,7 @@ int ath11k_wmi_send_scan_start_cmd(struct ath11k *ar,
- 		len += sizeof(*bssid) * params->num_bssid;
- 
- 	len += TLV_HDR_SIZE;
--	if (params->extraie.len)
-+	if (params->extraie.len && params->extraie.len <= 0xFFFF)
- 		extraie_len_with_pad =
- 			roundup(params->extraie.len, sizeof(u32));
- 	len += extraie_len_with_pad;
-@@ -2241,7 +2241,7 @@ int ath11k_wmi_send_scan_start_cmd(struct ath11k *ar,
- 		      FIELD_PREP(WMI_TLV_LEN, len);
- 	ptr += TLV_HDR_SIZE;
- 
--	if (params->extraie.len)
-+	if (extraie_len_with_pad)
- 		memcpy(ptr, params->extraie.ptr,
- 		       params->extraie.len);
- 
+Acked-by: Kalle Valo <kvalo@kernel.org>
+
 -- 
-2.30.2
+https://patchwork.kernel.org/project/linux-wireless/list/
 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
