@@ -4,67 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79302C433F5
-	for <ath11k@archiver.kernel.org>; Wed,  8 Dec 2021 07:24:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3049C433F5
+	for <ath11k@archiver.kernel.org>; Wed,  8 Dec 2021 07:31:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xyS/yhfEotdH7yLqCB0euESTfKSQ7qasadGBia6voOI=; b=U2fsoEeJReo9D1
-	FwLmZ/VEAcYlrIDbwjwNiIbtHwbY5z8P8AcsTGJ0Iw24jQffwQ7hRWDHbmmLo0ecPLrsJvKfZVfX9
-	qB5zHEDup3hyw0nlgmLwPrsRG5J3wvp01XtDR5hLQSnnaqTE2eNoXps44FFIxqpGz8yMaOM4OAGsA
-	zsf+6aOKNVLgshnjGHHOtfstYsok+TlcMewiXWmepojR6WaiNdWdrioFVuSLsPcnazdhNBE2ojARh
-	cc+luFy3/FXqaJnTBWj/cdYQHpfTA035aLgouVnrFvJTtpbGMuzVPSqYgXmM52nfhZuFBy0iJP5ZB
-	q9Nv1fPZ6y7EhuvG3vcg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=kgBmNkDQ0uye0rnIKD/YvDGgfrscxvWhZITJYE2IDig=; b=bVzr3HS4SOpLOO
+	1FAsdN/Fj2N9T0+yWUh3oSjLFkHbfU8fRryA1ZS0y1UatDszVdBX9UWljQBOqOZqUAUtenR1kRMhK
+	BRr7+qXzvgd2uMyfjP7uVQwm69SUDwGzhNOdPg5MmW6hHBBM2vKkRp8o7fMpD+xq1zVAEWTluFyb1
+	huT7y0pPY0RJ8xho59Jj9n4nBGV1hPmc1ZawUZduqP2d6ga+/YPuIM1jn40zEZDFnDRlWgb6waFbT
+	CihY+8CW1JTXhJqyd3J0BuK/o3Qp9ssL6TmhdG0oOEANGf29Xrx1Pa3k8C0mb+hxdlxRvuwek9vvu
+	Gp0XTSFRJUbI4/NaqFxQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1murIr-00BZ6x-A9; Wed, 08 Dec 2021 07:23:49 +0000
-Received: from alexa-out.qualcomm.com ([129.46.98.28])
+	id 1murQb-00BZv5-8A; Wed, 08 Dec 2021 07:31:49 +0000
+Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1murIn-00BZ5C-Ug
- for ath11k@lists.infradead.org; Wed, 08 Dec 2021 07:23:47 +0000
+ id 1murQY-00BZue-1V
+ for ath11k@lists.infradead.org; Wed, 08 Dec 2021 07:31:47 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1638948226; x=1670484226;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=yss3S7+1Jf9NX6/0uEHnBORxiyg9g/CT8/r6o5GHiHI=;
- b=e6Am9APCSMmCBAUFqNu7XRY8jwRu/JHeSqSWWai1zD13y7Rxp7oxl1I1
- 7Sv42nm85Wi6DqZ97lTedvE+Puf5GvlmcMVzgc2PJkBBTF7R0/9xbN4h7
- BJN9tkpfW0/kziynguynuvlOfsq75I2dQ7bf0d0UDhxHEpDvLO6TM+JOA 0=;
-Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
- by alexa-out.qualcomm.com with ESMTP; 07 Dec 2021 23:23:46 -0800
+ t=1638948706; x=1670484706;
+ h=from:to:cc:subject:date:message-id:mime-version;
+ bh=gHTSXC/AolTIbMQUfTIn6LHsqBZW/QKXSLOEiTj31cM=;
+ b=sWzhpxLrfmVuJYJ1bDiSBrTWqK6lOmjchPGbcmOdaS8gVb3taFDE6oeP
+ siE92/Bg8/rfhWMLpaA2NuPXl1GAgGMOq4nUH/l0ylWl8HfZLcu1BmQUU
+ Qao9LPpVbs3l0IQSGK6R1/SHK9x9NrocnyG+ZIbqX8G6WM/rcRhByeJJz 0=;
+Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
+ by alexa-out-sd-01.qualcomm.com with ESMTP; 07 Dec 2021 23:31:45 -0800
 X-QCInternal: smtphost
 Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2021 23:23:45 -0800
+ by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Dec 2021 23:31:46 -0800
 Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
  nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Tue, 7 Dec 2021 23:23:45 -0800
-Received: from wgong-HP3-Z230-SFF-Workstation.qca.qualcomm.com (10.80.80.8) by
+ 15.2.922.19; Tue, 7 Dec 2021 23:31:45 -0800
+Received: from cjhuang2-gv.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Tue, 7 Dec 2021 23:23:43 -0800
-From: Wen Gong <quic_wgong@quicinc.com>
+ 15.2.922.19; Tue, 7 Dec 2021 23:31:43 -0800
+From: Carl Huang <quic_cjhuang@quicinc.com>
 To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, <quic_wgong@quicinc.com>
-Subject: [PATCH v4 2/2] ath11k: add read variant from SMBIOS for download
- board data
-Date: Wed, 8 Dec 2021 02:23:27 -0500
-Message-ID: <20211208072327.19719-3-quic_wgong@quicinc.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20211208072327.19719-1-quic_wgong@quicinc.com>
-References: <20211208072327.19719-1-quic_wgong@quicinc.com>
+CC: <linux-wireless@vger.kernel.org>
+Subject: [PATCH v3] ath11k: set DTIM policy to stick mode for station interface
+Date: Wed, 8 Dec 2021 15:31:34 +0800
+Message-ID: <1638948694-15582-1-git-send-email-quic_cjhuang@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211207_232346_080476_7B18577E 
-X-CRM114-Status: GOOD (  13.87  )
+X-CRM114-CacheID: sfid-20211207_233146_160073_CE925717 
+X-CRM114-Status: UNSURE (   8.41  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,151 +78,64 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-This is to read variant from SMBIOS such as read from DT, the variant
-string will be used to one part of string which used to search board
-data from board-2.bin.
+Set DTIM policy to DTIM stick mode, so station follows AP DTIM
+interval rather than listen interval which is set in peer assoc cmd.
+DTIM stick mode is more preferred per firmware team request.
 
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
 
-Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
+Signed-off-by: Carl Huang <quic_cjhuang@quicinc.com>
 ---
- drivers/net/wireless/ath/ath11k/core.c | 74 ++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/core.h | 11 ++++
- drivers/net/wireless/ath/ath11k/qmi.c  |  4 ++
- 3 files changed, 89 insertions(+)
+v3:
+  - fixed the Signed-off email address to quicinc.com
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 17832b4c37bd..4d0e3b465da0 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -8,6 +8,9 @@
- #include <linux/remoteproc.h>
- #include <linux/firmware.h>
- #include <linux/of.h>
-+#include <linux/dmi.h>
-+#include <linux/ctype.h>
+v2:
+  - rebased on top of 4f4f8aee394b73abf5e5f98c63187fdbf1d627f0
+
+ drivers/net/wireless/ath/ath11k/mac.c | 7 +++++++
+ drivers/net/wireless/ath/ath11k/wmi.h | 7 +++++++
+ 2 files changed, 14 insertions(+)
+
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index ffedd22dd1c0..f8a072020198 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -2681,6 +2681,13 @@ static void ath11k_bss_assoc(struct ieee80211_hw *hw,
+ 	if (ret)
+ 		ath11k_warn(ar->ab, "failed to set vdev %i OBSS PD parameters: %d\n",
+ 			    arvif->vdev_id, ret);
 +
- #include "core.h"
- #include "dp_tx.h"
- #include "dp_rx.h"
-@@ -437,6 +440,77 @@ int ath11k_core_resume(struct ath11k_base *ab)
++	ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
++					    WMI_VDEV_PARAM_DTIM_POLICY,
++					    WMI_DTIM_POLICY_STICK);
++	if (ret)
++		ath11k_warn(ar->ab, "failed to set vdev %d dtim policy: %d\n",
++			    arvif->vdev_id, ret);
  }
- EXPORT_SYMBOL(ath11k_core_resume);
  
-+static void ath11k_core_check_bdfext(const struct dmi_header *hdr, void *data)
-+{
-+	struct ath11k_base *ab = data;
-+	const char *bdf_ext;
-+	const char *magic = ATH11K_SMBIOS_BDF_EXT_MAGIC;
-+	u8 bdf_enabled;
-+	int i;
-+	size_t len;
-+
-+	if (ab->qmi.target.bdf_ext[0] != '\0')
-+		return;
-+
-+	if (hdr->type != ATH11K_SMBIOS_BDF_EXT_TYPE)
-+		return;
-+
-+	if (hdr->length != ATH11K_SMBIOS_BDF_EXT_LENGTH) {
-+		ath11k_dbg(ab, ATH11K_DBG_BOOT,
-+			   "wrong smbios bdf ext type length (%d).\n",
-+			   hdr->length);
-+		return;
-+	}
-+
-+	bdf_enabled = *((u8 *)hdr + ATH11K_SMBIOS_BDF_EXT_OFFSET);
-+	if (!bdf_enabled) {
-+		ath11k_dbg(ab, ATH11K_DBG_BOOT, "bdf variant name not found.\n");
-+		return;
-+	}
-+
-+	/* Only one string exists (per spec) */
-+	bdf_ext = (char *)hdr + hdr->length;
-+
-+	if (memcmp(bdf_ext, magic, strlen(magic)) != 0) {
-+		ath11k_dbg(ab, ATH11K_DBG_BOOT,
-+			   "bdf variant magic does not match.\n");
-+		return;
-+	}
-+
-+	len = strlen(bdf_ext);
-+	for (i = 0; i < len; i++) {
-+		if (!isascii(bdf_ext[i]) || !isprint(bdf_ext[i])) {
-+			ath11k_dbg(ab, ATH11K_DBG_BOOT,
-+				   "bdf variant name contains non ascii chars.\n");
-+			return;
-+		}
-+	}
-+
-+	/* Copy extension name without magic prefix */
-+	if (strscpy(ab->qmi.target.bdf_ext, bdf_ext + strlen(magic),
-+		    sizeof(ab->qmi.target.bdf_ext)) < 0) {
-+		ath11k_dbg(ab, ATH11K_DBG_BOOT,
-+			   "bdf variant string is longer than the buffer can accommodate (variant: %s)\n",
-+			    bdf_ext);
-+		return;
-+	}
-+
-+	ath11k_dbg(ab, ATH11K_DBG_BOOT,
-+		   "found and validated bdf variant smbios_type 0x%x bdf %s\n",
-+		   ATH11K_SMBIOS_BDF_EXT_TYPE, bdf_ext);
-+}
-+
-+int ath11k_core_check_smbios(struct ath11k_base *ab)
-+{
-+	ab->qmi.target.bdf_ext[0] = '\0';
-+	dmi_walk(ath11k_core_check_bdfext, ab);
-+
-+	if (ab->qmi.target.bdf_ext[0] == '\0')
-+		return -ENODATA;
-+
-+	return 0;
-+}
-+
- int ath11k_core_check_dt(struct ath11k_base *ab)
- {
- 	size_t max_len = sizeof(ab->qmi.target.bdf_ext);
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 1d13e6124693..ac88874598c2 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -960,7 +960,18 @@ int ath11k_core_fetch_bdf(struct ath11k_base *ath11k,
- 			  struct ath11k_board_data *bd);
- void ath11k_core_free_bdf(struct ath11k_base *ab, struct ath11k_board_data *bd);
- int ath11k_core_check_dt(struct ath11k_base *ath11k);
-+/* SMBIOS type containing Board Data File Name Extension */
-+#define ATH11K_SMBIOS_BDF_EXT_TYPE 0xF8
+ static void ath11k_bss_disassoc(struct ieee80211_hw *hw,
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index 35f5432357f5..7941838f5efc 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -2169,6 +2169,13 @@ enum wmi_nss_ratio {
+ 	WMI_NSS_RATIO_2_NSS = 0x3,
+ };
  
-+/* SMBIOS type structure length (excluding strings-set) */
-+#define ATH11K_SMBIOS_BDF_EXT_LENGTH 0x9
++enum wmi_dtim_policy {
++	WMI_DTIM_POLICY_IGNORE = 1,
++	WMI_DTIM_POLICY_NORMAL = 2,
++	WMI_DTIM_POLICY_STICK  = 3,
++	WMI_DTIM_POLICY_AUTO   = 4,
++};
 +
-+/* Offset pointing to Board Data File Name Extension */
-+#define ATH11K_SMBIOS_BDF_EXT_OFFSET 0x8
-+
-+/* The magic used by QCA spec */
-+#define ATH11K_SMBIOS_BDF_EXT_MAGIC "BDF_"
-+int ath11k_core_check_smbios(struct ath11k_base *ab);
- void ath11k_core_halt(struct ath11k *ar);
- int ath11k_core_resume(struct ath11k_base *ab);
- int ath11k_core_suspend(struct ath11k_base *ab);
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index 25eb22cbeaeb..700a9c137018 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.c
-+++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -1991,6 +1991,10 @@ static int ath11k_qmi_request_target_cap(struct ath11k_base *ab)
- 		    ab->qmi.target.fw_build_timestamp,
- 		    ab->qmi.target.fw_build_id);
- 
-+	r = ath11k_core_check_smbios(ab);
-+	if (r)
-+		ath11k_dbg(ab, ATH11K_DBG_QMI, "SMBIOS bdf variant name not set.\n");
-+
- 	r = ath11k_core_check_dt(ab);
- 	if (r)
- 		ath11k_dbg(ab, ATH11K_DBG_QMI, "DT bdf variant name not set.\n");
+ struct wmi_host_pdev_band_to_mac {
+ 	u32 pdev_id;
+ 	u32 start_freq;
+
+base-commit: 4f4f8aee394b73abf5e5f98c63187fdbf1d627f0
 -- 
-2.31.1
+2.32.0
 
 
 -- 
