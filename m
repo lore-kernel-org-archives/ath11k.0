@@ -4,59 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E3D0C433EF
-	for <ath11k@archiver.kernel.org>; Wed,  8 Dec 2021 15:45:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06499C433EF
+	for <ath11k@archiver.kernel.org>; Wed,  8 Dec 2021 20:57:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
-	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7wF75c2qt2DPdHiNPM3FxeeUSw2jebACT3e/kcs5CoQ=; b=yTnm2+oz0heMVb
-	seBabBl17Xf7iTvS7BbSZvxhZwW0UhnC0Q6/9wW/EXDNIKn9b8SBKXVhBFBYww58T5ou/iPOTr6o8
-	wzjO9GkcbMf9F7oXlTq8KPDkwHDu7WkSKt1Ne4VIoqR7ZfXEpS4sH8HWx4JecdngndnU7fdsA1aAa
-	qaYdGHo9r6+0VCHKojYlEAh2SkxYRke/mKw+Vcxnlz1zQ5W0kWze9N/3nwCrx41j3ITn2v0ln/GLh
-	cawMzxs1SlRKOKz/Rhq571tPvqbcLnZqL4EFkBqTM3votRLD6aR8VCSdIvAyUHXm1bNXEsfuNabd8
-	Gmuv8g4m0rdF4uv+EW8A==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=I637+OaGP3IAJCDlkqfNDdbp/OKCtTGAlq3Vyn4TUt4=; b=AMeykD15UePFdd
+	TRiVKDreWEWyq8LQi06XqO7iefw9MY8YsChY4i3YZIeTyNCIGJCRSwzsvN+h/9/4s+I+jnuiJQw/C
+	XEwfKs9A2MU3rn4DPKLgHDLh4x1UAJxZLvCrn7Z8LHWy40ppQcYBgWRv99iRQZVOPBsdABGb7ZoBr
+	zJgATMNWxxd1Wt5iwMLlFy3qxMQ+/QwOm7KwQIGYerDchsY7tap6NFZi5OINuXgOfylVZtpuhD1yU
+	2hL8MGAadeEpjdPSEc2Xl3JaPLqG6f0F4ROTdahbPLxws/bg+mOlj/Xyd0rV3WdPvgG/qHV3rQqZu
+	qaGFl898hKUcvyxaSRkg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1muz7w-00DLzP-9q; Wed, 08 Dec 2021 15:45:04 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1mv3zl-00EEXd-Vj; Wed, 08 Dec 2021 20:56:57 +0000
+Received: from galois.linutronix.de ([2a0a:51c0:0:12e:550::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1muz7a-00DLqs-AR
- for ath11k@lists.infradead.org; Wed, 08 Dec 2021 15:44:43 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 0FD76B82137;
- Wed,  8 Dec 2021 15:44:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4C50C341CA;
- Wed,  8 Dec 2021 15:44:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1638978279;
- bh=8ywbSsmMTnCb0bYAOFTzp+UZJcVTRDUeHz5n/MuFm34=;
- h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
- b=KHDiUPKiWOLM55/3Yw8e4cELX/ius5cnT4xTYfUYv8s2t5BL9tp7WMc4eJgVt+137
- 3oAUQGeMzVe8+EeXIUo16JceG7hUa1vnrENIH3i9BfSnn4tRPbNUUPlVnR+7hYxUYm
- q9wdILgXIYNzx5bNmE98ZHV9BQ0Q8WsNsha53JO1LvHjgZ+XW/LtP3TAj2eRPKyl88
- yOyuOJ9Oh7/QUAOfJDv8+LXPrvjBwAJnILpRt1B/AzAfDUdZ7oX8Wla21X7pdnULfY
- LoB/xovXZ2PLPyNiYOMe8Sr2AMnbKyohVVUIMlKzLU6nt6Ly+8MhWFeq2HsJ13PEG4
- OZWgXYoQX5wVw==
+ id 1mv3zj-00EEV4-QZ
+ for ath11k@lists.infradead.org; Wed, 08 Dec 2021 20:56:57 +0000
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1638997011;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=RI9goYiyaxxlyowVIy50GRXpRhCNUYZrM4r3seD1bKI=;
+ b=NIPhL0sgn8M0aJUIi890pmZGlk891yoUSSDMnC4hnbyawxG2Kyh7G1sHH/xsmtSWUM8FfZ
+ FyiBCPJVbWpXpFfMUl77mb1l8QqDIF5HigALgdn/RYqTMPCpOHMr0KIFCokDN7aLnrEdks
+ 8rrnfZKCxcaetGnTQyHUg4mAfEc2N1sxXiIWn5IbWqnhikYmOYt6fknKqXzV7CdqL4P4H4
+ 8ZS0DFKNdnSGea2HezKm7Hkc6llGKcBl9S+VI9FjnibvCSYHAcSlNTnETtfGbCxdf3f6N4
+ HjxoAKj0UnKj8JjZlpBFr0/NMCZQnVLvInv7aT9TCLkwNt6S0nNqOl/aBjfedw==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1638997011;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=RI9goYiyaxxlyowVIy50GRXpRhCNUYZrM4r3seD1bKI=;
+ b=KF19qqsUtSG+rWG9NpEYyzGIEvbq/ti9eoiMayWfd1iK3FYz9roP5HeWY227THj1hSYyZu
+ bO4E+0TC1Z5Br/AA==
+To: Jason Gunthorpe <jgg@nvidia.com>
+Cc: LKML <linux-kernel@vger.kernel.org>, Bjorn Helgaas <helgaas@kernel.org>,
+ Marc Zygnier <maz@kernel.org>, Alex Williamson
+ <alex.williamson@redhat.com>, Kevin Tian <kevin.tian@intel.com>, Megha Dey
+ <megha.dey@intel.com>, Ashok Raj <ashok.raj@intel.com>,
+ linux-pci@vger.kernel.org, Cedric Le Goater <clg@kaod.org>, Michael
+ Ellerman <mpe@ellerman.id.au>, Paul Mackerras <paulus@samba.org>, Benjamin
+ Herrenschmidt <benh@kernel.crashing.org>, linuxppc-dev@lists.ozlabs.org,
+ Juergen Gross <jgross@suse.com>, Thomas Bogendoerfer
+ <tsbogend@alpha.franken.de>, linux-mips@vger.kernel.org, Kalle Valo
+ <kvalo@codeaurora.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ sparclinux@vger.kernel.org, x86@kernel.org,
+ xen-devel@lists.xenproject.org, ath11k@lists.infradead.org, Wei Liu
+ <wei.liu@kernel.org>, linux-hyperv@vger.kernel.org, Christian Borntraeger
+ <borntraeger@de.ibm.com>, Heiko Carstens <hca@linux.ibm.com>
+Subject: Re: [patch V2 20/23] PCI/MSI: Move msi_lock to struct pci_dev
+In-Reply-To: <20211208152925.GU6385@nvidia.com>
+References: <20211206210147.872865823@linutronix.de>
+ <20211206210224.925241961@linutronix.de>
+ <20211208152925.GU6385@nvidia.com>
+Date: Wed, 08 Dec 2021 21:56:50 +0100
+Message-ID: <871r2m24tp.ffs@tglx>
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: Add HE UL MU fixed rate setting
-From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <1627597558-25144-1-git-send-email-msinada@codeaurora.org>
-References: <1627597558-25144-1-git-send-email-msinada@codeaurora.org>
-To: Muna Sinada <msinada@codeaurora.org>
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- Muna Sinada <msinada@codeaurora.org>
-User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <163897827714.29276.8873042028382760166.kvalo@kernel.org>
-Date: Wed,  8 Dec 2021 15:44:38 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211208_074442_551128_39579585 
-X-CRM114-Status: UNSURE (   7.88  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20211208_125656_026716_C7F1850C 
+X-CRM114-Status: GOOD (  11.47  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,37 +87,18 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Muna Sinada <msinada@codeaurora.org> wrote:
+On Wed, Dec 08 2021 at 11:29, Jason Gunthorpe wrote:
+> On Mon, Dec 06, 2021 at 11:27:56PM +0100, Thomas Gleixner wrote:
+>>  	if (!desc->pci.msi_attrib.can_mask)
+>
+> It looks like most of the time this is called by an irq_chip, except
+> for a few special cases list pci_msi_shutdown()
+>
+> Is this something that should ideally go away someday and use some
+> lock in the irq_chip - not unlike what we've thought is needed for
+> IMS?
 
-> This patch adds ath11k support for setting HE UL MU fixed rate.
-> HE UL MU fixed rate is informed to HE STA by HE Basic Trigger frame.
-> The added code is reusing parts of the existing code path used for
-> HE fixed rate.
-> 
-> Utilizing iw command, HE UL MU fixed rate can be set:
-> 	iw dev wlanX set bitrates he-ul-mcs-<5/2.4> <NSS:MCS>
-> 
-> 	Example: iw dev wlan0 set bitrates he-ul-mcs-5 2:5
-> 
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00356-QCAHKSWPL_SILICONZ-1
-> 
-> Signed-off-by: Muna Sinada <msinada@codeaurora.org>
-
-Doesn't apply anymore, please rebase.
-
-error: patch failed: drivers/net/wireless/ath/ath11k/mac.c:6029
-error: drivers/net/wireless/ath/ath11k/mac.c: patch does not apply
-error: patch failed: drivers/net/wireless/ath/ath11k/wmi.h:1047
-error: drivers/net/wireless/ath/ath11k/wmi.h: patch does not apply
-stg import: Diff does not apply cleanly
-
-Patch set to Changes Requested.
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/patch/1627597558-25144-1-git-send-email-msinada@codeaurora.org/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
+Some day we'll have that yes.
 
 -- 
 ath11k mailing list
