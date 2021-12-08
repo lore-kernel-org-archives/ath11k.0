@@ -4,59 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E829DC433EF
-	for <ath11k@archiver.kernel.org>; Wed,  8 Dec 2021 08:37:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D24BC433EF
+	for <ath11k@archiver.kernel.org>; Wed,  8 Dec 2021 08:43:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
-	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=rayJUjN3q1Lb8ofmSF+DijJ0W21oMALi2uaaJl/3h94=; b=ONiPZ6ZEl3Rqqe
-	woiY9Y5ZOBAGtZj17aNJkp7syt4D5s0AgBnncVO5W8/RkKmVtjeUAjnVcdGvTrVdexLXSOxKCYc1I
-	Dqlmxd3eh9jOqebd1FsDGEIHpekHG8IiWXEvukX2guKn+KtzUsvicyN9hS4D3DoLCvcZqbjzYXBvT
-	6c1kA2NkkSfWiqUIWIpm177jlOFUJw5eEeI8uIWcdfgnnq0xhVksgTkOKex+BcMeLTKZY79MbjLJ3
-	T8qmtgJegiaptcGjq+zt6FMJplv1cT3OkbwRKqWumYRUxBN0GREzAe2TwiuDLaoBHoNbg+j639RMN
-	VN+xf6/opodT/ld1eNRg==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=nHWcAo026qfZ3t1J0j4LCdY5RHSEkwCXGLn+z7ncS8E=; b=qNR0OKK4Ayhn/y
+	uaM00RqxINGL8aOM9UvvQD8bm2/mbBMJrENtIJGao6G53RmhM9P1nnbhEHOZ3Wj/gwleK+QEpCIUA
+	vV9B9Dvm5MI6viJ1lcQN5RfQfJ0JMvFEzQSDngI+IMaHHx4iLgDgDlRj96arOYrbJH8xxUsLZkss5
+	wtYxh3AJbtnsn43Ks5tl78U31d9dI12+BdWyKrUEZvyekYq0Y/OPCjjXCEkdFd+LqBQMXDhh8QbEm
+	lDGuXFzGyXJREV9vju3DM6iTPJ8MJe9VLbTu4aWmgWfGLTykOJ52YBgxIiBFfM9c1lcI//3vrtWf3
+	k3weNjamwbVADTxVYZuw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1musS6-00BjuP-Qs; Wed, 08 Dec 2021 08:37:26 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1musXX-00BlyL-Bh; Wed, 08 Dec 2021 08:43:03 +0000
+Received: from mail-pg1-x532.google.com ([2607:f8b0:4864:20::532])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1musRs-00BjoH-ET
- for ath11k@lists.infradead.org; Wed, 08 Dec 2021 08:37:14 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 931CEB81FF2;
- Wed,  8 Dec 2021 08:37:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 582A9C00446;
- Wed,  8 Dec 2021 08:37:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1638952630;
- bh=4tpGuvn77w01rpZhYN7y6/pUYaBT31TJ+IXMcpnrOCU=;
- h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
- b=nCRgKXWZ3GLKl9+W2TrE/wewL8ZBt959FJQTYGEMFGaGpdwEmeKl2PHFOgRmAzCf7
- Ldtc4xvPA/yRevXHS0vkjbDz5GQF1D3kyKS1WSFHG8RqdtzQ3oO1YCuqLOOf+m8OZh
- qe02LM91kxoNyddcgn2MKGvzIbcj49ZEhR9xAG1ah6//lZUVNVID0ggeqlqyAZiW/0
- YAHErDB4FfEpO4qAKzK6uYkEwemwPLdCW9+EUmOluFl63OeRZgqbLnwUsk3lnM5nYw
- pmxlc9KVLJPpsLnuAuF2J9qxgNQgpcPaXkI6sZ1Qojd3SWBiCHWLcsl/0cArDWZngJ
- JQ2Gze2XJi8nw==
+ id 1musXU-00BlxF-63
+ for ath11k@lists.infradead.org; Wed, 08 Dec 2021 08:43:02 +0000
+Received: by mail-pg1-x532.google.com with SMTP id q16so1451045pgq.10
+ for <ath11k@lists.infradead.org>; Wed, 08 Dec 2021 00:42:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=1y+dXBcCkVtTTqUS06lctFWwk/nUClDqIvvgzBUxsEM=;
+ b=LIedwnSB3H0UrB/1qhz5cKbBUvN7EOy72wHx8PQexHUvdmsILOBfeb3SxU6Kaimmsz
+ jplvEmfbojzRNT4Sq80gQv4Zn2oyWSyTcZjzaeUQncC9HjgByiIRong73YIJheMSxxoS
+ tzooCnNJKnPYlAhExrGaXKx3xfO5vspUWhFNymWwEwc5vIn5TsQPgCfQ68+ZEbMC9B/n
+ vQArdxTvfz70L7OelzyVs2McCtanh+kT3D6VjB25Hq0nTIjWiMm2p7oXDTTaA2Bn9g1P
+ 0zwf03s5im3OVFobT2S1QrQxxoU5ovok2A8YxGNLhPD1bzlbVgJELuWyQX3FeR1gM80b
+ zC0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=1y+dXBcCkVtTTqUS06lctFWwk/nUClDqIvvgzBUxsEM=;
+ b=rRbm0jltV+jgR0yZN2AX4fAZj30P7NTjONr32ed+EC6tcmdiqd3cA8iknmD+BIsQrw
+ +sFBHthqTvVrDybFVXm5u5zz9tk1w5RfAFrP5VuYwq/orkMnGOibMZxF1LPJHQb4JOgl
+ IPGHHLLPqX0yHdVOr9ZMEVRad1UsFVvZU2ct0fO2lZcc8n+BX6x3TBtqEHJvPcx9FRKt
+ gkCIkjkIMxencXvMXRY1Bfrl7lDh8pC2ty8ei8ljS5RvGHjlKoL//VTsxBxD7uLidTys
+ iNd3jCoUBbGN9FJEv4G1wwjNRJlsZ5E/cGkLra+AtQsld2/4Qxncr0K4jjJfZZoD0JHd
+ oaEw==
+X-Gm-Message-State: AOAM533dueitQDaDQiaFfksNfKB1vDFYxlFKdNtM7MDyLIa2h7ws07ON
+ tW1SVa03RX/vsaxcRO7CTpTE
+X-Google-Smtp-Source: ABdhPJw5E9rmnvj1IAYXO+PiR22Gni2EGztw+NGY2q4aCvVaQbJ4K2NDCeDI38pJOz69bF/QTJOnEQ==
+X-Received: by 2002:a63:5954:: with SMTP id j20mr27822286pgm.365.1638952979151; 
+ Wed, 08 Dec 2021 00:42:59 -0800 (PST)
+Received: from thinkpad ([117.202.189.59])
+ by smtp.gmail.com with ESMTPSA id lp12sm2002937pjb.24.2021.12.08.00.42.55
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 08 Dec 2021 00:42:58 -0800 (PST)
+Date: Wed, 8 Dec 2021 14:12:53 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: mhi@lists.linux.dev
+Cc: hemantk@codeaurora.org, bbhatt@codeaurora.org, loic.poulain@linaro.org,
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ kvalo@codeaurora.org, stable@vger.kernel.org,
+ Pengyu Ma <mapengyu@gmail.com>
+Subject: Re: [PATCH] bus: mhi: core: Add support for forced PM resume
+Message-ID: <20211208084253.GE70121@thinkpad>
+References: <20211206161059.107007-1-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v4] ath11k: add wait operation for tx management packets
- for flush from mac80211
-From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20211202063705.14321-1-quic_wgong@quicinc.com>
-References: <20211202063705.14321-1-quic_wgong@quicinc.com>
-To: Wen Gong <quic_wgong@quicinc.com>
-Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- <quic_wgong@quicinc.com>
-User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <163895262760.29041.9360368481720924750.kvalo@kernel.org>
-Date: Wed,  8 Dec 2021 08:37:09 +0000 (UTC)
+Content-Disposition: inline
+In-Reply-To: <20211206161059.107007-1-manivannan.sadhasivam@linaro.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211208_003712_829445_BC62328A 
-X-CRM114-Status: GOOD (  10.94  )
+X-CRM114-CacheID: sfid-20211208_004300_257935_13371E08 
+X-CRM114-Status: GOOD (  25.05  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,58 +90,116 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Wen Gong <quic_wgong@quicinc.com> wrote:
-
-> In ath11k, tx of management packet is doing in a work queue. Sometimes
-> the workqueue does not finish tx immediately, then it lead after the next
-> step of vdev delete finished, it start to send the management packet to
-> firmware and lead firmware crash.
+On Mon, Dec 06, 2021 at 09:40:59PM +0530, Manivannan Sadhasivam wrote:
+> From: Loic Poulain <loic.poulain@linaro.org>
 > 
-> ieee80211_set_disassoc() have logic of ieee80211_flush_queues() after
-> it send_deauth_disassoc() to ath11k, its purpose is make sure the
-> deauth was actually sent, so it need to change ath11k to match the
-> purpose of mac80211.
+> For whatever reason, some devices like QCA6390, WCN6855 using ath11k
+> are not in M3 state during PM resume, but still functional. The
+> mhi_pm_resume should then not fail in those cases, and let the higher
+> level device specific stack continue resuming process.
 > 
-> To address these issue wait for tx mgmt as well as tx data packets.
+> Add a new parameter to mhi_pm_resume, to force resuming, whatever the
+> current MHI state is. This fixes a regression with non functional
+> ath11k WiFi after suspend/resume cycle on some machines.
 > 
-> dmesg log of connect/disconnect to AP:
-> [  307.522226] wls1: authenticate with 62:66:e4:e9:6a:a9
-> [  307.586565] wls1: send auth to 62:66:e4:e9:6a:a9 (try 1/3)
-> [  307.586581] ath11k_pci 0000:05:00.0: mac tx mgmt frame, buf id 0
-> [  307.586922] ath11k_pci 0000:05:00.0: mac tx mgmt frame, vdev_id 0
-> [  307.590179] ath11k_pci 0000:05:00.0: wmi mgmt tx comp pending 0 desc id 0
-> [  307.590181] ath11k_pci 0000:05:00.0: mgmt tx compl ev pdev_id 2, desc_id 0, status 0
-> [  307.598699] wls1: authenticated
-> [  307.599483] wls1: associate with 62:66:e4:e9:6a:a9 (try 1/3)
-> [  307.599506] ath11k_pci 0000:05:00.0: mac tx mgmt frame, buf id 0
-> [  307.599519] ath11k_pci 0000:05:00.0: mac tx mgmt frame, vdev_id 0
-> [  307.603059] ath11k_pci 0000:05:00.0: wmi mgmt tx comp pending 0 desc id 0
-> [  307.603063] ath11k_pci 0000:05:00.0: mgmt tx compl ev pdev_id 2, desc_id 0, status 0
-> [  307.637105] wls1: associated
-> [  317.365239] wls1: deauthenticating from 62:66:e4:e9:6a:a9 by local choice (Reason: 3=DEAUTH_LEAVING)
-> [  317.368104] ath11k_pci 0000:05:00.0: mac tx mgmt frame, buf id 0
-> [  317.372622] ath11k_pci 0000:05:00.0: mac tx mgmt frame, vdev_id 0
-> [  317.378320] ath11k_pci 0000:05:00.0: wmi mgmt tx comp pending 0 desc id 0
-> [  317.378330] ath11k_pci 0000:05:00.0: mgmt tx compl ev pdev_id 2, desc_id 0, status 0
-> [  317.378359] ath11k_pci 0000:05:00.0: mac mgmt tx flush mgmt pending 0
-> [  317.421066] ath11k_pci 0000:05:00.0: mac mgmt tx flush mgmt pending 0
-> [  317.421427] ath11k_pci 0000:05:00.0: mac remove interface (vdev 0)
+> Bug report: https://bugzilla.kernel.org/show_bug.cgi?id=214179
 > 
-> Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01230-QCAHSTSWPLZ_V2_TO_X86-1
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+> Cc: stable@vger.kernel.org #5.13
+> Fixes: 020d3b26c07a ("bus: mhi: Early MHI resume failure in non M3 state")
+> Reported-by: Kalle Valo <kvalo@codeaurora.org>
+> Reported-by: Pengyu Ma <mapengyu@gmail.com>
+> Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
+> [mani: Added comment, bug report, added reported-by tags and CCed stable]
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+
+Applied to mhi-fixes! Will be submitted for v5.16-rcX.
+
+Thanks,
+Mani
+
+> ---
+>  drivers/bus/mhi/core/pm.c             | 10 +++++++---
+>  drivers/bus/mhi/pci_generic.c         |  2 +-
+>  drivers/net/wireless/ath/ath11k/mhi.c |  6 +++++-
+>  include/linux/mhi.h                   |  3 ++-
+>  4 files changed, 15 insertions(+), 6 deletions(-)
 > 
-> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
-
-Patch applied to ath-next branch of ath.git, thanks.
-
-dddaa64d0af3 ath11k: add wait operation for tx management packets for flush from mac80211
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20211202063705.14321-1-quic_wgong@quicinc.com/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
+> diff --git a/drivers/bus/mhi/core/pm.c b/drivers/bus/mhi/core/pm.c
+> index 7464f5d09973..4ddd266e042e 100644
+> --- a/drivers/bus/mhi/core/pm.c
+> +++ b/drivers/bus/mhi/core/pm.c
+> @@ -881,7 +881,7 @@ int mhi_pm_suspend(struct mhi_controller *mhi_cntrl)
+>  }
+>  EXPORT_SYMBOL_GPL(mhi_pm_suspend);
+>  
+> -int mhi_pm_resume(struct mhi_controller *mhi_cntrl)
+> +int mhi_pm_resume(struct mhi_controller *mhi_cntrl, bool force)
+>  {
+>  	struct mhi_chan *itr, *tmp;
+>  	struct device *dev = &mhi_cntrl->mhi_dev->dev;
+> @@ -898,8 +898,12 @@ int mhi_pm_resume(struct mhi_controller *mhi_cntrl)
+>  	if (MHI_PM_IN_ERROR_STATE(mhi_cntrl->pm_state))
+>  		return -EIO;
+>  
+> -	if (mhi_get_mhi_state(mhi_cntrl) != MHI_STATE_M3)
+> -		return -EINVAL;
+> +	if (mhi_get_mhi_state(mhi_cntrl) != MHI_STATE_M3) {
+> +		dev_warn(dev, "Resuming from non M3 state (%s)\n",
+> +			 TO_MHI_STATE_STR(mhi_get_mhi_state(mhi_cntrl)));
+> +		if (!force)
+> +			return -EINVAL;
+> +	}
+>  
+>  	/* Notify clients about exiting LPM */
+>  	list_for_each_entry_safe(itr, tmp, &mhi_cntrl->lpm_chans, node) {
+> diff --git a/drivers/bus/mhi/pci_generic.c b/drivers/bus/mhi/pci_generic.c
+> index 9ef41354237c..efd1da66fdf9 100644
+> --- a/drivers/bus/mhi/pci_generic.c
+> +++ b/drivers/bus/mhi/pci_generic.c
+> @@ -959,7 +959,7 @@ static int __maybe_unused mhi_pci_runtime_resume(struct device *dev)
+>  		return 0; /* Nothing to do at MHI level */
+>  
+>  	/* Exit M3, transition to M0 state */
+> -	err = mhi_pm_resume(mhi_cntrl);
+> +	err = mhi_pm_resume(mhi_cntrl, false);
+>  	if (err) {
+>  		dev_err(&pdev->dev, "failed to resume device: %d\n", err);
+>  		goto err_recovery;
+> diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
+> index 26c7ae242db6..f1f2fa2d690d 100644
+> --- a/drivers/net/wireless/ath/ath11k/mhi.c
+> +++ b/drivers/net/wireless/ath/ath11k/mhi.c
+> @@ -533,7 +533,11 @@ static int ath11k_mhi_set_state(struct ath11k_pci *ab_pci,
+>  		ret = mhi_pm_suspend(ab_pci->mhi_ctrl);
+>  		break;
+>  	case ATH11K_MHI_RESUME:
+> -		ret = mhi_pm_resume(ab_pci->mhi_ctrl);
+> +		/* Do force MHI resume as some devices like QCA6390, WCN6855
+> +		 * are not in M3 state but they are functional. So just ignore
+> +		 * the MHI state while resuming.
+> +		 */
+> +		ret = mhi_pm_resume(ab_pci->mhi_ctrl, true);
+>  		break;
+>  	case ATH11K_MHI_TRIGGER_RDDM:
+>  		ret = mhi_force_rddm_mode(ab_pci->mhi_ctrl);
+> diff --git a/include/linux/mhi.h b/include/linux/mhi.h
+> index 723985879035..102303288cee 100644
+> --- a/include/linux/mhi.h
+> +++ b/include/linux/mhi.h
+> @@ -660,8 +660,9 @@ int mhi_pm_suspend(struct mhi_controller *mhi_cntrl);
+>  /**
+>   * mhi_pm_resume - Resume MHI from suspended state
+>   * @mhi_cntrl: MHI controller
+> + * @force: Force resuming to M0 irrespective of the device MHI state
+>   */
+> -int mhi_pm_resume(struct mhi_controller *mhi_cntrl);
+> +int mhi_pm_resume(struct mhi_controller *mhi_cntrl, bool force);
+>  
+>  /**
+>   * mhi_download_rddm_image - Download ramdump image from device for
+> -- 
+> 2.25.1
+> 
 
 -- 
 ath11k mailing list
