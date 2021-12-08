@@ -4,63 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DB19C433EF
-	for <ath11k@archiver.kernel.org>; Wed,  8 Dec 2021 07:21:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56ABCC433EF
+	for <ath11k@archiver.kernel.org>; Wed,  8 Dec 2021 07:23:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=FiBP3ad+iazoLtlJDjI2AX40kZeNKuLpGF2GPt6b96M=; b=t8HrYCFLyFcD18
-	H2lWrR+gEXgUgT5k8QUJozH4CyjmsA+Es27YbNs5NbSSz9NW21HupRYxOWlO57S+czNV5S5YYfu+5
-	iE2VwlZdBgIHb/4T7IA4z65ZBr0on+YT6EmgW9pgcCXTD09DYGRwpI2qSy0QDHO857a2WQ4C5m1X8
-	HI6MzsKMdRS9myE37ZHj3NOGFvHudSTxCBCuPrKdzZb0BMkRueUfzIlur6ayldFDg3OzabH1ISFEW
-	GAFwUgZ0MLKMTgeXX7Aap2uCv4+Vek4Sd/WluyxBWd5h46iQLYSfeHoQKnmsk5HwcEuzT/QBFbjGm
-	32vkKll2tLMixE9uiRzQ==;
+	List-Owner; bh=46mJTb0wBp+y37k4OgxqQskcw0r8Mez1umt6Vsg3s0g=; b=ujgufdprSfdnkZ
+	tIVyorjYB8J9QSwdUykqUq6UPO3bgTZQGZU/Du98kTDXzHDuv5JPHfO+iPyIRamHDP/tA/WM7jRXF
+	o7oiQ1/mlmgrMa5GM4opEWkP3zcBar4nmlgiYKQ/Xwzz2AJjCqonGFLZcsfGAL9Lf1+iZfvsRL0m9
+	0U3LtLq3HPAitVLuYBRxsDTFHXofG1r3NkIk8aKuZ26Ii481xV1HFo7HIzlfLfKsE4uDy8XSSD+MV
+	xnrRwHWUlYwLPfy5CsP9Uu6gB0m9xkTua7NJs2SezlhJ4LWsU1mddFvGSJrytwVNmjHRXD3EN545u
+	bV6Kkx2icNlx3fKa/jwg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1murGq-00BYcD-9P; Wed, 08 Dec 2021 07:21:44 +0000
-Received: from alexa-out.qualcomm.com ([129.46.98.28])
+	id 1murIn-00BZ4v-6i; Wed, 08 Dec 2021 07:23:45 +0000
+Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1murGn-00BYbJ-Uy
- for ath11k@lists.infradead.org; Wed, 08 Dec 2021 07:21:43 +0000
+ id 1murIk-00BZ3x-NE
+ for ath11k@lists.infradead.org; Wed, 08 Dec 2021 07:23:43 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1638948102; x=1670484102;
- h=from:to:cc:subject:date:message-id:mime-version;
- bh=w68CqdkvDz5E+CQE4nJwn5BFUgsqR9P7+/VFkE0Cyyg=;
- b=CFJ/OSTScxGMWjuiliNQ5aPiWAF4d86oZ9+BZIOlBK0cC7lchLF8Dcfk
- ReRlqUxpctmzFoN1NLOnlo79dOQrh5mr75g+POIhFF9Q/qU7ERbJiOvOB
- qDkpbRUic2brDDvZXxUsd6x2oEhcsmxDskIqYo/8tpJjxIMJGwLrd0fdE w=;
-Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
- by alexa-out.qualcomm.com with ESMTP; 07 Dec 2021 23:21:41 -0800
+ t=1638948222; x=1670484222;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=aP4aYYc3sR8tigYFU19bF4Ce7DkGODqkL4I450FFV28=;
+ b=OENbj6/hBE0zi0/NbjHq7WE5xqaxscNp91VGmcm6gbih5Dwv6CTFJH3O
+ wTBW6pPrCC3KUwqRqSiZQ+2MOs8TeTIrIpAaVkgvD3VppgwV6YZwfuIlN
+ MdwwaJoO+CAMAvblRtlo0rHZ6388sKYbHBtLcByjqxCkG/7/e9TldEJyw k=;
+Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
+ by alexa-out-sd-01.qualcomm.com with ESMTP; 07 Dec 2021 23:23:42 -0800
 X-QCInternal: smtphost
 Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2021 23:21:40 -0800
+ by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Dec 2021 23:23:42 -0800
 Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
  nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Tue, 7 Dec 2021 23:21:40 -0800
-Received: from cjhuang2-gv.qualcomm.com (10.80.80.8) by
+ 15.2.922.19; Tue, 7 Dec 2021 23:23:41 -0800
+Received: from wgong-HP3-Z230-SFF-Workstation.qca.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Tue, 7 Dec 2021 23:21:39 -0800
-From: Carl Huang <quic_cjhuang@quicinc.com>
+ 15.2.922.19; Tue, 7 Dec 2021 23:23:40 -0800
+From: Wen Gong <quic_wgong@quicinc.com>
 To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>
-Subject: [PATCH v2] ath11k: set DTIM policy to stick mode for station interface
-Date: Wed, 8 Dec 2021 15:21:31 +0800
-Message-ID: <1638948091-9695-1-git-send-email-quic_cjhuang@quicinc.com>
-X-Mailer: git-send-email 2.7.4
+CC: <linux-wireless@vger.kernel.org>, <quic_wgong@quicinc.com>
+Subject: [PATCH v4 0/2] ath11k: add handler for board-2.bin without variant
+ and read SMBIOS
+Date: Wed, 8 Dec 2021 02:23:25 -0500
+Message-ID: <20211208072327.19719-1-quic_wgong@quicinc.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211207_232142_089367_7FC8235F 
-X-CRM114-Status: UNSURE (   8.68  )
+X-CRM114-CacheID: sfid-20211207_232342_809278_710DEAD4 
+X-CRM114-Status: UNSURE (   5.26  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -78,61 +80,35 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Set DTIM policy to DTIM stick mode, so station follows AP DTIM
-interval rather than listen interval which is set in peer assoc cmd.
-DTIM stick mode is more preferred per firmware team request.
+v4: 
+   1. add helper function ath11k_core_create_fallback_board_name()
+   2. rebased to ath.git ath-202112071521
 
-Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
+v3:
+   1. add patch "ath11k: add fallback board name without variant while searching board-2.bin"
+   2. reabsed to latest ath.git master ath-202111221436
 
-Signed-off-by: Carl Huang <quic_cjhuang@quicinc.org>
----
-v2:
-  - rebased on top of 4f4f8aee394b73abf5e5f98c63187fdbf1d627f0
+v2: rebased to latest ath.git master ath-202111170737
 
- drivers/net/wireless/ath/ath11k/mac.c | 7 +++++++
- drivers/net/wireless/ath/ath11k/wmi.h | 7 +++++++
- 2 files changed, 14 insertions(+)
+When it does not have matched board name with variant in board-2.bin,
+ath11k will fallback to search without variant.
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index ffedd22dd1c0..f8a072020198 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -2681,6 +2681,13 @@ static void ath11k_bss_assoc(struct ieee80211_hw *hw,
- 	if (ret)
- 		ath11k_warn(ar->ab, "failed to set vdev %i OBSS PD parameters: %d\n",
- 			    arvif->vdev_id, ret);
-+
-+	ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
-+					    WMI_VDEV_PARAM_DTIM_POLICY,
-+					    WMI_DTIM_POLICY_STICK);
-+	if (ret)
-+		ath11k_warn(ar->ab, "failed to set vdev %d dtim policy: %d\n",
-+			    arvif->vdev_id, ret);
- }
- 
- static void ath11k_bss_disassoc(struct ieee80211_hw *hw,
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index 35f5432357f5..7941838f5efc 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -2169,6 +2169,13 @@ enum wmi_nss_ratio {
- 	WMI_NSS_RATIO_2_NSS = 0x3,
- };
- 
-+enum wmi_dtim_policy {
-+	WMI_DTIM_POLICY_IGNORE = 1,
-+	WMI_DTIM_POLICY_NORMAL = 2,
-+	WMI_DTIM_POLICY_STICK  = 3,
-+	WMI_DTIM_POLICY_AUTO   = 4,
-+};
-+
- struct wmi_host_pdev_band_to_mac {
- 	u32 pdev_id;
- 	u32 start_freq;
+Also read the variant from SMBIOS.
+
+Wen Gong (2):
+  ath11k: add fallback board name without variant while searching
+    board-2.bin
+  ath11k: add read variant from SMBIOS for download board data
+
+ drivers/net/wireless/ath/ath11k/core.c | 107 +++++++++++++++++++++++--
+ drivers/net/wireless/ath/ath11k/core.h |  11 +++
+ drivers/net/wireless/ath/ath11k/qmi.c  |   4 +
+ 3 files changed, 117 insertions(+), 5 deletions(-)
+
 
 base-commit: 4f4f8aee394b73abf5e5f98c63187fdbf1d627f0
 -- 
-2.32.0
+2.31.1
 
 
 -- 
