@@ -4,77 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 845D9C433F5
-	for <ath11k@archiver.kernel.org>; Wed,  8 Dec 2021 08:30:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4A75C433FE
+	for <ath11k@archiver.kernel.org>; Wed,  8 Dec 2021 08:35:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ljW3+XHs3jS3BX0b8Otzj9rs5QdAG6Uq1jBDWLc67kw=; b=iTUY5xLIg2s0Qh
-	RctUdVjLejNkhwFJhLC4T9C/Rs90GI7hjEX/3+tahoEGP58xEVaZKAV+hISfU5smrQe/6TL3+d3dm
-	aqVa+71SfdK82ZMUpW0WlLhCTgLowG5tkpwb+bXxchxqD62RdF0RG3q4V+iJUDiJv7lWthqhVzCZt
-	QpU1DD+lXa6cEDTK9AHoSPPa5BVYSG/lHZzxz5Vx35YiVKCnLSZ1nkggqDFAwrLSe0+vJz1G5CEb3
-	nlm9gdnkQDnDJNlz3jaLTx94/0uyP6e0U2/pji13NRzNUApZ4+73Ur6oJFbTbAW6RA5OZ6fmw0L4G
-	6cDtjqbtqSsK78pV1u0A==;
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
+	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=QZDPrXh9w7Hyl0KoLJ6khtVlX/pjRINinhUMr9MxHjQ=; b=Q2q3zaxZRoO88j
+	w3/r+1t3i/QX9eGbDBlCy+JRJ+SIXRqeZQGOqxPkV/FpAOLcNPMo5Q+jc6QR90eC6sUu9hEJwNIgO
+	F2SZKCXM7ql3Er48U5R5TIMbyo1VIey2Nq8L3ZrGfcZF4vwU19ZVZV+uO1u/Ip3nNvSHU8KyurYT/
+	vvRNPTqLAwOlzcTM7LkcAsDlH9FWmHef5+L5E3xJpJPfSVO2VajtBteYZxPnzXezD/6Fv9Glsp+SC
+	145o4bQV92qG19hMsfvBBwWhP6aZ7VIpvYWFe7sFIoJUMyoZeOrYVyYau8BF/3TiAmuJOdl6VZ5Oe
+	SYtslt0w481OurKwdbOw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1musLi-00Bhe9-Kk; Wed, 08 Dec 2021 08:30:50 +0000
-Received: from mail-pg1-x535.google.com ([2607:f8b0:4864:20::535])
+	id 1musQc-00Bj7h-TT; Wed, 08 Dec 2021 08:35:54 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1musLg-00BhdT-Cj
- for ath11k@lists.infradead.org; Wed, 08 Dec 2021 08:30:50 +0000
-Received: by mail-pg1-x535.google.com with SMTP id r138so1415043pgr.13
- for <ath11k@lists.infradead.org>; Wed, 08 Dec 2021 00:30:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=RRzI4Iei17Ahggjstaqb1wov493fOuSguTH2Wc+bkwI=;
- b=ZlrqYumsXJ26Tvh0dTMnaSXivpjkDZvaj8K4es5g8PFBhjcf2pkZlVXbThCYAHMYYC
- 7RLoLdhOwvUfYhlBz1G8UAR0hw2PN/hACdXrH8Nmcw9ZpvUhons9s9mA8jE3crhs75Fm
- /wcNAZ27E9xS/UXTiCeNQU7zq/5wDyZexd0kUoHpBeIy7tqdxGtuCdPzhkDTTwUnis6R
- se8Tanwa/vMQhFUrN+gpQRIM6zEWKTcyE19eNULgZb/000Y4GhCulAe9rBfskrk2pTdq
- Pp1NrDl5o6c2uCpfLk1++rDpJNB6NdRNw+D56AJbKnOx/rsxrSEE2v3J1sV/ZJHkX4gC
- 69VQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=RRzI4Iei17Ahggjstaqb1wov493fOuSguTH2Wc+bkwI=;
- b=Zxp7SYqnJaqVd7Ik02g/eZhKBl1wWUrB3IKTpeZG278SEqhqSJ7vH3GTMJS13loYde
- Y5fJ8im7jFlyUIj9s2LWY2HKukgmJUQb4UpbQiKwF8Sqty5/kEz85tqelC2gY7WqLF3Y
- wUlx2CWevKEzKg/Ka5TKy+ss7e7Hcsaauhc9nLyVQszvjjcBMXwJuj/0z1v0BTi7hXss
- 7U0upiMPQEkxSuL+Rp0jiz9w1/awSVUbz50S9nyC5Pq2DynJFP3hVyotP4STA8pA5sss
- 7/Bdbp2HGw0ohz8RJ1gF+z8iqG/LXAviwoOkRG1qctc39v35eBJ0TcrOmCySWmnYA5zT
- AnlA==
-X-Gm-Message-State: AOAM5313FpuZzxRwli2rgpmoree07t4WlIzEiF5F7c3zmBpp4xS7K5sU
- QJBQDUN4bLeG4gE41J3dXW2L
-X-Google-Smtp-Source: ABdhPJxGzy9Z2ZMkn1bf7beooiLm6AWWW1bSqP0UhkmlyfZ2EcXB2dbbvnFb/xvteJJ/lcrb/FdDHw==
-X-Received: by 2002:a63:5b24:: with SMTP id p36mr15366637pgb.258.1638952244983; 
- Wed, 08 Dec 2021 00:30:44 -0800 (PST)
-Received: from thinkpad ([117.202.189.59])
- by smtp.gmail.com with ESMTPSA id s19sm2408544pfu.104.2021.12.08.00.30.40
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 08 Dec 2021 00:30:44 -0800 (PST)
-Date: Wed, 8 Dec 2021 14:00:37 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Hemant Kumar <hemantk@codeaurora.org>
-Cc: mhi@lists.linux.dev, bbhatt@codeaurora.org, loic.poulain@linaro.org,
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- kvalo@codeaurora.org, stable@vger.kernel.org,
- Pengyu Ma <mapengyu@gmail.com>
-Subject: Re: [PATCH] bus: mhi: core: Add support for forced PM resume
-Message-ID: <20211208083037.GD70121@thinkpad>
-References: <20211206161059.107007-1-manivannan.sadhasivam@linaro.org>
- <7eb05d7c-ddda-5ec1-73a0-e696d2b5a236@codeaurora.org>
+ id 1musOf-00Bi7K-HK
+ for ath11k@lists.infradead.org; Wed, 08 Dec 2021 08:33:55 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 76E6FB81FDE;
+ Wed,  8 Dec 2021 08:33:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADE31C341C3;
+ Wed,  8 Dec 2021 08:33:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1638952427;
+ bh=HmzlJM/m5DcjkUwNrSL3AKRi0bgAL40KcNp8VXmYFBE=;
+ h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+ b=njxcsADxNB9WXJzwVnNVrTRI2qwWSblnzg48oxmNCzDp2b8ukOd2pItdAA1vONRWA
+ ZWyo8aYeuquOMDNUzWSvi4s5ue8bxFQJ5IiLxoTbi495Ck4Vhkb975mx5pJtAPx6Xm
+ Bk/8EsR/RaYcksCqbP2Ne7HYa0oOJLIg7cxuHILLlYMRU41TOV0QCWI4fhlkLSB94W
+ zUPM1ufURcSiXJPjSvCwIDEvoURcrfAIvbGBYXjcgQEtkPD6d+1iA/D4LkGQca1ot1
+ dEWR5JG/1a54kaqsc7U1aCNN4iNP7EtWOuLF3+geJbwxxCX2rDGB9vHbF43GbYMtjH
+ tGxv3lZvDNJ9A==
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <7eb05d7c-ddda-5ec1-73a0-e696d2b5a236@codeaurora.org>
+Subject: Re: [PATCH v3 1/3] ath11k: avoid deadlock by change
+ ieee80211_queue_work for regd_update_work
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20211201071745.17746-2-quic_wgong@quicinc.com>
+References: <20211201071745.17746-2-quic_wgong@quicinc.com>
+To: Wen Gong <quic_wgong@quicinc.com>
+Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+ <quic_wgong@quicinc.com>
+User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-ID: <163895242245.29041.2633840660845847754.kvalo@kernel.org>
+Date: Wed,  8 Dec 2021 08:33:46 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211208_003048_525680_2640452F 
-X-CRM114-Status: GOOD (  30.10  )
+X-CRM114-CacheID: sfid-20211208_003353_907345_9407D5D1 
+X-CRM114-Status: GOOD (  13.52  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,86 +73,193 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Tue, Dec 07, 2021 at 03:41:42PM -0800, Hemant Kumar wrote:
-> Hi Mani,
+Wen Gong <quic_wgong@quicinc.com> wrote:
+
+> When enable debug config, it print below warning while shut down wlan
+> interface shuh as run "ifconfig wlan0 down".
 > 
-> On 12/6/2021 8:10 AM, Manivannan Sadhasivam wrote:
-> > From: Loic Poulain <loic.poulain@linaro.org>
-> > 
-> > For whatever reason, some devices like QCA6390, WCN6855 using ath11k
-> > are not in M3 state during PM resume, but still functional. The
-> > mhi_pm_resume should then not fail in those cases, and let the higher
-> > level device specific stack continue resuming process.
-> > 
-> > Add a new parameter to mhi_pm_resume, to force resuming, whatever the
-> > current MHI state is. This fixes a regression with non functional
-> > ath11k WiFi after suspend/resume cycle on some machines.
-> > 
-> > Bug report: https://bugzilla.kernel.org/show_bug.cgi?id=214179
-> > 
-> > Cc: stable@vger.kernel.org #5.13
-> > Fixes: 020d3b26c07a ("bus: mhi: Early MHI resume failure in non M3 state")
-> > Reported-by: Kalle Valo <kvalo@codeaurora.org>
-> > Reported-by: Pengyu Ma <mapengyu@gmail.com>
-> > Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
-> > [mani: Added comment, bug report, added reported-by tags and CCed stable]
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > ---
-> >   drivers/bus/mhi/core/pm.c             | 10 +++++++---
-> >   drivers/bus/mhi/pci_generic.c         |  2 +-
-> >   drivers/net/wireless/ath/ath11k/mhi.c |  6 +++++-
-> >   include/linux/mhi.h                   |  3 ++-
-> >   4 files changed, 15 insertions(+), 6 deletions(-)
-> > 
-> > diff --git a/drivers/bus/mhi/core/pm.c b/drivers/bus/mhi/core/pm.c
-> > index 7464f5d09973..4ddd266e042e 100644
-> > --- a/drivers/bus/mhi/core/pm.c
-> > +++ b/drivers/bus/mhi/core/pm.c
-> > @@ -881,7 +881,7 @@ int mhi_pm_suspend(struct mhi_controller *mhi_cntrl)
-> >   }
-> >   EXPORT_SYMBOL_GPL(mhi_pm_suspend);
-> > -int mhi_pm_resume(struct mhi_controller *mhi_cntrl)
-> > +int mhi_pm_resume(struct mhi_controller *mhi_cntrl, bool force)
-> >   {
-> >   	struct mhi_chan *itr, *tmp;
-> >   	struct device *dev = &mhi_cntrl->mhi_dev->dev;
-> > @@ -898,8 +898,12 @@ int mhi_pm_resume(struct mhi_controller *mhi_cntrl)
-> >   	if (MHI_PM_IN_ERROR_STATE(mhi_cntrl->pm_state))
-> >   		return -EIO;
-> > -	if (mhi_get_mhi_state(mhi_cntrl) != MHI_STATE_M3)
-> > -		return -EINVAL;
-> > +	if (mhi_get_mhi_state(mhi_cntrl) != MHI_STATE_M3) {
-> 	in case if mhi_get_mhi_state(mhi_cntrl) returns SYS_ERR (assuming while
-> doing this check SYS_ERR is set) do we still want to continue pm resume when
-> force is true? Just want to make sure SYS_ERR handling with and without this
-> change remains the same or atleast does not cause any regression with this
-> change. or if we need to continue pm resume only for MHI_STATE_RESET when
-> MHI_STATE_M3 is not set?
-
-SYS_ERR state is a valid case while resuming from suspend. The "force" flag is
-supposed to be used by controllers that goes to a weird state like RESET. If we
-just add check for RESET, then we might get another scenario in future. That's
-why the "force" flag made sense to me.
-
-If we want to handle SYS_ERR then we need to check for that before M3 and that
-can be done in a separate patch. But since we didn't hit this scenario till now,
-let's handle it later if needed.
-
-Thanks,
-Mani
-
-> > +		dev_warn(dev, "Resuming from non M3 state (%s)\n",
-> > +			 TO_MHI_STATE_STR(mhi_get_mhi_state(mhi_cntrl)));
-> > +		if (!force)
-> > +			return -EINVAL;
-> > +	}
-> [..]
+> The reason is because ar->regd_update_work is ran once, and it is will
+> call wiphy_lock(ar->hw->wiphy) in function ath11k_regd_update() which
+> is running in workqueue of ieee80211_local queued by ieee80211_queue_work().
+> Another thread from "ifconfig wlan0 down" will also accuqire the lock
+> by wiphy_lock(sdata->local->hw.wiphy) in function ieee80211_stop(), and
+> then it call ieee80211_stop_device() to flush_workqueue(local->workqueue),
+> this will wait the workqueue of ieee80211_local finished. Then deadlock
+> will happen easily if the two thread run meanwhile.
 > 
-> Thanks,
-> Hemant
-> -- 
-> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum, a
-> Linux Foundation Collaborative Project
+> Below warning disappeared after this change.
+> 
+> [  914.088798] ath11k_pci 0000:05:00.0: mac remove interface (vdev 0)
+> [  914.088806] ath11k_pci 0000:05:00.0: mac stop 11d scan
+> [  914.088810] ath11k_pci 0000:05:00.0: mac stop 11d vdev id 0
+> [  914.088827] ath11k_pci 0000:05:00.0: htc ep 2 consumed 1 credits (total 0)
+> [  914.088841] ath11k_pci 0000:05:00.0: send 11d scan stop vdev id 0
+> [  914.088849] ath11k_pci 0000:05:00.0: htc insufficient credits ep 2 required 1 available 0
+> [  914.088856] ath11k_pci 0000:05:00.0: htc insufficient credits ep 2 required 1 available 0
+> [  914.096434] ath11k_pci 0000:05:00.0: rx ce pipe 2 len 16
+> [  914.096442] ath11k_pci 0000:05:00.0: htc ep 2 got 1 credits (total 1)
+> [  914.096481] ath11k_pci 0000:05:00.0: htc ep 2 consumed 1 credits (total 0)
+> [  914.096491] ath11k_pci 0000:05:00.0: WMI vdev delete id 0
+> [  914.111598] ath11k_pci 0000:05:00.0: rx ce pipe 2 len 16
+> [  914.111628] ath11k_pci 0000:05:00.0: htc ep 2 got 1 credits (total 1)
+> [  914.114659] ath11k_pci 0000:05:00.0: rx ce pipe 2 len 20
+> [  914.114742] ath11k_pci 0000:05:00.0: htc rx completion ep 2 skb         pK-error
+> [  914.115977] ath11k_pci 0000:05:00.0: vdev delete resp for vdev id 0
+> [  914.116685] ath11k_pci 0000:05:00.0: vdev 00:03:7f:29:61:11 deleted, vdev_id 0
+> 
+> [  914.117583] ======================================================
+> [  914.117592] WARNING: possible circular locking dependency detected
+> [  914.117600] 5.16.0-rc1-wt-ath+ #1 Tainted: G           OE
+> [  914.117611] ------------------------------------------------------
+> [  914.117618] ifconfig/2805 is trying to acquire lock:
+> [  914.117628] ffff9c00a62bb548 ((wq_completion)phy0){+.+.}-{0:0}, at: flush_workqueue+0x87/0x470
+> [  914.117674]
+>                but task is already holding lock:
+> [  914.117682] ffff9c00baea07d0 (&rdev->wiphy.mtx){+.+.}-{4:4}, at: ieee80211_stop+0x38/0x180 [mac80211]
+> [  914.117872]
+>                which lock already depends on the new lock.
+> 
+> [  914.117880]
+>                the existing dependency chain (in reverse order) is:
+> [  914.117888]
+>                -> #3 (&rdev->wiphy.mtx){+.+.}-{4:4}:
+> [  914.117910]        __mutex_lock+0xa0/0x9c0
+> [  914.117930]        mutex_lock_nested+0x1b/0x20
+> [  914.117944]        reg_process_self_managed_hints+0x3a/0xb0 [cfg80211]
+> [  914.118093]        wiphy_regulatory_register+0x47/0x80 [cfg80211]
+> [  914.118229]        wiphy_register+0x84f/0x9c0 [cfg80211]
+> [  914.118353]        ieee80211_register_hw+0x6b1/0xd90 [mac80211]
+> [  914.118486]        ath11k_mac_register+0x6af/0xb60 [ath11k]
+> [  914.118550]        ath11k_core_qmi_firmware_ready+0x383/0x4a0 [ath11k]
+> [  914.118598]        ath11k_qmi_driver_event_work+0x347/0x4a0 [ath11k]
+> [  914.118656]        process_one_work+0x228/0x670
+> [  914.118669]        worker_thread+0x4d/0x440
+> [  914.118680]        kthread+0x16d/0x1b0
+> [  914.118697]        ret_from_fork+0x22/0x30
+> [  914.118714]
+>                -> #2 (rtnl_mutex){+.+.}-{4:4}:
+> [  914.118736]        __mutex_lock+0xa0/0x9c0
+> [  914.118751]        mutex_lock_nested+0x1b/0x20
+> [  914.118767]        rtnl_lock+0x17/0x20
+> [  914.118783]        ath11k_regd_update+0x15a/0x260 [ath11k]
+> [  914.118841]        ath11k_regd_update_work+0x15/0x20 [ath11k]
+> [  914.118897]        process_one_work+0x228/0x670
+> [  914.118909]        worker_thread+0x4d/0x440
+> [  914.118920]        kthread+0x16d/0x1b0
+> [  914.118934]        ret_from_fork+0x22/0x30
+> [  914.118948]
+>                -> #1 ((work_completion)(&ar->regd_update_work)){+.+.}-{0:0}:
+> [  914.118972]        process_one_work+0x1fa/0x670
+> [  914.118984]        worker_thread+0x4d/0x440
+> [  914.118996]        kthread+0x16d/0x1b0
+> [  914.119010]        ret_from_fork+0x22/0x30
+> [  914.119023]
+>                -> #0 ((wq_completion)phy0){+.+.}-{0:0}:
+> [  914.119045]        __lock_acquire+0x146d/0x1cf0
+> [  914.119057]        lock_acquire+0x19b/0x360
+> [  914.119067]        flush_workqueue+0xae/0x470
+> [  914.119084]        ieee80211_stop_device+0x3b/0x50 [mac80211]
+> [  914.119260]        ieee80211_do_stop+0x5d7/0x830 [mac80211]
+> [  914.119409]        ieee80211_stop+0x45/0x180 [mac80211]
+> [  914.119557]        __dev_close_many+0xb3/0x120
+> [  914.119573]        __dev_change_flags+0xc3/0x1d0
+> [  914.119590]        dev_change_flags+0x29/0x70
+> [  914.119605]        devinet_ioctl+0x653/0x810
+> [  914.119620]        inet_ioctl+0x193/0x1e0
+> [  914.119631]        sock_do_ioctl+0x4d/0xf0
+> [  914.119649]        sock_ioctl+0x262/0x340
+> [  914.119665]        __x64_sys_ioctl+0x96/0xd0
+> [  914.119678]        do_syscall_64+0x3d/0xd0
+> [  914.119694]        entry_SYSCALL_64_after_hwframe+0x44/0xae
+> [  914.119709]
+>                other info that might help us debug this:
+> 
+> [  914.119717] Chain exists of:
+>                  (wq_completion)phy0 --> rtnl_mutex --> &rdev->wiphy.mtx
+> 
+> [  914.119745]  Possible unsafe locking scenario:
+> 
+> [  914.119752]        CPU0                    CPU1
+> [  914.119758]        ----                    ----
+> [  914.119765]   lock(&rdev->wiphy.mtx);
+> [  914.119778]                                lock(rtnl_mutex);
+> [  914.119792]                                lock(&rdev->wiphy.mtx);
+> [  914.119807]   lock((wq_completion)phy0);
+> [  914.119819]
+>                 *** DEADLOCK ***
+> 
+> [  914.119827] 2 locks held by ifconfig/2805:
+> [  914.119837]  #0: ffffffffba3dc010 (rtnl_mutex){+.+.}-{4:4}, at: rtnl_lock+0x17/0x20
+> [  914.119872]  #1: ffff9c00baea07d0 (&rdev->wiphy.mtx){+.+.}-{4:4}, at: ieee80211_stop+0x38/0x180 [mac80211]
+> [  914.120039]
+>                stack backtrace:
+> [  914.120048] CPU: 0 PID: 2805 Comm: ifconfig Tainted: G           OE     5.16.0-rc1-wt-ath+ #1
+> [  914.120064] Hardware name: LENOVO 418065C/418065C, BIOS 83ET63WW (1.33 ) 07/29/2011
+> [  914.120074] Call Trace:
+> [  914.120084]  <TASK>
+> [  914.120094]  dump_stack_lvl+0x73/0xa4
+> [  914.120119]  dump_stack+0x10/0x12
+> [  914.120135]  print_circular_bug.isra.44+0x221/0x2e0
+> [  914.120165]  check_noncircular+0x106/0x150
+> [  914.120203]  __lock_acquire+0x146d/0x1cf0
+> [  914.120215]  ? __lock_acquire+0x146d/0x1cf0
+> [  914.120245]  lock_acquire+0x19b/0x360
+> [  914.120259]  ? flush_workqueue+0x87/0x470
+> [  914.120286]  ? lockdep_init_map_type+0x6b/0x250
+> [  914.120310]  flush_workqueue+0xae/0x470
+> [  914.120327]  ? flush_workqueue+0x87/0x470
+> [  914.120344]  ? lockdep_hardirqs_on+0xd7/0x150
+> [  914.120391]  ieee80211_stop_device+0x3b/0x50 [mac80211]
+> [  914.120565]  ? ieee80211_stop_device+0x3b/0x50 [mac80211]
+> [  914.120736]  ieee80211_do_stop+0x5d7/0x830 [mac80211]
+> [  914.120906]  ieee80211_stop+0x45/0x180 [mac80211]
+> [  914.121060]  __dev_close_many+0xb3/0x120
+> [  914.121081]  __dev_change_flags+0xc3/0x1d0
+> [  914.121109]  dev_change_flags+0x29/0x70
+> [  914.121131]  devinet_ioctl+0x653/0x810
+> [  914.121149]  ? __might_fault+0x77/0x80
+> [  914.121179]  inet_ioctl+0x193/0x1e0
+> [  914.121194]  ? inet_ioctl+0x193/0x1e0
+> [  914.121218]  ? __might_fault+0x77/0x80
+> [  914.121238]  ? _copy_to_user+0x68/0x80
+> [  914.121266]  sock_do_ioctl+0x4d/0xf0
+> [  914.121283]  ? inet_stream_connect+0x60/0x60
+> [  914.121297]  ? sock_do_ioctl+0x4d/0xf0
+> [  914.121329]  sock_ioctl+0x262/0x340
+> [  914.121347]  ? sock_ioctl+0x262/0x340
+> [  914.121362]  ? exit_to_user_mode_prepare+0x13b/0x280
+> [  914.121388]  ? syscall_enter_from_user_mode+0x20/0x50
+> [  914.121416]  __x64_sys_ioctl+0x96/0xd0
+> [  914.121430]  ? br_ioctl_call+0x90/0x90
+> [  914.121445]  ? __x64_sys_ioctl+0x96/0xd0
+> [  914.121465]  do_syscall_64+0x3d/0xd0
+> [  914.121482]  entry_SYSCALL_64_after_hwframe+0x44/0xae
+> [  914.121497] RIP: 0033:0x7f0ed051737b
+> [  914.121513] Code: 0f 1e fa 48 8b 05 15 3b 0d 00 64 c7 00 26 00 00 00 48 c7 c0 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa b8 10 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d e5 3a 0d 00 f7 d8 64 89 01 48
+> [  914.121527] RSP: 002b:00007fff7be38b98 EFLAGS: 00000202 ORIG_RAX: 0000000000000010
+> [  914.121544] RAX: ffffffffffffffda RBX: 00007fff7be38ba0 RCX: 00007f0ed051737b
+> [  914.121555] RDX: 00007fff7be38ba0 RSI: 0000000000008914 RDI: 0000000000000004
+> [  914.121566] RBP: 00007fff7be38c60 R08: 000000000000000a R09: 0000000000000001
+> [  914.121576] R10: 0000000000000000 R11: 0000000000000202 R12: 00000000fffffffe
+> [  914.121586] R13: 0000000000000004 R14: 0000000000000000 R15: 0000000000000000
+> [  914.121620]  </TASK>
+> 
+> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+> 
+> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+
+3 patches applied to ath-next branch of ath.git, thanks.
+
+ed05c7cf1286 ath11k: avoid deadlock by change ieee80211_queue_work for regd_update_work
+0b05ddad8e4b ath11k: add configure country code for QCA6390 and WCN6855
+9dcf6808b253 ath11k: add 11d scan offload support
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/patch/20211201071745.17746-2-quic_wgong@quicinc.com/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
 -- 
 ath11k mailing list
