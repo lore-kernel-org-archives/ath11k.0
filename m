@@ -4,73 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06499C433EF
-	for <ath11k@archiver.kernel.org>; Wed,  8 Dec 2021 20:57:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE5F7C433F5
+	for <ath11k@archiver.kernel.org>; Thu,  9 Dec 2021 02:28:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=I637+OaGP3IAJCDlkqfNDdbp/OKCtTGAlq3Vyn4TUt4=; b=AMeykD15UePFdd
-	TRiVKDreWEWyq8LQi06XqO7iefw9MY8YsChY4i3YZIeTyNCIGJCRSwzsvN+h/9/4s+I+jnuiJQw/C
-	XEwfKs9A2MU3rn4DPKLgHDLh4x1UAJxZLvCrn7Z8LHWy40ppQcYBgWRv99iRQZVOPBsdABGb7ZoBr
-	zJgATMNWxxd1Wt5iwMLlFy3qxMQ+/QwOm7KwQIGYerDchsY7tap6NFZi5OINuXgOfylVZtpuhD1yU
-	2hL8MGAadeEpjdPSEc2Xl3JaPLqG6f0F4ROTdahbPLxws/bg+mOlj/Xyd0rV3WdPvgG/qHV3rQqZu
-	qaGFl898hKUcvyxaSRkg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=wpStGLP+ITjs70nQa5oRoYrALsfC27Ro6SBs2pGX6iM=; b=Z0/kYbfkp8K2nB
+	uzTG4u2WFsKUpGFqh4k1Ro9ogNQf8WL95fzdlpA5WPs9avF8F2FkOGy95IByLsUEVuM4Cx48e+23q
+	9PUn9u7We4cfYeAdAFpnULbs1Y86Uk+SXgmhXvdPPXKjCP1NEA+7VxTVhiqjeki1yiGjCy+sjEY3C
+	5QBWL41Q6pqWbqQiC5+k/6g6pmC+Ab+x/lJdU4toXjjVStpiFx+RSgx6BcL4mcYHnaj0t/PwYrhLm
+	x0qDE2S8lA94je4S3hQuH/2aS3LVcvUV1GkVzDKrcNZl8CuIG6A8WEsp4s/xV7lnOyRRUJSVI0FBw
+	G9e+c+qrdNaA4OBVMd8A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mv3zl-00EEXd-Vj; Wed, 08 Dec 2021 20:56:57 +0000
-Received: from galois.linutronix.de ([2a0a:51c0:0:12e:550::1])
+	id 1mv9AN-00El7I-Bk; Thu, 09 Dec 2021 02:28:15 +0000
+Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mv3zj-00EEV4-QZ
- for ath11k@lists.infradead.org; Wed, 08 Dec 2021 20:56:57 +0000
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1638997011;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=RI9goYiyaxxlyowVIy50GRXpRhCNUYZrM4r3seD1bKI=;
- b=NIPhL0sgn8M0aJUIi890pmZGlk891yoUSSDMnC4hnbyawxG2Kyh7G1sHH/xsmtSWUM8FfZ
- FyiBCPJVbWpXpFfMUl77mb1l8QqDIF5HigALgdn/RYqTMPCpOHMr0KIFCokDN7aLnrEdks
- 8rrnfZKCxcaetGnTQyHUg4mAfEc2N1sxXiIWn5IbWqnhikYmOYt6fknKqXzV7CdqL4P4H4
- 8ZS0DFKNdnSGea2HezKm7Hkc6llGKcBl9S+VI9FjnibvCSYHAcSlNTnETtfGbCxdf3f6N4
- HjxoAKj0UnKj8JjZlpBFr0/NMCZQnVLvInv7aT9TCLkwNt6S0nNqOl/aBjfedw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1638997011;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=RI9goYiyaxxlyowVIy50GRXpRhCNUYZrM4r3seD1bKI=;
- b=KF19qqsUtSG+rWG9NpEYyzGIEvbq/ti9eoiMayWfd1iK3FYz9roP5HeWY227THj1hSYyZu
- bO4E+0TC1Z5Br/AA==
-To: Jason Gunthorpe <jgg@nvidia.com>
-Cc: LKML <linux-kernel@vger.kernel.org>, Bjorn Helgaas <helgaas@kernel.org>,
- Marc Zygnier <maz@kernel.org>, Alex Williamson
- <alex.williamson@redhat.com>, Kevin Tian <kevin.tian@intel.com>, Megha Dey
- <megha.dey@intel.com>, Ashok Raj <ashok.raj@intel.com>,
- linux-pci@vger.kernel.org, Cedric Le Goater <clg@kaod.org>, Michael
- Ellerman <mpe@ellerman.id.au>, Paul Mackerras <paulus@samba.org>, Benjamin
- Herrenschmidt <benh@kernel.crashing.org>, linuxppc-dev@lists.ozlabs.org,
- Juergen Gross <jgross@suse.com>, Thomas Bogendoerfer
- <tsbogend@alpha.franken.de>, linux-mips@vger.kernel.org, Kalle Valo
- <kvalo@codeaurora.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- sparclinux@vger.kernel.org, x86@kernel.org,
- xen-devel@lists.xenproject.org, ath11k@lists.infradead.org, Wei Liu
- <wei.liu@kernel.org>, linux-hyperv@vger.kernel.org, Christian Borntraeger
- <borntraeger@de.ibm.com>, Heiko Carstens <hca@linux.ibm.com>
-Subject: Re: [patch V2 20/23] PCI/MSI: Move msi_lock to struct pci_dev
-In-Reply-To: <20211208152925.GU6385@nvidia.com>
-References: <20211206210147.872865823@linutronix.de>
- <20211206210224.925241961@linutronix.de>
- <20211208152925.GU6385@nvidia.com>
-Date: Wed, 08 Dec 2021 21:56:50 +0100
-Message-ID: <871r2m24tp.ffs@tglx>
+ id 1mv9AJ-00El6t-Of
+ for ath11k@lists.infradead.org; Thu, 09 Dec 2021 02:28:13 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+ t=1639016891; x=1670552891;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=09onxPkSZAaCFE4w/GyZ/nAYG3mvk8lmmMTCNn5pGOM=;
+ b=eArKVWCj2PoPU2Q+wqpafeMbExfal8lhMsbQuDKi18U8wO8vPkZPy8D2
+ 4NpOasKl7pCuo5J0qeidQzXzsNDBDsh2qSJf1eFW+MAp+F8Dbn2196anS
+ edK8bCZigKD9Wvln+S38R/ltQn82j277O8dLpl8DNmL7inST8xaVOGNyT o=;
+Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
+ by alexa-out-sd-01.qualcomm.com with ESMTP; 08 Dec 2021 18:28:09 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+ by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2021 18:28:08 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Wed, 8 Dec 2021 18:28:08 -0800
+Received: from bqiang-Celadon-RN.qca.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Wed, 8 Dec 2021 18:28:07 -0800
+From: Baochen Qiang <quic_bqiang@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>
+Subject: [PATCH] ath11k: Avoid false DEADLOCK warning reported by lockdep
+Date: Thu, 9 Dec 2021 09:19:49 +0800
+Message-ID: <20211209011949.151472-1-quic_bqiang@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211208_125656_026716_C7F1850C 
-X-CRM114-Status: GOOD (  11.47  )
+X-CRM114-CacheID: sfid-20211208_182811_887525_B9C88D6B 
+X-CRM114-Status: GOOD (  13.36  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,18 +78,175 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed, Dec 08 2021 at 11:29, Jason Gunthorpe wrote:
-> On Mon, Dec 06, 2021 at 11:27:56PM +0100, Thomas Gleixner wrote:
->>  	if (!desc->pci.msi_attrib.can_mask)
->
-> It looks like most of the time this is called by an irq_chip, except
-> for a few special cases list pci_msi_shutdown()
->
-> Is this something that should ideally go away someday and use some
-> lock in the irq_chip - not unlike what we've thought is needed for
-> IMS?
+With CONFIG_LOCKDEP=y and CONFIG_DEBUG_SPINLOCK=y, lockdep reports
+below warning:
 
-Some day we'll have that yes.
+[  166.059415] ============================================
+[  166.059416] WARNING: possible recursive locking detected
+[  166.059418] 5.15.0-wt-ath+ #10 Tainted: G        W  O
+[  166.059420] --------------------------------------------
+[  166.059421] kworker/0:2/116 is trying to acquire lock:
+[  166.059423] ffff9905f2083160 (&srng->lock){+.-.}-{2:2}, at: ath11k_hal_reo_cmd_send+0x20/0x490 [ath11k]
+[  166.059440]
+               but task is already holding lock:
+[  166.059442] ffff9905f2083230 (&srng->lock){+.-.}-{2:2}, at: ath11k_dp_process_reo_status+0x95/0x2d0 [ath11k]
+[  166.059491]
+               other info that might help us debug this:
+[  166.059492]  Possible unsafe locking scenario:
+
+[  166.059493]        CPU0
+[  166.059494]        ----
+[  166.059495]   lock(&srng->lock);
+[  166.059498]   lock(&srng->lock);
+[  166.059500]
+                *** DEADLOCK ***
+
+[  166.059501]  May be due to missing lock nesting notation
+
+[  166.059502] 3 locks held by kworker/0:2/116:
+[  166.059504]  #0: ffff9905c0081548 ((wq_completion)events){+.+.}-{0:0}, at: process_one_work+0x1f6/0x660
+[  166.059511]  #1: ffff9d2400a5fe68 ((debug_obj_work).work){+.+.}-{0:0}, at: process_one_work+0x1f6/0x660
+[  166.059517]  #2: ffff9905f2083230 (&srng->lock){+.-.}-{2:2}, at: ath11k_dp_process_reo_status+0x95/0x2d0 [ath11k]
+[  166.059532]
+               stack backtrace:
+[  166.059534] CPU: 0 PID: 116 Comm: kworker/0:2 Kdump: loaded Tainted: G        W  O      5.15.0-wt-ath+ #10
+[  166.059537] Hardware name: Intel(R) Client Systems NUC8i7HVK/NUC8i7HVB, BIOS HNKBLi70.86A.0059.2019.1112.1124 11/12/2019
+[  166.059539] Workqueue: events free_obj_work
+[  166.059543] Call Trace:
+[  166.059545]  <IRQ>
+[  166.059547]  dump_stack_lvl+0x56/0x7b
+[  166.059552]  __lock_acquire+0xb9a/0x1a50
+[  166.059556]  lock_acquire+0x1e2/0x330
+[  166.059560]  ? ath11k_hal_reo_cmd_send+0x20/0x490 [ath11k]
+[  166.059571]  _raw_spin_lock_bh+0x33/0x70
+[  166.059574]  ? ath11k_hal_reo_cmd_send+0x20/0x490 [ath11k]
+[  166.059584]  ath11k_hal_reo_cmd_send+0x20/0x490 [ath11k]
+[  166.059594]  ath11k_dp_tx_send_reo_cmd+0x3f/0x130 [ath11k]
+[  166.059605]  ath11k_dp_rx_tid_del_func+0x221/0x370 [ath11k]
+[  166.059618]  ath11k_dp_process_reo_status+0x22f/0x2d0 [ath11k]
+[  166.059632]  ? ath11k_dp_service_srng+0x2ea/0x2f0 [ath11k]
+[  166.059643]  ath11k_dp_service_srng+0x2ea/0x2f0 [ath11k]
+[  166.059655]  ath11k_pci_ext_grp_napi_poll+0x1c/0x70 [ath11k_pci]
+[  166.059659]  __napi_poll+0x28/0x230
+[  166.059664]  net_rx_action+0x285/0x310
+[  166.059668]  __do_softirq+0xe6/0x4d2
+[  166.059672]  irq_exit_rcu+0xd2/0xf0
+[  166.059675]  common_interrupt+0xa5/0xc0
+[  166.059678]  </IRQ>
+[  166.059679]  <TASK>
+[  166.059680]  asm_common_interrupt+0x1e/0x40
+[  166.059683] RIP: 0010:_raw_spin_unlock_irqrestore+0x38/0x70
+[  166.059686] Code: 83 c7 18 e8 2a 95 43 ff 48 89 ef e8 22 d2 43 ff 81 e3 00 02 00 00 75 25 9c 58 f6 c4 02 75 2d 48 85 db 74 01 fb bf 01 00 00 00 <e8> 63 2e 40 ff 65 8b 05 8c 59 97 5c 85 c0 74 0a 5b 5d c3 e8 00 6a
+[  166.059689] RSP: 0018:ffff9d2400a5fca0 EFLAGS: 00000206
+[  166.059692] RAX: 0000000000000002 RBX: 0000000000000200 RCX: 0000000000000006
+[  166.059694] RDX: 0000000000000000 RSI: ffffffffa404879b RDI: 0000000000000001
+[  166.059696] RBP: ffff9905c0053000 R08: 0000000000000001 R09: 0000000000000001
+[  166.059698] R10: ffff9d2400a5fc50 R11: 0000000000000001 R12: ffffe186c41e2840
+[  166.059700] R13: 0000000000000001 R14: ffff9905c78a1c68 R15: 0000000000000001
+[  166.059704]  free_debug_processing+0x257/0x3d0
+[  166.059708]  ? free_obj_work+0x1f5/0x250
+[  166.059712]  __slab_free+0x374/0x5a0
+[  166.059718]  ? kmem_cache_free+0x2e1/0x370
+[  166.059721]  ? free_obj_work+0x1f5/0x250
+[  166.059724]  kmem_cache_free+0x2e1/0x370
+[  166.059727]  free_obj_work+0x1f5/0x250
+[  166.059731]  process_one_work+0x28b/0x660
+[  166.059735]  ? process_one_work+0x660/0x660
+[  166.059738]  worker_thread+0x37/0x390
+[  166.059741]  ? process_one_work+0x660/0x660
+[  166.059743]  kthread+0x176/0x1a0
+[  166.059746]  ? set_kthread_struct+0x40/0x40
+[  166.059749]  ret_from_fork+0x22/0x30
+[  166.059754]  </TASK>
+
+Since these two lockes are both initialized in ath11k_hal_srng_setup,
+they are assigned with the same key. As a result lockdep suspects that
+the task is trying to acquire the same lock (due to same key) while
+already holding it, and thus reports the DEADLOCK warning. However as
+they are different spinlock instances, the warning is false positive.
+
+On the other hand, even no dead lock indeed, this is a major issue for
+upstream regression testing as it disables lockdep functionality.
+
+Fix it by assigning separate lock class key for each srng->lock.
+
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/hal.c | 22 ++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/hal.h |  2 ++
+ 2 files changed, 24 insertions(+)
+
+diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
+index 7cf9e23cb922..2ec09ae90080 100644
+--- a/drivers/net/wireless/ath/ath11k/hal.c
++++ b/drivers/net/wireless/ath/ath11k/hal.c
+@@ -974,6 +974,7 @@ int ath11k_hal_srng_setup(struct ath11k_base *ab, enum hal_ring_type type,
+ 	srng->msi_data = params->msi_data;
+ 	srng->initialized = 1;
+ 	spin_lock_init(&srng->lock);
++	lockdep_set_class(&srng->lock, hal->srng_key + ring_id);
+ 
+ 	for (i = 0; i < HAL_SRNG_NUM_REG_GRP; i++) {
+ 		srng->hwreg_base[i] = srng_config->reg_start[i] +
+@@ -1260,6 +1261,24 @@ static int ath11k_hal_srng_create_config(struct ath11k_base *ab)
+ 	return 0;
+ }
+ 
++static void ath11k_hal_register_srng_key(struct ath11k_base *ab)
++{
++	struct ath11k_hal *hal = &ab->hal;
++	u32 ring_id;
++
++	for (ring_id = 0; ring_id < HAL_SRNG_RING_ID_MAX; ring_id++)
++		lockdep_register_key(hal->srng_key + ring_id);
++}
++
++static void ath11k_hal_unregister_srng_key(struct ath11k_base *ab)
++{
++	struct ath11k_hal *hal = &ab->hal;
++	u32 ring_id;
++
++	for (ring_id = 0; ring_id < HAL_SRNG_RING_ID_MAX; ring_id++)
++		lockdep_unregister_key(hal->srng_key + ring_id);
++}
++
+ int ath11k_hal_srng_init(struct ath11k_base *ab)
+ {
+ 	struct ath11k_hal *hal = &ab->hal;
+@@ -1279,6 +1298,8 @@ int ath11k_hal_srng_init(struct ath11k_base *ab)
+ 	if (ret)
+ 		goto err_free_cont_rdp;
+ 
++	ath11k_hal_register_srng_key(ab);
++
+ 	return 0;
+ 
+ err_free_cont_rdp:
+@@ -1293,6 +1314,7 @@ void ath11k_hal_srng_deinit(struct ath11k_base *ab)
+ {
+ 	struct ath11k_hal *hal = &ab->hal;
+ 
++	ath11k_hal_unregister_srng_key(ab);
+ 	ath11k_hal_free_cont_rdp(ab);
+ 	ath11k_hal_free_cont_wrp(ab);
+ 	kfree(hal->srng_config);
+diff --git a/drivers/net/wireless/ath/ath11k/hal.h b/drivers/net/wireless/ath/ath11k/hal.h
+index 0f4f9ce74354..a7d9b4c551ad 100644
+--- a/drivers/net/wireless/ath/ath11k/hal.h
++++ b/drivers/net/wireless/ath/ath11k/hal.h
+@@ -902,6 +902,8 @@ struct ath11k_hal {
+ 	/* shadow register configuration */
+ 	u32 shadow_reg_addr[HAL_SHADOW_NUM_REGS];
+ 	int num_shadow_reg_configured;
++
++	struct lock_class_key srng_key[HAL_SRNG_RING_ID_MAX];
+ };
+ 
+ u32 ath11k_hal_reo_qdesc_size(u32 ba_window_size, u8 tid);
+-- 
+2.25.1
+
 
 -- 
 ath11k mailing list
