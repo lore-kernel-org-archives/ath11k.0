@@ -4,59 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26AF8C433FE
-	for <ath11k@archiver.kernel.org>; Thu,  9 Dec 2021 15:16:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B6C9C433EF
+	for <ath11k@archiver.kernel.org>; Thu,  9 Dec 2021 15:47:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
 	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Vw0w615rYFKPl+6qkzxuZMnCzk95T1VzWYRRotSRdGs=; b=QojUElHhAmd0cw
-	JSLeZCxiKG4nuXv24IZnlkvkOopbIbGZLp2kh+jKyIat3XTLYh03kSHGCmr+l5CvbuouFerhQn/Mg
-	teJpVKokj7l2aplTBOvEguVtEmcjtp1RUTbc7MphvhGD7EnegKq2xdiG/8eX5A84lCg1uQVXUcJQW
-	65Royl1hRWMHZeeWHjptdjp+7Tw1PTEVyWAsAE++s/+yeI/w8Ak+o7FiGz75fBnPAqes0A9FRHzZE
-	mUafUHku8q8YetPEP8vePuXjmMuxw47Mgv1UjFpjuMgK93o9+rBv62GyayF7zKNskatjXY13hloQR
-	F4kVwelDXoo9hwC4lPoA==;
+	List-Owner; bh=fD+TvKkAuhmYh3CO89EbaAobOnhG4vYyiRATOWnWtKw=; b=vnkFzhdqhgadK+
+	QhGX/ZCFdMvtvOv+iu9PURPTBYHTAJWi6huU3kZr6JMgL12baSbjP6nagVZ8+Y7yoVbx8BE7xKR7X
+	fbWlUHoMRz4vYAORBrl79yeyBBccQ09kIkWFjh8yvCpXhzifeAP+vOHBMPEya6z9bJwZ4qDh4wPUR
+	djujY3vep0upCFiTWqbMqL/us/IwoZbEoHKyETpBgJOYOMc3ycNLg7Ok9hxddg6VyyP9+0fbp82Py
+	lFVWmI3T3YoU91DXYCHBMZmljXhvZ3a4qPG+AH79/46nK2IHx6x1yO/7OnJZL4BO7c9RBWewAxSs7
+	8Fn6jQmqHlDWdtWhmrdw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mvLA7-00GUXK-RW; Thu, 09 Dec 2021 15:16:47 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1mvLdg-00Gacg-6L; Thu, 09 Dec 2021 15:47:20 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mvLA4-00GUWj-IS
- for ath11k@lists.infradead.org; Thu, 09 Dec 2021 15:16:46 +0000
+ id 1mvLdd-00Gaav-Nv
+ for ath11k@lists.infradead.org; Thu, 09 Dec 2021 15:47:19 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 4824EB82489;
- Thu,  9 Dec 2021 15:16:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BB83C004DD;
- Thu,  9 Dec 2021 15:16:41 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id EA03DB82526;
+ Thu,  9 Dec 2021 15:47:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3AC9C341C7;
+ Thu,  9 Dec 2021 15:47:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1639063002;
- bh=66Cgp3VacMsVX3GfgxZ8ibIa5IwzQamvqK+EV/QKVKg=;
+ s=k20201202; t=1639064834;
+ bh=YNOFaTpt1tvJv+y9fCTCvs/wMNi4pGUJVNtcNP24z30=;
  h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
- b=bIGEiPZiqi7eUzq/8DllDHRC87cX7v+aUs3PNpbB0DPQyeksPi3yWExMW6BI8lANG
- KoFBSubCGbLZL4qTV3qzadm8uZwL1ylwxH8KslNPj8LCuGgQwJQI2tlIrGuC7e0Ipx
- pEN7x8aSBYls/sWh+63b4ZxiuKN8kGFOj6T2xBYI0BABBFpSj0kKSBSEF+/rGJhBvh
- X6BNNIBiR0DQuZwg1nqZR5yU2pUDWrnP2bamRbK8eUL+yLBKrtE2iSB+/R41/unnRe
- zDaElO4nPrjOFrpZFbLbEXZNlYLTFGBMAHOjEwgirtu9IGoAsxvORBtuSNH/4020sI
- YQc7okdowDhWw==
+ b=ryzWtrETFjq9LQ3PNVEnbp8XaS5CRAw39D3ZeapzuMta1z31qwWdbVLP6KXMF9e3i
+ 4LcJftgZflGxEFjIQ3PZaTA/sPeEB0oDMO/TvUEtp0HsmHkmkNzIRHgZ9cIBRnQ15v
+ EZ9m/MYxZmLoXvnLuWbtjxdw0WAYPA769HTEhz9tIEML6YPuXSqL01otlbJnvVhHCv
+ dE6hZGRs19O5b7w52kfynZUWPHUAGle12i+H5UTH95pU/EqHD3H8WuDWVl2Ui2NNa+
+ dsAWt4myfeK49e/xYAtrM8g8Q9LMsaKYJTp6qtCFJHyI6SoNhDL8VSiOTz6rPFOW8h
+ T+FUw9+zbFE9A==
 From: Kalle Valo <kvalo@kernel.org>
 To: Carl Huang <cjhuang@codeaurora.org>
 Cc: ath11k@lists.infradead.org,  linux-wireless@vger.kernel.org
-Subject: Re: [PATCH 5/6] ath11k: support ARP and NS offload
+Subject: Re: [PATCH 3/6] ath11k: implement hw data filter
 References: <20211011193750.4891-1-cjhuang@codeaurora.org>
- <20211011193750.4891-6-cjhuang@codeaurora.org>
-Date: Thu, 09 Dec 2021 17:16:38 +0200
-In-Reply-To: <20211011193750.4891-6-cjhuang@codeaurora.org> (Carl Huang's
- message of "Mon, 11 Oct 2021 15:37:49 -0400")
-Message-ID: <87r1alzu3t.fsf@codeaurora.org>
+ <20211011193750.4891-4-cjhuang@codeaurora.org>
+Date: Thu, 09 Dec 2021 17:47:10 +0200
+In-Reply-To: <20211011193750.4891-4-cjhuang@codeaurora.org> (Carl Huang's
+ message of "Mon, 11 Oct 2021 15:37:47 -0400")
+Message-ID: <87mtl9zsox.fsf@codeaurora.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211209_071644_773916_3CA84C4D 
-X-CRM114-Status: GOOD (  12.02  )
+X-CRM114-CacheID: sfid-20211209_074717_960127_7F18B610 
+X-CRM114-Status: GOOD (  11.43  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,34 +75,34 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 Carl Huang <cjhuang@codeaurora.org> writes:
 
-> Support ARP and NS offload in WoW state.
+> Host needs to set hw data filter before entering WoW to
+> let firmware drop needless bc/mc frames to avoid frequent wakeup.
+> Host clears hw data filter when leaving WoW.
 >
-> Tested this way: put machineA with QCA6390 to WoW state,
-> ping/ping6 machineA from another machineB, check sniffer to see
-> any ARP response and Neighbour advertisement from machineA.
+> Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
+>
+> Signed-off-by: Carl Huang <cjhuang@codeaurora.org>
 
-s/machineA/machine A/
-s/machineB/machine B/
+[...]
 
-> @@ -672,8 +712,15 @@ int ath11k_wow_op_resume(struct ieee80211_hw *hw)
+> @@ -598,8 +647,14 @@ int ath11k_wow_op_resume(struct ieee80211_hw *hw)
 >  	}
 >  
->  	ret = ath11k_wow_clear_hw_filter(ar);
+>  	ret = ath11k_wow_nlo_cleanup(ar);
 > -	if (ret)
 > +	if (ret) {
->  		ath11k_warn(ar->ab, "failed to clear hw filter: %d\n", ret);
+>  		ath11k_warn(ar->ab, "failed to cleanup nlo: %d\n", ret);
 > +		goto exit;
 > +	}
 > +
-> +	ret = ath11k_wow_protocol_offload(ar, false);
+> +	ret = ath11k_wow_clear_hw_filter(ar);
 > +	if (ret)
-> +		ath11k_warn(ar->ab, "failed to clear wow protocol offload events: %d\n",
-> +			    ret);
+> +		ath11k_warn(ar->ab, "failed to clear hw filter: %d\n", ret);
 >  
 >  exit:
 >  	if (ret) {
 
-For consistency please add goto exit for ath11k_wow_protocol_offload().
+For consistency please add goto exit for ath11k_wow_clear_hw_filter().
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
