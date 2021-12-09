@@ -4,61 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B224C433EF
-	for <ath11k@archiver.kernel.org>; Thu,  9 Dec 2021 08:08:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B5A4C433EF
+	for <ath11k@archiver.kernel.org>; Thu,  9 Dec 2021 08:10:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FYSybZ/cqH+ohPRY6hmenA1Py7S6XYf2+2HJNo+zQ9g=; b=nySh9x05Rqqlb2
-	Xu+/Jr/LPYFfgB1lo74pX2qXgXnXp9ZULmfQDOROL/oSdCCefHzDZhQmd9EVr3h2oGOUZj0EnHn/x
-	i9pofx/aNjcXFpmggLtD42IhT/FUT7PGs8/CFUVdEPm4JIqope5YU26ZBfZjVNHJmJu3+3VYWpVmW
-	e8IrNjpRtPjZawavl+IoDlOsY8NY9/iQRzHN+LlI77JpoTvtg0IU8Q0UwcvunxgZCyaFGXRHMGyYY
-	2kpRWYakQWRwKktTTILGMQfwH6jN5ZYU55yTG3B009KatmlfWMh5aiJNmi+kn9TTYU8MH+aaFh5q4
-	L8kXUwOwmZdMahp/O7YQ==;
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
+	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=qBrZt0CLGGBCfXUaHX1mWhG22SAWjuq48L/GtqWH/no=; b=z8vVi1yTf988Mt
+	ajyWrFLpVorEuiiiSr3cCxOVpqf1eHOMCy7U2bMa8WMODTffG3pgQbjUHF1rrzO9L2Kg+0Xr7fJdN
+	ZWCSwfC74gusvd2gOwZmgDY/uspfM89yccd6bempppYBzJ/XPk8GijZQ04sJz15WN6kfjNiAN856/
+	2U1yU6K2wbUEFP3PQ8Q45Y5E6w0iq1N67K2qQ9Ze6d+Ng3IVHOf1jQ9WfrY3c4urEmqd7O0vlRJoX
+	LoK0PGHmrKBY3r0yUOqG+m2VE0paykXJUi3nnZOHzA3EYBlUh0pbdiiEDBVIkeU8E3D3bWUDQzq0L
+	VbQQwemB2vcpAWpmw1wA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mvET8-00FDFO-48; Thu, 09 Dec 2021 08:07:58 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1mvEW1-00FDSa-5k; Thu, 09 Dec 2021 08:10:57 +0000
+Received: from sin.source.kernel.org ([145.40.73.55])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mvET5-00FDEr-Du
- for ath11k@lists.infradead.org; Thu, 09 Dec 2021 08:07:56 +0000
+ id 1mvEVy-00FDRt-BX
+ for ath11k@lists.infradead.org; Thu, 09 Dec 2021 08:10:55 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 051CAB8235E;
- Thu,  9 Dec 2021 08:07:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F405C004DD;
- Thu,  9 Dec 2021 08:07:51 +0000 (UTC)
+ by sin.source.kernel.org (Postfix) with ESMTPS id 8DD00CE24F4;
+ Thu,  9 Dec 2021 08:10:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D00B4C004DD;
+ Thu,  9 Dec 2021 08:10:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1639037272;
- bh=9HSmsfMKHpF4f9eGjC4cv2s5/K0HxC/q6EHNgjltL8Q=;
- h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
- b=ITjPp9Fg5dys06q+H+NFzfGozFrNxZhZLI42km2lwKFIKTuhD0YkAoDh+CUAeXZ84
- YfQqSl8/MlO2R4GXcVL5aqUBKh6m/A9flq1U54IWaBQgIGvrm75rAtbXnPD5Lc90IL
- uhA+X91cnviVUV/TDKQ5v/H8FAo9RGVW8cli+ih34W2OYkUjtM2XaQHDOEkKolj7F/
- hpt8cATVojYZgYuoFFND9EC+U7bqN/Ogwg5h9JPBhbzQKaCeEn6tviWtMaPGTHeR7P
- zmpD/ztqluUyYDBJf9o4KvYk8UVZvpZHF1dgnazMtlf2FRKMO595T84tTEjgesaA0r
- NvFI9lTlK6Z5g==
+ s=k20201202; t=1639037450;
+ bh=Kx5MBSbwU5jq+zQ3PRJJLr4QP7RIu2pMRaeW29p0Z88=;
+ h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+ b=V53leU9dNHJCIf4/fImOCt4lWjv7CHFlUWwTDOXCmvizfviS//CFlEDAbBToJBeme
+ haGqWJk4fexYhOkM3QRQT10DJWXYlJpiJ5ztTANKOXVagggJCi2QktdMQpnOo3OMGQ
+ 8DijnEw3hJj8nqkZqJvLyfe0QblYaODxGuPin/VoURORDHncfEsxv2fhHxHCK7KijN
+ ABNxG4o2rF1Vdn9IXwqdTYv9xrqJlHGXRMhwCvYWDLIj5lE2f0bdoeB1SUz71agDl7
+ AMNTzwujgd1kkLZtleCjFVpYxxL+PJFHdkg/If1xdPFPf4Tpku9HG/hxKAF4TNpM0e
+ 7uj1EQSsaYCqA==
+MIME-Version: 1.0
+Subject: Re: [PATCH v2 1/3] ath11k: Add htt cmd to enable full monitor mode
 From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <1638881695-22155-2-git-send-email-akolli@codeaurora.org>
+References: <1638881695-22155-2-git-send-email-akolli@codeaurora.org>
 To: Anilkumar Kolli <akolli@codeaurora.org>
 Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- devicetree@vger.kernel.org, robh@kernel.org
-Subject: Re: [PATCH v7 2/2] ath11k: Use reserved host DDR addresses from DT
- for PCI devices
-References: <1638789319-2950-1-git-send-email-akolli@codeaurora.org>
- <1638789319-2950-2-git-send-email-akolli@codeaurora.org>
-Date: Thu, 09 Dec 2021 10:07:49 +0200
-In-Reply-To: <1638789319-2950-2-git-send-email-akolli@codeaurora.org>
- (Anilkumar Kolli's message of "Mon, 6 Dec 2021 16:45:19 +0530")
-Message-ID: <87tufi42wa.fsf@codeaurora.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
-MIME-Version: 1.0
+ Anilkumar Kolli <akolli@codeaurora.org>
+User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-ID: <163903744561.4504.3172414546384512849.kvalo@kernel.org>
+Date: Thu,  9 Dec 2021 08:10:49 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211209_000755_633689_B5F264A8 
-X-CRM114-Status: GOOD (  12.45  )
+X-CRM114-CacheID: sfid-20211209_001054_599208_3BF50CC3 
+X-CRM114-Status: UNSURE (   7.26  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,37 +73,29 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Anilkumar Kolli <akolli@codeaurora.org> writes:
+Anilkumar Kolli <akolli@codeaurora.org> wrote:
 
-> Host DDR memory (contiguous 45 MB in mode-0 or 15 MB in mode-2)
-> is reserved through DT entries for firmware usage. Send the base
-> address from DT entries.
-> If DT entry is available, PCI device will work with
-> fixed_mem_region else host allocates multiple segments.
->
-> IPQ8074 on HK10 board supports multiple PCI devices.
-> IPQ8074 + QCN9074 is tested with this patch.
->
-> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.4.0.1-01838-QCAHKSWPL_SILICONZ-1
->
+> A new hw_param full_monitor_mode is added to enable full
+> monitor support for QCN9074.
+> HTT_H2T_MSG_TYPE_RX_FULL_MONITOR_MODE cmd is sent to FW
+> to enable the full monitor mode.
+> 
+> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.4.0.1-01734-QCAHKSWPL_SILICONZ-1
+> 
 > Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-[...]
+3 patches applied to ath-next branch of ath.git, thanks.
 
-> @@ -349,8 +372,15 @@ int ath11k_mhi_register(struct ath11k_pci *ab_pci)
->  	if (!test_bit(ATH11K_PCI_FLAG_MULTI_MSI_VECTORS, &ab_pci->flags))
->  		mhi_ctrl->irq_flags = IRQF_SHARED | IRQF_NOBALANCING;
->  
-> -	mhi_ctrl->iova_start = 0;
-> -	mhi_ctrl->iova_stop = 0xffffffff;
-> +	if ((test_bit(ATH11K_FLAG_FIXED_MEM_RGN, &ab->dev_flags))) {
-
-Unnecessary parenthesis, I fixed it in the pending branch.
+5c1f74d24d92 ath11k: Add htt cmd to enable full monitor mode
+88ee00d130f7 ath11k: add software monitor ring descriptor for full monitor
+7e2ea2e94704 ath11k: Process full monitor mode rx support
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+https://patchwork.kernel.org/project/linux-wireless/patch/1638881695-22155-2-git-send-email-akolli@codeaurora.org/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
 -- 
 ath11k mailing list
