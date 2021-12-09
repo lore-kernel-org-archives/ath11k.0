@@ -4,59 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 763D6C433F5
-	for <ath11k@archiver.kernel.org>; Thu,  9 Dec 2021 15:12:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26AF8C433FE
+	for <ath11k@archiver.kernel.org>; Thu,  9 Dec 2021 15:16:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
 	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Yujl9oWXhkUEBhpaQ4+dHkDnTQ6ylT8DSwA8R1h0MWs=; b=Eure5U7JJ1uUcH
-	RtMlsZ5VJI9c+c2pPnuVvl7m2EB3UgFsJSHY+/4/9OLN2xMKRW8zOPq1kR6iaiteK9KigtOUn944t
-	WMSiHq+Z9jbyeVM5MfSgXDvY4kZTuGF+hb8X9jqxCMZBw0f1GpAiUX0CwTU2b1B7+HijVupZRpjkq
-	CcIks3c3INLvBYGAgD+HNpK7GAmEj7hgGMFMOdm93rjEF63Czusl+EurqqVc33TJmz4tcJcqBtps4
-	0jlhiMOYxpeSYfr6syrKHASolV7rxtb79yYg7QVfwyYBuJEdW1YxyaOb6p8S34yfb+hwo2lewdFBt
-	ffIdwjqLMp3wrRKKmZog==;
+	List-Owner; bh=Vw0w615rYFKPl+6qkzxuZMnCzk95T1VzWYRRotSRdGs=; b=QojUElHhAmd0cw
+	JSLeZCxiKG4nuXv24IZnlkvkOopbIbGZLp2kh+jKyIat3XTLYh03kSHGCmr+l5CvbuouFerhQn/Mg
+	teJpVKokj7l2aplTBOvEguVtEmcjtp1RUTbc7MphvhGD7EnegKq2xdiG/8eX5A84lCg1uQVXUcJQW
+	65Royl1hRWMHZeeWHjptdjp+7Tw1PTEVyWAsAE++s/+yeI/w8Ak+o7FiGz75fBnPAqes0A9FRHzZE
+	mUafUHku8q8YetPEP8vePuXjmMuxw47Mgv1UjFpjuMgK93o9+rBv62GyayF7zKNskatjXY13hloQR
+	F4kVwelDXoo9hwC4lPoA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mvL6K-00GUGQ-DP; Thu, 09 Dec 2021 15:12:52 +0000
-Received: from sin.source.kernel.org ([145.40.73.55])
+	id 1mvLA7-00GUXK-RW; Thu, 09 Dec 2021 15:16:47 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mvL6H-00GUFe-HY
- for ath11k@lists.infradead.org; Thu, 09 Dec 2021 15:12:51 +0000
+ id 1mvLA4-00GUWj-IS
+ for ath11k@lists.infradead.org; Thu, 09 Dec 2021 15:16:46 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by sin.source.kernel.org (Postfix) with ESMTPS id AA64ECE267E;
- Thu,  9 Dec 2021 15:12:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 435D7C341D3;
- Thu,  9 Dec 2021 15:12:44 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 4824EB82489;
+ Thu,  9 Dec 2021 15:16:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BB83C004DD;
+ Thu,  9 Dec 2021 15:16:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1639062765;
- bh=Ay1H3UkuOG3XRGF9LlD5nYbVi0tr6vvRkKWIqwX7qDs=;
+ s=k20201202; t=1639063002;
+ bh=66Cgp3VacMsVX3GfgxZ8ibIa5IwzQamvqK+EV/QKVKg=;
  h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
- b=BtPKqBqovhLSZqaKRWplYuFmNBfkkQhvChM6aVMKbNEWbZaEKtip4TCmmvpeudvOh
- Q7mUn620lNAsVSwPAXzPggIbFkSpg5umIZFZK87c2XAuVExrWxCpr/ccWf6ZWJCFqV
- J4//16qYH87kSWfkTVUd1Bna6aQq85GSfSKqL+ybnojBQmmrGqVioGV9K3ZFhURibo
- OBB6o0C6r9SVGqVFnAVdYqPm7SUpH6g6oe38lN/QGtn1OzkCj20oXARxrrzCq8O+Vk
- Oq+EjtT2xHKkGYANX13sJD6JJtnb2aVp1U638kOjd6VY0PLPAHxFnaoxTJ2XnGT72I
- HGDnsSKzd88vg==
+ b=bIGEiPZiqi7eUzq/8DllDHRC87cX7v+aUs3PNpbB0DPQyeksPi3yWExMW6BI8lANG
+ KoFBSubCGbLZL4qTV3qzadm8uZwL1ylwxH8KslNPj8LCuGgQwJQI2tlIrGuC7e0Ipx
+ pEN7x8aSBYls/sWh+63b4ZxiuKN8kGFOj6T2xBYI0BABBFpSj0kKSBSEF+/rGJhBvh
+ X6BNNIBiR0DQuZwg1nqZR5yU2pUDWrnP2bamRbK8eUL+yLBKrtE2iSB+/R41/unnRe
+ zDaElO4nPrjOFrpZFbLbEXZNlYLTFGBMAHOjEwgirtu9IGoAsxvORBtuSNH/4020sI
+ YQc7okdowDhWw==
 From: Kalle Valo <kvalo@kernel.org>
 To: Carl Huang <cjhuang@codeaurora.org>
 Cc: ath11k@lists.infradead.org,  linux-wireless@vger.kernel.org
-Subject: Re: [PATCH 4/6] ath11k: purge rx pktlog when entering WoW
+Subject: Re: [PATCH 5/6] ath11k: support ARP and NS offload
 References: <20211011193750.4891-1-cjhuang@codeaurora.org>
- <20211011193750.4891-5-cjhuang@codeaurora.org>
-Date: Thu, 09 Dec 2021 17:12:41 +0200
-In-Reply-To: <20211011193750.4891-5-cjhuang@codeaurora.org> (Carl Huang's
- message of "Mon, 11 Oct 2021 15:37:48 -0400")
-Message-ID: <87v8zxzuae.fsf@codeaurora.org>
+ <20211011193750.4891-6-cjhuang@codeaurora.org>
+Date: Thu, 09 Dec 2021 17:16:38 +0200
+In-Reply-To: <20211011193750.4891-6-cjhuang@codeaurora.org> (Carl Huang's
+ message of "Mon, 11 Oct 2021 15:37:49 -0400")
+Message-ID: <87r1alzu3t.fsf@codeaurora.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211209_071249_783943_14CE1E9B 
-X-CRM114-Status: GOOD (  15.78  )
+X-CRM114-CacheID: sfid-20211209_071644_773916_3CA84C4D 
+X-CRM114-Status: GOOD (  12.02  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,59 +75,34 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 Carl Huang <cjhuang@codeaurora.org> writes:
 
-> This change is to purge rx pktlog when entering WoW and reap
-> the mon_status buffer to keep it empty. When leaving WoW, host
-> restarts the reap timer. In WoW state, it's not allowed to feed
-> into mon_status rings per firmware request.
+> Support ARP and NS offload in WoW state.
+>
+> Tested this way: put machineA with QCA6390 to WoW state,
+> ping/ping6 machineA from another machineB, check sniffer to see
+> any ARP response and Neighbour advertisement from machineA.
 
-"per firmware request" is not clear for me. Do you "per firmware team's
-recommendation" or what?
+s/machineA/machine A/
+s/machineB/machine B/
 
-> @@ -327,12 +327,7 @@ int ath11k_core_resume(struct ath11k_base *ab)
->  	ath11k_hif_ce_irq_enable(ab);
->  	ath11k_hif_irq_enable(ab);
+> @@ -672,8 +712,15 @@ int ath11k_wow_op_resume(struct ieee80211_hw *hw)
+>  	}
 >  
-> -	ret = ath11k_dp_rx_pktlog_start(ab);
-> -	if (ret) {
-> -		ath11k_warn(ab, "failed to start rx pktlog during resume: %d\n",
-> -			    ret);
-> -		return ret;
-> -	}
-> +	ath11k_dp_rx_pktlog_start(ab);
-
-Why remove error handling? We should always handle the errors.
-
+>  	ret = ath11k_wow_clear_hw_filter(ar);
+> -	if (ret)
+> +	if (ret) {
+>  		ath11k_warn(ar->ab, "failed to clear hw filter: %d\n", ret);
+> +		goto exit;
+> +	}
+> +
+> +	ret = ath11k_wow_protocol_offload(ar, false);
+> +	if (ret)
+> +		ath11k_warn(ar->ab, "failed to clear wow protocol offload events: %d\n",
+> +			    ret);
 >  
->  	ret = ath11k_wow_wakeup(ab);
+>  exit:
 >  	if (ret) {
-> diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-> index 6d769ba..ae6db5d 100644
-> --- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-> +++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-> @@ -5105,13 +5105,11 @@ int ath11k_dp_rx_pdev_mon_detach(struct ath11k *ar)
->  	return 0;
->  }
->  
-> -int ath11k_dp_rx_pktlog_start(struct ath11k_base *ab)
-> +void ath11k_dp_rx_pktlog_start(struct ath11k_base *ab)
->  {
->  	/* start reap timer */
->  	mod_timer(&ab->mon_reap_timer,
->  		  jiffies + msecs_to_jiffies(ATH11K_MON_TIMER_INTERVAL));
-> -
-> -	return 0;
->  }
 
-Ah, you remove it here as well. But for consistency it's better to have
-this return an error code.
-
-> @@ -640,6 +657,8 @@ int ath11k_wow_op_resume(struct ieee80211_hw *hw)
->  	ath11k_hif_ce_irq_enable(ar->ab);
->  	ath11k_hif_irq_enable(ar->ab);
->  
-> +	ath11k_dp_rx_pktlog_start(ar->ab);
-
-Error handling here as well, please.
+For consistency please add goto exit for ath11k_wow_protocol_offload().
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
