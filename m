@@ -4,59 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC148C4332F
-	for <ath11k@archiver.kernel.org>; Thu,  9 Dec 2021 15:04:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C9ACC433F5
+	for <ath11k@archiver.kernel.org>; Thu,  9 Dec 2021 15:07:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
 	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ZHQnx3jaE/o/481cHQTW33dSugJm3XsHKaAyk5DIpjo=; b=GtvtsvOCfS2dvW
-	v7hXe1aG4bRljWBP9/ij3nhtKczjBo5Z5p/zzn4cZ6YudlatsHLAsI1ScUOjgoU5EYEk2dnf8X5r3
-	TZA4ums3oCK7afJWCFBx2MhN6O++vo0IFRbD/HZMcHwpe7OILeMmAIyxnVTcS2rtWX4//0QV7D9AQ
-	vfCFQLrfcm54SRxGheYxgTiMmAiysOJc8yxjRS/kwqP79+loxmZWVfp/9MAG1xL93qM/mxrwXv05/
-	g5wDJssHNvoS7K2fjn0fJ2ndArEZBjkU2m8eqImZ5ct052Ug6FdeEnYxAuCmZxvLmTMn95eaaejWZ
-	tBlhCZ0b/lGp6SYcLSjQ==;
+	List-Owner; bh=mtzK+IZrzmj5mkmn0SKv+ZI8o/50t8sS5TcmLa4X5hU=; b=lZ4oDz26njgo0q
+	mLYkPwrMzOvmLcUqh/1SkkXjOn4SpH4WcswnEYk3qLyQRPtQdIe3saHl5TyvHrndsbDx2VAZGTZAs
+	KtL3DFG3T9MgKkhnpIV+u0GewGbA4mqj5AJma2c1IMWe2i9rBIUx1BXZhMTNH8ZGtpA+Rx2S0mf/t
+	zER8uaIX8Fj2Dx0nvkhDvE68YmJwVSEPRsEBEGFarD6fKv7K/hcgVXvARdACw5fEK1b2lFl/shEvS
+	0XH4cj4ddKN5ClS2Vki3GP/iR5TnWDvpM0f0fKUx8sYNC8BYtNbUJAZHB/8pYwuO37+zpaYf0H+8Y
+	g3XVPOufCxDjY9tMp3lQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mvKxt-00GSzO-OI; Thu, 09 Dec 2021 15:04:09 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1mvL1J-00GTNg-5i; Thu, 09 Dec 2021 15:07:41 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mvKxq-00GSyN-VO
- for ath11k@lists.infradead.org; Thu, 09 Dec 2021 15:04:08 +0000
+ id 1mvL1G-00GTMw-Dp
+ for ath11k@lists.infradead.org; Thu, 09 Dec 2021 15:07:39 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 7B73EB824B5;
- Thu,  9 Dec 2021 15:04:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 716EDC004DD;
- Thu,  9 Dec 2021 15:04:03 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 229CDB82489;
+ Thu,  9 Dec 2021 15:07:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08874C004DD;
+ Thu,  9 Dec 2021 15:07:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1639062244;
- bh=8xs4YTLGZ98iWqV7F/ovnNkGI8pHbnjD07YgrV2I5Ig=;
+ s=k20201202; t=1639062455;
+ bh=yUyk/DQFlEUejBdWzLfLiyyUs9+ywlMtyny1127mUxs=;
  h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
- b=Y7nwfi+WLw9TyfVMQlQNfxkmQ1nTz44aFxVPOGXtel5T545sCFFMiIIPY6K05YRI/
- NRUw6o/56PWKvkjrFJu7eUP9jGCA4PBjB69idBCP+ZnSfswckC43iwmvgNKjU8rWSg
- wx6+q2lkkHCkmz++8YruJXityKNjhxW7MG9T57yCySrUZXMFr8BJdBgQ4iH57LjPKR
- /lFhPGRtAIigYKcI6/KPtv6odKj15nPIRkC2cgGijWSS2DJwE40K3xJAY8wY2li09z
- 836jElyuEu4tDMHifSuLLQEDGdzx5qH0lLpHUzDg2BZwTOCzRXs7EvhNupLzaJbN0w
- Ehk9S7kWsqz6g==
+ b=UQRgzOXBF7XOEwQd9gwPReORcf00ZiKAIKMhtdGZlc5AueAPgy9mIdczGPiGTMV4d
+ Em4jHdLJs/e9ksXqKb4/REuORjG/wOVXR1B/4QylU2PenuKQIImD5ZeMhq9LERTHqI
+ 1+S+Kvb8MX5fSWirvqt4FG7ben0L+fIfF8KdWRGpmm9Ci50/B+QQ0z5nTMC/AtYXAj
+ GPi7FoDB1snfNaDcHk4RN3U56tsk5Q7WD6DS3tLXPmBbCPktkW7MMm2IDtHhc1Azsy
+ 3fYUDvl+RPBqbd/SLkTc7hJTR3gD5prL4xsFjyhkuI6eCMg+0NJvfnr3TyjgxyYrZK
+ k4ThmmfHKc76w==
 From: Kalle Valo <kvalo@kernel.org>
 To: Carl Huang <cjhuang@codeaurora.org>
 Cc: ath11k@lists.infradead.org,  linux-wireless@vger.kernel.org
-Subject: Re: [PATCH 2/6] ath11k: Add WoW net-detect functionality
+Subject: Re: [PATCH 3/6] ath11k: implement hw data filter
 References: <20211011193750.4891-1-cjhuang@codeaurora.org>
- <20211011193750.4891-3-cjhuang@codeaurora.org>
-Date: Thu, 09 Dec 2021 17:03:59 +0200
-In-Reply-To: <20211011193750.4891-3-cjhuang@codeaurora.org> (Carl Huang's
- message of "Mon, 11 Oct 2021 15:37:46 -0400")
-Message-ID: <874k7h2528.fsf@codeaurora.org>
+ <20211011193750.4891-4-cjhuang@codeaurora.org>
+Date: Thu, 09 Dec 2021 17:07:31 +0200
+In-Reply-To: <20211011193750.4891-4-cjhuang@codeaurora.org> (Carl Huang's
+ message of "Mon, 11 Oct 2021 15:37:47 -0400")
+Message-ID: <87zgp9zuj0.fsf@codeaurora.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211209_070407_175023_D9DAB258 
-X-CRM114-Status: GOOD (  16.82  )
+X-CRM114-CacheID: sfid-20211209_070738_632448_FAC9C138 
+X-CRM114-Status: UNSURE (   8.38  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,50 +76,17 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 Carl Huang <cjhuang@codeaurora.org> writes:
 
-> Implement net-detect feature by setting flag
-> WIPHY_WOWLAN_NET_DETECT if firmware supports this
-> feature. Driver sets the related PNO configuration
-> to firmware before entering WoW and firmware then
-> scans periodically and wakes up host if a specific
-> SSID is found.
->
-> Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
->
-> Signed-off-by: Carl Huang <cjhuang@codeaurora.org>
+> Host needs to set hw data filter before entering WoW to
+> let firmware drop needless bc/mc frames to avoid frequent wakeup.
+> Host clears hw data filter when leaving WoW.
 
-[...]
+Please try to use full words to keep the commit log readable:
 
-> +static int ath11k_wmi_pno_check_and_convert(struct ath11k *ar, u32 vdev_id,
-> +					    struct cfg80211_sched_scan_request *nd_config,
-> +					    struct wmi_pno_scan_req *pno)
-> +{
-> +	int i, j;
-> +	u8 ssid_len;
-> +
-> +	pno->enable = 1;
-> +	pno->vdev_id = vdev_id;
-> +	pno->uc_networks_count = nd_config->n_match_sets;
-> +
-> +	if (!pno->uc_networks_count ||
-> +	    pno->uc_networks_count > WMI_PNO_MAX_SUPP_NETWORKS)
-> +		return -EINVAL;
-> +
-> +	if (nd_config->n_channels > WMI_PNO_MAX_NETW_CHANNELS_EX)
-> +		return -EINVAL;
-> +
-> +	/* Filling per profile params */
-> +	for (i = 0; i < pno->uc_networks_count; i++) {
-> +		ssid_len = nd_config->match_sets[i].ssid.ssid_len;
-> +
-> +		if (ssid_len == 0 || ssid_len > 32)
-> +			return -EINVAL;
+ath11k: implement hardware data filter
 
-A define for 32 would be nice, WMI_MAC_MAX_SSID_LENGTH has a bad name
-but I couldn't find anything better from wmi.h. sizeof(struct
-wmi_ssid.ssid) might be other alternative.
-
-But length from cfg80211 should be trustworthy anyway, so I'm not sure
-if the check is even needed?
+Host needs to set hardware data filter before entering WoW to let
+firmware drop needless broadcast/multicast frames to avoid frequent
+wakeup. Host clears the hardware data filter when leaving WoW.
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
