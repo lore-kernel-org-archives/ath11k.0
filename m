@@ -4,59 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0ECB4C433EF
-	for <ath11k@archiver.kernel.org>; Thu,  9 Dec 2021 17:55:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A667C433EF
+	for <ath11k@archiver.kernel.org>; Fri, 10 Dec 2021 00:17:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=tWBNPsjOyzN0BkatzJuQAamCw109X9i0qsg9ek/ie3Y=; b=mavUiwP/nSJNZK
-	PZ8HHdUWyfvGfCqscmKokKsZRtYhkoEFwLZ+l2UuRs3q+8fb6R0GNMJH+EodTo4Ebjdt1Bl0m3iSi
-	apBZcq7ItpS5aKWF7MlC+K9cXIZkOdyPfF3SYC4TH1x3sg2yve98bYMKicDZKrALKJ+82CnOwfbHT
-	CBiac6KDZmiC6EKJKKBlD2+7soy7MZKVj4tVW/ccGkezTpmNXjuZtZumSs4JduM+bSUXNoXQlrRU3
-	/mvLzndYHWaNiHnlG+zosegyQ/gP0/Z9iQxpuWfKldLG1HmSCpuxDCAblPnEaq77FZ9vfsNWjMxc3
-	VW3lrV/3HDYhQLYTKzuQ==;
+	List-Owner; bh=JFz0oKOHCCDeZAg1mjqYNhaTtD5xKcou0dMXzd8zogY=; b=Vuu/PA1fw5jHT5
+	ojqpHZPppYA3kIVrnbLXqk2bqHgW/aiEdnyeLBBdh8KWvEN8qm6rzgTSZ897Q8ZTkf+E9RD6igSAP
+	I5wGsnus3tG4QAEM2SSXL9EMaWGJnn83ohVzJjN1mIEIIkW4m/dOwRz6azL8efwRg/ZDNwn13L88I
+	fB2snI6GMSlogUaXzxTWibjTZlsBbOb/64GN2yb/HEov8C7XwVLFIfYU+E+0UCmj/BYavWRG4cg6y
+	1mA379XVXKyncnGHyzZLGE1U+Ao4zp7vFQRCvuL/nW2zdrVgwNjtDvlQIqP4u4acNb64dbzlnzhdQ
+	Q1A4DnsvJ9IgfL5ydjzw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mvNdm-00H5IG-EY; Thu, 09 Dec 2021 17:55:34 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1mvTbB-000TQH-Ax; Fri, 10 Dec 2021 00:17:17 +0000
+Received: from relay034.a.hostedemail.com ([64.99.140.34]
+ helo=relay.hostedemail.com)
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mvNUE-00H2t6-Ey
- for ath11k@lists.infradead.org; Thu, 09 Dec 2021 17:45:44 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 13ABFB825C9;
- Thu,  9 Dec 2021 17:45:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1279EC004DD;
- Thu,  9 Dec 2021 17:45:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1639071937;
- bh=sOPG7Ro7hQwxUmAvR3WADdiFHvMn+PUc1oXzint7T88=;
- h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
- b=iGU1nInaquYuRSEM4IC5BZ8v+huPpxrbID07wnZplb62gzKxnakGUgkA4lhFI5VXp
- uzE8xZseVa3fcIV7m6lY006ssTsOwSr/2WqPS+k0tEyA1ryhga96ohBlzMWd26Ri2e
- mlFPmCN6gJJUQDnmLVU8n395fhS47pvtmVRmKp9l660oNMwcDDkDo9OAmzo53mQY2S
- eTuywR7UTF/4AVTZ6Xxmjf/S6UOfLZ/GL3Uz4Rkf5wuIZDgLtkCTMmal92Roh9IvoM
- bG/JF2e0hxeOU6QyVpyxgZhxATvk0EH3r9aTfOFDkBrZwwEjSQXzOg7vnvrzGlLC1d
- Bx9PStn/z6h1g==
-From: Kalle Valo <kvalo@kernel.org>
-To: Carl Huang <cjhuang@codeaurora.org>
-Cc: ath11k@lists.infradead.org,  linux-wireless@vger.kernel.org
-Subject: Re: [PATCH 0/6] ath11k: support WoW functionalities
-References: <20211011193750.4891-1-cjhuang@codeaurora.org>
-Date: Thu, 09 Dec 2021 19:45:35 +0200
-In-Reply-To: <20211011193750.4891-1-cjhuang@codeaurora.org> (Carl Huang's
- message of "Mon, 11 Oct 2021 15:37:44 -0400")
-Message-ID: <87h7bhvfi8.fsf@codeaurora.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+ id 1mvTb8-000TPs-D6
+ for ath11k@lists.infradead.org; Fri, 10 Dec 2021 00:17:16 +0000
+Received: from omf10.hostedemail.com (a10.router.float.18 [10.200.18.1])
+ by unirelay11.hostedemail.com (Postfix) with ESMTP id 0C95B807F8;
+ Fri, 10 Dec 2021 00:09:11 +0000 (UTC)
+Received: from [HIDDEN] (Authenticated sender: joe@perches.com) by
+ omf10.hostedemail.com (Postfix) with ESMTPA id 4CA472F; 
+ Fri, 10 Dec 2021 00:09:05 +0000 (UTC)
+Message-ID: <4446ca5bf0a8120a37f89cdb0f50d898636630a2.camel@perches.com>
+Subject: Re: [PATCH 1/2] ath11k: add dbring debug support
+From: Joe Perches <joe@perches.com>
+To: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>, 
+ ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org
+Date: Thu, 09 Dec 2021 16:09:04 -0800
+In-Reply-To: <1636439522-14509-1-git-send-email-quic_vnaralas@quicinc.com>
+References: <1636439522-14509-1-git-send-email-quic_vnaralas@quicinc.com>
+User-Agent: Evolution 3.40.4-1ubuntu2 
 MIME-Version: 1.0
+X-Rspamd-Server: rspamout07
+X-Rspamd-Queue-Id: 4CA472F
+X-Stat-Signature: cwg8qj6swyif77ag6yqpc5cjdeyzoa7p
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Session-ID: U2FsdGVkX19Kw86AOTeybW33uD29/bmbVIk9l8MkLzg=
+X-HE-Tag: 1639094945-176582
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211209_094542_685471_0E278F72 
-X-CRM114-Status: UNSURE (   8.67  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20211209_161714_518388_C01796E1 
+X-CRM114-Status: GOOD (  14.30  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,24 +68,67 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Carl Huang <cjhuang@codeaurora.org> writes:
+On Tue, 2021-11-09 at 12:02 +0530, Venkateswara Naralasetty wrote:
+> Target copies spectral report and CFR report through dbring to
+> host for further processing. This mechanism involves ring and
+> buffer management in the Host, FW, and uCode, where improper
+> tail pointer update issues are seen.
+> 
+> This dbring debug support help to debug such issues by tracking
+> head and tail pointer movement along with the timestamp at which
+> each buffer is received and replenished.
 
-> Ath11k WoW basic funtionalities are merged from ath10k such
-> as magic-pattern, PNO, disconnect and patterns.
->
-> Hw data filter and pktlog purge are required for ath11k.
->
-> ARP and NS offload, GTK rekey offload are new WoW features
-> implemented on ath11k. 
+> @@ -1068,6 +1107,166 @@ static const struct file_operations fops_simulate_radar = {
+>  	.open = simple_open
+>  };
+>  
+> +static ssize_t ath11k_dbr_dump_debug_entries(struct file *file,
+> +					     char __user *user_buf,
+> +					     size_t count, loff_t *ppos)
+> +{
+> +	struct ath11k_db_ring_debug *db_ring_debug = file->private_data;
+> +	static const char * const event_id_to_string[] = {"empty", "Rx", "Replenish"};
+> +	int size = ATH11K_DBR_DEBUG_ENTRIES_MAX * 100;
+> +	char *buf;
+> +	int i, ret;
+> +	int len = 0;
+> +
+> +	buf = kzalloc(size, GFP_KERNEL);
+> +	if (!buf)
+> +		return -ENOMEM;
+> +
+> +	len += scnprintf(buf + len, size - len, "------------------------------------\n");
+> +	len += scnprintf(buf + len, size - len, "| idx | hp | tp | timestamp | event|\n");
+> +	len += scnprintf(buf + len, size - len, "------------------------------------\n");
+> +
+> +	spin_lock_bh(&db_ring_debug->lock);
+> +
+> +	for (i = 0; i < db_ring_debug->num_ring_debug_entries; i++) {
+> +		len += scnprintf(buf + len, size - len,
+> +				 "|%4u|%8u|%8u|%11llu|%8s|\n", i,
+> +				 db_ring_debug->entries[i].hp,
+> +				 db_ring_debug->entries[i].tp,
+> +				 db_ring_debug->entries[i].timestamp,
+> +				 event_id_to_string[db_ring_debug->entries[i].event]);
+> +	}
 
-Had few minor comments, but this looked good. Next time remember to use
-ath.git master branch as the baseline and use --base, makes it easier
-for me to apply the patches.
+I think this would look a lot nicer column aligned along the | boundaries
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+	len += scnprintf(buf + len, size - len, "--------------------------------------------------------\n");
+	len += scnprintf(buf + len, size - len, "|  idx |    hp    |    tp    |  timestamp  |   event   |\n");
+	len += scnprintf(buf + len, size - len, "--------------------------------------------------------\n");
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+	spin_lock_bh(&db_ring_debug->lock);
+
+	for (i = 0; i < db_ring_debug->num_ring_debug_entries; i++) {
+		len += scnprintf(buf + len, size - len,
+				 "| %4u | %8u | %8u | %11llu | %-9s |\n", i,
+				 db_ring_debug->entries[i].hp,
+				 db_ring_debug->entries[i].tp,
+				 db_ring_debug->entries[i].timestamp,
+				 event_id_to_string[db_ring_debug->entries[i].event]);
+
+
 
 -- 
 ath11k mailing list
