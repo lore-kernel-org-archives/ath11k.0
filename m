@@ -4,54 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A667C433EF
-	for <ath11k@archiver.kernel.org>; Fri, 10 Dec 2021 00:17:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D57FC433F5
+	for <ath11k@archiver.kernel.org>; Fri, 10 Dec 2021 15:17:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=JFz0oKOHCCDeZAg1mjqYNhaTtD5xKcou0dMXzd8zogY=; b=Vuu/PA1fw5jHT5
-	ojqpHZPppYA3kIVrnbLXqk2bqHgW/aiEdnyeLBBdh8KWvEN8qm6rzgTSZ897Q8ZTkf+E9RD6igSAP
-	I5wGsnus3tG4QAEM2SSXL9EMaWGJnn83ohVzJjN1mIEIIkW4m/dOwRz6azL8efwRg/ZDNwn13L88I
-	fB2snI6GMSlogUaXzxTWibjTZlsBbOb/64GN2yb/HEov8C7XwVLFIfYU+E+0UCmj/BYavWRG4cg6y
-	1mA379XVXKyncnGHyzZLGE1U+Ao4zp7vFQRCvuL/nW2zdrVgwNjtDvlQIqP4u4acNb64dbzlnzhdQ
-	Q1A4DnsvJ9IgfL5ydjzw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=bRTqGdoCZDMbJGFq4s//TEcf/Vbi7j7QCareOJWybxU=; b=yrg15V0QTgPaOX
+	Q/GCq5BKe/ifjqZIQPd6AjdEiMdz7LTm2XiXRQ8fv368FRVJQ5t+rNL82yRyx2dyvDpFn/GYN5XMF
+	JowHTKrgQml89EMq2i4iLzC4+nNwY3MBK+jgG3ShWWwQqJf9vIJNK4MEGjfGPcq5xtoDXzKDDo2+x
+	s1V+jmV59HlgOYEieAiLtEG8jvh4COb7OHLS1MwKBcGLtbtzDmCY2Mdp3HwFFfj0j27emldw/3hZ9
+	++BYKdFygALdxhtofyrvgjF9aGp/mL9EQg6S02Fxz16TmDa6OQbIN/QIcs5V9qm91b6tlOKBnl9M7
+	i8GMDnBEh/HhYkYUtwcw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mvTbB-000TQH-Ax; Fri, 10 Dec 2021 00:17:17 +0000
-Received: from relay034.a.hostedemail.com ([64.99.140.34]
- helo=relay.hostedemail.com)
+	id 1mvheD-002MkR-00; Fri, 10 Dec 2021 15:17:21 +0000
+Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mvTb8-000TPs-D6
- for ath11k@lists.infradead.org; Fri, 10 Dec 2021 00:17:16 +0000
-Received: from omf10.hostedemail.com (a10.router.float.18 [10.200.18.1])
- by unirelay11.hostedemail.com (Postfix) with ESMTP id 0C95B807F8;
- Fri, 10 Dec 2021 00:09:11 +0000 (UTC)
-Received: from [HIDDEN] (Authenticated sender: joe@perches.com) by
- omf10.hostedemail.com (Postfix) with ESMTPA id 4CA472F; 
- Fri, 10 Dec 2021 00:09:05 +0000 (UTC)
-Message-ID: <4446ca5bf0a8120a37f89cdb0f50d898636630a2.camel@perches.com>
-Subject: Re: [PATCH 1/2] ath11k: add dbring debug support
-From: Joe Perches <joe@perches.com>
-To: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>, 
- ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
-Date: Thu, 09 Dec 2021 16:09:04 -0800
-In-Reply-To: <1636439522-14509-1-git-send-email-quic_vnaralas@quicinc.com>
-References: <1636439522-14509-1-git-send-email-quic_vnaralas@quicinc.com>
-User-Agent: Evolution 3.40.4-1ubuntu2 
+ id 1mvhd8-002M8R-PS
+ for ath11k@lists.infradead.org; Fri, 10 Dec 2021 15:16:16 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+ t=1639149374; x=1670685374;
+ h=from:to:cc:subject:date:message-id:mime-version;
+ bh=rJDc/8p7ep3anp6kbgmlvohQRdU01dRtpNHh+9tqc1s=;
+ b=woA7dQOdUunrf1fxo0/EVE2RgEydlfVcGmG6G9PAu0CPv/89sr2GuTAu
+ GO2JSe41LNNY/ZAB8QUO1GmRY6DSRUPVPJ9btFCqOXuEX4iKdQBWLfuOZ
+ YQbIvGYwcxoXwmTd/qXgeCLGAngcJmOAaYA9Hc0goENHJbBmoZ6jdxIYA Y=;
+Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
+ by alexa-out-sd-01.qualcomm.com with ESMTP; 10 Dec 2021 07:16:12 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+ by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2021 07:16:12 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Fri, 10 Dec 2021 07:16:12 -0800
+Received: from periyasa-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Fri, 10 Dec 2021 07:16:10 -0800
+From: Karthikeyan Periyasamy <quic_periyasa@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: Karthikeyan Periyasamy <periyasa@codeaurora.org>
+Subject: [PATCH v2] ath11k: Refactor the fallback routine when peer create
+ fails
+Date: Fri, 10 Dec 2021 20:45:56 +0530
+Message-ID: <1639149356-15498-1-git-send-email-quic_periyasa@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-X-Rspamd-Server: rspamout07
-X-Rspamd-Queue-Id: 4CA472F
-X-Stat-Signature: cwg8qj6swyif77ag6yqpc5cjdeyzoa7p
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Session-ID: U2FsdGVkX19Kw86AOTeybW33uD29/bmbVIk9l8MkLzg=
-X-HE-Tag: 1639094945-176582
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211209_161714_518388_C01796E1 
-X-CRM114-Status: GOOD (  14.30  )
+X-CRM114-CacheID: sfid-20211210_071614_928158_1A05E819 
+X-CRM114-Status: GOOD (  11.32  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -68,66 +78,90 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Tue, 2021-11-09 at 12:02 +0530, Venkateswara Naralasetty wrote:
-> Target copies spectral report and CFR report through dbring to
-> host for further processing. This mechanism involves ring and
-> buffer management in the Host, FW, and uCode, where improper
-> tail pointer update issues are seen.
-> 
-> This dbring debug support help to debug such issues by tracking
-> head and tail pointer movement along with the timestamp at which
-> each buffer is received and replenished.
+From: Karthikeyan Periyasamy <periyasa@codeaurora.org>
 
-> @@ -1068,6 +1107,166 @@ static const struct file_operations fops_simulate_radar = {
->  	.open = simple_open
->  };
->  
-> +static ssize_t ath11k_dbr_dump_debug_entries(struct file *file,
-> +					     char __user *user_buf,
-> +					     size_t count, loff_t *ppos)
-> +{
-> +	struct ath11k_db_ring_debug *db_ring_debug = file->private_data;
-> +	static const char * const event_id_to_string[] = {"empty", "Rx", "Replenish"};
-> +	int size = ATH11K_DBR_DEBUG_ENTRIES_MAX * 100;
-> +	char *buf;
-> +	int i, ret;
-> +	int len = 0;
-> +
-> +	buf = kzalloc(size, GFP_KERNEL);
-> +	if (!buf)
-> +		return -ENOMEM;
-> +
-> +	len += scnprintf(buf + len, size - len, "------------------------------------\n");
-> +	len += scnprintf(buf + len, size - len, "| idx | hp | tp | timestamp | event|\n");
-> +	len += scnprintf(buf + len, size - len, "------------------------------------\n");
-> +
-> +	spin_lock_bh(&db_ring_debug->lock);
-> +
-> +	for (i = 0; i < db_ring_debug->num_ring_debug_entries; i++) {
-> +		len += scnprintf(buf + len, size - len,
-> +				 "|%4u|%8u|%8u|%11llu|%8s|\n", i,
-> +				 db_ring_debug->entries[i].hp,
-> +				 db_ring_debug->entries[i].tp,
-> +				 db_ring_debug->entries[i].timestamp,
-> +				 event_id_to_string[db_ring_debug->entries[i].event]);
-> +	}
+When there is an error in peer create process from
+ath11k_peer_find(), the code attempts to handle a fallback
+for peer create. When this fallback fails, the driver returns
+the fallback return code rather than actual error code
+(-ENOENT). So refactor the fallback routine to return
+the actual error code.
 
-I think this would look a lot nicer column aligned along the | boundaries
+Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01067-QCAHKSWPL_SILICONZ-1
 
-	len += scnprintf(buf + len, size - len, "--------------------------------------------------------\n");
-	len += scnprintf(buf + len, size - len, "|  idx |    hp    |    tp    |  timestamp  |   event   |\n");
-	len += scnprintf(buf + len, size - len, "--------------------------------------------------------\n");
+Signed-off-by: Karthikeyan Periyasamy <periyasa@codeaurora.org>
+---
+ v2:
+   - rebased on ToT
 
-	spin_lock_bh(&db_ring_debug->lock);
+ drivers/net/wireless/ath/ath11k/peer.c | 40 +++++++++++++++++++---------------
+ 1 file changed, 23 insertions(+), 17 deletions(-)
 
-	for (i = 0; i < db_ring_debug->num_ring_debug_entries; i++) {
-		len += scnprintf(buf + len, size - len,
-				 "| %4u | %8u | %8u | %11llu | %-9s |\n", i,
-				 db_ring_debug->entries[i].hp,
-				 db_ring_debug->entries[i].tp,
-				 db_ring_debug->entries[i].timestamp,
-				 event_id_to_string[db_ring_debug->entries[i].event]);
-
+diff --git a/drivers/net/wireless/ath/ath11k/peer.c b/drivers/net/wireless/ath/ath11k/peer.c
+index 85471f8..332886b 100644
+--- a/drivers/net/wireless/ath/ath11k/peer.c
++++ b/drivers/net/wireless/ath/ath11k/peer.c
+@@ -252,7 +252,7 @@ int ath11k_peer_create(struct ath11k *ar, struct ath11k_vif *arvif,
+ {
+ 	struct ath11k_peer *peer;
+ 	struct ath11k_sta *arsta;
+-	int ret;
++	int ret, fbret;
+ 
+ 	lockdep_assert_held(&ar->conf_mutex);
+ 
+@@ -291,22 +291,8 @@ int ath11k_peer_create(struct ath11k *ar, struct ath11k_vif *arvif,
+ 		ath11k_warn(ar->ab, "failed to find peer %pM on vdev %i after creation\n",
+ 			    param->peer_addr, param->vdev_id);
+ 
+-		reinit_completion(&ar->peer_delete_done);
+-
+-		ret = ath11k_wmi_send_peer_delete_cmd(ar, param->peer_addr,
+-						      param->vdev_id);
+-		if (ret) {
+-			ath11k_warn(ar->ab, "failed to delete peer vdev_id %d addr %pM\n",
+-				    param->vdev_id, param->peer_addr);
+-			return ret;
+-		}
+-
+-		ret = ath11k_wait_for_peer_delete_done(ar, param->vdev_id,
+-						       param->peer_addr);
+-		if (ret)
+-			return ret;
+-
+-		return -ENOENT;
++		ret = -ENOENT;
++		goto cleanup;
+ 	}
+ 
+ 	peer->pdev_idx = ar->pdev_idx;
+@@ -335,4 +321,24 @@ int ath11k_peer_create(struct ath11k *ar, struct ath11k_vif *arvif,
+ 	spin_unlock_bh(&ar->ab->base_lock);
+ 
+ 	return 0;
++
++cleanup:
++	reinit_completion(&ar->peer_delete_done);
++
++	fbret = ath11k_wmi_send_peer_delete_cmd(ar, param->peer_addr,
++						param->vdev_id);
++	if (fbret) {
++		ath11k_warn(ar->ab, "failed to delete peer vdev_id %d addr %pM\n",
++			    param->vdev_id, param->peer_addr);
++		goto exit;
++	}
++
++	fbret = ath11k_wait_for_peer_delete_done(ar, param->vdev_id,
++						 param->peer_addr);
++	if (fbret)
++		ath11k_warn(ar->ab, "failed wait for peer %pM delete done id %d fallback ret %d\n",
++			    param->peer_addr, param->vdev_id, fbret);
++
++exit:
++	return ret;
+ }
+-- 
+2.7.4
 
 
 -- 
