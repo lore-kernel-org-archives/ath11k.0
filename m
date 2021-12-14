@@ -4,76 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E0F7C433EF
-	for <ath11k@archiver.kernel.org>; Tue, 14 Dec 2021 17:05:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B1CBC433FE
+	for <ath11k@archiver.kernel.org>; Tue, 14 Dec 2021 17:59:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dr6uRRilfVplO9PbGNpfyM6GTwcPtN2yO8dWvy6UBPI=; b=ARJqqIj4BbBzh5
-	dcsoDOovRwb/fKIvskzokYZWTNAY1WoNofRqIhnI7LvtoOhC1soP3lazUEyFgfsGsQUC11IQMO3iy
-	iwRMWRsebw0M8sxlvkHNRgyQUEfu71THI114YMFfOAtxYD8zkKHwDgHJrorCtMb7rd3DWS4ugjmCS
-	pX2GZDcpQs3KgadE8gEj+vnwKvhOjw1ia+ehv0CpBiJFCe2C6f/DDfzaSG1zODHEMKZK2LHX7drHN
-	13AB4xxmUdDCHiwwORf7nm892goRP3sRlmH2QEpd0RH34eGg1c7vUAB9nrOqTuDbHxoSBwDAG53QQ
-	TrCMEOo8Ef+Gdwe+/Uqg==;
+	List-Owner; bh=/utCUMKH/7KdRbUXRMEwrGL3LrB5PwSXyprK9nRux4Y=; b=A5/Hpw6kHTsekd
+	5wDAtoRnodRVulHQTL8rT0TeM++QZ54kTpib7y6XFGsJnGoSvSkYm4/3e6I7K66k+yGp/Wl8ANQT0
+	8I41vAA7dsHrjQ9brQvDqKIuB4YS1MYB/7yfeLI8h2EQnfqi344TDBPnwaIbZqPJNspt6PvamZR1l
+	jNUrvqDjvkHfIL09qVVAqpvzkUo66y6jQbGXtdrqHHptAmBkXTIQd+iSbpTK+yrVqIyX2HXdtU7mm
+	ENbdM+Bzmp0VrHhlT2J98jDBNWt+Dwji51vH7YxMc49kqCus4+OPK8BmIWyCRFqIR14xCdr0H7vz9
+	NOaBJTJxgd4xmYO5veQA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mxBFF-00F2O8-Nd; Tue, 14 Dec 2021 17:05:41 +0000
-Received: from mail-pj1-x1035.google.com ([2607:f8b0:4864:20::1035])
+	id 1mxC4s-00FF5T-2L; Tue, 14 Dec 2021 17:59:02 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mxBFD-00F2NC-Ce
- for ath11k@lists.infradead.org; Tue, 14 Dec 2021 17:05:40 +0000
-Received: by mail-pj1-x1035.google.com with SMTP id np3so14823208pjb.4
- for <ath11k@lists.infradead.org>; Tue, 14 Dec 2021 09:05:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=A6836gc0s76HSfL2ZiuDjKE+np84sI4oL8Iom/KwxZU=;
- b=Il8Xs0i7yKcGaPdWUSDd/OkT3CZc4f7Sh+8OtZOHt5cw/LrudBWuKIHPYCZV3FTrUk
- ZCxzlJ6YFhcdIDnKAZH3Iqz22CWaTY2lG178hVvPcNC1hDfdjqi6tv0VEcfafKKWKB8K
- dnyvY9pIEtiiYdtB0dnO0Lz00on3mBZZYm2BQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=A6836gc0s76HSfL2ZiuDjKE+np84sI4oL8Iom/KwxZU=;
- b=7lO0TX0uzOgZJr8u42K353+aZc8Va4X+R7EKUDxPHB5bTnaYAN8hjcjWN29Li5cOc4
- J2SHcjFzGamDYQDYzvV9h1zv86r0Fi7PveeF722DtrFnKGiww/0eR6oxVBnK8e51CyVV
- /vjxlfqpj3XyoIlRXdDH7x+fGsPF5fQ1PKtJ/EKwpZJSxbKkaNikXIuaeIY7wm4XX80e
- prTj6MYJQ3UEV9GfS2lvbU4h39Csc0557RN9WjMYu0FnEbPM9gL4w/dNM7qrpD1w+I3b
- YUo80ovALd5MH78+bLC2U0CJgwkJh41h4lDgzU1V7ykCZheFUH8q3NzfVaGBDJTEPvMo
- 3bDw==
-X-Gm-Message-State: AOAM532jjI6eScNHRNdPVOLbXJUwKFdl+srXvGegjvb3sKDUVf4wNa8F
- FXoBeMg8sB2W2++3+Lo895WmDQ==
-X-Google-Smtp-Source: ABdhPJyid4WvM6SF/FMb0ie7qooR8i+hL7xAAAtPkfmxyGyhk6umYMIjfNB8BB80oKo2BZX9lXr/IQ==
-X-Received: by 2002:a17:90b:19d4:: with SMTP id
- nm20mr2745434pjb.106.1639501538563; 
- Tue, 14 Dec 2021 09:05:38 -0800 (PST)
-Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
- by smtp.gmail.com with ESMTPSA id l6sm436804pfc.30.2021.12.14.09.05.38
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 14 Dec 2021 09:05:38 -0800 (PST)
-Date: Tue, 14 Dec 2021 09:05:37 -0800
-From: Kees Cook <keescook@chromium.org>
-To: Kalle Valo <kvalo@kernel.org>
-Cc: linux-hardening@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
- Jakub Kicinski <kuba@kernel.org>, ath11k@lists.infradead.org,
- linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 08/17] ath11k: Use memset_startat() for clearing queue
- descriptors
-Message-ID: <202112140904.2D64E570@keescook>
-References: <20211213223331.135412-1-keescook@chromium.org>
- <20211213223331.135412-9-keescook@chromium.org>
- <87v8zriv1c.fsf@codeaurora.org> <877dc7i3zc.fsf@codeaurora.org>
+ id 1mxC4p-00FF4o-55
+ for ath11k@lists.infradead.org; Tue, 14 Dec 2021 17:59:00 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id B4ACF6164C;
+ Tue, 14 Dec 2021 17:58:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BA67C34604;
+ Tue, 14 Dec 2021 17:58:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1639504738;
+ bh=wd3hEmUp35y38scIqT4w13Xrb9Of8JrKrqMwSHKwESw=;
+ h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+ b=b88EmfD+Ad+teyREWtaWwpwoFBTQRqDpUV78SxkZi36Drf7k8bMSEsjC0mdyaCqAV
+ yElDWPkjSmuHiL5MS8rBlq0D+WD+8hgrrXcHBMFJ2m8x59eo7Nw5a6vTXKufM+EdD2
+ nqHNawMjWIVQButxljI2QnnnEr48aSWMhSwEMQOgjPZTTb6NaQM3J/+9cWRYLCa1zh
+ AyK8SnHF6Ftny90idA265/V1fSZ3ay0v91/76DWCVTnA2DsLMeQ7ZGQ7KKIMaA2xPO
+ L8XQIRKA2vS+0K2tHrnckM8UGAwwNT+67tsCxG7YKEl6hh9RZcs061JIMJSjTVj6M/
+ tOwdIcumRx8Pg==
+From: Kalle Valo <kvalo@kernel.org>
+To: Wen Gong <quic_wgong@quicinc.com>
+Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
+Subject: Re: [PATCH v2] ath11k: report tx bitrate for iw wlan station dump
+References: <20211213102723.4857-1-quic_wgong@quicinc.com>
+Date: Tue, 14 Dec 2021 19:58:53 +0200
+In-Reply-To: <20211213102723.4857-1-quic_wgong@quicinc.com> (Wen Gong's
+ message of "Mon, 13 Dec 2021 05:27:23 -0500")
+Message-ID: <87y24ngjaa.fsf@codeaurora.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <877dc7i3zc.fsf@codeaurora.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211214_090539_482441_A4083333 
-X-CRM114-Status: GOOD (  14.60  )
+X-CRM114-CacheID: sfid-20211214_095859_284114_8878E5D9 
+X-CRM114-Status: GOOD (  12.01  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,45 +72,57 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Tue, Dec 14, 2021 at 05:46:31PM +0200, Kalle Valo wrote:
-> Kalle Valo <kvalo@kernel.org> writes:
-> 
-> > Kees Cook <keescook@chromium.org> writes:
-> >
-> >> In preparation for FORTIFY_SOURCE performing compile-time and run-time
-> >> field bounds checking for memset(), avoid intentionally writing across
-> >> neighboring fields.
-> >>
-> >> Use memset_startat() so memset() doesn't get confused about writing
-> >> beyond the destination member that is intended to be the starting point
-> >> of zeroing through the end of the struct. Additionally split up a later
-> >> field-spanning memset() so that memset() can reason about the size.
-> >>
-> >> Cc: Kalle Valo <kvalo@codeaurora.org>
-> >> Cc: "David S. Miller" <davem@davemloft.net>
-> >> Cc: Jakub Kicinski <kuba@kernel.org>
-> >> Cc: ath11k@lists.infradead.org
-> >> Cc: linux-wireless@vger.kernel.org
-> >> Cc: netdev@vger.kernel.org
-> >> Signed-off-by: Kees Cook <keescook@chromium.org>
-> >
-> > What's the plan for this patch? I would like to take this via my ath
-> > tree to avoid conflicts.
-> 
-> Actually this has been already applied:
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=ath-next&id=d5549e9a6b86
-> 
-> Why are you submitting the same patch twice?
+Wen Gong <quic_wgong@quicinc.com> writes:
 
-These are all part of a topic branch, and the cover letter mentioned
-that a set of them have already been taken but haven't appeared in -next
-(which was delayed).
+> HTT_T2H_MSG_TYPE_PPDU_STATS_IND is a message which include the ppdu
+> info, currently it is not report from firmware for ath11k, then the
+> tx bitrate of "iw wlan0 station dump" always show an invalid value
+> "tx bitrate: 6.0 MBit/s".
+>
+> To address the issue, this is to parse the info of tx complete report
+> from firmware and indicate the tx rate to mac80211.
+>
+> After that, "iw wlan0 station dump" show the correct tx bit rate such
+> as "tx bitrate: 1921.5 MBit/s 160MHz HE-MCS 9 HE-NSS 2 HE-GI 0 HE-DCM 0".
+>
+> Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
+>
+> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
 
-Sorry for the confusion!
+I briefly tested this and tx rate didn't look correct to me:
+
+$ iw wlan0 link
+Connected to xx (on wlan0)
+	SSID: <censored>
+	freq: 2442
+	RX: 8838 bytes (80 packets)
+	TX: 1551 bytes (15 packets)
+	signal: -104 dBm
+	rx bitrate: 39.0 MBit/s MCS 4
+	tx bitrate: (unknown) MCS 253
+
+I guess the signal isn't correct either, are you planning to fix it also
+at some point?
+
+Also I see new warnings with this patch:
+
+[  174.373905] ath11k_pci 0000:06:00.0: failed to find the peer by id 14
+[  174.386303] ath11k_pci 0000:06:00.0: failed to find the peer by id 14
+[  174.388733] ath11k_pci 0000:06:00.0: failed to find the peer by id 14
+[  174.472723] ath11k_pci 0000:06:00.0: failed to find the peer by id 14
+[  174.573331] ath11k_pci 0000:06:00.0: failed to find the peer by id 14
+[  174.838234] ath11k_pci 0000:06:00.0: failed to find the peer by id 14
+[  174.881577] ath11k_pci 0000:06:00.0: failed to find the peer by id 14
+[  174.985640] ath11k_pci 0000:06:00.0: failed to find the peer by id 14
+[  175.076154] ath11k_pci 0000:06:00.0: failed to find the peer by id 14
+[  175.113921] ath11k_pci 0000:06:00.0: failed to find the peer by id 14
+[  180.206378] ath11k_warn: 34 callbacks suppressed
+[  180.206396] ath11k_pci 0000:06:00.0: failed to find the peer by id 14
 
 -- 
-Kees Cook
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
