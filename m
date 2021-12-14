@@ -4,136 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7C69C433F5
-	for <ath11k@archiver.kernel.org>; Tue, 14 Dec 2021 13:39:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48C92C433F5
+	for <ath11k@archiver.kernel.org>; Tue, 14 Dec 2021 14:26:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ObCJXgspHGC6ULdxgP173ze2eIGkl2w6xRR9q7YktJU=; b=KQeCqKHdkUS0bM
-	iEvr4mjeIzWB+FL2xM/2H9wuvbl1LYquMf1fiNuAJMmbRqNZO9IzFoWb8l9Tk5nAO8jDCa6qJPZ9x
-	bt+qPWqaJAHQX6UHYXbQf2Ssgnr57vkOitDo1MxWN1KEt6LSbTplMExFqZDlRo/uUXv2AqpY9cQcD
-	ZsbpM+AVz4D+UviJ5KP7gYz8/v7RL0WZzhoFqbYz4Sm92EwYv+YinzPsYXjPhDDmDB7/70eGnxVdm
-	qpbwS0ZmJ59c6mrKh04qKoJe0EC1OWBRpuMLNd+uXo5kZ/BkxbWgMdhZ7g7daNofPKoLgBpbSigpE
-	2PTFexbi7rQX/vJjVpag==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:Cc:To:From
+	:Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=Hj/IIKIHqOK47MBJZ4xhfNeqhbGW8fxnM8kjbcccOdI=; b=1LXJ35vlwfxVaHYlHOpgetDMVy
+	mnDRPlgrN/yzK+0bQe+Xa+8lHJX2jpZ46Pxeziytjwc0QasikvnVtgM5o6YCa8fDVOo80iKazNARR
+	ni0nvMV/LbkvGAjKcWX2wJwgha6wbfL6XuzG1XdjUu5qvSiCP/OnJ04OX2FOTCYyKWmtPawepykcd
+	vpLGoSHctp0DlZl9OSNkfJg8rHbTxaAcOtxyAUIiQuMHYVbpFKSlyCVRH7IoZFl9ti/aE5W432Hwo
+	Ds9iDj9TCfa4JDgcdKkWAU/nD7h6lDjAtbsjwgfmjLqHTONiMEdWNO6mTebc/s5f1IZiWwvZZkinG
+	yYJKDy7g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mx81u-00ECTw-UF; Tue, 14 Dec 2021 13:39:42 +0000
-Received: from esa.hc3962-90.iphmx.com ([216.71.140.77])
+	id 1mx8ld-00EOjG-51; Tue, 14 Dec 2021 14:26:57 +0000
+Received: from so254-9.mailgun.net ([198.61.254.9])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mx81r-00ECSV-N9
- for ath11k@lists.infradead.org; Tue, 14 Dec 2021 13:39:41 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qccesdkim1;
- t=1639489178; x=1640093978;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=ORfmEoTg5e6IUOr/myEXcsnuWWwuA0/vVDltSH7iVQQ=;
- b=Kp1Rx5MuT0IE67PJeqTggWViKR6uwHxmP1cl5vKylqtLJi+8M2YCWFND
- l09MY98MnrthpkcClvfLNQ+J/PGW9O9RSdyCn3aHzp66NTejpGXp955Cn
- TscOYFe9X1b0iLAH3R/iYdvVuIwsCdcOskkgTOCGO9S+NLQoS1Qpn+bBD U=;
-Received: from mail-dm3nam07lp2043.outbound.protection.outlook.com (HELO
- NAM02-DM3-obe.outbound.protection.outlook.com) ([104.47.56.43])
- by ob1.hc3962-90.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Dec 2021 13:39:36 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Jr1oC4tSPyIqnSp+ahqwf1bNeOQVwOrxyL4EWFUFA3BtiRCtVqJAg6J4IRelNs9SHGe3+ZBz7MKrIgbBokBABUiwIwhnYTirQm8ZGvjzpAciK3RMPF6Hy35z9oWWsMmHbpqeUHSOG90hd0uz/FOUtVi60MP6q3c73H2Fe0Rpn9mF75woC7u7WLfQY5Gorh39ZkLruoMoCz/Pzv7F+8QD8XlQIFnpFm6tfW8TVm0n70TtCWkegv9hnakFT+2Nl41ZeWchqe95wdkWy3XDg/RUXLIl3stJ1smHs6iPLEOP/py4qEWTBthv7kEQrAy2eoNC/kc9SVcft7uJbsIXSXHtmA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ORfmEoTg5e6IUOr/myEXcsnuWWwuA0/vVDltSH7iVQQ=;
- b=KpNbfFGuEolo2uv+F/mOmTbmJl15Pk8PXJbYUVjUWG5jcDXD1RWTZDN3gQEbxFIdFueW0wyim5Ev62MmOluzfESNxv7Ijlcx8an4LuOTAfMIOYf2Zxb8j3QWJxYBYiduu2mgG1YY6sGzcZFgHhF4P41sgTZVWBhBl6Bm8VhVWKUE4mYT2g89SkPt3wkz6MZS8wemklVIlmbcBkqFthbGEOkYTANl2RtIj7wj2CHeHp8YOp8crt6hrndid0erO3hoRiTYR9g5SfLY1nBSNyj98VzI/M8bjP8yEZP5WeL1DNbPuVePslUhHkH8zUUjM3hTkxQMtKTz+VbpnM2an6EEaA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=quicinc.com; dmarc=pass action=none header.from=quicinc.com;
- dkim=pass header.d=quicinc.com; arc=none
-Received: from DM8PR02MB8154.namprd02.prod.outlook.com (2603:10b6:8:1b::15) by
- DM6PR02MB6922.namprd02.prod.outlook.com (2603:10b6:5:252::8) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4778.11; Tue, 14 Dec 2021 13:39:36 +0000
-Received: from DM8PR02MB8154.namprd02.prod.outlook.com
- ([fe80::a024:dbf:49ab:8e4e]) by DM8PR02MB8154.namprd02.prod.outlook.com
- ([fe80::a024:dbf:49ab:8e4e%8]) with mapi id 15.20.4778.017; Tue, 14 Dec 2021
- 13:39:36 +0000
-From: "Venkateswara Naralasetty (QUIC)" <quic_vnaralas@quicinc.com>
-To: Kalle Valo <kvalo@kernel.org>, "Venkateswara Naralasetty (QUIC)"
- <quic_vnaralas@quicinc.com>
-CC: "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>,
- "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>
-Subject: RE: [PATCHv2 1/2] ath11k: add dbring debug support
-Thread-Topic: [PATCHv2 1/2] ath11k: add dbring debug support
-Thread-Index: AQHX3SUI6bNZzMFUrkagQwAhoH5RlawnV+KHgArN4UA=
-Date: Tue, 14 Dec 2021 13:39:35 +0000
-Message-ID: <DM8PR02MB8154D011444A2EAFDC6F42D6E6759@DM8PR02MB8154.namprd02.prod.outlook.com>
-References: <1637312901-10279-1-git-send-email-quic_vnaralas@quicinc.com>
- <8735n4nzca.fsf@codeaurora.org>
-In-Reply-To: <8735n4nzca.fsf@codeaurora.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=quicinc.com;
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 007f7097-e456-4629-7254-08d9bf072b39
-x-ms-traffictypediagnostic: DM6PR02MB6922:EE_
-x-ld-processed: 98e9ba89-e1a1-4e38-9007-8bdabc25de1d,ExtAddr
-x-microsoft-antispam-prvs: <DM6PR02MB69226DD2E3DF1739DC7FC4989A759@DM6PR02MB6922.namprd02.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: g7vXLHgdsO0/NgnsloDg8OjioY+eXdgWfat1TpMZlzd8vsAK5/a1ZN3PydF8kieBqCInOUjh8AAiGgJ5zGLyecikVH7PR9hgVI+mtguYTq3VGw/baAxFKNTU1cg55gI7x2F1Ribr51rjaBPBje9OZ6K6tLydDF0usI320dDKUojygh4LB6wpBb21fzNAPW0YUMMof7xfBnHwUYmi+UUxH8UUbZCrl/w32vVcwEVjkKvyxB2m/PhM76BWotiwriPzUIrzb56SjFWbKmquWQ96rTD8qA2xl80JSbcwocoquB66FyKGyYsw5lu5+vdit0sCHAFzjih5DX+sfNn84DC8OcaobIvfZ1WBJP1ZYZiDPqhhBvxnxY6NbeJQaumTyYVvMWOz+BiyTHV4ZeMIQolY4wr6VveSVPxz3PGZo7OKgCot6w0AyIWl6GXcfZSiKHm8Kw0VqrcsaPidwC5B/Rde3Bvc7LjKZxc06gwUfZh3yLpJXWKRh9ymlwX7EtLFS6nb1/IZRJxI6FLRoqIKopmC6EKx5qtod1Kj/vVgnuBxeem4a5R0DlptgYPJzchA/zjM+8C8W7W2o8X5rfeVZ3ngZ0a/B0QvZWLHFL1yNFae3VttnrsoYFFEh9r/RXc/MLaOdVNuRPp7xTXciiOCYAhoNh6+cjeUDvrvD/tnuZydHKfPbghI8u1KA9n5kwcdfxRoLrqf4dG/vZboTeMo8Tk1jtwzpLIqndyXoywvPjcQWKShgkER3oKArVYsEkZWGrAMbXclLoNLbeY2mEFrgELZDCzv28Qq0fVb4U195TLOo3dLPXytl0SOda6kIXMyGfxAA9NHds9wCaOnwkreHw1IgA==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM8PR02MB8154.namprd02.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(55016003)(122000001)(86362001)(38100700002)(7696005)(2906002)(8936002)(110136005)(9686003)(316002)(8676002)(186003)(52536014)(38070700005)(53546011)(6506007)(66446008)(83380400001)(66946007)(966005)(54906003)(71200400001)(66556008)(5660300002)(33656002)(64756008)(4326008)(26005)(76116006)(66476007)(508600001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?AjXvgviwqXxaJZjh2J45/iKIoDAyfNacVv/Xz4skmu2VHRlXN+HyNjyW9HEy?=
- =?us-ascii?Q?XTJ9JpESVBNwm7zfvO5Y5wXvFqoqmE8tBPfFBwXqjd8q1Kx61107kFyJwRGU?=
- =?us-ascii?Q?V5EFnDBOwW3A/FAEXzoECf1oLlNs7UgEuVZ9rvAyOCzuvpYGSKqhzAvWVzJg?=
- =?us-ascii?Q?3OykoD3Qh6ozLbN03mn35jZ0Jzb4wYOUbnhDDACi2VPjiRTggxjqvwmM8nGl?=
- =?us-ascii?Q?EnZtbJqwNG8KHojO8Kg3fRcWJdXvYR3nSYTYFgtLbH+gfmoJo/PiWxZWeNeK?=
- =?us-ascii?Q?gS/L9FLofVXXRoJok3oAG4bCmHN4LrXXg9J26DJnH5qRCJdC7/l3mnE2qaog?=
- =?us-ascii?Q?60jFdUdFNRgrrEE2dkJkvmzTpNweGjsd03ajhx2KUtEIuNIRxHoLvkc5kB6V?=
- =?us-ascii?Q?jXPnrmU+AiJ3soW6gVPKKb9vuj4tUctj9I1LFVArMYRe6H+4Y5Wu0IM2p+BD?=
- =?us-ascii?Q?Rwic0p7fq0Ve8NPiX0fQOIUyTY9D9fSoTjY/SjV0KUHQTZicm6i0C+HkdiV3?=
- =?us-ascii?Q?ZiHQLLNqkY5OjLWonAjsLt75P10dCX6II2o7Uv0aCnSMtILZDhm9KnaXdqAB?=
- =?us-ascii?Q?4pnSN6dpOur+MxvSn3n5bDkgU0x9CETRc8jrm6dwaqtZivvW8OfdlUYvG+Cb?=
- =?us-ascii?Q?3ecsqA70y61wKjcHahA6tSg+5MRasTR2fqUJeT/Oy1DLMGn33bPgOfBfShnE?=
- =?us-ascii?Q?0jGEKc7AxZu3tUez7tIbuIHlnabRJ8uS2/SviOIA3KMsiKKh6pQj2W1DyCrv?=
- =?us-ascii?Q?zgDe+k3zN0WJO1KwCbVy4JZbLXcdjjlBEr5/Bympou5ozam9alK+ukPNK0Vr?=
- =?us-ascii?Q?49v5ODfA5a8d+xQFYtMx3/prMJC8xmpTT5jY1brui4HbWvsEii2QLVY1dNuA?=
- =?us-ascii?Q?iM5LbRGgnG2xzvFV1QMkEWx0IHtV05+QdAFplCHDuf4Szsb6rrP6omZwc5WN?=
- =?us-ascii?Q?S5kHaJMQ/cpJebcMEaBs4EbRLTIw/kLixmQ0agfO8RwhWlb7pvem9UgDGAbF?=
- =?us-ascii?Q?7P04qDFXQE+sO11NdybjpmJQSr1W0l7lFWZGRJY6CRiGabLibXr4RI1BDTiL?=
- =?us-ascii?Q?YVMUlqDh3s3bVmO7N4gD9nR+BrHrJZJBp3fH+1Mn4PEDK6KcWWOGdvGUb4Kj?=
- =?us-ascii?Q?7u3G9cEeW51SEuL9l1AnahkyXdOh+Bqm5wFX6L/j31RYGmREiZyNhAWTg+5T?=
- =?us-ascii?Q?pXC7PdjbDRtbPgfh621iahlysAitbpE7l0RL6JzlT+YkZP15DngJszOckC2z?=
- =?us-ascii?Q?O3WeGOLyPwianAUt+38y9g3J8lCB9OcsnLCGRC6dNJLEZAhEYJVaXM6k/ZBu?=
- =?us-ascii?Q?Ea9R4yHBefToi99XY26JIVibGkKvv1urDof2EArFx6rGLgo85DeNEqcuL/SS?=
- =?us-ascii?Q?wE5yub4EXr+Hud8wQJyWNgk0Dl6CSxqUyG9qqOPWvc/Btb/1h45ToWUiVKoB?=
- =?us-ascii?Q?eZZyTIeAQfN0790w2gL6A2SLz30xwgcPItfV/pUFkwoPMTp9fFnzazbpJf8M?=
- =?us-ascii?Q?w0yve20+c4fI8YaqW6+3ZlOrcstHshAbRn3/sHTRycfgQ9kVgdRBWBmvcrrI?=
- =?us-ascii?Q?CADQdgqM2j+7tm0GwLOVwXu2dzpADOCJ4Pjvyc0+vw2opgx7mrMykWB4QXMm?=
- =?us-ascii?Q?J7BLcieo885XmMvkUbttLSuR6DAXLUD8tpAEkgwvKvv9?=
+ id 1mx8la-00EOhg-Hi
+ for ath11k@lists.infradead.org; Tue, 14 Dec 2021 14:26:56 +0000
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
+ q=dns/txt; 
+ s=smtp; t=1639492013; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=8DFXaG5fcOQYfue5yzmv/CTrkOnFnzNaBEkUAmBz840=;
+ b=PUwdMdZ1fj6CcLFY5XJPr6sQso8H+CnABx62gk1Hk9/EuUNPTq7s6N7z4Vsk3BKVX7GipOCT
+ X6GPR94kvRoRKNhGd0igv/Zjml3F2GIzkW972fwW2zn84xy5REJ5L+cFKrChw2fzfWnq+SFG
+ 2LRNsIWfj2AiIU2GnNwRjzArjIk=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
+ 61b8a9ac4c698e2e81959f75 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 14 Dec 2021 14:26:52
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+ id CA92AC43617; Tue, 14 Dec 2021 14:26:51 +0000 (UTC)
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+ (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+ (No client certificate requested) (Authenticated sender: akolli)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id AD7E5C4338F;
+ Tue, 14 Dec 2021 14:26:50 +0000 (UTC)
 MIME-Version: 1.0
-X-OriginatorOrg: quicinc.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM8PR02MB8154.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 007f7097-e456-4629-7254-08d9bf072b39
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Dec 2021 13:39:35.9571 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 98e9ba89-e1a1-4e38-9007-8bdabc25de1d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: wgHTserAe+sQBLcRaqL2W2V4I8IkxGtnqQosyRVfEm7enZaJRrPc3zK4oUCui09WJNbQchkpeWbCNjXAD+UvmHMRxDZwACD/tU1RxglpYHM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR02MB6922
+Date: Tue, 14 Dec 2021 19:56:50 +0530
+From: Anilkumar Kolli <akolli@codeaurora.org>
+To: Dan Carpenter <dan.carpenter@oracle.com>
+Cc: ath11k@lists.infradead.org
+Subject: Re: [bug report] ath11k: Fix pktlog lite rx events
+In-Reply-To: <20211130104159.GD5827@kili>
+References: <20211130104159.GD5827@kili>
+Message-ID: <725a45b8c05ebd508df3bfc6b1097b03@codeaurora.org>
+X-Sender: akolli@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211214_053939_864793_AF1E5965 
-X-CRM114-Status: GOOD (  25.50  )
+X-CRM114-CacheID: sfid-20211214_062654_678207_620116C3 
+X-CRM114-Status: GOOD (  12.42  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -145,105 +73,155 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-> -----Original Message-----
-> From: Kalle Valo <kvalo@kernel.org>
-> Sent: Tuesday, December 7, 2021 10:10 PM
-> To: Venkateswara Naralasetty (QUIC) <quic_vnaralas@quicinc.com>
-> Cc: ath11k@lists.infradead.org; linux-wireless@vger.kernel.org
-> Subject: Re: [PATCHv2 1/2] ath11k: add dbring debug support
+On 2021-11-30 16:12, Dan Carpenter wrote:
+> Hello Anilkumar Kolli,
 > 
-> Venkateswara Naralasetty <quic_vnaralas@quicinc.com> writes:
+> The patch ab18e3bc1c13: "ath11k: Fix pktlog lite rx events" from Sep
+> 28, 2021, leads to the following Smatch static checker warning:
 > 
-> > Target copies spectral report and CFR report through dbring to host
-> > for further processing. This mechanism involves ring and buffer
-> > management in the Host, FW, and uCode, where improper tail pointer
-> > update issues are seen.
-> >
-> > This dbring debug support help to debug such issues by tracking head
-> > and tail pointer movement along with the timestamp at which each
-> > buffer is received and replenished.
-> >
-> > Usage:
-> >
-> > echo <module_id> <val> > /sys/kernel/debug/ath11k/ipq8074_2/
-> > mac0/enable_dbr_debug
-> >
-> > module_id: 0 for spectral and 1 for CFR
-> > val: 0 - disable, 1 - enable.
-> >
-> > Tested-on: IPQ8074 WLAN.HK.2.4.0.1-01467-QCAHKSWPL_SILICONZ-1
-> >
-> > Signed-off-by: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
+> 	drivers/net/wireless/ath/ath11k/dp_rx.c:3105 
+> ath11k_dp_rx_process_mon_status()
+> 	error: uninitialized symbol 'rx_buf_sz'.
 > 
-> The commit log is really minimal and is not really describing the whole
-> implementation. For example, I see that you create a new directory debugfs
-> and the commit log mentions nothing about that.
+> drivers/net/wireless/ath/ath11k/dp_rx.c
+>     3043 int ath11k_dp_rx_process_mon_status(struct ath11k_base *ab, 
+> int mac_id,
+>     3044                                     struct napi_struct *napi,
+> int budget)
+>     3045 {
+>     3046         struct ath11k *ar = ath11k_ab_to_ar(ab, mac_id);
+>     3047         enum hal_rx_mon_status hal_status;
+>     3048         struct sk_buff *skb;
+>     3049         struct sk_buff_head skb_list;
+>     3050         struct hal_rx_mon_ppdu_info ppdu_info;
+>     3051         struct ath11k_peer *peer;
+>     3052         struct ath11k_sta *arsta;
+>     3053         int num_buffs_reaped = 0;
+>     3054         u32 rx_buf_sz;
+>                  ^^^^^^^^^^^^^
 > 
-> What about other hardware like QCA6390 or WCN6855? You mention nothing
-> about those, how are they affected?
+>     3055         u16 log_type = 0;
+>     3056
+>     3057         __skb_queue_head_init(&skb_list);
+>     3058
+>     3059         num_buffs_reaped =
+> ath11k_dp_rx_reap_mon_status_ring(ab, mac_id, &budget,
+>     3060
+> &skb_list);
+>     3061         if (!num_buffs_reaped)
+>     3062                 goto exit;
+>     3063
+>     3064         while ((skb = __skb_dequeue(&skb_list))) {
+>     3065                 memset(&ppdu_info, 0, sizeof(ppdu_info));
+>     3066                 ppdu_info.peer_id = HAL_INVALID_PEERID;
+>     3067
+>     3068                 if 
+> (ath11k_debugfs_is_pktlog_lite_mode_enabled(ar)) {
+>     3069                         log_type = ATH11K_PKTLOG_TYPE_LITE_RX;
+>     3070                         rx_buf_sz = DP_RX_BUFFER_SIZE_LITE;
+>     3071                 } else if
+> (ath11k_debugfs_is_pktlog_rx_stats_enabled(ar)) {
+>     3072                         log_type = 
+> ATH11K_PKTLOG_TYPE_RX_STATBUF;
+>     3073                         rx_buf_sz = DP_RX_BUFFER_SIZE;
+>     3074                 }
 > 
-Sure, I will update the commit log in the next version.
+> No else statement.
+> 
+>     3075
+>     3076                 if (log_type)
+>     3077                         trace_ath11k_htt_rxdesc(ar,
+> skb->data, log_type, rx_buf_sz);
+>     3078
+>     3079                 hal_status =
+> ath11k_hal_rx_parse_mon_status(ab, &ppdu_info, skb);
+>     3080
+>     3081                 if (ppdu_info.peer_id == HAL_INVALID_PEERID ||
+>     3082                     hal_status != HAL_RX_MON_STATUS_PPDU_DONE) 
+> {
+>     3083                         dev_kfree_skb_any(skb);
+>     3084                         continue;
+>     3085                 }
+>     3086
+>     3087                 rcu_read_lock();
+>     3088                 spin_lock_bh(&ab->base_lock);
+>     3089                 peer = ath11k_peer_find_by_id(ab, 
+> ppdu_info.peer_id);
+>     3090
+>     3091                 if (!peer || !peer->sta) {
+>     3092                         ath11k_dbg(ab, ATH11K_DBG_DATA,
+>     3093                                    "failed to find the peer
+> with peer_id %d\n",
+>     3094                                    ppdu_info.peer_id);
+>     3095                         spin_unlock_bh(&ab->base_lock);
+>     3096                         rcu_read_unlock();
+>     3097                         dev_kfree_skb_any(skb);
+>     3098                         continue;
+>     3099                 }
+>     3100
+>     3101                 arsta = (struct ath11k_sta 
+> *)peer->sta->drv_priv;
+>     3102                 ath11k_dp_rx_update_peer_stats(arsta, 
+> &ppdu_info);
+>     3103
+>     3104                 if (ath11k_debugfs_is_pktlog_peer_valid(ar,
+> peer->addr))
+> --> 3105                         trace_ath11k_htt_rxdesc(ar,
+> skb->data, log_type, rx_buf_sz);
+> 
+>            ^^^^^^^^^
+> Warning here.
+> 
+>     3106
+>     3107                 spin_unlock_bh(&ab->base_lock);
+>     3108                 rcu_read_unlock();
+>     3109
+>     3110                 dev_kfree_skb_any(skb);
+>     3111         }
+>     3112 exit:
+>     3113         return num_buffs_reaped;
+>     3114 }
+> 
+> regards,
+> dan carpenter
 
-> And to be honest, I'm not sure if this debug feature is really worth to have in
-> upstream due to the extra complexity it creates.
-> 
-> Also usually it's a good idea to have the fix first in the patchset and then extra
-> patches after the fixes. That way it's easy to take the fixes and skip the extra
-> patches.
-> 
-We faced few issues like head/tail pointer discrepancies between ath11k host  & FW during spectral scan feature development.
-So, this debugfs entry would be helpful to debug such kind of issue in future.
+Hi Dan carpenter
 
-> Few comments when I was skimming this over:
-> 
-> > --- a/drivers/net/wireless/ath/ath11k/core.h
-> > +++ b/drivers/net/wireless/ath/ath11k/core.h
-> > @@ -442,6 +442,7 @@ struct ath11k_debug {
-> >  	u32 pktlog_peer_valid;
-> >  	u8 pktlog_peer_addr[ETH_ALEN];
-> >  	u32 rx_filter;
-> > +	struct ath11k_db_module_debug
-> *module_debug[WMI_DIRECT_BUF_MAX];
-> 
-> module_debug is not really a descriptive name for a field.
+Thanks for reporting issue. Could you please help in reproducing the 
+issue,
 
-Sure, I will change it.
+I tried to reproduce the warnings using command, but could not
+     make C=1 CHECK="smatch -p=kernel" -C. 
+drivers/net/wireless/ath/ath11k/ modules
 
-> 
-> > --- a/drivers/net/wireless/ath/ath11k/debugfs.c
-> > +++ b/drivers/net/wireless/ath/ath11k/debugfs.c
-> > @@ -50,6 +50,45 @@ static const char
-> *htt_bp_lmac_ring[HTT_SW_LMAC_RING_IDX_MAX] = {
-> >  	"MONITOR_DEST_RING",
-> >  };
-> >
-> > +void ath11k_dbring_add_debug_entry(struct ath11k *ar,
-> > +				   enum wmi_direct_buffer_module id,
-> > +				   enum ath11k_db_ring_dbg_event event,
-> > +				   struct hal_srng *srng)
-> > +{
-> 
-> The style used in ath11k is that the second word describes the filename the
-> function is in. So this should be something like
-> ath11k_debugfs_add_dbring_entry().
-> 
-> > +	struct ath11k_db_module_debug *db_module_debug;
-> 
-> Similar naming for structs, please.
+My PC has,
 
-Sure.
+gcc --version
+gcc (Ubuntu 10.3.0-1ubuntu1~20.04) 10.3.0
 
-> 
-> --
-> https://patchwork.kernel.org/project/linux-wireless/list/
-> 
-> https://wireless.wiki.kernel.org/en/developers/documentation/submittingp
-> atches
+sparse --version
+v0.6.3-rc1
+
+smatch --version
+v0.5.0-7764-g0951ed59
+
+Build LOGS:
+drivers/net/wireless/ath/ath11k/dp.c:213 ath11k_dp_srng_msi_setup() 
+error: uninitialized symbol 'addr_lo'.
+drivers/net/wireless/ath/ath11k/dp.c:214 ath11k_dp_srng_msi_setup() 
+error: uninitialized symbol 'addr_hi'.
+   CHECK   drivers/net/wireless/ath/ath11k/dp_tx.c
+   CHECK   drivers/net/wireless/ath/ath11k/dp_rx.c
+drivers/net/wireless/ath/ath11k/dp_rx.c:5372 
+ath11k_dp_rx_full_mon_deliver_ppdu() error: uninitialized symbol 'ret'.
+
+Thanks
+Anil.
 
 -- 
 ath11k mailing list
