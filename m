@@ -4,48 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3B38C433EF
-	for <ath11k@archiver.kernel.org>; Tue, 14 Dec 2021 13:31:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97E52C433F5
+	for <ath11k@archiver.kernel.org>; Tue, 14 Dec 2021 13:37:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=FI64U8gHQ8wvcbBZS6cCJAlM4cLbdSVQvxNyktF8hxc=; b=zICLHWDULI4ONO8Mgua01LM3+q
-	culTKNvbf2tNv/t/c8h/ZTfa6CsTEfMIG9UFfZ6DnU61MJHR5hX48bS93YF3pEZXlBsLtUqV5QFiA
-	qT5l/Jkm7srSAGfQ7USJttGWWSerUJymQ9l3wfM6jYfOGhV95n2LvG6fjL2qcmne2VygT+hD0QUC1
-	TXk6DA7jeTTunf4pmCHD/IgqeYAh6/oLRYDpr1sW8OjxwqXx0CAoWPcvURoc29R6uL+twL0SyHqeA
-	0LuKlPd1lutFPT/AiXSx+B+Po8uSESz8KrqSPYqo3rxiGShqXx1HXLHl0b2qiVGlJSAkhzwb2UFvu
-	92rAMzpw==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	References:List-Owner; bh=nvjCPW+XjiHr9d+4gBNG0k8xWfMTVDzb/4zec6hScGQ=; b=KYJ
+	U20fwPsLTVI33GwGxSeY+2SxbBMHvEMW0A/vL2rmtaR7HHNcAfng+mgW3uk7S0pd/00cQG4bHRQIG
+	/GLbisQBaAgXD6AKSHyZ+D4PLGpQ/xTGg6o180n4DVPF6JbTfVdcvLGv7MuKVlFA+HIWNfUIUAQ2M
+	CwJJmwKr+8mCQUL0ClNt8GixhWHo/yOZEDFGC2E7LBcEL68Vo9f3hmUc3tOY6BgGRzciksp7GMz8N
+	szDOuBzuVXyZ+grZt6CvpLa2J/rIrsaI9gNJ45Oh20hFh/3vIkTTeVNZpmsNCsdoB2IYFgisuA9l8
+	Dhw1EHKMYPCQ4/rouJl0ESD3ltUiGTg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mx7ty-00EAo6-8u; Tue, 14 Dec 2021 13:31:30 +0000
-Received: from dvalin.narfation.org ([2a00:17d8:100::8b1])
+	id 1mx7zj-00EBmZ-Kh; Tue, 14 Dec 2021 13:37:27 +0000
+Received: from dvalin.narfation.org ([213.160.73.56])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mx7tv-00EAmt-8M
- for ath11k@lists.infradead.org; Tue, 14 Dec 2021 13:31:29 +0000
+ id 1mx7zg-00EBlY-O7
+ for ath11k@lists.infradead.org; Tue, 14 Dec 2021 13:37:26 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1639488682;
+ s=20121; t=1639489042;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=TMLtdrXuEMDgtiwDQbInWCz8+7wR0Juy2ApsqnQbzJk=;
- b=gwqjnFdcJWPoD2KscoDHyte87NXJd2NC1eZ6bhNZJJZYiPoowmm+IpmgkPGSQLvXWXyd5I
- WFHiBjGQT7dyeVqp4zTSYPNisuTQCZveRy67vT33Hr42I0dAt1FwYtZC93/MUvap2Y1yp4
- XIagcfVUGQWQcNZ5m4NSdCqSPbMthTM=
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=yNjil783WKWDq5oV2jf7nP4yvYcaLD5Fdv9ydzEkXKs=;
+ b=qmlXDIKtHoQPCpp8LuV1pI+ADpsO6RWzbGI1ExPI5K7gFCt4HSUaSHQkR4vn905dIBCAlS
+ Q5Y8L4/enK5l9wuOKF1fsVf0gYevyrOBc9EGkUIFHy0WBuCkdC9jFrsGOFfCPIAVd6gjXA
+ oIcYLheL6mB8w65OphWcgaUuoEjCHv4=
 From: Sven Eckelmann <sven@narfation.org>
-To: ath11k@lists.infradead.org, Wen Gong <quic_wgong@quicinc.com>
-Cc: Sven Eckelmann <sven@narfation.org>
-Subject: Re: ath11k: incorrect board_id retrieval
-Date: Tue, 14 Dec 2021 14:31:17 +0100
-Message-ID: <1880746.bFOEV04gjF@ripper>
-In-Reply-To: <3014977.PoT5AKhg5k@ripper>
-References: <1734146.k9CKHTOI9D@ripper> <3014977.PoT5AKhg5k@ripper>
+To: ath11k@lists.infradead.org
+Cc: Wen Gong <quic_wgong@quicinc.com>
+Subject: ath11k: firmware variants for WCN6855 v2
+Date: Tue, 14 Dec 2021 14:37:20 +0100
+Message-ID: <3348649.btbF5x2DtX@ripper>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211214_053127_490545_EE571D03 
-X-CRM114-Status: GOOD (  11.19  )
+X-CRM114-CacheID: sfid-20211214_053724_972188_42D51563 
+X-CRM114-Status: UNSURE (   8.87  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -57,116 +55,80 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1397107394129909442=="
+Content-Type: multipart/mixed; boundary="===============6251643769091837723=="
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
---===============1397107394129909442==
-Content-Type: multipart/signed; boundary="nextPart6560707.uD5aKzNDrY"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+--===============6251643769091837723==
+Content-Type: multipart/signed; boundary="nextPart4673661.a5PMvuEqNB"; micalg="pgp-sha512"; protocol="application/pgp-signature"
 
---nextPart6560707.uD5aKzNDrY
-Content-Type: multipart/mixed; boundary="nextPart1834583.WAxbKdLVha"; protected-headers="v1"
+--nextPart4673661.a5PMvuEqNB
 Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
 From: Sven Eckelmann <sven@narfation.org>
-To: ath11k@lists.infradead.org, Wen Gong <quic_wgong@quicinc.com>
-Cc: Sven Eckelmann <sven@narfation.org>
-Subject: Re: ath11k: incorrect board_id retrieval
-Date: Tue, 14 Dec 2021 14:31:17 +0100
-Message-ID: <1880746.bFOEV04gjF@ripper>
-In-Reply-To: <3014977.PoT5AKhg5k@ripper>
-References: <1734146.k9CKHTOI9D@ripper> <3014977.PoT5AKhg5k@ripper>
+To: ath11k@lists.infradead.org
+Cc: Wen Gong <quic_wgong@quicinc.com>
+Subject: ath11k: firmware variants for WCN6855 v2
+Date: Tue, 14 Dec 2021 14:37:20 +0100
+Message-ID: <3348649.btbF5x2DtX@ripper>
 
-This is a multi-part message in MIME format.
+Hi,
 
---nextPart1834583.WAxbKdLVha
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+the EmWicon WMX7205 (Milan) seems to have a special board.bin from the 
+manufacturer. But when using it, the firmware seems to crash:
 
-On Thursday, 2 December 2021 15:43:03 CET Sven Eckelmann wrote:
-[...]
-> Just retrieved the next card (EmWicon WMX7205 - could be the same as jjPlus 
-> WMX7205) and it has exactly the same problem:
-> 
->     ath11k_pci 0000:05:00.0: failed to fetch board data for bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=0108,qmi-chip-id=2,qmi-board-id=255 from ath11k/WCN6855/hw2.0/board-2.bin
->     ath11k_pci 0000:05:00.0: failed to fetch board-2.bin or board.bin from WCN6855/hw2.
-> 
-> Of course, the only provided keys (all with board_id != 255) are:
-> 
-> * bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=3374,qmi-chip-id=2,qmi-board-id=262
-> * bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=3374,qmi-chip-id=2,qmi-board-id=266
-> * bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=3374,qmi-chip-id=18,qmi-board-id=266
-> 
-> So until now, I could not find a single card for which ath11k returned a 
-> board-id != 255 (unless it was overwritten via the devicetree).
+    [   10.710206] ath11k_pci 0000:01:00.0: BAR 0: assigned [mem 0xd0000000-0xd01fffff 64bit]
+    [   10.819230] ath11k_pci 0000:01:00.0: MSI vectors: 1
+    [   10.840305] ath11k_pci 0000:01:00.0: wcn6855 hw2.0
+    [   12.234095] ath11k_pci 0000:01:00.0: chip_id 0x2 chip_family 0xb board_id 0xff soc_id 0x400c0200
+    [   12.242991] ath11k_pci 0000:01:00.0: fw_version 0x110c0b4c fw_build_timestamp 2021-11-24 04:24 fw_build_id QC_IMAGE_VERSION_STRING=WLAN.HSP.1.1-02892.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+    [   12.271180] ath11k_pci 0000:01:00.0: qmi failed to load CAL data file:cal-pci-0000:01:00.0.bin
+    [   12.520852] ath11k_pci 0000:01:00.0: firmware crashed: MHI_CB_SYS_ERROR
+    [   22.333795] ath11k_pci 0000:01:00.0: failed to wait board file download request: -110
+    [   22.341751] ath11k_pci 0000:01:00.0: qmi failed to load bdf file
+    [   22.347921] ath11k_pci 0000:01:00.0: failed to load board data file: -110
 
-According to the manufacturer, the board itself should identify itself as 
+But they also provided a firmware which doesn't end with 
+QCAHSPSWPL_V1_V2_SILICONZ_LITE-1 but with QCAHSPSWPL_V2_SILICONZ_CE-1. This 
+firmware doesn't seem to crash with their board.bin.
 
-    chip_id: 0x2, chip_family: 0xb,   board_id: 0x301, soc_id: 0x400c0200
-
-I have therefore dumped the memory region with the qmi response via kgdb. You 
-can easily see that the response has following sections:
-
-
-* 0x02 (len  4) - resp
-* 0x02 (len  4) - resp
-* 0x10 (len  8) - chip_info
-* 0x12 (len  4) - soc_info_valid
-* 0x13 (len 21) - fw_version_info
-* 0x14 (len 77) - fw_build_id
-* 0x15 (len  1) - num_macs
-* 0x16 (len  4) - voltage_mv
-* 0x17 (len  4) - time_freq_hz
-* 0x1A (len  8) - ????
-
-So the section 0x11 with the board_id is completely missing. For some reason.
-
-> > So my question would be: Is the ath11k based board_id retrieval just broken? 
-> > Or are these cards broken?
+Does anybody know whether the firmware QCAHSPSWPL_V2_SILICONZ_CE-1 (which 
+cannot be found in Kalle's repository) is actually meant to work with ath11k? 
+At least from past experience (with HK01), I know that the firmware for the 
+proprietary driver is not meant to be used for ath11k and caused interesting 
+crashes.
 
 Kind regards,
 	Sven
-
---nextPart1834583.WAxbKdLVha
-Content-Disposition: attachment; filename="qmi_wlanfw_cap_resp_msg_v01_ei.bin"
-Content-Transfer-Encoding: base64
-Content-Type: application/octet-stream; name="qmi_wlanfw_cap_resp_msg_v01_ei.bin"
-
-AgQAJACeAAIEAAAAAAAQCAACAAAACwAAABIEAAACDEATFQBMCwwREDIwMjEtMTEtMjQgMDQ6MjQU
-TQBRQ19JTUFHRV9WRVJTSU9OX1NUUklORz1XTEFOLkhTUC4xLjEtMDI4OTIuMS1RQ0FIU1BTV1BM
-X1YxX1YyX1NJTElDT05aX0xJVEUtMRUBAAIWBAC1AwAAFwQAAPgkARoIAAEAAAAAAAAA
-
-
---nextPart1834583.WAxbKdLVha--
-
---nextPart6560707.uD5aKzNDrY
+--nextPart4673661.a5PMvuEqNB
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: This is a digitally signed message part.
 Content-Transfer-Encoding: 7Bit
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmG4nKUACgkQXYcKB8Em
-e0Z0WxAAzYaAU/vbI+mVTEZR6yNC3p/beisE9iFxSrgocilj3gZrb6fSwvE6BSMq
-Bi+28YIemTcuBfPMqYumTAdTssTEfP1HtpBxIiWDHYLwEC7axdcF+zQWFCEQ5ANa
-E0fbQK8sxKqjdT6OFAyHT+BRboUzTmdDOMM0/Hs0RYcMT9rKkfyRzfxcs5jDy1KF
-oyBfR8xhtYW+asboA8KWuhDJq4v4AjTLokiBg/fGqqQDz1WTn4KJjnUIGk1+6REF
-fdWf9xs0VXFHfSp6cdmBvGSuFC7f6xBI+jTHrYPRDsKHTo/m6gEGe8sCKOorNA/L
-6WR5rgj+FV9rwzNidfnjAyGJmRcsV1eX1uFQp8GFYGucBIaK+PRA3/q4QSm1xQY4
-Iaa8u7wNOuXkYRmZlgXm1kW3PJkBDE34m1HekNUpj1zyJ17MtmsRNpWSZQS7MG81
-ybJywfYYoQjZGkL4O3ChbLIFVtxTjEFfXUkJhIIrhJ5GeFqP3k+4mvqDilynDuEe
-KRCVRQutdtWkedetvIozMFDkm5h3IJqZd2j4XgoI1F1tEra5E0W+9OpzeCilF1S1
-nT9061pq68lewpJdGqe8MZ+6yI+OvEx6EV5MZ70Mrc/ir4fKIj+YTwBLw3uvzEzL
-vMKy+7dZAxgIjdB7NelmsJRImZFQw1tBwuneXepbu2N24UjffyQ=
-=7LS/
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmG4nhAACgkQXYcKB8Em
+e0ZPKRAAwDIvv+jYrzgv/+1rUREvx9CYiWtpdf48kPXAQUddDT2Io6IP/QY40a3F
+72Ge22n/AV71gHsJcjyhhle0G/iB1nCYbFkr59k5iAtxKMBFE4loOi2Drzi+cZGV
+uD3BDIryMzS3wCYsvgfmxafZlLkIZTM/v3k1f9APaZU/k6q8SaQi6IPFXSWb4wC6
+Fw/LtV81isyD2S1+ZYDkfW3u/tsjBqXd2qJQyOI6KkfGHm2kM/ze+jovQo1m7/RK
+9jnVuFGXFFiDH7ANW5NwUMavDjh0FauDsYCAO36gV3cYKNOO2WL3HLypzb9inkcQ
+q8Nx3+wkTPA58jJMsjATlvI+SzZmyipGtbLklepSg1Unvug9bJ7H4kSqU9+Ud3wO
+SxYeaG3pN7PT/HuVs7p09bRpuV/c2ZBh89CZtIVkiogB6xxZ6E4kvkp/Iz5Kk+nx
+ADcLxrP+V787Htl+Mqd2JVHlCPpW5RKvfdGzdqdArEHTuTnT/RKecKURLAhfgZRF
+m1ejcZkJiYyaTAl5E8Vlgw6IhsxcYk/kfJUJECru+wQMTFdzpamTlScLDpZzrivV
+5gwaoQEuWvB3UXyCcuqzlJKvYEotZ23jQS+OolRZnoz2RcmtWZfFsXRA2dNNi9cS
+/O0VV1XPxlVB+L0QlZNOkQN5Rhz4JgrMGkdjM4oM6Bt58JUy9+Q=
+=UQMi
 -----END PGP SIGNATURE-----
 
---nextPart6560707.uD5aKzNDrY--
+--nextPart4673661.a5PMvuEqNB--
 
 
 
 
 
---===============1397107394129909442==
+--===============6251643769091837723==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -177,7 +139,7 @@ ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
 
---===============1397107394129909442==--
+--===============6251643769091837723==--
 
 
 
