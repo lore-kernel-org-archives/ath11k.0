@@ -4,65 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0559BC4332F
-	for <ath11k@archiver.kernel.org>; Tue, 14 Dec 2021 15:31:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D140DC433F5
+	for <ath11k@archiver.kernel.org>; Tue, 14 Dec 2021 15:32:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
 	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ic3GavqSzOPc+wSwGCYyXp4xv2ZUF8Qh/Eg5Lz2z7qg=; b=Fnh6oxfok1rjoT
-	mcPGwErzU5i1/W7wBDU4Tj9nDe1mGuIbXSVZ6pJ12z+F5ozSga4na/IgffWpYTzZ35qzW4Dm/ndpw
-	Sl3fuax1VB1c7O2in6dvQKa6l7reZtOovlqcwy463ycrdfYUCRoopOsNQJs8kaO2e1Kjp+gR+zK5s
-	04WXdkR2iLTbS3OGwepO/JuJlAEnGIJV54QAm0jcLaZoYTbl2gO7bw6Nizk2KhFL2JUDDkakJOKim
-	DLxP8CyxU9t9rkI3WcFZ2tqkrzJsT1V30Y902bfAnkXy6EB8r/WjivFQhW8nxusrE6K3XFhU/Y7Of
-	aRZdTZO2rn5jKywLf/Ww==;
+	List-Owner; bh=PAF1pkiIdK1af4FNzYoyN4dBkfbCIHvvRcRK+djTwiQ=; b=yT/U5+yht+aeEq
+	pM16oRvL9Ab0zKlL5pScc6+t7tadvm1LfEW2m/MrWq6JNy7128hLt3BVVo+8QCD2frbDuWn1/zZx7
+	zeybVhPWyFS+IxcnGRFShQiBTd1EgnC8I9ZC+GXUibNJDCNwQdE/NIhpvIZUdQ4sjxlSqtSn9f3wo
+	tQEDrdMWRe0QyUNyhxE/weaUPYFMUFiaT5alCxEMTlk5u6iWjx5pBTaHskVSb4MUog0GNGO3ma3IN
+	QPhK+OQ9mnN7RcWwYDjPUUXTQ4hxxBeh2udqTD0P48QeGAYs5ure08R4mX8ha/MA6rma+hrQjjgQO
+	VwnJ2SVBEz6kAqod10cA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mx9lt-00Egqp-1I; Tue, 14 Dec 2021 15:31:17 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1mx9nT-00EhKp-UF; Tue, 14 Dec 2021 15:32:55 +0000
+Received: from sin.source.kernel.org ([145.40.73.55])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mx9lq-00Egph-PX
- for ath11k@lists.infradead.org; Tue, 14 Dec 2021 15:31:16 +0000
+ id 1mx9nR-00EhJV-Jk
+ for ath11k@lists.infradead.org; Tue, 14 Dec 2021 15:32:55 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id AC4F26148D;
- Tue, 14 Dec 2021 15:31:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECB5BC34601;
- Tue, 14 Dec 2021 15:31:09 +0000 (UTC)
+ by sin.source.kernel.org (Postfix) with ESMTPS id 2BC6FCE18EA
+ for <ath11k@lists.infradead.org>; Tue, 14 Dec 2021 15:32:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D62DC34601;
+ Tue, 14 Dec 2021 15:32:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1639495873;
- bh=nIm7IP3pOSVJnjnVXQ9Ds8xTD2Whp9+vyIKmyYPKwgE=;
+ s=k20201202; t=1639495968;
+ bh=rNQOyKP91WXUWPlQpTUVmCNNBaTB58gSLYUa6dOW958=;
  h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
- b=YQQKXqAkpyiAUzSd8+pmM5QYb+q0hRrZUMjB1UhJH+/c9O6wofnbfe+cEipEBUH2B
- HRqK6ThMBH26KhPpuFY6tmlVDNbFeL76CaFKCeE25/LrzXTiO6rujD3mBUZuNwwG6x
- tyEvELkXhrfW6I1+9TDI+M1WLQdkl/SZkIyQDCyf+GIRU5LxZZ6Sc69jIMqXwBagGi
- omI0S5WXSS1nhBoB8ETL1rFrXR/XFfJt5L33mbkZRxPoXXQamv1a4QEhbLw4Dfsmbx
- rM+iR2OR3fVdJmpytXcuNAWeZcv1fHSiUJM0bssJom12t6jq8a2XxcOoygyL+FaPjo
- OUPoggmB7D2HQ==
+ b=s2cMsEd2G4PvMLhNSdPeCRLjaCETeFxMk5+TnFFYzIImvKBUEQpy7WQEKcmjOK82r
+ AM2l9iRyJtyp1XMBQznDkJdOCOUIez1Blxa714NYBlORln/O7xHf+SWsMg8oQwu4rY
+ 7JXlJMKP/uMkDXQgBHNT2oVONCeKm2NyLr3Yr6PWlW+lfV6IP2pV56S9Si5VXuCNny
+ ZVmDHJu5LILz8n9/zV9XsN2QwAwVv6GgUugaLs6NbAsq216M34aMkTL6AkkYnvsRg3
+ l7TTVuQB12GctC97Udi+j9LOHuHYhbi074tu8NjXLG/iR2diN+It/ZtZbAyYaAFHZ9
+ x0XMwB4kc04QA==
 MIME-Version: 1.0
-Subject: Re: [PATCH v2] ath11k: Fix a NULL pointer dereference in
- ath11k_mac_op_hw_scan()
+Subject: Re: [PATCH v3 1/2] ath11k: add ab to TARGET_NUM_VDEVS & co
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20211202155348.71315-1-zhou1615@umn.edu>
-References: <20211202155348.71315-1-zhou1615@umn.edu>
-To: Zhou Qingyang <zhou1615@umn.edu>
-Cc: zhou1615@umn.edu, kjlu@umn.edu, Kalle Valo <kvalo@codeaurora.org>,
- "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
- Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>,
- Shashidhar Lakkavalli <slakkavalli@datto.com>,
- Ganesh Sesetti <gseset@codeaurora.org>, kbuild test robot <lkp@intel.com>,
- John Crispin <john@phrozen.org>, ath11k@lists.infradead.org,
- linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org
+In-Reply-To: <20211209104351.9811-2-kvalo@kernel.org>
+References: <20211209104351.9811-2-kvalo@kernel.org>
+To: Kalle Valo <kvalo@kernel.org>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
 User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <163949586478.10444.18327229880355423779.kvalo@kernel.org>
-Date: Tue, 14 Dec 2021 15:31:09 +0000 (UTC)
+Message-ID: <163949596601.10444.7465143029436513701.kvalo@kernel.org>
+Date: Tue, 14 Dec 2021 15:32:47 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211214_073114_905237_6378DE59 
-X-CRM114-Status: GOOD (  15.18  )
+X-CRM114-CacheID: sfid-20211214_073253_876476_35C5FB8B 
+X-CRM114-Status: UNSURE (   7.88  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,37 +72,22 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Zhou Qingyang <zhou1615@umn.edu> wrote:
+Kalle Valo <kvalo@kernel.org> wrote:
 
-> In ath11k_mac_op_hw_scan(), the return value of kzalloc() is directly
-> used in memcpy(), which may lead to a NULL pointer dereference on
-> failure of kzalloc().
+> The next patch changes TARGET_NUM_VDEVS to be dynamic and need access to ab.
+> Add ab separately to keep the next patch simple.
 > 
-> Fix this bug by adding a check of arg.extraie.ptr.
+> Compile tested only.
 > 
-> This bug was found by a static analyzer. The analysis employs
-> differential checking to identify inconsistent security operations
-> (e.g., checks or kfrees) between two code paths and confirms that the
-> inconsistent operations are not recovered in the current function or
-> the callers, so they constitute bugs.
-> 
-> Note that, as a bug found by static analysis, it can be a false
-> positive or hard to trigger. Multiple researchers have cross-reviewed
-> the bug.
-> 
-> Builds with CONFIG_ATH11K=m show no new warnings, and our static
-> analyzer no longer warns about this code.
-> 
-> Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
-> Signed-off-by: Zhou Qingyang <zhou1615@umn.edu>
 > Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-Patch applied to ath-next branch of ath.git, thanks.
+2 patches applied to ath-next branch of ath.git, thanks.
 
-eccd25136386 ath11k: Fix a NULL pointer dereference in ath11k_mac_op_hw_scan()
+523aafd0f071 ath11k: add ab to TARGET_NUM_VDEVS & co
+beefee71336b ath11k: Change qcn9074 fw to operate in mode-2
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20211202155348.71315-1-zhou1615@umn.edu/
+https://patchwork.kernel.org/project/linux-wireless/patch/20211209104351.9811-2-kvalo@kernel.org/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
