@@ -4,143 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44ECFC433EF
-	for <ath11k@archiver.kernel.org>; Wed, 15 Dec 2021 03:02:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C5F6C433F5
+	for <ath11k@archiver.kernel.org>; Wed, 15 Dec 2021 03:38:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
-	Message-ID:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=VVfs3caiqDcrC+b89ka0KrBXF1kfWya4XMp55rxzlxk=; b=pNvEPH+zG4CohQ
-	GxxkBxP2eyP8XgQuBe8OT8G4POi2NVCEYl8JGq7zM8oS4zPUmgFLKMjuD0JG9kGLw3687xeQsIedg
-	ghwUPXyrh+HpMo4LugeCpezYLBDCpclrOdBMt88gmAcMCVMfQ8V7PKIw1GKVnK8HTcqIbjMVnxsI0
-	E6STAeRI8f9Fc7ArgefVLXTYNgrNTYMoUM3NL0c45YIrJ7keWnseG7x+N3qZYSGWlq9rw+lYU5zv8
-	mYUd+ix8EKzyK07gGo7fPkDPyWWgLDoStPZLASo80AEx76cKxCoHgizGB9p+TVUMO0+oriwUC9lK0
-	f5+8bDK2tLRvR3z1EKoQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=lL82WoYxyjfumZ4gP6LWLdtgWCTmrOpqO9ebLpezx7U=; b=31Lb/W+OZHZd15
+	oGJw2U1pGS/gKjFTZKB+OE6LGtOB84byqokkUZuAQbZLltdqvoGAWVh2/WZbaSsYoxjdacIZQOwzL
+	YzmFOmF7PSwtRDlGXGgexCz5meqylkaPB4LweQWxwQMSr6rEvhaCWBStP0x1iFe/TqFFke2YEf8i9
+	sm92L6EBo99KEXT369szfzNxrIlhMl2zcDmsatRtBEx8yfBjqGapAeSVQIt7S2ddocO21BwH+ZcHv
+	weCMUT0WVOVpTbHDLiEDMaLATeJFdT00QbXqi0xg7o4tVvZ3TUOEb53T3apiZus3Of6yr4vif7so5
+	C4cDEiyy6QqJztZHRfRg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mxKYj-00GUUY-Vt; Wed, 15 Dec 2021 03:02:26 +0000
-Received: from esa.hc3962-90.iphmx.com ([216.71.140.77])
+	id 1mxL7u-00GY8y-5r; Wed, 15 Dec 2021 03:38:46 +0000
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mxKYg-00GUU9-P5
- for ath11k@lists.infradead.org; Wed, 15 Dec 2021 03:02:24 +0000
+ id 1mxL7q-00GY8G-7N
+ for ath11k@lists.infradead.org; Wed, 15 Dec 2021 03:38:45 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=qti.qualcomm.com; i=@qti.qualcomm.com; q=dns/txt;
- s=qccesdkim1; t=1639537342; x=1640142142;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=1jFepgGZ0V/gZoGqAxXxauCExxOWFBexce7gdd7YnhE=;
- b=NeRg5rUC3zWv9+ynL6uFuTF7Vb3jTdYe+UhIG73/hwWevS6OAjxnDlWF
- 5nPPAU02++PMogXLLswDrBz0BKqaeMvVOkDZkMkYpCv57gAb3Kfr7Q/AX
- a4laIfgISiEClAzrd0zmlK0ge4n2um8T6xO+Yg3bwDZsbYI6nwdQQwJyr I=;
-Received: from mail-bn7nam10lp2108.outbound.protection.outlook.com (HELO
- NAM10-BN7-obe.outbound.protection.outlook.com) ([104.47.70.108])
- by ob1.hc3962-90.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2021 03:02:19 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=io4kJrWEZvjQWLLH2mOSYnRyd9MHMhDnZfjsypO7AQJM0BrDaOaUutBjV1StvQJzzqEpa8hYT6F0kKZXbr+f9kro5q552wU1OYv6ifaGZQriQziNSZfpTpGhN0dK+jiLza59fcbjhjdJJ2ZHcn/AMv3xFe0Wh7qmwJ4OlL1B2DOcPFuxqNU5ArLfKlHkuxcQv5+SlqUKFd4k4gdHwEs/9/I1kP9BaMjxzyiYR8MdgUNvgu3MGRsiU7Ryy0sh8hdpBh62yPaer1hI6s4Fv63uKy+VKbhHtw+xmXG9mr2UGryEjRrqbEq35LpZN/YB8KYzJZMy0rpmbKFYNjH0tsjwkw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1jFepgGZ0V/gZoGqAxXxauCExxOWFBexce7gdd7YnhE=;
- b=oWaBHmMuuxDUdk0CawGdF3Q/Bzzhqba3lYjgzbjj0EUhipTWv1s0uJwqxSVoiemD0yo5+VYOHHklk7CrBQdjYcFZhn4NJK/J9BhsTj3WuSOvTLP1gdQfgl8Hs7vV2gpu/BY8gPQ4HNlyKXWbRDlkRhii1cZp8YLS5Y9GhMPhvYNsbdxgFSNZyA1MspHuofhI6EIWsIRk4/Gp6gMdNoiVRRmkUlwRkTE1wtLkrCIqWhBquEaUJrdfn6o3B2cLrASuoHHQxE7ZmnYou8T2q49eY2hCrqNAJAGESiuDOtZQMm4Dz9sO97fa3Zi38PpAs7OGKGKQcqRyT5rCeyaR6G39yg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=qti.qualcomm.com; dmarc=pass action=none
- header.from=qti.qualcomm.com; dkim=pass header.d=qti.qualcomm.com; arc=none
-Received: from DM6PR02MB6924.namprd02.prod.outlook.com (2603:10b6:5:25f::7) by
- DM5PR02MB2681.namprd02.prod.outlook.com (2603:10b6:3:10b::8) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4778.17; Wed, 15 Dec 2021 03:02:16 +0000
-Received: from DM6PR02MB6924.namprd02.prod.outlook.com
- ([fe80::f4:daa2:14d4:d825]) by DM6PR02MB6924.namprd02.prod.outlook.com
- ([fe80::f4:daa2:14d4:d825%5]) with mapi id 15.20.4778.018; Wed, 15 Dec 2021
- 03:02:16 +0000
-From: Chun Wu <chunwu@qti.qualcomm.com>
-To: "Wen Gong (QUIC)" <quic_wgong@quicinc.com>, Sven Eckelmann
- <sven@narfation.org>, "ath11k@lists.infradead.org"
- <ath11k@lists.infradead.org>
-Subject: RE: ath11k: firmware variants for WCN6855 v2
-Thread-Topic: ath11k: firmware variants for WCN6855 v2
-Thread-Index: AQHX8V3/LjbHy0fhO0mzUbtbc+pDhqwy3SAA
-Date: Wed, 15 Dec 2021 03:02:16 +0000
-Message-ID: <DM6PR02MB69248F37B55ACCC868F8B82BE0769@DM6PR02MB6924.namprd02.prod.outlook.com>
-References: <3348649.btbF5x2DtX@ripper>
- <a02c79da-17da-9b9a-6c09-1cd7b6696427@quicinc.com>
-In-Reply-To: <a02c79da-17da-9b9a-6c09-1cd7b6696427@quicinc.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=qti.qualcomm.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 70db1990-b496-418d-cec7-08d9bf774d44
-x-ms-traffictypediagnostic: DM5PR02MB2681:EE_
-x-ld-processed: 98e9ba89-e1a1-4e38-9007-8bdabc25de1d,ExtAddr
-x-microsoft-antispam-prvs: <DM5PR02MB26816E34588CAC9810E34525E0769@DM5PR02MB2681.namprd02.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4941;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 3Jul4s7DdUKsTtA0FdbWiOB+IhbIu+Iv7LoThxaM0KNP9UBlb7VsT2hEXvwO2C8r9JIf8jYN7Nz4lMWmI0Rgqu2YL3zsMnnF8I/EG440Jhm1B2ckMhFY4UQGlvuTXEQgPszS3zvyI58OfS+5Z4xrJU+LHbQoGceKJhYiTa3N1gPNEl++5b8s4892ViMoDgkvgslhWlQ7+lwEhEKw7SRF0pcLSLqx93r+rmUdsPaZKh+pvQAU0VNQcrER0+QZqO/qTkeUdM3hsQApSUVWShZCYPqCTMY9CKoL8JmTc40+43Z/UYYYghhP5S3cAeOfIiOP5NLR+ypHE3nRYsiMDnCdB5/yXjwLWC+6q3IHxZ2IiG0mJPIXD2MfxSxurd8YPII22lx3+zDzc9a4mWSTDDIUqNFK5C225DgkbLU1vlOGVEfqDUjnaVWpoAE3B+bI+hUv6SY7VXDTLLwUHtKSEHeBF/FxgAn5FvcFc/IipRd6oqmg52YwTJwAukendZnT0tnTFPfXWheHDnoxmazw03Shtwbr20fcIPs5oe+gu89i/ZkayAAvKMCHLgyo7G8Ss0jv+Kn1qfcVU5Frtn4SH/o9QZeqC3FHUiNIfS0iqPEvmmeoT2r7uwe7l71cFdJ1Sr8mg3EYqwceC+AC8AgkrVc1ptxOuZ5dxsOqm+QgxFpWcR95d9XfVvaVEdpWXt5dg91MHORUyjF72JNNn8uxjyuqVA==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR02MB6924.namprd02.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(86362001)(316002)(52536014)(8936002)(122000001)(110136005)(8676002)(55016003)(38100700002)(186003)(9686003)(4001150100001)(71200400001)(508600001)(5660300002)(6506007)(2906002)(53546011)(66476007)(7696005)(26005)(76116006)(83380400001)(66446008)(38070700005)(66946007)(66556008)(33656002)(64756008);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?OCtMSTRHR01EOWIyNmF2KzhvM0g5RThoKzNxNnVtZWZQaGpzOEV1Y1dmK0RK?=
- =?utf-8?B?eFcyMEJjMGppRW5zenozOHViT08zSUxuRlduM0xuU3MwaEcyQitwa2I4UzJm?=
- =?utf-8?B?MVpkTTI5aTNWa3RyclJKY2J4ZFBNQzFpVnMyMUVNNnhNaW1NUVN1SGxRU1M1?=
- =?utf-8?B?c25aeEtrUGxsM2U2bTNsNExJaU53VnZLSm5hZmxtQlB2N2JaSTE5OU1QTGc5?=
- =?utf-8?B?K2xST3NLWkc1RjZTVS9GL1F1ZWl1bXpkTEQySnlwcUZjeklLdGZrTFVURGRG?=
- =?utf-8?B?MTFnbG5vSmlmMXhqTXNvVVoydnN1U3ZnU0x3QmlwK2R1Ky9zUjgrNGlrbjNs?=
- =?utf-8?B?bEMvaXVCcUZVOGZHVVlRY3RqeklPd0VoZFIvc1JkeWFoWFVYL2F4ZkUvUTU0?=
- =?utf-8?B?SFJhaURlaW5ScExNS3FjQmN5SlRaSzFrWFJlR0tiS29RTytnU2R4WGlSSysx?=
- =?utf-8?B?WnBURFpxSGVubzQ4NjViaGdoTFBBVW1tNUVTazlGTlJkcnZjR2FnK0NmWEY3?=
- =?utf-8?B?eXhEd0xucVhEemNjQXA0LzFsYmJ5aE5DM1RyWWFONzd0amJUVkNXSTdJdTl3?=
- =?utf-8?B?UkhHbW1ZQlg4cTdnL1BOT1l3K0FTWndXTW9rb1R5N2EvMWx2OUo2aFlrVlIz?=
- =?utf-8?B?RUwwWWdBbG8ydXY0cG91NXEzNWd6NEhHRi9RNnA2TlMrV2pyQy9VdlJ6amtK?=
- =?utf-8?B?ZWxIeVpYTE9iKzV4dWJjVW5CRVVZdmsvb1dDRmZRUGZUSCs3TldwZXY4dUdV?=
- =?utf-8?B?YTBFWDdYZ1V6dmllcmxjbkl2VHowbVhyQ21lOGtlMzJLaERhclhVZ3BmOExz?=
- =?utf-8?B?OVdlbFhpTmVIU0hhYXE4aytwKzN0b3Nldk9neWYrb0RPT1lNMitZUXZXSjJD?=
- =?utf-8?B?djM5ek9WMHlLa1NyQW5HdjZLcU93MVJCRWw4clAvaVNIcFBpRXNUUWg1djZi?=
- =?utf-8?B?RWRTNTZiNERZMVJIVGdXRy9XVjdlNlJLZFBEdzQyeFF1N2U3SHZodXhTWHRp?=
- =?utf-8?B?QkVyVGYxekVYYXpvYVFoTTh6SGdpa09oTGhCYTU0M3F5NkFrbW5IaU43dTZy?=
- =?utf-8?B?M0FqaG91RFlpcVNiY1RvNlZucGpvejZaNTcxL2kyaU81aVQ0TXgzQzUzaDkr?=
- =?utf-8?B?Umc4Y1FoMVdTUVBodVZJR3J2UHB4QTgyM2FTWkU2bDg1NGdjRFJyaFFqK1d5?=
- =?utf-8?B?a0ErRExMVktOQXM4SitEUWJrVXFPSk00OEJLRzRwZVZLT1MzQllzN1lBanha?=
- =?utf-8?B?UUVMT0JUekl3aFRDWmYrSFN3ajhWM2VuUG1JZTZPTTFOSVF5RERBbFoxTG00?=
- =?utf-8?B?ZmRtb0VaUXNwQjUvV1pNVEFEbUNjR3RHeFZlZ1VPdlU3ZXZwSVVKSzRlTysx?=
- =?utf-8?B?T0lUS0E3ekU4d2UwdTBaM1EweUtkNlo0K0QvVysvc0E2ZDhQenNaOFYvWkxG?=
- =?utf-8?B?NDR5ZmEvT3Q2clk3SkNkcGtCeWRJR1IwOXFaU1piUXFqS09tYTVVMDFBTmtj?=
- =?utf-8?B?bDZaK3hMNGZ5Z0dLZTFxNk5xQlNiZ1VxSFpaSVJOT1VOUUtyOHNlRTNtRGsv?=
- =?utf-8?B?UVIwWlVmNDZCZWgxVjBYczhLZU9yN1BqbXFvVTRrWk5WRS9VWmhuMXpGOWhS?=
- =?utf-8?B?aWdza2ptdlkzK1draFpnR2J1MmEwSjJwTElkREhoeE1PZ2NoeHpzWHowYVBG?=
- =?utf-8?B?V3Q2emxQUC95SktGaFVqU2ZUVERlKzhHdDN4M3FjRUNtZ0Y1NmRhSkFNVmRn?=
- =?utf-8?B?ay9LVFUzbVYzanplNlQzeEovdUsxczFsYlJZaVRqaStEcGVPZzlhL2tGeW5X?=
- =?utf-8?B?M2RQTUtzSEorZTRmdEw3REVZSnBhSnVDRldwclVLb250S3FVWjBEWlNRZDJU?=
- =?utf-8?B?UEF3L2xOOEsrTFdzLy9mMDRmYStIaDlyU3VoUXFzV1JwME1ZdEt3dDVzQXpB?=
- =?utf-8?B?WFZoOWxWQ2xacUY4UjFKWTB1UFl5SWNPL2FpeFVFcTF1K2UydENONW14N2ZM?=
- =?utf-8?B?WC9ZTFRGd2FMTHBDUTF6SlphZ01KSUFWUFN0aXh4VDdEemdxcGhuclp0QXhq?=
- =?utf-8?B?R3ZscG9seWQ4M01laG5nZ3NJc0ZiSEtzOEkyM1NqODZOTUthMHNWSVlJOGRj?=
- =?utf-8?B?RnVma0JuZWl4dlllSUVNUnNYMHB3dC9UMjloQXZ3SjVDcWNVK1RFM2JrczRW?=
- =?utf-8?B?bnc9PQ==?=
+ d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+ t=1639539522; x=1671075522;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=yxmhFn1Ds87S4W43xG/q+9JZeFENngFVswih+x+kRag=;
+ b=VOARzTuNimNdh67CMeEJOhOr/cDrSiB0kMTtw+36U9xVYjvJYKG5dS/W
+ 8cmQxnV+rt2hdBcLfq7xCg3o4evE3G5XSfEoRkJeWTpOzQ5loNQEsIkFo
+ BCVHeVbzX9OWq/P776wUUrZx/aKtncfJHtmGy8n7MJatG0jsNvwxJMWOn 0=;
+Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
+ by alexa-out-sd-02.qualcomm.com with ESMTP; 14 Dec 2021 19:38:40 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+ by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Dec 2021 19:38:40 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Tue, 14 Dec 2021 19:38:39 -0800
+Received: from wgong-HP3-Z230-SFF-Workstation.qca.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Tue, 14 Dec 2021 19:38:38 -0800
+From: Wen Gong <quic_wgong@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, <quic_wgong@quicinc.com>
+Subject: [PATCH v5] ath11k: report rssi of each chain to mac80211 for
+ QCA6390/WCN6855
+Date: Tue, 14 Dec 2021 22:38:25 -0500
+Message-ID: <20211215033825.11904-1-quic_wgong@quicinc.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-X-OriginatorOrg: qti.qualcomm.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR02MB6924.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 70db1990-b496-418d-cec7-08d9bf774d44
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Dec 2021 03:02:16.7379 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 98e9ba89-e1a1-4e38-9007-8bdabc25de1d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Kz46cHXkfdg6bJFVHyXHXA31gNBUggCBxBy6wcpNeRMUgsZwsDxVDXwtTB7BUz6uv8u3Wk8xqtQZppMhN+8Owg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR02MB2681
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211214_190222_924983_3DE27AC6 
-X-CRM114-Status: GOOD (  17.25  )
+X-CRM114-CacheID: sfid-20211214_193842_358036_F09EAFC4 
+X-CRM114-Status: GOOD (  22.21  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -157,49 +79,690 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-the special board.bin need to be signed by CE.  Fw will be crash with no signed board.bin.
+Command "iw wls1 station dump" does not show each chain's rssi currently.
 
------Original Message-----
-From: Wen Gong (QUIC) <quic_wgong@quicinc.com> 
-Sent: Wednesday, December 15, 2021 10:47 AM
-To: Sven Eckelmann <sven@narfation.org>; ath11k@lists.infradead.org; Chun Wu <chunwu@qti.qualcomm.com>
-Subject: Re: ath11k: firmware variants for WCN6855 v2
+If the rssi of each chain from mon status which parsed in function
+ath11k_hal_rx_parse_mon_status_tlv() is invalid, then ath11k send
+wmi cmd WMI_REQUEST_STATS_CMDID with flag WMI_REQUEST_RSSI_PER_CHAIN_STAT
+to firmware, and parse the rssi of chain in wmi WMI_UPDATE_STATS_EVENTID,
+then report them to mac80211.
 
-On 12/14/2021 9:37 PM, Sven Eckelmann wrote:
-> Hi,
->
-> the EmWicon WMX7205 (Milan) seems to have a special board.bin from the 
-> manufacturer. But when using it, the firmware seems to crash:
->
->      [   10.710206] ath11k_pci 0000:01:00.0: BAR 0: assigned [mem 0xd0000000-0xd01fffff 64bit]
->      [   10.819230] ath11k_pci 0000:01:00.0: MSI vectors: 1
->      [   10.840305] ath11k_pci 0000:01:00.0: wcn6855 hw2.0
->      [   12.234095] ath11k_pci 0000:01:00.0: chip_id 0x2 chip_family 0xb board_id 0xff soc_id 0x400c0200
->      [   12.242991] ath11k_pci 0000:01:00.0: fw_version 0x110c0b4c fw_build_timestamp 2021-11-24 04:24 fw_build_id QC_IMAGE_VERSION_STRING=WLAN.HSP.1.1-02892.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
->      [   12.271180] ath11k_pci 0000:01:00.0: qmi failed to load CAL data file:cal-pci-0000:01:00.0.bin
->      [   12.520852] ath11k_pci 0000:01:00.0: firmware crashed: MHI_CB_SYS_ERROR
->      [   22.333795] ath11k_pci 0000:01:00.0: failed to wait board file download request: -110
->      [   22.341751] ath11k_pci 0000:01:00.0: qmi failed to load bdf file
->      [   22.347921] ath11k_pci 0000:01:00.0: failed to load board data file: -110
->
-> But they also provided a firmware which doesn't end with
-> QCAHSPSWPL_V1_V2_SILICONZ_LITE-1 but with QCAHSPSWPL_V2_SILICONZ_CE-1. 
-> This firmware doesn't seem to crash with their board.bin.
->
-> Does anybody know whether the firmware QCAHSPSWPL_V2_SILICONZ_CE-1 
-> (which cannot be found in Kalle's repository) is actually meant to work with ath11k?
-> At least from past experience (with HK01), I know that the firmware 
-> for the proprietary driver is not meant to be used for ath11k and 
-> caused interesting crashes.
+WMI_REQUEST_STATS_CMDID is only sent when CONFIG_ATH11K_DEBUGFS is set,
+it is only called by ath11k_mac_op_sta_statistics(). It does not effect
+performance and power consumption. Because after STATION connected to
+AP, it is only called every 6 seconds by NetworkManager in below stack.
 
-As I know, the firmware
-WLAN.HSP.1.1-02892.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1 has validation for the board data file.
+[  797.005587] CPU: 0 PID: 701 Comm: NetworkManager Tainted: G        W  OE     5.13.0-rc6-wt-ath+ #2
+[  797.005596] Hardware name: LENOVO 418065C/418065C, BIOS 83ET63WW (1.33 ) 07/29/2011
+[  797.005600] RIP: 0010:ath11k_mac_op_sta_statistics+0x2f/0x1b0 [ath11k]
+[  797.005644] Code: 41 56 41 55 4c 8d aa 58 01 00 00 41 54 55 48 89 d5 53 48 8b 82 58 01 00 00 48 89 cb 4c 8b 70 20 49 8b 06 4c 8b a0 90 08 00 00 <0f> 0b 48 8b 82 b8 01 00 00 48 ba 00 00 00 00 01 00 00 00 48 89 81
+[  797.005651] RSP: 0018:ffffb1fc80a4b890 EFLAGS: 00010282
+[  797.005658] RAX: ffff8a5726200000 RBX: ffffb1fc80a4b958 RCX: ffffb1fc80a4b958
+[  797.005664] RDX: ffff8a5726a609f0 RSI: ffff8a581247f598 RDI: ffff8a5702878800
+[  797.005668] RBP: ffff8a5726a609f0 R08: 0000000000000000 R09: 0000000000000000
+[  797.005672] R10: 0000000000000000 R11: 0000000000000007 R12: 02dd68024f75f480
+[  797.005676] R13: ffff8a5726a60b48 R14: ffff8a5702879f40 R15: ffff8a5726a60000
+[  797.005681] FS:  00007f632c52a380(0000) GS:ffff8a583a200000(0000) knlGS:0000000000000000
+[  797.005687] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  797.005692] CR2: 00007fb025d69000 CR3: 00000001124f6005 CR4: 00000000000606f0
+[  797.005698] Call Trace:
+[  797.005710]  sta_set_sinfo+0xa7/0xb80 [mac80211]
+[  797.005820]  ieee80211_get_station+0x50/0x70 [mac80211]
+[  797.005925]  nl80211_get_station+0xd1/0x200 [cfg80211]
+[  797.006045]  genl_family_rcv_msg_doit.isra.15+0x111/0x140
+[  797.006059]  genl_rcv_msg+0xe6/0x1e0
+[  797.006065]  ? nl80211_dump_station+0x220/0x220 [cfg80211]
+[  797.006223]  ? nl80211_send_station.isra.72+0xf50/0xf50 [cfg80211]
+[  797.006348]  ? genl_family_rcv_msg_doit.isra.15+0x140/0x140
+[  797.006355]  netlink_rcv_skb+0xb9/0xf0
+[  797.006363]  genl_rcv+0x24/0x40
+[  797.006369]  netlink_unicast+0x18e/0x290
+[  797.006375]  netlink_sendmsg+0x30f/0x450
+[  797.006382]  sock_sendmsg+0x5b/0x60
+[  797.006393]  ____sys_sendmsg+0x219/0x240
+[  797.006403]  ? copy_msghdr_from_user+0x5c/0x90
+[  797.006413]  ? ____sys_recvmsg+0xf5/0x190
+[  797.006422]  ___sys_sendmsg+0x88/0xd0
+[  797.006432]  ? copy_msghdr_from_user+0x5c/0x90
+[  797.006443]  ? ___sys_recvmsg+0x9e/0xd0
+[  797.006454]  ? __fget_files+0x58/0x90
+[  797.006461]  ? __fget_light+0x2d/0x70
+[  797.006466]  ? do_epoll_wait+0xce/0x720
+[  797.006476]  ? __sys_sendmsg+0x63/0xa0
+[  797.006485]  __sys_sendmsg+0x63/0xa0
+[  797.006497]  do_syscall_64+0x3c/0xb0
+[  797.006509]  entry_SYSCALL_64_after_hwframe+0x44/0xae
+[  797.006519] RIP: 0033:0x7f632d99912d
+[  797.006526] Code: 28 89 54 24 1c 48 89 74 24 10 89 7c 24 08 e8 ca ee ff ff 8b 54 24 1c 48 8b 74 24 10 41 89 c0 8b 7c 24 08 b8 2e 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 2f 44 89 c7 48 89 44 24 08 e8 fe ee ff ff 48
+[  797.006533] RSP: 002b:00007ffd80808c00 EFLAGS: 00000293 ORIG_RAX: 000000000000002e
+[  797.006540] RAX: ffffffffffffffda RBX: 0000563dab99d840 RCX: 00007f632d99912d
+[  797.006545] RDX: 0000000000000000 RSI: 00007ffd80808c50 RDI: 000000000000000b
+[  797.006549] RBP: 00007ffd80808c50 R08: 0000000000000000 R09: 0000000000001000
+[  797.006552] R10: 0000563dab96f010 R11: 0000000000000293 R12: 0000563dab99d840
+[  797.006556] R13: 0000563dabbb28c0 R14: 00007f632dad4280 R15: 0000563dabab11c0
+[  797.006563] ---[ end trace c9dcf08920c9945c ]---
 
-And the special board.bin did not pass the validation, so firmware crashed.
+Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01230-QCAHSTSWPLZ_V2_TO_X86-1
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-02892.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
 
->
-> Kind regards,
-> 	Sven
+Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
+---
+v5: change supports_rssi_stats in hardware parameter to true for wcn6855 hw2.0 as well as wcn6855 hw2.1/qca6390 hw2.0
+
+v4: 
+   1. rebased to ath.git ath-202112130952
+   2. fix initialize the variable 'len'
+
+v3:
+   1. rebased to ath.git ath-202112080842
+   2. change commit log
+   3. change parse method for ath11k_wmi_pull_fw_stats() with ath11k_wmi_tlv_iter()
+   4. remove comment of ATH11K_INVALID_RSSI_FULL/ATH11K_INVALID_RSSI_EMPTY
+   5. change ath11k_debug_get_fw_stats to ath11k_debugfs_get_fw_stats
+   6. change __le32_to_cpu/FIELD_GET to le32_get_bits
+   7. add supports_rssi_stats=true in ath11k_hw_params only for QCA6390/WCN6855 as well as ath10k/QCA6174-SDIO/PCIe
+
+v2: rebased to latest ath.git master ath-202111170737
+
+ drivers/net/wireless/ath/ath11k/core.c    |   6 +
+ drivers/net/wireless/ath/ath11k/core.h    |   5 +
+ drivers/net/wireless/ath/ath11k/debugfs.c |  37 +++++
+ drivers/net/wireless/ath/ath11k/debugfs.h |   8 +
+ drivers/net/wireless/ath/ath11k/dp_rx.c   |   8 +
+ drivers/net/wireless/ath/ath11k/hal_rx.c  |  11 ++
+ drivers/net/wireless/ath/ath11k/hal_rx.h  |  12 +-
+ drivers/net/wireless/ath/ath11k/hw.h      |   1 +
+ drivers/net/wireless/ath/ath11k/mac.c     |  40 +++++
+ drivers/net/wireless/ath/ath11k/wmi.c     | 173 +++++++++++++++++-----
+ drivers/net/wireless/ath/ath11k/wmi.h     |  11 ++
+ 11 files changed, 278 insertions(+), 34 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 1d983fde6fc9..86ad43aa63a6 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -88,6 +88,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_dynamic_smps_6ghz = false,
+ 		.alloc_cacheable_memory = true,
+ 		.wakeup_mhi = false,
++		.supports_rssi_stats = false,
+ 	},
+ 	{
+ 		.hw_rev = ATH11K_HW_IPQ6018_HW10,
+@@ -143,6 +144,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_dynamic_smps_6ghz = false,
+ 		.alloc_cacheable_memory = true,
+ 		.wakeup_mhi = false,
++		.supports_rssi_stats = false,
+ 	},
+ 	{
+ 		.name = "qca6390 hw2.0",
+@@ -197,6 +199,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_dynamic_smps_6ghz = false,
+ 		.alloc_cacheable_memory = false,
+ 		.wakeup_mhi = true,
++		.supports_rssi_stats = true,
+ 	},
+ 	{
+ 		.name = "qcn9074 hw1.0",
+@@ -251,6 +254,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_dynamic_smps_6ghz = true,
+ 		.alloc_cacheable_memory = true,
+ 		.wakeup_mhi = false,
++		.supports_rssi_stats = false,
+ 	},
+ 	{
+ 		.name = "wcn6855 hw2.0",
+@@ -305,6 +309,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_dynamic_smps_6ghz = false,
+ 		.alloc_cacheable_memory = false,
+ 		.wakeup_mhi = true,
++		.supports_rssi_stats = true,
+ 	},
+ 	{
+ 		.name = "wcn6855 hw2.1",
+@@ -358,6 +363,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_dynamic_smps_6ghz = false,
+ 		.alloc_cacheable_memory = false,
+ 		.wakeup_mhi = true,
++		.supports_rssi_stats = true,
+ 	},
+ };
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index b4203fa0452e..170fc8e66c90 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -385,6 +385,7 @@ struct ath11k_sta {
+ 	u64 rx_duration;
+ 	u64 tx_duration;
+ 	u8 rssi_comb;
++	s8 chain_signal[IEEE80211_MAX_CHAINS];
+ 	struct ath11k_htt_tx_stats *tx_stats;
+ 	struct ath11k_rx_peer_stats *rx_stats;
+ 
+@@ -415,6 +416,10 @@ enum ath11k_state {
+ /* Antenna noise floor */
+ #define ATH11K_DEFAULT_NOISE_FLOOR -95
+ 
++#define ATH11K_INVALID_RSSI_FULL -1
++
++#define ATH11K_INVALID_RSSI_EMPTY -128
++
+ struct ath11k_fw_stats {
+ 	struct dentry *debugfs_fwstats;
+ 	u32 pdev_id;
+diff --git a/drivers/net/wireless/ath/ath11k/debugfs.c b/drivers/net/wireless/ath/ath11k/debugfs.c
+index dba055d085be..ca68cf63dd27 100644
+--- a/drivers/net/wireless/ath/ath11k/debugfs.c
++++ b/drivers/net/wireless/ath/ath11k/debugfs.c
+@@ -126,6 +126,11 @@ void ath11k_debugfs_fw_stats_process(struct ath11k_base *ab, struct sk_buff *skb
+ 		goto complete;
+ 	}
+ 
++	if (stats.stats_id == WMI_REQUEST_RSSI_PER_CHAIN_STAT) {
++		ar->debug.fw_stats_done = true;
++		goto complete;
++	}
++
+ 	if (stats.stats_id == WMI_REQUEST_VDEV_STAT) {
+ 		if (list_empty(&stats.vdevs)) {
+ 			ath11k_warn(ab, "empty vdev stats");
+@@ -229,6 +234,38 @@ static int ath11k_debugfs_fw_stats_request(struct ath11k *ar,
+ 	return 0;
+ }
+ 
++int ath11k_debugfs_get_fw_stats(struct ath11k *ar, u32 pdev_id,
++				u32 vdev_id, u32 stats_id)
++{
++	struct ath11k_base *ab = ar->ab;
++	struct stats_request_params req_param;
++	int ret;
++
++	mutex_lock(&ar->conf_mutex);
++
++	if (ar->state != ATH11K_STATE_ON) {
++		ret = -ENETDOWN;
++		goto err_unlock;
++	}
++
++	req_param.pdev_id = pdev_id;
++	req_param.vdev_id = vdev_id;
++	req_param.stats_id = stats_id;
++
++	ret = ath11k_debugfs_fw_stats_request(ar, &req_param);
++	if (ret)
++		ath11k_warn(ab, "failed to request fw stats: %d\n", ret);
++
++	ath11k_dbg(ab, ATH11K_DBG_WMI,
++		   "debug get fw stat pdev id %d vdev id %d stats id 0x%x\n",
++		   pdev_id, vdev_id, stats_id);
++
++err_unlock:
++	mutex_unlock(&ar->conf_mutex);
++
++	return ret;
++}
++
+ static int ath11k_open_pdev_stats(struct inode *inode, struct file *file)
+ {
+ 	struct ath11k *ar = inode->i_private;
+diff --git a/drivers/net/wireless/ath/ath11k/debugfs.h b/drivers/net/wireless/ath/ath11k/debugfs.h
+index ec743a015dc7..4c0740394c95 100644
+--- a/drivers/net/wireless/ath/ath11k/debugfs.h
++++ b/drivers/net/wireless/ath/ath11k/debugfs.h
+@@ -117,6 +117,8 @@ void ath11k_debugfs_unregister(struct ath11k *ar);
+ void ath11k_debugfs_fw_stats_process(struct ath11k_base *ab, struct sk_buff *skb);
+ 
+ void ath11k_debugfs_fw_stats_init(struct ath11k *ar);
++int ath11k_debugfs_get_fw_stats(struct ath11k *ar, u32 pdev_id,
++				u32 vdev_id, u32 stats_id);
+ 
+ static inline bool ath11k_debugfs_is_pktlog_lite_mode_enabled(struct ath11k *ar)
+ {
+@@ -216,6 +218,12 @@ static inline int ath11k_debugfs_rx_filter(struct ath11k *ar)
+ 	return 0;
+ }
+ 
++static inline int ath11k_debugfs_get_fw_stats(struct ath11k *ar,
++					      u32 pdev_id, u32 vdev_id, u32 stats_id)
++{
++	return 0;
++}
++
+ #endif /* CONFIG_MAC80211_DEBUGFS*/
+ 
+ #endif /* _ATH11K_DEBUGFS_H_ */
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 38eeb6e7c6b6..ab681ca36e27 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -2768,6 +2768,7 @@ static void ath11k_dp_rx_update_peer_stats(struct ath11k_sta *arsta,
+ {
+ 	struct ath11k_rx_peer_stats *rx_stats = arsta->rx_stats;
+ 	u32 num_msdu;
++	int i;
+ 
+ 	if (!rx_stats)
+ 		return;
+@@ -2829,6 +2830,13 @@ static void ath11k_dp_rx_update_peer_stats(struct ath11k_sta *arsta,
+ 	rx_stats->ru_alloc_cnt[ppdu_info->ru_alloc] += num_msdu;
+ 
+ 	arsta->rssi_comb = ppdu_info->rssi_comb;
++
++	BUILD_BUG_ON(ARRAY_SIZE(arsta->chain_signal) >
++			     ARRAY_SIZE(ppdu_info->rssi_chain_pri20));
++
++	for (i = 0; i < ARRAY_SIZE(arsta->chain_signal); i++)
++		arsta->chain_signal[i] = ppdu_info->rssi_chain_pri20[i];
++
+ 	rx_stats->rx_duration += ppdu_info->rx_duration;
+ 	arsta->rx_duration = rx_stats->rx_duration;
+ }
+diff --git a/drivers/net/wireless/ath/ath11k/hal_rx.c b/drivers/net/wireless/ath/ath11k/hal_rx.c
+index 1e279e99baa8..a749903e2a16 100644
+--- a/drivers/net/wireless/ath/ath11k/hal_rx.c
++++ b/drivers/net/wireless/ath/ath11k/hal_rx.c
+@@ -1079,6 +1079,9 @@ ath11k_hal_rx_parse_mon_status_tlv(struct ath11k_base *ab,
+ 		break;
+ 	}
+ 	case HAL_PHYRX_RSSI_LEGACY: {
++		int i;
++		bool db2dbm = test_bit(WMI_TLV_SERVICE_HW_DB2DBM_CONVERSION_SUPPORT,
++				       ab->wmi_ab.svc_map);
+ 		struct hal_rx_phyrx_rssi_legacy_info *rssi =
+ 			(struct hal_rx_phyrx_rssi_legacy_info *)tlv_data;
+ 
+@@ -1089,6 +1092,14 @@ ath11k_hal_rx_parse_mon_status_tlv(struct ath11k_base *ab,
+ 		ppdu_info->rssi_comb =
+ 			FIELD_GET(HAL_RX_PHYRX_RSSI_LEGACY_INFO_INFO1_RSSI_COMB,
+ 				  __le32_to_cpu(rssi->info0));
++
++		if (db2dbm) {
++			for (i = 0; i < ARRAY_SIZE(rssi->preamble); i++) {
++				ppdu_info->rssi_chain_pri20[i] =
++					le32_get_bits(rssi->preamble[i].rssi_2040,
++						      HAL_RX_PHYRX_RSSI_PREAMBLE_PRI20);
++			}
++		}
+ 		break;
+ 	}
+ 	case HAL_RX_MPDU_START: {
+diff --git a/drivers/net/wireless/ath/ath11k/hal_rx.h b/drivers/net/wireless/ath/ath11k/hal_rx.h
+index 8db420ef6351..8488020d3763 100644
+--- a/drivers/net/wireless/ath/ath11k/hal_rx.h
++++ b/drivers/net/wireless/ath/ath11k/hal_rx.h
+@@ -112,6 +112,7 @@ struct hal_rx_mon_ppdu_info {
+ 	u8 ldpc;
+ 	u8 beamformed;
+ 	u8 rssi_comb;
++	u8 rssi_chain_pri20[HAL_RX_MAX_NSS];
+ 	u8 tid;
+ 	u8 dcm;
+ 	u8 ru_alloc;
+@@ -262,8 +263,17 @@ struct hal_rx_he_sig_b2_ofdma_info {
+ 
+ #define HAL_RX_PHYRX_RSSI_LEGACY_INFO_INFO1_RSSI_COMB	GENMASK(15, 8)
+ 
++#define HAL_RX_PHYRX_RSSI_PREAMBLE_PRI20	GENMASK(7, 0)
++
++struct hal_rx_phyrx_chain_rssi {
++	__le32 rssi_2040;
++	__le32 rssi_80;
++} __packed;
++
+ struct hal_rx_phyrx_rssi_legacy_info {
+-	__le32 rsvd[35];
++	__le32 rsvd[3];
++	struct hal_rx_phyrx_chain_rssi pre_rssi[HAL_RX_MAX_NSS];
++	struct hal_rx_phyrx_chain_rssi preamble[HAL_RX_MAX_NSS];
+ 	__le32 info0;
+ } __packed;
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
+index fe6e0cb9476c..39442bde1e01 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.h
++++ b/drivers/net/wireless/ath/ath11k/hw.h
+@@ -182,6 +182,7 @@ struct ath11k_hw_params {
+ 	bool supports_dynamic_smps_6ghz;
+ 	bool alloc_cacheable_memory;
+ 	bool wakeup_mhi;
++	bool supports_rssi_stats;
+ };
+ 
+ struct ath11k_hw_ops {
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index e8b76a311a54..cd9acc62be38 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -7772,12 +7772,42 @@ static int ath11k_mac_op_get_survey(struct ieee80211_hw *hw, int idx,
+ 	return ret;
+ }
+ 
++static void ath11k_mac_put_chain_rssi(struct station_info *sinfo,
++				      struct ath11k_sta *arsta,
++				      char *pre,
++				      bool clear)
++{
++	struct ath11k *ar = arsta->arvif->ar;
++	int i;
++	s8 rssi;
++
++	for (i = 0; i < ARRAY_SIZE(sinfo->chain_signal); i++) {
++		sinfo->chains &= ~BIT(i);
++		rssi = arsta->chain_signal[i];
++		if (clear)
++			arsta->chain_signal[i] = ATH11K_INVALID_RSSI_FULL;
++
++		ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
++			   "mac sta statistics %s rssi[%d] %d\n", pre, i, rssi);
++
++		if (rssi != ATH11K_DEFAULT_NOISE_FLOOR &&
++		    rssi != ATH11K_INVALID_RSSI_FULL &&
++		    rssi != ATH11K_INVALID_RSSI_EMPTY &&
++		    rssi != 0) {
++			sinfo->chain_signal[i] = rssi;
++			sinfo->chains |= BIT(i);
++			sinfo->filled |= BIT_ULL(NL80211_STA_INFO_CHAIN_SIGNAL);
++		}
++	}
++}
++
+ static void ath11k_mac_op_sta_statistics(struct ieee80211_hw *hw,
+ 					 struct ieee80211_vif *vif,
+ 					 struct ieee80211_sta *sta,
+ 					 struct station_info *sinfo)
+ {
+ 	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
++	struct ath11k *ar = arsta->arvif->ar;
+ 
+ 	sinfo->rx_duration = arsta->rx_duration;
+ 	sinfo->filled |= BIT_ULL(NL80211_STA_INFO_RX_DURATION);
+@@ -7800,6 +7830,16 @@ static void ath11k_mac_op_sta_statistics(struct ieee80211_hw *hw,
+ 		sinfo->filled |= BIT_ULL(NL80211_STA_INFO_TX_BITRATE);
+ 	}
+ 
++	ath11k_mac_put_chain_rssi(sinfo, arsta, "ppdu", false);
++
++	if (!(sinfo->filled & BIT_ULL(NL80211_STA_INFO_CHAIN_SIGNAL)) &&
++	    arsta->arvif->vdev_type == WMI_VDEV_TYPE_STA &&
++	    ar->ab->hw_params.supports_rssi_stats &&
++	    !ath11k_debugfs_get_fw_stats(ar, ar->pdev->pdev_id, 0,
++					 WMI_REQUEST_RSSI_PER_CHAIN_STAT)) {
++		ath11k_mac_put_chain_rssi(sinfo, arsta, "fw stats", true);
++	}
++
+ 	/* TODO: Use real NF instead of default one. */
+ 	sinfo->signal = arsta->rssi_comb + ATH11K_DEFAULT_NOISE_FLOOR;
+ 	sinfo->filled |= BIT_ULL(NL80211_STA_INFO_SIGNAL);
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 2b4d27d807ab..3dd49b9ce827 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -73,6 +73,14 @@ struct wmi_tlv_dma_buf_release_parse {
+ 	bool meta_data_done;
+ };
+ 
++struct wmi_tlv_fw_stats_parse {
++	const struct wmi_stats_event *ev;
++	const struct wmi_per_chain_rssi_stats *rssi;
++	struct ath11k_fw_stats *stats;
++	int rssi_num;
++	bool chain_rssi_done;
++};
++
+ static const struct wmi_tlv_policy wmi_tlv_policies[] = {
+ 	[WMI_TAG_ARRAY_BYTE]
+ 		= { .min_len = 0 },
+@@ -132,6 +140,8 @@ static const struct wmi_tlv_policy wmi_tlv_policies[] = {
+ 		.min_len = sizeof(struct wmi_obss_color_collision_event) },
+ 	[WMI_TAG_11D_NEW_COUNTRY_EVENT] = {
+ 		.min_len = sizeof(struct wmi_11d_new_cc_ev) },
++	[WMI_TAG_PER_CHAIN_RSSI_STATS] = {
++		.min_len = sizeof(struct wmi_per_chain_rssi_stats) },
+ };
+ 
+ #define PRIMAP(_hw_mode_) \
+@@ -5554,37 +5564,83 @@ ath11k_wmi_pull_bcn_stats(const struct wmi_bcn_stats *src,
+ 	dst->tx_bcn_outage_cnt = src->tx_bcn_outage_cnt;
+ }
+ 
+-int ath11k_wmi_pull_fw_stats(struct ath11k_base *ab, struct sk_buff *skb,
+-			     struct ath11k_fw_stats *stats)
++static int ath11k_wmi_tlv_rssi_chain_parse(struct ath11k_base *ab,
++					   u16 tag, u16 len,
++					   const void *ptr, void *data)
+ {
+-	const void **tb;
+-	const struct wmi_stats_event *ev;
+-	const void *data;
+-	int i, ret;
+-	u32 len = skb->len;
++	struct wmi_tlv_fw_stats_parse *parse = data;
++	const struct wmi_stats_event *ev = parse->ev;
++	struct ath11k_fw_stats *stats = parse->stats;
++	struct ath11k *ar;
++	struct ath11k_vif *arvif;
++	struct ieee80211_sta *sta;
++	struct ath11k_sta *arsta;
++	const struct wmi_rssi_stats *stats_rssi = (const struct wmi_rssi_stats *)ptr;
++	int j;
+ 
+-	tb = ath11k_wmi_tlv_parse_alloc(ab, skb->data, len, GFP_ATOMIC);
+-	if (IS_ERR(tb)) {
+-		ret = PTR_ERR(tb);
+-		ath11k_warn(ab, "failed to parse tlv: %d\n", ret);
+-		return ret;
+-	}
++	if (tag != WMI_TAG_RSSI_STATS)
++		return -EPROTO;
+ 
+-	ev = tb[WMI_TAG_STATS_EVENT];
+-	data = tb[WMI_TAG_ARRAY_BYTE];
+-	if (!ev || !data) {
+-		ath11k_warn(ab, "failed to fetch update stats ev");
+-		kfree(tb);
++	ar = ath11k_mac_get_ar_by_pdev_id(ab, ev->pdev_id);
++	stats->stats_id = WMI_REQUEST_RSSI_PER_CHAIN_STAT;
++
++	ath11k_dbg(ab, ATH11K_DBG_WMI,
++		   "wmi stats vdev id %d mac %pM\n",
++		   stats_rssi->vdev_id, stats_rssi->peer_macaddr.addr);
++
++	arvif = ath11k_mac_get_arvif(ar, stats_rssi->vdev_id);
++	if (!arvif) {
++		ath11k_warn(ab, "not found vif for vdev id %d\n",
++			    stats_rssi->vdev_id);
+ 		return -EPROTO;
+ 	}
+ 
+ 	ath11k_dbg(ab, ATH11K_DBG_WMI,
+-		   "wmi stats update ev pdev_id %d pdev %i vdev %i bcn %i\n",
+-		   ev->pdev_id,
+-		   ev->num_pdev_stats, ev->num_vdev_stats,
+-		   ev->num_bcn_stats);
++		   "wmi stats bssid %pM vif %pK\n",
++		   arvif->bssid, arvif->vif);
++
++	sta = ieee80211_find_sta_by_ifaddr(ar->hw,
++					   arvif->bssid,
++					   NULL);
++	if (!sta) {
++		ath11k_warn(ab, "not found station for bssid %pM\n",
++			    arvif->bssid);
++		return -EPROTO;
++	}
++
++	arsta = (struct ath11k_sta *)sta->drv_priv;
++
++	BUILD_BUG_ON(ARRAY_SIZE(arsta->chain_signal) >
++		     ARRAY_SIZE(stats_rssi->rssi_avg_beacon));
++
++	for (j = 0; j < ARRAY_SIZE(arsta->chain_signal); j++) {
++		arsta->chain_signal[j] = stats_rssi->rssi_avg_beacon[j];
++		ath11k_dbg(ab, ATH11K_DBG_WMI,
++			   "wmi stats beacon rssi[%d] %d data rssi[%d] %d\n",
++			   j,
++			   stats_rssi->rssi_avg_beacon[j],
++			   j,
++			   stats_rssi->rssi_avg_data[j]);
++	}
++
++	return 0;
++}
++
++static int ath11k_wmi_tlv_fw_stats_data_parse(struct ath11k_base *ab,
++					      struct wmi_tlv_fw_stats_parse *parse,
++					      const void *ptr,
++					      u16 len)
++{
++	struct ath11k_fw_stats *stats = parse->stats;
++	const struct wmi_stats_event *ev = parse->ev;
++	int i;
++	const void *data = ptr;
++
++	if (!ev) {
++		ath11k_warn(ab, "failed to fetch update stats ev");
++		return -EPROTO;
++	}
+ 
+-	stats->pdev_id = ev->pdev_id;
+ 	stats->stats_id = 0;
+ 
+ 	for (i = 0; i < ev->num_pdev_stats; i++) {
+@@ -5592,10 +5648,8 @@ int ath11k_wmi_pull_fw_stats(struct ath11k_base *ab, struct sk_buff *skb,
+ 		struct ath11k_fw_stats_pdev *dst;
+ 
+ 		src = data;
+-		if (len < sizeof(*src)) {
+-			kfree(tb);
++		if (len < sizeof(*src))
+ 			return -EPROTO;
+-		}
+ 
+ 		stats->stats_id = WMI_REQUEST_PDEV_STAT;
+ 
+@@ -5617,10 +5671,8 @@ int ath11k_wmi_pull_fw_stats(struct ath11k_base *ab, struct sk_buff *skb,
+ 		struct ath11k_fw_stats_vdev *dst;
+ 
+ 		src = data;
+-		if (len < sizeof(*src)) {
+-			kfree(tb);
++		if (len < sizeof(*src))
+ 			return -EPROTO;
+-		}
+ 
+ 		stats->stats_id = WMI_REQUEST_VDEV_STAT;
+ 
+@@ -5640,10 +5692,8 @@ int ath11k_wmi_pull_fw_stats(struct ath11k_base *ab, struct sk_buff *skb,
+ 		struct ath11k_fw_stats_bcn *dst;
+ 
+ 		src = data;
+-		if (len < sizeof(*src)) {
+-			kfree(tb);
++		if (len < sizeof(*src))
+ 			return -EPROTO;
+-		}
+ 
+ 		stats->stats_id = WMI_REQUEST_BCN_STAT;
+ 
+@@ -5658,10 +5708,67 @@ int ath11k_wmi_pull_fw_stats(struct ath11k_base *ab, struct sk_buff *skb,
+ 		list_add_tail(&dst->list, &stats->bcn);
+ 	}
+ 
+-	kfree(tb);
+ 	return 0;
+ }
+ 
++static int ath11k_wmi_tlv_fw_stats_parse(struct ath11k_base *ab,
++					 u16 tag, u16 len,
++					 const void *ptr, void *data)
++{
++	struct wmi_tlv_fw_stats_parse *parse = data;
++	int ret = 0;
++
++	switch (tag) {
++	case WMI_TAG_STATS_EVENT:
++		parse->ev = (struct wmi_stats_event *)ptr;
++		parse->stats->pdev_id = parse->ev->pdev_id;
++		break;
++	case WMI_TAG_ARRAY_BYTE:
++		ret = ath11k_wmi_tlv_fw_stats_data_parse(ab, parse, ptr, len);
++		break;
++	case WMI_TAG_PER_CHAIN_RSSI_STATS:
++		parse->rssi = (struct wmi_per_chain_rssi_stats *)ptr;
++
++		if (parse->ev->stats_id & WMI_REQUEST_RSSI_PER_CHAIN_STAT)
++			parse->rssi_num = parse->rssi->num_per_chain_rssi_stats;
++
++		ath11k_dbg(ab, ATH11K_DBG_WMI,
++			   "wmi stats id 0x%x num chain %d\n",
++			   parse->ev->stats_id,
++			   parse->rssi_num);
++		break;
++	case WMI_TAG_ARRAY_STRUCT:
++		if (parse->rssi_num && !parse->chain_rssi_done) {
++			ret = ath11k_wmi_tlv_iter(ab, ptr, len,
++						  ath11k_wmi_tlv_rssi_chain_parse,
++						  parse);
++			if (ret) {
++				ath11k_warn(ab, "failed to parse rssi chain %d\n",
++					    ret);
++				return ret;
++			}
++			parse->chain_rssi_done = true;
++		}
++		break;
++	default:
++		break;
++	}
++	return ret;
++}
++
++int ath11k_wmi_pull_fw_stats(struct ath11k_base *ab, struct sk_buff *skb,
++			     struct ath11k_fw_stats *stats)
++{
++	struct wmi_tlv_fw_stats_parse parse = { };
++
++	stats->stats_id = 0;
++	parse.stats = stats;
++
++	return ath11k_wmi_tlv_iter(ab, skb->data, skb->len,
++				   ath11k_wmi_tlv_fw_stats_parse,
++				   &parse);
++}
++
+ size_t ath11k_wmi_fw_stats_num_vdevs(struct list_head *head)
+ {
+ 	struct ath11k_fw_stats_vdev *i;
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index d79eb1b7d9c2..20aa7234fc72 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -4439,6 +4439,17 @@ struct wmi_stats_event {
+ 	u32 num_peer_extd2_stats;
+ } __packed;
+ 
++struct wmi_rssi_stats {
++	u32 vdev_id;
++	u32 rssi_avg_beacon[WMI_MAX_CHAINS];
++	u32 rssi_avg_data[WMI_MAX_CHAINS];
++	struct wmi_mac_addr peer_macaddr;
++} __packed;
++
++struct wmi_per_chain_rssi_stats {
++	u32 num_per_chain_rssi_stats;
++} __packed;
++
+ struct wmi_pdev_ctl_failsafe_chk_event {
+ 	u32 pdev_id;
+ 	u32 ctl_failsafe_status;
+
+base-commit: 0abfb34f907411efa6535b6438be6b2971f1e5a2
+-- 
+2.31.1
+
+
 -- 
 ath11k mailing list
 ath11k@lists.infradead.org
