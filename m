@@ -4,66 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAB6AC433F5
-	for <ath11k@archiver.kernel.org>; Fri, 17 Dec 2021 06:42:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DF48C433EF
+	for <ath11k@archiver.kernel.org>; Fri, 17 Dec 2021 09:39:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=mVx1zWaNDG9UomUE9Va7OAySqzFuiWYEludjhuzGAUo=; b=wNI+HtThOAXRrC
-	XegJNvdIXJDIohZFeTVodvoaMZQksxMwCaeuALiNUC0PU5Z2+IIM7WoZFpxcR9RTnvryFSJ+aaWAK
-	svA0VAW5kbb6fFGrpLRApRaMcBfH/wc+vN3PlJVZ9pvYEuUUuly6PGWNxX9Fc4LvZd4Cc/b9yInzk
-	6qxtp5UqudlhJBn4/qVjlITyQIgQCGAvNNgBAaYFL54SJsqfhbTWs79fQokCFks65Ba+GbVpw6yL8
-	CK7eh9Wbg2gDqOI7XGGcCaoErJkVDSWUer/BqhSfvKx/iBncynEZZL660PE6Ig6FMyjkf1iCP9SZ0
-	E70T7heEm1FpeiUa9Zrg==;
+	List-Owner; bh=kqiR1Ryl/+7L+4cE1kN3YrFPhn7EEmeJovEDYxVW5Ac=; b=aTyRFYHWAk+9Bg
+	/TmAgeujqKkzGmP1HkzOKddW/2oIUVLwY/OX1Ok2ZcHGJDvSmFa4o5zV257iptMxIJYZDopXQCNe7
+	GUsjmMwPUGVgORY9Er5BnhtBYOg2dkQvG6FssgEeETfvbRfAf+dXB8SjFy+WMeSX8R3mzIUm2ZcuT
+	o7fIx/9iMmPAUm2zseH2A7784EvdhSV62fbRLUHPLaH02yX3JnD/7XejfudApF0D7DlPVEIuwEB24
+	cpDdY43PEmeTXuuGTYjcClkXJS4HRvDcUvr3Ml4JiA+mfXeR6X5mtCi7k/B4N3Se/rx3OdH6xTOkE
+	uSPR0lDjLdnUc46tzXyw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1my6wM-008lLW-If; Fri, 17 Dec 2021 06:42:02 +0000
+	id 1my9hv-009ESt-Lk; Fri, 17 Dec 2021 09:39:19 +0000
 Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1my6wJ-008lKc-6w
- for ath11k@lists.infradead.org; Fri, 17 Dec 2021 06:42:00 +0000
+ id 1my9gP-009Des-Cg
+ for ath11k@lists.infradead.org; Fri, 17 Dec 2021 09:37:48 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1639723319; x=1671259319;
+ t=1639733865; x=1671269865;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=JTTcCRCPNsck9T/Q/KXfrakwlXZOFnghVMPUYIKxahM=;
- b=U7EBxUB/qJi7/Q+qkGwaJZmdZ0I7qA6mgPvar0Y9AJ66TErEwpnTipoj
- EPrzau+6gtRa3iWpP+eqUo/MadMGH4PTQGPA2jP2oHMnoEYqrMKaIBlH0
- djf0N/L+20kcBd351T985k/R+PVVrte87T4lCeCQ+dPWQcz9QdZDWEIMA I=;
-Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
- by alexa-out-sd-01.qualcomm.com with ESMTP; 16 Dec 2021 22:41:57 -0800
+ bh=i7rEn6l2Gx+GdRzb47RX6xFYAOtRSRSS7xuzZupyObU=;
+ b=FDzuK+fizYn7Ob1BGnJibfCZ+ke3yDriFvEfqofE+m8o6yHCXi9gS7i1
+ gzsHwzy3e2duD+jYFNQLp5yRakH8xoJGAda9HrsQ4jr0hm11d4jLiBP8g
+ ascRe3Bj8BVARGcGrO0JLnH3YmJoMBv7T2ICb9NlAuwZYjAlv8GIEJ98R c=;
+Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
+ by alexa-out-sd-01.qualcomm.com with ESMTP; 17 Dec 2021 01:37:39 -0800
 X-QCInternal: smtphost
 Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2021 22:41:57 -0800
+ by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2021 01:37:39 -0800
 Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
  nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Thu, 16 Dec 2021 22:41:57 -0800
+ 15.2.922.19; Fri, 17 Dec 2021 01:37:39 -0800
 Received: from wgong-HP3-Z230-SFF-Workstation.qca.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Thu, 16 Dec 2021 22:41:55 -0800
+ 15.2.922.19; Fri, 17 Dec 2021 01:37:37 -0800
 From: Wen Gong <quic_wgong@quicinc.com>
 To: <ath11k@lists.infradead.org>
 CC: <linux-wireless@vger.kernel.org>, <quic_wgong@quicinc.com>
-Subject: [PATCH] ath11k: fix warning of RCU usage for
- ath11k_mac_get_arvif_by_vdev_id()
-Date: Fri, 17 Dec 2021 01:41:32 -0500
-Message-ID: <20211217064132.30911-1-quic_wgong@quicinc.com>
+Subject: [PATCH v3] ath11k: report tx bitrate for iw wlan station dump
+Date: Fri, 17 Dec 2021 04:37:22 -0500
+Message-ID: <20211217093722.5739-1-quic_wgong@quicinc.com>
 X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211216_224159_307615_330F8D68 
-X-CRM114-Status: UNSURE (   8.79  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20211217_013745_567810_F95697FE 
+X-CRM114-Status: GOOD (  21.33  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,124 +78,562 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-When enable more debug config, it happen below warning. It is because
-the caller does not add rcu_read_lock()/rcu_read_unlock() to wrap the
-rcu_dereference().
+HTT_T2H_MSG_TYPE_PPDU_STATS_IND is a message which include the ppdu
+info, currently it is not report from firmware for ath11k, then the
+tx bitrate of "iw wlan0 station dump" always show an invalid value
+"tx bitrate: 6.0 MBit/s".
 
-Add rcu_read_lock()/rcu_read_unlock() to wrap rcu_dereference(), then
-fixed it.
+To address the issue, this is to parse the info of tx complete report
+from firmware and indicate the tx rate to mac80211.
 
-[ 180.716604] =============================
-[ 180.716670] WARNING: suspicious RCU usage
-[ 180.716734] 5.16.0-rc4-wt-ath+ #542 Not tainted
-[ 180.716895] -----------------------------
-[ 180.716957] drivers/net/wireless/ath/ath11k/mac.c:506 suspicious rcu_dereference_check() usage!
-[ 180.717023]
-               other info that might help us debug this:
+After that, "iw wlan0 station dump" show the correct tx bit rate such
+as:
+tx bitrate: 78.0 MBit/s MCS 12
+tx bitrate: 144.4 MBit/s VHT-MCS 7 short GI VHT-NSS 2
+tx bitrate: 286.7 MBit/s HE-MCS 11 HE-NSS 2 HE-GI 0 HE-DCM 0
+tx bitrate: 1921.5 MBit/s 160MHz HE-MCS 9 HE-NSS 2 HE-GI 0 HE-DCM 0
 
-[ 180.717087]
-               rcu_scheduler_active = 2, debug_locks = 1
-[ 180.717151] no locks held by swapper/0/0.
-[ 180.717215]
-               stack backtrace:
-[ 180.717279] CPU: 0 PID: 0 Comm: swapper/0 Kdump: loaded Not tainted 5.16.0-rc4-wt-ath+ #542
-[ 180.717346] Hardware name: Intel(R) Client Systems NUC8i7HVK/NUC8i7HVB, BIOS HNKBLi70.86A.0067.2021.0528.1339 05/28/2021
-[ 180.717411] Call Trace:
-[ 180.717475] <IRQ>
-[ 180.717541] dump_stack_lvl+0x57/0x7d
-[ 180.717610] ath11k_mac_get_arvif_by_vdev_id+0x1ab/0x2d0 [ath11k]
-[ 180.717694] ? ath11k_mac_get_arvif+0x140/0x140 [ath11k]
-[ 180.717798] ? ath11k_wmi_tlv_op_rx+0xc1b/0x2520 [ath11k]
-[ 180.717888] ? kfree+0xe8/0x2c0
-[ 180.717959] ath11k_wmi_tlv_op_rx+0xc27/0x2520 [ath11k]
-[ 180.718038] ? ath11k_mgmt_rx_event+0xda0/0xda0 [ath11k]
-[ 180.718113] ? __lock_acquire+0xb72/0x1870
-[ 180.718182] ? lockdep_hardirqs_on_prepare.part.0+0x18c/0x370
-[ 180.718250] ? sched_clock_cpu+0x15/0x1b0
-[ 180.718314] ? find_held_lock+0x33/0x110
-[ 180.718381] ? __lock_release+0x4bd/0x9f0
-[ 180.718447] ? lock_downgrade+0x130/0x130
-[ 180.718517] ath11k_htc_rx_completion_handler+0x38f/0x5b0 [ath11k]
-[ 180.718596] ? __local_bh_enable_ip+0xa0/0x110
-[ 180.718662] ath11k_ce_recv_process_cb+0x5ac/0x920 [ath11k]
-[ 180.718783] ? __lock_acquired+0x205/0x890
-[ 180.718864] ? ath11k_ce_rx_post_pipe+0x970/0x970 [ath11k]
-[ 180.718949] ? __wake_up_bit+0x100/0x100
-[ 180.719020] ath11k_pci_ce_tasklet+0x5f/0xf0 [ath11k_pci]
-[ 180.719085] ? tasklet_clear_sched+0x42/0xe0
-[ 180.719148] tasklet_action_common.constprop.0+0x204/0x2f0
-[ 180.719217] __do_softirq+0x276/0x86a
-[ 180.719281] ? __common_interrupt+0x92/0x1d0
-[ 180.719350] __irq_exit_rcu+0x11c/0x180
-[ 180.719418] irq_exit_rcu+0x5/0x20
-[ 180.719482] common_interrupt+0xa4/0xc0
-[ 180.719547] </IRQ>
-[ 180.719609] <TASK>
-[ 180.719671] asm_common_interrupt+0x1e/0x40
-[ 180.719772] RIP: 0010:cpuidle_enter_state+0x1f3/0x8d0
-[ 180.719838] Code: 00 41 8b 77 04 bf ff ff ff ff e8 78 f1 ff ff 31 ff e8 81 fa 52 fe 80 7c 24 08 00 0f 85 9e 01 00 00 e8 11 13 78 fe fb 45 85 e4 <0f> 88 8c 02 00 00 49 63 ec 48 8d 44 6d 00 48 8d 44 85 00 48 8d 7c
-[ 180.719909] RSP: 0018:ffffffffa4607dd0 EFLAGS: 00000202
-[ 180.719982] RAX: 00000000002aea91 RBX: ffffffffa4a5fec0 RCX: 1ffffffff49ca501
-[ 180.720047] RDX: 0000000000000000 RSI: ffffffffa3c6e4e0 RDI: ffffffffa3dcf2a0
-[ 180.720110] RBP: 0000000000000002 R08: 0000000000000001 R09: ffffffffa4e54d17
-[ 180.720173] R10: fffffbfff49ca9a2 R11: 0000000000000001 R12: 0000000000000002
-[ 180.720236] R13: ffff8881169ccc04 R14: 0000002a13899598 R15: ffff8881169ccc00
-[ 180.720321] cpuidle_enter+0x45/0xa0
-[ 180.720413] cpuidle_idle_call+0x274/0x3f0
-[ 180.720503] ? arch_cpu_idle_exit+0x30/0x30
-[ 180.720869] ? tsc_verify_tsc_adjust+0x97/0x2e0
-[ 180.720935] ? lockdep_hardirqs_off+0x90/0xd0
-[ 180.721002] do_idle+0xe0/0x150
-[ 180.721069] cpu_startup_entry+0x14/0x20
-[ 180.721134] start_kernel+0x3a2/0x3c2
-[ 180.721200] secondary_startup_64_no_verify+0xb0/0xbb
-[ 180.721274] </TASK>
-
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-02892.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
 
 Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
 ---
- drivers/net/wireless/ath/ath11k/wmi.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+v3:
+   1. rebased to ath.git ath-202112161538
+   2. change commit log
+   3. fix invalid "tx bitrate: (unknown) MCS 252" to "78.0 MBit/s MCS 12"
+   4. fix log "failed to find the peer by id 14"
 
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 146fc0dcee6c..7cbade7fc47a 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -3595,6 +3595,8 @@ ath11k_wmi_obss_color_collision_event(struct ath11k_base *ab, struct sk_buff *sk
- 		return;
- 	}
- 
-+	rcu_read_lock();
-+
- 	ev = tb[WMI_TAG_OBSS_COLOR_COLLISION_EVT];
- 	if (!ev) {
- 		ath11k_warn(ab, "failed to fetch obss color collision ev");
-@@ -3625,6 +3627,7 @@ ath11k_wmi_obss_color_collision_event(struct ath11k_base *ab, struct sk_buff *sk
- 
- exit:
- 	kfree(tb);
-+	rcu_read_unlock();
+v2: rebased to ath.git ath-202112130952
+
+ drivers/net/wireless/ath/ath11k/core.h        |   1 +
+ drivers/net/wireless/ath/ath11k/debugfs_sta.c |  78 +------------
+ drivers/net/wireless/ath/ath11k/debugfs_sta.h |   2 -
+ drivers/net/wireless/ath/ath11k/dp_rx.c       |  28 +----
+ drivers/net/wireless/ath/ath11k/dp_tx.c       | 106 +++++++++++++++++-
+ drivers/net/wireless/ath/ath11k/dp_tx.h       |   1 +
+ drivers/net/wireless/ath/ath11k/hal_rx.c      |   4 +-
+ drivers/net/wireless/ath/ath11k/hal_rx.h      |  27 -----
+ drivers/net/wireless/ath/ath11k/mac.c         |  93 +++++++++++++++
+ drivers/net/wireless/ath/ath11k/mac.h         |   3 +
+ 10 files changed, 210 insertions(+), 133 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index bab3878a41a7..b3b5d46e4927 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -382,6 +382,7 @@ struct ath11k_sta {
+ 	struct work_struct update_wk;
+ 	struct work_struct set_4addr_wk;
+ 	struct rate_info txrate;
++	u32 peer_nss;
+ 	struct rate_info last_txrate;
+ 	u64 rx_duration;
+ 	u64 tx_duration;
+diff --git a/drivers/net/wireless/ath/ath11k/debugfs_sta.c b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
+index fecd9718f5ce..1b1acbdf837a 100644
+--- a/drivers/net/wireless/ath/ath11k/debugfs_sta.c
++++ b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
+@@ -126,85 +126,9 @@ void ath11k_debugfs_sta_add_tx_stats(struct ath11k_sta *arsta,
  }
  
+ void ath11k_debugfs_sta_update_txcompl(struct ath11k *ar,
+-				       struct sk_buff *msdu,
+ 				       struct hal_tx_status *ts)
+ {
+-	struct ath11k_base *ab = ar->ab;
+-	struct ath11k_per_peer_tx_stats *peer_stats = &ar->cached_stats;
+-	enum hal_tx_rate_stats_pkt_type pkt_type;
+-	enum hal_tx_rate_stats_sgi sgi;
+-	enum hal_tx_rate_stats_bw bw;
+-	struct ath11k_peer *peer;
+-	struct ath11k_sta *arsta;
+-	struct ieee80211_sta *sta;
+-	u16 rate;
+-	u8 rate_idx = 0;
+-	int ret;
+-	u8 mcs;
+-
+-	rcu_read_lock();
+-	spin_lock_bh(&ab->base_lock);
+-	peer = ath11k_peer_find_by_id(ab, ts->peer_id);
+-	if (!peer || !peer->sta) {
+-		ath11k_warn(ab, "failed to find the peer\n");
+-		spin_unlock_bh(&ab->base_lock);
+-		rcu_read_unlock();
+-		return;
+-	}
+-
+-	sta = peer->sta;
+-	arsta = (struct ath11k_sta *)sta->drv_priv;
+-
+-	memset(&arsta->txrate, 0, sizeof(arsta->txrate));
+-	pkt_type = FIELD_GET(HAL_TX_RATE_STATS_INFO0_PKT_TYPE,
+-			     ts->rate_stats);
+-	mcs = FIELD_GET(HAL_TX_RATE_STATS_INFO0_MCS,
+-			ts->rate_stats);
+-	sgi = FIELD_GET(HAL_TX_RATE_STATS_INFO0_SGI,
+-			ts->rate_stats);
+-	bw = FIELD_GET(HAL_TX_RATE_STATS_INFO0_BW, ts->rate_stats);
+-
+-	if (pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11A ||
+-	    pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11B) {
+-		ret = ath11k_mac_hw_ratecode_to_legacy_rate(mcs,
+-							    pkt_type,
+-							    &rate_idx,
+-							    &rate);
+-		if (ret < 0)
+-			goto err_out;
+-		arsta->txrate.legacy = rate;
+-	} else if (pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11N) {
+-		if (mcs > 7) {
+-			ath11k_warn(ab, "Invalid HT mcs index %d\n", mcs);
+-			goto err_out;
+-		}
+-
+-		arsta->txrate.mcs = mcs + 8 * (arsta->last_txrate.nss - 1);
+-		arsta->txrate.flags = RATE_INFO_FLAGS_MCS;
+-		if (sgi)
+-			arsta->txrate.flags |= RATE_INFO_FLAGS_SHORT_GI;
+-	} else if (pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11AC) {
+-		if (mcs > 9) {
+-			ath11k_warn(ab, "Invalid VHT mcs index %d\n", mcs);
+-			goto err_out;
+-		}
+-
+-		arsta->txrate.mcs = mcs;
+-		arsta->txrate.flags = RATE_INFO_FLAGS_VHT_MCS;
+-		if (sgi)
+-			arsta->txrate.flags |= RATE_INFO_FLAGS_SHORT_GI;
+-	} else if (pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11AX) {
+-		/* TODO */
+-	}
+-
+-	arsta->txrate.nss = arsta->last_txrate.nss;
+-	arsta->txrate.bw = ath11k_mac_bw_to_mac80211_bw(bw);
+-
+-	ath11k_debugfs_sta_add_tx_stats(arsta, peer_stats, rate_idx);
+-
+-err_out:
+-	spin_unlock_bh(&ab->base_lock);
+-	rcu_read_unlock();
++	ath11k_dp_tx_update_txcompl(ar, ts);
+ }
+ 
+ static ssize_t ath11k_dbg_sta_dump_tx_stats(struct file *file,
+diff --git a/drivers/net/wireless/ath/ath11k/debugfs_sta.h b/drivers/net/wireless/ath/ath11k/debugfs_sta.h
+index 18dc65d9edcf..e6c11b3a40aa 100644
+--- a/drivers/net/wireless/ath/ath11k/debugfs_sta.h
++++ b/drivers/net/wireless/ath/ath11k/debugfs_sta.h
+@@ -19,7 +19,6 @@ void ath11k_debugfs_sta_add_tx_stats(struct ath11k_sta *arsta,
+ 				     struct ath11k_per_peer_tx_stats *peer_stats,
+ 				     u8 legacy_rate_idx);
+ void ath11k_debugfs_sta_update_txcompl(struct ath11k *ar,
+-				       struct sk_buff *msdu,
+ 				       struct hal_tx_status *ts);
+ 
+ #else /* CONFIG_ATH11K_DEBUGFS */
+@@ -34,7 +33,6 @@ ath11k_debugfs_sta_add_tx_stats(struct ath11k_sta *arsta,
+ }
+ 
+ static inline void ath11k_debugfs_sta_update_txcompl(struct ath11k *ar,
+-						     struct sk_buff *msdu,
+ 						     struct hal_tx_status *ts)
+ {
+ }
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 38eeb6e7c6b6..4f5e89a94c2e 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -1360,25 +1360,6 @@ int ath11k_dp_htt_tlv_iter(struct ath11k_base *ab, const void *ptr, size_t len,
+ 	return 0;
+ }
+ 
+-static inline u32 ath11k_he_gi_to_nl80211_he_gi(u8 sgi)
+-{
+-	u32 ret = 0;
+-
+-	switch (sgi) {
+-	case RX_MSDU_START_SGI_0_8_US:
+-		ret = NL80211_RATE_INFO_HE_GI_0_8;
+-		break;
+-	case RX_MSDU_START_SGI_1_6_US:
+-		ret = NL80211_RATE_INFO_HE_GI_1_6;
+-		break;
+-	case RX_MSDU_START_SGI_3_2_US:
+-		ret = NL80211_RATE_INFO_HE_GI_3_2;
+-		break;
+-	}
+-
+-	return ret;
+-}
+-
  static void
-@@ -6395,13 +6398,16 @@ static void ath11k_bcn_tx_status_event(struct ath11k_base *ab, struct sk_buff *s
- 		return;
+ ath11k_update_per_peer_tx_stats(struct ath11k *ar,
+ 				struct htt_ppdu_stats *ppdu_stats, u8 user)
+@@ -1497,14 +1478,15 @@ ath11k_update_per_peer_tx_stats(struct ath11k *ar,
+ 		arsta->txrate.mcs = mcs;
+ 		arsta->txrate.flags = RATE_INFO_FLAGS_HE_MCS;
+ 		arsta->txrate.he_dcm = dcm;
+-		arsta->txrate.he_gi = ath11k_he_gi_to_nl80211_he_gi(sgi);
+-		arsta->txrate.he_ru_alloc = ath11k_he_ru_tones_to_nl80211_he_ru_alloc(
+-						(user_rate->ru_end -
++		arsta->txrate.he_gi = ath11k_mac_he_gi_to_nl80211_he_gi(sgi);
++		arsta->txrate.he_ru_alloc = ath11k_mac_phy_he_ru_to_nl80211_he_ru_alloc
++						((user_rate->ru_end -
+ 						 user_rate->ru_start) + 1);
+ 		break;
  	}
  
-+	rcu_read_lock();
- 	arvif = ath11k_mac_get_arvif_by_vdev_id(ab, vdev_id);
- 	if (!arvif) {
- 		ath11k_warn(ab, "invalid vdev id %d in bcn_tx_status",
- 			    vdev_id);
-+		rcu_read_unlock();
- 		return;
+ 	arsta->txrate.nss = nss;
++
+ 	arsta->txrate.bw = ath11k_mac_bw_to_mac80211_bw(bw);
+ 	arsta->tx_duration += tx_duration;
+ 	memcpy(&arsta->last_txrate, &arsta->txrate, sizeof(struct rate_info));
+@@ -2384,7 +2366,7 @@ static void ath11k_dp_rx_h_rate(struct ath11k *ar, struct hal_rx_desc *rx_desc,
+ 		}
+ 		rx_status->encoding = RX_ENC_HE;
+ 		rx_status->nss = nss;
+-		rx_status->he_gi = ath11k_he_gi_to_nl80211_he_gi(sgi);
++		rx_status->he_gi = ath11k_mac_he_gi_to_nl80211_he_gi(sgi);
+ 		rx_status->bw = ath11k_mac_bw_to_mac80211_bw(bw);
+ 		break;
  	}
- 	ath11k_mac_bcn_tx_event(arvif);
-+	rcu_read_unlock();
+diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
+index 8560f3b33812..91d6244b6543 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_tx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
+@@ -415,6 +415,105 @@ static void ath11k_dp_tx_cache_peer_stats(struct ath11k *ar,
+ 	}
  }
  
- static void ath11k_vdev_stopped_event(struct ath11k_base *ab, struct sk_buff *skb)
++void ath11k_dp_tx_update_txcompl(struct ath11k *ar, struct hal_tx_status *ts)
++{
++	struct ath11k_base *ab = ar->ab;
++	struct ath11k_per_peer_tx_stats *peer_stats = &ar->cached_stats;
++	enum hal_tx_rate_stats_pkt_type pkt_type;
++	enum hal_tx_rate_stats_sgi sgi;
++	enum hal_tx_rate_stats_bw bw;
++	struct ath11k_peer *peer;
++	struct ath11k_sta *arsta;
++	struct ieee80211_sta *sta;
++	u16 rate, ru_tones;
++	u8 mcs, rate_idx, ofdma;
++	int ret;
++
++	spin_lock_bh(&ab->base_lock);
++	peer = ath11k_peer_find_by_id(ab, ts->peer_id);
++	if (!peer || !peer->sta) {
++		ath11k_dbg(ab, ATH11K_DBG_DP_TX,
++			   "failed to find the peer by id %u\n", ts->peer_id);
++		goto err_out;
++	}
++
++	sta = peer->sta;
++	arsta = (struct ath11k_sta *)sta->drv_priv;
++
++	memset(&arsta->txrate, 0, sizeof(arsta->txrate));
++	pkt_type = FIELD_GET(HAL_TX_RATE_STATS_INFO0_PKT_TYPE,
++			     ts->rate_stats);
++	mcs = FIELD_GET(HAL_TX_RATE_STATS_INFO0_MCS,
++			ts->rate_stats);
++	sgi = FIELD_GET(HAL_TX_RATE_STATS_INFO0_SGI,
++			ts->rate_stats);
++	bw = FIELD_GET(HAL_TX_RATE_STATS_INFO0_BW, ts->rate_stats);
++	ru_tones = FIELD_GET(HAL_TX_RATE_STATS_INFO0_TONES_IN_RU, ts->rate_stats);
++	ofdma = FIELD_GET(HAL_TX_RATE_STATS_INFO0_OFDMA_TX, ts->rate_stats);
++
++	/* This is to prefer choose the real NSS value arsta->last_txrate.nss,
++	 * if it is invalid, then choose the NSS value while assoc.
++	 */
++	if (arsta->last_txrate.nss)
++		arsta->txrate.nss = arsta->last_txrate.nss;
++	else
++		arsta->txrate.nss = arsta->peer_nss;
++
++	if (pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11A ||
++	    pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11B) {
++		ret = ath11k_mac_hw_ratecode_to_legacy_rate(mcs,
++							    pkt_type,
++							    &rate_idx,
++							    &rate);
++		if (ret < 0)
++			goto err_out;
++		arsta->txrate.legacy = rate;
++	} else if (pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11N) {
++		if (mcs > 7) {
++			ath11k_warn(ab, "Invalid HT mcs index %d\n", mcs);
++			goto err_out;
++		}
++
++		if (arsta->txrate.nss != 0)
++			arsta->txrate.mcs = mcs + 8 * (arsta->txrate.nss - 1);
++		arsta->txrate.flags = RATE_INFO_FLAGS_MCS;
++		if (sgi)
++			arsta->txrate.flags |= RATE_INFO_FLAGS_SHORT_GI;
++	} else if (pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11AC) {
++		if (mcs > 9) {
++			ath11k_warn(ab, "Invalid VHT mcs index %d\n", mcs);
++			goto err_out;
++		}
++
++		arsta->txrate.mcs = mcs;
++		arsta->txrate.flags = RATE_INFO_FLAGS_VHT_MCS;
++		if (sgi)
++			arsta->txrate.flags |= RATE_INFO_FLAGS_SHORT_GI;
++	} else if (pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11AX) {
++		if (mcs > 11) {
++			ath11k_warn(ab, "Invalid HE mcs index %d\n", mcs);
++			goto err_out;
++		}
++
++		arsta->txrate.mcs = mcs;
++		arsta->txrate.flags = RATE_INFO_FLAGS_HE_MCS;
++		arsta->txrate.he_gi = ath11k_mac_he_gi_to_nl80211_he_gi(sgi);
++	}
++
++	arsta->txrate.bw = ath11k_mac_bw_to_mac80211_bw(bw);
++	if (ofdma && pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11AX) {
++		arsta->txrate.bw = RATE_INFO_BW_HE_RU;
++		arsta->txrate.he_ru_alloc =
++			ath11k_mac_he_ru_tones_to_nl80211_he_ru_alloc(ru_tones);
++	}
++
++	if (ath11k_debugfs_is_extd_tx_stats_enabled(ar))
++		ath11k_debugfs_sta_add_tx_stats(arsta, peer_stats, rate_idx);
++
++err_out:
++	spin_unlock_bh(&ab->base_lock);
++}
++
+ static void ath11k_dp_tx_complete_msdu(struct ath11k *ar,
+ 				       struct sk_buff *msdu,
+ 				       struct hal_tx_status *ts)
+@@ -460,7 +559,8 @@ static void ath11k_dp_tx_complete_msdu(struct ath11k *ar,
+ 	    (info->flags & IEEE80211_TX_CTL_NO_ACK))
+ 		info->flags |= IEEE80211_TX_STAT_NOACK_TRANSMITTED;
+ 
+-	if (unlikely(ath11k_debugfs_is_extd_tx_stats_enabled(ar))) {
++	if (unlikely(ath11k_debugfs_is_extd_tx_stats_enabled(ar)) ||
++	    ab->hw_params.single_pdev_only) {
+ 		if (ts->flags & HAL_TX_STATUS_FLAGS_FIRST_MSDU) {
+ 			if (ar->last_ppdu_id == 0) {
+ 				ar->last_ppdu_id = ts->ppdu_id;
+@@ -468,12 +568,12 @@ static void ath11k_dp_tx_complete_msdu(struct ath11k *ar,
+ 				   ar->cached_ppdu_id == ar->last_ppdu_id) {
+ 				ar->cached_ppdu_id = ar->last_ppdu_id;
+ 				ar->cached_stats.is_ampdu = true;
+-				ath11k_debugfs_sta_update_txcompl(ar, msdu, ts);
++				ath11k_dp_tx_update_txcompl(ar, ts);
+ 				memset(&ar->cached_stats, 0,
+ 				       sizeof(struct ath11k_per_peer_tx_stats));
+ 			} else {
+ 				ar->cached_stats.is_ampdu = false;
+-				ath11k_debugfs_sta_update_txcompl(ar, msdu, ts);
++				ath11k_dp_tx_update_txcompl(ar, ts);
+ 				memset(&ar->cached_stats, 0,
+ 				       sizeof(struct ath11k_per_peer_tx_stats));
+ 			}
+diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.h b/drivers/net/wireless/ath/ath11k/dp_tx.h
+index e373dbccf417..e87d65bfbf06 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_tx.h
++++ b/drivers/net/wireless/ath/ath11k/dp_tx.h
+@@ -15,6 +15,7 @@ struct ath11k_dp_htt_wbm_tx_status {
+ 	int ack_rssi;
+ };
+ 
++void ath11k_dp_tx_update_txcompl(struct ath11k *ar, struct hal_tx_status *ts);
+ int ath11k_dp_tx_htt_h2t_ver_req_msg(struct ath11k_base *ab);
+ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
+ 		 struct ath11k_sta *arsta, struct sk_buff *skb);
+diff --git a/drivers/net/wireless/ath/ath11k/hal_rx.c b/drivers/net/wireless/ath/ath11k/hal_rx.c
+index 1e279e99baa8..f92fbaaaf6b7 100644
+--- a/drivers/net/wireless/ath/ath11k/hal_rx.c
++++ b/drivers/net/wireless/ath/ath11k/hal_rx.c
+@@ -1038,7 +1038,9 @@ ath11k_hal_rx_parse_mon_status_tlv(struct ath11k_base *ab,
+ 
+ 		ru_tones = FIELD_GET(HAL_RX_HE_SIG_B1_MU_INFO_INFO0_RU_ALLOCATION,
+ 				     info0);
+-		ppdu_info->ru_alloc = ath11k_he_ru_tones_to_nl80211_he_ru_alloc(ru_tones);
++		ppdu_info->ru_alloc =
++			ath11k_mac_phy_he_ru_to_nl80211_he_ru_alloc(ru_tones);
++
+ 		ppdu_info->reception_type = HAL_RX_RECEPTION_TYPE_MU_MIMO;
+ 		break;
+ 	}
+diff --git a/drivers/net/wireless/ath/ath11k/hal_rx.h b/drivers/net/wireless/ath/ath11k/hal_rx.h
+index 8db420ef6351..f726bc071a14 100644
+--- a/drivers/net/wireless/ath/ath11k/hal_rx.h
++++ b/drivers/net/wireless/ath/ath11k/hal_rx.h
+@@ -353,33 +353,6 @@ ath11k_hal_rx_parse_mon_status(struct ath11k_base *ab,
+ 			       struct hal_rx_mon_ppdu_info *ppdu_info,
+ 			       struct sk_buff *skb);
+ 
+-static inline u32 ath11k_he_ru_tones_to_nl80211_he_ru_alloc(u16 ru_tones)
+-{
+-	u32 ret = 0;
+-
+-	switch (ru_tones) {
+-	case RU_26:
+-		ret = NL80211_RATE_INFO_HE_RU_ALLOC_26;
+-		break;
+-	case RU_52:
+-		ret = NL80211_RATE_INFO_HE_RU_ALLOC_52;
+-		break;
+-	case RU_106:
+-		ret = NL80211_RATE_INFO_HE_RU_ALLOC_106;
+-		break;
+-	case RU_242:
+-		ret = NL80211_RATE_INFO_HE_RU_ALLOC_242;
+-		break;
+-	case RU_484:
+-		ret = NL80211_RATE_INFO_HE_RU_ALLOC_484;
+-		break;
+-	case RU_996:
+-		ret = NL80211_RATE_INFO_HE_RU_ALLOC_996;
+-		break;
+-	}
+-	return ret;
+-}
+-
+ #define REO_QUEUE_DESC_MAGIC_DEBUG_PATTERN_0 0xDDBEEF
+ #define REO_QUEUE_DESC_MAGIC_DEBUG_PATTERN_1 0xADBEEF
+ #define REO_QUEUE_DESC_MAGIC_DEBUG_PATTERN_2 0xBDBEEF
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 2bc93456b34e..d603a82ab132 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -246,6 +246,93 @@ static const u32 ath11k_smps_map[] = {
+ static int ath11k_start_vdev_delay(struct ieee80211_hw *hw,
+ 				   struct ieee80211_vif *vif);
+ 
++enum nl80211_he_ru_alloc ath11k_mac_phy_he_ru_to_nl80211_he_ru_alloc(u16 ru_phy)
++{
++	enum nl80211_he_ru_alloc ret;
++
++	switch (ru_phy) {
++	case RU_26:
++		ret = NL80211_RATE_INFO_HE_RU_ALLOC_26;
++		break;
++	case RU_52:
++		ret = NL80211_RATE_INFO_HE_RU_ALLOC_52;
++		break;
++	case RU_106:
++		ret = NL80211_RATE_INFO_HE_RU_ALLOC_106;
++		break;
++	case RU_242:
++		ret = NL80211_RATE_INFO_HE_RU_ALLOC_242;
++		break;
++	case RU_484:
++		ret = NL80211_RATE_INFO_HE_RU_ALLOC_484;
++		break;
++	case RU_996:
++		ret = NL80211_RATE_INFO_HE_RU_ALLOC_996;
++		break;
++	default:
++		ret = NL80211_RATE_INFO_HE_RU_ALLOC_26;
++		break;
++	}
++
++	return ret;
++}
++
++enum nl80211_he_ru_alloc ath11k_mac_he_ru_tones_to_nl80211_he_ru_alloc(u16 ru_tones)
++{
++	enum nl80211_he_ru_alloc ret;
++
++	switch (ru_tones) {
++	case 26:
++		ret = NL80211_RATE_INFO_HE_RU_ALLOC_26;
++		break;
++	case 52:
++		ret = NL80211_RATE_INFO_HE_RU_ALLOC_52;
++		break;
++	case 106:
++		ret = NL80211_RATE_INFO_HE_RU_ALLOC_106;
++		break;
++	case 242:
++		ret = NL80211_RATE_INFO_HE_RU_ALLOC_242;
++		break;
++	case 484:
++		ret = NL80211_RATE_INFO_HE_RU_ALLOC_484;
++		break;
++	case 996:
++		ret = NL80211_RATE_INFO_HE_RU_ALLOC_996;
++		break;
++	case (996 * 2):
++		ret = NL80211_RATE_INFO_HE_RU_ALLOC_2x996;
++		break;
++	default:
++		ret = NL80211_RATE_INFO_HE_RU_ALLOC_26;
++		break;
++	}
++
++	return ret;
++}
++
++enum nl80211_he_gi ath11k_mac_he_gi_to_nl80211_he_gi(u8 sgi)
++{
++	enum nl80211_he_gi ret;
++
++	switch (sgi) {
++	case RX_MSDU_START_SGI_0_8_US:
++		ret = NL80211_RATE_INFO_HE_GI_0_8;
++		break;
++	case RX_MSDU_START_SGI_1_6_US:
++		ret = NL80211_RATE_INFO_HE_GI_1_6;
++		break;
++	case RX_MSDU_START_SGI_3_2_US:
++		ret = NL80211_RATE_INFO_HE_GI_3_2;
++		break;
++	default:
++		ret = NL80211_RATE_INFO_HE_GI_0_8;
++		break;
++	}
++
++	return ret;
++}
++
+ u8 ath11k_mac_bw_to_mac80211_bw(u8 bw)
+ {
+ 	u8 ret = 0;
+@@ -2541,8 +2628,12 @@ static void ath11k_peer_assoc_prepare(struct ath11k *ar,
+ 				      struct peer_assoc_params *arg,
+ 				      bool reassoc)
+ {
++	struct ath11k_sta *arsta;
++
+ 	lockdep_assert_held(&ar->conf_mutex);
+ 
++	arsta = (struct ath11k_sta *)sta->drv_priv;
++
+ 	memset(arg, 0, sizeof(*arg));
+ 
+ 	reinit_completion(&ar->peer_assoc_done);
+@@ -2559,6 +2650,8 @@ static void ath11k_peer_assoc_prepare(struct ath11k *ar,
+ 	ath11k_peer_assoc_h_qos(ar, vif, sta, arg);
+ 	ath11k_peer_assoc_h_smps(sta, arg);
+ 
++	arsta->peer_nss = arg->peer_nss;
++
+ 	/* TODO: amsdu_disable req? */
+ }
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/mac.h b/drivers/net/wireless/ath/ath11k/mac.h
+index 035d6738c20b..cab3356ec0dc 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.h
++++ b/drivers/net/wireless/ath/ath11k/mac.h
+@@ -162,6 +162,9 @@ void ath11k_mac_drain_tx(struct ath11k *ar);
+ void ath11k_mac_peer_cleanup_all(struct ath11k *ar);
+ int ath11k_mac_tx_mgmt_pending_free(int buf_id, void *skb, void *ctx);
+ u8 ath11k_mac_bw_to_mac80211_bw(u8 bw);
++u32 ath11k_mac_he_gi_to_nl80211_he_gi(u8 sgi);
++enum nl80211_he_ru_alloc ath11k_mac_phy_he_ru_to_nl80211_he_ru_alloc(u16 ru_phy);
++enum nl80211_he_ru_alloc ath11k_mac_he_ru_tones_to_nl80211_he_ru_alloc(u16 ru_tones);
+ enum ath11k_supported_bw ath11k_mac_mac80211_bw_to_ath11k_bw(enum rate_info_bw bw);
+ enum hal_encrypt_type ath11k_dp_tx_get_encrypt_type(u32 cipher);
+ void ath11k_mac_handle_beacon(struct ath11k *ar, struct sk_buff *skb);
+
+base-commit: 12018ad8603a598d773e2cae12542a1981c94886
 -- 
 2.31.1
 
