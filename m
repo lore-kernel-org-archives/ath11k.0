@@ -4,57 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2E91C433F5
-	for <ath11k@archiver.kernel.org>; Mon, 20 Dec 2021 06:50:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E000C433EF
+	for <ath11k@archiver.kernel.org>; Mon, 20 Dec 2021 06:50:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=qLFwHdy+Um8uGRW3gr4q90G03VjF27NjQ802i6jk8+k=; b=1sOL0bJry1YxCT
-	cDORjKLVQj1q2fBU9Au5wP9dU1+mtRuZ2+rA6M23qm8Y8unc13moxsOt9UAzRrHcLNpmq5lnTN8OF
-	LxbMEe4icPapMU5AL5hC/ezQi/v/vmtO5RGokPzlAfDl/dpiV52CaYUcEC10BpEaBktOeieeEgTvg
-	2bW33/2uQw14jXS9PfUO6Vv8YdSaDPk/83gntXSIVsfisXKTBeZGt6Na4vya27WCUMzVi3cmLU4Hm
-	VFPF1NQKg5jG+kBThY+R38qaILGPBV9+7ajmRdyckmStSU4B+zojwNQz0JwW4yM07xAQwltxZrHkc
-	AbbMYRdfXmDg+/RS3LCg==;
+	List-Owner; bh=2S1WGWIFn2FVqEG7hUtIr13LIsF8mi3ZA04lYd4QFMQ=; b=tVEoNUq42HcPlB
+	0AZdw2Hdckg/i3NzNvqgrJ5cbMiaIEvggNJHBYBFVMGyuZ1FbYdXKEYYb3ruW2wcmjJxl+BwgKpA0
+	LqWd7r3xdGeDQlqj+vulRTy91b20p3sszT98KdIhyTBkWjqdh4DJNf89mIq3HZyl/pPqNRL62dDJh
+	CIwZfB58A05LKSX36TQVApK8Y76BUJh5i+N6Woql7pCMHPlwJF/qllFzUQNdNO6m1LJAEGhOMPsCG
+	OTQXdbs9hhWLgC6S+r07l3sa4J40LfGr+5X5AizGqlSz/JdsLvhhHsANxyT1iFxU+ay7EVDKY285d
+	oe2TF5WEGC0ZmDcK84Ng==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mzCVP-000tm3-PH; Mon, 20 Dec 2021 06:50:43 +0000
-Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39])
+	id 1mzCVQ-000tmi-9q; Mon, 20 Dec 2021 06:50:44 +0000
+Received: from alexa-out.qualcomm.com ([129.46.98.28])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mzCVM-000tip-KM
- for ath11k@lists.infradead.org; Mon, 20 Dec 2021 06:50:42 +0000
+ id 1mzCVN-000tk7-25
+ for ath11k@lists.infradead.org; Mon, 20 Dec 2021 06:50:43 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1639983040; x=1671519040;
+ t=1639983041; x=1671519041;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2MaMS0IWQTMdB7owzKxWfCC7WywGKSkECTYJep+dZ5c=;
- b=Ar9AtzFryaG5tjHdAU4xiTWIZ/+NTLG32D9GX3CgY6+yvokBlZkWfg8C
- ginY78mxv/Kz848BVrXdzUvcJWiEaIHdJBSKiufMgwKYAlfBvrdP2OhRd
- ViCa5V5+Om/UuNdesJU+L7c5myJTaXs40/APm7rvXo2jGG09GH6eMEm7z E=;
-Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
- by alexa-out-sd-02.qualcomm.com with ESMTP; 19 Dec 2021 22:50:40 -0800
+ bh=G8ajBTprFQidwp5a2gjM36+1/HezLOilEKpl5LUag6k=;
+ b=F/OWzDEKC5KJl758C5gvIbZAcSWX4JMpi8FB3LIAEzEeZvYMY1SAEcSc
+ cgyzUe4dPTxiKplQFUOaJBdf0r0jqKXWWwd2ociRdWl+V0LJJwJvWCk0W
+ aaVw8nRAzTeKP2t1C7qLiSLqni9gIqkVplIWNg3H1P2HRr2+NkGWVjUeH k=;
+Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
+ by alexa-out.qualcomm.com with ESMTP; 19 Dec 2021 22:50:38 -0800
 X-QCInternal: smtphost
 Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2021 22:50:40 -0800
+ by ironmsg08-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2021 22:50:38 -0800
 Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
  nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Sun, 19 Dec 2021 22:50:39 -0800
+ 15.2.922.19; Sun, 19 Dec 2021 22:50:37 -0800
 Received: from wgong-HP3-Z230-SFF-Workstation.qca.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Sun, 19 Dec 2021 22:50:37 -0800
+ 15.2.922.19; Sun, 19 Dec 2021 22:50:36 -0800
 From: Wen Gong <quic_wgong@quicinc.com>
 To: <ath11k@lists.infradead.org>
 CC: <linux-wireless@vger.kernel.org>, <quic_wgong@quicinc.com>
-Subject: [PATCH v5 2/2] ath11k: add read variant from SMBIOS for download
- board data
-Date: Mon, 20 Dec 2021 01:48:29 -0500
-Message-ID: <20211220064829.17557-3-quic_wgong@quicinc.com>
+Subject: [PATCH v5 1/2] ath11k: add fallback board name without variant while
+ searching board-2.bin
+Date: Mon, 20 Dec 2021 01:48:28 -0500
+Message-ID: <20211220064829.17557-2-quic_wgong@quicinc.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20211220064829.17557-1-quic_wgong@quicinc.com>
 References: <20211220064829.17557-1-quic_wgong@quicinc.com>
@@ -63,8 +63,8 @@ X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211219_225040_737056_69B4229C 
-X-CRM114-Status: GOOD (  13.78  )
+X-CRM114-CacheID: sfid-20211219_225041_202492_1302E1D6 
+X-CRM114-Status: GOOD (  13.57  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,149 +81,143 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-This is to read variant from SMBIOS such as read from DT, the variant
-string will be used to one part of string which used to search board
-data from board-2.bin.
+Sometimes it has a variant value which read from DT or SMBIOS by
+ath11k, and meanwhile it does not have the matched board name in
+board-2.bin, then it will failed at boot up phase.
+
+Add fallback board name which removed variant value and search again
+in board-2.bin when failed with variant and try to load the board
+data again to increase boot up success rate.
+
+dmesg log after this patch:
+[169547.248472] ath11k_pci 0000:05:00.0: boot using board name 'bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=3374,qmi-chip-id=2,qmi-board-id=262,variant=test'
+[169547.248565] ath11k_pci 0000:05:00.0: boot firmware request ath11k/WCN6855/hw2.0/board-2.bin size 180324
+[169547.248568] ath11k_pci 0000:05:00.0: board name
+[169547.248570] ath11k_pci 0000:05:00.0: 00000000: 62 75 73 3d 70 63 69 2c 76 65 6e 64 6f 72 3d 31  bus=pci,vendor=1
+[169547.248571] ath11k_pci 0000:05:00.0: 00000010: 37 63 62 2c 64 65 76 69 63 65 3d 31 31 30 33 2c  7cb,device=1103,
+[169547.248572] ath11k_pci 0000:05:00.0: 00000020: 73 75 62 73 79 73 74 65 6d 2d 76 65 6e 64 6f 72  subsystem-vendor
+[169547.248574] ath11k_pci 0000:05:00.0: 00000030: 3d 31 37 63 62 2c 73 75 62 73 79 73 74 65 6d 2d  =17cb,subsystem-
+[169547.248575] ath11k_pci 0000:05:00.0: 00000040: 64 65 76 69 63 65 3d 33 33 37 34 2c 71 6d 69 2d  device=3374,qmi-
+[169547.248576] ath11k_pci 0000:05:00.0: 00000050: 63 68 69 70 2d 69 64 3d 32 2c 71 6d 69 2d 62 6f  chip-id=2,qmi-bo
+[169547.248577] ath11k_pci 0000:05:00.0: 00000060: 61 72 64 2d 69 64 3d 32 36 32                    ard-id=262
+[169547.248578] ath11k_pci 0000:05:00.0: board name
+[169547.248579] ath11k_pci 0000:05:00.0: 00000000: 62 75 73 3d 70 63 69 2c 76 65 6e 64 6f 72 3d 31  bus=pci,vendor=1
+[169547.248581] ath11k_pci 0000:05:00.0: 00000010: 37 63 62 2c 64 65 76 69 63 65 3d 31 31 30 33 2c  7cb,device=1103,
+[169547.248582] ath11k_pci 0000:05:00.0: 00000020: 73 75 62 73 79 73 74 65 6d 2d 76 65 6e 64 6f 72  subsystem-vendor
+[169547.248583] ath11k_pci 0000:05:00.0: 00000030: 3d 31 37 63 62 2c 73 75 62 73 79 73 74 65 6d 2d  =17cb,subsystem-
+[169547.248584] ath11k_pci 0000:05:00.0: 00000040: 64 65 76 69 63 65 3d 33 33 37 34 2c 71 6d 69 2d  device=3374,qmi-
+[169547.248585] ath11k_pci 0000:05:00.0: 00000050: 63 68 69 70 2d 69 64 3d 32 2c 71 6d 69 2d 62 6f  chip-id=2,qmi-bo
+[169547.248587] ath11k_pci 0000:05:00.0: 00000060: 61 72 64 2d 69 64 3d 32 36 36                    ard-id=266
+[169547.248588] ath11k_pci 0000:05:00.0: board name
+[169547.248589] ath11k_pci 0000:05:00.0: 00000000: 62 75 73 3d 70 63 69 2c 76 65 6e 64 6f 72 3d 31  bus=pci,vendor=1
+[169547.248590] ath11k_pci 0000:05:00.0: 00000010: 37 63 62 2c 64 65 76 69 63 65 3d 31 31 30 33 2c  7cb,device=1103,
+[169547.248591] ath11k_pci 0000:05:00.0: 00000020: 73 75 62 73 79 73 74 65 6d 2d 76 65 6e 64 6f 72  subsystem-vendor
+[169547.248592] ath11k_pci 0000:05:00.0: 00000030: 3d 31 37 63 62 2c 73 75 62 73 79 73 74 65 6d 2d  =17cb,subsystem-
+[169547.248594] ath11k_pci 0000:05:00.0: 00000040: 64 65 76 69 63 65 3d 33 33 37 34 2c 71 6d 69 2d  device=3374,qmi-
+[169547.248595] ath11k_pci 0000:05:00.0: 00000050: 63 68 69 70 2d 69 64 3d 31 38 2c 71 6d 69 2d 62  chip-id=18,qmi-b
+[169547.248596] ath11k_pci 0000:05:00.0: 00000060: 6f 61 72 64 2d 69 64 3d 32 36 36                 oard-id=266
+[169547.248597] ath11k_pci 0000:05:00.0: failed to fetch board data for bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=3374,qmi-chip-id=2,qmi-board-id=262,variant=test from ath11k/WCN6855/hw2.0/board-2.bin
+[169547.248476] ath11k_pci 0000:05:00.0: boot using board name 'bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=3374,qmi-chip-id=2,qmi-board-id=262'
+[169547.248634] ath11k_pci 0000:05:00.0: boot firmware request ath11k/WCN6855/hw2.0/board-2.bin size 180324
+[169547.248636] ath11k_pci 0000:05:00.0: board name
+[169547.248637] ath11k_pci 0000:05:00.0: 00000000: 62 75 73 3d 70 63 69 2c 76 65 6e 64 6f 72 3d 31  bus=pci,vendor=1
+[169547.248638] ath11k_pci 0000:05:00.0: 00000010: 37 63 62 2c 64 65 76 69 63 65 3d 31 31 30 33 2c  7cb,device=1103,
+[169547.248639] ath11k_pci 0000:05:00.0: 00000020: 73 75 62 73 79 73 74 65 6d 2d 76 65 6e 64 6f 72  subsystem-vendor
+[169547.248641] ath11k_pci 0000:05:00.0: 00000030: 3d 31 37 63 62 2c 73 75 62 73 79 73 74 65 6d 2d  =17cb,subsystem-
+[169547.248642] ath11k_pci 0000:05:00.0: 00000040: 64 65 76 69 63 65 3d 33 33 37 34 2c 71 6d 69 2d  device=3374,qmi-
+[169547.248643] ath11k_pci 0000:05:00.0: 00000050: 63 68 69 70 2d 69 64 3d 32 2c 71 6d 69 2d 62 6f  chip-id=2,qmi-bo
+[169547.248645] ath11k_pci 0000:05:00.0: 00000060: 61 72 64 2d 69 64 3d 32 36 32                    ard-id=262
+[169547.248646] ath11k_pci 0000:05:00.0: boot found match for name 'bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=3374,qmi-chip-id=2,qmi-board-id=262'
+[169547.248647] ath11k_pci 0000:05:00.0: boot found board data for 'bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=3374,qmi-chip-id=2,qmi-board-id=262'
+[169547.248649] ath11k_pci 0000:05:00.0: using board api 2
 
 Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
 
 Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
 ---
- drivers/net/wireless/ath/ath11k/core.c | 74 ++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/core.h | 11 ++++
- drivers/net/wireless/ath/ath11k/qmi.c  |  4 ++
- 3 files changed, 89 insertions(+)
+ drivers/net/wireless/ath/ath11k/core.c | 35 +++++++++++++++++++++-----
+ 1 file changed, 29 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 641c133563ab..30ae68ac7515 100644
+index 606e867c36ec..641c133563ab 100644
 --- a/drivers/net/wireless/ath/ath11k/core.c
 +++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -8,6 +8,9 @@
- #include <linux/remoteproc.h>
- #include <linux/firmware.h>
- #include <linux/of.h>
-+#include <linux/dmi.h>
-+#include <linux/ctype.h>
-+
- #include "core.h"
- #include "dp_tx.h"
- #include "dp_rx.h"
-@@ -460,6 +463,77 @@ int ath11k_core_resume(struct ath11k_base *ab)
+@@ -483,13 +483,13 @@ int ath11k_core_check_dt(struct ath11k_base *ab)
+ 	return 0;
  }
- EXPORT_SYMBOL(ath11k_core_resume);
  
-+static void ath11k_core_check_bdfext(const struct dmi_header *hdr, void *data)
-+{
-+	struct ath11k_base *ab = data;
-+	const char *bdf_ext;
-+	const char *magic = ATH11K_SMBIOS_BDF_EXT_MAGIC;
-+	u8 bdf_enabled;
-+	int i;
-+	size_t len;
-+
-+	if (ab->qmi.target.bdf_ext[0] != '\0')
-+		return;
-+
-+	if (hdr->type != ATH11K_SMBIOS_BDF_EXT_TYPE)
-+		return;
-+
-+	if (hdr->length != ATH11K_SMBIOS_BDF_EXT_LENGTH) {
-+		ath11k_dbg(ab, ATH11K_DBG_BOOT,
-+			   "wrong smbios bdf ext type length (%d).\n",
-+			   hdr->length);
-+		return;
-+	}
-+
-+	bdf_enabled = *((u8 *)hdr + ATH11K_SMBIOS_BDF_EXT_OFFSET);
-+	if (!bdf_enabled) {
-+		ath11k_dbg(ab, ATH11K_DBG_BOOT, "bdf variant name not found.\n");
-+		return;
-+	}
-+
-+	/* Only one string exists (per spec) */
-+	bdf_ext = (char *)hdr + hdr->length;
-+
-+	if (memcmp(bdf_ext, magic, strlen(magic)) != 0) {
-+		ath11k_dbg(ab, ATH11K_DBG_BOOT,
-+			   "bdf variant magic does not match.\n");
-+		return;
-+	}
-+
-+	len = strlen(bdf_ext);
-+	for (i = 0; i < len; i++) {
-+		if (!isascii(bdf_ext[i]) || !isprint(bdf_ext[i])) {
-+			ath11k_dbg(ab, ATH11K_DBG_BOOT,
-+				   "bdf variant name contains non ascii chars.\n");
-+			return;
-+		}
-+	}
-+
-+	/* Copy extension name without magic prefix */
-+	if (strscpy(ab->qmi.target.bdf_ext, bdf_ext + strlen(magic),
-+		    sizeof(ab->qmi.target.bdf_ext)) < 0) {
-+		ath11k_dbg(ab, ATH11K_DBG_BOOT,
-+			   "bdf variant string is longer than the buffer can accommodate (variant: %s)\n",
-+			    bdf_ext);
-+		return;
-+	}
-+
-+	ath11k_dbg(ab, ATH11K_DBG_BOOT,
-+		   "found and validated bdf variant smbios_type 0x%x bdf %s\n",
-+		   ATH11K_SMBIOS_BDF_EXT_TYPE, bdf_ext);
-+}
-+
-+int ath11k_core_check_smbios(struct ath11k_base *ab)
-+{
-+	ab->qmi.target.bdf_ext[0] = '\0';
-+	dmi_walk(ath11k_core_check_bdfext, ab);
-+
-+	if (ab->qmi.target.bdf_ext[0] == '\0')
-+		return -ENODATA;
-+
-+	return 0;
-+}
-+
- int ath11k_core_check_dt(struct ath11k_base *ab)
+-static int ath11k_core_create_board_name(struct ath11k_base *ab, char *name,
+-					 size_t name_len)
++static int __ath11k_core_create_board_name(struct ath11k_base *ab, char *name,
++					   size_t name_len, bool with_variant)
  {
- 	size_t max_len = sizeof(ab->qmi.target.bdf_ext);
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index bab3878a41a7..c0b8f5ab09c9 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -971,7 +971,18 @@ int ath11k_core_fetch_bdf(struct ath11k_base *ath11k,
- 			  struct ath11k_board_data *bd);
- void ath11k_core_free_bdf(struct ath11k_base *ab, struct ath11k_board_data *bd);
- int ath11k_core_check_dt(struct ath11k_base *ath11k);
-+/* SMBIOS type containing Board Data File Name Extension */
-+#define ATH11K_SMBIOS_BDF_EXT_TYPE 0xF8
+ 	/* strlen(',variant=') + strlen(ab->qmi.target.bdf_ext) */
+ 	char variant[9 + ATH11K_QMI_BDF_EXT_STR_LENGTH] = { 0 };
  
-+/* SMBIOS type structure length (excluding strings-set) */
-+#define ATH11K_SMBIOS_BDF_EXT_LENGTH 0x9
-+
-+/* Offset pointing to Board Data File Name Extension */
-+#define ATH11K_SMBIOS_BDF_EXT_OFFSET 0x8
-+
-+/* The magic used by QCA spec */
-+#define ATH11K_SMBIOS_BDF_EXT_MAGIC "BDF_"
-+int ath11k_core_check_smbios(struct ath11k_base *ab);
- void ath11k_core_halt(struct ath11k *ar);
- int ath11k_core_resume(struct ath11k_base *ab);
- int ath11k_core_suspend(struct ath11k_base *ab);
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index 3b9ba0e03a66..f84a83af145d 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.c
-+++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -2037,6 +2037,10 @@ static int ath11k_qmi_request_target_cap(struct ath11k_base *ab)
- 		    ab->qmi.target.fw_build_timestamp,
- 		    ab->qmi.target.fw_build_id);
+-	if (ab->qmi.target.bdf_ext[0] != '\0')
++	if (with_variant && ab->qmi.target.bdf_ext[0] != '\0')
+ 		scnprintf(variant, sizeof(variant), ",variant=%s",
+ 			  ab->qmi.target.bdf_ext);
  
-+	r = ath11k_core_check_smbios(ab);
-+	if (r)
-+		ath11k_dbg(ab, ATH11K_DBG_QMI, "SMBIOS bdf variant name not set.\n");
+@@ -519,6 +519,18 @@ static int ath11k_core_create_board_name(struct ath11k_base *ab, char *name,
+ 	return 0;
+ }
+ 
++static int ath11k_core_create_board_name(struct ath11k_base *ab, char *name,
++					 size_t name_len)
++{
++	return __ath11k_core_create_board_name(ab, name, name_len, true);
++}
 +
- 	r = ath11k_core_check_dt(ab);
- 	if (r)
- 		ath11k_dbg(ab, ATH11K_DBG_QMI, "DT bdf variant name not set.\n");
++static int ath11k_core_create_fallback_board_name(struct ath11k_base *ab, char *name,
++						  size_t name_len)
++{
++	return __ath11k_core_create_board_name(ab, name, name_len, false);
++}
++
+ const struct firmware *ath11k_core_firmware_request(struct ath11k_base *ab,
+ 						    const char *file)
+ {
+@@ -722,7 +734,7 @@ static int ath11k_core_fetch_board_data_api_n(struct ath11k_base *ab,
+ 
+ out:
+ 	if (!bd->data || !bd->len) {
+-		ath11k_err(ab,
++		ath11k_dbg(ab, ATH11K_DBG_BOOT,
+ 			   "failed to fetch board data for %s from %s\n",
+ 			   boardname, filepath);
+ 		ret = -ENODATA;
+@@ -752,10 +764,10 @@ static int ath11k_core_fetch_board_data_api_1(struct ath11k_base *ab,
+ #define BOARD_NAME_SIZE 200
+ int ath11k_core_fetch_bdf(struct ath11k_base *ab, struct ath11k_board_data *bd)
+ {
+-	char boardname[BOARD_NAME_SIZE];
++	char boardname[BOARD_NAME_SIZE], fallback_boardname[BOARD_NAME_SIZE];
+ 	int ret;
+ 
+-	ret = ath11k_core_create_board_name(ab, boardname, BOARD_NAME_SIZE);
++	ret = ath11k_core_create_board_name(ab, boardname, sizeof(boardname));
+ 	if (ret) {
+ 		ath11k_err(ab, "failed to create board name: %d", ret);
+ 		return ret;
+@@ -766,6 +778,17 @@ int ath11k_core_fetch_bdf(struct ath11k_base *ab, struct ath11k_board_data *bd)
+ 	if (!ret)
+ 		goto success;
+ 
++	ret = ath11k_core_create_fallback_board_name(ab, fallback_boardname,
++						     sizeof(fallback_boardname));
++	if (ret) {
++		ath11k_err(ab, "failed to create fallback board name: %d", ret);
++		return ret;
++	}
++
++	ret = ath11k_core_fetch_board_data_api_n(ab, bd, fallback_boardname);
++	if (!ret)
++		goto success;
++
+ 	ab->bd_api = 1;
+ 	ret = ath11k_core_fetch_board_data_api_1(ab, bd);
+ 	if (ret) {
 -- 
 2.31.1
 
