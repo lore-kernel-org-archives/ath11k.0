@@ -4,67 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E000C433EF
-	for <ath11k@archiver.kernel.org>; Mon, 20 Dec 2021 06:50:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FE8BC433F5
+	for <ath11k@archiver.kernel.org>; Mon, 20 Dec 2021 10:03:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2S1WGWIFn2FVqEG7hUtIr13LIsF8mi3ZA04lYd4QFMQ=; b=tVEoNUq42HcPlB
-	0AZdw2Hdckg/i3NzNvqgrJ5cbMiaIEvggNJHBYBFVMGyuZ1FbYdXKEYYb3ruW2wcmjJxl+BwgKpA0
-	LqWd7r3xdGeDQlqj+vulRTy91b20p3sszT98KdIhyTBkWjqdh4DJNf89mIq3HZyl/pPqNRL62dDJh
-	CIwZfB58A05LKSX36TQVApK8Y76BUJh5i+N6Woql7pCMHPlwJF/qllFzUQNdNO6m1LJAEGhOMPsCG
-	OTQXdbs9hhWLgC6S+r07l3sa4J40LfGr+5X5AizGqlSz/JdsLvhhHsANxyT1iFxU+ay7EVDKY285d
-	oe2TF5WEGC0ZmDcK84Ng==;
+	List-Owner; bh=JYQil72x7TLb6AEw3DaArQrfBcAqMkXjb8HE/FBo27g=; b=FCs90Jl3fCsQ89
+	RAgTyd7vKyVNvDOk/z0Gy2eNUkU4lWHwY482kDQBHJ1zHf081TSVQZsaVI6etpvhgvssynUFcaa59
+	2iwHZ/qC6KWU6fAUS45Q+emCpK5Nnt/qtZnDxS0/gh6FpbPEFL4neFyMbl/aULawQ7s6CskA29k+B
+	Zx6f9QpvmdL4klH3Gyjd2MpdsQyyuYYb+Ocur0hy7C+dCFmR93xvvwGHLZR6966JJZqTcsQLOdUWO
+	RFIq1nU6jr0SJInAX7slWOSdFvvlXtW2Q5MvAx/drEGDpNdmIEeQGXHTdhWWrHE1cSspREx7kM3Ih
+	5Sv3kuh13DJCkfnA8o/Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mzCVQ-000tmi-9q; Mon, 20 Dec 2021 06:50:44 +0000
-Received: from alexa-out.qualcomm.com ([129.46.98.28])
+	id 1mzFVq-001Yq7-Ve; Mon, 20 Dec 2021 10:03:22 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mzCVN-000tk7-25
- for ath11k@lists.infradead.org; Mon, 20 Dec 2021 06:50:43 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1639983041; x=1671519041;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=G8ajBTprFQidwp5a2gjM36+1/HezLOilEKpl5LUag6k=;
- b=F/OWzDEKC5KJl758C5gvIbZAcSWX4JMpi8FB3LIAEzEeZvYMY1SAEcSc
- cgyzUe4dPTxiKplQFUOaJBdf0r0jqKXWWwd2ociRdWl+V0LJJwJvWCk0W
- aaVw8nRAzTeKP2t1C7qLiSLqni9gIqkVplIWNg3H1P2HRr2+NkGWVjUeH k=;
-Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
- by alexa-out.qualcomm.com with ESMTP; 19 Dec 2021 22:50:38 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg08-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2021 22:50:38 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Sun, 19 Dec 2021 22:50:37 -0800
-Received: from wgong-HP3-Z230-SFF-Workstation.qca.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Sun, 19 Dec 2021 22:50:36 -0800
-From: Wen Gong <quic_wgong@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, <quic_wgong@quicinc.com>
-Subject: [PATCH v5 1/2] ath11k: add fallback board name without variant while
- searching board-2.bin
-Date: Mon, 20 Dec 2021 01:48:28 -0500
-Message-ID: <20211220064829.17557-2-quic_wgong@quicinc.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20211220064829.17557-1-quic_wgong@quicinc.com>
-References: <20211220064829.17557-1-quic_wgong@quicinc.com>
+ id 1mzFVn-001Yp5-Ry
+ for ath11k@lists.infradead.org; Mon, 20 Dec 2021 10:03:21 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id E5507B80DFB;
+ Mon, 20 Dec 2021 10:03:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C8EAC36AE8;
+ Mon, 20 Dec 2021 10:03:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1639994596;
+ bh=7q960TtBQtLEjZcEsfDLduz3/FfWr8tXOE3lKEdXX1M=;
+ h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+ b=kuhhWJpb0b72RY1yt4eRHsBdWpf0jg2+81JpEB3EE4gMc/zov0YyuFsYEmlEQO8DT
+ leZU1W08uJJwH3gQdPflKmq0ppwnaTDuDhtlV9zDlEG5UDwcPKoPzwxQsTXa8MbXym
+ U4GnikOUrgpLacSKbe1KUnbqbDHF0TNzaLkiv3VvV5iWrTwrJLQPqAH4xu8ZzSJ9dy
+ QCE6dG+BFuoJ6Z3SSCDDQaNHDRRrjVtbrF5BuIIUhDoi79meuu1yfEgAxmiJJmMG7u
+ F0oVn1hPkdXsKT4Omu5ts7dHGGs5QF6fLIkf26UOFDeYL2yy7ZW1pQeuloxsi2cj5p
+ PagMjsMJf588A==
+From: Kalle Valo <kvalo@kernel.org>
+To: Sven Eckelmann <sven@narfation.org>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ quic_cjhuang@quicinc.com, Carl Huang <cjhuang@codeaurora.org>
+Subject: Re: [PATCH 6/6] ath11k: support GTK rekey offload
+References: <20211011193750.4891-1-cjhuang@codeaurora.org>
+ <87lf0tydad.fsf@codeaurora.org>
+ <4f28496abae7743ab2a9fa7150c5d64c@codeaurora.org>
+ <2102838.219ycuhFCz@sven-l14>
+Date: Mon, 20 Dec 2021 12:03:08 +0200
+In-Reply-To: <2102838.219ycuhFCz@sven-l14> (Sven Eckelmann's message of "Sat, 
+ 18 Dec 2021 09:37:02 +0100")
+Message-ID: <871r27bnkz.fsf@codeaurora.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211219_225041_202492_1302E1D6 
-X-CRM114-Status: GOOD (  13.57  )
+X-CRM114-CacheID: sfid-20211220_020320_208019_09E6864F 
+X-CRM114-Status: GOOD (  25.98  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,146 +76,93 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Sometimes it has a variant value which read from DT or SMBIOS by
-ath11k, and meanwhile it does not have the matched board name in
-board-2.bin, then it will failed at boot up phase.
+Sven Eckelmann <sven@narfation.org> writes:
 
-Add fallback board name which removed variant value and search again
-in board-2.bin when failed with variant and try to load the board
-data again to increase boot up success rate.
+>> On Thursday, 9 December 2021 17:05:14 CET Kalle Valo wrote:
+>>> Isn't ath11k WMI commands and events supposed to be in CPU
+>>> endian and the firmware automatically translates them if CPU is little
+>>> or big endian? 
+> [...]
+> On Friday, 17 December 2021 12:04:45 CET Carl Huang wrote:
+>> Both cpu and firmware are supposed to be little endian in ath11k.
+>
+> I hope this statement is incorrect. But if it isn't:
+>
+> You cannot limit a non-architecture dependent driver to be only used by little 
+> endian CPUs. This would be grave bug in ath11k.
+>
+> If your firmware requires wmi messages and similar things in little endian 
+> then you have to mark types correctly as big/little endian. E.g. __le32 
+> instead of u32. And then you have to convert everything manually with 
+> cpu_to_le32 and so on. See the ath10k code for examples.
+>
+> Tools like sparse can assist you in your search for problematic places when 
+> your kernel has the __CHECK_ENDIAN__ related code activated. This is the 
+> default for kernels >= 4.10.
 
-dmesg log after this patch:
-[169547.248472] ath11k_pci 0000:05:00.0: boot using board name 'bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=3374,qmi-chip-id=2,qmi-board-id=262,variant=test'
-[169547.248565] ath11k_pci 0000:05:00.0: boot firmware request ath11k/WCN6855/hw2.0/board-2.bin size 180324
-[169547.248568] ath11k_pci 0000:05:00.0: board name
-[169547.248570] ath11k_pci 0000:05:00.0: 00000000: 62 75 73 3d 70 63 69 2c 76 65 6e 64 6f 72 3d 31  bus=pci,vendor=1
-[169547.248571] ath11k_pci 0000:05:00.0: 00000010: 37 63 62 2c 64 65 76 69 63 65 3d 31 31 30 33 2c  7cb,device=1103,
-[169547.248572] ath11k_pci 0000:05:00.0: 00000020: 73 75 62 73 79 73 74 65 6d 2d 76 65 6e 64 6f 72  subsystem-vendor
-[169547.248574] ath11k_pci 0000:05:00.0: 00000030: 3d 31 37 63 62 2c 73 75 62 73 79 73 74 65 6d 2d  =17cb,subsystem-
-[169547.248575] ath11k_pci 0000:05:00.0: 00000040: 64 65 76 69 63 65 3d 33 33 37 34 2c 71 6d 69 2d  device=3374,qmi-
-[169547.248576] ath11k_pci 0000:05:00.0: 00000050: 63 68 69 70 2d 69 64 3d 32 2c 71 6d 69 2d 62 6f  chip-id=2,qmi-bo
-[169547.248577] ath11k_pci 0000:05:00.0: 00000060: 61 72 64 2d 69 64 3d 32 36 32                    ard-id=262
-[169547.248578] ath11k_pci 0000:05:00.0: board name
-[169547.248579] ath11k_pci 0000:05:00.0: 00000000: 62 75 73 3d 70 63 69 2c 76 65 6e 64 6f 72 3d 31  bus=pci,vendor=1
-[169547.248581] ath11k_pci 0000:05:00.0: 00000010: 37 63 62 2c 64 65 76 69 63 65 3d 31 31 30 33 2c  7cb,device=1103,
-[169547.248582] ath11k_pci 0000:05:00.0: 00000020: 73 75 62 73 79 73 74 65 6d 2d 76 65 6e 64 6f 72  subsystem-vendor
-[169547.248583] ath11k_pci 0000:05:00.0: 00000030: 3d 31 37 63 62 2c 73 75 62 73 79 73 74 65 6d 2d  =17cb,subsystem-
-[169547.248584] ath11k_pci 0000:05:00.0: 00000040: 64 65 76 69 63 65 3d 33 33 37 34 2c 71 6d 69 2d  device=3374,qmi-
-[169547.248585] ath11k_pci 0000:05:00.0: 00000050: 63 68 69 70 2d 69 64 3d 32 2c 71 6d 69 2d 62 6f  chip-id=2,qmi-bo
-[169547.248587] ath11k_pci 0000:05:00.0: 00000060: 61 72 64 2d 69 64 3d 32 36 36                    ard-id=266
-[169547.248588] ath11k_pci 0000:05:00.0: board name
-[169547.248589] ath11k_pci 0000:05:00.0: 00000000: 62 75 73 3d 70 63 69 2c 76 65 6e 64 6f 72 3d 31  bus=pci,vendor=1
-[169547.248590] ath11k_pci 0000:05:00.0: 00000010: 37 63 62 2c 64 65 76 69 63 65 3d 31 31 30 33 2c  7cb,device=1103,
-[169547.248591] ath11k_pci 0000:05:00.0: 00000020: 73 75 62 73 79 73 74 65 6d 2d 76 65 6e 64 6f 72  subsystem-vendor
-[169547.248592] ath11k_pci 0000:05:00.0: 00000030: 3d 31 37 63 62 2c 73 75 62 73 79 73 74 65 6d 2d  =17cb,subsystem-
-[169547.248594] ath11k_pci 0000:05:00.0: 00000040: 64 65 76 69 63 65 3d 33 33 37 34 2c 71 6d 69 2d  device=3374,qmi-
-[169547.248595] ath11k_pci 0000:05:00.0: 00000050: 63 68 69 70 2d 69 64 3d 31 38 2c 71 6d 69 2d 62  chip-id=18,qmi-b
-[169547.248596] ath11k_pci 0000:05:00.0: 00000060: 6f 61 72 64 2d 69 64 3d 32 36 36                 oard-id=266
-[169547.248597] ath11k_pci 0000:05:00.0: failed to fetch board data for bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=3374,qmi-chip-id=2,qmi-board-id=262,variant=test from ath11k/WCN6855/hw2.0/board-2.bin
-[169547.248476] ath11k_pci 0000:05:00.0: boot using board name 'bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=3374,qmi-chip-id=2,qmi-board-id=262'
-[169547.248634] ath11k_pci 0000:05:00.0: boot firmware request ath11k/WCN6855/hw2.0/board-2.bin size 180324
-[169547.248636] ath11k_pci 0000:05:00.0: board name
-[169547.248637] ath11k_pci 0000:05:00.0: 00000000: 62 75 73 3d 70 63 69 2c 76 65 6e 64 6f 72 3d 31  bus=pci,vendor=1
-[169547.248638] ath11k_pci 0000:05:00.0: 00000010: 37 63 62 2c 64 65 76 69 63 65 3d 31 31 30 33 2c  7cb,device=1103,
-[169547.248639] ath11k_pci 0000:05:00.0: 00000020: 73 75 62 73 79 73 74 65 6d 2d 76 65 6e 64 6f 72  subsystem-vendor
-[169547.248641] ath11k_pci 0000:05:00.0: 00000030: 3d 31 37 63 62 2c 73 75 62 73 79 73 74 65 6d 2d  =17cb,subsystem-
-[169547.248642] ath11k_pci 0000:05:00.0: 00000040: 64 65 76 69 63 65 3d 33 33 37 34 2c 71 6d 69 2d  device=3374,qmi-
-[169547.248643] ath11k_pci 0000:05:00.0: 00000050: 63 68 69 70 2d 69 64 3d 32 2c 71 6d 69 2d 62 6f  chip-id=2,qmi-bo
-[169547.248645] ath11k_pci 0000:05:00.0: 00000060: 61 72 64 2d 69 64 3d 32 36 32                    ard-id=262
-[169547.248646] ath11k_pci 0000:05:00.0: boot found match for name 'bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=3374,qmi-chip-id=2,qmi-board-id=262'
-[169547.248647] ath11k_pci 0000:05:00.0: boot found board data for 'bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=3374,qmi-chip-id=2,qmi-board-id=262'
-[169547.248649] ath11k_pci 0000:05:00.0: using board api 2
+This is what I would have preferred to do in ath11k as well but a lot of
+people preferred the firmware conversion method as the proprietary
+driver uses the same, so I yielded. ath11k should work on big endian
+cpus, but to my knowledge nobody has tested it so I do not know if it
+really works or not. If someone can test please do let me know, I am
+very curious to know if it really works.
 
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+ath11k enables the firmware swap feature like this:
 
-Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/core.c | 35 +++++++++++++++++++++-----
- 1 file changed, 29 insertions(+), 6 deletions(-)
+/* Host software's Copy Engine configuration. */
+#ifdef __BIG_ENDIAN
+#define CE_ATTR_FLAGS CE_ATTR_BYTE_SWAP_DATA
+#else
+#define CE_ATTR_FLAGS 0
+#endif
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 606e867c36ec..641c133563ab 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -483,13 +483,13 @@ int ath11k_core_check_dt(struct ath11k_base *ab)
- 	return 0;
- }
- 
--static int ath11k_core_create_board_name(struct ath11k_base *ab, char *name,
--					 size_t name_len)
-+static int __ath11k_core_create_board_name(struct ath11k_base *ab, char *name,
-+					   size_t name_len, bool with_variant)
- {
- 	/* strlen(',variant=') + strlen(ab->qmi.target.bdf_ext) */
- 	char variant[9 + ATH11K_QMI_BDF_EXT_STR_LENGTH] = { 0 };
- 
--	if (ab->qmi.target.bdf_ext[0] != '\0')
-+	if (with_variant && ab->qmi.target.bdf_ext[0] != '\0')
- 		scnprintf(variant, sizeof(variant), ",variant=%s",
- 			  ab->qmi.target.bdf_ext);
- 
-@@ -519,6 +519,18 @@ static int ath11k_core_create_board_name(struct ath11k_base *ab, char *name,
- 	return 0;
- }
- 
-+static int ath11k_core_create_board_name(struct ath11k_base *ab, char *name,
-+					 size_t name_len)
-+{
-+	return __ath11k_core_create_board_name(ab, name, name_len, true);
-+}
-+
-+static int ath11k_core_create_fallback_board_name(struct ath11k_base *ab, char *name,
-+						  size_t name_len)
-+{
-+	return __ath11k_core_create_board_name(ab, name, name_len, false);
-+}
-+
- const struct firmware *ath11k_core_firmware_request(struct ath11k_base *ab,
- 						    const char *file)
- {
-@@ -722,7 +734,7 @@ static int ath11k_core_fetch_board_data_api_n(struct ath11k_base *ab,
- 
- out:
- 	if (!bd->data || !bd->len) {
--		ath11k_err(ab,
-+		ath11k_dbg(ab, ATH11K_DBG_BOOT,
- 			   "failed to fetch board data for %s from %s\n",
- 			   boardname, filepath);
- 		ret = -ENODATA;
-@@ -752,10 +764,10 @@ static int ath11k_core_fetch_board_data_api_1(struct ath11k_base *ab,
- #define BOARD_NAME_SIZE 200
- int ath11k_core_fetch_bdf(struct ath11k_base *ab, struct ath11k_board_data *bd)
- {
--	char boardname[BOARD_NAME_SIZE];
-+	char boardname[BOARD_NAME_SIZE], fallback_boardname[BOARD_NAME_SIZE];
- 	int ret;
- 
--	ret = ath11k_core_create_board_name(ab, boardname, BOARD_NAME_SIZE);
-+	ret = ath11k_core_create_board_name(ab, boardname, sizeof(boardname));
- 	if (ret) {
- 		ath11k_err(ab, "failed to create board name: %d", ret);
- 		return ret;
-@@ -766,6 +778,17 @@ int ath11k_core_fetch_bdf(struct ath11k_base *ab, struct ath11k_board_data *bd)
- 	if (!ret)
- 		goto success;
- 
-+	ret = ath11k_core_create_fallback_board_name(ab, fallback_boardname,
-+						     sizeof(fallback_boardname));
-+	if (ret) {
-+		ath11k_err(ab, "failed to create fallback board name: %d", ret);
-+		return ret;
-+	}
-+
-+	ret = ath11k_core_fetch_board_data_api_n(ab, bd, fallback_boardname);
-+	if (!ret)
-+		goto success;
-+
- 	ab->bd_api = 1;
- 	ret = ath11k_core_fetch_board_data_api_1(ab, bd);
- 	if (ret) {
+Also grep for BIG_ENDIAN, few functions have that.
+
+> If Kalle' statement is true that the firmware takes care of endianness 
+> translation of WMI messages to host endianness, then your code would still be 
+> questionable:
+>
+>>> +       /* supplicant expects big-endian replay counter */
+>>> +       replay_ctr = cpu_to_be64(le64_to_cpup((__le64 
+>>> *)ev->replay_counter));
+>
+> Why isn't the firmware taking care of the conversion at that place?
+>
+> Why are you defining it as `u8 replay_counter[GTK_REPLAY_COUNTER_BYTES];` in 
+> the struct instead of using `__le64 replay_counter;`?
+>
+> What ensures that this is value is 64 bit aligned in memory? Wouldn't it be 
+> more correct to (see above) use
+>
+>     replay_ctr = cpu_to_be64(get_unaligned_le64(ev->replay_counter));
+
+Yeah, if the host does the conversion we would use __le64. But at the
+moment the firmware does the conversion so I think we should use
+ath11k_ce_byte_swap():
+
+/* For Big Endian Host, Copy Engine byte_swap is enabled
+ * When Copy Engine does byte_swap, need to byte swap again for the
+ * Host to get/put buffer content in the correct byte order
+ */
+void ath11k_ce_byte_swap(void *mem, u32 len)
+{
+	int i;
+
+	if (IS_ENABLED(CONFIG_CPU_BIG_ENDIAN)) {
+		if (!mem)
+			return;
+
+		for (i = 0; i < (len / 4); i++) {
+			*(u32 *)mem = swab32(*(u32 *)mem);
+			mem += 4;
+		}
+	}
+}
+
 -- 
-2.31.1
+https://patchwork.kernel.org/project/linux-wireless/list/
 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
