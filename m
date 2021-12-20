@@ -4,59 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A5D2C433FE
-	for <ath11k@archiver.kernel.org>; Mon, 20 Dec 2021 18:29:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D2AFC433F5
+	for <ath11k@archiver.kernel.org>; Mon, 20 Dec 2021 18:29:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
 	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=RERQ/dWIhciIEKiDaVbYlrTzmqD1PHjEFZRu/U9odFg=; b=ccHaTFw1BC7nHi
-	FTk2uhBp8qB3Y9P1NPJG53GnSA54dkFO9zBibxtwJFppt8oSveq7djKPml8WbIRboXBEzbPikX/MO
-	aKmBpTlgSSUAGvyhCmiRo8LGL0UBx/LYxuyeLdzQjljtelh8Pjz4rg31PWnL+Ldag5vaai5NkpFAx
-	RtHi/BXthvR8OPTKlPrbtBZMMkTVJwLJEWHWbkM2OM+5ODiUGI++DJky3GqYgn+mgEpDlIlYmZJUf
-	sRRkIt/h211wnDTWrj4C5r5JTs+suOyFg7nlWIpa03amHgDKN71pOXDt5gfVhPJ75tN2ewohZB5OG
-	I4/futH3tXgTdha4LVxw==;
+	List-Owner; bh=9Biacw0DVWVQgziHx/0r8yNVY+0GgmbTii642zwIb8Y=; b=ghHTcxYmPb/CxV
+	3JPENqj22/jL6OpSrYI56APeUPBl/5Qpl3mxFXULL/uXT4hStxLxCV7CLCouEK4PiC5PO7Q1x/uK7
+	ZP0ohxjGxaLJKv+19ZyIY84TI8cSaKFEh49B5Qmh9NA+/5Rd82vMDWs/bp6SJV6KiUcCzONKI63sb
+	cM3ZACyJlZBsvxGHVHRMTKp9togZ3GRo3TZphboEgawelPC8miiXuRMuF6TLu3BEhSFXt17foP7ny
+	OTb7ch7Ns/YEp3YqmM2k7h1RhClook0jIsDCHjjq5K2VmX87FKZPknDcKIM++nAhr2ZDydK/cyyVq
+	8XDsM8kkwktOoZyqPO7g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mzNPR-003nV0-Sr; Mon, 20 Dec 2021 18:29:17 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1mzNPh-003nZP-D8; Mon, 20 Dec 2021 18:29:33 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mzNPP-003nU2-3k
- for ath11k@lists.infradead.org; Mon, 20 Dec 2021 18:29:16 +0000
+ id 1mzNPe-003nYb-PW
+ for ath11k@lists.infradead.org; Mon, 20 Dec 2021 18:29:32 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id C186BB8105C;
- Mon, 20 Dec 2021 18:29:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92642C36AEB;
- Mon, 20 Dec 2021 18:29:10 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 49D0C611D6;
+ Mon, 20 Dec 2021 18:29:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC392C36AEB;
+ Mon, 20 Dec 2021 18:29:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1640024951;
- bh=x2D/e90keyKyOypZN4KNCx5gAdnARqtaazKowqro98s=;
+ s=k20201202; t=1640024969;
+ bh=XzQ14ZCElx219r+i7Dfr8dEqwHhqMpHHYRUqDkwz+F0=;
  h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
- b=UnT1M3PF0TIz/nGR2rFLD5qHlqEFIw74L63SX7NuimIvbsQMW9MMIuRj6X9TDhcx0
- SIAdOTfgrS9OHZ2RE+32+VoUofHiEJ90LCfRLMkndi77+PZNBXcJ6V0wK+Y9q+ma6j
- xrRy98TEIAoOWDWAxgfxHkCgrIeRn7Zth1BrchNYOnMNlcwaCdJy0ju//94ZByFUlN
- +Ho0x1+/0nUIAYckpXxzBTYO3ncrmEN1f4RylwX3d/buS4A+B1clnTE1RdjtHZ6Pby
- pDRIOQqaZeWt37j/HaR1jx4KjX/5VxAgmBzjN/YLMqxY4beYh8k9jl+KoLgyaUGGa8
- MQrL+6xq8JBNw==
+ b=Lf6R8KLlo3qcuwJdBweaOmhRhEk5GU1trlmgoD9yU3ZKbtyp0CQun8c2Vu99JzDYl
+ XdFVcSS+pYkdRCm+rz67Q6GX9nUryKEtHWhW0uEi6JGsYT6bd5x5ma5FAt6IPomnVd
+ 6hp7f41wyXI0x/bFewz5N18/iKPufgy1DNu6ImH8/y4IGI5ukNx4bi7PxwP+2FJ59z
+ At+zuYoA0gApTuT1gpHDn6HKx24+fEoMZ8VD2duns9FnzX7QtPLMODYZHm1ZCzxBI3
+ 5VKendNCcfiT6Tx7dIdHDD1K+1OhsiDW6Y8LXx/ivxaUmFyljntE3F0IQaamiRJ2ZT
+ KzC4CFbwVOFaQ==
 MIME-Version: 1.0
-Subject: Re: [PATCH v3] ath11k: report tx bitrate for iw wlan station dump
+Subject: Re: [PATCH v2] ath11k: add support for hardware rfkill for QCA6390
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20211217093722.5739-1-quic_wgong@quicinc.com>
-References: <20211217093722.5739-1-quic_wgong@quicinc.com>
+In-Reply-To: <20211217102334.14907-1-quic_wgong@quicinc.com>
+References: <20211217102334.14907-1-quic_wgong@quicinc.com>
 To: Wen Gong <quic_wgong@quicinc.com>
 Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
  <quic_wgong@quicinc.com>
 User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <164002494893.8180.8615133352100294578.kvalo@kernel.org>
-Date: Mon, 20 Dec 2021 18:29:10 +0000 (UTC)
+Message-ID: <164002496714.8180.10579865678538990827.kvalo@kernel.org>
+Date: Mon, 20 Dec 2021 18:29:28 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211220_102915_331041_8B77B9B9 
-X-CRM114-Status: UNSURE (   9.74  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20211220_102930_904828_AA2CACC7 
+X-CRM114-Status: GOOD (  11.21  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,20 +74,16 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 Wen Gong <quic_wgong@quicinc.com> wrote:
 
-> HTT_T2H_MSG_TYPE_PPDU_STATS_IND is a message which include the ppdu
-> info, currently it is not report from firmware for ath11k, then the
-> tx bitrate of "iw wlan0 station dump" always show an invalid value
-> "tx bitrate: 6.0 MBit/s".
+> When hardware rfkill is enabled in the firmware it will report the
+> capability via using WMI_SYS_CAP_INFO_RFKILL bit in the WMI_SERVICE_READY
+> event to the host. ath11k will check the capability, and if it is enabled then
+> ath11k will set the GPIO information to firmware using WMI_PDEV_SET_PARAM. When
+> the firmware detects hardware rfkill is enabled by the user, it will report it
+> via WMI_RFKILL_STATE_CHANGE_EVENTID. Once ath11k receives the event it will
+> send wmi command WMI_PDEV_SET_PARAM to the firmware and also notifies cfg80211.
 > 
-> To address the issue, this is to parse the info of tx complete report
-> from firmware and indicate the tx rate to mac80211.
-> 
-> After that, "iw wlan0 station dump" show the correct tx bit rate such
-> as:
-> tx bitrate: 78.0 MBit/s MCS 12
-> tx bitrate: 144.4 MBit/s VHT-MCS 7 short GI VHT-NSS 2
-> tx bitrate: 286.7 MBit/s HE-MCS 11 HE-NSS 2 HE-GI 0 HE-DCM 0
-> tx bitrate: 1921.5 MBit/s 160MHz HE-MCS 9 HE-NSS 2 HE-GI 0 HE-DCM 0
+> This only enable rfkill feature for QCA6390, rfkill_pin is all initialized to 0
+> for other chips in ath11k_hw_params.
 > 
 > Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
 > 
@@ -97,10 +92,10 @@ Wen Gong <quic_wgong@quicinc.com> wrote:
 
 Patch applied to ath-next branch of ath.git, thanks.
 
-1b8bb94c0612 ath11k: report tx bitrate for iw wlan station dump
+ec038c6127fa ath11k: add support for hardware rfkill for QCA6390
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20211217093722.5739-1-quic_wgong@quicinc.com/
+https://patchwork.kernel.org/project/linux-wireless/patch/20211217102334.14907-1-quic_wgong@quicinc.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
