@@ -4,59 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 301CDC433F5
-	for <ath11k@archiver.kernel.org>; Mon, 20 Dec 2021 16:08:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3634EC433F5
+	for <ath11k@archiver.kernel.org>; Mon, 20 Dec 2021 17:13:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
-	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BPWnL+m6DbJ5PXTys9kOJFCRPMzC/sED9JBkWp+B51A=; b=2BPKEz1fDuqgDX
-	BCGImTCXSE842qFGdiBX/vqtEj5xCEH/c/X67ZRRThBkUOGHX6qsDWqgqYoYuQIpgVmLodeZNirvH
-	YZQCpdr8qOFSdEi0LfHKl3Wk7ss05PWpBcrwDXHjJxR35pQXmM3PJJMEPEu8OVCb8agG29Pkzyhsn
-	u9tEsNpYAajrIhMYFdj06FGE7ZYDr8TsMFkUu1mImC4gGzYJbV08mhTEDHOQLW8OWieWvpzjJZXe+
-	x5AWnQypliqAdQ6fQfrLliWrkKJNzt0ijATUatBjouH+pXbRo+LOTDCfyQAwVTDXdePJKkpjGEIdJ
-	2EVpg+o8sHLYL87OybzA==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=NuTCR0rq3SzWDUyp4eIId+yujiXpsUn/xesm1g/PitE=; b=LAgViRTYEnUchQ
+	PSRZlAeR4JKmrDtEa3VnpI9mLyFoHuEkmLVcRgv/CVJ3+UybuYcBorrP+YSltSWKqdyblErddLuwM
+	SAGVIgvhTWzdaCmoeppZCumzoRJYUhDQH+XhLMl2pXWPZnAjx7iK5aXze9/uQZ1QFj697mnty1yGT
+	yQHw+xZZDfZbNDn5cQt7YGPAcngpGBV+u4hHxfoAxngoKxpUX5kYokepVW0avMQuw+AvRKKjoD+Qz
+	7w8VMLILpy+/jbYM9DHRw8UNwcrLmeXWKfs8bP6Xhf6ZGR2c6DHKbIldIP4efx2OqEPFOFVkB0YPY
+	G08x/qqMOdz2JcCrViRg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mzLDJ-003E7G-9x; Mon, 20 Dec 2021 16:08:37 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1mzME0-003VKe-D2; Mon, 20 Dec 2021 17:13:24 +0000
+Received: from mga12.intel.com ([192.55.52.136])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mzLDG-003E5t-Be
- for ath11k@lists.infradead.org; Mon, 20 Dec 2021 16:08:36 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id CA993611B3;
- Mon, 20 Dec 2021 16:08:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44C0BC36AE2;
- Mon, 20 Dec 2021 16:08:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1640016513;
- bh=xBLIC2+2PHS7NbiEgn0Ckl21rDrfR+QlS+oRTRT4Orw=;
- h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
- b=PbaJLNsDb3h6SCjhyiGw6qvnT+Ady5ATpQ5yWQ+mobltHn+OwPVYc7A+mRJFq/x0C
- TVfjJ2alMsuOhewMyErjKjIQTgqRmZmHR730+64bBYIsENTR4CBppa2afolcNTwD1L
- 7Fv/+mlFrSzcBooPypizR7oEEE+i7NGBfmUl+f6E5WzErZSnII9jSi9cQeELmB31UU
- p05rz08QsKrfKz+Z++cBh5BYD3FQXDqeSCoHuBennfIPP9dPFuTByUEcnBTr2UGXmM
- g5zCVhZMebnpCTkbFSK3oqUX/FgObWcJ62yGNw4IhwHtJsjUhCFKp3Elhhw9xRfDSV
- 9h0PwpzhVrw6g==
+ id 1mzMDu-003VGO-4e
+ for ath11k@lists.infradead.org; Mon, 20 Dec 2021 17:13:21 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1640020398; x=1671556398;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=MqkVzxr9XhGz20O9djEWhlXF6L01WiGy/1aPYksMFb0=;
+ b=dN1sxUPVYmyw7zfJVbsQXzU6valwlzy1fhNFp9nLJBe8PM7EW3CdM1R0
+ 0Hs6spA8kq9QqM8/+46HYLHiVkAvy7WBNaZx5UZBuKHmJuaf6UWpkpOBj
+ g8ZVvjomdAc+tbzugfMa4G4J/yApfd+edfHSBjhaVsK+JfJ98OevnY0FS
+ M5rBxaY7qglapFixPO/TAiRIMvu7REc0gXrw45I8gygwtgGDdI2O0b4nA
+ DNTfFw0b6elfOwaXBrh9jh74ByX7q+3DepCS4q6paRfccPDXExiVttIvJ
+ m1/7qcOB/hV/V5CI8x8mWlvvDHwfMhoBmUt64T/mxUnk6GYSllDZo1gxx g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10203"; a="220239501"
+X-IronPort-AV: E=Sophos;i="5.88,221,1635231600"; d="scan'208";a="220239501"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2021 09:13:17 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,221,1635231600"; d="scan'208";a="569923728"
+Received: from lkp-server02.sh.intel.com (HELO 9f38c0981d9f) ([10.239.97.151])
+ by fmsmga008.fm.intel.com with ESMTP; 20 Dec 2021 09:13:14 -0800
+Received: from kbuild by 9f38c0981d9f with local (Exim 4.92)
+ (envelope-from <lkp@intel.com>)
+ id 1mzMDp-00081r-I5; Mon, 20 Dec 2021 17:13:13 +0000
+Date: Tue, 21 Dec 2021 01:12:15 +0800
+From: kernel test robot <lkp@intel.com>
+To: cgel.zte@gmail.com, kvalo@kernel.org
+Cc: llvm@lists.linux.dev, kbuild-all@lists.01.org, davem@davemloft.net,
+ kuba@kernel.org, ath11k@lists.infradead.org,
+ linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Changcheng Deng <deng.changcheng@zte.com.cn>,
+ Zeal Robot <zealci@zte.com.cn>
+Subject: Re: [PATCH] ath11k: use min() to make code cleaner
+Message-ID: <202112210104.cbWjNxoN-lkp@intel.com>
+References: <20211220112133.472472-1-deng.changcheng@zte.com.cn>
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: fix warning of RCU usage for
- ath11k_mac_get_arvif_by_vdev_id()
-From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20211217064132.30911-1-quic_wgong@quicinc.com>
-References: <20211217064132.30911-1-quic_wgong@quicinc.com>
-To: Wen Gong <quic_wgong@quicinc.com>
-Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- <quic_wgong@quicinc.com>
-User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <164001651057.2023.16737463226034082113.kvalo@kernel.org>
-Date: Mon, 20 Dec 2021 16:08:32 +0000 (UTC)
+Content-Disposition: inline
+In-Reply-To: <20211220112133.472472-1-deng.changcheng@zte.com.cn>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211220_080834_513606_FD949C04 
-X-CRM114-Status: GOOD (  10.13  )
+X-CRM114-CacheID: sfid-20211220_091318_253158_31632A5C 
+X-CRM114-Status: GOOD (  12.59  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,95 +83,109 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Wen Gong <quic_wgong@quicinc.com> wrote:
+Hi,
 
-> When enable more debug config, it happen below warning. It is because
-> the caller does not add rcu_read_lock()/rcu_read_unlock() to wrap the
-> rcu_dereference().
-> 
-> Add rcu_read_lock()/rcu_read_unlock() to wrap rcu_dereference(), then
-> fixed it.
-> 
-> [ 180.716604] =============================
-> [ 180.716670] WARNING: suspicious RCU usage
-> [ 180.716734] 5.16.0-rc4-wt-ath+ #542 Not tainted
-> [ 180.716895] -----------------------------
-> [ 180.716957] drivers/net/wireless/ath/ath11k/mac.c:506 suspicious rcu_dereference_check() usage!
-> [ 180.717023]
->                other info that might help us debug this:
-> 
-> [ 180.717087]
->                rcu_scheduler_active = 2, debug_locks = 1
-> [ 180.717151] no locks held by swapper/0/0.
-> [ 180.717215]
->                stack backtrace:
-> [ 180.717279] CPU: 0 PID: 0 Comm: swapper/0 Kdump: loaded Not tainted 5.16.0-rc4-wt-ath+ #542
-> [ 180.717346] Hardware name: Intel(R) Client Systems NUC8i7HVK/NUC8i7HVB, BIOS HNKBLi70.86A.0067.2021.0528.1339 05/28/2021
-> [ 180.717411] Call Trace:
-> [ 180.717475] <IRQ>
-> [ 180.717541] dump_stack_lvl+0x57/0x7d
-> [ 180.717610] ath11k_mac_get_arvif_by_vdev_id+0x1ab/0x2d0 [ath11k]
-> [ 180.717694] ? ath11k_mac_get_arvif+0x140/0x140 [ath11k]
-> [ 180.717798] ? ath11k_wmi_tlv_op_rx+0xc1b/0x2520 [ath11k]
-> [ 180.717888] ? kfree+0xe8/0x2c0
-> [ 180.717959] ath11k_wmi_tlv_op_rx+0xc27/0x2520 [ath11k]
-> [ 180.718038] ? ath11k_mgmt_rx_event+0xda0/0xda0 [ath11k]
-> [ 180.718113] ? __lock_acquire+0xb72/0x1870
-> [ 180.718182] ? lockdep_hardirqs_on_prepare.part.0+0x18c/0x370
-> [ 180.718250] ? sched_clock_cpu+0x15/0x1b0
-> [ 180.718314] ? find_held_lock+0x33/0x110
-> [ 180.718381] ? __lock_release+0x4bd/0x9f0
-> [ 180.718447] ? lock_downgrade+0x130/0x130
-> [ 180.718517] ath11k_htc_rx_completion_handler+0x38f/0x5b0 [ath11k]
-> [ 180.718596] ? __local_bh_enable_ip+0xa0/0x110
-> [ 180.718662] ath11k_ce_recv_process_cb+0x5ac/0x920 [ath11k]
-> [ 180.718783] ? __lock_acquired+0x205/0x890
-> [ 180.718864] ? ath11k_ce_rx_post_pipe+0x970/0x970 [ath11k]
-> [ 180.718949] ? __wake_up_bit+0x100/0x100
-> [ 180.719020] ath11k_pci_ce_tasklet+0x5f/0xf0 [ath11k_pci]
-> [ 180.719085] ? tasklet_clear_sched+0x42/0xe0
-> [ 180.719148] tasklet_action_common.constprop.0+0x204/0x2f0
-> [ 180.719217] __do_softirq+0x276/0x86a
-> [ 180.719281] ? __common_interrupt+0x92/0x1d0
-> [ 180.719350] __irq_exit_rcu+0x11c/0x180
-> [ 180.719418] irq_exit_rcu+0x5/0x20
-> [ 180.719482] common_interrupt+0xa4/0xc0
-> [ 180.719547] </IRQ>
-> [ 180.719609] <TASK>
-> [ 180.719671] asm_common_interrupt+0x1e/0x40
-> [ 180.719772] RIP: 0010:cpuidle_enter_state+0x1f3/0x8d0
-> [ 180.719838] Code: 00 41 8b 77 04 bf ff ff ff ff e8 78 f1 ff ff 31 ff e8 81 fa 52 fe 80 7c 24 08 00 0f 85 9e 01 00 00 e8 11 13 78 fe fb 45 85 e4 <0f> 88 8c 02 00 00 49 63 ec 48 8d 44 6d 00 48 8d 44 85 00 48 8d 7c
-> [ 180.719909] RSP: 0018:ffffffffa4607dd0 EFLAGS: 00000202
-> [ 180.719982] RAX: 00000000002aea91 RBX: ffffffffa4a5fec0 RCX: 1ffffffff49ca501
-> [ 180.720047] RDX: 0000000000000000 RSI: ffffffffa3c6e4e0 RDI: ffffffffa3dcf2a0
-> [ 180.720110] RBP: 0000000000000002 R08: 0000000000000001 R09: ffffffffa4e54d17
-> [ 180.720173] R10: fffffbfff49ca9a2 R11: 0000000000000001 R12: 0000000000000002
-> [ 180.720236] R13: ffff8881169ccc04 R14: 0000002a13899598 R15: ffff8881169ccc00
-> [ 180.720321] cpuidle_enter+0x45/0xa0
-> [ 180.720413] cpuidle_idle_call+0x274/0x3f0
-> [ 180.720503] ? arch_cpu_idle_exit+0x30/0x30
-> [ 180.720869] ? tsc_verify_tsc_adjust+0x97/0x2e0
-> [ 180.720935] ? lockdep_hardirqs_off+0x90/0xd0
-> [ 180.721002] do_idle+0xe0/0x150
-> [ 180.721069] cpu_startup_entry+0x14/0x20
-> [ 180.721134] start_kernel+0x3a2/0x3c2
-> [ 180.721200] secondary_startup_64_no_verify+0xb0/0xbb
-> [ 180.721274] </TASK>
-> 
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-02892.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
-> 
-> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+Thank you for the patch! Perhaps something to improve:
 
-Patch applied to ath-next branch of ath.git, thanks.
+[auto build test WARNING on kvalo-ath/ath-next]
+[also build test WARNING on v5.16-rc6 next-20211220]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-01e782c89108 ath11k: fix warning of RCU usage for ath11k_mac_get_arvif_by_vdev_id()
+url:    https://github.com/0day-ci/linux/commits/cgel-zte-gmail-com/ath11k-use-min-to-make-code-cleaner/20211220-192326
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git ath-next
+config: hexagon-randconfig-r001-20211220 (https://download.01.org/0day-ci/archive/20211221/202112210104.cbWjNxoN-lkp@intel.com/config)
+compiler: clang version 14.0.0 (https://github.com/llvm/llvm-project 555eacf75f21cd1dfc6363d73ad187b730349543)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/526b459a20794d7325764c3fea5fd3e0521d6084
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review cgel-zte-gmail-com/ath11k-use-min-to-make-code-cleaner/20211220-192326
+        git checkout 526b459a20794d7325764c3fea5fd3e0521d6084
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon SHELL=/bin/bash drivers/net/wireless/ath/ath11k/
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20211217064132.30911-1-quic_wgong@quicinc.com/
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+All warnings (new ones prefixed by >>):
 
+>> drivers/net/wireless/ath/ath11k/wmi.c:617:12: warning: comparison of distinct pointer types ('typeof (frame->len) *' (aka 'unsigned int *') and 'typeof (64) *' (aka 'int *')) [-Wcompare-distinct-pointer-types]
+           buf_len = min(frame->len, WMI_MGMT_SEND_DOWNLD_LEN);
+                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/minmax.h:45:19: note: expanded from macro 'min'
+   #define min(x, y)       __careful_cmp(x, y, <)
+                           ^~~~~~~~~~~~~~~~~~~~~~
+   include/linux/minmax.h:36:24: note: expanded from macro '__careful_cmp'
+           __builtin_choose_expr(__safe_cmp(x, y), \
+                                 ^~~~~~~~~~~~~~~~
+   include/linux/minmax.h:26:4: note: expanded from macro '__safe_cmp'
+                   (__typecheck(x, y) && __no_side_effects(x, y))
+                    ^~~~~~~~~~~~~~~~~
+   include/linux/minmax.h:20:28: note: expanded from macro '__typecheck'
+           (!!(sizeof((typeof(x) *)1 == (typeof(y) *)1)))
+                      ~~~~~~~~~~~~~~ ^  ~~~~~~~~~~~~~~
+   1 warning generated.
+
+
+vim +617 drivers/net/wireless/ath/ath11k/wmi.c
+
+   606	
+   607	int ath11k_wmi_mgmt_send(struct ath11k *ar, u32 vdev_id, u32 buf_id,
+   608				 struct sk_buff *frame)
+   609	{
+   610		struct ath11k_pdev_wmi *wmi = ar->wmi;
+   611		struct wmi_mgmt_send_cmd *cmd;
+   612		struct wmi_tlv *frame_tlv;
+   613		struct sk_buff *skb;
+   614		u32 buf_len;
+   615		int ret, len;
+   616	
+ > 617		buf_len = min(frame->len, WMI_MGMT_SEND_DOWNLD_LEN);
+   618	
+   619		len = sizeof(*cmd) + sizeof(*frame_tlv) + roundup(buf_len, 4);
+   620	
+   621		skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, len);
+   622		if (!skb)
+   623			return -ENOMEM;
+   624	
+   625		cmd = (struct wmi_mgmt_send_cmd *)skb->data;
+   626		cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_MGMT_TX_SEND_CMD) |
+   627				  FIELD_PREP(WMI_TLV_LEN, sizeof(*cmd) - TLV_HDR_SIZE);
+   628		cmd->vdev_id = vdev_id;
+   629		cmd->desc_id = buf_id;
+   630		cmd->chanfreq = 0;
+   631		cmd->paddr_lo = lower_32_bits(ATH11K_SKB_CB(frame)->paddr);
+   632		cmd->paddr_hi = upper_32_bits(ATH11K_SKB_CB(frame)->paddr);
+   633		cmd->frame_len = frame->len;
+   634		cmd->buf_len = buf_len;
+   635		cmd->tx_params_valid = 0;
+   636	
+   637		frame_tlv = (struct wmi_tlv *)(skb->data + sizeof(*cmd));
+   638		frame_tlv->header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_ARRAY_BYTE) |
+   639				    FIELD_PREP(WMI_TLV_LEN, buf_len);
+   640	
+   641		memcpy(frame_tlv->value, frame->data, buf_len);
+   642	
+   643		ath11k_ce_byte_swap(frame_tlv->value, buf_len);
+   644	
+   645		ret = ath11k_wmi_cmd_send(wmi, skb, WMI_MGMT_TX_SEND_CMDID);
+   646		if (ret) {
+   647			ath11k_warn(ar->ab,
+   648				    "failed to submit WMI_MGMT_TX_SEND_CMDID cmd\n");
+   649			dev_kfree_skb(skb);
+   650		}
+   651	
+   652		return ret;
+   653	}
+   654	
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
 
 -- 
 ath11k mailing list
