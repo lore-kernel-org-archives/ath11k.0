@@ -4,59 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0623C433EF
-	for <ath11k@archiver.kernel.org>; Tue, 21 Dec 2021 10:02:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8AA1C433F5
+	for <ath11k@archiver.kernel.org>; Tue, 21 Dec 2021 11:34:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=PhsssOS3hGE7Rqp4u2dR0GxCddpc6LgHzcOyVrmYBKE=; b=TzdAsgAjG6vpX8
-	v7ejI62Vp3LivcucsEZ8+UUQsjOEzbrRPwycrb3OiDDatF01YLtkzcmWwpXX4ACWGVPgDbe+HpP4K
-	kc7PHop8aR3QIf2Pp6HXAUJWw36vlW0NlfI8RfphORpqqUE7X2x3SPXS/g8+CIBG2tHWHvlap8wvQ
-	Omx6Jx0ee+eQSfIngJV41X040ZCUPdyw6KduCsV+mfRw/jit4lscqfeDqEgRUY+w4jVURpjYN+D6C
-	bpkqDfchWY9nqyw0M8+hxebMM5/S4JPD7NdRq96SHeva1Kvp4mHrBQeyBtexUR8JbENqxhrTNtumK
-	d+7ZowRO058WaFowyGuA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=QmJIRv5EEz0UxZqBQSormaHjeqTt3xZdmV7U6yjW4ws=; b=fwJO5zlHnWS19t
+	TaeRpTWRv/rEEy7yx65VBHDmcOP7eDgT5wl60s4qXZtQGWBkm4Vke53C19RuZiaTwMwd7fgpF3ZeV
+	latXihpu6q7yNPcbvE9ifw1/3n0LJq6BABjSaNOzQXdMpuK5XSY8Q2FqBwbY3J22W8uKYrRIR3ior
+	4nY2OA+LbaL6AICA7ww0vQ1vwAhDoNISvtqRADPbcvdIcVJFsTPMiRZ6dXvYXbt+jZD5mh4ieHyN7
+	3ppriU0W6ZJDcojLTzsmNIaSI5ZBijVzvdY7cj5J5Mw+eAZVXgSOhntaLOX3+ZNXtTexUASNHKDi6
+	xgYxqEgfLnvwnfRxsrXQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mzbyb-006Jlr-9J; Tue, 21 Dec 2021 10:02:33 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1mzdPF-006bf8-7S; Tue, 21 Dec 2021 11:34:09 +0000
+Received: from szxga02-in.huawei.com ([45.249.212.188])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mzbyX-006Jkk-Af
- for ath11k@lists.infradead.org; Tue, 21 Dec 2021 10:02:31 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id D4CA0B8159D;
- Tue, 21 Dec 2021 10:02:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F5FBC36AE7;
- Tue, 21 Dec 2021 10:02:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1640080946;
- bh=4kkpsFFdN+5c9mF9MEGIHVXk73UKITzFMfM6+jBQT7I=;
- h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
- b=FOnZU1tO5B+WHuZCBy79oCMPUEHY07iLoJGihZOKm3QjgZiSciXAQEOKTbADaSY3D
- WZvDY8MGldwqgVd4RAPfCF6v4pOaU2sro3iUYggpanaRpjMV6QGYXK5piJ3ygI5UcH
- 64jWGz5+kwRiF4lgC/BsYQZ+ir3mzG+KDzTy09RvDhvmst5eM/7hDWiEFKafK+MKzN
- cYAqJYg7XZlEA3MWD0Csm4nkU0JjQMf0lcjLGEsU0OfAgDKBrGb3N3uE4glpQgWsTW
- Utaa3O4kcd+AOVx04a9436lmmOWp0bOA1qL6AYBc2kKlh1bWSnB67jh7+iU3emcRp+
- oI6wh9y3C0UeA==
-From: Kalle Valo <kvalo@kernel.org>
-To: Wen Gong <quic_wgong@quicinc.com>
-Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
-Subject: Re: [PATCH v2] ath11k: free peer for station when disconnect from AP
- for QCA6390/WCN6855
-References: <20211215063442.15629-1-quic_wgong@quicinc.com>
-Date: Tue, 21 Dec 2021 12:02:23 +0200
-In-Reply-To: <20211215063442.15629-1-quic_wgong@quicinc.com> (Wen Gong's
- message of "Wed, 15 Dec 2021 01:34:42 -0500")
-Message-ID: <87a6gu9sy8.fsf@codeaurora.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+ id 1mzdPC-006bco-3e
+ for ath11k@lists.infradead.org; Tue, 21 Dec 2021 11:34:07 +0000
+Received: from dggpeml500024.china.huawei.com (unknown [172.30.72.56])
+ by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4JJDpw1Dhxz8yfQ;
+ Tue, 21 Dec 2021 19:33:12 +0800 (CST)
+Received: from dggpeml500017.china.huawei.com (7.185.36.243) by
+ dggpeml500024.china.huawei.com (7.185.36.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Tue, 21 Dec 2021 19:34:01 +0800
+Received: from huawei.com (10.175.103.91) by dggpeml500017.china.huawei.com
+ (7.185.36.243) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.20; Tue, 21 Dec
+ 2021 19:34:01 +0800
+From: Yang Yingliang <yangyingliang@huawei.com>
+To: <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
+ <linux-wireless@vger.kernel.org>, <ath11k@lists.infradead.org>
+CC: <kvalo@kernel.org>, <akolli@codeaurora.org>
+Subject: [PATCH -next] ath11k: add missing of_node_put() to avoid leak
+Date: Tue, 21 Dec 2021 19:40:03 +0800
+Message-ID: <20211221114003.335557-1-yangyingliang@huawei.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+X-Originating-IP: [10.175.103.91]
+X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
+ dggpeml500017.china.huawei.com (7.185.36.243)
+X-CFilter-Loop: Reflected
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211221_020229_698299_A4F75313 
-X-CRM114-Status: GOOD (  25.64  )
+X-CRM114-CacheID: sfid-20211221_033406_352912_B52FEA1A 
+X-CRM114-Status: UNSURE (   6.72  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,264 +69,45 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Wen Gong <quic_wgong@quicinc.com> writes:
+The node pointer is returned by of_find_node_by_type()
+or of_parse_phandle() with refcount incremented. Calling
+of_node_put() to aovid the refcount leak.
 
-> Commit b4a0f54156ac ("ath11k: move peer delete after vdev stop of station
-> for QCA6390 and WCN6855") is to fix firmware crash by changing the WMI
-> command sequence, but actually skip all the peer delete operation, then
-> it lead commit 58595c9874c6 ("ath11k: Fixing dangling pointer issue upon
-> peer delete failure") not take effect, and then happened a use-after-free
-> warning from KASAN. because the peer->sta is not set to NULL and then used
-> later.
->
-> Change to only skip the WMI_PEER_DELETE_CMDID for QCA6390/WCN6855.
->
-> log of user-after-free:
->
-> [  534.888665] BUG: KASAN: use-after-free in ath11k_dp_rx_update_peer_stats+0x912/0xc10 [ath11k]
-> [  534.888696] Read of size 8 at addr ffff8881396bb1b8 by task rtcwake/2860
->
-> [  534.888705] CPU: 4 PID: 2860 Comm: rtcwake Kdump: loaded Tainted: G        W         5.15.0-wt-ath+ #523
-> [  534.888712] Hardware name: Intel(R) Client Systems NUC8i7HVK/NUC8i7HVB, BIOS HNKBLi70.86A.0067.2021.0528.1339 05/28/2021
-> [  534.888716] Call Trace:
-> [  534.888720]  <IRQ>
-> [  534.888726]  dump_stack_lvl+0x57/0x7d
-> [  534.888736]  print_address_description.constprop.0+0x1f/0x170
-> [  534.888745]  ? ath11k_dp_rx_update_peer_stats+0x912/0xc10 [ath11k]
-> [  534.888771]  kasan_report.cold+0x83/0xdf
-> [  534.888783]  ? ath11k_dp_rx_update_peer_stats+0x912/0xc10 [ath11k]
-> [  534.888810]  ath11k_dp_rx_update_peer_stats+0x912/0xc10 [ath11k]
-> [  534.888840]  ath11k_dp_rx_process_mon_status+0x529/0xa70 [ath11k]
-> [  534.888874]  ? ath11k_dp_rx_mon_status_bufs_replenish+0x3f0/0x3f0 [ath11k]
-> [  534.888897]  ? check_prev_add+0x20f0/0x20f0
-> [  534.888922]  ? __lock_acquire+0xb72/0x1870
-> [  534.888937]  ? find_held_lock+0x33/0x110
-> [  534.888954]  ath11k_dp_rx_process_mon_rings+0x297/0x520 [ath11k]
-> [  534.888981]  ? rcu_read_unlock+0x40/0x40
-> [  534.888990]  ? ath11k_dp_rx_pdev_alloc+0xd90/0xd90 [ath11k]
-> [  534.889026]  ath11k_dp_service_mon_ring+0x67/0xe0 [ath11k]
-> [  534.889053]  ? ath11k_dp_rx_process_mon_rings+0x520/0x520 [ath11k]
-> [  534.889075]  call_timer_fn+0x167/0x4a0
-> [  534.889084]  ? add_timer_on+0x3b0/0x3b0
-> [  534.889103]  ? lockdep_hardirqs_on_prepare.part.0+0x18c/0x370
-> [  534.889117]  __run_timers.part.0+0x539/0x8b0
-> [  534.889123]  ? ath11k_dp_rx_process_mon_rings+0x520/0x520 [ath11k]
-> [  534.889157]  ? call_timer_fn+0x4a0/0x4a0
-> [  534.889164]  ? mark_lock_irq+0x1c30/0x1c30
-> [  534.889173]  ? clockevents_program_event+0xdd/0x280
-> [  534.889189]  ? mark_held_locks+0xa5/0xe0
-> [  534.889203]  run_timer_softirq+0x97/0x180
-> [  534.889213]  __do_softirq+0x276/0x86a
-> [  534.889230]  __irq_exit_rcu+0x11c/0x180
-> [  534.889238]  irq_exit_rcu+0x5/0x20
-> [  534.889244]  sysvec_apic_timer_interrupt+0x8e/0xc0
-> [  534.889251]  </IRQ>
-> [  534.889254]  <TASK>
-> [  534.889259]  asm_sysvec_apic_timer_interrupt+0x12/0x20
-> [  534.889265] RIP: 0010:_raw_spin_unlock_irqrestore+0x38/0x70
-> [  534.889271] Code: 74 24 10 e8 ea c2 bf fd 48 89 ef e8 12 53 c0 fd 81 e3 00 02 00 00 75 25 9c 58 f6 c4 02 75 2d 48 85 db 74 01 fb bf 01 00 00 00 <e8> 13 a7 b5 fd 65 8b 05 cc d9 9c 5e 85 c0 74 0a 5b 5d c3 e8 a0 ee
-> [  534.889276] RSP: 0018:ffffc90002e5f880 EFLAGS: 00000206
-> [  534.889284] RAX: 0000000000000006 RBX: 0000000000000200 RCX: ffffffff9f256f10
-> [  534.889289] RDX: 0000000000000000 RSI: ffffffffa1c6e420 RDI: 0000000000000001
-> [  534.889293] RBP: ffff8881095e6200 R08: 0000000000000001 R09: ffffffffa40d2b8f
-> [  534.889298] R10: fffffbfff481a571 R11: 0000000000000001 R12: ffff8881095e6e68
-> [  534.889302] R13: ffffc90002e5f908 R14: 0000000000000246 R15: 0000000000000000
-> [  534.889316]  ? mark_lock+0xd0/0x14a0
-> [  534.889332]  klist_next+0x1d4/0x450
-> [  534.889340]  ? dpm_wait_for_subordinate+0x2d0/0x2d0
-> [  534.889350]  device_for_each_child+0xa8/0x140
-> [  534.889360]  ? device_remove_class_symlinks+0x1b0/0x1b0
-> [  534.889370]  ? __lock_release+0x4bd/0x9f0
-> [  534.889378]  ? dpm_suspend+0x26b/0x3f0
-> [  534.889390]  dpm_wait_for_subordinate+0x82/0x2d0
-> [  534.889400]  ? dpm_for_each_dev+0xa0/0xa0
-> [  534.889410]  ? dpm_suspend+0x233/0x3f0
-> [  534.889427]  __device_suspend+0xd4/0x10c0
-> [  534.889440]  ? wait_for_completion_io+0x270/0x270
-> [  534.889456]  ? async_suspend_late+0xe0/0xe0
-> [  534.889463]  ? async_schedule_node_domain+0x468/0x640
-> [  534.889482]  dpm_suspend+0x25a/0x3f0
-> [  534.889491]  ? dpm_suspend_end+0x1a0/0x1a0
-> [  534.889497]  ? ktime_get+0x214/0x2f0
-> [  534.889502]  ? lockdep_hardirqs_on+0x79/0x100
-> [  534.889509]  ? recalibrate_cpu_khz+0x10/0x10
-> [  534.889516]  ? ktime_get+0x119/0x2f0
-> [  534.889528]  dpm_suspend_start+0xab/0xc0
-> [  534.889538]  suspend_devices_and_enter+0x1ca/0x350
-> [  534.889546]  ? suspend_enter+0x850/0x850
-> [  534.889566]  enter_state+0x27c/0x3d7
-> [  534.889575]  pm_suspend.cold+0x42/0x189
-> [  534.889583]  state_store+0xab/0x160
-> [  534.889595]  ? sysfs_file_ops+0x160/0x160
-> [  534.889601]  kernfs_fop_write_iter+0x2b5/0x450
-> [  534.889615]  new_sync_write+0x36a/0x600
-> [  534.889625]  ? new_sync_read+0x600/0x600
-> [  534.889639]  ? rcu_read_unlock+0x40/0x40
-> [  534.889668]  vfs_write+0x619/0x910
-> [  534.889681]  ksys_write+0xf4/0x1d0
-> [  534.889689]  ? __ia32_sys_read+0xa0/0xa0
-> [  534.889699]  ? lockdep_hardirqs_on_prepare.part.0+0x18c/0x370
-> [  534.889707]  ? syscall_enter_from_user_mode+0x1d/0x50
-> [  534.889719]  do_syscall_64+0x3b/0x90
-> [  534.889725]  entry_SYSCALL_64_after_hwframe+0x44/0xae
-> [  534.889731] RIP: 0033:0x7f0b9bc931e7
-> [  534.889736] Code: 64 89 02 48 c7 c0 ff ff ff ff eb bb 0f 1f 80 00 00 00 00 f3 0f 1e fa 64 8b 04 25 18 00 00 00 85 c0 75 10 b8 01 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 51 c3 48 83 ec 28 48 89 54 24 18 48 89 74 24
-> [  534.889741] RSP: 002b:00007ffd9d34cc88 EFLAGS: 00000246 ORIG_RAX: 0000000000000001
-> [  534.889749] RAX: ffffffffffffffda RBX: 0000000000000004 RCX: 00007f0b9bc931e7
-> [  534.889753] RDX: 0000000000000004 RSI: 0000561cd023c5f0 RDI: 0000000000000004
-> [  534.889757] RBP: 0000561cd023c5f0 R08: 0000000000000000 R09: 0000000000000004
-> [  534.889761] R10: 0000561ccef842a6 R11: 0000000000000246 R12: 0000000000000004
-> [  534.889765] R13: 0000561cd0239590 R14: 00007f0b9bd6f4a0 R15: 00007f0b9bd6e8a0
-> [  534.889789]  </TASK>
->
-> [  534.889796] Allocated by task 2711:
-> [  534.889800]  kasan_save_stack+0x1b/0x40
-> [  534.889805]  __kasan_kmalloc+0x7c/0x90
-> [  534.889810]  sta_info_alloc+0x98/0x1ef0 [mac80211]
-> [  534.889874]  ieee80211_prep_connection+0x30b/0x11e0 [mac80211]
-> [  534.889950]  ieee80211_mgd_auth+0x529/0xe00 [mac80211]
-> [  534.890024]  cfg80211_mlme_auth+0x332/0x6f0 [cfg80211]
-> [  534.890090]  nl80211_authenticate+0x839/0xcf0 [cfg80211]
-> [  534.890147]  genl_family_rcv_msg_doit+0x1f4/0x2f0
-> [  534.890154]  genl_rcv_msg+0x280/0x500
-> [  534.890160]  netlink_rcv_skb+0x11c/0x340
-> [  534.890165]  genl_rcv+0x1f/0x30
-> [  534.890170]  netlink_unicast+0x42b/0x700
-> [  534.890176]  netlink_sendmsg+0x71b/0xc60
-> [  534.890181]  sock_sendmsg+0xdf/0x110
-> [  534.890187]  ____sys_sendmsg+0x5c0/0x850
-> [  534.890192]  ___sys_sendmsg+0xe4/0x160
-> [  534.890197]  __sys_sendmsg+0xb2/0x140
-> [  534.890202]  do_syscall_64+0x3b/0x90
-> [  534.890207]  entry_SYSCALL_64_after_hwframe+0x44/0xae
->
-> [  534.890215] Freed by task 2825:
-> [  534.890218]  kasan_save_stack+0x1b/0x40
-> [  534.890223]  kasan_set_track+0x1c/0x30
-> [  534.890227]  kasan_set_free_info+0x20/0x30
-> [  534.890232]  __kasan_slab_free+0xce/0x100
-> [  534.890237]  slab_free_freelist_hook+0xf0/0x1a0
-> [  534.890242]  kfree+0xe5/0x370
-> [  534.890248]  __sta_info_flush+0x333/0x4b0 [mac80211]
-> [  534.890308]  ieee80211_set_disassoc+0x324/0xd20 [mac80211]
-> [  534.890382]  ieee80211_mgd_deauth+0x537/0xee0 [mac80211]
-> [  534.890472]  cfg80211_mlme_deauth+0x349/0x810 [cfg80211]
-> [  534.890526]  cfg80211_mlme_down+0x1ce/0x270 [cfg80211]
-> [  534.890578]  cfg80211_disconnect+0x4f5/0x7b0 [cfg80211]
-> [  534.890631]  cfg80211_leave+0x24/0x40 [cfg80211]
-> [  534.890677]  wiphy_suspend+0x23d/0x2f0 [cfg80211]
-> [  534.890723]  dpm_run_callback+0xf4/0x1b0
-> [  534.890728]  __device_suspend+0x648/0x10c0
-> [  534.890733]  async_suspend+0x16/0xe0
-> [  534.890737]  async_run_entry_fn+0x90/0x4f0
-> [  534.890741]  process_one_work+0x866/0x1490
-> [  534.890747]  worker_thread+0x596/0x1010
-> [  534.890751]  kthread+0x35d/0x420
-> [  534.890756]  ret_from_fork+0x22/0x30
->
-> [  534.890763] The buggy address belongs to the object at ffff8881396ba000
->                 which belongs to the cache kmalloc-8k of size 8192
-> [  534.890767] The buggy address is located 4536 bytes inside of
->                 8192-byte region [ffff8881396ba000, ffff8881396bc000)
-> [  534.890772] The buggy address belongs to the page:
-> [  534.890775] page:ffffea0004e5ae00 refcount:1 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x1396b8
-> [  534.890780] head:ffffea0004e5ae00 order:3 compound_mapcount:0 compound_pincount:0
-> [  534.890784] flags: 0x200000000010200(slab|head|node=0|zone=2)
-> [  534.890791] raw: 0200000000010200 ffffea000562be08 ffffea0004b04c08 ffff88810004e340
-> [  534.890795] raw: 0000000000000000 0000000000010001 00000001ffffffff 0000000000000000
-> [  534.890798] page dumped because: kasan: bad access detected
->
-> [  534.890804] Memory state around the buggy address:
-> [  534.890807]  ffff8881396bb080: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
-> [  534.890811]  ffff8881396bb100: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
-> [  534.890814] >ffff8881396bb180: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
-> [  534.890817]                                         ^
-> [  534.890821]  ffff8881396bb200: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
-> [  534.890824]  ffff8881396bb280: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
-> [  534.890827] ==================================================================
-> [  534.890830] Disabling lock debugging due to kernel taint
->
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
->
-> Fixes: b4a0f54156ac ("ath11k: move peer delete after vdev stop of station for QCA6390 and WCN6855")
-> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
-> ---
-> v2:
->    1. rebased to ath.git ath-202112141538
->    2. remove label 'free' defined but not used
->    3. change warning "Found peer entry %pM n vdev %i after it was supposedly removed" to ath11k_dbg()
+Fixes: 6ac04bdc5edb ("ath11k: Use reserved host DDR addresses from DT for PCI devices")
+Reported-by: Hulk Robot <hulkci@huawei.com>
+Signed-off-by: Yang Yingliang <yangyingliang@huawei.com>
+---
+ drivers/net/wireless/ath/ath11k/mhi.c | 1 +
+ drivers/net/wireless/ath/ath11k/qmi.c | 1 +
+ 2 files changed, 2 insertions(+)
 
-I still see unknown peer warnings during suspend:
-
-[  506.782421] wlan0: authenticate with xx:xx:xx:xx:xx:xx
-[  506.845984] wlan0: send auth to xx:xx:xx:xx:xx:xx (try 1/3)
-[  506.852199] wlan0: authenticated
-[  506.855886] wlan0: associate with xx:xx:xx:xx:xx:xx (try 1/3)
-[  506.862157] wlan0: RX AssocResp from xx:xx:xx:xx:xx:xx (capab=0x431 status=0 aid=2)
-[  506.887866] wlan0: associated
-[  507.603717] igb 0000:05:00.0 eth1: igb: eth1 NIC Link is Up 1000 Mbps Full Duplex, Flow Control: RX/TX
-[  510.610907] PM: suspend entry (deep)
-[  510.611871] Filesystems sync: 0.000 seconds
-[  510.663217] Freezing user space processes ... (elapsed 0.003 seconds) done.
-[  510.668909] OOM killer disabled.
-[  510.670619] Freezing remaining freezable tasks ... (elapsed 0.001 seconds) done.
-[  510.674552] printk: Suspending console(s) (use no_console_suspend to debug)
-[  510.679606] wlan0: deauthenticating from xx:xx:xx:xx:xx:xx by local choice (Reason: 3=DEAUTH_LEAVING)
-[  510.722483] e1000e: EEE TX LPI TIMER: 00000011
-[  510.764835] ath11k_pci 0000:06:00.0: peer-unmap-event: unknown peer id 10
-[  511.374486] ACPI: EC: interrupt blocked
-[  511.440359] ACPI: PM: Preparing to enter system sleep state S3
-[  511.473142] ACPI: EC: event blocked
-
-> --- a/drivers/net/wireless/ath/ath11k/mac.c
-> +++ b/drivers/net/wireless/ath/ath11k/mac.c
-> @@ -4413,24 +4413,27 @@ static int ath11k_mac_op_sta_state(struct ieee80211_hw *hw,
->  		    new_state == IEEE80211_STA_NOTEXIST)) {
->  		ath11k_dp_peer_cleanup(ar, arvif->vdev_id, sta->addr);
->  
-> -		if (ar->ab->hw_params.vdev_start_delay &&
-> -		    vif->type == NL80211_IFTYPE_STATION)
-> -			goto free;
-> -
-> -		ret = ath11k_peer_delete(ar, arvif->vdev_id, sta->addr);
-> -		if (ret)
-> -			ath11k_warn(ar->ab, "Failed to delete peer: %pM for VDEV: %d\n",
-> -				    sta->addr, arvif->vdev_id);
-> -		else
-> -			ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "Removed peer: %pM for VDEV: %d\n",
-> -				   sta->addr, arvif->vdev_id);
-> +		if (!(ar->ab->hw_params.vdev_start_delay &&
-> +		      vif->type == NL80211_IFTYPE_STATION)) {
-> +			ret = ath11k_peer_delete(ar, arvif->vdev_id, sta->addr);
-> +			if (ret)
-> +				ath11k_warn(ar->ab,
-> +					    "Failed to delete peer: %pM for VDEV: %d\n",
-> +					    sta->addr, arvif->vdev_id);
-> +			else
-> +				ath11k_dbg(ar->ab,
-> +					   ATH11K_DBG_MAC,
-> +					   "Removed peer: %pM for VDEV: %d\n",
-> +					   sta->addr, arvif->vdev_id);
-> +		}
->  
->  		ath11k_mac_dec_num_stations(arvif, sta);
->  		spin_lock_bh(&ar->ab->base_lock);
->  		peer = ath11k_peer_find(ar->ab, arvif->vdev_id, sta->addr);
->  		if (peer && peer->sta == sta) {
-> -			ath11k_warn(ar->ab, "Found peer entry %pM n vdev %i after it was supposedly removed\n",
-> -				    vif->addr, arvif->vdev_id);
-> +			ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
-> +				   "Found peer entry %pM n vdev %i after it was supposedly removed\n",
-> +				   vif->addr, arvif->vdev_id);
-
-I'm not sure about changing this warning to a debug message, though I
-don't have time to analyse this right now. But what if there's a race
-condition somewhere still?
-
+diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
+index e4250ba8dfee..cccaa348cf21 100644
+--- a/drivers/net/wireless/ath/ath11k/mhi.c
++++ b/drivers/net/wireless/ath/ath11k/mhi.c
+@@ -332,6 +332,7 @@ static int ath11k_mhi_read_addr_from_dt(struct mhi_controller *mhi_ctrl)
+ 		return -ENOENT;
+ 
+ 	ret = of_address_to_resource(np, 0, &res);
++	of_node_put(np);
+ 	if (ret)
+ 		return ret;
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
+index 3b9ba0e03a66..2d46c0b07be3 100644
+--- a/drivers/net/wireless/ath/ath11k/qmi.c
++++ b/drivers/net/wireless/ath/ath11k/qmi.c
+@@ -1892,6 +1892,7 @@ static int ath11k_qmi_assign_target_mem_chunk(struct ath11k_base *ab)
+ 			}
+ 
+ 			ret = of_address_to_resource(hremote_node, 0, &res);
++			of_node_put(hremote_node);
+ 			if (ret) {
+ 				ath11k_dbg(ab, ATH11K_DBG_QMI,
+ 					   "qmi fail to get reg from hremote\n");
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+2.25.1
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
