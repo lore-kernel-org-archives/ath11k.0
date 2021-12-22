@@ -4,48 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FB5FC433F5
-	for <ath11k@archiver.kernel.org>; Tue, 21 Dec 2021 22:58:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7FCDC433EF
+	for <ath11k@archiver.kernel.org>; Wed, 22 Dec 2021 01:46:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:To:From:Reply-To:
-	Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Et6nLl7rvmf4G5Si5tVPRE2REeatrzjlRTFl2WegvWg=; b=MUCPTtBO5i3aJpvrGIPWoQOWhE
-	HxfXv9ACAqj8HXue3Y8ZHSzx2LXZbAz8xjZdEJeAHiLr93xOKf6rJCP3bHYew5FDl9X9mQrI5smue
-	8OGpFOr4Xb9Q/yqUkXusmEm6ndZY359TYiaCg/kIfp4u/SXfLsSW42Kajc3uYXIR0UPCUSLw7UWGx
-	yhH6vl9ibCayeGlpVi+sosr9wS2KWKmnS+x6D7f4aVUk1hmRlObItFVbDOItZd5R2Wz24rs4juRK5
-	CpF/qmwVW5Yj705QNTqlge7SvIWpzCb1z6ajrSJAmBk91TSHQcIORGFokKyHpkVj6AZR6HcrhHxK7
-	didlU0JA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=qHm/AEmlH/JzGYGqCf9ZAa0cjdBgk47blbEiFopkjOQ=; b=RYnatyIpo91fdq
+	GW9FpkO9LggM3ipjdYq+dr7CRH7/lsVAimM1357oe34/dq1FVMkxfTOO1bWDa+ig3tXmFByRVkP11
+	Wed8xEdzeZ89Fmpr7y1AFXKTzB75Je4mFPVxgn24dxjYhjkvs5ewIRkmcQnM5OW+CEFrmc7BRQ2bM
+	z6tiHL2z+9En+4V+B/f8yUHkL+yfAz/NGzdMcECQxo/wqmS3/8LeKHtNVV32cKm9UpAfin9ycSFq2
+	xiHBVGqLG7fLuJgKrWL/S3RwMdBOdkVvLNpVMprwcOV1B+5ejOS32BNiDGfxTzAimDhFXeo4MTPcJ
+	89r93+VRGYDYjO0m/C3Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mzo5q-008heX-TH; Tue, 21 Dec 2021 22:58:50 +0000
-Received: from dvalin.narfation.org ([213.160.73.56])
+	id 1mzqhm-008sjf-TR; Wed, 22 Dec 2021 01:46:10 +0000
+Received: from alexa-out.qualcomm.com ([129.46.98.28])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mzo5n-008heD-B0
- for ath11k@lists.infradead.org; Tue, 21 Dec 2021 22:58:49 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1640127525;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=l3omHYXDMuKxycbiedWpdLMHyqEFwOrcYLvWtUoduGY=;
- b=UBINfFbl1X6sYK79W/Wjslutp1WWE/IVV8bjisN1QzWiqJ/jHyDplhVLUDyVZtkN5O54sw
- Ibtd96EGSwn0gYO0kzesimWZ4WMfVamo/W+n2+UGpkX8NItnQ8DHwN/C5yqeZf1uQ4r78T
- 6rUZk0bd/G2EgtBm23tTLNpQbvT6qKk=
-From: Sven Eckelmann <sven@narfation.org>
-To: ath11k@lists.infradead.org, Kalle Valo <kvalo@kernel.org>
-Subject: Re: ath11k: QCN9074: Incompatible board-2.bin for 6GHz
-Date: Tue, 21 Dec 2021 23:58:42 +0100
-Message-ID: <2947430.zJFXT1rtDI@sven-l14>
-In-Reply-To: <87k0fy6mek.fsf@kernel.org>
-References: <2091899.pNsEtq2SQc@ripper> <2340060.uFBqQg8s0L@ripper>
- <87k0fy6mek.fsf@kernel.org>
+ id 1mzqhi-008siC-Ea
+ for ath11k@lists.infradead.org; Wed, 22 Dec 2021 01:46:09 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+ t=1640137566; x=1671673566;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=VuWM9ykE02hxTRoiyiu1KAiRry+PZiBiSgTc27wTvqM=;
+ b=tmwxx9OO5Bv37i+fg5/Uf8sUH5udOCzz8seLZFUk83ZHa6iztJod27J+
+ nqn9p/U1iQVIr7+cSuAnuE2BSvGjm8vhoRqsJbZa92Vn2mmzhj4BmimUP
+ ReTjMYCs8mR0QJClDkBiUgmOpb7/i1A/yW/OqUZ3NvtDP8edbYnx/ywDD U=;
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+ by alexa-out.qualcomm.com with ESMTP; 21 Dec 2021 17:46:01 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+ by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Dec 2021 17:46:01 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Tue, 21 Dec 2021 17:46:00 -0800
+Received: from bqiang-Celadon-RN.qca.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Tue, 21 Dec 2021 17:45:59 -0800
+From: Baochen Qiang <quic_bqiang@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>
+Subject: [PATCH] ath11k: Fix unexpected return buffer manager error for QCA6390
+Date: Wed, 22 Dec 2021 09:35:35 +0800
+Message-ID: <20211222013536.582527-1-quic_bqiang@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211221_145847_571140_E89C3AC7 
-X-CRM114-Status: GOOD (  15.31  )
+X-CRM114-CacheID: sfid-20211221_174606_555545_4B6EC306 
+X-CRM114-Status: GOOD (  10.44  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -57,107 +73,70 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============3908174200013552990=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
---===============3908174200013552990==
-Content-Type: multipart/signed; boundary="nextPart9943023.Ro6Tc9THTW"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+We are seeing below error on QCA6390:
+...
+[70211.671189] ath11k_pci 0000:72:00.0: failed to parse rx error in wbm_rel ring desc -22
+[70212.696154] ath11k_pci 0000:72:00.0: failed to parse rx error in wbm_rel ring desc -22
+[70213.092941] ath11k_pci 0000:72:00.0: failed to parse rx error in wbm_rel ring desc -22
+...
 
---nextPart9943023.Ro6Tc9THTW
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Sven Eckelmann <sven@narfation.org>
-To: ath11k@lists.infradead.org, Kalle Valo <kvalo@kernel.org>
-Subject: Re: ath11k: QCN9074: Incompatible board-2.bin for 6GHz
-Date: Tue, 21 Dec 2021 23:58:42 +0100
-Message-ID: <2947430.zJFXT1rtDI@sven-l14>
-In-Reply-To: <87k0fy6mek.fsf@kernel.org>
-References: <2091899.pNsEtq2SQc@ripper> <2340060.uFBqQg8s0L@ripper> <87k0fy6mek.fsf@kernel.org>
+The reason is that, with commit 734223d78428 ("ath11k: change return
+buffer manager for QCA6390"), ath11k expects the return buffer manager
+(RBM) field of descriptor configured as HAL_RX_BUF_RBM_SW1_BM when
+parsing error frames from WBM2SW3_RELEASE ring. This is a wrong change
+cause the RBM field is set as HAL_RX_BUF_RBM_SW3_BM.
 
-On Tuesday, 21 December 2021 15:52:03 CET Kalle Valo wrote:
-> I have told the firmware team numerious times that the board file should
-> be backwards compatible as it creates problems for upstream. And I do
-> try to keep everything in ath11k-firmware (and in linux-firmware)
-> backwards compatible, but if they are not please do let me know.
+The same issue also applies to REO2TCL ring though we have not got any
+error reported.
 
-Please check the first message to find such a problem. Ok, it was not about 
-board files being really backward compatible - it actually is about the 
-firmware not being backward compatible and not working with the board-2.bin/
-BDFs in the same repository.
+Fix it by changing RBM from HAL_RX_BUF_RBM_SW1_BM to HAL_RX_BUF_RBM_SW3_BM
+for these two rings.
 
-So if I get
-https://github.com/kvalo/ath11k-firmware/commit/ae4f4f64ed14097dc24a8d686fa60e932cba4868/QCN9074/hw1.0/testing/2.4.0.1.r1/WLAN.HK.2.4.0.1.r1-00019-QCAHKSWPL_SILICONZ-1/board-2.bin
-(extract board_id 162 as board.bin - because nobody seems to initialize the 
-board_id in the OTP)
+Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
 
-and use it with
+Fixes: 734223d78428 ("ath11k: change return buffer manager for QCA6390")
+Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/dp_rx.c  | 2 +-
+ drivers/net/wireless/ath/ath11k/hal_rx.c | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-https://github.com/kvalo/ath11k-firmware/tree/master/QCN9074/hw1.0/2.5.0.1/WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 38eeb6e7c6b6..2127ed89956b 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -3847,7 +3847,7 @@ int ath11k_dp_process_rx_err(struct ath11k_base *ab, struct napi_struct *napi,
+ 		ath11k_hal_rx_msdu_link_info_get(link_desc_va, &num_msdus, msdu_cookies,
+ 						 &rbm);
+ 		if (rbm != HAL_RX_BUF_RBM_WBM_IDLE_DESC_LIST &&
+-		    rbm != ab->hw_params.hal_params->rx_buf_rbm) {
++		    rbm != HAL_RX_BUF_RBM_SW3_BM) {
+ 			ab->soc_stats.invalid_rbm++;
+ 			ath11k_warn(ab, "invalid return buffer manager %d\n", rbm);
+ 			ath11k_dp_rx_link_desc_return(ab, desc,
+diff --git a/drivers/net/wireless/ath/ath11k/hal_rx.c b/drivers/net/wireless/ath/ath11k/hal_rx.c
+index 1e279e99baa8..d5a497369b5f 100644
+--- a/drivers/net/wireless/ath/ath11k/hal_rx.c
++++ b/drivers/net/wireless/ath/ath11k/hal_rx.c
+@@ -371,7 +371,7 @@ int ath11k_hal_wbm_desc_parse_err(struct ath11k_base *ab, void *desc,
+ 
+ 	ret_buf_mgr = FIELD_GET(BUFFER_ADDR_INFO1_RET_BUF_MGR,
+ 				wbm_desc->buf_addr_info.info1);
+-	if (ret_buf_mgr != ab->hw_params.hal_params->rx_buf_rbm) {
++	if (ret_buf_mgr != HAL_RX_BUF_RBM_SW3_BM) {
+ 		ab->soc_stats.invalid_rbm++;
+ 		return -EINVAL;
+ 	}
+-- 
+2.25.1
 
-then it causes the initialization error described in the first mail. And the 
-firmware used here is the only non-testing firmware available for QCN9074. And 
-the board-2.bin is the only available one from your repository for QCN9074.
-
-> For other repos I cannot do much, if any.
-
-The described problem was NOT that files from other repositories were mixed. 
-Actually, the solution was to mix the firmware with the BDF from a different 
-repository.
-
-And I didn't only see this with BDFs from your repository but also from non-
-upstreamed BDFs from manufacturers which embedded a pine "card" on the PCB of 
-their AP.
-
-I was able to fix the problem for the non-upstream BDFs for this AP by 
-rearranging the BDF sections to match the new layout. I didn't try this with 
-the BDFs in your repository because also the IDs seemed to have changed (but I 
-didn't analyze it further). Simply using the BDFs from a different repository 
-was easier.
-
-Kind regards,
-	Sven
---nextPart9943023.Ro6Tc9THTW
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmHCXCIACgkQXYcKB8Em
-e0ZS/g/9EidXF3MmeDxkXYVWt9+nJAf14t/Pf7YNFmC+RG4sDQ1kfUztDcT+wKue
-2NgC/eyqD7xIkC2oxOhHdFh3wRAPDsBhAlzp0ac1DYDENTioC4Y2QeXXUAlbabLw
-qa0NTzG86bmcKuXx59xSEXE4PfSDINHOa8V5U7xf2eWytuOJRtrDOZODMcsGnxm4
-DF5rwPOOBeaMTqKLzY/Geyb/4Sp6V9ZRA+BB4mzyrS4jaIB6GWC3Qfqv9WyqkAIx
-gWwAKxDlcANqU2/Q1z/FbAiz7f8ArYREZhgcAFz1bl1bzIcJY1lXZkBDb8iz9GD2
-CY5JsfuZ9mf2FrGJPBcXycgML8nZXfkmz1xrxhvdKKcugv6QZpL8oEx6ZjfuZtMg
-hOZ5P4ZF0IGsxl9ROd85ztFoWR95hfFR1vE/YKeohM3lgjqA/9M+stTDYY/FTPz0
-2J2MsE7NXOdJEA8ecxVZDcmfKGaTyE2N5TDZRE/skB5+e4pLXguz31+xtOdoyrrh
-K9xJw1R7YVebzpvd6UowBUXkgcea7qcgNUBT4SX8Ya5WwLhJsrewxTLP/el1sAFC
-t38dw2XZEej3sbuAELHS6Xz333QAf5g8+yQFR3EYDGgO+vTzYtaNhgS+pBBzDOm/
-TsRgVNSHLlQ8KPSL6C/3G5qdyIao/iSF1alF3PdVBjuAmSxynYo=
-=74AA
------END PGP SIGNATURE-----
-
---nextPart9943023.Ro6Tc9THTW--
-
-
-
-
-
---===============3908174200013552990==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 -- 
 ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
-
---===============3908174200013552990==--
-
-
-
-
