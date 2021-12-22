@@ -4,63 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55ECEC4332F
-	for <ath11k@archiver.kernel.org>; Wed, 22 Dec 2021 05:58:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11AB3C433F5
+	for <ath11k@archiver.kernel.org>; Wed, 22 Dec 2021 06:02:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=A7NV9dY7p4EtZCgv39wSRKnZNje4FtQ8+mrVJaYwED8=; b=TD4l9sCti9/9NB
-	gIWy+bvYazS1C0QpIH5/7q096n788rSgkmCd10hrB3ItVF6PkVXCpqs1en/9GJS3bDXYFjE4DY1ST
-	7ya2z6tWQMOJWAKCga7Oe7WEPnmP/g4NjRiAMlbQymf9C1ZwW7qwBUQ0CCRpvLK7o7ciZqtG7v3c/
-	Ya43ouk6CJ/oGlyHl5lYW7g7Aw3df+6j4Rj1RPxBajqWvkW0IcH0IVYoij5kv51QwC0j/ZT1jW6ZF
-	ReH5nyUa4wpFY5ZkqxockOaNpHS0czbuyguEGr9+hO2dbP1ehRwiYxQK8xxd1tY9wL8d1BWKFVy3A
-	rTb6B1DPsO9NMVZweb/A==;
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
+	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=QfQjSAGFerdTX5QGNA/zEACwMsMXcTPExcxCZHNLkAU=; b=3FUegsN9UMuQ5G
+	d/8Fja+Y3F+XE+GL6GF/vn528vMGBqO4YCzRMa3LP+HOGLfUpAslRGTOUDVFxZqhkQBpyXH6OYPfA
+	dCUO/jU+o4o/z1WQPASzFYH09d044MRGfnPgLIH1FD+9vE3nYYuyv69aYNRgkrgOc6QAk0D4Db9RX
+	m+G9Ch64SgQWhtSWtoDfjziP1XEw+WWZlFbfFhoZEJguvpXesxQFe1CW4VxRnZmA/UhFlVhldYl4W
+	H6zLeX4a+jT+jFScOI+QDMwsPzXE3d/mlSBUEKfIMw6YuUegkTKaZO8gEcZCQJgl+zncVKbVp6TML
+	XOWiB5tcLfYfozDcWDjw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mzue4-009HsR-58; Wed, 22 Dec 2021 05:58:36 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1mzui7-009IYK-07; Wed, 22 Dec 2021 06:02:47 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mzue0-009HrB-IV
- for ath11k@lists.infradead.org; Wed, 22 Dec 2021 05:58:34 +0000
+ id 1mzui4-009IWx-EV
+ for ath11k@lists.infradead.org; Wed, 22 Dec 2021 06:02:45 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 1FB98617ED;
- Wed, 22 Dec 2021 05:58:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7CA3C36AE5;
- Wed, 22 Dec 2021 05:58:28 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 340B1B81A5F;
+ Wed, 22 Dec 2021 06:02:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2C29C36AE5;
+ Wed, 22 Dec 2021 06:02:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1640152711;
- bh=wnlIft/x8MQVyWtEN2wWau7s4XRbDvMYu1vn3YB2FRM=;
- h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
- b=o/SrgoS4/pTFvVm+Se4UuTH/1lbIIzvij/bYJZLa4Qy2dYpRGVcRVfjnf+5rYA5jC
- +lVzDXJ1NfgIYSxeeewAklW9oyI0NPkVBz7NVeH/aADuecgA7fzpTyEy2Xuc+snV+p
- CNQemUnHxWmq3V4Uc5Avj6SHKWET4BEFWtdhTUZ/+B7iS9XBqmZajH7iqi9A9FglKa
- bn1+9SnVzX5dS4NXZHCht5E/5pFHzvETXOImFyMwuHnYkadic7ApbLmpqAHSqQt2my
- Vyt/CMwitnkp7syivA0laXQefUAK+g6u5UHg3gdcWA4sl7dmUv4Wmq/9eNv38iEL14
- yJqAsP/1w7pDg==
-From: Kalle Valo <kvalo@kernel.org>
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: davem@davemloft.net, netdev@vger.kernel.org, luciano.coelho@intel.com,
- nbd@nbd.name, lorenzo.bianconi83@gmail.com, ryder.lee@mediatek.com,
- shayne.chen@mediatek.com, sean.wang@mediatek.com, johannes.berg@intel.com,
- emmanuel.grumbach@intel.com, ath11k@lists.infradead.org,
- linux-wireless@vger.kernel.org
-Subject: Re: [PATCH net-next 2/2] codel: remove unnecessary pkt_sched.h include
-References: <20211221193941.3805147-1-kuba@kernel.org>
- <20211221193941.3805147-2-kuba@kernel.org>
-Date: Wed, 22 Dec 2021 07:58:26 +0200
-In-Reply-To: <20211221193941.3805147-2-kuba@kernel.org> (Jakub Kicinski's
- message of "Tue, 21 Dec 2021 11:39:41 -0800")
-Message-ID: <87o8592nb1.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+ s=k20201202; t=1640152961;
+ bh=E6qzX9u92PoJMrIOXKLOmI6ylwQgEE5xeTtwjCDDyW0=;
+ h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+ b=VE+1Z2T8DQwAP0NWGbrVBaOrqDUuHFPhYJJDyO/20rrbfBgOmlWWXhV9sjqIB7Ymq
+ koqlB5u4cxyJM08LvE0dogkgwnEzBL+ElvDSYt8RSnMzGiWhA0b4lfJkyLmGSY/3gI
+ 5bsHJkrQ1RAl/KH0nAvtOd4INhLkWvYNQZFqLOEgF7spVoTVqjlGFrRT2Vs4mPp7Zi
+ ka5dccEeQ7tew6fno+heVL/Q5jpCv5e40+v4iCCisa65k8nyIyPae2sZ0isNjobmkt
+ ZVWjNyJm9OPASgnD4iETPx0qVCYs89ArPmMb9J0VNVzRl1/gxi6OKq0G2OuyaTRVRX
+ zvdhWjHmA0XDg==
 MIME-Version: 1.0
+Subject: Re: [PATCH] ath11k:  Fix napi related hang
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20200903195254.29379-1-greearb@candelatech.com>
+References: <20200903195254.29379-1-greearb@candelatech.com>
+To: greearb@candelatech.com
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ Ben Greear <greearb@candelatech.com>
+User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-ID: <164015295930.20356.10535530063354087568.kvalo@kernel.org>
+Date: Wed, 22 Dec 2021 06:02:40 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211221_215832_685932_C70D3D6C 
-X-CRM114-Status: GOOD (  12.68  )
+X-CRM114-CacheID: sfid-20211221_220244_662263_9BB6A088 
+X-CRM114-Status: UNSURE (   9.20  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,47 +73,27 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Jakub Kicinski <kuba@kernel.org> writes:
+greearb@candelatech.com wrote:
 
-> Commit d068ca2ae2e6 ("codel: split into multiple files") moved all
-> Qdisc-related code to codel_qdisc.h, move the include of pkt_sched.h
-> as well.
->
-> This is similar to the previous commit, although we don't care as
-> much about incremental builds after pkt_sched.h was touched itself
-> it is included by net/sch_generic.h which is modified ~20 times
-> a year.
->
-> This decreases the incremental build size after touching pkt_sched.h
-> from 1592 to 617 objects.
->
-> Fix unmasked missing includes in WiFi drivers.
->
-> Signed-off-by: Jakub Kicinski <kuba@kernel.org>
-> ---
-> CC: kvalo@kernel.org
-> CC: luciano.coelho@intel.com
-> CC: nbd@nbd.name
-> CC: lorenzo.bianconi83@gmail.com
-> CC: ryder.lee@mediatek.com
-> CC: shayne.chen@mediatek.com
-> CC: sean.wang@mediatek.com
-> CC: johannes.berg@intel.com
-> CC: emmanuel.grumbach@intel.com
-> CC: ath11k@lists.infradead.org
-> CC: linux-wireless@vger.kernel.org
-> ---
->  drivers/net/wireless/ath/ath11k/reg.c               | 2 ++
->  drivers/net/wireless/intel/iwlwifi/mvm/ops.c        | 1 +
->  drivers/net/wireless/intel/iwlwifi/mvm/vendor-cmd.c | 1 +
->  drivers/net/wireless/mediatek/mt76/testmode.h       | 2 ++
+> Similar to the same bug in ath10k, a napi disable w/out it being enabled
+> will hang forever.  I believe I saw this while trying rmmod after driver
+> had some failure on startup.  Fix it by keeping state on whether napi is
+> enabled or not.
+> 
+> And, remove un-used napi pointer in ath11k driver base struct.
+> 
+> Signed-off-by: Ben Greear <greearb@candelatech.com>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-Acked-by: Kalle Valo <kvalo@kernel.org>
+Patch applied to ath-next branch of ath.git, thanks.
+
+d943fdad7589 ath11k: Fix napi related hang
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+https://patchwork.kernel.org/project/linux-wireless/patch/20200903195254.29379-1-greearb@candelatech.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
 -- 
 ath11k mailing list
