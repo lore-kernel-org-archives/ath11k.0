@@ -4,69 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7BB29C433EF
-	for <ath11k@archiver.kernel.org>; Wed, 22 Dec 2021 03:15:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3A96C433EF
+	for <ath11k@archiver.kernel.org>; Wed, 22 Dec 2021 03:29:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ye9+s7Lk6/DmP0NBr4DU0ImIMXJPOxs+TQREHtDaVs0=; b=Y9XEhhwnt4VNJL
-	cVw2xLnTQRWdtSSjX8hPzrfbYybNxZiXJfVFI69rwdc92GZdz1s+CAuEjQacDjN9c3fzJycdHgQuX
-	4kYzV3TPtXKPjYF4ykz6QCUkzqHZf8Tsn1+aqonGW80cX7z22Nx79UoevmkDrGPGrytnkhgHXqLb9
-	pRF7ACfEJ9tj2rOKg3vkuYRoMrqsq95YN5v6lBvuKv8WWmTtvPwkYPbeprk1MR4NvXRHIHYNuLgMA
-	Wkyg5p39PTePxy3bllAhpF/bPqafAea4aHXJ4wsSZCKMs1goYkV7w/cSzbkAZVHo9SD0XAa8Y1zKG
-	lIjshLm3NyCsze5G0Smg==;
+	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:Cc:To:From
+	:Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=GnIQbZMk6YaqCJxygyrpxvVaplYjciDXpAxU3kE7e3Y=; b=IlpBiVqM+Uyd9Np2MnBfhLD07v
+	t5FqavIZZbxYL0JtWvBNFkMdkGDCK5HfPL25Z8rWblkulK6rH03mYkIrbFE4bCgHZOepJdTMvyo+0
+	PVukN1Ob+igwwVOJ0mWVemAagjsS7zxqYdQCmMXQsij1Y2p2yBzGaJ6jCDyI5j4TM7Me93XdSOpRX
+	RCsuh0oOWKoQUQsEXCbwPPxYxyT0lxSL7/ZAztFlMprEGcUYE/FWDscrYJUpw0RRDw0n+RwSapfZ5
+	IpVpFgkPdDmDEYTBMyQ+nFouUePP997C5iKZRicVrUT2r+oSy1sYmuPUlFW8jTTy5dpgkWO4UpMbh
+	LDtgVzNg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mzs5i-0094Rr-Bm; Wed, 22 Dec 2021 03:14:58 +0000
-Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39])
+	id 1mzsJX-0096Hm-PA; Wed, 22 Dec 2021 03:29:15 +0000
+Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mzs5f-0094RE-C4
- for ath11k@lists.infradead.org; Wed, 22 Dec 2021 03:14:56 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1640142895; x=1671678895;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=snM2GZEahT2hkkApPvUMvlBgcJtGVMpHQbtRv6xFj/Y=;
- b=jplmGa2VBv3heNG/jYj4szOYNYITANplVIWhUbFN+u6HXw7L5QXU4SEl
- BQTs4hlwOwgDdhSq2pYVy760DL7ANDgCMSqNXAqWj3StKMN3HYYsJW7gI
- ITyXroDEXCwQ8mM5+0LCyLt44p2DWJrfY8K2khOYtUXXSLWDvPSbOhBDV k=;
-Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
- by alexa-out-sd-02.qualcomm.com with ESMTP; 21 Dec 2021 19:14:55 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2021 19:14:54 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Tue, 21 Dec 2021 19:14:54 -0800
-Received: from [10.231.195.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Tue, 21 Dec
- 2021 19:14:53 -0800
-Message-ID: <eaf4400c-a286-768f-a6e3-7670e7fbbd3a@quicinc.com>
-Date: Wed, 22 Dec 2021 11:14:50 +0800
+ id 1mzsJV-0096Gf-0B
+ for ath11k@lists.infradead.org; Wed, 22 Dec 2021 03:29:14 +0000
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
+ q=dns/txt; 
+ s=smtp; t=1640143749; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=/cbcC71buEWMwe5M5gbCCByHXv+YwjnFFxIxasGSsBc=;
+ b=P9YIMsKskA28lmtwtdF/+sBjuJyQuvUqhYcKFzkM0zAApZujZCrWFovhJppacb4FEwEteEww
+ Ob1DeWdcKu5zcn1S0wTIwdiqJhnu5ZrgsOGL0ddAhGBiOGlVHe/hC1lenjO51PlfwHTJpbmb
+ lDWWbieBCpHnlPs3e0sitkPkPac=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
+ 61c29b857d878c8ded142566 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 22 Dec 2021 03:29:09
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+ id 515CBC43616; Wed, 22 Dec 2021 03:29:08 +0000 (UTC)
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+ (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+ (No client certificate requested) (Authenticated sender: akolli)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id F3D1EC4338F;
+ Wed, 22 Dec 2021 03:29:06 +0000 (UTC)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.0
-Subject: Re: [PATCH] ath10k: fix memory overwrite of the WoWLAN wakeup packet
- pattern
-Content-Language: en-US
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>
-References: <20211222031020.25382-1-quic_wgong@quicinc.com>
-From: Wen Gong <quic_wgong@quicinc.com>
-In-Reply-To: <20211222031020.25382-1-quic_wgong@quicinc.com>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+Date: Wed, 22 Dec 2021 08:59:06 +0530
+From: Anilkumar Kolli <akolli@codeaurora.org>
+To: Kalle Valo <kvalo@kernel.org>
+Cc: Dan Carpenter <dan.carpenter@oracle.com>, ath11k@lists.infradead.org
+Subject: Re: [bug report] ath11k: Fix pktlog lite rx events
+In-Reply-To: <87czlq6mdw.fsf@kernel.org>
+References: <20211130104159.GD5827@kili>
+ <725a45b8c05ebd508df3bfc6b1097b03@codeaurora.org>
+ <87czlq6mdw.fsf@kernel.org>
+Message-ID: <e2df0d82a0ca520123c96e070cdabf56@codeaurora.org>
+X-Sender: akolli@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211221_191455_481425_72AD7288 
-X-CRM114-Status: GOOD (  15.80  )
+X-CRM114-CacheID: sfid-20211221_192913_177930_19730CDC 
+X-CRM114-Status: GOOD (  13.51  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,53 +80,144 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-please ignore this, I will send to ath10k group because this is ath10k 
-patch.
+On 2021-12-21 20:22, Kalle Valo wrote:
+> Anilkumar Kolli <akolli@codeaurora.org> writes:
+> 
+>> On 2021-11-30 16:12, Dan Carpenter wrote:
+>>> Hello Anilkumar Kolli,
+>>> 
+>>> The patch ab18e3bc1c13: "ath11k: Fix pktlog lite rx events" from Sep
+>>> 28, 2021, leads to the following Smatch static checker warning:
+>>> 
+>>> 	drivers/net/wireless/ath/ath11k/dp_rx.c:3105
+>>> ath11k_dp_rx_process_mon_status()
+>>> 	error: uninitialized symbol 'rx_buf_sz'.
+>>> 
+>>> drivers/net/wireless/ath/ath11k/dp_rx.c
+>>>     3043 int ath11k_dp_rx_process_mon_status(struct ath11k_base *ab,
+>>> int mac_id,
+>>>     3044                                     struct napi_struct 
+>>> *napi,
+>>> int budget)
+>>>     3045 {
+>>>     3046         struct ath11k *ar = ath11k_ab_to_ar(ab, mac_id);
+>>>     3047         enum hal_rx_mon_status hal_status;
+>>>     3048         struct sk_buff *skb;
+>>>     3049         struct sk_buff_head skb_list;
+>>>     3050         struct hal_rx_mon_ppdu_info ppdu_info;
+>>>     3051         struct ath11k_peer *peer;
+>>>     3052         struct ath11k_sta *arsta;
+>>>     3053         int num_buffs_reaped = 0;
+>>>     3054         u32 rx_buf_sz;
+>>>                  ^^^^^^^^^^^^^
+>>> 
+>>>     3055         u16 log_type = 0;
+>>>     3056
+>>>     3057         __skb_queue_head_init(&skb_list);
+>>>     3058
+>>>     3059         num_buffs_reaped =
+>>> ath11k_dp_rx_reap_mon_status_ring(ab, mac_id, &budget,
+>>>     3060
+>>> &skb_list);
+>>>     3061         if (!num_buffs_reaped)
+>>>     3062                 goto exit;
+>>>     3063
+>>>     3064         while ((skb = __skb_dequeue(&skb_list))) {
+>>>     3065                 memset(&ppdu_info, 0, sizeof(ppdu_info));
+>>>     3066                 ppdu_info.peer_id = HAL_INVALID_PEERID;
+>>>     3067
+>>>     3068                 if
+>>> (ath11k_debugfs_is_pktlog_lite_mode_enabled(ar)) {
+>>>     3069                         log_type = 
+>>> ATH11K_PKTLOG_TYPE_LITE_RX;
+>>>     3070                         rx_buf_sz = DP_RX_BUFFER_SIZE_LITE;
+>>>     3071                 } else if
+>>> (ath11k_debugfs_is_pktlog_rx_stats_enabled(ar)) {
+>>>     3072                         log_type =
+>>> ATH11K_PKTLOG_TYPE_RX_STATBUF;
+>>>     3073                         rx_buf_sz = DP_RX_BUFFER_SIZE;
+>>>     3074                 }
+>>> 
+>>> No else statement.
+>>> 
+>>>     3075
+>>>     3076                 if (log_type)
+>>>     3077                         trace_ath11k_htt_rxdesc(ar,
+>>> skb->data, log_type, rx_buf_sz);
+>>>     3078
+>>>     3079                 hal_status =
+>>> ath11k_hal_rx_parse_mon_status(ab, &ppdu_info, skb);
+>>>     3080
+>>>     3081                 if (ppdu_info.peer_id == HAL_INVALID_PEERID 
+>>> ||
+>>>     3082                     hal_status !=
+>>> HAL_RX_MON_STATUS_PPDU_DONE) {
+>>>     3083                         dev_kfree_skb_any(skb);
+>>>     3084                         continue;
+>>>     3085                 }
+>>>     3086
+>>>     3087                 rcu_read_lock();
+>>>     3088                 spin_lock_bh(&ab->base_lock);
+>>>     3089                 peer = ath11k_peer_find_by_id(ab,
+>>> ppdu_info.peer_id);
+>>>     3090
+>>>     3091                 if (!peer || !peer->sta) {
+>>>     3092                         ath11k_dbg(ab, ATH11K_DBG_DATA,
+>>>     3093                                    "failed to find the peer
+>>> with peer_id %d\n",
+>>>     3094                                    ppdu_info.peer_id);
+>>>     3095                         spin_unlock_bh(&ab->base_lock);
+>>>     3096                         rcu_read_unlock();
+>>>     3097                         dev_kfree_skb_any(skb);
+>>>     3098                         continue;
+>>>     3099                 }
+>>>     3100
+>>>     3101                 arsta = (struct ath11k_sta
+>>> *)peer->sta->drv_priv;
+>>>     3102                 ath11k_dp_rx_update_peer_stats(arsta,
+>>> &ppdu_info);
+>>>     3103
+>>>     3104                 if (ath11k_debugfs_is_pktlog_peer_valid(ar,
+>>> peer->addr))
+>>> --> 3105                         trace_ath11k_htt_rxdesc(ar,
+>>> skb->data, log_type, rx_buf_sz);
+>>> 
+>>>            ^^^^^^^^^
+>>> Warning here.
+>>> 
+>>>     3106
+>>>     3107                 spin_unlock_bh(&ab->base_lock);
+>>>     3108                 rcu_read_unlock();
+>>>     3109
+>>>     3110                 dev_kfree_skb_any(skb);
+>>>     3111         }
+>>>     3112 exit:
+>>>     3113         return num_buffs_reaped;
+>>>     3114 }
+>>> 
+>>> regards,
+>>> dan carpenter
+>> 
+>> Hi Dan carpenter
+>> 
+>> Thanks for reporting issue. Could you please help in reproducing the
+>> issue,
+>> 
+>> I tried to reproduce the warnings using command, but could not
+>>     make C=1 CHECK="smatch -p=kernel" -C.
+>> drivers/net/wireless/ath/ath11k/ modules
+> 
+> I don't see why you need to reproduce the error. rx_buf_sz is
+> uninitialised as there's no else statement, like Dan mentioned above.
+> 
 
-On 12/22/2021 11:10 AM, Wen Gong wrote:
-> In function ath10k_wow_convert_8023_to_80211(), it will do memcpy for
-> the new->pattern, and currently the new->pattern and new->mask is same
-> with the old, then the memcpy of new->pattern will also overwrite the
-> old->pattern, because the header format of new->pattern is 802.11,
-> its length is larger than the old->pattern which is 802.3. Then the
-> operation of "Copy frame body" will copy a mistake value because the
-> body memory has been overwrite when memcpy the new->pattern.
->
-> Assign another empty value to new_pattern to avoid the overwrite issue.
->
-> Tested-on: QCA6174 hw3.2 SDIO WLAN.RMH.4.4.1-00049
->
-> Fixes: fa3440fa2fa1 ("ath10k: convert wow pattern from 802.3 to 802.11")
-> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
-> ---
->   drivers/net/wireless/ath/ath10k/wow.c | 7 ++++---
->   1 file changed, 4 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/net/wireless/ath/ath10k/wow.c b/drivers/net/wireless/ath/ath10k/wow.c
-> index 7d65c115669f..20b9aa8ddf7d 100644
-> --- a/drivers/net/wireless/ath/ath10k/wow.c
-> +++ b/drivers/net/wireless/ath/ath10k/wow.c
-> @@ -337,14 +337,15 @@ static int ath10k_vif_wow_set_wakeups(struct ath10k_vif *arvif,
->   			if (patterns[i].mask[j / 8] & BIT(j % 8))
->   				bitmask[j] = 0xff;
->   		old_pattern.mask = bitmask;
-> -		new_pattern = old_pattern;
->   
->   		if (ar->wmi.rx_decap_mode == ATH10K_HW_TXRX_NATIVE_WIFI) {
-> -			if (patterns[i].pkt_offset < ETH_HLEN)
-> +			if (patterns[i].pkt_offset < ETH_HLEN) {
->   				ath10k_wow_convert_8023_to_80211(&new_pattern,
->   								 &old_pattern);
-> -			else
-> +			} else {
-> +				new_pattern = old_pattern;
->   				new_pattern.pkt_offset += WOW_HDR_LEN - ETH_HLEN;
-> +			}
->   		}
->   
->   		if (WARN_ON(new_pattern.pattern_len > WOW_MAX_PATTERN_SIZE))
->
-> base-commit: 6629123e6a8ba405d270fd9cd70dc1ccb65e25de
+I thought this script is useful for ath11k.
+
+> Anil, can you send a patch?
+
+Sure Kalle, I will submit a patch.
+
+- Anil.
 
 -- 
 ath11k mailing list
