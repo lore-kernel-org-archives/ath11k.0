@@ -4,65 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 627C0C433F5
-	for <ath11k@archiver.kernel.org>; Wed, 22 Dec 2021 07:04:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB9A8C433EF
+	for <ath11k@archiver.kernel.org>; Wed, 22 Dec 2021 07:10:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=6ZRIDyRXsXOjCrmq9zHgzEJPndOnfs6vyiz5atAjVVQ=; b=tVrZLd2yzcCukn
-	wSgfLjTcgWUY37GwdSf7150pOdLXO2Llu5jDH4BYm57mCsjkrosHZ0XFeC2QD5EygQpfWf9BL6oK+
-	0A34Ww5irCK9No09QkevG3IF7MQvtmaWsI0gIOF7U4HCRhimwHhyWb54+KKp+Bwk94ThFVlSc1abb
-	FdltjzJPDeWrUfyOK4oolYQODfsBHQ8e2wQT7by0EyAD3B53DzTxy6NUftLAdfjtWA9a6JjLuiQPZ
-	H6jSf/Hboadwi1Xlz/IFURK71bfaSBKhbmWPTIOEl/W8JedTqEMd0qHQLMANy0084ymjs8jpvmTXx
-	G9bERrxU68slxa/2+clQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=YRguwW2ZvqUHOWkPL0s+a/jC/kBnKdvR5m6vGvTL0Dw=; b=Dxl9OMjltYVbAo
+	CgGaoBMbRqMzMGo1hUvNlcL27XCrtB1z3XNI6Ihb5MmDX0EGDn4429k60BQOsyuS5gBzKWzHEgnUg
+	lZSGmRmnp9ZiF635vfn5isCBiCq33n7VeNxvNGpwpOvy/s6Hzy/6JZMaVpRavbhm6s5f+E/KxTpmS
+	PGPRNRgn4i9G0h44mYa6WIHXMk3wuq1yKzxN/7/8d7icxNeJLxigMfjMszzShOhkKxCJHqC3sZzzS
+	HrA1dBR8exG70UoGuT/v5L8S0VaevAoUiAS7aov5Ph2roAnFSqPAkgqtOUdFKcR04GnoSdkPumjEn
+	saU5jMG0Sq4bqmAA8rLA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1mzvgD-009Ppy-C3; Wed, 22 Dec 2021 07:04:53 +0000
-Received: from alexa-out.qualcomm.com ([129.46.98.28])
+	id 1mzvlA-009RD5-Jr; Wed, 22 Dec 2021 07:10:00 +0000
+Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mzvg9-009PoU-L2
- for ath11k@lists.infradead.org; Wed, 22 Dec 2021 07:04:51 +0000
+ id 1mzvkv-009R7Q-D3
+ for ath11k@lists.infradead.org; Wed, 22 Dec 2021 07:09:46 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1640156690; x=1671692690;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=yQIjaXN1PO0YjtR3DTPqqdj52CKv7sERXgUAcaU4/B4=;
- b=LaWY9adDkExsE6SIiv3TuzXZgsoaFs7y4DaYpEv7qmShX4jnN2OQDxNQ
- Y48mHfuagn47l4KNeD4i8vhIr3fPXI4mfEGDYd3v04nGq8XIT3FWi7jDT
- iEBoyUbLpKocrkj4hnr9xLh05rJ8w0xFpJT7b51fuiaQMyIiODjyYbpZr w=;
-Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
- by alexa-out.qualcomm.com with ESMTP; 21 Dec 2021 23:04:47 -0800
+ t=1640156985; x=1671692985;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=H7Dok7WK0H59Mj54+rSDd7Yj5ML+6uiquMm8Ib7Shlk=;
+ b=LKHYYycfG7Mtw3iPYd2iepOLzDcSn3BVIQANVd38VwHHfDC683bcKvr8
+ vdbdMO636i0Bj4QcGiG10BcVHgj10T7KavsRk5OSPja7E0GmnS1mMazRX
+ 20vw5Q9ysYrTudFMVFYycXZtAAO+JMZ753zOCs6knWJQeH5XHcpJUiU6w 0=;
+Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
+ by alexa-out-sd-01.qualcomm.com with ESMTP; 21 Dec 2021 23:09:43 -0800
 X-QCInternal: smtphost
 Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Dec 2021 23:04:47 -0800
+ by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Dec 2021 23:09:41 -0800
 Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
  nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Tue, 21 Dec 2021 23:04:46 -0800
-Received: from wgong-HP3-Z230-SFF-Workstation.qca.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Tue, 21 Dec 2021 23:04:44 -0800
-From: Wen Gong <quic_wgong@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, <quic_wgong@quicinc.com>
-Subject: [PATCH v3] ath11k: free peer for station when disconnect from AP for
- QCA6390/WCN6855
-Date: Wed, 22 Dec 2021 02:04:31 -0500
-Message-ID: <20211222070431.29595-1-quic_wgong@quicinc.com>
-X-Mailer: git-send-email 2.31.1
+ 15.2.922.19; Tue, 21 Dec 2021 23:09:39 -0800
+Received: from [10.231.195.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Tue, 21 Dec
+ 2021 23:09:38 -0800
+Message-ID: <a9c1ed53-d83e-141f-abdf-3a8fe91f142d@quicinc.com>
+Date: Wed, 22 Dec 2021 15:09:35 +0800
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.0
+Subject: Re: [PATCH v2] ath11k: free peer for station when disconnect from AP
+ for QCA6390/WCN6855
+Content-Language: en-US
+To: Kalle Valo <kvalo@kernel.org>
+CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
+References: <20211215063442.15629-1-quic_wgong@quicinc.com>
+ <87a6gu9sy8.fsf@codeaurora.org>
+From: Wen Gong <quic_wgong@quicinc.com>
+In-Reply-To: <87a6gu9sy8.fsf@codeaurora.org>
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211221_230449_840009_76D84961 
-X-CRM114-Status: GOOD (  15.84  )
+X-CRM114-CacheID: sfid-20211221_230945_523518_4E7320BD 
+X-CRM114-Status: UNSURE (   9.71  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,265 +80,65 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Commit b4a0f54156ac ("ath11k: move peer delete after vdev stop of station
-for QCA6390 and WCN6855") is to fix firmware crash by changing the WMI
-command sequence, but actually skip all the peer delete operation, then
-it lead commit 58595c9874c6 ("ath11k: Fixing dangling pointer issue upon
-peer delete failure") not take effect, and then happened a use-after-free
-warning from KASAN. because the peer->sta is not set to NULL and then used
-later.
+On 12/21/2021 6:02 PM, Kalle Valo wrote:
+> Wen Gong <quic_wgong@quicinc.com> writes:
+>
+>> Commit b4a0f54156ac ("ath11k: move peer delete after vdev stop of station
+>> for QCA6390 and WCN6855") is to fix firmware crash by changing the WMI
+>> command sequence, but actually skip all the peer delete operation, then
+>> it lead commit 58595c9874c6 ("ath11k: Fixing dangling pointer issue upon
+>> peer delete failure") not take effect, and then happened a use-after-free
+>> warning from KASAN. because the peer->sta is not set to NULL and then used
+>> later.
+>>
+...
+> I still see unknown peer warnings during suspend:
+>
+> [  506.782421] wlan0: authenticate with xx:xx:xx:xx:xx:xx
+> [  506.845984] wlan0: send auth to xx:xx:xx:xx:xx:xx (try 1/3)
+> [  506.852199] wlan0: authenticated
+> [  506.855886] wlan0: associate with xx:xx:xx:xx:xx:xx (try 1/3)
+> [  506.862157] wlan0: RX AssocResp from xx:xx:xx:xx:xx:xx (capab=0x431 status=0 aid=2)
+> [  506.887866] wlan0: associated
+> [  507.603717] igb 0000:05:00.0 eth1: igb: eth1 NIC Link is Up 1000 Mbps Full Duplex, Flow Control: RX/TX
+> [  510.610907] PM: suspend entry (deep)
+> [  510.611871] Filesystems sync: 0.000 seconds
+> [  510.663217] Freezing user space processes ... (elapsed 0.003 seconds) done.
+> [  510.668909] OOM killer disabled.
+> [  510.670619] Freezing remaining freezable tasks ... (elapsed 0.001 seconds) done.
+> [  510.674552] printk: Suspending console(s) (use no_console_suspend to debug)
+> [  510.679606] wlan0: deauthenticating from xx:xx:xx:xx:xx:xx by local choice (Reason: 3=DEAUTH_LEAVING)
+> [  510.722483] e1000e: EEE TX LPI TIMER: 00000011
+> [  510.764835] ath11k_pci 0000:06:00.0: peer-unmap-event: unknown peer id 10
+> [  511.374486] ACPI: EC: interrupt blocked
+> [  511.440359] ACPI: PM: Preparing to enter system sleep state S3
+> [  511.473142] ACPI: EC: event blocked
 
-Change to only skip the WMI_PEER_DELETE_CMDID for QCA6390/WCN6855.
+Hi Kalle,
 
-log of user-after-free:
+patch v3 which has sent has fixed the warning "ath11k_pci 0000:06:00.0: 
+peer-unmap-event: unknown peer id 10".
 
-[  534.888665] BUG: KASAN: use-after-free in ath11k_dp_rx_update_peer_stats+0x912/0xc10 [ath11k]
-[  534.888696] Read of size 8 at addr ffff8881396bb1b8 by task rtcwake/2860
+...
 
-[  534.888705] CPU: 4 PID: 2860 Comm: rtcwake Kdump: loaded Tainted: G        W         5.15.0-wt-ath+ #523
-[  534.888712] Hardware name: Intel(R) Client Systems NUC8i7HVK/NUC8i7HVB, BIOS HNKBLi70.86A.0067.2021.0528.1339 05/28/2021
-[  534.888716] Call Trace:
-[  534.888720]  <IRQ>
-[  534.888726]  dump_stack_lvl+0x57/0x7d
-[  534.888736]  print_address_description.constprop.0+0x1f/0x170
-[  534.888745]  ? ath11k_dp_rx_update_peer_stats+0x912/0xc10 [ath11k]
-[  534.888771]  kasan_report.cold+0x83/0xdf
-[  534.888783]  ? ath11k_dp_rx_update_peer_stats+0x912/0xc10 [ath11k]
-[  534.888810]  ath11k_dp_rx_update_peer_stats+0x912/0xc10 [ath11k]
-[  534.888840]  ath11k_dp_rx_process_mon_status+0x529/0xa70 [ath11k]
-[  534.888874]  ? ath11k_dp_rx_mon_status_bufs_replenish+0x3f0/0x3f0 [ath11k]
-[  534.888897]  ? check_prev_add+0x20f0/0x20f0
-[  534.888922]  ? __lock_acquire+0xb72/0x1870
-[  534.888937]  ? find_held_lock+0x33/0x110
-[  534.888954]  ath11k_dp_rx_process_mon_rings+0x297/0x520 [ath11k]
-[  534.888981]  ? rcu_read_unlock+0x40/0x40
-[  534.888990]  ? ath11k_dp_rx_pdev_alloc+0xd90/0xd90 [ath11k]
-[  534.889026]  ath11k_dp_service_mon_ring+0x67/0xe0 [ath11k]
-[  534.889053]  ? ath11k_dp_rx_process_mon_rings+0x520/0x520 [ath11k]
-[  534.889075]  call_timer_fn+0x167/0x4a0
-[  534.889084]  ? add_timer_on+0x3b0/0x3b0
-[  534.889103]  ? lockdep_hardirqs_on_prepare.part.0+0x18c/0x370
-[  534.889117]  __run_timers.part.0+0x539/0x8b0
-[  534.889123]  ? ath11k_dp_rx_process_mon_rings+0x520/0x520 [ath11k]
-[  534.889157]  ? call_timer_fn+0x4a0/0x4a0
-[  534.889164]  ? mark_lock_irq+0x1c30/0x1c30
-[  534.889173]  ? clockevents_program_event+0xdd/0x280
-[  534.889189]  ? mark_held_locks+0xa5/0xe0
-[  534.889203]  run_timer_softirq+0x97/0x180
-[  534.889213]  __do_softirq+0x276/0x86a
-[  534.889230]  __irq_exit_rcu+0x11c/0x180
-[  534.889238]  irq_exit_rcu+0x5/0x20
-[  534.889244]  sysvec_apic_timer_interrupt+0x8e/0xc0
-[  534.889251]  </IRQ>
-[  534.889254]  <TASK>
-[  534.889259]  asm_sysvec_apic_timer_interrupt+0x12/0x20
-[  534.889265] RIP: 0010:_raw_spin_unlock_irqrestore+0x38/0x70
-[  534.889271] Code: 74 24 10 e8 ea c2 bf fd 48 89 ef e8 12 53 c0 fd 81 e3 00 02 00 00 75 25 9c 58 f6 c4 02 75 2d 48 85 db 74 01 fb bf 01 00 00 00 <e8> 13 a7 b5 fd 65 8b 05 cc d9 9c 5e 85 c0 74 0a 5b 5d c3 e8 a0 ee
-[  534.889276] RSP: 0018:ffffc90002e5f880 EFLAGS: 00000206
-[  534.889284] RAX: 0000000000000006 RBX: 0000000000000200 RCX: ffffffff9f256f10
-[  534.889289] RDX: 0000000000000000 RSI: ffffffffa1c6e420 RDI: 0000000000000001
-[  534.889293] RBP: ffff8881095e6200 R08: 0000000000000001 R09: ffffffffa40d2b8f
-[  534.889298] R10: fffffbfff481a571 R11: 0000000000000001 R12: ffff8881095e6e68
-[  534.889302] R13: ffffc90002e5f908 R14: 0000000000000246 R15: 0000000000000000
-[  534.889316]  ? mark_lock+0xd0/0x14a0
-[  534.889332]  klist_next+0x1d4/0x450
-[  534.889340]  ? dpm_wait_for_subordinate+0x2d0/0x2d0
-[  534.889350]  device_for_each_child+0xa8/0x140
-[  534.889360]  ? device_remove_class_symlinks+0x1b0/0x1b0
-[  534.889370]  ? __lock_release+0x4bd/0x9f0
-[  534.889378]  ? dpm_suspend+0x26b/0x3f0
-[  534.889390]  dpm_wait_for_subordinate+0x82/0x2d0
-[  534.889400]  ? dpm_for_each_dev+0xa0/0xa0
-[  534.889410]  ? dpm_suspend+0x233/0x3f0
-[  534.889427]  __device_suspend+0xd4/0x10c0
-[  534.889440]  ? wait_for_completion_io+0x270/0x270
-[  534.889456]  ? async_suspend_late+0xe0/0xe0
-[  534.889463]  ? async_schedule_node_domain+0x468/0x640
-[  534.889482]  dpm_suspend+0x25a/0x3f0
-[  534.889491]  ? dpm_suspend_end+0x1a0/0x1a0
-[  534.889497]  ? ktime_get+0x214/0x2f0
-[  534.889502]  ? lockdep_hardirqs_on+0x79/0x100
-[  534.889509]  ? recalibrate_cpu_khz+0x10/0x10
-[  534.889516]  ? ktime_get+0x119/0x2f0
-[  534.889528]  dpm_suspend_start+0xab/0xc0
-[  534.889538]  suspend_devices_and_enter+0x1ca/0x350
-[  534.889546]  ? suspend_enter+0x850/0x850
-[  534.889566]  enter_state+0x27c/0x3d7
-[  534.889575]  pm_suspend.cold+0x42/0x189
-[  534.889583]  state_store+0xab/0x160
-[  534.889595]  ? sysfs_file_ops+0x160/0x160
-[  534.889601]  kernfs_fop_write_iter+0x2b5/0x450
-[  534.889615]  new_sync_write+0x36a/0x600
-[  534.889625]  ? new_sync_read+0x600/0x600
-[  534.889639]  ? rcu_read_unlock+0x40/0x40
-[  534.889668]  vfs_write+0x619/0x910
-[  534.889681]  ksys_write+0xf4/0x1d0
-[  534.889689]  ? __ia32_sys_read+0xa0/0xa0
-[  534.889699]  ? lockdep_hardirqs_on_prepare.part.0+0x18c/0x370
-[  534.889707]  ? syscall_enter_from_user_mode+0x1d/0x50
-[  534.889719]  do_syscall_64+0x3b/0x90
-[  534.889725]  entry_SYSCALL_64_after_hwframe+0x44/0xae
-[  534.889731] RIP: 0033:0x7f0b9bc931e7
-[  534.889736] Code: 64 89 02 48 c7 c0 ff ff ff ff eb bb 0f 1f 80 00 00 00 00 f3 0f 1e fa 64 8b 04 25 18 00 00 00 85 c0 75 10 b8 01 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 51 c3 48 83 ec 28 48 89 54 24 18 48 89 74 24
-[  534.889741] RSP: 002b:00007ffd9d34cc88 EFLAGS: 00000246 ORIG_RAX: 0000000000000001
-[  534.889749] RAX: ffffffffffffffda RBX: 0000000000000004 RCX: 00007f0b9bc931e7
-[  534.889753] RDX: 0000000000000004 RSI: 0000561cd023c5f0 RDI: 0000000000000004
-[  534.889757] RBP: 0000561cd023c5f0 R08: 0000000000000000 R09: 0000000000000004
-[  534.889761] R10: 0000561ccef842a6 R11: 0000000000000246 R12: 0000000000000004
-[  534.889765] R13: 0000561cd0239590 R14: 00007f0b9bd6f4a0 R15: 00007f0b9bd6e8a0
-[  534.889789]  </TASK>
-
-[  534.889796] Allocated by task 2711:
-[  534.889800]  kasan_save_stack+0x1b/0x40
-[  534.889805]  __kasan_kmalloc+0x7c/0x90
-[  534.889810]  sta_info_alloc+0x98/0x1ef0 [mac80211]
-[  534.889874]  ieee80211_prep_connection+0x30b/0x11e0 [mac80211]
-[  534.889950]  ieee80211_mgd_auth+0x529/0xe00 [mac80211]
-[  534.890024]  cfg80211_mlme_auth+0x332/0x6f0 [cfg80211]
-[  534.890090]  nl80211_authenticate+0x839/0xcf0 [cfg80211]
-[  534.890147]  genl_family_rcv_msg_doit+0x1f4/0x2f0
-[  534.890154]  genl_rcv_msg+0x280/0x500
-[  534.890160]  netlink_rcv_skb+0x11c/0x340
-[  534.890165]  genl_rcv+0x1f/0x30
-[  534.890170]  netlink_unicast+0x42b/0x700
-[  534.890176]  netlink_sendmsg+0x71b/0xc60
-[  534.890181]  sock_sendmsg+0xdf/0x110
-[  534.890187]  ____sys_sendmsg+0x5c0/0x850
-[  534.890192]  ___sys_sendmsg+0xe4/0x160
-[  534.890197]  __sys_sendmsg+0xb2/0x140
-[  534.890202]  do_syscall_64+0x3b/0x90
-[  534.890207]  entry_SYSCALL_64_after_hwframe+0x44/0xae
-
-[  534.890215] Freed by task 2825:
-[  534.890218]  kasan_save_stack+0x1b/0x40
-[  534.890223]  kasan_set_track+0x1c/0x30
-[  534.890227]  kasan_set_free_info+0x20/0x30
-[  534.890232]  __kasan_slab_free+0xce/0x100
-[  534.890237]  slab_free_freelist_hook+0xf0/0x1a0
-[  534.890242]  kfree+0xe5/0x370
-[  534.890248]  __sta_info_flush+0x333/0x4b0 [mac80211]
-[  534.890308]  ieee80211_set_disassoc+0x324/0xd20 [mac80211]
-[  534.890382]  ieee80211_mgd_deauth+0x537/0xee0 [mac80211]
-[  534.890472]  cfg80211_mlme_deauth+0x349/0x810 [cfg80211]
-[  534.890526]  cfg80211_mlme_down+0x1ce/0x270 [cfg80211]
-[  534.890578]  cfg80211_disconnect+0x4f5/0x7b0 [cfg80211]
-[  534.890631]  cfg80211_leave+0x24/0x40 [cfg80211]
-[  534.890677]  wiphy_suspend+0x23d/0x2f0 [cfg80211]
-[  534.890723]  dpm_run_callback+0xf4/0x1b0
-[  534.890728]  __device_suspend+0x648/0x10c0
-[  534.890733]  async_suspend+0x16/0xe0
-[  534.890737]  async_run_entry_fn+0x90/0x4f0
-[  534.890741]  process_one_work+0x866/0x1490
-[  534.890747]  worker_thread+0x596/0x1010
-[  534.890751]  kthread+0x35d/0x420
-[  534.890756]  ret_from_fork+0x22/0x30
-
-[  534.890763] The buggy address belongs to the object at ffff8881396ba000
-                which belongs to the cache kmalloc-8k of size 8192
-[  534.890767] The buggy address is located 4536 bytes inside of
-                8192-byte region [ffff8881396ba000, ffff8881396bc000)
-[  534.890772] The buggy address belongs to the page:
-[  534.890775] page:ffffea0004e5ae00 refcount:1 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x1396b8
-[  534.890780] head:ffffea0004e5ae00 order:3 compound_mapcount:0 compound_pincount:0
-[  534.890784] flags: 0x200000000010200(slab|head|node=0|zone=2)
-[  534.890791] raw: 0200000000010200 ffffea000562be08 ffffea0004b04c08 ffff88810004e340
-[  534.890795] raw: 0000000000000000 0000000000010001 00000001ffffffff 0000000000000000
-[  534.890798] page dumped because: kasan: bad access detected
-
-[  534.890804] Memory state around the buggy address:
-[  534.890807]  ffff8881396bb080: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
-[  534.890811]  ffff8881396bb100: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
-[  534.890814] >ffff8881396bb180: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
-[  534.890817]                                         ^
-[  534.890821]  ffff8881396bb200: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
-[  534.890824]  ffff8881396bb280: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
-[  534.890827] ==================================================================
-[  534.890830] Disabling lock debugging due to kernel taint
-
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
-
-Fixes: b4a0f54156ac ("ath11k: move peer delete after vdev stop of station for QCA6390 and WCN6855")
-Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
----
-v3:
-   1. rebased to ath.git ath-202112220603
-   2. change back warning "Found peer entry %pM n vdev %i after it was supposedly removed" to ath11k_warn()
-   3. fix warning "peer-unmap-event: unknown peer id"
-   4. only set peer->sta = NULL in patch, not remove peer in ab->peers list. ath11k_peer_unmap_event() will remove the peer.
-
-v2:
-   1. rebased to ath.git ath-202112141538
-   2. remove label 'free' defined but not used
-   3. change warning "Found peer entry %pM n vdev %i after it was supposedly removed" to ath11k_dbg()
-
- drivers/net/wireless/ath/ath11k/mac.c | 31 ++++++++++++++++-----------
- 1 file changed, 18 insertions(+), 13 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 07f499d5ec92..ac6a192185c1 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -4504,24 +4504,30 @@ static int ath11k_mac_op_sta_state(struct ieee80211_hw *hw,
- 				    sta->addr, arvif->vdev_id);
- 	} else if ((old_state == IEEE80211_STA_NONE &&
- 		    new_state == IEEE80211_STA_NOTEXIST)) {
--		ath11k_dp_peer_cleanup(ar, arvif->vdev_id, sta->addr);
-+		bool skip_peer_delete = ar->ab->hw_params.vdev_start_delay &&
-+			vif->type == NL80211_IFTYPE_STATION;
- 
--		if (ar->ab->hw_params.vdev_start_delay &&
--		    vif->type == NL80211_IFTYPE_STATION)
--			goto free;
-+		ath11k_dp_peer_cleanup(ar, arvif->vdev_id, sta->addr);
- 
--		ret = ath11k_peer_delete(ar, arvif->vdev_id, sta->addr);
--		if (ret)
--			ath11k_warn(ar->ab, "Failed to delete peer: %pM for VDEV: %d\n",
--				    sta->addr, arvif->vdev_id);
--		else
--			ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "Removed peer: %pM for VDEV: %d\n",
--				   sta->addr, arvif->vdev_id);
-+		if (!skip_peer_delete) {
-+			ret = ath11k_peer_delete(ar, arvif->vdev_id, sta->addr);
-+			if (ret)
-+				ath11k_warn(ar->ab,
-+					    "Failed to delete peer: %pM for VDEV: %d\n",
-+					    sta->addr, arvif->vdev_id);
-+			else
-+				ath11k_dbg(ar->ab,
-+					   ATH11K_DBG_MAC,
-+					   "Removed peer: %pM for VDEV: %d\n",
-+					   sta->addr, arvif->vdev_id);
-+		}
- 
- 		ath11k_mac_dec_num_stations(arvif, sta);
- 		spin_lock_bh(&ar->ab->base_lock);
- 		peer = ath11k_peer_find(ar->ab, arvif->vdev_id, sta->addr);
--		if (peer && peer->sta == sta) {
-+		if (skip_peer_delete && peer) {
-+			peer->sta = NULL;
-+		} else if (peer && peer->sta == sta) {
- 			ath11k_warn(ar->ab, "Found peer entry %pM n vdev %i after it was supposedly removed\n",
- 				    vif->addr, arvif->vdev_id);
- 			peer->sta = NULL;
-@@ -4531,7 +4537,6 @@ static int ath11k_mac_op_sta_state(struct ieee80211_hw *hw,
- 		}
- 		spin_unlock_bh(&ar->ab->base_lock);
- 
--free:
- 		kfree(arsta->tx_stats);
- 		arsta->tx_stats = NULL;
- 
-
-base-commit: e5da5e8c54e27d8fa86765cd733c1a05aee53ae9
--- 
-2.31.1
-
+>>   		ath11k_mac_dec_num_stations(arvif, sta);
+>>   		spin_lock_bh(&ar->ab->base_lock);
+>>   		peer = ath11k_peer_find(ar->ab, arvif->vdev_id, sta->addr);
+>>   		if (peer && peer->sta == sta) {
+>> -			ath11k_warn(ar->ab, "Found peer entry %pM n vdev %i after it was supposedly removed\n",
+>> -				    vif->addr, arvif->vdev_id);
+>> +			ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
+>> +				   "Found peer entry %pM n vdev %i after it was supposedly removed\n",
+>> +				   vif->addr, arvif->vdev_id);
+> I'm not sure about changing this warning to a debug message, though I
+> don't have time to analyse this right now. But what if there's a race
+> condition somewhere still?
+patch v3 which has sent has changed it back to ath11k_warn().
 
 -- 
 ath11k mailing list
