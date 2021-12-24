@@ -4,56 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77E0FC4332F
-	for <ath11k@archiver.kernel.org>; Fri, 24 Dec 2021 08:53:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B36B3C433FE
+	for <ath11k@archiver.kernel.org>; Fri, 24 Dec 2021 08:53:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=eEFUljGQdZ1eAxULILjTkX5x3SCh4rZ2SJsr6tR9jY0=; b=omr0AbAnPf1075
-	zbwW5zgkD1ouEMnUSH32z3L7aX50RnGnLq7EjKMmcgXKG83M0hojMJ9oBXT1o4PnONtp/QB5kkTqy
-	Dr0/4jac4Ero9K2swZrCpG5pfqUdu1lAKh15vEAeMu5Z8TLU2jJhFiHGPNZ+0BhNj2tMzjKA1SDKB
-	lRp7rqoEG27+vA+d/7tSkzAQaa5FEYrGtxMtYmotxtzJzAK3ZhlgV0/0nKc7Vfsg2K/iUjXI5kOax
-	HW4VPmqKqf94giSEPak+pEiTVxg1PfmuLIyilODxTbYkoo6R916gewpIL31OrjWiaVjuq7AC3pu9U
-	Peg38jLImm2hemg3Gjog==;
+	List-Owner; bh=UjPMF1kKMmoTrin8PqEfWmRcL/D2gY7sXq7MHxxLYWA=; b=mJXzygPkxJlDxb
+	2/yNWzhfQ8heKdaHElMvCgh+7H1HwWGeskIW7ib6dfZJwUWRjtvmPPpqYXDdA5bey+ZCaxc1RmoFQ
+	rDwgTz+HJB12YdXGy5R4dwSs1+zDKkdfhKQrHv3NdJcKfTOfE8liqc/mUeJ69y7qD5tubeqbzjKXm
+	BN/5RUiyW2hnBOav1uE7IF8ANbjIqSONzUN69Sgu3oVq40GS131WNoLr/y0gTr2cJLhOEjUNv0nc4
+	WGS5ojarpkyEUzRzCfspXax2pEsNRyzfq9+wEP78N7/UIrFxjGoOxKldR0seRVOhrOQmsOaTBhIWF
+	EsV1tBUGPOzaWRa2c7yA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n0gK7-00Dxuj-2y; Fri, 24 Dec 2021 08:53:11 +0000
+	id 1n0gKA-00DxzB-Vs; Fri, 24 Dec 2021 08:53:15 +0000
 Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n0gK3-00Dxmy-N4
- for ath11k@lists.infradead.org; Fri, 24 Dec 2021 08:53:09 +0000
+ id 1n0gK6-00Dxmy-D8
+ for ath11k@lists.infradead.org; Fri, 24 Dec 2021 08:53:12 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1640335987; x=1671871987;
+ t=1640335990; x=1671871990;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=N/d92Y7f4rSySdqyTQ+agQwIhh7BN2WBMp+c2BaZZ/E=;
- b=ITszX0T4xeS1ysPc2T2TQcOPQ2GzcfM8YBn/SOzcXiUVUKY4Pob/uL1j
- G70y2KlHuEmWAZM8Xl2HhqwIPO8tsBJDlJRV+JBQLvtWrhIDM5Lx7m8ib
- ZqkwsWtBQXI/UIVeDMODFPgsZy0TMa8tPzLslpYymqwNvuvMitWhXVo8g M=;
+ bh=/zHq1EY2iMmcjmq+GbeQi8kMJW9IUf3x2S9FWsPPRmQ=;
+ b=e7MZBlntrbRCCc8Qp9IbwM+NZlndqRr5DW6iGDaARS8+fHzESrWRxarb
+ 2ThR5WoDyqnofMRiEox8VwY5Ff0EuSjpzQPurEQwiCW5k9g09+0cKOUvc
+ G0c765owDJtcCyWyJ1AIkKlF8IP9ivgZ9cen7PhNiMUT7+PbNRjpJenTw Y=;
 Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
- by alexa-out-sd-02.qualcomm.com with ESMTP; 24 Dec 2021 00:53:07 -0800
+ by alexa-out-sd-02.qualcomm.com with ESMTP; 24 Dec 2021 00:53:10 -0800
 X-QCInternal: smtphost
 Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Dec 2021 00:53:07 -0800
+ 24 Dec 2021 00:53:10 -0800
 Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
  nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Fri, 24 Dec 2021 00:53:07 -0800
+ 15.2.922.19; Fri, 24 Dec 2021 00:53:09 -0800
 Received: from wgong-HP3-Z230-SFF-Workstation.qca.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Fri, 24 Dec 2021 00:53:05 -0800
+ 15.2.922.19; Fri, 24 Dec 2021 00:53:08 -0800
 From: Wen Gong <quic_wgong@quicinc.com>
 To: <ath11k@lists.infradead.org>
 CC: <linux-wireless@vger.kernel.org>, <quic_wgong@quicinc.com>
-Subject: [PATCH v2 09/15] ath11k: add parse of transmit power envelope element
-Date: Fri, 24 Dec 2021 03:52:30 -0500
-Message-ID: <20211224085236.9064-10-quic_wgong@quicinc.com>
+Subject: [PATCH v2 11/15] ath11k: fill parameters for vdev_set_tpc_power wmi
+ command
+Date: Fri, 24 Dec 2021 03:52:32 -0500
+Message-ID: <20211224085236.9064-12-quic_wgong@quicinc.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20211224085236.9064-1-quic_wgong@quicinc.com>
 References: <20211224085236.9064-1-quic_wgong@quicinc.com>
@@ -62,8 +63,8 @@ X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211224_005307_830571_EB407859 
-X-CRM114-Status: GOOD (  17.58  )
+X-CRM114-CacheID: sfid-20211224_005310_548117_B6A10B9B 
+X-CRM114-Status: GOOD (  18.16  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,164 +76,329 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-VGhlIHRyYW5zbWl0IHBvd2VyIGVudmVsb3BlIGVsZW1lbnQgaGFzIHNvbWUgZmllbGRzIGZvciBw
-b3dlciwgYXRoMTFrCnNob3VsZCBwYXJzZSBpdCBhY2NvcmRpbmcgdG8gSUVFRSBTdGQgODAyLjEx
-YXjihKLigJAyMDIxLgoKVGVzdGVkLW9uOiBXQ042ODU1IGh3Mi4wIFBDSSBXTEFOLkhTUC4xLjEt
-MDE3MjAuMS1RQ0FIU1BTV1BMX1YxX1YyX1NJTElDT05aX0xJVEUtMQoKU2lnbmVkLW9mZi1ieTog
-V2VuIEdvbmcgPHF1aWNfd2dvbmdAcXVpY2luYy5jb20+Ci0tLQogZHJpdmVycy9uZXQvd2lyZWxl
-c3MvYXRoL2F0aDExay9jb3JlLmggfCAgMzggKysrKysKIGRyaXZlcnMvbmV0L3dpcmVsZXNzL2F0
-aC9hdGgxMWsvbWFjLmMgIHwgMTg1ICsrKysrKysrKysrKysrKysrKysrKysrKysKIDIgZmlsZXMg
-Y2hhbmdlZCwgMjIzIGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcml2ZXJzL25ldC93aXJl
-bGVzcy9hdGgvYXRoMTFrL2NvcmUuaCBiL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsv
-Y29yZS5oCmluZGV4IDY4MWE1OGFhYTI2Yi4uNTA2ODI5ZmViYWQ3IDEwMDY0NAotLS0gYS9kcml2
-ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL2NvcmUuaAorKysgYi9kcml2ZXJzL25ldC93aXJl
-bGVzcy9hdGgvYXRoMTFrL2NvcmUuaApAQCAtMjEyLDYgKzIxMiw0MyBAQCBlbnVtIGF0aDExa19t
-b25pdG9yX2ZsYWdzIHsKIAlBVEgxMUtfRkxBR19NT05JVE9SX1ZERVZfQ1JFQVRFRCwKIH07CiAK
-Ky8qKgorICogc3RydWN0IGNoYW5fcG93ZXJfaW5mbyAtIFRQRSBjb250YWluaW5nIHBvd2VyIGlu
-Zm8gcGVyIGNoYW5uZWwgY2h1bmsKKyAqIEBjaGFuX2NmcmVxOiBjaGFubmVsIGNlbnRlciBmcmVx
-IChNSHopCisgKiBlLmcuCisgKiBjaGFubmVsIDM3LzIwIE1IeiwgIGl0IGlzIDYxMzUKKyAqIGNo
-YW5uZWwgMzcvNDAgTUh6LCAgaXQgaXMgNjEyNQorICogY2hhbm5lbCAzNy84MCBNSHosICBpdCBp
-cyA2MTQ1CisgKiBjaGFubmVsIDM3LzE2MCBNSHosIGl0IGlzIDYxODUKKyAqIEB0eF9wb3dlcjog
-dHJhbnNtaXQgcG93ZXIgKGRCbSkKKyAqLworc3RydWN0IGNoYW5fcG93ZXJfaW5mbyB7CisJdTE2
-IGNoYW5fY2ZyZXE7CisJczggdHhfcG93ZXI7Cit9OworCisvKioKKyAqIHN0cnVjdCByZWdfdHBj
-X3Bvd2VyX2luZm8gLSByZWd1bGF0b3J5IFRQQyBwb3dlciBpbmZvCisgKiBAaXNfcHNkX3Bvd2Vy
-OiBpcyBQU0QgcG93ZXIgb3Igbm90CisgKiBAZWlycF9wb3dlcjogTWF4aW11bSBFSVJQIHBvd2Vy
-IChkQm0pLCB2YWxpZCBvbmx5IGlmIHBvd2VyIGlzIFBTRAorICogQHBvd2VyX3R5cGVfNmc6IHR5
-cGUgb2YgcG93ZXIgKFNQL0xQSS9WTFApCisgKiBAbnVtX3B3cl9sZXZlbHM6IG51bWJlciBvZiBw
-b3dlciBsZXZlbHMKKyAqIEByZWdfbWF4OiBBcnJheSBvZiBtYXhpbXVtIFRYIHBvd2VyIChkQm0p
-IHBlciBQU0QgdmFsdWUKKyAqIEBhcF9jb25zdHJhaW50X3Bvd2VyOiBBUCBjb25zdHJhaW50IHBv
-d2VyIChkQm0pCisgKiBAdHBlOiBUUEUgdmFsdWVzIHByb2Nlc3NlZCBmcm9tIFRQRSBJRQorICog
-QGNoYW5fcG93ZXJfaW5mbzogcG93ZXIgaW5mbyB0byBzZW5kIHRvIGZpcm13YXJlCisgKi8KK3N0
-cnVjdCBhdGgxMWtfcmVnX3RwY19wb3dlcl9pbmZvIHsKKwlib29sIGlzX3BzZF9wb3dlcjsKKwl1
-OCBlaXJwX3Bvd2VyOworCWVudW0gd21pX3JlZ182Z19hcF90eXBlIHBvd2VyX3R5cGVfNmc7CisJ
-dTggbnVtX3B3cl9sZXZlbHM7CisJdTggcmVnX21heFtJRUVFODAyMTFfTUFYX05VTV9QV1JfTEVW
-RUxdOworCXU4IGFwX2NvbnN0cmFpbnRfcG93ZXI7CisJczggdHBlW0lFRUU4MDIxMV9NQVhfTlVN
-X1BXUl9MRVZFTF07CisJc3RydWN0IGNoYW5fcG93ZXJfaW5mbyBjaGFuX3Bvd2VyX2luZm9bSUVF
-RTgwMjExX01BWF9OVU1fUFdSX0xFVkVMXTsKK307CisKIHN0cnVjdCBhdGgxMWtfdmlmIHsKIAl1
-MzIgdmRldl9pZDsKIAllbnVtIHdtaV92ZGV2X3R5cGUgdmRldl90eXBlOwpAQCAtMjYzLDYgKzMw
-MCw3IEBAIHN0cnVjdCBhdGgxMWtfdmlmIHsKIAlib29sIGJjY2FfemVyb19zZW50OwogCWJvb2wg
-ZG9fbm90X3NlbmRfdG1wbDsKIAlzdHJ1Y3QgaWVlZTgwMjExX2NoYW5jdHhfY29uZiBjaGFuY3R4
-OworCXN0cnVjdCBhdGgxMWtfcmVnX3RwY19wb3dlcl9pbmZvIHJlZ190cGNfaW5mbzsKIH07CiAK
-IHN0cnVjdCBhdGgxMWtfdmlmX2l0ZXIgewpkaWZmIC0tZ2l0IGEvZHJpdmVycy9uZXQvd2lyZWxl
-c3MvYXRoL2F0aDExay9tYWMuYyBiL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvbWFj
-LmMKaW5kZXggYTE4YjEyYWJiNjNkLi42ZWI3MDc0NzNlZDMgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMv
-bmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvbWFjLmMKKysrIGIvZHJpdmVycy9uZXQvd2lyZWxlc3Mv
-YXRoL2F0aDExay9tYWMuYwpAQCAtNjk4OCw2ICs2OTg4LDE4OSBAQCBzdGF0aWMgaW50IGF0aDEx
-a19zdGFydF92ZGV2X2RlbGF5KHN0cnVjdCBpZWVlODAyMTFfaHcgKmh3LAogCXJldHVybiAwOwog
-fQogCitzdGF0aWMgdTggYXRoMTFrX21hY19nZXRfdHBlX2NvdW50KHU4IHR4cHdyX2ludHJwcnQs
-IHU4IHR4cHdyX2NudCkKK3sKKwlzd2l0Y2ggKHR4cHdyX2ludHJwcnQpIHsKKwkvKiBSZWZlciAi
-VGFibGUgOS0yNzYtTWVhbmluZyBvZiBNYXhpbXVtIFRyYW5zbWl0IFBvd2VyIENvdW50IHN1YmZp
-ZWxkCisJICogaWYgdGhlIE1heGltdW0gVHJhbnNtaXQgUG93ZXIgSW50ZXJwcmV0YXRpb24gc3Vi
-ZmllbGQgaXMgMCBvciAyIiBvZgorCSAqICJJRUVFIFN0ZCA4MDIuMTFheCAyMDIxIi4KKwkgKi8K
-KwljYXNlIElFRUU4MDIxMV9UUEVfTE9DQUxfRUlSUDoKKwljYXNlIElFRUU4MDIxMV9UUEVfUkVH
-X0NMSUVOVF9FSVJQOgorCQl0eHB3cl9jbnQgPSB0eHB3cl9jbnQgPD0gMyA/IHR4cHdyX2NudCA6
-IDM7CisJCXR4cHdyX2NudCA9IHR4cHdyX2NudCArIDE7CisJCWJyZWFrOworCS8qIFJlZmVyICJU
-YWJsZSA5LTI3Ny1NZWFuaW5nIG9mIE1heGltdW0gVHJhbnNtaXQgUG93ZXIgQ291bnQgc3ViZmll
-bGQKKwkgKiBpZiBNYXhpbXVtIFRyYW5zbWl0IFBvd2VyIEludGVycHJldGF0aW9uIHN1YmZpZWxk
-IGlzIDEgb3IgMyIgb2YKKwkgKiAiSUVFRSBTdGQgODAyLjExYXggMjAyMSIuCisJICovCisJY2Fz
-ZSBJRUVFODAyMTFfVFBFX0xPQ0FMX0VJUlBfUFNEOgorCWNhc2UgSUVFRTgwMjExX1RQRV9SRUdf
-Q0xJRU5UX0VJUlBfUFNEOgorCQl0eHB3cl9jbnQgPSB0eHB3cl9jbnQgPD0gNCA/IHR4cHdyX2Nu
-dCA6IDQ7CisJCXR4cHdyX2NudCA9IHR4cHdyX2NudCA/IChCSVQodHhwd3JfY250IC0gMSkpIDog
-MTsKKwkJYnJlYWs7CisJfQorCisJcmV0dXJuIHR4cHdyX2NudDsKK30KKworc3RhdGljIHU4IGF0
-aDExa19tYWNfZ2V0X251bV9wd3JfbGV2ZWxzKHN0cnVjdCBjZmc4MDIxMV9jaGFuX2RlZiAqY2hh
-bl9kZWYpCit7CisJaWYgKGNoYW5fZGVmLT5jaGFuLT5mbGFncyAmIElFRUU4MDIxMV9DSEFOX1BT
-RCkgeworCQlzd2l0Y2ggKGNoYW5fZGVmLT53aWR0aCkgeworCQljYXNlIE5MODAyMTFfQ0hBTl9X
-SURUSF8yMDoKKwkJCXJldHVybiAxOworCQljYXNlIE5MODAyMTFfQ0hBTl9XSURUSF80MDoKKwkJ
-CXJldHVybiAyOworCQljYXNlIE5MODAyMTFfQ0hBTl9XSURUSF84MDoKKwkJCXJldHVybiA0Owor
-CQljYXNlIE5MODAyMTFfQ0hBTl9XSURUSF84MFA4MDoKKwkJY2FzZSBOTDgwMjExX0NIQU5fV0lE
-VEhfMTYwOgorCQkJcmV0dXJuIDg7CisJCWRlZmF1bHQ6CisJCQlyZXR1cm4gMTsKKwkJfQorCX0g
-ZWxzZSB7CisJCXN3aXRjaCAoY2hhbl9kZWYtPndpZHRoKSB7CisJCWNhc2UgTkw4MDIxMV9DSEFO
-X1dJRFRIXzIwOgorCQkJcmV0dXJuIDE7CisJCWNhc2UgTkw4MDIxMV9DSEFOX1dJRFRIXzQwOgor
-CQkJcmV0dXJuIDI7CisJCWNhc2UgTkw4MDIxMV9DSEFOX1dJRFRIXzgwOgorCQkJcmV0dXJuIDM7
-CisJCWNhc2UgTkw4MDIxMV9DSEFOX1dJRFRIXzgwUDgwOgorCQljYXNlIE5MODAyMTFfQ0hBTl9X
-SURUSF8xNjA6CisJCQlyZXR1cm4gNDsKKwkJZGVmYXVsdDoKKwkJCXJldHVybiAxOworCQl9CisJ
-fQorfQorCitzdGF0aWMgdm9pZCBhdGgxMWtfbWFjX3BhcnNlX3R4X3B3cl9lbnYoc3RydWN0IGF0
-aDExayAqYXIsCisJCQkJCXN0cnVjdCBpZWVlODAyMTFfdmlmICp2aWYsCisJCQkJCXN0cnVjdCBp
-ZWVlODAyMTFfY2hhbmN0eF9jb25mICpjdHgpCit7CisJc3RydWN0IGF0aDExa19iYXNlICphYiA9
-IGFyLT5hYjsKKwlzdHJ1Y3QgYXRoMTFrX3ZpZiAqYXJ2aWYgPSAodm9pZCAqKXZpZi0+ZHJ2X3By
-aXY7CisJc3RydWN0IGllZWU4MDIxMV9ic3NfY29uZiAqYnNzX2NvbmYgPSAmdmlmLT5ic3NfY29u
-ZjsKKwlzdHJ1Y3QgaWVlZTgwMjExX3R4X3B3cl9lbnYgKnNpbmdsZV90cGU7CisJZW51bSB3bWlf
-cmVnXzZnX2NsaWVudF90eXBlIGNsaWVudF90eXBlOworCXN0cnVjdCBjdXJfcmVndWxhdG9yeV9p
-bmZvICpyZWdfaW5mbzsKKwlpbnQgaTsKKwl1OCBwd3JfY291bnQsIHB3cl9pbnRlcnByZXQsIHB3
-cl9jYXRlZ29yeTsKKwl1OCBwc2RfaW5kZXggPSAwLCBub25fcHNkX2luZGV4ID0gMCwgbG9jYWxf
-dHBlX2NvdW50ID0gMCwgcmVnX3RwZV9jb3VudCA9IDA7CisJYm9vbCB1c2VfbG9jYWxfdHBlLCBu
-b25fcHNkX3NldCA9IGZhbHNlLCBwc2Rfc2V0ID0gZmFsc2U7CisKKwlyZWdfaW5mbyA9ICZhYi0+
-cmVnX2luZm9fc3RvcmVbYXItPnBkZXZfaWR4XTsKKwljbGllbnRfdHlwZSA9IHJlZ19pbmZvLT5j
-bGllbnRfdHlwZTsKKworCWZvciAoaSA9IDA7IGkgPCBic3NfY29uZi0+dHhfcHdyX2Vudl9udW07
-IGkrKykgeworCQlzaW5nbGVfdHBlID0gJmJzc19jb25mLT50eF9wd3JfZW52W2ldOworCQlwd3Jf
-Y2F0ZWdvcnkgPSB1OF9nZXRfYml0cyhzaW5nbGVfdHBlLT50eF9wb3dlcl9pbmZvLAorCQkJCQkg
-ICBJRUVFODAyMTFfVFhfUFdSX0VOVl9JTkZPX0NBVEVHT1JZKTsKKwkJcHdyX2ludGVycHJldCA9
-IHU4X2dldF9iaXRzKHNpbmdsZV90cGUtPnR4X3Bvd2VyX2luZm8sCisJCQkJCSAgICBJRUVFODAy
-MTFfVFhfUFdSX0VOVl9JTkZPX0lOVEVSUFJFVCk7CisKKwkJaWYgKHB3cl9jYXRlZ29yeSA9PSBj
-bGllbnRfdHlwZSkgeworCQkJaWYgKHB3cl9pbnRlcnByZXQgPT0gSUVFRTgwMjExX1RQRV9MT0NB
-TF9FSVJQIHx8CisJCQkgICAgcHdyX2ludGVycHJldCA9PSBJRUVFODAyMTFfVFBFX0xPQ0FMX0VJ
-UlBfUFNEKQorCQkJCWxvY2FsX3RwZV9jb3VudCsrOworCQkJZWxzZSBpZiAocHdyX2ludGVycHJl
-dCA9PSBJRUVFODAyMTFfVFBFX1JFR19DTElFTlRfRUlSUCB8fAorCQkJCSBwd3JfaW50ZXJwcmV0
-ID09IElFRUU4MDIxMV9UUEVfUkVHX0NMSUVOVF9FSVJQX1BTRCkKKwkJCQlyZWdfdHBlX2NvdW50
-Kys7CisJCX0KKwl9CisKKwlpZiAoIXJlZ190cGVfY291bnQgJiYgIWxvY2FsX3RwZV9jb3VudCkg
-eworCQlhdGgxMWtfd2FybihhYiwKKwkJCSAgICAibm8gdHJhbnNtaXQgcG93ZXIgZW52ZWxvcGUg
-bWF0Y2ggY2xpZW50IHBvd2VyIHR5cGUgJWRcbiIsCisJCQkgICAgY2xpZW50X3R5cGUpOworCQly
-ZXR1cm47CisJfSBlbHNlIGlmICghcmVnX3RwZV9jb3VudCkgeworCQl1c2VfbG9jYWxfdHBlID0g
-dHJ1ZTsKKwl9IGVsc2UgeworCQl1c2VfbG9jYWxfdHBlID0gZmFsc2U7CisJfQorCisJZm9yIChp
-ID0gMDsgaSA8IGJzc19jb25mLT50eF9wd3JfZW52X251bTsgaSsrKSB7CisJCXNpbmdsZV90cGUg
-PSAmYnNzX2NvbmYtPnR4X3B3cl9lbnZbaV07CisJCXB3cl9jYXRlZ29yeSA9IHU4X2dldF9iaXRz
-KHNpbmdsZV90cGUtPnR4X3Bvd2VyX2luZm8sCisJCQkJCSAgIElFRUU4MDIxMV9UWF9QV1JfRU5W
-X0lORk9fQ0FURUdPUlkpOworCQlwd3JfaW50ZXJwcmV0ID0gdThfZ2V0X2JpdHMoc2luZ2xlX3Rw
-ZS0+dHhfcG93ZXJfaW5mbywKKwkJCQkJICAgIElFRUU4MDIxMV9UWF9QV1JfRU5WX0lORk9fSU5U
-RVJQUkVUKTsKKworCQlpZiAocHdyX2NhdGVnb3J5ICE9IGNsaWVudF90eXBlKQorCQkJY29udGlu
-dWU7CisKKwkJLyogZ2V0IGxvY2FsIHRyYW5zbWl0IHBvd2VyIGVudmVsb3BlICovCisJCWlmICh1
-c2VfbG9jYWxfdHBlKSB7CisJCQlpZiAocHdyX2ludGVycHJldCA9PSBJRUVFODAyMTFfVFBFX0xP
-Q0FMX0VJUlApIHsKKwkJCQlub25fcHNkX2luZGV4ID0gaTsKKwkJCQlub25fcHNkX3NldCA9IHRy
-dWU7CisJCQl9IGVsc2UgaWYgKHB3cl9pbnRlcnByZXQgPT0gSUVFRTgwMjExX1RQRV9MT0NBTF9F
-SVJQX1BTRCkgeworCQkJCXBzZF9pbmRleCA9IGk7CisJCQkJcHNkX3NldCA9IHRydWU7CisJCQl9
-CisJCS8qIGdldCByZWd1bGF0b3J5IHRyYW5zbWl0IHBvd2VyIGVudmVsb3BlICovCisJCX0gZWxz
-ZSB7CisJCQlpZiAocHdyX2ludGVycHJldCA9PSBJRUVFODAyMTFfVFBFX1JFR19DTElFTlRfRUlS
-UCkgeworCQkJCW5vbl9wc2RfaW5kZXggPSBpOworCQkJCW5vbl9wc2Rfc2V0ID0gdHJ1ZTsKKwkJ
-CX0gZWxzZSBpZiAocHdyX2ludGVycHJldCA9PSBJRUVFODAyMTFfVFBFX1JFR19DTElFTlRfRUlS
-UF9QU0QpIHsKKwkJCQlwc2RfaW5kZXggPSBpOworCQkJCXBzZF9zZXQgPSB0cnVlOworCQkJfQor
-CQl9CisJfQorCisJaWYgKG5vbl9wc2Rfc2V0ICYmICFwc2Rfc2V0KSB7CisJCXNpbmdsZV90cGUg
-PSAmYnNzX2NvbmYtPnR4X3B3cl9lbnZbbm9uX3BzZF9pbmRleF07CisJCXB3cl9jb3VudCA9IHU4
-X2dldF9iaXRzKHNpbmdsZV90cGUtPnR4X3Bvd2VyX2luZm8sCisJCQkJCUlFRUU4MDIxMV9UWF9Q
-V1JfRU5WX0lORk9fQ09VTlQpOworCQlwd3JfaW50ZXJwcmV0ID0gdThfZ2V0X2JpdHMoc2luZ2xl
-X3RwZS0+dHhfcG93ZXJfaW5mbywKKwkJCQkJICAgIElFRUU4MDIxMV9UWF9QV1JfRU5WX0lORk9f
-SU5URVJQUkVUKTsKKwkJYXJ2aWYtPnJlZ190cGNfaW5mby5pc19wc2RfcG93ZXIgPSBmYWxzZTsK
-KwkJYXJ2aWYtPnJlZ190cGNfaW5mby5laXJwX3Bvd2VyID0gMDsKKworCQlhcnZpZi0+cmVnX3Rw
-Y19pbmZvLm51bV9wd3JfbGV2ZWxzID0KKwkJCWF0aDExa19tYWNfZ2V0X3RwZV9jb3VudChwd3Jf
-aW50ZXJwcmV0LCBwd3JfY291bnQpOworCQlmb3IgKGkgPSAwOyBpIDwgYXJ2aWYtPnJlZ190cGNf
-aW5mby5udW1fcHdyX2xldmVsczsgaSsrKSB7CisJCQlhdGgxMWtfZGJnKGFiLCBBVEgxMUtfREJH
-X01BQywKKwkJCQkgICAibm9uIFBTRCBwb3dlclslZF0gOiAlZFxuIiwKKwkJCQkgICBpLCBzaW5n
-bGVfdHBlLT50eF9wb3dlcltpXSk7CisJCQlhcnZpZi0+cmVnX3RwY19pbmZvLnRwZVtpXSA9IHNp
-bmdsZV90cGUtPnR4X3Bvd2VyW2ldIC8gMjsKKwkJfQorCX0KKworCWlmIChwc2Rfc2V0KSB7CisJ
-CXNpbmdsZV90cGUgPSAmYnNzX2NvbmYtPnR4X3B3cl9lbnZbcHNkX2luZGV4XTsKKwkJcHdyX2Nv
-dW50ID0gdThfZ2V0X2JpdHMoc2luZ2xlX3RwZS0+dHhfcG93ZXJfaW5mbywKKwkJCQkJSUVFRTgw
-MjExX1RYX1BXUl9FTlZfSU5GT19DT1VOVCk7CisJCXB3cl9pbnRlcnByZXQgPSB1OF9nZXRfYml0
-cyhzaW5nbGVfdHBlLT50eF9wb3dlcl9pbmZvLAorCQkJCQkgICAgSUVFRTgwMjExX1RYX1BXUl9F
-TlZfSU5GT19JTlRFUlBSRVQpOworCQlhcnZpZi0+cmVnX3RwY19pbmZvLmlzX3BzZF9wb3dlciA9
-IHRydWU7CisKKwkJaWYgKHB3cl9jb3VudCA9PSAwKSB7CisJCQlhdGgxMWtfZGJnKGFiLCBBVEgx
-MUtfREJHX01BQywKKwkJCQkgICAiVFBFIFBTRCBwb3dlciA6ICVkXG4iLCBzaW5nbGVfdHBlLT50
-eF9wb3dlclswXSk7CisJCQlhcnZpZi0+cmVnX3RwY19pbmZvLm51bV9wd3JfbGV2ZWxzID0KKwkJ
-CQlhdGgxMWtfbWFjX2dldF9udW1fcHdyX2xldmVscygmY3R4LT5kZWYpOworCQkJZm9yIChpID0g
-MDsgaSA8IGFydmlmLT5yZWdfdHBjX2luZm8ubnVtX3B3cl9sZXZlbHM7IGkrKykKKwkJCQlhcnZp
-Zi0+cmVnX3RwY19pbmZvLnRwZVtpXSA9IHNpbmdsZV90cGUtPnR4X3Bvd2VyWzBdIC8gMjsKKwkJ
-fSBlbHNlIHsKKwkJCWFydmlmLT5yZWdfdHBjX2luZm8ubnVtX3B3cl9sZXZlbHMgPQorCQkJCWF0
-aDExa19tYWNfZ2V0X3RwZV9jb3VudChwd3JfaW50ZXJwcmV0LCBwd3JfY291bnQpOworCQkJZm9y
-IChpID0gMDsgaSA8IGFydmlmLT5yZWdfdHBjX2luZm8ubnVtX3B3cl9sZXZlbHM7IGkrKykgewor
-CQkJCWF0aDExa19kYmcoYWIsIEFUSDExS19EQkdfTUFDLAorCQkJCQkgICAiVFBFIFBTRCBwb3dl
-clslZF0gOiAlZFxuIiwKKwkJCQkJICAgaSwgc2luZ2xlX3RwZS0+dHhfcG93ZXJbaV0pOworCQkJ
-CWFydmlmLT5yZWdfdHBjX2luZm8udHBlW2ldID0gc2luZ2xlX3RwZS0+dHhfcG93ZXJbaV0gLyAy
-OworCQkJfQorCQl9CisJfQorfQorCiBzdGF0aWMgaW50CiBhdGgxMWtfbWFjX29wX2Fzc2lnbl92
-aWZfY2hhbmN0eChzdHJ1Y3QgaWVlZTgwMjExX2h3ICpodywKIAkJCQkgc3RydWN0IGllZWU4MDIx
-MV92aWYgKnZpZiwKQEAgLTcwMTYsNiArNzE5OSw4IEBAIGF0aDExa19tYWNfb3BfYXNzaWduX3Zp
-Zl9jaGFuY3R4KHN0cnVjdCBpZWVlODAyMTFfaHcgKmh3LAogCQlpZiAocG93ZXJfdHlwZSA9PSBJ
-RUVFODAyMTFfUkVHX1VOU0VUX0FQKQogCQkJcG93ZXJfdHlwZSA9IElFRUU4MDIxMV9SRUdfTFBJ
-X0FQOwogCQlhdGgxMWtfcmVnX2hhbmRsZV9jaGFuX2xpc3QoYWIsIHJlZ19pbmZvLCBwb3dlcl90
-eXBlKTsKKworCQlhdGgxMWtfbWFjX3BhcnNlX3R4X3B3cl9lbnYoYXIsIHZpZiwgY3R4KTsKIAl9
-CiAKIAkvKiBmb3IgUUNBNjM5MCBic3MgcGVlciBtdXN0IGJlIGNyZWF0ZWQgYmVmb3JlIHZkZXZf
-c3RhcnQgKi8KLS0gCjIuMzEuMQoKCi0tIAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0
-cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGlu
-Zm8vYXRoMTFrCg==
+Prepare the parameters which is needed for wmi cmd vdev_set_tpc_power.
+
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+
+Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/mac.c | 280 ++++++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/mac.h |   3 +
+ 2 files changed, 283 insertions(+)
+
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 6eb707473ed3..e1bdfe466bc7 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -7047,6 +7047,286 @@ static u8 ath11k_mac_get_num_pwr_levels(struct cfg80211_chan_def *chan_def)
+ 	}
+ }
+ 
++static u16 ath11k_mac_get_6g_start_frequency(struct cfg80211_chan_def *chan_def)
++{
++	u16 diff_seq;
++
++	/* It is to get the lowest channel number's center frequency of the chan.
++	 * For example,
++	 * bandwidth=40 MHz, center frequency is 5965, lowest channel is 1
++	 * with center frequency 5955, its diff is 5965 - 5955 = 10.
++	 * bandwidth=80 MHz, center frequency is 5985, lowest channel is 1
++	 * with center frequency 5955, its diff is 5985 - 5955 = 30.
++	 * bandwidth=160 MHz, center frequency is 6025, lowest channel is 1
++	 * with center frequency 5955, its diff is 6025 - 5955 = 70.
++	 */
++	switch (chan_def->width) {
++	case NL80211_CHAN_WIDTH_160:
++		diff_seq = 70;
++		break;
++	case NL80211_CHAN_WIDTH_80:
++	case NL80211_CHAN_WIDTH_80P80:
++		diff_seq = 30;
++		break;
++	case NL80211_CHAN_WIDTH_40:
++		diff_seq = 10;
++		break;
++	default:
++		diff_seq = 0;
++	}
++
++	return chan_def->center_freq1 - diff_seq;
++}
++
++static u16 ath11k_mac_get_seg_freq(struct cfg80211_chan_def *chan_def,
++				   u16 start_seq, u8 seq)
++{
++	u16 seg_seq;
++
++	/* It is to get the center frequency of the specific bandwidth.
++	 * start_seq means the lowest channel number's center frequency.
++	 * seq 0/1/2/3 means 20 MHz/40 MHz/80 MHz/160 MHz&80P80.
++	 * For example,
++	 * lowest channel is 1, its center frequency 5955,
++	 * center frequency is 5955 when bandwidth=20 MHz, its diff is 5955 - 5955 = 0.
++	 * lowest channel is 1, its center frequency 5955,
++	 * center frequency is 5965 when bandwidth=40 MHz, its diff is 5965 - 5955 = 10.
++	 * lowest channel is 1, its center frequency 5955,
++	 * center frequency is 5985 when bandwidth=80 MHz, its diff is 5985 - 5955 = 30.
++	 * lowest channel is 1, its center frequency 5955,
++	 * center frequency is 6025 when bandwidth=160 MHz, its diff is 6025 - 5955 = 70.
++	 */
++	if (chan_def->width == NL80211_CHAN_WIDTH_80P80 && seq == 3)
++		return chan_def->center_freq2;
++
++	seg_seq = 10 * (BIT(seq) - 1);
++	return seg_seq + start_seq;
++}
++
++static void ath11k_mac_get_psd_channel(struct ath11k *ar,
++				       u16 step_freq,
++				       u16 *start_freq,
++				       u16 *center_freq,
++				       u8 i,
++				       struct ieee80211_channel **temp_chan,
++				       s8 *tx_power)
++{
++	/* It is to get the the center frequency for each 20 MHz.
++	 * For example, if the chan is 160 MHz and center frequency is 6025,
++	 * then it include 8 channels, they are 1/5/9/13/17/21/25/29,
++	 * channel number 1's center frequency is 5955, it is parameter start_freq.
++	 * parameter i is the step of the 8 channels. i is 0~7 for the 8 channels.
++	 * the channel 1/5/9/13/17/21/25/29 maps i=0/1/2/3/4/5/6/7,
++	 * and maps its center frequency is 5955/5975/5995/6015/6035/6055/6075/6095,
++	 * the gap is 20 for each channel, parameter step_freq means the gap.
++	 * after get the center frequency of each channel, it is easy to find the
++	 * struct ieee80211_channel of it and get the max_reg_power.
++	 */
++	*center_freq = *start_freq + i * step_freq;
++	*temp_chan = ieee80211_get_channel(ar->hw->wiphy, *center_freq);
++	*tx_power = (*temp_chan)->max_reg_power;
++}
++
++static void ath11k_mac_get_eirp_power(struct ath11k *ar,
++				      u16 *start_freq,
++				      u16 *center_freq,
++				      u8 i,
++				      struct ieee80211_channel **temp_chan,
++				      struct cfg80211_chan_def *def,
++				      s8 *tx_power)
++{
++	/* It is to get the the center frequency for 20 MHz/40 MHz/80 MHz/
++	 * 160 MHz&80P80 bandwidth, and then plus 10 to the center frequency,
++	 * it is the center frequency of a channel number.
++	 * For example, when configured channel number is 1.
++	 * center frequency is 5965 when bandwidth=40 MHz, after plus 10, it is 5975,
++	 * then it is channel number 5.
++	 * center frequency is 5985 when bandwidth=80 MHz, after plus 10, it is 5995,
++	 * then it is channel number 9.
++	 * center frequency is 6025 when bandwidth=160 MHz, after plus 10, it is 6035,
++	 * then it is channel number 17.
++	 * after get the center frequency of each channel, it is easy to find the
++	 * struct ieee80211_channel of it and get the max_reg_power.
++	 */
++	*center_freq = ath11k_mac_get_seg_freq(def, *start_freq, i);
++
++	/* For the 20 MHz, its center frequency is same with same channel */
++	if (i != 0)
++		*center_freq += 10;
++
++	*temp_chan = ieee80211_get_channel(ar->hw->wiphy, *center_freq);
++	*tx_power = (*temp_chan)->max_reg_power;
++}
++
++void ath11k_mac_fill_reg_tpc_info(struct ath11k *ar,
++				  struct ieee80211_vif *vif,
++				  struct ieee80211_chanctx_conf *ctx)
++{
++	struct ath11k_base *ab = ar->ab;
++	struct ath11k_vif *arvif = (void *)vif->drv_priv;
++	struct ieee80211_bss_conf *bss_conf = &vif->bss_conf;
++	struct ath11k_reg_tpc_power_info *reg_tpc_info = &arvif->reg_tpc_info;
++	struct ieee80211_channel *chan, *temp_chan;
++	u8 pwr_lvl_idx, num_pwr_levels, pwr_reduction;
++	bool is_psd_power = false, is_tpe_present = false;
++	s8 max_tx_power[IEEE80211_MAX_NUM_PWR_LEVEL],
++		psd_power, tx_power, eirp_power;
++	u16 oper_freq, start_freq, center_freq;
++
++	chan = ctx->def.chan;
++	oper_freq = ctx->def.chan->center_freq;
++	start_freq = ath11k_mac_get_6g_start_frequency(&ctx->def);
++	pwr_reduction = bss_conf->pwr_reduction;
++
++	if (arvif->reg_tpc_info.num_pwr_levels) {
++		is_tpe_present = true;
++		num_pwr_levels = arvif->reg_tpc_info.num_pwr_levels;
++	} else {
++		num_pwr_levels = ath11k_mac_get_num_pwr_levels(&ctx->def);
++	}
++
++	for (pwr_lvl_idx = 0; pwr_lvl_idx < num_pwr_levels; pwr_lvl_idx++) {
++		/* STA received TPE IE*/
++		if (is_tpe_present) {
++			/* local power is PSD power*/
++			if (chan->flags & IEEE80211_CHAN_PSD) {
++				/* Connecting AP is psd power */
++				if (reg_tpc_info->is_psd_power) {
++					is_psd_power = true;
++					ath11k_mac_get_psd_channel(ar, 20,
++								   &start_freq,
++								   &center_freq,
++								   pwr_lvl_idx,
++								   &temp_chan,
++								   &tx_power);
++					psd_power = temp_chan->psd;
++					eirp_power = tx_power;
++					max_tx_power[pwr_lvl_idx] =
++						min_t(s8,
++						      psd_power,
++						      reg_tpc_info->tpe[pwr_lvl_idx]);
++				/* Connecting AP is not psd power */
++				} else {
++					ath11k_mac_get_eirp_power(ar,
++								  &start_freq,
++								  &center_freq,
++								  pwr_lvl_idx,
++								  &temp_chan,
++								  &ctx->def,
++								  &tx_power);
++					psd_power = temp_chan->psd;
++					/* convert psd power to EIRP power based
++					 * on channel width
++					 */
++					tx_power =
++						min_t(s8, tx_power,
++						      psd_power + 13 + pwr_lvl_idx * 3);
++					max_tx_power[pwr_lvl_idx] =
++						min_t(s8,
++						      tx_power,
++						      reg_tpc_info->tpe[pwr_lvl_idx]);
++				}
++			/* local power is not PSD power */
++			} else {
++				/* Connecting AP is psd power */
++				if (reg_tpc_info->is_psd_power) {
++					is_psd_power = true;
++					ath11k_mac_get_psd_channel(ar, 20,
++								   &start_freq,
++								   &center_freq,
++								   pwr_lvl_idx,
++								   &temp_chan,
++								   &tx_power);
++					eirp_power = tx_power;
++					max_tx_power[pwr_lvl_idx] =
++						reg_tpc_info->tpe[pwr_lvl_idx];
++				/* Connecting AP is not psd power */
++				} else {
++					ath11k_mac_get_eirp_power(ar,
++								  &start_freq,
++								  &center_freq,
++								  pwr_lvl_idx,
++								  &temp_chan,
++								  &ctx->def,
++								  &tx_power);
++					max_tx_power[pwr_lvl_idx] =
++						min_t(s8,
++						      tx_power,
++						      reg_tpc_info->tpe[pwr_lvl_idx]);
++				}
++			}
++		/* STA not received TPE IE */
++		} else {
++			/* local power is PSD power*/
++			if (chan->flags & IEEE80211_CHAN_PSD) {
++				is_psd_power = true;
++				ath11k_mac_get_psd_channel(ar, 20,
++							   &start_freq,
++							   &center_freq,
++							   pwr_lvl_idx,
++							   &temp_chan,
++							   &tx_power);
++				psd_power = temp_chan->psd;
++				eirp_power = tx_power;
++				max_tx_power[pwr_lvl_idx] = psd_power;
++			} else {
++				ath11k_mac_get_eirp_power(ar,
++							  &start_freq,
++							  &center_freq,
++							  pwr_lvl_idx,
++							  &temp_chan,
++							  &ctx->def,
++							  &tx_power);
++				max_tx_power[pwr_lvl_idx] =
++					min_t(s8,
++					      tx_power,
++					      reg_tpc_info->tpe[pwr_lvl_idx]);
++			}
++		}
++
++		if (is_psd_power) {
++			/* If AP local power constraint is present */
++			if (pwr_reduction)
++				eirp_power = eirp_power - pwr_reduction;
++
++			/* If firmware updated max tx power is non zero, then take
++			 * the min of firmware updated ap tx power
++			 * and max power derived from above mentioned parameters.
++			 */
++			ath11k_dbg(ab, ATH11K_DBG_MAC,
++				   "eirp power : %d firmware report power : %d\n",
++				   eirp_power, ar->max_allowed_tx_power);
++			if (ar->max_allowed_tx_power)
++				eirp_power = min_t(s8,
++						   eirp_power,
++						   ar->max_allowed_tx_power);
++		} else {
++			/* If AP local power constraint is present */
++			if (pwr_reduction)
++				max_tx_power[pwr_lvl_idx] =
++					max_tx_power[pwr_lvl_idx] - pwr_reduction;
++			/* If firmware updated max tx power is non zero, then take
++			 * the min of firmware updated ap tx power
++			 * and max power derived from above mentioned parameters.
++			 */
++			if (ar->max_allowed_tx_power)
++				max_tx_power[pwr_lvl_idx] =
++					min_t(s8,
++					      max_tx_power[pwr_lvl_idx],
++					      ar->max_allowed_tx_power);
++		}
++		reg_tpc_info->chan_power_info[pwr_lvl_idx].chan_cfreq = center_freq;
++		reg_tpc_info->chan_power_info[pwr_lvl_idx].tx_power =
++			max_tx_power[pwr_lvl_idx];
++	}
++
++	reg_tpc_info->num_pwr_levels = num_pwr_levels;
++	reg_tpc_info->is_psd_power = is_psd_power;
++	reg_tpc_info->eirp_power = eirp_power;
++	reg_tpc_info->power_type_6g =
++		ath11k_ieee80211_ap_pwr_type_convert(vif->bss_conf.power_type);
++}
++
+ static void ath11k_mac_parse_tx_pwr_env(struct ath11k *ar,
+ 					struct ieee80211_vif *vif,
+ 					struct ieee80211_chanctx_conf *ctx)
+diff --git a/drivers/net/wireless/ath/ath11k/mac.h b/drivers/net/wireless/ath/ath11k/mac.h
+index eb8273ffc2a7..13c0ef667777 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.h
++++ b/drivers/net/wireless/ath/ath11k/mac.h
+@@ -172,4 +172,7 @@ enum hal_encrypt_type ath11k_dp_tx_get_encrypt_type(u32 cipher);
+ void ath11k_mac_handle_beacon(struct ath11k *ar, struct sk_buff *skb);
+ void ath11k_mac_handle_beacon_miss(struct ath11k *ar, u32 vdev_id);
+ void ath11k_mac_bcn_tx_event(struct ath11k_vif *arvif);
++void ath11k_mac_fill_reg_tpc_info(struct ath11k *ar,
++				  struct ieee80211_vif *vif,
++				  struct ieee80211_chanctx_conf *ctx);
+ #endif
+-- 
+2.31.1
+
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
