@@ -4,116 +4,107 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A620BC433FE
-	for <ath11k@archiver.kernel.org>; Wed, 29 Dec 2021 14:09:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7D09C433EF
+	for <ath11k@archiver.kernel.org>; Wed, 29 Dec 2021 16:51:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ESjJLMRlrRwO6v0OgzgKhFbh5XhnpqH5VNGfnypNF/A=; b=clOhsS0SXNkCc3J0k22rdehwp3
-	wB8o2nzOrPOeyacbDT8sCdZM0bULlb803yrjBesugOmsGYzDENwC2jLP/0QIHOmo7MhLmxVVPuf+M
-	EQmsYGfdHIuT5M8RTNIjbwIOtB6QCBdQsJOD+Ns7hf9L7w4S7xhMxURTpIeZ2zBa/LBz4cx5ib33H
-	wA+qtPtw5an6tYVYCNgufCqTYXRtReJWjIxV8NBiyGAUKXMMZedPcbu7KSMlhDorVaHI9vZusCWmY
-	NTjInnEBLowDk+C8R+UrV0VyvsvSWtDykpsircVa4W7Vrt07tyRsx9dqHi29yNQwHL+fLs1K/71OT
-	qMUPrQxQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=K9GUoQoXiQeh1DjZ/C5HDjTkAPyhnoSRlMO39I9690w=; b=wM41qOdqDumRLm
+	BZ9j/aoU0D1UnCYRueKN9WnN/2NBd0dwbvKAbUrsPANrRN1/ITvgQBvf/4KwEbfdcepqi/RTMm5MY
+	ioAVgxrIi7/o5uSqXMjws3kd6BE4dEGz8z+kpOFa2+mDeZlcEjgRFhiVR7VIo9+CqIZFcEvmdhzqm
+	+qW7lA2vxwjAJQnLhJNzwOi8LxVqg10hjLCtUmu1VqLhtJWHoG+gV9Wi7juoiSHGTsOTyc5kgfg6B
+	w5QMST0VZverlNAjZFy7ByI+Ttrm4F/ZbaMI/mxQLlo2fLaJVEa3ORls+pg6ay6HaTa7jeMMG7EYw
+	1Fwr2c48u+UvbX0Dn8rQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n2Zdg-002uDt-2j; Wed, 29 Dec 2021 14:09:12 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+	id 1n2cB1-0039e0-Df; Wed, 29 Dec 2021 16:51:47 +0000
+Received: from mail-pl1-x62d.google.com ([2607:f8b0:4864:20::62d])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n2ZdX-002uD4-IN
- for ath11k@lists.infradead.org; Wed, 29 Dec 2021 14:09:04 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1640786941;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=aO/4Yp6T43XLmNMDQP+OwTqaYv7whlIlyBDq4dbPFsg=;
- b=Rz1EyjzOz4stlCddCkGwzylJbd25bYYKZ/OmnJpjaLMbKTUHunpnOusTy4ioya6A245Upg
- xWNrF5l/oO+wyOH4moq8RhEReE9aRMFuF+12trvIW/YjIUydBHoqihcGPhf5mMLmhK3nFS
- +HCcso2hiwH/ydCyXAVAXaD/oCUnNTs=
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
- [209.85.222.197]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-365-c6LbMawPOouE1wsnhBa7IA-1; Wed, 29 Dec 2021 09:06:35 -0500
-X-MC-Unique: c6LbMawPOouE1wsnhBa7IA-1
-Received: by mail-qk1-f197.google.com with SMTP id
- bk35-20020a05620a1a2300b0046d2a9b93dfso12790530qkb.16
- for <ath11k@lists.infradead.org>; Wed, 29 Dec 2021 06:06:35 -0800 (PST)
+ id 1n2cAq-0039YS-2w
+ for ath11k@lists.infradead.org; Wed, 29 Dec 2021 16:51:37 +0000
+Received: by mail-pl1-x62d.google.com with SMTP id j13so16256368plx.4
+ for <ath11k@lists.infradead.org>; Wed, 29 Dec 2021 08:51:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=eyiokD87yXLE7dKoF/rAesIX6IaZjzEtJI7+LN04FEk=;
+ b=jbps2qryj0Z0zQWn+lrBBlSxcDefe6KXi88QIlXKVc6Y7PKqWfUapjY8JxFcaIGigd
+ ft7+84WoQ0h4UhL3vyJ1DIBHIIiAm5llGYmfk4nVkAe+3GrrBf97zhKbWsvTPX6JejKF
+ 1dkXJo0UGl+pIxJTyh0L4R8V7cOazLao67YG1WvcCgMJUT7Zmhf0eicJkPKKBztKsk7v
+ D05fKDj1dOQc8zLv828bRzJys90kfBlRY+f583hLSA+S27xtYBrr/t46oqhBNzw2uXBi
+ meZ8HORQpYNqIJLSkK446oH4j64Ut5bibHP4XsZdHoPvyO6AnHzKO5rs+vK+c+HbGKip
+ 7LUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=aO/4Yp6T43XLmNMDQP+OwTqaYv7whlIlyBDq4dbPFsg=;
- b=oFJBzukILf8/MTsvy345ZtQWIRRXtl8d35oC5Z4a1Q1WE28eueaArkdx9eydTAn9CH
- GAHikqORL8SSh2Etm0nQW3vspJ/v3V/nWJHaZrLGgDSy6iyU4hbKHyh+4evA0bMmVQJQ
- iJYxrqujA/ntzHwIjxqeApMmt/yrv4J9xcyNd2DDM2f9O2yONe99YSOC3n+R1BvCfzZX
- cVdjyygY7gRWDo8+9O14gRjUaDgwW4sdRcQogwDLe/Du0rNooOzlzNYkiUSHWH5lOaNl
- x0rXyj6fRIvVeDizUChWSUVMIzl+1h+WuTj84ktLds/rh5c+nbnQHMXbZE9qzvSv7eIY
- cUrg==
-X-Gm-Message-State: AOAM530eFZnU7f7Ay4IfPTcDeBdUgTymw5Y8mYHCWlekjxKUPujrxIlT
- AYogDE+pIXJPX7nIhUqBbwdSg/Zt/wIct5yt18iv1r+4xQ30TkAJfgCnvlfM4FVZ5q1LeYKy2HW
- B+HGFfuyOOEVAXFTEUQs+zw==
-X-Received: by 2002:a05:620a:4003:: with SMTP id
- h3mr18549166qko.153.1640786790517; 
- Wed, 29 Dec 2021 06:06:30 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyimHrQiLRtzxiuwvtJVztliA6HApJnsXsaqWdLb9ltPripN76oNC87N68Zld9IushfHCBQfg==
-X-Received: by 2002:a05:620a:4003:: with SMTP id
- h3mr18549076qko.153.1640786790152; 
- Wed, 29 Dec 2021 06:06:30 -0800 (PST)
-Received: from steredhat (host-87-10-236-9.retail.telecomitalia.it.
- [87.10.236.9])
- by smtp.gmail.com with ESMTPSA id h2sm18124352qkn.136.2021.12.29.06.06.06
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 29 Dec 2021 06:06:29 -0800 (PST)
-Date: Wed, 29 Dec 2021 15:05:57 +0100
-From: Stefano Garzarella <sgarzare@redhat.com>
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: ast@kernel.org, daniel@iogearbox.net, bpf@vger.kernel.org,
- netdev@vger.kernel.org, Marc Kleine-Budde <mkl@pengutronix.de>,
- marcel@holtmann.org, johan.hedberg@gmail.com, luiz.dentz@gmail.com,
- dledford@redhat.com, jgg@ziepe.ca, mustafa.ismail@intel.com,
- shiraz.saleem@intel.com, leon@kernel.org, ap420073@gmail.com,
- wg@grandegger.com, woojung.huh@microchip.com, andrew@lunn.ch,
- vivien.didelot@gmail.com, f.fainelli@gmail.com, olteanv@gmail.com,
- george.mccollister@gmail.com, michael.chan@broadcom.com,
- jesse.brandeburg@intel.com, anthony.l.nguyen@intel.com,
- hawk@kernel.org, john.fastabend@gmail.com, tariqt@nvidia.com,
- saeedm@nvidia.com, ecree.xilinx@gmail.com, habetsm.xilinx@gmail.com,
- jreuter@yaina.de, dsahern@kernel.org, kvalo@codeaurora.org,
- pkshih@realtek.com, trond.myklebust@hammerspace.com,
- anna.schumaker@netapp.com, viro@zeniv.linux.org.uk,
- andrii@kernel.org, mcgrof@kernel.org, keescook@chromium.org,
- yzaikin@google.com, nikolay@nvidia.com, jiri@nvidia.com,
- wintera@linux.ibm.com, wenjia@linux.ibm.com, pablo@netfilter.org,
- kadlec@netfilter.org, fw@strlen.de, ralf@linux-mips.org,
- jhs@mojatatu.com, xiyou.wangcong@gmail.com, kgraul@linux.ibm.com,
- steffen.klassert@secunet.com, herbert@gondor.apana.org.au,
- arnd@arndb.de, linux-bluetooth@vger.kernel.org,
- linux-rdma@vger.kernel.org, linux-can@vger.kernel.org,
- intel-wired-lan@lists.osuosl.org, linux-hams@vger.kernel.org,
- ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- linux-nfs@vger.kernel.org, linux-fsdevel@vger.kernel.org,
- bridge@lists.linux-foundation.org,
- linux-decnet-user@lists.sourceforge.net, linux-s390@vger.kernel.org,
- netfilter-devel@vger.kernel.org, coreteam@netfilter.org,
- virtualization@lists.linux-foundation.org
-Subject: Re: [PATCH bpf-next v2] net: don't include filter.h from net/sock.h
-Message-ID: <20211229140557.cuap5jjqz47yevda@steredhat>
-References: <20211229004913.513372-1-kuba@kernel.org>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=eyiokD87yXLE7dKoF/rAesIX6IaZjzEtJI7+LN04FEk=;
+ b=pGTN8NdHghDAxqDEKYcynIvKzsuLEC3QzO+T/fXxsl95UdtPr0p9eCDtGbqN3X8TA7
+ RviGJ4Zm9lg6kgeAJLwKT2TgiKOp6Ig55GbTKOa7us80CD97hfkd8hvn160OAPJLM11e
+ 2KxuGnzrkEew3wgk2B1LJb3rhncDKxZUTjdCaEozSEnegosMfmf8LFGCT6v5Pzkl3EpP
+ kGY9Yhm7hlIxGldcmpyFzYHoyLbOK7ULP898N8euCgRAF7Ey7eR3W4hSh8Aj6MzGDZTI
+ t1qjd128KN9JM9mJeqtxLN/9kwMOJ7GIgaezSZ3IG6hmDBn6ZTY9KrXPLEUq/iGNjA91
+ 7K5g==
+X-Gm-Message-State: AOAM533nTofOm2JcSUZX7Ir9I91ycaxlQmOJ23dHqu53Ud0m9n6elaCd
+ Z3I2xVeCeCJ2+BxfjZmg6HHeaEDFyaH9dEKDLAk=
+X-Google-Smtp-Source: ABdhPJxws7iMiWFQ81pkeV1J6AYDjsQKCDaoIm81c0ZOXt5vTQ/CRD6VrIFy5sdtzv5w8UmX3Hk8KIPfWDSHxOMnNg4=
+X-Received: by 2002:a17:902:c443:b0:148:f689:d924 with SMTP id
+ m3-20020a170902c44300b00148f689d924mr27252809plm.78.1640796694708; Wed, 29
+ Dec 2021 08:51:34 -0800 (PST)
 MIME-Version: 1.0
+References: <20211229004913.513372-1-kuba@kernel.org>
 In-Reply-To: <20211229004913.513372-1-kuba@kernel.org>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=sgarzare@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Disposition: inline
+From: Alexei Starovoitov <alexei.starovoitov@gmail.com>
+Date: Wed, 29 Dec 2021 08:51:23 -0800
+Message-ID: <CAADnVQLd2y_Cuqrn+cAQzCjpXM_Lub5_X6xEfZdMMC2a2Jq41A@mail.gmail.com>
+Subject: Re: [PATCH bpf-next v2] net: don't include filter.h from net/sock.h
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: Alexei Starovoitov <ast@kernel.org>, Daniel Borkmann <daniel@iogearbox.net>,
+ bpf <bpf@vger.kernel.org>, Network Development <netdev@vger.kernel.org>,
+ Marc Kleine-Budde <mkl@pengutronix.de>, marcel@holtmann.org, 
+ johan.hedberg@gmail.com, luiz.dentz@gmail.com, 
+ Doug Ledford <dledford@redhat.com>, Jason Gunthorpe <jgg@ziepe.ca>,
+ mustafa.ismail@intel.com, 
+ shiraz.saleem@intel.com, Leon Romanovsky <leon@kernel.org>,
+ Taehee Yoo <ap420073@gmail.com>, 
+ wg@grandegger.com, woojung.huh@microchip.com, Andrew Lunn <andrew@lunn.ch>, 
+ vivien.didelot@gmail.com, Florian Fainelli <f.fainelli@gmail.com>,
+ olteanv@gmail.com, 
+ george.mccollister@gmail.com, Michael Chan <michael.chan@broadcom.com>, 
+ Jesse Brandeburg <jesse.brandeburg@intel.com>, anthony.l.nguyen@intel.com, 
+ Jesper Dangaard Brouer <hawk@kernel.org>,
+ John Fastabend <john.fastabend@gmail.com>, 
+ Tariq Toukan <tariqt@nvidia.com>, saeedm@nvidia.com, ecree.xilinx@gmail.com, 
+ habetsm.xilinx@gmail.com, jreuter@yaina.de, David Ahern <dsahern@kernel.org>, 
+ kvalo@codeaurora.org, pkshih@realtek.com, trond.myklebust@hammerspace.com, 
+ anna.schumaker@netapp.com, Alexander Viro <viro@zeniv.linux.org.uk>, 
+ Andrii Nakryiko <andrii@kernel.org>, "Luis R. Rodriguez" <mcgrof@kernel.org>,
+ Kees Cook <keescook@chromium.org>, 
+ Iurii Zaikin <yzaikin@google.com>, nikolay@nvidia.com, jiri@nvidia.com, 
+ wintera@linux.ibm.com, wenjia@linux.ibm.com, 
+ Pablo Neira Ayuso <pablo@netfilter.org>,
+ Jozsef Kadlecsik <kadlec@netfilter.org>, 
+ Florian Westphal <fw@strlen.de>, Ralf Baechle <ralf@linux-mips.org>,
+ Jamal Hadi Salim <jhs@mojatatu.com>, 
+ Cong Wang <xiyou.wangcong@gmail.com>, kgraul@linux.ibm.com, sgarzare@redhat.com,
+ Steffen Klassert <steffen.klassert@secunet.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>, 
+ Arnd Bergmann <arnd@arndb.de>, linux-bluetooth@vger.kernel.org,
+ linux-rdma@vger.kernel.org, 
+ linux-can@vger.kernel.org, intel-wired-lan <intel-wired-lan@lists.osuosl.org>, 
+ linux-hams@vger.kernel.org, ath11k@lists.infradead.org, 
+ linux-wireless <linux-wireless@vger.kernel.org>, linux-nfs@vger.kernel.org, 
+ Linux-Fsdevel <linux-fsdevel@vger.kernel.org>, 
+ "moderated list:ETHERNET BRIDGE" <bridge@lists.linux-foundation.org>,
+ linux-decnet-user@lists.sourceforge.net, 
+ linux-s390 <linux-s390@vger.kernel.org>, 
+ netfilter-devel <netfilter-devel@vger.kernel.org>, coreteam@netfilter.org, 
+ virtualization@lists.linux-foundation.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20211229_060903_693648_53EE6EB8 
-X-CRM114-Status: UNSURE (   9.23  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20211229_085136_170951_BC20656D 
+X-CRM114-Status: GOOD (  13.09  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,31 +116,30 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Tue, Dec 28, 2021 at 04:49:13PM -0800, Jakub Kicinski wrote:
->sock.h is pretty heavily used (5k objects rebuilt on x86 after
->it's touched). We can drop the include of filter.h from it and
->add a forward declaration of struct sk_filter instead.
->This decreases the number of rebuilt objects when bpf.h
->is touched from ~5k to ~1k.
+On Tue, Dec 28, 2021 at 4:49 PM Jakub Kicinski <kuba@kernel.org> wrote:
 >
->There's a lot of missing includes this was masking. Primarily
->in networking tho, this time.
+> sock.h is pretty heavily used (5k objects rebuilt on x86 after
+> it's touched). We can drop the include of filter.h from it and
+> add a forward declaration of struct sk_filter instead.
+> This decreases the number of rebuilt objects when bpf.h
+> is touched from ~5k to ~1k.
 >
->Acked-by: Marc Kleine-Budde <mkl@pengutronix.de>
->Signed-off-by: Jakub Kicinski <kuba@kernel.org>
->---
->v2: https://lore.kernel.org/all/20211228192519.386913-1-kuba@kernel.org/
-> - fix build in bond on ia64
-> - fix build in ip6_fib with randconfig
+> There's a lot of missing includes this was masking. Primarily
+> in networking tho, this time.
+>
+> Acked-by: Marc Kleine-Budde <mkl@pengutronix.de>
+> Signed-off-by: Jakub Kicinski <kuba@kernel.org>
+> ---
+> v2: https://lore.kernel.org/all/20211228192519.386913-1-kuba@kernel.org/
+>  - fix build in bond on ia64
+>  - fix build in ip6_fib with randconfig
 
-For AF_VSOCK:
-Acked-by: Stefano Garzarella <sgarzare@redhat.com>
-
+Nice! Applied. Thanks
 
 -- 
 ath11k mailing list
