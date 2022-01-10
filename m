@@ -4,154 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41725C433F5
-	for <ath11k@archiver.kernel.org>; Thu,  6 Jan 2022 07:18:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C142AC433F5
+	for <ath11k@archiver.kernel.org>; Mon, 10 Jan 2022 03:42:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dR/voxO1JzCOkux/Blvtv2jpGTgpTaPCkyMU4xf/Ju4=; b=fpK/HZMO0xhgLs
-	emPc8foMT/dpzdle/qeAq8r4Yq2Gg1vnCRDg6AVj4QcuHafKOhTriKCLHpoeCSeZgeqw19W/ATnL0
-	Jfl4nPLwZy5FD/gfBHl9bQ6AYRX+EIkRl7+qIaHqX+mrCOJOvy4dr589J9nK1zI16U0QC/J2c1HRl
-	8ULKpnmX8C6l9F3OHJ3V9g6W5IlsIC48rB+fIEcaHXmVfZ9Cc47xGl7mjdVbIEC98PKS/GXbhpx9w
-	hIHoiBpVMXEwn5Igmp8/GbyO+GEWrnTs03EGexualFdSbekqo3HPVEqcuTdgd9PzqB5g9+SKkYBwp
-	/Vdy6S13R17FmvwIp8Qw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=UNg9xWLVc3rw+/HdvwLSPty0oTxUEWbEH/h4r6biprg=; b=d7L2QFZYJ+87cC
+	1rOB6jZKq2u5A7AXGIRZQL7fhv4NXXx4IhctNbFZbgZhn9joNY8nPMSqfXJxyIop6LyBUjNgn8oQP
+	ik0BVxL4Jjf3M+QGVmSAa2g83wfCQPDVHt3+ZJWO1kRz3+1kKHXkToVTAxDYbAsfRiu61hvAGeWUx
+	MaI83YNCNxPwvV7/qnOeqIXw6bP47d4+45QEHaQxKhrnI9fcsLCI6kwLTf/NvmscaE02C670v1qYT
+	6Ym4xHmipJGcIzqqLM55EYDAV5DSVhB/C0EZbKEpLZQVnM/Thx8B0I4Vs3nxjBERJD1Gy3FIh0c8S
+	oljZJW5QtFawj2et89Tg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n5N2e-00GrZ1-4A; Thu, 06 Jan 2022 07:18:32 +0000
-Received: from mx0a-00069f02.pphosted.com ([205.220.165.32])
+	id 1n6lZM-0096TW-LU; Mon, 10 Jan 2022 03:42:04 +0000
+Received: from alexa-out.qualcomm.com ([129.46.98.28])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n5N2b-00GrYY-Qi
- for ath11k@lists.infradead.org; Thu, 06 Jan 2022 07:18:31 +0000
-Received: from pps.filterd (m0246629.ppops.net [127.0.0.1])
- by mx0b-00069f02.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 2064d5d2006784; 
- Thu, 6 Jan 2022 07:18:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
- h=date : from : to : cc
- : subject : message-id : references : content-type : in-reply-to :
- mime-version; s=corp-2021-07-09;
- bh=bESyrvLSbl2EjXMq9QRKqs2V1dAbQeggMoJE7n0xMW0=;
- b=Y45AP1WfhrHx76hfhVoO8xz/vfBAaJwwI1WF0lucUQp0KbhJVa/H7fy70SfupqiewHsQ
- C/oRE5ajvUtrpbV7u2tL1zxyeSPaZKYbSun1d+kJ0cbr0+5hFC5MowZ4qjBJoV51YOFq
- FjJxVIHliECmvTSzR1Vz9MQVaV3V8AFHnv7lPJUAVZvufTl5w/mcD/+85uCjGaE6vtAa
- QLa4Fzm1/JjYJAwe5Dnplf/DMYhkro44A+Aij7XfOTE8ak9ZLIpfsT7iR43vUrZzyWE6
- 5kW08iUPTqmibCy09E/J7+3YRGW/BRXGkxvG78KdKzoCWhY5dRDZbSK2pIA9bsMu0WW1 cg== 
-Received: from userp3030.oracle.com (userp3030.oracle.com [156.151.31.80])
- by mx0b-00069f02.pphosted.com with ESMTP id 3ddmpm0t4d-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Thu, 06 Jan 2022 07:18:29 +0000
-Received: from pps.filterd (userp3030.oracle.com [127.0.0.1])
- by userp3030.oracle.com (8.16.1.2/8.16.1.2) with SMTP id 2067Bpln159975;
- Thu, 6 Jan 2022 07:18:27 GMT
-Received: from nam11-co1-obe.outbound.protection.outlook.com
- (mail-co1nam11lp2169.outbound.protection.outlook.com [104.47.56.169])
- by userp3030.oracle.com with ESMTP id 3ddmqca943-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Thu, 06 Jan 2022 07:18:27 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hZorFhRy2qknD7KRpDlM0b1RP4SwyQqHsl4neYRZDIo0ykj4/FrsTGen8XmHIVfoaN2v34/OP9QAAzt21LhQYRm2LwOoo29KZmg83S+IUF4G8rjTBvyZlGxHZNa19aSOvl42HhFrAdNb/N1kGK4Bjbvx+zUpUCFxZ++L8tkV4lDqqrdbe7qK4Xw1SF309ndO/FCbqEkBa5JVmYdRRh3PVUz9rWEzG5cb9umz1XfK6bl6PgWX8fPOXHXlc/bBlYcATylfx/G0f8iHFXjXPnGJrbxuh7Ni4pStvtyLx4bBT5Vcw6R8Z8k3aY8Pvq2CyYE7jCUUXp+f45URzCaX6HJYnQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bESyrvLSbl2EjXMq9QRKqs2V1dAbQeggMoJE7n0xMW0=;
- b=aHk6XmhA34xVSId3RrchJkxYA1v01+ZRu67UHMvSu0M2i1sCzD1TUguB9W2UcOzz1WnxGfzKD6j5/v2SKJ4bOORcIIyMEmLVqjtAK87grAsM/KuHKIY1Rh+m2mS3AFMFgi5rNB9F9CBbXLo8Ja1m4NoHnb62Vl5F4uJ2gBRcG/9H6lNKjTzKc5Ur3gvPpYNGjS7oDRYNfkIuGi83wysmB/kP2LhKUFJXfLFCStVSPIvpES6luE1MkD+2Bl+wwESaL+dStMqcq8vZpAW5Nu6wV2BtGOIYCscIp5pQPKE3txsYS6NItwMVnvZw94yXXHNFfaLcCfysqZG/i3rAqnSQRQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
- dkim=pass header.d=oracle.com; arc=none
+ id 1n6lZJ-0096SE-4x
+ for ath11k@lists.infradead.org; Mon, 10 Jan 2022 03:42:02 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bESyrvLSbl2EjXMq9QRKqs2V1dAbQeggMoJE7n0xMW0=;
- b=bMRVOtty54nDaT9zu6ypi4TE3aR+l2Dj5t8v13evajWBHSQPBLSC+fOBf9AV7c0LBQHFW9KaRvspZ0dBfvv8lKwmObJPGnaa6pMV8zXJEi904FapUHxU/MwFjjZL9l+63t7M5hay/7X/HN19Na11SIMzL2A6rVwuY4fhY3HZJxM=
-Authentication-Results: quicinc.com; dkim=none (message not signed)
- header.d=none;quicinc.com; dmarc=none action=none header.from=oracle.com;
-Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
- (2603:10b6:301:2d::28) by MW5PR10MB5715.namprd10.prod.outlook.com
- (2603:10b6:303:19c::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4523.15; Thu, 6 Jan
- 2022 07:18:22 +0000
-Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
- ([fe80::b889:5c86:23c0:82b8]) by MWHPR1001MB2365.namprd10.prod.outlook.com
- ([fe80::b889:5c86:23c0:82b8%4]) with mapi id 15.20.4844.016; Thu, 6 Jan 2022
- 07:18:22 +0000
-Date: Thu, 6 Jan 2022 10:18:12 +0300
-From: Dan Carpenter <dan.carpenter@oracle.com>
-To: Wen Gong <quic_wgong@quicinc.com>
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] ath11k: add configure country code for QCA6390
- and WCN6855
-Message-ID: <20220106071812.GA3897@kili>
-References: <20211201071745.17746-1-quic_wgong@quicinc.com>
- <20211201071745.17746-3-quic_wgong@quicinc.com>
-Content-Disposition: inline
-In-Reply-To: <20211201071745.17746-3-quic_wgong@quicinc.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-ClientProxiedBy: ZR0P278CA0064.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:21::15) To MWHPR1001MB2365.namprd10.prod.outlook.com
- (2603:10b6:301:2d::28)
+ d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+ t=1641786121; x=1673322121;
+ h=from:to:cc:subject:date:message-id:mime-version;
+ bh=6atlCaAsXX8JPSzTnDoXyLuEau0LhlnX5CmM9kGW+vM=;
+ b=Cq8xVrILLSg+lVqGxB4gLBGGx5TqRH4h5ZoGRiZtz7W8L7zDSRFtu7bf
+ peIQvJqkG/oUfeNjNb9JCpqgHpmlatyFFuX7Z/Zz7w4NE83tVV9Dn04HE
+ OoYmXtjSdVTq0p29L6TKLkoer80nQE8OzE3egjh2CjgEzNk40XfL3HZD7 I=;
+Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
+ by alexa-out.qualcomm.com with ESMTP; 09 Jan 2022 19:41:57 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+ by ironmsg08-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2022 19:41:41 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Sun, 9 Jan 2022 19:41:41 -0800
+Received: from seevalam-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Sun, 9 Jan 2022 19:41:39 -0800
+From: Seevalamuthu Mariappan <quic_seevalam@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, Seevalamuthu Mariappan
+ <quic_seevalam@quicinc.com>
+Subject: [PATCH] ath11k: Add support for dynamic vlan
+Date: Mon, 10 Jan 2022 09:11:30 +0530
+Message-ID: <1641786090-10232-1-git-send-email-quic_seevalam@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 615eaab1-dafc-43ee-3755-08d9d0e4b8bc
-X-MS-TrafficTypeDiagnostic: MW5PR10MB5715:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MW5PR10MB5715D45DF3EFC5CA21BBCC998E4C9@MW5PR10MB5715.namprd10.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5516;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 3P9Qe3tpSPEglf2VPlZB0GvS8kzmNvs1dZgiJcUP8wmlftAFFFWCL4lfC2um/b45tZaKseBQpMVNahvR7uKvJqJBTfjLuEDRG2qXrHlAJs4UHMtjePYvLMbsY+XI762TjBdLyN0MEwCcAken/dHTSS3QB6S+fuVfPBUp/L4FR+eMCzT8gZoHgwgaVNI9tiRIrv5u4pEsVmb07yI9Vz86OzhFOMKVPwCgFGBhoXGlib8WTwX2wPI2hmDJVnSno5onMmZlCAn1aStnOcyv9vrV6Z3VBZJDh5atnV2B8zLFdnHZe1lQOd2INIGJSwQglLawS12l7eNOBcJt0/u2JOF1GBucK60Wh8PJfwC0bbJ4N0gQDEY++vksuuZoxar7OBOXrrYEYy+v5+ztCzIfV2X1wkIsYEUWTG/m2STeuxzXi+JPaB2bEgJOhbavocHFqqkzeKWtHymsomQo6aTh0CAoba9b0hTye0qMZjCQaVeAuJgEv6ZA5g4DwmEPMdWc3IEMupQpEcTsU2rZ5oNc4GtzBk+l7xZSr5pz98lw3DxLIS2AWOc5Q1UOKGPyxvAYalnc9m1gpBpWVAJE9KofPuKipjf9XkbFIKlG++WyhwdkPoQwaIrEuKzqnYaGg20AlPXLfwpZ8bCxUEy3QwqFAwqUnIIe57jr+OSE83GVHsZgKZzKjiz4gmzDPDaa9ZQ9Tv5oT7nZOM4OQdcOTrHuUxivXg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MWHPR1001MB2365.namprd10.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(7916004)(366004)(5660300002)(6916009)(52116002)(316002)(508600001)(6512007)(6486002)(44832011)(86362001)(6666004)(83380400001)(38350700002)(9686003)(1076003)(33656002)(66556008)(186003)(66946007)(66476007)(33716001)(2906002)(6506007)(8936002)(4326008)(26005)(8676002)(38100700002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?T/GZG0qotn1t4zlKr2nMdOZ3ZE6M9DBDp01gRoSDkma8h04sz0HyoRtoehRR?=
- =?us-ascii?Q?eHZLXicE7EWSv9F1T9gZmNZIU23UMYQE+8A4c1R/NMsWBTkjcS9sS3H7GF5M?=
- =?us-ascii?Q?LoodmnyOGB+70B40jjRvCk9Y2OVY/Legc6Mh/9+4+V4BWOMUjwJfg/xB1KUP?=
- =?us-ascii?Q?gCaczjLBtS0iE9ubhEx5vdF9XkFVEC2NjGa7hH9ZSMeXfcViy4v/GwwkhTVz?=
- =?us-ascii?Q?aVcyPZ1R5qMHpX8raOwUdFxrLs4i8Dvf9qBjhaUVBo3xQ9OvX+izkjLARX2l?=
- =?us-ascii?Q?Dmjqb6inxBl31+Lk08Vl2JOQKQ47W2tjLKIASDBIU7fQtkeVOuk8L5bxJXms?=
- =?us-ascii?Q?iZ8LKOvKGMBm924ytZWg14UyXFf4fEj/ONbhVf433yzq3vN/Ww7gy3Z8mP1x?=
- =?us-ascii?Q?dwU538IGUPOx/sRuakTlfieVdQ7uPp0RDmxsyNeI2t4Qhqa3sSMucYes32Mk?=
- =?us-ascii?Q?7HtzywmA3eNGet4bR8Z2UFMHwb08BWSvL3VFw7v98q5qHN5FTOKd/4LsRG0l?=
- =?us-ascii?Q?avvDzVjcAEfkaIm4jtxXWcirIea/84lPIkkCQTYeOHzla5dsJ3YCx2C7HpSy?=
- =?us-ascii?Q?dZGx6MJFW/SJ1WAvm7PK6g3//WqGzSvEhvUCjVKzPfyW7Hy/x5yjo3i0IC/9?=
- =?us-ascii?Q?dg+jNAg0h1LCVu2HPGuHEhUSgsohUyLZhd93oO3xsTyD4oGgrcOAKZQSzFYF?=
- =?us-ascii?Q?WLcvkCAtZi1GhSvE02ivGo1wI35pRLQ/ub2lWy+YuttzlA0Av59ndRY/y7GM?=
- =?us-ascii?Q?AntXKo9wGfZ3IvPjiOWxsO/RmGufsTv8WqRkD1QS42gSJE32tXheCaE9BW+y?=
- =?us-ascii?Q?CgJ1l1U+WA62sQTtF1bEW9za+RziiSL6DLNyadgYIL5HK4gOiCVcZ1AeYD7N?=
- =?us-ascii?Q?pueq3N5ZwIpdxd48QeREKkkc8EWZgHJ+j5szyRkIgCUYZe93VM+SpWuLw8ta?=
- =?us-ascii?Q?9SMpQg1/zBl0gcGDvl+r02EB2Iu28tGhAUde982FBKi+i/HPdGdjxxWcZ7pX?=
- =?us-ascii?Q?swcSsglujZxaeEahvWNUhpNyV+eCrljfxxgwZr2mdUOcI6ff1801MZLcT7mL?=
- =?us-ascii?Q?0nf/uvtJy3ms9tWCVGUS38IcWNeeoeCyJiA0bTsOmr5x38XhHeXnTQla3q8j?=
- =?us-ascii?Q?7HCSZvHrBO/dFV92+l7yO0jGQ79Egvn0d7eseXvtOBBXH86bONP6q0op1Yqu?=
- =?us-ascii?Q?3yvbWe6ToUya5XOUlZbRMfGky/7WMajO9tjFy/vlxX8VGCifKlay5fctlkNL?=
- =?us-ascii?Q?vnv6uz8O5GqhCMXDE3hEJp8oyFI6zX5Mt9WdFB1h6LHP/uhAw4KSsrz5W3+R?=
- =?us-ascii?Q?+uJTNA4dC5dGiUhw3TyT9LS8?=
-X-OriginatorOrg: oracle.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 615eaab1-dafc-43ee-3755-08d9d0e4b8bc
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2365.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jan 2022 07:18:22.9161 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: RG8pLY7AdB+fomoryA388XDAAHyepyTDw/RlH0FU51cKGcvs5jhBcW8bYNfMlih6yFz2HI+plxRvtcUgabLZiCb3WRrDOIi5+9z9Mwgt5EA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW5PR10MB5715
-X-Proofpoint-Virus-Version: vendor=nai engine=6300 definitions=10218
- signatures=668683
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0
- bulkscore=0 mlxscore=0
- malwarescore=0 suspectscore=0 mlxlogscore=970 spamscore=0 phishscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2112160000
- definitions=main-2201060049
-X-Proofpoint-ORIG-GUID: rddCiD9xf7wpLyjVOkyPs1GpvHXa4iVA
-X-Proofpoint-GUID: rddCiD9xf7wpLyjVOkyPs1GpvHXa4iVA
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220105_231829_908293_6ABA72CE 
-X-CRM114-Status: GOOD (  16.39  )
+X-CRM114-CacheID: sfid-20220109_194201_280108_3DD6B774 
+X-CRM114-Status: GOOD (  19.03  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -168,54 +78,242 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed, Dec 01, 2021 at 02:17:44AM -0500, Wen Gong wrote:
-> +int ath11k_wmi_send_set_current_country_cmd(struct ath11k *ar,
-> +					    struct wmi_set_current_country_params *param)
-> +{
-> +	struct ath11k_pdev_wmi *wmi = ar->wmi;
-> +	struct wmi_set_current_country_cmd *cmd;
-> +	struct sk_buff *skb;
-> +	int ret;
-> +
-> +	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, sizeof(*cmd));
-> +	if (!skb)
-> +		return -ENOMEM;
-> +
-> +	cmd = (struct wmi_set_current_country_cmd *)skb->data;
-> +	cmd->tlv_header =
-> +		FIELD_PREP(WMI_TLV_TAG, WMI_TAG_SET_CURRENT_COUNTRY_CMD) |
-> +		FIELD_PREP(WMI_TLV_LEN, sizeof(*cmd) - TLV_HDR_SIZE);
-> +
-> +	cmd->pdev_id = ar->pdev->pdev_id;
-> +	memcpy(&cmd->new_alpha2, &param->alpha2, 3);
+Advertise AP-VLAN interface type for vlan support in driver.
+Metadata information in dp_tx is added to notify firmware
+that multicast/broadcast packets are encrypted in software.
 
-cmd->new_alpha2 is a u32 in this driver.  (In a different driver it is a
-3 byte array).  So this will leave the last byte as random garbage.
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1-01073-QCAHKSWPL_SILICONZ-1
 
-Probably harmless but it leads to a Smatch static checker warning.
+Signed-off-by: Seevalamuthu Mariappan <quic_seevalam@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/core.c  |  6 +++
+ drivers/net/wireless/ath/ath11k/dp_tx.c | 74 ++++++++++++++++++++++++++++++++-
+ drivers/net/wireless/ath/ath11k/dp_tx.h | 14 +++++++
+ drivers/net/wireless/ath/ath11k/hw.h    |  1 +
+ drivers/net/wireless/ath/ath11k/mac.c   |  5 +++
+ 5 files changed, 98 insertions(+), 2 deletions(-)
 
-drivers/net/wireless/ath/ath11k/wmi.c:2837 ath11k_wmi_send_set_current_country_cmd()
-warn: not copying enough bytes for '&cmd->new_alpha2' (4 vs 3 bytes)
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 293563b..0b2407e 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -86,6 +86,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.num_vdevs = 16 + 1,
+ 		.num_peers = 512,
+ 		.supports_suspend = false,
++		.supports_ap_vlan = true,
+ 		.hal_desc_sz = sizeof(struct hal_rx_desc_ipq8074),
+ 		.supports_regdb = false,
+ 		.fix_l1ss = true,
+@@ -150,6 +151,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.num_vdevs = 16 + 1,
+ 		.num_peers = 512,
+ 		.supports_suspend = false,
++		.supports_ap_vlan = true,
+ 		.hal_desc_sz = sizeof(struct hal_rx_desc_ipq8074),
+ 		.supports_regdb = false,
+ 		.fix_l1ss = true,
+@@ -213,6 +215,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.num_vdevs = 16 + 1,
+ 		.num_peers = 512,
+ 		.supports_suspend = true,
++		.supports_ap_vlan = false,
+ 		.hal_desc_sz = sizeof(struct hal_rx_desc_ipq8074),
+ 		.supports_regdb = true,
+ 		.fix_l1ss = true,
+@@ -276,6 +279,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.num_vdevs = 8,
+ 		.num_peers = 128,
+ 		.supports_suspend = false,
++		.supports_ap_vlan = true,
+ 		.hal_desc_sz = sizeof(struct hal_rx_desc_qcn9074),
+ 		.supports_regdb = false,
+ 		.fix_l1ss = true,
+@@ -339,6 +343,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.num_vdevs = 16 + 1,
+ 		.num_peers = 512,
+ 		.supports_suspend = true,
++		.supports_ap_vlan = false,
+ 		.hal_desc_sz = sizeof(struct hal_rx_desc_wcn6855),
+ 		.supports_regdb = true,
+ 		.fix_l1ss = false,
+@@ -401,6 +406,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.num_vdevs = 16 + 1,
+ 		.num_peers = 512,
+ 		.supports_suspend = true,
++		.supports_ap_vlan = false,
+ 		.hal_desc_sz = sizeof(struct hal_rx_desc_wcn6855),
+ 		.supports_regdb = true,
+ 		.fix_l1ss = false,
+diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
+index 91d6244..211a604 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_tx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
+@@ -78,6 +78,44 @@ enum hal_encrypt_type ath11k_dp_tx_get_encrypt_type(u32 cipher)
+ 	}
+ }
+ 
++#define HTT_META_DATA_ALIGNMENT    0x8
++
++static int ath11k_dp_metadata_align_skb(struct sk_buff *skb, u8 align_len)
++{
++	if (unlikely(skb_cow_head(skb, align_len)))
++		return -ENOMEM;
++
++	skb_push(skb, align_len);
++	memset(skb->data, 0, align_len);
++	return 0;
++}
++
++static int ath11k_dp_prepare_htt_metadata(struct sk_buff *skb,
++					  u8 *htt_metadata_size)
++{
++	u8 htt_desc_size;
++	/* Size rounded of multiple of 8 bytes */
++	u8 htt_desc_size_aligned;
++	struct htt_tx_msdu_desc_ext *desc_ext;
++	int ret;
++
++	htt_desc_size = sizeof(*desc_ext);
++	htt_desc_size_aligned = ALIGN(htt_desc_size, HTT_META_DATA_ALIGNMENT);
++
++	ret = ath11k_dp_metadata_align_skb(skb, htt_desc_size_aligned);
++	if (unlikely(ret))
++		return ret;
++
++	desc_ext = (struct htt_tx_msdu_desc_ext *)skb->data;
++	desc_ext->info0 =
++		__cpu_to_le32(FIELD_PREP(HTT_TX_MSDU_DESC_INFO0_VALID_ENCRYPT_TYPE, 1) |
++			      FIELD_PREP(HTT_TX_MSDU_DESC_INFO0_ENCRYPT_TYPE, 0) |
++			      FIELD_PREP(HTT_TX_MSDU_DESC_INFO0_HOST_TX_DESC_POOL, 1));
++	*htt_metadata_size = htt_desc_size_aligned;
++
++	return 0;
++}
++
+ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
+ 		 struct ath11k_sta *arsta, struct sk_buff *skb)
+ {
+@@ -95,6 +133,7 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
+ 	int ret;
+ 	u8 ring_selector = 0, ring_map = 0;
+ 	bool tcl_ring_retry;
++	u8 align_pad, htt_meta_size = 0;
+ 
+ 	if (unlikely(test_bit(ATH11K_FLAG_CRASH_FLUSH, &ar->ab->dev_flags)))
+ 		return -ESHUTDOWN;
+@@ -211,15 +250,42 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
+ 		goto fail_remove_idr;
+ 	}
+ 
++	/* Add metadata for sw encrypted vlan group traffic */
++	if (!test_bit(ATH11K_FLAG_HW_CRYPTO_DISABLED, &ar->ab->dev_flags) &&
++	    !(info->flags & IEEE80211_TX_CTL_HW_80211_ENCAP) &&
++	    !info->control.hw_key &&
++	    ieee80211_has_protected(hdr->frame_control)) {
++		/* HW requirement is that metadata should always point to a
++		 * 8-byte aligned address. So we add alignment pad to start of
++		 * buffer. HTT Metadata should be ensured to be multiple of 8-bytes
++		 *  to get 8-byte aligned start address along with align_pad added
++		 */
++		align_pad = ((unsigned long)skb->data) & (HTT_META_DATA_ALIGNMENT - 1);
++		ret = ath11k_dp_metadata_align_skb(skb, align_pad);
++		if (unlikely(ret))
++			goto fail_remove_idr;
++
++		ti.pkt_offset += align_pad;
++		ret = ath11k_dp_prepare_htt_metadata(skb, &htt_meta_size);
++		if (unlikely(ret))
++			goto fail_pull_skb;
++
++		ti.pkt_offset += htt_meta_size;
++		ti.meta_data_flags |= HTT_TCL_META_DATA_VALID_HTT;
++		ti.flags0 |= FIELD_PREP(HAL_TCL_DATA_CMD_INFO1_TO_FW, 1);
++		ti.encap_type = HAL_TCL_ENCAP_TYPE_RAW;
++		ti.encrypt_type = HAL_ENCRYPT_TYPE_OPEN;
++	}
++
+ 	ti.paddr = dma_map_single(ab->dev, skb->data, skb->len, DMA_TO_DEVICE);
+ 	if (unlikely(dma_mapping_error(ab->dev, ti.paddr))) {
+ 		atomic_inc(&ab->soc_stats.tx_err.misc_fail);
+ 		ath11k_warn(ab, "failed to DMA map data Tx buffer\n");
+ 		ret = -ENOMEM;
+-		goto fail_remove_idr;
++		goto fail_pull_skb;
+ 	}
+ 
+-	ti.data_len = skb->len;
++	ti.data_len = skb->len - ti.pkt_offset;
+ 	skb_cb->paddr = ti.paddr;
+ 	skb_cb->vif = arvif->vif;
+ 	skb_cb->ar = ar;
+@@ -274,6 +340,10 @@ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
+ fail_unmap_dma:
+ 	dma_unmap_single(ab->dev, ti.paddr, ti.data_len, DMA_TO_DEVICE);
+ 
++fail_pull_skb:
++	if (ti.pkt_offset)
++		skb_pull(skb, ti.pkt_offset);
++
+ fail_remove_idr:
+ 	spin_lock_bh(&tx_ring->tx_idr_lock);
+ 	idr_remove(&tx_ring->txbuf_idr,
+diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.h b/drivers/net/wireless/ath/ath11k/dp_tx.h
+index e87d65b..95f8757 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_tx.h
++++ b/drivers/net/wireless/ath/ath11k/dp_tx.h
+@@ -15,6 +15,20 @@ struct ath11k_dp_htt_wbm_tx_status {
+ 	int ack_rssi;
+ };
+ 
++#define HTT_TX_MSDU_DESC_INFO0_VALID_ENCRYPT_TYPE	BIT(8)
++#define HTT_TX_MSDU_DESC_INFO0_ENCRYPT_TYPE		GENMASK(16, 15)
++#define HTT_TX_MSDU_DESC_INFO0_HOST_TX_DESC_POOL	BIT(31)
++
++struct htt_tx_msdu_desc_ext {
++	__le32 info0;
++	__le32 info1;
++	__le32 info2;
++	__le32 info3;
++	__le32 info4;
++	__le32 info5;
++	__le32 info6;
++} __packed;
++
+ void ath11k_dp_tx_update_txcompl(struct ath11k *ar, struct hal_tx_status *ts);
+ int ath11k_dp_tx_htt_h2t_ver_req_msg(struct ath11k_base *ab);
+ int ath11k_dp_tx(struct ath11k *ar, struct ath11k_vif *arvif,
+diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
+index 29934b3..dfe8d4c 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.h
++++ b/drivers/net/wireless/ath/ath11k/hw.h
+@@ -181,6 +181,7 @@ struct ath11k_hw_params {
+ 	u32 num_vdevs;
+ 	u32 num_peers;
+ 	bool supports_suspend;
++	bool supports_ap_vlan;
+ 	u32 hal_desc_sz;
+ 	bool supports_regdb;
+ 	bool fix_l1ss;
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 07f499d..b035e29 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -8469,6 +8469,11 @@ static int __ath11k_mac_register(struct ath11k *ar)
+ 		 */
+ 		ar->hw->wiphy->interface_modes &= ~BIT(NL80211_IFTYPE_MONITOR);
+ 
++	if (ab->hw_params.supports_ap_vlan) {
++		ar->hw->wiphy->interface_modes |= BIT(NL80211_IFTYPE_AP_VLAN);
++		ar->hw->wiphy->software_iftypes |= BIT(NL80211_IFTYPE_AP_VLAN);
++	}
++
+ 	/* Apply the regd received during initialization */
+ 	ret = ath11k_regd_update(ar);
+ 	if (ret) {
+-- 
+2.7.4
 
-> +	ret = ath11k_wmi_cmd_send(wmi, skb, WMI_SET_CURRENT_COUNTRY_CMDID);
-> +
-> +	ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
-> +		   "set current country pdev id %d alpha2 %c%c\n",
-> +		   ar->pdev->pdev_id,
-> +		   param->alpha2[0],
-> +		   param->alpha2[1]);
-> +
-> +	if (ret) {
-> +		ath11k_warn(ar->ab,
-> +			    "failed to send WMI_SET_CURRENT_COUNTRY_CMDID: %d\n", ret);
-> +		dev_kfree_skb(skb);
-> +	}
-> +
-> +	return ret;
-> +}
-
-regards,
-dan carpenter
 
 -- 
 ath11k mailing list
