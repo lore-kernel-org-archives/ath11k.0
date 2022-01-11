@@ -4,69 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B55BC433F5
-	for <ath11k@archiver.kernel.org>; Tue, 11 Jan 2022 12:25:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1ED56C433F5
+	for <ath11k@archiver.kernel.org>; Tue, 11 Jan 2022 13:35:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=03ebdocvXPR6Oc9dWes4ZBcJHCk5mvrZjCtm47D6NPo=; b=Ui5pKnsY/RZlUm
-	LEOPS26bciQfaSpVM8MiDQ+kkZvV6eqKQDjiQxjpQiNVCSzktLK3ljqK4CKDkiu0NGTxuMMh4OWk/
-	pKH8JCQmSIPCx+Zqe4wIwF/Uu9iKsrcfPsnuZJbuesZhoMxJ9eCKlEvUV5BzGh5u6AtxdISKQzHz2
-	r6QMI5XMrbetITxGcfEV0+oovrkKf1PupaRKd5uTIJ9ES1hPsEJLUqRqXQnmJeKV5RXUddu2+UKzL
-	fgg+6FTBUvXrD2H5PMpqm5R4E1jpglOly5GtJYqTqgbw37jOc+fvyfKqjD4LQ8Ixrn0NA3MaOaDyU
-	FA42LX1WPEonBUKFv1BQ==;
+	List-Owner; bh=lp+9B7U4Y/8YxFI9wvoMQWia3dzsEqHBJHiJSdNVuX4=; b=Iu1GAG8RL77/Qi
+	CCfRk5MM2nwZJSGw1MOinf589zbQyX4pAJXfX4YTOSv3RYBDB5s/RTBFryHhR3sB96n1+fBB7ce4R
+	Q1TXe6kwN3HB7nFXqmYy/iLwpdKzi1k/UKSmHMZLXezkw2fBlXE/WNNQH9fj9b2qEIDeLA1pdoVlJ
+	YU1IHVKVu8fV9a40cguprUAzckmhFwZKikyYZw2pDLcndppw4GqfVUFnkaUmwqE68IruAShuocPlC
+	JAM82qIgDG0GelshND54ddbCWN7AC5Ggvt74QaP+JnEPBai0WG9sQdi0ZGM5YnKgIeAFp4JHwRftR
+	EUYM9GdignG2hIC26yUA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n7GDR-00GEAG-Eu; Tue, 11 Jan 2022 12:25:29 +0000
-Received: from mga17.intel.com ([192.55.52.151])
+	id 1n7HJJ-00GQ8C-Ci; Tue, 11 Jan 2022 13:35:37 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n7GDO-00GE9q-Ii
- for ath11k@lists.infradead.org; Tue, 11 Jan 2022 12:25:28 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1641903926; x=1673439926;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=kOjWqaiFV0550xr2J2a2u0K/5EnSRW3Wa7Fgol+iQZ8=;
- b=USK3QstaU3b4fTDxKtNkxicKeFnpliE5E8S6VXJo/gxR4lxC2TiIQWi1
- 3f+s93wGEL2cXmt5zOC9GUwA716otcOfFU5G0PvlBiUHMmVetsTsq0rep
- I65tBOW4l3ZdR7IO01VSw0yDscu8YKzam5SGnLmJO4gb4Rxk0i6tLOvo6
- b6rVwptfO8MUnZVThUE7qdHkDvHFFE4N5e082dkUP5TlfkNe7tZXgf5jy
- +2jDlYugGHkBcJStDB8EQTJ9HUM3CP4twVzufWwaMTEfoJiCK96um7qoy
- gg0FnP/Hxnx6yk13Yf2Wvft4E80WWumjgR66L6axrITVjix7dJvOVjENp w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10223"; a="224169636"
-X-IronPort-AV: E=Sophos;i="5.88,279,1635231600"; d="scan'208";a="224169636"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2022 04:25:25 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,279,1635231600"; d="scan'208";a="490361877"
-Received: from lkp-server01.sh.intel.com (HELO 276f1b88eecb) ([10.239.97.150])
- by orsmga002.jf.intel.com with ESMTP; 11 Jan 2022 04:25:23 -0800
-Received: from kbuild by 276f1b88eecb with local (Exim 4.92)
- (envelope-from <lkp@intel.com>)
- id 1n7GDL-0004s2-2K; Tue, 11 Jan 2022 12:25:23 +0000
-Date: Tue, 11 Jan 2022 20:25:14 +0800
-From: kernel test robot <lkp@intel.com>
-To: Seevalamuthu Mariappan <quic_seevalam@quicinc.com>,
- ath11k@lists.infradead.org
-Cc: llvm@lists.linux.dev, kbuild-all@lists.01.org,
- linux-wireless@vger.kernel.org,
- Seevalamuthu Mariappan <quic_seevalam@quicinc.com>
-Subject: Re: [PATCH] ath11k: Add debugfs interface to configure firmware
- debug log level
-Message-ID: <202201112056.3dHmkXvo-lkp@intel.com>
-References: <1641793281-7957-1-git-send-email-quic_seevalam@quicinc.com>
+ id 1n7HJG-00GQ79-8H
+ for ath11k@lists.infradead.org; Tue, 11 Jan 2022 13:35:35 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id CCC1C61624;
+ Tue, 11 Jan 2022 13:35:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5284C36AE3;
+ Tue, 11 Jan 2022 13:35:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1641908133;
+ bh=E6vq7mGYlar1V1IksYVxaMCyfvE9nSU8LuUCOABZB6U=;
+ h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+ b=DPwHqQ4aW2BbFIsHrMxYbCb0LnkTiTvVzygOKqUqz0jUax6MtvBwO4iilh8/c7w22
+ 52RW/Wyq1aeJ+Ec7c1ZdldjhC8/S3HFxqrgBDp/Cofk4qOOOSuvgCoPaBYIRXf8dgm
+ Dvwr0HWgAyUuxJ6rVQZLFnkSRNzXyHpOPlWXThd8Hv34jjbvEP61aMqXXS6GS5ajWr
+ LsTMpxXBTSfC2LDQkL38e284Ynprs+AMDdtK53uab5ezdRfMUEOgPgYMq01qmBeq6t
+ k2c4n77RoyQX5YWFtxznBM372BiqDqHmZxVUhMO0VScNFmgkgCu4WScaMgya8okzjE
+ NvwAK7PP6lt+Q==
+From: Kalle Valo <kvalo@kernel.org>
+To: Dan Carpenter <dan.carpenter@oracle.com>
+Cc: kbuild@lists.01.org, Wen Gong <quic_wgong@quicinc.com>, lkp@intel.com,
+ kbuild-all@lists.01.org, ath11k@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [kvalo-ath:pending 52/56]
+ drivers/net/wireless/ath/ath11k/wmi.c:5651
+ ath11k_wmi_tlv_fw_stats_data_parse() error: uninitialized symbol 'len'.
+References: <202112110427.o6xDAKfE-lkp@intel.com>
+Date: Tue, 11 Jan 2022 15:35:26 +0200
+In-Reply-To: <202112110427.o6xDAKfE-lkp@intel.com> (Dan Carpenter's message of
+ "Wed, 5 Jan 2022 15:21:42 +0300")
+Message-ID: <87czkyv1i9.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1641793281-7957-1-git-send-email-quic_seevalam@quicinc.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220111_042526_673454_20447F39 
-X-CRM114-Status: GOOD (  14.98  )
+X-CRM114-CacheID: sfid-20220111_053534_394514_C6348FF0 
+X-CRM114-Status: GOOD (  12.98  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,104 +76,87 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi Seevalamuthu,
+(moving from ath10k list to ath11k list)
 
-Thank you for the patch! Yet something to improve:
+Dan Carpenter <dan.carpenter@oracle.com> writes:
 
-[auto build test ERROR on kvalo-ath/ath-next]
-[also build test ERROR on next-20220111]
-[cannot apply to v5.16]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+> tree:   https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git pending
+> head:   34cbb4043dca455fca888e1ced323e588912b6a2
+> commit: bc5c448b70ff141f8a2b5cbbab79fba08d7a1be0 [52/56] ath11k:
+> report rssi of each chain to mac80211 for QCA6390/WCN6855
+> config: riscv-randconfig-m031-20211210
+> (https://download.01.org/0day-ci/archive/20211211/202112110427.o6xDAKfE-lkp@intel.com/config)
+> compiler: riscv64-linux-gcc (GCC) 11.2.0
 
-url:    https://github.com/0day-ci/linux/commits/Seevalamuthu-Mariappan/ath11k-Add-debugfs-interface-to-configure-firmware-debug-log-level/20220110-134225
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git ath-next
-config: x86_64-randconfig-c007 (https://download.01.org/0day-ci/archive/20220111/202201112056.3dHmkXvo-lkp@intel.com/config)
-compiler: clang version 14.0.0 (https://github.com/llvm/llvm-project 84654f2733f63dc725a7b3d7c55d56849d2d9358)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/bde7e10605a2c55ec1c333ad64e0f6e2634f4d4a
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Seevalamuthu-Mariappan/ath11k-Add-debugfs-interface-to-configure-firmware-debug-log-level/20220110-134225
-        git checkout bde7e10605a2c55ec1c333ad64e0f6e2634f4d4a
-        # save the config file to linux build tree
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 ARCH=x86_64 
+This was a test commit in the pending branch, I applied the actual
+commit as:
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+b488c766442f ath11k: report rssi of each chain to mac80211 for QCA6390/WCN6855
 
-All errors (new ones prefixed by >>):
+> If you fix the issue, kindly add following tag as appropriate
+> Reported-by: kernel test robot <lkp@intel.com>
+> Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
+>
+> New smatch warnings:
+> drivers/net/wireless/ath/ath11k/wmi.c:5651
+> ath11k_wmi_tlv_fw_stats_data_parse() error: uninitialized symbol
+> 'len'.
+>
+> Old smatch warnings:
+> arch/riscv/include/asm/atomic.h:317 arch_atomic_sub_if_positive()
+> warn: inconsistent indenting
+> drivers/net/wireless/ath/ath11k/wmi.c:5674
+> ath11k_wmi_tlv_fw_stats_data_parse() error: uninitialized symbol
+> 'len'.
+> drivers/net/wireless/ath/ath11k/wmi.c:5695
+> ath11k_wmi_tlv_fw_stats_data_parse() error: uninitialized symbol
+> 'len'.
+>
+> vim +/len +5651 drivers/net/wireless/ath/ath11k/wmi.c
+>
+> bc5c448b70ff14 Wen Gong 2021-12-08 5629 static int
+> ath11k_wmi_tlv_fw_stats_data_parse(struct ath11k_base *ab,
+> bc5c448b70ff14 Wen Gong 2021-12-08 5630 struct wmi_tlv_fw_stats_parse
+> *parse,
+> bc5c448b70ff14 Wen Gong 2021-12-08 5631 const void *ptr)
+> bc5c448b70ff14 Wen Gong   2021-12-08  5632  {
+> bc5c448b70ff14 Wen Gong 2021-12-08 5633 struct ath11k_fw_stats *stats
+> = parse->stats;
+> bc5c448b70ff14 Wen Gong 2021-12-08 5634 const struct wmi_stats_event
+> *ev = parse->ev;
+> bc5c448b70ff14 Wen Gong   2021-12-08  5635  	int i;
+> bc5c448b70ff14 Wen Gong   2021-12-08  5636  	const void *data = ptr;
+> bc5c448b70ff14 Wen Gong   2021-12-08  5637  	u32 len;
+> bc5c448b70ff14 Wen Gong   2021-12-08  5638  
+> bc5c448b70ff14 Wen Gong   2021-12-08  5639  	if (!ev) {
+> bc5c448b70ff14 Wen Gong 2021-12-08 5640 ath11k_warn(ab, "failed to
+> fetch update stats ev");
+> bc5c448b70ff14 Wen Gong   2021-12-08  5641  		return -EPROTO;
+> bc5c448b70ff14 Wen Gong   2021-12-08  5642  	}
+> d5c65159f28953 Kalle Valo 2019-11-23  5643  
+> d5c65159f28953 Kalle Valo 2019-11-23  5644  	stats->stats_id = 0;
+> d5c65159f28953 Kalle Valo 2019-11-23  5645  
+> d5c65159f28953 Kalle Valo 2019-11-23 5646 for (i = 0; i <
+> ev->num_pdev_stats; i++) {
+> d5c65159f28953 Kalle Valo 2019-11-23 5647 const struct wmi_pdev_stats
+> *src;
+> d5c65159f28953 Kalle Valo 2019-11-23 5648 struct ath11k_fw_stats_pdev
+> *dst;
+> d5c65159f28953 Kalle Valo 2019-11-23  5649  
+> d5c65159f28953 Kalle Valo 2019-11-23  5650  		src = data;
+> bc5c448b70ff14 Wen Gong   2021-12-08 @5651  		if (len < sizeof(*src))
+>
+> "len" is never initialized.
 
-   drivers/net/wireless/ath/ath11k/wmi.c: In function 'ath11k_wmi_fw_dbglog_cfg':
->> drivers/net/wireless/ath/ath11k/wmi.c:7833:25: error: 'struct ath11k' has no member named 'debug'
-    7833 |   memcpy(tlv->value, &ar->debug.module_id_bitmap,
-         |                         ^~
-   drivers/net/wireless/ath/ath11k/wmi.c:7836:13: error: 'struct ath11k' has no member named 'debug'
-    7836 |   memset(&ar->debug.module_id_bitmap, 0,
-         |             ^~
+I only quickly looked at this, but AFAICS ath11k_wmi_tlv_iter() provides
+len to ath11k_wmi_tlv_fw_stats_parse() which again provides len to
+ath11k_wmi_tlv_fw_stats_data_parse(). I'm not seeing how this is
+uninitalised, did I miss something?
 
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-vim +7833 drivers/net/wireless/ath/ath11k/wmi.c
-
-  7800	
-  7801	int ath11k_wmi_fw_dbglog_cfg(struct ath11k *ar, struct ath11k_fw_dbglog *dbglog)
-  7802	{
-  7803		struct ath11k_pdev_wmi *wmi = ar->wmi;
-  7804		struct wmi_debug_log_config_cmd_fixed_param *cmd;
-  7805		struct sk_buff *skb;
-  7806		struct wmi_tlv *tlv;
-  7807		int ret, len;
-  7808	
-  7809		len = sizeof(*cmd) + TLV_HDR_SIZE + (MAX_MODULE_ID_BITMAP_WORDS * sizeof(u32));
-  7810		skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, len);
-  7811		if (!skb)
-  7812			return -ENOMEM;
-  7813	
-  7814		cmd = (struct wmi_debug_log_config_cmd_fixed_param *)skb->data;
-  7815		cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_DEBUG_LOG_CONFIG_CMD) |
-  7816				  FIELD_PREP(WMI_TLV_LEN, sizeof(*cmd) - TLV_HDR_SIZE);
-  7817		cmd->dbg_log_param = dbglog->param;
-  7818	
-  7819		tlv = (struct wmi_tlv *)((u8 *)cmd + sizeof(*cmd));
-  7820		tlv->header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_ARRAY_UINT32) |
-  7821			      FIELD_PREP(WMI_TLV_LEN, MAX_MODULE_ID_BITMAP_WORDS * sizeof(u32));
-  7822	
-  7823		switch (dbglog->param) {
-  7824		case WMI_DEBUG_LOG_PARAM_LOG_LEVEL:
-  7825		case WMI_DEBUG_LOG_PARAM_VDEV_ENABLE:
-  7826		case WMI_DEBUG_LOG_PARAM_VDEV_DISABLE:
-  7827		case WMI_DEBUG_LOG_PARAM_VDEV_ENABLE_BITMAP:
-  7828			cmd->value = dbglog->value;
-  7829			break;
-  7830		case WMI_DEBUG_LOG_PARAM_MOD_ENABLE_BITMAP:
-  7831		case WMI_DEBUG_LOG_PARAM_WOW_MOD_ENABLE_BITMAP:
-  7832			cmd->value = dbglog->value;
-> 7833			memcpy(tlv->value, &ar->debug.module_id_bitmap,
-  7834			       MAX_MODULE_ID_BITMAP_WORDS * sizeof(u32));
-  7835			/* clear current config to be used for next user config */
-  7836			memset(&ar->debug.module_id_bitmap, 0,
-  7837			       MAX_MODULE_ID_BITMAP_WORDS * sizeof(u32));
-  7838			break;
-  7839		default:
-  7840			dev_kfree_skb(skb);
-  7841			return -EINVAL;
-  7842		}
-  7843	
-  7844		ret = ath11k_wmi_cmd_send(wmi, skb, WMI_DBGLOG_CFG_CMDID);
-  7845		if (ret) {
-  7846			ath11k_warn(ar->ab,
-  7847				    "failed to send WMI_DBGLOG_CFG_CMDID\n");
-  7848			dev_kfree_skb(skb);
-  7849		}
-  7850		return ret;
-  7851	}
-  7852	
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
