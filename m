@@ -4,59 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66F34C433EF
-	for <ath11k@archiver.kernel.org>; Tue, 11 Jan 2022 14:27:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3709FC433F5
+	for <ath11k@archiver.kernel.org>; Tue, 11 Jan 2022 14:38:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
 	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=lZNwerOHvCKTGkRhkj8tNMh032Y0dVWbnvwkSvGcKzA=; b=Cyvek07gXyjcsd
-	ygYEPMdYh/oxf4aaMjyWSkAGgq5e2XGNdS2RCTxnvAU/kVVnYAEdPxio4LckbFF2iaMltw+7+grPD
-	tA63Z+g7K4jt1UOAp2Yw+ZtuGh3fglmkpck67WH5dbyoTpklOSC+3W1PuFoyhf9i+4ocRniFW7X6I
-	QL7LobdQ3xNqKh2DSpuWA4FrDPGAVwBvA5RrVeUJloHJ382igkC5FBZ74qnglwFjb/BSD1QNVdj3Y
-	nd4cE22yZ4sMBii2GWEH7gLSlIN4q4RiFn1KG1IE5J7LxXHDwKYqg7wyqioGxAY8K7zsWtxwBb1HB
-	RUqz/hjndcsspl1BMZ8A==;
+	List-Owner; bh=eswGFlB4JCAngZ/Z3q7Z9m84PLgDXhDGaOFE0jBTzfo=; b=QCkeqW//w33C71
+	lCgS9nnJe1t70Rhiyoj2sDw8cKo75w3hRGdbbooOosfIec0fEpZseL1eCGo7mFYjZQv6hSRjLBlky
+	Q+rpJZYzt8ackMJpCp8hc0GtHb2PsLeyj0/5IxeIFIyBH4F48P63bq9cAATHvoTkMaurdZsgvxzFm
+	v2IrHTwM0JUNih6w3cqoRHsj00zwzWTDc0rl5tnbdd+4aDmlb2/+aqfvUjK3WnZOec2Oi6SHMkATQ
+	okAO5VxP3EpBcjy+ha/1KY+CFGZ9BFtq05vUzXi2EJF68aOGYVaIiOQWOy2gpRKIReOmQocAiKagZ
+	pxQSjBvanuU3QkmYDNMA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n7I7w-00GZED-AV; Tue, 11 Jan 2022 14:27:56 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1n7IIU-00GZxz-Bo; Tue, 11 Jan 2022 14:38:50 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n7I7t-00GZCu-OB
- for ath11k@lists.infradead.org; Tue, 11 Jan 2022 14:27:55 +0000
+ id 1n7IIS-00GZxA-0a
+ for ath11k@lists.infradead.org; Tue, 11 Jan 2022 14:38:49 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 6678DB81B18;
- Tue, 11 Jan 2022 14:27:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BEDE7C36AEB;
- Tue, 11 Jan 2022 14:27:49 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 4D01761684;
+ Tue, 11 Jan 2022 14:38:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4018C36AE3;
+ Tue, 11 Jan 2022 14:38:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1641911271;
- bh=q7UrMOAq8uxK4pV4AeXczZ5Zom8qNHsblmQ/HEPUX/g=;
+ s=k20201202; t=1641911920;
+ bh=BzfEzZiGgzx0tSuP84HARdUdUuAEdyL2H9x7G3VY19s=;
  h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
- b=n3OjADGKqB7/yC+wlxG7zH38DNNCQcblNg847B5JPFHcKHBedmoVjuZAmd9Mnu3HH
- iXFd5+3QjSzcOZn1261lbuyuRDAxgxolfJj1ZOPC3nH4yHDGXgMB0NWhSPzlPf1DQ2
- aInu9rqgcz+wR/NU9bIn1/8PZnakU1iNSErYgZOkMJcCmaScAs2c5YFyGEpQXPW9jO
- c+0wKjGiKrKoTCApFoSvB9MXGnngpzwO5bmCEmOTzyjNYbyaFuQ2+Nmqe9Ha7lqSsd
- D+jTv0aqj47sNMhMtkmNJOjIcNEjUOpwNX/Tf6g6gURE1rmnHeJUCNi7GvCn6YBS8H
- GcQJ3bYQhBpdg==
+ b=OoiHGODEO0VELV7/2HpZM/cc+jlfUxM7UHhErYDlQPKJiyV9ZozvDZk1R14J2qJHe
+ YJk8gZ395CeLu7/1eMxCFcqpsqfyFpti4KaXZFvHJoQ957ksHcg5hbtz4uYDbbutN3
+ N5SBTUXE4C4YD3Gt0/kRgYt52fTdWgYmfUKJ2kPl9KneRkDS0cTv6yiEYkGjU8Eqwx
+ jTMzPioeQ7vA0lYx4KTUbJko0iRVmMqmONZ2k6ywhnd4qpWuEeI87xp+mtD8zVR9+9
+ YEYJtKV0eVVG5UBZ5nVGpF5eSiCgVQMghP6FBXZOgTI9agBMcgv91TdGTfQBdo8YM4
+ R+yeOG96cvXTg==
 MIME-Version: 1.0
-Subject: Re: [PATCH -next] ath11k: add missing of_node_put() to avoid leak
+Subject: Re: [PATCH] ath11k: fix workqueue not getting destroyed after rmmod
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20211221114003.335557-1-yangyingliang@huawei.com>
-References: <20211221114003.335557-1-yangyingliang@huawei.com>
-To: Yang Yingliang <yangyingliang@huawei.com>
-Cc: <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
- <linux-wireless@vger.kernel.org>, <ath11k@lists.infradead.org>,
- <akolli@codeaurora.org>
+In-Reply-To: <1640231787-17408-1-git-send-email-quic_adisi@quicinc.com>
+References: <1640231787-17408-1-git-send-email-quic_adisi@quicinc.com>
+To: Aditya Kumar Singh <quic_adisi@quicinc.com>
+Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+ Aditya Kumar Singh <quic_adisi@quicinc.com>
 User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <164191126809.24158.10097553913442842194.kvalo@kernel.org>
-Date: Tue, 11 Jan 2022 14:27:49 +0000 (UTC)
+Message-ID: <164191191704.24158.8323554268454002040.kvalo@kernel.org>
+Date: Tue, 11 Jan 2022 14:38:39 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220111_062753_961702_C7CFFE5C 
-X-CRM114-Status: UNSURE (   7.54  )
+X-CRM114-CacheID: sfid-20220111_063848_129210_33BFFCA0 
+X-CRM114-Status: UNSURE (   9.90  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -74,23 +73,28 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Yang Yingliang <yangyingliang@huawei.com> wrote:
+Aditya Kumar Singh <quic_adisi@quicinc.com> wrote:
 
-> The node pointer is returned by of_find_node_by_type()
-> or of_parse_phandle() with refcount incremented. Calling
-> of_node_put() to aovid the refcount leak.
+> Currently, ath11k_core_alloc() creates a single thread workqueue.
+> This workqueue is not detroyed during clean up when ath11k modules
+> are unloaded from the kernel and is left as it is.
+> If workqueue is not destroyed, it could lead to kernel
+> memory scarcity in a longer run. This could affect self and
+> other drivers workability as well.
 > 
-> Fixes: 6ac04bdc5edb ("ath11k: Use reserved host DDR addresses from DT for PCI devices")
-> Reported-by: Hulk Robot <hulkci@huawei.com>
-> Signed-off-by: Yang Yingliang <yangyingliang@huawei.com>
+> Add destroy workqueue in ath11k_core_free().
+> 
+> Tested on: IPQ8074 WLAN.HK.2.4.0.1-01746-QCAHKSWPL_SILICONZ-1
+> 
+> Signed-off-by: Aditya Kumar Singh <quic_adisi@quicinc.com>
 > Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
 Patch applied to ath-next branch of ath.git, thanks.
 
-3d38faef0de1 ath11k: add missing of_node_put() to avoid leak
+9f4ecacf2fa4 ath11k: fix workqueue not getting destroyed after rmmod
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20211221114003.335557-1-yangyingliang@huawei.com/
+https://patchwork.kernel.org/project/linux-wireless/patch/1640231787-17408-1-git-send-email-quic_adisi@quicinc.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
