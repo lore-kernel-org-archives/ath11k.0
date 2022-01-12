@@ -4,59 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF8A4C433EF
-	for <ath11k@archiver.kernel.org>; Wed, 12 Jan 2022 08:12:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5140C433F5
+	for <ath11k@archiver.kernel.org>; Wed, 12 Jan 2022 18:00:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
-	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7hhqlHiJjWpQ+F40Zj2TLm5gPfJVREWr/YFuxLnvE6w=; b=g6HnFOsbxGTRl2
-	lBKjVJh0DpkERXYYpxz7BaLeZW3jSFUoh0VsdgsUh3vTAy+qSnLcx3Yl/niO5UmfBynk4q6DrGKW4
-	4rAjkkh60M13m8cIxcvwBzccWS28uDWCilPpu5+Z+1H8PVcJSBR6uu9SDUwdBOyheayVeHh8aTXqz
-	1rvAcc2ZNTkS4mO55+oCfuaxD9fYkgFymj6542PzDzF5bv207157/KiQMYPKmq4eUDmW2V91dmLhm
-	50V2LSalUB3uHz2G9xL/TyuGekdq38tYBt7hjtToQt9GsFYDFtVXdWp09Ipdx47JrKpPXLP1mIcMy
-	fIu+7EPUrKA9LDVGJimQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=Ao0CUIcU7Hn4aLd8KfHkwnyiotxk80yWFzAMAz9t+uw=; b=EXUyqRoH8OEW5n
+	aOA3dOPaKWHNoCBCL1cTtXC9q8cAYyJRigPxOfOmar4MeFdNJ6K8fmnTKJxB8Wo4t9dxQjWM7UrYj
+	tZl5F2nGap/Xq69TUdrKS49KFd459aGvTY5fAqfPJbjRU7CsUXafua4H7YkBOBMgecbcioZro9d/d
+	1C9k5LXSzV4agOPxmm6leIQZ6HYWWF13riRtW0gY/KpAS43VxK7ZiLsTlR7ESTCaQAzmxs7WfNh/o
+	7NZe68V//Jw0PSNq19BYGEURnU1JA+wr4V3J4EG3OnSgt8CBUVCBWrslGaA6LWR/HU5+1P47ROiZp
+	VIwfXigrdPsQjItiMDHA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n7Ykb-001UPk-Mp; Wed, 12 Jan 2022 08:12:57 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1n7hvL-003On9-OC; Wed, 12 Jan 2022 18:00:39 +0000
+Received: from so254-9.mailgun.net ([198.61.254.9])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n7YkX-001UNi-U9
- for ath11k@lists.infradead.org; Wed, 12 Jan 2022 08:12:56 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 5F3176168A;
- Wed, 12 Jan 2022 08:12:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1341C36AEA;
- Wed, 12 Jan 2022 08:12:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1641975172;
- bh=9V6RtsFUKjRrCFrKCuJtRAX6wFHlNf6qKs7wyOthQQ4=;
- h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
- b=q10KBJ2my6pu0rpMxyHWJ+BqDFyocL3N6SweZNAJgw0eTf6X0pvMhegQt0VuxQQGp
- 0z+c4kWLTTAqzHXsuoi0YAQ8GHOobGpep+IgsqT1akpJShBwqUwJNXYoK/SEAEl03A
- 4LCJCHQASxacO4YAkJEdgbOQQLHlXLp3M/Sj+1GzwuSoaSA+9xkIZ2loJs6x44KM8s
- nGAvkSoR+6lk36c5SLOLsbGUbN/qXiQ3ynW+pdGCB3hVbGCAFoiMGWg0Lfxcb/srGw
- GnN+XBN/W9YdcxXoLdTA6KhvATXpRPRE2B0QTRFz8mwLtq1Y+7v/fnDy9v8Tj/zhRM
- uamM9RskHuqWA==
+ id 1n7hvH-003OmB-Qf
+ for ath11k@lists.infradead.org; Wed, 12 Jan 2022 18:00:38 +0000
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
+ q=dns/txt; 
+ s=smtp; t=1642010434; h=Content-Transfer-Encoding: MIME-Version:
+ Message-Id: Date: Subject: Cc: To: From: Sender;
+ bh=EqxNvpUJ69+jLQskdr4rE8g7ejnB75t5s0JiZgSQapg=;
+ b=f3D7tlVRXxlC0yrg+t+VWHxNh8Vufp5btB+GWhnCsLvb7PbFXgNQTXiZJyfvkWvo4JQdn0Fx
+ kB1Xc0PSMgrAxlWe50uohkAOk9GOQT4f+OWf7q5wmiphPQtOiCskiAgefYS8wWLPeuxuAOe0
+ xSMYAmypgut33oV0Abz2e5iWWjY=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
+ 61df1741e0071250cfe43eac (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 12 Jan 2022 18:00:33
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+ id 74C20C43616; Wed, 12 Jan 2022 18:00:33 +0000 (UTC)
+Received: from alokad-linux.qualcomm.com (i-global254.qualcomm.com
+ [199.106.103.254])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+ (No client certificate requested) (Authenticated sender: alokad)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 19A6AC4338F;
+ Wed, 12 Jan 2022 18:00:31 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 19A6AC4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ spf=fail smtp.mailfrom=codeaurora.org
+From: Aloka Dixit <alokad@codeaurora.org>
+To: ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org, John Crispin <john@phrozen.org>,
+ Aloka Dixit <alokad@codeaurora.org>
+Subject: [V7 1/2] ath11k: add WMI calls to manually add/del/pause/resume TWT
+ dialogs
+Date: Wed, 12 Jan 2022 10:00:25 -0800
+Message-Id: <20220112180026.5554-1-alokad@codeaurora.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Subject: Re: [PATCH v3] ath11k: free peer for station when disconnect from AP
- for QCA6390/WCN6855
-From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20211222070431.29595-1-quic_wgong@quicinc.com>
-References: <20211222070431.29595-1-quic_wgong@quicinc.com>
-To: Wen Gong <quic_wgong@quicinc.com>
-Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- <quic_wgong@quicinc.com>
-User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <164197516971.14338.9522584257208946536.kvalo@kernel.org>
-Date: Wed, 12 Jan 2022 08:12:51 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220112_001254_101836_AC854804 
-X-CRM114-Status: GOOD (  15.27  )
+X-CRM114-CacheID: sfid-20220112_100036_035003_CD726946 
+X-CRM114-Status: GOOD (  17.33  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,197 +83,476 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Wen Gong <quic_wgong@quicinc.com> wrote:
+From: John Crispin <john@phrozen.org>
 
-> Commit b4a0f54156ac ("ath11k: move peer delete after vdev stop of station
-> for QCA6390 and WCN6855") is to fix firmware crash by changing the WMI
-> command sequence, but actually skip all the peer delete operation, then
-> it lead commit 58595c9874c6 ("ath11k: Fixing dangling pointer issue upon
-> peer delete failure") not take effect, and then happened a use-after-free
-> warning from KASAN. because the peer->sta is not set to NULL and then used
-> later.
-> 
-> Change to only skip the WMI_PEER_DELETE_CMDID for QCA6390/WCN6855.
-> 
-> log of user-after-free:
-> 
-> [  534.888665] BUG: KASAN: use-after-free in ath11k_dp_rx_update_peer_stats+0x912/0xc10 [ath11k]
-> [  534.888696] Read of size 8 at addr ffff8881396bb1b8 by task rtcwake/2860
-> 
-> [  534.888705] CPU: 4 PID: 2860 Comm: rtcwake Kdump: loaded Tainted: G        W         5.15.0-wt-ath+ #523
-> [  534.888712] Hardware name: Intel(R) Client Systems NUC8i7HVK/NUC8i7HVB, BIOS HNKBLi70.86A.0067.2021.0528.1339 05/28/2021
-> [  534.888716] Call Trace:
-> [  534.888720]  <IRQ>
-> [  534.888726]  dump_stack_lvl+0x57/0x7d
-> [  534.888736]  print_address_description.constprop.0+0x1f/0x170
-> [  534.888745]  ? ath11k_dp_rx_update_peer_stats+0x912/0xc10 [ath11k]
-> [  534.888771]  kasan_report.cold+0x83/0xdf
-> [  534.888783]  ? ath11k_dp_rx_update_peer_stats+0x912/0xc10 [ath11k]
-> [  534.888810]  ath11k_dp_rx_update_peer_stats+0x912/0xc10 [ath11k]
-> [  534.888840]  ath11k_dp_rx_process_mon_status+0x529/0xa70 [ath11k]
-> [  534.888874]  ? ath11k_dp_rx_mon_status_bufs_replenish+0x3f0/0x3f0 [ath11k]
-> [  534.888897]  ? check_prev_add+0x20f0/0x20f0
-> [  534.888922]  ? __lock_acquire+0xb72/0x1870
-> [  534.888937]  ? find_held_lock+0x33/0x110
-> [  534.888954]  ath11k_dp_rx_process_mon_rings+0x297/0x520 [ath11k]
-> [  534.888981]  ? rcu_read_unlock+0x40/0x40
-> [  534.888990]  ? ath11k_dp_rx_pdev_alloc+0xd90/0xd90 [ath11k]
-> [  534.889026]  ath11k_dp_service_mon_ring+0x67/0xe0 [ath11k]
-> [  534.889053]  ? ath11k_dp_rx_process_mon_rings+0x520/0x520 [ath11k]
-> [  534.889075]  call_timer_fn+0x167/0x4a0
-> [  534.889084]  ? add_timer_on+0x3b0/0x3b0
-> [  534.889103]  ? lockdep_hardirqs_on_prepare.part.0+0x18c/0x370
-> [  534.889117]  __run_timers.part.0+0x539/0x8b0
-> [  534.889123]  ? ath11k_dp_rx_process_mon_rings+0x520/0x520 [ath11k]
-> [  534.889157]  ? call_timer_fn+0x4a0/0x4a0
-> [  534.889164]  ? mark_lock_irq+0x1c30/0x1c30
-> [  534.889173]  ? clockevents_program_event+0xdd/0x280
-> [  534.889189]  ? mark_held_locks+0xa5/0xe0
-> [  534.889203]  run_timer_softirq+0x97/0x180
-> [  534.889213]  __do_softirq+0x276/0x86a
-> [  534.889230]  __irq_exit_rcu+0x11c/0x180
-> [  534.889238]  irq_exit_rcu+0x5/0x20
-> [  534.889244]  sysvec_apic_timer_interrupt+0x8e/0xc0
-> [  534.889251]  </IRQ>
-> [  534.889254]  <TASK>
-> [  534.889259]  asm_sysvec_apic_timer_interrupt+0x12/0x20
-> [  534.889265] RIP: 0010:_raw_spin_unlock_irqrestore+0x38/0x70
-> [  534.889271] Code: 74 24 10 e8 ea c2 bf fd 48 89 ef e8 12 53 c0 fd 81 e3 00 02 00 00 75 25 9c 58 f6 c4 02 75 2d 48 85 db 74 01 fb bf 01 00 00 00 <e8> 13 a7 b5 fd 65 8b 05 cc d9 9c 5e 85 c0 74 0a 5b 5d c3 e8 a0 ee
-> [  534.889276] RSP: 0018:ffffc90002e5f880 EFLAGS: 00000206
-> [  534.889284] RAX: 0000000000000006 RBX: 0000000000000200 RCX: ffffffff9f256f10
-> [  534.889289] RDX: 0000000000000000 RSI: ffffffffa1c6e420 RDI: 0000000000000001
-> [  534.889293] RBP: ffff8881095e6200 R08: 0000000000000001 R09: ffffffffa40d2b8f
-> [  534.889298] R10: fffffbfff481a571 R11: 0000000000000001 R12: ffff8881095e6e68
-> [  534.889302] R13: ffffc90002e5f908 R14: 0000000000000246 R15: 0000000000000000
-> [  534.889316]  ? mark_lock+0xd0/0x14a0
-> [  534.889332]  klist_next+0x1d4/0x450
-> [  534.889340]  ? dpm_wait_for_subordinate+0x2d0/0x2d0
-> [  534.889350]  device_for_each_child+0xa8/0x140
-> [  534.889360]  ? device_remove_class_symlinks+0x1b0/0x1b0
-> [  534.889370]  ? __lock_release+0x4bd/0x9f0
-> [  534.889378]  ? dpm_suspend+0x26b/0x3f0
-> [  534.889390]  dpm_wait_for_subordinate+0x82/0x2d0
-> [  534.889400]  ? dpm_for_each_dev+0xa0/0xa0
-> [  534.889410]  ? dpm_suspend+0x233/0x3f0
-> [  534.889427]  __device_suspend+0xd4/0x10c0
-> [  534.889440]  ? wait_for_completion_io+0x270/0x270
-> [  534.889456]  ? async_suspend_late+0xe0/0xe0
-> [  534.889463]  ? async_schedule_node_domain+0x468/0x640
-> [  534.889482]  dpm_suspend+0x25a/0x3f0
-> [  534.889491]  ? dpm_suspend_end+0x1a0/0x1a0
-> [  534.889497]  ? ktime_get+0x214/0x2f0
-> [  534.889502]  ? lockdep_hardirqs_on+0x79/0x100
-> [  534.889509]  ? recalibrate_cpu_khz+0x10/0x10
-> [  534.889516]  ? ktime_get+0x119/0x2f0
-> [  534.889528]  dpm_suspend_start+0xab/0xc0
-> [  534.889538]  suspend_devices_and_enter+0x1ca/0x350
-> [  534.889546]  ? suspend_enter+0x850/0x850
-> [  534.889566]  enter_state+0x27c/0x3d7
-> [  534.889575]  pm_suspend.cold+0x42/0x189
-> [  534.889583]  state_store+0xab/0x160
-> [  534.889595]  ? sysfs_file_ops+0x160/0x160
-> [  534.889601]  kernfs_fop_write_iter+0x2b5/0x450
-> [  534.889615]  new_sync_write+0x36a/0x600
-> [  534.889625]  ? new_sync_read+0x600/0x600
-> [  534.889639]  ? rcu_read_unlock+0x40/0x40
-> [  534.889668]  vfs_write+0x619/0x910
-> [  534.889681]  ksys_write+0xf4/0x1d0
-> [  534.889689]  ? __ia32_sys_read+0xa0/0xa0
-> [  534.889699]  ? lockdep_hardirqs_on_prepare.part.0+0x18c/0x370
-> [  534.889707]  ? syscall_enter_from_user_mode+0x1d/0x50
-> [  534.889719]  do_syscall_64+0x3b/0x90
-> [  534.889725]  entry_SYSCALL_64_after_hwframe+0x44/0xae
-> [  534.889731] RIP: 0033:0x7f0b9bc931e7
-> [  534.889736] Code: 64 89 02 48 c7 c0 ff ff ff ff eb bb 0f 1f 80 00 00 00 00 f3 0f 1e fa 64 8b 04 25 18 00 00 00 85 c0 75 10 b8 01 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 51 c3 48 83 ec 28 48 89 54 24 18 48 89 74 24
-> [  534.889741] RSP: 002b:00007ffd9d34cc88 EFLAGS: 00000246 ORIG_RAX: 0000000000000001
-> [  534.889749] RAX: ffffffffffffffda RBX: 0000000000000004 RCX: 00007f0b9bc931e7
-> [  534.889753] RDX: 0000000000000004 RSI: 0000561cd023c5f0 RDI: 0000000000000004
-> [  534.889757] RBP: 0000561cd023c5f0 R08: 0000000000000000 R09: 0000000000000004
-> [  534.889761] R10: 0000561ccef842a6 R11: 0000000000000246 R12: 0000000000000004
-> [  534.889765] R13: 0000561cd0239590 R14: 00007f0b9bd6f4a0 R15: 00007f0b9bd6e8a0
-> [  534.889789]  </TASK>
-> 
-> [  534.889796] Allocated by task 2711:
-> [  534.889800]  kasan_save_stack+0x1b/0x40
-> [  534.889805]  __kasan_kmalloc+0x7c/0x90
-> [  534.889810]  sta_info_alloc+0x98/0x1ef0 [mac80211]
-> [  534.889874]  ieee80211_prep_connection+0x30b/0x11e0 [mac80211]
-> [  534.889950]  ieee80211_mgd_auth+0x529/0xe00 [mac80211]
-> [  534.890024]  cfg80211_mlme_auth+0x332/0x6f0 [cfg80211]
-> [  534.890090]  nl80211_authenticate+0x839/0xcf0 [cfg80211]
-> [  534.890147]  genl_family_rcv_msg_doit+0x1f4/0x2f0
-> [  534.890154]  genl_rcv_msg+0x280/0x500
-> [  534.890160]  netlink_rcv_skb+0x11c/0x340
-> [  534.890165]  genl_rcv+0x1f/0x30
-> [  534.890170]  netlink_unicast+0x42b/0x700
-> [  534.890176]  netlink_sendmsg+0x71b/0xc60
-> [  534.890181]  sock_sendmsg+0xdf/0x110
-> [  534.890187]  ____sys_sendmsg+0x5c0/0x850
-> [  534.890192]  ___sys_sendmsg+0xe4/0x160
-> [  534.890197]  __sys_sendmsg+0xb2/0x140
-> [  534.890202]  do_syscall_64+0x3b/0x90
-> [  534.890207]  entry_SYSCALL_64_after_hwframe+0x44/0xae
-> 
-> [  534.890215] Freed by task 2825:
-> [  534.890218]  kasan_save_stack+0x1b/0x40
-> [  534.890223]  kasan_set_track+0x1c/0x30
-> [  534.890227]  kasan_set_free_info+0x20/0x30
-> [  534.890232]  __kasan_slab_free+0xce/0x100
-> [  534.890237]  slab_free_freelist_hook+0xf0/0x1a0
-> [  534.890242]  kfree+0xe5/0x370
-> [  534.890248]  __sta_info_flush+0x333/0x4b0 [mac80211]
-> [  534.890308]  ieee80211_set_disassoc+0x324/0xd20 [mac80211]
-> [  534.890382]  ieee80211_mgd_deauth+0x537/0xee0 [mac80211]
-> [  534.890472]  cfg80211_mlme_deauth+0x349/0x810 [cfg80211]
-> [  534.890526]  cfg80211_mlme_down+0x1ce/0x270 [cfg80211]
-> [  534.890578]  cfg80211_disconnect+0x4f5/0x7b0 [cfg80211]
-> [  534.890631]  cfg80211_leave+0x24/0x40 [cfg80211]
-> [  534.890677]  wiphy_suspend+0x23d/0x2f0 [cfg80211]
-> [  534.890723]  dpm_run_callback+0xf4/0x1b0
-> [  534.890728]  __device_suspend+0x648/0x10c0
-> [  534.890733]  async_suspend+0x16/0xe0
-> [  534.890737]  async_run_entry_fn+0x90/0x4f0
-> [  534.890741]  process_one_work+0x866/0x1490
-> [  534.890747]  worker_thread+0x596/0x1010
-> [  534.890751]  kthread+0x35d/0x420
-> [  534.890756]  ret_from_fork+0x22/0x30
-> 
-> [  534.890763] The buggy address belongs to the object at ffff8881396ba000
->                 which belongs to the cache kmalloc-8k of size 8192
-> [  534.890767] The buggy address is located 4536 bytes inside of
->                 8192-byte region [ffff8881396ba000, ffff8881396bc000)
-> [  534.890772] The buggy address belongs to the page:
-> [  534.890775] page:ffffea0004e5ae00 refcount:1 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x1396b8
-> [  534.890780] head:ffffea0004e5ae00 order:3 compound_mapcount:0 compound_pincount:0
-> [  534.890784] flags: 0x200000000010200(slab|head|node=0|zone=2)
-> [  534.890791] raw: 0200000000010200 ffffea000562be08 ffffea0004b04c08 ffff88810004e340
-> [  534.890795] raw: 0000000000000000 0000000000010001 00000001ffffffff 0000000000000000
-> [  534.890798] page dumped because: kasan: bad access detected
-> 
-> [  534.890804] Memory state around the buggy address:
-> [  534.890807]  ffff8881396bb080: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
-> [  534.890811]  ffff8881396bb100: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
-> [  534.890814] >ffff8881396bb180: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
-> [  534.890817]                                         ^
-> [  534.890821]  ffff8881396bb200: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
-> [  534.890824]  ffff8881396bb280: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
-> [  534.890827] ==================================================================
-> [  534.890830] Disabling lock debugging due to kernel taint
-> 
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
-> 
-> Fixes: b4a0f54156ac ("ath11k: move peer delete after vdev stop of station for QCA6390 and WCN6855")
-> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+These calls are used for debugging and will be required for WFA
+certification tests.
 
-Patch applied to ath-next branch of ath.git, thanks.
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1-01179-QCAHKSWPL_SILICONZ-1
+Signed-off-by: John Crispin <john@phrozen.org>
+Signed-off-by: Aloka Dixit <alokad@codeaurora.org>
+---
+Changes in V7
+* Only rebased
 
-212ad7cb7d75 ath11k: free peer for station when disconnect from AP for QCA6390/WCN6855
+Changes in V6
+* new function ath11k_wmi_twt_add_dialog_event_status()
+* re-added WMI_TAG_TWT_ADD_DIALOG_COMPLETE_EVENT in
+  wmi_tlv_policies which was missed in V5.
 
+Changes in V5
+* Setting and resetting of twt_enabled in WMI functions
+* ath11k_dbg() instead of ath11k_info() in ath11k_wmi_twt_add_dialog_event()
+* Made WMI error messages more readable
+
+ drivers/net/wireless/ath/ath11k/core.h |   1 +
+ drivers/net/wireless/ath/ath11k/wmi.c  | 247 ++++++++++++++++++++++++-
+ drivers/net/wireless/ath/ath11k/wmi.h  | 114 ++++++++++++
+ 3 files changed, 358 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index 9e88ccca5ca7..9bea019605d5 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -603,6 +603,7 @@ struct ath11k {
+ 	struct completion finish_11d_ch_list;
+ 	bool pending_11d;
+ 	bool regdom_set_by_user;
++	u8 twt_enabled;
+ };
+ 
+ struct ath11k_band_cap {
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 6b68ccf65e39..485574b8e93c 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -144,6 +144,8 @@ static const struct wmi_tlv_policy wmi_tlv_policies[] = {
+ 		.min_len = sizeof(struct wmi_11d_new_cc_ev) },
+ 	[WMI_TAG_PER_CHAIN_RSSI_STATS] = {
+ 		.min_len = sizeof(struct wmi_per_chain_rssi_stats) },
++	[WMI_TAG_TWT_ADD_DIALOG_COMPLETE_EVENT] = {
++		.min_len = sizeof(struct wmi_twt_add_dialog_event) },
+ };
+ 
+ #define PRIMAP(_hw_mode_) \
+@@ -3085,11 +3087,12 @@ ath11k_wmi_send_twt_enable_cmd(struct ath11k *ar, u32 pdev_id)
+ 	/* TODO add MBSSID support */
+ 	cmd->mbss_support = 0;
+ 
+-	ret = ath11k_wmi_cmd_send(wmi, skb,
+-				  WMI_TWT_ENABLE_CMDID);
++	ret = ath11k_wmi_cmd_send(wmi, skb, WMI_TWT_ENABLE_CMDID);
+ 	if (ret) {
+ 		ath11k_warn(ab, "Failed to send WMI_TWT_ENABLE_CMDID");
+ 		dev_kfree_skb(skb);
++	} else {
++		ar->twt_enabled = 1;
+ 	}
+ 	return ret;
+ }
+@@ -3114,11 +3117,181 @@ ath11k_wmi_send_twt_disable_cmd(struct ath11k *ar, u32 pdev_id)
+ 			  FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
+ 	cmd->pdev_id = pdev_id;
+ 
+-	ret = ath11k_wmi_cmd_send(wmi, skb,
+-				  WMI_TWT_DISABLE_CMDID);
++	ret = ath11k_wmi_cmd_send(wmi, skb, WMI_TWT_DISABLE_CMDID);
+ 	if (ret) {
+ 		ath11k_warn(ab, "Failed to send WMI_TWT_DISABLE_CMDID");
+ 		dev_kfree_skb(skb);
++	} else {
++		ar->twt_enabled = 0;
++	}
++	return ret;
++}
++
++int ath11k_wmi_send_twt_add_dialog_cmd(struct ath11k *ar,
++				       struct wmi_twt_add_dialog_params *params)
++{
++	struct ath11k_pdev_wmi *wmi = ar->wmi;
++	struct ath11k_base *ab = wmi->wmi_ab->ab;
++	struct wmi_twt_add_dialog_params_cmd *cmd;
++	struct sk_buff *skb;
++	int ret, len;
++
++	len = sizeof(*cmd);
++
++	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, len);
++	if (!skb)
++		return -ENOMEM;
++
++	cmd = (struct wmi_twt_add_dialog_params_cmd *)skb->data;
++	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_TWT_ADD_DIALOG_CMD) |
++			  FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
++
++	cmd->vdev_id = params->vdev_id;
++	ether_addr_copy(cmd->peer_macaddr.addr, params->peer_macaddr);
++	cmd->dialog_id = params->dialog_id;
++	cmd->wake_intvl_us = params->wake_intvl_us;
++	cmd->wake_intvl_mantis = params->wake_intvl_mantis;
++	cmd->wake_dura_us = params->wake_dura_us;
++	cmd->sp_offset_us = params->sp_offset_us;
++	cmd->flags = params->twt_cmd;
++	if (params->flag_bcast)
++		cmd->flags |= WMI_TWT_ADD_DIALOG_FLAG_BCAST;
++	if (params->flag_trigger)
++		cmd->flags |= WMI_TWT_ADD_DIALOG_FLAG_TRIGGER;
++	if (params->flag_flow_type)
++		cmd->flags |= WMI_TWT_ADD_DIALOG_FLAG_FLOW_TYPE;
++	if (params->flag_protection)
++		cmd->flags |= WMI_TWT_ADD_DIALOG_FLAG_PROTECTION;
++
++	ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
++		   "wmi add twt dialog vdev %u dialog id %u wake interval %u mantissa %u wake duration %u service period offset %u flags 0x%x\n",
++		   cmd->vdev_id, cmd->dialog_id, cmd->wake_intvl_us,
++		   cmd->wake_intvl_mantis, cmd->wake_dura_us, cmd->sp_offset_us,
++		   cmd->flags);
++
++	ret = ath11k_wmi_cmd_send(wmi, skb, WMI_TWT_ADD_DIALOG_CMDID);
++
++	if (ret) {
++		ath11k_warn(ab,
++			    "failed to send wmi command to add twt dialog: %d",
++			    ret);
++		dev_kfree_skb(skb);
++	}
++	return ret;
++}
++
++int ath11k_wmi_send_twt_del_dialog_cmd(struct ath11k *ar,
++				       struct wmi_twt_del_dialog_params *params)
++{
++	struct ath11k_pdev_wmi *wmi = ar->wmi;
++	struct ath11k_base *ab = wmi->wmi_ab->ab;
++	struct wmi_twt_del_dialog_params_cmd *cmd;
++	struct sk_buff *skb;
++	int ret, len;
++
++	len = sizeof(*cmd);
++
++	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, len);
++	if (!skb)
++		return -ENOMEM;
++
++	cmd = (struct wmi_twt_del_dialog_params_cmd *)skb->data;
++	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG, WMI_TAG_TWT_DEL_DIALOG_CMD) |
++			  FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
++
++	cmd->vdev_id = params->vdev_id;
++	ether_addr_copy(cmd->peer_macaddr.addr, params->peer_macaddr);
++	cmd->dialog_id = params->dialog_id;
++
++	ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
++		   "wmi delete twt dialog vdev %u dialog id %u\n",
++		   cmd->vdev_id, cmd->dialog_id);
++
++	ret = ath11k_wmi_cmd_send(wmi, skb, WMI_TWT_DEL_DIALOG_CMDID);
++	if (ret) {
++		ath11k_warn(ab,
++			    "failed to send wmi command to delete twt dialog: %d",
++			    ret);
++		dev_kfree_skb(skb);
++	}
++	return ret;
++}
++
++int ath11k_wmi_send_twt_pause_dialog_cmd(struct ath11k *ar,
++					 struct wmi_twt_pause_dialog_params *params)
++{
++	struct ath11k_pdev_wmi *wmi = ar->wmi;
++	struct ath11k_base *ab = wmi->wmi_ab->ab;
++	struct wmi_twt_pause_dialog_params_cmd *cmd;
++	struct sk_buff *skb;
++	int ret, len;
++
++	len = sizeof(*cmd);
++
++	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, len);
++	if (!skb)
++		return -ENOMEM;
++
++	cmd = (struct wmi_twt_pause_dialog_params_cmd *)skb->data;
++	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG,
++				     WMI_TAG_TWT_PAUSE_DIALOG_CMD) |
++			  FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
++
++	cmd->vdev_id = params->vdev_id;
++	ether_addr_copy(cmd->peer_macaddr.addr, params->peer_macaddr);
++	cmd->dialog_id = params->dialog_id;
++
++	ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
++		   "wmi pause twt dialog vdev %u dialog id %u\n",
++		   cmd->vdev_id, cmd->dialog_id);
++
++	ret = ath11k_wmi_cmd_send(wmi, skb, WMI_TWT_PAUSE_DIALOG_CMDID);
++	if (ret) {
++		ath11k_warn(ab,
++			    "failed to send wmi command to pause twt dialog: %d",
++			    ret);
++		dev_kfree_skb(skb);
++	}
++	return ret;
++}
++
++int ath11k_wmi_send_twt_resume_dialog_cmd(struct ath11k *ar,
++					  struct wmi_twt_resume_dialog_params *params)
++{
++	struct ath11k_pdev_wmi *wmi = ar->wmi;
++	struct ath11k_base *ab = wmi->wmi_ab->ab;
++	struct wmi_twt_resume_dialog_params_cmd *cmd;
++	struct sk_buff *skb;
++	int ret, len;
++
++	len = sizeof(*cmd);
++
++	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, len);
++	if (!skb)
++		return -ENOMEM;
++
++	cmd = (struct wmi_twt_resume_dialog_params_cmd *)skb->data;
++	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG,
++				     WMI_TAG_TWT_RESUME_DIALOG_CMD) |
++			  FIELD_PREP(WMI_TLV_LEN, len - TLV_HDR_SIZE);
++
++	cmd->vdev_id = params->vdev_id;
++	ether_addr_copy(cmd->peer_macaddr.addr, params->peer_macaddr);
++	cmd->dialog_id = params->dialog_id;
++	cmd->sp_offset_us = params->sp_offset_us;
++	cmd->next_twt_size = params->next_twt_size;
++
++	ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
++		   "wmi resume twt dialog vdev %u dialog id %u service period offset %u next twt subfield size %u\n",
++		   cmd->vdev_id, cmd->dialog_id, cmd->sp_offset_us,
++		   cmd->next_twt_size);
++
++	ret = ath11k_wmi_cmd_send(wmi, skb, WMI_TWT_RESUME_DIALOG_CMDID);
++	if (ret) {
++		ath11k_warn(ab,
++			    "failed to send wmi command to resume twt dialog: %d",
++			    ret);
++		dev_kfree_skb(skb);
+ 	}
+ 	return ret;
+ }
+@@ -7532,6 +7705,66 @@ ath11k_wmi_diag_event(struct ath11k_base *ab,
+ 	trace_ath11k_wmi_diag(ab, skb->data, skb->len);
+ }
+ 
++static const char *ath11k_wmi_twt_add_dialog_event_status(u32 status)
++{
++	switch (status) {
++	case WMI_ADD_TWT_STATUS_OK:
++		return "ok";
++	case WMI_ADD_TWT_STATUS_TWT_NOT_ENABLED:
++		return "twt disabled";
++	case WMI_ADD_TWT_STATUS_USED_DIALOG_ID:
++		return "dialog id in use";
++	case WMI_ADD_TWT_STATUS_INVALID_PARAM:
++		return "invalid parameters";
++	case WMI_ADD_TWT_STATUS_NOT_READY:
++		return "not ready";
++	case WMI_ADD_TWT_STATUS_NO_RESOURCE:
++		return "resource unavailable";
++	case WMI_ADD_TWT_STATUS_NO_ACK:
++		return "no ack";
++	case WMI_ADD_TWT_STATUS_NO_RESPONSE:
++		return "no response";
++	case WMI_ADD_TWT_STATUS_DENIED:
++		return "denied";
++	case WMI_ADD_TWT_STATUS_UNKNOWN_ERROR:
++		fallthrough;
++	default:
++		return "unknown error";
++	}
++}
++
++static void ath11k_wmi_twt_add_dialog_event(struct ath11k_base *ab,
++					    struct sk_buff *skb)
++{
++	const void **tb;
++	const struct wmi_twt_add_dialog_event *ev;
++	int ret;
++
++	tb = ath11k_wmi_tlv_parse_alloc(ab, skb->data, skb->len, GFP_ATOMIC);
++	if (IS_ERR(tb)) {
++		ret = PTR_ERR(tb);
++		ath11k_warn(ab,
++			    "failed to parse wmi twt add dialog status event tlv: %d\n",
++			    ret);
++		return;
++	}
++
++	ev = tb[WMI_TAG_TWT_ADD_DIALOG_COMPLETE_EVENT];
++	if (!ev) {
++		ath11k_warn(ab, "failed to fetch twt add dialog wmi event\n");
++		goto exit;
++	}
++
++	if (ev->status)
++		ath11k_warn(ab,
++			    "wmi add twt dialog event vdev %d dialog id %d status %s\n",
++			    ev->vdev_id, ev->dialog_id,
++			    ath11k_wmi_twt_add_dialog_event_status(ev->status));
++
++exit:
++	kfree(tb);
++}
++
+ static void ath11k_wmi_tlv_op_rx(struct ath11k_base *ab, struct sk_buff *skb)
+ {
+ 	struct wmi_cmd_hdr *cmd_hdr;
+@@ -7629,11 +7862,17 @@ static void ath11k_wmi_tlv_op_rx(struct ath11k_base *ab, struct sk_buff *skb)
+ 	case WMI_OBSS_COLOR_COLLISION_DETECTION_EVENTID:
+ 		ath11k_wmi_obss_color_collision_event(ab, skb);
+ 		break;
++	case WMI_TWT_ADD_DIALOG_EVENTID:
++		ath11k_wmi_twt_add_dialog_event(ab, skb);
++		break;
+ 	/* add Unsupported events here */
+ 	case WMI_TBTTOFFSET_EXT_UPDATE_EVENTID:
+ 	case WMI_PEER_OPER_MODE_CHANGE_EVENTID:
+ 	case WMI_TWT_ENABLE_EVENTID:
+ 	case WMI_TWT_DISABLE_EVENTID:
++	case WMI_TWT_DEL_DIALOG_EVENTID:
++	case WMI_TWT_PAUSE_DIALOG_EVENTID:
++	case WMI_TWT_RESUME_DIALOG_EVENTID:
+ 	case WMI_PDEV_DMA_RING_CFG_RSP_EVENTID:
+ 	case WMI_PEER_CREATE_CONF_EVENTID:
+ 		ath11k_dbg(ab, ATH11K_DBG_WMI,
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index 2f26ec1a8aa3..e114b1cfcfb0 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -4952,6 +4952,112 @@ struct wmi_twt_disable_params_cmd {
+ 	u32 pdev_id;
+ } __packed;
+ 
++enum WMI_HOST_TWT_COMMAND {
++	WMI_HOST_TWT_COMMAND_REQUEST_TWT = 0,
++	WMI_HOST_TWT_COMMAND_SUGGEST_TWT,
++	WMI_HOST_TWT_COMMAND_DEMAND_TWT,
++	WMI_HOST_TWT_COMMAND_TWT_GROUPING,
++	WMI_HOST_TWT_COMMAND_ACCEPT_TWT,
++	WMI_HOST_TWT_COMMAND_ALTERNATE_TWT,
++	WMI_HOST_TWT_COMMAND_DICTATE_TWT,
++	WMI_HOST_TWT_COMMAND_REJECT_TWT,
++};
++
++#define WMI_TWT_ADD_DIALOG_FLAG_BCAST           BIT(8)
++#define WMI_TWT_ADD_DIALOG_FLAG_TRIGGER         BIT(9)
++#define WMI_TWT_ADD_DIALOG_FLAG_FLOW_TYPE       BIT(10)
++#define WMI_TWT_ADD_DIALOG_FLAG_PROTECTION      BIT(11)
++
++struct wmi_twt_add_dialog_params_cmd {
++	u32 tlv_header;
++	u32 vdev_id;
++	struct wmi_mac_addr peer_macaddr;
++	u32 dialog_id;
++	u32 wake_intvl_us;
++	u32 wake_intvl_mantis;
++	u32 wake_dura_us;
++	u32 sp_offset_us;
++	u32 flags;
++} __packed;
++
++struct wmi_twt_add_dialog_params {
++	u32 vdev_id;
++	u8 peer_macaddr[ETH_ALEN];
++	u32 dialog_id;
++	u32 wake_intvl_us;
++	u32 wake_intvl_mantis;
++	u32 wake_dura_us;
++	u32 sp_offset_us;
++	u8 twt_cmd;
++	u8 flag_bcast;
++	u8 flag_trigger;
++	u8 flag_flow_type;
++	u8 flag_protection;
++} __packed;
++
++enum  wmi_twt_add_dialog_status {
++	WMI_ADD_TWT_STATUS_OK,
++	WMI_ADD_TWT_STATUS_TWT_NOT_ENABLED,
++	WMI_ADD_TWT_STATUS_USED_DIALOG_ID,
++	WMI_ADD_TWT_STATUS_INVALID_PARAM,
++	WMI_ADD_TWT_STATUS_NOT_READY,
++	WMI_ADD_TWT_STATUS_NO_RESOURCE,
++	WMI_ADD_TWT_STATUS_NO_ACK,
++	WMI_ADD_TWT_STATUS_NO_RESPONSE,
++	WMI_ADD_TWT_STATUS_DENIED,
++	WMI_ADD_TWT_STATUS_UNKNOWN_ERROR,
++};
++
++struct wmi_twt_add_dialog_event {
++	u32 vdev_id;
++	struct wmi_mac_addr peer_macaddr;
++	u32 dialog_id;
++	u32 status;
++} __packed;
++
++struct wmi_twt_del_dialog_params {
++	u32 vdev_id;
++	u8 peer_macaddr[ETH_ALEN];
++	u32 dialog_id;
++} __packed;
++
++struct wmi_twt_del_dialog_params_cmd {
++	u32 tlv_header;
++	u32 vdev_id;
++	struct wmi_mac_addr peer_macaddr;
++	u32 dialog_id;
++} __packed;
++
++struct wmi_twt_pause_dialog_params {
++	u32 vdev_id;
++	u8 peer_macaddr[ETH_ALEN];
++	u32 dialog_id;
++} __packed;
++
++struct wmi_twt_pause_dialog_params_cmd {
++	u32 tlv_header;
++	u32 vdev_id;
++	struct wmi_mac_addr peer_macaddr;
++	u32 dialog_id;
++} __packed;
++
++struct wmi_twt_resume_dialog_params {
++	u32 vdev_id;
++	u8 peer_macaddr[ETH_ALEN];
++	u32 dialog_id;
++	u32 sp_offset_us;
++	u32 next_twt_size;
++} __packed;
++
++struct wmi_twt_resume_dialog_params_cmd {
++	u32 tlv_header;
++	u32 vdev_id;
++	struct wmi_mac_addr peer_macaddr;
++	u32 dialog_id;
++	u32 sp_offset_us;
++	u32 next_twt_size;
++} __packed;
++
+ struct wmi_obss_spatial_reuse_params_cmd {
+ 	u32 tlv_header;
+ 	u32 pdev_id;
+@@ -5546,6 +5652,14 @@ void ath11k_wmi_fw_stats_fill(struct ath11k *ar,
+ int ath11k_wmi_simulate_radar(struct ath11k *ar);
+ int ath11k_wmi_send_twt_enable_cmd(struct ath11k *ar, u32 pdev_id);
+ int ath11k_wmi_send_twt_disable_cmd(struct ath11k *ar, u32 pdev_id);
++int ath11k_wmi_send_twt_add_dialog_cmd(struct ath11k *ar,
++				       struct wmi_twt_add_dialog_params *params);
++int ath11k_wmi_send_twt_del_dialog_cmd(struct ath11k *ar,
++				       struct wmi_twt_del_dialog_params *params);
++int ath11k_wmi_send_twt_pause_dialog_cmd(struct ath11k *ar,
++					 struct wmi_twt_pause_dialog_params *params);
++int ath11k_wmi_send_twt_resume_dialog_cmd(struct ath11k *ar,
++					  struct wmi_twt_resume_dialog_params *params);
+ int ath11k_wmi_send_obss_spr_cmd(struct ath11k *ar, u32 vdev_id,
+ 				 struct ieee80211_he_obss_pd *he_obss_pd);
+ int ath11k_wmi_pdev_set_srg_bss_color_bitmap(struct ath11k *ar, u32 *bitmap);
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20211222070431.29595-1-quic_wgong@quicinc.com/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+2.31.1
 
 
 -- 
