@@ -4,58 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C1B0C433EF
-	for <ath11k@archiver.kernel.org>; Mon, 17 Jan 2022 12:37:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDC1BC433F5
+	for <ath11k@archiver.kernel.org>; Mon, 17 Jan 2022 12:37:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
 	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=pNwanih5mr5HlhlklbYF7wz3j8saoOL8RZk+eyFtmN8=; b=1b2j1+Y7xdMC2/
-	n73KVZZsYVVLOlzHVVWcmDW6Nq3yTc9B/alBpg0C5t/HVB/Xsfc+7ElrF4NyCUhNmFQVmJr/y9d7Z
-	WcXKYBeyHOU2n/HDX/TPBzycEWBYWsmp3DShCsFKT7+ArF5XOY+37lY4aODUpg7pqwVxWuI1LGuy1
-	P0ptLkyb3l6JfOU00YT6huutD3Kyq6PjoxFNJmULh2wJsqU/UeVY0Cv2GLgN5Dhd6GMvMVw7122Lj
-	pMI2o+8uAtE1LsJo8FGn+LOVv3FvNpizswHUTyrzMB4ZMslD/vDvkkZny5q1i1x/DZTItYA5nlu3i
-	VDie9F5hZEpttiX2bjGg==;
+	List-Owner; bh=QoH5e39nY/1sUhwfrESYa1cTzhENkOHt1Z5Q8MiI5Ys=; b=lH5q7Ys/1BrLqY
+	BI/GMaJxkMWwfwKioaN5npewk0NbTM6RpDtn/tsqkXr+6D0DrW1sQFqR1S3JIJ/Kxtudxw1uH7/Er
+	7kNjvaUeWpHnFMT3EE2qwCJvXFAIYxLytemmGOzZRlkVMeZlTK/ToML99/iW7T5lfAjhK1fv3t+HA
+	mxCRNxBRu6BLRfWqf/CWqRsnccsmySVEfEjQnYqbQV+pcm3VYBl0J5oQruBrjRnhjAA7SsiowvsOA
+	l6cdSmPHwE/vpM0BbhjD6kYjf0DxCESDCwAMofShAVCwNnq3fy8uc2gcAQIG+uZ7geWofcHKUpd8G
+	oevSCq/8XrscZ4ueT7iQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n9RG3-00EvF0-BU; Mon, 17 Jan 2022 12:37:11 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1n9RGY-00EvJ5-So; Mon, 17 Jan 2022 12:37:42 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n9RG1-00EvES-8B
- for ath11k@lists.infradead.org; Mon, 17 Jan 2022 12:37:10 +0000
+ id 1n9RGV-00EvIU-G2
+ for ath11k@lists.infradead.org; Mon, 17 Jan 2022 12:37:40 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 7DFFA611A1;
- Mon, 17 Jan 2022 12:37:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3C3DC36AE7;
- Mon, 17 Jan 2022 12:37:06 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 368A7B80E0B;
+ Mon, 17 Jan 2022 12:37:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDA05C36AE3;
+ Mon, 17 Jan 2022 12:37:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1642423027;
- bh=144ap2SO9WHpXKY6PYR+n9vddvxSLLoMYrvNyrAi/hQ=;
+ s=k20201202; t=1642423057;
+ bh=P/4ypUvSVoNhfvCVlcs6PIj/nztszYxr3tJXDpKx0AQ=;
  h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
- b=ZAmkCAR0bLZ35wtQFdxosUpADNDnbuMzdCMrjvvDch+4zHeguNtZLSb2jBtyMG7f7
- 9e+DeXM1ugTAKyrIHSfXv7gYVEwSXoZVGBXxNe2B1h4VUFKkQlK3d3BzfdEabgm2Av
- jkSHkgQHa1Qk6mP5h0rZCxbh70WHnLUiPZN+gjGhRnYGOPR4nzNKwCJszyuvzNEaB5
- w3NnHaAOsTGVo6054eVgECy9CWLc9HtTtXzpdTD5kjR9ZZ7p56sRZNkN5zJZ++WBkJ
- tlvcqMGsbDU+9OI+c8IMWMiSAMf1kOeLGikjtmAFsy04z9uzEc8ZSKq/d5tlz/umbm
- I2xRDdFvI+Slg==
+ b=kOv0sLKAWJuO36BaFW/clbJNKuy30V1303of+GpbLMpl4xrne2D+RS9TMJ98EtdSQ
+ XIZFubm9zUuTnAPAttdoyJP1qu6XarL8Hr+gL9D9+wDt/WAjcMh9LGci5/m8XBUDrg
+ zmFfsvkKG3gXwD+cm5SEmELvMby/J+CMj1l9Hg9fGZSP9aC2iEvV40pG25BU66kWao
+ ryG8X2GUhMTKAPONFhpME76TTxQRcjkbilByqrIFFWwl/rHt/JyBgOfCFMfOCarcPD
+ jdj8PkRoQr4/gIHeu4TWi6ik4WvwyLeOQjR/sETSJqgwjaKGE08qlUR4QK+lAljQOk
+ +40GomMpyOnpQ==
 MIME-Version: 1.0
-Subject: Re: [PATCH 1/2] ath11k: enable RX PPDU stats in monitor co-exist mode
+Subject: Re: [PATCH] ath11k: fix error code in
+ ath11k_qmi_assign_target_mem_chunk()
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20220111032224.14093-1-quic_alokad@quicinc.com>
-References: <20220111032224.14093-1-quic_alokad@quicinc.com>
-To: Aloka Dixit <quic_alokad@quicinc.com>
-Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- Miles Hu <milehu@codeaurora.org>, "Aloka Dixit" <quic_alokad@quicinc.com>
+In-Reply-To: <20220111071445.GA11243@kili>
+References: <20220111071445.GA11243@kili>
+To: Dan Carpenter <dan.carpenter@oracle.com>
+Cc: Anilkumar Kolli <akolli@codeaurora.org>, ath11k@lists.infradead.org,
+ linux-wireless@vger.kernel.org, kernel-janitors@vger.kernel.org
 User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <164242302513.27899.14013951630174562565.kvalo@kernel.org>
-Date: Mon, 17 Jan 2022 12:37:06 +0000 (UTC)
+Message-ID: <164242305424.27899.2840074267453556270.kvalo@kernel.org>
+Date: Mon, 17 Jan 2022 12:37:35 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220117_043709_365006_250FDFBE 
-X-CRM114-Status: UNSURE (   7.47  )
+X-CRM114-CacheID: sfid-20220117_043739_701794_7F187169 
+X-CRM114-Status: UNSURE (   8.77  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -73,24 +74,21 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Aloka Dixit <quic_alokad@quicinc.com> wrote:
+Dan Carpenter <dan.carpenter@oracle.com> wrote:
 
-> RX PPDU statistics collection is missing when monitor mode co-exists
-> with other modes. This commit combines the processing of the destination
-> ring with the status ring to fix the issue.
+> The "ret" vairable is not set at this point.  It could be uninitialized
+> or zero.  The correct thing to return is -ENODEV.
 > 
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1-01179-QCAHKSWPL_SILICONZ-1
-> Signed-off-by: Miles Hu <milehu@codeaurora.org>
-> Signed-off-by: Aloka Dixit <quic_alokad@quicinc.com>
+> Fixes: 6ac04bdc5edb ("ath11k: Use reserved host DDR addresses from DT for PCI devices")
+> Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
 > Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-2 patches applied to ath-next branch of ath.git, thanks.
+Patch applied to ath-next branch of ath.git, thanks.
 
-67a9d399fcb0 ath11k: enable RX PPDU stats in monitor co-exist mode
-3cd04a438754 ath11k: move function ath11k_dp_rx_process_mon_status
+c9b41832dc08 ath11k: fix error code in ath11k_qmi_assign_target_mem_chunk()
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20220111032224.14093-1-quic_alokad@quicinc.com/
+https://patchwork.kernel.org/project/linux-wireless/patch/20220111071445.GA11243@kili/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
