@@ -4,55 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 125D8C433EF
-	for <ath11k@archiver.kernel.org>; Tue, 18 Jan 2022 02:21:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FC86C433EF
+	for <ath11k@archiver.kernel.org>; Tue, 18 Jan 2022 02:21:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=fUdSEvhab0jES0SKQQMRNz+E2YqLuN+UrmUOrXLfJ+s=; b=lOq9TZ00Muy+4t
-	/ulqHzlTaI0pORoXQ6ADXQWqefRUbpR6K/ABXTvFW3h1FczBsPHRjqXdmGRwwCKhpIS/xFgST9PoB
-	Seuceb36m6sSyYCWn0XKNRZLJN/NWZNURLmZn9fnU8bNCI78ojHS1wcK9locFIz0cokHHvGyNUGpM
-	7V6EFdT04lt8PPlsb4Qv1VIp0atdzt/upONnGi04NNJuu5eexL/PUF86CA60KHcsowKhtg1sDsqL2
-	T3VaGhIsJdzzSlaGtPQbw1HIyy2+XD3Bg1cshG7pl6293ldE321sp2L91rqfZ2xj9bu0U9iCDjyhC
-	iz1WHgOKV4901S8MWYKw==;
+	List-Owner; bh=wJVCCF3GZWCSiChMuC72TFrWnhnzBYRYyDeEmDC53zM=; b=MEAwJT81crxD39
+	1eBPYb8BOy1MRw9v6H/j34lb1djyBczbHhFiiVK7LiBASaUx0mVXrLjJG3dPmX/6OgzPryhOvj8lr
+	nMWpX8Vsr8nb2vVkfI7oqhbR/D8RtbsF16nfjGw7lD/QhPgo5lwfqZM6AQSZHA/6NNG6Q5EhlZkHf
+	VCGWDUnihvnu8Dvu/7vfrYDc94pCBooj21vl206DJFjvBJM8CMNS0H+vp3OB/a2S4TcaRAlbt1F0A
+	/Rcm4+MvJSgymner7fS3rx2nqwSTOgT/YTuWR7dFZO9VKxmkM/Uaeondu5fhaIftuY5Rud1zEsG18
+	bnDV5rLUlqS9+QMMLN8A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n9e7f-00GsdH-9C; Tue, 18 Jan 2022 02:21:23 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1n9e7m-00Gshu-5A; Tue, 18 Jan 2022 02:21:30 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n9e7S-00Gsat-PU
- for ath11k@lists.infradead.org; Tue, 18 Jan 2022 02:21:12 +0000
+ id 1n9e7i-00Gsez-UT
+ for ath11k@lists.infradead.org; Tue, 18 Jan 2022 02:21:28 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 89AB7B8122C;
- Tue, 18 Jan 2022 02:21:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E5CAC36AF2;
- Tue, 18 Jan 2022 02:21:08 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 9A95EB81232;
+ Tue, 18 Jan 2022 02:21:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29CB1C36AF4;
+ Tue, 18 Jan 2022 02:21:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1642472469;
- bh=VbjM88vfkzibxjmt+y58uIpvisAVC02ljgpwkY+7PCM=;
+ s=k20201202; t=1642472485;
+ bh=lMOFqeGgZzpBFghHqywCmsX3Rx3mFUPl+LDSGLmVj70=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=IyIqOvMJqL7RaoEbzRxRgUDtWsbYLmZquDAk1r1YUi3abPpS4Rk5WRFB17kDXL8Hi
- xCDivf4R3oaw613eqz3sXdXVM4IQG96lHeHeI5jVDHSqInVLlEj27ym/okj7o05KkB
- X7Gnwmz8SvkmdG9tl5jxUynZ3VFmKrTF6iffT2iPJvI3uru8eqADfrIyNfKUDmzlA8
- kZxYppO0vKJM3jgwkm+FUejK8MkvEdMagrWA5Pi+dFabkrufg8QdKp5JyJfuWxsLN8
- GgFIh/7kSHPidd3ZR93i8AiaMkYVkgW8qrNI2q5sjJt35MctfT7pJ5jl3BnYjJPXrx
- Y+R0mBthx2h6g==
+ b=gnw/vZcjjiMt8fSzqWbNRjzmcYblU1IlOj72HZ2cDSmzm/0Fc170UtvzBw9Pnx15o
+ fHjjPhszxKzy8vfInFvYQ2JrhjThZKWRgsPtODV4x0rKjsq0ceUHYwmlU1LsqHIrHn
+ LvueyNBs2QXO2+/EVNCGbJJ4vCxrSWbR1pJ3jKXl1JzAmPLIh5M4VEwobN8rRMY+zH
+ gN3TePU9gVr0qKAUHIh/eEApx0vpJS4PQ3y8eGwHEieEB/BSGB5CXVY+WvqZ7P3zEa
+ x3TavCq1svBoYZJXHGcv6AaZNI7BJ95VPl6ZvRaaw5Ai8lxLQSdyhMly0aK/enb9ws
+ 4QBhjGKnlKGCg==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Wen Gong <wgong@codeaurora.org>, Kalle Valo <kvalo@codeaurora.org>,
+Cc: Baochen Qiang <bqiang@codeaurora.org>, Kalle Valo <kvalo@codeaurora.org>,
  Sasha Levin <sashal@kernel.org>, kvalo@kernel.org, davem@davemloft.net,
  kuba@kernel.org, ath11k@lists.infradead.org,
  linux-wireless@vger.kernel.org, netdev@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.16 024/217] ath11k: enable
- IEEE80211_VHT_EXT_NSS_BW_CAPABLE if NSS ratio enabled
-Date: Mon, 17 Jan 2022 21:16:27 -0500
-Message-Id: <20220118021940.1942199-24-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.16 028/217] ath11k: Fix crash caused by
+ uninitialized TX ring
+Date: Mon, 17 Jan 2022 21:16:31 -0500
+Message-Id: <20220118021940.1942199-28-sashal@kernel.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220118021940.1942199-1-sashal@kernel.org>
 References: <20220118021940.1942199-1-sashal@kernel.org>
@@ -60,8 +60,8 @@ MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220117_182110_994392_C49F327A 
-X-CRM114-Status: GOOD (  10.24  )
+X-CRM114-CacheID: sfid-20220117_182127_293687_26E5A7F6 
+X-CRM114-Status: GOOD (  12.59  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,42 +73,88 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-RnJvbTogV2VuIEdvbmcgPHdnb25nQGNvZGVhdXJvcmEub3JnPgoKWyBVcHN0cmVhbSBjb21taXQg
-Nzg0MDYwNDRiZGQwY2M4OTg3YmMwODJiNzY4NjdjNjNhYjFjNmFmOCBdCgpXaGVuIE5TUyByYXRp
-byBlbmFibGVkIHJlcG9ydGVkIGJ5IGZpcm13YXJlLCBTVVBQT1JUU19WSFRfRVhUX05TU19CVwpp
-cyBzZXQgaW4gYXRoMTFrLCBtZWFud2hpbGUgSUVFRTgwMjExX1ZIVF9FWFRfTlNTX0JXX0NBUEFC
-TEUgYWxzbwpuZWVkIHRvIGJlIHNldCwgb3RoZXJ3aXNlIGl0IGlzIGludmFsaWQgYmVjYXVzZSBz
-cGVjIGluIElFRUUgU3RkCjgwMi4xMeKEouKAkDIwMjAgYXMgYmVsb3cuCgpUYWJsZSA5LTI3My1T
-dXBwb3J0ZWQgVkhULU1DUyBhbmQgTlNTIFNldCBzdWJmaWVsZHMsIGl0IGhhcyBzdWJmaWVsZApW
-SFQgRXh0ZW5kZWQgTlNTIEJXIENhcGFibGUsIGl0cyBkZWZpbml0aW9uIGlzOgpJbmRpY2F0ZXMg
-d2hldGhlciB0aGUgU1RBIGlzIGNhcGFibGUgb2YgaW50ZXJwcmV0aW5nIHRoZSBFeHRlbmRlZCBO
-U1MKQlcgU3VwcG9ydCBzdWJmaWVsZCBvZiB0aGUgVkhUIENhcGFiaWxpdGllcyBJbmZvcm1hdGlv
-biBmaWVsZC4KCmRtZXNnIGhhdmUgYSBtZXNzYWdlIHdpdGhvdXQgdGhpcyBwYXRjaDoKCmllZWU4
-MDIxMSBwaHkwOiBjb3B5aW5nIHNiYW5kIChiYW5kIDEpIGR1ZSB0byBWSFQgRVhUIE5TUyBCVyBm
-bGFnCgpJdCBtZWFucyBtYWM4MDIxMSB3aWxsIHNldCBJRUVFODAyMTFfVkhUX0VYVF9OU1NfQldf
-Q0FQQUJMRSBpZiBhdGgxMWsgbm90CnNldCBpdCBpbiBpZWVlODAyMTFfcmVnaXN0ZXJfaHcoKS4g
-U28gaXQgaXMgYmV0dGVyIHRvIHNldCBpdCBpbiBhdGgxMWsuCgpUZXN0ZWQtb246IFdDTjY4NTUg
-aHcyLjAgUENJIFdMQU4uSFNQLjEuMS0wMTcyMC4xLVFDQUhTUFNXUExfVjFfVjJfU0lMSUNPTlpf
-TElURS0xCgpTaWduZWQtb2ZmLWJ5OiBXZW4gR29uZyA8d2dvbmdAY29kZWF1cm9yYS5vcmc+ClNp
-Z25lZC1vZmYtYnk6IEthbGxlIFZhbG8gPGt2YWxvQGNvZGVhdXJvcmEub3JnPgpMaW5rOiBodHRw
-czovL2xvcmUua2VybmVsLm9yZy9yLzIwMjExMDEzMDczNzA0LjE1ODg4LTEtd2dvbmdAY29kZWF1
-cm9yYS5vcmcKU2lnbmVkLW9mZi1ieTogU2FzaGEgTGV2aW4gPHNhc2hhbEBrZXJuZWwub3JnPgot
-LS0KIGRyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvbWFjLmMgfCA0ICsrKysKIDEgZmls
-ZSBjaGFuZ2VkLCA0IGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcml2ZXJzL25ldC93aXJl
-bGVzcy9hdGgvYXRoMTFrL21hYy5jIGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9t
-YWMuYwppbmRleCAxY2M1NTYwMjc4N2JiLi4wYTE5NmZiM2RmOWZkIDEwMDY0NAotLS0gYS9kcml2
-ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL21hYy5jCisrKyBiL2RyaXZlcnMvbmV0L3dpcmVs
-ZXNzL2F0aC9hdGgxMWsvbWFjLmMKQEAgLTQ1NjEsNiArNDU2MSwxMCBAQCBhdGgxMWtfY3JlYXRl
-X3ZodF9jYXAoc3RydWN0IGF0aDExayAqYXIsIHUzMiByYXRlX2NhcF90eF9jaGFpbm1hc2ssCiAJ
-dmh0X2NhcC52aHRfc3VwcG9ydGVkID0gMTsKIAl2aHRfY2FwLmNhcCA9IGFyLT5wZGV2LT5jYXAu
-dmh0X2NhcDsKIAorCWlmIChhci0+cGRldi0+Y2FwLm5zc19yYXRpb19lbmFibGVkKQorCQl2aHRf
-Y2FwLnZodF9tY3MudHhfaGlnaGVzdCB8PQorCQkJY3B1X3RvX2xlMTYoSUVFRTgwMjExX1ZIVF9F
-WFRfTlNTX0JXX0NBUEFCTEUpOworCiAJYXRoMTFrX3NldF92aHRfdHhiZl9jYXAoYXIsICZ2aHRf
-Y2FwLmNhcCk7CiAKIAlyeG1jc19tYXAgPSAwOwotLSAKMi4zNC4xCgoKLS0gCmF0aDExayBtYWls
-aW5nIGxpc3QKYXRoMTFrQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVh
-ZC5vcmcvbWFpbG1hbi9saXN0aW5mby9hdGgxMWsK
+From: Baochen Qiang <bqiang@codeaurora.org>
+
+[ Upstream commit 273703ebdb01b6c5f1aaf4b98fb57b177609055c ]
+
+Commit 31582373a4a8 ("ath11k: Change number of TCL rings to one for
+QCA6390") avoids initializing the other entries of dp->tx_ring cause
+the corresponding TX rings on QCA6390/WCN6855 are not used, but leaves
+those ring masks in ath11k_hw_ring_mask_qca6390.tx unchanged. Normally
+this is OK because we will only get interrupts from the first TX ring
+on these chips and thus only the first entry of dp->tx_ring is involved.
+
+In case of one MSI vector, all DP rings share the same IRQ. For each
+interrupt, all rings have to be checked, which means the other entries
+of dp->tx_ring are involved. However since they are not initialized,
+system crashes.
+
+Fix this issue by simply removing those ring masks.
+
+crash stack:
+[  102.907438] BUG: kernel NULL pointer dereference, address: 0000000000000028
+[  102.907447] #PF: supervisor read access in kernel mode
+[  102.907451] #PF: error_code(0x0000) - not-present page
+[  102.907453] PGD 1081f0067 P4D 1081f0067 PUD 1081f1067 PMD 0
+[  102.907460] Oops: 0000 [#1] SMP DEBUG_PAGEALLOC NOPTI
+[  102.907465] CPU: 0 PID: 3511 Comm: apt-check Kdump: loaded Tainted: G            E     5.15.0-rc4-wt-ath+ #20
+[  102.907470] Hardware name: AMD Celadon-RN/Celadon-RN, BIOS RCD1005E 10/08/2020
+[  102.907472] RIP: 0010:ath11k_dp_tx_completion_handler+0x201/0x830 [ath11k]
+[  102.907497] Code: 3c 24 4e 8d ac 37 10 04 00 00 4a 8d bc 37 68 04 00 00 48 89 3c 24 48 63 c8 89 83 84 18 00 00 48 c1 e1 05 48 03 8b 78 18 00 00 <8b> 51 08 89 d6 83 e6 07 89 74 24 24 83 fe 03 74 04 85 f6 75 63 41
+[  102.907501] RSP: 0000:ffff9b7340003e08 EFLAGS: 00010202
+[  102.907505] RAX: 0000000000000001 RBX: ffff8e21530c0100 RCX: 0000000000000020
+[  102.907508] RDX: 0000000000000000 RSI: 00000000fffffe00 RDI: ffff8e21530c1938
+[  102.907511] RBP: ffff8e21530c0000 R08: 0000000000000001 R09: 0000000000000000
+[  102.907513] R10: ffff8e2145534c10 R11: 0000000000000001 R12: ffff8e21530c2938
+[  102.907515] R13: ffff8e21530c18e0 R14: 0000000000000100 R15: ffff8e21530c2978
+[  102.907518] FS:  00007f5d4297e740(0000) GS:ffff8e243d600000(0000) knlGS:0000000000000000
+[  102.907521] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  102.907524] CR2: 0000000000000028 CR3: 00000001034ea000 CR4: 0000000000350ef0
+[  102.907527] Call Trace:
+[  102.907531]  <IRQ>
+[  102.907537]  ath11k_dp_service_srng+0x5c/0x2f0 [ath11k]
+[  102.907556]  ath11k_pci_ext_grp_napi_poll+0x21/0x70 [ath11k_pci]
+[  102.907562]  __napi_poll+0x2c/0x160
+[  102.907570]  net_rx_action+0x251/0x310
+[  102.907576]  __do_softirq+0x107/0x2fc
+[  102.907585]  irq_exit_rcu+0x74/0x90
+[  102.907593]  common_interrupt+0x83/0xa0
+[  102.907600]  </IRQ>
+[  102.907601]  asm_common_interrupt+0x1e/0x40
+
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+
+Signed-off-by: Baochen Qiang <bqiang@codeaurora.org>
+Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+Link: https://lore.kernel.org/r/20211026011605.58615-1-quic_bqiang@quicinc.com
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/net/wireless/ath/ath11k/hw.c | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/hw.c b/drivers/net/wireless/ath/ath11k/hw.c
+index da35fcf5bc560..2f0b526188e45 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.c
++++ b/drivers/net/wireless/ath/ath11k/hw.c
+@@ -1061,8 +1061,6 @@ const struct ath11k_hw_ring_mask ath11k_hw_ring_mask_ipq8074 = {
+ const struct ath11k_hw_ring_mask ath11k_hw_ring_mask_qca6390 = {
+ 	.tx  = {
+ 		ATH11K_TX_RING_MASK_0,
+-		ATH11K_TX_RING_MASK_1,
+-		ATH11K_TX_RING_MASK_2,
+ 	},
+ 	.rx_mon_status = {
+ 		0, 0, 0, 0,
+-- 
+2.34.1
+
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
