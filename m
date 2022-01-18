@@ -4,63 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46C64C433F5
-	for <ath11k@archiver.kernel.org>; Tue, 18 Jan 2022 02:40:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13896C4321E
+	for <ath11k@archiver.kernel.org>; Tue, 18 Jan 2022 02:47:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=UWc2kFokUreOG1M0nmAYql6RH9RKa0ql0nwGOHZ1zLs=; b=yx+4+0IaF2/Ikv
-	wCHEckDE/UnCmJgU82Uh2ipo3TorCSc9AJA2nOCM9r8U8pUrcmHIJCksOS8fQ8Qbw7SLJDf7UUP/M
-	7x9bMUs+sGe+T8L8orAZ8MudUdMtS+N1yWV2Dkthx6pYS52OiHbdN1ZJQpg90o4zJV+5fccD77U2B
-	YhhffuMdLpWYH2n1HKWfdiaPFsuTmWULPphdDnEmqxEbZfVnwBmzI4KZnAGIz4RKUNOiXWs/yIlrd
-	8All29SpAqKJE7TTxI59djTln07sIddLptZvcSE+0EFRFt9CDPmnP/GSBBXQ3LP8AtMiVPks385B5
-	PvqLVV8vNoA/5s/68jpw==;
+	List-Owner; bh=nq/BVHlKpfw/Xa0w3FKFD9IdVYDesvxJshiS/R5J0qk=; b=4oeDRRJsMrx9Ed
+	awv2/4uiWSGlx+D4vwGL6rd/wpXWRapdAypcsK2ehNfyB4WIgRGlvf3gVztPcZ2wc8W4SuSqbpMv0
+	pln4efyBL4BEljIsdipwKiW2l6A3e05oGMdUsqBuECidfUJg1F5qjCQbypQUU4pc6MdhHXh8DVVhQ
+	Qaq4mF3MaWVrVwS2cq/XCtvxgG1avrAWLsHkG8gsEgUBMpJi/zipjoC3SmPU5i7LWfy82kpYML+Bz
+	mq2dx3TVFhAN6Iv3qvTXUEOJFs3LRjt/M9BEBUVlh8HK0hIrFzIsYpnGzbeM0EPVOewCrfLe9g+1G
+	9x3jOBB+L4tH4XoOv8CQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n9eQN-00H3Dz-J6; Tue, 18 Jan 2022 02:40:43 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1n9eWq-00H6xw-4N; Tue, 18 Jan 2022 02:47:24 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n9eFF-00GxEQ-2Z
- for ath11k@lists.infradead.org; Tue, 18 Jan 2022 02:29:15 +0000
+ id 1n9eJE-00GzJg-HG
+ for ath11k@lists.infradead.org; Tue, 18 Jan 2022 02:33:22 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id C0C4FB81244;
- Tue, 18 Jan 2022 02:29:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 566EBC36AF3;
- Tue, 18 Jan 2022 02:29:09 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id F2681B81233;
+ Tue, 18 Jan 2022 02:33:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CC47C36AE3;
+ Tue, 18 Jan 2022 02:33:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1642472950;
- bh=X1Ks8FvRuAMpRB/m8dyQVbxEYAjsGrrkW6v02oHlFys=;
+ s=k20201202; t=1642473197;
+ bh=hqOSIFfEPM25jf3JyI4blFrW5FBGZ6DQgxd28kjbXpM=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=UiCbOvrvEGOo6binK/73+Tm1KJIRrHYjB1/vt5zTmCbgQArBZlSpoAPa+UifEOt2J
- G2fQFeqwsl4yBXdWxarQDzR0nVitFLFjcGuy3lFWKUfsQSn978N7gzQCqmqs31zR+w
- 1heiRxxrRhk5XaSBnayYCagNTChvdvr8wbHMdc0mJ/0M6ybdZUmEN76sWyTS1BZ3Oz
- 2xPc+f21At697R1dWh7PmTXy/NFIQSb8r4Z7+SIHZ4VvHWF/IrJ6PDejTqWTTrJHbm
- pqcnJ8BzAFLtXhd6zu4Naypf4Ca0Y0LkuRkredlusDTgVQTMsgkXBS0hT6EONYYPdq
- I/49PInSpOizQ==
+ b=F2FAcVzjLRYsAAaAgdUZMvwGcmwm97ky5uT5BfIe37KhZb9G+4ZxHG43G98Tl4vWJ
+ 8zT6ITqJBpVVGJFeAKWLB50n9i0GhZXJkm7S0tksSnu12xw+id7tmTJXl/aUCVOIAc
+ YKWUp9GtuTEw3Bzb3oAw6wBvZA1gtiiET8rrHaJC895153OqOO5ZG+K2mu8fNVViXh
+ SB5X08Z8PbOUoFeYwKVLrga1tVkrNUg70uPURyUECu8pRh5QqXyW6mezoAnJgP0QOf
+ oi4gn8zIqHLPtzt6AfMObm8Wi6OveLCSVYb6Z+AoGtePdokkbS5pQrG6iECIGsA9E0
+ rq+9SIP85dCPw==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Ben Greear <greearb@candelatech.com>, Kalle Valo <quic_kvalo@quicinc.com>,
+Cc: Baochen Qiang <bqiang@codeaurora.org>, Kalle Valo <kvalo@codeaurora.org>,
  Sasha Levin <sashal@kernel.org>, kvalo@kernel.org, davem@davemloft.net,
  kuba@kernel.org, ath11k@lists.infradead.org,
  linux-wireless@vger.kernel.org, netdev@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.16 172/217] ath11k: Fix napi related hang
-Date: Mon, 17 Jan 2022 21:18:55 -0500
-Message-Id: <20220118021940.1942199-172-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.15 022/188] ath11k: Fix crash caused by
+ uninitialized TX ring
+Date: Mon, 17 Jan 2022 21:29:06 -0500
+Message-Id: <20220118023152.1948105-22-sashal@kernel.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220118021940.1942199-1-sashal@kernel.org>
-References: <20220118021940.1942199-1-sashal@kernel.org>
+In-Reply-To: <20220118023152.1948105-1-sashal@kernel.org>
+References: <20220118023152.1948105-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220117_182913_438108_8D4AAAC1 
-X-CRM114-Status: GOOD (  14.60  )
+X-CRM114-CacheID: sfid-20220117_183320_903681_57E2D0E8 
+X-CRM114-Status: GOOD (  12.59  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,107 +78,78 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Ben Greear <greearb@candelatech.com>
+From: Baochen Qiang <bqiang@codeaurora.org>
 
-[ Upstream commit d943fdad7589653065be0e20aadc6dff37725ed4 ]
+[ Upstream commit 273703ebdb01b6c5f1aaf4b98fb57b177609055c ]
 
-Similar to the same bug in ath10k, a napi disable w/out it being enabled
-will hang forever.  I believe I saw this while trying rmmod after driver
-had some failure on startup.  Fix it by keeping state on whether napi is
-enabled or not.
+Commit 31582373a4a8 ("ath11k: Change number of TCL rings to one for
+QCA6390") avoids initializing the other entries of dp->tx_ring cause
+the corresponding TX rings on QCA6390/WCN6855 are not used, but leaves
+those ring masks in ath11k_hw_ring_mask_qca6390.tx unchanged. Normally
+this is OK because we will only get interrupts from the first TX ring
+on these chips and thus only the first entry of dp->tx_ring is involved.
 
-And, remove un-used napi pointer in ath11k driver base struct.
+In case of one MSI vector, all DP rings share the same IRQ. For each
+interrupt, all rings have to be checked, which means the other entries
+of dp->tx_ring are involved. However since they are not initialized,
+system crashes.
 
-Signed-off-by: Ben Greear <greearb@candelatech.com>
-Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
-Link: https://lore.kernel.org/r/20200903195254.29379-1-greearb@candelatech.com
+Fix this issue by simply removing those ring masks.
+
+crash stack:
+[  102.907438] BUG: kernel NULL pointer dereference, address: 0000000000000028
+[  102.907447] #PF: supervisor read access in kernel mode
+[  102.907451] #PF: error_code(0x0000) - not-present page
+[  102.907453] PGD 1081f0067 P4D 1081f0067 PUD 1081f1067 PMD 0
+[  102.907460] Oops: 0000 [#1] SMP DEBUG_PAGEALLOC NOPTI
+[  102.907465] CPU: 0 PID: 3511 Comm: apt-check Kdump: loaded Tainted: G            E     5.15.0-rc4-wt-ath+ #20
+[  102.907470] Hardware name: AMD Celadon-RN/Celadon-RN, BIOS RCD1005E 10/08/2020
+[  102.907472] RIP: 0010:ath11k_dp_tx_completion_handler+0x201/0x830 [ath11k]
+[  102.907497] Code: 3c 24 4e 8d ac 37 10 04 00 00 4a 8d bc 37 68 04 00 00 48 89 3c 24 48 63 c8 89 83 84 18 00 00 48 c1 e1 05 48 03 8b 78 18 00 00 <8b> 51 08 89 d6 83 e6 07 89 74 24 24 83 fe 03 74 04 85 f6 75 63 41
+[  102.907501] RSP: 0000:ffff9b7340003e08 EFLAGS: 00010202
+[  102.907505] RAX: 0000000000000001 RBX: ffff8e21530c0100 RCX: 0000000000000020
+[  102.907508] RDX: 0000000000000000 RSI: 00000000fffffe00 RDI: ffff8e21530c1938
+[  102.907511] RBP: ffff8e21530c0000 R08: 0000000000000001 R09: 0000000000000000
+[  102.907513] R10: ffff8e2145534c10 R11: 0000000000000001 R12: ffff8e21530c2938
+[  102.907515] R13: ffff8e21530c18e0 R14: 0000000000000100 R15: ffff8e21530c2978
+[  102.907518] FS:  00007f5d4297e740(0000) GS:ffff8e243d600000(0000) knlGS:0000000000000000
+[  102.907521] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  102.907524] CR2: 0000000000000028 CR3: 00000001034ea000 CR4: 0000000000350ef0
+[  102.907527] Call Trace:
+[  102.907531]  <IRQ>
+[  102.907537]  ath11k_dp_service_srng+0x5c/0x2f0 [ath11k]
+[  102.907556]  ath11k_pci_ext_grp_napi_poll+0x21/0x70 [ath11k_pci]
+[  102.907562]  __napi_poll+0x2c/0x160
+[  102.907570]  net_rx_action+0x251/0x310
+[  102.907576]  __do_softirq+0x107/0x2fc
+[  102.907585]  irq_exit_rcu+0x74/0x90
+[  102.907593]  common_interrupt+0x83/0xa0
+[  102.907600]  </IRQ>
+[  102.907601]  asm_common_interrupt+0x1e/0x40
+
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+
+Signed-off-by: Baochen Qiang <bqiang@codeaurora.org>
+Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+Link: https://lore.kernel.org/r/20211026011605.58615-1-quic_bqiang@quicinc.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/net/wireless/ath/ath11k/ahb.c  | 12 +++++++++---
- drivers/net/wireless/ath/ath11k/core.h |  2 +-
- drivers/net/wireless/ath/ath11k/pci.c  | 12 +++++++++---
- 3 files changed, 19 insertions(+), 7 deletions(-)
+ drivers/net/wireless/ath/ath11k/hw.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index 8c9c781afc3e5..b9939057b7baf 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.c
-+++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -175,8 +175,11 @@ static void __ath11k_ahb_ext_irq_disable(struct ath11k_base *ab)
- 
- 		ath11k_ahb_ext_grp_disable(irq_grp);
- 
--		napi_synchronize(&irq_grp->napi);
--		napi_disable(&irq_grp->napi);
-+		if (irq_grp->napi_enabled) {
-+			napi_synchronize(&irq_grp->napi);
-+			napi_disable(&irq_grp->napi);
-+			irq_grp->napi_enabled = false;
-+		}
- 	}
- }
- 
-@@ -300,7 +303,10 @@ static void ath11k_ahb_ext_irq_enable(struct ath11k_base *ab)
- 	for (i = 0; i < ATH11K_EXT_IRQ_GRP_NUM_MAX; i++) {
- 		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
- 
--		napi_enable(&irq_grp->napi);
-+		if (!irq_grp->napi_enabled) {
-+			napi_enable(&irq_grp->napi);
-+			irq_grp->napi_enabled = true;
-+		}
- 		ath11k_ahb_ext_grp_enable(irq_grp);
- 	}
- }
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 31d234a51c79b..62ceee363fea0 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -136,6 +136,7 @@ struct ath11k_ext_irq_grp {
- 	u32 num_irq;
- 	u32 grp_id;
- 	u64 timestamp;
-+	bool napi_enabled;
- 	struct napi_struct napi;
- 	struct net_device napi_ndev;
- };
-@@ -713,7 +714,6 @@ struct ath11k_base {
- 	u32 wlan_init_status;
- 	int irq_num[ATH11K_IRQ_NUM_MAX];
- 	struct ath11k_ext_irq_grp ext_irq_grp[ATH11K_EXT_IRQ_GRP_NUM_MAX];
--	struct napi_struct *napi;
- 	struct ath11k_targ_cap target_caps;
- 	u32 ext_service_bitmap[WMI_SERVICE_EXT_BM_SIZE];
- 	bool pdevs_macaddr_valid;
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index 3d353e7c9d5c2..5a78a7cb65f5e 100644
---- a/drivers/net/wireless/ath/ath11k/pci.c
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -634,8 +634,11 @@ static void __ath11k_pci_ext_irq_disable(struct ath11k_base *sc)
- 
- 		ath11k_pci_ext_grp_disable(irq_grp);
- 
--		napi_synchronize(&irq_grp->napi);
--		napi_disable(&irq_grp->napi);
-+		if (irq_grp->napi_enabled) {
-+			napi_synchronize(&irq_grp->napi);
-+			napi_disable(&irq_grp->napi);
-+			irq_grp->napi_enabled = false;
-+		}
- 	}
- }
- 
-@@ -654,7 +657,10 @@ static void ath11k_pci_ext_irq_enable(struct ath11k_base *ab)
- 	for (i = 0; i < ATH11K_EXT_IRQ_GRP_NUM_MAX; i++) {
- 		struct ath11k_ext_irq_grp *irq_grp = &ab->ext_irq_grp[i];
- 
--		napi_enable(&irq_grp->napi);
-+		if (!irq_grp->napi_enabled) {
-+			napi_enable(&irq_grp->napi);
-+			irq_grp->napi_enabled = true;
-+		}
- 		ath11k_pci_ext_grp_enable(irq_grp);
- 	}
- }
+diff --git a/drivers/net/wireless/ath/ath11k/hw.c b/drivers/net/wireless/ath/ath11k/hw.c
+index d9596903b0a58..3e92cc7cfe4c9 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.c
++++ b/drivers/net/wireless/ath/ath11k/hw.c
+@@ -1015,8 +1015,6 @@ const struct ath11k_hw_ring_mask ath11k_hw_ring_mask_ipq8074 = {
+ const struct ath11k_hw_ring_mask ath11k_hw_ring_mask_qca6390 = {
+ 	.tx  = {
+ 		ATH11K_TX_RING_MASK_0,
+-		ATH11K_TX_RING_MASK_1,
+-		ATH11K_TX_RING_MASK_2,
+ 	},
+ 	.rx_mon_status = {
+ 		0, 0, 0, 0,
 -- 
 2.34.1
 
