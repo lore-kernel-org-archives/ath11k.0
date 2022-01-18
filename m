@@ -4,55 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13896C4321E
-	for <ath11k@archiver.kernel.org>; Tue, 18 Jan 2022 02:47:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C637C433EF
+	for <ath11k@archiver.kernel.org>; Tue, 18 Jan 2022 02:53:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=nq/BVHlKpfw/Xa0w3FKFD9IdVYDesvxJshiS/R5J0qk=; b=4oeDRRJsMrx9Ed
-	awv2/4uiWSGlx+D4vwGL6rd/wpXWRapdAypcsK2ehNfyB4WIgRGlvf3gVztPcZ2wc8W4SuSqbpMv0
-	pln4efyBL4BEljIsdipwKiW2l6A3e05oGMdUsqBuECidfUJg1F5qjCQbypQUU4pc6MdhHXh8DVVhQ
-	Qaq4mF3MaWVrVwS2cq/XCtvxgG1avrAWLsHkG8gsEgUBMpJi/zipjoC3SmPU5i7LWfy82kpYML+Bz
-	mq2dx3TVFhAN6Iv3qvTXUEOJFs3LRjt/M9BEBUVlh8HK0hIrFzIsYpnGzbeM0EPVOewCrfLe9g+1G
-	9x3jOBB+L4tH4XoOv8CQ==;
+	List-Owner; bh=LXdjjmsFK5+qHveadiefJzDIqlC2ZBFXYOw0wZo1D3U=; b=RKJKYDbxq5Di2N
+	jlm2/LZSrfX2FbZXLldHLjVAMLoXpceBAjf9KspKFJFoGUTw920cQkcjQoZLC13qzTohRrwE2lzWg
+	lT+nF1vsILU5hYuTVpIRREpo93H9qMgFs6dhZJt7JnEipRYbA6ttVFbbtQIAHsCPQtxEyem+keity
+	0242i2cyZj1hTOJZhwiNcdbXzW6EXsnFL0EzKtgszwMej45u3MntTXPX8GqoaRGTZUUQKONf3YUqq
+	Q/t3HFgXhYHKfgTNBQ+XWoWoLv8LK6TxJPPOk9qbR+Lj5PionBQl5XZoocT/Mei4GD1uLirIeXNdo
+	Hgghpsb2BETGE82J5Hrg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n9eWq-00H6xw-4N; Tue, 18 Jan 2022 02:47:24 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1n9ecU-00H9f1-TG; Tue, 18 Jan 2022 02:53:14 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n9eJE-00GzJg-HG
- for ath11k@lists.infradead.org; Tue, 18 Jan 2022 02:33:22 +0000
+ id 1n9eL6-00H0CV-Vp
+ for ath11k@lists.infradead.org; Tue, 18 Jan 2022 02:35:19 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id F2681B81233;
- Tue, 18 Jan 2022 02:33:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CC47C36AE3;
- Tue, 18 Jan 2022 02:33:16 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 6DE266120D;
+ Tue, 18 Jan 2022 02:35:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B10D3C36AF6;
+ Tue, 18 Jan 2022 02:35:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1642473197;
- bh=hqOSIFfEPM25jf3JyI4blFrW5FBGZ6DQgxd28kjbXpM=;
+ s=k20201202; t=1642473315;
+ bh=BeaWnZ5j1Bke+EBbtqE3BLQl4drzIXo45ihMaFWjRuk=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=F2FAcVzjLRYsAAaAgdUZMvwGcmwm97ky5uT5BfIe37KhZb9G+4ZxHG43G98Tl4vWJ
- 8zT6ITqJBpVVGJFeAKWLB50n9i0GhZXJkm7S0tksSnu12xw+id7tmTJXl/aUCVOIAc
- YKWUp9GtuTEw3Bzb3oAw6wBvZA1gtiiET8rrHaJC895153OqOO5ZG+K2mu8fNVViXh
- SB5X08Z8PbOUoFeYwKVLrga1tVkrNUg70uPURyUECu8pRh5QqXyW6mezoAnJgP0QOf
- oi4gn8zIqHLPtzt6AfMObm8Wi6OveLCSVYb6Z+AoGtePdokkbS5pQrG6iECIGsA9E0
- rq+9SIP85dCPw==
+ b=aXIvdVG/1WapSh0NdgJ+iVd+sf2+L3S8CUQFazTtLjBqbtF6OPRjmscrSKBFPRF4p
+ xiV08kDOCPXGNsiew/Dlin222xzlqAo7XfTLqFu/OMLNwvhkLN1OQNFibegD5NIW/X
+ 9dOKeQqzaH80LniMbxPjFyUiz8JIrbbgcEmX+8eEToCIYjvn/8aAUorMp04l7tpHbu
+ fUsmrcQfcSn8QFIotqdmYYA04gvbDCAzB3WoRUOp0nhifkg3x02akAbZAZOVULtH3K
+ BCBLGYsqmGhUIeKYXZsLWU9KMTy+Li5y6nrI+s2i4s0sa0IpZFyS/F5XwPwv6EeueS
+ dbrb4IQbTLypg==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Baochen Qiang <bqiang@codeaurora.org>, Kalle Valo <kvalo@codeaurora.org>,
+Cc: Sriram R <quic_srirrama@quicinc.com>, Kalle Valo <kvalo@codeaurora.org>,
  Sasha Levin <sashal@kernel.org>, kvalo@kernel.org, davem@davemloft.net,
  kuba@kernel.org, ath11k@lists.infradead.org,
  linux-wireless@vger.kernel.org, netdev@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.15 022/188] ath11k: Fix crash caused by
- uninitialized TX ring
-Date: Mon, 17 Jan 2022 21:29:06 -0500
-Message-Id: <20220118023152.1948105-22-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.15 067/188] ath11k: Avoid NULL ptr access during
+ mgmt tx cleanup
+Date: Mon, 17 Jan 2022 21:29:51 -0500
+Message-Id: <20220118023152.1948105-67-sashal@kernel.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220118023152.1948105-1-sashal@kernel.org>
 References: <20220118023152.1948105-1-sashal@kernel.org>
@@ -60,8 +60,8 @@ MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220117_183320_903681_57E2D0E8 
-X-CRM114-Status: GOOD (  12.59  )
+X-CRM114-CacheID: sfid-20220117_183517_220439_E0886B71 
+X-CRM114-Status: GOOD (  13.15  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,78 +78,117 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Baochen Qiang <bqiang@codeaurora.org>
+From: Sriram R <quic_srirrama@quicinc.com>
 
-[ Upstream commit 273703ebdb01b6c5f1aaf4b98fb57b177609055c ]
+[ Upstream commit a93789ae541c7d5c1c2a4942013adb6bcc5e2848 ]
 
-Commit 31582373a4a8 ("ath11k: Change number of TCL rings to one for
-QCA6390") avoids initializing the other entries of dp->tx_ring cause
-the corresponding TX rings on QCA6390/WCN6855 are not used, but leaves
-those ring masks in ath11k_hw_ring_mask_qca6390.tx unchanged. Normally
-this is OK because we will only get interrupts from the first TX ring
-on these chips and thus only the first entry of dp->tx_ring is involved.
+Currently 'ar' reference is not added in skb_cb during
+WMI mgmt tx. Though this is generally not used during tx completion
+callbacks, on interface removal the remaining idr cleanup callback
+uses the ar ptr from skb_cb from mgmt txmgmt_idr. Hence
+fill them during tx call for proper usage.
 
-In case of one MSI vector, all DP rings share the same IRQ. For each
-interrupt, all rings have to be checked, which means the other entries
-of dp->tx_ring are involved. However since they are not initialized,
-system crashes.
+Also free the skb which is missing currently in these
+callbacks.
 
-Fix this issue by simply removing those ring masks.
+Crash_info:
 
-crash stack:
-[  102.907438] BUG: kernel NULL pointer dereference, address: 0000000000000028
-[  102.907447] #PF: supervisor read access in kernel mode
-[  102.907451] #PF: error_code(0x0000) - not-present page
-[  102.907453] PGD 1081f0067 P4D 1081f0067 PUD 1081f1067 PMD 0
-[  102.907460] Oops: 0000 [#1] SMP DEBUG_PAGEALLOC NOPTI
-[  102.907465] CPU: 0 PID: 3511 Comm: apt-check Kdump: loaded Tainted: G            E     5.15.0-rc4-wt-ath+ #20
-[  102.907470] Hardware name: AMD Celadon-RN/Celadon-RN, BIOS RCD1005E 10/08/2020
-[  102.907472] RIP: 0010:ath11k_dp_tx_completion_handler+0x201/0x830 [ath11k]
-[  102.907497] Code: 3c 24 4e 8d ac 37 10 04 00 00 4a 8d bc 37 68 04 00 00 48 89 3c 24 48 63 c8 89 83 84 18 00 00 48 c1 e1 05 48 03 8b 78 18 00 00 <8b> 51 08 89 d6 83 e6 07 89 74 24 24 83 fe 03 74 04 85 f6 75 63 41
-[  102.907501] RSP: 0000:ffff9b7340003e08 EFLAGS: 00010202
-[  102.907505] RAX: 0000000000000001 RBX: ffff8e21530c0100 RCX: 0000000000000020
-[  102.907508] RDX: 0000000000000000 RSI: 00000000fffffe00 RDI: ffff8e21530c1938
-[  102.907511] RBP: ffff8e21530c0000 R08: 0000000000000001 R09: 0000000000000000
-[  102.907513] R10: ffff8e2145534c10 R11: 0000000000000001 R12: ffff8e21530c2938
-[  102.907515] R13: ffff8e21530c18e0 R14: 0000000000000100 R15: ffff8e21530c2978
-[  102.907518] FS:  00007f5d4297e740(0000) GS:ffff8e243d600000(0000) knlGS:0000000000000000
-[  102.907521] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[  102.907524] CR2: 0000000000000028 CR3: 00000001034ea000 CR4: 0000000000350ef0
-[  102.907527] Call Trace:
-[  102.907531]  <IRQ>
-[  102.907537]  ath11k_dp_service_srng+0x5c/0x2f0 [ath11k]
-[  102.907556]  ath11k_pci_ext_grp_napi_poll+0x21/0x70 [ath11k_pci]
-[  102.907562]  __napi_poll+0x2c/0x160
-[  102.907570]  net_rx_action+0x251/0x310
-[  102.907576]  __do_softirq+0x107/0x2fc
-[  102.907585]  irq_exit_rcu+0x74/0x90
-[  102.907593]  common_interrupt+0x83/0xa0
-[  102.907600]  </IRQ>
-[  102.907601]  asm_common_interrupt+0x1e/0x40
+[19282.489476] Unable to handle kernel NULL pointer dereference at virtual address 00000000
+[19282.489515] pgd = 91eb8000
+[19282.496702] [00000000] *pgd=00000000
+[19282.502524] Internal error: Oops: 5 [#1] PREEMPT SMP ARM
+[19282.783728] PC is at ath11k_mac_vif_txmgmt_idr_remove+0x28/0xd8 [ath11k]
+[19282.789170] LR is at idr_for_each+0xa0/0xc8
 
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
-
-Signed-off-by: Baochen Qiang <bqiang@codeaurora.org>
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1-00729-QCAHKSWPL_SILICONZ-3 v2
+Signed-off-by: Sriram R <quic_srirrama@quicinc.com>
 Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
-Link: https://lore.kernel.org/r/20211026011605.58615-1-quic_bqiang@quicinc.com
+Link: https://lore.kernel.org/r/1637832614-13831-1-git-send-email-quic_srirrama@quicinc.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/net/wireless/ath/ath11k/hw.c | 2 --
- 1 file changed, 2 deletions(-)
+ drivers/net/wireless/ath/ath11k/mac.c | 35 +++++++++++++++------------
+ 1 file changed, 20 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/hw.c b/drivers/net/wireless/ath/ath11k/hw.c
-index d9596903b0a58..3e92cc7cfe4c9 100644
---- a/drivers/net/wireless/ath/ath11k/hw.c
-+++ b/drivers/net/wireless/ath/ath11k/hw.c
-@@ -1015,8 +1015,6 @@ const struct ath11k_hw_ring_mask ath11k_hw_ring_mask_ipq8074 = {
- const struct ath11k_hw_ring_mask ath11k_hw_ring_mask_qca6390 = {
- 	.tx  = {
- 		ATH11K_TX_RING_MASK_0,
--		ATH11K_TX_RING_MASK_1,
--		ATH11K_TX_RING_MASK_2,
- 	},
- 	.rx_mon_status = {
- 		0, 0, 0, 0,
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 89a64ebd620f3..8ea851013bb7a 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -1,6 +1,7 @@
+ // SPDX-License-Identifier: BSD-3-Clause-Clear
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
++ * Copyright (c) 2021 Qualcomm Innovation Center, Inc. All rights reserved.
+  */
+ 
+ #include <net/mac80211.h>
+@@ -4131,23 +4132,32 @@ static int __ath11k_set_antenna(struct ath11k *ar, u32 tx_ant, u32 rx_ant)
+ 	return 0;
+ }
+ 
+-int ath11k_mac_tx_mgmt_pending_free(int buf_id, void *skb, void *ctx)
++static void ath11k_mac_tx_mgmt_free(struct ath11k *ar, int buf_id)
+ {
+-	struct sk_buff *msdu = skb;
++	struct sk_buff *msdu;
+ 	struct ieee80211_tx_info *info;
+-	struct ath11k *ar = ctx;
+-	struct ath11k_base *ab = ar->ab;
+ 
+ 	spin_lock_bh(&ar->txmgmt_idr_lock);
+-	idr_remove(&ar->txmgmt_idr, buf_id);
++	msdu = idr_remove(&ar->txmgmt_idr, buf_id);
+ 	spin_unlock_bh(&ar->txmgmt_idr_lock);
+-	dma_unmap_single(ab->dev, ATH11K_SKB_CB(msdu)->paddr, msdu->len,
++
++	if (!msdu)
++		return;
++
++	dma_unmap_single(ar->ab->dev, ATH11K_SKB_CB(msdu)->paddr, msdu->len,
+ 			 DMA_TO_DEVICE);
+ 
+ 	info = IEEE80211_SKB_CB(msdu);
+ 	memset(&info->status, 0, sizeof(info->status));
+ 
+ 	ieee80211_free_txskb(ar->hw, msdu);
++}
++
++int ath11k_mac_tx_mgmt_pending_free(int buf_id, void *skb, void *ctx)
++{
++	struct ath11k *ar = ctx;
++
++	ath11k_mac_tx_mgmt_free(ar, buf_id);
+ 
+ 	return 0;
+ }
+@@ -4156,17 +4166,10 @@ static int ath11k_mac_vif_txmgmt_idr_remove(int buf_id, void *skb, void *ctx)
+ {
+ 	struct ieee80211_vif *vif = ctx;
+ 	struct ath11k_skb_cb *skb_cb = ATH11K_SKB_CB((struct sk_buff *)skb);
+-	struct sk_buff *msdu = skb;
+ 	struct ath11k *ar = skb_cb->ar;
+-	struct ath11k_base *ab = ar->ab;
+ 
+-	if (skb_cb->vif == vif) {
+-		spin_lock_bh(&ar->txmgmt_idr_lock);
+-		idr_remove(&ar->txmgmt_idr, buf_id);
+-		spin_unlock_bh(&ar->txmgmt_idr_lock);
+-		dma_unmap_single(ab->dev, skb_cb->paddr, msdu->len,
+-				 DMA_TO_DEVICE);
+-	}
++	if (skb_cb->vif == vif)
++		ath11k_mac_tx_mgmt_free(ar, buf_id);
+ 
+ 	return 0;
+ }
+@@ -4181,6 +4184,8 @@ static int ath11k_mac_mgmt_tx_wmi(struct ath11k *ar, struct ath11k_vif *arvif,
+ 	int buf_id;
+ 	int ret;
+ 
++	ATH11K_SKB_CB(skb)->ar = ar;
++
+ 	spin_lock_bh(&ar->txmgmt_idr_lock);
+ 	buf_id = idr_alloc(&ar->txmgmt_idr, skb, 0,
+ 			   ATH11K_TX_MGMT_NUM_PENDING_MAX, GFP_ATOMIC);
 -- 
 2.34.1
 
