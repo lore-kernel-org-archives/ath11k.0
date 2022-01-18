@@ -4,55 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C637C433EF
-	for <ath11k@archiver.kernel.org>; Tue, 18 Jan 2022 02:53:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D06C0C433F5
+	for <ath11k@archiver.kernel.org>; Tue, 18 Jan 2022 02:57:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=LXdjjmsFK5+qHveadiefJzDIqlC2ZBFXYOw0wZo1D3U=; b=RKJKYDbxq5Di2N
-	jlm2/LZSrfX2FbZXLldHLjVAMLoXpceBAjf9KspKFJFoGUTw920cQkcjQoZLC13qzTohRrwE2lzWg
-	lT+nF1vsILU5hYuTVpIRREpo93H9qMgFs6dhZJt7JnEipRYbA6ttVFbbtQIAHsCPQtxEyem+keity
-	0242i2cyZj1hTOJZhwiNcdbXzW6EXsnFL0EzKtgszwMej45u3MntTXPX8GqoaRGTZUUQKONf3YUqq
-	Q/t3HFgXhYHKfgTNBQ+XWoWoLv8LK6TxJPPOk9qbR+Lj5PionBQl5XZoocT/Mei4GD1uLirIeXNdo
-	Hgghpsb2BETGE82J5Hrg==;
+	List-Owner; bh=ZVcqQu83vhbiteytfL0VgjBqU0hOVPVlRic83EeeKQw=; b=p2FGvv0MAmw8T2
+	KZsojIi0v+j8+QpoRLDGhcoe9btg8xCGACNKHBYOLwUy15cMHxR9hW28RpkaGO5CQX3xwOBPz/Z63
+	MjucKY8eIcIT4oqtlS1HgdMWNArtMxrt3kQJ2dso64hvKkL9CPMF/X5wgvpKteUzhOUa8yvLNp3+x
+	BjvRkH8S8hqiZW8xoC8KYANFI0SRLfWGRj3Iuo1pmIKs+6LGoFm00bcWdl76IrOo2v9Vkm4G+FyZk
+	utQzo173WnTLM1MrfFoudR/G2cT5wrdSDy486LTnc62hGi8RevOd5mtJxLwcVqPXapwwXZHJEhecu
+	NfBAHyoGde7rktZD8D4Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1n9ecU-00H9f1-TG; Tue, 18 Jan 2022 02:53:14 +0000
+	id 1n9egC-00HCBZ-Gg; Tue, 18 Jan 2022 02:57:04 +0000
 Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1n9eL6-00H0CV-Vp
- for ath11k@lists.infradead.org; Tue, 18 Jan 2022 02:35:19 +0000
+ id 1n9eMB-00H0qL-Nu
+ for ath11k@lists.infradead.org; Tue, 18 Jan 2022 02:36:27 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 6DE266120D;
- Tue, 18 Jan 2022 02:35:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B10D3C36AF6;
- Tue, 18 Jan 2022 02:35:14 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 02A53611F0;
+ Tue, 18 Jan 2022 02:36:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DD83C36AEF;
+ Tue, 18 Jan 2022 02:36:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1642473315;
- bh=BeaWnZ5j1Bke+EBbtqE3BLQl4drzIXo45ihMaFWjRuk=;
+ s=k20201202; t=1642473382;
+ bh=aCvZ7FsAPHlMvu1OlKxK/77h6I1jNP5DRmsbS14Xduc=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=aXIvdVG/1WapSh0NdgJ+iVd+sf2+L3S8CUQFazTtLjBqbtF6OPRjmscrSKBFPRF4p
- xiV08kDOCPXGNsiew/Dlin222xzlqAo7XfTLqFu/OMLNwvhkLN1OQNFibegD5NIW/X
- 9dOKeQqzaH80LniMbxPjFyUiz8JIrbbgcEmX+8eEToCIYjvn/8aAUorMp04l7tpHbu
- fUsmrcQfcSn8QFIotqdmYYA04gvbDCAzB3WoRUOp0nhifkg3x02akAbZAZOVULtH3K
- BCBLGYsqmGhUIeKYXZsLWU9KMTy+Li5y6nrI+s2i4s0sa0IpZFyS/F5XwPwv6EeueS
- dbrb4IQbTLypg==
+ b=bHNe9UfoNPaLohfYBJXIgKAD4XZ8UZFoivxGuFf5GT9MFAQPTVC7OEumSdPsP91rB
+ VQjnHZkXB3OCbufYU2yhWBVIr0cbafoSj1rlz9zYpkp1MT2xw/eD2FDbdEi1JgLti7
+ keNM6J8lfNW/Tk8jagbqmhazwt437cf8j5v60KwqjX2lktP9UkaIb/m2K0MuE2/V6Y
+ 0sW2El+dE5Nwl8vkWywVbEUnn7P40CTU8g+n2x/T0XYJQ/U7wR0DE7xL4CAUTaE/TL
+ hVH+4SMDLw7zY7qeC4Onazd5nYZaxIcYyGlFvEtpvRO6SaKyFO9JrxAPAXmV5ppWx8
+ gvpznKf0Idozg==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Sriram R <quic_srirrama@quicinc.com>, Kalle Valo <kvalo@codeaurora.org>,
+Cc: Wen Gong <quic_wgong@quicinc.com>, Kalle Valo <quic_kvalo@quicinc.com>,
  Sasha Levin <sashal@kernel.org>, kvalo@kernel.org, davem@davemloft.net,
  kuba@kernel.org, ath11k@lists.infradead.org,
  linux-wireless@vger.kernel.org, netdev@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.15 067/188] ath11k: Avoid NULL ptr access during
- mgmt tx cleanup
-Date: Mon, 17 Jan 2022 21:29:51 -0500
-Message-Id: <20220118023152.1948105-67-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.15 094/188] ath11k: avoid deadlock by change
+ ieee80211_queue_work for regd_update_work
+Date: Mon, 17 Jan 2022 21:30:18 -0500
+Message-Id: <20220118023152.1948105-94-sashal@kernel.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220118023152.1948105-1-sashal@kernel.org>
 References: <20220118023152.1948105-1-sashal@kernel.org>
@@ -60,8 +60,8 @@ MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220117_183517_220439_E0886B71 
-X-CRM114-Status: GOOD (  13.15  )
+X-CRM114-CacheID: sfid-20220117_183623_933977_DB786A50 
+X-CRM114-Status: GOOD (  14.81  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,117 +78,202 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Sriram R <quic_srirrama@quicinc.com>
+From: Wen Gong <quic_wgong@quicinc.com>
 
-[ Upstream commit a93789ae541c7d5c1c2a4942013adb6bcc5e2848 ]
+[ Upstream commit ed05c7cf1286d7e31e7623bce55ff135723591bf ]
 
-Currently 'ar' reference is not added in skb_cb during
-WMI mgmt tx. Though this is generally not used during tx completion
-callbacks, on interface removal the remaining idr cleanup callback
-uses the ar ptr from skb_cb from mgmt txmgmt_idr. Hence
-fill them during tx call for proper usage.
+When enable debug config, it print below warning while shut down wlan
+interface shuh as run "ifconfig wlan0 down".
 
-Also free the skb which is missing currently in these
-callbacks.
+The reason is because ar->regd_update_work is ran once, and it is will
+call wiphy_lock(ar->hw->wiphy) in function ath11k_regd_update() which
+is running in workqueue of ieee80211_local queued by ieee80211_queue_work().
+Another thread from "ifconfig wlan0 down" will also accuqire the lock
+by wiphy_lock(sdata->local->hw.wiphy) in function ieee80211_stop(), and
+then it call ieee80211_stop_device() to flush_workqueue(local->workqueue),
+this will wait the workqueue of ieee80211_local finished. Then deadlock
+will happen easily if the two thread run meanwhile.
 
-Crash_info:
+Below warning disappeared after this change.
 
-[19282.489476] Unable to handle kernel NULL pointer dereference at virtual address 00000000
-[19282.489515] pgd = 91eb8000
-[19282.496702] [00000000] *pgd=00000000
-[19282.502524] Internal error: Oops: 5 [#1] PREEMPT SMP ARM
-[19282.783728] PC is at ath11k_mac_vif_txmgmt_idr_remove+0x28/0xd8 [ath11k]
-[19282.789170] LR is at idr_for_each+0xa0/0xc8
+[  914.088798] ath11k_pci 0000:05:00.0: mac remove interface (vdev 0)
+[  914.088806] ath11k_pci 0000:05:00.0: mac stop 11d scan
+[  914.088810] ath11k_pci 0000:05:00.0: mac stop 11d vdev id 0
+[  914.088827] ath11k_pci 0000:05:00.0: htc ep 2 consumed 1 credits (total 0)
+[  914.088841] ath11k_pci 0000:05:00.0: send 11d scan stop vdev id 0
+[  914.088849] ath11k_pci 0000:05:00.0: htc insufficient credits ep 2 required 1 available 0
+[  914.088856] ath11k_pci 0000:05:00.0: htc insufficient credits ep 2 required 1 available 0
+[  914.096434] ath11k_pci 0000:05:00.0: rx ce pipe 2 len 16
+[  914.096442] ath11k_pci 0000:05:00.0: htc ep 2 got 1 credits (total 1)
+[  914.096481] ath11k_pci 0000:05:00.0: htc ep 2 consumed 1 credits (total 0)
+[  914.096491] ath11k_pci 0000:05:00.0: WMI vdev delete id 0
+[  914.111598] ath11k_pci 0000:05:00.0: rx ce pipe 2 len 16
+[  914.111628] ath11k_pci 0000:05:00.0: htc ep 2 got 1 credits (total 1)
+[  914.114659] ath11k_pci 0000:05:00.0: rx ce pipe 2 len 20
+[  914.114742] ath11k_pci 0000:05:00.0: htc rx completion ep 2 skb         pK-error
+[  914.115977] ath11k_pci 0000:05:00.0: vdev delete resp for vdev id 0
+[  914.116685] ath11k_pci 0000:05:00.0: vdev 00:03:7f:29:61:11 deleted, vdev_id 0
 
-Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1-00729-QCAHKSWPL_SILICONZ-3 v2
-Signed-off-by: Sriram R <quic_srirrama@quicinc.com>
-Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
-Link: https://lore.kernel.org/r/1637832614-13831-1-git-send-email-quic_srirrama@quicinc.com
+[  914.117583] ======================================================
+[  914.117592] WARNING: possible circular locking dependency detected
+[  914.117600] 5.16.0-rc1-wt-ath+ #1 Tainted: G           OE
+[  914.117611] ------------------------------------------------------
+[  914.117618] ifconfig/2805 is trying to acquire lock:
+[  914.117628] ffff9c00a62bb548 ((wq_completion)phy0){+.+.}-{0:0}, at: flush_workqueue+0x87/0x470
+[  914.117674]
+               but task is already holding lock:
+[  914.117682] ffff9c00baea07d0 (&rdev->wiphy.mtx){+.+.}-{4:4}, at: ieee80211_stop+0x38/0x180 [mac80211]
+[  914.117872]
+               which lock already depends on the new lock.
+
+[  914.117880]
+               the existing dependency chain (in reverse order) is:
+[  914.117888]
+               -> #3 (&rdev->wiphy.mtx){+.+.}-{4:4}:
+[  914.117910]        __mutex_lock+0xa0/0x9c0
+[  914.117930]        mutex_lock_nested+0x1b/0x20
+[  914.117944]        reg_process_self_managed_hints+0x3a/0xb0 [cfg80211]
+[  914.118093]        wiphy_regulatory_register+0x47/0x80 [cfg80211]
+[  914.118229]        wiphy_register+0x84f/0x9c0 [cfg80211]
+[  914.118353]        ieee80211_register_hw+0x6b1/0xd90 [mac80211]
+[  914.118486]        ath11k_mac_register+0x6af/0xb60 [ath11k]
+[  914.118550]        ath11k_core_qmi_firmware_ready+0x383/0x4a0 [ath11k]
+[  914.118598]        ath11k_qmi_driver_event_work+0x347/0x4a0 [ath11k]
+[  914.118656]        process_one_work+0x228/0x670
+[  914.118669]        worker_thread+0x4d/0x440
+[  914.118680]        kthread+0x16d/0x1b0
+[  914.118697]        ret_from_fork+0x22/0x30
+[  914.118714]
+               -> #2 (rtnl_mutex){+.+.}-{4:4}:
+[  914.118736]        __mutex_lock+0xa0/0x9c0
+[  914.118751]        mutex_lock_nested+0x1b/0x20
+[  914.118767]        rtnl_lock+0x17/0x20
+[  914.118783]        ath11k_regd_update+0x15a/0x260 [ath11k]
+[  914.118841]        ath11k_regd_update_work+0x15/0x20 [ath11k]
+[  914.118897]        process_one_work+0x228/0x670
+[  914.118909]        worker_thread+0x4d/0x440
+[  914.118920]        kthread+0x16d/0x1b0
+[  914.118934]        ret_from_fork+0x22/0x30
+[  914.118948]
+               -> #1 ((work_completion)(&ar->regd_update_work)){+.+.}-{0:0}:
+[  914.118972]        process_one_work+0x1fa/0x670
+[  914.118984]        worker_thread+0x4d/0x440
+[  914.118996]        kthread+0x16d/0x1b0
+[  914.119010]        ret_from_fork+0x22/0x30
+[  914.119023]
+               -> #0 ((wq_completion)phy0){+.+.}-{0:0}:
+[  914.119045]        __lock_acquire+0x146d/0x1cf0
+[  914.119057]        lock_acquire+0x19b/0x360
+[  914.119067]        flush_workqueue+0xae/0x470
+[  914.119084]        ieee80211_stop_device+0x3b/0x50 [mac80211]
+[  914.119260]        ieee80211_do_stop+0x5d7/0x830 [mac80211]
+[  914.119409]        ieee80211_stop+0x45/0x180 [mac80211]
+[  914.119557]        __dev_close_many+0xb3/0x120
+[  914.119573]        __dev_change_flags+0xc3/0x1d0
+[  914.119590]        dev_change_flags+0x29/0x70
+[  914.119605]        devinet_ioctl+0x653/0x810
+[  914.119620]        inet_ioctl+0x193/0x1e0
+[  914.119631]        sock_do_ioctl+0x4d/0xf0
+[  914.119649]        sock_ioctl+0x262/0x340
+[  914.119665]        __x64_sys_ioctl+0x96/0xd0
+[  914.119678]        do_syscall_64+0x3d/0xd0
+[  914.119694]        entry_SYSCALL_64_after_hwframe+0x44/0xae
+[  914.119709]
+               other info that might help us debug this:
+
+[  914.119717] Chain exists of:
+                 (wq_completion)phy0 --> rtnl_mutex --> &rdev->wiphy.mtx
+
+[  914.119745]  Possible unsafe locking scenario:
+
+[  914.119752]        CPU0                    CPU1
+[  914.119758]        ----                    ----
+[  914.119765]   lock(&rdev->wiphy.mtx);
+[  914.119778]                                lock(rtnl_mutex);
+[  914.119792]                                lock(&rdev->wiphy.mtx);
+[  914.119807]   lock((wq_completion)phy0);
+[  914.119819]
+                *** DEADLOCK ***
+
+[  914.119827] 2 locks held by ifconfig/2805:
+[  914.119837]  #0: ffffffffba3dc010 (rtnl_mutex){+.+.}-{4:4}, at: rtnl_lock+0x17/0x20
+[  914.119872]  #1: ffff9c00baea07d0 (&rdev->wiphy.mtx){+.+.}-{4:4}, at: ieee80211_stop+0x38/0x180 [mac80211]
+[  914.120039]
+               stack backtrace:
+[  914.120048] CPU: 0 PID: 2805 Comm: ifconfig Tainted: G           OE     5.16.0-rc1-wt-ath+ #1
+[  914.120064] Hardware name: LENOVO 418065C/418065C, BIOS 83ET63WW (1.33 ) 07/29/2011
+[  914.120074] Call Trace:
+[  914.120084]  <TASK>
+[  914.120094]  dump_stack_lvl+0x73/0xa4
+[  914.120119]  dump_stack+0x10/0x12
+[  914.120135]  print_circular_bug.isra.44+0x221/0x2e0
+[  914.120165]  check_noncircular+0x106/0x150
+[  914.120203]  __lock_acquire+0x146d/0x1cf0
+[  914.120215]  ? __lock_acquire+0x146d/0x1cf0
+[  914.120245]  lock_acquire+0x19b/0x360
+[  914.120259]  ? flush_workqueue+0x87/0x470
+[  914.120286]  ? lockdep_init_map_type+0x6b/0x250
+[  914.120310]  flush_workqueue+0xae/0x470
+[  914.120327]  ? flush_workqueue+0x87/0x470
+[  914.120344]  ? lockdep_hardirqs_on+0xd7/0x150
+[  914.120391]  ieee80211_stop_device+0x3b/0x50 [mac80211]
+[  914.120565]  ? ieee80211_stop_device+0x3b/0x50 [mac80211]
+[  914.120736]  ieee80211_do_stop+0x5d7/0x830 [mac80211]
+[  914.120906]  ieee80211_stop+0x45/0x180 [mac80211]
+[  914.121060]  __dev_close_many+0xb3/0x120
+[  914.121081]  __dev_change_flags+0xc3/0x1d0
+[  914.121109]  dev_change_flags+0x29/0x70
+[  914.121131]  devinet_ioctl+0x653/0x810
+[  914.121149]  ? __might_fault+0x77/0x80
+[  914.121179]  inet_ioctl+0x193/0x1e0
+[  914.121194]  ? inet_ioctl+0x193/0x1e0
+[  914.121218]  ? __might_fault+0x77/0x80
+[  914.121238]  ? _copy_to_user+0x68/0x80
+[  914.121266]  sock_do_ioctl+0x4d/0xf0
+[  914.121283]  ? inet_stream_connect+0x60/0x60
+[  914.121297]  ? sock_do_ioctl+0x4d/0xf0
+[  914.121329]  sock_ioctl+0x262/0x340
+[  914.121347]  ? sock_ioctl+0x262/0x340
+[  914.121362]  ? exit_to_user_mode_prepare+0x13b/0x280
+[  914.121388]  ? syscall_enter_from_user_mode+0x20/0x50
+[  914.121416]  __x64_sys_ioctl+0x96/0xd0
+[  914.121430]  ? br_ioctl_call+0x90/0x90
+[  914.121445]  ? __x64_sys_ioctl+0x96/0xd0
+[  914.121465]  do_syscall_64+0x3d/0xd0
+[  914.121482]  entry_SYSCALL_64_after_hwframe+0x44/0xae
+[  914.121497] RIP: 0033:0x7f0ed051737b
+[  914.121513] Code: 0f 1e fa 48 8b 05 15 3b 0d 00 64 c7 00 26 00 00 00 48 c7 c0 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa b8 10 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d e5 3a 0d 00 f7 d8 64 89 01 48
+[  914.121527] RSP: 002b:00007fff7be38b98 EFLAGS: 00000202 ORIG_RAX: 0000000000000010
+[  914.121544] RAX: ffffffffffffffda RBX: 00007fff7be38ba0 RCX: 00007f0ed051737b
+[  914.121555] RDX: 00007fff7be38ba0 RSI: 0000000000008914 RDI: 0000000000000004
+[  914.121566] RBP: 00007fff7be38c60 R08: 000000000000000a R09: 0000000000000001
+[  914.121576] R10: 0000000000000000 R11: 0000000000000202 R12: 00000000fffffffe
+[  914.121586] R13: 0000000000000004 R14: 0000000000000000 R15: 0000000000000000
+[  914.121620]  </TASK>
+
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+
+Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
+Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+Link: https://lore.kernel.org/r/20211201071745.17746-2-quic_wgong@quicinc.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 35 +++++++++++++++------------
- 1 file changed, 20 insertions(+), 15 deletions(-)
+ drivers/net/wireless/ath/ath11k/wmi.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 89a64ebd620f3..8ea851013bb7a 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -1,6 +1,7 @@
- // SPDX-License-Identifier: BSD-3-Clause-Clear
- /*
-  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2021 Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- 
- #include <net/mac80211.h>
-@@ -4131,23 +4132,32 @@ static int __ath11k_set_antenna(struct ath11k *ar, u32 tx_ant, u32 rx_ant)
- 	return 0;
- }
- 
--int ath11k_mac_tx_mgmt_pending_free(int buf_id, void *skb, void *ctx)
-+static void ath11k_mac_tx_mgmt_free(struct ath11k *ar, int buf_id)
- {
--	struct sk_buff *msdu = skb;
-+	struct sk_buff *msdu;
- 	struct ieee80211_tx_info *info;
--	struct ath11k *ar = ctx;
--	struct ath11k_base *ab = ar->ab;
- 
- 	spin_lock_bh(&ar->txmgmt_idr_lock);
--	idr_remove(&ar->txmgmt_idr, buf_id);
-+	msdu = idr_remove(&ar->txmgmt_idr, buf_id);
- 	spin_unlock_bh(&ar->txmgmt_idr_lock);
--	dma_unmap_single(ab->dev, ATH11K_SKB_CB(msdu)->paddr, msdu->len,
-+
-+	if (!msdu)
-+		return;
-+
-+	dma_unmap_single(ar->ab->dev, ATH11K_SKB_CB(msdu)->paddr, msdu->len,
- 			 DMA_TO_DEVICE);
- 
- 	info = IEEE80211_SKB_CB(msdu);
- 	memset(&info->status, 0, sizeof(info->status));
- 
- 	ieee80211_free_txskb(ar->hw, msdu);
-+}
-+
-+int ath11k_mac_tx_mgmt_pending_free(int buf_id, void *skb, void *ctx)
-+{
-+	struct ath11k *ar = ctx;
-+
-+	ath11k_mac_tx_mgmt_free(ar, buf_id);
- 
- 	return 0;
- }
-@@ -4156,17 +4166,10 @@ static int ath11k_mac_vif_txmgmt_idr_remove(int buf_id, void *skb, void *ctx)
- {
- 	struct ieee80211_vif *vif = ctx;
- 	struct ath11k_skb_cb *skb_cb = ATH11K_SKB_CB((struct sk_buff *)skb);
--	struct sk_buff *msdu = skb;
- 	struct ath11k *ar = skb_cb->ar;
--	struct ath11k_base *ab = ar->ab;
- 
--	if (skb_cb->vif == vif) {
--		spin_lock_bh(&ar->txmgmt_idr_lock);
--		idr_remove(&ar->txmgmt_idr, buf_id);
--		spin_unlock_bh(&ar->txmgmt_idr_lock);
--		dma_unmap_single(ab->dev, skb_cb->paddr, msdu->len,
--				 DMA_TO_DEVICE);
--	}
-+	if (skb_cb->vif == vif)
-+		ath11k_mac_tx_mgmt_free(ar, buf_id);
- 
- 	return 0;
- }
-@@ -4181,6 +4184,8 @@ static int ath11k_mac_mgmt_tx_wmi(struct ath11k *ar, struct ath11k_vif *arvif,
- 	int buf_id;
- 	int ret;
- 
-+	ATH11K_SKB_CB(skb)->ar = ar;
-+
- 	spin_lock_bh(&ar->txmgmt_idr_lock);
- 	buf_id = idr_alloc(&ar->txmgmt_idr, skb, 0,
- 			   ATH11K_TX_MGMT_NUM_PENDING_MAX, GFP_ATOMIC);
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 99c0b81e496bf..cd86e25636884 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -5852,7 +5852,7 @@ static int ath11k_reg_chan_list_event(struct ath11k_base *ab, struct sk_buff *sk
+ 		ar = ab->pdevs[pdev_idx].ar;
+ 		kfree(ab->new_regd[pdev_idx]);
+ 		ab->new_regd[pdev_idx] = regd;
+-		ieee80211_queue_work(ar->hw, &ar->regd_update_work);
++		queue_work(ab->workqueue, &ar->regd_update_work);
+ 	} else {
+ 		/* This regd would be applied during mac registration and is
+ 		 * held constant throughout for regd intersection purpose
 -- 
 2.34.1
 
