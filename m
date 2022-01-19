@@ -4,65 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C67C1C433EF
-	for <ath11k@archiver.kernel.org>; Wed, 19 Jan 2022 09:19:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08732C433F5
+	for <ath11k@archiver.kernel.org>; Wed, 19 Jan 2022 15:23:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=ZGlZ5IYQ02EIu+A37fyF7wk3fN4IGkkiM5I1RBg5Igk=; b=k1xxG4HZHA1L86
-	VnInu2Tf0m2r7C68nLMspdzBMS343PMSiUMsawBMRh2AmQseo/2MaAQvpuaF2KXpqEq+Ypmce02s6
-	oQJp+kIJ0iluoG2tgZ4UMy01vWupeyr2S4MOhv99ESZeTYaU2iAcYIA73PK9P/SBdRzEi3Y8Rb+zr
-	OHqTwaE2l7SUNDs2kI0KPn5F4AVfwkJROlzdaJ5uSN515lcgQiw5VfgsGLdB1lNRuiXKZR5Aj81w5
-	61hTo54hm/os4IvtLGxFX28B/QlFyKi3EHM38ficQsH1nMMRXPawg4c1QiJ21p+9Y/9GJnOFvGUkW
-	Th32f4Jl/76NPccwNQuw==;
+	List-Owner; bh=iewBh2s1PZeIbRsTrfVxlzmzkK5+arQltq3/B5uMckY=; b=UV4MxSrXz+doej
+	px5RR2NiL67zGcTkShZgelnbODNUkbjq7yGIGc3GDqz8nYff1dOKLTEfudDgq9WdIw/4JbRR4rJUF
+	OGUY+YcOmz+VHoiXA5CAywiu/Urn8ERIg69NzdHxFavx4mY9W/Ty7R7ztBz5Nstnl17nLq9gW/q48
+	9G1Od3EG0DENVdAK2IZqS0VPGT4WuJ/nH+WcIdah38AxB84fw3Vm+K82p7nupq6ZJF9vxs+WnytgU
+	/KfhWAimWm9CICpaJkyOlkR/tMOMUHVe8kC6L9fw94EjIWFYJBIgcV8Vo/2PNdxaXfVVHhyVSWe+r
+	tW1HhOZsrlIKcg+23+uQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nA78F-004XQQ-Ow; Wed, 19 Jan 2022 09:19:55 +0000
+	id 1nACoE-0067uZ-A2; Wed, 19 Jan 2022 15:23:38 +0000
 Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nA78D-004XPF-I8
- for ath11k@lists.infradead.org; Wed, 19 Jan 2022 09:19:54 +0000
+ id 1nACoB-0067sS-CI
+ for ath11k@lists.infradead.org; Wed, 19 Jan 2022 15:23:36 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1642583993; x=1674119993;
+ t=1642605815; x=1674141815;
  h=from:to:cc:subject:date:message-id:mime-version;
- bh=3JTEWyPeqLIaXuVDYvD2xAgJ6YgnmhHQ+UqwvW9RC0k=;
- b=bp9bwoJ4me971bo7EjCNnYZa6bVXsynEhAHZ1S6Wz2kmzlN/2yEgJ9Il
- G6TX1oOF3ZJUToFS9HAttKKUTpOjVSIZD57ys9icoMsx81zdTVYkmibeu
- iNN7Y0VwD1t4LNt3rx3I1pS5okkJbF9tg1Zz1U3FtAZ8p9ifX7XBWzuag o=;
+ bh=WSAhAGkz0RGiwr+44Zh5fWkCgOy3QtsalCwavtqWhpk=;
+ b=qwos2jSQkTqr2U+j+LQHUp7CLcdTpxX27aDKmsSna77bAuzsBnWgWn9o
+ V6SdyYjZU0eGRsVskHvXl4i649UNbzqnSATGfMVoYSyLKJhgdYooGa8Aq
+ uPgu9W+uDbbi3nrBieZEQ5yGnailBuMXdUnHJk20qliqWRqgNo4BdzFOk E=;
 Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
- by alexa-out-sd-02.qualcomm.com with ESMTP; 19 Jan 2022 01:19:53 -0800
+ by alexa-out-sd-02.qualcomm.com with ESMTP; 19 Jan 2022 07:23:33 -0800
 X-QCInternal: smtphost
 Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jan 2022 01:19:47 -0800
+ 19 Jan 2022 07:23:33 -0800
 Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
  nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Wed, 19 Jan 2022 01:19:46 -0800
-Received: from vnaralas-linux.qualcomm.com (10.80.80.8) by
+ 15.2.922.19; Wed, 19 Jan 2022 07:23:32 -0800
+Received: from akolli-linux.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Wed, 19 Jan 2022 01:19:44 -0800
-From: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
+ 15.2.922.19; Wed, 19 Jan 2022 07:23:30 -0800
+From: Anilkumar Kolli <quic_akolli@quicinc.com>
 To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, Venkateswara Naralasetty
- <quic_vnaralas@quicinc.com>
-Subject: [PATCH] ath11k: fix kernel panic during unload/load ath11k modules
-Date: Wed, 19 Jan 2022 14:49:33 +0530
-Message-ID: <1642583973-21599-1-git-send-email-quic_vnaralas@quicinc.com>
+CC: <linux-wireless@vger.kernel.org>, Anilkumar Kolli <quic_akolli@quicinc.com>
+Subject: [PATCH] ath11k: Fix uninitialized symbol 'rx_buf_sz'
+Date: Wed, 19 Jan 2022 20:53:13 +0530
+Message-ID: <1642605793-13518-1-git-send-email-quic_akolli@quicinc.com>
 X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220119_011953_664082_449E1969 
-X-CRM114-Status: UNSURE (   9.60  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220119_072335_492474_45A7DE55 
+X-CRM114-Status: GOOD (  11.87  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,56 +77,60 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Call netif_napi_del() from ath11k_ahb_free_ext_irq() to fix
-the following kernel panic when unload/load ath11k modules
-for few iterations.
+Add missing else statement in ath11k_dp_rx_process_mon_status()
+to fix below smatch warnings,
+    drivers/net/wireless/ath/ath11k/dp_rx.c:3105
+    ath11k_dp_rx_process_mon_status()
+    error: uninitialized symbol 'rx_buf_sz'.
 
-[  971.201365] Unable to handle kernel paging request at virtual address 6d97a208
-[  971.204227] pgd = 594c2919
-[  971.211478] [6d97a208] *pgd=00000000
-[  971.214120] Internal error: Oops: 5 [#1] PREEMPT SMP ARM
-[  971.412024] CPU: 2 PID: 4435 Comm: insmod Not tainted 5.4.89 #0
-[  971.434256] Hardware name: Generic DT based system
-[  971.440165] PC is at napi_by_id+0x10/0x40
-[  971.445019] LR is at netif_napi_add+0x160/0x1dc
+Fixes: ab18e3bc1c13 ("ath11k: Fix pktlog lite rx events")
 
-[  971.743127] (napi_by_id) from [<807d89a0>] (netif_napi_add+0x160/0x1dc)
-[  971.751295] (netif_napi_add) from [<7f1209ac>] (ath11k_ahb_config_irq+0xf8/0x414 [ath11k_ahb])
-[  971.759164] (ath11k_ahb_config_irq [ath11k_ahb]) from [<7f12135c>] (ath11k_ahb_probe+0x40c/0x51c [ath11k_ahb])
-[  971.768567] (ath11k_ahb_probe [ath11k_ahb]) from [<80666864>] (platform_drv_probe+0x48/0x94)
-[  971.779670] (platform_drv_probe) from [<80664718>] (really_probe+0x1c8/0x450)
-[  971.789389] (really_probe) from [<80664cc4>] (driver_probe_device+0x15c/0x1b8)
-[  971.797547] (driver_probe_device) from [<80664f60>] (device_driver_attach+0x44/0x60)
-[  971.805795] (device_driver_attach) from [<806650a0>] (__driver_attach+0x124/0x140)
-[  971.814822] (__driver_attach) from [<80662adc>] (bus_for_each_dev+0x58/0xa4)
-[  971.823328] (bus_for_each_dev) from [<80663a2c>] (bus_add_driver+0xf0/0x1e8)
-[  971.831662] (bus_add_driver) from [<806658a4>] (driver_register+0xa8/0xf0)
-[  971.839822] (driver_register) from [<8030269c>] (do_one_initcall+0x78/0x1ac)
-[  971.847638] (do_one_initcall) from [<80392524>] (do_init_module+0x54/0x200)
-[  971.855968] (do_init_module) from [<803945b0>] (load_module+0x1e30/0x1ffc)
-[  971.864126] (load_module) from [<803948b0>] (sys_init_module+0x134/0x17c)
-[  971.871852] (sys_init_module) from [<80301000>] (ret_fast_syscall+0x0/0x50)
-
-Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.6.0.1-00760-QCAHKSWPL_SILICONZ-1
-
-Signed-off-by: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
+Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
+Signed-off-by: Anilkumar Kolli <quic_akolli@quicinc.com>
 ---
- drivers/net/wireless/ath/ath11k/ahb.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/net/wireless/ath/ath11k/debugfs.h | 1 +
+ drivers/net/wireless/ath/ath11k/dp_rx.c   | 7 +++++--
+ 2 files changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index 3fcec42..f407d4a 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.c
-+++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -391,6 +391,8 @@ static void ath11k_ahb_free_ext_irq(struct ath11k_base *ab)
+diff --git a/drivers/net/wireless/ath/ath11k/debugfs.h b/drivers/net/wireless/ath/ath11k/debugfs.h
+index 4c0740394c95..71525d786bdf 100644
+--- a/drivers/net/wireless/ath/ath11k/debugfs.h
++++ b/drivers/net/wireless/ath/ath11k/debugfs.h
+@@ -88,6 +88,7 @@ enum ath11k_pktlog_mode {
+ };
  
- 		for (j = 0; j < irq_grp->num_irq; j++)
- 			free_irq(ab->irq_num[irq_grp->irqs[j]], irq_grp);
-+
-+		netif_napi_del(&irq_grp->napi);
- 	}
- }
+ enum ath11k_pktlog_enum {
++	ATH11K_PKTLOG_TYPE_INVALID      = 0,
+ 	ATH11K_PKTLOG_TYPE_TX_CTRL      = 1,
+ 	ATH11K_PKTLOG_TYPE_TX_STAT      = 2,
+ 	ATH11K_PKTLOG_TYPE_TX_MSDU_ID   = 3,
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 89b77b94bb20..99dc9b5bbf4b 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -5054,7 +5054,7 @@ int ath11k_dp_rx_process_mon_status(struct ath11k_base *ab, int mac_id,
+ 	struct ath11k_sta *arsta;
+ 	int num_buffs_reaped = 0;
+ 	u32 rx_buf_sz;
+-	u16 log_type = 0;
++	u16 log_type;
+ 	struct ath11k_mon_data *pmon = (struct ath11k_mon_data *)&ar->dp.mon_data;
+ 	struct ath11k_pdev_mon_stats *rx_mon_stats = &pmon->rx_mon_stats;
+ 	struct hal_rx_mon_ppdu_info *ppdu_info = &pmon->mon_ppdu_info;
+@@ -5076,9 +5076,12 @@ int ath11k_dp_rx_process_mon_status(struct ath11k_base *ab, int mac_id,
+ 		} else if (ath11k_debugfs_is_pktlog_rx_stats_enabled(ar)) {
+ 			log_type = ATH11K_PKTLOG_TYPE_RX_STATBUF;
+ 			rx_buf_sz = DP_RX_BUFFER_SIZE;
++		} else {
++			log_type = ATH11K_PKTLOG_TYPE_INVALID;
++			rx_buf_sz = 0;
+ 		}
  
+-		if (log_type)
++		if (log_type != ATH11K_PKTLOG_TYPE_INVALID)
+ 			trace_ath11k_htt_rxdesc(ar, skb->data, log_type, rx_buf_sz);
+ 
+ 		hal_status = ath11k_hal_rx_parse_mon_status(ab, ppdu_info, skb);
 -- 
 2.7.4
 
