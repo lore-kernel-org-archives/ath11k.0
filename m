@@ -4,67 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA0E4C433EF
-	for <ath11k@archiver.kernel.org>; Thu, 27 Jan 2022 05:34:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBE81C433EF
+	for <ath11k@archiver.kernel.org>; Thu, 27 Jan 2022 09:01:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=U9jvcaOlzoBW0VVKmBkT3gOODLT4Z6OeWFrFAswgjqU=; b=P9aYd0FHSNtQ0g
-	FokNxAIhTmcCMXlYUNYgi4cjB4aE7GNK5PWxOaAQFSLgi0DCaryXDZZmHcreiy439F5xtLDiZeh0B
-	GOWYd8bV2zssVHSwJxi+MrtRWey3bcDDPyBOo1CpbplvgRZQerEVrgRMpPqSfSGgpHMtVRWjaG3Ie
-	hv+7p4TJ4AVkojAhqzPj27cib+OVH9Y+DQLdzTOajoosJG5K/lSSCb/06Q96HxaC6ja/P/igHKy8c
-	yihrHUsMcTivkobT4zgb1YAP1yEvxOE4F7KH4DBkY6nTi34V6owXKX266qBlBYIIkY2uWackCBHH2
-	Bx85qSygYySIn3tJBAFg==;
+	List-Owner; bh=ve9uxz9f5QCUZmNg80psuaLOMR8jWjskEAGaqdKL0J4=; b=WvPU5woaPJ3Kyr
+	UABG4wMKVQDuaOJ96oAMAKJjp8rZDjj/rXSlGJEuyy3u6Iz5m+bl5f8eZVfoxgNKpImBtrbnwFVe4
+	9UvPXNuvT+UKkamJ3GPIfEoh6nIBZrXC4WNhQkV/TrhV3Q0hRAPK8JKvcDMH52yuHPwsCvnnbicta
+	BOOkFL4H2WBTNmz3whvzFpQ87C0qItcfaEgrfbdQaR3DC/4QOsbhSO1qQqNgeykxv7UgoRLEseX9Q
+	0v2D372lrJDHsxlVu3pnpBpYv+/T83e99CJYIq4MCvDwG4MKS3GVVefQwQFK5CXN2foOGW862gveL
+	NncYG74/J1SE/2ZB+mHg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nCxQ6-00EPbR-Tb; Thu, 27 Jan 2022 05:34:06 +0000
-Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38])
+	id 1nD0ek-00Emx3-PL; Thu, 27 Jan 2022 09:01:26 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nCxQ0-00EPYv-RL
- for ath11k@lists.infradead.org; Thu, 27 Jan 2022 05:34:05 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1643261640; x=1674797640;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version;
- bh=C9hybfjz3O5SrsNPjxfvX3x7M20YzPYpPTsIwWwHwLQ=;
- b=Agh0k5NqoIcoKScBYBc4JG0TeYY1oD9v/i3Y2DIG5aMYSDaCiOIja7vM
- 9oPwzrmY7elpym+iVg6xbBpNGMcIL+z67qssKuT5WSDo3QSLVerupReaI
- Jv7M2wxMMDUfjSyEMiBCvlPR+IRbDmdsD6VLwW/DwrSyOUmd7FyRP9CKo o=;
-Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
- by alexa-out-sd-01.qualcomm.com with ESMTP; 26 Jan 2022 21:34:00 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2022 21:34:00 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Wed, 26 Jan 2022 21:34:00 -0800
-Received: from mpubbise-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Wed, 26 Jan 2022 21:33:57 -0800
-From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, Manikanta Pubbisetty
- <quic_mpubbise@quicinc.com>
-Subject: [PATCH RFC 8/8] ath11k: Add Coredump support of MSA region for WCN6750
-Date: Thu, 27 Jan 2022 11:03:29 +0530
-Message-ID: <1643261609-13500-9-git-send-email-quic_mpubbise@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1643261609-13500-1-git-send-email-quic_mpubbise@quicinc.com>
-References: <1643261609-13500-1-git-send-email-quic_mpubbise@quicinc.com>
+ id 1nD0ei-00Emvl-3l
+ for ath11k@lists.infradead.org; Thu, 27 Jan 2022 09:01:25 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 9FF2E61B47
+ for <ath11k@lists.infradead.org>; Thu, 27 Jan 2022 09:01:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 719C1C340E6;
+ Thu, 27 Jan 2022 09:01:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1643274083;
+ bh=4YjLI8Xffej2SauOmlHVDCfYAMkpKJHzByVNO9Zq4Zk=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=bMjtusyko2bl1dV5B9vJ3/uifWdeP+BVtG1DuiB3aDIEqwVT0XbyZPvcSVnX1AeKo
+ P3eUiLXqogw0LVpO45qjuHeWYePpOGf/ksauazMAQ6HkeOy8bLdaB4B1NWzWf40xF6
+ 5tlsi6upYwzxSr4EQs0dJ4UMprbsd7FJDEMaDz0nJV873KAj3Vlkv/RmjeAXsDHxC8
+ YY+aM4El37iB3B2+MECdUln1XCt1aYgUhMVP6iXKreJ+fBS12bEv300dca0cjshgzz
+ 6AAuBpwLbI45MytQihxSF5XhYlWe/mhtzGaCmq2WYS3gvFUFVBF+WQte9wg+fllHKD
+ DdEKikFzD8mcQ==
+From: Kalle Valo <kvalo@kernel.org>
+To: ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org
+Subject: [PATCH 2/2] ath11k: mhi: use mhi_sync_power_up()
+Date: Thu, 27 Jan 2022 11:01:17 +0200
+Message-Id: <20220127090117.2024-2-kvalo@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20220127090117.2024-1-kvalo@kernel.org>
+References: <20220127090117.2024-1-kvalo@kernel.org>
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220126_213400_951261_2985356B 
-X-CRM114-Status: GOOD (  26.51  )
+X-CRM114-CacheID: sfid-20220127_010124_258241_A9E80FF6 
+X-CRM114-Status: GOOD (  16.14  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,400 +71,82 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-In the context of WCN6750, MSA is a 12MB reserved memory region
-entirely used by WCN6750 firmware for it's operation. This memory
-carries useful information required to debug firmware/hardware
-issues. Therefore add coredump support to dump MSA region during
-FW assert for WCN6750.
+From: Kalle Valo <quic_kvalo@quicinc.com>
 
-Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00573-QCAMSLSWPLZ-1
+If amss.bin was missing ath11k would crash during 'rmmod ath11k_pci'. The
+reason for that was that we were using mhi_async_power_up() which does not
+check any errors. But mhi_sync_power_up() on the other hand does check for
+errors so let's use that to fix the crash.
 
-Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+I was not able to find a reason why an async version was used. This call ends
+is called from ath11k_hif_power_up() which can sleep, so sync version should be
+safe to use.
+
+[  145.569731] general protection fault, probably for non-canonical address 0xdffffc0000000000: 0000 [#1] PREEMPT SMP DEBUG_PAGEALLOC KASAN PTI
+[  145.569789] KASAN: null-ptr-deref in range [0x0000000000000000-0x0000000000000007]
+[  145.569843] CPU: 2 PID: 1628 Comm: rmmod Kdump: loaded Tainted: G        W         5.16.0-wt-ath+ #567
+[  145.569898] Hardware name: Intel(R) Client Systems NUC8i7HVK/NUC8i7HVB, BIOS HNKBLi70.86A.0067.2021.0528.1339 05/28/2021
+[  145.569956] RIP: 0010:ath11k_hal_srng_access_begin+0xb5/0x2b0 [ath11k]
+[  145.570028] Code: df 48 89 fa 48 c1 ea 03 80 3c 02 00 0f 85 ec 01 00 00 48 8b ab a8 00 00 00 48 b8 00 00 00 00 00 fc ff df 48 89 ea 48 c1 ea 03 <0f> b6 14 02 48 89 e8 83 e0 07 83 c0 03 45 85 ed 75 48 38 d0 7c 08
+[  145.570089] RSP: 0018:ffffc900025d7ac0 EFLAGS: 00010246
+[  145.570144] RAX: dffffc0000000000 RBX: ffff88814fca2dd8 RCX: 1ffffffff50cb455
+[  145.570196] RDX: 0000000000000000 RSI: ffff88814fca2dd8 RDI: ffff88814fca2e80
+[  145.570252] RBP: 0000000000000000 R08: 0000000000000000 R09: ffffffffa8659497
+[  145.570329] R10: fffffbfff50cb292 R11: 0000000000000001 R12: ffff88814fca0000
+[  145.570410] R13: 0000000000000000 R14: ffff88814fca2798 R15: ffff88814fca2dd8
+[  145.570465] FS:  00007fa399988540(0000) GS:ffff888233e00000(0000) knlGS:0000000000000000
+[  145.570519] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  145.570571] CR2: 00007fa399b51421 CR3: 0000000137898002 CR4: 00000000003706e0
+[  145.570623] Call Trace:
+[  145.570675]  <TASK>
+[  145.570727]  ? ath11k_ce_tx_process_cb+0x34b/0x860 [ath11k]
+[  145.570797]  ath11k_ce_tx_process_cb+0x356/0x860 [ath11k]
+[  145.570864]  ? tasklet_init+0x150/0x150
+[  145.570919]  ? ath11k_ce_alloc_pipes+0x280/0x280 [ath11k]
+[  145.570986]  ? tasklet_clear_sched+0x42/0xe0
+[  145.571042]  ? tasklet_kill+0xe9/0x1b0
+[  145.571095]  ? tasklet_clear_sched+0xe0/0xe0
+[  145.571148]  ? irq_has_action+0x120/0x120
+[  145.571202]  ath11k_ce_cleanup_pipes+0x45a/0x580 [ath11k]
+[  145.571270]  ? ath11k_pci_stop+0x10e/0x170 [ath11k_pci]
+[  145.571345]  ath11k_core_stop+0x8a/0xc0 [ath11k]
+[  145.571434]  ath11k_core_deinit+0x9e/0x150 [ath11k]
+[  145.571499]  ath11k_pci_remove+0xd2/0x260 [ath11k_pci]
+[  145.571553]  pci_device_remove+0x9a/0x1c0
+[  145.571605]  __device_release_driver+0x332/0x660
+[  145.571659]  driver_detach+0x1e7/0x2c0
+[  145.571712]  bus_remove_driver+0xe2/0x2d0
+[  145.571772]  pci_unregister_driver+0x21/0x250
+[  145.571826]  __do_sys_delete_module+0x30a/0x4b0
+[  145.571879]  ? free_module+0xac0/0xac0
+[  145.571933]  ? lockdep_hardirqs_on_prepare.part.0+0x18c/0x370
+[  145.571986]  ? syscall_enter_from_user_mode+0x1d/0x50
+[  145.572039]  ? lockdep_hardirqs_on+0x79/0x100
+[  145.572097]  do_syscall_64+0x3b/0x90
+[  145.572153]  entry_SYSCALL_64_after_hwframe+0x44/0xae
+
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03003-QCAHSPSWPL_V1_V2_SILICONZ_LITE-2
+
+Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 ---
- drivers/net/wireless/ath/ath11k/Kconfig    |  1 +
- drivers/net/wireless/ath/ath11k/Makefile   |  1 +
- drivers/net/wireless/ath/ath11k/ahb.c      | 85 ++++++++++++++++++++++++++++-
- drivers/net/wireless/ath/ath11k/ahb.h      |  8 ++-
- drivers/net/wireless/ath/ath11k/coredump.c | 87 ++++++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/coredump.h | 71 ++++++++++++++++++++++++
- 6 files changed, 251 insertions(+), 2 deletions(-)
- create mode 100644 drivers/net/wireless/ath/ath11k/coredump.c
- create mode 100644 drivers/net/wireless/ath/ath11k/coredump.h
+ drivers/net/wireless/ath/ath11k/mhi.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/Kconfig b/drivers/net/wireless/ath/ath11k/Kconfig
-index ad5cc6c..96074f5 100644
---- a/drivers/net/wireless/ath/ath11k/Kconfig
-+++ b/drivers/net/wireless/ath/ath11k/Kconfig
-@@ -5,6 +5,7 @@ config ATH11K
- 	depends on CRYPTO_MICHAEL_MIC
- 	select ATH_COMMON
- 	select QCOM_QMI_HELPERS
-+	select WANT_DEV_COREDUMP
- 	help
- 	  This module adds support for Qualcomm Technologies 802.11ax family of
- 	  chipsets.
-diff --git a/drivers/net/wireless/ath/ath11k/Makefile b/drivers/net/wireless/ath/ath11k/Makefile
-index e3ea6a2..ec3c394 100644
---- a/drivers/net/wireless/ath/ath11k/Makefile
-+++ b/drivers/net/wireless/ath/ath11k/Makefile
-@@ -24,6 +24,7 @@ ath11k-$(CONFIG_NL80211_TESTMODE) += testmode.o
- ath11k-$(CONFIG_ATH11K_TRACING) += trace.o
- ath11k-$(CONFIG_THERMAL) += thermal.o
- ath11k-$(CONFIG_ATH11K_SPECTRAL) += spectral.o
-+ath11k-$(CONFIG_DEV_COREDUMP) += coredump.o
- 
- obj-$(CONFIG_ATH11K_AHB) += ath11k_ahb.o
- ath11k_ahb-y += ahb.o pci_cmn.o
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index fd3bb43..83b1da8 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.c
-+++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -15,7 +15,9 @@
- #include "debug.h"
- #include "hif.h"
- #include <linux/remoteproc.h>
-+#include <linux/remoteproc/qcom_rproc.h>
- #include "pci_cmn.h"
-+#include "coredump.h"
- 
- static const struct of_device_id ath11k_ahb_of_match[] = {
- 	/* TODO: Should we change the compatible string to something similar
-@@ -777,6 +779,74 @@ static int ath11k_ahb_setup_resources(struct ath11k_base *ab)
- 	return 0;
- }
- 
-+static void ath11k_ahb_coredump_msa(struct ath11k_base *ab)
-+{
-+	struct ath11k_ahb *ab_ahb = ath11k_ahb_priv(ab);
-+	struct ath11k_msa_dump msa_data;
-+
-+	msa_data.paddr = ab_ahb->fw.msa_paddr;
-+	msa_data.vaddr = ab_ahb->fw.msa_vaddr;
-+	msa_data.size = ab_ahb->fw.msa_size;
-+
-+	ath11k_coredump_msa(ab, &msa_data);
-+}
-+
-+static int ath11k_ahb_ssr_notifier(struct notifier_block *nb,
-+				   unsigned long action, void *data)
-+{
-+	struct ath11k_ahb *ab_ahb = container_of(nb, struct ath11k_ahb, nb);
-+	struct ath11k_base *ab = ab_ahb->ab;
-+	struct qcom_ssr_notify_data *notify_data = data;
-+
-+	switch (action) {
-+	case QCOM_SSR_BEFORE_POWERUP:
-+		break;
-+	case QCOM_SSR_AFTER_POWERUP:
-+		break;
-+	case QCOM_SSR_BEFORE_SHUTDOWN:
-+		if (notify_data->crashed)
-+			ath11k_ahb_coredump_msa(ab);
-+		break;
-+	case QCOM_SSR_AFTER_SHUTDOWN:
-+		break;
-+	default:
-+		ath11k_err(ab, "received unrecognized event %lu\n", action);
-+		break;
-+	}
-+
-+	return NOTIFY_OK;
-+}
-+
-+static int ath11k_ahb_register_ssr_notifier(struct ath11k_base *ab)
-+{
-+	struct ath11k_ahb *ab_ahb = ath11k_ahb_priv(ab);
-+	void *notifier;
-+	int ret;
-+
-+	ab_ahb->nb.notifier_call = ath11k_ahb_ssr_notifier;
-+
-+	notifier = qcom_register_ssr_notifier("wpss", &ab_ahb->nb);
-+	if (IS_ERR(notifier)) {
-+		ret = PTR_ERR(notifier);
-+		ath11k_err(ab, "failed to initialize SSR notifier: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ab_ahb->notifier = notifier;
-+
-+	return 0;
-+}
-+
-+static void ath11k_ahb_unregister_ssr_notifier(struct ath11k_base *ab)
-+{
-+	struct ath11k_ahb *ab_ahb = ath11k_ahb_priv(ab);
-+	int ret;
-+
-+	ret = qcom_unregister_ssr_notifier(ab_ahb->notifier, &ab_ahb->nb);
-+	if (ret)
-+		ath11k_err(ab, "error %d unregistering notifier\n", ret);
-+}
-+
- static int ath11k_ahb_setup_msa_resources(struct ath11k_base *ab)
- {
- 	struct ath11k_ahb *ab_ahb = ath11k_ahb_priv(ab);
-@@ -798,6 +868,14 @@ static int ath11k_ahb_setup_msa_resources(struct ath11k_base *ab)
- 
- 	ab_ahb->fw.msa_paddr = r.start;
- 	ab_ahb->fw.msa_size = resource_size(&r);
-+	ab_ahb->fw.msa_vaddr = devm_memremap(dev, ab_ahb->fw.msa_paddr,
-+					     ab_ahb->fw.msa_size,
-+					     MEMREMAP_WT);
-+	if (IS_ERR(ab_ahb->fw.msa_vaddr)) {
-+		dev_err(dev, "failed to map memory region: %pa\n",
-+			&r.start);
-+		return PTR_ERR(ab_ahb->fw.msa_vaddr);
-+	}
- 
- 	node = of_parse_phandle(dev->of_node, "memory-region", 1);
- 	if (!node)
-@@ -813,7 +891,7 @@ static int ath11k_ahb_setup_msa_resources(struct ath11k_base *ab)
- 	ab_ahb->fw.ce_paddr = r.start;
- 	ab_ahb->fw.ce_size = resource_size(&r);
- 
--	return 0;
-+	return ath11k_ahb_register_ssr_notifier(ab);
- }
- 
- static int ath11k_ahb_fw_resources_init(struct ath11k_base *ab)
-@@ -917,6 +995,8 @@ static int ath11k_ahb_fw_resource_deinit(struct ath11k_base *ab)
- 	if (ab_ahb->fw.use_tz)
- 		return 0;
- 
-+	ath11k_ahb_unregister_ssr_notifier(ab);
-+
- 	iommu = ab_ahb->fw.iommu_domain;
- 
- 	unmapped_size = iommu_unmap(iommu, ab_ahb->fw.msa_paddr, ab_ahb->fw.msa_size);
-@@ -940,6 +1020,7 @@ static int ath11k_ahb_fw_resource_deinit(struct ath11k_base *ab)
- static int ath11k_ahb_probe(struct platform_device *pdev)
- {
- 	struct ath11k_base *ab;
-+	struct ath11k_ahb *ab_ahb;
- 	const struct of_device_id *of_id;
- 	const struct ath11k_bus_params *bus_params;
- 	const struct ath11k_hif_ops *hif_ops;
-@@ -986,6 +1067,8 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
- 	ab->pdev = pdev;
- 	ab->hw_rev = hw_rev;
- 	platform_set_drvdata(pdev, ab);
-+	ab_ahb = ath11k_ahb_priv(ab);
-+	ab_ahb->ab = ab;
- 
- 	ret = ath11k_ahb_setup_resources(ab);
- 	if (ret)
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.h b/drivers/net/wireless/ath/ath11k/ahb.h
-index 4c7872d..efb72eb 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.h
-+++ b/drivers/net/wireless/ath/ath11k/ahb.h
-@@ -1,11 +1,12 @@
- /* SPDX-License-Identifier: BSD-3-Clause-Clear */
- /*
-  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
-- * Copyright (c) 2021, Qualcomm Innovation Center, Inc. All rights reserved.
-+ * Copyright (c) 2021-2022, Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- #ifndef ATH11K_AHB_H
- #define ATH11K_AHB_H
- 
-+#include <linux/notifier.h>
- #include "core.h"
- 
- #define ATH11K_AHB_RECOVERY_TIMEOUT (3 * HZ)
-@@ -13,15 +14,20 @@ struct ath11k_base;
- 
- struct ath11k_ahb {
- 	struct rproc *tgt_rproc;
-+	struct ath11k_base *ab;
- 	struct {
- 		struct device *dev;
- 		struct iommu_domain *iommu_domain;
- 		dma_addr_t msa_paddr;
- 		u32 msa_size;
-+		void *msa_vaddr;
- 		dma_addr_t ce_paddr;
- 		u32 ce_size;
- 		bool use_tz;
- 	} fw;
-+
-+	struct notifier_block nb;
-+	void *notifier;
- };
- 
- static inline struct ath11k_ahb *ath11k_ahb_priv(struct ath11k_base *ab)
-diff --git a/drivers/net/wireless/ath/ath11k/coredump.c b/drivers/net/wireless/ath/ath11k/coredump.c
-new file mode 100644
-index 0000000..247ac26
---- /dev/null
-+++ b/drivers/net/wireless/ath/ath11k/coredump.c
-@@ -0,0 +1,87 @@
-+// SPDX-License-Identifier: BSD-3-Clause-Clear
-+/*
-+ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
-+ */
-+
-+#include <linux/devcoredump.h>
-+#include <linux/dma-direction.h>
-+#include <linux/mm.h>
-+#include <linux/uuid.h>
-+#include <linux/time.h>
-+#include "core.h"
-+#include "coredump.h"
-+#include "debug.h"
-+
-+static void ath11k_coredump_update_hdr(struct ath11k_base *ab,
-+				       struct ath11k_dump_file_data *file_data,
-+				       size_t header_size)
-+{
-+	struct timespec64 timestamp;
-+
-+	strscpy(file_data->df_magic, "ATH11K-FW-DUMP",
-+		sizeof(file_data->df_magic));
-+	file_data->len = cpu_to_le32(header_size);
-+	file_data->version = cpu_to_le32(ATH11K_FW_CRASH_DUMP_VERSION);
-+	guid_gen(&file_data->guid);
-+	ktime_get_real_ts64(&timestamp);
-+	file_data->tv_sec = cpu_to_le64(timestamp.tv_sec);
-+	file_data->tv_nsec = cpu_to_le64(timestamp.tv_nsec);
-+}
-+
-+void ath11k_coredump_msa(struct ath11k_base *ab,
-+			 struct ath11k_msa_dump *msa_data)
-+{
-+	struct ath11k_dump_segment *segment;
-+	struct ath11k_dump_file_data *file_data;
-+	size_t header_size;
-+	int ret;
-+	u8 *buf, *dump;
-+
-+	segment = vzalloc(sizeof(*segment));
-+	if (!segment)
-+		return;
-+
-+	header_size = sizeof(struct ath11k_dump_file_data);
-+	header_size += sizeof(*segment);
-+	header_size = PAGE_ALIGN(header_size);
-+	buf = vzalloc(header_size);
-+	if (!buf) {
-+		vfree(segment);
-+		return;
-+	}
-+
-+	file_data = (struct ath11k_dump_file_data *)buf;
-+
-+	ath11k_coredump_update_hdr(ab, file_data, header_size);
-+
-+	file_data->num_seg = cpu_to_le32(1);
-+	file_data->seg_size = cpu_to_le32(sizeof(*segment));
-+
-+	/* copy segment details to file */
-+	buf += offsetof(struct ath11k_dump_file_data, seg);
-+	file_data->seg = (struct ath11k_dump_segment *)buf;
-+
-+	segment->addr = msa_data->paddr;
-+	segment->vaddr = msa_data->vaddr;
-+	segment->len = msa_data->size;
-+	segment->type = ATH11K_FW_MSA_DUMP_DATA;
-+
-+	memcpy(file_data->seg, segment, sizeof(*segment));
-+
-+	dump = vzalloc(header_size + segment->len);
-+	if (!dump) {
-+		ret = -ENOMEM;
-+		ath11k_err(ab, "failed to allocate memory for msa dump %d\n", ret);
-+		goto err_alloc_fail;
-+	}
-+
-+	memcpy(dump, (void *)file_data, header_size);
-+	memcpy(dump + header_size, segment->vaddr, segment->len);
-+
-+	dev_coredumpv(ab->dev, dump, header_size + segment->len,
-+		      GFP_KERNEL);
-+err_alloc_fail:
-+	vfree(file_data);
-+	vfree(segment);
-+}
-+EXPORT_SYMBOL(ath11k_coredump_msa);
-diff --git a/drivers/net/wireless/ath/ath11k/coredump.h b/drivers/net/wireless/ath/ath11k/coredump.h
-new file mode 100644
-index 0000000..ad7ecf2
---- /dev/null
-+++ b/drivers/net/wireless/ath/ath11k/coredump.h
-@@ -0,0 +1,71 @@
-+/* SPDX-License-Identifier: BSD-3-Clause-Clear
-+ *
-+ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
-+ */
-+
-+#ifndef _COREDUMP_H_
-+#define _COREDUMP_H_
-+
-+#define ATH11K_FW_CRASH_DUMP_VERSION 1
-+
-+enum ath11k_fw_crash_dump_type {
-+	ATH11K_FW_MSA_DUMP_DATA,
-+	ATH11K_FW_CRASH_DUMP_MAX,
-+};
-+
-+struct ath11k_dump_segment {
-+	unsigned long addr;
-+	u32 *vaddr;
-+	unsigned int len;
-+	unsigned int type;
-+};
-+
-+struct ath11k_dump_file_data {
-+	/* "ATH11K-FW-DUMP" */
-+	char df_magic[16];
-+	__le32 len;
-+	/* file dump version */
-+	__le32 version;
-+	/* pci device id */
-+	__le32 chip_id;
-+	guid_t guid;
-+	/* time-of-day stamp */
-+	__le64 tv_sec;
-+	/* time-of-day stamp, nano-seconds */
-+	__le64 tv_nsec;
-+	/* room for growth w/out changing binary format */
-+	u8 unused[8];
-+	/* number of segments */
-+	__le32 num_seg;
-+	/* ath11k_dump_segment struct size */
-+	__le32 seg_size;
-+
-+	struct ath11k_dump_segment *seg;
-+	/* struct ath11k_dump_segment + more */
-+
-+	u8 data[];
-+} __packed;
-+
-+struct ath11k_coredump_state {
-+	struct ath11k_dump_file_data *header;
-+	struct ath11k_dump_segment *segments;
-+	u32 num_seg;
-+};
-+
-+struct ath11k_msa_dump {
-+	u64 paddr;
-+	u32 *vaddr;
-+	u64 size;
-+};
-+
-+#ifdef CONFIG_DEV_COREDUMP
-+void ath11k_coredump_msa(struct ath11k_base *ab,
-+			 struct ath11k_msa_dump *msa_data);
-+#else
-+static inline void
-+ath11k_coredump_msa(struct ath11k_base *ab,
-+		    struct ath11k_msa_dump *msa_data)
-+{
-+}
-+#endif /* CONFIG_DEV_COREDUMP */
-+#endif /* _COREDUMP_H_ */
+diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
+index cccaa348cf21..8b2143802816 100644
+--- a/drivers/net/wireless/ath/ath11k/mhi.c
++++ b/drivers/net/wireless/ath/ath11k/mhi.c
+@@ -561,7 +561,7 @@ static int ath11k_mhi_set_state(struct ath11k_pci *ab_pci,
+ 		ret = 0;
+ 		break;
+ 	case ATH11K_MHI_POWER_ON:
+-		ret = mhi_async_power_up(ab_pci->mhi_ctrl);
++		ret = mhi_sync_power_up(ab_pci->mhi_ctrl);
+ 		break;
+ 	case ATH11K_MHI_POWER_OFF:
+ 		mhi_power_down(ab_pci->mhi_ctrl, true);
 -- 
-2.7.4
+2.20.1
 
 
 -- 
