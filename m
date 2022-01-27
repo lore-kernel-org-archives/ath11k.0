@@ -4,67 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1393DC5DF62
-	for <ath11k@archiver.kernel.org>; Wed, 26 Jan 2022 11:14:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC1E6C433EF
+	for <ath11k@archiver.kernel.org>; Thu, 27 Jan 2022 05:25:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Cc:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=/h1UBMhjdrEzC8Ozp4T2oay3Z4YEvs1OctsN8JqUYuc=; b=IhiAS57gQMWvpwrLK44FpEsstV
-	tLEvSWQ05YYfei20zz5uawVJVQ1jHqLuzL63oREmynpo3LBS08IrHJwwEJl4OVpv86knRjHaL8rTE
-	32IptyD18NOhNBzWeQyFNTFTjC7vlUq8vyet2kwq0fS4QPGpCBdeEon2bk9EILylCp6/YxDX8GtFQ
-	DDdACa2hq4hJWuNjgcIAkDNVckoF9tAuYe8m86LrJBPD30JY5vU2DtkfUK6aYZi4LkegoIgGNNGnT
-	Ww6YBhlzePLv68jlkyBEMv6yGQEhSE6C9Wkb1dg1bh0Ol8jmLBS7vjYp9sbfaIcKHkZmhz3eOC00L
-	ti2KfLkg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=+kqqpCBNnhfzcy7oyFdaTl6dhl9mXK8SPJZMjjwq1aM=; b=1DEpujhMYwc3q3
+	U03Jji3KtO/nRSYu5c2B8DadwHtezi3NQKLxSDVApuYTA14v5d1SuxLh4WdK/0p9e9OtpeA34zbMl
+	UhQSvPehJSkrciIQ4pua5kpDi//y/K6+LDb8qF7zD8md87ER7u1XLBDjTnF0fA/GtAln1iTX0tNrH
+	cO3+GsFw1CWPp7r1zRX5LqpCHuUg3sZK+BJl+jemQ3vhIBe31dDdqWmbHhchVr9gHbCH7lSJjzw72
+	GSmfdeQObuVQGc84B/CP5BUNzMT7+sNb7ZAexQR646bmJ/MNDR2khN3ZH9rbgx9YzXt6DQ6QZYgOw
+	WZ1f5ZW6bWVgn7W8cKdw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nCgGM-00BQBd-8H; Wed, 26 Jan 2022 11:14:54 +0000
-Received: from mail-yb1-xb2e.google.com ([2607:f8b0:4864:20::b2e])
+	id 1nCxHh-00EOSv-NP; Thu, 27 Jan 2022 05:25:25 +0000
+Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nCg5S-00BNnt-6v
- for ath11k@lists.infradead.org; Wed, 26 Jan 2022 11:03:39 +0000
-Received: by mail-yb1-xb2e.google.com with SMTP id g14so70104427ybs.8
- for <ath11k@lists.infradead.org>; Wed, 26 Jan 2022 03:03:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
- bh=wHYKFbK5Q7MLfCPJxsj4JQ8RKTu7YkEcm72TlmcK6Ro=;
- b=f/NqX/mvsWd5gDOT4nX7CCTY5dk/jBajFMOVkLH7fwpfUE/R7JVIbNxzxYI6DSEJcD
- dRmH/5NOmPlNhNGI0PKZyNMl2cznQNwPlO+Dsrq12rpnjre0gjwvhDHTqh531u26isLR
- IdBzs8JaW4HjHEhF0UtgQrh2W71vlal0lxrn86kaiDXkNI6nIJELFRaUZVK2PuPUEWsF
- V01qgdUg43p8WGTE4arg9wzSIRuLkv9qANQi7XZe3z+KiY1m7lLf8PtSDT+I5kMnsIG3
- uEmpsGKlzQE9Q5yDzfe63IIccqimsss88ThJmb7XF76ICjHnrP/QJLdVkS5cjnhsGa+1
- I7sg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to;
- bh=wHYKFbK5Q7MLfCPJxsj4JQ8RKTu7YkEcm72TlmcK6Ro=;
- b=2gP4+G8FIk428dJb7a1mzqIAji7Jx8fdCYr2YSn+8rfS5fTX8tPoln47PV0FoI2Bt6
- mWjm0VzdeRg3CO+YVg2BjAFg3HEwI8QFHjfbt6X2TNrThkBq3OTB+FOsoV9ty1SH4k1X
- xSCUJ7kS1Gdg2Xx3hFxZnMtQ/OkjDFlzRqeoBYsAxlZ75Llhn2O9rccGPdKvNUrSgnkC
- w25C7mBTfBidbArkyrja5PT5DszsbSlTLhuoclsQSnefD8SNtCmT0I84RQS9v9Ml1l5y
- 9+4j686hE41k9gg4bsjVKYNbzp6ePXkz/mVcNYLzPGF3u6b1VTX3vSy97sj59mHI44AO
- YiJg==
-X-Gm-Message-State: AOAM5335IuWhNezouzi20mcMmgvLTgJ/5iP7PALEl6bU9dxMFxkKESll
- N1r4HnyPj2e8MyRuiLzVL/s+3f50n+Ew6I0SQxvpO4dQcNQS5Q==
-X-Google-Smtp-Source: ABdhPJwMhB217la3iTysYWQt0PIHtw/09zUbO1g54krtCSbQFXt0N94EU/YubOnDHlgqod4pDD2/nGDPjH/gp9crAC8=
-X-Received: by 2002:a5b:5c5:: with SMTP id w5mr7944071ybp.7.1643195014163;
- Wed, 26 Jan 2022 03:03:34 -0800 (PST)
+ id 1nCxHe-00EOSL-Qb
+ for ath11k@lists.infradead.org; Thu, 27 Jan 2022 05:25:24 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+ t=1643261122; x=1674797122;
+ h=from:to:cc:subject:date:message-id:mime-version;
+ bh=1jFvZWQjavY+CPDhnHeG5LR9GlHQDdSOlwVOgyyZ/jk=;
+ b=JVWBhl4M4lGAniTxlpCevdV3XHkpKG8CX5gAhnbBGuKn5pwSlLpg46nT
+ TmSdN8nCnbI0LECgLLzuoTehPEyAVDXqDf/B73HYnniw+9BA6PAKJ4TWP
+ h+4yEA3zL7XHv8ze4XCL8y7exOVGc+iO/hofSMnyb0/2qt0zD9Z/yhpdy Y=;
+Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
+ by alexa-out-sd-01.qualcomm.com with ESMTP; 26 Jan 2022 21:25:21 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+ by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2022 21:25:21 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Wed, 26 Jan 2022 21:25:20 -0800
+Received: from mpubbise-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Wed, 26 Jan 2022 21:25:18 -0800
+From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, Manikanta Pubbisetty
+ <quic_mpubbise@quicinc.com>
+Subject: [PATCH 0/2] Add WoW support for WCN6750
+Date: Thu, 27 Jan 2022 10:54:51 +0530
+Message-ID: <1643261093-12400-1-git-send-email-quic_mpubbise@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-References: <CAGYwnb=p38NMpWY=wLiPRE7eUDfjE_SyNS9zQ9W7Nhpy6hn+WQ@mail.gmail.com>
-In-Reply-To: <CAGYwnb=p38NMpWY=wLiPRE7eUDfjE_SyNS9zQ9W7Nhpy6hn+WQ@mail.gmail.com>
-From: Patricio Ferraggi Ares <pattferraggi@gmail.com>
-Date: Wed, 26 Jan 2022 12:02:58 +0100
-Message-ID: <CAGYwnbnBjaNmS7aaSTXKtAbF1tKqeXTT_6tjka=5AS97c7Br8Q@mail.gmail.com>
-Subject: Fwd: AX500 support quirks
-To: ath11k@lists.infradead.org
-X-Bad-Reply: References and In-Reply-To but no 'Re:' in Subject.
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220126_030338_300310_E45DDC38 
-X-CRM114-Status: GOOD (  14.60  )
+X-CRM114-CacheID: sfid-20220126_212523_009230_C39123F9 
+X-CRM114-Status: UNSURE (   8.22  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,45 +79,30 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi,
+Add WoW support for WCN6750.
 
-My name is Patricio, I am a fellow software developer and user of the
-Dell XPS 9310 (AX500 version). First of all, I wanted to thank you for
-all your hard work bringing support for this model, thanks to you, I
-have been able to use my laptop with Linux almost since I got it.
+Manikanta Pubbisetty (2):
+  ath11k: Add WoW support for WCN6750
+  dt: bindings: net: add bindings to add WoW support for WCN6750
+---
+Note: This series is dependent on Carl's series adding WoW support
+      and another series adding support for WCN6750 in ATH11K.
+      https://patchwork.kernel.org/project/linux-wireless/list/?series=606880
+      https://patchwork.kernel.org/project/linux-wireless/list/?series=605793
 
-This is not a bug report in any way, I just would like to gain some
-knowledge on the subject and you might be the perfect person for my
-questions.
+ .../bindings/net/wireless/qcom,ath11k.yaml         |  17 +++
+ drivers/net/wireless/ath/ath11k/ahb.c              | 120 ++++++++++++++++++++-
+ drivers/net/wireless/ath/ath11k/ahb.h              |  15 ++-
+ drivers/net/wireless/ath/ath11k/core.c             |   9 +-
+ drivers/net/wireless/ath/ath11k/hw.h               |   3 +-
+ drivers/net/wireless/ath/ath11k/pci_cmn.c          |  34 +++++-
+ drivers/net/wireless/ath/ath11k/pci_cmn.h          |   6 +-
+ drivers/net/wireless/ath/ath11k/wow.c              |   8 ++
+ 8 files changed, 205 insertions(+), 7 deletions(-)
 
-I noticed that although all distros use the Linux kernel, support for
-this hardware is not the same across all Linux distros. To be more
-specific, Ubuntu-based distros have had working wifi and Bluetooth for
-almost a year now, although there are some problems like resuming from
-deep sleep,  both wifi and Bluetooth work right away on installation,
-at the moment I am using Pop OS with Linux kernel 5.15.5 as my main
-driver. On the other hand, arch-based distros dont' have working BT,
-as you can see here and here. The wifi is working but Bluetooth
-sometimes doesn't turn on and when it does it cannot properly connect
-to devices. This happens across multiple arch-based distros and kernel
-versions, even if I try kernel versions that work fine in PopOS, they
-don't in Arch.
+-- 
+2.7.4
 
-So finally, my questions:
-
-Why is there this inconsistency of support between distros when
-theoretically, they are all Linux?
-Why is it that if Arch is always updated, in this particular case
-their hardware support is lacking compared to ubuntu?
-And finally, do you have a working configuration with wifi and
-Bluetooth? if that is the case could you tell me your distro, kernel,
-firmware, system firmware versions?
-
-Sorry for the long email, I wanted to be as explicit as possible.
-Have a great day.
-
-Kind regards,
-Patricio Ferraggi Ares
 
 -- 
 ath11k mailing list
