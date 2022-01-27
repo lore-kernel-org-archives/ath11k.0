@@ -4,56 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8466C433FE
-	for <ath11k@archiver.kernel.org>; Thu, 27 Jan 2022 09:01:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6542C433EF
+	for <ath11k@archiver.kernel.org>; Thu, 27 Jan 2022 12:30:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=RQ3DgQQ0myXglhQZgM/gLLVcHpJWIfkBpkfSR2GHeeM=; b=rlyXJ6ItrwQRW0
-	wpb2vg+uWj7opc+nCTkiltTAPRewTvzpMswusHeob1Pe0A09qC3/S58imU5x2Pjipx0n+gfU4A/TZ
-	+FggmltioWZw5tiep2C/lOaq9mEyuor0ZXdBrlgejSuU03u3FfMrVf5ehW/X1e+ELnTSKj0/2vnN+
-	SVAGLhIhArWy/d3wjCcVhsRxFniY+h38NbZ1cXUmQ19dmnvAI053Fte203wcDODUPR3VwJ5XKKpg7
-	2McwcD64yLbS+3QeYo/Sq/cciqR8IRXMsCoDSyxy8+Z9SWI0hcRL6lqrdW5A8AWfImcISVNtHuf/S
-	tWQQcjONPUE/IFbHjuUg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=8+KbZBV63bXaPsbr2oPxvv/TXE2vneD18qmg5ar7EAQ=; b=J2rBrGQYjFsHW1
+	e1TAN6T9wdqqJ4bgns2eFJN2TwdYwj61+h70EYF7Vb/T6GbX0WIv5PZe/JEX8NFQ8qWhQYRc9zL6u
+	hBZZTItcyO1ZeNk4bAjQF54CISyQv+JTs3OmxqbXspG3k0uHZvdex39TVxR539ZmmhcBcx/D6obeK
+	XY+JH1qc6oC1/l1A/jm6o1UhWsuNf7uDL5upLUAYRb1PgcZfijXSZC4MgUwPahxzDSv9p1hc3xwcA
+	/bslw3R1WmeQIK2pQ5dAwG96go41JXHsgu/S19SWUwUTxNNz8m0ucjO8vRt+P6wXf8VIpBpVbPfff
+	Hw1vqT9ArvvBidAiW3ZA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nD0ek-00Emwl-9l; Thu, 27 Jan 2022 09:01:26 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1nD3v5-00Fi70-Ks; Thu, 27 Jan 2022 12:30:31 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nD0eh-00EmvX-Kc
- for ath11k@lists.infradead.org; Thu, 27 Jan 2022 09:01:25 +0000
+ id 1nD3ud-00Fhw9-V7
+ for ath11k@lists.infradead.org; Thu, 27 Jan 2022 12:30:05 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 870D261B06
- for <ath11k@lists.infradead.org>; Thu, 27 Jan 2022 09:01:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B7E1C340E4;
- Thu, 27 Jan 2022 09:01:21 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 909FCB821EE;
+ Thu, 27 Jan 2022 12:30:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFFE7C340E9;
+ Thu, 27 Jan 2022 12:30:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1643274082;
- bh=HZQFsC8qWdLVHadapLXqNNuM7TltFeIiRjUJbNl9I7Q=;
- h=From:To:Cc:Subject:Date:From;
- b=YIk9O5IfnvBhIbdpqjKhSUFWswNIAU03PFLIFBq93nbuaBP7bmnZBAVJePJx2+aiR
- GIRG0bvLwRdJdEflp2CbxiEXLcgHM1UYSfHGdWxqENtf1ysYxFyYHh2v5aHTqRfJ6a
- +adQ52bClnM/uB3YXA1lmCo5WioynSezq06eujAZYzC//9M4UEJNbqWmKDO0uqy0vl
- 1Muuu0ALGAOSvnvnTrz4/xhvBdpHIDUy2w43waCKN5FPB5wy0teHY5cT76J5yBei16
- gZpdVDLggTV7TtQ7NMQJj4Nj7v1tfa1icRXd+QcRSd3pdnhPK+kpzYgGQmOjHzi9WR
- dgw9JU5X1L+LA==
+ s=k20201202; t=1643286601;
+ bh=c8Q6vl6mVhC9lR0gqmUrp2kOdDMx017vcu6cmewFmJ0=;
+ h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+ b=TF7VxyLCA/m0YTgAhxkA9aijiLSYNEEDb0XTDvwmk9zskxfVjOSCAM8JrP//jteL0
+ y6Gz3EvPHiFOQerFnyz057E0li2sjgu5WGKL8V6TYl9OMj8yhlt6s3BbBwjwgFxhMM
+ JjpARlwWSGFw6o4C1BZ360rlaEMQKpQOQn19eNJ1z7+GsxCqKMKT5GJeJ5kdkmN+JF
+ iEc+nJuli87OhLL3Yi0ea6TzDx/EjzAPJ6iZ0K0Y3DoGlMzqCgL6Z/iYiEzCF2lGcQ
+ /7E3q/LpI4YkqNQkg0PmyRklorYAJhxAzztPq57zLxUrxFlEz/hRgELdWH/WbhRCkF
+ 0xKEtHJ2wwlCg==
 From: Kalle Valo <kvalo@kernel.org>
-To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
-Subject: [PATCH 1/2] ath11k: pci: fix crash on suspend if board file is not
- found
-Date: Thu, 27 Jan 2022 11:01:16 +0200
-Message-Id: <20220127090117.2024-1-kvalo@kernel.org>
-X-Mailer: git-send-email 2.20.1
+To: Patricio Ferraggi Ares <pattferraggi@gmail.com>
+Cc: ath11k@lists.infradead.org
+Subject: Re: Fwd: AX500 support quirks
+References: <CAGYwnb=p38NMpWY=wLiPRE7eUDfjE_SyNS9zQ9W7Nhpy6hn+WQ@mail.gmail.com>
+ <CAGYwnbnBjaNmS7aaSTXKtAbF1tKqeXTT_6tjka=5AS97c7Br8Q@mail.gmail.com>
+Date: Thu, 27 Jan 2022 14:29:55 +0200
+In-Reply-To: <CAGYwnbnBjaNmS7aaSTXKtAbF1tKqeXTT_6tjka=5AS97c7Br8Q@mail.gmail.com>
+ (Patricio Ferraggi Ares's message of "Wed, 26 Jan 2022 12:02:58
+ +0100")
+Message-ID: <87ilu5jr98.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220127_010123_806142_9C448E70 
-X-CRM114-Status: GOOD (  12.84  )
+X-CRM114-CacheID: sfid-20220127_043004_345881_F0B2B0E1 
+X-CRM114-Status: GOOD (  32.53  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,91 +74,64 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Kalle Valo <quic_kvalo@quicinc.com>
+Patricio Ferraggi Ares <pattferraggi@gmail.com> writes:
 
-Mario reported that the kernel was crashing on suspend if ath11k was not able
-to find a board file:
+> My name is Patricio, I am a fellow software developer and user of the
+> Dell XPS 9310 (AX500 version). First of all, I wanted to thank you for
+> all your hard work bringing support for this model, thanks to you, I
+> have been able to use my laptop with Linux almost since I got it.
+>
+> This is not a bug report in any way, I just would like to gain some
+> knowledge on the subject and you might be the perfect person for my
+> questions.
+>
+> I noticed that although all distros use the Linux kernel, support for
+> this hardware is not the same across all Linux distros. To be more
+> specific, Ubuntu-based distros have had working wifi and Bluetooth for
+> almost a year now, although there are some problems like resuming from
+> deep sleep,  both wifi and Bluetooth work right away on installation,
+> at the moment I am using Pop OS with Linux kernel 5.15.5 as my main
+> driver. On the other hand, arch-based distros dont' have working BT,
+> as you can see here and here. The wifi is working but Bluetooth
+> sometimes doesn't turn on and when it does it cannot properly connect
+> to devices. This happens across multiple arch-based distros and kernel
+> versions, even if I try kernel versions that work fine in PopOS, they
+> don't in Arch.
+>
+> So finally, my questions:
+>
+> Why is there this inconsistency of support between distros when
+> theoretically, they are all Linux?
+> Why is it that if Arch is always updated, in this particular case
+> their hardware support is lacking compared to ubuntu?
 
-[  473.693286] PM: Suspending system (s2idle)
-[  473.693291] printk: Suspending console(s) (use no_console_suspend to debug)
-[  474.407787] BUG: unable to handle page fault for address: 0000000000002070
-[  474.407791] #PF: supervisor read access in kernel mode
-[  474.407794] #PF: error_code(0x0000) - not-present page
-[  474.407798] PGD 0 P4D 0
-[  474.407801] Oops: 0000 [#1] PREEMPT SMP NOPTI
-[  474.407805] CPU: 2 PID: 2350 Comm: kworker/u32:14 Tainted: G        W         5.16.0 #248
-[...]
-[  474.407868] Call Trace:
-[  474.407870]  <TASK>
-[  474.407874]  ? _raw_spin_lock_irqsave+0x2a/0x60
-[  474.407882]  ? lock_timer_base+0x72/0xa0
-[  474.407889]  ? _raw_spin_unlock_irqrestore+0x29/0x3d
-[  474.407892]  ? try_to_del_timer_sync+0x54/0x80
-[  474.407896]  ath11k_dp_rx_pktlog_stop+0x49/0xc0 [ath11k]
-[  474.407912]  ath11k_core_suspend+0x34/0x130 [ath11k]
-[  474.407923]  ath11k_pci_pm_suspend+0x1b/0x50 [ath11k_pci]
-[  474.407928]  pci_pm_suspend+0x7e/0x170
-[  474.407935]  ? pci_pm_freeze+0xc0/0xc0
-[  474.407939]  dpm_run_callback+0x4e/0x150
-[  474.407947]  __device_suspend+0x148/0x4c0
-[  474.407951]  async_suspend+0x20/0x90
-dmesg-efi-164255130401001:
-Oops#1 Part1
-[  474.407955]  async_run_entry_fn+0x33/0x120
-[  474.407959]  process_one_work+0x220/0x3f0
-[  474.407966]  worker_thread+0x4a/0x3d0
-[  474.407971]  kthread+0x17a/0x1a0
-[  474.407975]  ? process_one_work+0x3f0/0x3f0
-[  474.407979]  ? set_kthread_struct+0x40/0x40
-[  474.407983]  ret_from_fork+0x22/0x30
-[  474.407991]  </TASK>
+This is something you need to ask Ubuntu, or check from their git
+history or package changelogs. But in general distros make changes to
+the kernel, some of them even quite drastic, so behaviour between
+distros can be different. My guess is that Ubuntu had custom changes to
+ath11k, maybe they backported patches?
 
-The issue here is that board file loading happens after ath11k_pci_probe()
-succesfully returns (ath11k initialisation happends asynchronously) and the
-suspend handler is still enabled, of course failing as ath11k is not properly
-initialised. Fix this by checking ATH11K_FLAG_QMI_FAIL during both suspend and
-resume.
+> And finally, do you have a working configuration with wifi and
+> Bluetooth? if that is the case could you tell me your distro, kernel,
+> firmware, system firmware versions?
 
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03003-QCAHSPSWPL_V1_V2_SILICONZ_LITE-2
+I also use Dell XPS 13 9310 with QCA6390 as my daily driver (no pun
+intended) and I have no issues with wifi. BIOS is 3.1.0 from 07/22/2021.
+I'm a debian guy so I have Debian 10 and use connman, but
+network-manager should work as well. I compile my own kernel from my
+ath.git master branch[1], but with QCA6390 I would expect stock v5.16
+release to work fine. For WCN6855 I recommend to use v5.17.
 
-Reported-by: Mario Limonciello <mario.limonciello@amd.com>
-Link: https://bugzilla.kernel.org/show_bug.cgi?id=215504
-Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/pci.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Firmware version is WLAN.HST.1.0.1-05266-QCAHSTSWPLZ_V2_TO_X86-1.
 
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index d73b522a0081..16a3560cfaf8 100644
---- a/drivers/net/wireless/ath/ath11k/pci.c
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -1571,6 +1571,11 @@ static __maybe_unused int ath11k_pci_pm_suspend(struct device *dev)
- 	struct ath11k_base *ab = dev_get_drvdata(dev);
- 	int ret;
- 
-+	if (test_bit(ATH11K_FLAG_QMI_FAIL, &ab->dev_flags)) {
-+		ath11k_dbg(ab, ATH11K_DBG_BOOT, "boot skipping pci suspend as qmi is not initialised\n");
-+		return 0;
-+	}
-+
- 	ret = ath11k_core_suspend(ab);
- 	if (ret)
- 		ath11k_warn(ab, "failed to suspend core: %d\n", ret);
-@@ -1583,6 +1588,11 @@ static __maybe_unused int ath11k_pci_pm_resume(struct device *dev)
- 	struct ath11k_base *ab = dev_get_drvdata(dev);
- 	int ret;
- 
-+	if (test_bit(ATH11K_FLAG_QMI_FAIL, &ab->dev_flags)) {
-+		ath11k_dbg(ab, ATH11K_DBG_BOOT, "boot skipping pci resume as qmi is not initialised\n");
-+		return 0;
-+	}
-+
- 	ret = ath11k_core_resume(ab);
- 	if (ret)
- 		ath11k_warn(ab, "failed to resume core: %d\n", ret);
+I don't use Bluetooth so can't comment on that.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/
+
 -- 
-2.20.1
+https://patchwork.kernel.org/project/linux-wireless/list/
 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
