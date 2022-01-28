@@ -4,61 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10DF1C433F5
-	for <ath11k@archiver.kernel.org>; Fri, 28 Jan 2022 12:14:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DCDFC433F5
+	for <ath11k@archiver.kernel.org>; Fri, 28 Jan 2022 12:46:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+KaNogfLMYVTAcmSospvCPIN2BaRkiX+nhuZI+TpRqM=; b=zByhKj9KoiZSj4
-	ddlBfGoSl+t6zYLV+GAFe3UAuJXutlqmcY0EkzZDFPRWzyeEkzB0voHXyqmIShBxc7Zy8rahF1gwp
-	wmjrdOe+8R5nmX0I/apzb0Z5gVMwa5Q4SFFj1SVONZrobLwketxwSM/OEZ82ojFJcsRgsnoexYXcx
-	OnmhaLDclIhVUJOwmKeuUyMS/NZO/wGSX2SnEhOYxTqVjBf+MXHoDbzBcplA3Q1ZTxfvS+Xo3RhBk
-	IzmBCdBFpYl4xjYYqTMa3SwPhzMgkmEBrvc9+1Nkspcx96fwlffJ0t8lhngBqNEWEXUfpuktV/Ba2
-	qJD+Cy7JqtgMX0pU64aQ==;
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
+	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=LUhnlE8vK1aER9uWmzEEAFV3QAWn4Kz8+SnnxD5llgg=; b=3hy/sAabClZNGH
+	EJmErgvGqTr19L4ib8vULdTUfHPhkm0njIUNeUJvKuuB74ib/73ZwTp71dL5Y/dqbY+PH3vDaU+rU
+	VXFSsOv1IoRNn2SpO5MtvpGZ9Cboeh9L44ZGp4PQ9uA/13smLpvwmcdc5nuXlRJGqo/wOuT8Fg14e
+	658whIVPkTuBXgsWOuMKQgt5vVrH8lICJ1XD1Jaz4AayQCaHKk5z+T1sfYdclebdp2YrhDTAuAvp6
+	LtfWewIt2jzaJDjuQCWjQlt/1TAdSvYwNUt+wDvZJ0Z19k4LnD9siMoT32lOsekj8bIDWzWfGlRip
+	HXH2W2tv8evRCzg/3vwQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nDQ8j-001rcT-62; Fri, 28 Jan 2022 12:14:05 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1nDQdh-0023Lv-0k; Fri, 28 Jan 2022 12:46:05 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nDQ8g-001rbH-Ft
- for ath11k@lists.infradead.org; Fri, 28 Jan 2022 12:14:03 +0000
+ id 1nDQRj-001yhz-U7
+ for ath11k@lists.infradead.org; Fri, 28 Jan 2022 12:33:45 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 0509E618C7;
- Fri, 28 Jan 2022 12:14:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34B94C340E6;
- Fri, 28 Jan 2022 12:13:59 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 6A7ED61B08;
+ Fri, 28 Jan 2022 12:33:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB721C340E0;
+ Fri, 28 Jan 2022 12:33:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1643372041;
- bh=Gl0idB2Sk6mpsfiD/yCwRa26c7O/F/PjGnyjeYSw0QY=;
- h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
- b=k1tDv3aQd6V7ZaOzFVGTMG6poo5NV4P38Pe4gM67NZsrgBTY6umJx87MdVxTJZJ+m
- UK1Nfb8nBBpNkb2w1ku9n+hNjOngR1doVyedmxQmrkv2c4mg+mVg0rd0/JRPUSuiO4
- ICaf0bm6alsaJIcMVoyhljDn+iCFHcZcQxnKQXNnQb4OW9Kzbs5lgWiX7LKR3+YmdQ
- j1nNYlXE8nKHAswzLcGIeKfkLJ57qN3yez5zjGjpqnDVLx+fGkxQLFycemeIykyCZi
- e+sMnlQ4ajYif0BjUQJR+XJKDS9FmVa5K6xX+bGm+RNgyJQFW5FOw2lPqw4qhAd3aJ
- HBUoFo3ugWAhQ==
-From: Kalle Valo <kvalo@kernel.org>
-To: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <robh@kernel.org>
-Subject: Re: [PATCH v2 02/19] ath11k: Refactor PCI code to support hybrid bus
- devices
-References: <1642337235-8618-1-git-send-email-quic_mpubbise@quicinc.com>
- <1642337235-8618-3-git-send-email-quic_mpubbise@quicinc.com>
-Date: Fri, 28 Jan 2022 14:13:55 +0200
-In-Reply-To: <1642337235-8618-3-git-send-email-quic_mpubbise@quicinc.com>
- (Manikanta Pubbisetty's message of "Sun, 16 Jan 2022 18:16:58 +0530")
-Message-ID: <87h79of470.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+ s=k20201202; t=1643373222;
+ bh=oG8gDDpka20GtbCIqwZ9VlLsUTtrPGOprKqV9D+rH8M=;
+ h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+ b=aK31KYs+3hC0Pg5hp5VYCRLTqBz/fHNKYxrxisEuNyaDJD4FVnCsITPbJUxZjDA6X
+ fK2NwejzLxvdipQm+Seo9jhpDW1O7yqlzo6TTCViG3is0QM1sSrlZxu6FFINpYHA94
+ Z2SzsU/st+psG41RhbIdr+GhlBALBOKJCc5RkCPnhsOQ07b3s84+N0Wg58aLGDAKEQ
+ p/BqgFY3qU7oQwJgMbFYJt1PqARaYVvvvMuk/IsulARsRxI2T7df6jBMAY2gIaVC3L
+ LyPi/+wFeZKbn20oZvbDzaa0Tdrdhw2JTV+yafJYg5qUVU3+jNABYjJ6WKt7bfEd3D
+ UiL56HdD89cdQ==
 MIME-Version: 1.0
+Subject: Re: [PATCH v2] ath11k: set WMI_PEER_40MHZ while peer assoc for 6 GHz
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20220119034211.28622-1-quic_wgong@quicinc.com>
+References: <20220119034211.28622-1-quic_wgong@quicinc.com>
+To: Wen Gong <quic_wgong@quicinc.com>
+Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+ <quic_wgong@quicinc.com>
+User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-ID: <164337322019.4876.12031068891666275250.kvalo@kernel.org>
+Date: Fri, 28 Jan 2022 12:33:41 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220128_041402_591616_D708CA00 
-X-CRM114-Status: GOOD (  17.84  )
+X-CRM114-CacheID: sfid-20220128_043344_070366_CEB54460 
+X-CRM114-Status: UNSURE (   7.41  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,64 +73,27 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
+Wen Gong <quic_wgong@quicinc.com> wrote:
 
-> Unlike other ATH11K PCIe devices which are enumerated by APSS
-> processor (Application Processor SubSystem), WCN6750 gets
-> enumerated by the WPSS Q6 processor (Wireless Processor SubSystem);
-> In simple terms, though WCN6750 is PCIe device, it is not attached
-> to the APSS processor, APSS will not know of such a device being
-> present in the system and therefore WCN6750 will be registered as
-> a platform device to the kernel core like other supported AHB
-> devices.
->
-> WCN6750 uses both AHB and PCI APIs for it's operation, it uses
-> AHB APIs for device probe/boot and PCI APIs for device setup
-> and register accesses; Because of this nature, it is referred
-> as a hybrid bus device.
->
-> Refactor PCI code to support hybrid bus devices like WCN6750.
->
-> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00573-QCAMSLSWPLZ-1
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
-> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
->
-> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+> When station connect to AP of 6 GHz with 40 MHz bandwidth, the TX is
+> always stay 20 MHz, it is because the flag WMI_PEER_40MHZ is not set
+> while peer assoc. Add the flag if remote peer is 40 MHz bandwidth.
+> 
+> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03003-QCAHSPSWPL_V1_V2_SILICONZ_LITE-2
+> 
+> Fixes: c3a7d7eb4c98 ("ath11k: add 6 GHz params in peer assoc command")
+> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-[...]
+Patch applied to ath-next branch of ath.git, thanks.
 
-> --- /dev/null
-> +++ b/drivers/net/wireless/ath/ath11k/pci_cmn.c
-
-[...]
-
-> +static inline void ath11k_pci_select_window(struct ath11k_pci *ab_pci, u32 offset)
-> +{
-> +	struct ath11k_base *ab = ab_pci->ab;
-> +
-> +	u32 window = FIELD_GET(ATH11K_PCI_WINDOW_VALUE_MASK, offset);
-> +
-> +	lockdep_assert_held(&ab_pci->window_lock);
-> +
-> +	if (window != ab_pci->register_window) {
-> +		iowrite32(ATH11K_PCI_WINDOW_ENABLE_BIT | window,
-> +			  ab->mem + ATH11K_PCI_WINDOW_REG_ADDRESS);
-> +		ioread32(ab->mem + ATH11K_PCI_WINDOW_REG_ADDRESS);
-> +		ab_pci->register_window = window;
-> +	}
-> +}
-
-So the style used in ath11k is ath11k_<filename>_foo, so that a function
-ath11k_pci_foo() should be in pci.c. This patch is now breaking that
-style. Maybe pci_cmn.c should renamed to cpci.c, pcic.c or something
-like that? Then the function prefix could be ath11k_cpci_, ath11k_pcic_
-or similar.
+1cb747192de2 ath11k: set WMI_PEER_40MHZ while peer assoc for 6 GHz
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+https://patchwork.kernel.org/project/linux-wireless/patch/20220119034211.28622-1-quic_wgong@quicinc.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
 -- 
 ath11k mailing list
