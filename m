@@ -4,58 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A05A7C433EF
-	for <ath11k@archiver.kernel.org>; Fri, 28 Jan 2022 13:35:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B34AC433F5
+	for <ath11k@archiver.kernel.org>; Fri, 28 Jan 2022 13:36:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
 	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=1x5zu3vkpqqktJEmg9xY01zIYwGwtuY9VDZULKijkD8=; b=DemnFQ+DxieeDz
-	1NwAVMbWdcn51Lq7/zLEG1/LG8S3wovhMT01YrnXUFgoUR2n3A6TtY+AcFztOnRQ4M2qdlYVRrlCq
-	CMjM49eIWtIijAXxk67wUOh1+nvA/hsjI++pLDzBn3xlZ/vaJvmTt47tghpji7YugJBL+J8cOe0Lw
-	zpk9QfF0KznXxPrE0LE7S3rjRExhX5KH1deGZ01kGrJHPKbUod3TQ2bOEpaJ6oeQaMOwPXhcYTmIM
-	jLTQf3GmmSXtLtYrruHf1kz79xvUSJb83gSi4c2XeU91+9D/CHAcQFO0pgRVgXqxa1kM+k3+OLkxW
-	qgbvTKlq6DBXhwHXd2/A==;
+	List-Owner; bh=L4xrXO64GjY93zmm3MTsEN2Gf4coXUfWuAAmXomV3AY=; b=STusefK2EWdfGM
+	qdB9wwi8LKfDOqRmKmP7VXa30HteOiIOS+cWyJdy9s3Rn0OovnywIXyjDBFZPlOvIeR3hlRWGU4P1
+	3DcXtX1LHVvXsoLEHDHJeDO+VKZoT7XYekWl96od4pst78vwZ5gPK88JwrUqSFattfzxGt645H1ef
+	2JHL8JPLnHXVew7Bdrnr9s3fyoN55laoUVeAvIg53OvaovL0LZ+pE11DJRQWI3imA4x/VMBdJxvSk
+	x/R3YHaMtBvrPNw2EzRazmUGcJ38CJv2wSpe0m8k1IMR+NXlrmO5hevL12fXb0hfFG02qQiMVfJlt
+	rRB6b+CW12KwJlIim7Mg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nDRP6-002M1l-A5; Fri, 28 Jan 2022 13:35:04 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1nDRPz-002MMj-4G; Fri, 28 Jan 2022 13:35:59 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nDQx2-002AuW-Uv
- for ath11k@lists.infradead.org; Fri, 28 Jan 2022 13:06:09 +0000
+ id 1nDQy4-002BJK-Ew
+ for ath11k@lists.infradead.org; Fri, 28 Jan 2022 13:07:12 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 7DD63B82571;
- Fri, 28 Jan 2022 13:06:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41BD6C340E0;
- Fri, 28 Jan 2022 13:06:01 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id EE2FDB8251F;
+ Fri, 28 Jan 2022 13:07:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97B2CC340E0;
+ Fri, 28 Jan 2022 13:07:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1643375162;
- bh=YLdCeRRAO7aC5upx7PDW5LyeDkyTbwukVgcbaGW2FDk=;
+ s=k20201202; t=1643375225;
+ bh=pxWu6qGV4gPnmvtpbxKwT+R4/3dtwDdsnq6gyj8JVeA=;
  h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
- b=mBFs3rp27b5sM9qp0wLW38fp9ZRpqcZxlaVYQBS2288G40Gytz1kcN68SyxVMJsdh
- 8OsVUHbqX5DT/6hBYV6q7T6XX96J3GumboVI4i3/BywOZe1wEo7RXToTbaUHQLTtDC
- /iDRnei2CK9oIRB4cv7UUD9ZUNW7koMrS09k9twuY8CiRebu9UK8fTbCFWGm2nFIc5
- n+YWtsl7v+LcAsf+lqaQ3yW8MGkjE3RCwIWd3QwCnLf5rRnCbFKOok77qm4YY/NJSA
- vnnn2yjNMWlH2lPPctBPLUq0kUayGxj75qtGNmq22oSkEjupHseGma7w7aS1fLvWEP
- cCo+Ficn97sCQ==
+ b=aIQdxCp0tTVwfsAxFSL4puD8RwkqOZeU+SolJzQofux2NuXOSDO2BFOP9qpdRfsOH
+ Li/6S04GdcDdxx7Afzh6xAy5f081xFXRXsGRpFYPBAlBM+Lu0T5cg+OxHEFz4Egn1q
+ wu3SQScX72OvlgIPKzxM9O+/hQimbmCk7M2nDbBob2Enhh7smi7x3iyxapfh6U6R8t
+ hrG04lMFOMiB0v8XRt+TtBk+ax4E985Wg63BKaKjetIF07C2uSVYOk/5byeyEkImzj
+ Vy64AlyYhcCaAG+QW3tjG/cv8McmHenCk4vX1CZM9CuzC10BOmCZUMfV7zz5vb61oK
+ eRn5YjBca8Daw==
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: Add peer rhash table support
+Subject: Re: [V7 1/2] ath11k: add WMI calls to manually add/del/pause/resume
+ TWT dialogs
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <1640248077-14075-1-git-send-email-quic_periyasa@quicinc.com>
-References: <1640248077-14075-1-git-send-email-quic_periyasa@quicinc.com>
-To: Karthikeyan Periyasamy <quic_periyasa@quicinc.com>
-Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- Karthikeyan Periyasamy <quic_periyasa@quicinc.com>
+In-Reply-To: <20220112180026.5554-1-alokad@codeaurora.org>
+References: <20220112180026.5554-1-alokad@codeaurora.org>
+To: Aloka Dixit <alokad@codeaurora.org>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ John Crispin <john@phrozen.org>, Aloka Dixit <alokad@codeaurora.org>
 User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <164337515701.4850.13179705947072575386.kvalo@kernel.org>
-Date: Fri, 28 Jan 2022 13:06:01 +0000 (UTC)
+Message-ID: <164337522291.4850.3161282562927795317.kvalo@kernel.org>
+Date: Fri, 28 Jan 2022 13:07:04 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220128_050605_191902_39EEBBDB 
-X-CRM114-Status: UNSURE (   9.18  )
+X-CRM114-CacheID: sfid-20220128_050708_680058_21F8F022 
+X-CRM114-Status: UNSURE (   6.70  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -73,35 +74,30 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Karthikeyan Periyasamy <quic_periyasa@quicinc.com> wrote:
+Aloka Dixit <alokad@codeaurora.org> wrote:
 
-> When more clients (128) are connected, the UL data traffic
-> KPI measurement is low compared to single client. This issue
-> is due to more CPU cycles spent on the peer lookup operation
-> with more clients. So reduce the peer lookup operation by
-> modifying the linear based lookup operation into the rhash
-> based lookup operation. This improve the peak throughput
-> measurement. Since this is a software algorithm change, it is
-> applicable for all the platforms.
+> From: John Crispin <john@phrozen.org>
 > 
-> TCP UL 128 Clients test case Observation (64bit system):
-> Previous: ~550 Mbps
-> Now	: ~860 Mbps
+> These calls are used for debugging and will be required for WFA
+> certification tests.
 > 
-> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01067-QCAHKSWPL_SILICONZ-1
-> 
-> Signed-off-by: Karthikeyan Periyasamy <quic_periyasa@quicinc.com>
+> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1-01179-QCAHKSWPL_SILICONZ-1
+> Signed-off-by: John Crispin <john@phrozen.org>
+> Signed-off-by: Aloka Dixit <alokad@codeaurora.org>
 
 Fails to apply, please rebase.
 
-error: patch failed: drivers/net/wireless/ath/ath11k/mac.c:4524
-error: drivers/net/wireless/ath/ath11k/mac.c: patch does not apply
+error: patch failed: drivers/net/wireless/ath/ath11k/core.h:603
+error: drivers/net/wireless/ath/ath11k/core.h: patch does not apply
 stg import: Diff does not apply cleanly
 
-Patch set to Changes Requested.
+2 patches set to Changes Requested.
+
+12711826 [V7,1/2] ath11k: add WMI calls to manually add/del/pause/resume TWT dialogs
+12711825 [V7,2/2] ath11k: add debugfs for TWT debug calls
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/1640248077-14075-1-git-send-email-quic_periyasa@quicinc.com/
+https://patchwork.kernel.org/project/linux-wireless/patch/20220112180026.5554-1-alokad@codeaurora.org/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
