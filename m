@@ -4,61 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA6E4C433FE
-	for <ath11k@archiver.kernel.org>; Fri, 28 Jan 2022 10:18:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0EF94C433F5
+	for <ath11k@archiver.kernel.org>; Fri, 28 Jan 2022 10:25:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
 	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=lY8d+xbGjWdeksy90h4gPVtCmQHDe50HwvApf82RgMI=; b=xdO8RRO19p/T+U
-	6crdFIBZF+7kPUTTg9AgfWTCjnurU86ivBrRhAHt7Ty9F++Udpk55skdABrg+9e0CIDIYURHoM2O4
-	OpBecpcPyNDYiPWQiIurR8tlXtgqnhwsVsrKHEhvLwyxHmyYexQT1nNfmZW26Elq8l7gg90VR/1su
-	0+c5kLODm6EDrNbLJ092HX96gxPDpKFt8GHbe1uJlBIaAGDkgcRaY7fjPFC0zGYUuV0qtN+NZ7eo+
-	v9tFEwHgtHtjINnj5VeeXMzT275UWEhnHFjYSbmNHdhPhm0xcj2Z5y7b2CLrnPumAHabqPxx/kc7a
-	yyl+5eZ6o7Zzx1s7LmpQ==;
+	List-Owner; bh=FYqZG/s9059O6VxRgLSP13Un1laPi/kwj16Va/SYlcc=; b=RcaSOPZ+cQIWkz
+	FRplgpLU3eLzAG0EvZcGgFSdIOOeY0wVQu64O8rWayHEY0LKY6AMBIsTtk9euVzMR0ZhdAMcQITFi
+	O6WWSkzLEbf8scjyY8MK+jovY8QD3GQZgN3WIcG6WWtSTYRgz1IQwzVuCUg0K1ESy6+3EvnoMK6gK
+	7VijPECk0JIjEZ6GBdtRRqBntQ2F6PyTdtpUsDbPtWTdKiai4J4TVf8c+jGTEkIw7xM1IIY3l+LKE
+	3JKBwX2ilvhmzZmgVbAbkG4iEV9aCUonkai2i15mSKGn85GM8gAhwTWIvago37aFs/mMM9EKrQPRz
+	k8F6qPoRz64CCBbjwl5w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nDOKN-001Qb5-0e; Fri, 28 Jan 2022 10:17:59 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1nDORd-001T6F-H8; Fri, 28 Jan 2022 10:25:29 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nDOIk-001Q0v-Ek
- for ath11k@lists.infradead.org; Fri, 28 Jan 2022 10:16:20 +0000
+ id 1nDOMw-001RSq-TV
+ for ath11k@lists.infradead.org; Fri, 28 Jan 2022 10:20:40 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id EA24361E48;
- Fri, 28 Jan 2022 10:16:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E016C340E0;
- Fri, 28 Jan 2022 10:16:15 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 8615DB82513;
+ Fri, 28 Jan 2022 10:20:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 301A6C340E0;
+ Fri, 28 Jan 2022 10:20:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1643364977;
- bh=wBS1aRv8RBZk+XEloyXKx+zfsuc5T0JiJLuJbWY0NBI=;
+ s=k20201202; t=1643365236;
+ bh=+NvwaWbFVh8DxNHiYmA/3O9hguNLHMqOSOQUJp5/o8g=;
  h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
- b=VKPa2eGqVcj0n4uwza6XCCOBMGt5Q1W8el5/LCN9rQtlYFZUyH6LXG+xHpTXDYFtK
- ldt3UO2F9cYCA4jscnRad9etBQbOO7kvTQdgUdhjPmqmeHMar2KgpJalgBVEjfW7Q/
- FD9tNfWjOCVWaLzaujLCMuC2sx4DG0ZpU4SnGhfhzw6EKJBKrXuX4IfikAHewPWirL
- wroPufVF4rrQSVXBTXdxlsVenfPF2CbUPOgdvL/ONQSv9M6vW4v5wUeTRxgD87B4DH
- jgjhE5Aki/4ZmE1iZ3qu2FzCEGVj1miJQMwwBSczJZRhwnDCH9GjHRwBIn7gFv+rhR
- GcneXS/1fPn7w==
+ b=gavaV0kAHwO2h+hBKiEEnHCvZZcqj+W6+gTMiPEd9pEAX6aBbhITzHt5VZYo//DIA
+ 5zcIu79tLcucFkRYle07Ac/l+KyaIfzG3e2OVrS5aXOLdL67RIqFxMJaHZE+gde5Vq
+ pgsI973dyiUE7XWsWi06Cg2aQhM1JNJC0baaGKIoxMzyBHR6k1FqSEHVzdPrVvsBgs
+ UFF9tST6S4ZZRlwWFkk4dCzAYdD6JWK3zTgZbnif7TeOMDIumnUCCsyALh+mng5U02
+ wrAhATB+IfIcg/RnHtFHKkPCqTsuJ1OumnX56k8a/K2zOsFYGDtT0CbYt1WnNGl2bS
+ sxCizoTFw26uA==
 From: Kalle Valo <kvalo@kernel.org>
 To: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
 Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
  <devicetree@vger.kernel.org>, <robh@kernel.org>
-Subject: Re: [PATCH v2 02/19] ath11k: Refactor PCI code to support hybrid bus
- devices
+Subject: Re: [PATCH v2 05/19] ath11k: Remove core PCI references from PCI
+ common code
 References: <1642337235-8618-1-git-send-email-quic_mpubbise@quicinc.com>
- <1642337235-8618-3-git-send-email-quic_mpubbise@quicinc.com>
-Date: Fri, 28 Jan 2022 12:16:14 +0200
-In-Reply-To: <1642337235-8618-3-git-send-email-quic_mpubbise@quicinc.com>
- (Manikanta Pubbisetty's message of "Sun, 16 Jan 2022 18:16:58 +0530")
-Message-ID: <87ee4sgo7l.fsf@kernel.org>
+ <1642337235-8618-6-git-send-email-quic_mpubbise@quicinc.com>
+Date: Fri, 28 Jan 2022 12:20:30 +0200
+In-Reply-To: <1642337235-8618-6-git-send-email-quic_mpubbise@quicinc.com>
+ (Manikanta Pubbisetty's message of "Sun, 16 Jan 2022 18:17:01 +0530")
+Message-ID: <87a6fggo0h.fsf@kernel.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220128_021618_617628_6FEAF4CE 
-X-CRM114-Status: GOOD (  17.29  )
+X-CRM114-CacheID: sfid-20220128_022039_131763_CE9D377D 
+X-CRM114-Status: GOOD (  14.59  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,21 +77,17 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
 
-> Unlike other ATH11K PCIe devices which are enumerated by APSS
-> processor (Application Processor SubSystem), WCN6750 gets
-> enumerated by the WPSS Q6 processor (Wireless Processor SubSystem);
-> In simple terms, though WCN6750 is PCIe device, it is not attached
-> to the APSS processor, APSS will not know of such a device being
-> present in the system and therefore WCN6750 will be registered as
-> a platform device to the kernel core like other supported AHB
-> devices.
+> Remove core PCI and ath11k PCI references(struct ath11k_pci)
+> from PCI common code. Since, PCI common code will be used
+> by hybrid bus devices, this code should be independent
+> from ATH11K PCI references and Linux core PCI references
+> like struct pci_dev.
 >
-> WCN6750 uses both AHB and PCI APIs for it's operation, it uses
-> AHB APIs for device probe/boot and PCI APIs for device setup
-> and register accesses; Because of this nature, it is referred
-> as a hybrid bus device.
->
-> Refactor PCI code to support hybrid bus devices like WCN6750.
+> Since this change introduces function callbacks for bus wakeup
+> and bus release operations, wakeup_mhi HW param is no longer
+> needed and hence it is removed completely. Alternatively, bus
+> wakeup/release ops for QCA9074 are initialized to NULL as
+> QCA9704 does not need bus wakeup/release for register accesses.
 >
 > Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00573-QCAMSLSWPLZ-1
 > Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
@@ -102,36 +98,22 @@ Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
 
 [...]
 
-> --- a/drivers/net/wireless/ath/ath11k/Makefile
-> +++ b/drivers/net/wireless/ath/ath11k/Makefile
-> @@ -29,7 +29,7 @@ obj-$(CONFIG_ATH11K_AHB) += ath11k_ahb.o
->  ath11k_ahb-y += ahb.o
->  
->  obj-$(CONFIG_ATH11K_PCI) += ath11k_pci.o
-> -ath11k_pci-y += mhi.o pci.o
-> +ath11k_pci-y += mhi.o pci.o pci_cmn.o
+> @@ -651,6 +653,13 @@ struct ath11k_bus_params {
+>  	bool fixed_bdf_addr;
+>  	bool fixed_mem_region;
+>  	bool static_window_map;
+> +	struct {
+> +		void (*wakeup)(struct ath11k_base *ab);
+> +		void (*release)(struct ath11k_base *ab);
+> +		int (*get_msi_irq)(struct ath11k_base *ab, unsigned int vector);
+> +		void (*window_write32)(struct ath11k_base *ab, u32 offset, u32 value);
+> +		u32 (*window_read32)(struct ath11k_base *ab, u32 offset);
+> +	} ops;
+>  };
 
-So the end result looks like this:
-
-obj-$(CONFIG_ATH11K_AHB) += ath11k_ahb.o
-ath11k_ahb-y += ahb.o pci_cmn.o
-
-obj-$(CONFIG_ATH11K_PCI) += ath11k_pci.o
-ath11k_pci-y += mhi.o pci.o pci_cmn.o
-
-Linking pci_cmn.o to both ath11k_pci.ko and ath11k_ahb.ko looks wrong.
-Does that even compile if ath11k is linked to the kernel, eg. with
-allyesconfig?
-
-One way to solve is to link pci_cmn.o to ath11k.ko. But for another
-approach, for a long time I have been thinking about what's the point to
-have separate ath11k_pci.ko and ath11k_ahb.ko modules?,They are very
-small anyway compared to ath11k.ko. So my ideais that should we have
-just one ath11k.ko module, it contains all AHB and PCI code as well, and
-ath11k_pci.ko and ath11k_ahb.ko would not be created anymore. It would
-simplify things a bit, especially here.
-
-Thoughts?
+Please don't use bus_params for this, I'm starting to suspect that we
+actually need to remove struct ath11k_bus_params altogether. It would be
+cleaner to have separate 'struct ath11k_pci_ops' or something like that.
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
