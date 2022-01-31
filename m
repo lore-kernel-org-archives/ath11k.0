@@ -4,61 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA9DBC433F5
-	for <ath11k@archiver.kernel.org>; Fri, 28 Jan 2022 19:30:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18B5DC433F5
+	for <ath11k@archiver.kernel.org>; Mon, 31 Jan 2022 03:11:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=blv9GOdAwmNCJ4OvOAj+24RI3wrq/1ic3eYz7qXSXdU=; b=iCNCaMxHvHtCz/
-	mEIUsOWptI7qW4tW4/Nvt9kahq6L08b6gn+CV2Mpt6OFwVhCzBny6u0kHVqyctDaAed6Wqg5M9Qz4
-	loNMWdBWCF/srMO4OD+4UygdJCJAwAiVz3V2OlEqv3FSGBsYuhrSMKRHx1nFKItKS0e9S+QYZ9EEu
-	NM58G1xY1xRh9fOBLh5YfP2o+DcwcvQKYkiogbQ4nq6y+oVNj7l6GF8wgbBTROGsRNY+Uu1syojdw
-	Es6/vtgA8ookb3OxJ7KqhbYf5J/xhnxHD8vKV8lgP0GXFQtd4HJdhZKFpdlsdecmPq7EenNGfgY/C
-	kn6TAoPN41Sr1bttJZWg==;
+	List-Owner; bh=eT8TdnHMWINUCNqND+n0pXlt252Ptz6HFWyg4mig0ZI=; b=1nYxUbMbN6IIJZ
+	/DgPFyD8R+oS85C4n/Sk8TmZqyB6nBXK+cjyh8Pc+d/cHwOb78QMRGh+fWBmw9AGQM0NKRE/bscYm
+	imKuRWU107cDpsdJQDP/uPBHYNc4eUQxwkdSYWIZf9vEeOBuNRjEs8X4hzjguND7Vlk4xi2yZbUJN
+	InenEnMYDAnLW+D5o2eMEdvXCrgTSx83yC0Uk7XCfSRl3IQJYz9Ij33jmLPjp5ZikX4+VEsFShPQ0
+	t/317Rx9U9i5cfUEVGCt2sVH5xe8J4lXZdGOjNxws/S+Kp/eT42kwmm9nfRox0cdsGdkf767I5wj0
+	gszK1+HGQAxDFa8YSmwg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nDWwe-003Pvq-7x; Fri, 28 Jan 2022 19:30:04 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1nEN5n-007uN6-Nl; Mon, 31 Jan 2022 03:10:59 +0000
+Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nDWwa-003PuR-N1
- for ath11k@lists.infradead.org; Fri, 28 Jan 2022 19:30:02 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 2CC28B825E4;
- Fri, 28 Jan 2022 19:29:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7ECF5C340E7;
- Fri, 28 Jan 2022 19:29:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1643398198;
- bh=1AbZb7gk4/lKM+5zqRw8TFlZPGMTXr24D/71dUnb9J4=;
- h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
- b=tX+2HY4FZurCF35sRXCW64cSpkKnryW1tTdZ6SPc6wasPOsiXxqC2MX7zRltmlmbm
- DrT1TNot20A3QTF6f6hlStvQXEMGCCEE/Y/N2oDblDhr53DKaXgx3NyRLjEPeEsSSg
- x4zhLenicVyz/Z/fXtAsJA6o4wJ2aqjvVU84gBxBS7M9jSr6ukpqOHPXHl5gxE63Wd
- at5UTjK782E+vraxULd2scMksYLzNA0Ej3GZA1EEW71pCJWkGTn7tLY1InK9qaRgOG
- yw5KUbOQ928yf8AEORb2vN5IE/eAvN+EFInGAP6pTnjR7tHsReEExdDiwhRrZwbfit
- vsrBCzeQBF3ZA==
-From: Kalle Valo <kvalo@kernel.org>
-To: Dan Carpenter <dan.carpenter@oracle.com>
-Cc: kbuild@lists.01.org, Wen Gong <quic_wgong@quicinc.com>, lkp@intel.com,
- kbuild-all@lists.01.org, linux-kernel@vger.kernel.org,
- ath11k@lists.infradead.org
-Subject: Re: drivers/net/wireless/ath/ath11k/dp_tx.c:511
- ath11k_dp_tx_update_txcompl() error: uninitialized symbol 'rate_idx'.
-References: <202201272110.Z8STyrTC-lkp@intel.com>
-Date: Fri, 28 Jan 2022 21:29:52 +0200
-In-Reply-To: <202201272110.Z8STyrTC-lkp@intel.com> (Dan Carpenter's message of
- "Fri, 28 Jan 2022 10:12:36 +0300")
-Message-ID: <87ilu3d5fz.fsf@tynnyri.adurom.net>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+ id 1nEN5k-007uMD-1W
+ for ath11k@lists.infradead.org; Mon, 31 Jan 2022 03:10:58 +0000
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
+ q=dns/txt; 
+ s=smtp; t=1643598654; h=Content-Transfer-Encoding: MIME-Version:
+ References: In-Reply-To: Message-Id: Date: Subject: To: From: Sender;
+ bh=AX7p6BCpCGF77htI4K5ou5wEjjtcO8PI4Wk7f9NoHio=;
+ b=eMhIomaoSUAirQsaN3lX+JCmqNL1cFIuTWkck5aAz+j7G2y7qfgrGJFGm90MWlx4ahTlxkT7
+ Oeu8In2gpctwxF3HXDu1gy9f8QGF5FOnurQj0fYSMHDhxKGqbJcrylQQO+dXhKHJpErezNWf
+ 0h6bJhr0yIpL4og+oso/wk86hFk=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
+ 61f7533de46e09ccb6b95031 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 31 Jan 2022 03:10:53
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+ id C14D8C4360C; Mon, 31 Jan 2022 03:10:52 +0000 (UTC)
+Received: from alokad-linux.qualcomm.com (i-global254.qualcomm.com
+ [199.106.103.254])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+ (No client certificate requested) (Authenticated sender: alokad)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id 7E254C4360C;
+ Mon, 31 Jan 2022 03:10:51 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 7E254C4360C
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org;
+ spf=fail smtp.mailfrom=codeaurora.org
+From: Aloka Dixit <alokad@codeaurora.org>
+To: ath11k@lists.infradead.org,
+	linux-wireless@vger.kernel.org
+Subject: [PATCH V8 2/2] ath11k: add debugfs for TWT debug calls
+Date: Sun, 30 Jan 2022 19:10:43 -0800
+Message-Id: <20220131031043.1295-2-alokad@codeaurora.org>
+X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20220131031043.1295-1-alokad@codeaurora.org>
+References: <20220131031043.1295-1-alokad@codeaurora.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220128_113001_054801_BE4FF720 
-X-CRM114-Status: GOOD (  13.02  )
+X-CRM114-CacheID: sfid-20220130_191056_270334_63679E57 
+X-CRM114-Status: GOOD (  19.47  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,131 +83,376 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-+ ath11k list
+From: John Crispin <john@phrozen.org>
 
-Dan Carpenter <dan.carpenter@oracle.com> writes:
+New debugfs files to manually add/delete/pause/resume TWT
+dialogs for test/debug purposes.
 
-> tree:   https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git master
-> head:   0280e3c58f92b2fe0e8fbbdf8d386449168de4a8
-> commit: 1b8bb94c0612cf32e418e90ae93cf37214d84669 ath11k: report tx bitrate for iw wlan station dump
-> config: microblaze-randconfig-m031-20220127 (https://download.01.org/0day-ci/archive/20220127/202201272110.Z8STyrTC-lkp@intel.com/config)
-> compiler: microblaze-linux-gcc (GCC) 11.2.0
->
-> If you fix the issue, kindly add following tag as appropriate
-> Reported-by: kernel test robot <lkp@intel.com>
-> Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
->
-> smatch warnings:
-> drivers/net/wireless/ath/ath11k/dp_tx.c:511 ath11k_dp_tx_update_txcompl() error: uninitialized symbol 'rate_idx'.
->
-> vim +/rate_idx +511 drivers/net/wireless/ath/ath11k/dp_tx.c
->
-> 1b8bb94c0612cf Wen Gong   2021-12-20  418  void ath11k_dp_tx_update_txcompl(struct ath11k *ar, struct hal_tx_status *ts)
-> 1b8bb94c0612cf Wen Gong   2021-12-20  419  {
-> 1b8bb94c0612cf Wen Gong   2021-12-20  420  	struct ath11k_base *ab = ar->ab;
-> 1b8bb94c0612cf Wen Gong   2021-12-20  421  	struct ath11k_per_peer_tx_stats *peer_stats = &ar->cached_stats;
-> 1b8bb94c0612cf Wen Gong   2021-12-20  422  	enum hal_tx_rate_stats_pkt_type pkt_type;
-> 1b8bb94c0612cf Wen Gong   2021-12-20  423  	enum hal_tx_rate_stats_sgi sgi;
-> 1b8bb94c0612cf Wen Gong   2021-12-20  424  	enum hal_tx_rate_stats_bw bw;
-> 1b8bb94c0612cf Wen Gong   2021-12-20  425  	struct ath11k_peer *peer;
-> 1b8bb94c0612cf Wen Gong   2021-12-20  426  	struct ath11k_sta *arsta;
-> 1b8bb94c0612cf Wen Gong   2021-12-20  427  	struct ieee80211_sta *sta;
-> 1b8bb94c0612cf Wen Gong   2021-12-20  428  	u16 rate, ru_tones;
-> 1b8bb94c0612cf Wen Gong   2021-12-20  429  	u8 mcs, rate_idx, ofdma;
-> 1b8bb94c0612cf Wen Gong   2021-12-20  430  	int ret;
-> 1b8bb94c0612cf Wen Gong   2021-12-20  431  
-> 1b8bb94c0612cf Wen Gong   2021-12-20  432  	spin_lock_bh(&ab->base_lock);
-> 1b8bb94c0612cf Wen Gong   2021-12-20  433  	peer = ath11k_peer_find_by_id(ab, ts->peer_id);
-> 1b8bb94c0612cf Wen Gong   2021-12-20  434  	if (!peer || !peer->sta) {
-> 1b8bb94c0612cf Wen Gong   2021-12-20  435  		ath11k_dbg(ab, ATH11K_DBG_DP_TX,
-> 1b8bb94c0612cf Wen Gong   2021-12-20  436  			   "failed to find the peer by id %u\n", ts->peer_id);
-> 1b8bb94c0612cf Wen Gong   2021-12-20  437  		goto err_out;
-> 1b8bb94c0612cf Wen Gong   2021-12-20  438  	}
-> 1b8bb94c0612cf Wen Gong   2021-12-20  439  
-> 1b8bb94c0612cf Wen Gong   2021-12-20  440  	sta = peer->sta;
-> 1b8bb94c0612cf Wen Gong   2021-12-20  441  	arsta = (struct ath11k_sta *)sta->drv_priv;
-> 1b8bb94c0612cf Wen Gong   2021-12-20  442  
-> 1b8bb94c0612cf Wen Gong   2021-12-20  443  	memset(&arsta->txrate, 0, sizeof(arsta->txrate));
-> 1b8bb94c0612cf Wen Gong   2021-12-20  444  	pkt_type = FIELD_GET(HAL_TX_RATE_STATS_INFO0_PKT_TYPE,
-> 1b8bb94c0612cf Wen Gong   2021-12-20  445  			     ts->rate_stats);
-> 1b8bb94c0612cf Wen Gong   2021-12-20  446  	mcs = FIELD_GET(HAL_TX_RATE_STATS_INFO0_MCS,
-> 1b8bb94c0612cf Wen Gong   2021-12-20  447  			ts->rate_stats);
-> 1b8bb94c0612cf Wen Gong   2021-12-20  448  	sgi = FIELD_GET(HAL_TX_RATE_STATS_INFO0_SGI,
-> 1b8bb94c0612cf Wen Gong   2021-12-20  449  			ts->rate_stats);
-> 1b8bb94c0612cf Wen Gong   2021-12-20  450  	bw = FIELD_GET(HAL_TX_RATE_STATS_INFO0_BW, ts->rate_stats);
-> 1b8bb94c0612cf Wen Gong   2021-12-20  451  	ru_tones = FIELD_GET(HAL_TX_RATE_STATS_INFO0_TONES_IN_RU, ts->rate_stats);
-> 1b8bb94c0612cf Wen Gong   2021-12-20  452  	ofdma = FIELD_GET(HAL_TX_RATE_STATS_INFO0_OFDMA_TX, ts->rate_stats);
-> 1b8bb94c0612cf Wen Gong   2021-12-20  453  
-> 1b8bb94c0612cf Wen Gong   2021-12-20  454  	/* This is to prefer choose the real NSS value arsta->last_txrate.nss,
-> 1b8bb94c0612cf Wen Gong   2021-12-20  455  	 * if it is invalid, then choose the NSS value while assoc.
-> 1b8bb94c0612cf Wen Gong   2021-12-20  456  	 */
-> 1b8bb94c0612cf Wen Gong   2021-12-20  457  	if (arsta->last_txrate.nss)
-> 1b8bb94c0612cf Wen Gong   2021-12-20  458  		arsta->txrate.nss = arsta->last_txrate.nss;
-> 1b8bb94c0612cf Wen Gong   2021-12-20  459  	else
-> 1b8bb94c0612cf Wen Gong   2021-12-20  460  		arsta->txrate.nss = arsta->peer_nss;
-> 1b8bb94c0612cf Wen Gong   2021-12-20  461  
-> 1b8bb94c0612cf Wen Gong   2021-12-20  462  	if (pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11A ||
-> 1b8bb94c0612cf Wen Gong   2021-12-20  463  	    pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11B) {
-> 1b8bb94c0612cf Wen Gong   2021-12-20  464  		ret = ath11k_mac_hw_ratecode_to_legacy_rate(mcs,
-> 1b8bb94c0612cf Wen Gong   2021-12-20  465  							    pkt_type,
-> 1b8bb94c0612cf Wen Gong   2021-12-20  466  							    &rate_idx,
-> 1b8bb94c0612cf Wen Gong   2021-12-20  467  							    &rate);
-> 1b8bb94c0612cf Wen Gong   2021-12-20  468  		if (ret < 0)
-> 1b8bb94c0612cf Wen Gong   2021-12-20  469  			goto err_out;
-> 1b8bb94c0612cf Wen Gong   2021-12-20  470  		arsta->txrate.legacy = rate;
->
-> "rate_idx" only set on this path
->
-> 1b8bb94c0612cf Wen Gong   2021-12-20  471  	} else if (pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11N) {
-> 1b8bb94c0612cf Wen Gong   2021-12-20  472  		if (mcs > 7) {
-> 1b8bb94c0612cf Wen Gong   2021-12-20  473  			ath11k_warn(ab, "Invalid HT mcs index %d\n", mcs);
-> 1b8bb94c0612cf Wen Gong   2021-12-20  474  			goto err_out;
-> 1b8bb94c0612cf Wen Gong   2021-12-20  475  		}
-> 1b8bb94c0612cf Wen Gong   2021-12-20  476  
-> 1b8bb94c0612cf Wen Gong   2021-12-20  477  		if (arsta->txrate.nss != 0)
-> 1b8bb94c0612cf Wen Gong   2021-12-20  478  			arsta->txrate.mcs = mcs + 8 * (arsta->txrate.nss - 1);
-> 1b8bb94c0612cf Wen Gong   2021-12-20  479  		arsta->txrate.flags = RATE_INFO_FLAGS_MCS;
-> 1b8bb94c0612cf Wen Gong   2021-12-20  480  		if (sgi)
-> 1b8bb94c0612cf Wen Gong   2021-12-20  481  			arsta->txrate.flags |= RATE_INFO_FLAGS_SHORT_GI;
-> 1b8bb94c0612cf Wen Gong   2021-12-20  482  	} else if (pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11AC) {
-> 1b8bb94c0612cf Wen Gong   2021-12-20  483  		if (mcs > 9) {
-> 1b8bb94c0612cf Wen Gong   2021-12-20  484  			ath11k_warn(ab, "Invalid VHT mcs index %d\n", mcs);
-> 1b8bb94c0612cf Wen Gong   2021-12-20  485  			goto err_out;
-> 1b8bb94c0612cf Wen Gong   2021-12-20  486  		}
-> 1b8bb94c0612cf Wen Gong   2021-12-20  487  
-> 1b8bb94c0612cf Wen Gong   2021-12-20  488  		arsta->txrate.mcs = mcs;
-> 1b8bb94c0612cf Wen Gong   2021-12-20  489  		arsta->txrate.flags = RATE_INFO_FLAGS_VHT_MCS;
-> 1b8bb94c0612cf Wen Gong   2021-12-20  490  		if (sgi)
-> 1b8bb94c0612cf Wen Gong   2021-12-20  491  			arsta->txrate.flags |= RATE_INFO_FLAGS_SHORT_GI;
-> 1b8bb94c0612cf Wen Gong   2021-12-20  492  	} else if (pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11AX) {
-> 1b8bb94c0612cf Wen Gong   2021-12-20  493  		if (mcs > 11) {
-> 1b8bb94c0612cf Wen Gong   2021-12-20  494  			ath11k_warn(ab, "Invalid HE mcs index %d\n", mcs);
-> 1b8bb94c0612cf Wen Gong   2021-12-20  495  			goto err_out;
-> 1b8bb94c0612cf Wen Gong   2021-12-20  496  		}
-> 1b8bb94c0612cf Wen Gong   2021-12-20  497  
-> 1b8bb94c0612cf Wen Gong   2021-12-20  498  		arsta->txrate.mcs = mcs;
-> 1b8bb94c0612cf Wen Gong   2021-12-20  499  		arsta->txrate.flags = RATE_INFO_FLAGS_HE_MCS;
-> 1b8bb94c0612cf Wen Gong   2021-12-20  500  		arsta->txrate.he_gi = ath11k_mac_he_gi_to_nl80211_he_gi(sgi);
-> 1b8bb94c0612cf Wen Gong   2021-12-20  501  	}
-> 1b8bb94c0612cf Wen Gong   2021-12-20  502  
-> 1b8bb94c0612cf Wen Gong   2021-12-20  503  	arsta->txrate.bw = ath11k_mac_bw_to_mac80211_bw(bw);
-> 1b8bb94c0612cf Wen Gong   2021-12-20  504  	if (ofdma && pkt_type == HAL_TX_RATE_STATS_PKT_TYPE_11AX) {
-> 1b8bb94c0612cf Wen Gong   2021-12-20  505  		arsta->txrate.bw = RATE_INFO_BW_HE_RU;
-> 1b8bb94c0612cf Wen Gong   2021-12-20  506  		arsta->txrate.he_ru_alloc =
-> 1b8bb94c0612cf Wen Gong   2021-12-20  507  			ath11k_mac_he_ru_tones_to_nl80211_he_ru_alloc(ru_tones);
-> 1b8bb94c0612cf Wen Gong   2021-12-20  508  	}
-> 1b8bb94c0612cf Wen Gong   2021-12-20  509  
-> 1b8bb94c0612cf Wen Gong   2021-12-20  510  	if (ath11k_debugfs_is_extd_tx_stats_enabled(ar))
-> 1b8bb94c0612cf Wen Gong   2021-12-20 @511  		ath11k_debugfs_sta_add_tx_stats(arsta, peer_stats, rate_idx);
->                                                                                                            ^^^^^^^^
-> Used here
+The debugfs files expect the following parameters
+- Add dialog
+echo '<Peer_MAC> <Dialog_ID> <Wake_Interval_Usec> <Wake_Interval_Mantis>
+ <Wake_Duration_Usec> <First_SP_Offset> <TWT_Command>
+ <1:Broadcast /0:Individual> <1:Triggered / 0:Untriggered>
+ <1:Unannounced /0:Announced> <1:Protected / 0:Unprotected>' >
+ /sys/kernel/debug/ieee80211/phyX/netdev:wlanX/twt/add_dialog
 
-Wen, please send a fix for this.
+Example (Non-triggered and un-announced):
+echo '00:03:7F:20:13:52 1 102400 100 30720 20480 4 0 0 1 0' >
+ /sys/kernel/debug/ieee80211/phy0/netdev:wlan0/twt/add_dialog
 
+- Delete dialog
+echo '<Peer_MAC> <Dialog_ID>' >
+ /sys/kernel/debug/ieee80211/phyX/netdev:wlanX/twt/del_dialog
+
+- Pause dialog
+echo '<Peer_MAC> <Dialog_ID>' >
+ /sys/kernel/debug/ieee80211/phyX/netdev:wlanX/twt/pause_dialog
+
+- Resume dialog
+echo '<Peer_MAC> <Dialog_ID> <SP_Offset_Usec> <Next_TWT_Size>' >
+ /sys/kernel/debug/ieee80211/phyX/netdev:wlanX/twt/resume_dialog
+
+Example:
+echo '00:03:7F:20:13:52 1 2000000 3' >
+ /sys/kernel/debug/ieee80211/phy0/netdev:wlan0/twt/resume_dialog
+
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1-01179-QCAHKSWPL_SILICONZ-1
+Signed-off-by: John Crispin <john@phrozen.org>
+Signed-off-by: Aloka Dixit <alokad@codeaurora.org>
+---
+Changes in V8
+- No functional changes from V6/V7, only rebased.
+
+Changes in V7
+- No functional changes from V6, only rebased.
+
+Changes in V6
+- Moved all functions from debug.c to debugfs.c
+- ath11k_debugfs_add_interface() returns int instead of void
+
+Changes in V5
+- TWT directory created during ath11k_mac_op_add_interface() instead
+  of during TWT enable command.
+- File write operation check for twt_enabled.
+- Used CONFIG_ATH11K_DEBUGFS instead of CONFIG_MAC80211_DEBUGFS.
+- Example commands in commit description.
+
+ drivers/net/wireless/ath/ath11k/core.h    |   3 +
+ drivers/net/wireless/ath/ath11k/debugfs.c | 222 ++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/debugfs.h |  14 +-
+ drivers/net/wireless/ath/ath11k/mac.c     |   7 +
+ 4 files changed, 245 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index e89beff4f6ce..b080d535e578 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -263,6 +263,9 @@ struct ath11k_vif {
+ 	bool bcca_zero_sent;
+ 	bool do_not_send_tmpl;
+ 	struct ieee80211_chanctx_conf chanctx;
++#ifdef CONFIG_ATH11K_DEBUGFS
++	struct dentry *debugfs_twt;
++#endif /* CONFIG_ATH11K_DEBUGFS */
+ };
+ 
+ struct ath11k_vif_iter {
+diff --git a/drivers/net/wireless/ath/ath11k/debugfs.c b/drivers/net/wireless/ath/ath11k/debugfs.c
+index 215b6014c0ef..cd6d27787154 100644
+--- a/drivers/net/wireless/ath/ath11k/debugfs.c
++++ b/drivers/net/wireless/ath/ath11k/debugfs.c
+@@ -1158,3 +1158,225 @@ int ath11k_debugfs_register(struct ath11k *ar)
+ void ath11k_debugfs_unregister(struct ath11k *ar)
+ {
+ }
++
++static ssize_t ath11k_write_twt_add_dialog(struct file *file,
++					   const char __user *ubuf,
++					   size_t count, loff_t *ppos)
++{
++	struct ath11k_vif *arvif = file->private_data;
++	struct wmi_twt_add_dialog_params params = { 0 };
++	u8 buf[128] = {0};
++	int ret;
++
++	if (arvif->ar->twt_enabled == 0) {
++		ath11k_err(arvif->ar->ab, "twt support is not enabled\n");
++		return -EOPNOTSUPP;
++	}
++
++	ret = simple_write_to_buffer(buf, sizeof(buf) - 1, ppos, ubuf, count);
++	if (ret < 0)
++		return ret;
++
++	buf[ret] = '\0';
++	ret = sscanf(buf,
++		     "%02hhx:%02hhx:%02hhx:%02hhx:%02hhx:%02hhx %u %u %u %u %u %hhu %hhu %hhu %hhu %hhu",
++		     &params.peer_macaddr[0],
++		     &params.peer_macaddr[1],
++		     &params.peer_macaddr[2],
++		     &params.peer_macaddr[3],
++		     &params.peer_macaddr[4],
++		     &params.peer_macaddr[5],
++		     &params.dialog_id,
++		     &params.wake_intvl_us,
++		     &params.wake_intvl_mantis,
++		     &params.wake_dura_us,
++		     &params.sp_offset_us,
++		     &params.twt_cmd,
++		     &params.flag_bcast,
++		     &params.flag_trigger,
++		     &params.flag_flow_type,
++		     &params.flag_protection);
++	if (ret != 16)
++		return -EINVAL;
++
++	params.vdev_id = arvif->vdev_id;
++
++	ret = ath11k_wmi_send_twt_add_dialog_cmd(arvif->ar, &params);
++	if (ret)
++		return ret;
++
++	return count;
++}
++
++static ssize_t ath11k_write_twt_del_dialog(struct file *file,
++					   const char __user *ubuf,
++					   size_t count, loff_t *ppos)
++{
++	struct ath11k_vif *arvif = file->private_data;
++	struct wmi_twt_del_dialog_params params = { 0 };
++	u8 buf[64] = {0};
++	int ret;
++
++	if (arvif->ar->twt_enabled == 0) {
++		ath11k_err(arvif->ar->ab, "twt support is not enabled\n");
++		return -EOPNOTSUPP;
++	}
++
++	ret = simple_write_to_buffer(buf, sizeof(buf) - 1, ppos, ubuf, count);
++	if (ret < 0)
++		return ret;
++
++	buf[ret] = '\0';
++	ret = sscanf(buf, "%02hhx:%02hhx:%02hhx:%02hhx:%02hhx:%02hhx %u",
++		     &params.peer_macaddr[0],
++		     &params.peer_macaddr[1],
++		     &params.peer_macaddr[2],
++		     &params.peer_macaddr[3],
++		     &params.peer_macaddr[4],
++		     &params.peer_macaddr[5],
++		     &params.dialog_id);
++	if (ret != 7)
++		return -EINVAL;
++
++	params.vdev_id = arvif->vdev_id;
++
++	ret = ath11k_wmi_send_twt_del_dialog_cmd(arvif->ar, &params);
++	if (ret)
++		return ret;
++
++	return count;
++}
++
++static ssize_t ath11k_write_twt_pause_dialog(struct file *file,
++					     const char __user *ubuf,
++					     size_t count, loff_t *ppos)
++{
++	struct ath11k_vif *arvif = file->private_data;
++	struct wmi_twt_pause_dialog_params params = { 0 };
++	u8 buf[64] = {0};
++	int ret;
++
++	if (arvif->ar->twt_enabled == 0) {
++		ath11k_err(arvif->ar->ab, "twt support is not enabled\n");
++		return -EOPNOTSUPP;
++	}
++
++	ret = simple_write_to_buffer(buf, sizeof(buf) - 1, ppos, ubuf, count);
++	if (ret < 0)
++		return ret;
++
++	buf[ret] = '\0';
++	ret = sscanf(buf, "%02hhx:%02hhx:%02hhx:%02hhx:%02hhx:%02hhx %u",
++		     &params.peer_macaddr[0],
++		     &params.peer_macaddr[1],
++		     &params.peer_macaddr[2],
++		     &params.peer_macaddr[3],
++		     &params.peer_macaddr[4],
++		     &params.peer_macaddr[5],
++		     &params.dialog_id);
++	if (ret != 7)
++		return -EINVAL;
++
++	params.vdev_id = arvif->vdev_id;
++
++	ret = ath11k_wmi_send_twt_pause_dialog_cmd(arvif->ar, &params);
++	if (ret)
++		return ret;
++
++	return count;
++}
++
++static ssize_t ath11k_write_twt_resume_dialog(struct file *file,
++					      const char __user *ubuf,
++					      size_t count, loff_t *ppos)
++{
++	struct ath11k_vif *arvif = file->private_data;
++	struct wmi_twt_resume_dialog_params params = { 0 };
++	u8 buf[64] = {0};
++	int ret;
++
++	if (arvif->ar->twt_enabled == 0) {
++		ath11k_err(arvif->ar->ab, "twt support is not enabled\n");
++		return -EOPNOTSUPP;
++	}
++
++	ret = simple_write_to_buffer(buf, sizeof(buf) - 1, ppos, ubuf, count);
++	if (ret < 0)
++		return ret;
++
++	buf[ret] = '\0';
++	ret = sscanf(buf, "%02hhx:%02hhx:%02hhx:%02hhx:%02hhx:%02hhx %u %u %u",
++		     &params.peer_macaddr[0],
++		     &params.peer_macaddr[1],
++		     &params.peer_macaddr[2],
++		     &params.peer_macaddr[3],
++		     &params.peer_macaddr[4],
++		     &params.peer_macaddr[5],
++		     &params.dialog_id,
++		     &params.sp_offset_us,
++		     &params.next_twt_size);
++	if (ret != 9)
++		return -EINVAL;
++
++	params.vdev_id = arvif->vdev_id;
++
++	ret = ath11k_wmi_send_twt_resume_dialog_cmd(arvif->ar, &params);
++	if (ret)
++		return ret;
++
++	return count;
++}
++
++static const struct file_operations ath11k_fops_twt_add_dialog = {
++	.write = ath11k_write_twt_add_dialog,
++	.open = simple_open
++};
++
++static const struct file_operations ath11k_fops_twt_del_dialog = {
++	.write = ath11k_write_twt_del_dialog,
++	.open = simple_open
++};
++
++static const struct file_operations ath11k_fops_twt_pause_dialog = {
++	.write = ath11k_write_twt_pause_dialog,
++	.open = simple_open
++};
++
++static const struct file_operations ath11k_fops_twt_resume_dialog = {
++	.write = ath11k_write_twt_resume_dialog,
++	.open = simple_open
++};
++
++int ath11k_debugfs_add_interface(struct ath11k_vif *arvif)
++{
++	if (arvif->vif->type == NL80211_IFTYPE_AP && !arvif->debugfs_twt) {
++		arvif->debugfs_twt = debugfs_create_dir("twt",
++							arvif->vif->debugfs_dir);
++		if (!arvif->debugfs_twt || IS_ERR(arvif->debugfs_twt)) {
++			ath11k_warn(arvif->ar->ab,
++				    "failed to create directory %p\n",
++				    arvif->debugfs_twt);
++			arvif->debugfs_twt = NULL;
++			return -1;
++		}
++
++		debugfs_create_file("add_dialog", 0200, arvif->debugfs_twt,
++				    arvif, &ath11k_fops_twt_add_dialog);
++
++		debugfs_create_file("del_dialog", 0200, arvif->debugfs_twt,
++				    arvif, &ath11k_fops_twt_del_dialog);
++
++		debugfs_create_file("pause_dialog", 0200, arvif->debugfs_twt,
++				    arvif, &ath11k_fops_twt_pause_dialog);
++
++		debugfs_create_file("resume_dialog", 0200, arvif->debugfs_twt,
++				    arvif, &ath11k_fops_twt_resume_dialog);
++	}
++	return 0;
++}
++
++void ath11k_debugfs_remove_interface(struct ath11k_vif *arvif)
++{
++	debugfs_remove_recursive(arvif->debugfs_twt);
++	arvif->debugfs_twt = NULL;
++}
+diff --git a/drivers/net/wireless/ath/ath11k/debugfs.h b/drivers/net/wireless/ath/ath11k/debugfs.h
+index 4c0740394c95..8ee5759fadf8 100644
+--- a/drivers/net/wireless/ath/ath11k/debugfs.h
++++ b/drivers/net/wireless/ath/ath11k/debugfs.h
+@@ -151,6 +151,9 @@ static inline int ath11k_debugfs_rx_filter(struct ath11k *ar)
+ 	return ar->debug.rx_filter;
+ }
+ 
++int ath11k_debugfs_add_interface(struct ath11k_vif *arvif);
++void ath11k_debugfs_remove_interface(struct ath11k_vif *arvif);
++
+ #else
+ static inline int ath11k_debugfs_soc_create(struct ath11k_base *ab)
+ {
+@@ -224,6 +227,15 @@ static inline int ath11k_debugfs_get_fw_stats(struct ath11k *ar,
+ 	return 0;
+ }
+ 
+-#endif /* CONFIG_MAC80211_DEBUGFS*/
++static inline int ath11k_debugfs_add_interface(struct ath11k_vif *arvif)
++{
++	return 0;
++}
++
++static inline void ath11k_debugfs_remove_interface(struct ath11k_vif *arvif)
++{
++}
++
++#endif /* CONFIG_ATH11K_DEBUGFS*/
+ 
+ #endif /* _ATH11K_DEBUGFS_H_ */
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 90fcd6adf2d5..ed899055944e 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -6354,6 +6354,10 @@ static int ath11k_mac_op_add_interface(struct ieee80211_hw *hw,
+ 		}
+ 	}
+ 
++	ret = ath11k_debugfs_add_interface(arvif);
++	if (ret)
++		goto err_peer_del;
++
+ 	mutex_unlock(&ar->conf_mutex);
+ 
+ 	return 0;
+@@ -6388,6 +6392,7 @@ static int ath11k_mac_op_add_interface(struct ieee80211_hw *hw,
+ 	spin_unlock_bh(&ar->data_lock);
+ 
+ err:
++	ath11k_debugfs_remove_interface(arvif);
+ 	mutex_unlock(&ar->conf_mutex);
+ 
+ 	return ret;
+@@ -6486,6 +6491,8 @@ static void ath11k_mac_op_remove_interface(struct ieee80211_hw *hw,
+ 	/* Recalc txpower for remaining vdev */
+ 	ath11k_mac_txpower_recalc(ar);
+ 
++	ath11k_debugfs_remove_interface(arvif);
++
+ 	/* TODO: recal traffic pause state based on the available vdevs */
+ 
+ 	mutex_unlock(&ar->conf_mutex);
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+2.31.1
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
