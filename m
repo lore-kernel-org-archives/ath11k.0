@@ -4,64 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E03B9C433F5
-	for <ath11k@archiver.kernel.org>; Mon, 31 Jan 2022 06:06:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3B8CC433F5
+	for <ath11k@archiver.kernel.org>; Mon, 31 Jan 2022 09:31:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=KEGe8R4EW0VhpbdYabG3UE5ow1350WO20Y1DvnMRS6o=; b=pW+fuhnK+uPSwO
-	oW6uVqCpvKPraftGd1wLhDxE2JHRPf+vbfQ6HSuMjIZU6Pkr8PBljMgn0T79DHTzGep4y4nrUi+XU
-	NkuL9d6695kEMMEvup2Gpu2/mcmM056VFdzBNySoArRFMsqe71qATG68e6cXB5DUdMC/nceAHdemm
-	zkDioGoIeRPBsCfmBttM4E38tsL0MJVdl3AUVEwMJ20PjNDONdPFII5OFyf8rv8tV69v/nO7zYZOd
-	DUGxgDZUm8QdgdV3ozAkAgUNqw4/b2BOVLcNa0eKmPE7EFrLeMeIm//kHD1R8r//xkA6w3+abqwwd
-	D/ZzJw/pmAoio4uyNUAQ==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=XBhrRMhMnPp//nYpLlpe1FV3nTIsDKkHjzTLwXQOKfs=; b=XXF7IWh7blIhrW
+	lbTIlqxzdotprWkEVLn2aCi4TSOHCyYjJXu1dXD6CWLvOqw85v/9Y8gny8nRaoQSmArs0SKv0Fywb
+	6vCFnXsrwE9FQ6YWWRbUUAOJvSwp1mLgpnizXGLm+WlartDcN1qiX2WdtlfH7B9huHnQJkicjDb8t
+	yPxjevaqyfXIpcgGgINyoCLBSa/RO4qcXpuCj85teVWxGUvpQ/ESEEJG/V+wZoP+HpeBLZJg6c1oY
+	F1HEeUny9pcSYXFCThPjfsi+kE7uKYPSsVRTGnhAvfgGeIulO1GNdJL7+5su3HkkgxbWIC3LOLjS7
+	ma7Ar2g4yNMsnGaE7Kpg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nEPpu-0086Or-PL; Mon, 31 Jan 2022 06:06:46 +0000
-Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38])
+	id 1nET20-008esU-0Q; Mon, 31 Jan 2022 09:31:28 +0000
+Received: from mail-yb1-xb32.google.com ([2607:f8b0:4864:20::b32])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nEPpr-0086OK-Ac
- for ath11k@lists.infradead.org; Mon, 31 Jan 2022 06:06:45 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1643609203; x=1675145203;
- h=from:to:cc:subject:date:message-id:mime-version;
- bh=QXKtoO7XoOHEq2gAU1OPFQs9wxiLIH/UG1Ka+IIDTk4=;
- b=sCwC8Veh5Li93Je8u2JjbK5xG8btGPIEuFyCf16emqvUyTxJv6xUI6d6
- q9E1XKu1fyTkPrNO0j4QrnGKgrqLglbd5P0MezOGd1vzxlCHp2AfawpzU
- F70K/8wYTE16gZRt3ctJPCcnjWxK7EcXUPHDT0EJdqCyeVp5butLzkIbK A=;
-Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
- by alexa-out-sd-01.qualcomm.com with ESMTP; 30 Jan 2022 22:06:42 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2022 22:06:42 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Sun, 30 Jan 2022 22:06:41 -0800
-Received: from periyasa-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Sun, 30 Jan 2022 22:06:39 -0800
-From: Karthikeyan Periyasamy <quic_periyasa@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, Karthikeyan Periyasamy
- <quic_periyasa@quicinc.com>
-Subject: [PATCH v2] ath11k: Add peer rhash table support
-Date: Mon, 31 Jan 2022 11:36:24 +0530
-Message-ID: <1643609184-32353-1-git-send-email-quic_periyasa@quicinc.com>
-X-Mailer: git-send-email 2.7.4
+ id 1nET1w-008eqx-Dg
+ for ath11k@lists.infradead.org; Mon, 31 Jan 2022 09:31:26 +0000
+Received: by mail-yb1-xb32.google.com with SMTP id i62so38419141ybg.5
+ for <ath11k@lists.infradead.org>; Mon, 31 Jan 2022 01:31:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=mlAj1anM4sBJPLRRnDOfbRSwrXUMxWaAFHTrzHGbzX4=;
+ b=i/Ni48vMkUQfYPo7agSrd6hgDTdtw345gg6k8QJ+XCE4Wolcv9MXi+51O47l/QC7+T
+ wpvKgfrQKErrbaJKeb12c5+h33N16P3vuxmRAUYvgA6FKXj3d7vJuEcflWqvmmC63N6Y
+ 3zvpFOe6vv9sGwYahP9Q0rBYumXg1SVEmb64v+SjqYiIXqtlNZV73J/YA6m2Oq0L7wTJ
+ 9znLQHj4XwMHuEoF8xF45y5CjNXb0IlPS3D0eMQaWrdSS5OL206u8ejrnRzmmqqB/b/g
+ cQBJCmdkzSKirah/CcwYenYPb3cMIrqynUts/x35Av7ehx1oBqyeA92r2/uieQB/uPYp
+ pDaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=mlAj1anM4sBJPLRRnDOfbRSwrXUMxWaAFHTrzHGbzX4=;
+ b=fhK6gQLBCBAmWiHVvNQeB8CZrZ5MqNd0YPBl64IjWUc4bwVxHyIS7yuwj0XcfQ2rIv
+ +Lyaujdp9teo7seJTRBfBehGetoZSK6tIc99uFDtEnLEDwJT85OUS97h9BEbOUBIZTLq
+ EzICZtor7gEO+aTGyBG5rk2xP5K8FaxKBQGG7/eVJuF+PZuvw+YuDyw3JkNN2p7FwqdJ
+ p6iQlmEFRcMXooFhzSmhGsDQasj8xdPABjJWb7+I75z3JgWvIbD9XdNITGjxi+Ri7WDk
+ 8SiscavUXJKayLAKFvHLiWFhE90M4duipNJrwYzqZDrsuhoJJVw7Bihzz56SwnEIJ8qj
+ JrWw==
+X-Gm-Message-State: AOAM5315MzJQvQc/UBz7OIrEj/1I1gc6xYIvCBEcS/b6OASl1V8teKw2
+ L8m9pyHshEAxW4ZA8FmSKft+xb+9agTmjDMTUgk=
+X-Google-Smtp-Source: ABdhPJw4cFR3LX3WOiZuPrba6T7pyzxCX/I3Yqr5jjJfrAvGX5WrechdBTtXrLOg/yb/hybi89igNAXSPojm0+IMyrE=
+X-Received: by 2002:a25:7d07:: with SMTP id y7mr30980044ybc.141.1643621482270; 
+ Mon, 31 Jan 2022 01:31:22 -0800 (PST)
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+References: <CAGYwnb=p38NMpWY=wLiPRE7eUDfjE_SyNS9zQ9W7Nhpy6hn+WQ@mail.gmail.com>
+ <CAGYwnbnBjaNmS7aaSTXKtAbF1tKqeXTT_6tjka=5AS97c7Br8Q@mail.gmail.com>
+ <87ilu5jr98.fsf@kernel.org> <198d5223-0dcf-6006-407f-7f9eeeb90c92@gmail.com>
+ <CAGYwnbkh=RebRnSxXy7jXyfgMUXd=VBBZPTCB2zWbAM5y40XzQ@mail.gmail.com>
+ <a00b83f2-ceba-ec6c-dd41-edaa9f84a041@gmail.com>
+In-Reply-To: <a00b83f2-ceba-ec6c-dd41-edaa9f84a041@gmail.com>
+From: Patricio Ferraggi Ares <pattferraggi@gmail.com>
+Date: Mon, 31 Jan 2022 10:30:46 +0100
+Message-ID: <CAGYwnbnJb_0B0rwbDkTseJVZvNxn_XN2dPF5rG_ni9Hoy8MXgw@mail.gmail.com>
+Subject: Re: Fwd: AX500 support quirks
+To: Mark Herbert <mark.herbert42@gmail.com>
+Cc: Kalle Valo <kvalo@kernel.org>, ath11k@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220130_220643_474330_74C59585 
-X-CRM114-Status: GOOD (  21.56  )
+X-CRM114-CacheID: sfid-20220131_013124_525059_78E5C3E5 
+X-CRM114-Status: GOOD (  71.85  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,540 +80,186 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-When more clients (128) are connected, the UL data traffic
-KPI measurement is low compared to single client. This issue
-is due to more CPU cycles spent on the peer lookup operation
-with more clients. So reduce the peer lookup operation by
-modifying the linear based lookup operation into the rhash
-based lookup operation. This improve the peak throughput
-measurement. Since this is a software algorithm change, it is
-applicable for all the platforms.
-
-TCP UL 128 Clients test case Observation (64bit system):
-Previous: ~550 Mbps
-Now	: ~860 Mbps
-
-Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01067-QCAHKSWPL_SILICONZ-1
-
-Signed-off-by: Karthikeyan Periyasamy <quic_periyasa@quicinc.com>
----
- v2:
-   - Rebase on ToT
-
- drivers/net/wireless/ath/ath11k/core.h |  13 ++
- drivers/net/wireless/ath/ath11k/mac.c  |  10 ++
- drivers/net/wireless/ath/ath11k/peer.c | 304 +++++++++++++++++++++++++++++----
- drivers/net/wireless/ath/ath11k/peer.h |  10 +-
- 4 files changed, 306 insertions(+), 31 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 4eda15c..31bc7a7 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -1,6 +1,7 @@
- /* SPDX-License-Identifier: BSD-3-Clause-Clear */
- /*
-  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2021 Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- 
- #ifndef ATH11K_CORE_H
-@@ -10,6 +11,7 @@
- #include <linux/interrupt.h>
- #include <linux/irq.h>
- #include <linux/bitfield.h>
-+#include <linux/rhashtable.h>
- #include "qmi.h"
- #include "htc.h"
- #include "wmi.h"
-@@ -738,6 +740,17 @@ struct ath11k_base {
- 	struct ath11k_pdev __rcu *pdevs_active[MAX_RADIOS];
- 	struct ath11k_hal_reg_capabilities_ext hal_reg_cap[MAX_RADIOS];
- 	unsigned long long free_vdev_map;
-+
-+	/* The rhashtable containing struct ath11k_peer keyed by mac addr
-+	 * protected under ab->base_lock spin lock
-+	 */
-+	struct rhashtable *rhead_peer_addr;
-+	struct rhashtable_params rhash_peer_addr_param;
-+
-+	/* The rhashtable containing struct ath11k_peer keyed by id  */
-+	struct rhashtable *rhead_peer_id;
-+	struct rhashtable_params rhash_peer_id_param;
-+
- 	struct list_head peers;
- 	wait_queue_head_t peer_mapping_wq;
- 	u8 mac_addr[ETH_ALEN];
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 90fcd6a..7d97c1d 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -871,6 +871,7 @@ void ath11k_mac_peer_cleanup_all(struct ath11k *ar)
- 	spin_lock_bh(&ab->base_lock);
- 	list_for_each_entry_safe(peer, tmp, &ab->peers, list) {
- 		ath11k_peer_rx_tid_cleanup(ar, peer);
-+		ath11k_peer_rhash_delete(ab, peer);
- 		list_del(&peer->list);
- 		kfree(peer);
- 	}
-@@ -4538,6 +4539,7 @@ static int ath11k_mac_op_sta_state(struct ieee80211_hw *hw,
- 		} else if (peer && peer->sta == sta) {
- 			ath11k_warn(ar->ab, "Found peer entry %pM n vdev %i after it was supposedly removed\n",
- 				    vif->addr, arvif->vdev_id);
-+			ath11k_peer_rhash_delete(ar->ab, peer);
- 			peer->sta = NULL;
- 			list_del(&peer->list);
- 			kfree(peer);
-@@ -8331,6 +8333,8 @@ void ath11k_mac_unregister(struct ath11k_base *ab)
- 
- 		__ath11k_mac_unregister(ar);
- 	}
-+
-+	ath11k_peer_rhash_tbl_destroy(ab);
- }
- 
- static int __ath11k_mac_register(struct ath11k *ar)
-@@ -8541,6 +8545,10 @@ int ath11k_mac_register(struct ath11k_base *ab)
- 	ab->cc_freq_hz = IPQ8074_CC_FREQ_HERTZ;
- 	ab->free_vdev_map = (1LL << (ab->num_radios * TARGET_NUM_VDEVS(ab))) - 1;
- 
-+	ret = ath11k_peer_rhash_tbl_init(ab);
-+	if (ret)
-+		return ret;
-+
- 	for (i = 0; i < ab->num_radios; i++) {
- 		pdev = &ab->pdevs[i];
- 		ar = pdev->ar;
-@@ -8570,6 +8578,8 @@ int ath11k_mac_register(struct ath11k_base *ab)
- 		__ath11k_mac_unregister(ar);
- 	}
- 
-+	ath11k_peer_rhash_tbl_destroy(ab);
-+
- 	return ret;
- }
- 
-diff --git a/drivers/net/wireless/ath/ath11k/peer.c b/drivers/net/wireless/ath/ath11k/peer.c
-index 332886b..f2b5fc2 100644
---- a/drivers/net/wireless/ath/ath11k/peer.c
-+++ b/drivers/net/wireless/ath/ath11k/peer.c
-@@ -1,6 +1,7 @@
- // SPDX-License-Identifier: BSD-3-Clause-Clear
- /*
-  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2021 Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- 
- #include "core.h"
-@@ -26,25 +27,6 @@ struct ath11k_peer *ath11k_peer_find(struct ath11k_base *ab, int vdev_id,
- 	return NULL;
- }
- 
--static struct ath11k_peer *ath11k_peer_find_by_pdev_idx(struct ath11k_base *ab,
--							u8 pdev_idx, const u8 *addr)
--{
--	struct ath11k_peer *peer;
--
--	lockdep_assert_held(&ab->base_lock);
--
--	list_for_each_entry(peer, &ab->peers, list) {
--		if (peer->pdev_idx != pdev_idx)
--			continue;
--		if (!ether_addr_equal(peer->addr, addr))
--			continue;
--
--		return peer;
--	}
--
--	return NULL;
--}
--
- struct ath11k_peer *ath11k_peer_find_by_addr(struct ath11k_base *ab,
- 					     const u8 *addr)
- {
-@@ -52,14 +34,13 @@ struct ath11k_peer *ath11k_peer_find_by_addr(struct ath11k_base *ab,
- 
- 	lockdep_assert_held(&ab->base_lock);
- 
--	list_for_each_entry(peer, &ab->peers, list) {
--		if (!ether_addr_equal(peer->addr, addr))
--			continue;
-+	if (!ab->rhead_peer_addr)
-+		return NULL;
- 
--		return peer;
--	}
-+	peer = rhashtable_lookup_fast(ab->rhead_peer_addr, addr,
-+				      ab->rhash_peer_addr_param);
- 
--	return NULL;
-+	return peer;
- }
- 
- struct ath11k_peer *ath11k_peer_find_by_id(struct ath11k_base *ab,
-@@ -69,11 +50,13 @@ struct ath11k_peer *ath11k_peer_find_by_id(struct ath11k_base *ab,
- 
- 	lockdep_assert_held(&ab->base_lock);
- 
--	list_for_each_entry(peer, &ab->peers, list)
--		if (peer_id == peer->peer_id)
--			return peer;
-+	if (!ab->rhead_peer_id)
-+		return NULL;
- 
--	return NULL;
-+	peer = rhashtable_lookup_fast(ab->rhead_peer_id, &peer_id,
-+				      ab->rhash_peer_id_param);
-+
-+	return peer;
- }
- 
- struct ath11k_peer *ath11k_peer_find_by_vdev_id(struct ath11k_base *ab,
-@@ -109,6 +92,7 @@ void ath11k_peer_unmap_event(struct ath11k_base *ab, u16 peer_id)
- 	ath11k_dbg(ab, ATH11K_DBG_DP_HTT, "htt peer unmap vdev %d peer %pM id %d\n",
- 		   peer->vdev_id, peer->addr, peer_id);
- 
-+	ath11k_peer_rhash_delete(ab, peer);
- 	list_del(&peer->list);
- 	kfree(peer);
- 	wake_up(&ab->peer_mapping_wq);
-@@ -167,6 +151,75 @@ static int ath11k_wait_for_peer_common(struct ath11k_base *ab, int vdev_id,
- 	return 0;
- }
- 
-+static inline int ath11k_peer_rhash_insert(struct ath11k_base *ab,
-+					   struct rhashtable *rtbl,
-+					   struct rhash_head *rhead,
-+					   struct rhashtable_params *params,
-+					   void *key)
-+{
-+	struct ath11k_peer *tmp;
-+
-+	lockdep_assert_held(&ab->base_lock);
-+
-+	tmp = rhashtable_lookup_get_insert_fast(rtbl, rhead, *params);
-+
-+	if (!tmp)
-+		return 0;
-+	else if (IS_ERR(tmp))
-+		return PTR_ERR(tmp);
-+	else
-+		return -EEXIST;
-+}
-+
-+static inline int ath11k_peer_rhash_remove(struct ath11k_base *ab,
-+					   struct rhashtable *rtbl,
-+					   struct rhash_head *rhead,
-+					   struct rhashtable_params *params)
-+{
-+	int ret;
-+
-+	lockdep_assert_held(&ab->base_lock);
-+
-+	ret = rhashtable_remove_fast(rtbl, rhead, *params);
-+	if (ret && ret != -ENOENT)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int ath11k_peer_rhash_add(struct ath11k_base *ab, struct ath11k_peer *peer)
-+{
-+	int ret;
-+
-+	lockdep_assert_held(&ab->base_lock);
-+
-+	if (!ab->rhead_peer_id || !ab->rhead_peer_addr)
-+		return -EPERM;
-+
-+	ret = ath11k_peer_rhash_insert(ab, ab->rhead_peer_id, &peer->rhash_id,
-+				       &ab->rhash_peer_id_param, &peer->peer_id);
-+	if (ret) {
-+		ath11k_warn(ab, "failed to add peer %pM with id %d in rhash_id ret %d\n",
-+			    peer->addr, peer->peer_id, ret);
-+		return ret;
-+	}
-+
-+	ret = ath11k_peer_rhash_insert(ab, ab->rhead_peer_addr, &peer->rhash_addr,
-+				       &ab->rhash_peer_addr_param, &peer->addr);
-+	if (ret) {
-+		ath11k_warn(ab, "failed to add peer %pM with id %d in rhash_addr ret %d\n",
-+			    peer->addr, peer->peer_id, ret);
-+		goto err_clean;
-+	}
-+
-+	return 0;
-+
-+err_clean:
-+	ath11k_peer_rhash_remove(ab, ab->rhead_peer_id, &peer->rhash_id,
-+				 &ab->rhash_peer_id_param);
-+	return ret;
-+}
-+
- void ath11k_peer_cleanup(struct ath11k *ar, u32 vdev_id)
- {
- 	struct ath11k_peer *peer, *tmp;
-@@ -182,6 +235,7 @@ void ath11k_peer_cleanup(struct ath11k *ar, u32 vdev_id)
- 		ath11k_warn(ab, "removing stale peer %pM from vdev_id %d\n",
- 			    peer->addr, vdev_id);
- 
-+		ath11k_peer_rhash_delete(ab, peer);
- 		list_del(&peer->list);
- 		kfree(peer);
- 		ar->num_peers--;
-@@ -263,7 +317,7 @@ int ath11k_peer_create(struct ath11k *ar, struct ath11k_vif *arvif,
- 	}
- 
- 	spin_lock_bh(&ar->ab->base_lock);
--	peer = ath11k_peer_find_by_pdev_idx(ar->ab, ar->pdev_idx, param->peer_addr);
-+	peer = ath11k_peer_find_by_addr(ar->ab, param->peer_addr);
- 	if (peer) {
- 		spin_unlock_bh(&ar->ab->base_lock);
- 		return -EINVAL;
-@@ -295,6 +349,12 @@ int ath11k_peer_create(struct ath11k *ar, struct ath11k_vif *arvif,
- 		goto cleanup;
- 	}
- 
-+	ret = ath11k_peer_rhash_add(ar->ab, peer);
-+	if (ret) {
-+		spin_unlock_bh(&ar->ab->base_lock);
-+		goto cleanup;
-+	}
-+
- 	peer->pdev_idx = ar->pdev_idx;
- 	peer->sta = sta;
- 
-@@ -342,3 +402,187 @@ int ath11k_peer_create(struct ath11k *ar, struct ath11k_vif *arvif,
- exit:
- 	return ret;
- }
-+
-+int ath11k_peer_rhash_delete(struct ath11k_base *ab, struct ath11k_peer *peer)
-+{
-+	int ret;
-+
-+	lockdep_assert_held(&ab->base_lock);
-+
-+	if (!ab->rhead_peer_id || !ab->rhead_peer_addr)
-+		return -EPERM;
-+
-+	ret = ath11k_peer_rhash_remove(ab, ab->rhead_peer_addr, &peer->rhash_addr,
-+				       &ab->rhash_peer_addr_param);
-+	if (ret) {
-+		ath11k_warn(ab, "failed to remove peer %pM id %d in rhash_addr ret %d\n",
-+			    peer->addr, peer->peer_id, ret);
-+		return ret;
-+	}
-+
-+	ret = ath11k_peer_rhash_remove(ab, ab->rhead_peer_id, &peer->rhash_id,
-+				       &ab->rhash_peer_id_param);
-+	if (ret) {
-+		ath11k_warn(ab, "failed to remove peer %pM id %d in rhash_id ret %d\n",
-+			    peer->addr, peer->peer_id, ret);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int ath11k_peer_rhash_id_tbl_init(struct ath11k_base *ab)
-+{
-+	struct rhashtable_params *param;
-+	struct rhashtable *rhash_id_tbl;
-+	int ret;
-+	size_t size;
-+
-+	if (ab->rhead_peer_id)
-+		return 0;
-+
-+	size = sizeof(*ab->rhead_peer_id);
-+	rhash_id_tbl = kzalloc(size, GFP_KERNEL);
-+	if (!rhash_id_tbl) {
-+		ath11k_warn(ab, "failed to init rhash id table due to no mem (size %zu)\n",
-+			    size);
-+		return -ENOMEM;
-+	}
-+
-+	param = &ab->rhash_peer_id_param;
-+
-+	param->key_offset = offsetof(struct ath11k_peer, peer_id);
-+	param->head_offset = offsetof(struct ath11k_peer, rhash_id);
-+	param->key_len = sizeof_field(struct ath11k_peer, peer_id);
-+	param->automatic_shrinking = true;
-+	param->nelem_hint = ab->num_radios * TARGET_NUM_PEERS_PDEV(ab);
-+
-+	ret = rhashtable_init(rhash_id_tbl, param);
-+	if (ret) {
-+		ath11k_warn(ab, "failed to init peer id rhash table %d\n", ret);
-+		goto err_free;
-+	}
-+
-+	spin_lock_bh(&ab->base_lock);
-+
-+	if (!ab->rhead_peer_id) {
-+		ab->rhead_peer_id = rhash_id_tbl;
-+	} else {
-+		spin_unlock_bh(&ab->base_lock);
-+		goto cleanup_tbl;
-+	}
-+
-+	spin_unlock_bh(&ab->base_lock);
-+
-+	return 0;
-+
-+cleanup_tbl:
-+	rhashtable_destroy(rhash_id_tbl);
-+err_free:
-+	kfree(rhash_id_tbl);
-+
-+	return ret;
-+}
-+
-+static int ath11k_peer_rhash_addr_tbl_init(struct ath11k_base *ab)
-+{
-+	struct rhashtable_params *param;
-+	struct rhashtable *rhash_addr_tbl;
-+	int ret;
-+	size_t size;
-+
-+	if (ab->rhead_peer_addr)
-+		return 0;
-+
-+	size = sizeof(*ab->rhead_peer_addr);
-+	rhash_addr_tbl = kzalloc(size, GFP_KERNEL);
-+	if (!rhash_addr_tbl) {
-+		ath11k_warn(ab, "failed to init rhash addr table due to no mem (size %zu)\n",
-+			    size);
-+		return -ENOMEM;
-+	}
-+
-+	param = &ab->rhash_peer_addr_param;
-+
-+	param->key_offset = offsetof(struct ath11k_peer, addr);
-+	param->head_offset = offsetof(struct ath11k_peer, rhash_addr);
-+	param->key_len = sizeof_field(struct ath11k_peer, addr);
-+	param->automatic_shrinking = true;
-+	param->nelem_hint = ab->num_radios * TARGET_NUM_PEERS_PDEV(ab);
-+
-+	ret = rhashtable_init(rhash_addr_tbl, param);
-+	if (ret) {
-+		ath11k_warn(ab, "failed to init peer addr rhash table %d\n", ret);
-+		goto err_free;
-+	}
-+
-+	spin_lock_bh(&ab->base_lock);
-+
-+	if (!ab->rhead_peer_addr) {
-+		ab->rhead_peer_addr = rhash_addr_tbl;
-+	} else {
-+		spin_unlock_bh(&ab->base_lock);
-+		goto cleanup_tbl;
-+	}
-+
-+	spin_unlock_bh(&ab->base_lock);
-+
-+	return 0;
-+
-+cleanup_tbl:
-+	rhashtable_destroy(rhash_addr_tbl);
-+err_free:
-+	kfree(rhash_addr_tbl);
-+
-+	return ret;
-+}
-+
-+static inline void ath11k_peer_rhash_id_tbl_destroy(struct ath11k_base *ab)
-+{
-+	if (!ab->rhead_peer_id)
-+		return;
-+
-+	rhashtable_destroy(ab->rhead_peer_id);
-+	kfree(ab->rhead_peer_id);
-+	ab->rhead_peer_id = NULL;
-+}
-+
-+static inline void ath11k_peer_rhash_addr_tbl_destroy(struct ath11k_base *ab)
-+{
-+	if (!ab->rhead_peer_addr)
-+		return;
-+
-+	rhashtable_destroy(ab->rhead_peer_addr);
-+	kfree(ab->rhead_peer_addr);
-+	ab->rhead_peer_addr = NULL;
-+}
-+
-+int ath11k_peer_rhash_tbl_init(struct ath11k_base *ab)
-+{
-+	int ret;
-+
-+	ret = ath11k_peer_rhash_id_tbl_init(ab);
-+	if (ret)
-+		return ret;
-+
-+	ret = ath11k_peer_rhash_addr_tbl_init(ab);
-+	if (ret)
-+		goto cleanup_tbl;
-+
-+	return 0;
-+
-+cleanup_tbl:
-+	ath11k_peer_rhash_id_tbl_destroy(ab);
-+
-+	return ret;
-+}
-+
-+void ath11k_peer_rhash_tbl_destroy(struct ath11k_base *ab)
-+{
-+	spin_lock_bh(&ab->base_lock);
-+
-+	ath11k_peer_rhash_addr_tbl_destroy(ab);
-+	ath11k_peer_rhash_id_tbl_destroy(ab);
-+
-+	spin_unlock_bh(&ab->base_lock);
-+}
-diff --git a/drivers/net/wireless/ath/ath11k/peer.h b/drivers/net/wireless/ath/ath11k/peer.h
-index 63fe566..b687fa9 100644
---- a/drivers/net/wireless/ath/ath11k/peer.h
-+++ b/drivers/net/wireless/ath/ath11k/peer.h
-@@ -1,6 +1,7 @@
- /* SPDX-License-Identifier: BSD-3-Clause-Clear */
- /*
-  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2021 Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- 
- #ifndef ATH11K_PEER_H
-@@ -20,6 +21,11 @@ struct ath11k_peer {
- 	struct ieee80211_key_conf *keys[WMI_MAX_KEY_INDEX + 1];
- 	struct dp_rx_tid rx_tid[IEEE80211_NUM_TIDS + 1];
- 
-+	/* peer id based rhashtable list pointer */
-+	struct rhash_head rhash_id;
-+	/* peer addr based rhashtable list pointer */
-+	struct rhash_head rhash_addr;
-+
- 	/* Info used in MMIC verification of
- 	 * RX fragments
- 	 */
-@@ -47,5 +53,7 @@ int ath11k_wait_for_peer_delete_done(struct ath11k *ar, u32 vdev_id,
- 				     const u8 *addr);
- struct ath11k_peer *ath11k_peer_find_by_vdev_id(struct ath11k_base *ab,
- 						int vdev_id);
--
-+int ath11k_peer_rhash_tbl_init(struct ath11k_base *ab);
-+void ath11k_peer_rhash_tbl_destroy(struct ath11k_base *ab);
-+int ath11k_peer_rhash_delete(struct ath11k_base *ab, struct ath11k_peer *peer);
- #endif /* _PEER_H_ */
--- 
-2.7.4
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+SGksCgpTbyBJIGRlY2lkZWQgdG8gZ2l2ZSBpdCBhIGdvLCBJIHByZWZlciB0byBkaXZlIG1vcmUg
+aW50byBMaW51eCBhbmQKaGF2ZSBhIGRpc3RybyB0aGF0IEkgZW5qb3kgdXNpbmcgdGhhbiB0aGUg
+b25lIHRoYXQgcGxheXMgaXQgc2FmZSBhbmQKaGFzICJldmVyeXRoaW5nIiB3b3JraW5nIGJ1dCBJ
+IGhhdGUgaXQuCk15IExpbnV4IHBhcnRpdGlvbiBpcyBqdXN0IGZvciBteSBwZXJzb25hbCB1c2Ug
+KG15IHdpbmRvd3MgcGFydGl0aW9uCmlzIGZvciBwYXlpbmcgdGhlIGJpbGxzKSBhdCB0aGUgZW5k
+IHNvIHdoeSBub3QgZW5qb3kgaXQuCgpJIGFtIGN1cnJlbnRseSBydW5uaW5nOgoKRGlzdHJvOiBB
+cmNoIExpbnV4Cktlcm5lbDogNS4xNi4zLWFyY2gxLTEKTGludXggZmlybXdhcmU6IGxpbnV4LWZp
+cm13YXJlIDIwMjIwMTE5LjBjNmE3YjMtMgpTeXN0ZW0gZmlybXdhcmU6IDMuNC4wCgpUaGUgd2lm
+aSB3b3JrcyBvdXQgb2YgdGhlIGJveCwgYWx3YXlzIGNvbm5lY3RzIGFuZCBJIGhhdmVuJ3QgaGFk
+IGFueQppc3N1ZXMgd2hhdHNvZXZlci4KCkJUIHN0aWxsIGEgZGlmZmVyZW50IHN0b3J5OgpTb21l
+IGJvb3RzIEkgY2FuJ3QgY29ubmVjdCB0byBkZXZpY2VzLCBzb21lIGJvb3RzIEkgY2FuJ3QgZmlu
+ZApkZXZpY2VzLCBzb21lIGJvb3RzIEJUIHdvcmtzIGZpbmUuCldoZW4gaXQgZG9lc24ndCB3b3Jr
+IEkgZ2V0IGVycm9ycyBsaWtlOgoKUmVhZGluZyBRQ0EgdmVyc2lvbiBpbmZvcm1hdGlvbiBmYWls
+ZWQgKC0xMTApCmhjaTA6IEZyYW1lIHJlYXNzZW1ibHkgZmFpbGVkICgtODQpCgpXaGF0IHdvdWxk
+IHJlY29tbWVuZCBteSBuZXh0IHN0ZXAgd291bGQgYmUgZm9yIHRyeWluZyB0byBzb2x2ZSB0aGlz
+Cmlzc3VlPyBJIGFzc3VtZSBnZXR0aW5nIHRoZSBsYXN0IGZpcm13YXJlIGZyb20ga2FsbGUncyBn
+aXQgd291bGQgYmUgYQpnb29kIGlkZWE/IGlmIHNvIGlzIHRoaXMgdGhlIGFwcHJvcHJpYXRlIGdp
+dApodHRwczovL2dpdGh1Yi5jb20va3ZhbG8vYXRoMTFrLWZpcm13YXJlPwpJdCB3b3VsZCBiZSBu
+aWNlIGlmIHlvdSBndXlzIGNvdWxkIGdpdmUgbWUgYSBmZXcgc3RlcHMgdG8gZm9sbG93LgoKSSB0
+cmllZCB0aGUgZm9sbG93aW5nIHRoaW5nOgoKSSBjbG9uZWQgaHR0cHM6Ly9naXRodWIuY29tL2t2
+YWxvL2F0aDExay1maXJtd2FyZS4gVG9vayB0aGUgZmlsZXMgZnJvbQp0aGF0IHJlcG8gcmVnYXJk
+aW5nIHRoZSBRQ0E2MzkwIGFuZCBjb3BpZWQgdGhlbSB0byB0aGUgbGliIGZvbGRlciBhcwpkZXNj
+cmliZWQgaGVyZToKCiMgSW5zdGFsbCBmaXJtd2FyZQpjZCAuLi9hdGgxMWstZmlybXdhcmUKc3Vk
+byBta2RpciAtcCAvbGliL2Zpcm13YXJlL2F0aDExay9RQ0E2MzkwL2h3Mi4wLwpzdWRvIGNwIFFD
+QTYzOTAvaHcyLjAvMS4wLjEvW0xBVEVTVF9WRVJTSU9OXS8qLmJpbgovbGliL2Zpcm13YXJlL2F0
+aDExay9RQ0E2MzkwL2h3Mi4wLwpzdWRvIGNwIFFDQTYzOTAvaHcyLjAvYm9hcmQtMi5iaW4gL2xp
+Yi9maXJtd2FyZS9hdGgxMWsvUUNBNjM5MC9odzIuMC8KCkkgYWxzbyBoYWQgdG8geHogdGhlIGZp
+bGVzIHNpbmNlIG5vdyBhcmNoLWxpbnV4IGlzIGNvbXByZXNzaW5nIGZpcm13YXJlIGZpbGVzCmh0
+dHBzOi8vYnVncy5hcmNobGludXgub3JnL3Rhc2svNzI4OTkKClVuZm9ydHVuYXRlbHkgd2hlbiB0
+cnlpbmcgdGhhdCBJIGxvc3Qgd2lmaSBhbmQgYnQgYWx0b2dldGhlci4gSXQgbWlnaHQKYmUgY2F1
+c2VkIGJlY2F1c2UgQXJjaCBpcyB1c2luZyBhIGRpZmZlcmVudCBjb21wcmVzc2lvbiBhbGdvcml0
+aG0gb3IKc29tZXRoaW5nLiBJIHdlbnQgYmFjayB0byBteSBvcmlnaW5hbCBmaWxlcyBmb3Igbm93
+LgoKVGhhbmtzIGZvciBoZWFyaW5nIG1lIG91dC4gSGF2ZSBhIG5pY2Ugd2Vlay4KCkVsIGp1ZSwg
+MjcgZW5lIDIwMjIgYSBsYShzKSAxOTozMywgTWFyayBIZXJiZXJ0CihtYXJrLmhlcmJlcnQ0MkBn
+bWFpbC5jb20pIGVzY3JpYmnDszoKPgo+IEhpIFBhdHJpY2lvLAo+Cj4gQXMgSSBzZWUgaXQgdGhl
+cmUgYXJlIERJWSBkaXN0cmlidXRpdmVzIGxpa2UgR2VudG9vIG9yIEFyY2ggdGhhdCBhcmUKPiB0
+YXJnZXRlZCB0byB0aGUgcGVvcGxlIHdobyBoYXMgbm8gaXNzdWVzIHRvIHBhdGNoIGFuZCBjb21w
+aWUgbmV3Cj4ga2VybmVsLiAgU28gdGhleSBkbyBub3QgY2FyZSBtdWNoIHRvIGJhY2twb3J0IGFu
+eSBuZXcgZHJpdmVycyB0byBvbGQKPiBrZXJuZWxzLiBXaG8gd2FudCBpdCAtIHdpbGwgZG8gaXQu
+Cj4KPiBBbmQgZGlzdHJpYnV0aW9ucyBsaWtlIFVidW50byBvciBGZWRvcmEgIHRoYXQgYXJlIHRh
+cmdldGVkIHRvIG91dC1vZi10aGUKPiBib3ggdXNhZ2UuICBUaGVyZSB0aGUgZGV2ZWxvcGVycyB0
+cnkgdG8gYmFja3BvcnQgZXZlcnl0aGluZywgY29tcGlsZQo+IHN0YW5kYXJkIGtlcm5lbCB3aXRo
+IGFsbCB0aGUgZmVhdHVyZXMgYW5kIHNvIG9uLgo+Cj4gU08gbWF5YmUgeW91IG5lZWQgdG8gY2hv
+b3NlIHRoZSBjb3JyZWN0IGRpc3RyaWJ1dGlvbi4gIERvIHlvdSB3YW50IHRvCj4gbWFrZSBhIGRp
+c3RyaWJ1dGlvbiBoaWdobHkgb3B0aW1pemVkIGZvciB5b3VyIGhhcmR3YXJlIGFuZCB5b3VyIHVz
+YWdlCj4gKGFuZCB3aWxsaW4gdG8gc3BlbmQgc29tZSB0aW1lIGFuZCBlZmZvcnQgZm9yIHRoaXMp
+IC0gb3IgZG8geW91IHByZWZlcgo+IHRvIGhhdmUgZ2VuZXJhbCBkaXN0cmlidXRpb24gdGhhdCB3
+aWxsIHdvcmsgb24gYW55IGhhcmR3YXJlIGluY2x1ZGluZwo+IHRoZSBvbmUgeW91IGhhdmUuICBM
+aW51eCBjYW4gb2ZmZXIgeW91ICBhIGNob2ljZS4KPgo+IEkndmUgY2hvb3NlbiBHZW50b28gKGFm
+dGVyIHNsYWNrd2FyZSAoc3RhcnRlZCBmcm9tIDAuOTggbG9uZyBsb25nIGFnbywKPiByZWRoYXQs
+c3VzZSwgZGViaWFuKSAtIGp1c3QgYmVjYXVzZSBJIGhhdmUgZW5vdWdoIGtub3dsZWRnZSBhbmQK
+PiBleHBlcmllbmNlIHRvIGJ1aWxkIHN5c3RlbSBmb3IgbXkgaGFyZHdhcmUgYW5kIHVzYWdlLiBG
+cm9tIG90aGVyIHNpZGUgSQo+IHVuZGVyc3RhbmQgdGhhdCBpZiBJIHRha2UgbXkgc3NkIGZyb20g
+OTMxMCBhbmQgcGx1ZyBpdCBpbiBSeXplbiBiYXNlZAo+IGxhcHRvcCBpdCB3aWxsIG5vdCBldmVu
+IGJvb3QgYXMgYWxsIG15IGJpbmFyaWVzIGFyZSBjb21waWxlZCB0byB1c2UKPiBldmVyeSBzaW5n
+bGUgSW50ZWwgZmVhdHVyZSBhdmFpbGFiZSBvbiBpbnRlbCBUaWdlcmxha2UuCj4KPiBTbyBqdXN0
+IHNlbGVjdCBhIHByb3BlciBkaXN0cmlidXRpb24gZm9yIHlvdXIgbmVlZHMgYW5kIHRvdXIgc2tp
+bGxzLiBBcwo+IGZvciBuZXcgZmVhdHVyZXMgb2YgbmV3IGhhcmR3YXJlIC0gdGhleSB3aWxsIHNv
+b25lciBvciBsYXRlciBsYW5kIGludG8KPiBtYWluc3RyZWFtIGFuZCBhbGwgdGhlIGNvbmNlcnZh
+dGl2ZSBkaXN0cmlidXRpb25zIC0gYnV0IGl0IHdpbGwgdGFrZQo+IHRpbWUuIEFzIGZvciBBWDUw
+MCB0aGUgcHJvcGVyIHN1cHBvcnQgaXMgbm90IGluIHRoZSBtYWlubGluZSB5ZXQuIEkgYmV0Cj4g
+VWJ1bnR1IGdpdmVzIHlvdSBXaUZpICsgQlQgYnV0IHlvdXIgZW5lcmd5IHNhdmluZyBmZWF0dXJl
+cyBhcmUgY3JhcCAoQ1BVCj4gbmV2ZXIgZ29lcyBiZWxvdyBQQzMgc3RhdGUgKSwgYW5kIGhpYmVy
+bmF0ZS9zdXNwZW5kIG1ha2VzIHlvdSB0cm91YmxlCj4gKG9yIHlvdSBkbyBub3QgdXNlIGl0IG9y
+IGRvIG5vdCBjYXJlIGlmIGl0IGRvZXMgbm90IHdha2UgdXAgNTAlIG9mCj4gdGltZXMpLiAgQW5k
+IHlvdSBoYXZlIDIgY2hvaWNlcyAtIHdhaXQgd2hlbiBhbGwgdGhlIHJlY2VudCBkZXZlbG9wbWVu
+dAo+IGZyb20gdGhpcyBtYWlsaW4gbGlzdCBsYW5kIHRvIG1haW5zdHJlYW0gb3IgdGFrZSB0aGUg
+bGF0ZXN0IGNvZGUgZnJvbQo+IEthbGxlJ3MgZ2l0IGFuZCBkbyBpdCB5b3Vyc2VsZi4KPgo+IE9u
+IDEvMjcvMjIgMTY6NTgsIFBhdHJpY2lvIEZlcnJhZ2dpIEFyZXMgd3JvdGU6Cj4gPiBIaSBNYXJr
+LCB0aGFua3MgZm9yIGFuc3dlcmluZyBiYWNrLiBHZW5lcmFsbHksIEkgd291bGQgYWdyZWUgd2l0
+aCB5b3UKPiA+IHRoYXQgbmV3ZXIgaGFyZHdhcmUgcmVxdWlyZXMgZGlzdHJvcyB0aGF0IHVwZGF0
+ZSBmcmVxdWVudGx5IHRvIGdldAo+ID4gdGhvc2UgZHJpdmVycyBpbiwgYnV0IGluIHRoaXMgc2l0
+dWF0aW9uLCBJIGZpbmQgaXQgdmVyeSBzdHJhbmdlIGlzIHRoZQo+ID4gb3RoZXIgd2F5IGFyb3Vu
+ZC4KPiA+Cj4gPiBNb3JlIHVwZGF0ZWQgZGlzdHJvcyBsaWtlIGFyY2gtYmFzZWQgb25lcyBoYXZl
+IG5vIGZ1bmN0aW9uaW5nIEJULAo+ID4gd2hpbGUgb2xkZXIgZGlzdHJvcyBsaWtlIHVidW50dS1i
+YXNlZCBvbmVzIGhhdmUgYm90aCB3b3JraW5nIEJUIGFuZAo+ID4gV2lGaS4gSXQgbWlnaHQgYmUg
+dGhlIGNhc2UgdGhhdCB0aGUgYXJjaCBkaXN0cm9zIEkgdHJpZWQgc2ltcGx5IGRpZAo+ID4gbm90
+IGVuYWJsZSB0aGUgbW9kdWxlcyB5b3UgbWVudGlvbmVkLgo+ID4gSSBhbSBub3Qgc3VyZSB3aGF0
+IGlzIGdvaW5nIG9uLgo+ID4KPiA+IEkgd2lsbCBnaXZlIGEgdHJ5IHlvdXIgcmVjb21tZW5kYXRp
+b25zIGFuZCBzZWUgaWYgY2FuIG1ha2Ugc29tZSBwcm9ncmVzcy4KPiA+Cj4gPiBUaGFua3MKPiA+
+Cj4gPiBFbCBqdWUsIDI3IGVuZSAyMDIyIGEgbGEocykgMTQ6MjgsIE1hcmsgSGVyYmVydAo+ID4g
+KG1hcmsuaGVyYmVydDQyQGdtYWlsLmNvbSkgZXNjcmliacOzOgo+ID4+IEkgdXNlIEdlbnRvbyB3
+aXRoIHZlcnkgY3VzdG9tIGtlcm5lbCAoYXRoMTFrIG1hc3Rlci1wZW5kaW5nIGJhY2twb3J0ZWQg
+Kwo+ID4+IG1vcmUgYmxlZWRpbmcgZWRnZSBhbmQgZXhwZXJpbWVudGFsIGZlYXR1cmVzKS4gU28g
+aXQgaXMgaGFyZCBmb3IgbWUgdG8KPiA+PiBzYXkgd2h5IGJuYXJ5IGRpc3RyaWJ1dGVzIGhhdmUg
+aXQgYWxsIHNvIGRpZmZlcmVudC4KPiA+Pgo+ID4+IFdoZW4gSSBnb3QgbXkgOTMxMCBpbiBBdWd1
+c3QgMjAyMSBpdCB3YXMgY29tcGxldGVseSB1bmlzYWJsZSBiZWNhdXNlIG9mCj4gPj4gYXRoMTFr
+IG5vIG1hdHRlciBvZiBkaXN0cmlidXRpb24sIGJ1dCBub3cgdGhlIHNpdHVhdGlvbiBpcyBxdWl0
+ZQo+ID4+IGRpZmZlcmVudCAtIHRoYW5rcyB0byBLYWxsZSBhbmQgdGVhbS4KPiA+Pgo+ID4+IFRo
+ZSBvbmx5IGlzc3VlIG5vdyBpcyB0byB3YWl0IHRpbGwgdGhvc2UgbmV3IGZlYXR1cmVzIHdpbGwg
+bGFuZCBpbnRvCj4gPj4gbWFpbnN0cmVhbSBkaXN0cmlidXRpb25zIHdoaWNoIHNvbWV0aW1lcyBw
+cmVmZXIgdG8gc3RheSBvbiBzbyBjYWxsZWQKPiA+PiAic3RhYmxlIiAga2VybmVscyBmb3IgYWdl
+cy4gVGhleSBtYXliZSBzdGFibGUgaWYgeW91ciBoYXJkd2FyZSBpcyAgZnJvbQo+ID4+IHN0b25l
+IGFnZSwgYnV0IGZvciBuZXcgaGFyZHdhcmUgbGlrZSA5MzEwICJzdGFibGUiICBrZXJuZWwgaXMg
+c3RhYmUgaW4KPiA+PiBvbmx5IG9uZSBhc3BlY3QgLSBpdCBpcyBub3Qgd29ya2luZyBhbmQgd2ls
+bCBuZXZlciBkby4gIEluIGFsbAo+ID4+IGRpc3RyaWJ1dGlvbnMgdGhlcmUgYXJlIHVzdWFsbHkg
+cGFja2FnZXMgd2l0aCBuZXdlciAiZXhwZXJpbWVudGFsIgo+ID4+IGtlcm5lbHMgdGhhdCBhcmUg
+YXZhaWxhYmxlIGJ1dCB3aWxsIG5vdCBiZSBpbnN0YWxsZWQgYnkgZGVmYXVsdCwgYnV0IHlvdQo+
+ID4+IGNhbiBpbnN0YWxsIHRoZSBwYWNrYWdlcyBhbmQgZW5qb3kgd29ya2luZyBzeXN0ZW0uCj4g
+Pj4KPiA+Pgo+ID4+IEZvciBhdGgxMWsgL2RlbGwgOTMxMCB0aGUgYmVzdCB3aWxsIGJlIDUuMTcg
+d2hpY2ggaXMgaW4gcmMxIG5vdywgYnV0IEkKPiA+PiBndWVzcyA1LjE2LjMgcmVsZWFzZWQgdG9k
+YXkgd2lsbCBhbHNvIGJlIGZ1bGx5IHVzYWJsZS4gSnVzdCBuZWVkIHRvIGdldAo+ID4+IG5ldyBm
+aXJtd2FyZSBmcm9tIEthbGxlJ3MgZ2l0IGFzIHRoZSBmaXJtd2FyZSBpbiBsaW51eCBmaXJtd2Fy
+ZSBwYWNrYWdlCj4gPj4gaXMgYWJzb2x1dGUganVuayBtb3JlIHRoYXQgMSB5ZWFyIG9sZC4KPiA+
+Pgo+ID4+IEFzIGZvciBibHVldG9vdGggLSBpdCBpcyB3b3JraW5nIHBlcmZlY3RseSwgYnV0IGl0
+IGlzIG5vdCBhbiBVU0IgbW9kdWxlCj4gPj4gYXMgaW50ZWwuIEl0IGlzIGhjaV91YXJ0ICwgc28g
+eW91IG5lZWQgdG8gaGF2ZSB1YXJ0IGJ0IHN1cHBvcnQgYnVpbHQgaXMKPiA+PiBhcyB3ZWxsIGFz
+IGF0aDNrIGJ0IGZpcm13YXJlIGxvYWRpbmcgYW5kIGJ0cWNhIGV4dGVuc2lvbnMuIEFuZCBhbGRv
+IHRoZQo+ID4+IGZpcm13YXJlIGlzIHJlcXVpcmVkIChhdmFpbGFibGUgaW4gcmVndWxhciBsaW51
+eC1maXJtd2FyZSApCj4gPj4KPiA+PiBIZXJlIGlzIG15IGxvZyBvZiBidCBpbml0aWFsaXphdGlv
+bi4gQWxsIHdvcmtpbmcgd2VsbC4KPiA+Pgo+ID4+IFsgICAgNC45MzA3NThdIGhjaV91YXJ0X3Fj
+YSBzZXJpYWwwLTA6IGZhaWxlZCB0byBhY3F1aXJlIGVuYWJsZSBncGlvCj4gPj4gWyAgICA0Ljkz
+MjczMl0gQmx1ZXRvb3RoOiBoY2kwOiBzZXR0aW5nIHVwIFJPTUUvUUNBNjM5MAo+ID4+IFsgICAg
+NC45MzY3NTBdIEJsdWV0b290aDogaGNpMDogRnJhbWUgcmVhc3NlbWJseSBmYWlsZWQgKC04NCkK
+PiA+PiBbICAgIDUuMjU0NTMzXSBCbHVldG9vdGg6IGhjaTA6IFFDQSBQcm9kdWN0IElEICAgOjB4
+MDAwMDAwMTAKPiA+PiBbICAgIDUuMjU2MDQ1XSBCbHVldG9vdGg6IGhjaTA6IFFDQSBTT0MgVmVy
+c2lvbiAgOjB4NDAwYTAyMDAKPiA+PiBbICAgIDUuMjU3NjM2XSBCbHVldG9vdGg6IGhjaTA6IFFD
+QSBST00gVmVyc2lvbiAgOjB4MDAwMDAyMDAKPiA+PiBbICAgIDUuMjU5MjYzXSBCbHVldG9vdGg6
+IGhjaTA6IFFDQSBQYXRjaCBWZXJzaW9uOjB4MDAwMDBkMmIKPiA+PiBbICAgIDUuMjYwNzkwXSBC
+bHVldG9vdGg6IGhjaTA6IFFDQSBjb250cm9sbGVyIHZlcnNpb24gMHgwMjAwMDIwMAo+ID4+IFsg
+ICAgNS4yNjIyMjhdIEJsdWV0b290aDogaGNpMDogUUNBIERvd25sb2FkaW5nIHFjYS9odGJ0Zncy
+MC50bHYKPiA+PiBbICAgIDYuMjEwNTU3XSBCbHVldG9vdGg6IGhjaTA6IFFDQSBEb3dubG9hZGlu
+ZyBxY2EvaHRudjIwLmJpbgo+ID4+IFsgICAgNi40Mzg2OTFdIEJsdWV0b290aDogaGNpMDogUUNB
+IHNldHVwIG9uIFVBUlQgaXMgY29tcGxldGVkCj4gPj4KPiA+PiBPbiAxLzI3LzIyIDE1OjI5LCBL
+YWxsZSBWYWxvIHdyb3RlOgo+ID4+PiBQYXRyaWNpbyBGZXJyYWdnaSBBcmVzIDxwYXR0ZmVycmFn
+Z2lAZ21haWwuY29tPiB3cml0ZXM6Cj4gPj4+Cj4gPj4+PiBNeSBuYW1lIGlzIFBhdHJpY2lvLCBJ
+IGFtIGEgZmVsbG93IHNvZnR3YXJlIGRldmVsb3BlciBhbmQgdXNlciBvZiB0aGUKPiA+Pj4+IERl
+bGwgWFBTIDkzMTAgKEFYNTAwIHZlcnNpb24pLiBGaXJzdCBvZiBhbGwsIEkgd2FudGVkIHRvIHRo
+YW5rIHlvdSBmb3IKPiA+Pj4+IGFsbCB5b3VyIGhhcmQgd29yayBicmluZ2luZyBzdXBwb3J0IGZv
+ciB0aGlzIG1vZGVsLCB0aGFua3MgdG8geW91LCBJCj4gPj4+PiBoYXZlIGJlZW4gYWJsZSB0byB1
+c2UgbXkgbGFwdG9wIHdpdGggTGludXggYWxtb3N0IHNpbmNlIEkgZ290IGl0Lgo+ID4+Pj4KPiA+
+Pj4+IFRoaXMgaXMgbm90IGEgYnVnIHJlcG9ydCBpbiBhbnkgd2F5LCBJIGp1c3Qgd291bGQgbGlr
+ZSB0byBnYWluIHNvbWUKPiA+Pj4+IGtub3dsZWRnZSBvbiB0aGUgc3ViamVjdCBhbmQgeW91IG1p
+Z2h0IGJlIHRoZSBwZXJmZWN0IHBlcnNvbiBmb3IgbXkKPiA+Pj4+IHF1ZXN0aW9ucy4KPiA+Pj4+
+Cj4gPj4+PiBJIG5vdGljZWQgdGhhdCBhbHRob3VnaCBhbGwgZGlzdHJvcyB1c2UgdGhlIExpbnV4
+IGtlcm5lbCwgc3VwcG9ydCBmb3IKPiA+Pj4+IHRoaXMgaGFyZHdhcmUgaXMgbm90IHRoZSBzYW1l
+IGFjcm9zcyBhbGwgTGludXggZGlzdHJvcy4gVG8gYmUgbW9yZQo+ID4+Pj4gc3BlY2lmaWMsIFVi
+dW50dS1iYXNlZCBkaXN0cm9zIGhhdmUgaGFkIHdvcmtpbmcgd2lmaSBhbmQgQmx1ZXRvb3RoIGZv
+cgo+ID4+Pj4gYWxtb3N0IGEgeWVhciBub3csIGFsdGhvdWdoIHRoZXJlIGFyZSBzb21lIHByb2Js
+ZW1zIGxpa2UgcmVzdW1pbmcgZnJvbQo+ID4+Pj4gZGVlcCBzbGVlcCwgIGJvdGggd2lmaSBhbmQg
+Qmx1ZXRvb3RoIHdvcmsgcmlnaHQgYXdheSBvbiBpbnN0YWxsYXRpb24sCj4gPj4+PiBhdCB0aGUg
+bW9tZW50IEkgYW0gdXNpbmcgUG9wIE9TIHdpdGggTGludXgga2VybmVsIDUuMTUuNSBhcyBteSBt
+YWluCj4gPj4+PiBkcml2ZXIuIE9uIHRoZSBvdGhlciBoYW5kLCBhcmNoLWJhc2VkIGRpc3Ryb3Mg
+ZG9udCcgaGF2ZSB3b3JraW5nIEJULAo+ID4+Pj4gYXMgeW91IGNhbiBzZWUgaGVyZSBhbmQgaGVy
+ZS4gVGhlIHdpZmkgaXMgd29ya2luZyBidXQgQmx1ZXRvb3RoCj4gPj4+PiBzb21ldGltZXMgZG9l
+c24ndCB0dXJuIG9uIGFuZCB3aGVuIGl0IGRvZXMgaXQgY2Fubm90IHByb3Blcmx5IGNvbm5lY3QK
+PiA+Pj4+IHRvIGRldmljZXMuIFRoaXMgaGFwcGVucyBhY3Jvc3MgbXVsdGlwbGUgYXJjaC1iYXNl
+ZCBkaXN0cm9zIGFuZCBrZXJuZWwKPiA+Pj4+IHZlcnNpb25zLCBldmVuIGlmIEkgdHJ5IGtlcm5l
+bCB2ZXJzaW9ucyB0aGF0IHdvcmsgZmluZSBpbiBQb3BPUywgdGhleQo+ID4+Pj4gZG9uJ3QgaW4g
+QXJjaC4KPiA+Pj4+Cj4gPj4+PiBTbyBmaW5hbGx5LCBteSBxdWVzdGlvbnM6Cj4gPj4+Pgo+ID4+
+Pj4gV2h5IGlzIHRoZXJlIHRoaXMgaW5jb25zaXN0ZW5jeSBvZiBzdXBwb3J0IGJldHdlZW4gZGlz
+dHJvcyB3aGVuCj4gPj4+PiB0aGVvcmV0aWNhbGx5LCB0aGV5IGFyZSBhbGwgTGludXg/Cj4gPj4+
+PiBXaHkgaXMgaXQgdGhhdCBpZiBBcmNoIGlzIGFsd2F5cyB1cGRhdGVkLCBpbiB0aGlzIHBhcnRp
+Y3VsYXIgY2FzZQo+ID4+Pj4gdGhlaXIgaGFyZHdhcmUgc3VwcG9ydCBpcyBsYWNraW5nIGNvbXBh
+cmVkIHRvIHVidW50dT8KPiA+Pj4gVGhpcyBpcyBzb21ldGhpbmcgeW91IG5lZWQgdG8gYXNrIFVi
+dW50dSwgb3IgY2hlY2sgZnJvbSB0aGVpciBnaXQKPiA+Pj4gaGlzdG9yeSBvciBwYWNrYWdlIGNo
+YW5nZWxvZ3MuIEJ1dCBpbiBnZW5lcmFsIGRpc3Ryb3MgbWFrZSBjaGFuZ2VzIHRvCj4gPj4+IHRo
+ZSBrZXJuZWwsIHNvbWUgb2YgdGhlbSBldmVuIHF1aXRlIGRyYXN0aWMsIHNvIGJlaGF2aW91ciBi
+ZXR3ZWVuCj4gPj4+IGRpc3Ryb3MgY2FuIGJlIGRpZmZlcmVudC4gTXkgZ3Vlc3MgaXMgdGhhdCBV
+YnVudHUgaGFkIGN1c3RvbSBjaGFuZ2VzIHRvCj4gPj4+IGF0aDExaywgbWF5YmUgdGhleSBiYWNr
+cG9ydGVkIHBhdGNoZXM/Cj4gPj4+Cj4gPj4+PiBBbmQgZmluYWxseSwgZG8geW91IGhhdmUgYSB3
+b3JraW5nIGNvbmZpZ3VyYXRpb24gd2l0aCB3aWZpIGFuZAo+ID4+Pj4gQmx1ZXRvb3RoPyBpZiB0
+aGF0IGlzIHRoZSBjYXNlIGNvdWxkIHlvdSB0ZWxsIG1lIHlvdXIgZGlzdHJvLCBrZXJuZWwsCj4g
+Pj4+PiBmaXJtd2FyZSwgc3lzdGVtIGZpcm13YXJlIHZlcnNpb25zPwo+ID4+PiBJIGFsc28gdXNl
+IERlbGwgWFBTIDEzIDkzMTAgd2l0aCBRQ0E2MzkwIGFzIG15IGRhaWx5IGRyaXZlciAobm8gcHVu
+Cj4gPj4+IGludGVuZGVkKSBhbmQgSSBoYXZlIG5vIGlzc3VlcyB3aXRoIHdpZmkuIEJJT1MgaXMg
+My4xLjAgZnJvbSAwNy8yMi8yMDIxLgo+ID4+PiBJJ20gYSBkZWJpYW4gZ3V5IHNvIEkgaGF2ZSBE
+ZWJpYW4gMTAgYW5kIHVzZSBjb25ubWFuLCBidXQKPiA+Pj4gbmV0d29yay1tYW5hZ2VyIHNob3Vs
+ZCB3b3JrIGFzIHdlbGwuIEkgY29tcGlsZSBteSBvd24ga2VybmVsIGZyb20gbXkKPiA+Pj4gYXRo
+LmdpdCBtYXN0ZXIgYnJhbmNoWzFdLCBidXQgd2l0aCBRQ0E2MzkwIEkgd291bGQgZXhwZWN0IHN0
+b2NrIHY1LjE2Cj4gPj4+IHJlbGVhc2UgdG8gd29yayBmaW5lLiBGb3IgV0NONjg1NSBJIHJlY29t
+bWVuZCB0byB1c2UgdjUuMTcuCj4gPj4+Cj4gPj4+IEZpcm13YXJlIHZlcnNpb24gaXMgV0xBTi5I
+U1QuMS4wLjEtMDUyNjYtUUNBSFNUU1dQTFpfVjJfVE9fWDg2LTEuCj4gPj4+Cj4gPj4+IEkgZG9u
+J3QgdXNlIEJsdWV0b290aCBzbyBjYW4ndCBjb21tZW50IG9uIHRoYXQuCj4gPj4+Cj4gPj4+IFsx
+XSBodHRwczovL2dpdC5rZXJuZWwub3JnL3B1Yi9zY20vbGludXgva2VybmVsL2dpdC9rdmFsby9h
+dGguZ2l0Lwo+ID4+PgoKLS0gCmF0aDExayBtYWlsaW5nIGxpc3QKYXRoMTFrQGxpc3RzLmluZnJh
+ZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9hdGgx
+MWsK
