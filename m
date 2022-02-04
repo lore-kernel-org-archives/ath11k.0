@@ -4,49 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97503C433EF
-	for <ath11k@archiver.kernel.org>; Thu,  3 Feb 2022 18:34:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13659C433EF
+	for <ath11k@archiver.kernel.org>; Fri,  4 Feb 2022 14:05:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Q/1BJvIDer6SaJz/DVZa590oYjmX6BtIX+9aKoFteaM=; b=uo0kItXHFiYiIuQKqngLFkQyzS
-	FnAtSDSCn4qdad5O5+rIpGG2LDM68Sf1EwajokLWqvzVKEbYwhynEYNU6sJDw8TS24x4JZmgk29Zg
-	BY4oSGUGKcgvkUp7G4zMU+zuZjp/UESkRB60J/FViNIXsZv6uzPowpGQPR78+uVlmfDLjcFCDzK8g
-	e70ohH2frFiS6B/md5g/91FVFghQn28tIExqbLV/KCHQAOlq/EKZKSSdCq8mpH7jfowYdNH2lMiQn
-	0cKH380SGZIs5iRzGANIQmhvgFTyv6tqoCIX7RsHboptnnkr2oCtDs0uKiNOAc+GzotxiqaONv06X
-	VyAjMrKQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=MvMUIJCpjj3aB3i2nYvbkuEhpaOC4VI8pqZym3DdU6w=; b=hyqKbIyzHR8wjH
+	tIw6ARtRKo9JNvMhA7/2qNsDKn2ACaooRIjGH89PBY4T1rajsyf90EIfylOMnwsTqHumHsqUptspW
+	73R+xbPJ+RjEt7sJUXwR8R8YRaO5EsqAkIatMcXZpkugcl8FooADr9xMkyyvw+nN8AMZ+TBavUxCV
+	nVO7iuHf072fY7XZNJWheRhguVqmHmq2yDVjtR3IRJyOSqzV4y3cGk9mdQH2uBlKpvCZb6kQGXqmw
+	1LHBWuuPqNHjQXDRpy19IJoWg9xyqwGNSWL4vJcaXqDLYRiz1wOr/XOiyi8sf7NZyXiGOoiINxBPa
+	GhEiWr41U/tZqU0/oGPg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nFgwW-002W8g-3D; Thu, 03 Feb 2022 18:34:52 +0000
-Received: from dvalin.narfation.org ([2a00:17d8:100::8b1])
+	id 1nFzDK-004VSf-5U; Fri, 04 Feb 2022 14:05:26 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nFgwR-002W6a-Us
- for ath11k@lists.infradead.org; Thu, 03 Feb 2022 18:34:50 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
- s=20121; t=1643913283;
+ id 1nFzDG-004VRA-Ii
+ for ath11k@lists.infradead.org; Fri, 04 Feb 2022 14:05:24 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1643983521;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=j77umDJX80VOM+5UhWmXnApILfYFzhTjgNR+PRemqQE=;
- b=wnqDy7r9qtSpF9wlFmwMi3J8q9iEgegapUIXIWv9FjxoXqfaWUUCiZ47zZ+p0OmUE/PWkJ
- 8mytJFmgRoaB7IBCVJz7ta6h4knxl16ke8wyPdVItugUojr3mo/9OW8BBaYrZJPqmipKTd
- UMOrLgo4PyuAbdZSjl0gx+qNSmrcyLE=
-From: Sven Eckelmann <sven@narfation.org>
-To: ath11k@lists.infradead.org
-Cc: =?ISO-8859-1?Q?=CD=F1igo?= Huguet <ihuguet@redhat.com>
-Subject: Re: failed to fetch board data
-Date: Thu, 03 Feb 2022 19:34:40 +0100
-Message-ID: <1926320.a6RdWSqejM@sven-l14>
-In-Reply-To: <CACT4oud4hmkjrAPkOr0sG1DNNgcgQaKT2JNJzcivZey9b5Hpiw@mail.gmail.com>
-References: <CACT4oud4hmkjrAPkOr0sG1DNNgcgQaKT2JNJzcivZey9b5Hpiw@mail.gmail.com>
+ bh=dayGXsFIzzfdfyY322FvzwebpXv6RGlugkQ2hX5IJ3Y=;
+ b=BCTcUmI0WAidcrSp6QWk3scTxamt2FB1+D+8Z/YGDM++QCrTgoHrYcq9nfpCjxanZVZPC0
+ jc4b6hIK5XSCuXrwhru2PBxXNhOjrw9XBvVUM/iRmBxuph9QYIjLV6xSvIv7pxscqJQMmj
+ qK6PTD9BejTbZ5/JD+VeZxYFZRbBGYY=
+Received: from mail-io1-f70.google.com (mail-io1-f70.google.com
+ [209.85.166.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-671-ZCMqdpdAOcONJRTA6wu1gQ-1; Fri, 04 Feb 2022 09:05:10 -0500
+X-MC-Unique: ZCMqdpdAOcONJRTA6wu1gQ-1
+Received: by mail-io1-f70.google.com with SMTP id
+ y124-20020a6bc882000000b0060fbfe14d03so4182342iof.2
+ for <ath11k@lists.infradead.org>; Fri, 04 Feb 2022 06:05:10 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=dayGXsFIzzfdfyY322FvzwebpXv6RGlugkQ2hX5IJ3Y=;
+ b=jnxsGJK+2YA6nxWCKR0o55w8IZwKHtJAMVKQMfEhZx9PFdh/une0AF74Mx3sSbuLBN
+ aPnnC4dbiwUfMCZyFoyBxH4URl4QF/hntLwR93LnpczDKfhK2aYaVfjPvu+vkJAHFGps
+ YCXkNWuuUOiKbQ2k+pTW/5vGlasi3h3k/3E9xEAiXGHLm0pN/CH0vBhqP7BUfgkBOuw/
+ uUXvBQLxlYfqsKw5MZOFqqBMBnHBLjplha7fQy6CiAB+IqqeXpEROtEZ6w+JkQ1IaK2Q
+ g35F/H7IPJ5+sc0bk9sXevCQWGJ0Qyubotgdgtbz3LmG7Pd+DHElTqWthbbu0tXrz32x
+ PkNA==
+X-Gm-Message-State: AOAM5321EFBeHv/0vkCWkWwj4Yq+ruv3ygGMRqm0ifbVIuKIJN//ThaN
+ qJ1r0hc2ezmWwQAIKZIiaBzCtnihDux3Uh6rjlRgbuUOOOKLRlXomkwEVLKgsEeKvgscJzXzWTN
+ d3+K7QPzeqOxGMKOVTgKLsX8/3cn0EBbP7UDVAQ==
+X-Received: by 2002:a02:824e:: with SMTP id q14mr1391736jag.0.1643983510021;
+ Fri, 04 Feb 2022 06:05:10 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxpaG34RYf+cJLaSqWJF6Wqtu/zrs/yr1Vtb4DZhZfYBUpbL1Exc1+V/w3A1/AnsJDM+hEy+rUZVwQFclBw/G4=
+X-Received: by 2002:a02:824e:: with SMTP id q14mr1391710jag.0.1643983509596;
+ Fri, 04 Feb 2022 06:05:09 -0800 (PST)
 MIME-Version: 1.0
+References: <CACT4oud4hmkjrAPkOr0sG1DNNgcgQaKT2JNJzcivZey9b5Hpiw@mail.gmail.com>
+ <1926320.a6RdWSqejM@sven-l14>
+In-Reply-To: <1926320.a6RdWSqejM@sven-l14>
+From: =?UTF-8?B?w43DsWlnbyBIdWd1ZXQ=?= <ihuguet@redhat.com>
+Date: Fri, 4 Feb 2022 15:04:58 +0100
+Message-ID: <CACT4oue1KcYkxnNUM4fJ8w-TR6Tiu5OekWYctaDRoo7md37dtA@mail.gmail.com>
+Subject: Re: failed to fetch board data
+To: Sven Eckelmann <sven@narfation.org>
+Cc: ath11k@lists.infradead.org
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=ihuguet@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220203_103448_309373_1B1813B6 
-X-CRM114-Status: UNSURE (   8.59  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220204_060522_716902_0E5FD1B3 
+X-CRM114-Status: GOOD (  13.55  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -58,131 +90,75 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============2419421374083723692=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
---===============2419421374083723692==
-Content-Type: multipart/signed; boundary="nextPart16953420.ZRgoJ8aGqf"; micalg="pgp-sha512"; protocol="application/pgp-signature"
-
---nextPart16953420.ZRgoJ8aGqf
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"; protected-headers="v1"
-From: Sven Eckelmann <sven@narfation.org>
-To: ath11k@lists.infradead.org
-Cc: =?ISO-8859-1?Q?=CD=F1igo?= Huguet <ihuguet@redhat.com>
-Subject: Re: failed to fetch board data
-Date: Thu, 03 Feb 2022 19:34:40 +0100
-Message-ID: <1926320.a6RdWSqejM@sven-l14>
-In-Reply-To: <CACT4oud4hmkjrAPkOr0sG1DNNgcgQaKT2JNJzcivZey9b5Hpiw@mail.gmail.com>
-References: <CACT4oud4hmkjrAPkOr0sG1DNNgcgQaKT2JNJzcivZey9b5Hpiw@mail.gmail.com>
-
-On Thursday, 3 February 2022 15:56:29 CET =CD=F1igo Huguet wrote:
-> Since it seems that there might be many variants that need to be known
-> in the board-2.bin file, is it possible to know which ones are
-> supported and which ones are not?
-
-    git clone https://github.com/kvalo/ath11k-firmware
-    git clone https://github.com/qca/qca-swiss-army-knife
-   =20
-    ./qca-swiss-army-knife/tools/scripts/ath11k/ath11k-bdencoder -i ath11k-=
-firmware/WCN6855/hw2.0/board-2.bin|grep BoardName
-
-Which returns following list:
-
-    BoardNames[0]: 'bus=3Dpci,vendor=3D17cb,device=3D1103,subsystem-vendor=
-=3D17cb,subsystem-device=3D3374,qmi-chip-id=3D2,qmi-board-id=3D262'
-    BoardNames[1]: 'bus=3Dpci,vendor=3D17cb,device=3D1103,subsystem-vendor=
-=3D17cb,subsystem-device=3D3374,qmi-chip-id=3D2,qmi-board-id=3D266'
-    BoardNames[2]: 'bus=3Dpci,vendor=3D17cb,device=3D1103,subsystem-vendor=
-=3D17cb,subsystem-device=3D3374,qmi-chip-id=3D18,qmi-board-id=3D266'
-    BoardNames[3]: 'bus=3Dpci,vendor=3D17cb,device=3D1103,subsystem-vendor=
-=3D14cd,subsystem-device=3D9409,qmi-chip-id=3D18,qmi-board-id=3D255'
-    BoardNames[4]: 'bus=3Dpci,vendor=3D17cb,device=3D1103,subsystem-vendor=
-=3D14cd,subsystem-device=3D9409,qmi-chip-id=3D2,qmi-board-id=3D255'
-    BoardNames[5]: 'bus=3Dpci,vendor=3D17cb,device=3D1103,subsystem-vendor=
-=3D17cb,subsystem-device=3D0108,qmi-chip-id=3D18,qmi-board-id=3D255'
-    BoardNames[6]: 'bus=3Dpci,vendor=3D17cb,device=3D1103,subsystem-vendor=
-=3D17cb,subsystem-device=3D0108,qmi-chip-id=3D2,qmi-board-id=3D255'
-    BoardNames[7]: 'bus=3Dpci,vendor=3D17cb,device=3D1103,subsystem-vendor=
-=3D105b,subsystem-device=3De0ce,qmi-chip-id=3D2,qmi-board-id=3D255'
-    BoardNames[8]: 'bus=3Dpci,vendor=3D17cb,device=3D1103,subsystem-vendor=
-=3D105b,subsystem-device=3De0ce,qmi-chip-id=3D18,qmi-board-id=3D255'
-    BoardNames[9]: 'bus=3Dpci,vendor=3D17cb,device=3D1103,subsystem-vendor=
-=3D14cd,subsystem-device=3D9308,qmi-chip-id=3D2,qmi-board-id=3D255'
-    BoardNames[10]: 'bus=3Dpci,vendor=3D17cb,device=3D1103,subsystem-vendor=
-=3D17aa,subsystem-device=3D9308,qmi-chip-id=3D2,qmi-board-id=3D255'
-    BoardNames[11]: 'bus=3Dpci,vendor=3D17cb,device=3D1103,subsystem-vendor=
-=3D17aa,subsystem-device=3D9309,qmi-chip-id=3D2,qmi-board-id=3D255'
-    BoardNames[12]: 'bus=3Dpci,vendor=3D17cb,device=3D1103,subsystem-vendor=
-=3D17aa,subsystem-device=3D9309,qmi-chip-id=3D18,qmi-board-id=3D255'
-    BoardNames[13]: 'bus=3Dpci,vendor=3D17cb,device=3D1103,subsystem-vendor=
-=3D17aa,subsystem-device=3De0be,qmi-chip-id=3D2,qmi-board-id=3D255'
-    BoardNames[14]: 'bus=3Dpci,vendor=3D17cb,device=3D1103,subsystem-vendor=
-=3D105b,subsystem-device=3De0bb,qmi-chip-id=3D2,qmi-board-id=3D255'
-    BoardNames[15]: 'bus=3Dpci,vendor=3D17cb,device=3D1103,subsystem-vendor=
-=3D105b,subsystem-device=3De0c4,qmi-chip-id=3D2,qmi-board-id=3D255'
-    BoardNames[16]: 'bus=3Dpci,vendor=3D17cb,device=3D1103,subsystem-vendor=
-=3D105b,subsystem-device=3De0c4,qmi-chip-id=3D18,qmi-board-id=3D255'
-    BoardNames[17]: 'bus=3Dpci,vendor=3D17cb,device=3D1103,subsystem-vendor=
-=3D17cb,subsystem-device=3D3374,qmi-chip-id=3D2,qmi-board-id=3D771'
-    BoardNames[18]: 'bus=3Dpci,vendor=3D17cb,device=3D1103,subsystem-vendor=
-=3D17cb,subsystem-device=3D3374,qmi-chip-id=3D18,qmi-board-id=3D771'
-
-Keep in mind, that there can also be multiple supported values per line (ak=
-a=20
-"per BDF"/board.bin).  This doesn't seem to be the case because there is no=
-=20
-extra entry (see placeholder "foobar") like in following example :
-
-
-    BoardNames[XXXX]: 'bus=3Dpci,vendor=3D17cb,device=3D1103,subsystem-vend=
-or=3D14cd,subsystem-device=3D9409,qmi-chip-id=3D18,qmi-board-id=3D255','foo=
-bar'
-
-Kind regards,
-	Sven
---nextPart16953420.ZRgoJ8aGqf
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmH8IEAACgkQXYcKB8Em
-e0bgLxAAnq4cy2bbNsVMGACRHjhCX0UKMxg+k5guQE0NNe+/xnnqybewgie0Qa+V
-MD/qBKrOrVKaMFJPsdIEaUncRMAie8DKvuDFuBrWPHgSe4vvbKD2aSHK2NhlcyBO
-Z+0f551tIi7J5PCHhrDaURPSM/Do4RblYI3cS/jf6kABdyNgp5L5BWQLcfPTnNHk
-C54ZH+CpRRDmh309e3nzOzWqOmNLkSMPa/jVMsR/1EG7GrD71LQB0wiKJOy3+MJt
-6WQVALN0SsYnxy3ECtlRldJ9VarlhqcpKFTLKXLPZ/IngQHDJC3bmOeY96xY3BBD
-muuvvZMRsJqg4sGvGyfykHsIF0C71ovsFZw3xR4CBj+42bnm+nj/heklWQuM6akR
-ZKlBg+oQHmdJTNgHhAP6swLKibIAqPPXx7vmx4gN2pTOcCN8biMhoLSEWi31O+Gv
-0rSJNrZ3ePTHACfr/MGKvdYNbhdHdMeW2fd20XAmzIWd35JDPS6uf4hb0L4ubPeW
-s+R9j7MPkGh17u9lD9oqDAGOvX67k3xK4ZHy0Tfmu1VgDrlPXkF7YHSoFe9At0NK
-rL0oRcPIDUseqBiPha3hDdYP7GnXfSGQ0gGzxjRPm51+HIG1xMdY/LASlqxyQE86
-r+ER0Q16mwfaP9f3L7AHA4UgsJInkS/FL+RzQDLuJTt6DpzMN1I=
-=6KHU
------END PGP SIGNATURE-----
-
---nextPart16953420.ZRgoJ8aGqf--
-
-
-
-
-
---===============2419421374083723692==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
-
---===============2419421374083723692==--
-
-
-
-
+SGksCgpPbiBUaHUsIEZlYiAzLCAyMDIyIGF0IDc6NDIgUE0gU3ZlbiBFY2tlbG1hbm4gPHN2ZW5A
+bmFyZmF0aW9uLm9yZz4gd3JvdGU6Cj4KPiBPbiBUaHVyc2RheSwgMyBGZWJydWFyeSAyMDIyIDE1
+OjU2OjI5IENFVCDDjcOxaWdvIEh1Z3VldCB3cm90ZToKPiA+IFNpbmNlIGl0IHNlZW1zIHRoYXQg
+dGhlcmUgbWlnaHQgYmUgbWFueSB2YXJpYW50cyB0aGF0IG5lZWQgdG8gYmUga25vd24KPiA+IGlu
+IHRoZSBib2FyZC0yLmJpbiBmaWxlLCBpcyBpdCBwb3NzaWJsZSB0byBrbm93IHdoaWNoIG9uZXMg
+YXJlCj4gPiBzdXBwb3J0ZWQgYW5kIHdoaWNoIG9uZXMgYXJlIG5vdD8KPgo+ICAgICBnaXQgY2xv
+bmUgaHR0cHM6Ly9naXRodWIuY29tL2t2YWxvL2F0aDExay1maXJtd2FyZQo+ICAgICBnaXQgY2xv
+bmUgaHR0cHM6Ly9naXRodWIuY29tL3FjYS9xY2Etc3dpc3MtYXJteS1rbmlmZQo+Cj4gICAgIC4v
+cWNhLXN3aXNzLWFybXkta25pZmUvdG9vbHMvc2NyaXB0cy9hdGgxMWsvYXRoMTFrLWJkZW5jb2Rl
+ciAtaSBhdGgxMWstZmlybXdhcmUvV0NONjg1NS9odzIuMC9ib2FyZC0yLmJpbnxncmVwIEJvYXJk
+TmFtZQo+Cj4gV2hpY2ggcmV0dXJucyBmb2xsb3dpbmcgbGlzdDoKPgo+ICAgICBCb2FyZE5hbWVz
+WzBdOiAnYnVzPXBjaSx2ZW5kb3I9MTdjYixkZXZpY2U9MTEwMyxzdWJzeXN0ZW0tdmVuZG9yPTE3
+Y2Isc3Vic3lzdGVtLWRldmljZT0zMzc0LHFtaS1jaGlwLWlkPTIscW1pLWJvYXJkLWlkPTI2MicK
+PiAgICAgQm9hcmROYW1lc1sxXTogJ2J1cz1wY2ksdmVuZG9yPTE3Y2IsZGV2aWNlPTExMDMsc3Vi
+c3lzdGVtLXZlbmRvcj0xN2NiLHN1YnN5c3RlbS1kZXZpY2U9MzM3NCxxbWktY2hpcC1pZD0yLHFt
+aS1ib2FyZC1pZD0yNjYnCj4gICAgIEJvYXJkTmFtZXNbMl06ICdidXM9cGNpLHZlbmRvcj0xN2Ni
+LGRldmljZT0xMTAzLHN1YnN5c3RlbS12ZW5kb3I9MTdjYixzdWJzeXN0ZW0tZGV2aWNlPTMzNzQs
+cW1pLWNoaXAtaWQ9MTgscW1pLWJvYXJkLWlkPTI2NicKPiAgICAgQm9hcmROYW1lc1szXTogJ2J1
+cz1wY2ksdmVuZG9yPTE3Y2IsZGV2aWNlPTExMDMsc3Vic3lzdGVtLXZlbmRvcj0xNGNkLHN1YnN5
+c3RlbS1kZXZpY2U9OTQwOSxxbWktY2hpcC1pZD0xOCxxbWktYm9hcmQtaWQ9MjU1Jwo+ICAgICBC
+b2FyZE5hbWVzWzRdOiAnYnVzPXBjaSx2ZW5kb3I9MTdjYixkZXZpY2U9MTEwMyxzdWJzeXN0ZW0t
+dmVuZG9yPTE0Y2Qsc3Vic3lzdGVtLWRldmljZT05NDA5LHFtaS1jaGlwLWlkPTIscW1pLWJvYXJk
+LWlkPTI1NScKPiAgICAgQm9hcmROYW1lc1s1XTogJ2J1cz1wY2ksdmVuZG9yPTE3Y2IsZGV2aWNl
+PTExMDMsc3Vic3lzdGVtLXZlbmRvcj0xN2NiLHN1YnN5c3RlbS1kZXZpY2U9MDEwOCxxbWktY2hp
+cC1pZD0xOCxxbWktYm9hcmQtaWQ9MjU1Jwo+ICAgICBCb2FyZE5hbWVzWzZdOiAnYnVzPXBjaSx2
+ZW5kb3I9MTdjYixkZXZpY2U9MTEwMyxzdWJzeXN0ZW0tdmVuZG9yPTE3Y2Isc3Vic3lzdGVtLWRl
+dmljZT0wMTA4LHFtaS1jaGlwLWlkPTIscW1pLWJvYXJkLWlkPTI1NScKPiAgICAgQm9hcmROYW1l
+c1s3XTogJ2J1cz1wY2ksdmVuZG9yPTE3Y2IsZGV2aWNlPTExMDMsc3Vic3lzdGVtLXZlbmRvcj0x
+MDViLHN1YnN5c3RlbS1kZXZpY2U9ZTBjZSxxbWktY2hpcC1pZD0yLHFtaS1ib2FyZC1pZD0yNTUn
+Cj4gICAgIEJvYXJkTmFtZXNbOF06ICdidXM9cGNpLHZlbmRvcj0xN2NiLGRldmljZT0xMTAzLHN1
+YnN5c3RlbS12ZW5kb3I9MTA1YixzdWJzeXN0ZW0tZGV2aWNlPWUwY2UscW1pLWNoaXAtaWQ9MTgs
+cW1pLWJvYXJkLWlkPTI1NScKPiAgICAgQm9hcmROYW1lc1s5XTogJ2J1cz1wY2ksdmVuZG9yPTE3
+Y2IsZGV2aWNlPTExMDMsc3Vic3lzdGVtLXZlbmRvcj0xNGNkLHN1YnN5c3RlbS1kZXZpY2U9OTMw
+OCxxbWktY2hpcC1pZD0yLHFtaS1ib2FyZC1pZD0yNTUnCj4gICAgIEJvYXJkTmFtZXNbMTBdOiAn
+YnVzPXBjaSx2ZW5kb3I9MTdjYixkZXZpY2U9MTEwMyxzdWJzeXN0ZW0tdmVuZG9yPTE3YWEsc3Vi
+c3lzdGVtLWRldmljZT05MzA4LHFtaS1jaGlwLWlkPTIscW1pLWJvYXJkLWlkPTI1NScKPiAgICAg
+Qm9hcmROYW1lc1sxMV06ICdidXM9cGNpLHZlbmRvcj0xN2NiLGRldmljZT0xMTAzLHN1YnN5c3Rl
+bS12ZW5kb3I9MTdhYSxzdWJzeXN0ZW0tZGV2aWNlPTkzMDkscW1pLWNoaXAtaWQ9MixxbWktYm9h
+cmQtaWQ9MjU1Jwo+ICAgICBCb2FyZE5hbWVzWzEyXTogJ2J1cz1wY2ksdmVuZG9yPTE3Y2IsZGV2
+aWNlPTExMDMsc3Vic3lzdGVtLXZlbmRvcj0xN2FhLHN1YnN5c3RlbS1kZXZpY2U9OTMwOSxxbWkt
+Y2hpcC1pZD0xOCxxbWktYm9hcmQtaWQ9MjU1Jwo+ICAgICBCb2FyZE5hbWVzWzEzXTogJ2J1cz1w
+Y2ksdmVuZG9yPTE3Y2IsZGV2aWNlPTExMDMsc3Vic3lzdGVtLXZlbmRvcj0xN2FhLHN1YnN5c3Rl
+bS1kZXZpY2U9ZTBiZSxxbWktY2hpcC1pZD0yLHFtaS1ib2FyZC1pZD0yNTUnCj4gICAgIEJvYXJk
+TmFtZXNbMTRdOiAnYnVzPXBjaSx2ZW5kb3I9MTdjYixkZXZpY2U9MTEwMyxzdWJzeXN0ZW0tdmVu
+ZG9yPTEwNWIsc3Vic3lzdGVtLWRldmljZT1lMGJiLHFtaS1jaGlwLWlkPTIscW1pLWJvYXJkLWlk
+PTI1NScKPiAgICAgQm9hcmROYW1lc1sxNV06ICdidXM9cGNpLHZlbmRvcj0xN2NiLGRldmljZT0x
+MTAzLHN1YnN5c3RlbS12ZW5kb3I9MTA1YixzdWJzeXN0ZW0tZGV2aWNlPWUwYzQscW1pLWNoaXAt
+aWQ9MixxbWktYm9hcmQtaWQ9MjU1Jwo+ICAgICBCb2FyZE5hbWVzWzE2XTogJ2J1cz1wY2ksdmVu
+ZG9yPTE3Y2IsZGV2aWNlPTExMDMsc3Vic3lzdGVtLXZlbmRvcj0xMDViLHN1YnN5c3RlbS1kZXZp
+Y2U9ZTBjNCxxbWktY2hpcC1pZD0xOCxxbWktYm9hcmQtaWQ9MjU1Jwo+ICAgICBCb2FyZE5hbWVz
+WzE3XTogJ2J1cz1wY2ksdmVuZG9yPTE3Y2IsZGV2aWNlPTExMDMsc3Vic3lzdGVtLXZlbmRvcj0x
+N2NiLHN1YnN5c3RlbS1kZXZpY2U9MzM3NCxxbWktY2hpcC1pZD0yLHFtaS1ib2FyZC1pZD03NzEn
+Cj4gICAgIEJvYXJkTmFtZXNbMThdOiAnYnVzPXBjaSx2ZW5kb3I9MTdjYixkZXZpY2U9MTEwMyxz
+dWJzeXN0ZW0tdmVuZG9yPTE3Y2Isc3Vic3lzdGVtLWRldmljZT0zMzc0LHFtaS1jaGlwLWlkPTE4
+LHFtaS1ib2FyZC1pZD03NzEnCj4KPiBLZWVwIGluIG1pbmQsIHRoYXQgdGhlcmUgY2FuIGFsc28g
+YmUgbXVsdGlwbGUgc3VwcG9ydGVkIHZhbHVlcyBwZXIgbGluZSAoYWthCj4gInBlciBCREYiL2Jv
+YXJkLmJpbikuICBUaGlzIGRvZXNuJ3Qgc2VlbSB0byBiZSB0aGUgY2FzZSBiZWNhdXNlIHRoZXJl
+IGlzIG5vCj4gZXh0cmEgZW50cnkgKHNlZSBwbGFjZWhvbGRlciAiZm9vYmFyIikgbGlrZSBpbiBm
+b2xsb3dpbmcgZXhhbXBsZSA6Cj4KPgo+ICAgICBCb2FyZE5hbWVzW1hYWFhdOiAnYnVzPXBjaSx2
+ZW5kb3I9MTdjYixkZXZpY2U9MTEwMyxzdWJzeXN0ZW0tdmVuZG9yPTE0Y2Qsc3Vic3lzdGVtLWRl
+dmljZT05NDA5LHFtaS1jaGlwLWlkPTE4LHFtaS1ib2FyZC1pZD0yNTUnLCdmb29iYXInCj4KPiBL
+aW5kIHJlZ2FyZHMsCj4gICAgICAgICBTdmVuCgpUaGFua3MgZm9yIHRoaXMgaW5mbywgaXQncyBy
+ZWFsbHkgdXNlZnVsLgoKSSBhc3N1bWUgdGhhdCB0byBnZXQgdGhlIGNhcmQgc3VwcG9ydGVkIEkg
+Y2FuIG9ubHkgd2FpdCBpdCB0byBiZSBhZGRlZAppbiBrdmFsbyBmaXJtd2FyZSByZXBvLCByaWdo
+dD8KCgotLSAKw43DsWlnbyBIdWd1ZXQKCgotLSAKYXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtA
+bGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL2F0aDExawo=
