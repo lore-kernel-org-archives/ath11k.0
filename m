@@ -4,65 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C3E8C433EF
-	for <ath11k@archiver.kernel.org>; Mon,  7 Feb 2022 09:31:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11D30C433F5
+	for <ath11k@archiver.kernel.org>; Mon,  7 Feb 2022 14:07:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=dnJaGispYju6yUPDy48l3CTyd9q9FJdsydtaAdq8e/c=; b=HM7J0OVob7MtkS
-	/KHG5RTPpVICiKk24yPeKNamE4gM6Y1X0zRM3L/rQ9JOlQBtuqDdUrWtOTqn7ye8nPLLqEfJhH0L/
-	3H8FVm4RAixGdu4HI5ikEE+HGo50Q3xtt9gFFTuaWk9xIM0XPa+1IS35s9G8gyGyr0aD/b3u/ChX0
-	guzpc3gsw/86zyt08sONZhCo/ew2NsGLxhPc5OIvXdNJf9lr1TD4QokIIYoCDhXZtzEatzK0yukXH
-	ybFf2ula9UO/e9j5zqOlzIRtg/SY0xbELuM8EvLnbHJ9ybBBl0nnKRbaDekDHebtSn/FgnK4fBS0C
-	H2GAhfZabsvquFMG9gSA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=nvXmqborqi3w8p7QorJ2iKcMNIytPOl9x4RXjBVEZ/k=; b=OS80QydQhdOATk
+	qdelv8i1LjY9OqohZX2XgSchmfPZ1R407wwdrTbbYBlXT11PW1/5JXRl2FWMpnjwY1tq1McV7UWZ6
+	mMhXW2Lp3EkkvAKstdMLmvGRVUJiku7DhlfqHty/sKCdGf9H5ci+WB4sgv7RymF7uNPyDy2KSrOD8
+	0Kfv3dF7ZC8ThiU4eeNO/QeEWi7h4jFK3Xa608jn1tDo3qtyzB9d4JzFIJuEq8B9kCvlJj8PiamLb
+	ohR70PyO07t3sa6UH/qOFYqMEgwpWwr7rCIWwnDEtjkc9Hk5mTeGILsRABhKIWQUDUQcmBtmnf7ec
+	4ld4K1OlhvptObrWH5cg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nH0MM-009ZEI-Iz; Mon, 07 Feb 2022 09:30:58 +0000
-Received: from alexa-out.qualcomm.com ([129.46.98.28])
+	id 1nH4fu-00AQ9T-0i; Mon, 07 Feb 2022 14:07:26 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nH0MK-009ZDd-F3
- for ath11k@lists.infradead.org; Mon, 07 Feb 2022 09:30:57 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1644226256; x=1675762256;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=CVsIC3nRQpnetqgkbgk0WdGG0QucCEAw8y8k+WeSLHQ=;
- b=RVhA3byZt6QxWD3IjFyM3ZefY/vWlVw2chCt3r/ILU3qFRXcjL2Nm7om
- LS1KnOSJVnEqdH8TSJHafMKpim7VxVg/+pwIkKYyhlPhyBhKaGl7szQSO
- AVFGMoA7auKJUUseXjeKm2qqoTl0CVS22RmNWm0q1AA1H1oUzdLqMJ5PS 4=;
-Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
- by alexa-out.qualcomm.com with ESMTP; 07 Feb 2022 01:30:55 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2022 01:30:54 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Mon, 7 Feb 2022 01:30:54 -0800
-Received: from bqiang-Celadon-RN.qca.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Mon, 7 Feb 2022 01:30:53 -0800
-From: Baochen Qiang <quic_bqiang@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>
-Subject: [PATCH] ath11k: Reset PCIE_GPIO_CFG_REG register when power on
-Date: Mon, 7 Feb 2022 17:30:23 +0800
-Message-ID: <20220207093023.10605-1-quic_bqiang@quicinc.com>
-X-Mailer: git-send-email 2.25.1
+ id 1nH4fr-00AQ8k-Ep
+ for ath11k@lists.infradead.org; Mon, 07 Feb 2022 14:07:24 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id CE92CB8123D;
+ Mon,  7 Feb 2022 14:07:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D1AEC004E1;
+ Mon,  7 Feb 2022 14:07:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1644242840;
+ bh=YIj8F7vEHjnUcDOoMnZx1TDJTkrwr4oLKo9lNOY3XmI=;
+ h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+ b=NTpVrk3XHr40fqLepnZxlYg/3m1RIx9Mx1h1hJlOYDBqAaJbEqG8oM085F2iCMh1G
+ efqOZbVXNBeA9sFfm0zo/j2cT4NnNLJmUTVk0UH74DrQeBz9XEtQrzM6uUxGUVO45Z
+ 9sSqcsJkuiWK6V36OjiIihkb3VPk9Te6DNxKNzXNbzzZK+gclbRodAD+W30c+RNBKw
+ lN71uTE4CUwKGCVVqRfPYtiA6bHH2M1+cSb3nmx55yM+hvhCAWZNRkPsNKL+8V7tkI
+ kFDuOGyxyw8yGos7WqM5/4kgL8l4LLHzaIo8aJC/ak/30nF9PHZlIfqMu2fSFLhhBm
+ uB/Uyhl+Kebkw==
+From: Kalle Valo <kvalo@kernel.org>
+To: Alex David <flu0r1ne@flu0r1ne.net>
+Cc: ath11k@lists.infradead.org
+Subject: Re: [PATCH] Change the max number of active probe SSIDs to match
+ registration
+References: <YcRtS0oQyDNjCTQS@peregrine>
+Date: Mon, 07 Feb 2022 16:07:17 +0200
+In-Reply-To: <YcRtS0oQyDNjCTQS@peregrine> (Alex David's message of "Thu, 23
+ Dec 2021 12:36:29 +0000")
+Message-ID: <87o83ibwiy.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220207_013056_579476_352878CF 
-X-CRM114-Status: UNSURE (   8.96  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220207_060723_660870_15407F08 
+X-CRM114-Status: GOOD (  11.60  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,66 +73,29 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On some modules, PCIE_GPIO_CFG_REG is not initialized to right value,
-this will cause WCN6855 hardware fails to be enumerated.
+Alex David <flu0r1ne@flu0r1ne.net> writes:
 
-Fix it by force writing the correct value to this register when power
-on.
+> The maximum number of SSIDs in a for active probe requests is currently
+> reported as 16 (WLAN_SCAN_PARAMS_MAX_SSID) when registering the driver.
+> The scan_req_params structure only has the capacity to hold 10 SSIDs.
+> This leads to a buffer overflow which can be triggered from wpa_supplicant
+> in userspace. When copying the SSIDs into the scan_req_params structure in
+> the ath11k_mac_op_hw_scan route, it can overwrite the extraie pointer.
+>
+> Signed-off-by: Alex David <flu0r1ne@flu0r1ne.net>
 
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+I missed this as this wasn't in patchwork. This is because you didn't CC
+linux-wireless. Please see instructions here how to submit ath11k
+patches:
 
-Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/pci.c | 11 +++++++++++
- drivers/net/wireless/ath/ath11k/pci.h |  3 +++
- 2 files changed, 14 insertions(+)
+https://wireless.wiki.kernel.org/en/users/drivers/ath11k/submittingpatches
 
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index d73b522a0081..06968ad488b0 100644
---- a/drivers/net/wireless/ath/ath11k/pci.c
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -445,6 +445,16 @@ static void ath11k_pci_force_wake(struct ath11k_base *ab)
- 	mdelay(5);
- }
- 
-+static void ath11k_pci_gpio_reset(struct ath11k_base *ab)
-+{
-+	int val;
-+
-+	ath11k_pci_write32(ab, PCIE_GPIO_CFG_REG, PCIE_GPIO_RESET_VAL);
-+	mdelay(10);
-+	val = ath11k_pci_read32(ab, PCIE_GPIO_CFG_REG);
-+	ath11k_dbg(ab, ATH11K_DBG_PCI, "gpio cfg: 0x%x\n", val);
-+}
-+
- static void ath11k_pci_sw_reset(struct ath11k_base *ab, bool power_on)
- {
- 	mdelay(100);
-@@ -461,6 +471,7 @@ static void ath11k_pci_sw_reset(struct ath11k_base *ab, bool power_on)
- 	ath11k_pci_clear_dbg_registers(ab);
- 	ath11k_pci_soc_global_reset(ab);
- 	ath11k_mhi_set_mhictrl_reset(ab);
-+	ath11k_pci_gpio_reset(ab);
- }
- 
- int ath11k_pci_get_msi_irq(struct device *dev, unsigned int vector)
-diff --git a/drivers/net/wireless/ath/ath11k/pci.h b/drivers/net/wireless/ath/ath11k/pci.h
-index 61d67b20a0eb..2716fc7745d6 100644
---- a/drivers/net/wireless/ath/ath11k/pci.h
-+++ b/drivers/net/wireless/ath/ath11k/pci.h
-@@ -52,6 +52,9 @@
- #define WLAON_QFPROM_PWR_CTRL_REG		0x01f8031c
- #define QFPROM_PWR_CTRL_VDD4BLOW_MASK		0x4
- 
-+#define PCIE_GPIO_CFG_REG			0x0180e000
-+#define PCIE_GPIO_RESET_VAL			0xc5
-+
- struct ath11k_msi_user {
- 	char *name;
- 	int num_vectors;
+Please also add "ath11k:" prefix to the subject and a Tested-on tag.
+
 -- 
-2.25.1
+https://patchwork.kernel.org/project/linux-wireless/list/
 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
