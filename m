@@ -4,66 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 782EFC433F5
-	for <ath11k@archiver.kernel.org>; Wed,  9 Feb 2022 06:09:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E018CC433F5
+	for <ath11k@archiver.kernel.org>; Wed,  9 Feb 2022 14:14:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=IsYpRdi7BkIY75NrOjK9WEmTr6n6vmGy9En2tHFKDWs=; b=4aTwwRa7wDE7Nj
-	hwGuxsaxr/QCODTS0cgq7UhHgyRONnubcEd7XBJ1Fy/bruV+Ot9OPdaTluLdccbXkHDNRQ+uqUPv7
-	STInEArODZ48A4w8tY9tV0Ce/XlkiAft4dQaDEi0xg9V9IMQ6ulBDFo6HshFTPDsnZNEPwy6rybKR
-	vgU3wjhM2g3n4mBeUQyQxuhy6fGaLRNYQRLIfC6BvWftHAjk+AJfbNiWsFwuOySDQ+Eg/h0QJVYD/
-	2CcqrQ9Nz1JoIJ4N2Z1d2bieemIYNLgtlFHNEHMsB0Nyn1lJBTcnHQTmiJc69nfc/Y69Eno4DgLfW
-	tSBQScS8vghI/mAnPrzA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=KlDHA9V4/AdkEIkC0Fe2oTIzjs18TiDJ72IewBjoLHg=; b=JBlQkGoDHkFF7I
+	0sBkt1X5Ytemibz8WBv8bJUBIk8kjHKx5PSUTZ4V1NkHie0mp0nU18vDmUopIMXx8BjLdUhetxa7z
+	V2i/ww2tIjO5Bcu2oDZ5cYaUGJFWG2+bVSxfpL+LvWFS9osil4EQjETOIRAX/MPYqNb3dcJdhOCF9
+	gMvkg6YymMoudXTX5ghESwvXyjUf8U812s44Rit/HNwPqIrTQP+kQyYP0tUmpTOr0rh1VTf+SUY5q
+	lalCvhC9egpHJ7nraDrY6EUSkG9TSLQ3tmPlPBrzSVAuD1tOpbWkGBvQNbjoj64MVpqvyZ51VNMYw
+	uicJvsMPg/8Ed+94GL4w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nHg9y-00GJmB-EA; Wed, 09 Feb 2022 06:08:58 +0000
-Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38])
+	id 1nHnjJ-000KjJ-SQ; Wed, 09 Feb 2022 14:13:57 +0000
+Received: from alexa-out.qualcomm.com ([129.46.98.28])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nHg9w-00GJls-Li
- for ath11k@lists.infradead.org; Wed, 09 Feb 2022 06:08:57 +0000
+ id 1nHnjH-000Ki6-5R
+ for ath11k@lists.infradead.org; Wed, 09 Feb 2022 14:13:56 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1644386936; x=1675922936;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=a8LUtAfdXN4uBXEVf7VF4kSObYsPKpz31Px0X8lqd4c=;
- b=M0vX9fk1S6Nq5kvlSEJU+cKVpv5KL8exeCeaKMENRCHSl7B5W8+R1Nfu
- z39iMQ0YlN0H/8NvEqjqvArQiSesgZkse40MFZLLxD8vVIZdiVqFi6CVE
- LzDKocCLkWQ1/k2AP+KXvpafxbVOtFlBVll9kPR8YY6vIn2NecqpKNgMr E=;
-Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
- by alexa-out-sd-01.qualcomm.com with ESMTP; 08 Feb 2022 22:08:56 -0800
+ t=1644416035; x=1675952035;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version;
+ bh=SgfZoTpbJ+vtHHH9nljdF4CZCvNCNBdsIY/wBkAgJns=;
+ b=iIaKHhfZeBRWQXGfAf3MVmycpaKPr/YdXjxgeQSTh3qWciXUdukOeNfH
+ 0WaSpln71aGwIM9ZAZlBHrXTPFHompFkX0DOystb/D9J1RgcaQ7bHrWcT
+ Lfe4IUaJOZfKhwtJ96mmhytl6CLC9Taw7tNZpXZvt13SpD4sJYptNvQwB I=;
+Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
+ by alexa-out.qualcomm.com with ESMTP; 09 Feb 2022 06:13:54 -0800
 X-QCInternal: smtphost
 Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2022 22:08:56 -0800
+ by ironmsg08-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2022 06:13:54 -0800
 Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
  nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Tue, 8 Feb 2022 22:08:35 -0800
-Received: from wgong-HP3-Z230-SFF-Workstation.qca.qualcomm.com (10.80.80.8) by
+ 15.2.922.19; Wed, 9 Feb 2022 06:13:53 -0800
+Received: from vnaralas-linux.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Tue, 8 Feb 2022 22:08:34 -0800
-From: Wen Gong <quic_wgong@quicinc.com>
+ 15.2.922.19; Wed, 9 Feb 2022 06:13:52 -0800
+From: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
 To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, <quic_wgong@quicinc.com>
-Subject: [PATCH] ath11k: fix uninitialized rate_idx in
- ath11k_dp_tx_update_txcompl()
-Date: Wed, 9 Feb 2022 01:08:16 -0500
-Message-ID: <20220209060816.423-1-quic_wgong@quicinc.com>
-X-Mailer: git-send-email 2.31.1
+CC: <linux-wireless@vger.kernel.org>, Venkateswara Naralasetty
+ <quic_vnaralas@quicinc.com>
+Subject: [PATCH 2/2] ath11k: fix radar detection in 160 Mhz
+Date: Wed, 9 Feb 2022 19:43:39 +0530
+Message-ID: <1644416019-820-2-git-send-email-quic_vnaralas@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1644416019-820-1-git-send-email-quic_vnaralas@quicinc.com>
+References: <1644416019-820-1-git-send-email-quic_vnaralas@quicinc.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220208_220856_762385_3993A8CE 
-X-CRM114-Status: UNSURE (   8.70  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220209_061355_305474_228DB967 
+X-CRM114-Status: GOOD (  14.51  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,35 +81,121 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-The rate_idx which passed to ath11k_debugfs_sta_add_tx_stats() by
-ath11k_dp_tx_update_txcompl() is not initialized, add initialization
-for it.
+Radar detection fails in the secondary 80 MHz when the
+the AP's primary 80 MHz is in non-DFS region in 160 MHz.
 
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03003-QCAHSPSWPL_V1_V2_SILICONZ_LITE-2
+This is due to WMI channel flag WMI_CHAN_INFO_DFS_FREQ2 is not set
+properly in case of the primary 80 MHz is in non-DFS region.
+HALPHY detects the radar pulses in the secondary 80 MHz only when
+WMI_CHAN_INFO_DFS_FREQ2 is set.
 
-Fixes: 1b8bb94c0612 ("ath11k: report tx bitrate for iw wlan station dump")
-Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
+Fix this issue by setting WMI channel flag WMI_CHAN_INFO_DFS_FREQ2
+based on the radar_enabled flag from the channel context.
+
+Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
+
+Signed-off-by: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
 ---
- drivers/net/wireless/ath/ath11k/dp_tx.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/mac.c | 25 +++++++++++++------------
+ 1 file changed, 13 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
-index 91d6244b6543..8402961c6688 100644
---- a/drivers/net/wireless/ath/ath11k/dp_tx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
-@@ -426,7 +426,7 @@ void ath11k_dp_tx_update_txcompl(struct ath11k *ar, struct hal_tx_status *ts)
- 	struct ath11k_sta *arsta;
- 	struct ieee80211_sta *sta;
- 	u16 rate, ru_tones;
--	u8 mcs, rate_idx, ofdma;
-+	u8 mcs, rate_idx = 0, ofdma;
- 	int ret;
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index d5922a0..68754e9 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -6630,12 +6630,13 @@ static void ath11k_mac_op_remove_chanctx(struct ieee80211_hw *hw,
  
- 	spin_lock_bh(&ab->base_lock);
-
-base-commit: 76680d49b5e0e661bc4abcdaf13fb7e124b4ca08
+ static int
+ ath11k_mac_vdev_start_restart(struct ath11k_vif *arvif,
+-			      const struct cfg80211_chan_def *chandef,
++			      struct ieee80211_chanctx_conf *ctx,
+ 			      bool restart)
+ {
+ 	struct ath11k *ar = arvif->ar;
+ 	struct ath11k_base *ab = ar->ab;
+ 	struct wmi_vdev_start_req_arg arg = {};
++	const struct cfg80211_chan_def *chandef = &ctx->def;
+ 	int he_support = arvif->vif->bss_conf.he_support;
+ 	int ret = 0;
+ 
+@@ -6670,8 +6671,7 @@ ath11k_mac_vdev_start_restart(struct ath11k_vif *arvif,
+ 		arg.channel.chan_radar =
+ 			!!(chandef->chan->flags & IEEE80211_CHAN_RADAR);
+ 
+-		arg.channel.freq2_radar =
+-			!!(chandef->chan->flags & IEEE80211_CHAN_RADAR);
++		arg.channel.freq2_radar = ctx->radar_enabled;
+ 
+ 		arg.channel.passive = arg.channel.chan_radar;
+ 
+@@ -6781,15 +6781,15 @@ static int ath11k_mac_vdev_stop(struct ath11k_vif *arvif)
+ }
+ 
+ static int ath11k_mac_vdev_start(struct ath11k_vif *arvif,
+-				 const struct cfg80211_chan_def *chandef)
++				 struct ieee80211_chanctx_conf *ctx)
+ {
+-	return ath11k_mac_vdev_start_restart(arvif, chandef, false);
++	return ath11k_mac_vdev_start_restart(arvif, ctx, false);
+ }
+ 
+ static int ath11k_mac_vdev_restart(struct ath11k_vif *arvif,
+-				   const struct cfg80211_chan_def *chandef)
++				   struct ieee80211_chanctx_conf *ctx)
+ {
+-	return ath11k_mac_vdev_start_restart(arvif, chandef, true);
++	return ath11k_mac_vdev_start_restart(arvif, ctx, true);
+ }
+ 
+ struct ath11k_mac_change_chanctx_arg {
+@@ -6864,7 +6864,7 @@ ath11k_mac_update_vif_chan(struct ath11k *ar,
+ 		 * If vdev is down then it expect vdev_stop->vdev_start.
+ 		 */
+ 		if (arvif->is_up) {
+-			ret = ath11k_mac_vdev_restart(arvif, &vifs[i].new_ctx->def);
++			ret = ath11k_mac_vdev_restart(arvif, vifs[i].new_ctx);
+ 			if (ret) {
+ 				ath11k_warn(ab, "failed to restart vdev %d: %d\n",
+ 					    arvif->vdev_id, ret);
+@@ -6878,7 +6878,7 @@ ath11k_mac_update_vif_chan(struct ath11k *ar,
+ 				continue;
+ 			}
+ 
+-			ret = ath11k_mac_vdev_start(arvif, &vifs[i].new_ctx->def);
++			ret = ath11k_mac_vdev_start(arvif, vifs[i].new_ctx);
+ 			if (ret)
+ 				ath11k_warn(ab, "failed to start vdev %d: %d\n",
+ 					    arvif->vdev_id, ret);
+@@ -6967,7 +6967,8 @@ static void ath11k_mac_op_change_chanctx(struct ieee80211_hw *hw,
+ 	if (WARN_ON(changed & IEEE80211_CHANCTX_CHANGE_CHANNEL))
+ 		goto unlock;
+ 
+-	if (changed & IEEE80211_CHANCTX_CHANGE_WIDTH)
++	if (changed & IEEE80211_CHANCTX_CHANGE_WIDTH ||
++	    changed & IEEE80211_CHANCTX_CHANGE_RADAR)
+ 		ath11k_mac_update_active_vif_chan(ar, ctx);
+ 
+ 	/* TODO: Recalc radar detection */
+@@ -6987,7 +6988,7 @@ static int ath11k_start_vdev_delay(struct ieee80211_hw *hw,
+ 	if (WARN_ON(arvif->is_started))
+ 		return -EBUSY;
+ 
+-	ret = ath11k_mac_vdev_start(arvif, &arvif->chanctx.def);
++	ret = ath11k_mac_vdev_start(arvif, &arvif->chanctx);
+ 	if (ret) {
+ 		ath11k_warn(ab, "failed to start vdev %i addr %pM on freq %d: %d\n",
+ 			    arvif->vdev_id, vif->addr,
+@@ -7081,7 +7082,7 @@ ath11k_mac_op_assign_vif_chanctx(struct ieee80211_hw *hw,
+ 		goto out;
+ 	}
+ 
+-	ret = ath11k_mac_vdev_start(arvif, &ctx->def);
++	ret = ath11k_mac_vdev_start(arvif, ctx);
+ 	if (ret) {
+ 		ath11k_warn(ab, "failed to start vdev %i addr %pM on freq %d: %d\n",
+ 			    arvif->vdev_id, vif->addr,
 -- 
-2.31.1
+2.7.4
 
 
 -- 
