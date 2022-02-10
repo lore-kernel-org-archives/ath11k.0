@@ -4,61 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B58EBC433F5
-	for <ath11k@archiver.kernel.org>; Thu, 10 Feb 2022 10:45:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68B15C433EF
+	for <ath11k@archiver.kernel.org>; Thu, 10 Feb 2022 11:39:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ZBjfrgHuzmem8nTrOMP1dwc8JP6zQjEswdiCiLWuATE=; b=WcobqoYfjAptBz
-	BUKruqCMftiuM+6WDW2HNQ3izVawpQ7/xxDnWW/mcOMY9lw5+sTitd8cNIQGe1feQ9QuE+FwHzvZX
-	Xcokvf9fruMiZz3coJmBXHVSerUYuEDHfzrmaKbf1LJihFoSIFftgyyONyPxIL2Fdx4MIFApvFAhQ
-	WpXAVpvQMHP5qwuYAhp/fqAz3peaaPZznOxKq+f2xVZQjVckfmnwIvbmLyJaJk1IIQwJSiHU6EB2u
-	a1qH4i5nq7Yot+pzrDlQuHv8avfvKs/1Ut3EWkfDrwwe2SWx7WaI/ZtesAKRhJ06NBvFPQV682v4+
-	2aJA7YmdEwVo0kcnXHWA==;
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
+	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=ubl+Zy0oCcwCEZynfjOfsHpiX5CSTL/JnC5/W0TRtTM=; b=4Qfe0oNYrkIBhX
+	Xy3XHKcTx3Tw8EV3L60LUNurks0q2noDVz4zHGtsW1uJaAKSc87VSU4gDxKqi3vYODeT/rjSJvAXN
+	cpiB+TXdo1hMjSKMGNLDbIeAwMXkPI1Q2+F3+bGhbU1Jefy6rxjt35qXNYAbyPU/tCMrHVsAL8zdN
+	wns6bgr+6YiyYeisaFGAcjOIIp1L+s6aMcqxAsLJAaT4feJeM3dx/7BjvhkvnPbpBz/LJht8x0USs
+	A/ChskuA0Ir7rNwN/5G+5hgwSG9o3krgk0kYPmLUGZz3rpBg0oU7wiMXtHJ6Ijh/MTVWob+G6B/jm
+	bXWHLJAsLbeUG4VO0rYg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nI6xK-003UeY-Bk; Thu, 10 Feb 2022 10:45:42 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1nI7nU-003dMB-E1; Thu, 10 Feb 2022 11:39:36 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nI6xH-003Ue3-Jc
- for ath11k@lists.infradead.org; Thu, 10 Feb 2022 10:45:40 +0000
+ id 1nI7nI-003dHB-Id
+ for ath11k@lists.infradead.org; Thu, 10 Feb 2022 11:39:26 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id E000A619BC
- for <ath11k@lists.infradead.org>; Thu, 10 Feb 2022 10:45:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55CB6C004E1;
- Thu, 10 Feb 2022 10:45:37 +0000 (UTC)
+ by sin.source.kernel.org (Postfix) with ESMTPS id F1BC9CE22F9;
+ Thu, 10 Feb 2022 11:39:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A75CCC004E1;
+ Thu, 10 Feb 2022 11:39:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1644489938;
- bh=32OaQk+UQ/kYTL9+dr4DZaoEDesEdMynTCoF8QwK6Gg=;
- h=From:To:List-Id:Cc:Subject:References:Date:In-Reply-To:From;
- b=obTGnW2sLiEcWnt5c70h0ewCHsXuXXd1D24gLvdZjhxbSSTsdoY7tsPIVgJEI9OON
- Yi2cKM7/VFZGYk4kb5WuM3Bc/W1kYoSRY4mJLndhaQSSdNpqMWXvFIddkyymTXwGc4
- E8yfNpW51Rdw2ARkCHYq4vARI5fF5IC7Z3zuHczXTiJYrfE4wDaiBJIxXlGjHZP1hv
- Y39hGf3xlXJ1zgMuR9cYNfKbT9Y781u13ouLIM1aI+w0xIMsSuHb7kAH3bHiAWdi9d
- gDd8wgOG+77qUdqyZYm7mU+uCHzcMepXqDYB0o/U84pcNzi+vi1NwC1ck2mem1pCiH
- 5qpZ2bjHCmb1A==
-From: Kalle Valo <kvalo@kernel.org>
-To: Josh Boyer <jwboyer@kernel.org>
-Cc: "linux-firmware\@kernel.org" <linux-firmware@kernel.org>,
- "linux-wireless\@vger.kernel.org" <linux-wireless@vger.kernel.org>,
- "ath11k\@lists.infradead.org" <ath11k@lists.infradead.org>
-Subject: Re: [PULL] ath11k firmware 20211223
-References: <BYAPR02MB4567669033A210A78AC397E9927E9@BYAPR02MB4567.namprd02.prod.outlook.com>
- <CA+5PVA4WEuJDB3OCKfYK-BPaccpVWd9t_au9S7MCEtpy7cdF-A@mail.gmail.com>
-Date: Thu, 10 Feb 2022 12:45:32 +0200
-In-Reply-To: <CA+5PVA4WEuJDB3OCKfYK-BPaccpVWd9t_au9S7MCEtpy7cdF-A@mail.gmail.com>
- (Josh Boyer's message of "Wed, 29 Dec 2021 08:41:45 -0500")
-Message-ID: <87ee4brodv.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+ s=k20201202; t=1644493161;
+ bh=EeIa8X3/BEq9686ub9eq26xWgWXw4Ny1RcXApBLAiHE=;
+ h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+ b=PiFnVzQtpdt9/FNq5RtABJiN+4VdbE6ZJBGMNo9AOxZyxeweHjWoX9R0/i2S0GHq/
+ AbJvHjkAtPmkSTHdX9svLV1qkESEZaL66e/GuB0ab2SNBYweSXp55Y/WYm9cyfnmVW
+ 3+NETiSEgdgtFLW61lboblgzCSHzJACZtOr3CUkV1aU7sKwsuYi1LVOSx5YjZOidWZ
+ nO6i/Y82UU1lWJwbkm8BpLGcBDB/OvKVKPR5CMWDMNRhh2VL+K2fY/TSY5vyrIzNiu
+ ytmKKGWtawwTg4tNi+aXidF14rHDXBx8XarfySJLptFsij71CErG+x/b9NPckDgnbR
+ NA4Q8zk2LTmzw==
 MIME-Version: 1.0
+Subject: Re: [PATCH v3 1/6] ath11k: Add basic WoW functionalities
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <1644308006-22784-2-git-send-email-quic_cjhuang@quicinc.com>
+References: <1644308006-22784-2-git-send-email-quic_cjhuang@quicinc.com>
+To: Carl Huang <quic_cjhuang@quicinc.com>
+Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
+User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-ID: <164449315590.9031.11345020274622525440.kvalo@kernel.org>
+Date: Thu, 10 Feb 2022 11:39:20 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220210_024539_706767_BEA086F6 
-X-CRM114-Status: GOOD (  14.56  )
+X-CRM114-CacheID: sfid-20220210_033924_832633_017248AE 
+X-CRM114-Status: UNSURE (   9.16  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,33 +67,40 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-SGkgSm9zaCwKCkpvc2ggQm95ZXIgPGp3Ym95ZXJAa2VybmVsLm9yZz4gd3JpdGVzOgoKPiBPbiBU
-aHUsIERlYyAyMywgMjAyMSBhdCA5OjAzIEFNIEthbGxlIFZhbG8gPGt2YWxvQHFjYS5xdWFsY29t
-bS5jb20+IHdyb3RlOgo+Pgo+PiAgV0hFTkNFICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAg
-IDE0ICstCj4+ICBhdGgxMWsvSVBRNjAxOC9odzEuMC9Ob3RpY2UudHh0ICB8ICAgNDggKy0KPgo+
-IFRoZXNlIE5vdGljZSBmaWxlcyBzZWVtIHByb2JsZW1hdGljLiAgVGhleSdyZSBjbGVhcmx5IHdl
-bGwgaW50ZW5kZWQsCj4gYnV0IHRoZXkgaGF2ZSBsYW5ndWFnZSB0aGF0IGFsbHVkZXMgdG8gYW4g
-YWdyZWVtZW50IHdpdGggQXRoZXJvcyBhbmQgYQo+IGNvbmZpZGVudGlhbCBuYXR1cmUgdG8gc29t
-ZSBvZiB0aGUgZmlsZXMuICBTcGVjaWZpY2FsbHk6Cj4KPiAiLi4ueW91ciB1c2Ugb2YgdGhlc2Ug
-c29mdHdhcmUKPiBjb21wb25lbnRzIHRvZ2V0aGVyIHdpdGggdGhlIFF1YWxjb21tIEF0aGVyb3Mg
-c29mdHdhcmUgKFF1YWxjb21tCj4gQXRoZXJvcyBzb2Z0d2FyZSBoZXJlaW5hZnRlciByZWZlcnJl
-ZCB0byBhcyDigJxTb2Z0d2FyZeKAnSkgaXMKPiBzdWJqZWN0IHRvIHRoZSB0ZXJtcyBvZiB5b3Vy
-IGFncmVlbWVudCBmcm9tIFF1YWxjb21tIEF0aGVyb3MuIgo+Cj4gTm9ib2R5IGhhcyBhbiBvcHBv
-cnR1bml0eSB0byBhZ3JlZSB0byBhbnl0aGluZyB3aXRoIEF0aGVyb3Mgd2hlbiB0aGV5Cj4gY29u
-c3VtZSB0aGUgZmlsZXMgZnJvbSBsaW51eC1maXJtd2FyZS4gIFRoZXJlJ3MgYWxzbyBubyBleHBs
-aWNpdCBncmFudAo+IG9mIHJlZGlzdHJpYnV0aW9uIGZvciBhbnkgb2YgdGhlc2UgZmlsZXMuCgpT
-byB0aGlzIGZpbGUgd2UgYXJlIGRpc2N1c3NpbmcgaXMgdGhlIG5vdGljZS50eHQgZmlsZS4gSW4g
-dGhlIFdIRU5DRQpmaWxlIHRoZSBhY3R1YWwgbGljZW5zZSBmb3IgYXRoMTFrIGlzOgoKTGljZW5j
-ZTogUmVkaXN0cmlidXRhYmxlLiBTZWUgTElDRU5TRS5RdWFsY29tbUF0aGVyb3NfYXRoMTBrIGZv
-ciBkZXRhaWxzCgpEb2VzIHRoYXQgY292ZXIgeW91ciBjb25jZXJucyBhYm91dCByZWRpc3RyaWJ1
-dGlvbj8KCkknbSBzdGlsbCB3b3JraW5nIG9uIHlvdXIgb3RoZXIgY29tbWVudCBhYm91dCBub3Rp
-Y2UudHh0LCB3aWxsIGdldCBiYWNrCm9uIHRoYXQgbGF0ZXIuCgotLSAKaHR0cHM6Ly9wYXRjaHdv
-cmsua2VybmVsLm9yZy9wcm9qZWN0L2xpbnV4LXdpcmVsZXNzL2xpc3QvCgpodHRwczovL3dpcmVs
-ZXNzLndpa2kua2VybmVsLm9yZy9lbi9kZXZlbG9wZXJzL2RvY3VtZW50YXRpb24vc3VibWl0dGlu
-Z3BhdGNoZXMKCi0tIAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0cy5pbmZyYWRlYWQu
-b3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vYXRoMTFrCg==
+Carl Huang <quic_cjhuang@quicinc.com> wrote:
+
+> Implement basic WoW functionalities such as magic-packet, disconnect
+> and pattern. The logic is very similar to ath10k.
+> 
+> When WoW is configured, ath11k_core_suspend and ath11k_core_resume
+> are skipped as WoW configuration and hif suspend/resume are done in
+> ath11k_wow_op_suspend() and ath11k_wow_op_resume().
+> 
+> Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
+> 
+> Signed-off-by: Carl Huang <quic_cjhuang@quicinc.com>
+> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+
+This patch failed to compile:
+
+drivers/net/wireless/ath/ath11k/mac.c:7242:5: error: no previous prototype for 'ath11k_mac_flush_tx_complete' [-Werror=missing-prototypes]
+
+Fixed in the pending branch.
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/patch/1644308006-22784-2-git-send-email-quic_cjhuang@quicinc.com/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
