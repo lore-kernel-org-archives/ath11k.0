@@ -4,64 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB806C433EF
-	for <ath11k@archiver.kernel.org>; Wed,  9 Feb 2022 14:14:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E945C433F5
+	for <ath11k@archiver.kernel.org>; Thu, 10 Feb 2022 01:05:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=1AuelIseVNDRwf3a2fDiitwHiqA0KVDx/8ECxAIEKjE=; b=4Y6l6doYfqIr72
-	f1sC17E8hid7ue/NTTfogNqBqppPr0pce9rXO45yxQPw1EXa3Pmi+rFAlUt1EfNfSWBXDIyd1/9Tk
-	yKcSgLQ4M+n1JjUuBHlTJB0kyHIqVDV0Zh/YUlTkBsJYUD05WO7oOmeNy3NaV6i9RQYRRk+CDAh3r
-	0kGUpTQomMnLpObof9k4OW8PjXKVRnsjGR1me1Y2I4Ko3dBhsRsCkWGH+aWcrO2cYudbteAcNtCob
-	byRe5p93NlO0ZrskfdV6GG7bfPsgxiycd37OPG8vteHfYuNpBgjWUOcnbAJr9kX9eMJY9lgbKFXBl
-	O/H9LA3URX8Kjl84bA1w==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=cadTSxDBaSaRUdAiH9pTHer2vboYVHdwG+0D+JoiaP0=; b=hmhGHBqlHN5IHL
+	DEIP8CGfOpKkJjyQrj1YdE9Z0ISBJ40Ip7eM2p2punujIpHlwgZtXP1pl+fuUiXO3T/QbZkY35rIs
+	ztm58iNVMdfrLvG74Cj6NSzlkUBLz2EHyaneuYOw+x4w8Qb2LGVFfml0Lja/0NyNDvrGdkqGNdZ/P
+	MA3CGVCdzG3p01aTsTSH3IeImtlPToj2bycnNXCd93syYtYWNFaVqTv8eqEZg1dtyceG9/J9jFDHi
+	BCze6TCC3LoRNmCCYpIg/7Wfe71Q5n7lCAfitFLMmOmC7qKx3WMQTqfsb3yCrWEkGMTw6wZelrY5J
+	WUC+7eEyufvYTnQSuO+w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nHnjL-000Kjn-Hw; Wed, 09 Feb 2022 14:13:59 +0000
-Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38])
+	id 1nHxu3-002AP4-3l; Thu, 10 Feb 2022 01:05:43 +0000
+Received: from mail-il1-x133.google.com ([2607:f8b0:4864:20::133])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nHnjH-000KiB-V4
- for ath11k@lists.infradead.org; Wed, 09 Feb 2022 14:13:57 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1644416035; x=1675952035;
- h=from:to:cc:subject:date:message-id:mime-version;
- bh=mWjJdHYODbZPfvSGWhcZc8pUvzmhPRg5+wfmSCaUo1A=;
- b=AlUJ3dCCtZ/3MFuqMvlL0uRs6IjsSZKJ6JcZsC17kcIY3Txrv4jyXjQ5
- 7lMuz27/tCIHML6Qaojlz/nk2kggMx6TzeoiS1GLWU/BpmzeanIQusx7v
- 9jQLL2WwNYZ0Nduv1X9orL4np2kTCRaP5UzhDL+ErqC3ItNATWvj77bvO w=;
-Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
- by alexa-out-sd-01.qualcomm.com with ESMTP; 09 Feb 2022 06:13:52 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2022 06:13:52 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Wed, 9 Feb 2022 06:13:51 -0800
-Received: from vnaralas-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Wed, 9 Feb 2022 06:13:50 -0800
-From: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, Venkateswara Naralasetty
- <quic_vnaralas@quicinc.com>
-Subject: [PATCH 1/2] ath11k: fix WARN_ON during ath11k_mac_update_vif_chan
-Date: Wed, 9 Feb 2022 19:43:38 +0530
-Message-ID: <1644416019-820-1-git-send-email-quic_vnaralas@quicinc.com>
-X-Mailer: git-send-email 2.7.4
+ id 1nHxu0-002AOT-MX
+ for ath11k@lists.infradead.org; Thu, 10 Feb 2022 01:05:42 +0000
+Received: by mail-il1-x133.google.com with SMTP id p11so3193451ils.1
+ for <ath11k@lists.infradead.org>; Wed, 09 Feb 2022 17:05:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=e4w1CApPhPDgmcFgoua9r1tKXruanOSQmLFyp0HkppI=;
+ b=RBcfMgtXqLtIv9YJQLaPRKF42VFVYLSLtyXrVcIFzeZdBZAXqjMZE4pPfVx8KMW+sc
+ AbaJxQFfLnQfZhCNqdGtlu6F/mzRB8thWMz0cejSGY6ZYbaAPGBdGDmk9RJgFluWmkVa
+ +QLMI4Rp850o4+P6UR9PXCRIi4zJPlEHIdlbE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=e4w1CApPhPDgmcFgoua9r1tKXruanOSQmLFyp0HkppI=;
+ b=bMis9pVI/r3RX6U1ye0KRPgM1n5H/967sv7Idc2EfVT8YKGKdB8pS0XsJfbQbi+kkF
+ AFKdJPJ7pBlpZYy98h1MQlAhXiX6SDNUtRn4IvE7MJElh5D+tpA6VzJqVrbkXl8xZZVB
+ pAOIFcz3OMG7I6xBYxEF7OKhbAqkQitliBFkXeeKqZ4T+xCd8bgF9inT4K8tfY66Z6uq
+ t0gCqn85nvBOWydvgvdWooWv8QhOiZojDSoPKlkKjTMyUd0tgNQb44UMhW/fnheAs7OS
+ eXLK4ziGk1cfPiUGCdU9+vuvhpYOedBpJG3whk6zCTTJVYY2gpxMZIt79+4PNtd584vU
+ XAEg==
+X-Gm-Message-State: AOAM530P9OF30fMd+2KgO/etDGJ+Tu3vW2z9sFh34HJ5gs4ISgiF5PiZ
+ +QV+AcsYxOqiVMvSFTsLTWgQLcQOKeljeWE5AlMFtg==
+X-Google-Smtp-Source: ABdhPJwNbjhKO1NI3h25Hc1gnTydBgfZyYC9Qo/rZi9Jc8eA2/B4A82ki8D3OQ3s8Fw/7xtoGh5TmcCkdpK6Xo6MEag=
+X-Received: by 2002:a05:6e02:1e08:: with SMTP id
+ g8mr2784767ila.278.1644455133779; 
+ Wed, 09 Feb 2022 17:05:33 -0800 (PST)
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+References: <20220207093023.10605-1-quic_bqiang@quicinc.com>
+In-Reply-To: <20220207093023.10605-1-quic_bqiang@quicinc.com>
+From: Abhishek Kumar <kuabhs@chromium.org>
+Date: Wed, 9 Feb 2022 17:05:23 -0800
+Message-ID: <CACTWRwugAHA87-AuEkC7tXEEuOhef_FrWBjjk4pQXZvpmHQ65A@mail.gmail.com>
+Subject: Re: [PATCH] ath11k: Reset PCIE_GPIO_CFG_REG register when power on
+To: Baochen Qiang <quic_bqiang@quicinc.com>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org, 
+ Abhishek Kumar <kuabhs@chromium.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220209_061356_068525_C6B3D4BC 
-X-CRM114-Status: GOOD (  11.65  )
+X-CRM114-CacheID: sfid-20220209_170540_774858_5555001E 
+X-CRM114-Status: GOOD (  19.25  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,67 +79,78 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Fix WARN_ON() from ath11k_mac_update_vif_chan() if vdev is not up.
-Since change_chanctx can be called even before vdev_up from
-ieee80211_start_ap->ieee80211_vif_use_channel->
-ieee80211_recalc_radar_chanctx.
+On Mon, Feb 7, 2022 at 1:41 AM Baochen Qiang <quic_bqiang@quicinc.com> wrote:
+>
+> On some modules, PCIE_GPIO_CFG_REG is not initialized to right value,
+> this will cause WCN6855 hardware fails to be enumerated.
+>
+> Fix it by force writing the correct value to this register when power
+> on.
+>
+> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+Can you elaborate how you tested this ? I can see due to this patch
+shows resource temporarily unavailable after running simulated wifi
+crash in a loop.
+>
+> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+> ---
+>  drivers/net/wireless/ath/ath11k/pci.c | 11 +++++++++++
+>  drivers/net/wireless/ath/ath11k/pci.h |  3 +++
+>  2 files changed, 14 insertions(+)
+>
+> diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
+> index d73b522a0081..06968ad488b0 100644
+> --- a/drivers/net/wireless/ath/ath11k/pci.c
+> +++ b/drivers/net/wireless/ath/ath11k/pci.c
+> @@ -445,6 +445,16 @@ static void ath11k_pci_force_wake(struct ath11k_base *ab)
+>         mdelay(5);
+>  }
+>
+> +static void ath11k_pci_gpio_reset(struct ath11k_base *ab)
+> +{
+> +       int val;
+> +
+> +       ath11k_pci_write32(ab, PCIE_GPIO_CFG_REG, PCIE_GPIO_RESET_VAL);
+> +       mdelay(10);
+> +       val = ath11k_pci_read32(ab, PCIE_GPIO_CFG_REG);
+> +       ath11k_dbg(ab, ATH11K_DBG_PCI, "gpio cfg: 0x%x\n", val);
+> +}
+Looks like you have added delay before reading which gets printed as a
+debug log. In this case, I don't think you should add the
+unconditional delay and read the register unconditionally but rather
+should do only if debug is enabled. Thought ?
+> +
+>  static void ath11k_pci_sw_reset(struct ath11k_base *ab, bool power_on)
+>  {
+>         mdelay(100);
+> @@ -461,6 +471,7 @@ static void ath11k_pci_sw_reset(struct ath11k_base *ab, bool power_on)
+>         ath11k_pci_clear_dbg_registers(ab);
+>         ath11k_pci_soc_global_reset(ab);
+>         ath11k_mhi_set_mhictrl_reset(ab);
+> +       ath11k_pci_gpio_reset(ab);
+>  }
+>
+>  int ath11k_pci_get_msi_irq(struct device *dev, unsigned int vector)
+> diff --git a/drivers/net/wireless/ath/ath11k/pci.h b/drivers/net/wireless/ath/ath11k/pci.h
+> index 61d67b20a0eb..2716fc7745d6 100644
+> --- a/drivers/net/wireless/ath/ath11k/pci.h
+> +++ b/drivers/net/wireless/ath/ath11k/pci.h
+> @@ -52,6 +52,9 @@
+>  #define WLAON_QFPROM_PWR_CTRL_REG              0x01f8031c
+>  #define QFPROM_PWR_CTRL_VDD4BLOW_MASK          0x4
+>
+> +#define PCIE_GPIO_CFG_REG                      0x0180e000
+> +#define PCIE_GPIO_RESET_VAL                    0xc5
+> +
+>  struct ath11k_msi_user {
+>         char *name;
+>         int num_vectors;
+> --
+> 2.25.1
+>
 
-Do vdev stop followed by a vdev start in case of vdev is down.
-
-Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
-
-Signed-off-by: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/mac.c | 32 ++++++++++++++++++++++++++------
- 1 file changed, 26 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index ed89905..d5922a0 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -6856,13 +6856,33 @@ ath11k_mac_update_vif_chan(struct ath11k *ar,
- 		if (WARN_ON(!arvif->is_started))
- 			continue;
- 
--		if (WARN_ON(!arvif->is_up))
--			continue;
-+		/* change_chanctx can be called even before vdev_up from
-+		 * ieee80211_start_ap->ieee80211_vif_use_channel->
-+		 * ieee80211_recalc_radar_chanctx.
-+		 *
-+		 * Firmware expect vdev_restart only if vdev is up.
-+		 * If vdev is down then it expect vdev_stop->vdev_start.
-+		 */
-+		if (arvif->is_up) {
-+			ret = ath11k_mac_vdev_restart(arvif, &vifs[i].new_ctx->def);
-+			if (ret) {
-+				ath11k_warn(ab, "failed to restart vdev %d: %d\n",
-+					    arvif->vdev_id, ret);
-+				continue;
-+			}
-+		} else {
-+			ret = ath11k_mac_vdev_stop(arvif);
-+			if (ret) {
-+				ath11k_warn(ab, "failed to stop vdev %d: %d\n",
-+					    arvif->vdev_id, ret);
-+				continue;
-+			}
-+
-+			ret = ath11k_mac_vdev_start(arvif, &vifs[i].new_ctx->def);
-+			if (ret)
-+				ath11k_warn(ab, "failed to start vdev %d: %d\n",
-+					    arvif->vdev_id, ret);
- 
--		ret = ath11k_mac_vdev_restart(arvif, &vifs[i].new_ctx->def);
--		if (ret) {
--			ath11k_warn(ab, "failed to restart vdev %d: %d\n",
--				    arvif->vdev_id, ret);
- 			continue;
- 		}
- 
--- 
-2.7.4
-
+Thanks
+Abhishek
 
 -- 
 ath11k mailing list
