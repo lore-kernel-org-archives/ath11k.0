@@ -4,58 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68B15C433EF
-	for <ath11k@archiver.kernel.org>; Thu, 10 Feb 2022 11:39:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88ABCC433FE
+	for <ath11k@archiver.kernel.org>; Fri, 11 Feb 2022 15:08:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
-	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ubl+Zy0oCcwCEZynfjOfsHpiX5CSTL/JnC5/W0TRtTM=; b=4Qfe0oNYrkIBhX
-	Xy3XHKcTx3Tw8EV3L60LUNurks0q2noDVz4zHGtsW1uJaAKSc87VSU4gDxKqi3vYODeT/rjSJvAXN
-	cpiB+TXdo1hMjSKMGNLDbIeAwMXkPI1Q2+F3+bGhbU1Jefy6rxjt35qXNYAbyPU/tCMrHVsAL8zdN
-	wns6bgr+6YiyYeisaFGAcjOIIp1L+s6aMcqxAsLJAaT4feJeM3dx/7BjvhkvnPbpBz/LJht8x0USs
-	A/ChskuA0Ir7rNwN/5G+5hgwSG9o3krgk0kYPmLUGZz3rpBg0oU7wiMXtHJ6Ijh/MTVWob+G6B/jm
-	bXWHLJAsLbeUG4VO0rYg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=F2UYU20Eo2tTPwmbn8VECGRTZGldO65tdunPS9XS86E=; b=KmGgiCLwm92n4h
+	rnjNGWlPd5pop9bsdETD+hK6YhaCMC8cl1eWM3u9NX5oCEmlBcWnNe1rh3b9+2egSWAuSPt+Ydw6X
+	TGBSQ3oTuZtbzTwfAGeB81FJ6pOFcvnnfYl3JUrtGRdzlqZf0ppqKOViF2FST936+PlSH/riVMRbc
+	g0ZiMAhfIpT256AXF9RZkl18qU/TXTtA6kaJllxxG157wyKYx0ZdEK85K1A9GHIDj02KE3lUYLC9M
+	PZpL4NypyqNSt9rG3OmHtCCEG/ACuNlrwNkftQ3R3P31cdvaMA7dDWSmmBreEjGUfDwKL94O5r/q/
+	nbEd89Dl9JqaSAVUThTg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nI7nU-003dMB-E1; Thu, 10 Feb 2022 11:39:36 +0000
-Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
+	id 1nIXWv-007iMU-7N; Fri, 11 Feb 2022 15:08:13 +0000
+Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nI7nI-003dHB-Id
- for ath11k@lists.infradead.org; Thu, 10 Feb 2022 11:39:26 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by sin.source.kernel.org (Postfix) with ESMTPS id F1BC9CE22F9;
- Thu, 10 Feb 2022 11:39:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A75CCC004E1;
- Thu, 10 Feb 2022 11:39:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1644493161;
- bh=EeIa8X3/BEq9686ub9eq26xWgWXw4Ny1RcXApBLAiHE=;
- h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
- b=PiFnVzQtpdt9/FNq5RtABJiN+4VdbE6ZJBGMNo9AOxZyxeweHjWoX9R0/i2S0GHq/
- AbJvHjkAtPmkSTHdX9svLV1qkESEZaL66e/GuB0ab2SNBYweSXp55Y/WYm9cyfnmVW
- 3+NETiSEgdgtFLW61lboblgzCSHzJACZtOr3CUkV1aU7sKwsuYi1LVOSx5YjZOidWZ
- nO6i/Y82UU1lWJwbkm8BpLGcBDB/OvKVKPR5CMWDMNRhh2VL+K2fY/TSY5vyrIzNiu
- ytmKKGWtawwTg4tNi+aXidF14rHDXBx8XarfySJLptFsij71CErG+x/b9NPckDgnbR
- NA4Q8zk2LTmzw==
+ id 1nIXWr-007iLL-SC
+ for ath11k@lists.infradead.org; Fri, 11 Feb 2022 15:08:11 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+ t=1644592089; x=1676128089;
+ h=from:to:cc:subject:date:message-id:mime-version;
+ bh=AuXDkI9+kh9A1KXh26b2o4XoOQeIE+GS3ZWplul/L9c=;
+ b=PoOnxUdhbUWaY+KgqJLxx3P83z+L/s3mbMRCDA+tGkejF+RFRrL3D5gl
+ vYM4RtWStuA1ChP3RLtryVbG+vDPSZEqH/SuoAsMPOy2y6tnCWUDhajwa
+ OzuS6MzLVDfu4axO5sALg5GWSDgtuzOPHpn7KZOyt7nVXn6PTlhCMlJTL A=;
+Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
+ by alexa-out-sd-01.qualcomm.com with ESMTP; 11 Feb 2022 07:08:08 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+ by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2022 07:08:07 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Fri, 11 Feb 2022 07:08:07 -0800
+Received: from vnaralas-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Fri, 11 Feb 2022 07:08:05 -0800
+From: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, Venkateswara Naralasetty
+ <quic_vnaralas@quicinc.com>
+Subject: [PATCH 0/6] ath11k: add single shot/periodic CFR capture support for
+ IPQ8074
+Date: Fri, 11 Feb 2022 20:37:49 +0530
+Message-ID: <1644592075-27082-1-git-send-email-quic_vnaralas@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Subject: Re: [PATCH v3 1/6] ath11k: Add basic WoW functionalities
-From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <1644308006-22784-2-git-send-email-quic_cjhuang@quicinc.com>
-References: <1644308006-22784-2-git-send-email-quic_cjhuang@quicinc.com>
-To: Carl Huang <quic_cjhuang@quicinc.com>
-Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
-User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <164449315590.9031.11345020274622525440.kvalo@kernel.org>
-Date: Thu, 10 Feb 2022 11:39:20 +0000 (UTC)
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220210_033924_832633_017248AE 
-X-CRM114-Status: UNSURE (   9.16  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220211_070809_986958_AB20610C 
+X-CRM114-Status: GOOD (  10.10  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,32 +79,102 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Carl Huang <quic_cjhuang@quicinc.com> wrote:
+This Channel Frequency Response feature is to get the channel
+state information from the hardware and send the CSI data to
+userspace.
 
-> Implement basic WoW functionalities such as magic-packet, disconnect
-> and pattern. The logic is very similar to ath10k.
-> 
-> When WoW is configured, ath11k_core_suspend and ath11k_core_resume
-> are skipped as WoW configuration and hif suspend/resume are done in
-> ath11k_wow_op_suspend() and ath11k_wow_op_resume().
-> 
-> Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
-> 
-> Signed-off-by: Carl Huang <quic_cjhuang@quicinc.com>
-> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
-> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+CFR dumps will be collected from the received ACK's for the
+transmited QOS NULL frames for the associated stations. For
+unassociated stations CFR dumps will be collected from the
+probe response ACK.
 
-This patch failed to compile:
+CFR format to user space:
+ ___________________________________________
+| CFR header | CFR payload | CFR tail data |
+|____________|_____________|_______________|
 
-drivers/net/wireless/ath/ath11k/mac.c:7242:5: error: no previous prototype for 'ath11k_mac_flush_tx_complete' [-Werror=missing-prototypes]
+CFR header contains the following fields,
 
-Fixed in the pending branch.
+* Start magic number 0xDEADBEAF - 4bytes
+* vendor id - 4bytes
+* cfr metadata version - 1byte
+* cfr data version - 1byte
+* chip type - 1byte
+* platform type - 1byte
+* CFR metadata length - 4bytes
+* metadata - 92bytes
+        peer mac - 6bytes
+        capture status - 1byte (1 for success 0 for failure)
+        capture_bw - 1byte
+        channel_bw - 1byte
+        phy_mode - 1byte
+        prim20_chan - 2bytes
+        center_freq1 - 2bytes
+        center_freq2 - 2bytes
+        capture_mode - 1byte
+        capture_type - 1byte
+        sts_count - 1byte
+        num_rx_chain - 1byte
+        timestamp - 4bytes
+        length - 4bytes
+        chain_rssi - 32bytes (4bytes for each chain)
+        chain_phase - 16bytes (2bytes for each chain)
+        cfo_measurement - 4bytes
+        agc_gain - 8bytes (1 bytes for each chain)
+        rx_start_ts - 4bytes
+
+CFR payload:
+
+CFR payload contains 8bytes of ucode header followed by the
+tone information. Tone order is  positive tones, followed by
+PHY memory garbage, followed by negative tones. Dummy tones
+are uploaded to make number of tones always integer number
+of 64. Number of tones is not preamble type dependent.
+
+Each CFR tone has 14-bit I component and 14-bit Q component
+and is sign extended to 16-bit I/Q. Two tones are packed
+into one 64-bit unit as:
+
+[63:0] = [Tone1_Q(63:48) Tone1_I(47:32) Tone0_Q(31:16) Tone0_I(15:0)]
+
+CFR tail: end magic number 0xBEAFDEAD
+
+Tested-on: IPQ8074 WLAN.HK.2.5.0.1-00991-QCAHKSWPL_SILICONZ-1
+
+Venkateswara Naralasetty (6):
+  nl80211: vendor-cmd: qca: add command for CFR configuration
+  ath11k: CFR module initialization and deinitialization for IPQ8074
+  ath11k: register relayfs entries for CFR dump
+  ath11k: register vendor sub command for CFR configuration
+  ath11k: Register DBR event handler for CFR data
+  ath11k: Register handler for CFR capture event
+
+ drivers/net/wireless/ath/ath11k/Kconfig  |   9 +
+ drivers/net/wireless/ath/ath11k/Makefile |   4 +-
+ drivers/net/wireless/ath/ath11k/cfr.c    | 816 +++++++++++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/cfr.h    | 304 ++++++++++++
+ drivers/net/wireless/ath/ath11k/core.c   |  35 ++
+ drivers/net/wireless/ath/ath11k/core.h   |  17 +
+ drivers/net/wireless/ath/ath11k/dbring.c |  33 +-
+ drivers/net/wireless/ath/ath11k/dbring.h |   7 +
+ drivers/net/wireless/ath/ath11k/debug.h  |   2 +
+ drivers/net/wireless/ath/ath11k/hal.c    |   3 +-
+ drivers/net/wireless/ath/ath11k/hw.h     |   5 +
+ drivers/net/wireless/ath/ath11k/mac.c    |  18 +-
+ drivers/net/wireless/ath/ath11k/vendor.c | 192 ++++++++
+ drivers/net/wireless/ath/ath11k/vendor.h |  13 +
+ drivers/net/wireless/ath/ath11k/wmi.c    | 148 +++++-
+ drivers/net/wireless/ath/ath11k/wmi.h    |  97 +++-
+ include/uapi/linux/nl80211-vnd-qca.h     | 104 ++++
+ 17 files changed, 1791 insertions(+), 16 deletions(-)
+ create mode 100644 drivers/net/wireless/ath/ath11k/cfr.c
+ create mode 100644 drivers/net/wireless/ath/ath11k/cfr.h
+ create mode 100644 drivers/net/wireless/ath/ath11k/vendor.c
+ create mode 100644 drivers/net/wireless/ath/ath11k/vendor.h
+ create mode 100644 include/uapi/linux/nl80211-vnd-qca.h
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/1644308006-22784-2-git-send-email-quic_cjhuang@quicinc.com/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+2.7.4
 
 
 -- 
