@@ -4,69 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8D23C433F5
-	for <ath11k@archiver.kernel.org>; Sat, 12 Feb 2022 18:18:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B91EC433EF
+	for <ath11k@archiver.kernel.org>; Sat, 12 Feb 2022 21:10:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mPLQFWvEY3KFTEF5pVoo5W+2O9EKtXS423ObRwUoO4g=; b=U+IVKQJ20kx29P
-	TQRS0KJxxNmoCrxK9lWNB89pJYBGjhyy7hoYObYPYdFWCJGYZtJ/gGT5MMgv3rc0m3AvixzrM/ckK
-	HSHpnjuGpDIecjGiupMWBgqfqlIvnzu5rHGbNiB/uxUWJxYXli0jxgK2RDF9r3QD04dyJMN3Oxi83
-	3ITFNiYuUyebL/I3w5/Jg+vggUZw4r7WQZ/3poHHCkZZb+aotmh3gmnuMnBVa9qxkl50zwAAooVaN
-	sSgtPvfaP1VNrfU+2lFZZIgfNBAaWQgQIF0GpJj9XH9e3dHjikWTeNZfD/i207LMPgyf8bB/Gx2zd
-	aeqswq1dhDBeD2KSuB6A==;
+	List-Owner; bh=pRymIbC96E2YMLAgeNKBHyAwgoQzpbA+9fj3FTHPIU8=; b=UuAtFAukP2aaRi
+	ccgCikeUc6jnRaA2z3vXHjH02R33exbAEJlV5j5b3XznHsn9fphRNDPjmC4lAp7vlQFHl02P/qKCR
+	SHtZaGLeQ0P7T5y/yjaRQSQZgyYVTZjFU9OOHsJXnp7pIrpk235YiW6/LK37/v4fq2FlcUTlPZ+4i
+	bM11ldBmPGL7zoa2YXGznX+O1bFGbCgr4kFAKLKFQsBTtPewR3q/zV1jWmk/Da9Q5naWFy6GyI7mk
+	6orhwc6QBZBLURJ1UFEolFQJ1agitbTAMdyjfekOlJKLezUoHO5nHmudbBGHZN5GaHsKefb13Ingr
+	29demR7GuDy+3VGfHsGQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nIwyP-00AJPj-Sh; Sat, 12 Feb 2022 18:18:17 +0000
-Received: from mga09.intel.com ([134.134.136.24])
+	id 1nIzem-00AYys-4j; Sat, 12 Feb 2022 21:10:12 +0000
+Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
+ helo=sipsolutions.net)
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nIwyM-00AJP1-6V
- for ath11k@lists.infradead.org; Sat, 12 Feb 2022 18:18:15 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644689894; x=1676225894;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=DbBWKQigkVd4E7a1OuNYzPs+0CB6gRd1vWjot3q/liA=;
- b=hJ5sq8Ps/zjyR/3vLP2jmCNsKdFX5Ixl5u5SrAeWI29uKyOMO9x2nunx
- q//WAlK1amnGuUQD5D+Asg5QRGeC6WsDR7asZxXZGWD9fU3DZwHGYPw1K
- MiD+MrPjnx403YaksP8Uc22NOs1/HmcBeHsDSgvG+jciObcu4gjG3LYPP
- UHisPjcuZkkVvwiQoy20NeuIWsy7xWDpma8HcaAC90LSZJCo73138ximx
- 1FaUQpY22R4CiffKoNZe+IMzBpTqpNEFhpJ6GpLz7ZmLZSuxv4m2VQzZk
- vR5GNdOxjJRPae+yZ1vU6/rF0dkj5iKR4CPo92k7fnqAlySxBBwMageeM Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10256"; a="249644308"
-X-IronPort-AV: E=Sophos;i="5.88,364,1635231600"; d="scan'208";a="249644308"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2022 10:18:12 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,364,1635231600"; d="scan'208";a="602655568"
-Received: from lkp-server01.sh.intel.com (HELO d95dc2dabeb1) ([10.239.97.150])
- by fmsmga004.fm.intel.com with ESMTP; 12 Feb 2022 10:18:10 -0800
-Received: from kbuild by d95dc2dabeb1 with local (Exim 4.92)
- (envelope-from <lkp@intel.com>)
- id 1nIwyI-0006Ub-2s; Sat, 12 Feb 2022 18:18:10 +0000
-Date: Sun, 13 Feb 2022 02:17:25 +0800
-From: kernel test robot <lkp@intel.com>
-To: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>,
+ id 1nIzej-00AYyV-9r
+ for ath11k@lists.infradead.org; Sat, 12 Feb 2022 21:10:10 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=sipsolutions.net; s=mail; h=Content-Transfer-Encoding:MIME-Version:
+ Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
+ :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
+ Resent-Cc:Resent-Message-ID; bh=PBtf4rPsa5e+Qn5Lx97LOIpX0MjdfeHnl6+s5vBIPaM=; 
+ t=1644700208; x=1645909808; b=rxH6qBbbEZ1nkYbEzJUSTZsNN85/zjq/x2xYmblY4sL+mQs
+ d9AYMwtSaYwRF+aIH9/6flSwdhuAKZABYnrQhFkeWzuDZhrcCJDjw7D6R0cngFMdKxGfXlgtB64sf
+ QRtQujWpM4RkLTxGTA9Ue0BpuZI8g2VkqNFnxhtLmc6HStPPjb3++k5eHLB+YvaleyP0HsHnvjETS
+ XlnvPktGpuDf/f4RUE9auxfaK11IdTAsVGAUoNfRRvQAx6tUTfOKDFTmklxBjGcEaEcvMGCaLGg2a
+ 0Klyo8LBX9onAs5h1dM/5XzmRN0k4NX//bYuZWbUSwr3lYi+KfypgVcHcmET8dfg==;
+Received: by sipsolutions.net with esmtpsa
+ (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+ (Exim 4.95) (envelope-from <johannes@sipsolutions.net>)
+ id 1nIzeh-000Mmp-3n; Sat, 12 Feb 2022 22:10:07 +0100
+Message-ID: <6d87acca10648841b60e2a28a46a328340bf939a.camel@sipsolutions.net>
+Subject: Re: [PATCH 1/6] nl80211: vendor-cmd: qca: add command for CFR
+ configuration
+From: Johannes Berg <johannes@sipsolutions.net>
+To: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>, 
  ath11k@lists.infradead.org
-Cc: llvm@lists.linux.dev, kbuild-all@lists.01.org,
- linux-wireless@vger.kernel.org,
- Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
-Subject: Re: [PATCH 2/6] ath11k: CFR module initialization and
- deinitialization for IPQ8074
-Message-ID: <202202122308.vnm0MdO3-lkp@intel.com>
-References: <1644592075-27082-3-git-send-email-quic_vnaralas@quicinc.com>
+Cc: linux-wireless@vger.kernel.org
+Date: Sat, 12 Feb 2022 22:10:06 +0100
+In-Reply-To: <1644592075-27082-2-git-send-email-quic_vnaralas@quicinc.com>
+References: <1644592075-27082-1-git-send-email-quic_vnaralas@quicinc.com>
+ <1644592075-27082-2-git-send-email-quic_vnaralas@quicinc.com>
+User-Agent: Evolution 3.42.3 (3.42.3-1.fc35) 
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1644592075-27082-3-git-send-email-quic_vnaralas@quicinc.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+X-malware-bazaar: not-scanned
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220212_101814_338958_F322215B 
-X-CRM114-Status: GOOD (  14.95  )
+X-CRM114-CacheID: sfid-20220212_131009_376667_70BF01C9 
+X-CRM114-Status: UNSURE (   5.90  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,61 +74,19 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi Venkateswara,
+On Fri, 2022-02-11 at 20:37 +0530, Venkateswara Naralasetty wrote:
+> This patch is to add vendor command support to configure per
+> peer CFR parameters.
+> 
 
-Thank you for the patch! Perhaps something to improve:
+That's pretty much the worst way to start this ...
 
-[auto build test WARNING on kvalo-ath/ath-next]
-[cannot apply to wireless-next/main wireless/main jberg-mac80211-next/master jberg-mac80211/master v5.17-rc3 next-20220211]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+Please explain at least what CFR is? What does the feature do?
 
-url:    https://github.com/0day-ci/linux/commits/Venkateswara-Naralasetty/ath11k-add-single-shot-periodic-CFR-capture-support-for-IPQ8074/20220211-230911
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git ath-next
-config: i386-allmodconfig (https://download.01.org/0day-ci/archive/20220212/202202122308.vnm0MdO3-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project f6685f774697c85d6a352dcea013f46a99f9fe31)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/d2559d5e11b6761fa81c7b6a5dcd1f506f72ef96
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Venkateswara-Naralasetty/ath11k-add-single-shot-periodic-CFR-capture-support-for-IPQ8074/20220211-230911
-        git checkout d2559d5e11b6761fa81c7b6a5dcd1f506f72ef96
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/net/wireless/ath/ath11k/ drivers/platform/x86/
+And please also see
+https://wireless.wiki.kernel.org/en/developers/documentation/nl80211#vendor-specific_api
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
->> drivers/net/wireless/ath/ath11k/cfr.c:29:6: warning: no previous prototype for function 'ath11k_cfr_ring_free' [-Wmissing-prototypes]
-   void ath11k_cfr_ring_free(struct ath11k *ar)
-        ^
-   drivers/net/wireless/ath/ath11k/cfr.c:29:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
-   void ath11k_cfr_ring_free(struct ath11k *ar)
-   ^
-   static 
-   1 warning generated.
-
-
-vim +/ath11k_cfr_ring_free +29 drivers/net/wireless/ath/ath11k/cfr.c
-
-    28	
-  > 29	void ath11k_cfr_ring_free(struct ath11k *ar)
-    30	{
-    31		struct ath11k_cfr *cfr = &ar->cfr;
-    32	
-    33		ath11k_dbring_buf_cleanup(ar, &cfr->rx_ring);
-    34		ath11k_dbring_srng_cleanup(ar, &cfr->rx_ring);
-    35	}
-    36	
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+johannes
 
 -- 
 ath11k mailing list
