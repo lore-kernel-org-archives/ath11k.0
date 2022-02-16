@@ -4,7 +4,7 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E69E0C43217
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3AFDCC433F5
 	for <ath11k@archiver.kernel.org>; Wed, 16 Feb 2022 10:05:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
@@ -12,49 +12,50 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=owFlzAa7/uVoapRYZFptvN9jny3MkxyfuCdn5aFv1ZI=; b=iN8VHeBgH/832L
-	3GMZYZO2aFJMplab+Vp4vIEVEUZajp8+hsI0OsQIjdkVKDJcfUOym5azuxRHYd1F3mNmegGg8C9U7
-	OhpCXzWmNEi5S7LWYMrDASLE7IU1qvwkOm5BBi/yMNpcvKNUMFZIQM6EibUum1hgMnbocjTNitMDP
-	i3OixY50dzLRyb1wmr5ql1CBooCqaUBUGAqgeRdrgESHyhsBsb0bS1ZePZYJHC4uEsjljrmJkkmwk
-	D5cCikYO4n85/wEwrc67WDd7YxoxzwjRRaNQPQOE33kWhidEmcv2/x8suKeRwiDjR0liwBTiA3h46
-	10vEjYiIRUTDVFhUH6Pw==;
+	List-Owner; bh=Q9kQcuxSJQHKx/9znPQJYkkDAOcqR0UX6nFSSGniYQc=; b=yN8Jry3+pWTvvl
+	AXQyFs3N+hykXbAmazEB2+B715XBc4oHphylVIRsgu8wT22GnFiHTJj713MJx9mgJELDKTTcK7LGC
+	TdSb/k+KH2IOSbWUWIBiatJLYRqq0CaD/zvbkyX8cTLFVA5AiPROzUAJ2QxoJvNEVOdeGXoL9pxK0
+	araGSkrzAPkRHT8NLep4dOBiJX8kUgGVXuINQQS116V4YKax1YG3A+m5d3am/b5ajVWLuAdW+KWjd
+	MHOyFdFhR9jye5eGuuW0azB+vGnSGnkK1xR0UbpDi4KNHomixlzwox4GFocb4bKP4HYv6PmP+ZvFA
+	orzVmf3SB80wWyadFcfA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nKHBx-006SBU-OG; Wed, 16 Feb 2022 10:05:45 +0000
-Received: from alexa-out.qualcomm.com ([129.46.98.28])
+	id 1nKHBx-006SBA-1j; Wed, 16 Feb 2022 10:05:45 +0000
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nKHBs-006S8k-VK
+ id 1nKHBs-006S89-E2
  for ath11k@lists.infradead.org; Wed, 16 Feb 2022 10:05:43 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1645005941; x=1676541941;
+ t=1645005940; x=1676541940;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version;
- bh=LThbDbeBI+iFBZRU/6mlR2Z3ILJJwrgIMGnVmW0fAdA=;
- b=JSUhiMoV35UnmHTXuNUGviJRgmJM9h4dFE35vUVK71Ajek+J5K0qzAI3
- dmac0KRCyKeCoVVbbTHzVxgI2fQiW5tT1sTe5C7bgPY6LTlomzrriULlL
- I3e8VmTla/yK5a3t1Ir9qJlLiomkTK9Ocgk+zPdkEkWCwa++sm1S0dduH A=;
-Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
- by alexa-out.qualcomm.com with ESMTP; 16 Feb 2022 02:05:40 -0800
+ bh=dagguSY6sxHMXJXmoAloEa1hufZiVo10e5ib0VwEGVU=;
+ b=Ifj5Xhp7S5ycyqKCoNpt/b7cPy6Rq8PQqTVSAre8vFquLE0yUPakWl3b
+ pFzdokE57WugRW196Sm5REhaXoUw1LPepQ7KOx2RiaMeL1Yn7ZINTAPtp
+ TinxzBw5bjS7S8IrfCcdMhlba78GOY6vadPkbgD+WMhYPtIbroF3QtQzX s=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+ by alexa-out-sd-02.qualcomm.com with ESMTP; 16 Feb 2022 02:05:38 -0800
 X-QCInternal: smtphost
 Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2022 02:05:40 -0800
+ by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2022 02:05:38 -0800
 Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
  nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Wed, 16 Feb 2022 02:05:40 -0800
+ 15.2.986.15; Wed, 16 Feb 2022 02:05:38 -0800
 Received: from vnaralas-linux.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Wed, 16 Feb 2022 02:05:38 -0800
+ 15.2.922.19; Wed, 16 Feb 2022 02:05:36 -0800
 From: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
 To: <ath11k@lists.infradead.org>
 CC: <linux-wireless@vger.kernel.org>, Venkateswara Naralasetty
  <quic_vnaralas@quicinc.com>
-Subject: [PATCHv2 3/6] ath11k: register relayfs entries for CFR dump
-Date: Wed, 16 Feb 2022 15:35:19 +0530
-Message-ID: <1645005922-7252-4-git-send-email-quic_vnaralas@quicinc.com>
+Subject: [PATCHv2 2/6] ath11k: CFR module initialization and deinitialization
+ for IPQ8074
+Date: Wed, 16 Feb 2022 15:35:18 +0530
+Message-ID: <1645005922-7252-3-git-send-email-quic_vnaralas@quicinc.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1645005922-7252-1-git-send-email-quic_vnaralas@quicinc.com>
 References: <1645005922-7252-1-git-send-email-quic_vnaralas@quicinc.com>
@@ -63,8 +64,8 @@ X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220216_020541_066199_3E6DFD45 
-X-CRM114-Status: GOOD (  13.44  )
+X-CRM114-CacheID: sfid-20220216_020540_553858_3605CAE7 
+X-CRM114-Status: GOOD (  27.55  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,151 +82,650 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Provide a relayfs interface to collect the CFR dump from
-the user space.
+Add initialization and deinitialization sequence for CFR module.
+CFR module will be initialized only when the following criteria passes,
+ * Enabled CFR support for the hardware through the
+   hardware param 'cfr_support'
+ * WMI service enabled for the CFR support
+   'WMI_TLV_SERVICE_CFR_CAPTURE_SUPPORT'
 
-'/sys/kernel/debug/ieee80211/phyX/ath11k/cfr_capture' is exposed
-to user space to get CFR data.
+Also, provide a configuration option CONFIG_ATH11K_CFR to enable
+CFR feature support during the compilation time.
 
-CFR format to user space:
- ___________________________________________
-| CFR header | CFR payload | CFR tail data |
-|____________|_____________|_______________|
-
-CFR header contains the following fields,
-
-* Start magic number 0xDEADBEAF - 4bytes
-* vendor id - 4bytes
-* cfr metadata version - 1byte
-* cfr data version - 1byte
-* chip type - 1byte
-* platform type - 1byte
-* CFR metadata length - 4bytes
-* metadata - 92bytes
-        peer mac - 6bytes
-        capture status - 1byte (1 for success 0 for failure)
-        capture_bw - 1byte
-        channel_bw - 1byte
-        phy_mode - 1byte
-        prim20_chan - 2bytes
-        center_freq1 - 2bytes
-        center_freq2 - 2bytes
-        capture_mode - 1byte
-        capture_type - 1byte
-        sts_count - 1byte
-        num_rx_chain - 1byte
-        timestamp - 4bytes
-        length - 4bytes
-        chain_rssi - 32bytes (4bytes for each chain)
-        chain_phase - 16bytes (2bytes for each chain)
-        cfo_measurement - 4bytes
-        agc_gain - 8bytes (1 bytes for each chain)
-        rx_start_ts - 4bytes
-
-CFR payload:
-
-CFR payload contains 8bytes of ucode header followed by the
-tone information. Tone order is  positive tones, followed by
-PHY memory garbage, followed by negative tones. Dummy tones
-are uploaded to make number of tones always integer number
-of 64. Number of tones is not preamble type dependent.
-
-Each CFR tone has 14-bit I component and 14-bit Q component
-and is sign extended to 16-bit I/Q. Two tones are packed
-into one 64-bit unit as:
-
-[63:0] = [Tone1_Q(63:48) Tone1_I(47:32) Tone0_Q(31:16) Tone0_I(15:0)]
-
-CFR tail: end magic number 0xBEAFDEAD
+CFR module initialization includes Direct Buffer(DB) ring initialization
+where HW uses the DB ring buffers to copy CFR data to host.
+Number of buffers and buffer size of the ring is based on the DB ring
+capabilities advertised by the firmware through WMI service ready.
+Also ring configurations are sent to firmware through
+ath11k_dbring_wmi_cfg_setup().
 
 Tested-on: IPQ8074 WLAN.HK.2.5.0.1-00991-QCAHKSWPL_SILICONZ-1
 
 Signed-off-by: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
 ---
- drivers/net/wireless/ath/ath11k/cfr.c | 43 +++++++++++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/cfr.h |  1 +
- 2 files changed, 44 insertions(+)
+v2:
+ * Fixed warnings reported by kernel test robot.
 
-diff --git a/drivers/net/wireless/ath/ath11k/cfr.c b/drivers/net/wireless/ath/ath11k/cfr.c
-index 3d20082..4cf9fe3 100644
---- a/drivers/net/wireless/ath/ath11k/cfr.c
-+++ b/drivers/net/wireless/ath/ath11k/cfr.c
-@@ -14,6 +14,32 @@ static int ath11k_cfr_process_data(struct ath11k *ar,
- 	return 0;
- }
+ drivers/net/wireless/ath/ath11k/Kconfig  |   9 ++
+ drivers/net/wireless/ath/ath11k/Makefile |   1 +
+ drivers/net/wireless/ath/ath11k/cfr.c    | 161 +++++++++++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/cfr.h    |  91 +++++++++++++++++
+ drivers/net/wireless/ath/ath11k/core.c   |  35 +++++++
+ drivers/net/wireless/ath/ath11k/core.h   |   6 ++
+ drivers/net/wireless/ath/ath11k/dbring.c |  23 +++--
+ drivers/net/wireless/ath/ath11k/dbring.h |   5 +
+ drivers/net/wireless/ath/ath11k/hal.c    |   3 +-
+ drivers/net/wireless/ath/ath11k/hw.h     |   5 +
+ drivers/net/wireless/ath/ath11k/wmi.h    |   2 +
+ 11 files changed, 332 insertions(+), 9 deletions(-)
+ create mode 100644 drivers/net/wireless/ath/ath11k/cfr.c
+ create mode 100644 drivers/net/wireless/ath/ath11k/cfr.h
+
+diff --git a/drivers/net/wireless/ath/ath11k/Kconfig b/drivers/net/wireless/ath/ath11k/Kconfig
+index ad5cc6c..0466d58 100644
+--- a/drivers/net/wireless/ath/ath11k/Kconfig
++++ b/drivers/net/wireless/ath/ath11k/Kconfig
+@@ -57,3 +57,12 @@ config ATH11K_SPECTRAL
+ 	  Enable ath11k spectral scan support
  
-+static struct dentry *create_buf_file_handler(const char *filename,
-+					      struct dentry *parent,
-+					      umode_t mode,
-+					      struct rchan_buf *buf,
-+					      int *is_global)
+ 	  Say Y to enable access to the FFT/spectral data via debugfs.
++
++config ATH11K_CFR
++	bool "QCA ath11k CFR support"
++	depends on ATH11K_DEBUGFS
++	depends on RELAY
++	help
++	  Enable ath11k CFR support
++
++	  Say Y to enable CFR data dump collection via debugfs.
+diff --git a/drivers/net/wireless/ath/ath11k/Makefile b/drivers/net/wireless/ath/ath11k/Makefile
+index c1fce41..36ffd2e 100644
+--- a/drivers/net/wireless/ath/ath11k/Makefile
++++ b/drivers/net/wireless/ath/ath11k/Makefile
+@@ -24,6 +24,7 @@ ath11k-$(CONFIG_NL80211_TESTMODE) += testmode.o
+ ath11k-$(CONFIG_ATH11K_TRACING) += trace.o
+ ath11k-$(CONFIG_THERMAL) += thermal.o
+ ath11k-$(CONFIG_ATH11K_SPECTRAL) += spectral.o
++ath11k-$(CONFIG_ATH11K_CFR) += cfr.o
+ 
+ obj-$(CONFIG_ATH11K_AHB) += ath11k_ahb.o
+ ath11k_ahb-y += ahb.o
+diff --git a/drivers/net/wireless/ath/ath11k/cfr.c b/drivers/net/wireless/ath/ath11k/cfr.c
+new file mode 100644
+index 0000000..3d20082
+--- /dev/null
++++ b/drivers/net/wireless/ath/ath11k/cfr.c
+@@ -0,0 +1,161 @@
++// SPDX-License-Identifier: BSD-3-Clause-Clear
++/*
++ * Copyright (c) 2020-2021 The Linux Foundation. All rights reserved.
++ * Copyright (c) 2021 Qualcomm Innovation Center, Inc. All rights
++ */
++
++#include <linux/relay.h>
++#include "core.h"
++#include "debug.h"
++
++static int ath11k_cfr_process_data(struct ath11k *ar,
++				   struct ath11k_dbring_data *param)
 +{
-+	struct dentry *buf_file;
-+
-+	buf_file = debugfs_create_file(filename, mode, parent, buf,
-+				       &relay_file_operations);
-+	*is_global = 1;
-+	return buf_file;
-+}
-+
-+static int remove_buf_file_handler(struct dentry *dentry)
-+{
-+	debugfs_remove(dentry);
-+
 +	return 0;
 +}
 +
-+static const struct rchan_callbacks rfs_cfr_capture_cb = {
-+	.create_buf_file = create_buf_file_handler,
-+	.remove_buf_file = remove_buf_file_handler,
++void ath11k_cfr_lut_update_paddr(struct ath11k *ar, dma_addr_t paddr,
++				 u32 buf_id)
++{
++	struct ath11k_cfr *cfr = &ar->cfr;
++	struct ath11k_look_up_table *lut;
++
++	if (cfr->lut) {
++		lut = &cfr->lut[buf_id];
++		lut->dbr_address = paddr;
++	}
++}
++
++static void ath11k_cfr_ring_free(struct ath11k *ar)
++{
++	struct ath11k_cfr *cfr = &ar->cfr;
++
++	ath11k_dbring_buf_cleanup(ar, &cfr->rx_ring);
++	ath11k_dbring_srng_cleanup(ar, &cfr->rx_ring);
++}
++
++static int ath11k_cfr_ring_alloc(struct ath11k *ar,
++				 struct ath11k_dbring_cap *db_cap)
++{
++	struct ath11k_cfr *cfr = &ar->cfr;
++	int ret;
++
++	ret = ath11k_dbring_srng_setup(ar, &cfr->rx_ring,
++				       1, db_cap->min_elem);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to setup db ring\n");
++		return ret;
++	}
++
++	ath11k_dbring_set_cfg(ar, &cfr->rx_ring,
++			      ATH11K_CFR_NUM_RESP_PER_EVENT,
++			      ATH11K_CFR_EVENT_TIMEOUT_MS,
++			      ath11k_cfr_process_data);
++
++	ret = ath11k_dbring_buf_setup(ar, &cfr->rx_ring, db_cap);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to setup db ring buffer\n");
++		goto srng_cleanup;
++	}
++
++	ret = ath11k_dbring_wmi_cfg_setup(ar, &cfr->rx_ring, WMI_DIRECT_BUF_CFR);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to setup db ring cfg\n");
++		goto buffer_cleanup;
++	}
++
++	return 0;
++
++buffer_cleanup:
++	ath11k_dbring_buf_cleanup(ar, &cfr->rx_ring);
++srng_cleanup:
++	ath11k_dbring_srng_cleanup(ar, &cfr->rx_ring);
++	return ret;
++}
++
++void ath11k_cfr_deinit(struct ath11k_base *ab)
++{
++	struct ath11k *ar;
++	struct ath11k_cfr *cfr;
++	int i;
++
++	if (!test_bit(WMI_TLV_SERVICE_CFR_CAPTURE_SUPPORT, ab->wmi_ab.svc_map) ||
++	    !ab->hw_params.cfr_support)
++		return;
++
++	for (i = 0; i <  ab->num_radios; i++) {
++		ar = ab->pdevs[i].ar;
++		cfr = &ar->cfr;
++
++		ath11k_cfr_ring_free(ar);
++
++		spin_lock_bh(&cfr->lut_lock);
++		kfree(cfr->lut);
++		cfr->lut = NULL;
++		spin_unlock_bh(&cfr->lut_lock);
++		ar->cfr_enabled = false;
++	}
++}
++
++int ath11k_cfr_init(struct ath11k_base *ab)
++{
++	struct ath11k *ar;
++	struct ath11k_cfr *cfr;
++	struct ath11k_dbring_cap db_cap;
++	u32 num_lut_entries;
++	int ret = 0;
++	int i;
++
++	if (!test_bit(WMI_TLV_SERVICE_CFR_CAPTURE_SUPPORT, ab->wmi_ab.svc_map) ||
++	    !ab->hw_params.cfr_support)
++		return ret;
++
++	for (i = 0; i < ab->num_radios; i++) {
++		ar = ab->pdevs[i].ar;
++		cfr = &ar->cfr;
++
++		ret = ath11k_dbring_get_cap(ar->ab, ar->pdev_idx,
++					    WMI_DIRECT_BUF_CFR, &db_cap);
++		if (ret)
++			continue;
++
++		idr_init(&cfr->rx_ring.bufs_idr);
++		spin_lock_init(&cfr->rx_ring.idr_lock);
++		spin_lock_init(&cfr->lock);
++		spin_lock_init(&cfr->lut_lock);
++
++		num_lut_entries = min_t(u32, CFR_MAX_LUT_ENTRIES, db_cap.min_elem);
++
++		cfr->lut = kcalloc(num_lut_entries, sizeof(*cfr->lut),
++				   GFP_KERNEL);
++
++		if (!cfr->lut) {
++			ath11k_warn(ab, "failed to allocate lut for pdev %d\n", i);
++			return -ENOMEM;
++		}
++
++		ret = ath11k_cfr_ring_alloc(ar, &db_cap);
++		if (ret) {
++			ath11k_warn(ab, "failed to init cfr ring for pdev %d\n", i);
++			goto deinit;
++		}
++
++		cfr->lut_num = num_lut_entries;
++
++		ret = ath11k_wmi_pdev_set_param(ar, WMI_PDEV_PARAM_PER_PEER_CFR_ENABLE,
++						1, ar->pdev->pdev_id);
++		if (ret) {
++			ath11k_warn(ab, "failed to enable cfr capture on pdev %d ret %d\n",
++				    i, ret);
++			goto deinit;
++		}
++
++		ar->cfr_enabled = true;
++	}
++
++	return 0;
++
++deinit:
++	ath11k_cfr_deinit(ab);
++	return ret;
++}
+diff --git a/drivers/net/wireless/ath/ath11k/cfr.h b/drivers/net/wireless/ath/ath11k/cfr.h
+new file mode 100644
+index 0000000..c050f03
+--- /dev/null
++++ b/drivers/net/wireless/ath/ath11k/cfr.h
+@@ -0,0 +1,91 @@
++/* SPDX-License-Identifier: BSD-3-Clause-Clear */
++/*
++ * Copyright (c) 2020-2021 The Linux Foundation. All rights reserved.
++ * Copyright (c) 2021 Qualcomm Innovation Center, Inc. All rights
++ */
++
++#ifndef ATH11K_CFR_H
++#define ATH11K_CFR_H
++
++#include "dbring.h"
++#include "wmi.h"
++
++#define ATH11K_CFR_NUM_RESP_PER_EVENT   1
++#define ATH11K_CFR_EVENT_TIMEOUT_MS     1
++
++#define CFR_MAX_LUT_ENTRIES 136
++
++#define HOST_MAX_CHAINS 8
++
++struct ath11k_cfir_dma_hdr {
++	u16 info0;
++	u16 info1;
++	u16 sw_peer_id;
++	u16 phy_ppdu_id;
 +};
 +
- void ath11k_cfr_lut_update_paddr(struct ath11k *ar, dma_addr_t paddr,
- 				 u32 buf_id)
- {
-@@ -87,6 +113,11 @@ void ath11k_cfr_deinit(struct ath11k_base *ab)
- 		ar = ab->pdevs[i].ar;
- 		cfr = &ar->cfr;
- 
-+		if (ar->cfr.rfs_cfr_capture) {
-+			relay_close(ar->cfr.rfs_cfr_capture);
-+			ar->cfr.rfs_cfr_capture = NULL;
-+		}
++struct ath11k_look_up_table {
++	bool dbr_recv;
++	bool tx_recv;
++	u8 *data;
++	u32 data_len;
++	u16 dbr_ppdu_id;
++	u16 tx_ppdu_id;
++	dma_addr_t dbr_address;
++	u32 tx_address1;
++	u32 tx_address2;
++	struct ath11k_cfir_dma_hdr hdr;
++	u64 txrx_tstamp;
++	u64 dbr_tstamp;
++	u32 header_length;
++	u32 payload_length;
++	struct ath11k_dbring_element *buff;
++};
 +
- 		ath11k_cfr_ring_free(ar);
- 
- 		spin_lock_bh(&cfr->lut_lock);
-@@ -151,6 +182,18 @@ int ath11k_cfr_init(struct ath11k_base *ab)
- 		}
- 
- 		ar->cfr_enabled = true;
++struct ath11k_cfr {
++	struct ath11k_dbring rx_ring;
++	/* Protects cfr data */
++	spinlock_t lock;
++	struct ath11k_look_up_table *lut;
++	u32 lut_num;
++	u32 dbr_buf_size;
++	u32 dbr_num_bufs;
++	u32 max_mu_users;
++	/* Protect for lut entries */
++	spinlock_t lut_lock;
++	u64 tx_evt_cnt;
++	u64 dbr_evt_cnt;
++	u64 total_tx_evt_cnt;
++	u64 release_cnt;
++	u64 tx_peer_status_cfr_fail;
++	u64 tx_evt_status_cfr_fail;
++	u64 tx_dbr_lookup_fail;
++	u64 last_success_tstamp;
++	u64 flush_dbr_cnt;
++	u64 invalid_dma_length_cnt;
++	u64 clear_txrx_event;
++	u64 cfr_dma_aborts;
++	u64 flush_timeout_dbr_cnt;
++};
 +
-+		ar->cfr.rfs_cfr_capture =
-+				relay_open("cfr_capture",
-+					   ar->debug.debugfs_pdev,
-+					   ar->ab->hw_params.cfr_stream_buf_size,
-+					   ar->ab->hw_params.cfr_num_stream_bufs,
-+					   &rfs_cfr_capture_cb, NULL);
-+		if (!ar->cfr.rfs_cfr_capture) {
-+			ath11k_warn(ar->ab, "failed to open relay for cfr in pdev %d\n",
-+				    ar->pdev_idx);
-+			return -EINVAL;
-+		}
++#ifdef CONFIG_ATH11K_CFR
++int ath11k_cfr_init(struct ath11k_base *ab);
++void ath11k_cfr_deinit(struct ath11k_base *ab);
++void ath11k_cfr_lut_update_paddr(struct ath11k *ar, dma_addr_t paddr,
++				 u32 buf_id);
++#else
++static inline int ath11k_cfr_init(struct ath11k_base *ab)
++{
++	return 0;
++}
++
++static inline void ath11k_cfr_deinit(struct ath11k_base *ab)
++{
++}
++
++static inline void ath11k_cfr_lut_update_paddr(struct ath11k *ar,
++					       dma_addr_t paddr, u32 buf_id)
++{
++}
++#endif /* CONFIG_ATH11K_CFR */
++#endif /* ATH11K_CFR_H */
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 7c508e9..0d75e88 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -99,6 +99,11 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_rssi_stats = false,
+ 		.fw_wmi_diag_event = false,
+ 		.current_cc_support = false,
++		.cfr_support = true,
++		.cfr_dma_hdr_size = sizeof(struct ath11k_cfir_dma_hdr),
++		.cfr_num_stream_bufs = 255,
++		/* csi_cfr_header + cfr header + max cfr payload */
++		.cfr_stream_buf_size = 8200,
+ 	},
+ 	{
+ 		.hw_rev = ATH11K_HW_IPQ6018_HW10,
+@@ -164,6 +169,10 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_rssi_stats = false,
+ 		.fw_wmi_diag_event = false,
+ 		.current_cc_support = false,
++		.cfr_support = false,
++		.cfr_dma_hdr_size = 0,
++		.cfr_num_stream_bufs = 0,
++		.cfr_stream_buf_size = 0,
+ 	},
+ 	{
+ 		.name = "qca6390 hw2.0",
+@@ -228,6 +237,10 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_rssi_stats = true,
+ 		.fw_wmi_diag_event = true,
+ 		.current_cc_support = true,
++		.cfr_support = false,
++		.cfr_dma_hdr_size = 0,
++		.cfr_num_stream_bufs = 0,
++		.cfr_stream_buf_size = 0,
+ 	},
+ 	{
+ 		.name = "qcn9074 hw1.0",
+@@ -292,6 +305,10 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_rssi_stats = false,
+ 		.fw_wmi_diag_event = false,
+ 		.current_cc_support = false,
++		.cfr_support = false,
++		.cfr_dma_hdr_size = 0,
++		.cfr_num_stream_bufs = 0,
++		.cfr_stream_buf_size = 0,
+ 	},
+ 	{
+ 		.name = "wcn6855 hw2.0",
+@@ -356,6 +373,10 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_rssi_stats = true,
+ 		.fw_wmi_diag_event = true,
+ 		.current_cc_support = true,
++		.cfr_support = false,
++		.cfr_dma_hdr_size = 0,
++		.cfr_num_stream_bufs = 0,
++		.cfr_stream_buf_size = 0,
+ 	},
+ 	{
+ 		.name = "wcn6855 hw2.1",
+@@ -419,6 +440,10 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_rssi_stats = true,
+ 		.fw_wmi_diag_event = true,
+ 		.current_cc_support = true,
++		.cfr_support = false,
++		.cfr_dma_hdr_size = 0,
++		.cfr_num_stream_bufs = 0,
++		.cfr_stream_buf_size = 0,
+ 	},
+ };
+ 
+@@ -922,8 +947,16 @@ static int ath11k_core_pdev_create(struct ath11k_base *ab)
+ 		goto err_thermal_unregister;
  	}
  
++	ret = ath11k_cfr_init(ab);
++	if (ret) {
++		ath11k_err(ab, "failed to init cfr %d\n", ret);
++		goto err_spectral_unregister;
++	}
++
  	return 0;
-diff --git a/drivers/net/wireless/ath/ath11k/cfr.h b/drivers/net/wireless/ath/ath11k/cfr.h
-index c050f03..f39b82c 100644
---- a/drivers/net/wireless/ath/ath11k/cfr.h
-+++ b/drivers/net/wireless/ath/ath11k/cfr.h
-@@ -46,6 +46,7 @@ struct ath11k_cfr {
- 	struct ath11k_dbring rx_ring;
- 	/* Protects cfr data */
- 	spinlock_t lock;
-+	struct rchan *rfs_cfr_capture;
- 	struct ath11k_look_up_table *lut;
- 	u32 lut_num;
- 	u32 dbr_buf_size;
+ 
++err_spectral_unregister:
++	ath11k_spectral_deinit(ab);
+ err_thermal_unregister:
+ 	ath11k_thermal_unregister(ab);
+ err_dp_pdev_free:
+@@ -938,6 +971,7 @@ static int ath11k_core_pdev_create(struct ath11k_base *ab)
+ 
+ static void ath11k_core_pdev_destroy(struct ath11k_base *ab)
+ {
++	ath11k_cfr_deinit(ab);
+ 	ath11k_spectral_deinit(ab);
+ 	ath11k_thermal_unregister(ab);
+ 	ath11k_mac_unregister(ab);
+@@ -1161,6 +1195,7 @@ static int ath11k_core_reconfigure_on_crash(struct ath11k_base *ab)
+ 	ath11k_thermal_unregister(ab);
+ 	ath11k_hif_irq_disable(ab);
+ 	ath11k_dp_pdev_free(ab);
++	ath11k_cfr_deinit(ab);
+ 	ath11k_spectral_deinit(ab);
+ 	ath11k_hif_stop(ab);
+ 	ath11k_wmi_detach(ab);
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index 10846e9..3cf026c 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -1,6 +1,7 @@
+ /* SPDX-License-Identifier: BSD-3-Clause-Clear */
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
++ * Copyright (c) 2021 Qualcomm Innovation Center, Inc. All rights
+  */
+ 
+ #ifndef ATH11K_CORE_H
+@@ -23,6 +24,7 @@
+ #include "thermal.h"
+ #include "dbring.h"
+ #include "spectral.h"
++#include "cfr.h"
+ 
+ #define SM(_v, _f) (((_v) << _f##_LSB) & _f##_MASK)
+ 
+@@ -612,6 +614,10 @@ struct ath11k {
+ 	bool regdom_set_by_user;
+ 	int hw_rate_code;
+ 	u8 twt_enabled;
++#ifdef CONFIG_ATH11K_CFR
++	struct ath11k_cfr cfr;
++#endif
++	bool cfr_enabled;
+ };
+ 
+ struct ath11k_band_cap {
+diff --git a/drivers/net/wireless/ath/ath11k/dbring.c b/drivers/net/wireless/ath/ath11k/dbring.c
+index eda67eb..1dea4a5 100644
+--- a/drivers/net/wireless/ath/ath11k/dbring.c
++++ b/drivers/net/wireless/ath/ath11k/dbring.c
+@@ -1,6 +1,7 @@
+ // SPDX-License-Identifier: BSD-3-Clause-Clear
+ /*
+  * Copyright (c) 2019-2020 The Linux Foundation. All rights reserved.
++ * Copyright (c) 2021 Qualcomm Innovation Center, Inc. All rights
+  */
+ 
+ #include "core.h"
+@@ -35,9 +36,10 @@ static void ath11k_dbring_fill_magic_value(struct ath11k *ar,
+ 		*temp++ = ATH11K_DB_MAGIC_VALUE;
+ }
+ 
+-static int ath11k_dbring_bufs_replenish(struct ath11k *ar,
+-					struct ath11k_dbring *ring,
+-					struct ath11k_dbring_element *buff)
++int ath11k_dbring_bufs_replenish(struct ath11k *ar,
++				 struct ath11k_dbring *ring,
++				 struct ath11k_dbring_element *buff,
++				 enum wmi_direct_buffer_module id)
+ {
+ 	struct ath11k_base *ab = ar->ab;
+ 	struct hal_srng *srng;
+@@ -77,6 +79,9 @@ static int ath11k_dbring_bufs_replenish(struct ath11k *ar,
+ 		goto err_idr_remove;
+ 	}
+ 
++	if (id == WMI_DIRECT_BUF_CFR)
++		ath11k_cfr_lut_update_paddr(ar, paddr, buf_id);
++
+ 	buff->paddr = paddr;
+ 
+ 	cookie = FIELD_PREP(DP_RXDMA_BUF_COOKIE_PDEV_ID, ar->pdev_idx) |
+@@ -101,7 +106,8 @@ static int ath11k_dbring_bufs_replenish(struct ath11k *ar,
+ }
+ 
+ static int ath11k_dbring_fill_bufs(struct ath11k *ar,
+-				   struct ath11k_dbring *ring)
++				   struct ath11k_dbring *ring,
++				   enum wmi_direct_buffer_module id)
+ {
+ 	struct ath11k_dbring_element *buff;
+ 	struct hal_srng *srng;
+@@ -129,7 +135,7 @@ static int ath11k_dbring_fill_bufs(struct ath11k *ar,
+ 			kfree(buff);
+ 			break;
+ 		}
+-		ret = ath11k_dbring_bufs_replenish(ar, ring, buff);
++		ret = ath11k_dbring_bufs_replenish(ar, ring, buff, id);
+ 		if (ret) {
+ 			ath11k_warn(ar->ab, "failed to replenish db ring num_remain %d req_ent %d\n",
+ 				    num_remain, req_entries);
+@@ -210,7 +216,7 @@ int ath11k_dbring_buf_setup(struct ath11k *ar,
+ 	ring->hp_addr = ath11k_hal_srng_get_hp_addr(ar->ab, srng);
+ 	ring->tp_addr = ath11k_hal_srng_get_tp_addr(ar->ab, srng);
+ 
+-	ret = ath11k_dbring_fill_bufs(ar, ring);
++	ret = ath11k_dbring_fill_bufs(ar, ring, db_cap->id);
+ 
+ 	return ret;
+ }
+@@ -270,7 +276,7 @@ int ath11k_dbring_buffer_release_event(struct ath11k_base *ab,
+ 	struct ath11k_buffer_addr desc;
+ 	u8 *vaddr_unalign;
+ 	u32 num_entry, num_buff_reaped;
+-	u8 pdev_idx, rbm;
++	u8 pdev_idx, rbm, module_id;
+ 	u32 cookie;
+ 	int buf_id;
+ 	int size;
+@@ -278,6 +284,7 @@ int ath11k_dbring_buffer_release_event(struct ath11k_base *ab,
+ 	int ret = 0;
+ 
+ 	pdev_idx = ev->fixed.pdev_id;
++	module_id = ev->fixed.module_id;
+ 
+ 	if (pdev_idx >= ab->num_radios) {
+ 		ath11k_warn(ab, "Invalid pdev id %d\n", pdev_idx);
+@@ -357,7 +364,7 @@ int ath11k_dbring_buffer_release_event(struct ath11k_base *ab,
+ 
+ 		buff->paddr = 0;
+ 		memset(buff->payload, 0, size);
+-		ath11k_dbring_bufs_replenish(ar, ring, buff);
++		ath11k_dbring_bufs_replenish(ar, ring, buff, module_id);
+ 	}
+ 
+ 	spin_unlock_bh(&srng->lock);
+diff --git a/drivers/net/wireless/ath/ath11k/dbring.h b/drivers/net/wireless/ath/ath11k/dbring.h
+index ef906c6..0c3683a 100644
+--- a/drivers/net/wireless/ath/ath11k/dbring.h
++++ b/drivers/net/wireless/ath/ath11k/dbring.h
+@@ -1,6 +1,7 @@
+ /* SPDX-License-Identifier: BSD-3-Clause-Clear */
+ /*
+  * Copyright (c) 2019-2020 The Linux Foundation. All rights reserved.
++ * Copyright (c) 2021 Qualcomm Innovation Center, Inc. All rights
+  */
+ 
+ #ifndef ATH11K_DBRING_H
+@@ -60,6 +61,10 @@ int ath11k_dbring_set_cfg(struct ath11k *ar,
+ 			  u32 event_timeout_ms,
+ 			  int (*handler)(struct ath11k *,
+ 					 struct ath11k_dbring_data *));
++int ath11k_dbring_bufs_replenish(struct ath11k *ar,
++				 struct ath11k_dbring *ring,
++				 struct ath11k_dbring_element *buff,
++				 enum wmi_direct_buffer_module id);
+ int ath11k_dbring_wmi_cfg_setup(struct ath11k *ar,
+ 				struct ath11k_dbring *ring,
+ 				enum wmi_direct_buffer_module id);
+diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
+index 2ec09ae..d2f0472 100644
+--- a/drivers/net/wireless/ath/ath11k/hal.c
++++ b/drivers/net/wireless/ath/ath11k/hal.c
+@@ -1,6 +1,7 @@
+ // SPDX-License-Identifier: BSD-3-Clause-Clear
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
++ * Copyright (c) 2021 Qualcomm Innovation Center, Inc. All rights
+  */
+ #include <linux/dma-mapping.h>
+ #include "hal_tx.h"
+@@ -181,7 +182,7 @@ static const struct hal_srng_config hw_srng_config_template[] = {
+ 	},
+ 	{ /* RXDMA DIR BUF */
+ 		.start_ring_id = HAL_SRNG_RING_ID_RXDMA_DIR_BUF,
+-		.max_rings = 1,
++		.max_rings = 2,
+ 		.entry_size = 8 >> 2, /* TODO: Define the struct */
+ 		.lmac_ring = true,
+ 		.ring_dir = HAL_SRNG_DIR_SRC,
+diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
+index c10e1a0..610c868 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.h
++++ b/drivers/net/wireless/ath/ath11k/hw.h
+@@ -1,6 +1,7 @@
+ /* SPDX-License-Identifier: BSD-3-Clause-Clear */
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
++ * Copyright (c) 2021 Qualcomm Innovation Center, Inc. All rights
+  */
+ 
+ #ifndef ATH11K_HW_H
+@@ -193,6 +194,10 @@ struct ath11k_hw_params {
+ 	bool supports_rssi_stats;
+ 	bool fw_wmi_diag_event;
+ 	bool current_cc_support;
++	bool cfr_support;
++	u32 cfr_dma_hdr_size;
++	u32 cfr_num_stream_bufs;
++	u32 cfr_stream_buf_size;
+ };
+ 
+ struct ath11k_hw_ops {
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index 587f423..72e2e20 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -1,6 +1,7 @@
+ /* SPDX-License-Identifier: BSD-3-Clause-Clear */
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
++ * Copyright (c) 2021 Qualcomm Innovation Center, Inc. All rights
+  */
+ 
+ #ifndef ATH11K_WMI_H
+@@ -951,6 +952,7 @@ enum wmi_tlv_pdev_param {
+ 	WMI_PDEV_PARAM_RADIO_CHAN_STATS_ENABLE,
+ 	WMI_PDEV_PARAM_RADIO_DIAGNOSIS_ENABLE,
+ 	WMI_PDEV_PARAM_MESH_MCAST_ENABLE,
++	WMI_PDEV_PARAM_PER_PEER_CFR_ENABLE = 0xa8,
+ 	WMI_PDEV_PARAM_SET_CMD_OBSS_PD_THRESHOLD = 0xbc,
+ 	WMI_PDEV_PARAM_SET_CMD_OBSS_PD_PER_AC = 0xbe,
+ 	WMI_PDEV_PARAM_ENABLE_SR_PROHIBIT = 0xc6,
 -- 
 2.7.4
 
