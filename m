@@ -4,69 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E45CEC433F5
-	for <ath11k@archiver.kernel.org>; Wed, 16 Feb 2022 06:58:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADA14C433F5
+	for <ath11k@archiver.kernel.org>; Wed, 16 Feb 2022 08:28:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=zSXqEF7uOreQ2MWORGJURyiHhHjhV2ib3MlCnroeUNI=; b=YWmUrkmfogHgXH
-	/d3lCkEBjQgEWf6DFKjbPyx+OV3NfysbsL5y4eeNu+uQw883v3SothfLwCYskCg29TphonPruZouu
-	nLfV31P8bj1l6w8Pq4zaMIVDpYlvglUM+qzCXYBHMbSb4BJa8w7q9i92trEITb9U14bN2nVy4oK+o
-	uwlMXMDuNHyaHKASCN2rfSVz3DL0CW2x9kEr+cyinMmyDRZnRC+FdzSo3EM2fqea2ayrUX3KMYw9m
-	qt2jf4CPxzgLAH17j+SY9bbIXH8SG1eg0CGuPRzm8GzOlKmAeiDSzZa+GQR5eP6qK4sOabbT3YWrN
-	ypvtEFtrVcgcMZ+vTGlg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=OKnvI+IL+AVDmGQdd7rhRRsm2gtl14vMFAGMXXnwgQk=; b=WZbJ3BjqDCgcmp
+	b7g6eU4aoHh/Tf6Nhojd8VZYjHhgqNC7mggvmQzOXS+P1TBBS5sCDoMCxOClnQLnOSnW+EVdEjR36
+	OUNh+6PyI0NxW0Q3n0/e64LYJ80wI0OMGoZSXCm2Vw5hKjnTVNSfKbuA2+3bM9h6p2ByMbPYYqm1t
+	s67rSU4Kx3XmUsk1OXpbaVWOVx+hE17XVGp7NtGnjuPqPGBH1+i9UOVHs0AsampXEwvECCW+wczwn
+	EayfMwlogolPwLVLHJwykY1dwCpa5zPS+ru1RA+B+q3vjJuQUxdAIG7dG7BdoO1od9qINefCgdOzQ
+	HMHeVsfXtEXWzhz9bUSw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nKEGh-005lmP-NU; Wed, 16 Feb 2022 06:58:27 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1nKFfm-0067ws-Uh; Wed, 16 Feb 2022 08:28:26 +0000
+Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nKEGf-005lhr-0c
- for ath11k@lists.infradead.org; Wed, 16 Feb 2022 06:58:26 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id C64EB60B93;
- Wed, 16 Feb 2022 06:58:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AE0BC004E1;
- Wed, 16 Feb 2022 06:58:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1644994703;
- bh=/vwB5yXs4gDz58JesfiQQTqr2RrPBMQTbgwqNSsMtbA=;
- h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
- b=dzhz3gQk2n7g8xrvbnDd0PVhVH0y2CbfWekq1Q9ZNYxLbJ9Gxymju6Ak+C/Hc4A2j
- UDa7T4EpI61gy5/sTYutePinZRdP2/RFDJZpGv1Oq2YgyMhLA1DY/VDkkD5p218mi0
- 5+Qx00y3uyIIlKKZafkspSmK+Eohiw5rLeimFa5PKXUtvDZg9Afs/VfKNMPQG5NYnG
- 6P+eZh657c4GKLlEo+gcUhgFcRUFX1PeiSYwxpVn/mzRAPTdMt2xsKxW+vh1yOXRjq
- Vh6UDSQNEIW4ahryMLXFosT8ESIzp54lq4YLmkLv1koLD/lBX3ups065lPv8oMT5/+
- DEH8S3PKtKY6g==
-From: Kalle Valo <kvalo@kernel.org>
-To: Mark Herbert <mark.herbert42@gmail.com>
-Cc: Patricio Ferraggi Ares <pattferraggi@gmail.com>, ath11k@lists.infradead.org
-Subject: Re: Fwd: AX500 support quirks
-In-Reply-To: <fc387c93-77a0-bc26-e87c-d6ab7ed42a18@gmail.com> (Mark Herbert's
- message of "Tue, 15 Feb 2022 21:42:39 +0300")
-References: <CAGYwnb=p38NMpWY=wLiPRE7eUDfjE_SyNS9zQ9W7Nhpy6hn+WQ@mail.gmail.com>
- <CAGYwnbnBjaNmS7aaSTXKtAbF1tKqeXTT_6tjka=5AS97c7Br8Q@mail.gmail.com>
- <87ilu5jr98.fsf@kernel.org>
- <198d5223-0dcf-6006-407f-7f9eeeb90c92@gmail.com>
- <CAGYwnbkh=RebRnSxXy7jXyfgMUXd=VBBZPTCB2zWbAM5y40XzQ@mail.gmail.com>
- <a00b83f2-ceba-ec6c-dd41-edaa9f84a041@gmail.com>
- <CAGYwnbnJb_0B0rwbDkTseJVZvNxn_XN2dPF5rG_ni9Hoy8MXgw@mail.gmail.com>
- <87ee4ocgfq.fsf@tynnyri.adurom.net>
- <CAGYwnbk9mUim8GvzLYqqkHLNjtJdQUMqhP1+82s3tCnRHRam=w@mail.gmail.com>
- <87o8381e6x.fsf@kernel.org>
- <CAGYwnbkLheu-d-AnKy7aN_zACKnRw8AgiBg6iBCys2cYQqiV5w@mail.gmail.com>
- <fc387c93-77a0-bc26-e87c-d6ab7ed42a18@gmail.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
-Date: Wed, 16 Feb 2022 08:58:18 +0200
-Message-ID: <87fsoj1enp.fsf@kernel.org>
+ id 1nKFfk-0067wI-7d
+ for ath11k@lists.infradead.org; Wed, 16 Feb 2022 08:28:25 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+ t=1645000104; x=1676536104;
+ h=from:to:cc:subject:date:message-id:mime-version;
+ bh=ht6zc7GnMpiGMKIpCWjwzLSAlsWkcboTn5FCJx2yIrY=;
+ b=bQeLxX8vx4VF+awJAwFpY6JS2jCJjwjmxp4oDlM7sR2U7ur/qMInxMwa
+ zC2sRpgllh7WTrzxWFGvi5YzIaAdJa2Ab0s2XEU8ezJC9vCzzZ2055Jod
+ 9W9sSetmUbmRNFIdEDwbA8BvrWovwjrRbom3VF5qyhC/J0gZp9P2xEjVp I=;
+Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
+ by alexa-out-sd-01.qualcomm.com with ESMTP; 16 Feb 2022 00:28:18 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+ by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2022 00:28:18 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Wed, 16 Feb 2022 00:28:17 -0800
+Received: from ramess-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Wed, 16 Feb 2022 00:28:15 -0800
+From: Rameshkumar Sundaram <quic_ramess@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, Rameshkumar Sundaram
+ <quic_ramess@quicinc.com>
+Subject: [PATCH] ath11k: Invalidate cached reo ring entry before accessing it
+Date: Wed, 16 Feb 2022 13:57:51 +0530
+Message-ID: <1645000071-25832-1-git-send-email-quic_ramess@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220215_225825_127424_F63F88CB 
-X-CRM114-Status: GOOD (  12.52  )
+X-CRM114-CacheID: sfid-20220216_002824_320495_0A0928F4 
+X-CRM114-Status: UNSURE (   8.52  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,26 +74,46 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-TWFyayBIZXJiZXJ0IDxtYXJrLmhlcmJlcnQ0MkBnbWFpbC5jb20+IHdyaXRlczoKCj4gRm9yIGJs
-dWV0b290aCB5b3UgZG8gbm90IG5lZWQgbGF0ZXN0IGF0aDExayBwYXRjaGVzLsKgIEl0IGlzIHdv
-cmtpbmcKPiBmaW5lIGZvciBhIHByZXR0eSBsb25nIHRpbWUgYWxyZWFkeSwgYW5kIGtlcm5lbCA1
-LjE2IGlzIE9LLgo+Cj4gQnV0IHRoZXJlIGlzIGFuIGlzc3VlIHdpdGggNS4xNy1yYyBrZXJuZWwg
-d2hlcmXCoCBibHVldG9vdGggc2Nhbm5pbmcgaXMKPiBicm9rZW4gZm9yIGEgd2hpbGUsIGF0wqAg
-bGVhc3Qgb24gbXkgZ2VudG9vKzkzMTAKPgo+IEZyb20gd2hhdCBJIHJlYWQgaW4geW91ciBtYWls
-cyBsb29rcyBsaWtlIHRoZSBxdWVzdGlvbnMgYXJlIG1vc3RseQo+IGFyY2hsaW51eCBzcGVjaWZp
-YyAtIHNvIGl0IGlzIGJldHRlciB0byBhc2sgYXJjaCBjb21tdW5pdHkuCj4KPiBodHRwczovL3dp
-a2kuYXJjaGxpbnV4Lm9yZy90aXRsZS9EZWxsX1hQU18xM18oOTMxMCnCoCAtIHdpa2kgcGFnZS4K
-PiBJbXBvcnRhbnQgcG9pbnQgc2V0IGdydWIgcGFyYW1ldGVyIG1lbW1hcD0xMk1cXFwkMjBNLsKg
-wqAgQXMgSSBzZWUgdGhlCj4gYXRoMTFrIFdpRmkvQnQgc3RhdHVzIGluIHRoZSB3aWtpIGlzIHN0
-aWxsIHJlZC4KCldpdGggUUNBNjM5MCBmaXJtd2FyZSBXTEFOLkhTVC4xLjAuMS0wNTI2Ni1RQ0FI
-U1RTV1BMWl9WMl9UT19YODYtMSB0aGUKbWVtbWFwIGhhY2sgaXMgbm90IG5lZWRlZCBhbnltb3Jl
-LiBBbHNvIFdDTjY4NTUgZG9lcyBub3QgbmVlZCBpdC4KCi0tIApodHRwczovL3BhdGNod29yay5r
-ZXJuZWwub3JnL3Byb2plY3QvbGludXgtd2lyZWxlc3MvbGlzdC8KCmh0dHBzOi8vd2lyZWxlc3Mu
-d2lraS5rZXJuZWwub3JnL2VuL2RldmVsb3BlcnMvZG9jdW1lbnRhdGlvbi9zdWJtaXR0aW5ncGF0
-Y2hlcwoKLS0gCmF0aDExayBtYWlsaW5nIGxpc3QKYXRoMTFrQGxpc3RzLmluZnJhZGVhZC5vcmcK
-aHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9hdGgxMWsK
+REO2SW ring descriptor is currently allocated in cacheable memory.
+While reaping reo ring entries on second trial after updating head
+pointer, first entry needs to be invalidated before accessing it.
+
+Move the try_again: label above  ath11k_hal_srng_access_begin()
+so that first entry will be invalidated and prefetched.
+
+Tested on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
+
+Fixes: 6452f0a3d565 ("ath11k: allocate dst ring descriptors from cacheable memory")
+Signed-off-by: Rameshkumar Sundaram <quic_ramess@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index c212a78..e432f8d 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -2642,9 +2642,9 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int ring_id,
+ 
+ 	spin_lock_bh(&srng->lock);
+ 
++try_again:
+ 	ath11k_hal_srng_access_begin(ab, srng);
+ 
+-try_again:
+ 	while (likely(desc =
+ 	      (struct hal_reo_dest_ring *)ath11k_hal_srng_dst_get_next_entry(ab,
+ 									     srng))) {
+-- 
+2.7.4
+
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
