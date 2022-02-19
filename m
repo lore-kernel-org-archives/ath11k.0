@@ -4,64 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDB74C433EF
-	for <ath11k@archiver.kernel.org>; Sat, 19 Feb 2022 13:58:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B9C9C433EF
+	for <ath11k@archiver.kernel.org>; Sat, 19 Feb 2022 18:49:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	MIME-Version:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-	References:List-Owner; bh=fOa7VKKWS63Wo6wzrkOhy0M7gL5TTllsujbkYQq0LNA=; b=P7/
-	Up6vsGgtO0bo1cGxPPZqmCdIlNin+SdKERT8/R/ultn4TTX8OeTKtS6lIAqIgWA2C0wowUxjt4FtF
-	qtrCcZBdBz66iHLhCfXDxIsG3lX814rgMuQWmI603qanR8mSgPkSOsMusIMsubPOMLxAxqJXKi3X/
-	zh4W762ahRLYylbOA2ZOO4AOc7O3KP3519OSJQM1cLxYoMzbgNYUhdTSxCz5dO3h1VWKrapYrT1ot
-	RnX/IKK6t9k13qUG/KZJxStsEwMEJYhMBYVvsdVp/fCg3vFtb4oMyUF4B5k1spSz2VhT52plfTQ/h
-	Nr9fPyVqLmBhdY3QoCizBA7ttk1dCSg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=OyVguK1CF89pW8w9Fs5UxJPnOh9+0I0ZK4Svr2uWxEY=; b=qbRLBojNynO2Ph
+	PiE1Hl91DPER1geXCbqYxzypIrrnyW2KcUPPKI9WB7oFpQg7YFU4Uf2+pj35/QX3XqHe6JdHHWLkg
+	c8eFfi845WnAkSItG6lqKz1IFB5Y6jrTIBT+DWxWjxx0UEUiw0dsBJ06nYUiXNkaDpiyAEt/fLXS8
+	8S0nlrcCXyI9PN/wUBBcutj7+pLJOw90zyp0XgiqTQxVh9p8Cavcf3MnokpE6zsmE4fv4/rZwjFYW
+	UA7WyXnoHh40BviFEuOwWCQpgJexLzmn2WzlSzlqhr7D9CadedsRpzOZ0+EZ6xu7RJXvWuEFuRv4O
+	fFdr9RiDU54eKGd+D/lQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nLQFl-00H230-Pd; Sat, 19 Feb 2022 13:58:25 +0000
-Received: from mail-qv1-xf2a.google.com ([2607:f8b0:4864:20::f2a])
+	id 1nLUne-00HYLg-4y; Sat, 19 Feb 2022 18:49:42 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nLQFj-00H21z-Cv
- for ath11k@lists.infradead.org; Sat, 19 Feb 2022 13:58:24 +0000
-Received: by mail-qv1-xf2a.google.com with SMTP id p7so20539187qvk.11
- for <ath11k@lists.infradead.org>; Sat, 19 Feb 2022 05:58:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:from:date:message-id:subject:to;
- bh=htDYgbLS6Uq6NGJUKBzNMebz9P0JiluLfyk0AW9X4D4=;
- b=o7/LvJdAe94k3UA5+ONcM92EWvDSt0E2GxaRqPA3uHpMwnX+u5H1+ie1MZn3IgDTcr
- tXkTgUpGZssdQkQ4qvf4TAdeNFS1IKzCMhr/ZtE2SoOb2plCaTs1sLL6g3d7dDqbu/nK
- MaNdtBG7bUvsNNjRCvj/AhKz7B10rWZn+fTus9XJz/C6SSy+XLD6tXO8Dwf9Qj9WzUtP
- fTrIGZNjsmIJQyHQ6bpymyF9iiI+5lWtEWg1mftjz9ERxxF45B7FbXiNxpWbLp8cDIcb
- +u9UJm15T6mkIvr3dVXZ1IeMgo51wTFi68bjPS94V8/kUE15xXBC8TSWxVOf+V8Q6eG/
- HGLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=htDYgbLS6Uq6NGJUKBzNMebz9P0JiluLfyk0AW9X4D4=;
- b=W0bCqrxzh1TMH12o4/UceQhcMLIP76ovr3dLFLIp0UPUXrP8Vqf0vfqweubwWVeH0r
- T23JPYEV2F+8ocKlN1Vzola6X/Slwq+8vOXOZ/bdkXqsnpQ/kvAz9trIKnpyycL+NDuH
- 9z3uzqOIDXM9xnpbv8Auf7MNQxAMAIy7uEpoRFk/GYpmJ7SDp1dLOep1PO9YFVE97UXq
- k8h9p8PKe2BY8Od01Inja3GdwO8w+q+BFV4g+nFzBc4T5V2/1KBXgGUY3wHn4NnhSCSd
- v2jSTlSykHK5XGOnz5idiIR+LromTA+nZSkP2C3ypjXvocth/0fioCBcbec5drZuiQoY
- bNPw==
-X-Gm-Message-State: AOAM531PNsfwpI6+ohyHNOglhf/KECPiEQE77NAtCs2oVBajErOhSliP
- tfE8vEtdijyk8+BUJ2t72WkA4RJp5dlSezysXzYkHk94b1Vpzg3y
-X-Google-Smtp-Source: ABdhPJxrbGWwfqT7a5pkr+aiV90h6Qb1nzaWVG59OeQWTO+x/J64lnHdIdEG9fwnXwMoZEzLn4BD27ZMexaisjTSA/0=
-X-Received: by 2002:ac8:7f83:0:b0:2d0:1769:f2c1 with SMTP id
- z3-20020ac87f83000000b002d01769f2c1mr10868760qtj.427.1645279099896; Sat, 19
- Feb 2022 05:58:19 -0800 (PST)
+ id 1nLUnD-00HYCP-C5
+ for ath11k@lists.infradead.org; Sat, 19 Feb 2022 18:49:17 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id E8118B80C92;
+ Sat, 19 Feb 2022 18:49:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7996C004E1;
+ Sat, 19 Feb 2022 18:49:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1645296551;
+ bh=46HU1TDDT0+H90J3pF+Odpvtke/2r+9O2LPsk5zwzsI=;
+ h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+ b=JLGREjcUAHXpcy/Hf71xQylwFCp9WXwEw9xAhl+0cEs/vHVLrKjx2Eb9PqOOwxrt9
+ I38J6PAReR7GR8sGu6oxXOrsk3dmbZCkL2PTis3FigNC+lH9aqFsabArCJlQUU531p
+ IFRQRCMda4Bjgi0TfPORV0R6F3gTJtOVEbGU0IB/kVpLbBx7wfXqyKYdywaJRywBlj
+ uCnlfny1oX6TcPIWDLl4bjGOF4pcfH5pv/AXkQIvQSs6dsBsDrHYVq2k7MBsgSiVfd
+ l+ASD1S5pBgkk8XC7R2JD9t2DrllT5mWZwhH9d+pPRvKtK9lahObLQurRSl3HCw1bh
+ Pbnxx8VdnWuew==
+From: Kalle Valo <kvalo@kernel.org>
+To: Xell Kim <gfzmder@gmail.com>
+Cc: ath11k@lists.infradead.org
+Subject: Re: o wifi connections available in Manjaro Linux
+References: <CAH=Zo0eZp+Cqw=C0PWuirKM23ptWM053=ygVRhYq0BcFGevahg@mail.gmail.com>
+Date: Sat, 19 Feb 2022 20:49:08 +0200
+In-Reply-To: <CAH=Zo0eZp+Cqw=C0PWuirKM23ptWM053=ygVRhYq0BcFGevahg@mail.gmail.com>
+ (Xell Kim's message of "Sat, 19 Feb 2022 21:58:09 +0800")
+Message-ID: <87ee3yzo7v.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-From: Xell Kim <gfzmder@gmail.com>
-Date: Sat, 19 Feb 2022 21:58:09 +0800
-Message-ID: <CAH=Zo0eZp+Cqw=C0PWuirKM23ptWM053=ygVRhYq0BcFGevahg@mail.gmail.com>
-Subject: o wifi connections available in Manjaro Linux
-To: ath11k@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220219_055823_464893_1F53B605 
-X-CRM114-Status: UNSURE (   7.92  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220219_104915_666091_ACAF0C61 
+X-CRM114-Status: GOOD (  17.76  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,25 +72,39 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi! Sorry to interrupt you. I'm a manjaro user and met some problems
-about the wireless configuration.
-My new pc has Qualcomm Atheros QCNFA765 as net card and the default
-driver for it in manjaro is ath11k. However, wifi service seems to be
-unavailable and there's even no wirelessLAN interface in the rfkill
-list. Besides, I should mention that the wireless service could work
-with no problem under Windows system.
+Xell Kim <gfzmder@gmail.com> writes:
 
-I've noticed an error info " mhi mhi0: Direct firmware load for
-ath11k/WCN6855/hw2.0/amss.bin failed with error -2" but have no ideas
-how to solve it.
-I also tried modprobe ath9k but it didn't work. When I try to modprobe
--r ath11k_pci, my terminal got frozen for minutes and I had to stop
-it.
+> Hi! Sorry to interrupt you. I'm a manjaro user and met some problems
+> about the wireless configuration.
+> My new pc has Qualcomm Atheros QCNFA765 as net card and the default
+> driver for it in manjaro is ath11k. However, wifi service seems to be
+> unavailable and there's even no wirelessLAN interface in the rfkill
+> list. Besides, I should mention that the wireless service could work
+> with no problem under Windows system.
+>
+> I've noticed an error info " mhi mhi0: Direct firmware load for
+> ath11k/WCN6855/hw2.0/amss.bin failed with error -2" but have no ideas
+> how to solve it.
+> I also tried modprobe ath9k but it didn't work. When I try to modprobe
+> -r ath11k_pci, my terminal got frozen for minutes and I had to stop
+> it.
+>
+> More specific info can be seen in the link below:
+> https://forum.manjaro.org/t/no-wifi-connenctions-available/103091
 
-More specific info can be seen in the link below:
-https://forum.manjaro.org/t/no-wifi-connenctions-available/103091
+You need to install the firmware, you can find the files here:
 
-I would really appreciate it if you can help!
+https://github.com/kvalo/ath11k-firmware/tree/master/WCN6855/hw2.0/1.1/WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
+
+https://github.com/kvalo/ath11k-firmware/tree/master/WCN6855/hw2.0
+
+I recommend using kernel v5.17 to make sure everything works, you seem
+to have older kernel so expect problems.
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
