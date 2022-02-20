@@ -4,58 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B9C9C433EF
-	for <ath11k@archiver.kernel.org>; Sat, 19 Feb 2022 18:49:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1C62C433EF
+	for <ath11k@archiver.kernel.org>; Sun, 20 Feb 2022 07:29:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=OyVguK1CF89pW8w9Fs5UxJPnOh9+0I0ZK4Svr2uWxEY=; b=qbRLBojNynO2Ph
-	PiE1Hl91DPER1geXCbqYxzypIrrnyW2KcUPPKI9WB7oFpQg7YFU4Uf2+pj35/QX3XqHe6JdHHWLkg
-	c8eFfi845WnAkSItG6lqKz1IFB5Y6jrTIBT+DWxWjxx0UEUiw0dsBJ06nYUiXNkaDpiyAEt/fLXS8
-	8S0nlrcCXyI9PN/wUBBcutj7+pLJOw90zyp0XgiqTQxVh9p8Cavcf3MnokpE6zsmE4fv4/rZwjFYW
-	UA7WyXnoHh40BviFEuOwWCQpgJexLzmn2WzlSzlqhr7D9CadedsRpzOZ0+EZ6xu7RJXvWuEFuRv4O
-	fFdr9RiDU54eKGd+D/lQ==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	MIME-Version:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	References:List-Owner; bh=BhidjiZd/h+fQMRrxVPE+JJlTv8Wh/C1V/A0a3izGGA=; b=Sbc
+	WSJC08vWCRQDuXdFLvbYKfUTVQ7Bq0WotZHE8oapuwGo3zqvOgPHC70TVBRMI9A/dObLuLM0wkHJo
+	jMwIl/IV/hjOyRc+uO9/R4tEmYd6aDmt90CC3u01x8fZFB20ENpVju79VNAleuu3VrudU9/GApbOv
+	Gluvm4cR8t0a3C0WQkoMRkTt/Nz+trGdIss2zx6xVjHP3WGV9gIVZMPYGKCw1kh/lT7oFS/fIJGPf
+	juty/ZdRQPPmnJ87zLz6Nggrw/Rsag25rrM8ep9JbdHeTmv16CJs749tojbYCpLkaninXxPLEV5xa
+	6BJsrtJcnPqv5aItw74O9cAb0iMF8EA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nLUne-00HYLg-4y; Sat, 19 Feb 2022 18:49:42 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1nLgfI-000mSL-IC; Sun, 20 Feb 2022 07:29:52 +0000
+Received: from mail-qv1-xf29.google.com ([2607:f8b0:4864:20::f29])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nLUnD-00HYCP-C5
- for ath11k@lists.infradead.org; Sat, 19 Feb 2022 18:49:17 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id E8118B80C92;
- Sat, 19 Feb 2022 18:49:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7996C004E1;
- Sat, 19 Feb 2022 18:49:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1645296551;
- bh=46HU1TDDT0+H90J3pF+Odpvtke/2r+9O2LPsk5zwzsI=;
- h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
- b=JLGREjcUAHXpcy/Hf71xQylwFCp9WXwEw9xAhl+0cEs/vHVLrKjx2Eb9PqOOwxrt9
- I38J6PAReR7GR8sGu6oxXOrsk3dmbZCkL2PTis3FigNC+lH9aqFsabArCJlQUU531p
- IFRQRCMda4Bjgi0TfPORV0R6F3gTJtOVEbGU0IB/kVpLbBx7wfXqyKYdywaJRywBlj
- uCnlfny1oX6TcPIWDLl4bjGOF4pcfH5pv/AXkQIvQSs6dsBsDrHYVq2k7MBsgSiVfd
- l+ASD1S5pBgkk8XC7R2JD9t2DrllT5mWZwhH9d+pPRvKtK9lahObLQurRSl3HCw1bh
- Pbnxx8VdnWuew==
-From: Kalle Valo <kvalo@kernel.org>
-To: Xell Kim <gfzmder@gmail.com>
-Cc: ath11k@lists.infradead.org
-Subject: Re: o wifi connections available in Manjaro Linux
-References: <CAH=Zo0eZp+Cqw=C0PWuirKM23ptWM053=ygVRhYq0BcFGevahg@mail.gmail.com>
-Date: Sat, 19 Feb 2022 20:49:08 +0200
-In-Reply-To: <CAH=Zo0eZp+Cqw=C0PWuirKM23ptWM053=ygVRhYq0BcFGevahg@mail.gmail.com>
- (Xell Kim's message of "Sat, 19 Feb 2022 21:58:09 +0800")
-Message-ID: <87ee3yzo7v.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+ id 1nLgfF-000mRg-C7
+ for ath11k@lists.infradead.org; Sun, 20 Feb 2022 07:29:51 +0000
+Received: by mail-qv1-xf29.google.com with SMTP id v10so24112244qvk.7
+ for <ath11k@lists.infradead.org>; Sat, 19 Feb 2022 23:29:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:from:date:message-id:subject:to
+ :content-transfer-encoding;
+ bh=B2c7j6dS9vqG3u7idqYYdj8TDITYckEmf67xRGmsYbo=;
+ b=n/PZiQZJnkOqGPeCAzlqzGtTCU75WsVg6URuLUqxFUIZVE3dbJTvk8lvK7HkRDi4JA
+ VArfslVwEKQXCgilkOIGzjdwP50MpZdVBqSFDhunTIGuQEgY1kFd86zP2h2fW7UE16GM
+ NHzE5D83jVM7yOt2VN5TynoHTWCvX3BgVauYg0KsxR7dssvEF2Mu9j+eOng+5qgRK6Pk
+ GOAJDpl+eG3cPo+qFpC0Wpbt6x70gvvHJSRvbLnN7w2GvfMZNGIus81Vk5cVPpSna/Mw
+ AqlRsJhmf0yP6MPQBxIk9fD7mX4iMHRg+7S7lqNK5e4kDu6ZV8WInST9U/XCucEQVZoP
+ Tm/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to
+ :content-transfer-encoding;
+ bh=B2c7j6dS9vqG3u7idqYYdj8TDITYckEmf67xRGmsYbo=;
+ b=ZgP8EMOJjgpeXdxa9nAyhN2j0zdy2ej+61ZwpEbiqrS3gcEmmNtq6XWkaIBREXFjiu
+ DSfXM1Px+ATjo478TaybBQWdZgnEnJZw1Ruu4TodCCsBPysAuRm1Hd+Mel5OdSAtGmWv
+ STY4cIX9sGaMFXxYQz5zMUtLz+k42/GK40RWm0hB8b6BVx7fBUBquMgVnVYeAomlLVcf
+ 4NCbgVALI/xYVj9CetkpdL+79D3DO8CiM02ggMI+a0vOH3rn5RKhZRiszfG1j7xF1NJN
+ BchcDs9Q2rB7cp43cJ+K6SaE0GJXRVJ0NK7HQqx0kwlNQrj5+ROn/eohxGay683z5Ppm
+ te0Q==
+X-Gm-Message-State: AOAM533xQyKmiCnJ1FV3a6QhpDlWRErK0fc0SrmKIbc8ecP2Bd5QrDZO
+ 3BqW8A7XqxMwXN8HNaAXzUTOaNKuSVrD0hlha0FfizzMsyvKOdjW
+X-Google-Smtp-Source: ABdhPJw3oCMp+MIM9ocXmiQ3aZTQyxLfD2eOHB9QC9zjYxzky24lziVavclFgJaIept2pwKYxUKemBTapiT1pN9Rafg=
+X-Received: by 2002:a05:622a:164b:b0:2dd:54a:2625 with SMTP id
+ y11-20020a05622a164b00b002dd054a2625mr13062307qtj.597.1645342187921; Sat, 19
+ Feb 2022 23:29:47 -0800 (PST)
 MIME-Version: 1.0
+From: Xell Kim <gfzmder@gmail.com>
+Date: Sun, 20 Feb 2022 15:29:36 +0800
+Message-ID: <CAH=Zo0f8f8HpTVR7==3E8Zqk48ZascuvcLXKryX1CqY0292cEw@mail.gmail.com>
+Subject: Re: o wifi connections available in Manjaro Linux
+To: ath11k@lists.infradead.org
+X-Bad-Reply: 'Re:' in Subject but no References or In-Reply-To headers
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220219_104915_666091_ACAF0C61 
-X-CRM114-Status: GOOD (  17.76  )
+X-CRM114-CacheID: sfid-20220219_232949_440674_B1BD3E7D 
+X-CRM114-Status: GOOD (  21.79  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -67,46 +75,71 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Xell Kim <gfzmder@gmail.com> writes:
-
-> Hi! Sorry to interrupt you. I'm a manjaro user and met some problems
-> about the wireless configuration.
-> My new pc has Qualcomm Atheros QCNFA765 as net card and the default
-> driver for it in manjaro is ath11k. However, wifi service seems to be
-> unavailable and there's even no wirelessLAN interface in the rfkill
-> list. Besides, I should mention that the wireless service could work
-> with no problem under Windows system.
->
-> I've noticed an error info " mhi mhi0: Direct firmware load for
-> ath11k/WCN6855/hw2.0/amss.bin failed with error -2" but have no ideas
-> how to solve it.
-> I also tried modprobe ath9k but it didn't work. When I try to modprobe
-> -r ath11k_pci, my terminal got frozen for minutes and I had to stop
-> it.
->
-> More specific info can be seen in the link below:
-> https://forum.manjaro.org/t/no-wifi-connenctions-available/103091
-
-You need to install the firmware, you can find the files here:
-
-https://github.com/kvalo/ath11k-firmware/tree/master/WCN6855/hw2.0/1.1/WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
-
-https://github.com/kvalo/ath11k-firmware/tree/master/WCN6855/hw2.0
-
-I recommend using kernel v5.17 to make sure everything works, you seem
-to have older kernel so expect problems.
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+S2FsbGUgVmFsbyA8a3ZhbG9Aa2VybmVsLm9yZz4gd3JpdGVz77yaCgo+Cj4gWGVsbCBLaW0gPGdm
+em1kZXJAZ21haWwuY29tPiB3cml0ZXM6Cj4KPiA+IEhpISBTb3JyeSB0byBpbnRlcnJ1cHQgeW91
+LiBJJ20gYSBtYW5qYXJvIHVzZXIgYW5kIG1ldCBzb21lIHByb2JsZW1zCj4gPiBhYm91dCB0aGUg
+d2lyZWxlc3MgY29uZmlndXJhdGlvbi4KPiA+IE15IG5ldyBwYyBoYXMgUXVhbGNvbW0gQXRoZXJv
+cyBRQ05GQTc2NSBhcyBuZXQgY2FyZCBhbmQgdGhlIGRlZmF1bHQKPiA+IGRyaXZlciBmb3IgaXQg
+aW4gbWFuamFybyBpcyBhdGgxMWsuIEhvd2V2ZXIsIHdpZmkgc2VydmljZSBzZWVtcyB0byBiZQo+
+ID4gdW5hdmFpbGFibGUgYW5kIHRoZXJlJ3MgZXZlbiBubyB3aXJlbGVzc0xBTiBpbnRlcmZhY2Ug
+aW4gdGhlIHJma2lsbAo+ID4gbGlzdC4gQmVzaWRlcywgSSBzaG91bGQgbWVudGlvbiB0aGF0IHRo
+ZSB3aXJlbGVzcyBzZXJ2aWNlIGNvdWxkIHdvcmsKPiA+IHdpdGggbm8gcHJvYmxlbSB1bmRlciBX
+aW5kb3dzIHN5c3RlbS4KPiA+Cj4gPiBJJ3ZlIG5vdGljZWQgYW4gZXJyb3IgaW5mbyAiIG1oaSBt
+aGkwOiBEaXJlY3QgZmlybXdhcmUgbG9hZCBmb3IKPiA+IGF0aDExay9XQ042ODU1L2h3Mi4wL2Ft
+c3MuYmluIGZhaWxlZCB3aXRoIGVycm9yIC0yIiBidXQgaGF2ZSBubyBpZGVhcwo+ID4gaG93IHRv
+IHNvbHZlIGl0Lgo+ID4gSSBhbHNvIHRyaWVkIG1vZHByb2JlIGF0aDlrIGJ1dCBpdCBkaWRuJ3Qg
+d29yay4gV2hlbiBJIHRyeSB0byBtb2Rwcm9iZQo+ID4gLXIgYXRoMTFrX3BjaSwgbXkgdGVybWlu
+YWwgZ290IGZyb3plbiBmb3IgbWludXRlcyBhbmQgSSBoYWQgdG8gc3RvcAo+ID4gaXQuCj4gPgo+
+ID4gTW9yZSBzcGVjaWZpYyBpbmZvIGNhbiBiZSBzZWVuIGluIHRoZSBsaW5rIGJlbG93Ogo+ID4g
+aHR0cHM6Ly9mb3J1bS5tYW5qYXJvLm9yZy90L25vLXdpZmktY29ubmVuY3Rpb25zLWF2YWlsYWJs
+ZS8xMDMwOTEKPgo+IFlvdSBuZWVkIHRvIGluc3RhbGwgdGhlIGZpcm13YXJlLCB5b3UgY2FuIGZp
+bmQgdGhlIGZpbGVzIGhlcmU6Cj4KPiBodHRwczovL2dpdGh1Yi5jb20va3ZhbG8vYXRoMTFrLWZp
+cm13YXJlL3RyZWUvbWFzdGVyL1dDTjY4NTUvaHcyLjAvMS4xL1dMQU4uSFNQLjEuMS0wMzEyNS1R
+Q0FIU1BTV1BMX1YxX1YyX1NJTElDT05aX0xJVEUtMwo+Cj4gaHR0cHM6Ly9naXRodWIuY29tL2t2
+YWxvL2F0aDExay1maXJtd2FyZS90cmVlL21hc3Rlci9XQ042ODU1L2h3Mi4wCj4KPiBJIHJlY29t
+bWVuZCB1c2luZyBrZXJuZWwgdjUuMTcgdG8gbWFrZSBzdXJlIGV2ZXJ5dGhpbmcgd29ya3MsIHlv
+dSBzZWVtCj4gdG8gaGF2ZSBvbGRlciBrZXJuZWwgc28gZXhwZWN0IHByb2JsZW1zLgo+Cj4gLS0K
+PiBodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3Byb2plY3QvbGludXgtd2lyZWxlc3MvbGlz
+dC8KPgo+IGh0dHBzOi8vd2lyZWxlc3Mud2lraS5rZXJuZWwub3JnL2VuL2RldmVsb3BlcnMvZG9j
+dW1lbnRhdGlvbi9zdWJtaXR0aW5ncGF0Y2hlcwoKQXBvbG9naXplIGZvciBub3Qgb2JleWluZyB0
+aGUgZW1haWwgZXRpcXVldHRlLgpJJ3ZlIHVwZGF0ZWQgbXkgbGludXgga2VybmVsIHRvIDUuMTcu
+MC0xLU1BTkpBUk8geDg2XzY0LiBUaGVuIEkKZG93bmxvYWRlZCB0aGUgd2hvbGUgcGFja2FnZSAv
+V0NONjg1NS9odzIuMCAgYW5kIGNwIHRoZW0gaW50bwovbGliL2Zpcm13YXJlL2F0aDExay8gLCB3
+aGlsc3QgY3AgYW1zcy5iaW4gYW5kIG0zLmJpbiB0byBwYWNrYWdlIGh3Mi4wCmZyb20gV0xBTi5I
+U1AuMS4xLTAzMTI1LVFDQUhTUFNXUExfVjFfVjJfU0lMSUNPTlpfTElURS0zIHRvIG1lZXQgdGhl
+CmRlbWFuZC4KQWZ0ZXIgcmVib290LCB0aGUgZXJyb3IgbWVzc2FnZSBjaGFuZ2VkIHRvOgoKWyAg
+ICAxLjE2NzA0M10gc3lzdGVtZFsxXTogRmlsZSBTeXN0ZW0gQ2hlY2sgb24gUm9vdCBEZXZpY2Ug
+d2FzCnNraXBwZWQgYmVjYXVzZSBvZiBhIGZhaWxlZCBjb25kaXRpb24KY2hlY2sgKENvbmRpdGlv
+blBhdGhJc1JlYWRXcml0ZT0hLykuClsgICAgMi4zODgwODRdIGF0aDExa19wY2kgMDAwMDowMjow
+MC4wOiBCQVIgMDogYXNzaWduZWQgW21lbQoweGQxMDAwMDAwLTB4ZDExZmZmZmYgNjRiaXRdClsg
+ICAgMi4zODgxMDNdIGF0aDExa19wY2kgMDAwMDowMjowMC4wOiBlbmFibGluZyBkZXZpY2UgKDAw
+MDAgLT4gMDAwMikKWyAgICAyLjM4ODU3Nl0gYXRoMTFrX3BjaSAwMDAwOjAyOjAwLjA6IE1TSSB2
+ZWN0b3JzOiAzMgpbICAgIDIuMzg4NTgwXSBhdGgxMWtfcGNpIDAwMDA6MDI6MDAuMDogd2NuNjg1
+NSBodzIuMApbICAgIDMuNjczMTkxXSBhdGgxMWtfcGNpIDAwMDA6MDI6MDAuMDogY2hpcF9pZCAw
+eDIgY2hpcF9mYW1pbHkgMHhiCmJvYXJkX2lkIDB4ZmYgc29jX2lkIDB4NDAwYzAyMDAKWyAgICAz
+LjY3MzE5Nl0gYXRoMTFrX3BjaSAwMDAwOjAyOjAwLjA6IGZ3X3ZlcnNpb24gMHgxMTBkOGMzNQpm
+d19idWlsZF90aW1lc3RhbXAgMjAyMi0wMS0yNyAwNDowMSBmd18KYnVpbGRfaWQgUUNfSU1BR0Vf
+VkVSU0lPTl9TVFJJTkc9V0xBTi5IU1AuMS4xLTAzMTI1LVFDQUhTUFNXUExfVjFfVjJfU0lMSUNP
+TlpfTElURS0zClsgICAgMy42ODIwNjVdIGF0aDExa19wY2kgMDAwMDowMjowMC4wOiBmYWlsZWQg
+dG8gZmV0Y2ggYm9hcmQgZGF0YSBmb3IKYnVzPXBjaSx2ZW5kb3I9MTdjYixkZXZpY2U9MTEwCjMs
+c3Vic3lzdGVtLXZlbmRvcj0xMDViLHN1YnN5c3RlbS1kZXZpY2U9ZTBjYSxxbWktY2hpcC1pZD0y
+LHFtaS1ib2FyZC1pZD0yNTUKZnJvbSBhdGgxMWsvV0NONjg1NS9odzIuCjAvYm9hcmQtMi5iaW4K
+WyAgICA0LjAwNDI2M10gYXRoMTFrX3BjaSAwMDAwOjAyOjAwLjA6IGZpcm13YXJlIGNyYXNoZWQ6
+IE1ISV9DQl9TWVNfRVJST1IKWyAgIDEzLjc3ODQ5Nl0gYXRoMTFrX3BjaSAwMDAwOjAyOjAwLjA6
+IGZhaWxlZCB0byB3YWl0IGJvYXJkIGZpbGUKZG93bmxvYWQgcmVxdWVzdDogLTExMApbICAgMTMu
+Nzc4NTA1XSBhdGgxMWtfcGNpIDAwMDA6MDI6MDAuMDogcW1pIGZhaWxlZCB0byBsb2FkIGJkZiBm
+aWxlClsgICAxMy43Nzg2MDhdIGF0aDExa19wY2kgMDAwMDowMjowMC4wOiBmYWlsZWQgdG8gbG9h
+ZCBib2FyZCBkYXRhIGZpbGU6IC0xMTAKCndoaWNoIEkgdGhpbmsgdG8gYmUga2luZCBvZiB3ZWly
+ZCwgYmVjYXVzZSBJIHJlbWFpbmVkIHRoZSBleGFjdApib2FyZC0yLmJpbiBmaWxlIG9mIHRoZSBy
+ZXBvIGluIHRoZSBwYWNrYWdlLgpUaGVuIGkgdHJpZWQgdG8gYWRkIGF0aDExayAmIGF0aDExa19w
+Y2kgaW50byBibGFja2xpc3QgYW5kIG1vZHByb2JlCmF0aDlrIGJ1dCBpdCBkaWRuJ3Qgd29yayBh
+cyBzdXBwb3NlZC4gT25lIHRoaW5nIGludGVyZXN0aW5nIGlzIHRoYXQKdGhpcyBpbXByb3ZlZCBt
+eSByZWJvb3Qgc3BlZWQgdG8gYSBiaWcgZXh0ZW50LCB3aGljaCBtYXkgYWxzbyBwcm92ZQphdGgx
+MWsgc3RpbGwgaGFzIHNvbWUgcHJvYmxlbXMuCgotLSAKYXRoMTFrIG1haWxpbmcgbGlzdAphdGgx
+MWtAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL2F0aDExawo=
