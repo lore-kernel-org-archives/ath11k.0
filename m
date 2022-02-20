@@ -4,66 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1C62C433EF
-	for <ath11k@archiver.kernel.org>; Sun, 20 Feb 2022 07:29:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CD8AC433F5
+	for <ath11k@archiver.kernel.org>; Sun, 20 Feb 2022 14:08:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	MIME-Version:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-	References:List-Owner; bh=BhidjiZd/h+fQMRrxVPE+JJlTv8Wh/C1V/A0a3izGGA=; b=Sbc
-	WSJC08vWCRQDuXdFLvbYKfUTVQ7Bq0WotZHE8oapuwGo3zqvOgPHC70TVBRMI9A/dObLuLM0wkHJo
-	jMwIl/IV/hjOyRc+uO9/R4tEmYd6aDmt90CC3u01x8fZFB20ENpVju79VNAleuu3VrudU9/GApbOv
-	Gluvm4cR8t0a3C0WQkoMRkTt/Nz+trGdIss2zx6xVjHP3WGV9gIVZMPYGKCw1kh/lT7oFS/fIJGPf
-	juty/ZdRQPPmnJ87zLz6Nggrw/Rsag25rrM8ep9JbdHeTmv16CJs749tojbYCpLkaninXxPLEV5xa
-	6BJsrtJcnPqv5aItw74O9cAb0iMF8EA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=kgT7LPYaPatG6XwRmwpijqaUPirL/5PKNw2NPaWYAUk=; b=lIkhmNDvPj7ljL
+	JcgtGIkloBzNl/2nKhTvoV5y3ESbsmfMGXO8y3Z5sgfWGw1CiUGscJU5MwBcllSdA8fGVgtf1XlT7
+	IAU1DSaAhNa8wYHN9G/FdPewct26eFID2KVstwuW6PpgJeYIMCVvxSDxb6jf8dSs7viBcyOaKYjIv
+	Bc07LtFKjQLoyejZ0hLyt9Z0YFg6UNZQ2gT+/47JyV9Y+/Po5bGeV5FPzTK8T43eT5o8r2xy8oHqu
+	qNd3jiPTDCsTPFqeJz0WkH5oT1amkb3lqtAzk3g+jXB/Yc2uGTZ0wKlPNStwU+deTl0QvJmHUIQ9m
+	IK7ufNeQ7bG1hC2AuNnQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nLgfI-000mSL-IC; Sun, 20 Feb 2022 07:29:52 +0000
-Received: from mail-qv1-xf29.google.com ([2607:f8b0:4864:20::f29])
+	id 1nLmtQ-001WMd-9f; Sun, 20 Feb 2022 14:08:52 +0000
+Received: from alexa-out.qualcomm.com ([129.46.98.28])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nLgfF-000mRg-C7
- for ath11k@lists.infradead.org; Sun, 20 Feb 2022 07:29:51 +0000
-Received: by mail-qv1-xf29.google.com with SMTP id v10so24112244qvk.7
- for <ath11k@lists.infradead.org>; Sat, 19 Feb 2022 23:29:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:from:date:message-id:subject:to
- :content-transfer-encoding;
- bh=B2c7j6dS9vqG3u7idqYYdj8TDITYckEmf67xRGmsYbo=;
- b=n/PZiQZJnkOqGPeCAzlqzGtTCU75WsVg6URuLUqxFUIZVE3dbJTvk8lvK7HkRDi4JA
- VArfslVwEKQXCgilkOIGzjdwP50MpZdVBqSFDhunTIGuQEgY1kFd86zP2h2fW7UE16GM
- NHzE5D83jVM7yOt2VN5TynoHTWCvX3BgVauYg0KsxR7dssvEF2Mu9j+eOng+5qgRK6Pk
- GOAJDpl+eG3cPo+qFpC0Wpbt6x70gvvHJSRvbLnN7w2GvfMZNGIus81Vk5cVPpSna/Mw
- AqlRsJhmf0yP6MPQBxIk9fD7mX4iMHRg+7S7lqNK5e4kDu6ZV8WInST9U/XCucEQVZoP
- Tm/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to
- :content-transfer-encoding;
- bh=B2c7j6dS9vqG3u7idqYYdj8TDITYckEmf67xRGmsYbo=;
- b=ZgP8EMOJjgpeXdxa9nAyhN2j0zdy2ej+61ZwpEbiqrS3gcEmmNtq6XWkaIBREXFjiu
- DSfXM1Px+ATjo478TaybBQWdZgnEnJZw1Ruu4TodCCsBPysAuRm1Hd+Mel5OdSAtGmWv
- STY4cIX9sGaMFXxYQz5zMUtLz+k42/GK40RWm0hB8b6BVx7fBUBquMgVnVYeAomlLVcf
- 4NCbgVALI/xYVj9CetkpdL+79D3DO8CiM02ggMI+a0vOH3rn5RKhZRiszfG1j7xF1NJN
- BchcDs9Q2rB7cp43cJ+K6SaE0GJXRVJ0NK7HQqx0kwlNQrj5+ROn/eohxGay683z5Ppm
- te0Q==
-X-Gm-Message-State: AOAM533xQyKmiCnJ1FV3a6QhpDlWRErK0fc0SrmKIbc8ecP2Bd5QrDZO
- 3BqW8A7XqxMwXN8HNaAXzUTOaNKuSVrD0hlha0FfizzMsyvKOdjW
-X-Google-Smtp-Source: ABdhPJw3oCMp+MIM9ocXmiQ3aZTQyxLfD2eOHB9QC9zjYxzky24lziVavclFgJaIept2pwKYxUKemBTapiT1pN9Rafg=
-X-Received: by 2002:a05:622a:164b:b0:2dd:54a:2625 with SMTP id
- y11-20020a05622a164b00b002dd054a2625mr13062307qtj.597.1645342187921; Sat, 19
- Feb 2022 23:29:47 -0800 (PST)
+ id 1nLmtL-001WLS-Hk
+ for ath11k@lists.infradead.org; Sun, 20 Feb 2022 14:08:51 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+ t=1645366128; x=1676902128;
+ h=from:to:cc:subject:date:message-id:mime-version;
+ bh=cQOFiPMiy4OQerlBTtiWTW67eOvCNkUDI4AWfZhWKdA=;
+ b=Hkgt31G+Ag1F9FAcoQ1N9Jv1nXcqYHq12rEbexkiVrO/LaFDgRNmIycF
+ NALJXTB/BPfgNpXrgyaIIVx5cAFCWmmI0u/nQOPljeqJbesxarNEsDmTI
+ ZeoYipq4Xum+k+10viNmSbmdG1wn3o4V6LwMMkjqFfvsVdak2oSQRkgoN o=;
+Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
+ by alexa-out.qualcomm.com with ESMTP; 20 Feb 2022 06:08:43 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+ by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2022 06:08:13 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Sun, 20 Feb 2022 06:07:52 -0800
+Received: from vnaralas-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Sun, 20 Feb 2022 06:07:50 -0800
+From: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, Venkateswara Naralasetty
+ <quic_vnaralas@quicinc.com>
+Subject: [PATCHv3] ath11k: add dbring debug support
+Date: Sun, 20 Feb 2022 19:37:39 +0530
+Message-ID: <1645366059-11798-1-git-send-email-quic_vnaralas@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-From: Xell Kim <gfzmder@gmail.com>
-Date: Sun, 20 Feb 2022 15:29:36 +0800
-Message-ID: <CAH=Zo0f8f8HpTVR7==3E8Zqk48ZascuvcLXKryX1CqY0292cEw@mail.gmail.com>
-Subject: Re: o wifi connections available in Manjaro Linux
-To: ath11k@lists.infradead.org
-X-Bad-Reply: 'Re:' in Subject but no References or In-Reply-To headers
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220219_232949_440674_B1BD3E7D 
-X-CRM114-Status: GOOD (  21.79  )
+X-CRM114-CacheID: sfid-20220220_060847_702103_B9608F5F 
+X-CRM114-Status: GOOD (  20.77  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,71 +73,537 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-S2FsbGUgVmFsbyA8a3ZhbG9Aa2VybmVsLm9yZz4gd3JpdGVz77yaCgo+Cj4gWGVsbCBLaW0gPGdm
-em1kZXJAZ21haWwuY29tPiB3cml0ZXM6Cj4KPiA+IEhpISBTb3JyeSB0byBpbnRlcnJ1cHQgeW91
-LiBJJ20gYSBtYW5qYXJvIHVzZXIgYW5kIG1ldCBzb21lIHByb2JsZW1zCj4gPiBhYm91dCB0aGUg
-d2lyZWxlc3MgY29uZmlndXJhdGlvbi4KPiA+IE15IG5ldyBwYyBoYXMgUXVhbGNvbW0gQXRoZXJv
-cyBRQ05GQTc2NSBhcyBuZXQgY2FyZCBhbmQgdGhlIGRlZmF1bHQKPiA+IGRyaXZlciBmb3IgaXQg
-aW4gbWFuamFybyBpcyBhdGgxMWsuIEhvd2V2ZXIsIHdpZmkgc2VydmljZSBzZWVtcyB0byBiZQo+
-ID4gdW5hdmFpbGFibGUgYW5kIHRoZXJlJ3MgZXZlbiBubyB3aXJlbGVzc0xBTiBpbnRlcmZhY2Ug
-aW4gdGhlIHJma2lsbAo+ID4gbGlzdC4gQmVzaWRlcywgSSBzaG91bGQgbWVudGlvbiB0aGF0IHRo
-ZSB3aXJlbGVzcyBzZXJ2aWNlIGNvdWxkIHdvcmsKPiA+IHdpdGggbm8gcHJvYmxlbSB1bmRlciBX
-aW5kb3dzIHN5c3RlbS4KPiA+Cj4gPiBJJ3ZlIG5vdGljZWQgYW4gZXJyb3IgaW5mbyAiIG1oaSBt
-aGkwOiBEaXJlY3QgZmlybXdhcmUgbG9hZCBmb3IKPiA+IGF0aDExay9XQ042ODU1L2h3Mi4wL2Ft
-c3MuYmluIGZhaWxlZCB3aXRoIGVycm9yIC0yIiBidXQgaGF2ZSBubyBpZGVhcwo+ID4gaG93IHRv
-IHNvbHZlIGl0Lgo+ID4gSSBhbHNvIHRyaWVkIG1vZHByb2JlIGF0aDlrIGJ1dCBpdCBkaWRuJ3Qg
-d29yay4gV2hlbiBJIHRyeSB0byBtb2Rwcm9iZQo+ID4gLXIgYXRoMTFrX3BjaSwgbXkgdGVybWlu
-YWwgZ290IGZyb3plbiBmb3IgbWludXRlcyBhbmQgSSBoYWQgdG8gc3RvcAo+ID4gaXQuCj4gPgo+
-ID4gTW9yZSBzcGVjaWZpYyBpbmZvIGNhbiBiZSBzZWVuIGluIHRoZSBsaW5rIGJlbG93Ogo+ID4g
-aHR0cHM6Ly9mb3J1bS5tYW5qYXJvLm9yZy90L25vLXdpZmktY29ubmVuY3Rpb25zLWF2YWlsYWJs
-ZS8xMDMwOTEKPgo+IFlvdSBuZWVkIHRvIGluc3RhbGwgdGhlIGZpcm13YXJlLCB5b3UgY2FuIGZp
-bmQgdGhlIGZpbGVzIGhlcmU6Cj4KPiBodHRwczovL2dpdGh1Yi5jb20va3ZhbG8vYXRoMTFrLWZp
-cm13YXJlL3RyZWUvbWFzdGVyL1dDTjY4NTUvaHcyLjAvMS4xL1dMQU4uSFNQLjEuMS0wMzEyNS1R
-Q0FIU1BTV1BMX1YxX1YyX1NJTElDT05aX0xJVEUtMwo+Cj4gaHR0cHM6Ly9naXRodWIuY29tL2t2
-YWxvL2F0aDExay1maXJtd2FyZS90cmVlL21hc3Rlci9XQ042ODU1L2h3Mi4wCj4KPiBJIHJlY29t
-bWVuZCB1c2luZyBrZXJuZWwgdjUuMTcgdG8gbWFrZSBzdXJlIGV2ZXJ5dGhpbmcgd29ya3MsIHlv
-dSBzZWVtCj4gdG8gaGF2ZSBvbGRlciBrZXJuZWwgc28gZXhwZWN0IHByb2JsZW1zLgo+Cj4gLS0K
-PiBodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3Byb2plY3QvbGludXgtd2lyZWxlc3MvbGlz
-dC8KPgo+IGh0dHBzOi8vd2lyZWxlc3Mud2lraS5rZXJuZWwub3JnL2VuL2RldmVsb3BlcnMvZG9j
-dW1lbnRhdGlvbi9zdWJtaXR0aW5ncGF0Y2hlcwoKQXBvbG9naXplIGZvciBub3Qgb2JleWluZyB0
-aGUgZW1haWwgZXRpcXVldHRlLgpJJ3ZlIHVwZGF0ZWQgbXkgbGludXgga2VybmVsIHRvIDUuMTcu
-MC0xLU1BTkpBUk8geDg2XzY0LiBUaGVuIEkKZG93bmxvYWRlZCB0aGUgd2hvbGUgcGFja2FnZSAv
-V0NONjg1NS9odzIuMCAgYW5kIGNwIHRoZW0gaW50bwovbGliL2Zpcm13YXJlL2F0aDExay8gLCB3
-aGlsc3QgY3AgYW1zcy5iaW4gYW5kIG0zLmJpbiB0byBwYWNrYWdlIGh3Mi4wCmZyb20gV0xBTi5I
-U1AuMS4xLTAzMTI1LVFDQUhTUFNXUExfVjFfVjJfU0lMSUNPTlpfTElURS0zIHRvIG1lZXQgdGhl
-CmRlbWFuZC4KQWZ0ZXIgcmVib290LCB0aGUgZXJyb3IgbWVzc2FnZSBjaGFuZ2VkIHRvOgoKWyAg
-ICAxLjE2NzA0M10gc3lzdGVtZFsxXTogRmlsZSBTeXN0ZW0gQ2hlY2sgb24gUm9vdCBEZXZpY2Ug
-d2FzCnNraXBwZWQgYmVjYXVzZSBvZiBhIGZhaWxlZCBjb25kaXRpb24KY2hlY2sgKENvbmRpdGlv
-blBhdGhJc1JlYWRXcml0ZT0hLykuClsgICAgMi4zODgwODRdIGF0aDExa19wY2kgMDAwMDowMjow
-MC4wOiBCQVIgMDogYXNzaWduZWQgW21lbQoweGQxMDAwMDAwLTB4ZDExZmZmZmYgNjRiaXRdClsg
-ICAgMi4zODgxMDNdIGF0aDExa19wY2kgMDAwMDowMjowMC4wOiBlbmFibGluZyBkZXZpY2UgKDAw
-MDAgLT4gMDAwMikKWyAgICAyLjM4ODU3Nl0gYXRoMTFrX3BjaSAwMDAwOjAyOjAwLjA6IE1TSSB2
-ZWN0b3JzOiAzMgpbICAgIDIuMzg4NTgwXSBhdGgxMWtfcGNpIDAwMDA6MDI6MDAuMDogd2NuNjg1
-NSBodzIuMApbICAgIDMuNjczMTkxXSBhdGgxMWtfcGNpIDAwMDA6MDI6MDAuMDogY2hpcF9pZCAw
-eDIgY2hpcF9mYW1pbHkgMHhiCmJvYXJkX2lkIDB4ZmYgc29jX2lkIDB4NDAwYzAyMDAKWyAgICAz
-LjY3MzE5Nl0gYXRoMTFrX3BjaSAwMDAwOjAyOjAwLjA6IGZ3X3ZlcnNpb24gMHgxMTBkOGMzNQpm
-d19idWlsZF90aW1lc3RhbXAgMjAyMi0wMS0yNyAwNDowMSBmd18KYnVpbGRfaWQgUUNfSU1BR0Vf
-VkVSU0lPTl9TVFJJTkc9V0xBTi5IU1AuMS4xLTAzMTI1LVFDQUhTUFNXUExfVjFfVjJfU0lMSUNP
-TlpfTElURS0zClsgICAgMy42ODIwNjVdIGF0aDExa19wY2kgMDAwMDowMjowMC4wOiBmYWlsZWQg
-dG8gZmV0Y2ggYm9hcmQgZGF0YSBmb3IKYnVzPXBjaSx2ZW5kb3I9MTdjYixkZXZpY2U9MTEwCjMs
-c3Vic3lzdGVtLXZlbmRvcj0xMDViLHN1YnN5c3RlbS1kZXZpY2U9ZTBjYSxxbWktY2hpcC1pZD0y
-LHFtaS1ib2FyZC1pZD0yNTUKZnJvbSBhdGgxMWsvV0NONjg1NS9odzIuCjAvYm9hcmQtMi5iaW4K
-WyAgICA0LjAwNDI2M10gYXRoMTFrX3BjaSAwMDAwOjAyOjAwLjA6IGZpcm13YXJlIGNyYXNoZWQ6
-IE1ISV9DQl9TWVNfRVJST1IKWyAgIDEzLjc3ODQ5Nl0gYXRoMTFrX3BjaSAwMDAwOjAyOjAwLjA6
-IGZhaWxlZCB0byB3YWl0IGJvYXJkIGZpbGUKZG93bmxvYWQgcmVxdWVzdDogLTExMApbICAgMTMu
-Nzc4NTA1XSBhdGgxMWtfcGNpIDAwMDA6MDI6MDAuMDogcW1pIGZhaWxlZCB0byBsb2FkIGJkZiBm
-aWxlClsgICAxMy43Nzg2MDhdIGF0aDExa19wY2kgMDAwMDowMjowMC4wOiBmYWlsZWQgdG8gbG9h
-ZCBib2FyZCBkYXRhIGZpbGU6IC0xMTAKCndoaWNoIEkgdGhpbmsgdG8gYmUga2luZCBvZiB3ZWly
-ZCwgYmVjYXVzZSBJIHJlbWFpbmVkIHRoZSBleGFjdApib2FyZC0yLmJpbiBmaWxlIG9mIHRoZSBy
-ZXBvIGluIHRoZSBwYWNrYWdlLgpUaGVuIGkgdHJpZWQgdG8gYWRkIGF0aDExayAmIGF0aDExa19w
-Y2kgaW50byBibGFja2xpc3QgYW5kIG1vZHByb2JlCmF0aDlrIGJ1dCBpdCBkaWRuJ3Qgd29yayBh
-cyBzdXBwb3NlZC4gT25lIHRoaW5nIGludGVyZXN0aW5nIGlzIHRoYXQKdGhpcyBpbXByb3ZlZCBt
-eSByZWJvb3Qgc3BlZWQgdG8gYSBiaWcgZXh0ZW50LCB3aGljaCBtYXkgYWxzbyBwcm92ZQphdGgx
-MWsgc3RpbGwgaGFzIHNvbWUgcHJvYmxlbXMuCgotLSAKYXRoMTFrIG1haWxpbmcgbGlzdAphdGgx
-MWtAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL2F0aDExawo=
+Target copies spectral report and CFR report through dbring to
+host for further processing. This mechanism involves ring and
+buffer management in the Host, FW, and uCode, where improper
+tail pointer update issues are seen.
+
+This dbring debug support help to debug such issues by tracking
+head and tail pointer movement along with the timestamp at which
+each buffer is received and replenished.
+
+Provide a debugfs interface to enalbe/disable dbring debug
+support and dump the dbring debug entries.
+
+Also introduced a new hardware param to add dbring debugfs support
+for few hardwares which are using dbings.
+
+Usage:
+
+echo <dbr_id> <val> > /sys/kernel/debug/ath11k/ipq8074_2/
+mac0/enable_dbr_debug
+
+dbr_id: 0 for spectral and 1 for CFR
+val: 0 - disable, 1 - enable.
+
+Tested-on: IPQ8074 WLAN.HK.2.4.0.1-01467-QCAHKSWPL_SILICONZ-1
+
+Signed-off-by: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
+---
+v3:
+ * Changed API and structure names.
+ * Updated commit log.
+
+v2:
+ * Rebased on TOT
+
+ drivers/net/wireless/ath/ath11k/core.c    |   6 +
+ drivers/net/wireless/ath/ath11k/core.h    |   1 +
+ drivers/net/wireless/ath/ath11k/dbring.c  |  19 ++-
+ drivers/net/wireless/ath/ath11k/debugfs.c | 221 ++++++++++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/debugfs.h |  41 ++++++
+ drivers/net/wireless/ath/ath11k/hw.h      |   1 +
+ 6 files changed, 283 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 7c508e9..5d570a2 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -99,6 +99,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_rssi_stats = false,
+ 		.fw_wmi_diag_event = false,
+ 		.current_cc_support = false,
++		.dbr_debug_support = true,
+ 	},
+ 	{
+ 		.hw_rev = ATH11K_HW_IPQ6018_HW10,
+@@ -164,6 +165,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_rssi_stats = false,
+ 		.fw_wmi_diag_event = false,
+ 		.current_cc_support = false,
++		.dbr_debug_support = true,
+ 	},
+ 	{
+ 		.name = "qca6390 hw2.0",
+@@ -228,6 +230,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_rssi_stats = true,
+ 		.fw_wmi_diag_event = true,
+ 		.current_cc_support = true,
++		.dbr_debug_support = false,
+ 	},
+ 	{
+ 		.name = "qcn9074 hw1.0",
+@@ -292,6 +295,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_rssi_stats = false,
+ 		.fw_wmi_diag_event = false,
+ 		.current_cc_support = false,
++		.dbr_debug_support = true,
+ 	},
+ 	{
+ 		.name = "wcn6855 hw2.0",
+@@ -356,6 +360,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_rssi_stats = true,
+ 		.fw_wmi_diag_event = true,
+ 		.current_cc_support = true,
++		.dbr_debug_support = false,
+ 	},
+ 	{
+ 		.name = "wcn6855 hw2.1",
+@@ -419,6 +424,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.supports_rssi_stats = true,
+ 		.fw_wmi_diag_event = true,
+ 		.current_cc_support = true,
++		.dbr_debug_support = false,
+ 	},
+ };
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index 10846e9..e453475 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -461,6 +461,7 @@ struct ath11k_debug {
+ 	u32 rx_filter;
+ 	u32 mem_offset;
+ 	u32 module_id_bitmap[MAX_MODULE_ID_BITMAP_WORDS];
++	struct ath11k_debug_dbr *dbr_debug[WMI_DIRECT_BUF_MAX];
+ };
+ 
+ struct ath11k_per_peer_tx_stats {
+diff --git a/drivers/net/wireless/ath/ath11k/dbring.c b/drivers/net/wireless/ath/ath11k/dbring.c
+index eda67eb..2107ec0 100644
+--- a/drivers/net/wireless/ath/ath11k/dbring.c
++++ b/drivers/net/wireless/ath/ath11k/dbring.c
+@@ -37,7 +37,8 @@ static void ath11k_dbring_fill_magic_value(struct ath11k *ar,
+ 
+ static int ath11k_dbring_bufs_replenish(struct ath11k *ar,
+ 					struct ath11k_dbring *ring,
+-					struct ath11k_dbring_element *buff)
++					struct ath11k_dbring_element *buff,
++					enum wmi_direct_buffer_module id)
+ {
+ 	struct ath11k_base *ab = ar->ab;
+ 	struct hal_srng *srng;
+@@ -84,6 +85,7 @@ static int ath11k_dbring_bufs_replenish(struct ath11k *ar,
+ 
+ 	ath11k_hal_rx_buf_addr_info_set(desc, paddr, cookie, 0);
+ 
++	ath11k_debugfs_add_dbring_entry(ar, id, ATH11K_DBG_DBR_EVENT_REPLENISH, srng);
+ 	ath11k_hal_srng_access_end(ab, srng);
+ 
+ 	return 0;
+@@ -101,7 +103,8 @@ static int ath11k_dbring_bufs_replenish(struct ath11k *ar,
+ }
+ 
+ static int ath11k_dbring_fill_bufs(struct ath11k *ar,
+-				   struct ath11k_dbring *ring)
++				   struct ath11k_dbring *ring,
++				   enum wmi_direct_buffer_module id)
+ {
+ 	struct ath11k_dbring_element *buff;
+ 	struct hal_srng *srng;
+@@ -129,7 +132,7 @@ static int ath11k_dbring_fill_bufs(struct ath11k *ar,
+ 			kfree(buff);
+ 			break;
+ 		}
+-		ret = ath11k_dbring_bufs_replenish(ar, ring, buff);
++		ret = ath11k_dbring_bufs_replenish(ar, ring, buff, id);
+ 		if (ret) {
+ 			ath11k_warn(ar->ab, "failed to replenish db ring num_remain %d req_ent %d\n",
+ 				    num_remain, req_entries);
+@@ -210,7 +213,7 @@ int ath11k_dbring_buf_setup(struct ath11k *ar,
+ 	ring->hp_addr = ath11k_hal_srng_get_hp_addr(ar->ab, srng);
+ 	ring->tp_addr = ath11k_hal_srng_get_tp_addr(ar->ab, srng);
+ 
+-	ret = ath11k_dbring_fill_bufs(ar, ring);
++	ret = ath11k_dbring_fill_bufs(ar, ring, db_cap->id);
+ 
+ 	return ret;
+ }
+@@ -270,7 +273,7 @@ int ath11k_dbring_buffer_release_event(struct ath11k_base *ab,
+ 	struct ath11k_buffer_addr desc;
+ 	u8 *vaddr_unalign;
+ 	u32 num_entry, num_buff_reaped;
+-	u8 pdev_idx, rbm;
++	u8 pdev_idx, rbm, module_id;
+ 	u32 cookie;
+ 	int buf_id;
+ 	int size;
+@@ -278,6 +281,7 @@ int ath11k_dbring_buffer_release_event(struct ath11k_base *ab,
+ 	int ret = 0;
+ 
+ 	pdev_idx = ev->fixed.pdev_id;
++	module_id = ev->fixed.module_id;
+ 
+ 	if (pdev_idx >= ab->num_radios) {
+ 		ath11k_warn(ab, "Invalid pdev id %d\n", pdev_idx);
+@@ -346,6 +350,9 @@ int ath11k_dbring_buffer_release_event(struct ath11k_base *ab,
+ 		dma_unmap_single(ab->dev, buff->paddr, ring->buf_sz,
+ 				 DMA_FROM_DEVICE);
+ 
++		ath11k_debugfs_add_dbring_entry(ar, module_id,
++						ATH11K_DBG_DBR_EVENT_RX, srng);
++
+ 		if (ring->handler) {
+ 			vaddr_unalign = buff->payload;
+ 			handler_data.data = PTR_ALIGN(vaddr_unalign,
+@@ -357,7 +364,7 @@ int ath11k_dbring_buffer_release_event(struct ath11k_base *ab,
+ 
+ 		buff->paddr = 0;
+ 		memset(buff->payload, 0, size);
+-		ath11k_dbring_bufs_replenish(ar, ring, buff);
++		ath11k_dbring_bufs_replenish(ar, ring, buff, module_id);
+ 	}
+ 
+ 	spin_unlock_bh(&srng->lock);
+diff --git a/drivers/net/wireless/ath/ath11k/debugfs.c b/drivers/net/wireless/ath/ath11k/debugfs.c
+index c0ebdb1..a82266c 100644
+--- a/drivers/net/wireless/ath/ath11k/debugfs.c
++++ b/drivers/net/wireless/ath/ath11k/debugfs.c
+@@ -52,6 +52,45 @@ static const char *htt_bp_lmac_ring[HTT_SW_LMAC_RING_IDX_MAX] = {
+ 	"MONITOR_DEST_RING",
+ };
+ 
++void ath11k_debugfs_add_dbring_entry(struct ath11k *ar,
++				     enum wmi_direct_buffer_module id,
++				     enum ath11k_dbg_dbr_event event,
++				     struct hal_srng *srng)
++{
++	struct ath11k_debug_dbr *dbr_debug;
++	struct ath11k_dbg_dbr_data *dbr_data;
++	struct ath11k_dbg_dbr_entry *entry;
++
++	if (id >= WMI_DIRECT_BUF_MAX || event >= ATH11K_DBG_DBR_EVENT_MAX)
++		return;
++
++	dbr_debug = ar->debug.dbr_debug[id];
++	if (!dbr_debug)
++		return;
++
++	if (!dbr_debug->dbr_debug_enabled)
++		return;
++
++	dbr_data = &dbr_debug->dbr_dbg_data;
++
++	spin_lock_bh(&dbr_data->lock);
++
++	if (dbr_data->entries) {
++		entry = &dbr_data->entries[dbr_data->dbr_debug_idx];
++		entry->hp = srng->u.src_ring.hp;
++		entry->tp = *srng->u.src_ring.tp_addr;
++		entry->timestamp = jiffies;
++		entry->event = event;
++
++		dbr_data->dbr_debug_idx++;
++		if (dbr_data->dbr_debug_idx ==
++		    dbr_data->num_ring_debug_entries)
++			dbr_data->dbr_debug_idx = 0;
++	}
++
++	spin_unlock_bh(&dbr_data->lock);
++}
++
+ static void ath11k_fw_stats_pdevs_free(struct list_head *head)
+ {
+ 	struct ath11k_fw_stats_pdev *i, *tmp;
+@@ -1176,6 +1215,169 @@ static const struct file_operations fops_simulate_radar = {
+ 	.open = simple_open
+ };
+ 
++static ssize_t ath11k_debug_dump_dbr_entries(struct file *file,
++					     char __user *user_buf,
++					     size_t count, loff_t *ppos)
++{
++	struct ath11k_dbg_dbr_data *dbr_dbg_data = file->private_data;
++	static const char * const event_id_to_string[] = {"empty", "Rx", "Replenish"};
++	int size = ATH11K_DEBUG_DBR_ENTRIES_MAX * 100;
++	char *buf;
++	int i, ret;
++	int len = 0;
++
++	buf = kzalloc(size, GFP_KERNEL);
++	if (!buf)
++		return -ENOMEM;
++
++	len += scnprintf(buf + len, size - len,
++			 "-----------------------------------------\n");
++	len += scnprintf(buf + len, size - len,
++			 "| idx |  hp  |  tp  | timestamp |  event |\n");
++	len += scnprintf(buf + len, size - len,
++			 "-----------------------------------------\n");
++
++	spin_lock_bh(&dbr_dbg_data->lock);
++
++	for (i = 0; i < dbr_dbg_data->num_ring_debug_entries; i++) {
++		len += scnprintf(buf + len, size - len,
++				 "|%4u|%8u|%8u|%11llu|%8s|\n", i,
++				 dbr_dbg_data->entries[i].hp,
++				 dbr_dbg_data->entries[i].tp,
++				 dbr_dbg_data->entries[i].timestamp,
++				 event_id_to_string[dbr_dbg_data->entries[i].event]);
++	}
++
++	spin_unlock_bh(&dbr_dbg_data->lock);
++
++	ret = simple_read_from_buffer(user_buf, count, ppos, buf, len);
++	kfree(buf);
++
++	return ret;
++}
++
++static const struct file_operations fops_debug_dump_dbr_entries = {
++	.read = ath11k_debug_dump_dbr_entries,
++	.open = simple_open,
++	.owner = THIS_MODULE,
++	.llseek = default_llseek,
++};
++
++static void ath11k_debugfs_dbr_dbg_destroy(struct ath11k *ar, int dbr_id)
++{
++	struct ath11k_debug_dbr *dbr_debug;
++	struct ath11k_dbg_dbr_data *dbr_dbg_data;
++
++	if (!ar->debug.dbr_debug[dbr_id])
++		return;
++
++	dbr_debug = ar->debug.dbr_debug[dbr_id];
++	dbr_dbg_data = &dbr_debug->dbr_dbg_data;
++
++	debugfs_remove_recursive(dbr_debug->dbr_debugfs);
++	kfree(dbr_dbg_data->entries);
++	kfree(dbr_debug);
++	ar->debug.dbr_debug[dbr_id] = NULL;
++}
++
++static int ath11k_debugfs_dbr_dbg_init(struct ath11k *ar, int dbr_id)
++{
++	struct ath11k_debug_dbr *dbr_debug;
++	struct ath11k_dbg_dbr_data *dbr_dbg_data;
++	static const char * const dbr_id_to_str[] = {"spectral", "CFR"};
++
++	if (ar->debug.dbr_debug[dbr_id])
++		return 0;
++
++	ar->debug.dbr_debug[dbr_id] = kzalloc(sizeof(*dbr_debug),
++					      GFP_KERNEL);
++
++	if (!ar->debug.dbr_debug[dbr_id])
++		return -ENOMEM;
++
++	dbr_debug = ar->debug.dbr_debug[dbr_id];
++	dbr_dbg_data = &dbr_debug->dbr_dbg_data;
++
++	if (dbr_debug->dbr_debugfs)
++		return 0;
++
++	dbr_debug->dbr_debugfs = debugfs_create_dir(dbr_id_to_str[dbr_id],
++						    ar->debug.debugfs_pdev);
++	if (IS_ERR_OR_NULL(dbr_debug->dbr_debugfs)) {
++		if (IS_ERR(dbr_debug->dbr_debugfs))
++			return PTR_ERR(dbr_debug->dbr_debugfs);
++		return -ENOMEM;
++	}
++
++	dbr_debug->dbr_debug_enabled = true;
++	dbr_dbg_data->num_ring_debug_entries = ATH11K_DEBUG_DBR_ENTRIES_MAX;
++	dbr_dbg_data->dbr_debug_idx = 0;
++	dbr_dbg_data->entries = kcalloc(ATH11K_DEBUG_DBR_ENTRIES_MAX,
++					sizeof(struct ath11k_dbg_dbr_entry),
++					GFP_KERNEL);
++	if (!dbr_dbg_data->entries)
++		return -ENOMEM;
++
++	spin_lock_init(&dbr_dbg_data->lock);
++
++	debugfs_create_file("dump_dbr_debug", 0444, dbr_debug->dbr_debugfs,
++			    dbr_dbg_data, &fops_debug_dump_dbr_entries);
++
++	return 0;
++}
++
++static ssize_t ath11k_debugfs_write_enable_dbr_dbg(struct file *file,
++						   const char __user *ubuf,
++						   size_t count, loff_t *ppos)
++{
++	struct ath11k *ar = file->private_data;
++	char buf[32] = {0};
++	u32 dbr_id, enable;
++	int ret;
++
++	mutex_lock(&ar->conf_mutex);
++
++	if (ar->state != ATH11K_STATE_ON) {
++		ret = -ENETDOWN;
++		goto out;
++	}
++
++	ret = simple_write_to_buffer(buf, sizeof(buf) - 1, ppos, ubuf, count);
++	if (ret < 0)
++		goto out;
++
++	buf[ret] = '\0';
++	ret = sscanf(buf, "%u %u", &dbr_id, &enable);
++	if (ret != 2 || dbr_id > 1 || enable > 1) {
++		ret = -EINVAL;
++		ath11k_warn(ar->ab, "usage: echo <dbr_id> <val> dbr_id:0-Spectral 1-CFR val:0-disable 1-enable\n");
++		goto out;
++	}
++
++	if (enable) {
++		ret = ath11k_debugfs_dbr_dbg_init(ar, dbr_id);
++		if (ret) {
++			ath11k_warn(ar->ab, "db ring module debugfs init failed: %d\n",
++				    ret);
++			goto out;
++		}
++	} else {
++		ath11k_debugfs_dbr_dbg_destroy(ar, dbr_id);
++	}
++
++	ret = count;
++out:
++	mutex_unlock(&ar->conf_mutex);
++	return ret;
++}
++
++static const struct file_operations fops_dbr_debug = {
++	.write = ath11k_debugfs_write_enable_dbr_dbg,
++	.open = simple_open,
++	.owner = THIS_MODULE,
++	.llseek = default_llseek,
++};
++
+ int ath11k_debugfs_register(struct ath11k *ar)
+ {
+ 	struct ath11k_base *ab = ar->ab;
+@@ -1218,11 +1420,30 @@ int ath11k_debugfs_register(struct ath11k *ar)
+ 				    &ar->dfs_block_radar_events);
+ 	}
+ 
++	if (ab->hw_params.dbr_debug_support)
++		debugfs_create_file("enable_dbr_debug", 0200, ar->debug.debugfs_pdev,
++				    ar, &fops_dbr_debug);
++
+ 	return 0;
+ }
+ 
+ void ath11k_debugfs_unregister(struct ath11k *ar)
+ {
++	struct ath11k_debug_dbr *dbr_debug;
++	struct ath11k_dbg_dbr_data *dbr_dbg_data;
++	int i;
++
++	for (i = 0; i < WMI_DIRECT_BUF_MAX; i++) {
++		dbr_debug = ar->debug.dbr_debug[i];
++		if (!dbr_debug)
++			continue;
++
++		dbr_dbg_data = &dbr_debug->dbr_dbg_data;
++		kfree(dbr_dbg_data->entries);
++		debugfs_remove_recursive(dbr_debug->dbr_debugfs);
++		kfree(dbr_debug);
++		ar->debug.dbr_debug[i] = NULL;
++	}
+ }
+ 
+ static ssize_t ath11k_write_twt_add_dialog(struct file *file,
+diff --git a/drivers/net/wireless/ath/ath11k/debugfs.h b/drivers/net/wireless/ath/ath11k/debugfs.h
+index ef8ed57b..30c00cb 100644
+--- a/drivers/net/wireless/ath/ath11k/debugfs.h
++++ b/drivers/net/wireless/ath/ath11k/debugfs.h
+@@ -47,6 +47,36 @@ enum ath11k_dbg_htt_ext_stats_type {
+ 	ATH11K_DBG_HTT_NUM_EXT_STATS,
+ };
+ 
++#define ATH11K_DEBUG_DBR_ENTRIES_MAX 512
++
++enum ath11k_dbg_dbr_event {
++	ATH11K_DBG_DBR_EVENT_INVALID,
++	ATH11K_DBG_DBR_EVENT_RX,
++	ATH11K_DBG_DBR_EVENT_REPLENISH,
++	ATH11K_DBG_DBR_EVENT_MAX,
++};
++
++struct ath11k_dbg_dbr_entry {
++	u32 hp;
++	u32 tp;
++	u64 timestamp;
++	enum ath11k_dbg_dbr_event event;
++};
++
++struct ath11k_dbg_dbr_data {
++	/* protects ath11k_db_ring_debug data */
++	spinlock_t lock;
++	struct ath11k_dbg_dbr_entry *entries;
++	u32 dbr_debug_idx;
++	u32 num_ring_debug_entries;
++};
++
++struct ath11k_debug_dbr {
++	struct ath11k_dbg_dbr_data dbr_dbg_data;
++	struct dentry *dbr_debugfs;
++	bool dbr_debug_enabled;
++};
++
+ struct debug_htt_stats_req {
+ 	bool done;
+ 	u8 pdev_id;
+@@ -278,6 +308,10 @@ static inline int ath11k_debugfs_rx_filter(struct ath11k *ar)
+ 
+ int ath11k_debugfs_add_interface(struct ath11k_vif *arvif);
+ void ath11k_debugfs_remove_interface(struct ath11k_vif *arvif);
++void ath11k_debugfs_add_dbring_entry(struct ath11k *ar,
++				     enum wmi_direct_buffer_module id,
++				     enum ath11k_dbg_dbr_event event,
++				     struct hal_srng *srng);
+ 
+ #else
+ static inline int ath11k_debugfs_soc_create(struct ath11k_base *ab)
+@@ -361,6 +395,13 @@ static inline void ath11k_debugfs_remove_interface(struct ath11k_vif *arvif)
+ {
+ }
+ 
++static inline void
++ath11k_debugfs_add_dbring_entry(struct ath11k *ar,
++				enum wmi_direct_buffer_module id,
++				enum ath11k_dbg_dbr_event event,
++				struct hal_srng *srng)
++{
++}
+ #endif /* CONFIG_ATH11K_DEBUGFS*/
+ 
+ #endif /* _ATH11K_DEBUGFS_H_ */
+diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
+index c10e1a0..27ca4a9 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.h
++++ b/drivers/net/wireless/ath/ath11k/hw.h
+@@ -193,6 +193,7 @@ struct ath11k_hw_params {
+ 	bool supports_rssi_stats;
+ 	bool fw_wmi_diag_event;
+ 	bool current_cc_support;
++	bool dbr_debug_support;
+ };
+ 
+ struct ath11k_hw_ops {
+-- 
+2.7.4
+
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
