@@ -4,72 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1143C433EF
-	for <ath11k@archiver.kernel.org>; Mon, 21 Feb 2022 08:04:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 409CEC433F5
+	for <ath11k@archiver.kernel.org>; Mon, 21 Feb 2022 10:16:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7mLNs/CfTmfmtlvGxdEebFUBzOnRrYAgKJ7+yeRm2qY=; b=2omFxvqfyT+VMg
-	zhknWg/2guzTnOM2IJe4DQmbn7E9jO9+jxHnKhD6dDWqgk4B/5rn4geTxlDS7sXAeWLdxeohfdinp
-	txZU9AcRdHGg7lEeziihVkYEPWI/fmhB+UDf3cr3v1oHH9/vX/DbO65zTWppQ6LrJ1wr1FKe2RG+F
-	3+3J2mo1XR/Lg/jiWr7+7RZayDAxNMNDy6I78D7WUN2HwQ65q/xYgK4BIAXtTfl/szm4L2717chV3
-	55tJ4mbZEzY7y6LvUv91uK8c+/OZSvNO+RGSGZDL4QxlVAVaLtTUq3a/cW5BvOGfRvrvQlNqJw/up
-	sRdgtFqx9GEIWSMOq4bg==;
+	List-Owner; bh=BwQo+o0tPWTc92uCGarXckeGlWmSvCzsRjLiE+hR5dM=; b=Y2TcGug9G0gQ0a
+	fDTEl5uCWYCfMqrWwndDdoA5dGOFi8HV3rD+oc1hMT5lPd0pKLrf/5NrD4MIZyKls9PbZeGC2kBAh
+	TV3z2liuaRAt1IL/QfWwGBfksM6uPxM49NiOzFKFLdezukft2jxFgRjnC2TnCEDwCNbdEcQeYB+z8
+	uGkRWgPBTygVD8VxguC30+AS9Kg1n5ecI2AzxxTOvLTLI4C1P6LBtgLnBzIr5+YhbS/UFSJc/TpIH
+	J7pfONmGsSunouvIDdTkBneevpxw1D4I0l8SJBE++tg498+ij9YYpYsIX/wCy1JTxrqRG1licvaqx
+	OyjmwHRW2McGNduJrKhQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nM3gI-004Ay7-Kl; Mon, 21 Feb 2022 08:04:26 +0000
-Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38])
+	id 1nM5kP-004pqj-AZ; Mon, 21 Feb 2022 10:16:49 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nM3gE-004AwG-U6
- for ath11k@lists.infradead.org; Mon, 21 Feb 2022 08:04:24 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1645430663; x=1676966663;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=KCB9+fgfvX79/Zhwfz6+z0T5e6wEWBako053p3e7e2A=;
- b=ymyD8wToeWaVKWcbfvf5PfsDlL2Oc5f7kbwBeSxo6tHO/OWNiTTVWpMC
- 03azO3Y5VPPliYaAaKSKYjwkFejenLeD8eZisB+LHyk2phZB+xfsc1Olo
- rcJ+6olNMjJmzmxRi7c1CYlu/08XkFlbw8Gv9sMGkLlLs0MnAtYm4jQPh E=;
-Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
- by alexa-out-sd-01.qualcomm.com with ESMTP; 21 Feb 2022 00:04:22 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2022 00:04:22 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Mon, 21 Feb 2022 00:04:22 -0800
-Received: from [10.216.7.34] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15; Mon, 21 Feb
- 2022 00:04:19 -0800
-Message-ID: <9acca69c-3d5d-b6b9-b5ca-c2411e206908@quicinc.com>
-Date: Mon, 21 Feb 2022 13:34:14 +0530
+ id 1nM4lw-004Xq1-IK
+ for ath11k@lists.infradead.org; Mon, 21 Feb 2022 09:14:22 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 6666660C1D;
+ Mon, 21 Feb 2022 09:14:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2408EC340EB;
+ Mon, 21 Feb 2022 09:14:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1645434858;
+ bh=WzAtHIaZMpHRokUwuXjRxZpaSnFkDLVjs5hHZyDDLz0=;
+ h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+ b=I736es5wr0yVZDED0+7v5NPY3jR5vmB73mF9U3cE88cusXDX/s+AwrR3B5Ju/rXHN
+ Imv9uc3eHgYNAnhb9RtlKmncFv4ZXyRbAurkoXXNnNRWENHGisLqUGQv32BPY5eRFS
+ 9iY/gNKNUcUSjeBf3hZ6R9i1ul+Jcb5+XPzGWY+fQBR12qEdRvI1lppkX1uaCRDrFQ
+ zTgHRItlg0ktdpwK3PIRyTXZum3T+c+Ee2EXIOJUM8A2s3ckrgAvuSjae9/5F9Ec2y
+ 28mrK1gRuR4wMRzqTKmPmfYY08ZeiLjH5+IUPMyajPl2+QVPZ9X9SVk/vK8SDUInjR
+ BYnRMPclz0dsg==
+From: Kalle Valo <kvalo@kernel.org>
+To: Xell Kim <gfzmder@gmail.com>
+Cc: ath11k@lists.infradead.org
+Subject: Re: o wifi connections available in Manjaro Linux
+References: <CAH=Zo0f8f8HpTVR7==3E8Zqk48ZascuvcLXKryX1CqY0292cEw@mail.gmail.com>
+Date: Mon, 21 Feb 2022 11:14:15 +0200
+In-Reply-To: <CAH=Zo0f8f8HpTVR7==3E8Zqk48ZascuvcLXKryX1CqY0292cEw@mail.gmail.com>
+ (Xell Kim's message of "Sun, 20 Feb 2022 15:29:36 +0800")
+Message-ID: <87a6ekzimw.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH v2 02/19] ath11k: Refactor PCI code to support hybrid bus
- devices
-Content-Language: en-US
-To: Kalle Valo <kvalo@kernel.org>
-CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <robh@kernel.org>
-References: <1642337235-8618-1-git-send-email-quic_mpubbise@quicinc.com>
- <1642337235-8618-3-git-send-email-quic_mpubbise@quicinc.com>
- <87h79of470.fsf@kernel.org>
-From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-In-Reply-To: <87h79of470.fsf@kernel.org>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220221_000423_050246_B4F6CD71 
-X-CRM114-Status: GOOD (  14.09  )
+X-CRM114-CacheID: sfid-20220221_011420_776747_C1409771 
+X-CRM114-Status: GOOD (  30.27  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,72 +67,84 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-
-
-On 1/28/2022 5:43 PM, Kalle Valo wrote:
-> Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
-> 
->> Unlike other ATH11K PCIe devices which are enumerated by APSS
->> processor (Application Processor SubSystem), WCN6750 gets
->> enumerated by the WPSS Q6 processor (Wireless Processor SubSystem);
->> In simple terms, though WCN6750 is PCIe device, it is not attached
->> to the APSS processor, APSS will not know of such a device being
->> present in the system and therefore WCN6750 will be registered as
->> a platform device to the kernel core like other supported AHB
->> devices.
->>
->> WCN6750 uses both AHB and PCI APIs for it's operation, it uses
->> AHB APIs for device probe/boot and PCI APIs for device setup
->> and register accesses; Because of this nature, it is referred
->> as a hybrid bus device.
->>
->> Refactor PCI code to support hybrid bus devices like WCN6750.
->>
->> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00573-QCAMSLSWPLZ-1
->> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
->> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
->> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
->>
->> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-> 
-> [...]
-> 
->> --- /dev/null
->> +++ b/drivers/net/wireless/ath/ath11k/pci_cmn.c
-> 
-> [...]
-> 
->> +static inline void ath11k_pci_select_window(struct ath11k_pci *ab_pci, u32 offset)
->> +{
->> +	struct ath11k_base *ab = ab_pci->ab;
->> +
->> +	u32 window = FIELD_GET(ATH11K_PCI_WINDOW_VALUE_MASK, offset);
->> +
->> +	lockdep_assert_held(&ab_pci->window_lock);
->> +
->> +	if (window != ab_pci->register_window) {
->> +		iowrite32(ATH11K_PCI_WINDOW_ENABLE_BIT | window,
->> +			  ab->mem + ATH11K_PCI_WINDOW_REG_ADDRESS);
->> +		ioread32(ab->mem + ATH11K_PCI_WINDOW_REG_ADDRESS);
->> +		ab_pci->register_window = window;
->> +	}
->> +}
-> 
-> So the style used in ath11k is ath11k_<filename>_foo, so that a function
-> ath11k_pci_foo() should be in pci.c. This patch is now breaking that
-> style. Maybe pci_cmn.c should renamed to cpci.c, pcic.c or something
-> like that? Then the function prefix could be ath11k_cpci_, ath11k_pcic_
-> or similar.
-> 
-
-Makes sense, pcic.c and ath11k_pcic_* looks better, I'll make these changes.
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+WGVsbCBLaW0gPGdmem1kZXJAZ21haWwuY29tPiB3cml0ZXM6Cgo+IEthbGxlIFZhbG8gPGt2YWxv
+QGtlcm5lbC5vcmc+IHdyaXRlc++8mgo+Cj4+Cj4+IFhlbGwgS2ltIDxnZnptZGVyQGdtYWlsLmNv
+bT4gd3JpdGVzOgo+Pgo+PiA+IEhpISBTb3JyeSB0byBpbnRlcnJ1cHQgeW91LiBJJ20gYSBtYW5q
+YXJvIHVzZXIgYW5kIG1ldCBzb21lIHByb2JsZW1zCj4+ID4gYWJvdXQgdGhlIHdpcmVsZXNzIGNv
+bmZpZ3VyYXRpb24uCj4+ID4gTXkgbmV3IHBjIGhhcyBRdWFsY29tbSBBdGhlcm9zIFFDTkZBNzY1
+IGFzIG5ldCBjYXJkIGFuZCB0aGUgZGVmYXVsdAo+PiA+IGRyaXZlciBmb3IgaXQgaW4gbWFuamFy
+byBpcyBhdGgxMWsuIEhvd2V2ZXIsIHdpZmkgc2VydmljZSBzZWVtcyB0byBiZQo+PiA+IHVuYXZh
+aWxhYmxlIGFuZCB0aGVyZSdzIGV2ZW4gbm8gd2lyZWxlc3NMQU4gaW50ZXJmYWNlIGluIHRoZSBy
+ZmtpbGwKPj4gPiBsaXN0LiBCZXNpZGVzLCBJIHNob3VsZCBtZW50aW9uIHRoYXQgdGhlIHdpcmVs
+ZXNzIHNlcnZpY2UgY291bGQgd29yawo+PiA+IHdpdGggbm8gcHJvYmxlbSB1bmRlciBXaW5kb3dz
+IHN5c3RlbS4KPj4gPgo+PiA+IEkndmUgbm90aWNlZCBhbiBlcnJvciBpbmZvICIgbWhpIG1oaTA6
+IERpcmVjdCBmaXJtd2FyZSBsb2FkIGZvcgo+PiA+IGF0aDExay9XQ042ODU1L2h3Mi4wL2Ftc3Mu
+YmluIGZhaWxlZCB3aXRoIGVycm9yIC0yIiBidXQgaGF2ZSBubyBpZGVhcwo+PiA+IGhvdyB0byBz
+b2x2ZSBpdC4KPj4gPiBJIGFsc28gdHJpZWQgbW9kcHJvYmUgYXRoOWsgYnV0IGl0IGRpZG4ndCB3
+b3JrLiBXaGVuIEkgdHJ5IHRvIG1vZHByb2JlCj4+ID4gLXIgYXRoMTFrX3BjaSwgbXkgdGVybWlu
+YWwgZ290IGZyb3plbiBmb3IgbWludXRlcyBhbmQgSSBoYWQgdG8gc3RvcAo+PiA+IGl0Lgo+PiA+
+Cj4+ID4gTW9yZSBzcGVjaWZpYyBpbmZvIGNhbiBiZSBzZWVuIGluIHRoZSBsaW5rIGJlbG93Ogo+
+PiA+IGh0dHBzOi8vZm9ydW0ubWFuamFyby5vcmcvdC9uby13aWZpLWNvbm5lbmN0aW9ucy1hdmFp
+bGFibGUvMTAzMDkxCj4+Cj4+IFlvdSBuZWVkIHRvIGluc3RhbGwgdGhlIGZpcm13YXJlLCB5b3Ug
+Y2FuIGZpbmQgdGhlIGZpbGVzIGhlcmU6Cj4+Cj4+IGh0dHBzOi8vZ2l0aHViLmNvbS9rdmFsby9h
+dGgxMWstZmlybXdhcmUvdHJlZS9tYXN0ZXIvV0NONjg1NS9odzIuMC8xLjEvV0xBTi5IU1AuMS4x
+LTAzMTI1LVFDQUhTUFNXUExfVjFfVjJfU0lMSUNPTlpfTElURS0zCj4+Cj4+IGh0dHBzOi8vZ2l0
+aHViLmNvbS9rdmFsby9hdGgxMWstZmlybXdhcmUvdHJlZS9tYXN0ZXIvV0NONjg1NS9odzIuMAo+
+Pgo+PiBJIHJlY29tbWVuZCB1c2luZyBrZXJuZWwgdjUuMTcgdG8gbWFrZSBzdXJlIGV2ZXJ5dGhp
+bmcgd29ya3MsIHlvdSBzZWVtCj4+IHRvIGhhdmUgb2xkZXIga2VybmVsIHNvIGV4cGVjdCBwcm9i
+bGVtcy4KPgo+IEFwb2xvZ2l6ZSBmb3Igbm90IG9iZXlpbmcgdGhlIGVtYWlsIGV0aXF1ZXR0ZS4K
+Ck5vIHdvcnJpZXMuIEl0J3MganVzdCBpbXBvcnRhbnQgdG8gaGF2ZSB0aGUgZGlzY3Vzc2lvbnMg
+aW4gdGhlIG1haWxpbmcKbGlzdCBzbyB0aGF0IG90aGVycyBjYW4gc2VlIGFuZCBwYXJ0aWNpcGF0
+ZS4KCj4gSSd2ZSB1cGRhdGVkIG15IGxpbnV4IGtlcm5lbCB0byA1LjE3LjAtMS1NQU5KQVJPIHg4
+Nl82NC4gVGhlbiBJCj4gZG93bmxvYWRlZCB0aGUgd2hvbGUgcGFja2FnZSAvV0NONjg1NS9odzIu
+MCBhbmQgY3AgdGhlbSBpbnRvCj4gL2xpYi9maXJtd2FyZS9hdGgxMWsvICwgd2hpbHN0IGNwIGFt
+c3MuYmluIGFuZCBtMy5iaW4gdG8gcGFja2FnZSBodzIuMAo+IGZyb20gV0xBTi5IU1AuMS4xLTAz
+MTI1LVFDQUhTUFNXUExfVjFfVjJfU0lMSUNPTlpfTElURS0zIHRvIG1lZXQgdGhlCj4gZGVtYW5k
+LiBBZnRlciByZWJvb3QsIHRoZSBlcnJvciBtZXNzYWdlIGNoYW5nZWQgdG86Cj4KPiBbICAgIDEu
+MTY3MDQzXSBzeXN0ZW1kWzFdOiBGaWxlIFN5c3RlbSBDaGVjayBvbiBSb290IERldmljZSB3YXMK
+PiBza2lwcGVkIGJlY2F1c2Ugb2YgYSBmYWlsZWQgY29uZGl0aW9uCj4gY2hlY2sgKENvbmRpdGlv
+blBhdGhJc1JlYWRXcml0ZT0hLykuCj4gWyAgICAyLjM4ODA4NF0gYXRoMTFrX3BjaSAwMDAwOjAy
+OjAwLjA6IEJBUiAwOiBhc3NpZ25lZCBbbWVtCj4gMHhkMTAwMDAwMC0weGQxMWZmZmZmIDY0Yml0
+XQo+IFsgICAgMi4zODgxMDNdIGF0aDExa19wY2kgMDAwMDowMjowMC4wOiBlbmFibGluZyBkZXZp
+Y2UgKDAwMDAgLT4gMDAwMikKPiBbICAgIDIuMzg4NTc2XSBhdGgxMWtfcGNpIDAwMDA6MDI6MDAu
+MDogTVNJIHZlY3RvcnM6IDMyCj4gWyAgICAyLjM4ODU4MF0gYXRoMTFrX3BjaSAwMDAwOjAyOjAw
+LjA6IHdjbjY4NTUgaHcyLjAKPiBbICAgIDMuNjczMTkxXSBhdGgxMWtfcGNpIDAwMDA6MDI6MDAu
+MDogY2hpcF9pZCAweDIgY2hpcF9mYW1pbHkgMHhiCj4gYm9hcmRfaWQgMHhmZiBzb2NfaWQgMHg0
+MDBjMDIwMAo+IFsgICAgMy42NzMxOTZdIGF0aDExa19wY2kgMDAwMDowMjowMC4wOiBmd192ZXJz
+aW9uIDB4MTEwZDhjMzUKPiBmd19idWlsZF90aW1lc3RhbXAgMjAyMi0wMS0yNyAwNDowMSBmd18K
+PiBidWlsZF9pZCBRQ19JTUFHRV9WRVJTSU9OX1NUUklORz1XTEFOLkhTUC4xLjEtMDMxMjUtUUNB
+SFNQU1dQTF9WMV9WMl9TSUxJQ09OWl9MSVRFLTMKPiBbICAgIDMuNjgyMDY1XSBhdGgxMWtfcGNp
+IDAwMDA6MDI6MDAuMDogZmFpbGVkIHRvIGZldGNoIGJvYXJkIGRhdGEgZm9yCj4gYnVzPXBjaSx2
+ZW5kb3I9MTdjYixkZXZpY2U9MTEwCj4gMyxzdWJzeXN0ZW0tdmVuZG9yPTEwNWIsc3Vic3lzdGVt
+LWRldmljZT1lMGNhLHFtaS1jaGlwLWlkPTIscW1pLWJvYXJkLWlkPTI1NQo+IGZyb20gYXRoMTFr
+L1dDTjY4NTUvaHcyLgo+IDAvYm9hcmQtMi5iaW4KPiBbICAgIDQuMDA0MjYzXSBhdGgxMWtfcGNp
+IDAwMDA6MDI6MDAuMDogZmlybXdhcmUgY3Jhc2hlZDogTUhJX0NCX1NZU19FUlJPUgo+IFsgICAx
+My43Nzg0OTZdIGF0aDExa19wY2kgMDAwMDowMjowMC4wOiBmYWlsZWQgdG8gd2FpdCBib2FyZCBm
+aWxlCj4gZG93bmxvYWQgcmVxdWVzdDogLTExMAo+IFsgICAxMy43Nzg1MDVdIGF0aDExa19wY2kg
+MDAwMDowMjowMC4wOiBxbWkgZmFpbGVkIHRvIGxvYWQgYmRmIGZpbGUKPiBbICAgMTMuNzc4NjA4
+XSBhdGgxMWtfcGNpIDAwMDA6MDI6MDAuMDogZmFpbGVkIHRvIGxvYWQgYm9hcmQgZGF0YSBmaWxl
+OiAtMTEwCj4KPiB3aGljaCBJIHRoaW5rIHRvIGJlIGtpbmQgb2Ygd2VpcmQsIGJlY2F1c2UgSSBy
+ZW1haW5lZCB0aGUgZXhhY3QKPiBib2FyZC0yLmJpbiBmaWxlIG9mIHRoZSByZXBvIGluIHRoZSBw
+YWNrYWdlLgoKT2ssIHNvIHRoZSBib2FyZCBmaWxlIGZvciB5b3VyIGRldmljZSBpcyBtaXNzaW5n
+LiBJJ2xsIHRyeSB0byBmaW5kIGl0LiBJCnNlZSB0aGF0IEFsZXhhbmRlciBhbHJlYWR5IG9wZW5l
+ZCBhIGJ1ZyBhYm91dCB0aGlzOgoKaHR0cHM6Ly9idWd6aWxsYS5rZXJuZWwub3JnL3Nob3dfYnVn
+LmNnaT9pZD0yMTU2MjUKCkxldCdzIGNvbnRpbnVlIHRoZSBkaXNjdXNzaW9uIHRoZXJlLCBJJ2xs
+IHJlcG9ydCBteSBmaW5kaW5ncyBpbiB0aGUgYnVnCnJlcG9ydC4KCj4gVGhlbiBpIHRyaWVkIHRv
+IGFkZCBhdGgxMWsgJiBhdGgxMWtfcGNpIGludG8gYmxhY2tsaXN0IGFuZCBtb2Rwcm9iZQo+IGF0
+aDlrIGJ1dCBpdCBkaWRuJ3Qgd29yayBhcyBzdXBwb3NlZC4gT25lIHRoaW5nIGludGVyZXN0aW5n
+IGlzIHRoYXQKPiB0aGlzIGltcHJvdmVkIG15IHJlYm9vdCBzcGVlZCB0byBhIGJpZyBleHRlbnQs
+IHdoaWNoIG1heSBhbHNvIHByb3ZlCj4gYXRoMTFrIHN0aWxsIGhhcyBzb21lIHByb2JsZW1zLgoK
+Q2FuIHlvdSBmaWxlIGEgc2VwYXJhdGUgYnVnIHJlcG9ydCBhYm91dCB0aGF0IGFzIHdlbGwsIHBs
+ZWFzZT8gQWxzbyB0cnkKdG8gZXhwbGFpbiBpbiBkZXRhaWwgaG93IHlvdSBzZWUgdGhlIHNsb3dk
+b3duLCBwcmVmZXJhYmxlIHdpdGggdGltaW5nCmluZm8uCgpodHRwczovL3dpcmVsZXNzLndpa2ku
+a2VybmVsLm9yZy9lbi91c2Vycy9kcml2ZXJzL2F0aDExay9idWdyZXBvcnQKCi0tIApodHRwczov
+L3BhdGNod29yay5rZXJuZWwub3JnL3Byb2plY3QvbGludXgtd2lyZWxlc3MvbGlzdC8KCmh0dHBz
+Oi8vd2lyZWxlc3Mud2lraS5rZXJuZWwub3JnL2VuL2RldmVsb3BlcnMvZG9jdW1lbnRhdGlvbi9z
+dWJtaXR0aW5ncGF0Y2hlcwoKLS0gCmF0aDExayBtYWlsaW5nIGxpc3QKYXRoMTFrQGxpc3RzLmlu
+ZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9h
+dGgxMWsK
