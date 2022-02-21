@@ -4,59 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0059C433EF
-	for <ath11k@archiver.kernel.org>; Mon, 21 Feb 2022 10:52:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7B15C433F5
+	for <ath11k@archiver.kernel.org>; Mon, 21 Feb 2022 10:52:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
 	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=UofS5SOrBRqDpki0wOvL/ea9q4cqyMydp6lfa+yF6w0=; b=oJCzQ/2CtMWdk0
-	PqGXAZwSP+baPGaQAKq/T/v0Z1E+6uzd8vo/nx5rMlihqSJnRRCxFRDSVNAJ6R2gUB8XquACTZe/x
-	2kJT7nW+/+Q9AUf0zTI+jG85GylNGPmHdGwX20XXTI3GIhsCrZcQs8x1vFizikVNxhfheIYV4bFOz
-	RACO7OlvreB3mW/JcOB/ZH0JmBom5uLlevJEVwSwmyZBcYx77MR8QBlZYXLI6LBp3tE5oHc8/O0B4
-	QH36wKzU3GShswEvLjtA1h5Smiy0moQHN/jjCU2KQbV3x5Dn8z99UOqw0CSQG9NU/pGGU7VUr2dig
-	Rc7N32t/c4d6oZ1CODxA==;
+	List-Owner; bh=ID2cF4tJnHoCTQtbBGdoS3MjGpy1hgB0mAKlwvKr6wg=; b=1TAyxrL4ZUsyQL
+	QkSzxvZCli0vEBwNbLnfbBZBgOJ92iDYVMPrEhxbk4v3wURJxFfJ1r4VXDSNBGvIlwZ3Iz3nbPYSH
+	BtwaKAGdOtxcRvhEWc6cVklpSaFCx6ryMDsIcMoi12/hM01JdxdgjlmSwecwCmTfe+jWEq4wmrMzM
+	hIJFbW1+TS5CCYvT0f8jYwPZM/PhASyKsGfYK7iU5qtl0knG/q0AMjs+Ng6PVCUVMH+ge/OBTL2qc
+	p3xi/MB7Ia5oSQx4DCLn//PIMdWXwck2qEPQnbO+wlAWImEf2Dxes4mz8Zab4DQvyvR+f5iDMMAEN
+	tv8o8nRFKkil9Q69x3dQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nM6Ie-0057oX-06; Mon, 21 Feb 2022 10:52:12 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1nM6Ij-0057sD-H1; Mon, 21 Feb 2022 10:52:17 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nM5vD-004vNx-HK
- for ath11k@lists.infradead.org; Mon, 21 Feb 2022 10:28:01 +0000
+ id 1nM5vy-004vtb-94
+ for ath11k@lists.infradead.org; Mon, 21 Feb 2022 10:28:48 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id DDF95B80F10;
- Mon, 21 Feb 2022 10:27:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0AF5C340E9;
- Mon, 21 Feb 2022 10:27:54 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 65AC460FF0;
+ Mon, 21 Feb 2022 10:28:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7BA4C340E9;
+ Mon, 21 Feb 2022 10:28:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1645439275;
- bh=QoDql9tYlW8GV7mtDaOUYo+Yma7AQ017sPcM/GxlMJc=;
+ s=k20201202; t=1645439324;
+ bh=yTf6jL73vntZaHIBChTJh2VJ4HOTz4q/XMDKDrjD3Bw=;
  h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
- b=JuNAu8JeTu7SVX6ztbfjj4TDCDbK7pXAQFqTtd+Ml2pdELEdzqlUDbRYrryf3O0HO
- CqDVDHEGIkGvQcsqSmtauodhGzYKSzJlSZ9oN1GQYyMb7d0J62ZSDqjie+aElnygJG
- Rt3hlzfeUx9NnHbHpCaH0Unm5ospKh5Tm+Ubr3VBY1RNbgNPmMb7EN5QGrkba5dJmP
- uiJBwNBZgLw+3leKM+xl1yfILrsb4y55Ntr3EQtTZWhRzspO3vzZUArJX15oNVmDOI
- 6ntiowre9fUDty1AF+EVEgIuYgBGOR6qRRf6EJxV7EzeDMZbAd9dNOKLD98hlgU2RA
- c2A6RSI5Z3HzQ==
+ b=ByCHktconmI8ixmMLXfyosbEkfgu/TDiUnLkP5aZ7+h5ecqwjOFdlcS9rsSlRXU1O
+ gN+34kG8XOpJTgFn6wfIyQH5TXOc8lgAeIQf8v4IbPrC1wL68ynkjtpgYUFLxuz/zf
+ zeQ03TOfTU5SQDfFm/u1xG6lwsNkSt/2Uie1bteBfw76eWii6g2gxMC+Mi5Kqj1jkA
+ CuYfryIMsQVcoDs5m2W98F42Lecikrfx3IqgxS65Hye1eCwTmX6UfRYKh2Y1becDLH
+ C4gQLLCLGSaodcJL4OZIV/7R52j8rRlwICM/tTm0zemuFJblhkgjZhxOV5PVu0Xjk8
+ Qoh2gA0T77AwQ==
 MIME-Version: 1.0
-Subject: Re: [PATCHv2] ath11k: Invalidate cached reo ring entry before
- accessing it
+Subject: Re: [PATCH] ath11k: Handle failure in qmi firmware ready
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <1645000354-32558-1-git-send-email-quic_ramess@quicinc.com>
-References: <1645000354-32558-1-git-send-email-quic_ramess@quicinc.com>
-To: Rameshkumar Sundaram <quic_ramess@quicinc.com>
+In-Reply-To: <1645079195-13564-1-git-send-email-quic_seevalam@quicinc.com>
+References: <1645079195-13564-1-git-send-email-quic_seevalam@quicinc.com>
+To: Seevalamuthu Mariappan <quic_seevalam@quicinc.com>
 Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- Rameshkumar Sundaram <quic_ramess@quicinc.com>
+ Seevalamuthu Mariappan <quic_seevalam@quicinc.com>
 User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <164543927154.26423.3128388488663976690.kvalo@kernel.org>
-Date: Mon, 21 Feb 2022 10:27:54 +0000 (UTC)
+Message-ID: <164543932220.26423.15078831707395923545.kvalo@kernel.org>
+Date: Mon, 21 Feb 2022 10:28:43 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220221_022759_971436_CBD4ACB5 
-X-CRM114-Status: UNSURE (   9.88  )
+X-CRM114-CacheID: sfid-20220221_022846_440021_F9FA9D27 
+X-CRM114-Status: UNSURE (   8.56  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -74,36 +73,31 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Rameshkumar Sundaram <quic_ramess@quicinc.com> wrote:
+Seevalamuthu Mariappan <quic_seevalam@quicinc.com> wrote:
 
-> REO2SW ring descriptor is currently allocated in cacheable memory.
-> While reaping reo ring entries on second trial after updating head
-> pointer, first entry is not invalidated before accessing it.
+> In some scenarios like firmware crashes during init time
+> and hardware gets restarted after qmi firmware ready event.
+> During restart, ath11k_core_qmi_firmware_ready() returns timeout.
+> But, this failure is not handled and ATH11K_FLAG_REGISTERED is set.
 > 
-> This results in host reaping and using cached descriptor which is
-> already overwritten in memory by DMA device (HW).
-> Since the contents of descriptor(buffer id, peer info and other information
-> bits) are outdated host throws errors like below while parsing corresponding
-> MSDU's and drops them.
+> When hardware restart completed, firmware sends firmware ready event
+> again. Since ATH11K_FLAG_REGISTERED is already set, ath11k handles
+> this as core restart. Inits are not done because of previous timeout.
+> But ath11k_core_restart does deinit's which causes NULL pointer crash.
 > 
-> [347712.048904] ath11k_pci 0004:01:00.0: msdu_done bit in attention is not set
-> [349173.355503] ath11k_pci 0004:01:00.0: frame rx with invalid buf_id 962
+> Fix this by handling failure from ath11k_core_qmi_firmware_ready().
 > 
-> Move the try_again: label above  ath11k_hal_srng_access_begin()
-> so that first entry will be invalidated and prefetched.
+> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-00881-QCAHKSWPL_SILICONZ-1
 > 
-> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
-> 
-> Fixes: 6452f0a3d565 ("ath11k: allocate dst ring descriptors from cacheable memory")
-> Signed-off-by: Rameshkumar Sundaram <quic_ramess@quicinc.com>
+> Signed-off-by: Seevalamuthu Mariappan <quic_seevalam@quicinc.com>
 > Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
 Patch applied to ath-next branch of ath.git, thanks.
 
-f2180ccb52b5 ath11k: Invalidate cached reo ring entry before accessing it
+a19c0e104db9 ath11k: Handle failure in qmi firmware ready
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/1645000354-32558-1-git-send-email-quic_ramess@quicinc.com/
+https://patchwork.kernel.org/project/linux-wireless/patch/1645079195-13564-1-git-send-email-quic_seevalam@quicinc.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
