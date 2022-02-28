@@ -4,65 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12D38C433FE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79CE9C433F5
 	for <ath11k@archiver.kernel.org>; Mon, 28 Feb 2022 06:46:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=iGAwkV7ADRuvCEm4RVXeb6SfmRhHU/cvjpZF1+9tlp8=; b=FRlYvKIlSSpCdm
-	Y/LaCI2wgTxi+viduL4j2gL1uH+A5rtZ7DV/lw8ClcrdKMImtOT1BjGtNAseVXXdUsxpOfjSwsj6E
-	62m1YT+bqE4vKkRzS3mmzjU+Mjam319BehLyECDzd2lJti0oD/UsamabLoJcjoLngjOfa2w/wNbJn
-	xdsSRHK7VxMmiHfTI2bhjDyjkACf1CjKBpdU/pnb78yuNdnGNGxIQgGt3rdj717cMFs5YKH84Wt+Z
-	AnynHPIvhB17T7WFRgQ8Wxw0hSBC1K+F4uHrUVTqpHJthadsv3P4+kZ0/UAb200MWm9bklikIyqZP
-	G0q1cncGlBd7FHjvJjSw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=36GOC2CxA1/mdrQ3UlEsoToHZNoN8nBBpVZ77LUf0NA=; b=dXDcrV64iurKll
+	maSWF4R15jPr/IQEqxNjIDVEgrRHOA/RBFrjehfnBVL3CroVlBA2iL4PtFZ5Fw5zk13P277uPYh84
+	A0evyz1Em8+HUbtcD8Qzp1qu8NDrgd9iBuuJM2ECQOT2p9qL35lS/x19ZcTjbMnrrGiF5RP16p1Cb
+	vqqVwN5aRJe/0jVwlf+gUgohlLLGGgZI9nntWv3mvMa5XMb5aRIUpFMbt+xlCx14gJbemXq16Jb7j
+	wGdjSaL6lcgMSywsyDWtfozxxIGIJuVr+jbjcxJKkShO7Oh6FoQE1Sge/pLGDMUFO+iVMKB8mLjHB
+	yfCmyTrDnf+RDWgmlZSw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nOZnl-00AvL9-0u; Mon, 28 Feb 2022 06:46:33 +0000
+	id 1nOZnl-00AvLb-GI; Mon, 28 Feb 2022 06:46:33 +0000
 Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nOZnh-00AvID-DL
- for ath11k@lists.infradead.org; Mon, 28 Feb 2022 06:46:30 +0000
+ id 1nOZnh-00AvIp-KA
+ for ath11k@lists.infradead.org; Mon, 28 Feb 2022 06:46:31 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
  t=1646030789; x=1677566789;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=2Sw8CmSZ7521fZPjWcYMdpdXPX1uK062hnXZMz3LxsI=;
- b=GlIfOy3YNmFiuBuVul/VPnI0e9D+eBGrK2kTe+GRv/4jcZa423ihm2sK
- mhaLBc4uo7Ss8pQUpOhfm2hGj24V/ucul+8qdXyhql3nE0zqX9AzGWsK8
- zeVfQQTo/Y40qb+NmBS/Zr69G8tjtDDjL+U3GM4P5vZtBFzijHlnIEox7 w=;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=phngvTnaxifJzlhzmmF1rO3OdpLOMsIIKjL0g+CQaAE=;
+ b=jrP6V+rRyHeBqRcuUHfLo8E0I3nKIisLUvB7Gy2jCNVjQsxxvp2NASJO
+ FzNLOegldSYAdgR3CYjy/cxJsn2gc/vMA+8GubWy7254+q7E6vnY4qvwu
+ NYx7GzFNUcMHHspnZ4/7eme9f5pww7AjhZdqwqdxajGagw12QgySp75t2 Q=;
 Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
- by alexa-out-sd-02.qualcomm.com with ESMTP; 27 Feb 2022 22:46:22 -0800
+ by alexa-out-sd-02.qualcomm.com with ESMTP; 27 Feb 2022 22:46:27 -0800
 X-QCInternal: smtphost
 Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2022 22:46:21 -0800
+ 27 Feb 2022 22:46:27 -0800
 Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
  nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Sun, 27 Feb 2022 22:46:21 -0800
+ 15.2.986.15; Sun, 27 Feb 2022 22:46:27 -0800
 Received: from wgong-HP3-Z230-SFF-Workstation.qca.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Sun, 27 Feb 2022 22:46:19 -0800
+ 15.2.986.15; Sun, 27 Feb 2022 22:46:25 -0800
 From: Wen Gong <quic_wgong@quicinc.com>
 To: <ath11k@lists.infradead.org>
 CC: <linux-wireless@vger.kernel.org>, <quic_wgong@quicinc.com>
-Subject: [PATCH v8 0/4] ath11k: add feature for device recovery
-Date: Mon, 28 Feb 2022 01:46:02 -0500
-Message-ID: <20220228064606.8981-1-quic_wgong@quicinc.com>
+Subject: [PATCH v8 4/4] ath11k: fix the warning of dev_wake in
+ mhi_pm_disable_transition()
+Date: Mon, 28 Feb 2022 01:46:06 -0500
+Message-ID: <20220228064606.8981-5-quic_wgong@quicinc.com>
 X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20220228064606.8981-1-quic_wgong@quicinc.com>
+References: <20220228064606.8981-1-quic_wgong@quicinc.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220227_224629_522037_7BF6AFDE 
-X-CRM114-Status: UNSURE (   8.01  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220227_224629_723234_101AF164 
+X-CRM114-Status: GOOD (  14.49  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,54 +81,124 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-v8: change "fail_cont_count = atomic_inc_return(&ab->fail_cont_count)" to "atomic_inc(&ab->fail_cont_count)" in
-    "ath11k: add support for device recovery for QCA6390/WCN6855"
+When test device recovery with below command, it has warning in message
+as below.
+echo assert > /sys/kernel/debug/ath11k/wcn6855\ hw2.0/simulate_fw_crash
+echo assert > /sys/kernel/debug/ath11k/qca6390\ hw2.0/simulate_fw_crash
 
-v7:
-    1. rebased to ath.git ath-202202211030
-    2. add patch "ath11k: fix the warning of dev_wake in mhi_pm_disable_transition()"
-    3. remove below 3 patch which has upstream.
-       ath11k: add ath11k_qmi_free_resource() for recovery
-       ath11k: configure RDDM size to mhi for recovery by firmware
-       ath11k: add support for device recovery for QCA6390/WCN6855
+warning message:
+[ 1965.642121] ath11k_pci 0000:06:00.0: simulating firmware assert crash
+[ 1968.471364] ieee80211 phy0: Hardware restart was requested
+[ 1968.511305] ------------[ cut here ]------------
+[ 1968.511368] WARNING: CPU: 3 PID: 1546 at drivers/bus/mhi/core/pm.c:505 mhi_pm_disable_transition+0xb37/0xda0 [mhi]
+[ 1968.511443] Modules linked in: ath11k_pci ath11k mac80211 libarc4 cfg80211 qmi_helpers qrtr_mhi mhi qrtr nvme nvme_core
+[ 1968.511563] CPU: 3 PID: 1546 Comm: kworker/u17:0 Kdump: loaded Tainted: G        W         5.17.0-rc3-wt-ath+ #579
+[ 1968.511629] Hardware name: Intel(R) Client Systems NUC8i7HVK/NUC8i7HVB, BIOS HNKBLi70.86A.0067.2021.0528.1339 05/28/2021
+[ 1968.511704] Workqueue: mhi_hiprio_wq mhi_pm_st_worker [mhi]
+[ 1968.511787] RIP: 0010:mhi_pm_disable_transition+0xb37/0xda0 [mhi]
+[ 1968.511870] Code: a9 fe ff ff 4c 89 ff 44 89 04 24 e8 03 46 f6 e5 44 8b 04 24 41 83 f8 01 0f 84 21 fe ff ff e9 4c fd ff ff 0f 0b e9 af f8 ff ff <0f> 0b e9 5c f8 ff ff 48 89 df e8 da 9e ee e3 e9 12 fd ff ff 4c 89
+[ 1968.511923] RSP: 0018:ffffc900024efbf0 EFLAGS: 00010286
+[ 1968.511969] RAX: 00000000ffffffff RBX: ffff88811d241250 RCX: ffffffffc0176922
+[ 1968.512014] RDX: 0000000000000000 RSI: 0000000000000004 RDI: ffff888118a90a24
+[ 1968.512059] RBP: ffff888118a90800 R08: 0000000000000000 R09: ffff888118a90a27
+[ 1968.512102] R10: ffffed1023152144 R11: 0000000000000001 R12: ffff888118a908ac
+[ 1968.512229] R13: ffff888118a90928 R14: dffffc0000000000 R15: ffff888118a90a24
+[ 1968.512310] FS:  0000000000000000(0000) GS:ffff888234200000(0000) knlGS:0000000000000000
+[ 1968.512405] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[ 1968.512493] CR2: 00007f5538f443a8 CR3: 000000016dc28001 CR4: 00000000003706e0
+[ 1968.512587] Call Trace:
+[ 1968.512672]  <TASK>
+[ 1968.512751]  ? _raw_spin_unlock_irq+0x1f/0x40
+[ 1968.512859]  mhi_pm_st_worker+0x3ac/0x790 [mhi]
+[ 1968.512959]  ? mhi_pm_mission_mode_transition.isra.0+0x7d0/0x7d0 [mhi]
+[ 1968.513063]  process_one_work+0x86a/0x1400
+[ 1968.513184]  ? pwq_dec_nr_in_flight+0x230/0x230
+[ 1968.513312]  ? move_linked_works+0x125/0x290
+[ 1968.513416]  worker_thread+0x6db/0xf60
+[ 1968.513536]  ? process_one_work+0x1400/0x1400
+[ 1968.513627]  kthread+0x241/0x2d0
+[ 1968.513733]  ? kthread_complete_and_exit+0x20/0x20
+[ 1968.513821]  ret_from_fork+0x22/0x30
+[ 1968.513924]  </TASK>
 
-v6: add patch "ath11k: Add hw-restart option to simulate_fw_crash"
+Reason is mhi_deassert_dev_wake() from mhi_device_put() is called
+but mhi_assert_dev_wake() from __mhi_device_get_sync() is not called
+in progress of recovery. Commit 8e0559921f9a ("bus: mhi: core:
+Skip device wake in error or shutdown state") add check for the
+pm_state of mhi in __mhi_device_get_sync(), and the pm_state is not
+the normal state untill recovery is completed, so it leads the
+dev_wake is not 0 and above warning print in mhi_pm_disable_transition()
+while checking mhi_cntrl->dev_wake.
 
-v5:
-    1. rebased to ath.git ath-202202030905
-    2. change a few commit message
-    3. fix count set sequence of ath11k_core_reset in "ath11k: add synchronization operation between reconfigure of mac80211 and ath11k_base"
-    4. add patch "ath11k: configure RDDM size to mhi for recovery by firmware" to support RDDM
-    5. move destroy_workqueue(ab->workqueue_aux) from ath11k_pci_remove() to ath11k_core_free()
+Add check in ath11k_pci_write32()/ath11k_pci_read32() to skip call
+mhi_device_put() if mhi_device_get_sync() does not really do wake,
+then the warning gone.
 
-v4: add patch "ath11k: fix invalid m3 buffer address"
-    recovery will fail when download firmware without this patch
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03003-QCAHSPSWPL_V1_V2_SILICONZ_LITE-2
 
-v3: remove time_left set but not used in
-    "ath11k: add synchronization operation between reconfigure of mac80211 and ath11k_base"
+Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/pci.c | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
-v2: s/initilized/initialized in commit log of patch
-    "ath11k: add synchronization operation between reconfigure of mac80211 and ath11k_base"
-
-Add support for device recovery.
-
-Wen Gong (4):
-  ath11k: add support for device recovery for QCA6390/WCN6855
-  ath11k: add synchronization operation between reconfigure of mac80211
-    and ath11k_base
-  ath11k: Add hw-restart option to simulate_fw_crash
-  ath11k: fix the warning of dev_wake in mhi_pm_disable_transition()
-
- drivers/net/wireless/ath/ath11k/core.c    | 121 ++++++++++++++++++++--
- drivers/net/wireless/ath/ath11k/core.h    |  18 ++++
- drivers/net/wireless/ath/ath11k/debugfs.c |   4 +
- drivers/net/wireless/ath/ath11k/mac.c     |  40 +++++++
- drivers/net/wireless/ath/ath11k/mhi.c     |  33 ++++++
- drivers/net/wireless/ath/ath11k/pci.c     |  12 ++-
- 6 files changed, 216 insertions(+), 12 deletions(-)
-
-
-base-commit: 193dc0446985372a9b06b7572e1b98e1963c23a9
+diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
+index 903758751c99..8a3ff12057e8 100644
+--- a/drivers/net/wireless/ath/ath11k/pci.c
++++ b/drivers/net/wireless/ath/ath11k/pci.c
+@@ -191,6 +191,7 @@ void ath11k_pci_write32(struct ath11k_base *ab, u32 offset, u32 value)
+ {
+ 	struct ath11k_pci *ab_pci = ath11k_pci_priv(ab);
+ 	u32 window_start;
++	int ret = 0;
+ 
+ 	/* for offset beyond BAR + 4K - 32, may
+ 	 * need to wakeup MHI to access.
+@@ -198,7 +199,7 @@ void ath11k_pci_write32(struct ath11k_base *ab, u32 offset, u32 value)
+ 	if (ab->hw_params.wakeup_mhi &&
+ 	    test_bit(ATH11K_PCI_FLAG_INIT_DONE, &ab_pci->flags) &&
+ 	    offset >= ACCESS_ALWAYS_OFF)
+-		mhi_device_get_sync(ab_pci->mhi_ctrl->mhi_dev);
++		ret = mhi_device_get_sync(ab_pci->mhi_ctrl->mhi_dev);
+ 
+ 	if (offset < WINDOW_START) {
+ 		iowrite32(value, ab->mem  + offset);
+@@ -222,7 +223,8 @@ void ath11k_pci_write32(struct ath11k_base *ab, u32 offset, u32 value)
+ 
+ 	if (ab->hw_params.wakeup_mhi &&
+ 	    test_bit(ATH11K_PCI_FLAG_INIT_DONE, &ab_pci->flags) &&
+-	    offset >= ACCESS_ALWAYS_OFF)
++	    offset >= ACCESS_ALWAYS_OFF &&
++	    !ret)
+ 		mhi_device_put(ab_pci->mhi_ctrl->mhi_dev);
+ }
+ 
+@@ -230,6 +232,7 @@ u32 ath11k_pci_read32(struct ath11k_base *ab, u32 offset)
+ {
+ 	struct ath11k_pci *ab_pci = ath11k_pci_priv(ab);
+ 	u32 val, window_start;
++	int ret = 0;
+ 
+ 	/* for offset beyond BAR + 4K - 32, may
+ 	 * need to wakeup MHI to access.
+@@ -237,7 +240,7 @@ u32 ath11k_pci_read32(struct ath11k_base *ab, u32 offset)
+ 	if (ab->hw_params.wakeup_mhi &&
+ 	    test_bit(ATH11K_PCI_FLAG_INIT_DONE, &ab_pci->flags) &&
+ 	    offset >= ACCESS_ALWAYS_OFF)
+-		mhi_device_get_sync(ab_pci->mhi_ctrl->mhi_dev);
++		ret = mhi_device_get_sync(ab_pci->mhi_ctrl->mhi_dev);
+ 
+ 	if (offset < WINDOW_START) {
+ 		val = ioread32(ab->mem + offset);
+@@ -261,7 +264,8 @@ u32 ath11k_pci_read32(struct ath11k_base *ab, u32 offset)
+ 
+ 	if (ab->hw_params.wakeup_mhi &&
+ 	    test_bit(ATH11K_PCI_FLAG_INIT_DONE, &ab_pci->flags) &&
+-	    offset >= ACCESS_ALWAYS_OFF)
++	    offset >= ACCESS_ALWAYS_OFF &&
++	    !ret)
+ 		mhi_device_put(ab_pci->mhi_ctrl->mhi_dev);
+ 
+ 	return val;
 -- 
 2.31.1
 
