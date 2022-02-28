@@ -4,57 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79CE9C433F5
-	for <ath11k@archiver.kernel.org>; Mon, 28 Feb 2022 06:46:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 135B5C4332F
+	for <ath11k@archiver.kernel.org>; Mon, 28 Feb 2022 06:46:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=36GOC2CxA1/mdrQ3UlEsoToHZNoN8nBBpVZ77LUf0NA=; b=dXDcrV64iurKll
-	maSWF4R15jPr/IQEqxNjIDVEgrRHOA/RBFrjehfnBVL3CroVlBA2iL4PtFZ5Fw5zk13P277uPYh84
-	A0evyz1Em8+HUbtcD8Qzp1qu8NDrgd9iBuuJM2ECQOT2p9qL35lS/x19ZcTjbMnrrGiF5RP16p1Cb
-	vqqVwN5aRJe/0jVwlf+gUgohlLLGGgZI9nntWv3mvMa5XMb5aRIUpFMbt+xlCx14gJbemXq16Jb7j
-	wGdjSaL6lcgMSywsyDWtfozxxIGIJuVr+jbjcxJKkShO7Oh6FoQE1Sge/pLGDMUFO+iVMKB8mLjHB
-	yfCmyTrDnf+RDWgmlZSw==;
+	List-Owner; bh=/29PKGpo1lvevI390dcSwlG2teLIa7/NkuUVCulO+Dw=; b=AvVuCAIdo3D8hb
+	fTmei6uKnuiYfNSohEPaFyk2+2j7Y6Gb6RcjmZlOPBpsd7du9EKklv71ydLUa5Z2E9x3FvxyWqRWd
+	NPC3CJxQ1QfBa8FZqfsSCDhCCrTCc285JfDsaWZSGlfc26L3CJmIACt13VT4VtMge7NBg85mdlXNL
+	wjU8ksX4sXEFJ4JxE9pTlO3vP2LowbCTF/GG2Dex5sN1hS4iZ/8nCPrh0EcbzfZ+wq+HOTUPLSwbP
+	N38Yf3ltpYoiSqslfs1k97ClWaaNere1LeBh0WyCbtNx48QsqOZdivoqMBtiX9CfDiSWVD9xFPz1c
+	xbuaME3CRlugfkj5e2RQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nOZnl-00AvLb-GI; Mon, 28 Feb 2022 06:46:33 +0000
-Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39])
+	id 1nOZnm-00AvM7-3i; Mon, 28 Feb 2022 06:46:34 +0000
+Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nOZnh-00AvIp-KA
- for ath11k@lists.infradead.org; Mon, 28 Feb 2022 06:46:31 +0000
+ id 1nOZni-00AvI9-4n
+ for ath11k@lists.infradead.org; Mon, 28 Feb 2022 06:46:32 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1646030789; x=1677566789;
+ t=1646030790; x=1677566790;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=phngvTnaxifJzlhzmmF1rO3OdpLOMsIIKjL0g+CQaAE=;
- b=jrP6V+rRyHeBqRcuUHfLo8E0I3nKIisLUvB7Gy2jCNVjQsxxvp2NASJO
- FzNLOegldSYAdgR3CYjy/cxJsn2gc/vMA+8GubWy7254+q7E6vnY4qvwu
- NYx7GzFNUcMHHspnZ4/7eme9f5pww7AjhZdqwqdxajGagw12QgySp75t2 Q=;
-Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
- by alexa-out-sd-02.qualcomm.com with ESMTP; 27 Feb 2022 22:46:27 -0800
+ bh=wA/mEIt7MoczhAp76j/ooe7DEwiQP71gYpDq1P6xYME=;
+ b=SjrPtmdiwHWBtZ3NFW5ulNHyaVamo50RYinKS/6v8USjGcMXMtGTpktb
+ ZlQTw3jZRRLyVVKXqFrXjAQB6wZqPQR3aImyIE0LtH0mJD+zVkhoFDKro
+ ihF0Pwg4NEMKBfFWFQ31ygomWCqGB5vJkej7vVWT1nKo68uBMCJUonpeo c=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+ by alexa-out-sd-01.qualcomm.com with ESMTP; 27 Feb 2022 22:46:23 -0800
 X-QCInternal: smtphost
 Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2022 22:46:27 -0800
+ by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2022 22:46:23 -0800
 Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
  nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Sun, 27 Feb 2022 22:46:27 -0800
+ 15.2.986.15; Sun, 27 Feb 2022 22:46:22 -0800
 Received: from wgong-HP3-Z230-SFF-Workstation.qca.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Sun, 27 Feb 2022 22:46:25 -0800
+ 15.2.986.15; Sun, 27 Feb 2022 22:46:21 -0800
 From: Wen Gong <quic_wgong@quicinc.com>
 To: <ath11k@lists.infradead.org>
 CC: <linux-wireless@vger.kernel.org>, <quic_wgong@quicinc.com>
-Subject: [PATCH v8 4/4] ath11k: fix the warning of dev_wake in
- mhi_pm_disable_transition()
-Date: Mon, 28 Feb 2022 01:46:06 -0500
-Message-ID: <20220228064606.8981-5-quic_wgong@quicinc.com>
+Subject: [PATCH v8 1/4] ath11k: add support for device recovery for
+ QCA6390/WCN6855
+Date: Mon, 28 Feb 2022 01:46:03 -0500
+Message-ID: <20220228064606.8981-2-quic_wgong@quicinc.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20220228064606.8981-1-quic_wgong@quicinc.com>
 References: <20220228064606.8981-1-quic_wgong@quicinc.com>
@@ -63,8 +63,8 @@ X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220227_224629_723234_101AF164 
-X-CRM114-Status: GOOD (  14.49  )
+X-CRM114-CacheID: sfid-20220227_224630_268750_DE6AAEB5 
+X-CRM114-Status: GOOD (  25.52  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,124 +81,289 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-When test device recovery with below command, it has warning in message
-as below.
-echo assert > /sys/kernel/debug/ath11k/wcn6855\ hw2.0/simulate_fw_crash
+Currently ath11k has device recovery logic, it is introduced by this
+patch "ath11k: Add support for subsystem recovery" which is upstream
+by https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=ath11k-bringup&id=3a7b4838b6f6f234239f263ef3dc02e612a083ad.
+
+The patch is for AHB devices such as IPQ8074, it has remote proc module
+which is used to download the firmware and boots the processor which
+firmware is running on. If firmware crashed, remote proc module will
+detect it and download and boot firmware again. Below command will
+trigger a firmware crash, and then user can test feature of device
+recovery.
+
+Test command:
 echo assert > /sys/kernel/debug/ath11k/qca6390\ hw2.0/simulate_fw_crash
+echo assert > /sys/kernel/debug/ath11k/wcn6855\ hw2.0/simulate_fw_crash
 
-warning message:
-[ 1965.642121] ath11k_pci 0000:06:00.0: simulating firmware assert crash
-[ 1968.471364] ieee80211 phy0: Hardware restart was requested
-[ 1968.511305] ------------[ cut here ]------------
-[ 1968.511368] WARNING: CPU: 3 PID: 1546 at drivers/bus/mhi/core/pm.c:505 mhi_pm_disable_transition+0xb37/0xda0 [mhi]
-[ 1968.511443] Modules linked in: ath11k_pci ath11k mac80211 libarc4 cfg80211 qmi_helpers qrtr_mhi mhi qrtr nvme nvme_core
-[ 1968.511563] CPU: 3 PID: 1546 Comm: kworker/u17:0 Kdump: loaded Tainted: G        W         5.17.0-rc3-wt-ath+ #579
-[ 1968.511629] Hardware name: Intel(R) Client Systems NUC8i7HVK/NUC8i7HVB, BIOS HNKBLi70.86A.0067.2021.0528.1339 05/28/2021
-[ 1968.511704] Workqueue: mhi_hiprio_wq mhi_pm_st_worker [mhi]
-[ 1968.511787] RIP: 0010:mhi_pm_disable_transition+0xb37/0xda0 [mhi]
-[ 1968.511870] Code: a9 fe ff ff 4c 89 ff 44 89 04 24 e8 03 46 f6 e5 44 8b 04 24 41 83 f8 01 0f 84 21 fe ff ff e9 4c fd ff ff 0f 0b e9 af f8 ff ff <0f> 0b e9 5c f8 ff ff 48 89 df e8 da 9e ee e3 e9 12 fd ff ff 4c 89
-[ 1968.511923] RSP: 0018:ffffc900024efbf0 EFLAGS: 00010286
-[ 1968.511969] RAX: 00000000ffffffff RBX: ffff88811d241250 RCX: ffffffffc0176922
-[ 1968.512014] RDX: 0000000000000000 RSI: 0000000000000004 RDI: ffff888118a90a24
-[ 1968.512059] RBP: ffff888118a90800 R08: 0000000000000000 R09: ffff888118a90a27
-[ 1968.512102] R10: ffffed1023152144 R11: 0000000000000001 R12: ffff888118a908ac
-[ 1968.512229] R13: ffff888118a90928 R14: dffffc0000000000 R15: ffff888118a90a24
-[ 1968.512310] FS:  0000000000000000(0000) GS:ffff888234200000(0000) knlGS:0000000000000000
-[ 1968.512405] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[ 1968.512493] CR2: 00007f5538f443a8 CR3: 000000016dc28001 CR4: 00000000003706e0
-[ 1968.512587] Call Trace:
-[ 1968.512672]  <TASK>
-[ 1968.512751]  ? _raw_spin_unlock_irq+0x1f/0x40
-[ 1968.512859]  mhi_pm_st_worker+0x3ac/0x790 [mhi]
-[ 1968.512959]  ? mhi_pm_mission_mode_transition.isra.0+0x7d0/0x7d0 [mhi]
-[ 1968.513063]  process_one_work+0x86a/0x1400
-[ 1968.513184]  ? pwq_dec_nr_in_flight+0x230/0x230
-[ 1968.513312]  ? move_linked_works+0x125/0x290
-[ 1968.513416]  worker_thread+0x6db/0xf60
-[ 1968.513536]  ? process_one_work+0x1400/0x1400
-[ 1968.513627]  kthread+0x241/0x2d0
-[ 1968.513733]  ? kthread_complete_and_exit+0x20/0x20
-[ 1968.513821]  ret_from_fork+0x22/0x30
-[ 1968.513924]  </TASK>
+Unfortunately, QCA6390 is PCIe bus, it does not have the remote proc
+module, it use mhi module to communicate between firmware and ath11k.
+So ath11k does not support device recovery for QCA6390 currently.
 
-Reason is mhi_deassert_dev_wake() from mhi_device_put() is called
-but mhi_assert_dev_wake() from __mhi_device_get_sync() is not called
-in progress of recovery. Commit 8e0559921f9a ("bus: mhi: core:
-Skip device wake in error or shutdown state") add check for the
-pm_state of mhi in __mhi_device_get_sync(), and the pm_state is not
-the normal state untill recovery is completed, so it leads the
-dev_wake is not 0 and above warning print in mhi_pm_disable_transition()
-while checking mhi_cntrl->dev_wake.
+This patch is to add the extra logic which is different for QCA6390.
+When firmware crashed, MHI_CB_EE_RDDM event will be indicate by
+firmware and then ath11k_mhi_op_status_cb which is the callback of
+mhi_controller will receive the MHI_CB_EE_RDDM event, then ath11k
+will start to do recovery process, ath11k_core_reset() calls
+ath11k_hif_power_down()/ath11k_hif_power_up(), then the mhi/ath11k
+will start to download and boot firmware. There are some logic to
+avoid deadloop recovery and two simultaneous recovery operations.
+And because it has muti-radios for the soc, so it add some logic
+in ath11k_mac_op_reconfig_complete() to make sure all radios has
+reconfig complete and then complete the device recovery.
 
-Add check in ath11k_pci_write32()/ath11k_pci_read32() to skip call
-mhi_device_put() if mhi_device_get_sync() does not really do wake,
-then the warning gone.
+Also it add workqueue_aux, because ab->workqueue is used when receive
+ATH11K_QMI_EVENT_FW_READY in recovery process(queue_work(ab->workqueue,
+&ab->restart_work)), and ath11k_core_reset will wait for max
+ATH11K_RESET_TIMEOUT_HZ for the previous restart_work finished, if
+ath11k_core_reset also queued in ab->workqueue, then it will delay
+restart_work of previous recovery and lead previous recovery fail.
 
+ath11k recovery success for QCA6390/WCN6855 after apply this patch.
+
+Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
 Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03003-QCAHSPSWPL_V1_V2_SILICONZ_LITE-2
 
 Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
 ---
- drivers/net/wireless/ath/ath11k/pci.c | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
+ drivers/net/wireless/ath/ath11k/core.c | 70 ++++++++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/core.h | 13 +++++
+ drivers/net/wireless/ath/ath11k/mac.c  | 18 +++++++
+ drivers/net/wireless/ath/ath11k/mhi.c  | 33 ++++++++++++
+ 4 files changed, 134 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index 903758751c99..8a3ff12057e8 100644
---- a/drivers/net/wireless/ath/ath11k/pci.c
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -191,6 +191,7 @@ void ath11k_pci_write32(struct ath11k_base *ab, u32 offset, u32 value)
- {
- 	struct ath11k_pci *ab_pci = ath11k_pci_priv(ab);
- 	u32 window_start;
-+	int ret = 0;
- 
- 	/* for offset beyond BAR + 4K - 32, may
- 	 * need to wakeup MHI to access.
-@@ -198,7 +199,7 @@ void ath11k_pci_write32(struct ath11k_base *ab, u32 offset, u32 value)
- 	if (ab->hw_params.wakeup_mhi &&
- 	    test_bit(ATH11K_PCI_FLAG_INIT_DONE, &ab_pci->flags) &&
- 	    offset >= ACCESS_ALWAYS_OFF)
--		mhi_device_get_sync(ab_pci->mhi_ctrl->mhi_dev);
-+		ret = mhi_device_get_sync(ab_pci->mhi_ctrl->mhi_dev);
- 
- 	if (offset < WINDOW_START) {
- 		iowrite32(value, ab->mem  + offset);
-@@ -222,7 +223,8 @@ void ath11k_pci_write32(struct ath11k_base *ab, u32 offset, u32 value)
- 
- 	if (ab->hw_params.wakeup_mhi &&
- 	    test_bit(ATH11K_PCI_FLAG_INIT_DONE, &ab_pci->flags) &&
--	    offset >= ACCESS_ALWAYS_OFF)
-+	    offset >= ACCESS_ALWAYS_OFF &&
-+	    !ret)
- 		mhi_device_put(ab_pci->mhi_ctrl->mhi_dev);
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 7c508e9baa6d..f2abb90d97fe 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -1342,6 +1342,65 @@ static void ath11k_core_restart(struct work_struct *work)
+ 	complete(&ab->driver_recovery);
  }
  
-@@ -230,6 +232,7 @@ u32 ath11k_pci_read32(struct ath11k_base *ab, u32 offset)
++static void ath11k_core_reset(struct work_struct *work)
++{
++	struct ath11k_base *ab = container_of(work, struct ath11k_base, reset_work);
++	int reset_count, fail_cont_count;
++	long time_left;
++
++	if (!(test_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags))) {
++		ath11k_warn(ab, "ignore reset dev flags 0x%lx\n", ab->dev_flags);
++		return;
++	}
++
++	/* Sometimes the recovery will fail and then the next all recovery fail,
++	 * this is to avoid infinite recovery since it can not recovery success.
++	 */
++	fail_cont_count = atomic_read(&ab->fail_cont_count);
++
++	if (fail_cont_count >= ATH11K_RESET_MAX_FAIL_COUNT_FINAL)
++		return;
++
++	if (fail_cont_count >= ATH11K_RESET_MAX_FAIL_COUNT_FIRST &&
++	    time_before(jiffies, ab->reset_fail_timeout))
++		return;
++
++	reset_count = atomic_inc_return(&ab->reset_count);
++
++	if (reset_count > 1) {
++		/* Sometimes it happened another reset worker before the previous one
++		 * completed, then the second reset worker will destroy the previous one,
++		 * thus below is to avoid that.
++		 */
++		ath11k_warn(ab, "already reseting count %d\n", reset_count);
++
++		reinit_completion(&ab->reset_complete);
++		time_left = wait_for_completion_timeout(&ab->reset_complete,
++							ATH11K_RESET_TIMEOUT_HZ);
++
++		if (time_left) {
++			ath11k_dbg(ab, ATH11K_DBG_BOOT, "to skip reset\n");
++			atomic_dec(&ab->reset_count);
++			return;
++		}
++
++		ab->reset_fail_timeout = jiffies + ATH11K_RESET_FAIL_TIMEOUT_HZ;
++		/* Record the continuous recovery fail count when recovery failed*/
++		atomic_inc(&ab->fail_cont_count);
++	}
++
++	ath11k_dbg(ab, ATH11K_DBG_BOOT, "reset starting\n");
++
++	ab->is_reset = true;
++	atomic_set(&ab->recovery_count, 0);
++
++	ath11k_hif_power_down(ab);
++	ath11k_qmi_free_resource(ab);
++	ath11k_hif_power_up(ab);
++
++	ath11k_dbg(ab, ATH11K_DBG_BOOT, "reset started\n");
++}
++
+ static int ath11k_init_hw_params(struct ath11k_base *ab)
  {
- 	struct ath11k_pci *ab_pci = ath11k_pci_priv(ab);
- 	u32 val, window_start;
-+	int ret = 0;
+ 	const struct ath11k_hw_params *hw_params = NULL;
+@@ -1411,6 +1470,9 @@ EXPORT_SYMBOL(ath11k_core_deinit);
  
- 	/* for offset beyond BAR + 4K - 32, may
- 	 * need to wakeup MHI to access.
-@@ -237,7 +240,7 @@ u32 ath11k_pci_read32(struct ath11k_base *ab, u32 offset)
- 	if (ab->hw_params.wakeup_mhi &&
- 	    test_bit(ATH11K_PCI_FLAG_INIT_DONE, &ab_pci->flags) &&
- 	    offset >= ACCESS_ALWAYS_OFF)
--		mhi_device_get_sync(ab_pci->mhi_ctrl->mhi_dev);
-+		ret = mhi_device_get_sync(ab_pci->mhi_ctrl->mhi_dev);
+ void ath11k_core_free(struct ath11k_base *ab)
+ {
++	flush_workqueue(ab->workqueue_aux);
++	destroy_workqueue(ab->workqueue_aux);
++
+ 	flush_workqueue(ab->workqueue);
+ 	destroy_workqueue(ab->workqueue);
  
- 	if (offset < WINDOW_START) {
- 		val = ioread32(ab->mem + offset);
-@@ -261,7 +264,8 @@ u32 ath11k_pci_read32(struct ath11k_base *ab, u32 offset)
+@@ -1434,9 +1496,14 @@ struct ath11k_base *ath11k_core_alloc(struct device *dev, size_t priv_size,
+ 	if (!ab->workqueue)
+ 		goto err_sc_free;
  
- 	if (ab->hw_params.wakeup_mhi &&
- 	    test_bit(ATH11K_PCI_FLAG_INIT_DONE, &ab_pci->flags) &&
--	    offset >= ACCESS_ALWAYS_OFF)
-+	    offset >= ACCESS_ALWAYS_OFF &&
-+	    !ret)
- 		mhi_device_put(ab_pci->mhi_ctrl->mhi_dev);
++	ab->workqueue_aux = create_singlethread_workqueue("ath11k_aux_wq");
++	if (!ab->workqueue_aux)
++		goto err_free_wq;
++
+ 	mutex_init(&ab->core_lock);
+ 	spin_lock_init(&ab->base_lock);
+ 	mutex_init(&ab->vdev_id_11d_lock);
++	init_completion(&ab->reset_complete);
  
- 	return val;
+ 	INIT_LIST_HEAD(&ab->peers);
+ 	init_waitqueue_head(&ab->peer_mapping_wq);
+@@ -1445,6 +1512,7 @@ struct ath11k_base *ath11k_core_alloc(struct device *dev, size_t priv_size,
+ 	INIT_WORK(&ab->restart_work, ath11k_core_restart);
+ 	INIT_WORK(&ab->update_11d_work, ath11k_update_11d);
+ 	INIT_WORK(&ab->rfkill_work, ath11k_rfkill_work);
++	INIT_WORK(&ab->reset_work, ath11k_core_reset);
+ 	timer_setup(&ab->rx_replenish_retry, ath11k_ce_rx_replenish_retry, 0);
+ 	init_completion(&ab->htc_suspend);
+ 	init_completion(&ab->wow.wakeup_completed);
+@@ -1455,6 +1523,8 @@ struct ath11k_base *ath11k_core_alloc(struct device *dev, size_t priv_size,
+ 
+ 	return ab;
+ 
++err_free_wq:
++	destroy_workqueue(ab->workqueue);
+ err_sc_free:
+ 	kfree(ab);
+ 	return NULL;
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index d2fc7a7a98f4..c85301e3609b 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -39,6 +39,10 @@
+ extern unsigned int ath11k_frame_mode;
+ 
+ #define ATH11K_MON_TIMER_INTERVAL  10
++#define ATH11K_RESET_TIMEOUT_HZ (20 * HZ)
++#define ATH11K_RESET_MAX_FAIL_COUNT_FIRST 3
++#define ATH11K_RESET_MAX_FAIL_COUNT_FINAL 5
++#define ATH11K_RESET_FAIL_TIMEOUT_HZ (20 * HZ)
+ 
+ enum ath11k_supported_bw {
+ 	ATH11K_BW_20	= 0,
+@@ -787,6 +791,15 @@ struct ath11k_base {
+ 	struct work_struct restart_work;
+ 	struct work_struct update_11d_work;
+ 	u8 new_alpha2[3];
++	struct workqueue_struct *workqueue_aux;
++	struct work_struct reset_work;
++	atomic_t reset_count;
++	atomic_t recovery_count;
++	bool is_reset;
++	struct completion reset_complete;
++	/* continuous recovery fail count */
++	atomic_t fail_cont_count;
++	unsigned long reset_fail_timeout;
+ 	struct {
+ 		/* protected by data_lock */
+ 		u32 fw_crash_counter;
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index d5b83f90d27a..5c62faf359a9 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -7881,6 +7881,8 @@ ath11k_mac_op_reconfig_complete(struct ieee80211_hw *hw,
+ 				enum ieee80211_reconfig_type reconfig_type)
+ {
+ 	struct ath11k *ar = hw->priv;
++	struct ath11k_base *ab = ar->ab;
++	int recovery_count;
+ 
+ 	if (reconfig_type != IEEE80211_RECONFIG_TYPE_RESTART)
+ 		return;
+@@ -7892,6 +7894,22 @@ ath11k_mac_op_reconfig_complete(struct ieee80211_hw *hw,
+ 			    ar->pdev->pdev_id);
+ 		ar->state = ATH11K_STATE_ON;
+ 		ieee80211_wake_queues(ar->hw);
++
++		if (ab->is_reset) {
++			recovery_count = atomic_inc_return(&ab->recovery_count);
++			ath11k_dbg(ab, ATH11K_DBG_BOOT,
++				   "recovery count %d\n", recovery_count);
++			/* When there are multiple radios in an SOC,
++			 * the recovery has to be done for each radio
++			 */
++			if (recovery_count == ab->num_radios) {
++				atomic_dec(&ab->reset_count);
++				complete(&ab->reset_complete);
++				ab->is_reset = false;
++				atomic_set(&ab->fail_cont_count, 0);
++				ath11k_dbg(ab, ATH11K_DBG_BOOT, "reset success\n");
++			}
++		}
+ 	}
+ 
+ 	mutex_unlock(&ar->conf_mutex);
+diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
+index fc3524e83e52..61d83be4841f 100644
+--- a/drivers/net/wireless/ath/ath11k/mhi.c
++++ b/drivers/net/wireless/ath/ath11k/mhi.c
+@@ -292,15 +292,48 @@ static void ath11k_mhi_op_runtime_put(struct mhi_controller *mhi_cntrl)
+ {
+ }
+ 
++static char *ath11k_mhi_op_callback_to_str(enum mhi_callback reason)
++{
++	switch (reason) {
++	case MHI_CB_IDLE:
++		return "MHI_CB_IDLE";
++	case MHI_CB_PENDING_DATA:
++		return "MHI_CB_PENDING_DATA";
++	case MHI_CB_LPM_ENTER:
++		return "MHI_CB_LPM_ENTER";
++	case MHI_CB_LPM_EXIT:
++		return "MHI_CB_LPM_EXIT";
++	case MHI_CB_EE_RDDM:
++		return "MHI_CB_EE_RDDM";
++	case MHI_CB_EE_MISSION_MODE:
++		return "MHI_CB_EE_MISSION_MODE";
++	case MHI_CB_SYS_ERROR:
++		return "MHI_CB_SYS_ERROR";
++	case MHI_CB_FATAL_ERROR:
++		return "MHI_CB_FATAL_ERROR";
++	case MHI_CB_BW_REQ:
++		return "MHI_CB_BW_REQ";
++	default:
++		return "UNKNOWN";
++	}
++};
++
+ static void ath11k_mhi_op_status_cb(struct mhi_controller *mhi_cntrl,
+ 				    enum mhi_callback cb)
+ {
+ 	struct ath11k_base *ab = dev_get_drvdata(mhi_cntrl->cntrl_dev);
+ 
++	ath11k_dbg(ab, ATH11K_DBG_BOOT, "mhi notify status reason %s\n",
++		   ath11k_mhi_op_callback_to_str(cb));
++
+ 	switch (cb) {
+ 	case MHI_CB_SYS_ERROR:
+ 		ath11k_warn(ab, "firmware crashed: MHI_CB_SYS_ERROR\n");
+ 		break;
++	case MHI_CB_EE_RDDM:
++		if (!(test_bit(ATH11K_FLAG_UNREGISTERING, &ab->dev_flags)))
++			queue_work(ab->workqueue_aux, &ab->reset_work);
++		break;
+ 	default:
+ 		break;
+ 	}
 -- 
 2.31.1
 
