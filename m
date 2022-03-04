@@ -4,72 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41261C433F5
-	for <ath11k@archiver.kernel.org>; Fri,  4 Mar 2022 13:04:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99A91C433F5
+	for <ath11k@archiver.kernel.org>; Fri,  4 Mar 2022 16:20:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mWWkkA2W9Y2SEB3y2xdiUAYZtz9+PpwgRXrfY161PS8=; b=dwFyBVSd12WpQ+
-	huIIdRanP1VxbxJ5VEcUZGrEDKtBPfC8MYqvHq3zUYdkcq6fz7mAEtM6Ki/HES9D/rerbCkzzkLcb
-	6v5KQTLO2+gQkxHeophgjzoovm7knWWliPmAwfrWTcKQLcc7LbBHBhBDcFevQubS1OxUqiFAhQIFc
-	eaESvKj01iwsly/Ej0tgBfXqePPljz66mMcgcnmtQQGINwdo/ACVYHqNTI+OIFWV3gCiFYKIZljb8
-	GUXQTSiVFY/BJenlK5pFD5PLRwcfSWrGFQl8fBxg+P53xHDcKcuWVXbOPuvL2yFk8ReiUpCHYwKKf
-	f6TfVHZP8oGUnaJswg8Q==;
+	List-Owner; bh=Q9KB6xxHaAXf2zO3neFe9O8CcmxonQ/53dpb8do7NzE=; b=s1Cdu49fSl/JoF
+	Z8ginE9OyVyEtxb8tPrwTFJ7G13ydgc6cBkGkEWR6pt88YVJ2Xp2+XV0EgzG6bK0M0u7iQge/u+GU
+	of497VAzoHzH/UX4qI9RF3D6gkCr+miw0z4uf8SG1xtnau+RZBZkRAOATnqM/dlpP8OZI7GDWw1jR
+	/ZWCfalEiTiQWZchd7bAejYMEmB1Wz4ArkBVRR6kGVv0Pe8t5PUXBGfaIfOV9pzARutvPXsNaMRip
+	oAYMUKrnzlObnFeGqaKeVfQ3Nq3ovgxvinlo/g9X5XWS3O9iQjMZmUljyUt87G3Q37YdaxJ5ozDkU
+	P9wflC5y9xOMd0s2UVBA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nQ7bx-00A3Fm-Pd; Fri, 04 Mar 2022 13:04:45 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1nQAf5-00AzlL-Ts; Fri, 04 Mar 2022 16:20:11 +0000
+Received: from mail.w1.fi ([212.71.239.96])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nQ7bt-00A3E5-63
- for ath11k@lists.infradead.org; Fri, 04 Mar 2022 13:04:44 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 9381EB828F9
- for <ath11k@lists.infradead.org>; Fri,  4 Mar 2022 13:04:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D6AFC340F1
- for <ath11k@lists.infradead.org>; Fri,  4 Mar 2022 13:04:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1646399078;
- bh=jobNdMexznQlLMpJlEajq8gPNjns/xI1m54tT0ak8uw=;
- h=References:In-Reply-To:From:Date:Subject:To:List-Id:Cc:From;
- b=PkroZ9NzCrU3TFzDxeuwdvVs4N8l6+27Wn1krSLlrZQMWV1qIZk/06Q6cMCMZaU85
- ovL5TRgXhRh2A17gcIznGaBAOTUsSwuTgr1Y+Qnc3/MBEkCR9l0RoFl2gRynY8tAKy
- T5w95iQ+yd15A9yQq+/BwwscnR7c97D+DWnPftrbKl6CHUMOx+6zYy9hRQTKgAje1O
- E69wzaEedxNtGcSgBwrOA0N39uKTiNycZgqJhS4wgMVpoSPrGiBqe8rmIa41iyzfq1
- JiAo0KqAoVDQeIk8Cr6SOzYZ80wfXJl1QuNIA5kFoCwqlq9EaYR+XU21+SrtkzX2lW
- 8LhDAwAjVzpsg==
-Received: by mail-io1-f42.google.com with SMTP id f14so9477960ioz.1
- for <ath11k@lists.infradead.org>; Fri, 04 Mar 2022 05:04:38 -0800 (PST)
-X-Gm-Message-State: AOAM5316EP4YVnFl1pmLgtpUNboOSxVYIRqrXD/uIIgEeavQRP2nyNZn
- 470tOko2dASwYxn1Ucop+cmVOve59XhpiR8LnVs=
-X-Google-Smtp-Source: ABdhPJzwxCeAWTXWdiGTxXYrOk14Ql681fPrTuqvNLRsMRRfI3eNqY8wwOH/WsLLqM0gneu50RYDUakfG2mZ4CFMews=
-X-Received: by 2002:a5e:9b06:0:b0:641:808b:4240 with SMTP id
- j6-20020a5e9b06000000b00641808b4240mr30747155iok.209.1646399077322; Fri, 04
- Mar 2022 05:04:37 -0800 (PST)
-MIME-Version: 1.0
+ id 1nQAZh-00AxIN-7N
+ for ath11k@lists.infradead.org; Fri, 04 Mar 2022 16:14:41 +0000
+Received: from localhost (localhost [127.0.0.1])
+ by mail.w1.fi (Postfix) with ESMTP id 51DDD10FB4;
+ Fri,  4 Mar 2022 16:14:34 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at w1.fi
+Received: from mail.w1.fi ([127.0.0.1])
+ by localhost (mail.w1.fi [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id P9vLXmuBVv2o; Fri,  4 Mar 2022 16:14:32 +0000 (UTC)
+Received: by jm (sSMTP sendmail emulation); Fri, 04 Mar 2022 18:14:30 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=w1.fi; s=default;
+ t=1646410472; bh=sh6teZAZ3oJ+RZRi/ZWxXm7sa16SJJdvz6GBv9UqROM=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=YIAgIey9p0cF/SwHZr3hxa1ELsBOI7P+2YxLRWab0bL9WenHxMZsMLKtdtYuiJ7Zx
+ grVYkJzbierYa0vNkJTni7Wx9LBISomeIMSGkVSfgsbM1LTNKpPGxq/rGCckNezgXz
+ CI7tgCKk5dYFOJoi+hgtHlIJi9nSjXDesgaFSaGZmfYt81d3NAhNYMF1Hb328V+BiY
+ JaGMsgqOjkFCDPWVdsl8iwDM1BLFAgrP6pzEgKWeSeVtfJT0i+5CZlXJm4+J0tBoso
+ /QFIezkS9iFLk+WS2w8ATSjYILGuqrR+zUBvfdgfTdP8I3rAdCxFTwW6CMr0cKyRHG
+ +1ZIkNHhkBg5w==
+Date: Fri, 4 Mar 2022 18:14:30 +0200
+From: Jouni Malinen <j@w1.fi>
+To: Josh Boyer <jwboyer@kernel.org>
+Cc: Kalle Valo <kvalo@kernel.org>,
+ "linux-firmware@kernel.org" <linux-firmware@kernel.org>,
+ "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
+ "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
+Subject: Re: [PULL] ath11k firmware 20211223
+Message-ID: <20220304161430.GA430462@w1.fi>
 References: <BYAPR02MB4567669033A210A78AC397E9927E9@BYAPR02MB4567.namprd02.prod.outlook.com>
  <CA+5PVA4WEuJDB3OCKfYK-BPaccpVWd9t_au9S7MCEtpy7cdF-A@mail.gmail.com>
  <87ee4brodv.fsf@kernel.org>
  <CA+5PVA5DJmwPqpz8F9iDbJKcF1hDBRLdDT4URgSaiEcjet74Kw@mail.gmail.com>
  <20220302175014.GA14801@w1.fi>
-In-Reply-To: <20220302175014.GA14801@w1.fi>
-From: Josh Boyer <jwboyer@kernel.org>
-Date: Fri, 4 Mar 2022 08:04:26 -0500
-X-Gmail-Original-Message-ID: <CA+5PVA6R6F=VqAZRf=xDwGcC+cpqLY1kStkoHck53XiLURVyaw@mail.gmail.com>
-Message-ID: <CA+5PVA6R6F=VqAZRf=xDwGcC+cpqLY1kStkoHck53XiLURVyaw@mail.gmail.com>
-Subject: Re: [PULL] ath11k firmware 20211223
-To: Jouni Malinen <j@w1.fi>
-Cc: Kalle Valo <kvalo@kernel.org>, 
- "linux-firmware@kernel.org" <linux-firmware@kernel.org>, 
- "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>, 
- "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
+ <CA+5PVA6R6F=VqAZRf=xDwGcC+cpqLY1kStkoHck53XiLURVyaw@mail.gmail.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <CA+5PVA6R6F=VqAZRf=xDwGcC+cpqLY1kStkoHck53XiLURVyaw@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220304_050441_572160_198BC7B3 
-X-CRM114-Status: GOOD (  48.17  )
+X-CRM114-CacheID: sfid-20220304_081437_669867_B64D4113 
+X-CRM114-Status: GOOD (  36.97  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,94 +74,69 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-T24gV2VkLCBNYXIgMiwgMjAyMiBhdCAxMjo1MCBQTSBKb3VuaSBNYWxpbmVuIDxqQHcxLmZpPiB3
-cm90ZToKPgo+IE9uIEZyaSwgRmViIDE4LCAyMDIyIGF0IDEwOjU1OjM3QU0gLTA1MDAsIEpvc2gg
-Qm95ZXIgd3JvdGU6Cj4gPiBPbiBUaHUsIEZlYiAxMCwgMjAyMiBhdCA1OjQ1IEFNIEthbGxlIFZh
-bG8gPGt2YWxvQGtlcm5lbC5vcmc+IHdyb3RlOgo+ID4gPiA+IE9uIFRodSwgRGVjIDIzLCAyMDIx
-IGF0IDk6MDMgQU0gS2FsbGUgVmFsbyA8a3ZhbG9AcWNhLnF1YWxjb21tLmNvbT4gd3JvdGU6Cj4g
-PiA+ID4+Cj4gPiA+ID4+ICBXSEVOQ0UgICAgICAgICAgICAgICAgICAgICAgICAgICB8ICAgMTQg
-Ky0KPiA+ID4gPj4gIGF0aDExay9JUFE2MDE4L2h3MS4wL05vdGljZS50eHQgIHwgICA0OCArLQo+
-Cj4gPiA+ID4gVGhlc2UgTm90aWNlIGZpbGVzIHNlZW0gcHJvYmxlbWF0aWMuICBUaGV5J3JlIGNs
-ZWFybHkgd2VsbCBpbnRlbmRlZCwKPiA+ID4gPiBidXQgdGhleSBoYXZlIGxhbmd1YWdlIHRoYXQg
-YWxsdWRlcyB0byBhbiBhZ3JlZW1lbnQgd2l0aCBBdGhlcm9zIGFuZCBhCj4gPiA+ID4gY29uZmlk
-ZW50aWFsIG5hdHVyZSB0byBzb21lIG9mIHRoZSBmaWxlcy4gIFNwZWNpZmljYWxseToKPiA+ID4g
-Pgo+ID4gPiA+ICIuLi55b3VyIHVzZSBvZiB0aGVzZSBzb2Z0d2FyZQo+ID4gPiA+IGNvbXBvbmVu
-dHMgdG9nZXRoZXIgd2l0aCB0aGUgUXVhbGNvbW0gQXRoZXJvcyBzb2Z0d2FyZSAoUXVhbGNvbW0K
-PiA+ID4gPiBBdGhlcm9zIHNvZnR3YXJlIGhlcmVpbmFmdGVyIHJlZmVycmVkIHRvIGFzIOKAnFNv
-ZnR3YXJl4oCdKSBpcwo+ID4gPiA+IHN1YmplY3QgdG8gdGhlIHRlcm1zIG9mIHlvdXIgYWdyZWVt
-ZW50IGZyb20gUXVhbGNvbW0gQXRoZXJvcy4iCj4gPiA+ID4KPiA+ID4gPiBOb2JvZHkgaGFzIGFu
-IG9wcG9ydHVuaXR5IHRvIGFncmVlIHRvIGFueXRoaW5nIHdpdGggQXRoZXJvcyB3aGVuIHRoZXkK
-PiA+ID4gPiBjb25zdW1lIHRoZSBmaWxlcyBmcm9tIGxpbnV4LWZpcm13YXJlLiAgVGhlcmUncyBh
-bHNvIG5vIGV4cGxpY2l0IGdyYW50Cj4gPiA+ID4gb2YgcmVkaXN0cmlidXRpb24gZm9yIGFueSBv
-ZiB0aGVzZSBmaWxlcy4KPgo+IFRoaXMgaXMgbm90IHRoZSBsaWNlbnNlOyB0aGlzIGlzIGEgZGVz
-Y3JpcHRpb24gb2YgdGhlIG5vdGljZS50eHQgZmlsZQo+IGNvbnRhaW5pbmcgdGhlIG5vdGljZXMg
-dG8gY292ZXIgdGhlIDNyZCBwYXJ0eSBsaWNlbnNlIHJlcXVpcmVtZW50cyBmb3IKPiBhdHRyaWJ1
-dGlvbi9ub3RpY2VzIGluY2x1ZGVkIGluIHJlZGlzdHJpYnV0aW9uIG9mIHRob3NlIHBhcnRzLgo+
-Cj4gPiA+IFNvIHRoaXMgZmlsZSB3ZSBhcmUgZGlzY3Vzc2luZyBpcyB0aGUgbm90aWNlLnR4dCBm
-aWxlLiBJbiB0aGUgV0hFTkNFCj4gPiA+IGZpbGUgdGhlIGFjdHVhbCBsaWNlbnNlIGZvciBhdGgx
-MWsgaXM6Cj4gPiA+Cj4gPiA+IExpY2VuY2U6IFJlZGlzdHJpYnV0YWJsZS4gU2VlIExJQ0VOU0Uu
-UXVhbGNvbW1BdGhlcm9zX2F0aDEwayBmb3IgZGV0YWlscwo+Cj4gQW5kIHRoaXMgaXMgd2hlcmUg
-dGhlIGxpY2Vuc2UgaXMgYW5kIHRoaXMgaW5jbHVkZXMgbGljZW5zZSB0bwo+IHJlZGlzdHJpYnV0
-ZS4KPgo+ID4gVGhlbiBpcyB0aGUgbm90aWNlLnR4dCBmaWxlIG5lZWRlZCBhdCBhbGw/ICBJZiBh
-IHVzZXIgb3IgZGlzdHJpYnV0aW9uCj4gPiB3ZXJlIHRvIGluc3RhbGwgdGhpcyBmaXJtd2FyZSwg
-aXMgdGhlIGV4cGVjdGF0aW9uIHRoYXQgdGhlIG5vdGljZS50eHQKPiA+IGZpbGUgYWxzbyBiZSBp
-bnN0YWxsZWQ/Cj4KPiBUaG9zZSAzcmQgcGFydHkgbGljZW5zZSBtaWdodCByZXF1aXJlIHZhcmlv
-dXMgbm90aWZpY2F0aW9ucyB0byBiZQo+IGluY2x1ZGVkIGZvciBub3RpZmljYXRpb24vYXR0cmli
-dXRpb24gcHVycG9zZXMsIHNvIEkgd291bGQgZXhwZWN0IHRoZQo+IG5vdGljZS50eHQgZmlsZSB0
-byBiZSByZWRpc3RyaWJ1dGVkIHdoZW5ldmVyIHRoZSBmaXJtd2FyZSBpbWFnZSBpcwo+IHJlZGlz
-dHJpYnV0ZWQuCj4KPiA+ID4gRG9lcyB0aGF0IGNvdmVyIHlvdXIgY29uY2VybnMgYWJvdXQgcmVk
-aXN0cmlidXRpb24/Cj4gPgo+ID4gTm90IHJlYWxseS4gIEkgdW5kZXJzdGFuZCB0aGUgbG9naWMs
-IGJ1dCBpZiB0aGUgYmluZGluZyBsaWNlbnNlIGZvcgo+ID4gdGhlIGZpcm13YXJlIGlzIExJQ0VO
-U0UuUXVhbGNvbW1BdGhlcm9zX2F0aDEwayBidXQgd2Ugc3RpbGwgbmVlZAo+ID4gbm90aWNlLnR4
-dCBmb3Igc29tZSByZWFzb24sIHRoZXkgY29uZmxpY3QuICBJdCdzIGFtYmlndW91cyBhdCBiZXN0
-Lgo+Cj4gQ291bGQgeW91IHBsZWFzZSBiZSBtb3JlIHNwZWNpZmljIG9uIHdoZXJlIHlvdSBzZWUg
-YSBjb25mbGljdD8gTWF5YmUKPiB0aGlzIHdvdWxkIGJlIGNsZWFyZXIgaWYgdGhlIFdIRU5DRSBm
-aWxlIHdvdWxkIG5vdCBtYXJrIHRoZSBub3RpY2UudHh0Cj4gZmlsZXMgd2l0aCB0aGUgIkxpY2Vu
-c2U6IDxmaWxlPiIgbGluZXMgc2luY2UgdGhlc2UgYXJlIG5vdCB0aGUgbGljZW5zZQo+IGZvciB0
-aGUgZmlybXdhcmUgYmluYXJ5IGFuZCB0aGVuIHRoZXJlIHdvdWxkIGJlIGEgc2luZ2xlICJMaWNl
-bnNlOiIgbGluZQo+IHBvaW50aW5nIG91dCB0aGUgZXhhY3QgbGljZW5zZSB0aGF0IGFwcGxpZXM/
-CgpUaGF0IHdvdWxkIGhlbHAuICBJIHNwZW50IHNvbWUgdGltZSBkaWdnaW5nIGludG8gdGhlIGV4
-aXN0aW5nIGF0aApmaXJtd2FyZSBpbiB0aGUgdHJlZSBhbmQgc2VlIHRoZXkgYWxsIGhhdmUgc2lt
-aWxhciBub3RpY2VzIGFscmVhZHkuCkl0IGxlYXZlcyBtZSBndWVzc2luZyBob3cvd2h5IHRoZXkg
-d2VyZSBtZXJnZWQgdGhhdCB3YXkgaW4gdGhlIHBhc3QsCmJ1dCBpZiB3ZSBjYW4gZGlzYW1iaWd1
-YXRlIHdoYXQgdGhlIGxpY2Vuc2UgYWN0dWFsbHkgaXMgdGhhdCB3b3VsZCBiZQpnb29kLgoKPiBX
-b3VsZCB0aGUgZm9sbG93aW5nIGluIFdIRU5DRSB3b3JrIGZvciB5b3U/Cj4KPiBEcml2ZXI6IGF0
-aDExayAtIFF1YWxjb21tIFRlY2hub2xvZ2llcyA4MDIuMTFheCBjaGlwc2V0IHN1cHBvcnQKPgo+
-IEZpbGU6IGF0aDExay9JUFE2MDE4L2h3MS4wL2JvYXJkLTIuYmluCj4gLi4uCj4gVmVyc2lvbjog
-V0xBTi5ISy4yLjEuMC4xLTAxMjM4LVFDQUhLU1dQTF9TSUxJQ09OWi0yCj4gTm90aWNlOiBhdGgx
-MWsvSVBRNjAxOC9odzEuMC9Ob3RpY2UudHh0CgpXZSdkIGhhdmUgdG8gdGVhY2ggY29weS1maXJt
-d2FyZS5zaCB3aGF0IHRvIGRvIHdpdGggYSAiTm90aWNlOiIga2V5LgpJcyB0aGVyZSBhIHJlYXNv
-biAiRmlsZToiIHdvdWxkbid0IHdvcms/ICBUaGUgaW50ZW50aW9uIGlzIHRvIGluc3RhbGwKdGhl
-IG5vdGljZXMgYWxvbmdzaWRlIHRoZSBiaW5hcmllcywgc28gdGhhdCB3b3VsZCBhY2NvbXBsaXNo
-IGl0LgoKPiAuLi4KPiBGaWxlOiBhdGgxMWsvUUNBNjM5MC9odzIuMC9tMy5iaW4KPiBWZXJzaW9u
-OiBXTEFOLkhTVC4xLjAuMS0wMTc0MC1RQ0FIU1RTV1BMWl9WMl9UT19YODYtMQo+IE5vdGljZTog
-YXRoMTFrL1FDQTYzOTAvaHcyLjAvTm90aWNlLnR4dAo+Cj4gTGljZW5jZTogUmVkaXN0cmlidXRh
-YmxlLiBTZWUgTElDRU5TRS5RdWFsY29tbUF0aGVyb3NfYXRoMTBrIGZvciBkZXRhaWxzCj4KPgo+
-IEluIG90aGVyIHdvcmRzLCB0aGVyZSB3b3VsZCBiZSBvbmx5IGEgc2luZ2xlICJMaWNlbnNlOiIg
-bGluZSBhbmQgb25lCj4gIk5vdGljZToiIGxpbmUgZm9yIGVhY2ggZmlybXdhcmUgdmVyc2lvbj8g
-VGhlIGxpY2Vuc2UgaXRzZWxmIChpLmUuLAo+IExJQ0VOU0UuUXVhbGNvbW1BdGhlcm9zX2F0aDEw
-aykgaXMgc2FtZSBmb3IgYWxsIHRoZSB2ZXJzaW9ucyB3aGlsZSB0aGUKPiBzZXQgb2Ygbm90aWNl
-cyAoaS5lLiwgdGhvc2Ugbm90aWNlLnR4dCBmaWxlcykgY2FuIGJlIGRpZmZlcmVudCBiYXNlZCBv
-bgo+IHdoYXQgaXMgaW5jbHVkZWQgaW4gdGhlIHBhcnRpY3VsYXIgYnVpbGQuCgpZZXMsIHRoYXQg
-d291bGQgaGVscC4gIFdvdWxkIHlvdSBiZSBhYmxlIHRvIGFkanVzdCB0aGUgZXhpc3RpbmcKZW50
-cmllcyBmb3IgYXRoIGZpcm13YXJlIGluIHRoZSBzYW1lIHdheT8KCj4gPiA+IEknbSBzdGlsbCB3
-b3JraW5nIG9uIHlvdXIgb3RoZXIgY29tbWVudCBhYm91dCBub3RpY2UudHh0LCB3aWxsIGdldCBi
-YWNrCj4gPiA+IG9uIHRoYXQgbGF0ZXIuCj4KPiBUaGlzIHBhcnQgYWJvdXQgY2xlYXJseSBpZGVu
-dGlmeWluZyB0aGUgZmlsZXMgc2hvdWxkIGJlIGNsZWFyIG5vdywgYnV0Cj4gaXQgd291bGQgYmUg
-Z29vZCB0byByZXNvbHZlIHRoYXQgcGFydCBhYm91dCB0aGUgbm90aWNlLnR4dCBmaWxlcyBpbgo+
-IGdlbmVyYWwgYmVmb3JlIHNlbmRpbmcgb3V0IGFuIHVwZGF0ZWQgcHVsbCByZXF1ZXN0LgoKR2l2
-ZW4gdGhlc2Ugd2VyZSBtZXJnZWQgaW4gdGhlIHBhc3QsIHBlcmhhcHMgSSdtIGJlaW5nIG92ZXJs
-eQpwZWRhbnRpYy4gIElmIHdlIGNhbiBtYXJrIHRoZW0gYXMgRmlsZXMgb3IgTm90aWNlcyBpbnN0
-ZWFkIG9mCkxpY2Vuc2VzLCBJIHdvbid0IGhvbGQgaXQgdXAuICBJdCBsZWF2ZXMgbWUgc2xpZ2h0
-bHkgY29uZnVzZWQgd2h5CmF0dHJpYnV0aW9uIGZpbGVzIG5lZWQgdG8gcmVmZXJlbmNlIGFncmVl
-bWVudHMgd2l0aCBRdWFsY29tbSwgc3BsYXR0ZXIKQ29uZmlkZW50aWFsIGFuZCBQcm9wcmlldGFy
-eSB0aHJvdWdob3V0IHRoZSBmaWxlLCBhbmQgcmVmZXJlbmNlCkNPUFlJTkcgYW5kIFJFQURNRSBp
-biByZWZlcmVuY2UgdG8gR1BMdjIgd2hlbiB0aGUgQlNEIGxpY2Vuc2Ugd2FzCmNsZWFybHkgY2hv
-c2VuLiAgUGVyaGFwcyB0aGF0IGNvdWxkIGJlIGNsZWFuZWQgdXAgaW4gdGhlIGZ1dHVyZS4KCmpv
-c2gKCi0tIAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0
-dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vYXRoMTFrCg==
+On Fri, Mar 04, 2022 at 08:04:26AM -0500, Josh Boyer wrote:
+> On Wed, Mar 2, 2022 at 12:50 PM Jouni Malinen <j@w1.fi> wrote:
+> > Would the following in WHENCE work for you?
+> >
+> > Driver: ath11k - Qualcomm Technologies 802.11ax chipset support
+> >
+> > File: ath11k/IPQ6018/hw1.0/board-2.bin
+> > ...
+> > Version: WLAN.HK.2.1.0.1-01238-QCAHKSWPL_SILICONZ-2
+> > Notice: ath11k/IPQ6018/hw1.0/Notice.txt
+> 
+> We'd have to teach copy-firmware.sh what to do with a "Notice:" key.
+> Is there a reason "File:" wouldn't work?  The intention is to install
+> the notices alongside the binaries, so that would accomplish it.
+
+Yeah, that sounds reasonable to me. From copying/installing/distribution
+view point, these can really be handled in the exact same way as the
+actual firmware binaries in practice.
+
+> > In other words, there would be only a single "License:" line and one
+> > "Notice:" line for each firmware version? The license itself (i.e.,
+> > LICENSE.QualcommAtheros_ath10k) is same for all the versions while the
+> > set of notices (i.e., those notice.txt files) can be different based on
+> > what is included in the particular build.
+> 
+> Yes, that would help.  Would you be able to adjust the existing
+> entries for ath firmware in the same way?
+
+Yes, I'll work with Kalle to update the existing ath* WLAN cases.
+
+> > > > I'm still working on your other comment about notice.txt, will get back
+> > > > on that later.
+> >
+> > This part about clearly identifying the files should be clear now, but
+> > it would be good to resolve that part about the notice.txt files in
+> > general before sending out an updated pull request.
+> 
+> Given these were merged in the past, perhaps I'm being overly
+> pedantic.  If we can mark them as Files or Notices instead of
+> Licenses, I won't hold it up.  It leaves me slightly confused why
+> attribution files need to reference agreements with Qualcomm, splatter
+> Confidential and Proprietary throughout the file, and reference
+> COPYING and README in reference to GPLv2 when the BSD license was
+> clearly chosen.  Perhaps that could be cleaned up in the future.
+
+Thanks. We'll remove most of the unnecessary information from the new
+notice.txt files and that should get rid of many of the potentially
+confusing parts. If that cleanup leaves something confusing in place,
+we are open to cleaning these up further in followup patches, but it
+would be nice to be able to get the updated versions into
+linux-firmware.git without much more additional delay and yes, this
+would be with the File: instead of Licence: entries for the notice.txt
+files.
+
+-- 
+Jouni Malinen                                            PGP id EFC895FA
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
