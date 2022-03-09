@@ -4,64 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E199AC433F5
-	for <ath11k@archiver.kernel.org>; Wed,  9 Mar 2022 11:24:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2A1AC433F5
+	for <ath11k@archiver.kernel.org>; Wed,  9 Mar 2022 12:28:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=FSvanuJn2RSX9aV8s5dyTZoU/HwaRTTgRkd4mgISOIo=; b=J1h59wvBhJqFqv
-	30JkpP+2sgDzRnjlxtdQf5HH2dzSHazTCfKbjipMZXitEFBsx4FnuercbLUxDbwhIpzmkIqHXkB/p
-	5YMmL62tyS3puZ3rNWJAu46aLNiKdVnaRpMecyfRIIXu25biA0GZ9rulzGpp2ckEg7bFk/igLlFpt
-	DUPXG58MrXCrkyUc6+Y+76UfbZlkZJB8Sq8Zb6/ZjIc/DIi8e1b71CaAPpUhjO/89jY4duw6orkkY
-	aUotQ+bil4vHsvpYEkhaPogxR63h7uQTqFm5C366C5fzCSnbXO3Zn1fDrgZ4k192Yw7+3b6Hh8XPG
-	0g3YKV7DhoUvAH6JmNRw==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=STkkeKllCz9er5vcydhPU8VFfHNkbV+O0E2/kz/Lu3w=; b=0mIEHMwHn41zY7
+	pEibqsaD3YZWDVOt1wE420D8jTOy3diZon6j9oDMvB+dLlS5CUd4tcqa6zHH9R5jPMqPl7dD7EEnr
+	egGy6P3VSoKthqpG1MwFVfuQUjZ6bV+MaQ//l3SihSTjt9Jot6vrlxvFsYaeVltLJIM9iADTH0p8y
+	hVpGISeG2IgtBb9NLA1WenrsJ9Z+NErNWZL3q8M9j6CQKJAfGbIA4BYGw5LD1KqVccSrt7JDEoVIb
+	8OPRrmTVQ66SKSGePMeLk/kSI5ao3ojCuUCd5KAS2TG1NpSLBvHFVV4b4wTbqZFmiOXkL+WYglU/m
+	jLp82n/2gouMk90jJhuQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nRuQz-008HO6-8l; Wed, 09 Mar 2022 11:24:49 +0000
-Received: from alexa-out.qualcomm.com ([129.46.98.28])
+	id 1nRvQr-008a1O-Re; Wed, 09 Mar 2022 12:28:45 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nRuQw-008HN2-7Y
- for ath11k@lists.infradead.org; Wed, 09 Mar 2022 11:24:48 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1646825086; x=1678361086;
- h=from:to:cc:subject:date:message-id:mime-version;
- bh=ehH+Lo/z/nbOf/9EJEdMK+qE8kvy+kJoylFy5ryoBg4=;
- b=aTEvMI83BUhFjuG4QghwJjeariTWGt8BdzGNfBzzIJiavOFTwOfWqBC2
- wb6KKWvIumkjm1Y3IZxsMkp9iRVBgwaMqlonl8n74x5h7uQqsKBh1dNV+
- 57Zq6NExfYHmni/N4JBylZJFtrdSXlKZTs/WwtIk3aVI0Ij2FpniPsqB+ E=;
-Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
- by alexa-out.qualcomm.com with ESMTP; 09 Mar 2022 03:24:44 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2022 03:24:44 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Wed, 9 Mar 2022 03:24:43 -0800
-Received: from haric-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Wed, 9 Mar 2022 03:24:41 -0800
-From: <quic_haric@quicinc.com>
-To: <quic_kvalo@quicinc.com>
-CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>, "Hari
- Chandrakanthan" <quic_haric@quicinc.com>
-Subject: [PATCH v1] ath11k: change fw build id format in driver init log
-Date: Wed, 9 Mar 2022 16:54:25 +0530
-Message-ID: <1646825065-7736-1-git-send-email-quic_haric@quicinc.com>
-X-Mailer: git-send-email 2.7.4
+ id 1nRvQm-008a08-N9; Wed, 09 Mar 2022 12:28:42 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 74E69B82039;
+ Wed,  9 Mar 2022 12:28:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E9FFC340EE;
+ Wed,  9 Mar 2022 12:28:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1646828917;
+ bh=LHAIB28Kz3tNaYpxdWarxfSrRGCmeqElibWd2WIzOys=;
+ h=References:In-Reply-To:From:Date:Subject:To:List-Id:Cc:From;
+ b=TzMcVxnl+zskvXgWuPvR+EXDnMqL5n8MWfXRrr83lsZuw4+jzSfhlV+k2qvcSa+Ik
+ 9yYZXNA51C0Jy5rC4UJ53Z6nP9FnUUDnJ3iEEcvMGDrUjliWRpK2Brxsqqs+Px461J
+ A6Vbwz6t4O7dykF44NTrw9OC7FZAjaqsroSfudFNqNmzFXKksf1DSRpTTv3hsClx5G
+ k20J6mCTeRe1nFAKEwVV7Q5cKjj/Mfv7zjc1wXCNHmhmJxYTIN7NAGGuaj3QHKe+dN
+ +oELvlqPJ2skW/+nyFS89vFrgHEM72rOhhE4rPCHX7uTT7NJmdo3lK9Lb4ZQ78s6Vw
+ 5fFDRFJ/5WL0w==
+Received: by mail-il1-f174.google.com with SMTP id j29so1342485ila.4;
+ Wed, 09 Mar 2022 04:28:37 -0800 (PST)
+X-Gm-Message-State: AOAM530mjotr4LwigWKRRyv5Fo8AnXGV4oTY44MLvZxwLcsaf9tta/KL
+ zL+r64K3s05TxdHl/+5b4osFYY2nI1m43ucS0TM=
+X-Google-Smtp-Source: ABdhPJzG2p3OSIkkJVGwKtr2MBYB5qyILPfU4tzVnDLbVWmtOONDKP0tu+TM623kHFkvrhjx7973lHhN2S7cgqAQ1Zc=
+X-Received: by 2002:a05:6e02:1688:b0:2c6:4a85:a1bf with SMTP id
+ f8-20020a056e02168800b002c64a85a1bfmr10991305ila.243.1646828916333; Wed, 09
+ Mar 2022 04:28:36 -0800 (PST)
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+References: <BYAPR02MB4567574A7FBBA13037C4283692089@BYAPR02MB4567.namprd02.prod.outlook.com>
+In-Reply-To: <BYAPR02MB4567574A7FBBA13037C4283692089@BYAPR02MB4567.namprd02.prod.outlook.com>
+From: Josh Boyer <jwboyer@kernel.org>
+Date: Wed, 9 Mar 2022 07:28:25 -0500
+X-Gmail-Original-Message-ID: <CA+5PVA7UGLCSvTuDdxKUU65sV8GG1JjoMSAeLuJGo6Afq9xE6w@mail.gmail.com>
+Message-ID: <CA+5PVA7UGLCSvTuDdxKUU65sV8GG1JjoMSAeLuJGo6Afq9xE6w@mail.gmail.com>
+Subject: Re: [PULL] ath10k & ath11k firmware 20220307
+To: Kalle Valo <kvalo@qca.qualcomm.com>
+Cc: "linux-firmware@kernel.org" <linux-firmware@kernel.org>, 
+ "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>, 
+ "ath10k@lists.infradead.org" <ath10k@lists.infradead.org>, 
+ "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220309_032446_351641_0C468D33 
-X-CRM114-Status: GOOD (  11.01  )
+X-CRM114-CacheID: sfid-20220309_042841_092169_F7EA7F27 
+X-CRM114-Status: GOOD (  19.80  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,71 +81,51 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Hari Chandrakanthan <quic_haric@quicinc.com>
+On Mon, Mar 7, 2022 at 12:37 PM Kalle Valo <kvalo@qca.qualcomm.com> wrote:
+>
+> Hi,
+>
+> Here is a small pull request to use "File:" on all ath10k and ath11k notice.txt files and add support for
+> WCN6855 hw2.0 and hw2.1 hardware families. Please let me know if there are any problems.
+>
+> Kalle
+>
+> The following changes since commit f011ccb490f952ea35e9ce4d73ca9b7d0d2453c3:
+>
+>   linux-firmware: add firmware for MT7986 (2022-03-04 08:43:26 -0500)
+>
+> are available in the Git repository at:
+>
+>   git://git.kernel.org/pub/scm/linux/kernel/git/kvalo/linux-firmware.git ath10k-20220307
+>
+> for you to fetch changes up to e8bc0db413b4ab7f8e540ffa17991ff61252de9c:
+>
+>   ath11k: add links for WCN6855 hw2.1 (2022-03-07 19:18:22 +0200)
+>
+> ----------------------------------------------------------------
+> Kalle Valo (4):
+>       ath10k/ath11k: mark notice.txt as "File:"
+>       ath11k: WCN6855 hw2.0: add board-2.bin and regdb.bin
+>       ath11k: WCN6855 hw2.0: add WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
+>       ath11k: add links for WCN6855 hw2.1
 
-Currently fw build id is printed during init as follows.
+Pulled and pushed out.  Thank you for working with me on this.
 
-fw_version 0x250684a5 fw_build_timestamp 2021-07-13 10:57
-fw_build_id QC_IMAGE_VERSION_STRING=WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
+josh
 
-The string "QC_IMAGE_VERSION_STRING=" is removed from the log
-to improve readability.
-
-With this patch the fw build id is printed during init as follows.
-fw_version 0x250684a5 fw_build_timestamp 2021-07-13 10:57
-fw_build_id WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
-
-Signed-off-by: Hari Chandrakanthan <quic_haric@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/qmi.c | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index b717813..a35cdaf 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.c
-+++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -14,6 +14,8 @@
- #define SLEEP_CLOCK_SELECT_INTERNAL_BIT	0x02
- #define HOST_CSTATE_BIT			0x04
- 
-+#define FW_BUILD_ID_MASK "QC_IMAGE_VERSION_STRING="
-+
- bool ath11k_cold_boot_cal = 1;
- EXPORT_SYMBOL(ath11k_cold_boot_cal);
- module_param_named(cold_boot_cal, ath11k_cold_boot_cal, bool, 0644);
-@@ -1917,6 +1919,8 @@ static int ath11k_qmi_request_target_cap(struct ath11k_base *ab)
- 	struct qmi_txn txn;
- 	int ret = 0;
- 	int r;
-+	char *fw_build_id;
-+	int fw_build_id_mask_len;
- 
- 	memset(&req, 0, sizeof(req));
- 	memset(&resp, 0, sizeof(resp));
-@@ -1982,6 +1986,11 @@ static int ath11k_qmi_request_target_cap(struct ath11k_base *ab)
- 		ath11k_dbg(ab, ATH11K_DBG_QMI, "qmi cal data supported from eeprom\n");
- 	}
- 
-+	fw_build_id = ab->qmi.target.fw_build_id;
-+	fw_build_id_mask_len = strlen(FW_BUILD_ID_MASK);
-+	if (!strncmp(fw_build_id, FW_BUILD_ID_MASK, fw_build_id_mask_len))
-+		fw_build_id = fw_build_id + fw_build_id_mask_len;
-+
- 	ath11k_info(ab, "chip_id 0x%x chip_family 0x%x board_id 0x%x soc_id 0x%x\n",
- 		    ab->qmi.target.chip_id, ab->qmi.target.chip_family,
- 		    ab->qmi.target.board_id, ab->qmi.target.soc_id);
-@@ -1989,7 +1998,7 @@ static int ath11k_qmi_request_target_cap(struct ath11k_base *ab)
- 	ath11k_info(ab, "fw_version 0x%x fw_build_timestamp %s fw_build_id %s",
- 		    ab->qmi.target.fw_version,
- 		    ab->qmi.target.fw_build_timestamp,
--		    ab->qmi.target.fw_build_id);
-+		    fw_build_id);
- 
- 	r = ath11k_core_check_dt(ab);
- 	if (r)
--- 
-2.7.4
-
+>
+>  WHENCE                           |   46 +-
+>  ath11k/WCN6855/hw2.0/Notice.txt  | 3658 ++++++++++++++++++++++++++++++++++++++
+>  ath11k/WCN6855/hw2.0/amss.bin    |  Bin 0 -> 4972544 bytes
+>  ath11k/WCN6855/hw2.0/board-2.bin |  Bin 0 -> 1322820 bytes
+>  ath11k/WCN6855/hw2.0/m3.bin      |  Bin 0 -> 266684 bytes
+>  ath11k/WCN6855/hw2.0/regdb.bin   |  Bin 0 -> 24310 bytes
+>  6 files changed, 3686 insertions(+), 18 deletions(-)
+>  create mode 100644 ath11k/WCN6855/hw2.0/Notice.txt
+>  create mode 100644 ath11k/WCN6855/hw2.0/amss.bin
+>  create mode 100644 ath11k/WCN6855/hw2.0/board-2.bin
+>  create mode 100644 ath11k/WCN6855/hw2.0/m3.bin
+>  create mode 100644 ath11k/WCN6855/hw2.0/regdb.bin
 
 -- 
 ath11k mailing list
