@@ -4,60 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F8A4C433EF
-	for <ath11k@archiver.kernel.org>; Thu, 10 Mar 2022 08:12:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50AC2C433EF
+	for <ath11k@archiver.kernel.org>; Thu, 10 Mar 2022 15:51:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=aEJp9vxSA5ils5vD2JzXtzV2bgDWQtGdGBZv+WinjUs=; b=RxoMmlSjUJxEyt
-	+urAzrU0Ofq/144A3ZXZ9uI8nYh2tqljzvoWApMDRvNovA/GC24EXLsM/h91ibBk8/E9btos9Hs8/
-	6Q0F5+/PxZ/Uba/LFUJ0zydE1Y+zZ8AfRE0VtNVp9K1o2YhspEWKv8BKbkiU/RpbaozP9Yc34borQ
-	/3+jLBMI4vvNUosjbHJU+uW2VHOJtFCFi+DgcdmYRigCtEeJR/nd0lqJvbAUYlmP2H/cIYmoRLPqT
-	TE76Cw/Ubc1u4cxK7UUM9aRLZoZ3ul0TTnFFGGJhMp24Ql0BmIqDaSWgeEs4Bcr8gOAxvum2hkugp
-	Jt1AjfXrR95Ij9CwihxA==;
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
+	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=kiBtB2L8M7ogCXVJrPWbWWND6MF8BXsC+8ks8eW2xaY=; b=BhkIdiQ7UjZrA8
+	nJTmaxhR11S5XsXz6lBoSI45h28o/Ote+c9SQvEQoJwaB4nkW0wh+t7eUssQOyMeMWJGB+dn0QO4X
+	6p0LM8mcWEKIBsCKCn0k+xWWDonpKM8eNlHQUNobl/QkJnokyttWxoE/zJCdiuFverbWJm0Sjiey7
+	epIl+MTPkMPaj3yiLvqRQfR8b8eD304NDoCFpu2gjWXkaBn42U79ETZroTT8uiN1U6NomdHdJ40/D
+	t7t85bqlpi8jsDOwFcoRpwjXj9w5HHupD9vOjiXUDU6h1YeROLuudLKqYuBpi/Byrqk5bTjeQfrU+
+	2ZRUKzCSpKxYsGO+cOlQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nSDuj-00BrIc-AR; Thu, 10 Mar 2022 08:12:49 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1nSL4z-00DQ6E-GC; Thu, 10 Mar 2022 15:51:53 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nSDug-00BrI1-Gf
- for ath11k@lists.infradead.org; Thu, 10 Mar 2022 08:12:48 +0000
+ id 1nSL4w-00DQ5V-3o
+ for ath11k@lists.infradead.org; Thu, 10 Mar 2022 15:51:51 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 0FF6561B30;
- Thu, 10 Mar 2022 08:12:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C7B2C340E8;
- Thu, 10 Mar 2022 08:12:44 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 3CAC9619C0;
+ Thu, 10 Mar 2022 15:51:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E2D8C340E8;
+ Thu, 10 Mar 2022 15:51:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1646899965;
- bh=Y1ctv1TnCkh7mgHyERO8uAQvrjaWCyFyRyDdJXsAbRI=;
- h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
- b=JOwXy1tr7NDiHU3Pj6C4UHx4eDwO5B6qGIP45oBluySYP5Pg8XzVsvJzX3EVZ/C79
- dXHMJNiDlXvq4EjErKJDerDNd7zV9CprHk3vEUr0DgVL+Bmb9z3fMyW7UL0PV5/0zC
- zVq80LF89glOuc4jRNLk0FCa6C6Bj5iCS02XDAQcmCcIRsXjBN/Q7nEjKls9omOqip
- EK4i+vErLLnwGF807grYiCmpXucmEC2eXKyuCfuRhBUlLhCv0eSaUQaJrAN6aoPwzF
- Ga4Oy2wELTBqzuRpFTV9nTKmhkiGhq/96QcKsqhpr/3uEEw0U9UGFGqpMzIA6I+xa2
- veDQDmcI1ctTw==
-From: Kalle Valo <kvalo@kernel.org>
-To: Wen Gong <quic_wgong@quicinc.com>
-Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
-Subject: Re: [PATCH v5 2/2] ath11k: add read variant from SMBIOS for download
- board data
-References: <20211220064829.17557-1-quic_wgong@quicinc.com>
- <20211220064829.17557-3-quic_wgong@quicinc.com>
-Date: Thu, 10 Mar 2022 10:12:40 +0200
-In-Reply-To: <20211220064829.17557-3-quic_wgong@quicinc.com> (Wen Gong's
- message of "Mon, 20 Dec 2021 01:48:29 -0500")
-Message-ID: <87wnh2ql8n.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+ s=k20201202; t=1646927508;
+ bh=fDncGPJcRJVwshm603ffeV/SxF9a2whRf+pP4u1JBl8=;
+ h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+ b=WzmMnWO86JdzfXeSUkY5GL6hMokbLHjoyDE7uSZHEOjDqMorJp0bB7BVh3fTBp/da
+ 8tNLjbHKVKWjur1yEYB8zi1I9woRT1LUrSb26jTo6aa5n3gmF1wxzgIxG4x4BUDF0g
+ g/Y5SSWQPpGDQ9Hjq2kqRJfncbJPHzXuT908OqGSDs6Nz2ha+YHrrvgb+kBuAKpoL9
+ mDnuh7vD6ihJ3hxSQh9BvJjCAjGNdjCzj+ykT0V0EJT0VyNwO+WBOd19DOZSnIQYZ9
+ so7nCNmhBaFeqrwGuP/x5PtV1aQM+x5z9STl0Wwz3RN4evV0htjAQDTGzXuldxulew
+ 0Wd1aqtmispkg==
 MIME-Version: 1.0
+Subject: Re: [PATCH] ath11k: remove unneeded flush_workqueue
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20220301013246.2052570-1-lv.ruyi@zte.com.cn>
+References: <20220301013246.2052570-1-lv.ruyi@zte.com.cn>
+To: cgel.zte@gmail.com
+Cc: davem@davemloft.net, kuba@kernel.org, ath11k@lists.infradead.org,
+ linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, "Lv Ruyi (CGEL ZTE)" <lv.ruyi@zte.com.cn>,
+ Zeal Robot <zealci@zte.com.cn>
+User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-ID: <164692750437.18489.17708219137652842417.kvalo@kernel.org>
+Date: Thu, 10 Mar 2022 15:51:46 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220310_001246_655478_4CCAA56D 
-X-CRM114-Status: GOOD (  19.30  )
+X-CRM114-CacheID: sfid-20220310_075150_224080_D55CFBD9 
+X-CRM114-Status: UNSURE (   7.30  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,103 +75,24 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Wen Gong <quic_wgong@quicinc.com> writes:
+cgel.zte@gmail.com wrote:
 
-> This is to read variant from SMBIOS such as read from DT, the variant
-> string will be used to one part of string which used to search board
-> data from board-2.bin.
->
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
->
-> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
+> All work currently pending will be done first by calling destroy_workqueue,
+> so there is no need to flush it explicitly.
+> 
+> Reported-by: Zeal Robot <zealci@zte.com.cn>
+> Signed-off-by: Lv Ruyi (CGEL ZTE) <lv.ruyi@zte.com.cn>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-[...]
+Patch applied to ath-next branch of ath.git, thanks.
 
-> +static void ath11k_core_check_bdfext(const struct dmi_header *hdr, void *data)
-> +{
-> +	struct ath11k_base *ab = data;
-> +	const char *bdf_ext;
-> +	const char *magic = ATH11K_SMBIOS_BDF_EXT_MAGIC;
-> +	u8 bdf_enabled;
-> +	int i;
-> +	size_t len;
-> +
-> +	if (ab->qmi.target.bdf_ext[0] != '\0')
-> +		return;
-> +
-> +	if (hdr->type != ATH11K_SMBIOS_BDF_EXT_TYPE)
-> +		return;
-> +
-> +	if (hdr->length != ATH11K_SMBIOS_BDF_EXT_LENGTH) {
-> +		ath11k_dbg(ab, ATH11K_DBG_BOOT,
-> +			   "wrong smbios bdf ext type length (%d).\n",
-> +			   hdr->length);
-> +		return;
-> +	}
-> +
-> +	bdf_enabled = *((u8 *)hdr + ATH11K_SMBIOS_BDF_EXT_OFFSET);
-> +	if (!bdf_enabled) {
-> +		ath11k_dbg(ab, ATH11K_DBG_BOOT, "bdf variant name not found.\n");
-> +		return;
-> +	}
-> +
-> +	/* Only one string exists (per spec) */
-> +	bdf_ext = (char *)hdr + hdr->length;
-
-A proper struct is preferred over pointer arithmetic. For example
-something like this:
-
-struct ath11k_smbios_bdf {
-        struct dmi_header hdr;
-        u32 padding;
-        u8 bdf_enabled;
-        u8 bdf_ext[ATH11K_SMBIOS_BDF_EXT_MAX_LEN];
-}
-
-I'm not sure if I got the offsets right, but I hope you get the idea
-anyway.
-
-> +
-> +	if (memcmp(bdf_ext, magic, strlen(magic)) != 0) {
-> +		ath11k_dbg(ab, ATH11K_DBG_BOOT,
-> +			   "bdf variant magic does not match.\n");
-> +		return;
-> +	}
-> +
-> +	len = strlen(bdf_ext);
-
-What if bdf_ext is not null terminated? Wouldn't strnlen() with
-ATH11K_SMBIOS_BDF_EXT_MAX_LEN would be safer?
-
-> --- a/drivers/net/wireless/ath/ath11k/core.h
-> +++ b/drivers/net/wireless/ath/ath11k/core.h
-> @@ -971,7 +971,18 @@ int ath11k_core_fetch_bdf(struct ath11k_base *ath11k,
->  			  struct ath11k_board_data *bd);
->  void ath11k_core_free_bdf(struct ath11k_base *ab, struct ath11k_board_data *bd);
->  int ath11k_core_check_dt(struct ath11k_base *ath11k);
-> +/* SMBIOS type containing Board Data File Name Extension */
-> +#define ATH11K_SMBIOS_BDF_EXT_TYPE 0xF8
->  
-> +/* SMBIOS type structure length (excluding strings-set) */
-> +#define ATH11K_SMBIOS_BDF_EXT_LENGTH 0x9
-> +
-> +/* Offset pointing to Board Data File Name Extension */
-> +#define ATH11K_SMBIOS_BDF_EXT_OFFSET 0x8
-> +
-> +/* The magic used by QCA spec */
-> +#define ATH11K_SMBIOS_BDF_EXT_MAGIC "BDF_"
-> +int ath11k_core_check_smbios(struct ath11k_base *ab);
->  void ath11k_core_halt(struct ath11k *ar);
->  int ath11k_core_resume(struct ath11k_base *ab);
->  int ath11k_core_suspend(struct ath11k_base *ab);
-
-Please don't mix defines and function declarations, so move defines up
-in the file.
+57fe207f752a ath11k: remove unneeded flush_workqueue
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+https://patchwork.kernel.org/project/linux-wireless/patch/20220301013246.2052570-1-lv.ruyi@zte.com.cn/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
 -- 
 ath11k mailing list
