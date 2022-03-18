@@ -4,58 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 301FBC433F5
-	for <ath11k@archiver.kernel.org>; Fri, 18 Mar 2022 15:37:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DCCA4C433F5
+	for <ath11k@archiver.kernel.org>; Fri, 18 Mar 2022 15:50:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
 	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=KmwSTcfjuoqUIosD54F9Da324Mu9NgGNtZR2NS7EHAk=; b=R8VAXztZy64uis
-	Uj0deAQJkjf3R+1Cd8olMmSQZDBaiPUYvK9ShpCJyPsQW7XLDZGy9EGwzX98/2Fhq+0BUJmnCyzaV
-	VC6giqBPHVGobKyqxOEmKRuO082M3ym4aWDhh+dkwVKFCRdMMXNL2OoqFodhsCCgZdrsr4BSt1N5U
-	Odsqh7Gp+wGrAc4iBXBUz/cuVSOMqYZaexBLnuwq+bR3jtJY3fqXQMESMMHIq/wKhXBwo1sotqA9P
-	pYqyAkYmYPd8I9I4A8U6haST2T/0gmN55vDfFCnu+BewqWrNqzhP/5g/W6vsKQD4UuEB/J5EzjVln
-	BJeDrV4M5Ig9O3D1jTCA==;
+	List-Owner; bh=W2GCuwgxfY6pL+RkFqxnX/vNEiVvLMTqzEKfDFuYm/I=; b=IMmaFHy2oOgZsb
+	Ya+kyPtODe0ZDY3XhAXvI7yHRj0EUUFTwKlzxG8e44c9kwmzPP9RB71i0Ddq8VnJjpCt5Cph0zV8a
+	2NnpQCz1qR2w0PujS9IJ5ehJghqlAmug+9ryi9kv2P5vWAjtXNilmsHVTGQPD2BGwV93DSAeMCZB5
+	Z82P3IOuS9LXhZfxfh5k2RDfPvJ9lPKE7/2DY9EDOWGVZOz9M8vE3d8/uwlPmuuwEyGcxKZMGIlHY
+	HhJOBM/8WqNW5zQG9AZndXaqjSoxBWxza5i3Qk8/QnjEAYFbngwQlFExLTsCzj+WS8tQbIy6ytMMs
+	ydFbKC3PjHNeF/hMWBTQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nVEfP-002INr-Er; Fri, 18 Mar 2022 15:37:27 +0000
+	id 1nVEsN-002JKy-SH; Fri, 18 Mar 2022 15:50:51 +0000
 Received: from ams.source.kernel.org ([145.40.68.75])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nVEfN-002INZ-1C
- for ath11k@lists.infradead.org; Fri, 18 Mar 2022 15:37:26 +0000
+ id 1nVEsL-002JJx-1y
+ for ath11k@lists.infradead.org; Fri, 18 Mar 2022 15:50:50 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 867A4B82456;
- Fri, 18 Mar 2022 15:37:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73DB6C340E8;
- Fri, 18 Mar 2022 15:37:20 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id B3474B82474;
+ Fri, 18 Mar 2022 15:50:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99892C340E8;
+ Fri, 18 Mar 2022 15:50:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1647617841;
- bh=yG6GKN0QjG+NaDFavP6liDr4c6Co2c817z3BufnzAu0=;
+ s=k20201202; t=1647618646;
+ bh=z9ElKH/RPJ8dL6ucObv3OjEkF6xDUpmy50+aWINS/t0=;
  h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
- b=hQjEbL5jn4+4a7ZfA4/O4plDIYrr4+JgPAxWELCt1UYNegyWIzXghgKKdvqvQqSnP
- uLncILr7F2JZ5VDXLU+azFMUbi2mWL/Kj6ALG3hu/UW+l/cjLBf+TsznOXY4tPPfbk
- E6C9FV2sHAd2xBTNDSEyE3icLMppHC/+xXHzHqxbHBMU9KyKwu9FgyoM7H2pOn3PiJ
- wlGclaf8/a5+tggnYmRbanJpaMGSncl/+N4ttMEXZi9zxABJrAKU+RJbCTAe2f351V
- pbNo4tjaRCVisiWSGez/cbfQNcM/lW3Ib33ZSjIv/sBzhUK1XO3XpkULkFXh6IOEeG
- sVKeszvHXKRjw==
+ b=pCE+1ifPe3yI5D4B1URHeIbCjWDCQz3EL6E4xqrNO+pqvqi8CUy/Pfc4mkZ02/P7w
+ RWcFMNuDx4c0ZH3Uh2v3ctgJfuYk2te/q2NO1MuTsWOC/sdqsiE35N0E+aNe2WpJph
+ ZINFmtJdSutwIFYR6STciopg7RrTVjNGXIT5+hR8pNso8cTlNKHhZbZ69OTZeR2QrT
+ YzL9F+5IfVR2xgc4xernihANYAkUxf99Ehg3jh1Qt/AurITA+wZ6Ddt5e1zv1pAn7Q
+ mVHnYYOnKyg4vyVZwd865avHb/WcleYaqOvCk2X7J/sLfHvKYeVB3zF3FQlpq0jo4t
+ +LEhkqSrkD3jg==
 MIME-Version: 1.0
-Subject: Re: [PATCH v3 1/6] ath11k: Add basic WoW functionalities
+Subject: Re: [PATCH] ath11k: Add support for SAR
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <1644308006-22784-2-git-send-email-quic_cjhuang@quicinc.com>
-References: <1644308006-22784-2-git-send-email-quic_cjhuang@quicinc.com>
-To: Carl Huang <quic_cjhuang@quicinc.com>
+In-Reply-To: <20220317012728.18932-1-quic_bqiang@quicinc.com>
+References: <20220317012728.18932-1-quic_bqiang@quicinc.com>
+To: Baochen Qiang <quic_bqiang@quicinc.com>
 Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
 User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <164761783674.655.6579747484395583481.kvalo@kernel.org>
-Date: Fri, 18 Mar 2022 15:37:20 +0000 (UTC)
+Message-ID: <164761864196.8951.13534371903381562941.kvalo@kernel.org>
+Date: Fri, 18 Mar 2022 15:50:45 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220318_083725_284228_AAEEBCCB 
-X-CRM114-Status: UNSURE (   8.07  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220318_085049_277089_9EF4C08D 
+X-CRM114-Status: GOOD (  10.58  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,33 +71,28 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Carl Huang <quic_cjhuang@quicinc.com> wrote:
+Baochen Qiang <quic_bqiang@quicinc.com> wrote:
 
-> Implement basic WoW functionalities such as magic-packet, disconnect
-> and pattern. The logic is very similar to ath10k.
+> ath11k assigns ath11k_mac_op_set_bios_sar_specs to ath11k_ops,
+> and this function is called when user space application
+> calls NL80211_CMD_SET_SAR_SPECS. ath11k also registers SAR
+> type and frequency ranges to wiphy so user space can query
+> SAR capabilities.
 > 
-> When WoW is configured, ath11k_core_suspend and ath11k_core_resume
-> are skipped as WoW configuration and hif suspend/resume are done in
-> ath11k_wow_op_suspend() and ath11k_wow_op_resume().
+> This feature is currently enabled for WCN6855.
 > 
-> Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
+> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-02431-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
 > 
-> Signed-off-by: Carl Huang <quic_cjhuang@quicinc.com>
 > Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
-> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-6 patches applied to ath-next branch of ath.git, thanks.
+What did you use as the baseline? I could not able to find an ath- tag to which
+this patch would apply. I strongly recommend using --base, that way I don't need to
+waste time trying to guess what was the baseline.
 
-ba9177fcef21 ath11k: Add basic WoW functionalities
-fec4b898f369 ath11k: Add WoW net-detect functionality
-c417b247ba04 ath11k: implement hardware data filter
-90bf5c8d0f7e ath11k: purge rx pktlog when entering WoW
-c3c36bfe998b ath11k: support ARP and NS offload
-a16d9b50cfba ath11k: support GTK rekey offload
+Patch set to Changes Requested.
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/1644308006-22784-2-git-send-email-quic_cjhuang@quicinc.com/
+https://patchwork.kernel.org/project/linux-wireless/patch/20220317012728.18932-1-quic_bqiang@quicinc.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
