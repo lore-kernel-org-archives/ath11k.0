@@ -4,60 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B2ABC433EF
-	for <ath11k@archiver.kernel.org>; Mon, 21 Mar 2022 11:16:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAFB1C433F5
+	for <ath11k@archiver.kernel.org>; Mon, 21 Mar 2022 11:29:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mTI92n7gGztgxfPd9LzWOhFGm0ZgZJyqGl4PBUkVo24=; b=UuY9NyqEIFcrXs
-	L11BFy1BNCE9cTgxYlrRVh2n5iU2t9IMlReazjcYLQ3sDGFVsEzVn/fQKKzXr8+4WNTZUks+1SbyF
-	ru93yD/3GpD3G/YnhSadQhwaTg0PLCFgy4EUXxjloBssl0T3jV/FXJgR8qsuA8BOhy2/dhhl80xKl
-	UlkhaDRUY84W2cbjeNFMr656tcTMewiem/Er+616r81juSac2MEhqnXbz2x/KMXQLAdVtToLrYhuY
-	vpDarUTZvVcbJXo2Kj0h2nKy6y2qCByizr4flocEZSDfQ9lpgjnD0Vw+qsS5P70LrNizrHWZfjp+E
-	KSLVyQko5gTt/mdB/H0g==;
+	List-Owner; bh=IkigJozyCWohCD+MBBzkrsbLbeA2UFvsmsNPmoRHHMw=; b=2p512kF7n9cKHz
+	WZxVlSRp64qalKBeXBOxkjBr+BtKfpxI9by7HmYGKSUeGtA9bPZQ3Y7r3/jSsWEZFtehTFAR01LIn
+	Ln+ZXEpdVNtBDJGUYpGUx5RBIp7EqX5b/s380RrQ3fX71Xkm2JNVaEpYiTkwae0kODbmPyutwtnTR
+	+SaJOV5Rr7V8UjSnqrogC49jKEsqpLLUL691Vo4R3nmwWC69oDSIkKQepFFVJdSnbf+eG+wohVk6n
+	U40qYKf2i4WB+UjMUlP6l9oT8iEot9mF8ZQMpCVGppsMq/vtjhbXbfpjpkP6Ku8WyPRVAv2mRBmYM
+	bppwb7Zt+Cki4bj0y8DQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nWG1b-007RNJ-PN; Mon, 21 Mar 2022 11:16:35 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1nWGDz-007SUH-Fo; Mon, 21 Mar 2022 11:29:23 +0000
+Received: from smtp2.infineon.com ([2a00:18f0:1e00:4::4])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nWG1Z-007RMg-Bf
- for ath11k@lists.infradead.org; Mon, 21 Mar 2022 11:16:34 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ id 1nWGDw-007STZ-63
+ for ath11k@lists.infradead.org; Mon, 21 Mar 2022 11:29:22 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+ d=infineon.com; i=@infineon.com; q=dns/txt; s=IFXMAIL;
+ t=1647862160; x=1679398160;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=NXnb72JWJiCVJ57pbHvb/TTT128gNSl3WOttyM7p2KU=;
+ b=SEC1sDQ+yICVEQqADarzbnwIg0z/R3dQfPiQAR+FR4vKlXQDTi8o8VhS
+ PyyTiQlOxAMySTuIeZaNH8iphUpLhBc/BTy89297GuqNpHTmz5QLpjEfM
+ V8DfC9ANjhgsXR4hGVORz/AqiBlRko715MGzbNDsH1JzGSUZ1nbvPuDQo A=;
+X-SBRS: None
+X-IronPort-AV: E=McAfee;i="6200,9189,10292"; a="170224030"
+X-IronPort-AV: E=Sophos;i="5.90,198,1643670000"; d="scan'208";a="170224030"
+Received: from unknown (HELO mucxv002.muc.infineon.com) ([172.23.11.17])
+ by smtp2.infineon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2022 12:29:15 +0100
+Received: from MUCSE812.infineon.com (MUCSE812.infineon.com [172.23.29.38])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id DBF3E60ADC;
- Mon, 21 Mar 2022 11:16:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FEA0C340E8;
- Mon, 21 Mar 2022 11:16:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1647861392;
- bh=Gc6w4SyLoHH7rLdsaBZnS+Z+NN6F7MssyEh57+LkU58=;
- h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
- b=aGCs8tge8UXsglO3CyQJailDbuinA7+UO5mFHhzkyL0xQN21r9FCCWBP0ORn/YePE
- o1ygco3RTWA6/QkvyRM6oPUNapXR03amq7WhNT8QgDH5/d1w2E4zlkO30yxSr3M3hq
- LDWdNJ/haMFZSQzF0RbvJCJIXCKjjeuwISZFwLjDcafopaw2Uc0oAxoqyUZWY0vhPt
- mT4G7i2ljWSMrN6EK2KCjV/J/PZE0zJZa6W25C5EXy+YvyjkWA7DUUpsFwOMi3oq7g
- taaGUMYt2aZR+pMQEWCTK4zMcYmvsGS3NtfBm7W0SYAst1dr+90mXSLitqQK2HbzrS
- iNu36E2cbvplA==
-From: Kalle Valo <kvalo@kernel.org>
-To: Wen Gong <quic_wgong@quicinc.com>
-Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
-Subject: Re: [PATCH v8 1/4] ath11k: add support for device recovery for
- QCA6390/WCN6855
-References: <20220228064606.8981-1-quic_wgong@quicinc.com>
- <20220228064606.8981-2-quic_wgong@quicinc.com>
-Date: Mon, 21 Mar 2022 13:16:29 +0200
-In-Reply-To: <20220228064606.8981-2-quic_wgong@quicinc.com> (Wen Gong's
- message of "Mon, 28 Feb 2022 01:46:03 -0500")
-Message-ID: <87pmmfmu7m.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+ by mucxv002.muc.infineon.com (Postfix) with ESMTPS;
+ Mon, 21 Mar 2022 12:29:15 +0100 (CET)
+Received: from MUCSE804.infineon.com (172.23.29.30) by MUCSE812.infineon.com
+ (172.23.29.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Mon, 21 Mar
+ 2022 12:29:14 +0100
+Received: from MUCSE804.infineon.com (172.23.29.30) by MUCSE804.infineon.com
+ (172.23.29.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Mon, 21 Mar
+ 2022 12:29:14 +0100
+Received: from MUCSE804.infineon.com ([172.23.29.30]) by MUCSE804.infineon.com
+ ([172.23.29.30]) with mapi id 15.02.0986.022;
+ Mon, 21 Mar 2022 12:29:14 +0100
+From: <Daniel.Shen@infineon.com>
+To: <kvalo@kernel.org>
+CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
+Subject: RE: [PATCH v2] ath11k: Add support for SAR
+Thread-Topic: [PATCH v2] ath11k: Add support for SAR
+Thread-Index: AQHYPMqW5EZqF7C2VkGr/W1nvCsgnazJig6AgAAV4yA=
+Date: Mon, 21 Mar 2022 11:29:14 +0000
+Message-ID: <af9924aaa82b4622bee872c47fdf88a8@infineon.com>
+References: <20220321022231.268197-1-quic_bqiang@quicinc.com>
+ <164785670143.6138.10862194405307750688.kvalo@kernel.org>
+In-Reply-To: <164785670143.6138.10862194405307750688.kvalo@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.23.8.247]
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220321_041633_501962_94905882 
-X-CRM114-Status: GOOD (  24.02  )
+X-CRM114-CacheID: sfid-20220321_042920_570967_75C98B0D 
+X-CRM114-Status: GOOD (  12.81  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -69,77 +87,45 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Wen Gong <quic_wgong@quicinc.com> writes:
-
-> Currently ath11k has device recovery logic, it is introduced by this
-> patch "ath11k: Add support for subsystem recovery" which is upstream
-> by https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=ath11k-bringup&id=3a7b4838b6f6f234239f263ef3dc02e612a083ad.
->
-> The patch is for AHB devices such as IPQ8074, it has remote proc module
-> which is used to download the firmware and boots the processor which
-> firmware is running on. If firmware crashed, remote proc module will
-> detect it and download and boot firmware again. Below command will
-> trigger a firmware crash, and then user can test feature of device
-> recovery.
->
-> Test command:
-> echo assert > /sys/kernel/debug/ath11k/qca6390\ hw2.0/simulate_fw_crash
-> echo assert > /sys/kernel/debug/ath11k/wcn6855\ hw2.0/simulate_fw_crash
->
-> Unfortunately, QCA6390 is PCIe bus, it does not have the remote proc
-> module, it use mhi module to communicate between firmware and ath11k.
-> So ath11k does not support device recovery for QCA6390 currently.
->
-> This patch is to add the extra logic which is different for QCA6390.
-> When firmware crashed, MHI_CB_EE_RDDM event will be indicate by
-> firmware and then ath11k_mhi_op_status_cb which is the callback of
-> mhi_controller will receive the MHI_CB_EE_RDDM event, then ath11k
-> will start to do recovery process, ath11k_core_reset() calls
-> ath11k_hif_power_down()/ath11k_hif_power_up(), then the mhi/ath11k
-> will start to download and boot firmware. There are some logic to
-> avoid deadloop recovery and two simultaneous recovery operations.
-> And because it has muti-radios for the soc, so it add some logic
-> in ath11k_mac_op_reconfig_complete() to make sure all radios has
-> reconfig complete and then complete the device recovery.
->
-> Also it add workqueue_aux, because ab->workqueue is used when receive
-> ATH11K_QMI_EVENT_FW_READY in recovery process(queue_work(ab->workqueue,
-> &ab->restart_work)), and ath11k_core_reset will wait for max
-> ATH11K_RESET_TIMEOUT_HZ for the previous restart_work finished, if
-> ath11k_core_reset also queued in ab->workqueue, then it will delay
-> restart_work of previous recovery and lead previous recovery fail.
->
-> ath11k recovery success for QCA6390/WCN6855 after apply this patch.
->
-> Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03003-QCAHSPSWPL_V1_V2_SILICONZ_LITE-2
->
-> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
-
-[...]
-
->  void ath11k_core_free(struct ath11k_base *ab)
->  {
-> +	flush_workqueue(ab->workqueue_aux);
-> +	destroy_workqueue(ab->workqueue_aux);
-> +
->  	flush_workqueue(ab->workqueue);
->  	destroy_workqueue(ab->workqueue);
-
-This had a conflict and in the pending branch I removed
-flush_workqueue(ab->workqueue_aux). Flush is not needed before destroy.
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+SGkgS2FsbGUsDQoNCkkgdGhpbmsgSSBhbSBub3QgdGhlIHJpZ2h0IHBlcnNvbiB5b3Ugd291bGQg
+bGlrZSB0byBzZW5kIHRoaXMgZW1haWwuDQpQbGVhc2UgY2hlY2sgaXQsIEkgcmVjZWl2ZWQgYSBn
+cmVhdCBtYW55IG9mIGVtYWlscy4gDQoNClRoYW5rcyBhbmQgYmVzdCB3aXNoZXMNCkRhbmllbCBT
+aGVuDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBLYWxsZSBWYWxvIDxrdmFs
+b0BrZXJuZWwub3JnPiANClNlbnQ6IDIwMjLlubQz5pyIMjHml6UgMTc6NTgNClRvOiBCYW9jaGVu
+IFFpYW5nIDxxdWljX2JxaWFuZ0BxdWljaW5jLmNvbT4NCkNjOiBhdGgxMWtAbGlzdHMuaW5mcmFk
+ZWFkLm9yZzsgbGludXgtd2lyZWxlc3NAdmdlci5rZXJuZWwub3JnDQpTdWJqZWN0OiBSZTogW1BB
+VENIIHYyXSBhdGgxMWs6IEFkZCBzdXBwb3J0IGZvciBTQVINCg0KQ2F1dGlvbjogVGhpcyBlLW1h
+aWwgb3JpZ2luYXRlZCBvdXRzaWRlIEluZmluZW9uIFRlY2hub2xvZ2llcy4gRG8gbm90IGNsaWNr
+IG9uIGxpbmtzIG9yIG9wZW4gYXR0YWNobWVudHMgdW5sZXNzIHlvdSB2YWxpZGF0ZSBpdCBpcyBz
+YWZlPGh0dHBzOi8vaW50cmFuZXQtY29udGVudC5pbmZpbmVvbi5jb20vZXhwbG9yZS9hYm91dGlu
+ZmluZW9uL3J1bGVzL2luZm9ybWF0aW9uc2VjdXJpdHkvdWcvU29jaWFsRW5naW5lZXJpbmcvUGFn
+ZXMvU29jaWFsRW5naW5lZXJpbmdFbGVtZW50c19lbi5hc3B4Pi4NCg0KDQoNCkNhdXRpb246IFRo
+aXMgZS1tYWlsIG9yaWdpbmF0ZWQgb3V0c2lkZSBJbmZpbmVvbiBUZWNobm9sb2dpZXMuIERvIG5v
+dCBjbGljayBvbiBsaW5rcyBvciBvcGVuIGF0dGFjaG1lbnRzIHVubGVzcyB5b3UgdmFsaWRhdGUg
+aXQgaXMgc2FmZTxodHRwczovL2ludHJhbmV0LWNvbnRlbnQuaW5maW5lb24uY29tL2V4cGxvcmUv
+YWJvdXRpbmZpbmVvbi9ydWxlcy9pbmZvcm1hdGlvbnNlY3VyaXR5L3VnL1NvY2lhbEVuZ2luZWVy
+aW5nL1BhZ2VzL1NvY2lhbEVuZ2luZWVyaW5nRWxlbWVudHNfZW4uYXNweD4uDQoNCg0KDQpCYW9j
+aGVuIFFpYW5nIDxxdWljX2JxaWFuZ0BxdWljaW5jLmNvbT4gd3JvdGU6DQoNCj4gYXRoMTFrIGFz
+c2lnbnMgYXRoMTFrX21hY19vcF9zZXRfYmlvc19zYXJfc3BlY3MgdG8gYXRoMTFrX29wcywgYW5k
+IA0KPiB0aGlzIGZ1bmN0aW9uIGlzIGNhbGxlZCB3aGVuIHVzZXIgc3BhY2UgYXBwbGljYXRpb24g
+Y2FsbHMgDQo+IE5MODAyMTFfQ01EX1NFVF9TQVJfU1BFQ1MuIGF0aDExayBhbHNvIHJlZ2lzdGVy
+cyBTQVIgdHlwZSBhbmQgDQo+IGZyZXF1ZW5jeSByYW5nZXMgdG8gd2lwaHkgc28gdXNlciBzcGFj
+ZSBjYW4gcXVlcnkgU0FSIGNhcGFiaWxpdGllcy4NCj4NCj4gVGhpcyBmZWF0dXJlIGlzIGN1cnJl
+bnRseSBlbmFibGVkIGZvciBXQ042ODU1Lg0KPg0KPiBUZXN0ZWQtb246IFdDTjY4NTUgaHcyLjAg
+UENJIA0KPiBXTEFOLkhTUC4xLjEtMDI0MzEtUUNBSFNQU1dQTF9WMV9WMl9TSUxJQ09OWl9MSVRF
+LTENCj4NCj4gU2lnbmVkLW9mZi1ieTogQmFvY2hlbiBRaWFuZyA8cXVpY19icWlhbmdAcXVpY2lu
+Yy5jb20+DQoNCkJhb2NoZW4gdG9sZCBtZSB0aGlzIGRlcGVuZHMgb24gdGhpcyBwYXRjaDoNCg0K
+aHR0cHM6Ly9wYXRjaHdvcmsua2VybmVsLm9yZy9wcm9qZWN0L2xpbnV4LXdpcmVsZXNzL3BhdGNo
+LzIwMjExMjI0MDg1MjM2LjkwNjQtMi1xdWljX3dnb25nQHF1aWNpbmMuY29tLw0KDQpCdXQgdGhh
+dCBwYXRjaCBpcyBhbHJlYWR5IGRyb3BwZWQgc28gZHJvcHBpbmcgdGhpcyBvbmUgYXMgd2VsbC4N
+Cg0KUGF0Y2ggc2V0IHRvIENoYW5nZXMgUmVxdWVzdGVkLg0KDQotLQ0KaHR0cHM6Ly9wYXRjaHdv
+cmsua2VybmVsLm9yZy9wcm9qZWN0L2xpbnV4LXdpcmVsZXNzL3BhdGNoLzIwMjIwMzIxMDIyMjMx
+LjI2ODE5Ny0xLXF1aWNfYnFpYW5nQHF1aWNpbmMuY29tLw0KDQpodHRwczovL3dpcmVsZXNzLndp
+a2kua2VybmVsLm9yZy9lbi9kZXZlbG9wZXJzL2RvY3VtZW50YXRpb24vc3VibWl0dGluZ3BhdGNo
+ZXMNCg0KLS0gCmF0aDExayBtYWlsaW5nIGxpc3QKYXRoMTFrQGxpc3RzLmluZnJhZGVhZC5vcmcK
+aHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9hdGgxMWsK
