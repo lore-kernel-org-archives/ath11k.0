@@ -4,61 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18C6FC433EF
-	for <ath11k@archiver.kernel.org>; Mon, 21 Mar 2022 08:58:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A33E2C433F5
+	for <ath11k@archiver.kernel.org>; Mon, 21 Mar 2022 09:56:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=yLecTD3nlJ6YccEdFeR/pjUIb9W78IZfAF4577spznc=; b=t+SP+YZx1+fX1i
-	hl7J7c/BbPbKRvaDlwTPApUyMXrE2Jkv3UsY9BbuctwNgZQcGk3U/SBbjZlxA8bGYERED7X8+ntod
-	pAQC34U9QR4rY9tVH30jMhNf2RJtfVMau58sb/bnlEO4dN8AgE4rwjB+vtMxpVqq3C9Bu7h0fkNwl
-	nP/sTQjHkAiCn9hqGlOLeMR6dMDNrCt7BXgGHaW+mrihvW4Cdw4+Z+MwgWSF6rnEAE4gtYxFahuPA
-	DwDybX18zJJVsXfVo27i+/d2qBvJ4RSFMORdaC5Dj9hgfWOdRIgdQfRfeR5tQDj1oo856szQXFBGC
-	PnmL2mmezrjxQlGEN8Og==;
+	List-Owner; bh=ClvV5DJstLa8j++56FJyzb1KhposDfoKKJ/woYZlDX0=; b=2cAuv3atQQiRYN
+	/iJEq+c5qNSCC7EPlaU/etIAz6eyEM0J+aLkCsNIX1WN1Gqmrbol0hOCX0UDZ2lKFns5fQ2B7Ex4w
+	q55qy1lm2Xg8LIQfEnXsByqYUlWNhalg6vWaWgUcAgnn0IWEAtaDsy42cpcs4wGx7XPMPAHr2I4cC
+	FJMjhdMM3CP7u3Bm/ta/JS7Y0pgBsD5o+zmeKjVu6VuKkLZnuGPZ+IHJcx8Q6ZRRswXtVgfnpv4gb
+	5mFY5Gny+H4mSE/aLCYKyIS9u4lC4c6vKTFq3OjcDtB2fQW5VDs4imn0CnoAIhEPkvpLEVp7cFsHG
+	OS3hpnqLtR9fpWRZ/szA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nWDry-0075ZH-0R; Mon, 21 Mar 2022 08:58:30 +0000
-Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
- helo=sipsolutions.net)
+	id 1nWElg-007EOt-4m; Mon, 21 Mar 2022 09:56:04 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nWDrv-0075Yq-3F
- for ath11k@lists.infradead.org; Mon, 21 Mar 2022 08:58:28 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sipsolutions.net; s=mail; h=Content-Transfer-Encoding:MIME-Version:
- Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
- :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
- Resent-Cc:Resent-Message-ID; bh=rcvqZqPrBbD/86qEasWL/HDztHchLovqQk7d/zkEWnY=; 
- t=1647853104; x=1649062704; b=oRUySZ5J1pAdD3BKimNn0SCOgzPVXGzYp2YCY9cBt8d8zDe
- E2glLFMMWLmUvQyl+Kwt07DQ3LKGX67UngI1BMmgWvK0dyWwS9S5okVz+GaIzNMepoyk21pUAmkel
- Dqwh/b1QP9EGe7BhUkJzjpFohuvgwOnflaCkFX2LDfcVLZv4gKPNNJdbKkSx5OGM5mb5FDbrz1Iq6
- mjqhhp+IH+9wr2JhB0IjYILBN6z+8xh/ONRT5PYiAORAwHhO17G66aaVzdfxFaQ4DpAEDwJ6/XVJk
- 2NOo3jvwTgD2lojJBWNidfNwGI0vIFAuIPAC2tZ81RzacUIdpAjItp77iPMmNAGw==;
-Received: by sipsolutions.net with esmtpsa
- (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
- (Exim 4.95) (envelope-from <johannes@sipsolutions.net>)
- id 1nWDrl-00G2r9-J6; Mon, 21 Mar 2022 09:58:17 +0100
-Message-ID: <a537c6e02afbfa26eec2a54dbd8bc649f77ae3a3.camel@sipsolutions.net>
-Subject: Re: [PATCH 1/2] mac80211: add support to configure 6GHz non-ht
- duplicate transmission
-From: Johannes Berg <johannes@sipsolutions.net>
-To: "Rameshkumar Sundaram (QUIC)" <quic_ramess@quicinc.com>
-Cc: "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>, 
- "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
-Date: Mon, 21 Mar 2022 09:58:16 +0100
-In-Reply-To: <DM6PR02MB4937C53041172E9A52846A0BE9169@DM6PR02MB4937.namprd02.prod.outlook.com>
-References: <1644914581-21682-1-git-send-email-quic_ramess@quicinc.com>
- <1644914581-21682-2-git-send-email-quic_ramess@quicinc.com>
- <a517835c51a5eaf00e87fdaaef47546f70ff0d42.camel@sipsolutions.net>
- <DM6PR02MB4937C53041172E9A52846A0BE9169@DM6PR02MB4937.namprd02.prod.outlook.com>
-User-Agent: Evolution 3.42.4 (3.42.4-1.fc35) 
+ id 1nWEld-007EOC-K8
+ for ath11k@lists.infradead.org; Mon, 21 Mar 2022 09:56:03 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 4518AB8117A;
+ Mon, 21 Mar 2022 09:56:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2596FC340E8;
+ Mon, 21 Mar 2022 09:55:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1647856558;
+ bh=T3DLppXj5kZ65OViVxUgR02m2i078NFkHdhZT/bt0is=;
+ h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+ b=ttaU4o3bsSTAOIBvXsaAMrJ5FZvO7mdSUJ3jSFp9oVooBMObBbdAIa4OFIfHVxxlc
+ f1gR3KBbbSx19t2Jt8hnNFSpYJQAYy2A8/2EtayNNFxtzDk8mNnsUZWLnoVPAvDRCP
+ pQ8qPpa0A0c6jMQZVFSUAJ435c9687bh6Rxl9PuM4SzmX9u7Yz4VINJtsFkcFNsepL
+ 3NEfGM4p/ub0VYIljAOX2TPrWWqh+hBxj5kEd0CLvORwY3kTW7f5NwhBAm+Z2AECdv
+ WnZX0RKJWM1XEDXef/aXRh85UG1bibP3idcpeijrcd21tUNT8VtmCbNdpuGCCU8QbI
+ LahA6ccKbvovg==
+From: Kalle Valo <kvalo@kernel.org>
+To: "Baochen Qiang \(QUIC\)" <quic_bqiang@quicinc.com>
+Cc: "ath11k\@lists.infradead.org" <ath11k@lists.infradead.org>,
+ "linux-wireless\@vger.kernel.org" <linux-wireless@vger.kernel.org>
+Subject: Re: [PATCH] ath11k: Add support for SAR
+In-Reply-To: <BYAPR02MB543076C526E59CB0E98B3DBCE0169@BYAPR02MB5430.namprd02.prod.outlook.com>
+ (Baochen Qiang's message of "Mon, 21 Mar 2022 02:24:47 +0000")
+References: <20220317012728.18932-1-quic_bqiang@quicinc.com>
+ <164761864196.8951.13534371903381562941.kvalo@kernel.org>
+ <BYAPR02MB543076C526E59CB0E98B3DBCE0169@BYAPR02MB5430.namprd02.prod.outlook.com>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+Date: Mon, 21 Mar 2022 11:55:53 +0200
+Message-ID: <87fsnbocie.fsf@kernel.org>
 MIME-Version: 1.0
-X-malware-bazaar: not-scanned
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220321_015827_168766_D8025295 
-X-CRM114-Status: GOOD (  10.58  )
+X-CRM114-CacheID: sfid-20220321_025601_839139_2A6C0A94 
+X-CRM114-Status: GOOD (  19.77  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,23 +75,59 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Mon, 2022-03-21 at 05:12 +0000, Rameshkumar Sundaram (QUIC) wrote:
-> 
-> > 
-> > I am wondering though if this should even be detected from the HE
-> > operation element itself, rather than from the beacon rate settings
-> > that are
-> > separate in nl80211?
-> This is a BW dependent bit in HE Oper IE and user space can switch BW
-> (CSA/chan switch scenarios).
-> Which can call assign_beacon directly, Hence adding the logic here to
-> cover all Beacon change cases.
-> 
+"Baochen Qiang (QUIC)" <quic_bqiang@quicinc.com> writes:
 
-Yeah but still ... why do we take it from the content rather than adding
-a control for it?
+>> -----Original Message-----
+>> From: Kalle Valo <kvalo@kernel.org>
+>> Sent: Friday, March 18, 2022 11:51 PM
+>> To: Baochen Qiang (QUIC) <quic_bqiang@quicinc.com>
+>> Cc: ath11k@lists.infradead.org; linux-wireless@vger.kernel.org
+>> Subject: Re: [PATCH] ath11k: Add support for SAR
+>> 
+>> Baochen Qiang <quic_bqiang@quicinc.com> wrote:
+>> 
+>> > ath11k assigns ath11k_mac_op_set_bios_sar_specs to ath11k_ops, and
+>> > this function is called when user space application calls
+>> > NL80211_CMD_SET_SAR_SPECS. ath11k also registers SAR type and
+>> > frequency ranges to wiphy so user space can query SAR capabilities.
+>> >
+>> > This feature is currently enabled for WCN6855.
+>> >
+>> > Tested-on: WCN6855 hw2.0 PCI
+>> > WLAN.HSP.1.1-02431-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+>> >
+>> > Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+>> 
+>> What did you use as the baseline? I could not able to find an ath- tag to which
+>> this patch would apply. I strongly recommend using --base, that way I don't
+>> need to waste time trying to guess what was the baseline.
+>> 
+>> Patch set to Changes Requested.
+>> 
+>
+> Hi Kalle, I have added the base flag in v2.
 
-johannes
+Thanks.
+
+> And please note this patch depends on
+> https://patchwork.kernel.org/project/linux-wireless/patch/20211224085236.9064-2-quic_wgong@quicinc.com/
+> which is now in public review.
+
+If there are any dependencies, please document them clearly after the
+"---" line. I don't have time to start guessing what dependencies there
+might be for your patches, especially if the dependency is several
+months as in this case.
+
+But why are you using that patch as the baseline? It's marked as Changes
+Requested and it's unclear then it can be merged. If you need that
+patch, you should create a patchset with patch 1 being "ath11k: add
+support for extended wmi service bit" and patch 2 being "ath11k: Add
+support for SAR".
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
