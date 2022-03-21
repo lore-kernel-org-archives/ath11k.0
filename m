@@ -4,58 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45D42C433EF
-	for <ath11k@archiver.kernel.org>; Mon, 21 Mar 2022 13:18:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57600C4332F
+	for <ath11k@archiver.kernel.org>; Mon, 21 Mar 2022 17:23:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
-	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=WZJVGcnj0kxxQHMPcFNJcxNdFWcSTM8xH4JzWEkm+KM=; b=v4Dv8Vkrk7Ll/x
-	USWR442/Ry9LjbxYtprHHg0H3HXcwdqCv09O+zo4wJnvyCHCXfvv0vDUGcOJQpXgCqi/gWT+sAwfk
-	MtcBBdAMYMHbUFO/NBoFOmdPZD8UpJa1FAHLLA4eZey8DfrWFHecpqNUuSxPo5LNhNVfMYNC+wOM7
-	+w+3Fo7bZdXx7e2oxzPCM/PKPAP9BLx374PhOw8dM7FU+hk8EnrCRM+wtb6c1j0e/S9LGj33SX6Hu
-	tF/K7UDBztt99ag3JzaHRljkOhlSFuubDArV/2dKunustjVcfvM07IPbCQeiJn4hrELTHle7ZfCzF
-	eKtzQY2vVkj4m41R8hXw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=VmEUNP8Hj3JOEBmeM51kCt98zXjOxHioigxOi5scGVc=; b=zmvlPQxt7kVe1j
+	t1gBwDfcZu2fQKkfSdDa1/bJ/tfmT5Na5Un17ItDxja+kLnl6H+3XMUmepvaU5G4wK6SnXMLZfQ/E
+	SReRBejnL/uYG8wC4qGEzwaR+mDH5Wzn0B6yTz6lR01wi2HDGvV+MgZUrZKnL0NIsq6No6n/RX/eH
+	xwjzoAdE5Hjv9Hka0le5StRiKEf6pO6vj0lcUpwovRF4fFbkG/SCe3Ej0UyMZJ6ZoKex9xdobNipr
+	aSdVpi+DWQboNJ7kPoD0ytB5dsUHo+Sb5mIE4QWrPzpiHcDSr/YDcQ3yYRRjw6x1aWd9g/utYGuRp
+	QcRVgwoU68bkU3/Xt4uQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nWHvW-007pje-PM; Mon, 21 Mar 2022 13:18:26 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1nWLkU-008bp2-W7; Mon, 21 Mar 2022 17:23:19 +0000
+Received: from alexa-out.qualcomm.com ([129.46.98.28])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nWHvO-007pg4-Sp
- for ath11k@lists.infradead.org; Mon, 21 Mar 2022 13:18:20 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 64E5B61154;
- Mon, 21 Mar 2022 13:18:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12768C340E8;
- Mon, 21 Mar 2022 13:18:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1647868697;
- bh=ftffsuXOcwkiieVfrAlyrUHaIDDIzRoaoNdHv5VLSLU=;
- h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
- b=NCbWox8UHMMpiJX5vj+rqlLcVsXQHuCmsMtmpYyVeiHmDZwrkuLUy2mYAOk5b8Rb4
- LesbXP0D3yMrX3Tetk2EX4Hc9RXQN8yFzYVOIMLgrzoImylvE0q7i3Rw0/Js/Blgwm
- T2m2riiTEX1H7yL23Y+iLIkYTHlmdgAJkBS3FRax0zKVpFlRuKOlEKtuTllDUdzD8+
- OpKMs/R8PHsTZFl25LltCJNvaBykPWKdTxAS3QQ5HcxJgiVL4q6e3iQ/l65ctyVW/S
- ybZHFIL/aXHbsXjypYbDVGearb4FkTjcVBq3eDgvH1Ogu5PebiWbgfTGwO/0RE5W6k
- Ea1WpIU6aENGA==
+ id 1nWLkQ-008bn1-Vj
+ for ath11k@lists.infradead.org; Mon, 21 Mar 2022 17:23:16 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+ t=1647883395; x=1679419395;
+ h=from:to:cc:subject:date:message-id:mime-version;
+ bh=yirBN0FCyH1Z6wIMXksUg4ALNTNGcfiiNQVe+V5YtEI=;
+ b=rjWnwF5sYZqJvpmPXKAbV4gSMOGLMh1asV/pWAOb3Pxz2jqjTEM9ikTJ
+ qCVcBW7Gxjy+gnEyrsMBnpiQ13HFHsCaZg7u1PxmbAJzQQ9qNijEBs1FJ
+ c5+pfV7h3WLzFxTMzg24bQM+EirdarJFG9nlt8bNeb4g4LbhCJdr2WqWA w=;
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+ by alexa-out.qualcomm.com with ESMTP; 21 Mar 2022 10:23:11 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+ by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2022 10:23:11 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Mon, 21 Mar 2022 10:23:11 -0700
+Received: from ppranees-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Mon, 21 Mar 2022 03:17:15 -0700
+From: P Praneesh <quic_ppranees@quicinc.com>
+To: <ath11k@lists.infradead.org>, <johannes@sipsolutions.net>
+CC: <linux-wireless@vger.kernel.org>, P Praneesh <quic_ppranees@quicinc.com>
+Subject: [PATCH v4 0/3] mac80211: Add extended ROC support for 40-80 MHz
+ bandwidth
+Date: Mon, 21 Mar 2022 15:46:34 +0530
+Message-ID: <1647857797-19749-1-git-send-email-quic_ppranees@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: Advertise PLATFORM_CAP_PCIE_GLOBAL_RESET in qmi
- msg
-From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20211011055602.77342-1-bqiang@codeaurora.org>
-References: <20211011055602.77342-1-bqiang@codeaurora.org>
-To: Baochen Qiang <bqiang@codeaurora.org>
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
-User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <164786869187.26064.10113094982951147703.kvalo@kernel.org>
-Date: Mon, 21 Mar 2022 13:18:16 +0000 (UTC)
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220321_061819_020486_3DDEDC25 
-X-CRM114-Status: GOOD (  13.05  )
+X-CRM114-CacheID: sfid-20220321_102315_110742_D8EB98C2 
+X-CRM114-Status: UNSURE (   8.69  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,48 +79,64 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Baochen Qiang <bqiang@codeaurora.org> wrote:
+This patch add extended roc support for 40 and 80 Mhz bandwidth.
+It helps to handle remain on channel for wide band scan in ath11k.
+---
+v4:
+	- added feature check based on the hardware advertisement
+	  SUPPORTS_EXT_REMAIN_ON_CHAN and addressed other review comments.
+v3:
+	- addressed Johannes comment to use ROC instead of SCAN command and
+	  changed cover letter title from 'add Wide Band Scan support' to
+	  'mac80211: Add extended ROC support for 40-80 MHz bandwidth'
+v2:
+	- updated message on cover letter.
 
-> Inform firmware that host is capable of triggering a global reset.
-> This is requested by firmware team.
-> 
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
-> 
-> Signed-off-by: Baochen Qiang <bqiang@codeaurora.org>
+---
+P Praneesh (3):
+  nl80211: Extended ROC support for 40-80 MHz bandwidth
+  ath11k: Refactor update channel list function
+  ath11k: Add ROC support for wide band scan
 
-In the pending branch I fixed the trivial conflicts and enabled this feature on
-both wcn6855 hw2.0 and hw2.1.
-
-I also now have more information what this is about so changed the commit log to:
-
----------------------------------------------------------------------
-
-ath11k: enable PLATFORM_CAP_PCIE_GLOBAL_RESET QMI host capability
-
-In Qualcomm ARM platforms there is WL_EN pin and other power regulators
-which can be controlled at platform side to completely reset the chip.
-For most of x86 and other platforms, the chip is connected via PCIe M.2
-interface, and there is no way to control WL_EN pin. Instead the host
-driver needs to reset the chip via PCIE_SOC_GLOBAL_RESET hardware
-register, just like ath11k does currently.
-
-But when using PCIE_SOC_GLOBAL_RESET there are some hardware registers
-which are not cleared/restored. To handle those cases we can enable
-PLATFORM_CAP_PCIE_GLOBAL_RESET QMI host capability to tell the firmware
-to do some platform specific operations after firmware download.
-
-This does not fix any known issues, but is recommended by the firmware
-team, so enable the capability on QCA6390 and WCN6855 PCI devices. It is
-currently unclear if this should be enabled also on QCN9074, so leave it
-disabled for now. On AHB devices this is not needed as they don't use
-PCIE_SOC_GLOBAL_RESET.
-
----------------------------------------------------------------------
+ drivers/net/wireless/ath/ath10k/mac.c              |   3 +-
+ drivers/net/wireless/ath/ath11k/core.c             |   1 +
+ drivers/net/wireless/ath/ath11k/mac.c              | 215 ++++++++++++++++++---
+ drivers/net/wireless/ath/ath11k/reg.c              |  49 +++--
+ drivers/net/wireless/ath/ath11k/reg.h              |   2 +-
+ drivers/net/wireless/ath/ath11k/wmi.c              |  59 +++++-
+ drivers/net/wireless/ath/ath11k/wmi.h              |  26 ++-
+ drivers/net/wireless/ath/ath6kl/cfg80211.c         |   5 +-
+ drivers/net/wireless/ath/ath6kl/wmi.c              |  10 +-
+ drivers/net/wireless/ath/ath9k/main.c              |   4 +-
+ drivers/net/wireless/ath/wil6210/cfg80211.c        |  13 +-
+ drivers/net/wireless/ath/wil6210/p2p.c             |  27 ++-
+ .../broadcom/brcm80211/brcmfmac/cfg80211.c         |   2 +-
+ .../net/wireless/broadcom/brcm80211/brcmfmac/p2p.c |  10 +-
+ .../net/wireless/broadcom/brcm80211/brcmfmac/p2p.h |   2 +-
+ drivers/net/wireless/intel/iwlwifi/mvm/mac80211.c  |   3 +-
+ drivers/net/wireless/mac80211_hwsim.c              |   3 +-
+ drivers/net/wireless/marvell/mwifiex/cfg80211.c    |  10 +-
+ drivers/net/wireless/marvell/mwifiex/sta_event.c   |   4 +-
+ drivers/net/wireless/marvell/mwifiex/uap_event.c   |   4 +-
+ drivers/net/wireless/mediatek/mt76/mt7615/main.c   |   3 +-
+ drivers/net/wireless/microchip/wilc1000/cfg80211.c |  17 +-
+ drivers/net/wireless/rsi/rsi_91x_mac80211.c        |   3 +-
+ drivers/net/wireless/ti/wlcore/main.c              |   3 +-
+ drivers/staging/rtl8723bs/include/ioctl_cfg80211.h |   4 +-
+ include/net/cfg80211.h                             |  17 +-
+ include/net/mac80211.h                             |   5 +-
+ net/mac80211/debugfs.c                             |   1 +
+ net/mac80211/driver-ops.h                          |   6 +-
+ net/mac80211/ieee80211_i.h                         |   4 +-
+ net/mac80211/offchannel.c                          |  64 +++---
+ net/mac80211/trace.h                               |   9 +-
+ net/wireless/nl80211.c                             |  27 +--
+ net/wireless/rdev-ops.h                            |   6 +-
+ net/wireless/trace.h                               |  44 ++---
+ 35 files changed, 489 insertions(+), 176 deletions(-)
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20211011055602.77342-1-bqiang@codeaurora.org/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+2.7.4
 
 
 -- 
