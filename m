@@ -4,64 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF4AEC433F5
-	for <ath11k@archiver.kernel.org>; Tue, 22 Mar 2022 03:22:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 110C7C433EF
+	for <ath11k@archiver.kernel.org>; Tue, 22 Mar 2022 12:42:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=y81OAwiBwhcbAs4tDNshcBUIQZIx9CmFI0TjFtJkr3s=; b=InOYL6nRFdIKR/
-	DLXTW/WnKHnSB+FRsT6WNs985c/1t4C0rOC52w4v4reRs5kXAsjQuC8xzX4oy513pGLAHhYt7h0rY
-	+Gps4ZbBG6a89IG0fdGL8/Y1ogUmIBdb7pkqlXE2C6i4qWLvE4ymB+nv+2xV3/i7gS0GS3kumpxQB
-	Dpe1xPP/KgDTngxKVM6S+XEEjyv+r2IvgqZstTtbdtpK80iRGILFN2grWKK2wc7umSADxHdZB1CoN
-	PCdez1ajDrrFlGiCUF/u/ohnz/lXjjTI2JejhriDMJH+85DaGGsbtct0jA6i0R7pCPcAMpHDYcjCA
-	oD5tLekcIS6Nd80Mbbcw==;
+	List-Owner; bh=dGc26SQWXEcedR0/jA5peJhP19OtxVLhOFMEK6LsenU=; b=NywRURX6rlQH8C
+	M7KNFtHsQSUtIVjRxQYwFa/npbnVfF9dC+LaHBY/gZwUN6CdrM6IQuM4EebD1O4y/AmaqWafYiuCy
+	xDw/+u6Kgjxy+Al6pzVSUegjZqUjIm9v2B+GGSvzIyowcwkNgtrvmtfBDxZJIUJFu0G+Oi350QhqN
+	3Eya87Z48iFZsU8eH8OBrygOZIlTHJ2YL6zER7PQhj3z3mg+2u2q5tiSjS4OWN4Vh6aBlnOgXCRjd
+	NyKDqQU9EjzKc/99VkI15mcRtnZPAWMWiGtYq9avb6EcB56NMNEaaNc8wLIn/0wJhx88kupjIapNc
+	rgQoMRAT2b4Dlp/1Pbsg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nWV6f-009sLT-Jh; Tue, 22 Mar 2022 03:22:49 +0000
-Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38])
+	id 1nWdqZ-00AzJb-60; Tue, 22 Mar 2022 12:42:47 +0000
+Received: from alexa-out.qualcomm.com ([129.46.98.28])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nWV6c-009sKV-NI
- for ath11k@lists.infradead.org; Tue, 22 Mar 2022 03:22:49 +0000
+ id 1nWdqW-00AzJ9-8e
+ for ath11k@lists.infradead.org; Tue, 22 Mar 2022 12:42:46 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1647919366; x=1679455366;
+ t=1647952964; x=1679488964;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=HSNnzBWbE5MmfhaOQEyYaWxuxKcVUVnQ9QNFKwIpyg4=;
- b=bXX5BKgbl+tlW/DBE4Pdd7t7dB1WlqLI7Oj9a0eQkVMmPKhuuakfVKvi
- Ij5V2Vd0ei0tPZ+q/uHNBjqFe2vKapd9C6vuMwHrE5IACt+HxrwSxyaX6
- RyEy0aj7bKhsoPHlZxuddVqLaJvrYhXU9pHq0hD4rxqOm3ABLAM/TIoCw U=;
-Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
- by alexa-out-sd-01.qualcomm.com with ESMTP; 21 Mar 2022 20:22:42 -0700
+ bh=GG909Gg2Gz0SruVTGw7ypa56UVz0Wv5jG8qsoXjcQos=;
+ b=pNI6MsjJEEcKTjG+tUFtxSTkrSUEPKd7ClAyVuBuFZSPgmz9ricl/2e8
+ 0+bZ3mtWURsyZGhktCQ35WMSI7RTrWt8Sn7P5F+2M6DfIyUCdMAD5NCQJ
+ MYSB7dfXnzXZaZr3Nr2fgKnAAx+K6tQ94CZ+HpRBUJG3Z92Ta5544ie8c 0=;
+Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
+ by alexa-out.qualcomm.com with ESMTP; 22 Mar 2022 05:42:42 -0700
 X-QCInternal: smtphost
 Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2022 20:22:42 -0700
+ by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Mar 2022 05:42:42 -0700
 Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
  nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Mon, 21 Mar 2022 20:22:41 -0700
+ 15.2.986.22; Tue, 22 Mar 2022 05:42:41 -0700
 Received: from wgong-HP3-Z230-SFF-Workstation.qca.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Mon, 21 Mar 2022 20:22:40 -0700
+ 15.2.986.22; Tue, 22 Mar 2022 05:42:40 -0700
 From: Wen Gong <quic_wgong@quicinc.com>
 To: <ath11k@lists.infradead.org>
 CC: <linux-wireless@vger.kernel.org>, <quic_wgong@quicinc.com>
-Subject: [PATCH] ath11k: store and send country code to firmware after recovery
-Date: Mon, 21 Mar 2022 23:22:24 -0400
-Message-ID: <20220322032224.11382-1-quic_wgong@quicinc.com>
+Subject: [PATCH] ath11k: reduce the wait time of 11d scan and hw scan while
+ add interface
+Date: Tue, 22 Mar 2022 08:42:26 -0400
+Message-ID: <20220322124226.18347-1-quic_wgong@quicinc.com>
 X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220321_202246_831286_18E905BA 
-X-CRM114-Status: GOOD (  11.91  )
+X-CRM114-CacheID: sfid-20220322_054244_380613_5DCD2A04 
+X-CRM114-Status: GOOD (  23.42  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,87 +79,362 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Currently ath11k does not send the country code to firmware after device
-recovery, as a result the regdomain info is reported from firmware by
-default. Regdomain info is important, so ath11k also need to restore
-it to the value which was used before recovery.
+Currently ath11k will wait 11d scan complete while add interface in
+ath11k_mac_op_add_interface(), when system resume without enable
+wowlan, ath11k_mac_op_add_interface() is called for each resume, thus
+it increase the resume time of system. And ath11k_mac_op_hw_scan()
+after ath11k_mac_op_add_interface() also needs some time cost because
+the previous 11d scan need more than 5 seconds when 6 GHz is enabled,
+then the scan started event will indicated to ath11k after the 11d
+scan completed.
+
+While 11d scan/hw scan is running in firmware, if ath11k update channel
+list to firmware by WMI_SCAN_CHAN_LIST_CMDID, then firmware will cancel
+the current scan which is running, it lead the scan failed. The patch
+commit 9dcf6808b253 ("ath11k: add 11d scan offload support") used
+finish_11d_scan/finish_11d_ch_list/pending_11d to synchronize the 11d
+scan/hw scan/channel list between ath11k/firmware/mac80211 and to avoid
+the scan fail.
+
+Add wait operation before ath11k update channel list, function
+ath11k_reg_update_chan_list() will wait until the current 11d scan/hw
+scan completed. And remove the wait operation of start 11d scan and
+waiting channel list complete in hw scan. After these changes, resume
+time cost reduce about 5 seconds and also hw scan time cost reduced
+obviously, and scan failed not seen.
+
+The 11d scan is sent to firmware only one time for each interface added
+in mac.c, and it is moved after the 1st hw scan because 11d scan will
+cost some time and thus leads the AP scan result update to UI delay.
+Currently priority of ath11k's hw scan is WMI_SCAN_PRIORITY_LOW, and
+priority of 11d scan in firmware is WMI_SCAN_PRIORITY_MEDIUM, then the
+11d scan which sent after hw scan will cancel the hw scan in firmware,
+so change the priority to WMI_SCAN_PRIORITY_MEDIUM for the hw scan which
+is in front of the 11d scan, thus it will not happen scan cancel in
+firmware.
 
 Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
 
+Fixes: 9dcf6808b253 ("ath11k: add 11d scan offload support")
 Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
 ---
-depends on the patchset "ath11k: add feature for device recovery"
-https://patchwork.kernel.org/project/linux-wireless/cover/20220228064606.8981-1-quic_wgong@quicinc.com/
-which already exist in master-pending branch of ath.git
-
- drivers/net/wireless/ath/ath11k/core.c | 1 +
- drivers/net/wireless/ath/ath11k/core.h | 1 +
- drivers/net/wireless/ath/ath11k/mac.c  | 8 ++++++++
- drivers/net/wireless/ath/ath11k/reg.c  | 1 +
- 4 files changed, 11 insertions(+)
+ drivers/net/wireless/ath/ath11k/core.c |  1 +
+ drivers/net/wireless/ath/ath11k/core.h | 13 ++++--
+ drivers/net/wireless/ath/ath11k/mac.c  | 64 +++++++++-----------------
+ drivers/net/wireless/ath/ath11k/mac.h  |  2 +-
+ drivers/net/wireless/ath/ath11k/reg.c  | 38 +++++++++------
+ drivers/net/wireless/ath/ath11k/wmi.c  | 16 ++++++-
+ 6 files changed, 74 insertions(+), 60 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 17c205e1c39c..0bded1c5dc98 100644
+index 71eb7d04c3bf..90a5df1fbdbd 100644
 --- a/drivers/net/wireless/ath/ath11k/core.c
 +++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -1261,6 +1261,7 @@ static void ath11k_update_11d(struct work_struct *work)
- 		pdev = &ab->pdevs[i];
- 		ar = pdev->ar;
+@@ -1288,6 +1288,7 @@ static void ath11k_core_restart(struct work_struct *work)
  
-+		memcpy(&ar->alpha2, &set_current_param.alpha2, 2);
- 		ret = ath11k_wmi_send_set_current_country_cmd(ar, &set_current_param);
- 		if (ret)
- 			ath11k_warn(ar->ab,
+ 		ieee80211_stop_queues(ar->hw);
+ 		ath11k_mac_drain_tx(ar);
++		complete(&ar->completed_11d_scan);
+ 		complete(&ar->scan.started);
+ 		complete(&ar->scan.completed);
+ 		complete(&ar->peer_assoc_done);
 diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 719667fcfb9e..8c23cacdbb99 100644
+index c0228e91a596..b8634eddf49a 100644
 --- a/drivers/net/wireless/ath/ath11k/core.h
 +++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -619,6 +619,7 @@ struct ath11k {
+@@ -38,6 +38,8 @@
+ 
+ extern unsigned int ath11k_frame_mode;
+ 
++#define ATH11K_SCAN_TIMEOUT_HZ (20 * HZ)
++
+ #define ATH11K_MON_TIMER_INTERVAL  10
+ 
+ enum ath11k_supported_bw {
+@@ -189,6 +191,12 @@ enum ath11k_scan_state {
+ 	ATH11K_SCAN_ABORTING,
+ };
+ 
++enum ath11k_11d_state {
++	ATH11K_11D_IDLE,
++	ATH11K_11D_PREPARING,
++	ATH11K_11D_RUNNING,
++};
++
+ enum ath11k_dev_flags {
+ 	ATH11K_CAC_RUNNING,
+ 	ATH11K_FLAG_CORE_REGISTERED,
+@@ -607,9 +615,8 @@ struct ath11k {
+ 	bool dfs_block_radar_events;
+ 	struct ath11k_thermal thermal;
+ 	u32 vdev_id_11d_scan;
+-	struct completion finish_11d_scan;
+-	struct completion finish_11d_ch_list;
+-	bool pending_11d;
++	struct completion completed_11d_scan;
++	enum ath11k_11d_state state_11d;
  	bool regdom_set_by_user;
  	int hw_rate_code;
  	u8 twt_enabled;
-+	u8 alpha2[REG_ALPHA2_LEN + 1];
- };
- 
- struct ath11k_band_cap {
 diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index c9524e417cf6..9cca7c79c995 100644
+index d5b83f90d27a..798111e22c66 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -7917,6 +7917,14 @@ ath11k_mac_op_reconfig_complete(struct ieee80211_hw *hw,
- 		ar->state = ATH11K_STATE_ON;
- 		ieee80211_wake_queues(ar->hw);
+@@ -3595,26 +3595,6 @@ static int ath11k_mac_op_hw_scan(struct ieee80211_hw *hw,
+ 	if (ret)
+ 		goto exit;
  
-+		if (ar->ab->hw_params.current_cc_support &&
-+		    ar->alpha2[0] != 0 && ar->alpha2[1] != 0) {
-+			struct wmi_set_current_country_params set_current_param = {};
+-	/* Currently the pending_11d=true only happened 1 time while
+-	 * wlan interface up in ath11k_mac_11d_scan_start(), it is called by
+-	 * ath11k_mac_op_add_interface(), after wlan interface up,
+-	 * pending_11d=false always.
+-	 * If remove below wait, it always happened scan fail and lead connect
+-	 * fail while wlan interface up, because it has a 11d scan which is running
+-	 * in firmware, and lead this scan failed.
+-	 */
+-	if (ar->pending_11d) {
+-		long time_left;
+-		unsigned long timeout = 5 * HZ;
+-
+-		if (ar->supports_6ghz)
+-			timeout += 5 * HZ;
+-
+-		time_left = wait_for_completion_timeout(&ar->finish_11d_ch_list, timeout);
+-		ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
+-			   "mac wait 11d channel list time left %ld\n", time_left);
+-	}
+-
+ 	memset(&arg, 0, sizeof(arg));
+ 	ath11k_wmi_start_scan_init(ar, &arg);
+ 	arg.vdev_id = arvif->vdev_id;
+@@ -3680,6 +3660,10 @@ static int ath11k_mac_op_hw_scan(struct ieee80211_hw *hw,
+ 		kfree(arg.extraie.ptr);
+ 
+ 	mutex_unlock(&ar->conf_mutex);
 +
-+			memcpy(&set_current_param.alpha2, ar->alpha2, 2);
-+			ath11k_wmi_send_set_current_country_cmd(ar, &set_current_param);
++	if (ar->state_11d == ATH11K_11D_PREPARING)
++		ath11k_mac_11d_scan_start(ar, arvif->vdev_id);
++
+ 	return ret;
+ }
+ 
+@@ -6045,7 +6029,7 @@ static bool ath11k_mac_vif_ap_active_any(struct ath11k_base *ab)
+ 	return false;
+ }
+ 
+-void ath11k_mac_11d_scan_start(struct ath11k *ar, u32 vdev_id, bool wait)
++void ath11k_mac_11d_scan_start(struct ath11k *ar, u32 vdev_id)
+ {
+ 	struct wmi_11d_scan_start_params param;
+ 	int ret;
+@@ -6073,28 +6057,22 @@ void ath11k_mac_11d_scan_start(struct ath11k *ar, u32 vdev_id, bool wait)
+ 
+ 	ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "mac start 11d scan\n");
+ 
+-	if (wait)
+-		reinit_completion(&ar->finish_11d_scan);
+-
+ 	ret = ath11k_wmi_send_11d_scan_start_cmd(ar, &param);
+ 	if (ret) {
+ 		ath11k_warn(ar->ab, "failed to start 11d scan vdev %d ret: %d\n",
+ 			    vdev_id, ret);
+ 	} else {
+ 		ar->vdev_id_11d_scan = vdev_id;
+-		if (wait) {
+-			ar->pending_11d = true;
+-			ret = wait_for_completion_timeout(&ar->finish_11d_scan,
+-							  5 * HZ);
+-			ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
+-				   "mac 11d scan left time %d\n", ret);
+-
+-			if (!ret)
+-				ar->pending_11d = false;
+-		}
++		if (ar->state_11d == ATH11K_11D_PREPARING)
++			ar->state_11d = ATH11K_11D_RUNNING;
+ 	}
+ 
+ fin:
++	if (ar->state_11d == ATH11K_11D_PREPARING) {
++		ar->state_11d = ATH11K_11D_IDLE;
++		complete(&ar->completed_11d_scan);
++	}
++
+ 	mutex_unlock(&ar->ab->vdev_id_11d_lock);
+ }
+ 
+@@ -6117,12 +6095,15 @@ void ath11k_mac_11d_scan_stop(struct ath11k *ar)
+ 		vdev_id = ar->vdev_id_11d_scan;
+ 
+ 		ret = ath11k_wmi_send_11d_scan_stop_cmd(ar, vdev_id);
+-		if (ret)
++		if (ret) {
+ 			ath11k_warn(ar->ab,
+ 				    "failed to stopt 11d scan vdev %d ret: %d\n",
+ 				    vdev_id, ret);
+-		else
++		} else {
+ 			ar->vdev_id_11d_scan = ATH11K_11D_INVALID_VDEV_ID;
++			ar->state_11d = ATH11K_11D_IDLE;
++			complete(&ar->completed_11d_scan);
 +		}
-+
- 		if (ab->is_reset) {
- 			recovery_count = atomic_inc_return(&ab->recovery_count);
- 			ath11k_dbg(ab, ATH11K_DBG_BOOT,
+ 	}
+ 	mutex_unlock(&ar->ab->vdev_id_11d_lock);
+ }
+@@ -6318,8 +6299,10 @@ static int ath11k_mac_op_add_interface(struct ieee80211_hw *hw,
+ 			goto err_peer_del;
+ 		}
+ 
+-		ath11k_mac_11d_scan_start(ar, arvif->vdev_id, true);
+-
++		if (test_bit(WMI_TLV_SERVICE_11D_OFFLOAD, ab->wmi_ab.svc_map)) {
++			reinit_completion(&ar->completed_11d_scan);
++			ar->state_11d = ATH11K_11D_PREPARING;
++		}
+ 		break;
+ 	case WMI_VDEV_TYPE_MONITOR:
+ 		set_bit(ATH11K_FLAG_MONITOR_VDEV_CREATED, &ar->monitor_flags);
+@@ -7184,7 +7167,7 @@ ath11k_mac_op_unassign_vif_chanctx(struct ieee80211_hw *hw,
+ 	}
+ 
+ 	if (arvif->vdev_type == WMI_VDEV_TYPE_STA)
+-		ath11k_mac_11d_scan_start(ar, arvif->vdev_id, false);
++		ath11k_mac_11d_scan_start(ar, arvif->vdev_id);
+ 
+ 	mutex_unlock(&ar->conf_mutex);
+ }
+@@ -8665,8 +8648,7 @@ int ath11k_mac_allocate(struct ath11k_base *ab)
+ 		ar->monitor_vdev_id = -1;
+ 		clear_bit(ATH11K_FLAG_MONITOR_VDEV_CREATED, &ar->monitor_flags);
+ 		ar->vdev_id_11d_scan = ATH11K_11D_INVALID_VDEV_ID;
+-		init_completion(&ar->finish_11d_scan);
+-		init_completion(&ar->finish_11d_ch_list);
++		init_completion(&ar->completed_11d_scan);
+ 	}
+ 
+ 	return 0;
+diff --git a/drivers/net/wireless/ath/ath11k/mac.h b/drivers/net/wireless/ath/ath11k/mac.h
+index 0e6c870b09c8..29b523af66dd 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.h
++++ b/drivers/net/wireless/ath/ath11k/mac.h
+@@ -130,7 +130,7 @@ extern const struct htt_rx_ring_tlv_filter ath11k_mac_mon_status_filter_default;
+ #define ATH11K_SCAN_11D_INTERVAL		600000
+ #define ATH11K_11D_INVALID_VDEV_ID		0xFFFF
+ 
+-void ath11k_mac_11d_scan_start(struct ath11k *ar, u32 vdev_id, bool wait);
++void ath11k_mac_11d_scan_start(struct ath11k *ar, u32 vdev_id);
+ void ath11k_mac_11d_scan_stop(struct ath11k *ar);
+ void ath11k_mac_11d_scan_stop_all(struct ath11k_base *ab);
+ 
 diff --git a/drivers/net/wireless/ath/ath11k/reg.c b/drivers/net/wireless/ath/ath11k/reg.c
-index 81e11cde31d7..35eb1a0c04dc 100644
+index 81e11cde31d7..5e2fa69ae565 100644
 --- a/drivers/net/wireless/ath/ath11k/reg.c
 +++ b/drivers/net/wireless/ath/ath11k/reg.c
-@@ -83,6 +83,7 @@ ath11k_reg_notifier(struct wiphy *wiphy, struct regulatory_request *request)
- 	 */
- 	if (ar->ab->hw_params.current_cc_support) {
- 		memcpy(&set_current_param.alpha2, request->alpha2, 2);
-+		memcpy(&ar->alpha2, &set_current_param.alpha2, 2);
- 		ret = ath11k_wmi_send_set_current_country_cmd(ar, &set_current_param);
- 		if (ret)
- 			ath11k_warn(ar->ab,
+@@ -111,7 +111,31 @@ int ath11k_reg_update_chan_list(struct ath11k *ar)
+ 	struct channel_param *ch;
+ 	enum nl80211_band band;
+ 	int num_channels = 0;
+-	int i, ret;
++	int i, ret, left;
++
++	if (ar->state_11d != ATH11K_11D_IDLE) {
++		left = wait_for_completion_timeout(&ar->completed_11d_scan,
++						   ATH11K_SCAN_TIMEOUT_HZ);
++		if (!left) {
++			ath11k_warn(ar->ab,
++				    "failed to receive 11d scan complete: timed out\n");
++			ar->state_11d = ATH11K_11D_IDLE;
++		}
++		ath11k_dbg(ar->ab, ATH11K_DBG_REG,
++			   "reg 11d scan wait left time %d\n", left);
++	}
++
++	if (ar->scan.state == ATH11K_SCAN_STARTING ||
++	    ar->scan.state == ATH11K_SCAN_RUNNING) {
++		left = wait_for_completion_timeout(&ar->scan.completed,
++						   ATH11K_SCAN_TIMEOUT_HZ);
++		if (!left)
++			ath11k_warn(ar->ab,
++				    "failed to receive hw scan complete: timed out\n");
++
++		ath11k_dbg(ar->ab, ATH11K_DBG_REG,
++			   "reg hw scan wait left time %d\n", left);
++	}
+ 
+ 	bands = hw->wiphy->bands;
+ 	for (band = 0; band < NUM_NL80211_BANDS; band++) {
+@@ -193,11 +217,6 @@ int ath11k_reg_update_chan_list(struct ath11k *ar)
+ 	ret = ath11k_wmi_send_scan_chan_list_cmd(ar, params);
+ 	kfree(params);
+ 
+-	if (ar->pending_11d) {
+-		complete(&ar->finish_11d_ch_list);
+-		ar->pending_11d = false;
+-	}
+-
+ 	return ret;
+ }
+ 
+@@ -263,15 +282,8 @@ int ath11k_regd_update(struct ath11k *ar)
+ 		goto err;
+ 	}
+ 
+-	if (ar->pending_11d)
+-		complete(&ar->finish_11d_scan);
+-
+ 	rtnl_lock();
+ 	wiphy_lock(ar->hw->wiphy);
+-
+-	if (ar->pending_11d)
+-		reinit_completion(&ar->finish_11d_ch_list);
+-
+ 	ret = regulatory_set_wiphy_regd_sync(ar->hw->wiphy, regd_copy);
+ 	wiphy_unlock(ar->hw->wiphy);
+ 	rtnl_unlock();
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index b4f86c45d81f..2751fe8814df 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -2015,7 +2015,10 @@ void ath11k_wmi_start_scan_init(struct ath11k *ar,
+ {
+ 	/* setup commonly used values */
+ 	arg->scan_req_id = 1;
+-	arg->scan_priority = WMI_SCAN_PRIORITY_LOW;
++	if (ar->state_11d == ATH11K_11D_PREPARING)
++		arg->scan_priority = WMI_SCAN_PRIORITY_MEDIUM;
++	else
++		arg->scan_priority = WMI_SCAN_PRIORITY_LOW;
+ 	arg->dwell_time_active = 50;
+ 	arg->dwell_time_active_2g = 0;
+ 	arg->dwell_time_passive = 150;
+@@ -6350,8 +6353,10 @@ static void ath11k_wmi_op_ep_tx_credits(struct ath11k_base *ab)
+ static int ath11k_reg_11d_new_cc_event(struct ath11k_base *ab, struct sk_buff *skb)
+ {
+ 	const struct wmi_11d_new_cc_ev *ev;
++	struct ath11k *ar;
++	struct ath11k_pdev *pdev;
+ 	const void **tb;
+-	int ret;
++	int ret, i;
+ 
+ 	tb = ath11k_wmi_tlv_parse_alloc(ab, skb->data, skb->len, GFP_ATOMIC);
+ 	if (IS_ERR(tb)) {
+@@ -6377,6 +6382,13 @@ static int ath11k_reg_11d_new_cc_event(struct ath11k_base *ab, struct sk_buff *s
+ 
+ 	kfree(tb);
+ 
++	for (i = 0; i < ab->num_radios; i++) {
++		pdev = &ab->pdevs[i];
++		ar = pdev->ar;
++		ar->state_11d = ATH11K_11D_IDLE;
++		complete(&ar->completed_11d_scan);
++	}
++
+ 	queue_work(ab->workqueue, &ab->update_11d_work);
+ 
+ 	return 0;
 
 base-commit: d845cf007bdf8b2bf41522e1ecd0eb804e553d57
-prerequisite-patch-id: 8bb6c2b19d735f076e8f60a4fe10ceea3ad1b80d
-prerequisite-patch-id: 480ddeb9d867bda9fc673b0dd2af7e8fd0e1d184
-prerequisite-patch-id: 2d69ea48692d11b6d8681447fa8f63d2753a7780
-prerequisite-patch-id: bcfccd769faad1aa219c7e7d2b59def344c4a152
-prerequisite-patch-id: abc29d03fdea060832fb3216c635991de46d0254
 -- 
 2.31.1
 
