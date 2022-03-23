@@ -4,60 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7FDEC433F5
-	for <ath11k@archiver.kernel.org>; Wed, 23 Mar 2022 08:52:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01435C433EF
+	for <ath11k@archiver.kernel.org>; Wed, 23 Mar 2022 08:53:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
-	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=c9aMpLz9EFoljiZxHkePsWaNcw4th7Wn6/7smAV64x4=; b=2OPYGJpf7ruQ0l
-	o5wrajKq5QF3VyYgBbVv5kDTW3jVfsq/+n0z/VsuKigKkdezdWT/E41dja9sblpilLEj7LdHjzvCU
-	EiUo16Pj36jd37fuIlhzet9REEzAjMtsQS+V4dsPki/zue5jqYo5ieYFH2Y/5kJX055BbgAGjzEql
-	WTFcy2BMR+Aj6qfdYOgZJFe1KVCQDmZ3ReWBsoXqseh0KFYvODpGQXrbNRep4baA0frJ5tll5g2Gq
-	guUjcKgAhPq3rpNDl0+3hiyVeTlGmlOqRc8gb7gEnZWl0h0VTyhp1v/zZjwZsW9zDjHFsOB9RNJYO
-	FhPYNZ3drTzSvUgvDVsg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Ycw00SfRFraBPh2dP6nu+vEBUQrdeOSUUWbsFhgP1Fg=; b=Jyc4+RGWO2fLzj
+	OPv6PRR27zY0Zdh9iC8RSqPbY5Yw1vt10CS+1DiLZ7091CYXMoPDCR4BHD4sZgJyxgtiBwgX+/RAo
+	D1pNOZsus/+vsaqsCEVAfXLNr0w91vKYZdSlTCKs9wc18o060SMJO2kJsesB5zjZmn8GsM0tj5zl5
+	dMfOPt239jy9gBx1VHIFKafIV8DK6DvqHOdhzbrT15DxCPFWMU4y/+b7hKF1oPN4PED8CXydx+EXe
+	hq0dkLvvrriku4KcjdQEeeXUvFNItqOvPW3AsYhlKD/5poshQTmdPa0KjrZ7mzn5bYzbtoMsnOfrf
+	OIFvfIWAdYyu8CB5VM6w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nWwjP-00D9pA-Hi; Wed, 23 Mar 2022 08:52:39 +0000
-Received: from sin.source.kernel.org ([145.40.73.55])
+	id 1nWwjo-00D9ui-0V; Wed, 23 Mar 2022 08:53:04 +0000
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nWwjM-00D9oS-O4
- for ath11k@lists.infradead.org; Wed, 23 Mar 2022 08:52:38 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by sin.source.kernel.org (Postfix) with ESMTPS id 5FCE7CE1F47;
- Wed, 23 Mar 2022 08:52:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C1E6C340E8;
- Wed, 23 Mar 2022 08:52:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1648025551;
- bh=YjWHIZTg6PjTiotVPBCLS3wghluBjBFTrsWS2433muE=;
- h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
- b=p8oZgQdsBzrWpgckjFumesIw/6mqqBhkQRbMXsFLnDgnelVf3S/j9pt4JezdaZ7VG
- 40T5MWW1KZkHc5mqDVzFivZhHsM7JyEqF0dixWcFShTrLDxYi5Ky4EMyOYzovMH5x1
- DJqIwMvmJJGtvthSHLuOhiptUgyq3Dj5yJMMv75pOUuz4NXKSlqjDC8IFXD2xbgX8h
- W5o7lukjHXkhorhutfINUq+6I+1RqL1K+rdfq4Ltc2MYlmFfNiPuhiGCPXRTmNlEiz
- jU9OKjewn5+kIDLTPFjw4l9h8yM8ysoK4htMGLAN3ei/EHCIzSSSgtCZC2yKTpG2lp
- 2IayRTMG7RzWQ==
+ id 1nWwjl-00D9u4-Vd
+ for ath11k@lists.infradead.org; Wed, 23 Mar 2022 08:53:03 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+ t=1648025581; x=1679561581;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=sDeRRsmRpuViwjigGYPiNv2eAp0jI1SP6C9suZ9+Qik=;
+ b=av3TIrZUuKYz6AlT0xaq9d8Fy/6VmOn2c1hvPySLlIXawKTC/U4rj4Pn
+ BTiOY2fp/eGL5tlv8zmeY41pjogIXEkKRsOyS1fOvqgBjamflT1kr1ru0
+ oDemN5VdCMEbmFB1GEJpbWWpQJZTj3dL0HGevah6L8VuLerbGN8SJoPp5 Q=;
+Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
+ by alexa-out-sd-02.qualcomm.com with ESMTP; 23 Mar 2022 01:52:59 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+ by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2022 01:52:59 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Wed, 23 Mar 2022 01:52:47 -0700
+Received: from [10.253.72.173] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Wed, 23 Mar
+ 2022 01:52:46 -0700
+Message-ID: <1c4230e0-f01e-0db1-af95-65aa2d3ac508@quicinc.com>
+Date: Wed, 23 Mar 2022 16:52:43 +0800
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: acquire ab->base_lock in unassign when finding the
- peer by addr
-From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20220314215253.92658-1-dossche.niels@gmail.com>
-References: <20220314215253.92658-1-dossche.niels@gmail.com>
-To: Niels Dossche <dossche.niels@gmail.com>
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
- Carl Huang <cjhuang@codeaurora.org>, Niels Dossche <dossche.niels@gmail.com>
-User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <164802554371.545.14175354051813428443.kvalo@kernel.org>
-Date: Wed, 23 Mar 2022 08:52:30 +0000 (UTC)
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v6 2/2] ath11k: add read variant from SMBIOS for download
+ board data
+Content-Language: en-US
+To: Kalle Valo <kvalo@kernel.org>
+CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
+References: <20220315104721.26649-1-quic_wgong@quicinc.com>
+ <20220315104721.26649-3-quic_wgong@quicinc.com> <87r16tkqbx.fsf@kernel.org>
+From: Wen Gong <quic_wgong@quicinc.com>
+In-Reply-To: <87r16tkqbx.fsf@kernel.org>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220323_015237_000783_8CC23D7D 
-X-CRM114-Status: GOOD (  13.35  )
+X-CRM114-CacheID: sfid-20220323_015302_103632_2B7DEF63 
+X-CRM114-Status: UNSURE (   7.44  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -69,39 +80,42 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Niels Dossche <dossche.niels@gmail.com> wrote:
+On 3/23/2022 4:47 PM, Kalle Valo wrote:
+> Wen Gong <quic_wgong@quicinc.com> writes:
+>
+>> This is to read variant from SMBIOS such as read from DT, the variant
+>> string will be used to one part of string which used to search board
+>> data from board-2.bin.
+>>
+>> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
+>>
+>> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
+> [...]
+>
+>> +struct ath11k_smbios_bdf {
+>> +	struct dmi_header hdr;
+>> +	u32 padding;
+>> +	u8 bdf_enabled;
+>> +	u8 bdf_ext[1];
+>> +};
+> I was about to commit this but noticed bdf_ext[1], is there a reason for
+> that? Use of [1] in arrays is deprecated nowadays:
 
-> ath11k_peer_find_by_addr states via lockdep that ab->base_lock must be
-> held when calling that function in order to protect the list. All
-> callers except ath11k_mac_op_unassign_vif_chanctx have that lock
-> acquired when calling ath11k_peer_find_by_addr. That lock is also not
-> transitively held by a path towards ath11k_mac_op_unassign_vif_chanctx.
-> The solution is to acquire the lock when calling
-> ath11k_peer_find_by_addr inside ath11k_mac_op_unassign_vif_chanctx.
-> 
-> I am currently working on a static analyser to detect missing locks and
-> this was a reported case. I manually verified the report by looking at
-> the code, but I do not have real hardware so this is compile tested
-> only.
-> 
-> Fixes: 701e48a43e15 ("ath11k: add packet log support for QCA6390")
-> Signed-off-by: Niels Dossche <dossche.niels@gmail.com>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+Kalle,
 
-Patch applied to ath-next branch of ath.git, thanks.
+no reason for it, please change bdf_ext[1] to bdf_ext[0] or bdf_ext[]. 
+It will also work well.
 
-2db80f93869d ath11k: acquire ab->base_lock in unassign when finding the peer by addr
+thanks.
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20220314215253.92658-1-dossche.niels@gmail.com/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
+>
+> https://www.kernel.org/doc/html/v5.16/process/deprecated.html#zero-length-and-one-element-arrays
+>
 
 -- 
 ath11k mailing list
