@@ -4,65 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 700A1C433F5
-	for <ath11k@archiver.kernel.org>; Thu, 24 Mar 2022 01:19:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20E61C433EF
+	for <ath11k@archiver.kernel.org>; Thu, 24 Mar 2022 18:10:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=rOSxgZ7ijKL8RUI/AKP94HYj9xErt2LWzGpkPG3UBfU=; b=OXBNdBfhCaojoy
-	1uTnSzroJ/2C1+QoGRu/KdEtXEBJJU0NV8AdUDGWmiDOabBGAvuDQjgw3vVAVytYh+Hek6ENxDfjT
-	zO5KtBTVuhKVGZybFj4Fj4OvFIPNKSsah+GtPaMDQ62S/e3LbbqQVhwhUfmb7Q40AtxPvAvjOImtU
-	GjCiL2YiuoMSdsZOEacEKEsPjSve8RBDWT8Qr3MIyv3vnwxizV2KN7LzK6u6UYHA0p4Fpe3lLGIRd
-	7KL6iSXlAF9oBokHgPtvWrp2CcM/gSvk15HrruYcKHrIDSNycFKWGF41IAqWwhtaTmIFQWCEdbR9f
-	S+Gd96igCfhVA7otgmfA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:Cc:To:From
+	:Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=IHRyPKQtUXjGB0G7yninpXaD9nRqiFJR1JdBgNs+hRQ=; b=P/1yJlH04P1Z2urRsJYliBssnO
+	vH8lH79lEd7OTD9ygKP9pspfCgY3nBRf49PSJrt94nJkbPKgR1tXplGVst5gTbkSh6Se10lFd658F
+	LBhdnj7SEFynwHvhchorQN7dc65Juii/3hNOmaSpYj2jOhaD8DlVQqlIgSVJnFKQDGxNgCAh+za4j
+	MrNL76QBJCB+Y2YnHweexb6v1eQNZkjzsZiTAJkBMFjWrYyHAO1FKC+g9O62ZWmWDSVNGWAtu4+Fk
+	Xuygxpt0neJjdXkDbp+IJ8MK6UBkpek1rE8hUMZF2ot7tAr12vaWvSD9+r3Z/eXv9x4cp7HQzFR5I
+	ER1X69/w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nXC8D-00FIbK-JD; Thu, 24 Mar 2022 01:19:17 +0000
-Received: from alexa-out.qualcomm.com ([129.46.98.28])
+	id 1nXRur-00HVlm-2N; Thu, 24 Mar 2022 18:10:33 +0000
+Received: from m43-7.mailgun.net ([69.72.43.7])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nXC8B-00FIao-73
- for ath11k@lists.infradead.org; Thu, 24 Mar 2022 01:19:16 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1648084755; x=1679620755;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=aZaxFGN7wIInQGry0NnfGJUmQpkaYS5NdcbjHX9xLOI=;
- b=zM8Dw4r3qxUqExaDdSY7Q3/S/yW+dkFtq1wRzS3wrL5S63nmkyt4CMmD
- lGZnQUcBZwn4kOUw16vvOQpvR0G6FJvBojMHBggBrOWRT4F2BdJ+loMIR
- T0jG6QpbGcfXMkP+7lO81x4t6odIsxnpHgndNMn9l0bJeVwaFXlIxlfVZ 0=;
-Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
- by alexa-out.qualcomm.com with ESMTP; 23 Mar 2022 18:19:13 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2022 18:19:14 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 23 Mar 2022 18:19:13 -0700
-Received: from wgong-HP3-Z230-SFF-Workstation.qca.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 23 Mar 2022 18:19:12 -0700
-From: Wen Gong <quic_wgong@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, <quic_wgong@quicinc.com>
-Subject: [PATCH v2] ath11k: store and send country code to firmware after
- recovery
-Date: Wed, 23 Mar 2022 21:18:56 -0400
-Message-ID: <20220324011856.11014-1-quic_wgong@quicinc.com>
-X-Mailer: git-send-email 2.31.1
+ id 1nXRun-00HVkz-9u
+ for ath11k@lists.infradead.org; Thu, 24 Mar 2022 18:10:31 +0000
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
+ q=dns/txt; 
+ s=smtp; t=1648145422; h=Message-ID: References: In-Reply-To: Subject:
+ Subject: Cc: To: To: From: From: Date: Content-Transfer-Encoding:
+ Content-Type: MIME-Version: Sender: Sender;
+ bh=P7l+F5W+JnfONQ+yGtvPnXcDSOEvZtvC8Ey4H8jwmp0=;
+ b=sMM6lh2cpU9uztzBJUOw/MXu2uC0CdjcbkF/mCAhDZ/2FZ5e4zxSjqLXkka5W9FH02vNogMx
+ 8r/ISbQSn/mu21aVv7ZfHKzr5Lq1G3+vToKT46TLoVfs2/FCfFE0TfTHafqa/FMlLJV2SVfK
+ m9kZeLJcopO02uYwcprZ4IBQtd8=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyJmOGQ2ZiIsICJhdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
+ 623cb40d6da2209201ae634a (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 24 Mar 2022 18:10:21
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+ id 07C7BC4360D; Thu, 24 Mar 2022 18:10:21 +0000 (UTC)
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+ (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+ (No client certificate requested) (Authenticated sender: mkenna)
+ by smtp.codeaurora.org (Postfix) with ESMTPSA id C4B36C4338F;
+ Thu, 24 Mar 2022 18:10:20 +0000 (UTC)
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+Date: Thu, 24 Mar 2022 23:40:20 +0530
+From: Maharaja Kennadyrajan <mkenna@codeaurora.org>
+To: Sven Eckelmann <sven@narfation.org>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
+Subject: Re: [PATCH v5 1/3] nl80211: Add support for beacon tx mode
+In-Reply-To: <6210385.n8AMQ0p90U@ripper>
+References: <1628585783-21139-1-git-send-email-mkenna@codeaurora.org>
+ <1628585783-21139-2-git-send-email-mkenna@codeaurora.org>
+ <6210385.n8AMQ0p90U@ripper>
+Message-ID: <3c54fa579046082c6dc30286ab291936@codeaurora.org>
+X-Sender: mkenna@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220323_181915_312674_BE90CE12 
-X-CRM114-Status: GOOD (  11.48  )
+X-CRM114-CacheID: sfid-20220324_111029_463941_7AFA1F0F 
+X-CRM114-Status: UNSURE (   8.37  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,88 +77,26 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Currently ath11k does not send the country code to firmware after device
-recovery, as a result the regdomain info is reported from firmware by
-default. Regdomain info is important, so ath11k also need to restore
-it to the value which was used before recovery.
+On 2021-08-10 16:22, Sven Eckelmann wrote:
+> On Tuesday, 10 August 2021 10:56:21 CEST Maharaja Kennadyrajan wrote:
+>> 1. Staggered mode and 2. Burst mode while bring-up the AP
+>> or MESH.
+> 
+> Why when you bring up mesh or AP when it is actually a global setting 
+> for this
+> radio/PHY?
 
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
+[Maha]: yes, it is radio/PHY setting only and it is supported for AP and 
+MESH mode now.
 
-Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
----
-v2: rebased to ath.git ath-202203230912
-
- drivers/net/wireless/ath/ath11k/core.c | 1 +
- drivers/net/wireless/ath/ath11k/core.h | 1 +
- drivers/net/wireless/ath/ath11k/mac.c  | 8 ++++++++
- drivers/net/wireless/ath/ath11k/reg.c  | 1 +
- 4 files changed, 11 insertions(+)
-
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 9cfba73b9e22..5243bd0aadb3 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -1300,6 +1300,7 @@ static void ath11k_update_11d(struct work_struct *work)
- 		pdev = &ab->pdevs[i];
- 		ar = pdev->ar;
- 
-+		memcpy(&ar->alpha2, &set_current_param.alpha2, 2);
- 		ret = ath11k_wmi_send_set_current_country_cmd(ar, &set_current_param);
- 		if (ret)
- 			ath11k_warn(ar->ab,
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 70eb6e418422..a23812617298 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -651,6 +651,7 @@ struct ath11k {
- 	int hw_rate_code;
- 	u8 twt_enabled;
- 	bool nlo_enabled;
-+	u8 alpha2[REG_ALPHA2_LEN + 1];
- };
- 
- struct ath11k_band_cap {
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 34a62933ccd2..9c25c60587ae 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -7951,6 +7951,14 @@ ath11k_mac_op_reconfig_complete(struct ieee80211_hw *hw,
- 		ar->state = ATH11K_STATE_ON;
- 		ieee80211_wake_queues(ar->hw);
- 
-+		if (ar->ab->hw_params.current_cc_support &&
-+		    ar->alpha2[0] != 0 && ar->alpha2[1] != 0) {
-+			struct wmi_set_current_country_params set_current_param = {};
-+
-+			memcpy(&set_current_param.alpha2, ar->alpha2, 2);
-+			ath11k_wmi_send_set_current_country_cmd(ar, &set_current_param);
-+		}
-+
- 		if (ab->is_reset) {
- 			recovery_count = atomic_inc_return(&ab->recovery_count);
- 			ath11k_dbg(ab, ATH11K_DBG_BOOT,
-diff --git a/drivers/net/wireless/ath/ath11k/reg.c b/drivers/net/wireless/ath/ath11k/reg.c
-index 81e11cde31d7..35eb1a0c04dc 100644
---- a/drivers/net/wireless/ath/ath11k/reg.c
-+++ b/drivers/net/wireless/ath/ath11k/reg.c
-@@ -83,6 +83,7 @@ ath11k_reg_notifier(struct wiphy *wiphy, struct regulatory_request *request)
- 	 */
- 	if (ar->ab->hw_params.current_cc_support) {
- 		memcpy(&set_current_param.alpha2, request->alpha2, 2);
-+		memcpy(&ar->alpha2, &set_current_param.alpha2, 2);
- 		ret = ath11k_wmi_send_set_current_country_cmd(ar, &set_current_param);
- 		if (ret)
- 			ath11k_warn(ar->ab,
-
-base-commit: d3dc55a0ce389be715ac7d104ee2cc852681e8d1
--- 
-2.31.1
-
+> 
+> Kind regards,
+> 	Sven
 
 -- 
 ath11k mailing list
