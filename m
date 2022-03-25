@@ -4,62 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB704C433EF
-	for <ath11k@archiver.kernel.org>; Fri, 25 Mar 2022 06:00:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE417C433EF
+	for <ath11k@archiver.kernel.org>; Fri, 25 Mar 2022 07:26:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=MtHES1Ulcfzg6FLh3MGOmr20EchDYux9/aAXq8DRtSU=; b=cF6eohSEpeu7CK
-	vkkxvoQjUwrMtgW3jDDx4CI3hI93E7CP4Hp4ftg0hys0cRB+oVBmWtiZ0pwKTsYfGFpvdoblr+L1o
-	cFPElaj7VB3MGUGJqdxHB5UZZOdtkF1VbsSBTdIU+hJ2R5F9ftffZ7B+9T5/IshcF+nqKIDHhf7eV
-	XUaOiR13RyQO+0JwIde3Eau+ogg7i1xtcQXMChRKOuUz50emcasyuPbaV80wCwSBKRbAEVYcA3BhJ
-	8OUGLK9Y0Xf3PWPTG/PNefyqN4aNvm77tKdA7OhybBea13V95L8Ww6vfkX22XNzcVzgrwdpEYXg0g
-	lAuAGUbiLMpDgsvwvNjQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=C2rQN8nXDNdv/AtYOJevuIsDcSbDQgEVG6XhV1rUwUk=; b=e6N1DF3KP11AkRHtThO53yyq+O
+	eTZD1FehhQ4g2pLl7CfSSp22r8YeR6yqp/+54YuLojTNbIQc9CTSHq+vV8IW33hkNdpN/5absS/Ym
+	O/7aLWqWU18bHIW8TA0518rIMeJ7h7hh+lW5cS88xj+YCjtiRil4umvoyP34YTr3+/XGpDU8U1Ckd
+	HKSQ6gJta8E3YRx6Wc/efaO6/luyPOBnvAyj0V5vddtNwqqlt8CKx22qzAOl7PUu8QiRpPswxU6Az
+	HHJ57va7XaT+tpV4R3waNtqJjsVKOI6H56B3D4Nx3wkhIbLIwe7/2mJYAN2FQgPjN4KVwqCMWc8q4
+	Hh5Tp5VQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nXczm-001EJV-0J; Fri, 25 Mar 2022 06:00:22 +0000
-Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38])
+	id 1nXeL1-001L2Y-Co; Fri, 25 Mar 2022 07:26:23 +0000
+Received: from dvalin.narfation.org ([213.160.73.56])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nXczh-001EGl-Uy
- for ath11k@lists.infradead.org; Fri, 25 Mar 2022 06:00:19 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1648188017; x=1679724017;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=qlkNo0rlME38fjoU/3oXKjNCucC8om9fe5w4NImMYFQ=;
- b=fAC3boOwP6+AHr9bHSoMPvYVF0ScNVJmf7siskLXghQzIomkStRa5y7p
- 5PAiZyWWzXNoi8pzyH5OjTrIXU1O9gr4Yt2VeFzwDsnoUr7OoG253qMmv
- Bz0KLRoKxMoaFMpvl+FHHxUbIw3vbTp4crv1Nj6rSEiL/vylLcRSqKVWy U=;
-Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
- by alexa-out-sd-01.qualcomm.com with ESMTP; 24 Mar 2022 23:00:16 -0700
-X-QCInternal: smtphost
-Received: from unknown (HELO nasanex01a.na.qualcomm.com) ([10.52.223.231])
- by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2022 23:00:16 -0700
-Received: from che-siroccolnx03.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Thu, 24 Mar 2022 23:00:14 -0700
-From: Maharaja Kennadyrajan <quic_mkenna@quicinc.com>
-To: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
-CC: Maharaja Kennadyrajan <quic_mkenna@quicinc.com>
-Subject: [PATCH v6 3/3] ath11k: Add support for beacon tx mode
-Date: Fri, 25 Mar 2022 11:29:49 +0530
-Message-ID: <20220325055949.3035053-4-quic_mkenna@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220325055949.3035053-1-quic_mkenna@quicinc.com>
-References: <20220325055949.3035053-1-quic_mkenna@quicinc.com>
+ id 1nXeKy-001L1z-Cf
+ for ath11k@lists.infradead.org; Fri, 25 Mar 2022 07:26:22 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+ s=20121; t=1648193175;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=+y0EoZNvS8wlq8z+BSVtPdl9tjxgILVz0c89RdWlznc=;
+ b=nC6zIy1roWwhMJQhK3evmQhPndU3CieItULRFtT5quihhfnCzCdL8RqEYwHFTAds/qOhUO
+ i3SoUBrNIrsEVUjM/D0v7IGHn26vx9h/OhHbITUKB89hdjEBmf9r49JY0w0h6xFDBQv5FR
+ TW6kVIB9Z1hCbci0Z09FHFJ96Ze9oRI=
+From: Sven Eckelmann <sven@narfation.org>
+To: Maharaja Kennadyrajan <mkenna@codeaurora.org>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
+Subject: Re: [PATCH v5 1/3] nl80211: Add support for beacon tx mode
+Date: Fri, 25 Mar 2022 08:26:10 +0100
+Message-ID: <4594028.WNQrFERZ9z@ripper>
+In-Reply-To: <3c54fa579046082c6dc30286ab291936@codeaurora.org>
+References: <1628585783-21139-1-git-send-email-mkenna@codeaurora.org>
+ <6210385.n8AMQ0p90U@ripper> <3c54fa579046082c6dc30286ab291936@codeaurora.org>
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220324_230018_051221_A81E0F29 
-X-CRM114-Status: GOOD (  11.33  )
+X-CRM114-CacheID: sfid-20220325_002620_786403_D323452E 
+X-CRM114-Status: UNSURE (   7.05  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,64 +59,74 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============6698706919941621369=="
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Add support to configure the beacon tx mode in
-the driver.
+--===============6698706919941621369==
+Content-Type: multipart/signed; boundary="nextPart1758225.uXCZi3jzxr"; micalg="pgp-sha512"; protocol="application/pgp-signature"
 
-Beacons can be sent out in burst(continuously in a single shot
-one after another) or staggered (equally spread out over beacon
-interval) mode.
+--nextPart1758225.uXCZi3jzxr
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
+From: Sven Eckelmann <sven@narfation.org>
+To: Maharaja Kennadyrajan <mkenna@codeaurora.org>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
+Subject: Re: [PATCH v5 1/3] nl80211: Add support for beacon tx mode
+Date: Fri, 25 Mar 2022 08:26:10 +0100
+Message-ID: <4594028.WNQrFERZ9z@ripper>
+In-Reply-To: <3c54fa579046082c6dc30286ab291936@codeaurora.org>
+References: <1628585783-21139-1-git-send-email-mkenna@codeaurora.org> <6210385.n8AMQ0p90U@ripper> <3c54fa579046082c6dc30286ab291936@codeaurora.org>
 
-Use the below configuration in the hostapd/wpa_supplicant
-for AP/MESH mode to configure the beacon tx mode.
+On Thursday, 24 March 2022 19:10:20 CET Maharaja Kennadyrajan wrote:
+> [Maha]: yes, it is radio/PHY setting only and it is supported for AP and 
+> MESH mode now.
 
-"beacon_tx_mode=N", where N = 1 for STAGGERED beacon mode
-and N = 2 for BURST beacon mode.
+But why are you setting it by vif when it is actually a PHY setting?
 
-Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1-00480-QCAHKSWPL_SILICONZ-1
+Kind regards,
+	Sven
+--nextPart1758225.uXCZi3jzxr
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
 
-Signed-off-by: Maharaja Kennadyrajan <quic_mkenna@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/mac.c | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
+-----BEGIN PGP SIGNATURE-----
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 34a62933ccd2..46b8220a4e80 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -3125,7 +3125,10 @@ static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
- 
- 	if (changed & BSS_CHANGED_BEACON) {
- 		param_id = WMI_PDEV_PARAM_BEACON_TX_MODE;
--		param_value = WMI_BEACON_STAGGERED_MODE;
-+		if (info->beacon_tx_mode == NL80211_BEACON_BURST_MODE)
-+			param_value = WMI_BEACON_BURST_MODE;
-+		else
-+			param_value = WMI_BEACON_STAGGERED_MODE;
- 		ret = ath11k_wmi_pdev_set_param(ar, param_id,
- 						param_value, ar->pdev->pdev_id);
- 		if (ret)
-@@ -3133,8 +3136,9 @@ static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
- 				    arvif->vdev_id);
- 		else
- 			ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
--				   "Set staggered beacon mode for VDEV: %d\n",
--				   arvif->vdev_id);
-+				   "Set %s beacon mode for VDEV: %d mode: %d\n",
-+				   (param_value == WMI_BEACON_BURST_MODE) ? "burst" : "staggered",
-+				   arvif->vdev_id, param_value);
- 
- 		if (!arvif->do_not_send_tmpl || !arvif->bcca_zero_sent) {
- 			ret = ath11k_mac_setup_bcn_tmpl(arvif);
--- 
-2.25.1
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmI9bpIACgkQXYcKB8Em
+e0amsw//XVFMI3zFPPfBdQNhZu2vXOzUJUQ+WnSE6gqmNY1WmPs41tV4bTZkWuqS
+6nba7dXnviTrASs4QOGfNvhlaEGxucAt1E/eaEEhyPTtioX4IMSdII8dfaFIv/yE
+vWLlOUR17muCHWJ+eRBMSJX2WJnIP5A4lWhuTNwkqLLhlIXhZQpwDOAryruFQ7Gq
+foOvEw+eUtFXVOq/YsrSMZwzMHX3qOPY8segup1lsAYFfTUgK48e+Wj4LOmUND2i
+zGGPHK6CAp10oF8ISzKMq+ERF3gsDlxdnvfuxc6RbDLKS6kkbE6nfU84fX8ZXZt5
+Z/gNlEUQCFKCFxWC6jkM9qhR+9q8wg748etPqSq+ov4vPrFaMWUhMh545a+bLVsi
+CCnckQMrWfPNv9WxwyYMjrtQS7huq1F41DEoXPCu4IoGF5Eb9TKwZyw1m1HKjm/5
+wLW/E+CCfgHnsTFvs9paTh80AKqoIbesGO1OxTyKgeInZ9oqbmNMQhSE4xprBW44
+TP5OoPxBTR+Y+Y5OKTkuW2sYRCqGc9yCEFUGa0vFBKdY0idXXhgi6AJgOzQVhm8m
+7XxP18PPRYCXcWoM+QoeqmddxNDdZfk6YBg22mVGSUfavPWHiB4PKtXiD4uMGcuV
+R6O2i8ddIE4r3lx3UVb0X1YMrh9j88uUIO3Q/Z1werxKw6T1vBc=
+=Ee0X
+-----END PGP SIGNATURE-----
 
+--nextPart1758225.uXCZi3jzxr--
+
+
+
+
+
+--===============6698706919941621369==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 -- 
 ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
+
+--===============6698706919941621369==--
+
+
+
+
