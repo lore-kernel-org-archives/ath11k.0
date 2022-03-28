@@ -4,57 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BF2CC433FE
-	for <ath11k@archiver.kernel.org>; Mon, 28 Mar 2022 09:49:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7851C433F5
+	for <ath11k@archiver.kernel.org>; Mon, 28 Mar 2022 09:49:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=esMWqk6wJ09OLWPmuK5DuQg/vlgLlX+dPc9UX1HqA4o=; b=1JsmLIcnXfC58+
-	zT9LfYPWyBamruqMQEqDdxorp2Ip1MFy+Yk4d48nNyyiXcD8WReSQJ4Xf12gBdZobPxqCrmPLK0jj
-	ngf23sfUX9bDmovH73nI6teSNACj0azH0PbjK30BppZLBTQYUdiroyDBxNR9wviGilGAZKP3ntEP9
-	VE5tRD5sxy83Nvj+B04zYVGSPOd/gMWdz8vrCBYPN0Kb6kC01MLI1YAuxgMMQg81/dP2vMMTDYCN5
-	i4GTIIBZoqTj/9KaDtszO9tg5rSVRdt3d+RpRttU4AbGlL7Vh4Er36/KUTnU8fyoTVmR1QeWEMz+R
-	5Z+chI5PQj25cheqpelg==;
+	List-Owner; bh=E848JCg1jQ9KH5QFjYgCkHxhZt/1ts65VzHZCBevEFY=; b=DY3jx+bwzW8k6x
+	LFtSPTv9T7hf2P9uttxBgrqhvSEUUW+KoepTfStlifob0TBTEHNHDuTwwJE5C7mTJXcY7STKnNi//
+	V3H4cqv3g8VxmDD7QQmGmj5lGLWKWqE0dwesGVjIK1n3tWHzam/uZdHDjfFdyeARK+nwpz6UOoMFT
+	m7iTppUqYpatr+ByB9fOJXhJFPoyW3DpchV30zsILL5ayXr9+4hIA8l85jf8WtSc64VOafUOGy/fw
+	BA/47D4uWaCWc7HyCbUipPJdT38T/kA7DVAmAFu3apItDVhRgnIDopbMDTIV1aYuejCYfUQIcm/YH
+	ZTB19KYMueJnX5EcN5bg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nYlzo-0084eI-0j; Mon, 28 Mar 2022 09:49:08 +0000
-Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39])
+	id 1nYlzq-0084gd-Ff; Mon, 28 Mar 2022 09:49:10 +0000
+Received: from alexa-out.qualcomm.com ([129.46.98.28])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nYlzk-0084Zu-Vq
- for ath11k@lists.infradead.org; Mon, 28 Mar 2022 09:49:06 +0000
+ id 1nYlzn-0084dF-B6
+ for ath11k@lists.infradead.org; Mon, 28 Mar 2022 09:49:08 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1648460944; x=1679996944;
+ t=1648460947; x=1679996947;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=NuVWP9n3JnzbcqZ0mZb7h0QD9EGnI1KQMyKg+FuIhGI=;
- b=fq1lAyX4+y/JEP4vx05jBvxCdjBrJwmNDiPBfUXwSPFX1pc5PWVlf0nk
- UKlhV9r10yTuZXQv9k1Wh9tPq0+uhTs3ahissSkh+6QZxn+7uPELP9HfT
- UU3W2/dKZkSeDSmxOULU2f9y9alerh+uauOn1o0X7rBYWrUkNbiIfYmUt A=;
-Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
- by alexa-out-sd-02.qualcomm.com with ESMTP; 28 Mar 2022 02:49:04 -0700
+ bh=6kz2zYvESFrqCoUGJ/YZQjx9za6sF79GgpXOxGVwtrg=;
+ b=nSfdtX31JwCh22dsFw1KhEqzl/5He9R8cb7ERe+nRXttFNowV2VwyDlh
+ mfFav/MSmOvwgNtRrhOyxk3gX+hdB4uSMr1DEt+vjYXklECrR3J0aUL2S
+ Pjmc1t/s+hv2eI9QDu9MZmFsG/yv3yP1VZe7YzXNdycXEwaDDlpSOLI/j 4=;
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+ by alexa-out.qualcomm.com with ESMTP; 28 Mar 2022 02:49:07 -0700
 X-QCInternal: smtphost
 Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2022 02:49:04 -0700
+ by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2022 02:49:07 -0700
 Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
  nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Mon, 28 Mar 2022 02:49:04 -0700
+ 15.2.986.22; Mon, 28 Mar 2022 02:49:06 -0700
 Received: from mpubbise-linux.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Mon, 28 Mar 2022 02:49:02 -0700
+ 15.2.986.22; Mon, 28 Mar 2022 02:49:04 -0700
 From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
 To: <ath11k@lists.infradead.org>
 CC: <linux-wireless@vger.kernel.org>, <devicetree@vger.kernel.org>,
  <robh@kernel.org>, Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-Subject: [PATCH v3 02/12] ath11k: Add HW params for WCN6750
-Date: Mon, 28 Mar 2022 15:18:28 +0530
-Message-ID: <20220328094838.14093-3-quic_mpubbise@quicinc.com>
+Subject: [PATCH v3 03/12] ath11k: Add bus params for WCN6750
+Date: Mon, 28 Mar 2022 15:18:29 +0530
+Message-ID: <20220328094838.14093-4-quic_mpubbise@quicinc.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220328094838.14093-1-quic_mpubbise@quicinc.com>
 References: <20220328094838.14093-1-quic_mpubbise@quicinc.com>
@@ -63,8 +63,8 @@ X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220328_024905_096934_3247BA3B 
-X-CRM114-Status: GOOD (  11.81  )
+X-CRM114-CacheID: sfid-20220328_024907_450549_E3277663 
+X-CRM114-Status: GOOD (  13.42  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,9 +81,16 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Add HW params for WCN6750. It is similar to the HW params
-of QCA6390 with few differences wrt DP APIs and register
-offsets.
+WCN6750 is a PCIe based solution that is attached to and enumerated
+by the WPSS (Wireless Processor SubSystem) Q6 processor.
+
+Though it is a PCIe device, since it is not attached to APSS processor
+(Application Processor SubSystem), APSS will be unaware of such a decice
+and hence it is registered to the APSS processor as a platform device(AHB).
+Because of this hybrid nature, it is called as a hybrid bus device.
+
+A new variable is defined in bus params to indicate the hybrid nature.
+Add bus params for WCN6750.
 
 Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00573-QCAMSLSWPLZ-1
 Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
@@ -92,115 +99,70 @@ Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
 
 Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
 ---
- drivers/net/wireless/ath/ath11k/core.c | 61 ++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/core.h |  1 +
- drivers/net/wireless/ath/ath11k/qmi.h  |  2 +
- 3 files changed, 64 insertions(+)
+ drivers/net/wireless/ath/ath11k/ahb.c  | 9 +++++++++
+ drivers/net/wireless/ath/ath11k/ahb.h  | 2 ++
+ drivers/net/wireless/ath/ath11k/core.h | 1 +
+ 3 files changed, 12 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 02d407011a8b..93bab713f754 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -427,6 +427,67 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.dbr_debug_support = false,
- 		.global_reset = true,
- 	},
-+	{
-+		.name = "wcn6750 hw1.0",
-+		.hw_rev = ATH11K_HW_WCN6750_HW10,
-+		.fw = {
-+			.dir = "WCN6750/hw1.0",
-+			.board_size = 256 * 1024,
-+			.cal_offset = 128 * 1024,
-+		},
-+		.max_radios = 1,
-+		.bdf_addr = 0x4B0C0000,
-+		.ring_mask = &ath11k_hw_ring_mask_qca6390,
-+		.internal_sleep_clock = false,
-+		.qmi_service_ins_id = ATH11K_QMI_WLFW_SERVICE_INS_ID_V01_WCN6750,
-+		.host_ce_config = ath11k_host_ce_config_qca6390,
-+		.ce_count = 9,
-+		.target_ce_config = ath11k_target_ce_config_wlan_qca6390,
-+		.target_ce_count = 9,
-+		.svc_to_ce_map = ath11k_target_service_to_ce_map_wlan_qca6390,
-+		.svc_to_ce_map_len = 14,
-+		.rfkill_pin = 0,
-+		.rfkill_cfg = 0,
-+		.rfkill_on_level = 0,
-+		.single_pdev_only = true,
-+		.rxdma1_enable = false,
-+		.num_rxmda_per_pdev = 1,
-+		.rx_mac_buf_ring = true,
-+		.vdev_start_delay = true,
-+		.htt_peer_map_v2 = false,
-+
-+		.spectral = {
-+			.fft_sz = 0,
-+			.fft_pad_sz = 0,
-+			.summary_pad_sz = 0,
-+			.fft_hdr_len = 0,
-+			.max_fft_bins = 0,
-+		},
-+
-+		.interface_modes = BIT(NL80211_IFTYPE_STATION) |
-+					BIT(NL80211_IFTYPE_AP),
-+		.supports_monitor = false,
-+		.supports_shadow_regs = true,
-+		.idle_ps = true,
-+		.supports_sta_ps = true,
-+		.cold_boot_calib = false,
-+		.fw_mem_mode = 0,
-+		.num_vdevs = 16 + 1,
-+		.num_peers = 512,
-+		.supports_suspend = false,
-+		.supports_regdb = true,
-+		.fix_l1ss = false,
-+		.credit_flow = true,
-+		.max_tx_ring = DP_TCL_NUM_RING_MAX_QCA6390,
-+		.hal_params = &ath11k_hw_hal_params_qca6390,
-+		.supports_dynamic_smps_6ghz = false,
-+		.alloc_cacheable_memory = false,
-+		.supports_rssi_stats = true,
-+		.fw_wmi_diag_event = false,
-+		.current_cc_support = true,
-+		.dbr_debug_support = false,
-+		.global_reset = false,
-+	},
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+index f407d4af2074..d73643e3e8dd 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.c
++++ b/drivers/net/wireless/ath/ath11k/ahb.c
+@@ -1,6 +1,7 @@
+ // SPDX-License-Identifier: BSD-3-Clause-Clear
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
++ * Copyright (c) 2021-2022, Qualcomm Innovation Center, Inc. All rights reserved.
+  */
+ 
+ #include <linux/module.h>
+@@ -35,6 +36,14 @@ static const struct ath11k_bus_params ath11k_ahb_bus_params = {
+ 	.fixed_mem_region = true,
  };
  
- static inline struct ath11k_pdev *ath11k_core_get_single_pdev(struct ath11k_base *ab)
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 406d16b8735d..915ebe36114a 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -138,6 +138,7 @@ enum ath11k_hw_rev {
- 	ATH11K_HW_QCN9074_HW10,
- 	ATH11K_HW_WCN6855_HW20,
- 	ATH11K_HW_WCN6855_HW21,
-+	ATH11K_HW_WCN6750_HW10,
- };
++const struct ath11k_bus_params ath11k_ahb_hybrid_bus_params = {
++	.mhi_support = false,
++	.m3_fw_support = false,
++	.fixed_bdf_addr = false,
++	.fixed_mem_region = false,
++	.hybrid_bus_type = true,
++};
++
+ #define ATH11K_IRQ_CE0_OFFSET 4
  
- enum ath11k_firmware_mode {
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.h b/drivers/net/wireless/ath/ath11k/qmi.h
-index 61678de56ac7..872646c3b3ed 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.h
-+++ b/drivers/net/wireless/ath/ath11k/qmi.h
+ static const char *irq_name[ATH11K_IRQ_NUM_MAX] = {
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.h b/drivers/net/wireless/ath/ath11k/ahb.h
+index 51e6e4a5f686..a276e3d1dff8 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.h
++++ b/drivers/net/wireless/ath/ath11k/ahb.h
 @@ -1,6 +1,7 @@
  /* SPDX-License-Identifier: BSD-3-Clause-Clear */
  /*
   * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
 + * Copyright (c) 2021-2022, Qualcomm Innovation Center, Inc. All rights reserved.
   */
+ #ifndef ATH11K_AHB_H
+ #define ATH11K_AHB_H
+@@ -9,6 +10,7 @@
  
- #ifndef ATH11K_QMI_H
-@@ -20,6 +21,7 @@
- #define ATH11K_QMI_WLFW_SERVICE_INS_ID_V01_QCA6390	0x01
- #define ATH11K_QMI_WLFW_SERVICE_INS_ID_V01_IPQ8074	0x02
- #define ATH11K_QMI_WLFW_SERVICE_INS_ID_V01_QCN9074	0x07
-+#define ATH11K_QMI_WLFW_SERVICE_INS_ID_V01_WCN6750	0x03
- #define ATH11K_QMI_WLANFW_MAX_TIMESTAMP_LEN_V01	32
- #define ATH11K_QMI_RESP_LEN_MAX			8192
- #define ATH11K_QMI_WLANFW_MAX_NUM_MEM_SEG_V01	52
+ #define ATH11K_AHB_RECOVERY_TIMEOUT (3 * HZ)
+ struct ath11k_base;
++extern const struct ath11k_bus_params ath11k_ahb_hybrid_bus_params;
+ 
+ struct ath11k_ahb {
+ 	struct rproc *tgt_rproc;
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index 915ebe36114a..b87571bbf6ff 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -721,6 +721,7 @@ struct ath11k_bus_params {
+ 	bool fixed_bdf_addr;
+ 	bool fixed_mem_region;
+ 	bool static_window_map;
++	bool hybrid_bus_type;
+ };
+ 
+ struct ath11k_pci_ops {
 -- 
 2.35.1
 
