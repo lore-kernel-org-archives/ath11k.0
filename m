@@ -4,65 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15A25C433F5
-	for <ath11k@archiver.kernel.org>; Mon, 28 Mar 2022 06:20:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86EF6C433EF
+	for <ath11k@archiver.kernel.org>; Mon, 28 Mar 2022 09:18:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=/pFZQooIw1spoa4/78oslp1AjMtoP/wnaGY+Hyunsvs=; b=kxPulTCrcnQTAy
-	8ftVA8Q75ki+2ftryFWWy2d8FODoNqyW6sGqASMjUuFwUBL+z4DO++AG7VLvK6qhu9TMDaIWuBHVp
-	psBjMoXswJKbNs99MV3LpH1LznXyImv00auBcLlgbeGxN8SJXorfi9wnLPqgHVBHCb9W85FMR+3vK
-	ngKEXalPu3+FPPRa/ErVTeLXvlWxg26AiJKgaUS2/yOA0KYvJw1SiKH/lG9PbVScG45BnzLxTQElT
-	yOdyZazQzoYZpA3+MwUi7cGMGUh1rtMchG9iYcRp7qcpbS2MrwFlshGTloR/dNsP6JuPOnQkpPx+V
-	qyBokHstpdUdc/iyxiDA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=H/HptoMAx8QRaWAFNh10ymWMEOP4qO4CLzW4ekVGQ6Y=; b=KznMLi7dvAQtcx
+	3XoEgLlmlCtCHXv0jCGyJAk9u9FMCMmZgZXQTgYJwI5WmHkhPCDgnBIO3zbNUoUwImtg6t40yIP21
+	Ez1P8wnFUVYmitBn0Ds1OJ2egKweNeYXkFk4CrHgicmUvfaRNGuKsrgsxgiFlsJnoXGnqr1wjje++
+	OqFVZgKLZ7XGYNhrrEsY+h1GUIMl0QewbyAv9Bsh4HPIaJ9uY80iWMAdTC6+5LJ9jl+MLaRr/gCPg
+	kyEZfd4tVB/OcPYqGDcbm5/q2aReDjUaBuLx4P6eRZIFrsFBJr0t7146Ud/JuOvOT1U5KVlItDNJn
+	6DV8ERZdn/XM4CCP5Kcw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nYikH-007SWP-1N; Mon, 28 Mar 2022 06:20:53 +0000
-Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39])
+	id 1nYlVv-00812B-4M; Mon, 28 Mar 2022 09:18:15 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nYikD-007SVL-Q1
- for ath11k@lists.infradead.org; Mon, 28 Mar 2022 06:20:51 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1648448449; x=1679984449;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=faayt7ozzTRD9Dfm+jf0t9rBdx0tUGIsoEg0vZwF3ho=;
- b=MPVMo2qBsbnF3dlRrfoUn9IIDqCxdl+RfhFOI9Jnxi3zMzQpeAdNOFua
- 9+yTem88ZfhG/QV+jjeBuaw6qYKy3UCKLNS6gYdjEVCFl6VYOYd+xirAp
- YAxlKjh/9/tI9cHAIGEYQ9/uiqny5Ikt6xtwcRAPqBv8O5li4yLFiUM6W A=;
-Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
- by alexa-out-sd-02.qualcomm.com with ESMTP; 27 Mar 2022 23:20:49 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2022 23:20:49 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Sun, 27 Mar 2022 23:20:48 -0700
-Received: from mpubbise-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Sun, 27 Mar 2022 23:20:47 -0700
-From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, Manikanta Pubbisetty
- <quic_mpubbise@quicinc.com>
-Subject: [PATCH v3] ath11k: Add support for targets without trustzone
-Date: Mon, 28 Mar 2022 11:50:32 +0530
-Message-ID: <20220328062032.28881-1-quic_mpubbise@quicinc.com>
-X-Mailer: git-send-email 2.35.1
+ id 1nYlVr-00810X-Jv
+ for ath11k@lists.infradead.org; Mon, 28 Mar 2022 09:18:12 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id CE17160F0D;
+ Mon, 28 Mar 2022 09:18:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E641CC340F0;
+ Mon, 28 Mar 2022 09:18:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1648459090;
+ bh=pZuoXFadrtCx0LhURtPkckMaeaJRTSgMwySm5XoP3o8=;
+ h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+ b=rpfcRJbfbTQ/1PWK72CZFH/DNFfJCz/bTGavrkpjhpIzf9YriL5/44KTVk/9MJb0f
+ 30+Yax+oghiwC/s/Eu+S7Q/MJzsJH+bP1+Q0I5B4DAZaobi/m8JJzP6SNt3CSmm/n4
+ YwC70m2oBxxXr/UXFbc4l754Jb6YbyQPfkDTGzgAnBikNYrp+su8K4BXwf3LrBRqKJ
+ WYeWneNYcgo+LSl9Ubi5El48m2qaQwVfYvpEa2N+SZf3xrvgl1tWQs19nj/w76e+zq
+ oWrUX6koNSMYOlqS9XGkJJ341g8eJATfsj2aJahjCh7hmC48UTd9UcKKRW4xBfIC4i
+ y4qhMruXV1RHQ==
+From: Kalle Valo <kvalo@kernel.org>
+To: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, "Rob Herring" <robh@kernel.org>
+Subject: Re: [PATCH v3 01/12] dt: bindings: net: add bindings of WCN6750 for
+ ath11k
+References: <20220328060937.16738-1-quic_mpubbise@quicinc.com>
+ <20220328060937.16738-2-quic_mpubbise@quicinc.com>
+ <0256a6c6-088b-a7d5-68c4-b99238bbb0f4@quicinc.com>
+Date: Mon, 28 Mar 2022 12:18:05 +0300
+In-Reply-To: <0256a6c6-088b-a7d5-68c4-b99238bbb0f4@quicinc.com> (Manikanta
+ Pubbisetty's message of "Mon, 28 Mar 2022 11:43:47 +0530")
+Message-ID: <87sfr2zb8y.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220327_232049_940917_336ACACA 
-X-CRM114-Status: GOOD (  18.17  )
+X-CRM114-CacheID: sfid-20220328_021811_718095_F8196355 
+X-CRM114-Status: UNSURE (   7.22  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,274 +77,18 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Add the support to attach WCN6750 and map iommu domain
-for targets which do not have the support of TrustZone.
+Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
 
-Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00573-QCAMSLSWPLZ-1
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
-Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
-Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
+> Sorry for top posting, missed to add device tree mail aliases.
+> Adding them now.
 
-Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
----
-Note:
-*	Dependent on Series "add support for WCN6750"
-	Link: https://patchwork.kernel.org/project/linux-wireless/cover/20220328060937.16738-1-quic_mpubbise@quicinc.com/
+IIRC DT maintainers use patchwork, so adding them to CC in a followup
+email won't properly work.
 
-V3:
- - Rebased on ToT SHAID: 7316a74e54318d0cd648242b18ea83cdef6dda96
- - Initialise MSA resources based on HW param "fixed_fw_mem" defined only for WCN6750
-
-V2:
- - Rebased on ToT
-
- drivers/net/wireless/ath/ath11k/ahb.c | 178 +++++++++++++++++++++++++-
- drivers/net/wireless/ath/ath11k/ahb.h |   9 ++
- 2 files changed, 186 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index 4fa5aba286ff..082cfec29d87 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.c
-+++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -9,6 +9,8 @@
- #include <linux/of_device.h>
- #include <linux/of.h>
- #include <linux/dma-mapping.h>
-+#include <linux/of_address.h>
-+#include <linux/iommu.h>
- #include "ahb.h"
- #include "debug.h"
- #include "hif.h"
-@@ -775,6 +777,172 @@ static int ath11k_ahb_setup_resources(struct ath11k_base *ab)
- 	return 0;
- }
- 
-+static int ath11k_ahb_setup_msa_resources(struct ath11k_base *ab)
-+{
-+	struct ath11k_ahb *ab_ahb = ath11k_ahb_priv(ab);
-+	struct device *dev = ab->dev;
-+	struct device_node *node;
-+	struct resource r;
-+	int ret;
-+
-+	node = of_parse_phandle(dev->of_node, "memory-region", 0);
-+	if (!node)
-+		return -ENOENT;
-+
-+	ret = of_address_to_resource(node, 0, &r);
-+	of_node_put(node);
-+	if (ret) {
-+		dev_err(dev, "failed to resolve msa fixed region\n");
-+		return ret;
-+	}
-+
-+	ab_ahb->fw.msa_paddr = r.start;
-+	ab_ahb->fw.msa_size = resource_size(&r);
-+
-+	node = of_parse_phandle(dev->of_node, "memory-region", 1);
-+	if (!node)
-+		return -ENOENT;
-+
-+	ret = of_address_to_resource(node, 0, &r);
-+	of_node_put(node);
-+	if (ret) {
-+		dev_err(dev, "failed to resolve ce fixed region\n");
-+		return ret;
-+	}
-+
-+	ab_ahb->fw.ce_paddr = r.start;
-+	ab_ahb->fw.ce_size = resource_size(&r);
-+
-+	return 0;
-+}
-+
-+static int ath11k_ahb_fw_resources_init(struct ath11k_base *ab)
-+{
-+	struct ath11k_ahb *ab_ahb = ath11k_ahb_priv(ab);
-+	struct device *host_dev = ab->dev;
-+	struct platform_device_info info = {0};
-+	struct iommu_domain *iommu_dom;
-+	struct platform_device *pdev;
-+	struct device_node *node;
-+	int ret;
-+
-+	/* Chipsets not requiring MSA need not initialize
-+	 * MSA resources, return success in such cases.
-+	 */
-+	if (!ab->hw_params.fixed_fw_mem)
-+		return 0;
-+
-+	ret = ath11k_ahb_setup_msa_resources(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to setup msa resources\n");
-+		return ret;
-+	}
-+
-+	node = of_get_child_by_name(host_dev->of_node, "wifi-firmware");
-+	if (!node) {
-+		ab_ahb->fw.use_tz = true;
-+		return 0;
-+	}
-+
-+	info.fwnode = &node->fwnode;
-+	info.parent = host_dev;
-+	info.name = node->name;
-+	info.dma_mask = DMA_BIT_MASK(32);
-+
-+	pdev = platform_device_register_full(&info);
-+	if (IS_ERR(pdev)) {
-+		of_node_put(node);
-+		return PTR_ERR(pdev);
-+	}
-+
-+	ret = of_dma_configure(&pdev->dev, node, true);
-+	if (ret) {
-+		ath11k_err(ab, "dma configure fail: %d\n", ret);
-+		goto err_unregister;
-+	}
-+
-+	ab_ahb->fw.dev = &pdev->dev;
-+
-+	iommu_dom = iommu_domain_alloc(&platform_bus_type);
-+	if (!iommu_dom) {
-+		ath11k_err(ab, "failed to allocate iommu domain\n");
-+		ret = -ENOMEM;
-+		goto err_unregister;
-+	}
-+
-+	ret = iommu_attach_device(iommu_dom, ab_ahb->fw.dev);
-+	if (ret) {
-+		ath11k_err(ab, "could not attach device: %d\n", ret);
-+		goto err_iommu_free;
-+	}
-+
-+	ret = iommu_map(iommu_dom, ab_ahb->fw.msa_paddr,
-+			ab_ahb->fw.msa_paddr, ab_ahb->fw.msa_size,
-+			IOMMU_READ | IOMMU_WRITE);
-+	if (ret) {
-+		ath11k_err(ab, "failed to map firmware region: %d\n", ret);
-+		goto err_iommu_detach;
-+	}
-+
-+	ret = iommu_map(iommu_dom, ab_ahb->fw.ce_paddr,
-+			ab_ahb->fw.ce_paddr, ab_ahb->fw.ce_size,
-+			IOMMU_READ | IOMMU_WRITE);
-+	if (ret) {
-+		ath11k_err(ab, "failed to map firmware CE region: %d\n", ret);
-+		goto err_iommu_unmap;
-+	}
-+
-+	ab_ahb->fw.use_tz = false;
-+	ab_ahb->fw.iommu_domain = iommu_dom;
-+	of_node_put(node);
-+
-+	return 0;
-+
-+err_iommu_unmap:
-+	iommu_unmap(iommu_dom, ab_ahb->fw.msa_paddr, ab_ahb->fw.msa_size);
-+
-+err_iommu_detach:
-+	iommu_detach_device(iommu_dom, ab_ahb->fw.dev);
-+
-+err_iommu_free:
-+	iommu_domain_free(iommu_dom);
-+
-+err_unregister:
-+	platform_device_unregister(pdev);
-+	of_node_put(node);
-+
-+	return ret;
-+}
-+
-+static int ath11k_ahb_fw_resource_deinit(struct ath11k_base *ab)
-+{
-+	struct ath11k_ahb *ab_ahb = ath11k_ahb_priv(ab);
-+	struct iommu_domain *iommu;
-+	size_t unmapped_size;
-+
-+	if (ab_ahb->fw.use_tz)
-+		return 0;
-+
-+	iommu = ab_ahb->fw.iommu_domain;
-+
-+	unmapped_size = iommu_unmap(iommu, ab_ahb->fw.msa_paddr, ab_ahb->fw.msa_size);
-+	if (unmapped_size != ab_ahb->fw.msa_size)
-+		ath11k_err(ab, "failed to unmap firmware: %zu\n",
-+			   unmapped_size);
-+
-+	unmapped_size = iommu_unmap(iommu, ab_ahb->fw.ce_paddr, ab_ahb->fw.ce_size);
-+	if (unmapped_size != ab_ahb->fw.ce_size)
-+		ath11k_err(ab, "failed to unmap firmware CE memory: %zu\n",
-+			   unmapped_size);
-+
-+	iommu_detach_device(iommu, ab_ahb->fw.dev);
-+	iommu_domain_free(iommu);
-+
-+	platform_device_unregister(to_platform_device(ab_ahb->fw.dev));
-+
-+	return 0;
-+}
-+
- static int ath11k_ahb_probe(struct platform_device *pdev)
- {
- 	struct ath11k_base *ab;
-@@ -837,10 +1005,14 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto err_core_free;
- 
--	ret = ath11k_hal_srng_init(ab);
-+	ret = ath11k_ahb_fw_resources_init(ab);
- 	if (ret)
- 		goto err_core_free;
- 
-+	ret = ath11k_hal_srng_init(ab);
-+	if (ret)
-+		goto err_fw_deinit;
-+
- 	ret = ath11k_ce_alloc_pipes(ab);
- 	if (ret) {
- 		ath11k_err(ab, "failed to allocate ce pipes: %d\n", ret);
-@@ -877,6 +1049,9 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
- err_hal_srng_deinit:
- 	ath11k_hal_srng_deinit(ab);
- 
-+err_fw_deinit:
-+	ath11k_ahb_fw_resource_deinit(ab);
-+
- err_core_free:
- 	ath11k_core_free(ab);
- 	platform_set_drvdata(pdev, NULL);
-@@ -912,6 +1087,7 @@ static int ath11k_ahb_remove(struct platform_device *pdev)
- qmi_fail:
- 	ath11k_ahb_free_irq(ab);
- 	ath11k_hal_srng_deinit(ab);
-+	ath11k_ahb_fw_resource_deinit(ab);
- 	ath11k_ce_free_pipes(ab);
- 	ath11k_core_free(ab);
- 	platform_set_drvdata(pdev, NULL);
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.h b/drivers/net/wireless/ath/ath11k/ahb.h
-index eeb1feed2c81..c3e055a55e7e 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.h
-+++ b/drivers/net/wireless/ath/ath11k/ahb.h
-@@ -13,6 +13,15 @@ struct ath11k_base;
- 
- struct ath11k_ahb {
- 	struct rproc *tgt_rproc;
-+	struct {
-+		struct device *dev;
-+		struct iommu_domain *iommu_domain;
-+		dma_addr_t msa_paddr;
-+		u32 msa_size;
-+		dma_addr_t ce_paddr;
-+		u32 ce_size;
-+		bool use_tz;
-+	} fw;
- };
- 
- static inline struct ath11k_ahb *ath11k_ahb_priv(struct ath11k_base *ab)
 -- 
-2.35.1
+https://patchwork.kernel.org/project/linux-wireless/list/
 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
