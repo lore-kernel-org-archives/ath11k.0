@@ -4,60 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B527C433EF
-	for <ath11k@archiver.kernel.org>; Mon, 28 Mar 2022 11:50:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48D1DC433F5
+	for <ath11k@archiver.kernel.org>; Mon, 28 Mar 2022 16:50:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
-	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ES82BXO7KXt/VgRqCxICOo4D4frxRjOxqUXL11qbP/o=; b=19Fa+X/YPcGhzE
-	8njRloU4R1i+h35HX5f1w/tu5SZzhk2zR9iQvae3U5dSv6KBFbDEt1BAMu64vI6UpRytQuSHFpaqT
-	JBrSeRdlPDfh3H6WvRpUGz6p0uycTQO4vfIWskM5Sqkg+xFaDQBmvkG/Wjoxkbb6JNy59L/pm5knl
-	F0vQ5MA1nD7NTH7YtNEOnseg+62t09T5kZxVazQdU8RgT0OP+px5SAMLkToI4S9MvX9MeuEGpAqut
-	Y3CD4/Fo8SOW7GYsFp+FAUSVQpqYUaqg+tMimGR/F1JQ+fdK4iwq6Diot+k2UbwhYroesPqUok8H9
-	zVBzYkdgWNlv2poOH5/g==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	Subject:References:Cc:To:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=eDNt1flzMdcP56wHneN+V2zukpC7J3XHe3kKp5OYgCI=; b=Lee/I1gKc8iJ8Ik6AvnZ8wJIbs
+	6rF8e6Vy49sn4VNDtGCBh7bB9N/iOADDxMscSWmToEtyS7fylHayLvDQeYC+eXAQhDnQvx+cTnWFa
+	WPJFMi58KsSKKXUbr/mqwUiMdHAc9MkaAUfwzpmcQI2z7Mgvk7wMNZ1qF/k/mkT9TOjeJ+Mzae5B4
+	g2qs/wxcP1jxTCO1VFuCK88lcVoXaS4cztt/Hc7Uiq/Wddi+aUTu/xZfd6wAE0sDInZaWAy6iJt3Q
+	au94ur8+V66Z4FOcDWvUHlO07w4wFNV5hR1VqB83kbLW8+3KHVSw2o2NKNhAnoS3qZZI2sFlertdS
+	je5NQU4A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nYnsv-008Qok-KJ; Mon, 28 Mar 2022 11:50:09 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1nYsZK-009YaG-Ry; Mon, 28 Mar 2022 16:50:14 +0000
+Received: from simonwunderlich.de ([23.88.38.48])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nYnss-008QnY-LU
- for ath11k@lists.infradead.org; Mon, 28 Mar 2022 11:50:08 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ id 1nYsZH-009YZA-M3
+ for ath11k@lists.infradead.org; Mon, 28 Mar 2022 16:50:13 +0000
+Received: from [IPv6:2003:c5:974d:4090::607]
+ (p200300C5974d40900000000000000607.dip0.t-ipconnect.de
+ [IPv6:2003:c5:974d:4090::607])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 4072461305;
- Mon, 28 Mar 2022 11:50:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5DA04C004DD;
- Mon, 28 Mar 2022 11:50:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1648468205;
- bh=x9eKyuj2KmrT7dFpC0fUVZrekzKi7+BNPmEVT2exOK0=;
- h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
- b=hmmJNrjsVxR2lMahV4w1UzWvSzvDm+OY66Y0nIRwp0Szk9qx37wNZHA0gL3US453d
- kctXdoMDRIGLW4HNAq531f9cAjXCX3tT9Q7RjU/l0m4kOk68u1NsopxB5CeqRCubse
- GNkYmN8FWdFGOf0YmZ5nbCzCMnRuJo4Wy0HOtj4ovSopXQUGKdt+x1lJbmbqZMKCiB
- ZiooffZBAlS/PFsX8OZjfIOnMG84xdIbftJB/DSkH+hwOxohhPvzLhXGZZp0tfTphB
- ngMSJp6Qst6nTRyDKMDxeOJ54/AmOifrXZFT7CvFmYnc15kjNpBHOgYhL6HIcprO2H
- 79nxoUk0K2XGQ==
+ by simonwunderlich.de (Postfix) with ESMTPSA id D2F91FA768;
+ Mon, 28 Mar 2022 18:44:01 +0200 (CEST)
+To: akolli@codeaurora.org
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ periyasa@codeaurora.org
+References: <1612946530-28504-7-git-send-email-akolli@codeaurora.org>
+Subject: Re: [PATCH 06/11] ath11k: add static window support for register
+ access
+From: Hamdi Issam <ih@simonwunderlich.de>
+Message-ID: <4c708ea3-d027-aa01-e157-17a29889ac44@simonwunderlich.de>
+Date: Mon, 28 Mar 2022 18:44:00 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Subject: Re: [PATCH v2] ath11k: store and send country code to firmware after
- recovery
-From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20220324011856.11014-1-quic_wgong@quicinc.com>
-References: <20220324011856.11014-1-quic_wgong@quicinc.com>
-To: Wen Gong <quic_wgong@quicinc.com>
-Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- <quic_wgong@quicinc.com>
-User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <164846820213.31335.9001260494172365360.kvalo@kernel.org>
-Date: Mon, 28 Mar 2022 11:50:04 +0000 (UTC)
+In-Reply-To: <1612946530-28504-7-git-send-email-akolli@codeaurora.org>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220328_045006_773099_775F9EEF 
-X-CRM114-Status: UNSURE (   8.79  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220328_095011_916132_11A93108 
+X-CRM114-Status: GOOD (  12.17  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -69,34 +61,37 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Wen Gong <quic_wgong@quicinc.com> wrote:
-
-> Currently ath11k does not send the country code to firmware after device
-> recovery, as a result the regdomain info is reported from firmware by
-> default. Regdomain info is important, so ath11k also need to restore
-> it to the value which was used before recovery.
-> 
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
-> 
-> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
-
-Patch applied to ath-next branch of ath.git, thanks.
-
-b2beae327e03 ath11k: store and send country code to firmware after recovery
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20220324011856.11014-1-quic_wgong@quicinc.com/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+SGVsbG8sCgpJIHdhcyB0cnlpbmcgdG8gcmVhZCB2YWx1ZXMgb2YgdGltZXJzIGZyb20gc29tZSBv
+ZmZzZXRzIG9uIHRoZSBRQ045MDc0LCAKYnV0IEkgZ2V0IGV2ZXJ5IHRpbWUgYW4gaW52YWxpZCB2
+YWx1ZXMgKDB4ZmZmZmZmZmYpOgpUaGlzIGlzIGV4YW1wbGUgb2YgbXkgY29kZToKCiNkZWZpbmUg
+UUNOOTAwMF9XTEFPTl9HTE9CQUxfQ09VTlRFUl9DVFJMM8KgwqDCoMKgwqAgMHgxRjgwMTE4CiNk
+ZWZpbmUgUUNOOTAwMF9XTEFPTl9HTE9CQUxfQ09VTlRFUl9DVFJMNMKgwqDCoMKgwqAgMHgxRjgw
+MTFDCiNkZWZpbmUgUUNOOTAwMF9XTEFPTl9HTE9CQUxfQ09VTlRFUl9DVFJMNcKgwqDCoMKgwqAg
+MHgxRjgwMTIwCgojZGVmaW5lIFFDTjkwMDBfVElNRV9TWU5DX0VOQUJMRcKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoCAweDgwMDAwMDAwCiNkZWZpbmUgUUNOOTAwMF9USU1FX1NZTkNfQ0xF
+QVLCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAweDAKLgouCi4KYXRoMTFrX3BjaV93
+cml0ZTMyKGFiLCBRQ045MDAwX1dMQU9OX0dMT0JBTF9DT1VOVEVSX0NUUkw1LCAKUUNOOTAwMF9U
+SU1FX1NZTkNfQ0xFQVIpOwphdGgxMWtfcGNpX3dyaXRlMzIoYWIsIFFDTjkwMDBfV0xBT05fR0xP
+QkFMX0NPVU5URVJfQ1RSTDUsIApRQ045MDAwX1RJTUVfU1lOQ19FTkFCTEUpOwpsb3cgPSBhdGgx
+MWtfcGNpX3JlYWQzMihhYiwgUUNOOTAwMF9XTEFPTl9HTE9CQUxfQ09VTlRFUl9DVFJMMyk7Cmhp
+Z2ggPSBhdGgxMWtfcGNpX3JlYWQzMihhYiwgUUNOOTAwMF9XTEFPTl9HTE9CQUxfQ09VTlRFUl9D
+VFJMNCk7Ci4KLgoKVGhlIGxvdyBhbmQgdGhlIGhpZ2ggcGFyYW1ldGVycyBhbHdheXMgZXF1YWwg
+dG8gIjB4ZmZmZmZmZmYiLgoKV2hlbiBJIG1hZGUgc29tZSBkZWJ1Z2dpbmcuIEkgZm91bmQgdGhh
+dCB0aGUgaXNzdWUgaXMgcmVsYXRlZCB0byAKInN0YXRpY193aW5kb3dfbWFwIiBkZXZlbG9wZWQg
+aW4gdGhlIGNvbW1pdCAKIjQ4MGE3MzYxMGM5NTUxMWU0MmZiN2QwMzU5YjUyM2Y2Njg4M2U1MWE6
+IGF0aDExazogYWRkIHN0YXRpYyB3aW5kb3cgCnN1cHBvcnQgZm9yIHJlZ2lzdGVyIGFjY2VzcyIg
+YW5kIGVuYWJsZWQgZm9yIFFDTjkwNzQgaW4gdGhpcyBjb21taXQgCiI0ZTgwOTQ2MTk3YTgzYTYx
+MTVlMzA4MzM0NjE4NDQ5Yjc3Njk2ZDZhOiBhdGgxMWs6IGFkZCBxY245MDc0IHBjaSAKZGV2aWNl
+IHN1cHBvcnQiLgpXaGVuIEkgZGlzYWJsZWQgdGhlICJzdGF0aWNfd2luZG93X21hcCIgCihhYi0+
+YnVzX3BhcmFtcy5zdGF0aWNfd2luZG93X21hcCA9IGZhbHNlOykgZm9yIFFDTjkwNzQsIGluIHRo
+YXQgY2FzZSBJIAp3YXMgYWJsZSB0byBnZXQgdGhlIGNvcnJlY3QgdmFsdWVzLgpTbyBpdCBzZWVt
+cyB0aGF0IHRoZXJlJ3MgYW4gaXNzdWUgb2YgcmVhZGluZyBzb21lIHJlZyB3aGVuIApzdGF0aWNf
+d2luZG93X21hcCBpcyBlbmFibGVkLgpJIG5lZWQgeW91ciBoZWxwIHRvIHNvbHZlIHRoaXMgaXNz
+dWUuCgpSZWdhcmRzLApJc3NhbQoKCi0tIAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0
+cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGlu
+Zm8vYXRoMTFrCg==
