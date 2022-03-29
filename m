@@ -4,76 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B257C433F5
-	for <ath11k@archiver.kernel.org>; Tue, 29 Mar 2022 08:11:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BB12C433F5
+	for <ath11k@archiver.kernel.org>; Tue, 29 Mar 2022 15:02:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Subject:From:To:MIME-Version:Date:Message-ID:
-	Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=hHFZKhUW1rS7orZKP78yhMbbsKpJayL53HZ5TOwLEXQ=; b=RcDkOswl6rO01y
-	bZSjQeGWlaI1bEdI+Q20jbD4enkOwYe3E9vKMFPJN2+YL/rZEtlF2n2XTmWkCLsqqqaqKSVrWesxu
-	t9GB71uIAmSvUpybEG3Bf3dT35LFPoQcJzJQ3ttwtNnbr1IFksAGp7EMDncQBl/tUMIRGeadwAos5
-	+fcL5x1A9ki2kQiq/8p+VTbo4hg4X6ZzZTKYjB6Hpq2zEqSkZczCLw+azMY8/3U1wf3fmDiP0hFOz
-	eXzg+arZXYndhWSPQ+DfKPiTpWhCn+u+Q6fT5udcv4R6HWxyA8UEAwVhtMKSFUcUENksSMbi3SML6
-	oPJQkrBxlu1sYxvqvnrg==;
+	List-Owner; bh=P0JL7NPj1EPovQ/jd5FQSIGBdK9ltqGJRJFdpmurZFA=; b=lO8rclIhBaj5qZ
+	JJ4vFbbyjZz0jHO3Mq4uGR8lNdAveNKiPftbFzNJEnXdWcFeBjwATe68pMj/lXe9csV1F2o2m+a/D
+	6Une4G526ryXoJWUXvH2mv0/eY5HqKnoLVvCvsNjlvKbFQZL95VBw1DfxuG7Jip87lMb7az0hk+7k
+	1+bj84Y97tRr3l6XdYr5QIejNwqrrGb2+GelrpZjLunvXd+sPUCnTSTtLFLkBwuyHGPfrmetTbspe
+	Bo8kElrTkzUK2KvwhgtcrfFpftIwVbx5D0u09gnNE8uwXIdUbcf6RsXbAc956g99KDBxXiYzTWwpb
+	FlVwX8AmZ04k4Tfc9nRQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nZ6xB-00BQaY-I3; Tue, 29 Mar 2022 08:11:49 +0000
-Received: from mail-lj1-x22b.google.com ([2a00:1450:4864:20::22b])
+	id 1nZDN1-00CZKq-UH; Tue, 29 Mar 2022 15:02:55 +0000
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nZ6x8-00BQZR-JM
- for ath11k@lists.infradead.org; Tue, 29 Mar 2022 08:11:48 +0000
-Received: by mail-lj1-x22b.google.com with SMTP id 17so22391499ljw.8
- for <ath11k@lists.infradead.org>; Tue, 29 Mar 2022 01:11:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=message-id:date:mime-version:user-agent:to:content-language:from
- :subject:content-transfer-encoding;
- bh=k4IY8eqc+ZCLQt2hp/laNy7jzCZZOwFa2WzJ8iwxcHw=;
- b=pnODGpI9HeG/iUdIfd6AwxNCSPpDARCJJHRNfTYVb39ctZ+LUtnEQSOEa/gH8b/iMP
- MC6SYSfKJm/3OYd7g6k8aClVGOhqWndOgAw+teY+ItpbB+DaNfgH0xWmnIkGau2GXC1e
- iVUytXO4wIDNH4NDwEqrpAWxDspQZnvOwoMfKt7pP0VvppSefz10cudAksbpwn8ZBVAj
- kNhDvlX7NkMsJO8eO4X2as+BJuTUv2W0SSL5vqqDjCmWAM7WZgSu3qmKkoCzd39458mC
- pUckg56U7O8j0ot1uJbmeT0cEklQuKHxDWCYv6NIE5utnPQbOaJCmnWi4I9Q7vPjKW4B
- KMNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:to
- :content-language:from:subject:content-transfer-encoding;
- bh=k4IY8eqc+ZCLQt2hp/laNy7jzCZZOwFa2WzJ8iwxcHw=;
- b=jgBjGhZaVN4yBoxCMaTRxO15MiSiujOWEkCUOwyR3czllx+KcHXX9c7fcj3KsND+nd
- KR3OA207FlVqZlSlpSLNGydKYkVsmqnJXfXuOj0D5L/yU1hOfbWRoPIun0qgVpZUsoWn
- o9hBdeb9Z+mXa+deMmbbEwTmEuLTYI62L6zRuNPJdJoTXDQHBtiE+8462V0yno4D2rNz
- mk/gZVbxHBx9bN9dIMiqowGPzp+jLlscRlKwG+EJqsz4cFts2kmuejMAL9bkL9QkSkav
- mTkIAY4bobDWebzNkVwCTrlb2M9oZ1X2qJtdQiz85WKiP0RJ9i/JA1lRQBDMie+b4JBY
- 9G3A==
-X-Gm-Message-State: AOAM530Qimq2TcQ3WPoI3hhERTb3C/crW9USRz5l6ykGEFwcgorxW7sl
- ou3XPVTIXzmAZvoN7l1KJRK1bxvl3HXFlQ==
-X-Google-Smtp-Source: ABdhPJyU49DJs+LU/j0+VJAY9ZsJ3w5+r4NmNMll76zOFsRg1LKvtT7ppLJyrrIvNE6bPzR+r+E+zQ==
-X-Received: by 2002:a2e:a4d1:0:b0:249:8c9c:5ae0 with SMTP id
- p17-20020a2ea4d1000000b002498c9c5ae0mr1527195ljm.283.1648541504266; 
- Tue, 29 Mar 2022 01:11:44 -0700 (PDT)
-Received: from ?IPV6:2a02:2168:88a0:5e00:a4c7:4ba3:4116:3?
- ([2a02:2168:88a0:5e00:a4c7:4ba3:4116:3])
- by smtp.gmail.com with ESMTPSA id
- r23-20020a2e94d7000000b002498622f241sm2034513ljh.12.2022.03.29.01.11.43
- for <ath11k@lists.infradead.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 29 Mar 2022 01:11:43 -0700 (PDT)
-Message-ID: <a70aba8a-cce4-a84b-ea70-5761bde1cbe5@gmail.com>
-Date: Tue, 29 Mar 2022 11:11:42 +0300
+ id 1nZDMy-00CZJa-AI
+ for ath11k@lists.infradead.org; Tue, 29 Mar 2022 15:02:53 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+ t=1648566172; x=1680102172;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=sXujaEN5nHLpPV9RxMoiZbS35N+Y4Qx+sgw2qjfj924=;
+ b=dFyKNcvfI9Xzi2BH5c6CU71/E/tAwqPg4ciPG3kmkXfVAJr2dD8qUzVE
+ QRbDUpeaAY3G/x3+LFuqHF5ZlYRKhRyNlJf5HVX4oEQtvUixxhQ13mJMC
+ BHs3A1OohTYmYsp3UP0rkxBD+QyX6UkNOS2lGAVrdnAhdbtFKv83e9b48 Y=;
+Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
+ by alexa-out-sd-02.qualcomm.com with ESMTP; 29 Mar 2022 08:02:50 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+ by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Mar 2022 08:02:50 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Tue, 29 Mar 2022 08:02:50 -0700
+Received: from akalaise-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Tue, 29 Mar 2022 08:02:48 -0700
+From: Karthikeyan Kathirvel <quic_kathirve@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, Karthikeyan Kathirvel
+ <quic_kathirve@quicinc.com>
+Subject: [PATCH] ath11k: Change max no of active probe SSID and BSSID to fw
+ capability
+Date: Tue, 29 Mar 2022 20:32:21 +0530
+Message-ID: <20220329150221.21907-1-quic_kathirve@quicinc.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:97.0) Gecko/20100101
- Thunderbird/97.0
-To: ath11k@lists.infradead.org
-Content-Language: en-US
-From: Mark Herbert <mark.herbert42@gmail.com>
-Subject: QCA6390 power saving issue
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220329_011146_660726_2998DE13 
-X-CRM114-Status: UNSURE (   7.99  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220329_080252_435285_06A999D8 
+X-CRM114-Status: GOOD (  11.97  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,24 +75,82 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-SSByZW1lbWJlciB0aGVyZSB3YXMgYSBidWcgcHJldmVudGluZyBDUFUgZW50ZXJpbmcgdG8gZGVl
-cCBwb3dlcnNhdmluZyAKc3RhdGVzIHNvIG9ubHkgUEMzIHdhcyByZWFjaGVkLgoKVGhlIGJ1dCBp
-dHNlbGYgaXMgZml4ZWQgLSBidXQgSSBoYXZlIGp1c3Qgbm90aWNlZCBhIHNtYWxsIHJlbWFpbmlu
-ZyAKaXNzdWUuIFdoZW4gSSBzdGFydCBteSBQQyBhbmQgdGhlcmUgaXMgbm8gV0lGSSB0aGF0IEkg
-Y2FuIGNvbm5lY3Qgc28gCmF0aDExwqAgaXMgZW5hYmxlZCBidXQgbm90IGNvbm5lY3RlZCB0byBh
-bnkgbmV0d29yayAtIGl0IMKgIHByZXZlbnRzIAplbnRlcmluZyBpbnRvIGRlZXAgUEMgc3RhdGVz
-IGFnYWluLiBXaGVuIEkgY29ubmVjdCB0byB0aGUgV2lGaSBuZXR3b3JrIC0gCmRlZXAgUEMgc3Rh
-dGVzIGJlY29tZSByZWFjaGFibGUgYWdhaW4uIEFuZCB3aGVuIEkgZGlzY29ubmVjdCBhZnRlciBm
-aXJzdCAKY29ubmVjdGlvbsKgIGFuZCBrZWVwIG15IGF0aDExayBkaXNjb25uZWN0ZWQgKGV4YWN0
-bHkgc2FtZSBzaXR1YXRpb24gYXMgCmltbWVkaWF0ZWx5IGFmdGVyIGJvb3QpLSB0aGVyZSBpcyBu
-byBpc3N1ZS4KClNvIHNlZW1zIHRoYXQgdGhpcyBwb3dlcnNhdmluZyBmZWF0dXJlIGlzIG5vdCBh
-Y3RpdmF0ZWQgb24gYm9vdCBidXQgb25seSAKYWN0aXZhdGVzIHdoZW4gdGhlIGNhcmQgY29ubmVj
-dHMgdG8gYWNjZXNzIHBvaW50LsKgIEkgYW0gbm90IGdvb2QgZW5vdWdoIAppbiBkcml2ZXIgZGV2
-ZWxvcG1lbnQgYW5kIGRlc2lnbiBhIGZpeCBteXNlbGYuIFNvIGp1c3Qgd3JpdGluZyBoZXJlCgoK
-LS0gCmF0aDExayBtYWlsaW5nIGxpc3QKYXRoMTFrQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDov
-L2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9hdGgxMWsK
+The maximum number of SSIDs in a for active probe requests is currently
+reported as 16 (WLAN_SCAN_PARAMS_MAX_SSID) when registering the driver.
+The scan_req_params structure only has the capacity to hold 10 SSIDs.
+This leads to a buffer overflow which can be triggered from
+wpa_supplicant in userspace. When copying the SSIDs into the
+scan_req_params structure in the ath11k_mac_op_hw_scan route, it can
+overwrite the extraie pointer.
+
+Firmware supports 16 ssid * 4 bssid, for each ssid 4 bssid combo probe
+request will be sent, so totally 64 probe requests supported. So
+set both max ssid and bssid to 16 and 4 respectively. Remove the
+redundant macros of ssid and bssid.
+
+Tested-on : WLAN.HK.2.7.0.1-01300-QCAHKSWPL_SILICONZ-1 v1
+
+Signed-off-by: Karthikeyan Kathirvel <quic_kathirve@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/wmi.h | 12 ++----------
+ 1 file changed, 2 insertions(+), 10 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index 587f42307250..b5b72483477d 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -3088,9 +3088,6 @@ enum scan_dwelltime_adaptive_mode {
+ 	SCAN_DWELL_MODE_STATIC = 4
+ };
+ 
+-#define WLAN_SCAN_MAX_NUM_SSID          10
+-#define WLAN_SCAN_MAX_NUM_BSSID         10
+-
+ #define WLAN_SSID_MAX_LEN 32
+ 
+ struct element_info {
+@@ -3105,7 +3102,6 @@ struct wlan_ssid {
+ 
+ #define WMI_IE_BITMAP_SIZE             8
+ 
+-#define WMI_SCAN_MAX_NUM_SSID                0x0A
+ /* prefix used by scan requestor ids on the host */
+ #define WMI_HOST_SCAN_REQUESTOR_ID_PREFIX 0xA000
+ 
+@@ -3113,10 +3109,6 @@ struct wlan_ssid {
+ /* host cycles through the lower 12 bits to generate ids */
+ #define WMI_HOST_SCAN_REQ_ID_PREFIX 0xA000
+ 
+-#define WLAN_SCAN_PARAMS_MAX_SSID    16
+-#define WLAN_SCAN_PARAMS_MAX_BSSID   4
+-#define WLAN_SCAN_PARAMS_MAX_IE_LEN  256
+-
+ /* Values lower than this may be refused by some firmware revisions with a scan
+  * completion with a timedout reason.
+  */
+@@ -3312,8 +3304,8 @@ struct scan_req_params {
+ 	u32 n_probes;
+ 	u32 *chan_list;
+ 	u32 notify_scan_events;
+-	struct wlan_ssid ssid[WLAN_SCAN_MAX_NUM_SSID];
+-	struct wmi_mac_addr bssid_list[WLAN_SCAN_MAX_NUM_BSSID];
++	struct wlan_ssid ssid[WLAN_SCAN_PARAMS_MAX_SSID];
++	struct wmi_mac_addr bssid_list[WLAN_SCAN_PARAMS_MAX_BSSID];
+ 	struct element_info extraie;
+ 	struct element_info htcap;
+ 	struct element_info vhtcap;
+
+base-commit: 1198cbe26aa57ebef7a5c4315260d2e93a93e9a6
+-- 
+2.23.0
+
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
