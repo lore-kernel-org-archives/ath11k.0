@@ -4,59 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7BD6AC433EF
-	for <ath11k@archiver.kernel.org>; Wed, 30 Mar 2022 08:07:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5FD7C433EF
+	for <ath11k@archiver.kernel.org>; Wed, 30 Mar 2022 12:58:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
-	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ZkogjUlMOH1rg8d86y4v2CCGjmzI+1QBK0EiWfEpk4M=; b=nTGd/x+WU0Z5M/
-	nPU9ofZEvFd3K/UE1SfpGWBraC3ZsdmtLMWbr6G9+EoEGefkWn9ijqrtuXhtFUBXRG7OyMpcFH9Mw
-	qYfhXN7PrEQOuYviCPHzNhL7XKmgv7DxSeBi/F7s2R0tmYW+9tKN/68nPiy1dOEZPIDmeHfnhb28S
-	7zuPfzSmbIOJE8qLiNJZlwH8S41k2ozXCOR8OON4oTCA+9mQ5tRHUrcpzl8P0ZCnH8siAIDeAVPf6
-	2qcf1aHndyDLszMvJENi7KNEICMBuryPbJN2pFP0Le/CeWLNHR4o2kWQNdqiUrSEc2Kk/afuoNUKF
-	qtGDTe04qYiQKMIf/+gg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=xco2I96MwLubkqgHjwSVu4zNZs0juwqIu98+WcstauU=; b=DR2Tnba/89bwno
+	hU1JOQFp8PC+C4UEd5+56NOKNyNUl+hMA0T5ffkStiOAYz62d5rdB3HMzLN40rdqZ/udhJ9vsOpl3
+	ELbz4XBPZL5TUWI89PMw3Ii9jqDtL+FQCb6HKdJSLFZFqp94OxKfZEhMuJFVc4orWGx0I3ZImR4yn
+	BDFILsti/lvIWVfMgETlZV3FoSV2qpQq7BEYK1TdlBEP17SVBIIISNGt0QwquDf619qkClKzaGNVy
+	8C+VgCPM0ozM8q/XOeNgiRAHPKpVKJxCG3UWFYJjY7hePQJGLyWXg9XvLj8yXlMClSSjju/qKgtmq
+	Dl6KzT8SaTXnndAohu3A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nZTMQ-00EhCe-NO; Wed, 30 Mar 2022 08:07:22 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1nZXu3-00FvTm-MC; Wed, 30 Mar 2022 12:58:23 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nZTMN-00EhBv-VV
- for ath11k@lists.infradead.org; Wed, 30 Mar 2022 08:07:21 +0000
+ id 1nZXjO-00Fqav-Lg
+ for ath11k@lists.infradead.org; Wed, 30 Mar 2022 12:47:31 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 8D149617E6;
- Wed, 30 Mar 2022 08:07:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03264C340EC;
- Wed, 30 Mar 2022 08:07:17 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 7B512B81C10;
+ Wed, 30 Mar 2022 12:47:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8F5AC340EC;
+ Wed, 30 Mar 2022 12:47:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1648627639;
- bh=VeqVUHrwVumQkd/+UiBnyW9Un4ZO7zwAY3fgeshHU4g=;
- h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
- b=nLIh3E9B7EknvVUTaYGP7itaLzZ5Kgoa0IumWbg0de/g6j/3BSKe1BzqrR2dQ3F/G
- Y3qSQGtjMCufKzL/B5pFnhLAHMklNel80iu0aRcMIuIq4uLyOmmRfYkc6ZaiPboDYZ
- 8vL2Iv/yVitvt2WRPGK0jVYPM8sVnZj3bXhSOAsMlgXUPSp7ahm19aGXHRo4JQ4EAR
- w64+S98oaR6df5FUQd72vld4UlMeiIyIirYS1bqC6SiRO51cS7nbr6nrmKiPBXK4H8
- p29cXnMbIedjGo4xDNaYNI04OEU2LCM9iM7snoJhOWk3GeAY8G2Mj5vV65WQWpFE2d
- u7g+TWKEV5Cmg==
-MIME-Version: 1.0
-Subject: Re: [PATCH v2] ath11k: reduce the wait time of 11d scan and hw scan
- while add interface
+ s=k20201202; t=1648644439;
+ bh=ni1Ay+1vQWqfjHgr4U2zxyY4eOdz+ew5ss124sxBygE=;
+ h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+ b=Gx7z6oX0BACoStMEwg5wbGX6r4qbk87i1DYA/qC1zzb35Gu9C+JFRH9UGh3xf9sin
+ 7YO2P56hPUicoE2aLdSnjxrxWn4yTu17lKN9jtxa74H8s4LvM6Y08YktgjRx7cIzzp
+ 1ba9Q+Do7aBGDSYHaLMe/UFqVpXTIO46tXZceKQ7B4smmpO/mlMjw84Awz9BvuOZmy
+ vTJ1VxPro3SvfICNnMXyQK+BIzD+i47oxfEl1e+4upiUT97M7/wPK9MaJJCBJ6zyC1
+ rxQeHmG3TcXFezpOdn2LShidyHfBQ2V2x2FpzW48b6Ttkxq6ocvdegYZqp8R6czXsl
+ JLAENT+4TdP2g==
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20220328035832.14122-1-quic_wgong@quicinc.com>
-References: <20220328035832.14122-1-quic_wgong@quicinc.com>
-To: Wen Gong <quic_wgong@quicinc.com>
-Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- <quic_wgong@quicinc.com>
-User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <164862763578.10264.10006075245448797606.kvalo@kernel.org>
-Date: Wed, 30 Mar 2022 08:07:17 +0000 (UTC)
+To: Mark Herbert <mark.herbert42@gmail.com>
+Cc: ath11k@lists.infradead.org
+Subject: Re: QCA6390 power saving issue
+References: <a70aba8a-cce4-a84b-ea70-5761bde1cbe5@gmail.com>
+ <87pmm3x424.fsf@kernel.org>
+ <da91be76-d609-ba29-76e6-5365ea1db9d4@gmail.com>
+Date: Wed, 30 Mar 2022 15:47:13 +0300
+In-Reply-To: <da91be76-d609-ba29-76e6-5365ea1db9d4@gmail.com> (Mark Herbert's
+ message of "Wed, 30 Mar 2022 12:43:01 +0300")
+Message-ID: <87a6d7wqsu.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220330_010720_127144_817CFC41 
-X-CRM114-Status: GOOD (  17.43  )
+X-CRM114-CacheID: sfid-20220330_054722_921788_CDCF4ACA 
+X-CRM114-Status: GOOD (  16.54  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,57 +74,43 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Wen Gong <quic_wgong@quicinc.com> wrote:
++ ath11k list
 
-> Currently ath11k will wait 11d scan complete while add interface in
-> ath11k_mac_op_add_interface(), when system resume without enable
-> wowlan, ath11k_mac_op_add_interface() is called for each resume, thus
-> it increase the resume time of system. And ath11k_mac_op_hw_scan()
-> after ath11k_mac_op_add_interface() also needs some time cost because
-> the previous 11d scan need more than 5 seconds when 6 GHz is enabled,
-> then the scan started event will indicated to ath11k after the 11d
-> scan completed.
-> 
-> While 11d scan/hw scan is running in firmware, if ath11k update channel
-> list to firmware by WMI_SCAN_CHAN_LIST_CMDID, then firmware will cancel
-> the current scan which is running, it lead the scan failed. The patch
-> commit 9dcf6808b253 ("ath11k: add 11d scan offload support") used
-> finish_11d_scan/finish_11d_ch_list/pending_11d to synchronize the 11d
-> scan/hw scan/channel list between ath11k/firmware/mac80211 and to avoid
-> the scan fail.
-> 
-> Add wait operation before ath11k update channel list, function
-> ath11k_reg_update_chan_list() will wait until the current 11d scan/hw
-> scan completed. And remove the wait operation of start 11d scan and
-> waiting channel list complete in hw scan. After these changes, resume
-> time cost reduce about 5 seconds and also hw scan time cost reduced
-> obviously, and scan failed not seen.
-> 
-> The 11d scan is sent to firmware only one time for each interface added
-> in mac.c, and it is moved after the 1st hw scan because 11d scan will
-> cost some time and thus leads the AP scan result update to UI delay.
-> Currently priority of ath11k's hw scan is WMI_SCAN_PRIORITY_LOW, and
-> priority of 11d scan in firmware is WMI_SCAN_PRIORITY_MEDIUM, then the
-> 11d scan which sent after hw scan will cancel the hw scan in firmware,
-> so change the priority to WMI_SCAN_PRIORITY_MEDIUM for the hw scan which
-> is in front of the 11d scan, thus it will not happen scan cancel in
-> firmware.
-> 
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
-> 
-> Fixes: 9dcf6808b253 ("ath11k: add 11d scan offload support")
-> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+Mark Herbert <mark.herbert42@gmail.com> writes:
 
-Patch applied to ath-next branch of ath.git, thanks.
+> Done - https://bugzilla.kernel.org/show_bug.cgi?id=215775
 
-1f682dc9fb37 ath11k: reduce the wait time of 11d scan and hw scan while add interface
+Thanks!
+
+> Checked the previous bug - the powersave activation is done only on
+> change of something - so when the driver is loaded but never connected
+> so this IF did not become true at least one time - the powersave is
+> not yet enabled and card remains in the initial setting keeping PC3 as
+> a lowest state. Seems that when we initialize the driver we need to
+> call this ath11k_mac_config_ps(ar) one time - then on each change of
+> the connection the current code will handle that.
+>
+> @@ -2942,6 +3019,16 @@ static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw
+> *hw,
+> ath11k_mac_txpower_recalc(ar);
+> }
+> + if (changed & BSS_CHANGED_PS &&
+> + ar->ab->hw_params.supports_sta_ps) {
+> + arvif->ps = vif->bss_conf.ps;
+> +
+> + ret = ath11k_mac_config_ps(ar);
+> + if (ret)
+> + ath11k_warn(ar->ab, "failed to setup ps on vdev %i: %d\n",
+> + arvif->vdev_id, ret);
+> + }
+
+Didn't check the code, but makes sense. Can you or someone else send a
+patch, please?
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20220328035832.14122-1-quic_wgong@quicinc.com/
+https://patchwork.kernel.org/project/linux-wireless/list/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
 
 -- 
 ath11k mailing list
