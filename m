@@ -4,59 +4,139 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA99DC433EF
-	for <ath11k@archiver.kernel.org>; Thu, 31 Mar 2022 10:44:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C077EC433EF
+	for <ath11k@archiver.kernel.org>; Thu, 31 Mar 2022 10:56:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=kS0Un5oGs0UBj4VDdGq3djaSDzzwah+IB7ECe1+Au7s=; b=1zRuxDnze0em0M
-	WuF8HWO0CgC8EUez/x5/GQrh8q/yv0Wa27XPakAR/HXMgTtHiT8COedPKylryJY7M/Zx4mqi29Ols
-	OfCBjmxmJ0T9UhXzJz6Y1kXSO+rM3iauYJPeyu/G8g0plki6zCQTfmKUxy+wm5x720zLzhtzlYOqg
-	ZwrmJHN0Xv/Y+GAv6g6tEwwuKjpLXVipl8w+ngUcWSlX2oquOPHfH783dv+GQzmIcwFQCllILI+6w
-	AaTv3AxcPifSI3dh1982MyxLl17X1ttFsagr5rF56irMlc3IzJvKD4HUbYZ9y0rlQyZrbXlktw+g5
-	jPS3ncFC2k1T8iQmVNiw==;
+	List-Owner; bh=hsOnWGA1RWG5fRIx41JYMbWIHFoYBTnebtZ0AlLXKxk=; b=qHqLKambL6Sceh
+	7g9J0krvmUrKZHLJGle2FLQ3V6qBSekL2Nyq+h7ivACbEOIa4DKbuVazkgEjlW9nmjNfTydtDkM9e
+	e44HTQJikYfQ9e+ZcmX1IlJzTGW4aeCIQ+hSE3yZ0NLwQhclhuY08OJFACvzfUopk7heHjlV9JjhT
+	Hmrk7m/f2/rJXDIBwUDjLYU6cNd66+guOHkUOJDYOK1Sprgy0HfdrMavB+BL/iBAC6jR3gjwjIcqF
+	SNW6+h+v+Tvq1maftt+1QaghIa//Vk0Kiii8a/D2DS+WzUAoHZbtlr1mOHJT6fkl3YgkOCJucsCBj
+	kEFkKXgK+oZELtYLg+OQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nZsID-001tgm-Hu; Thu, 31 Mar 2022 10:44:41 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1nZsTb-001vjc-0P; Thu, 31 Mar 2022 10:56:27 +0000
+Received: from esa.hc3962-90.iphmx.com ([216.71.140.77])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nZsIA-001tfl-8G
- for ath11k@lists.infradead.org; Thu, 31 Mar 2022 10:44:39 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id CA3AE60F76;
- Thu, 31 Mar 2022 10:44:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71A2DC340F2;
- Thu, 31 Mar 2022 10:44:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1648723476;
- bh=meOVseHIYU1aGUHC8VQLsSkRUp60Na4Hk8+UBiYMIPQ=;
- h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
- b=R3sEsxGrSYPRYAq/Mhuu6U7ADyzBhfNUaQ6CIqOsDs0BY6KC7nT3ehg3VPQSyv53G
- jr5fwK+63gTmO0aAoKX6fLx4QwHzIUTiU97zKVYuA00wzo1KfT+jr1fGInY7Wh/fAl
- RONe+umiD2fKMfTdrgWxD1bBwYe7f+huyhI8IodM5oWGmmo9N9GeM1OedGazwiMNQM
- XvqDdWDh9w17U3Ue8B1o+9U6SHSKHKdV9Fr224Kk7NBRVcy2o7HGwWCS6p0NtQY0k2
- 8yWPM42uA4hJniJcItq0pCOvAqYpOpAN1FHRf8StOQDKrL5VWMjsI0zIm3/pFWALjl
- XEci+HReiMVIQ==
-From: Kalle Valo <kvalo@kernel.org>
-To: Nagarajan Maran <quic_nmaran@quicinc.com>
-Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
-Subject: Re: [PATCH v5.18] ath11k: fix driver initialization failure with WoW
+ id 1nZsTY-001viQ-24
+ for ath11k@lists.infradead.org; Thu, 31 Mar 2022 10:56:25 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qccesdkim1;
+ t=1648724184; x=1649328984;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=uTYGAXHh5qYvM11enszz3gajJ5KtrSqMn5KRkWOkmDI=;
+ b=vLmxD7f0z/Ap+wtIqiXjL66sEHKGP2zUGZfv0sJkE6kIUbO2lmiSGuXh
+ LO8M6+nhqJubVX8HXrbzfKvnn9SksDiVZOSnp5lgIMdkZ8eOXeZz0EesK
+ YfoCJeXL28FHAqjfaL8Ryg9LeQNs/UaUbQ0os1S2H2IOCNEw36mfFH7tN 8=;
+Received: from mail-dm6nam11lp2170.outbound.protection.outlook.com (HELO
+ NAM11-DM6-obe.outbound.protection.outlook.com) ([104.47.57.170])
+ by ob1.hc3962-90.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2022 10:56:19 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Xh/W1l4aQcPAuKcjKDqmR3Lq4//GFO4j+amfyDbRjuMl3N7uslacBzaW1HfE5tKu0oDOTnar0/kjU7W/L43GiLKYzD4hQ/cQR/Y4Ph8OrfGARxjXhzSTY6tUceujUkJUeFzC5rfX/AVPosUMByTB0uhaKgr2e1Fs8pn5c8iuZvyNgRr4v0KdNwSG4Qfkohw7Kc2hq9OvYthD9tzPz3X1SjaTRLNLe9mpSmZK8FQ3EiNxWAU2NPugmkdIXbaW1g7t23PruehgfXIo6pZovPEctNdfi4+hvxzj3qXMagAQbVmiTMJIJKK5++3+cbacH6m/ZkhtgcFoVFBrkXMu0Qp0vg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uTYGAXHh5qYvM11enszz3gajJ5KtrSqMn5KRkWOkmDI=;
+ b=dBpUokjd46T7VOwB9ADIwc3AOb5I72xntXvINf/S3F+RN/1T6H6Xk8gSXq+EZWUGmqidQu5C++iu94G7twrR92VAQvdi4i9g/4mLm/voBFrl2YLB1qwTjVW/TXx0jlEsfNa1nwmSyUXi3eMFB7rcDGJgsl4XyT0oj04KECF7z4x1BpxV9zEPzvGK4dtynWfha5K96HDb2QoHZdt0xHFCnJ3wCHsHNaiva+CHrqKbXhAlHuOmnBjRQk384g3ZNzNeVBAcnMsBCgq3puE6u29X80zSV/DwwaRTx3+mNUqh8BRInbvBZUogWzi8tnsp2T9L9jVlXyS4m2z/5pJW2+VDgQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=quicinc.com; dmarc=pass action=none header.from=quicinc.com;
+ dkim=pass header.d=quicinc.com; arc=none
+Received: from MW2PR02MB3899.namprd02.prod.outlook.com (2603:10b6:907:3::30)
+ by BL0PR02MB5425.namprd02.prod.outlook.com (2603:10b6:208:87::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5123.21; Thu, 31 Mar
+ 2022 10:56:16 +0000
+Received: from MW2PR02MB3899.namprd02.prod.outlook.com
+ ([fe80::d163:1cf6:9fda:4b82]) by MW2PR02MB3899.namprd02.prod.outlook.com
+ ([fe80::d163:1cf6:9fda:4b82%4]) with mapi id 15.20.5123.019; Thu, 31 Mar 2022
+ 10:56:16 +0000
+From: "Nagarajan Maran (QUIC)" <quic_nmaran@quicinc.com>
+To: Kalle Valo <kvalo@kernel.org>, "Nagarajan Maran (QUIC)"
+ <quic_nmaran@quicinc.com>
+CC: "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>,
+ "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>
+Subject: RE: [PATCH v5.18] ath11k: fix driver initialization failure with WoW
  unsupported hw
+Thread-Topic: [PATCH v5.18] ath11k: fix driver initialization failure with WoW
+ unsupported hw
+Thread-Index: AQHYRNFW+lpV0OMIdUmEcCGwKggX46zZTwVggAACpOA=
+Date: Thu, 31 Mar 2022 10:56:15 +0000
+Message-ID: <MW2PR02MB38991A500275B04A9481BF78EDE19@MW2PR02MB3899.namprd02.prod.outlook.com>
 References: <20220331073110.3846-1-quic_nmaran@quicinc.com>
-Date: Thu, 31 Mar 2022 13:44:30 +0300
-In-Reply-To: <20220331073110.3846-1-quic_nmaran@quicinc.com> (Nagarajan
- Maran's message of "Thu, 31 Mar 2022 13:01:10 +0530")
-Message-ID: <87sfqyv1td.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+ <87sfqyv1td.fsf@kernel.org>
+In-Reply-To: <87sfqyv1td.fsf@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=quicinc.com;
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 0d06f947-887c-4a48-45e4-08da13051462
+x-ms-traffictypediagnostic: BL0PR02MB5425:EE_
+x-ld-processed: 98e9ba89-e1a1-4e38-9007-8bdabc25de1d,ExtAddr
+x-microsoft-antispam-prvs: <BL0PR02MB5425773B5334EF91FA50214891E19@BL0PR02MB5425.namprd02.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: tCAv+WCUfx5eCdAM8JBkwb2ZgA5nrOsa/uUE1lRGSoCPvO83/Xh/89pzngZrHJjWyOGb70EtNO+EPsJec40on4Rby88BotRVaxe4+oWlGXJm/5bfLRVhHqJ0smdjw20i/t7sIoreVMyBc/4yahjdDp1rUoC7TYKSaJk6C2kBRBDh3wOmh75Zqvj8nVjTyybZbGLEzjBm8XSMxNE5h4UbxH6mAKFRWxYHPLp4oVQfdkEjI5YVGtXwtYHPrYKqiTzMhg2U7ss20/h9V4U6V0MKKfMgdUa+wfTiTFpp8+beV9ZqyJARbix235Uv9YpZsawlnTtkVQSuhJT/c6E4msvb+r2PW1B3dCIvoExDNGBaYprG+dxDPUu3ntmLT/HOXR4OgTreJs+FnQcxXFnPII5dL5TLyjfe2CVrYjTwX3wStxzgFV4ATkccVtjZCrVCzCR8ZH0L1EA88iWDbArK113ttE/FDYeGW2ETBVNPB5QN8QkPI+xoKfXp5Gd8SiPE5OX/FzP80gIwdX8wfXG8WUgqSNoZbEr4BKG1JwkV+LRLSk0gqAxG/VsRGOL0/aKn0iCAeozwPA64ef34IZrepOvrWLphuo1DH0+iLmsVfz5spYhdxbXdTx7wyWLPkdF9ORcomS9ZMS7u4MojZJNIoFV977mOG9/FzGXfBQmrklof3AORnd8mymZJxrsKMZBoytlWUWxw/tWznKig2jchwEfaGiATRAJMfAC5BbV7dfXfSmF4hpaLvROesfxrHAGgYvR+9WKDiQHalvUPYNIKG13bIT5lvF2SE5HDfkgyYKV8cgaFt3YM6/gMxytaQe72ybaSAU+8hjgxTjBCuHZw+W37hQ==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MW2PR02MB3899.namprd02.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(4636009)(366004)(53546011)(76116006)(7696005)(110136005)(6506007)(45080400002)(54906003)(33656002)(55016003)(71200400001)(9686003)(2906002)(38100700002)(8936002)(966005)(508600001)(316002)(5660300002)(66556008)(66476007)(26005)(64756008)(122000001)(66946007)(52536014)(86362001)(83380400001)(66446008)(8676002)(4326008)(186003)(38070700005);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?EvsTY/EBoOFn2FFbQv9VHcOH0dgx/pS/tfWcIjJE1afblaLOyigyAg7SBfwv?=
+ =?us-ascii?Q?fNTbI7cxKhn2J2n8vAgn3Bf41jLDvFZGKh3GFXxk920t0uc2z6HQLfT+6vr0?=
+ =?us-ascii?Q?1XxIWnrOKgq4OKc9dD9Zs07RtB+XemXJtyc1CqsFZWUuKzwsNe82sEXdSm8J?=
+ =?us-ascii?Q?ORUW75UmbB2FnbpcXoVqprF8EA5LdOjy2MIIcMgnUxTbe2qkJNwylVuJMCr1?=
+ =?us-ascii?Q?h+9hjL2aQRLluE12p5eg+k0zgxbjDO4ccCky1JaPwMNri/TLy0/LnwPyqqz7?=
+ =?us-ascii?Q?fq17V1S2xLFngiWaN4OxW2SbT9B2+dmuio/V2uBoWpoQsTfpBGsbqQQ/d9bF?=
+ =?us-ascii?Q?OhIcpXvtjxNjEuwErK+t6cKORXCFuYKaqwvIce2UlhrJAgIhk5pwtNDSnPif?=
+ =?us-ascii?Q?+ZCB1V6LDh5hfZpfFDB1FzMP5pcFNpyKX7XJW7o5jemjvIpe44rF2qLUi5Ud?=
+ =?us-ascii?Q?Z1H+gNgbQoaI+64i3HxlyuuMjL7WLEKVYViexGpWBe60X3eWK4Bx+1Wd5eyj?=
+ =?us-ascii?Q?YuZ04zy6mSX0x3xHsSWJW3n4aJJ9rDka336rDh3n+GNjDF7txQqUntHkS0oN?=
+ =?us-ascii?Q?P5zPtG7pG4E6d6JfXcFYujf8+FEL5sUlx0rfQgcXmOT0EzyfdxS98XL/GZpD?=
+ =?us-ascii?Q?8rrqiueBIyWD8CbKYdBIZQWqbY+BHDBKkrmq2nbjoUWXlr8Pax03iS7LNDNW?=
+ =?us-ascii?Q?IJ76JTfOvZtXbmflUQ+fs/a2+YbJFpiwqu2vHzsSZDzEpw4SenRbDRZgoVj4?=
+ =?us-ascii?Q?BbxswbZzPJQiENyM0vKOQHmdmzcIdYvP0ywmHaAWxZfGGaWchQeGV8OwXb8O?=
+ =?us-ascii?Q?DDet7SIi8nD3pGyQWx4IdcsFJYI798PG5uNyPvg2eQ1vbqb1N8ohBryB4QB5?=
+ =?us-ascii?Q?9qz0/PPWoTi5Sulgw5rryqRYCN/30p3wYKXDW40C4avrqK8QxgWQzxaTUEfh?=
+ =?us-ascii?Q?ePYVEXqHMLkKcguQnDSOLhU9ICTYRZvcwtUlsDarc2FRKme3vrrzXHH+UBz1?=
+ =?us-ascii?Q?22XgO1hn27OZ5duztlh+Gm+mS2eaxuoWRPCSP5yFyJ0d5F8TSwuMj0cG2fyY?=
+ =?us-ascii?Q?bXWQYRtw2vDv3fs4NEq1MiHa6q0eJtY+kF3qfRCn5BRIxibIMf7NmPsOqPoG?=
+ =?us-ascii?Q?0bqSeo4/+t2jKFvGUTGYhydC8bmRKrCeemu/tk5AxNi1aqJJgp/XIDRFlGzG?=
+ =?us-ascii?Q?qQYDYWNdlkt3MVzUqNbGuzAAb1stMc1fllCLXFCuWUQSp0avA/4I6/iq8NQf?=
+ =?us-ascii?Q?9lRVgAFh8Bum7VAVEhHWV8mzRYOE62asWrOisvTI/NFGwq1kZrkSVbFZJWkO?=
+ =?us-ascii?Q?zT//5tRx+6FOThDhRPvH6AvMcnoMZl6oWiSbiCC+UEC2mkTxkzjbqPqY0AyU?=
+ =?us-ascii?Q?jZs+lo4eVOjTk+B89r7PEnX5wVdHois4DmaGFc1VN4mUes3YL7++/ucHpTtI?=
+ =?us-ascii?Q?k5AE2YKnVMmXgLbvAp7M/D3mzREEd1n4yQ1TSu7YaJTSSON58Yda7OzRB2hz?=
+ =?us-ascii?Q?ZwVAXbUWH9nw3L8dSyp2LEgtkCDx26eQloQh33P4es1yv0HGEC/O3CGKqCFY?=
+ =?us-ascii?Q?7ix3E4wLau1cZYzGfWG5MZRYA9Lekz9tx8ccDhyCCT8nrDEK4bgJsp3cNZDu?=
+ =?us-ascii?Q?4I1mnwhGYmp9Lcnuo6y9fUbluqVYLpd2u4ERkMiov5DWT6tXzYhFbde5WHC7?=
+ =?us-ascii?Q?VPjLy1jimAdi4p19yYKeTAoBypvVpIODBUWVRsIwjIGYRLASweDYYYFlu7bp?=
+ =?us-ascii?Q?B3MRA/9KQQ=3D=3D?=
 MIME-Version: 1.0
+X-OriginatorOrg: quicinc.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MW2PR02MB3899.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0d06f947-887c-4a48-45e4-08da13051462
+X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Mar 2022 10:56:15.7064 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 98e9ba89-e1a1-4e38-9007-8bdabc25de1d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 6scGiywLdVqUmx02ZBbmutDNjqvL9/pbQ0C4T35zNkWwZZGDtqou9UIJ/ZBwAC1zj1BFkKiXQNSCN9GgiEHKpw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR02MB5425
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220331_034438_410707_BDE9952C 
-X-CRM114-Status: GOOD (  12.97  )
+X-CRM114-CacheID: sfid-20220331_035624_221171_6DC89676 
+X-CRM114-Status: GOOD (  11.30  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,11 +153,20 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+
+
+-----Original Message-----
+From: Kalle Valo <kvalo@kernel.org> 
+Sent: Thursday, March 31, 2022 4:15 PM
+To: Nagarajan Maran (QUIC) <quic_nmaran@quicinc.com>
+Cc: ath11k@lists.infradead.org; linux-wireless@vger.kernel.org
+Subject: Re: [PATCH v5.18] ath11k: fix driver initialization failure with WoW unsupported hw
+
 Nagarajan Maran <quic_nmaran@quicinc.com> writes:
 
-> In the "ath11k_wow_init", error value "EINVAL" is returned
-> when the check for firmware support of WoW feature fails,
-> which in turn stops the driver initialization.
+> In the "ath11k_wow_init", error value "EINVAL" is returned when the 
+> check for firmware support of WoW feature fails, which in turn stops 
+> the driver initialization.
 >
 > Warning message:
 > [   31.040144] ------------[ cut here ]------------
@@ -113,22 +202,25 @@ Nagarajan Maran <quic_nmaran@quicinc.com> writes:
 > [   31.215467] ath11k_pci 0000:01:00.0: failed register the radio with mac80211: -22
 > [   31.221117] ath11k_pci 0000:01:00.0: failed to create pdev core: -22
 >
-> Fix this by returning value "0" when FW doesn't support WoW
-> to allow driver to proceed with initialize sequence and also
-> remove the unnecessary "WARN_ON".
+> Fix this by returning value "0" when FW doesn't support WoW to allow 
+> driver to proceed with initialize sequence and also remove the 
+> unnecessary "WARN_ON".
 >
 > Fixes: ba9177fcef21 ("Add basic WoW functionalities")
-> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
+> Tested-on: QCN9074 hw1.0 PCI 
+> WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
 >
 > Signed-off-by: Nagarajan Maran <quic_nmaran@quicinc.com>
 
-Fixes tag is wrong, it should be:
+>Fixes tag is wrong, it should be:
 
-Fixes: ba9177fcef21 ("ath11k: Add basic WoW functionalities")
+>Fixes: ba9177fcef21 ("ath11k: Add basic WoW functionalities")
 
-I fixed it in the pending branch.
+>I fixed it in the pending branch.
 
--- 
+Thanks, Kalle. Will note this for the my next reviews.
+
+--
 https://patchwork.kernel.org/project/linux-wireless/list/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
