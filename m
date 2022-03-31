@@ -4,69 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4005C433EF
-	for <ath11k@archiver.kernel.org>; Wed, 30 Mar 2022 22:03:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5F53C433EF
+	for <ath11k@archiver.kernel.org>; Thu, 31 Mar 2022 00:21:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Qq8nQ+sZXypbWRAIIiFZoaINgknVSPeySDtcYKkeDKY=; b=sWlnKRDQVbF7OU
-	xmd7y7QdBz3lskP2F5mX+smI8KjD901sTosttaV77D4R0tRnb0aFA7vPwDndi5eaDA1LXe+j8iitP
-	hBbq48kZa95kAkR4XZP2NAJpq5rXEeL5pJscQX+ebd6n6zZV0U3SLRsvVx0aXsSN/ZszAUq4DafKe
-	J9P6VpDA7KuOXb9K+YguCiKGx/bKYUexa8dqqTj7tHV+Jyp+710sHXucsr+movMO+VtE6M54HO3Vp
-	TBUAZoKbYrv4PGx27A4gB/14CjUK9SkXPrs7AWsJBmgAlOuWKSSAXjE/t6zN26kt9nDlLLBDaNzFv
-	O942whL7vUBCfVSdletA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=R+z58uoRDKbnsmOwFE51Co1+V27B9oBPCRRsNmKZtP4=; b=QFVy4LCO6yw0PI
+	SHLVQj4+AestqHrIKiqQFqbhcLMmcCzrqXe4Nao71TC+YrzFaN8vOipfZb17rxz19AixwOvb7kWcg
+	Z2v/boip6jbk0Gw756+Eob0dyLyhcObiAvCpjsfS4m0Q/RhedMU/2k+nL65tqEn9t98M2gJ8yzSjH
+	V9/oQGbHWfMc+MbxVst7JnbSxep11udf30dA/2oBe36nz0O0vHMrmIA9+AZHHrH5tpcnzc+ooP43o
+	Sh0hYe+umeVCscdITHxzIX36iw1VOxJ/NdtLRgCPFukgJV0Mzs4Q7sCxCXBqXwtMG1HwZ0wO5lKRf
+	oo/MTXzlDVS9y3W+Q/Sw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nZgPf-00HZjJ-Sj; Wed, 30 Mar 2022 22:03:35 +0000
-Received: from mail-qt1-x82f.google.com ([2607:f8b0:4864:20::82f])
+	id 1nZiZ0-000CFo-Mx; Thu, 31 Mar 2022 00:21:22 +0000
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nZgPc-00HZiw-MT
- for ath11k@lists.infradead.org; Wed, 30 Mar 2022 22:03:34 +0000
-Received: by mail-qt1-x82f.google.com with SMTP id j21so19661056qta.0
- for <ath11k@lists.infradead.org>; Wed, 30 Mar 2022 15:03:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=lpHmMAFIU1gIcYBXZEJkbXnQwgepvxP142exobUt52A=;
- b=Fw6gdTDCOHv0IXSa5CzUVCTVuWAWIkcnIWfZwkn9ug8ky8Ryj8lvSHFxYDyjBFoNuC
- 91JHy/wel4KCSuc6A+h+YAM9jjUDFscVt6DDQq5Cc1CLBdkvn5/yQ4Oje8SoQ4IglmHm
- SpxEdrxWk/9gQvdvQliyM6iMDVFFcrgqJF8ho8H29eEJbsi/eeZ/TFooQWMOAClMB3JS
- p106XXzf/vz7JT3i383NiYGpHSGkr6bhAr7XoBy9tjgsvpO3xGtPMfkpiiXwJJluoGq+
- 2iAsZjAx1sIHGM3S32XEwah88DFIJsWuCoEwDHonwZh32wlftb9HkpSIbVRyafZIGPYl
- AaWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=lpHmMAFIU1gIcYBXZEJkbXnQwgepvxP142exobUt52A=;
- b=UbW1ciMyDDbA7a5pgti8HHiM3c/SlAPLaAOLvj8YtIT4GI08axrTjs297TFwRFFCE1
- eMUPRRGiGi0gjqe4ria+tyNYSv235GO9y2XmJjlRLCh2uN6NJwZrltQGPYh+5iVMg7+x
- Bm/qjQR0IsQFMG63wBW1J7p1cQeHDBxejSgIUIsTBTdq+FTTCCDv4aGbfZ5geRQBsfap
- ZeGBxRAWZL8jsS+A1hhhSOr9ytz6I4NnrXVN8/EW0/f2XsmfYY7k54pw+eFj6YoGpGmh
- LCKjYLZl3nGmQRsvHvnAaHLdqWZ8njkucyFOn6ssYa3uhmmSBooaBtn0HJtx1FKdqd8S
- Swyw==
-X-Gm-Message-State: AOAM531xJXlBGD2ZlRPmzMM1T0IAVa1E+fAey0xj7YP2QuvBQ9DdHqBi
- 1B+mRNP75IbJwULZ6xF6xnkzAR33l+YQSD4iSVFEB5xO8KU=
-X-Google-Smtp-Source: ABdhPJwPW/vZMI4Pd9siQitPSlnsgIjoEi6gL2O4lEM6EjBGo/eUi5omPbHNxFF0+XeLcwKy7jb+u41qeZjD9m/ZLrg=
-X-Received: by 2002:ac8:5702:0:b0:2e1:ec8a:917a with SMTP id
- 2-20020ac85702000000b002e1ec8a917amr1615048qtw.682.1648677811639; Wed, 30 Mar
- 2022 15:03:31 -0700 (PDT)
+ id 1nZiYy-000CFN-94
+ for ath11k@lists.infradead.org; Thu, 31 Mar 2022 00:21:21 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+ t=1648686080; x=1680222080;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5FRvCD7h6pC+ySGbwaZD+OK9XuQCej2qlEclI+8oj4o=;
+ b=EnVxq/gQZ3uymrHo5fPFTc8OW7bGEgCXKXnZ1EC1uCZ+i0zDBigit9Fx
+ 0AG1ESUrFYdDK7IYQBYJ78i9Gsrm2T2BfFaEPGW/76QxH7FhnLh9vQfow
+ EzgYIOtSRV2UTlxj3LDlqIB5wC0NOOJs9752qIgqsHFxI2IcO8JDbRBkq E=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+ by alexa-out-sd-02.qualcomm.com with ESMTP; 30 Mar 2022 17:21:19 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+ by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2022 17:21:19 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Wed, 30 Mar 2022 17:21:18 -0700
+Received: from bqiang-Celadon-RN.qca.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Wed, 30 Mar 2022 17:21:17 -0700
+From: Baochen Qiang <quic_bqiang@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>
+Subject: [PATCH] ath11k: Remove unnecessary delay in ath11k_core_suspend
+Date: Thu, 31 Mar 2022 08:21:05 +0800
+Message-ID: <20220331002105.1162099-1-quic_bqiang@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <00ece2e5-7bcb-0b2b-23d2-e25cf4c9d13e@linaro.org>
- <CAA8EJppG0FXj_n-CdGbX6b+sGrTb0_FG_tCZ0GeSEsCcz0mR3A@mail.gmail.com>
- <875ynvwm22.fsf@kernel.org>
-In-Reply-To: <875ynvwm22.fsf@kernel.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 31 Mar 2022 01:03:20 +0300
-Message-ID: <CAA8EJpoXWQLzC_GOU1CtSB7yBVLU_4=HVs5+38cJov2eYkkUhQ@mail.gmail.com>
-Subject: Re: ath11k-firmware: QCA6390 hw2.0: add RB5-specific BDF
-To: Kalle Valo <kvalo@kernel.org>
-Cc: ath11k@lists.infradead.org, Bjorn Andersson <bjorn.andersson@linaro.org>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220330_150332_839187_3FBF27B3 
-X-CRM114-Status: GOOD (  16.49  )
+X-CRM114-CacheID: sfid-20220330_172120_388533_A788C353 
+X-CRM114-Status: UNSURE (   7.52  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,44 +79,42 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi,
+The intended delay in ath11k_core_suspend is introduced in commit
+d1b0c33850d2 ("ath11k: implement suspend for QCA6390 PCI devices"),
+now with ath11k_mac_wait_tx_complete added in commit ba9177fcef21
+("ath11k: Add basic WoW functionalities"), that delay is not
+necessary now, so remove it.
 
+This is found in code review.
 
-On Wed, 30 Mar 2022 at 17:29, Kalle Valo <kvalo@kernel.org> wrote:
-> Dmitry Baryshkov <dmitry.baryshkov@linaro.org> writes:
-> > On Fri, 18 Feb 2022 at 08:15, Dmitry Baryshkov
-> > <dmitry.baryshkov@linaro.org> wrote:
-> >> We'd like to ask for inclusion for the board file for Qualcomm Robotics
-> >> RB5 Development Kit.
-> >>
-> >> Following the questions from the ath10k wiki page:
-> >
-> > A gracious question. I have followed the procedure described in the
-> > ath10k wiki, receiving no response in the past month.
->
-> The board file updates are slow, it can take a long time before I manage
-> too process them.
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-02431-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
 
-Ack. Then please excuse my impatience.
+Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/core.c | 5 -----
+ 1 file changed, 5 deletions(-)
 
->
-> > Is something wrong with the request?
->
-> After a quick look I didn't see anything wrong.
->
-> > We'd also like to submit several other board files:
-> >  - for the RB3 board (WCN3990, hw 1.0)
-> >  - for the Dragonboard 820c (QCA6174, hw 3.0)
-> >
-> > Do they stand a chance to be accepted?
->
-> Please do submit them.
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 7f4462cf5787..509bfffceba1 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -459,11 +459,6 @@ int ath11k_core_suspend(struct ath11k_base *ab)
+ 	if (!ar || ar->state != ATH11K_STATE_OFF)
+ 		return 0;
+ 
+-	/* TODO: there can frames in queues so for now add delay as a hack.
+-	 * Need to implement to handle and remove this delay.
+-	 */
+-	msleep(500);
+-
+ 	ret = ath11k_dp_rx_pktlog_stop(ab, true);
+ 	if (ret) {
+ 		ath11k_warn(ab, "failed to stop dp rx (and timer) pktlog during suspend: %d\n",
 
-Will send them asap, thank you.
-
+base-commit: 748b34786d1c96e758862d8e8577106ccde6515a
 -- 
-With best wishes
-Dmitry
+2.25.1
+
 
 -- 
 ath11k mailing list
