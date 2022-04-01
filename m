@@ -4,57 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D105C433FE
-	for <ath11k@archiver.kernel.org>; Fri,  1 Apr 2022 17:31:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D65E8C433EF
+	for <ath11k@archiver.kernel.org>; Fri,  1 Apr 2022 18:08:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=O1j3w08osZDj+0WXSBm4p9NzC1rVDjB/OXqvQi+ZmSQ=; b=kSGvpqSWWkeyxm
-	8P3NgqYIXmmcZ3idxiKb6qDgZYG2OVSoPw8fx/Z0Uy9xJ5RdikyagJRdTeS1jqMRxBF0Fz6H2XD1n
-	XUUQ2U8hQ6g/sy1wbC4sR064R42Ksnsk/f1v73t7ulxSYELGSYOblqqWTzsCOUwuQ87lgf7dZI6Nz
-	yUjvjkfDCAbi/NUS6LJ6Kr3AJc/P7A7xv/6rO9W61iC1xGvacsJ3WkjiNkNL5sKIbIZg/5VF2Pi7O
-	VEyyJOnZAcw6AOcFPWwd3+fP4Fhkj/62s9PmqWBh0kqCE85HXx6p+c+8wSm2rfbzFKeMqqwI+CzH0
-	C54CFRzJ92G6/j+uc0cw==;
+	List-Owner; bh=9fexJxSUh78rtR0hxvsYbfp/Qpq5y6lCSp5R2T7KZPc=; b=qFA2qhylyIodwZ
+	oXXnRbV+9rKlW4nyJUAO43ZGzf9s5OFupQs+peMzHebmfdLAghqm1rn+iXhj6RG0Jm/IIdlLSeUB8
+	7dPyUbpZkzktcppBrO0Lotu1jOPUaHBns48wPzKZN9DNlR+6/YSxqc0TAk0gSK5xJW/pNj19O/6oP
+	0CpwaJTEoyWZfH7EuRP/1ucXBEPjoSTbDZyMgdL9d9TSwwmkIx5iU62umokuyfa5m5WKnREV6Gxyl
+	09zyHKxpHvQccRLvCY9vZsFmZcifrUT3Dd5e3GNXHK8scXXTdxaUNz97Wu2lydGaxD5wsMCubcFep
+	e8Sz3oUXstgjLSQHaPAg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1naL6s-006i79-8C; Fri, 01 Apr 2022 17:30:54 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1naLgk-006nbW-94; Fri, 01 Apr 2022 18:07:58 +0000
+Received: from alexa-out.qualcomm.com ([129.46.98.28])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1naL6o-006i54-Iu
- for ath11k@lists.infradead.org; Fri, 01 Apr 2022 17:30:52 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 04329B8258F
- for <ath11k@lists.infradead.org>; Fri,  1 Apr 2022 17:30:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E707AC340F2;
- Fri,  1 Apr 2022 17:30:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1648834247;
- bh=Vq5ZcotMnOIsFOE2qHwHRxVIuW6lIkZiCPSMh1eHLMw=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=X2A4qBnidwr+oN9rwauWn8ugOh/JfT0vl4ezM9HkvuiG47hXBHUeeNAShHIV3YH+O
- InVig1/RNTRAc0umI7/ZRR9gszODhaLvgqbGI7BHSX+WWSyu8jMgaRwEDDO8TKEJyB
- SGJXXU/vZkXYNf8vTXBFyXMc0WsaaD3BL+GPBxAUF8r8z2IefLf5CP3Ca9Ao+rr24q
- t56iKsR4G7zLz0gr/uCZxkytwrDGtcjuoLkZOPxDPcw2PhNE6O79SNIYiGT1lb1mpF
- WpeeAfjlGaQN+1JBJbOnhYzGcaa0m51YNNaJNO1nz4EncTuLXc8/SM4/biywB8/JYI
- VPa18ZBYTQcuQ==
-From: Kalle Valo <kvalo@kernel.org>
-To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
-Subject: [PATCH 1/3] ath11k: mhi: remove state machine
-Date: Fri,  1 Apr 2022 20:30:40 +0300
-Message-Id: <20220401173042.17467-2-kvalo@kernel.org>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220401173042.17467-1-kvalo@kernel.org>
-References: <20220401173042.17467-1-kvalo@kernel.org>
+ id 1naLgh-006naI-20
+ for ath11k@lists.infradead.org; Fri, 01 Apr 2022 18:07:56 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+ t=1648836475; x=1680372475;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=hZZ6EK8a93//af4x10Yo9sigoPjatfwlF5mc5WdS1Tw=;
+ b=uo5rDypF22RKqwUZnpGg6rZtljYPJKayp0SEtnHxN6uF+6US7oMpo7V0
+ U+1oM1BDlnK3OBn479e09XW18MXkPzG48SUw+GtQ/0Svj5q4LRRmQKq2P
+ GmKBKa0er/23NZFBORw6n4enLNGlFNru0Clk/N5bxqE/1xG//rCD63giz M=;
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+ by alexa-out.qualcomm.com with ESMTP; 01 Apr 2022 11:07:53 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+ by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2022 11:07:52 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Fri, 1 Apr 2022 11:07:52 -0700
+Received: from [10.110.67.71] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Fri, 1 Apr 2022
+ 11:07:51 -0700
+Message-ID: <4f421eab-1ace-51c6-e677-42b32b6afc56@quicinc.com>
+Date: Fri, 1 Apr 2022 11:07:51 -0700
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v4 1/2] ath11k: add support for extended wmi service bit
+Content-Language: en-US
+To: Baochen Qiang <quic_bqiang@quicinc.com>, <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>
+References: <20220401120948.1312956-1-quic_bqiang@quicinc.com>
+ <20220401120948.1312956-2-quic_bqiang@quicinc.com>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+In-Reply-To: <20220401120948.1312956-2-quic_bqiang@quicinc.com>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220401_103050_973673_ED4B51EB 
-X-CRM114-Status: GOOD (  15.96  )
+X-CRM114-CacheID: sfid-20220401_110755_181967_FBB1BFB7 
+X-CRM114-Status: GOOD (  30.09  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -66,292 +78,193 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Kalle Valo <quic_kvalo@quicinc.com>
+On 4/1/2022 5:09 AM, Baochen Qiang wrote:
+> From: Wen Gong <quic_wgong@quicinc.com>
+> 
+> Currently the wmi service bis is report from firmware, it is divided
 
-State machines are difficult to understand and in this case it's just useless,
-which is shown by the diffstat. So remove it entirely to make the code simpler.
+"bis" is a typo?
+Also use of "Currently" here is confusing since it seems you are 
+changing that behavior. But the firmware reporting isn't changing, only 
+the host processing is changing.
 
-No functional changes.
+So perhaps:
+When the WMI service bits are reported from firmware they are divided 
+into multiple segments, with 128 bits in each segment.
 
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03003-QCAHSPSWPL_V1_V2_SILICONZ_LITE-2
+> to 128 bits for each segment. The first segment is processed by
+> ath11k_wmi_service_bitmap_copy(), the second segment is processed by
+> ath11k_service_available_event() with WMI_TAG_SERVICE_AVAILABLE_EVENT,
+> When the service bit exceed 256 bits, then firmware report it by tag
+> WMI_TAG_ARRAY_UINT32 in WMI_SERVICE_AVAILABLE_EVENTID.
+> 
+> ath11k does not process the third segment, this is to extend the wmi
 
-Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/mhi.c | 194 ++------------------------
- drivers/net/wireless/ath/ath11k/mhi.h |  13 --
- drivers/net/wireless/ath/ath11k/pci.h |   1 -
- 3 files changed, 10 insertions(+), 198 deletions(-)
+Here is where you can use "currently". And this is also a good place to 
+say why the change is needed since that is also missing from the commit 
+text. So consider:
+Currently ath11k does not process the third segment. Upcoming features 
+need to know if firmware support is available for the features, so add 
+processing of the third segment.
 
-diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
-index 61d83be4841f..d9b63a1f8219 100644
---- a/drivers/net/wireless/ath/ath11k/mhi.c
-+++ b/drivers/net/wireless/ath/ath11k/mhi.c
-@@ -461,195 +461,17 @@ void ath11k_mhi_unregister(struct ath11k_pci *ab_pci)
- 	mhi_free_controller(mhi_ctrl);
- }
- 
--static char *ath11k_mhi_state_to_str(enum ath11k_mhi_state mhi_state)
--{
--	switch (mhi_state) {
--	case ATH11K_MHI_INIT:
--		return "INIT";
--	case ATH11K_MHI_DEINIT:
--		return "DEINIT";
--	case ATH11K_MHI_POWER_ON:
--		return "POWER_ON";
--	case ATH11K_MHI_POWER_OFF:
--		return "POWER_OFF";
--	case ATH11K_MHI_FORCE_POWER_OFF:
--		return "FORCE_POWER_OFF";
--	case ATH11K_MHI_SUSPEND:
--		return "SUSPEND";
--	case ATH11K_MHI_RESUME:
--		return "RESUME";
--	case ATH11K_MHI_TRIGGER_RDDM:
--		return "TRIGGER_RDDM";
--	case ATH11K_MHI_RDDM_DONE:
--		return "RDDM_DONE";
--	default:
--		return "UNKNOWN";
--	}
--};
--
--static void ath11k_mhi_set_state_bit(struct ath11k_pci *ab_pci,
--				     enum ath11k_mhi_state mhi_state)
--{
--	struct ath11k_base *ab = ab_pci->ab;
--
--	switch (mhi_state) {
--	case ATH11K_MHI_INIT:
--		set_bit(ATH11K_MHI_INIT, &ab_pci->mhi_state);
--		break;
--	case ATH11K_MHI_DEINIT:
--		clear_bit(ATH11K_MHI_INIT, &ab_pci->mhi_state);
--		break;
--	case ATH11K_MHI_POWER_ON:
--		set_bit(ATH11K_MHI_POWER_ON, &ab_pci->mhi_state);
--		break;
--	case ATH11K_MHI_POWER_OFF:
--	case ATH11K_MHI_FORCE_POWER_OFF:
--		clear_bit(ATH11K_MHI_POWER_ON, &ab_pci->mhi_state);
--		clear_bit(ATH11K_MHI_TRIGGER_RDDM, &ab_pci->mhi_state);
--		clear_bit(ATH11K_MHI_RDDM_DONE, &ab_pci->mhi_state);
--		break;
--	case ATH11K_MHI_SUSPEND:
--		set_bit(ATH11K_MHI_SUSPEND, &ab_pci->mhi_state);
--		break;
--	case ATH11K_MHI_RESUME:
--		clear_bit(ATH11K_MHI_SUSPEND, &ab_pci->mhi_state);
--		break;
--	case ATH11K_MHI_TRIGGER_RDDM:
--		set_bit(ATH11K_MHI_TRIGGER_RDDM, &ab_pci->mhi_state);
--		break;
--	case ATH11K_MHI_RDDM_DONE:
--		set_bit(ATH11K_MHI_RDDM_DONE, &ab_pci->mhi_state);
--		break;
--	default:
--		ath11k_err(ab, "unhandled mhi state (%d)\n", mhi_state);
--	}
--}
--
--static int ath11k_mhi_check_state_bit(struct ath11k_pci *ab_pci,
--				      enum ath11k_mhi_state mhi_state)
--{
--	struct ath11k_base *ab = ab_pci->ab;
--
--	switch (mhi_state) {
--	case ATH11K_MHI_INIT:
--		if (!test_bit(ATH11K_MHI_INIT, &ab_pci->mhi_state))
--			return 0;
--		break;
--	case ATH11K_MHI_DEINIT:
--	case ATH11K_MHI_POWER_ON:
--		if (test_bit(ATH11K_MHI_INIT, &ab_pci->mhi_state) &&
--		    !test_bit(ATH11K_MHI_POWER_ON, &ab_pci->mhi_state))
--			return 0;
--		break;
--	case ATH11K_MHI_FORCE_POWER_OFF:
--		if (test_bit(ATH11K_MHI_POWER_ON, &ab_pci->mhi_state))
--			return 0;
--		break;
--	case ATH11K_MHI_POWER_OFF:
--	case ATH11K_MHI_SUSPEND:
--		if (test_bit(ATH11K_MHI_POWER_ON, &ab_pci->mhi_state) &&
--		    !test_bit(ATH11K_MHI_SUSPEND, &ab_pci->mhi_state))
--			return 0;
--		break;
--	case ATH11K_MHI_RESUME:
--		if (test_bit(ATH11K_MHI_SUSPEND, &ab_pci->mhi_state))
--			return 0;
--		break;
--	case ATH11K_MHI_TRIGGER_RDDM:
--		if (test_bit(ATH11K_MHI_POWER_ON, &ab_pci->mhi_state) &&
--		    !test_bit(ATH11K_MHI_TRIGGER_RDDM, &ab_pci->mhi_state))
--			return 0;
--		break;
--	case ATH11K_MHI_RDDM_DONE:
--		return 0;
--	default:
--		ath11k_err(ab, "unhandled mhi state: %s(%d)\n",
--			   ath11k_mhi_state_to_str(mhi_state), mhi_state);
--	}
--
--	ath11k_err(ab, "failed to set mhi state %s(%d) in current mhi state (0x%lx)\n",
--		   ath11k_mhi_state_to_str(mhi_state), mhi_state,
--		   ab_pci->mhi_state);
--
--	return -EINVAL;
--}
--
--static int ath11k_mhi_set_state(struct ath11k_pci *ab_pci,
--				enum ath11k_mhi_state mhi_state)
--{
--	struct ath11k_base *ab = ab_pci->ab;
--	int ret;
--
--	ret = ath11k_mhi_check_state_bit(ab_pci, mhi_state);
--	if (ret)
--		goto out;
--
--	ath11k_dbg(ab, ATH11K_DBG_PCI, "setting mhi state: %s(%d)\n",
--		   ath11k_mhi_state_to_str(mhi_state), mhi_state);
--
--	switch (mhi_state) {
--	case ATH11K_MHI_INIT:
--		ret = mhi_prepare_for_power_up(ab_pci->mhi_ctrl);
--		break;
--	case ATH11K_MHI_DEINIT:
--		mhi_unprepare_after_power_down(ab_pci->mhi_ctrl);
--		ret = 0;
--		break;
--	case ATH11K_MHI_POWER_ON:
--		ret = mhi_sync_power_up(ab_pci->mhi_ctrl);
--		break;
--	case ATH11K_MHI_POWER_OFF:
--		mhi_power_down(ab_pci->mhi_ctrl, true);
--		ret = 0;
--		break;
--	case ATH11K_MHI_FORCE_POWER_OFF:
--		mhi_power_down(ab_pci->mhi_ctrl, false);
--		ret = 0;
--		break;
--	case ATH11K_MHI_SUSPEND:
--		ret = mhi_pm_suspend(ab_pci->mhi_ctrl);
--		break;
--	case ATH11K_MHI_RESUME:
--		/* Do force MHI resume as some devices like QCA6390, WCN6855
--		 * are not in M3 state but they are functional. So just ignore
--		 * the MHI state while resuming.
--		 */
--		ret = mhi_pm_resume_force(ab_pci->mhi_ctrl);
--		break;
--	case ATH11K_MHI_TRIGGER_RDDM:
--		ret = mhi_force_rddm_mode(ab_pci->mhi_ctrl);
--		break;
--	case ATH11K_MHI_RDDM_DONE:
--		break;
--	default:
--		ath11k_err(ab, "unhandled MHI state (%d)\n", mhi_state);
--		ret = -EINVAL;
--	}
--
--	if (ret)
--		goto out;
--
--	ath11k_mhi_set_state_bit(ab_pci, mhi_state);
--
--	return 0;
--
--out:
--	ath11k_err(ab, "failed to set mhi state: %s(%d)\n",
--		   ath11k_mhi_state_to_str(mhi_state), mhi_state);
--	return ret;
--}
--
- int ath11k_mhi_start(struct ath11k_pci *ab_pci)
- {
- 	int ret;
- 
- 	ab_pci->mhi_ctrl->timeout_ms = MHI_TIMEOUT_DEFAULT_MS;
- 
--	ret = ath11k_mhi_set_state(ab_pci, ATH11K_MHI_INIT);
-+	ret = mhi_prepare_for_power_up(ab_pci->mhi_ctrl);
- 	if (ret)
- 		goto out;
- 
--	ret = ath11k_mhi_set_state(ab_pci, ATH11K_MHI_POWER_ON);
-+	ret = mhi_sync_power_up(ab_pci->mhi_ctrl);
- 	if (ret)
- 		goto out;
- 
-@@ -661,16 +483,20 @@ int ath11k_mhi_start(struct ath11k_pci *ab_pci)
- 
- void ath11k_mhi_stop(struct ath11k_pci *ab_pci)
- {
--	ath11k_mhi_set_state(ab_pci, ATH11K_MHI_POWER_OFF);
--	ath11k_mhi_set_state(ab_pci, ATH11K_MHI_DEINIT);
-+	mhi_power_down(ab_pci->mhi_ctrl, true);
-+	mhi_unprepare_after_power_down(ab_pci->mhi_ctrl);
- }
- 
- void ath11k_mhi_suspend(struct ath11k_pci *ab_pci)
- {
--	ath11k_mhi_set_state(ab_pci, ATH11K_MHI_SUSPEND);
-+	mhi_pm_suspend(ab_pci->mhi_ctrl);
- }
- 
- void ath11k_mhi_resume(struct ath11k_pci *ab_pci)
- {
--	ath11k_mhi_set_state(ab_pci, ATH11K_MHI_RESUME);
-+	/* Do force MHI resume as some devices like QCA6390, WCN6855
-+	 * are not in M3 state but they are functional. So just ignore
-+	 * the MHI state while resuming.
-+	 */
-+	mhi_pm_resume_force(ab_pci->mhi_ctrl);
- }
-diff --git a/drivers/net/wireless/ath/ath11k/mhi.h b/drivers/net/wireless/ath/ath11k/mhi.h
-index 488dada5d31c..5dd024f879c4 100644
---- a/drivers/net/wireless/ath/ath11k/mhi.h
-+++ b/drivers/net/wireless/ath/ath11k/mhi.h
-@@ -16,19 +16,6 @@
- #define MHICTRL					0x38
- #define MHICTRL_RESET_MASK			0x2
- 
--enum ath11k_mhi_state {
--	ATH11K_MHI_INIT,
--	ATH11K_MHI_DEINIT,
--	ATH11K_MHI_POWER_ON,
--	ATH11K_MHI_POWER_OFF,
--	ATH11K_MHI_FORCE_POWER_OFF,
--	ATH11K_MHI_SUSPEND,
--	ATH11K_MHI_RESUME,
--	ATH11K_MHI_TRIGGER_RDDM,
--	ATH11K_MHI_RDDM,
--	ATH11K_MHI_RDDM_DONE,
--};
--
- int ath11k_mhi_start(struct ath11k_pci *ar_pci);
- void ath11k_mhi_stop(struct ath11k_pci *ar_pci);
- int ath11k_mhi_register(struct ath11k_pci *ar_pci);
-diff --git a/drivers/net/wireless/ath/ath11k/pci.h b/drivers/net/wireless/ath/ath11k/pci.h
-index 61d67b20a0eb..2a28a9e8cda5 100644
---- a/drivers/net/wireless/ath/ath11k/pci.h
-+++ b/drivers/net/wireless/ath/ath11k/pci.h
-@@ -79,7 +79,6 @@ struct ath11k_pci {
- 	u32 msi_ep_base_data;
- 	struct mhi_controller *mhi_ctrl;
- 	const struct ath11k_msi_config *msi_config;
--	unsigned long mhi_state;
- 	u32 register_window;
- 
- 	/* protects register_window above */
--- 
-2.30.2
+Also IMO the implementation details below do not need to be in the 
+commit text.
+
+I suspect Kalle can just apply these comments to his pending branch.
+
+> service bits from 256 to 384 for the third 128 bits. The 3 enum value
+> WMI_MAX_SERVICE(128)/WMI_MAX_EXT_SERVICE(256)/WMI_MAX_EXT2_SERVICE(384)
+> are convenient to process the service bits.
+> 
+> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+> 
+> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
+> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+> ---
+>   drivers/net/wireless/ath/ath11k/wmi.c | 81 ++++++++++++++++-----------
+>   drivers/net/wireless/ath/ath11k/wmi.h |  9 ++-
+>   2 files changed, 56 insertions(+), 34 deletions(-)
+> 
+> diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+> index 3af24b18204e..a5876e0378fe 100644
+> --- a/drivers/net/wireless/ath/ath11k/wmi.c
+> +++ b/drivers/net/wireless/ath/ath11k/wmi.c
+> @@ -7297,47 +7297,64 @@ static void ath11k_vdev_install_key_compl_event(struct ath11k_base *ab,
+>   	rcu_read_unlock();
+>   }
+>   
+> -static void ath11k_service_available_event(struct ath11k_base *ab, struct sk_buff *skb)
+> +static int  ath11k_wmi_tlv_services_parser(struct ath11k_base *ab,
+> +					   u16 tag, u16 len,
+> +					   const void *ptr, void *data)
+>   {
+> -	const void **tb;
+>   	const struct wmi_service_available_event *ev;
+> -	int ret;
+> +	u32 *wmi_ext2_service_bitmap;
+>   	int i, j;
+>   
+> -	tb = ath11k_wmi_tlv_parse_alloc(ab, skb->data, skb->len, GFP_ATOMIC);
+> -	if (IS_ERR(tb)) {
+> -		ret = PTR_ERR(tb);
+> -		ath11k_warn(ab, "failed to parse tlv: %d\n", ret);
+> -		return;
+> -	}
+> +	switch (tag) {
+> +	case WMI_TAG_SERVICE_AVAILABLE_EVENT:
+> +		ev = (struct wmi_service_available_event *)ptr;
+> +		for (i = 0, j = WMI_MAX_SERVICE;
+> +			i < WMI_SERVICE_SEGMENT_BM_SIZE32 && j < WMI_MAX_EXT_SERVICE;
+> +			i++) {
+> +			do {
+> +				if (ev->wmi_service_segment_bitmap[i] &
+> +				    BIT(j % WMI_AVAIL_SERVICE_BITS_IN_SIZE32))
+> +					set_bit(j, ab->wmi_ab.svc_map);
+> +			} while (++j % WMI_AVAIL_SERVICE_BITS_IN_SIZE32);
+> +		}
+>   
+> -	ev = tb[WMI_TAG_SERVICE_AVAILABLE_EVENT];
+> -	if (!ev) {
+> -		ath11k_warn(ab, "failed to fetch svc available ev");
+> -		kfree(tb);
+> -		return;
+> -	}
+> +		ath11k_dbg(ab, ATH11K_DBG_WMI,
+> +			   "wmi_ext_service_bitmap 0:0x%04x, 1:0x%04x, 2:0x%04x, 3:0x%04x",
+> +			   ev->wmi_service_segment_bitmap[0],
+> +			   ev->wmi_service_segment_bitmap[1],
+> +			   ev->wmi_service_segment_bitmap[2],
+> +			   ev->wmi_service_segment_bitmap[3]);
+> +		break;
+> +	case WMI_TAG_ARRAY_UINT32:
+> +		wmi_ext2_service_bitmap = (u32 *)ptr;
+> +		for (i = 0, j = WMI_MAX_EXT_SERVICE;
+> +			i < WMI_SERVICE_SEGMENT_BM_SIZE32 && j < WMI_MAX_EXT2_SERVICE;
+> +			i++) {
+> +			do {
+> +				if (wmi_ext2_service_bitmap[i] &
+> +				    BIT(j % WMI_AVAIL_SERVICE_BITS_IN_SIZE32))
+> +					set_bit(j, ab->wmi_ab.svc_map);
+> +			} while (++j % WMI_AVAIL_SERVICE_BITS_IN_SIZE32);
+> +		}
+>   
+> -	/* TODO: Use wmi_service_segment_offset information to get the service
+> -	 * especially when more services are advertised in multiple sevice
+> -	 * available events.
+> -	 */
+> -	for (i = 0, j = WMI_MAX_SERVICE;
+> -	     i < WMI_SERVICE_SEGMENT_BM_SIZE32 && j < WMI_MAX_EXT_SERVICE;
+> -	     i++) {
+> -		do {
+> -			if (ev->wmi_service_segment_bitmap[i] &
+> -			    BIT(j % WMI_AVAIL_SERVICE_BITS_IN_SIZE32))
+> -				set_bit(j, ab->wmi_ab.svc_map);
+> -		} while (++j % WMI_AVAIL_SERVICE_BITS_IN_SIZE32);
+> +		ath11k_dbg(ab, ATH11K_DBG_WMI,
+> +			   "wmi_ext2_service__bitmap  0:0x%04x, 1:0x%04x, 2:0x%04x, 3:0x%04x",
+> +			   wmi_ext2_service_bitmap[0], wmi_ext2_service_bitmap[1],
+> +			   wmi_ext2_service_bitmap[2], wmi_ext2_service_bitmap[3]);
+> +		break;
+>   	}
+> +	return 0;
+> +}
+>   
+> -	ath11k_dbg(ab, ATH11K_DBG_WMI,
+> -		   "wmi_ext_service_bitmap 0:0x%x, 1:0x%x, 2:0x%x, 3:0x%x",
+> -		   ev->wmi_service_segment_bitmap[0], ev->wmi_service_segment_bitmap[1],
+> -		   ev->wmi_service_segment_bitmap[2], ev->wmi_service_segment_bitmap[3]);
+> +static void ath11k_service_available_event(struct ath11k_base *ab, struct sk_buff *skb)
+> +{
+> +	int ret;
+>   
+> -	kfree(tb);
+> +	ret = ath11k_wmi_tlv_iter(ab, skb->data, skb->len,
+> +				  ath11k_wmi_tlv_services_parser,
+> +				  NULL);
+> +	if (ret)
+> +		ath11k_warn(ab, "failed to parse services available tlv %d\n", ret);
+>   }
+>   
+>   static void ath11k_peer_assoc_conf_event(struct ath11k_base *ab, struct sk_buff *skb)
+> diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+> index 925b8003feae..da9b0a90fd70 100644
+> --- a/drivers/net/wireless/ath/ath11k/wmi.h
+> +++ b/drivers/net/wireless/ath/ath11k/wmi.h
+> @@ -1992,6 +1992,7 @@ enum wmi_tlv_service {
+>   	WMI_TLV_SERVICE_ACK_TIMEOUT = 126,
+>   	WMI_TLV_SERVICE_PDEV_BSS_CHANNEL_INFO_64 = 127,
+>   
+> +	/* The first 128 bits */
+>   	WMI_MAX_SERVICE = 128,
+>   
+>   	WMI_TLV_SERVICE_CHAN_LOAD_INFO = 128,
+> @@ -2084,7 +2085,11 @@ enum wmi_tlv_service {
+>   	WMI_TLV_SERVICE_EXT2_MSG = 220,
+>   	WMI_TLV_SERVICE_SRG_SRP_SPATIAL_REUSE_SUPPORT = 249,
+>   
+> -	WMI_MAX_EXT_SERVICE
+> +	/* The second 128 bits */
+> +	WMI_MAX_EXT_SERVICE = 256,
+> +
+> +	/* The third 128 bits */
+> +	WMI_MAX_EXT2_SERVICE = 384
+>   };
+>   
+>   enum {
+> @@ -5378,7 +5383,7 @@ struct ath11k_wmi_base {
+>   
+>   	struct completion service_ready;
+>   	struct completion unified_ready;
+> -	DECLARE_BITMAP(svc_map, WMI_MAX_EXT_SERVICE);
+> +	DECLARE_BITMAP(svc_map, WMI_MAX_EXT2_SERVICE);
+>   	wait_queue_head_t tx_credits_wq;
+>   	const struct wmi_peer_flags_map *peer_flags;
+>   	u32 num_mem_chunks;
 
 
 -- 
