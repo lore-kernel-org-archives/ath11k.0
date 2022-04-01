@@ -4,65 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EA08C433F5
-	for <ath11k@archiver.kernel.org>; Fri,  1 Apr 2022 14:30:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 366FDC43217
+	for <ath11k@archiver.kernel.org>; Fri,  1 Apr 2022 14:35:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=W2FacJeRhkPiPTQZEOKZzANby8lUQ/oE1WpojxVfueU=; b=MHgoJx6zJrSi+9
-	zU1qXNpjK8GxlLj+sqTguAzsxpzZE9w+K/aQzJjER0+DDuNS2skHtvfXQU8AsFmrtC8pGOg+m/7ne
-	8COU9oznHL8kpMGUJImlKLqpAJrPHW5p3r6YenENT+uMC7oSft7Bgnytb00BgE53V894lkzSI8FuA
-	Aq8Q8uIKopkJVpdAEMHa1xebz8OjWfaTHnT7YLvz9RTfUnMgoBUltYdVu15aWjnaq849/XRThvBsK
-	EadXMfD+tQ7s9OJvWUMG7luH5hroz6Wp/7d3FHWMvNk11SAgFwqEF6clRZiUxfNlVcOAf0sTILO1g
-	ZTdmftvkqk6MYJbalSuA==;
+	List-Owner; bh=mioh5OLWLIDsj0xhBBcBuE4iQm6oEtpfyV/Izr4KTpw=; b=cx2dgL4XkoFFxP
+	CIJ+11IIg18sWIYfTYUYhC8dHT15OMkHZr6bYbGVM0e09xnRUlr7wy0HQMDRaF2pB6YP/qNLaJuo2
+	BPdNP/58o2w0I3UFUzzHRQewHGXKLAvl6lqNticdqERkxzohYVPh/ATsOsRKTRkG6Cbsl2UllIrEF
+	8I7WJkcfftFv4HguQvVeKD7LhHUR/tgD7OuozsP2S36RN60+Q3x3cGKncN8Dtdu6/CcBJ9ZItxdi1
+	2Fk+cjUtUar2WpcMv08cBAFfMx8bon1uguJlyn8J9fjXWywOlqts5CZOaaM4v/kfqNGhojZVPGbYp
+	WnoPZ3pyCIg5hmSSq45Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1naIIi-0062nT-2o; Fri, 01 Apr 2022 14:30:56 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1naIMd-0065bf-IP; Fri, 01 Apr 2022 14:34:59 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1naIIB-0062Pb-33
- for ath11k@lists.infradead.org; Fri, 01 Apr 2022 14:30:25 +0000
+ id 1naILb-0064rE-Ea
+ for ath11k@lists.infradead.org; Fri, 01 Apr 2022 14:33:57 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id A23F5B8250D;
- Fri,  1 Apr 2022 14:30:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9A13C36AE2;
- Fri,  1 Apr 2022 14:30:18 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id DC6E361C1A;
+ Fri,  1 Apr 2022 14:33:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EB2CC34112;
+ Fri,  1 Apr 2022 14:33:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1648823420;
- bh=4TM1wtHMHWiJixswzsOH0WgzU0dcCN1z4qTkFA7BIr8=;
+ s=k20201202; t=1648823634;
+ bh=I6ui8yr5ddiJmm8uIzxNym8y7SedmbS78BmSFkx9b2I=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=Z9hJMtVfScEpJy6qM/u+LYJqCGEWSEMeYhVpORnQXToXqfYHQOwom51ADo0sMXgcx
- qntm39cNyL9XP2jhms08VZ/ElqE6LglVUG2T+/hNA/CuK/XsNzEv10TZOL4jbw6bU3
- 9Pb8Ak0O1wqostpWv8kFEvq32qTwhZ26BNRNVs5xQxKOC1fxLeXW0kh64XPv7cs1UZ
- Qy/LfJ+56lN/qgsLFLLghtHAcm8Yi7m6DSN1GHOMh6LXh49e1t4a3H44DLP7xgNQ00
- 4YXl0babZiCOO1ze4Sa2kRyD0fv6wPJcgniyVjqciclndKnKbHn3qqGzs1ZGQ2CKOt
- KfOgg+DeGm5QQ==
+ b=YGPkVMDrDvqeqkeKO3utmuO40VKB+Qzz23g//7+mYAE76nQmqDM911iZTonjkFzb6
+ 80FOM9LWLu+pi9tXoz6o6sAoXAbc5pHtmYo/kqNar1jMgGp3TZpH/ZhN+KzrPeCJCH
+ ywHqBFocy6Pf5PgwiQUHLKbcMxXnhZkUhe23AyTkwA683Q2ylnLxOnoK1+B873CzX+
+ wcJULDWh943TBEwfu5Jc+eSm82ivV/NbPHiBGJeJ+Cfb6zsdta4dvUufBfZeiMUQSy
+ DscyZDhfEZ3AF/SxwTfpWjzDh3gLWONaL2jSYMwxg6Vc7RZXs5EXWgUx+9D8ZURuXS
+ JjBDmrXOkLcuw==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Baochen Qiang <quic_bqiang@quicinc.com>,
- Kalle Valo <quic_kvalo@quicinc.com>, Sasha Levin <sashal@kernel.org>,
- kvalo@kernel.org, davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com,
- ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- netdev@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.17 086/149] ath11k: Fix frames flush failure caused
- by deadlock
-Date: Fri,  1 Apr 2022 10:24:33 -0400
-Message-Id: <20220401142536.1948161-86-sashal@kernel.org>
+Cc: Kalle Valo <quic_kvalo@quicinc.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Sasha Levin <sashal@kernel.org>, kvalo@kernel.org, davem@davemloft.net,
+ kuba@kernel.org, pabeni@redhat.com, ath11k@lists.infradead.org,
+ linux-wireless@vger.kernel.org, netdev@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.16 020/109] ath11k: pci: fix crash on suspend if
+ board file is not found
+Date: Fri,  1 Apr 2022 10:31:27 -0400
+Message-Id: <20220401143256.1950537-20-sashal@kernel.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220401142536.1948161-1-sashal@kernel.org>
-References: <20220401142536.1948161-1-sashal@kernel.org>
+In-Reply-To: <20220401143256.1950537-1-sashal@kernel.org>
+References: <20220401143256.1950537-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220401_073023_473708_7F51929C 
-X-CRM114-Status: GOOD (  12.30  )
+X-CRM114-CacheID: sfid-20220401_073355_604368_90FDEAAD 
+X-CRM114-Status: GOOD (  12.80  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,134 +79,92 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Baochen Qiang <quic_bqiang@quicinc.com>
+From: Kalle Valo <quic_kvalo@quicinc.com>
 
-[ Upstream commit 261b07519518bd14cb168b287b17e1d195f8d0c8 ]
+[ Upstream commit b4f4c56459a5c744f7f066b9fc2b54ea995030c5 ]
 
-We are seeing below warnings:
+Mario reported that the kernel was crashing on suspend if ath11k was not able
+to find a board file:
 
-kernel: [25393.301506] ath11k_pci 0000:01:00.0: failed to flush mgmt transmit queue 0
-kernel: [25398.421509] ath11k_pci 0000:01:00.0: failed to flush mgmt transmit queue 0
-kernel: [25398.421831] ath11k_pci 0000:01:00.0: dropping mgmt frame for vdev 0, is_started 0
+[  473.693286] PM: Suspending system (s2idle)
+[  473.693291] printk: Suspending console(s) (use no_console_suspend to debug)
+[  474.407787] BUG: unable to handle page fault for address: 0000000000002070
+[  474.407791] #PF: supervisor read access in kernel mode
+[  474.407794] #PF: error_code(0x0000) - not-present page
+[  474.407798] PGD 0 P4D 0
+[  474.407801] Oops: 0000 [#1] PREEMPT SMP NOPTI
+[  474.407805] CPU: 2 PID: 2350 Comm: kworker/u32:14 Tainted: G        W         5.16.0 #248
+[...]
+[  474.407868] Call Trace:
+[  474.407870]  <TASK>
+[  474.407874]  ? _raw_spin_lock_irqsave+0x2a/0x60
+[  474.407882]  ? lock_timer_base+0x72/0xa0
+[  474.407889]  ? _raw_spin_unlock_irqrestore+0x29/0x3d
+[  474.407892]  ? try_to_del_timer_sync+0x54/0x80
+[  474.407896]  ath11k_dp_rx_pktlog_stop+0x49/0xc0 [ath11k]
+[  474.407912]  ath11k_core_suspend+0x34/0x130 [ath11k]
+[  474.407923]  ath11k_pci_pm_suspend+0x1b/0x50 [ath11k_pci]
+[  474.407928]  pci_pm_suspend+0x7e/0x170
+[  474.407935]  ? pci_pm_freeze+0xc0/0xc0
+[  474.407939]  dpm_run_callback+0x4e/0x150
+[  474.407947]  __device_suspend+0x148/0x4c0
+[  474.407951]  async_suspend+0x20/0x90
+dmesg-efi-164255130401001:
+Oops#1 Part1
+[  474.407955]  async_run_entry_fn+0x33/0x120
+[  474.407959]  process_one_work+0x220/0x3f0
+[  474.407966]  worker_thread+0x4a/0x3d0
+[  474.407971]  kthread+0x17a/0x1a0
+[  474.407975]  ? process_one_work+0x3f0/0x3f0
+[  474.407979]  ? set_kthread_struct+0x40/0x40
+[  474.407983]  ret_from_fork+0x22/0x30
+[  474.407991]  </TASK>
 
-this means ath11k fails to flush mgmt. frames because wmi_mgmt_tx_work
-has no chance to run in 5 seconds.
+The issue here is that board file loading happens after ath11k_pci_probe()
+succesfully returns (ath11k initialisation happends asynchronously) and the
+suspend handler is still enabled, of course failing as ath11k is not properly
+initialised. Fix this by checking ATH11K_FLAG_QMI_FAIL during both suspend and
+resume.
 
-By setting /proc/sys/kernel/hung_task_timeout_secs to 20 and increasing
-ATH11K_FLUSH_TIMEOUT to 50 we get below warnings:
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03003-QCAHSPSWPL_V1_V2_SILICONZ_LITE-2
 
-kernel: [  120.763160] INFO: task wpa_supplicant:924 blocked for more than 20 seconds.
-kernel: [  120.763169]       Not tainted 5.10.90 #12
-kernel: [  120.763177] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
-kernel: [  120.763186] task:wpa_supplicant  state:D stack:    0 pid:  924 ppid:     1 flags:0x000043a0
-kernel: [  120.763201] Call Trace:
-kernel: [  120.763214]  __schedule+0x785/0x12fa
-kernel: [  120.763224]  ? lockdep_hardirqs_on_prepare+0xe2/0x1bb
-kernel: [  120.763242]  schedule+0x7e/0xa1
-kernel: [  120.763253]  schedule_timeout+0x98/0xfe
-kernel: [  120.763266]  ? run_local_timers+0x4a/0x4a
-kernel: [  120.763291]  ath11k_mac_flush_tx_complete+0x197/0x2b1 [ath11k 13c3a9bf37790f4ac8103b3decf7ab4008ac314a]
-kernel: [  120.763306]  ? init_wait_entry+0x2e/0x2e
-kernel: [  120.763343]  __ieee80211_flush_queues+0x167/0x21f [mac80211 335da900954f1c5ea7f1613d92088ce83342042c]
-kernel: [  120.763378]  __ieee80211_recalc_idle+0x105/0x125 [mac80211 335da900954f1c5ea7f1613d92088ce83342042c]
-kernel: [  120.763411]  ieee80211_recalc_idle+0x14/0x27 [mac80211 335da900954f1c5ea7f1613d92088ce83342042c]
-kernel: [  120.763441]  ieee80211_free_chanctx+0x77/0xa2 [mac80211 335da900954f1c5ea7f1613d92088ce83342042c]
-kernel: [  120.763473]  __ieee80211_vif_release_channel+0x100/0x131 [mac80211 335da900954f1c5ea7f1613d92088ce83342042c]
-kernel: [  120.763540]  ieee80211_vif_release_channel+0x66/0x81 [mac80211 335da900954f1c5ea7f1613d92088ce83342042c]
-kernel: [  120.763572]  ieee80211_destroy_auth_data+0xa3/0xe6 [mac80211 335da900954f1c5ea7f1613d92088ce83342042c]
-kernel: [  120.763612]  ieee80211_mgd_deauth+0x178/0x29b [mac80211 335da900954f1c5ea7f1613d92088ce83342042c]
-kernel: [  120.763654]  cfg80211_mlme_deauth+0x1a8/0x22c [cfg80211 8945aa5bc2af5f6972336665d8ad6f9c191ad5be]
-kernel: [  120.763697]  nl80211_deauthenticate+0xfa/0x123 [cfg80211 8945aa5bc2af5f6972336665d8ad6f9c191ad5be]
-kernel: [  120.763715]  genl_rcv_msg+0x392/0x3c2
-kernel: [  120.763750]  ? nl80211_associate+0x432/0x432 [cfg80211 8945aa5bc2af5f6972336665d8ad6f9c191ad5be]
-kernel: [  120.763782]  ? nl80211_associate+0x432/0x432 [cfg80211 8945aa5bc2af5f6972336665d8ad6f9c191ad5be]
-kernel: [  120.763802]  ? genl_rcv+0x36/0x36
-kernel: [  120.763814]  netlink_rcv_skb+0x89/0xf7
-kernel: [  120.763829]  genl_rcv+0x28/0x36
-kernel: [  120.763840]  netlink_unicast+0x179/0x24b
-kernel: [  120.763854]  netlink_sendmsg+0x393/0x401
-kernel: [  120.763872]  sock_sendmsg+0x72/0x76
-kernel: [  120.763886]  ____sys_sendmsg+0x170/0x1e6
-kernel: [  120.763897]  ? copy_msghdr_from_user+0x7a/0xa2
-kernel: [  120.763914]  ___sys_sendmsg+0x95/0xd1
-kernel: [  120.763940]  __sys_sendmsg+0x85/0xbf
-kernel: [  120.763956]  do_syscall_64+0x43/0x55
-kernel: [  120.763966]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
-kernel: [  120.763977] RIP: 0033:0x79089f3fcc83
-kernel: [  120.763986] RSP: 002b:00007ffe604f0508 EFLAGS: 00000246 ORIG_RAX: 000000000000002e
-kernel: [  120.763997] RAX: ffffffffffffffda RBX: 000059b40e987690 RCX: 000079089f3fcc83
-kernel: [  120.764006] RDX: 0000000000000000 RSI: 00007ffe604f0558 RDI: 0000000000000009
-kernel: [  120.764014] RBP: 00007ffe604f0540 R08: 0000000000000004 R09: 0000000000400000
-kernel: [  120.764023] R10: 00007ffe604f0638 R11: 0000000000000246 R12: 000059b40ea04980
-kernel: [  120.764032] R13: 00007ffe604f0638 R14: 000059b40e98c360 R15: 00007ffe604f0558
-...
-kernel: [  120.765230] INFO: task kworker/u32:26:4239 blocked for more than 20 seconds.
-kernel: [  120.765238]       Not tainted 5.10.90 #12
-kernel: [  120.765245] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
-kernel: [  120.765253] task:kworker/u32:26  state:D stack:    0 pid: 4239 ppid:     2 flags:0x00004080
-kernel: [  120.765284] Workqueue: phy0 ieee80211_iface_work [mac80211]
-kernel: [  120.765295] Call Trace:
-kernel: [  120.765306]  __schedule+0x785/0x12fa
-kernel: [  120.765316]  ? find_held_lock+0x3d/0xb2
-kernel: [  120.765331]  schedule+0x7e/0xa1
-kernel: [  120.765340]  schedule_preempt_disabled+0x15/0x1e
-kernel: [  120.765349]  __mutex_lock_common+0x561/0xc0d
-kernel: [  120.765375]  ? ieee80211_sta_work+0x3e/0x1232 [mac80211 335da900954f1c5ea7f1613d92088ce83342042c]
-kernel: [  120.765390]  mutex_lock_nested+0x20/0x26
-kernel: [  120.765416]  ieee80211_sta_work+0x3e/0x1232 [mac80211 335da900954f1c5ea7f1613d92088ce83342042c]
-kernel: [  120.765430]  ? skb_dequeue+0x54/0x5e
-kernel: [  120.765456]  ? ieee80211_iface_work+0x7b/0x339 [mac80211 335da900954f1c5ea7f1613d92088ce83342042c]
-kernel: [  120.765485]  process_one_work+0x270/0x504
-kernel: [  120.765501]  worker_thread+0x215/0x376
-kernel: [  120.765514]  kthread+0x159/0x168
-kernel: [  120.765526]  ? pr_cont_work+0x5b/0x5b
-kernel: [  120.765536]  ? kthread_blkcg+0x31/0x31
-kernel: [  120.765550]  ret_from_fork+0x22/0x30
-...
-kernel: [  120.765867] Showing all locks held in the system:
-...
-kernel: [  120.766164] 5 locks held by wpa_supplicant/924:
-kernel: [  120.766172]  #0: ffffffffb1e63eb0 (cb_lock){++++}-{3:3}, at: genl_rcv+0x19/0x36
-kernel: [  120.766197]  #1: ffffffffb1e5b1c8 (rtnl_mutex){+.+.}-{3:3}, at: nl80211_pre_doit+0x2a/0x15c [cfg80211]
-kernel: [  120.766238]  #2: ffff99f08347cd08 (&wdev->mtx){+.+.}-{3:3}, at: nl80211_deauthenticate+0xde/0x123 [cfg80211]
-kernel: [  120.766279]  #3: ffff99f09df12a48 (&local->mtx){+.+.}-{3:3}, at: ieee80211_destroy_auth_data+0x9b/0xe6 [mac80211]
-kernel: [  120.766321]  #4: ffff99f09df12ce0 (&local->chanctx_mtx){+.+.}-{3:3}, at: ieee80211_vif_release_channel+0x5e/0x81 [mac80211]
-...
-kernel: [  120.766585] 3 locks held by kworker/u32:26/4239:
-kernel: [  120.766593]  #0: ffff99f04458f948 ((wq_completion)phy0){+.+.}-{0:0}, at: process_one_work+0x19a/0x504
-kernel: [  120.766621]  #1: ffffbad54b3cfe50 ((work_completion)(&sdata->work)){+.+.}-{0:0}, at: process_one_work+0x1c0/0x504
-kernel: [  120.766649]  #2: ffff99f08347cd08 (&wdev->mtx){+.+.}-{3:3}, at: ieee80211_sta_work+0x3e/0x1232 [mac80211]
-
-With above info the issue is clear: First wmi_mgmt_tx_work is inserted
-to local->workqueue after sdata->work inserted, then wpa_supplicant
-acquires wdev->mtx in nl80211_deauthenticate and finally calls
-ath11k_mac_op_flush where it waits all mgmt. frames to be sent out by
-wmi_mgmt_tx_work. Meanwhile, sdata->work is blocked by wdev->mtx in
-ieee80211_sta_work, as a result wmi_mgmt_tx_work has no chance to run.
-
-Change to use ab->workqueue instead of local->workqueue to fix this issue.
-
-Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+Reported-by: Mario Limonciello <mario.limonciello@amd.com>
+Link: https://bugzilla.kernel.org/show_bug.cgi?id=215504
 Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
-Link: https://lore.kernel.org/r/20220217084545.18844-1-quic_bqiang@quicinc.com
+Link: https://lore.kernel.org/r/20220127090117.2024-1-kvalo@kernel.org
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/pci.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 07f499d5ec92..36be4ec969ad 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -5566,7 +5566,7 @@ static int ath11k_mac_mgmt_tx(struct ath11k *ar, struct sk_buff *skb,
+diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
+index 4c348bacf2cb..754578f3dcf1 100644
+--- a/drivers/net/wireless/ath/ath11k/pci.c
++++ b/drivers/net/wireless/ath/ath11k/pci.c
+@@ -1419,6 +1419,11 @@ static __maybe_unused int ath11k_pci_pm_suspend(struct device *dev)
+ 	struct ath11k_base *ab = dev_get_drvdata(dev);
+ 	int ret;
  
- 	skb_queue_tail(q, skb);
- 	atomic_inc(&ar->num_pending_mgmt_tx);
--	ieee80211_queue_work(ar->hw, &ar->wmi_mgmt_tx_work);
-+	queue_work(ar->ab->workqueue, &ar->wmi_mgmt_tx_work);
++	if (test_bit(ATH11K_FLAG_QMI_FAIL, &ab->dev_flags)) {
++		ath11k_dbg(ab, ATH11K_DBG_BOOT, "boot skipping pci suspend as qmi is not initialised\n");
++		return 0;
++	}
++
+ 	ret = ath11k_core_suspend(ab);
+ 	if (ret)
+ 		ath11k_warn(ab, "failed to suspend core: %d\n", ret);
+@@ -1431,6 +1436,11 @@ static __maybe_unused int ath11k_pci_pm_resume(struct device *dev)
+ 	struct ath11k_base *ab = dev_get_drvdata(dev);
+ 	int ret;
  
- 	return 0;
- }
++	if (test_bit(ATH11K_FLAG_QMI_FAIL, &ab->dev_flags)) {
++		ath11k_dbg(ab, ATH11K_DBG_BOOT, "boot skipping pci resume as qmi is not initialised\n");
++		return 0;
++	}
++
+ 	ret = ath11k_core_resume(ab);
+ 	if (ret)
+ 		ath11k_warn(ab, "failed to resume core: %d\n", ret);
 -- 
 2.34.1
 
