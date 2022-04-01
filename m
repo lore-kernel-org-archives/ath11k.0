@@ -4,139 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58428C433F5
-	for <ath11k@archiver.kernel.org>; Fri,  1 Apr 2022 07:09:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A7A6C433EF
+	for <ath11k@archiver.kernel.org>; Fri,  1 Apr 2022 07:32:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=q768t8/TPtni6UdwfrGmRZoEsh1xUTxA/fKCtOtfDIY=; b=fxELpq8byjCeLm
-	8da94J+Qxv9oiOFPH764QIWH4yJUsT7djFTZ7kzVbqBiAwineG+a5Go5xmySs8CHhOvMqPXLbhVo8
-	boaS3VRp0s1LiKCoDLWxMKOZY1SXHTCjeFJlbWj7+Cms2PyOcyOIf8MBxtaFjCVcPkSB+9T9fHSpR
-	MBgqyhp0kCFKMCth107gFNLNNPdfJjh8rMZi7alAtvSt+qDs7wRav61yC5wlQATXOivhm6HrsbsGM
-	1OIfGqi0BCaYUd2ztkrxQWM5SxSrwH/5YLrIgmykS2coXloxL9i2OFX+L4Ey2deZwSbeJbGIkxj86
-	6QEQlkQzDHEaulOX09Pg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=+x17P9a8n+RlDwBwPptAQlbaCc+2sxhRKIJzXNEFBbQ=; b=DopK7wwy4zN/Vb
+	OyKVxL22hNccTLxsERlWrZaQSMNfIj/zDbhLQQYYbdLa62H3UlWBOdI1elXTWySAXMKCTM9gtHksk
+	1juFFxYhJSky22cfXsnbigFE8rX9h++9dPyabgxIWFDjEkz9MZ0DyqUVmgcZJIzSMmygQV2f5MKLL
+	WrKixzOV0vZBF25jy4GJa4NJz6gi8PU1WtNCZZorAP5ZkmSKnFCRj9eIQkkZj1M3UiR1nvZeKHtTO
+	QYmPNQHTIMuq1Hs/vMljZh4NB7GG1VYmTVA7zz+hvwBgRdmZQRIopUr32CKJFni+bTaZ8aQFrZVWl
+	Pd4GGJmpoOsRzbTRX0Lw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1naBP7-004jKT-JP; Fri, 01 Apr 2022 07:09:05 +0000
-Received: from esa.hc3962-90.iphmx.com ([216.71.140.77])
+	id 1naBlI-004nh1-Mb; Fri, 01 Apr 2022 07:32:00 +0000
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1naBP4-004jJQ-5P
- for ath11k@lists.infradead.org; Fri, 01 Apr 2022 07:09:03 +0000
+ id 1naBlG-004ngk-TF
+ for ath11k@lists.infradead.org; Fri, 01 Apr 2022 07:32:00 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qccesdkim1;
- t=1648796942; x=1649401742;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=HgdcUgD4ChENO9FA8dr4IXO5otxY88QCWuc23g8ayD8=;
- b=oZy8nbmTAaA4dBA0qrliN4Q8RbuQLWsuh06ergGyS7wbdjnfNENI91i/
- AmuU6f4FrycFWEOYEHjcUNILVWDUUW5o5HKS3GsozkLRW0DdAQCX5Dn2j
- xP5jXI26u7j+C+2tz+kKQwu5Pl3V5ED+UQVVR3+RVn8ytH+5QfqoiUT1l s=;
-Received: from mail-dm6nam10lp2109.outbound.protection.outlook.com (HELO
- NAM10-DM6-obe.outbound.protection.outlook.com) ([104.47.58.109])
- by ob1.hc3962-90.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2022 07:08:57 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cq7Oez+meeRMUEP/3W5g8X5WP2UrgBPtie9upbCYHnRTDEfYy0dNHuKnZhmvHg6+Cgkwn2SC3g2cgkp3VIgKJALJCd7hTznLZaHnMEZ8NT6afYf5cAdjQMsdsIU2LrPWBzAOrqCzL/E2NR1hCddSS/A8rfEPIazUcelBXJbkp1o1u/roxog9j8yTQrXme4vP2H3Mh/Mn5l3QHi329tB804ezLS/wWk3dkt2plLNbFYLja9Ive6lEoAPlfCVTgITNNswD3085XYA8zZaoeSLMy/B3wxjmCv9SDJ+LTGyAymDd4Yvtaj4pYYc1wacNKR3nNFRcmWwhf2r/T8OMyoDFBQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HgdcUgD4ChENO9FA8dr4IXO5otxY88QCWuc23g8ayD8=;
- b=km734M1QqDC5fy9l58QJ5BHKjq1ScwtaEj2EnDrUAz5/uq9T6EDDyTSTo5EvBEAmqFLpJfPEYANrzyHlH0JWQpM1YIzim5uuGjdRECI0TxljNaCT66SZZ+t3mXciexQYzvh3DucBEjqJLtVULb5by+plQV+MdANFeIB8Q/Mv0F2RlJ093mjUFbLUoo9wsS8NYxQM6swWzXNYJaoM0VLwk1kqcRktcNoI0NoDZtji4N99UyF2Phru/2FOJfwJpzCSlVqscYWHdGLAmAjFW5QqrOaF6iFdtaEhXWvETmZ4bh29MJ2Dsd8sggYvlsZN8hI01bdj0hv4lq8qnPXOWRYz0w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=quicinc.com; dmarc=pass action=none header.from=quicinc.com;
- dkim=pass header.d=quicinc.com; arc=none
-Received: from BYAPR02MB5430.namprd02.prod.outlook.com (2603:10b6:a03:a4::25)
- by BYAPR02MB4501.namprd02.prod.outlook.com (2603:10b6:a03:5c::29)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5123.23; Fri, 1 Apr
- 2022 07:08:55 +0000
-Received: from BYAPR02MB5430.namprd02.prod.outlook.com
- ([fe80::1d1d:ddaa:4a23:3055]) by BYAPR02MB5430.namprd02.prod.outlook.com
- ([fe80::1d1d:ddaa:4a23:3055%5]) with mapi id 15.20.5102.030; Fri, 1 Apr 2022
- 07:08:54 +0000
-From: "Baochen Qiang (QUIC)" <quic_bqiang@quicinc.com>
-To: Kalle Valo <kvalo@kernel.org>, "Baochen Qiang (QUIC)"
- <quic_bqiang@quicinc.com>
-CC: "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>,
- "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>
-Subject: RE: [PATCH] ath11k: Add support for SAR
-Thread-Topic: [PATCH] ath11k: Add support for SAR
-Thread-Index: AQHYOt/13uQjUd0QyUesekUNDXsOnqzJH+hQgAB+KhaAERqYgA==
-Date: Fri, 1 Apr 2022 07:08:54 +0000
-Message-ID: <BYAPR02MB54308B0BC8662EB16495B923E0E09@BYAPR02MB5430.namprd02.prod.outlook.com>
-References: <20220317012728.18932-1-quic_bqiang@quicinc.com>
- <164761864196.8951.13534371903381562941.kvalo@kernel.org>
- <BYAPR02MB543076C526E59CB0E98B3DBCE0169@BYAPR02MB5430.namprd02.prod.outlook.com>
- <87fsnbocie.fsf@kernel.org>
-In-Reply-To: <87fsnbocie.fsf@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=quicinc.com;
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 9ded282d-9569-4032-c8a7-08da13ae7bd3
-x-ms-traffictypediagnostic: BYAPR02MB4501:EE_
-x-ld-processed: 98e9ba89-e1a1-4e38-9007-8bdabc25de1d,ExtAddr
-x-microsoft-antispam-prvs: <BYAPR02MB45016C379A51F043233780999CE09@BYAPR02MB4501.namprd02.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Bco22IQwoIqXZb7woZ4i4x5KI3gCLc5m6rRtS0EQcVd/Ejp206Bw3caDq5zImffgPIv6qRlYq/1nn5o0paXgrjblNC3Ky67dQDzQLBYb1c9oYtMaORieqOeD9AFrIpjRqRLTxvfS2ckoHbNyj3DFoAwsGJGKE8vasHMvj9kwCEyfCUbomCJmMZiPGeqtBLsjYZIMXHIbEi0P/qePf15y3h5C2OxGJS+8SP2XHY9T+sWlcEqaD1HH03Z05pQIug/6d2wS5snjja0XxE/pP4+Pba42Oczrs/GEIBIdyNLMXCsz7OssrEeKUxtaQFC4Sx1udGrpGyman7g/FT2XpELLOhgkCqXe3eWMGVKARnTFDzBCXeYHeGgucL7PmSG1XJTvRmuKad/xXh5DAXgQH/JGe+BI5TSwIaeuJ/5cI8GrkBKhQfsKkr5wXsa8ZiuGsxStPsoZMVeeAUSiSKcTaMXMeobcAmpMFQS4EezY+UQK5eUgCNQ6hjteNtQ+xfkWow4NiphSmjcRZgl7XpUHgNpGMZ7sHoUKoWXNyYbTL2WTtJBEnH2xVF9pXAy6oY4nZmwQiLLC/vthvFj7mi3wl5VC/2/VctZk/n6v1vz19N5QmxxgDm0julgX5chaiHmooI5QH47Pm70iipxBLTP3/TdvgnKrScrVtxE7RYwfBpNoW0ZqYot2oPGuoPvIjJUGCw7GetSYbspXQBa4H1XX9RsOxnn56vXbVgwy/c2FmtRsgr3whUXn8OWaf0bDjBnrzV0X/LyexTfaZxSYSyNqzIarkT+GNC8bbFHgrXrHAoIStig0MnXPb8glIAVslILah8kGzQ7glHpzfs6ylOhuuCYymA==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR02MB5430.namprd02.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(4636009)(366004)(5660300002)(122000001)(52536014)(38070700005)(2906002)(8936002)(38100700002)(54906003)(33656002)(55016003)(53546011)(6506007)(76116006)(9686003)(64756008)(8676002)(4326008)(66446008)(66476007)(7696005)(86362001)(83380400001)(186003)(66556008)(66946007)(110136005)(966005)(508600001)(71200400001)(316002)(26005);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Wx8668vrRt1amdZVPVWeiRm8SovW8yvRRY6xVFPAqbqWoyYzI5j4ISrFcuPR?=
- =?us-ascii?Q?tOM+TFQqykid5hy2W7ONXF9WU6h5I6jaY75kdKT+EaIw+QDFiZxmVyVh44Pl?=
- =?us-ascii?Q?SSANTyV7qQYmsSh1dYDLEHhIlfAEVRW0stuyAnIFrLHS8hdVIA9z4YwPN6DL?=
- =?us-ascii?Q?OsIAqz8n5IlEQv6joaz4g1IztzIPFnr06Tc2XhPMIMAqP4v0/Fdd2RcTngY5?=
- =?us-ascii?Q?zAU03HfIOWxHzPXW/cf5SmX0oi5qYY1Zb/gwzzB59f3RMhiRMbOc95vO5efD?=
- =?us-ascii?Q?B49O9sfT2yu1mRfahWzQ9JT+WoZmdKRcb9XjPF9l7Pk02FO3UR4ehbKEL6dQ?=
- =?us-ascii?Q?hxoDNNd4WcxV0Ydrly+nTjEXX9rqxKRJi7nrjit/hJAqBwPKz0m3L1IHm5xg?=
- =?us-ascii?Q?R5iGxpNAB0VNThTR6QusPFcd9UASt4ZEeU2rew2goUGK6NLTNjWC2XgPtU45?=
- =?us-ascii?Q?rDi1bU3Ud9/MIiraeR1IpPAY5zhkSdFZgESY0h748COQRMUSVVN/fXvJw4nw?=
- =?us-ascii?Q?6UCgXljhYapFk9b4Gew6u4aqkisnxqmlGAVxqm2S9sz+DpX1hsZlcIuCC1aj?=
- =?us-ascii?Q?V/iWxr57ynj3IziUYCaBw7a+RlsyZGVZiXeVxXIzqrSy94y7dFUrRPP8Si2t?=
- =?us-ascii?Q?LlP7QuBZw1HAjgNGdyPKIy79H/zHjEg5N9gr04N+96OT3vrL26tCk7HED/pV?=
- =?us-ascii?Q?JxJ2EwguzGhcLepdKfN93VszCQoD0/BSXbGIobKC1VOkAiycXK9jJ9zWhcFD?=
- =?us-ascii?Q?d23xCOfTTIs1HyjC6MUl+xWb6TZ3w8en5ZS0YOr0+VpmGytCQNZznFpbazQx?=
- =?us-ascii?Q?Fmpq9j51cbL2nbzxX3ocAEKrGQWgC8fVw4/ncv+hWwBFXeHUyTFzzyulKwJJ?=
- =?us-ascii?Q?L5Hdhyq8MsgwlAGnd/+VI8EBr0qOav9vMek0rwBWXG06ZXd5C9v3qdUtnWaJ?=
- =?us-ascii?Q?BqoyehQyeRW+02Sq4873W5UP4XajBRH+oUBU+lQlfyntb0cjt7GncaGF3Krq?=
- =?us-ascii?Q?ws8R8FMCnH0qnZr4oMXDnhmv2DwDSlxwwDZ35vmY0hV+vsqaX5gaKAL0V7Hz?=
- =?us-ascii?Q?UTBwuUcapbJ9TEA1tPKE8YsbzV9zCleHFEbP4KGubDy/7cr8S9BUBBr4MpEP?=
- =?us-ascii?Q?YNSjLhgS24DJaKZoZ9spXsLobIQxck6GnJsNC1298nWsw3Ym1Y+PvrJMvJmF?=
- =?us-ascii?Q?aYK43hmMlmVgx8FpROMU973H55UdVimKtqdXijUFcXLqEpYOkfMmnnskF118?=
- =?us-ascii?Q?xEiauT94llJubqhOAa2ZoI5z8lF5isMoovRSCkDw6CBd1he3H/Cq9PZukNvo?=
- =?us-ascii?Q?MgoIUzyiX/jOvkCWvymyhShdH/iNbgKLaVuNRguMgC6pbeGyNBhQfNHnUFj0?=
- =?us-ascii?Q?ZXmYCxZXcz1iVUqJLkGWu8x77iAEwotQHxfttBJHG97TzV1mfkcRahKIrEpo?=
- =?us-ascii?Q?NTbXV3VVcEQ0YBwHUHC9HK6HoicSQk63baEdeRgIsg6I3HJj3ePLZXcwWTmZ?=
- =?us-ascii?Q?O1y9N80HJ8YS+dUd0ZIUPFrPPbk1ayCshA69cSDve6iw64ovgaEUU62+oe6V?=
- =?us-ascii?Q?v/HLQXQDEtSQ7RDTWfP04b1UyhluBFsB4pp06UUYGhzHFcrsD+ps8D9Y9WuN?=
- =?us-ascii?Q?zz+8+c+N3I5X6zKH+CuHZGEaushDa3wl7plH0WV/PT2yDUcp2fjhJh8BRDHU?=
- =?us-ascii?Q?/Q4UbnP/Aito6B9papQaM04GaRTAqO85d3sXNi30bWbD+Kp4Xmzyo1gPoFDi?=
- =?us-ascii?Q?TkMTP/Ymaw=3D=3D?=
+ d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+ t=1648798318; x=1680334318;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Q/rPu336six2VeuZ+f8xOlNtVLTMD9/U1JCdnnpPLX0=;
+ b=Ub37HERTA/eTqKbZbCcghA0iSF8WCMJxuUDN4qg4wZRNguKdkZ2l3mX8
+ eHuomPy+rCuKB+JcC3MoPottD5cBZx6EDwOCgtxioFxqHwIPJ+ra6Ah02
+ 3pVsAfLGrl35AllG/0Zrel8LbjoypVTVLeps6sZ0yhzYTROGsKnd7WneO 0=;
+Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
+ by alexa-out-sd-02.qualcomm.com with ESMTP; 01 Apr 2022 00:31:55 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+ by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2022 00:31:55 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Fri, 1 Apr 2022 00:31:55 -0700
+Received: from bqiang-Celadon-RN.qca.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Fri, 1 Apr 2022 00:31:54 -0700
+From: Baochen Qiang <quic_bqiang@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>
+Subject: [PATCH v3 0/2] ath11k: Add support for SAR
+Date: Fri, 1 Apr 2022 15:31:42 +0800
+Message-ID: <20220401073142.1195018-1-quic_bqiang@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-OriginatorOrg: quicinc.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR02MB5430.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9ded282d-9569-4032-c8a7-08da13ae7bd3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Apr 2022 07:08:54.6404 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 98e9ba89-e1a1-4e38-9007-8bdabc25de1d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: YqRXxttgXNzGZKDspR2TL8r6PYa6dR9QNInRmkN6+wt4HpI6Yt+XEKHB93zJyxl5SfmM+x71L3UtGZVZK/tILA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR02MB4501
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220401_000902_319741_57F371B7 
-X-CRM114-Status: GOOD (  25.33  )
+X-CRM114-CacheID: sfid-20220401_003159_008898_746A3F1A 
+X-CRM114-Status: UNSURE (   7.08  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -153,73 +79,36 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+This is to add support for SAR. Currently SAR is enabled
+only for WCN6855.
 
-> -----Original Message-----
-> From: Kalle Valo <kvalo@kernel.org>
-> Sent: Monday, March 21, 2022 5:56 PM
-> To: Baochen Qiang (QUIC) <quic_bqiang@quicinc.com>
-> Cc: ath11k@lists.infradead.org; linux-wireless@vger.kernel.org
-> Subject: Re: [PATCH] ath11k: Add support for SAR
-> 
-> WARNING: This email originated from outside of Qualcomm. Please be wary of
-> any links or attachments, and do not enable macros.
-> 
-> "Baochen Qiang (QUIC)" <quic_bqiang@quicinc.com> writes:
-> 
-> >> -----Original Message-----
-> >> From: Kalle Valo <kvalo@kernel.org>
-> >> Sent: Friday, March 18, 2022 11:51 PM
-> >> To: Baochen Qiang (QUIC) <quic_bqiang@quicinc.com>
-> >> Cc: ath11k@lists.infradead.org; linux-wireless@vger.kernel.org
-> >> Subject: Re: [PATCH] ath11k: Add support for SAR
-> >>
-> >> Baochen Qiang <quic_bqiang@quicinc.com> wrote:
-> >>
-> >> > ath11k assigns ath11k_mac_op_set_bios_sar_specs to ath11k_ops, and
-> >> > this function is called when user space application calls
-> >> > NL80211_CMD_SET_SAR_SPECS. ath11k also registers SAR type and
-> >> > frequency ranges to wiphy so user space can query SAR capabilities.
-> >> >
-> >> > This feature is currently enabled for WCN6855.
-> >> >
-> >> > Tested-on: WCN6855 hw2.0 PCI
-> >> > WLAN.HSP.1.1-02431-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
-> >> >
-> >> > Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
-> >>
-> >> What did you use as the baseline? I could not able to find an ath-
-> >> tag to which this patch would apply. I strongly recommend using
-> >> --base, that way I don't need to waste time trying to guess what was the
-> baseline.
-> >>
-> >> Patch set to Changes Requested.
-> >>
-> >
-> > Hi Kalle, I have added the base flag in v2.
-> 
-> Thanks.
-> 
-> > And please note this patch depends on
-> > https://patchwork.kernel.org/project/linux-wireless/patch/202112240852
-> > 36.9064-2-quic_wgong@quicinc.com/
-> > which is now in public review.
-> 
-> If there are any dependencies, please document them clearly after the "---" line.
-> I don't have time to start guessing what dependencies there might be for your
-> patches, especially if the dependency is several months as in this case.
-> 
-> But why are you using that patch as the baseline? It's marked as Changes
-> Requested and it's unclear then it can be merged. If you need that patch, you
-> should create a patchset with patch 1 being "ath11k: add support for extended
-> wmi service bit" and patch 2 being "ath11k: Add support for SAR".
-> 
+v3:
+ 1. rebased on latest ath.git
+ 2. add Wen's patch "ath11k: add support for extended wmi service bit"
+    to this patch set so that there will be no dependency for the SAR patch.
+v2:
+ 1. rebased on latest ath.git
+ 2. add base-commit tag.
 
-Sure Kalle, I will send a new patch set including " ath11k: add support for extended wmi service bit "
-> --
-> https://patchwork.kernel.org/project/linux-wireless/list/
-> 
-> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatch
-> es
+Baochen Qiang (1):
+  ath11k: Add support for SAR
+
+Wen Gong (1):
+  ath11k: add support for extended wmi service bit
+
+ drivers/net/wireless/ath/ath11k/core.c |   6 +
+ drivers/net/wireless/ath/ath11k/hw.c   |  20 ++++
+ drivers/net/wireless/ath/ath11k/hw.h   |   2 +
+ drivers/net/wireless/ath/ath11k/mac.c  |  66 +++++++++++
+ drivers/net/wireless/ath/ath11k/wmi.c  | 151 +++++++++++++++++++------
+ drivers/net/wireless/ath/ath11k/wmi.h  |  36 +++++-
+ 6 files changed, 247 insertions(+), 34 deletions(-)
+
+
+base-commit: 748b34786d1c96e758862d8e8577106ccde6515a
+-- 
+2.25.1
+
 
 -- 
 ath11k mailing list
