@@ -4,58 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0D05C433EF
-	for <ath11k@archiver.kernel.org>; Fri,  1 Apr 2022 17:30:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D105C433FE
+	for <ath11k@archiver.kernel.org>; Fri,  1 Apr 2022 17:31:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0QXhB23l81rchBQrd3/85SfJFUuvtPMlIkOL9JhnVj4=; b=pgHoiJqy62anuY
-	OzMYLz99i5IELmZW2i+z0P+DPj8c5L0ps4D/8ealu/MY8SUXjvTIhRfEWcTN3DX2EYlUmkldRcava
-	slPJw4uzoseZywHETfb2ZE5L4JK+YGEvhcogjxEuu5rlsdx2+jGFfXME6eQVuyzgmzgaD/BwBTCoh
-	D4cYRjfYZ9XofKYwfbWlWRfnfVXMq6PU3sSepydkAlp0D+wifaEl3q2PgJMxA6oggTMmP/cQlH6W0
-	We/EOuflJlARuW/xzJmTYH0D7ZnNwtjFrrf1FgmHYFvy3A5v709JzziD6Bg0o6nnhHMLHwT9AKLw/
-	Bp8XbqovcO/AhsqVonqg==;
+	List-Owner; bh=O1j3w08osZDj+0WXSBm4p9NzC1rVDjB/OXqvQi+ZmSQ=; b=kSGvpqSWWkeyxm
+	8P3NgqYIXmmcZ3idxiKb6qDgZYG2OVSoPw8fx/Z0Uy9xJ5RdikyagJRdTeS1jqMRxBF0Fz6H2XD1n
+	XUUQ2U8hQ6g/sy1wbC4sR064R42Ksnsk/f1v73t7ulxSYELGSYOblqqWTzsCOUwuQ87lgf7dZI6Nz
+	yUjvjkfDCAbi/NUS6LJ6Kr3AJc/P7A7xv/6rO9W61iC1xGvacsJ3WkjiNkNL5sKIbIZg/5VF2Pi7O
+	VEyyJOnZAcw6AOcFPWwd3+fP4Fhkj/62s9PmqWBh0kqCE85HXx6p+c+8wSm2rfbzFKeMqqwI+CzH0
+	C54CFRzJ92G6/j+uc0cw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1naL6r-006i6p-Ls; Fri, 01 Apr 2022 17:30:53 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1naL6s-006i79-8C; Fri, 01 Apr 2022 17:30:54 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1naL6o-006i5A-Oy
+ id 1naL6o-006i54-Iu
  for ath11k@lists.infradead.org; Fri, 01 Apr 2022 17:30:52 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 5FDD761D19
- for <ath11k@lists.infradead.org>; Fri,  1 Apr 2022 17:30:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36ADAC3410F;
- Fri,  1 Apr 2022 17:30:49 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 04329B8258F
+ for <ath11k@lists.infradead.org>; Fri,  1 Apr 2022 17:30:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E707AC340F2;
+ Fri,  1 Apr 2022 17:30:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1648834249;
- bh=9u43NB96IkwkW9C2rkSjk9B1Oivm1z1nwWy7IAMbEYo=;
+ s=k20201202; t=1648834247;
+ bh=Vq5ZcotMnOIsFOE2qHwHRxVIuW6lIkZiCPSMh1eHLMw=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=aMLd7n/kEO2kTox1PZXfGkjsy/2uQuDt0UWz5kyVS22ARjDU/ly4iN8wRTK3NK9K9
- xl0eC4otonisR2duGb1ot6gyadQnjwUv/IpkjbutDLzgawU2/ilwAF8F0EguM8sfJ5
- oF11KPnrRPLSZkX07kR12l53M9V4f7tkIn/ClcpAqqfPbUNR9uWxLC6g/K34jwJkH/
- ha5kBkA16Rmysyy3qzWGKRJBqpyx2FL0SKlres/1d0tTdlcwqNvbu01oIk7hw8jAIh
- KRUw/O5Fx7kmMUw5srJtZi8z/OOoOlcfYnUocZnvxteD9XwGuB+NX3+nRLd3yBxwqQ
- KSa6lEUiNAFlQ==
+ b=X2A4qBnidwr+oN9rwauWn8ugOh/JfT0vl4ezM9HkvuiG47hXBHUeeNAShHIV3YH+O
+ InVig1/RNTRAc0umI7/ZRR9gszODhaLvgqbGI7BHSX+WWSyu8jMgaRwEDDO8TKEJyB
+ SGJXXU/vZkXYNf8vTXBFyXMc0WsaaD3BL+GPBxAUF8r8z2IefLf5CP3Ca9Ao+rr24q
+ t56iKsR4G7zLz0gr/uCZxkytwrDGtcjuoLkZOPxDPcw2PhNE6O79SNIYiGT1lb1mpF
+ WpeeAfjlGaQN+1JBJbOnhYzGcaa0m51YNNaJNO1nz4EncTuLXc8/SM4/biywB8/JYI
+ VPa18ZBYTQcuQ==
 From: Kalle Valo <kvalo@kernel.org>
 To: ath11k@lists.infradead.org
 Cc: linux-wireless@vger.kernel.org
-Subject: [PATCH 3/3] ath11k: mhi: remove unnecessary goto from
- ath11k_mhi_start()
-Date: Fri,  1 Apr 2022 20:30:42 +0300
-Message-Id: <20220401173042.17467-4-kvalo@kernel.org>
+Subject: [PATCH 1/3] ath11k: mhi: remove state machine
+Date: Fri,  1 Apr 2022 20:30:40 +0300
+Message-Id: <20220401173042.17467-2-kvalo@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220401173042.17467-1-kvalo@kernel.org>
 References: <20220401173042.17467-1-kvalo@kernel.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220401_103050_887339_34FD6075 
-X-CRM114-Status: GOOD (  11.05  )
+X-CRM114-CacheID: sfid-20220401_103050_973673_ED4B51EB 
+X-CRM114-Status: GOOD (  15.96  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,8 +73,8 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 From: Kalle Valo <quic_kvalo@quicinc.com>
 
-No need to have goto for a return statement, so simplify the code. While at it,
-print warning messages if power up calls fail.
+State machines are difficult to understand and in this case it's just useless,
+which is shown by the diffstat. So remove it entirely to make the code simpler.
 
 No functional changes.
 
@@ -83,45 +82,274 @@ Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03003-QCAHSPSWPL_V1_V2_SILICONZ_LITE-2
 
 Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 ---
- drivers/net/wireless/ath/ath11k/mhi.c | 16 +++++++++-------
- 1 file changed, 9 insertions(+), 7 deletions(-)
+ drivers/net/wireless/ath/ath11k/mhi.c | 194 ++------------------------
+ drivers/net/wireless/ath/ath11k/mhi.h |  13 --
+ drivers/net/wireless/ath/ath11k/pci.h |   1 -
+ 3 files changed, 10 insertions(+), 198 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
-index 706de7b0b4a1..a372ebb184a1 100644
+index 61d83be4841f..d9b63a1f8219 100644
 --- a/drivers/net/wireless/ath/ath11k/mhi.c
 +++ b/drivers/net/wireless/ath/ath11k/mhi.c
-@@ -463,22 +463,24 @@ void ath11k_mhi_unregister(struct ath11k_pci *ab_pci)
+@@ -461,195 +461,17 @@ void ath11k_mhi_unregister(struct ath11k_pci *ab_pci)
+ 	mhi_free_controller(mhi_ctrl);
+ }
  
+-static char *ath11k_mhi_state_to_str(enum ath11k_mhi_state mhi_state)
+-{
+-	switch (mhi_state) {
+-	case ATH11K_MHI_INIT:
+-		return "INIT";
+-	case ATH11K_MHI_DEINIT:
+-		return "DEINIT";
+-	case ATH11K_MHI_POWER_ON:
+-		return "POWER_ON";
+-	case ATH11K_MHI_POWER_OFF:
+-		return "POWER_OFF";
+-	case ATH11K_MHI_FORCE_POWER_OFF:
+-		return "FORCE_POWER_OFF";
+-	case ATH11K_MHI_SUSPEND:
+-		return "SUSPEND";
+-	case ATH11K_MHI_RESUME:
+-		return "RESUME";
+-	case ATH11K_MHI_TRIGGER_RDDM:
+-		return "TRIGGER_RDDM";
+-	case ATH11K_MHI_RDDM_DONE:
+-		return "RDDM_DONE";
+-	default:
+-		return "UNKNOWN";
+-	}
+-};
+-
+-static void ath11k_mhi_set_state_bit(struct ath11k_pci *ab_pci,
+-				     enum ath11k_mhi_state mhi_state)
+-{
+-	struct ath11k_base *ab = ab_pci->ab;
+-
+-	switch (mhi_state) {
+-	case ATH11K_MHI_INIT:
+-		set_bit(ATH11K_MHI_INIT, &ab_pci->mhi_state);
+-		break;
+-	case ATH11K_MHI_DEINIT:
+-		clear_bit(ATH11K_MHI_INIT, &ab_pci->mhi_state);
+-		break;
+-	case ATH11K_MHI_POWER_ON:
+-		set_bit(ATH11K_MHI_POWER_ON, &ab_pci->mhi_state);
+-		break;
+-	case ATH11K_MHI_POWER_OFF:
+-	case ATH11K_MHI_FORCE_POWER_OFF:
+-		clear_bit(ATH11K_MHI_POWER_ON, &ab_pci->mhi_state);
+-		clear_bit(ATH11K_MHI_TRIGGER_RDDM, &ab_pci->mhi_state);
+-		clear_bit(ATH11K_MHI_RDDM_DONE, &ab_pci->mhi_state);
+-		break;
+-	case ATH11K_MHI_SUSPEND:
+-		set_bit(ATH11K_MHI_SUSPEND, &ab_pci->mhi_state);
+-		break;
+-	case ATH11K_MHI_RESUME:
+-		clear_bit(ATH11K_MHI_SUSPEND, &ab_pci->mhi_state);
+-		break;
+-	case ATH11K_MHI_TRIGGER_RDDM:
+-		set_bit(ATH11K_MHI_TRIGGER_RDDM, &ab_pci->mhi_state);
+-		break;
+-	case ATH11K_MHI_RDDM_DONE:
+-		set_bit(ATH11K_MHI_RDDM_DONE, &ab_pci->mhi_state);
+-		break;
+-	default:
+-		ath11k_err(ab, "unhandled mhi state (%d)\n", mhi_state);
+-	}
+-}
+-
+-static int ath11k_mhi_check_state_bit(struct ath11k_pci *ab_pci,
+-				      enum ath11k_mhi_state mhi_state)
+-{
+-	struct ath11k_base *ab = ab_pci->ab;
+-
+-	switch (mhi_state) {
+-	case ATH11K_MHI_INIT:
+-		if (!test_bit(ATH11K_MHI_INIT, &ab_pci->mhi_state))
+-			return 0;
+-		break;
+-	case ATH11K_MHI_DEINIT:
+-	case ATH11K_MHI_POWER_ON:
+-		if (test_bit(ATH11K_MHI_INIT, &ab_pci->mhi_state) &&
+-		    !test_bit(ATH11K_MHI_POWER_ON, &ab_pci->mhi_state))
+-			return 0;
+-		break;
+-	case ATH11K_MHI_FORCE_POWER_OFF:
+-		if (test_bit(ATH11K_MHI_POWER_ON, &ab_pci->mhi_state))
+-			return 0;
+-		break;
+-	case ATH11K_MHI_POWER_OFF:
+-	case ATH11K_MHI_SUSPEND:
+-		if (test_bit(ATH11K_MHI_POWER_ON, &ab_pci->mhi_state) &&
+-		    !test_bit(ATH11K_MHI_SUSPEND, &ab_pci->mhi_state))
+-			return 0;
+-		break;
+-	case ATH11K_MHI_RESUME:
+-		if (test_bit(ATH11K_MHI_SUSPEND, &ab_pci->mhi_state))
+-			return 0;
+-		break;
+-	case ATH11K_MHI_TRIGGER_RDDM:
+-		if (test_bit(ATH11K_MHI_POWER_ON, &ab_pci->mhi_state) &&
+-		    !test_bit(ATH11K_MHI_TRIGGER_RDDM, &ab_pci->mhi_state))
+-			return 0;
+-		break;
+-	case ATH11K_MHI_RDDM_DONE:
+-		return 0;
+-	default:
+-		ath11k_err(ab, "unhandled mhi state: %s(%d)\n",
+-			   ath11k_mhi_state_to_str(mhi_state), mhi_state);
+-	}
+-
+-	ath11k_err(ab, "failed to set mhi state %s(%d) in current mhi state (0x%lx)\n",
+-		   ath11k_mhi_state_to_str(mhi_state), mhi_state,
+-		   ab_pci->mhi_state);
+-
+-	return -EINVAL;
+-}
+-
+-static int ath11k_mhi_set_state(struct ath11k_pci *ab_pci,
+-				enum ath11k_mhi_state mhi_state)
+-{
+-	struct ath11k_base *ab = ab_pci->ab;
+-	int ret;
+-
+-	ret = ath11k_mhi_check_state_bit(ab_pci, mhi_state);
+-	if (ret)
+-		goto out;
+-
+-	ath11k_dbg(ab, ATH11K_DBG_PCI, "setting mhi state: %s(%d)\n",
+-		   ath11k_mhi_state_to_str(mhi_state), mhi_state);
+-
+-	switch (mhi_state) {
+-	case ATH11K_MHI_INIT:
+-		ret = mhi_prepare_for_power_up(ab_pci->mhi_ctrl);
+-		break;
+-	case ATH11K_MHI_DEINIT:
+-		mhi_unprepare_after_power_down(ab_pci->mhi_ctrl);
+-		ret = 0;
+-		break;
+-	case ATH11K_MHI_POWER_ON:
+-		ret = mhi_sync_power_up(ab_pci->mhi_ctrl);
+-		break;
+-	case ATH11K_MHI_POWER_OFF:
+-		mhi_power_down(ab_pci->mhi_ctrl, true);
+-		ret = 0;
+-		break;
+-	case ATH11K_MHI_FORCE_POWER_OFF:
+-		mhi_power_down(ab_pci->mhi_ctrl, false);
+-		ret = 0;
+-		break;
+-	case ATH11K_MHI_SUSPEND:
+-		ret = mhi_pm_suspend(ab_pci->mhi_ctrl);
+-		break;
+-	case ATH11K_MHI_RESUME:
+-		/* Do force MHI resume as some devices like QCA6390, WCN6855
+-		 * are not in M3 state but they are functional. So just ignore
+-		 * the MHI state while resuming.
+-		 */
+-		ret = mhi_pm_resume_force(ab_pci->mhi_ctrl);
+-		break;
+-	case ATH11K_MHI_TRIGGER_RDDM:
+-		ret = mhi_force_rddm_mode(ab_pci->mhi_ctrl);
+-		break;
+-	case ATH11K_MHI_RDDM_DONE:
+-		break;
+-	default:
+-		ath11k_err(ab, "unhandled MHI state (%d)\n", mhi_state);
+-		ret = -EINVAL;
+-	}
+-
+-	if (ret)
+-		goto out;
+-
+-	ath11k_mhi_set_state_bit(ab_pci, mhi_state);
+-
+-	return 0;
+-
+-out:
+-	ath11k_err(ab, "failed to set mhi state: %s(%d)\n",
+-		   ath11k_mhi_state_to_str(mhi_state), mhi_state);
+-	return ret;
+-}
+-
  int ath11k_mhi_start(struct ath11k_pci *ab_pci)
  {
-+	struct ath11k_base *ab = ab_pci->ab;
  	int ret;
  
  	ab_pci->mhi_ctrl->timeout_ms = MHI_TIMEOUT_DEFAULT_MS;
  
- 	ret = mhi_prepare_for_power_up(ab_pci->mhi_ctrl);
--	if (ret)
--		goto out;
-+	if (ret) {
-+		ath11k_warn(ab, "failed to prepare mhi: %d", ret);
-+		return ret;
-+	}
+-	ret = ath11k_mhi_set_state(ab_pci, ATH11K_MHI_INIT);
++	ret = mhi_prepare_for_power_up(ab_pci->mhi_ctrl);
+ 	if (ret)
+ 		goto out;
  
- 	ret = mhi_sync_power_up(ab_pci->mhi_ctrl);
--	if (ret)
--		goto out;
-+	if (ret) {
-+		ath11k_warn(ab, "failed to power up mhi: %d", ret);
-+		return ret;
-+	}
+-	ret = ath11k_mhi_set_state(ab_pci, ATH11K_MHI_POWER_ON);
++	ret = mhi_sync_power_up(ab_pci->mhi_ctrl);
+ 	if (ret)
+ 		goto out;
  
- 	return 0;
--
--out:
--	return ret;
- }
+@@ -661,16 +483,20 @@ int ath11k_mhi_start(struct ath11k_pci *ab_pci)
  
  void ath11k_mhi_stop(struct ath11k_pci *ab_pci)
+ {
+-	ath11k_mhi_set_state(ab_pci, ATH11K_MHI_POWER_OFF);
+-	ath11k_mhi_set_state(ab_pci, ATH11K_MHI_DEINIT);
++	mhi_power_down(ab_pci->mhi_ctrl, true);
++	mhi_unprepare_after_power_down(ab_pci->mhi_ctrl);
+ }
+ 
+ void ath11k_mhi_suspend(struct ath11k_pci *ab_pci)
+ {
+-	ath11k_mhi_set_state(ab_pci, ATH11K_MHI_SUSPEND);
++	mhi_pm_suspend(ab_pci->mhi_ctrl);
+ }
+ 
+ void ath11k_mhi_resume(struct ath11k_pci *ab_pci)
+ {
+-	ath11k_mhi_set_state(ab_pci, ATH11K_MHI_RESUME);
++	/* Do force MHI resume as some devices like QCA6390, WCN6855
++	 * are not in M3 state but they are functional. So just ignore
++	 * the MHI state while resuming.
++	 */
++	mhi_pm_resume_force(ab_pci->mhi_ctrl);
+ }
+diff --git a/drivers/net/wireless/ath/ath11k/mhi.h b/drivers/net/wireless/ath/ath11k/mhi.h
+index 488dada5d31c..5dd024f879c4 100644
+--- a/drivers/net/wireless/ath/ath11k/mhi.h
++++ b/drivers/net/wireless/ath/ath11k/mhi.h
+@@ -16,19 +16,6 @@
+ #define MHICTRL					0x38
+ #define MHICTRL_RESET_MASK			0x2
+ 
+-enum ath11k_mhi_state {
+-	ATH11K_MHI_INIT,
+-	ATH11K_MHI_DEINIT,
+-	ATH11K_MHI_POWER_ON,
+-	ATH11K_MHI_POWER_OFF,
+-	ATH11K_MHI_FORCE_POWER_OFF,
+-	ATH11K_MHI_SUSPEND,
+-	ATH11K_MHI_RESUME,
+-	ATH11K_MHI_TRIGGER_RDDM,
+-	ATH11K_MHI_RDDM,
+-	ATH11K_MHI_RDDM_DONE,
+-};
+-
+ int ath11k_mhi_start(struct ath11k_pci *ar_pci);
+ void ath11k_mhi_stop(struct ath11k_pci *ar_pci);
+ int ath11k_mhi_register(struct ath11k_pci *ar_pci);
+diff --git a/drivers/net/wireless/ath/ath11k/pci.h b/drivers/net/wireless/ath/ath11k/pci.h
+index 61d67b20a0eb..2a28a9e8cda5 100644
+--- a/drivers/net/wireless/ath/ath11k/pci.h
++++ b/drivers/net/wireless/ath/ath11k/pci.h
+@@ -79,7 +79,6 @@ struct ath11k_pci {
+ 	u32 msi_ep_base_data;
+ 	struct mhi_controller *mhi_ctrl;
+ 	const struct ath11k_msi_config *msi_config;
+-	unsigned long mhi_state;
+ 	u32 register_window;
+ 
+ 	/* protects register_window above */
 -- 
 2.30.2
 
