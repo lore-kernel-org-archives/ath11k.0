@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 366FDC43217
-	for <ath11k@archiver.kernel.org>; Fri,  1 Apr 2022 14:35:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0A97C4167B
+	for <ath11k@archiver.kernel.org>; Fri,  1 Apr 2022 14:35:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mioh5OLWLIDsj0xhBBcBuE4iQm6oEtpfyV/Izr4KTpw=; b=cx2dgL4XkoFFxP
-	CIJ+11IIg18sWIYfTYUYhC8dHT15OMkHZr6bYbGVM0e09xnRUlr7wy0HQMDRaF2pB6YP/qNLaJuo2
-	BPdNP/58o2w0I3UFUzzHRQewHGXKLAvl6lqNticdqERkxzohYVPh/ATsOsRKTRkG6Cbsl2UllIrEF
-	8I7WJkcfftFv4HguQvVeKD7LhHUR/tgD7OuozsP2S36RN60+Q3x3cGKncN8Dtdu6/CcBJ9ZItxdi1
-	2Fk+cjUtUar2WpcMv08cBAFfMx8bon1uguJlyn8J9fjXWywOlqts5CZOaaM4v/kfqNGhojZVPGbYp
-	WnoPZ3pyCIg5hmSSq45Q==;
+	List-Owner; bh=iunSq7KttE8Mh04Dve2TC2Nv9cYH6qNgt81x9opCe8Q=; b=g71Jt4q8IIxSmm
+	fIRAds3IPilAIhvM8tFCaAxxxT1Lqw7ODV+XtuiHxvL+jr/kg5MTlfa3n1GZcODv7BG+ObgtYJUUd
+	Y7E3h2rCc+6zYDIiqTn2ZXpC953x1Qf3nfpfnhVoRo1RSBpVmkqIu59LDWwwB2vOoVhqHuMP95LFf
+	J7a3e+UEEI8HrbF3QJFg8EGZb4nm3ODfo9D9TexJ1wq+mc2VvFZWZ4dajCBiJmxdFdFnUtwhwl+fX
+	bmRunCLYXPSK1FLcVVuoECPx8MG7b/YIwC9J7jzasOUQuxKvvYyq5xk+trSjfRmCuv7j9JJli4a4Z
+	sv/WyrGsupvx43VnnpmQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1naIMd-0065bf-IP; Fri, 01 Apr 2022 14:34:59 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1naIMi-0065fy-QU; Fri, 01 Apr 2022 14:35:04 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1naILb-0064rE-Ea
+ id 1naILb-0064qa-Cy
  for ath11k@lists.infradead.org; Fri, 01 Apr 2022 14:33:57 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id DC6E361C1A;
- Fri,  1 Apr 2022 14:33:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EB2CC34112;
- Fri,  1 Apr 2022 14:33:52 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id E0C24B82519;
+ Fri,  1 Apr 2022 14:33:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D3E4C3410F;
+ Fri,  1 Apr 2022 14:33:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1648823634;
- bh=I6ui8yr5ddiJmm8uIzxNym8y7SedmbS78BmSFkx9b2I=;
+ s=k20201202; t=1648823632;
+ bh=XBEpcDax8qRSbttUHaQbFXCkJGe2sYnlZAoXEQznmhU=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=YGPkVMDrDvqeqkeKO3utmuO40VKB+Qzz23g//7+mYAE76nQmqDM911iZTonjkFzb6
- 80FOM9LWLu+pi9tXoz6o6sAoXAbc5pHtmYo/kqNar1jMgGp3TZpH/ZhN+KzrPeCJCH
- ywHqBFocy6Pf5PgwiQUHLKbcMxXnhZkUhe23AyTkwA683Q2ylnLxOnoK1+B873CzX+
- wcJULDWh943TBEwfu5Jc+eSm82ivV/NbPHiBGJeJ+Cfb6zsdta4dvUufBfZeiMUQSy
- DscyZDhfEZ3AF/SxwTfpWjzDh3gLWONaL2jSYMwxg6Vc7RZXs5EXWgUx+9D8ZURuXS
- JjBDmrXOkLcuw==
+ b=leczA58TgiYYxr+nmh/7NviNw65Im8IIQJ9YPKDa8ucq1K/ItX7FUyvbNijkL5kiG
+ uuNDSlZBF1d46Ej22jWjtipplvrYebBXhtVYE92B9WbI3L5+NejSKWtB+4AsVL8omh
+ 0YdsCsG5MfHiSx1bNZsBhyYTNZXMwQnrkhfzsMLEh/3Un0EeqK3q0gtjfDdGbPsy0S
+ xvNo8A/7+Vaqb4IcnmWC+4h2M5NEEkTwDloc5e0fVT7LWiGq89tLwl6Lu+X3J9M7qd
+ qwZ/QdH9WoLY+ZaCgQpUf2s/vZ+56WlBo+DOLUorlCIRTt2Ozf/7zYdSw39WghznPa
+ TIHeA9kffq8mQ==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Kalle Valo <quic_kvalo@quicinc.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Sasha Levin <sashal@kernel.org>, kvalo@kernel.org, davem@davemloft.net,
- kuba@kernel.org, pabeni@redhat.com, ath11k@lists.infradead.org,
- linux-wireless@vger.kernel.org, netdev@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.16 020/109] ath11k: pci: fix crash on suspend if
- board file is not found
-Date: Fri,  1 Apr 2022 10:31:27 -0400
-Message-Id: <20220401143256.1950537-20-sashal@kernel.org>
+Cc: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>,
+ Kalle Valo <quic_kvalo@quicinc.com>, Sasha Levin <sashal@kernel.org>,
+ kvalo@kernel.org, davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com,
+ ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ netdev@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.16 019/109] ath11k: fix kernel panic during
+ unload/load ath11k modules
+Date: Fri,  1 Apr 2022 10:31:26 -0400
+Message-Id: <20220401143256.1950537-19-sashal@kernel.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220401143256.1950537-1-sashal@kernel.org>
 References: <20220401143256.1950537-1-sashal@kernel.org>
@@ -61,8 +61,9 @@ MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220401_073355_604368_90FDEAAD 
-X-CRM114-Status: GOOD (  12.80  )
+X-CRM114-CacheID: sfid-20220401_073355_771143_7130CE55 
+X-CRM114-Status: UNSURE (   9.97  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,92 +80,63 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Kalle Valo <quic_kvalo@quicinc.com>
+From: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
 
-[ Upstream commit b4f4c56459a5c744f7f066b9fc2b54ea995030c5 ]
+[ Upstream commit 22b59cb965f79ee1accf83172441c9ca0ecb632a ]
 
-Mario reported that the kernel was crashing on suspend if ath11k was not able
-to find a board file:
+Call netif_napi_del() from ath11k_ahb_free_ext_irq() to fix
+the following kernel panic when unload/load ath11k modules
+for few iterations.
 
-[  473.693286] PM: Suspending system (s2idle)
-[  473.693291] printk: Suspending console(s) (use no_console_suspend to debug)
-[  474.407787] BUG: unable to handle page fault for address: 0000000000002070
-[  474.407791] #PF: supervisor read access in kernel mode
-[  474.407794] #PF: error_code(0x0000) - not-present page
-[  474.407798] PGD 0 P4D 0
-[  474.407801] Oops: 0000 [#1] PREEMPT SMP NOPTI
-[  474.407805] CPU: 2 PID: 2350 Comm: kworker/u32:14 Tainted: G        W         5.16.0 #248
-[...]
-[  474.407868] Call Trace:
-[  474.407870]  <TASK>
-[  474.407874]  ? _raw_spin_lock_irqsave+0x2a/0x60
-[  474.407882]  ? lock_timer_base+0x72/0xa0
-[  474.407889]  ? _raw_spin_unlock_irqrestore+0x29/0x3d
-[  474.407892]  ? try_to_del_timer_sync+0x54/0x80
-[  474.407896]  ath11k_dp_rx_pktlog_stop+0x49/0xc0 [ath11k]
-[  474.407912]  ath11k_core_suspend+0x34/0x130 [ath11k]
-[  474.407923]  ath11k_pci_pm_suspend+0x1b/0x50 [ath11k_pci]
-[  474.407928]  pci_pm_suspend+0x7e/0x170
-[  474.407935]  ? pci_pm_freeze+0xc0/0xc0
-[  474.407939]  dpm_run_callback+0x4e/0x150
-[  474.407947]  __device_suspend+0x148/0x4c0
-[  474.407951]  async_suspend+0x20/0x90
-dmesg-efi-164255130401001:
-Oops#1 Part1
-[  474.407955]  async_run_entry_fn+0x33/0x120
-[  474.407959]  process_one_work+0x220/0x3f0
-[  474.407966]  worker_thread+0x4a/0x3d0
-[  474.407971]  kthread+0x17a/0x1a0
-[  474.407975]  ? process_one_work+0x3f0/0x3f0
-[  474.407979]  ? set_kthread_struct+0x40/0x40
-[  474.407983]  ret_from_fork+0x22/0x30
-[  474.407991]  </TASK>
+[  971.201365] Unable to handle kernel paging request at virtual address 6d97a208
+[  971.204227] pgd = 594c2919
+[  971.211478] [6d97a208] *pgd=00000000
+[  971.214120] Internal error: Oops: 5 [#1] PREEMPT SMP ARM
+[  971.412024] CPU: 2 PID: 4435 Comm: insmod Not tainted 5.4.89 #0
+[  971.434256] Hardware name: Generic DT based system
+[  971.440165] PC is at napi_by_id+0x10/0x40
+[  971.445019] LR is at netif_napi_add+0x160/0x1dc
 
-The issue here is that board file loading happens after ath11k_pci_probe()
-succesfully returns (ath11k initialisation happends asynchronously) and the
-suspend handler is still enabled, of course failing as ath11k is not properly
-initialised. Fix this by checking ATH11K_FLAG_QMI_FAIL during both suspend and
-resume.
+[  971.743127] (napi_by_id) from [<807d89a0>] (netif_napi_add+0x160/0x1dc)
+[  971.751295] (netif_napi_add) from [<7f1209ac>] (ath11k_ahb_config_irq+0xf8/0x414 [ath11k_ahb])
+[  971.759164] (ath11k_ahb_config_irq [ath11k_ahb]) from [<7f12135c>] (ath11k_ahb_probe+0x40c/0x51c [ath11k_ahb])
+[  971.768567] (ath11k_ahb_probe [ath11k_ahb]) from [<80666864>] (platform_drv_probe+0x48/0x94)
+[  971.779670] (platform_drv_probe) from [<80664718>] (really_probe+0x1c8/0x450)
+[  971.789389] (really_probe) from [<80664cc4>] (driver_probe_device+0x15c/0x1b8)
+[  971.797547] (driver_probe_device) from [<80664f60>] (device_driver_attach+0x44/0x60)
+[  971.805795] (device_driver_attach) from [<806650a0>] (__driver_attach+0x124/0x140)
+[  971.814822] (__driver_attach) from [<80662adc>] (bus_for_each_dev+0x58/0xa4)
+[  971.823328] (bus_for_each_dev) from [<80663a2c>] (bus_add_driver+0xf0/0x1e8)
+[  971.831662] (bus_add_driver) from [<806658a4>] (driver_register+0xa8/0xf0)
+[  971.839822] (driver_register) from [<8030269c>] (do_one_initcall+0x78/0x1ac)
+[  971.847638] (do_one_initcall) from [<80392524>] (do_init_module+0x54/0x200)
+[  971.855968] (do_init_module) from [<803945b0>] (load_module+0x1e30/0x1ffc)
+[  971.864126] (load_module) from [<803948b0>] (sys_init_module+0x134/0x17c)
+[  971.871852] (sys_init_module) from [<80301000>] (ret_fast_syscall+0x0/0x50)
 
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03003-QCAHSPSWPL_V1_V2_SILICONZ_LITE-2
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.6.0.1-00760-QCAHKSWPL_SILICONZ-1
 
-Reported-by: Mario Limonciello <mario.limonciello@amd.com>
-Link: https://bugzilla.kernel.org/show_bug.cgi?id=215504
+Signed-off-by: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
 Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
-Link: https://lore.kernel.org/r/20220127090117.2024-1-kvalo@kernel.org
+Link: https://lore.kernel.org/r/1642583973-21599-1-git-send-email-quic_vnaralas@quicinc.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/net/wireless/ath/ath11k/pci.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ drivers/net/wireless/ath/ath11k/ahb.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index 4c348bacf2cb..754578f3dcf1 100644
---- a/drivers/net/wireless/ath/ath11k/pci.c
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -1419,6 +1419,11 @@ static __maybe_unused int ath11k_pci_pm_suspend(struct device *dev)
- 	struct ath11k_base *ab = dev_get_drvdata(dev);
- 	int ret;
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+index 3fb0aa000825..24bd0520926b 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.c
++++ b/drivers/net/wireless/ath/ath11k/ahb.c
+@@ -391,6 +391,8 @@ static void ath11k_ahb_free_ext_irq(struct ath11k_base *ab)
  
-+	if (test_bit(ATH11K_FLAG_QMI_FAIL, &ab->dev_flags)) {
-+		ath11k_dbg(ab, ATH11K_DBG_BOOT, "boot skipping pci suspend as qmi is not initialised\n");
-+		return 0;
-+	}
+ 		for (j = 0; j < irq_grp->num_irq; j++)
+ 			free_irq(ab->irq_num[irq_grp->irqs[j]], irq_grp);
 +
- 	ret = ath11k_core_suspend(ab);
- 	if (ret)
- 		ath11k_warn(ab, "failed to suspend core: %d\n", ret);
-@@ -1431,6 +1436,11 @@ static __maybe_unused int ath11k_pci_pm_resume(struct device *dev)
- 	struct ath11k_base *ab = dev_get_drvdata(dev);
- 	int ret;
++		netif_napi_del(&irq_grp->napi);
+ 	}
+ }
  
-+	if (test_bit(ATH11K_FLAG_QMI_FAIL, &ab->dev_flags)) {
-+		ath11k_dbg(ab, ATH11K_DBG_BOOT, "boot skipping pci resume as qmi is not initialised\n");
-+		return 0;
-+	}
-+
- 	ret = ath11k_core_resume(ab);
- 	if (ret)
- 		ath11k_warn(ab, "failed to resume core: %d\n", ret);
 -- 
 2.34.1
 
