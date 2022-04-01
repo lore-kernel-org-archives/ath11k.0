@@ -4,63 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB861C433FE
-	for <ath11k@archiver.kernel.org>; Fri,  1 Apr 2022 14:51:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C55A3C433F5
+	for <ath11k@archiver.kernel.org>; Fri,  1 Apr 2022 14:58:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=P/gVpRgNZdtKr1kghGYp2PxPcnSE53s0GLNCi1I0YFY=; b=RhsLt2o7rQtSZy
-	pi2rno9VUek/akVty8N/sOaOAD2rqNDXR97pUnunqOdov1N1tp37FVUoCrDzWP6E+lavGfa6t6mJX
-	QgffshI1UNrddW9OjYtUdgahK3ypafWHygXSaPRKIaX1Gr1EnNgjgFud5gDcG2UiomCfr9S5JWYib
-	xvspF7HX+EAMvYEOeIbGbzGgp7F9gfOwkUIr2A1idpm3x5SSndMod1oJoGSKcQp4HQH7BxtEEsBG4
-	1Ncm7bMjr4RSvsoCV2GsmTeJlhjefnxBL8Ojwj2G3yjalVZWPVy78WovFXuJSUbYGi6Jv1cVkTJng
-	3inhuApTAXOzAH0FoR7Q==;
+	List-Owner; bh=RpsW3d+gfVo1h9JTjfkEn7/pJ5oROhXl9zAy86W1oQc=; b=uQqyNBWkQVYSj6
+	9W0IQaHH8dt5/xLx60paO4RPAZ0iDxSCUP2m+S65EFhpVdqGI4Qjhns3KObqmSvN2HTfd5j6W5Cxv
+	mDr9VIv7sx8ynTrq0S3S/Q+D5ZzzUooWYsWbPsumlQpeqiBz15MD5UESbiNBxLtkYkVE3/s7fCD1y
+	S0HlYCmzUpriydUvO9sK0VLcR1B0pUSi+joECgqibsyP5JcUghh2PTBFueJajwe5R6cNlYiL+R9Hi
+	kpuyOzALFd2WCyAW8nl2dicp7/ylgAyYMzB+ZaQd6uw/31KA1jAmmEtCs5Q7rk2kSNkgSiWGKWZJe
+	9pnJiPXlRp5LhLvVJoMg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1naIcr-006Eq5-SO; Fri, 01 Apr 2022 14:51:45 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1naIjF-006I00-8q; Fri, 01 Apr 2022 14:58:21 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1naIU6-0069lu-8q
- for ath11k@lists.infradead.org; Fri, 01 Apr 2022 14:42:44 +0000
+ id 1naIc9-006EQ5-KX
+ for ath11k@lists.infradead.org; Fri, 01 Apr 2022 14:51:05 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id DEA1FB824FD;
- Fri,  1 Apr 2022 14:42:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4ED74C34112;
- Fri,  1 Apr 2022 14:42:38 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 01C5060F45;
+ Fri,  1 Apr 2022 14:51:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2D98C340EE;
+ Fri,  1 Apr 2022 14:50:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1648824159;
- bh=aN1qM77wmJjzxBeg0zePnA10frPcAbO5h7VfCiWBCMY=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=CvCa9ocAaQq/485HtTSnqry4FqQoRk0Ktz4iE+UBLXt+2K8yJu5NgBeKPs7d6LNdQ
- zi+qH/UBqwL7i5+Atk/GwebpndFF1n1p3CjNSBLawjSIOD0bl8va1+6Fpwgn5INAFx
- U1zDR6MB8J33BbWU1cOLy9aU59m1iujkqWKRyCLHY5IHzdr2MpuGdgO351i8vpypqv
- 0/JEZe0Zlz9drBVoUnEltLrrEumyGoG3HFp5G6RlWaeEr0hAdNeuSjxmyJVOe653tG
- J0ePN3KvyizWQg39xENj2j50vjSPM/Exom1koSOinbeJ+L1fMXedtCMk7E7nhY3UrX
- WWM88y5CE9Lvg==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Cc: Kalle Valo <quic_kvalo@quicinc.com>, Sasha Levin <sashal@kernel.org>,
- kvalo@kernel.org, davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com,
+ s=k20201202; t=1648824660;
+ bh=gjV78sg4M+SM1WZOKlh+sYIDNQs2GbRiH0Kl00+k6sU=;
+ h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+ b=XtL/uOlm7Nc/XmvuFw9Y8MtWQjXB4YZxqS9fsjx/DLkiHyr7t611GPc4N30ZUWosI
+ IbH9H7f6G2MXdFMO7g80pNst29rq5yBE/AC+QU6eDkb6UDaFqadfzdt09ucBXG3DTr
+ mPQh/siL1bHfm+/iWaHQeBSL5b6a5msoZOxR6CA3GIVMJ9nWtd/gU2500iKjMpbyzQ
+ zc0EOfevuMQ/7n2/CxQ6Lk8feUVkwqb/n1P2iQnwSy7dT+e75xnUPhb0AywOUhBaJr
+ u4W1kOQfxdp69fWzo6QoLdcSkHodk3c4PTNnY94yW+I0TTkgkdGUlTfDbMeFTJt4Ro
+ zmIv6r7ZkLU7g==
+From: Kalle Valo <kvalo@kernel.org>
+To: Robert Marko <robimarko@gmail.com>
+Cc: davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com,
  ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- netdev@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.10 10/65] ath11k: mhi: use mhi_sync_power_up()
-Date: Fri,  1 Apr 2022 10:41:11 -0400
-Message-Id: <20220401144206.1953700-10-sashal@kernel.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220401144206.1953700-1-sashal@kernel.org>
-References: <20220401144206.1953700-1-sashal@kernel.org>
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ath11k: select QRTR for AHB as well
+References: <20220401093554.360211-1-robimarko@gmail.com>
+Date: Fri, 01 Apr 2022 17:50:55 +0300
+In-Reply-To: <20220401093554.360211-1-robimarko@gmail.com> (Robert Marko's
+ message of "Fri, 1 Apr 2022 11:35:54 +0200")
+Message-ID: <87ilrsuab4.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220401_074242_643905_0136DEF6 
-X-CRM114-Status: GOOD (  15.52  )
+X-CRM114-CacheID: sfid-20220401_075101_781364_6B263D3B 
+X-CRM114-Status: GOOD (  17.59  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,88 +74,62 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Kalle Valo <quic_kvalo@quicinc.com>
+Robert Marko <robimarko@gmail.com> writes:
 
-[ Upstream commit 3df6d74aedfdca919cca475d15dfdbc8b05c9e5d ]
+> Currently, ath11k only selects QRTR if ath11k PCI is selected, however
+> AHB support requires QRTR, more precisely QRTR_SMD because it is using
+> QMI as well which in turn uses QRTR.
+>
+> Without QRTR_SMD AHB does not work, so select QRTR in ATH11K and then
+> select QRTR_SMD for ATH11K_AHB and QRTR_MHI for ATH11K_PCI.
+>
+> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1-01208-QCAHKSWPL_SILICONZ-1
+>
+> Signed-off-by: Robert Marko <robimarko@gmail.com>
+> ---
+>  drivers/net/wireless/ath/ath11k/Kconfig | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/net/wireless/ath/ath11k/Kconfig b/drivers/net/wireless/ath/ath11k/Kconfig
+> index ad5cc6cac05b..b45baad184f6 100644
+> --- a/drivers/net/wireless/ath/ath11k/Kconfig
+> +++ b/drivers/net/wireless/ath/ath11k/Kconfig
+> @@ -5,6 +5,7 @@ config ATH11K
+>  	depends on CRYPTO_MICHAEL_MIC
+>  	select ATH_COMMON
+>  	select QCOM_QMI_HELPERS
+> +	select QRTR
+>  	help
+>  	  This module adds support for Qualcomm Technologies 802.11ax family of
+>  	  chipsets.
+> @@ -15,6 +16,7 @@ config ATH11K_AHB
+>  	tristate "Atheros ath11k AHB support"
+>  	depends on ATH11K
+>  	depends on REMOTEPROC
+> +	select QRTR_SMD
+>  	help
+>  	  This module adds support for AHB bus
+>  
+> @@ -22,7 +24,6 @@ config ATH11K_PCI
+>  	tristate "Atheros ath11k PCI support"
+>  	depends on ATH11K && PCI
+>  	select MHI_BUS
+> -	select QRTR
+>  	select QRTR_MHI
+>  	help
+>  	  This module adds support for PCIE bus
 
-If amss.bin was missing ath11k would crash during 'rmmod ath11k_pci'. The
-reason for that was that we were using mhi_async_power_up() which does not
-check any errors. But mhi_sync_power_up() on the other hand does check for
-errors so let's use that to fix the crash.
+I now see a new warning:
 
-I was not able to find a reason why an async version was used.
-ath11k_mhi_start() (which enables state ATH11K_MHI_POWER_ON) is called from
-ath11k_hif_power_up(), which can sleep. So sync version should be safe to use
-here.
+WARNING: unmet direct dependencies detected for QRTR_SMD
+  Depends on [n]: NET [=y] && QRTR [=m] && (RPMSG [=n] || COMPILE_TEST [=n] && RPMSG [=n]=n)
+  Selected by [m]:
+  - ATH11K_AHB [=m] && NETDEVICES [=y] && WLAN [=y] && WLAN_VENDOR_ATH [=y] && ATH11K [=m] && REMOTEPROC [=y]
 
-[  145.569731] general protection fault, probably for non-canonical address 0xdffffc0000000000: 0000 [#1] PREEMPT SMP DEBUG_PAGEALLOC KASAN PTI
-[  145.569789] KASAN: null-ptr-deref in range [0x0000000000000000-0x0000000000000007]
-[  145.569843] CPU: 2 PID: 1628 Comm: rmmod Kdump: loaded Tainted: G        W         5.16.0-wt-ath+ #567
-[  145.569898] Hardware name: Intel(R) Client Systems NUC8i7HVK/NUC8i7HVB, BIOS HNKBLi70.86A.0067.2021.0528.1339 05/28/2021
-[  145.569956] RIP: 0010:ath11k_hal_srng_access_begin+0xb5/0x2b0 [ath11k]
-[  145.570028] Code: df 48 89 fa 48 c1 ea 03 80 3c 02 00 0f 85 ec 01 00 00 48 8b ab a8 00 00 00 48 b8 00 00 00 00 00 fc ff df 48 89 ea 48 c1 ea 03 <0f> b6 14 02 48 89 e8 83 e0 07 83 c0 03 45 85 ed 75 48 38 d0 7c 08
-[  145.570089] RSP: 0018:ffffc900025d7ac0 EFLAGS: 00010246
-[  145.570144] RAX: dffffc0000000000 RBX: ffff88814fca2dd8 RCX: 1ffffffff50cb455
-[  145.570196] RDX: 0000000000000000 RSI: ffff88814fca2dd8 RDI: ffff88814fca2e80
-[  145.570252] RBP: 0000000000000000 R08: 0000000000000000 R09: ffffffffa8659497
-[  145.570329] R10: fffffbfff50cb292 R11: 0000000000000001 R12: ffff88814fca0000
-[  145.570410] R13: 0000000000000000 R14: ffff88814fca2798 R15: ffff88814fca2dd8
-[  145.570465] FS:  00007fa399988540(0000) GS:ffff888233e00000(0000) knlGS:0000000000000000
-[  145.570519] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[  145.570571] CR2: 00007fa399b51421 CR3: 0000000137898002 CR4: 00000000003706e0
-[  145.570623] Call Trace:
-[  145.570675]  <TASK>
-[  145.570727]  ? ath11k_ce_tx_process_cb+0x34b/0x860 [ath11k]
-[  145.570797]  ath11k_ce_tx_process_cb+0x356/0x860 [ath11k]
-[  145.570864]  ? tasklet_init+0x150/0x150
-[  145.570919]  ? ath11k_ce_alloc_pipes+0x280/0x280 [ath11k]
-[  145.570986]  ? tasklet_clear_sched+0x42/0xe0
-[  145.571042]  ? tasklet_kill+0xe9/0x1b0
-[  145.571095]  ? tasklet_clear_sched+0xe0/0xe0
-[  145.571148]  ? irq_has_action+0x120/0x120
-[  145.571202]  ath11k_ce_cleanup_pipes+0x45a/0x580 [ath11k]
-[  145.571270]  ? ath11k_pci_stop+0x10e/0x170 [ath11k_pci]
-[  145.571345]  ath11k_core_stop+0x8a/0xc0 [ath11k]
-[  145.571434]  ath11k_core_deinit+0x9e/0x150 [ath11k]
-[  145.571499]  ath11k_pci_remove+0xd2/0x260 [ath11k_pci]
-[  145.571553]  pci_device_remove+0x9a/0x1c0
-[  145.571605]  __device_release_driver+0x332/0x660
-[  145.571659]  driver_detach+0x1e7/0x2c0
-[  145.571712]  bus_remove_driver+0xe2/0x2d0
-[  145.571772]  pci_unregister_driver+0x21/0x250
-[  145.571826]  __do_sys_delete_module+0x30a/0x4b0
-[  145.571879]  ? free_module+0xac0/0xac0
-[  145.571933]  ? lockdep_hardirqs_on_prepare.part.0+0x18c/0x370
-[  145.571986]  ? syscall_enter_from_user_mode+0x1d/0x50
-[  145.572039]  ? lockdep_hardirqs_on+0x79/0x100
-[  145.572097]  do_syscall_64+0x3b/0x90
-[  145.572153]  entry_SYSCALL_64_after_hwframe+0x44/0xae
-
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03003-QCAHSPSWPL_V1_V2_SILICONZ_LITE-2
-
-Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
-Link: https://lore.kernel.org/r/20220127090117.2024-2-kvalo@kernel.org
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/net/wireless/ath/ath11k/mhi.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
-index aded9a719d51..84db9e55c3e7 100644
---- a/drivers/net/wireless/ath/ath11k/mhi.c
-+++ b/drivers/net/wireless/ath/ath11k/mhi.c
-@@ -402,7 +402,7 @@ static int ath11k_mhi_set_state(struct ath11k_pci *ab_pci,
- 		ret = 0;
- 		break;
- 	case ATH11K_MHI_POWER_ON:
--		ret = mhi_async_power_up(ab_pci->mhi_ctrl);
-+		ret = mhi_sync_power_up(ab_pci->mhi_ctrl);
- 		break;
- 	case ATH11K_MHI_POWER_OFF:
- 		mhi_power_down(ab_pci->mhi_ctrl, true);
 -- 
-2.34.1
+https://patchwork.kernel.org/project/linux-wireless/list/
 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
