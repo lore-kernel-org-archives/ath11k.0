@@ -4,60 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 184CDC433EF
-	for <ath11k@archiver.kernel.org>; Tue,  5 Apr 2022 07:49:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 840CCC433F5
+	for <ath11k@archiver.kernel.org>; Tue,  5 Apr 2022 08:07:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=N3FVu8VuUOl20Oj5QveR+uYMJSSoELaMjxdPyO8CUHw=; b=NHqqcCojbiXVlY
-	99G8EUhdVqjn98jV6ugfu11Apjeu58K/Q6mf7h5QSe1gNy2DftUy1juOK2kqnw3c22CAXuslaA0+l
-	O9SULojC4n/sO51LH/h8RXy3rYnSyZF88XI25bcxugAxoFpUuH5Db7kqRLkbK3ZcumlLjjWE/nSVR
-	qckVjKgGJKUB6P8OpGn3aswBYJHSEj79hmBcqz5fnyy8lKkD7D1iCkmRYYwlzjc+oFDvkZr3eOXnF
-	hnl/lkA4zT34YfnDNcnwrLdalpdpdNUVFYHfz1Uwc9kt8/fwmYn0T0hsy2pdBmvPoka0eu0YT8kla
-	BIKZ5LKKwLwvWg89dY4g==;
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
+	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=3lFhIqltWyjjUgw7YQr5/uWgffoqMKL6IlsTB+Bg7LE=; b=k5pdQVK775jYGG
+	LwRkpMQx/Y8YPETkWKJXUw4VHgLMck56wHVRCYc/qPYRsIt9jee/4riGqqDaU1i64bb6wI7KMKExi
+	fEsQoZ2fM2t5y3sj8dNG30m7ln41Dk7m19tjCMYyQdPo4BB94hE0ZWfe8X/f2ozNfhG5D5eCzbDP4
+	SVy/ZA2+qYxmM/bUXEcW41wKtEgy4t9duBVMqoaGuuhbVwuR+2wu8N5mqL4odnNEWL/r4GHxdbXIS
+	u3WuES9L3Hn9N8tBY+K2t8XArzvw1c1WQQIpf3CCG6rGhNoPXbc4K1LPqjphKt4lKV73VG/v0kWqt
+	26pMY96mhTsnnkb57XSQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nbdwF-0002Zu-Sk; Tue, 05 Apr 2022 07:49:19 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1nbeDc-0008uw-Vm; Tue, 05 Apr 2022 08:07:17 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nbdwC-0002ZS-6U
- for ath11k@lists.infradead.org; Tue, 05 Apr 2022 07:49:17 +0000
+ id 1nbeDa-0008ts-6w
+ for ath11k@lists.infradead.org; Tue, 05 Apr 2022 08:07:15 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 2CE3CB81B16;
- Tue,  5 Apr 2022 07:49:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC9ECC340EE;
- Tue,  5 Apr 2022 07:49:11 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id D1D9BB81BB6;
+ Tue,  5 Apr 2022 08:07:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91F64C385A3;
+ Tue,  5 Apr 2022 08:07:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1649144952;
- bh=FsWGZRZU5luoFcJ8Wj2q+FnEHag6sXtG+zcjWXjN7P8=;
- h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
- b=X8YtQXq96B1J3ZAkb/S4eA0njiU95WZPOewAlV4RA6I8veRnAAOv1Jlri1nzaN+7u
- 6K1/WcL5JJbq8Vdmdl1T4fmaUSGDjbEzmZQWeh21SBNYK7d/RD5ksGNHwJN1i1Ak3l
- 4QpOwv0N+gXZ3gUE3LKxA/Pl/Pdd6ssyvZblsKxzx0evmwY6wPm+KJKU8PQowQ3JAY
- ERVorqCLWR2juZN99x3Yto/316s3Ke8+5wpOoAMLFzaeVPSZ3v/z7t224a/WUbs2AV
- z2IS6LHE04p+yVSL3qBT4BIgNIwa+A6KsfEARJ+HJ4a0P6IzKsyPcFtfm/qf+qeujG
- PbwemzEjRq1Yg==
-From: Kalle Valo <kvalo@kernel.org>
-To: Dan Carpenter <dan.carpenter@oracle.com>,
- Aloka Dixit <quic_alokad@quicinc.com>
-Cc: john@phrozen.org, ath11k@lists.infradead.org,
- linux-wireless@vger.kernel.org
-Subject: Re: [bug report] ath11k: add debugfs for TWT debug calls
-References: <20220301074905.GA13071@kili>
-Date: Tue, 05 Apr 2022 10:49:05 +0300
-In-Reply-To: <20220301074905.GA13071@kili> (Dan Carpenter's message of "Tue, 1
- Mar 2022 10:49:05 +0300")
-Message-ID: <8735isrmvi.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+ s=k20201202; t=1649146032;
+ bh=XIDDvt1ftw2GOb3RkcuJpSwO8lvCv8diT65itEWJWmw=;
+ h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+ b=NbV3g6fVVH04VzcmTLZbQajhr1aGT8QvHyjPqI2PuhRhoKBwFqBLl8YZgb5Zegsqh
+ BjBiffb3Z/ve42oKYVdtcKkkpDlkYVwJ9mVcvAOD7zJizSZgzwNGrKJP8QF5506wE1
+ moOvUG0+mYZjZxK3sCMykvGzFJ1whpWiC/PihDQ+X6gSpMaFYWXP2C5xWq/gVFykui
+ QF1Z/PfbtPmSymdCPhxX05XTziKLGFd2ZzOFSa9Sz0YHL91VB2hwRat4ky7sGW7aEx
+ OGTAbtHCDbmLL1cp8ICblJe6S3xxymmdmdIOMxAz3j1z4tYXFaSgdiEOESMJMPJ6qG
+ MdDi3NKrPT+dQ==
 MIME-Version: 1.0
+Subject: Re: [PATCH v3 1/5] ath11k: PCI changes to support WCN6750
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20220328055714.6449-2-quic_mpubbise@quicinc.com>
+References: <20220328055714.6449-2-quic_mpubbise@quicinc.com>
+To: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+ Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-ID: <164914602727.12306.5327755878544147353.kvalo@kernel.org>
+Date: Tue,  5 Apr 2022 08:07:11 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220405_004916_568914_5CEA4EFD 
-X-CRM114-Status: GOOD (  16.10  )
+X-CRM114-CacheID: sfid-20220405_010714_515906_8BC9813D 
+X-CRM114-Status: UNSURE (   9.43  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,68 +73,35 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-+ aloka
+Manikanta Pubbisetty <quic_mpubbise@quicinc.com> wrote:
 
-Dan Carpenter <dan.carpenter@oracle.com> writes:
+> In order to add the support for WCN6750 in ATH11K , it is
+> required to move certain PCI definitions to the header file.
+> As a result, add ATH11K_PCI_* prefix to these definitions.
+> 
+> Also, change the scope of certain PCI APIs that are required
+> to enable WCN6750 from static to global.
+> 
+> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
+> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
+> 
+> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-> Hello John Crispin,
->
-> The patch fe98a6137d03: "ath11k: add debugfs for TWT debug calls"
-> from Jan 31, 2022, leads to the following Smatch static checker
-> warning:
->
-> 	drivers/net/wireless/ath/ath11k/debugfs.c:1642 ath11k_debugfs_add_interface()
-> 	warn: 'arvif->debugfs_twt' is an error pointer or valid
->
-> drivers/net/wireless/ath/ath11k/debugfs.c
->     1637 int ath11k_debugfs_add_interface(struct ath11k_vif *arvif)
->     1638 {
->     1639         if (arvif->vif->type == NL80211_IFTYPE_AP && !arvif->debugfs_twt) {
->     1640                 arvif->debugfs_twt = debugfs_create_dir("twt",
->     1641                                                         arvif->vif->debugfs_dir);
-> --> 1642                 if (!arvif->debugfs_twt || IS_ERR(arvif->debugfs_twt)) {
->     1643                         ath11k_warn(arvif->ar->ab,
->     1644                                     "failed to create directory %p\n",
->     1645                                     arvif->debugfs_twt);
->
-> The debugfs_create_dir() function never returns NULL.  It's generally
-> not supposed to checked for errors.  This code here looks like a
-> layering violation because it's trying to check if debugfs is already
-> registered.  But the clean up code just unregisters on the first call.
-> Should it be ref counted or can the !arvif->debugfs_twt check be
-> removed?
->
-> Also if the user deliberately disabled debugfs then this prints an error
-> message.
->
->     1646                         arvif->debugfs_twt = NULL;
->     1647                         return -1;
+5 patches applied to ath-next branch of ath.git, thanks.
 
-Please also use proper error values, not -1.
-
->     1648                 }
->     1649 
->     1650                 debugfs_create_file("add_dialog", 0200, arvif->debugfs_twt,
->     1651                                     arvif, &ath11k_fops_twt_add_dialog);
->     1652 
->     1653                 debugfs_create_file("del_dialog", 0200, arvif->debugfs_twt,
->     1654                                     arvif, &ath11k_fops_twt_del_dialog);
->     1655 
->     1656                 debugfs_create_file("pause_dialog", 0200, arvif->debugfs_twt,
->     1657                                     arvif, &ath11k_fops_twt_pause_dialog);
->     1658 
->     1659                 debugfs_create_file("resume_dialog", 0200, arvif->debugfs_twt,
->     1660                                     arvif, &ath11k_fops_twt_resume_dialog);
->     1661         }
->     1662         return 0;
->     1663 }
-
-Aloka, you submitted this patch. Please take a look and fix the issues.
+948171b5f6fc ath11k: PCI changes to support WCN6750
+bbfdc5a751a6 ath11k: Refactor PCI code to support WCN6750
+8d06b8023ace ath11k: Choose MSI config based on HW revision
+0cfaf2243e9e ath11k: Refactor MSI logic to support WCN6750
+5b32b6dd9663 ath11k: Remove core PCI references from PCI common code
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+https://patchwork.kernel.org/project/linux-wireless/patch/20220328055714.6449-2-quic_mpubbise@quicinc.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
 -- 
 ath11k mailing list
