@@ -4,53 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6EA9C433EF
-	for <ath11k@archiver.kernel.org>; Mon, 11 Apr 2022 02:09:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8D09C433F5
+	for <ath11k@archiver.kernel.org>; Tue, 12 Apr 2022 10:42:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Vr6c/4PQeXZd52YvIVCn+4bxJPhW2yvg/7D1KYUSoNI=; b=3fIF1HZx0/CIxR
-	JQodUiFceU4vcXyNT+fQ35lnEPugC5+18/5V06UhSBPyb4D9upIbHwLt1K25bMTLC6EI70QBMTZSP
-	9j6/yxQ+NfXKvhqiBe9TRYn4rwIt82YgYaRZ4qGyuoOhcSbdpjEubnGMuLGZoVj90FJ6ZyilnIvUd
-	X9uKNsLUxpXXPuI7ihzMW9ZDC26Gay/sxqDfrh2VwUh0tSU5I2vzlJn8jzm8Lkb4MSBlOTxt2/Ua6
-	rkeVRhRmXm1uOh7A20J7crykaOvWPAWpfYXp1EhjZx0kqTqwy+J564dm1xcWLq33P9s6Zymf6qmdf
-	Dd0A9/xBbmn4OmgFcD2Q==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=9nEtdV2BKs2yOik0pibE1YaOTD61i7ap5XKSFIatJ1Q=; b=xOfWULQO7XP5xV
+	DchkMQZv036oRwVYpEiZFFmx+S9htQeEbxe6anT43AAWnKAdUuh0L4O7lhtMffpQrWtOnup8Gkv/7
+	5D7J/ehuWlwyHvjezAjStDqQvlz11KIQ084WU5+hJ8AsXqhOtyIzkzMMrqBYXynlF9M3+RsSXBDEc
+	zMPvbN9ZY3MOBIgcFx3AneJUfLHqzrbR7FLKYwc2tZCTMiNLoVBikG7SeTzugpfQFbtBhGyw5o13M
+	kDv2oQ/1RWo1yAmpGHf7jL13sFMP8M24VX9rMkfXj4l8NxERD8R59T0cz+oYxEDdUCBws3URaCnMC
+	pgNP+bMNiM/8FStxR2Eg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ndjUL-006ALi-Kb; Mon, 11 Apr 2022 02:09:09 +0000
-Received: from szxga02-in.huawei.com ([45.249.212.188])
+	id 1neDye-00DNWj-Dz; Tue, 12 Apr 2022 10:42:28 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1ndjUI-006AJU-At
- for ath11k@lists.infradead.org; Mon, 11 Apr 2022 02:09:07 +0000
-Received: from canpemm500007.china.huawei.com (unknown [172.30.72.54])
- by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4KcC0W6PZwzgYZ2;
- Mon, 11 Apr 2022 10:07:07 +0800 (CST)
-Received: from localhost (10.174.179.215) by canpemm500007.china.huawei.com
- (7.192.104.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Mon, 11 Apr
- 2022 10:08:55 +0800
-From: YueHaibing <yuehaibing@huawei.com>
-To: <kvalo@kernel.org>, <davem@davemloft.net>, <kuba@kernel.org>,
- <pabeni@redhat.com>, <quic_cjhuang@quicinc.com>, <quic_bqiang@quicinc.com>
-CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>, YueHaibing
- <yuehaibing@huawei.com>
-Subject: [PATCH] ath11k: Fix build warning without CONFIG_IPV6
-Date: Mon, 11 Apr 2022 10:08:43 +0800
-Message-ID: <20220411020843.10284-1-yuehaibing@huawei.com>
-X-Mailer: git-send-email 2.10.2.windows.1
+ id 1neDwW-00DMPc-MC
+ for ath11k@lists.infradead.org; Tue, 12 Apr 2022 10:40:19 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 2C8ACB81C9E;
+ Tue, 12 Apr 2022 10:40:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33452C385A1;
+ Tue, 12 Apr 2022 10:40:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1649760014;
+ bh=9pk3pVVU+tzTaBuH4UHl5rYkdZrqMTBhJJtEpCzTfyo=;
+ h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+ b=eahZ62fOXAYpMrYgfr9ydE51IMiVoUgBsXQph+GuZSgcqRrtunDqIhC2jLGvvXcnA
+ ouOr1dnxr4uX2dK+0HJFnAZZUVhv1A8WnxN3jR1Atx8s868HhTy2roiTmytWKO+rJa
+ OAMxcepuKuCGfcBD+hN5vNcKJNQXs5KHPNgHGFfa4gS+rr+8deqC2nfE1tlQRIxBk1
+ Rt2BGnLctZoGv17phoi/Xk7pb1d2WnPe3inqxPXMmxtLtLBR+7dqk6ZLhd5v0u+hJk
+ 1AXGRVBPtu3Cs+iBii4FtUCaPFZhoXcc8XR6ssyMJSFkVwUkpfdaf8cJLht+dxstMn
+ RJ1e1OdttNz+g==
+From: Kalle Valo <kvalo@kernel.org>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Prasad Malisetty <quic_pmaliset@quicinc.com>, agross@kernel.org,
+ bjorn.andersson@linaro.org, lorenzo.pieralisi@arm.com, robh@kernel.org,
+ kw@linux.com, bhelgaas@google.com, linux-pci@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ rajatja@google.com, refactormyself@gmail.com, quic_vbadigan@quicinc.com,
+ quic_ramkri@quicinc.com, swboyd@chromium.org, linux-wireless@vger.kernel.org, 
+ ath11k@lists.infradead.org
+Subject: Re: [PATCH v4] PCI: qcom: Add system PM support
+References: <1646679306-4768-1-git-send-email-quic_pmaliset@quicinc.com>
+ <20220412060144.GA41348@thinkpad>
+Date: Tue, 12 Apr 2022 13:40:08 +0300
+In-Reply-To: <20220412060144.GA41348@thinkpad> (Manivannan Sadhasivam's
+ message of "Tue, 12 Apr 2022 11:31:44 +0530")
+Message-ID: <87k0buoa9j.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-X-Originating-IP: [10.174.179.215]
-X-ClientProxiedBy: dggems702-chm.china.huawei.com (10.3.19.179) To
- canpemm500007.china.huawei.com (7.192.104.62)
-X-CFilter-Loop: Reflected
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220410_190906_579562_FB0310A3 
-X-CRM114-Status: UNSURE (   5.14  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220412_034016_936717_927267C0 
+X-CRM114-Status: GOOD (  11.97  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -62,32 +74,41 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-ZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9tYWMuYzo4MTc1OjEzOiBlcnJvcjog4oCY
-YXRoMTFrX21hY19vcF9pcHY2X2NoYW5nZWTigJkgZGVmaW5lZCBidXQgbm90IHVzZWQgWy1XZXJy
-b3I9dW51c2VkLWZ1bmN0aW9uXQogc3RhdGljIHZvaWQgYXRoMTFrX21hY19vcF9pcHY2X2NoYW5n
-ZWQoc3RydWN0IGllZWU4MDIxMV9odyAqaHcsCiAgICAgICAgICAgICBefn5+fn5+fn5+fn5+fn5+
-fn5+fn5+fn5+fgoKV3JhcCBpdCB3aXRoICNpZmRlZiBibG9jayB0byBmaXggdGhpcy4KCkZpeGVz
-OiBjM2MzNmJmZTk5OGIgKCJhdGgxMWs6IHN1cHBvcnQgQVJQIGFuZCBOUyBvZmZsb2FkIikKU2ln
-bmVkLW9mZi1ieTogWXVlSGFpYmluZyA8eXVlaGFpYmluZ0BodWF3ZWkuY29tPgotLS0KIGRyaXZl
-cnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvbWFjLmMgfCAyICsrCiAxIGZpbGUgY2hhbmdlZCwg
-MiBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0
-aDExay9tYWMuYyBiL2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvbWFjLmMKaW5kZXgg
-Y2E5OThmYjEzYjYyLi4xOGEyOTk0YjZkODUgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvbmV0L3dpcmVs
-ZXNzL2F0aC9hdGgxMWsvbWFjLmMKKysrIGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDEx
-ay9tYWMuYwpAQCAtODE1MSw2ICs4MTUxLDcgQEAgc3RhdGljIHZvaWQgYXRoMTFrX21hY19vcF9z
-dGFfc3RhdGlzdGljcyhzdHJ1Y3QgaWVlZTgwMjExX2h3ICpodywKIAl9CiB9CiAKKyNpZiBJU19F
-TkFCTEVEKENPTkZJR19JUFY2KQogc3RhdGljIHZvaWQgYXRoMTFrX2dlbmVyYXRlX25zX21jX2Fk
-ZHIoc3RydWN0IGF0aDExayAqYXIsCiAJCQkJICAgICAgIHN0cnVjdCBhdGgxMWtfYXJwX25zX29m
-ZmxvYWQgKm9mZmxvYWQpCiB7CkBAIC04MjQ1LDYgKzgyNDYsNyBAQCBzdGF0aWMgdm9pZCBhdGgx
-MWtfbWFjX29wX2lwdjZfY2hhbmdlZChzdHJ1Y3QgaWVlZTgwMjExX2h3ICpodywKIAkvKiBnZW5l
-cmF0ZSBucyBtdWx0aWNhc3QgYWRkcmVzcyAqLwogCWF0aDExa19nZW5lcmF0ZV9uc19tY19hZGRy
-KGFyLCBvZmZsb2FkKTsKIH0KKyNlbmRpZgogCiBzdGF0aWMgdm9pZCBhdGgxMWtfbWFjX29wX3Nl
-dF9yZWtleV9kYXRhKHN0cnVjdCBpZWVlODAyMTFfaHcgKmh3LAogCQkJCQkgc3RydWN0IGllZWU4
-MDIxMV92aWYgKnZpZiwKLS0gCjIuMTcuMQoKCi0tIAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDEx
-a0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4v
-bGlzdGluZm8vYXRoMTFrCg==
++ ath11k
+
+Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> writes:
+
+> +Kalle, linux-wireless
+>
+> On Tue, Mar 08, 2022 at 12:25:06AM +0530, Prasad Malisetty wrote:
+>> Add suspend_noirq and resume_noirq callbacks to handle
+>> system suspend and resume in dwc PCIe controller driver.
+>> 
+>> When system suspends, send PME turnoff message to enter
+>> link into L2 state. Along with powerdown the PHY, disable
+>> pipe clock, switch gcc_pcie_1_pipe_clk_src to XO if mux is
+>> supported and disable the pcie clocks, regulators.
+>> 
+>
+> Kalle, is this behaviour appropriate for WLAN devices as well? The devices
+> will be put into poweroff state (assuming no Vaux provided in D3cold) during
+> system suspend.
+
+ath11k leaves the firmware running during suspend. I don't fully
+understand what the patch is doing, but if it cuts the power from the
+WLAN chip during suspend that will break ath11k.
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
