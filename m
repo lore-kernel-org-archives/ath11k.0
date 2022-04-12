@@ -4,65 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8D09C433F5
-	for <ath11k@archiver.kernel.org>; Tue, 12 Apr 2022 10:42:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D034C433FE
+	for <ath11k@archiver.kernel.org>; Tue, 12 Apr 2022 13:12:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9nEtdV2BKs2yOik0pibE1YaOTD61i7ap5XKSFIatJ1Q=; b=xOfWULQO7XP5xV
-	DchkMQZv036oRwVYpEiZFFmx+S9htQeEbxe6anT43AAWnKAdUuh0L4O7lhtMffpQrWtOnup8Gkv/7
-	5D7J/ehuWlwyHvjezAjStDqQvlz11KIQ084WU5+hJ8AsXqhOtyIzkzMMrqBYXynlF9M3+RsSXBDEc
-	zMPvbN9ZY3MOBIgcFx3AneJUfLHqzrbR7FLKYwc2tZCTMiNLoVBikG7SeTzugpfQFbtBhGyw5o13M
-	kDv2oQ/1RWo1yAmpGHf7jL13sFMP8M24VX9rMkfXj4l8NxERD8R59T0cz+oYxEDdUCBws3URaCnMC
-	pgNP+bMNiM/8FStxR2Eg==;
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
+	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=o5QqDSNA41U/OZDQbvNHFhIJbN/UVuntfSXPj5EjvpU=; b=xSOUSoThjUY/u2
+	ZWibIlDyMBNM14kc5Y6k3JSdNjvb5Eo5AEHVIIoNq8Ph9QqhnfyyoA9/9WeqHYk4arCv9Lw7vcBtK
+	hFCzUG5FIIOzcHnq2anu7u6BYU43YjLmynh4dYVycKdJRm16f5XOALT2fvbWNkszUSJwrkUXQ8z5X
+	01YXschKgIZsZD0fK7Tf8vFKidGVhJAgETEJiWvgKf4Xv4TD8Up6W3DRc3BUmbOrCAlrWZa578S8h
+	OtSdjSyZcuVQ4AbVI68dnIIjBagWHk3F6XJpr7DlkY9hxeJnYRg0G8WuvBnj+0ArAZLYRTAASuBT6
+	/Mni6Hb9zIMoLPeOG5jA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1neDye-00DNWj-Dz; Tue, 12 Apr 2022 10:42:28 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1neGKB-00ESyM-3b; Tue, 12 Apr 2022 13:12:51 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1neDwW-00DMPc-MC
- for ath11k@lists.infradead.org; Tue, 12 Apr 2022 10:40:19 +0000
+ id 1neGK8-00ESxD-PL
+ for ath11k@lists.infradead.org; Tue, 12 Apr 2022 13:12:50 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 2C8ACB81C9E;
- Tue, 12 Apr 2022 10:40:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33452C385A1;
- Tue, 12 Apr 2022 10:40:09 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 26794619D0;
+ Tue, 12 Apr 2022 13:12:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0AC7EC385B3;
+ Tue, 12 Apr 2022 13:12:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1649760014;
- bh=9pk3pVVU+tzTaBuH4UHl5rYkdZrqMTBhJJtEpCzTfyo=;
- h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
- b=eahZ62fOXAYpMrYgfr9ydE51IMiVoUgBsXQph+GuZSgcqRrtunDqIhC2jLGvvXcnA
- ouOr1dnxr4uX2dK+0HJFnAZZUVhv1A8WnxN3jR1Atx8s868HhTy2roiTmytWKO+rJa
- OAMxcepuKuCGfcBD+hN5vNcKJNQXs5KHPNgHGFfa4gS+rr+8deqC2nfE1tlQRIxBk1
- Rt2BGnLctZoGv17phoi/Xk7pb1d2WnPe3inqxPXMmxtLtLBR+7dqk6ZLhd5v0u+hJk
- 1AXGRVBPtu3Cs+iBii4FtUCaPFZhoXcc8XR6ssyMJSFkVwUkpfdaf8cJLht+dxstMn
- RJ1e1OdttNz+g==
-From: Kalle Valo <kvalo@kernel.org>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Prasad Malisetty <quic_pmaliset@quicinc.com>, agross@kernel.org,
- bjorn.andersson@linaro.org, lorenzo.pieralisi@arm.com, robh@kernel.org,
- kw@linux.com, bhelgaas@google.com, linux-pci@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- rajatja@google.com, refactormyself@gmail.com, quic_vbadigan@quicinc.com,
- quic_ramkri@quicinc.com, swboyd@chromium.org, linux-wireless@vger.kernel.org, 
- ath11k@lists.infradead.org
-Subject: Re: [PATCH v4] PCI: qcom: Add system PM support
-References: <1646679306-4768-1-git-send-email-quic_pmaliset@quicinc.com>
- <20220412060144.GA41348@thinkpad>
-Date: Tue, 12 Apr 2022 13:40:08 +0300
-In-Reply-To: <20220412060144.GA41348@thinkpad> (Manivannan Sadhasivam's
- message of "Tue, 12 Apr 2022 11:31:44 +0530")
-Message-ID: <87k0buoa9j.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+ s=k20201202; t=1649769168;
+ bh=/vmu44weNRIQQXno9KBtiVr3WCW3XhcLvkMQI6ma3p4=;
+ h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+ b=qPMhMA/1nt5PjdyYlYofPIkLDrgS/GxzukEvqNUNEwWUpRZ5hWJCWF0HqRZNmUCR4
+ OP+KEPXV6Pw36hLg/1TmF1zG2oe+uWulYFfpOdgeecwZBHuz18W8tNH5orLFViooxK
+ kl+4i9AdEwZvTNGoyuG3qEk9WiXgxr6M9EhLawNV5WuM4G+0mt4aiYaqBdGeqsMd6G
+ 3YMFHdUGLHBgN3k3kth1+3ChUZNTEmRTP3RWdVkFdkTyS1+2u15D7c2CSICtdlIKie
+ +3S5uPxnmYfuN3vCY0WFGwuvMMvMnpGhqeIdAd5Qhk/GmHlR3uzrSjzwqt7eJbvRHl
+ VYNHN2612HCfw==
 MIME-Version: 1.0
+Subject: Re: [PATCH][next] ath11k: Fix spelling mistake "reseting" ->
+ "resetting"
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20220407102820.613881-1-colin.i.king@gmail.com>
+References: <20220407102820.613881-1-colin.i.king@gmail.com>
+To: Colin Ian King <colin.i.king@gmail.com>
+Cc: "David S . Miller" <davem@davemloft.net>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ netdev@vger.kernel.org, kernel-janitors@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-ID: <164976916384.15500.12618442954054836491.kvalo@kernel.org>
+Date: Tue, 12 Apr 2022 13:12:45 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220412_034016_936717_927267C0 
-X-CRM114-Status: GOOD (  11.97  )
+X-CRM114-CacheID: sfid-20220412_061248_998705_4B0C34EC 
+X-CRM114-Status: UNSURE (   6.14  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,34 +77,22 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-+ ath11k
+Colin Ian King <colin.i.king@gmail.com> wrote:
 
-Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> writes:
+> There is a spelling mistake in an ath11k_warn message. Fix it.
+> 
+> Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-> +Kalle, linux-wireless
->
-> On Tue, Mar 08, 2022 at 12:25:06AM +0530, Prasad Malisetty wrote:
->> Add suspend_noirq and resume_noirq callbacks to handle
->> system suspend and resume in dwc PCIe controller driver.
->> 
->> When system suspends, send PME turnoff message to enter
->> link into L2 state. Along with powerdown the PHY, disable
->> pipe clock, switch gcc_pcie_1_pipe_clk_src to XO if mux is
->> supported and disable the pcie clocks, regulators.
->> 
->
-> Kalle, is this behaviour appropriate for WLAN devices as well? The devices
-> will be put into poweroff state (assuming no Vaux provided in D3cold) during
-> system suspend.
+Patch applied to ath-next branch of ath.git, thanks.
 
-ath11k leaves the firmware running during suspend. I don't fully
-understand what the patch is doing, but if it cuts the power from the
-WLAN chip during suspend that will break ath11k.
+405342ebea2a ath11k: Fix spelling mistake "reseting" -> "resetting"
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+https://patchwork.kernel.org/project/linux-wireless/patch/20220407102820.613881-1-colin.i.king@gmail.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
 -- 
 ath11k mailing list
