@@ -4,76 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4C43C433FE
-	for <ath11k@archiver.kernel.org>; Wed, 13 Apr 2022 06:37:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8AE5C433F5
+	for <ath11k@archiver.kernel.org>; Wed, 13 Apr 2022 07:02:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cl2tFQ+wEDWbUPc6j72S4z8gDiA8uyDYifThngAR0Sk=; b=2ox7b6qj1mZbMk
-	AJBN2oD6p2GVdU1EXT+VcpeCdYVd94kmPVDcFr5m2vTJ23trqfnRHndftUpBaAbbdRdEhyRazgRMk
-	djwBkUAXHtgheOHvGXV3qzh4Ro3KkOIFrq4OAV3IOweRYstxooQy+Kq0dCAmF2cZwu9DZWKQLvPnK
-	uL3W6KGMjbA6J6zUxIDE/JzZlOms+JEj7/lAc1E5ilfEipW3tZ6NLlKAcbqGWd49IfcWXyRMLb/E1
-	Fv+GqBS6f56nsUo/Et2Mc9gT9wVOqsyyN9C3dVtsKpM5T3qHXM7DKVXgbB5HFZVz0p7+IprK6FcIQ
-	j8eSBW+Pt1t2mIl38VZA==;
+	List-Owner; bh=Gkp72Z52bcXAIdPL3k19yC5phiIbyR44d6romxAMrRg=; b=GsbBl5EbKIGWIu
+	ZeP8io3FeYp2KslJ/5cmwfJqcj+jISdW6mYP82nCDp9dZ9qmYoOg5ouvGumwxfb4YLy2obaHL4NrM
+	J/sybvJ9zT1VO8ZA8ZB79o3IPuYda1uFiEJz92Ggzk4ZIC+L+xJ8Up8I6ZQ81CV21e1/SoGBw1cmQ
+	g/31Wgb118UzUEBtlthdthCbglpZRFTWC6tl7u1CNRBtrxQY1/c2bOvcI+VlGJYY+8Yfa1dB/oUlL
+	ER17Zx8dRuFUP7A9akCP8Etz8qbE4nZvmNw7mxocPxGUWwza6qo01IFS5NxXys/wnGZcOTuQWflVN
+	nkM2HlwNI1tcS8jimtTQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1neWdD-00HCnh-In; Wed, 13 Apr 2022 06:37:35 +0000
-Received: from mail-qk1-x72f.google.com ([2607:f8b0:4864:20::72f])
+	id 1neX0q-00HKL5-G8; Wed, 13 Apr 2022 07:02:00 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1neWcO-00HCNJ-NX
- for ath11k@lists.infradead.org; Wed, 13 Apr 2022 06:36:52 +0000
-Received: by mail-qk1-x72f.google.com with SMTP id c1so672787qkf.13
- for <ath11k@lists.infradead.org>; Tue, 12 Apr 2022 23:36:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=zaz1xfBZfBkVTLKo10m31VgYs16dDCH+Ct0mFM06kiY=;
- b=lBnJxscIgHEjYkuM/OcTyqMvrWMSOz+SY1eRCBWRpWKj2jw4MEJ9xexfDy0dWA/xLS
- 5LxVMQW4erWV4JkdSejm+dyvDKx9hOgsyey9F+MXkgWAs4Lvl2c1qYeoDJd7JS6cuVpx
- M5WIdhUgo7FXxqD0QyB+NC+4DNJqj/SxsF577JBW2EIaYm1qwSuiapSZI7j/sNTSo2ub
- j+AX6qiB8R5+9b3SqzXzfVQ0NZnv4ZydBLBNg1IVdzp5KRuuhtL68yHphZIHXvE5/bCi
- yeWK0Du7rfR3RTXKX6uoOh8qVslXy21MsMSaL6rn+QgXmN08JHLEGFEmRC3DYeXFfho1
- DlXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=zaz1xfBZfBkVTLKo10m31VgYs16dDCH+Ct0mFM06kiY=;
- b=IUaHklOYkOzI2kk0RDRYzjfnaV+K1+PhdXE6DW1L4Hno32eY9n+fGonF7nE3k5hPd1
- qKA7aXz2Y5NTdY1VKmCTrK05ODWVpzsu+NcTohUIEkvaJDbI3D2d1jHvi4Un1XMqJZqQ
- thl+L/2PfbkAfaufD2NPZTOwmfkTfBlSGr+uhQ3NbYEYUDNgh019L5XFxT553ijmL5Z3
- KcramEtKc1O/+zmLn0YqsFaWlgBHHDQo1CDwkPweoniG+Ze58Y7bBbge4DDxN4HXW+KW
- ZR4s02F9OtQTKImopsAZyhHhzC+64+Pn9CNmWNbP/aA1ICcyzywktAiOU5cNyK21vSEq
- njKg==
-X-Gm-Message-State: AOAM530IIX7vytBzFintyrS3TasyJd3BBk7L8iic8X5etLrHf/myJ9y6
- goDKdZbOPUYndBWLIsiUWrcRunPi2ByCz42wl/kF0Q==
-X-Google-Smtp-Source: ABdhPJxKpHYZQhn8YwZgnRtEI+zJIEYZVP2lfiqFqrqmNGpTycVlUkRzIL6ePAKUpRFurT7uweDBqP3mKRxSle7M+1Y=
-X-Received: by 2002:a05:620a:170e:b0:69c:3721:b8e6 with SMTP id
- az14-20020a05620a170e00b0069c3721b8e6mr5697661qkb.593.1649831801497; Tue, 12
- Apr 2022 23:36:41 -0700 (PDT)
+ id 1neX0n-00HKIm-HD
+ for ath11k@lists.infradead.org; Wed, 13 Apr 2022 07:01:59 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 90BAEB818C6;
+ Wed, 13 Apr 2022 07:01:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE4C5C385A3;
+ Wed, 13 Apr 2022 07:01:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1649833314;
+ bh=lbyPbMBTfqonQ/L7JI2ii1lIIIF7lCMPozLzHOpdUBk=;
+ h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+ b=GSHEPlEd/sQ9ig8A2/PTBOHWQ/MWMLQQg60WYo15yNiN0zAK/kA7GA2AhTJE0fzHu
+ tqUxeS8Ayibh4gVX3REuonT3Sq0GZD11L6ZX4xiIyg9l6EUJ8Nn06gOlaVmJalm0qz
+ YPClJERYgIjRQu7OIfnWotn/pJBPZAbpLezSdPpmxbUKtky7+3wIJ80rdhxBhW+JXH
+ 3Dl5IASeraijynVzKSxIOcIB/O3DHdZLyAzRjsd9ICUQegydk6CRXd65rcbVzJCm1E
+ VFrwb/K18QWGxq2RtxME2nkUldfZ2+OuY5f56c7IEUTbjaCM8+B1bFL+hl0rNNZ3A1
+ Ys1O5SgmD0/AA==
+From: Kalle Valo <kvalo@kernel.org>
+To: Sven Eckelmann <sven@narfation.org>
+Cc: ath11k@lists.infradead.org
+Subject: Re: ath11k: incorrect board_id retrieval
+References: <1734146.k9CKHTOI9D@ripper> <4611744.eon2OSsH4K@ripper>
+Date: Wed, 13 Apr 2022 10:01:49 +0300
+In-Reply-To: <4611744.eon2OSsH4K@ripper> (Sven Eckelmann's message of "Fri, 18
+ Feb 2022 14:52:06 +0100")
+Message-ID: <87wnftmppe.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-References: <1646679306-4768-1-git-send-email-quic_pmaliset@quicinc.com>
- <20220412060144.GA41348@thinkpad> <87k0buoa9j.fsf@kernel.org>
- <20220413054904.GA2015@thinkpad>
-In-Reply-To: <20220413054904.GA2015@thinkpad>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 13 Apr 2022 09:36:30 +0300
-Message-ID: <CAA8EJprcQtVFvjL_WsMoDxvPSAqaRMS90ZuTsD_cDuujtr83Xw@mail.gmail.com>
-Subject: Re: [PATCH v4] PCI: qcom: Add system PM support
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Kalle Valo <kvalo@kernel.org>, Prasad Malisetty <quic_pmaliset@quicinc.com>,
- agross@kernel.org, 
- bjorn.andersson@linaro.org, lorenzo.pieralisi@arm.com, robh@kernel.org, 
- kw@linux.com, bhelgaas@google.com, linux-pci@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- rajatja@google.com, refactormyself@gmail.com, quic_vbadigan@quicinc.com, 
- quic_ramkri@quicinc.com, swboyd@chromium.org, linux-wireless@vger.kernel.org, 
- ath11k@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220412_233644_828914_D30C1CA4 
-X-CRM114-Status: GOOD (  19.21  )
+X-CRM114-CacheID: sfid-20220413_000157_758075_64450AAE 
+X-CRM114-Status: GOOD (  16.52  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,49 +72,40 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed, 13 Apr 2022 at 08:49, Manivannan Sadhasivam
-<manivannan.sadhasivam@linaro.org> wrote:
+Sven Eckelmann <sven@narfation.org> writes:
+
+> On Friday, 26 November 2021 15:48:17 CET Sven Eckelmann wrote:
+> [...]
+>> * 8devices Pineapple
+>>   - 2GHz: 160 (0xa0)
+>>   - 5GHz: 161 (0xa1)
+>>   - 6GHz: 162 (0xa2)
+>> * Compex WLE3000H5
+>> * (maybe there is not a single one which works?)
+>> 
+>> If I would use these boards in one with a devicetree then I could just 
+>> overwrite it using qcom,board_id (and/or qcom,ath11k-calibration-variant). But 
+>> this isn't the case when I want to use a couple of these cards in a simple x86 
+>> system. All off them (even when they are significantly different) are reported
+>> as
+>> 
+>>     ath11k_pci 0000:03:00.0: chip_id 0x0 chip_family 0x0 board_id 0xff soc_id 0xffffffff
 >
-> On Tue, Apr 12, 2022 at 01:40:08PM +0300, Kalle Valo wrote:
-> > + ath11k
-> >
-> > Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> writes:
-> >
-> > > +Kalle, linux-wireless
-> > >
-> > > On Tue, Mar 08, 2022 at 12:25:06AM +0530, Prasad Malisetty wrote:
-> > >> Add suspend_noirq and resume_noirq callbacks to handle
-> > >> system suspend and resume in dwc PCIe controller driver.
-> > >>
-> > >> When system suspends, send PME turnoff message to enter
-> > >> link into L2 state. Along with powerdown the PHY, disable
-> > >> pipe clock, switch gcc_pcie_1_pipe_clk_src to XO if mux is
-> > >> supported and disable the pcie clocks, regulators.
-> > >>
-> > >
-> > > Kalle, is this behaviour appropriate for WLAN devices as well? The devices
-> > > will be put into poweroff state (assuming no Vaux provided in D3cold) during
-> > > system suspend.
-> >
-> > ath11k leaves the firmware running during suspend. I don't fully
-> > understand what the patch is doing, but if it cuts the power from the
-> > WLAN chip during suspend that will break ath11k.
-> >
+> I've send my 6GHz modules back to 8devices. They told me that this problem was 
+> identified and fixed in their calibration process. I've just got them back 
+> from them and now I see following reported by ath11k:
 >
-> Thanks Kalle for the confirmation. Yes the device will be put into D3cold state
-> and that will most likely equal to poweroff state.
+>     ath11k_pci 0000:03:00.0: chip_id 0x0 chip_family 0x0 board_id 0xa2 soc_id 0xffffffff
+>
+> So it is definitely not a firmware problem and it should be fixed by the 
+> manufacturers (similar to what 8devices did).
 
-Just to remind that ath11k on Qualcomm boards has a separate power
-supply, not directly tied to the PCIe power supply.
-
-> Prasad, you should try to just turn off the host resources like clocks and
-> regulators (not refclk) and let the device be in the default state
-> (D3hot/L{0/1}?) during suspend.
-
+So the device is working fine now?
 
 -- 
-With best wishes
-Dmitry
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
