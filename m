@@ -4,58 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49FC7C433EF
-	for <ath11k@archiver.kernel.org>; Wed, 13 Apr 2022 08:35:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5899EC433F5
+	for <ath11k@archiver.kernel.org>; Wed, 13 Apr 2022 08:40:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Subject:Cc:To:From:Message-ID:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/sWNz+tjQXMcDWAPVd/wXeiseUeTYcpAj7bEKtWj/XE=; b=gVxs4n1mkExEPX
-	+lJODQoygBxsQaCI7AjIPnMih2V9tzJZjbXB58SjQcJKsqAotHMXjzECXT3XuC/GBhBdGha/7L4S8
-	txSuqKD8b+jNnpcI9y8WIYCYGcIDIlwaMz2i++zFvNxTFUr5kyMQl3jpI7L+ns4ttCG+WBTWWIiWQ
-	NjnIqfm1+VS7QKcsTPzEYjqAgZZYQ+uSMdlph7F8hUT8uOO+SiYXON89CuJYAp0lojAC9o4QDDyby
-	1KlUysZCBVrsVPnbJWdQqUs9ZLADbjg3jxkO9HF3fyWgWxFRwoXpcP2XpL05t7KuVaW34pezxy841
-	jQ6iT6ARf0hUPQhLpjAg==;
+	List-Owner; bh=hcH5zmPJ3yisCTHTA9iBSfyTjVq9rXTSjEMRtnckk+w=; b=tdCvTjDLi6Shvi
+	ndXq8yUB3CCwqGPP9BENUf+uhKW8zgo8ehcAzxCb2fo1a73tKP2cdO1ZOFxrtSxmaK09meM/plKhQ
+	yjn5MzhPg2NIqexDc2heCVwp5NqORWfLtyLWQrZUNrTnIX11ucOCoK7/rnWlANCzPku7SCn4i0YVs
+	tZ2xdzDSfCyx5dmyMDtvQGDzvRzPZQ7RARSf9XXOVZ9kPrZH0iOvn/RJXx54udYub+QIy3Mxh/4xW
+	XKuI31zuvHiqEa3MUqIYwlcvm8oL3O2lXO7N59HfyGcycIAS71TmWw4Xc1ObnApvzg4WPVtM4nUqu
+	VO3RAqIivSvbirAeOnpA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1neYTD-00065H-Gr; Wed, 13 Apr 2022 08:35:23 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1neYYZ-0007ra-LS; Wed, 13 Apr 2022 08:40:55 +0000
+Received: from smtp-out2.suse.de ([195.135.220.29])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1neYTA-00063Y-8B
- for ath11k@lists.infradead.org; Wed, 13 Apr 2022 08:35:22 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 6D27FB820FD;
- Wed, 13 Apr 2022 08:35:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 916C2C385A4;
- Wed, 13 Apr 2022 08:35:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1649838917;
- bh=O2FGXzaHcgsMdw2YOZyd3pEFqud0Qrr4TlAakh3gCPY=;
- h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
- b=Ev9Rk7mKOXZgb2DWeHPrcOF9tXks/Le1HCl9D50dhwT0hYT5REutFKXXAhscPjCMt
- 3GOVQeST6KJQshbSR9VjDyDBNbDULHI8yD0d8r+O2MWwhFPRgEEUfstR+2+9MFd/ES
- fGJJp2F7ayKjZIUF6XDkioCRv4Loy6vOFrvviJSpMFHmJ5LTBHstKWITaUOA8IAc8C
- /ewOTd2dz498Qh+55He6lK8m5AFUQeBtW81uJu8hbA1FmLXxp1EV9WXVd6ReO4DxfW
- pAMuH1jEaFsf1qUnNEv5Fjgv/3el78kB1RRaUDn21hR5n8M9+9XCENiQQthJnyBCCY
- IovkdPlCWRWWw==
-From: Kalle Valo <kvalo@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: ath11k@lists.infradead.org
-Subject: Re: ath11k-firmware: QCA6390 hw2.0: add RB5-specific BDF
-References: <00ece2e5-7bcb-0b2b-23d2-e25cf4c9d13e@linaro.org>
-Date: Wed, 13 Apr 2022 11:35:14 +0300
-In-Reply-To: <00ece2e5-7bcb-0b2b-23d2-e25cf4c9d13e@linaro.org> (Dmitry
- Baryshkov's message of "Fri, 18 Feb 2022 08:15:19 +0300")
-Message-ID: <878rs9mldp.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
-MIME-Version: 1.0
+ id 1neYYX-0007qB-3o
+ for ath11k@lists.infradead.org; Wed, 13 Apr 2022 08:40:54 +0000
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+ by smtp-out2.suse.de (Postfix) with ESMTP id E97C11F38D;
+ Wed, 13 Apr 2022 08:40:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1649839250; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=IaPPTWya/VKzjjNmn+IY5/AuKBTZK3KmyyeZDAx4Gc0=;
+ b=yWCsD1emTwO6139KdiLkVgQcAv/X0Khfr8A4Ash/shn16ot7Bl+sdU9tNheklm3chhEXsT
+ ktqTldVQ8hpyfQ1U391hjihran9W+rq1kAV8CXMJFt7Sj4IjnQAjbUQq5cr3RqFS3ZxW5J
+ CdpEwUYNtpkAuynTwrq/juOiZqCO5Fg=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1649839250;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=IaPPTWya/VKzjjNmn+IY5/AuKBTZK3KmyyeZDAx4Gc0=;
+ b=OGhjr95hrTIE45n1d3Z12tDXnpp/q75j0HlN9e00rXDq+4kmJkfNDpSG4JvLL2Q1OufscB
+ R4I56aKB3fZNrrCw==
+Received: from alsa1.suse.de (alsa1.suse.de [10.160.4.42])
+ by relay2.suse.de (Postfix) with ESMTP id C849FA3B92;
+ Wed, 13 Apr 2022 08:40:50 +0000 (UTC)
+Date: Wed, 13 Apr 2022 10:40:50 +0200
+Message-ID: <s5hk0bt74vh.wl-tiwai@suse.de>
+From: Takashi Iwai <tiwai@suse.de>
+To: Kalle Valo <kvalo@kernel.org>
+Cc: Takashi Iwai <tiwai@suse.de>, Jouni Malinen <j@w1.fi>,
+ Josh Boyer <jwboyer@kernel.org>,
+ "linux-firmware@kernel.org" <linux-firmware@kernel.org>,
+ "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
+ "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
+Subject: Re: [PULL] ath11k firmware 20211223
+In-Reply-To: <87h76xmlrw.fsf@kernel.org>
+References: <BYAPR02MB4567669033A210A78AC397E9927E9@BYAPR02MB4567.namprd02.prod.outlook.com>
+ <CA+5PVA4WEuJDB3OCKfYK-BPaccpVWd9t_au9S7MCEtpy7cdF-A@mail.gmail.com>
+ <87ee4brodv.fsf@kernel.org>
+ <CA+5PVA5DJmwPqpz8F9iDbJKcF1hDBRLdDT4URgSaiEcjet74Kw@mail.gmail.com>
+ <20220302175014.GA14801@w1.fi>
+ <CA+5PVA6R6F=VqAZRf=xDwGcC+cpqLY1kStkoHck53XiLURVyaw@mail.gmail.com>
+ <20220304161430.GA430462@w1.fi> <s5h1qytw0rw.wl-tiwai@suse.de>
+ <87h76xmlrw.fsf@kernel.org>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI/1.14.6 (Maruoka)
+ FLIM/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL/10.8 Emacs/25.3
+ (x86_64-suse-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI 1.14.6 - "Maruoka")
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220413_013520_526579_DBEAD9DA 
-X-CRM114-Status: GOOD (  14.42  )
+X-CRM114-CacheID: sfid-20220413_014053_342983_10D28A6B 
+X-CRM114-Status: GOOD (  44.02  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,42 +89,87 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Dmitry Baryshkov <dmitry.baryshkov@linaro.org> writes:
+On Wed, 13 Apr 2022 10:26:43 +0200,
+Kalle Valo wrote:
+> 
+> Takashi Iwai <tiwai@suse.de> writes:
+> 
+> > On Fri, 04 Mar 2022 17:14:30 +0100,
+> > Jouni Malinen wrote:
+> >> 
+> >> On Fri, Mar 04, 2022 at 08:04:26AM -0500, Josh Boyer wrote:
+> >> > On Wed, Mar 2, 2022 at 12:50 PM Jouni Malinen <j@w1.fi> wrote:
+> >> > > Would the following in WHENCE work for you?
+> >> > >
+> >> > > Driver: ath11k - Qualcomm Technologies 802.11ax chipset support
+> >> > >
+> >> > > File: ath11k/IPQ6018/hw1.0/board-2.bin
+> >> > > ...
+> >> > > Version: WLAN.HK.2.1.0.1-01238-QCAHKSWPL_SILICONZ-2
+> >> > > Notice: ath11k/IPQ6018/hw1.0/Notice.txt
+> >> > 
+> >> > We'd have to teach copy-firmware.sh what to do with a "Notice:" key.
+> >> > Is there a reason "File:" wouldn't work?  The intention is to install
+> >> > the notices alongside the binaries, so that would accomplish it.
+> >> 
+> >> Yeah, that sounds reasonable to me. From copying/installing/distribution
+> >> view point, these can really be handled in the exact same way as the
+> >> actual firmware binaries in practice.
+> >> 
+> >> > > In other words, there would be only a single "License:" line and one
+> >> > > "Notice:" line for each firmware version? The license itself (i.e.,
+> >> > > LICENSE.QualcommAtheros_ath10k) is same for all the versions while the
+> >> > > set of notices (i.e., those notice.txt files) can be different based on
+> >> > > what is included in the particular build.
+> >> > 
+> >> > Yes, that would help.  Would you be able to adjust the existing
+> >> > entries for ath firmware in the same way?
+> >> 
+> >> Yes, I'll work with Kalle to update the existing ath* WLAN cases.
+> >> 
+> >> > > > > I'm still working on your other comment about notice.txt, will get back
+> >> > > > > on that later.
+> >> > >
+> >> > > This part about clearly identifying the files should be clear now, but
+> >> > > it would be good to resolve that part about the notice.txt files in
+> >> > > general before sending out an updated pull request.
+> >> > 
+> >> > Given these were merged in the past, perhaps I'm being overly
+> >> > pedantic.  If we can mark them as Files or Notices instead of
+> >> > Licenses, I won't hold it up.  It leaves me slightly confused why
+> >> > attribution files need to reference agreements with Qualcomm, splatter
+> >> > Confidential and Proprietary throughout the file, and reference
+> >> > COPYING and README in reference to GPLv2 when the BSD license was
+> >> > clearly chosen.  Perhaps that could be cleaned up in the future.
+> >> 
+> >> Thanks. We'll remove most of the unnecessary information from the new
+> >> notice.txt files and that should get rid of many of the potentially
+> >> confusing parts. If that cleanup leaves something confusing in place,
+> >> we are open to cleaning these up further in followup patches, but it
+> >> would be nice to be able to get the updated versions into
+> >> linux-firmware.git without much more additional delay and yes, this
+> >> would be with the File: instead of Licence: entries for the notice.txt
+> >> files.
+> >
+> > The problem of "File:" is that it's more or less intended to be
+> > installed as the firmware files themselves, i.e. they are installed in
+> > /lib/firmware/* that can be loaded to the kernel.  Putting such a
+> > random (document) file there makes me a bit nervous.
+> >
+> > We may introduce another tag to list up misc document files
+> > (e.g. "Doc:" or whatever)?  Distros can pick up them and put to the
+> > appropriate places in the package, too.
+> 
+> What about "Notice:" which I proposed above? To me "Doc:" sounds like an
+> optional file, which notice.txt files are not. That's why I prefer
+> "Notice:".
 
-> Hi,
->
-> We'd like to ask for inclusion for the board file for Qualcomm
-> Robotics RB5 Development Kit.
->
-> Following the questions from the ath10k wiki page:
->
-> * description for what hardware this is
->  - It an QRB5165 (a variant of SM8250) based board.
->  - It uses qca6391 chip as a WiFi and BT radio
->
-> * origin of the board file
->  - It comes from the BSP package distributed by Linaro
-> (http://releases.linaro.org/96boards/rb5/qualcomm/firmware/RB5_firmware_20210901-v6.zip)
->
-> * ids to be used with the board file
->  - bus=pci,qmi-chip-id=0,qmi-board-id=4
->
-> * md5sum of each new board file to add
->
-> $ md5sum *
-> ac812072da8de6bd4de257cf5bb870c7  bus=pci,qmi-chip-id=0,qmi-board-id=4.bin
-> $ sha256sum *
-> 8cc579b1f8b874e64a8518d7eb6a702aa7bab65744261f0feb1671e5436c5e55
-> bus=pci,qmi-chip-id=0,qmi-board-id=4.bin
+Sure, it'd work, too.  Only a patch is missing :)
 
-Added, thanks.
 
-https://github.com/kvalo/ath11k-firmware/commit/9412445dcb3d4a27bd7742112eed2444ed0d4e86
+thanks,
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+Takashi
 
 -- 
 ath11k mailing list
