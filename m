@@ -4,75 +4,127 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5899EC433F5
-	for <ath11k@archiver.kernel.org>; Wed, 13 Apr 2022 08:40:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08608C433F5
+	for <ath11k@archiver.kernel.org>; Thu, 14 Apr 2022 09:21:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Subject:Cc:To:From:Message-ID:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hcH5zmPJ3yisCTHTA9iBSfyTjVq9rXTSjEMRtnckk+w=; b=tdCvTjDLi6Shvi
-	ndXq8yUB3CCwqGPP9BENUf+uhKW8zgo8ehcAzxCb2fo1a73tKP2cdO1ZOFxrtSxmaK09meM/plKhQ
-	yjn5MzhPg2NIqexDc2heCVwp5NqORWfLtyLWQrZUNrTnIX11ucOCoK7/rnWlANCzPku7SCn4i0YVs
-	tZ2xdzDSfCyx5dmyMDtvQGDzvRzPZQ7RARSf9XXOVZ9kPrZH0iOvn/RJXx54udYub+QIy3Mxh/4xW
-	XKuI31zuvHiqEa3MUqIYwlcvm8oL3O2lXO7N59HfyGcycIAS71TmWw4Xc1ObnApvzg4WPVtM4nUqu
-	VO3RAqIivSvbirAeOnpA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=Z8LaTbnOTYpq1CK1s+qmN8Ke0nzuQ0ws1+C/0Wqh+3c=; b=vuduOhD+huahRI
+	MI3C++sHgF+IYYpB4mm+5Y8gfxZE+qvr5vcrnJlseEwZSWLvweRHWcl9tJgeV16zemknhJyHuzCMi
+	x9FIBzbv0KIM1HLqsdScyPjZvVhUILJ5L1dxQ5oUdUnbR2b/AjnVUBW8vojbV+v7miU/ebq6AjNKP
+	aN1I1rnarHTz8bEB4X0B6WVRmj2QDKw5RyEefgMvOHmyZaDQ7ktSSryP8VBePl2nOYmUoaop5uiZV
+	x+1b1XDtZcM+orlRsIZ/Ue5HXPyAdn2YAvbDVbDXCPPIlH+VbmlzORGEqqf0rl5rajHZL5ISNtuAd
+	A35Ku464oDOw7yqOVJbQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1neYYZ-0007ra-LS; Wed, 13 Apr 2022 08:40:55 +0000
-Received: from smtp-out2.suse.de ([195.135.220.29])
+	id 1nevf6-004rDC-J3; Thu, 14 Apr 2022 09:21:12 +0000
+Received: from mail-tyzapc01on20725.outbound.protection.outlook.com
+ ([2a01:111:f403:704b::725]
+ helo=APC01-TYZ-obe.outbound.protection.outlook.com)
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1neYYX-0007qB-3o
- for ath11k@lists.infradead.org; Wed, 13 Apr 2022 08:40:54 +0000
-Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
- by smtp-out2.suse.de (Postfix) with ESMTP id E97C11F38D;
- Wed, 13 Apr 2022 08:40:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1649839250; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=IaPPTWya/VKzjjNmn+IY5/AuKBTZK3KmyyeZDAx4Gc0=;
- b=yWCsD1emTwO6139KdiLkVgQcAv/X0Khfr8A4Ash/shn16ot7Bl+sdU9tNheklm3chhEXsT
- ktqTldVQ8hpyfQ1U391hjihran9W+rq1kAV8CXMJFt7Sj4IjnQAjbUQq5cr3RqFS3ZxW5J
- CdpEwUYNtpkAuynTwrq/juOiZqCO5Fg=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1649839250;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=IaPPTWya/VKzjjNmn+IY5/AuKBTZK3KmyyeZDAx4Gc0=;
- b=OGhjr95hrTIE45n1d3Z12tDXnpp/q75j0HlN9e00rXDq+4kmJkfNDpSG4JvLL2Q1OufscB
- R4I56aKB3fZNrrCw==
-Received: from alsa1.suse.de (alsa1.suse.de [10.160.4.42])
- by relay2.suse.de (Postfix) with ESMTP id C849FA3B92;
- Wed, 13 Apr 2022 08:40:50 +0000 (UTC)
-Date: Wed, 13 Apr 2022 10:40:50 +0200
-Message-ID: <s5hk0bt74vh.wl-tiwai@suse.de>
-From: Takashi Iwai <tiwai@suse.de>
-To: Kalle Valo <kvalo@kernel.org>
-Cc: Takashi Iwai <tiwai@suse.de>, Jouni Malinen <j@w1.fi>,
- Josh Boyer <jwboyer@kernel.org>,
- "linux-firmware@kernel.org" <linux-firmware@kernel.org>,
- "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
- "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
-Subject: Re: [PULL] ath11k firmware 20211223
-In-Reply-To: <87h76xmlrw.fsf@kernel.org>
-References: <BYAPR02MB4567669033A210A78AC397E9927E9@BYAPR02MB4567.namprd02.prod.outlook.com>
- <CA+5PVA4WEuJDB3OCKfYK-BPaccpVWd9t_au9S7MCEtpy7cdF-A@mail.gmail.com>
- <87ee4brodv.fsf@kernel.org>
- <CA+5PVA5DJmwPqpz8F9iDbJKcF1hDBRLdDT4URgSaiEcjet74Kw@mail.gmail.com>
- <20220302175014.GA14801@w1.fi>
- <CA+5PVA6R6F=VqAZRf=xDwGcC+cpqLY1kStkoHck53XiLURVyaw@mail.gmail.com>
- <20220304161430.GA430462@w1.fi> <s5h1qytw0rw.wl-tiwai@suse.de>
- <87h76xmlrw.fsf@kernel.org>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI/1.14.6 (Maruoka)
- FLIM/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL/10.8 Emacs/25.3
- (x86_64-suse-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI 1.14.6 - "Maruoka")
+ id 1nevf0-004rAv-86
+ for ath11k@lists.infradead.org; Thu, 14 Apr 2022 09:21:11 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=aPv1TU40iQ8gaX98WgCAHJaG5kV6qZWozqq/Oj7w2maJXuRyWnQHOoLgVY7qK8nlErSnNBFURA0BdHSxLVWeYfMd1oCefAAGG+hQrO9NEjlfxgF2KPeUxzckhTX3jMz6ENK/2FjAw839tDrcQWXAYqvWLj0xg3ZJEptyY1lHCsa6aCbL7AgQdIinLmU3wy7SZE3fiWdVG0IF+iMpMNHlP52ad8Avr+JFY78S0m7GGEfcSoHhhS5dnmiO7Vjp4HcPmG/qU3FT//yNavqn8DRq2rcGVkp77F8TYx8qTh0y5L3nK7ez8Np0EJDIFlcdVX2kiKxpe2J5iUNrnpJ3bNNwZw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZA7Mas52dmajd8b2ILGwUm0QTxrBMGNN5OQ4R/OocI8=;
+ b=mkT5Cp7LBDmwM0wSWpvhxAquxzDU+e0Sx0xCsss0ghWYzSNprsQCU2zh/VKdnzCZ3ncC3fUCoU3SovDYjPZ/WfNy43ndNGNuxUufE5N1yE9+ZvMOIRQ2Aq1giJqHkwZOqo8dVXpwTwAhs645L2N6B06EHb91jkvy0vTTCGnV2aHDWF2KENbMqsr1tzOYbSDjgr3pCK9Hb5SEl3uWQWyfW9PGD/Okevg9UfunGgOPNJNLcbBatW7OP87JL0bY30G8iDmDY2V4PfIMdHO2mq5KPLutYdvfyg468wLBoYB46y23IfpMcV8N6VyqQoo6OTI3jYew2CpmU81qvNnb+2I3Ow==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vivo.com; dmarc=pass action=none header.from=vivo.com;
+ dkim=pass header.d=vivo.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivo0.onmicrosoft.com; 
+ s=selector2-vivo0-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZA7Mas52dmajd8b2ILGwUm0QTxrBMGNN5OQ4R/OocI8=;
+ b=iBTg1bAmkKeEj7TcQwHl/uyFNzaaqBZqJLlRYgbmTGJtYcz9UoraLovLmqIzbbslbhC5VlRPdqYAeSW/jhmUrI068s1CTE10ZDJa+XIb5gdh2fVR3JKYgx9i6yZ+2PkafF2wXwqj3Z3oEi+Jg1f7A+L5mF1MEtDE0yrRIS/6FYE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=vivo.com;
+Received: from TYZPR06MB4173.apcprd06.prod.outlook.com (2603:1096:400:26::14)
+ by HK0PR06MB3700.apcprd06.prod.outlook.com (2603:1096:203:b3::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5144.30; Thu, 14 Apr
+ 2022 09:20:56 +0000
+Received: from TYZPR06MB4173.apcprd06.prod.outlook.com
+ ([fe80::d4bd:64f4:e1c0:25cb]) by TYZPR06MB4173.apcprd06.prod.outlook.com
+ ([fe80::d4bd:64f4:e1c0:25cb%4]) with mapi id 15.20.5164.020; Thu, 14 Apr 2022
+ 09:20:56 +0000
+From: Yihao Han <hanyihao@vivo.com>
+To: Kalle Valo <kvalo@kernel.org>, "David S. Miller" <davem@davemloft.net>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: kernel@vivo.com,
+	Yihao Han <hanyihao@vivo.com>
+Subject: [PATCH] ath11k: simplify if-if to if-else
+Date: Thu, 14 Apr 2022 02:20:42 -0700
+Message-Id: <20220414092042.78152-1-hanyihao@vivo.com>
+X-Mailer: git-send-email 2.17.1
+X-ClientProxiedBy: HK2PR06CA0018.apcprd06.prod.outlook.com
+ (2603:1096:202:2e::30) To TYZPR06MB4173.apcprd06.prod.outlook.com
+ (2603:1096:400:26::14)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 36fb2039-e194-4369-5470-08da1df81493
+X-MS-TrafficTypeDiagnostic: HK0PR06MB3700:EE_
+X-Microsoft-Antispam-PRVS: <HK0PR06MB37009190A86BECE30A7AAFD8A2EF9@HK0PR06MB3700.apcprd06.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 332w1yCqCZ5PRqcypZ9zQgqizWxlysMrgLwC6AxQTVqnp2j/wsS5D5+YyX+IaMzHlyAtzZmiOZl5/jknOUqfUhrJYdqYH+/KG49q8BQhw5howVe6ci15wUcQh0I1aaXvtzTTfeJ4M4IUloAdJ39M8WiXrlPwDkTan+m3+TxJN4niFZAO69zaoGsPtz6v7rd6Jwd01wVPXF0NwyFD1t57ORVYfIlC1DaPtuPINPP1VypBECsvQ2BicG0rVg1RmvUrZ3fj72H20PVK4fxt1KExLcVoviVELg+YXk4+qjmZ/j5mWAUBlATFjgp2jaExbw08Kln9Gl8vmRJYakwzdyFa2hK/bmISgDN+LRqsjP/SHIitCb0KfsegvbaaxgKPBK/GKAiIB9LYu5s/iR/o37XGQ+JHVMmPeobIQytywTcp+++AChKpHu9iyhLn5vlWKhUuNlAU1K79tJAdwsZlWwa+0gUe4B45wlxkr1jO+btl3+CUf0x4G2XsduKcCBgml7dV0I3jBNA/vitjoHuS/lfHYozU3DXBuaL6U2jCgFH30WpMP8RCwvJ/i3OouKYLzjkLTELXQQ9jlDgxmLTIZEygfkS5v1PwIALZ9fBpe4fUPQuGGEIOej5dVP07GRMmeVMZZl5EUsbTshMkwsOEM0L/g2sB7gRA3sltQUC6J2Vx09wms9DTECMGKwWeg1pvKZ6cVW7yQKUDS18VwRVTSlrYyvdJI9TmuQGVtu82VYW1RHmh8zqd51biM66OzvXS8CW2AqxJkpDssBZJYUNg+Rw5zE+ORp6PrquV+bAVZ+2UKU8=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:TYZPR06MB4173.apcprd06.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(4636009)(366004)(4326008)(8676002)(316002)(66556008)(66476007)(2906002)(107886003)(36756003)(8936002)(66946007)(38100700002)(966005)(5660300002)(6666004)(6512007)(6506007)(86362001)(110136005)(52116002)(1076003)(508600001)(38350700002)(83380400001)(6486002)(26005)(2616005)(186003);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?RR5+AHtPphR6UTnDzYfKyKOx+t5ZcUhiU933CPPLSoDWQ5IRYF3TfiaV6wje?=
+ =?us-ascii?Q?7fEXxN8uHE1kyjWrfVpo7lXNP8h+sF2/eUG0mX6zkJh0PzO/V/X7fvU57piN?=
+ =?us-ascii?Q?SzjgaprwLxj7Lp/iV9P9A+knCNci6lATZZyAqolHo1yMW80K9OYZ8felIC6d?=
+ =?us-ascii?Q?Hy26FipzJbDys/gJLVoiWNRYqgBlGhp3N78uKc4w6K3rAxXOx4bKLgEeCqbG?=
+ =?us-ascii?Q?8/PuJi/0NQJTkFVtfWhpGi8La2Ga0vIWSCwKG7jq1lTHzOdzfnteZLVrWShb?=
+ =?us-ascii?Q?ft9PjqWtZJoSsh2KmFejrlaTaMHrcNEoDXNBxuWcn7+7d+l0VZxSg//GPa/O?=
+ =?us-ascii?Q?dm2sAA7D4DUKjzCtgpHUV72xF6vm9NtgD+FB7A2kN7KmnOd2g9yJ+VtkFFs4?=
+ =?us-ascii?Q?sc5ozR6NYMMAkpvgA3O+YjfpRMc005n3EymzPNYRgN21AZrghxUhc6jd+js2?=
+ =?us-ascii?Q?Vqoqu+l7ELCU22AO+eFvIHNOxNaJMKSk6AuoWKGz0cBxD3c4qLYpJP7UBQnj?=
+ =?us-ascii?Q?MoNbPsI3wEcXDfeXz3OU8LtAcvX4ZXZ3Ei3FzRDL5wG/skaSecSpRhiTNOVF?=
+ =?us-ascii?Q?9qZYUgqY8CXpq56zsK+98dLCIj08ujI6BbLuIUza9tY2s41VRXIZiPkfFGmx?=
+ =?us-ascii?Q?hv/HK613WQ91yrhCmu03ysseowGF3Ulvxzs2QuxZ09NyIvmUMP9p4dv058O7?=
+ =?us-ascii?Q?OOGuU6LQ9wYzoPGo+qV+vjRd7adCb1CzCzIfN5eCWyeJN1dbInxhrP2VxaA+?=
+ =?us-ascii?Q?I030C4g9x/FdUiLuKNh5pLpqei6IrNpgD00//Lxz9zaMfzs3YGA+6iJR7D/l?=
+ =?us-ascii?Q?Q8XZx6DJFsfVV9UBWtzozwIMX+484qyDhm+dANyRK4iqzeST8jeFtge/mbMs?=
+ =?us-ascii?Q?Vn8v1XjjXiZm/1X2Rc+ILKvOVei1kyPB0kMFxKxC+u6OoPP2QhnkmCBNiTBL?=
+ =?us-ascii?Q?gXtBXHAOeEnd2i2taJrF4y6hbMaaUcV1P+Tk/evYGLi/5JXFol1oPhd3HG0T?=
+ =?us-ascii?Q?KLxJQaDW6uwCLs8Ob3juevx3dj7qXLdZbhc6l4hogG/aBIAi8VC+JW9bNUsT?=
+ =?us-ascii?Q?GLSJzLahFXDLcAyOLTWeUFBAld1Q0Pd6GGGpe9JQyMto8QfsuuOYsTBeIN1t?=
+ =?us-ascii?Q?8Ae9P587CqQzqF76W5q2AvkSK/PvNgJFUifbYVsF8929k9OZUatt5HXcAeLe?=
+ =?us-ascii?Q?YkDbSaUJ7LGA8Ym2pTr9GCCY46wBoCQQpB7X1bCBDWMzdV1mOWVJ45CdoihP?=
+ =?us-ascii?Q?Runvgt5gVX+6cgL4WZDGfOCzDsxpAtVTJSGRsW4RHHc+KNV9rbeRPS4IwAWY?=
+ =?us-ascii?Q?9Y1T6DUx6DQmwxOylcDCKwPIqpp6qlTygA7ea/TY7MsY31tXKDI3uodg66MS?=
+ =?us-ascii?Q?FVy4oz6tF8v6gm2hU+hArQzWsSn+MJIlBjGwduGBLxYnZzwJ5PZCUVoS5Rp4?=
+ =?us-ascii?Q?OyvAV5/2cfVulGj2UOnzmBPpWZ9JY7NaJWna40TAuAcdHSJ/71y4vTu0/N1h?=
+ =?us-ascii?Q?ew0uiTY2y0v4C7ZBYlzPSma2Ar28ymhUGd/bScr/K7q5gV/u449x4hXpba4A?=
+ =?us-ascii?Q?+wczLh75Tvwaa5TA/fEFKB9bWbbuGkwuWlQgNhsSynno+eExhplsydhUgNK+?=
+ =?us-ascii?Q?XYRQVUDFgN2fYSXk2XMf4mcI98Ya65uZ9oI9b3h6ZyHC6z/JygGEe/JQJbiY?=
+ =?us-ascii?Q?SfTbdeKf33BiegLUy+P2ylXn16PF7KCDQtxhs3BTlOks7ZYu/Kf1WOxJGAg1?=
+ =?us-ascii?Q?cZ35xxvb1A=3D=3D?=
+X-OriginatorOrg: vivo.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 36fb2039-e194-4369-5470-08da1df81493
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR06MB4173.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Apr 2022 09:20:56.2359 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 923e42dc-48d5-4cbe-b582-1a797a6412ed
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: AuTtgXyI+swTFm8yjM/1jPYZQCCavfz3a1YYltd+x6BMJmngvYc2wtQLt5rXQG23AjFFdEsto/yL25TQrj4mpg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK0PR06MB3700
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220413_014053_342983_10D28A6B 
-X-CRM114-Status: GOOD (  44.02  )
+X-CRM114-CacheID: sfid-20220414_022106_520520_C902EA5A 
+X-CRM114-Status: UNSURE (   8.33  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,87 +141,41 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed, 13 Apr 2022 10:26:43 +0200,
-Kalle Valo wrote:
-> 
-> Takashi Iwai <tiwai@suse.de> writes:
-> 
-> > On Fri, 04 Mar 2022 17:14:30 +0100,
-> > Jouni Malinen wrote:
-> >> 
-> >> On Fri, Mar 04, 2022 at 08:04:26AM -0500, Josh Boyer wrote:
-> >> > On Wed, Mar 2, 2022 at 12:50 PM Jouni Malinen <j@w1.fi> wrote:
-> >> > > Would the following in WHENCE work for you?
-> >> > >
-> >> > > Driver: ath11k - Qualcomm Technologies 802.11ax chipset support
-> >> > >
-> >> > > File: ath11k/IPQ6018/hw1.0/board-2.bin
-> >> > > ...
-> >> > > Version: WLAN.HK.2.1.0.1-01238-QCAHKSWPL_SILICONZ-2
-> >> > > Notice: ath11k/IPQ6018/hw1.0/Notice.txt
-> >> > 
-> >> > We'd have to teach copy-firmware.sh what to do with a "Notice:" key.
-> >> > Is there a reason "File:" wouldn't work?  The intention is to install
-> >> > the notices alongside the binaries, so that would accomplish it.
-> >> 
-> >> Yeah, that sounds reasonable to me. From copying/installing/distribution
-> >> view point, these can really be handled in the exact same way as the
-> >> actual firmware binaries in practice.
-> >> 
-> >> > > In other words, there would be only a single "License:" line and one
-> >> > > "Notice:" line for each firmware version? The license itself (i.e.,
-> >> > > LICENSE.QualcommAtheros_ath10k) is same for all the versions while the
-> >> > > set of notices (i.e., those notice.txt files) can be different based on
-> >> > > what is included in the particular build.
-> >> > 
-> >> > Yes, that would help.  Would you be able to adjust the existing
-> >> > entries for ath firmware in the same way?
-> >> 
-> >> Yes, I'll work with Kalle to update the existing ath* WLAN cases.
-> >> 
-> >> > > > > I'm still working on your other comment about notice.txt, will get back
-> >> > > > > on that later.
-> >> > >
-> >> > > This part about clearly identifying the files should be clear now, but
-> >> > > it would be good to resolve that part about the notice.txt files in
-> >> > > general before sending out an updated pull request.
-> >> > 
-> >> > Given these were merged in the past, perhaps I'm being overly
-> >> > pedantic.  If we can mark them as Files or Notices instead of
-> >> > Licenses, I won't hold it up.  It leaves me slightly confused why
-> >> > attribution files need to reference agreements with Qualcomm, splatter
-> >> > Confidential and Proprietary throughout the file, and reference
-> >> > COPYING and README in reference to GPLv2 when the BSD license was
-> >> > clearly chosen.  Perhaps that could be cleaned up in the future.
-> >> 
-> >> Thanks. We'll remove most of the unnecessary information from the new
-> >> notice.txt files and that should get rid of many of the potentially
-> >> confusing parts. If that cleanup leaves something confusing in place,
-> >> we are open to cleaning these up further in followup patches, but it
-> >> would be nice to be able to get the updated versions into
-> >> linux-firmware.git without much more additional delay and yes, this
-> >> would be with the File: instead of Licence: entries for the notice.txt
-> >> files.
-> >
-> > The problem of "File:" is that it's more or less intended to be
-> > installed as the firmware files themselves, i.e. they are installed in
-> > /lib/firmware/* that can be loaded to the kernel.  Putting such a
-> > random (document) file there makes me a bit nervous.
-> >
-> > We may introduce another tag to list up misc document files
-> > (e.g. "Doc:" or whatever)?  Distros can pick up them and put to the
-> > appropriate places in the package, too.
-> 
-> What about "Notice:" which I proposed above? To me "Doc:" sounds like an
-> optional file, which notice.txt files are not. That's why I prefer
-> "Notice:".
+Replace `if (!ab->is_reset)` with `else` for simplification
+and add curly brackets according to the kernel coding style:
 
-Sure, it'd work, too.  Only a patch is missing :)
+"Do not unnecessarily use braces where a single statement will do."
 
+...
 
-thanks,
+"This does not apply if only one branch of a conditional statement is
+a single statement; in the latter case use braces in both branches"
 
-Takashi
+Please refer to:
+https://www.kernel.org/doc/html/v5.17-rc8/process/coding-style.html
+
+Signed-off-by: Yihao Han <hanyihao@vivo.com>
+---
+ drivers/net/wireless/ath/ath11k/core.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index cbac1919867f..80009482165a 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -1532,8 +1532,7 @@ static void ath11k_core_restart(struct work_struct *work)
+ 
+ 	if (ab->is_reset)
+ 		complete_all(&ab->reconfigure_complete);
+-
+-	if (!ab->is_reset)
++	else
+ 		ath11k_core_post_reconfigure_recovery(ab);
+ }
+ 
+-- 
+2.17.1
+
 
 -- 
 ath11k mailing list
