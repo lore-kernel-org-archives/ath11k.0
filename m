@@ -4,86 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DE1EC433F5
-	for <ath11k@archiver.kernel.org>; Fri, 15 Apr 2022 02:27:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAE27C433F5
+	for <ath11k@archiver.kernel.org>; Fri, 15 Apr 2022 06:33:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=QV6IdUJ173oPqfodEFtz7D+sVXSZaVtQbrlpUtkeyNE=; b=ARIFCJ6mGk8UtF
-	GUkTE3i8CJZnhDVh42tshRYKkSpHbl7wJfp13kC0+zCweqR2b4R/mJaH5JXKE4udHdj7z6VTbsxwY
-	0rhVl8iy0wai3XcFbf3AJ7DG9er3ZcIPWa57KeQ7RxQTaIRqb95h3B9Vziez0lfuOlDHiVk5Qd3LU
-	x9T/6kpRRu0FlhLUiqADeaAEGFSmDkS5HXmN/XujkChpoqji8Dw5NzkU+OdvmN5xdECzO0rVr7Rs3
-	GjGKGmgbMmZpytD4RI0ZfetPAQXjbyBnrL7iZieVOi0BBddVqBlrR6Cu+hqvkSTTd56kgB0TKWjj5
-	6otVvogKi28Ceb6rIrRg==;
+	List-Owner; bh=xywsfdULLKylZqEjVKRTf5pTAydkyLbUhjnA4X5iufo=; b=UhxZ+09dowdRf/
+	l4ExUB603fgCFOk5cAR/RSiHHs5F+kliHsQ27fOXOKYtx3QNbK0L0ksEHES/JRNobThPCxtkYJu11
+	iz/EWCEnBOZzcf1++JuOFspNpgrMlIuEeXQnHeeq1dKVN0gLAVvefE0Cy0JA9+N8D0L1Q6cJFmcat
+	598DLVMvG9bQY5HqcfV4Lo2QdB961/pbwURfDyZkbHsUel8QQanruKQvWszbOrE9prjaKxtn/k3TF
+	RBry1NiZWvfm0tHr2wS/lZqXWzVZMlrc0vTt9PKtvm7IoXKJUY9ZzZjYYmYKpswQL6yQpAv2BbJBL
+	8947xsYZceN/R+z58Q3g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nfBgI-0087Du-B7; Fri, 15 Apr 2022 02:27:30 +0000
-Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38])
+	id 1nfFWM-0091Q0-VN; Fri, 15 Apr 2022 06:33:30 +0000
+Received: from mail-pl1-x62c.google.com ([2607:f8b0:4864:20::62c])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nfBg8-0087AO-0U
- for ath11k@lists.infradead.org; Fri, 15 Apr 2022 02:27:22 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1649989640; x=1681525640;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=hjvUzvOPfS1ipmCCVvTPVZiBypu2XFWitmfc5NLLkSY=;
- b=HsjdfyWrjZFHjIY9RfwduIpZ+/GR1hESmCiEOgWsF/3jko0jI1Rmz77p
- 8kg1qGoGVmEz70w066z6B+AJsKNt8ViK8U4Z3vDatYb7IpF+K2353Uxjf
- ObUEkymvgODluBi5yrNF3xCLoeixcB28+0+Zosurlck+J5W1LjiyeEJHq Y=;
-Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
- by alexa-out-sd-01.qualcomm.com with ESMTP; 14 Apr 2022 19:27:17 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2022 19:27:17 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Thu, 14 Apr 2022 19:27:16 -0700
-Received: from [10.253.8.85] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Thu, 14 Apr
- 2022 19:27:13 -0700
-Message-ID: <aee8fc50-3ffb-f985-f0ad-9752bb51890d@quicinc.com>
-Date: Fri, 15 Apr 2022 10:27:09 +0800
+ id 1nfFGP-008vg7-5G
+ for ath11k@lists.infradead.org; Fri, 15 Apr 2022 06:17:03 +0000
+Received: by mail-pl1-x62c.google.com with SMTP id t12so6435283pll.7
+ for <ath11k@lists.infradead.org>; Thu, 14 Apr 2022 23:16:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=Jatt+V+nXfhqQM9//07B65SFV6bMNiaWeVlnWsPUEY8=;
+ b=LeUSar5B5rvRe12ca2HvwfsVrBkcS7B5f3PFuXsUAtqfFCTENTy3DNmOjAu0dXQ6ce
+ VEvEHCb49p8sHqRbzPcJW+sZFgJ3RwMDydc+m/12fEmiOS4OgNZXWfMGxqQ6zzAyxAlS
+ o7AjjKHlHiwFbDNe+H3dQmtZLC7gcjsD/t9UGTICwxqL6JbR2vVugF6SJ7QZMBg5PpwH
+ HDaXu/rxmXVGxnh2e60yCk/nvpy5ANAnD+UJtek/THOl1cMa89SCw7BmSJG6R9giD0tP
+ BmOdvdyptPOFvmUzIbrSYCMeFmFFgLqFPTCus8q72vLxEn58i0hps40w1pC1q+9AutZl
+ 598A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=Jatt+V+nXfhqQM9//07B65SFV6bMNiaWeVlnWsPUEY8=;
+ b=bMKZCS21cSwmC8hrvADJ0apiiC78wr45ZAIBV7usinBMU+D88nPjQD8CMqNoqEJpsk
+ 4Y8yusoNSiC5prllbgW7I/Zt5aa/MtJ0knfzkdhXbWN6Ko3rT2RPM8PiEDnNmrUIEhw5
+ qk8d9zFWPB3lHZnPO4BZlxNuDSdYSVr6krYFsviG0YnRs0lkTCqmzafAbfgFV0zMQ+1q
+ c67cOt6z5m7pzwfIKNADSotDbCdSn5NDdSUyiTTNl7ijsHA/He+YCv14kS1+rEOoDUIn
+ RImKKljUgzpuZfRuwyi+Ou35M88PUH8rQhHBzgW/zVaSlx29vTMNQUu5DwExjgrXXM8s
+ XcuQ==
+X-Gm-Message-State: AOAM531GHdMLNp+YnT13+fOLVqUpwcy69Jqy6TqG7u6Hk0LxyTjypPDO
+ ZWSv/W2mRp8Bs6wNmpBDtds=
+X-Google-Smtp-Source: ABdhPJxXl2J8MrOMJqY9UdpMm/pHQYL5wUpT7PmiQkXC6CUQF1tguXDxp0bE3E9oeAy+7fsxAK1UUA==
+X-Received: by 2002:a17:903:2cb:b0:14f:4fb6:2fb0 with SMTP id
+ s11-20020a17090302cb00b0014f4fb62fb0mr49422092plk.172.1650003418858; 
+ Thu, 14 Apr 2022 23:16:58 -0700 (PDT)
+Received: from d3 ([2405:6580:97e0:3100:ae94:2ee7:59a:4846])
+ by smtp.gmail.com with ESMTPSA id
+ h18-20020a056a001a5200b0050a43bb7ae6sm479281pfv.161.2022.04.14.23.16.55
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 14 Apr 2022 23:16:58 -0700 (PDT)
+Date: Fri, 15 Apr 2022 15:16:52 +0900
+From: Benjamin Poirier <benjamin.poirier@gmail.com>
+To: Yihao Han <hanyihao@vivo.com>, Wen Gong <quic_wgong@quicinc.com>
+Cc: Kalle Valo <kvalo@kernel.org>, "David S. Miller" <davem@davemloft.net>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org, kernel@vivo.com
+Subject: Re: [PATCH] ath11k: simplify if-if to if-else
+Message-ID: <YlkN1FsTd0Bozz0K@d3>
+References: <20220414092042.78152-1-hanyihao@vivo.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v5] cfg80211: save power spectral density(psd) of
- regulatory rule
-Content-Language: en-US
-To: Wen Gong <wgong@codeaurora.org>, Johannes Berg
- <johannes@sipsolutions.net>, <johannes.berg@intel.com>
-CC: Venkateswara Naralasetty <vnaralas@qti.qualcomm.com>, "Venkateswara
- Naralasetty" <vnaralas@codeaurora.org>, <ath11k@lists.infradead.org>,
- <linux-wireless@vger.kernel.org>, <wgong=codeaurora.org@codeaurora.org>,
- <quic_adisi@quicinc.com>, <quic_vnaralas@quicinc.com>
-References: <20210928085211.26186-1-wgong@codeaurora.org>
- <bd649a3d2cf2ea9064d427d633055891@codeaurora.org>
- <cb20427eae96c4551084e4c899618b94@codeaurora.org>
- <2afb1bf6f06cb53f43fe0d354afa4e7c@codeaurora.org>
- <2ed76cff292dcca18326de0407a93821@codeaurora.org>
- <1222384c2bc7d80bf572b65ab17660477bb27300.camel@sipsolutions.net>
- <562080d7fc3b7568811c47a8e8e79156@codeaurora.org>
- <DM8PR02MB8154258563A4F7C805C84B4BE6B59@DM8PR02MB8154.namprd02.prod.outlook.com>
- <0b05f6e555bcb89c49f56279c077ce63@codeaurora.org>
- <18363bc18538ea9b7e8fe28f4c5595c54f3b93d3.camel@sipsolutions.net>
- <67936afa5545b9a5d6eb5ad6931026d7@codeaurora.org>
- <6053b0963612057267f00b89e14b9e15@codeaurora.org>
- <68b700b371399db0ed4174d20ddd0b8b@codeaurora.org>
- <7761dc6f736b04cce1137b68a7132ac7@codeaurora.org>
-From: Wen Gong <quic_wgong@quicinc.com>
-In-Reply-To: <7761dc6f736b04cce1137b68a7132ac7@codeaurora.org>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+Content-Disposition: inline
+In-Reply-To: <20220414092042.78152-1-hanyihao@vivo.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220414_192720_131359_5C403D4B 
-X-CRM114-Status: GOOD (  33.33  )
+X-CRM114-CacheID: sfid-20220414_231701_281346_17C1B7B2 
+X-CRM114-Status: GOOD (  20.49  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,199 +86,51 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi Johannes,
+On 2022-04-14 02:20 -0700, Yihao Han wrote:
+> Replace `if (!ab->is_reset)` with `else` for simplification
+> and add curly brackets according to the kernel coding style:
+> 
+> "Do not unnecessarily use braces where a single statement will do."
+> 
+> ...
+> 
+> "This does not apply if only one branch of a conditional statement is
+> a single statement; in the latter case use braces in both branches"
+> 
+> Please refer to:
+> https://www.kernel.org/doc/html/v5.17-rc8/process/coding-style.html
 
-PSD is another type power value as well as the power_rule in 
-ieee80211_reg_rule
-and max_reg_power/max_power in ieee80211_channel. For 6G, it need the
-both the 2 values (psd and tx-power) for power control.
+Same comment about the curly brackets part of the log as for the qlcnic
+patch, it doesn't match the changes.
 
-To support LPI/SP/VLP mode + concurrency, it is not only to process the
-TX power and psd, it need to process all fields in ieee80211_reg_rule.
-for example, for the same country US, it has some ieee80211_reg_rule for
-6G:
-LPI mode for AP mode is:
-(5945 - 7125 @ 160) (0, 30) (FLAGS 512) (psd 5 dB/MHz)
+> 
+> Signed-off-by: Yihao Han <hanyihao@vivo.com>
+> ---
+>  drivers/net/wireless/ath/ath11k/core.c | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+> 
+> diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+> index cbac1919867f..80009482165a 100644
+> --- a/drivers/net/wireless/ath/ath11k/core.c
+> +++ b/drivers/net/wireless/ath/ath11k/core.c
+> @@ -1532,8 +1532,7 @@ static void ath11k_core_restart(struct work_struct *work)
+>  
+>  	if (ab->is_reset)
+>  		complete_all(&ab->reconfigure_complete);
+> -
+> -	if (!ab->is_reset)
+> +	else
+>  		ath11k_core_post_reconfigure_recovery(ab);
+>  }
 
-LPI mode for client mode is:
-(5945 - 7125 @ 160) (0, 24) (FLAGS 512) (psd -1 dB/MHz)
-
-SP mode is:
-(5945 - 6425 @ 160) (0, 30) (FLAGS 0) (psd 17 dB/MHz)
-(6525 - 6875 @ 160) (0, 30) (FLAGS 0) (psd 17 dB/MHz)
-
-you can see the frequency range/flags/tx power/psd are not same between
-the 3 mode. So the psd value is a same kind field as well as the frequency
-range/flags/tx power in ieee80211_reg_rule and ieee80211_channel.
-If it has only one interface in the same ieee80211_hw, the interface
-must choose one the the above modes at any time, and the reg rules
-will be updated when the interface changed its mode, then the info
-of channels of ieee80211_supported_band for 6G also update, it has
-no problem.
-
-When it has 2 interface up simultaneously in the same ieee80211_hw,
-then it will have problem. because the 2 interface share the same
-ieee80211_reg_rule and the same channels and same ieee80211_supported_band
-for 6G, if interface #1 is LPI-AP, and interface #2 is SP mode, then
-even the channels count is not same for the 2 interface, channels count
-of SP mode is smaller than LPI-AP, also the info of channel is not same.
-
-So adding/not adding psd value into ieee80211_reg_rule/ieee80211_channel
-will not effect the problem of muti-interface concurrency issue of 6G.
-When muti-interface concurrency run, all the fields of ieee80211_reg_rule/
-ieee80211_channel should be split.
-
-I think the easy way is to save the channels of ieee80211_supported_band
-of 6G in each interface instead of ieee80211_hw, then interface #1/#2
-have/use their own channels, they use their own frequency range/flags/
-tx power/psd... This is a high level change, and adding psd into
-ieee80211_reg_rule/ieee80211_channel is a low level change. So I think
-they have no dependency with each other.
-
-On 3/3/2022 10:13 AM, Wen Gong wrote:
-> Hi Johannes,
->
-> Do you have comments for this patch?
->
-> Currently these patches of mac80211/cfg80211/ieee80211 for LPI/SP/VLP is
-> the base patches, to enable the feature of LPI/SP/VLP, it still need 
-> other
-> patches of lower drivers such as ath11k to enable it. It will not have
-> LPI/SP/VLP without patches of ath11k, it means all these patches of
-> mac80211/cfg80211 will not take effect.
->
-> When lower driver such as ath11k set max_interfaces of 
-> ieee80211_iface_combination
-> to 1, then it can not start more than 1 interface on the same 
-> ieee80211_hw/wiphy.
-> When STATION interface is up, then AP interface can not start up. AP 
-> interface
-> can start up after STATION interface down. Also when AP interface is up,
-> STATION interface can not start up. STATION interface can start up after
-> AP interface down.
->
-> I have sent out my ath11k v2 
-> patches(https://patchwork.kernel.org/project/linux-wireless/list/?series=601212),
-> it will allow only one interface
-> up simultaneously for the chip which enable LPI/SP/VLP feature in this
-> patch: "ath11k: allow only one interface up simultaneously for WCN6855"
-> https://patchwork.kernel.org/project/linux-wireless/patch/20211224085236.9064-5-quic_wgong@quicinc.com/ 
->
-> It means it will not have both AP/STA together and these patches of 
-> mac80211/
-> cfg80211/ieee80211 not need changes and it will not have bugs.
->
-> If there are some chip want to both enable LPI/SP/VLP feature and
-> enable AP/STA simultaneously in same ieee80211_hw/wiphy in future,
-> then he/she need to refine reg rules and channels of mac80211/cfg80211/
-> ieee80211, but at that moment, this patch "cfg80211: save power
-> spectral density(psd) of regulatory rule" still not need change.
-> Because this patch is change in each reg rule/each channel in a
-> low layer, the refine reg rules and channels is a high layer, they
-> have no intersection.
->
-> On 2021-12-06 16:48, Wen Gong wrote:
->> Hi Johannes,
->>
->> Are you waiting for the AP/STA concurrency patches, then apply this 
->> patch?
->>
->> On 2021-11-09 17:57, Wen Gong wrote:
->>> Hi Johannes,
->>>
->>> do you have comments about my description for PSD?
->>>
->>> On 2021-10-26 19:26, Wen Gong wrote:
->>>> On 2021-10-26 04:09, Johannes Berg wrote:
->>>>> On Mon, 2021-10-11 at 15:48 +0800, Wen Gong wrote:
->>>>>>
->>>>>> > IMO, Only power rules and PSD info might vary for AP and 
->>>>>> STATION. Rest
->>>>>> > of the rules will remains same right?
->>>>>> >
->>>>>> The freq_range may also be different for AP and STATION.
->>>>>> and reg_rules number also may also be different for AP and STATION.
->>>>>>
->>>>>> for example:
->>>>>> SUBORDINATE CLIENT of STANDARD POWER reg rules number 2
->>>>>> reg rule 1: (5945 - 6425 @ 160) (0, 30) (FLAGS 0) (psd flag 1 
->>>>>> EIRP 17
->>>>>> dB/MHz)
->>>>>> reg rule 2: (6525 - 6885 @ 160) (0, 30) (FLAGS 0) (psd flag 1 
->>>>>> EIRP 17
->>>>>> dB/MHz)
->>>>>>
->>>>>> INDOOR AP reg rules number 1
->>>>>> reg rule 1: (5945 - 7125 @ 160) (0, 24) (FLAGS 0) (psd flag 0 EIRP 0
->>>>>> dB/MHz)
->>>>>
->>>>> That seems right, but isn't that an orthogonal question?
->>>>>
->>>>> Here, on this patch, we're discussing what data we should have in the
->>>>> channel information, and it would seem that if it's different for
->>>>> AP/client, then we do need both information stored, so that we can 
->>>>> cope
->>>>> with concurrency between AP and client?
->>>>>
->>>>> If we additionally need to have different data for the regulatory 
->>>>> rules
->>>>> for AP and client, that might mean we need to go back and actually
->>>>> change the code there *as well*, and then fill in the right fields in
->>>>> this patch?
->>>>>
->>>>> Unless somehow we're convinced that for this feature we don't need to
->>>>> worry about concurrently using AP and client modes?
->>>>>
->>>>> johannes
->>>>
->>>> Currently these patches of mac80211/cfg80211/ieee80211 for 
->>>> LPI/SP/VLP is
->>>> the base patches, to enable the feature of LPI/SP/VLP, it still 
->>>> need other
->>>> patches of lower drivers such as ath11k to enable it. It will not have
->>>> LPI/SP/VLP without patches of ath11k, it means all these patches will
->>>> not take effect.
->>>>
->>>> When lower driver such as ath11k set max_interfaces of
->>>> ieee80211_iface_combination
->>>> to 1, then it can not start more than 1 interface on the same
->>>> ieee80211_hw/wiphy.
->>>> When STATION interface is up, then AP interface can not start up. 
->>>> AP interface
->>>> can start up after STATION interfacedown. Also when AP interface is 
->>>> up,
->>>> STATION interface can not start up. STATION interface can start up 
->>>> after
->>>> AP interface down.
->>>>
->>>> I have sent out my ath11k
->>>> patches(https://lore.kernel.org/linux-wireless/20211026111913.7346-1-quic_wgong@quicinc.com/), 
->>>>
->>>> it will allow only one interface
->>>> up simultaneously for the chip which enable LPI/SP/VLP feature in this
->>>> patch: "ath11k: allow only one interface up simultaneously for 
->>>> WCN6855"
->>>> https://lore.kernel.org/linux-wireless/20211026111913.7346-5-quic_wgong@quicinc.com/ 
->>>>
->>>> It means it will not have both AP/STA together and these patches of 
->>>> mac80211/
->>>> cfg80211/ieee80211 not need changes and it will not have bugs.
->>>>
->>>> If there are some chip want to both enable LPI/SP/VLP feature and
->>>> enable AP/STA simultaneously in same ieee80211_hw/wiphy in future,
->>>> then he/she need to refine reg rules and channels of 
->>>> mac80211/cfg80211/
->>>> ieee80211, but at that moment, this patch "cfg80211: save power
->>>> spectral density(psd) of regulatory rule" still not need change.
->>>> Because this patch is change in each reg rule/each channel in a
->>>> low layer, the refine reg rules and channels is a high layer, they
->>>> have no intersection.
->
+It seems there is no synchronization around is_reset but is it
+guaranteed that it cannot be changed by ath11k_core_reset() between the
+two tests? I'm not familiar with the driver.
 
 -- 
 ath11k mailing list
