@@ -4,68 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8E06C433EF
-	for <ath11k@archiver.kernel.org>; Mon, 18 Apr 2022 10:13:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46098C4332F
+	for <ath11k@archiver.kernel.org>; Wed, 20 Apr 2022 16:09:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BFXAaWTfJpeBgZrZLtPyXzbk6Vs6HDcHWaEwB1l+NEI=; b=VErr1ex3APhwV+
-	H3lQ+Wrfnyw8ueHj3Awo6TlOOVCXdVzQ+iLNzcPvGFHmd5kePsJNri1BS6bmME8YbyLd1XHzX8xP2
-	bjxDv4xQlUZn19f3OCqX/HB9Z4f8KSXHLAZ2SYLePNuY4f9e+GGeORUGufrv31bWEO3JUcO6Epv67
-	bF+h9Tax7l6HnnzA5zw5BgxD1u5hCzQxcK+lrCrt9qCgxj5eKnuCNlokeUH/tGruDOyhm1vBYsOBB
-	5VVxMyID30vyTVBN+7zeBrPy5ZWafSbvQwNuvPzbHtXiBuf4eADWZoga1KC/Bnq2UjAQ+BEsn/ukP
-	6HCftjQtCQYSVEKLjiJw==;
+	List-Owner; bh=d66ueJSknAqRiU/cSpfI6JMpZumSGYLhuIJrihi442Y=; b=RGTyfssYRXIjOr
+	ylhtg7DbyqZ6ycbKOFyQ0nSk+KyTAO0oGpmo9ZWakSpYBOw9dJe8Q+XwIbDcrdU071KQay9UKcOt8
+	qTKBmeB5x53crB6eCnEqmzoEObJxJE+59P2qLTIwzxV+o1Kw6hDPEHAlmB/c/GNMO5wkxHG1tx1vQ
+	SrPTTwt6m+C0ZedfnbVEoc8GgGKZyRCX8CIgolNs9jgdeNVazqNAu44qjiBA/XJuU7c7xZ8B0lXqt
+	qALI/wTc5Ga7Qz99cEKnj6rxL2McTRiY78KibY+t2AdQcBle036YYnn3Uyb6+J5xE+NqcDa9yEPm2
+	ZUE3D2lg4gmNNoit7INA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ngONt-00GGOJ-F3; Mon, 18 Apr 2022 10:13:29 +0000
-Received: from mail-ej1-x630.google.com ([2a00:1450:4864:20::630])
+	id 1nhCt4-009eDF-Gc; Wed, 20 Apr 2022 16:09:02 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1ngONr-00GGNJ-0F
- for ath11k@lists.infradead.org; Mon, 18 Apr 2022 10:13:28 +0000
-Received: by mail-ej1-x630.google.com with SMTP id bv19so26049613ejb.6
- for <ath11k@lists.infradead.org>; Mon, 18 Apr 2022 03:13:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=ejIvqkEVFp0kcQHAt9+D7TEkOn+Ubdii0LnqHwlC/Ic=;
- b=OH9zwhGsUeCIty6bPzJFbpOcji6irMtOMcmGW/KwKDZQCCUrJ6PoA7yvMvSZvNb1xB
- kZ/IQpXMkyuOagW9gw0LZ7zNnjaNWc59aB07HTeFaoUmAIktxZ3jbRPTC9USL4vM6JBt
- h9Qz9qOAJVxFvJKEyoOpu7KRQQr7YtTaYF/RqetKWsPwm0a+yCqhA1YE5InDwdPF3PNW
- ccL3SNL2xu336l+zAeaPkOgU3y7QJ1pE+KrGMCt7KK4sjyzBlUNSiiHWiG+RDcoVMcXj
- Fwm5/o5ZHTWVL/a7YEuE7olmRJ7smp62lMucXGktPOSAKASaymCXi2bwjCOPsd5Jt77k
- T/OQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=ejIvqkEVFp0kcQHAt9+D7TEkOn+Ubdii0LnqHwlC/Ic=;
- b=axA6rWd07f4ejkH81oBm4YRasQysBuRdJBEk8nlFWeL5mGJHyIxSeB3GQORgCCKFJG
- 1rpLXw5Hy/B1Inw2l5tYoNbYBXwouEH0xmVeg771EOQF8zeAnoGEVlFpD0oxxHcKMIbj
- IjEk4ECXCAeZ19vEfjTXvLD+C7aZ+VAO6FjOies25Y7x/p5pJO/Wabnz6xnyiu5YQklz
- hf5igOt1MdFY+apMlerRkB0TLseEsjyPZTNWI7+pKEpDLJaUjlFVhNOQIvNtW0cQTmSh
- G2tYW5flfQY42plwl1OP44wO48PXv46ranRuw+yYJPmrR7UybYKkcaLNVRvgtF36DoCk
- tCVQ==
-X-Gm-Message-State: AOAM530SVAimmKUwgNd3ZIwNPqc+FzxgRRG+WWFAWGTGsWpm88ba0WTW
- wCMUH+OZscYZI7LDOgY1vCMSoyVnuXOOFpXJH7wUzVEhNxgIOQ==
-X-Google-Smtp-Source: ABdhPJxJkUosBQ5ewk/t3jpVe8M1PcvxmIni/kJMldE7Ug+gEK+EyUkxdlHPUK/zYHyWuCQogp0gSRkLCxsmMMX1aR8=
-X-Received: by 2002:a17:906:7948:b0:6da:64ed:178e with SMTP id
- l8-20020a170906794800b006da64ed178emr8752571ejo.523.1650276802404; Mon, 18
- Apr 2022 03:13:22 -0700 (PDT)
+ id 1nhCt0-009eC5-UY
+ for ath11k@lists.infradead.org; Wed, 20 Apr 2022 16:09:00 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id C44DF61981;
+ Wed, 20 Apr 2022 16:08:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7181CC385A1;
+ Wed, 20 Apr 2022 16:08:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1650470937;
+ bh=CxHiVml8e9Zc1jlwhEl3vaf6HMvRlYOE8fgYfvNaO7w=;
+ h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+ b=cvcZsUm8S6xtUbKuHoVCSZaaKYngfUDSFGNtrU5N6/phV8cmM02zfllcC+kdvbKyh
+ TxKqJoIwc8ROypPM7tEsq53jMBNwET2YRZcR6S19nDSrXuX2qutg716PldDNdSCdo2
+ WquB13OIYpgGt+M8K1wK+INL8+vpPio1PjviM6Uxmn1u/aoLwXveVe4oc6CpvQoB2w
+ /D9SMqocukbRIdeTDOcTec2UD6DBangy8WVL/N26E5n5lzTQFF9cshOW4Xswq5Wokv
+ iL2AX2DvuqwXKck7Rh1QRP7smIi0Eqb3vgqNbfT0L5C7mk+LXvL1UPTwFggzXuW1Od
+ 7Xiq61o7+a8Ig==
+From: Kalle Valo <kvalo@kernel.org>
+To: <quic_haric@quicinc.com>
+Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
+Subject: Re: [PATCH] ath11k: disable spectral scan during spectral deinit
+References: <1649396345-349-1-git-send-email-quic_haric@quicinc.com>
+ <87fsmooz83.fsf@kernel.org>
+Date: Wed, 20 Apr 2022 19:08:51 +0300
+In-Reply-To: <87fsmooz83.fsf@kernel.org> (Kalle Valo's message of "Fri, 08 Apr
+ 2022 09:39:40 +0300")
+Message-ID: <87levzohyk.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-References: <CADP2NhYqHncUxxSKeWahYuVV98fA2BrWt7A486Cwu8pzQrqwug@mail.gmail.com>
- <CA+HBbNHQ_VY6EnGoTSc2SjTV+zMzJ8Uqq_V7c4w=vD3dsB2fzA@mail.gmail.com>
-In-Reply-To: <CA+HBbNHQ_VY6EnGoTSc2SjTV+zMzJ8Uqq_V7c4w=vD3dsB2fzA@mail.gmail.com>
-From: fengbin <arithdon@gmail.com>
-Date: Mon, 18 Apr 2022 18:13:12 +0800
-Message-ID: <CADP2NhZ1SoyNQsEKDqG1CE=rfcWrgcZZc7=JLx=ErVOp6Qz_Tw@mail.gmail.com>
-Subject: Re: ath11k: does qmi support multiple soc
-To: Robert Marko <robert.marko@sartura.hr>
-Cc: ath11k@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220418_031327_085856_F5B52C25 
-X-CRM114-Status: GOOD (  18.00  )
+X-CRM114-CacheID: sfid-20220420_090859_097130_8DCF0245 
+X-CRM114-Status: GOOD (  12.57  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,106 +73,71 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-yes, the debugfs patch has been applied.
+Kalle Valo <kvalo@kernel.org> writes:
 
-On Mon, Apr 18, 2022 at 5:28 PM Robert Marko <robert.marko@sartura.hr> wrote:
+> <quic_haric@quicinc.com> writes:
 >
-> On Mon, Apr 18, 2022 at 10:37 AM fengbin <arithdon@gmail.com> wrote:
-> >
-> > Hello,
-> > I have qca6390 and qcn9074 both of them works fine individually.
-> > However when I install them together errors show up.
-> >
-> >
-> > here is log with only 9074 installed:
-> > [   17.759191] ath11k_pci 0000:01:00.0: qmi wifi fw qmi service
-> > connected qmi:00000000181299d3 node:7, port:2
-> > [   17.759197] ath11k_pci 0000:01:00.0:
-> > ath11k_qmi_event_server_arrive@2709 qmi:00000000181299d3
-> > [   17.760436] ath11k_pci 0000:01:00.0:
-> > ath11k_qmi_event_server_arrive@2718 qmi:00000000181299d3
-> > fw_ind_register completed.
-> > [   17.761703] ath11k_pci 0000:01:00.0:
-> > ath11k_qmi_event_server_arrive@2725 qmi:00000000181299d3
-> > fw_ind_register host_cap completed.
-> > [   17.767555] ath11k_pci 0000:01:00.0: chip_id 0x0 chip_family 0x0
-> > board_id 0xff soc_id 0xffffffff
-> > [   17.767559] ath11k_pci 0000:01:00.0: fw_version 0x2506844c
-> > fw_build_timestamp 2021-07-13 10:24 fw_build_id
-> > [   19.495395] ath11k_pci 0000:01:00.0 wlp1s0: renamed from wlan0
-> >
-> > and here is log with 6390+9074 and from the log it seems 01:00.01
-> > device get same qmi messages twice and thus the host_cap request
-> > failed the second time where chipset FW consider the host_cap request
-> > is in bad state.
-> >
-> > [   19.106915] ath11k_pci 0000:01:00.0: BAR 0: assigned [mem
-> > 0x92000000-0x921fffff 64bit]
-> > [   19.106947] ath11k_pci 0000:01:00.0: enabling device (0100 -> 0102)
-> > [   19.107355] ath11k_pci 0000:01:00.0: MSI vectors: 16
-> > [   19.107366] ath11k_pci 0000:01:00.0: qcn9074 hw1.0
-> > [   19.107505] ath11k_pci 0000:01:00.0: mhi controller registered
-> > :0000000054128108 mhi_ctrl->index:0 mhi_ctrl->mhi_dev:mhi0
-> > [   20.173172] ath11k_pci 0000:05:00.0: BAR 0: assigned [mem
-> > 0x91000000-0x91ffffff 64bit]
-> > [   20.173218] ath11k_pci 0000:05:00.0: enabling device (0100 -> 0102)
-> > [   20.173937] ath11k_pci 0000:05:00.0: MSI vectors: 32
-> > [   20.173959] ath11k_pci 0000:05:00.0: qca6390 hw2.0
-> > [   20.174111] ath11k_pci 0000:05:00.0: mhi controller registered
-> > :00000000c33f02d3 mhi_ctrl->index:1 mhi_ctrl->mhi_dev:mhi1
-> > [   20.767399] ath11k_pci 0000:01:00.0: qmi wifi fw qmi service
-> > connected qmi:00000000e25ddf03 node:7, port:2
-> > [   20.767423] ath11k_pci 0000:01:00.0:
-> > ath11k_qmi_event_server_arrive@2709 qmi:00000000e25ddf03
-> > [   20.768739] ath11k_pci 0000:01:00.0:
-> > ath11k_qmi_event_server_arrive@2718 qmi:00000000e25ddf03
-> > fw_ind_register completed.
-> > [   20.770333] ath11k_pci 0000:01:00.0:
-> > ath11k_qmi_event_server_arrive@2725 qmi:00000000e25ddf03
-> > fw_ind_register host_cap completed.
-> > [   20.770375] ath11k_pci 0000:01:00.0: qmi wifi fw qmi service
-> > connected qmi:00000000e25ddf03 node:7, port:2
-> > [   20.771668] ath11k_pci 0000:01:00.0:
-> > ath11k_qmi_event_server_arrive@2709 qmi:00000000e25ddf03
-> > [   20.776796] ath11k_pci 0000:01:00.0:
-> > ath11k_qmi_event_server_arrive@2718 qmi:00000000e25ddf03
-> > fw_ind_register completed.
-> > [   20.778021] ath11k_pci 0000:01:00.0: host capability request failed: 1 90
-> >
-> >
-> > Any thoughts and ideas of what might be the cause?
-> > thanks
+>> From: Hari Chandrakanthan <quic_haric@quicinc.com>
+>>
+>> When ath11k modules are removed using rmmod with spectral scan enabled,
+>> crash is observed. Different crash trace is observed for each crash.
+>>
+>> Send spectral scan disable WMI command to firmware before cleaning
+>> the spectral dbring in the spectral_deinit API to avoid this crash.
+>>
+>> call trace from one of the crash observed:
+>> [ 1252.880802] Unable to handle kernel NULL pointer dereference at
+>> virtual address 00000008
+>> [ 1252.882722] pgd = 0f42e886
+>> [ 1252.890955] [00000008] *pgd=00000000
+>> [ 1252.893478] Internal error: Oops: 5 [#1] PREEMPT SMP ARM
+>> [ 1253.093035] CPU: 0 PID: 0 Comm: swapper/0 Not tainted 5.4.89 #0
+>> [ 1253.115261] Hardware name: Generic DT based system
+>> [ 1253.121149] PC is at ath11k_spectral_process_data+0x434/0x574 [ath11k]
+>> [ 1253.125940] LR is at 0x88e31017
+>> [ 1253.132448] pc : [<7f9387b8>]    lr : [<88e31017>]    psr: a0000193
+>> [ 1253.135488] sp : 80d01bc8  ip : 00000001  fp : 970e0000
+>> [ 1253.141737] r10: 88e31000  r9 : 970ec000  r8 : 00000080
+>> [ 1253.146946] r7 : 94734040  r6 : a0000113  r5 : 00000057  r4 : 00000000
+>> [ 1253.152159] r3 : e18cb694  r2 : 00000217  r1 : 1df1f000  r0 : 00000001
+>> [ 1253.158755] Flags: NzCv  IRQs off  FIQs on  Mode SVC_32  ISA ARM  Segment user
+>> [ 1253.165266] Control: 10c0383d  Table: 5e71006a  DAC: 00000055
+>> [ 1253.172472] Process swapper/0 (pid: 0, stack limit = 0x60870141)
+>> [ 1253.458055] [<7f9387b8>] (ath11k_spectral_process_data [ath11k])
+>> from [<7f917fdc>] (ath11k_dbring_buffer_release_event+0x214/0x2e4
+>> [ath11k])
+>> [ 1253.466139] [<7f917fdc>] (ath11k_dbring_buffer_release_event
+>> [ath11k]) from [<7f8ea3c4>] (ath11k_wmi_tlv_op_rx+0x1840/0x29cc
+>> [ath11k])
+>> [ 1253.478807] [<7f8ea3c4>] (ath11k_wmi_tlv_op_rx [ath11k]) from
+>> [<7f8fe868>] (ath11k_htc_rx_completion_handler+0x180/0x4e0 [ath11k])
+>> [ 1253.490699] [<7f8fe868>] (ath11k_htc_rx_completion_handler
+>> [ath11k]) from [<7f91308c>]
+>> (ath11k_ce_per_engine_service+0x2c4/0x3b4 [ath11k])
+>> [ 1253.502386] [<7f91308c>] (ath11k_ce_per_engine_service [ath11k])
+>> from [<7f9a4198>] (ath11k_pci_ce_tasklet+0x28/0x80 [ath11k_pci])
+>> [ 1253.514811] [<7f9a4198>] (ath11k_pci_ce_tasklet [ath11k_pci])
+>> from [<8032227c>] (tasklet_action_common.constprop.2+0x64/0xe8)
+>> [ 1253.526476] [<8032227c>] (tasklet_action_common.constprop.2) from
+>> [<803021e8>] (__do_softirq+0x130/0x2d0)
+>> [ 1253.537756] [<803021e8>] (__do_softirq) from [<80322610>] (irq_exit+0xcc/0xe8)
+>> [ 1253.547304] [<80322610>] (irq_exit) from [<8036a4a4>]
+>> (__handle_domain_irq+0x60/0xb4)
+>> [ 1253.554428] [<8036a4a4>] (__handle_domain_irq) from [<805eb348>]
+>> (gic_handle_irq+0x4c/0x90)
+>> [ 1253.562321] [<805eb348>] (gic_handle_irq) from [<80301a78>] (__irq_svc+0x58/0x8c)
+>>
+>> Tested on : WLAN.HK.2.6.0.1-00851-QCAHKSWPL_SILICONZ-1
 >
-> Hi,
-> I would second this question as I have the same issue with IPQ8074+QCN9074.
-> Note that the multiple debugfs patch has already been applied.
->
-> Regards,
-> Robert
-> >
-> > --
-> > arithdon
-> >
-> > --
-> > ath11k mailing list
-> > ath11k@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/ath11k
->
->
->
-> --
-> Robert Marko
-> Staff Embedded Linux Engineer
-> Sartura Ltd.
-> Lendavska ulica 16a
-> 10000 Zagreb, Croatia
-> Email: robert.marko@sartura.hr
-> Web: www.sartura.hr
+> Tested-on tag is not in correct format, but I can fix that.
 
-
+Actuall I cannot as I don't know on what hardware you tested this. So
+what hardware did you use?
 
 -- 
-arithdon
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
