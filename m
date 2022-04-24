@@ -4,61 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7AEC9C433F5
-	for <ath11k@archiver.kernel.org>; Sun, 24 Apr 2022 10:26:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB9BCC433EF
+	for <ath11k@archiver.kernel.org>; Sun, 24 Apr 2022 12:12:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=pFIvlSF8/1Gjo+g+AWmy8PZqsQbHrgbOQgwhvgaXg88=; b=OjBrq7Bhf+uV5R
-	JtShf4shjRVCkz0lZvfZPnlcMzSog8wCfWcRdT3PSbc4ae4NkeLfdxkpI6wlf/amXVSA4FDqT5Jrz
-	uYh3fwkvsTeL2ja7oeyWd4pT7PAEJTy0k09Gi/Z6gocCkVp2Y9xuXKxH90nFqrBRaX/k2aiFRMtkn
-	2/MbHbASo0LyfWL0oqzmxNNIm1IDLpvhrT/e2LXuduNKEHFZcZiTRPAtQPrNE41iwYeUga9CE+GTo
-	3tnwGLhryFQ2vvKxJjuGG+4xHejPMHk0ybBgfDutBYU4nlSdGhB/kunQGXvx0kUQKl8tjDOBH089Q
-	eI/YVrcMtNfVBt2DIByw==;
+	List-Owner; bh=71Q79HnTBQtXrB/6Uuf4Jvyq6Ty6B0pbMrWxDt1F8PI=; b=XVJiu6EX0Exs9+
+	mBQ9hUIZ1vsEtCZGIrQWsmFe7kOPyt/ykdIb1VawAyn3JDFWN3CYO9pKFDf4N1wS7Sm8K+bZ/cSeK
+	ZlrRioYoxLx9hFexQcKE52xxdC5kqtb5PDy1nBFn21QKlvABCzJHk+DycON+d18NkfZgu85seryn3
+	vwk+YdIdo0dWPY4P6Evnsl4gqPd7a9ouBgEUrALQQZdXlvCTWp+zh5BNWpeWawIfASK1/dHxtBk8K
+	vHvhHSThkAuEabRr3iS5X/jmyS0w9fHqBGgWYHQpWiTVJHgKFpdwpHF5lIurzSkIsDlwFBRySVnHE
+	z/t2NL2obghI2VCHMrkg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1niZRi-006Lg5-I2; Sun, 24 Apr 2022 10:26:27 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1nib6Y-006Y6Q-J6; Sun, 24 Apr 2022 12:12:42 +0000
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1niZRR-006Les-So
- for ath11k@lists.infradead.org; Sun, 24 Apr 2022 10:26:11 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id F1605B80E06;
- Sun, 24 Apr 2022 10:26:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01FEBC385A7;
- Sun, 24 Apr 2022 10:26:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1650795965;
- bh=JWVZ39Sx4mRPxwSMcZ085+th6rdL6JTEmOQlC+K+Wkw=;
- h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
- b=VoCmgW0EQo2ZldDwXZ6vnNtOuMMgPvibp7qzA0yPUTv5YsPtZ/rq39hZd+2gYhyKN
- 1beVhQfpudjgMt7V3TB4rJCkcN+xIRuELfgFAhxuQ+E7fWFwTkT0C/hQ0juRt69+lE
- x0wSiSAq1WCtB++6zWYvJFa055zntJWBoxy3zZfh/Ze+pJnPZqG+yvvcvxFKhz9cgg
- CrdDQMzSZJb9iqJjJkiF3Gsx1qAmK2+GR9Cmjs9C7XugoDiu3ExgkmEqvVx73jsv4C
- GPJb3JkLcInMhpZgiGjxGTJmD7JwJosiuCaBocO/K+HKG9Y6mY+yzxB/XLJtxSxr46
- 0Gufdnbv1F+3w==
-From: Kalle Valo <kvalo@kernel.org>
-To: Wen Gong <quic_wgong@quicinc.com>
-Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
+ id 1nib6V-006Y65-3W
+ for ath11k@lists.infradead.org; Sun, 24 Apr 2022 12:12:40 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+ t=1650802359; x=1682338359;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=dMNiOiLzChr/7IMjjJyhXX+Ew+uWRVB1fgb0yHCKV3Y=;
+ b=ZpM6TG3+PBSkIxudKQJMFaVU+4uQcTZOj/hSQR2LQ8WhzPCe2gv915bn
+ vhlJEqUNUw4G/84cDp5emYKVhJgxIXji0FNrFeKUAtsARCBWj/Z8v9XN2
+ G3JFCMJFIZJ7tf2gdb/SBXTWtT/oKMJF13QoEnn9TEQtw8BdlyQwWFy1m Q=;
+Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
+ by alexa-out-sd-02.qualcomm.com with ESMTP; 24 Apr 2022 05:11:36 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+ by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Apr 2022 05:11:36 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Sun, 24 Apr 2022 05:11:35 -0700
+Received: from [10.253.33.23] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Sun, 24 Apr
+ 2022 05:11:34 -0700
+Message-ID: <a97692be-d1a6-266d-6876-3716923aceb0@quicinc.com>
+Date: Sun, 24 Apr 2022 20:11:32 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
 Subject: Re: [PATCH] ath11k: add read country code from SMBIOS for
  WCN6855/QCA6390
-In-Reply-To: <61d2a5aa-c82d-6994-a8f3-0d31e32421be@quicinc.com> (Wen Gong's
- message of "Sun, 24 Apr 2022 14:22:56 +0800")
+Content-Language: en-US
+To: Kalle Valo <kvalo@kernel.org>
+CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
 References: <20220421023501.32167-1-quic_wgong@quicinc.com>
  <8735i4m8hu.fsf@kernel.org>
  <61d2a5aa-c82d-6994-a8f3-0d31e32421be@quicinc.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
-Date: Sun, 24 Apr 2022 13:26:01 +0300
-Message-ID: <87o80qkcau.fsf@kernel.org>
-MIME-Version: 1.0
+ <87o80qkcau.fsf@kernel.org>
+From: Wen Gong <quic_wgong@quicinc.com>
+In-Reply-To: <87o80qkcau.fsf@kernel.org>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220424_032610_116592_A54197DE 
-X-CRM114-Status: GOOD (  11.91  )
+X-CRM114-CacheID: sfid-20220424_051239_224322_4891B6A0 
+X-CRM114-Status: UNSURE (   5.21  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,61 +82,30 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Wen Gong <quic_wgong@quicinc.com> writes:
-
-> On 4/23/2022 5:53 PM, Kalle Valo wrote:
->> Wen Gong <quic_wgong@quicinc.com> writes:
->>
->>
-> ...
->>> +
->>>   struct ath11k_smbios_bdf {
->>>   	struct dmi_header hdr;
->>> -	u32 padding;
->>> +	u8 features_disabled;
->>> +	/* enum ath11k_smbios_cc_type */
->>> +	u8 country_code_flag;
->>> +	/* To set specific country, you need to set country code
->>> +	 * flag=ATH11K_SMBIOS_CC_ISO first, then if country is United States, then country
->>> +	 * code value = 0x5553 ("US",'U' = 0x55, 'S'= 0x53), To set country
->>> +	 * to INDONESIA, then country code value = 0x4944 ("IN", 'I'=0x49, 'D'=0x44).
->>> +	 * If country code flag = ATH11K_SMBIOS_CC_WW, then you can use
->>> +	 * worldwide regulatory setting.
->>> +	 */
->>> +	__le16 cc_code;
->>>   	u8 bdf_enabled;
->>>   	u8 bdf_ext[];
->>> -};
->>> +} __packed;
->> Is cc_code really in little endian? I would expect data in smbios to be
->> in native endian (ie. u16), bios using different endian than the host
->> sounds strange to me. And struct dmi_header also uses native endian:
->>
->> struct dmi_header {
->> 	u8 type;
->> 	u8 length;
->> 	u16 handle;
->> } __packed;
+On 4/24/2022 6:26 PM, Kalle Valo wrote:
+> Wen Gong <quic_wgong@quicinc.com> writes:
 >
-> Yes, Kalle,
+>> On 4/23/2022 5:53 PM, Kalle Valo wrote:
+>>> Wen Gong <quic_wgong@quicinc.com> writes:
+>>>
+>>>
+>> ...
+...
+>> Yes, Kalle,
+>>
+>> I agree with you.
+>>
+>> need I send new version to change the "__le16 cc_code" to "u16 cc_code"?
+> I fixed this in the pending branch, compile tested only. Please check:
 >
-> I agree with you.
+> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=a6d583e310c70fb93ec7045f0ea38c12632098d8
+yes, it is OK after check.
 >
-> need I send new version to change the "__le16 cc_code" to "u16 cc_code"?
-
-I fixed this in the pending branch, compile tested only. Please check:
-
-https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=a6d583e310c70fb93ec7045f0ea38c12632098d8
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
