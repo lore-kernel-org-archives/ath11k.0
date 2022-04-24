@@ -4,72 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB9BCC433EF
-	for <ath11k@archiver.kernel.org>; Sun, 24 Apr 2022 12:12:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39BCEC433F5
+	for <ath11k@archiver.kernel.org>; Sun, 24 Apr 2022 15:58:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=71Q79HnTBQtXrB/6Uuf4Jvyq6Ty6B0pbMrWxDt1F8PI=; b=XVJiu6EX0Exs9+
-	mBQ9hUIZ1vsEtCZGIrQWsmFe7kOPyt/ykdIb1VawAyn3JDFWN3CYO9pKFDf4N1wS7Sm8K+bZ/cSeK
-	ZlrRioYoxLx9hFexQcKE52xxdC5kqtb5PDy1nBFn21QKlvABCzJHk+DycON+d18NkfZgu85seryn3
-	vwk+YdIdo0dWPY4P6Evnsl4gqPd7a9ouBgEUrALQQZdXlvCTWp+zh5BNWpeWawIfASK1/dHxtBk8K
-	vHvhHSThkAuEabRr3iS5X/jmyS0w9fHqBGgWYHQpWiTVJHgKFpdwpHF5lIurzSkIsDlwFBRySVnHE
-	z/t2NL2obghI2VCHMrkg==;
+	List-Owner; bh=YoOabwkcC0qu2pONhvhZvut2M1Jr9sD65AEsMJBOXFM=; b=rHtvrQROYzFriC
+	47DUQgruCcWKW+qY128w1+q3x/JBtD/dM60rd6egfYouzmjjEbIiPrdqk8hFDnlZGr8fnGErP3tyK
+	28aWHe+Q9Y9BiqDk1xhfi8r4zWFRxVznU2auo2ZNJXwo5Gl4rEfV5fUhlISNtVPhJi6daoUMBNDOm
+	amO3ekkXp+Uro1LuWPDSDFuDDHEYByZ87dik4DX+xkLuG81qZS2d2pqMjaqxUGqVZCsq5u4zlM0l7
+	oNyuLk+GmCHqlPmxI9tc1HKWLWCypVks7X04lIUznFXof7L753vYeK40zxUs2t58bLmZeqea9kTeW
+	w7bGFGBYTRKwa515GLsA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nib6Y-006Y6Q-J6; Sun, 24 Apr 2022 12:12:42 +0000
-Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39])
+	id 1nieck-006tbR-Td; Sun, 24 Apr 2022 15:58:10 +0000
+Received: from mail-il1-x12a.google.com ([2607:f8b0:4864:20::12a])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nib6V-006Y65-3W
- for ath11k@lists.infradead.org; Sun, 24 Apr 2022 12:12:40 +0000
+ id 1nieci-006tb7-F2
+ for ath11k@lists.infradead.org; Sun, 24 Apr 2022 15:58:09 +0000
+Received: by mail-il1-x12a.google.com with SMTP id o5so7948139ils.11
+ for <ath11k@lists.infradead.org>; Sun, 24 Apr 2022 08:58:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1650802359; x=1682338359;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=dMNiOiLzChr/7IMjjJyhXX+Ew+uWRVB1fgb0yHCKV3Y=;
- b=ZpM6TG3+PBSkIxudKQJMFaVU+4uQcTZOj/hSQR2LQ8WhzPCe2gv915bn
- vhlJEqUNUw4G/84cDp5emYKVhJgxIXji0FNrFeKUAtsARCBWj/Z8v9XN2
- G3JFCMJFIZJ7tf2gdb/SBXTWtT/oKMJF13QoEnn9TEQtw8BdlyQwWFy1m Q=;
-Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
- by alexa-out-sd-02.qualcomm.com with ESMTP; 24 Apr 2022 05:11:36 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2022 05:11:36 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Sun, 24 Apr 2022 05:11:35 -0700
-Received: from [10.253.33.23] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Sun, 24 Apr
- 2022 05:11:34 -0700
-Message-ID: <a97692be-d1a6-266d-6876-3716923aceb0@quicinc.com>
-Date: Sun, 24 Apr 2022 20:11:32 +0800
+ d=sartura-hr.20210112.gappssmtp.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=6RqcH5EjgX7ytAfXTbCYxpivFsdre1YhBcO8BbqSsOw=;
+ b=EX3pBNpP+eniJ/6fc2pTgfXIHVQGv8CwWxK8zFS0pBV5rritL+mkEVVCHxVCwK9XGx
+ DKLn3XKQF+J3O33cj0wQNupgeI3QG/kO1CiAow9qTxhxmdU/qffEAAQVJwiBnPwif1Du
+ AxpKSa6zYD8tSOhAIckAqf6xGERTXEn8TD2tWYVf8LLBT8ysx9zTC292zalRgeBnM/f4
+ 0z6ECvj5HWzNbFs9T6aWecmyDxNyWEQYTAt4l7VM+3z/TyB2nnEQi72KoS3TWnXTZxgO
+ p33CePt5iOTH9Q+ZlPboTJDnKTdaWsL6fV4SCOJNZVFq5g5dMSp9PCw44iv+A0LZgnBP
+ pBLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=6RqcH5EjgX7ytAfXTbCYxpivFsdre1YhBcO8BbqSsOw=;
+ b=AKwNVnzL7m/kZKWEKCKw1tcnAdsCKAOeouoQ84DZsqyTX7MK+pigND5ax2kaY9enHC
+ LUJS55xyP7EujTzQPEIOg+JHIVYimdTG3HjeVnfQilc2AXGi+qCm1HDrygDS45NCtbkp
+ 3Z9lvHqaKe/WD7HPH2ycxQ8fVorai47Ia/ndChbUt7cMknbf4Kwcb7cP6+srOO04g8ww
+ V4nIs5JKnoZloMkBz0Q2hs6HTrYC8UBJpTt3Hd7Qydlf4Cgyr5WTMs0GCjlzBDEJsr6w
+ If/o3QhtlV8i/+m8OYP3yD+hJL5focn4yECGqji4LShpjLRqyY8OLoiEnthZdA9vaAqj
+ Q3ew==
+X-Gm-Message-State: AOAM5303lIWvTutVN1FB1QLMpEGxeugNzHF0wXwSVeJYjs2Riz97SPAX
+ smMIiwLBuHKkZ9bmW1RYvTV3POGLd5GXcw5Q9UOGrw==
+X-Google-Smtp-Source: ABdhPJyv8yCBv2HVhIaRg0EDCAXfBjwVUdXHjlY90X/BLrkPA3kJIN2Z70lARG6IoitNwfH5DNPDnDlzrJgnm208coQ=
+X-Received: by 2002:a05:6e02:19c8:b0:2cd:7ff9:72ac with SMTP id
+ r8-20020a056e0219c800b002cd7ff972acmr3019062ill.159.1650815887043; Sun, 24
+ Apr 2022 08:58:07 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH] ath11k: add read country code from SMBIOS for
- WCN6855/QCA6390
-Content-Language: en-US
-To: Kalle Valo <kvalo@kernel.org>
-CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
-References: <20220421023501.32167-1-quic_wgong@quicinc.com>
- <8735i4m8hu.fsf@kernel.org>
- <61d2a5aa-c82d-6994-a8f3-0d31e32421be@quicinc.com>
- <87o80qkcau.fsf@kernel.org>
-From: Wen Gong <quic_wgong@quicinc.com>
-In-Reply-To: <87o80qkcau.fsf@kernel.org>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+References: <CADP2NhYqHncUxxSKeWahYuVV98fA2BrWt7A486Cwu8pzQrqwug@mail.gmail.com>
+ <b208fb8c-b7d2-6fe6-3429-a2ca9d7fb59b@quicinc.com>
+In-Reply-To: <b208fb8c-b7d2-6fe6-3429-a2ca9d7fb59b@quicinc.com>
+From: Robert Marko <robert.marko@sartura.hr>
+Date: Sun, 24 Apr 2022 17:57:56 +0200
+Message-ID: <CA+HBbNF+cPayaLBF3TFQasxQWCyAFzBad++chwVko2_geSd0Mw@mail.gmail.com>
+Subject: Re: ath11k: does qmi support multiple soc
+To: Jeff Johnson <quic_jjohnson@quicinc.com>
+Cc: fengbin <arithdon@gmail.com>, ath11k@lists.infradead.org, 
+ Anilkumar Kolli <quic_akolli@quicinc.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220424_051239_224322_4891B6A0 
-X-CRM114-Status: UNSURE (   5.21  )
+X-CRM114-CacheID: sfid-20220424_085808_538314_0E1C3811 
+X-CRM114-Status: UNSURE (   9.17  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -82,30 +80,41 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 4/24/2022 6:26 PM, Kalle Valo wrote:
-> Wen Gong <quic_wgong@quicinc.com> writes:
+On Fri, Apr 22, 2022 at 5:47 PM Jeff Johnson <quic_jjohnson@quicinc.com> wrote:
 >
->> On 4/23/2022 5:53 PM, Kalle Valo wrote:
->>> Wen Gong <quic_wgong@quicinc.com> writes:
->>>
->>>
->> ...
-...
->> Yes, Kalle,
->>
->> I agree with you.
->>
->> need I send new version to change the "__le16 cc_code" to "u16 cc_code"?
-> I fixed this in the pending branch, compile tested only. Please check:
+> On 4/18/2022 1:37 AM, fengbin wrote:
+> > Hello,
+> > I have qca6390 and qcn9074 both of them works fine individually.
+> > However when I install them together errors show up.
 >
-> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=a6d583e310c70fb93ec7045f0ea38c12632098d8
-yes, it is OK after check.
+> This is a known issue. A solution is under development.
+
+Hi Jeff,
+thanks for confirming the issue.
+
+Regards,
+Robert
 >
+> --
+> ath11k mailing list
+> ath11k@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/ath11k
+
+
+
+-- 
+Robert Marko
+Staff Embedded Linux Engineer
+Sartura Ltd.
+Lendavska ulica 16a
+10000 Zagreb, Croatia
+Email: robert.marko@sartura.hr
+Web: www.sartura.hr
 
 -- 
 ath11k mailing list
