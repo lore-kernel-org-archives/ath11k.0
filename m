@@ -4,62 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6C7DC4332F
-	for <ath11k@archiver.kernel.org>; Tue, 26 Apr 2022 10:03:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3EA6C4332F
+	for <ath11k@archiver.kernel.org>; Tue, 26 Apr 2022 14:55:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FClP25BodPse/5xeBpmbb4yKLCFKz3CmP7rejENainA=; b=vxhr0G3xRnL7K5
-	0bKUgLhkBtPR/TDlexZOqvJ6E7fnVf1KJr9bHviWHrBv+oAYb3o2bG5G2VKn52IEULXLbhoUdKvUV
-	VOryaJPcGZmJZfBiYb8/PEWfIuO0rpidq/arg0YsjaYx36NM3tOseDDruToQcMFtKzVviDN7Ysl+a
-	getwYRlRC+Ol8hlDCEpAJdv2ZiG78Lyy436oC7nrsWd3i7FFS4EU5TiVyjC1OuUMqi1uzWYGXzzp4
-	6ZXshWXVGbmNkQtMK1t0uRLQekdZ0+8wvLVIEXnmrzMkEZmPdslYBZcc5w5Oodei5mq25jZ+rXCPI
-	pOcEYAlA6Gla2tGAstFg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=QUUR9RddqMQBDDqWG7k1q7reCbVB8VpBsw1nLsYjGQg=; b=OxjVnYqr0rMFrc
+	6Qjd9ksjsDcHmQ6V96uf7BanNwCvpcqpYKWqV4yLuh879VM8iG02daph1LDMC73ubxh18HAso9/l1
+	aCm024aDMRDw/w0/LPBc9EfW2MLWA/18nllrJdOGElsVBJxJrZq4hBoiiAfRM/1I4oQGz2plYNryL
+	AeKl2sxGHyeq1AXFoZrmPXNCxrS328HaSZAPEpxjZN0x1alOZcDREHb0kAwE56uZOokAaU72nsDVC
+	rnFI0oAasUy+YGv5qUE2on/2om+OCA9DcJ4oGr0ImDzoh8zXrrQ8XMMSvtOOilPTelRr79UPJZAY1
+	hBA1j2/eWxw5Dlgnik2w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1njI2R-00DkLT-4Y; Tue, 26 Apr 2022 10:03:19 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1njMbB-00F3Bf-H6; Tue, 26 Apr 2022 14:55:29 +0000
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1njI2P-00DkJY-AU
- for ath11k@lists.infradead.org; Tue, 26 Apr 2022 10:03:18 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id C002961515;
- Tue, 26 Apr 2022 10:03:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66BFCC385A0;
- Tue, 26 Apr 2022 10:03:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1650967387;
- bh=r3768dlHCT62Q2lOLUs6ZoPdNR4ReDkH5elN6FS+lHE=;
- h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
- b=rWo2crH4IjZZrAZZZzHE8VrA91/fGW0Czq+aCJbv+AqMNiKTfc82CAKbt6CZyx2qi
- XPgEmXUNGiScreV75xzPcgiGvcpMYrB/xUycS4akzupmQ1tnHZOosuGPXYAL65XL8a
- QCDAwmvYLSn7KtiIuOboNGr7rOZXAm7O0UW9YBjEVSJT/DYvmyOuXa88n0CeFBUNzP
- ctGRUink1xnUE264NPy86cJGgwCbG1mkOxbmWmDixFwAhMmOYlMoD+2t0+hW9Eygu0
- ojrsl1HBrrXX0WeaH4eV/aduZq3zoQjQDbfV5l8Z77O2rRZzQ6DGTd3qdSjvz0acEb
- QslqWM8uV05ZA==
-From: Kalle Valo <kvalo@kernel.org>
-To: "Hari Chandrakanthan \(QUIC\)" <quic_haric@quicinc.com>
-Cc: "ath11k\@lists.infradead.org" <ath11k@lists.infradead.org>,
- "linux-wireless\@vger.kernel.org" <linux-wireless@vger.kernel.org>
-Subject: Re: [PATCH] ath11k: disable spectral scan during spectral deinit
-In-Reply-To: <CY4PR02MB32702916194AF1DD0AAD009183FB9@CY4PR02MB3270.namprd02.prod.outlook.com>
- (Hari Chandrakanthan's message of "Tue, 26 Apr 2022 09:55:57 +0000")
-References: <1649396345-349-1-git-send-email-quic_haric@quicinc.com>
- <87fsmooz83.fsf@kernel.org> <87levzohyk.fsf@kernel.org>
- <CY4PR02MB32702916194AF1DD0AAD009183FB9@CY4PR02MB3270.namprd02.prod.outlook.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
-Date: Tue, 26 Apr 2022 13:03:02 +0300
-Message-ID: <877d7cjh61.fsf@kernel.org>
+ id 1njMb8-00F3AP-PX
+ for ath11k@lists.infradead.org; Tue, 26 Apr 2022 14:55:28 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+ t=1650984926; x=1682520926;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=AXJ+Q1Cq1MJB9Nc0sE9oF7CHGZjUKArgFUSRWDve3wA=;
+ b=WZZ49xw8ly7xt4aFnnfFDF/bNcMbS//i8Pd337a2XpYLbaSuue9HIUtC
+ JTmwuTzHTxtHtBC4S5vT1vFNR76sGc3287lHnZL2cdmiE7GOYbZD03DF/
+ NHeRFwpPCIxwfQ4J8YxFGVV4BYTxd3uoobzv/Ma9RQyls+i2IMWpdwVco A=;
+Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
+ by alexa-out-sd-02.qualcomm.com with ESMTP; 26 Apr 2022 07:55:24 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+ by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2022 07:55:24 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Tue, 26 Apr 2022 07:55:23 -0700
+Received: from mpubbise-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Tue, 26 Apr 2022 07:55:21 -0700
+From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <robh@kernel.org>, <mka@chromium.org>, Manikanta Pubbisetty
+ <quic_mpubbise@quicinc.com>
+Subject: [PATCH v5 00/12] add support for WCN6750
+Date: Tue, 26 Apr 2022 20:24:44 +0530
+Message-ID: <20220426145456.8055-1-quic_mpubbise@quicinc.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220426_030317_438975_2D61ECFD 
-X-CRM114-Status: UNSURE (   5.61  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220426_075526_891726_127167B8 
+X-CRM114-Status: GOOD (  16.03  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,17 +80,98 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-"Hari Chandrakanthan (QUIC)" <quic_haric@quicinc.com> writes:
+WCN6750 is non-DBS 2x2 11AX chipset. Unlike QCA6390/WCN6855 which
+are DBS (dual band simultaneous) solutions (2 LMACs), WCN6750 has a
+single LMAC supporting 2G, 5G and 6G bands. It can be operated only
+on one band at any given point.
 
-> Tested-on: QCN6122 hw1.0 AHB WLAN.HK.2.6.0.1-00851-QCAHKSWPL_SILICONZ-1
+WCN6750 is a PCIe device. Unlike other supported ATH11K PCIe devices
+which are directly attached to APSS (Application Processor SubSystem),
+WCN6750 is not attached to APSS, it is attached to the WPSS
+(Wireless Processor SubSystem) Q6 processor, the FW which runs on the
+Q6 processor will enumerate the PCIe device. Since APSS is unaware of
+such a device, it has to be registered as a platform device(AHB) to the
+kernel for device probing. Like other AHB devices, remoteproc APIs are
+used to boot up or shutdown of WCN6750.
 
-QCN6122 is not yet supported in upstream, so I guess you are testing
-something else than upstream? That's not good.
+WCN6750 uses both AHB and PCIe ATH11K APIs for it's operation.
+It uses AHB APIs for device probe and booting of the remote processor.
+Once device is booted up, it uses ATH11K PCIe APIs for initialization
+and register access. Hence, it is referred as hybrid bus device in
+the rest of this series.
+
+Since the chip is enumerated by WPSS Q6, device information like
+BAR and BAR size is not known to the APSS processor. A new QMI message
+called device info QMI request will be sent to the target for fetching
+these details.
+
+STA and AP modes are supported; Basic connectivity and ping are
+verified in both the modes.
+
+An important point to note is that though WCN6750 is a PCIe device,
+it cannot be attached to any other platform except on Qualcomm
+Snapdragon SoCs due to the aforementioned reasons.
+
+Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
+
+Manikanta Pubbisetty (12):
+  dt: bindings: net: add bindings of WCN6750 for ath11k
+  ath11k: Add HW params for WCN6750
+  ath11k: Add bus params for WCN6750
+  ath11k: Add register access logic for WCN6750
+  ath11k: Fetch device information via QMI for WCN6750
+  ath11k: Add QMI changes for WCN6750
+  ath11k: HAL changes to support WCN6750
+  ath11k: Datapath changes to support WCN6750
+  ath11k: Do not put HW in DBS mode for WCN6750
+  ath11k: WMI changes to support WCN6750
+  ath11k: Update WBM idle ring HP after FW mode on
+  ath11k: Add support for WCN6750 device
+---
+V5:
+ - Rebased on ToT SHAID: 01be26cde012478db958d9bde530877c46031e76
+
+V4:
+ - Addressed comments on DT binding (Matthias Kaehlcke <mka@chromium.org>)
+ - Rebased on ToT SHAID: 607c3dc2750382befa0f3f20063943bd058a2bc1
+
+V3:
+ - Patch series with 19 patches is split in 2 patch series, this is the second one
+ - Rebased on ToT SHAID: 7316a74e54318d0cd648242b18ea83cdef6dda96
+ - Addessed DT binding concerns
+ - PCI common code is moved to ath11k.ko
+ - Added a new HW param for WCN6750 which uses fixed firmware memory, this is
+   needed to differentiate WCN6750 from other ATH11K chipsets
+ - Modified the logic in patch "ath11k: Add support for WCN6750 device" based on the latest DT binding
+
+V2:
+ - Rebased on ToT
+ - Addressed comments on DT binding
+
+ .../bindings/net/wireless/qcom,ath11k.yaml    | 361 ++++++++++++------
+ drivers/net/wireless/ath/ath11k/Makefile      |   5 +-
+ drivers/net/wireless/ath/ath11k/ahb.c         | 162 +++++++-
+ drivers/net/wireless/ath/ath11k/ahb.h         |   1 +
+ drivers/net/wireless/ath/ath11k/ce.c          |   4 +-
+ drivers/net/wireless/ath/ath11k/core.c        | 119 +++++-
+ drivers/net/wireless/ath/ath11k/core.h        |   5 +
+ drivers/net/wireless/ath/ath11k/hal.c         |  15 +-
+ drivers/net/wireless/ath/ath11k/hal.h         |  15 +-
+ drivers/net/wireless/ath/ath11k/hw.c          | 166 ++++++++
+ drivers/net/wireless/ath/ath11k/hw.h          |  11 +
+ drivers/net/wireless/ath/ath11k/pci.c         |   4 +
+ drivers/net/wireless/ath/ath11k/pcic.c        |  76 ++--
+ drivers/net/wireless/ath/ath11k/qmi.c         | 220 +++++++++--
+ drivers/net/wireless/ath/ath11k/qmi.h         |  26 +-
+ drivers/net/wireless/ath/ath11k/wmi.c         |  13 +-
+ 16 files changed, 977 insertions(+), 226 deletions(-)
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+2.35.1
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
