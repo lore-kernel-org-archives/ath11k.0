@@ -4,70 +4,137 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65DB8C433F5
-	for <ath11k@archiver.kernel.org>; Tue, 26 Apr 2022 05:43:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D632C433F5
+	for <ath11k@archiver.kernel.org>; Tue, 26 Apr 2022 09:56:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=T9uxBtzVNCMBqGm3+CgaO9O0DszqX+AioOsmIbcudjw=; b=1dU7TUnClzcq1t
-	r4izcjrDa9zUTx3HcdXbdpFNxBMQzuB1CH7LiOMNtGeQ5h1gsVh7B9c+pFys9cQIpXj1Zyv3nCXMm
-	MZvkRQvRWX3vqDI/OUo2RNc0sRjIXwakXYK3BsAsjDnr3/RjlItGCaS38QKJE/IaRygqp3Pa0OEQz
-	rbuebwyD+FFgQ84Fs8i9k6ykDlEJWCJgcbMhxax7gvTADJ8qXj0/SwM9z7/WeZfkRqu3GVD8FPPNJ
-	ydEaAm1MUTBw93iluBSK5zDeGi5BwwZvcPZfmUO9mliLB/P6gp86VYkg/nhux6vUDR4hv6GSJYKju
-	3xRLIJbOdmkqkBDVbriQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=pdBBrBI2QWLSFyhgs+Cj0eqrXPALXNEUzGlwDdyjZ38=; b=UiFmF5sQX6bIfE
+	ERypA6+iQNq4EMcps32K3pLvvSb/oxlgEp9vWvbjH170dYvzbKAIu2LY01KwAADusZ4RzorwsTMsE
+	7fXVeGa8CSQdu4v5lNOb2AHmP0HMv2/r4sOaP/5cMKG+05aHV0IXaw2xvt8zGfrAGrwch5omVJJg9
+	ffP6kyqAnCFzYtjDY126WuF5Rtr0KeJIH0zVkNxlhVdfhKryiywwTCMLb8wv0irfVSrXz5awix/b7
+	4ybT3x0PHVgaVra56xnwTESYgxTEEQLDPBVK82mePmMeYGQJhe2eaanrhAqISXGGRvy9kIzNSTh9t
+	O1TzNwf4CwnRgI4HEJVw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1njDyl-00CdVr-RP; Tue, 26 Apr 2022 05:43:15 +0000
-Received: from mga05.intel.com ([192.55.52.43])
+	id 1njHvS-00DjaW-Qc; Tue, 26 Apr 2022 09:56:06 +0000
+Received: from esa.hc3962-90.iphmx.com ([216.71.140.77])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1njDyI-00CdKp-9p; Tue, 26 Apr 2022 05:42:51 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1650951766; x=1682487766;
- h=date:from:to:cc:subject:message-id:mime-version:
- content-transfer-encoding;
- bh=ALBaSwqRZhkpzhIwROzHvqZY8s+vIra6wfKbbUAx7ww=;
- b=VmIc/qvNTR8YLc7rfaD+xB8OuuONOFfAlIlX76Bcajl+5mRNgRnhwiZa
- CnnGdecwq0tgcjPG9OYJm3IchAQQRM7lUdf1crZ6AZOkzq95+thzsmvWb
- n7E+w9xPDzdIw7dO2r4bBoQqjrwV1MF4g8k8SY0IEVgz1jsdfNapwVLMY
- mfDxv7vtkqINe5xGoOyKp/R4iQPcWs3LCcf5Oe4NKcPlg02FyCCuSmcUR
- /nZ/Kp16LP/L/3AMQ9rf8UsQXMUoYVkQt0ePSKBvLa3rZvwAytuNx9hJq
- KJqhCARWSxVUsI957l+KUd8Ge1t2FrYgTNSILxWx0YBfNoyEnUBB4Coo2 w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10328"; a="351903582"
-X-IronPort-AV: E=Sophos;i="5.90,290,1643702400"; d="scan'208";a="351903582"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2022 22:42:43 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,290,1643702400"; d="scan'208";a="650031008"
-Received: from lkp-server01.sh.intel.com (HELO 5056e131ad90) ([10.239.97.150])
- by FMSMGA003.fm.intel.com with ESMTP; 25 Apr 2022 22:42:39 -0700
-Received: from kbuild by 5056e131ad90 with local (Exim 4.95)
- (envelope-from <lkp@intel.com>) id 1njDyA-0003G6-RK;
- Tue, 26 Apr 2022 05:42:38 +0000
-Date: Tue, 26 Apr 2022 13:42:04 +0800
-From: kernel test robot <lkp@intel.com>
-To: Andrew Morton <akpm@linux-foundation.org>
-Cc: netdev@vger.kernel.org, linux-sh@vger.kernel.org,
- linux-mm@kvack.org, linux-mips@vger.kernel.org,
- linux-media@vger.kernel.org, linux-edac@vger.kernel.org,
- linux-crypto@vger.kernel.org, linux-btrfs@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linaro-mm-sig@lists.linaro.org, io-uring@vger.kernel.org,
- dri-devel@lists.freedesktop.org, bpf@vger.kernel.org,
- ath11k@lists.infradead.org,
- Linux Memory Management List <linux-mm@kvack.org>
-Subject: [linux-next:master] BUILD REGRESSION
- e7d6987e09a328d4a949701db40ef63fbb970670
-Message-ID: <6267862c.xuehJN2IUHn8WMof%lkp@intel.com>
-User-Agent: Heirloom mailx 12.5 6/20/10
+ id 1njHvQ-00DjYR-3r
+ for ath11k@lists.infradead.org; Tue, 26 Apr 2022 09:56:06 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qccesdkim1;
+ t=1650966964; x=1651571764;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=xbr57kMzeruIdKOocUwi1OGrwwmanW/cMHmmEDZGZlM=;
+ b=HO3Nx0LCsoJiO1CpXtvYSQh67gIOJK+0fB1scqoZdn4gJTTLSwOyVU5a
+ m332H1yhurJBa68unc/99VztzCkp0LS9tWEz6X40Z1Sa3QA59KBgbd0NS
+ C5lh04KqVQMAJM9okxYSPN0k2zEde87hEt18h57Hd7daGKzxTnN/R0Frh M=;
+Received: from mail-mw2nam08lp2172.outbound.protection.outlook.com (HELO
+ NAM04-MW2-obe.outbound.protection.outlook.com) ([104.47.73.172])
+ by ob1.hc3962-90.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2022 09:55:59 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=D5HLB3/vimMn5YZuSUbXQSBeLs/bv+KJ4ZbNo5KiXPIbMcoDcpCK1yxeo0zF4EJ1Rv3Gy/WgsriJzfqYLhv9YSNWNacbb5ne2dSc8lY3SIGdXtwovXnY0RFXt0WIrMhfWMAsxG81iV/7+IaJ2emHsT/u0ta6G8rqj2ujgSPwDfH0WhHFWvl2QNJWn2hs6G08wZB55t/isd5Sen/dDkVEaRyPkk0WsCESoKeDYeu1SFuqi6rO3L/X8tVBSHrhP0fRmgfDg5aKEnA2VqtTNbq2Fv2W3412DZ6+PV1L6UqptE5EOaGh6e1NltsYCN2I4ZyYENS6Orh7QMVhdWYxbmFmUQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xbr57kMzeruIdKOocUwi1OGrwwmanW/cMHmmEDZGZlM=;
+ b=TXpJz6B9ipImuNv64QOJdJ6xxSaAu9tnIFG6uxEYGnzowMmg+EIsavuh9YxCQkdqhYqMvdM44zovUHgnftquSwYWK/flMDQLIb7xJehNmLBh7lpEk+m1UIFgYHGTmE/0pxGW1P3rUsM0E++v6snJjKCPEzdTATYKR97R5LIUuUXYZLSOYQ/R3AonNME+ugsTd/H6dPMo3u65+BUGSOJtZmVAItpy8KqvYGOIekiqhPw0jnENFOLui+kzm9PT69TQND8lhkXt2xvnZ9xMIVF/KNUg0JhBG9XyhhsnudZgxrS0PidSnRnfFbvoe9kgUSD+4/yRN6fjIQq1qxgD6kzoFQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=quicinc.com; dmarc=pass action=none header.from=quicinc.com;
+ dkim=pass header.d=quicinc.com; arc=none
+Received: from CY4PR02MB3270.namprd02.prod.outlook.com (2603:10b6:910:78::26)
+ by CH0PR02MB8027.namprd02.prod.outlook.com (2603:10b6:610:108::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.14; Tue, 26 Apr
+ 2022 09:55:57 +0000
+Received: from CY4PR02MB3270.namprd02.prod.outlook.com
+ ([fe80::98b3:9497:c653:b2d8]) by CY4PR02MB3270.namprd02.prod.outlook.com
+ ([fe80::98b3:9497:c653:b2d8%7]) with mapi id 15.20.5186.021; Tue, 26 Apr 2022
+ 09:55:57 +0000
+From: "Hari Chandrakanthan (QUIC)" <quic_haric@quicinc.com>
+To: Kalle Valo <kvalo@kernel.org>, "Hari Chandrakanthan (QUIC)"
+ <quic_haric@quicinc.com>
+CC: "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>,
+ "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>
+Subject: RE: [PATCH] ath11k: disable spectral scan during spectral deinit
+Thread-Topic: [PATCH] ath11k: disable spectral scan during spectral deinit
+Thread-Index: AQHYSwsB+k5I2LqzdkW0ruHTdZY+V6zlkNvvgBN6/tiACQW0kA==
+Date: Tue, 26 Apr 2022 09:55:57 +0000
+Message-ID: <CY4PR02MB32702916194AF1DD0AAD009183FB9@CY4PR02MB3270.namprd02.prod.outlook.com>
+References: <1649396345-349-1-git-send-email-quic_haric@quicinc.com>
+ <87fsmooz83.fsf@kernel.org> <87levzohyk.fsf@kernel.org>
+In-Reply-To: <87levzohyk.fsf@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=quicinc.com;
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: bfdd68d7-ef1a-4148-d07d-08da276af61e
+x-ms-traffictypediagnostic: CH0PR02MB8027:EE_
+x-ld-processed: 98e9ba89-e1a1-4e38-9007-8bdabc25de1d,ExtAddr
+x-microsoft-antispam-prvs: <CH0PR02MB8027DD06C068D4489BFEE3D3FFFB9@CH0PR02MB8027.namprd02.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: JrU8hl5bULyNPxjN3vZ6sG1piy9O00vZ1mPlg5vEETfl3j+VXltstxtTxrGWtHWapG8jRFPU1mHJTAFV2QGDFxVrkxWFd4xIqAo3s9ew6c7S6oDJmq2BlGNLBr3uAHB6A6nJJERBM3O8YyIW/0rN0PggTKay4V/VguXVyzrxDNcTB0YUdGmuV/xKuvyUaWrN/55xG0RIk2lxlSBJMTlrH/SecR+COZ/kppYjwovvY0MEtQlZIWeexCZ7nEvZJXnk9twE8RoE9sZy+xAOK0FUm+lBYQK+cmaZviw5+o5aw8kejSIu0qWDvHOt2CYkkckjA8m4MdLkP/9tsD8PXVWzWRfRE6zEgjuZKdfQoQKPRAZ9CNYmAHHunyaOl/rUs5sU0uF47RBk2k3Yet8C8n1qfV8ST3iwthJVxCbmVV4BXZmZZnHUb6jQDq1eo8eIqfpMy+h9aDfuNI+MCxNPvde2Bkg4aYrLoVoBRCCKF8iX/oX0svc3Rk4As8SY+d5ZbbZZDfk9+/nkhx2mVQDGwsaKqlZZm3izNWKBHYhtCTpHYMQFETmrEHQ7SOd8AkC94aVw1KP+4pU8fiwVHjUV2lHOyPQdj+xUAz2mqm1Tf1vWd3RLe++ckn3r2cJyg63q9HAABNfnDIqvPFrS69NLbI/KlXbHi4K0xl2kNEFHRdc6yaZOMWHLZkHQbK8edbl/YUoLOlBL8Oro3fhEcnARfwA14I3m5zVJZfmHxiPNF/AfsLnD5bK9wnlSg52nh4m6peofe5Bf3P1HtyNynN6rp4Iuep2j20odaEpUdHZNJcr17Fxt/XBAr8jf/Ka35Kso4NQVVn++D3NDSwCycQYiUpZUKg==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY4PR02MB3270.namprd02.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(4636009)(366004)(66476007)(66446008)(508600001)(52536014)(8936002)(2906002)(6506007)(38100700002)(38070700005)(55016003)(26005)(9686003)(53546011)(186003)(33656002)(7696005)(966005)(5660300002)(76116006)(66946007)(66556008)(8676002)(4326008)(86362001)(122000001)(64756008)(83380400001)(316002)(71200400001)(54906003)(110136005);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?2hILtSSal9jLS6/D11igMi6aSJ6gCLDlLqJBlSi6w5Ghs09yTc2Gmx/h+cMU?=
+ =?us-ascii?Q?lkMgJ0cqQ5rQOlMIMTFhjkRtMa7hj7p1C7N1moqUJdt9Prx2THLMFCBeQbWp?=
+ =?us-ascii?Q?44F0Vt7OsURJpsBdqfOJRMPszEMDBEELWb3alRUaP6tjqwVOxhG35+EDnp4D?=
+ =?us-ascii?Q?YU7LqDdhWeR6JYXElXzlp3X/lVmLy0xIrOKugvUfq1yKesorApEy/iGurOtc?=
+ =?us-ascii?Q?GWpfS/3g4j7zweb9Mc8YQ5Dv0truKRIzrcQ7qKmD9iKlUKjgCRt8VkjdP6+X?=
+ =?us-ascii?Q?OK16sJCUIl0cKMBZ50S3VMNQFI31CVtin8zotWoByfOPQNmn096+ZsNHQCdK?=
+ =?us-ascii?Q?+9CpOnyfxWHbwL0tkoKjKUG1YmZYTkUN6Rxi/9/CxMDyz6cT6+S1pnbF+p6g?=
+ =?us-ascii?Q?cBCo65mhj8Ql46WyK0iZp0xuF994LLixZrodOrAW9WlP0YBI4884gaZ4Ws9z?=
+ =?us-ascii?Q?tuX+z+MHVc77YCxD2mnR5Kht9Fy0STZNbU8jFkyBeeA0o+Wh55rq+XYVrVj6?=
+ =?us-ascii?Q?d8De6OUViPUPfkGHFyMMiJD400QRuLX37UtQ9XA2yxSIjf+nMDCNvFIGjHjG?=
+ =?us-ascii?Q?euUPb6YsV7rqV4EqwKzUhZw5fc2T2N6sCe6JvLmuqEdtt3sntKCymi6P9o0e?=
+ =?us-ascii?Q?Rfs+DnxpijZSfOJqqStu3emAp2UqXMPahSe2THTjzUsrQunfd76tVUJ5TNIq?=
+ =?us-ascii?Q?w85D18tkL5HRjGIJKF8LcZES57N77f1to+FrZ23oQnmHLRN3YZoQkHqS59rk?=
+ =?us-ascii?Q?vm7cQBS6/rRXgh829fT++FSCQEGmxtUjwLzJkJusX4EL5l4tahjXuBlUglSt?=
+ =?us-ascii?Q?dGNpOQKKkkAcQ5Fu3valI3BM94j0JBig6D0uMnfR/wpLRvojmhYLOA812iH3?=
+ =?us-ascii?Q?GG4OaOT5EUatGXQ+h0bBGY2WBtfFYKzfA+HugJksg84XdundUNHM9MEuv/1E?=
+ =?us-ascii?Q?rjmxO2HiQ5TBCSMoeeRzO+2UDLJ0+3ZjpYafFHO19G9o+dWiQRd9VlLeifLH?=
+ =?us-ascii?Q?VyAWKClaFotMhYAZXWZRzVbSiXlu2TaZw/SO1hqM9+RGsRySdIEVSMr/X1jB?=
+ =?us-ascii?Q?qsRW95MrXh6tBgm5LMXKgDJRhZj6liHfkxSyX72eZZdxaSiyh7fK8wricWqT?=
+ =?us-ascii?Q?hIDFBjizgeN6YSdQ3hOxaIIJitlfBjyFNiENj9hC2yX+3uzLif3ZfDDRtghv?=
+ =?us-ascii?Q?H9Fm/4njv1g7UtHgFjLUR/65BP3YWdcsnW//mAyIV60zwgMu47Pijrw5fZNi?=
+ =?us-ascii?Q?5IXyl1Iag7WtaZyV1qK5d2nq2iOwHLwNFr6YVy9OAUOZTOhx0m1O4QqHDR5l?=
+ =?us-ascii?Q?B4valbq0cuyd03MDJYdgqA+nbIJtFdIH1JhShXqqhmvBBrbBdlPDCF8aSkBx?=
+ =?us-ascii?Q?ldqAabNuzjddjbesOCfCnO/QGo5rt3Wu2ro4RuIezoQTyvoYLLR04Udp/myL?=
+ =?us-ascii?Q?9BSoYCgt4zT/mlmZOgOlZ3g/OISOs+d3qjvr2QFTDPRmlGqaxc8mLqpFxpKW?=
+ =?us-ascii?Q?nJST3pMsLmWZZBOcTMSOiukaOxeHNNJwbiEaj99XVh/j29svWe2khRFGPkq9?=
+ =?us-ascii?Q?TvBioBu8FSvaZ9gAR5ZBCeIEe4qu/iNYr/OyvBFWFxXjh6OYR4DLaDBNip4d?=
+ =?us-ascii?Q?lxnmISHyPreJrsL3/vYceGd2pNFO4UTdBUxHeGSLfw8RwQI+VLSXstn124O4?=
+ =?us-ascii?Q?TF86dR0KqVbGS55ypte5i4h+t4s9GAumFW61oL/YDRzAMkZ1aTBJ8lQPq5Wa?=
+ =?us-ascii?Q?GbGMJkKuIA=3D=3D?=
 MIME-Version: 1.0
+X-OriginatorOrg: quicinc.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CY4PR02MB3270.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bfdd68d7-ef1a-4148-d07d-08da276af61e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Apr 2022 09:55:57.4952 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 98e9ba89-e1a1-4e38-9007-8bdabc25de1d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 1RRyiiASc7XX/fx62dyA3BGZyWQ4Zh9JJ3V+ab7XhutReA4p8pHNwZVFy0b+KbBioqu40gmeDG9djMApWqLwEg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR02MB8027
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220425_224246_496999_C00DEF52 
-X-CRM114-Status: GOOD (  11.25  )
+X-CRM114-CacheID: sfid-20220426_025604_260583_1C6BE739 
+X-CRM114-Status: GOOD (  10.52  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,625 +151,85 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
-branch HEAD: e7d6987e09a328d4a949701db40ef63fbb970670  Add linux-next specific files for 20220422
+Hi Kalle,
 
-Error/Warning reports:
+Tested-on: QCN6122 hw1.0 AHB WLAN.HK.2.6.0.1-00851-QCAHKSWPL_SILICONZ-1
 
-https://lore.kernel.org/linux-mm/202204081656.6x4pfen4-lkp@intel.com
-https://lore.kernel.org/linux-mm/202204231818.yVvV3Oxp-lkp@intel.com
-https://lore.kernel.org/linux-mm/202204240458.z2cymyl5-lkp@intel.com
-https://lore.kernel.org/linux-mm/202204241527.n36cr1e5-lkp@intel.com
-https://lore.kernel.org/llvm/202204230717.gJP3yZ5j-lkp@intel.com
+Thanks,
+Hari
 
-Error/Warning: (recently discovered and may have been fixed)
+-----Original Message-----
+From: Kalle Valo <kvalo@kernel.org> 
+Sent: Wednesday, April 20, 2022 9:39 PM
+To: Hari Chandrakanthan (QUIC) <quic_haric@quicinc.com>
+Cc: ath11k@lists.infradead.org; linux-wireless@vger.kernel.org
+Subject: Re: [PATCH] ath11k: disable spectral scan during spectral deinit
 
-ERROR: modpost: "omap_set_dma_priority" [drivers/video/fbdev/omap/omapfb.ko] undefined!
-arch/sh/include/asm/io.h:274:33: error: expected expression before 'do'
-drivers/bus/mhi/host/main.c:787:13: warning: parameter 'event_quota' set but not used [-Wunused-but-set-parameter]
-drivers/char/hw_random/mpfs-rng.c:49:9: error: call to undeclared function 'mpfs_blocking_transaction'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-drivers/char/hw_random/mpfs-rng.c:74:27: warning: incompatible integer to pointer conversion assigning to 'struct mpfs_sys_controller *' from 'int' [-Wint-conversion]
-drivers/char/hw_random/mpfs-rng.c:74:30: error: call to undeclared function 'mpfs_sys_controller_get'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-drivers/gpu/drm/solomon/ssd130x-spi.c:154:35: warning: unused variable 'ssd130x_spi_table' [-Wunused-const-variable]
-drivers/usb/atm/cxacru.c:259:9: warning: Call to function 'sprintf' is insecure as it does not provide bounding of the memory buffer or security checks introduced in the C11 standard. Replace with analogous functions that support length arguments or provides boundary checks such as 'sprintf_s' in case of C11 [clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling]
-drivers/usb/atm/usbatm.c:739:10: warning: Call to function 'sprintf' is insecure as it does not provide bounding of the memory buffer or security checks introduced in the C11 standard. Replace with analogous functions that support length arguments or provides boundary checks such as 'sprintf_s' in case of C11 [clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling]
-drivers/usb/chipidea/core.c:956:10: warning: Call to function 'sprintf' is insecure as it does not provide bounding of the memory buffer or security checks introduced in the C11 standard. Replace with analogous functions that support length arguments or provides boundary checks such as 'sprintf_s' in case of C11 [clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling]
-drivers/usb/gadget/udc/core.c:1664:9: warning: Call to function 'sprintf' is insecure as it does not provide bounding of the memory buffer or security checks introduced in the C11 standard. Replace with analogous functions that support length arguments or provides boundary checks such as 'sprintf_s' in case of C11 [clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling]
-mpfs-rng.c:(.data.rel.ro+0x20): undefined reference to `mpfs_sys_controller_get'
-mpfs-rng.c:(.data.rel.ro+0x8): undefined reference to `mpfs_blocking_transaction'
-omapfb_main.c:(.text+0x41ec): undefined reference to `omap_set_dma_priority'
+Kalle Valo <kvalo@kernel.org> writes:
 
-Unverified Error/Warning (likely false positive, please contact us if interested):
+> <quic_haric@quicinc.com> writes:
+>
+>> From: Hari Chandrakanthan <quic_haric@quicinc.com>
+>>
+>> When ath11k modules are removed using rmmod with spectral scan 
+>> enabled, crash is observed. Different crash trace is observed for each crash.
+>>
+>> Send spectral scan disable WMI command to firmware before cleaning 
+>> the spectral dbring in the spectral_deinit API to avoid this crash.
+>>
+>> call trace from one of the crash observed:
+>> [ 1252.880802] Unable to handle kernel NULL pointer dereference at 
+>> virtual address 00000008 [ 1252.882722] pgd = 0f42e886 [ 1252.890955] 
+>> [00000008] *pgd=00000000 [ 1252.893478] Internal error: Oops: 5 [#1] 
+>> PREEMPT SMP ARM [ 1253.093035] CPU: 0 PID: 0 Comm: swapper/0 Not 
+>> tainted 5.4.89 #0 [ 1253.115261] Hardware name: Generic DT based 
+>> system [ 1253.121149] PC is at 
+>> ath11k_spectral_process_data+0x434/0x574 [ath11k] [ 1253.125940] LR 
+>> is at 0x88e31017
+>> [ 1253.132448] pc : [<7f9387b8>]    lr : [<88e31017>]    psr: a0000193
+>> [ 1253.135488] sp : 80d01bc8  ip : 00000001  fp : 970e0000 [ 
+>> 1253.141737] r10: 88e31000  r9 : 970ec000  r8 : 00000080 [ 
+>> 1253.146946] r7 : 94734040  r6 : a0000113  r5 : 00000057  r4 : 
+>> 00000000 [ 1253.152159] r3 : e18cb694  r2 : 00000217  r1 : 1df1f000  
+>> r0 : 00000001 [ 1253.158755] Flags: NzCv  IRQs off  FIQs on  Mode 
+>> SVC_32  ISA ARM  Segment user [ 1253.165266] Control: 10c0383d  
+>> Table: 5e71006a  DAC: 00000055 [ 1253.172472] Process swapper/0 (pid: 
+>> 0, stack limit = 0x60870141) [ 1253.458055] [<7f9387b8>] 
+>> (ath11k_spectral_process_data [ath11k]) from [<7f917fdc>] 
+>> (ath11k_dbring_buffer_release_event+0x214/0x2e4
+>> [ath11k])
+>> [ 1253.466139] [<7f917fdc>] (ath11k_dbring_buffer_release_event
+>> [ath11k]) from [<7f8ea3c4>] (ath11k_wmi_tlv_op_rx+0x1840/0x29cc
+>> [ath11k])
+>> [ 1253.478807] [<7f8ea3c4>] (ath11k_wmi_tlv_op_rx [ath11k]) from 
+>> [<7f8fe868>] (ath11k_htc_rx_completion_handler+0x180/0x4e0 [ath11k]) 
+>> [ 1253.490699] [<7f8fe868>] (ath11k_htc_rx_completion_handler
+>> [ath11k]) from [<7f91308c>]
+>> (ath11k_ce_per_engine_service+0x2c4/0x3b4 [ath11k]) [ 1253.502386] 
+>> [<7f91308c>] (ath11k_ce_per_engine_service [ath11k]) from 
+>> [<7f9a4198>] (ath11k_pci_ce_tasklet+0x28/0x80 [ath11k_pci]) [ 
+>> 1253.514811] [<7f9a4198>] (ath11k_pci_ce_tasklet [ath11k_pci]) from 
+>> [<8032227c>] (tasklet_action_common.constprop.2+0x64/0xe8)
+>> [ 1253.526476] [<8032227c>] (tasklet_action_common.constprop.2) from 
+>> [<803021e8>] (__do_softirq+0x130/0x2d0) [ 1253.537756] [<803021e8>] 
+>> (__do_softirq) from [<80322610>] (irq_exit+0xcc/0xe8) [ 1253.547304] 
+>> [<80322610>] (irq_exit) from [<8036a4a4>]
+>> (__handle_domain_irq+0x60/0xb4)
+>> [ 1253.554428] [<8036a4a4>] (__handle_domain_irq) from [<805eb348>]
+>> (gic_handle_irq+0x4c/0x90)
+>> [ 1253.562321] [<805eb348>] (gic_handle_irq) from [<80301a78>] 
+>> (__irq_svc+0x58/0x8c)
+>>
+>> Tested on : WLAN.HK.2.6.0.1-00851-QCAHKSWPL_SILICONZ-1
+>
+> Tested-on tag is not in correct format, but I can fix that.
 
-Makefile:684: arch/h8300/Makefile: No such file or directory
-arch/Kconfig:10: can't open file "arch/h8300/Kconfig"
-arch/s390/include/asm/spinlock.h:81:3: error: unexpected token in '.rept' directive
-arch/s390/include/asm/spinlock.h:81:3: error: unknown directive
-arch/s390/include/asm/spinlock.h:81:3: error: unmatched '.endr' directive
-arch/s390/lib/spinlock.c:78:3: error: unexpected token in '.rept' directive
-arch/s390/lib/spinlock.c:78:3: error: unknown directive
-arch/s390/lib/spinlock.c:78:3: error: unmatched '.endr' directive
-crypto/sm3.c:246:1: internal compiler error: Segmentation fault
-csky-linux-ld: mpfs-rng.c:(.text+0x10c): undefined reference to `mpfs_sys_controller_get'
-csky-linux-ld: mpfs-rng.c:(.text+0x70): undefined reference to `mpfs_blocking_transaction'
-drivers/base/topology.c:158:17: warning: Value stored to 'dev' during its initialization is never read [clang-analyzer-deadcode.DeadStores]
-drivers/char/hw_random/mpfs-rng.c:49:23: error: implicit declaration of function 'mpfs_blocking_transaction' [-Werror=implicit-function-declaration]
-drivers/char/hw_random/mpfs-rng.c:74:34: warning: assignment to 'struct mpfs_sys_controller *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
-drivers/char/hw_random/mpfs-rng.c:74:37: error: implicit declaration of function 'mpfs_sys_controller_get' [-Werror=implicit-function-declaration]
-drivers/dma-buf/st-dma-fence-unwrap.c:125:13: warning: variable 'err' set but not used [-Wunused-but-set-variable]
-drivers/edac/edac_device.c:79 edac_device_alloc_ctl_info() warn: Please consider using kcalloc instead
-drivers/edac/edac_mc.c:396:24: warning: Variable 'layer' is not assigned a value. [unassignedVariable]
-drivers/hid/wacom_wac.c:2411:42: warning: format specifies type 'unsigned short' but the argument has type 'int' [-Wformat]
-drivers/net/ethernet/mellanox/mlxsw/core_linecards.c:851:8: warning: Use of memory after it is freed [clang-analyzer-unix.Malloc]
-drivers/net/wireless/ath/ath11k/peer.c:520 ath11k_peer_rhash_id_tbl_init() warn: missing error code 'ret'
-drivers/net/wireless/ath/ath11k/peer.c:575 ath11k_peer_rhash_addr_tbl_init() warn: missing error code 'ret'
-drivers/pinctrl/pinctrl-ingenic.c:162 is_soc_or_above() warn: bitwise AND condition is false here
-fs/btrfs/ctree.c:1412:7: warning: Local variable 'unlock_up' shadows outer function [shadowFunction]
-fs/btrfs/send.c:6857:13: warning: Either the condition '*level==0' is redundant or the array 'path->nodes[8]' is accessed at index -1, which is out of bounds. [negativeIndex]
-fs/btrfs/send.c:6858:13: warning: Either the condition '*level==0' is redundant or the array 'path->slots[8]' is accessed at index -1, which is out of bounds. [negativeIndex]
-kernel/bpf/core.c:1667:3: warning: Syntax Error: AST broken, binary operator '=' doesn't have two operands. [internalAstError]
-kernel/bpf/syscall.c:4944:13: warning: no previous prototype for function 'unpriv_ebpf_notify' [-Wmissing-prototypes]
-kernel/module/kallsyms.c:157:24: warning: Redundant assignment of 'mod->init_layout.size' to itself. [selfAssignment]
-kernel/module/kallsyms.c:424:3: warning: Assignment of function parameter has no effect outside the function. [uselessAssignmentArg]
-kernel/module/main.c:2113:26: warning: Redundant assignment of 'mod->core_layout.size' to itself. [selfAssignment]
-kernel/module/main.c:2147:26: warning: Redundant assignment of 'mod->init_layout.size' to itself. [selfAssignment]
-kernel/module/main.c:2189:4: warning: Null pointer passed as 1st argument to memory copy function [clang-analyzer-unix.cstring.NullArg]
-kernel/module/main.c:2261:70: warning: Parameter 'debug' can be declared with const [constParameter]
-kernel/module/main.c:357:20: warning: Local variable 'arr' shadows outer variable [shadowVariable]
-kernel/module/main.c:924:9: warning: Call to function 'sprintf' is insecure as it does not provide bounding of the memory buffer or security checks introduced in the C11 standard. Replace with analogous functions that support length arguments or provides boundary checks such as 'sprintf_s' in case of C11 [clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling]
-lib/iov_iter.c:1837:61: warning: Parameter 'old' can be declared with const [constParameter]
-lib/iov_iter.c:1884:6: warning: Redundant initialization for 'ret'. The initialized value is overwritten before it is read. [redundantInitialization]
-lib/vsprintf.c:588:41: warning: Parameter 'end' can be declared with const [constParameter]
-make[1]: *** No rule to make target 'arch/h8300/Makefile'.
-mm/memory.c: linux/mm_inline.h is included more than once.
-mm/sparse-vmemmap.c:740:17: warning: Value stored to 'next' during its initialization is never read [clang-analyzer-deadcode.DeadStores]
-mpfs-rng.c:(.text+0x3c): undefined reference to `mpfs_blocking_transaction'
-mpfs-rng.c:(.text+0x98): undefined reference to `mpfs_sys_controller_get'
-net/ipv4/tcp_cong.c:430:32: warning: Division by zero [clang-analyzer-core.DivideZero]
-{standard input}:1628: Error: operands mismatch -- statement `mulu.l 4(%a0),%d3:%d0' ignored
-{standard input}:1628: Error: operands mismatch -- statement `mulu.l 8(%a0),%d2:%d4' ignored
-{standard input}:2648: Error: operands mismatch -- statement `divu.l %d0,%d3:%d7' ignored
-{standard input}:2677: Error: operands mismatch -- statement `mulu.l %d3,%d2:%d7' ignored
+Actuall I cannot as I don't know on what hardware you tested this. So what hardware did you use?
 
-Error/Warning ids grouped by kconfigs:
+--
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-gcc_recent_errors
-|-- alpha-allmodconfig
-|   |-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:cast-to-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-void-const-volatile-noderef-__iomem-addr-got-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-smem_partition_header-phdr-got-void-noderef-__iomem-virt_base
-|   `-- fs-io_uring.c:sparse:sparse:marked-inline-but-without-a-definition
-|-- alpha-allyesconfig
-|   |-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:cast-to-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-void-const-volatile-noderef-__iomem-addr-got-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-smem_partition_header-phdr-got-void-noderef-__iomem-virt_base
-|   `-- fs-io_uring.c:sparse:sparse:marked-inline-but-without-a-definition
-|-- alpha-buildonly-randconfig-r004-20220421
-|   `-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|-- alpha-randconfig-r033-20220421
-|   `-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|-- arc-allmodconfig
-|   |-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:cast-to-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-void-const-volatile-noderef-__iomem-addr-got-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-smem_partition_header-phdr-got-void-noderef-__iomem-virt_base
-|   `-- fs-io_uring.c:sparse:sparse:marked-inline-but-without-a-definition
-|-- arc-allyesconfig
-|   |-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:cast-to-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-void-const-volatile-noderef-__iomem-addr-got-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-smem_partition_header-phdr-got-void-noderef-__iomem-virt_base
-|   `-- fs-io_uring.c:sparse:sparse:marked-inline-but-without-a-definition
-|-- arc-randconfig-p001-20220422
-|   `-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|-- arc-randconfig-r043-20220424
-|   |-- drivers-char-hw_random-mpfs-rng.c:error:implicit-declaration-of-function-mpfs_blocking_transaction
-|   |-- drivers-char-hw_random-mpfs-rng.c:error:implicit-declaration-of-function-mpfs_sys_controller_get
-|   `-- drivers-char-hw_random-mpfs-rng.c:warning:assignment-to-struct-mpfs_sys_controller-from-int-makes-pointer-from-integer-without-a-cast
-|-- arc-randconfig-s031-20220421
-|   |-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:cast-to-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-void-const-volatile-noderef-__iomem-addr-got-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-smem_partition_header-phdr-got-void-noderef-__iomem-virt_base
-|   `-- fs-io_uring.c:sparse:sparse:marked-inline-but-without-a-definition
-|-- arm-allmodconfig
-|   |-- ERROR:omap_set_dma_priority-drivers-video-fbdev-omap-omapfb.ko-undefined
-|   |-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:cast-to-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-void-const-volatile-noderef-__iomem-addr-got-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-smem_partition_header-phdr-got-void-noderef-__iomem-virt_base
-|   `-- fs-io_uring.c:sparse:sparse:marked-inline-but-without-a-definition
-|-- arm-allyesconfig
-|   |-- arch-arm-mach-omap2-sram.c:sparse:sparse:cast-removes-address-space-__iomem-of-expression
-|   |-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:cast-to-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-void-const-volatile-noderef-__iomem-addr-got-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-smem_partition_header-phdr-got-void-noderef-__iomem-virt_base
-|   |-- fs-io_uring.c:sparse:sparse:marked-inline-but-without-a-definition
-|   `-- omapfb_main.c:(.text):undefined-reference-to-omap_set_dma_priority
-|-- arm-randconfig-c002-20220421
-|   `-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|-- arm64-allmodconfig
-|   |-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:cast-to-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-void-const-volatile-noderef-__iomem-addr-got-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-smem_partition_header-phdr-got-void-noderef-__iomem-virt_base
-|   `-- fs-io_uring.c:sparse:sparse:marked-inline-but-without-a-definition
-|-- arm64-allyesconfig
-|   |-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:cast-to-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-void-const-volatile-noderef-__iomem-addr-got-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-smem_partition_header-phdr-got-void-noderef-__iomem-virt_base
-|   `-- fs-io_uring.c:sparse:sparse:marked-inline-but-without-a-definition
-|-- arm64-randconfig-c003-20220421
-|   `-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|-- csky-allmodconfig
-|   `-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|-- csky-allyesconfig
-|   `-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|-- csky-randconfig-r003-20220424
-|   |-- csky-linux-ld:mpfs-rng.c:(.text):undefined-reference-to-mpfs_blocking_transaction
-|   |-- csky-linux-ld:mpfs-rng.c:(.text):undefined-reference-to-mpfs_sys_controller_get
-|   |-- mpfs-rng.c:(.text):undefined-reference-to-mpfs_blocking_transaction
-|   `-- mpfs-rng.c:(.text):undefined-reference-to-mpfs_sys_controller_get
-|-- h8300-allmodconfig
-|   |-- Makefile:arch-h8300-Makefile:No-such-file-or-directory
-|   |-- arch-Kconfig:can-t-open-file-arch-h8300-Kconfig
-|   `-- make:No-rule-to-make-target-arch-h8300-Makefile-.
-|-- h8300-allyesconfig
-|   |-- Makefile:arch-h8300-Makefile:No-such-file-or-directory
-|   |-- arch-Kconfig:can-t-open-file-arch-h8300-Kconfig
-|   `-- make:No-rule-to-make-target-arch-h8300-Makefile-.
-|-- h8300-buildonly-randconfig-r006-20220421
-|   |-- Makefile:arch-h8300-Makefile:No-such-file-or-directory
-|   |-- arch-Kconfig:can-t-open-file-arch-h8300-Kconfig
-|   `-- make:No-rule-to-make-target-arch-h8300-Makefile-.
-|-- i386-allmodconfig
-|   |-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|   `-- fs-io_uring.c:sparse:sparse:marked-inline-but-without-a-definition
-|-- i386-allyesconfig
-|   |-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|   `-- fs-io_uring.c:sparse:sparse:marked-inline-but-without-a-definition
-|-- i386-randconfig-m021
-|   `-- drivers-edac-edac_device.c-edac_device_alloc_ctl_info()-warn:Please-consider-using-kcalloc-instead
-|-- i386-randconfig-s001
-|   `-- fs-io_uring.c:sparse:sparse:marked-inline-but-without-a-definition
-|-- ia64-allmodconfig
-|   |-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:cast-to-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-void-const-volatile-noderef-__iomem-addr-got-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-smem_partition_header-phdr-got-void-noderef-__iomem-virt_base
-|   `-- fs-io_uring.c:sparse:sparse:marked-inline-but-without-a-definition
-|-- ia64-allyesconfig
-|   |-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:cast-to-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-void-const-volatile-noderef-__iomem-addr-got-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-smem_partition_header-phdr-got-void-noderef-__iomem-virt_base
-|   `-- fs-io_uring.c:sparse:sparse:marked-inline-but-without-a-definition
-|-- ia64-randconfig-r032-20220421
-|   `-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|-- m68k-allmodconfig
-|   |-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:cast-to-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-smem_partition_header-phdr-got-void-noderef-__iomem-virt_base
-|   `-- fs-io_uring.c:sparse:sparse:marked-inline-but-without-a-definition
-|-- m68k-allyesconfig
-|   |-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:cast-to-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-smem_partition_header-phdr-got-void-noderef-__iomem-virt_base
-|   `-- fs-io_uring.c:sparse:sparse:marked-inline-but-without-a-definition
-|-- m68k-buildonly-randconfig-r005-20220422
-|   |-- drivers-char-hw_random-mpfs-rng.c:error:implicit-declaration-of-function-mpfs_blocking_transaction
-|   |-- drivers-char-hw_random-mpfs-rng.c:error:implicit-declaration-of-function-mpfs_sys_controller_get
-|   |-- drivers-char-hw_random-mpfs-rng.c:warning:assignment-to-struct-mpfs_sys_controller-from-int-makes-pointer-from-integer-without-a-cast
-|   |-- standard-input:Error:operands-mismatch-statement-divu.l-d0-d3:d7-ignored
-|   |-- standard-input:Error:operands-mismatch-statement-mulu.l-(-a0)-d2:d4-ignored
-|   |-- standard-input:Error:operands-mismatch-statement-mulu.l-(-a0)-d3:d0-ignored
-|   `-- standard-input:Error:operands-mismatch-statement-mulu.l-d3-d2:d7-ignored
-|-- m68k-randconfig-r011-20220421
-|   `-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|-- m68k-randconfig-r013-20220421
-|   `-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|-- m68k-randconfig-r026-20220421
-|   `-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|-- microblaze-randconfig-p002-20220422
-|   |-- fs-btrfs-ctree.c:warning:Local-variable-unlock_up-shadows-outer-function-shadowFunction
-|   |-- fs-btrfs-send.c:warning:Either-the-condition-level-is-redundant-or-the-array-path-nodes-is-accessed-at-index-which-is-out-of-bounds.-negativeIndex
-|   `-- fs-btrfs-send.c:warning:Either-the-condition-level-is-redundant-or-the-array-path-slots-is-accessed-at-index-which-is-out-of-bounds.-negativeIndex
-|-- mips-allmodconfig
-|   |-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:cast-to-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-void-const-volatile-noderef-__iomem-mem-got-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-smem_partition_header-phdr-got-void-noderef-__iomem-virt_base
-|   `-- fs-io_uring.c:sparse:sparse:marked-inline-but-without-a-definition
-|-- mips-allyesconfig
-|   |-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:cast-to-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-void-const-volatile-noderef-__iomem-mem-got-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-smem_partition_header-phdr-got-void-noderef-__iomem-virt_base
-|   `-- fs-io_uring.c:sparse:sparse:marked-inline-but-without-a-definition
-|-- nios2-allmodconfig
-|   |-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:cast-to-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-void-const-volatile-noderef-__iomem-addr-got-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-smem_partition_header-phdr-got-void-noderef-__iomem-virt_base
-|   `-- fs-io_uring.c:sparse:sparse:marked-inline-but-without-a-definition
-|-- nios2-allyesconfig
-|   |-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:cast-to-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-void-const-volatile-noderef-__iomem-addr-got-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-smem_partition_header-phdr-got-void-noderef-__iomem-virt_base
-|   `-- fs-io_uring.c:sparse:sparse:marked-inline-but-without-a-definition
-|-- nios2-randconfig-r005-20220421
-|   `-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|-- parisc-allmodconfig
-|   `-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|-- parisc-allyesconfig
-|   `-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|-- parisc-buildonly-randconfig-r004-20220422
-|   |-- mpfs-rng.c:(.data.rel.ro):undefined-reference-to-mpfs_blocking_transaction
-|   `-- mpfs-rng.c:(.data.rel.ro):undefined-reference-to-mpfs_sys_controller_get
-|-- powerpc-allmodconfig
-|   |-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:cast-to-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-void-const-volatile-noderef-__iomem-addr-got-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-smem_partition_header-phdr-got-void-noderef-__iomem-virt_base
-|   `-- fs-io_uring.c:sparse:sparse:marked-inline-but-without-a-definition
-|-- powerpc-allyesconfig
-|   |-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:cast-to-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-void-const-volatile-noderef-__iomem-addr-got-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-smem_partition_header-phdr-got-void-noderef-__iomem-virt_base
-|   `-- fs-io_uring.c:sparse:sparse:marked-inline-but-without-a-definition
-|-- powerpc-buildonly-randconfig-r005-20220421
-|   `-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|-- powerpc64-randconfig-p001-20220422
-|   |-- drivers-edac-edac_mc.c:warning:Variable-layer-is-not-assigned-a-value.-unassignedVariable
-|   |-- kernel-bpf-core.c:warning:Syntax-Error:AST-broken-binary-operator-doesn-t-have-two-operands.-internalAstError
-|   |-- kernel-module-kallsyms.c:warning:Assignment-of-function-parameter-has-no-effect-outside-the-function.-uselessAssignmentArg
-|   |-- kernel-module-kallsyms.c:warning:Redundant-assignment-of-mod-init_layout.size-to-itself.-selfAssignment
-|   |-- kernel-module-main.c:warning:Local-variable-arr-shadows-outer-variable-shadowVariable
-|   |-- kernel-module-main.c:warning:Parameter-debug-can-be-declared-with-const-constParameter
-|   |-- kernel-module-main.c:warning:Redundant-assignment-of-mod-core_layout.size-to-itself.-selfAssignment
-|   |-- kernel-module-main.c:warning:Redundant-assignment-of-mod-data_layout.size-to-itself.-selfAssignment
-|   |-- kernel-module-main.c:warning:Redundant-assignment-of-mod-init_layout.size-to-itself.-selfAssignment
-|   |-- lib-iov_iter.c:warning:Parameter-old-can-be-declared-with-const-constParameter
-|   |-- lib-iov_iter.c:warning:Redundant-initialization-for-ret-.-The-initialized-value-is-overwritten-before-it-is-read.-redundantInitialization
-|   `-- lib-vsprintf.c:warning:Parameter-end-can-be-declared-with-const-constParameter
-|-- powerpc64-randconfig-r021-20220421
-|   `-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|-- riscv-allmodconfig
-|   |-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:cast-to-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-void-const-volatile-noderef-__iomem-addr-got-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-smem_partition_header-phdr-got-void-noderef-__iomem-virt_base
-|   `-- fs-io_uring.c:sparse:sparse:marked-inline-but-without-a-definition
-|-- riscv-allyesconfig
-|   |-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:cast-to-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-void-const-volatile-noderef-__iomem-addr-got-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-smem_partition_header-phdr-got-void-noderef-__iomem-virt_base
-|   `-- fs-io_uring.c:sparse:sparse:marked-inline-but-without-a-definition
-|-- riscv-buildonly-randconfig-r001-20220421
-|   `-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|-- riscv-buildonly-randconfig-r003-20220421
-|   `-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|-- riscv-randconfig-r035-20220422
-|   `-- crypto-sm3.c:internal-compiler-error:Segmentation-fault
-|-- s390-allmodconfig
-|   |-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|   `-- fs-io_uring.c:sparse:sparse:marked-inline-but-without-a-definition
-|-- s390-allyesconfig
-|   |-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:cast-to-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-void-const-volatile-noderef-__iomem-addr-got-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-smem_partition_header-phdr-got-void-noderef-__iomem-virt_base
-|   `-- fs-io_uring.c:sparse:sparse:marked-inline-but-without-a-definition
-|-- s390-randconfig-r025-20220421
-|   `-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|-- sh-allmodconfig
-|   |-- arch-sh-include-asm-io.h:error:expected-expression-before-do
-|   `-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|-- sh-allyesconfig
-|   |-- arch-sh-include-asm-io.h:error:expected-expression-before-do
-|   `-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|-- sh-randconfig-c004-20220421
-|   `-- arch-sh-include-asm-io.h:error:expected-expression-before-do
-|-- sparc-allmodconfig
-|   |-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:cast-to-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-void-const-volatile-noderef-__iomem-addr-got-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-smem_partition_header-phdr-got-void-noderef-__iomem-virt_base
-|   `-- fs-io_uring.c:sparse:sparse:marked-inline-but-without-a-definition
-|-- sparc-allyesconfig
-|   |-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:cast-to-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-argument-(different-address-spaces)-expected-void-const-volatile-noderef-__iomem-addr-got-restricted-__le32
-|   |-- drivers-soc-qcom-smem.c:sparse:sparse:incorrect-type-in-assignment-(different-address-spaces)-expected-struct-smem_partition_header-phdr-got-void-noderef-__iomem-virt_base
-|   `-- fs-io_uring.c:sparse:sparse:marked-inline-but-without-a-definition
-|-- um-i386_defconfig
-|   `-- fs-io_uring.c:sparse:sparse:marked-inline-but-without-a-definition
-|-- um-x86_64_defconfig
-|   `-- fs-io_uring.c:sparse:sparse:marked-inline-but-without-a-definition
-|-- x86_64-allmodconfig
-|   |-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|   `-- fs-io_uring.c:sparse:sparse:marked-inline-but-without-a-definition
-|-- x86_64-allnoconfig
-|   `-- mm-memory.c:linux-mm_inline.h-is-included-more-than-once.
-|-- x86_64-allyesconfig
-|   |-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|   `-- fs-io_uring.c:sparse:sparse:marked-inline-but-without-a-definition
-|-- x86_64-randconfig-m001
-|   `-- drivers-edac-edac_device.c-edac_device_alloc_ctl_info()-warn:Please-consider-using-kcalloc-instead
-|-- x86_64-randconfig-m001-20220418
-|   |-- drivers-net-wireless-ath-ath11k-peer.c-ath11k_peer_rhash_addr_tbl_init()-warn:missing-error-code-ret
-|   `-- drivers-net-wireless-ath-ath11k-peer.c-ath11k_peer_rhash_id_tbl_init()-warn:missing-error-code-ret
-|-- x86_64-randconfig-s021
-|   `-- fs-io_uring.c:sparse:sparse:marked-inline-but-without-a-definition
-|-- xtensa-allmodconfig
-|   `-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|-- xtensa-allyesconfig
-|   `-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-|-- xtensa-randconfig-m031-20220422
-|   `-- drivers-pinctrl-pinctrl-ingenic.c-is_soc_or_above()-warn:bitwise-AND-condition-is-false-here
-`-- xtensa-randconfig-r002-20220421
-    `-- drivers-dma-buf-st-dma-fence-unwrap.c:warning:variable-err-set-but-not-used
-
-clang_recent_errors
-|-- arm-randconfig-c002-20220422
-|   |-- drivers-usb-atm-cxacru.c:warning:Call-to-function-sprintf-is-insecure-as-it-does-not-provide-bounding-of-the-memory-buffer-or-security-checks-introduced-in-the-C11-standard.-Replace-with-analogous-fun
-|   |-- drivers-usb-atm-usbatm.c:warning:Call-to-function-sprintf-is-insecure-as-it-does-not-provide-bounding-of-the-memory-buffer-or-security-checks-introduced-in-the-C11-standard.-Replace-with-analogous-fun
-|   |-- drivers-usb-chipidea-core.c:warning:Call-to-function-sprintf-is-insecure-as-it-does-not-provide-bounding-of-the-memory-buffer-or-security-checks-introduced-in-the-C11-standard.-Replace-with-analogous-
-|   |-- drivers-usb-gadget-udc-core.c:warning:Call-to-function-sprintf-is-insecure-as-it-does-not-provide-bounding-of-the-memory-buffer-or-security-checks-introduced-in-the-C11-standard.-Replace-with-analogou
-|   |-- kernel-module-main.c:warning:Call-to-function-sprintf-is-insecure-as-it-does-not-provide-bounding-of-the-memory-buffer-or-security-checks-introduced-in-the-C11-standard.-Replace-with-analogous-functio
-|   `-- kernel-module-main.c:warning:Null-pointer-passed-as-1st-argument-to-memory-copy-function-clang-analyzer-unix.cstring.NullArg
-|-- arm-randconfig-r015-20220421
-|   |-- drivers-bus-mhi-host-main.c:warning:parameter-event_quota-set-but-not-used
-|   `-- kernel-bpf-syscall.c:warning:no-previous-prototype-for-function-unpriv_ebpf_notify
-|-- arm64-buildonly-randconfig-r002-20220421
-|   `-- drivers-bus-mhi-host-main.c:warning:parameter-event_quota-set-but-not-used
-|-- arm64-randconfig-r021-20220422
-|   |-- drivers-char-hw_random-mpfs-rng.c:error:call-to-undeclared-function-mpfs_blocking_transaction-ISO-C99-and-later-do-not-support-implicit-function-declarations
-|   |-- drivers-char-hw_random-mpfs-rng.c:error:call-to-undeclared-function-mpfs_sys_controller_get-ISO-C99-and-later-do-not-support-implicit-function-declarations
-|   `-- drivers-char-hw_random-mpfs-rng.c:warning:incompatible-integer-to-pointer-conversion-assigning-to-struct-mpfs_sys_controller-from-int
-|-- arm64-randconfig-r035-20220421
-|   |-- drivers-bus-mhi-host-main.c:warning:parameter-event_quota-set-but-not-used
-|   `-- kernel-bpf-syscall.c:warning:no-previous-prototype-for-function-unpriv_ebpf_notify
-|-- hexagon-randconfig-r034-20220421
-|   `-- kernel-bpf-syscall.c:warning:no-previous-prototype-for-function-unpriv_ebpf_notify
-|-- hexagon-randconfig-r041-20220421
-|   `-- drivers-bus-mhi-host-main.c:warning:parameter-event_quota-set-but-not-used
-|-- hexagon-randconfig-r045-20220421
-|   `-- drivers-bus-mhi-host-main.c:warning:parameter-event_quota-set-but-not-used
-|-- hexagon-randconfig-r045-20220424
-|   |-- drivers-char-hw_random-mpfs-rng.c:error:call-to-undeclared-function-mpfs_blocking_transaction-ISO-C99-and-later-do-not-support-implicit-function-declarations
-|   |-- drivers-char-hw_random-mpfs-rng.c:error:call-to-undeclared-function-mpfs_sys_controller_get-ISO-C99-and-later-do-not-support-implicit-function-declarations
-|   `-- drivers-char-hw_random-mpfs-rng.c:warning:incompatible-integer-to-pointer-conversion-assigning-to-struct-mpfs_sys_controller-from-int
-|-- i386-randconfig-a002
-|   `-- kernel-bpf-syscall.c:warning:no-previous-prototype-for-function-unpriv_ebpf_notify
-|-- i386-randconfig-a004
-|   `-- kernel-bpf-syscall.c:warning:no-previous-prototype-for-function-unpriv_ebpf_notify
-|-- i386-randconfig-a011
-|   |-- drivers-bus-mhi-host-main.c:warning:parameter-event_quota-set-but-not-used
-|   `-- kernel-bpf-syscall.c:warning:no-previous-prototype-for-function-unpriv_ebpf_notify
-|-- i386-randconfig-a013
-|   |-- drivers-bus-mhi-host-main.c:warning:parameter-event_quota-set-but-not-used
-|   `-- kernel-bpf-syscall.c:warning:no-previous-prototype-for-function-unpriv_ebpf_notify
-|-- i386-randconfig-a015
-|   |-- drivers-bus-mhi-host-main.c:warning:parameter-event_quota-set-but-not-used
-|   `-- kernel-bpf-syscall.c:warning:no-previous-prototype-for-function-unpriv_ebpf_notify
-|-- i386-randconfig-c001
-|   |-- drivers-base-topology.c:warning:Value-stored-to-dev-during-its-initialization-is-never-read-clang-analyzer-deadcode.DeadStores
-|   |-- drivers-bus-mhi-host-main.c:warning:parameter-event_quota-set-but-not-used
-|   |-- kernel-bpf-syscall.c:warning:no-previous-prototype-for-function-unpriv_ebpf_notify
-|   |-- kernel-module-main.c:warning:Call-to-function-sprintf-is-insecure-as-it-does-not-provide-bounding-of-the-memory-buffer-or-security-checks-introduced-in-the-C11-standard.-Replace-with-analogous-functio
-|   |-- kernel-module-main.c:warning:Null-pointer-passed-as-1st-argument-to-memory-copy-function-clang-analyzer-unix.cstring.NullArg
-|   `-- net-ipv4-tcp_cong.c:warning:Division-by-zero-clang-analyzer-core.DivideZero
-|-- riscv-randconfig-c006-20220422
-|   `-- kernel-bpf-syscall.c:warning:no-previous-prototype-for-function-unpriv_ebpf_notify
-|-- riscv-randconfig-c006-20220424
-|   `-- drivers-net-ethernet-mellanox-mlxsw-core_linecards.c:warning:Use-of-memory-after-it-is-freed-clang-analyzer-unix.Malloc
-|-- riscv-randconfig-r004-20220421
-|   `-- drivers-bus-mhi-host-main.c:warning:parameter-event_quota-set-but-not-used
-|-- riscv-randconfig-r026-20220420
-|   `-- drivers-hid-wacom_wac.c:warning:format-specifies-type-unsigned-short-but-the-argument-has-type-int
-|-- s390-alldefconfig
-|   |-- arch-s390-include-asm-spinlock.h:error:unexpected-token-in-.rept-directive
-|   |-- arch-s390-include-asm-spinlock.h:error:unknown-directive
-|   |-- arch-s390-include-asm-spinlock.h:error:unmatched-.endr-directive
-|   |-- arch-s390-lib-spinlock.c:error:unexpected-token-in-.rept-directive
-|   |-- arch-s390-lib-spinlock.c:error:unknown-directive
-|   `-- arch-s390-lib-spinlock.c:error:unmatched-.endr-directive
-|-- s390-randconfig-c005-20220422
-|   |-- arch-s390-include-asm-spinlock.h:error:unexpected-token-in-.rept-directive
-|   |-- arch-s390-include-asm-spinlock.h:error:unknown-directive
-|   |-- arch-s390-include-asm-spinlock.h:error:unmatched-.endr-directive
-|   |-- arch-s390-lib-spinlock.c:error:unexpected-token-in-.rept-directive
-|   |-- arch-s390-lib-spinlock.c:error:unknown-directive
-|   `-- arch-s390-lib-spinlock.c:error:unmatched-.endr-directive
-|-- s390-randconfig-r003-20220421
-|   |-- arch-s390-include-asm-spinlock.h:error:unexpected-token-in-.rept-directive
-|   |-- arch-s390-include-asm-spinlock.h:error:unknown-directive
-|   |-- arch-s390-include-asm-spinlock.h:error:unmatched-.endr-directive
-|   |-- arch-s390-lib-spinlock.c:error:unexpected-token-in-.rept-directive
-|   |-- arch-s390-lib-spinlock.c:error:unknown-directive
-|   |-- arch-s390-lib-spinlock.c:error:unmatched-.endr-directive
-|   `-- drivers-bus-mhi-host-main.c:warning:parameter-event_quota-set-but-not-used
-|-- s390-randconfig-r006-20220421
-|   |-- arch-s390-include-asm-spinlock.h:error:unexpected-token-in-.rept-directive
-|   |-- arch-s390-include-asm-spinlock.h:error:unknown-directive
-|   |-- arch-s390-include-asm-spinlock.h:error:unmatched-.endr-directive
-|   |-- arch-s390-lib-spinlock.c:error:unexpected-token-in-.rept-directive
-|   |-- arch-s390-lib-spinlock.c:error:unknown-directive
-|   |-- arch-s390-lib-spinlock.c:error:unmatched-.endr-directive
-|   `-- drivers-bus-mhi-host-main.c:warning:parameter-event_quota-set-but-not-used
-|-- x86_64-allyesconfig
-|   `-- drivers-gpu-drm-solomon-ssd13-spi.c:warning:unused-variable-ssd13_spi_table
-|-- x86_64-randconfig-a001
-|   |-- drivers-bus-mhi-host-main.c:warning:parameter-event_quota-set-but-not-used
-|   `-- kernel-bpf-syscall.c:warning:no-previous-prototype-for-function-unpriv_ebpf_notify
-|-- x86_64-randconfig-a005
-|   `-- drivers-bus-mhi-host-main.c:warning:parameter-event_quota-set-but-not-used
-|-- x86_64-randconfig-a012
-|   |-- drivers-bus-mhi-host-main.c:warning:parameter-event_quota-set-but-not-used
-|   `-- kernel-bpf-syscall.c:warning:no-previous-prototype-for-function-unpriv_ebpf_notify
-|-- x86_64-randconfig-a014
-|   `-- drivers-bus-mhi-host-main.c:warning:parameter-event_quota-set-but-not-used
-|-- x86_64-randconfig-a016
-|   `-- drivers-bus-mhi-host-main.c:warning:parameter-event_quota-set-but-not-used
-`-- x86_64-randconfig-c007
-    |-- drivers-bus-mhi-host-main.c:warning:parameter-event_quota-set-but-not-used
-    |-- kernel-bpf-syscall.c:warning:no-previous-prototype-for-function-unpriv_ebpf_notify
-    |-- kernel-module-main.c:warning:Call-to-function-sprintf-is-insecure-as-it-does-not-provide-bounding-of-the-memory-buffer-or-security-checks-introduced-in-the-C11-standard.-Replace-with-analogous-functio
-    |-- kernel-module-main.c:warning:Null-pointer-passed-as-1st-argument-to-memory-copy-function-clang-analyzer-unix.cstring.NullArg
-    |-- mm-sparse-vmemmap.c:warning:Value-stored-to-next-during-its-initialization-is-never-read-clang-analyzer-deadcode.DeadStores
-    `-- net-ipv4-tcp_cong.c:warning:Division-by-zero-clang-analyzer-core.DivideZero
-
-elapsed time: 5684m
-
-configs tested: 130
-configs skipped: 3
-
-gcc tested configs:
-arm                              allmodconfig
-arm                              allyesconfig
-arm                                 defconfig
-arm64                               defconfig
-arm64                            allyesconfig
-ia64                             allmodconfig
-i386                             allyesconfig
-ia64                             allyesconfig
-x86_64                           allyesconfig
-mips                             allyesconfig
-riscv                            allyesconfig
-um                           x86_64_defconfig
-riscv                            allmodconfig
-um                             i386_defconfig
-mips                             allmodconfig
-powerpc                          allmodconfig
-m68k                             allyesconfig
-s390                             allmodconfig
-s390                             allyesconfig
-m68k                             allmodconfig
-powerpc                          allyesconfig
-i386                          randconfig-c001
-sparc                            allyesconfig
-parisc                           allyesconfig
-sh                               allmodconfig
-h8300                            allyesconfig
-xtensa                           allyesconfig
-arc                              allyesconfig
-alpha                            allyesconfig
-nios2                            allyesconfig
-mips                 decstation_r4k_defconfig
-powerpc                 mpc834x_mds_defconfig
-ia64                            zx1_defconfig
-mips                     decstation_defconfig
-arm                          exynos_defconfig
-arm                          simpad_defconfig
-mips                            gpr_defconfig
-m68k                        mvme147_defconfig
-sh                           se7722_defconfig
-sh                            hp6xx_defconfig
-xtensa                    xip_kc705_defconfig
-arm                          iop32x_defconfig
-parisc64                            defconfig
-sh                   rts7751r2dplus_defconfig
-arm                        mini2440_defconfig
-sparc                       sparc32_defconfig
-powerpc                  storcenter_defconfig
-arm                        keystone_defconfig
-sh                           se7343_defconfig
-powerpc                     sequoia_defconfig
-arc                                 defconfig
-xtensa                       common_defconfig
-sh                            shmin_defconfig
-sh                               alldefconfig
-powerpc                      ppc6xx_defconfig
-sh                     sh7710voipgw_defconfig
-sh                          rsk7269_defconfig
-sh                           se7750_defconfig
-arm                  randconfig-c002-20220421
-x86_64                        randconfig-c001
-ia64                                defconfig
-m68k                                defconfig
-alpha                               defconfig
-csky                                defconfig
-nios2                               defconfig
-parisc                              defconfig
-s390                                defconfig
-i386                   debian-10.3-kselftests
-i386                              debian-10.3
-i386                                defconfig
-sparc                               defconfig
-powerpc                           allnoconfig
-i386                          randconfig-a001
-i386                          randconfig-a003
-i386                          randconfig-a005
-x86_64                        randconfig-a013
-x86_64                        randconfig-a011
-x86_64                        randconfig-a015
-i386                          randconfig-a014
-i386                          randconfig-a012
-i386                          randconfig-a016
-x86_64                        randconfig-a004
-x86_64                        randconfig-a002
-x86_64                        randconfig-a006
-arc                  randconfig-r043-20220421
-riscv                randconfig-r042-20220421
-s390                 randconfig-r044-20220421
-riscv                    nommu_k210_defconfig
-riscv                    nommu_virt_defconfig
-riscv                             allnoconfig
-riscv                          rv32_defconfig
-riscv                               defconfig
-x86_64                          rhel-8.3-func
-x86_64                              defconfig
-x86_64                                  kexec
-x86_64                               rhel-8.3
-x86_64                         rhel-8.3-kunit
-x86_64                    rhel-8.3-kselftests
-
-clang tested configs:
-arm                  randconfig-c002-20220422
-powerpc              randconfig-c003-20220422
-s390                 randconfig-c005-20220422
-mips                 randconfig-c004-20220422
-x86_64                        randconfig-c007
-i386                          randconfig-c001
-riscv                randconfig-c006-20220422
-s390                             alldefconfig
-powerpc                      ppc64e_defconfig
-mips                           rs90_defconfig
-mips                        workpad_defconfig
-arm                           spitz_defconfig
-powerpc                 mpc8313_rdb_defconfig
-powerpc                 mpc836x_mds_defconfig
-powerpc                      obs600_defconfig
-powerpc                        fsp2_defconfig
-powerpc                     tqm8560_defconfig
-hexagon                          alldefconfig
-arm                     davinci_all_defconfig
-i386                          randconfig-a002
-i386                          randconfig-a006
-i386                          randconfig-a004
-x86_64                        randconfig-a016
-x86_64                        randconfig-a012
-x86_64                        randconfig-a014
-i386                          randconfig-a013
-i386                          randconfig-a011
-i386                          randconfig-a015
-x86_64                        randconfig-a005
-x86_64                        randconfig-a001
-x86_64                        randconfig-a003
-hexagon              randconfig-r041-20220421
-hexagon              randconfig-r045-20220421
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
