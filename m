@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A0BDC433EF
-	for <ath11k@archiver.kernel.org>; Wed, 27 Apr 2022 12:35:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9CCEC433EF
+	for <ath11k@archiver.kernel.org>; Wed, 27 Apr 2022 13:26:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=fvAC+i2iJC8BttRjip1FeAdaHf+xTguFW8zUxRCvetY=; b=3KezJ8vt3SoacX
-	bCUvNBai6GDJTf0KDFmnZw5M/g9tGtm7ipWmA0Vvm1Y6AAnTyuX3MhyiYo1r+zG6Y3xHJ3ptKm4vo
-	3oN8yaXQIuxLB44vv1XbwXXgQCVWC47mk4Att+y28D9dvoKsgJdEvrd85RzvjQI59n2hrKFX2vXHq
-	Sbm3hIsAig3adUfKj3QaEAd7EthZcoUTdJpfvvTQ3bb/Jqc6dc5MgwMZP3Ofu3Te0brhB7CtcpxlU
-	ASE4LH6yXUjXMWYDs0AT2+d/uMEZM04vNybPl1J4qV/NIhXu5+RWJ3KYcIrM0KQYv9p20VzXujU6S
-	0bBeE1k+ttDb1rAL+5TA==;
+	List-Owner; bh=KUwceVEB5+avFDhwd5WxxngY9TovsXJMQzjeqhoSpF0=; b=E2YdrJxa1jl5ex
+	on4R0XkcKLgsXt/mJ8Yoydy4Q8rKybR0DRTlQnFm3AX3gbXpKa78OkCpM4lKN3CLxbDbDvYgDIH4m
+	OH1nHeBmdHWaVmwyU0Npn4dSfv5rtISJsT8Xc/L1K+ZvihFWCKYBapnQ2oVGrUadUGd+sJpC4NgvI
+	tQMrwtkB5WXSyTksjAzB8LR5rR4I97ZkoJnAkc2W4UUem52bAf5oujfB+hfAjgX56TL/9i4F1dbur
+	LYVjvn1vUPEuL778gXk5vAIyGt/VbFBlkUcpvcyIGJyTvLx57UsBZQCImosxIhCrrKvLsWPaFftR/
+	jY+Ll1fFgbxGdgRD6Odg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1njgt2-001KYW-OQ; Wed, 27 Apr 2022 12:35:16 +0000
+	id 1njhgp-001Xn1-8d; Wed, 27 Apr 2022 13:26:43 +0000
 Received: from alexa-out.qualcomm.com ([129.46.98.28])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1njgsz-001KVg-58
- for ath11k@lists.infradead.org; Wed, 27 Apr 2022 12:35:14 +0000
+ id 1njhgm-001Xlt-Vg
+ for ath11k@lists.infradead.org; Wed, 27 Apr 2022 13:26:42 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1651062913; x=1682598913;
+ t=1651066001; x=1682602001;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=wabwfxq2ea3ScsaUrS8rkQH3XWlo//81jSwv8ow+8jU=;
- b=rNQdXaHRLKTZzegZNpIoJ265hEBvE+yCi58BzplRW/yG/SFhEkcESRma
- 6vciZQdajMtkUlQ9Hrj91IQdquoE5DzDtRRl+pGOEJaV3+YZNg+EAwC1c
- GbpwhkWm00H/+Webi4XlCA/urdMQ01lYSRS3rK7XlSatfal2GrZ3ZX1dF s=;
-Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
- by alexa-out.qualcomm.com with ESMTP; 27 Apr 2022 05:35:10 -0700
+ bh=TCm7Oo7LtecXBT3WIt7p+lqk/BrbGUUBL7loNIVAru4=;
+ b=FPxS+g07b/LTUPbGU4SFQe9gQDdTXSigQz71rPSmYg4j7syPnAbni72Q
+ GeGWMZsVOuoOHEF+t7s/L+8QQ9Cj6Y3P0DBWBAUqSCYFDOzvDqyZqWkLr
+ jFLXdibuZTKWhtxvbQvDgZzMd0b+eZSsk9owjQMajFApcEGP04/gr+gQ4 Y=;
+Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
+ by alexa-out.qualcomm.com with ESMTP; 27 Apr 2022 06:26:40 -0700
 X-QCInternal: smtphost
 Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2022 05:35:10 -0700
+ by ironmsg08-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2022 06:26:39 -0700
 Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
  nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 27 Apr 2022 05:35:09 -0700
+ 15.2.986.22; Wed, 27 Apr 2022 06:26:39 -0700
 Received: from [10.50.15.218] (10.80.80.8) by nalasex01a.na.qualcomm.com
  (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Wed, 27 Apr
- 2022 05:35:07 -0700
-Message-ID: <86da868b-c1d5-0494-ba43-45067c436904@quicinc.com>
-Date: Wed, 27 Apr 2022 18:05:03 +0530
+ 2022 06:26:36 -0700
+Message-ID: <6e607455-e42a-a591-f58b-b3b2c83ea2cc@quicinc.com>
+Date: Wed, 27 Apr 2022 18:56:33 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
@@ -63,11 +63,11 @@ References: <20220427111848.9257-1-quic_mpubbise@quicinc.com>
 From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
 In-Reply-To: <87pml2g1c7.fsf@kernel.org>
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220427_053513_279173_EB5E5009 
-X-CRM114-Status: GOOD (  18.09  )
+X-CRM114-CacheID: sfid-20220427_062641_105431_5F27A6D6 
+X-CRM114-Status: GOOD (  16.19  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -202,15 +202,12 @@ On 4/27/2022 5:55 PM, Kalle Valo wrote:
 > Can't you use hw_params like I mentioned in the review?
 > 
 
-I'm totally confused now, CE & DP window indices are specifics that come 
-in to play when we access the bus registers and they are closely tied to 
-static_window_map variable which is already in bus_params, I'm not sure 
-if it is a good to have them in hw_params. If at all we decide to move 
-them to hw_params, then we can move pretty much everything to hw_params 
-and remove bus_params completely.
-
-I prefer to keep them in bus_params and make bus_params device specific,
-If you feel it otherwise, then I can move it to hw_params.
+Even without this patch, as of today, bus_params is already device 
+specific with QCN9074 changing the static_window_map in bus_params to 
+true in ath11k_pci_probe(). And if we have to move these device specific 
+bus_params to hw_parmas, then bus_params can be pretty much removed 
+completely with the changes that WCN6750 bring in. Any thoughts on this? 
+I can make the changes that can get along with WCN6750 series.
 
 Thanks,
 Manikanta
