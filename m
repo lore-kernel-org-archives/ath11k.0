@@ -4,63 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DE89C433F5
-	for <ath11k@archiver.kernel.org>; Wed, 27 Apr 2022 05:13:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6ADBBC433EF
+	for <ath11k@archiver.kernel.org>; Wed, 27 Apr 2022 05:14:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
 	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=a00L5PF9gAa8lVKOU9F/uJbK4EV2eoVPYHuMNqtrPQo=; b=A4eX003FmZ4+r6
-	fvg+wPU0EZHkeoC7QCBarM78/1QTLQKgTI/xFucXTJPfd6NU8/P4KvowNWgJzUTJG+v4e/OWfs7y5
-	2IK4XfI9Z17avYPn6j6Vyhu4QdIG3lwUR1oa1pyhTjMCjFQoJgSg+c/SRj+BPkPyvCWvDGynQYGCW
-	NOH5SaEzXV9C85HyKckmZvwoCMpozV8E2XjSjH8q7S/zovCqOTJyjpaBc2OZy8yNJjevf9oeqkz2r
-	jhqtOZB3TE0bNw5ZPy8ribXlHbBrEi+gXVAnBoOBmiWOLWDm6LIjDdj354RNkhUfMB/3h1pVQMFiO
-	Jl8oN0DYV0V3ImM/cI9A==;
+	List-Owner; bh=MxLS3L1kx4nkS2bIZq6MQQlY8gIA9rxPTDgMw4ye9Es=; b=EcJOAsLfTScx/q
+	In0wVBwbBRamuHftfrkutl5vbdJFmAngmRX9/HSVA2ujH6OO9yScRd3qhhbPabuFdtxaR0VaRiDxh
+	FiIPQgVyroOov3zcI0R/oZcRcVx/h+GD6PCffrD4rlVGZ2voZfOj7WNPSdn8R7Z4EhFZ0jZ80Lt/s
+	gVJzjaZDiaR/C/LVY1J1KQ4v2QYjKxJYZ/QrFNPQWodXum18+mvb4pnvqgmmYnQonrDBtRWFB0BV6
+	xKvAC2FimyfoCrFPF+y5Rylyi9jW2TEXIGzyS1lkAZDChcqrDcM9ZT77/qfbxNUKyG+Z58JdAySFw
+	ZuIWHRkXL9U3dAKlEy9g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1njZzx-00HRtg-0e; Wed, 27 Apr 2022 05:13:57 +0000
+	id 1nja0o-00HRzE-SZ; Wed, 27 Apr 2022 05:14:50 +0000
 Received: from dfw.source.kernel.org ([139.178.84.217])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1njZzt-00HRt7-TS
- for ath11k@lists.infradead.org; Wed, 27 Apr 2022 05:13:55 +0000
+ id 1nja0m-00HRyo-Do
+ for ath11k@lists.infradead.org; Wed, 27 Apr 2022 05:14:50 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 6CFE26136F;
- Wed, 27 Apr 2022 05:13:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68845C385A9;
- Wed, 27 Apr 2022 05:13:51 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id C629161302;
+ Wed, 27 Apr 2022 05:14:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D29CCC385A7;
+ Wed, 27 Apr 2022 05:14:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1651036432;
- bh=xTF+yKrSWLuvuV03D2dhdn9f/P9hF8bFAdNp1Z38lbw=;
+ s=k20201202; t=1651036487;
+ bh=yBv2EE30DRLNaYudcx9cZFvb01QnSzSCcKtunw7AoZU=;
  h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
- b=L40PUmY8eS9XKJ0DrkX15ae7Jyw+cxpol+DixnLYhrMkGZDLXv6drWamCka/bYuY2
- SCib48ZyLvuyWFUxlcmJBiwdkNq7bQ5CEqsoYxIWrhtDWlwZjwVDJgCMZ3So5q6B2r
- Rx46AvJe7VFdY7D/S9ameshBz3NB2DM/sW+JmZZQCiCSHFY430znzGkWAgvvz92UTA
- NJ3LcsG3q53fqQKYZENCr6x5w6hDtnckqXXJhA1cWWKpMyqvNRSbkXG/XxooPwu98g
- HtsR0AMHE92dy51rZttgIVHFaa5jJe3UclOdhE0LkraEnhnF9BFciHl5q2Upwo0DhY
- IWd5CjyJP+TWw==
+ b=fAj1h1TQ6UJdlIpNipwed9Rv9mASfJZquqKtNWdObZcsD99g6wgT7bPlM0gX2FCYM
+ m7cDFz4FVVBjeZ5iLhWJevN6SQxO7Ez/rbEdLtroJ5YfmtpP6ZYhdLe3cFcQ0i0FMW
+ jxyMoaCeJOQt3VPRZ235Ckv1qPExLTKnB+PcAwWNm1tNs6D2g7OuhuEATRk/DWjxHH
+ cds+jYochLsNAZfPGwMotbcrAMYRsuftHNz5Ahqg9KqVPixQbUNmQb7tpBT4f7zZ3r
+ n+aLVt/Xp5mNpPNFtMRTLtW+Lak1Eju5n6HlP68YPlsFmheXYqamMsexlhfgnMri6n
+ brswvqjtFb0EQ==
 From: Kalle Valo <kvalo@kernel.org>
 To: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-Cc: Rob Herring <robh@kernel.org>, <linux-wireless@vger.kernel.org>,
- <mka@chromium.org>, <ath11k@lists.infradead.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v4 01/12] dt: bindings: net: add bindings of WCN6750 for
- ath11k
-References: <20220406094107.17878-1-quic_mpubbise@quicinc.com>
- <20220406094107.17878-2-quic_mpubbise@quicinc.com>
- <Yk2s+srO9DKP7xW1@robh.at.kernel.org>
- <e2fd6542-38fe-a855-1d8f-65799970727e@quicinc.com>
-Date: Wed, 27 Apr 2022 08:13:47 +0300
-In-Reply-To: <e2fd6542-38fe-a855-1d8f-65799970727e@quicinc.com> (Manikanta
- Pubbisetty's message of "Thu, 7 Apr 2022 10:51:37 +0530")
-Message-ID: <87zgk7hzw4.fsf@kernel.org>
+Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <robh@kernel.org>, <mka@chromium.org>
+Subject: Re: [PATCH v5 00/12] add support for WCN6750
+References: <20220426145456.8055-1-quic_mpubbise@quicinc.com>
+Date: Wed, 27 Apr 2022 08:14:43 +0300
+In-Reply-To: <20220426145456.8055-1-quic_mpubbise@quicinc.com> (Manikanta
+ Pubbisetty's message of "Tue, 26 Apr 2022 20:24:44 +0530")
+Message-ID: <87v8uvhzuk.fsf@kernel.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220426_221354_032416_CA4D374F 
-X-CRM114-Status: GOOD (  18.12  )
+X-CRM114-CacheID: sfid-20220426_221448_580305_E22E49AC 
+X-CRM114-Status: GOOD (  22.21  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,41 +75,62 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
 
-> On 4/6/2022 8:38 PM, Rob Herring wrote:
->> On Wed, 06 Apr 2022 15:10:55 +0530, Manikanta Pubbisetty wrote:
->>> WCN6750 is the WLAN chip on Qualcomm Snapdragon SoC SC7280;
->>> Though being a PCIe based solution, it is not attached to
->>> the APSS processor (Application Processor SubSystem), it is
->>> instead attached to another tiny processor called WPSS Q6
->>> processor (Wireless Processor SubSystem) on the SC7280 MSM,
->>> where the WLAN firmware runs, and it is the WLAN firmware
->>> running on the Q6 processor which enumerates WCN6750, as a
->>> result APPS processor would never know such a device being
->>> present in the system and would not detect the WCN6750
->>> hardware unless and otherwise WCN6750 is registered as a
->>> platform device. This is the reason behind adding WCN6750
->>> WLAN node in the device tree.
->>>
->>> Add WCN6750 wireless driver support, its based on ath11k driver.
->>>
->>> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
->>> ---
->>>   .../bindings/net/wireless/qcom,ath11k.yaml    | 361 ++++++++++++------
->>>   1 file changed, 252 insertions(+), 109 deletions(-)
->>>
->>
->>
->> Please add Acked-by/Reviewed-by tags when posting new versions. However,
->> there's no need to repost patches *only* to add the tags. The upstream
->> maintainer will do that for acks received on the version they apply.
->>
->> If a tag was not added on purpose, please state why and what changed.
->>
+> WCN6750 is non-DBS 2x2 11AX chipset. Unlike QCA6390/WCN6855 which
+> are DBS (dual band simultaneous) solutions (2 LMACs), WCN6750 has a
+> single LMAC supporting 2G, 5G and 6G bands. It can be operated only
+> on one band at any given point.
 >
-> There are changes in V4 but nothing significant, I have missed adding
-> the tag, will make sure to add relevant tags going forward.
+> WCN6750 is a PCIe device. Unlike other supported ATH11K PCIe devices
+> which are directly attached to APSS (Application Processor SubSystem),
+> WCN6750 is not attached to APSS, it is attached to the WPSS
+> (Wireless Processor SubSystem) Q6 processor, the FW which runs on the
+> Q6 processor will enumerate the PCIe device. Since APSS is unaware of
+> such a device, it has to be registered as a platform device(AHB) to the
+> kernel for device probing. Like other AHB devices, remoteproc APIs are
+> used to boot up or shutdown of WCN6750.
+>
+> WCN6750 uses both AHB and PCIe ATH11K APIs for it's operation.
+> It uses AHB APIs for device probe and booting of the remote processor.
+> Once device is booted up, it uses ATH11K PCIe APIs for initialization
+> and register access. Hence, it is referred as hybrid bus device in
+> the rest of this series.
+>
+> Since the chip is enumerated by WPSS Q6, device information like
+> BAR and BAR size is not known to the APSS processor. A new QMI message
+> called device info QMI request will be sent to the target for fetching
+> these details.
+>
+> STA and AP modes are supported; Basic connectivity and ping are
+> verified in both the modes.
+>
+> An important point to note is that though WCN6750 is a PCIe device,
+> it cannot be attached to any other platform except on Qualcomm
+> Snapdragon SoCs due to the aforementioned reasons.
+>
+> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
+> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
+> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
+>
+> Manikanta Pubbisetty (12):
+>   dt: bindings: net: add bindings of WCN6750 for ath11k
+>   ath11k: Add HW params for WCN6750
+>   ath11k: Add bus params for WCN6750
+>   ath11k: Add register access logic for WCN6750
+>   ath11k: Fetch device information via QMI for WCN6750
+>   ath11k: Add QMI changes for WCN6750
+>   ath11k: HAL changes to support WCN6750
+>   ath11k: Datapath changes to support WCN6750
+>   ath11k: Do not put HW in DBS mode for WCN6750
+>   ath11k: WMI changes to support WCN6750
+>   ath11k: Update WBM idle ring HP after FW mode on
+>   ath11k: Add support for WCN6750 device
+> ---
+> V5:
+>  - Rebased on ToT SHAID: 01be26cde012478db958d9bde530877c46031e76
 
-I added Rob's reviewed-by to patch 1.
+I already had v4 applied to the pending branch so I'm going to drop v5
+and look at v4 instead.
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
