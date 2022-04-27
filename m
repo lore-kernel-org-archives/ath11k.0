@@ -4,68 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3068AC433FE
-	for <ath11k@archiver.kernel.org>; Wed, 27 Apr 2022 11:19:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCE52C433EF
+	for <ath11k@archiver.kernel.org>; Wed, 27 Apr 2022 11:19:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=KTz5IPBd29xL0H33Bmwk7CoCf4trwCBMDavFmCWP/Wo=; b=SzPCvyg/cF5bQl
-	NbdHL70F34tvxYVBm7SlsGL3MtXPX4TYGy8P6pmkQK4+YNIiV85tbChT35D+E5sWCqMplESA2+fyO
-	a8xaM2nsf3Ujvs3el7AAmdOQsLKzgW+swtw5YLQAH3v1mwpwE2zfVDVSsFlgLJKR+VOILJSe5p0kQ
-	eV5kQaFuIbPhmkVzaxDVqY4t1B3j2LYEbTF+OD+5HtIXojpYbRtgNSD6bDf9QSPLBOd7CukIE8mUt
-	VlftqWSfbx1cuG2VLsYGmBBYChOsG23UEZq708iCiyIF+220pGUZJK2qWnLUUdrhqhzoff0OE5RVl
-	2r9GfZoy8KPDeaLs3nkw==;
+	List-Owner; bh=lmoHbtDgRRTH7Sc32G6MRLuwExp1aN/QP32ft2WZ19U=; b=l8Aeo/4wk5Sfto
+	FI/p/nt1LCrDZhy3kXKvD4o/MrxBX2TiP75fJJHXFO01PsVnNuBedCNmE0wUX4Og6BynJQT4189Us
+	f7WF/pqIOR8IabZ8HJnOaA6X8j50x4VkgOAxD0PmUZkNRm4S2EyJ5qz4gzmUb3j9/UNyHcNRzV15L
+	evQ0huWc1i2uQ/vj3Rxx9qKowk6U0aMhCeSit344tC34fW8YvCSvqggcWtHYEyZob0BOuf1946Dnw
+	Zz8+aQmf/TJ8+bRLIfIZZvNi9LO9b7bMRthRYv0wWCUBZeB/xzXLndL6+Ab1uBvg3vw8PuFhOcAY7
+	No+BS3N3gXNZ5g0mn77Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1njfhn-0013dv-Jx; Wed, 27 Apr 2022 11:19:35 +0000
-Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38])
+	id 1njfhv-0013mQ-8P; Wed, 27 Apr 2022 11:19:43 +0000
+Received: from alexa-out.qualcomm.com ([129.46.98.28])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1njfhj-0013Zn-Pd
- for ath11k@lists.infradead.org; Wed, 27 Apr 2022 11:19:34 +0000
+ id 1njfhs-0013j9-Dg
+ for ath11k@lists.infradead.org; Wed, 27 Apr 2022 11:19:41 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1651058371; x=1682594371;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=GRMvWEYoX0nBDgag5c6xSP5NPTllYkloxSH72AUW00w=;
- b=c7lsTgXhA1DFceErk2d3d3kww7wFbiJtvEf33bLFnZIu5KRZVFyZ5gbl
- qCC3udlry0/6d40Ou1tiEci7CL40Mt8vH0Shv0Cj6JwncG9KmAd05TUuA
- TIsryyjowuAubzQpIOEspnJV1sUELqbUxxDLWcINcxGLsePFBiK8Lw/HG 0=;
-Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
- by alexa-out-sd-01.qualcomm.com with ESMTP; 27 Apr 2022 04:19:31 -0700
+ t=1651058380; x=1682594380;
+ h=from:to:cc:subject:references:date:in-reply-to:
+ message-id:mime-version;
+ bh=bkeRCcZwT59nqDeoEiIxTZeS9TI5zISxzRCG0NQSDn0=;
+ b=LdxIz/jRt1Rh1O5sdAsJZQ/WQo8LY4vKoG3sykL7VGTZ3hz0ouLOy9CC
+ CwCc9xilaau4fnHIXzcWMaTnvFhFxmUupQsZ4CKOByTcqzEZpTWdc5yJd
+ 3BUddqVPZUVZVGPNlROfkxriqXdBZMWRLB9+4MLnlaPsbJtiWllzPrcap M=;
+Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
+ by alexa-out.qualcomm.com with ESMTP; 27 Apr 2022 04:19:39 -0700
 X-QCInternal: smtphost
 Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2022 04:19:31 -0700
+ by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2022 04:19:39 -0700
 Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
  nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 27 Apr 2022 04:19:31 -0700
-Received: from mpubbise-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 27 Apr 2022 04:19:28 -0700
-From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <robh@kernel.org>, <mka@chromium.org>, Manikanta Pubbisetty
- <quic_mpubbise@quicinc.com>
-Subject: [PATCH v6 9/9] ath11k: Add support for WCN6750 device
-Date: Wed, 27 Apr 2022 16:48:48 +0530
-Message-ID: <20220427111848.9257-10-quic_mpubbise@quicinc.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220427111848.9257-1-quic_mpubbise@quicinc.com>
-References: <20220427111848.9257-1-quic_mpubbise@quicinc.com>
+ 15.2.986.22; Wed, 27 Apr 2022 04:19:39 -0700
+Received: from kvalo10 (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Wed, 27 Apr
+ 2022 04:19:36 -0700
+From: Kalle Valo <quic_kvalo@quicinc.com>
+To: Dan Carpenter <dan.carpenter@oracle.com>, Baochen Qiang
+ <quic_bqiang@quicinc.com>
+CC: <kbuild@lists.01.org>, <lkp@intel.com>, <kbuild-all@lists.01.org>,
+ GNU/Weeb Mailing List <gwml@vger.gnuweeb.org>,
+ <linux-kernel@vger.kernel.org>, <ath11k@lists.infradead.org>
+Subject: Re: [ammarfaizi2-block:kvalo/ath/pending 36/40]
+ drivers/net/wireless/ath/ath11k/mac.c:8293
+ ath11k_mac_op_set_bios_sar_specs() warn: variable dereferenced before
+ check 'sar' (see line 8280)
+References: <202204182315.h96VPgso-lkp@intel.com>
+Date: Wed, 27 Apr 2022 14:19:34 +0300
+In-Reply-To: <202204182315.h96VPgso-lkp@intel.com> (Dan Carpenter's message of
+ "Fri, 22 Apr 2022 17:37:33 +0300")
+Message-ID: <o5hy1zqhiyh.fsf@quicinc.com>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/27.2 (windows-nt)
 MIME-Version: 1.0
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220427_041931_908344_7C729CF1 
-X-CRM114-Status: GOOD (  25.40  )
+X-CRM114-CacheID: sfid-20220427_041940_516504_531CA55B 
+X-CRM114-Status: UNSURE (   8.04  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,471 +88,50 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-WCN6750 is non-DBS 2x2 11AX chipset. Unlike QCA6390 which is a
-DBS (dual band simultaneous) solution (2 LMACs), WCN6750 has a
-single LMAC supporting 2G, 5G and 6G bands but will operate only
-on one band at any given point.
++ ath11k list
 
-WCN6750 is a PCIe based solution, but it is attached to the WPSS
-(Wireless Processor SubSystem) Q6 processor, hence it is enumerated
-by the Q6 processor. It is registered to the APSS processor
-(Application Processor SubSystem) as a platform device(AHB) and
-remoteproc APIs are used to boot up or shutdown the device like
-other AHB devices.
+Dan Carpenter <dan.carpenter@oracle.com> writes:
 
-Also, Device information like BAR and it's size is not known to the
-APSS processor as the chip is enumerated by WPSS Q6. These details
-are fetched over QMI.
+> tree:   https://github.com/ammarfaizi2/linux-block kvalo/ath/pending
+> head:   c9a8efc35304a89fc0751649945909caf03eeb29
+> commit: 5ad5b356e75f402fec930cf0d77b6c7862850b55 [36/40] ath11k: Add support for SAR
+> config: x86_64-randconfig-m001-20220418 (https://download.01.org/0day-ci/archive/20220418/202204182315.h96VPgso-lkp@intel.com/config)
+> compiler: gcc-11 (Debian 11.2.0-19) 11.2.0
+>
+> If you fix the issue, kindly add following tag as appropriate
+> Reported-by: kernel test robot <lkp@intel.com>
+> Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
+>
+> New smatch warnings:
+> drivers/net/wireless/ath/ath11k/mac.c:8293 ath11k_mac_op_set_bios_sar_specs() warn: variable dereferenced before check 'sar' (see line 8280)
+>
+> vim +/sar +8293 drivers/net/wireless/ath/ath11k/mac.c
+>
+> 5ad5b356e75f40 Baochen Qiang 2022-04-12  8276  static int ath11k_mac_op_set_bios_sar_specs(struct ieee80211_hw *hw,
+> 5ad5b356e75f40 Baochen Qiang 2022-04-12  8277  					    const struct cfg80211_sar_specs *sar)
+> 5ad5b356e75f40 Baochen Qiang 2022-04-12  8278  {
+> 5ad5b356e75f40 Baochen Qiang 2022-04-12  8279  	struct ath11k *ar = hw->priv;
+> 5ad5b356e75f40 Baochen Qiang 2022-04-12 @8280  	const struct cfg80211_sar_sub_specs *sspec = sar->sub_specs;
+>                                                                                              ^^^^^^^^^^^^^^
+> Dereference
+>
+> 5ad5b356e75f40 Baochen Qiang 2022-04-12  8281  	int ret, index;
+> 5ad5b356e75f40 Baochen Qiang 2022-04-12  8282  	u8 *sar_tbl;
+> 5ad5b356e75f40 Baochen Qiang 2022-04-12  8283  	u32 i;
+> 5ad5b356e75f40 Baochen Qiang 2022-04-12  8284  
+> 5ad5b356e75f40 Baochen Qiang 2022-04-12  8285  	mutex_lock(&ar->conf_mutex);
+> 5ad5b356e75f40 Baochen Qiang 2022-04-12  8286  
+> 5ad5b356e75f40 Baochen Qiang 2022-04-12  8287  	if (!test_bit(WMI_TLV_SERVICE_BIOS_SAR_SUPPORT, ar->ab->wmi_ab.svc_map) ||
+> 5ad5b356e75f40 Baochen Qiang 2022-04-12  8288  	    !ar->ab->hw_params.bios_sar_capa) {
+> 5ad5b356e75f40 Baochen Qiang 2022-04-12  8289  		ret = -EOPNOTSUPP;
+> 5ad5b356e75f40 Baochen Qiang 2022-04-12  8290  		goto exit;
+> 5ad5b356e75f40 Baochen Qiang 2022-04-12  8291  	}
+> 5ad5b356e75f40 Baochen Qiang 2022-04-12  8292  
+> 5ad5b356e75f40 Baochen Qiang 2022-04-12 @8293  	if (!sar || sar->type != NL80211_SAR_TYPE_POWER ||
+>                                                      ^^^
+> Checked too late
 
-STA and AP modes are supported. Verified basic connectivity and ping
-in both the modes.
-
-An important point to note is that though WCN6750 is a PCIe device,
-it cannot be attached to any other platform except on Qualcomm
-Snapdragon SoCs due to the aforementioned reasons.
-
-Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
-Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
-Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
-
-Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/Makefile |   5 +-
- drivers/net/wireless/ath/ath11k/ahb.c    | 152 ++++++++++++++++++++---
- drivers/net/wireless/ath/ath11k/ahb.h    |   1 -
- drivers/net/wireless/ath/ath11k/core.h   |   1 +
- drivers/net/wireless/ath/ath11k/pcic.c   |  23 ++++
- 5 files changed, 164 insertions(+), 18 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/Makefile b/drivers/net/wireless/ath/ath11k/Makefile
-index 0ebfe41d6143..cc47e0114595 100644
---- a/drivers/net/wireless/ath/ath11k/Makefile
-+++ b/drivers/net/wireless/ath/ath11k/Makefile
-@@ -16,7 +16,8 @@ ath11k-y += core.o \
- 	    ce.o \
- 	    peer.o \
- 	    dbring.o \
--	    hw.o
-+	    hw.o \
-+	    pcic.o
- 
- ath11k-$(CONFIG_ATH11K_DEBUGFS) += debugfs.o debugfs_htt_stats.o debugfs_sta.o
- ath11k-$(CONFIG_NL80211_TESTMODE) += testmode.o
-@@ -29,7 +30,7 @@ obj-$(CONFIG_ATH11K_AHB) += ath11k_ahb.o
- ath11k_ahb-y += ahb.o
- 
- obj-$(CONFIG_ATH11K_PCI) += ath11k_pci.o
--ath11k_pci-y += mhi.o pci.o pcic.o
-+ath11k_pci-y += mhi.o pci.o
- 
- # for tracing framework to find trace.h
- CFLAGS_trace.o := -I$(src)
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index fa12e50f32f4..8be84353b1cc 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.c
-+++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -13,6 +13,7 @@
- #include "debug.h"
- #include "hif.h"
- #include <linux/remoteproc.h>
-+#include "pcic.h"
- 
- static const struct of_device_id ath11k_ahb_of_match[] = {
- 	/* TODO: Should we change the compatible string to something similar
-@@ -24,12 +25,15 @@ static const struct of_device_id ath11k_ahb_of_match[] = {
- 	{ .compatible = "qcom,ipq6018-wifi",
- 	  .data = (void *)ATH11K_HW_IPQ6018_HW10,
- 	},
-+	{ .compatible = "qcom,wcn6750-wifi",
-+	  .data = (void *)ATH11K_HW_WCN6750_HW10,
-+	},
- 	{ }
- };
- 
- MODULE_DEVICE_TABLE(of, ath11k_ahb_of_match);
- 
--static const struct ath11k_bus_params ath11k_ahb_bus_params = {
-+static const struct ath11k_bus_params ath11k_ahb_bus_params_ipq8074 = {
- 	.mhi_support = false,
- 	.m3_fw_support = false,
- 	.fixed_bdf_addr = true,
-@@ -40,7 +44,7 @@ static const struct ath11k_bus_params ath11k_ahb_bus_params = {
- 	.ce_window_idx = 0,
- };
- 
--const struct ath11k_bus_params ath11k_ahb_hybrid_bus_params = {
-+static const struct ath11k_bus_params ath11k_ahb_bus_params_wcn6750 = {
- 	.mhi_support = false,
- 	.m3_fw_support = false,
- 	.fixed_bdf_addr = false,
-@@ -51,6 +55,16 @@ const struct ath11k_bus_params ath11k_ahb_hybrid_bus_params = {
- 	.ce_window_idx = 2,
- };
- 
-+static int
-+ath11k_ahb_get_msi_irq_wcn6750(struct ath11k_base *ab, unsigned int vector)
-+{
-+	return ab->pci.msi.irqs[vector];
-+}
-+
-+static const struct ath11k_pci_ops ath11k_ahb_pci_ops_wcn6750 = {
-+	.get_msi_irq = ath11k_ahb_get_msi_irq_wcn6750,
-+};
-+
- #define ATH11K_IRQ_CE0_OFFSET 4
- 
- static const char *irq_name[ATH11K_IRQ_NUM_MAX] = {
-@@ -417,6 +431,9 @@ static void ath11k_ahb_free_irq(struct ath11k_base *ab)
- 	int irq_idx;
- 	int i;
- 
-+	if (ab->bus_params.hybrid_bus_type)
-+		return ath11k_pcic_free_irq(ab);
-+
- 	for (i = 0; i < ab->hw_params.ce_count; i++) {
- 		if (ath11k_ce_get_attr_flags(ab, i) & CE_ATTR_DIS_INTR)
- 			continue;
-@@ -571,6 +588,9 @@ static int ath11k_ahb_config_irq(struct ath11k_base *ab)
- 	int irq, irq_idx, i;
- 	int ret;
- 
-+	if (ab->bus_params.hybrid_bus_type)
-+		return ath11k_pcic_config_irq(ab);
-+
- 	/* Configure CE irqs */
- 	for (i = 0; i < ab->hw_params.ce_count; i++) {
- 		struct ath11k_ce_pipe *ce_pipe = &ab->ce.ce_pipe[i];
-@@ -640,7 +660,7 @@ static int ath11k_ahb_map_service_to_pipe(struct ath11k_base *ab, u16 service_id
- 	return 0;
- }
- 
--static const struct ath11k_hif_ops ath11k_ahb_hif_ops = {
-+static const struct ath11k_hif_ops ath11k_ahb_hif_ops_ipq8074 = {
- 	.start = ath11k_ahb_start,
- 	.stop = ath11k_ahb_stop,
- 	.read32 = ath11k_ahb_read32,
-@@ -652,6 +672,20 @@ static const struct ath11k_hif_ops ath11k_ahb_hif_ops = {
- 	.power_up = ath11k_ahb_power_up,
- };
- 
-+static const struct ath11k_hif_ops ath11k_ahb_hif_ops_wcn6750 = {
-+	.start = ath11k_pcic_start,
-+	.stop = ath11k_pcic_stop,
-+	.read32 = ath11k_pcic_read32,
-+	.write32 = ath11k_pcic_write32,
-+	.irq_enable = ath11k_pcic_ext_irq_enable,
-+	.irq_disable = ath11k_pcic_ext_irq_disable,
-+	.get_msi_address =  ath11k_pcic_get_msi_address,
-+	.get_user_msi_vector = ath11k_pcic_get_user_msi_assignment,
-+	.map_service_to_pipe = ath11k_pcic_map_service_to_pipe,
-+	.power_down = ath11k_ahb_power_down,
-+	.power_up = ath11k_ahb_power_up,
-+};
-+
- static int ath11k_core_get_rproc(struct ath11k_base *ab)
- {
- 	struct ath11k_ahb *ab_ahb = ath11k_ahb_priv(ab);
-@@ -674,12 +708,85 @@ static int ath11k_core_get_rproc(struct ath11k_base *ab)
- 	return 0;
- }
- 
-+static int ath11k_ahb_setup_msi_resources(struct ath11k_base *ab)
-+{
-+	struct platform_device *pdev = ab->pdev;
-+	phys_addr_t msi_addr_pa;
-+	dma_addr_t msi_addr_iova;
-+	struct resource *res;
-+	int int_prop;
-+	int ret;
-+	int i;
-+
-+	ret = ath11k_pcic_init_msi_config(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to init msi config: %d\n", ret);
-+		return ret;
-+	}
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	if (!res) {
-+		ath11k_err(ab, "failed to fetch msi_addr\n");
-+		return -ENOENT;
-+	}
-+
-+	msi_addr_pa = res->start;
-+	msi_addr_iova = dma_map_resource(ab->dev, msi_addr_pa, PAGE_SIZE,
-+					 DMA_FROM_DEVICE, 0);
-+	if (dma_mapping_error(ab->dev, msi_addr_iova))
-+		return -ENOMEM;
-+
-+	ab->pci.msi.addr_lo = lower_32_bits(msi_addr_iova);
-+	ab->pci.msi.addr_hi = upper_32_bits(msi_addr_iova);
-+
-+	ret = of_property_read_u32_index(ab->dev->of_node, "interrupts", 1, &int_prop);
-+	if (ret)
-+		return ret;
-+
-+	ab->pci.msi.ep_base_data = int_prop + 32;
-+
-+	for (i = 0; i < ab->pci.msi.config->total_vectors; i++) {
-+		res = platform_get_resource(pdev, IORESOURCE_IRQ, i);
-+		if (!res)
-+			return -ENODEV;
-+
-+		ab->pci.msi.irqs[i] = res->start;
-+	}
-+
-+	set_bit(ATH11K_FLAG_MULTI_MSI_VECTORS, &ab->dev_flags);
-+
-+	return 0;
-+}
-+
-+static int ath11k_ahb_setup_resources(struct ath11k_base *ab)
-+{
-+	struct platform_device *pdev = ab->pdev;
-+	struct resource *mem_res;
-+	void __iomem *mem;
-+
-+	if (ab->bus_params.hybrid_bus_type)
-+		return ath11k_ahb_setup_msi_resources(ab);
-+
-+	mem = devm_platform_get_and_ioremap_resource(pdev, 0, &mem_res);
-+	if (IS_ERR(mem)) {
-+		dev_err(&pdev->dev, "ioremap error\n");
-+		return PTR_ERR(mem);
-+	}
-+
-+	ab->mem = mem;
-+	ab->mem_len = resource_size(mem_res);
-+
-+	return 0;
-+}
-+
- static int ath11k_ahb_probe(struct platform_device *pdev)
- {
- 	struct ath11k_base *ab;
- 	const struct of_device_id *of_id;
--	struct resource *mem_res;
--	void __iomem *mem;
-+	const struct ath11k_bus_params *bus_params;
-+	const struct ath11k_hif_ops *hif_ops;
-+	const struct ath11k_pci_ops *pci_ops;
-+	enum ath11k_hw_rev hw_rev;
- 	int ret;
- 
- 	of_id = of_match_device(ath11k_ahb_of_match, &pdev->dev);
-@@ -688,10 +795,23 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
- 		return -EINVAL;
- 	}
- 
--	mem = devm_platform_get_and_ioremap_resource(pdev, 0, &mem_res);
--	if (IS_ERR(mem)) {
--		dev_err(&pdev->dev, "ioremap error\n");
--		return PTR_ERR(mem);
-+	hw_rev = (enum ath11k_hw_rev)of_id->data;
-+
-+	switch (hw_rev) {
-+	case ATH11K_HW_IPQ8074:
-+	case ATH11K_HW_IPQ6018_HW10:
-+		bus_params = &ath11k_ahb_bus_params_ipq8074;
-+		hif_ops = &ath11k_ahb_hif_ops_ipq8074;
-+		pci_ops = NULL;
-+		break;
-+	case ATH11K_HW_WCN6750_HW10:
-+		bus_params = &ath11k_ahb_bus_params_wcn6750;
-+		hif_ops = &ath11k_ahb_hif_ops_wcn6750;
-+		pci_ops = &ath11k_ahb_pci_ops_wcn6750;
-+		break;
-+	default:
-+		dev_err(&pdev->dev, "unsupported device type %d\n", hw_rev);
-+		return -EOPNOTSUPP;
- 	}
- 
- 	ret = dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(32));
-@@ -701,20 +821,22 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
- 	}
- 
- 	ab = ath11k_core_alloc(&pdev->dev, sizeof(struct ath11k_ahb),
--			       ATH11K_BUS_AHB,
--			       &ath11k_ahb_bus_params);
-+			       ATH11K_BUS_AHB, bus_params);
- 	if (!ab) {
- 		dev_err(&pdev->dev, "failed to allocate ath11k base\n");
- 		return -ENOMEM;
- 	}
- 
--	ab->hif.ops = &ath11k_ahb_hif_ops;
-+	ab->hif.ops = hif_ops;
-+	ab->pci.ops = pci_ops;
- 	ab->pdev = pdev;
--	ab->hw_rev = (enum ath11k_hw_rev)of_id->data;
--	ab->mem = mem;
--	ab->mem_len = resource_size(mem_res);
-+	ab->hw_rev = hw_rev;
- 	platform_set_drvdata(pdev, ab);
- 
-+	ret = ath11k_ahb_setup_resources(ab);
-+	if (ret)
-+		goto err_core_free;
-+
- 	ret = ath11k_core_pre_init(ab);
- 	if (ret)
- 		goto err_core_free;
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.h b/drivers/net/wireless/ath/ath11k/ahb.h
-index a276e3d1dff8..eeb1feed2c81 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.h
-+++ b/drivers/net/wireless/ath/ath11k/ahb.h
-@@ -10,7 +10,6 @@
- 
- #define ATH11K_AHB_RECOVERY_TIMEOUT (3 * HZ)
- struct ath11k_base;
--extern const struct ath11k_bus_params ath11k_ahb_hybrid_bus_params;
- 
- struct ath11k_ahb {
- 	struct rproc *tgt_rproc;
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index ee0ad93d5843..18f212f3fc27 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -962,6 +962,7 @@ struct ath11k_base {
- 		struct {
- 			const struct ath11k_msi_config *config;
- 			u32 ep_base_data;
-+			u32 irqs[32];
- 			u32 addr_lo;
- 			u32 addr_hi;
- 		} msi;
-diff --git a/drivers/net/wireless/ath/ath11k/pcic.c b/drivers/net/wireless/ath/ath11k/pcic.c
-index d79433e20181..2d93a3b766b5 100644
---- a/drivers/net/wireless/ath/ath11k/pcic.c
-+++ b/drivers/net/wireless/ath/ath11k/pcic.c
-@@ -106,6 +106,15 @@ static const struct ath11k_msi_config ath11k_msi_config[] = {
- 		},
- 		.hw_rev = ATH11K_HW_WCN6855_HW21,
- 	},
-+	{
-+		.total_vectors = 28,
-+		.total_users = 2,
-+		.users = (struct ath11k_msi_user[]) {
-+			{ .name = "CE", .num_vectors = 10, .base_vector = 0 },
-+			{ .name = "DP", .num_vectors = 18, .base_vector = 10 },
-+		},
-+		.hw_rev = ATH11K_HW_WCN6750_HW10,
-+	},
- };
- 
- int ath11k_pcic_init_msi_config(struct ath11k_base *ab)
-@@ -172,6 +181,7 @@ void ath11k_pcic_write32(struct ath11k_base *ab, u32 offset, u32 value)
- 	    !ret)
- 		ab->pci.ops->release(ab);
- }
-+EXPORT_SYMBOL(ath11k_pcic_write32);
- 
- u32 ath11k_pcic_read32(struct ath11k_base *ab, u32 offset)
- {
-@@ -203,6 +213,7 @@ u32 ath11k_pcic_read32(struct ath11k_base *ab, u32 offset)
- 
- 	return val;
- }
-+EXPORT_SYMBOL(ath11k_pcic_read32);
- 
- void ath11k_pcic_get_msi_address(struct ath11k_base *ab, u32 *msi_addr_lo,
- 				 u32 *msi_addr_hi)
-@@ -210,6 +221,7 @@ void ath11k_pcic_get_msi_address(struct ath11k_base *ab, u32 *msi_addr_lo,
- 	*msi_addr_lo = ab->pci.msi.addr_lo;
- 	*msi_addr_hi = ab->pci.msi.addr_hi;
- }
-+EXPORT_SYMBOL(ath11k_pcic_get_msi_address);
- 
- int ath11k_pcic_get_user_msi_assignment(struct ath11k_base *ab, char *user_name,
- 					int *num_vectors, u32 *user_base_data,
-@@ -237,6 +249,7 @@ int ath11k_pcic_get_user_msi_assignment(struct ath11k_base *ab, char *user_name,
- 
- 	return -EINVAL;
- }
-+EXPORT_SYMBOL(ath11k_pcic_get_user_msi_assignment);
- 
- void ath11k_pcic_get_ce_msi_idx(struct ath11k_base *ab, u32 ce_id, u32 *msi_idx)
- {
-@@ -253,6 +266,7 @@ void ath11k_pcic_get_ce_msi_idx(struct ath11k_base *ab, u32 ce_id, u32 *msi_idx)
- 	}
- 	*msi_idx = msi_data_idx;
- }
-+EXPORT_SYMBOL(ath11k_pcic_get_ce_msi_idx);
- 
- static void ath11k_pcic_free_ext_irq(struct ath11k_base *ab)
- {
-@@ -281,6 +295,7 @@ void ath11k_pcic_free_irq(struct ath11k_base *ab)
- 
- 	ath11k_pcic_free_ext_irq(ab);
- }
-+EXPORT_SYMBOL(ath11k_pcic_free_irq);
- 
- static void ath11k_pcic_ce_irq_enable(struct ath11k_base *ab, u16 ce_id)
- {
-@@ -431,6 +446,7 @@ void ath11k_pcic_ext_irq_enable(struct ath11k_base *ab)
- 		ath11k_pcic_ext_grp_enable(irq_grp);
- 	}
- }
-+EXPORT_SYMBOL(ath11k_pcic_ext_irq_enable);
- 
- static void ath11k_pcic_sync_ext_irqs(struct ath11k_base *ab)
- {
-@@ -451,6 +467,7 @@ void ath11k_pcic_ext_irq_disable(struct ath11k_base *ab)
- 	__ath11k_pcic_ext_irq_disable(ab);
- 	ath11k_pcic_sync_ext_irqs(ab);
- }
-+EXPORT_SYMBOL(ath11k_pcic_ext_irq_disable);
- 
- static int ath11k_pcic_ext_grp_napi_poll(struct napi_struct *napi, int budget)
- {
-@@ -630,6 +647,7 @@ int ath11k_pcic_config_irq(struct ath11k_base *ab)
- 
- 	return 0;
- }
-+EXPORT_SYMBOL(ath11k_pcic_config_irq);
- 
- void ath11k_pcic_ce_irqs_enable(struct ath11k_base *ab)
- {
-@@ -643,6 +661,7 @@ void ath11k_pcic_ce_irqs_enable(struct ath11k_base *ab)
- 		ath11k_pcic_ce_irq_enable(ab, i);
- 	}
- }
-+EXPORT_SYMBOL(ath11k_pcic_ce_irqs_enable);
- 
- static void ath11k_pcic_kill_tasklets(struct ath11k_base *ab)
- {
-@@ -664,12 +683,14 @@ void ath11k_pcic_ce_irq_disable_sync(struct ath11k_base *ab)
- 	ath11k_pcic_sync_ce_irqs(ab);
- 	ath11k_pcic_kill_tasklets(ab);
- }
-+EXPORT_SYMBOL(ath11k_pcic_ce_irq_disable_sync);
- 
- void ath11k_pcic_stop(struct ath11k_base *ab)
- {
- 	ath11k_pcic_ce_irq_disable_sync(ab);
- 	ath11k_ce_cleanup_pipes(ab);
- }
-+EXPORT_SYMBOL(ath11k_pcic_stop);
- 
- int ath11k_pcic_start(struct ath11k_base *ab)
- {
-@@ -680,6 +701,7 @@ int ath11k_pcic_start(struct ath11k_base *ab)
- 
- 	return 0;
- }
-+EXPORT_SYMBOL(ath11k_pcic_start);
- 
- int ath11k_pcic_map_service_to_pipe(struct ath11k_base *ab, u16 service_id,
- 				    u8 *ul_pipe, u8 *dl_pipe)
-@@ -723,3 +745,4 @@ int ath11k_pcic_map_service_to_pipe(struct ath11k_base *ab, u16 service_id,
- 
- 	return 0;
- }
-+EXPORT_SYMBOL(ath11k_pcic_map_service_to_pipe);
--- 
-2.35.1
-
+Baochen, please submit a fix for this.
 
 -- 
 ath11k mailing list
