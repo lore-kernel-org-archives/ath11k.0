@@ -4,58 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE10EC433EF
-	for <ath11k@archiver.kernel.org>; Fri, 29 Apr 2022 06:00:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38612C433F5
+	for <ath11k@archiver.kernel.org>; Fri, 29 Apr 2022 06:12:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
-	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2ds2C88/WUQgreV1oPQap/y/CKZDS+3YhQNFAPB0E0A=; b=2kJ89i3n6JXJn2
-	d2g/5ccNEVayL1dwfuflzx/91n4H9HnmHwDje4kZg60A6J+UZvjE9R7F26TgLl1mMLB2naTGTZOu/
-	cmJH/GAvDfhEbLeIlk+iOnTpM0Vgz+nG4UtXXKYF8b6qJWjw85VzCbiFLZZmiKVjcZXNAKhIlSsNn
-	O8DBRf12TmEvs0SXCAKeFzAvvIztprU78uMkRJBK3Bao25mi9iMmgn1WdzPgN3Ky0YDn9WWMzUoA1
-	OwJ3NNffePe0UdF9OEQ0iGYHGzrRsUwTgUJ3V8ed833s3oJSqYDdut+bAHh6RraGkaUkDOz+2cxQC
-	30n/ZKdIepzjR2uuNuoQ==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=l8kzEmOSLsHjYkY9jtw3EFSV6Yvb9YzP6Hnj2M+ONKo=; b=dNe7cY6VBSXalc
+	j8jv1m7D5jPabinu6ClevKCSfHDbdW+vl0CU3jzGhfOzZNc5iLNSLCwCzvLph66QojDSlApbDp0nf
+	pRdYB3Q1p25ZhmChsWlaj4hlEuJPwkZw5hrsd1SCXU5X1AEDKRs6aoMVC/2KpDnak6k6KrR0J/3oD
+	/ZeitvTiPa5kErTOF42uV50crDrfOG4T0zAlBp9Q5mFANTuanb6mjZ51p9Q5kbyI2cuAoJ2b4xA8P
+	tv8oLQm9V1sgOW1n4Ssad57d/CGALVemdRFxqjlfASRpQBPjH9D3P7Ikn9z7bQ29LZd4srDC/E4cA
+	dhFuBmtMLWqfZm7tg9VA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nkJgU-009f6h-5F; Fri, 29 Apr 2022 06:00:54 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1nkJs0-009hXk-RG; Fri, 29 Apr 2022 06:12:48 +0000
+Received: from mail-yw1-x112d.google.com ([2607:f8b0:4864:20::112d])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nkJgR-009f6C-8f
- for ath11k@lists.infradead.org; Fri, 29 Apr 2022 06:00:53 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id EBF70B83026
- for <ath11k@lists.infradead.org>; Fri, 29 Apr 2022 06:00:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E328DC385A4;
- Fri, 29 Apr 2022 06:00:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1651212047;
- bh=j0Zer+6QL+0K2ksOmfZ1gu5Whw21UNJ5m6NogkXAcLA=;
- h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
- b=q2FxV6XAZ6xTTwvtsL/WPjGdsM97pNAXWQZl9Aa7NU3ia68qAZDf827BnUhnDFRxt
- egw0dtIIOLVT3nzpFFeRGei86HodnTh45+5g+bc1sLady+Oi64XeB1YoXp0yG4feKm
- G/BuiRDneJoGmxXkCAut/tnPnCCPgEw2ygZ79or15WqqdyRFomEvU4OYXFI+duuKti
- KncFs+p4OsRW68B5I5zFuX1X9yHFJjajm48iWM6Oe2hrQbwcAiHilvmzo78pLU1MhF
- vLAMHM3RNR54GJtxi81BURUZXup7m3umA2xsUgqIC9rnPQ+jCNjBV8MqS6W8lfc2tu
- 42ONj7uANs6Bw==
+ id 1nkJry-009hVm-4S
+ for ath11k@lists.infradead.org; Fri, 29 Apr 2022 06:12:47 +0000
+Received: by mail-yw1-x112d.google.com with SMTP id
+ 00721157ae682-2ebf4b91212so75156927b3.8
+ for <ath11k@lists.infradead.org>; Thu, 28 Apr 2022 23:12:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=JnXNRi3fgLseToL8emPAro3wD9fV8AutKcOTldnUHZg=;
+ b=hlwtoZX5S8WE5hujcH3ZqSI1F6JaTPn+asutbPJcQCC2bbL5Kfg3Kg6RR0129B5hGJ
+ 0s0RPL0CYx/63UTzOvYhq6RBlIHCPY6i0WBpSXW6Y5CMbZAf0GkRCWsJFKgHUYb098et
+ TZetDO80SdCHicgzkOGFwZecll7xmToAqGL1wJ+sLVf15/mMApvnCoR9qol0ahu36Iij
+ IgHog0xdtRcxjG5RIu/lCjhIIggH2lzrKqsH+KQ67RF8nR9cSV8ZJ7JpkWod6jHGyJIl
+ 1Q2tHzNgW0wVgUJL8ydgUrWE+zASpoKSuyhmU6rilGsVZuyGCIEtpDXbuyDuEwYiwquW
+ 7/5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=JnXNRi3fgLseToL8emPAro3wD9fV8AutKcOTldnUHZg=;
+ b=wzaN+3bVAp6P6ejq5kgoOI7XjnMklhE0pZ9Z50rb8Qc7UFDj8CUCmU0xxmSKcI0thy
+ a+IwVDvFbGZkIJoq9PG5+jziF2s1IysPWdWrj38hPEsKNboxnSedFPYZFp9hD6bcZ8Ss
+ 5c6hfmKmRyZJHOrDV+J8fyPHO+oJgyK8uRt9b/8MRf2w/kR76Y9v0hp7RZudUNsVUZ7D
+ XfOcvXaaqPPIjy5Ar9kNg4aOUHKVbuNnK6SStOabd9M94GZOdI4STwbfwupD8zpIxfPW
+ qorUoUt+pwAtOcA6zejqF41aqzVq/4FGUg+OMwWHhKaPFE5dNaOue5jzFd/sW6tNwWmI
+ qNqQ==
+X-Gm-Message-State: AOAM531TLtjoJD56R4+S8u2JRv8WmaGR0BUQbTZ0TgDDcNJXfmArsulN
+ QS4enDi+S3W31IYls/uU/x5cJC99vaNw90+S5INH3g==
+X-Google-Smtp-Source: ABdhPJydCw7QruBmFPtNS1LGkkCjRGaFOawi7x7UIiIhGh/L6he7e8pCGYsHIflNa7QBcza34vr14ezR92EiO4/ypPo=
+X-Received: by 2002:a81:492:0:b0:2f7:ce87:c324 with SMTP id
+ 140-20020a810492000000b002f7ce87c324mr28911207ywe.359.1651212760038; Thu, 28
+ Apr 2022 23:12:40 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [v5.18] ath11k: reduce the wait time of 11d scan and hw scan
- while add interface
-From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20220427111619.9758-1-kvalo@kernel.org>
-References: <20220427111619.9758-1-kvalo@kernel.org>
+References: <BYAPR02MB4567E377F14F272DFF48907A92FA9@BYAPR02MB4567.namprd02.prod.outlook.com>
+ <332e62e5-b04d-3a6a-38fe-924d056bf0f8@linaro.org> <87k0b8fnpj.fsf@kernel.org>
+In-Reply-To: <87k0b8fnpj.fsf@kernel.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Fri, 29 Apr 2022 09:12:28 +0300
+Message-ID: <CAA8EJpr3Uxa-Tif5TyHfXL03j1--vrAb+DgT=0DY8KDpvHPjeQ@mail.gmail.com>
+Subject: Re: [PULL linux-firmware] ath10k & ath11k firmware 20220423
 To: Kalle Valo <kvalo@kernel.org>
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
-User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <165121204399.9395.8156139682593720867.kvalo@kernel.org>
-Date: Fri, 29 Apr 2022 06:00:46 +0000 (UTC)
+Cc: "linux-firmware@kernel.org" <linux-firmware@kernel.org>, 
+ "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>, 
+ "ath10k@lists.infradead.org" <ath10k@lists.infradead.org>, 
+ "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220428_230051_627838_E2DCD97B 
-X-CRM114-Status: GOOD (  17.75  )
+X-CRM114-CacheID: sfid-20220428_231246_216489_C8AC1C19 
+X-CRM114-Status: GOOD (  16.21  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,64 +86,34 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Kalle Valo <kvalo@kernel.org> wrote:
+On Fri, 29 Apr 2022 at 08:44, Kalle Valo <kvalo@kernel.org> wrote:
+>
+> Dmitry Baryshkov <dmitry.baryshkov@linaro.org> writes:
+>
+> > Hi Kalle,
+> >
+> > On 27/04/2022 11:32, Kalle Valo wrote:
+> >> Add support for QCN9074 and WCN6750 ath11k hardware families. Also
+> >> there are several updates to existing firmwares and board files for both ath10k
+> >> and ath11k.
+> >>
+> >> Please let me know if there are any problems.
+> >
+> > I noticed that this pull request doesn't include the board file for
+> > WCN3990. Is there any issue with it that we can solve on our side?
+>
+> Oh, sorry about that. I guess this is just a bug in my scripts, I'll
+> include the wcn3990 board file in the next pull request.
 
-> From: Wen Gong <quic_wgong@quicinc.com>
-> 
-> (cherry picked from commit 1f682dc9fb3790aa7ec27d3d122ff32b1eda1365 in wireless-next)
-> 
-> Currently ath11k will wait 11d scan complete while add interface in
-> ath11k_mac_op_add_interface(), when system resume without enable
-> wowlan, ath11k_mac_op_add_interface() is called for each resume, thus
-> it increase the resume time of system. And ath11k_mac_op_hw_scan()
-> after ath11k_mac_op_add_interface() also needs some time cost because
-> the previous 11d scan need more than 5 seconds when 6 GHz is enabled,
-> then the scan started event will indicated to ath11k after the 11d
-> scan completed.
-> 
-> While 11d scan/hw scan is running in firmware, if ath11k update channel
-> list to firmware by WMI_SCAN_CHAN_LIST_CMDID, then firmware will cancel
-> the current scan which is running, it lead the scan failed. The patch
-> commit 9dcf6808b253 ("ath11k: add 11d scan offload support") used
-> finish_11d_scan/finish_11d_ch_list/pending_11d to synchronize the 11d
-> scan/hw scan/channel list between ath11k/firmware/mac80211 and to avoid
-> the scan fail.
-> 
-> Add wait operation before ath11k update channel list, function
-> ath11k_reg_update_chan_list() will wait until the current 11d scan/hw
-> scan completed. And remove the wait operation of start 11d scan and
-> waiting channel list complete in hw scan. After these changes, resume
-> time cost reduce about 5 seconds and also hw scan time cost reduced
-> obviously, and scan failed not seen.
-> 
-> The 11d scan is sent to firmware only one time for each interface added
-> in mac.c, and it is moved after the 1st hw scan because 11d scan will
-> cost some time and thus leads the AP scan result update to UI delay.
-> Currently priority of ath11k's hw scan is WMI_SCAN_PRIORITY_LOW, and
-> priority of 11d scan in firmware is WMI_SCAN_PRIORITY_MEDIUM, then the
-> 11d scan which sent after hw scan will cancel the hw scan in firmware,
-> so change the priority to WMI_SCAN_PRIORITY_MEDIUM for the hw scan which
-> is in front of the 11d scan, thus it will not happen scan cancel in
-> firmware.
-> 
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
-> 
-> Fixes: 9dcf6808b253 ("ath11k: add 11d scan offload support")
-> Link: https://bugzilla.kernel.org/show_bug.cgi?id=215777
-> Cc: <stable@vger.kernel.org>
-> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
-> Link: https://lore.kernel.org/r/20220328035832.14122-1-quic_wgong@quicinc.com
+Thank you! No problem, it was more of a question if we missed something.
 
-Patch applied to wireless.git, thanks.
+> Linux firmware maintainers, please pull this anyway. I'll submit a
+> follow up pull request later.
 
-bb300130e47f ath11k: reduce the wait time of 11d scan and hw scan while add interface
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20220427111619.9758-1-kvalo@kernel.org/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
+With best wishes
+Dmitry
 
 -- 
 ath11k mailing list
