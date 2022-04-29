@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 597FAC433EF
-	for <ath11k@archiver.kernel.org>; Fri, 29 Apr 2022 08:57:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D58CCC433F5
+	for <ath11k@archiver.kernel.org>; Fri, 29 Apr 2022 10:12:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
 	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vdS7cjYIoiqpKZSVOQTYGxW6+Vx/bIM4a43J8F1RjYA=; b=M3lz4e7uipqA4J
-	SosLHCeU4X0UVhPTD6OU1ZY/O5q2U71IoAgwOSOer+4RSk6LzOVg/u5uqMLyd8Z1zWpGiB27GHi5+
-	MPk+KPAe/xc7j4DmiX5v4i852NEsGJ8xVcLKKjmsEVzlWtPm9dnuXqeQSpZ25t+3mQTMAlLfZmjtt
-	KxX26wcKPO8r9kPYwOpkKL7wUBS8AcVuiMVkpNDsnXhpAbIQ75xmPFOGVTW0wtWON/EJhjuVVZ4Cw
-	kOJhuDzAd2ERztLITYoHC7itWirQHRdqAPjuPNWWxULnagqTzm9RqPjJfm/ed3huvDckA3hjWeu8m
-	SQH5Jhv+7XxDXUumPnxw==;
+	List-Owner; bh=zqfKkplUPxU4mn9NQ7UkDr/8ChLsx0m7Rp/b4XUXqBk=; b=mHj6dSjOAO1Z/V
+	18vw6D6DHHcj5hsxxWwxoidF3FEfoF/WV0NEOHascsHipCPzFM0Z1NloFOh0ICCA6xXWoEZSSnNVt
+	P2k1HRXZ5zuvbTQ+gBHbJC+FIP3lwGUsFSSlAzRTpGzqp2+GOQ3Iu4f+VJP4wrIBfFHmUmMVPhp6V
+	54HygQIsjxLY2tZsp/3QI9ySf9F2fQ8zZbNFL7fOwoEC2BXvY1Gz031JhNgOvKJB02DxKncqrlrJk
+	tb//2IHNt8z4/XNMzD5FMgwnbEE9GQhezwIEdEW9pYouqnxQ/2t6KVKzcx3aAPozYHN/heuHbnPvb
+	g4f9VAWm4QiuPZNgNI3A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nkMRa-00AJJz-PO; Fri, 29 Apr 2022 08:57:42 +0000
-Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
+	id 1nkNbk-00Af3A-Cj; Fri, 29 Apr 2022 10:12:16 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nkMRX-00AJIp-C9
- for ath11k@lists.infradead.org; Fri, 29 Apr 2022 08:57:41 +0000
+ id 1nkNJ1-00AX0L-7V
+ for ath11k@lists.infradead.org; Fri, 29 Apr 2022 09:52:56 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by sin.source.kernel.org (Postfix) with ESMTPS id A9844CE3009;
- Fri, 29 Apr 2022 08:57:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 910DAC385A4;
- Fri, 29 Apr 2022 08:57:34 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id A2B1B622CF;
+ Fri, 29 Apr 2022 09:52:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BCE5C385A7;
+ Fri, 29 Apr 2022 09:52:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1651222656;
- bh=G+F4MHPC3gx10dTFgiEJr2YE94YbxB3UX1Lblg+1WzM=;
+ s=k20201202; t=1651225974;
+ bh=4dX3RZKOAnpU33fOLqblNxRSAKqlEVe0S6NJCykWw3g=;
  h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
- b=hDXcu90eqSpCmOFcOynumu4/Wht0U5igvFoEz74Ca1xLPNFRge+ZuuYY12essSgfP
- /P8YWT/wShcPCFHU0TDhFFkIdZteZXUZG5ZZaelM3e4GfT7Y3BrrBIXbg2qJTMPWr/
- tHoax26SmAUW/xTC/YMuoFh4mNfsJqxUqgsMhGVk6qCQxLBBb9bW8ziYnSpNaAuYUu
- Sag7EQYypipun+xKyTnhYPi9V+cPWpIXX5kEYSuXbLCgSFF4TzQvO4E+YQM0Q4T5AC
- Bh54l0/1PPMu6XnS0qcOasmuwSX63YY+ayJEKWNNRrNm12DNrXFIbm1tltq3wsVZzE
- 1n2oPVZxzquig==
+ b=PV+lTtIAj27xwe/KlxXM8OCFDfRtERz2sAgqWHIvCZ9/Yfk1MLe3MT/5VT+rvQoGy
+ T/bt4tEQ8GI72joQDVBWouhGtI8vSosrPPcqM3yamjxAG9JZzrfcybY9+co3dT5+I7
+ zMw57GgGEgc3MANlJJa0TVJJKlfLUSdPxjX8WaoyKuUNf4xUA9KNq4tda0OjNmYYUN
+ lFJUp16QdS1giYeyAOfD6asLvGGYYdTdQSRC1WOLldVF0ftLlLOCHjrM5ABTN79NKm
+ p6FQgAwUYX9LPhqdc54orx1tPnPDp9WeWOT/rzUqDmc5OaO+4jNzht2eIpX89bfdFf
+ N3jx6PkslIDGA==
 From: Kalle Valo <kvalo@kernel.org>
 To: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
 Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
  <devicetree@vger.kernel.org>, <robh@kernel.org>, <mka@chromium.org>
-Subject: Re: [PATCH v4 04/12] ath11k: Add register access logic for WCN6750
-References: <20220406094107.17878-1-quic_mpubbise@quicinc.com>
- <20220406094107.17878-5-quic_mpubbise@quicinc.com>
- <87czh3gjuq.fsf@kernel.org>
- <2a18a4d3-254b-727e-e96d-90deec61571c@quicinc.com>
-Date: Fri, 29 Apr 2022 11:57:32 +0300
-In-Reply-To: <2a18a4d3-254b-727e-e96d-90deec61571c@quicinc.com> (Manikanta
- Pubbisetty's message of "Wed, 27 Apr 2022 11:23:52 +0530")
-Message-ID: <87levoe077.fsf@kernel.org>
+Subject: Re: [PATCH v6 4/9] ath11k: Add register access logic for WCN6750
+References: <20220427111848.9257-1-quic_mpubbise@quicinc.com>
+ <20220427111848.9257-5-quic_mpubbise@quicinc.com>
+ <87pml2g1c7.fsf@kernel.org>
+ <6e607455-e42a-a591-f58b-b3b2c83ea2cc@quicinc.com>
+Date: Fri, 29 Apr 2022 12:52:49 +0300
+In-Reply-To: <6e607455-e42a-a591-f58b-b3b2c83ea2cc@quicinc.com> (Manikanta
+ Pubbisetty's message of "Wed, 27 Apr 2022 18:56:33 +0530")
+Message-ID: <87h76cdxn2.fsf@kernel.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220429_015739_627919_F05854CD 
-X-CRM114-Status: GOOD (  13.37  )
+X-CRM114-CacheID: sfid-20220429_025255_405113_EEBAFF6D 
+X-CRM114-Status: GOOD (  16.86  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,53 +78,43 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
 
-> On 4/27/2022 11:15 AM, Kalle Valo wrote:
->> Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
+>>> @@ -704,11 +718,26 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
+>>>   {
+>>>   	struct ath11k_base *ab;
+>>>   	struct ath11k_pci *ab_pci;
+>>> +	const struct ath11k_bus_params *bus_params;
+>>>   	u32 soc_hw_version_major, soc_hw_version_minor, addr;
+>>>   	int ret;
+>>>   +	switch (pci_dev->device) {
+>>> +	case QCA6390_DEVICE_ID:
+>>> +	case WCN6855_DEVICE_ID:
+>>> +		bus_params = &ath11k_pci_bus_params_qca6390;
+>>> +		break;
+>>> +	case QCN9074_DEVICE_ID:
+>>> +		bus_params = &ath11k_pci_bus_params_qcn9074;
+>>> +		break;
 >>
->>> WCN6750 uses static window mapping to access the HW registers.
->>> Unlike QCN9074 which uses 2nd window for CE and 3rd window
->>> for UMAC register accesses, WCN6750 uses 1st window for UMAC
->>> and 2nd window for CE registers.
->>>
->>> Code is refactored so that WCN6750 can use the existing
->>> ath11k_pci_read/write() APIs for accessing the registers.
->>>
->>> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00573-QCAMSLSWPLZ-1
->>> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
->>> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
->>> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
->>>
->>> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
->>> ---
->>>   drivers/net/wireless/ath/ath11k/ahb.c  |  3 ++
->>>   drivers/net/wireless/ath/ath11k/core.h |  2 +
->>>   drivers/net/wireless/ath/ath11k/pci.c  |  4 ++
->>>   drivers/net/wireless/ath/ath11k/pcic.c | 53 +++++++++-----------------
->>>   4 files changed, 28 insertions(+), 34 deletions(-)
->>>
->>> diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
->>> index d73643e3e8dd..d27fc7276977 100644
->>> --- a/drivers/net/wireless/ath/ath11k/ahb.c
->>> +++ b/drivers/net/wireless/ath/ath11k/ahb.c
->>> @@ -42,6 +42,9 @@ const struct ath11k_bus_params ath11k_ahb_hybrid_bus_params = {
->>>   	.fixed_bdf_addr = false,
->>>   	.fixed_mem_region = false,
->>>   	.hybrid_bus_type = true,
->>> +	.static_window_map = true,
->>> +	.dp_window_idx = 1,
->>> +	.ce_window_idx = 2,
->>>   };
+>> Now you are making bus_params device specific, that's not really the
+>> point of bus params. They are supposed to be _bus_ specific parameters.
 >>
->> Even if the values are zero, please initialise the new fields in every
->> bus_params structure:
->>
->> ahb.c:31:static const struct ath11k_bus_params ath11k_ahb_bus_params = {
->> pci.c:118:static const struct ath11k_bus_params ath11k_pci_bus_params = {
+>> Can't you use hw_params like I mentioned in the review?
 >>
 >
-> Makes sense, should I send another series addressing these?
+> Even without this patch, as of today, bus_params is already device
+> specific with QCN9074 changing the static_window_map in bus_params to
+> true in ath11k_pci_probe().
 
-Please fix that already in this patchset.
+Yeah, that's a mistake which slipped in review.
+
+> And if we have to move these device specific bus_params to hw_parmas,
+> then bus_params can be pretty much removed completely with the changes
+> that WCN6750 bring in. Any thoughts on this? I can make the changes
+> that can get along with WCN6750 series.
+
+My original idea with bus_params was to there are bus specific
+parameters and that way we could simplify hw_params. Clearly that's not
+working and I agree with you, bus_params should be removed. So it would
+be good if you can do that in the next patchset.
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
