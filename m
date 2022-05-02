@@ -4,59 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3139AC433F5
-	for <ath11k@archiver.kernel.org>; Mon,  2 May 2022 13:57:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16BFEC433FE
+	for <ath11k@archiver.kernel.org>; Mon,  2 May 2022 13:59:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
 	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=lPxODRpxMoKLbqm5Ix77XZYNnQBgcid2CATTzWurj/A=; b=Ro/MHrVEEKcx+V
-	dRC77dhmOPP8XE6mNNaoYD2/mEG1TPSolMX53cKpi68mjL/lOtfnOJCnfY9dj0thooyYUSm6o2C2t
-	nBvNHA48sIQlahbexbY2Oyq/j1ND0zOouBVsfRYa0ODxT/ZdJtsWPIm3uZvLcp+LsFA1LlAyPXnCv
-	mbT0ALkbLbkcYWOek+jJwMHkL1LM1kkdmsUINMTZIvlfHa0w/6jNUPDMfKYuoNrommVpAm5x46j4A
-	Es/bW4gl4m/fJ+PGsYVKi2NWO9xM77F8luqbgBM7EdTQrNmOb7vRuA0rDplTXKu6mN6oDYZbcrZIL
-	oW9JJvtCRK2F7tmweEyQ==;
+	List-Owner; bh=8B1QlHEmRiUbmaUgg/A4r8PHDXM0AQAABhVTh8pAOyw=; b=qbXrcCVSC9nAhg
+	8/kUIyndilTdBla9STo5Xqxbu0mMTPoHUSNbuMrQdyw6Qo5zAYqmDgtgnKkGgjkePi9oNAhBpiJA7
+	WB4+pPN5LdUDKPSSdjvojr//nULGYCLxzBwEByIZ8Gjjt5pp+oVUiPPIgkFWXLZfla1OfbUx/RJIA
+	RnZoY8YFVLoY8BNilrVJtbt/uiSOsodxK32sunFLwugWQBU/ZLM8J2yQb/nR2lnPHxXbu8nuIfGkB
+	ivfZmIuwUFUsFJN7MBizZEuXafUe617NXeMiXaYpIIJfzsOdvFXWb+Yj+KALsMNkPNZ5LhWHR5aR3
+	YhqykUDjd9omRw7uDVtg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nlWYg-001KMl-DF; Mon, 02 May 2022 13:57:50 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1nlWaS-001KWH-Cj; Mon, 02 May 2022 13:59:40 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nlWYb-001KMQ-FU
- for ath11k@lists.infradead.org; Mon, 02 May 2022 13:57:48 +0000
+ id 1nlWaJ-001KVO-GM
+ for ath11k@lists.infradead.org; Mon, 02 May 2022 13:59:34 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id DC2EE60B5A;
- Mon,  2 May 2022 13:57:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CD21C385AC;
- Mon,  2 May 2022 13:57:43 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id DB6B060BA7;
+ Mon,  2 May 2022 13:59:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B85F8C385AC;
+ Mon,  2 May 2022 13:59:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1651499864;
- bh=UsUVrQ8Uf8ZrHtaZGxrQgHbyM/8ZtJmWeyFLUL+cXiY=;
+ s=k20201202; t=1651499970;
+ bh=rkki7fnxVJwM629ZKQOfs9gIhaGKzLdyqKlPakAN4hM=;
  h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
- b=Bthfaf+kqA7O5R8dVeo33lK49k7ZoAVrDsHRmNm9jKWx4K8DJOGPu62/WS/qlxldL
- A+EvwZaWCRKKDKMIiA8pR7YIQko1kMm8fh8uOMp8ilcswxSKYZJHZplfUujPD+qEQT
- 6J7V2FKHitKGGhiDPYOnIwJ/ZemVqYWFijt6u4CtPKIq7U8hHqEFEuYT+oJ1jS2Zc0
- gViZVQ4pX4wTdf3KOjuJIH/DnMF9MrwqRG0M7mJwhqe4Ss5tMaQYaMFlhBGrY8xB8g
- VqkZ8/jDyGUw7Gpwf1EkOWHlcSv/Yua1OO8VVPOUwfqA6nBrnSkBtMGzqVTME1AfoA
- Ljy1k+K1ah69g==
+ b=T+BOSzFlGc7iDXXXBtehvAu37zdckd4dI18jZULA+9M2pTdwj5WEJTkd2+Rm/Vayb
+ DCbvssOTw4h9PoJf9c4AM/Lblnf3Y1LGkTRAwjWRRhG+owhl3PHr64jKHc4UBd+lL6
+ KHr8QtjrWN16Mkq4a5wWAQazkjBrempjMyixCeeCnktOC8Z2co9PF1JZ5yUt1sNPR0
+ IDx8rEEZao/MS8ItdrZGGp0t7xMx66vXXdpqxKskkjpYo7ZwXzRmb/w0OZ6ll0piKi
+ b+GNFWWk56UG9Fna6JT6VAMoUKmtthhWhyjdSkSrE6+5QaOrBJ0ISgKGrrTR4lWn/g
+ 2njidFcTA+2wQ==
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: change management tx queue to avoid connection
- timed out
+Subject: Re: [PATCH v7 1/9] dt: bindings: net: add bindings of WCN6750 for
+ ath11k
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20220428023320.4007-1-quic_wgong@quicinc.com>
-References: <20220428023320.4007-1-quic_wgong@quicinc.com>
-To: Wen Gong <quic_wgong@quicinc.com>
+In-Reply-To: <20220429170502.20080-2-quic_mpubbise@quicinc.com>
+References: <20220429170502.20080-2-quic_mpubbise@quicinc.com>
+To: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
 Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- <quic_wgong@quicinc.com>
+ <devicetree@vger.kernel.org>, <robh@kernel.org>, <mka@chromium.org>,
+ Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
 User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <165149986115.16977.2375062909122184081.kvalo@kernel.org>
-Date: Mon,  2 May 2022 13:57:43 +0000 (UTC)
+Message-ID: <165149996655.16977.4961291350588382970.kvalo@kernel.org>
+Date: Mon,  2 May 2022 13:59:28 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220502_065745_608093_64C157F0 
-X-CRM114-Status: GOOD (  11.05  )
+X-CRM114-CacheID: sfid-20220502_065931_628270_5BE6F262 
+X-CRM114-Status: GOOD (  13.71  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,39 +74,41 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Wen Gong <quic_wgong@quicinc.com> wrote:
+Manikanta Pubbisetty <quic_mpubbise@quicinc.com> wrote:
 
-> In the phase of wlan load, it has hw scan and 11d scan which sent to
-> firmware by ath11k, then hw scan and 11d scan will use about 14 seconds,
-> and meanwhile ath11k_reg_update_chan_list() is running in workqueue of
-> ath11k_base, and wait for 11d scan/hw scan finished. When the hw scan
-> finished, mac80211 will start to connect and send management packet,
-> at this moment, ath11k_reg_update_chan_list() is still waiting for 11d
-> scan finished, so wmi_mgmt_tx_work of ath11k will not run and thus the
-> tx management packet also not send out and lead authentication timed
-> out.
+> WCN6750 is the WLAN chip on Qualcomm Snapdragon SoC SC7280;
+> Though being a PCIe based solution, it is not attached to
+> the APSS processor (Application Processor SubSystem), it is
+> instead attached to another tiny processor called WPSS Q6
+> processor (Wireless Processor SubSystem) on the SC7280 MSM,
+> where the WLAN firmware runs, and it is the WLAN firmware
+> running on the Q6 processor which enumerates WCN6750, as a
+> result APPS processor would never know such a device being
+> present in the system and would not detect the WCN6750
+> hardware unless and otherwise WCN6750 is registered as a
+> platform device. This is the reason behind adding WCN6750
+> WLAN node in the device tree.
 > 
-> log:
-> INFO kernel: [  187.885322] wlan0: authenticate with 72:6c:57:43:9f:90
-> INFO kernel: [  187.937266] wlan0: send auth to 72:6c:57:43:9f:90 (try 1/3)
-> INFO kernel: [  188.626944] wlan0: send auth to 72:6c:57:43:9f:90 (try 2/3)
-> INFO kernel: [  189.650999] wlan0: send auth to 72:6c:57:43:9f:90 (try 3/3)
-> INFO kernel: [  190.651917] wlan0: authentication with 72:6c:57:43:9f:90 timed out
+> Add WCN6750 wireless driver support, its based on ath11k driver.
 > 
-> Change wmi_mgmt_tx_work to another queue workqueue_aux of ath11k_base,
-> then connection success.
-> 
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
-> 
-> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
 > Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-Patch applied to ath-next branch of ath.git, thanks.
+9 patches applied to ath-next branch of ath.git, thanks.
 
-3a597f0d425b ath11k: change management tx queue to avoid connection timed out
+00fd24089b81 dt: bindings: net: add bindings of WCN6750 for ath11k
+92c1858e4399 ath11k: Move parameters in bus_params to hw_params
+d1e1edfde035 ath11k: Add HW params for WCN6750
+56c8ccf331bd ath11k: Add register access logic for WCN6750
+676f8905fff9 ath11k: Fetch device information via QMI for WCN6750
+73d3e71306fe ath11k: Add QMI changes for WCN6750
+49890d9c93d5 ath11k: HAL changes to support WCN6750
+e67ba1973917 ath11k: Datapath changes to support WCN6750
+00402f49d26f ath11k: Add support for WCN6750 device
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20220428023320.4007-1-quic_wgong@quicinc.com/
+https://patchwork.kernel.org/project/linux-wireless/patch/20220429170502.20080-2-quic_mpubbise@quicinc.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
