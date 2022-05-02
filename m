@@ -4,60 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16BFEC433FE
-	for <ath11k@archiver.kernel.org>; Mon,  2 May 2022 13:59:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6C34C433FE
+	for <ath11k@archiver.kernel.org>; Mon,  2 May 2022 14:25:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
-	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8B1QlHEmRiUbmaUgg/A4r8PHDXM0AQAABhVTh8pAOyw=; b=qbXrcCVSC9nAhg
-	8/kUIyndilTdBla9STo5Xqxbu0mMTPoHUSNbuMrQdyw6Qo5zAYqmDgtgnKkGgjkePi9oNAhBpiJA7
-	WB4+pPN5LdUDKPSSdjvojr//nULGYCLxzBwEByIZ8Gjjt5pp+oVUiPPIgkFWXLZfla1OfbUx/RJIA
-	RnZoY8YFVLoY8BNilrVJtbt/uiSOsodxK32sunFLwugWQBU/ZLM8J2yQb/nR2lnPHxXbu8nuIfGkB
-	ivfZmIuwUFUsFJN7MBizZEuXafUe617NXeMiXaYpIIJfzsOdvFXWb+Yj+KALsMNkPNZ5LhWHR5aR3
-	YhqykUDjd9omRw7uDVtg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=oFzHPYzUjm9Huf+DSl9YKi+aqS1bjz8HIWjo2QmMpXo=; b=LKgfdP0+i65nZc
+	4oCfiSGNN4k7CZDqoEX6QuFJR/OA/DSecMrnODhTWllNnLFHvz+chkMu4D1tGycQRfr5SvSISbcLd
+	/Q8YtLsmfqkqPW5gKxhGvqRxiws+2OBM807A074wNpWW2SVZcJXnWhjZpZ09VDUAR3X2SAXnivwZX
+	oSzPVzqpkg+HDv1bjyqgyd0kowLzejH6HBs3lqyhTdQKSTE0CFbP5p1/jQlasfFwty981YSxaGuyJ
+	neZ662NAW5OcW7jCwreF1I+tt+KhGnTvDIfCm2tVBokEKU7UBqB+DPShzpHGZxg+XCcap6mkuxRqE
+	VioYdKUZC7ljTa3mDUlQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nlWaS-001KWH-Cj; Mon, 02 May 2022 13:59:40 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1nlWzP-001Nn9-05; Mon, 02 May 2022 14:25:27 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nlWaJ-001KVO-GM
- for ath11k@lists.infradead.org; Mon, 02 May 2022 13:59:34 +0000
+ id 1nlWzG-001Njt-6U
+ for ath11k@lists.infradead.org; Mon, 02 May 2022 14:25:25 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id DB6B060BA7;
- Mon,  2 May 2022 13:59:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B85F8C385AC;
- Mon,  2 May 2022 13:59:28 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id DB797B816E4;
+ Mon,  2 May 2022 14:25:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D918AC385A4;
+ Mon,  2 May 2022 14:25:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1651499970;
- bh=rkki7fnxVJwM629ZKQOfs9gIhaGKzLdyqKlPakAN4hM=;
- h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
- b=T+BOSzFlGc7iDXXXBtehvAu37zdckd4dI18jZULA+9M2pTdwj5WEJTkd2+Rm/Vayb
- DCbvssOTw4h9PoJf9c4AM/Lblnf3Y1LGkTRAwjWRRhG+owhl3PHr64jKHc4UBd+lL6
- KHr8QtjrWN16Mkq4a5wWAQazkjBrempjMyixCeeCnktOC8Z2co9PF1JZ5yUt1sNPR0
- IDx8rEEZao/MS8ItdrZGGp0t7xMx66vXXdpqxKskkjpYo7ZwXzRmb/w0OZ6ll0piKi
- b+GNFWWk56UG9Fna6JT6VAMoUKmtthhWhyjdSkSrE6+5QaOrBJ0ISgKGrrTR4lWn/g
- 2njidFcTA+2wQ==
-MIME-Version: 1.0
-Subject: Re: [PATCH v7 1/9] dt: bindings: net: add bindings of WCN6750 for
- ath11k
+ s=k20201202; t=1651501509;
+ bh=rYy4mpAx6EyxzNfDAK8Zp5xCShNoIUSIErNAxKOZE1o=;
+ h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+ b=nm2I33v4dmGau/a2WmCkzYyxbFqRIfac0f719qLFowSTDqcyF64cGKUuSfqTTcXB8
+ beIm6Bsu9XCy3C8++HhKWK1+LotmtWbqLBqDVMSnEkJfd+WBOYicpgCzQ16y2//8ps
+ SCi+MIp/+V/c8N6W6C7MuIqf3ipxKr366T78bcKrHoOwf9wv0IxqsVHiUiV9MtwDtl
+ lBVJCoP5p71ZL5dax+wtIRqYDlPpIfhxKLKLPE2iKRyvXTf0xm5hNK5wF4sVEn04u6
+ a3gubEOs+iFljmb9pbhy0OtBkoziszXxzk84h7u9e9e6GUf27E34hni5DW+o5seplq
+ gyzTrVWPthD2w==
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20220429170502.20080-2-quic_mpubbise@quicinc.com>
-References: <20220429170502.20080-2-quic_mpubbise@quicinc.com>
 To: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <robh@kernel.org>, <mka@chromium.org>,
- Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <165149996655.16977.4961291350588382970.kvalo@kernel.org>
-Date: Mon,  2 May 2022 13:59:28 +0000 (UTC)
+Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
+Subject: Re: [PATCH v3] ath11k: Fix RX de-fragmentation issue on WCN6750
+References: <20220328061947.28813-1-quic_mpubbise@quicinc.com>
+Date: Mon, 02 May 2022 17:25:04 +0300
+In-Reply-To: <20220328061947.28813-1-quic_mpubbise@quicinc.com> (Manikanta
+ Pubbisetty's message of "Mon, 28 Mar 2022 11:49:47 +0530")
+Message-ID: <87bkwgau67.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220502_065931_628270_5BE6F262 
-X-CRM114-Status: GOOD (  13.71  )
+X-CRM114-CacheID: sfid-20220502_072521_473100_725DBC14 
+X-CRM114-Status: GOOD (  15.61  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,44 +72,61 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Manikanta Pubbisetty <quic_mpubbise@quicinc.com> wrote:
+Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
 
-> WCN6750 is the WLAN chip on Qualcomm Snapdragon SoC SC7280;
-> Though being a PCIe based solution, it is not attached to
-> the APSS processor (Application Processor SubSystem), it is
-> instead attached to another tiny processor called WPSS Q6
-> processor (Wireless Processor SubSystem) on the SC7280 MSM,
-> where the WLAN firmware runs, and it is the WLAN firmware
-> running on the Q6 processor which enumerates WCN6750, as a
-> result APPS processor would never know such a device being
-> present in the system and would not detect the WCN6750
-> hardware unless and otherwise WCN6750 is registered as a
-> platform device. This is the reason behind adding WCN6750
-> WLAN node in the device tree.
-> 
-> Add WCN6750 wireless driver support, its based on ath11k driver.
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> The offset of REO register where the RX fragment destination ring
+> is configured is different in WCN6750 as compared to WCN6855.
+> Due to this differnce in offsets, on WCN6750, fragment destination
+> ring will be configured incorrectly, leading to RX fragments not
+> getting delivered to the driver. Fix this by defining HW specific
+> offset for the REO MISC CTL register.
+>
+> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00573-QCAMSLSWPLZ-1
+> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
+> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
+>
 > Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-9 patches applied to ath-next branch of ath.git, thanks.
+[...]
 
-00fd24089b81 dt: bindings: net: add bindings of WCN6750 for ath11k
-92c1858e4399 ath11k: Move parameters in bus_params to hw_params
-d1e1edfde035 ath11k: Add HW params for WCN6750
-56c8ccf331bd ath11k: Add register access logic for WCN6750
-676f8905fff9 ath11k: Fetch device information via QMI for WCN6750
-73d3e71306fe ath11k: Add QMI changes for WCN6750
-49890d9c93d5 ath11k: HAL changes to support WCN6750
-e67ba1973917 ath11k: Datapath changes to support WCN6750
-00402f49d26f ath11k: Add support for WCN6750 device
+> @@ -2229,6 +2229,9 @@ const struct ath11k_hw_regs wcn6855_regs = {
+>  
+>  	/* Shadow register area */
+>  	.hal_shadow_base_addr = 0x000008fc,
+> +
+> +	/* REO MISC CTRL */
+> +	.hal_reo1_misc_ctl = 0x00000630,
+>  };
+
+I don't really see the benefit from the comment, it doesn't bring any
+extra information.
+
+>  const struct ath11k_hw_regs wcn6750_regs = {
+> @@ -2311,6 +2314,9 @@ const struct ath11k_hw_regs wcn6750_regs = {
+>  
+>  	/* Shadow register area */
+>  	.hal_shadow_base_addr = 0x00000504,
+> +
+> +	/* REO MISC CTRL */
+> +	.hal_reo1_misc_ctl = 0x000005d8,
+
+Ditto.
+
+What about other ath11k_hw_regs tables:
+
+<global>[1906]                 const struct ath11k_hw_regs ipq8074_regs = {
+<global>[1988]                 const struct ath11k_hw_regs qca6390_regs = {
+<global>[2070]                 const struct ath11k_hw_regs qcn9074_regs = {
+
+You don't mention anything about those in the commit log. If they don't
+use this register (didn't check) we should at least initialise the
+fields to zero, deadbeef or something to make it clear they are unused.
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20220429170502.20080-2-quic_mpubbise@quicinc.com/
+https://patchwork.kernel.org/project/linux-wireless/list/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
 
 -- 
 ath11k mailing list
