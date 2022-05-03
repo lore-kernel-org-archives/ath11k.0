@@ -4,57 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FDAFC433F5
-	for <ath11k@archiver.kernel.org>; Tue,  3 May 2022 06:04:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 419E6C433EF
+	for <ath11k@archiver.kernel.org>; Tue,  3 May 2022 11:01:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=31xbutGqAeqBPUpSZnmxJwmZbbb55Qm9t83zQSfL+p8=; b=DPOaKnoDwvhhyP
-	y6xHCW41WolMdkriaVL5X8/kNiTZgki5OlZ1rB6AY90vUMxnHnwHCI+lWynodPg98RcSmxAz3z9wy
-	/uVY+0Wfb4Yxi5pw6gAVeBc32BGrQdbEcIxKeiP3yA8SV01B2xeBIV9uykSRAGgaAGAgTL2Bkwiu/
-	Lew58gvY+EzKk7LJi83u2NerzY23KZ6YD9Wod9rw0Yzo+68nTZlga4L6Gvq4BIqZSa670NBFLIi+9
-	ZOHN8vszbFJIlVKcr03TCVIo832bDoIOk5j4DeLRcs6dc+c87hY9+zBxf+vXxZSblzRmsM4eF7/9B
-	oK2u3jAGOWLna5KtCZYw==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:
+	Subject:To:From:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=kW7ESYIrnDHx7BGpgkumaTbakolnJacP1jGTCQDr7j8=; b=SsypY7jYqUnBV8
+	tXXDsMZnXvla3w6/l0yJZ6usqd25qUc96GgXK6GBpK7akxa1/9aulz13QAhGowuiocURtbi7t0uBE
+	FUeXyesoGh8zvpqVE8a1gHNjEGqWzQ2S+iLJVQL4UBgPN/7tvkywqxqB2ftkv6RATLdRE1FUXSe2s
+	fT8MWqrfVrA5hdR7vDIRbPGsPWkTIsv/3z1jV/suWw+4z2WHK/MIziPdh91P0kdiIZbT80/cdSECe
+	WtO30S6iTTzUHh841qj/pFO1n6/EWfbnpW6Ql7/hi7btpoXaRgWO0/IrPLsEAIJZ3bHM4cYonz/NC
+	aSbZCn0hjfwcOEjVO7xQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nlle6-003nze-6t; Tue, 03 May 2022 06:04:26 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
- by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nlle2-003nvg-Sc
- for ath11k@lists.infradead.org; Tue, 03 May 2022 06:04:24 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 57C0CB81A99
- for <ath11k@lists.infradead.org>; Tue,  3 May 2022 06:04:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 643EBC385AF;
- Tue,  3 May 2022 06:04:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1651557859;
- bh=EvdgrcgpdiBbXp+X43whOkPl5MOnDiwPgm4Llg/4DbU=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=ekjL7rR0faEVTP1ESde3+frYFdxJjhLBcFe39c4k3cFA8XCdO4uT38ENex3X32npZ
- i5CupZg1VnT+R4J9AL1nkZj/Pc74LZ0QsX6cBuIWAG78bK0G4tMyXryTFDh/cDNpNY
- Bc7JsfTwHqZ6OntjewQoYIXbapc3Big5meisW5i3m8+F3GkJWsHThUb/HswY3t1w/8
- RGnuT368GHAlrchbbPUAtwzU8nzBVV0ZiEU6jCFF3LfeEkt3hH+oTaEcZ3zxLRVdNe
- aEsfdrqqz9IWAv5aFeAgk5z81jo25FtA/1nOmE774ysxWxSU+Vf+fssOw6NwD89qWV
- RN9TNhfmiGTvw==
-From: Kalle Valo <kvalo@kernel.org>
+	id 1nlqHz-005Tg1-R2; Tue, 03 May 2022 11:01:55 +0000
+Received: from mail.77msk.ru ([84.204.203.133])
+ by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1nlqCd-005Q27-0l
+ for ath11k@lists.infradead.org; Tue, 03 May 2022 10:56:24 +0000
+Received: from mail.77msk.ru (proxysrv.domain007.com [192.168.2.20])
+ by hermes.domain007.com (Postfix) with ESMTP id 2657DD41308
+ for <ath11k@lists.infradead.org>; Tue,  3 May 2022 13:06:25 +0300 (MSK)
+Received: from asda.co.uk (unknown [20.97.211.134])
+ by gatekeeper.domain007.com (Postfix) with ESMTPSA id B87C432009C
+ for <ath11k@lists.infradead.org>; Tue,  3 May 2022 13:06:24 +0300 (MSK)
+From: ASDA Stores Limited <Hanes.Thomas2365@asda.co.uk>
 To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
-Subject: [PATCH 2/2] ath10k: mac: fix too long lines
-Date: Tue,  3 May 2022 09:04:15 +0300
-Message-Id: <20220503060415.24499-2-kvalo@kernel.org>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220503060415.24499-1-kvalo@kernel.org>
-References: <20220503060415.24499-1-kvalo@kernel.org>
+Subject: Procurement order from ASDA
+Date: 03 May 2022 10:06:24 +0000
+Message-ID: <20220503091902.2DB2D068F1EB81F8@asda.co.uk>
 MIME-Version: 1.0
+X-Virus-Scanned: clamav-milter 0.102.4 at hermes
+X-Virus-Status: Clean
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220502_230423_248668_C1C6A2B3 
-X-CRM114-Status: GOOD (  12.88  )
+X-CRM114-CacheID: sfid-20220503_035623_278139_DC596E73 
+X-CRM114-Status: UNSURE (  -0.40  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -66,83 +54,26 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: sales@asdaa.uk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Kalle Valo <quic_kvalo@quicinc.com>
-
-checkpatch warns:
-
-drivers/net/wireless/ath/ath10k/mac.c:2696: line length of 92 exceeds 90 columns
-drivers/net/wireless/ath/ath10k/mac.c:6942: line length of 94 exceeds 90 columns
-drivers/net/wireless/ath/ath10k/mac.c:6948: line length of 91 exceeds 90 columns
-
-These were introduced by commit 046d2e7c50e3 ("mac80211: prepare sta handling
-for MLO support").
-
-Compile tested only.
-
-Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
----
- drivers/net/wireless/ath/ath10k/mac.c | 13 +++++++++----
- 1 file changed, 9 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath10k/mac.c b/drivers/net/wireless/ath/ath10k/mac.c
-index 06a51a48c1d9..3570a5895ea8 100644
---- a/drivers/net/wireless/ath/ath10k/mac.c
-+++ b/drivers/net/wireless/ath/ath10k/mac.c
-@@ -2692,8 +2692,10 @@ static bool ath10k_mac_sta_has_ofdm_only(struct ieee80211_sta *sta)
- static enum wmi_phy_mode ath10k_mac_get_phymode_vht(struct ath10k *ar,
- 						    struct ieee80211_sta *sta)
- {
-+	struct ieee80211_sta_vht_cap *vht_cap = &sta->deflink.vht_cap;
-+
- 	if (sta->deflink.bandwidth == IEEE80211_STA_RX_BW_160) {
--		switch (sta->deflink.vht_cap.cap & IEEE80211_VHT_CAP_SUPP_CHAN_WIDTH_MASK) {
-+		switch (vht_cap->cap & IEEE80211_VHT_CAP_SUPP_CHAN_WIDTH_MASK) {
- 		case IEEE80211_VHT_CAP_SUPP_CHAN_WIDTH_160MHZ:
- 			return MODE_11AC_VHT160;
- 		case IEEE80211_VHT_CAP_SUPP_CHAN_WIDTH_160_80PLUS80MHZ:
-@@ -6926,6 +6928,9 @@ static int ath10k_mac_validate_rate_mask(struct ath10k *ar,
- 					 struct ieee80211_sta *sta,
- 					 u32 rate_ctrl_flag, u8 nss)
- {
-+	struct ieee80211_sta_ht_cap *ht_cap = &sta->deflink.ht_cap;
-+	struct ieee80211_sta_vht_cap *vht_cap = &sta->deflink.vht_cap;
-+
- 	if (nss > sta->deflink.rx_nss) {
- 		ath10k_warn(ar, "Invalid nss field, configured %u limit %u\n",
- 			    nss, sta->deflink.rx_nss);
-@@ -6933,19 +6938,19 @@ static int ath10k_mac_validate_rate_mask(struct ath10k *ar,
- 	}
- 
- 	if (ATH10K_HW_PREAMBLE(rate_ctrl_flag) == WMI_RATE_PREAMBLE_VHT) {
--		if (!sta->deflink.vht_cap.vht_supported) {
-+		if (!vht_cap->vht_supported) {
- 			ath10k_warn(ar, "Invalid VHT rate for sta %pM\n",
- 				    sta->addr);
- 			return -EINVAL;
- 		}
- 	} else if (ATH10K_HW_PREAMBLE(rate_ctrl_flag) == WMI_RATE_PREAMBLE_HT) {
--		if (!sta->deflink.ht_cap.ht_supported || sta->deflink.vht_cap.vht_supported) {
-+		if (!ht_cap->ht_supported || vht_cap->vht_supported) {
- 			ath10k_warn(ar, "Invalid HT rate for sta %pM\n",
- 				    sta->addr);
- 			return -EINVAL;
- 		}
- 	} else {
--		if (sta->deflink.ht_cap.ht_supported || sta->deflink.vht_cap.vht_supported)
-+		if (ht_cap->ht_supported || vht_cap->vht_supported)
- 			return -EINVAL;
- 	}
- 
--- 
-2.30.2
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+RGVhciBhdGgxMWsKCldlIGFyZSBpbnRlcmVzdGVkIGluIGhhdmluZyBzb21lIG9mIHlvdXIgaG90
+IHNlbGxpbmcgcHJvZHVjdCBpbiAKb3VyIHN0b3JlcyBhbmQgb3V0bGV0cyBzcHJlYWQgYWxsIG92
+ZXIgVW5pdGVkIEtpbmdkb20sIE5vcnRoZXJuIApJc2xhbmQgYW5kIEFmcmljYS4gQVNEQSBTdG9y
+ZXMgTGltaXRlZCBpcyBvbmUgb2YgdGhlIGhpZ2hlc3QtCnJhbmtpbmcgV2hvbGVzYWxlICYgUmV0
+YWlsIG91dGxldHMgaW4gdGhlIFVuaXRlZCBLaW5nZG9tLiAKICAKV2Ugc2hhbGwgZnVybmlzaCBv
+dXIgZGV0YWlsZWQgY29tcGFueSBwcm9maWxlIGluIG91ciBuZXh0IApjb3JyZXNwb25kZW50LiBI
+b3dldmVyLCBpdCB3b3VsZCBiZSBhcHByZWNpYXRlZCBpZiB5b3UgY2FuIHNlbmQgCnVzIHlvdXIg
+Y2F0YWxvZyB0aHJvdWdoIGVtYWlsIHRvIGxlYXJuIG1vcmUgYWJvdXQgeW91ciBjb21wYW55J3Mg
+CnByb2R1Y3RzIGFuZCB3aG9sZXNhbGUgcXVvdGUuIEl0IGlzIGhvcGVmdWwgdGhhdCB3ZSBjYW4g
+c3RhcnQgYSAKdmlhYmxlIGxvbmctbGFzdGluZyBidXNpbmVzcyByZWxhdGlvbnNoaXAgKHBhcnRu
+ZXJzaGlwKSB3aXRoIHlvdS4gIAogIAogIApZb3VyIHByb21wdCByZXNwb25zZSB3b3VsZCBiZSBk
+ZWxpZ2h0ZnVsbHkgYXBwcmVjaWF0ZWQuIAogIApCZXN0IFdpc2hlcyAKICAKICAKSGFuZXMgUy4g
+VGhvbWFzIApQcm9jdXJlbWVudCBPZmZpY2UuIApBU0RBIFN0b3JlcyBMaW1pdGVkIApUZWw6ICAr
+IDQ0IC0gNzQ1MTI3MTY1MCAKV2hhdHNBcHA6ICsgNDQg4oCTIDc0NDE0NDAzNjAgCldlYnNpdGU6
+IHd3dy5hc2RhLmNvLnVrCgotLSAKYXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtAbGlzdHMuaW5m
+cmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2F0
+aDExawo=
