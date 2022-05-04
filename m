@@ -4,65 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41754C433EF
-	for <ath11k@archiver.kernel.org>; Wed,  4 May 2022 11:47:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67317C433F5
+	for <ath11k@archiver.kernel.org>; Wed,  4 May 2022 12:00:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=maQ07KiBzT6uctIvYX7ez50hjo7nelsuQ0UoaVyquzI=; b=gvjau/3Tzr0rAQ
-	Y7srjp+8QYlgiqjvcbeIuUrSl29+89Zwob+iEIz0Tr8C9OGW9ORYseiB70cn/7QESZETvSNBtblS2
-	2OOujFQ/Wns7tg+l7PXdPgKrQATjQISw8N+GcQnSua1ibjalOqH+0n9+yG8dPS0MkO4VzEt3EXcx1
-	Ku+/JKZW8vcB3F7NBGXemNEQzVYR1VJQgTzQQxcepe5xrlrJtEAwEF1XSk3uV2qMbjQp6OgprNW4l
-	rkqOMPWgd9XxxTWrASiLfHdtARn3cpYHVmDhHVbrY9k2FpKIAcemPxm+Z7QGgXmkvYHU+EvpJ9BC6
-	raBPqPw3Jv4zDrEwTtvw==;
+	List-Owner; bh=Z2C1shp/Kg5fycAls0UqA177FqPwRzvRZkp0YleEIic=; b=MUIjuGg03w1zau
+	ij//8sZGj93sz+ist/hM4jHymEcG1v/7EvRnAZQVWdX8ftg7yKFIDhlnxyEEfRWFZJ6KP+VwAVZX9
+	UPleTAlboeAyO0Ui40evt00sRWzOz03U0WdxS+OAXmQLELSOmZiMULkJ9nncqCZzjH+6wQ7qV1V0u
+	AedEC8Qoh2sY5Dx79zYuwl/4cdanP+Jhqvo1MQKyntAPdmUgstgUHYXWnagyOygBhWxeo0myk1E+n
+	/HqzSXkSHSYCqZXPxneJlu7Dt0f3GOrnhaX4H7CshwPodLHd78TBkcGi9V1VdAOtW33ACBcUilvEH
+	GzN26aIoDaobapfkwntg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nmDTx-00AYHt-Va; Wed, 04 May 2022 11:47:50 +0000
+	id 1nmDfz-00AbKG-Ol; Wed, 04 May 2022 12:00:15 +0000
 Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
  helo=sipsolutions.net)
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nmDTu-00AYFx-UK
- for ath11k@lists.infradead.org; Wed, 04 May 2022 11:47:48 +0000
+ id 1nmDfx-00AbJR-8q
+ for ath11k@lists.infradead.org; Wed, 04 May 2022 12:00:14 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sipsolutions.net; s=mail; h=Content-Transfer-Encoding:MIME-Version:
  Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
  :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
- Resent-Cc:Resent-Message-ID; bh=/YhHlU416mXxVS2uu0nKAKDOzg4gDRQYAT19TdBjKa4=; 
- t=1651664866; x=1652874466; b=GYmTWqD+SPNnX7qBC+YjyAzNcSiYz7FLu1pNIaG70Wss1Ma
- 9p+VJFHpnL4JP+EaDSiUchqFa8D8KQg+bM4B6UOxzAWML0/qEpxo/8h74bicpBVGrEcRndkRpL8H1
- XO2a8HRZ6HzxUs4a8MHUv+vmyCSbDrs1ffGFFe2DlhiZijgC14h0iCmkbKJtblcvzSgRYJiu/RcQg
- s2PNM9X3XrXq5Ts80KlDomW0vP0AlgWZmq5noCxHATNwoPeyyuWwpyeqn6yFXKTuBpVv6cjBJrLl6
- TOSd+3RUzM2Fkkt4109BWzOwrM6n1Y9kTFNS5AjgIM5WbVNFY/Cg1vl0Ifb6T8bw==;
+ Resent-Cc:Resent-Message-ID; bh=mY2mgK4GXixkyAnRyVErr8pNbuciIp0UGA/C/xY3T48=; 
+ t=1651665612; x=1652875212; b=ZqDSEcU1dX8nvWHfC2V5KaLAGmQzbJU2QP1ASWh8c1I4Wi8
+ 9GJQJumnUWrgE5f8/B3BucEQwRli6DotgLGfqx0oBaT/DT110w4sW2bHVa+X5DLG6LSLxfTOEW//3
+ zc5OmYynz4AdbYlszmBbZz0IlkRetGUF+Qmrl92QiFq9rCsrGV/488C7ySiZKohDojLdg0e+eQYhP
+ VxfWXYqjOeL6Uu7BZ4s+ZErgcBpRvT7wfIZZLVoystXKTm3A9ZPBkL79vM8/WJ0SiHk9fJzNPs9jf
+ Ghjn79DxTuJAEPEmHPYy57ONgfE6FvZSZZ73oxXw8/tcFjj/BjBIPyBuC3DTRkHg==;
 Received: by sipsolutions.net with esmtpsa
  (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
  (Exim 4.95) (envelope-from <johannes@sipsolutions.net>)
- id 1nmDTq-0021OS-Rr; Wed, 04 May 2022 13:47:42 +0200
-Message-ID: <7b53ed63ab1d50c9c7d7dd3e8597050c9e233944.camel@sipsolutions.net>
-Subject: Re: [PATCH 1/2] mac80211: add support to configure 6GHz non-ht
- duplicate transmission
+ id 1nmDfu-0021gf-Or; Wed, 04 May 2022 14:00:10 +0200
+Message-ID: <a0a40e7f40dd173cc4a3688bd77c90cc8c479ab7.camel@sipsolutions.net>
+Subject: Re: [PATCH v5] cfg80211: save power spectral density(psd) of
+ regulatory rule
 From: Johannes Berg <johannes@sipsolutions.net>
-To: "Rameshkumar Sundaram (QUIC)" <quic_ramess@quicinc.com>
-Cc: "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>, 
- "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
-Date: Wed, 04 May 2022 13:47:42 +0200
-In-Reply-To: <DM6PR02MB49379E377E3E7940540DF587E9F09@DM6PR02MB4937.namprd02.prod.outlook.com>
-References: <1644914581-21682-1-git-send-email-quic_ramess@quicinc.com>
- <1644914581-21682-2-git-send-email-quic_ramess@quicinc.com>
- <a517835c51a5eaf00e87fdaaef47546f70ff0d42.camel@sipsolutions.net>
- <DM6PR02MB4937C53041172E9A52846A0BE9169@DM6PR02MB4937.namprd02.prod.outlook.com>
- <a537c6e02afbfa26eec2a54dbd8bc649f77ae3a3.camel@sipsolutions.net>
- <DM6PR02MB493734ADBBC6C996845B9EF3E9179@DM6PR02MB4937.namprd02.prod.outlook.com>
- <babc75d310031f9f92736d5da65679ca50542849.camel@sipsolutions.net>
- <DM6PR02MB49379E377E3E7940540DF587E9F09@DM6PR02MB4937.namprd02.prod.outlook.com>
+To: Wen Gong <quic_wgong@quicinc.com>, Wen Gong <wgong@codeaurora.org>
+Cc: Venkateswara Naralasetty <vnaralas@qti.qualcomm.com>, Venkateswara
+ Naralasetty <vnaralas@codeaurora.org>, ath11k@lists.infradead.org,
+ linux-wireless@vger.kernel.org,  wgong=codeaurora.org@codeaurora.org,
+ quic_adisi@quicinc.com,  quic_vnaralas@quicinc.com
+Date: Wed, 04 May 2022 14:00:09 +0200
+In-Reply-To: <aee8fc50-3ffb-f985-f0ad-9752bb51890d@quicinc.com>
+References: <20210928085211.26186-1-wgong@codeaurora.org>
+ <bd649a3d2cf2ea9064d427d633055891@codeaurora.org>
+ <cb20427eae96c4551084e4c899618b94@codeaurora.org>
+ <2afb1bf6f06cb53f43fe0d354afa4e7c@codeaurora.org>
+ <2ed76cff292dcca18326de0407a93821@codeaurora.org>
+ <1222384c2bc7d80bf572b65ab17660477bb27300.camel@sipsolutions.net>
+ <562080d7fc3b7568811c47a8e8e79156@codeaurora.org>
+ <DM8PR02MB8154258563A4F7C805C84B4BE6B59@DM8PR02MB8154.namprd02.prod.outlook.com>
+ <0b05f6e555bcb89c49f56279c077ce63@codeaurora.org>
+ <18363bc18538ea9b7e8fe28f4c5595c54f3b93d3.camel@sipsolutions.net>
+ <67936afa5545b9a5d6eb5ad6931026d7@codeaurora.org>
+ <6053b0963612057267f00b89e14b9e15@codeaurora.org>
+ <68b700b371399db0ed4174d20ddd0b8b@codeaurora.org>
+ <7761dc6f736b04cce1137b68a7132ac7@codeaurora.org>
+ <aee8fc50-3ffb-f985-f0ad-9752bb51890d@quicinc.com>
 User-Agent: Evolution 3.42.4 (3.42.4-2.fc35) 
 MIME-Version: 1.0
 X-malware-bazaar: not-scanned
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220504_044747_057077_988636FA 
-X-CRM114-Status: GOOD (  13.15  )
+X-CRM114-CacheID: sfid-20220504_050013_354869_EC96DF59 
+X-CRM114-Status: GOOD (  28.81  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,43 +83,77 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Sun, 2022-04-17 at 14:30 +0000, Rameshkumar Sundaram (QUIC) wrote:
-> > 
-> > Well, I was thinking it would reasonably come with the beacon rate,
-> > i.e.
-> > as a new attribute like NL80211_TXRATE_DUP?
-> Sorry not getting this, you mean hostapd would need to send new set of
-> rates for this configuration ?
-> The expectation is that user-space will set this bit in HE oper IE
-> only if legacy rates are present in beacon or basic rates.
-> 
-
-?
-
-I don't understand.
-
-The point is - you're setting the bit in the beacon that indicates "I'm
-transmitting it as duplicate", right?
-
-But you're also using that bit to actually configure it to do (non-HT)
-duplicate transmissions.
-
-But fundamentally, those two things aren't really related, are they? Why
-shouldn't you be - at least theoretically - be able to configure it for
-duplicate transmission (or not) regardless of the bit in the beacon?
-
-To me it seems "do duplicate transmission" is a property of the *rate*
-you want to use to transmit, not really necessarily a property of the
-*content* of the frame you're transmitting.
-
-johannes
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+SGksCgpTb3JyeS4gSSd2ZSBiZWVuIHNoeWluZyBhd2F5IGZyb20gdGhpcywgaXQncyBjb21wbGV0
+ZWx5IGNvbmZ1c2luZyBtZSwKYW5kIHRoZSBjb2RlIGlzbid0IHJlYWxseSBoZWxwaW5nIHRoYXQg
+bXVjaCwgc28gZmFyLgoKPiBQU0QgaXMgYW5vdGhlciB0eXBlIHBvd2VyIHZhbHVlIGFzIHdlbGwg
+YXMgdGhlIHBvd2VyX3J1bGUgaW4gCj4gaWVlZTgwMjExX3JlZ19ydWxlCj4gYW5kIG1heF9yZWdf
+cG93ZXIvbWF4X3Bvd2VyIGluIGllZWU4MDIxMV9jaGFubmVsLiBGb3IgNkcsIGl0IG5lZWQgdGhl
+Cj4gYm90aCB0aGUgMiB2YWx1ZXMgKHBzZCBhbmQgdHgtcG93ZXIpIGZvciBwb3dlciBjb250cm9s
+LgoKU3VyZSwgdGhhdCBtYWtlcyBzZW5zZS4gWW91IGhhdmUgUFNEIGxpbWl0cyBhcyB3ZWxsIGFz
+IFRYIHBvd2VyIGxpbWl0cy4KCj4gVG8gc3VwcG9ydCBMUEkvU1AvVkxQIG1vZGUgKyBjb25jdXJy
+ZW5jeSwgaXQgaXMgbm90IG9ubHkgdG8gcHJvY2VzcyB0aGUKPiBUWCBwb3dlciBhbmQgcHNkLCBp
+dCBuZWVkIHRvIHByb2Nlc3MgYWxsIGZpZWxkcyBpbiBpZWVlODAyMTFfcmVnX3J1bGUuCj4gZm9y
+IGV4YW1wbGUsIGZvciB0aGUgc2FtZSBjb3VudHJ5IFVTLCBpdCBoYXMgc29tZSBpZWVlODAyMTFf
+cmVnX3J1bGUgZm9yCj4gNkc6Cj4gTFBJIG1vZGUgZm9yIEFQIG1vZGUgaXM6Cj4gKDU5NDUgLSA3
+MTI1IEAgMTYwKSAoMCwgMzApIChGTEFHUyA1MTIpIChwc2QgNSBkQi9NSHopCj4gCj4gTFBJIG1v
+ZGUgZm9yIGNsaWVudCBtb2RlIGlzOgo+ICg1OTQ1IC0gNzEyNSBAIDE2MCkgKDAsIDI0KSAoRkxB
+R1MgNTEyKSAocHNkIC0xIGRCL01IeikKPiAKPiBTUCBtb2RlIGlzOgo+ICg1OTQ1IC0gNjQyNSBA
+IDE2MCkgKDAsIDMwKSAoRkxBR1MgMCkgKHBzZCAxNyBkQi9NSHopCj4gKDY1MjUgLSA2ODc1IEAg
+MTYwKSAoMCwgMzApIChGTEFHUyAwKSAocHNkIDE3IGRCL01IeikKPiAKPiB5b3UgY2FuIHNlZSB0
+aGUgZnJlcXVlbmN5IHJhbmdlL2ZsYWdzL3R4IHBvd2VyL3BzZCBhcmUgbm90IHNhbWUgYmV0d2Vl
+bgo+IHRoZSAzIG1vZGUuCgpSaWdodC4gQnV0IGhlcmUgSSBhbHJlYWR5IGRvbid0IHVuZGVyc3Rh
+bmQgLSBkb2VzIHRoYXQgbWVhbiB5b3VyCmhhcmR3YXJlIGNhbiBvbmx5IGJlIGluIG9uZSBtb2Rl
+IHRvZGF5IG92ZXJhbGw/wqAKCkl0IHNlZW1zIHlvdSdkIG5lZWQgdG8gaGF2ZSBzZXBhcmF0ZSBy
+ZWd1bGF0b3J5IHJ1bGVzIHBlciBtb2RlLCBhbmQKcG9zc2libHkgcGVyIGludGVyZmFjZSB0eXBl
+LCBubz8KCk9yIGRvIHlvdSB0cnkgdG8gYWRqdXN0IHRoZSByZWd1bGF0b3J5IHJ1bGVzIHdoZW4g
+dGhlIG1vZGUgaXMgc3dpdGNoZWQ/CkJ1dCB3ZSB0cnkgdG8gaGF2ZSByZWd1bGF0b3J5IHJ1bGVz
+IGNhcHR1cmUgdGhlIG92ZXJhbGwgc3RhdHVzLCBub3QgYQp0ZW1wb3Jhcnkgc3RhdHVzLCBhbmQg
+dGhlbiBhcHBseSB0aGUgcnVsZXMgdGhhdCBtYWtlIHNlbnNlIGF0IGFueSBnaXZlbgp0aW1lLgoK
+PiBTbyB0aGUgcHNkIHZhbHVlIGlzIGEgc2FtZSBraW5kIGZpZWxkIGFzIHdlbGwgYXMgdGhlIGZy
+ZXF1ZW5jeQo+IHJhbmdlL2ZsYWdzL3R4IHBvd2VyIGluIGllZWU4MDIxMV9yZWdfcnVsZSBhbmQg
+aWVlZTgwMjExX2NoYW5uZWwuCj4gSWYgaXQgaGFzIG9ubHkgb25lIGludGVyZmFjZSBpbiB0aGUg
+c2FtZSBpZWVlODAyMTFfaHcsIHRoZSBpbnRlcmZhY2UKPiBtdXN0IGNob29zZSBvbmUgdGhlIHRo
+ZSBhYm92ZSBtb2RlcyBhdCBhbnkgdGltZSwgYW5kIHRoZSByZWcgcnVsZXMKPiB3aWxsIGJlIHVw
+ZGF0ZWQgd2hlbiB0aGUgaW50ZXJmYWNlIGNoYW5nZWQgaXRzIG1vZGUsIHRoZW4gdGhlIGluZm8K
+PiBvZiBjaGFubmVscyBvZiBpZWVlODAyMTFfc3VwcG9ydGVkX2JhbmQgZm9yIDZHIGFsc28gdXBk
+YXRlLCBpdCBoYXMKPiBubyBwcm9ibGVtLgoKQWggT0ssIHNvIHlvdSBhbnN3ZXIgdGhhdCBxdWVz
+dGlvbiAtIHlvdSdyZSBhY3R1YWxseSBjaGFuZ2luZyB0aGUKcmVndWxhdG9yeSBydWxlcywgd2hp
+Y2ggaXMgdG90YWxseSB1bmV4cGVjdGVkIHRvIG1lLCBzaW5jZSBJJ2QgZXhwZWN0CnRob3NlIHRv
+IG9ubHkgY2hhbmdlIHdoZW4gdGhlIHJlZ3VsYXRvcnkgY2hhbmdlcywgbm90IHdoZW4geW91IG1v
+ZGUKc3dpdGNoIC4uLgoKPiBXaGVuIGl0IGhhcyAyIGludGVyZmFjZSB1cCBzaW11bHRhbmVvdXNs
+eSBpbiB0aGUgc2FtZSBpZWVlODAyMTFfaHcsCj4gdGhlbiBpdCB3aWxsIGhhdmUgcHJvYmxlbS4g
+YmVjYXVzZSB0aGUgMiBpbnRlcmZhY2Ugc2hhcmUgdGhlIHNhbWUKPiBpZWVlODAyMTFfcmVnX3J1
+bGUgYW5kIHRoZSBzYW1lIGNoYW5uZWxzIGFuZCBzYW1lIGllZWU4MDIxMV9zdXBwb3J0ZWRfYmFu
+ZAo+IGZvciA2RywgaWYgaW50ZXJmYWNlICMxIGlzIExQSS1BUCwgYW5kIGludGVyZmFjZSAjMiBp
+cyBTUCBtb2RlLCB0aGVuCj4gZXZlbiB0aGUgY2hhbm5lbHMgY291bnQgaXMgbm90IHNhbWUgZm9y
+IHRoZSAyIGludGVyZmFjZSwgY2hhbm5lbHMgY291bnQKPiBvZiBTUCBtb2RlIGlzIHNtYWxsZXIg
+dGhhbiBMUEktQVAsIGFsc28gdGhlIGluZm8gb2YgY2hhbm5lbCBpcyBub3Qgc2FtZS4KPiAKPiBT
+byBhZGRpbmcvbm90IGFkZGluZyBwc2QgdmFsdWUgaW50byBpZWVlODAyMTFfcmVnX3J1bGUvaWVl
+ZTgwMjExX2NoYW5uZWwKPiB3aWxsIG5vdCBlZmZlY3QgdGhlIHByb2JsZW0gb2YgbXV0aS1pbnRl
+cmZhY2UgY29uY3VycmVuY3kgaXNzdWUgb2YgNkcuCgpPaCBidXQgSSBkaXNhZ3JlZSAtIGFkZGlu
+ZyBpdCB3aWxsIG1lYW4gdGhhdCB0aGlzIGlzIGhvdyB3ZSBpbnRlcnByZXQKdGhlIHJlZ19ydWxl
+LCB0aGF0IGl0IG9ubHkgY2FycmllcyB0aGUgY3VycmVudCBzdGF0dXMgYWNjb3JkaW5nIHRvICJ0
+aGUiCmN1cnJlbnQgbW9kZSAod2hpY2ggaXNuJ3QgZXZlbiB3ZWxsLWRlZmluZWQpLCByYXRoZXIg
+dGhhbiB0aGUgZW50aXJldHkKb2YgdGhlIHJlZ3VsYXRvcnkgaW5mb3JtYXRpb24uCgo+IFdoZW4g
+bXV0aS1pbnRlcmZhY2UgY29uY3VycmVuY3kgcnVuLCBhbGwgdGhlIGZpZWxkcyBvZiBpZWVlODAy
+MTFfcmVnX3J1bGUvCj4gaWVlZTgwMjExX2NoYW5uZWwgc2hvdWxkIGJlIHNwbGl0LgoKUmlnaHQu
+Cgo+IEkgdGhpbmsgdGhlIGVhc3kgd2F5IGlzIHRvIHNhdmUgdGhlIGNoYW5uZWxzIG9mIGllZWU4
+MDIxMV9zdXBwb3J0ZWRfYmFuZAo+IG9mIDZHIGluIGVhY2ggaW50ZXJmYWNlIGluc3RlYWQgb2Yg
+aWVlZTgwMjExX2h3LCB0aGVuIGludGVyZmFjZSAjMS8jMgo+IGhhdmUvdXNlIHRoZWlyIG93biBj
+aGFubmVscywgdGhleSB1c2UgdGhlaXIgb3duIGZyZXF1ZW5jeSByYW5nZS9mbGFncy8KPiB0eCBw
+b3dlci9wc2QuLi7CoAo+IAoKSSdtIG5vdCBzdXJlIHRoYXQgd2lsbCB3b3JrLCBiZWNhdXNlIHdl
+IG9mdGVuIGNvbXBhcmUgY2hhbiBwb2ludGVycyB3aXRoCj09LCBhbmQgaWYgeW91J3JlIGRvaW5n
+IHNvbWV0aGluZyBsaWtlIHJlbWFpbi1vbi1jaGFubmVsIHRoYXQncyBzdGlsbApyZWxldmFudC4g
+U28gaGF2aW5nIHRoZSBzYW1lIGNoYW5uZWwgc3RydWN0IG9uIHRoZSBzYW1lIGhhcmR3YXJlIHdp
+dGgKdGhlIHNhbWUgZnJlcXVlbmN5IGlzIGJvdW5kIHRvIGJlIHByb2JsZW1hdGljLgoKPiBUaGlz
+IGlzIGEgaGlnaCBsZXZlbCBjaGFuZ2UsIGFuZCBhZGRpbmcgcHNkIGludG8KPiBpZWVlODAyMTFf
+cmVnX3J1bGUvaWVlZTgwMjExX2NoYW5uZWwgaXMgYSBsb3cgbGV2ZWwgY2hhbmdlLiBTbyBJIHRo
+aW5rCj4gdGhleSBoYXZlIG5vIGRlcGVuZGVuY3kgd2l0aCBlYWNoIG90aGVyLgoKSSB0aGluayBJ
+IGRpc2FncmVlLCBwZXIgdGhlIGFib3ZlIGRpc2FncmVlbWVudC4KCmpvaGFubmVzCgotLSAKYXRo
+MTFrIG1haWxpbmcgbGlzdAphdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMu
+aW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2F0aDExawo=
