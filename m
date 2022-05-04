@@ -4,65 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 638A4C433F5
-	for <ath11k@archiver.kernel.org>; Wed,  4 May 2022 08:39:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16E85C433EF
+	for <ath11k@archiver.kernel.org>; Wed,  4 May 2022 11:15:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=euz3EWJYJQc1+BbuVMAz8xoHYim18uz342VVMkHzKKM=; b=WwBWCZH+H8z0Bm
-	C7hYVrRP62r9PiRjMyaWNXZqwPUJsLD33XSUrIgr9lsfxlcgpcYzDoGUyAatWhX300oeogku6Orrw
-	9ko/3jwth//tTj7/L1r9qSu5gQ3hXS136R6xtNF+sN8LEu9tFdSatvXdIkcWruc3QjGNnrhGUVz/5
-	YI2y++tdbPjWXznfq6unziFf0K4sGl+V0A6q1IFMR+D7cAIrUSTky3mMI6QO/z7guor5D8s8vw7GM
-	0zYzpGLDk67gLyKf27MWE4ilYw+HywwdLpgAQMVYsd2cNqwEaxXFbIqRP0182dxN6U+ReUFFehxb/
-	rr+oHID5EPQoSjbKjncg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=qJV0L58NC6Z0mm6RbGTqtheeympL3S7Pm8liuN/s06U=; b=x82JF0HujCYkYi
+	1nG0LJmVXAejRCo7RX9givVQWtryu9NoWanRU/YWWAJLkWzXPIWE58Y20bjXX1Ll6gck/BRWCXfDc
+	qajb7Pr9XMzPazXRHFTSk4OKNfd/ubq1U7cfWr2WK9C2doaZFdzbNfWweObgZUt2nl6wtijcOR3UX
+	XV7Ccj/aGKtanjpq1QUBvvYKCTNmvCeulHMBVmN19m0eeuWm3raAB69Z/3Ecwy2klnMIpb2fRnG1t
+	5kBkrxQVgMhVFJctcJ20gxGdLDTeL2tHcaqiN6DENikYY4xIvqYwkoYOftS3Nx91uimPaNbE8Qzrj
+	zIWSZt287W8Js5fcJadQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nmAXh-009bfR-FQ; Wed, 04 May 2022 08:39:29 +0000
-Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39])
+	id 1nmCyD-00AOpc-RP; Wed, 04 May 2022 11:15:01 +0000
+Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2]
+ helo=sipsolutions.net)
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nmAXd-009bd7-R8
- for ath11k@lists.infradead.org; Wed, 04 May 2022 08:39:27 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1651653565; x=1683189565;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=wjwJhR2OAxHa5P8ARk9m0NUgZJn5+8QZrILgs2vpKZ8=;
- b=Japu2aVMf///bVvOt2qUcSebyVVmsMslI8E/DeAegw6dke2XxWXQZijD
- eN20hDXUMOBg4sypx2RHnpiinWaA1ed9rSGLRdHieYMX4YUI2owTpT7NA
- 39iY30ZtkRf75zcGw9M3edC4ge3EKJ9aKAOjVn0frzpVG4xyMvN2jy9kL M=;
-Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
- by alexa-out-sd-02.qualcomm.com with ESMTP; 04 May 2022 01:39:19 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2022 01:39:19 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 4 May 2022 01:39:19 -0700
-Received: from mpubbise-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 4 May 2022 01:39:17 -0700
-From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, Manikanta Pubbisetty
- <quic_mpubbise@quicinc.com>
-Subject: [PATCH v4] ath11k: Fix RX de-fragmentation issue on WCN6750
-Date: Wed, 4 May 2022 14:09:00 +0530
-Message-ID: <20220504083900.31513-1-quic_mpubbise@quicinc.com>
-X-Mailer: git-send-email 2.35.1
+ id 1nmCyA-00AOpH-No
+ for ath11k@lists.infradead.org; Wed, 04 May 2022 11:15:00 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=sipsolutions.net; s=mail; h=Content-Transfer-Encoding:MIME-Version:
+ Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
+ :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
+ Resent-Cc:Resent-Message-ID; bh=iUj47hOsQY4WwZXF5zIQ8HlvN/uG2gB6rA9TwZr7GM8=; 
+ t=1651662894; x=1652872494; b=qFE7vmxsZUZyGjTNzYbtFahXiQiaP9ie1IifuEDo6jKVdD5
+ y2kTnl4b1ahd814hyXFKXFSzqBXSLb4ufc3YODdBu86YhAxeTIAMgCML8hVh3R3cw0kPigIpqOeOq
+ 8EfgiJ/6CtOJtb077huGPelz9/DH8dR4ibQ4IKffJjRmC28JeBmMJB+KDT2PmVTE09FjyYxDO7m8n
+ jOdqzyrKdI99fi+pnNqs0wEMmil8nFbNmPrzGyx0awo7we9oBjk6uon9uAeQpIF59PfgewddvbboJ
+ x3rosSqRaLHxX2w+O8Jk5U7/CAaKQ/q8Gp5v29qbIGflYcdYf30iQdzy9x4TGswA==;
+Received: by sipsolutions.net with esmtpsa
+ (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+ (Exim 4.95) (envelope-from <johannes@sipsolutions.net>)
+ id 1nmCy3-0020xz-Nw; Wed, 04 May 2022 13:14:51 +0200
+Message-ID: <1c08cc9fca6e0a5f8fe02c7324a28ea2ad818354.camel@sipsolutions.net>
+Subject: Re: [PATCH v4 1/3] nl80211: Extended ROC support for 40-80 MHz
+ bandwidth
+From: Johannes Berg <johannes@sipsolutions.net>
+To: P Praneesh <quic_ppranees@quicinc.com>, ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org, Sathishkumar Muruganandam
+ <quic_murugana@quicinc.com>
+Date: Wed, 04 May 2022 13:14:50 +0200
+In-Reply-To: <1647857797-19749-2-git-send-email-quic_ppranees@quicinc.com>
+References: <1647857797-19749-1-git-send-email-quic_ppranees@quicinc.com>
+ <1647857797-19749-2-git-send-email-quic_ppranees@quicinc.com>
+User-Agent: Evolution 3.42.4 (3.42.4-2.fc35) 
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+X-malware-bazaar: not-scanned
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220504_013925_969342_F1EE51BB 
-X-CRM114-Status: GOOD (  13.90  )
+X-CRM114-CacheID: sfid-20220504_041458_822077_6BB349D2 
+X-CRM114-Status: GOOD (  10.58  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,135 +73,41 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-The offset of REO register where the RX fragment destination ring
-is configured is different in WCN6750 as compared to WCN6855.
-Due to this differnce in offsets, on WCN6750, fragment destination
-ring will be configured incorrectly, leading to RX fragments not
-getting delivered to the driver. Fix this by defining HW specific
-offsets for the REO MISC CTL register.
+On Mon, 2022-03-21 at 15:46 +0530, P Praneesh wrote:
+> Replace struct ieee80211_channel with struct cfg80211_chan_def in
+> remain on channel apis, because the channel width information is
+> needed to handle centre frequency of 80MHz, and it is available
+> in cfg80211_chan_def. Also, add SUPPORTS_EXT_REMAIN_ON_CHAN feature
+> flag check before driver ops call.
 
-Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
-Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
-Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
+Couple of more things ...
 
-Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
----
-V4:
- - Added relevant comments wherever needed
- - Initialized REO misc control register to zero on other HWs that don't use this register
- - Rebased on ToT SHAID: b04efb72cd9d2d471a14f0a5758873f6c78923c2
+   1. Please split this into cfg80211 / mac80211, many of the changes
+      are related to mac80211, but also many related to cfg80211 only
+      (all the fullmac drivers), so I think it'd be nicer to have it as
+      two separate patches.
+      
+   2. You're not exposing _any_ such capability to userspace, so when
+      userspace requests a wider channel but not supported, it's
+      silently ignored for all the cfg80211 drivers. OTOH, for mac80211
+      drivers, you reject a wider channel. This can move up to cfg80211.
+      
+   3. Why limit (per the commit message, not sure about the code) to 40
+      and 80 MHz, rather than allowing any bandwidth? Maybe somebody
+      would want to use even smaller bandwidth (5/10)? Perhaps drivers
+      should expose a bitmap of permitted bandwidths (rather than a
+      single flag indicating support)?
+      
+   4. At least in the brcmfmac, mwifiex and wilc1000 cases, not only do
+      you ignore the bandwidth, but you even pretend in
+      ready_on_channel() that you used it ... that seems even worse than
+      just ignoring. Also, in some of those cases you send it as higher
+      BW in the ready event, but lower BW in the expired event ...
+      
+   5. (I don't want to know what happens in that staging driver ...)
 
-V3:
- - Rebased on ToT SHAID: 7316a74e54318d0cd648242b18ea83cdef6dda96
 
-V2:
- - Rebased on ToT
-
- drivers/net/wireless/ath/ath11k/hal.h |  2 +-
- drivers/net/wireless/ath/ath11k/hw.c  | 23 +++++++++++++++++++++--
- drivers/net/wireless/ath/ath11k/hw.h  |  1 +
- 3 files changed, 23 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/hal.h b/drivers/net/wireless/ath/ath11k/hal.h
-index 1aadb1566df8..110c337ddf33 100644
---- a/drivers/net/wireless/ath/ath11k/hal.h
-+++ b/drivers/net/wireless/ath/ath11k/hal.h
-@@ -121,7 +121,7 @@ struct ath11k_base;
- #define HAL_REO1_DEST_RING_CTRL_IX_1		0x00000008
- #define HAL_REO1_DEST_RING_CTRL_IX_2		0x0000000c
- #define HAL_REO1_DEST_RING_CTRL_IX_3		0x00000010
--#define HAL_REO1_MISC_CTL			0x00000630
-+#define HAL_REO1_MISC_CTL(ab)			ab->hw_params.regs->hal_reo1_misc_ctl
- #define HAL_REO1_RING_BASE_LSB(ab)		ab->hw_params.regs->hal_reo1_ring_base_lsb
- #define HAL_REO1_RING_BASE_MSB(ab)		ab->hw_params.regs->hal_reo1_ring_base_msb
- #define HAL_REO1_RING_ID(ab)			ab->hw_params.regs->hal_reo1_ring_id
-diff --git a/drivers/net/wireless/ath/ath11k/hw.c b/drivers/net/wireless/ath/ath11k/hw.c
-index 09ce357f0f0d..96db85c55585 100644
---- a/drivers/net/wireless/ath/ath11k/hw.c
-+++ b/drivers/net/wireless/ath/ath11k/hw.c
-@@ -771,10 +771,10 @@ static void ath11k_hw_wcn6855_reo_setup(struct ath11k_base *ab)
- 		FIELD_PREP(HAL_REO1_GEN_ENABLE_AGING_FLUSH_ENABLE, 1);
- 	ath11k_hif_write32(ab, reo_base + HAL_REO1_GEN_ENABLE, val);
- 
--	val = ath11k_hif_read32(ab, reo_base + HAL_REO1_MISC_CTL);
-+	val = ath11k_hif_read32(ab, reo_base + HAL_REO1_MISC_CTL(ab));
- 	val &= ~HAL_REO1_MISC_CTL_FRAGMENT_DST_RING;
- 	val |= FIELD_PREP(HAL_REO1_MISC_CTL_FRAGMENT_DST_RING, HAL_SRNG_RING_ID_REO2SW1);
--	ath11k_hif_write32(ab, reo_base + HAL_REO1_MISC_CTL, val);
-+	ath11k_hif_write32(ab, reo_base + HAL_REO1_MISC_CTL(ab), val);
- 
- 	ath11k_hif_write32(ab, reo_base + HAL_REO1_AGING_THRESH_IX_0(ab),
- 			   HAL_DEFAULT_REO_TIMEOUT_USEC);
-@@ -1983,6 +1983,9 @@ const struct ath11k_hw_regs ipq8074_regs = {
- 
- 	/* Shadow register area */
- 	.hal_shadow_base_addr = 0x0,
-+
-+	/* REO misc control register, not used in IPQ8074 */
-+	.hal_reo1_misc_ctl = 0x0,
- };
- 
- const struct ath11k_hw_regs qca6390_regs = {
-@@ -2065,6 +2068,9 @@ const struct ath11k_hw_regs qca6390_regs = {
- 
- 	/* Shadow register area */
- 	.hal_shadow_base_addr = 0x000008fc,
-+
-+	/* REO misc control register, not used in QCA6390 */
-+	.hal_reo1_misc_ctl = 0x0,
- };
- 
- const struct ath11k_hw_regs qcn9074_regs = {
-@@ -2147,6 +2153,9 @@ const struct ath11k_hw_regs qcn9074_regs = {
- 
- 	/* Shadow register area */
- 	.hal_shadow_base_addr = 0x0,
-+
-+	/* REO misc control register, not used in QCN9074 */
-+	.hal_reo1_misc_ctl = 0x0,
- };
- 
- const struct ath11k_hw_regs wcn6855_regs = {
-@@ -2229,6 +2238,11 @@ const struct ath11k_hw_regs wcn6855_regs = {
- 
- 	/* Shadow register area */
- 	.hal_shadow_base_addr = 0x000008fc,
-+
-+	/* REO misc control register, used for fragment
-+	 * destination ring config in WCN6855.
-+	 */
-+	.hal_reo1_misc_ctl = 0x00000630,
- };
- 
- const struct ath11k_hw_regs wcn6750_regs = {
-@@ -2311,6 +2325,11 @@ const struct ath11k_hw_regs wcn6750_regs = {
- 
- 	/* Shadow register area */
- 	.hal_shadow_base_addr = 0x00000504,
-+
-+	/* REO misc control register, used for fragment
-+	 * destination ring config in WCN6750.
-+	 */
-+	.hal_reo1_misc_ctl = 0x000005d8,
- };
- 
- const struct ath11k_hw_hal_params ath11k_hw_hal_params_ipq8074 = {
-diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
-index 6d588cd80093..3a2abde63489 100644
---- a/drivers/net/wireless/ath/ath11k/hw.h
-+++ b/drivers/net/wireless/ath/ath11k/hw.h
-@@ -379,6 +379,7 @@ struct ath11k_hw_regs {
- 	u32 pcie_pcs_osc_dtct_config_base;
- 
- 	u32 hal_shadow_base_addr;
-+	u32 hal_reo1_misc_ctl;
- };
- 
- extern const struct ath11k_hw_regs ipq8074_regs;
--- 
-2.35.1
-
+johannes
 
 -- 
 ath11k mailing list
