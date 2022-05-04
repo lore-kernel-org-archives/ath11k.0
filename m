@@ -4,73 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7FF3C433F5
-	for <ath11k@archiver.kernel.org>; Wed,  4 May 2022 16:23:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15982C433EF
+	for <ath11k@archiver.kernel.org>; Wed,  4 May 2022 16:30:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=XLq19MW1o5TjfbqnQV7hWOG0gZtzt9YVZ9A75Whu6BE=; b=cPXQUndu9j897B
-	2BLtqTTT1CY+vKfxicEIwNIL3TH0mco0CYABmgc+uPRibcRe0UPoJ4xLsi68OyE9VGIgRbQLnP1j+
-	ruiSbse1F6zHiCFxULSUPRseg0ArXw+pww3AHLC6bcv8RQOoEKZj9V7eVilOkmEQsViv+j5IPcUCa
-	kPKfoOtB1tqW3TGKDBw7BnD5MbwjBlINA++EUnhMa7hgtDzxJWtllwdamIQSrAOoLal1rH/mMyO0O
-	W/nrpcRXVyKtE+sb1S77hKcbjE7zex9NFbsToFt9duIi6X0AyNXCRncagNAuPZyvZ3t6QS3Z4/SA3
-	iWoBD3yNCQCLH1yed7sg==;
+	List-Owner; bh=JAC9vkRhqxM+I1RhBUMbXZr+kOTlfHI59shxYo7Or4M=; b=o1P1Bgr7X79X6I
+	d+2jAJt2eXPRqa88n5NpoFznyi2JZVPRhyQz3XrM1qiZ3PQ/Wz/MHoBiQswAYtb4jfLlsT4qNqPiq
+	xrkyhDOY9SGmpSw0CM18ci/xFcpP+zFBIDpM3AiDBSkjGJVCQvwn9bdVU+LRRKgbBV7vaYD/hthOl
+	d/Xl9Lq4I8bq7wttaTfJKFMsF1bX4ks0AIimTlAJ1mr0wMMxYqdIcVo46mxsZxmTYt4nF9Ldvbm+0
+	vz6ghyGSC2ETAzhHDMKXUfMvkE2R6mkYL7zpbjxj6v/gmk/I6TEZ7hZry8IXMsc5UPIg0cWgognW6
+	3cuMOdxT/aHvcJVCliSw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nmHme-00Be7z-Mz; Wed, 04 May 2022 16:23:24 +0000
-Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38])
+	id 1nmHtk-00BfTh-Bo; Wed, 04 May 2022 16:30:44 +0000
+Received: from alexa-out.qualcomm.com ([129.46.98.28])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nmHmc-00Be6p-21
- for ath11k@lists.infradead.org; Wed, 04 May 2022 16:23:23 +0000
+ id 1nmHti-00BfSa-1u
+ for ath11k@lists.infradead.org; Wed, 04 May 2022 16:30:43 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1651681402; x=1683217402;
- h=from:to:cc:subject:references:date:in-reply-to:
- message-id:mime-version;
- bh=OsPbQDphxyS5T5cxqp789eGU8MxcDNRRBBbsrR9WKHU=;
- b=vXp+QumJcLcGBF8+wZTpb4qZ7/lIzCqZGYnDZTSpLOHLzVzZhG90WMRW
- zwQHXfkyqpZ0aIoJWrQ9vtzNXuqanh7ucQ0fk3wGOB4OYZ1S9uvkXIMHt
- QobbvyKPTA+W5o5LX+r2aE9x8JPsktDjm+7ugJ+1ispFL/76my50Aw5+y A=;
-Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
- by alexa-out-sd-01.qualcomm.com with ESMTP; 04 May 2022 09:23:17 -0700
+ t=1651681842; x=1683217842;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=/qBtQZWMA2L7faezufYuvu02cZEmCyrdBXZuae/DfDw=;
+ b=Jsbfrg4c2UQGwpx+4XjFaRLLUgz6LBnsKgWgoFxoiFeeNCmq3C7VlEFR
+ luP5eao3ZD8SxSZFRMjaFlRpqr2SbA/lo4F6VeUfEzPLdIGIrHzLnLkVF
+ 7IfZoz6Cl0PvJ0+MhEiALAMZH4mvi51oV5sko1TQiHddjsOtDGOZK66nQ 0=;
+Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
+ by alexa-out.qualcomm.com with ESMTP; 04 May 2022 09:30:37 -0700
 X-QCInternal: smtphost
 Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2022 09:23:17 -0700
+ by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2022 09:30:37 -0700
 Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
  nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 4 May 2022 09:23:17 -0700
-Received: from kvalo10 (10.80.80.8) by nalasex01a.na.qualcomm.com
+ 15.2.986.22; Wed, 4 May 2022 09:30:36 -0700
+Received: from [10.110.89.220] (10.80.80.8) by nalasex01a.na.qualcomm.com
  (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Wed, 4 May 2022
- 09:23:14 -0700
-From: Kalle Valo <quic_kvalo@quicinc.com>
-To: Dan Carpenter <dan.carpenter@oracle.com>
-CC: <kbuild@lists.01.org>, Carl Huang <quic_cjhuang@quicinc.com>,
- <lkp@intel.com>, <kbuild-all@lists.01.org>, Linux Memory Management List
- <linux-mm@kvack.org>, <ath11k@lists.infradead.org>, Wen Gong
- <quic_wgong@quicinc.com>
-Subject: Re: [linux-next:master 408/8237]
- drivers/net/wireless/ath/ath11k/wow.c:712 ath11k_wow_op_resume() warn:
- inconsistent returns '&ar->conf_mutex'.
-References: <202205032236.kofEquX3-lkp@intel.com>
-Date: Wed, 4 May 2022 19:23:12 +0300
-In-Reply-To: <202205032236.kofEquX3-lkp@intel.com> (Dan Carpenter's message of
- "Wed, 4 May 2022 11:46:27 +0300")
-Message-ID: <o5hh7658dxr.fsf@quicinc.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/27.2 (windows-nt)
+ 09:30:36 -0700
+Message-ID: <1615688c-fb7d-261a-7b01-fe47c74b9597@quicinc.com>
+Date: Wed, 4 May 2022 09:30:35 -0700
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH 1/2] ath11k: mac: fix too long line
+Content-Language: en-US
+To: Kalle Valo <kvalo@kernel.org>
+CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
+References: <20220503060415.24499-1-kvalo@kernel.org>
+ <f2f27831-03eb-3788-5855-649c0f33c785@quicinc.com>
+ <87y1zhalfy.fsf@kernel.org>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+In-Reply-To: <87y1zhalfy.fsf@kernel.org>
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220504_092322_201785_69208575 
-X-CRM114-Status: UNSURE (   7.37  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220504_093042_182661_48513647 
+X-CRM114-Status: GOOD (  12.79  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,60 +79,43 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-+ ath11k, wen
+On 5/3/2022 10:58 PM, Kalle Valo wrote:
+> Jeff Johnson <quic_jjohnson@quicinc.com> writes:
+pe>> is there a reason to not declare deflink here?
+>> then its scope of definition would equal the scope of usage
+> 
+> In ath10k and ath11k I have tried to avoid that and instead declare all
+> variables in the beginning of the function, this is to keep the code
+> simple. Of course there are few cases where a variable is declared in
+> the middle of the function, but that's just sloppy review on my part. I
+> feel that it's better to refactor the function into smaller functions
+> than start declaring variables in the middle of functions. Does that
+> make sense?
+> 
 
-Dan Carpenter <dan.carpenter@oracle.com> writes:
+This is really an academic question.
 
-> tree:   https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
-> head:   44a2f39e611ac0bc1f17c288a583d7f2e5684aa7
-> commit: 90bf5c8d0f7ecddf96fc1cd9434af4e157b51970 [408/8237] ath11k:
-> purge rx pktlog when entering WoW
-> config: i386-randconfig-m021-20220502
-> (https://download.01.org/0day-ci/archive/20220503/202205032236.kofEquX3-lkp@intel.com/config)
-> compiler: gcc-11 (Debian 11.2.0-20) 11.2.0
->
-> If you fix the issue, kindly add following tag as appropriate
-> Reported-by: kernel test robot <lkp@intel.com>
-> Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
->
-> smatch warnings:
-> drivers/net/wireless/ath/ath11k/wow.c:712 ath11k_wow_op_resume() warn:
-> inconsistent returns '&ar->conf_mutex'.
->
-> vim +712 drivers/net/wireless/ath/ath11k/wow.c
->
-> ba9177fcef21fa Carl Huang 2022-03-14 653 int
-> ath11k_wow_op_resume(struct ieee80211_hw *hw)
-> ba9177fcef21fa Carl Huang 2022-03-14  654  {
-> ba9177fcef21fa Carl Huang 2022-03-14  655  	struct ath11k *ar = hw->priv;
-> ba9177fcef21fa Carl Huang 2022-03-14  656  	int ret;
-> ba9177fcef21fa Carl Huang 2022-03-14  657  
-> ba9177fcef21fa Carl Huang 2022-03-14  658  	mutex_lock(&ar->conf_mutex);
-> ba9177fcef21fa Carl Huang 2022-03-14  659  
-> ba9177fcef21fa Carl Huang 2022-03-14  660  	ret = ath11k_hif_resume(ar->ab);
-> ba9177fcef21fa Carl Huang 2022-03-14  661  	if (ret) {
-> ba9177fcef21fa Carl Huang 2022-03-14 662 ath11k_warn(ar->ab, "failed
-> to resume hif: %d\n", ret);
-> ba9177fcef21fa Carl Huang 2022-03-14  663  		goto exit;
-> ba9177fcef21fa Carl Huang 2022-03-14  664  	}
-> ba9177fcef21fa Carl Huang 2022-03-14  665  
-> ba9177fcef21fa Carl Huang 2022-03-14  666  	ath11k_hif_ce_irq_enable(ar->ab);
-> ba9177fcef21fa Carl Huang 2022-03-14  667  	ath11k_hif_irq_enable(ar->ab);
-> ba9177fcef21fa Carl Huang 2022-03-14  668  
-> 90bf5c8d0f7ecd Carl Huang 2022-03-14  669  	ret = ath11k_dp_rx_pktlog_start(ar->ab);
-> 90bf5c8d0f7ecd Carl Huang 2022-03-14  670  	if (ret) {
-> 90bf5c8d0f7ecd Carl Huang 2022-03-14 671 ath11k_warn(ar->ab, "failed
-> to start rx pktlog from wow: %d\n", ret);
-> 90bf5c8d0f7ecd Carl Huang 2022-03-14  672  		return ret;
->
-> goto exit;
+In the larger kernel community I'm seeing a push to reduce the scope of 
+identifiers in some cases:
+1) declaring loop control variables within the actual loop control operation
+2) prohibiting the access to list iterators outside the list iteration loop
 
-Carl or Wen, are you able to send a fix for this?
+ From a software engineering perspective limiting scope can prevent some 
+coding errors by preventing new code from being introduced which tries 
+to access an identifier which has not been initialized.
+
+To that end, I fully support the guidance to refactor into small 
+functions where variable scope is not an issue.
+
+Also consistency is extremely important, so I totally embrace having a 
+consistent approach.
+
+/jeff
 
 -- 
 ath11k mailing list
