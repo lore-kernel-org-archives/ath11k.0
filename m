@@ -4,64 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 365CFC433F5
-	for <ath11k@archiver.kernel.org>; Thu,  5 May 2022 01:47:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4847C433F5
+	for <ath11k@archiver.kernel.org>; Thu,  5 May 2022 02:40:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=pJ2exqRnn9welcvmSmklhfMiexXRwlCdmCNPMozfvW8=; b=WW3oZXxnnVc1EK
-	vukP4sCbkS9PGTDpCUz4Mj/RxD+6PraOqgyvslvA10BkfASVZqpwRGtsAvtiy3+WVBTid+tP455cz
-	emEQQu+hiiIpSMz8CTmKL9J762SAm85ZuHUvuzhh3+zI2SR525fmUSuu7J5FTTZ0pgjbafaCOR7rH
-	G/EOJaqNTaOBXiFmOCW5GvJMNgoNe9sbXh16AM/Pf5sI683QCqvPIhp0vRoAocEb+ftDvnR+9yKSl
-	60IuD4UXFwpswVxYwLIp9qxS00TvI9sTIkms36ntK+SlBmTlcHTCNddVuWSSOQ5n1klt4ouqjiekb
-	eMiteyMjk5qa/6cC64Pw==;
+	List-Owner; bh=rr8YL/RoRlqPl3ccxQ5QNX1APH1AAGLfXwv+vIo0GE4=; b=J+sfSXNkv1hAq4
+	6QRqW2CU/UsNbdD+m70E3BV0h+k1ri5UOTkmJKFjafRYfa71ICEMsUtRFXU64gV2yvmcHWQxl/29/
+	6pc7esOUQvnJzOWeahavxwOH5iJRrJ1JBRtWuwS6r+BteoUifIAwM1AlVHYuer2hy+w/6igPoay6v
+	uba6a8OqKzL52E01nTGXgupogGDouI/OQCWtNkLwY/9fygMqj31oYDT73gnYD2MFc4kOAoTIaG3I0
+	Be6jhjvKD8tondLCpKVdbAktL6pRyVfAQmStquDT6p6U6CRLBW8F/fcEtxk5WAhoYLA5f9Ta2BVY0
+	P+js+WJdzyQUxhp7xEcg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nmQaG-00DXMO-Ba; Thu, 05 May 2022 01:47:12 +0000
-Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39])
+	id 1nmRQ7-00Deve-D9; Thu, 05 May 2022 02:40:47 +0000
+Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nmQaD-00DXLt-DO
- for ath11k@lists.infradead.org; Thu, 05 May 2022 01:47:11 +0000
+ id 1nmRQ4-00Deu1-OA
+ for ath11k@lists.infradead.org; Thu, 05 May 2022 02:40:46 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1651715229; x=1683251229;
+ t=1651718444; x=1683254444;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=nAdAMktDyWBP9kpeVaz5LfBErwfdA4sghpbxdKoohgQ=;
- b=ZTegXNDEcZNSvpds+fkTqvapKcEdFVJS2td0dQlhQY2viN0jn69eB+uo
- S+B+r73imUT4kesS4hnkqR8a9qS8Frn8/zxv0dND5FkSbK1F913qwxN0B
- ewxGavx1uPc8tzOg6+NEgGvBgdACEfO8N2r2u8xMhcb5OOaodqLytrSfD 4=;
-Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
- by alexa-out-sd-02.qualcomm.com with ESMTP; 04 May 2022 18:47:08 -0700
+ bh=rMs0z5s6eelcvwJiWgRWZZjOtCXiIIzuE7LXVYMjhKY=;
+ b=yUkAn2p4h+V1ZpaX+qieTJl6Bw1HZmHTNjDJvK721eWxCe3ZGQuETlwP
+ ip43GY0qPBOOhD2I27i4dvynyP+yD1Ruf8f5+qi3F9RHG506k6KBXkPeS
+ igfTFwlYuEJ3GLWXYWXXFMt+AWATzfFz/vf2uhV3wq35JRCnjHYWTCgmb Y=;
+Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
+ by alexa-out-sd-01.qualcomm.com with ESMTP; 04 May 2022 19:40:41 -0700
 X-QCInternal: smtphost
 Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2022 18:47:08 -0700
+ by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2022 19:40:41 -0700
 Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
  nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 4 May 2022 18:47:07 -0700
+ 15.2.986.22; Wed, 4 May 2022 19:40:41 -0700
 Received: from bqiang-Celadon-RN.qca.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 4 May 2022 18:47:06 -0700
+ 15.2.986.22; Wed, 4 May 2022 19:40:39 -0700
 From: Baochen Qiang <quic_bqiang@quicinc.com>
 To: <ath11k@lists.infradead.org>
 CC: <linux-wireless@vger.kernel.org>
-Subject: [PATCH] ath11k: Handle keepalive during wowlan suspend and resume
-Date: Thu, 5 May 2022 09:46:57 +0800
-Message-ID: <20220505014657.1549947-1-quic_bqiang@quicinc.com>
+Subject: [PATCH v2] ath11k: Handle keepalive during WoWLAN suspend and resume
+Date: Thu, 5 May 2022 10:40:27 +0800
+Message-ID: <20220505024027.1551157-1-quic_bqiang@quicinc.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220504_184709_518256_852F8161 
-X-CRM114-Status: GOOD (  18.10  )
+X-CRM114-CacheID: sfid-20220504_194044_856951_C1AB8286 
+X-CRM114-Status: GOOD (  18.03  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,12 +78,12 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-With wowlan enabled and after sleeping for a rather long time,
+With WoWLAN enabled and after sleeping for a rather long time,
 we are seeing that with some APs, it is not able to wake up
 the STA though the correct wake up pattern has been configured.
 This is because the host doesn't send keepalive command to
 firmware, thus firmware will not send any packet to the AP and
-after a specific time the AP kicks out the DUT.
+after a specific time the AP kicks out the STA.
 
 Fix this issue by enabling keepalive before going to suspend
 and disabling it after resume back.
@@ -92,6 +92,10 @@ Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE
 
 Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
 ---
+v2:
+ 1. s/wowlan/WoWLAN
+ 2. s/DUT/STA
+
  drivers/net/wireless/ath/ath11k/mac.c | 31 ++++++++++++++++++++
  drivers/net/wireless/ath/ath11k/mac.h |  4 +++
  drivers/net/wireless/ath/ath11k/wmi.c | 40 ++++++++++++++++++++++++++
