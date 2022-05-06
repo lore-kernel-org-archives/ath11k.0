@@ -4,58 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25AFFC433EF
-	for <ath11k@archiver.kernel.org>; Fri,  6 May 2022 08:26:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6181DC433EF
+	for <ath11k@archiver.kernel.org>; Fri,  6 May 2022 08:46:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
 	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/oqHPbkm5MyJSLVizT9vY6PN/bGcHbHswXIW3E+1KX8=; b=b3dxuHy8lyqvfJ
-	YWdgfPF/UEwd5YakdzHuPErR4g1VIhOJvpBKXRyM/qSb1fFRHMn81sE5ITNPz47kToZqkDBgGbqFL
-	/S525hbkmRxYn3tKpugD4oc+AsD8i2GPjsclt5BROg1t0omwa9EQPZhm33si7TbkfNc0L3gKG6Pku
-	vVSOAhgWrmP/0zkysJ6e6T2zoDJoSsIB/1T+ldO8E5UPgCm+UYBPSvWq/EDtell3W5aybMGNXgD9K
-	xtL4Nh7P5/u7h3GxnwfZ5s0cE9gX90IgUn0Rfx5lgArkvEpzn5yxdnddAFv+p43IfJoxHlH8dJ49/
-	izj0YkgMu/XSoV8FB8Uw==;
+	List-Owner; bh=gZ47s1J0GHniaHfbNWcAJx5fwSdspovYNNMLeNScx4w=; b=DKTIIQKR80uIBh
+	XRvXBsc2rIjA0w6OFcP+AA64qQ+lH+7gFb3s3pUNyyRa7Wnr6DdZY2Fkfb18dko+4JJplnIFgJ2Rp
+	yJyC1aXo4X880S+WEbC0Ndl//3qha9mk2DiQfC4meNWKI2kAofmSM4zsdJT4Iv9naZNgJVfizlZPV
+	ScsIfyhU6FQEViXfaTBH4/9AwMxIU1pOwZb0In29Nw2F18LrkTgIhnive1002Dfg+zs+3bqe3z/l6
+	FvbrT3GvNCoVpfzto0KrJtgESKWQeDcQcX0axVzjsApbGIzZppvGxMN7AN9aVPDQa/IiujoZXyn0U
+	RoZus7qUb0+lKqMDkbFw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nmtIP-0024no-0l; Fri, 06 May 2022 08:26:41 +0000
+	id 1nmtbw-002BxM-B1; Fri, 06 May 2022 08:46:52 +0000
 Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nmtCh-0022QK-Ik
- for ath11k@lists.infradead.org; Fri, 06 May 2022 08:20:49 +0000
+ id 1nmtbt-002Bw3-I9
+ for ath11k@lists.infradead.org; Fri, 06 May 2022 08:46:51 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id E3A6B61FD7;
- Fri,  6 May 2022 08:20:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCE2AC385AA;
- Fri,  6 May 2022 08:20:45 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 65CF062068;
+ Fri,  6 May 2022 08:46:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17117C385AA;
+ Fri,  6 May 2022 08:46:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1651825246;
- bh=2ddK1yVHAyUYor4XQsjfjUkKRJCYd8Itd63+QmS3LCc=;
+ s=k20201202; t=1651826807;
+ bh=vwZoxKLOUqg/pn43DxjuwPQIGGxmVNilMy/Pl5ZUJxI=;
  h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
- b=TYH6Y+0lxazXyDO/Nl9fbBvc5x/CPxgRd07rOdzTVDId0Fer/v6ADUcubfAKPw+Yz
- gZ56MndvVuPwuvwD7YsKGYR2THNtT+9JXPocQsU+tfl8r/w+muRHeAUZfXIHtWpUdh
- 3bXE8m8yRHqck/Y8zh0CZ43Wkk+ovpCpPxEzQwzGBSUNSE7PDXrGY+44mD6tq4vEij
- ze4MlK0Es6yicJdoOnttRG6sCVQUSQcMRAJMuh9/wRitZF5+tKnvj3Io1a+YHu8qET
- 9yJGtXj+R3JZNJJOB9sm4OBKKZ6C19qfMsQ3Bgl17VsO6qVtQEyQ3tuNIcKDS+zCkM
- AW9dZ1nrcBgnQ==
+ b=kavJK513EYw+ixWXwyWWRKKH+eHaM69FB01M5+EkBtWzv+oNwkLq+Lv807+hMMHIQ
+ MfviBBbF3ycAusR+hiBmU7InGekxsksIK8JO9mOS35g16rGaHiO6LwcBj1XUrQ6xvD
+ lGvibwbOvR66RFde6OvZb1ZIat1M7IyqxIC8Xs5anbP6e7eBoy6IksQNKZ8z3of4Wb
+ k0dMpWTD6RAkNjZGtfmQ/U8SvAYUcQzZrD1MCQLEczxszcMl+cyZhh8y7NCNGtKu5b
+ SWAbOyBAkiwejsIO5OIdZ3K2MPazuyecqmz4nfuKeLkp5PvXQdj61niqBITIunudG/
+ AysdBFMiWBimQ==
 From: Kalle Valo <kvalo@kernel.org>
-To: Wim Van Boven <wimvanboven@gmail.com>
-Cc: ath11k <ath11k@lists.infradead.org>
-Subject: Re: support for WCN6855 liteon subsystem device 11ad:a82d
-References: <6VYEBR.N4O0Q6H2MTME3@gmail.com> <87bkwb9ndg.fsf@kernel.org>
-Date: Fri, 06 May 2022 11:20:43 +0300
-In-Reply-To: <87bkwb9ndg.fsf@kernel.org> (Kalle Valo's message of "Fri, 06 May
- 2022 09:38:35 +0300")
-Message-ID: <877d6z9in8.fsf@kernel.org>
+To: Dan Carpenter <dan.carpenter@oracle.com>
+Cc: Carl Huang <quic_cjhuang@quicinc.com>, lkp@intel.com, kbuild@lists.01.org,
+ kbuild-all@lists.01.org, Linux Memory Management List <linux-mm@kvack.org>,
+ ath11k@lists.infradead.org, Wen Gong <quic_wgong@quicinc.com>
+Subject: Re: [linux-next:master 408/8237]
+ drivers/net/wireless/ath/ath11k/wow.c:712 ath11k_wow_op_resume() warn:
+ inconsistent returns '&ar->conf_mutex'.
+References: <202205032236.kofEquX3-lkp@intel.com> <o5hh7658dxr.fsf@quicinc.com>
+ <fd76aa54-4d05-a4b0-b3b4-11c8a5be799c@quicinc.com>
+ <20220505055817.GQ4031@kadam>
+Date: Fri, 06 May 2022 11:46:43 +0300
+In-Reply-To: <20220505055817.GQ4031@kadam> (Dan Carpenter's message of "Thu, 5
+ May 2022 08:58:17 +0300")
+Message-ID: <8735hn9hfw.fsf@kernel.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220506_012047_713166_B7125D26 
-X-CRM114-Status: GOOD (  16.69  )
+X-CRM114-CacheID: sfid-20220506_014649_676810_027CEBB8 
+X-CRM114-Status: GOOD (  19.87  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,44 +78,47 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Kalle Valo <kvalo@kernel.org> writes:
+Dan Carpenter <dan.carpenter@oracle.com> writes:
 
-> Wim Van Boven <wimvanboven@gmail.com> writes:
+> On Thu, May 05, 2022 at 09:29:40AM +0800, Carl Huang wrote:
+>> Hi Kalle,
+>> 
+>> Is the below the same fix that you have already applied to ath.git?
+>> 
+>> [-next] ath11k: fix missing unlock on error in ath11k_wow_op_resume() -
+>> Patchwork (kernel.org)
+>> <https://patchwork.kernel.org/project/linux-wireless/patch/20220408030912.3087293-1-yangyingliang@huawei.com/
+>> >
 >
->> the firmware doesn't have the board information for this
->> subsystem-device:
->>
->> 02:00.0 Network controller [0280]: Qualcomm Atheros QCNFA765
->> [17cb:1103] (rev 01)
->> Subsystem: Lite-On Communications Inc Device [11ad:a82d]
->>
->> however, it seems to work fine with this one:
->> bus=pci,vendor=17cb,device=1103,subsystem-vendor=14cd,subsystem-device=9409,qmi-chip-id=18,qmi-board-id=255m
->>
->> i hexedited the board-2.bin and swapped out the vendor and device
->> identifiers to match the LiteOn ones, which seems to work properly,
->> but is likely not the proper way to do this.
->
-> BTW we have a tool for creating board-2.bin so that you don't need to
-> use hexedit:
->
-> https://github.com/qca/qca-swiss-army-knife/blob/master/tools/scripts/ath11k/ath11k-bdencoder
->
-> Unfortunately no documentation but hopefully --help provides some guidance.
->
->> what would be the proper way to get support for this device and how
->> can i help?
->
-> Can you report this to bugzilla.kernel.org:
->
-> https://wireless.wiki.kernel.org/en/users/drivers/ath11k/bugreport
->
-> That way it's easier to track. I'll try to find a board file for this
-> device.
+> That looks good.  It's sort of annoying for me to send a bug report a
+> month after the fix has been applied...  Sorry about that.
 
-I see that you filed it now, thanks.
+My ath.git tree is not included in linux-wireless builds so there's also
+a delay before linux-next sees the fix.
 
-https://bugzilla.kernel.org/show_bug.cgi?id=215946
+> 1) These are kbuild warnings.  The zero day bot generates the
+> warnings and I look them over and hit send.  I don't know why the kbuild
+> bot seems to get confused by -mm.  The subject says 408/8237 which is
+> pretty crazy.  Maybe I should just ignore the -mm patches?
+
+Yeah, I have been also wondering about using -mm for ath11k reports.
+Does anyone know why that's happening?
+
+> 2) The blamed patch came from a git tree but it had a Link tag to
+> lore.kernel.org so we could have used that as an In-Reply-to tag.
+> In an ideal world, all the bug reports for a patch would go to a
+> standard location.
+>
+> Link:
+> https://lore.kernel.org/r/1644308006-22784-5-git-send-email-quic_cjhuang@quicinc.com
+
+Yeah, that would be nice.
+
+> 3) Another idea is that the kbuild bot could search lore for Fixes to
+> the original commit and include links to those threads?
+
+Yeah. Also searching for all references to the commit id from git log
+would be nice.
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
