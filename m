@@ -4,66 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB514C433EF
-	for <ath11k@archiver.kernel.org>; Fri,  6 May 2022 01:36:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72BD8C433F5
+	for <ath11k@archiver.kernel.org>; Fri,  6 May 2022 06:17:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=MzVTSYzLh4VcMKJfu8cWcGLXXrWpEzz+3g5I1nxoQcM=; b=l+1ljYdjR5LIXs
-	d0Gf+bbo+sqoTyvx7P96eW8B5wvf/Hh6fC+aaOgrGnN2FiUbZwfwsc04tYpM22ai94lBNDWxlrf7U
-	gd0K+4mCYQeOEJsdRmsItDHgENQEWdA57SqT5q2juvD4GEIqpF1uFqNFraLsdr1GKUF8rF3UkUq38
-	nXO2ZgMEM1Fn5/v0BzeSZ6JhxN6EgnEuOj/1vpskEQ86LZiDwL03bwQPvK2r282VN1WkbK1V58zYJ
-	qRJ5kMml5uabRwN/nFgM1oi67/JWwWsWf4EQbRPJM+6RrL8DMy7bMKoi4C1Eo+cIf8CawNf47F84l
-	vF8jIYxQdm89vTi9mhVg==;
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
+	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=2mqo1mgAgllIrpT9AA1EWi2YwLVWVW6fgBmgN86n4Lo=; b=V6Ye5zByKNC9HQ
+	a2OuzVV4JOGogWzfA6v2gpJTiseZJEUc8q0eiab+hYBqmGKIjT/2fpYAu+ITQhLSNXSKZJzV1uGqf
+	yCXiVcKqckR1XNgCsBLZRLrvRaYom8LFLUz3XnQUaMRgZ1+qQyIcGludBCzG53bXywWScbuK6osXk
+	Z7G7mIjEefSQv+z3RooJIJjZdXrjpS8JdySOK5tJbH+K+8CsCFhIVUaz46401NuyLM/d46CgmbEIx
+	aCv4oxNpHhvumFMINBkZ4sEShT3AxLbOKaqgyOTk987AFMfDZn8qn2sByWs4KbJ49decjoJv89dow
+	RH8SV6aP+Spcd/SdhT3Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nmmtW-000nkY-8p; Fri, 06 May 2022 01:36:34 +0000
-Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38])
+	id 1nmrHF-001Ycn-3W; Fri, 06 May 2022 06:17:21 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nmmtS-000niQ-Ks
- for ath11k@lists.infradead.org; Fri, 06 May 2022 01:36:32 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1651800990; x=1683336990;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Iky0TfHcm09L5bEkgcC6U4Gg3Ou5TlKMGqreqQj4/to=;
- b=xDaXyf1fb58z02kv+wfjjt0rkbHZ0VfklfJW33nuJ5bfB49qexJxH3Ul
- uwqvAQyfLmVaA8Itb4xPr/dsm6PJdyYp1npWpcVQseI0aJk6GSjDCfq2p
- u/bluxFMK7XIASnBj+xq5dkTk9PbeK/vqXNeWcV46M76a/+fnQdGqvaMA 4=;
-Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
- by alexa-out-sd-01.qualcomm.com with ESMTP; 05 May 2022 18:36:27 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2022 18:36:27 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Thu, 5 May 2022 18:36:26 -0700
-Received: from bqiang-Celadon-RN.qca.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Thu, 5 May 2022 18:36:25 -0700
-From: Baochen Qiang <quic_bqiang@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>
-Subject: [PATCH v2 1/3] ath11k: Implement remain-on-channel support
-Date: Fri, 6 May 2022 09:36:12 +0800
-Message-ID: <20220506013614.1580274-2-quic_bqiang@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220506013614.1580274-1-quic_bqiang@quicinc.com>
-References: <20220506013614.1580274-1-quic_bqiang@quicinc.com>
+ id 1nmrHC-001Yc4-Cy
+ for ath11k@lists.infradead.org; Fri, 06 May 2022 06:17:19 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 9EC1C61F18
+ for <ath11k@lists.infradead.org>; Fri,  6 May 2022 06:17:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FEA4C385A8;
+ Fri,  6 May 2022 06:17:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1651817837;
+ bh=R/IqYMA70GKlzEAbF0SXS9SWS5hXlUKXASu1VqBpxfw=;
+ h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+ b=S1/tGnGQaxYrP0ra3aj+egoA0KODXIBEeBh+CXI7N2VXlS3CWQ0c5SfblPJhplgEm
+ 7a2GOUENT5KxbDAHMhRPyKLEY9JRbIKmwqySAxQ6f2SeO3oPsbid1HF+jKp2UZT2Ax
+ CSr8IqvVlQaFHh7Hu87H9huxk9hUv/eUFCd62qfTUZ7xGTbMwBFbqTxJfhXULbaiW+
+ w9Fy19H1ux2VHjebdLS2om4AyFWy4/PwG7cej77eANUyp3KYSE5D8sUXge+xMluwVM
+ 3bWER0avIVjoGCqRYUxacew8LpPU7U2TTwtaKv9aBDkwllJBfn080ebzh/5BTqpqc5
+ UA37wTzk/T4vw==
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+Subject: Re: [PATCH 1/2] ath11k: mac: fix too long line
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20220503060415.24499-1-kvalo@kernel.org>
+References: <20220503060415.24499-1-kvalo@kernel.org>
+To: Kalle Valo <kvalo@kernel.org>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
+User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-ID: <165181783347.13324.18042669600144341850.kvalo@kernel.org>
+Date: Fri,  6 May 2022 06:17:16 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220505_183630_748828_A8BC3E0C 
-X-CRM114-Status: GOOD (  14.35  )
+X-CRM114-CacheID: sfid-20220505_231718_522471_557A1A95 
+X-CRM114-Status: UNSURE (   6.57  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,197 +72,28 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Add remain on channel support, it is needed in several
-scenarios such as Passpoint etc.
+Kalle Valo <kvalo@kernel.org> wrote:
 
-Currently this is supported by QCA6390, WCN6855, IPQ8074,
-IPQ6018 and QCN9074.
+> checkpatch warns:
+> 
+> drivers/net/wireless/ath/ath11k/mac.c:7760: line length of 91 exceeds 90 columns
+> 
+> This was introduced by commit 046d2e7c50e3 ("mac80211: prepare sta handling for
+> MLO support").
+> 
+> Compile tested only.
+> 
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+2 patches applied to ath-next branch of ath.git, thanks.
 
-Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/core.c |   1 +
- drivers/net/wireless/ath/ath11k/mac.c  | 115 +++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/wmi.c  |   4 +
- 3 files changed, 120 insertions(+)
+80c5075f3999 ath11k: mac: fix too long line
+d9e441855c64 ath10k: mac: fix too long lines
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 01e1d494b527..412bec8f1daf 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -1623,6 +1623,7 @@ static void ath11k_core_pre_reconfigure_recovery(struct ath11k_base *ab)
- 		complete(&ar->completed_11d_scan);
- 		complete(&ar->scan.started);
- 		complete(&ar->scan.completed);
-+		complete(&ar->scan.on_channel);
- 		complete(&ar->peer_assoc_done);
- 		complete(&ar->peer_delete_done);
- 		complete(&ar->install_key_done);
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 1957e1713548..6e6b8562b481 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -8345,6 +8345,118 @@ static int ath11k_mac_op_set_bios_sar_specs(struct ieee80211_hw *hw,
- 	return ret;
- }
- 
-+static int ath11k_mac_op_cancel_remain_on_channel(struct ieee80211_hw *hw,
-+						  struct ieee80211_vif *vif)
-+{
-+	struct ath11k *ar = hw->priv;
-+
-+	mutex_lock(&ar->conf_mutex);
-+
-+	spin_lock_bh(&ar->data_lock);
-+	ar->scan.roc_notify = false;
-+	spin_unlock_bh(&ar->data_lock);
-+
-+	ath11k_scan_abort(ar);
-+
-+	mutex_unlock(&ar->conf_mutex);
-+
-+	cancel_delayed_work_sync(&ar->scan.timeout);
-+
-+	return 0;
-+}
-+
-+static int ath11k_mac_op_remain_on_channel(struct ieee80211_hw *hw,
-+					   struct ieee80211_vif *vif,
-+					   struct ieee80211_channel *chan,
-+					   int duration,
-+					   enum ieee80211_roc_type type)
-+{
-+	struct ath11k *ar = hw->priv;
-+	struct ath11k_vif *arvif = (void *)vif->drv_priv;
-+	struct scan_req_params arg;
-+	int ret;
-+	u32 scan_time_msec;
-+
-+	mutex_lock(&ar->conf_mutex);
-+
-+	spin_lock_bh(&ar->data_lock);
-+	switch (ar->scan.state) {
-+	case ATH11K_SCAN_IDLE:
-+		reinit_completion(&ar->scan.started);
-+		reinit_completion(&ar->scan.completed);
-+		reinit_completion(&ar->scan.on_channel);
-+		ar->scan.state = ATH11K_SCAN_STARTING;
-+		ar->scan.is_roc = true;
-+		ar->scan.vdev_id = arvif->vdev_id;
-+		ar->scan.roc_freq = chan->center_freq;
-+		ar->scan.roc_notify = true;
-+		ret = 0;
-+		break;
-+	case ATH11K_SCAN_STARTING:
-+	case ATH11K_SCAN_RUNNING:
-+	case ATH11K_SCAN_ABORTING:
-+		ret = -EBUSY;
-+		break;
-+	}
-+	spin_unlock_bh(&ar->data_lock);
-+
-+	if (ret)
-+		goto exit;
-+
-+	scan_time_msec = ar->hw->wiphy->max_remain_on_channel_duration * 2;
-+
-+	memset(&arg, 0, sizeof(arg));
-+	ath11k_wmi_start_scan_init(ar, &arg);
-+	arg.num_chan = 1;
-+	arg.chan_list = kcalloc(arg.num_chan, sizeof(*arg.chan_list),
-+				GFP_KERNEL);
-+	if (!arg.chan_list) {
-+		ret = -ENOMEM;
-+		goto exit;
-+	}
-+
-+	arg.vdev_id = arvif->vdev_id;
-+	arg.scan_id = ATH11K_SCAN_ID;
-+	arg.chan_list[0] = chan->center_freq;
-+	arg.dwell_time_active = scan_time_msec;
-+	arg.dwell_time_passive = scan_time_msec;
-+	arg.max_scan_time = scan_time_msec;
-+	arg.scan_flags |= WMI_SCAN_FLAG_PASSIVE;
-+	arg.scan_flags |= WMI_SCAN_FILTER_PROBE_REQ;
-+	arg.burst_duration = duration;
-+
-+	ret = ath11k_start_scan(ar, &arg);
-+	if (ret) {
-+		ath11k_warn(ar->ab, "failed to start roc scan: %d\n", ret);
-+
-+		spin_lock_bh(&ar->data_lock);
-+		ar->scan.state = ATH11K_SCAN_IDLE;
-+		spin_unlock_bh(&ar->data_lock);
-+		goto free_chan_list;
-+	}
-+
-+	ret = wait_for_completion_timeout(&ar->scan.on_channel, 3 * HZ);
-+	if (ret == 0) {
-+		ath11k_warn(ar->ab, "failed to switch to channel for roc scan\n");
-+		ret = ath11k_scan_stop(ar);
-+		if (ret)
-+			ath11k_warn(ar->ab, "failed to stop scan: %d\n", ret);
-+		ret = -ETIMEDOUT;
-+		goto free_chan_list;
-+	}
-+
-+	ieee80211_queue_delayed_work(ar->hw, &ar->scan.timeout,
-+				     msecs_to_jiffies(duration));
-+
-+	ret = 0;
-+
-+free_chan_list:
-+	kfree(arg.chan_list);
-+exit:
-+	mutex_unlock(&ar->conf_mutex);
-+	return ret;
-+}
-+
- static const struct ieee80211_ops ath11k_ops = {
- 	.tx				= ath11k_mac_op_tx,
- 	.start                          = ath11k_mac_op_start,
-@@ -8397,6 +8509,8 @@ static const struct ieee80211_ops ath11k_ops = {
- #endif
- 
- 	.set_sar_specs			= ath11k_mac_op_set_bios_sar_specs,
-+	.remain_on_channel		= ath11k_mac_op_remain_on_channel,
-+	.cancel_remain_on_channel	= ath11k_mac_op_cancel_remain_on_channel,
- };
- 
- static void ath11k_mac_update_ch_list(struct ath11k *ar,
-@@ -8986,6 +9100,7 @@ int ath11k_mac_allocate(struct ath11k_base *ab)
- 		init_completion(&ar->bss_survey_done);
- 		init_completion(&ar->scan.started);
- 		init_completion(&ar->scan.completed);
-+		init_completion(&ar->scan.on_channel);
- 		init_completion(&ar->thermal.wmi_sync);
- 
- 		INIT_DELAYED_WORK(&ar->scan.timeout, ath11k_scan_timeout_work);
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 1410114d1d5c..e99dede0ab55 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -5264,6 +5264,8 @@ static void ath11k_wmi_event_scan_started(struct ath11k *ar)
- 		break;
- 	case ATH11K_SCAN_STARTING:
- 		ar->scan.state = ATH11K_SCAN_RUNNING;
-+		if (ar->scan.is_roc)
-+			ieee80211_ready_on_channel(ar->hw);
- 		complete(&ar->scan.started);
- 		break;
- 	}
-@@ -5346,6 +5348,8 @@ static void ath11k_wmi_event_scan_foreign_chan(struct ath11k *ar, u32 freq)
- 	case ATH11K_SCAN_RUNNING:
- 	case ATH11K_SCAN_ABORTING:
- 		ar->scan_channel = ieee80211_get_channel(ar->hw->wiphy, freq);
-+		if (ar->scan.is_roc && ar->scan.roc_freq == freq)
-+			complete(&ar->scan.on_channel);
- 		break;
- 	}
- }
 -- 
-2.25.1
+https://patchwork.kernel.org/project/linux-wireless/patch/20220503060415.24499-1-kvalo@kernel.org/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 
 -- 
