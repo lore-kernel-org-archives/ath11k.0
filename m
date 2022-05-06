@@ -4,64 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6181DC433EF
-	for <ath11k@archiver.kernel.org>; Fri,  6 May 2022 08:46:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84AFEC433EF
+	for <ath11k@archiver.kernel.org>; Fri,  6 May 2022 09:04:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
 	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=gZ47s1J0GHniaHfbNWcAJx5fwSdspovYNNMLeNScx4w=; b=DKTIIQKR80uIBh
-	XRvXBsc2rIjA0w6OFcP+AA64qQ+lH+7gFb3s3pUNyyRa7Wnr6DdZY2Fkfb18dko+4JJplnIFgJ2Rp
-	yJyC1aXo4X880S+WEbC0Ndl//3qha9mk2DiQfC4meNWKI2kAofmSM4zsdJT4Iv9naZNgJVfizlZPV
-	ScsIfyhU6FQEViXfaTBH4/9AwMxIU1pOwZb0In29Nw2F18LrkTgIhnive1002Dfg+zs+3bqe3z/l6
-	FvbrT3GvNCoVpfzto0KrJtgESKWQeDcQcX0axVzjsApbGIzZppvGxMN7AN9aVPDQa/IiujoZXyn0U
-	RoZus7qUb0+lKqMDkbFw==;
+	List-Owner; bh=VheaC/pol6BMfgFehKfFj9F2z0B/j/Ujiwetzr9Lbdg=; b=puHT7i/+YHrg/g
+	AJdhcDERAIPucfVF2Hw7CO6F0z4zNKlhT7OZugTCRyWCIf1AwTT/8SqYSGKuiuVwQQVK98nmO8+5T
+	NNf4UK2MptoBZbpI/YyPnrF66Q4setPQfmphqvj8utXyuYobewGOA7knFIg6ZiMlpfTP5zoNEeNZx
+	q0RWPFlIb9wbb9b+Cf2Cjc0DdwOB0QewP3i95o3POc6+gZFn1oxYsbU4UXyBARaiZEdI+hqfdHXs1
+	H3+QARpqohsFzPEVCMtNo73lJpB3xZS+2GFHcZWZYPSwsxbrCKn3NoCQB+PIU6MRf4kZZ1vBu6c2F
+	JoAzkrZU5KRND8ZzDu0Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nmtbw-002BxM-B1; Fri, 06 May 2022 08:46:52 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1nmttL-002GCh-RY; Fri, 06 May 2022 09:04:51 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nmtbt-002Bw3-I9
- for ath11k@lists.infradead.org; Fri, 06 May 2022 08:46:51 +0000
+ id 1nmttJ-002GBh-4L
+ for ath11k@lists.infradead.org; Fri, 06 May 2022 09:04:50 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 65CF062068;
- Fri,  6 May 2022 08:46:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17117C385AA;
- Fri,  6 May 2022 08:46:45 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 6D6E8B83408;
+ Fri,  6 May 2022 09:04:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DF5DC385AF;
+ Fri,  6 May 2022 09:04:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1651826807;
- bh=vwZoxKLOUqg/pn43DxjuwPQIGGxmVNilMy/Pl5ZUJxI=;
+ s=k20201202; t=1651827886;
+ bh=TXmXKROOQFPUwAMUkpU12yOUshYWNBEx9Vmv7ZV2FKI=;
  h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
- b=kavJK513EYw+ixWXwyWWRKKH+eHaM69FB01M5+EkBtWzv+oNwkLq+Lv807+hMMHIQ
- MfviBBbF3ycAusR+hiBmU7InGekxsksIK8JO9mOS35g16rGaHiO6LwcBj1XUrQ6xvD
- lGvibwbOvR66RFde6OvZb1ZIat1M7IyqxIC8Xs5anbP6e7eBoy6IksQNKZ8z3of4Wb
- k0dMpWTD6RAkNjZGtfmQ/U8SvAYUcQzZrD1MCQLEczxszcMl+cyZhh8y7NCNGtKu5b
- SWAbOyBAkiwejsIO5OIdZ3K2MPazuyecqmz4nfuKeLkp5PvXQdj61niqBITIunudG/
- AysdBFMiWBimQ==
+ b=KrgmwXRU2ZhuwhIeFUnMG5fPtci/0KHHUGXjBOFi74Y/55KbpnIO1dSgPs2ctDHuz
+ Hsja480c1XH2UYT/o8EP7NOYTVlacDF3ssO3SB6xgW9w5ekLHUp97YQnaLBxNYdrZR
+ 677tL3aZl4cApDM6WePF5kcshIWTdsIcFh6s/+0S67VO9a3KTfqYHmCwyLIp5mVVZV
+ i05H9lRKw9XBN6tkbnUkgNUEabLdQ2d1qX68umEW9/aSO5SIf2vAMtN+MlQCO4rQuA
+ tNEMjD+GpsodCyw0fCYSQKW2mx9S49nTrm76FqsL5BKIsU6eZ9DtGwwu8vO5lillmM
+ 3PzGn+c+DAbLQ==
 From: Kalle Valo <kvalo@kernel.org>
-To: Dan Carpenter <dan.carpenter@oracle.com>
-Cc: Carl Huang <quic_cjhuang@quicinc.com>, lkp@intel.com, kbuild@lists.01.org,
- kbuild-all@lists.01.org, Linux Memory Management List <linux-mm@kvack.org>,
- ath11k@lists.infradead.org, Wen Gong <quic_wgong@quicinc.com>
-Subject: Re: [linux-next:master 408/8237]
- drivers/net/wireless/ath/ath11k/wow.c:712 ath11k_wow_op_resume() warn:
- inconsistent returns '&ar->conf_mutex'.
-References: <202205032236.kofEquX3-lkp@intel.com> <o5hh7658dxr.fsf@quicinc.com>
- <fd76aa54-4d05-a4b0-b3b4-11c8a5be799c@quicinc.com>
- <20220505055817.GQ4031@kadam>
-Date: Fri, 06 May 2022 11:46:43 +0300
-In-Reply-To: <20220505055817.GQ4031@kadam> (Dan Carpenter's message of "Thu, 5
- May 2022 08:58:17 +0300")
-Message-ID: <8735hn9hfw.fsf@kernel.org>
+To: Jeff Johnson <quic_jjohnson@quicinc.com>
+Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
+Subject: Re: [PATCH 1/2] ath11k: mac: fix too long line
+References: <20220503060415.24499-1-kvalo@kernel.org>
+ <f2f27831-03eb-3788-5855-649c0f33c785@quicinc.com>
+ <87y1zhalfy.fsf@kernel.org>
+ <1615688c-fb7d-261a-7b01-fe47c74b9597@quicinc.com>
+Date: Fri, 06 May 2022 12:04:42 +0300
+In-Reply-To: <1615688c-fb7d-261a-7b01-fe47c74b9597@quicinc.com> (Jeff
+ Johnson's message of "Wed, 4 May 2022 09:30:35 -0700")
+Message-ID: <87y1zf821h.fsf@kernel.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220506_014649_676810_027CEBB8 
-X-CRM114-Status: GOOD (  19.87  )
+X-CRM114-CacheID: sfid-20220506_020449_359450_0C4AABB5 
+X-CRM114-Status: GOOD (  18.16  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,47 +75,37 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Dan Carpenter <dan.carpenter@oracle.com> writes:
+Jeff Johnson <quic_jjohnson@quicinc.com> writes:
 
-> On Thu, May 05, 2022 at 09:29:40AM +0800, Carl Huang wrote:
->> Hi Kalle,
->> 
->> Is the below the same fix that you have already applied to ath.git?
->> 
->> [-next] ath11k: fix missing unlock on error in ath11k_wow_op_resume() -
->> Patchwork (kernel.org)
->> <https://patchwork.kernel.org/project/linux-wireless/patch/20220408030912.3087293-1-yangyingliang@huawei.com/
->> >
+> On 5/3/2022 10:58 PM, Kalle Valo wrote:
+>> Jeff Johnson <quic_jjohnson@quicinc.com> writes:
+> pe>> is there a reason to not declare deflink here?
+>>> then its scope of definition would equal the scope of usage
+>>
+>> In ath10k and ath11k I have tried to avoid that and instead declare all
+>> variables in the beginning of the function, this is to keep the code
+>> simple. Of course there are few cases where a variable is declared in
+>> the middle of the function, but that's just sloppy review on my part. I
+>> feel that it's better to refactor the function into smaller functions
+>> than start declaring variables in the middle of functions. Does that
+>> make sense?
+>>
 >
-> That looks good.  It's sort of annoying for me to send a bug report a
-> month after the fix has been applied...  Sorry about that.
-
-My ath.git tree is not included in linux-wireless builds so there's also
-a delay before linux-next sees the fix.
-
-> 1) These are kbuild warnings.  The zero day bot generates the
-> warnings and I look them over and hit send.  I don't know why the kbuild
-> bot seems to get confused by -mm.  The subject says 408/8237 which is
-> pretty crazy.  Maybe I should just ignore the -mm patches?
-
-Yeah, I have been also wondering about using -mm for ath11k reports.
-Does anyone know why that's happening?
-
-> 2) The blamed patch came from a git tree but it had a Link tag to
-> lore.kernel.org so we could have used that as an In-Reply-to tag.
-> In an ideal world, all the bug reports for a patch would go to a
-> standard location.
+> This is really an academic question.
 >
-> Link:
-> https://lore.kernel.org/r/1644308006-22784-5-git-send-email-quic_cjhuang@quicinc.com
+> In the larger kernel community I'm seeing a push to reduce the scope
+> of identifiers in some cases:
+> 1) declaring loop control variables within the actual loop control operation
+> 2) prohibiting the access to list iterators outside the list iteration loop
 
-Yeah, that would be nice.
+Yeah, those are definitely good examples when to limit scope.
 
-> 3) Another idea is that the kbuild bot could search lore for Fixes to
-> the original commit and include links to those threads?
-
-Yeah. Also searching for all references to the commit id from git log
-would be nice.
+And of course this isn't a hard rule, in some cases we have to make
+exceptions. For example ath11k_mac_op_bss_info_changed() and
+ath11k_mac_op_sta_state() are long functions but trying to split them to
+smaller functions most likely makes them harder to read. So for these
+functions having variables declared within if blocks would sound like a
+good idea, I think it would make the functions more readable.
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
