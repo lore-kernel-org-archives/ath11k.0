@@ -4,63 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C1FAC433F5
-	for <ath11k@archiver.kernel.org>; Fri,  6 May 2022 14:15:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8C04C433EF
+	for <ath11k@archiver.kernel.org>; Sat,  7 May 2022 08:40:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	List-Archive:List-Unsubscribe:List-Id:To:Date:Message-Id:Subject:Mime-Version
+	:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=ZOxDAVfJe3+qQZUZ87Oj8YRSU6CEXfiToFQNt+7tg+A=; b=FQM7ry3FaMP6jz
-	QiRSd7WghVKDwh+rktslqG8gv9r5jw0DKrk0g33Ku9JWTzGJVXhKzWnKoYwQgFf6RjMqhQcJa6wED
-	bLX2iuFJTqZ+DrsGbD3LjC/M52mCX2J2LOVsh3OvhM8UAAMEwGOLr4FDCwez6QjESEcv7V5Z1sO/+
-	yBI9t765lupL73dm8jJxcuRLkUchksD8vHqB/LZgzf1p3iQgq9ahDaXlYsf0SusFMlo/lwAq5tQMC
-	aLYtCf2fxPsbIAXXFxEGcmsaHvsIeaQtvufRT7/pbCe9DKkEnaVbYwQ5x+CsiVJKb/0yvNQh69DNJ
-	TcSiv5gdE1CEfRiAfUGA==;
+	List-Owner; bh=zDZ1Tunf2irOHBLRlPsEEvY8OHqKqQ9pqEqkYDmJ2oQ=; b=n/d+fh1LloV4ss
+	PvusRlJiCOEvYZnG5t/nRtNr8lokwFtExUbF4p5m8/MOStVHay1LfwRUMzq21pKf4e9Ntl/gdSJSz
+	P6ySLJOesUT42n9OO+PODwKbNDs+gV9UqKHFyV/ww2YV9g07UTwRCvepByDcNf7kZ7k+E7d2NdK4/
+	GYuvS+WSfSEYSuFW2HXV3hhL46uMSdwImayOlGaQI761yAZlXgfsqbu1bE4Uip4tHryIzK//F/HH5
+	PA77iAvPR0+N/noVdwVxolswrdrqhwAb+ZHitLlv4o39Ee44/5Zya23iLasyS4Fvv7TaNBRpS3t0J
+	qV/xW6+q7/BoL+FxYI3A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nmyjw-003jHZ-Rf; Fri, 06 May 2022 14:15:28 +0000
-Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38])
+	id 1nnFz6-006WFP-DI; Sat, 07 May 2022 08:40:16 +0000
+Received: from mr85p00im-ztdg06021801.me.com ([17.58.23.195])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nmyjo-003j7o-QR
- for ath11k@lists.infradead.org; Fri, 06 May 2022 14:15:24 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1651846520; x=1683382520;
- h=from:to:cc:subject:date:message-id:mime-version;
- bh=+0DeCUXgHYOliKNNx5awok/fbx4nt/t/OE7cBsxR4zk=;
- b=nMdjhHTrLjUOaEbwUK760eQU7KQU4ZKEjJUiLMTrPrq0uku5A9WsMszL
- VuaYwbuw/YnG5D3cG1Z+VGtt/iu9hRCh7uI0VHMrDIj2gOKk/23DeUGsv
- APJKrPp15OLw5AsRmdTQcp93QUQ3LbWegY6PfRKriUx53yKkCfN1/0LTw I=;
-Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
- by alexa-out-sd-01.qualcomm.com with ESMTP; 06 May 2022 07:15:07 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2022 07:15:07 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Fri, 6 May 2022 07:15:06 -0700
-Received: from hu-akolli-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Fri, 6 May 2022 07:15:04 -0700
-From: Anilkumar Kolli <quic_akolli@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, Anilkumar Kolli <quic_akolli@quicinc.com>
-Subject: [PATCH] ath11k: Reuse the available memory after firmware reload
-Date: Fri, 6 May 2022 19:44:48 +0530
-Message-ID: <20220506141448.10340-1-quic_akolli@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+ id 1nnFz3-006WEM-Vh
+ for ath11k@lists.infradead.org; Sat, 07 May 2022 08:40:15 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com;
+ s=1a1hai; t=1651912811;
+ bh=xqYBtVOpriWPTOMmegexu4BXTutKcEgwEpcmGK1OzhA=;
+ h=From:Content-Type:Mime-Version:Subject:Message-Id:Date:To;
+ b=QXM4fA7ls2fP5LidhXW4eoxEO2BdW9+JObY9oyLgQ76Ik6rePQCQiKkl85hTMJljE
+ z/8ml2J/UGY6ZlMHJ05+uGbNJ1MBxzLHbipHZUi/e1mpSgvKHv+dXTExZWTLdv7ozg
+ asZFOmusCWI6emPyqxthH/DV1keY1ZrXPYfFg2LHBVVbAKiTI2wUTPRL4YiNqNJUn2
+ vBxwjIaHvhkywziKDVs/75owWggtgDly2cVUErztAZR7r7Yh12WMHfp6GlqWVJDjw5
+ AXPXrmJMaCzdtKKW9YH10eixi4pD4WoweXGlUD3lp3IqPcjEVmgQyXJFbwhStCTsLm
+ iDBkCLVa7Zdhg==
+Received: from smtpclient.apple (mr38p00im-dlb-asmtp-mailmevip.me.com
+ [17.57.152.18])
+ by mr85p00im-ztdg06021801.me.com (Postfix) with ESMTPSA id DF14FD00879
+ for <ath11k@lists.infradead.org>; Sat,  7 May 2022 08:40:10 +0000 (UTC)
+From: =?utf-8?Q?Tomasz_Kl=C4=99k?= <tklek@icloud.com>
+Mime-Version: 1.0 (Mac OS X Mail 15.0 \(3693.60.0.1.1\))
+Subject: WLAN.HK.2.5.0.1-01208-QCAHKSWPL_SILICONZ-1 RAM ISSUES
+Message-Id: <FC5D84C4-E94C-4037-8EA7-277695030A49@icloud.com>
+Date: Sat, 7 May 2022 10:40:07 +0200
+To: ath11k@lists.infradead.org
+X-Mailer: Apple Mail (2.3693.60.0.1.1)
+X-Proofpoint-GUID: QAFUNYWdlCZO1UCgWcKHKiNBqLhE6Viv
+X-Proofpoint-ORIG-GUID: QAFUNYWdlCZO1UCgWcKHKiNBqLhE6Viv
+X-Proofpoint-Virus-Version: =?UTF-8?Q?vendor=3Dfsecure_engine=3D1.1.170-22c6f66c430a71ce266a39bfe25bc?=
+ =?UTF-8?Q?2903e8d5c8f:6.0.425,18.0.816,17.0.605.474.0000000_definitions?=
+ =?UTF-8?Q?=3D2022-01-18=5F01:2022-01-14=5F01,2022-01-18=5F01,2020-01-23?=
+ =?UTF-8?Q?=5F02_signatures=3D0?=
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0
+ malwarescore=0
+ mlxscore=0 clxscore=1011 adultscore=0 mlxlogscore=575 phishscore=0
+ bulkscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2202240000 definitions=main-2205070055
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220506_071520_954175_58D083F0 
-X-CRM114-Status: GOOD (  15.57  )
+X-CRM114-CacheID: sfid-20220507_014014_065291_F0BB0033 
+X-CRM114-Status: UNSURE (   3.27  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,116 +77,10 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Ath11k allocates memory when firmware requests memory in QMI.
-Coldboot calibration and firmware recovery uses firmware reload.
-On firmware reload, firmware sends memory request again. If Ath11k
-allocates memory on first firmware boot, reuse the available
-memory. Also check if the segment type and size is same
-on the next firmware boot. Reuse if segment type/size is
-same as previous firmware boot else free the segment and
-allocate the segment with size/type.
+Hi, can I use WLAN.HK.2.5.0.1-01208-QCAHKSWPL_SILICONZ-1 driver with 256mb of RAM on my router?
 
-Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.6.0.1-00752-QCAHKSWPL_SILICONZ-1
-
-Signed-off-by: Anilkumar Kolli <quic_akolli@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/core.c |  1 -
- drivers/net/wireless/ath/ath11k/qmi.c  | 24 +++++++++++++++++++++---
- drivers/net/wireless/ath/ath11k/qmi.h  |  2 ++
- 3 files changed, 23 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 01e1d494b527..7115a3507bc6 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -1768,7 +1768,6 @@ static void ath11k_core_reset(struct work_struct *work)
- 						ATH11K_RECOVER_START_TIMEOUT_HZ);
- 
- 	ath11k_hif_power_down(ab);
--	ath11k_qmi_free_resource(ab);
- 	ath11k_hif_power_up(ab);
- 
- 	ath11k_dbg(ab, ATH11K_DBG_BOOT, "reset started\n");
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index d1e945074bc1..61ead37a944a 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.c
-+++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -1970,6 +1970,21 @@ static int ath11k_qmi_alloc_target_mem_chunk(struct ath11k_base *ab)
- 
- 	for (i = 0; i < ab->qmi.mem_seg_count; i++) {
- 		chunk = &ab->qmi.target_mem[i];
-+
-+		/* Firmware reloads in coldboot/firmware recovery.
-+		 * in such case, no need to allocate memory for FW again.
-+		 */
-+		if (chunk->vaddr) {
-+			if (chunk->prev_type == chunk->type ||
-+			    chunk->prev_size == chunk->size)
-+				continue;
-+
-+			/* cannot reuse the existing chunk */
-+			dma_free_coherent(ab->dev, chunk->size,
-+					  chunk->vaddr, chunk->paddr);
-+			chunk->vaddr = NULL;
-+		}
-+
- 		chunk->vaddr = dma_alloc_coherent(ab->dev,
- 						  chunk->size,
- 						  &chunk->paddr,
-@@ -1990,6 +2005,8 @@ static int ath11k_qmi_alloc_target_mem_chunk(struct ath11k_base *ab)
- 				   chunk->type);
- 			return -EINVAL;
- 		}
-+		chunk->prev_type = chunk->type;
-+		chunk->prev_size = chunk->size;
- 	}
- 
- 	return 0;
-@@ -2466,9 +2483,6 @@ static int ath11k_qmi_m3_load(struct ath11k_base *ab)
- 	char path[100];
- 	int ret;
- 
--	if (m3_mem->vaddr || m3_mem->size)
--		return 0;
--
- 	fw = ath11k_core_firmware_request(ab, ATH11K_M3_FILE);
- 	if (IS_ERR(fw)) {
- 		ret = PTR_ERR(fw);
-@@ -2478,6 +2492,9 @@ static int ath11k_qmi_m3_load(struct ath11k_base *ab)
- 		return ret;
- 	}
- 
-+	if (m3_mem->vaddr || m3_mem->size)
-+		goto skip_m3_alloc;
-+
- 	m3_mem->vaddr = dma_alloc_coherent(ab->dev,
- 					   fw->size, &m3_mem->paddr,
- 					   GFP_KERNEL);
-@@ -2488,6 +2505,7 @@ static int ath11k_qmi_m3_load(struct ath11k_base *ab)
- 		return -ENOMEM;
- 	}
- 
-+skip_m3_alloc:
- 	memcpy(m3_mem->vaddr, fw->data, fw->size);
- 	m3_mem->size = fw->size;
- 	release_firmware(fw);
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.h b/drivers/net/wireless/ath/ath11k/qmi.h
-index c24e6995cca3..c83cf822be81 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.h
-+++ b/drivers/net/wireless/ath/ath11k/qmi.h
-@@ -97,6 +97,8 @@ struct ath11k_qmi_event_msg {
- struct target_mem_chunk {
- 	u32 size;
- 	u32 type;
-+	u32 prev_size;
-+	u32 prev_type;
- 	dma_addr_t paddr;
- 	u32 *vaddr;
- 	void __iomem *iaddr;
--- 
-2.17.1
-
-
+Best regards,
+TK.
 -- 
 ath11k mailing list
 ath11k@lists.infradead.org
