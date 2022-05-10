@@ -4,57 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA02AC433F5
-	for <ath11k@archiver.kernel.org>; Tue, 10 May 2022 16:32:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 997ACC433EF
+	for <ath11k@archiver.kernel.org>; Tue, 10 May 2022 16:33:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
 	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=tM9Pn2UxG6RdpDjlwA+JkHTtlVsiw4Dyf8hx+Io4ky4=; b=4kp5LhEK6W46NT
-	wBbR4qQ1BlqnglPrBFuNtiKRSxa4aes8pP3z37owvCcDIUBuhvDz2dUK4dpraWI4uabQUyyzskjuo
-	LkqObjN2aXjRkfK4nV6apVaSQrc+dyvQ4Ar+p2YZRRLRYvOqvR7pNUCdCGep2xlVNzYCap576Yb9v
-	i2ztfgW3sOvfTK+m32pWO6E3kKr321XOAlkam4Be9avX8lfz91HlW+1MvkJRToNL06ylEvKV02ZMl
-	h5dn4+EJN4TZcp01CEPDwmghAueDnyFQXaxph3xwB0FcaWHU+tmBDzmMq71s6yFdbTxcFQs//un9Z
-	0m7QpDLf6hIJAsP0sYEw==;
+	List-Owner; bh=Wwxe8478tlPlRaYxmgASpD6iVgyhZm9kOxNn8WAvdzg=; b=1s55EpIX3nWwhe
+	nISJrz1rIJ7EyapISmJOBYMkXIbtp8Ap+zjcsmQlseZEs6vi7FFVAytv9azC5MitTDXXtHc24q0cY
+	9fYM4Huez7tWKTSbxkFupPutsWo4Y2NyrsDb03MfFtYrDAw4D6yFZKht1ygkYbnGLWq/izDjmJB98
+	NxxXOeUMwvTszI36XrbrVvWK7PvpGwdvbiN9OaYxDyom00TV0Yv+YZ3L9HVoO94VFYZlsJU2m6hOH
+	AnppM0x5PMV6hkztDFII/Qsp691v2E3P7CWpAFXpUc1xus8kFaerLCX4TY9FvtCd1R1WLcq/pYmvT
+	J+4jPljS2EP2hRuseN8Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1noSmg-003781-6Z; Tue, 10 May 2022 16:32:26 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1noSo3-0037gy-1O; Tue, 10 May 2022 16:33:51 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1noSmc-00375K-Kq
- for ath11k@lists.infradead.org; Tue, 10 May 2022 16:32:24 +0000
+ id 1noSny-0037fc-9C
+ for ath11k@lists.infradead.org; Tue, 10 May 2022 16:33:49 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 4FD30B81E20;
- Tue, 10 May 2022 16:32:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48E70C385A6;
- Tue, 10 May 2022 16:32:19 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id C5630617F7;
+ Tue, 10 May 2022 16:33:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D101C385C2;
+ Tue, 10 May 2022 16:33:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1652200340;
- bh=cB8wY2dxDEiVsAOmFZdvZ3VSskFcuAZTQ783Pq/UNMA=;
+ s=k20201202; t=1652200425;
+ bh=ATApjDbGMfNgkdqEBc3IxlSWcXiB++i8IPcApWWpGgQ=;
  h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
- b=VUkhaSE7EEA9dxmumtqCRg2d+MdrhJs4OW7KsiDZNNwWGv9EYJbrnxLgXK8GbiS53
- mrWtGE8YiFau6lG1mUtTq8bWaIBOA9RaoUluqwavaQppmhWBTQCjelpenl1Rp9PE7y
- 62O2hZ+pjxvLhXd4J0DXBOc2ufeazhIgbt7snFcIjoND10+pyraTJQylCMUQtg1fWU
- F21YWqRrjczBQaPfJq19iEtDfYIJ4IK5CWWM5HXTfujWTAVp0E97kZi3SvJAFP8FbM
- wQuwYAeIe7fvq7QtXzlpSt+oQbTrS6qfrxaQKjaVJ9wH6FXoBDIGuQYWrKFw+hT9Pu
- cANE+XVIdjxDQ==
+ b=X2LmjkjLNvJUOzLyNiGBCJtUHXAZdoZ3EIYzzPO8nr3bB93uh9Qy+2v3Q2MbaR5J+
+ SqNm0Sjhj0lHCbHA6lXVONJ8BQCSy7+nJIi+S6EpbeZoN3++rH94bQVr3c8sDqH84d
+ ziEzz6fCI1OtXpmIEtnAnwlqyEXpmRwzcT6SHg1T4MFugBodG0pe998ref5hC+03bb
+ 3z6V+5rUNhWZpv42tU1Wc80DLgDtxz0Zy+R5RK+0nwRXNRc2aZf526ba5tx5uh4CQh
+ xh+2OMBg4Nr1SlL/Ee+bSN1OX/E7p9QyY4OGtgAm2MgMuLtTu43yXfQKYIhwfiDFQW
+ i3EaXUC978x5w==
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 1/3] ath11k: Implement remain-on-channel support
+Subject: Re: [PATCH] ath11k: Reuse the available memory after firmware reload
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20220506013614.1580274-2-quic_bqiang@quicinc.com>
-References: <20220506013614.1580274-2-quic_bqiang@quicinc.com>
-To: Baochen Qiang <quic_bqiang@quicinc.com>
-Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
+In-Reply-To: <20220506141448.10340-1-quic_akolli@quicinc.com>
+References: <20220506141448.10340-1-quic_akolli@quicinc.com>
+To: Anilkumar Kolli <quic_akolli@quicinc.com>
+Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+ Anilkumar Kolli <quic_akolli@quicinc.com>
 User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <165220033736.6768.15987783390890770630.kvalo@kernel.org>
-Date: Tue, 10 May 2022 16:32:19 +0000 (UTC)
+Message-ID: <165220042141.6768.14213090210900844797.kvalo@kernel.org>
+Date: Tue, 10 May 2022 16:33:44 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220510_093222_920113_3668B00D 
-X-CRM114-Status: UNSURE (   8.82  )
+X-CRM114-CacheID: sfid-20220510_093346_407841_39206303 
+X-CRM114-Status: UNSURE (   8.60  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -72,27 +73,28 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Baochen Qiang <quic_bqiang@quicinc.com> wrote:
+Anilkumar Kolli <quic_akolli@quicinc.com> wrote:
 
-> Add remain on channel support, it is needed in several
-> scenarios such as Passpoint etc.
+> Ath11k allocates memory when firmware requests memory in QMI.
+> Coldboot calibration and firmware recovery uses firmware reload.
+> On firmware reload, firmware sends memory request again. If Ath11k
+> allocates memory on first firmware boot, reuse the available
+> memory. Also check if the segment type and size is same
+> on the next firmware boot. Reuse if segment type/size is
+> same as previous firmware boot else free the segment and
+> allocate the segment with size/type.
 > 
-> Currently this is supported by QCA6390, WCN6855, IPQ8074,
-> IPQ6018 and QCN9074.
+> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.6.0.1-00752-QCAHKSWPL_SILICONZ-1
 > 
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
-> 
-> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+> Signed-off-by: Anilkumar Kolli <quic_akolli@quicinc.com>
 > Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-3 patches applied to ath-next branch of ath.git, thanks.
+Patch applied to ath-next branch of ath.git, thanks.
 
-3a5627b94222 ath11k: Implement remain-on-channel support
-355333a21754 ath11k: Don't check arvif->is_started before sending management frames
-1d7f514577f0 ath11k: Designating channel frequency when sending management frames
+5962f370ce41 ath11k: Reuse the available memory after firmware reload
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20220506013614.1580274-2-quic_bqiang@quicinc.com/
+https://patchwork.kernel.org/project/linux-wireless/patch/20220506141448.10340-1-quic_akolli@quicinc.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
