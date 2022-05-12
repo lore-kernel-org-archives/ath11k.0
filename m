@@ -4,64 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1633C433F5
-	for <ath11k@archiver.kernel.org>; Thu, 12 May 2022 19:48:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9BA1C433EF
+	for <ath11k@archiver.kernel.org>; Thu, 12 May 2022 21:08:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=PI4unb2P2eoBbmIOjHolPvh1t804xUcPd77a3jpJlsw=; b=Rw1EjsLcvxpti8
-	QXiQtWIU00ramzruNaVi77qZ3OVwJl85tvlnB8fbcFzXo+UUu1PGqXSsDUzVAOuNstuL7O4EgDLZI
-	g/QdmDKyoQ4EtNz+7ozeXagcZbEDGjB13BxU2jUkMScx/I4UwnjLvLfHH88Hof+51TtX93t7rYIV+
-	LpR5KIlBD4lFo4n1yR+3s0J7SmhHYvnGUZ3NK2oUpJgxlr6MedZIHZDw7tv0WaxSorWKd5axr7lhL
-	Zm1fKFxuyaYd10mI0qdCRawL3W/mIxWI5kSkCpHcpB+ISPY2w+BeNwNYRltkFiN946PnCRuF3+Dd4
-	ZBG03JXs8YGmiavIKtAQ==;
+	List-Owner; bh=9uSWeJaQ8whbZmlD1wehZdDRGosaVADXkCV1nx+Xh5g=; b=QeVDQaPt8D8XTo
+	sCWSnlBkEWJHuwjmkL2MuXvfezqyuPs/4Pigo1Ecuars3ZkpJ59k6kR+bSJNsnNf4kWxJsmin8fi5
+	tv+cs6C71ybK5gHWnEj+YUe8ceTs3cmoVyP6F8RvkJGPvhymVQfKDFxcVxAeAMLY7thWsmF/XIZ6h
+	ImC1pys9Ax5teNrTQPWR0pYeE3cb+8JNxB6a1twAV09EQv1uZGFnn3oxVpXKba5witto6vO9vvxdH
+	FooCJZiRD8rQyvpcKhkMcQR4wQ+5WrfQ+4cmd80+122TFmnDP0OhZoc309PrOxKl7J5cYk2u8CDt4
+	SxHAnMuQ5247YqTbZ+Lg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1npEnG-00DKEk-Mv; Thu, 12 May 2022 19:48:14 +0000
-Received: from mail-lj1-x229.google.com ([2a00:1450:4864:20::229])
+	id 1npG2n-00DXhd-9K; Thu, 12 May 2022 21:08:21 +0000
+Received: from mail-lf1-x12d.google.com ([2a00:1450:4864:20::12d])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1npEnD-00DKDq-76
- for ath11k@lists.infradead.org; Thu, 12 May 2022 19:48:13 +0000
-Received: by mail-lj1-x229.google.com with SMTP id 16so7765320lju.13
- for <ath11k@lists.infradead.org>; Thu, 12 May 2022 12:48:08 -0700 (PDT)
+ id 1npG2k-00DXey-8p
+ for ath11k@lists.infradead.org; Thu, 12 May 2022 21:08:20 +0000
+Received: by mail-lf1-x12d.google.com with SMTP id p26so11206739lfh.10
+ for <ath11k@lists.infradead.org>; Thu, 12 May 2022 14:08:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
  h=message-id:date:mime-version:user-agent:subject:content-language:to
  :cc:references:from:in-reply-to:content-transfer-encoding;
- bh=qZ8dAdZbgSv12dDjJRPR/GhZFLurwGOMDFl32cckAg8=;
- b=sDiVy9AXRrX3SjBrAXYDy2jEPoSAR7EbWvtrg9Mp1XLZgwnUCXHANuSOrQrTTLApkj
- OASaSLCNbekgz74ADC42xKQQlWRfhmiRcLwAijJ8vz2IEDiZ8hwSWIIb3NNlrcrGdL1W
- oQ6TVIiOAWHHVTfYOSda9vv75n4stI2+3svYsmYQ75KVrFKXEqiDpIjYhwH+imN6GjxI
- psmKAdBZaJZqA4QHdYex3ySxnThwlcfwsakUNh3yNnrkT1O7YihcOJfNFnSqjq9Tm/8u
- EOMHwpM2zw2zzTJoGbya5200vGzsrkt7JHftdAbQWSJJCt41C94gwaMYhG0PMQ9kCir+
- EwPg==
+ bh=rPtyjeMxoo2OSzjjj9x/Zl8UUoy105fMM5VV18uK9gY=;
+ b=vTVlMVfjRFLQpnK2Clu/iABOvJxwbRmsSPv2/BSAKGU418rshv/IG6cSQyAhIW9WnR
+ Sk0QJED1TUudl5Ox7wauol/f5C5+JQQnL8uL4X8POsB5U0/ZL3MIW7nB87jAw3Sg6sKl
+ I4PSlE+PVmJlHiflrqbEVF3t4l4kA08H0T8KXMtmzrsEVb/QxltajtM5Oz/RILgR92W1
+ Pjb6R6f2fV0MwQJGafFSqqMiJZzuDuyHWbuMob/nW6gsnw8M5BZyreu6kbe0gIN3aKCz
+ bQF4t50Ihs6RKHBoROb7/gptwyhM60dwwS9lm/bm9ot49KMwXtkttO1+MDc7suNtuuB3
+ wiWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
  :content-language:to:cc:references:from:in-reply-to
  :content-transfer-encoding;
- bh=qZ8dAdZbgSv12dDjJRPR/GhZFLurwGOMDFl32cckAg8=;
- b=DX0Yb7mwIS7QhYQmK0MdGMSvmmPq64KLMumUe/o2drOqUY+P8/lK1wyCQzA4td2vQS
- DD8gfwfhnEVLswxDJcQ61vpTYng4WpPfsDyzyl7MPRzh6m1OPeixOtn/NQ8VF7BDsy+k
- Ez6Hg+1nhJ4stetIo6QWLf0OyijRhcUmX+tvpqbu3c4CjGg2a5EZG906Vy7kFqeTnnmt
- W5wnAZDYkquSlz81cjK2fcKpZqmN0/JpUoG+2mAWCc+Cz0MoKuGQwfj+9NUJqLyORcdA
- K/G+3QHlQaM511+/kxNfHZZ4NFcRQI6yhZE45akMO0EvD95Qu/+jPPMkv+0fs/jUyzmf
- u99g==
-X-Gm-Message-State: AOAM532sY6SiwlFYB+rk67Hu8tdheDFCcqYZ4Xwq5WVnAUkYMpYgm2Gx
- YlIgqz5CcFsIh4z1hMLeRlOm8PvWJjg+eg==
-X-Google-Smtp-Source: ABdhPJzahAECZYVyfFrsL6xsK4OX+OTM34BMclmv/ohYmNZ4ai8XKcBWqdGw4+jSj7DcxgCUGCCqBw==
-X-Received: by 2002:a2e:902:0:b0:250:814f:fc1b with SMTP id
- 2-20020a2e0902000000b00250814ffc1bmr989688ljj.72.1652384887197; 
- Thu, 12 May 2022 12:48:07 -0700 (PDT)
+ bh=rPtyjeMxoo2OSzjjj9x/Zl8UUoy105fMM5VV18uK9gY=;
+ b=qOh6TZ1ptspqM9o9RR5xfMxd1o13Wr0DTNOXzKV5mW68rEO4Vs4w4g46KqXinA3YHT
+ Ts6/Tk5oO2bcM+2bAWDgRYKAwkUFwZemOxhL6dkEiKz3W/ZnfDsL8svrXisaz00TrP2B
+ wzpU0/2R8KXjC/K3rSnkyzW8TTkLU8+dfboUmL9XX+7+lLq7QICZB5twr9/xUn4EwTNQ
+ 0P5kfriSDv/AO/94JM10XHNEnGU7rx+uxHYSkzgW8/opp2Yi/kzNO4B/cBnU4F8gY1YR
+ lRxivZQl/ZiiiM1xbDYC40LmzHTqsxiUE/lc28J7WHrDD3AvmM0BxzIfGwGvShmcOe+l
+ TOQA==
+X-Gm-Message-State: AOAM530A6hf/2oasaTlYbgSslJOzJLVMLlPVnyD8Yskv+OmQtpighi/Q
+ uOgDFwqcZhQLB4oUfejiBOHtSw==
+X-Google-Smtp-Source: ABdhPJxpXN9SGkAFFq7NKcWagAuHHccw/jVK7SufsF8fskCNMhSDa7002IBXLJlvOjhq7zoLNa6k0A==
+X-Received: by 2002:a19:4348:0:b0:474:d376:45f3 with SMTP id
+ m8-20020a194348000000b00474d37645f3mr1099866lfj.405.1652389693828; 
+ Thu, 12 May 2022 14:08:13 -0700 (PDT)
 Received: from [192.168.1.211] ([37.153.55.125])
  by smtp.gmail.com with ESMTPSA id
- l5-20020ac25545000000b0047255d2111esm71411lfk.77.2022.05.12.12.48.06
+ y19-20020ac255b3000000b0047255d210d5sm96371lfg.4.2022.05.12.14.08.13
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 12 May 2022 12:48:06 -0700 (PDT)
-Message-ID: <08d0ec20-f9ae-c546-becb-a77404e91a9a@linaro.org>
-Date: Thu, 12 May 2022 22:48:05 +0300
+ Thu, 12 May 2022 14:08:13 -0700 (PDT)
+Message-ID: <627e4f7d-4332-d46e-82e3-4f3f18d3b546@linaro.org>
+Date: Fri, 13 May 2022 00:08:12 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
@@ -74,8 +74,8 @@ References: <a1657ff0-198c-14f9-3b2b-d7ab06cfc8e6@linaro.org>
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 In-Reply-To: <87v8ua624n.fsf@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220512_124811_322741_967D05AA 
-X-CRM114-Status: GOOD (  13.60  )
+X-CRM114-CacheID: sfid-20220512_140818_365454_BD707061 
+X-CRM114-Status: GOOD (  15.20  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,80 +87,119 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-T24gMTIvMDUvMjAyMiAyMToyMywgS2FsbGUgVmFsbyB3cm90ZToKPiBEbWl0cnkgQmFyeXNoa292
-IDxkbWl0cnkuYmFyeXNoa292QGxpbmFyby5vcmc+IHdyaXRlczoKPiAKPj4gVGhlIHdjbjY4NTUg
-V2lGaSBjaGlwIHN0b3BwZWQgd29ya2luZyBmb3IgbWUgYWZ0ZXIgYW4gdXBkYXRlIHRvIHRoZQo+
-PiBsYXRlc3QgbGludXgtZmlybXdhcmUgKExpbnV4IDUuMTgtcmMyKS4gSSBjYW4gcmVwcm9kdWNl
-IGl0IHdpdGggYm90aAo+PiBodzIuMCBhbmQgaHcyLjEgY2hpcHMuCj4+Cj4+IEhlcmUgaXMgdGhl
-IHNldCBvZiBrZXJuZWwgbWVzc2FnZXMgSSdtIGdldHRpbmcgZnJvbSBhdGgxMWtfcGNpIGRyaXZl
-cjoKPj4KPj4gWyAgICA0LjQyMjM5MV0gYXRoMTFrX3BjaSAwMDAwOjAxOjAwLjA6IEFkZGluZyB0
-byBpb21tdSBncm91cCAzCj4+IFsgICAgNC40Mjk1NzFdIGF0aDExa19wY2kgMDAwMDowMTowMC4w
-OiBCQVIgMDogYXNzaWduZWQgW21lbQo+PiAweDYwNDAwMDAwLTB4NjA1ZmZmZmYgNjRiaXRdCj4+
-IFsgICAgNC40Mzc4NTddIGF0aDExa19wY2kgMDAwMDowMTowMC4wOiBlbmFibGluZyBkZXZpY2Ug
-KDAwMDAgLT4gMDAwMikKPj4gWyAgICA0LjQ0NTMyM10gYXRoMTFrX3BjaSAwMDAwOjAxOjAwLjA6
-IE1TSSB2ZWN0b3JzOiAxCj4+IFsgICAgNC40NTAzNzVdIGF0aDExa19wY2kgMDAwMDowMTowMC4w
-OiB3Y242ODU1IGh3Mi4wCj4+IFsgICAgNS4zNzg0ODhdIGF0aDExa19wY2kgMDAwMDowMTowMC4w
-OiBjaGlwX2lkIDB4MiBjaGlwX2ZhbWlseSAweGIKPj4gYm9hcmRfaWQgMHg4YyBzb2NfaWQgMHg0
-MDBjMDIwMAo+PiBbICAgIDUuMzkyODk4XSBhdGgxMWtfcGNpIDAwMDA6MDE6MDAuMDogZndfdmVy
-c2lvbiAweDExMGYwYzM1Cj4+IGZ3X2J1aWxkX3RpbWVzdGFtcCAyMDIyLTAzLTMwIDA5OjA1IGZ3
-X2J1aWxkX2lkCj4+IFFDX0lNQUdFX1ZFUlNJT05fU1RSSU5HPVdMQU4uSFNQLjEuMS0wMzEyNS1R
-Q0FIU1BTV1BMX1YxX1YyX1NJTElDT05aX0xJVEUtMy42NTEwLjcKPj4gWyAgICA1LjQyMDY0OF0g
-YXRoMTFrX3BjaSAwMDAwOjAxOjAwLjA6IGZhaWxlZCB0byBmZXRjaCBib2FyZCBkYXRhIGZvcgo+
-PiBidXM9cGNpLHZlbmRvcj0xN2NiLGRldmljZT0xMTAzLHN1YnN5c3RlbS12ZW5kb3I9MTdjYixz
-dWJzeXN0ZW0tZGV2aWNlPTAxMDgscW1pLWNoaXAtaWQ9MixxbWktYm9hcmQtaWQ9MTQwCj4+IGZy
-b20gYXRoMTFrL1dDTjY4NTUvaHcyLjAvYm9hcmQtMi5iaW4KPj4gWyAgIDE1LjY4NjM5OF0gYXRo
-MTFrX3BjaSAwMDAwOjAxOjAwLjA6IGZhaWxlZCB0byB3YWl0IGJvYXJkIGZpbGUKPj4gZG93bmxv
-YWQgcmVxdWVzdDogLTExMAo+PiBbICAgMTUuNjk0NTMwXSBhdGgxMWtfcGNpIDAwMDA6MDE6MDAu
-MDogcW1pIGZhaWxlZCB0byBsb2FkIGJkZiBmaWxlCj4+IFsgICAxNS43MDA3ODRdIGF0aDExa19w
-Y2kgMDAwMDowMTowMC4wOiBmYWlsZWQgdG8gbG9hZCBib2FyZCBkYXRhIGZpbGU6IC0xMTAKPiAK
-PiBXaGF0IFdDTjY4NTUgaGFyZHdhcmUgYXJlIHlvdSBleGFjdGx5IHVzaW5nPyAobWFrZSwgbW9k
-ZWwgZXRjKQoKSSBoYXZlIGFza2VkIGZvciB0aGUgaHcgZGV0YWlscy4gVGhlIHVzZXIgZ3VpZGUg
-Zm9yIHRoZSBIREs4NDUwIGxpc3RzIApXQ042ODU2IGNoaXAgYW5kIGFsc28gbWVudGlvbnMgJ1F1
-YWxjb21twq4gRmFzdENvbm5lY3TihKIgNjkwMCBTeXN0ZW1zJy4KCgo+IEFuZCB3aGF0Cj4gYm9h
-cmQgZmlsZSBhcmUgeW91IHVzaW5nPyBtZDVzdW1zIG9mIGFsbCBmaXJtd2FyZSBmaWxlcyBpcyB0
-aGUgYmVzdC4KCiMgbWQ1c3VtIC9saWIvZmlybXdhcmUvYXRoMTFrL1dDTjY4NTUvaHcyLjEvKgo0
-NjBmYmQ1ZGRjNTdiM2QyZWZiZjFjYTk3NmY3OGI5MCAKL2xpYi9maXJtd2FyZS9hdGgxMWsvV0NO
-Njg1NS9odzIuMS9hbXNzLmJpbgo4OGIzYTRmYmRlOGNhYjQ0OTNmMDA2MGFlM2I1ZGVlMyAKL2xp
-Yi9maXJtd2FyZS9hdGgxMWsvV0NONjg1NS9odzIuMS9ib2FyZC0yLmJpbgo3ZmQxYzIzMzdiMGI2
-NTAyNTg4ZDMxNDFlMjA1ZTczNSAKL2xpYi9maXJtd2FyZS9hdGgxMWsvV0NONjg1NS9odzIuMS9i
-b2FyZC5iaW4KZDE0NjBmYzFjNDU5NWQwZDIyZjgyZDViYWVhYWJiZDggIC9saWIvZmlybXdhcmUv
-YXRoMTFrL1dDTjY4NTUvaHcyLjEvbTMuYmluCmY2N2JlODM2NTljNzkwZmUxNWQxZTQyYWY1MDFl
-OWZhIAovbGliL2Zpcm13YXJlL2F0aDExay9XQ042ODU1L2h3Mi4xL3JlZ2RiLmJpbgoKCj4gCj4+
-IFdpdGggdGhlIGVhcmxpZXIgZmlybXdhcmUgZnJvbSBbMV0gSSdtIGdldHRpbmcgdGhlIGZvbGxv
-d2luZyB0cmFjZQo+PiAoYW5kIFdpRmkgZGV2aWNlIHByb2JlcykuIEludGVyZXN0aW5nbHkgZW5v
-dWdoIHRoZSBjaGlwX2lkIGRpZmZlcnMKPj4gYmV0d2VlbiB0aGVzZSBmaXJtd2FyZSB2ZXJzaW9u
-cy4KPj4KPj4gWyAgICA0LjM1MjY2MV0gYXRoMTFrX3BjaSAwMDAwOjAxOjAwLjA6IEFkZGluZyB0
-byBpb21tdSBncm91cCAzCj4+IFsgICAgNC4zNTkxOTJdIGF0aDExa19wY2kgMDAwMDowMTowMC4w
-OiBCQVIgMDogYXNzaWduZWQgW21lbQo+PiAweDYwNDAwMDAwLTB4NjA1ZmZmZmYgNjRiaXRdCj4+
-IFsgICAgNC4zNjc0NjZdIGF0aDExa19wY2kgMDAwMDowMTowMC4wOiBlbmFibGluZyBkZXZpY2Ug
-KDAwMDAgLT4gMDAwMikKPj4gWyAgICA0LjM3NDkxNl0gYXRoMTFrX3BjaSAwMDAwOjAxOjAwLjA6
-IE1TSSB2ZWN0b3JzOiAxCj4+IFsgICAgNC4zNzk5NjNdIGF0aDExa19wY2kgMDAwMDowMTowMC4w
-OiB3Y242ODU1IGh3Mi4wCj4+IFsgICAgNS4yNzM5MzBdIGF0aDExa19wY2kgMDAwMDowMTowMC4w
-OiBjaGlwX2lkIDB4MCBjaGlwX2ZhbWlseSAweGIKPj4gYm9hcmRfaWQgMHg4YyBzb2NfaWQgMHg0
-MDBjMDIwMAo+PiBbICAgIDUuMjg2MDIwXSBhdGgxMWtfcGNpIDAwMDA6MDE6MDAuMDogZndfdmVy
-c2lvbiAweDExMDQwNmI4Cj4+IGZ3X2J1aWxkX3RpbWVzdGFtcCAyMDIxLTAxLTA4IDA2OjE0IGZ3
-X2J1aWxkX2lkCj4+IFFDX0lNQUdFX1ZFUlNJT05fU1RSSU5HPVdMQU4uSFNQLjEuMS0wMTcyMC4x
-LVFDQUhTUFNXUExfVjFfVjJfU0lMSUNPTlpfTElURS0xCj4+IFsgICAgNS4zMTI0NjRdIGF0aDEx
-a19wY2kgMDAwMDowMTowMC4wOiBmYWlsZWQgdG8gZmV0Y2ggYm9hcmQgZGF0YSBmb3IKPj4gYnVz
-PXBjaSx2ZW5kb3I9MTdjYixkZXZpY2U9MTEwMyxzdWJzeXN0ZW0tdmVuZG9yPTE3Y2Isc3Vic3lz
-dGVtLWRldmljZT0wMTA4LHFtaS1jaGlwLWlkPTAscW1pLWJvYXJkLWlkPTE0MAo+PiBmcm9tIGF0
-aDExay9XQ042ODU1L2h3Mi4wL2JvYXJkLTIuYmluCj4+IFsgICAgNS4zODQzMTVdIGF0aDExa19w
-Y2kgMDAwMDowMTowMC4wOiBsZWF2aW5nIFBDSSBBU1BNIGRpc2FibGVkIHRvCj4+IGF2b2lkIE1I
-SSBNMiBwcm9ibGVtcwo+Pgo+Pgo+Pgo+PiBbMV0KPj4gaHR0cHM6Ly9jaHJvbWl1bS5nb29nbGVz
-b3VyY2UuY29tL2Nocm9taXVtb3MvdGhpcmRfcGFydHkvbGludXgtZmlybXdhcmUvKy9kMjMzZGRk
-ODlhYmUwNjQ0ODA3MDQ3MTk2M2E1OGMwYTdkYTgxZDc5L2F0aDExay9XQ042ODU1L2h3Mi4wCj4g
-Cj4gVGhhdCBsb29rcyBsaWtlIGFuIHVuc3VwcG9ydGVkIGZpcm13YXJlIHZlcnNpb24uIEkgcmVj
-b21tZW5kIHVzaW5nCj4gX2JvdGhfIGZpcm13YXJlcyBhbmQgYm9hcmQgZmlsZXMgb25seSBmcm9t
-IGF0aDExay1maXJtd2FyZS5naXRbMV0gb3IKPiB1cHN0cmVhbSBsaW51eC1maXJtd2FyZVsyXS4K
-PiAKPiBbMV0gaHR0cHM6Ly9naXRodWIuY29tL2t2YWxvL2F0aDExay1maXJtd2FyZQo+IAo+IFsy
-XSBodHRwczovL2dpdC5rZXJuZWwub3JnL3B1Yi9zY20vbGludXgva2VybmVsL2dpdC9maXJtd2Fy
-ZS9saW51eC1maXJtd2FyZS5naXQvCgpBcyBJIHdyb3RlLCBsaW51eC1maXJtd2FyZSB2ZXJzaW9u
-IGRvZXNuJ3Qgd29yay4gSSB3aWxsIHJldHJ5IG15IHRlc3RzIAp1c2luZyBvdGhlciB2ZXJzaW9u
-cyBmcm9tIGF0aDExay1maXJtd2FyZS4KCgotLSAKV2l0aCBiZXN0IHdpc2hlcwpEbWl0cnkKCi0t
-IAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9s
-aXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vYXRoMTFrCg==
+Hi,
+
+On 12/05/2022 21:23, Kalle Valo wrote:
+> Dmitry Baryshkov <dmitry.baryshkov@linaro.org> writes:
+> 
+>> The wcn6855 WiFi chip stopped working for me after an update to the
+>> latest linux-firmware (Linux 5.18-rc2). I can reproduce it with both
+>> hw2.0 and hw2.1 chips.
+>>
+>> Here is the set of kernel messages I'm getting from ath11k_pci driver:
+>>
+>> [    4.422391] ath11k_pci 0000:01:00.0: Adding to iommu group 3
+>> [    4.429571] ath11k_pci 0000:01:00.0: BAR 0: assigned [mem
+>> 0x60400000-0x605fffff 64bit]
+>> [    4.437857] ath11k_pci 0000:01:00.0: enabling device (0000 -> 0002)
+>> [    4.445323] ath11k_pci 0000:01:00.0: MSI vectors: 1
+>> [    4.450375] ath11k_pci 0000:01:00.0: wcn6855 hw2.0
+>> [    5.378488] ath11k_pci 0000:01:00.0: chip_id 0x2 chip_family 0xb
+>> board_id 0x8c soc_id 0x400c0200
+>> [    5.392898] ath11k_pci 0000:01:00.0: fw_version 0x110f0c35
+>> fw_build_timestamp 2022-03-30 09:05 fw_build_id
+>> QC_IMAGE_VERSION_STRING=WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.7
+>> [    5.420648] ath11k_pci 0000:01:00.0: failed to fetch board data for
+>> bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=0108,qmi-chip-id=2,qmi-board-id=140
+>> from ath11k/WCN6855/hw2.0/board-2.bin
+>> [   15.686398] ath11k_pci 0000:01:00.0: failed to wait board file
+>> download request: -110
+>> [   15.694530] ath11k_pci 0000:01:00.0: qmi failed to load bdf file
+>> [   15.700784] ath11k_pci 0000:01:00.0: failed to load board data file: -110
+> 
+> What WCN6855 hardware are you exactly using? (make, model etc) And what
+> board file are you using? md5sums of all firmware files is the best.
+
+I gave a try to all wcn6855 firmware files present in the 
+ath11k-firmware repo. All of them provide the same behaviour.
+
+However, for the reference, with the following firmware I was able to 
+get it to work:
+
+[    4.240309] ath11k_pci 0000:01:00.0: Adding to iommu group 3
+[    4.247454] ath11k_pci 0000:01:00.0: BAR 0: assigned [mem 
+0x60400000-0x605fffff 64bit]
+[    4.255706] ath11k_pci 0000:01:00.0: enabling device (0000 -> 0002)
+[    4.263119] ath11k_pci 0000:01:00.0: MSI vectors: 1
+[    4.268164] ath11k_pci 0000:01:00.0: wcn6855 hw2.1
+[    5.249568] ath11k_pci 0000:01:00.0: chip_id 0x2 chip_family 0xb 
+board_id 0x8c soc_id 0x400c0210
+[    5.261639] ath11k_pci 0000:01:00.0: fw_version 0x200f0504 
+fw_build_timestamp 2021-11-30 18:48 fw_build_id 
+QC_IMAGE_VERSION_STRING=WLAN.HSP.2.0-01284-QCAHSPSWPL_V1_V2_SILICONZ-1
+[    5.333813] ath11k_pci 0000:01:00.0: leaving PCI ASPM disabled to 
+avoid MHI M2 problems
+
+
+# md5sum /lib/firmware/ath11k/WCN6855/hw2.1/*
+94a63f17bb674e005981b69354921705 
+/lib/firmware/ath11k/WCN6855/hw2.1/amss.bin
+7fd1c2337b0b6502588d3141e205e735 
+/lib/firmware/ath11k/WCN6855/hw2.1/board.bin
+62c2087843435b8fd5bafeba7d769a68  /lib/firmware/ath11k/WCN6855/hw2.1/m3.bin
+3c61a448699d9e8614212c535c31c096 
+/lib/firmware/ath11k/WCN6855/hw2.1/regdb.bin
+
+Any chance of getting WLAN.HSP.2.0 firmware into the ath11k-firmware?
+
+
+> 
+>> With the earlier firmware from [1] I'm getting the following trace
+>> (and WiFi device probes). Interestingly enough the chip_id differs
+>> between these firmware versions.
+>>
+>> [    4.352661] ath11k_pci 0000:01:00.0: Adding to iommu group 3
+>> [    4.359192] ath11k_pci 0000:01:00.0: BAR 0: assigned [mem
+>> 0x60400000-0x605fffff 64bit]
+>> [    4.367466] ath11k_pci 0000:01:00.0: enabling device (0000 -> 0002)
+>> [    4.374916] ath11k_pci 0000:01:00.0: MSI vectors: 1
+>> [    4.379963] ath11k_pci 0000:01:00.0: wcn6855 hw2.0
+>> [    5.273930] ath11k_pci 0000:01:00.0: chip_id 0x0 chip_family 0xb
+>> board_id 0x8c soc_id 0x400c0200
+>> [    5.286020] ath11k_pci 0000:01:00.0: fw_version 0x110406b8
+>> fw_build_timestamp 2021-01-08 06:14 fw_build_id
+>> QC_IMAGE_VERSION_STRING=WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+>> [    5.312464] ath11k_pci 0000:01:00.0: failed to fetch board data for
+>> bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=0108,qmi-chip-id=0,qmi-board-id=140
+>> from ath11k/WCN6855/hw2.0/board-2.bin
+>> [    5.384315] ath11k_pci 0000:01:00.0: leaving PCI ASPM disabled to
+>> avoid MHI M2 problems
+>>
+>>
+>>
+>> [1]
+>> https://chromium.googlesource.com/chromiumos/third_party/linux-firmware/+/d233ddd89abe06448070471963a58c0a7da81d79/ath11k/WCN6855/hw2.0
+> 
+> That looks like an unsupported firmware version. I recommend using
+> _both_ firmwares and board files only from ath11k-firmware.git[1] or
+> upstream linux-firmware[2].
+> 
+> [1] https://github.com/kvalo/ath11k-firmware
+> 
+> [2] https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/
+> 
+
+
+-- 
+With best wishes
+Dmitry
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
