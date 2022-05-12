@@ -4,58 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCE4CC4332F
-	for <ath11k@archiver.kernel.org>; Tue, 10 May 2022 16:46:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 927A2C433FE
+	for <ath11k@archiver.kernel.org>; Thu, 12 May 2022 14:32:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2fV7r/ZqO32l5IBN8d1WERrTI/m9lyC3sznF/+CiFCs=; b=Ff27HkHBvYQacF
-	WO5ZEeyo8i7iL/8bIf0OgGy1tC0upa+WBX7dnO6ZPYfKz0ozS+qycC/cEVjP7hHUVs5qBgcOQudn5
-	n5MTrMQIYTsPfCVJy/DlVT/e9+v3DL/6/Q/s3dojOubkhS77Ohbt0cv12YTVZbACg4ngscyuglo2k
-	GHyu6owg5oRHhZhwrusiCGLoTCM8VA2Zt6LLIuf/0RYTPPUhzBI3P0hmB6EknEc/eJU6acTUQ3wD6
-	SDQ52UXTrS2VSRU3Z7+Jj1dH/x21uuoDZa9Xi/MLAWm0gR7R+PQDIKH0WA0NALiDjC5ZSsaOwm/dG
-	USIVZwq5QTTyVTW61VYw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Subject:From:To:MIME-Version:Date:Message-ID:
+	Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=I6mSqZjpjljOgA+gr2ad2xTOfcUNXWDnDa8It1CCpCY=; b=u28PDNNLSZ4ckw
+	vrWv9SGJdptPw7m7xw9F+QXOz//x9EbpycpchfvlNhxsYRlsOWNPlRs8LpQTnogad1iOaaTbQ2jsU
+	Mov/5aUymcc0VTeef3yE3vEP3rDVxGjSxCP+TIWD4swLjLYT4ykUjw/Yhfn3PK9SGr28Dwo3UvGWM
+	sdeWymgbii4gBrdocOLPgadPkrcGFpbEe1zp3WpN8S+jH8CrK4NtWe2AxGOtscYC5Ot3lpGz2qjFu
+	kwSL4p2TGPUONmuhKzn4+dSkI4G8oOAwV0X78xd5RR4084s3lPsOnh5xLs9bnNFXH5XfOHCiXLfaF
+	uXccuAKo8614tK8HSpYQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1noT0G-003Auy-F6; Tue, 10 May 2022 16:46:28 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1np9rC-00CP4a-VV; Thu, 12 May 2022 14:31:59 +0000
+Received: from mail-lf1-x12b.google.com ([2a00:1450:4864:20::12b])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1noSzK-003ATB-RF
- for ath11k@lists.infradead.org; Tue, 10 May 2022 16:45:33 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 25D7EB81DA5;
- Tue, 10 May 2022 16:45:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 016EEC385C2;
- Tue, 10 May 2022 16:45:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1652201127;
- bh=Xau5U8O+mJZo3//0D1VJHnUYN7QvrdNMl75LqPlFn5c=;
- h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
- b=cFK4020jT2kUBuLwkDHIWnk/ahHc6Jl3+y9R2BJdWMsCCmbTd916uaam4OQil5KFA
- 0QU+A24YeIWRBiOUolw3PlLd+T+zRY/i/YQNM/F7WJNmwJrRXmzORq98CgCadxwt4N
- LM1OPmhA6ffu7ktF6k4OsA2QmZMLVSDiMGkWjqZmc7uOlvcLE+8rZzShAExoTgN0Hb
- k9sV8xqAfHTQHgSaElCW1CQEtvAyeDk+3P3a2oE/CCoLwBqNVko1EsiED5iINA+kAb
- teHozMUwyLBWFmn2Xkfy+iAA6Z0dedzlRUwr+HpqsZgbojF+hrNfLTX+lJHilVv9tw
- fmSYVxTQ7DI3g==
-From: Kalle Valo <kvalo@kernel.org>
-To: Sriram R <quic_srirrama@quicinc.com>
-Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
-Subject: Re: [PATCH] ath11k: update missing mumimo and ofdma stats
-References: <1652152236-12038-1-git-send-email-quic_srirrama@quicinc.com>
-Date: Tue, 10 May 2022 19:45:22 +0300
-In-Reply-To: <1652152236-12038-1-git-send-email-quic_srirrama@quicinc.com>
- (Sriram R.'s message of "Tue, 10 May 2022 08:40:36 +0530")
-Message-ID: <87mtfp72vx.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+ id 1np9r9-00CP2z-NW
+ for ath11k@lists.infradead.org; Thu, 12 May 2022 14:31:57 +0000
+Received: by mail-lf1-x12b.google.com with SMTP id j4so9416699lfh.8
+ for <ath11k@lists.infradead.org>; Thu, 12 May 2022 07:31:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=message-id:date:mime-version:user-agent:content-language:to:from
+ :subject:content-transfer-encoding;
+ bh=011SriAoDCvCNFzY0EVNDfB85MBefzK24ZuGj/fScB0=;
+ b=ptPt0F2X98indsAADqmmAVcWypbW3JkofM2uLICPbtWW8LjswxkMyTJyBeaw2RGphF
+ yMzKs1W7bXaIR+qriidi8Qycz8xu9PQlS16ExVsm+VftSjWKPmg9FAyluyAy26yIQpSy
+ Wc0M0MWppRbvfo4iOId5RJ/FMWfEloFTRjlprzPCd1qADFfPUls7qDQkqX7Q09wxpedH
+ aK4pCAuK3V8UOYAt0lgTaMNPgZ40My9EuNf7xYT7i2Lm/qQc2gGuwrmKJwmWAEaxeMuJ
+ La6p6S14jB2zWVa2IQEhe4d54ah1AGk5NzXwmuBRNmqILmH1LQuMxY44K3z99PPMlRWN
+ m/5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:date:mime-version:user-agent
+ :content-language:to:from:subject:content-transfer-encoding;
+ bh=011SriAoDCvCNFzY0EVNDfB85MBefzK24ZuGj/fScB0=;
+ b=pHKlatn3W91s5uxi3emF6akeBrhNn1oqgzWiPOzPGcrtvvmoXLKAIdICsOzfIQj+lk
+ S9TIbU4e1ma/5LhpCbtCbUJ78EUqViGGy2aoe3syN17V7IpI2s6gEGP6pf6XYZfDJDEX
+ ecsakIwWapclPr+DvnAlh3c17o2cqkn04hxK8gJUgHmdm7XOLF2nMrzEyH2OB6EpfL1a
+ XagP1y0hTtvwQpK265Lh7jxWlfF6cEXXnWFdsF9dnF3mHSubjwc/LHIwyDWAod/yCt50
+ YFG/2jr2FZvfZPgjV4Nck+G67rdGZasov18ndkX22KmghxgwD4P58bJRB+H6vtz7UtBs
+ TLmA==
+X-Gm-Message-State: AOAM532z0Dcoy1J0+/CnhQHN78QdEWGthFL+wS7tYCt2UE6we5fr2DoX
+ P4iP8bNqW7sALKCggE95h9AChMZSHuX1fg==
+X-Google-Smtp-Source: ABdhPJzTsgn7Ce+UdTdUtYwGlue79lRMX9mWMKyaIcasJAiVAlvAq0PgUhfZm6jinccVfYl95i5jnA==
+X-Received: by 2002:a05:6512:ea1:b0:473:bf79:e124 with SMTP id
+ bi33-20020a0565120ea100b00473bf79e124mr47152lfb.191.1652365912311; 
+ Thu, 12 May 2022 07:31:52 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+ by smtp.gmail.com with ESMTPSA id
+ c14-20020a056512238e00b0047255d21170sm811793lfv.159.2022.05.12.07.31.51
+ for <ath11k@lists.infradead.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 12 May 2022 07:31:51 -0700 (PDT)
+Message-ID: <a1657ff0-198c-14f9-3b2b-d7ab06cfc8e6@linaro.org>
+Date: Thu, 12 May 2022 17:31:50 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Content-Language: en-GB
+To: "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: WCN6855 issues with latest linux-firmware
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220510_094531_261451_502D4F63 
-X-CRM114-Status: GOOD (  14.81  )
+X-CRM114-CacheID: sfid-20220512_073155_816629_B7148E0A 
+X-CRM114-Status: UNSURE (   7.41  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -67,95 +84,69 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Sriram R <quic_srirrama@quicinc.com> writes:
+Hi,
 
-> Update the missing MU-MIMO/OFDMA info in PDEV RX,
-> trigger and schedule stats. i.e HTT stats type 10, 12 and 17
-> respectively.
->
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4-01209-QCAHKSWPL_SILICONZ-1
->
-> Signed-off-by: Sriram R <quic_srirrama@quicinc.com>
+The wcn6855 WiFi chip stopped working for me after an update to the 
+latest linux-firmware (Linux 5.18-rc2). I can reproduce it with both 
+hw2.0 and hw2.1 chips.
 
-[...]
+Here is the set of kernel messages I'm getting from ath11k_pci driver:
 
-> @@ -734,6 +738,21 @@ struct htt_tx_pdev_mu_mimo_sch_stats_tlv {
->  	u32 ac_mu_mimo_sch_nusers[HTT_TX_PDEV_STATS_NUM_AC_MUMIMO_USER_STATS];
->  	u32 ax_mu_mimo_sch_nusers[HTT_TX_PDEV_STATS_NUM_AX_MUMIMO_USER_STATS];
->  	u32 ax_ofdma_sch_nusers[HTT_TX_PDEV_STATS_NUM_OFDMA_USER_STATS];
-> +	u32 ax_ul_ofdma_basic_sch_nusers[HTT_TX_PDEV_STATS_NUM_OFDMA_USER_STATS];
-> +	u32 ax_ul_ofdma_bsr_sch_nusers[HTT_TX_PDEV_STATS_NUM_OFDMA_USER_STATS];
-> +	u32 ax_ul_ofdma_bar_sch_nusers[HTT_TX_PDEV_STATS_NUM_OFDMA_USER_STATS];
-> +	u32 ax_ul_ofdma_brp_sch_nusers[HTT_TX_PDEV_STATS_NUM_OFDMA_USER_STATS];
-> +	/* UL MUMIMO */
-> +	/* ax_ul_mumimo_basic_sch_nusers[i] is the number of basic triggers sent
-> +	 * for (i+1) users
-> +	 */
-> +	u32 ax_ul_mumimo_basic_sch_nusers[HTT_TX_PDEV_STATS_NUM_UL_MUMIMO_USER_STATS];
-> +	/* ax_ul_mumimo_brp_sch_nusers[i] is the number of brp triggers sent
-> +	 * for (i+1) users
-> +	 */
-> +	u32 ax_ul_mumimo_brp_sch_nusers[HTT_TX_PDEV_STATS_NUM_UL_MUMIMO_USER_STATS];
-> +	u32 ac_mu_mimo_sch_posted_per_grp_sz[HTT_TX_PDEV_STATS_NUM_AC_MUMIMO_USER_STATS];
-> +	u32 ax_mu_mimo_sch_posted_per_grp_sz[HTT_TX_PDEV_STATS_NUM_AX_MUMIMO_USER_STATS];
->  };
+[    4.422391] ath11k_pci 0000:01:00.0: Adding to iommu group 3
+[    4.429571] ath11k_pci 0000:01:00.0: BAR 0: assigned [mem 
+0x60400000-0x605fffff 64bit]
+[    4.437857] ath11k_pci 0000:01:00.0: enabling device (0000 -> 0002)
+[    4.445323] ath11k_pci 0000:01:00.0: MSI vectors: 1
+[    4.450375] ath11k_pci 0000:01:00.0: wcn6855 hw2.0
+[    5.378488] ath11k_pci 0000:01:00.0: chip_id 0x2 chip_family 0xb 
+board_id 0x8c soc_id 0x400c0200
+[    5.392898] ath11k_pci 0000:01:00.0: fw_version 0x110f0c35 
+fw_build_timestamp 2022-03-30 09:05 fw_build_id 
+QC_IMAGE_VERSION_STRING=WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.7
+[    5.420648] ath11k_pci 0000:01:00.0: failed to fetch board data for 
+bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=0108,qmi-chip-id=2,qmi-board-id=140 
+from ath11k/WCN6855/hw2.0/board-2.bin
+[   15.686398] ath11k_pci 0000:01:00.0: failed to wait board file 
+download request: -110
+[   15.694530] ath11k_pci 0000:01:00.0: qmi failed to load bdf file
+[   15.700784] ath11k_pci 0000:01:00.0: failed to load board data file: -110
 
-In the pending branch I added some newlines to make this more readable.
 
-> @@ -1297,6 +1316,8 @@ struct htt_tx_pdev_rate_stats_tlv {
->  #define HTT_RX_PDEV_STATS_NUM_PREAMBLE_TYPES       HTT_STATS_PREAM_COUNT
->  #define HTT_RX_PDEV_MAX_OFDMA_NUM_USER             8
->  #define HTT_RX_PDEV_STATS_RXEVM_MAX_PILOTS_PER_NSS 16
-> +#define HTT_RX_PDEV_STATS_NUM_RU_SIZE_COUNTERS     6
-> +#define HTT_RX_PDEV_MAX_ULMUMIMO_NUM_USER          8
->  
->  struct htt_rx_pdev_rate_stats_tlv {
->  	u32 mac_id__word;
-> @@ -1375,6 +1396,21 @@ struct htt_rx_pdev_rate_stats_tlv {
->  	u32 per_chain_rssi_pkt_type;
->  	s8 rx_per_chain_rssi_in_dbm[HTT_RX_PDEV_STATS_NUM_SPATIAL_STREAMS]
->  				   [HTT_RX_PDEV_STATS_NUM_BW_COUNTERS];
-> +
-> +	u32 rx_su_ndpa;
-> +	u32 rx_11ax_su_txbf_mcs[HTT_RX_PDEV_STATS_NUM_MCS_COUNTERS];
-> +	u32 rx_mu_ndpa;
-> +	u32 rx_11ax_mu_txbf_mcs[HTT_RX_PDEV_STATS_NUM_MCS_COUNTERS];
-> +	u32 rx_br_poll;
-> +	u32 rx_11ax_dl_ofdma_mcs[HTT_RX_PDEV_STATS_NUM_MCS_COUNTERS];
-> +	u32 rx_11ax_dl_ofdma_ru[HTT_RX_PDEV_STATS_NUM_RU_SIZE_COUNTERS];
-> +
-> +	u32 rx_ulmumimo_non_data_ppdu[HTT_RX_PDEV_MAX_ULMUMIMO_NUM_USER]; /* ppdu level */
-> +	u32 rx_ulmumimo_data_ppdu[HTT_RX_PDEV_MAX_ULMUMIMO_NUM_USER];     /* ppdu level */
-> +	u32 rx_ulmumimo_mpdu_ok[HTT_RX_PDEV_MAX_ULMUMIMO_NUM_USER];       /* mpdu level */
-> +	u32 rx_ulmumimo_mpdu_fail[HTT_RX_PDEV_MAX_ULMUMIMO_NUM_USER];     /* mpdu level */
-> +	u32 rx_ulofdma_non_data_nusers[HTT_RX_PDEV_MAX_OFDMA_NUM_USER];
-> +	u32 rx_ulofdma_data_nusers[HTT_RX_PDEV_MAX_OFDMA_NUM_USER];
->  };
+With the earlier firmware from [1] I'm getting the following trace (and 
+WiFi device probes). Interestingly enough the chip_id differs between 
+these firmware versions.
 
-The comments didn't provide any extra information so I removed them.
+[    4.352661] ath11k_pci 0000:01:00.0: Adding to iommu group 3
+[    4.359192] ath11k_pci 0000:01:00.0: BAR 0: assigned [mem 
+0x60400000-0x605fffff 64bit]
+[    4.367466] ath11k_pci 0000:01:00.0: enabling device (0000 -> 0002)
+[    4.374916] ath11k_pci 0000:01:00.0: MSI vectors: 1
+[    4.379963] ath11k_pci 0000:01:00.0: wcn6855 hw2.0
+[    5.273930] ath11k_pci 0000:01:00.0: chip_id 0x0 chip_family 0xb 
+board_id 0x8c soc_id 0x400c0200
+[    5.286020] ath11k_pci 0000:01:00.0: fw_version 0x110406b8 
+fw_build_timestamp 2021-01-08 06:14 fw_build_id 
+QC_IMAGE_VERSION_STRING=WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+[    5.312464] ath11k_pci 0000:01:00.0: failed to fetch board data for 
+bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=0108,qmi-chip-id=0,qmi-board-id=140 
+from ath11k/WCN6855/hw2.0/board-2.bin
+[    5.384315] ath11k_pci 0000:01:00.0: leaving PCI ASPM disabled to 
+avoid MHI M2 problems
 
-There were also new warnings, fixed in the pending branch:
 
-drivers/net/wireless/ath/ath11k/debugfs_htt_stats.c:2978: line length of 92 exceeds 90 columns
-drivers/net/wireless/ath/ath11k/debugfs_htt_stats.c:2983: line length of 92 exceeds 90 columns
-drivers/net/wireless/ath/ath11k/debugfs_htt_stats.c:3051: line length of 95 exceeds 90 columns
-drivers/net/wireless/ath/ath11k/debugfs_htt_stats.c:3054: line length of 91 exceeds 90 columns
-drivers/net/wireless/ath/ath11k/debugfs_htt_stats.c:3057: line length of 93 exceeds 90 columns
-drivers/net/wireless/ath/ath11k/debugfs_htt_stats.c:3060: line length of 96 exceeds 90 columns
-drivers/net/wireless/ath/ath11k/debugfs_htt_stats.c:3063: line length of 97 exceeds 90 columns
-drivers/net/wireless/ath/ath11k/debugfs_htt_stats.c:3066: line length of 93 exceeds 90 columns
-drivers/net/wireless/ath/ath11k/debugfs_htt_stats.c:3069: line length of 91 exceeds 90 columns
-drivers/net/wireless/ath/ath11k/debugfs_htt_stats.c:3072: line length of 93 exceeds 90 columns
+
+[1] 
+https://chromium.googlesource.com/chromiumos/third_party/linux-firmware/+/d233ddd89abe06448070471963a58c0a7da81d79/ath11k/WCN6855/hw2.0
+
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+With best wishes
+Dmitry
 
 -- 
 ath11k mailing list
