@@ -4,65 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F254C433F5
-	for <ath11k@archiver.kernel.org>; Tue, 17 May 2022 05:53:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45F65C433F5
+	for <ath11k@archiver.kernel.org>; Tue, 17 May 2022 10:36:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=ry7YJxXHE8iihx49ihLVZbDORT8Nrk3wkLIOKr+yWmI=; b=uZodavEhID5LWp
-	RF5PH7eqI7f1qOrmLU8XEczHsXN3BTdPlZUmXcwpaYgS7Zf7tS3mz1c/Sy85HicAp8XvxX7MXDOR3
-	ju5WfsvAmNc/dOmRHnhKPXs2dzkSDGdC3nKaqSVDGgbQDJZCwJ3Zbt7b2jug+Dne/3Vt0o5T8G2Mn
-	kcrCVFt5lPXF2x747Fn4Yyb/XPqVqO1deUbYaRuNYn1bwWVzXHntte+ELQj29AJDliX4QDktzsgkJ
-	/La2acKjiNJTPlOubZclzUzrc8BgJCtJhzOYcrKGVsioGsjjhpFH7P9KG9pEKpWGLE8fZtjDD+1Kd
-	4LmwWfXXC5FTCRGJQkQw==;
+	List-Owner; bh=j6hDR2g2mAu5HJF+4Tg4xGjojWHXd6QFCK9wF4amYxA=; b=jRXXcPwk3b9WqL
+	SOnt9OGgZdcxvMlKmSMiD4KAtCpZZ558B+vPgLWu8Bt1mWusoInCP8F9+M+nR6oWsnPtfPt9AYm2X
+	J4Y9g0mZUKFxHIcIXmXtDfvAE+Z0AaBPv8Uz0bBLBQSsujXU/677FlERoG3G0HxUiZ2aIPLv9nLFt
+	/oLRScfQThqpmdLZxcS+2MpenCW9bPce6G70mBcGfohoj4Dh8ZY4cF7QuL99ofwWbxwhuyTSLF5NW
+	H35Ku6/tljzy1YQW5ac0TLWCZ7629vPhBfDH3WCGTfN0fZa/9r8g7fjnwkLN/Frep/BsLR2wFCngd
+	B5JealorQu1ACs1bL4Zw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nqq8x-00Bk6a-3F; Tue, 17 May 2022 05:53:15 +0000
-Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39])
+	id 1nquYg-00D8do-U5; Tue, 17 May 2022 10:36:06 +0000
+Received: from sin.source.kernel.org ([145.40.73.55])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nqq8u-00Bk4x-AO
- for ath11k@lists.infradead.org; Tue, 17 May 2022 05:53:13 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
- t=1652766792; x=1684302792;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=2BEfwWj1pj5ztvRLob/vY7ITqciMcbXsvRZhwbzIy+0=;
- b=j8MoarFPsX2z7csqUdPtYhtgnm8mGzkSXUqsN5hw/Hf6UeCCcoxPs9xj
- Gi/kgiwvD5qi2rEPV4rT+cHDUfEZ6UpB5nrKX+tqJr6xJ3dArvmYcNjaY
- Ez3HbT7c4g1QVCobeujuEVCY8VxGSpKzGPcZCvIB1xYqZCnLPlKq0zI6k A=;
-Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
- by alexa-out-sd-02.qualcomm.com with ESMTP; 16 May 2022 22:53:03 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
- by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2022 22:53:03 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Mon, 16 May 2022 22:53:02 -0700
-Received: from mpubbise-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Mon, 16 May 2022 22:53:00 -0700
-From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, Manikanta Pubbisetty
- <quic_mpubbise@quicinc.com>
-Subject: [PATCH] ath11k: Init hw_params before setting up AHB resources
-Date: Tue, 17 May 2022 11:22:41 +0530
-Message-ID: <20220517055241.15885-1-quic_mpubbise@quicinc.com>
+ id 1nquYd-00D8av-47
+ for ath11k@lists.infradead.org; Tue, 17 May 2022 10:36:04 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by sin.source.kernel.org (Postfix) with ESMTPS id 6237ECE19B0;
+ Tue, 17 May 2022 10:36:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6701C385B8;
+ Tue, 17 May 2022 10:35:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1652783758;
+ bh=lAksy8oepqE8iH2ITwCihZnI9L3nnQyBWYqoVUXqlUo=;
+ h=From:To:Cc:Subject:Date:From;
+ b=J4VVh6cFjDb1jIJK8SYjto2TV3c/jw1kHwiDZN006Xmam81unpFPSThWn4ldxHTYE
+ DKpLfJC312AWUUSiZ4/T7FCDwjprWzSu4EWs/G0YLfZL8Zor4UUK+KMtDudRLjJU0X
+ tNiMAYBysrP0AAoM6IgFtmeQeUz+Nxo5PMA+gPR1XgeFUmmp6gcCcUjBzCVFYRvBIP
+ kxB3p4o/cCq+jdbZzhkIJ58GRY8uzjGbTRG7imw25kyUCbfjbzrF0YmqB370oE1zgz
+ GslT0WoKU0CbEadEdAAMZxd9ilOd3HbshVQ1irycMGx81GI0UXmJue+znaU9kgM4nW
+ EHSC/xgMTuKjg==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+ (envelope-from <johan+linaro@kernel.org>)
+ id 1nquYX-00048Z-OB; Tue, 17 May 2022 12:35:57 +0200
+From: Johan Hovold <johan+linaro@kernel.org>
+To: Kalle Valo <kvalo@kernel.org>
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, ath11k@lists.infradead.org,
+ linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Johan Hovold <johan+linaro@kernel.org>
+Subject: [RFC] ath11k: fix netdev open race
+Date: Tue, 17 May 2022 12:34:36 +0200
+Message-Id: <20220517103436.15867-1-johan+linaro@kernel.org>
 X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220516_225312_430998_97BFBC1E 
-X-CRM114-Status: GOOD (  11.89  )
+X-CRM114-CacheID: sfid-20220517_033603_584151_D65B4157 
+X-CRM114-Status: GOOD (  14.65  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,41 +76,84 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-As part of adding the support of WCN6750 to ath11k, bus_params
-were moved to hw_params and this regressed the initialization
-of WCN6750. By the time AHB resources are setup for WCN6750,
-hw_params will not be initialized and therefore initialization
-for WCN6750 will fail. This is applicable only for WCN6750,
-no other device is impacted.
+Make sure to allocate resources needed before registering the device.
 
-Fix this by moving the initialization of hw_params before
-setting up AHB resources.
+This specifically avoids having a racing open() trigger a BUG_ON() in
+mod_timer() when ath11k_mac_op_start() is called before the
+mon_reap_timer as been set up.
 
-Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
-
-Fixes: 00402f49d26f ("ath11k: Add support for WCN6750 device")
-Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+Fixes: 840c36fa727a ("ath11k: dp: stop rx pktlog before suspend")
+Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 ---
- drivers/net/wireless/ath/ath11k/ahb.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index fa11807f48a9..d7d33d5cdfc5 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.c
-+++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -976,11 +976,11 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
- 	ab->hw_rev = hw_rev;
- 	platform_set_drvdata(pdev, ab);
+I started hitting a BUG_ON() during ath11k probe due to a timer which
+hasn't been initialised. Turns out the netdev is registered before
+having been fully set up:
+
+[  421.232410] ath11k_core_pdev_create
+[  421.233854] ath11k_dp_pdev_alloc
+[  421.233863] ath11k_dp_rx_pdev_srng_alloc
+[  421.259161] ath11k_mac_config_mon_status_default - NULL reap timer function
+[  421.259165] ath11k_pci 0006:01:00.0: failed to configure monitor status ring with default rx_filter: (-22)
+[  421.373066] ath11k_dp_rx_pdev_srng_alloc - reap timer setup
+
+Sending as an RFC as I'm not familiar with the code. It looks like
+ath11k_dp_pdev_alloc() may need to be split in an alloc and attach
+function.
+
+Johan
+
+
+ drivers/net/wireless/ath/ath11k/core.c | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index ea073be60c12..e090dfbfa4e2 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -1218,23 +1218,23 @@ static int ath11k_core_pdev_create(struct ath11k_base *ab)
+ 		return ret;
+ 	}
  
--	ret = ath11k_ahb_setup_resources(ab);
-+	ret = ath11k_core_pre_init(ab);
- 	if (ret)
- 		goto err_core_free;
+-	ret = ath11k_mac_register(ab);
++	ret = ath11k_dp_pdev_alloc(ab);
+ 	if (ret) {
+-		ath11k_err(ab, "failed register the radio with mac80211: %d\n", ret);
++		ath11k_err(ab, "failed to attach DP pdev: %d\n", ret);
+ 		goto err_pdev_debug;
+ 	}
  
--	ret = ath11k_core_pre_init(ab);
-+	ret = ath11k_ahb_setup_resources(ab);
- 	if (ret)
- 		goto err_core_free;
+-	ret = ath11k_dp_pdev_alloc(ab);
++	ret = ath11k_mac_register(ab);
+ 	if (ret) {
+-		ath11k_err(ab, "failed to attach DP pdev: %d\n", ret);
+-		goto err_mac_unregister;
++		ath11k_err(ab, "failed register the radio with mac80211: %d\n", ret);
++		goto err_dp_pdev_free;
+ 	}
+ 
+ 	ret = ath11k_thermal_register(ab);
+ 	if (ret) {
+ 		ath11k_err(ab, "could not register thermal device: %d\n",
+ 			   ret);
+-		goto err_dp_pdev_free;
++		goto err_mac_unregister;
+ 	}
+ 
+ 	ret = ath11k_spectral_init(ab);
+@@ -1247,10 +1247,10 @@ static int ath11k_core_pdev_create(struct ath11k_base *ab)
+ 
+ err_thermal_unregister:
+ 	ath11k_thermal_unregister(ab);
+-err_dp_pdev_free:
+-	ath11k_dp_pdev_free(ab);
+ err_mac_unregister:
+ 	ath11k_mac_unregister(ab);
++err_dp_pdev_free:
++	ath11k_dp_pdev_free(ab);
+ err_pdev_debug:
+ 	ath11k_debugfs_pdev_destroy(ab);
  
 -- 
 2.35.1
