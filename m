@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E0A9C433F5
-	for <ath11k@archiver.kernel.org>; Mon, 23 May 2022 14:47:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3CB5C433EF
+	for <ath11k@archiver.kernel.org>; Mon, 23 May 2022 14:48:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ggNpbh8FKik3/gGAumnowdlM1J/Q7sAdcfFUt2120QY=; b=sUdu5LSWjk6gxX
-	TOTxyiHnSRYBNk2eknmrOqwrq5dKYu4O+B0/AqVlBiKwYosW8gxnb/1YvouHk2518xhWBoQ+h1J2t
-	094/OrsiGmVFne+TA6G5Bc2/zfNzdS3PLrMYAo+bwDpr3+8ttf0xdJWw4hF5sWqY3Bvx+p85sZpBH
-	i1Lxv2sOtrwp3v2yglUt8FRven3Z7OvEeG2bQpj6tskjENz90DYO4N50WXH82awYO6rS84FhkXc78
-	UnTtrFcdcpyw0VnIgwMW3+tps0d0bMcNNe1ixUSspqRafc7DExlbYhL4onqxpExtC6PsrbKOfrMVS
-	3TnQUVhQprLqVqKaJrog==;
+	List-Owner; bh=xguLHtUkt+MI7AoID1qFgvuY+qZcw/TsSsdgo2R4s+w=; b=iOEp1q9WSucknm
+	IgcOtkbtyH8EJoPY5KGU6d6reiWNH1jdF9P6gIoiuRUbxyl6qkFbP9IVF6WnQxL88cxKZjOKU9uoK
+	xohcYHmclHxN8ct/phhIoVFl4P+ECCeC6r92bDR815sCyKsR3CNko4BXpCdUxJ9ckiN5HVW/N4XUB
+	VuvGERrRrHHeWb8xnOwAgvwQCA9fUux4yUtUT45wvhtR2DoatH9jQ0tfV2z3dvMl+kPRZSLxbYAEx
+	eHcYYTFhlLGYKkE/Vgerl0At+k+yDg2XF/fodBvG76ZSAXzflTvL1XBUHiH++N3sDQhmn6F9O0I7Y
+	lP9+4NoY5uMwFNkyHhuA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nt9LH-004mL6-Kz; Mon, 23 May 2022 14:47:31 +0000
+	id 1nt9MZ-004mWx-72; Mon, 23 May 2022 14:48:51 +0000
 Received: from dfw.source.kernel.org ([139.178.84.217])
  by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nt9LF-004mKc-In
- for ath11k@lists.infradead.org; Mon, 23 May 2022 14:47:30 +0000
+ id 1nt9MW-004mW5-Oc
+ for ath11k@lists.infradead.org; Mon, 23 May 2022 14:48:50 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id B9F0961204;
- Mon, 23 May 2022 14:47:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27412C34118;
- Mon, 23 May 2022 14:47:25 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 4C040611CE;
+ Mon, 23 May 2022 14:48:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B379EC385AA;
+ Mon, 23 May 2022 14:48:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1653317245;
- bh=kFfYyaivZqNk5FB1RoBokpKV613iugm2ZacsHlK4ltQ=;
+ s=k20201202; t=1653317327;
+ bh=JJUowl47ptnLiKQVZlPgElSH7N0NgsCjov8dxq9v10Y=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=LaeNdRvZCyRAkd5NOTIS4Xc/rBdSTRhrPpZJe3lVChIFX7UGqqSmg8H2gB6O5x0zO
- xZiT390r1n09f0UhjdewiKqjhCdrugedW0xO5ecxrO/896nkFwUSJ2Q4C79wZ/XZHM
- GUlK0ip1ZTHgh5s1mUnPFg4jcqg5eebNLFFDiOqazMQ3aAQEIE2It0sQikTOU93EGu
- GcZHDRJaq+a08ga3K10gjTORSb00TvWlvuiN2V1N5eI+9cJqeytGGJfQmsWzD0nulA
- a3HZotVtuFZV1F8G7WRJHwZ6kbayvmLhu4ph8RyRU2wXERnUVj3wQJ1/AApS1Y8cRn
- 4FdLweaILYkdQ==
+ b=fnp8uE3xRSrq1EFCEfPYIoPnop6vaKngaXYjQT0GxqMofZ80GTaY+w1NWy6s6EG5E
+ MFFdsdZtgGFbTy8/CpHirFEs0cE4CseNwRvx26I31rOaPSw6a5XMAof0+u+iLOgIWw
+ uq0CgYlfgeMukSFYf6Tew/f+31f8hdDIzuvdjFp5oMkroBGBF7aZaWCT4zuh+6Dfsn
+ qd4PDUV4O/Ntqz7THtjrEQWe3YrAnGWP0K/+K1Y0Q6eG9U0feVI2/e0wOgT517/nYH
+ Mdu0TAhnGC5n+4b/046SYxHp5IplQlJpcgBIaAWhi1NrX+Mn9pja+YrbmlSxqrrdrw
+ MqPNr/FlloZHA==
 Received: from johan by xi.lan with local (Exim 4.94.2)
  (envelope-from <johan@kernel.org>)
- id 1nt9L8-0006gy-Up; Mon, 23 May 2022 16:47:23 +0200
-Date: Mon, 23 May 2022 16:47:22 +0200
+ id 1nt9MS-0006hx-2D; Mon, 23 May 2022 16:48:44 +0200
+Date: Mon, 23 May 2022 16:48:44 +0200
 From: Johan Hovold <johan@kernel.org>
 To: Johan Hovold <johan+linaro@kernel.org>
 Cc: Kalle Valo <kvalo@kernel.org>, "David S. Miller" <davem@davemloft.net>,
@@ -53,16 +53,15 @@ Cc: Kalle Valo <kvalo@kernel.org>, "David S. Miller" <davem@davemloft.net>,
  Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
  ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
  netdev@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ath11k: fix IRQ affinity warning on shutdown
-Message-ID: <YoueemdqqRCwtk0z@hovoldconsulting.com>
-References: <20220523143258.24818-1-johan+linaro@kernel.org>
+Subject: Re: [RFC] ath11k: fix netdev open race
+Message-ID: <YouezMIwm3PYxOKY@hovoldconsulting.com>
+References: <20220517103436.15867-1-johan+linaro@kernel.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20220523143258.24818-1-johan+linaro@kernel.org>
+In-Reply-To: <20220517103436.15867-1-johan+linaro@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220523_074729_698426_9E96A321 
-X-CRM114-Status: UNSURE (   9.97  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220523_074848_876249_D7EC8F1F 
+X-CRM114-Status: GOOD (  11.29  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,19 +78,21 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Mon, May 23, 2022 at 04:32:58PM +0200, Johan Hovold wrote:
-> Make sure to clear the IRQ affinity hint also on shutdown to avoid
-> triggering a WARN_ON_ONCE() in __free_irq() when stopping MHI while
-> using a single MSI vector.
+On Tue, May 17, 2022 at 12:34:36PM +0200, Johan Hovold wrote:
+> Make sure to allocate resources needed before registering the device.
+> 
+> This specifically avoids having a racing open() trigger a BUG_ON() in
+> mod_timer() when ath11k_mac_op_start() is called before the
+> mon_reap_timer as been set up.
+> 
+> Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+> Fixes: 840c36fa727a ("ath11k: dp: stop rx pktlog before suspend")
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
 
-Forgot the tested-on tag, sorry.
+For completeness:
 
 Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
-
-> Fixes: e94b07493da3 ("ath11k: Set IRQ affinity to CPU0 in case of one MSI vector")
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-
-Let me know if I should resend.
 
 Johan
 
