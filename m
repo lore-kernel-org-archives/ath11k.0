@@ -4,72 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 424FFC433F5
-	for <ath11k@archiver.kernel.org>; Thu, 26 May 2022 15:45:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0847CC433EF
+	for <ath11k@archiver.kernel.org>; Fri, 27 May 2022 12:06:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ORJ2Q/6mMv+B9Lg0cugCa9B7mTs5uMp5RYbFFWQpaEg=; b=S3ybBtphx3rL/r
-	UHvN520/FOxnQSvAvvbHOBoiyx09T/C1Tc4wxrIwNiJ3pXqnlqyrUP9PVJpAvddS7ocUodVAUQpEL
-	i3P+1B6irLHNheBlsewtZrHwM2QvJcHjwBUyTLEEczcBZRqCGUtASkHf7ZQl4X+pAiI5bCVNdF4Lw
-	hAP6EnX+qMtfIf3OtsF7wa9cZBBUhDgfUJQ1nvw6HSLLQkPvrOBZsCTwFS27Sw8Yf+jxkoLEIA7vN
-	TjYAXngKfBwcQvaIBaVOvuXQgrEXvDY9PO7cj7hKf1KDs239UdwYpkU8hiLWC+6m/3NftCgHh2Cft
-	UEn2gfWxj/5wQtBGtITw==;
+	List-Owner; bh=5fonSvC8UiuExTnyE90UD7PEPBb7lm78QRHk0LjaW/w=; b=BpuOyk40tvUVYH
+	yZvh290WtrwfmKfln2r96Bvv1dVO77xP/HNoCHPc4gNeL1BTOVBcdP0DdVTRzvNl0VXP7efFonapJ
+	Qlh4klPSd2Z8oJH6lwrnx3qFLBueujBnD0yrHmzoLFcl3a5mpypv2tAy3PAogAEOCak01r1xjC571
+	wTc/Pmg5hdtEmTEzoJccwj84JGexJeIXHG+tqDAIUdRPRlg+ID8rKeO5yMadQ3EvhMaMcTbjxDgJ+
+	U7dgmJ4epVqnYU3HJgPeUMIAvA63Z6bTCYGMpQ5/3kKDnis9HaZdFQbAKKCfL+e5S51BrCe/zH7aj
+	PhT8TpK1KuZbFifoNHVQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nuFgA-00FLcF-Vw; Thu, 26 May 2022 15:45:39 +0000
-Received: from alexa-out.qualcomm.com ([129.46.98.28])
+	id 1nuYjw-00HZXt-6F; Fri, 27 May 2022 12:06:48 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nuFg8-00FLax-J0
-	for ath11k@lists.infradead.org; Thu, 26 May 2022 15:45:38 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1653579936; x=1685115936;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=CkiHfK8/LMfUY/TQgcX12rRTrkAq3XCsa8+R5XT6JNY=;
-  b=Anq8r+ocfPvEbaWmrD3jQicEivFrmnWEeaeH5DkmM6J40KTr4G/kGleZ
-   K3Xq+Pcg2aH5ZdRbmO1XG5akg6FNlHtY0SZzBbPVB+z+yu35BhEXxZBwu
-   QNI5N7hbESK7MTU9cKwe9FS032KqvKomCgUjdMgNJwnpwHpq2TZUzJe1D
-   E=;
-Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
-  by alexa-out.qualcomm.com with ESMTP; 26 May 2022 08:45:32 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 May 2022 08:45:31 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Thu, 26 May 2022 08:45:31 -0700
-Received: from [10.110.93.98] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Thu, 26 May
- 2022 08:45:30 -0700
-Message-ID: <25540c69-c58c-0dc5-29b3-4914a656a06f@quicinc.com>
-Date: Thu, 26 May 2022 08:45:29 -0700
+	id 1nuYjt-00HZWk-Do
+	for ath11k@lists.infradead.org; Fri, 27 May 2022 12:06:47 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ams.source.kernel.org (Postfix) with ESMTPS id 00B44B824D7;
+	Fri, 27 May 2022 12:06:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8554BC385A9;
+	Fri, 27 May 2022 12:06:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1653653199;
+	bh=fPR03DvN6aZCOlnsEZXaYA7hSzVMz0SsOW9oln+FOMg=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=F5r1R/3pIR8wIVp5nBZnJpKz9BS0ECMiDAdNrh5eEazvJH/fZeVNJu6UQ6933OaW3
+	 803TrXtUatxRXokzpOrYNZMqxmyKEL22HN2Shvjff8FXu7H1Vr0F/Q51ZJyb4qbcYd
+	 aC4yuQdR5gxOb9PxCEaCuwI4Egq6/fAj1D87GVEpLxdO+oqBHWPBaE+t/rmfszV+eB
+	 jjmCkfN3EGo+uUExNnDFrLGbLYQn/I2fbrB9GugdN5G3cMTFkNrbm9AddEikKfbGav
+	 4ByKTY6pRvYtNwj1yC1M/Mux+wQOBCWNAZ65n9YagKD/sNf29uWtbHwaIcM6bCBeIA
+	 i8y2lXJ9XnMGQ==
+From: Kalle Valo <kvalo@kernel.org>
+To: Johan Hovold <johan@kernel.org>
+Cc: Johan Hovold <johan+linaro@kernel.org>,  "David S. Miller" <davem@davemloft.net>,  Eric Dumazet <edumazet@google.com>,  Jakub Kicinski <kuba@kernel.org>,  Paolo Abeni <pabeni@redhat.com>,  ath11k@lists.infradead.org,  linux-wireless@vger.kernel.org,  netdev@vger.kernel.org,  linux-kernel@vger.kernel.org
+Subject: Re: [RFC] ath11k: fix netdev open race
+References: <20220517103436.15867-1-johan+linaro@kernel.org>
+	<YouezMIwm3PYxOKY@hovoldconsulting.com> <875ylwysoy.fsf@kernel.org>
+	<YoyIn5L8cIwxHxR0@hovoldconsulting.com>
+Date: Fri, 27 May 2022 15:06:35 +0300
+In-Reply-To: <YoyIn5L8cIwxHxR0@hovoldconsulting.com> (Johan Hovold's message
+	of "Tue, 24 May 2022 09:26:23 +0200")
+Message-ID: <87mtf3p4c4.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH] ath11k: mhi: fix potential memory leak in
- ath11k_mhi_register()
-Content-Language: en-US
-To: Jianglei Nie <niejianglei2021@163.com>, <kvalo@kernel.org>,
-	<davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-	<pabeni@redhat.com>
-CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
-	<netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20220526100227.483609-1-niejianglei2021@163.com>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <20220526100227.483609-1-niejianglei2021@163.com>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220526_084536_709176_4FDD7B87 
-X-CRM114-Status: GOOD (  22.98  )
+X-CRM114-CacheID: sfid-20220527_050645_818972_C8686A46 
+X-CRM114-Status: GOOD (  23.76  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,73 +69,86 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 5/26/2022 3:02 AM, Jianglei Nie wrote:
-> mhi_alloc_controller() allocates a memory space for mhi_ctrl. When some
-> errors occur, mhi_ctrl should be freed by mhi_free_controller(). But
-> when ath11k_mhi_read_addr_from_dt() fails, the function returns without
-> calling mhi_free_controller(), which will lead to a memory leak.
-> 
-> We can fix it by calling mhi_free_controller() when
-> ath11k_mhi_read_addr_from_dt() fails.
-> 
-> Signed-off-by: Jianglei Nie <niejianglei2021@163.com>
+Johan Hovold <johan@kernel.org> writes:
 
-Reviewed-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+> On Mon, May 23, 2022 at 10:06:37PM +0300, Kalle Valo wrote:
+>> Johan Hovold <johan@kernel.org> writes:
+>> 
+>> > On Tue, May 17, 2022 at 12:34:36PM +0200, Johan Hovold wrote:
+>> >> Make sure to allocate resources needed before registering the device.
+>> >> 
+>> >> This specifically avoids having a racing open() trigger a BUG_ON() in
+>> >> mod_timer() when ath11k_mac_op_start() is called before the
+>> >> mon_reap_timer as been set up.
+>> >> 
+>> >> Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+>> >> Fixes: 840c36fa727a ("ath11k: dp: stop rx pktlog before suspend")
+>> >> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+>> >> ---
+>> >
+>> > For completeness:
+>> >
+>> > Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
+>> 
+>> Thanks, added in the pending branch.
+>> 
+>> You submitted this as RFC but do you mind if I apply this anyway? The
+>> patch looks good and passes my tests. But I do wonder why I haven't seen
+>> the crash...
+>
+> If it looks good to you then please do apply it.
+>
+> I was just worried that there may be some subtle reason for why
+> ath11k_dp_pdev_alloc() was called after netdev registration in the first
+> place and that it might need to be split up so that for example
+> ath11k_dp_rx_pdev_mon_attach() isn't called until after registration.
 
-> ---
->   drivers/net/wireless/ath/ath11k/mhi.c | 4 +++-
->   1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
-> index fc3524e83e52..3318c7c2b32b 100644
-> --- a/drivers/net/wireless/ath/ath11k/mhi.c
-> +++ b/drivers/net/wireless/ath/ath11k/mhi.c
-> @@ -376,8 +376,10 @@ int ath11k_mhi_register(struct ath11k_pci *ab_pci)
->   
->   	if (test_bit(ATH11K_FLAG_FIXED_MEM_RGN, &ab->dev_flags)) {
->   		ret = ath11k_mhi_read_addr_from_dt(mhi_ctrl);
-> -		if (ret < 0)
-> +		if (ret < 0) {
-> +			mhi_free_controller(mhi_ctrl);
->   			return ret;
-> +		}
->   	} else {
->   		mhi_ctrl->iova_start = 0;
->   		mhi_ctrl->iova_stop = 0xFFFFFFFF;
+At least I'm not aware of anything like that? Any comments from others?
 
-This patch looks good to me. However there is an additional issue that 
-IMO should be addressed in this function with a separate patch.
+> I did not see this issue with next-20220310, but I hit it on every probe
+> with next-20220511. Perhaps some timing changed in between.
+>
+> Here's the backtrace for completeness in case someone else starts hitting
+> this and searches the archives:
+>
+> [   51.346947] kernel BUG at kernel/time/timer.c:990!
+> [   51.346958] Internal error: Oops - BUG: 0 [#1] PREEMPT SMP
+> ...
+> [   51.578225] Call trace:
+> [   51.583293]  __mod_timer+0x298/0x390
+> [   51.589518]  mod_timer+0x14/0x20
+> [   51.595368]  ath11k_mac_op_start+0x41c/0x4a0 [ath11k]
+> [   51.603165]  drv_start+0x38/0x60 [mac80211]
+> [   51.610110]  ieee80211_do_open+0x29c/0x7d0 [mac80211]
+> [   51.617945]  ieee80211_open+0x60/0xb0 [mac80211]
+> [   51.625311]  __dev_open+0x100/0x1c0
+> [   51.631420]  __dev_change_flags+0x194/0x210
+> [   51.638214]  dev_change_flags+0x24/0x70
+> [   51.644646]  do_setlink+0x228/0xdb0
+> [   51.650723]  __rtnl_newlink+0x460/0x830
+> [   51.657162]  rtnl_newlink+0x4c/0x80
+> [   51.663229]  rtnetlink_rcv_msg+0x124/0x390
+> [   51.669917]  netlink_rcv_skb+0x58/0x130
+> [   51.676314]  rtnetlink_rcv+0x18/0x30
+> [   51.682460]  netlink_unicast+0x250/0x310
+> [   51.688960]  netlink_sendmsg+0x19c/0x3e0
+> [   51.695458]  ____sys_sendmsg+0x220/0x290
+> [   51.701938]  ___sys_sendmsg+0x7c/0xc0
+> [   51.708148]  __sys_sendmsg+0x68/0xd0
+> [   51.714254]  __arm64_sys_sendmsg+0x28/0x40
+> [   51.720900]  invoke_syscall+0x48/0x120
 
-Just after mhi_ctrl is allocated the pointer is saved:
-	ab_pci->mhi_ctrl = mhi_ctrl;
+Thanks, this is good info and I added this to the commit log.
 
-When there is an error, mhi_ctrl is freed, but ab_pci->mhi_ctrl still 
-has a dangling pointer to the freed memory. This has the potential to 
-result in a subsequent use-after-free or double-free error.
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-So IMO we should do one of two things (I haven't looked at the code in 
-detail to determine which is better):
-
-1) don't set ab_pci->mhi_ctrl = mhi_ctrl until the end of the function 
-after success from mhi_register_controller(). This requires that none of 
-the functions called between the current assignment point and the 
-proposed assignment point dereference ab_pci->mhi_ctrl
-
-2) set ab_pci->mhi_ctrl = NULL in all of the places where we call 
-mhi_free_controller()
-
-2a) have a central error exit label and have all of the error conditions 
-goto that label where there is a central code:
-	mhi_free_controller(mhi_ctrl);
-	ab_pci->mhi_ctrl = NULL;
-	return ret;
-
-	
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
