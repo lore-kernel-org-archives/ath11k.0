@@ -4,60 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0847CC433EF
-	for <ath11k@archiver.kernel.org>; Fri, 27 May 2022 12:06:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47BA2C433F5
+	for <ath11k@archiver.kernel.org>; Sat, 28 May 2022 14:26:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5fonSvC8UiuExTnyE90UD7PEPBb7lm78QRHk0LjaW/w=; b=BpuOyk40tvUVYH
-	yZvh290WtrwfmKfln2r96Bvv1dVO77xP/HNoCHPc4gNeL1BTOVBcdP0DdVTRzvNl0VXP7efFonapJ
-	Qlh4klPSd2Z8oJH6lwrnx3qFLBueujBnD0yrHmzoLFcl3a5mpypv2tAy3PAogAEOCak01r1xjC571
-	wTc/Pmg5hdtEmTEzoJccwj84JGexJeIXHG+tqDAIUdRPRlg+ID8rKeO5yMadQ3EvhMaMcTbjxDgJ+
-	U7dgmJ4epVqnYU3HJgPeUMIAvA63Z6bTCYGMpQ5/3kKDnis9HaZdFQbAKKCfL+e5S51BrCe/zH7aj
-	PhT8TpK1KuZbFifoNHVQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=TfI10asGMReNCRkrA3X1Cf4Yh9ufzHCNl7IA97kgVVs=; b=K5olKKoVC2V4nS
+	2LaYEek57w7mqYaQpaJzS7U8WNy2ttEBMA99JS7CD8WfJRSM273PrkBrgDnnPhVEbJJvwOG/GdhNe
+	wf9M7nTY80TYKeaWUzynZHwqEE5M0x+ZZAPUTw7ZrlENg9DB8VVnkA6pEryzfmQ48ij5vlatyjo0Z
+	jxWTK0f7IAvYI7ACK+SrXwY0t7FRorsd4o5D8+3EJbNkyBdK01wHpAsM2T5oYprJUuYKgJSCQHnL2
+	3yaVhBMOuxVkjMsdNovY2hyCQOw+QdL3t42uLjmUaT+rx1NRs6EX3KF0uDUhmofV8unAFI+yV/He1
+	oC4BcEksiV+gotd1tpGQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nuYjw-00HZXt-6F; Fri, 27 May 2022 12:06:48 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1nuxOA-002GcX-Bt; Sat, 28 May 2022 14:25:58 +0000
+Received: from mail-ej1-x635.google.com ([2a00:1450:4864:20::635])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nuYjt-00HZWk-Do
-	for ath11k@lists.infradead.org; Fri, 27 May 2022 12:06:47 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id 00B44B824D7;
-	Fri, 27 May 2022 12:06:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8554BC385A9;
-	Fri, 27 May 2022 12:06:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1653653199;
-	bh=fPR03DvN6aZCOlnsEZXaYA7hSzVMz0SsOW9oln+FOMg=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=F5r1R/3pIR8wIVp5nBZnJpKz9BS0ECMiDAdNrh5eEazvJH/fZeVNJu6UQ6933OaW3
-	 803TrXtUatxRXokzpOrYNZMqxmyKEL22HN2Shvjff8FXu7H1Vr0F/Q51ZJyb4qbcYd
-	 aC4yuQdR5gxOb9PxCEaCuwI4Egq6/fAj1D87GVEpLxdO+oqBHWPBaE+t/rmfszV+eB
-	 jjmCkfN3EGo+uUExNnDFrLGbLYQn/I2fbrB9GugdN5G3cMTFkNrbm9AddEikKfbGav
-	 4ByKTY6pRvYtNwj1yC1M/Mux+wQOBCWNAZ65n9YagKD/sNf29uWtbHwaIcM6bCBeIA
-	 i8y2lXJ9XnMGQ==
-From: Kalle Valo <kvalo@kernel.org>
-To: Johan Hovold <johan@kernel.org>
-Cc: Johan Hovold <johan+linaro@kernel.org>,  "David S. Miller" <davem@davemloft.net>,  Eric Dumazet <edumazet@google.com>,  Jakub Kicinski <kuba@kernel.org>,  Paolo Abeni <pabeni@redhat.com>,  ath11k@lists.infradead.org,  linux-wireless@vger.kernel.org,  netdev@vger.kernel.org,  linux-kernel@vger.kernel.org
-Subject: Re: [RFC] ath11k: fix netdev open race
-References: <20220517103436.15867-1-johan+linaro@kernel.org>
-	<YouezMIwm3PYxOKY@hovoldconsulting.com> <875ylwysoy.fsf@kernel.org>
-	<YoyIn5L8cIwxHxR0@hovoldconsulting.com>
-Date: Fri, 27 May 2022 15:06:35 +0300
-In-Reply-To: <YoyIn5L8cIwxHxR0@hovoldconsulting.com> (Johan Hovold's message
-	of "Tue, 24 May 2022 09:26:23 +0200")
-Message-ID: <87mtf3p4c4.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+	id 1nuxO7-002GbD-AX
+	for ath11k@lists.infradead.org; Sat, 28 May 2022 14:25:56 +0000
+Received: by mail-ej1-x635.google.com with SMTP id rs12so13372255ejb.13
+        for <ath11k@lists.infradead.org>; Sat, 28 May 2022 07:25:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rhuLu/zc6OSTKdNFD0CtRWDuw0q1u1ps2N0Jk8WZLn8=;
+        b=i5OtqQLUDHdTR+E/1nfw5rm0SWku8A2ArnSqQ5MjjVfEgdflXStu8Y5IxDokOjW33D
+         QlrRLXuCgVl+2+6o3hbA6kEbWEuv2Qo+fAecaRwxgojMMJMLtgnm9o8pz4oNb6g3HKVt
+         Uqt5UUwwT0IHLX0n6tNZZs+XyxWgwogTZfw1LwWFuVREg19Q/+OwuVRynsEl0BG2AKHS
+         hmm1G8GupHgh3Pzu82gmDKH8xaetu1Vh/RGFPyu0F04baR9Zvq75I3MRDKj61TMPHVqE
+         weffu4Glu1ZZ7hStiFx7/Ci6v9irO4LMJbUUyKIL/JdfB98VZ2tkz6uO6pzOjfBxtKZV
+         i2oQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rhuLu/zc6OSTKdNFD0CtRWDuw0q1u1ps2N0Jk8WZLn8=;
+        b=4aXXnjKJPvjm2wchHZB2UFibzfJskgMCXDKo/JxWQYL/PXgrt7xIbAzbWwduvR2WdX
+         bI0FMuaXQhww+mZT+nNyYqVsIQFxeUbajc2mT/xNJlmmA7HkoLug6i1EDbS701pBdBmq
+         6n5sotB67Bq4WnuUGCTa0Oytxv8ZloUtGGfg8ZC3fxNY0cvOj/Zw5nZ/b3IWN4Vb/i09
+         TEMS2gK09PGjbbBYWjlYh18pqR07brdXI/X9vTxPsyA7cTMxrAaMibhxpkOL1vpMQaKd
+         Qww5tA/hpaFx8ZaNhbcnWLhoM37wiKFNJTkJpKuomzw6BofxB4U7OZOxj8z0vr+x624K
+         TQ6A==
+X-Gm-Message-State: AOAM531n561LTFTMeXiWxLPifhntJEKlYVGYZnPsJKbEC1+fPfIWFDDi
+	PNGgm6HiRe+OH2JNZObjXGs0PmtHo+M=
+X-Google-Smtp-Source: ABdhPJyRFIGi2kNZzGDKQk8oaZCc1Y0dRXWTC/qPVxQZeILkTHiFhlp0g4V8NR7jRAlh3uX77gXLSw==
+X-Received: by 2002:a17:907:162a:b0:6fe:c691:47f5 with SMTP id hb42-20020a170907162a00b006fec69147f5mr30975173ejc.289.1653747952236;
+        Sat, 28 May 2022 07:25:52 -0700 (PDT)
+Received: from localhost.localdomain (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
+        by smtp.googlemail.com with ESMTPSA id m3-20020a50d7c3000000b0042bc5e8f7fdsm3601915edj.16.2022.05.28.07.25.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 28 May 2022 07:25:51 -0700 (PDT)
+From: Christian 'Ansuel' Marangi <ansuelsmth@gmail.com>
+To: ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org,
+	Christian 'Ansuel' Marangi <ansuelsmth@gmail.com>
+Subject: [PATCH 1/2] ath11k: fix missing srng_access_end in CE
+Date: Sat, 28 May 2022 16:25:15 +0200
+Message-Id: <20220528142516.20819-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220527_050645_818972_C8686A46 
-X-CRM114-Status: GOOD (  23.76  )
+X-CRM114-CacheID: sfid-20220528_072555_405621_B828D045 
+X-CRM114-Status: UNSURE (   8.90  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,81 +87,34 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Johan Hovold <johan@kernel.org> writes:
+When a CE completed send next operation is done, the srng access end is
+never called. Correctly end the srng access to make sure we have the
+correct values in the srng struct.
 
-> On Mon, May 23, 2022 at 10:06:37PM +0300, Kalle Valo wrote:
->> Johan Hovold <johan@kernel.org> writes:
->> 
->> > On Tue, May 17, 2022 at 12:34:36PM +0200, Johan Hovold wrote:
->> >> Make sure to allocate resources needed before registering the device.
->> >> 
->> >> This specifically avoids having a racing open() trigger a BUG_ON() in
->> >> mod_timer() when ath11k_mac_op_start() is called before the
->> >> mon_reap_timer as been set up.
->> >> 
->> >> Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
->> >> Fixes: 840c36fa727a ("ath11k: dp: stop rx pktlog before suspend")
->> >> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
->> >> ---
->> >
->> > For completeness:
->> >
->> > Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
->> 
->> Thanks, added in the pending branch.
->> 
->> You submitted this as RFC but do you mind if I apply this anyway? The
->> patch looks good and passes my tests. But I do wonder why I haven't seen
->> the crash...
->
-> If it looks good to you then please do apply it.
->
-> I was just worried that there may be some subtle reason for why
-> ath11k_dp_pdev_alloc() was called after netdev registration in the first
-> place and that it might need to be split up so that for example
-> ath11k_dp_rx_pdev_mon_attach() isn't called until after registration.
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1-01208-QCAHKSWPL_SILICONZ-1
 
-At least I'm not aware of anything like that? Any comments from others?
+Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+Signed-off-by: Christian 'Ansuel' Marangi <ansuelsmth@gmail.com>
+---
+ drivers/net/wireless/ath/ath11k/ce.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-> I did not see this issue with next-20220310, but I hit it on every probe
-> with next-20220511. Perhaps some timing changed in between.
->
-> Here's the backtrace for completeness in case someone else starts hitting
-> this and searches the archives:
->
-> [   51.346947] kernel BUG at kernel/time/timer.c:990!
-> [   51.346958] Internal error: Oops - BUG: 0 [#1] PREEMPT SMP
-> ...
-> [   51.578225] Call trace:
-> [   51.583293]  __mod_timer+0x298/0x390
-> [   51.589518]  mod_timer+0x14/0x20
-> [   51.595368]  ath11k_mac_op_start+0x41c/0x4a0 [ath11k]
-> [   51.603165]  drv_start+0x38/0x60 [mac80211]
-> [   51.610110]  ieee80211_do_open+0x29c/0x7d0 [mac80211]
-> [   51.617945]  ieee80211_open+0x60/0xb0 [mac80211]
-> [   51.625311]  __dev_open+0x100/0x1c0
-> [   51.631420]  __dev_change_flags+0x194/0x210
-> [   51.638214]  dev_change_flags+0x24/0x70
-> [   51.644646]  do_setlink+0x228/0xdb0
-> [   51.650723]  __rtnl_newlink+0x460/0x830
-> [   51.657162]  rtnl_newlink+0x4c/0x80
-> [   51.663229]  rtnetlink_rcv_msg+0x124/0x390
-> [   51.669917]  netlink_rcv_skb+0x58/0x130
-> [   51.676314]  rtnetlink_rcv+0x18/0x30
-> [   51.682460]  netlink_unicast+0x250/0x310
-> [   51.688960]  netlink_sendmsg+0x19c/0x3e0
-> [   51.695458]  ____sys_sendmsg+0x220/0x290
-> [   51.701938]  ___sys_sendmsg+0x7c/0xc0
-> [   51.708148]  __sys_sendmsg+0x68/0xd0
-> [   51.714254]  __arm64_sys_sendmsg+0x28/0x40
-> [   51.720900]  invoke_syscall+0x48/0x120
-
-Thanks, this is good info and I added this to the commit log.
-
+diff --git a/drivers/net/wireless/ath/ath11k/ce.c b/drivers/net/wireless/ath/ath11k/ce.c
+index c14c51f38709..665205d2322e 100644
+--- a/drivers/net/wireless/ath/ath11k/ce.c
++++ b/drivers/net/wireless/ath/ath11k/ce.c
+@@ -490,6 +490,8 @@ static struct sk_buff *ath11k_ce_completed_send_next(struct ath11k_ce_pipe *pipe
+ 	pipe->src_ring->sw_index = sw_index;
+ 
+ err_unlock:
++	ath11k_hal_srng_access_end(ab, srng);
++
+ 	spin_unlock_bh(&srng->lock);
+ 
+ 	spin_unlock_bh(&ab->ce.ce_lock);
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+2.36.1
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
