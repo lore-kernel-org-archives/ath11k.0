@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7909C433F5
-	for <ath11k@archiver.kernel.org>; Mon, 30 May 2022 13:28:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C628C433F5
+	for <ath11k@archiver.kernel.org>; Mon, 30 May 2022 13:37:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8PtiT43n343jhkpbAdf6Clc8Ejh/p6PVF1D0I6D3r2w=; b=YE6DI/1GFNHPp0
-	dOvfIgCF+M3vL+7R3clIFlot9OTwJxcAzL/fO0liO2bUwL4qoJn9veQmXHNh3a1lG2dzvjh3HiZ+b
-	6h92qPmXuaF2cUjyIO9MezCa3G0Wv9WIyuvaxNhtRtDccJX7grzWxfu9S2msav18ED7Izs10hQisf
-	WzNcKdosj2Pt7JoIPHkMcz+UyQE+utv5RjMDh4JuxsXJA8Y/oRcYzKBqfH38PdDlEUWy5zOYA4vfb
-	f7ku9qEfguU6wqpZnd1R0uEqDrFrD3gqQDYJL+gKLMBiNnttG8dQJHhRO53PkRUcIN7yB8z13UEKY
-	2LOLPPiJ3df5I2ACqKWA==;
+	List-Owner; bh=Wqeep3j0jwfw+SdK25PtNrWkZCwqGHzU+jS3VIoSDkE=; b=hSdA0inGiMj5Rb
+	rwdYaW8433GzPbJiNCknSZyGcI/XIkAlX69ExxkXjANE2r6tGebsKxub6s2djvO5B55pvg1YD8Wff
+	lij03C6arR4U4E37G/nJX4/UBE4l+BJmEA+xnvkeWd4z6Gi98BlWxhhuulvLMjb7vTd2zVS9Duqqw
+	Q+J+f2r/RvI1pVgr09lrfsegdJrgMK3+Y9I3KAlrOD0odeTICJs2F3R8dQ2k0JAqojVsQH32BYUVH
+	GZ6Ca841z371QJ/H3GozaD/kuDI1DvYfC09AJ5jY0W6qhW7C66V5CCjG7faXjhyCZ9omFr91O9ILK
+	Qtig81ikF5ye4Ppt47PA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nvfRk-006hWH-B7; Mon, 30 May 2022 13:28:36 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1nvfaj-006mjB-E2; Mon, 30 May 2022 13:37:53 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nvfQt-006h0x-4J
-	for ath11k@lists.infradead.org; Mon, 30 May 2022 13:27:45 +0000
+	id 1nvfUo-006jPE-4i
+	for ath11k@lists.infradead.org; Mon, 30 May 2022 13:31:48 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id C3601B80DA8;
-	Mon, 30 May 2022 13:27:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 499C2C36AE9;
-	Mon, 30 May 2022 13:27:39 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id BAD4960F17;
+	Mon, 30 May 2022 13:31:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B4BDC36AF2;
+	Mon, 30 May 2022 13:31:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1653917260;
-	bh=MQrjqXErBDcH5v3vhgMjiO1PsCtlzbFiX1PZbys4/vo=;
+	s=k20201202; t=1653917505;
+	bh=bGvWXSsVYE8QDR2oEurh5TCb6bubWjqxrbK4wgMkhpQ=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=pY6i3qKzFO7g45zu2rWn1VBukt6piBW6Rr5tOhyZZWde4B7hUlPwo0OLlTo2D5x+P
-	 zcqcDaGkhp9ndA1u8Aiuhz2P5IXgyqLks8cR3WCBTetgBBv8m5yBZvZ+2bUWtEIpY/
-	 4vYFd4EF1/NO68WaPDZsZaZZ1iLqSDwa3u05yTOfNRVd5Vl/+WAQqiswjlYgTF+86R
-	 bWvZRvdxcS9r5BFyLTNnqZ7+R2CQdw6kGiWuYdNZQMZhDpstH/mGCPkoFU7E5T5tSf
-	 o0u5kwA7PsqsjSN/8+UnNRPfcdf5gBbxq5OiElV5QaZktYJd2BW6FnEAOdzsj1eJqc
-	 2EaSpNAdYKz2A==
+	b=cvD/j7JhCYpHHj7BSQk0Ic2MVpOYyjyqvysbyxq1xut7Qz6wO2BSVQbPCLsMKOUQm
+	 vr49ywiXiBypELPV1yfCfUnvGi2XB4UFlV+pKof0uWSr6jGaHrWw05XmMh2O6BmZu2
+	 bKZoUccoS0YYH3NbzpXx9KK6IAsC+FDI4EFdkWL/ggkKlbr2aB60hjAjQiI9KttMT8
+	 lxkCvgNIlAg43Dzn88i3TlxnXLKjAFDcKGUMlfmP1J07M4Z/UQxBXrquWYP2VGfPS2
+	 HualXeMfGZhZcJGmL3YSeR33e3G2kx1/SY4r2RTrj7cWcsalGbITQ9MLGuR5DP8xjn
+	 gjn5e+Mz238jw==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
@@ -56,18 +56,18 @@ Cc: Wen Gong <quic_wgong@quicinc.com>,
 	ath11k@lists.infradead.org,
 	linux-wireless@vger.kernel.org,
 	netdev@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.18 073/159] ath11k: fix warning of not found station for bssid in message
-Date: Mon, 30 May 2022 09:22:58 -0400
-Message-Id: <20220530132425.1929512-73-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.17 003/135] ath11k: fix the warning of dev_wake in mhi_pm_disable_transition()
+Date: Mon, 30 May 2022 09:29:21 -0400
+Message-Id: <20220530133133.1931716-3-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220530132425.1929512-1-sashal@kernel.org>
-References: <20220530132425.1929512-1-sashal@kernel.org>
+In-Reply-To: <20220530133133.1931716-1-sashal@kernel.org>
+References: <20220530133133.1931716-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220530_062743_542952_D43F9BB0 
-X-CRM114-Status: GOOD (  14.31  )
+X-CRM114-CacheID: sfid-20220530_063146_278153_5990788D 
+X-CRM114-Status: GOOD (  16.27  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,96 +86,129 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 From: Wen Gong <quic_wgong@quicinc.com>
 
-[ Upstream commit 7330e1ec9748948177830c6e1a13379835d577f9 ]
+[ Upstream commit 0d7a8a6204ea9271f1d0a8c66a9fd2f54d2e3cbc ]
 
-When test connect/disconnect to an AP frequently with WCN6855, sometimes
-it show below log.
+When test device recovery with below command, it has warning in message
+as below.
+echo assert > /sys/kernel/debug/ath11k/wcn6855\ hw2.0/simulate_fw_crash
+echo assert > /sys/kernel/debug/ath11k/qca6390\ hw2.0/simulate_fw_crash
 
-[  277.040121] wls1: deauthenticating from 8c:21:0a:b3:5a:64 by local choice (Reason: 3=DEAUTH_LEAVING)
-[  277.050906] ath11k_pci 0000:05:00.0: wmi stats vdev id 0 mac 00:03:7f:29:61:11
-[  277.050944] ath11k_pci 0000:05:00.0: wmi stats bssid 8c:21:0a:b3:5a:64 vif         pK-error
-[  277.050954] ath11k_pci 0000:05:00.0: not found station for bssid 8c:21:0a:b3:5a:64
-[  277.050961] ath11k_pci 0000:05:00.0: failed to parse rssi chain -71
-[  277.050967] ath11k_pci 0000:05:00.0: failed to pull fw stats: -71
-[  277.050976] ath11k_pci 0000:05:00.0: wmi stats vdev id 0 mac 00:03:7f:29:61:11
-[  277.050983] ath11k_pci 0000:05:00.0: wmi stats bssid 8c:21:0a:b3:5a:64 vif         pK-error
-[  277.050989] ath11k_pci 0000:05:00.0: not found station for bssid 8c:21:0a:b3:5a:64
-[  277.050995] ath11k_pci 0000:05:00.0: failed to parse rssi chain -71
-[  277.051000] ath11k_pci 0000:05:00.0: failed to pull fw stats: -71
-[  278.064050] ath11k_pci 0000:05:00.0: failed to request fw stats: -110
+warning message:
+[ 1965.642121] ath11k_pci 0000:06:00.0: simulating firmware assert crash
+[ 1968.471364] ieee80211 phy0: Hardware restart was requested
+[ 1968.511305] ------------[ cut here ]------------
+[ 1968.511368] WARNING: CPU: 3 PID: 1546 at drivers/bus/mhi/core/pm.c:505 mhi_pm_disable_transition+0xb37/0xda0 [mhi]
+[ 1968.511443] Modules linked in: ath11k_pci ath11k mac80211 libarc4 cfg80211 qmi_helpers qrtr_mhi mhi qrtr nvme nvme_core
+[ 1968.511563] CPU: 3 PID: 1546 Comm: kworker/u17:0 Kdump: loaded Tainted: G        W         5.17.0-rc3-wt-ath+ #579
+[ 1968.511629] Hardware name: Intel(R) Client Systems NUC8i7HVK/NUC8i7HVB, BIOS HNKBLi70.86A.0067.2021.0528.1339 05/28/2021
+[ 1968.511704] Workqueue: mhi_hiprio_wq mhi_pm_st_worker [mhi]
+[ 1968.511787] RIP: 0010:mhi_pm_disable_transition+0xb37/0xda0 [mhi]
+[ 1968.511870] Code: a9 fe ff ff 4c 89 ff 44 89 04 24 e8 03 46 f6 e5 44 8b 04 24 41 83 f8 01 0f 84 21 fe ff ff e9 4c fd ff ff 0f 0b e9 af f8 ff ff <0f> 0b e9 5c f8 ff ff 48 89 df e8 da 9e ee e3 e9 12 fd ff ff 4c 89
+[ 1968.511923] RSP: 0018:ffffc900024efbf0 EFLAGS: 00010286
+[ 1968.511969] RAX: 00000000ffffffff RBX: ffff88811d241250 RCX: ffffffffc0176922
+[ 1968.512014] RDX: 0000000000000000 RSI: 0000000000000004 RDI: ffff888118a90a24
+[ 1968.512059] RBP: ffff888118a90800 R08: 0000000000000000 R09: ffff888118a90a27
+[ 1968.512102] R10: ffffed1023152144 R11: 0000000000000001 R12: ffff888118a908ac
+[ 1968.512229] R13: ffff888118a90928 R14: dffffc0000000000 R15: ffff888118a90a24
+[ 1968.512310] FS:  0000000000000000(0000) GS:ffff888234200000(0000) knlGS:0000000000000000
+[ 1968.512405] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[ 1968.512493] CR2: 00007f5538f443a8 CR3: 000000016dc28001 CR4: 00000000003706e0
+[ 1968.512587] Call Trace:
+[ 1968.512672]  <TASK>
+[ 1968.512751]  ? _raw_spin_unlock_irq+0x1f/0x40
+[ 1968.512859]  mhi_pm_st_worker+0x3ac/0x790 [mhi]
+[ 1968.512959]  ? mhi_pm_mission_mode_transition.isra.0+0x7d0/0x7d0 [mhi]
+[ 1968.513063]  process_one_work+0x86a/0x1400
+[ 1968.513184]  ? pwq_dec_nr_in_flight+0x230/0x230
+[ 1968.513312]  ? move_linked_works+0x125/0x290
+[ 1968.513416]  worker_thread+0x6db/0xf60
+[ 1968.513536]  ? process_one_work+0x1400/0x1400
+[ 1968.513627]  kthread+0x241/0x2d0
+[ 1968.513733]  ? kthread_complete_and_exit+0x20/0x20
+[ 1968.513821]  ret_from_fork+0x22/0x30
+[ 1968.513924]  </TASK>
 
-Reason is:
-When running disconnect operation, sta_info removed from local->sta_hash
-by __sta_info_destroy_part1() from __sta_info_flush(), after this,
-ieee80211_find_sta_by_ifaddr() which called by
-ath11k_wmi_tlv_fw_stats_data_parse() and ath11k_wmi_tlv_rssi_chain_parse()
-cannot find this station, then failed log printed.
+Reason is mhi_deassert_dev_wake() from mhi_device_put() is called
+but mhi_assert_dev_wake() from __mhi_device_get_sync() is not called
+in progress of recovery. Commit 8e0559921f9a ("bus: mhi: core:
+Skip device wake in error or shutdown state") add check for the
+pm_state of mhi in __mhi_device_get_sync(), and the pm_state is not
+the normal state untill recovery is completed, so it leads the
+dev_wake is not 0 and above warning print in mhi_pm_disable_transition()
+while checking mhi_cntrl->dev_wake.
 
-steps are like this:
-1. when disconnect from AP, __sta_info_destroy() called __sta_info_destroy_part1()
-and __sta_info_destroy_part2().
+Add check in ath11k_pci_write32()/ath11k_pci_read32() to skip call
+mhi_device_put() if mhi_device_get_sync() does not really do wake,
+then the warning gone.
 
-2. in __sta_info_destroy_part1(),  it has "sta_info_hash_del(local, sta)"
-and "list_del_rcu(&sta->list)", it will remove the ieee80211_sta from the
-list of ieee80211_hw.
-
-3. in __sta_info_destroy_part2(), it called drv_sta_state()->ath11k_mac_op_sta_state(),
-then peer->sta is clear at this moment.
-
-4. in __sta_info_destroy_part2(), it then called sta_set_sinfo()->drv_sta_statistics()
-->ath11k_mac_op_sta_statistics(), then WMI_REQUEST_STATS_CMDID sent to firmware.
-
-5. WMI_UPDATE_STATS_EVENTID reported from firmware, at this moment, the
-ieee80211_sta can not be found again because it has remove from list in
-step2 and also peer->sta is clear in step3.
-
-6. in __sta_info_destroy_part2(), it then called cleanup_single_sta()->
-sta_info_free()->kfree(sta), at this moment, the ieee80211_sta is freed
-in memory, then the failed log will not happen because function
-ath11k_mac_op_sta_state() will not be called.
-
-Actually this print log is not a real error, it is only to skip parse the
-info, so change to skip print by default debug setting.
-
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03003-QCAHSPSWPL_V1_V2_SILICONZ_LITE-2
 
 Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
 Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
-Link: https://lore.kernel.org/r/20220428022426.2927-1-quic_wgong@quicinc.com
+Link: https://lore.kernel.org/r/20220228064606.8981-5-quic_wgong@quicinc.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/net/wireless/ath/ath11k/wmi.c | 11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
+ drivers/net/wireless/ath/ath11k/pci.c | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 2751fe8814df..0900f75eef20 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -5789,9 +5789,9 @@ static int ath11k_wmi_tlv_rssi_chain_parse(struct ath11k_base *ab,
- 					   arvif->bssid,
- 					   NULL);
- 	if (!sta) {
--		ath11k_warn(ab, "not found station for bssid %pM\n",
--			    arvif->bssid);
--		ret = -EPROTO;
-+		ath11k_dbg(ab, ATH11K_DBG_WMI,
-+			   "not found station of bssid %pM for rssi chain\n",
-+			   arvif->bssid);
- 		goto exit;
- 	}
+diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
+index 903758751c99..8a3ff12057e8 100644
+--- a/drivers/net/wireless/ath/ath11k/pci.c
++++ b/drivers/net/wireless/ath/ath11k/pci.c
+@@ -191,6 +191,7 @@ void ath11k_pci_write32(struct ath11k_base *ab, u32 offset, u32 value)
+ {
+ 	struct ath11k_pci *ab_pci = ath11k_pci_priv(ab);
+ 	u32 window_start;
++	int ret = 0;
  
-@@ -5889,8 +5889,9 @@ static int ath11k_wmi_tlv_fw_stats_data_parse(struct ath11k_base *ab,
- 					   "wmi stats vdev id %d snr %d\n",
- 					   src->vdev_id, src->beacon_snr);
- 			} else {
--				ath11k_warn(ab, "not found station for bssid %pM\n",
--					    arvif->bssid);
-+				ath11k_dbg(ab, ATH11K_DBG_WMI,
-+					   "not found station of bssid %pM for vdev stat\n",
-+					   arvif->bssid);
- 			}
- 		}
+ 	/* for offset beyond BAR + 4K - 32, may
+ 	 * need to wakeup MHI to access.
+@@ -198,7 +199,7 @@ void ath11k_pci_write32(struct ath11k_base *ab, u32 offset, u32 value)
+ 	if (ab->hw_params.wakeup_mhi &&
+ 	    test_bit(ATH11K_PCI_FLAG_INIT_DONE, &ab_pci->flags) &&
+ 	    offset >= ACCESS_ALWAYS_OFF)
+-		mhi_device_get_sync(ab_pci->mhi_ctrl->mhi_dev);
++		ret = mhi_device_get_sync(ab_pci->mhi_ctrl->mhi_dev);
  
+ 	if (offset < WINDOW_START) {
+ 		iowrite32(value, ab->mem  + offset);
+@@ -222,7 +223,8 @@ void ath11k_pci_write32(struct ath11k_base *ab, u32 offset, u32 value)
+ 
+ 	if (ab->hw_params.wakeup_mhi &&
+ 	    test_bit(ATH11K_PCI_FLAG_INIT_DONE, &ab_pci->flags) &&
+-	    offset >= ACCESS_ALWAYS_OFF)
++	    offset >= ACCESS_ALWAYS_OFF &&
++	    !ret)
+ 		mhi_device_put(ab_pci->mhi_ctrl->mhi_dev);
+ }
+ 
+@@ -230,6 +232,7 @@ u32 ath11k_pci_read32(struct ath11k_base *ab, u32 offset)
+ {
+ 	struct ath11k_pci *ab_pci = ath11k_pci_priv(ab);
+ 	u32 val, window_start;
++	int ret = 0;
+ 
+ 	/* for offset beyond BAR + 4K - 32, may
+ 	 * need to wakeup MHI to access.
+@@ -237,7 +240,7 @@ u32 ath11k_pci_read32(struct ath11k_base *ab, u32 offset)
+ 	if (ab->hw_params.wakeup_mhi &&
+ 	    test_bit(ATH11K_PCI_FLAG_INIT_DONE, &ab_pci->flags) &&
+ 	    offset >= ACCESS_ALWAYS_OFF)
+-		mhi_device_get_sync(ab_pci->mhi_ctrl->mhi_dev);
++		ret = mhi_device_get_sync(ab_pci->mhi_ctrl->mhi_dev);
+ 
+ 	if (offset < WINDOW_START) {
+ 		val = ioread32(ab->mem + offset);
+@@ -261,7 +264,8 @@ u32 ath11k_pci_read32(struct ath11k_base *ab, u32 offset)
+ 
+ 	if (ab->hw_params.wakeup_mhi &&
+ 	    test_bit(ATH11K_PCI_FLAG_INIT_DONE, &ab_pci->flags) &&
+-	    offset >= ACCESS_ALWAYS_OFF)
++	    offset >= ACCESS_ALWAYS_OFF &&
++	    !ret)
+ 		mhi_device_put(ab_pci->mhi_ctrl->mhi_dev);
+ 
+ 	return val;
 -- 
 2.35.1
 
