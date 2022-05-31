@@ -4,56 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03514C433F5
-	for <ath11k@archiver.kernel.org>; Mon, 30 May 2022 16:22:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60AEFC433F5
+	for <ath11k@archiver.kernel.org>; Tue, 31 May 2022 08:47:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	d=lists.infradead.org; s=bombadil.20210309; h=Message-ID:Sender:
 	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Mime-Version:References:
-	In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Ap4mJ+J/ZvskHeGehkjsoIYJmKkx7BL7x0UL2L8BrZA=; b=dpVlUJW83yFcXY
-	3AS6/hPmHJf5tsPzth0G9kQiMo35cu+uEjFMSpgDg8oB4/kOAB5tvn2HIpi+1bNY4OJEjeVo0uo1U
-	n4UgUjzf5ISvoaV5mgG7UaTAAIqUaIATNqLdRTilW44lsEaEpgRZiLeZdETXjqL/L0z0yIq7b0RSw
-	3QgEarFGK6FDWefYVAxl5ytr2hWbEadjpvCgi/2vWGcATp9YI683UQo5RuKjEN6Gl3llWJtI2gjYu
-	/AETlxrNAx55XTXM1y0MN0a32e97rUlgz24sYPerqOopVSTXon6UXr7KAEAqbMAldubOCre7iQX19
-	1ynKlJM8ToWdYEf8u/9A==;
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Date:From:To:Subject:
+	Content-Description:Mime-Version:Cc:Content-ID:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=4ydPjbVn5EQDNh9FDM0kTA3Yy83gnl8TK0uKtvt07KU=; b=Dh1wURYNwBMSF0
+	267SbOMUiH32t6jVBm77Zr/YNl6T+NJoTaAvbi07ofFshkUxsOwMLebB3Nv7vq5eSQ9C3SLiYOw+q
+	KfUH+PjzbtLvoBq6f+nvCoZjVx/ea01mdScw7RFalCofCo6W9FdQCWv3anAWXwXMsTuQqkAa8K0fK
+	LZZqXJcRhOnP3/uSTiMg3Fmc4quZSCrmxAKAOrflP+vx3qtfQPmds13662+XJF4GzckfPp1kw64BB
+	rL3wGXO6CBKjewbl6ByF2YF68MIBlRHG1fmccvUaM3EA+rLYX3VqkECeIx9ZiIHL3n7GLsAJzCVMT
+	f8qWJWhpuIIKWo+1X7qg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nviAK-007c38-6F; Mon, 30 May 2022 16:22:48 +0000
-Received: from ns.iliad.fr ([212.27.33.1])
-	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nviAH-007c2C-5V
-	for ath11k@lists.infradead.org; Mon, 30 May 2022 16:22:47 +0000
-Received: from ns.iliad.fr (localhost [127.0.0.1])
-	by ns.iliad.fr (Postfix) with ESMTP id 14274202C7;
-	Mon, 30 May 2022 18:22:40 +0200 (CEST)
-Received: from sakura (freebox.vlq16.iliad.fr [213.36.7.13])
-	by ns.iliad.fr (Postfix) with ESMTP id 0F16120260;
-	Mon, 30 May 2022 18:22:40 +0200 (CEST)
-Message-ID: <7f93d9d5fcbce1ae8d2e87069c27bf86a610303b.camel@freebox.fr>
-Subject: Re: [PATCH v7 4/9] ath11k: Add register access logic for WCN6750
-From: Maxime Bizon <mbizon@freebox.fr>
-To: Kalle Valo <kvalo@kernel.org>
-Cc: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>, 
-	ath11k@lists.infradead.org, linux-wireless@vger.kernel.org, 
-	devicetree@vger.kernel.org, robh@kernel.org, mka@chromium.org
-Date: Mon, 30 May 2022 18:22:39 +0200
-In-Reply-To: <871qwbouzq.fsf@kernel.org>
-References: <20220429170502.20080-1-quic_mpubbise@quicinc.com>
-	 <20220429170502.20080-5-quic_mpubbise@quicinc.com>
-	 <bd6d97a4cc6665d0ee632444f75e3480160387ec.camel@freebox.fr>
-	 <c57e8791-b6ce-0752-52ca-a1cb938187d7@quicinc.com>
-	 <c1c3472427080716c69ad99ebe5d1954db44f03f.camel@freebox.fr>
-	 <871qwbouzq.fsf@kernel.org>
-Organization: Freebox
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+	id 1nvxX5-009t80-Hx; Tue, 31 May 2022 08:47:19 +0000
+Received: from [45.66.248.76] (helo=host.hosttoname.com)
+	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
+	id 1nvxX2-009t5s-Pj
+	for ath11k@lists.infradead.org; Tue, 31 May 2022 08:47:17 +0000
+Received: from [193.70.26.62] (ip62.ip-193-70-26.eu [193.70.26.62])
+	by host.hosttoname.com (Postfix) with ESMTPA id 7050523CE2
+	for <ath11k@lists.infradead.org>; Tue, 31 May 2022 08:31:27 +0000 (UTC)
 Mime-Version: 1.0
-X-Virus-Scanned: ClamAV using ClamSMTP ; ns.iliad.fr ; Mon May 30 18:22:40 2022 +0200 (CEST)
+Content-Description: Mail message body
+Subject: Your kind attention
+To: ath11k@lists.infradead.org
+From: mathej200@proton.me
+Date: Tue, 31 May 2022 01:31:22 -0700
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220530_092245_397783_15614327 
-X-CRM114-Status: UNSURE (   5.40  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220531_014716_914545_18D0BC10 
+X-CRM114-Status: SPAM  (  -5.79  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -65,27 +48,23 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Reply-To: mbizon@freebox.fr
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: mathew@mjsconsortium.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
+Message-ID: <E1nvxX5-009t80-Hx@bombadil.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-
-On Mon, 2022-05-30 at 19:17 +0300, Kalle Valo wrote:
-
-> Looks good to me. Can you submit that as a proper patch?
-
-I'd prefer that patch to come from someone with actual knowledge of the
-hardware, I basically did a blind revert
-
--- 
-Maxime
-
-
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+SGVsbG8gdGhlcmUsCgpNeSBuYW1lcyBhcmUgTWF0aGV3IEpvaG5zb24sIEkgYW0gcmVwcmVzZW50
+aW5nIHRoZSBpbnRlcmVzdCBvZiBhIGNlcnRhaW4gcG9saXRpY2FsbHkgZXhwb3NlZCBwZXJzb24s
+IHdlIGFyZSBsb29raW5nIGZvciBwYXJ0bmVycyBvdmVyc2VhcyB0aGF0IGNhbiBtYW5hZ2UgaGln
+aC12YWx1ZSBmdW5kcyBmb3IgYSBwZXJpb2Qgb2YgNS0xMCB5ZWFycywgdGhlIGZ1bmRzIGhhdmUg
+YmVlbiBhY2NydWVkIGJ5IHRoZSBpbmZsdWVuY2Ugb2YgdGhlIHBvd2VyIG9mIG15IGJlbmVmYWN0
+b3LigJlzIG9mZmljZS4KClBsZWFzZSBkbyBjb250YWN0IG1lIGlmIHlvdSBhcmUgaW50ZXJlc3Rl
+ZCBhbmQgSSB3aWxsIGV4cGxhaW4gdGhlIGJ1c2luZXNzIHRvIHlvdSBpbiBkZXRhaWwgZm9yIHlv
+dSB0byBiZXR0ZXIgdW5kZXJzdGFuZCB0aGUgdHJhbnNhY3Rpb24sIEkgY2FuIGFzc3VyZSB5b3Ug
+dGhhdCB0aGlzIHdpbGwgYmUgb2YgbXV0dWFsIGJlbmVmaXQgdG8gYWxsLgoKWW91IGNhbiByZXNw
+b25kIHRvIG1lIGFuZCBpIHdpbGwgc2VuZCB5b3UgYSBkZXRhaWxlZCBleHBsYW5hdGlvbgoKWW91
+cnMuCgpNYXRoZXcgSm9obnNvbi4KCi0tIAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0
+cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGlu
+Zm8vYXRoMTFrCg==
