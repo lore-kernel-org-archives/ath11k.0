@@ -4,71 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DAC4C433F5
-	for <ath11k@archiver.kernel.org>; Tue, 31 May 2022 20:32:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80871C433F5
+	for <ath11k@archiver.kernel.org>; Tue, 31 May 2022 21:51:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DwpeBjKi1/eRpZKsfnjW+BJlJuaQ7T/PEqP2tTRrqeY=; b=ONDdFLw2Do6PdI
-	IEX8cTenpRd8Xbn6RemLXGLvmEFRCRd6MRkYB2g0dXpwfZR5Fe24UrAZu1ehWpQsiQpwZNeJD5qbH
-	OBdq38cLBf/vWuUBQRIyjXw75EKodZ1QnYAxjRHjN3K9+ji05GOLQ3TRYOnbqk8NNhil3zy2xC/SY
-	G8OACKOPM3UBO6wYO4xiizyKw45jNt9fMTdNVv2u+wTUnW7p5X7PCInXdSAGpixbLpDZnkOT+iAnP
-	s9ckAgIrgkw5iszypvbnw3pRGUqn08f0BVReJkm/6YAw5ZwrMZ5o8P/+6bpL418o/kKQKNFuVWJyt
-	NAmeVkv0VTIQzzBjrTIA==;
+	List-Owner; bh=OKuxnF3hRbL6W8ocHMRupZaVvspEUFb9KXR6Aow3Y1E=; b=DYfZgoNp5bJtKd
+	qiLnbTerj2Ef3m13g6YOJTBeKnTiABu4jeu4s4Kwjss/di5gcw8ICf9hWeY7amEYtf5TI95O7wEQc
+	SuBvdSVPmaI7C0yYfTz732zgrNU/YCMSuaaXbNBuQJt7mOYKfcFeIm0WQExdqJeLo6b1BwN3JUmLn
+	T5OAZiY0T9IrhlaKXI0+UMYc1kJ4mVWKYkkIW6AaFA0pTACvOAckMdaJ5Wd03/qWwh8J2Ztz1BrbK
+	Yi/48QolK2UfoHvAdxxeKUPV51Z/4u4U3D63P2Fc3f8zCXdzWceCzgBSH86U601A4CAB/XZQN2CC9
+	y9pe4pKEA9tzobxqIMdA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nw8XR-00CWrA-Pi; Tue, 31 May 2022 20:32:25 +0000
-Received: from alexa-out.qualcomm.com ([129.46.98.28])
+	id 1nw9m4-00ClXo-Id; Tue, 31 May 2022 21:51:36 +0000
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nw8XP-00CWpT-Lm
-	for ath11k@lists.infradead.org; Tue, 31 May 2022 20:32:25 +0000
+	id 1nw9m0-00ClVX-S0
+	for ath11k@lists.infradead.org; Tue, 31 May 2022 21:51:34 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1654029144; x=1685565144;
+  t=1654033892; x=1685569892;
   h=message-id:date:mime-version:subject:to:cc:references:
    from:in-reply-to:content-transfer-encoding;
-  bh=0FN3bOxIhdy/N2r45nd/6ZtoVXh9fCyHLUsbHUleE0I=;
-  b=IwHdnETmCLEB/q9pTeZ1AiwYawaKJKn60Qf+vnXA7gTxMTAR1bpoTnID
-   ElSSIbhuijUag5hF8B5fD86PYWw6RxwQb0V8I17bZxUcYrBLimzVB2Yfj
-   IV90FmPEVuzY4ycwSVbxkZrzJYGEfwX8FL4bRdkRmon4NQJ9vQ5HSOByk
-   E=;
-Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
-  by alexa-out.qualcomm.com with ESMTP; 31 May 2022 13:32:21 -0700
+  bh=ADSONrRrcYWIBItW/IDoJda+KltF0U2bPCMO56q/27Q=;
+  b=EJKBGBo4fLWa8LdSlKqQ7B9R8RXW01pGL+vTaHX4Yte3Ig2JppSCZnlz
+   zy1JScq5klwPcup/jcEpD+fm0S7DspORfVlDZLl9q/n9HQXUcCtBJuMjn
+   fT3zDhq2Q3YOHvYYd5D/ACkmHtGPS3tTx1Q3Uw0pXizqEABCuPvA/psRI
+   A=;
+Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 31 May 2022 14:51:29 -0700
 X-QCInternal: smtphost
 Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 May 2022 13:32:20 -0700
+  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 May 2022 14:51:28 -0700
 Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
  nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Tue, 31 May 2022 13:32:20 -0700
+ 15.2.986.22; Tue, 31 May 2022 14:51:28 -0700
 Received: from [10.110.67.112] (10.80.80.8) by nalasex01a.na.qualcomm.com
  (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Tue, 31 May
- 2022 13:32:19 -0700
-Message-ID: <cfb03aa3-1a98-8131-0090-93c8ae918e7f@quicinc.com>
-Date: Tue, 31 May 2022 13:32:18 -0700
+ 2022 14:51:26 -0700
+Message-ID: <bbc9d5c1-6b05-4e8a-3141-ffdb23e586be@quicinc.com>
+Date: Tue, 31 May 2022 14:51:25 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH 2/2] ath11k: fix missing skb drop on htc_tx_completion
- error
+Subject: Re: [PATCH v2] ath11k: mhi: fix potential memory leak in
+ ath11k_mhi_register()
 Content-Language: en-US
-To: Christian 'Ansuel' Marangi <ansuelsmth@gmail.com>,
-	<ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>
-References: <20220528142516.20819-1-ansuelsmth@gmail.com>
- <20220528142516.20819-2-ansuelsmth@gmail.com>
+To: Jianglei Nie <niejianglei2021@163.com>, <kvalo@kernel.org>,
+	<davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+	<pabeni@redhat.com>
+CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+	<netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20220530080610.143925-1-niejianglei2021@163.com>
 From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <20220528142516.20819-2-ansuelsmth@gmail.com>
+In-Reply-To: <20220530080610.143925-1-niejianglei2021@163.com>
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220531_133223_799782_FFC2B461 
-X-CRM114-Status: GOOD (  13.38  )
+X-CRM114-CacheID: sfid-20220531_145132_986085_6E6D7B3F 
+X-CRM114-Status: GOOD (  18.08  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,45 +86,77 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 5/28/2022 7:25 AM, Christian 'Ansuel' Marangi wrote:
-> On htc_tx_completion error the skb is not dropped. This is wrong since
-> the completion_handler logic expect the skb to be consumed anyway even
-> when an error is triggerer. Not freeing the skb on error is a memory
-
-nit: s/triggerer/triggered/
-
-Kalle can fix this when he merges so no need to post a correction
-
-> leak since the skb won't be freed anywere else. Correctly free the
-> packet on eid >= ATH11K_HTC_EP_COUNT before returning.
+On 5/30/2022 1:06 AM, Jianglei Nie wrote:
+> mhi_alloc_controller() allocates a memory space for mhi_ctrl. When some
+> errors occur, mhi_ctrl should be freed by mhi_free_controller() and set
+> ab_pci->mhi_ctrl = NULL because ab_pci->mhi_ctrl has a dangling pointer
+> to the freed memory. But when ath11k_mhi_read_addr_from_dt() fails, the
+> function returns without calling mhi_free_controller(), which will lead
+> to a memory leak.
 > 
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1-01208-QCAHKSWPL_SILICONZ-1
+> We can fix it by calling mhi_free_controller() when
+> ath11k_mhi_read_addr_from_dt() fails and set ab_pci->mhi_ctrl = NULL in
+> all of the places where we call mhi_free_controller().
 > 
-> Fixes: f951380a6022 ("ath11k: Disabling credit flow for WMI path")
-> Signed-off-by: Christian 'Ansuel' Marangi <ansuelsmth@gmail.com>
+> Signed-off-by: Jianglei Nie <niejianglei2021@163.com>
+> ---
+>   drivers/net/wireless/ath/ath11k/mhi.c | 17 ++++++++++-------
+>   1 file changed, 10 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
+> index fc3524e83e52..fc1bbf91c58e 100644
+> --- a/drivers/net/wireless/ath/ath11k/mhi.c
+> +++ b/drivers/net/wireless/ath/ath11k/mhi.c
+> @@ -367,8 +367,7 @@ int ath11k_mhi_register(struct ath11k_pci *ab_pci)
+>   	ret = ath11k_mhi_get_msi(ab_pci);
+>   	if (ret) {
+>   		ath11k_err(ab, "failed to get msi for mhi\n");
+> -		mhi_free_controller(mhi_ctrl);
+> -		return ret;
+> +		goto free_controller;
+>   	}
+>   
+>   	if (!test_bit(ATH11K_PCI_FLAG_MULTI_MSI_VECTORS, &ab_pci->flags))
+> @@ -377,7 +376,7 @@ int ath11k_mhi_register(struct ath11k_pci *ab_pci)
+>   	if (test_bit(ATH11K_FLAG_FIXED_MEM_RGN, &ab->dev_flags)) {
+>   		ret = ath11k_mhi_read_addr_from_dt(mhi_ctrl);
+>   		if (ret < 0)
+> -			return ret;
+> +			goto free_controller;
+>   	} else {
+>   		mhi_ctrl->iova_start = 0;
+>   		mhi_ctrl->iova_stop = 0xFFFFFFFF;
+> @@ -405,18 +404,22 @@ int ath11k_mhi_register(struct ath11k_pci *ab_pci)
+>   	default:
+>   		ath11k_err(ab, "failed assign mhi_config for unknown hw rev %d\n",
+>   			   ab->hw_rev);
+> -		mhi_free_controller(mhi_ctrl);
+> -		return -EINVAL;
+> +		ret = -EINVAL;
+> +		goto free_controller;
+>   	}
+>   
+>   	ret = mhi_register_controller(mhi_ctrl, ath11k_mhi_config);
+>   	if (ret) {
+>   		ath11k_err(ab, "failed to register to mhi bus, err = %d\n", ret);
+> -		mhi_free_controller(mhi_ctrl);
+> -		return ret;
+> +		goto free_controller;
+>   	}
+>   
+>   	return 0;
+> +
+> +free_controller:
+> +	mhi_free_controller(mhi_ctrl);
+> +	ab_pci->mhi_ctrl = NULL;
+> +	return ret;
+>   }
+>   
+>   void ath11k_mhi_unregister(struct ath11k_pci *ab_pci)
+
+LGTM, thanks
 
 Reviewed-by: Jeff Johnson <quic_jjohnson@quicinc.com>
-
-> ---
->   drivers/net/wireless/ath/ath11k/htc.c | 4 +++-
->   1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/net/wireless/ath/ath11k/htc.c b/drivers/net/wireless/ath/ath11k/htc.c
-> index 069c29a4fac7..ca3aedc0252d 100644
-> --- a/drivers/net/wireless/ath/ath11k/htc.c
-> +++ b/drivers/net/wireless/ath/ath11k/htc.c
-> @@ -258,8 +258,10 @@ void ath11k_htc_tx_completion_handler(struct ath11k_base *ab,
->   	u8 eid;
->   
->   	eid = ATH11K_SKB_CB(skb)->eid;
-> -	if (eid >= ATH11K_HTC_EP_COUNT)
-> +	if (eid >= ATH11K_HTC_EP_COUNT) {
-> +		dev_kfree_skb_any(skb);
->   		return;
-> +	}
->   
->   	ep = &htc->endpoint[eid];
->   	spin_lock_bh(&htc->tx_lock);
 
 
 -- 
