@@ -4,39 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60AEFC433F5
-	for <ath11k@archiver.kernel.org>; Tue, 31 May 2022 08:47:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 693FAC433F5
+	for <ath11k@archiver.kernel.org>; Tue, 31 May 2022 16:56:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Message-ID:Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Date:From:To:Subject:
-	Content-Description:Mime-Version:Cc:Content-ID:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=4ydPjbVn5EQDNh9FDM0kTA3Yy83gnl8TK0uKtvt07KU=; b=Dh1wURYNwBMSF0
-	267SbOMUiH32t6jVBm77Zr/YNl6T+NJoTaAvbi07ofFshkUxsOwMLebB3Nv7vq5eSQ9C3SLiYOw+q
-	KfUH+PjzbtLvoBq6f+nvCoZjVx/ea01mdScw7RFalCofCo6W9FdQCWv3anAWXwXMsTuQqkAa8K0fK
-	LZZqXJcRhOnP3/uSTiMg3Fmc4quZSCrmxAKAOrflP+vx3qtfQPmds13662+XJF4GzckfPp1kw64BB
-	rL3wGXO6CBKjewbl6ByF2YF68MIBlRHG1fmccvUaM3EA+rLYX3VqkECeIx9ZiIHL3n7GLsAJzCVMT
-	f8qWJWhpuIIKWo+1X7qg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=ebp/pWGbfRiGEhPwN0VGZfky7k91aklK82xAQa845c0=; b=orMlFX+7uw+ljd
+	o37yKtMTWWVXIryHSiZ+MnGyLfBVWTKRNuUycbyzi3ZC5qMIh7vZagqdc4uUfOlq3wc1WBQE8IoUu
+	1KeVA+4ZwtCalBQIasg/kM3kka6nIZr7f3IHJc9PvfxuTp879kF8cBwjF87rclLiY5JGvikh/8kee
+	DrmEnLUSw1BEazI++g1TtUo6fjTeNROXSOGjDM8ta3VPRJ4GtTbRa2ZHhx4qozOnAg2DePaMqsqY4
+	WBatVuzQzA8KtBUAFL3XOwnHw15J/BrXUahmB4Xp4nnslRlrx7CQVwxfgG2Kf88XFnfo7KaHdnhAu
+	OzrI0/aypfUtXNGJyAVw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nvxX5-009t80-Hx; Tue, 31 May 2022 08:47:19 +0000
-Received: from [45.66.248.76] (helo=host.hosttoname.com)
-	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nvxX2-009t5s-Pj
-	for ath11k@lists.infradead.org; Tue, 31 May 2022 08:47:17 +0000
-Received: from [193.70.26.62] (ip62.ip-193-70-26.eu [193.70.26.62])
-	by host.hosttoname.com (Postfix) with ESMTPA id 7050523CE2
-	for <ath11k@lists.infradead.org>; Tue, 31 May 2022 08:31:27 +0000 (UTC)
-Mime-Version: 1.0
-Content-Description: Mail message body
-Subject: Your kind attention
-To: ath11k@lists.infradead.org
-From: mathej200@proton.me
-Date: Tue, 31 May 2022 01:31:22 -0700
+	id 1nw5AF-00BvtJ-Bg; Tue, 31 May 2022 16:56:15 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
+	id 1nw5AA-00Bvny-9P; Tue, 31 May 2022 16:56:11 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 92FA460B9F;
+	Tue, 31 May 2022 16:56:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0B0EC385A9;
+	Tue, 31 May 2022 16:56:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1654016169;
+	bh=O7ipYc08a1ud4PjM8jqwqP/HB7ejnhs+7FiRg2RkfLU=;
+	h=References:In-Reply-To:From:Date:Subject:To:List-Id:Cc:From;
+	b=ARiBuyJNKGzgJxTFlEh85RbXEWiAvTBEBYqj51JzXFx6PIVpDQSWsRY1Xb83VdGT1
+	 LBpbaFpxD0dARTBGBpkBN3x6CqL5NLBLtrQtmHeIcavQfnsbUo60w+kD7VBykl0zoj
+	 U9JWDVMO9/1RnSops7og4rVrWikJjFgdP+wSIiedWwR3Jvf8wEEaID0TDbfV34FJqY
+	 k/iqr9rCl23AHjJN6k1MGgIk5zxGssd+s31tGRXjmDsgbOkaOeBcf+XIDBI97pJKSx
+	 tmbYBxtaoaCizpg8iejPhaZVjMeCG9dLAO10G4vzhrLNC6srqoJvYRJvGxgTbcrXBH
+	 au++AavwSQZfQ==
+Received: by mail-il1-f177.google.com with SMTP id y16so5022949ili.13;
+        Tue, 31 May 2022 09:56:08 -0700 (PDT)
+X-Gm-Message-State: AOAM531H3Y2+SAw1wvO6i4/vGfPyY5DD1aBYcmeD7Omzj/W/P9FK/ZT+
+	N4AUEWC6QRX/WpKQSBn8Ef7PoRUn+7JsE9zTPOs=
+X-Google-Smtp-Source: ABdhPJxW+nTmxFvqbYpDjoFa7oeGIavAu7C0DnzXXxPNcupiot1bCXCkfM4+/OZWL4MT60K33XCTLL5unppXnmNnBqQ=
+X-Received: by 2002:a05:6e02:1bef:b0:2d3:c3d5:823d with SMTP id
+ y15-20020a056e021bef00b002d3c3d5823dmr1602680ilv.2.1654016168137; Tue, 31 May
+ 2022 09:56:08 -0700 (PDT)
+MIME-Version: 1.0
+References: <BYAPR02MB4567904C36E83634CB0ED09292DD9@BYAPR02MB4567.namprd02.prod.outlook.com>
+In-Reply-To: <BYAPR02MB4567904C36E83634CB0ED09292DD9@BYAPR02MB4567.namprd02.prod.outlook.com>
+From: Josh Boyer <jwboyer@kernel.org>
+Date: Tue, 31 May 2022 12:55:57 -0400
+X-Gmail-Original-Message-ID: <CA+5PVA4UzaOXNentsgrgeqOV0N+qPpnvBmTuwDOS0fzb6bCGjQ@mail.gmail.com>
+Message-ID: <CA+5PVA4UzaOXNentsgrgeqOV0N+qPpnvBmTuwDOS0fzb6bCGjQ@mail.gmail.com>
+Subject: Re: [PULL linux-firmware] ath10k & ath11k firmware 20220530
+To: Kalle Valo <kvalo@qca.qualcomm.com>
+Cc: "linux-firmware@kernel.org" <linux-firmware@kernel.org>, 
+	"linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>, 
+	"ath10k@lists.infradead.org" <ath10k@lists.infradead.org>, 
+	"ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220531_014716_914545_18D0BC10 
-X-CRM114-Status: SPAM  (  -5.79  )
+X-CRM114-CacheID: sfid-20220531_095610_464233_41488C58 
+X-CRM114-Status: GOOD (  20.65  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -48,23 +76,60 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Reply-To: mathew@mjsconsortium.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
-Message-ID: <E1nvxX5-009t80-Hx@bombadil.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-SGVsbG8gdGhlcmUsCgpNeSBuYW1lcyBhcmUgTWF0aGV3IEpvaG5zb24sIEkgYW0gcmVwcmVzZW50
-aW5nIHRoZSBpbnRlcmVzdCBvZiBhIGNlcnRhaW4gcG9saXRpY2FsbHkgZXhwb3NlZCBwZXJzb24s
-IHdlIGFyZSBsb29raW5nIGZvciBwYXJ0bmVycyBvdmVyc2VhcyB0aGF0IGNhbiBtYW5hZ2UgaGln
-aC12YWx1ZSBmdW5kcyBmb3IgYSBwZXJpb2Qgb2YgNS0xMCB5ZWFycywgdGhlIGZ1bmRzIGhhdmUg
-YmVlbiBhY2NydWVkIGJ5IHRoZSBpbmZsdWVuY2Ugb2YgdGhlIHBvd2VyIG9mIG15IGJlbmVmYWN0
-b3LigJlzIG9mZmljZS4KClBsZWFzZSBkbyBjb250YWN0IG1lIGlmIHlvdSBhcmUgaW50ZXJlc3Rl
-ZCBhbmQgSSB3aWxsIGV4cGxhaW4gdGhlIGJ1c2luZXNzIHRvIHlvdSBpbiBkZXRhaWwgZm9yIHlv
-dSB0byBiZXR0ZXIgdW5kZXJzdGFuZCB0aGUgdHJhbnNhY3Rpb24sIEkgY2FuIGFzc3VyZSB5b3Ug
-dGhhdCB0aGlzIHdpbGwgYmUgb2YgbXV0dWFsIGJlbmVmaXQgdG8gYWxsLgoKWW91IGNhbiByZXNw
-b25kIHRvIG1lIGFuZCBpIHdpbGwgc2VuZCB5b3UgYSBkZXRhaWxlZCBleHBsYW5hdGlvbgoKWW91
-cnMuCgpNYXRoZXcgSm9obnNvbi4KCi0tIAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0
-cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGlu
-Zm8vYXRoMTFrCg==
+On Mon, May 30, 2022 at 9:08 AM Kalle Valo <kvalo@qca.qualcomm.com> wrote:
+>
+> Hi,
+>
+> Here's a new pull request for ath10k and ath11k. Here I'm adding a missing board file for
+> WCN3990, otherwise just regular firmware and board file updates.
+>
+> Please let me know if there are any problems.
+>
+> Kalle
+>
+> The following changes since commit 251d29004ffce3462779dbd08073a2cd8dfd2087:
+>
+>   amdgpu: update beige goby firmware for 22.10 (2022-05-16 15:25:38 -0400)
+>
+> are available in the Git repository at:
+>
+>   git://git.kernel.org/pub/scm/linux/kernel/git/kvalo/linux-firmware.git ath10k-20220530
+>
+> for you to fetch changes up to 82b0ef7166e2b7f9d12e7745a2af4e4c75c1aea8:
+>
+>   ath11k: WCN6855 hw2.0: update to WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.9 (2022-05-30 16:01:56 +0300)
+>
+> ----------------------------------------------------------------
+> Kalle Valo (7):
+>       ath10k: WCN3990 hw1.0: add board-2.bin
+>       ath10k: QCA4019 hw1.0: update board-2.bin
+>       ath10k: QCA9888 hw2.0: update firmware-5.bin to 10.4-3.9.0.2-00157
+>       ath10k: QCA9888 hw2.0: update board-2.bin
+>       ath10k: QCA9984 hw1.0: update firmware-5.bin to 10.4-3.9.0.2-00157
+>       WHENCE: ath11k: move regdb.bin before board-2.bin
+>       ath11k: WCN6855 hw2.0: update to WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.9
+
+Pulled and pushed out.
+
+josh
+
+>
+>  WHENCE                              |  11 ++++++-----
+>  ath10k/QCA4019/hw1.0/board-2.bin    | Bin 1129788 -> 1154076 bytes
+>  ath10k/QCA9888/hw2.0/board-2.bin    | Bin 133540 -> 145684 bytes
+>  ath10k/QCA9888/hw2.0/firmware-5.bin | Bin 693604 -> 693700 bytes
+>  ath10k/QCA9984/hw1.0/firmware-5.bin | Bin 681568 -> 681672 bytes
+>  ath10k/WCN3990/hw1.0/board-2.bin    | Bin 0 -> 461060 bytes
+>  ath11k/WCN6855/hw2.0/amss.bin       | Bin 4972544 -> 4972544 bytes
+>  7 files changed, 6 insertions(+), 5 deletions(-)
+>  create mode 100644 ath10k/WCN3990/hw1.0/board-2.bin
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
