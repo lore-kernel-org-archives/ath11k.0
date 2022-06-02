@@ -4,69 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47DBEC433EF
-	for <ath11k@archiver.kernel.org>; Wed,  1 Jun 2022 19:09:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0AE5CCA47A
+	for <ath11k@archiver.kernel.org>; Thu,  2 Jun 2022 05:14:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=zVLvqnLaUb/XQ2fYwx/WCQgT5A6UJinG0QWZ8cqtFE4=; b=OZOJYIO4Zl4C+u
-	VKE96j1SvQDwrgldcrGVhxnHUqyTRq6LhUe+iHHDu+Fj8G+s7wugnzMrBUtjFPxciarCmfXpNh9+k
-	kJ2KtNQrlGFn4+mLvWyyEBs/x2Q8BNLLuspCGinSCS1E+IMkXibLNSZ8gHyaLxRorP9KXrmL8VLcn
-	Zr/wBiw3gCigd8mab/NS9FHolsy8ejMlsAB2lmd3nZvlviOlz68vvzU5uya40Bsr+BEUlCh/REhSw
-	WBwjytHbRK9mwAIUmfytvboseRnGcyaeyCVCE6kGX1YBtynQ0wEr7OEzUuDMJhHk7FdWlj8LBz7kE
-	THmQ8AywZhswZo2FPHNQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=LVgsIxAzUycfaj5RUa3YCQxQ5yeNTni7FVBNpXpnOSQ=; b=ItKMLbpwTsaN+h
+	8SjpSsFW4PFp7cqhf2zf3ovGFOvFZ9JrAKhxNYa3N9F979tg73CUNsgYkltRqq8m9YirX8aw12nfD
+	GJtZuTPqHDFmeT7jpjYw0prirpA7rlIOs7HnEamWDYTNpO1icdAY/2H7Xrry6/mKdDR6Ap4sOkz15
+	aXO8Cq+BlgwIf8hO1i1XZRNaLDk4Q8MO/dWwxa5JhH7xlim/fAGQwTLPb9udZdK366/0XVaj+czWU
+	AXmr18a/48BQfXwXUZ1N3wD8JDDxskgxhMHyWY4QeFitewMNVfrM2K6qWQgs60isJVPR0kmkxc5fG
+	1H2qVqslLR9l0ujn5otg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nwTj9-0007qR-Cy; Wed, 01 Jun 2022 19:09:55 +0000
-Received: from alexa-out.qualcomm.com ([129.46.98.28])
+	id 1nwdAa-001QBn-Sp; Thu, 02 Jun 2022 05:14:52 +0000
+Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nwTj7-0007pX-FV
-	for ath11k@lists.infradead.org; Wed, 01 Jun 2022 19:09:55 +0000
+	id 1nwdAY-001QAc-5A
+	for ath11k@lists.infradead.org; Thu, 02 Jun 2022 05:14:51 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1654110594; x=1685646594;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=0nFXnQ37/awaKQICaD8CGQ++kuJwX2JMyTTgWh2bDxE=;
-  b=UTmuCFp/5LJ6rfGZ+DBXPB2/JrYiby8vNq1ucaj9MVgV1VnVflg6qXD5
-   lmoEU9Ij2VJULpxZ7/TRqYx8xNc0+lhHIxNwJfNsibaxXBXvo2qWweBQL
-   /SHEqHG3kku7xCE5e7oE+zuLWt3l5OGi7u4MsEHJtf+hnB1siJIdCZ2Ho
-   I=;
-Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
-  by alexa-out.qualcomm.com with ESMTP; 01 Jun 2022 12:09:50 -0700
+  t=1654146890; x=1685682890;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=RDfLI74gQUBmm4NW7LzSjCsaR3vj5O/aRygDYiXFyJE=;
+  b=cVSV8V7XRBilTIkDQEHoVYvqkzJAL38+cz8O6cwptbrUrkm/QifiBU5K
+   UhVodZANi8Vf1xz0pRBbtGfZBKSd+XDTs5eYAXWR0HxNaMVYxam9RdqWE
+   cgAojo/EANk+0iaO6pXf59kaHgw/9Zq2ZZZwBRgWOY6Uho3Rh/rPlyxWl
+   E=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 01 Jun 2022 22:14:44 -0700
 X-QCInternal: smtphost
 Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jun 2022 12:09:50 -0700
+  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jun 2022 22:14:44 -0700
 Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
  nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 1 Jun 2022 12:09:50 -0700
-Received: from [10.110.9.238] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Wed, 1 Jun 2022
- 12:09:48 -0700
-Message-ID: <4f289038-c5ca-ce55-edc8-45ff98efc716@quicinc.com>
-Date: Wed, 1 Jun 2022 12:09:48 -0700
+ 15.2.986.22; Wed, 1 Jun 2022 22:14:43 -0700
+Received: from adisi-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Wed, 1 Jun 2022 22:14:41 -0700
+From: Aditya Kumar Singh <quic_adisi@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, Aditya Kumar Singh
+	<quic_adisi@quicinc.com>
+Subject: [PATCH 0/2] ath11k: add support for get_txpower mac ops
+Date: Thu, 2 Jun 2022 10:44:23 +0530
+Message-ID: <20220602051425.9265-1-quic_adisi@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH 1/2] ath11k: fix missing srng_access_end in CE
-Content-Language: en-US
-To: Christian 'Ansuel' Marangi <ansuelsmth@gmail.com>,
-	<ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>
-References: <20220528142516.20819-1-ansuelsmth@gmail.com>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <20220528142516.20819-1-ansuelsmth@gmail.com>
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220601_120953_607653_8ABB8479 
-X-CRM114-Status: GOOD (  16.46  )
+X-CRM114-CacheID: sfid-20220601_221450_264925_91804C2B 
+X-CRM114-Status: UNSURE (   9.08  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,53 +74,42 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 5/28/2022 7:25 AM, Christian 'Ansuel' Marangi wrote:
-> When a CE completed send next operation is done, the srng access end is
-> never called. Correctly end the srng access to make sure we have the
-> correct values in the srng struct.
-> 
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1-01208-QCAHKSWPL_SILICONZ-1
-> 
-> Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
-> Signed-off-by: Christian 'Ansuel' Marangi <ansuelsmth@gmail.com>
-> ---
->   drivers/net/wireless/ath/ath11k/ce.c | 2 ++
->   1 file changed, 2 insertions(+)
-> 
-> diff --git a/drivers/net/wireless/ath/ath11k/ce.c b/drivers/net/wireless/ath/ath11k/ce.c
-> index c14c51f38709..665205d2322e 100644
-> --- a/drivers/net/wireless/ath/ath11k/ce.c
-> +++ b/drivers/net/wireless/ath/ath11k/ce.c
-> @@ -490,6 +490,8 @@ static struct sk_buff *ath11k_ce_completed_send_next(struct ath11k_ce_pipe *pipe
->   	pipe->src_ring->sw_index = sw_index;
->   
->   err_unlock:
-> +	ath11k_hal_srng_access_end(ab, srng);
-> +
->   	spin_unlock_bh(&srng->lock);
->   
->   	spin_unlock_bh(&ab->ce.ce_lock);
+Currently, driver does not support get_txpower mac ops because of which
+cfg80211 returns vif->bss_conf.txpower to user space. bss_conf.txpower
+gets its value from ieee80211_channel->max_reg_power. However, the final
+txpower is dependent on few other parameters apart from max regulatory
+supported power. It is the firmware which knows about all these parameters
+and considers the minimum for each packet transmission.
 
-NAK -- Not calling ath11k_hal_srng_access_end() is intentional.
+Firmware reports the final tx power in firmware pdev stats which falls
+under fw_stats. But currently, fw_stats is under debugfs.
 
-CE_SRC ring is a special ring, we perform tx_request and tx_completion 
-on the same ring. The completion processing frees SKBs associated to the 
-ce_desc, this is what ath11k_ce_completed_send_next() does, it does not 
-update the head pointer to hw because the ce_desc at hp does not have 
-any new data, it is just available for new messages. ath11k_ce_send() 
-retrieves a processed (processed by ath11k_ce_completed_send_next) 
-ce_desc and sets it up for the new message. Then it updates the hw about 
-the newly available ce_desc by calling ath11k_hal_srng_access_end().
+Add support for get_txpower mac ops to get the tx power from firmware
+leveraging fw_stats and return it accordingly.
 
-If you want to do anything here, adding a comment based upon the above 
-would be good.
+Also, move fw_stats out of debugfs so that get_txpower mac ops can
+function properly even when debugfs is disabled.
 
-/jeff
+Aditya Kumar Singh (2):
+  ath11k: move firmware stats out of debugfs
+  ath11k: add get_txpower mac ops
+
+ drivers/net/wireless/ath/ath11k/core.c    |  46 ++++++++
+ drivers/net/wireless/ath/ath11k/core.h    |  12 +-
+ drivers/net/wireless/ath/ath11k/debugfs.c | 131 +++++-----------------
+ drivers/net/wireless/ath/ath11k/debugfs.h |   6 +-
+ drivers/net/wireless/ath/ath11k/mac.c     |  91 +++++++++++++++
+ drivers/net/wireless/ath/ath11k/wmi.c     |  48 +++++++-
+ 6 files changed, 227 insertions(+), 107 deletions(-)
+
+-- 
+2.17.1
+
 
 -- 
 ath11k mailing list
