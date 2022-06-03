@@ -4,59 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 091FAC43334
-	for <ath11k@archiver.kernel.org>; Fri,  3 Jun 2022 08:34:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8268C433EF
+	for <ath11k@archiver.kernel.org>; Fri,  3 Jun 2022 08:36:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
 	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=JiiE28cEWoT4tKBmR6t7lYbY+csriSzCphY3qri3qgU=; b=YtGg2MH2h/DLhW
-	KnkMaVjzrojxgRADoBY5128cp/jX/ClTBm1LVPNV6A25tqxL0W9FEq1cvaz6IHxo+yBPbjv2GyyMZ
-	yePaSnpnhiosq05esVSNKSFLNTRzLlmI0RwU7pNMgX6RkzbBEXDQHoFHJA1ZhNjPFem02AFSzXzLP
-	JfzsuR+GBtIz0ObHA1qTZH4yAJfBmu7wMJwr3xnKmuzNmEnUtax+awG/H6jIE4vsmjl+jOPlhshER
-	jHEVuSIHzQESArf8yqPddg0soPkE1CMEPhS+q1RkuJsMpOhKVTYPjIuF2Fzp5IKvV9U1F0Apx1cu3
-	qrzEgQsly+BlMBLZ3xXQ==;
+	List-Owner; bh=ot7jFsKA12antyb5ow7l6Ssn0x6ZfrcJ8rD/b2NmWHw=; b=QtSoo/DMsQp3Li
+	+0Bt1h6/9v5eC2ceqpqoULAoFslWOamY3dV8/t0VA7PWXNi0To1F67hdikNQX+2Z0oku18RjwJGZt
+	8CUWYwDLQ10u3mR89j8kwkviOLzcaXQf76CYm/AeIjlGy0FfWxZB2RDJMB8SMdS5uWEUzjtjKqqHD
+	K+BVI7FvOm02Hg3zXUACikWst4t67JHgHZ9TSZ5Dylafw7r9kn/TJLhXl+g6lTJPiyHzAlf2EZPZQ
+	kN0EJYt1WJKqn8cBEO16RxfD7kxivJDvcr+ETUhq3bk/7U38p28t7Nn+Pj6jSf/Ggsb2SrXBoPQTD
+	T/fZCatkz1ltKERbD3VA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nx2lI-006foB-7j; Fri, 03 Jun 2022 08:34:28 +0000
+	id 1nx2n4-006gFI-E3; Fri, 03 Jun 2022 08:36:18 +0000
 Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nx2lF-006fnj-5o
-	for ath11k@lists.infradead.org; Fri, 03 Jun 2022 08:34:26 +0000
+	id 1nx2n1-006gET-7s
+	for ath11k@lists.infradead.org; Fri, 03 Jun 2022 08:36:16 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 80D9A6195A;
-	Fri,  3 Jun 2022 08:34:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F362EC385A9;
-	Fri,  3 Jun 2022 08:34:22 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id C8CD861949;
+	Fri,  3 Jun 2022 08:36:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F7D0C385A9;
+	Fri,  3 Jun 2022 08:36:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1654245263;
-	bh=vuM1FijWVf3JLmS6pjEO4fnhUWhgktmQ1f4rrxAKU0c=;
+	s=k20201202; t=1654245374;
+	bh=ZJmVz9kkx4apLqs6k7nA/DEKO3XbqbAbdgWAiAfN4v4=;
 	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=gTPVpvwVuSLqejphnDn8xIzI9BOLHmAvQeEoznfT5ivYgKpy3T/Kp2t3w/naghmND
-	 It+W2MZg1quWqdD98EdN4SWeCTAmFDAd0Lr+ixyW6SMtQOiiB0euR8O97gJzAX0jZS
-	 2HxfoDnyfOPEp5KUszZnd3AFsvQb7wr5FyuNbJeBlIgN5Y2LWwqKngB7lO6RCAizDG
-	 1k4/BlO9CAh9lKHMUibmO7QNBF5/PICdqxuaG11TLeGFB6eRazp/d1UZIe8cl4UvyV
-	 gMPymdNtChI7iisNKCD6QxvJ7FcVkUKFGl9CgXBm0gQY+OMTAEnFr7lbr5PrvZ+NBR
-	 l3361krjb05rQ==
+	b=ScmyZ4Y/DXP7Az1HR5CwOjsuLBLIvNmyZX4A2WsAMVU8zq35jB2aRf+/FClm6oby0
+	 mLjXqlQDzLXr8fzjBwzaOtghonv2LfTI4Po1bxERODtPetC+95F7hH3/VS0KAXEkGi
+	 v1F+guDbCYLp9pCBQ+61A+c4NizslyMRzbN61AUjZP5th3X8Wqd6xbeOWWR8XMd9Mm
+	 0FGe8ck/W+LwxWAyGdtJldGL1Muxj+bZwAXLy5CwrM879bIu2Vh9POCV4RAFgt85TY
+	 LJ/geNju1znYZNvCxmOai1WIA9EkDj9ZoalCB20gR3TFw5NZXjm8VC4D5Wd5MnpzZ0
+	 mhwiNbT0onwmQ==
 From: Kalle Valo <kvalo@kernel.org>
-To: Seevalamuthu Mariappan <quic_seevalam@quicinc.com>
-Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
-Subject: Re: [PATCH] ath11k: Add support for dynamic vlan
-References: <1641786090-10232-1-git-send-email-quic_seevalam@quicinc.com>
-Date: Fri, 03 Jun 2022 11:34:17 +0300
-In-Reply-To: <1641786090-10232-1-git-send-email-quic_seevalam@quicinc.com>
-	(Seevalamuthu Mariappan's message of "Mon, 10 Jan 2022 09:11:30
-	+0530")
-Message-ID: <874k12no1i.fsf@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: "ath11k\@lists.infradead.org" <ath11k@lists.infradead.org>
+Subject: Re: WCN6855 issues with latest linux-firmware
+References: <a1657ff0-198c-14f9-3b2b-d7ab06cfc8e6@linaro.org>
+	<CAA8EJpoHKUSx3Aq+fB-4s0ZpZXfvp8p-==hO12hxsrxE46YfCw@mail.gmail.com>
+Date: Fri, 03 Jun 2022 11:36:11 +0300
+In-Reply-To: <CAA8EJpoHKUSx3Aq+fB-4s0ZpZXfvp8p-==hO12hxsrxE46YfCw@mail.gmail.com>
+	(Dmitry Baryshkov's message of "Wed, 1 Jun 2022 15:40:31 +0300")
+Message-ID: <87zgium9dw.fsf@kernel.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220603_013425_310610_1A503662 
-X-CRM114-Status: GOOD (  18.36  )
+X-CRM114-CacheID: sfid-20220603_013615_339869_C3CB47D6 
+X-CRM114-Status: GOOD (  11.49  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,93 +73,25 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Seevalamuthu Mariappan <quic_seevalam@quicinc.com> writes:
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org> writes:
 
-> Advertise AP-VLAN interface type for vlan support in driver.
-> Metadata information in dp_tx is added to notify firmware
-> that multicast/broadcast packets are encrypted in software.
+> I have tested the latest firmware from linux-firmware and it still
+> fails to send the bdf file request:
 >
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1-01073-QCAHKSWPL_SILICONZ-1
->
-> Signed-off-by: Seevalamuthu Mariappan <quic_seevalam@quicinc.com>
-> ---
->  drivers/net/wireless/ath/ath11k/core.c  |  6 +++
->  drivers/net/wireless/ath/ath11k/dp_tx.c | 74 ++++++++++++++++++++++++++++++++-
->  drivers/net/wireless/ath/ath11k/dp_tx.h | 14 +++++++
->  drivers/net/wireless/ath/ath11k/hw.h    |  1 +
->  drivers/net/wireless/ath/ath11k/mac.c   |  5 +++
->  5 files changed, 98 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-> index 293563b..0b2407e 100644
-> --- a/drivers/net/wireless/ath/ath11k/core.c
-> +++ b/drivers/net/wireless/ath/ath11k/core.c
-> @@ -86,6 +86,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
->  		.num_vdevs = 16 + 1,
->  		.num_peers = 512,
->  		.supports_suspend = false,
-> +		.supports_ap_vlan = true,
->  		.hal_desc_sz = sizeof(struct hal_rx_desc_ipq8074),
->  		.supports_regdb = false,
->  		.fix_l1ss = true,
-> @@ -150,6 +151,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
->  		.num_vdevs = 16 + 1,
->  		.num_peers = 512,
->  		.supports_suspend = false,
-> +		.supports_ap_vlan = true,
->  		.hal_desc_sz = sizeof(struct hal_rx_desc_ipq8074),
->  		.supports_regdb = false,
->  		.fix_l1ss = true,
-> @@ -213,6 +215,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
->  		.num_vdevs = 16 + 1,
->  		.num_peers = 512,
->  		.supports_suspend = true,
-> +		.supports_ap_vlan = false,
->  		.hal_desc_sz = sizeof(struct hal_rx_desc_ipq8074),
->  		.supports_regdb = true,
->  		.fix_l1ss = true,
-> @@ -276,6 +279,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
->  		.num_vdevs = 8,
->  		.num_peers = 128,
->  		.supports_suspend = false,
-> +		.supports_ap_vlan = true,
->  		.hal_desc_sz = sizeof(struct hal_rx_desc_qcn9074),
->  		.supports_regdb = false,
->  		.fix_l1ss = true,
-> @@ -339,6 +343,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
->  		.num_vdevs = 16 + 1,
->  		.num_peers = 512,
->  		.supports_suspend = true,
-> +		.supports_ap_vlan = false,
->  		.hal_desc_sz = sizeof(struct hal_rx_desc_wcn6855),
->  		.supports_regdb = true,
->  		.fix_l1ss = false,
-> @@ -401,6 +406,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
->  		.num_vdevs = 16 + 1,
->  		.num_peers = 512,
->  		.supports_suspend = true,
-> +		.supports_ap_vlan = false,
->  		.hal_desc_sz = sizeof(struct hal_rx_desc_wcn6855),
->  		.supports_regdb = true,
->  		.fix_l1ss = false,
+> [    3.740702] ath11k_pci 0000:01:00.0: chip_id 0x2 chip_family 0xb
+> board_id 0xa7 soc_id 0x400c0210
+> [    3.752952] ath11k_pci 0000:01:00.0: fw_version 0x11090c35
+> fw_build_timestamp 2022-04-18 20:23 fw_build_id
+> QC_IMAGE_VERSION_STRING=WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.9
+> [    3.760674] ath11k_pci 0000:01:00.0: failed to fetch board data for
+> bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=0108,qmi-chip-id=2,qmi-board-id=167
+> from ath11k/WCN6855/hw2.1/board-2.bin
+> [....]
+> [   13.843957] ath11k_pci 0000:01:00.0: failed to wait board file
+> download request: -110
 
-As this is an old patch, please make sure all entries in hw_params have
-supports_ap_vlan.
-
-> +static int ath11k_dp_metadata_align_skb(struct sk_buff *skb, u8 align_len)
-> +{
-> +	if (unlikely(skb_cow_head(skb, align_len)))
-> +		return -ENOMEM;
-
-The preferred style in ath11k is:
-
-ret = skb_cow_head(skb, align_len);
-if (unlikely(ret))
-	return ret;
-
-But is the unlikely() really necessary here?
-
-I doubt this applies anymore so please rebase and submit v2.
+Yeah, I have a bunch of missing board files but I haven't been able to
+start searching for them yet. This will take time, sorry.
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
