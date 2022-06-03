@@ -4,59 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28502C43334
-	for <ath11k@archiver.kernel.org>; Fri,  3 Jun 2022 08:23:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC12ECCA47C
+	for <ath11k@archiver.kernel.org>; Fri,  3 Jun 2022 08:28:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=kuR3aRU+uhj2jEQ6jLMxKv6oSNoOFAxGekcIwcvXxx0=; b=xmn7UceOAip+8h
-	XaIaauN2vEd9g8oRTKEhiIMnxs2dwh6+45Sl2u2Ms1kfvX7CE6YdGAANtQO1bJjm/VHtm1OsnyWcn
-	YYbR2l6NNAzK9oEFG8jxwW5hrr1wKPxlvpMm2XunVQHJvMHGoCX77WvkABpH3MOjAQ21HxbhP8OEb
-	ngj4K6XxHO1RtyaAfHpDvG+LY2CBGxvupgVrmKFr/kPT1sieXMJD6f20RzWgkF/bkGA4BRHIl3Hwd
-	45ShUNYd+R24fUEzOI/k3ZIsHTkaxqpES7JjKzf0hYGq/ZFNkjWf9MH1QUvzmJ+Khi+N1i06bHNWL
-	g9CRGDtuVP2Eec/iJxfg==;
+	List-Owner; bh=sq6PPM4eZCO0DnFwXbI1W7vkpmyiQQPe4LNpSX6YOVk=; b=IyWnSg7KJQjkj/
+	90XZvMvcJdgmQmOhuEwM3y4y7QFWJgpUVLWPGFGfN++RAmQuHRY9V8FcpiOfKU+2KnznJu1RzGvpd
+	QVZlmuGmmmsRX4mTbWK293UIuJ3RSKBG8Ya0txq4/5Y+x42kqPH/oujMEYfWBFIBQ4o3Uhr44OYuE
+	+VlSgNmsTO/4+1df72Uh5BNRah+MaCeYU8Fc6qLPNROqy1kGesVQr5iPgE4Xz3WyzJ8NjVo6ZN8Lx
+	FRYuU+EOqTLSL8JuXJXiOOLebtrVxO5Q1EnpHuKrbbUzOeUJiWbhcRAJEXH/njlD5JjVxrPWik9XL
+	EO1sXPbtudq1uNa3uw8g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nx2ag-006dfz-QQ; Fri, 03 Jun 2022 08:23:30 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1nx2fo-006eoF-2p; Fri, 03 Jun 2022 08:28:48 +0000
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nx2ad-006dfY-S6
-	for ath11k@lists.infradead.org; Fri, 03 Jun 2022 08:23:29 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id 54DCBB82239;
-	Fri,  3 Jun 2022 08:23:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D69FC385A9;
-	Fri,  3 Jun 2022 08:23:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1654244605;
-	bh=/KbmjsL8JIlYkhdMkcO+aAcI+4wmIoG4EN3/mn6cgHg=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=R3Lkb47grZJmoN6KLVioiPNbs9TvDKCI2fWgIJ1niRkSL3z+ZbuOYW0hApuYsFZog
-	 h1madfHiI988V90cuic/HKKyAMt0nbwW1EBUS36fzQdHbKeH/KvF6qygrjmj6Hqd6l
-	 ixvSZn3+svJuicazMkdRKtt9yP9E4/5jP6rO6WFtgW7RDFJLw4Q20Uyn4kM4bgzKym
-	 822GkjMQU2ZdpgEVh3TqfANRdhukMLPomo2gBdZdDQ7ofJkWu75B9Z5j4FvjgDo06g
-	 O5lGOkiewreMmDoiTyN3e9BVO1YtwhMWC9de9HKPcy9B6+mnfMwaqy8BywZDP5y3oe
-	 0NbmcnqhvM3DA==
-From: Kalle Valo <kvalo@kernel.org>
-To: Thiraviyam Mariyappan <quic_tmariyap@quicinc.com>
-Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
-Subject: Re: [PATCH] ath11k: add wmi ctrl path stats
-References: <1654176800-29003-1-git-send-email-quic_tmariyap@quicinc.com>
-	<165424060628.24941.10656719779515709897.kvalo@kernel.org>
-Date: Fri, 03 Jun 2022 11:23:18 +0300
-In-Reply-To: <165424060628.24941.10656719779515709897.kvalo@kernel.org> (Kalle
-	Valo's message of "Fri, 3 Jun 2022 07:16:49 +0000 (UTC)")
-Message-ID: <87czfqnojt.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+	id 1nx2fk-006emZ-Po
+	for ath11k@lists.infradead.org; Fri, 03 Jun 2022 08:28:46 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1654244924; x=1685780924;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version;
+  bh=vsdHMBbWYySCVMmt2M7J4AJC+lyS3tKNTe9m+MALQis=;
+  b=bICUElFnWG1xSKX627KpIS/cELdG2C7xu7B0PEtjt/UrZXcCLhyi18TI
+   dVxKpqwlfFeSjcE60NrXUCTkrvOMN3w15UMLpOwkh8ugB1wZT/ixa8ocO
+   krL7Tj+zeFYCYDLBCWhv9dmrHFeuvY1EJ1o+Eqkxd53+a2xR/kbHdQuzY
+   s=;
+Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 03 Jun 2022 01:28:43 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jun 2022 01:28:43 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Fri, 3 Jun 2022 01:28:42 -0700
+Received: from adisi-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Fri, 3 Jun 2022 01:28:40 -0700
+From: Aditya Kumar Singh <quic_adisi@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, Aditya Kumar Singh
+	<quic_adisi@quicinc.com>
+Subject: [PATCH v3 2/2] ath11k: add get_txpower mac ops
+Date: Fri, 3 Jun 2022 13:58:14 +0530
+Message-ID: <20220603082814.31466-3-quic_adisi@quicinc.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20220603082814.31466-1-quic_adisi@quicinc.com>
+References: <20220603082814.31466-1-quic_adisi@quicinc.com>
 MIME-Version: 1.0
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220603_012328_241380_BD79E32D 
-X-CRM114-Status: GOOD (  15.72  )
+X-CRM114-CacheID: sfid-20220603_012844_900382_0F46516E 
+X-CRM114-Status: GOOD (  15.51  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,101 +81,148 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Kalle Valo <kvalo@kernel.org> writes:
+Driver does not support get_txpower mac ops because of which
+cfg80211 returns vif->bss_conf.txpower to user space. bss_conf.txpower
+gets its value from ieee80211_channel->max_reg_power. However, the final
+txpower is dependent on few other parameters apart from max regulatory
+supported power. It is the firmware which knows about all these
+parameters and considers the minimum for each packet transmission.
 
-> Thiraviyam Mariyappan <quic_tmariyap@quicinc.com> wrote:
->
->> Currently, ath11k HTT debugfs uses the HTT interface to send stats request
->> to target and response from target. Here HTT interface already overloaded
->> with the data path stats. To reduce the load from HTT, using WMI interface
->> to print the control path stats. This patch come up with framework for
->> control path stats using wmi interface.
->> For now, this framework supports PDEV_STAT and further stats will be
->> added.
->> 
->> WMI control path stats command and results are below:
->> echo <stats_id> <action> >
->>         sys/kernel/debug/ieee80211/phy3/netdev\:wlan3/wmi_ctrl_stats
->> cat sys/kernel/debug/ieee80211/phy3/netdev\:wlan3/wmi_ctrl_stats
->> stats_id:
->> 1 -> WMI_REQ_CTRL_PATH_PDEV_STATS
->> action:
->> 1 -> stats get
->> 2 -> stats reset
->> 
->> WMI_CTRL_PATH_PDEV_STATS:
->> req_id = 26
->> fw_tx_mgmt_subtype =  0:0, 1:0, 2:0, 3:0, 4:0, 5:109, 6:0, 7:0, 8:344, ...
->> fw_rx_mgmt_subtype =  0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0, ...
->> scan_fail_dfs_violation_time_ms = 0
->> nol_chk_fail_last_chan_freq = 0
->> nol_chk_fail_time_stamp_ms = 0
->> tot_peer_create_cnt = 2
->> tot_peer_del_cnt = 1
->> tot_peer_del_resp_cnt = 1
->> vdev_pause_fail_rt_to_sched_algo_fifo_full_cnt = 0
->> 
->> Tested-on: WLAN.HK.2.5.0.1-00517-QCAHKSWPL_SILICONZ-1
->> 
->> Signed-off-by: Thiraviyam Mariyappan <quic_tmariyap@quicinc.com>
->> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
->
-> This added new warnings:
->
-> drivers/net/wireless/ath/ath11k/debugfs.c:1600: line length of 92 exceeds 90 columns
-> drivers/net/wireless/ath/ath11k/debugfs.c:1666: line length of 93 exceeds 90 columns
-> drivers/net/wireless/ath/ath11k/wmi.c:2702: line length of 94 exceeds 90 columns
-> drivers/net/wireless/ath/ath11k/wmi.c:2703: line length of 97 exceeds 90 columns
-> drivers/net/wireless/ath/ath11k/wmi.c:7037: line length of 97 exceeds 90 columns
-> drivers/net/wireless/ath/ath11k/wmi.c:7085: line length of 97 exceeds 90 columns
->
-> I fixed them in the pending branch. But in the future please use ath11k-check.
->
-> There was one way too long field:
->
-> 	u32 vdev_pause_fail_rt_to_sched_algo_fifo_full_cnt;
->
-> I renamed that to:
->
-> 	u32 vdev_pause_fail_rt;
->
-> In ath11k_wmi_send_wmi_ctrl_stats_cmd() the error handling was unnecessarily
-> using else branch which caused long lines, I fixed that by avoiding else
-> branches.
->
-> Also I saw some other things, like calling kzalloc() in variable declarations,
-> but I will look at them in detail later.
->
-> Here's what I did now:
->
-> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=28bc80a6a9c675fdc7003934a9493d9e95570f5f
+All ath11k firmware reports the final tx power in firmware pdev stats
+which falls under fw_stats.
 
-And in my regression testing with WCN6855 I see new warnings:
+Add get_txpower mac ops to get the tx power from firmware leveraging
+fw_stats and return it accordingly.
 
-[  422.555328] debugfs: File 'wmi_ctrl_stats' in directory 'netdev:wlan0' already present!
-[  434.892534] debugfs: File 'wmi_ctrl_stats' in directory 'netdev:wlan0' already present!
-[  447.169512] debugfs: File 'wmi_ctrl_stats' in directory 'netdev:wlan0' already present!
-[  459.707762] debugfs: File 'wmi_ctrl_stats' in directory 'netdev:wlan0' already present!
-[  472.078881] debugfs: File 'wmi_ctrl_stats' in directory 'netdev:wlan0' already present!
-[  484.371612] debugfs: File 'wmi_ctrl_stats' in directory 'netdev:wlan0' already present!
-[  496.663938] debugfs: File 'wmi_ctrl_stats' in directory 'netdev:wlan0' already present!
-[  508.928868] debugfs: File 'wmi_ctrl_stats' in directory 'netdev:wlan0' already present!
-[  521.310941] debugfs: File 'wmi_ctrl_stats' in directory 'netdev:wlan0' already present!
-[  533.859349] debugfs: File 'wmi_ctrl_stats' in directory 'netdev:wlan0' already present!
-[  575.072067] debugfs: File 'wmi_ctrl_stats' in directory 'netdev:wlan0' already present!
-[  594.171473] debugfs: File 'wmi_ctrl_stats' in directory 'netdev:wlan0' already present!
-[  617.581248] debugfs: File 'wmi_ctrl_stats' in directory 'netdev:wlan0' already present!
-[  637.003411] debugfs: File 'wmi_ctrl_stats' in directory 'netdev:wlan0' already present!
-[  656.153840] debugfs: File 'wmi_ctrl_stats' in directory 'netdev:wlan0' already present!
-[  675.210066] debugfs: File 'wmi_ctrl_stats' in directory 'netdev:wlan0' already present!
-[  694.594334] debugfs: File 'wmi_ctrl_stats' in directory 'netdev:wlan0' already present!
-[  714.122679] debugfs: File 'wmi_ctrl_stats' in directory 'netdev:wlan0' already present!
-[  733.506719] debugfs: File 'wmi_ctrl_stats' in directory 'netdev:wlan0' already present!
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
+Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
 
+Signed-off-by: Aditya Kumar Singh <quic_adisi@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/mac.c | 92 +++++++++++++++++++++++++++
+ 1 file changed, 92 insertions(+)
+
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index f11956163822..e0b6c9aa4727 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -8471,6 +8471,95 @@ static int ath11k_mac_op_remain_on_channel(struct ieee80211_hw *hw,
+ 	return ret;
+ }
+ 
++static int ath11k_fw_stats_request(struct ath11k *ar,
++				   struct stats_request_params *req_param)
++{
++	struct ath11k_base *ab = ar->ab;
++	unsigned long time_left;
++	int ret;
++
++	lockdep_assert_held(&ar->conf_mutex);
++
++	spin_lock_bh(&ar->data_lock);
++	ar->fw_stats_done = false;
++	ath11k_fw_stats_pdevs_free(&ar->fw_stats.pdevs);
++	spin_unlock_bh(&ar->data_lock);
++
++	reinit_completion(&ar->fw_stats_complete);
++
++	ret = ath11k_wmi_send_stats_request_cmd(ar, req_param);
++	if (ret) {
++		ath11k_warn(ab, "could not request fw stats (%d)\n",
++			    ret);
++		return ret;
++	}
++
++	time_left = wait_for_completion_timeout(&ar->fw_stats_complete,
++						1 * HZ);
++
++	if (!time_left)
++		return -ETIMEDOUT;
++
++	return 0;
++}
++
++static int ath11k_mac_op_get_txpower(struct ieee80211_hw *hw,
++				     struct ieee80211_vif *vif,
++				     int *dbm)
++{
++	struct ath11k *ar = hw->priv;
++	struct ath11k_base *ab = ar->ab;
++	struct stats_request_params req_param = {0};
++	struct ath11k_fw_stats_pdev *pdev;
++	int ret;
++
++	/* Final Tx power is minimum of Target Power, CTL power, Regulatory
++	 * Power, PSD EIRP Power. We just know the Regulatory power from the
++	 * regulatory rules obtained. FW knows all these power and sets the min
++	 * of these. Hence, we request the FW pdev stats in which FW reports
++	 * the minimum of all vdev's channel Tx power.
++	 */
++	mutex_lock(&ar->conf_mutex);
++
++	if (ar->state != ATH11K_STATE_ON)
++		goto err_fallback;
++
++	req_param.pdev_id = ar->pdev->pdev_id;
++	req_param.stats_id = WMI_REQUEST_PDEV_STAT;
++
++	ret = ath11k_fw_stats_request(ar, &req_param);
++	if (ret) {
++		ath11k_warn(ab, "failed to request fw pdev stats: %d\n", ret);
++		goto err_fallback;
++	}
++
++	spin_lock_bh(&ar->data_lock);
++	pdev = list_first_entry_or_null(&ar->fw_stats.pdevs,
++					struct ath11k_fw_stats_pdev, list);
++	if (!pdev) {
++		spin_unlock_bh(&ar->data_lock);
++		goto err_fallback;
++	}
++
++	/* tx power is set as 2 units per dBm in FW. */
++	*dbm = pdev->chan_tx_power / 2;
++
++	spin_unlock_bh(&ar->data_lock);
++	mutex_unlock(&ar->conf_mutex);
++
++	ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "txpower from firmware %d, reported %d dBm\n",
++		   pdev->chan_tx_power, *dbm);
++	return 0;
++
++err_fallback:
++	mutex_unlock(&ar->conf_mutex);
++	/* We didn't get txpower from FW. Hence, relying on vif->bss_conf.txpower */
++	*dbm = vif->bss_conf.txpower;
++	ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "txpower from firmware NaN, reported %d dBm\n",
++		   *dbm);
++	return 0;
++}
++
+ static const struct ieee80211_ops ath11k_ops = {
+ 	.tx				= ath11k_mac_op_tx,
+ 	.start                          = ath11k_mac_op_start,
+@@ -8521,6 +8610,7 @@ static const struct ieee80211_ops ath11k_ops = {
+ #if IS_ENABLED(CONFIG_IPV6)
+ 	.ipv6_addr_change = ath11k_mac_op_ipv6_changed,
+ #endif
++	.get_txpower                    = ath11k_mac_op_get_txpower,
+ 
+ 	.set_sar_specs			= ath11k_mac_op_set_bios_sar_specs,
+ 	.remain_on_channel		= ath11k_mac_op_remain_on_channel,
+@@ -9129,6 +9219,8 @@ int ath11k_mac_allocate(struct ath11k_base *ab)
+ 		clear_bit(ATH11K_FLAG_MONITOR_VDEV_CREATED, &ar->monitor_flags);
+ 		ar->vdev_id_11d_scan = ATH11K_11D_INVALID_VDEV_ID;
+ 		init_completion(&ar->completed_11d_scan);
++
++		ath11k_fw_stats_init(ar);
+ 	}
+ 
+ 	return 0;
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+2.17.1
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
