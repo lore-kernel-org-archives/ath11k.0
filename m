@@ -4,59 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BA01C43334
-	for <ath11k@archiver.kernel.org>; Mon,  6 Jun 2022 14:07:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BEAB6C43334
+	for <ath11k@archiver.kernel.org>; Mon,  6 Jun 2022 14:08:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
 	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=bqIvwDw45F3O9vx8+QLKxt8zDzVuZONM+koWnrEoaKs=; b=t7bskzKUbWMW87
-	8WI5VQVDavlZqz1+7hVKaR0Hh9gNGzp2+xpx1XlAxhMWnpBLqY/l70ETRr1XeoCv/gezKKDAdj0Vp
-	RlucnApBQS5AB1Q6jhlJIory0FY2GbLV6Yej5qMB8HF9ih4lxi2cYMKs6bJvbjitG4boBRG85p/Ay
-	dLlqi2S0Yu2OlLWglA6vUu7uWUbWg2i7nfkrFORzHZHvpO+kqN3i6ww37XXnqmdgQZZFzJEJbwfXo
-	fTb9g4OEfXXecHFJPjl8Qxg3Tjj6pICkT5okA+yC2sOTnbIkCSe6TN3rCs+aL+4d9YXrR/kwWXMU/
-	hxtzhBmfAWaTwDK0WRDw==;
+	List-Owner; bh=znnPi0oNLrK6nHNntBrHa3kD8mZABC2JhkGXpWSYbko=; b=KMGXWAFst5V11G
+	TaQw45qM116IOWubNZf9dmqgrWHY+vhj0TPKkm0yvVbN5Bzmz6X0X9hdAga7WJmmSfWEYZGnYumr6
+	uTaQW4qPjy4M09B/tuvt7osQm8dMT0BMZGtOpLkDeOcG0eH8k4fvt/hj/lhErFM+7vhFQ5vHpY2vh
+	vwOwLv4WXafK+ioaq79WQ5OLixGQzIBKvPSktfFXKNqTcYzuIPwDRI+e8Wv4+WPrih4o5CodVJtG4
+	3+v++53lz0qOgdHXp1CMwrjCJEt9z/AS3f6Xf/8oXkbMGuU21NOZk1+wffdHMuARq3ubt/JTkq53e
+	jOkQI0t/wcWYO050Dc8Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nyDOL-001RqT-QK; Mon, 06 Jun 2022 14:07:37 +0000
-Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
+	id 1nyDPf-001S1a-65; Mon, 06 Jun 2022 14:08:59 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nyDOJ-001Rpa-2i
-	for ath11k@lists.infradead.org; Mon, 06 Jun 2022 14:07:36 +0000
+	id 1nyDPb-001S0u-Ve
+	for ath11k@lists.infradead.org; Mon, 06 Jun 2022 14:08:57 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sin.source.kernel.org (Postfix) with ESMTPS id AC3F9CE1B8E;
-	Mon,  6 Jun 2022 14:07:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5FE6C385A9;
-	Mon,  6 Jun 2022 14:07:23 +0000 (UTC)
+	by ams.source.kernel.org (Postfix) with ESMTPS id 6D6A5B819F9;
+	Mon,  6 Jun 2022 14:08:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D62DC385A9;
+	Mon,  6 Jun 2022 14:08:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1654524445;
-	bh=tMeKQ0wXvAI3qCeplV2raWzXVOm0eYF7/LHEWAjhbTE=;
+	s=k20201202; t=1654524533;
+	bh=D0nfxgkU1zrBljYHyZkn5gGyrYOdvPSzjiXG5oFDjTk=;
 	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=KiGOJWIB5gd1nYJXdSjfXvd/H5zZ10lGtxHEFp0YW1AnkDaYp8UKLQUuW94KsYstw
-	 O7KxAkBH6CXj01EoPMdH7qsl76DoUWflR5xjECWj4cX4vKBzVXfadqfzutvMJH41Cm
-	 RDBiy6KWrIjCl+zQCbBl/bd64F9202YLphEm+mky0BlREC9jt81+gV1+8GMKxh+O2q
-	 iMH78f1GTKtwa70BuAhDcqA4+vdvcUhVWJkg4DtB6LK+GHBfTU3CzBs/qLOp65NQ4M
-	 LD4KNc2sxG7bC5eIuQ2YYPC7c2FcOOAtVPYxR1+/oG0OTS3dSSjTXsM7xKLKl1lGMe
-	 JTvJV6oKm/zbw==
+	b=OaWnneUjkvytyScrO84+4eZ5Fx7jyuBNFOuMR2Ch2X3w+ooU9iorATsgwcicz96PI
+	 6DyEBusDL1M+Z5TDZ97ss0CzcbMBeJWjpPKCCcgTfxRFDhYcNCzUusvAhhuh0LXnCT
+	 tWHb8ogLckN6aWaHfeHo5jPVzFPurTbHcVB1UT9C9ivg92u9UHb7ue4o5f+hNOkCVy
+	 aAgf7YREEwz59vhgzzofwd+tlh6+laAogXC3AIGnyHWnilAy1WN7ra44FmZowSdGbm
+	 82BnxAiBbswSTY0eqCFAYpTjgKaZOPOxZEvsDTZkz5jQTLinrOBvZRbWmrARE3vykR
+	 6dflpyGyNfilQ==
 MIME-Version: 1.0
-Subject: Re: [PATCH 2/2] ath11k: fix missing skb drop on htc_tx_completion
- error
+Subject: Re: [PATCH] ath11k: Fix incorrect debug_mask mappings
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20220528142516.20819-2-ansuelsmth@gmail.com>
-References: <20220528142516.20819-2-ansuelsmth@gmail.com>
-To: Christian 'Ansuel' Marangi <ansuelsmth@gmail.com>
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- Christian 'Ansuel' Marangi <ansuelsmth@gmail.com>
+In-Reply-To: <20220602115621.15339-1-quic_mpubbise@quicinc.com>
+References: <20220602115621.15339-1-quic_mpubbise@quicinc.com>
+To: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+ Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
 User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <165452443982.15301.6395234457917940547.kvalo@kernel.org>
-Date: Mon,  6 Jun 2022 14:07:23 +0000 (UTC)
+Message-ID: <165452452992.15301.3587479774647912453.kvalo@kernel.org>
+Date: Mon,  6 Jun 2022 14:08:51 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220606_070735_338775_0D9E780E 
-X-CRM114-Status: UNSURE (   8.33  )
+X-CRM114-CacheID: sfid-20220606_070856_221860_11D8BF2B 
+X-CRM114-Status: UNSURE (   8.81  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -74,27 +73,27 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Christian 'Ansuel' Marangi <ansuelsmth@gmail.com> wrote:
+Manikanta Pubbisetty <quic_mpubbise@quicinc.com> wrote:
 
-> On htc_tx_completion error the skb is not dropped. This is wrong since
-> the completion_handler logic expect the skb to be consumed anyway even
-> when an error is triggered. Not freeing the skb on error is a memory
-> leak since the skb won't be freed anywere else. Correctly free the
-> packet on eid >= ATH11K_HTC_EP_COUNT before returning.
+> Currently a couple of debug_mask entries are mapped to the same value,
+> this could enable unintended driver logging. If enabling DP_TX logs was
+> the intention, then this could also enable PCI logs flooding the dmesg
+> buffer or vice versa. Fix this by correctly assigning the debug masks.
 > 
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1-01208-QCAHKSWPL_SILICONZ-1
+> Found during code review.
 > 
-> Fixes: f951380a6022 ("ath11k: Disabling credit flow for WMI path")
-> Signed-off-by: Christian 'Ansuel' Marangi <ansuelsmth@gmail.com>
-> Reviewed-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
+> 
+> Fixes: aa2092a9bab3f ("ath11k: add raw mode and software crypto support")
+> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
 > Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
 Patch applied to ath-next branch of ath.git, thanks.
 
-e5646fe3b7ef ath11k: fix missing skb drop on htc_tx_completion error
+9331f7d3c54a ath11k: Fix incorrect debug_mask mappings
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20220528142516.20819-2-ansuelsmth@gmail.com/
+https://patchwork.kernel.org/project/linux-wireless/patch/20220602115621.15339-1-quic_mpubbise@quicinc.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
