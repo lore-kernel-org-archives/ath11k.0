@@ -4,65 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 090C5C43334
-	for <ath11k@archiver.kernel.org>; Wed,  8 Jun 2022 06:30:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8CA2CCA47B
+	for <ath11k@archiver.kernel.org>; Fri, 10 Jun 2022 13:36:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=xjCoJ2Dnyb4nLuQIoj0+ZBCp+D2ax77FEUbmnA06dX8=; b=Hm4z2vVQCvFD4Y
-	7IRWQQoIXHfmtHvXJyOHa23teN6Smfd5wO3BQ5PCr0oXpfj+QBDDMlBsjmaBq2hVNH1gbFQ3vEY9/
-	AnJpqg/2qtBtdjgfcy7vVF41zfLElWOiWOTDcrTf6+wrw08XToWmGiD+xUdLGFg8JBQsRcQYxoxY9
-	9LItSRge2Ke6fMlx/aVNYMRprxS7ZzQQGMT0+PHe1GLI+WB5PzxJytZ9TnsmdyIMwYAQu8EiLhvvA
-	9K70zDDjykdkGu/tGYI3YhAPMs4ZtcFOnj07bgTZIfCrhppaT89J+ySWPQ3UexgejooKekHaeLFBm
-	n8uDblyDKxiGkrfhprSw==;
+	List-Owner; bh=AuByv3rbp+L1u7c34IocjumoQaD4J+LytWe154rMs5s=; b=cNWAU1XFIBdIrU
+	7yC+OWR9U6re6sAaoOkCug0kYnU7C9fjgZMZpNt2zPS1K9FbCPHZ4PKA7afZjRqUx5sCEsj9qbLbD
+	DWH+R2BC7525FLkyE1eNuk/NxO0l3jJDSDvFYv8d975A5gU/cnMe1QnM4ijQgbxWybEdf0F01HnbE
+	cs7/Lqoc53fvZ2YIHxdyhJ7fbPoSVQa0ZIBA+wLkgo1Anz5pgvbBa1zRdZCH4u3iunrzAD8oJKICR
+	SoPMXldfzWkuCijpHko9uAxlHnRXTXEx1sot+XEHOLXGBRlcFcxRdum+UM1MaVKx/0u23wT1siOeU
+	aPcxlR9G/iqFaXjp3wXw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nypDH-00BJ34-9g; Wed, 08 Jun 2022 06:30:43 +0000
-Received: from alexa-out.qualcomm.com ([129.46.98.28])
+	id 1nzeoj-008OIB-Mv; Fri, 10 Jun 2022 13:36:49 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1nypDD-00BJ24-QQ
-	for ath11k@lists.infradead.org; Wed, 08 Jun 2022 06:30:42 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1654669840; x=1686205840;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=5JcpZETODBWympzpcRZTTJz2MJowTFI/a2s7zImUc1I=;
-  b=UTVc0IEPA4OtmQecjbfrtimJAYE8A8wWm9TVZl+KBjCpV8Ewo/VuvIR+
-   Gp2k8vlsn44kMOuBEJhkAcVLrQdtuS3m6ugWrjSJDySoRo0o3z/svpI3y
-   D+G9M+AHUsraFLPd98Z5W3GpZwGY0BHxw8+GqfXQrHEwSFGZNBTSkKyGO
-   k=;
-Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
-  by alexa-out.qualcomm.com with ESMTP; 07 Jun 2022 23:30:37 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jun 2022 23:30:36 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Tue, 7 Jun 2022 23:30:36 -0700
-Received: from mpubbise-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Tue, 7 Jun 2022 23:30:33 -0700
-From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, Manikanta Pubbisetty
-	<quic_mpubbise@quicinc.com>, Maxime Bizon <mbizon@freebox.fr>
-Subject: [PATCH] ath11k: Fix register write failure on QCN9074
-Date: Wed, 8 Jun 2022 11:59:54 +0530
-Message-ID: <20220608062954.27792-1-quic_mpubbise@quicinc.com>
-X-Mailer: git-send-email 2.35.1
+	id 1nzeog-008OHI-Lb
+	for ath11k@lists.infradead.org; Fri, 10 Jun 2022 13:36:48 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 5606F61B22
+	for <ath11k@lists.infradead.org>; Fri, 10 Jun 2022 13:36:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 277AFC34114;
+	Fri, 10 Jun 2022 13:36:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1654868204;
+	bh=MvVzgcpreC7kAbvFcHN7/ImYpOY0N6AnfZXoOrGMCX0=;
+	h=From:To:Cc:Subject:Date:From;
+	b=esqsUxY4xzE2Qw42TqlJUPctigFP+s2OJdhSyB/aU+FooeGB9bglV3WT9FCmfaX1v
+	 IRbdMsb1b5E+bLCSYqeBC8aBiZWZxPjXlZFp/fAzj74YuWMuBDxOhXFqxUOGQs4q9y
+	 8nhN610pVxxGakdLSMFLb9ZoRtlbEESvuJC112X2lDdhUj0Kx6SUMUPAJb7xcUiTZG
+	 gmlJLskaIBBRaCT9eNqjdTabgXfcNEzyfgZ7vzZALhye9bq6B1EA5a9H4gTxojQtgN
+	 WpxHnvIFNpZpf+c+aqlmDGqBNGzsnu5yYfEp8xPjGO9A+Vt4Fv/vHZpGpbXZyx8XqJ
+	 gAB2IaRB/iYmg==
+From: Kalle Valo <kvalo@kernel.org>
+To: ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org
+Subject: [PATCH wireless v2 1/2] dt-bindings: net: wireless: ath9k: Change Toke as maintainer
+Date: Fri, 10 Jun 2022 16:36:39 +0300
+Message-Id: <20220610133640.10810-1-kvalo@kernel.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220607_233039_957851_910D5C73 
-X-CRM114-Status: GOOD (  21.75  )
+X-CRM114-CacheID: sfid-20220610_063646_788845_A097EC67 
+X-CRM114-Status: GOOD (  10.13  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,481 +64,28 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Commit 56c8ccf331bd ("ath11k: Add register access logic for WCN6750")
-regressed QCN9074. With the above mentioned commit, writes are failing
-for some registers on QCN9074 although the device seems to work
-normally.
-
-ath11k_pci 0000:03:00.0: failed to set pcie link register0x01e0e0a8: 0xffffffff != 0x00000010
-ath11k_pci 0000:03:00.0: failed to set sysclk: -110
-
-PCIe devices in ath11k (QCA6390, WCN6855, QCN9074, WCN6750) use window
-concept for register accesses. There are two schemes, dynamic & static
-window.
-
-In dynamic window scheme, a single window(region in the BAR) is mapped
-either to CE or DP register windows at any give time. QCA6390 & WCN6855
-follow this scheme for register accesses.
-
-In static window scheme, CE & DP register windows are statically mapped
-to separate regions with in the BAR so that there is no switching of
-register windows between CE & DP register accesses. QCN9074 & WCN6750
-follow this scheme although the window start offsets are different for
-QCN9074 & WCN6750.
-
-QCN9074 uses 3rd & 2nd window for DP & CE register accesses respectively
-whereas WCN6750 uses 1st & 2nd window for DP & CE. In QCN9074, along with
-2nd & 3rd windows, 1st window is also used for certain configurations
-which commit 56c8ccf331bd ("ath11k: Add register access logic for WCN6750")
-did not account for and hence the regression.
-
-Fix this by going back to the original way of accessing the registers on
-QCN9074. Since this diverges from WCN6750 way of accessing registers, it
-is required to register window_read32/window_write32() pci_ops for WCN6750.
-We can also get rid of dp_window_idx & ce_window_idx members in hw_params,
-so remove them.
-
-Also add a new API ath11k_pcic_register_pci_ops() for registering pci_ops
-to the ath11k core. This API checks for mandatory pci_ops() and reports
-error if those are missing. Also initialize unused pci_ops to NULL.
-
-Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
-Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.6.0.1-00861-QCAHKSWPL_SILICONZ-1
-
-Fixes: 56c8ccf331bd ("ath11k: Add register access logic for WCN6750")
-Reported-by: Maxime Bizon <mbizon@freebox.fr>
-Tested-by: Maxime Bizon <mbizon@freebox.fr>
-Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/ahb.c  | 52 +++++++++++++++++-
- drivers/net/wireless/ath/ath11k/core.c | 14 -----
- drivers/net/wireless/ath/ath11k/hw.h   |  2 -
- drivers/net/wireless/ath/ath11k/pci.c  | 74 +++++++++++++++++++++-----
- drivers/net/wireless/ath/ath11k/pcic.c | 57 ++++++++------------
- drivers/net/wireless/ath/ath11k/pcic.h |  2 +
- 6 files changed, 134 insertions(+), 67 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index d7d33d5cdfc5..c47414710138 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.c
-+++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -140,8 +140,53 @@ ath11k_ahb_get_msi_irq_wcn6750(struct ath11k_base *ab, unsigned int vector)
- 	return ab->pci.msi.irqs[vector];
- }
- 
-+static inline u32
-+ath11k_ahb_get_window_start_wcn6750(struct ath11k_base *ab, u32 offset)
-+{
-+	u32 window_start = 0;
-+
-+	/* If offset lies within DP register range, use 1st window */
-+	if ((offset ^ HAL_SEQ_WCSS_UMAC_OFFSET) < ATH11K_PCI_WINDOW_RANGE_MASK)
-+		window_start = ATH11K_PCI_WINDOW_START;
-+	/* If offset lies within CE register range, use 2nd window */
-+	else if ((offset ^ HAL_SEQ_WCSS_UMAC_CE0_SRC_REG(ab)) <
-+		 ATH11K_PCI_WINDOW_RANGE_MASK)
-+		window_start = 2 * ATH11K_PCI_WINDOW_START;
-+
-+	return window_start;
-+}
-+
-+static void
-+ath11k_ahb_window_write32_wcn6750(struct ath11k_base *ab, u32 offset, u32 value)
-+{
-+	u32 window_start;
-+
-+	/* WCN6750 uses static window based register access*/
-+	window_start = ath11k_ahb_get_window_start_wcn6750(ab, offset);
-+
-+	iowrite32(value, ab->mem + window_start +
-+		  (offset & ATH11K_PCI_WINDOW_RANGE_MASK));
-+}
-+
-+static u32 ath11k_ahb_window_read32_wcn6750(struct ath11k_base *ab, u32 offset)
-+{
-+	u32 window_start;
-+	u32 val;
-+
-+	/* WCN6750 uses static window based register access */
-+	window_start = ath11k_ahb_get_window_start_wcn6750(ab, offset);
-+
-+	val = ioread32(ab->mem + window_start +
-+		       (offset & ATH11K_PCI_WINDOW_RANGE_MASK));
-+	return val;
-+}
-+
- static const struct ath11k_pci_ops ath11k_ahb_pci_ops_wcn6750 = {
-+	.wakeup = NULL,
-+	.release = NULL,
- 	.get_msi_irq = ath11k_ahb_get_msi_irq_wcn6750,
-+	.window_write32 = ath11k_ahb_window_write32_wcn6750,
-+	.window_read32 = ath11k_ahb_window_read32_wcn6750,
- };
- 
- static inline u32 ath11k_ahb_read32(struct ath11k_base *ab, u32 offset)
-@@ -971,11 +1016,16 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
- 	}
- 
- 	ab->hif.ops = hif_ops;
--	ab->pci.ops = pci_ops;
- 	ab->pdev = pdev;
- 	ab->hw_rev = hw_rev;
- 	platform_set_drvdata(pdev, ab);
- 
-+	ret = ath11k_pcic_register_pci_ops(ab, pci_ops);
-+	if (ret) {
-+		ath11k_err(ab, "failed to register PCI ops: %d\n", ret);
-+		goto err_core_free;
-+	}
-+
- 	ret = ath11k_core_pre_init(ab);
- 	if (ret)
- 		goto err_core_free;
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index c8e0bc935838..6ddc698f4a2d 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -107,8 +107,6 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.fixed_mem_region = true,
- 		.static_window_map = false,
- 		.hybrid_bus_type = false,
--		.dp_window_idx = 0,
--		.ce_window_idx = 0,
- 		.fixed_fw_mem = false,
- 		.support_off_channel_tx = false,
- 	},
-@@ -183,8 +181,6 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.fixed_mem_region = true,
- 		.static_window_map = false,
- 		.hybrid_bus_type = false,
--		.dp_window_idx = 0,
--		.ce_window_idx = 0,
- 		.fixed_fw_mem = false,
- 		.support_off_channel_tx = false,
- 	},
-@@ -258,8 +254,6 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.fixed_mem_region = false,
- 		.static_window_map = false,
- 		.hybrid_bus_type = false,
--		.dp_window_idx = 0,
--		.ce_window_idx = 0,
- 		.fixed_fw_mem = false,
- 		.support_off_channel_tx = true,
- 	},
-@@ -333,8 +327,6 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.fixed_mem_region = false,
- 		.static_window_map = true,
- 		.hybrid_bus_type = false,
--		.dp_window_idx = 3,
--		.ce_window_idx = 2,
- 		.fixed_fw_mem = false,
- 		.support_off_channel_tx = false,
- 	},
-@@ -408,8 +400,6 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.fixed_mem_region = false,
- 		.static_window_map = false,
- 		.hybrid_bus_type = false,
--		.dp_window_idx = 0,
--		.ce_window_idx = 0,
- 		.fixed_fw_mem = false,
- 		.support_off_channel_tx = true,
- 	},
-@@ -482,8 +472,6 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.fixed_mem_region = false,
- 		.static_window_map = false,
- 		.hybrid_bus_type = false,
--		.dp_window_idx = 0,
--		.ce_window_idx = 0,
- 		.fixed_fw_mem = false,
- 		.support_off_channel_tx = true,
- 	},
-@@ -556,8 +544,6 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.fixed_mem_region = false,
- 		.static_window_map = true,
- 		.hybrid_bus_type = true,
--		.dp_window_idx = 1,
--		.ce_window_idx = 2,
- 		.fixed_fw_mem = true,
- 		.support_off_channel_tx = false,
- 	},
-diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
-index 77dc5c851c9b..84c284fab5db 100644
---- a/drivers/net/wireless/ath/ath11k/hw.h
-+++ b/drivers/net/wireless/ath/ath11k/hw.h
-@@ -201,8 +201,6 @@ struct ath11k_hw_params {
- 	bool fixed_mem_region;
- 	bool static_window_map;
- 	bool hybrid_bus_type;
--	u8 dp_window_idx;
--	u8 ce_window_idx;
- 	bool fixed_fw_mem;
- 	bool support_off_channel_tx;
- };
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index 487a303b3077..aec91d7414d5 100644
---- a/drivers/net/wireless/ath/ath11k/pci.c
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -50,6 +50,23 @@ static void ath11k_pci_bus_release(struct ath11k_base *ab)
- 	mhi_device_put(ab_pci->mhi_ctrl->mhi_dev);
- }
- 
-+static inline u32 ath11k_pci_get_window_start(struct ath11k_base *ab, u32 offset)
-+{
-+	u32 window_start;
-+
-+	/* If offset lies within DP register range, use 3rd window */
-+	if ((offset ^ HAL_SEQ_WCSS_UMAC_OFFSET) < ATH11K_PCI_WINDOW_RANGE_MASK)
-+		window_start = 3 * ATH11K_PCI_WINDOW_START;
-+	/* If offset lies within CE register range, use 2nd window */
-+	else if ((offset ^ HAL_SEQ_WCSS_UMAC_CE0_SRC_REG(ab)) <
-+		 ATH11K_PCI_WINDOW_RANGE_MASK)
-+		window_start = 2 * ATH11K_PCI_WINDOW_START;
-+	else
-+		window_start = ATH11K_PCI_WINDOW_START;
-+
-+	return window_start;
-+}
-+
- static inline void ath11k_pci_select_window(struct ath11k_pci *ab_pci, u32 offset)
- {
- 	struct ath11k_base *ab = ab_pci->ab;
-@@ -70,13 +87,23 @@ static void
- ath11k_pci_window_write32(struct ath11k_base *ab, u32 offset, u32 value)
- {
- 	struct ath11k_pci *ab_pci = ath11k_pci_priv(ab);
--	u32 window_start = ATH11K_PCI_WINDOW_START;
-+	u32 window_start;
- 
--	spin_lock_bh(&ab_pci->window_lock);
--	ath11k_pci_select_window(ab_pci, offset);
--	iowrite32(value, ab->mem + window_start +
--		  (offset & ATH11K_PCI_WINDOW_RANGE_MASK));
--	spin_unlock_bh(&ab_pci->window_lock);
-+	if (ab->hw_params.static_window_map)
-+		window_start = ath11k_pci_get_window_start(ab, offset);
-+	else
-+		window_start = ATH11K_PCI_WINDOW_START;
-+
-+	if (window_start == ATH11K_PCI_WINDOW_START) {
-+		spin_lock_bh(&ab_pci->window_lock);
-+		ath11k_pci_select_window(ab_pci, offset);
-+		iowrite32(value, ab->mem + window_start +
-+			  (offset & ATH11K_PCI_WINDOW_RANGE_MASK));
-+		spin_unlock_bh(&ab_pci->window_lock);
-+	} else {
-+		iowrite32(value, ab->mem + window_start +
-+			  (offset & ATH11K_PCI_WINDOW_RANGE_MASK));
-+	}
- }
- 
- static u32 ath11k_pci_window_read32(struct ath11k_base *ab, u32 offset)
-@@ -85,11 +112,21 @@ static u32 ath11k_pci_window_read32(struct ath11k_base *ab, u32 offset)
- 	u32 window_start = ATH11K_PCI_WINDOW_START;
- 	u32 val;
- 
--	spin_lock_bh(&ab_pci->window_lock);
--	ath11k_pci_select_window(ab_pci, offset);
--	val = ioread32(ab->mem + window_start +
--		       (offset & ATH11K_PCI_WINDOW_RANGE_MASK));
--	spin_unlock_bh(&ab_pci->window_lock);
-+	if (ab->hw_params.static_window_map)
-+		window_start = ath11k_pci_get_window_start(ab, offset);
-+	else
-+		window_start = ATH11K_PCI_WINDOW_START;
-+
-+	if (window_start == ATH11K_PCI_WINDOW_START) {
-+		spin_lock_bh(&ab_pci->window_lock);
-+		ath11k_pci_select_window(ab_pci, offset);
-+		val = ioread32(ab->mem + window_start +
-+			       (offset & ATH11K_PCI_WINDOW_RANGE_MASK));
-+		spin_unlock_bh(&ab_pci->window_lock);
-+	} else {
-+		val = ioread32(ab->mem + window_start +
-+			       (offset & ATH11K_PCI_WINDOW_RANGE_MASK));
-+	}
- 
- 	return val;
- }
-@@ -110,6 +147,8 @@ static const struct ath11k_pci_ops ath11k_pci_ops_qca6390 = {
- };
- 
- static const struct ath11k_pci_ops ath11k_pci_ops_qcn9074 = {
-+	.wakeup = NULL,
-+	.release = NULL,
- 	.get_msi_irq = ath11k_pci_get_msi_irq,
- 	.window_write32 = ath11k_pci_window_write32,
- 	.window_read32 = ath11k_pci_window_read32,
-@@ -697,6 +736,7 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
- 	struct ath11k_base *ab;
- 	struct ath11k_pci *ab_pci;
- 	u32 soc_hw_version_major, soc_hw_version_minor, addr;
-+	const struct ath11k_pci_ops *pci_ops;
- 	int ret;
- 
- 	ab = ath11k_core_alloc(&pdev->dev, sizeof(*ab_pci), ATH11K_BUS_PCI);
-@@ -754,10 +794,10 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
- 			goto err_pci_free_region;
- 		}
- 
--		ab->pci.ops = &ath11k_pci_ops_qca6390;
-+		pci_ops = &ath11k_pci_ops_qca6390;
- 		break;
- 	case QCN9074_DEVICE_ID:
--		ab->pci.ops = &ath11k_pci_ops_qcn9074;
-+		pci_ops = &ath11k_pci_ops_qcn9074;
- 		ab->hw_rev = ATH11K_HW_QCN9074_HW10;
- 		break;
- 	case WCN6855_DEVICE_ID:
-@@ -787,7 +827,7 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
- 			goto err_pci_free_region;
- 		}
- 
--		ab->pci.ops = &ath11k_pci_ops_qca6390;
-+		pci_ops = &ath11k_pci_ops_qca6390;
- 		break;
- 	default:
- 		dev_err(&pdev->dev, "Unknown PCI device found: 0x%x\n",
-@@ -796,6 +836,12 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
- 		goto err_pci_free_region;
- 	}
- 
-+	ret = ath11k_pcic_register_pci_ops(ab, pci_ops);
-+	if (ret) {
-+		ath11k_err(ab, "failed to register PCI ops: %d\n", ret);
-+		goto err_pci_free_region;
-+	}
-+
- 	ret = ath11k_pcic_init_msi_config(ab);
- 	if (ret) {
- 		ath11k_err(ab, "failed to init msi config: %d\n", ret);
-diff --git a/drivers/net/wireless/ath/ath11k/pcic.c b/drivers/net/wireless/ath/ath11k/pcic.c
-index cf12b98c480d..1adf20ebef27 100644
---- a/drivers/net/wireless/ath/ath11k/pcic.c
-+++ b/drivers/net/wireless/ath/ath11k/pcic.c
-@@ -140,23 +140,8 @@ int ath11k_pcic_init_msi_config(struct ath11k_base *ab)
- }
- EXPORT_SYMBOL(ath11k_pcic_init_msi_config);
- 
--static inline u32 ath11k_pcic_get_window_start(struct ath11k_base *ab,
--					       u32 offset)
--{
--	u32 window_start = 0;
--
--	if ((offset ^ HAL_SEQ_WCSS_UMAC_OFFSET) < ATH11K_PCI_WINDOW_RANGE_MASK)
--		window_start = ab->hw_params.dp_window_idx * ATH11K_PCI_WINDOW_START;
--	else if ((offset ^ HAL_SEQ_WCSS_UMAC_CE0_SRC_REG(ab)) <
--		 ATH11K_PCI_WINDOW_RANGE_MASK)
--		window_start = ab->hw_params.ce_window_idx * ATH11K_PCI_WINDOW_START;
--
--	return window_start;
--}
--
- void ath11k_pcic_write32(struct ath11k_base *ab, u32 offset, u32 value)
- {
--	u32 window_start;
- 	int ret = 0;
- 
- 	/* for offset beyond BAR + 4K - 32, may
-@@ -166,15 +151,10 @@ void ath11k_pcic_write32(struct ath11k_base *ab, u32 offset, u32 value)
- 	    offset >= ATH11K_PCI_ACCESS_ALWAYS_OFF && ab->pci.ops->wakeup)
- 		ret = ab->pci.ops->wakeup(ab);
- 
--	if (offset < ATH11K_PCI_WINDOW_START) {
-+	if (offset < ATH11K_PCI_WINDOW_START)
- 		iowrite32(value, ab->mem  + offset);
--	} else if (ab->hw_params.static_window_map) {
--		window_start = ath11k_pcic_get_window_start(ab, offset);
--		iowrite32(value, ab->mem + window_start +
--			  (offset & ATH11K_PCI_WINDOW_RANGE_MASK));
--	} else if (ab->pci.ops->window_write32) {
-+	else
- 		ab->pci.ops->window_write32(ab, offset, value);
--	}
- 
- 	if (test_bit(ATH11K_FLAG_DEVICE_INIT_DONE, &ab->dev_flags) &&
- 	    offset >= ATH11K_PCI_ACCESS_ALWAYS_OFF && ab->pci.ops->release &&
-@@ -185,9 +165,8 @@ EXPORT_SYMBOL(ath11k_pcic_write32);
- 
- u32 ath11k_pcic_read32(struct ath11k_base *ab, u32 offset)
- {
--	u32 val = 0;
--	u32 window_start;
- 	int ret = 0;
-+	u32 val;
- 
- 	/* for offset beyond BAR + 4K - 32, may
- 	 * need to wakeup the device to access.
-@@ -196,15 +175,10 @@ u32 ath11k_pcic_read32(struct ath11k_base *ab, u32 offset)
- 	    offset >= ATH11K_PCI_ACCESS_ALWAYS_OFF && ab->pci.ops->wakeup)
- 		ret = ab->pci.ops->wakeup(ab);
- 
--	if (offset < ATH11K_PCI_WINDOW_START) {
-+	if (offset < ATH11K_PCI_WINDOW_START)
- 		val = ioread32(ab->mem + offset);
--	} else if (ab->hw_params.static_window_map) {
--		window_start = ath11k_pcic_get_window_start(ab, offset);
--		val = ioread32(ab->mem + window_start +
--			       (offset & ATH11K_PCI_WINDOW_RANGE_MASK));
--	} else if (ab->pci.ops->window_read32) {
-+	else
- 		val = ab->pci.ops->window_read32(ab, offset);
--	}
- 
- 	if (test_bit(ATH11K_FLAG_DEVICE_INIT_DONE, &ab->dev_flags) &&
- 	    offset >= ATH11K_PCI_ACCESS_ALWAYS_OFF && ab->pci.ops->release &&
-@@ -516,11 +490,6 @@ static irqreturn_t ath11k_pcic_ext_interrupt_handler(int irq, void *arg)
- static int
- ath11k_pcic_get_msi_irq(struct ath11k_base *ab, unsigned int vector)
- {
--	if (!ab->pci.ops->get_msi_irq) {
--		WARN_ONCE(1, "get_msi_irq pci op not defined");
--		return -EOPNOTSUPP;
--	}
--
- 	return ab->pci.ops->get_msi_irq(ab, vector);
- }
- 
-@@ -746,3 +715,19 @@ int ath11k_pcic_map_service_to_pipe(struct ath11k_base *ab, u16 service_id,
- 	return 0;
- }
- EXPORT_SYMBOL(ath11k_pcic_map_service_to_pipe);
-+
-+int ath11k_pcic_register_pci_ops(struct ath11k_base *ab,
-+				 const struct ath11k_pci_ops *pci_ops)
-+{
-+	if (!pci_ops)
-+		return 0;
-+
-+	/* Return error if mandatory pci_ops callbacks are missing */
-+	if (!pci_ops->get_msi_irq || !pci_ops->window_write32 ||
-+	    !pci_ops->window_read32)
-+		return -EINVAL;
-+
-+	ab->pci.ops = pci_ops;
-+	return 0;
-+}
-+EXPORT_SYMBOL(ath11k_pcic_register_pci_ops);
-diff --git a/drivers/net/wireless/ath/ath11k/pcic.h b/drivers/net/wireless/ath/ath11k/pcic.h
-index c53d86289a8e..0afbb34510db 100644
---- a/drivers/net/wireless/ath/ath11k/pcic.h
-+++ b/drivers/net/wireless/ath/ath11k/pcic.h
-@@ -43,4 +43,6 @@ int ath11k_pcic_map_service_to_pipe(struct ath11k_base *ab, u16 service_id,
- void ath11k_pcic_ce_irqs_enable(struct ath11k_base *ab);
- void ath11k_pcic_ce_irq_disable_sync(struct ath11k_base *ab);
- int ath11k_pcic_init_msi_config(struct ath11k_base *ab);
-+int ath11k_pcic_register_pci_ops(struct ath11k_base *ab,
-+				 const struct ath11k_pci_ops *pci_ops);
- #endif
--- 
-2.35.1
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+RnJvbTogS2FsbGUgVmFsbyA8cXVpY19rdmFsb0BxdWljaW5jLmNvbT4KClRva2Ugbm93IG1haW50
+YWlucyBhdGg5ayBzbyB1cGRhdGUgRFQgYmluZGluZ3MgYXMgd2VsbC4KClNpZ25lZC1vZmYtYnk6
+IEthbGxlIFZhbG8gPHF1aWNfa3ZhbG9AcXVpY2luYy5jb20+Ci0tLQogRG9jdW1lbnRhdGlvbi9k
+ZXZpY2V0cmVlL2JpbmRpbmdzL25ldC93aXJlbGVzcy9xY2EsYXRoOWsueWFtbCB8IDIgKy0KIDEg
+ZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdpdCBh
+L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9uZXQvd2lyZWxlc3MvcWNhLGF0aDlr
+LnlhbWwgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbmV0L3dpcmVsZXNzL3Fj
+YSxhdGg5ay55YW1sCmluZGV4IDhjZDBhZGJmNzAyMS4uNzAyOWNiMWYzOGZmIDEwMDY0NAotLS0g
+YS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbmV0L3dpcmVsZXNzL3FjYSxhdGg5
+ay55YW1sCisrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9uZXQvd2lyZWxl
+c3MvcWNhLGF0aDlrLnlhbWwKQEAgLTcsNyArNyw3IEBAICRzY2hlbWE6IGh0dHA6Ly9kZXZpY2V0
+cmVlLm9yZy9tZXRhLXNjaGVtYXMvY29yZS55YW1sIwogdGl0bGU6IFF1YWxjb21tIEF0aGVyb3Mg
+YXRoOWsgd2lyZWxlc3MgZGV2aWNlcyBHZW5lcmljIEJpbmRpbmcKIAogbWFpbnRhaW5lcnM6Ci0g
+IC0gS2FsbGUgVmFsbyA8a3ZhbG9AY29kZWF1cm9yYS5vcmc+CisgIC0gVG9rZSBIw7hpbGFuZC1K
+w7hyZ2Vuc2VuIDx0b2tlQHRva2UuZGs+CiAKIGRlc2NyaXB0aW9uOiB8CiAgIFRoaXMgbm9kZSBw
+cm92aWRlcyBwcm9wZXJ0aWVzIGZvciBjb25maWd1cmluZyB0aGUgYXRoOWsgd2lyZWxlc3MgZGV2
+aWNlLgoKYmFzZS1jb21taXQ6IDkwZjRiNTQ5OWNkZDk0YmUzYzFlODU2Mzc1ZWNkN2Q1ZjljNGNl
+Y2MKLS0gCjIuMzAuMgoKCi0tIAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0cy5pbmZy
+YWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vYXRo
+MTFrCg==
