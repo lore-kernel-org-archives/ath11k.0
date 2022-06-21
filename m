@@ -4,60 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE081CCA482
-	for <ath11k@archiver.kernel.org>; Tue, 21 Jun 2022 13:53:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFC8FCCA483
+	for <ath11k@archiver.kernel.org>; Tue, 21 Jun 2022 13:53:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=0p5FRhuTMoy10U/gtWK/y3jW31gyl5aWmZT4MyNGHuo=; b=4gv3cIhANliOmS
-	gP20n7ndKSaFTPLMBw3PDkZQaU6sLWyTNfZudw4APVsivlR/JMkibsliPxt4RCqvcD2H7T8dERm8q
-	wEDrhrH3Is+4RLOaIQwyOxJ3w7uVLaIUZH3UupO8MCkbChsHu2RX/EBJXVvXPe3RFheiM2yDvE4LP
-	0JNc3WdUBYrZYJI2Oq1b9Dng3ZvZPRfViddohf2j8yssin0qoNMEQkWa0UolraiC+ETwQfyLx9tiY
-	jwgGcpzAQSlWz788d/1r2ot/8g1lEMAEsXGC1rlEO1RYC3R9JC9UnI1x6NysMYWIXc+tcVXWcGRaO
-	rwljX1NuDaiW3PWLp+fA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=sbZLR1zWhBbu/LxGI16fv6t/fWH3pm2lNJrCUzaRowE=; b=jJvpxA293HFfmJ
+	ikWkbIgxIrzwagnQAAo2fBGclZt0XHXvGGngaolObTtvUGvUr9O4N0PGDJGM2ASMMMgl2qCZdFgrP
+	vMOabKV+xY0jOMlvBq/6alu3WvUXsLK+ClZN3WNtHyQ7k9gb5P4h8wqxhvX8/rcW+bbl4HxfJf2IP
+	xXpwAySIs+QhOaXGahCbrUe2Eh0haEa6ionzvBG5iGWORbSdWXKNGkTqyNDEBEfRa9W8i5Lz1HQYU
+	yjchjCfJcQLVq/FmvqIcbXKpxZRpNYURIizQfyZJVnlzdu1Q2YkLFVCXV4a/x4gXAZgFAPYJy8W7y
+	7F4hv57Fs+8xlISZA4Jg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o3eKD-005mab-RL; Tue, 21 Jun 2022 13:53:49 +0000
-Received: from mail-ej1-x636.google.com ([2a00:1450:4864:20::636])
+	id 1o3eKF-005mar-7q; Tue, 21 Jun 2022 13:53:51 +0000
+Received: from mail-ej1-x635.google.com ([2a00:1450:4864:20::635])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o3eKB-005mZ6-28
-	for ath11k@lists.infradead.org; Tue, 21 Jun 2022 13:53:48 +0000
-Received: by mail-ej1-x636.google.com with SMTP id u12so27651719eja.8
-        for <ath11k@lists.infradead.org>; Tue, 21 Jun 2022 06:53:44 -0700 (PDT)
+	id 1o3eKC-005mZD-Cv
+	for ath11k@lists.infradead.org; Tue, 21 Jun 2022 13:53:49 +0000
+Received: by mail-ej1-x635.google.com with SMTP id fu3so27669116ejc.7
+        for <ath11k@lists.infradead.org>; Tue, 21 Jun 2022 06:53:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=roHXTUL4tKXVN//IvEXVUmOPrGKI2A3Q1fTOEiNxRiE=;
-        b=P5XX+bTiGw5qp8eSMfarTWvbuYZdIdE/DXb5iSZ8X4x/m9/szH6t40nyGlna8U8T7E
-         e9zqDZ2c7I5374q+h+4xdhLKoMxCMXy3CAWe5PUGt+/SxouSYiYMbhXYZaCNnxA5CkCY
-         wi99hSVxmqCBzZLtZw2muvN23Rdb1KEyGYIJIvFZH7iVLeIhtRqfGWXyMoDw5YUHH5oD
-         reUW+m5SeNYHj1VmO1rijqrQE5gJ5MsjHrO4BSn/hsJsuqzPkXFLkIx1iAHJVbD2a3GB
-         GbnykMSfI7VYnn1KOuERBdm+67sGyC/kkCevOwELffMJ8DnRu1lw4miR8viQYylwXpR9
-         Vb3Q==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=+bnD9hK3prWl6/gYLDJgj48e9xi4+igUWjv8z3KjEBQ=;
+        b=LowuFnu5EJgFHfzLAZhiUV7XOQNZYlScpKJ1ehzxo7KJUk/9pWR71H5EwqtpxEx3Fb
+         YfUSnzxFnVD5ot3ZdEG/1igUSRaTi/xWfLb5fuEOpbNSFVuKIjJTVrwwTHeCLKoMRJiK
+         KzxkPB4jtqUyMX0mNr0addwuL2bf1o/va3KQGfEucHbsrEipOW/Tu6qRQGWNAR36wPQ+
+         0l4e/9P2t8Qt6/XCOfuMjO/QegqXx1ndv31XZaecmI15AW/LMCT7QJ6ogvgzx/NhjVmj
+         ZQ5RnwLxa8kMBixDilmjmSKpGebk/zzlWsGhbtnErPIUxik2SZ6+HuZ2IUPl9ttXvmGG
+         G9nw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=roHXTUL4tKXVN//IvEXVUmOPrGKI2A3Q1fTOEiNxRiE=;
-        b=qKMNx6+ffHOlcWX8Wc9ZC59pVpawhB23Jx6F5ZPeZ8K7eOu13f6QubM4GxVWAksT9A
-         ws0r98O3kwGPa/I9jgDlw0mKNO7x6yDpGobyYu2Eh7YuNmBBHz3H2vEJbVTmIcAUS44G
-         FmqOtVF+n3+HI9nztG8kBOIoW0i/DRP8ljUddjWxJlqtHGKb2blU7OLDmIAXD8PCRg/Y
-         U0z4byjV9QX9yyP43brPRXBnBeYhZvrKWZsyG8wzuVinub9qkN2TEQp//HUx0BWj8cHS
-         9c6kVL1gBqVQF1JS2leia30GZQQpObRJmo3gVQNmMMwqvtixcLah9f1KURS5ePDZ1LP3
-         pe6g==
-X-Gm-Message-State: AJIora/W3HW3ka/usY88ww8XzZU4h8qK8gdWNgFUq2nKu0wrcnFRZn8p
-	r2XLjFgilvbDBXLJOdoWq5w=
-X-Google-Smtp-Source: AGRyM1sczfnqeoBRL2JVbKBxe9KgCynS8OEYJM73QMnSa2Iy5BIRI4fRPUdc2rdfo7pOMxyFAXFyuw==
-X-Received: by 2002:a17:906:c7c8:b0:70c:a62c:d0e8 with SMTP id dc8-20020a170906c7c800b0070ca62cd0e8mr25422461ejb.545.1655819623364;
-        Tue, 21 Jun 2022 06:53:43 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=+bnD9hK3prWl6/gYLDJgj48e9xi4+igUWjv8z3KjEBQ=;
+        b=TbJ7dIqbnTy4InP60pzbBY8qxl37d3n15zLIeoP+GzQe03u3DJAYTJ7NknrOS07UwY
+         Y1smo4wZFJaUk+dDgI4b53DqOM2vGDMF6bjYWkkO0ZZz5+ZeNCa47xxUtZqHNc8VVYe6
+         W1hDbYd8etG+P5vzOZwJw1n6JrMkCkR48Fu1+AydULzJsqWFrqdLWYQjJ2PDmSL/dmBj
+         l5ir1RDWCN2mRgvlaygCDGtxGfPVL7hgElsHEV84vY5aZUGO+BNOrZqQs5djcaorV7uJ
+         CCRpdnr968toGDnaXlRL+SMIqBBSeK4bEuKUm8yckUqsROtO095oj8o/kcbbPVKSJjEA
+         cCTQ==
+X-Gm-Message-State: AJIora/P2PGJduDM+sk9Wc4eCItT/5r3vDLM8yPzTCACsCGxB8h7PQND
+	tAlgyH4b8uKPf3wJsM2rhG4=
+X-Google-Smtp-Source: AGRyM1t1OnGmn/19PEpvpFJ5PtSkks3BLBi/GIwdyVDyqV8uzkzUJ+za1jeXY1Kw9XAFhVPac2/SNw==
+X-Received: by 2002:a17:907:7b8a:b0:707:59d4:14a3 with SMTP id ne10-20020a1709077b8a00b0070759d414a3mr25833143ejc.51.1655819624627;
+        Tue, 21 Jun 2022 06:53:44 -0700 (PDT)
 Received: from fedora.robimarko.hr (dh207-99-158.xnet.hr. [88.207.99.158])
-        by smtp.googlemail.com with ESMTPSA id fy11-20020a1709069f0b00b007104b37aab7sm7325408ejc.106.2022.06.21.06.53.41
+        by smtp.googlemail.com with ESMTPSA id fy11-20020a1709069f0b00b007104b37aab7sm7325408ejc.106.2022.06.21.06.53.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Jun 2022 06:53:42 -0700 (PDT)
+        Tue, 21 Jun 2022 06:53:44 -0700 (PDT)
 From: Robert Marko <robimarko@gmail.com>
 To: kvalo@kernel.org,
 	davem@davemloft.net,
@@ -72,14 +72,16 @@ To: kvalo@kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
 Cc: Robert Marko <robimarko@gmail.com>
-Subject: [PATCH 1/2] dt-bindings: net: wireless: ath11k: add new DT entry for board ID
-Date: Tue, 21 Jun 2022 15:53:38 +0200
-Message-Id: <20220621135339.1269409-1-robimarko@gmail.com>
+Subject: [PATCH 2/2] ath11k: search DT for qcom,ath11k-board-id
+Date: Tue, 21 Jun 2022 15:53:39 +0200
+Message-Id: <20220621135339.1269409-2-robimarko@gmail.com>
 X-Mailer: git-send-email 2.36.1
+In-Reply-To: <20220621135339.1269409-1-robimarko@gmail.com>
+References: <20220621135339.1269409-1-robimarko@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220621_065347_166420_D1E84276 
-X-CRM114-Status: GOOD (  12.04  )
+X-CRM114-CacheID: sfid-20220621_065348_475752_471C61B9 
+X-CRM114-Status: GOOD (  14.99  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,35 +105,54 @@ This however is sometimes not enough as all of the IPQ8074 boards that I
 have access to dont have the qmi-board-id properly fused and simply return
 the default value of 0xFF.
 
-So, to provide the correct qmi-board-id add a new DT property that allows
-the qmi-board-id to be overridden from DTS in cases where its not set.
+So, to provide the correct qmi-board-id look for the qcom,ath11k-board-id
+property and use that.
 This is what vendors have been doing in the stock firmwares that were
 shipped on boards I have.
 
+It should be added to DTS like:
+	wifi@c000000 {
+        status = "okay";
+
+        qcom,ath11k-board-id = <658>;
+        qcom,ath11k-calibration-variant = "Edgecore-EAP102";
+    };
+
 Signed-off-by: Robert Marko <robimarko@gmail.com>
 ---
- .../devicetree/bindings/net/wireless/qcom,ath11k.yaml     | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/net/wireless/ath/ath11k/qmi.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-index a677b056f112..fe6aafdab9d4 100644
---- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-+++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-@@ -41,6 +41,14 @@ properties:
-         * reg
-         * reg-names
+diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
+index 00136601cb7d..9d27b4968d10 100644
+--- a/drivers/net/wireless/ath/ath11k/qmi.c
++++ b/drivers/net/wireless/ath/ath11k/qmi.c
+@@ -2172,12 +2172,14 @@ static int ath11k_qmi_request_device_info(struct ath11k_base *ab)
  
-+  qcom,ath11k-board-id:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Board ID to override the one returned by the firmware or the default
-+      0xff if it was not set by the vendor at all.
-+      It is used along the ath11k-calibration-variant to mach the correct
-+      calibration data from board-2.bin.
-+
-   qcom,ath11k-calibration-variant:
-     $ref: /schemas/types.yaml#/definitions/string
-     description:
+ static int ath11k_qmi_request_target_cap(struct ath11k_base *ab)
+ {
++	struct device *dev = ab->dev;
+ 	struct qmi_wlanfw_cap_req_msg_v01 req;
+ 	struct qmi_wlanfw_cap_resp_msg_v01 resp;
+ 	struct qmi_txn txn;
+ 	int ret = 0;
+ 	int r;
+ 	char *fw_build_id;
++	unsigned int board_id;
+ 	int fw_build_id_mask_len;
+ 
+ 	memset(&req, 0, sizeof(req));
+@@ -2219,7 +2221,9 @@ static int ath11k_qmi_request_target_cap(struct ath11k_base *ab)
+ 		ab->qmi.target.chip_family = resp.chip_info.chip_family;
+ 	}
+ 
+-	if (resp.board_info_valid)
++	if (!of_property_read_u32(dev->of_node, "qcom,ath11k-board-id", &board_id))
++		ab->qmi.target.board_id = board_id;
++	else if (resp.board_info_valid)
+ 		ab->qmi.target.board_id = resp.board_info.board_id;
+ 	else
+ 		ab->qmi.target.board_id = 0xFF;
 -- 
 2.36.1
 
