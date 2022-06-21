@@ -4,51 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8B9CC43334
-	for <ath11k@archiver.kernel.org>; Tue, 21 Jun 2022 11:06:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1AC29C433EF
+	for <ath11k@archiver.kernel.org>; Tue, 21 Jun 2022 11:30:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:
-	Subject:To:From:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=nxOtTu5Dvgjl1SZc8Ji3oV5AvZ0NqpPfYGeJ2yR2i3k=; b=C1E0iGEbePpUr7
-	FZPi+SxzPP8dggfJEpdoyY+Odm2p+GBQ+wnsVMNiB/azKY0HVghjQxtHGAw3SBH0pkYjbejkFoT1U
-	cG3fgtALk2jLfMkoDPbbfqwd7t5HnrM0yBnfOIOsGj01x5ywYuy1Z+PFb/R/HvIDHqLR/IVuCJf4a
-	qBCfgmpNjoaAHAT+EbTXlI/CaRo99Ym9byobtyp7FBYl6oj5OPfrbsLpAeqheFKh8e5+jGtkZZboj
-	DGh/i2zYEXnlXzFrUkObuooxeZ+muVKTV76IZxrTltARZZLdjIvnlRmht7K5o4VF46LELibd0pWfE
-	7dHjzJoq+CcuOhq4C1AQ==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	MIME-Version:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	References:List-Owner; bh=n8N17Mchtcf9ihc+xOjJA9HxIOvxYzxHSIrJVDc7PGY=; b=m/U
+	vqUG/OoCVpF8XbqT+duPBLxBZT+J2mMLn4sGgFz7JkiPMLafClPdDTcrTLKatI4OOj7GuyE0D6f0s
+	1JuaFSWaGHnoJ2lDgToZd736aicYXVDqZgWm8pap188L/NwxhS2//76m69MoYjwahMo4Lgx1d4phq
+	Jzskzx0FpyWhrl8BKZvgsDo7IFhG5gFD3+hcvVG0umO7fpigevTcIRgOa6Mf8L5tLoUllKXeZ/je0
+	ouLcQ/49kXRcxhyyMsCO8jTfDQaoLXBpnSBHUkE/rV+C3aCAw1Kt2C8PbfAP1bC80S24/42qrGk2O
+	QcnZn+dDwiNBrUYDBRNacddDa4x3KEQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o3bhx-0050gO-0v; Tue, 21 Jun 2022 11:06:09 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1o3c5g-00549o-Ne; Tue, 21 Jun 2022 11:30:40 +0000
+Received: from mail-pf1-x434.google.com ([2607:f8b0:4864:20::434])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o3bhv-0050fs-LQ
-	for ath11k@bombadil.infradead.org; Tue, 21 Jun 2022 11:06:07 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-	:MIME-Version:Message-ID:Date:Subject:To:From:Reply-To:Sender:Cc:Content-ID:
-	Content-Description:In-Reply-To:References;
-	bh=uUZIMU47P6dJU2wQrlHidzKhjU0X5Ew56yOxpmDv6FA=; b=qtJPSNp9Rmaio9UIQp2pm5VyQ3
-	USYtZ44JlngEAlJjVEMXbszs1uTbHnhyT2RIaUGZXSvgjQ7OM3/kvyTw0vdz5315Z7zBqqAdWg5yK
-	54w7eDUrKe+bWL0JPu/HazIOMIFJV6KFfZX5U/+JdYkMgQvCvaZsoUOXr/qr0cRGYdgRque502tD5
-	Cs2id4ex60T7SK7CsJejOmszs+hJ9uNgvp6QdoHZ7gTvab1Azs9MLjPD8qN4PhNVfox0UplLV3FVu
-	PMDTL5wn0D6piTEweH7QXh1uSDoXj8r9tKRCYSsFfBAZinE73Dqb9NPd5bBPBZNq1P1s8nIuBsxd7
-	h1OG+4fA==;
-Received: from static.163.53.161.5.clients.your-server.de ([5.161.53.163] helo=quickfundit.com)
-	by desiato.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o3bgw-00AJsU-Vz
-	for ath11k@lists.infradead.org; Tue, 21 Jun 2022 11:05:50 +0000
-From: "Quickfundit" <sales@quickfundit.com>
-To: ath11k@lists.infradead.org
-Subject: QUICK LOAN
-Date: 21 Jun 2022 04:05:04 -0700
-Message-ID: <20220621040504.163739BED567FA2D@quickfundit.com>
+	id 1o3c5e-00548t-A9
+	for ath11k@lists.infradead.org; Tue, 21 Jun 2022 11:30:39 +0000
+Received: by mail-pf1-x434.google.com with SMTP id 128so5828649pfv.12
+        for <ath11k@lists.infradead.org>; Tue, 21 Jun 2022 04:30:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=YcNTudnfNe9PYVct1AIMH9xXhCMbjJZi0rP9pN00vKA=;
+        b=daRgyrFKhUphRzta0SW1R5MON0Quwq6zduCgzp/SYZ3Gawq7z+nVQnre8rJNOjG5HP
+         /fjq6mPUiF15dE4cI034zWZB4ZhFPvj4EBG5eCMGnS2mzKsUQUmAu4CNFsYY0w3TYLie
+         ggQbFx40Hqr+s+H28tVrYDsjnQErVNcYGLg/1laE9htLOjjjvY1Y703EM4NrOc11WUEP
+         qH1So2cy+UJgP4NMun1M4Kc8xmXqaPeIeqpke75ijnUkf3bhVmGt0NmVple2iIVU6XVK
+         RDuI4gamXDOTGb0BgXBvHInqTvqV9Qme/6I0iEUICZ5xLjJDIDJuxBxkeoBvpC6Pr5RO
+         Y4cQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=YcNTudnfNe9PYVct1AIMH9xXhCMbjJZi0rP9pN00vKA=;
+        b=A4QZfF7dijUWMcjDioiDAbL7LXEKhQZmRkqZ9FHd6sk4kIKN1yoA6FjQPKXePmCfYl
+         BNx+2t/fnXG/4yTwNHahCe4RwRNMuRysSRbRj5Ouk/+y8hduCaRCz9314f5MmqKGfTJ+
+         F4wEqu9hbigFBk/3TgNBv880TKn7g+3ZCeblrqsAEmgzKFgHnUBgNVJqcs6qxGkUcUGK
+         uWHS3MZ+6l3eJkASQf7S6jHMGxXCV64CehFF9mXhXdhfbeuy0GmojEHjCaZcbceu1oRz
+         9n2lAd8mluiSUjzIAWx3xe4rPfJpaXMvaBW+SkEuowWtzGFrA/EMf9OsZt3geCyrMTW4
+         xn9Q==
+X-Gm-Message-State: AJIora8zEBe+HEqwphztgqTYuXh6NYSo/GSzrbC2s2g46lXkaaylcRq0
+	V0YtgyVR81Jf+q9fK6iIumMsrALdYUth5AhTv4eW+9oerIcnJg==
+X-Google-Smtp-Source: AGRyM1ugLFXJAalQvGBQaDEfNFWZk9AIi7Q4Ar/3qC7nzHzs36GMjMQp5vNdMcQxbqc1jGDgkPMfe5xaoeaoMzrNL/M=
+X-Received: by 2002:a05:6a00:140f:b0:4e0:6995:9c48 with SMTP id
+ l15-20020a056a00140f00b004e069959c48mr29490487pfu.59.1655811033821; Tue, 21
+ Jun 2022 04:30:33 -0700 (PDT)
 MIME-Version: 1.0
+From: Kristian Evensen <kristian.evensen@gmail.com>
+Date: Tue, 21 Jun 2022 13:30:22 +0200
+Message-ID: <CAKfDRXi373X-4jSpKtfeJHRqrVXgMKZyQ3gDcDE5c41pYp0neA@mail.gmail.com>
+Subject: WCN6855 service timeout issues
+To: ath11k@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220621_120514_522724_B8A64A0C 
-X-CRM114-Status: UNSURE (  -2.21  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220621_043038_410570_C97B2AE7 
+X-CRM114-Status: GOOD (  15.37  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -60,28 +73,64 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Reply-To: info@quickfundit.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Have you applied for a Loan before and been denied ? Do you need 
-a Loan to start that dream business ? Then worry no more, 
-QUICKFUNDIT https://www.quickfundit.com Offers Business loan, 
-Debt Consolidation Loan, Personal Loan with a 15 years repayment 
-period at the lowest interest rate of 5% for small and big time 
-projects/businesses.
+Hello,
 
-We offer loans ranging from $10,000 (Ten thousand Dollar's) to  
-$2,000.000 (Two Million Dollars) With six months defer grace 
-period for Repayment.
+I am trying to make a WCN6855-based card work with on an x86-device
+running kernel 5.15. My base system is OpenWRT (compiled from master
+today) + backports-5.15-33. As WCN6855 is not support by kernel 5.15,
+I have backported all ath11k commits up to 3926e0c122 ("ath11k: Fix
+warnings reported by checkpatch"), and brought mhi in sync with
+mhi-next (13b9b814da) and qrtr in sync with net-next (f4b41f062c).
 
-We've developed a lending program that makes it easy for us to 
-meet up with our clients' needs.
+When I boot my device, the card is detect and board file found, but
+communication times out almost immediately. In my kernel log, I see
+the following:
 
-Interested Applicants are advised to contact us via Email for our 
-application form. info@quickfundit.com
+[   11.336010] ath11k_pci 0000:06:00.0: BAR 0: assigned [mem
+0x91000000-0x911fffff 64bit]
+[   11.344336] ath11k_pci 0000:06:00.0: MSI vectors: 1
+[   11.350532] ath11k_pci 0000:06:00.0: wcn6855 hw2.1
+[   11.513448] mhi mhi0: Requested to power ON
+[   11.517895] mhi mhi0: Power on setup success
+[   11.904189] mhi mhi0: Wait for device to enter SBL or Mission mode
+[   12.551007] ath11k_pci 0000:06:00.0: chip_id 0x12 chip_family 0xb
+board_id 0xff soc_id 0x400c1211
+[   12.560045] ath11k_pci 0000:06:00.0: fw_version 0x11090c35
+fw_build_timestamp 2022-04-18 20:23 fw_build_id
+WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.9
+[   12.768324] ath11k_pci 0000:06:00.0: leaving PCI ASPM disabled to
+avoid MHI M2 problems
+[   13.814188] ath11k_pci 0000:06:00.0: failed to receive control
+response completion, polling..
+[   14.844167] ath11k_pci 0000:06:00.0: Service connect timeout
+[   14.849919] ath11k_pci 0000:06:00.0: failed to connect to HTT: -110
+[   14.858741] ath11k_pci 0000:06:00.0: failed to start core: -110
+[   15.074355] ath11k_pci 0000:06:00.0: ignore reset dev flags 0x4000
+[   25.332283] ath11k_pci 0000:06:00.0: failed to wait wlan mode
+request (mode 4): -110
+[   25.340294] ath11k_pci 0000:06:00.0: qmi failed to send wlan mode off: -110
+
+The device and PCI-slot should be good. I inserted another wifi-card
+that uses the ath10k-driver and it works fine (and without the " ..
+polling.." message). Also, the WCN6855-card works well when I install
+Ubuntu on the same device + kernel 5.17 + board file. The board file
+is supplied by the vendor, but as it works fine with ath11k from the
+5.17 kernel I guess it is ok.
+
+In order to try to make progress, I searched for the different error
+messages and got quite a lot of ath10k-related hits on the first ones
+(".. polling .." and "Service connect timeout"). However, for example
+disabling MSI or enabling PCI quirks had no effect on my device.
+
+Does anyone know what could be wrong or have an idea of where I should look?
+
+Thanks in advance for any help,
+Kristian
 
 -- 
 ath11k mailing list
