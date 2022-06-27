@@ -4,58 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A64C3C43334
-	for <ath11k@archiver.kernel.org>; Mon, 27 Jun 2022 10:27:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF86AC43334
+	for <ath11k@archiver.kernel.org>; Mon, 27 Jun 2022 10:30:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Mwp29SEgZ/sSq2HCgiEzxVyTZ8ot3A6hyqZ9QRnG5Do=; b=ums/zBaAcOOiTw
-	QAs5UI5jVsFzglsWyGwE4Eeb0Kj/7xKDXz+2pryPHq9bfPwfskX5yTGZM+N0WxZvHjNUWot+RUNLU
-	HdtsXb/2uqGfS9vppArCnWgIro2ASEdhZX2leNg1xHfmwQSJo9WW52+TvBIsJPeOZc2UNZ1BakmtP
-	I7u84FWPnj2FMCAd9k7GZIfYLkOePqXBXz0yREtZ6umdwY4tXuE/taIdB+F88+2BMjWiDD8T1meig
-	83cDj88EIBZPHLKjLNPKJUpSFbrfxpZkPjeQfgQ+3UkBH9oiG2yKkKANM/eICsid9yav9kjcP/vLG
-	T5P/SH3xvOwOR5y5b0Wg==;
+	List-Owner; bh=1BWhwfrkZ1zruEbfMaxBTyNZa2+0+hIZJulXp+4NdyI=; b=jLRE+h5/Ots/42
+	7LMzQiOOtISwdz7AbKjLvZLA2DxSDuf/bXoiYeknch9ycTjnN2Cg7ghAvbPnSaDF1YbESMcGhxLZ7
+	LqV1XYI/H81l3+6sHv0FYHfqTAEAG7EMo3N2SjXVzqmT2LmiWfN+8yiMW5wBC3L008vnz1TL3Kw1o
+	5NEfr8ixex/GzB/J/IvEm73YG9Ec23lGK3uCq1L/1hTNUr/2Yec0+hWqaLKMTr69Kcaf3v5ppxiT8
+	Hfw3oszKxsr0aS9KfvT3hbrVewuAPNdZ6OQVS8q4jdlyo+1hAXDCfa3yAShIQ12x0wZCnoOlXLjK0
+	K+2ChVO2vZhNNjhHNnzQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o5lxS-0006mu-PE; Mon, 27 Jun 2022 10:27:06 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1o5m0w-0007z1-Ae; Mon, 27 Jun 2022 10:30:42 +0000
+Received: from mail-qv1-xf35.google.com ([2607:f8b0:4864:20::f35])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1o5lxN-0006ij-9e
-	for ath11k@lists.infradead.org; Mon, 27 Jun 2022 10:27:02 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id C3C0B611E6;
-	Mon, 27 Jun 2022 10:26:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96F80C3411D;
-	Mon, 27 Jun 2022 10:26:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1656325619;
-	bh=vjTgWiHh+robp6L83MZ74F5DMaJm4hX3GEkyX/9p/ss=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=ZwSP23aHPP1I3leRTLNvLo1GAOJZqOl1HOcixTm7IAeczV1M8txQaKNuf1cpTwfEy
-	 pU95hRPpxaOFsMjvaBeQa7JsYUJKSSJslYDfZGIJ1E7fz0IrA5lZSxzgIpyyFFbVfN
-	 aLOtpAcaAI4f7x7R4hoEIM3XO47OCOYhGdy7N5lBvqOZhtbvHN5bXyCs2lK2udCb12
-	 /rBSUfw8JVEH8hDyOdxM3b0UGCDtbDJFWzIaP0oFSVXSTOtcuiU8hL18FKjSsPiRV5
-	 f+b6bJ1oOflDlSF4ttcRODc8KaHTcpcD9fI1fIrhMHc25ri4RQBXHdOdpQVhaYJnd8
-	 kti9DU8aPeLyA==
-From: Kalle Valo <kvalo@kernel.org>
-To: Robert Marko <robimarko@gmail.com>
-Cc: davem@davemloft.net,  edumazet@google.com,  kuba@kernel.org,  pabeni@redhat.com,  robh+dt@kernel.org,  krzysztof.kozlowski+dt@linaro.org,  ath11k@lists.infradead.org,  linux-wireless@vger.kernel.org,  netdev@vger.kernel.org,  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: ath11k: add new DT entry for board ID
-In-Reply-To: <20220621135339.1269409-1-robimarko@gmail.com> (Robert Marko's
-	message of "Tue, 21 Jun 2022 15:53:38 +0200")
-References: <20220621135339.1269409-1-robimarko@gmail.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
-Date: Mon, 27 Jun 2022 13:26:51 +0300
-Message-ID: <87o7yeo104.fsf@kernel.org>
+	id 1o5m0u-0007yC-8s
+	for ath11k@lists.infradead.org; Mon, 27 Jun 2022 10:30:41 +0000
+Received: by mail-qv1-xf35.google.com with SMTP id y14so14031176qvs.10
+        for <ath11k@lists.infradead.org>; Mon, 27 Jun 2022 03:30:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=cZfAPaEvqTx34DnDPzb0WJHLTgfejH45gbcwnO/wivg=;
+        b=G2l+hKTC3b/3VUqvEpG03cbAWnBPUCxVt0TElZyrlXe9sLwg2fGZr+Xbz7KNps23gX
+         FUHqn/6nL6V+5PnjpOPvbU4+0MmRB82Um2XU44C0uYkdL/cw5EC6nUECFdLsKTNCSEIL
+         TYiO7Zif4ZqUm3feIrFdS5VmRvbQcaaCtvnT2zdYqNg6RoAbf/rb6RLjUw4wzHMJvJJo
+         FmbQ93mhlFAyaXF901/8R+aOozJuguPprdQpTYaYCVaftU/st+gZ+DjZ4DzPsSSYEcVo
+         KBQi1zWKuk77SiLYtPDPK8cAa3OTSPMfBFrqeaP0+noIs6TO5oysc1G4glI+yYaHj6nx
+         GIvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=cZfAPaEvqTx34DnDPzb0WJHLTgfejH45gbcwnO/wivg=;
+        b=1ihHZcmrRCel32Ef5SlZJ3fwFs664RROFdoeHRlGHOe8ZgqMQKiEWL5J4XOBnC0yQg
+         8SJMJXJVw1KLW0LqqfUe9m6HKHUhrLqvexWJ4inAqCZqgEKGZxh65R0ta2JW7UH10WeU
+         qxfk7hVaxMw0hcdIcXwARvweViSEYekUorzL4MGLr2/LOExsnMexukKurBDtHnpjvMrJ
+         whU6aKpdkLqMx7+mI/lEKNBBh23LJnFivIMc7Q4IRkcMHUn9qnzzUPbaPDzw25TXUzhz
+         PA0fbS0ZBBiftEmFTV5qM6GEQT3/jWWCMhRPxXqQEJ4XWdZ5anWabi0ZcJfbOp5DyfYq
+         hLfA==
+X-Gm-Message-State: AJIora+EWB04GEn0wYKfAlwXKWQy0aXf/DSUsUCKp7V6aupo06rwy/Ad
+	vRfJ6H4bnhVfzq4B8oJ4akZZMqZGpvOAxU71HbEturfUQbI=
+X-Google-Smtp-Source: AGRyM1voIwXZ4dMPnpLAqnCx3C8loYQQRTztZqdu3BPiOLJoENjZC+j0T+13kENmWdRQC8XyE5oler0toFCdYmPZk3w=
+X-Received: by 2002:a05:622a:1791:b0:317:76d8:d17f with SMTP id
+ s17-20020a05622a179100b0031776d8d17fmr8667214qtk.82.1656325838358; Mon, 27
+ Jun 2022 03:30:38 -0700 (PDT)
 MIME-Version: 1.0
+References: <20220621135339.1269409-1-robimarko@gmail.com> <87o7yeo104.fsf@kernel.org>
+In-Reply-To: <87o7yeo104.fsf@kernel.org>
+From: Robert Marko <robimarko@gmail.com>
+Date: Mon, 27 Jun 2022 12:30:27 +0200
+Message-ID: <CAOX2RU4G-009qYZF7-LcCT9SCeAmj=v9Hdk+NU-nebq=fGdjBQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: ath11k: add new DT entry
+ for board ID
+To: Kalle Valo <kvalo@kernel.org>
+Cc: davem@davemloft.net, Eric Dumazet <edumazet@google.com>, kuba@kernel.org, 
+	pabeni@redhat.com, Rob Herring <robh+dt@kernel.org>, krzysztof.kozlowski+dt@linaro.org, 
+	ath11k@lists.infradead.org, linux-wireless@vger.kernel.org, 
+	netdev@vger.kernel.org, Devicetree List <devicetree@vger.kernel.org>, 
+	open list <linux-kernel@vger.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220627_032701_435850_C96E8BFD 
-X-CRM114-Status: GOOD (  11.96  )
+X-CRM114-CacheID: sfid-20220627_033040_366581_9D582962 
+X-CRM114-Status: GOOD (  15.44  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,36 +88,44 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Robert Marko <robimarko@gmail.com> writes:
-
-> bus + qmi-chip-id + qmi-board-id and optionally the variant are currently
-> used for identifying the correct board data file.
+On Mon, 27 Jun 2022 at 12:27, Kalle Valo <kvalo@kernel.org> wrote:
 >
-> This however is sometimes not enough as all of the IPQ8074 boards that I
-> have access to dont have the qmi-board-id properly fused and simply return
-> the default value of 0xFF.
+> Robert Marko <robimarko@gmail.com> writes:
 >
-> So, to provide the correct qmi-board-id add a new DT property that allows
-> the qmi-board-id to be overridden from DTS in cases where its not set.
-> This is what vendors have been doing in the stock firmwares that were
-> shipped on boards I have.
+> > bus + qmi-chip-id + qmi-board-id and optionally the variant are currently
+> > used for identifying the correct board data file.
+> >
+> > This however is sometimes not enough as all of the IPQ8074 boards that I
+> > have access to dont have the qmi-board-id properly fused and simply return
+> > the default value of 0xFF.
+> >
+> > So, to provide the correct qmi-board-id add a new DT property that allows
+> > the qmi-board-id to be overridden from DTS in cases where its not set.
+> > This is what vendors have been doing in the stock firmwares that were
+> > shipped on boards I have.
+>
+> What's wrong with using 0xff? Ie. something like this:
+>
+> bus=ahb,qmi-chip-id=0,qmi-board-id=255,variant=foo
+>
+> Or maybe even just skip qmi-board-id entirely if it's not supported? So
+> that the board file string would be something like:
+>
+> bus=ahb,qmi-chip-id=0,variant=foo
+>
+> I really would like to avoid adding more DT properties unless it's
+> absolutely critical.
 
-What's wrong with using 0xff? Ie. something like this:
+Well, I suppose that due to the variant property we can avoid "correcting" the
+qmi-board-id
 
-bus=ahb,qmi-chip-id=0,qmi-board-id=255,variant=foo
-
-Or maybe even just skip qmi-board-id entirely if it's not supported? So
-that the board file string would be something like:
-
-bus=ahb,qmi-chip-id=0,variant=foo
-
-I really would like to avoid adding more DT properties unless it's
-absolutely critical.
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+Regards,
+Robert
+>
+> --
+> https://patchwork.kernel.org/project/linux-wireless/list/
+>
+> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
