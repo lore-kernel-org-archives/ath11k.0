@@ -4,70 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E19BAC43334
-	for <ath11k@archiver.kernel.org>; Fri, 15 Jul 2022 10:10:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D6E0C433EF
+	for <ath11k@archiver.kernel.org>; Fri, 15 Jul 2022 17:17:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FMxgBhp+vMCknAarHRmBFlwSgouHJ6nRD9ml0H/SBz4=; b=oskE8Azl/dEiTy
-	NL7DcHHfp6K1ctCbve2CLI5/DiGnepoKvvg3U8ZBl/r3t7TdPG0rwBTbVykAt0+ZlmIdW7zuNSVf1
-	0dyoQ4JMsuKOsBVF+IbvPK4b/jLfYrHzYBfZXUKDZxYwTb3EI/v0FQKOj2HWW9SgkUYVrwtz0XUPa
-	05NSauKga3RPIseEdlkUZ3E21d+4199yDJ4p6vfX10vkHeBa9ILPOb3N5DfHcKD5qkLTj+UWMBqqf
-	7SuWSjJkkpUhrLb+k4H5rODVSWYg+Jnxfc+QHZdSNubwd3T8Z4q0iwxcUAqXtcUuMujOKahwEBEXw
-	pEEJkgFXE1oM/XIy3w6g==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=nvfRJNxo8iB5XIg2r0yHoDHlGU4uBVcUdTBiU8pHCEE=; b=JraZna46z6yhc4
+	IZZnviok1rWX7ENhpaCvIQYSJ1aoJL83yiiP/wfCmy/wxlyuSLg6FleYDarr37kgdkTtuhvIJRMYG
+	i6UdHWMBVVjUY9O2u8tNmRHrGxWLQjFw/jAA/Gn1kkGKbofkNJnAB5g4W5XgME157+sBWqaAG6Rv8
+	4xhanpAw9QMI0vDsUgTtKsClS0X0EBDB3Tx38ZtokDo3OdGSgKZnZedMcuPjRxHO6E2BdklTHsJ1z
+	8eNGicYrwgf2OXuDxCQ/oqS/8Wp3wDvmQTmIAhifUHZBEQQ5ty/ayfcY+7HciY6Dko/Fqtd2pFhoj
+	CogjKku8ap9TGCP9irWg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oCIHh-006Itv-2j; Fri, 15 Jul 2022 10:10:57 +0000
-Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38])
+	id 1oCOwF-0095Vu-2J; Fri, 15 Jul 2022 17:17:15 +0000
+Received: from alexa-out.qualcomm.com ([129.46.98.28])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oCIHd-006IsX-Sz
-	for ath11k@lists.infradead.org; Fri, 15 Jul 2022 10:10:55 +0000
+	id 1oCOwC-0095T3-D6
+	for ath11k@lists.infradead.org; Fri, 15 Jul 2022 17:17:14 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1657879853; x=1689415853;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=zaz6vbeXxvTcf5zTVCLQSdqT3qWiYkU2GcDd51eyZcg=;
-  b=BUMg1jTyJeLfQ1MlOYvDFIsYwwdV5r8z0F/zw6IoBti/UywB4SopAmHd
-   XBNz5AdjYWc3H+bEAszmN5VBBccXwoLGda8bSOKpu8fUfqTDDB3fODTf0
-   qjPyIUk//lkVSiiixjJfHTNGJXTGtebQ9W1swtbHgd4OOoYu7LFI9bRy9
-   4=;
-Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 15 Jul 2022 03:10:47 -0700
+  t=1657905432; x=1689441432;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=oz6i7kOXp+FaJIRtu1/eZZGO8bl2r6ycbdwyVe7pjcs=;
+  b=x0S4Ge+Nn3Dysmyfape2NOJWk35vj91Ao07/+jWVZRTSvM4vCaQWfpdI
+   AQI9RCFdXLVdIJs8owi5jB/Vix5uF4ZngmxsGAARD2Jw2YXLZtviaMlkS
+   9QxLuUt+edbw54oyy4NnGEvf5OQRu7s2RYW1eiwMQaWIr/DGbw2YjJ9/G
+   g=;
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 15 Jul 2022 10:17:08 -0700
 X-QCInternal: smtphost
 Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jul 2022 03:10:47 -0700
+  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jul 2022 10:17:08 -0700
 Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
  nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Fri, 15 Jul 2022 03:10:46 -0700
-Received: from [10.216.42.135] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Fri, 15 Jul
- 2022 03:10:44 -0700
-Message-ID: <fc902e10-9d99-d272-84bf-87450678982a@quicinc.com>
-Date: Fri, 15 Jul 2022 15:40:41 +0530
+ 15.2.986.22; Fri, 15 Jul 2022 10:17:07 -0700
+Received: from tamizhr-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Fri, 15 Jul 2022 10:17:05 -0700
+From: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
+Subject: [PATCH] ath11k: Add spectral scan support for 160 MHz
+Date: Fri, 15 Jul 2022 22:46:48 +0530
+Message-ID: <20220715171648.29787-1-quic_tamizhr@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH] ath11k: Fix register write failure on QCN9074
-Content-Language: en-US
-To: Kalle Valo <kvalo@kernel.org>
-CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>, "Maxime
- Bizon" <mbizon@freebox.fr>
-References: <20220608062954.27792-1-quic_mpubbise@quicinc.com>
- <87wncesne8.fsf@kernel.org>
-From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-In-Reply-To: <87wncesne8.fsf@kernel.org>
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220715_031054_013973_D243A7C7 
-X-CRM114-Status: GOOD (  18.77  )
+X-CRM114-CacheID: sfid-20220715_101712_526419_4FD4143A 
+X-CRM114-Status: GOOD (  15.78  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,130 +72,190 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 7/15/2022 3:33 PM, Kalle Valo wrote:
-> Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
-> 
->> Commit 56c8ccf331bd ("ath11k: Add register access logic for WCN6750")
->> regressed QCN9074. With the above mentioned commit, writes are failing
->> for some registers on QCN9074 although the device seems to work
->> normally.
->>
->> ath11k_pci 0000:03:00.0: failed to set pcie link register0x01e0e0a8: 0xffffffff != 0x00000010
->> ath11k_pci 0000:03:00.0: failed to set sysclk: -110
->>
->> PCIe devices in ath11k (QCA6390, WCN6855, QCN9074, WCN6750) use window
->> concept for register accesses. There are two schemes, dynamic & static
->> window.
->>
->> In dynamic window scheme, a single window(region in the BAR) is mapped
->> either to CE or DP register windows at any give time. QCA6390 & WCN6855
->> follow this scheme for register accesses.
->>
->> In static window scheme, CE & DP register windows are statically mapped
->> to separate regions with in the BAR so that there is no switching of
->> register windows between CE & DP register accesses. QCN9074 & WCN6750
->> follow this scheme although the window start offsets are different for
->> QCN9074 & WCN6750.
->>
->> QCN9074 uses 3rd & 2nd window for DP & CE register accesses respectively
->> whereas WCN6750 uses 1st & 2nd window for DP & CE. In QCN9074, along with
->> 2nd & 3rd windows, 1st window is also used for certain configurations
->> which commit 56c8ccf331bd ("ath11k: Add register access logic for WCN6750")
->> did not account for and hence the regression.
->>
->> Fix this by going back to the original way of accessing the registers on
->> QCN9074. Since this diverges from WCN6750 way of accessing registers, it
->> is required to register window_read32/window_write32() pci_ops for WCN6750.
->> We can also get rid of dp_window_idx & ce_window_idx members in hw_params,
->> so remove them.
->>
->> Also add a new API ath11k_pcic_register_pci_ops() for registering pci_ops
->> to the ath11k core. This API checks for mandatory pci_ops() and reports
->> error if those are missing. Also initialize unused pci_ops to NULL.
->>
->> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
->> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.6.0.1-00861-QCAHKSWPL_SILICONZ-1
->>
->> Fixes: 56c8ccf331bd ("ath11k: Add register access logic for WCN6750")
->> Reported-by: Maxime Bizon <mbizon@freebox.fr>
->> Tested-by: Maxime Bizon <mbizon@freebox.fr>
->> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-> 
-> [...]
-> 
->> --- a/drivers/net/wireless/ath/ath11k/pci.c
->> +++ b/drivers/net/wireless/ath/ath11k/pci.c
->> @@ -50,6 +50,23 @@ static void ath11k_pci_bus_release(struct ath11k_base *ab)
->>   	mhi_device_put(ab_pci->mhi_ctrl->mhi_dev);
->>   }
->>   
->> +static inline u32 ath11k_pci_get_window_start(struct ath11k_base *ab, u32 offset)
->> +{
->> +	u32 window_start;
->> +
->> +	/* If offset lies within DP register range, use 3rd window */
->> +	if ((offset ^ HAL_SEQ_WCSS_UMAC_OFFSET) < ATH11K_PCI_WINDOW_RANGE_MASK)
->> +		window_start = 3 * ATH11K_PCI_WINDOW_START;
->> +	/* If offset lies within CE register range, use 2nd window */
->> +	else if ((offset ^ HAL_SEQ_WCSS_UMAC_CE0_SRC_REG(ab)) <
->> +		 ATH11K_PCI_WINDOW_RANGE_MASK)
->> +		window_start = 2 * ATH11K_PCI_WINDOW_START;
->> +	else
->> +		window_start = ATH11K_PCI_WINDOW_START;
->> +
->> +	return window_start;
->> +}
->> +
->>   static inline void ath11k_pci_select_window(struct ath11k_pci *ab_pci, u32 offset)
->>   {
->>   	struct ath11k_base *ab = ab_pci->ab;
->> @@ -70,13 +87,23 @@ static void
->>   ath11k_pci_window_write32(struct ath11k_base *ab, u32 offset, u32 value)
->>   {
->>   	struct ath11k_pci *ab_pci = ath11k_pci_priv(ab);
->> -	u32 window_start = ATH11K_PCI_WINDOW_START;
->> +	u32 window_start;
->>   
->> -	spin_lock_bh(&ab_pci->window_lock);
->> -	ath11k_pci_select_window(ab_pci, offset);
->> -	iowrite32(value, ab->mem + window_start +
->> -		  (offset & ATH11K_PCI_WINDOW_RANGE_MASK));
->> -	spin_unlock_bh(&ab_pci->window_lock);
->> +	if (ab->hw_params.static_window_map)
->> +		window_start = ath11k_pci_get_window_start(ab, offset);
->> +	else
->> +		window_start = ATH11K_PCI_WINDOW_START;
->> +
->> +	if (window_start == ATH11K_PCI_WINDOW_START) {
->> +		spin_lock_bh(&ab_pci->window_lock);
->> +		ath11k_pci_select_window(ab_pci, offset);
->> +		iowrite32(value, ab->mem + window_start +
->> +			  (offset & ATH11K_PCI_WINDOW_RANGE_MASK));
->> +		spin_unlock_bh(&ab_pci->window_lock);
->> +	} else {
->> +		iowrite32(value, ab->mem + window_start +
->> +			  (offset & ATH11K_PCI_WINDOW_RANGE_MASK));
->> +	}
->>   }
-> 
-> I refactored ath11k_pci_get_window_start() a bit, please check my
-> changes here:
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=95094045d7f467aa8928307ea538d1fd9d15a239
-> 
+There are two types of 160 MHz spectral scan support mentioned below
 
-Refactored code looks okay to me. Just one comment though, you may 
-probably remove initialization of "u32 window_start = 
-ATH11K_PCI_WINDOW_START;" in ath11k_pci_window_read32? It is removed in 
-ath11k_pci_window_write32.
+1. Fragmented approach
+2. Single event approach
 
-Thanks,
-Manikanta
+In this fragmented approach, single 160 MHz will be split as two
+80 MHz buffer. First fft sample buffer will contain spectral scan
+result of primary 80 MHz and the second fft sample buffer will contain
+secondary 80 MHz and here cfreq1 and cfreq2 will be mentioned.
+In case of 160 MHz on 36th channel will contain cfreq1 as 5210 and
+cfreq2 as 5290. Chipsets which support this approach are IPQ8074/IPQ6018.
+
+Replacing freq1 with freq2 in every secondary sepctral scan event to
+distinguish between two different 80 MHz spectral event data.
+
+In the 2nd approach each fft sample buffer will contain spectral scan
+result for whole 160 MHz by mentioning cfreq1 as 5250 which is center
+frequency of whole 160 MHz. Chipset which support this approach is QCN9074.
+
+Host will receive spectral event from target for every 5 fft samples.
+
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1-01120-QCAHKSWPL-1
+Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01120-QCAHKSWP
+
+Signed-off-by: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/core.c     |  7 +++++++
+ drivers/net/wireless/ath/ath11k/hw.h       |  1 +
+ drivers/net/wireless/ath/ath11k/spectral.c | 21 +++++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/spectral.h |  1 +
+ 4 files changed, 30 insertions(+)
+
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index c8e0bc935838..1b1ff26cdfca 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -73,6 +73,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 			.summary_pad_sz = 0,
+ 			.fft_hdr_len = 16,
+ 			.max_fft_bins = 512,
++			.fragment_160mhz = true,
+ 		},
+ 
+ 		.interface_modes = BIT(NL80211_IFTYPE_STATION) |
+@@ -149,6 +150,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 			.summary_pad_sz = 0,
+ 			.fft_hdr_len = 16,
+ 			.max_fft_bins = 512,
++			.fragment_160mhz = true,
+ 		},
+ 
+ 		.interface_modes = BIT(NL80211_IFTYPE_STATION) |
+@@ -225,6 +227,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 			.summary_pad_sz = 0,
+ 			.fft_hdr_len = 0,
+ 			.max_fft_bins = 0,
++			.fragment_160mhz = false,
+ 		},
+ 
+ 		.interface_modes = BIT(NL80211_IFTYPE_STATION) |
+@@ -299,6 +302,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 			.summary_pad_sz = 16,
+ 			.fft_hdr_len = 24,
+ 			.max_fft_bins = 1024,
++			.fragment_160mhz = false,
+ 		},
+ 
+ 		.interface_modes = BIT(NL80211_IFTYPE_STATION) |
+@@ -375,6 +379,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 			.summary_pad_sz = 0,
+ 			.fft_hdr_len = 0,
+ 			.max_fft_bins = 0,
++			.fragment_160mhz = false,
+ 		},
+ 
+ 		.interface_modes = BIT(NL80211_IFTYPE_STATION) |
+@@ -450,6 +455,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 			.summary_pad_sz = 0,
+ 			.fft_hdr_len = 0,
+ 			.max_fft_bins = 0,
++			.fragment_160mhz = false,
+ 		},
+ 
+ 		.interface_modes = BIT(NL80211_IFTYPE_STATION) |
+@@ -524,6 +530,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 			.summary_pad_sz = 0,
+ 			.fft_hdr_len = 0,
+ 			.max_fft_bins = 0,
++			.fragment_160mhz = false,
+ 		},
+ 
+ 		.interface_modes = BIT(NL80211_IFTYPE_STATION) |
+diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
+index 77dc5c851c9b..cd0e18acc250 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.h
++++ b/drivers/net/wireless/ath/ath11k/hw.h
+@@ -169,6 +169,7 @@ struct ath11k_hw_params {
+ 		u8 summary_pad_sz;
+ 		u8 fft_hdr_len;
+ 		u16 max_fft_bins;
++		bool fragment_160mhz;
+ 	} spectral;
+ 
+ 	u16 interface_modes;
+diff --git a/drivers/net/wireless/ath/ath11k/spectral.c b/drivers/net/wireless/ath/ath11k/spectral.c
+index 516a7b4cd180..8fdcb161a1e4 100644
+--- a/drivers/net/wireless/ath/ath11k/spectral.c
++++ b/drivers/net/wireless/ath/ath11k/spectral.c
+@@ -30,6 +30,7 @@
+ #define ATH11K_SPECTRAL_20MHZ			20
+ #define ATH11K_SPECTRAL_40MHZ			40
+ #define ATH11K_SPECTRAL_80MHZ			80
++#define ATH11K_SPECTRAL_160MHZ			160
+ 
+ #define ATH11K_SPECTRAL_SIGNATURE		0xFA
+ 
+@@ -183,6 +184,8 @@ static int ath11k_spectral_scan_trigger(struct ath11k *ar)
+ 	if (ar->spectral.mode == ATH11K_SPECTRAL_DISABLED)
+ 		return 0;
+ 
++	ar->spectral.is_primary = true;
++
+ 	ret = ath11k_wmi_vdev_spectral_enable(ar, arvif->vdev_id,
+ 					      ATH11K_WMI_SPECTRAL_TRIGGER_CMD_CLEAR,
+ 					      ATH11K_WMI_SPECTRAL_ENABLE_CMD_ENABLE);
+@@ -585,6 +588,7 @@ int ath11k_spectral_process_fft(struct ath11k *ar,
+ 	u8 chan_width_mhz, bin_sz;
+ 	int ret;
+ 	u32 check_length;
++	bool fragment_sample = false;
+ 
+ 	lockdep_assert_held(&ar->spectral.lock);
+ 
+@@ -639,6 +643,13 @@ int ath11k_spectral_process_fft(struct ath11k *ar,
+ 	case ATH11K_SPECTRAL_80MHZ:
+ 		fft_sample->chan_width_mhz = chan_width_mhz;
+ 		break;
++	case ATH11K_SPECTRAL_160MHZ:
++		if (ab->hw_params.spectral.fragment_160mhz) {
++			chan_width_mhz /= 2;
++			fragment_sample = true;
++		}
++		fft_sample->chan_width_mhz = chan_width_mhz;
++		break;
+ 	default:
+ 		ath11k_warn(ab, "invalid channel width %d\n", chan_width_mhz);
+ 		return -EINVAL;
+@@ -663,6 +674,16 @@ int ath11k_spectral_process_fft(struct ath11k *ar,
+ 	freq = summary->meta.freq2;
+ 	fft_sample->freq2 = __cpu_to_be16(freq);
+ 
++	/* If freq2 is available then the spectral scan results are fragmented
++	 * as primary and secondary
++	 */
++	if (fragment_sample && freq) {
++		if (!ar->spectral.is_primary)
++			fft_sample->freq1 = freq;
++		/* We have to toggle the is_primary to handle the next report */
++		ar->spectral.is_primary = !ar->spectral.is_primary;
++	}
++
+ 	ath11k_spectral_parse_fft(fft_sample->data, fft_report->bins, num_bins,
+ 				  ab->hw_params.spectral.fft_sz);
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/spectral.h b/drivers/net/wireless/ath/ath11k/spectral.h
+index 081744265f2a..96bfa16e18e9 100644
+--- a/drivers/net/wireless/ath/ath11k/spectral.h
++++ b/drivers/net/wireless/ath/ath11k/spectral.h
+@@ -35,6 +35,7 @@ struct ath11k_spectral {
+ 	u16 count;
+ 	u8 fft_size;
+ 	bool enabled;
++	bool is_primary;
+ };
+ 
+ #ifdef CONFIG_ATH11K_SPECTRAL
+-- 
+2.17.1
+
 
 -- 
 ath11k mailing list
