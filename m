@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AEB08C433EF
-	for <ath11k@archiver.kernel.org>; Mon, 18 Jul 2022 10:02:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28F8DC433EF
+	for <ath11k@archiver.kernel.org>; Mon, 18 Jul 2022 10:17:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
-	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cqebzN+sGaffosgyAOPDdVyKP84glZh7DGP1PPcWP00=; b=K9KorWbzrwJEFo
-	MxROnqqGLigkGTy5V8lUDkdHpTGJXoVIf1oFowfyrwrQBEFmrUn3D5OSf60GyAhaNN2edPJzfR2BG
-	S6frLoWNPyiTKtCFXS4edUf0Jh5cVioWMWj5cySZviMed7OIr/CsJitrXC4WQrLFw/8rZMHrqdpkg
-	F8rn64GsEsp+8Qw81QyXIh00jpRH1n32U7Ykvt8OcYGqD9HW4nclvKvbq245zrUIZu1xrIPSSfwd1
-	IkIjfAemJae/pZLJp3+JX868KQ0oR7yjJMGmAIPvjFvPl4eao89n4tE11ZbV9bJ3xU/+D4NpcYWN0
-	oCJmx+vLkTsUzrokIUQw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Kl9JYKSBra1ItluGJmUcJI3373QwKNsSZ6Pin69hi/0=; b=pOoUgcAQptJUF6
+	hqOT39Z2brAx7K8K41YzoQri+2K+Zx6HE8ZKsLDPgdZyr0Lzz5iiFIhAibds0dG7LufR9E2vLdk0p
+	3tlw08OFoEocywfnKo88BjRuFAMWiCX4NG/auwotJIeBDggivHHkaKUj5rYomtezImRfBIIcrx4k1
+	V7Ik/XNzlHrdMiwwcZcipc18+7VXWEaPdDeSp7+Hg3dh7Ad5os2lNXWrmTVgAWgoUjBNTvO2NFkqk
+	UUy6nXqZIyIHL/G7dlgwWFz9+d9NEgUFIllIxAYxGITQTexwecPuCHb99puuWEUocaMuuD3vkQJMD
+	SNYrDi53bMA9T2ms43ng==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oDNaO-00CKjX-Dy; Mon, 18 Jul 2022 10:02:44 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1oDNoc-00CP14-Ja; Mon, 18 Jul 2022 10:17:26 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oDNaM-00CKiA-5x
-	for ath11k@lists.infradead.org; Mon, 18 Jul 2022 10:02:43 +0000
+	id 1oDNoa-00COzv-2y
+	for ath11k@lists.infradead.org; Mon, 18 Jul 2022 10:17:25 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id D8BE760B1A
-	for <ath11k@lists.infradead.org>; Mon, 18 Jul 2022 10:02:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FDBBC341C0;
-	Mon, 18 Jul 2022 10:02:39 +0000 (UTC)
+	by ams.source.kernel.org (Postfix) with ESMTPS id AE504B80EC1;
+	Mon, 18 Jul 2022 10:17:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF072C341CB;
+	Mon, 18 Jul 2022 10:17:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1658138560;
-	bh=K2+Rg4IwZ7UtFKXFaxeaAVip/LVFwlROEd60n9RHjrg=;
-	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=jgvOpGtbRwbUsH6jMA4Gh9ANeY8g0ytyBj25Abgnb4Fsp05bo4w2guPr8oUzlDlfj
-	 lbl/IsxIZbhsYUIY/+ffAB/C2MoudwjU/woGUoJofmsP5o2bSELqqVr6HAWyXAknk1
-	 pYtqRpNSCAhnONypxgt2BdbVL8tS4qlxOktnj7ndCW3PwsB/4JoBQ9kNv6RF4yi+fd
-	 QZAarnf+2ob9IIIKstnHl1LoECXjMRylBqNkRJhBHd+ursPj2IJB5WXXtj/NKgd2bm
-	 IDFd4eTDCGthcTzQIepNgwLmjCKLfaxBpVn/RFwUtVzyHkno8V0EGVUbexlh75wdq4
-	 bB9FMChdDgMKw==
-MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: mac: fix long line
+	s=k20201202; t=1658139441;
+	bh=1FYLSGq90GzN6tj1qSgpXSld4pUTEEPcTq27tJamG7U=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=OROIvdBLMgT58u/8kEUfQUdBTq4Jx/zDdd4Y9HHFt64B5m48FM2XPcI3nVMKkUlj0
+	 aVxpsC34eJvUKmAlk56f8mwbIwfRkpqKmHfvkQVvxAVM1DxGPNu0fouYjj1+qS+++w
+	 ZWT/6alfDl3BHAyi5FpEU1LfR/j97ZuxO68W7zdM+xnWhKJB5uQx4PFqWf3guHn0j8
+	 XSeJE/KFLE6Wl3En+xMYzDVxJ/g1zv/71P02qtVJqhSPqeLf7GIHIpupT8AV2XqNYL
+	 f8i/wPsxxcwkdfJvksz5jN8uk9joC/w0zklicjgdhgS+7MMtOrIn2AP7V0S3WQrbOk
+	 R93kGzAd6OLOA==
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20220708170052.28615-1-kvalo@kernel.org>
-References: <20220708170052.28615-1-kvalo@kernel.org>
-To: Kalle Valo <kvalo@kernel.org>
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
-User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <165813855498.12812.2366239081191024787.kvalo@kernel.org>
-Date: Mon, 18 Jul 2022 10:02:39 +0000 (UTC)
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: ath11k@lists.infradead.org
+Subject: Re: IPQ8074 firmware crash with testing version 2.7.0.1-01701
+References: <62be1f6d.1c69fb81.647ef.1d86@mx.google.com>
+Date: Mon, 18 Jul 2022 13:17:13 +0300
+In-Reply-To: <62be1f6d.1c69fb81.647ef.1d86@mx.google.com> (Christian Marangi's
+	message of "Fri, 1 Jul 2022 00:10:53 +0200")
+Message-ID: <87fsiysp1y.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220718_030242_289450_882546B5 
-X-CRM114-Status: UNSURE (   5.97  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220718_031724_291524_6F3E82A5 
+X-CRM114-Status: GOOD (  12.82  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,25 +72,60 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Kalle Valo <kvalo@kernel.org> wrote:
+Christian Marangi <ansuelsmth@gmail.com> writes:
 
-> Recent mac80211 API changes introduced a long line warning in ath11k:
-> 
-> drivers/net/wireless/ath/ath11k/mac.c:1404: line length of 92 exceeds 90 columns
-> 
-> Compile tested only.
-> 
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+> testing this latest firmware on my ipq8074 based router result in a
+> firmware crash. The firmware seems to crash on loading.
+>
+> The router is a Xiaomi Ax3600
+> Firmware: WLAN.HK.2.7.0.1-01701-QCAHKSWPL_SILICONZ-1
+>
+> This is the crashlog
+> [   17.277607] qcom-q6v5-wcss-pil cd00000.q6v5_wcss: fatal error received:
+> [ 17.277607] QC Image Version:
+> QC_IMAGE_VERSION_STRING=WLAN.HK.2.7.0.1-01701-QCAHKSWPL_SILICONZ-1
+> [   17.277607] Image Variant : IMAGE_VARIANT_STRING=8074.wlanfw.eval_v2Q
+> [   17.277607]
+> [ 17.277607] :Excep :0 Exception detectedparam0 :zero, param1 :zero,
+> param2 :zero.
+> [ 17.277607] Thread ID : 0x00000069 Thread name : WLAN RT0 Process ID
+> : 0
+> [   17.277607] Register:
+> [   17.277607] SP : 0x4bfacdc0
+> [   17.277607] FP : 0x4bfacdd8
+> [   17.277607] PC : 0x4b18d338
+> [   17.277607] SSR : 0x00000001
+> [   17.277607] BADVA : 0x0028d127
+> [   17.277607] LR : 0x4b18d2b8
+> [   17.277607]
+> [   17.277607] Stack Dump
+> [   17.277607] from : 0x4bfacdc0
+> [   17.277607] to   : 0x4bfad400
+> [   17.277607]
+> [ 17.324231] remoteproc remoteproc0: crash detected in
+> cd00000.q6v5_wcss: type fatal error
+> [   17.346841] remoteproc remoteproc0: handling crash #1 in cd00000.q6v5_wcss
+> [   17.354631] remoteproc remoteproc0: recovering cd00000.q6v5_wcss
+> [   17.387472] remoteproc remoteproc0: stopped remote processor cd00000.q6v5_wcss
+>
+> Firmware WLAN.HK.2.5.0.1-01208-QCAHKSWPL_SILICONZ-1 works correctly so
+> this is clrearly a regression.
+>
+> I know that the crashlog is probably uselss so feel free to tell me how
+> to provide additional data.
 
-Patch applied to ath-next branch of ath.git, thanks.
+Bugzilla makes it so much easier to track issues and get them fixed, so
+can you please file it there:
 
-fcc36be423a4 wifi: ath11k: mac: fix long line
+https://wireless.wiki.kernel.org/en/users/drivers/ath11k/bugreport
+
+Also remember to include all relevant information, especially the kernel
+version and any extra patches you might have.
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20220708170052.28615-1-kvalo@kernel.org/
+https://patchwork.kernel.org/project/linux-wireless/list/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
 
 -- 
 ath11k mailing list
