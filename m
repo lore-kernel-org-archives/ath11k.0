@@ -4,87 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0649C433EF
-	for <ath11k@archiver.kernel.org>; Wed, 20 Jul 2022 10:28:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE330C43334
+	for <ath11k@archiver.kernel.org>; Wed, 20 Jul 2022 13:44:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9K17YSQhTp7nFexnDmKvY11VowPbRdEgjqBXzELAOMI=; b=hREgWCtBj38gOT
-	xoGMCELEx6xj4FIIeuyySAo4cABEIny1ua8a0Ui/kmP947kO9mNHjCV8nuX2T+O6mfHzf+RbZMezV
-	NOahjwzlSVQzOuTafX059qsS6AoFpcMhxi7wvj40kuWyxrVWglODIt9I9LfeNrJcf0BNqflFWR6CZ
-	6T1jGpnm7Ojaw8kcgzVrFnKFhC842P/UYbGY+VKt89bVx0X5aVIpIPdTwa3EoNDfoaLX6E8U8p29U
-	9UvhbA6zpTAczqQhh4rX4OlxWIYoRzjQaNTIClXDoq9lg5wBaZvjqVUr4z6WxZ2oVTh3f5BJF4YVH
-	Xr/gkSHQzdpFTQLl+VqA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=0IMj9M5NSQzSbT/uulkG3sWAQhr8y6CYLC/KGc3U8Vg=; b=3+gKUMvef/yBwv
+	Z6a0vov0rd1DMQupkZT1XN62CrzZhvWOSVE8D+s5Kx171cVTFdA0EZ8nSgk6ZN/huwiZNtP3dSDdf
+	rZJCdXqaQ1+1O528AmkaRNF2N3XM1hSxiz9SNLPQz/ytqodjb0BvAOLho/qmOEOiiTXZDKk9s64aF
+	NavhuFy6TVAee2hAfal2TMH3ezi49PN9yMYSSLuoM64I4/9wI2DwqVEg3uGfh1H5fuPmey5FIhgG/
+	Sxp9sWg/pciksPJc7U7+hF0f4VU1oFCJ9BWHU6PfC6ht1Hk08CyFtlPdOCETMmYrGBtIxxY1/+MeV
+	GfZNkbyQrqqJrm4fAp1w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oE6vx-0042EP-77; Wed, 20 Jul 2022 10:28:01 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1oEA06-006Bzm-5P; Wed, 20 Jul 2022 13:44:30 +0000
+Received: from alexa-out.qualcomm.com ([129.46.98.28])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oE6vt-004295-A6
-	for ath11k@lists.infradead.org; Wed, 20 Jul 2022 10:27:59 +0000
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 26KANe9d028576;
-	Wed, 20 Jul 2022 10:27:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=LOBQhq14qDLGqlbs4FU2dq13kQBxe3Ek/ARr10c1HKg=;
- b=W1ZWIlRbX3PoHMeTag7a8ZvTccqglL+qUhfBBra3q7WuPtUXq5NE67sAdCogKd5v5jQG
- 7ijjQ5+40ccgPbdxxDjjH4yYRgfoCp2v2XcAOZ0KIziBs5EjeKGm2sXMPsxeNap570iF
- GERYEMEYamAs9RldfRNzwfSUbVWDDSyc/14NtcW7Y1BtPbuYez6RytZxntaP48ThQl4P
- bkBKiqv/rQXOklkP+iY8+azPYZP0jE+khP1zYAid8EwCZ44dmoSEIN0kOgbcKKkhAv8V
- WlIXBf02bZlxSMAz279ENC9qs+QvKXbJB9BVy8d+ptVPl1Rgn48JJiwhNXWo1wxURGTa 3g== 
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3hdsmu38qv-41
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 20 Jul 2022 10:27:51 +0000
-Received: from nasanex01a.na.qualcomm.com ([10.52.223.231])
-	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 26K9lh8t013042
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 20 Jul 2022 09:47:43 GMT
-Received: from [10.253.13.107] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Wed, 20 Jul
- 2022 02:47:40 -0700
-Message-ID: <063fe6bf-11b1-1724-058f-0fed7247906e@quicinc.com>
-Date: Wed, 20 Jul 2022 17:47:37 +0800
+	id 1oEA02-006Bx6-JJ
+	for ath11k@lists.infradead.org; Wed, 20 Jul 2022 13:44:28 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1658324666; x=1689860666;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=r/BEuxqEDuebpbiD1N3o42xiJNxtIZ7vOqzfS9CSCp4=;
+  b=qFkglK/do1KDNbjC4kvxYkgqleOYa+WJMW/hvMq8cHxQklWY7ERIvzH4
+   XM3AV4uyu7rNT0j4wtNLIwl3FKNBUZeTp0UEfaj7s1M/T5AA8gJA9/Yr8
+   iDekNZv1h/inYf69g07pZjQQS5hPBQ67w9RGZUJ7Jyf65P/VxWPkUfs4c
+   s=;
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 20 Jul 2022 06:44:22 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jul 2022 06:44:22 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Wed, 20 Jul 2022 06:44:21 -0700
+Received: from mpubbise-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Wed, 20 Jul 2022 06:44:19 -0700
+From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, Manikanta Pubbisetty
+	<quic_mpubbise@quicinc.com>
+Subject: [PATCH] ath11k: Enable remain-on-channel support on WCN6750
+Date: Wed, 20 Jul 2022 19:13:31 +0530
+Message-ID: <20220720134331.14832-1-quic_mpubbise@quicinc.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH v4 1/1] bus: mhi: host: Move IRQ allocation to controller
- registration phase
-Content-Language: en-US
-To: Manivannan Sadhasivam <mani@kernel.org>, Kalle Valo <kvalo@kernel.org>
-CC: <quic_hemantk@quicinc.com>, <loic.poulain@linaro.org>,
-        <quic_jhugo@quicinc.com>, <mhi@lists.linux.dev>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_cang@quicinc.com>, <ath11k@lists.infradead.org>
-References: <1655952183-66792-1-git-send-email-quic_qianyu@quicinc.com>
- <20220624072740.GA12171@thinkpad> <87k08an038.fsf@kernel.org>
- <20220720093909.GA5747@thinkpad>
-From: Qiang Yu <quic_qianyu@quicinc.com>
-In-Reply-To: <20220720093909.GA5747@thinkpad>
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: xX4PzRwmNTkX4fYHmUzykk4WwWnxHGCF
-X-Proofpoint-ORIG-GUID: xX4PzRwmNTkX4fYHmUzykk4WwWnxHGCF
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-07-20_05,2022-07-20_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 mlxscore=0
- malwarescore=0 spamscore=0 clxscore=1011 adultscore=0 mlxlogscore=999
- impostorscore=0 priorityscore=1501 bulkscore=0 lowpriorityscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2206140000 definitions=main-2207200043
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220720_032757_403227_30BCB0D1 
-X-CRM114-Status: GOOD (  21.65  )
+X-CRM114-CacheID: sfid-20220720_064426_694669_0857C7E2 
+X-CRM114-Status: GOOD (  10.07  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,150 +74,39 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Ck9uIDcvMjAvMjAyMiA1OjM5IFBNLCBNYW5pdmFubmFuIFNhZGhhc2l2YW0gd3JvdGU6Cj4gT24g
-TW9uLCBKdWwgMTgsIDIwMjIgYXQgMDI6MTU6MjNQTSArMDMwMCwgS2FsbGUgVmFsbyB3cm90ZToK
-Pj4gKyBhdGgxMWsgbGlzdAo+Pgo+PiBNYW5pdmFubmFuIFNhZGhhc2l2YW0gPG1hbmlAa2VybmVs
-Lm9yZz4gd3JpdGVzOgo+Pgo+Pj4gT24gVGh1LCBKdW4gMjMsIDIwMjIgYXQgMTA6NDM6MDNBTSAr
-MDgwMCwgUWlhbmcgWXUgd3JvdGU6Cj4+Pj4gRHVyaW5nIHJ1bnRpbWUsIHRoZSBNSEkgZW5kcG9p
-bnQgbWF5IGJlIHBvd2VyZWQgdXAvZG93biBzZXZlcmFsIHRpbWVzLgo+Pj4+IFNvIGluc3RlYWQg
-b2YgYWxsb2NhdGluZyBhbmQgZGVzdHJveWluZyB0aGUgSVJRcyBhbGwgdGhlIHRpbWUsIGxldCdz
-IGp1c3QKPj4+PiBlbmFibGUvZGlzYWJsZSBJUlFzIGR1cmluZyBwb3dlciB1cC9kb3duLgo+Pj4+
-Cj4+Pj4gVGhlIElSUXMgd2lsbCBiZSBhbGxvY2F0ZWQgZHVyaW5nIG1oaV9yZWdpc3Rlcl9jb250
-cm9sbGVyKCkgYW5kIGZyZWVkCj4+Pj4gZHVyaW5nIG1oaV91bnJlZ2lzdGVyX2NvbnRyb2xsZXIo
-KS4gVGhpcyB3b3JrcyB3ZWxsIGZvciB0aGluZ3MgbGlrZSBQQ0kKPj4+PiBob3RwbHVnIGFsc28g
-YXMgb25jZSB0aGUgUENJIGRldmljZSBnZXRzIHJlbW92ZWQsIHRoZSBjb250cm9sbGVyIHdpbGwK
-Pj4+PiBnZXQgdW5yZWdpc3RlcmVkLiBBbmQgb25jZSBpdCBjb21lcyBiYWNrLCBpdCB3aWxsIGdl
-dCByZWdpc3RlcmVkIGJhY2sKPj4+PiBhbmQgZXZlbiBpZiB0aGUgSVJRIGNvbmZpZ3VyYXRpb24g
-Y2hhbmdlcyAoTVNJKSwgdGhhdCB3aWxsIGdldCBhY2NvdW50ZWQuCj4+Pj4KPj4+PiBTaWduZWQt
-b2ZmLWJ5OiBRaWFuZyBZdSA8cXVpY19xaWFueXVAcXVpY2luYy5jb20+Cj4+PiBBcHBsaWVkIHRv
-IG1oaS1uZXh0IQo+PiBJIGRpZCBhIGJpc2VjdCBhbmQgdGhpcyBwYXRjaCBicmVha3MgYXRoMTFr
-IGR1cmluZyBybW1vZC4gSSdtIG9uCj4+IHZhY2F0aW9uIHJpZ2h0IG5vdyBzbyBJIGNhbid0IGlu
-dmVzdGlnYXRlIGluIGRldGFpbCBidXQgbW9yZSBpbmZvIGJlbG93Lgo+Pgo+IEkganVzdCB0ZXN0
-ZWQgbGludXgtbmV4dC9tYXN0ZXIgbmV4dC0yMDIyMDcxOCBvbiBteSBOVUMgd2l0aCBRQ0E2Mzkw
-LCBidXQgSSdtCj4gbm90IGFibGUgdG8gcmVwcm9kdWNlIHRoZSBpc3N1ZSBkdXJpbmcgcm1tb2Qh
-IEluc3RlYWQgSSBjb3VsZG4ndCBjb25uZWN0IHRvIEFQLgoKSSBzdXNwZWN0IHRoYXQgaW4gX19m
-cmVlX2lycSgpLCBpZiBDT05GSUdfREVCVUdfU0hJUlEgaXMgZW5hYmxlZCwgaXJxIApoYW5kbGVy
-IGZvciBhIHNoYXJlZCBJUlEgd2lsbCBiZSBpbnZva2VkIGFuZCBudWxsIHBvaW50ZXIgYWNjZXNz
-IGhhcHBlbi4KCiNpZmRlZiBDT05GSUdfREVCVUdfU0hJUlEKIMKgwqAgwqAvKgogwqDCoCDCoCAq
-IEl0J3MgYSBzaGFyZWQgSVJRIC0tIHRoZSBkcml2ZXIgb3VnaHQgdG8gYmUgcHJlcGFyZWQgZm9y
-IGFuIElSUQogwqDCoCDCoCAqIGV2ZW50IHRvIGhhcHBlbiBldmVuIG5vdyBpdCdzIGJlaW5nIGZy
-ZWVkLCBzbyBsZXQncyBtYWtlIHN1cmUgdGhhdAogwqDCoCDCoCAqIGlzIHNvIGJ5IGRvaW5nIGFu
-IGV4dHJhIGNhbGwgdG8gdGhlIGhhbmRsZXIgLi4uLgogwqDCoCDCoCAqCiDCoMKgIMKgICogKCBX
-ZSBkbyB0aGlzIGFmdGVyIGFjdHVhbGx5IGRlcmVnaXN0ZXJpbmcgaXQsIHRvIG1ha2Ugc3VyZSB0
-aGF0IGEKIMKgwqAgwqAgKsKgwqAgJ3JlYWwnIElSUSBkb2Vzbid0IHJ1biBpbiBwYXJhbGxlbCB3
-aXRoIG91ciBmYWtlLiApCiDCoMKgIMKgICovCiDCoMKgIMKgaWYgKGFjdGlvbi0+ZmxhZ3MgJiBJ
-UlFGX1NIQVJFRCkgewogwqDCoCDCoMKgwqDCoCBsb2NhbF9pcnFfc2F2ZShmbGFncyk7CiDCoMKg
-IMKgwqDCoMKgIGFjdGlvbi0+aGFuZGxlcihpcnEsIGRldl9pZCk7CiDCoMKgIMKgwqDCoMKgIGxv
-Y2FsX2lycV9yZXN0b3JlKGZsYWdzKTsKIMKgwqAgwqB9CiNlbmRpZgoKPgo+IGxvZzogaHR0cHM6
-Ly9wYXN0ZS5kZWJpYW4ubmV0LzEyNDc3ODgvCj4KPiBUaGFua3MsCj4gTWFuaQo+Cj4+IFsgICA2
-Ni45Mzk4NzhdIHJtbW9kIGF0aDExa19wY2kKPj4gWyAgIDY3LjYwNjI2OV0gZ2VuZXJhbCBwcm90
-ZWN0aW9uIGZhdWx0LCBwcm9iYWJseSBmb3Igbm9uLWNhbm9uaWNhbAo+PiBhZGRyZXNzIDB4ZGZm
-ZmZjMDAwMDAwMDAwMDogMDAwMCBbIzFdIFBSRUVNUFQgU01QIERFQlVHX1BBR0VBTExPQyBLQVNB
-Tgo+PiBQVEkKPj4gWyAgIDY3LjYwNjMyOF0gS0FTQU46IG51bGwtcHRyLWRlcmVmIGluIHJhbmdl
-Cj4+IFsweDAwMDAwMDAwMDAwMDAwMDAtMHgwMDAwMDAwMDAwMDAwMDA3XQo+PiBbICAgNjcuNjA2
-Mzg3XSBDUFU6IDMgUElEOiAxNDYzIENvbW06IHJtbW9kIE5vdCB0YWludGVkIDUuMTkuMC1yYzEr
-ICM2NjkKPj4gWyAgIDY3LjYwNjQ1Nl0gSGFyZHdhcmUgbmFtZTogSW50ZWwoUikgQ2xpZW50IFN5
-c3RlbXMKPj4gTlVDOGk3SFZLL05VQzhpN0hWQiwgQklPUyBITktCTGk3MC44NkEuMDA2Ny4yMDIx
-LjA1MjguMTMzOSAwNS8yOC8yMDIxCj4+IFsgICA2Ny42MDY0OTJdIFJJUDogMDAxMDptaGlfaXJx
-X2hhbmRsZXIrMHg2MS8weDM3MCBbbWhpXQo+PiBbICAgNjcuNjA2NTY1XSBDb2RlOiAwMCA0OCA4
-OSBmYSA0OCBjMSBlYSAwMyA4MCAzYyAwMiAwMCAwZiA4NSA5YiAwMiAwMAo+PiAwMCA0OSA4YiBh
-ZCAyMCAwMSAwMCAwMCA0OCBiOCAwMCAwMCAwMCAwMCAwMCBmYyBmZiBkZiA0OCA4OSBlYSA0OCBj
-MSBlYQo+PiAwMyA8ODA+IDNjIDAyIDAwIDBmIDg1IGJkIDAyIDAwIDAwIDQ4IDhkIDdiIDEwIDQ4
-IDhiIDZkIDAwIDQ4IGI4IDAwIDAwCj4+IFsgICA2Ny42MDY2MzldIFJTUDogMDAxODpmZmZmYzkw
-MDA0MmZmYmE4IEVGTEFHUzogMDAwMTAwNDYKPj4gWyAgIDY3LjYwNjcwNl0gUkFYOiBkZmZmZmMw
-MDAwMDAwMDAwIFJCWDogZmZmZjg4ODEyZTFlMjgwMCBSQ1g6Cj4+IDAwMDAwMDAwMDAwMDAwMDEK
-Pj4gWyAgIDY3LjYwNjc0Ml0gUkRYOiAwMDAwMDAwMDAwMDAwMDAwIFJTSTogZmZmZjg4ODEyZTFl
-MjgwMCBSREk6Cj4+IGZmZmY4ODgxMTBlOGQxMjAKPj4gWyAgIDY3LjYwNjc3Nl0gUkJQOiAwMDAw
-MDAwMDAwMDAwMDAwIFIwODogMDAwMDAwMDAwMDAwMDAwMSBSMDk6Cj4+IGZmZmZmZmZmODZhYzE3
-YWYKPj4gWyAgIDY3LjYwNjgxMF0gUjEwOiBmZmZmZmJmZmYwZDU4MmY1IFIxMTogMDAwMDAwMDAw
-MDAwMDAwMSBSMTI6Cj4+IGZmZmY4ODgxMmMzYWZiODAKPj4gWyAgIDY3LjYwNjg0NV0gUjEzOiBm
-ZmZmODg4MTEwZThkMDAwIFIxNDogZmZmZjg4ODExZGRiYTgwMCBSMTU6Cj4+IGZmZmY4ODgxMmUx
-ZTI4MDAKPj4gWyAgIDY3LjYwNjg4MF0gRlM6ICAwMDAwN2ZlZjAwNzk0NzQwKDAwMDApIEdTOmZm
-ZmY4ODgyMzQyMDAwMDAoMDAwMCkKPj4ga25sR1M6MDAwMDAwMDAwMDAwMDAwMAo+PiBbICAgNjcu
-NjA2OTE1XSBDUzogIDAwMTAgRFM6IDAwMDAgRVM6IDAwMDAgQ1IwOiAwMDAwMDAwMDgwMDUwMDMz
-Cj4+IFsgICA2Ny42MDY5NTBdIENSMjogMDAwMDU1ZGYyMzIzYjc4OCBDUjM6IDAwMDAwMDAxMDk4
-NDQwMDEgQ1I0Ogo+PiAwMDAwMDAwMDAwMzcwNmUwCj4+IFsgICA2Ny42MDY5ODddIENhbGwgVHJh
-Y2U6Cj4+IFsgICA2Ny42MDcwMjFdICA8VEFTSz4KPj4gWyAgIDY3LjYwNzA1Nl0gIF9fZnJlZV9p
-cnErMHg1OTAvMHg5ZDAKPj4gWyAgIDY3LjYwNzA5OV0gID8gc2xhYl9mcmVlX2ZyZWVsaXN0X2hv
-b2srMHhmMC8weDFhMAo+PiBbICAgNjcuNjA3MTM2XSAgZnJlZV9pcnErMHg3Yi8weDExMAo+PiBb
-ICAgNjcuNjA3MTcxXSAgbWhpX2RlaW5pdF9mcmVlX2lycSsweDE0ZS8weDI2MCBbbWhpXQo+PiBb
-ICAgNjcuNjA3MjEwXSAgbWhpX3VucmVnaXN0ZXJfY29udHJvbGxlcisweDY5LzB4MjkwIFttaGld
-Cj4+IFsgICA2Ny42MDcyNDldICBhdGgxMWtfbWhpX3VucmVnaXN0ZXIrMHgyYi8weDcwIFthdGgx
-MWtfcGNpXQo+PiBbICAgNjcuNjA3Mjg0XSAgYXRoMTFrX3BjaV9yZW1vdmUrMHgxMDcvMHgyYTAg
-W2F0aDExa19wY2ldCj4+IFsgICA2Ny42MDczMjFdICBwY2lfZGV2aWNlX3JlbW92ZSsweDg5LzB4
-MWIwCj4+IFsgICA2Ny42MDczNTldICBkZXZpY2VfcmVsZWFzZV9kcml2ZXJfaW50ZXJuYWwrMHgz
-YmMvMHg2MDAKPj4gWyAgIDY3LjYwNzQwMF0gIGRyaXZlcl9kZXRhY2grMHhiYy8weDE4MAo+PiBb
-ICAgNjcuNjA3NDM5XSAgYnVzX3JlbW92ZV9kcml2ZXIrMHhlMi8weDJkMAo+PiBbICAgNjcuNjA3
-NDc2XSAgcGNpX3VucmVnaXN0ZXJfZHJpdmVyKzB4MjEvMHgyNTAKPj4gWyAgIDY3LjYwNzUxMl0g
-IF9fZG9fc3lzX2RlbGV0ZV9tb2R1bGUrMHgzMDcvMHg0YjAKPj4gWyAgIDY3LjYwNzU0OF0gID8g
-ZnJlZV9tb2R1bGUrMHg0ZTAvMHg0ZTAKPj4gWyAgIDY3LjYwNzU4NF0gID8gbG9ja2RlcF9oYXJk
-aXJxc19vbl9wcmVwYXJlLnBhcnQuMCsweDE4Yy8weDM3MAo+PiBbICAgNjcuNjA3NjE4XSAgPyBz
-eXNjYWxsX2VudGVyX2Zyb21fdXNlcl9tb2RlKzB4MWQvMHg1MAo+PiBbICAgNjcuNjA3NjUzXSAg
-PyBsb2NrZGVwX2hhcmRpcnFzX29uKzB4NzkvMHgxMDAKPj4gWyAgIDY3LjYwNzY4OF0gIGRvX3N5
-c2NhbGxfNjQrMHgzNS8weDgwCj4+IFsgICA2Ny42MDc3MjNdICBlbnRyeV9TWVNDQUxMXzY0X2Fm
-dGVyX2h3ZnJhbWUrMHg0Ni8weGIwCj4+IFsgICA2Ny42MDc3NThdIFJJUDogMDAzMzoweDdmZWYw
-MDhlMWE2Ygo+PiBbICAgNjcuNjA3Nzk0XSBDb2RlOiA3MyAwMSBjMyA0OCA4YiAwZCAyNSBjNCAw
-YyAwMCBmNyBkOCA2NCA4OSAwMSA0OCA4Mwo+PiBjOCBmZiBjMyA2NiAyZSAwZiAxZiA4NCAwMCAw
-MCAwMCAwMCAwMCA5MCBmMyAwZiAxZSBmYSBiOCBiMCAwMCAwMCAwMCAwZgo+PiAwNSA8NDg+IDNk
-IDAxIGYwIGZmIGZmIDczIDAxIGMzIDQ4IDhiIDBkIGY1IGMzIDBjIDAwIGY3IGQ4IDY0IDg5IDAx
-IDQ4Cj4+IFsgICA2Ny42MDc4MzZdIFJTUDogMDAyYjowMDAwN2ZmZGQ1ODAzYTM4IEVGTEFHUzog
-MDAwMDAyMDYgT1JJR19SQVg6Cj4+IDAwMDAwMDAwMDAwMDAwYjAKPj4gWyAgIDY3LjYwNzg3M10g
-UkFYOiBmZmZmZmZmZmZmZmZmZmRhIFJCWDogMDAwMDU1YzBkM2YxMDdhMCBSQ1g6Cj4+IDAwMDA3
-ZmVmMDA4ZTFhNmIKPj4gWyAgIDY3LjYwNzk2MV0gUkRYOiAwMDAwMDAwMDAwMDAwMDBhIFJTSTog
-MDAwMDAwMDAwMDAwMDgwMCBSREk6Cj4+IDAwMDA1NWMwZDNmMTA4MDgKPj4gWyAgIDY3LjYwNzk5
-NV0gUkJQOiAwMDAwN2ZmZGQ1ODAzYTk4IFIwODogMDAwMDAwMDAwMDAwMDAwMCBSMDk6Cj4+IDAw
-MDAwMDAwMDAwMDAwMDAKPj4gWyAgIDY3LjYwODAyOV0gUjEwOiAwMDAwN2ZlZjAwOTVkYWMwIFIx
-MTogMDAwMDAwMDAwMDAwMDIwNiBSMTI6Cj4+IDAwMDA3ZmZkZDU4MDNjNzAKPj4gWyAgIDY3LjYw
-ODA2M10gUjEzOiAwMDAwN2ZmZGQ1ODA0ZWI3IFIxNDogMDAwMDU1YzBkM2YwZjJhMCBSMTU6Cj4+
-IDAwMDA1NWMwZDNmMTA3YTAKPj4gWyAgIDY3LjYwODEwMF0gIDwvVEFTSz4KPj4gWyAgIDY3LjYw
-ODEzNF0gTW9kdWxlcyBsaW5rZWQgaW46IGF0aDExa19wY2koLSkgYXRoMTFrIG1hYzgwMjExIGxp
-YmFyYzQKPj4gY2ZnODAyMTEgcW1pX2hlbHBlcnMgcXJ0cl9taGkgbWhpIHFydHIgbnZtZSBudm1l
-X2NvcmUKPj4gWyAgIDY3LjYwODE4NV0gLS0tWyBlbmQgdHJhY2UgMDAwMDAwMDAwMDAwMDAwMCBd
-LS0tCj4+IFsgICA2Ny42MDgxODZdIFJJUDogMDAxMDptaGlfaXJxX2hhbmRsZXIrMHg2MS8weDM3
-MCBbbWhpXQo+PiBbICAgNjcuNjA4MTkyXSBDb2RlOiAwMCA0OCA4OSBmYSA0OCBjMSBlYSAwMyA4
-MCAzYyAwMiAwMCAwZiA4NSA5YiAwMiAwMAo+PiAwMCA0OSA4YiBhZCAyMCAwMSAwMCAwMCA0OCBi
-OCAwMCAwMCAwMCAwMCAwMCBmYyBmZiBkZiA0OCA4OSBlYSA0OCBjMSBlYQo+PiAwMyA8ODA+IDNj
-IDAyIDAwIDBmIDg1IGJkIDAyIDAwIDAwIDQ4IDhkIDdiIDEwIDQ4IDhiIDZkIDAwIDQ4IGI4IDAw
-IDAwCj4+IFsgICA2Ny42MDgxOTRdIFJTUDogMDAxODpmZmZmYzkwMDA0MmZmYmE4IEVGTEFHUzog
-MDAwMTAwNDYKPj4gWyAgIDY3LjYwODE5Nl0gUkFYOiBkZmZmZmMwMDAwMDAwMDAwIFJCWDogZmZm
-Zjg4ODEyZTFlMjgwMCBSQ1g6Cj4+IDAwMDAwMDAwMDAwMDAwMDEKPj4gWyAgIDY3LjYwODE5N10g
-UkRYOiAwMDAwMDAwMDAwMDAwMDAwIFJTSTogZmZmZjg4ODEyZTFlMjgwMCBSREk6Cj4+IGZmZmY4
-ODgxMTBlOGQxMjAKPj4gWyAgIDY3LjYwODE5OF0gUkJQOiAwMDAwMDAwMDAwMDAwMDAwIFIwODog
-MDAwMDAwMDAwMDAwMDAwMSBSMDk6Cj4+IGZmZmZmZmZmODZhYzE3YWYKPj4gWyAgIDY3LjYwODE5
-OV0gUjEwOiBmZmZmZmJmZmYwZDU4MmY1IFIxMTogMDAwMDAwMDAwMDAwMDAwMSBSMTI6Cj4+IGZm
-ZmY4ODgxMmMzYWZiODAKPj4gWyAgIDY3LjYwODIwMF0gUjEzOiBmZmZmODg4MTEwZThkMDAwIFIx
-NDogZmZmZjg4ODExZGRiYTgwMCBSMTU6Cj4+IGZmZmY4ODgxMmUxZTI4MDAKPj4gWyAgIDY3LjYw
-ODIwMV0gRlM6ICAwMDAwN2ZlZjAwNzk0NzQwKDAwMDApIEdTOmZmZmY4ODgyMzQyMDAwMDAoMDAw
-MCkKPj4ga25sR1M6MDAwMDAwMDAwMDAwMDAwMAo+PiBbICAgNjcuNjA4MjAzXSBDUzogIDAwMTAg
-RFM6IDAwMDAgRVM6IDAwMDAgQ1IwOiAwMDAwMDAwMDgwMDUwMDMzCj4+IFsgICA2Ny42MDgyMDRd
-IENSMjogMDAwMDU1ZGYyMzIzYjc4OCBDUjM6IDAwMDAwMDAxMDk4NDQwMDEgQ1I0Ogo+PiAwMDAw
-MDAwMDAwMzcwNmUwCj4+IFsgICA2Ny42MDgyMDZdIEtlcm5lbCBwYW5pYyAtIG5vdCBzeW5jaW5n
-OiBGYXRhbCBleGNlcHRpb24KPj4gWyAgIDY3LjYwODY2NV0gS2VybmVsIE9mZnNldDogMHhhMDAw
-MDAgZnJvbSAweGZmZmZmZmZmODEwMDAwMDAKPj4gKHJlbG9jYXRpb24gcmFuZ2U6IDB4ZmZmZmZm
-ZmY4MDAwMDAwMC0weGZmZmZmZmZmYmZmZmZmZmYpCj4+IFsgICA2Ny42MDg3MDRdIFJlYm9vdGlu
-ZyBpbiAxMCBzZWNvbmRzLi4KPj4KPj4gZ2l0IGJpc2VjdCBzdGFydAo+PiAjIGJhZDogWzlkZjEy
-NWFmMDgyMmQzZTJiZGU3NTA4ZTk1MzZkNjdhYjU0MWExNjZdIGJ1czogbWhpOiBlcDogQ2hlY2sg
-ZGV2X3NldF9uYW1lKCkgcmV0dXJuIHZhbHVlCj4+IGdpdCBiaXNlY3QgYmFkIDlkZjEyNWFmMDgy
-MmQzZTJiZGU3NTA4ZTk1MzZkNjdhYjU0MWExNjYKPj4gIyBnb29kOiBbMTc4MzI5ZDRkNjM1ZmIx
-ODQ4Y2M3Y2ExODAzZGVlNWE2MzRjZGUwZF0gYnVzOiBtaGk6IGhvc3Q6IHBjaV9nZW5lcmljOiBB
-ZGQgc3VwcG9ydCBmb3IgUXVlY3RlbCBFTTEyMCBGQ0NMIG1vZGVtCj4+IGdpdCBiaXNlY3QgZ29v
-ZCAxNzgzMjlkNGQ2MzVmYjE4NDhjYzdjYTE4MDNkZWU1YTYzNGNkZTBkCj4+ICMgYmFkOiBbMTIy
-N2QyYTIwY2Q3MzE5ZmI0NWM2MmZhYjRiMjUyNjAwZTAzMDhiZl0gYnVzOiBtaGk6IGhvc3Q6IE1v
-dmUgSVJRIGFsbG9jYXRpb24gdG8gY29udHJvbGxlciByZWdpc3RyYXRpb24gcGhhc2UKPj4gZ2l0
-IGJpc2VjdCBiYWQgMTIyN2QyYTIwY2Q3MzE5ZmI0NWM2MmZhYjRiMjUyNjAwZTAzMDhiZgo+PiAj
-IGdvb2Q6IFtiN2NlNzE2MjU0MzE1ZGZmY2ZjZTYwZTE0OWRkZDAyMmM4YTYwMzQ1XSBidXM6IG1o
-aTogaG9zdDogcGNpX2dlbmVyaWM6IEFkZCBDaW50ZXJpb24gTVYzMS1XIHdpdGggbmV3IGJhc2Vs
-aW5lCj4+IGdpdCBiaXNlY3QgZ29vZCBiN2NlNzE2MjU0MzE1ZGZmY2ZjZTYwZTE0OWRkZDAyMmM4
-YTYwMzQ1Cj4+ICMgZmlyc3QgYmFkIGNvbW1pdDogWzEyMjdkMmEyMGNkNzMxOWZiNDVjNjJmYWI0
-YjI1MjYwMGUwMzA4YmZdIGJ1czogbWhpOiBob3N0OiBNb3ZlIElSUSBhbGxvY2F0aW9uIHRvIGNv
-bnRyb2xsZXIgcmVnaXN0cmF0aW9uIHBoYXNlCj4+Cj4+IC0tIAo+PiBodHRwczovL3BhdGNod29y
-ay5rZXJuZWwub3JnL3Byb2plY3QvbGludXgtd2lyZWxlc3MvbGlzdC8KPj4KPj4gaHR0cHM6Ly93
-aXJlbGVzcy53aWtpLmtlcm5lbC5vcmcvZW4vZGV2ZWxvcGVycy9kb2N1bWVudGF0aW9uL3N1Ym1p
-dHRpbmdwYXRjaGVzCj4+CgotLSAKYXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtAbGlzdHMuaW5m
-cmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2F0
-aDExawo=
+Enable remain on channel support on WCN6750 as it is needed for
+GAS, Passpoint.
+
+Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
+
+Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/core.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index c8e0bc935838..ddbdfc9311d4 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -559,7 +559,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.dp_window_idx = 1,
+ 		.ce_window_idx = 2,
+ 		.fixed_fw_mem = true,
+-		.support_off_channel_tx = false,
++		.support_off_channel_tx = true,
+ 	},
+ };
+ 
+-- 
+2.35.1
+
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
