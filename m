@@ -4,129 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DAD6C433EF
-	for <ath11k@archiver.kernel.org>; Sat, 23 Jul 2022 12:09:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CED41C43334
+	for <ath11k@archiver.kernel.org>; Mon, 25 Jul 2022 05:46:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:Cc:To:From:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=U0CKHnEcBBBUjtQEJv1HP5GBI4+Ukt30XZ8Rhcr8k1o=; b=ZYcSI4kLgTF2+gbK+uJR9aCxuz
-	IkCCdgFk88L4Fijy8rvpC09vnVkq1DC7ltyCYfOoSj3ax9olNfEwCoc1m20zlRotwfQjFpvTKVBM4
-	7pc0gkn/hGBwTBY1ZCk4tE62EDKLGQWMHJ67eUqCsBXYlWem8f5crlmRy7NTvMZLSpebfuiG5T+qD
-	kdoppCHsqVXPkrjI2+h7mZzyN1qU76KVfnT7PPSg5j3xciOhmtBYwLouebnzuNU5gbTbnOr6g+XXt
-	7tMrzgPFHbsWhlngH/FbyxauFf0rbRBEI5jXeW6DAdNI+cA30UfHzLeuZ9x85S+DjBPFVWp8sxz+L
-	NkRo6INg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=wmwYJM+Zm/hkV5pqRhJos/t1ez5AYuT/ulIAbNYYGH0=; b=EWDIPKgcXAp1y6
+	Z7IE2V4zHsjVXeEpvIgbVnqhp/8rZuqG7kGIal4/elWqkSVDIixxIil7gSphgA6mPrbuWjbTIsIxV
+	Q7U1KbfR5q7UVOoHtJxVvDwCyQVrXAh/qBdmgxy98r8VY8u11BeA4AQ0vnRmCdFT2XNHKFvSg3JtV
+	HhMhv/zZQqixgIf7/lbIsWOwg9q7LB8nk2M0nKXrtiED+NZ0cIKPj0tXmLoGUYXdv3bJI3qPTG8ir
+	nnuy7Q9v/O3mpoLF9DxHnnJyZ8dkSsEX1RwP41T6BKzncRzxysratuBaqpQRqLJxXHrG6r8SzWscd
+	144nr4yeS+e6MH7cprkw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oFDwl-002dUx-DZ; Sat, 23 Jul 2022 12:09:27 +0000
-Received: from mail-mw2nam12on2050.outbound.protection.outlook.com ([40.107.244.50] helo=NAM12-MW2-obe.outbound.protection.outlook.com)
+	id 1oFqvF-004g9H-NS; Mon, 25 Jul 2022 05:46:29 +0000
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oFDwh-002dPw-LQ
-	for ath11k@lists.infradead.org; Sat, 23 Jul 2022 12:09:26 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WAyn7Th7PfQBY7zZzhgV9B1lcIhJmaZ13j7T6yHuqRBpW5TUKq71m0m/aYClGbuipY6zOueKULHmA72xE4ynOGZB8BShjUbt4P2XOg8HP2uENK60iAzMkSG41k6z1jV5Z8KYBEQGRBhIc8du3FVQ4oib0zHLL+v+yKyl4L43wQLOKQDUKIaSVXN6W3FoXM4Rch4FjL9ZFD5Lmcnwop+QA5o45wkJzFD3fkKTfPmBZPc/swAYv+OgAvhYyaOlL29b6wu8CUe0001TiN/W3wVN/+0FMtqqtY8M5CFMhw35JkCvLJhLzl0twqc9pKEYinLF3t630wgPolIFRBahv90tmQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=N2/aKuCKupK2rMTava7uLU+ZDtf3kIWCxW7Xvlfy9m0=;
- b=RldtKMvyorfLRxM7YEDzignUc40LAjjxU+obz27ctZQQfOBgrupCgX0lXOFrSFNWDBVg2VAilLzwVhQyaDOHbmJhpC/znJZaMpG7/upqXADkkU4puvh2zjGuaZIgkyFeal2psvMQHmTfvj80v4oGhAbFzN4W3B/4jgUELzgf4ddR5P3SdkBh+5vMBxSWxVEZ7M0N9d0bhUJeMNNXgIXbLV2KkjpjpnFrVEW2MlyVYejPY2Le4APttpCcY2hDxWvHYiMs/CSeQ6DIW05Zi7CW0Sgg0iP+vM4orRYr1A8EaW3YeSYAPdW1RBVb9H9c36wFPXQh1dsZ0iYNBgj9TYB5gw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=N2/aKuCKupK2rMTava7uLU+ZDtf3kIWCxW7Xvlfy9m0=;
- b=ubde+iUBmJGxDPTQmvP+JQl7WZMwGdxS7hGwoRqwYSa4AU0K/IBKIc52GC+caBXoHNQbb5zw8ez4DOJh/XeaytsReJNiAv7lgOH8jsaKJ6ZjmUlVwR2ociQzJI/+/JWvdpGuQvYvmh06TRBdOyp2FHARCVq8rGw6NJ1o0XN5a1A=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from MN0PR12MB6101.namprd12.prod.outlook.com (2603:10b6:208:3cb::10)
- by CH2PR12MB4922.namprd12.prod.outlook.com (2603:10b6:610:65::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5458.18; Sat, 23 Jul
- 2022 12:09:13 +0000
-Received: from MN0PR12MB6101.namprd12.prod.outlook.com
- ([fe80::1143:10a5:987a:7598]) by MN0PR12MB6101.namprd12.prod.outlook.com
- ([fe80::1143:10a5:987a:7598%6]) with mapi id 15.20.5438.023; Sat, 23 Jul 2022
- 12:09:13 +0000
-Message-ID: <6daefd60-dcbc-06e1-8091-ea225690edf8@amd.com>
-Date: Sat, 23 Jul 2022 07:09:11 -0500
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 0/4] ath11k: Enable low power mode when WLAN is not active
-Content-Language: en-US
-From: "Limonciello, Mario" <mario.limonciello@amd.com>
-To: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>,
- ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
-References: <20220720134959.15688-1-quic_mpubbise@quicinc.com>
- <ad99d238-dc1a-3233-fc6b-0cd49e428903@amd.com>
-In-Reply-To: <ad99d238-dc1a-3233-fc6b-0cd49e428903@amd.com>
-X-ClientProxiedBy: CH0PR04CA0050.namprd04.prod.outlook.com
- (2603:10b6:610:77::25) To MN0PR12MB6101.namprd12.prod.outlook.com
- (2603:10b6:208:3cb::10)
+	id 1oFqvB-004g1d-PC
+	for ath11k@lists.infradead.org; Mon, 25 Jul 2022 05:46:28 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1658727985; x=1690263985;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=yK/tPRqdDN3yTwURYHNz+WiqX9tTDHzNrYUYZMeC//0=;
+  b=AsMmj54XKJXM2rgUILaoyc2YbgiDfjfQLX4X6nazfAmJpA9emC+WV1ri
+   4Ma9kGY0rj+pjz/oI9/sZgawoDWCCdX6Tsm0O2NmcsVHQZ6Qmy+EULyhZ
+   TzPjwdeyhG/2pIQ3zVPDUSI6Tg/iEbxMp7TtzGcj+yC4sbAQZMvxfXpIf
+   k=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 24 Jul 2022 22:46:22 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jul 2022 22:46:22 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Sun, 24 Jul 2022 22:46:22 -0700
+Received: from tamizhr-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Sun, 24 Jul 2022 22:46:19 -0700
+From: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, Venkateswara Naralasetty
+	<quic_vnaralas@quicinc.com>, Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
+Subject: [PATCH] ath11k: Add support to get power save duration for each client
+Date: Mon, 25 Jul 2022 11:16:01 +0530
+Message-ID: <20220725054601.14719-1-quic_tamizhr@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 871fbe43-56aa-4ea8-4715-08da6ca42839
-X-MS-TrafficTypeDiagnostic: CH2PR12MB4922:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 	nPIuXGSM0LvMvsO4TJO/Oqajc5gCwhWCXxnexoIOpxWCi+OskABstbCVFL68Ak0P4z/besDoQ32ysFKkuEDem+Pggh2hUB/NZPzYDe+MiTeVHroNxkeBNN0WaBCkAbX3iRY1ztV3mevUepCciXawJqH5WshoCvL3SrDGqq72fROcIEDd3n6F+BeCQDu/AzOjo/J9XbjtYrfgszu+toZX0v77DRdY2BO0d2XOQJm+zZH7+Jv8j6MUXClcebrdKnRTQR3rKR0lbP1gISz5b3EhBCYQg/jKbXxrjufcjs59sUacU5TqvPmbeNt3xanRDUu3oFOlNzR9A6nUTcYyOebYgcwC2Y0XMScBDWQc7j5r4UaHmHZBPlKbTpsGc6fQZSysNoud7SF5aTIpnaqS497RKmBFROSsQubN7tZ9lkMBj51LEpQEdv71vH8is1H8Unz9m/vc50CAiJuRsRadX4eIsxzvnsjC3WvvEXsmnwMlbCxtkxc/rWeGvoTqlPTgeXEO5nCEQw4D3hT5eApduOnUkZiXM6qAVlB1ufGEs9fALM+ah3JZToxe8Rs4NE4q1OMxIwAnCek69tx8k0lpEnxbatIkGb9AUzql/1V3/MGTc3ispzT7Qp1Azqf9ELxUrAgmF9TC93iY9L+TE3/DFpUYJTSr6nUZ4hkPIQzG+bVgaV7qfFIS+m6TYNr820geWtr8DT7e2A8SAyx/a+pKIfkV/TmqiTmBZCMs0rtPffuUGFg07Nuca54b+ehenJPsfJssQupJ0FMYKqwJoQ9f+I0WiHjmEXLLRw+K1iNumZ5KR9YOWq/EYbVXvF038qXQ7qiy/Mlz/bnsl6kx87zEzldKgg==
-X-Forefront-Antispam-Report: 	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN0PR12MB6101.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(346002)(376002)(366004)(396003)(39860400002)(136003)(86362001)(31696002)(38100700002)(8936002)(6486002)(478600001)(5660300002)(316002)(66476007)(66556008)(8676002)(66946007)(4326008)(2616005)(186003)(83380400001)(6506007)(31686004)(53546011)(4001150100001)(2906002)(41300700001)(6512007)(36756003)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 	=?utf-8?B?cW9wR01aVDE4SXVycXdKT3ZsVlhWZ0ZqcTMvRmpCRm0yRGhJTUVpM0hyZnk3?=
- =?utf-8?B?eFlmVEs4d2l3dGdQVDcycFNJKzVtQ3hHcW9uOTFIelJjQndRVmVLODVQNDZs?=
- =?utf-8?B?UUozUDIzNm9GaUNhNmVKVSt6cmp4c0VTWHYvTmFEdUtIbkZxZVBqZDFkRUVq?=
- =?utf-8?B?MzU0NHJPREw1d0JCaHc5clBweDdHUm8vZ1RDME52N1RYK1ZLN1dxZ3I2UXpV?=
- =?utf-8?B?bStXbkxwYlJnL1hrLzFVSVhyb095dSt2cm1kUmFFSWliUzJVUERZQ2tlMTIv?=
- =?utf-8?B?TkhBb1BCUHBLNisxaW9JR0FTZ2RWUnE2bExvaDY2MTh0WDF1TVFmTkEzWjVY?=
- =?utf-8?B?Y1BMTDVVRzJSNStUaU5XMCtRKzFjTWNLWFF4MEVXNU1pMkdyT0lZVEMxR2Rr?=
- =?utf-8?B?K3hIb0RudVd5ckkrK25tUFZVT0RpWDdtT0M3UUl3azQ4Y3FBWlhWSk91OHdR?=
- =?utf-8?B?b2hCQmJvdFdJYndZTVFrZTQ2UGppaDB1Y3NKVkVxK04vV2phRHVsSThSMndQ?=
- =?utf-8?B?bTU4N05uMUh2VWJwaklIWXROQnFmQVZyQTVWS1U2Z0loQWJ6d0VGK1ExQUp1?=
- =?utf-8?B?MjlKQWYxK3FWbGpXTzU5V3BQVzlRUXM5bnVmOURHcm5WVlYxQnQzVTJ0SEpk?=
- =?utf-8?B?K3dBR0cvRUZ6bHcwV2tmWkVpZ2dCVVNhZ0U4aHN5ekw4MGpFSWNyT3l0QldW?=
- =?utf-8?B?M1YxKy9jS0t6UnFDaFJrSG8wSjFSZWFCVityMXJJMWYxam0rWGJMQ0xnZFpD?=
- =?utf-8?B?WE8rQnc5SytKYzJnVHhlaWVIK0cvYnpWbzhLVjRLMmdxYXZhZnlwR0F2ZGZn?=
- =?utf-8?B?aUpZVllWNkdUVDdFeVlNcWlIM2Z3QU92RmtFWWs4TGpJZ0hZdjgzUFFNQ0dC?=
- =?utf-8?B?YThORE9QZGtZSjI5ekxqOUFKWUFXbGJHa3FSSUhSK1BoMFBPMExyODRlMWNL?=
- =?utf-8?B?bzVrT0tpeGZsV3RlRENQRnAwT0cxcGwrdHV1dGl3RzNsT1FMV2pIRFdnV0Qy?=
- =?utf-8?B?RHVCN0FvcEYzWm9Cb1FXYkZ0WHZZaVNnamZpeWR1M0VBS3F2SEJlZVc0dHpj?=
- =?utf-8?B?SWFNS2hwaGMwZ1crbUo5UjNYZEI3M3FTMmtFM1NabDVSVEtoMnpUNDYzaFNt?=
- =?utf-8?B?bXpwOTRjcXozbFRXWFU0azVsdVpyaEJpVG94bStZUG9mZHJDUk9YKzFPV3R4?=
- =?utf-8?B?TFRTb3ZhV3B0cngvZ0RoZk1HWkpFaTJPVUpvMWhNNTBFLzBvQkpJRHRuSU1B?=
- =?utf-8?B?VTliM2pRQ2R1bHNoWjBITUhTZzFGMnBCKzk1akFNR1BXYVN4cWJWVUxWWDY2?=
- =?utf-8?B?Q2NqVURoTHF2b2w0cFVBS3diS1Jpa0VqbmVzYXRwcWRNbitjZzQ3YW92WUFQ?=
- =?utf-8?B?cGR3S2JEN0hBSTJrTTJzbWhGUjdFcWRwSGsrSlROUStGN0NTc2RHK0ZPWndn?=
- =?utf-8?B?Qk5NaFJJSmVjVnF3YmdibXFMRzRrVmhSZktXblpUWmVMVlJDN1FBNEVXd2dT?=
- =?utf-8?B?RUZtQk4zMGVLYTlWcktpemR3L3l0WWNrTjgrdld1VzY5QS9EM0lzRUx5VkJN?=
- =?utf-8?B?Vlg2N0FReS9pS1lLODhQSXBBNXlkWGZyNW4wWjVIMGlhUDU0VTZVRGhmMU02?=
- =?utf-8?B?RWoydlJHQS9vd1RvOUdqa0xBeHlZaUt4V1RNVTkvQ3F4bTRBUFhmVEdzeUVT?=
- =?utf-8?B?V09WTjIwaGNIZ1A1TWl0OE90ZjdOaGVpYk91UzgwUVRoak1ubVlWRWlpcDln?=
- =?utf-8?B?L1REbzJZM1l4QUZDbjVLaHN6UW5NSUROcjlhS3lMdkxxeU1uUE1BSzhUWHNw?=
- =?utf-8?B?WGVnbXJNMU0xU1NaOHJZVEZKSnN4MEYwTkU5N2poZFFJaWdYekMyaWFyeUgx?=
- =?utf-8?B?QmM0Wmw5TmY3OVRDU05yZnFHSWRyRWtKTHZnYWtISXoxampWWE1ZRWZ2M2pQ?=
- =?utf-8?B?dndqRnQ3eExQZjNXWjkxMytUckZZUnptYzlIM2ZkQ2NWRUJMZ1pkZGUxTXow?=
- =?utf-8?B?UDgyd2dxdFU5OURZbGV4T2E4eXZMOVlCMkFsOFVhditWRU1tbHcyM0lUc0RQ?=
- =?utf-8?B?dzd2MzFqOGlhZS9Qdm1MOTJPYzZHMVJnNkhHL3RUMGwySExCQWowcEdMREdE?=
- =?utf-8?B?cytNamtLOEFLWTk5NHYxYkhXNVNQeDNrZy92S0RPT1VVK1NjcmMzZXArMW5x?=
- =?utf-8?Q?creuKVVqCySgpscET8hbzZ52BBLWUPYX7SrwPKllm1Fp?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 871fbe43-56aa-4ea8-4715-08da6ca42839
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR12MB6101.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jul 2022 12:09:13.3968
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3UmHDJSLpMdH7+lBVkQwYN440hvJyoE5DLfcnxM5MDGniVp839XT2hu0P9La95skmDuexb6Vjnu/YsgAXRKOhQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4922
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220723_050924_426965_756804D1 
-X-CRM114-Status: GOOD (  21.27  )
+X-CRM114-CacheID: sfid-20220724_224625_926255_60C650D9 
+X-CRM114-Status: GOOD (  18.87  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -138,80 +73,646 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-T24gNy8yMi8yMDIyIDE3OjAwLCBMaW1vbmNpZWxsbywgTWFyaW8gd3JvdGU6Cj4gT24gNy8yMC8y
-MDIyIDA4OjQ5LCBNYW5pa2FudGEgUHViYmlzZXR0eSB3cm90ZToKPj4gQ3VycmVudGx5LCBXTEFO
-IGNoaXAgaXMgcG93ZXJlZCBvbmNlIGR1cmluZyBkcml2ZXIgcHJvYmUgYW5kIGlzIGtlcHQKPj4g
-T04gKHBvd2VyZWQpIGFsd2F5cyBldmVuIHdoZW4gV0xBTiBpcyBub3QgYWN0aXZlOyBrZWVwaW5n
-IHRoZSBjaGlwCj4+IHBvd2VyZWQgT04gYWxsIHRoZSB0aW1lIHdpbGwgY29uc3VtZSBleHRyYSBw
-b3dlciB3aGljaCBpcyBub3QKPj4gZGVzaXJhYmxlIG9uIGEgYmF0dGVyeSBvcGVyYXRlZCBkZXZp
-Y2UuIFNhbWUgaXMgdGhlIGNhc2Ugd2l0aCBub24tV29XCj4+IHN1c3BlbmQsIGNoaXAgd2lsbCBu
-b3QgYmUgcHV0IGludG8gbG93IHBvd2VyIG1vZGUgd2hlbiB0aGUgc3lzdGVtIGlzCj4+IHN1c3Bl
-bmRlZCByZXN1bHRpbmcgaW4gaGlnaGVyIGJhdHRlcnkgZHJhaW4uCj4+Cj4+IFNlbmQgUU1JIE1P
-REUgT0ZGIGNvbW1hbmQgdG8gZmlybXdhcmUgZHVyaW5nIFdpRmkgT0ZGIHRvIHB1dCBkZXZpY2UK
-Pj4gaW50byBsb3cgcG93ZXIgbW9kZS4KPj4KPj4gVGVzdGVkLW9uOiBXQ042NzUwIGh3MS4wIEFI
-QiBXTEFOLk1TTC4xLjAuMS0wMDg4Ny1RQ0FNU0xTV1BMWi0xCj4+Cj4+IE1hbmlrYW50YSBQdWJi
-aXNldHR5ICg0KToKPj4gwqDCoCBhdGgxMWs6IEZpeCBkb3VibGUgZnJlZSBpc3N1ZSBkdXJpbmcg
-U1JORyBkZWluaXQKPj4gwqDCoCBhdGgxMWs6IE1vdmUgaGFyZHdhcmUgaW5pdGlhbGl6YXRpb24g
-bG9naWMgdG8gc3RhcnQoKQo+PiDCoMKgIGF0aDExazogRW5hYmxlIGxvdyBwb3dlciBtb2RlIHdo
-ZW4gV0xBTiBpcyBub3QgYWN0aXZlCj4+IMKgwqAgYXRoMTFrOiBGaXggZmFpbGVkIHRvIHBhcnNl
-IHJlZ3VsYXRvcnkgZXZlbnQgcHJpbnQKPj4KPj4gwqAgZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRo
-L2F0aDExay9jb3JlLmMgfCAyMzcgKysrKysrKysrKysrKysrKysrLS0tLS0tLQo+PiDCoCBkcml2
-ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL2NvcmUuaCB8wqDCoCA4ICstCj4+IMKgIGRyaXZl
-cnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvaGFsLmPCoCB8wqDCoCAxICsKPj4gwqAgZHJpdmVy
-cy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9tYWMuY8KgIHzCoCAzMyArKy0tCj4+IMKgIGRyaXZl
-cnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvcmVnLmPCoCB8wqDCoCAyICsKPj4gwqAgNSBmaWxl
-cyBjaGFuZ2VkLCAxODkgaW5zZXJ0aW9ucygrKSwgOTIgZGVsZXRpb25zKC0pCj4+Cj4gCj4gVGhp
-cyBzZXJpZXMgbG9va2VkIHBvdGVudGlhbGx5IHByb21pc2luZyB0byBtZSBmb3IgYSBwcm9ibGVt
-IHRoYXQgSSdtIAo+IHNlZWluZyBvbiBhIG5vdGVib29rIGZhaWxpbmcgdG8gc2xlZXAgd2hlcmUg
-V0xBTl9XQUtFIGlzIGFzc2VydGVkIG9uIHRoZSAKPiBXQ042ODU1IG9uIHJlc3VtZSBldmVuIHRo
-b3VnaCBXb1cgd2Fzbid0IHNldCBhdCBhbGwuwqAgVGhpcyBpcyAKPiBwcm9ibGVtYXRpYyBhcyBp
-dCBjYXVzZXMgYSBzcHVyaW91cyB3YWtlIHdoaWxlIFNVVCBpcyByZWFkaW5nIGZyb20gdGhlIAo+
-IEVDIHNpbmNlIHR3byBJUlFzIGFyZSBub3cgYWN0aXZlIGFuZCB0aGUga2VybmVsIHdha2VzIGZy
-b20gdGhhdC4KPiBSZW1vdmluZyB0aGUgV0NONjg1NSBmcm9tIHRoZSBzeXN0ZW0gaXQgZG9lc24n
-dCBoYXBwZW4uCj4gCj4gSSBmaWd1cmVkIEknZCBnaXZlIGl0IGEgc3BpbiB0byBzZWUgaWYgaXQg
-aW1wcm92ZWQgdGhpbmdzLgo+IEkgYXBwbGllZCB0aGUgc2VyaWVzIG9uIHRvcCBvZiA1LjE5LXJj
-NyBhbmQgaXQgYXBwbGllZCBjbGVhbmx5IGJ1dCBJIGdldCAKPiB0aW1lb3V0cyBvbiB3bGFuIGNh
-cmQgaW5pdCAoYW5kIG9mIGNvdXJzZSBzdXNwZW5kIGZhaWxzIG5vdyB0b28pLgo+IAo+IEhlcmUn
-cyB0aGUgbWhpL2F0aDExa19wY2kgc25pcHBldHM6Cj4gCj4gW8KgwqDCoCAyLjg2NDExMF0gYXRo
-MTFrX3BjaSAwMDAwOjAxOjAwLjA6IEJBUiAwOiBhc3NpZ25lZCBbbWVtIAo+IDB4YjQwMDAwMDAt
-MHhiNDFmZmZmZiA2NGJpdF0KPiBbwqDCoMKgIDIuODY0OTAxXSBhdGgxMWtfcGNpIDAwMDA6MDE6
-MDAuMDogTVNJIHZlY3RvcnM6IDMyCj4gW8KgwqDCoCAyLjg2NDkxMl0gYXRoMTFrX3BjaSAwMDAw
-OjAxOjAwLjA6IHdjbjY4NTUgaHcyLjEKPiBbwqDCoMKgIDMuMTA2ODkyXSBtaGkgbWhpMDogUmVx
-dWVzdGVkIHRvIHBvd2VyIE9OCj4gW8KgwqDCoCAzLjEwNzA1NF0gbWhpIG1oaTA6IFBvd2VyIG9u
-IHNldHVwIHN1Y2Nlc3MKPiBbwqDCoMKgIDMuMTk4MTc4XSBtaGkgbWhpMDogV2FpdCBmb3IgZGV2
-aWNlIHRvIGVudGVyIFNCTCBvciBNaXNzaW9uIG1vZGUKPiBbwqDCoMKgIDMuOTcxMDE5XSBhdGgx
-MWtfcGNpIDAwMDA6MDE6MDAuMDogY2hpcF9pZCAweDIgY2hpcF9mYW1pbHkgMHhiIAo+IGJvYXJk
-X2lkIDB4ZmYgc29jX2lkIDB4NDAwYzAyMTAKPiBbwqDCoMKgIDMuOTcxMDI1XSBhdGgxMWtfcGNp
-IDAwMDA6MDE6MDAuMDogZndfdmVyc2lvbiAweDExMDgwYmJiIAo+IGZ3X2J1aWxkX3RpbWVzdGFt
-cCAyMDIxLTEyLTE2IDAzOjQyIGZ3X2J1aWxkX2lkIAo+IFdMQU4uSFNQLjEuMS0wMzAwMy1RQ0FI
-U1BTV1BMX1YxX1YyX1NJTElDT05aX0xJVEUtMgo+IFvCoMKgwqAgNC4yOTAzMjhdIGF0aDExa19w
-Y2kgMDAwMDowMTowMC4wIHdscDFzMDogcmVuYW1lZCBmcm9tIHdsYW4wCj4gW8KgwqDCoCA0LjMw
-ODc2MF0gYXRoMTFrX3BjaSAwMDAwOjAxOjAwLjA6IEZhaWxlZCB0byBzZXQgdGhlIHJlcXVlc3Rl
-ZCAKPiBDb3VudHJ5IHJlZ3VsYXRvcnkgc2V0dGluZwo+IFvCoMKgwqAgNC4zMDkwMjhdIGF0aDEx
-a19wY2kgMDAwMDowMTowMC4wOiBGYWlsZWQgdG8gc2V0IHRoZSByZXF1ZXN0ZWQgCj4gQ291bnRy
-eSByZWd1bGF0b3J5IHNldHRpbmcKPiBbwqDCoCAxNC4zODYyMDFdIGF0aDExa19wY2kgMDAwMDow
-MTowMC4wOiBxbWkgZmFpbGVkIHdsYW4gaW5pIHJlcXVlc3QsIGVyciAKPiA9IC0xMTAKPiBbwqDC
-oCAxNC4zODYyMTBdIGF0aDExa19wY2kgMDAwMDowMTowMC4wOiBxbWkgZmFpbGVkIHRvIHNlbmQg
-d2xhbiBmdyBpbmk6LTExMAo+IFvCoMKgIDE0LjM4NjIxNF0gYXRoMTFrX3BjaSAwMDAwOjAxOjAw
-LjA6IGZhaWxlZCB0byBzZW5kIGZpcm13YXJlIHN0YXJ0OiAtMTEwCj4gW8KgwqAgMTQuMzg2MjQz
-XSBhdGgxMWtfcGNpIDAwMDA6MDE6MDAuMDogZmFpbGVkIHRvIHN0YXJ0IGZpcm13YXJlOiAtMTEw
-Cj4gW8KgwqAgMTQuMzg2MjY2XSBhdGgxMWtfcGNpIDAwMDA6MDE6MDAuMDogZmFpbGVkIHRvIHNl
-dHVwIGRldmljZTogLTExMAo+IFvCoMKgIDE0LjM4NjMwMF0gYXRoMTFrX3BjaSAwMDAwOjAxOjAw
-LjA6IGZhaWxlZCB0byBzdGFydCBkZXZpY2UgOiAtMTEwCj4gCj4gQW5kIHNvIC0gb24uCj4gSXMg
-aXQgZnVuY3Rpb25hbGx5IGRlcGVuZGVudCBvbiBvdGhlciBwYXRjaGVzIGluIGxpbnV4LW5leHQg
-b3IgYW5vdGhlciAKPiB0cmVlIEkgd29uJ3Qgc2VlIGluIDUuMTk/CgpJIGhhZCBhIHRyeSB3aXRo
-IGxpbnV4LW5leHQgYW5kIHlvdXIgc2VyaWVzIGJ1dCBJIHJlcHJvZHVjZSB0aGUgc2FtZSAKZmFp
-bHVyZSBJIGRlc2NyaWJlZCBhYm92ZS4KCmVlM2EwNjZlNGY0ZSAoSEVBRCkgYXRoMTFrOiBGaXgg
-ZmFpbGVkIHRvIHBhcnNlIHJlZ3VsYXRvcnkgZXZlbnQgcHJpbnQKNGY4NTBmMWUyNmRjIGF0aDEx
-azogRW5hYmxlIGxvdyBwb3dlciBtb2RlIHdoZW4gV0xBTiBpcyBub3QgYWN0aXZlCmUzMjBjOGVm
-OTg0MSBhdGgxMWs6IE1vdmUgaGFyZHdhcmUgaW5pdGlhbGl6YXRpb24gbG9naWMgdG8gc3RhcnQo
-KQpkYmMyNjAzNmMxZWYgYXRoMTFrOiBGaXggZG91YmxlIGZyZWUgaXNzdWUgZHVyaW5nIFNSTkcg
-ZGVpbml0CjE4YzEwN2ExZjEyMCAodGFnOiBuZXh0LTIwMjIwNzIyLCBsaW51eC1uZXh0L21hc3Rl
-cikgQWRkIGxpbnV4LW5leHQgCnNwZWNpZmljIGZpbGVzIGZvciAyMDIyMDcyMgoKCgotLSAKYXRo
-MTFrIG1haWxpbmcgbGlzdAphdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMu
-aW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2F0aDExawo=
+From: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
+
+Add support to get the following power save information through debugfs interface,
+
+ * Current ps state of the peer
+ * Time duration since the peer is in power save
+ * Total duration of the peer spent in power save
+
+Above information is helpful in debugging the issues with power save clients.
+
+This patch also add trace log support for PS timekeeper to track the PS state
+change of the peers alongs with the peer MAC address and timestamp.
+
+Use the below commands to get the above power save information,
+
+To know the time_since_station_in_power_save:
+cat /sys/kernel/debug/ieee80211/phyX/netdev:wlanX/stations/
+XX:XX:XX:XX:XX:XX/current_ps_duration
+
+To know power_save_duration:
+cat /sys/kernel/debug/ieee80211/phyX/netdev:wlanX/stations/
+XX:XX:XX:XX:XX:XX/total_ps_duration
+
+To reset the power_save_duration of all stations connected to AP:
+echo 1 > /sys/kernel/debug/ieee80211/phyX/ath11k/reset_ps_duration
+
+To enable/disable the ps_timekeeper:
+echo Y > /sys/kernel/debug/ieee80211/phyX/ath11k/ps_timekeeper_enable
+Y = 1 to enable and Y = 0 to disable.
+
+To record PS timekeeer logs after enabling ps_timekeeper:
+trace-cmd record -e ath11k_ps_timekeeper
+
+Tested-on: Tested-on: IPQ8074 WLAN.HK.2.5.0.1-00991-QCAHKSWPL_SILICONZ-1
+
+Signed-off-by: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
+Signed-off-by: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/core.h        |  10 +
+ drivers/net/wireless/ath/ath11k/debugfs.c     | 201 ++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/debugfs_sta.c | 107 ++++++++++
+ drivers/net/wireless/ath/ath11k/mac.c         |   1 +
+ drivers/net/wireless/ath/ath11k/trace.h       |  28 +++
+ drivers/net/wireless/ath/ath11k/wmi.c         | 105 +++++++++
+ drivers/net/wireless/ath/ath11k/wmi.h         |  21 ++
+ 7 files changed, 473 insertions(+)
+
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index 2bd5eb9df4d4..6a21e9a4994f 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -498,6 +498,13 @@ struct ath11k_sta {
+ 
+ 	bool use_4addr_set;
+ 	u16 tcl_metadata;
++
++	/* Protected with ar->data_lock */
++	enum ath11k_wmi_peer_ps_state peer_ps_state;
++	u64 ps_start_time;
++	u64 ps_start_jiffies;
++	u64 ps_total_duration;
++	bool peer_current_ps_valid;
+ };
+ 
+ #define ATH11K_MIN_5G_FREQ 4150
+@@ -710,6 +717,9 @@ struct ath11k {
+ 	u8 twt_enabled;
+ 	bool nlo_enabled;
+ 	u8 alpha2[REG_ALPHA2_LEN + 1];
++	/* protected by conf_mutex */
++	bool ps_state_enable;
++	bool ps_timekeeper_enable;
+ };
+ 
+ struct ath11k_band_cap {
+diff --git a/drivers/net/wireless/ath/ath11k/debugfs.c b/drivers/net/wireless/ath/ath11k/debugfs.c
+index 9648e0017393..f6333d89d15d 100644
+--- a/drivers/net/wireless/ath/ath11k/debugfs.c
++++ b/drivers/net/wireless/ath/ath11k/debugfs.c
+@@ -1382,6 +1382,193 @@ static const struct file_operations fops_dbr_debug = {
+ 	.llseek = default_llseek,
+ };
+ 
++static ssize_t ath11k_write_ps_timekeeper_enable(struct file *file,
++						 const char __user *user_buf,
++						 size_t count, loff_t *ppos)
++{
++	struct ath11k *ar = file->private_data;
++	ssize_t ret;
++	u8 ps_timekeeper_enable;
++
++	if (kstrtou8_from_user(user_buf, count, 0, &ps_timekeeper_enable))
++		return -EINVAL;
++
++	mutex_lock(&ar->conf_mutex);
++
++	if (ar->state != ATH11K_STATE_ON) {
++		ret = -ENETDOWN;
++		goto exit;
++	}
++
++	if (!ar->ps_state_enable) {
++		ret = -EINVAL;
++		goto exit;
++	}
++
++	ar->ps_timekeeper_enable = !!ps_timekeeper_enable;
++	ret = count;
++exit:
++	mutex_unlock(&ar->conf_mutex);
++
++	return ret;
++}
++
++static ssize_t ath11k_read_ps_timekeeper_enable(struct file *file,
++						char __user *user_buf,
++						size_t count, loff_t *ppos)
++{
++	struct ath11k *ar = file->private_data;
++	char buf[32];
++	int len;
++
++	mutex_lock(&ar->conf_mutex);
++	len = scnprintf(buf, sizeof(buf), "%d\n", ar->ps_timekeeper_enable);
++	mutex_unlock(&ar->conf_mutex);
++
++	return simple_read_from_buffer(user_buf, count, ppos, buf, len);
++}
++
++static const struct file_operations fops_ps_timekeeper_enable = {
++	.read = ath11k_read_ps_timekeeper_enable,
++	.write = ath11k_write_ps_timekeeper_enable,
++	.open = simple_open,
++	.owner = THIS_MODULE,
++	.llseek = default_llseek,
++};
++
++static void ath11k_reset_peer_ps_duration(void *data,
++					  struct ieee80211_sta *sta)
++{
++	struct ath11k *ar = data;
++	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
++
++	spin_lock_bh(&ar->data_lock);
++	arsta->ps_total_duration = 0;
++	spin_unlock_bh(&ar->data_lock);
++}
++
++static ssize_t ath11k_write_reset_ps_duration(struct file *file,
++					      const  char __user *user_buf,
++					      size_t count, loff_t *ppos)
++{
++	struct ath11k *ar = file->private_data;
++	int ret;
++	u8 reset_ps_duration;
++
++	if (kstrtou8_from_user(user_buf, count, 0, &reset_ps_duration))
++		return -EINVAL;
++
++	mutex_lock(&ar->conf_mutex);
++
++	if (ar->state != ATH11K_STATE_ON) {
++		ret = -ENETDOWN;
++		goto exit;
++	}
++
++	if (!ar->ps_state_enable) {
++		ret = -EINVAL;
++		goto exit;
++	}
++
++	ieee80211_iterate_stations_atomic(ar->hw,
++					  ath11k_reset_peer_ps_duration,
++					  ar);
++
++	ret = count;
++exit:
++	mutex_unlock(&ar->conf_mutex);
++	return ret;
++}
++
++static const struct file_operations fops_reset_ps_duration = {
++	.write = ath11k_write_reset_ps_duration,
++	.open = simple_open,
++	.owner = THIS_MODULE,
++	.llseek = default_llseek,
++};
++
++static void ath11k_peer_ps_state_disable(void *data,
++					 struct ieee80211_sta *sta)
++{
++	struct ath11k *ar = data;
++	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
++
++	spin_lock_bh(&ar->data_lock);
++	arsta->peer_ps_state = WMI_PEER_PS_STATE_DISABLED;
++	arsta->ps_start_time = 0;
++	arsta->ps_total_duration = 0;
++	spin_unlock_bh(&ar->data_lock);
++}
++
++static ssize_t ath11k_write_ps_state_enable(struct file *file,
++					    const char __user *user_buf,
++					    size_t count, loff_t *ppos)
++{
++	struct ath11k *ar = file->private_data;
++	struct ath11k_pdev *pdev = ar->pdev;
++	int ret;
++	u32 param;
++	u8 ps_state_enable;
++
++	if (kstrtou8_from_user(user_buf, count, 0, &ps_state_enable))
++		return -EINVAL;
++
++	mutex_lock(&ar->conf_mutex);
++
++	ps_state_enable = !!ps_state_enable;
++
++	if (ar->ps_state_enable == ps_state_enable) {
++		ret = count;
++		goto exit;
++	}
++
++	param = WMI_PDEV_PEER_STA_PS_STATECHG_ENABLE;
++	ret = ath11k_wmi_pdev_set_param(ar, param, ps_state_enable, pdev->pdev_id);
++	if (ret) {
++		ath11k_warn(ar->ab, "failed to enable ps_state_enable: %d\n",
++			    ret);
++		goto exit;
++	}
++	ar->ps_state_enable = ps_state_enable;
++
++	if (!ar->ps_state_enable) {
++		ar->ps_timekeeper_enable = false;
++		ieee80211_iterate_stations_atomic(ar->hw,
++						  ath11k_peer_ps_state_disable,
++						  ar);
++	}
++
++	ret = count;
++
++exit:
++	mutex_unlock(&ar->conf_mutex);
++
++	return ret;
++}
++
++static ssize_t ath11k_read_ps_state_enable(struct file *file,
++					   char __user *user_buf,
++					   size_t count, loff_t *ppos)
++{
++	struct ath11k *ar = file->private_data;
++	char buf[32];
++	int len;
++
++	mutex_lock(&ar->conf_mutex);
++	len = scnprintf(buf, sizeof(buf), "%d\n", ar->ps_state_enable);
++	mutex_unlock(&ar->conf_mutex);
++
++	return simple_read_from_buffer(user_buf, count, ppos, buf, len);
++}
++
++static const struct file_operations fops_ps_state_enable = {
++	.read = ath11k_read_ps_state_enable,
++	.write = ath11k_write_ps_state_enable,
++	.open = simple_open,
++	.owner = THIS_MODULE,
++	.llseek = default_llseek,
++};
++
+ int ath11k_debugfs_register(struct ath11k *ar)
+ {
+ 	struct ath11k_base *ab = ar->ab;
+@@ -1428,6 +1615,20 @@ int ath11k_debugfs_register(struct ath11k *ar)
+ 		debugfs_create_file("enable_dbr_debug", 0200, ar->debug.debugfs_pdev,
+ 				    ar, &fops_dbr_debug);
+ 
++	debugfs_create_file("ps_state_enable", 0600, ar->debug.debugfs_pdev, ar,
++			    &fops_ps_state_enable);
++
++	if (test_bit(WMI_TLV_SERVICE_PEER_POWER_SAVE_DURATION_SUPPORT,
++		     ar->ab->wmi_ab.svc_map)) {
++		debugfs_create_file("ps_timekeeper_enable", 0600,
++				    ar->debug.debugfs_pdev, ar,
++				    &fops_ps_timekeeper_enable);
++
++		debugfs_create_file("reset_ps_duration", 0200,
++				    ar->debug.debugfs_pdev, ar,
++				    &fops_reset_ps_duration);
++	}
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/debugfs_sta.c b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
+index 1b1acbdf837a..9cc4ef28e751 100644
+--- a/drivers/net/wireless/ath/ath11k/debugfs_sta.c
++++ b/drivers/net/wireless/ath/ath11k/debugfs_sta.c
+@@ -751,6 +751,102 @@ static const struct file_operations fops_htt_peer_stats_reset = {
+ 	.llseek = default_llseek,
+ };
+ 
++static ssize_t ath11k_dbg_sta_read_peer_ps_state(struct file *file,
++						 char __user *user_buf,
++						 size_t count, loff_t *ppos)
++{
++	struct ieee80211_sta *sta = file->private_data;
++	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
++	struct ath11k *ar = arsta->arvif->ar;
++	char buf[20];
++	int len;
++
++	spin_lock_bh(&ar->data_lock);
++
++	len = scnprintf(buf, sizeof(buf), "%d\n", arsta->peer_ps_state);
++
++	spin_unlock_bh(&ar->data_lock);
++
++	return simple_read_from_buffer(user_buf, count, ppos, buf, len);
++}
++
++static const struct file_operations fops_peer_ps_state = {
++	.open = simple_open,
++	.read = ath11k_dbg_sta_read_peer_ps_state,
++	.owner = THIS_MODULE,
++	.llseek = default_llseek,
++};
++
++static ssize_t ath11k_dbg_sta_read_current_ps_duration(struct file *file,
++						       char __user *user_buf,
++						       size_t count,
++						       loff_t *ppos)
++{
++	struct ieee80211_sta *sta = file->private_data;
++	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
++	struct ath11k *ar = arsta->arvif->ar;
++	u64 time_since_station_in_power_save;
++	char buf[20];
++	int len;
++
++	spin_lock_bh(&ar->data_lock);
++
++	if (arsta->peer_ps_state == WMI_PEER_PS_STATE_ON &&
++	    arsta->peer_current_ps_valid)
++		time_since_station_in_power_save = jiffies_to_msecs(jiffies
++						- arsta->ps_start_jiffies);
++	else
++		time_since_station_in_power_save = 0;
++
++	len = scnprintf(buf, sizeof(buf), "%llu\n",
++			time_since_station_in_power_save);
++	spin_unlock_bh(&ar->data_lock);
++
++	return simple_read_from_buffer(user_buf, count, ppos, buf, len);
++}
++
++static const struct file_operations fops_current_ps_duration = {
++	.open = simple_open,
++	.read = ath11k_dbg_sta_read_current_ps_duration,
++	.owner = THIS_MODULE,
++	.llseek = default_llseek,
++};
++
++static ssize_t ath11k_dbg_sta_read_total_ps_duration(struct file *file,
++						     char __user *user_buf,
++						     size_t count, loff_t *ppos)
++{
++	struct ieee80211_sta *sta = file->private_data;
++	struct ath11k_sta *arsta = (struct ath11k_sta *)sta->drv_priv;
++	struct ath11k *ar = arsta->arvif->ar;
++	char buf[20];
++	u64 power_save_duration;
++	int len;
++
++	spin_lock_bh(&ar->data_lock);
++
++	if (arsta->peer_ps_state == WMI_PEER_PS_STATE_ON &&
++	    arsta->peer_current_ps_valid)
++		power_save_duration = jiffies_to_msecs(jiffies
++						- arsta->ps_start_jiffies)
++						+ arsta->ps_total_duration;
++	else
++		power_save_duration = arsta->ps_total_duration;
++
++	len = scnprintf(buf, sizeof(buf), "%llu\n", power_save_duration);
++
++	spin_unlock_bh(&ar->data_lock);
++
++	return simple_read_from_buffer(user_buf, count, ppos, buf, len);
++}
++
++static const struct file_operations fops_total_ps_duration = {
++	.open = simple_open,
++	.read = ath11k_dbg_sta_read_total_ps_duration,
++	.owner = THIS_MODULE,
++	.llseek = default_llseek,
++};
++
+ void ath11k_debugfs_sta_op_add(struct ieee80211_hw *hw, struct ieee80211_vif *vif,
+ 			       struct ieee80211_sta *sta, struct dentry *dir)
+ {
+@@ -778,4 +874,15 @@ void ath11k_debugfs_sta_op_add(struct ieee80211_hw *hw, struct ieee80211_vif *vi
+ 		     ar->ab->wmi_ab.svc_map))
+ 		debugfs_create_file("htt_peer_stats_reset", 0600, dir, sta,
+ 				    &fops_htt_peer_stats_reset);
++
++	debugfs_create_file("peer_ps_state", 0400, dir, sta,
++			    &fops_peer_ps_state);
++
++	if (test_bit(WMI_TLV_SERVICE_PEER_POWER_SAVE_DURATION_SUPPORT,
++		     ar->ab->wmi_ab.svc_map)) {
++		debugfs_create_file("current_ps_duration", 0440, dir, sta,
++				    &fops_current_ps_duration);
++		debugfs_create_file("total_ps_duration", 0440, dir, sta,
++				    &fops_total_ps_duration);
++	}
+ }
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 17dbc7d9cf29..fb7f27a28302 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -4523,6 +4523,7 @@ static int ath11k_mac_op_sta_state(struct ieee80211_hw *hw,
+ 	    new_state == IEEE80211_STA_NONE) {
+ 		memset(arsta, 0, sizeof(*arsta));
+ 		arsta->arvif = arvif;
++		arsta->peer_ps_state = WMI_PEER_PS_STATE_DISABLED;
+ 		INIT_WORK(&arsta->update_wk, ath11k_sta_rc_update_wk);
+ 		INIT_WORK(&arsta->set_4addr_wk, ath11k_sta_set_4addr_wk);
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/trace.h b/drivers/net/wireless/ath/ath11k/trace.h
+index a02e54735e88..d7fe24e0391e 100644
+--- a/drivers/net/wireless/ath/ath11k/trace.h
++++ b/drivers/net/wireless/ath/ath11k/trace.h
+@@ -308,6 +308,34 @@ TRACE_EVENT(ath11k_wmi_diag,
+ 	)
+ );
+ 
++TRACE_EVENT(ath11k_ps_timekeeper,
++	    TP_PROTO(struct ath11k *ar, const void *peer_addr,
++		     u32 peer_ps_timestamp, u8 peer_ps_state),
++	TP_ARGS(ar, peer_addr, peer_ps_timestamp, peer_ps_state),
++
++	TP_STRUCT__entry(__string(device, dev_name(ar->ab->dev))
++			 __string(driver, dev_driver_string(ar->ab->dev))
++			 __dynamic_array(u8, peer_addr, ETH_ALEN)
++			 __field(u8, peer_ps_state)
++			 __field(u32, peer_ps_timestamp)
++	),
++
++	TP_fast_assign(__assign_str(device, dev_name(ar->ab->dev));
++		       __assign_str(driver, dev_driver_string(ar->ab->dev));
++		       memcpy(__get_dynamic_array(peer_addr), peer_addr,
++			      ETH_ALEN);
++		       __entry->peer_ps_state = peer_ps_state;
++		       __entry->peer_ps_timestamp = peer_ps_timestamp;
++	),
++
++	TP_printk("%s %s %u %u",
++		  __get_str(driver),
++		  __get_str(device),
++		  __entry->peer_ps_state,
++		  __entry->peer_ps_timestamp
++	)
++);
++
+ #endif /* _TRACE_H_ || TRACE_HEADER_MULTI_READ*/
+ 
+ /* we don't want to use include/trace/events */
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 5d9437ea92cf..b8c36714ec12 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -6771,6 +6771,108 @@ static void ath11k_bcn_tx_status_event(struct ath11k_base *ab, struct sk_buff *s
+ 	rcu_read_unlock();
+ }
+ 
++void
++ath11k_wmi_event_peer_sta_ps_state_chg(struct ath11k_base *ab,
++				       struct sk_buff *skb)
++{
++	const struct wmi_peer_sta_ps_state_chg_event *ev;
++	struct ieee80211_sta *sta;
++	struct ath11k_peer *peer;
++	struct ath11k *ar;
++	struct ath11k_sta *arsta;
++	const void **tb;
++	enum ath11k_wmi_peer_ps_state peer_previous_ps_state;
++	int ret;
++
++	tb = ath11k_wmi_tlv_parse_alloc(ab, skb->data, skb->len, GFP_ATOMIC);
++	if (IS_ERR(tb)) {
++		ret = PTR_ERR(tb);
++		ath11k_warn(ab, "failed to parse tlv: %d\n", ret);
++		return;
++	}
++
++	ev = tb[WMI_TAG_PEER_STA_PS_STATECHANGE_EVENT];
++	if (!ev) {
++		ath11k_warn(ab, "failed to fetch sta ps change ev");
++		kfree(tb);
++		return;
++	}
++
++	ath11k_dbg(ab, ATH11K_DBG_WMI,
++		   "peer sta ps chnange ev addr %pM state %u sup_bitmap %x ps_valid %u ts %u\n",
++		   ev->peer_macaddr.addr, ev->peer_ps_state,
++		   ev->ps_supported_bitmap, ev->peer_ps_valid,
++		   ev->peer_ps_timestamp);
++
++	rcu_read_lock();
++
++	spin_lock_bh(&ab->base_lock);
++
++	peer = ath11k_peer_find_by_addr(ab, ev->peer_macaddr.addr);
++
++	if (!peer) {
++		spin_unlock_bh(&ab->base_lock);
++		ath11k_warn(ab, "peer not found %pM\n", ev->peer_macaddr.addr);
++		goto exit;
++	}
++
++	ar = ath11k_mac_get_ar_by_vdev_id(ab, peer->vdev_id);
++
++	if (!ar) {
++		spin_unlock_bh(&ab->base_lock);
++		ath11k_warn(ab, "invalid vdev id in peer sta ps state change ev %d",
++			    peer->vdev_id);
++
++		goto exit;
++	}
++
++	sta = peer->sta;
++
++	spin_unlock_bh(&ab->base_lock);
++
++	if (!sta) {
++		ath11k_warn(ab, "failed to find station entry %pM\n",
++			    ev->peer_macaddr.addr);
++		goto exit;
++	}
++
++	arsta = (struct ath11k_sta *)sta->drv_priv;
++
++	spin_lock_bh(&ar->data_lock);
++
++	peer_previous_ps_state = arsta->peer_ps_state;
++	arsta->peer_ps_state = ev->peer_ps_state;
++	arsta->peer_current_ps_valid = !!ev->peer_ps_valid;
++
++	if (test_bit(WMI_TLV_SERVICE_PEER_POWER_SAVE_DURATION_SUPPORT,
++		     ar->ab->wmi_ab.svc_map)) {
++		if (!(ev->ps_supported_bitmap & WMI_PEER_PS_VALID) ||
++		    !(ev->ps_supported_bitmap & WMI_PEER_PS_STATE_TIMESTAMP) ||
++		    !ev->peer_ps_valid)
++			goto out;
++
++		if (arsta->peer_ps_state == WMI_PEER_PS_STATE_ON) {
++			arsta->ps_start_time = ev->peer_ps_timestamp;
++			arsta->ps_start_jiffies = jiffies;
++		} else if (arsta->peer_ps_state == WMI_PEER_PS_STATE_OFF &&
++			   peer_previous_ps_state == WMI_PEER_PS_STATE_ON) {
++			arsta->ps_total_duration = arsta->ps_total_duration +
++					(ev->peer_ps_timestamp - arsta->ps_start_time);
++		}
++
++		if (ar->ps_timekeeper_enable)
++			trace_ath11k_ps_timekeeper(ar, ev->peer_macaddr.addr,
++						   ev->peer_ps_timestamp,
++						   arsta->peer_ps_state);
++	}
++
++out:
++	spin_unlock_bh(&ar->data_lock);
++exit:
++	rcu_read_unlock();
++	kfree(tb);
++}
++
+ static void ath11k_vdev_stopped_event(struct ath11k_base *ab, struct sk_buff *skb)
+ {
+ 	struct ath11k *ar;
+@@ -8001,6 +8103,9 @@ static void ath11k_wmi_tlv_op_rx(struct ath11k_base *ab, struct sk_buff *skb)
+ 	case WMI_DIAG_EVENTID:
+ 		ath11k_wmi_diag_event(ab, skb);
+ 		break;
++	case WMI_PEER_STA_PS_STATECHG_EVENTID:
++		ath11k_wmi_event_peer_sta_ps_state_chg(ab, skb);
++		break;
+ 	case WMI_GTK_OFFLOAD_STATUS_EVENTID:
+ 		ath11k_wmi_gtk_offload_status_event(ab, skb);
+ 		break;
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index b1fad4707dc6..1f9032a6e56c 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -2090,6 +2090,7 @@ enum wmi_tlv_service {
+ 	WMI_TLV_SERVICE_PER_PEER_HTT_STATS_RESET = 213,
+ 	WMI_TLV_SERVICE_FREQINFO_IN_METADATA = 219,
+ 	WMI_TLV_SERVICE_EXT2_MSG = 220,
++	WMI_TLV_SERVICE_PEER_POWER_SAVE_DURATION_SUPPORT = 246,
+ 	WMI_TLV_SERVICE_SRG_SRP_SPATIAL_REUSE_SUPPORT = 249,
+ 
+ 	/* The second 128 bits */
+@@ -5375,6 +5376,26 @@ struct wmi_debug_log_config_cmd_fixed_param {
+ #define WMI_SERVICE_READY_TIMEOUT_HZ (5 * HZ)
+ #define WMI_SEND_TIMEOUT_HZ (3 * HZ)
+ 
++enum ath11k_wmi_peer_ps_state {
++	WMI_PEER_PS_STATE_OFF,
++	WMI_PEER_PS_STATE_ON,
++	WMI_PEER_PS_STATE_DISABLED,
++};
++
++enum wmi_peer_ps_supported_bitmap {
++	/* Used to indicate that power save state change is valid */
++	WMI_PEER_PS_VALID = 0x1,
++	WMI_PEER_PS_STATE_TIMESTAMP = 0x2,
++};
++
++struct wmi_peer_sta_ps_state_chg_event {
++	struct wmi_mac_addr peer_macaddr;
++	u32 peer_ps_state;
++	u32 ps_supported_bitmap;
++	u32 peer_ps_valid;
++	u32 peer_ps_timestamp;
++} __packed;
++
+ struct ath11k_wmi_base {
+ 	struct ath11k_base *ab;
+ 	struct ath11k_pdev_wmi wmi[MAX_RADIOS];
+-- 
+2.17.1
+
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
