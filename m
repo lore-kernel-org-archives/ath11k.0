@@ -4,60 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6919DC43334
-	for <ath11k@archiver.kernel.org>; Mon, 25 Jul 2022 11:23:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 213A3C43334
+	for <ath11k@archiver.kernel.org>; Mon, 25 Jul 2022 11:27:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
 	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=JXLaCCucZpBUr3hc4Ngwnvx7ba73J2hTggLdHlZaFBY=; b=0J6Jath/UkuWww
-	kJe5KsI9Pi1cDDNGK+hqnOOuBeudTnhJDjTKnXI/Pp1OClBU8cfCXe3HeewZvY1lbOwe+FT9E+ysD
-	VWDbxhdwyEO44zVeAgs2DuFxE7S+UP+v3cNLhHC1ztcnMLK4qMR/5aC3a2iG0P5ldICQFGHkVcykO
-	mybeGjfH6ALDsQhSq2/SfiMwDPK7L77mRFYWKuv7UQ5ZQH9MGzLObM/Z+LdONRtiI/I7UtPqqgCEF
-	4FEcmrOh9QquOtd8V4xarmz2rxY5mXN5AXlwPWBXVzPaHMjMNYZ3Rb+SBtQ7UMos56Y8uUb94ODO5
-	7AOquuvXHGpkphK0IH6A==;
+	List-Owner; bh=fPiZOxW8kjYfCeN3kCrwwzPXsS784FaiALvCIS3uHLc=; b=V+KFWTQFTJqynI
+	lkdpbFqEHzxzRXj9UYlb432d4cdeV44zN6cHpTA08FGnpIq8hBcH/pKf2lJE2hZDPElVaD6iah6Sx
+	u+Qs7KcYdnYztgjIH9QE1JBhlsJ6dopNDEKgGEXSVTi6Ura6stSWQOuFy2Bf0hRUqZHxN4fholvgj
+	WgfWTtvs9b6cb/+SqR4fYEN7EmnLnubTtFRCLmpMgh0QMyLbt+17ERD4RhTM/luBbgGSYwTKghH02
+	gg2JobCshsvfwV76YHEPsLC60Lj40TF88c95GhyFk8xE2TCOeLBwTaHPxKQv6/C04j3Kl6Gp/jbgj
+	AHVSIlhB4lXt4iIaG0lw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oFwB8-008qrL-7K; Mon, 25 Jul 2022 11:23:14 +0000
+	id 1oFwEl-008szb-Ie; Mon, 25 Jul 2022 11:26:59 +0000
 Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oFwB5-008qpH-HF
-	for ath11k@lists.infradead.org; Mon, 25 Jul 2022 11:23:13 +0000
+	id 1oFwEi-008swW-NG
+	for ath11k@lists.infradead.org; Mon, 25 Jul 2022 11:26:58 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 0F9FB60F7E;
-	Mon, 25 Jul 2022 11:23:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A7B5C341C8;
-	Mon, 25 Jul 2022 11:23:09 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 1053460DB9;
+	Mon, 25 Jul 2022 11:26:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 595B9C341C6;
+	Mon, 25 Jul 2022 11:26:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1658748190;
-	bh=BVdjLwLxOOb/BTqcmnVSOT7tpDS8HiwfdQrWI1fdU4M=;
+	s=k20201202; t=1658748415;
+	bh=ByzNrFzGDisnp6Rd1c9XlWdax0TrZxDkLwMrmCNll9g=;
 	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=JCO18uHVn822/vHLs34I00heNZZKFBrNacEisIqzwqUg+UTTv00u0vzqJVffPkfH7
-	 HsqIH1lDSpIMMo/5Cq+kbbcwpsqfWpRkH4fTZV7iE5g82HN2UBFTVsiDaPLf/jXmpE
-	 7Od3y5OFs/L+FpY+JMW0i5vSgiZZEDpebzRz+EhWgcvM2s2uA3igqJ7VsXWsZuA+j4
-	 vamXT0EL9RUqxPZwJWK5jzf2xBD77CyaaI1KBlCAvJ/diEGn7lMItY1plHdlIVk5Km
-	 LEeZvD7MyOalF1UZYcT3YqQQkN1OjKUHtKcGLQ9OABsomu9QoWLjNho9zdjgufHU42
-	 u3eOVyzaKvvgQ==
+	b=uFKAUIBK4FHMWe6SnIoPT4S3BYt9mzZ8XCzEVtbTTiM7PhdQVVEGcN1yRCLup6ri0
+	 rfPFEeECRv6FDXp8wSiKqiz8rlAnPpBOQyPy4fhNGzdPGkocKcnNsUhXKokNjZDhhH
+	 XQaW5ne9M8gZXMJKxBfGu1O5j3D06Y+dFWor8kdk2V8BIZ8WpWCGS9SSq7yzgFy38g
+	 yPxNNwNPpOklCdb47XRDhYxGXknhnZvN/Te8KDYNhHLQvjekRNpgSwAGXjxkDkNNkR
+	 /tYfrznx5qhzg1YfcUoDKDYfIhP9hJMTbH4o6gbKiLSwJfrwX/lZ2+kPb7VnMXt7wy
+	 VhF7zs30Qjnug==
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: Add support to get power save duration for each
- client
+Subject: Re: [PATCHv2] ath11k: Add spectral scan support for 160 MHz
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20220725054601.14719-1-quic_tamizhr@quicinc.com>
-References: <20220725054601.14719-1-quic_tamizhr@quicinc.com>
+In-Reply-To: <20220725055001.15194-1-quic_tamizhr@quicinc.com>
+References: <20220725055001.15194-1-quic_tamizhr@quicinc.com>
 To: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
 Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- Venkateswara Naralasetty <quic_vnaralas@quicinc.com>,
  Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
 User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <165874818328.809.14159736625387988844.kvalo@kernel.org>
-Date: Mon, 25 Jul 2022 11:23:09 +0000 (UTC)
+Message-ID: <165874840987.809.11956403256946513470.kvalo@kernel.org>
+Date: Mon, 25 Jul 2022 11:26:54 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220725_042311_638068_20DF61E5 
-X-CRM114-Status: GOOD (  13.62  )
+X-CRM114-CacheID: sfid-20220725_042656_828958_2FB12BE8 
+X-CRM114-Status: GOOD (  12.36  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,51 +74,43 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 Tamizh Chelvam Raja <quic_tamizhr@quicinc.com> wrote:
 
-> Add support to get the following power save information through debugfs interface,
+> There are two types of 160 MHz spectral scan support mentioned below
 > 
->  * Current ps state of the peer
->  * Time duration since the peer is in power save
->  * Total duration of the peer spent in power save
+> 1. Fragmented approach
+> 2. Single event approach
 > 
-> Above information is helpful in debugging the issues with power save clients.
+> In this fragmented approach, single 160 MHz will be split as two
+> 80 MHz buffer. First fft sample buffer will contain spectral scan
+> result of primary 80 MHz and the second fft sample buffer will contain
+> secondary 80 MHz and here cfreq1 and cfreq2 will be mentioned.
+> In case of 160 MHz on 36th channel will contain cfreq1 as 5210 and
+> cfreq2 as 5290. Chipsets which support this approach are IPQ8074/IPQ6018.
 > 
-> This patch also add trace log support for PS timekeeper to track the PS state
-> change of the peers alongs with the peer MAC address and timestamp.
+> Replacing freq1 with freq2 in every secondary sepctral scan event to
+> distinguish between two different 80 MHz spectral event data.
 > 
-> Use the below commands to get the above power save information,
+> In the 2nd approach each fft sample buffer will contain spectral scan
+> result for whole 160 MHz by mentioning cfreq1 as 5250 which is center
+> frequency of whole 160 MHz. Chipset which support this approach is QCN9074.
 > 
-> To know the time_since_station_in_power_save:
-> cat /sys/kernel/debug/ieee80211/phyX/netdev:wlanX/stations/
-> XX:XX:XX:XX:XX:XX/current_ps_duration
+> Host will receive spectral event from target for every 5 fft samples.
 > 
-> To know power_save_duration:
-> cat /sys/kernel/debug/ieee80211/phyX/netdev:wlanX/stations/
-> XX:XX:XX:XX:XX:XX/total_ps_duration
-> 
-> To reset the power_save_duration of all stations connected to AP:
-> echo 1 > /sys/kernel/debug/ieee80211/phyX/ath11k/reset_ps_duration
-> 
-> To enable/disable the ps_timekeeper:
-> echo Y > /sys/kernel/debug/ieee80211/phyX/ath11k/ps_timekeeper_enable
-> Y = 1 to enable and Y = 0 to disable.
-> 
-> To record PS timekeeer logs after enabling ps_timekeeper:
-> trace-cmd record -e ath11k_ps_timekeeper
-> 
-> Tested-on: Tested-on: IPQ8074 WLAN.HK.2.5.0.1-00991-QCAHKSWPL_SILICONZ-1
+> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1-01120-QCAHKSWPL-1
+> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01120-QCAHKSWP
 > 
 > Signed-off-by: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
-> Signed-off-by: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
 > Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-This failed to build:
+This added a new warning:
 
-drivers/net/wireless/ath/ath11k/wmi.c:6771:1: error: no previous prototype for 'ath11k_wmi_event_peer_sta_ps_state_chg' [-Werror=missing-prototypes]
+drivers/net/wireless/ath/ath11k/spectral.c:682:43: warning: incorrect type in assignment (different base types)
+drivers/net/wireless/ath/ath11k/spectral.c:682:43:    expected restricted __be16 [usertype] freq1
+drivers/net/wireless/ath/ath11k/spectral.c:682:43:    got unsigned short [assigned] [usertype] freq
 
-I fixed it in the pending branch.
+Remember to use ath11k-check to check your code. I fixed this in the pending branch.
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20220725054601.14719-1-quic_tamizhr@quicinc.com/
+https://patchwork.kernel.org/project/linux-wireless/patch/20220725055001.15194-1-quic_tamizhr@quicinc.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
