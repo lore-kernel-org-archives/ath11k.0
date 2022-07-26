@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9455BC43334
-	for <ath11k@archiver.kernel.org>; Mon, 25 Jul 2022 18:00:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A8F6C433EF
+	for <ath11k@archiver.kernel.org>; Tue, 26 Jul 2022 08:07:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=LRjyAp94b2A3jE1/L6H8FSENeasiJlZFXOzaBex9Xhs=; b=kIUNEeGd3n8D8e
-	QB4UXZg5FAljj3A5KZXWU52VVJW/ukbDkmb7KZ0ZmTex01WvOsTxCC1bJvpvYYTuLmR6MsZxqFlLY
-	u3l8Cv9oxL0V3rEIsx4baPMVa1xe9ZLzH6CG0BLX7pWzdLnXhbl2kP1m2gvDSlB3G4JdyZ6ow8YeW
-	OIkeeYXz9okuGWOifj7ubDbiCnPOnHA0JOoL2yFDpuB4ymu1gfLnTykyubv3p7mGAvZN31lR8f6sJ
-	7YDPLjSsJBM1cAL1wLRAoKhgMcr/VcVlvpgEP3qx6f2/2mJO+4CK/WcUeb4oF92GhCGu7t2Ks/FWV
-	wwMghc+iYb5ri22Zm/cg==;
+	List-Owner; bh=hQPpAq+j6sdOJe4gy01VHlHfpOtd2IxDKyKy/yRrrSc=; b=cWDkEkR/+Uhkmq
+	RWIclDJ83lhkXpK99Q61M9X2Ajfg4jH3yzHu6rAbTo8eHF6aINj7eDbdzS8dwCSTc5q1AUc+4Ai/N
+	MGZgCCGXgLUjeEpMCXAD/8m+GC2LL5Jd0V8iYYYMHaSJQS962Bb1fcqriyYbvqL+V0TulkMrw0PD3
+	/+KWbOe76ZYnT4kVQoPNG0GI4+q52M3pgVBcSd9rn2+JXmPgwdgJnBuNfJAmJgvGaWhPi8YxYb39s
+	Tm4jK/2kKU1biBbg38iRS3WsiUyyySJqerC+sJ3TxqWlcI21Yt0/Htm3P9VB9MwXHvWZ+ztCxh384
+	0I/jl6m+uLX7GxkDpzxQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oG2NO-00GL8E-K5; Mon, 25 Jul 2022 18:00:18 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1oGFbF-009tU2-VP; Tue, 26 Jul 2022 08:07:30 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oG2NL-00GL6m-SM
-	for ath11k@lists.infradead.org; Mon, 25 Jul 2022 18:00:17 +0000
+	id 1oGFaY-009slk-Jv
+	for ath11k@lists.infradead.org; Tue, 26 Jul 2022 08:06:50 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 66C6A61389;
-	Mon, 25 Jul 2022 18:00:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A10D9C341C6;
-	Mon, 25 Jul 2022 18:00:12 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id EF245614F1;
+	Tue, 26 Jul 2022 08:06:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5999C36AE5;
+	Tue, 26 Jul 2022 08:06:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1658772014;
-	bh=umOm1cFvLaFJjBTJsRPIlLTUylpQHF2uRLMesgi8PmU=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=QVeeA1GKVVlstdAGGCckwZr3lMEVA1s+rUQZ3H4h0WaG+1dw9znU7VG0+B0nKWqLv
-	 w2nBxCZZ2Ehtyr/3u9wb+G28xcY/wdwgxCWDl0ZenZwU2+llQ6AfkYhNAutiH1+e5a
-	 dhABj+Zco8xFqSN40GASQ6LNiiPqAet1bW3exNUDzBtLISlzxli9AfgopZhQSIGKEV
-	 UrXBG8fOUyOZwTg02cpqmpPDG/KaDAkgSSDZciMEwQIXBYWkIKNUGxRnHDeJ2pvi/V
-	 oCwDaet87QemhqhvJaB2v66p8n5S0YBhSj5WrCIbc0JU3OX0ahwePnlzJ7iasxVO+t
-	 xLw3DxJZyLCcQ==
-From: Kalle Valo <kvalo@kernel.org>
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: Qiang Yu <quic_qianyu@quicinc.com>,  quic_hemantk@quicinc.com,  loic.poulain@linaro.org,  quic_jhugo@quicinc.com,  mhi@lists.linux.dev,  linux-arm-msm@vger.kernel.org,  linux-kernel@vger.kernel.org,  quic_cang@quicinc.com,  ath11k@lists.infradead.org
-Subject: Re: [PATCH v4 1/1] bus: mhi: host: Move IRQ allocation to controller registration phase
-References: <1655952183-66792-1-git-send-email-quic_qianyu@quicinc.com>
-	<20220624072740.GA12171@thinkpad> <87k08an038.fsf@kernel.org>
-	<20220720093909.GA5747@thinkpad>
-	<063fe6bf-11b1-1724-058f-0fed7247906e@quicinc.com>
-	<20220721101914.GC36189@thinkpad>
-Date: Mon, 25 Jul 2022 21:00:08 +0300
-In-Reply-To: <20220721101914.GC36189@thinkpad> (Manivannan Sadhasivam's
-	message of "Thu, 21 Jul 2022 15:49:14 +0530")
-Message-ID: <87wnc1qdhz.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+	s=k20201202; t=1658822804;
+	bh=AuSXlGXkPcDkuhy4cIR2vtHDpg/jer5nbJzf7kZ8fcg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RCCcqAC2M4GslsUvGs5C1x4+/2G3a3w3bEuNTAsrTHtM9sH6pN3U++bWLhLWuMidi
+	 zyAWadDpmrSgL3lkX4NJrljlmQzjsXQeXb0RJ3rAOeqYMNes0+jhfEafI+YcAXukfV
+	 Cb+GkC9NUF1my0VIXuNvFzzLy4cZ13h4wg8V6FlXp3svHe1+70jkp9K9CouDzXWvoE
+	 82aN/TJUjy7zVRKWMxIiI5Ke8jDreKJX0p7iWbhun3lHl67Do4z9E+1wMqXTfhLOS2
+	 W2LC0sskVe1kYmIVXoAMYvs01+RLxH6s7V76IQE4clsmRJLHP1AwakVhf3OnsjtjV9
+	 NQF6jaLu8+bCA==
+Date: Tue, 26 Jul 2022 13:36:36 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Qiang Yu <quic_qianyu@quicinc.com>
+Cc: quic_hemantk@quicinc.com, loic.poulain@linaro.org,
+	quic_jhugo@quicinc.com, mhi@lists.linux.dev,
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	quic_cang@quicinc.com, ath11k@lists.infradead.org, kvalo@kernel.org
+Subject: Re: [PATCH v3 1/1] bus: mhi: host: Fix up null pointer access in
+ mhi_irq_handler
+Message-ID: <20220726080636.GE5522@workstation>
+References: <1658459838-30802-1-git-send-email-quic_qianyu@quicinc.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <1658459838-30802-1-git-send-email-quic_qianyu@quicinc.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220725_110016_013362_D17ED0DF 
-X-CRM114-Status: GOOD (  27.20  )
+X-CRM114-CacheID: sfid-20220726_010646_774911_272AC83A 
+X-CRM114-Status: GOOD (  23.66  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,56 +71,71 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-TWFuaXZhbm5hbiBTYWRoYXNpdmFtIDxtYW5pQGtlcm5lbC5vcmc+IHdyaXRlczoKCj4gT24gV2Vk
-LCBKdWwgMjAsIDIwMjIgYXQgMDU6NDc6MzdQTSArMDgwMCwgUWlhbmcgWXUgd3JvdGU6Cj4KPj4g
-Cj4+IE9uIDcvMjAvMjAyMiA1OjM5IFBNLCBNYW5pdmFubmFuIFNhZGhhc2l2YW0gd3JvdGU6Cj4+
-ID4gT24gTW9uLCBKdWwgMTgsIDIwMjIgYXQgMDI6MTU6MjNQTSArMDMwMCwgS2FsbGUgVmFsbyB3
-cm90ZToKPj4gPiA+ICsgYXRoMTFrIGxpc3QKPj4gPiA+IAo+PiA+ID4gTWFuaXZhbm5hbiBTYWRo
-YXNpdmFtIDxtYW5pQGtlcm5lbC5vcmc+IHdyaXRlczoKPj4gPiA+IAo+PiA+ID4gPiBPbiBUaHUs
-IEp1biAyMywgMjAyMiBhdCAxMDo0MzowM0FNICswODAwLCBRaWFuZyBZdSB3cm90ZToKPj4gPiA+
-ID4gPiBEdXJpbmcgcnVudGltZSwgdGhlIE1ISSBlbmRwb2ludCBtYXkgYmUgcG93ZXJlZCB1cC9k
-b3duIHNldmVyYWwgdGltZXMuCj4+ID4gPiA+ID4gU28gaW5zdGVhZCBvZiBhbGxvY2F0aW5nIGFu
-ZCBkZXN0cm95aW5nIHRoZSBJUlFzIGFsbCB0aGUgdGltZSwgbGV0J3MganVzdAo+PiA+ID4gPiA+
-IGVuYWJsZS9kaXNhYmxlIElSUXMgZHVyaW5nIHBvd2VyIHVwL2Rvd24uCj4+ID4gPiA+ID4gCj4+
-ID4gPiA+ID4gVGhlIElSUXMgd2lsbCBiZSBhbGxvY2F0ZWQgZHVyaW5nIG1oaV9yZWdpc3Rlcl9j
-b250cm9sbGVyKCkgYW5kIGZyZWVkCj4+ID4gPiA+ID4gZHVyaW5nIG1oaV91bnJlZ2lzdGVyX2Nv
-bnRyb2xsZXIoKS4gVGhpcyB3b3JrcyB3ZWxsIGZvciB0aGluZ3MgbGlrZSBQQ0kKPj4gPiA+ID4g
-PiBob3RwbHVnIGFsc28gYXMgb25jZSB0aGUgUENJIGRldmljZSBnZXRzIHJlbW92ZWQsIHRoZSBj
-b250cm9sbGVyIHdpbGwKPj4gPiA+ID4gPiBnZXQgdW5yZWdpc3RlcmVkLiBBbmQgb25jZSBpdCBj
-b21lcyBiYWNrLCBpdCB3aWxsIGdldCByZWdpc3RlcmVkIGJhY2sKPj4gPiA+ID4gPiBhbmQgZXZl
-biBpZiB0aGUgSVJRIGNvbmZpZ3VyYXRpb24gY2hhbmdlcyAoTVNJKSwgdGhhdCB3aWxsIGdldCBh
-Y2NvdW50ZWQuCj4+ID4gPiA+ID4gCj4+ID4gPiA+ID4gU2lnbmVkLW9mZi1ieTogUWlhbmcgWXUg
-PHF1aWNfcWlhbnl1QHF1aWNpbmMuY29tPgo+PiA+ID4gPiBBcHBsaWVkIHRvIG1oaS1uZXh0IQo+
-PiA+ID4gSSBkaWQgYSBiaXNlY3QgYW5kIHRoaXMgcGF0Y2ggYnJlYWtzIGF0aDExayBkdXJpbmcg
-cm1tb2QuIEknbSBvbgo+PiA+ID4gdmFjYXRpb24gcmlnaHQgbm93IHNvIEkgY2FuJ3QgaW52ZXN0
-aWdhdGUgaW4gZGV0YWlsIGJ1dCBtb3JlIGluZm8gYmVsb3cuCj4+ID4gPiAKPj4gPiBJIGp1c3Qg
-dGVzdGVkIGxpbnV4LW5leHQvbWFzdGVyIG5leHQtMjAyMjA3MTggb24gbXkgTlVDIHdpdGggUUNB
-NjM5MCwgYnV0IEknbQo+PiA+IG5vdCBhYmxlIHRvIHJlcHJvZHVjZSB0aGUgaXNzdWUgZHVyaW5n
-IHJtbW9kISBJbnN0ZWFkIEkgY291bGRuJ3QgY29ubmVjdCB0byBBUC4KPj4gCj4+IEkgc3VzcGVj
-dCB0aGF0IGluIF9fZnJlZV9pcnEoKSwgaWYgQ09ORklHX0RFQlVHX1NISVJRIGlzIGVuYWJsZWQs
-IGlycQo+PiBoYW5kbGVyIGZvciBhIHNoYXJlZCBJUlEgd2lsbCBiZSBpbnZva2VkIGFuZCBudWxs
-IHBvaW50ZXIgYWNjZXNzIGhhcHBlbi4KPj4gCj4+ICNpZmRlZiBDT05GSUdfREVCVUdfU0hJUlEK
-Pj4gwqDCoCDCoC8qCj4+IMKgwqAgwqAgKiBJdCdzIGEgc2hhcmVkIElSUSAtLSB0aGUgZHJpdmVy
-IG91Z2h0IHRvIGJlIHByZXBhcmVkIGZvciBhbiBJUlEKPj4gwqDCoCDCoCAqIGV2ZW50IHRvIGhh
-cHBlbiBldmVuIG5vdyBpdCdzIGJlaW5nIGZyZWVkLCBzbyBsZXQncyBtYWtlIHN1cmUgdGhhdAo+
-PiDCoMKgIMKgICogaXMgc28gYnkgZG9pbmcgYW4gZXh0cmEgY2FsbCB0byB0aGUgaGFuZGxlciAu
-Li4uCj4+IMKgwqAgwqAgKgo+PiDCoMKgIMKgICogKCBXZSBkbyB0aGlzIGFmdGVyIGFjdHVhbGx5
-IGRlcmVnaXN0ZXJpbmcgaXQsIHRvIG1ha2Ugc3VyZSB0aGF0IGEKPj4gwqDCoCDCoCAqwqDCoCAn
-cmVhbCcgSVJRIGRvZXNuJ3QgcnVuIGluIHBhcmFsbGVsIHdpdGggb3VyIGZha2UuICkKPj4gwqDC
-oCDCoCAqLwo+PiDCoMKgIMKgaWYgKGFjdGlvbi0+ZmxhZ3MgJiBJUlFGX1NIQVJFRCkgewo+PiDC
-oMKgIMKgwqDCoMKgIGxvY2FsX2lycV9zYXZlKGZsYWdzKTsKPj4gwqDCoCDCoMKgwqDCoCBhY3Rp
-b24tPmhhbmRsZXIoaXJxLCBkZXZfaWQpOwo+PiDCoMKgIMKgwqDCoMKgIGxvY2FsX2lycV9yZXN0
-b3JlKGZsYWdzKTsKPj4gwqDCoCDCoH0KPj4gI2VuZGlmCj4+IAo+Cj4gQWggeWVzLCBhZnRlciBl
-bmFibGluZyBDT05GSUdfREVCVUdfU0hJUlEgSSBjb3VsZCByZXByb2R1Y2UgdGhlIGlzc3VlLgoK
-U28gaG93IHRvIGZpeCB0aGlzIHJlZ3Jlc3Npb24/IChJZiB0aGVyZSdzIGFscmVhZHkgYSBmaXgg
-SSBtaWdodCBoYXZlCm1pc3NlZCBpdCBhcyBJIGNhbWUgYmFjayBvbmx5IHRvZGF5KQoKLS0gCmh0
-dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcHJvamVjdC9saW51eC13aXJlbGVzcy9saXN0LwoK
-aHR0cHM6Ly93aXJlbGVzcy53aWtpLmtlcm5lbC5vcmcvZW4vZGV2ZWxvcGVycy9kb2N1bWVudGF0
-aW9uL3N1Ym1pdHRpbmdwYXRjaGVzCgotLSAKYXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtAbGlz
-dHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL2F0aDExawo=
++ath11k, Kalle
+
+On Fri, Jul 22, 2022 at 11:17:18AM +0800, Qiang Yu wrote:
+> The irq handler for a shared IRQ ought to be prepared for running
+> even now it's being freed. So let's check the pointer used by
+> mhi_irq_handler to avoid null pointer access since it is probably
+> released before freeing IRQ.
+> 
+> Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
+
+Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
+
+Thanks,
+Mani
+
+> ---
+> v2->v3: add comments
+> v1->v2: change dev_err to dev_dbg
+> 
+>  drivers/bus/mhi/host/main.c | 19 ++++++++++++++++---
+>  1 file changed, 16 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/bus/mhi/host/main.c b/drivers/bus/mhi/host/main.c
+> index f3aef77a..df0fbfe 100644
+> --- a/drivers/bus/mhi/host/main.c
+> +++ b/drivers/bus/mhi/host/main.c
+> @@ -430,12 +430,25 @@ irqreturn_t mhi_irq_handler(int irq_number, void *dev)
+>  {
+>  	struct mhi_event *mhi_event = dev;
+>  	struct mhi_controller *mhi_cntrl = mhi_event->mhi_cntrl;
+> -	struct mhi_event_ctxt *er_ctxt =
+> -		&mhi_cntrl->mhi_ctxt->er_ctxt[mhi_event->er_index];
+> +	struct mhi_event_ctxt *er_ctxt;
+>  	struct mhi_ring *ev_ring = &mhi_event->ring;
+> -	dma_addr_t ptr = le64_to_cpu(er_ctxt->rp);
+> +	dma_addr_t ptr;
+>  	void *dev_rp;
+>  
+> +	/*
+> +	 * If CONFIG_DEBUG_SHIRQ is set, the IRQ handler will get invoked during __free_irq()
+> +	 * and by that time mhi_ctxt() would've freed. So check for the existence of mhi_ctxt
+> +	 * before handling the IRQs.
+> +	 */
+> +	if (!mhi_cntrl->mhi_ctxt) {
+> +		dev_dbg(&mhi_cntrl->mhi_dev->dev,
+> +			"mhi_ctxt has been freed\n");
+> +		return IRQ_HANDLED;
+> +	}
+> +
+> +	er_ctxt = &mhi_cntrl->mhi_ctxt->er_ctxt[mhi_event->er_index];
+> +	ptr = le64_to_cpu(er_ctxt->rp);
+> +
+>  	if (!is_valid_ring_ptr(ev_ring, ptr)) {
+>  		dev_err(&mhi_cntrl->mhi_dev->dev,
+>  			"Event ring rp points outside of the event ring\n");
+> -- 
+> Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+> 
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
