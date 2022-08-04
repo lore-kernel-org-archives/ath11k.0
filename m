@@ -4,66 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1640CC00140
-	for <ath11k@archiver.kernel.org>; Tue,  2 Aug 2022 07:56:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0876CC19F2B
+	for <ath11k@archiver.kernel.org>; Thu,  4 Aug 2022 11:39:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=oNleeg0Vi9kx95HZWzgKEWpEaMnZ6xsXEs7gW0WhrDc=; b=tNuHJvmUlU/pss
-	zlCQ8Fjzg3yWSOmLShI2353dscUfe2JbU6ypQS0oLgyK662LUpetdOe0089hEm5rndzOJB35rkQwC
-	u/vQBts9bJJl1eKwfnGAAs35bR5LU11oEPRWlSMLPfrdtMOKWdXEJccBJq05smHh6o1QBVhy6aQ59
-	IArB47QKynE5Emb7ztEtv3RS5k1IJL3ro3ZpQczB4JOItvTce4SCUQxh/4C9xUm/L14oMWanS7sWt
-	MdFUFnDA0rWt0CBJ6woQOkLRcLQGOxmafnWcn+qZTPXK+6xsQmkM0OfV2o2X03z1nVVk2CEC4WaG0
-	iwTxi/tfASBiG4tRF6wQ==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	MIME-Version:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	References:List-Owner; bh=0JkMLOAAx6W1NUpDY/KOfNf0/S8ToT3PI/ewaGUhJk8=; b=Djk
+	+hernXjV9CprB+APsK3aQbZHHMjRwWob93GDfpvaJ8Kpr9fUt0ude/tJVEODZH0+d4Pzfqywa5xu+
+	HtDDE8vsDYniLTck1TbiB+Mco9iFSAWsTagLRWfUTtRv80I4Pcec1GgUvPbxjb2vsdjzCtJytztOe
+	ov2ZtWuQcYOuJxZ35cLLUREwXNuOgn6OzXRiLmnSM5jPLUQM54PVljqXN78Qd46cc5BV+Aq/bOj98
+	Gw2ndxaAst161eghsSvQ8Ul1ZTP0JcLGURsW5roTqsrF5tkLNwICOJE321yP0bNLLZUAdbnSVvHYm
+	80Fvs+mGF1nOMsQsKdZBzKItTW6NQ6Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oImlF-00BZCX-G7; Tue, 02 Aug 2022 07:56:17 +0000
-Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39])
+	id 1oJZBy-005dna-St; Thu, 04 Aug 2022 11:39:06 +0000
+Received: from mail-lf1-x136.google.com ([2a00:1450:4864:20::136])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oIml5-00BZ1y-Th
-	for ath11k@lists.infradead.org; Tue, 02 Aug 2022 07:56:16 +0000
+	id 1oJZBw-005dmA-5h
+	for ath11k@lists.infradead.org; Thu, 04 Aug 2022 11:39:05 +0000
+Received: by mail-lf1-x136.google.com with SMTP id e15so20369660lfs.0
+        for <ath11k@lists.infradead.org>; Thu, 04 Aug 2022 04:39:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1659426967; x=1690962967;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=2OVORaTVItjsSXwRIf9omLMX8UTzvsqWk2fA5aAbF5g=;
-  b=KYwTTLeyopq/wmpTQxV6NU1jEfvQ6M5eck+BIZxcRB5huAyVat1Cg0jP
-   dJGpbLFSIOOsQpt0dJPxU0GfrMD4SdtqBVpd/EjZzq6SWkllmeSSUdCb8
-   fwZqMNR6eTSX6imJ3dY8FM+N2noN8Q+AtFNyxwXFPWE1yRAzLx4KEj/W+
-   s=;
-Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 02 Aug 2022 00:55:58 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Aug 2022 00:55:58 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Tue, 2 Aug 2022 00:55:58 -0700
-Received: from bqiang-Celadon-RN.qca.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Tue, 2 Aug 2022 00:55:57 -0700
-From: Baochen Qiang <quic_bqiang@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>
-Subject: [PATCH v2 1/2] wifi: ath11k: Split PCI write/read functions
-Date: Tue, 2 Aug 2022 15:55:32 +0800
-Message-ID: <20220802075533.1744-2-quic_bqiang@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220802075533.1744-1-quic_bqiang@quicinc.com>
-References: <20220802075533.1744-1-quic_bqiang@quicinc.com>
+        d=ccxtechnologies.com; s=google;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc;
+        bh=sP21HecxWrjmg0aPCv1GeRqGO1NM1pgMtwGSNeyazq4=;
+        b=VIgjn6gbeSUJzUemP1iCBmo/CpBFbkOKHqKOiHDbHURnOVz0VAcFMLeX45qX5QFVIG
+         9ZsdTVym/52HkryIRwGmobnVCvEaHEw40Y0pPvuVAMn1gMnTCLf/xgM0VLtAwiyIqttv
+         t0jqas1BNttRiR93qJ2ao4lO9GtZSsi3/mXjfNYVXZYBtv3Mu7kUH5dz7oPJ1SwhPE6u
+         PXnDOQBm4Ur08mvdGhkpDSHeIp2m5Pe8uAi07bYy00zAeP+zuf1Ma86p5y2rlA7V3wUz
+         YlieFdZrh9LWd8URmUja1rjZh5x4fYQIlkHYOJ4FCUMcbQmNdjnUpBNm/PWUR0FiOLOy
+         fN1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc;
+        bh=sP21HecxWrjmg0aPCv1GeRqGO1NM1pgMtwGSNeyazq4=;
+        b=iJxD88WLvlOgd6LI0sAZZEBxwwLovjyZ6xv7+aRDkIBrnz2y8JbQ1mxWK52b6OHWrb
+         /tYoFk3ZNWNwHGsEcNTTNOfTsn3wG5DPs4B5hQshrBUIc9CW/e0bmxFyFbBoWi8La0dJ
+         uTE3PWqV+licHOS/kbrYPN/d9DQu2HoPpCA9icUZwhctFyG2GRiacKYTyERF3bbtNJEJ
+         pB8QekWmjuK8zNchE7nXskhcLoP6TXJ2Q7WrO87KducdHRpMvANMTi1FSkWdD2YGHNkK
+         A3fH6+mbMPg6uZj3jKHXgz7ZWN/nNdKU2/larpmqMzsLEULBmcqjROEKSeJw+pNPlVGX
+         4K8g==
+X-Gm-Message-State: ACgBeo0VD2b0bbIKV4APqiaia/TwemJGrR0vrStrBdKO0JUn/LnaMS3G
+	UrUW4T5Yy78f5kqzgOfGMqjeU7ZKXZvRMAgeWVwJkkQXP6CWNQ==
+X-Google-Smtp-Source: AA6agR42jdXa6HZZPKMpwqC7sDzzzaSw5USfZMIBBKWgs8CGiqnc8lvMcIfB26PFDEELWWjVsDgr2pfM7QpDHJ8l7lo=
+X-Received: by 2002:a05:6512:c0f:b0:48a:fef0:c8fe with SMTP id
+ z15-20020a0565120c0f00b0048afef0c8femr529963lfu.283.1659613141445; Thu, 04
+ Aug 2022 04:39:01 -0700 (PDT)
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+From: Charles Eidsness <charles@ccxtechnologies.com>
+Date: Thu, 4 Aug 2022 07:38:50 -0400
+Message-ID: <CAAV4SYbZ2Uqp3pwsLPY8Ge6JA99sfoGXP9eBw8pbYj7RR2uLQg@mail.gmail.com>
+Subject: qmi support for multiple socs
+To: ath11k@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220802_005608_110919_CC68DC89 
-X-CRM114-Status: GOOD (  12.85  )
+X-CRM114-CacheID: sfid-20220804_043904_226148_59504FD7 
+X-CRM114-Status: UNSURE (   6.14  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,113 +80,21 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-ath11k_pcic_write32/read32 tries to do wake up before doing actual
-write/read work, which means each time a u32 is written/read, wake
-up is performed. This is not necessary in case where we do a
-large amount of write/read, because only one time of wake up is needed.
-So split each one into two parts, the first part does wake up and
-release, and the second one does actual write/read work.
+Hello,
 
-Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+I would like to get two QCN9074 based cards running on the same system
+but am getting these errors with the latest available drivers:
 
-Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
----
-v2:
-  1: rebased on latest ath.git
+[    9.317198] ath11k_pci 0001:01:00.0: host capability request failed: 1 90
+[    9.324007] ath11k_pci 0001:01:00.0: failed to send qmi host cap: -22
 
- drivers/net/wireless/ath/ath11k/pcic.c | 50 ++++++++++++++++----------
- 1 file changed, 32 insertions(+), 18 deletions(-)
+I think this is a known issue and someone is working on it:
+https://lists.infradead.org/pipermail/ath11k/2022-April/003017.html
 
-diff --git a/drivers/net/wireless/ath/ath11k/pcic.c b/drivers/net/wireless/ath/ath11k/pcic.c
-index 1adf20ebef27..15ca069e501f 100644
---- a/drivers/net/wireless/ath/ath11k/pcic.c
-+++ b/drivers/net/wireless/ath/ath11k/pcic.c
-@@ -140,49 +140,63 @@ int ath11k_pcic_init_msi_config(struct ath11k_base *ab)
- }
- EXPORT_SYMBOL(ath11k_pcic_init_msi_config);
- 
-+static void ath11k_pcic_do_write32(struct ath11k_base *ab, u32 offset, u32 value)
-+{
-+	if (offset < ATH11K_PCI_WINDOW_START)
-+		iowrite32(value, ab->mem  + offset);
-+	else
-+		ab->pci.ops->window_write32(ab, offset, value);
-+}
-+
- void ath11k_pcic_write32(struct ath11k_base *ab, u32 offset, u32 value)
- {
- 	int ret = 0;
-+	bool wakeup_required;
- 
- 	/* for offset beyond BAR + 4K - 32, may
- 	 * need to wakeup the device to access.
- 	 */
--	if (test_bit(ATH11K_FLAG_DEVICE_INIT_DONE, &ab->dev_flags) &&
--	    offset >= ATH11K_PCI_ACCESS_ALWAYS_OFF && ab->pci.ops->wakeup)
-+	wakeup_required = test_bit(ATH11K_FLAG_DEVICE_INIT_DONE, &ab->dev_flags) &&
-+			  offset >= ATH11K_PCI_ACCESS_ALWAYS_OFF;
-+	if (wakeup_required && ab->pci.ops->wakeup)
- 		ret = ab->pci.ops->wakeup(ab);
- 
--	if (offset < ATH11K_PCI_WINDOW_START)
--		iowrite32(value, ab->mem  + offset);
--	else
--		ab->pci.ops->window_write32(ab, offset, value);
-+	ath11k_pcic_do_write32(ab, offset, value);
- 
--	if (test_bit(ATH11K_FLAG_DEVICE_INIT_DONE, &ab->dev_flags) &&
--	    offset >= ATH11K_PCI_ACCESS_ALWAYS_OFF && ab->pci.ops->release &&
--	    !ret)
-+	if (wakeup_required && !ret && ab->pci.ops->release)
- 		ab->pci.ops->release(ab);
- }
- EXPORT_SYMBOL(ath11k_pcic_write32);
- 
-+static u32 ath11k_pcic_do_read32(struct ath11k_base *ab, u32 offset)
-+{
-+	u32 val;
-+
-+	if (offset < ATH11K_PCI_WINDOW_START)
-+		val = ioread32(ab->mem + offset);
-+	else
-+		val = ab->pci.ops->window_read32(ab, offset);
-+
-+	return val;
-+}
-+
- u32 ath11k_pcic_read32(struct ath11k_base *ab, u32 offset)
- {
- 	int ret = 0;
- 	u32 val;
-+	bool wakeup_required;
- 
- 	/* for offset beyond BAR + 4K - 32, may
- 	 * need to wakeup the device to access.
- 	 */
--	if (test_bit(ATH11K_FLAG_DEVICE_INIT_DONE, &ab->dev_flags) &&
--	    offset >= ATH11K_PCI_ACCESS_ALWAYS_OFF && ab->pci.ops->wakeup)
-+	wakeup_required = test_bit(ATH11K_FLAG_DEVICE_INIT_DONE, &ab->dev_flags) &&
-+			  offset >= ATH11K_PCI_ACCESS_ALWAYS_OFF;
-+	if (wakeup_required && ab->pci.ops->wakeup)
- 		ret = ab->pci.ops->wakeup(ab);
- 
--	if (offset < ATH11K_PCI_WINDOW_START)
--		val = ioread32(ab->mem + offset);
--	else
--		val = ab->pci.ops->window_read32(ab, offset);
-+	val = ath11k_pcic_do_read32(ab, offset);
- 
--	if (test_bit(ATH11K_FLAG_DEVICE_INIT_DONE, &ab->dev_flags) &&
--	    offset >= ATH11K_PCI_ACCESS_ALWAYS_OFF && ab->pci.ops->release &&
--	    !ret)
-+	if (wakeup_required && !ret && ab->pci.ops->release)
- 		ab->pci.ops->release(ab);
- 
- 	return val;
--- 
-2.25.1
+Is this something that I could help with?
 
+Thanks!
+Charles
 
 -- 
 ath11k mailing list
