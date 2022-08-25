@@ -4,81 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CC47C48BE4
-	for <ath11k@archiver.kernel.org>; Thu, 25 Aug 2022 11:18:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49FC7C64993
+	for <ath11k@archiver.kernel.org>; Thu, 25 Aug 2022 11:18:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+Fo8voFV4KtCKK/CB1mOdDLebBipA1XCIENVljOEQ1o=; b=XQyKUSqrHx/Z+9
-	lPyFJPVpuG3hdB8O9npZBIPDHUlP6dJUcsAoMXLd1EmrG+4guk1h6PB+o+TZYKp6oW0/CeYjy3p60
-	6PseOwZK1ZdaU66KbrIN99kP4zcK6oIKVMFNbQ4zbOMGGQAs73y3AUBBJge4s1AOf05/2cArMcWZG
-	fdTHbzE9W/oQlZ0u2u0pVS3de9KlJYhbHBVlsRsIHl48OYE8PO/+rF6cjvC4/Yc9M8RqAPZ+R1V4a
-	RTdRzVteTt2FPawIrxgb6bDFSfgIYI9oGgYxyu/ZnKYkN1vmiAbbkbPsza0jzu2Vc9Lg/pg74FJx9
-	cr7lJ60gEbQBl8LuiNgQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=x+NOmSI47MQIP3D4XCCikH+Vc64we7L6s0vPjScgIfc=; b=hKf+d27DMX4IRO
+	mCcOBWTC9Vqrxf9Thgqc2ttDFeVYpEtRhS2Lo4cL+QxwTiLvxkjjgtnv3cGfvtP6s5obKl7+0K0xs
+	Dsn6F84UtQ9wLsg1ClQWmCt4hQrT4cJqwW3gJ75pu+l0KY7Vhhw8s3xlGyU0VEAPw3TF65SUzy+aV
+	FoC8EGRPAK0Fx0EN4FyCvRQIkhEfNRjONM/7N4+3lTzZ4Qlkm4EEX41F5fTnimLJF3T5nKZJSVtwO
+	ijomRFJdckJ4ewS+VSBHJ/jI+CLONInVLCPufIy/yqyuEVmIr3uyHlVySAWBNi+s0xhn7C2xRglHs
+	xZmiAJbqQYGqHhWGb3dg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oRAst-00CXNY-N1; Thu, 25 Aug 2022 11:18:51 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1oRAsu-00CXOE-Ng; Thu, 25 Aug 2022 11:18:52 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oRAsp-00CXKy-HG
+	id 1oRAso-00CXJP-Ct
 	for ath11k@lists.infradead.org; Thu, 25 Aug 2022 11:18:49 +0000
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 27P4Q35O010129;
-	Thu, 25 Aug 2022 11:18:45 GMT
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 27P4SnDR001246;
+	Thu, 25 Aug 2022 11:18:37 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=gpOoq6K+fdQ+vkPooeACGPDLk/61cBBk1wvVavXaks4=;
- b=pNuysyc45QkKU1S8aEMWqEtHY88uZBnM99LHX841toYcVf9L+1J/Kf0n8wQn6szZ5tHe
- UBvUpv+yPEHmRRmd3le+mVDSXgPnvH6FdfczhLvD/cfQNLHPDSXJ1cz+0N/JJ9+7kctn
- TidrNkrDV+Z1ZTo3oqJCbA56e5kA5b4mWnlIVmir5EAnU5f1mX5duHl6WYyGHbedc9qF
- twVTr152SEpYLVx90w3LcD0fJRHF21GVhid8fJrCOpju23GCnc61PoneTF/ipK/K4/x4
- RRa8kDRQ/NYVGsoitA8mXHSObvO8eY7CUnkiwEOJ88NVTZu3P7TxZvJb8AxD6/R+17Fy HA== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3j60etsawm-1
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=6YZx9N0JVg7h8kheDQPnMX3LghnDBErISDw/AneuDAU=;
+ b=Ew73FAihWlSPtICJ0DWaxUA3JwHKh+C12v2sDDoseePiA0oRYz+AEIh7G9Pva4typ7zd
+ i4pNciNFWY2RECR8bol+rJ4Lr+JaiW+/omcWxfYDzYrHJXnwVWV9R/srPRSJfN7llQ69
+ yYpuusLBe4OVtF4AHXeDZaHmQ0fWmJhCh1IEvBxPEUdlHi4f0mXRdvIvCEz5Z0kY/9zo
+ okrbia8e3nF7bGsyNo8yHgxR5Y4isbGDw46jv2698NWc9f+mquYNiVemefGElb2g1XK9
+ Uv14zCr0vXIywu2TO+YK7j6a0PFQ0AnGv2bqrtCgqURg2NfHOYC4IIyccfphF7pUeNQS Ww== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3j5xcuhjfq-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 25 Aug 2022 11:18:44 +0000
+	Thu, 25 Aug 2022 11:18:37 +0000
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 27PBIi0E017280
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 27PBIaIk004019
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 25 Aug 2022 11:18:44 GMT
+	Thu, 25 Aug 2022 11:18:36 GMT
 Received: from mpubbise-linux.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.29; Thu, 25 Aug 2022 04:18:42 -0700
+ 15.2.986.29; Thu, 25 Aug 2022 04:18:35 -0700
 From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
 To: <ath11k@lists.infradead.org>
 CC: <linux-wireless@vger.kernel.org>,
         Manikanta Pubbisetty
 	<quic_mpubbise@quicinc.com>
-Subject: [PATCH v2 4/4] ath11k: Fix failed to parse regulatory event print
-Date: Thu, 25 Aug 2022 16:48:18 +0530
-Message-ID: <20220825111818.30869-5-quic_mpubbise@quicinc.com>
+Subject: [PATCH v2 0/4] ath11k: Enable low power mode when WLAN is not active
+Date: Thu, 25 Aug 2022 16:48:14 +0530
+Message-ID: <20220825111818.30869-1-quic_mpubbise@quicinc.com>
 X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220825111818.30869-1-quic_mpubbise@quicinc.com>
-References: <20220825111818.30869-1-quic_mpubbise@quicinc.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: gerrdOcMt0w5DMjOZdVMPZHFLGFplBt3
-X-Proofpoint-ORIG-GUID: gerrdOcMt0w5DMjOZdVMPZHFLGFplBt3
+X-Proofpoint-GUID: yDUUgbMNlgHqzQmKxS0uw_N7wji7Gmip
+X-Proofpoint-ORIG-GUID: yDUUgbMNlgHqzQmKxS0uw_N7wji7Gmip
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.517,FMLib:17.11.122.1
  definitions=2022-08-25_05,2022-08-25_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
- lowpriorityscore=0 mlxscore=0 clxscore=1015 impostorscore=0
- mlxlogscore=999 priorityscore=1501 bulkscore=0 adultscore=0 phishscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2207270000 definitions=main-2208250044
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
+ adultscore=0 malwarescore=0 suspectscore=0 mlxlogscore=999 impostorscore=0
+ spamscore=0 priorityscore=1501 lowpriorityscore=0 clxscore=1011 mlxscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2207270000
+ definitions=main-2208250044
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220825_041847_592402_54F59802 
-X-CRM114-Status: GOOD (  18.53  )
+X-CRM114-CacheID: sfid-20220825_041846_573843_0233F0BE 
+X-CRM114-Status: GOOD (  17.20  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,64 +93,40 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-In the continuous WiFi ON/OFF scenario, we see a lot of
-"failed to parse regulatory event" prints on the console.
-This is because we already would have created a regulatory
-domain for the wiphy and we will discard the subsequent
-events to create the same regulatory event.
+Currently, WLAN chip is powered once during driver probe and is kept
+ON (powered) always even when WLAN is not active; keeping the chip
+powered ON all the time will consume extra power which is not
+desirable for battery operated devices. Same is the case with non-WoW
+suspend, chip will not be put into low power mode when the system is
+suspended resulting in higher battery drain.
 
-Fix this error print by freeing up the regulatory resources
-in WiFi OFF and create the database again in WiFi ON. The same
-applies for hardware recovery as well.
+Send QMI MODE OFF command to firmware during WiFi OFF to put device
+into low power mode.
 
 Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
-
-Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+Manikanta Pubbisetty (4):
+  ath11k: Fix double free issue during SRNG deinit
+  ath11k: Move hardware initialization logic to start()
+  ath11k: Enable low power mode when WLAN is not active
+  ath11k: Fix failed to parse regulatory event print
 ---
- drivers/net/wireless/ath/ath11k/core.c | 3 ++-
- drivers/net/wireless/ath/ath11k/reg.c  | 2 ++
- 2 files changed, 4 insertions(+), 1 deletion(-)
+V2:
+ - "Enable low power mode when WLAN is not active" has been enabled only for WCN6750
+   as the device shutdown and turn-on changes are not same for all chipsets in ath11k.
+   A future patch will be sent to enable the logic for other devices.
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 88a54b36e178..6002bd7b7799 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -1175,7 +1175,6 @@ static int ath11k_core_soc_create(struct ath11k_base *ab)
- static void ath11k_core_soc_destroy(struct ath11k_base *ab)
- {
- 	ath11k_debugfs_soc_destroy(ab);
--	ath11k_reg_free(ab);
- 	ath11k_qmi_deinit_service(ab);
- }
- 
-@@ -1471,6 +1470,7 @@ static void ath11k_core_reconfigure_on_crash(struct ath11k_base *ab)
- 	mutex_unlock(&ab->core_lock);
- 
- 	ath11k_dp_free(ab);
-+	ath11k_reg_free(ab);
- 
- 	ab->free_vdev_map = (1LL << (ab->num_radios * TARGET_NUM_VDEVS(ab))) - 1;
- }
-@@ -1844,6 +1844,7 @@ void ath11k_core_stop_device(struct ath11k_base *ab)
- 	ath11k_thermal_unregister(ab);
- 	ath11k_dp_pdev_free(ab);
- 	ath11k_dp_free(ab);
-+	ath11k_reg_free(ab);
- }
- EXPORT_SYMBOL(ath11k_core_stop_device);
- 
-diff --git a/drivers/net/wireless/ath/ath11k/reg.c b/drivers/net/wireless/ath/ath11k/reg.c
-index 7ee3ff69dfc8..0aa4c7b039d0 100644
---- a/drivers/net/wireless/ath/ath11k/reg.c
-+++ b/drivers/net/wireless/ath/ath11k/reg.c
-@@ -757,5 +757,7 @@ void ath11k_reg_free(struct ath11k_base *ab)
- 	for (i = 0; i < ab->hw_params.max_radios; i++) {
- 		kfree(ab->default_regd[i]);
- 		kfree(ab->new_regd[i]);
-+		ab->default_regd[i] = NULL;
-+		ab->new_regd[i] = NULL;
- 	}
- }
+ - Rebased on ToT
+
+ drivers/net/wireless/ath/ath11k/ahb.c  |  45 +++++
+ drivers/net/wireless/ath/ath11k/core.c | 229 ++++++++++++++++++-------
+ drivers/net/wireless/ath/ath11k/core.h |   8 +-
+ drivers/net/wireless/ath/ath11k/hal.c  |   1 +
+ drivers/net/wireless/ath/ath11k/hif.h  |  12 ++
+ drivers/net/wireless/ath/ath11k/mac.c  |  33 ++--
+ drivers/net/wireless/ath/ath11k/pci.c  |  26 +++
+ drivers/net/wireless/ath/ath11k/reg.c  |   2 +
+ 8 files changed, 264 insertions(+), 92 deletions(-)
+
 -- 
 2.37.1
 
