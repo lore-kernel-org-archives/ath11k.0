@@ -4,81 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF5EEC64994
-	for <ath11k@archiver.kernel.org>; Thu, 25 Aug 2022 11:18:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FE27C04AA5
+	for <ath11k@archiver.kernel.org>; Thu, 25 Aug 2022 11:24:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=4lvcovlK6VwXLVSJ+JKJyrPtKyuugp9jilLU2ibYuXI=; b=OS4N/99D9SWHEu
-	/QE0lQZg7u6KBu6mEFdm57283u966x8W65Fclvn+TGQ4T4hIeoVqs4yPg94ZZV6BWypKv656VZPLi
-	1KwVPQsDtmDbaQcjzlkrQc5X81phCKhxf0LpCZ2+3WXPKTis2Y1U9SkcAQcq9JXFY1iufvi624Y87
-	/Ts9yC+P6F3pox97c+BJEXjpg/V5J8fYV86VxPMFTNIjiUXXQOC94iDLQKKPdXQAR+hrQY3/U416A
-	3AIKw4yNqUj+ylAqdFCgHEg35EfIE716uE0ArXEw4Q/9fPitQpwozaANtgLp7Za/0iu8PZAiJGCxb
-	8mEat85ukNat3i0qDQPw==;
+	List-Owner; bh=iku2lOUMNJPFF/idOOPZfUkRSGnv/mWtkqg2HnrXuwU=; b=g13D+bJN/xlOJx
+	v8/6wdP115E9aCww1TGJX/wv9zlVMz13/rEJsuXNh18DsyHUaGnEA848FOPY0tGxMEzNVY+0FpWjI
+	himYdUbKuSw6meDFY+DgJtLp4JxB7zb9tRGkQOM2Vgv8cwX3stiZ5s2HLLCm73eLxxPXX3TCGfPdE
+	ii8VeiO4LALEeOAY6zsX6VJe4bJa0Li7QkdVNEsOPrkYIdZHnW0/AYcg5w8UrT+Z5i9lJdSAo+KhD
+	Ka53KqgfX40PaSb92IlX3FEXM32iC+A3pLTpQHfIex8zAO6B/V3WD0FMTrBtCrniwZFoi2AYQijG3
+	my1In5KWmYwdqAfzb/fQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oRAsv-00CXOU-4z; Thu, 25 Aug 2022 11:18:53 +0000
+	id 1oRAyK-00CYao-2y; Thu, 25 Aug 2022 11:24:28 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oRAso-00CXKR-03
-	for ath11k@lists.infradead.org; Thu, 25 Aug 2022 11:18:50 +0000
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 27P5pVnV018461;
-	Thu, 25 Aug 2022 11:18:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=6CsUPr2gXzA3SsoYjF5cGE5H2GpAJ2XqKBaEmYhsm+s=;
- b=Nqkz3qflVJxwGoXJWzv73I5h4P1pkSdSU7qoHOMQBaj6UKzi1M82GUUv3PfXKUH8F3fj
- F7lfjmwBlmNveFhq4D4w4M1LDeygdWO+WXM91mjSTw6GR2Qb1bVVjmFKUp8lJsDtDhSE
- cBz5BFsTEieTFoFmm/K55H8GM64CIdOOdNKjB+fdnkLgdEhNxhxb+rftnqDuUo9mE/LY
- 7pFubWrEaPudits5TSJ9gQRiZn7uBirgIZwmVh1LI2JfCXSJrRxgcklJ46003SrddDTW
- lL88jvhDqJL68jM8xgC5lLBY/cSB2PCBNf8mGUfT9GC2ZPj/37hHEbNO4iCzxqVZCLg4 Ww== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3j6399gwjm-1
+	id 1oRAyG-00CYa7-Qj
+	for ath11k@lists.infradead.org; Thu, 25 Aug 2022 11:24:26 +0000
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 27PBLowr021146;
+	Thu, 25 Aug 2022 11:24:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=pi+aMBlUhuht5aU85NJRiDkjoL8S4J/RkhYoBtUSHoM=;
+ b=lOIQ4I+kYGP+U3/M8VqTLMNOtwe4KyTzQush58ZBL4lG2IyzxzMjz6Q1g9OW7Yxa3ZdV
+ EseeF5AqTQMUMq2kDAHqvwrpPOrZUAhzzHdx9wRBp3u5IN4nwAfovnPuwzkZoxThRcL2
+ pW3Z+VTjB99COMoV9B4IXbV4Bt7iDjdCg/I4V1j4z4a5LqTuL1FIRsTY3Itz2AjCnjbv
+ efy8UU9KmpfqG9smNKur2C0ZqRBr/xuj+/skobu8e1g2Azd/+aKdU9P52CV2s7EfEJaj
+ aYLFa+3VKWF0dKC5N6F0dfhSAu/3MyB7UO2T88Off5YOQXb/GZkRq/Bl9tebTJ7kO59D 3Q== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3j644nrssn-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 25 Aug 2022 11:18:43 +0000
+	Thu, 25 Aug 2022 11:24:23 +0000
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 27PBIgCt004039
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 27PBOMiH022872
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 25 Aug 2022 11:18:42 GMT
-Received: from mpubbise-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.29; Thu, 25 Aug 2022 04:18:40 -0700
-From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>,
-        Manikanta Pubbisetty
-	<quic_mpubbise@quicinc.com>
-Subject: [PATCH v2 3/4] ath11k: Enable low power mode when WLAN is not active
-Date: Thu, 25 Aug 2022 16:48:17 +0530
-Message-ID: <20220825111818.30869-4-quic_mpubbise@quicinc.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220825111818.30869-1-quic_mpubbise@quicinc.com>
-References: <20220825111818.30869-1-quic_mpubbise@quicinc.com>
+	Thu, 25 Aug 2022 11:24:22 GMT
+Received: from [10.216.37.41] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Thu, 25 Aug
+ 2022 04:24:21 -0700
+Message-ID: <ecce8764-1760-4617-49aa-c111305ebd55@quicinc.com>
+Date: Thu, 25 Aug 2022 16:54:17 +0530
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH 0/4] ath11k: Enable low power mode when WLAN is not active
+Content-Language: en-US
+To: "Limonciello, Mario" <mario.limonciello@amd.com>,
+        <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>
+References: <20220720134959.15688-1-quic_mpubbise@quicinc.com>
+ <ad99d238-dc1a-3233-fc6b-0cd49e428903@amd.com>
+ <6daefd60-dcbc-06e1-8091-ea225690edf8@amd.com>
+From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+In-Reply-To: <6daefd60-dcbc-06e1-8091-ea225690edf8@amd.com>
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: xdUy92288Fk2y8ulhBokDE-sJOscg1FF
-X-Proofpoint-ORIG-GUID: xdUy92288Fk2y8ulhBokDE-sJOscg1FF
+X-Proofpoint-ORIG-GUID: Dy4nT5NWopw63m2u0X81BNNhDmTg5shS
+X-Proofpoint-GUID: Dy4nT5NWopw63m2u0X81BNNhDmTg5shS
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.517,FMLib:17.11.122.1
  definitions=2022-08-25_05,2022-08-25_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
- impostorscore=0 mlxlogscore=999 spamscore=0 lowpriorityscore=0
- adultscore=0 mlxscore=0 malwarescore=0 suspectscore=0 clxscore=1015
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ lowpriorityscore=0 malwarescore=0 spamscore=0 clxscore=1011 adultscore=0
+ phishscore=0 suspectscore=0 impostorscore=0 mlxscore=0 bulkscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
  engine=8.12.0-2207270000 definitions=main-2208250044
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220825_041846_089317_CE90A7F1 
-X-CRM114-Status: GOOD (  29.99  )
+X-CRM114-CacheID: sfid-20220825_042424_911533_BF3DE219 
+X-CRM114-Status: GOOD (  28.72  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,477 +93,94 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Currently, WLAN chip is powered once during driver probe and is kept
-ON (powered) always even when WLAN is not active; keeping the chip
-powered ON all the time will consume extra power which is not
-desirable for a battery operated device. Same is the case with non-WoW
-suspend, chip will never be put into low power mode when the system is
-suspended resulting in higher battery drain.
-
-As per the recommendation, sending a PDEV suspend WMI command followed
-by a QMI MODE OFF command will cease all WLAN activity and put the device
-in low power mode. When WLAN interfaces are brought up, sending a QMI
-MISSION MODE command would be sufficient to bring the chip out of low
-power. This is a better approach than doing hif_power_down()/hif_power_up()
-for every WiFi ON/OFF sequence since the turnaround time for entry/exit of
-low power mode is much less. Overhead is just the time taken for sending
-QMI MODE OFF & QMI MISSION MODE commands instead of going through the
-entire chip boot & QMI init sequence.
-
-Currently the changes are applicable only for WCN6750. This can be
-extended to other targets with a future patch.
-
-Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
-
-Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/ahb.c  |  45 ++++++++
- drivers/net/wireless/ath/ath11k/core.c | 149 ++++++++++++++++++++++---
- drivers/net/wireless/ath/ath11k/core.h |   2 +
- drivers/net/wireless/ath/ath11k/hif.h  |  12 ++
- drivers/net/wireless/ath/ath11k/mac.c  |   8 +-
- drivers/net/wireless/ath/ath11k/pci.c  |  26 +++++
- 6 files changed, 222 insertions(+), 20 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index c47414710138..d5784f319f2d 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.c
-+++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -189,6 +189,47 @@ static const struct ath11k_pci_ops ath11k_ahb_pci_ops_wcn6750 = {
- 	.window_read32 = ath11k_ahb_window_read32_wcn6750,
- };
- 
-+static int ath11k_ahb_core_start_wcn6750(struct ath11k_base *ab)
-+{
-+	/* Initialize the hardware/firmware only for the first PDEV
-+	 * or during hardware recovery.
-+	 */
-+	if (!test_bit(ATH11K_FLAG_RECOVERY, &ab->dev_flags) &&
-+	    ath11k_core_any_pdevs_on(ab))
-+		return 0;
-+
-+	return ath11k_core_start_device(ab);
-+}
-+
-+static void ath11k_ahb_core_stop_wcn6750(struct ath11k_base *ab)
-+{
-+	return ath11k_core_stop_device(ab);
-+}
-+
-+static int ath11k_ahb_core_start_ipq8074(struct ath11k_base *ab)
-+{
-+	/* TODO: Currently initializing the hardware/firmware only
-+	 * during hardware recovery. Support to shutdown/turn-on
-+	 * the hardware during Wi-Fi OFF/ON will be added later.
-+	 */
-+	if (!test_bit(ATH11K_FLAG_RECOVERY, &ab->dev_flags))
-+		return 0;
-+
-+	return ath11k_core_start_device(ab);
-+}
-+
-+static void ath11k_ahb_core_stop_ipq8074(struct ath11k_base *ab)
-+{
-+	/* TODO: Currently stopping the hardware/firmware only
-+	 * during driver unload. Support to shutdown/turn-on
-+	 * the hardware during Wi-Fi OFF/ON will be added later.
-+	 */
-+	if (!test_bit(ATH11K_FLAG_UNREGISTERING, &ab->dev_flags))
-+		return;
-+
-+	return ath11k_core_stop_device(ab);
-+}
-+
- static inline u32 ath11k_ahb_read32(struct ath11k_base *ab, u32 offset)
- {
- 	return ioread32(ab->mem + offset);
-@@ -695,6 +736,8 @@ static const struct ath11k_hif_ops ath11k_ahb_hif_ops_ipq8074 = {
- 	.map_service_to_pipe = ath11k_ahb_map_service_to_pipe,
- 	.power_down = ath11k_ahb_power_down,
- 	.power_up = ath11k_ahb_power_up,
-+	.core_start = ath11k_ahb_core_start_ipq8074,
-+	.core_stop = ath11k_ahb_core_stop_ipq8074,
- };
- 
- static const struct ath11k_hif_ops ath11k_ahb_hif_ops_wcn6750 = {
-@@ -709,6 +752,8 @@ static const struct ath11k_hif_ops ath11k_ahb_hif_ops_wcn6750 = {
- 	.map_service_to_pipe = ath11k_pcic_map_service_to_pipe,
- 	.power_down = ath11k_ahb_power_down,
- 	.power_up = ath11k_ahb_power_up,
-+	.core_start = ath11k_ahb_core_start_wcn6750,
-+	.core_stop = ath11k_ahb_core_stop_wcn6750,
- };
- 
- static int ath11k_core_get_rproc(struct ath11k_base *ab)
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 8cfef7a07a65..88a54b36e178 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -1175,7 +1175,6 @@ static int ath11k_core_soc_create(struct ath11k_base *ab)
- static void ath11k_core_soc_destroy(struct ath11k_base *ab)
- {
- 	ath11k_debugfs_soc_destroy(ab);
--	ath11k_dp_free(ab);
- 	ath11k_reg_free(ab);
- 	ath11k_qmi_deinit_service(ab);
- }
-@@ -1231,11 +1230,7 @@ static int ath11k_core_pdev_create(struct ath11k_base *ab)
- 
- static void ath11k_core_pdev_destroy(struct ath11k_base *ab)
- {
--	ath11k_spectral_deinit(ab);
--	ath11k_thermal_unregister(ab);
- 	ath11k_mac_unregister(ab);
--	ath11k_hif_irq_disable(ab);
--	ath11k_dp_pdev_free(ab);
- 	ath11k_debugfs_pdev_destroy(ab);
- }
- 
-@@ -1367,7 +1362,7 @@ static int ath11k_core_start_firmware(struct ath11k_base *ab,
- 	return ret;
- }
- 
--int ath11k_core_qmi_firmware_ready(struct ath11k_base *ab)
-+static int ath11k_core_setup_device(struct ath11k_base *ab)
- {
- 	int ret;
- 
-@@ -1400,17 +1395,44 @@ int ath11k_core_qmi_firmware_ready(struct ath11k_base *ab)
- 		break;
- 	default:
- 		ath11k_info(ab, "invalid crypto_mode: %d\n", ath11k_crypto_mode);
--		return -EINVAL;
-+		ret = -EINVAL;
-+		goto err_dp_free;
- 	}
- 
- 	if (ath11k_frame_mode == ATH11K_HW_TXRX_RAW)
- 		set_bit(ATH11K_FLAG_RAW_MODE, &ab->dev_flags);
- 
-+	return 0;
-+
-+err_dp_free:
-+	ath11k_dp_free(ab);
-+err_firmware_stop:
-+	ath11k_qmi_firmware_stop(ab);
-+
-+	return ret;
-+}
-+
-+static void ath11k_core_free_device(struct ath11k_base *ab)
-+{
-+	ath11k_dp_free(ab);
-+	ath11k_qmi_firmware_stop(ab);
-+}
-+
-+int ath11k_core_qmi_firmware_ready(struct ath11k_base *ab)
-+{
-+	int ret;
-+
-+	ret = ath11k_core_setup_device(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to setup device: %d\n", ret);
-+		return ret;
-+	}
-+
- 	mutex_lock(&ab->core_lock);
- 	ret = ath11k_core_start(ab);
- 	if (ret) {
- 		ath11k_err(ab, "failed to start core: %d\n", ret);
--		goto err_dp_free;
-+		goto err_core_free;
- 	}
- 
- 	ret = ath11k_core_pdev_create(ab);
-@@ -1418,7 +1440,10 @@ int ath11k_core_qmi_firmware_ready(struct ath11k_base *ab)
- 		ath11k_err(ab, "failed to create pdev core: %d\n", ret);
- 		goto err_core_stop;
- 	}
-+
- 	ath11k_hif_irq_enable(ab);
-+	ath11k_hif_core_stop(ab);
-+
- 	mutex_unlock(&ab->core_lock);
- 
- 	return 0;
-@@ -1426,11 +1451,9 @@ int ath11k_core_qmi_firmware_ready(struct ath11k_base *ab)
- err_core_stop:
- 	ath11k_core_stop(ab);
- 	ath11k_mac_destroy(ab);
--err_dp_free:
--	ath11k_dp_free(ab);
-+err_core_free:
- 	mutex_unlock(&ab->core_lock);
--err_firmware_stop:
--	ath11k_qmi_firmware_stop(ab);
-+	ath11k_core_free_device(ab);
- 
- 	return ret;
- }
-@@ -1708,7 +1731,6 @@ void ath11k_core_deinit(struct ath11k_base *ab)
- 	mutex_lock(&ab->core_lock);
- 
- 	ath11k_core_pdev_destroy(ab);
--	ath11k_core_stop(ab);
- 
- 	mutex_unlock(&ab->core_lock);
- 
-@@ -1776,37 +1798,128 @@ struct ath11k_base *ath11k_core_alloc(struct device *dev, size_t priv_size,
- }
- EXPORT_SYMBOL(ath11k_core_alloc);
- 
-+static int ath11k_core_suspend_target(struct ath11k_base *ab, u32 suspend_opt)
-+{
-+	struct ath11k *ar;
-+	struct ath11k_pdev *pdev;
-+	unsigned long time_left;
-+	int ret;
-+	int i;
-+
-+	for (i = 0; i < ab->num_radios; i++) {
-+		pdev = &ab->pdevs[i];
-+		ar = pdev->ar;
-+
-+		reinit_completion(&ab->htc_suspend);
-+
-+		ret = ath11k_wmi_pdev_suspend(ar, suspend_opt, pdev->pdev_id);
-+		if (ret) {
-+			ath11k_warn(ab, "could not suspend target (%d)\n", ret);
-+			return ret;
-+		}
-+
-+		time_left = wait_for_completion_timeout(&ab->htc_suspend, 3 * HZ);
-+
-+		if (!time_left) {
-+			ath11k_warn(ab, "suspend timed out - target pause event never came\n");
-+			return -ETIMEDOUT;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+void ath11k_core_stop_device(struct ath11k_base *ab)
-+{
-+	ath11k_core_suspend_target(ab, WMI_PDEV_SUSPEND_AND_DISABLE_INTR);
-+	ath11k_hif_irq_disable(ab);
-+	ath11k_hif_stop(ab);
-+
-+	if (!test_bit(ATH11K_FLAG_CRASH_FLUSH, &ab->dev_flags))
-+		ath11k_qmi_firmware_stop(ab);
-+
-+	ath11k_wmi_detach(ab);
-+	ath11k_dp_pdev_reo_cleanup(ab);
-+	ath11k_spectral_deinit(ab);
-+	ath11k_thermal_unregister(ab);
-+	ath11k_dp_pdev_free(ab);
-+	ath11k_dp_free(ab);
-+}
-+EXPORT_SYMBOL(ath11k_core_stop_device);
-+
-+int ath11k_core_any_pdevs_on(struct ath11k_base *ab)
-+{
-+	struct ath11k_pdev *pdev;
-+	struct ath11k *ar;
-+	int i;
-+
-+	for (i = 0; i < ab->num_radios; i++) {
-+		pdev = &ab->pdevs[i];
-+		ar = pdev->ar;
-+		if (!ar)
-+			continue;
-+
-+		if (ar->state == ATH11K_STATE_ON)
-+			return true;
-+	}
-+
-+	return false;
-+}
-+EXPORT_SYMBOL(ath11k_core_any_pdevs_on);
-+
- int ath11k_core_start_device(struct ath11k_base *ab)
- {
- 	int ret;
- 
--	if (!test_bit(ATH11K_FLAG_RECOVERY, &ab->dev_flags))
--		return 0;
-+	mutex_lock(&ab->core_lock);
- 
- 	ath11k_hal_srng_deinit(ab);
- 
- 	ret = ath11k_hal_srng_init(ab);
- 	if (ret) {
- 		ath11k_err(ab, "failed to init srng: %d\n", ret);
--		return ret;
-+		goto err_unlock;
- 	}
- 
- 	clear_bit(ATH11K_FLAG_CRASH_FLUSH, &ab->dev_flags);
- 
--	ret = ath11k_core_qmi_firmware_ready(ab);
-+	ret = ath11k_core_setup_device(ab);
- 	if (ret) {
--		ath11k_err(ab, "failed to init core: %d\n", ret);
-+		ath11k_err(ab, "failed to setup device: %d\n", ret);
- 		goto err_hal_srng_deinit;
- 	}
- 
-+	ret = ath11k_core_start(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to start core: %d\n", ret);
-+		goto err_core_free;
-+	}
-+
-+	ret = ath11k_core_pdev_create(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to create pdev core: %d\n", ret);
-+		goto err_core_stop;
-+	}
-+
-+	ath11k_hif_irq_enable(ab);
- 	clear_bit(ATH11K_FLAG_RECOVERY, &ab->dev_flags);
- 
-+	mutex_unlock(&ab->core_lock);
-+
- 	return 0;
- 
-+err_core_stop:
-+	ath11k_core_stop(ab);
-+	ath11k_mac_destroy(ab);
-+err_core_free:
-+	ath11k_core_free_device(ab);
- err_hal_srng_deinit:
- 	ath11k_hal_srng_deinit(ab);
-+err_unlock:
-+	mutex_unlock(&ab->core_lock);
- 	return ret;
- }
-+EXPORT_SYMBOL(ath11k_core_start_device);
- 
- MODULE_DESCRIPTION("Core module for Qualcomm Atheros 802.11ax wireless LAN cards.");
- MODULE_LICENSE("Dual BSD/GPL");
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 086cc127c39c..e5436b7a8f5d 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -1136,6 +1136,8 @@ void ath11k_core_halt(struct ath11k *ar);
- int ath11k_core_resume(struct ath11k_base *ab);
- int ath11k_core_suspend(struct ath11k_base *ab);
- int ath11k_core_start_device(struct ath11k_base *ab);
-+void ath11k_core_stop_device(struct ath11k_base *ab);
-+int ath11k_core_any_pdevs_on(struct ath11k_base *ab);
- 
- const struct firmware *ath11k_core_firmware_request(struct ath11k_base *ab,
- 						    const char *filename);
-diff --git a/drivers/net/wireless/ath/ath11k/hif.h b/drivers/net/wireless/ath/ath11k/hif.h
-index e9366f786fbb..e23b6ed17542 100644
---- a/drivers/net/wireless/ath/ath11k/hif.h
-+++ b/drivers/net/wireless/ath/ath11k/hif.h
-@@ -29,6 +29,8 @@ struct ath11k_hif_ops {
- 	void (*ce_irq_enable)(struct ath11k_base *ab);
- 	void (*ce_irq_disable)(struct ath11k_base *ab);
- 	void (*get_ce_msi_idx)(struct ath11k_base *ab, u32 ce_id, u32 *msi_idx);
-+	int (*core_start)(struct ath11k_base *ab);
-+	void (*core_stop)(struct ath11k_base *ab);
- };
- 
- static inline void ath11k_hif_ce_irq_enable(struct ath11k_base *ab)
-@@ -134,4 +136,14 @@ static inline void ath11k_get_ce_msi_idx(struct ath11k_base *ab, u32 ce_id,
- 	else
- 		*msi_data_idx = ce_id;
- }
-+
-+static inline int ath11k_hif_core_start(struct ath11k_base *ab)
-+{
-+	return ab->hif.ops->core_start(ab);
-+}
-+
-+static inline void ath11k_hif_core_stop(struct ath11k_base *ab)
-+{
-+	return ab->hif.ops->core_stop(ab);
-+}
- #endif /* _HIF_H_ */
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 56d63e9d2f1a..0cb5f6b7e90e 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -5705,9 +5705,9 @@ static int ath11k_mac_op_start(struct ieee80211_hw *hw)
- 
- 	ath11k_mac_drain_tx(ar);
- 
--	ret = ath11k_core_start_device(ab);
-+	ret = ath11k_hif_core_start(ab);
- 	if (ret) {
--		ath11k_err(ab, "failed to start device : %d\n", ret);
-+		ath11k_err(ab, "failed to start core : %d\n", ret);
- 		return ret;
- 	}
- 
-@@ -5868,6 +5868,10 @@ static void ath11k_mac_op_stop(struct ieee80211_hw *hw)
- 	synchronize_rcu();
- 
- 	atomic_set(&ar->num_pending_mgmt_tx, 0);
-+
-+	/* If all PDEVs on the SoC are down, then power down the device */
-+	if (!ath11k_core_any_pdevs_on(ar->ab))
-+		ath11k_hif_core_stop(ar->ab);
- }
- 
- static void
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index 5bd34a6273d9..b4ad69d06a90 100644
---- a/drivers/net/wireless/ath/ath11k/pci.c
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -680,6 +680,30 @@ static int ath11k_pci_start(struct ath11k_base *ab)
- 	return 0;
- }
- 
-+static int ath11k_pci_core_start(struct ath11k_base *ab)
-+{
-+	/* TODO: Currently initializing the hardware/firmware only
-+	 * during hardware recovery. Support to shutdown/turn-on
-+	 * the hardware during Wi-Fi OFF/ON will be added later.
-+	 */
-+	if (!test_bit(ATH11K_FLAG_RECOVERY, &ab->dev_flags))
-+		return 0;
-+
-+	return ath11k_core_start_device(ab);
-+}
-+
-+static void ath11k_pci_core_stop(struct ath11k_base *ab)
-+{
-+	/* TODO: Currently stopping the hardware/firmware only
-+	 * during driver unload. Support to shutdown/turn-on
-+	 * the hardware during Wi-Fi OFF/ON will be added later.
-+	 */
-+	if (!test_bit(ATH11K_FLAG_UNREGISTERING, &ab->dev_flags))
-+		return;
-+
-+	return ath11k_core_stop_device(ab);
-+}
-+
- static const struct ath11k_hif_ops ath11k_pci_hif_ops = {
- 	.start = ath11k_pci_start,
- 	.stop = ath11k_pcic_stop,
-@@ -697,6 +721,8 @@ static const struct ath11k_hif_ops ath11k_pci_hif_ops = {
- 	.ce_irq_enable = ath11k_pci_hif_ce_irq_enable,
- 	.ce_irq_disable = ath11k_pci_hif_ce_irq_disable,
- 	.get_ce_msi_idx = ath11k_pcic_get_ce_msi_idx,
-+	.core_start = ath11k_pci_core_start,
-+	.core_stop = ath11k_pci_core_stop,
- };
- 
- static void ath11k_pci_read_hw_version(struct ath11k_base *ab, u32 *major, u32 *minor)
--- 
-2.37.1
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+T24gNy8yMy8yMDIyIDU6MzkgUE0sIExpbW9uY2llbGxvLCBNYXJpbyB3cm90ZToKPiBPbiA3LzIy
+LzIwMjIgMTc6MDAsIExpbW9uY2llbGxvLCBNYXJpbyB3cm90ZToKPj4gT24gNy8yMC8yMDIyIDA4
+OjQ5LCBNYW5pa2FudGEgUHViYmlzZXR0eSB3cm90ZToKPj4+IEN1cnJlbnRseSwgV0xBTiBjaGlw
+IGlzIHBvd2VyZWQgb25jZSBkdXJpbmcgZHJpdmVyIHByb2JlIGFuZCBpcyBrZXB0Cj4+PiBPTiAo
+cG93ZXJlZCkgYWx3YXlzIGV2ZW4gd2hlbiBXTEFOIGlzIG5vdCBhY3RpdmU7IGtlZXBpbmcgdGhl
+IGNoaXAKPj4+IHBvd2VyZWQgT04gYWxsIHRoZSB0aW1lIHdpbGwgY29uc3VtZSBleHRyYSBwb3dl
+ciB3aGljaCBpcyBub3QKPj4+IGRlc2lyYWJsZSBvbiBhIGJhdHRlcnkgb3BlcmF0ZWQgZGV2aWNl
+LiBTYW1lIGlzIHRoZSBjYXNlIHdpdGggbm9uLVdvVwo+Pj4gc3VzcGVuZCwgY2hpcCB3aWxsIG5v
+dCBiZSBwdXQgaW50byBsb3cgcG93ZXIgbW9kZSB3aGVuIHRoZSBzeXN0ZW0gaXMKPj4+IHN1c3Bl
+bmRlZCByZXN1bHRpbmcgaW4gaGlnaGVyIGJhdHRlcnkgZHJhaW4uCj4+Pgo+Pj4gU2VuZCBRTUkg
+TU9ERSBPRkYgY29tbWFuZCB0byBmaXJtd2FyZSBkdXJpbmcgV2lGaSBPRkYgdG8gcHV0IGRldmlj
+ZQo+Pj4gaW50byBsb3cgcG93ZXIgbW9kZS4KPj4+Cj4+PiBUZXN0ZWQtb246IFdDTjY3NTAgaHcx
+LjAgQUhCIFdMQU4uTVNMLjEuMC4xLTAwODg3LVFDQU1TTFNXUExaLTEKPj4+Cj4+PiBNYW5pa2Fu
+dGEgUHViYmlzZXR0eSAoNCk6Cj4+PiDCoMKgIGF0aDExazogRml4IGRvdWJsZSBmcmVlIGlzc3Vl
+IGR1cmluZyBTUk5HIGRlaW5pdAo+Pj4gwqDCoCBhdGgxMWs6IE1vdmUgaGFyZHdhcmUgaW5pdGlh
+bGl6YXRpb24gbG9naWMgdG8gc3RhcnQoKQo+Pj4gwqDCoCBhdGgxMWs6IEVuYWJsZSBsb3cgcG93
+ZXIgbW9kZSB3aGVuIFdMQU4gaXMgbm90IGFjdGl2ZQo+Pj4gwqDCoCBhdGgxMWs6IEZpeCBmYWls
+ZWQgdG8gcGFyc2UgcmVndWxhdG9yeSBldmVudCBwcmludAo+Pj4KPj4+IMKgIGRyaXZlcnMvbmV0
+L3dpcmVsZXNzL2F0aC9hdGgxMWsvY29yZS5jIHwgMjM3ICsrKysrKysrKysrKysrKysrKy0tLS0t
+LS0KPj4+IMKgIGRyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvY29yZS5oIHzCoMKgIDgg
+Ky0KPj4+IMKgIGRyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvaGFsLmPCoCB8wqDCoCAx
+ICsKPj4+IMKgIGRyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvbWFjLmPCoCB8wqAgMzMg
+KystLQo+Pj4gwqAgZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9yZWcuY8KgIHzCoMKg
+IDIgKwo+Pj4gwqAgNSBmaWxlcyBjaGFuZ2VkLCAxODkgaW5zZXJ0aW9ucygrKSwgOTIgZGVsZXRp
+b25zKC0pCj4+Pgo+Pgo+PiBUaGlzIHNlcmllcyBsb29rZWQgcG90ZW50aWFsbHkgcHJvbWlzaW5n
+IHRvIG1lIGZvciBhIHByb2JsZW0gdGhhdCBJJ20gCj4+IHNlZWluZyBvbiBhIG5vdGVib29rIGZh
+aWxpbmcgdG8gc2xlZXAgd2hlcmUgV0xBTl9XQUtFIGlzIGFzc2VydGVkIG9uIAo+PiB0aGUgV0NO
+Njg1NSBvbiByZXN1bWUgZXZlbiB0aG91Z2ggV29XIHdhc24ndCBzZXQgYXQgYWxsLsKgIFRoaXMg
+aXMgCj4+IHByb2JsZW1hdGljIGFzIGl0IGNhdXNlcyBhIHNwdXJpb3VzIHdha2Ugd2hpbGUgU1VU
+IGlzIHJlYWRpbmcgZnJvbSB0aGUgCj4+IEVDIHNpbmNlIHR3byBJUlFzIGFyZSBub3cgYWN0aXZl
+IGFuZCB0aGUga2VybmVsIHdha2VzIGZyb20gdGhhdC4KPj4gUmVtb3ZpbmcgdGhlIFdDTjY4NTUg
+ZnJvbSB0aGUgc3lzdGVtIGl0IGRvZXNuJ3QgaGFwcGVuLgo+Pgo+PiBJIGZpZ3VyZWQgSSdkIGdp
+dmUgaXQgYSBzcGluIHRvIHNlZSBpZiBpdCBpbXByb3ZlZCB0aGluZ3MuCj4+IEkgYXBwbGllZCB0
+aGUgc2VyaWVzIG9uIHRvcCBvZiA1LjE5LXJjNyBhbmQgaXQgYXBwbGllZCBjbGVhbmx5IGJ1dCBJ
+IAo+PiBnZXQgdGltZW91dHMgb24gd2xhbiBjYXJkIGluaXQgKGFuZCBvZiBjb3Vyc2Ugc3VzcGVu
+ZCBmYWlscyBub3cgdG9vKS4KPj4KPj4gSGVyZSdzIHRoZSBtaGkvYXRoMTFrX3BjaSBzbmlwcGV0
+czoKPj4KPj4gW8KgwqDCoCAyLjg2NDExMF0gYXRoMTFrX3BjaSAwMDAwOjAxOjAwLjA6IEJBUiAw
+OiBhc3NpZ25lZCBbbWVtIAo+PiAweGI0MDAwMDAwLTB4YjQxZmZmZmYgNjRiaXRdCj4+IFvCoMKg
+wqAgMi44NjQ5MDFdIGF0aDExa19wY2kgMDAwMDowMTowMC4wOiBNU0kgdmVjdG9yczogMzIKPj4g
+W8KgwqDCoCAyLjg2NDkxMl0gYXRoMTFrX3BjaSAwMDAwOjAxOjAwLjA6IHdjbjY4NTUgaHcyLjEK
+Pj4gW8KgwqDCoCAzLjEwNjg5Ml0gbWhpIG1oaTA6IFJlcXVlc3RlZCB0byBwb3dlciBPTgo+PiBb
+wqDCoMKgIDMuMTA3MDU0XSBtaGkgbWhpMDogUG93ZXIgb24gc2V0dXAgc3VjY2Vzcwo+PiBbwqDC
+oMKgIDMuMTk4MTc4XSBtaGkgbWhpMDogV2FpdCBmb3IgZGV2aWNlIHRvIGVudGVyIFNCTCBvciBN
+aXNzaW9uIG1vZGUKPj4gW8KgwqDCoCAzLjk3MTAxOV0gYXRoMTFrX3BjaSAwMDAwOjAxOjAwLjA6
+IGNoaXBfaWQgMHgyIGNoaXBfZmFtaWx5IDB4YiAKPj4gYm9hcmRfaWQgMHhmZiBzb2NfaWQgMHg0
+MDBjMDIxMAo+PiBbwqDCoMKgIDMuOTcxMDI1XSBhdGgxMWtfcGNpIDAwMDA6MDE6MDAuMDogZndf
+dmVyc2lvbiAweDExMDgwYmJiIAo+PiBmd19idWlsZF90aW1lc3RhbXAgMjAyMS0xMi0xNiAwMzo0
+MiBmd19idWlsZF9pZCAKPj4gV0xBTi5IU1AuMS4xLTAzMDAzLVFDQUhTUFNXUExfVjFfVjJfU0lM
+SUNPTlpfTElURS0yCj4+IFvCoMKgwqAgNC4yOTAzMjhdIGF0aDExa19wY2kgMDAwMDowMTowMC4w
+IHdscDFzMDogcmVuYW1lZCBmcm9tIHdsYW4wCj4+IFvCoMKgwqAgNC4zMDg3NjBdIGF0aDExa19w
+Y2kgMDAwMDowMTowMC4wOiBGYWlsZWQgdG8gc2V0IHRoZSByZXF1ZXN0ZWQgCj4+IENvdW50cnkg
+cmVndWxhdG9yeSBzZXR0aW5nCj4+IFvCoMKgwqAgNC4zMDkwMjhdIGF0aDExa19wY2kgMDAwMDow
+MTowMC4wOiBGYWlsZWQgdG8gc2V0IHRoZSByZXF1ZXN0ZWQgCj4+IENvdW50cnkgcmVndWxhdG9y
+eSBzZXR0aW5nCj4+IFvCoMKgIDE0LjM4NjIwMV0gYXRoMTFrX3BjaSAwMDAwOjAxOjAwLjA6IHFt
+aSBmYWlsZWQgd2xhbiBpbmkgcmVxdWVzdCwgCj4+IGVyciA9IC0xMTAKPj4gW8KgwqAgMTQuMzg2
+MjEwXSBhdGgxMWtfcGNpIDAwMDA6MDE6MDAuMDogcW1pIGZhaWxlZCB0byBzZW5kIHdsYW4gZncg
+Cj4+IGluaTotMTEwCj4+IFvCoMKgIDE0LjM4NjIxNF0gYXRoMTFrX3BjaSAwMDAwOjAxOjAwLjA6
+IGZhaWxlZCB0byBzZW5kIGZpcm13YXJlIHN0YXJ0OiAKPj4gLTExMAo+PiBbwqDCoCAxNC4zODYy
+NDNdIGF0aDExa19wY2kgMDAwMDowMTowMC4wOiBmYWlsZWQgdG8gc3RhcnQgZmlybXdhcmU6IC0x
+MTAKPj4gW8KgwqAgMTQuMzg2MjY2XSBhdGgxMWtfcGNpIDAwMDA6MDE6MDAuMDogZmFpbGVkIHRv
+IHNldHVwIGRldmljZTogLTExMAo+PiBbwqDCoCAxNC4zODYzMDBdIGF0aDExa19wY2kgMDAwMDow
+MTowMC4wOiBmYWlsZWQgdG8gc3RhcnQgZGV2aWNlIDogLTExMAo+Pgo+PiBBbmQgc28gLSBvbi4K
+Pj4gSXMgaXQgZnVuY3Rpb25hbGx5IGRlcGVuZGVudCBvbiBvdGhlciBwYXRjaGVzIGluIGxpbnV4
+LW5leHQgb3IgYW5vdGhlciAKPj4gdHJlZSBJIHdvbid0IHNlZSBpbiA1LjE5Pwo+IAo+IEkgaGFk
+IGEgdHJ5IHdpdGggbGludXgtbmV4dCBhbmQgeW91ciBzZXJpZXMgYnV0IEkgcmVwcm9kdWNlIHRo
+ZSBzYW1lIAo+IGZhaWx1cmUgSSBkZXNjcmliZWQgYWJvdmUuCj4gCj4gZWUzYTA2NmU0ZjRlIChI
+RUFEKSBhdGgxMWs6IEZpeCBmYWlsZWQgdG8gcGFyc2UgcmVndWxhdG9yeSBldmVudCBwcmludAo+
+IDRmODUwZjFlMjZkYyBhdGgxMWs6IEVuYWJsZSBsb3cgcG93ZXIgbW9kZSB3aGVuIFdMQU4gaXMg
+bm90IGFjdGl2ZQo+IGUzMjBjOGVmOTg0MSBhdGgxMWs6IE1vdmUgaGFyZHdhcmUgaW5pdGlhbGl6
+YXRpb24gbG9naWMgdG8gc3RhcnQoKQo+IGRiYzI2MDM2YzFlZiBhdGgxMWs6IEZpeCBkb3VibGUg
+ZnJlZSBpc3N1ZSBkdXJpbmcgU1JORyBkZWluaXQKPiAxOGMxMDdhMWYxMjAgKHRhZzogbmV4dC0y
+MDIyMDcyMiwgbGludXgtbmV4dC9tYXN0ZXIpIEFkZCBsaW51eC1uZXh0IAo+IHNwZWNpZmljIGZp
+bGVzIGZvciAyMDIyMDcyMgo+IAo+IAoKU29ycnkgZm9yIGxhdGUgcmVwbHkgYW5kIHRoYW5rcyBm
+b3IgcmVwb3J0aW5nIHRoZSBidWcuCkFmdGVyIHNldmVyYWwgcm91bmRzIG9mIGRpc2N1c3Npb25z
+IHdpdGggdGhlIGNvbmNlcm5lZCB0ZWFtcyBvbiB0aGUgCmZhaWx1cmUgdGhhdCB5b3UgaGF2ZSBy
+ZXBvcnRlZCwgd2UgaGF2ZSByb290IGNhdXNlZCB0aGUgaXNzdWUuCgpUaGUgY2hhbmdlcyB0aGF0
+IEkgaGF2ZSBwb3N0ZWQgd2lsbCBub3Qgd29yayBvbiBvdGhlciB0YXJnZXRzIGxpa2UgCldDTjY4
+NTUgYXMgaXMuIEl0IHJlcXVpcmVzIGFkZGl0aW9uYWwgY2hhbmdlcyBhbmQgdGhlcmVmb3JlIGxv
+dHMgb2YgdGVzdGluZy4KCkZvciBub3csIEkgaGF2ZSBwb3N0ZWQgYSBWMiBlbmFibGluZyB0aGUg
+ImxvdyBwb3dlciBtb2RlIiBkZXNpZ24gb25seSBvbgpXQ042NzUwLiBJIGhhdmUgc3RhcnRlZCB3
+b3JraW5nIG9uIGVuYWJsaW5nIHRoZSBsb2dpYyBmb3Igb3RoZXIgY2hpcHNldHMgCmFsc28uIE9u
+Y2UgdGhlIGNoYW5nZXMgYXJlIHdlbGwgdGVzdGVkLCBJJ2xsIHBvc3QgYSBzZXBhcmF0ZSBwYXRj
+aCB0byAKZW5hYmxlIGl0IG9uIFdDTjY4NTUuIEl0IG1pZ2h0IHRha2UgYSBsaXR0bGUgbW9yZSB0
+aW1lLgoKVGhhbmtzLApNYW5pa2FudGEKCi0tIAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0Bs
+aXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlz
+dGluZm8vYXRoMTFrCg==
