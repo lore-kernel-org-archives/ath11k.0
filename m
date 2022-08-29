@@ -4,80 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D07BECAAD5
-	for <ath11k@archiver.kernel.org>; Mon, 29 Aug 2022 12:44:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E88EECAAD2
+	for <ath11k@archiver.kernel.org>; Mon, 29 Aug 2022 16:30:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=v9p5t5hHBrkYhjqfwak5YsiQ9fWWgldj0O0YJE9w0oQ=; b=NDUMqIZXdLK7/P
-	Uzhd+XWsyuTakHpmnu7ipt++O7Q9QBA5mPjWZA49TCPvKWcoYh7KkLbqO+Q+p2Q9wUt5MCB0pFfMh
-	Gb+z9+pt7J+8YfYIxy1jNL1f1Q+B+WlK3QOuCFWzf6qUVMyg5iQbNrUjzQbgyJE83W6ltf+XbV5Th
-	ISBSRaObxzz5ZY8khUaXQSh1STFf5cQQKBoAKw4lloCKDsNUBxhSBqd6OGrWDq8V7SUSPxGNm3zMT
-	wrN9BeBrGqxbD0Tp6sGhP0lSQjfRdCfSYHJN0ipcJqd+5jhGQ8lNdqsfkV5zpEuMHF+5/peAM4Ev1
-	mLrnYYVhmk7uVEd0xGUQ==;
+	List-Owner; bh=9+0ZNdI/wrIyYe+DEzeGW3CqKaTRMTp5ksYEy0C5Axs=; b=I7WONIB2hVDq8N
+	NSgsJVFPErGtSKP9eqzcek4UU9GFHyr/t0SBDq2MpyDDiB/bveqKEPqEdVAJpAVGAtqBkzmp6SH+h
+	3ASrlF+cxOHFakOmymT9HeHMl6vC+N02XhDyW6HZduf3Gz+476TbYpXaoef70kzRDEp27ng/mSh0V
+	g+HfqbLl3/+KaQMAFfKRryMlgVdCIavUFGa5a2KOig5b4qi0M0aazkzdrpHN8/o++n86CSjOYpzjr
+	4kFU5TBM14EIJ6wGxIz37gm1Gl8pDnzvEThtktkzYncvlS1k9aqLBaDOsx3mZ522OaiwLQ7eFhC2F
+	akcnXj6sMGZYZ3wbzR1Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oSe7c-009k0Y-IH; Mon, 29 Aug 2022 12:44:08 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1oShen-00BlE9-Iz; Mon, 29 Aug 2022 16:30:37 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oSe7N-009ju6-2a
-	for ath11k@lists.infradead.org; Mon, 29 Aug 2022 12:44:05 +0000
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 27TBR6nP023774;
-	Mon, 29 Aug 2022 12:43:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=wYL/xB8Y+hmtliFuhb+6xNK+Ch1VSXZDB6mTfI7uoeg=;
- b=eQD9MVyWzn/Fp0JiN06ny0ySNc0hq/omhJ0fP/UXSH1KgI4deIiHVsxSQwzlJY1yQyyh
- qRLWGNN98++YsozIH6NvHNopCvkZFhH9M6ekfWJvhuhnplb44EMV4/haYaiYr9vXqNiP
- acglbopA9Xb6k/AfK1NL2r4KJ2Ubvee7aEUFTu2SFVTmKHOs6KXyqTr5k2wV+exKRwJn
- ggfziZcI8Wp0t9UiHQLgAIfbCYhfWd3PURyUKN18oszGz1+/lWOZXIReWJdAiUgo/e+7
- QqpHdQcIbZ72y4lpcMZ5Ib6jrM9PoULTsaXPOUUNVbT6vk7qcb/eR41HKpfwPyUrb4a0 fQ== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3j8uj5ra2u-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 29 Aug 2022 12:43:49 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 27TChmua030904
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 29 Aug 2022 12:43:49 GMT
-Received: from mpubbise-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.29; Mon, 29 Aug 2022 05:43:46 -0700
-From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <robh@kernel.org>, Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-Subject: [PATCH v2 2/2] ath11k: Add WoW support for WCN6750
-Date: Mon, 29 Aug 2022 18:13:23 +0530
-Message-ID: <20220829124323.26874-3-quic_mpubbise@quicinc.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220829124323.26874-1-quic_mpubbise@quicinc.com>
-References: <20220829124323.26874-1-quic_mpubbise@quicinc.com>
+	id 1oShUq-00Bh74-8j
+	for ath11k@lists.infradead.org; Mon, 29 Aug 2022 16:20:24 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 6804A611BE;
+	Mon, 29 Aug 2022 16:20:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31D25C433D6;
+	Mon, 29 Aug 2022 16:20:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1661790018;
+	bh=rKldEn8GDoqan884Kl27KYDre5RSBwf1soWE1GqIuUI=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=Jo27ES0wd1AvWThEa0nNWsF4/0g4E7h6fUZmtGF6fpqKxWQaGM2/7aSaVKcq9vxdz
+	 75czUSVooDbVphf884bV11kfN5fPZPvAABfAlW+VFs8USi8AKPQe/brfzmnE7VN68u
+	 qhuXnZbyhTKBgKL6ycWq4C7TKJy/ow/hplrFpoxrCBfTHkLX+1JBVzA71cwM3AHn9P
+	 l449PrywaV5w/dgku2ObN6ZObfjcAywk7e+8HtteRg64LoBVhLyyXyMO7g5fORlPf1
+	 m3JErPnp7uWjth4CxV5kg4QvVma2BsLqYIq5WrNDf2VjFKsPYpgkE7d0f/pr+fx/MI
+	 4t1WqSnGXFa2Q==
+From: Kalle Valo <kvalo@kernel.org>
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Qiang Yu <quic_qianyu@quicinc.com>,  quic_hemantk@quicinc.com,  loic.poulain@linaro.org,  quic_jhugo@quicinc.com,  mhi@lists.linux.dev,  linux-arm-msm@vger.kernel.org,  linux-kernel@vger.kernel.org,  quic_cang@quicinc.com,  ath11k@lists.infradead.org
+Subject: Re: [PATCH v3 1/1] bus: mhi: host: Fix up null pointer access in mhi_irq_handler
+References: <1658459838-30802-1-git-send-email-quic_qianyu@quicinc.com>
+	<20220726080636.GE5522@workstation> <87czdrrc95.fsf@kernel.org>
+	<20220729142221.GA9937@thinkpad>
+Date: Mon, 29 Aug 2022 19:20:10 +0300
+In-Reply-To: <20220729142221.GA9937@thinkpad> (Manivannan Sadhasivam's message
+	of "Fri, 29 Jul 2022 19:52:21 +0530")
+Message-ID: <87h71vc98l.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Rb3AeXnBz0azJHzNOqxcmzmNHG9IM1Sc
-X-Proofpoint-ORIG-GUID: Rb3AeXnBz0azJHzNOqxcmzmNHG9IM1Sc
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-08-29_07,2022-08-25_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
- priorityscore=1501 adultscore=0 impostorscore=0 malwarescore=0
- clxscore=1015 bulkscore=0 mlxscore=0 suspectscore=0 mlxlogscore=999
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2207270000 definitions=main-2208290059
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220829_054401_283321_6F5C3C4E 
-X-CRM114-Status: GOOD (  31.49  )
+X-CRM114-CacheID: sfid-20220829_092020_412182_CCFB8580 
+X-CRM114-Status: GOOD (  13.85  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,407 +74,38 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Add support for WoW on WCN6750 chipset.
+Manivannan Sadhasivam <mani@kernel.org> writes:
 
-Unlike other chips where WoW exit happens after sending WoW wakeup
-WMI command, exit from WoW suspend in the case of WCN6750 happens
-upon sending a WoW exit SMP2P (Shared memory point to point) message
-to the firmware.
+> On Tue, Jul 26, 2022 at 08:53:58PM +0300, Kalle Valo wrote:
+>> Manivannan Sadhasivam <mani@kernel.org> writes:
+>> 
+>> > +ath11k, Kalle
+>> >
+>> > On Fri, Jul 22, 2022 at 11:17:18AM +0800, Qiang Yu wrote:
+>> >> The irq handler for a shared IRQ ought to be prepared for running
+>> >> even now it's being freed. So let's check the pointer used by
+>> >> mhi_irq_handler to avoid null pointer access since it is probably
+>> >> released before freeing IRQ.
+>> >> 
+>> >> Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
+>> >
+>> > Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
+>> 
+>> This fixes the crash and my regression tests pass now, thanks. But
+>> please see my question below.
+>> 
+>> Tested-by: Kalle Valo <kvalo@kernel.org>
+>> 
+>
+> Thanks Kalle!
 
-Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00573-QCAMSLSWPLZ-1
+I just tested v6.0-rc3 and it's still crashing. What's the plan to get
+this fix to Linus?
 
-Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/ahb.c  | 123 ++++++++++++++++++++++++-
- drivers/net/wireless/ath/ath11k/ahb.h  |  16 ++++
- drivers/net/wireless/ath/ath11k/core.c |   7 ++
- drivers/net/wireless/ath/ath11k/hw.h   |   1 +
- drivers/net/wireless/ath/ath11k/pcic.c |  32 +++++++
- drivers/net/wireless/ath/ath11k/pcic.h |   4 +
- drivers/net/wireless/ath/ath11k/wow.c  |   8 ++
- 7 files changed, 190 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index c47414710138..3bb65fa9128c 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.c
-+++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -16,6 +16,8 @@
- #include "hif.h"
- #include <linux/remoteproc.h>
- #include "pcic.h"
-+#include <linux/soc/qcom/smem.h>
-+#include <linux/soc/qcom/smem_state.h>
- 
- static const struct of_device_id ath11k_ahb_of_match[] = {
- 	/* TODO: Should we change the compatible string to something similar
-@@ -685,6 +687,84 @@ static int ath11k_ahb_map_service_to_pipe(struct ath11k_base *ab, u16 service_id
- 	return 0;
- }
- 
-+static int ath11k_ahb_hif_suspend(struct ath11k_base *ab)
-+{
-+	struct ath11k_ahb *ab_ahb = ath11k_ahb_priv(ab);
-+	u32 wake_irq;
-+	u32 value = 0;
-+	int ret;
-+
-+	if (!device_may_wakeup(ab->dev))
-+		return -EPERM;
-+
-+	wake_irq = ab->irq_num[ATH11K_PCI_IRQ_CE0_OFFSET + ATH11K_PCI_CE_WAKE_IRQ];
-+
-+	ret = enable_irq_wake(wake_irq);
-+	if (ret) {
-+		ath11k_err(ab, "failed to enable wakeup irq :%d\n", ret);
-+		return ret;
-+	}
-+
-+	value = u32_encode_bits(ab_ahb->smp2p_info.seq_no++,
-+				ATH11K_AHB_SMP2P_SMEM_SEQ_NO);
-+	value |= u32_encode_bits(ATH11K_AHB_POWER_SAVE_ENTER,
-+				 ATH11K_AHB_SMP2P_SMEM_MSG);
-+
-+	ret = qcom_smem_state_update_bits(ab_ahb->smp2p_info.smem_state,
-+					  ATH11K_AHB_SMP2P_SMEM_VALUE_MASK, value);
-+	if (ret) {
-+		ath11k_err(ab, "failed to send smp2p power save enter cmd :%d\n", ret);
-+		return ret;
-+	}
-+
-+	ath11k_dbg(ab, ATH11K_DBG_AHB, "ahb device suspended\n");
-+
-+	return ret;
-+}
-+
-+static int ath11k_ahb_hif_resume(struct ath11k_base *ab)
-+{
-+	struct ath11k_ahb *ab_ahb = ath11k_ahb_priv(ab);
-+	u32 wake_irq;
-+	u32 value = 0;
-+	int ret;
-+
-+	if (!device_may_wakeup(ab->dev))
-+		return -EPERM;
-+
-+	wake_irq = ab->irq_num[ATH11K_PCI_IRQ_CE0_OFFSET + ATH11K_PCI_CE_WAKE_IRQ];
-+
-+	ret = disable_irq_wake(wake_irq);
-+	if (ret) {
-+		ath11k_err(ab, "failed to disable wakeup irq: %d\n", ret);
-+		return ret;
-+	}
-+
-+	reinit_completion(&ab->wow.wakeup_completed);
-+
-+	value = u32_encode_bits(ab_ahb->smp2p_info.seq_no++,
-+				ATH11K_AHB_SMP2P_SMEM_SEQ_NO);
-+	value |= u32_encode_bits(ATH11K_AHB_POWER_SAVE_EXIT,
-+				 ATH11K_AHB_SMP2P_SMEM_MSG);
-+
-+	ret = qcom_smem_state_update_bits(ab_ahb->smp2p_info.smem_state,
-+					  ATH11K_AHB_SMP2P_SMEM_VALUE_MASK, value);
-+	if (ret) {
-+		ath11k_err(ab, "failed to send smp2p power save enter cmd :%d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = wait_for_completion_timeout(&ab->wow.wakeup_completed, 3 * HZ);
-+	if (ret == 0) {
-+		ath11k_warn(ab, "timed out while waiting for wow wakeup completion\n");
-+		return -ETIMEDOUT;
-+	}
-+
-+	ath11k_dbg(ab, ATH11K_DBG_AHB, "ahb device resumed\n");
-+
-+	return 0;
-+}
-+
- static const struct ath11k_hif_ops ath11k_ahb_hif_ops_ipq8074 = {
- 	.start = ath11k_ahb_start,
- 	.stop = ath11k_ahb_stop,
-@@ -709,6 +789,10 @@ static const struct ath11k_hif_ops ath11k_ahb_hif_ops_wcn6750 = {
- 	.map_service_to_pipe = ath11k_pcic_map_service_to_pipe,
- 	.power_down = ath11k_ahb_power_down,
- 	.power_up = ath11k_ahb_power_up,
-+	.suspend = ath11k_ahb_hif_suspend,
-+	.resume = ath11k_ahb_hif_resume,
-+	.ce_irq_enable = ath11k_pci_enable_ce_irqs_except_wake_irq,
-+	.ce_irq_disable = ath11k_pci_disable_ce_irqs_except_wake_irq,
- };
- 
- static int ath11k_core_get_rproc(struct ath11k_base *ab)
-@@ -783,6 +867,35 @@ static int ath11k_ahb_setup_msi_resources(struct ath11k_base *ab)
- 	return 0;
- }
- 
-+static int ath11k_ahb_setup_smp2p_handle(struct ath11k_base *ab)
-+{
-+	struct ath11k_ahb *ab_ahb = ath11k_ahb_priv(ab);
-+
-+	if (!ab->hw_params.smp2p_wow_exit)
-+		return 0;
-+
-+	ab_ahb->smp2p_info.smem_state =
-+		qcom_smem_state_get(ab->dev, "wlan-smp2p-out",
-+				    &ab_ahb->smp2p_info.smem_bit);
-+	if (IS_ERR(ab_ahb->smp2p_info.smem_state)) {
-+		ath11k_err(ab, "failed to fetch smem state: %ld\n",
-+			   PTR_ERR(ab_ahb->smp2p_info.smem_state));
-+		return PTR_ERR(ab_ahb->smp2p_info.smem_state);
-+	}
-+
-+	return 0;
-+}
-+
-+static void ath11k_ahb_release_smp2p_handle(struct ath11k_base *ab)
-+{
-+	struct ath11k_ahb *ab_ahb = ath11k_ahb_priv(ab);
-+
-+	if (!ab->hw_params.smp2p_wow_exit)
-+		return;
-+
-+	qcom_smem_state_put(ab_ahb->smp2p_info.smem_state);
-+}
-+
- static int ath11k_ahb_setup_resources(struct ath11k_base *ab)
- {
- 	struct platform_device *pdev = ab->pdev;
-@@ -1038,10 +1151,14 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto err_core_free;
- 
--	ret = ath11k_hal_srng_init(ab);
-+	ret = ath11k_ahb_setup_smp2p_handle(ab);
- 	if (ret)
- 		goto err_fw_deinit;
- 
-+	ret = ath11k_hal_srng_init(ab);
-+	if (ret)
-+		goto err_release_smp2p_handle;
-+
- 	ret = ath11k_ce_alloc_pipes(ab);
- 	if (ret) {
- 		ath11k_err(ab, "failed to allocate ce pipes: %d\n", ret);
-@@ -1078,6 +1195,9 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
- err_hal_srng_deinit:
- 	ath11k_hal_srng_deinit(ab);
- 
-+err_release_smp2p_handle:
-+	ath11k_ahb_release_smp2p_handle(ab);
-+
- err_fw_deinit:
- 	ath11k_ahb_fw_resource_deinit(ab);
- 
-@@ -1116,6 +1236,7 @@ static int ath11k_ahb_remove(struct platform_device *pdev)
- qmi_fail:
- 	ath11k_ahb_free_irq(ab);
- 	ath11k_hal_srng_deinit(ab);
-+	ath11k_ahb_release_smp2p_handle(ab);
- 	ath11k_ahb_fw_resource_deinit(ab);
- 	ath11k_ce_free_pipes(ab);
- 	ath11k_core_free(ab);
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.h b/drivers/net/wireless/ath/ath11k/ahb.h
-index 58a945411c5b..415ddfd26654 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.h
-+++ b/drivers/net/wireless/ath/ath11k/ahb.h
-@@ -1,6 +1,7 @@
- /* SPDX-License-Identifier: BSD-3-Clause-Clear */
- /*
-  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2022, Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- #ifndef ATH11K_AHB_H
- #define ATH11K_AHB_H
-@@ -8,6 +9,16 @@
- #include "core.h"
- 
- #define ATH11K_AHB_RECOVERY_TIMEOUT (3 * HZ)
-+
-+#define ATH11K_AHB_SMP2P_SMEM_MSG		GENMASK(15, 0)
-+#define ATH11K_AHB_SMP2P_SMEM_SEQ_NO		GENMASK(31, 16)
-+#define ATH11K_AHB_SMP2P_SMEM_VALUE_MASK	0xFFFFFFFF
-+
-+enum ath11k_ahb_smp2p_msg_id {
-+	ATH11K_AHB_POWER_SAVE_ENTER = 1,
-+	ATH11K_AHB_POWER_SAVE_EXIT,
-+};
-+
- struct ath11k_base;
- 
- struct ath11k_ahb {
-@@ -21,6 +32,11 @@ struct ath11k_ahb {
- 		u32 ce_size;
- 		bool use_tz;
- 	} fw;
-+	struct {
-+		unsigned short seq_no;
-+		unsigned int smem_bit;
-+		struct qcom_smem_state *smem_state;
-+	} smp2p_info;
- };
- 
- static inline struct ath11k_ahb *ath11k_ahb_priv(struct ath11k_base *ab)
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index c3e9e4f7bc24..dddca4e33205 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -106,6 +106,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.hybrid_bus_type = false,
- 		.fixed_fw_mem = false,
- 		.support_off_channel_tx = false,
-+		.smp2p_wow_exit = false,
- 	},
- 	{
- 		.hw_rev = ATH11K_HW_IPQ6018_HW10,
-@@ -177,6 +178,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.hybrid_bus_type = false,
- 		.fixed_fw_mem = false,
- 		.support_off_channel_tx = false,
-+		.smp2p_wow_exit = false,
- 	},
- 	{
- 		.name = "qca6390 hw2.0",
-@@ -247,6 +249,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.hybrid_bus_type = false,
- 		.fixed_fw_mem = false,
- 		.support_off_channel_tx = true,
-+		.smp2p_wow_exit = false,
- 	},
- 	{
- 		.name = "qcn9074 hw1.0",
-@@ -317,6 +320,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.hybrid_bus_type = false,
- 		.fixed_fw_mem = false,
- 		.support_off_channel_tx = false,
-+		.smp2p_wow_exit = false,
- 	},
- 	{
- 		.name = "wcn6855 hw2.0",
-@@ -387,6 +391,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.hybrid_bus_type = false,
- 		.fixed_fw_mem = false,
- 		.support_off_channel_tx = true,
-+		.smp2p_wow_exit = false,
- 	},
- 	{
- 		.name = "wcn6855 hw2.1",
-@@ -456,6 +461,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.hybrid_bus_type = false,
- 		.fixed_fw_mem = false,
- 		.support_off_channel_tx = true,
-+		.smp2p_wow_exit = false,
- 	},
- 	{
- 		.name = "wcn6750 hw1.0",
-@@ -525,6 +531,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.hybrid_bus_type = true,
- 		.fixed_fw_mem = true,
- 		.support_off_channel_tx = false,
-+		.smp2p_wow_exit = true,
- 	},
- };
- 
-diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
-index bb5ac940e470..45b83f4d4bb9 100644
---- a/drivers/net/wireless/ath/ath11k/hw.h
-+++ b/drivers/net/wireless/ath/ath11k/hw.h
-@@ -200,6 +200,7 @@ struct ath11k_hw_params {
- 	bool hybrid_bus_type;
- 	bool fixed_fw_mem;
- 	bool support_off_channel_tx;
-+	bool smp2p_wow_exit;
- };
- 
- struct ath11k_hw_ops {
-diff --git a/drivers/net/wireless/ath/ath11k/pcic.c b/drivers/net/wireless/ath/ath11k/pcic.c
-index 1adf20ebef27..5a946814734f 100644
---- a/drivers/net/wireless/ath/ath11k/pcic.c
-+++ b/drivers/net/wireless/ath/ath11k/pcic.c
-@@ -731,3 +731,35 @@ int ath11k_pcic_register_pci_ops(struct ath11k_base *ab,
- 	return 0;
- }
- EXPORT_SYMBOL(ath11k_pcic_register_pci_ops);
-+
-+void ath11k_pci_enable_ce_irqs_except_wake_irq(struct ath11k_base *ab)
-+{
-+	int i;
-+
-+	for (i = 0; i < ab->hw_params.ce_count; i++) {
-+		if (ath11k_ce_get_attr_flags(ab, i) & CE_ATTR_DIS_INTR ||
-+		    i == ATH11K_PCI_CE_WAKE_IRQ)
-+			continue;
-+		ath11k_pcic_ce_irq_enable(ab, i);
-+	}
-+}
-+
-+void ath11k_pci_disable_ce_irqs_except_wake_irq(struct ath11k_base *ab)
-+{
-+	int i;
-+	int irq_idx;
-+	struct ath11k_ce_pipe *ce_pipe;
-+
-+	for (i = 0; i < ab->hw_params.ce_count; i++) {
-+		ce_pipe = &ab->ce.ce_pipe[i];
-+		irq_idx = ATH11K_PCI_IRQ_CE0_OFFSET + i;
-+
-+		if (ath11k_ce_get_attr_flags(ab, i) & CE_ATTR_DIS_INTR ||
-+		    i == ATH11K_PCI_CE_WAKE_IRQ)
-+			continue;
-+
-+		disable_irq_nosync(ab->irq_num[irq_idx]);
-+		synchronize_irq(ab->irq_num[irq_idx]);
-+		tasklet_kill(&ce_pipe->intr_tq);
-+	}
-+}
-diff --git a/drivers/net/wireless/ath/ath11k/pcic.h b/drivers/net/wireless/ath/ath11k/pcic.h
-index 0afbb34510db..6f5a9cf766cd 100644
---- a/drivers/net/wireless/ath/ath11k/pcic.h
-+++ b/drivers/net/wireless/ath/ath11k/pcic.h
-@@ -12,6 +12,8 @@
- #define ATH11K_PCI_IRQ_CE0_OFFSET	3
- #define ATH11K_PCI_IRQ_DP_OFFSET	14
- 
-+#define ATH11K_PCI_CE_WAKE_IRQ	2
-+
- #define ATH11K_PCI_WINDOW_ENABLE_BIT		0x40000000
- #define ATH11K_PCI_WINDOW_REG_ADDRESS		0x310c
- #define ATH11K_PCI_WINDOW_VALUE_MASK		GENMASK(24, 19)
-@@ -45,4 +47,6 @@ void ath11k_pcic_ce_irq_disable_sync(struct ath11k_base *ab);
- int ath11k_pcic_init_msi_config(struct ath11k_base *ab);
- int ath11k_pcic_register_pci_ops(struct ath11k_base *ab,
- 				 const struct ath11k_pci_ops *pci_ops);
-+void ath11k_pci_enable_ce_irqs_except_wake_irq(struct ath11k_base *ab);
-+void ath11k_pci_disable_ce_irqs_except_wake_irq(struct ath11k_base *ab);
- #endif
-diff --git a/drivers/net/wireless/ath/ath11k/wow.c b/drivers/net/wireless/ath/ath11k/wow.c
-index b3e65cd13d83..0bf716fb0e70 100644
---- a/drivers/net/wireless/ath/ath11k/wow.c
-+++ b/drivers/net/wireless/ath/ath11k/wow.c
-@@ -1,6 +1,7 @@
- // SPDX-License-Identifier: BSD-3-Clause-Clear
- /*
-  * Copyright (c) 2020 The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2022, Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- 
- #include <linux/delay.h>
-@@ -67,6 +68,13 @@ int ath11k_wow_wakeup(struct ath11k_base *ab)
- 	struct ath11k *ar = ath11k_ab_to_ar(ab, 0);
- 	int ret;
- 
-+	/* In the case of WCN6750, WoW wakeup is done
-+	 * by sending SMP2P power save exit message
-+	 * to the target processor.
-+	 */
-+	if (ab->hw_params.smp2p_wow_exit)
-+		return 0;
-+
- 	reinit_completion(&ab->wow.wakeup_completed);
- 
- 	ret = ath11k_wmi_wow_host_wakeup_ind(ar);
 -- 
-2.37.1
+https://patchwork.kernel.org/project/linux-wireless/list/
 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
