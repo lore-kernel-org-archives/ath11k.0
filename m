@@ -4,59 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B37EECAAD5
-	for <ath11k@archiver.kernel.org>; Fri,  2 Sep 2022 12:23:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DF62ECAAD5
+	for <ath11k@archiver.kernel.org>; Fri,  2 Sep 2022 12:27:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=lhgNOtuFl+sniEhf0ZM9DNcstQFkVxwao4QFdWDGL+g=; b=G6ElDfDtieWM6+
-	mJOYlWLrgNaEH5vKzayHZJxukHtogUFIj0O2nMsD+0p0qg5RBEOshDTKW5JmF4E/KY4QH9yMqXOiK
-	8iJe5uMtcyOIUbGKTOpn/x2/WMso8dHDOd6hsAN1Jeudqv2Yh/4aduQoUvvq7xOOa6qv6PG6Gp0AO
-	qTE1//D8DtlO9F9J6kXCXLOMZ8x06eHkpokix1Vp7bymRLkQrhuyqLk/DgCrMOrg1ZBg1N9fg8vmd
-	uTh+JYlaPoE+kMZsIaAmWajnXjgdTXXSKJCFFN/+VXI1DV6kDt5VdvQ7x6hF8mTiEmV1WeK7RldcN
-	X7FKYMbsEO8drMz0gRhA==;
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
+	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=B8qtztvjErg7byXvC3QOBSeZwYVLPCxZT6aNN9JXo9o=; b=Jz3oPT9ZWOqM0V
+	58PwUpKbcRnOqmeuAoY4hIIUcugyobDQCwvgfGA5sl9O8bfOWyTVgbu6cyzHPdy7gbBcFS2aUJI54
+	XPWbhtBIT7a3zdEQvfnTHSt+J4IJgGQSn9O9rNk0S4Ua9nhl0cg6i2wJOwCjOTb9MGlWvHMNqvPMP
+	kl0Hd9PSMvipeo/6kLlmIpNfLY6lO7yjpS9ZvKknZTVmEAud/8BKcmafoOvf3IXIX4JRXAGs1pjYE
+	KZJ6EEhsfcajBlb7HPzpj1ilFwl/EkNdI1EiQSaFw0C3wRkixC/Ow4QYXXLr53cnUDiwDgo0IVHc4
+	FLwvbS3mkQBobcl4a7DQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oU5hO-004Tvm-Ee; Fri, 02 Sep 2022 12:23:02 +0000
+	id 1oU5lf-004W8Q-0z; Fri, 02 Sep 2022 12:27:27 +0000
 Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oU5hL-004Ttb-EZ
-	for ath11k@lists.infradead.org; Fri, 02 Sep 2022 12:23:00 +0000
+	id 1oU5lb-004W6v-MZ
+	for ath11k@lists.infradead.org; Fri, 02 Sep 2022 12:27:25 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id E669F6211C;
-	Fri,  2 Sep 2022 12:22:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CBE4C433D7;
-	Fri,  2 Sep 2022 12:22:57 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 3AE0162178;
+	Fri,  2 Sep 2022 12:27:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B54C3C433D6;
+	Fri,  2 Sep 2022 12:27:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1662121378;
-	bh=oyHGH9UTftZEqKaUXOjKGBBK38sKQD7Du+L1lAYRoyI=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=ngaUmljQn+cV8AmFsr51zw9JlSriE1KyTfqrh+WZzk2v2ZlWRnI0fvS5SmFQVVhRH
-	 N3FoB+DlIgMV86GdCHn70k/nL50+j1kRDcLFII3XC+hurNzitrWsTvJAFP8BJ5g9Cv
-	 6qtNfVPbTHcAhI2DqspH/6tzqLzp6m/j11rajLbcknxozOffWGz4pGnEu2qvsVAWWl
-	 yx25+IYK/+5FdKvpvqLq7BTDlsTDjYgzPk5g+xx4H4ML9Iiztr9s8qsiTTrF8TMnJ1
-	 4rqOswsEVtN9MUm/Af593njcxtft6KEIs8AVUmA+Mc1ELWNNldpgnFPC0esUuKyjdr
-	 lmroSiSwKNh/Q==
-From: Kalle Valo <kvalo@kernel.org>
-To: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-Cc: <ath11k@lists.infradead.org>,  <robh@kernel.org>,  <krzysztof.kozlowski+dt@linaro.org>,  <linux-wireless@vger.kernel.org>,  <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v3 2/2] ath11k: Add WoW support for WCN6750
-References: <20220902112520.24804-1-quic_mpubbise@quicinc.com>
-	<20220902112520.24804-3-quic_mpubbise@quicinc.com>
-Date: Fri, 02 Sep 2022 15:22:51 +0300
-In-Reply-To: <20220902112520.24804-3-quic_mpubbise@quicinc.com> (Manikanta
-	Pubbisetty's message of "Fri, 2 Sep 2022 16:55:20 +0530")
-Message-ID: <87h71qartw.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+	s=k20201202; t=1662121642;
+	bh=CgLnuouAB0vCyz3vDvXg4KuFUnRYa9HnnlVwJvFlqv0=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=gTMKyCNlsVgaMNY0T7ffNEF1KIA4QdXETjwQBeZq7sZtWPAjHaBfhtaAw385nsaUc
+	 L6C3M62ewoe+iLnW8mKPQZHKqNeqhawKUEc4hrfC4KgTCI5RB5kUbn7IIYcwJaF8it
+	 AcBWmUpqqOoJYMh8OjwPJPChnEpfax7iyo2AWmfFgoimvDFKtdu4fkBAVvGusbjRqM
+	 KR7mqdQgyd0wHg16m7s1VoaY1xmN3OvIkpWfJPBodsB/R2wwd8EXqF0tC4+Uck/eVP
+	 3nMgBqgp8OJEOJeB8oA4J53TMvX+h7UnCCCq2zL6Wiw8KJABUCLjk8R9Tesq6g8Q68
+	 XEBwonkY0UD0w==
 MIME-Version: 1.0
+Subject: Re: [PATCH 1/2] ath11k: Add TWT debugfs support for STA interface
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20220720135150.22193-2-quic_mpubbise@quicinc.com>
+References: <20220720135150.22193-2-quic_mpubbise@quicinc.com>
+To: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+ Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-ID: <166212163953.9935.11315879224878748482.kvalo@kernel.org>
+Date: Fri,  2 Sep 2022 12:27:21 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220902_052259_546637_EC02359D 
-X-CRM114-Status: GOOD (  10.78  )
+X-CRM114-CacheID: sfid-20220902_052723_806625_B0400776 
+X-CRM114-Status: GOOD (  11.10  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,26 +72,36 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
+Manikanta Pubbisetty <quic_mpubbise@quicinc.com> wrote:
 
-> Add support for WoW on WCN6750 chipset.
->
-> Unlike other chips where WoW exit happens after sending WoW wakeup
-> WMI command, exit from WoW suspend in the case of WCN6750 happens
-> upon sending a WoW exit SMP2P (Shared memory point to point) message
-> to the firmware.
->
+> Currently TWT debugfs files required for manually testing the
+> TWT feature are created only for the AP interfaces; these debugfs
+> hooks are also required for the station interfaces in order to
+> test the TWT feature manually, therefore create these debugfs
+> hooks for station iftype as well.
+> 
+> In the case of station interfaces, TWT is entirely handled in the
+> firmware based on input parameters passed to it during association
+> via TWT enable WMI command. In order to manually test this feature,
+> firmware expects to first disable the TWT feature and then send the
+> enable command with sta_cong_timer_ms parameter set to 0.
+> This is true for WCN6750, QCA6390 & WCN6855 hardwares.
+> 
 > Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
->
+> 
 > Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-In the future please always add "wifi:" to wireless patches. No need to
-resend because of this, I can fix it.
+2 patches applied to ath-next branch of ath.git, thanks.
+
+9e2747c31e5a wifi: ath11k: Add TWT debugfs support for STA interface
+607c467eac7d wifi: ath11k: Fix hardware restart failure due to twt debugfs failure
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+https://patchwork.kernel.org/project/linux-wireless/patch/20220720135150.22193-2-quic_mpubbise@quicinc.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
 -- 
 ath11k mailing list
