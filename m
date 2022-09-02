@@ -4,59 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B601AC38145
-	for <ath11k@archiver.kernel.org>; Fri,  2 Sep 2022 12:28:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0C1BC54EE9
+	for <ath11k@archiver.kernel.org>; Fri,  2 Sep 2022 12:37:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
 	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7O+f0fIM2got013heSNXHgRaxEyMfVMsonx0nj+4iFo=; b=AtO4k6bt3hSnmE
-	a3aZFLrm60+VNKFjluoV6fGKHlFPcKvAo5EEOLhsaENhu8TYdXGAlaKv/jhYIl/3B0yd6k4wxrvUW
-	SP95KCki5tLJxYmGUBJ0naEmRXLgdaU6rD5R72hwIzWnRGhS8eWr4jVvdp/zEdwnnIWzN1xXmuMcb
-	0o9VINsuCpYQPN/cq6gVvbBJTI3cZYfczeJLpiNxg0ADAdx5wB0TyL8NhElQIwkjwaWcXAe9NODZp
-	AMueO4v+cGF/BUSv94UTqxU6pHbv/90Wg7VWVEha84Bf187h8g6IsP5w69F9s4h+PCzuuDrtfClyK
-	sMMmgcJnF/dHsto821cg==;
+	List-Owner; bh=TS2qDby90LFzF7KNWmv91qsg7yLiGuRydypP0j5SL9I=; b=F2sc7r2IcJmwZL
+	4a5Y21GMHthrAtOeMVxsMXhTXVDARU3+SyvRKTXUYrdBuER/cU89Ve/FxIR32XtIhl5igdcgJawAp
+	f3ze2U+MgB3ojVFR5iPalWpBCkJeRwUkTqvfhyNNLmmZiiN8E1hTtoecz1eKyBfKpQoiWuKOeTgyE
+	CeoTdlEQybJr8YAZR98b0cOxkBcdaYT1d5En9QF4xyTV7SikJdgPOmmTcNeb/72+FCTbUTMuseW+1
+	6W3uzXZcGWM++atuz3M49ixsizGKbHeJTryz3KjFQOOuYiXSjKxeSCgojdypv9Lnx0dXuxZdR/J8g
+	/Z88kJyF1SB8lBaEoNcA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oU5mw-004WpT-7F; Fri, 02 Sep 2022 12:28:46 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1oU5vA-004arw-OZ; Fri, 02 Sep 2022 12:37:16 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oU5mt-004WlW-9U
-	for ath11k@lists.infradead.org; Fri, 02 Sep 2022 12:28:44 +0000
+	id 1oU5v8-004ap8-BX
+	for ath11k@lists.infradead.org; Fri, 02 Sep 2022 12:37:15 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id F3756B82AA5;
-	Fri,  2 Sep 2022 12:28:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1BD7C433D6;
-	Fri,  2 Sep 2022 12:28:39 +0000 (UTC)
+	by ams.source.kernel.org (Postfix) with ESMTPS id EFC89B82ACD;
+	Fri,  2 Sep 2022 12:37:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0558C433B5;
+	Fri,  2 Sep 2022 12:37:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1662121720;
-	bh=e+U24dMk/hVmt2QABbAWhHrVrdQ9lGxzE6AGBgzMrRI=;
+	s=k20201202; t=1662122231;
+	bh=9Op9odOExBlAnpTT0YXqKzP+UiRsRxe3E3JcNy37xdY=;
 	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=E3W+l5+/gpwtSpcsYI0VJkC/skmdvbyU+PoHcuKWcwXepIhQy1SFg2GYE2akBR8U0
-	 lhRhUcQfIpbk8YINp/tXwNKd3YsA7wVQq/7yogJahYJ/OuJ0MabBhkPB0TZMM3wFVM
-	 FohhOINOoZ/yKFXPfQ4WxAOfYMAFB1DtrTzUcJrf0foAjHKL2lkWt7B8pqIBQ0od1M
-	 21yJnPVK1Pi0sls5hZplEjj06mIj39qfigt1LXPHM781P/hl8WNuQupN4S7cIrcjdO
-	 rk9D580BNdSaIgzQoBWvpPtq4MEC2uW2cSadl/wNpIuTl2GxMzbZCtftnOPbVsavel
-	 GSgjUotDLF9IQ==
+	b=Fprsi1qWCKCGcQmDnpbV2aneriA9QuL1RSFFRCrB7/IRYWWaMXpePNS0d/D2bqoKg
+	 0Or0O5CqeJ9WDP6g5qKuEWqjDX3QihY4IlKv9d6Gq9MaF/XUKFkVdiEIOD83WNhyGS
+	 zayo2+YyzpmlNoDAvoo+RT6cvBey2kDbUEowumawtkgeUcaNhvctp1RgY7WGx0E+4R
+	 HPH/JyXRGdvtYU6MeHPOH1xTt9foJ0BeevJ8v4I0GaVksjU3qNhoJW4sMfBdgR5IMR
+	 puhEwZwXw23V91EEeezsAMk2s6BojwKKfYbI0j4nsDl7pvXHxkcVPFFCyz00XcYAxw
+	 HOE/gW2yMTOmw==
 MIME-Version: 1.0
-Subject: Re: [PATCH v2] ath11k: Add support to connect to non-transmit MBSSID
- profiles
+Subject: Re: [PATCH 1/3] ath11k: Enable threaded NAPI on WCN6750
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20220901080616.29414-1-quic_mpubbise@quicinc.com>
-References: <20220901080616.29414-1-quic_mpubbise@quicinc.com>
+In-Reply-To: <20220720135113.15755-2-quic_mpubbise@quicinc.com>
+References: <20220720135113.15755-2-quic_mpubbise@quicinc.com>
 To: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
 Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
  Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
 User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <166212171811.9935.14952396417048197935.kvalo@kernel.org>
-Date: Fri,  2 Sep 2022 12:28:39 +0000 (UTC)
+Message-ID: <166212222808.10242.13626602156198198987.kvalo@kernel.org>
+Date: Fri,  2 Sep 2022 12:37:10 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220902_052843_506529_05117F0C 
-X-CRM114-Status: UNSURE (   9.76  )
+X-CRM114-CacheID: sfid-20220902_053714_578556_34930D31 
+X-CRM114-Status: UNSURE (   9.96  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -76,27 +75,37 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 Manikanta Pubbisetty <quic_mpubbise@quicinc.com> wrote:
 
-> Add support to connect to a non-transmit MBSSID AP profile.
+> Enable threaded NAPI on WCN6750. Unlike traditional NAPI poll which
+> runs in softirq context and on the core which scheduled the NAPI,
+> threaded NAPI makes use of kernel threads which are under direct
+> control of the scheduler and helps in balancing the NAPI processing
+> load across multiple CPUs thereby improving throughput.
 > 
-> Non-transmit MBSSID profile parameters are passed to the firmware
-> via WMI VDEV UP command and this helps firmware to track MBSSID
-> profile within the multi-BSS beacon and report beacon loss if
-> any.
-> 
-> WCN6750, QCA6390 & WCN6855 firmwares have the support and hence
-> enable the support on these hardwares.
+> In the case of WCN6750, enabling threaded NAPI has improved
+> 160 MHz RX throughput by nearly 400 Mbps. This should give similar
+> gains for other ath11k devices as well, therefore enable threaded
+> NAPI on all other devices.
 > 
 > Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
 > 
 > Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-Patch applied to ath-next branch of ath.git, thanks.
+Fails to apply and no base commit provided, so please rebase.
 
-7d992bd4615c wifi: ath11k: Add support to connect to non-transmit MBSSID profiles
+error: patch failed: drivers/net/wireless/ath/ath11k/core.c:111
+error: drivers/net/wireless/ath/ath11k/core.c: patch does not apply
+error: patch failed: drivers/net/wireless/ath/ath11k/hw.h:205
+error: drivers/net/wireless/ath/ath11k/hw.h: patch does not apply
+stg import: Diff does not apply cleanly
+
+3 patches set to Changes Requested.
+
+12924009 [1/3] ath11k: Enable threaded NAPI on WCN6750
+12924011 [2/3] ath11k: Add multi TX ring support for WCN6750
+12924010 [3/3] ath11k: Increase TCL data ring size for WCN6750
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20220901080616.29414-1-quic_mpubbise@quicinc.com/
+https://patchwork.kernel.org/project/linux-wireless/patch/20220720135113.15755-2-quic_mpubbise@quicinc.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
