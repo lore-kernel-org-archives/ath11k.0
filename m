@@ -4,59 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A453DECAAA1
-	for <ath11k@archiver.kernel.org>; Fri,  9 Sep 2022 10:48:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3CFDECAAA1
+	for <ath11k@archiver.kernel.org>; Fri,  9 Sep 2022 14:55:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=YrcoSc4pbBNaJJIAkcinIpr/HMqrr/ZPr7H4dxlR5tQ=; b=rUfr4cJFUVc22A
-	jgBKHTeuvY48vco2bcN65EMoPxRkCQCu4h2qKbSDQXDpYWCbfcw+FDBKV8Ro3TjWm7m4z76HQh6Sz
-	LqyenmjyBo5w6jKiMJVXpVcDhxY5plakhocMxPSOoUY17FNn9dI0yPsvziBp2mVYU+8M4NfJIbxdF
-	JFV1z2spal/AQ1sVwXRIYTce9mUJIHZ086uL/uNY3nubKVAnaZhG4mBHhWqUEsLWcGMgLigVLR3Dr
-	ES3WM64KDuyJMn/iKlqu0typXvp+DS5ZDoi59VDUuJXi9tDCfs9Z4YncZK13AKspC9cVFAof29WsM
-	OY9PJMvC0QpfBNq1WZCQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=4veKVFFME4VsdBX3sdhhh7O4mBplzrKHheGX+yPMGL0=; b=BDcb61mmkX9FOP
+	uz5kNZW1ip0bePLnlCR7otu1jVJwdBi5NOOSPDHkgCWSFl7f7uH8UlWrXKPttxfevDFQPferKB/Uy
+	K2ChkYlCLewZrHA43UrKPT/XLb8gBTELtGoti9X7Av+icBEWLnCo2qNCc4GkThNihwqv+4Gud0NaB
+	N3rO61G8rHkHtXiOb4UG5iZ+AdvcLOp8dluGVZqqaywwtKFQnFQqD1GfT1sFOsRMfMrw/YM5l+N9h
+	PwyIgyVRR/NdtcD6KQ4mt09bOsazrsMNqz6JuV9mwagIXcFD96ggYoRj2LM8q10nDq4sVe4ok/Stp
+	C/rgrHHIlMJyt2k7IQtg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oWbZ3-00FTTC-PI; Fri, 09 Sep 2022 10:48:49 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1oWfQ6-00GsyE-5D; Fri, 09 Sep 2022 14:55:50 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oWbZ0-00FTSK-P7
-	for ath11k@lists.infradead.org; Fri, 09 Sep 2022 10:48:48 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 0764161E98;
-	Fri,  9 Sep 2022 10:48:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82EDBC433C1;
-	Fri,  9 Sep 2022 10:48:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1662720525;
-	bh=MPB2MpKsKoq0ff58+3zvmZDUBpn/GVOzh050VKZS92c=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=aatlCnTKqisWuIyWp3VO8EZI3cwpdvsljfxh8XUkODtY69DP0c+yqCiPqstnoAaDm
-	 FsqpOhi81DyqzDwfQ5TLfgtpyx7JE0ZDtF/Sxet9ZzysHpsNUjQoFN1CB1eyOr3kQn
-	 S8lVNO4L87iRchrZxP18YrdInGumzL+5EBEkxSyO9oS2bq28fOrvNtPInCPoBkFuNX
-	 K5wvK4nj0gOFZl86WtPVoO88gEdqO03P0mnCmn7WcPdPIzB77ouu5fm07HSKBhY5Sq
-	 muaXRMhidkDIdsWBOKBAhp9/RoSCtbulpW0G9OhYbj4LWJB2S2vMJUkUjFT1RrhwEb
-	 SVf2rLHf0WNOw==
-From: Kalle Valo <kvalo@kernel.org>
-To: Baochen Qiang <quic_bqiang@quicinc.com>
-Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
-Subject: Re: [PATCH v2 2/2] wifi: ath11k: Implement sram dump interface
-References: <20220802075533.1744-1-quic_bqiang@quicinc.com>
-	<20220802075533.1744-3-quic_bqiang@quicinc.com>
-Date: Fri, 09 Sep 2022 13:48:41 +0300
-In-Reply-To: <20220802075533.1744-3-quic_bqiang@quicinc.com> (Baochen Qiang's
-	message of "Tue, 2 Aug 2022 15:55:33 +0800")
-Message-ID: <87fsh0962e.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+	id 1oWfQ2-00GsxF-BS
+	for ath11k@lists.infradead.org; Fri, 09 Sep 2022 14:55:48 +0000
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 289AsNEN031321;
+	Fri, 9 Sep 2022 14:55:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=6gReoPwrvAY6y7xh0hdmjaMJN0CiuY0Bu25JzZYel9Y=;
+ b=VWz/a6eq0nUFKD90Y03XI5s30pIYEApD4A24EZebBT/lVv/w6zCyErSWPKdgxmAyDIft
+ Tqw1b8EXL6kWjAus64NzipijzkR01Pdw+IZokvaszeQcU9L1uuSi9WGnp90KVRptoaeb
+ c2kzKdxBLOxvcYTb1NlQUHvXzO7bbYlUh7/UUBzHZWlWJFdRUs/SAVyh/Ntz2B8Ywl2Y
+ N0D0mmIhpTvYEhgY6dOaB4lriz0nObksJf5R9K77Z7hDWoWomfBXvTNf7d9owA/0Zqku
+ x9SU1+sEtVyu0AuVkk2IhKll8NnasPGejjTN5J4roUcOPxgc5+O++3ejZHHm+cNBqVUT Hw== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jg3c210dx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 09 Sep 2022 14:55:41 +0000
+Received: from pps.filterd (NALASPPMTA05.qualcomm.com [127.0.0.1])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 289EoNqY003890;
+	Fri, 9 Sep 2022 14:55:41 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by NALASPPMTA05.qualcomm.com (PPS) with ESMTPS id 3jdb4937nk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 09 Sep 2022 14:55:41 +0000
+Received: from NALASPPMTA05.qualcomm.com (NALASPPMTA05.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 289Es9pi007755;
+	Fri, 9 Sep 2022 14:55:40 GMT
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (PPS) with ESMTPS id 289EteDd009548
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 09 Sep 2022 14:55:40 +0000
+Received: from quicinc.com (10.49.16.6) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Fri, 9 Sep 2022
+ 07:55:40 -0700
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+To: Kalle Valo <kvalo@kernel.org>, "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo
+ Abeni <pabeni@redhat.com>
+CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH] wifi: ath11k: Fix miscellaneous spelling errors
+Date: Fri, 9 Sep 2022 07:55:35 -0700
+Message-ID: <20220909145535.20437-1-quic_jjohnson@quicinc.com>
+X-Mailer: git-send-email 2.37.0
 MIME-Version: 1.0
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: sLNRafTk28j5U3zfM6EYI8yADkFgQZ0B
+X-Proofpoint-ORIG-GUID: sLNRafTk28j5U3zfM6EYI8yADkFgQZ0B
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-09-09_08,2022-09-09_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 spamscore=0
+ priorityscore=1501 phishscore=0 clxscore=1015 malwarescore=0
+ suspectscore=0 mlxlogscore=999 mlxscore=0 adultscore=0 lowpriorityscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2207270000 definitions=main-2209090052
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220909_034846_919052_B9E9C104 
-X-CRM114-Status: GOOD (  23.87  )
+X-CRM114-CacheID: sfid-20220909_075546_427600_686EF6FA 
+X-CRM114-Status: GOOD (  31.75  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,104 +107,352 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Baochen Qiang <quic_bqiang@quicinc.com> writes:
+Fix misspellings flagged by 'codespell'.
 
-> Currently this feature is enabled for QCA6390/WCN6855.
->
-> Tested-on: QCA6390 hw2.0 PCI WLAN.HST.1.0.1-01740-QCAHSTSWPLZ_V2_TO_X86-1
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
->
-> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+Signed-off-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/ce.c                | 4 ++--
+ drivers/net/wireless/ath/ath11k/core.h              | 2 +-
+ drivers/net/wireless/ath/ath11k/debugfs_htt_stats.h | 4 ++--
+ drivers/net/wireless/ath/ath11k/dp.c                | 2 +-
+ drivers/net/wireless/ath/ath11k/dp.h                | 4 ++--
+ drivers/net/wireless/ath/ath11k/dp_rx.c             | 2 +-
+ drivers/net/wireless/ath/ath11k/dp_tx.c             | 2 +-
+ drivers/net/wireless/ath/ath11k/hal.c               | 2 +-
+ drivers/net/wireless/ath/ath11k/hal.h               | 6 +++---
+ drivers/net/wireless/ath/ath11k/hal_desc.h          | 8 ++++----
+ drivers/net/wireless/ath/ath11k/mac.c               | 4 ++--
+ drivers/net/wireless/ath/ath11k/qmi.c               | 2 +-
+ drivers/net/wireless/ath/ath11k/rx_desc.h           | 2 +-
+ drivers/net/wireless/ath/ath11k/thermal.c           | 2 +-
+ drivers/net/wireless/ath/ath11k/thermal.h           | 2 +-
+ drivers/net/wireless/ath/ath11k/wmi.c               | 2 +-
+ drivers/net/wireless/ath/ath11k/wmi.h               | 6 +++---
+ 17 files changed, 28 insertions(+), 28 deletions(-)
 
-I did quite a few changes to this patch in the pending branch, please
-check my changes:
-
-https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=074477aacb419493da6fb4d96fa9d12390c3b40e
-
-I improved the commit log.
-
-> --- a/drivers/net/wireless/ath/ath11k/hw.h
-> +++ b/drivers/net/wireless/ath/ath11k/hw.h
-> @@ -126,6 +126,11 @@ struct ath11k_hw_hal_params {
->  	enum hal_rx_buf_return_buf_manager rx_buf_rbm;
->  };
->  
-> +struct ath11k_hw_sram_dump {
-> +	u32 start;
-> +	u32 end;
-> +};
-> +
->  struct ath11k_hw_params {
->  	const char *name;
->  	u16 hw_rev;
-> @@ -200,6 +205,7 @@ struct ath11k_hw_params {
->  	bool hybrid_bus_type;
->  	bool fixed_fw_mem;
->  	bool support_off_channel_tx;
-> +	const struct ath11k_hw_sram_dump *sram_dump;
->  };
-
-Instead of separate structures I used inline structures:
-
-		.sram_dump = {
-			.start = 0x01400000,
-			.end = 0x0177ffff,
-		},
-
-> --- a/drivers/net/wireless/ath/ath11k/pcic.c
-> +++ b/drivers/net/wireless/ath/ath11k/pcic.c
-> @@ -203,6 +203,35 @@ u32 ath11k_pcic_read32(struct ath11k_base *ab, u32 offset)
->  }
->  EXPORT_SYMBOL(ath11k_pcic_read32);
->  
-> +int ath11k_pcic_dump_sram(struct ath11k_base *ab, u8 *buf,
-> +			  u32 start, u32 end)
-> +{
-> +	int ret = 0;
-> +	bool wakeup_required;
-> +	u32 *data = (u32 *)buf;
-
-I changed buf to a void pointer, then the cast is not needed.
-
-> +	u32 i;
-> +
-> +	/* for offset beyond BAR + 4K - 32, may
-> +	 * need to wakeup the device to access.
-> +	 */
-> +	wakeup_required = test_bit(ATH11K_FLAG_DEVICE_INIT_DONE, &ab->dev_flags) &&
-> +			  end >= ATH11K_PCI_ACCESS_ALWAYS_OFF;
-> +	if (wakeup_required && ab->pci.ops->wakeup) {
-> +		ret = ab->pci.ops->wakeup(ab);
-> +		if (ret)
-> +			ath11k_warn(ab, "%s: failed to do wakeup: %d\n", __func__, ret);
-> +	}
-
-I changed the error handling so that if wakeup() fails we do not
-continue and just return an error.
-
-> +	for (i = start; i < end + 1; i += 4)
-> +		*data++ = ath11k_pcic_do_read32(ab, i);
-> +
-> +	if (wakeup_required && !ret && ab->pci.ops->release)
-> +		ab->pci.ops->release(ab);
-
-At the same time I removed the ret check here.
-
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(ath11k_pcic_dump_sram);
-
-I renamed this to ath11k_pcic_read() as I feel it's more descriptive
-what the function really does. It's not really care is this for sram
-dump or something else.
-
-I also renamed hif.h interface to ath11k_hif_read().
-
+diff --git a/drivers/net/wireless/ath/ath11k/ce.c b/drivers/net/wireless/ath/ath11k/ce.c
+index c14c51f38709..f2da95fd4253 100644
+--- a/drivers/net/wireless/ath/ath11k/ce.c
++++ b/drivers/net/wireless/ath/ath11k/ce.c
+@@ -250,7 +250,7 @@ const struct ce_attr ath11k_host_ce_config_qcn9074[] = {
+ 
+ static bool ath11k_ce_need_shadow_fix(int ce_id)
+ {
+-	/* only ce4 needs shadow workaroud*/
++	/* only ce4 needs shadow workaround */
+ 	if (ce_id == 4)
+ 		return true;
+ 	return false;
+@@ -1042,7 +1042,7 @@ int ath11k_ce_alloc_pipes(struct ath11k_base *ab)
+ 
+ 		ret = ath11k_ce_alloc_pipe(ab, i);
+ 		if (ret) {
+-			/* Free any parial successful allocation */
++			/* Free any partial successful allocation */
+ 			ath11k_ce_free_pipes(ab);
+ 			return ret;
+ 		}
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index afad8f55e433..d4e7490a6e8f 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -887,7 +887,7 @@ struct ath11k_base {
+ 
+ 	/* Below regd's are protected by ab->data_lock */
+ 	/* This is the regd set for every radio
+-	 * by the firmware during initializatin
++	 * by the firmware during initialization
+ 	 */
+ 	struct ieee80211_regdomain *default_regd[MAX_RADIOS];
+ 	/* This regd is set during dynamic country setting
+diff --git a/drivers/net/wireless/ath/ath11k/debugfs_htt_stats.h b/drivers/net/wireless/ath/ath11k/debugfs_htt_stats.h
+index 5d722b51b125..2b97cbbd28cb 100644
+--- a/drivers/net/wireless/ath/ath11k/debugfs_htt_stats.h
++++ b/drivers/net/wireless/ath/ath11k/debugfs_htt_stats.h
+@@ -630,7 +630,7 @@ struct htt_tx_hwq_tried_mpdu_cnt_hist_tlv_v {
+  * completing the burst, we identify the txop used in the burst and
+  * incr the corresponding bin.
+  * Each bin represents 1ms & we have 10 bins in this histogram.
+- * they are deined in FW using the following macros
++ * they are defined in FW using the following macros
+  * #define WAL_MAX_TXOP_USED_CNT_HISTOGRAM 10
+  * #define WAL_TXOP_USED_HISTOGRAM_INTERVAL 1000 ( 1 ms )
+  */
+@@ -1897,7 +1897,7 @@ struct htt_phy_counters_tlv {
+ 	u32 phytx_abort_cnt;
+ 	/* number of times rx abort initiated by phy */
+ 	u32 phyrx_abort_cnt;
+-	/* number of rx defered count initiated by phy */
++	/* number of rx deferred count initiated by phy */
+ 	u32 phyrx_defer_abort_cnt;
+ 	/* number of sizing events generated at LSTF */
+ 	u32 rx_gain_adj_lstf_event_cnt;
+diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
+index 8b790ce72e5d..69e7a00ce40a 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.c
++++ b/drivers/net/wireless/ath/ath11k/dp.c
+@@ -963,7 +963,7 @@ static void ath11k_dp_update_vdev_search(struct ath11k_vif *arvif)
+ {
+ 	 /* When v2_map_support is true:for STA mode, enable address
+ 	  * search index, tcl uses ast_hash value in the descriptor.
+-	  * When v2_map_support is false: for STA mode, dont' enable
++	  * When v2_map_support is false: for STA mode, don't enable
+ 	  * address search index.
+ 	  */
+ 	switch (arvif->vdev_type) {
+diff --git a/drivers/net/wireless/ath/ath11k/dp.h b/drivers/net/wireless/ath/ath11k/dp.h
+index e9dfa209098b..31773b8281ca 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.h
++++ b/drivers/net/wireless/ath/ath11k/dp.h
+@@ -299,7 +299,7 @@ struct ath11k_dp {
+ 
+ #define HTT_TX_WBM_COMP_STATUS_OFFSET 8
+ 
+-/* HTT tx completion is overlayed in wbm_release_ring */
++/* HTT tx completion is overlaid in wbm_release_ring */
+ #define HTT_TX_WBM_COMP_INFO0_STATUS		GENMASK(12, 9)
+ #define HTT_TX_WBM_COMP_INFO0_REINJECT_REASON	GENMASK(16, 13)
+ #define HTT_TX_WBM_COMP_INFO0_REINJECT_REASON	GENMASK(16, 13)
+@@ -466,7 +466,7 @@ enum htt_srng_ring_id {
+  *                     3'b010: 4 usec
+  *                     3'b011: 8 usec (default)
+  *                     3'b100: 16 usec
+- *                     Others: Reserverd
++ *                     Others: Reserved
+  *           b'19    - response_required:
+  *                     Host needs HTT_T2H_MSG_TYPE_SRING_SETUP_DONE as response
+  *           b'20:31 - reserved:  reserved for future use
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 2148acf37071..ad031493a1bb 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -2499,7 +2499,7 @@ static void ath11k_dp_rx_deliver_msdu(struct ath11k *ar, struct napi_struct *nap
+ 
+ 	/* PN for multicast packets are not validate in HW,
+ 	 * so skip 802.3 rx path
+-	 * Also, fast_rx expectes the STA to be authorized, hence
++	 * Also, fast_rx expects the STA to be authorized, hence
+ 	 * eapol packets are sent in slow path.
+ 	 */
+ 	if (decap == DP_RX_DECAP_TYPE_ETHERNET2_DIX && !is_eapol &&
+diff --git a/drivers/net/wireless/ath/ath11k/dp_tx.c b/drivers/net/wireless/ath/ath11k/dp_tx.c
+index c17a2620aad7..0154446410fa 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_tx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
+@@ -755,7 +755,7 @@ int ath11k_dp_tx_send_reo_cmd(struct ath11k_base *ab, struct dp_rx_tid *rx_tid,
+ 		return 0;
+ 
+ 	/* Can this be optimized so that we keep the pending command list only
+-	 * for tid delete command to free up the resoruce on the command status
++	 * for tid delete command to free up the resource on the command status
+ 	 * indication?
+ 	 */
+ 	dp_cmd = kzalloc(sizeof(*dp_cmd), GFP_ATOMIC);
+diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
+index bda71ab5a1f2..1be1ae5a0454 100644
+--- a/drivers/net/wireless/ath/ath11k/hal.c
++++ b/drivers/net/wireless/ath/ath11k/hal.c
+@@ -1164,7 +1164,7 @@ void ath11k_hal_srng_shadow_update_hp_tp(struct ath11k_base *ab,
+ {
+ 	lockdep_assert_held(&srng->lock);
+ 
+-	/* check whether the ring is emptry. Update the shadow
++	/* check whether the ring is empty. Update the shadow
+ 	 * HP only when then ring isn't empty.
+ 	 */
+ 	if (srng->ring_dir == HAL_SRNG_DIR_SRC &&
+diff --git a/drivers/net/wireless/ath/ath11k/hal.h b/drivers/net/wireless/ath/ath11k/hal.h
+index 110c337ddf33..e18846dd963b 100644
+--- a/drivers/net/wireless/ath/ath11k/hal.h
++++ b/drivers/net/wireless/ath/ath11k/hal.h
+@@ -243,7 +243,7 @@ struct ath11k_base;
+ #define HAL_WBM0_RELEASE_RING_HP		0x000030c0
+ #define HAL_WBM1_RELEASE_RING_HP		0x000030c8
+ 
+-/* TCL ring feild mask and offset */
++/* TCL ring field mask and offset */
+ #define HAL_TCL1_RING_BASE_MSB_RING_SIZE		GENMASK(27, 8)
+ #define HAL_TCL1_RING_BASE_MSB_RING_BASE_ADDR_MSB	GENMASK(7, 0)
+ #define HAL_TCL1_RING_ID_ENTRY_SIZE			GENMASK(7, 0)
+@@ -268,7 +268,7 @@ struct ath11k_base;
+ #define HAL_TCL1_RING_FIELD_DSCP_TID_MAP6		GENMASK(20, 18)
+ #define HAL_TCL1_RING_FIELD_DSCP_TID_MAP7		GENMASK(23, 21)
+ 
+-/* REO ring feild mask and offset */
++/* REO ring field mask and offset */
+ #define HAL_REO1_RING_BASE_MSB_RING_SIZE		GENMASK(27, 8)
+ #define HAL_REO1_RING_BASE_MSB_RING_BASE_ADDR_MSB	GENMASK(7, 0)
+ #define HAL_REO1_RING_ID_RING_ID			GENMASK(15, 8)
+@@ -635,7 +635,7 @@ struct hal_srng {
+ 	} u;
+ };
+ 
+-/* Interrupt mitigation - Batch threshold in terms of numer of frames */
++/* Interrupt mitigation - Batch threshold in terms of number of frames */
+ #define HAL_SRNG_INT_BATCH_THRESHOLD_TX 256
+ #define HAL_SRNG_INT_BATCH_THRESHOLD_RX 128
+ #define HAL_SRNG_INT_BATCH_THRESHOLD_OTHER 1
+diff --git a/drivers/net/wireless/ath/ath11k/hal_desc.h b/drivers/net/wireless/ath/ath11k/hal_desc.h
+index 24e72e75a8c7..d895ea878d9f 100644
+--- a/drivers/net/wireless/ath/ath11k/hal_desc.h
++++ b/drivers/net/wireless/ath/ath11k/hal_desc.h
+@@ -607,7 +607,7 @@ struct rx_msdu_desc {
+  *
+  * msdu_continuation
+  *		When set, this MSDU buffer was not able to hold the entire MSDU.
+- *		The next buffer will therefor contain additional information
++ *		The next buffer will therefore contain additional information
+  *		related to this MSDU.
+  *
+  * msdu_length
+@@ -643,7 +643,7 @@ struct rx_msdu_desc {
+  *
+  * da_idx_timeout
+  *		Indicates, an unsuccessful MAC destination address search due
+- *		to the expiration of search timer fot this MSDU.
++ *		to the expiration of search timer for this MSDU.
+  */
+ 
+ enum hal_reo_dest_ring_buffer_type {
+@@ -1678,7 +1678,7 @@ struct hal_wbm_release_ring {
+  *	Producer: SW/TQM/RXDMA/REO/SWITCH
+  *	Consumer: WBM/SW/FW
+  *
+- * HTT tx status is overlayed on wbm_release ring on 4-byte words 2, 3, 4 and 5
++ * HTT tx status is overlaid on wbm_release ring on 4-byte words 2, 3, 4 and 5
+  * for software based completions.
+  *
+  * buf_addr_info
+@@ -2159,7 +2159,7 @@ struct hal_reo_status_hdr {
+  *		commands.
+  *
+  * execution_time (in us)
+- *		The amount of time REO took to excecute the command. Note that
++ *		The amount of time REO took to execute the command. Note that
+  *		this time does not include the duration of the command waiting
+  *		in the command ring, before the execution started.
+  *
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index b43e4a392bfd..4218211afa30 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -3059,7 +3059,7 @@ static int ath11k_mac_config_obss_pd(struct ath11k *ar,
+ 		return ret;
+ 	}
+ 
+-	/* Enable all patial BSSID mask for SRG */
++	/* Enable all partial BSSID mask for SRG */
+ 	ret = ath11k_wmi_pdev_srg_obss_bssid_enable_bitmap(ar, bitmap);
+ 	if (ret) {
+ 		ath11k_warn(ar->ab,
+@@ -3077,7 +3077,7 @@ static int ath11k_mac_config_obss_pd(struct ath11k *ar,
+ 		return ret;
+ 	}
+ 
+-	/* Enable all patial BSSID mask for non-SRG */
++	/* Enable all partial BSSID mask for non-SRG */
+ 	ret = ath11k_wmi_pdev_non_srg_obss_bssid_enable_bitmap(ar, bitmap);
+ 	if (ret) {
+ 		ath11k_warn(ar->ab,
+diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
+index 2be45683260c..51de2208b789 100644
+--- a/drivers/net/wireless/ath/ath11k/qmi.c
++++ b/drivers/net/wireless/ath/ath11k/qmi.c
+@@ -1879,7 +1879,7 @@ static int ath11k_qmi_respond_fw_mem_request(struct ath11k_base *ab)
+ 
+ 	/* For QCA6390 by default FW requests a block of ~4M contiguous
+ 	 * DMA memory, it's hard to allocate from OS. So host returns
+-	 * failure to FW and FW will then request mulitple blocks of small
++	 * failure to FW and FW will then request multiple blocks of small
+ 	 * chunk size memory.
+ 	 */
+ 	if (!(ab->hw_params.fixed_mem_region ||
+diff --git a/drivers/net/wireless/ath/ath11k/rx_desc.h b/drivers/net/wireless/ath/ath11k/rx_desc.h
+index 26ecc1bcd9d5..786d5f36f5e5 100644
+--- a/drivers/net/wireless/ath/ath11k/rx_desc.h
++++ b/drivers/net/wireless/ath/ath11k/rx_desc.h
+@@ -877,7 +877,7 @@ struct rx_msdu_start_wcn6855 {
+  *
+  * l4_offset
+  *		Depending upon mode bit, this field either indicates the
+- *		L4 offset nin bytes from the start of RX_HEADER (only valid
++ *		L4 offset in bytes from the start of RX_HEADER (only valid
+  *		if either ipv4_proto or ipv6_proto is set to 1) or indicates
+  *		the offset in bytes to the start of TCP or UDP header from
+  *		the start of the IP header after decapsulation (Only valid if
+diff --git a/drivers/net/wireless/ath/ath11k/thermal.c b/drivers/net/wireless/ath/ath11k/thermal.c
+index c96b26f39a25..23ed01bd44f9 100644
+--- a/drivers/net/wireless/ath/ath11k/thermal.c
++++ b/drivers/net/wireless/ath/ath11k/thermal.c
+@@ -99,7 +99,7 @@ static ssize_t ath11k_thermal_show_temp(struct device *dev,
+ 	temperature = ar->thermal.temperature;
+ 	spin_unlock_bh(&ar->data_lock);
+ 
+-	/* display in millidegree celcius */
++	/* display in millidegree Celsius */
+ 	ret = snprintf(buf, PAGE_SIZE, "%d\n", temperature * 1000);
+ out:
+ 	mutex_unlock(&ar->conf_mutex);
+diff --git a/drivers/net/wireless/ath/ath11k/thermal.h b/drivers/net/wireless/ath/ath11k/thermal.h
+index f9af55f3682d..3e39675ef7f5 100644
+--- a/drivers/net/wireless/ath/ath11k/thermal.h
++++ b/drivers/net/wireless/ath/ath11k/thermal.h
+@@ -19,7 +19,7 @@ struct ath11k_thermal {
+ 
+ 	/* protected by conf_mutex */
+ 	u32 throttle_state;
+-	/* temperature value in Celcius degree
++	/* temperature value in Celsius degree
+ 	 * protected by data_lock
+ 	 */
+ 	int temperature;
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index e2da106b6dee..c2e1fc491703 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -416,7 +416,7 @@ ath11k_pull_mac_phy_cap_svc_ready_ext(struct ath11k_pdev_wmi *wmi_handle,
+ 
+ 	/* tx/rx chainmask reported from fw depends on the actual hw chains used,
+ 	 * For example, for 4x4 capable macphys, first 4 chains can be used for first
+-	 * mac and the remaing 4 chains can be used for the second mac or vice-versa.
++	 * mac and the remaining 4 chains can be used for the second mac or vice-versa.
+ 	 * In this case, tx/rx chainmask 0xf will be advertised for first mac and 0xf0
+ 	 * will be advertised for second mac or vice-versa. Compute the shift value
+ 	 * for tx/rx chainmask which will be used to advertise supported ht/vht rates to
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
+index 90d688f37d85..e0eefcdb23bb 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.h
++++ b/drivers/net/wireless/ath/ath11k/wmi.h
+@@ -17,7 +17,7 @@ struct ath11k_vif;
+ 
+ #define PSOC_HOST_MAX_NUM_SS (8)
+ 
+-/* defines to set Packet extension values whic can be 0 us, 8 usec or 16 usec */
++/* defines to set Packet extension values which can be 0 us, 8 usec or 16 usec */
+ #define MAX_HE_NSS               8
+ #define MAX_HE_MODULATION        8
+ #define MAX_HE_RU                4
+@@ -4482,7 +4482,7 @@ struct wmi_pdev_radar_ev {
+ } __packed;
+ 
+ struct wmi_pdev_temperature_event {
+-	/* temperature value in Celcius degree */
++	/* temperature value in Celsius degree */
+ 	s32 temp;
+ 	u32 pdev_id;
+ } __packed;
+@@ -4708,7 +4708,7 @@ enum wmi_sta_ps_param_tx_wake_threshold {
+  */
+ enum wmi_sta_ps_param_pspoll_count {
+ 	WMI_STA_PS_PSPOLL_COUNT_NO_MAX = 0,
+-	/* Values greater than 0 indicate the maximum numer of PS-Poll frames
++	/* Values greater than 0 indicate the maximum number of PS-Poll frames
+ 	 * FW will send before waking up.
+ 	 */
+ };
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+2.37.0
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
