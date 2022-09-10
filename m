@@ -4,61 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FB68ECAAD5
-	for <ath11k@archiver.kernel.org>; Sat, 10 Sep 2022 06:27:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2DD7ECAAD5
+	for <ath11k@archiver.kernel.org>; Sat, 10 Sep 2022 06:28:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
 	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=o4iYWSrNZ/3xjMj3pN/6G0mfWEmjKj4GMV8+AnFAI50=; b=xF6jKqj4y1La7h
-	X5ptQvjvsi+U8cHZPjsXvE3QI47tl97quSFd2tzpcMkh3oIaWrTed2kj/zOLJQhZ9vvF+k6yo2F8r
-	z6ODQGHkP6NYvEkYANhRL3GDqf/zrk5VbBtn06/hUn+JpmEbb49CzZxwRCr2MGrknJuvNLJI1iYiW
-	95iE4PZgseyI5AfGzcovfXtZT00gmMZELWiaRwkGGBHLtOmTzAnPGh7LuJYvk3QWuCPIjEEEaAvA4
-	JPCtqGGm6oE+alNd3OVo2+r+JVYf6h9eeWWNaCPWZ+FDgwwIlmdpIx51Ht+WiMkf7KzIE3w1arJIS
-	E/hpkDI1PYrVN6fuN15w==;
+	List-Owner; bh=SBgJqvUTy2hpQkSF+J060f9e4RQKE03Klra2lPFMZjQ=; b=kbiDtddEvSYUrv
+	1C647y97YYLc5Ft8O+Nvtz+tM48A4VuZfokM0Vm6uDXPTw3eI7onO8zieQEdGQxaiihPOis5ZjXwB
+	i6xXTA9V64Uif7K50tBHVr4EoaUHajjq6F13t+toVhF0liMyvX/Jw2l335e5YT1y5eQ9+CeHnFEFp
+	A9nrA5znxVcUMhYM2EWvOfxxQMLj7Oir2rXSp9r4Da1riIrgCi295P4wcSiK3xJX/ZXeJjJNKk9+C
+	9Q1MUTUWV/qrNZXdkFq1rGFhbFOHcXHQ3kgeGu7MBaHB6JYbLZpllSAaXcYUfSnJtgY64HPxAyYsH
+	EtBViIsA7lUVaqHDv7qg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oWtxg-006jEx-2i; Sat, 10 Sep 2022 06:27:28 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1oWtyN-006jQl-RP; Sat, 10 Sep 2022 06:28:11 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oWtxd-006jDY-7m
-	for ath11k@lists.infradead.org; Sat, 10 Sep 2022 06:27:26 +0000
+	id 1oWtyL-006jPb-41
+	for ath11k@lists.infradead.org; Sat, 10 Sep 2022 06:28:10 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id 31814B8074E;
-	Sat, 10 Sep 2022 06:27:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 730C7C433D7;
-	Sat, 10 Sep 2022 06:27:19 +0000 (UTC)
+	by ams.source.kernel.org (Postfix) with ESMTPS id C7F9CB806A0;
+	Sat, 10 Sep 2022 06:28:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 921E9C433C1;
+	Sat, 10 Sep 2022 06:28:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1662791241;
-	bh=GXAqaX6S5isTiZevwTGC5NS6o9x12/MY1+Xsels5fyY=;
+	s=k20201202; t=1662791286;
+	bh=4Az+6COg6RQIv37I0MWXhYUrsXE7s/Ds8LZAdFk0tgw=;
 	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=lLL3kBYo9Krm21ps6ucufzFryCtpdVR/tx8NS2P5vV+nm3W5ZYrTFqAb1n5ZayT/N
-	 2jm1lz6nimtPoVCz7/IzDLBNU+3KmbRwJLnGBipLCcg/wY6qBIH2/qjrt6GSZafnel
-	 uFgOtR7c5oDco1ht0lLVaZMh6eLkK1d/p1oDhiKG+ttsr8rq4yn27n1uaS5x+Dxmq0
-	 M5/LvQlzGOBSVzTr3WPBCeVBQfWmdOCNxkTJVlO32Sculj3kwoqFde+j6U9aj2NHxd
-	 e2QQ3yR31iMJ9xgv6acI3S8H3zeABvEDwW0WK4XgmuhwtiUHkRLmhMoojZ7UygSofl
-	 jR/WZa+xhla9w==
+	b=T9HuTeo7TKQOWFX3smE2UljmvqUIzZUt/Ds2L+UTQkqzbpM7Nxjn7YTi4/tz7ur73
+	 o4bzsqkzAGQH35/Bi4FMVY4CdbE2qpHU342sUns3blS+61AFefdr2i6q0xy/0+TXHY
+	 O23AvtI4arHMLbj8GQ+SA/sz4OzjMnx6sRwUogxQsUzgndT/OJVFBkmd4vylJjQ1vr
+	 /Gu7RyFXX/9hxSnS+MlbrbDvE/kSphGiicCCmYfD2mKDKBOzMPYXis09aFzrt9IBYw
+	 weK631shuos2CUuMCYC3q2xrrMGCTrnc0CgpGgJYFwMMTD1+ver+sHZ+TGbWPW7XhB
+	 OaJEdhwaXpIXg==
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: mhi: fix potential memory leak in
- ath11k_mhi_register()
+Subject: Re: [PATCH v2 1/3] wifi: ath11k: Enable threaded NAPI
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20220907073704.58806-1-niejianglei2021@163.com>
-References: <20220907073704.58806-1-niejianglei2021@163.com>
-To: Jianglei Nie <niejianglei2021@163.com>
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, ath11k@lists.infradead.org,
- linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, Jianglei Nie <niejianglei2021@163.com>
+In-Reply-To: <20220905071805.31625-2-quic_mpubbise@quicinc.com>
+References: <20220905071805.31625-2-quic_mpubbise@quicinc.com>
+To: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+ Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
 User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <166279123716.2050.14052144817465731004.kvalo@kernel.org>
-Date: Sat, 10 Sep 2022 06:27:19 +0000 (UTC)
+Message-ID: <166279128337.2050.17984018699981295216.kvalo@kernel.org>
+Date: Sat, 10 Sep 2022 06:28:05 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220909_232725_455058_9FFA6407 
-X-CRM114-Status: UNSURE (   9.60  )
+X-CRM114-CacheID: sfid-20220909_232809_337865_6232C15B 
+X-CRM114-Status: UNSURE (   9.64  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -76,26 +73,32 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Jianglei Nie <niejianglei2021@163.com> wrote:
+Manikanta Pubbisetty <quic_mpubbise@quicinc.com> wrote:
 
-> mhi_alloc_controller() allocates a memory space for mhi_ctrl. When gets
-> some error, mhi_ctrl should be freed with mhi_free_controller(). But
-> when ath11k_mhi_read_addr_from_dt() fails, the function returns without
-> calling mhi_free_controller(), which will lead to a memory leak.
+> Enable threaded NAPI on all ath11k targets. Unlike traditional
+> NAPI poll which runs in softirq context and on the core which
+> scheduled the NAPI, threaded NAPI makes use of kernel threads
+> which are under direct control of the scheduler and helps in
+> balancing the NAPI processing load across multiple CPUs thereby
+> improving throughput.
 > 
-> We can fix it by calling mhi_free_controller() when
-> ath11k_mhi_read_addr_from_dt() fails.
+> In the case of WCN6750, enabling threaded NAPI has improved
+> 160 MHz RX throughput by nearly 400 Mbps. Similar gains can
+> be expected on other ath11k devices as well.
 > 
-> Signed-off-by: Jianglei Nie <niejianglei2021@163.com>
-> Reviewed-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
+> 
+> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
 > Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-Patch applied to ath-next branch of ath.git, thanks.
+3 patches applied to ath-next branch of ath.git, thanks.
 
-43e7c3505ec7 wifi: ath11k: mhi: fix potential memory leak in ath11k_mhi_register()
+13aa2fb692d3 wifi: ath11k: Enable threaded NAPI
+7636c9a6e7d7 wifi: ath11k: Add multi TX ring support for WCN6750
+97c9e37c7a7d wifi: ath11k: Increase TCL data ring size for WCN6750
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20220907073704.58806-1-niejianglei2021@163.com/
+https://patchwork.kernel.org/project/linux-wireless/patch/20220905071805.31625-2-quic_mpubbise@quicinc.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
