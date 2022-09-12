@@ -4,85 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AAE58ECAAD5
-	for <ath11k@archiver.kernel.org>; Mon, 12 Sep 2022 11:01:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 356C9ECAAA1
+	for <ath11k@archiver.kernel.org>; Mon, 12 Sep 2022 11:12:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=zGKfoqQp7Pmqe1tHiRNTDRRF7vGgJuCRbUhigmS4TT8=; b=PBA422E4kkP0Wn
-	IHn5tWEqLp7mqK7dm3mBhE8YgW9TKAyE2pUHuyeh10MjTgUUM3uSW4k/RyB34NcUFDJ3SvoQBAlrl
-	P7mVszcUH45CZ9dhG8LzVwVaVRlP9LUe5n/51TdwKS78z2uW8wfauIa+Ef1iyYTvdd5bComfUZJjP
-	KodmOUDbW+wYR/JiE8GQKYwpG04iMWRd5MAW2NuSOKn3Cl7ExDmUGZhe3bIlH2dMffAT2xr68TdjZ
-	cWScg2idKPDKtARK0MeXQQ3N9ZeolfPtTyXi4osADTe0BGzK5bKtmz5enVF1Q8IqQw1D6Wg9+wX9s
-	RJu5u10W2WlhVTfBq+Kg==;
+	List-Owner; bh=nmc77irmmm/oK+t61s2gYLwuQMDIt87yeHxtjIM/ZZM=; b=aomXFcovy59Vv8
+	47UAlllvWgRNfcI5eAvstP5jV2fsBpowPPfOL7MfYtDjVsbnlSq3FQfJxw0jDyhHHPLsp1JNTlEVR
+	0Dc+/zR44f6H9XzKNyojviHpLPwcqAvPlwVKxCO0oVYURdigCA0JVmU4792QmJvwA23kVKAvgv1dy
+	cON+Rg7uGNjeMyyhpNVuedhRMaU8KyG6U+1hQHWc8y3QcUeMxA1B9tnByzW8z3BOqX3IJt2lGVc0X
+	ZFeRpQf5lvdF+/OVLFWNRATGw52DWnc2KoHHqqn4V2FgYCyYeJ+/D6LnJTQxVMXW74YyUCC0hvkeO
+	Hp6VVeiZdcWXltekcDrA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oXhCD-0096FA-FL; Mon, 12 Sep 2022 11:01:45 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1oXhMh-009CLR-VS; Mon, 12 Sep 2022 11:12:35 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oXh63-0092p1-VT
-	for ath11k@lists.infradead.org; Mon, 12 Sep 2022 10:55:25 +0000
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28CAJbmD024623;
-	Mon, 12 Sep 2022 10:55:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=q275b5LUVDGGXXw4R+fHCTyUOBz5XGxo5EGIvSA8X3I=;
- b=USZ0iOzV49YI6iX15mpbUZOxVIdNVPGUcyLQE94MJUYaY3h6gT4Ta7zKwd6oNZKuaceQ
- A85DWzmFYcxBN+wlPhTCNaadNHq9TAg6GDCkgHyzF8cb1so3M3sL0caLzTHeSfXA8q4n
- pagU1mZlX/jkY2ukfyxR3eS61FY0cf2Ls9nZuHajfZTraC6kQkZmDorBJg/f6pZv1cd1
- S75lbOLzFrea2ill51E9bKS7J77kxLupnpx+ayf73GDUjgyP2N4gwzB5fqFwYAk3e/my
- uT9nbEuMCaKqT53/rlE6Zcddq/iZLl9YFL5XpIJ3TmGqZkWACqp3w5BJE8RbdMm95u53 sw== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jgk3bbrnd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 12 Sep 2022 10:55:15 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 28CAt8Ve014042
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 12 Sep 2022 10:55:08 GMT
-Received: from [10.253.8.149] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Mon, 12 Sep
- 2022 03:55:07 -0700
-Message-ID: <7199bd7d-b45c-5c72-576e-363ad37cce82@quicinc.com>
-Date: Mon, 12 Sep 2022 18:55:04 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
+	id 1oXhFm-0098BI-F7
+	for ath11k@lists.infradead.org; Mon, 12 Sep 2022 11:05:28 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 6691561199;
+	Mon, 12 Sep 2022 11:05:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D17F2C433D6;
+	Mon, 12 Sep 2022 11:05:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1662980724;
+	bh=1jdBK1FYwxGWlVf8w771PuvsjoYlHEa5EkUVnGz8ZKQ=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=KyxFCSdf/UPDgRM9F+OXgmYJ6YU2lxhOiETTtCjEyZqEaEWFThZXID76//ZbFK7l5
+	 /WGv9ZrrlE7uHfpGj19+PxvAIiYOXwDU+fwWlqEDFFt5/Z1MBUx0XjSyuDyMiVuidG
+	 rGOYqqUEONmEVXN0Ol6gBBQbtJ21+FVo1aLrTEWIJDifOJzwwmLNcDJ+vTM9fjsbo1
+	 SB3KganF9lZtdzyuNy0GP4zNnM0TiixZUjWldmpTtIKXkE1O2a6MZdMjx/RA07xOoP
+	 axY0XrBKGXemWDmDUbapc0slx0eXzQzXMEDzmrlmvxSm7W6UqIZc81xigQxHwfeuAU
+	 Cn5RzAL3lK98w==
+From: Kalle Valo <kvalo@kernel.org>
+To: Wen Gong <quic_wgong@quicinc.com>
+Cc: Johannes Berg <johannes@sipsolutions.net>,  linux-wireless <linux-wireless@vger.kernel.org>,  <ath11k@lists.infradead.org>
 Subject: Re: [PATCH] wifi: mac80211: RCU-ify link STA pointers
-Content-Language: en-US
-To: Kalle Valo <kvalo@kernel.org>
-CC: Johannes Berg <johannes@sipsolutions.net>,
-        linux-wireless
-	<linux-wireless@vger.kernel.org>,
-        <ath11k@lists.infradead.org>
 References: <24df3a0c-a312-d9b6-5840-1eacd79d824b@quicinc.com>
- <87a67498b4.fsf@kernel.org>
-From: Wen Gong <quic_wgong@quicinc.com>
-In-Reply-To: <87a67498b4.fsf@kernel.org>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: g-XCu7vUToFqyK6tMtK1vpmUo00pNFQV
-X-Proofpoint-GUID: g-XCu7vUToFqyK6tMtK1vpmUo00pNFQV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-12_06,2022-09-12_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
- priorityscore=1501 mlxscore=0 mlxlogscore=999 suspectscore=0 spamscore=0
- lowpriorityscore=0 adultscore=0 clxscore=1011 malwarescore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2207270000 definitions=main-2209120036
+	<87a67498b4.fsf@kernel.org>
+	<7199bd7d-b45c-5c72-576e-363ad37cce82@quicinc.com>
+Date: Mon, 12 Sep 2022 14:05:19 +0300
+In-Reply-To: <7199bd7d-b45c-5c72-576e-363ad37cce82@quicinc.com> (Wen Gong's
+	message of "Mon, 12 Sep 2022 18:55:04 +0800")
+Message-ID: <875yhs97kg.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220912_035524_210866_2B3C1899 
-X-CRM114-Status: GOOD (  12.45  )
+X-CRM114-CacheID: sfid-20220912_040526_941777_FA0A9609 
+X-CRM114-Status: GOOD (  14.33  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,27 +69,33 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-T24gOS8xMi8yMDIyIDY6NDkgUE0sIEthbGxlIFZhbG8gd3JvdGU6Cj4gV2VuIEdvbmcgPHF1aWNf
-d2dvbmdAcXVpY2luYy5jb20+IHdyaXRlczoKPgo+PiBIaSBKb2hhbm5lcywKPj4KPj4gQ3VycmVu
-dGx5IGZvciBNTE8gdGVzdCwgdGhlIG90aGVycyBsaW5rcydzIHJ4X25zcyBvZiBzdHJ1Y3QKPj4g
-aWVlZTgwMjExX2xpbmtfc3RhIGlzIHN0aWxsIHZhbHVlIDAgaW4gaWVlZTgwMjExX3NldF9hc3Nv
-Y2lhdGVkKCksCj4+IGJlY2F1ZSB0aGV5IGFyZSBub3QgcGFzcyBpbnRvIGllZWU4MDIxMV9zdGFf
-c2V0X3J4X25zcygpIGluCj4+IG1hYzgwMjExIGV4Y2VwdCB0aGUgZGVmbGluayB3aGljaCBtZWFu
-cyB0aGUgcHJpbWFyeSBsaW5rLgo+PiBUaGlzIGxlYWQgZHJpdmVyIGdldCBuc3MgPSAwIGZvciBv
-dGhlciBsaW5rcy4gV2lsbCB5b3UgZml4IGl0Cj4+IG9yIGlzIGl0IGRlc2lnbiBieSBkZWZhdWx0
-Pwo+Pgo+PiBPbmx5IHByaW1hcnkgbGluayBoYXMgdmFsaWQgcnhfbnNzIHZhbHVlIHdoaWNoIGlz
-IG5vdCAwIGJ5IGJlbG93IGNhbGwgc3RhY2suCj4+IGllZWU4MDIxMV9hc3NvY19zdWNjZXNzKCkt
-Pgo+PiAgwqDCoMKgIHJhdGVfY29udHJvbF9yYXRlX2luaXQoc3RhKTsKPj4KPj4gY29tbWl0OmM3
-MTQyMGRiNjUzYWJhMzBhMjM0ZDFlNGNmODZkZGUzNzZlNjA0ZmEKPj4gd2lmaTogbWFjODAyMTE6
-IFJDVS1pZnkgbGluayBTVEEgcG9pbnRlcnMKPiBTdHJhbmdlIGZvcm1hdCBhbmQgcy1vLWIgbWlz
-c2luZy4gV2FzIHRoaXMgbWVhbnQgYXMgYW4gUkZDIHBhdGNoPwoKVGhpcyBpcyBub3QgYSBwYXRj
-aCBmb3IgcmV2aWV3LCBpdCBpcyB0byBhc2sgc29tZSBxdWVzdGlvbiBhYm91dCB0aGUgcGF0Y2gK
-CiJ3aWZpOiBtYWM4MDIxMTogUkNVLWlmeSBsaW5rIFNUQSBwb2ludGVycyIgd2hpY2ggaXMgYWxy
-ZWFkeSB1cHN0cmVhbS4KCgotLSAKYXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtAbGlzdHMuaW5m
-cmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2F0
-aDExawo=
+V2VuIEdvbmcgPHF1aWNfd2dvbmdAcXVpY2luYy5jb20+IHdyaXRlczoKCj4gT24gOS8xMi8yMDIy
+IDY6NDkgUE0sIEthbGxlIFZhbG8gd3JvdGU6Cj4+IFdlbiBHb25nIDxxdWljX3dnb25nQHF1aWNp
+bmMuY29tPiB3cml0ZXM6Cj4+Cj4+PiBIaSBKb2hhbm5lcywKPj4+Cj4+PiBDdXJyZW50bHkgZm9y
+IE1MTyB0ZXN0LCB0aGUgb3RoZXJzIGxpbmtzJ3MgcnhfbnNzIG9mIHN0cnVjdAo+Pj4gaWVlZTgw
+MjExX2xpbmtfc3RhIGlzIHN0aWxsIHZhbHVlIDAgaW4gaWVlZTgwMjExX3NldF9hc3NvY2lhdGVk
+KCksCj4+PiBiZWNhdWUgdGhleSBhcmUgbm90IHBhc3MgaW50byBpZWVlODAyMTFfc3RhX3NldF9y
+eF9uc3MoKSBpbgo+Pj4gbWFjODAyMTEgZXhjZXB0IHRoZSBkZWZsaW5rIHdoaWNoIG1lYW5zIHRo
+ZSBwcmltYXJ5IGxpbmsuCj4+PiBUaGlzIGxlYWQgZHJpdmVyIGdldCBuc3MgPSAwIGZvciBvdGhl
+ciBsaW5rcy4gV2lsbCB5b3UgZml4IGl0Cj4+PiBvciBpcyBpdCBkZXNpZ24gYnkgZGVmYXVsdD8K
+Pj4+Cj4+PiBPbmx5IHByaW1hcnkgbGluayBoYXMgdmFsaWQgcnhfbnNzIHZhbHVlIHdoaWNoIGlz
+IG5vdCAwIGJ5IGJlbG93IGNhbGwgc3RhY2suCj4+PiBpZWVlODAyMTFfYXNzb2Nfc3VjY2Vzcygp
+LT4KPj4+ICDCoMKgwqAgcmF0ZV9jb250cm9sX3JhdGVfaW5pdChzdGEpOwo+Pj4KPj4+IGNvbW1p
+dDpjNzE0MjBkYjY1M2FiYTMwYTIzNGQxZTRjZjg2ZGRlMzc2ZTYwNGZhCj4+PiB3aWZpOiBtYWM4
+MDIxMTogUkNVLWlmeSBsaW5rIFNUQSBwb2ludGVycwo+PiBTdHJhbmdlIGZvcm1hdCBhbmQgcy1v
+LWIgbWlzc2luZy4gV2FzIHRoaXMgbWVhbnQgYXMgYW4gUkZDIHBhdGNoPwo+Cj4gVGhpcyBpcyBu
+b3QgYSBwYXRjaCBmb3IgcmV2aWV3LCBpdCBpcyB0byBhc2sgc29tZSBxdWVzdGlvbiBhYm91dCB0
+aGUgcGF0Y2gKPgo+ICJ3aWZpOiBtYWM4MDIxMTogUkNVLWlmeSBsaW5rIFNUQSBwb2ludGVycyIg
+d2hpY2ggaXMgYWxyZWFkeSB1cHN0cmVhbS4KClRoZW4geW91IHNob3VsZCBub3QgYWRkICJbUEFU
+Q0hdIiBpbiB0aGUgc3ViamVjdC4gVGhlIHN0cmluZyAiW1BBVENIXSIKaXMgc3VwcG9zZWQgdG8g
+aW5mb3JtIHRoYXQgdGhlIGVtYWlsIGNvbnRhaW5zIGEgcGF0Y2ggd2hpY2ggc2hvdWxkIGJlCmFw
+cGxpZWQuCgotLSAKaHR0cHM6Ly9wYXRjaHdvcmsua2VybmVsLm9yZy9wcm9qZWN0L2xpbnV4LXdp
+cmVsZXNzL2xpc3QvCgpodHRwczovL3dpcmVsZXNzLndpa2kua2VybmVsLm9yZy9lbi9kZXZlbG9w
+ZXJzL2RvY3VtZW50YXRpb24vc3VibWl0dGluZ3BhdGNoZXMKCi0tIAphdGgxMWsgbWFpbGluZyBs
+aXN0CmF0aDExa0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3Jn
+L21haWxtYW4vbGlzdGluZm8vYXRoMTFrCg==
