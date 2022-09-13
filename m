@@ -4,58 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1632CC6FA82
-	for <ath11k@archiver.kernel.org>; Tue, 13 Sep 2022 07:09:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04AB6C54EE9
+	for <ath11k@archiver.kernel.org>; Tue, 13 Sep 2022 07:14:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
 	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+xpKy+/D23pwoNSJ+WWx4qpvDzgAaMg9shM04rhfmwo=; b=Ov53I6lb/bQD0W
-	IbzoA1RoY8DXZmUR7CdZ/kzss+mCR37sz7C6tMLtjogmgG6SVACQvQBtRNWmw/9mo7ZyYw7XP5UhC
-	54jcH/Wp45f/uP7lQQ4oJ6Ic8mNOqGnemy9RrwKsiMGfbYD4+nuojWyNO4+ddgh3W2sDvtmvKSZWe
-	vW5/2AHR5EJIK0ncJSyICGMqGMrVkGoWuZ36jxk1GbV9xNufDhtB7CH08WRk6lJYW4Vc9H9/W3F9q
-	5pLnDW4ZUyQq/pr6a48lS6HbaewFKvNy/gp68bHguGyqzoC4EQau8o4NnvaqtbbPRrt6yZ4m0712o
-	R0gitwvLtfmUHgpHtL5A==;
+	List-Owner; bh=f36kJIqtY2xwx515XxfsYuH1tW+W0UEVBnQDk7oyhLo=; b=2aeJ5VH5Exw01C
+	CDJ+WbSyPWUfFBbuHd2xUIXmFsDAuuS/C/abRMQLMDaIE5dnspm+LTPw/+IMz8iYOKvA7w9SRbwGO
+	/sxYhLvS+8PabfTfUYPcv8NWxXKCqWbTcmw+FHkVKlY0GXQ6Nax71B3mepPgYo/3ZnSfgip4ejr3m
+	mg6IplYUFg9jiU2JwhwL2UbxmDBH0G5upGa5D2fgoLXMW0BVqURWlDRKoTu2OOKsJPUlK+MA5d7+c
+	aj3q/RrilCrzbdZmgQZVLSNDzVyiF9325kNqI5Vz4L+RUC4eC1B6XqZNR+tFh/Q0ThWq/ZNQE9qmv
+	sXb5lLdrwpKhY3GLKpqQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oY035-003O0Q-Sj; Tue, 13 Sep 2022 07:09:35 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1oY07u-003QTM-Od; Tue, 13 Sep 2022 07:14:34 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oY031-003Ny0-IK
-	for ath11k@lists.infradead.org; Tue, 13 Sep 2022 07:09:34 +0000
+	id 1oY07k-003QPl-7q
+	for ath11k@lists.infradead.org; Tue, 13 Sep 2022 07:14:32 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id C9E60612DB;
-	Tue, 13 Sep 2022 07:09:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72AA5C433D6;
-	Tue, 13 Sep 2022 07:09:29 +0000 (UTC)
+	by sin.source.kernel.org (Postfix) with ESMTPS id AC110CE1079;
+	Tue, 13 Sep 2022 07:14:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 531AAC433D7;
+	Tue, 13 Sep 2022 07:14:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1663052970;
-	bh=x6LmdKaqxICKtVErYgsixOPS4R/RpN+mwZXJAXXX2vY=;
+	s=k20201202; t=1663053258;
+	bh=3IAaG5i9BMfJkmrzHP9UDz6S0XKdAG3s8OWpc/wy6eY=;
 	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=tyKj5QDtVZ/GeyGAWD4NMT5xR98xuiqJ8nCDqmv4XxCFL5/uW0xs/ckCLcIGAr8oR
-	 LQdfSYu1Rwfog0epk97/0l6ck7oZMNqTP3hiwkzd1at8ZyKEv8PGq5jLQ/sqsmkhf2
-	 u+t8VmjrlfVL20Gtw/74lOdJRVk161uqbdThb7jkDBlVk1/1NEF6goTpJsKi79R1XS
-	 +08aNh1ahi9ujkR9lpe1t8R77/rhmv5lcdQZZiKfvr91l0r8iyjkOrPpSUbDsd2K5Z
-	 ngBRaoCiue2VW5Ng6EerLUX4xO8Qz7vvJqsBSC9mfgNgemy15gjADppJXkHBSWm9/+
-	 qdpb0SdyloPbw==
+	b=g/YkRIyA4ttkdZ3mOAFMSN5lOo5mfIgrGn0BA4eLFGYGzy5bgqNbdmImkku4mntg3
+	 rZmOJlZgk75Yi8PUYz7WMAdW6UWLkp0zo3KtwBvQsqJiQbynnJAMGfr9hrTHt0SDNT
+	 pYzuy75Le3/s9JNukeOxtXt2AqlSLJKbldoWkej6jWsnUNC3XTsdws2P1Ul4/Y6aVi
+	 ChOosgNwdCkM3CKEfmil8J8OFsfR0DLVmXrPL3oH9IwYCW3YP2HNRQfcSBE0yxm/Pw
+	 o1+W2qZVsJdOUYKeHKs8C1eTrVFNhk0Pm9PZRFKKJztVFDrxAzMCpO8oORvUDhtVsd
+	 awdhvzafw+o1A==
 From: Kalle Valo <kvalo@kernel.org>
-To: Wen Gong <quic_wgong@quicinc.com>
+To: Baochen Qiang <quic_bqiang@quicinc.com>
 Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
-Subject: Re: [PATCH v3 00/15] wifi: ath11k: add support for 6 GHz station for various modes : LPI, SP and VLP
-References: <20220913051518.23051-1-quic_wgong@quicinc.com>
-Date: Tue, 13 Sep 2022 10:09:21 +0300
-In-Reply-To: <20220913051518.23051-1-quic_wgong@quicinc.com> (Wen Gong's
-	message of "Tue, 13 Sep 2022 01:15:03 -0400")
-Message-ID: <87tu5b7ntq.fsf@kernel.org>
+Subject: Re: [PATCH v2 2/2] wifi: ath11k: Implement sram dump interface
+References: <20220802075533.1744-1-quic_bqiang@quicinc.com>
+	<20220802075533.1744-3-quic_bqiang@quicinc.com>
+	<87fsh0962e.fsf@kernel.org>
+	<0e64e270-77c3-5c1a-08bc-577a82c8abac@quicinc.com>
+Date: Tue, 13 Sep 2022 10:14:14 +0300
+In-Reply-To: <0e64e270-77c3-5c1a-08bc-577a82c8abac@quicinc.com> (Baochen
+	Qiang's message of "Tue, 13 Sep 2022 11:06:33 +0800")
+Message-ID: <87pmfz7nll.fsf@kernel.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220913_000931_716035_191246A0 
-X-CRM114-Status: GOOD (  10.27  )
+X-CRM114-CacheID: sfid-20220913_001430_988964_C4A76DF6 
+X-CRM114-Status: GOOD (  17.60  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,22 +75,35 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Wen Gong <quic_wgong@quicinc.com> writes:
+Baochen Qiang <quic_bqiang@quicinc.com> writes:
 
-> v3: 
->    1. added "ath11k: fix a possible dead lock caused by ab->base_lock".
->    3. deleted "ath11k: add support for extended wmi service bit" which is alreay upstream.
+>>> +	u32 i;
+>>> +
+>>> +	/* for offset beyond BAR + 4K - 32, may
+>>> +	 * need to wakeup the device to access.
+>>> +	 */
+>>> +	wakeup_required = test_bit(ATH11K_FLAG_DEVICE_INIT_DONE, &ab->dev_flags) &&
+>>> +			  end >= ATH11K_PCI_ACCESS_ALWAYS_OFF;
+>>> +	if (wakeup_required && ab->pci.ops->wakeup) {
+>>> +		ret = ab->pci.ops->wakeup(ab);
+>>> +		if (ret)
+>>> +			ath11k_warn(ab, "%s: failed to do wakeup: %d\n", __func__, ret);
+>>> +	}
+>>
+>> I changed the error handling so that if wakeup() fails we do not
+>> continue and just return an error.
 >
-> v2:
->    1. change some minor comments by Kalle.
->    2. rebased to ath.git ath-202112220603
+> I prefer to keep the original design, because in that case we still
+> have something to check after firmware crashes.
 >
-> Depends on one patch:
-> [v5] cfg80211: save power spectral density(psd) of regulatory rule
-> https://patchwork.kernel.org/project/linux-wireless/patch/20210928085211.26186-1-wgong@codeaurora.org/
+> I admit that the dump content may be invalid if wakeup fails, but we
+> can know that by checking kernel log, so we can avoid misleading.
 
-The dependency is in "Changes Requested" state so I'll mark this the
-same.
+Too late now, I already applied the patch. You need to submit a new
+patch to change the logic. And if we really want to ignore the wakeup
+failure there should be a proper comment in the code explaining the idea,
+and maybe improve the warning message to make it more understandable for
+the user.
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
