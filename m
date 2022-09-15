@@ -4,95 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6429CECAAD3
-	for <ath11k@archiver.kernel.org>; Thu, 15 Sep 2022 00:23:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D97C2C32771
+	for <ath11k@archiver.kernel.org>; Thu, 15 Sep 2022 21:34:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Subject:Cc:To:From:Date:References:
+	In-Reply-To:Message-Id:Mime-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DvxJ3c6IRXQRlpCwXkW0OohGW0HZTcVEml3FSwOskFw=; b=M903BUvQ36xPCe
-	Qtxf/uMgUn8+mVwpEAs66QsV4BjNkORiE33hg3JGnu67fdex8HhtwECEFnsXG8Hw9t1jAlwWwC6Pw
-	VFGNO5GUp8opN3gzOOR8ivnHqh+lDPilfyLgyWrjrMVg9GBrklgdSlsgwMQPrbL4JkLxuvKtR01Rh
-	VQgAl4vYr8Y8n6Dj7eZ5gm4SghgSQHPTYvRfYEeLGiL/FyPic2bP7VEdCqqKR9LkBrzef7Tgk7gL2
-	6GuZ0dxkxCVJQO1WMlu7Ko9rjf9CiKti/srkmS098lzY7Kh/DT2xN9ON5ur02Gkm3HO33UIRkUqL5
-	9pAUzLchFX9jcVoDMZyg==;
+	List-Owner; bh=Q+FKnUtviIS7LOl2w1nzR3/O9n8EKPVxkxaGATPvneg=; b=JaVm5zUpi2ZUHn
+	SAu0MLsbbHt3jhUjx8p3QV6Oxp1sRvVpWdIvALxxMwEdo90bOznvR9rqlG7cOgccY8aQpLVXTjIHi
+	SVCEzk72jwPYePzv2xW3ROFFetg5egivL8iibVyusAqzgbTqhrTVHLZuBDFh2AmDcXvSxlEMmxDTd
+	1SB1QA3pjBs7pMt/ECkFCca1FKNngvJ1UIq/eVL5kdeCyejMCQqTN25CqmPshYrH+A2zWcW7Q4+Tj
+	dy1iyIOvcy9wDy6cZrbOJE3kHE5dqM3wrgYxTUXpihgh7TtuWSXhdZ2tCI//XC40pLPQS5yTZj2F6
+	ngpeyBRQOSaDN+qN3rLQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oYcf2-00DboN-UP; Thu, 15 Sep 2022 00:23:20 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1oYwVH-000ET6-AH; Thu, 15 Sep 2022 21:34:35 +0000
+Received: from wout1-smtp.messagingengine.com ([64.147.123.24])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oYcez-00Dblk-IA
-	for ath11k@lists.infradead.org; Thu, 15 Sep 2022 00:23:19 +0000
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28ENq1LS007824;
-	Thu, 15 Sep 2022 00:23:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=VpRVLQpGCFW0cQEexkr1W3XtSZgIraY5Rwsrn8ytycU=;
- b=B7+H/BHiolm0SYRSLFVw3cSP7zURkkq5Qx6jhkrpsiREqceM7Hq7Z874vJoTw0iIBLQV
- csITYVmax+BorbXqhOZ7iyd7eDf0wsZk5h+Z+r8gmlfm3mq+CZCENMDqxZlN44Co60pS
- WeP0paBhBfhandh7+9Nq1bxB2yvCRBAM+Ud0tKZ4/wBNI1FLi0lOfpONgiY2LXwZrCkS
- pJUrv7WJRx0TA7FcJC9Nb+mh2ubpmSXsq2wYro2AUdHzFhVv1vJjWbROK6Qa8xeOW3Up
- 7SQMTC1XzngmuH2zmmDw0FBk8UXZ3q75HJZmBMLfYFVWS8Tsnp+5cLpggamJnbo29Gcc gQ== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jjxys4d0r-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 15 Sep 2022 00:23:09 +0000
-Received: from pps.filterd (NALASPPMTA05.qualcomm.com [127.0.0.1])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 28F0N815000343;
-	Thu, 15 Sep 2022 00:23:08 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by NALASPPMTA05.qualcomm.com (PPS) with ESMTPS id 3jjqbt792d-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 15 Sep 2022 00:23:08 +0000
-Received: from NALASPPMTA05.qualcomm.com (NALASPPMTA05.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 28F0N8u3000335;
-	Thu, 15 Sep 2022 00:23:08 GMT
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (PPS) with ESMTPS id 28F0N8mj000330
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 15 Sep 2022 00:23:08 +0000
-Received: from quicinc.com (10.49.16.6) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Wed, 14 Sep
- 2022 17:23:08 -0700
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-To: Kalle Valo <kvalo@kernel.org>, "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo
- Abeni <pabeni@redhat.com>
-CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2] wifi: ath11k: Make QMI message rules const
-Date: Wed, 14 Sep 2022 17:23:03 -0700
-Message-ID: <20220915002303.12206-1-quic_jjohnson@quicinc.com>
-X-Mailer: git-send-email 2.37.0
-In-Reply-To: <20220912221335.27520-1-quic_jjohnson@quicinc.com>
-References: <20220912221335.27520-1-quic_jjohnson@quicinc.com>
-MIME-Version: 1.0
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: uAj7W2lfvKqduu-u0JRgavNWcT8hM16Z
-X-Proofpoint-GUID: uAj7W2lfvKqduu-u0JRgavNWcT8hM16Z
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-14_11,2022-09-14_04,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0 mlxscore=0
- priorityscore=1501 malwarescore=0 suspectscore=0 impostorscore=0
- adultscore=0 mlxlogscore=999 spamscore=0 clxscore=1015 phishscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2208220000 definitions=main-2209140117
+	id 1oYwVD-000EPd-Fq
+	for ath11k@lists.infradead.org; Thu, 15 Sep 2022 21:34:33 +0000
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+	by mailout.west.internal (Postfix) with ESMTP id 2AC823200AD1;
+	Thu, 15 Sep 2022 17:34:25 -0400 (EDT)
+Received: from imap44 ([10.202.2.94])
+  by compute4.internal (MEProxy); Thu, 15 Sep 2022 17:34:25 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+	cc:cc:content-transfer-encoding:content-type:date:date:from:from
+	:in-reply-to:in-reply-to:message-id:mime-version:references
+	:reply-to:sender:subject:subject:to:to; s=fm3; t=1663277664; x=
+	1663364064; bh=/eknyiWI+rvegyztt8Mdl0E4m3Bnu9X/oPwwi5PsQQw=; b=e
+	VypKgdBVzJ9gixTIDZIQpCVsMpIxart+PkBdJaVg6+iPZMVgzZ8rrYFbL1fPhhwF
+	ew3AdFFJEOZ3wxDrCJDp7Ljy8Uj+f7yZQVRJ/4m47oC0yw7bRK5GOeMB5zqrLbMd
+	/Bibrca5bDPTnSaADPSakygKPlLWw3vk/OMm+YMyGkc/68VRtfKOkOgHbSjugp32
+	UBotkWhNXOPjQJ/MheR3JH9eFS8ckeF9pWi06w94Bt6kTilZB8r/5jHHVNp7y0Ss
+	xD/6zV49Ld88fQwfuUAoSMYUf2iwZ77d627ZM5fRin3h4h4qUXYoVZt97mkm8htc
+	XApT2x7X/NTaW4TO+s3dA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:date:date:feedback-id:feedback-id:from:from
+	:in-reply-to:in-reply-to:message-id:mime-version:references
+	:reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1663277664; x=
+	1663364064; bh=/eknyiWI+rvegyztt8Mdl0E4m3Bnu9X/oPwwi5PsQQw=; b=A
+	o3xkaFJQl6eeSgi7vKKICLYp5eJ4wq3L6GD/lpSxI/yWT10ly6gonL/aoMz2x6/N
+	6RRZmAAVSpbwjh2ypsfjqnj2MdAzol5tmOd8eLGHlehboUkVdZqjxRglJS4hNb8s
+	F5xz11UaNSf88ux2HnUMblhKZBkmnP701ThBe4Q4gyKvDcRSDuDbJhdWDKlufgZf
+	EntowMYVyUPiMB6NJDs1ePDLrSWFv4igcAZYxtmru6n4YA75eAq4s1/Feb/hTIZz
+	HaVRpPbRQEw95FSrBwnpWiL1ef1Mvxs1I+4mASQhKSWeBMQbJ03JCbO2c2zTlsDe
+	o/we2FumaSeav/wfhgidA==
+X-ME-Sender: <xms:YJojY6WYT5AlssLNnDe9kVYMvUbS-kfdmHKfRyWZKHKXhZQ-jymUxA>
+    <xme:YJojY2lYGgtVGxSQKodwndm4vQOUdWcbLiMaVxXB367uBveenTf9UBY0muMCi2eKN
+    -wy2fABseNTX_fK-AM>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfeduledgtdduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucenucfjughrpefofgggkfgjfhffhffvvefutgfgse
+    htqhertderreejnecuhfhrohhmpedflfhirgiguhhnucgjrghnghdfuceojhhirgiguhhn
+    rdihrghnghesfhhlhihgohgrthdrtghomheqnecuggftrfgrthhtvghrnhepudefgeefte
+    dugeehffdtheefgfevffelfefghefhjeeugeevtefhudduvdeihefgnecuvehluhhsthgv
+    rhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepjhhirgiguhhnrdihrghngh
+    esfhhlhihgohgrthdrtghomh
+X-ME-Proxy: <xmx:YJojY-ZS0uujzEpchMQCE4HMisHnEnN8h_Xz9-TmAcIp1RHzKgaHcg>
+    <xmx:YJojYxVc84MbJkywROkNOcRA9wHXufzIGO6uIiOl8YiCr3afUCn2ZA>
+    <xmx:YJojY0nX-CiIKGcOjt_yHbYxYpX3_eMHToy2Lat12lft4N_clrNv9A>
+    <xmx:YJojY5wkIgeD4Z-HDf3jJ-ySxMfBPC5lzTY06syv8XzRVQ94YUV2Zg>
+Feedback-ID: ifd894703:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 3E76C36A0073; Thu, 15 Sep 2022 17:34:24 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-935-ge4ccd4c47b-fm-20220914.001-ge4ccd4c4
+Mime-Version: 1.0
+Message-Id: <ec4a6ecf-f432-4dd0-abf6-61d7b587a61b@www.fastmail.com>
+In-Reply-To: <699535de25ac2d696cdf218bbb1f401bcd6048c1.camel@infradead.org>
+References: <9e1d3ba6-48ac-4a97-8b65-87e395898c2a@www.fastmail.com>
+ <699535de25ac2d696cdf218bbb1f401bcd6048c1.camel@infradead.org>
+Date: Thu, 15 Sep 2022 22:34:03 +0100
+From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
+To: "David Woodhouse" <dwmw2@infradead.org>, iommu@lists.linux.dev
+Cc: kvm@vger.kernel.org, ath11k@lists.infradead.org, kvalo@kernel.org
+Subject: Re: ath11k VFIO MSI issue with DMAR
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220914_172317_642986_86BB13ED 
-X-CRM114-Status: GOOD (  16.47  )
+X-CRM114-CacheID: sfid-20220915_143431_858211_DD31E685 
+X-CRM114-Status: GOOD (  11.98  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,361 +98,35 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Commit ff6d365898d4 ("soc: qcom: qmi: use const for struct
-qmi_elem_info") allows QMI message encoding/decoding rules to be
-const, so do that for ath11k.
-
-Compile tested only.
-
-Signed-off-by: Jeff Johnson <quic_jjohnson@quicinc.com>
----
-
-v2:
-- Added 12th digit to the hash in the commit text
-- rebased, updated 2 more definitions added since v1:
-  	   qmi_wlanfw_host_cap_req_msg_v01_ei[]
-	   qmi_wlfw_fw_init_done_ind_msg_v01_ei[]
-
-Depends-on: https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git/commit/?h=for-next&id=ff6d365898d4d31bd557954c7fc53f38977b491c
-
-drivers/net/wireless/ath/ath11k/qmi.c | 72 +++++++++++++--------------
- 1 file changed, 36 insertions(+), 36 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index 2be45683260c..42f18c3bcfa3 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.c
-+++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -28,7 +28,7 @@ module_param_named(cold_boot_cal, ath11k_cold_boot_cal, bool, 0644);
- MODULE_PARM_DESC(cold_boot_cal,
- 		 "Decrease the channel switch time but increase the driver load time (Default: true)");
- 
--static struct qmi_elem_info qmi_wlanfw_host_cap_req_msg_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_host_cap_req_msg_v01_ei[] = {
- 	{
- 		.data_type	= QMI_OPT_FLAG,
- 		.elem_len	= 1,
-@@ -279,7 +279,7 @@ static struct qmi_elem_info qmi_wlanfw_host_cap_req_msg_v01_ei[] = {
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlanfw_host_cap_resp_msg_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_host_cap_resp_msg_v01_ei[] = {
- 	{
- 		.data_type	= QMI_STRUCT,
- 		.elem_len	= 1,
-@@ -296,7 +296,7 @@ static struct qmi_elem_info qmi_wlanfw_host_cap_resp_msg_v01_ei[] = {
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlanfw_ind_register_req_msg_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_ind_register_req_msg_v01_ei[] = {
- 	{
- 		.data_type	= QMI_OPT_FLAG,
- 		.elem_len	= 1,
-@@ -521,7 +521,7 @@ static struct qmi_elem_info qmi_wlanfw_ind_register_req_msg_v01_ei[] = {
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlanfw_ind_register_resp_msg_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_ind_register_resp_msg_v01_ei[] = {
- 	{
- 		.data_type	= QMI_STRUCT,
- 		.elem_len	= 1,
-@@ -557,7 +557,7 @@ static struct qmi_elem_info qmi_wlanfw_ind_register_resp_msg_v01_ei[] = {
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlanfw_mem_cfg_s_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_mem_cfg_s_v01_ei[] = {
- 	{
- 		.data_type	= QMI_UNSIGNED_8_BYTE,
- 		.elem_len	= 1,
-@@ -589,7 +589,7 @@ static struct qmi_elem_info qmi_wlanfw_mem_cfg_s_v01_ei[] = {
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlanfw_mem_seg_s_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_mem_seg_s_v01_ei[] = {
- 	{
- 		.data_type	= QMI_UNSIGNED_4_BYTE,
- 		.elem_len	= 1,
-@@ -631,7 +631,7 @@ static struct qmi_elem_info qmi_wlanfw_mem_seg_s_v01_ei[] = {
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlanfw_request_mem_ind_msg_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_request_mem_ind_msg_v01_ei[] = {
- 	{
- 		.data_type	= QMI_DATA_LEN,
- 		.elem_len	= 1,
-@@ -658,7 +658,7 @@ static struct qmi_elem_info qmi_wlanfw_request_mem_ind_msg_v01_ei[] = {
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlanfw_mem_seg_resp_s_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_mem_seg_resp_s_v01_ei[] = {
- 	{
- 		.data_type	= QMI_UNSIGNED_8_BYTE,
- 		.elem_len	= 1,
-@@ -698,7 +698,7 @@ static struct qmi_elem_info qmi_wlanfw_mem_seg_resp_s_v01_ei[] = {
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlanfw_respond_mem_req_msg_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_respond_mem_req_msg_v01_ei[] = {
- 	{
- 		.data_type	= QMI_DATA_LEN,
- 		.elem_len	= 1,
-@@ -725,7 +725,7 @@ static struct qmi_elem_info qmi_wlanfw_respond_mem_req_msg_v01_ei[] = {
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlanfw_respond_mem_resp_msg_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_respond_mem_resp_msg_v01_ei[] = {
- 	{
- 		.data_type	= QMI_STRUCT,
- 		.elem_len	= 1,
-@@ -743,7 +743,7 @@ static struct qmi_elem_info qmi_wlanfw_respond_mem_resp_msg_v01_ei[] = {
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlanfw_cap_req_msg_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_cap_req_msg_v01_ei[] = {
- 	{
- 		.data_type	= QMI_EOTI,
- 		.array_type	= NO_ARRAY,
-@@ -751,7 +751,7 @@ static struct qmi_elem_info qmi_wlanfw_cap_req_msg_v01_ei[] = {
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlanfw_device_info_req_msg_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_device_info_req_msg_v01_ei[] = {
- 	{
- 		.data_type      = QMI_EOTI,
- 		.array_type     = NO_ARRAY,
-@@ -759,7 +759,7 @@ static struct qmi_elem_info qmi_wlanfw_device_info_req_msg_v01_ei[] = {
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlfw_device_info_resp_msg_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlfw_device_info_resp_msg_v01_ei[] = {
- 	{
- 		.data_type	= QMI_STRUCT,
- 		.elem_len	= 1,
-@@ -813,7 +813,7 @@ static struct qmi_elem_info qmi_wlfw_device_info_resp_msg_v01_ei[] = {
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlanfw_rf_chip_info_s_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_rf_chip_info_s_v01_ei[] = {
- 	{
- 		.data_type	= QMI_UNSIGNED_4_BYTE,
- 		.elem_len	= 1,
-@@ -839,7 +839,7 @@ static struct qmi_elem_info qmi_wlanfw_rf_chip_info_s_v01_ei[] = {
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlanfw_rf_board_info_s_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_rf_board_info_s_v01_ei[] = {
- 	{
- 		.data_type	= QMI_UNSIGNED_4_BYTE,
- 		.elem_len	= 1,
-@@ -856,7 +856,7 @@ static struct qmi_elem_info qmi_wlanfw_rf_board_info_s_v01_ei[] = {
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlanfw_soc_info_s_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_soc_info_s_v01_ei[] = {
- 	{
- 		.data_type	= QMI_UNSIGNED_4_BYTE,
- 		.elem_len	= 1,
-@@ -872,7 +872,7 @@ static struct qmi_elem_info qmi_wlanfw_soc_info_s_v01_ei[] = {
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlanfw_fw_version_info_s_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_fw_version_info_s_v01_ei[] = {
- 	{
- 		.data_type	= QMI_UNSIGNED_4_BYTE,
- 		.elem_len	= 1,
-@@ -898,7 +898,7 @@ static struct qmi_elem_info qmi_wlanfw_fw_version_info_s_v01_ei[] = {
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlanfw_cap_resp_msg_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_cap_resp_msg_v01_ei[] = {
- 	{
- 		.data_type	= QMI_STRUCT,
- 		.elem_len	= 1,
-@@ -1099,7 +1099,7 @@ static struct qmi_elem_info qmi_wlanfw_cap_resp_msg_v01_ei[] = {
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlanfw_bdf_download_req_msg_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_bdf_download_req_msg_v01_ei[] = {
- 	{
- 		.data_type	= QMI_UNSIGNED_1_BYTE,
- 		.elem_len	= 1,
-@@ -1234,7 +1234,7 @@ static struct qmi_elem_info qmi_wlanfw_bdf_download_req_msg_v01_ei[] = {
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlanfw_bdf_download_resp_msg_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_bdf_download_resp_msg_v01_ei[] = {
- 	{
- 		.data_type	= QMI_STRUCT,
- 		.elem_len	= 1,
-@@ -1252,7 +1252,7 @@ static struct qmi_elem_info qmi_wlanfw_bdf_download_resp_msg_v01_ei[] = {
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlanfw_m3_info_req_msg_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_m3_info_req_msg_v01_ei[] = {
- 	{
- 		.data_type	= QMI_UNSIGNED_8_BYTE,
- 		.elem_len	= 1,
-@@ -1276,7 +1276,7 @@ static struct qmi_elem_info qmi_wlanfw_m3_info_req_msg_v01_ei[] = {
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlanfw_m3_info_resp_msg_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_m3_info_resp_msg_v01_ei[] = {
- 	{
- 		.data_type	= QMI_STRUCT,
- 		.elem_len	= 1,
-@@ -1293,7 +1293,7 @@ static struct qmi_elem_info qmi_wlanfw_m3_info_resp_msg_v01_ei[] = {
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlanfw_ce_tgt_pipe_cfg_s_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_ce_tgt_pipe_cfg_s_v01_ei[] = {
- 	{
- 		.data_type	= QMI_UNSIGNED_4_BYTE,
- 		.elem_len	= 1,
-@@ -1346,7 +1346,7 @@ static struct qmi_elem_info qmi_wlanfw_ce_tgt_pipe_cfg_s_v01_ei[] = {
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlanfw_ce_svc_pipe_cfg_s_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_ce_svc_pipe_cfg_s_v01_ei[] = {
- 	{
- 		.data_type	= QMI_UNSIGNED_4_BYTE,
- 		.elem_len	= 1,
-@@ -1381,7 +1381,7 @@ static struct qmi_elem_info qmi_wlanfw_ce_svc_pipe_cfg_s_v01_ei[] = {
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlanfw_shadow_reg_cfg_s_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_shadow_reg_cfg_s_v01_ei[] = {
- 	{
- 		.data_type	= QMI_UNSIGNED_2_BYTE,
- 		.elem_len	= 1,
-@@ -1405,7 +1405,7 @@ static struct qmi_elem_info qmi_wlanfw_shadow_reg_cfg_s_v01_ei[] = {
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlanfw_shadow_reg_v2_cfg_s_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_shadow_reg_v2_cfg_s_v01_ei[] = {
- 	{
- 		.data_type	= QMI_UNSIGNED_4_BYTE,
- 		.elem_len	= 1,
-@@ -1422,7 +1422,7 @@ static struct qmi_elem_info qmi_wlanfw_shadow_reg_v2_cfg_s_v01_ei[] = {
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlanfw_wlan_mode_req_msg_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_wlan_mode_req_msg_v01_ei[] = {
- 	{
- 		.data_type	= QMI_UNSIGNED_4_BYTE,
- 		.elem_len	= 1,
-@@ -1457,7 +1457,7 @@ static struct qmi_elem_info qmi_wlanfw_wlan_mode_req_msg_v01_ei[] = {
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlanfw_wlan_mode_resp_msg_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_wlan_mode_resp_msg_v01_ei[] = {
- 	{
- 		.data_type	= QMI_STRUCT,
- 		.elem_len	= 1,
-@@ -1475,7 +1475,7 @@ static struct qmi_elem_info qmi_wlanfw_wlan_mode_resp_msg_v01_ei[] = {
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlanfw_wlan_cfg_req_msg_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_wlan_cfg_req_msg_v01_ei[] = {
- 	{
- 		.data_type	= QMI_OPT_FLAG,
- 		.elem_len	= 1,
-@@ -1614,7 +1614,7 @@ static struct qmi_elem_info qmi_wlanfw_wlan_cfg_req_msg_v01_ei[] = {
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlanfw_wlan_cfg_resp_msg_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_wlan_cfg_resp_msg_v01_ei[] = {
- 	{
- 		.data_type	= QMI_STRUCT,
- 		.elem_len	= 1,
-@@ -1631,28 +1631,28 @@ static struct qmi_elem_info qmi_wlanfw_wlan_cfg_resp_msg_v01_ei[] = {
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlanfw_mem_ready_ind_msg_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_mem_ready_ind_msg_v01_ei[] = {
- 	{
- 		.data_type = QMI_EOTI,
- 		.array_type = NO_ARRAY,
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlanfw_fw_ready_ind_msg_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_fw_ready_ind_msg_v01_ei[] = {
- 	{
- 		.data_type = QMI_EOTI,
- 		.array_type = NO_ARRAY,
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlanfw_cold_boot_cal_done_ind_msg_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_cold_boot_cal_done_ind_msg_v01_ei[] = {
- 	{
- 		.data_type = QMI_EOTI,
- 		.array_type = NO_ARRAY,
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlanfw_wlan_ini_req_msg_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_wlan_ini_req_msg_v01_ei[] = {
- 	{
- 		.data_type	= QMI_OPT_FLAG,
- 		.elem_len	= 1,
-@@ -1678,7 +1678,7 @@ static struct qmi_elem_info qmi_wlanfw_wlan_ini_req_msg_v01_ei[] = {
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlanfw_wlan_ini_resp_msg_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlanfw_wlan_ini_resp_msg_v01_ei[] = {
- 	{
- 		.data_type	= QMI_STRUCT,
- 		.elem_len	= 1,
-@@ -1696,7 +1696,7 @@ static struct qmi_elem_info qmi_wlanfw_wlan_ini_resp_msg_v01_ei[] = {
- 	},
- };
- 
--static struct qmi_elem_info qmi_wlfw_fw_init_done_ind_msg_v01_ei[] = {
-+static const struct qmi_elem_info qmi_wlfw_fw_init_done_ind_msg_v01_ei[] = {
- 	{
- 		.data_type = QMI_EOTI,
- 		.array_type = NO_ARRAY,
--- 
-2.37.0
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+CgrlnKgyMDIy5bm0OeaciDEz5pel5Lmd5pyIIOS4i+WNiDM6NTXvvIxEYXZpZCBXb29kaG91c2Xl
+hpnpgZPvvJoKPiBPbiBUdWUsIDIwMjItMDktMTMgYXQgMTU6MDkgKzAxMDAsIEppYXh1biBZYW5n
+IHdyb3RlOgpbLi4uXQo+Cj4gWW91ciBiZXN0IGJldCBpcyBwcm9iYWJseSB0byBoYXZlIHRoZSBo
+eXBlcnZpc29yIHRyYXAgYWNjZXNzZXMgdG8gdGhlCj4gYXRoMTFrX2NlX3NybmdfbXNpX3Jpbmdf
+cGFyYW1zX3NldHVwIGFuZCBhdGgxMWtfZHBfc3JuZ19tc2lfc2V0dXAKPiByZWdpc3RlcnMgYW5k
+IGRvIHRoZSBzYW1lIHRyaWNrIG9mIGFsbG9jYXRpbmcgYSBob3N0IElSUSByb3V0ZSBhbmQKPiB3
+cml0aW5nIHRoZSBjb252ZXJ0ZWQgTVNJIG1lc3NhZ2UuCj4KPiBUaGUgYWx0ZXJuYXRpdmUgaXMg
+dG8gYnVpbGQgc29tZSBraW5kIG9mIGVubGlnaHRlbm1lbnQgdG8gbGV0IHRoZSBndWVzdAo+IGFz
+ayB0aGUgaHlwZXJ2aXNvciB0byB0ZWxsIGl0IHRoZSBjb3JyZWN0IHJlbWFwcGFibGUgZm9ybWF0
+IG1lc3NhZ2UgdG8KPiB1c2UuLi4gYnV0IHRoYXQncyBnb2luZyB0byBnZXQgdmVyeSBob3JyaWQg
+dmVyeSBxdWlja2x5LiBJZiB5b3VyCj4gaGFyZHdhcmUgYWxsb3dzIHlvdSB0byByZWFkIHRoZSBN
+U0koWCkgdGFibGUgdmlhIHNvbWUgb3RoZXIgaW5kaXJlY3QKPiByb3V0ZSB3aGljaCBpc24ndCB0
+cmFwcGVkIGJ5IHRoZSBoeXBlcnZpc29yIHRvIGdpdmUgeW91IGJhY2sgdGhlCj4gIm9yaWdpbmFs
+IiB0aGluZyB5b3Ugd3JvdGUsIHBlcmhhcHMgeW91IGNvdWxkIHdyaXRlIHRvIGFuIHVudXNlZCBN
+U0kKPiBhbmQgdGhlbiByZWFkIGJhY2sgd2hhdCB0aGUgaGFyZHdhcmUgKmFjdHVhbGx5KiBjb250
+YWlucy4uLiB0aGVuIHdyaXRlCj4gdGhhdCB0byB0aGUgc3BlY2lhbCByZWdpc3Rlcj8gQnV0IHRo
+YXQncyBraW5kIG9mIGF3ZnVsLgoKSW5kZWVkIGJvdGggaWRlYXMgc291bmQgYXdmdWwuLi4KCk15
+IGN1cnJlbnQgYXBwcm9hY2ggaXMgcmFpc2UgYSBndWVzdCBBUElDIGludGVycnVwdCB3aGVuIDB4
+MjUgZmF1bHQgaGFwcGVucy4KVGhvdWdoIEknbSBjdXJyZW50bHkgaGFyZGNvZGluZyBndWVzdCBB
+UElDIGRlc3RpbmF0aW9uIGJ1dCBJIHRoaW5rIGl0J3MgcG9zc2libGUKdG8gY2hlY2sgZmF1bHQg
+TVNJIGFkZHJlc3MvZGF0YSBmcm9tIGZhdWx0IGV2ZW50IGFkZHJlc3MvZGF0YSByZWdpc3RlcnMg
+YWdhaW5zdApETUFSIGludGVycnVwdCBtYXBwaW5nIHRhYmxlIHRvIGRldGVybWluZSBhY3R1YWwg
+ZGVzdGluYXRpb24/CgpJdCdzIGJpdCBvZiB0cmFwIGFuZCBlbXVsYXRpb24sIHRoaW5rIHRoYXQg
+d2lsbCBlbmFibGUgRE1BUiBkcml2ZXIgdG8gaGFuZGxlIHN1Y2gKc2l0dXRhdGlvbi4KClRoYW5r
+cy4KCj4KPiDpmYTku7Y6Cj4gKiBzbWltZS5wN3MKCi0tIAotIEppYXh1bgoKLS0gCmF0aDExayBt
+YWlsaW5nIGxpc3QKYXRoMTFrQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJh
+ZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9hdGgxMWsK
