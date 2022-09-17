@@ -4,69 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 537E0ECAAD8
-	for <ath11k@archiver.kernel.org>; Fri, 16 Sep 2022 19:43:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7254FECAAD3
+	for <ath11k@archiver.kernel.org>; Sat, 17 Sep 2022 14:50:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Yj2EbhvN75hqKNexJBmn3DDOB9nG/nrWm3JHfm3wXD4=; b=Gyp0fvg75C+oU9
-	FP21Z6n9keo3H5JvAksUBlLm70fN5vGc28EIJuIp7Y6M7fAo1VLXpBfVxJ7S5iq9nf8YkiECHi5O7
-	jcDxOqEUF0R9J6SJ5aioiC5WafERWYxMFVgsFn9nlqzpq/QhRbSgxeDXRXSlORapBts/X4FN+fG2S
-	dEnkN3f5WQNHmv95DXP2DTjMd0VPjG5nYiu27hICZH8LC7pz07aaqlU172SQLXzmu05GSsUdoeQsV
-	Q97gzxm47tAq4mHzYC3KRbQ/4u4pGtnL3C+bhG4HM2WBbQ8h0MSk3VsYQpvIG03srmJ5ko6hz+gVP
-	3cjKg62kYLDGJtjcENlA==;
+	List-Owner; bh=jKGnWent6BuRNpXbex1jBmsbf79OlIIMpasL/4wlxvQ=; b=XaLzvoolJoP2JC
+	ZX4YPBlbGcSz0MVudw4S8yJLw/eb/qo/DsfJR2G75zpKWMJApHQFfXGsqPeCCFpCYst5oxp+EDrKg
+	L49yF/xCE/vtRl1hXAYKjQUQSHa/2q+XOJKISj21ZeBtkPm/U7/dBfKppGe/5qgmRmhpc/MZ1ht8I
+	IHSlfadqJzIykAWOfztnNRPc1lSnAkTKOvEZa+hxWQnkMmFr74U4QMR4jPFiQAXAVzfzFbH+wvwYL
+	85KzJfME2GVKaZMXen8zRaovnQcDI3c8vHUiXdeSHKKwNUT4N4JDloqUPE1IqMYv1K2MD+hyClCdZ
+	sgBx40/dDTwxv4uPP2pQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oZHEu-00GNNB-38; Fri, 16 Sep 2022 19:43:04 +0000
-Received: from mga12.intel.com ([192.55.52.136])
+	id 1oZZ93-006bZB-7H; Sat, 17 Sep 2022 14:50:13 +0000
+Received: from mga04.intel.com ([192.55.52.120])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oZHES-00GN5h-Bo
-	for ath11k@lists.infradead.org; Fri, 16 Sep 2022 19:42:58 +0000
+	id 1oZZ90-006bWM-CN
+	for ath11k@lists.infradead.org; Sat, 17 Sep 2022 14:50:12 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1663357356; x=1694893356;
+  t=1663426210; x=1694962210;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=Zt7Jubm60tCWy/mnWh0gWMiuVSSQkR9yoOZigwu8hCg=;
-  b=FqrMdErF/mPDiToqF3PeVojxJRapdWfUZwa4GQYjQxUS4oN73qnxU4rF
-   syxuZiK/CpFAdFYbd3TSXu6ZKGnkHyB9p8vhxQHIovbzvoYp+0vQT49To
-   LLmRmOrMLv8yz+HpROHPfXeN7ghOJLKkkU4mpeaJgOklyvLubXlUsybbJ
-   THFPIAhMLx23iFYFeaGPvNFU+FPLR/qdlYJOOguJTY5JWrw3V74Edm1hR
-   51tkL45YOAstCjIGSvIXJBe1pR9rkAOADXN6J3zyAsPdboSrFHAzZcrrP
-   4Zwk/A3o0TWl5Bxqg9krMkQCfLb0fVJynDeyEOJRT0pgHVdERIhKYatKW
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10472"; a="278794284"
-X-IronPort-AV: E=Sophos;i="5.93,321,1654585200"; 
-   d="scan'208";a="278794284"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Sep 2022 12:42:21 -0700
+  bh=Cr1wgj8QaEilsSF87VZTrjUdwycUY+q/4Sn13bLXrf4=;
+  b=mQ12rTDNBDmY99UIz+s9D08ZilVoYKC2QczvF1CUfB6GLoo0BIGBdpUY
+   P4usWCK6NaZxLMCO3dasIHQgHh+y3KN4lEym7fKO1GkT0JZNp/v+4AQBz
+   KK9m2ejgFoT0Y1vere//XzZXeP9guXprRovHUCmwJ8PEI/ibZ+ve+RU2f
+   OyAJMVjQ1rLhojLaVeQVWlx7zeor3atXsqcJESH0uXxXfH7fP0k/y9Pwc
+   vNKKGlXcei/02vshpYY6R6uJDjTFJJeEuuTElBSIpasjDrQNjnoHRavtW
+   jJfwX+z5UYn6jmLBDMO9AfQD+Ky5RvP42fqRq8qccimR10G7ANAqLt3sl
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10473"; a="297886621"
+X-IronPort-AV: E=Sophos;i="5.93,323,1654585200"; 
+   d="scan'208";a="297886621"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Sep 2022 07:50:02 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,321,1654585200"; 
-   d="scan'208";a="595363880"
-Received: from lkp-server02.sh.intel.com (HELO 41300c7200ea) ([10.239.97.151])
-  by orsmga006.jf.intel.com with ESMTP; 16 Sep 2022 12:42:20 -0700
-Received: from kbuild by 41300c7200ea with local (Exim 4.96)
+X-IronPort-AV: E=Sophos;i="5.93,323,1654585200"; 
+   d="scan'208";a="569144060"
+Received: from lkp-server01.sh.intel.com (HELO c0a60f19fe7e) ([10.239.97.150])
+  by orsmga003.jf.intel.com with ESMTP; 17 Sep 2022 07:50:00 -0700
+Received: from kbuild by c0a60f19fe7e with local (Exim 4.96)
 	(envelope-from <lkp@intel.com>)
-	id 1oZHEB-00026E-2B;
-	Fri, 16 Sep 2022 19:42:19 +0000
-Date: Sat, 17 Sep 2022 03:41:30 +0800
+	id 1oZZ8p-0000PX-1f;
+	Sat, 17 Sep 2022 14:49:59 +0000
+Date: Sat, 17 Sep 2022 22:49:06 +0800
 From: kernel test robot <lkp@intel.com>
 To: Jun Yu <junyuu@chromium.org>, ath11k@lists.infradead.org
-Cc: kbuild-all@lists.01.org, linux-wireless@vger.kernel.org,
-	Jun Yu <junyuu@chromium.org>
+Cc: llvm@lists.linux.dev, kbuild-all@lists.01.org,
+	linux-wireless@vger.kernel.org, Jun Yu <junyuu@chromium.org>
 Subject: Re: [PATCH] wifi: ath11k: retrieve MAC address from system firmware
  if provided
-Message-ID: <202209170307.720C1Sx4-lkp@intel.com>
+Message-ID: <202209172236.KWe4R2Dm-lkp@intel.com>
 References: <20220914215408.372520-1-junyuu@chromium.org>
 MIME-Version: 1.0
 Content-Disposition: inline
 In-Reply-To: <20220914215408.372520-1-junyuu@chromium.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220916_124236_581140_AE9BBFB3 
-X-CRM114-Status: GOOD (  12.68  )
+X-CRM114-CacheID: sfid-20220917_075010_494394_1993D515 
+X-CRM114-Status: GOOD (  13.09  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,35 +95,34 @@ https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
 url:    https://github.com/intel-lab-lkp/linux/commits/Jun-Yu/wifi-ath11k-retrieve-MAC-address-from-system-firmware-if-provided/20220915-055714
 base:   https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git ath-next
-config: i386-randconfig-a005 (https://download.01.org/0day-ci/archive/20220917/202209170307.720C1Sx4-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.3.0-5) 11.3.0
+config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20220917/202209172236.KWe4R2Dm-lkp@intel.com/config)
+compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
 reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
         # https://github.com/intel-lab-lkp/linux/commit/7a1539aed9ed31bd3b93c177abda0a2f4fea3945
         git remote add linux-review https://github.com/intel-lab-lkp/linux
         git fetch --no-tags linux-review Jun-Yu/wifi-ath11k-retrieve-MAC-address-from-system-firmware-if-provided/20220915-055714
         git checkout 7a1539aed9ed31bd3b93c177abda0a2f4fea3945
         # save the config file
         mkdir build_dir && cp config build_dir/.config
-        make W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/net/wireless/ath/ath11k/
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash
 
 If you fix the issue, kindly add following tag where applicable
 Reported-by: kernel test robot <lkp@intel.com>
 
 All errors (new ones prefixed by >>):
 
-   drivers/net/wireless/ath/ath11k/mac.c: In function 'ath11k_mac_register':
->> drivers/net/wireless/ath/ath11k/mac.c:8999:9: error: too many arguments to function 'device_get_mac_address'
-    8999 |         device_get_mac_address(ab->dev, mac_addr, sizeof(ab->mac_addr));
-         |         ^~~~~~~~~~~~~~~~~~~~~~
-   In file included from include/linux/ieee80211.h:20,
-                    from include/net/mac80211.h:20,
-                    from drivers/net/wireless/ath/ath11k/mac.c:7:
-   include/linux/etherdevice.h:35:5: note: declared here
-      35 | int device_get_mac_address(struct device *dev, char *addr);
-         |     ^~~~~~~~~~~~~~~~~~~~~~
+>> drivers/net/wireless/ath/ath11k/mac.c:8999:44: error: too many arguments to function call, expected 2, have 3
+           device_get_mac_address(ab->dev, mac_addr, sizeof(ab->mac_addr));
+           ~~~~~~~~~~~~~~~~~~~~~~                    ^~~~~~~~~~~~~~~~~~~~
+   include/linux/etherdevice.h:35:5: note: 'device_get_mac_address' declared here
+   int device_get_mac_address(struct device *dev, char *addr);
+       ^
+   1 error generated.
 
 
-vim +/device_get_mac_address +8999 drivers/net/wireless/ath/ath11k/mac.c
+vim +8999 drivers/net/wireless/ath/ath11k/mac.c
 
   8979	
   8980	int ath11k_mac_register(struct ath11k_base *ab)
