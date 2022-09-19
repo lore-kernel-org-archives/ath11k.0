@@ -4,69 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7254FECAAD3
-	for <ath11k@archiver.kernel.org>; Sat, 17 Sep 2022 14:50:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62F60ECAAD8
+	for <ath11k@archiver.kernel.org>; Mon, 19 Sep 2022 02:03:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jKGnWent6BuRNpXbex1jBmsbf79OlIIMpasL/4wlxvQ=; b=XaLzvoolJoP2JC
-	ZX4YPBlbGcSz0MVudw4S8yJLw/eb/qo/DsfJR2G75zpKWMJApHQFfXGsqPeCCFpCYst5oxp+EDrKg
-	L49yF/xCE/vtRl1hXAYKjQUQSHa/2q+XOJKISj21ZeBtkPm/U7/dBfKppGe/5qgmRmhpc/MZ1ht8I
-	IHSlfadqJzIykAWOfztnNRPc1lSnAkTKOvEZa+hxWQnkMmFr74U4QMR4jPFiQAXAVzfzFbH+wvwYL
-	85KzJfME2GVKaZMXen8zRaovnQcDI3c8vHUiXdeSHKKwNUT4N4JDloqUPE1IqMYv1K2MD+hyClCdZ
-	sgBx40/dDTwxv4uPP2pQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=8eKqi1vwqCoKOiK/DxKbnPDZZlfldV5TR7h/FOmwscU=; b=bFKM8pWpG6XMh3
+	TLkw1Xya4Bx5rDmxIyB/6BRhnLk8OWMo8bJbYYvvcuFK7sk22H5nFi8yUW1JxiO/wAe4ZUeoS8reb
+	nxUrwF+weBKxfQT84rGD24/l7WYmA/W7POlgahRENDfXZ90IoRc1Kv5FAXZj9c+f3TbmRD5q2aQtm
+	d8sXn8MQwjdPW8/NRsvHfhFOTZUbz01zHH8LECDZHOAC5J84Ctpjs43mCHuVnHyyLV9CnemGkjwjh
+	dA/JAeWk/XIkSUftPCTagVVcrhqOzvjWSN2MNcaa7THUmMqfaUMLERem00lp4sxd5Vuw3csgeRkdI
+	6cdCXrJRHyl3APSMevrQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oZZ93-006bZB-7H; Sat, 17 Sep 2022 14:50:13 +0000
-Received: from mga04.intel.com ([192.55.52.120])
+	id 1oa67z-005pTw-PC; Mon, 19 Sep 2022 02:03:19 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oZZ90-006bWM-CN
-	for ath11k@lists.infradead.org; Sat, 17 Sep 2022 14:50:12 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1663426210; x=1694962210;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Cr1wgj8QaEilsSF87VZTrjUdwycUY+q/4Sn13bLXrf4=;
-  b=mQ12rTDNBDmY99UIz+s9D08ZilVoYKC2QczvF1CUfB6GLoo0BIGBdpUY
-   P4usWCK6NaZxLMCO3dasIHQgHh+y3KN4lEym7fKO1GkT0JZNp/v+4AQBz
-   KK9m2ejgFoT0Y1vere//XzZXeP9guXprRovHUCmwJ8PEI/ibZ+ve+RU2f
-   OyAJMVjQ1rLhojLaVeQVWlx7zeor3atXsqcJESH0uXxXfH7fP0k/y9Pwc
-   vNKKGlXcei/02vshpYY6R6uJDjTFJJeEuuTElBSIpasjDrQNjnoHRavtW
-   jJfwX+z5UYn6jmLBDMO9AfQD+Ky5RvP42fqRq8qccimR10G7ANAqLt3sl
-   g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10473"; a="297886621"
-X-IronPort-AV: E=Sophos;i="5.93,323,1654585200"; 
-   d="scan'208";a="297886621"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Sep 2022 07:50:02 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,323,1654585200"; 
-   d="scan'208";a="569144060"
-Received: from lkp-server01.sh.intel.com (HELO c0a60f19fe7e) ([10.239.97.150])
-  by orsmga003.jf.intel.com with ESMTP; 17 Sep 2022 07:50:00 -0700
-Received: from kbuild by c0a60f19fe7e with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1oZZ8p-0000PX-1f;
-	Sat, 17 Sep 2022 14:49:59 +0000
-Date: Sat, 17 Sep 2022 22:49:06 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jun Yu <junyuu@chromium.org>, ath11k@lists.infradead.org
-Cc: llvm@lists.linux.dev, kbuild-all@lists.01.org,
-	linux-wireless@vger.kernel.org, Jun Yu <junyuu@chromium.org>
-Subject: Re: [PATCH] wifi: ath11k: retrieve MAC address from system firmware
- if provided
-Message-ID: <202209172236.KWe4R2Dm-lkp@intel.com>
-References: <20220914215408.372520-1-junyuu@chromium.org>
+	id 1oa67v-005pQX-IK
+	for ath11k@lists.infradead.org; Mon, 19 Sep 2022 02:03:17 +0000
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28J1uId4028346;
+	Mon, 19 Sep 2022 02:03:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=CaSV1EZOMPntyi5fjGh52Kb53RIfTU1x7tOveEP8gn0=;
+ b=D1rT8S6JrgieQdfu5osi5Vy5wbhuXDSIaI7qq+VcK+VH7hLhFH/r4vDXfQ/ma2e7f/3G
+ 5IFPemnbAgEN4UWp/iflg8GqdC9qHhdKSZhel51hA+1chayMcwy50UZQ8Vo2T/ZP4J1A
+ WCVLl47rhXN35BlhQYM2oOqeWVlQH/BQ3kRokipo3U2w8XnSfvdzt2nsoJ17Kwi+gAar
+ 4Gfl5IxskGxpSbfWgwUbGrx4RQAGbwRIViTH48nVKk67aT2FwgHE+iSX/Cmzyd/iV3Ro
+ KVvQhBgd/Drm45r/Gf06NbWP7S45uHP63k7/5MLsyxXnTcc1ByhENK3gA4+bz+PJNeS/ Ag== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jn6qwamer-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 19 Sep 2022 02:03:11 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 28J23AOs004445
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 19 Sep 2022 02:03:10 GMT
+Received: from bqiang-Celadon-RN.qca.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.29; Sun, 18 Sep 2022 19:03:09 -0700
+From: Baochen Qiang <quic_bqiang@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>
+Subject: [PATCH] wifi: ath11k: Remove redundant ath11k_mac_drain_tx
+Date: Mon, 19 Sep 2022 10:02:59 +0800
+Message-ID: <20220919020259.1746-1-quic_bqiang@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20220914215408.372520-1-junyuu@chromium.org>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: VmEVHXN0PR--e05ez2LH7uKmoHmY5XuU
+X-Proofpoint-ORIG-GUID: VmEVHXN0PR--e05ez2LH7uKmoHmY5XuU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-09-19_01,2022-09-16_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 adultscore=0
+ lowpriorityscore=0 priorityscore=1501 impostorscore=0 mlxlogscore=649
+ malwarescore=0 clxscore=1015 mlxscore=0 spamscore=0 bulkscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2209130000 definitions=main-2209190012
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220917_075010_494394_1993D515 
-X-CRM114-Status: GOOD (  13.09  )
+X-CRM114-CacheID: sfid-20220918_190315_896157_F7F35BF9 
+X-CRM114-Status: GOOD (  13.63  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,110 +91,34 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi Jun,
+ath11k_mac_drain_tx is already called in ath11k_mac_wait_tx_complete, no need to call it again. So remove it.
 
-Thank you for the patch! Yet something to improve:
+This is found in code review.
 
-[auto build test ERROR on kvalo-ath/ath-next]
-[also build test ERROR on wireless/main wireless-next/main linus/master v6.0-rc5 next-20220916]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jun-Yu/wifi-ath11k-retrieve-MAC-address-from-system-firmware-if-provided/20220915-055714
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git ath-next
-config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20220917/202209172236.KWe4R2Dm-lkp@intel.com/config)
-compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/7a1539aed9ed31bd3b93c177abda0a2f4fea3945
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Jun-Yu/wifi-ath11k-retrieve-MAC-address-from-system-firmware-if-provided/20220915-055714
-        git checkout 7a1539aed9ed31bd3b93c177abda0a2f4fea3945
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash
+Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/wow.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
+diff --git a/drivers/net/wireless/ath/ath11k/wow.c b/drivers/net/wireless/ath/ath11k/wow.c
+index b3e65cd13d83..4558266fee02 100644
+--- a/drivers/net/wireless/ath/ath11k/wow.c
++++ b/drivers/net/wireless/ath/ath11k/wow.c
+@@ -695,7 +695,6 @@ int ath11k_wow_op_suspend(struct ieee80211_hw *hw,
+ 		goto cleanup;
+ 	}
+ 
+-	ath11k_mac_drain_tx(ar);
+ 	ret = ath11k_mac_wait_tx_complete(ar);
+ 	if (ret) {
+ 		ath11k_warn(ar->ab, "failed to wait tx complete: %d\n", ret);
 
-All errors (new ones prefixed by >>):
-
->> drivers/net/wireless/ath/ath11k/mac.c:8999:44: error: too many arguments to function call, expected 2, have 3
-           device_get_mac_address(ab->dev, mac_addr, sizeof(ab->mac_addr));
-           ~~~~~~~~~~~~~~~~~~~~~~                    ^~~~~~~~~~~~~~~~~~~~
-   include/linux/etherdevice.h:35:5: note: 'device_get_mac_address' declared here
-   int device_get_mac_address(struct device *dev, char *addr);
-       ^
-   1 error generated.
-
-
-vim +8999 drivers/net/wireless/ath/ath11k/mac.c
-
-  8979	
-  8980	int ath11k_mac_register(struct ath11k_base *ab)
-  8981	{
-  8982		struct ath11k *ar;
-  8983		struct ath11k_pdev *pdev;
-  8984		int i;
-  8985		int ret;
-  8986		u8 mac_addr[ETH_ALEN] = {0};
-  8987	
-  8988		if (test_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags))
-  8989			return 0;
-  8990	
-  8991		/* Initialize channel counters frequency value in hertz */
-  8992		ab->cc_freq_hz = IPQ8074_CC_FREQ_HERTZ;
-  8993		ab->free_vdev_map = (1LL << (ab->num_radios * TARGET_NUM_VDEVS(ab))) - 1;
-  8994	
-  8995		ret = ath11k_peer_rhash_tbl_init(ab);
-  8996		if (ret)
-  8997			return ret;
-  8998	
-> 8999		device_get_mac_address(ab->dev, mac_addr, sizeof(ab->mac_addr));
-  9000	
-  9001		for (i = 0; i < ab->num_radios; i++) {
-  9002			pdev = &ab->pdevs[i];
-  9003			ar = pdev->ar;
-  9004			if (ab->pdevs_macaddr_valid) {
-  9005				ether_addr_copy(ar->mac_addr, pdev->mac_addr);
-  9006			} else {
-  9007				if (is_zero_ether_addr(mac_addr))
-  9008					ether_addr_copy(ar->mac_addr, ab->mac_addr);
-  9009				else
-  9010					ether_addr_copy(ar->mac_addr, mac_addr);
-  9011				ar->mac_addr[4] += i;
-  9012			}
-  9013	
-  9014			idr_init(&ar->txmgmt_idr);
-  9015			spin_lock_init(&ar->txmgmt_idr_lock);
-  9016	
-  9017			ret = __ath11k_mac_register(ar);
-  9018			if (ret)
-  9019				goto err_cleanup;
-  9020	
-  9021			init_waitqueue_head(&ar->txmgmt_empty_waitq);
-  9022		}
-  9023	
-  9024		return 0;
-  9025	
-  9026	err_cleanup:
-  9027		for (i = i - 1; i >= 0; i--) {
-  9028			pdev = &ab->pdevs[i];
-  9029			ar = pdev->ar;
-  9030			__ath11k_mac_unregister(ar);
-  9031		}
-  9032	
-  9033		ath11k_peer_rhash_tbl_destroy(ab);
-  9034	
-  9035		return ret;
-  9036	}
-  9037	
-
+base-commit: c6d18be90f9b0c7fb64c6138b51c49151140fb57
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+2.25.1
+
 
 -- 
 ath11k mailing list
