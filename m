@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67A63C6FA8B
-	for <ath11k@archiver.kernel.org>; Thu, 22 Sep 2022 08:31:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA66AC6FA8B
+	for <ath11k@archiver.kernel.org>; Thu, 22 Sep 2022 08:35:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=df+Z1Q6sS9+ksjyUEIf1UKeNm1EittccjvwnTXSlGBo=; b=edupc7tufFJk7W
-	OtFOp6sj4suKDb19fE7/Egc9fFnSQaZuoefjZiXHsOeVIVPIsSCwBEnEUKdgzpdO9p9fVhsFFQXg2
-	OY3BJA7+UNEUIcXesihi52/QsCfY+cYWIFIQsXXDuW9OvFvxPsJ3GMp19cGKir4HMY1LBSatLEYcv
-	AnU46oLIvzwtIvw7TEg06s31C7TuD5vXJX3jdMWg0kWIWYmyecX1TxGtJCwPYryy5FQeL0MuJgZxi
-	kbLJ5NWNtDPGVSbLSeiXASBd3/jQAC1eh/YhOmUt9YI5aiemA8Usc4Wpmf6wsWdyAETVo/U88ax+l
-	tv0uz9Trggq6FdkLd3/Q==;
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
+	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=kl65uDklFA/acHMeZmwotDtb6XCtfLDm/MNBkhDrcgg=; b=MDPSMUdlr1QPJ0
+	CaaBcnl61V+zdK9aNIhA+QPBeTJFR2oOfMGew50nVOhzYm8ndHehR/dngzeahdvcqPtTHROkA1RA6
+	sCu7Smi8Tr5xKtDUTaaaozSorIQSNDWeeb/RL/TwU1OasgxcOis/C+vzrSJbhA5WG6CEPuNfRvCJw
+	hVNYNvxuR4ME12Vpgp716tLVivxl+fuXHNazEIeCgkW+hifBt8wJTYDAfg0A7G7AGagpyYHvccgeD
+	RC0eecvbz5G2mgo1HioMZivKiGvsiZZdc9uPIxZhlQ93C0j6jyn/+hGhs3QYRp7Jmi0TprcJtl7jZ
+	ofgAVcW64fjNfaP7FnKA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1obHcE-00EAfo-Rw; Thu, 22 Sep 2022 08:31:26 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1obHg8-00EBkk-3s; Thu, 22 Sep 2022 08:35:28 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1obHcA-00EAcp-Jx
-	for ath11k@lists.infradead.org; Thu, 22 Sep 2022 08:31:26 +0000
+	id 1obHg4-00EBiX-3V
+	for ath11k@lists.infradead.org; Thu, 22 Sep 2022 08:35:25 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id B75F3B80FC9;
-	Thu, 22 Sep 2022 08:31:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BACEC433D6;
-	Thu, 22 Sep 2022 08:31:18 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 3F66860A67;
+	Thu, 22 Sep 2022 08:35:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98A18C433D7;
+	Thu, 22 Sep 2022 08:35:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1663835479;
-	bh=7f0uijtVO/3PaOi38urNDyGwnXguCdFGSSVcACXtUIA=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=WHDRZTh3tiscB//H3sYNSd7PSqIFQN7zCbJnO4sUDwZ+G6zDmalKwzNA954/KTXTM
-	 XbDXLJjBgbmyqhaOIr5tm8rvFT2HnI//5apg23kw1HAwyLr8b48HSL1QtKB4NUbtGE
-	 7HF6nfH6BLsvWhGDQgF3oIUVc9mfmKv+sN1Vr0URnO84gu15fhM5eJz1IoA1NRQhIa
-	 IKE5gj2afYELUA02lYTUXEd8WIWwnh5htnLOK7F7IlIfbyH2pEe/yhDsr7xMHoKJfG
-	 fTy4nBCy3PENJCDWwhChcePCAthfexKe6FcnRLjhMw4JmQTIV7BGcrk0yInxdsasu0
-	 wWfviqFxLNsDw==
-From: Kalle Valo <kvalo@kernel.org>
-To: Christian 'Ansuel' Marangi <ansuelsmth@gmail.com>
-Cc: ath11k@lists.infradead.org,  linux-wireless@vger.kernel.org
-Subject: Re: [RFC PATCH] ath11k: fix peer addition/deletion error on sta band migration
-References: <20220603164559.27769-1-ansuelsmth@gmail.com>
-Date: Thu, 22 Sep 2022 11:31:14 +0300
-In-Reply-To: <20220603164559.27769-1-ansuelsmth@gmail.com> (Christian
-	Marangi's message of "Fri, 3 Jun 2022 18:45:59 +0200")
-Message-ID: <87pmfn4xpp.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+	s=k20201202; t=1663835722;
+	bh=LzYixJB53o4lrYmnQpu6l9b3KeR5dskhXKC15wJwOW8=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=Myb5Zos/+R8NGrvzoedBHSVKxD+/DYQikKtB9TnWTKCPS61BNW7zSR0Y8kyJWSvkB
+	 vVZ7JZqwgwbAywZ7xgMQulnZK6Yd6xjC7DoZ4Dvel4bLoXES8K6d0HACdumBn4gKye
+	 dbVbQ6uWwwLVrqiNTvFdX5/D2JEMfoSD4mUpckVXD/5hCFiIB9anVgYfMAk3Kp+uyd
+	 ZxRStr6X0N8VBu1FJCGVgh0wHa5W+x/K7cz+zRpUbVXMcsumtZLCbIMmX7dHd9Bm5E
+	 oQ1sDPeujft/clAmVYPIttfrOS5Af5B3l1YcLdlxOazU958puRgSY4UrVNP9UpGXj2
+	 XMMTxNP+op/rA==
 MIME-Version: 1.0
+Subject: Re: [PATCH] ath11k: fix number of VHT beamformee spatial streams
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20220616173947.21901-1-jesus.manzano@galgus.net>
+References: <20220616173947.21901-1-jesus.manzano@galgus.net>
+To: Jesus Fernandez Manzano <jesus.manzano@galgus.net>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ jesus.manzano@galgus.net
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-ID: <166383571956.27663.10307320275505026019.kvalo@kernel.org>
+Date: Thu, 22 Sep 2022 08:35:21 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220922_013123_052823_FC3A8AEA 
-X-CRM114-Status: GOOD (  42.43  )
+X-CRM114-CacheID: sfid-20220922_013524_277763_0C52B31F 
+X-CRM114-Status: GOOD (  12.52  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,95 +72,37 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Christian 'Ansuel' Marangi <ansuelsmth@gmail.com> writes:
+Jesus Fernandez Manzano <jesus.manzano@galgus.net> wrote:
 
-> This patch try to fix the following error.
->
-> Wed Jun  1 22:19:30 2022 kern.warn kernel: [  119.561227] ath11k c000000.wifi: peer already added vdev id 0 req, vdev id 1 present
-> Wed Jun  1 22:19:30 2022 kern.warn kernel: [  119.561282] ath11k c000000.wifi: Failed to add peer: 28:c2:1f:xx:xx:xx for VDEV: 0
-> Wed Jun  1 22:19:30 2022 kern.warn kernel: [  119.568053] ath11k c000000.wifi: Failed to add station: 28:c2:1f:xx:xx:xx for VDEV: 0
-> Wed Jun  1 22:19:31 2022 daemon.notice hostapd: wlan2: STA 28:c2:1f:xx:xx:xx IEEE 802.11: Could not add STA to kernel driver
-> Wed Jun  1 22:19:31 2022 daemon.notice hostapd: wlan2: STA 28:c2:1f:xx:xx:xx IEEE 802.11: did not acknowledge authentication response
-> Wed Jun  1 22:19:31 2022 daemon.notice hostapd: wlan1: AP-STA-DISCONNECTED 28:c2:1f:xx:xx:xx
-> Wed Jun  1 22:19:31 2022 daemon.info hostapd: wlan1: STA 28:c2:1f:xx:xx:xx IEEE 802.11: disassociated due to inactivity
-> Wed Jun  1 22:19:32 2022 daemon.info hostapd: wlan1: STA 28:c2:1f:xx:xx:xx IEEE 802.11: deauthenticated due to inactivity (timer DEAUTH/REMOVE)
->
-> To repro this:
-> - Have 2 Wifi with the same bssid and pass on different band (2.4 and
-> 5GHz)
-> - Enable 802.11r Fast Transaction with same mobility domain
-> - FT Protocol: FT over the Air
->>From a openwrt system issue the command (with the correct mac)
-> ubus call hostapd.wlan1 wnm_disassoc_imminent '{"addr":"28:C2:1F:xx:xx:xx"}'
-> Notice the log printing the errors.
->
-> The cause of this error has been investigated and we found that this is
-> related to the WiFi Fast Transaction feature. We observed that this is
-> triggered when the router tells the device to change band. In this case
-> the device first auth to the other band and then the disconnect path
-> from the prev band is triggered.
-> This is problematic with the current rhash implementation since the
-> addrs is used as key and the logic of "adding first, delete later"
-> conflicts with the rhash logic.
-> In fact peer addition will fail since the peer is already added and with
-> that fixed a peer deletion will cause unitended effect by removing the
-> peer just added.
->
-> Current solution to this is to add additional logic to the peer delete,
-> make sure we are deleting the correct peer taken from the rhash
-> table (and fallback to the peer list) and for the peer add logic delete
-> the peer entry for the rhash list before adding the new one (counting as
-> an error only when a peer with the same vlan_id is asked to be added).
->
-> With this change, a sta can correctly transition from 2.4GHz and 5GHZ
-> with no drop and no error are printed.
->
+> The number of spatial streams used when acting as a beamformee in VHT
+> mode are reported by the firmware as 7 (8 sts - 1) both in IPQ6018 and
+> IPQ8074 which respectively have 2 and 4 sts each. So the firmware should
+> report 1 (2 - 1) and 3 (4 - 1).
+> 
+> Fix this by checking that the number of VHT beamformee sts reported by
+> the firmware is not greater than the number of receiving antennas - 1.
+> The fix is based on the same approach used in this same function for
+> sanitizing the number of sounding dimensions reported by the firmware.
+> 
+> Without this change, acting as a beamformee in VHT mode is not working
+> properly.
+> 
+> Tested-on: IPQ6018 hw1.0 AHB WLAN.HK.2.5.0.1-01208-QCAHKSWPL_SILICONZ-1
 > Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1-01208-QCAHKSWPL_SILICONZ-1
->
-> Fixes: 7b0c70d92a43 ("ath11k: Add peer rhash table support")
-> Signed-off-by: Christian 'Ansuel' Marangi <ansuelsmth@gmail.com>
-> ---
->
-> Some additional comments external to this patch.
-> I tried to find different way to fix this...
-> One of them would be mod the logic of the rhash and using as a key both
-> the vlan_id and the addr but this is problematic for the function
-> where ath11k_peer_find_by_addr is used as vlan_id is not always available.
->
-> I honestly think a correct solution would be have a rhash list per vdev_id
-> or per mac_id but again this is problematic for some function that just handles
-> data and have only the addr as a way to identify the peer.
->
-> So unless some change are done to the firmware to provide the vlan_id in the
-> msdu data this to me seems to be the only solution to correctly handle this case.
->
-> Another solution I tried was to add to the peer some additional info and put
-> the rhash addition in the peer delete logic by passing the "to-be-added peer" to
-> the peer to delete but I notice that it's unreliable since it can happent that
-> the new peer hasn't been mapped at the time the peer delete is called.
->
-> So this is really how to handle the rhash table in this corner case.
-> Considering how peer are handled in theory it should never happen to have
-> dangling peer that are not deleted.
->
-> Hoping this is not too much of an hack and we find a good solution for this
-> problem.
+> 
+> Fixes: d5c65159f289 ("ath11k: driver for Qualcomm IEEE 802.11ax devices")
+> Signed-off-by: Jesus Fernandez Manzano <jesus.manzano@galgus.net>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-First of all, sorry for the delay. I have my usual excuse, too many
-patches :)
+Patch applied to ath-next branch of ath.git, thanks.
 
-I admit that I didn't investigate the patch in detail, but I'm happy to
-take this. It seems to pass my simple regression tests without issues.
-
-Any objections? If I don't hear anything I will apply this in the next
-few days. Full patch here:
-
-https://patchwork.kernel.org/project/linux-wireless/patch/20220603164559.27769-1-ansuelsmth@gmail.com/
+55b5ee3357d7 wifi: ath11k: fix number of VHT beamformee spatial streams
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+https://patchwork.kernel.org/project/linux-wireless/patch/20220616173947.21901-1-jesus.manzano@galgus.net/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
 -- 
 ath11k mailing list
