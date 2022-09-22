@@ -4,73 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F8FBC6FA8E
-	for <ath11k@archiver.kernel.org>; Wed, 21 Sep 2022 10:35:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B56DC6FA82
+	for <ath11k@archiver.kernel.org>; Thu, 22 Sep 2022 07:16:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=8rWer+2QSsZwAHA/uMxJ4cclI9+hhxCcV5e/JPq5ML4=; b=HdqtuaS3BSp3p0
-	eOzoMSkS9WTErSOrbm5FcAB4yyJeWri8o0dH2ogfMc8cvpiYEL3NJNzTWQyMqrtqR3/3Nl8GEvD33
-	vvRmzNs/FwYAA64eXvU9r3mJGGJhgMk/YKh9AhEkaCpQDKJOvk5oIYE52ZlBvfY6rb9wolkOqZw45
-	CAmrK4xGjP47xxFaou2JNLu9QJ/ySJ1Kot+J1t4ha+I6V3P0B2nf2nwoZdbPnM+yJzwrzNc6f86mV
-	+m+AMWERber8p+hVXaikarMr13w0K1jhjaqdKwJ0gTaljeeQXoHerw7Bc0Gwwxk/tecyka7vR3sok
-	s90bVPdYuNFPECp3FLdA==;
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
+	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=H8qLLswiOjQoHIPC1udOdgdqnF7/jM+ZDh6xHw5D1Po=; b=nlpoGary6Mchm7
+	zdX723mT89UVFNtZxckQStWbMMg9BgaSg1zdOCURF8C3w6nBWccZr3BR+trG3TLToIr7OTGe2r78y
+	Gijty5hUz8zSMyunkzUDXkW3eAohRM5U1T1/JSlxnP/w+RupvQmEG5A7VJ1/zY2+xikHbjCND2N2W
+	ApBqDtyIaipqXRRgX/uR0XI2iz1yO2c9WXOd5GCoLiA54IvTOEiIU+FN4N3ITVMWIcWABiPsQwu65
+	MqaHjJwiqRyxRvyfQKNYH5Tah0ElNttV29slM0JaXd71ZL++nu3doW/T7OVRRcM83NCBeSpViKMGw
+	9cgFJ0tKYmVIyeQZuvPQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oax5B-00Aszy-VP; Wed, 21 Sep 2022 10:35:57 +0000
-Received: from mail-ej1-x633.google.com ([2a00:1450:4864:20::633])
+	id 1obGRN-00Dl0R-4x; Thu, 22 Sep 2022 07:16:09 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oax57-00AsxK-0I
-	for ath11k@lists.infradead.org; Wed, 21 Sep 2022 10:35:55 +0000
-Received: by mail-ej1-x633.google.com with SMTP id u9so12639976ejy.5
-        for <ath11k@lists.infradead.org>; Wed, 21 Sep 2022 03:35:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date;
-        bh=vWTx9waxxwXRcamt4ePCJ74t1njaL9ZrGOeuhdI5nro=;
-        b=s3/zWeZf0K6JlcMz68yA4amBwBVAratLAs4TitSGSWrUF7jSEaercPgB435AdKIgST
-         sU8Cc96EMdJuaaW/RujVYHjga3Tr8y/70utRZgnSsbQzEop5DUn23X2gDJCY8SBXHfb1
-         ungajh15QI0Y7prHu+d6033i8RFixVFx3TmgGZsO43LhbV3MPeT96iQxUOjeVIr/3VD7
-         qzFQDhqSNN8OlLHWogZut17ZNQJVSkz70x03KufUaYFQQxgSKZlSvLx9K/HImbSUblo9
-         xajMFezGzHdmBMQlx7t5faxa12Fq5yMrTEJ8Ajo7QGcTvLQQtqcI08BvazMyGk7078ET
-         ZYTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date;
-        bh=vWTx9waxxwXRcamt4ePCJ74t1njaL9ZrGOeuhdI5nro=;
-        b=iOoS82KdXakYk5BBvaayHbcI3oOxoflvOOyWKezkPgboTNAlAfulxS1ohdz3OLbFPv
-         CCu9lBgojqB3JW+RTVgU3hEH10rVp+E+YFyF88sy2QdCVoojQG6wc7n3SLlMMSzzwMFq
-         XM3fjP9LI0nQ8AK2pj+7OtqBK3EF5GEaWar5R9rn1DBg1kh4AqVnoosu9jgJbfTfSD+I
-         Vq3we0bVRaD4mAqep5xvMatij3FCV8wUhLOBL3Y0v+XQvn8y74s0BNBFFwH31OXoYJPw
-         ZxtVqX2USOCzA2EuVvnfqkQhGBRgpdpBaTzka3lDqEBTUPhn8xnJ/l4Y6CDibEXyvzIL
-         RC+g==
-X-Gm-Message-State: ACrzQf2oGSwWiqXfZ8lwv8cq4QxYIjbxCqm37Tpo2ltCmkjftb3ZwHMv
-	wcZoY0MBM3IHQqyap26NCRHciBVESkhrvnLTfUqI6NAnS7MCEA==
-X-Google-Smtp-Source: AMsMyM6GsnvJLODMjJ0WjzFJpNLKJiNkDrnFRW/CCvYMgJEzL+qkZOkteO9eA3X5swG3BfiW9LgeeqdRo/NsYE3W/2w=
-X-Received: by 2002:a17:906:4fce:b0:780:e1d8:eacc with SMTP id
- i14-20020a1709064fce00b00780e1d8eaccmr15423597ejw.366.1663756550698; Wed, 21
- Sep 2022 03:35:50 -0700 (PDT)
+	id 1obGRI-00Dkz8-23
+	for ath11k@lists.infradead.org; Thu, 22 Sep 2022 07:16:08 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 92B1563416;
+	Thu, 22 Sep 2022 07:16:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBD42C433C1;
+	Thu, 22 Sep 2022 07:16:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1663830963;
+	bh=Ug3vdNZrUkehAQu0PPgU5X+QRZMeNzLGuhSE+RMFoqI=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=atBbsP5yZSiGDed0UEwbyYHSK+qTEfxtHlp3+BtfvI1XCMeRsPuo2wVdzQJr5wvIJ
+	 6lemTDN78N2ofHRyJgJ+aw+Y+kGcZLu3BOlOgGypDBBt7CM8xQxe6lukG0WPEvymXu
+	 M4wCMm1uD3nPvb53MSBT6wLHUoxOAQXzd2HEgGbi4hfzujmXvbtiBY7VUAkxrMlZwp
+	 Po5W56bqHp3pT+3tuJ7hxsJKM+AChWjDfrMcau7VjEDyWzVBPvP+DqJVC8nQYfYoHq
+	 pkR1shxy0JFbE5k7QkfYHoSXSl19FRW0GuC5k3fn4CpqaKRepbxAGBvDkXRt8s/6Po
+	 MduKYyHZvB5FA==
 MIME-Version: 1.0
-From: Naresh Kamboju <naresh.kamboju@linaro.org>
-Date: Wed, 21 Sep 2022 16:05:39 +0530
-Message-ID: <CA+G9fYsZ_qypa=jHY_dJ=tqX4515+qrV9n2SWXVDHve826nF7Q@mail.gmail.com>
-Subject: drivers/net/wireless/ath/ath11k/mac.c:2238:29: warning:
- 'ath11k_peer_assoc_h_he_limit' reading 16 bytes from a region of size 0
-To: Netdev <netdev@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, 
-	linux-wireless@vger.kernel.org
-Cc: Kalle Valo <kvalo@kernel.org>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	ath11k@lists.infradead.org, regressions@lists.linux.dev, 
-	lkft-triage@lists.linaro.org
+Subject: Re: [PATCH] wifi: ath11k: change complete() to complete_all() for
+ scan.completed
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20220919024413.25083-1-quic_wgong@quicinc.com>
+References: <20220919024413.25083-1-quic_wgong@quicinc.com>
+To: Wen Gong <quic_wgong@quicinc.com>
+Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+ <quic_wgong@quicinc.com>
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-ID: <166383095879.28267.7782431891959207921.kvalo@kernel.org>
+Date: Thu, 22 Sep 2022 07:16:01 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220921_033553_086332_9C1CF344 
-X-CRM114-Status: UNSURE (   3.87  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220922_001604_170309_10035F9D 
+X-CRM114-Status: GOOD (  10.45  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,107 +73,31 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Following build warnings noticed while building arm64 on Linux next-20220921
+Wen Gong <quic_wgong@quicinc.com> wrote:
 
-Reported-by: Linux Kernel Functional Testing <lkft@linaro.org>
+> Currently commit 1f682dc9fb37 ("ath11k: reduce the wait time of 11d scan
+> and hw scan while add interface") introduced a wait_for_completion_timeout
+> operation for ar->scan.completed, another one is existed in ath11k_scan_stop(),
+> then ath11k has two places to wait for the ar->scan.completed and they
+> run in different thread, thus it is possible to happend that the two
+> thread both enter wait status. To handle this scenario, ath11k should
+> change the complete() to complete_all() for the ar->scan.completed. This
+> also work well when it is only one thread wait for ar->scan.completed.
+> 
+> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
+> 
+> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-In function 'ath11k_peer_assoc_h_he',
-    inlined from 'ath11k_peer_assoc_prepare' at
-drivers/net/wireless/ath/ath11k/mac.c:2662:2:
-drivers/net/wireless/ath/ath11k/mac.c:2238:29: warning:
-'ath11k_peer_assoc_h_he_limit' reading 16 bytes from a region of size
-0 [-Wstringop-overread]
- 2238 |                         v = ath11k_peer_assoc_h_he_limit(v,
-he_mcs_mask);
-      |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-drivers/net/wireless/ath/ath11k/mac.c: In function 'ath11k_peer_assoc_prepare':
-drivers/net/wireless/ath/ath11k/mac.c:2238:29: note: referencing
-argument 2 of type 'const u16 *' {aka 'const short unsigned int *'}
-drivers/net/wireless/ath/ath11k/mac.c:2019:12: note: in a call to
-function 'ath11k_peer_assoc_h_he_limit'
- 2019 | static u16 ath11k_peer_assoc_h_he_limit(u16 tx_mcs_set,
-      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-In function 'ath11k_peer_assoc_h_he',
-    inlined from 'ath11k_peer_assoc_prepare' at
-drivers/net/wireless/ath/ath11k/mac.c:2662:2:
-drivers/net/wireless/ath/ath11k/mac.c:2251:21: warning:
-'ath11k_peer_assoc_h_he_limit' reading 16 bytes from a region of size
-0 [-Wstringop-overread]
- 2251 |                 v = ath11k_peer_assoc_h_he_limit(v, he_mcs_mask);
-      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-drivers/net/wireless/ath/ath11k/mac.c: In function 'ath11k_peer_assoc_prepare':
-drivers/net/wireless/ath/ath11k/mac.c:2251:21: note: referencing
-argument 2 of type 'const u16 *' {aka 'const short unsigned int *'}
-drivers/net/wireless/ath/ath11k/mac.c:2019:12: note: in a call to
-function 'ath11k_peer_assoc_h_he_limit'
- 2019 | static u16 ath11k_peer_assoc_h_he_limit(u16 tx_mcs_set,
-      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-In function 'ath11k_peer_assoc_h_he',
-    inlined from 'ath11k_peer_assoc_prepare' at
-drivers/net/wireless/ath/ath11k/mac.c:2662:2:
-drivers/net/wireless/ath/ath11k/mac.c:2264:21: warning:
-'ath11k_peer_assoc_h_he_limit' reading 16 bytes from a region of size
-0 [-Wstringop-overread]
- 2264 |                 v = ath11k_peer_assoc_h_he_limit(v, he_mcs_mask);
-      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-drivers/net/wireless/ath/ath11k/mac.c: In function 'ath11k_peer_assoc_prepare':
-drivers/net/wireless/ath/ath11k/mac.c:2264:21: note: referencing
-argument 2 of type 'const u16 *' {aka 'const short unsigned int *'}
-drivers/net/wireless/ath/ath11k/mac.c:2019:12: note: in a call to
-function 'ath11k_peer_assoc_h_he_limit'
- 2019 | static u16 ath11k_peer_assoc_h_he_limit(u16 tx_mcs_set,
-      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-In function 'ath11k_peer_assoc_h_he',
-    inlined from 'ath11k_peer_assoc_prepare' at
-drivers/net/wireless/ath/ath11k/mac.c:2662:2:
-drivers/net/wireless/ath/ath11k/mac.c:2264:21: warning:
-'ath11k_peer_assoc_h_he_limit' reading 16 bytes from a region of size
-0 [-Wstringop-overread]
- 2264 |                 v = ath11k_peer_assoc_h_he_limit(v, he_mcs_mask);
-      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-drivers/net/wireless/ath/ath11k/mac.c: In function 'ath11k_peer_assoc_prepare':
-drivers/net/wireless/ath/ath11k/mac.c:2264:21: note: referencing
-argument 2 of type 'const u16 *' {aka 'const short unsigned int *'}
-drivers/net/wireless/ath/ath11k/mac.c:2019:12: note: in a call to
-function 'ath11k_peer_assoc_h_he_limit'
- 2019 | static u16 ath11k_peer_assoc_h_he_limit(u16 tx_mcs_set,
-      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-In function 'ath11k_peer_assoc_h_he',
-    inlined from 'ath11k_peer_assoc_prepare' at
-drivers/net/wireless/ath/ath11k/mac.c:2662:2:
-drivers/net/wireless/ath/ath11k/mac.c:2264:21: warning:
-'ath11k_peer_assoc_h_he_limit' reading 16 bytes from a region of size
-0 [-Wstringop-overread]
- 2264 |                 v = ath11k_peer_assoc_h_he_limit(v, he_mcs_mask);
-      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-drivers/net/wireless/ath/ath11k/mac.c: In function 'ath11k_peer_assoc_prepare':
-drivers/net/wireless/ath/ath11k/mac.c:2264:21: note: referencing
-argument 2 of type 'const u16 *' {aka 'const short unsigned int *'}
-drivers/net/wireless/ath/ath11k/mac.c:2019:12: note: in a call to
-function 'ath11k_peer_assoc_h_he_limit'
- 2019 | static u16 ath11k_peer_assoc_h_he_limit(u16 tx_mcs_set,
-      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-In function 'ath11k_peer_assoc_h_he',
-    inlined from 'ath11k_peer_assoc_prepare' at
-drivers/net/wireless/ath/ath11k/mac.c:2662:2:
-drivers/net/wireless/ath/ath11k/mac.c:2251:21: warning:
-'ath11k_peer_assoc_h_he_limit' reading 16 bytes from a region of size
-0 [-Wstringop-overread]
- 2251 |                 v = ath11k_peer_assoc_h_he_limit(v, he_mcs_mask);
-      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-drivers/net/wireless/ath/ath11k/mac.c: In function 'ath11k_peer_assoc_prepare':
-drivers/net/wireless/ath/ath11k/mac.c:2251:21: note: referencing
-argument 2 of type 'const u16 *' {aka 'const short unsigned int *'}
-drivers/net/wireless/ath/ath11k/mac.c:2019:12: note: in a call to
-function 'ath11k_peer_assoc_h_he_limit'
- 2019 | static u16 ath11k_peer_assoc_h_he_limit(u16 tx_mcs_set,
-      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Patch applied to ath-next branch of ath.git, thanks.
 
-Build log: https://builds.tuxbuild.com/2F4W7nZHNx3T88RB0gaCZ9hBX6c/
+7855a6ed5cf7 wifi: ath11k: change complete() to complete_all() for scan.completed
 
---
-Linaro LKFT
-https://lkft.linaro.org
+-- 
+https://patchwork.kernel.org/project/linux-wireless/patch/20220919024413.25083-1-quic_wgong@quicinc.com/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
 -- 
 ath11k mailing list
