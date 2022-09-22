@@ -4,59 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3356C6FA82
-	for <ath11k@archiver.kernel.org>; Thu, 22 Sep 2022 07:17:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D229C6FA8B
+	for <ath11k@archiver.kernel.org>; Thu, 22 Sep 2022 07:18:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
 	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=pST3/to1ZE2JMqk19vt4dHU3ZQCvc/gU/RTKo5sUlQU=; b=O63QVIu2DGaCnM
-	XtUY9+JGKjMS6d1GWzLGabPKbaLRltqOlbY1gaHSzQUZ/VAV2vEUxsVA4lGc9012tvDivyeafRF2E
-	EpxiGOPF/hDa8FDTMta4C9BkTKLg1Rzy22svHFoQexscYkTxT5BhN6xrMERkShUVZquX7xOJ91ekx
-	EHk2ecRVajlaGmOj4diTRMYSLqD28TfkSV/BdvAXaGlwWuuX9TMFekkMBSo3N+lBpm0IkbjgxkAAE
-	1SGInpNBygdYRsKnq8KRmoLHC1G0yJLzs62sWDegAt9Po8lh1HMStlynJFHxE5Jlm3lI9zBFfx947
-	1y59jS/cCGDs6a1bigxQ==;
+	List-Owner; bh=Ami8+8sNnSsRa0noLO/B3v1aiParM/JjPspbFClkWc0=; b=RCkbKXkvw4OJEO
+	pEaujS/fas6VwRS8kGjv4OUJj2M4rHhskHbtQNK4HdDKTZFew7KmCTl5E/0+lZr2Fxu7Atsb4BjEu
+	nVo0pjBaSkmUhA+/0fAj+WPtXzUI94a72prn53g6oUmS3jAyaOCaNgi9YgZcuE+J2wPUfsEwZtXYw
+	nVsN2M860Rw99pwTcRVBr5qg7GTh8Z4O6y7R1NWj4bZ2zE7zeLxhqO8ecfYq/1X0462dXx/O4/ArY
+	GHR9l4HDs5KHg1dER6s9otWLw98Kz9vwqVVYoKuPEhA43yk1d2h/mNRoXrI+6WhT9zUXGLVBYNWIc
+	UylGV1h/DyH77OMnDrQg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1obGSZ-00DlIi-6a; Thu, 22 Sep 2022 07:17:23 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1obGTT-00Dld6-Ha; Thu, 22 Sep 2022 07:18:19 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1obGSV-00DlHZ-N0
-	for ath11k@lists.infradead.org; Thu, 22 Sep 2022 07:17:21 +0000
+	id 1obGTQ-00Dlbr-Oc
+	for ath11k@lists.infradead.org; Thu, 22 Sep 2022 07:18:18 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 3DD7E611CA;
-	Thu, 22 Sep 2022 07:17:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FE0EC433D6;
-	Thu, 22 Sep 2022 07:17:17 +0000 (UTC)
+	by ams.source.kernel.org (Postfix) with ESMTPS id 299F8B834D4;
+	Thu, 22 Sep 2022 07:18:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE8C9C433D6;
+	Thu, 22 Sep 2022 07:18:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1663831038;
-	bh=WXtjnEctzlvuPXuFfWJU9gEpP/ZyGhdkPSGqbo3lzv4=;
+	s=k20201202; t=1663831093;
+	bh=LczCGyYUtgLHBheWTd2v0OQvFzS3TqRlUwYWCvFwhis=;
 	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=j6XUTxk4aoMWWfp1pybJxkixUKF7kn/3PWehfRbbKU7Z7/DMrSnKOq8oXbYZ8XIrl
-	 RfcRsRKG6tyVuCHdxjx6nqmMcq03yHqYT0XlKmwsAEqttUXYH13FpFuq2jsw2RGE+O
-	 TFlOlo0zs9hCDgcPJFcGYB5cPl1JnXejP2QtPcL9YSlXlGQQSLF48zIjJYnu23pai0
-	 JqYGkBXxU4m/Tx4FsLeqohjQluTpvqZJ+qycoUxxXYffvqC8LPyDGKggrvfPCMInPA
-	 yuQtlr3VNnfCr5BvkmHL7WSgrpTgC39i2L9nqi4DXX8V34gF72EXGPDsLY+6MIyDMV
-	 toRWI22zpX5Wg==
+	b=b9IHPC/jDIKu3a1VDbmH1Jxz6eh4p4pHjK/jd8XFyvGl7wdMcUnF1cCiQpY44EIT9
+	 H34rNIzr8H1b9xj/N3rj9zEd4NWtd51CGBd3/LqxbfKCpHtttKSV6brPiVpiiEoJc0
+	 q5luePp66qRDtBvujzZvfLQJKNho2bNbwReYV+/6PVjd+5Mgr1i4OXGcXHFsEQU8ch
+	 dMsD0uObbyZYwHmVTWIHAF8clhTVcPt2Cu1nby4TgwB57e+l1ytYTxkA1e0tGx6ZrR
+	 70QZH9Wx52pz3BUeTzM0R3SwI+pH9NQmdocRNcNKVn3frV7x4bIz/IuN43LsF/brSA
+	 b0YZHkV19TrTw==
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: fix failed to find the peer with peer_id 0 when
- disconnected
+Subject: Re: [PATCH v2] ath10k: reset pointer after memory free to avoid
+ potential
+ use-after-free
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20220518033556.31940-1-quic_wgong@quicinc.com>
-References: <20220518033556.31940-1-quic_wgong@quicinc.com>
+In-Reply-To: <20220505092248.787-1-quic_wgong@quicinc.com>
+References: <20220505092248.787-1-quic_wgong@quicinc.com>
 To: Wen Gong <quic_wgong@quicinc.com>
 Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
  <quic_wgong@quicinc.com>
 User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <166383103548.28267.4430757885517832029.kvalo@kernel.org>
-Date: Thu, 22 Sep 2022 07:17:17 +0000 (UTC)
+Message-ID: <166383109059.28267.2524811686657433761.kvalo@kernel.org>
+Date: Thu, 22 Sep 2022 07:18:12 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220922_001719_865714_02076501 
-X-CRM114-Status: GOOD (  18.46  )
+X-CRM114-CacheID: sfid-20220922_001816_975797_0654BBF8 
+X-CRM114-Status: GOOD (  11.01  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,78 +76,26 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 Wen Gong <quic_wgong@quicinc.com> wrote:
 
-> It has a fail log which is ath11k_dbg in ath11k_dp_rx_process_mon_status(),
-> as below, it will not print when debug_mask is not set ATH11K_DBG_DATA.
->         ath11k_dbg(ab, ATH11K_DBG_DATA,
->                   "failed to find the peer with peer_id %d\n",
->                    ppdu_info.peer_id);
+> When running suspend test, kernel crash happened in ath10k, and it is
+> fixed by commit b72a4aff947b ("ath10k: skip ath10k_halt during suspend
+> for driver state RESTARTING").
 > 
-> When run scan with station disconnected, the peer_id is 0 for case
-> HAL_RX_MPDU_START in ath11k_hal_rx_parse_mon_status_tlv() which called
-> from ath11k_dp_rx_process_mon_status(), and the peer_id of ppdu_info is
-> reset to 0 in the while loop, so it does not match condition of the
-> check "if (ppdu_info->peer_id == HAL_INVALID_PEERID" in the loop, and
-> then the log "failed to find the peer with peer_id 0" print after the
-> check in the loop, it is below call stack when debug_mask is set
-> ATH11K_DBG_DATA.
+> Currently the crash is fixed, but as a common code style, it is better
+> to set the pointer to NULL after memory is free.
 > 
-> The reason is this commit 01d2f285e3e5 ("ath11k: decode HE status tlv")
-> add "memset(ppdu_info, 0, sizeof(struct hal_rx_mon_ppdu_info))" in
-> ath11k_dp_rx_process_mon_status(), but the commit does not initialize
-> the peer_id to HAL_INVALID_PEERID, then lead the check mis-match.
+> This is to address the code style and it will avoid potential bug of
+> use-after-free.
 > 
-> Callstack of the failed log:
-> [12335.689072] RIP: 0010:ath11k_dp_rx_process_mon_status+0x9ea/0x1020 [ath11k]
-> [12335.689157] Code: 89 ff e8 f9 10 00 00 be 01 00 00 00 4c 89 f7 e8 dc 4b 4e de 48 8b 85 38 ff ff ff c7 80 e4 07 00 00 01 00 00 00 e9 20 f8 ff ff <0f> 0b 41 0f b7 96 be 06 00 00 48 c7 c6 b8 50 44 c1 4c 89 ff e8 fd
-> [12335.689180] RSP: 0018:ffffb874001a4ca0 EFLAGS: 00010246
-> [12335.689210] RAX: 0000000000000000 RBX: ffff995642cbd100 RCX: 0000000000000000
-> [12335.689229] RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffff99564212cd18
-> [12335.689248] RBP: ffffb874001a4dc0 R08: 0000000000000001 R09: 0000000000000000
-> [12335.689268] R10: 0000000000000220 R11: ffffb874001a48e8 R12: ffff995642473d40
-> [12335.689286] R13: ffff99564212c5b8 R14: ffff9956424736a0 R15: ffff995642120000
-> [12335.689303] FS:  0000000000000000(0000) GS:ffff995739000000(0000) knlGS:0000000000000000
-> [12335.689323] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> [12335.689341] CR2: 00007f43c5d5e039 CR3: 000000011c012005 CR4: 00000000000606e0
-> [12335.689360] Call Trace:
-> [12335.689377]  <IRQ>
-> [12335.689418]  ? rcu_read_lock_held_common+0x12/0x50
-> [12335.689447]  ? rcu_read_lock_sched_held+0x25/0x80
-> [12335.689471]  ? rcu_read_lock_held_common+0x12/0x50
-> [12335.689504]  ath11k_dp_rx_process_mon_rings+0x8d/0x4f0 [ath11k]
-> [12335.689578]  ? ath11k_dp_rx_process_mon_rings+0x8d/0x4f0 [ath11k]
-> [12335.689653]  ? lock_acquire+0xef/0x360
-> [12335.689681]  ? rcu_read_lock_sched_held+0x25/0x80
-> [12335.689713]  ath11k_dp_service_mon_ring+0x38/0x60 [ath11k]
-> [12335.689784]  ? ath11k_dp_rx_process_mon_rings+0x4f0/0x4f0 [ath11k]
-> [12335.689860]  call_timer_fn+0xb2/0x2f0
-> [12335.689897]  ? ath11k_dp_rx_process_mon_rings+0x4f0/0x4f0 [ath11k]
-> [12335.689970]  run_timer_softirq+0x21f/0x540
-> [12335.689999]  ? ktime_get+0xad/0x160
-> [12335.690025]  ? lapic_next_deadline+0x2c/0x40
-> [12335.690053]  ? clockevents_program_event+0x82/0x100
-> [12335.690093]  __do_softirq+0x151/0x4a8
-> [12335.690135]  irq_exit_rcu+0xc9/0x100
-> [12335.690165]  sysvec_apic_timer_interrupt+0xa8/0xd0
-> [12335.690189]  </IRQ>
-> [12335.690204]  <TASK>
-> [12335.690225]  asm_sysvec_apic_timer_interrupt+0x12/0x20
-> 
-> Reset the default value to HAL_INVALID_PEERID each time after memset
-> of ppdu_info as well as others memset which existed in function
-> ath11k_dp_rx_process_mon_status(), then the failed log disappeared.
-> 
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
-> 
-> Fixes: 01d2f285e3e5 ("ath11k: decode HE status tlv")
+> Tested-on: QCA6174 hw3.2 PCI WLAN.RM.4.4.1-00110-QCARMSWP-1
 > Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
 > Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
 Patch applied to ath-next branch of ath.git, thanks.
 
-a20ed60bb357 wifi: ath11k: fix failed to find the peer with peer_id 0 when disconnected
+1e1cb8e0b73e wifi: ath10k: reset pointer after memory free to avoid potential use-after-free
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20220518033556.31940-1-quic_wgong@quicinc.com/
+https://patchwork.kernel.org/project/linux-wireless/patch/20220505092248.787-1-quic_wgong@quicinc.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
