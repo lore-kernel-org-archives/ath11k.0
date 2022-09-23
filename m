@@ -4,84 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B06CFC6FA8B
-	for <ath11k@archiver.kernel.org>; Fri, 23 Sep 2022 03:48:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E5BEC07E9D
+	for <ath11k@archiver.kernel.org>; Fri, 23 Sep 2022 17:03:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=65m/EWXnWyOEcQBk2+7YS9JsYatPMUkEbJby626WYXM=; b=W4k5CPIgD+89JL
-	ikTGf+/EimxlYFN4+H20ZHt1/NX64ZMUEoKLo64icepwYZVFLyifxHdUTWrn5DXtR44D1mzw7z/3n
-	w8n00am0eYcE0Adrf2tQrZiGz2lbkfRvPsx2LQVB+E6W3PQqW4rL6qgRFKB+riItSvkWvrj/Kot+0
-	O54aGONMHGut0c+sxryQCfQLvbiKAL+ZGSdyTRBnbB7nN0B+dCceBz9W/mOmMIAFWuWjRdC/3jeOM
-	84yDjCOrnJ2K1aJdx5hP5gOvBPVyEIuGx3saJWX0Lygx1ndcLywHGjYhJvpEs8y6cya7dZOaXBRjg
-	KpUDPsZz+6LyXBs5HD2w==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=5ywRYLY2V06lg8ux7ctMp1SBkisZF/Yno9sWgidGkR0=; b=rZjGx/YXZG7X+F
+	sON9HhaAzllZtvr0Ay+aWZVOx3VFcnIvz4szTNFEipU8nHo0gOZ4z2/f3FknddvVP/YyMgJ1jfHx4
+	8mRDOrTgMhMvs2YUlCmF/Vg+bRMkAgkq6apGDGR+zPA1fGrS89bm1vsmIOfcm1gZcsVsd0WNXIcrw
+	5Oc76c/TBwEKcJP6H1NhYIJ+Owlk3BfmCjHWoONWncK0K5A+qfLTe+DWcTjn60ni3SI9vw77zIHYc
+	dGptjh8fcy/QBg4E8cpYUTsIIoQNkegZhsoxEjd1PKfbc0aBlZbrW8YJPGeylHyRnKSV+Jb2vurNE
+	LUfXjaK2DAR57yK3Y2GA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1obZg5-001ou9-DC; Fri, 23 Sep 2022 03:48:37 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1obm4q-0052hi-1J; Fri, 23 Sep 2022 17:03:00 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1obYYn-001a8J-Na
-	for ath11k@lists.infradead.org; Fri, 23 Sep 2022 02:37:04 +0000
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28N1oqwe029985;
-	Fri, 23 Sep 2022 02:36:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=miMAe3rC2PYLPdw5GZAzlGYiscSKTdhuRQwxsQjpBzI=;
- b=FBMGyQjT2rd6KbqhLaDR2x/TpkJiOx0FSbFzl8PBRQx+MLsDQiMwR/MtsxLeSAUuDMEl
- KdDEXsvoAI3uKo8pMuL/y4hCxTCpPTYnGmwg+p/L7TpzXn9UJoXbbxMFgs86JnTkyote
- XCjA4BE6OeSYP0mMlAeqlXoDsFS2lklyrHb2QqusYw38qK8XdD7r7yXbJRlGXy5VFNX8
- uVYoPj+jbV8xbGDr7XzoyxesfOrF/KVQJVDdN0HWYlSN+NVYnOR5txUYaspuvrczBoH9
- K8+5tlnQolRU3EsNDLB7p3dJXth9yJSxct7VPM4blZjBjBFq7haNP/czEMcnBafDNjax dg== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jrutp97y5-1
+	id 1obm4m-0052h4-MV
+	for ath11k@lists.infradead.org; Fri, 23 Sep 2022 17:02:58 +0000
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28NGBTAZ029695;
+	Fri, 23 Sep 2022 17:02:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=s/JEjG7pAiSMB9sBc/hxgQqBlK3p9bTRyU2+Lj+BgGI=;
+ b=fi04GkShYElKiBAYJ5lb4Jwb2JE3S1/igSl6nIY4LqEVqJ6tW3cq09C3l7p+0gv+Nsv2
+ m5Q/IVk7iCiexrmtNQmyDpp7FIBnf2Z4P0ufSroA6zYd9kLvaMRyqFvhUamC16ZFnh7G
+ 4HgOX1nyY2JYt//t4xzJMszne0VQI58LpPWby6/YJwyZSVn3mKJM3oyx4MFZXlJJQXev
+ +igMdjimlhvTsTO7/DgN0XYTR+ZxRDe2V1RzgKLO2Qrvney+g0Ewq4oRKA6wOtbihi2m
+ ZwPUvaky9okSNrOIAsBwyl1mMxEyN4tzw4hTLSTdcESv6CGKPwszQ/IRCsKubuI157Kc fA== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3js9vusgvd-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 23 Sep 2022 02:36:50 +0000
+	Fri, 23 Sep 2022 17:02:53 +0000
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 28N2anxD023379
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 28NH2qmg010911
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 23 Sep 2022 02:36:49 GMT
-Received: from [10.231.195.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Thu, 22 Sep
- 2022 19:36:48 -0700
-Message-ID: <23f64039-6f6a-7912-8e92-b45c86b4875b@quicinc.com>
-Date: Fri, 23 Sep 2022 10:36:45 +0800
+	Fri, 23 Sep 2022 17:02:52 GMT
+Received: from adisi-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.29; Fri, 23 Sep 2022 10:02:50 -0700
+From: Aditya Kumar Singh <quic_adisi@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>,
+        Aditya Kumar Singh
+	<quic_adisi@quicinc.com>
+Subject: [PATCH] wifi: ath11k: stop tx queues immediately upon firmware exit
+Date: Fri, 23 Sep 2022 22:32:35 +0530
+Message-ID: <20220923170235.18873-1-quic_adisi@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH] wifi: ath11k: reduce the timeout value back for hw scan
- from 10 seconds to 1 second
-Content-Language: en-US
-To: Kalle Valo <kvalo@kernel.org>
-CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
-References: <20220919024121.24820-1-quic_wgong@quicinc.com>
- <166383445202.9473.8707216192194973891.kvalo@kernel.org>
-From: Wen Gong <quic_wgong@quicinc.com>
-In-Reply-To: <166383445202.9473.8707216192194973891.kvalo@kernel.org>
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: fF6e17EMG7frIDK5PNXLcuc-hGnyQTzz
-X-Proofpoint-ORIG-GUID: fF6e17EMG7frIDK5PNXLcuc-hGnyQTzz
+X-Proofpoint-ORIG-GUID: E7V415q33AT__ERYzlPofA_BxPYNB2RU
+X-Proofpoint-GUID: E7V415q33AT__ERYzlPofA_BxPYNB2RU
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-23_01,2022-09-22_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxlogscore=579
- lowpriorityscore=0 phishscore=0 spamscore=0 adultscore=0 mlxscore=0
- impostorscore=0 priorityscore=1501 suspectscore=0 bulkscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2209230013
+ definitions=2022-09-23_06,2022-09-22_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1011
+ suspectscore=0 bulkscore=0 spamscore=0 adultscore=0 mlxlogscore=887
+ impostorscore=0 mlxscore=0 lowpriorityscore=0 priorityscore=1501
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2209130000 definitions=main-2209230110
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220922_193701_832506_0C2E939B 
-X-CRM114-Status: UNSURE (   9.87  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220923_100256_924037_164A5F8B 
+X-CRM114-Status: GOOD (  17.22  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,28 +87,92 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 9/22/2022 4:14 PM, Kalle Valo wrote:
-> Wen Gong <quic_wgong@quicinc.com> wrote:
->
-...
-> With this patch I started seeing new errors:
->
-> [ 1194.815104] ath11k_pci 0000:06:00.0: failed to start hw scan: -110
-> [ 1196.864157] ath11k_pci 0000:06:00.0: failed to start hw scan: -110
-> [ 1198.911926] ath11k_pci 0000:06:00.0: failed to start hw scan: -110
->
-> This seems to happen after my suspend tests, but didn't have time to
-> investigate further.
+Currently, recovery flag is set immediately upon firmware
+exit but tx queues are stopped once firmware arrives back
+and is ready which is during ath11k_core_restart. Once
+ieee80211 hw restart is completed, tx queues are resumed.
+If during the time delta between firmware exit and firmware
+ready, mac80211 send packets, currently ath11k will drop it
+since recovery flag will be set. But warning prints will
+come -
+  "ath11k c000000.wifi: failed to transmit frame -108"
 
-Thanks Kalle.
+If more tx packets are there, this could lead to flooding
+of above print.
 
-I guess it is caused by 11d scan is running at that moment, I will 
-provide v2 for it to avoid the "failed to start hw scan: -110".
+However, actually tx queues should be stopped immediately
+when firmware leaves. This will prevent packets to get
+dropped when firmware is recovering.
+
+Add fix to stop tx queues immediately after firmware exit.
+
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
+
+Signed-off-by: Aditya Kumar Singh <quic_adisi@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/core.c | 5 +----
+ drivers/net/wireless/ath/ath11k/core.h | 1 +
+ drivers/net/wireless/ath/ath11k/qmi.c  | 3 +++
+ 3 files changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 9894f908cc35..a50b748473cb 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -1634,7 +1634,7 @@ static void ath11k_update_11d(struct work_struct *work)
+ 	}
+ }
+ 
+-static void ath11k_core_pre_reconfigure_recovery(struct ath11k_base *ab)
++void ath11k_core_pre_reconfigure_recovery(struct ath11k_base *ab)
+ {
+ 	struct ath11k *ar;
+ 	struct ath11k_pdev *pdev;
+@@ -1723,9 +1723,6 @@ static void ath11k_core_restart(struct work_struct *work)
+ 	struct ath11k_base *ab = container_of(work, struct ath11k_base, restart_work);
+ 	int ret;
+ 
+-	if (!ab->is_reset)
+-		ath11k_core_pre_reconfigure_recovery(ab);
+-
+ 	ret = ath11k_core_reconfigure_on_crash(ab);
+ 	if (ret) {
+ 		ath11k_err(ab, "failed to reconfigure driver on crash recovery\n");
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index b6246a2f2496..6c950608bb44 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -1146,6 +1146,7 @@ int ath11k_core_check_smbios(struct ath11k_base *ab);
+ void ath11k_core_halt(struct ath11k *ar);
+ int ath11k_core_resume(struct ath11k_base *ab);
+ int ath11k_core_suspend(struct ath11k_base *ab);
++void ath11k_core_pre_reconfigure_recovery(struct ath11k_base *ab);
+ 
+ const struct firmware *ath11k_core_firmware_request(struct ath11k_base *ab,
+ 						    const char *filename);
+diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
+index 51de2208b789..775dfb5eb1a7 100644
+--- a/drivers/net/wireless/ath/ath11k/qmi.c
++++ b/drivers/net/wireless/ath/ath11k/qmi.c
+@@ -3158,6 +3158,9 @@ static void ath11k_qmi_driver_event_work(struct work_struct *work)
+ 		case ATH11K_QMI_EVENT_SERVER_EXIT:
+ 			set_bit(ATH11K_FLAG_CRASH_FLUSH, &ab->dev_flags);
+ 			set_bit(ATH11K_FLAG_RECOVERY, &ab->dev_flags);
++
++			if (!ab->is_reset)
++				ath11k_core_pre_reconfigure_recovery(ab);
+ 			break;
+ 		case ATH11K_QMI_EVENT_REQUEST_MEM:
+ 			ret = ath11k_qmi_event_mem_request(qmi);
+
+base-commit: 67552c0328709b82bbfc4b52f1e83354c2d21561
+-- 
+2.17.1
 
 
 -- 
