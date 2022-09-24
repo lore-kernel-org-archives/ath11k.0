@@ -4,78 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E5BEC07E9D
-	for <ath11k@archiver.kernel.org>; Fri, 23 Sep 2022 17:03:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AD86C07E9D
+	for <ath11k@archiver.kernel.org>; Sat, 24 Sep 2022 13:42:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=5ywRYLY2V06lg8ux7ctMp1SBkisZF/Yno9sWgidGkR0=; b=rZjGx/YXZG7X+F
-	sON9HhaAzllZtvr0Ay+aWZVOx3VFcnIvz4szTNFEipU8nHo0gOZ4z2/f3FknddvVP/YyMgJ1jfHx4
-	8mRDOrTgMhMvs2YUlCmF/Vg+bRMkAgkq6apGDGR+zPA1fGrS89bm1vsmIOfcm1gZcsVsd0WNXIcrw
-	5Oc76c/TBwEKcJP6H1NhYIJ+Owlk3BfmCjHWoONWncK0K5A+qfLTe+DWcTjn60ni3SI9vw77zIHYc
-	dGptjh8fcy/QBg4E8cpYUTsIIoQNkegZhsoxEjd1PKfbc0aBlZbrW8YJPGeylHyRnKSV+Jb2vurNE
-	LUfXjaK2DAR57yK3Y2GA==;
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
+	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Yu4pzU/iSt5Se4os8hxIs2TeQtCiAe918k+toRSd9u8=; b=F4cscKg7+iKp3s
+	FVXktkcrJJd06J9eh/OVHVYyEvhTp0XlWvcvHXRGkhcUu+tjlzaxChNBG+lx81DPSufFq0dLsr6Yp
+	I43t5/aIiZ2TDD/pyNDnzIpH+k3KNvWanTR+q7o4t4KI4t63P93XOshthjHMcUE44yJ7Z2rzqZLh4
+	OGlB1Zvk4YBRo65XK24nlSV86M5MjH8kAPeDOxFoi+iBh8s5wi8/QkfDZKESSMn1M/APSoyoMEh7T
+	J6qMItk/TwHKikwBm4aXxeDNG0tf3/5zpzWKUDhOrf5PAr7PD8s8UaxQVrkRtp/MQ1yxLjYRVOgZm
+	bkbDDkuTFf/eifbeq3ag==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1obm4q-0052hi-1J; Fri, 23 Sep 2022 17:03:00 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1oc5Qd-007I9U-Dn; Sat, 24 Sep 2022 13:42:47 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1obm4m-0052h4-MV
-	for ath11k@lists.infradead.org; Fri, 23 Sep 2022 17:02:58 +0000
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28NGBTAZ029695;
-	Fri, 23 Sep 2022 17:02:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-type; s=qcppdkim1;
- bh=s/JEjG7pAiSMB9sBc/hxgQqBlK3p9bTRyU2+Lj+BgGI=;
- b=fi04GkShYElKiBAYJ5lb4Jwb2JE3S1/igSl6nIY4LqEVqJ6tW3cq09C3l7p+0gv+Nsv2
- m5Q/IVk7iCiexrmtNQmyDpp7FIBnf2Z4P0ufSroA6zYd9kLvaMRyqFvhUamC16ZFnh7G
- 4HgOX1nyY2JYt//t4xzJMszne0VQI58LpPWby6/YJwyZSVn3mKJM3oyx4MFZXlJJQXev
- +igMdjimlhvTsTO7/DgN0XYTR+ZxRDe2V1RzgKLO2Qrvney+g0Ewq4oRKA6wOtbihi2m
- ZwPUvaky9okSNrOIAsBwyl1mMxEyN4tzw4hTLSTdcESv6CGKPwszQ/IRCsKubuI157Kc fA== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3js9vusgvd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 23 Sep 2022 17:02:53 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 28NH2qmg010911
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 23 Sep 2022 17:02:52 GMT
-Received: from adisi-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.29; Fri, 23 Sep 2022 10:02:50 -0700
-From: Aditya Kumar Singh <quic_adisi@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>,
-        Aditya Kumar Singh
-	<quic_adisi@quicinc.com>
-Subject: [PATCH] wifi: ath11k: stop tx queues immediately upon firmware exit
-Date: Fri, 23 Sep 2022 22:32:35 +0530
-Message-ID: <20220923170235.18873-1-quic_adisi@quicinc.com>
-X-Mailer: git-send-email 2.17.1
+	id 1oc5Qa-007I8c-NT
+	for ath11k@lists.infradead.org; Sat, 24 Sep 2022 13:42:46 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 5BA8660921;
+	Sat, 24 Sep 2022 13:42:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1BB2C433D6;
+	Sat, 24 Sep 2022 13:42:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1664026962;
+	bh=pw21qSEFcSihTyQSxp+ab2bgezDBBRwpASZx4DZ6rkU=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=c1zQ/p5wHNuqBvMOWsAuU9h4/ul7HZgX5mSnePN67ZZb659v5UYneDUUQVNqfdgt1
+	 XqJPZYVxvWKApy1ntBNMZK7+is15YWQ9V+W/zbZEpwaabh9Zojh6h0pFMVA7HAOh4/
+	 IL6PfJSecUbRm/i2Zn8cvgoXeBqCbxrdIwhAiPN2piBxcWDNvQp9PGO/AEA7ID0DnA
+	 RMQFN3ACN5TMnLegKegM259lUIm75vFEYNcA/iMOtxLNFdFS32ZX8CkHAAJZN6nlOl
+	 WRHw+PttAL61Bs4YYUaQ0SCeOu5fyvwMyNlWN6SPO95dk1W46cR/VXmeUiM1MpqGHE
+	 svIJpgwGHb4QQ==
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: E7V415q33AT__ERYzlPofA_BxPYNB2RU
-X-Proofpoint-GUID: E7V415q33AT__ERYzlPofA_BxPYNB2RU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-23_06,2022-09-22_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1011
- suspectscore=0 bulkscore=0 spamscore=0 adultscore=0 mlxlogscore=887
- impostorscore=0 mlxscore=0 lowpriorityscore=0 priorityscore=1501
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2209230110
+Subject: Re: [RFC PATCH] ath11k: fix peer addition/deletion error on sta band
+ migration
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20220603164559.27769-1-ansuelsmth@gmail.com>
+References: <20220603164559.27769-1-ansuelsmth@gmail.com>
+To: Christian 'Ansuel' Marangi <ansuelsmth@gmail.com>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ Christian 'Ansuel' Marangi <ansuelsmth@gmail.com>
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-ID: <166402695696.26031.9505362425137556252.kvalo@kernel.org>
+Date: Sat, 24 Sep 2022 13:42:41 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220923_100256_924037_164A5F8B 
-X-CRM114-Status: GOOD (  17.22  )
+X-CRM114-CacheID: sfid-20220924_064244_895217_10DEA513 
+X-CRM114-Status: GOOD (  23.63  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,87 +73,63 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Currently, recovery flag is set immediately upon firmware
-exit but tx queues are stopped once firmware arrives back
-and is ready which is during ath11k_core_restart. Once
-ieee80211 hw restart is completed, tx queues are resumed.
-If during the time delta between firmware exit and firmware
-ready, mac80211 send packets, currently ath11k will drop it
-since recovery flag will be set. But warning prints will
-come -
-  "ath11k c000000.wifi: failed to transmit frame -108"
+Christian 'Ansuel' Marangi <ansuelsmth@gmail.com> wrote:
 
-If more tx packets are there, this could lead to flooding
-of above print.
+> This patch try to fix the following error.
+> 
+> Wed Jun  1 22:19:30 2022 kern.warn kernel: [  119.561227] ath11k c000000.wifi: peer already added vdev id 0 req, vdev id 1 present
+> Wed Jun  1 22:19:30 2022 kern.warn kernel: [  119.561282] ath11k c000000.wifi: Failed to add peer: 28:c2:1f:xx:xx:xx for VDEV: 0
+> Wed Jun  1 22:19:30 2022 kern.warn kernel: [  119.568053] ath11k c000000.wifi: Failed to add station: 28:c2:1f:xx:xx:xx for VDEV: 0
+> Wed Jun  1 22:19:31 2022 daemon.notice hostapd: wlan2: STA 28:c2:1f:xx:xx:xx IEEE 802.11: Could not add STA to kernel driver
+> Wed Jun  1 22:19:31 2022 daemon.notice hostapd: wlan2: STA 28:c2:1f:xx:xx:xx IEEE 802.11: did not acknowledge authentication response
+> Wed Jun  1 22:19:31 2022 daemon.notice hostapd: wlan1: AP-STA-DISCONNECTED 28:c2:1f:xx:xx:xx
+> Wed Jun  1 22:19:31 2022 daemon.info hostapd: wlan1: STA 28:c2:1f:xx:xx:xx IEEE 802.11: disassociated due to inactivity
+> Wed Jun  1 22:19:32 2022 daemon.info hostapd: wlan1: STA 28:c2:1f:xx:xx:xx IEEE 802.11: deauthenticated due to inactivity (timer DEAUTH/REMOVE)
+> 
+> To repro this:
+> - Have 2 Wifi with the same bssid and pass on different band (2.4 and
+> 5GHz)
+> - Enable 802.11r Fast Transaction with same mobility domain
+> - FT Protocol: FT over the Air
+> From a openwrt system issue the command (with the correct mac)
+> ubus call hostapd.wlan1 wnm_disassoc_imminent '{"addr":"28:C2:1F:xx:xx:xx"}'
+> Notice the log printing the errors.
+> 
+> The cause of this error has been investigated and we found that this is
+> related to the WiFi Fast Transaction feature. We observed that this is
+> triggered when the router tells the device to change band. In this case
+> the device first auth to the other band and then the disconnect path
+> from the prev band is triggered.
+> This is problematic with the current rhash implementation since the
+> addrs is used as key and the logic of "adding first, delete later"
+> conflicts with the rhash logic.
+> In fact peer addition will fail since the peer is already added and with
+> that fixed a peer deletion will cause unitended effect by removing the
+> peer just added.
+> 
+> Current solution to this is to add additional logic to the peer delete,
+> make sure we are deleting the correct peer taken from the rhash
+> table (and fallback to the peer list) and for the peer add logic delete
+> the peer entry for the rhash list before adding the new one (counting as
+> an error only when a peer with the same vlan_id is asked to be added).
+> 
+> With this change, a sta can correctly transition from 2.4GHz and 5GHZ
+> with no drop and no error are printed.
+> 
+> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1-01208-QCAHKSWPL_SILICONZ-1
+> 
+> Fixes: 7b0c70d92a43 ("ath11k: Add peer rhash table support")
+> Signed-off-by: Christian 'Ansuel' Marangi <ansuelsmth@gmail.com>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-However, actually tx queues should be stopped immediately
-when firmware leaves. This will prevent packets to get
-dropped when firmware is recovering.
+Patch applied to ath-next branch of ath.git, thanks.
 
-Add fix to stop tx queues immediately after firmware exit.
+d673cb6fe6c0 wifi: ath11k: fix peer addition/deletion error on sta band migration
 
-Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
-
-Signed-off-by: Aditya Kumar Singh <quic_adisi@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/core.c | 5 +----
- drivers/net/wireless/ath/ath11k/core.h | 1 +
- drivers/net/wireless/ath/ath11k/qmi.c  | 3 +++
- 3 files changed, 5 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 9894f908cc35..a50b748473cb 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -1634,7 +1634,7 @@ static void ath11k_update_11d(struct work_struct *work)
- 	}
- }
- 
--static void ath11k_core_pre_reconfigure_recovery(struct ath11k_base *ab)
-+void ath11k_core_pre_reconfigure_recovery(struct ath11k_base *ab)
- {
- 	struct ath11k *ar;
- 	struct ath11k_pdev *pdev;
-@@ -1723,9 +1723,6 @@ static void ath11k_core_restart(struct work_struct *work)
- 	struct ath11k_base *ab = container_of(work, struct ath11k_base, restart_work);
- 	int ret;
- 
--	if (!ab->is_reset)
--		ath11k_core_pre_reconfigure_recovery(ab);
--
- 	ret = ath11k_core_reconfigure_on_crash(ab);
- 	if (ret) {
- 		ath11k_err(ab, "failed to reconfigure driver on crash recovery\n");
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index b6246a2f2496..6c950608bb44 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -1146,6 +1146,7 @@ int ath11k_core_check_smbios(struct ath11k_base *ab);
- void ath11k_core_halt(struct ath11k *ar);
- int ath11k_core_resume(struct ath11k_base *ab);
- int ath11k_core_suspend(struct ath11k_base *ab);
-+void ath11k_core_pre_reconfigure_recovery(struct ath11k_base *ab);
- 
- const struct firmware *ath11k_core_firmware_request(struct ath11k_base *ab,
- 						    const char *filename);
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index 51de2208b789..775dfb5eb1a7 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.c
-+++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -3158,6 +3158,9 @@ static void ath11k_qmi_driver_event_work(struct work_struct *work)
- 		case ATH11K_QMI_EVENT_SERVER_EXIT:
- 			set_bit(ATH11K_FLAG_CRASH_FLUSH, &ab->dev_flags);
- 			set_bit(ATH11K_FLAG_RECOVERY, &ab->dev_flags);
-+
-+			if (!ab->is_reset)
-+				ath11k_core_pre_reconfigure_recovery(ab);
- 			break;
- 		case ATH11K_QMI_EVENT_REQUEST_MEM:
- 			ret = ath11k_qmi_event_mem_request(qmi);
-
-base-commit: 67552c0328709b82bbfc4b52f1e83354c2d21561
 -- 
-2.17.1
+https://patchwork.kernel.org/project/linux-wireless/patch/20220603164559.27769-1-ansuelsmth@gmail.com/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 
 -- 
