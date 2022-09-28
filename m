@@ -4,80 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE778C04A95
-	for <ath11k@archiver.kernel.org>; Wed, 28 Sep 2022 14:38:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DFE1C04A95
+	for <ath11k@archiver.kernel.org>; Wed, 28 Sep 2022 15:13:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=kTpVMyKwqxg+Xbv/9qpdcCqTNcEi6pqlPodWIQbmKCM=; b=Ix3zfOHiZUdY85
-	1ilD+9uPkmcz+qIFFgcNzBTxPzwHcCfIrVrIgVy2zs66iAmeueMYzYPYFSAQV+sezL/AYXqqSrpoC
-	isSXd32y4Gx8iZjMrknMXpuWqVLrE+uqZK8Pamsa0ro31cL7o/rRz0uz4OCimujlwlgU4UvlN+81l
-	RVYSh+guqME/rEXojZBWd22s3CvBRG7ty3dy9ZeuRYk2t8bYAiGXmwGbctpmfRdZAGCp+GOqTsJeM
-	JbRF3EWVAwSYalvoA6IQNDZF76nFQDimDSgNABD418qA6InkLLYt2XDW2bnl+wj0o5D7H+iTcTmT7
-	WvxbNAgyFJVd/EFsHdmQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=R+kVZ1kdyx6O16/kougwcCjj3SUuio9Da55/K8W7ddQ=; b=kQVTKJqElZD+m1
+	nFtIA+lSud5phcisSWcLpJQEKN7VnL0T1Hr5SFXARnAG/t72ka0f+dZJd+JVYugknPtic0IJn2m0R
+	nngOtSMj1w8jw42tNapxb03scc3hhCXBecTYRpOk/H2mESK0278TuSJ/5iuXCPkgrsRji8S/5BywV
+	84W3rd7Ja8zKgqOldoZ1JdkcMOHcCh17H+/z2/DRHisSZ9vkEcXRK6tgo27m8GYIGNpLs+G4mZx+S
+	zmzIkrItAeCL1Xt4UVlpjE+IuqOag1EpO580NUb3+iCJHwWeSYST4R6nDgoQoOg2An6N2MwGSZZ8Q
+	fs8wjlffD9GaYsmEbJ5A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1odYCx-00Gi0W-MC; Wed, 28 Sep 2022 14:38:43 +0000
-Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
+	id 1odYkG-00GqOJ-FU; Wed, 28 Sep 2022 15:13:08 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1odYCv-00GhyT-Ci
-	for ath11k@lists.infradead.org; Wed, 28 Sep 2022 14:38:42 +0000
-Received: by mail-wr1-x435.google.com with SMTP id r6so2841516wru.8
-        for <ath11k@lists.infradead.org>; Wed, 28 Sep 2022 07:38:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date;
-        bh=jzb2tlFDO7113hwXJyTmEyrv070pVMBorQWNbdu3q1M=;
-        b=pBx0BuzdgJDgcsZ8f57VP8/c2/uyQYL9ycGYHrIIRZDcL1Ro2p68mQIBRfzCgvNjnY
-         VqKRqE/z07+oRnE+K4Wxw1BU5KlQ3fzHUdPOG1sc7nA94tOjZbyyyJU+e8xXEaHqKpX0
-         kKtdPXKPTHNSNxIsowDyubr5YzqTW/XAmPFYC85wX4bgz+nzXHIHreN3SbBV2Z8WgX/F
-         wjg29IJrg4y0IGZUDqO6AEYezVmWt1CY5iTzwiiHUfX2Wa1Qosh97IcEJI1FqeMBUtsc
-         hWWwAXRbwYVW1/Rq7AMxeMvImunrzyX7Puxj0RnZDi4SlUxIJhKa5bVsy5ngu0Qt8dyK
-         JcmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=jzb2tlFDO7113hwXJyTmEyrv070pVMBorQWNbdu3q1M=;
-        b=rIic6Fzt1vC7GlqGMPtCCy/lvdhHSE3B4sZAxzQ0TPBum5PYxpe81itvF1geNA+2SE
-         0spB0uJaWhNthbZpYuFmyP4uVAK2NpqXMo0azH9TC9A/pM7W0e+EUgSpjBREjixjBlJv
-         bZteig/PjJldbctG5R8EF+EVCmFMP3tA9azc2AQECrnm2WrmeyuriAyJs97y1qyIPWMI
-         oX67rcnRQ7erf+JsQpc+5FP+bQoe+y6HHqFovirj1yhNI9zsNbJAqBTJPcQQefQ/8jtH
-         5oaUVsdN4T5z+JPR840ydaAoxL8UG26ITzl03iGnWWXnwH6DXg2tP4VFruu8jnKP21Eg
-         thkg==
-X-Gm-Message-State: ACrzQf1G+DGbC3LJHXHPUAhm5KHv7VmVbXfpAhysD5H7R0dFQTOT5Mwp
-	AqWEf3Dw+r9WP0zbsswRRww=
-X-Google-Smtp-Source: AMsMyM7D4vDM49WeiylJ/FA5Xb/66OVGI9cD1+tX27Tc7I3mrmERqFSLMPH9fv7f7EwlHDt/UpfGAg==
-X-Received: by 2002:a5d:6484:0:b0:226:dd0e:b09c with SMTP id o4-20020a5d6484000000b00226dd0eb09cmr21343882wri.388.1664375916303;
-        Wed, 28 Sep 2022 07:38:36 -0700 (PDT)
-Received: from localhost (cpc154979-craw9-2-0-cust193.16-3.cable.virginm.net. [80.193.200.194])
-        by smtp.gmail.com with ESMTPSA id p25-20020a1c5459000000b003a5c7a942edsm1940253wmi.28.2022.09.28.07.38.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Sep 2022 07:38:35 -0700 (PDT)
-From: Colin Ian King <colin.i.king@gmail.com>
-To: Kalle Valo <kvalo@kernel.org>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	ath11k@lists.infradead.org,
-	linux-wireless@vger.kernel.org,
-	netdev@vger.kernel.org
-Cc: kernel-janitors@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH][next] wifi: ath11k: Fix spelling mistake "chnange" -> "change"
-Date: Wed, 28 Sep 2022 15:38:34 +0100
-Message-Id: <20220928143834.35189-1-colin.i.king@gmail.com>
-X-Mailer: git-send-email 2.37.1
+	id 1odYkB-00GqLu-Cd
+	for ath11k@lists.infradead.org; Wed, 28 Sep 2022 15:13:05 +0000
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28SEwRKe010586;
+	Wed, 28 Sep 2022 15:12:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=cvk9dv6mH5Aoy3+SdYH6p59yvzRLULMoXt4Be3XQd6Q=;
+ b=dah1V4H7/OtU+rdcabEzZcmyaJ99CP2DyZQDq9MojE8vMZ9xoYYoj5af/ZMLqZeZ311m
+ x38dWvohgNmoGBb12deM/JWc3HBnwbrSfXSOBEKWMdHvlJ22FBOTM5B+GNG4VXaUw2RJ
+ uEN8T6CRK7KfxVSY1b2RIfh40nOK7H5RHX7hbfhKcGLxMi2uRzOr4ZO0aU6KOH1MEYEH
+ TeOKTQjzDh7o/s6d9g7vrS/sESKEPftJZVsjNRvMFg0m1W4RRwoGD1FFDnQiZRueG1Af
+ W0+rkDS9FPI0KqLiA92BhDzDCC5NDpM1l6DEXFyCNr+esL67W4bOmV4HX4aob6bnDXRj eA== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jva41jk0v-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 28 Sep 2022 15:12:39 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 28SFCdBF010891
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 28 Sep 2022 15:12:39 GMT
+Received: from [10.253.33.95] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Wed, 28 Sep
+ 2022 08:12:37 -0700
+Message-ID: <96bcc467-c530-46de-8f91-c5eb0af7a368@quicinc.com>
+Date: Wed, 28 Sep 2022 23:12:34 +0800
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 00/27] another set of MLO patches
+Content-Language: en-US
+To: "Otcheretianski, Andrei" <andrei.otcheretianski@intel.com>,
+        Johannes Berg
+	<johannes@sipsolutions.net>,
+        "linux-wireless@vger.kernel.org"
+	<linux-wireless@vger.kernel.org>
+CC: "Peer, Ilan" <ilan.peer@intel.com>, <ath11k@lists.infradead.org>
+References: <20220902141259.377789-1-johannes@sipsolutions.net>
+ <6175bc95-201c-cfab-2ae6-9ba77e830394@quicinc.com>
+ <09556b33ad998ad243cf75dbc230f3b07349a87e.camel@sipsolutions.net>
+ <935ef9e9-2092-e3f0-0edd-4aa29f4fa775@quicinc.com>
+ <e01e75013f71ede7b29f2751238935e7147796f2.camel@sipsolutions.net>
+ <f3afceb8-8120-12c7-74b9-caa3abce5cb8@quicinc.com>
+ <DM6PR11MB3897D1A4E13419D9F938F559F5449@DM6PR11MB3897.namprd11.prod.outlook.com>
+From: Wen Gong <quic_wgong@quicinc.com>
+In-Reply-To: <DM6PR11MB3897D1A4E13419D9F938F559F5449@DM6PR11MB3897.namprd11.prod.outlook.com>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: raKA5M2u0eGt9DB4loN8s7r_oZ4SYvMa
+X-Proofpoint-ORIG-GUID: raKA5M2u0eGt9DB4loN8s7r_oZ4SYvMa
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-09-28_06,2022-09-28_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ priorityscore=1501 lowpriorityscore=0 malwarescore=0 suspectscore=0
+ mlxscore=0 bulkscore=0 phishscore=0 adultscore=0 mlxlogscore=999
+ clxscore=1011 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2209130000 definitions=main-2209280090
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220928_073841_451790_0BDBB8F7 
-X-CRM114-Status: UNSURE (   9.84  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20220928_081303_477630_F1D89179 
+X-CRM114-Status: GOOD (  14.92  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,34 +100,37 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-There is a spelling mistake in an ath11k_dbg debug message. Fix it.
-
-Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
----
- drivers/net/wireless/ath/ath11k/wmi.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index fad9f8d308a2..2a8a3e3dcff6 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -6829,7 +6829,7 @@ static void ath11k_wmi_event_peer_sta_ps_state_chg(struct ath11k_base *ab,
- 	}
- 
- 	ath11k_dbg(ab, ATH11K_DBG_WMI,
--		   "peer sta ps chnange ev addr %pM state %u sup_bitmap %x ps_valid %u ts %u\n",
-+		   "peer sta ps change ev addr %pM state %u sup_bitmap %x ps_valid %u ts %u\n",
- 		   ev->peer_macaddr.addr, ev->peer_ps_state,
- 		   ev->ps_supported_bitmap, ev->peer_ps_valid,
- 		   ev->peer_ps_timestamp);
--- 
-2.37.1
-
+On 9/12/2022 9:17 PM, Otcheretianski, Andrei wrote:
+>>> Well, OK, you obviously are adjusting the supplicant to work with MLO
+>>> (otherwise you wouldn't get an MLO connection in the first place), so
+>>> yeah, this is part of the adjustments needed.
+>>>
+>>> Ilan/Andrei have all of this working, maybe we can share the patches
+>>> even before rebase etc.
+> Hi,
+> Our implementation is based on our internal tree, so it will take some time to cleanup and port it for upstream.
+> Hopefully I will have some time to work on it this and next week and maybe we will be able to share something initial.
+May I get your patches?
+>
+> Andrei
+>>> johannes
+>> Thanks.
+>>
+>> It is good to share me the wpa_supplicant patches ASAP.
+>>
+>> And I have another question:
+>>
+>> When mac80211 use the MLD addr in authentication/assoc request,
+>>
+>> finally, it should be replaced with one link's address in air port, right?
+>>
+>> It means the MLD addr will never exist in mac80211 header of packet in the
+>> air port, right?
 
 -- 
 ath11k mailing list
