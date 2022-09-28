@@ -4,77 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB042C07E9D
-	for <ath11k@archiver.kernel.org>; Wed, 28 Sep 2022 01:52:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43081C32771
+	for <ath11k@archiver.kernel.org>; Wed, 28 Sep 2022 07:39:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=5CZpLcnO8kV2KcK35ViRB0in6L9e9fX7iC0A7DBOO8A=; b=2RUElYyVjp4qIZ
-	NLXnv8xE9oMXpCZq5+Yd0UZm+5t4rNqKOh17CTeSsPSVIitnsgjmCxkfgWHSlZO6heqya0cOQ1tPe
-	zCV0sf/bjvEAh50X/Ls435MDiSss3QaVgI7oklW79bKd4lvphzRSaLq6Ue9lE5Q3/JjmJROkmDV+O
-	hvdYD6D+GjyPn5jU7v0k+vssHbf075yFoBtmIui26T2aP4o3pHLyYTkG1+gOgm81ZUMZ99HN9DPoc
-	X7J3uDzhDsIKRgZaO8uPQn+45dJeLZw5S+nrf/dYbVUd2Efz7cFS0DtC1NlDfj9xPwW6EAcdsjL71
-	Ub5kM/OH9z22zORlP9Hw==;
+	List-Owner; bh=tdB2cO2JwMPebZ2QIaJADiHgPJXodf7Le1faC8/J30c=; b=YZrTjouGeta39d
+	sTJTVAhnfLeb2r82CQ4kOzMGVzzFgjmSUAYfDVY5MNKsVEajO+HeHdxoe86pvCU6faKgF9aZ8cq5x
+	YFbKF3sl1xnXYPrxBjK3SRdJawJjQ8BvD7ZnLi5I1k1kP8FqHkUrBTx7rKp/9mPM0pp+JYChpkEmH
+	mJdElNtdM6VOy1W5KnXxsPZWi4Jjb4pNVQKXPKqEN6KR/N7yM71cGfINaS921844ZY3TK305FkwAu
+	wNobQGtUkDHlgRzr8psUS0cGOc30BbYgW285GR7QweRqkmEaei0oPVtMjL/+HmUlzSWFQa70lOB2r
+	oD/Q4dP+4vjXINxO3vRg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1odMEz-00DTkq-34; Wed, 28 Sep 2022 01:52:01 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1odReo-00EarJ-Fq; Wed, 28 Sep 2022 07:39:02 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1odMEw-00DTiS-WE
-	for ath11k@lists.infradead.org; Wed, 28 Sep 2022 01:52:00 +0000
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28S1pt1B026733;
-	Wed, 28 Sep 2022 01:51:55 GMT
+	id 1odRek-00EalC-NZ
+	for ath11k@lists.infradead.org; Wed, 28 Sep 2022 07:39:01 +0000
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28S5vP9O000334;
+	Wed, 28 Sep 2022 07:38:47 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
  subject : date : message-id : mime-version : content-transfer-encoding :
  content-type; s=qcppdkim1;
- bh=KJUysZlmD/3cGhekNZlN4P6ixBct63x1UKyESgdx5So=;
- b=T6njRJ6S1pDvwxvAj/0GMCDe4IoP4GqS+QRdBpVhws++027/E3+mVK2KonzRRZC7G/e1
- g2RqGPUC5ZPGaY7oZQafDWYg7PVdzz9qpPYYW2ZlCrTK/pMMxp0iyHHqHkqAq0S4leYM
- 56nJQCLhuZV8PURe8Rj7mDtjjfWRkn8utiHP2/Vxyt+ehLYcIp4YuYvtDvnLCvFnSn3V
- Q0O0yatHd0Xa0QHSToscSlmXJvrt0raTerQU8YlutDGkQ1ot5WcaKheMJU0+aHzAgK7o
- /9wZzPQyui//ZFgtZL9yA8CnF9YtlnLrQsSHt24FrWx+Qf7deOhCzqFycFDaCLnrAxfG ZA== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jva41gedp-1
+ bh=Qw0ExAyOqgB2wXKbdS9tUqRigcHEgNtkuL1vmjUCCQM=;
+ b=SIzoLE5nHiWKofRYk4F5+mtzYEjsl5NfgHHGfjQl/8QbXCqlMKWceBN8f5o9iLqGP/Bf
+ DLujLQ6jWcAb2656+9fPESFYnXQPBS/W6GEuGd8o0d2cEYkDvvTMDnjHZrP4ap3TQ4Xc
+ SadgL4phfMJJcq30UJIFNBSnpiR7/mpY48oy6cGnCoTsUpP/Tvg3llOs98BOKKIl7X0R
+ pBYjYVhKcfXD1zYXOCNyk+KxMhyyPCWiKvzvOgwukxGWf/5b0Jq9mtLX0lcFfubcPW2R
+ IhKIXKHcYg8WMNMlfv2bsHezRSYL7q2hzavHSAYn7w5wHpjWlffHgxGXYHqnsYCKsvfz 2g== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3juw2631u7-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 28 Sep 2022 01:51:54 +0000
+	Wed, 28 Sep 2022 07:38:47 +0000
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 28S1pspC018772
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 28S7ckbo016141
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 28 Sep 2022 01:51:54 GMT
-Received: from bqiang-Celadon-RN.qca.qualcomm.com (10.80.80.8) by
+	Wed, 28 Sep 2022 07:38:46 GMT
+Received: from wgong-HP3-Z230-SFF-Workstation.qca.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.29; Tue, 27 Sep 2022 18:51:53 -0700
-From: Baochen Qiang <quic_bqiang@quicinc.com>
+ 15.2.986.29; Wed, 28 Sep 2022 00:38:44 -0700
+From: Wen Gong <quic_wgong@quicinc.com>
 To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>
-Subject: [PATCH] wifi: ath11k: Don't exit on wakeup failure
-Date: Wed, 28 Sep 2022 09:51:40 +0800
-Message-ID: <20220928015140.5431-1-quic_bqiang@quicinc.com>
-X-Mailer: git-send-email 2.25.1
+CC: <linux-wireless@vger.kernel.org>, <quic_wgong@quicinc.com>
+Subject: [PATCH] wifi: ath11k: fix warning in dma_free_coherent() of memory chunks while recovery
+Date: Wed, 28 Sep 2022 03:38:32 -0400
+Message-ID: <20220928073832.16251-1-quic_wgong@quicinc.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: zQN-JeF_a1sItzD67Si9OmJw8kcgr1iQ
-X-Proofpoint-ORIG-GUID: zQN-JeF_a1sItzD67Si9OmJw8kcgr1iQ
+X-Proofpoint-GUID: a99cZ2d0cscXzZ9XV19LhtZcz3dmfmaa
+X-Proofpoint-ORIG-GUID: a99cZ2d0cscXzZ9XV19LhtZcz3dmfmaa
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-27_12,2022-09-27_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- priorityscore=1501 lowpriorityscore=0 malwarescore=0 suspectscore=0
- mlxscore=0 bulkscore=0 phishscore=0 adultscore=0 mlxlogscore=999
- clxscore=1015 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2209280009
+ definitions=2022-09-28_02,2022-09-27_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
+ priorityscore=1501 mlxlogscore=999 mlxscore=0 spamscore=0 impostorscore=0
+ phishscore=0 clxscore=1015 lowpriorityscore=0 malwarescore=0
+ suspectscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2209130000 definitions=main-2209280045
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220927_185159_083756_F62D848D 
-X-CRM114-Status: GOOD (  15.50  )
+X-CRM114-CacheID: sfid-20220928_003858_935580_978AA595 
+X-CRM114-Status: GOOD (  24.03  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,50 +91,143 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Currently, ath11k_pcic_read() returns an error if wakeup()
-fails, this makes firmware crash debug quite hard because we can
-get nothing.
+Commit 26f3a021b37c ("ath11k: allocate smaller chunks of memory for
+firmware") and commit f6f92968e1e5 ("ath11k: qmi: try to allocate a
+big block of DMA memory first") change ath11k to allocate the memory
+chunks for target twice while wlan load. It fails for the 1st time
+because of large memory and then changed to allocate many small chunks
+for the 2nd time sometimes as below log.
 
-Change to go ahead on wakeup failure, in that case we still may
-get something valid to check. There should be no mislead due
-to incorrect content because we are aware of the failure with the
-log printed.
+1st time failed:
+[10411.640620] ath11k_pci 0000:05:00.0: qmi firmware request memory request
+[10411.640625] ath11k_pci 0000:05:00.0: qmi mem seg type 1 size 6881280
+[10411.640630] ath11k_pci 0000:05:00.0: qmi mem seg type 4 size 3784704
+[10411.640658] ath11k_pci 0000:05:00.0: qmi dma allocation failed (6881280 B type 1), will try later with small size
+[10411.640671] ath11k_pci 0000:05:00.0: qmi delays mem_request 2
+[10411.640677] ath11k_pci 0000:05:00.0: qmi respond memory request delayed 1
+2nd time success:
+[10411.642004] ath11k_pci 0000:05:00.0: qmi firmware request memory request
+[10411.642008] ath11k_pci 0000:05:00.0: qmi mem seg type 1 size 524288
+[10411.642012] ath11k_pci 0000:05:00.0: qmi mem seg type 1 size 524288
+[10411.642014] ath11k_pci 0000:05:00.0: qmi mem seg type 1 size 524288
+[10411.642016] ath11k_pci 0000:05:00.0: qmi mem seg type 1 size 524288
+[10411.642018] ath11k_pci 0000:05:00.0: qmi mem seg type 1 size 524288
+[10411.642020] ath11k_pci 0000:05:00.0: qmi mem seg type 1 size 524288
+[10411.642022] ath11k_pci 0000:05:00.0: qmi mem seg type 1 size 524288
+[10411.642024] ath11k_pci 0000:05:00.0: qmi mem seg type 1 size 524288
+[10411.642027] ath11k_pci 0000:05:00.0: qmi mem seg type 1 size 524288
+[10411.642029] ath11k_pci 0000:05:00.0: qmi mem seg type 1 size 524288
+[10411.642031] ath11k_pci 0000:05:00.0: qmi mem seg type 1 size 458752
+[10411.642033] ath11k_pci 0000:05:00.0: qmi mem seg type 1 size 131072
+[10411.642035] ath11k_pci 0000:05:00.0: qmi mem seg type 4 size 524288
+[10411.642037] ath11k_pci 0000:05:00.0: qmi mem seg type 4 size 524288
+[10411.642039] ath11k_pci 0000:05:00.0: qmi mem seg type 4 size 524288
+[10411.642041] ath11k_pci 0000:05:00.0: qmi mem seg type 4 size 524288
+[10411.642043] ath11k_pci 0000:05:00.0: qmi mem seg type 4 size 524288
+[10411.642045] ath11k_pci 0000:05:00.0: qmi mem seg type 4 size 524288
+[10411.642047] ath11k_pci 0000:05:00.0: qmi mem seg type 4 size 491520
+[10411.642049] ath11k_pci 0000:05:00.0: qmi mem seg type 1 size 524288
 
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+And then commit 5962f370ce41 ("ath11k: Reuse the available memory after
+firmware reload") skip the ath11k_qmi_free_resource() which frees the
+memory chunks while recovery, after that, when run recovery test on
+WCN6855, a warning happened every time as below and finally leads fail
+for recovery.
 
-Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+[  159.570318] BUG: Bad page state in process kworker/u16:5  pfn:33300
+[  159.570320] page:0000000096ffdbb9 refcount:1 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x33300
+[  159.570324] flags: 0xfffffc0000000(node=0|zone=1|lastcpupid=0x1fffff)
+[  159.570329] raw: 000fffffc0000000 0000000000000000 dead000000000122 0000000000000000
+[  159.570332] raw: 0000000000000000 0000000000000000 00000001ffffffff 0000000000000000
+[  159.570334] page dumped because: nonzero _refcount
+[  159.570440]  firewire_ohci syscopyarea sysfillrect psmouse sdhci_pci ahci sysimgblt firewire_core fb_sys_fops libahci crc_itu_t cqhci drm sdhci e1000e wmi video
+[  159.570460] CPU: 2 PID: 217 Comm: kworker/u16:5 Kdump: loaded Tainted: G    B             5.19.0-rc1-wt-ath+ #3
+[  159.570465] Hardware name: LENOVO 418065C/418065C, BIOS 83ET63WW (1.33 ) 07/29/2011
+[  159.570467] Workqueue: qmi_msg_handler qmi_data_ready_work [qmi_helpers]
+[  159.570475] Call Trace:
+[  159.570476]  <TASK>
+[  159.570478]  dump_stack_lvl+0x49/0x5f
+[  159.570486]  dump_stack+0x10/0x12
+[  159.570493]  bad_page+0xab/0xf0
+[  159.570502]  check_free_page_bad+0x66/0x70
+[  159.570511]  __free_pages_ok+0x530/0x9a0
+[  159.570517]  ? __dev_printk+0x58/0x6b
+[  159.570525]  ? _dev_printk+0x56/0x72
+[  159.570534]  ? qmi_decode+0x119/0x470 [qmi_helpers]
+[  159.570543]  __free_pages+0x91/0xd0
+[  159.570548]  dma_free_contiguous+0x50/0x60
+[  159.570556]  dma_direct_free+0xe5/0x140
+[  159.570564]  dma_free_attrs+0x35/0x50
+[  159.570570]  ath11k_qmi_msg_mem_request_cb+0x2ae/0x3c0 [ath11k]
+[  159.570620]  qmi_invoke_handler+0xac/0xe0 [qmi_helpers]
+[  159.570630]  qmi_handle_message+0x6d/0x180 [qmi_helpers]
+[  159.570643]  qmi_data_ready_work+0x2ca/0x440 [qmi_helpers]
+[  159.570656]  process_one_work+0x227/0x440
+[  159.570667]  worker_thread+0x31/0x3d0
+[  159.570676]  ? process_one_work+0x440/0x440
+[  159.570685]  kthread+0xfe/0x130
+[  159.570692]  ? kthread_complete_and_exit+0x20/0x20
+[  159.570701]  ret_from_fork+0x22/0x30
+[  159.570712]  </TASK>
+
+The reason is because when wlan start to recovery, the type, size and
+count is not same for the 1st and 2nd QMI_WLFW_REQUEST_MEM_IND message,
+Then it leads the parameter size is not correct for the dma_free_coherent().
+For the chunk[1], the actual dma size is 524288 which allocate in the
+2nd time of the initial wlan load phase, and the size which pass to
+dma_free_coherent() is 3784704 which is got in the 1st time of recovery
+phase, then warning above happened.
+
+Change to use prev_size of struct target_mem_chunk for the paramter of
+dma_free_coherent() since prev_size is the real size of last load/recovery.
+Also change to check both type and size of struct target_mem_chunk to
+reuse the memory to avoid mismatch buffer size for target. Then the
+warning disappear and recovery success. When the 1st QMI_WLFW_REQUEST_MEM_IND
+for recovery arrived, the trunk[0] is freed in ath11k_qmi_alloc_target_mem_chunk()
+and then dma_alloc_coherent() failed caused by large size, and then
+trunk[1] is freed in ath11k_qmi_free_target_mem_chunk(), the left 18
+trunks will be reuse for the 2nd QMI_WLFW_REQUEST_MEM_IND message.
+
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
+
+Fixes: 5962f370ce41 ("ath11k: Reuse the available memory after firmware reload")
+Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
 ---
- drivers/net/wireless/ath/ath11k/pcic.c | 13 ++++++++++---
- 1 file changed, 10 insertions(+), 3 deletions(-)
+ drivers/net/wireless/ath/ath11k/qmi.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/pcic.c b/drivers/net/wireless/ath/ath11k/pcic.c
-index 3fa1958f8c82..d2f0112e8df0 100644
---- a/drivers/net/wireless/ath/ath11k/pcic.c
-+++ b/drivers/net/wireless/ath/ath11k/pcic.c
-@@ -218,9 +218,16 @@ int ath11k_pcic_read(struct ath11k_base *ab, void *buf, u32 start, u32 end)
- 	if (wakeup_required && ab->pci.ops->wakeup) {
- 		ret = ab->pci.ops->wakeup(ab);
- 		if (ret) {
--			ath11k_warn(ab, "failed to wakeup for read from 0x%x: %d\n",
--				    start, ret);
--			return ret;
-+			ath11k_warn(ab,
-+				    "wakeup failed, data may be invalid: %d",
-+				    ret);
-+			/* Even though wakeup() failed, continue processing rather
-+			 * than returning because some parts of the data may still
-+			 * be valid and useful in some cases, e.g. could give us
-+			 * some clues on firmware crash.
-+			 * Mislead due to invalid data could be avoided because we
-+			 * are aware of the wakeup failure.
-+			 */
- 		}
- 	}
+diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
+index 51de2208b789..1a2c05419379 100644
+--- a/drivers/net/wireless/ath/ath11k/qmi.c
++++ b/drivers/net/wireless/ath/ath11k/qmi.c
+@@ -1961,7 +1961,7 @@ static void ath11k_qmi_free_target_mem_chunk(struct ath11k_base *ab)
+ 			continue;
  
+ 		dma_free_coherent(ab->dev,
+-				  ab->qmi.target_mem[i].size,
++				  ab->qmi.target_mem[i].prev_size,
+ 				  ab->qmi.target_mem[i].vaddr,
+ 				  ab->qmi.target_mem[i].paddr);
+ 		ab->qmi.target_mem[i].vaddr = NULL;
+@@ -1982,12 +1982,12 @@ static int ath11k_qmi_alloc_target_mem_chunk(struct ath11k_base *ab)
+ 		 * in such case, no need to allocate memory for FW again.
+ 		 */
+ 		if (chunk->vaddr) {
+-			if (chunk->prev_type == chunk->type ||
++			if (chunk->prev_type == chunk->type &&
+ 			    chunk->prev_size == chunk->size)
+ 				continue;
+ 
+ 			/* cannot reuse the existing chunk */
+-			dma_free_coherent(ab->dev, chunk->size,
++			dma_free_coherent(ab->dev, chunk->prev_size,
+ 					  chunk->vaddr, chunk->paddr);
+ 			chunk->vaddr = NULL;
+ 		}
 
-base-commit: 92764e24ac9f6e105b3513f32f70dd94f67437ac
+base-commit: c6d18be90f9b0c7fb64c6138b51c49151140fb57
 -- 
-2.25.1
+2.31.1
 
 
 -- 
