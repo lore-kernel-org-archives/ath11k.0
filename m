@@ -4,85 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F3D9C32771
-	for <ath11k@archiver.kernel.org>; Thu, 29 Sep 2022 01:58:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E5D3C433F5
+	for <ath11k@archiver.kernel.org>; Fri, 30 Sep 2022 06:33:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0CuJDZeX+0n+AiAL6+WWg71adUxfg+R9X9mGfZ8AKXM=; b=OWfcpcZQhbF//F
-	Lq3FoI7qS9BJZK1m44NSglgYtICMXRV1mWFTaO7/BULsGCh+JwELiCOoIM/gL/Lqr6I1kIQnwiChe
-	OreG6n+n6Ad/HWsl12sOzEUz6OOnRMEHOGl5P9wXfOyOyJ+TJZ0OJjPSzwuPZazfn8+bbd474nENA
-	qlmCYg/A2ZB+5eeF+w2gWvuZmvqf8el/dRs1C4BkwcDb2J9prH1qbg1EiX87+Xl1SxODkXBaGzg+S
-	nt505LeP8mL5HbA+yTKwnxMGbN1qGDydK2nQuyXVgFqh/jLjDXQtMj4Axx+cb0qbEbMfQPinzfoUa
-	wJozUKc7wP4eFNTPo7Eg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
+	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=zqMgd7iFxul6Y7rKVtdowR3BfOheuKGm3n1BxtYklKw=; b=NEdxuf6aGgIm/Q
+	+VsAeDYjX/Q0YRfebAdf7HTXpUCww7tDzho6N8CcWyRDbtwx6tuXTH2Jl0INSmZ5qvGl4O5wJbI5W
+	dBKx+pKrojaqvq2ItmcXFNAJki2IZXQwImqt4DcC+5q3MK1WWN8YPiRiIKpgnZGjxLK6gZINAb3w5
+	z6ENmIU+d8V30Li2cl2++irR/e16YTMFY0kn+NX8f3uK67Nqb7ntULuvfXrFPWrY5N2ANN9p87h+d
+	4BCTERVwpkZyYLPuYdFphHsTKX3Eo6q3+/LxnJFr1HoeWpuE3U/wZkbbJGrUg7aknc8u251Qf6Z8l
+	6/h8z5H2iGC79cMUNPaQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1odior-000v8A-Ri; Thu, 29 Sep 2022 01:58:33 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1oe9aK-007XHr-MW; Fri, 30 Sep 2022 06:33:20 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1odiop-000v7d-6K
-	for ath11k@lists.infradead.org; Thu, 29 Sep 2022 01:58:32 +0000
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28SNY7sh018224;
-	Thu, 29 Sep 2022 01:58:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=kzVp61ULiNEr/UheqPybYwtTY6JF+p9P2hQujSFnfqk=;
- b=p7sOn75wQfntSVTYZ/geTMGyNUfoa7wiW+qrFDVBgWTTQEmbSgrs9wU+HpzFGhRx+ZZd
- 4VeyzuLddot2uiPilJ9nIYZSlwuhH7Egc8G6pt8NrTrcOcFXGt9llvI4rUlbKR26cbtM
- KWTWMc3DWliuia07fJjkvrjvfqMNa4BDn2l74x5RGESo+pNTrsFwZUDaqTC+6tZHlloS
- 9ZfAnz+F2DSu2RoSaTo1VD0NBV12PwqqxnpvvQt5ATTTkQ53635JzlFUeewM1gWQKPct
- a5IEy0qlPmhh5BhYwzoC/xhdgrQUMdx32EGrPhFjRzrajz+MFfVpJPn1maFsNZoA9rzj 8w== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jvm4vhsj6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 29 Sep 2022 01:58:27 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 28T1wQV2032667
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 29 Sep 2022 01:58:26 GMT
-Received: from [10.253.33.95] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Wed, 28 Sep
- 2022 18:58:25 -0700
-Message-ID: <d054b305-b711-7b80-a0f7-f32dd1682d27@quicinc.com>
-Date: Thu, 29 Sep 2022 09:58:23 +0800
+	id 1oe9aI-007XGX-3d
+	for ath11k@lists.infradead.org; Fri, 30 Sep 2022 06:33:19 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ams.source.kernel.org (Postfix) with ESMTPS id 5F354B8242D;
+	Fri, 30 Sep 2022 06:33:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 532F4C433C1;
+	Fri, 30 Sep 2022 06:33:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1664519594;
+	bh=AjE9ttVTxQyrvvGBjQ3K8rHuqcgBsgTiY5i7Op2lqCk=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=bDJJnYEqYzM4l65RDTROm+w8PISHo921Ac6jWMvAarrMre1y3XGMVkt3JS629UAxx
+	 VwU/rZ8Z7ZNC7S2ikUdOXGTkxe0fOZ4m6LuwiY2jDdXuh7DoLFwL0lCVoSP2MSWwT6
+	 oJSftY0DVGukgk/S9lbFfTkPgnIp6nGZtZE6qtQfu8pXj3QNjeycpL9vPMLy3SePyi
+	 w8BI5IOB7TXo+a5z3aVdDtcS+JKkJ3LKcfwIF2qOVKd4xkdtN838QQBHWVt5QCBjTn
+	 J9nQ0Nqvi5u2ADHM5JRWLlCid7HMwBTexGVjwyKtW0CCjJXqt+abEioOZYCLjTB+gR
+	 byspQAAaE/hBQ==
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: parsing the multi-link element with STA profile wifi: mac80211:
- support MLO authentication/association with one link
-Content-Language: en-US
-To: Johannes Berg <johannes@sipsolutions.net>,
-        linux-wireless
-	<linux-wireless@vger.kernel.org>
-CC: <ath11k@lists.infradead.org>
-References: <48715509-62fd-2307-e38f-176234b482c1@quicinc.com>
- <f240b33d507daf898480b0a11eb27d4475e45164.camel@sipsolutions.net>
-From: Wen Gong <quic_wgong@quicinc.com>
-In-Reply-To: <f240b33d507daf898480b0a11eb27d4475e45164.camel@sipsolutions.net>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 6JyFy0_siqUFp-oZu3ALQU7Tj7BoEMx1
-X-Proofpoint-GUID: 6JyFy0_siqUFp-oZu3ALQU7Tj7BoEMx1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-09-28_11,2022-09-28_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 impostorscore=0
- suspectscore=0 clxscore=1015 adultscore=0 mlxlogscore=913 spamscore=0
- mlxscore=0 lowpriorityscore=0 priorityscore=1501 bulkscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2209290011
+Subject: Re: [PATCH] wifi: ath11k: Don't exit on wakeup failure
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20220928015140.5431-1-quic_bqiang@quicinc.com>
+References: <20220928015140.5431-1-quic_bqiang@quicinc.com>
+To: Baochen Qiang <quic_bqiang@quicinc.com>
+Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-ID: <166451959112.6083.18119896187567020828.kvalo@kernel.org>
+Date: Fri, 30 Sep 2022 06:33:13 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20220928_185831_365975_A45C561B 
-X-CRM114-Status: GOOD (  13.29  )
+X-CRM114-CacheID: sfid-20220929_233318_327735_264A3EBF 
+X-CRM114-Status: UNSURE (   8.87  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,19 +67,38 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-T24gOS8yOS8yMDIyIDM6MjggQU0sIEpvaGFubmVzIEJlcmcgd3JvdGU6Cj4gT24gV2VkLCAyMDIy
-LTA5LTI4IGF0IDIzOjMzICswODAwLCBXZW4gR29uZyB3cm90ZToKPj4gSGkgSm9oYW5uZXMsCj4+
-Cj4+IE1heSBJIGtub3cgdGhlIHN0YXR1cyBmb3IgYmVsb3cgd29yayB3aGljaCBpcyB3cml0dGVu
-IGluIHRoZSBwYXRjaCBiZWxvdz8KPj4gSSB0aGluayBpdCBpcyBuZWVkZWQgaW4KPj4gaWVlZTgw
-MjExX2Fzc29jX2NvbmZpZ19saW5rKCkvaWVlZTgwMjExX2Fzc29jX3N1Y2Nlc3MoKSwgcmlnaHQ/
-Cj4+Cj4gSXQgcGFzc2VkIHRoZSBwbHVnZmVzdCBsYXN0IHdlZWsgOy0pCml0IGlzIGdvb2QgZm9y
-IHRoYXQgOinCoCAtKQo+IFllcywgSSBuZWVkIHRvIGdldCB0aGlzIHBvc3RlZCAuLi4gYnV0IG5v
-dyBJIGdvdCBhbm90aGVyIHVyZ2VudCB0aGluZyB0bwo+IGxvb2sgYXQsIHNvIGl0J2xsIGJlIHNv
-bWUgdGltZS4KPgo+IGpvaGFubmVzCgotLSAKYXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtAbGlz
-dHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL2F0aDExawo=
+Baochen Qiang <quic_bqiang@quicinc.com> wrote:
+
+> Currently, ath11k_pcic_read() returns an error if wakeup()
+> fails, this makes firmware crash debug quite hard because we can
+> get nothing.
+> 
+> Change to go ahead on wakeup failure, in that case we still may
+> get something valid to check. There should be no mislead due
+> to incorrect content because we are aware of the failure with the
+> log printed.
+> 
+> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+> 
+> Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+
+Patch applied to ath-next branch of ath.git, thanks.
+
+45d2e268369b wifi: ath11k: Don't exit on wakeup failure
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/patch/20220928015140.5431-1-quic_bqiang@quicinc.com/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
