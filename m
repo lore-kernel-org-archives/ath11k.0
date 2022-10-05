@@ -4,49 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8FF1C433FE
-	for <ath11k@archiver.kernel.org>; Tue,  4 Oct 2022 17:07:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23B4FC433F5
+	for <ath11k@archiver.kernel.org>; Wed,  5 Oct 2022 04:12:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Subject:From:To
-	:Date:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=3idiso9NQErJitEIKJJg9/jbL1ZeX/h7zEo5weFOQ78=; b=3kutg5BF1ixbkq
-	QBgRhLkj7LcT3ymcHML8I5JjUZ7nJlu+x6r+4sppqqSIWC/UssQ3vFd5BO23Ffhx5L2qPiDT0xRDo
-	k+gGthtXaGKvjtisZzyA4XYLW8x/bVfgCuDxRG4/EezjHqrAeKkg95N1JS/ggNjQZzZAtSsQ2XVEx
-	n7ekth0Jv7Oz3myrZXq5JE2h2PDv7UEokXQ3CvYSCoI/1HZegE3VWNyIGokDZG3u9vgry9FnrN48A
-	2Vn3qOyb6G2ihRoBpasiBbNJPq0AZZMHF54rIAquAM+KXQOK41SBZHjY+9pIe5cU7NvhvTfefbsJG
-	UhYNCUsUTe4E+BtbdKbg==;
+	List-Owner; bh=8ahe2SzQAAok1/Eqn4FjghD9OOuKRM7E4HistCrhTyM=; b=IvA16Z4Cz4OagW
+	TMZJ3GiHJXENMQfOCbGK6cA9XyWB8PoMgkvZR4XFCadwK30/iuuEOfRU2PAiPirGHjqfJA0caLeEg
+	Sg4xxijpfdEL9UyQisWqncY7fIUR4zKoMAKa/JR6T3L52jnBmOjBQwBbIdjlfxQ7aok2YrFSp1tjf
+	4LlY2CnrU1xrqBOGSIcZZbp9Ze6nk+bJTmALoQIYbF+Z4uwMhIdqL2HrZzcYpJnmMBEr+o4wl4H+R
+	q+pxbxVnxf/nMKkPZf1uNnUOwwamM17Cv/6L+gKIollxGtHCNUrsY8ZOUqRuA4FRu/z0yAoJuKl2M
+	zQHAV6axFP3bgLChRY4A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oflNq-00AGJ5-9Y; Tue, 04 Oct 2022 17:07:06 +0000
-Received: from mail-4027.protonmail.ch ([185.70.40.27])
+	id 1ofvlb-00CK9v-1u; Wed, 05 Oct 2022 04:12:19 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oflNn-00AGIh-12
-	for ath11k@lists.infradead.org; Tue, 04 Oct 2022 17:07:05 +0000
-Date: Tue, 04 Oct 2022 17:06:56 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
-	s=protonmail; t=1664903219; x=1665162419;
-	bh=RqOeTc/YYgnufgY59cML1akv6JPv2w8Bezo7NEYb9YY=;
-	h=Date:To:From:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
-	 Subject:Reply-To:Feedback-ID:Message-ID;
-	b=J1A6VqQJnix577dl+h+KQ28+BjbvHdYyyGctb/P9pBe7hZv8xw0w7MR/xCgJy7avv
-	 p/8UjUQHM+jzJay4IBDjW2JIUXqI2wHLWT+ycjpW9Q7857pV/8bdDBMoKnS2GTxnhw
-	 3arDqamemjr1FSnlGsJJKk6yjq+tGrlmQYiFrMw3+eIXX6GON2L+uLyfG7ZOfMf9tG
-	 ghqbBO4JOoDEdgbQsAm9ctm62LBFs9gs+LXbQGNM2g0lWKUljWe4rwk/vEmCB4ih9h
-	 ORO7jfFA/CpvGZ9ed3UsVDZhX2tG6jyfkihR80G+lhIFZu541C8T+L4fpxTXtVg2Ew
-	 TFpyElvMpvDxQ==
-To: "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
-From: jloretto70 <jloretto70@proton.me>
-Subject: Question about WCN6855 firmware versions
-Message-ID: <ozkZDmxXw0zoF9CbOu2CoxEILU4fpAb8udwK4yw-Jgwc1z7zvIZD91zIK0rxq-8vri3WDPztrozKOgZvm4-SLnBvOJoVmg_qr3s47YeckL4=@proton.me>
-Feedback-ID: 56744452:user:proton
+	id 1ofvlY-00CK9T-6B
+	for ath11k@lists.infradead.org; Wed, 05 Oct 2022 04:12:17 +0000
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2953rufm001992;
+	Wed, 5 Oct 2022 04:12:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=4o697tFompU1NB+99bvSizfu9dCD4Y04nHz0iISE6VY=;
+ b=J24hEpGODgX/JwRVJ1znMMmY19gwAGjvu2Q/LRTSElTdMvLVkjAVIEVrjftBA78Wy9Vb
+ D+iLRRjCs1r34OVw5ZeTEhDkUJCuAYClX7ywPbJ/xmjmJ4YH+UgvtWO0Y7loJzh1M34d
+ GR0jBT83yQ7AnTock6wzTQPorOYlJ+wXbaVOMtLZcgjPJtrQHAPKmE90yMN8gnSY/IeP
+ 4vtFgwj06L58MDu/dVw0IUkWpcMPRDefc+z9AInCcCYcuJydXOOwVRgbcV2Rnk/+jCC8
+ 3zqbCqD1Ed/VlU5VyUg1dBrJq2iAA1pBbuWDcMCHSJmxbgX+9Bw65g6LbK6hBZYbbKHr +Q== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jxcjffd36-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 05 Oct 2022 04:12:14 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2954CDOO019266
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 5 Oct 2022 04:12:13 GMT
+Received: from periyasa-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.29; Tue, 4 Oct 2022 21:12:11 -0700
+From: Karthikeyan Periyasamy <quic_periyasa@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>,
+        Karthikeyan Periyasamy
+	<quic_periyasa@quicinc.com>
+Subject: [PATCH] wifi: ath11k: suppress add interface error
+Date: Wed, 5 Oct 2022 09:41:55 +0530
+Message-ID: <20221005041155.6041-1-quic_periyasa@quicinc.com>
+X-Mailer: git-send-email 2.37.0
 MIME-Version: 1.0
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 1iwUTUpisADUwCyuKXoNBHokbWLa1eRz
+X-Proofpoint-ORIG-GUID: 1iwUTUpisADUwCyuKXoNBHokbWLa1eRz
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-10-04_09,2022-09-29_03,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxlogscore=903
+ mlxscore=0 lowpriorityscore=0 bulkscore=0 suspectscore=0 impostorscore=0
+ spamscore=0 phishscore=0 malwarescore=0 clxscore=1011 priorityscore=1501
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2209130000
+ definitions=main-2210050026
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221004_100704_541601_8F22F951 
-X-CRM114-Status: UNSURE (   4.02  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20221004_211216_390578_44CC4995 
+X-CRM114-Status: GOOD (  15.72  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -63,11 +93,58 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hello,
+In the VAP (other than monitor type) creation request, we should not
+throw the error code when the monitor VAP creation fails, since the
+actual VAP creation succeeds. If we throw the error code from driver
+then the actual VAP creation get fail. So suppress the monitor VAP
+creation error by throwing warning message instead of error code.
 
-I have a WCN6855 (hw2.1) card and am currently using the latest firmware files from the kernel.org repo which are labeled 3.6510.9 in the commit message. I see that there is a more recent set of files labeled 3.6510.16 in the GitHub repo for this card. Are these firmware files safe to use or is the best practice to wait until they land in the official kernel.org repo?
+Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.6.0.1-00760-QCAHKSWPL_SILICONZ-1
 
-Thank you.
+Signed-off-by: Karthikeyan Periyasamy <quic_periyasa@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/mac.c | 9 +++------
+ 1 file changed, 3 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 84d956ad4093..a8a212d416b2 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -6372,18 +6372,16 @@ static int ath11k_mac_op_add_interface(struct ieee80211_hw *hw,
+ 
+ 	ath11k_dp_vdev_tx_attach(ar, arvif);
+ 
++	ath11k_debugfs_add_interface(arvif);
++
+ 	if (vif->type != NL80211_IFTYPE_MONITOR &&
+ 	    test_bit(ATH11K_FLAG_MONITOR_CONF_ENABLED, &ar->monitor_flags)) {
+ 		ret = ath11k_mac_monitor_vdev_create(ar);
+-		if (ret) {
++		if (ret)
+ 			ath11k_warn(ar->ab, "failed to create monitor vdev during add interface: %d",
+ 				    ret);
+-			goto err_peer_del;
+-		}
+ 	}
+ 
+-	ath11k_debugfs_add_interface(arvif);
+-
+ 	mutex_unlock(&ar->conf_mutex);
+ 
+ 	return 0;
+@@ -6408,7 +6406,6 @@ static int ath11k_mac_op_add_interface(struct ieee80211_hw *hw,
+ 	spin_unlock_bh(&ar->data_lock);
+ 
+ err:
+-	ath11k_debugfs_remove_interface(arvif);
+ 	mutex_unlock(&ar->conf_mutex);
+ 
+ 	return ret;
+
+base-commit: 15bc43a23ac0504a2a99fceae4a31b8bf37ec8fe
+-- 
+2.37.0
+
 
 -- 
 ath11k mailing list
