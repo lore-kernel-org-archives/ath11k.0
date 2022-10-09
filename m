@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 027ABC43217
-	for <ath11k@archiver.kernel.org>; Sun,  9 Oct 2022 22:09:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D578C433FE
+	for <ath11k@archiver.kernel.org>; Sun,  9 Oct 2022 22:11:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DnZVm6uylTOvvc/Cgic95tw/TsBj+EpCrPWB0+l77nA=; b=HW9em/ozLN5GmH
-	fL1cx/qhflNjyK4MJjDo27gEbm7ZulsjrJFWx1ZWaMoViFEg2ncOCIN+iecQNzk+NzJqw8Guq8Opv
-	rV/OXoPY1qGhHHk7tOOkk7eQJ1Kbbz/12/LUmeROF2WjREjZIXcDc7jjTdFnvLuUvYnBF0T5CM3nl
-	lCy9QyTVaOa6q/hmSwyj5/86vOJ4ttixqPDr8293r9nicL/ymYk0X6yHp79NphE8+J3Xy7bWixdua
-	TuN2YzyOvQ8Ehi8izLsR9EbgVNN31XBMKVajaM2DwZBI+7QjiVxjkLf5n3frccd84NsAXg2ZBWIel
-	8VQMiHbvQbRRk8+gyM2A==;
+	List-Owner; bh=gEd+l3q8iGiOu44Ux8dIeVy1ptZJ28HLNb///38Ef3Y=; b=AEP9dhDHmpMwMR
+	TpL3QGpSHfblrJRqLaGourFpWH9Q7wgxGWRcv/Yn3w1WGZdBVRbcxKNjSo/ozLhCRVvzfCI5q0Uyn
+	QfUVZZnl2tAgdWQcK45PKssfBCMVznT4wAbAVVaaTwFTqvjpzs6hLOQgpsebH6biQgl/kDEgidrcy
+	4O2XtRXxWae5Hs2Pt1BDYHGuVucEeeHrlElEx+trXr5/B4qKYXr3/QVv7MSIgaNVP+i8IuMpxt71X
+	8voPyiBwvEdSbcKHxhF6eB50ylTxuJkszSvRwvBivHt7jN1uaOOqFgON2CT2U6pGIZG0KiEQ1INbF
+	7DTG8AgJnCfJjalEFmTw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oheUD-00GGEB-Oe; Sun, 09 Oct 2022 22:09:29 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1oheVj-00GGdc-Bh; Sun, 09 Oct 2022 22:11:03 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oheU6-00GGCR-KP
-	for ath11k@lists.infradead.org; Sun, 09 Oct 2022 22:09:24 +0000
+	id 1oheVf-00GGcG-KB
+	for ath11k@lists.infradead.org; Sun, 09 Oct 2022 22:11:01 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 2F68960B85;
-	Sun,  9 Oct 2022 22:09:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96760C433D7;
-	Sun,  9 Oct 2022 22:09:20 +0000 (UTC)
+	by ams.source.kernel.org (Postfix) with ESMTPS id 4D4C0B80DD4;
+	Sun,  9 Oct 2022 22:10:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C8C9C43144;
+	Sun,  9 Oct 2022 22:10:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1665353362;
-	bh=giegFir8SL6JfqRM8O19b4x4heEB9JoQAO77iyXbpSQ=;
+	s=k20201202; t=1665353457;
+	bh=KwB7yzHmIKvJrXcnQgncUVi1felkVMXMpemxmBu6DsM=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=uGr0/XBtLMiYj7xE9BF7+7/x1KNbrTKuaQukWT4UKb/1lZUnhmFUU1L1RmnjwJ6RJ
-	 9qFdqsGFBiQcR3hTvnT/EwVkmz4bK5E4G24Le4pCnJEaUl3bBhq15URpLgz68uVh8S
-	 6jlWZ6BLDvcz0/DR68qwxCO5/e50ogjlkt5rMZtckwXt6ui55REtHMZBcSnc5g6bNN
-	 0tjZwoJ9BxTaDdOj1vEeaQ3oumbxNooethGpB0bl315lFYBb17SaywJ7s4nWrvj7f6
-	 7j1mE5LLEmjXVrl7RMEYsRa9NSAOslgb60djT2hPLD1RI/tsiaBnGoeLEHQXJYCDpB
-	 67BXaHw485j7Q==
+	b=LN+1ko22YeZPuIlas9ImfZ51r594qOsAkxhzWwj/7iTLA82Cm2b41hE1+jxiNDxRw
+	 w9F8FDcg1zw8exFv3ACNHdvkq0DHVmAqUQ34GPTtk6d7N8f81W83PxpY88YOOboOUE
+	 nRzaRhmX68gtUdkNBVr5RminLAha1dCYOKX2w90TMinFFiDdi+8aGR/RZBxEzCOgDA
+	 JuzdZ0UHOU2cY7YAmEoiqa3ZqevP1SlYOT23PgcqYYvNUwZjO6ISPRB/JD+Td82YoI
+	 zVMccD178ZmRfbRgMl9i4W2n563f6F8HB7I5RBn7dn7Hg9U8JsFJvQYRNVSEdK+i52
+	 +oAHERmNDuuFw==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>,
+Cc: Jianglei Nie <niejianglei2021@163.com>,
+	Jeff Johnson <quic_jjohnson@quicinc.com>,
 	Kalle Valo <quic_kvalo@quicinc.com>,
 	Sasha Levin <sashal@kernel.org>,
 	kvalo@kernel.org,
@@ -56,9 +57,9 @@ Cc: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>,
 	ath11k@lists.infradead.org,
 	linux-wireless@vger.kernel.org,
 	netdev@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.0 26/77] wifi: ath11k: Register shutdown handler for WCN6750
-Date: Sun,  9 Oct 2022 18:07:03 -0400
-Message-Id: <20221009220754.1214186-26-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.0 40/77] wifi: ath11k: mhi: fix potential memory leak in ath11k_mhi_register()
+Date: Sun,  9 Oct 2022 18:07:17 -0400
+Message-Id: <20221009220754.1214186-40-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20221009220754.1214186-1-sashal@kernel.org>
 References: <20221009220754.1214186-1-sashal@kernel.org>
@@ -66,8 +67,8 @@ MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221009_150922_773885_E9027D71 
-X-CRM114-Status: GOOD (  16.65  )
+X-CRM114-CacheID: sfid-20221009_151059_982276_E95B684E 
+X-CRM114-Status: GOOD (  12.83  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,146 +85,77 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+From: Jianglei Nie <niejianglei2021@163.com>
 
-[ Upstream commit ac41c2b642b136a1e633379fcb87a9db0ee07f5b ]
+[ Upstream commit 43e7c3505ec70db3d3c6458824d5fa40f62e3e7b ]
 
-When the system shuts down, SMMU driver will be stopped and
-will not assist in IOVA translations. SMMU driver expects all
-of its consumers to shutdown before shutting down itself.
-WCN6750 being one of the consumer device should not perform any
-DMA operations after the SMMU has shutdown which will otherwise
-result in SMMU faults.
+mhi_alloc_controller() allocates a memory space for mhi_ctrl. When gets
+some error, mhi_ctrl should be freed with mhi_free_controller(). But
+when ath11k_mhi_read_addr_from_dt() fails, the function returns without
+calling mhi_free_controller(), which will lead to a memory leak.
 
-SMMU driver will call the shutdown() callback of all its
-consumer devices and the consumers shall stop further DMA
-activity after the invocation of their respective shutdown()
-callbacks.
+We can fix it by calling mhi_free_controller() when
+ath11k_mhi_read_addr_from_dt() fails.
 
-Register the shutdown() callback to the platform core for WCN6750.
-Change will not impact other AHB ath11k devices.
-
-Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
-
-Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+Signed-off-by: Jianglei Nie <niejianglei2021@163.com>
+Reviewed-by: Jeff Johnson <quic_jjohnson@quicinc.com>
 Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
-Link: https://lore.kernel.org/r/20220720134710.15523-1-quic_mpubbise@quicinc.com
+Link: https://lore.kernel.org/r/20220907073704.58806-1-niejianglei2021@163.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/net/wireless/ath/ath11k/ahb.c  | 58 ++++++++++++++++++++------
- drivers/net/wireless/ath/ath11k/core.c |  2 +
- 2 files changed, 47 insertions(+), 13 deletions(-)
+ drivers/net/wireless/ath/ath11k/mhi.c | 17 ++++++++++-------
+ 1 file changed, 10 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index c47414710138..911eee9646a4 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.c
-+++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -1088,20 +1088,10 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
- 	return ret;
- }
+diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
+index c44df17719f6..86995e8dc913 100644
+--- a/drivers/net/wireless/ath/ath11k/mhi.c
++++ b/drivers/net/wireless/ath/ath11k/mhi.c
+@@ -402,8 +402,7 @@ int ath11k_mhi_register(struct ath11k_pci *ab_pci)
+ 	ret = ath11k_mhi_get_msi(ab_pci);
+ 	if (ret) {
+ 		ath11k_err(ab, "failed to get msi for mhi\n");
+-		mhi_free_controller(mhi_ctrl);
+-		return ret;
++		goto free_controller;
+ 	}
  
--static int ath11k_ahb_remove(struct platform_device *pdev)
-+static void ath11k_ahb_remove_prepare(struct ath11k_base *ab)
- {
--	struct ath11k_base *ab = platform_get_drvdata(pdev);
- 	unsigned long left;
+ 	if (!test_bit(ATH11K_FLAG_MULTI_MSI_VECTORS, &ab->dev_flags))
+@@ -412,7 +411,7 @@ int ath11k_mhi_register(struct ath11k_pci *ab_pci)
+ 	if (test_bit(ATH11K_FLAG_FIXED_MEM_RGN, &ab->dev_flags)) {
+ 		ret = ath11k_mhi_read_addr_from_dt(mhi_ctrl);
+ 		if (ret < 0)
+-			return ret;
++			goto free_controller;
+ 	} else {
+ 		mhi_ctrl->iova_start = 0;
+ 		mhi_ctrl->iova_stop = 0xFFFFFFFF;
+@@ -440,18 +439,22 @@ int ath11k_mhi_register(struct ath11k_pci *ab_pci)
+ 	default:
+ 		ath11k_err(ab, "failed assign mhi_config for unknown hw rev %d\n",
+ 			   ab->hw_rev);
+-		mhi_free_controller(mhi_ctrl);
+-		return -EINVAL;
++		ret = -EINVAL;
++		goto free_controller;
+ 	}
  
--	if (test_bit(ATH11K_FLAG_QMI_FAIL, &ab->dev_flags)) {
--		ath11k_ahb_power_down(ab);
--		ath11k_debugfs_soc_destroy(ab);
--		ath11k_qmi_deinit_service(ab);
--		goto qmi_fail;
--	}
--
--	reinit_completion(&ab->driver_recovery);
--
- 	if (test_bit(ATH11K_FLAG_RECOVERY, &ab->dev_flags)) {
- 		left = wait_for_completion_timeout(&ab->driver_recovery,
- 						   ATH11K_AHB_RECOVERY_TIMEOUT);
-@@ -1111,19 +1101,60 @@ static int ath11k_ahb_remove(struct platform_device *pdev)
- 
- 	set_bit(ATH11K_FLAG_UNREGISTERING, &ab->dev_flags);
- 	cancel_work_sync(&ab->restart_work);
-+	cancel_work_sync(&ab->qmi.event_work);
-+}
-+
-+static void ath11k_ahb_free_resources(struct ath11k_base *ab)
-+{
-+	struct platform_device *pdev = ab->pdev;
- 
--	ath11k_core_deinit(ab);
--qmi_fail:
- 	ath11k_ahb_free_irq(ab);
- 	ath11k_hal_srng_deinit(ab);
- 	ath11k_ahb_fw_resource_deinit(ab);
- 	ath11k_ce_free_pipes(ab);
- 	ath11k_core_free(ab);
- 	platform_set_drvdata(pdev, NULL);
-+}
-+
-+static int ath11k_ahb_remove(struct platform_device *pdev)
-+{
-+	struct ath11k_base *ab = platform_get_drvdata(pdev);
-+
-+	if (test_bit(ATH11K_FLAG_QMI_FAIL, &ab->dev_flags)) {
-+		ath11k_ahb_power_down(ab);
-+		ath11k_debugfs_soc_destroy(ab);
-+		ath11k_qmi_deinit_service(ab);
-+		goto qmi_fail;
-+	}
-+
-+	ath11k_ahb_remove_prepare(ab);
-+	ath11k_core_deinit(ab);
-+
-+qmi_fail:
-+	ath11k_ahb_free_resources(ab);
+ 	ret = mhi_register_controller(mhi_ctrl, ath11k_mhi_config);
+ 	if (ret) {
+ 		ath11k_err(ab, "failed to register to mhi bus, err = %d\n", ret);
+-		mhi_free_controller(mhi_ctrl);
+-		return ret;
++		goto free_controller;
+ 	}
  
  	return 0;
++
++free_controller:
++	mhi_free_controller(mhi_ctrl);
++	ab_pci->mhi_ctrl = NULL;
++	return ret;
  }
  
-+static void ath11k_ahb_shutdown(struct platform_device *pdev)
-+{
-+	struct ath11k_base *ab = platform_get_drvdata(pdev);
-+
-+	/* platform shutdown() & remove() are mutually exclusive.
-+	 * remove() is invoked during rmmod & shutdown() during
-+	 * system reboot/shutdown.
-+	 */
-+	ath11k_ahb_remove_prepare(ab);
-+
-+	if (!(test_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags)))
-+		goto free_resources;
-+
-+	ath11k_core_deinit(ab);
-+
-+free_resources:
-+	ath11k_ahb_free_resources(ab);
-+}
-+
- static struct platform_driver ath11k_ahb_driver = {
- 	.driver         = {
- 		.name   = "ath11k",
-@@ -1131,6 +1162,7 @@ static struct platform_driver ath11k_ahb_driver = {
- 	},
- 	.probe  = ath11k_ahb_probe,
- 	.remove = ath11k_ahb_remove,
-+	.shutdown = ath11k_ahb_shutdown,
- };
- 
- static int ath11k_ahb_init(void)
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index c3e9e4f7bc24..9df6aaae8a44 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -1563,6 +1563,8 @@ static void ath11k_core_pre_reconfigure_recovery(struct ath11k_base *ab)
- 
- 	wake_up(&ab->wmi_ab.tx_credits_wq);
- 	wake_up(&ab->peer_mapping_wq);
-+
-+	reinit_completion(&ab->driver_recovery);
- }
- 
- static void ath11k_core_post_reconfigure_recovery(struct ath11k_base *ab)
+ void ath11k_mhi_unregister(struct ath11k_pci *ab_pci)
 -- 
 2.35.1
 
