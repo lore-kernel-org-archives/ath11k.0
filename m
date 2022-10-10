@@ -4,77 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D4A2C433F5
-	for <ath11k@archiver.kernel.org>; Mon, 10 Oct 2022 03:33:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D8F6C433FE
+	for <ath11k@archiver.kernel.org>; Mon, 10 Oct 2022 09:38:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=7pfVkDzcU2rnvO80ZLCygdWE3tsXJ/HODad18GfnyVI=; b=M+3HWE0cTkX8sN
-	DkglMEZgoi4brBdiQ5XH/+CYZ3XOO9eDmf+zKBOFngtsOgBnBLiYUL7aEHWF+VyQK2hNqDBfXw+if
-	vuREMW0iUlye6SDb0bVfFyTwWeWQ64twT3QXo3LcwuC2AMTkJXikmn7Pnb7HJTMyXIG4ZIj1iuql/
-	23OMNixu/VKeG0WvZiMeU/oQ8KE+dQeBY5KiD+Bm+cy2yUjvLKuATPtZB9PibBBvh3IhNfwNCMG19
-	yJx9tkBnauobrSDKq3h3lI1N9Tv/NcpjWi9z8LrJYOeOmjebkYAmelbnISF0paR3Bs0bLJces49DO
-	eLV5KlnemMzFRugsbVAA==;
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
+	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=B0fUygDDrrDEC4YWUaBlYZFAtvYfzU4MtV/uRyJAmmQ=; b=FSlGktbSy2RrvC
+	a0p+yvHw7bJzYd5Xl7wx+1IJVelt9YfRs6ZwlvAIz43lX2FtlICqDNobxkGySVXCaf3VLAz2r/FiZ
+	DMnIcfFxsMWXOb1yN01uU7rMJz80rRxwSXA4ezXJrw1ZIEKNTCTROoA0gOBU2tM+Iw0zs7j8QuhEK
+	QtT722wdTC40el2PCTwEWPN3J42kcBfMGMSUG7jNZwp6apC8s/lwoS+GxBZ5XZFouFuBAhiRIknlG
+	/v9Y80sJMlqRcV9muCO3LIc6O6f2cHqoKMOkdbAW3jigucy0m1Tib8wLcSiWghNv4B7H4cGGTUNND
+	r6roJ2SFeQehUlL8k6bw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ohjXF-00Guou-Ro; Mon, 10 Oct 2022 03:32:57 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1ohpFG-000DmS-GM; Mon, 10 Oct 2022 09:38:46 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ohjXD-00GuoC-Ge
-	for ath11k@lists.infradead.org; Mon, 10 Oct 2022 03:32:56 +0000
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29A3C3nq000533;
-	Mon, 10 Oct 2022 03:32:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-transfer-encoding :
- content-type; s=qcppdkim1;
- bh=Qb8Uz92RvqxoZ/U5HyycwC7Sm1QLXoJ+L6oWadr4khM=;
- b=DMSse3DLb8N7O/FoQR8kfcMX3y80ASnTVax6S4zc5PzXg+c9hilTugeXwqrr2LmqCbqm
- y/aGMScejJ/TFx1VePoI8z4LTNfRuG9O5Vr8tHkRNCFUl7pmXOjBzltVG/A2roOnWf7g
- pDPzF6bsbAnjjupZAalpb+1V7CFTgrwL1BrswZujIuGxR/rj3G4/qp+KeQFkkebgYYmA
- iqL0gcOgvQLkXvIevcqaQZk+08OLU1c6S+0KeYaSCpiE6KBTVtaF4vQRLlmD4i305Kwr
- 0vPv2IXYqiG4k1tPu2+WwSmNljC1zRyQAsUpNYrHP91RLYo26WtYQjFvkmy8wtmqq6OA WQ== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3k32gek3us-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 10 Oct 2022 03:32:48 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 29A3WlZL018699
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 10 Oct 2022 03:32:47 GMT
-Received: from bqiang-Celadon-RN.qca.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.29; Sun, 9 Oct 2022 20:32:46 -0700
-From: Baochen Qiang <quic_bqiang@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>
-Subject: [PATCH] wifi: ath11k: Send PME message during wakeup from D3cold
-Date: Mon, 10 Oct 2022 11:32:37 +0800
-Message-ID: <20221010033237.415478-1-quic_bqiang@quicinc.com>
-X-Mailer: git-send-email 2.25.1
+	id 1ohpFD-000DlP-Te
+	for ath11k@lists.infradead.org; Mon, 10 Oct 2022 09:38:45 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id D3C7360EC6
+	for <ath11k@lists.infradead.org>; Mon, 10 Oct 2022 09:38:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E7CBC433D7;
+	Mon, 10 Oct 2022 09:38:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1665394721;
+	bh=8KZLPndei0SJtrdqxp0cnPnc7Efw0GxPCNx9YT/+z1o=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=q+TJu8yc33XhXodU074NkxAceGcsZmT0AnyKSimMaAV7gsE6RMUI9zr5v7V+R5t9W
+	 HVKGmcfCjHp26/kG1vSJO0jX2Mxx5fs+yboB8dGXdBHawHfwSMHziU0c+JLPqthZqC
+	 NuU9UQLKZw5Hz1WQie27SRTM2BRL5ZxNMXiTvYIJcoI9w8ykDXZkcHzkEfFATgvW3a
+	 EQMgSxtG9qXsudeKWRccnxBK9e+4RSV89Djk4OuEedAWURHkOrBVfvv2O24NMVl3sl
+	 I73Q8MSEG04tXIX95NNKBv5daSdekfOk2SgUGrrg/y1g81IUrU6BB0FpGAt1ACrTZl
+	 OtqYUORswol3g==
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: YOHyZI4rP-KocY1uVukdU862mGBPuHHy
-X-Proofpoint-ORIG-GUID: YOHyZI4rP-KocY1uVukdU862mGBPuHHy
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-10-07_04,2022-10-07_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 spamscore=0
- malwarescore=0 mlxlogscore=999 clxscore=1011 adultscore=0
- lowpriorityscore=0 bulkscore=0 phishscore=0 priorityscore=1501
- suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2210100019
+Subject: Re: [PATCH] wifi: ath11k: avoid deadlock during regulatory update in
+ ath11k_regd_update()
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20221006151747.13757-1-kvalo@kernel.org>
+References: <20221006151747.13757-1-kvalo@kernel.org>
+To: Kalle Valo <kvalo@kernel.org>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-ID: <166539471639.12656.4045155375066520132.kvalo@kernel.org>
+Date: Mon, 10 Oct 2022 09:38:40 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221009_203255_593741_2B6D50B4 
-X-CRM114-Status: GOOD (  13.66  )
+X-CRM114-CacheID: sfid-20221010_023844_085072_D31ADC4C 
+X-CRM114-Status: GOOD (  15.51  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,44 +72,78 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-We are seeing system stuck on some specific platforms due to
-WLAN chip fails to wakeup from D3cold state.
+Kalle Valo <kvalo@kernel.org> wrote:
 
-With this flag, firmware will send PME message during wakeup
-and this issue is gone.
+> Running this test in a loop it is easy to reproduce an rtnl deadlock:
+> 
+> iw reg set FI
+> ifconfig wlan0 down
+> 
+> What happens is that thread A (workqueue) tries to update the regulatory:
+> 
+>     try to acquire the rtnl_lock of ar->regd_update_work
+> 
+>     rtnl_lock+0x17/0x20
+>     ath11k_regd_update+0x15a/0x260 [ath11k]
+>     ath11k_regd_update_work+0x15/0x20 [ath11k]
+>     process_one_work+0x228/0x670
+>     worker_thread+0x4d/0x440
+>     kthread+0x16d/0x1b0
+>     ret_from_fork+0x22/0x30
+> 
+> And thread B (ifconfig) tries to stop the interface:
+> 
+>     try to cancel_work_sync(&ar->regd_update_work) in ath11k_mac_op_stop().
+>     ifconfig  3109 [003]  2414.232506: probe:
+> 
+>     ath11k_mac_op_stop: (ffffffffc14187a0)
+>     drv_stop+0x30 ([mac80211])
+>     ieee80211_do_stop+0x5d2 ([mac80211])
+>     ieee80211_stop+0x3e ([mac80211])
+>     __dev_close_many+0x9e ([kernel.kallsyms])
+>     __dev_change_flags+0xbe ([kernel.kallsyms])
+>     dev_change_flags+0x23 ([kernel.kallsyms])
+>     devinet_ioctl+0x5e3 ([kernel.kallsyms])
+>     inet_ioctl+0x197 ([kernel.kallsyms])
+>     sock_do_ioctl+0x4d ([kernel.kallsyms])
+>     sock_ioctl+0x264 ([kernel.kallsyms])
+>     __x64_sys_ioctl+0x92 ([kernel.kallsyms])
+>     do_syscall_64+0x3a ([kernel.kallsyms])
+>     entry_SYSCALL_64_after_hwframe+0x63 ([kernel.kallsyms])
+>     __GI___ioctl+0x7 (/lib/x86_64-linux-gnu/libc-2.23.so)
+> 
+> The sequence of deadlock is:
+> 
+> 1. Thread B calls rtnl_lock().
+> 
+> 2. Thread A starts to run and calls rtnl_lock() from within
+>    ath11k_regd_update_work(), then enters wait state because the lock is owned by
+>    thread B.
+> 
+> 3. Thread B continues to run and tries to call
+>    cancel_work_sync(&ar->regd_update_work), but thread A is in
+>    ath11k_regd_update_work() waiting for rtnl_lock(). So cancel_work_sync()
+>    forever waits for ath11k_regd_update_work() to finish and we have a deadlock.
+> 
+> Fix this by switching from using regulatory_set_wiphy_regd_sync() to
+> regulatory_set_wiphy_regd(). Now cfg80211 will schedule another workqueue which
+> handles the locking on it's own. So the ath11k workqueue can simply exit without
+> taking any locks, avoiding the deadlock.
+> 
+> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
+> 
+> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
+> [kvalo: improve commit log]
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
+Patch applied to ath-next branch of ath.git, thanks.
 
-Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/qmi.c | 3 +++
- 1 file changed, 3 insertions(+)
+d99884ad9e36 wifi: ath11k: avoid deadlock during regulatory update in ath11k_regd_update()
 
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index 84e3abecbdac..145f20a681bd 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.c
-+++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -19,6 +19,7 @@
- #define SLEEP_CLOCK_SELECT_INTERNAL_BIT	0x02
- #define HOST_CSTATE_BIT			0x04
- #define PLATFORM_CAP_PCIE_GLOBAL_RESET	0x08
-+#define PLATFORM_CAP_PCIE_PME_D3COLD	0x10
- 
- #define FW_BUILD_ID_MASK "QC_IMAGE_VERSION_STRING="
- 
-@@ -1752,6 +1753,8 @@ static int ath11k_qmi_host_cap_send(struct ath11k_base *ab)
- 	if (ab->hw_params.global_reset)
- 		req.nm_modem |= PLATFORM_CAP_PCIE_GLOBAL_RESET;
- 
-+	req.nm_modem |= PLATFORM_CAP_PCIE_PME_D3COLD;
-+
- 	ath11k_dbg(ab, ATH11K_DBG_QMI, "qmi host cap request\n");
- 
- 	ret = qmi_txn_init(&ab->qmi.handle, &txn,
-
-base-commit: 023baf1318ef21442fab3842bf03883bc81223e0
 -- 
-2.25.1
+https://patchwork.kernel.org/project/linux-wireless/patch/20221006151747.13757-1-kvalo@kernel.org/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 
 -- 
