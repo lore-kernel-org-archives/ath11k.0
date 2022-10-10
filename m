@@ -4,71 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20F5EC433F5
-	for <ath11k@archiver.kernel.org>; Sun,  9 Oct 2022 22:17:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D4A2C433F5
+	for <ath11k@archiver.kernel.org>; Mon, 10 Oct 2022 03:33:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=gEd+l3q8iGiOu44Ux8dIeVy1ptZJ28HLNb///38Ef3Y=; b=XLfVqYeqyTg93I
-	NDgVqbzNy/uRWWXS29G1Rj6YwdVTt8V5UoFw2iGX7F0Xqfidoq/Zm2bsewOm3S5lzAsLSuHXTwCX8
-	4DO8y0AHwdm5Fq/h4/bDIbr7oH0JpQNJAfLUWBAAuVVoN6QvnGszRK59kajZvvbIwwbjvVOszOon7
-	B3hcbKf0+xJvKVDknCLGY1llI+S7vfvyubUBN1ZB69XFH5bDTCjHWIxZrqHFagMaz2ki34CsDkS3b
-	lAAFuVBiy8sYO+Rh5u2jRhRStwUlrTRKnsuWgs6LRUyTuzn3/WocRGYOBnPrxqnWvslN0JGSCAXfo
-	bchCZuBbOmOQj933yrmQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=7pfVkDzcU2rnvO80ZLCygdWE3tsXJ/HODad18GfnyVI=; b=M+3HWE0cTkX8sN
+	DkglMEZgoi4brBdiQ5XH/+CYZ3XOO9eDmf+zKBOFngtsOgBnBLiYUL7aEHWF+VyQK2hNqDBfXw+if
+	vuREMW0iUlye6SDb0bVfFyTwWeWQ64twT3QXo3LcwuC2AMTkJXikmn7Pnb7HJTMyXIG4ZIj1iuql/
+	23OMNixu/VKeG0WvZiMeU/oQ8KE+dQeBY5KiD+Bm+cy2yUjvLKuATPtZB9PibBBvh3IhNfwNCMG19
+	yJx9tkBnauobrSDKq3h3lI1N9Tv/NcpjWi9z8LrJYOeOmjebkYAmelbnISF0paR3Bs0bLJces49DO
+	eLV5KlnemMzFRugsbVAA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ohebw-00GIJk-GN; Sun, 09 Oct 2022 22:17:28 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1ohjXF-00Guou-Ro; Mon, 10 Oct 2022 03:32:57 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ohebo-00GIGi-GA
-	for ath11k@lists.infradead.org; Sun, 09 Oct 2022 22:17:22 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 10FB260CBA;
-	Sun,  9 Oct 2022 22:17:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12165C43470;
-	Sun,  9 Oct 2022 22:17:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1665353839;
-	bh=KwB7yzHmIKvJrXcnQgncUVi1felkVMXMpemxmBu6DsM=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=gPWuCQqy72llXWMyJroxGjmJzSad0AEr4tMHVmlZ72xVH/OgBBmMi4z+nFX1CYE2H
-	 NruRMbEn4ZOYgbVP2uRD4YYT1quSTepBfE/q4JAmF9xBN4k56lXedsVSaZuorTOVoC
-	 vmVi5W5stwUt6GOHOLeN6bjoeH5F79S4vnAdFX4jT2xNJiF/LtzeNQkc5/1ZAW8BPL
-	 y0NkskhT4tJTwNcvRPg13G9wrQL5vapBirQb0zTXVxi5UcCFvg//MotV/3c1fmAogA
-	 geLvYdholrR5FyeX9IaSNGyTftJB0u3vtdaHGtDT1hCMvQw2bBeyUIlhaYJAHe8z1O
-	 FvZtHovFX2LBw==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Cc: Jianglei Nie <niejianglei2021@163.com>,
-	Jeff Johnson <quic_jjohnson@quicinc.com>,
-	Kalle Valo <quic_kvalo@quicinc.com>,
-	Sasha Levin <sashal@kernel.org>,
-	kvalo@kernel.org,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	ath11k@lists.infradead.org,
-	linux-wireless@vger.kernel.org,
-	netdev@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.19 37/73] wifi: ath11k: mhi: fix potential memory leak in ath11k_mhi_register()
-Date: Sun,  9 Oct 2022 18:14:15 -0400
-Message-Id: <20221009221453.1216158-37-sashal@kernel.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221009221453.1216158-1-sashal@kernel.org>
-References: <20221009221453.1216158-1-sashal@kernel.org>
+	id 1ohjXD-00GuoC-Ge
+	for ath11k@lists.infradead.org; Mon, 10 Oct 2022 03:32:56 +0000
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29A3C3nq000533;
+	Mon, 10 Oct 2022 03:32:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=Qb8Uz92RvqxoZ/U5HyycwC7Sm1QLXoJ+L6oWadr4khM=;
+ b=DMSse3DLb8N7O/FoQR8kfcMX3y80ASnTVax6S4zc5PzXg+c9hilTugeXwqrr2LmqCbqm
+ y/aGMScejJ/TFx1VePoI8z4LTNfRuG9O5Vr8tHkRNCFUl7pmXOjBzltVG/A2roOnWf7g
+ pDPzF6bsbAnjjupZAalpb+1V7CFTgrwL1BrswZujIuGxR/rj3G4/qp+KeQFkkebgYYmA
+ iqL0gcOgvQLkXvIevcqaQZk+08OLU1c6S+0KeYaSCpiE6KBTVtaF4vQRLlmD4i305Kwr
+ 0vPv2IXYqiG4k1tPu2+WwSmNljC1zRyQAsUpNYrHP91RLYo26WtYQjFvkmy8wtmqq6OA WQ== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3k32gek3us-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 10 Oct 2022 03:32:48 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 29A3WlZL018699
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 10 Oct 2022 03:32:47 GMT
+Received: from bqiang-Celadon-RN.qca.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.29; Sun, 9 Oct 2022 20:32:46 -0700
+From: Baochen Qiang <quic_bqiang@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>
+Subject: [PATCH] wifi: ath11k: Send PME message during wakeup from D3cold
+Date: Mon, 10 Oct 2022 11:32:37 +0800
+Message-ID: <20221010033237.415478-1-quic_bqiang@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: YOHyZI4rP-KocY1uVukdU862mGBPuHHy
+X-Proofpoint-ORIG-GUID: YOHyZI4rP-KocY1uVukdU862mGBPuHHy
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-10-07_04,2022-10-07_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 spamscore=0
+ malwarescore=0 mlxlogscore=999 clxscore=1011 adultscore=0
+ lowpriorityscore=0 bulkscore=0 phishscore=0 priorityscore=1501
+ suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2209130000 definitions=main-2210100019
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221009_151720_624673_EB471D7A 
-X-CRM114-Status: GOOD (  12.82  )
+X-CRM114-CacheID: sfid-20221009_203255_593741_2B6D50B4 
+X-CRM114-Status: GOOD (  13.66  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,79 +91,44 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Jianglei Nie <niejianglei2021@163.com>
+We are seeing system stuck on some specific platforms due to
+WLAN chip fails to wakeup from D3cold state.
 
-[ Upstream commit 43e7c3505ec70db3d3c6458824d5fa40f62e3e7b ]
+With this flag, firmware will send PME message during wakeup
+and this issue is gone.
 
-mhi_alloc_controller() allocates a memory space for mhi_ctrl. When gets
-some error, mhi_ctrl should be freed with mhi_free_controller(). But
-when ath11k_mhi_read_addr_from_dt() fails, the function returns without
-calling mhi_free_controller(), which will lead to a memory leak.
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
 
-We can fix it by calling mhi_free_controller() when
-ath11k_mhi_read_addr_from_dt() fails.
-
-Signed-off-by: Jianglei Nie <niejianglei2021@163.com>
-Reviewed-by: Jeff Johnson <quic_jjohnson@quicinc.com>
-Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
-Link: https://lore.kernel.org/r/20220907073704.58806-1-niejianglei2021@163.com
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+Signed-off-by: Baochen Qiang <quic_bqiang@quicinc.com>
 ---
- drivers/net/wireless/ath/ath11k/mhi.c | 17 ++++++++++-------
- 1 file changed, 10 insertions(+), 7 deletions(-)
+ drivers/net/wireless/ath/ath11k/qmi.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
-index c44df17719f6..86995e8dc913 100644
---- a/drivers/net/wireless/ath/ath11k/mhi.c
-+++ b/drivers/net/wireless/ath/ath11k/mhi.c
-@@ -402,8 +402,7 @@ int ath11k_mhi_register(struct ath11k_pci *ab_pci)
- 	ret = ath11k_mhi_get_msi(ab_pci);
- 	if (ret) {
- 		ath11k_err(ab, "failed to get msi for mhi\n");
--		mhi_free_controller(mhi_ctrl);
--		return ret;
-+		goto free_controller;
- 	}
+diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
+index 84e3abecbdac..145f20a681bd 100644
+--- a/drivers/net/wireless/ath/ath11k/qmi.c
++++ b/drivers/net/wireless/ath/ath11k/qmi.c
+@@ -19,6 +19,7 @@
+ #define SLEEP_CLOCK_SELECT_INTERNAL_BIT	0x02
+ #define HOST_CSTATE_BIT			0x04
+ #define PLATFORM_CAP_PCIE_GLOBAL_RESET	0x08
++#define PLATFORM_CAP_PCIE_PME_D3COLD	0x10
  
- 	if (!test_bit(ATH11K_FLAG_MULTI_MSI_VECTORS, &ab->dev_flags))
-@@ -412,7 +411,7 @@ int ath11k_mhi_register(struct ath11k_pci *ab_pci)
- 	if (test_bit(ATH11K_FLAG_FIXED_MEM_RGN, &ab->dev_flags)) {
- 		ret = ath11k_mhi_read_addr_from_dt(mhi_ctrl);
- 		if (ret < 0)
--			return ret;
-+			goto free_controller;
- 	} else {
- 		mhi_ctrl->iova_start = 0;
- 		mhi_ctrl->iova_stop = 0xFFFFFFFF;
-@@ -440,18 +439,22 @@ int ath11k_mhi_register(struct ath11k_pci *ab_pci)
- 	default:
- 		ath11k_err(ab, "failed assign mhi_config for unknown hw rev %d\n",
- 			   ab->hw_rev);
--		mhi_free_controller(mhi_ctrl);
--		return -EINVAL;
-+		ret = -EINVAL;
-+		goto free_controller;
- 	}
+ #define FW_BUILD_ID_MASK "QC_IMAGE_VERSION_STRING="
  
- 	ret = mhi_register_controller(mhi_ctrl, ath11k_mhi_config);
- 	if (ret) {
- 		ath11k_err(ab, "failed to register to mhi bus, err = %d\n", ret);
--		mhi_free_controller(mhi_ctrl);
--		return ret;
-+		goto free_controller;
- 	}
+@@ -1752,6 +1753,8 @@ static int ath11k_qmi_host_cap_send(struct ath11k_base *ab)
+ 	if (ab->hw_params.global_reset)
+ 		req.nm_modem |= PLATFORM_CAP_PCIE_GLOBAL_RESET;
  
- 	return 0;
++	req.nm_modem |= PLATFORM_CAP_PCIE_PME_D3COLD;
 +
-+free_controller:
-+	mhi_free_controller(mhi_ctrl);
-+	ab_pci->mhi_ctrl = NULL;
-+	return ret;
- }
+ 	ath11k_dbg(ab, ATH11K_DBG_QMI, "qmi host cap request\n");
  
- void ath11k_mhi_unregister(struct ath11k_pci *ab_pci)
+ 	ret = qmi_txn_init(&ab->qmi.handle, &txn,
+
+base-commit: 023baf1318ef21442fab3842bf03883bc81223e0
 -- 
-2.35.1
+2.25.1
 
 
 -- 
