@@ -4,58 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A260BC433FE
-	for <ath11k@archiver.kernel.org>; Tue, 11 Oct 2022 07:57:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EA56C433F5
+	for <ath11k@archiver.kernel.org>; Tue, 11 Oct 2022 08:13:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
 	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=r6rYWz2154hWdgdSH67FuPZ8dSGPpONVG6KuZ2x5txk=; b=zYblCpMLfQ+hOo
-	pAjX+ubLdrVXRDCOlflqrLC40GCzOIWuTgO0JzdGB+Rw1B8kv34ZDE9lwp2AZiBHp5E7ey3w8IJG2
-	9SmHg8alG6ePidt6EmEMZeS8RE7GfEKMgZtBG51/x38RylY+UcCTuHZ91RqaysdPlDB5Xo5dmwBox
-	L0tckwglwPKWIYWB8nR2hIQjASg/xaz6KxOQlfLH/6oxHqJZM3Ai2mbqtkxrDdhiWcvqkT5KgWD4q
-	CDR+NzFFQ7vNoiaTefe0lMYnfNXxtLOxWoAgh94xogE1bQISS5eM/R7Xinhlu8w2YPjombW21Ff56
-	p1FLY0IVPUcxb6Wdw8MA==;
+	List-Owner; bh=irnK8LND0SkvrFnrPu7sz40tlsCdJcq22/1yS2RFE1o=; b=YE+0kIwz55gu4G
+	MMFarmN4qFvx80MyjxJuWpn8nOgymOj5ma2wPGopLB11/BX3neJYjj6EDmg1ILhvztUGOCWPFAEgM
+	av5kVcXNy+k38Pcoze64O/rwu18ojLh/toKks+qvMAoNrk0gxLp5+nHe9HaIjNzFM4ZTEy3sY6iw8
+	5kiExXXh37smyVt8Z6ne2z0aLcTFMHEgbUy7eI3PZ4KoOw3I5rRjBfji/MiRjQRbvm3WTKmwYQ+eP
+	CaN8roQQZTzxH8Q6emtKE533jjZB2pP0DoYwHE7lLftz3erRmDkRTGKOx8fOgZ6D3o/aX4xqmWvRE
+	xwCPXyGmRj4vpXrwaNBg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oiA8b-003e3x-Po; Tue, 11 Oct 2022 07:57:17 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1oiANu-003fsJ-NF; Tue, 11 Oct 2022 08:13:06 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oiA8Z-003e28-06
-	for ath11k@lists.infradead.org; Tue, 11 Oct 2022 07:57:16 +0000
+	id 1oiANs-003frb-4S
+	for ath11k@lists.infradead.org; Tue, 11 Oct 2022 08:13:05 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id 6FF58B811F3;
-	Tue, 11 Oct 2022 07:57:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 876D0C433C1;
-	Tue, 11 Oct 2022 07:57:11 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 6920961143;
+	Tue, 11 Oct 2022 08:13:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46790C433C1;
+	Tue, 11 Oct 2022 08:13:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1665475032;
-	bh=KT5sq3edcE/o2GjfJ7gxMv7B9arG+ekXXZ7R6H/5Ptc=;
+	s=k20201202; t=1665475982;
+	bh=hdV/HagkJ26SOAJFvJzmaF51kGu9RxKTWkSj9OFXJ9o=;
 	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=b8Jas4Xi+AXVNVSekezJpIzYe793eAgmkjHl926oRDPUExsDupvIsVjYQED9yvzQY
-	 ObxJ4D7VbdctWznWCS+h8Cq1mrAdasAACwriVQyK4s0odmmeYZGH8CwQR05nN5PzNL
-	 k1sw+Z0cBqEpDRy5W/rg+6xdLdGAT6E6xY5bah68kMH6NsvxHXLEvsKPbs9AyDwKlb
-	 rn4AsLDRDpsfK26tOZX7+6OzKrBNoFxC3GQ9DV671DImCgLpKTsKih3xsZE+8cNXgH
-	 CJ2loFHye13Rss5VPmAL9AuHePQyiDOdwKK27Ip3Y8LS+ueDGt0f5V/B6512wM2p4M
-	 FLNwCQdDwVXJA==
+	b=BipUaM7W4M0iTTaKjf/MvpWknYY7hihA0mTYx0uxRN29Mp/M0UejN70x+4LkrhLXJ
+	 WQUxO/lGsuQo/76gHn00sLWGFuLu/rtVqVdR/7q0w2YaxYfswVpqDcGaDn35fapdCc
+	 qI821XfCJXBwFnBC/ITOR9oWR6J3enqSOEZ4Oh+M2SdRxte0MXHeQXXyH89XVXnb5J
+	 WQtykTZ9/dMOg/MQNmq/wefEGYBki3JTAorcRujJGa5p+FBO8oVSFUO2aPidwQ0cr1
+	 HLz53LFGilK3SEzRKmNIeSP0mFQvy+BqPSaimShSBPYpL2PPOQMUjKR40F3dX+4VoO
+	 7sQdaiWbLjD3A==
 From: Kalle Valo <kvalo@kernel.org>
-To: jloretto70 <jloretto70@proton.me>
-Cc: "ath11k\@lists.infradead.org" <ath11k@lists.infradead.org>
-Subject: Re: Question about WCN6855 firmware versions
-References: <ozkZDmxXw0zoF9CbOu2CoxEILU4fpAb8udwK4yw-Jgwc1z7zvIZD91zIK0rxq-8vri3WDPztrozKOgZvm4-SLnBvOJoVmg_qr3s47YeckL4=@proton.me>
-Date: Tue, 11 Oct 2022 10:57:09 +0300
-In-Reply-To: <ozkZDmxXw0zoF9CbOu2CoxEILU4fpAb8udwK4yw-Jgwc1z7zvIZD91zIK0rxq-8vri3WDPztrozKOgZvm4-SLnBvOJoVmg_qr3s47YeckL4=@proton.me>
-	(jloretto's message of "Tue, 04 Oct 2022 17:06:56 +0000")
-Message-ID: <87y1tmokru.fsf@kernel.org>
+To: "Arnd Bergmann" <arnd@arndb.de>
+Cc: "Naresh Kamboju" <naresh.kamboju@linaro.org>,  Netdev <netdev@vger.kernel.org>,  "open list" <linux-kernel@vger.kernel.org>,  linux-wireless@vger.kernel.org,  "David S . Miller" <davem@davemloft.net>,  "Eric Dumazet" <edumazet@google.com>,  "Jakub Kicinski" <kuba@kernel.org>,  "Paolo Abeni" <pabeni@redhat.com>,  ath11k@lists.infradead.org,  regressions@lists.linux.dev,  lkft-triage@lists.linaro.org
+Subject: Re: drivers/net/wireless/ath/ath11k/mac.c:2238:29: warning: 'ath11k_peer_assoc_h_he_limit' reading 16 bytes from a region of size 0
+References: <CA+G9fYsZ_qypa=jHY_dJ=tqX4515+qrV9n2SWXVDHve826nF7Q@mail.gmail.com>
+	<87ilkrpqka.fsf@kernel.org>
+	<158e9f4f-9929-4244-b040-78f2e54bc028@app.fastmail.com>
+Date: Tue, 11 Oct 2022 11:12:56 +0300
+In-Reply-To: <158e9f4f-9929-4244-b040-78f2e54bc028@app.fastmail.com> (Arnd
+	Bergmann's message of "Mon, 10 Oct 2022 19:52:09 +0200")
+Message-ID: <87tu4aok1j.fsf@kernel.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221011_005715_206562_F271200A 
-X-CRM114-Status: GOOD (  13.00  )
+X-CRM114-CacheID: sfid-20221011_011304_231037_8E69ECEC 
+X-CRM114-Status: GOOD (  15.83  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,23 +74,36 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-jloretto70 <jloretto70@proton.me> writes:
+"Arnd Bergmann" <arnd@arndb.de> writes:
 
-> I have a WCN6855 (hw2.1) card and am currently using the latest
-> firmware files from the kernel.org repo which are labeled 3.6510.9 in
-> the commit message. I see that there is a more recent set of files
-> labeled 3.6510.16 in the GitHub repo for this card. Are these firmware
-> files safe to use or is the best practice to wait until they land in
-> the official kernel.org repo?
+> On Mon, Oct 10, 2022, at 6:54 PM, Kalle Valo wrote:
+>> Naresh Kamboju <naresh.kamboju@linaro.org> writes:
+>
+>>>
+>>> Build log: https://builds.tuxbuild.com/2F4W7nZHNx3T88RB0gaCZ9hBX6c/
+>>
+>> Thanks, I was able to reproduce it now and submitted a patch:
+>>
+>> https://patchwork.kernel.org/project/linux-wireless/patch/20221010160638.20152-1-kvalo@kernel.org/
+>>
+>> But it's strange that nobody else (myself included) didn't see this
+>> earlier. Nor later for that matter, this is the only report I got about
+>> this. Arnd, any ideas what could cause this only to happen on GCC 11?
+>>
+>> -- 
+>> https://patchwork.kernel.org/project/linux-wireless/list/
+>>
+>> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+>
+> No idea here, though I have not tried to reproduce it. This looks
+> like a false positive to me, which might be the result of some
+> missed optimization in the compiler when building with certain
+> options. I see in the .config that KASAN is enabled, and this sometimes
+> causes odd behavior like this. If it does not happen without KASAN,
+> maybe report it as a bug against the compiler.
 
-For the end users I recommend using the ath11k firmware files from the
-official linux-firmware unless you have a specific reason to update
-(reporting a bug etc). That way there's more testing by the developers
-before you get access to it.
-
-I try update latest ath11k-firmware releases to linux-firmware roughly
-every three months, so it really comes down to if you want run bleeding
-edge or not.
+You guessed correctly, disabling KASAN makes the warning go away. So no
+point of reporting this to GCC, thanks for the help!
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
