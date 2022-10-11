@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66DBBC433FE
-	for <ath11k@archiver.kernel.org>; Tue, 11 Oct 2022 07:49:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A260BC433FE
+	for <ath11k@archiver.kernel.org>; Tue, 11 Oct 2022 07:57:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
-	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=pH+0moWw/mfg/3r2AWoFJeAGb0Fc6ECIXp1m2RUTx/Y=; b=gbNGMD6dFnVmBE
-	FbYKVrRcpa29KL7f41ClHfr6RhYt0fCCHf/z9cG7T6yrWustNQbxzLrgGnrJ4YdOuj+IHoM+rjQyy
-	28ThkHEiIERuuhqEvjOHUyhGNBYxaZZ5DdofG39s4xCiip3eDjuh5gwc4WjSRF8wMOWLa0wMJ9x6H
-	SADH3wflCClCoYXtbbAqRVSO/+ULLvtZJ81ejCk5d7589LPdZqsogt+qOOx+aJEmPPofOSztb81r1
-	a4FsdFrXdiNj3GWmfFhIFmTJHUfgl6e3TQm7RzAo0Hz8UDL8XLb7PimxEGPqymXVBwpdbpe/tUEzA
-	09GX+3YJWJGhtVHCWYsQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=r6rYWz2154hWdgdSH67FuPZ8dSGPpONVG6KuZ2x5txk=; b=zYblCpMLfQ+hOo
+	pAjX+ubLdrVXRDCOlflqrLC40GCzOIWuTgO0JzdGB+Rw1B8kv34ZDE9lwp2AZiBHp5E7ey3w8IJG2
+	9SmHg8alG6ePidt6EmEMZeS8RE7GfEKMgZtBG51/x38RylY+UcCTuHZ91RqaysdPlDB5Xo5dmwBox
+	L0tckwglwPKWIYWB8nR2hIQjASg/xaz6KxOQlfLH/6oxHqJZM3Ai2mbqtkxrDdhiWcvqkT5KgWD4q
+	CDR+NzFFQ7vNoiaTefe0lMYnfNXxtLOxWoAgh94xogE1bQISS5eM/R7Xinhlu8w2YPjombW21Ff56
+	p1FLY0IVPUcxb6Wdw8MA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oiA10-003dNr-Je; Tue, 11 Oct 2022 07:49:26 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1oiA8b-003e3x-Po; Tue, 11 Oct 2022 07:57:17 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oiA0y-003dNG-6s
-	for ath11k@lists.infradead.org; Tue, 11 Oct 2022 07:49:25 +0000
+	id 1oiA8Z-003e28-06
+	for ath11k@lists.infradead.org; Tue, 11 Oct 2022 07:57:16 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 0BB2A61122;
-	Tue, 11 Oct 2022 07:49:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A84F2C433D6;
-	Tue, 11 Oct 2022 07:49:19 +0000 (UTC)
+	by ams.source.kernel.org (Postfix) with ESMTPS id 6FF58B811F3;
+	Tue, 11 Oct 2022 07:57:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 876D0C433C1;
+	Tue, 11 Oct 2022 07:57:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1665474560;
-	bh=1WwSYM23oQxupcqStJLm5dOD3V1ZFzvJPyXZLixzaEI=;
-	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=gh/oqtMl+fLOoVycmWzsk5oRwgBrOuqrHr3+A9rSH5K2wlxqLqGB1bEXNFvMVFLkz
-	 2uDSSwv1wMfXNUvtH7sy2kozNpOIo1QhtRPinVXDFyImWi6gjv7QSfG2rCmxRzw9ah
-	 gdv2uaAJJoUuyPnSek095Oh8NJEzhBv4VNgVtSTXxsyXGTpFrmK5f0YSziQ21b3sK5
-	 gsIJjTywEmPAkr1TtCD1maSz8zUQNru5NKdrtzGAijCK1v9XXhPyuTG6rOn9ljZ5oU
-	 74q7Ax0QYuTjezqBiQqk5nDga0Dkf8n39FCrU0RgpeBaVmRcTvtAT83tYcXOiTxS/M
-	 7Abx80/aSaZpg==
-MIME-Version: 1.0
-Subject: Re: [PATCH] wifi: ath11k: Send PME message during wakeup from D3cold
+	s=k20201202; t=1665475032;
+	bh=KT5sq3edcE/o2GjfJ7gxMv7B9arG+ekXXZ7R6H/5Ptc=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=b8Jas4Xi+AXVNVSekezJpIzYe793eAgmkjHl926oRDPUExsDupvIsVjYQED9yvzQY
+	 ObxJ4D7VbdctWznWCS+h8Cq1mrAdasAACwriVQyK4s0odmmeYZGH8CwQR05nN5PzNL
+	 k1sw+Z0cBqEpDRy5W/rg+6xdLdGAT6E6xY5bah68kMH6NsvxHXLEvsKPbs9AyDwKlb
+	 rn4AsLDRDpsfK26tOZX7+6OzKrBNoFxC3GQ9DV671DImCgLpKTsKih3xsZE+8cNXgH
+	 CJ2loFHye13Rss5VPmAL9AuHePQyiDOdwKK27Ip3Y8LS+ueDGt0f5V/B6512wM2p4M
+	 FLNwCQdDwVXJA==
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20221010033237.415478-1-quic_bqiang@quicinc.com>
-References: <20221010033237.415478-1-quic_bqiang@quicinc.com>
-To: Baochen Qiang <quic_bqiang@quicinc.com>
-Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
-User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <166547455486.8038.9803492494856020045.kvalo@kernel.org>
-Date: Tue, 11 Oct 2022 07:49:19 +0000 (UTC)
+To: jloretto70 <jloretto70@proton.me>
+Cc: "ath11k\@lists.infradead.org" <ath11k@lists.infradead.org>
+Subject: Re: Question about WCN6855 firmware versions
+References: <ozkZDmxXw0zoF9CbOu2CoxEILU4fpAb8udwK4yw-Jgwc1z7zvIZD91zIK0rxq-8vri3WDPztrozKOgZvm4-SLnBvOJoVmg_qr3s47YeckL4=@proton.me>
+Date: Tue, 11 Oct 2022 10:57:09 +0300
+In-Reply-To: <ozkZDmxXw0zoF9CbOu2CoxEILU4fpAb8udwK4yw-Jgwc1z7zvIZD91zIK0rxq-8vri3WDPztrozKOgZvm4-SLnBvOJoVmg_qr3s47YeckL4=@proton.me>
+	(jloretto's message of "Tue, 04 Oct 2022 17:06:56 +0000")
+Message-ID: <87y1tmokru.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221011_004924_316326_AC235A33 
-X-CRM114-Status: UNSURE (   8.27  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20221011_005715_206562_F271200A 
+X-CRM114-Status: GOOD (  13.00  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,29 +72,28 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Baochen Qiang <quic_bqiang@quicinc.com> wrote:
+jloretto70 <jloretto70@proton.me> writes:
 
-> We are seeing system stuck on some specific platforms due to
-> WLAN chip fails to wakeup from D3cold state.
-> 
-> With this flag, firmware will send PME message during wakeup
-> and this issue is gone.
-> 
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
+> I have a WCN6855 (hw2.1) card and am currently using the latest
+> firmware files from the kernel.org repo which are labeled 3.6510.9 in
+> the commit message. I see that there is a more recent set of files
+> labeled 3.6510.16 in the GitHub repo for this card. Are these firmware
+> files safe to use or is the best practice to wait until they land in
+> the official kernel.org repo?
 
-The firmware you are using is old, please update to the latest one:
+For the end users I recommend using the ath11k firmware files from the
+official linux-firmware unless you have a specific reason to update
+(reporting a bug etc). That way there's more testing by the developers
+before you get access to it.
 
-https://github.com/kvalo/ath11k-firmware/tree/master/WCN6855/hw2.0/1.1/WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.16
-
-It's very important that the testing happens on latest components.
-
-No need to resend because of this.
+I try update latest ath11k-firmware releases to linux-firmware roughly
+every three months, so it really comes down to if you want run bleeding
+edge or not.
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20221010033237.415478-1-quic_bqiang@quicinc.com/
+https://patchwork.kernel.org/project/linux-wireless/list/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
 
 -- 
 ath11k mailing list
