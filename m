@@ -4,86 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13257C433FE
-	for <ath11k@archiver.kernel.org>; Tue, 11 Oct 2022 07:31:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8871C433FE
+	for <ath11k@archiver.kernel.org>; Tue, 11 Oct 2022 07:39:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=EN6SUONVrzpcW+5KlK2ZKBM1R88le0KcBVyvMZCVpAU=; b=lZUMiILsgcSeDE
-	FT0oBPIlhcSlvTR++7YORo6G6iTLnAWzu9vaJY8XQxKM9M/92kMBxzqK+2mNm60Uc8JEotcKvGc0Q
-	gB0tP6xBol9cj5p3zG3b/cRl8U1BG4Vsx4MxOYvqSpCwx6YEvJ9ZJeEnGSkfOH97yO2vESL6Z7IBm
-	T7nL5LxDyWQRFI9xBmiAJtfLSI+igastoUWeKqhnBCSiDErcd2s84CI81tS7k6Lqxwd71jTBdVl5g
-	Karf9Fy+Th+U6qLpiOCIzu4R2l1r7Xut2v8bKQ+GNWR7Iuq6Ve+nnc1X12o0yc4IJWsO1UHQ3JweG
-	sfQ9SE+3ij7jFhihgiMA==;
+	List-Owner; bh=hq7Lbc+synjuZyTjfyyXSP0WfO+vJexT8o/X1a9wXlA=; b=NKuLnCeVQIJ607
+	9cG5DTVze1VN4v+AWg3012gPifuToofLbBtyMXeqm4QNMfn12syLQN1c0TMPtxOKBgNvSAcjNDGDP
+	hAi4OfNhankFUbxn0Yiq3/S7RrOK6vgF0c2o1tWNNCxqwpXJpN5toPLJIxCjI8CLK1FXmOeEjDFg4
+	d42BLm1R+xyjYxJgxlZjQnKBRQUdhBh2zpPwTJIPUtGPBmvbx+N927h/ns53fIj1kY0fiUSiumYpA
+	6U5uHfk5/fdzlsdwmIcylb/ERVS4gjjHJIoBXWOUGeXhdIvldupASEH58XogqICEt+gHOoLQL+U4I
+	Lc8j3w6X+kKmQYLF9O/Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oi9jz-003aqR-Hv; Tue, 11 Oct 2022 07:31:51 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1oi9r0-003bxn-QV; Tue, 11 Oct 2022 07:39:06 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oi9jw-003apD-0L
-	for ath11k@lists.infradead.org; Tue, 11 Oct 2022 07:31:49 +0000
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29B6xIrj023988;
-	Tue, 11 Oct 2022 07:31:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=BHBaq3Uuo6QUQVT/cgnzVQ0KYE7RuX9+tzISy8fkgt4=;
- b=acksfAXfhxgd6GzwnHMJLYfPu9PUyDAsPaoG43Zhs4r2ojL3LSkp9fgt7GXntjSQQNCa
- wuHvKePYnCrhb7CihIn+ohFUkWfmXBDRBesu3e591KCp1cVQnxq4vXBCbVnB5iYUfpOy
- ZXbhxfhsQWhHr8XTVdZt0LhlpCs9SaJiVbBsy/+2m5tolLF2hkeGFaViBCo2ueWpt1oB
- eapfwqUEZzuwtATsvJVxjRTMqzgCnhpgX5qosiRyVvr6zutGSLyQgANu7IaqypY89yIg
- p1GALz4MngZ4HVRL9eQXi3DOEzjjLgpxsoabJbVe5apxqzio3CWNdQo3Iua16GjVidcC hw== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3k4rx4hfmp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 11 Oct 2022 07:31:40 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 29B7Vd3w011755
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 11 Oct 2022 07:31:39 GMT
-Received: from [10.253.78.175] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Tue, 11 Oct
- 2022 00:31:37 -0700
-Message-ID: <2f37209c-8b40-c06b-1c56-0cb4c27e6f45@quicinc.com>
-Date: Tue, 11 Oct 2022 15:31:34 +0800
+	id 1oi9qx-003bwe-64
+	for ath11k@lists.infradead.org; Tue, 11 Oct 2022 07:39:05 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ams.source.kernel.org (Postfix) with ESMTPS id A2AFFB810B2;
+	Tue, 11 Oct 2022 07:39:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5985C433C1;
+	Tue, 11 Oct 2022 07:38:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1665473939;
+	bh=xptYkDlC4J+vOpYOBqv0P4p4o4h9yrwgjF3mhdV4x/Q=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=ew6wpZZSPXopA73Rw8S2FTSq89swBKHfaOsaUrqNW7iyts/OJ89bGn/PfwxodVVnp
+	 EFN4Jt/21yvZK2TVyi0Jfk+KGV7ZKIlNE7sDIxaQ5kFd5BQ/0QX3KMrVuUVMSEtE81
+	 zTpbAmuiv/IjqJyVfCx5CUSHMx/FvTwu5RMQrwmPm1+AR3LQ0mrQjhjIBzCIdfiFnS
+	 1kYR0rV1Ae/COqD8CmDSC1yDNRIJgaPrK37P0Z/VmlAKITMsRoNlnkcfWsksZtW/1i
+	 7ckRuWO4u7bJH/S4EPVsRstwIzbEaqUMOfGHV2ZWsX8LEZ3YztXASDUKQ4Bd0O7PjC
+	 qkrgGaKV5PDrA==
+From: Kalle Valo <kvalo@kernel.org>
+To: Karthikeyan Kathirvel <quic_kathirve@quicinc.com>
+Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
+Subject: Re: [PATCH 0/8] wifi: ath11k: Add support for IPQ5018
+References: <20221006105913.18356-1-quic_kathirve@quicinc.com>
+Date: Tue, 11 Oct 2022 10:38:55 +0300
+In-Reply-To: <20221006105913.18356-1-quic_kathirve@quicinc.com> (Karthikeyan
+	Kathirvel's message of "Thu, 6 Oct 2022 16:29:05 +0530")
+Message-ID: <877d16q06o.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v2 1/2] wifi: ath11k: change to set 11d state instead of
- start 11d scan while disconnect
-Content-Language: en-US
-To: Kalle Valo <kvalo@kernel.org>
-CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
-References: <20220928081413.27339-2-quic_wgong@quicinc.com>
- <166542536986.511.1244496445875563981.kvalo@kernel.org>
- <f50c94b9-252f-25ab-4650-bed52762bc4d@quicinc.com>
- <0526d034-2cb9-527e-b338-f73db0ed005b@quicinc.com>
- <87czazoub5.fsf@kernel.org>
-From: Wen Gong <quic_wgong@quicinc.com>
-In-Reply-To: <87czazoub5.fsf@kernel.org>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: l0MocCM3syOfAM99-UHW9TAa1KAqJPA6
-X-Proofpoint-GUID: l0MocCM3syOfAM99-UHW9TAa1KAqJPA6
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
- definitions=2022-10-11_03,2022-10-10_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
- clxscore=1015 phishscore=0 malwarescore=0 adultscore=0 lowpriorityscore=0
- mlxlogscore=999 priorityscore=1501 mlxscore=0 impostorscore=0 bulkscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2209130000
- definitions=main-2210110041
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221011_003148_085530_4EDCEDF0 
-X-CRM114-Status: GOOD (  14.75  )
+X-CRM114-CacheID: sfid-20221011_003903_537566_58548C32 
+X-CRM114-Status: GOOD (  14.57  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,59 +67,81 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 10/11/2022 12:31 PM, Kalle Valo wrote:
-> Wen Gong <quic_wgong@quicinc.com> writes:
+Karthikeyan Kathirvel <quic_kathirve@quicinc.com> writes:
+
+> This patchset adds support for IPQ5018.
+>    - IPQ5018 is a AHB based 2G 2x2 device.
+>    - The CE reg space in IPQ5018 is not part of WCSS as in IPQ8074
+>     or IPQ6018 and these sections (CE register space and WCSS) are not
+>     contiguous, hence the ce space is io remapped separately and
+>     the registers are handle accordingly based on the offset.
+>    - The rx descriptors are similar to QCN9074
+>    - The hw ops are similar to QCN9074 except for rx hash computation which
+>      is defined newly
+>    - The UMAC registers are different, hence new MACROS are defined for
+>     their usage.
 >
->> On 10/11/2022 11:53 AM, Wen Gong wrote:
->>
->>> On 10/11/2022 2:09 AM, Kalle Valo wrote:
->>>> Wen Gong <quic_wgong@quicinc.com> wrote:
->>>>
->>>>> When switch to connect to a new AP for station which is already
->>>>> connected
->>>>> to an AP, the time cost is too long, it arrives 10 seconds.
->>>>>
->>>>> The reason is when switch connection, disconnect operation happened on
->>>>> the 1st AP, then 11d scan start command sent to firmware, and then a
->>>>> new hw scan arrived for the 2nd AP. The 11d scan is running at this
->>>>> moment, so the hw scan can not start immediately, it needs to wait
->>>>> the 11d scan finished, it increased the time cost of switch AP and
->>>>> even happened scan fail as log below after apply the incoming patch.
->>>>>
->>>>> [ 1194.815104] ath11k_pci 0000:06:00.0: failed to start hw scan: -110
->>>>> [ 1196.864157] ath11k_pci 0000:06:00.0: failed to start hw scan: -110
->>>>> [ 1198.911926] ath11k_pci 0000:06:00.0: failed to start hw scan: -110
->>>>>
->>>>> Change to set 11d state while disconnect, and the 11d scan will be
->>>>> started after the new hw scan in ath11k_mac_op_hw_scan(). Then the
->>>>> time cost of switching AP is small and not happened scan fail.
->>>>>
->>>>> Tested-on: WCN6855 hw2.0 PCI
->>>>> WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
->>>>>
->>>>> Fixes: 9dcf6808b253 ("ath11k: add 11d scan offload support")
->>>>> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
->>>>> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
->>>> I still see warnings:
->>>>
->>>> [ 3627.691737] ath11k_pci 0000:06:00.0: failed to start hw scan: -110
->>>> [ 3715.435608] ath11k_pci 0000:06:00.0: failed to start hw scan: -110
->>>> [ 3860.333214] ath11k_pci 0000:06:00.0: failed to start hw scan: -110
->>>> [ 4542.000955] ath11k_pci 0000:06:00.0: failed to start hw scan: -110
->>>> [ 4604.018451] ath11k_pci 0000:06:00.0: failed to start hw scan: -110
->>> The failed log is now happened frequently as before, I will change
->>> it again to suppress the failed log.
->> change typo.
->> The failed log is NOT happened frequently as before, I will change it
->> again to suppress the failed log.
-> Please think about this more, ignoring errors doesn't sound like a good
-> solution.
-Yes, I have sent v3, it is not ignoring errors directly.
+> Tested-on : IPQ5018 hw1.0 AHB WLAN.HK.2.5.0.1-01192-QCAHKSWPL_SILICONZ-1 v1
+
+This should be:
+
+Tested-on: IPQ5018 hw1.0 AHB WLAN.HK.2.5.0.1-01192-QCAHKSWPL_SILICONZ-1 v1
+
+The format is documented here:
+
+https://wireless.wiki.kernel.org/en/users/drivers/ath11k/submittingpatches#tested-on_tag
+
+Also you seem to be using an old firmware, please update to the version
+we are using in upstream:
+
+https://github.com/kvalo/ath11k-firmware/tree/master/IPQ5018/hw1.0/2.6.0.1/WLAN.HK.2.6.0.1-00861-QCAHKSWPL_SILICONZ-1
+
+And remember to use ath11k-check, this patchset has a lot of new
+warnings:
+
+drivers/net/wireless/ath/ath11k/core.h:1151: Please don't use multiple blank lines
+drivers/net/wireless/ath/ath11k/ahb.c:287: Alignment should match open parenthesis
+drivers/net/wireless/ath/ath11k/hw.c:2159: line length of 103 exceeds 90 columns
+drivers/net/wireless/ath/ath11k/hw.c:2164: line length of 102 exceeds 90 columns
+drivers/net/wireless/ath/ath11k/hw.c:2169: line length of 103 exceeds 90 columns
+drivers/net/wireless/ath/ath11k/hw.c:2174: line length of 102 exceeds 90 columns
+drivers/net/wireless/ath/ath11k/hw.c:2179: line length of 103 exceeds 90 columns
+drivers/net/wireless/ath/ath11k/hw.c:2184: line length of 102 exceeds 90 columns
+drivers/net/wireless/ath/ath11k/hw.c:2189: line length of 103 exceeds 90 columns
+drivers/net/wireless/ath/ath11k/hw.c:2194: line length of 102 exceeds 90 columns
+drivers/net/wireless/ath/ath11k/hw.c:2199: line length of 103 exceeds 90 columns
+drivers/net/wireless/ath/ath11k/hw.c:2204: line length of 102 exceeds 90 columns
+drivers/net/wireless/ath/ath11k/hw.c:2210: line length of 103 exceeds 90 columns
+drivers/net/wireless/ath/ath11k/hw.c:2215: line length of 102 exceeds 90 columns
+drivers/net/wireless/ath/ath11k/hw.c:2221: line length of 103 exceeds 90 columns
+drivers/net/wireless/ath/ath11k/hw.c:2226: line length of 102 exceeds 90 columns
+drivers/net/wireless/ath/ath11k/hw.c:2231: line length of 103 exceeds 90 columns
+drivers/net/wireless/ath/ath11k/hw.c:2236: line length of 102 exceeds 90 columns
+drivers/net/wireless/ath/ath11k/hw.c:2241: line length of 102 exceeds 90 columns
+
+And most importantly this patchset breaks my tests with WCN6855:
+
+[  366.915173] ath11k_pci 0000:06:00.0: chip_id 0x2 chip_family 0xb board_id 0x106 soc_id 0x400c0200
+[  366.915425] ath11k_pci 0000:06:00.0: fw_version 0x11090c35 fw_build_timestamp 2022-04-18 20:23 fw_build_id WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.9
+[  367.030091] ath11k_pci 0000:06:00.0: ignore reset dev flags 0xc800
+[  368.111239] ath11k_pci 0000:06:00.0: failed to receive control response completion, polling..
+[  368.352229] Run module-load (3/3)
+[  369.135172] ath11k_pci 0000:06:00.0: ctl_resp never came in (-110)
+[  369.135269] ath11k_pci 0000:06:00.0: failed to connect to HTC: -110
+[  369.171910] ath11k_pci 0000:06:00.0: failed to start core: -110
+[  369.180182] failed to send QMI message
+[  369.180373] ath11k_pci 0000:06:00.0: failed to send wlan mode request (mode 4): -5
+[  369.180432] ath11k_pci 0000:06:00.0: qmi failed to send wlan mode off: -5
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
