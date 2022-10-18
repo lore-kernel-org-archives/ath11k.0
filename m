@@ -4,80 +4,154 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28ECAC4332F
-	for <ath11k@archiver.kernel.org>; Tue, 18 Oct 2022 21:28:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BC7AC4332F
+	for <ath11k@archiver.kernel.org>; Tue, 18 Oct 2022 21:55:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=3UmCz/apQs8862uSNYjY4IIJI7zbLs/FNwXXQXOzFR4=; b=L3mQx14I7YEfzB
-	L+C/Sg1OJOlO4Z0EyIceplgNukV8OhlbEXZqZgSzeTWvlfI75iIyk2X6hYaseMS8lPuhWJyXU6fN0
-	fmluIcK2Zb6NVJXhB96vpAnc4DGaZPjXZxhLqjOKq23p9hhzimJzF2Lm4zJRAB5jC1FRAK6d6A6mT
-	yJ0OE9gjRscgqXc3UKGID2WUAA555BI7902x0kt9K0LjZxfPxMZivCcC9K8FQ5viOGZ3XGkWQ3kZF
-	eWSFVNZP+hHHAdVGznYWjiE5KUtIZvWlX+9fyfFdZfw88FmjrENdlg+uFELsHV84W9qi4f6zqGTrP
-	tueyLz8lI2gvFtKl+Wlw==;
+	List-Owner; bh=FDpoghvO8dg7CTHosxe6rgDUzzurw+c/AwPaqAUSScM=; b=vkEL1a+GLIbVaz
+	Z3EubOtizrJANF9IiXX5ipDt9rRfwJADUw9M0QLZbi/Zb0Xq45tAwT8N7H5Tu6GdqDLORsfDhJKVR
+	x+wX8qoQ2dKsdR0As5fDboVpModChQKuzr887tZKSNj8DJLLWTCjak5qiACW9cJDUrO4fl7Yb7LK6
+	FDYTGuoIsdnf1iYQ5YVuoM9BQ9XBSOfpoC3kVn7Am35jfjdQpRsRewtApXw81lV8e2P5zaPX9IpLn
+	U0PK7V7CI5bJjgABX6Tbl1+lu834dzJiLRAA5Lc27zEmcAA9lFIbT+MYYF2fB0RkbhNAdredob5yc
+	W0C2J5DEv97Km+EXAoCA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oku8p-00AaBC-Dm; Tue, 18 Oct 2022 21:28:51 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1okuYh-00AdeN-Ad; Tue, 18 Oct 2022 21:55:35 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oku8k-00Aa8l-T5
-	for ath11k@lists.infradead.org; Tue, 18 Oct 2022 21:28:50 +0000
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29IL61Q4003833;
-	Tue, 18 Oct 2022 21:28:45 GMT
+	id 1okuYd-00AdcS-UD
+	for ath11k@lists.infradead.org; Tue, 18 Oct 2022 21:55:33 +0000
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29ILbM7t017423;
+	Tue, 18 Oct 2022 21:55:29 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=Zdd/WU5JOdPPgbvTOhG1+WnN5FT7XP8HksSrFNKKw+I=;
- b=Urq6yFlNCAxC9mdQHsghq2+wYkXRJyuwx8h3gGKZWYYtFYai9uw7BVd5qSzDAbH9N/gj
- BwcY6CmxKPWGcWqGEBkg173wSc2usq/La5pzWBhHov2SX5Kgkis/sjWmUBtRXMaldYkN
- tAiyCsanr/0/vGNYV8203IwThIG5Lc9K3ivaaNd1w7WOp8th1oVJ2Uk19jA9AVYKpLxt
- TFFahqT15JeaEKjnjT8kEt3Utk79EY7PqyA6YaclbkQVjtDGIyycG0bEqjj7tKiBocgq
- nLGkeF7nOuC3gpQ8I1ffEbTBlMAqEzfIMtjhlZLK8gKkAQ9xmxnKujLO9XzESliC+mGf uQ== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3k9jf22fy9-1
+ subject : date : message-id : references : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=qcppdkim1;
+ bh=VzsySnXVYmP6w124VrcJyamK1wKPsHwu6/C+6pABY0I=;
+ b=EHn8nCiCQs6KXs2erbR6Q3QidQkYu+9bE7grjfoeS72/HqOeuNYexnWnesnU9oEpm1sS
+ bT+hyHlUJ2TTGdwBzGgQEgMjUZ5JPdfXpzHLV6kD0Y+mgAc9wDTyE/E7wQfIOiHfJNEb
+ 4ZNfLwb4X8UkM3v5FYz5wrZnL5xfws0tEPNpQa+jYLnlE8P88E+tcMPJoW1JVKy8jw14
+ TeQb5RV2CjrXQfEWRVWUX9ewZ5rTIB6msHPYtXZDY4k3ARxNHudGxOBE84kHTnYNZi6Y
+ ZQ+fl5PR2psnEEXmwj7PtZXGC5dKWxtYWTG0l9GRrRSJZ5uVUMJ+HOQ6+OxB5ITM1lLx Uw== 
+Received: from nam12-mw2-obe.outbound.protection.outlook.com (mail-mw2nam12lp2047.outbound.protection.outlook.com [104.47.66.47])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3k9bfg4ccb-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 18 Oct 2022 21:28:44 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 29ILSh2n017179
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 18 Oct 2022 21:28:43 GMT
-Received: from msinada-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.29; Tue, 18 Oct 2022 14:28:42 -0700
-From: Muna Sinada <quic_msinada@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, Muna Sinada <quic_msinada@quicinc.com>,
-        Anilkumar Kolli <quic_akolli@quicinc.com>
-Subject: [PATCH v2 2/4] wifi: ath11k: push MU-MIMO params from hostapd to hardware
-Date: Tue, 18 Oct 2022 14:28:19 -0700
-Message-ID: <1666128501-12364-3-git-send-email-quic_msinada@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1666128501-12364-1-git-send-email-quic_msinada@quicinc.com>
-References: <1666128501-12364-1-git-send-email-quic_msinada@quicinc.com>
+	Tue, 18 Oct 2022 21:55:29 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=AQ9X6b6yIQ7WdnzfftoNHE9BRze7DDGhpQs+R/gpNFl230c5RIwY7c7ahdyasE97MC8bkw5GtlRSFr/PzdGrW1NCrfpN90KTC0sU8BSDzuAhlrQ5jZhnKY+7xGMcs5ltAJg4ztbuBihNa9JLW+y4cR4YJXHmu7wWQkYeCtS18kSD+ovlbt42DFgrgb9P2oyltMsdUucxeYoL7Ulq+fe8Sg8NCO5BVbB6WRWDXMoY7Pqt6XscKOgQUeDApN82rrW4/TVJddL3k5vLtL1AUOmI0bEkEfuI4LkoMlPRdFLMVTWBXS/lsFY/6SWA7654S9expgq93dwFdF9DluYqmCFudg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VzsySnXVYmP6w124VrcJyamK1wKPsHwu6/C+6pABY0I=;
+ b=cB84zLqP3d1dHe0OaDQHshKvA4Qk8khGpOqe6j9nwJwMElHgrQqUH6cpiLAhMn8o1Xjdx4Xp04c5bIxUW0aobGJde25AJ5VCmHT+KoE0D5UwzBW6YOFm+vpWF2YVrQWQbMWI/SRMxGDgAjzVNnkdtZStt2W7klIp3xqiFe6RxqcMyUSKhlbi6ee0tuqASeeCEgU/US7f4dTR/86pzZ6DxrzOsJEojBALMLeSwDr4VpgyJMFyydLELDDZUoRTKghJyIVv8bMTfBUeHJPPeXldYAyJKOxkfi3A58b+ioe5uYwWCLXFkSPvsH11Awp5tqo+1NiG8none/jn+bssuuteNw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=quicinc.com; dmarc=pass action=none header.from=quicinc.com;
+ dkim=pass header.d=quicinc.com; arc=none
+Received: from BY5PR02MB6164.namprd02.prod.outlook.com (2603:10b6:a03:1b0::23)
+ by PH0PR02MB8534.namprd02.prod.outlook.com (2603:10b6:510:10d::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.30; Tue, 18 Oct
+ 2022 21:55:27 +0000
+Received: from BY5PR02MB6164.namprd02.prod.outlook.com
+ ([fe80::b677:f24f:c0ea:c42]) by BY5PR02MB6164.namprd02.prod.outlook.com
+ ([fe80::b677:f24f:c0ea:c42%5]) with mapi id 15.20.5723.033; Tue, 18 Oct 2022
+ 21:55:26 +0000
+From: "Muna Sinada (QUIC)" <quic_msinada@quicinc.com>
+To: Kalle Valo <kvalo@kernel.org>,
+        "Muna Sinada (QUIC)"
+	<quic_msinada@quicinc.com>
+CC: "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>,
+        "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>
+Subject: RE: [PATCH 1/4] wifi: ath11k: modify accessor macros to match index
+ size
+Thread-Topic: [PATCH 1/4] wifi: ath11k: modify accessor macros to match index
+ size
+Thread-Index: AQHY3mmbP6Nh+RQOUEiyJUXSjzn4CK4MUqGAgAhnBZA=
+Date: Tue, 18 Oct 2022 21:55:26 +0000
+Message-ID:  <BY5PR02MB6164064B7069CE45A34DBAC28F289@BY5PR02MB6164.namprd02.prod.outlook.com>
+References: <1665599807-12908-2-git-send-email-quic_msinada@quicinc.com>
+ <166564252533.7747.3943450152611127759.kvalo@kernel.org>
+In-Reply-To: <166564252533.7747.3943450152611127759.kvalo@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BY5PR02MB6164:EE_|PH0PR02MB8534:EE_
+x-ms-office365-filtering-correlation-id: e44e88f6-6074-4a9b-d818-08dab153774c
+x-ld-processed: 98e9ba89-e1a1-4e38-9007-8bdabc25de1d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:  Ls24xFy9Dmey8lBi1xUvWW0vVNCC5GpP50aRj1sIHnXbIxkHb2+h08aMqvFrfSFbcyBmhKPA9vb5IL0/vuV8d7VE3vQtYLakEGZjoDCH6gOFIHu76ygKdhkFkaK21O+L25wlLxlaQemjwHy4uPjOfnI3utTW0tVK8cVQocrrZessAxtKsSkdKFBXwYrJWmY5zZsI3ydZr0TXdWYYr2R2dROqNiZCNVw+F4SToTVyNuq+9p/VYHhNQxi6lHx0Mct0ZYK48No+c7SvCUyD0cgcgbFHBuDzCrrZnz00jidRjJSVi4sehB7n0tSItYInmxYcsX3MbwNAk3ouSNbxO84aRWN2O89pk76DQ52YAR8TgXLM/gszMrwUj/ZX3kzi2xipVzbsmOTJOWnYiv56M0ZxHEi9LEO8vBiYM0krjRTubx7n/llPPhOfWXNnFYuTrVq4/z+4U7JIxVh9vJqgW4kjDF3iM42rj2wk5ITD3wOO2WUasqmmhNKulw+H4PB5OdrkJ3HycTsirmKRaqozdqBtneuzIeyUDPCcB3d37twUSuDu7UcAzWo5xBq2RVkd6vsfciHGBhSIuzpbkvCKtpZX5WF+7WxKnCZg9Bt6oPZjRnMWRfrm7zyDQ5D2gc0hOp9AKR/4TJCfzCcvw0PmbS2pBu/o5UL0OoE2pTGqQG9p1JnFfKm58KektEim1suT7nJBnL9z4U7X0dWXz+KKkxiLkIUnaDimXf47BhPuacdAvTEa3ZDEQ5rorOqKq75hSrbouYIH0umGhYfDtLReSXRvRlFq/0bF7OMPU4iybfDdXFQ=
+x-forefront-antispam-report:  CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR02MB6164.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(376002)(136003)(396003)(366004)(39860400002)(451199015)(966005)(478600001)(71200400001)(38100700002)(8936002)(52536014)(110136005)(9686003)(316002)(54906003)(41300700001)(186003)(26005)(122000001)(7696005)(6506007)(4326008)(55016003)(38070700005)(5660300002)(33656002)(64756008)(2906002)(66476007)(66556008)(66946007)(66446008)(8676002)(86362001)(76116006);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:  =?utf-8?B?ekgzZUdJbnJKa3NRcnZjSTI0MlIyRlNhSHQyeE9sWXI1S1RPM3liOW9oU0tu?=
+ =?utf-8?B?MENKRUJDNnpWR2VZR1djZVc1Z3hjYVBIdHdlaG5WU1gybHgyN1VuZ3Z4WEkx?=
+ =?utf-8?B?NkpBbHZvdkZ3RGRmQWFGUjluMGViMXBWVFY0RlpzWEZTVFNoV202UndWK29Q?=
+ =?utf-8?B?VDV6ajRicXE1T05QZnl3V2haMWIwSFNPYjN6bEtZdGlhcndDY2hoR1FTUVI0?=
+ =?utf-8?B?cnRwbVJld2VyeW5tQzR3T1h2L3FRa3N5c1o1OW1lVmtzNWtKbkJrMDdVdU9t?=
+ =?utf-8?B?MWFQajA5U1Q1enRVUm52RzUwdDZ4TzlHNGRCbGc2UmlPdmZsVTBudGdDelJk?=
+ =?utf-8?B?TUROWWdwSHNxa3lvUjluMVovcncyNlNIODYyQkM1VWk0dTNmNUloZXAranJF?=
+ =?utf-8?B?U3MzR2tPaSs3UmRBZXNmVENjSnJaazVoOU5iaTJzRVdQdHpWSmVQNTIrRlVQ?=
+ =?utf-8?B?b2hOLzF0QTVwdWxrK0xFbFJIQUF4RjE2UDdCdTVrZmNMSC9aOUJydStWYVFP?=
+ =?utf-8?B?UkcrWFdoT2ZVL1loQjVEakZveUY1Q0VBZHZHb2hiL1g1UzNIMVozSzVzSmFM?=
+ =?utf-8?B?TkxjZWd4SnpNL1VINThza3ZaQVVJcnRYY0VQakd1VDJhTjU5SDZJdzYxbTdN?=
+ =?utf-8?B?cFN5bHRkb2FlV294RzBBK1JKdWloSU9LRWNRZ0RhcG92YlFWamdhVWlDWG1F?=
+ =?utf-8?B?eUR6Nlo0cTJkWC9LRFk3YzhCM3VsajU4eWtlT2dHYy85QUI3cGVLYnV5c2ht?=
+ =?utf-8?B?VCsvWmpEZVhOM2NGTC9ua0RnOGU2ZjJzQmJZNUU5aDFQSHZlbEpSU2c2WjZJ?=
+ =?utf-8?B?anppbGpZTm1LRjdxTTNLMUNFNldOS2hvbkhhOGc3MVpsbU1DZnlKUTZFSjlq?=
+ =?utf-8?B?MWU5NFU1RFRBTUlpREtOVGFJMktKYVlYUW9kUThoRUVWQTEydS9MQnBza2Zi?=
+ =?utf-8?B?Uk1KaWxLQ2xUOHhYVm5QRWV5MCtxcEFyQkQxQjFCMlN2bVU0bXIzRDBzZGVu?=
+ =?utf-8?B?U0lOV0xWa3pKcGtjVlI0R1pqUjlaOFVnekd0bVE4cVBrWkc2UGxLWmovWm1s?=
+ =?utf-8?B?UGFSb0lpbFFFelNpQ3A1dXpxeVdEVWlwN3JEM2t6NFN1SVdiU3RMaHU1c0Rz?=
+ =?utf-8?B?K3dScHd4WDV6SXA1S3h5TXRIcjBIZzRyNzNXS2F5SUVId1RJYXU4bHdlZC9r?=
+ =?utf-8?B?Zm10U3JUbmZORFVabFMzVjduVWVack5IZGFEWnZ2bGxUQ2playtDLys4a1pO?=
+ =?utf-8?B?VHZvSGJRcUVIYWthQXd6WVhWb2puQW5mcFZScW9DSFBSNVdjSm1pQ205czJ1?=
+ =?utf-8?B?amIzQlJrR2dLWWlmZlZadVFSLzF5a2srTkszT3VSRmVWVWhNZUpXendBeUtM?=
+ =?utf-8?B?QzBtNzBZcjJNb0IxRjlKakNlcmVyWDFxUmdHcjJPOTI1OEF1ODMyVm94b3NQ?=
+ =?utf-8?B?WlRlbVlzTkpHRVB6YUlVUFlSclpvTnNsbUJiK1l5NHBUNTg1b1hyTjJ6RkZh?=
+ =?utf-8?B?RVJWalJVeFhsYjh2L3hnbVNtU2pUR1R1ZHk5bkM2YnNEUTgrbzRndzE0MG9k?=
+ =?utf-8?B?OEE4T0F2emFLS2Z3dTZuZEJKUHpNR3hMT3pUaDZ4bURvbzdWQmhvdkhlNHJk?=
+ =?utf-8?B?ckwrWGowTm91S1NYYXVUQ3NsTG8wdThHQTMzWVZSSUdWejlsM0hJc3hWMitB?=
+ =?utf-8?B?aWEwZVdNR0R3SUVvZi8yL1FPRXFlbHpxSjJ1eFR3QjkzQThHTER5MEtNdTFh?=
+ =?utf-8?B?Q3lSaEFRSjJIdE9UUFV3bHhWcUtHdWk4YXFGOEN0ZlRFNWcyWkU1V2VqQjhB?=
+ =?utf-8?B?N2lteThxLzBXaG50M1FGOE1LWE9vNW9GbFlNQlA3TTZEMjVNR0Zid28yRktI?=
+ =?utf-8?B?ajJCMVdQbDZLdzAyVnVld2daRmY0WE9HZVJlci9BcExBcmx1RnlkVkZXMzE5?=
+ =?utf-8?B?SW1rR0QzR1R1ckNkTklLNTJFT1NNUG00eVdYeStPRGV4cGxkdVFBUXdGQldy?=
+ =?utf-8?B?dEVST2VXajR2VE1yWTlFSzZOaExRU0d4Z1Jac3hVeVpIcDEyK1UwdE1TbG1s?=
+ =?utf-8?B?bm5NZDE0cVAvZDJNN2VCMUNpZnFoR0hpZzFwSGMzZFpHbnZjcTdiR1VUUWh2?=
+ =?utf-8?Q?cIOlhOuR4F72nM4aL1lpCicVO?=
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: SskqqN9w8u1EVBsk0RqZpIAmoiLP-Tfn
-X-Proofpoint-ORIG-GUID: SskqqN9w8u1EVBsk0RqZpIAmoiLP-Tfn
+X-OriginatorOrg: quicinc.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR02MB6164.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e44e88f6-6074-4a9b-d818-08dab153774c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Oct 2022 21:55:26.7960
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 98e9ba89-e1a1-4e38-9007-8bdabc25de1d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: XpmMFvYi4Mqm2citVdl9PuAHV6WN1q4YP3tMIZOOQhaAkjYtDADghnrhYXjpw1jZ/JZ1BfRJkDIpAwEhzadzwEpOVF7mR09xFc2C86dQbg0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR02MB8534
+X-Proofpoint-ORIG-GUID: g0f63LTariuKlB7x08uv5GPSRK3di2ht
+X-Proofpoint-GUID: g0f63LTariuKlB7x08uv5GPSRK3di2ht
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
  definitions=2022-10-18_07,2022-10-18_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 phishscore=0
- impostorscore=0 clxscore=1015 lowpriorityscore=0 suspectscore=0
- priorityscore=1501 mlxscore=0 mlxlogscore=999 adultscore=0 malwarescore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2210180120
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
+ priorityscore=1501 malwarescore=0 adultscore=0 impostorscore=0
+ mlxlogscore=774 mlxscore=0 bulkscore=0 spamscore=0 suspectscore=0
+ clxscore=1011 lowpriorityscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2209130000 definitions=main-2210180123
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221018_142847_165556_B216D3DA 
-X-CRM114-Status: GOOD (  23.62  )
+X-CRM114-CacheID: sfid-20221018_145532_149036_735B17BD 
+X-CRM114-Status: GOOD (  12.11  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,308 +168,29 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-In the previous behaviour only HE IE in management frames are changed
-regarding MU-MIMO configurations and not in hardware. Adding push of
-MU-MIMO configurations to the hardware as well.
+Kalle Valo <kvalo@kernel.org> wrote:
 
-This patch is dependant on mac80211 patchset:
+>  drivers/net/wireless/ath/ath11k/mac.c:2711:33: error: 'struct ieee80211_bss_conf' has no member named 'he_su_beamformer'
+>   2711 |         if (arvif->vif->bss_conf.he_su_beamformer) {
+>        |                                 ^
+>  drivers/net/wireless/ath/ath11k/mac.c:2713:41: error: 'struct ieee80211_bss_conf' has no member named 'he_mu_beamformer'
+>   2713 |                 if (arvif->vif->bss_conf.he_mu_beamformer &&
+>        |                                         ^
+>  drivers/net/wireless/ath/ath11k/mac.c:2722:41: error: 'struct ieee80211_bss_conf' has no member named 'he_full_ul_mumimo'
+>   2722 |                 if (arvif->vif->bss_conf.he_full_ul_mumimo)
+>        |                                         ^
+>  drivers/net/wireless/ath/ath11k/mac.c:2725:41: error: 'struct ieee80211_bss_conf' has no member named 'he_su_beamformee'
+>   2725 |                 if (arvif->vif->bss_conf.he_su_beamformee)
+ >       |                                         ^
+
+
+These attributes are defined as part of this mac80211 patchset which is in public review : 
 https://patchwork.kernel.org/project/linux-wireless/list/?series=683322&state=%2A&archive=both
 
-Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00356-QCAHKSWPL_SILICONZ-1
+I have included this dependency in the cover letter of V2 of this patchset.
 
-Co-developed-by: Anilkumar Kolli <quic_akolli@quicinc.com>
-Signed-off-by: Anilkumar Kolli <quic_akolli@quicinc.com>
-Signed-off-by: Muna Sinada <quic_msinada@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/mac.c | 199 +++++++++++++++++++++-------------
- drivers/net/wireless/ath/ath11k/wmi.h |   3 +
- 2 files changed, 129 insertions(+), 73 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 6d83a178a891..83d4a565fe84 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -2697,6 +2697,117 @@ static int ath11k_setup_peer_smps(struct ath11k *ar, struct ath11k_vif *arvif,
- 					 ath11k_smps_map[smps]);
- }
- 
-+static bool ath11k_mac_set_he_txbf_conf(struct ath11k_vif *arvif)
-+{
-+	struct ath11k *ar = arvif->ar;
-+	u32 param, value;
-+	int ret;
-+
-+	if (!arvif->vif->bss_conf.he_support)
-+		return true;
-+
-+	param = WMI_VDEV_PARAM_SET_HEMU_MODE;
-+	value = 0;
-+	if (arvif->vif->bss_conf.he_su_beamformer) {
-+		value |= FIELD_PREP(HE_MODE_SU_TX_BFER, HE_SU_BFER_ENABLE);
-+		if (arvif->vif->bss_conf.he_mu_beamformer &&
-+		    arvif->vdev_type == WMI_VDEV_TYPE_AP)
-+			value |= FIELD_PREP(HE_MODE_MU_TX_BFER, HE_MU_BFER_ENABLE);
-+	}
-+
-+	if (arvif->vif->type != NL80211_IFTYPE_MESH_POINT) {
-+		value |= FIELD_PREP(HE_MODE_DL_OFDMA, HE_DL_MUOFDMA_ENABLE) |
-+			 FIELD_PREP(HE_MODE_UL_OFDMA, HE_UL_MUOFDMA_ENABLE);
-+
-+		if (arvif->vif->bss_conf.he_full_ul_mumimo)
-+			value |= FIELD_PREP(HE_MODE_UL_MUMIMO, HE_UL_MUMIMO_ENABLE);
-+
-+		if (arvif->vif->bss_conf.he_su_beamformee)
-+			value |= FIELD_PREP(HE_MODE_SU_TX_BFEE, HE_SU_BFEE_ENABLE);
-+	}
-+
-+	ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id, param, value);
-+	if (ret) {
-+		ath11k_warn(ar->ab, "failed to set vdev %d HE MU mode: %d\n",
-+			    arvif->vdev_id, ret);
-+		return false;
-+	}
-+
-+	param = WMI_VDEV_PARAM_SET_HE_SOUNDING_MODE;
-+	value =	FIELD_PREP(HE_VHT_SOUNDING_MODE, HE_VHT_SOUNDING_MODE_ENABLE) |
-+		FIELD_PREP(HE_TRIG_NONTRIG_SOUNDING_MODE,
-+			   HE_TRIG_NONTRIG_SOUNDING_MODE_ENABLE);
-+	ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
-+					    param, value);
-+	if (ret) {
-+		ath11k_warn(ar->ab, "failed to set vdev %d sounding mode: %d\n",
-+			    arvif->vdev_id, ret);
-+		return false;
-+	}
-+	return true;
-+}
-+
-+static bool ath11k_mac_vif_recalc_sta_he_txbf(struct ath11k *ar,
-+					      struct ieee80211_vif *vif,
-+					      struct ieee80211_sta_he_cap *he_cap)
-+{
-+	struct ath11k_vif *arvif = (void *)vif->drv_priv;
-+	struct ieee80211_he_cap_elem he_cap_elem = {0};
-+	struct ieee80211_sta_he_cap *cap_band = NULL;
-+	struct cfg80211_chan_def def;
-+	u32 param = WMI_VDEV_PARAM_SET_HEMU_MODE;
-+	u32 hemode = 0;
-+	int ret;
-+
-+	if (!vif->bss_conf.he_support)
-+		return true;
-+
-+	if (vif->type != NL80211_IFTYPE_STATION)
-+		return false;
-+
-+	if (WARN_ON(ath11k_mac_vif_chan(vif, &def)))
-+		return false;
-+
-+	if (def.chan->band == NL80211_BAND_2GHZ)
-+		cap_band = &ar->mac.iftype[NL80211_BAND_2GHZ][vif->type].he_cap;
-+	else
-+		cap_band = &ar->mac.iftype[NL80211_BAND_5GHZ][vif->type].he_cap;
-+
-+	memcpy(&he_cap_elem, &cap_band->he_cap_elem, sizeof(he_cap_elem));
-+
-+	if (HECAP_PHY_SUBFME_GET(he_cap_elem.phy_cap_info)) {
-+		if (HECAP_PHY_SUBFMR_GET(he_cap->he_cap_elem.phy_cap_info))
-+			hemode |= FIELD_PREP(HE_MODE_SU_TX_BFEE, HE_SU_BFEE_ENABLE);
-+		if (HECAP_PHY_MUBFMR_GET(he_cap->he_cap_elem.phy_cap_info))
-+			hemode |= FIELD_PREP(HE_MODE_MU_TX_BFEE, HE_MU_BFEE_ENABLE);
-+	}
-+
-+	if (vif->type != NL80211_IFTYPE_MESH_POINT) {
-+		hemode |= FIELD_PREP(HE_MODE_DL_OFDMA, HE_DL_MUOFDMA_ENABLE) |
-+			  FIELD_PREP(HE_MODE_UL_OFDMA, HE_UL_MUOFDMA_ENABLE);
-+
-+		if (HECAP_PHY_ULMUMIMO_GET(he_cap_elem.phy_cap_info))
-+			if (HECAP_PHY_ULMUMIMO_GET(he_cap->he_cap_elem.phy_cap_info))
-+				hemode |= FIELD_PREP(HE_MODE_UL_MUMIMO,
-+						     HE_UL_MUMIMO_ENABLE);
-+
-+		if (FIELD_GET(HE_MODE_MU_TX_BFEE, hemode))
-+			hemode |= FIELD_PREP(HE_MODE_SU_TX_BFEE, HE_SU_BFEE_ENABLE);
-+
-+		if (FIELD_GET(HE_MODE_MU_TX_BFER, hemode))
-+			hemode |= FIELD_PREP(HE_MODE_SU_TX_BFER, HE_SU_BFER_ENABLE);
-+	}
-+
-+	ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id, param, hemode);
-+	if (ret) {
-+		ath11k_warn(ar->ab, "failed to submit vdev param txbf 0x%x: %d\n",
-+			    hemode, ret);
-+		return false;
-+	}
-+
-+	return true;
-+}
-+
- static void ath11k_bss_assoc(struct ieee80211_hw *hw,
- 			     struct ieee80211_vif *vif,
- 			     struct ieee80211_bss_conf *bss_conf)
-@@ -2707,6 +2818,7 @@ static void ath11k_bss_assoc(struct ieee80211_hw *hw,
- 	struct ieee80211_sta *ap_sta;
- 	struct ath11k_peer *peer;
- 	bool is_auth = false;
-+	struct ieee80211_sta_he_cap  he_cap;
- 	int ret;
- 
- 	lockdep_assert_held(&ar->conf_mutex);
-@@ -2723,6 +2835,8 @@ static void ath11k_bss_assoc(struct ieee80211_hw *hw,
- 		rcu_read_unlock();
- 		return;
- 	}
-+	/* he_cap here is updated at assoc success for sta mode only */
-+	he_cap  = ap_sta->deflink.he_cap;
- 
- 	ath11k_peer_assoc_prepare(ar, vif, ap_sta, &peer_arg, false);
- 
-@@ -2751,6 +2865,12 @@ static void ath11k_bss_assoc(struct ieee80211_hw *hw,
- 		return;
- 	}
- 
-+	if (!ath11k_mac_vif_recalc_sta_he_txbf(ar, vif, &he_cap)) {
-+		ath11k_warn(ar->ab, "failed to recalc he txbf for vdev %i on bss %pM\n",
-+			    arvif->vdev_id, bss_conf->bssid);
-+		return;
-+	}
-+
- 	WARN_ON(arvif->is_up);
- 
- 	arvif->aid = vif->cfg.aid;
-@@ -3200,6 +3320,8 @@ static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
- 		ether_addr_copy(arvif->bssid, info->bssid);
- 
- 	if (changed & BSS_CHANGED_BEACON_ENABLED) {
-+		if (info->enable_beacon)
-+			ath11k_mac_set_he_txbf_conf(arvif);
- 		ath11k_control_beaconing(arvif, info);
- 
- 		if (arvif->is_up && vif->bss_conf.he_support &&
-@@ -5369,6 +5491,10 @@ static int ath11k_mac_copy_he_cap(struct ath11k *ar,
- 
- 		he_cap_elem->mac_cap_info[1] &=
- 			IEEE80211_HE_MAC_CAP1_TF_MAC_PAD_DUR_MASK;
-+		he_cap_elem->phy_cap_info[0] &=
-+			~IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_160MHZ_IN_5G;
-+		he_cap_elem->phy_cap_info[0] &=
-+			~IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_80PLUS80_MHZ_IN_5G;
- 
- 		he_cap_elem->phy_cap_info[5] &=
- 			~IEEE80211_HE_PHY_CAP5_BEAMFORMEE_NUM_SND_DIM_UNDER_80MHZ_MASK;
-@@ -6003,69 +6129,6 @@ ath11k_mac_setup_vdev_create_params(struct ath11k_vif *arvif,
- 	}
- }
- 
--static u32
--ath11k_mac_prepare_he_mode(struct ath11k_pdev *pdev, u32 viftype)
--{
--	struct ath11k_pdev_cap *pdev_cap = &pdev->cap;
--	struct ath11k_band_cap *cap_band = NULL;
--	u32 *hecap_phy_ptr = NULL;
--	u32 hemode = 0;
--
--	if (pdev->cap.supported_bands & WMI_HOST_WLAN_2G_CAP)
--		cap_band = &pdev_cap->band[NL80211_BAND_2GHZ];
--	else
--		cap_band = &pdev_cap->band[NL80211_BAND_5GHZ];
--
--	hecap_phy_ptr = &cap_band->he_cap_phy_info[0];
--
--	hemode = FIELD_PREP(HE_MODE_SU_TX_BFEE, HE_SU_BFEE_ENABLE) |
--		 FIELD_PREP(HE_MODE_SU_TX_BFER, HECAP_PHY_SUBFMR_GET(hecap_phy_ptr)) |
--		 FIELD_PREP(HE_MODE_UL_MUMIMO, HECAP_PHY_ULMUMIMO_GET(hecap_phy_ptr));
--
--	/* TODO WDS and other modes */
--	if (viftype == NL80211_IFTYPE_AP) {
--		hemode |= FIELD_PREP(HE_MODE_MU_TX_BFER,
--			  HECAP_PHY_MUBFMR_GET(hecap_phy_ptr)) |
--			  FIELD_PREP(HE_MODE_DL_OFDMA, HE_DL_MUOFDMA_ENABLE) |
--			  FIELD_PREP(HE_MODE_UL_OFDMA, HE_UL_MUOFDMA_ENABLE);
--	} else {
--		hemode |= FIELD_PREP(HE_MODE_MU_TX_BFEE, HE_MU_BFEE_ENABLE);
--	}
--
--	return hemode;
--}
--
--static int ath11k_set_he_mu_sounding_mode(struct ath11k *ar,
--					  struct ath11k_vif *arvif)
--{
--	u32 param_id, param_value;
--	struct ath11k_base *ab = ar->ab;
--	int ret = 0;
--
--	param_id = WMI_VDEV_PARAM_SET_HEMU_MODE;
--	param_value = ath11k_mac_prepare_he_mode(ar->pdev, arvif->vif->type);
--	ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
--					    param_id, param_value);
--	if (ret) {
--		ath11k_warn(ab, "failed to set vdev %d HE MU mode: %d param_value %x\n",
--			    arvif->vdev_id, ret, param_value);
--		return ret;
--	}
--	param_id = WMI_VDEV_PARAM_SET_HE_SOUNDING_MODE;
--	param_value =
--		FIELD_PREP(HE_VHT_SOUNDING_MODE, HE_VHT_SOUNDING_MODE_ENABLE) |
--		FIELD_PREP(HE_TRIG_NONTRIG_SOUNDING_MODE,
--			   HE_TRIG_NONTRIG_SOUNDING_MODE_ENABLE);
--	ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
--					    param_id, param_value);
--	if (ret) {
--		ath11k_warn(ab, "failed to set vdev %d HE MU mode: %d\n",
--			    arvif->vdev_id, ret);
--		return ret;
--	}
--	return ret;
--}
--
- static void ath11k_mac_op_update_vif_offload(struct ieee80211_hw *hw,
- 					     struct ieee80211_vif *vif)
- {
-@@ -6734,7 +6797,6 @@ ath11k_mac_vdev_start_restart(struct ath11k_vif *arvif,
- 	struct ath11k_base *ab = ar->ab;
- 	struct wmi_vdev_start_req_arg arg = {};
- 	const struct cfg80211_chan_def *chandef = &ctx->def;
--	int he_support = arvif->vif->bss_conf.he_support;
- 	int ret = 0;
- 
- 	lockdep_assert_held(&ar->conf_mutex);
-@@ -6775,15 +6837,6 @@ ath11k_mac_vdev_start_restart(struct ath11k_vif *arvif,
- 		spin_lock_bh(&ab->base_lock);
- 		arg.regdomain = ar->ab->dfs_region;
- 		spin_unlock_bh(&ab->base_lock);
--
--		if (he_support) {
--			ret = ath11k_set_he_mu_sounding_mode(ar, arvif);
--			if (ret) {
--				ath11k_warn(ar->ab, "failed to set he mode vdev %i\n",
--					    arg.vdev_id);
--				return ret;
--			}
--		}
- 	}
- 
- 	arg.channel.passive |= !!(chandef->chan->flags & IEEE80211_CHAN_NO_IR);
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index 368b7755e800..7e1eea784eb5 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -2895,8 +2895,11 @@ struct rx_reorder_queue_remove_params {
- #define HE_DL_MUOFDMA_ENABLE	1
- #define HE_UL_MUOFDMA_ENABLE	1
- #define HE_DL_MUMIMO_ENABLE	1
-+#define HE_UL_MUMIMO_ENABLE	1
- #define HE_MU_BFEE_ENABLE	1
- #define HE_SU_BFEE_ENABLE	1
-+#define HE_MU_BFER_ENABLE	1
-+#define HE_SU_BFER_ENABLE	1
- 
- #define HE_VHT_SOUNDING_MODE_ENABLE		1
- #define HE_SU_MU_SOUNDING_MODE_ENABLE		1
--- 
-2.7.4
-
+Thank you,
+Muna
 
 -- 
 ath11k mailing list
