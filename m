@@ -4,154 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BC7AC4332F
-	for <ath11k@archiver.kernel.org>; Tue, 18 Oct 2022 21:55:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8387C4332F
+	for <ath11k@archiver.kernel.org>; Wed, 19 Oct 2022 04:32:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:References:CC:To:From:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FDpoghvO8dg7CTHosxe6rgDUzzurw+c/AwPaqAUSScM=; b=vkEL1a+GLIbVaz
-	Z3EubOtizrJANF9IiXX5ipDt9rRfwJADUw9M0QLZbi/Zb0Xq45tAwT8N7H5Tu6GdqDLORsfDhJKVR
-	x+wX8qoQ2dKsdR0As5fDboVpModChQKuzr887tZKSNj8DJLLWTCjak5qiACW9cJDUrO4fl7Yb7LK6
-	FDYTGuoIsdnf1iYQ5YVuoM9BQ9XBSOfpoC3kVn7Am35jfjdQpRsRewtApXw81lV8e2P5zaPX9IpLn
-	U0PK7V7CI5bJjgABX6Tbl1+lu834dzJiLRAA5Lc27zEmcAA9lFIbT+MYYF2fB0RkbhNAdredob5yc
-	W0C2J5DEv97Km+EXAoCA==;
+	List-Owner; bh=JDaE+AxVz0PX9FWClJDsBP7gmvh4ZRqNPhG7gUjyrtU=; b=y/o6QB0Q7Cjucj
+	KnSGGcPjPnQEkJDEFH+I6qtqFPysE1M0ahbwfUB8EcLomwr9guSRMgmZgAO898kyc1gSa40NOo1X5
+	UI5ZRyvyiQ4SIto2IWO+V5lEwJX6+vkdE1DfMUNeIWqU3PIOAfWkFAmD90hmqqJoHfj7fLCiZRmiA
+	v/Eo4ztXTVH/ZR5LYmmeaKa0oKWl3LMidk6v/WKi8neti3aTQRpHCmHq+n+eLYUL5U9hdUvImC1Ax
+	E7RZNjpq47gDWYHOX3ethZqWwx7rAyXYLCERVj4JNT1D+TBOhQlj56YH5vwdoGan9OacyQbrcbQOd
+	Nc5wRSbns2dtdd1eEDew==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1okuYh-00AdeN-Ad; Tue, 18 Oct 2022 21:55:35 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1ol0l4-00Eh5W-GN; Wed, 19 Oct 2022 04:32:46 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1okuYd-00AdcS-UD
-	for ath11k@lists.infradead.org; Tue, 18 Oct 2022 21:55:33 +0000
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29ILbM7t017423;
-	Tue, 18 Oct 2022 21:55:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : references : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=qcppdkim1;
- bh=VzsySnXVYmP6w124VrcJyamK1wKPsHwu6/C+6pABY0I=;
- b=EHn8nCiCQs6KXs2erbR6Q3QidQkYu+9bE7grjfoeS72/HqOeuNYexnWnesnU9oEpm1sS
- bT+hyHlUJ2TTGdwBzGgQEgMjUZ5JPdfXpzHLV6kD0Y+mgAc9wDTyE/E7wQfIOiHfJNEb
- 4ZNfLwb4X8UkM3v5FYz5wrZnL5xfws0tEPNpQa+jYLnlE8P88E+tcMPJoW1JVKy8jw14
- TeQb5RV2CjrXQfEWRVWUX9ewZ5rTIB6msHPYtXZDY4k3ARxNHudGxOBE84kHTnYNZi6Y
- ZQ+fl5PR2psnEEXmwj7PtZXGC5dKWxtYWTG0l9GRrRSJZ5uVUMJ+HOQ6+OxB5ITM1lLx Uw== 
-Received: from nam12-mw2-obe.outbound.protection.outlook.com (mail-mw2nam12lp2047.outbound.protection.outlook.com [104.47.66.47])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3k9bfg4ccb-1
+	id 1ol0l0-00Egz0-Ts; Wed, 19 Oct 2022 04:32:44 +0000
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29J4LOBA011802;
+	Wed, 19 Oct 2022 04:32:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : from : to : cc : references : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=IlrRhRmv95as1oiId1b1PHApl1MGh3RyfzRf2DVSV4Q=;
+ b=H4q6AYfUmQE0UqNWnvImWE629DEk2RMnLvYUkn/L4MClvHg1wxPDGNDEHxz7zbxRB5D2
+ 6nQp5jWfh8wzupg8EKR/v3iJ9v2BCz/p8CYEdNUOSTpmijTRXu4tiZywcJyz1MYA2o8y
+ NYmKj4FCAbtZ9M2daCxlbjGg5dk8K6sXLP4i+/ll5zxrJJdHlWaYQdlaJ/XzTYudYbkr
+ IVUugGeLwsWdfrPka374tmEk1oJcRKXqfCXpJKy/DkueNMwWFxomX71WfDOXvFB7gNFO
+ QjVY0NW6HY3cDSL8VMmwdtTUPYW9GZyvNRd1T5fLN2bSly+R5WC9bLVo+E0KsxxcLWJK 8A== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3k9yq1hg0f-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 18 Oct 2022 21:55:29 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AQ9X6b6yIQ7WdnzfftoNHE9BRze7DDGhpQs+R/gpNFl230c5RIwY7c7ahdyasE97MC8bkw5GtlRSFr/PzdGrW1NCrfpN90KTC0sU8BSDzuAhlrQ5jZhnKY+7xGMcs5ltAJg4ztbuBihNa9JLW+y4cR4YJXHmu7wWQkYeCtS18kSD+ovlbt42DFgrgb9P2oyltMsdUucxeYoL7Ulq+fe8Sg8NCO5BVbB6WRWDXMoY7Pqt6XscKOgQUeDApN82rrW4/TVJddL3k5vLtL1AUOmI0bEkEfuI4LkoMlPRdFLMVTWBXS/lsFY/6SWA7654S9expgq93dwFdF9DluYqmCFudg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VzsySnXVYmP6w124VrcJyamK1wKPsHwu6/C+6pABY0I=;
- b=cB84zLqP3d1dHe0OaDQHshKvA4Qk8khGpOqe6j9nwJwMElHgrQqUH6cpiLAhMn8o1Xjdx4Xp04c5bIxUW0aobGJde25AJ5VCmHT+KoE0D5UwzBW6YOFm+vpWF2YVrQWQbMWI/SRMxGDgAjzVNnkdtZStt2W7klIp3xqiFe6RxqcMyUSKhlbi6ee0tuqASeeCEgU/US7f4dTR/86pzZ6DxrzOsJEojBALMLeSwDr4VpgyJMFyydLELDDZUoRTKghJyIVv8bMTfBUeHJPPeXldYAyJKOxkfi3A58b+ioe5uYwWCLXFkSPvsH11Awp5tqo+1NiG8none/jn+bssuuteNw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=quicinc.com; dmarc=pass action=none header.from=quicinc.com;
- dkim=pass header.d=quicinc.com; arc=none
-Received: from BY5PR02MB6164.namprd02.prod.outlook.com (2603:10b6:a03:1b0::23)
- by PH0PR02MB8534.namprd02.prod.outlook.com (2603:10b6:510:10d::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.30; Tue, 18 Oct
- 2022 21:55:27 +0000
-Received: from BY5PR02MB6164.namprd02.prod.outlook.com
- ([fe80::b677:f24f:c0ea:c42]) by BY5PR02MB6164.namprd02.prod.outlook.com
- ([fe80::b677:f24f:c0ea:c42%5]) with mapi id 15.20.5723.033; Tue, 18 Oct 2022
- 21:55:26 +0000
-From: "Muna Sinada (QUIC)" <quic_msinada@quicinc.com>
-To: Kalle Valo <kvalo@kernel.org>,
-        "Muna Sinada (QUIC)"
-	<quic_msinada@quicinc.com>
-CC: "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>,
-        "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>
-Subject: RE: [PATCH 1/4] wifi: ath11k: modify accessor macros to match index
- size
-Thread-Topic: [PATCH 1/4] wifi: ath11k: modify accessor macros to match index
- size
-Thread-Index: AQHY3mmbP6Nh+RQOUEiyJUXSjzn4CK4MUqGAgAhnBZA=
-Date: Tue, 18 Oct 2022 21:55:26 +0000
-Message-ID:  <BY5PR02MB6164064B7069CE45A34DBAC28F289@BY5PR02MB6164.namprd02.prod.outlook.com>
-References: <1665599807-12908-2-git-send-email-quic_msinada@quicinc.com>
- <166564252533.7747.3943450152611127759.kvalo@kernel.org>
-In-Reply-To: <166564252533.7747.3943450152611127759.kvalo@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BY5PR02MB6164:EE_|PH0PR02MB8534:EE_
-x-ms-office365-filtering-correlation-id: e44e88f6-6074-4a9b-d818-08dab153774c
-x-ld-processed: 98e9ba89-e1a1-4e38-9007-8bdabc25de1d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:  Ls24xFy9Dmey8lBi1xUvWW0vVNCC5GpP50aRj1sIHnXbIxkHb2+h08aMqvFrfSFbcyBmhKPA9vb5IL0/vuV8d7VE3vQtYLakEGZjoDCH6gOFIHu76ygKdhkFkaK21O+L25wlLxlaQemjwHy4uPjOfnI3utTW0tVK8cVQocrrZessAxtKsSkdKFBXwYrJWmY5zZsI3ydZr0TXdWYYr2R2dROqNiZCNVw+F4SToTVyNuq+9p/VYHhNQxi6lHx0Mct0ZYK48No+c7SvCUyD0cgcgbFHBuDzCrrZnz00jidRjJSVi4sehB7n0tSItYInmxYcsX3MbwNAk3ouSNbxO84aRWN2O89pk76DQ52YAR8TgXLM/gszMrwUj/ZX3kzi2xipVzbsmOTJOWnYiv56M0ZxHEi9LEO8vBiYM0krjRTubx7n/llPPhOfWXNnFYuTrVq4/z+4U7JIxVh9vJqgW4kjDF3iM42rj2wk5ITD3wOO2WUasqmmhNKulw+H4PB5OdrkJ3HycTsirmKRaqozdqBtneuzIeyUDPCcB3d37twUSuDu7UcAzWo5xBq2RVkd6vsfciHGBhSIuzpbkvCKtpZX5WF+7WxKnCZg9Bt6oPZjRnMWRfrm7zyDQ5D2gc0hOp9AKR/4TJCfzCcvw0PmbS2pBu/o5UL0OoE2pTGqQG9p1JnFfKm58KektEim1suT7nJBnL9z4U7X0dWXz+KKkxiLkIUnaDimXf47BhPuacdAvTEa3ZDEQ5rorOqKq75hSrbouYIH0umGhYfDtLReSXRvRlFq/0bF7OMPU4iybfDdXFQ=
-x-forefront-antispam-report:  CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR02MB6164.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(376002)(136003)(396003)(366004)(39860400002)(451199015)(966005)(478600001)(71200400001)(38100700002)(8936002)(52536014)(110136005)(9686003)(316002)(54906003)(41300700001)(186003)(26005)(122000001)(7696005)(6506007)(4326008)(55016003)(38070700005)(5660300002)(33656002)(64756008)(2906002)(66476007)(66556008)(66946007)(66446008)(8676002)(86362001)(76116006);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:  =?utf-8?B?ekgzZUdJbnJKa3NRcnZjSTI0MlIyRlNhSHQyeE9sWXI1S1RPM3liOW9oU0tu?=
- =?utf-8?B?MENKRUJDNnpWR2VZR1djZVc1Z3hjYVBIdHdlaG5WU1gybHgyN1VuZ3Z4WEkx?=
- =?utf-8?B?NkpBbHZvdkZ3RGRmQWFGUjluMGViMXBWVFY0RlpzWEZTVFNoV202UndWK29Q?=
- =?utf-8?B?VDV6ajRicXE1T05QZnl3V2haMWIwSFNPYjN6bEtZdGlhcndDY2hoR1FTUVI0?=
- =?utf-8?B?cnRwbVJld2VyeW5tQzR3T1h2L3FRa3N5c1o1OW1lVmtzNWtKbkJrMDdVdU9t?=
- =?utf-8?B?MWFQajA5U1Q1enRVUm52RzUwdDZ4TzlHNGRCbGc2UmlPdmZsVTBudGdDelJk?=
- =?utf-8?B?TUROWWdwSHNxa3lvUjluMVovcncyNlNIODYyQkM1VWk0dTNmNUloZXAranJF?=
- =?utf-8?B?U3MzR2tPaSs3UmRBZXNmVENjSnJaazVoOU5iaTJzRVdQdHpWSmVQNTIrRlVQ?=
- =?utf-8?B?b2hOLzF0QTVwdWxrK0xFbFJIQUF4RjE2UDdCdTVrZmNMSC9aOUJydStWYVFP?=
- =?utf-8?B?UkcrWFdoT2ZVL1loQjVEakZveUY1Q0VBZHZHb2hiL1g1UzNIMVozSzVzSmFM?=
- =?utf-8?B?TkxjZWd4SnpNL1VINThza3ZaQVVJcnRYY0VQakd1VDJhTjU5SDZJdzYxbTdN?=
- =?utf-8?B?cFN5bHRkb2FlV294RzBBK1JKdWloSU9LRWNRZ0RhcG92YlFWamdhVWlDWG1F?=
- =?utf-8?B?eUR6Nlo0cTJkWC9LRFk3YzhCM3VsajU4eWtlT2dHYy85QUI3cGVLYnV5c2ht?=
- =?utf-8?B?VCsvWmpEZVhOM2NGTC9ua0RnOGU2ZjJzQmJZNUU5aDFQSHZlbEpSU2c2WjZJ?=
- =?utf-8?B?anppbGpZTm1LRjdxTTNLMUNFNldOS2hvbkhhOGc3MVpsbU1DZnlKUTZFSjlq?=
- =?utf-8?B?MWU5NFU1RFRBTUlpREtOVGFJMktKYVlYUW9kUThoRUVWQTEydS9MQnBza2Zi?=
- =?utf-8?B?Uk1KaWxLQ2xUOHhYVm5QRWV5MCtxcEFyQkQxQjFCMlN2bVU0bXIzRDBzZGVu?=
- =?utf-8?B?U0lOV0xWa3pKcGtjVlI0R1pqUjlaOFVnekd0bVE4cVBrWkc2UGxLWmovWm1s?=
- =?utf-8?B?UGFSb0lpbFFFelNpQ3A1dXpxeVdEVWlwN3JEM2t6NFN1SVdiU3RMaHU1c0Rz?=
- =?utf-8?B?K3dScHd4WDV6SXA1S3h5TXRIcjBIZzRyNzNXS2F5SUVId1RJYXU4bHdlZC9r?=
- =?utf-8?B?Zm10U3JUbmZORFVabFMzVjduVWVack5IZGFEWnZ2bGxUQ2playtDLys4a1pO?=
- =?utf-8?B?VHZvSGJRcUVIYWthQXd6WVhWb2puQW5mcFZScW9DSFBSNVdjSm1pQ205czJ1?=
- =?utf-8?B?amIzQlJrR2dLWWlmZlZadVFSLzF5a2srTkszT3VSRmVWVWhNZUpXendBeUtM?=
- =?utf-8?B?QzBtNzBZcjJNb0IxRjlKakNlcmVyWDFxUmdHcjJPOTI1OEF1ODMyVm94b3NQ?=
- =?utf-8?B?WlRlbVlzTkpHRVB6YUlVUFlSclpvTnNsbUJiK1l5NHBUNTg1b1hyTjJ6RkZh?=
- =?utf-8?B?RVJWalJVeFhsYjh2L3hnbVNtU2pUR1R1ZHk5bkM2YnNEUTgrbzRndzE0MG9k?=
- =?utf-8?B?OEE4T0F2emFLS2Z3dTZuZEJKUHpNR3hMT3pUaDZ4bURvbzdWQmhvdkhlNHJk?=
- =?utf-8?B?ckwrWGowTm91S1NYYXVUQ3NsTG8wdThHQTMzWVZSSUdWejlsM0hJc3hWMitB?=
- =?utf-8?B?aWEwZVdNR0R3SUVvZi8yL1FPRXFlbHpxSjJ1eFR3QjkzQThHTER5MEtNdTFh?=
- =?utf-8?B?Q3lSaEFRSjJIdE9UUFV3bHhWcUtHdWk4YXFGOEN0ZlRFNWcyWkU1V2VqQjhB?=
- =?utf-8?B?N2lteThxLzBXaG50M1FGOE1LWE9vNW9GbFlNQlA3TTZEMjVNR0Zid28yRktI?=
- =?utf-8?B?ajJCMVdQbDZLdzAyVnVld2daRmY0WE9HZVJlci9BcExBcmx1RnlkVkZXMzE5?=
- =?utf-8?B?SW1rR0QzR1R1ckNkTklLNTJFT1NNUG00eVdYeStPRGV4cGxkdVFBUXdGQldy?=
- =?utf-8?B?dEVST2VXajR2VE1yWTlFSzZOaExRU0d4Z1Jac3hVeVpIcDEyK1UwdE1TbG1s?=
- =?utf-8?B?bm5NZDE0cVAvZDJNN2VCMUNpZnFoR0hpZzFwSGMzZFpHbnZjcTdiR1VUUWh2?=
- =?utf-8?Q?cIOlhOuR4F72nM4aL1lpCicVO?=
+	Wed, 19 Oct 2022 04:32:39 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 29J4WcdJ031790
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 19 Oct 2022 04:32:38 GMT
+Received: from [10.231.195.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Tue, 18 Oct
+ 2022 21:32:37 -0700
+Message-ID: <92fc96e7-6305-ca2f-7f13-5d26d704c7f0@quicinc.com>
+Date: Wed, 19 Oct 2022 12:32:34 +0800
 MIME-Version: 1.0
-X-OriginatorOrg: quicinc.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR02MB6164.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e44e88f6-6074-4a9b-d818-08dab153774c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Oct 2022 21:55:26.7960
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 98e9ba89-e1a1-4e38-9007-8bdabc25de1d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: XpmMFvYi4Mqm2citVdl9PuAHV6WN1q4YP3tMIZOOQhaAkjYtDADghnrhYXjpw1jZ/JZ1BfRJkDIpAwEhzadzwEpOVF7mR09xFc2C86dQbg0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR02MB8534
-X-Proofpoint-ORIG-GUID: g0f63LTariuKlB7x08uv5GPSRK3di2ht
-X-Proofpoint-GUID: g0f63LTariuKlB7x08uv5GPSRK3di2ht
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 01/15] mac80211: split bss_info_changed method
+Content-Language: en-US
+From: Wen Gong <quic_wgong@quicinc.com>
+To: Johannes Berg <johannes@sipsolutions.net>,
+        <linux-wireless@vger.kernel.org>
+CC: <ath11k@lists.infradead.org>, <ath12k@lists.infradead.org>
+References: <20220601073958.8345-1-johannes@sipsolutions.net>
+ <20220601093922.347d47c279fe.I15937cfe8405999084f164ddf57390f8b8d2bc61@changeid>
+ <c38b4da8-488b-2d09-631a-1bb6c07440a6@quicinc.com>
+ <3483d05c1d5a39b9243b54d9f28450344a897655.camel@sipsolutions.net>
+ <bd6545a8-57a3-5849-52d5-c1a449ab1712@quicinc.com>
+ <d0994456d3a9ea00b5cc472df7822d53d189399e.camel@sipsolutions.net>
+ <7e72034a-497a-000c-d7bf-3ec974af9e1c@quicinc.com>
+ <f210cf2a6e3f62156ae6a9d6c7de20e16bd4d6e6.camel@sipsolutions.net>
+ <95a1604c-f323-0fea-46a8-bf554da28fca@quicinc.com>
+In-Reply-To: <95a1604c-f323-0fea-46a8-bf554da28fca@quicinc.com>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: FcSl4CE342er6I5hcsvR87ljdseoEVFK
+X-Proofpoint-GUID: FcSl4CE342er6I5hcsvR87ljdseoEVFK
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-10-18_07,2022-10-18_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
- priorityscore=1501 malwarescore=0 adultscore=0 impostorscore=0
- mlxlogscore=774 mlxscore=0 bulkscore=0 spamscore=0 suspectscore=0
- clxscore=1011 lowpriorityscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2209130000 definitions=main-2210180123
+ definitions=2022-10-19_01,2022-10-18_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ clxscore=1015 malwarescore=0 impostorscore=0 phishscore=0 spamscore=0
+ mlxlogscore=817 bulkscore=0 adultscore=0 mlxscore=0 priorityscore=1501
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2209130000 definitions=main-2210190024
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221018_145532_149036_735B17BD 
-X-CRM114-Status: GOOD (  12.11  )
+X-CRM114-CacheID: sfid-20221018_213243_229760_7D019D95 
+X-CRM114-Status: GOOD (  13.45  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -163,36 +98,29 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Kalle Valo <kvalo@kernel.org> wrote:
-
->  drivers/net/wireless/ath/ath11k/mac.c:2711:33: error: 'struct ieee80211_bss_conf' has no member named 'he_su_beamformer'
->   2711 |         if (arvif->vif->bss_conf.he_su_beamformer) {
->        |                                 ^
->  drivers/net/wireless/ath/ath11k/mac.c:2713:41: error: 'struct ieee80211_bss_conf' has no member named 'he_mu_beamformer'
->   2713 |                 if (arvif->vif->bss_conf.he_mu_beamformer &&
->        |                                         ^
->  drivers/net/wireless/ath/ath11k/mac.c:2722:41: error: 'struct ieee80211_bss_conf' has no member named 'he_full_ul_mumimo'
->   2722 |                 if (arvif->vif->bss_conf.he_full_ul_mumimo)
->        |                                         ^
->  drivers/net/wireless/ath/ath11k/mac.c:2725:41: error: 'struct ieee80211_bss_conf' has no member named 'he_su_beamformee'
->   2725 |                 if (arvif->vif->bss_conf.he_su_beamformee)
- >       |                                         ^
-
-
-These attributes are defined as part of this mac80211 patchset which is in public review : 
-https://patchwork.kernel.org/project/linux-wireless/list/?series=683322&state=%2A&archive=both
-
-I have included this dependency in the cover letter of V2 of this patchset.
-
-Thank you,
-Muna
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+T24gMTAvMTgvMjAyMiA2OjEwIFBNLCBXZW4gR29uZyB3cm90ZToKPiBPbiAxMC8xOC8yMDIyIDU6
+NTEgUE0sIEpvaGFubmVzIEJlcmcgd3JvdGU6Cj4+IE9uIFR1ZSwgMjAyMi0xMC0xOCBhdCAxNzo1
+MCArMDgwMCwgV2VuIEdvbmcgd3JvdGU6Cj4+Pj4gaHR0cHM6Ly9wLnNpcHNvbHV0aW9ucy5uZXQv
+MDY1MmJiYmJlMzUwYjEyNi50eHQKPj4+IENvbmZsaWN0IGhhcHBlbmVkIHdoaWxlIHJ1biAiZ2l0
+IGFtIiB0aGUgcGF0Y2guCj4+Pgo+Pj4gQmVjYXVzZSBtaXNzaW5nIHRoZcKgICJjaGFuZ2VkIHw9
+IEJTU19DSEFOR0VEX0VIVF9QVU5DVFVSSU5HOyIgaW4gbXkKPj4+IGxvY2FsIGNvZGUsCj4+Pgo+
+Pj4gYWxzbyBpdCBpcyBtaXNzaW5nIGluCj4+PiBodHRwczovL2dpdC5rZXJuZWwub3JnL3B1Yi9z
+Y20vbGludXgva2VybmVsL2dpdC93aXJlbGVzcy93aXJlbGVzcy1uZXh0LmdpdC90cmVlL25ldC9t
+YWM4MDIxMS91dGlsLmMgCj4+Pgo+Pj4KPj4+IE1heWJlICJjaGFuZ2VkIHw9IEJTU19DSEFOR0VE
+X0VIVF9QVU5DVFVSSU5HOyIgaXMgb25seSBleGlzdGVkIGluIHlvdXIKPj4+IGxvY2FsIGNvZGU/
+Cj4+Pgo+PiBBaCB5ZXMsIHdlIGRpZG4ndCB1cHN0cmVhbSB0aGF0IGJlY2F1c2UgdGhlcmUncyBz
+dGlsbCB0aGlzIGRpc2N1c3Npb24KPj4gYWJvdXQgaGFuZGxpbmcgcHVuY3R1cmluZy4gQnV0IHlv
+dSBjYW4gcHJvYmFibHkgYXBwbHkgYXJvdW5kIHRoYXQuCj4+Cj4+IGpvaGFubmVzCj4KPiBZZXMs
+IGFmdGVyIGFwcGx5IGl0Lgo+Cj4gYW5kIGFwcGx5ICJjb21taXQgM2Q5MDExMDI5MjI3MjNlZWRj
+ZTZlZjEwZWJkMDMzMTVhN2FiYjhhNSB3aWZpOiAKPiBtYWM4MDIxMTogaW1wbGVtZW50IGxpbmsg
+c3dpdGNoaW5nIiB0bwo+Cj4gZml4IGJ1aWxkIGVycm9yIGJlY2F1c2UgbXkgbG9jYWwgY29kZSBp
+cyBub3QgbGF0ZXN0Lgo+Cj4gaXQgaXMgYnVpbHQgc3VjY2VzcywgSSB3aWxsIHRyeSBpdCBsYXRl
+ci4KPgpIaSBqb2hhbm5lcywKCkFmdGVyIGFib3ZlIGNoYW5nZSwgbm8gZXJyb3Iva2VybmVsIGNy
+YXNoIGhhcHBlbmVkIHdoaWxlIHJlY29uZmlnIHNpbmdsZSAKTUxPIGxpbmsgd2hpY2ggbGluayBp
+ZCBpcyAyLgoKCi0tIAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0cy5pbmZyYWRlYWQu
+b3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vYXRoMTFrCg==
