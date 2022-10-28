@@ -4,77 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83D77C433FE
-	for <ath11k@archiver.kernel.org>; Wed, 26 Oct 2022 19:48:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69A5DECAAA1
+	for <ath11k@archiver.kernel.org>; Fri, 28 Oct 2022 10:44:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ag2aH4fSY17TvnBVbGBlQxrSUnAPZmrz+ywy0oYmhA0=; b=H7Dcnjkh4yWlgE
-	xYWI2Y1z94WCP+ffKIs8VmXFf57P/HYqbGOkpyXshC5CrAtF7k+y2cavcWJ2bvyL8r3e9HKE3CtSc
-	9jBhwv/mOSBP/Q1R/USpIT7r9UsYvYOc4QWXWz7382xEq79elxVF82d2mWwFJ28t6flYdFBoBd07D
-	6wyDYUV7rAnJ7dOGUgyiL0cgk5UNkinbNSWg/4QCZmlKh/Sa8Hy0NwTF6Z8hh/lwI8DvhrYCXXHG8
-	seiZwkHfvGZq6ll6Ejq2mwk+1RexMyxQNJHGXJ8AMVC+Y1D6GaauehKYNMZYSElH7pDyyGCfCySET
-	gjtptpfKlkJIdXjO+wCg==;
+	List-Owner; bh=pqdvViBheW5TM7SLDbzMfNrv4UxLXj3WbSP3OSKZR0A=; b=ivySuOfuY6Btgx
+	K+Q28k5XygR2jK+dOOI4xh5KYVkKXA5QTVTAwjwUabaMLzlavH7tm5jiq/uwqPj4k4dgC9bqpwd2b
+	2Z/pKQzmEoEJyk9/rnO1tn/bWQtmOKdNLiXo9cd4rizds+k0d8ZiBwtj5wrgVme/r5pV5Qm1kWdHT
+	sN5+sJ0EEPZ1MY45W1d3EtQgAEWjTwhBch7UrhGXRg1fUz66cpm3PuP7RvNeAldsqeHzHpdKBYdbP
+	bRfMfl7sG1qXNzWBhFUbfrOL/7e+0erDJwhrMXAwn3nnPz609FJzXTg8dumRULwUS9fgBXV7X2yfw
+	PehUy1i56kXIwPc1OSKA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1onmO8-00ArRB-ED; Wed, 26 Oct 2022 19:48:32 +0000
-Received: from mail-qt1-x832.google.com ([2607:f8b0:4864:20::832])
+	id 1ooMqY-00GkKm-IF; Fri, 28 Oct 2022 10:44:18 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1onmMe-00AqhO-5x
-	for ath11k@lists.infradead.org; Wed, 26 Oct 2022 19:47:01 +0000
-Received: by mail-qt1-x832.google.com with SMTP id hh9so10777170qtb.13
-        for <ath11k@lists.infradead.org>; Wed, 26 Oct 2022 12:46:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=az4DdZ94Dcv40kwLv8X5NX9K3iXjRUb2dsWj/gPdqHQ=;
-        b=N5kLECUnBb6pDE43XjC/Gw7V9ViDgHZzsNNs2xeEl7OXrnjODcce7Myo2o1tuuyyk0
-         tIO7TGDNgcRHd0EzOhh6q78shbOfLEj928+QYhAxPJIFLtt59LPJrxFB9v//GUnOPCmB
-         T5gNPVjP4k1xJUGThI42/i7MuBi8IPBeyYByc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=az4DdZ94Dcv40kwLv8X5NX9K3iXjRUb2dsWj/gPdqHQ=;
-        b=eIup3xRlrdL30pkXMxUjHGySzDczIjohQs65gCkqhKXjiGGAeLdWL6VHdA8a9CXD+L
-         VHlhHxs2qRa91toIAy28v9Qk0MC0xgSs+zkfAT6+72QvO6tz+y0DBqS/RCsHjLMGiphF
-         uv9OC2XddVOK8MfgU381rB1UfBgci98/9Ig/zJZTVhOQTRCipMv3r3APm3uOggxoS2Di
-         S23qBMX/Vvm6G1QbmEl+J+Wu6R8WQGGq0wSUDICdes9UfjxMzaEhDlWbzI39lWmqWXIy
-         q0ihJ8xtDHEHr10sg/wUIUxXQe2vPQfyKeJQmTLV/ztBubbhJyuzrDv1t1Nwwz0ZOKkU
-         XGbg==
-X-Gm-Message-State: ACrzQf0qhZTzMccgq+TI4cnLjFsrQZeZApfNKFPqYWuGrBstP4gidH0T
-	h15p1icbVdJITSGczHNCSAG3Hw==
-X-Google-Smtp-Source: AMsMyM6PxMzcqUDq5edhDI3ioET1luoXMBS9ESrY3qqmO1rmgtFuQ3WSpmXPx7e9btL3FoG2B30u3A==
-X-Received: by 2002:a05:622a:407:b0:39a:836:acfe with SMTP id n7-20020a05622a040700b0039a0836acfemr37547982qtx.133.1666813617696;
-        Wed, 26 Oct 2022 12:46:57 -0700 (PDT)
-Received: from ?IPV6:2600:1700:9770:4850:2cd3:5b9:e84b:3a69? ([2600:1700:9770:4850:2cd3:5b9:e84b:3a69])
-        by smtp.gmail.com with ESMTPSA id q13-20020a05620a0d8d00b006dfa0891397sm4471464qkl.32.2022.10.26.12.46.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Oct 2022 12:46:57 -0700 (PDT)
-Message-ID: <11e005c2-2363-d63f-9f3f-3ca811737231@chromium.org>
-Date: Wed, 26 Oct 2022 12:46:56 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH] wifi: ath11k: Fix qmi_msg_handler data structure
- initialization
-To: Rahul Bhattacharjee <quic_rbhattac@quicinc.com>,
- ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
+	id 1ooMqV-00GkJu-Ka
+	for ath11k@lists.infradead.org; Fri, 28 Oct 2022 10:44:17 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 697216278F;
+	Fri, 28 Oct 2022 10:44:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5B6AC433C1;
+	Fri, 28 Oct 2022 10:44:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1666953853;
+	bh=LJCkbzRzJmPUdZS/GDD0YyCyaxK7rKIIYQdaVBpaOqc=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=T9gyet1NUd1GrRtG7/msbRq0LdOanY+tMp/ds9BTOvICFHP9YgjjcfJP1sO1GWg1G
+	 QD9Yk28kct+sUJCw0ihrUALK3W3JBdY33IZb/BUlMZn0+fdCYIGKDHDomRELb6Sfbk
+	 Lyo8r2FVZR+TsDExZ147gKmV5zU4AFmlpLLTDoIdI/3Ess7mmOaxz41cRMi2OG7lL3
+	 QQSPFZjeZ0SF+LiX5ZPmlejjUFi0c+cnoDY5jz2WzUJz9BfG/NzelotAH/16ZytuhI
+	 zxFlpyagGs4t/Crh1gdKMJ4Q4rGCTMa8hvBrvNOoLmQ6zq3U9EBGw1LHrnu5a4qX9X
+	 zcMncQxVGKQFw==
+From: Kalle Valo <kvalo@kernel.org>
+To: "Joseph S. Barrera III" <joebar@chromium.org>
+Cc: Rahul Bhattacharjee <quic_rbhattac@quicinc.com>,  ath11k@lists.infradead.org,  linux-wireless@vger.kernel.org
+Subject: Re: [PATCH] wifi: ath11k: Fix qmi_msg_handler data structure initialization
 References: <20221021090126.28626-1-quic_rbhattac@quicinc.com>
-Content-Language: en-US
-From: "Joseph S. Barrera III" <joebar@chromium.org>
-In-Reply-To: <20221021090126.28626-1-quic_rbhattac@quicinc.com>
+	<11e005c2-2363-d63f-9f3f-3ca811737231@chromium.org>
+Date: Fri, 28 Oct 2022 13:44:09 +0300
+In-Reply-To: <11e005c2-2363-d63f-9f3f-3ca811737231@chromium.org> (Joseph S.
+	Barrera, III's message of "Wed, 26 Oct 2022 12:46:56 -0700")
+Message-ID: <87pmecgrd2.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221026_124700_270291_4718B8D4 
-X-CRM114-Status: UNSURE (   7.76  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20221028_034415_752435_E3EB2C7F 
+X-CRM114-Status: GOOD (  13.00  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,26 +68,42 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 10/21/22 2:01 AM, Rahul Bhattacharjee wrote:
+"Joseph S. Barrera III" <joebar@chromium.org> writes:
 
->   	},
-> +	{/* end of list */}
->   };
+> On 10/21/22 2:01 AM, Rahul Bhattacharjee wrote:
+>
+>>   	},
+>> +	{/* end of list */}
+>>   };
+>
+> Do you want to add a comma after that last list element?
 
-Do you want to add a comma after that last list element?
+I can add that in the pending branch.
 
-Actually, I normally see the last list element simply being
+>
+> Actually, I normally see the last list element simply being
+>
+>> +	{},
+>
+> ... with no comment necessary.
 
- > +	{},
+I would prefer to have a comment to make it more visible that an empty
+element is needed at the end, but I would add that outside of braces?
 
-... with no comment necessary.
+/* end of list */
+{},
 
+Thoughts? I can change this in the pending branch.
 
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
