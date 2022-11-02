@@ -4,79 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00502C433FE
-	for <ath11k@archiver.kernel.org>; Wed,  2 Nov 2022 06:14:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EFDFC433FE
+	for <ath11k@archiver.kernel.org>; Wed,  2 Nov 2022 06:18:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=mw5LenNBkXcWdR+RQfO3j+cLzepMSRfISJ9I3WCr2co=; b=TN3j0xwOMzPUvL
-	DmFeQYT+OnE/+dDWGKNvaS3A+8lQTADYRVyW//HJcsuEbtgJAp1wjPt3O5fmY3+GOwVBPHc+vFODx
-	Hr7zkI1zlKBK8tVZkxtP4S38jkQe8g0/k/6Bi2i6zTZSEDSgzKSFhUWgekijLjJIMjxKenQI5XiEp
-	iHJ9qmU2wJeic8RNpgwyb8S3aDyMSrBoGzx+YRs+r2tgUK9OmcOpKYGPkANS/C/QgQIP3xpJ2wF9I
-	RJPVoRiW7VICQjQ5/1pO2CF6OkVTW1EUzTwd60OBwvC4z5A1eX8I6nEIktTafNHMhSxtvu3cPqQWY
-	Rvk9q8ammMggID4Lye0A==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=oTJXeIuViORrKqYMaRoPmojUKRIvYRGst75EqydPFLI=; b=sUxAWjhNa3IoBK
+	ysozmTA3gRVspCTRtxxOTKOky5Ys7yF8maaR0+1PdKIkmCc8OPPU3M6GHFetVHh6AlWV1PEYnnduQ
+	c1reD8Nv0s1+1GnFtp3xH0J9r7M/najyKIV9v2nXWD+p8FvIiQ6sAcvsUMEPzTNM96DUoTqWqzArn
+	yzDFbaz+8HebTUhpLfKMmaaJgTbqv75jY3ejKmAAwTmWrOsxVVTia4W2eMOHW4Kn9XoS4CJyUtZw2
+	Kv4R1CLma3cg0NxkS4OZa8t0Q3nrVEGMq0zvvnq3gxy0zTPEUW1p7KItObQUneaJHTDVIG6nutMgN
+	Q8oALGo6hUmLqtN4a3DA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oq71Y-008QF9-VV; Wed, 02 Nov 2022 06:14:52 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1oq74k-008QgO-Br; Wed, 02 Nov 2022 06:18:10 +0000
+Received: from mail-wr1-f45.google.com ([209.85.221.45])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oq71W-008QDd-7B
-	for ath11k@lists.infradead.org; Wed, 02 Nov 2022 06:14:51 +0000
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2A25qY4a005300;
-	Wed, 2 Nov 2022 06:14:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-transfer-encoding :
- content-type; s=qcppdkim1;
- bh=xDWRRIQ1wf0+iOYlAZ8Oe2lQzK3V4SJ6qgIugj3Dzvs=;
- b=XPhU4JIi9lfm73/0IOR8b1SR3n8eIcelNtEFyiI/P/HBcFq34u6q5PfH9BIHYc4nYJeV
- yCdTa5fjN0EGMKRu9oxVAKIAyUMLOkE2pOgn0GJDnUvMgkinDbPFnZtcxeQ6goM0MnVF
- 6J0yWc2AtmUgFaida1jic2g1gVolPt2c2fXDgmHbuS6XND77eRB3XKyoPGWqJeymu/X/
- OHw3NKmPrpkOWqDN1CPQNX84qe4X6K0GjE5skhkL72sUZNe0GYZSFALhoafFAhm5rqXn
- qukU0KUvfh0JAwo0v4lHGKxfX/nF0p8V+fEikw6CiAunt/4muEXdqQCQoUErz7UFnngL Tw== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kk7nfhdx3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 02 Nov 2022 06:14:47 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2A26EkD3022047
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 2 Nov 2022 06:14:46 GMT
-Received: from youghand-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.29; Tue, 1 Nov 2022 23:14:44 -0700
-From: Youghandhar Chintala <quic_youghand@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_mpubbise@quicinc.com>,
-        Youghandhar Chintala <quic_youghand@quicinc.com>
-Subject: [PATCH] wifi: ath11k: Trigger sta disconnect on hardware restart
-Date: Wed, 2 Nov 2022 11:44:23 +0530
-Message-ID: <20221102061423.1032-1-quic_youghand@quicinc.com>
-X-Mailer: git-send-email 2.38.0
+	id 1oq74e-008Qf8-Fc
+	for ath11k@lists.infradead.org; Wed, 02 Nov 2022 06:18:08 +0000
+Received: by mail-wr1-f45.google.com with SMTP id h9so23058343wrt.0
+        for <ath11k@lists.infradead.org>; Tue, 01 Nov 2022 23:18:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TyoiXD+lZAYyIq5A3unxJbUvSr0umu7gv7mLSuqlSJ4=;
+        b=MKCnSeo7BKvOfbvW0BPHfw0dBELN2ShsmhYEtakViKxmI69+HI1Xej0kfLvXXlQIy5
+         Fy7rTGIo33LD9IzZ/yC4lH8SxZy184ED7S978hO7H+Xg+JJVOncQKOKxtaQOFkmSklLE
+         tIjENghXQn1O2YP3ogIefeAmoui8QIurIqqJrec6CLmj6g8U+n4Ux7j5dj06KQFKs9/h
+         F/nFVwUhG8yKoXHAkyGwQ7IfUTd+NxxBfcMB5prBSswY5wzPAnO2/KhA/publtQUeB0d
+         7QsS+6QFplVLAt3Nf+KqAcqIPbKXAwmq1RB74O9p16ywPiV6eGo0a76t9uYm79gGuagD
+         Bwkg==
+X-Gm-Message-State: ACrzQf0jTrJyrRcnBlqL/FyNRaSpQ4aCvm+AyNCcRCTT0zmdETZY8ARq
+	ss9B7MiBNSJUk5doVJjAzMo=
+X-Google-Smtp-Source: AMsMyM6NJ/87OZvYBlrVbXokU9DQLIfp/f10lKRDGr1BCob0gnkUi2pHO6BeN0qKMkHIYSEF8xWWvw==
+X-Received: by 2002:a05:6000:3c3:b0:236:b2ce:593e with SMTP id b3-20020a05600003c300b00236b2ce593emr12638679wrg.580.1667369882322;
+        Tue, 01 Nov 2022 23:18:02 -0700 (PDT)
+Received: from ?IPV6:2a0b:e7c0:0:107::70f? ([2a0b:e7c0:0:107::70f])
+        by smtp.gmail.com with ESMTPSA id 7-20020a056000154700b00236644228besm12830609wry.40.2022.11.01.23.18.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 01 Nov 2022 23:18:01 -0700 (PDT)
+Message-ID: <eeac01aa-5c3d-da4f-3acb-0698de23b2b4@kernel.org>
+Date: Wed, 2 Nov 2022 07:18:00 +0100
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: uzQBI0wKQxUnHrBge5KRaC-THVOQNW4P
-X-Proofpoint-GUID: uzQBI0wKQxUnHrBge5KRaC-THVOQNW4P
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-02_02,2022-11-01_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
- spamscore=0 malwarescore=0 bulkscore=0 adultscore=0 suspectscore=0
- lowpriorityscore=0 impostorscore=0 clxscore=1011 priorityscore=1501
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2211020037
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH] ath11k (gcc13): synchronize
+ ath11k_mac_he_gi_to_nl80211_he_gi()'s return type
+Content-Language: en-US
+To: Kalle Valo <kvalo@kernel.org>, Randy Dunlap <rdunlap@infradead.org>
+Cc: Jeff Johnson <quic_jjohnson@quicinc.com>, linux-kernel@vger.kernel.org,
+ Martin Liska <mliska@suse.cz>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, ath11k@lists.infradead.org,
+ linux-wireless@vger.kernel.org, netdev@vger.kernel.org
+References: <20221031114341.10377-1-jirislaby@kernel.org>
+ <55c4d139-0f22-e7ba-398a-e3e0d8919220@quicinc.com>
+ <833c7f2f-c140-5a0b-1efc-b858348206ec@kernel.org> <87bkprgj0b.fsf@kernel.org>
+ <503a3b36-2256-a9ce-cffe-5c0ed51f6f62@infradead.org>
+ <87tu3ifv8z.fsf@kernel.org>
+From: Jiri Slaby <jirislaby@kernel.org>
+In-Reply-To: <87tu3ifv8z.fsf@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221101_231450_404772_533AE4F7 
-X-CRM114-Status: GOOD (  18.52  )
+X-CRM114-CacheID: sfid-20221101_231807_741477_132DD1C6 
+X-CRM114-Status: GOOD (  11.74  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,122 +83,25 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Currently after the hardware restart triggered from the driver, the
-station interface connection remains intact, since a disconnect trigger
-is not sent to userspace. This can lead to a problem in targets where
-the wifi mac sequence is added by the firmware.
+On 01. 11. 22, 18:19, Kalle Valo wrote:
+> I did assume it will take at least a year or two before people get used
+> to the new prefix, but my patchwork script has a check for this and it's
+> trivial to fix the subject before I commit the patch. So hopefully the
+> switch goes smoothly.
 
-After the target restart, its wifi mac sequence number gets reset to
-zero. Hence AP to which our device is connected will receive frames with
-a  wifi mac sequence number jump to the past, thereby resulting in the
-AP dropping all these frames, until the frame arrives with a wifi mac
-sequence number which AP was expecting.
+I think so. It will take some turnarounds for you before this starts 
+appearing in git log output for every wireless driver. Then, people will 
+start picking the prefix up from there ;).
 
-To avoid such frame drops, its better to trigger a station disconnect
-upon target hardware restart which can be done with API
-ieee80211_reconfig_disconnect exposed to mac80211.
-
-The other targets are not affected by this change, since the hardware
-params flag is not set.
-
-Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
-
-Signed-off-by: Youghandhar Chintala <quic_youghand@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/core.c | 6 ++++++
- drivers/net/wireless/ath/ath11k/hw.h   | 1 +
- drivers/net/wireless/ath/ath11k/mac.c  | 7 +++++++
- 3 files changed, 14 insertions(+)
-
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 0ab2f190f1ec..edf78df9b12f 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -195,6 +195,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.tcl_ring_retry = true,
- 		.tx_ring_size = DP_TCL_DATA_RING_SIZE,
- 		.smp2p_wow_exit = false,
-+		.support_fw_mac_sequence = false,
- 	},
- 	{
- 		.name = "qca6390 hw2.0",
-@@ -277,6 +278,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.tcl_ring_retry = true,
- 		.tx_ring_size = DP_TCL_DATA_RING_SIZE,
- 		.smp2p_wow_exit = false,
-+		.support_fw_mac_sequence = true,
- 	},
- 	{
- 		.name = "qcn9074 hw1.0",
-@@ -356,6 +358,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.tcl_ring_retry = true,
- 		.tx_ring_size = DP_TCL_DATA_RING_SIZE,
- 		.smp2p_wow_exit = false,
-+		.support_fw_mac_sequence = false,
- 	},
- 	{
- 		.name = "wcn6855 hw2.0",
-@@ -438,6 +441,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.tcl_ring_retry = true,
- 		.tx_ring_size = DP_TCL_DATA_RING_SIZE,
- 		.smp2p_wow_exit = false,
-+		.support_fw_mac_sequence = true,
- 	},
- 	{
- 		.name = "wcn6855 hw2.1",
-@@ -519,6 +523,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.tcl_ring_retry = true,
- 		.tx_ring_size = DP_TCL_DATA_RING_SIZE,
- 		.smp2p_wow_exit = false,
-+		.support_fw_mac_sequence = true,
- 	},
- 	{
- 		.name = "wcn6750 hw1.0",
-@@ -597,6 +602,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.tcl_ring_retry = false,
- 		.tx_ring_size = DP_TCL_DATA_RING_SIZE_WCN6750,
- 		.smp2p_wow_exit = true,
-+		.support_fw_mac_sequence = true,
- 	},
- };
- 
-diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
-index 8a3f24862edc..0c5ef8a526d8 100644
---- a/drivers/net/wireless/ath/ath11k/hw.h
-+++ b/drivers/net/wireless/ath/ath11k/hw.h
-@@ -219,6 +219,7 @@ struct ath11k_hw_params {
- 	bool tcl_ring_retry;
- 	u32 tx_ring_size;
- 	bool smp2p_wow_exit;
-+	bool support_fw_mac_sequence;
- };
- 
- struct ath11k_hw_ops {
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 6426a38f8961..780841613bc6 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -8045,6 +8045,13 @@ ath11k_mac_op_reconfig_complete(struct ieee80211_hw *hw,
- 				ath11k_dbg(ab, ATH11K_DBG_BOOT, "reset success\n");
- 			}
- 		}
-+		if (ar->ab->hw_params.support_fw_mac_sequence) {
-+			list_for_each_entry(arvif, &ar->arvifs, list) {
-+				if (arvif->is_up && arvif->vdev_type == WMI_VDEV_TYPE_STA)
-+					ieee80211_hw_restart_disconnect(arvif->vif);
-+			}
-+		}
-+
- 	}
- 
- 	mutex_unlock(&ar->conf_mutex);
+thanks,
 -- 
-2.38.0
+js
+suse labs
 
 
 -- 
