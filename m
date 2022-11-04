@@ -4,61 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4312C4332F
-	for <ath11k@archiver.kernel.org>; Fri,  4 Nov 2022 08:29:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FD64C433FE
+	for <ath11k@archiver.kernel.org>; Fri,  4 Nov 2022 08:55:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=+uQspRLTWj3DtH4RhgUD+mDqNYCYu9sJZiFrCpcbJa4=; b=3a7bO3J7N0/jAh
-	8r9nrbMJTP9fKPX4lno55StQck5nOaRvCzvRYOyjmXQP5emUVcg51ktA/WlHLkyr8G0bzG9SkkvTr
-	pPhEk+vsWaQdfpx4xPjW3XO4kT91UyKe240QjnzWv3DRZhryiqlwXTcjTWbV9dfE6iLQotCFMc8hi
-	7xLbM3rlaBfdemVRrTjeQvdUuokovtE7XOpTJkK4yi6ZYCqkgFGiwC00jSkpJRl6pNAPs4HXJUQeW
-	dW0WVkNcQ4tN/zFwXvJdzJayoa64Qh+EoMvNcJDfG8yHtR+ChyYnxmY0sWCiXxjXg57cGJFiXWNXz
-	WCE6QsstkJe4ohGaaKzA==;
+	List-Owner; bh=BIX40gMMSlVrK+dKmMGtT6ooCuZsov093SN5Wao9pRg=; b=qIcYIq0AXy5xSq
+	rdOKkFLH+LtaeHELkL6wWxZ3cPTvRdez8pq/O0kM/X+6W/YcHIwb8WFeEoBmZRh89FjdoPWUoEkLF
+	6IjTvd9l5LxaeAr9HBU9dSDFzUKp6VxLsP4XLsKG09qhgMwJKTIY1BFV0Znf9d+C4ImmVvtaxilM2
+	VV9iiVmd13mVVmaQCtCcATCrbJc25LdDd33zT6SiwTPjim4CIV8Z8ZwCyHlbtVG/RjwMfgPagYxEI
+	mVfdbfc++/cmcXTbHmWe63+6gnQRG/iA+JNdmxe5C5XME/Iu0CSduaAdfBbRdEwbAcUVdqsEUWoX0
+	YMd/VT06ke8aFhkiwG6Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oqs51-002xW1-5Q; Fri, 04 Nov 2022 08:29:35 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1oqsTb-0031EO-0o; Fri, 04 Nov 2022 08:54:59 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oqs4y-002xUj-BH
-	for ath11k@lists.infradead.org; Fri, 04 Nov 2022 08:29:34 +0000
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2A46sh0l024757;
-	Fri, 4 Nov 2022 08:28:50 GMT
+	id 1oqsTX-0031CZ-RO
+	for ath11k@lists.infradead.org; Fri, 04 Nov 2022 08:54:57 +0000
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2A48TCU4007256;
+	Fri, 4 Nov 2022 08:54:29 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
  subject : date : message-id : mime-version : content-transfer-encoding :
  content-type; s=qcppdkim1;
- bh=F523UAf1/s3baROaXRYF1jL25q1n1tGzBM/u38xKkvk=;
- b=TBEhM615QX7w14CYbKOAnSSZbJ8Nwe5pNgzgsEXzywf4ZLCLdmtywAw+T4V088hTitTk
- 8A0glYME6NoXsemC4khtMfVMfPzipMbvsVw5VAfyfhNLcUvAwC3CErwSEhbopg0npbPz
- 8RMpBvhDGtWQht/t07CwgLcg8r+m/G+28hAgBd7WlSGnwEz7VKmF2f2OVwvEPrV1tSlU
- Nbf5kLBG9ntg8BNxP2aJQdDDuRaSlfIfi6qPIvAMLbbtlpT8g1Dz49IYURczn1BBTWel
- ARG80xOD41muE/hqXU9E8vcC2mVSTohQzoG6ESgSfJ+b/kcLEERjh5tMDdStBrlP9iOU bQ== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kmvdy8djp-1
+ bh=Q3ivjPfhefs5FmtsQkMYD0t2R+VeUMRe8emnV2rOpL0=;
+ b=mUTwq12nkeKXiDYYLcZIUjhd8Mv+rxsryug9+deYATaasdkMy4hZBKK8gl+4Cuqfiydz
+ zkxZYqfPfb9bDJ/Uu9h3mQ4wCuT/150OtZU5aUCCb0UdnjbC/efTHlzYInG9Wnt9RYR9
+ 9NTBsXWI6GhP5Y84HYSJoxb3xuyBPW4OTaOeQ5flccsRW/wqYHUmJlRbCryHppi2MEKQ
+ b8S41JWU8SZst1pUrAd1pi0YvZEMoCKOkaKp1djlxS0t6jUqQ0JAMp9c+lfOpxVfY76g
+ YEeR+PHL8uWy4gW1pOmapNQLx3fpurH5hP4KBEuDUm732/KfNGVA3mLpoUbJkKJEeCiD Zw== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kmvk90cvp-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 04 Nov 2022 08:28:50 +0000
+	Fri, 04 Nov 2022 08:54:28 +0000
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2A48SncK006786
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2A48sR7s026294
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 4 Nov 2022 08:28:49 GMT
+	Fri, 4 Nov 2022 08:54:27 GMT
 Received: from youghand-linux.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.29; Fri, 4 Nov 2022 01:28:46 -0700
+ 15.2.986.29; Fri, 4 Nov 2022 01:54:25 -0700
 From: Youghandhar Chintala <quic_youghand@quicinc.com>
 To: <ath11k@lists.infradead.org>
 CC: <linux-wireless@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_mpubbise@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        "Youghandhar
- Chintala" <quic_youghand@quicinc.com>,
-        kernel test robot <lkp@intel.com>
-Subject: [PATCH v2] wifi: ath10k: Add WLAN firmware image version info into smem
-Date: Fri, 4 Nov 2022 13:58:28 +0530
-Message-ID: <20221104082828.14386-1-quic_youghand@quicinc.com>
+        Youghandhar Chintala <quic_youghand@quicinc.com>,
+        kernel test robot
+	<lkp@intel.com>
+Subject: [PATCH v2] wifi: ath11k: Trigger sta disconnect on hardware restart
+Date: Fri, 4 Nov 2022 14:24:03 +0530
+Message-ID: <20221104085403.11025-1-quic_youghand@quicinc.com>
 X-Mailer: git-send-email 2.38.0
 MIME-Version: 1.0
 X-Originating-IP: [10.80.80.8]
@@ -66,19 +65,19 @@ X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ViL93cA0mf8EPKql2a8wzNtxT70RzuSY
-X-Proofpoint-ORIG-GUID: ViL93cA0mf8EPKql2a8wzNtxT70RzuSY
+X-Proofpoint-GUID: V30OoK6WFme0V4BW0prj2MM9tIkvTDFk
+X-Proofpoint-ORIG-GUID: V30OoK6WFme0V4BW0prj2MM9tIkvTDFk
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
  definitions=2022-11-04_02,2022-11-03_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 bulkscore=0
- priorityscore=1501 impostorscore=0 phishscore=0 spamscore=0 clxscore=1011
- mlxscore=0 malwarescore=0 lowpriorityscore=0 suspectscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2211040055
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ lowpriorityscore=0 clxscore=1015 priorityscore=1501 phishscore=0
+ suspectscore=0 mlxscore=0 spamscore=0 mlxlogscore=999 malwarescore=0
+ bulkscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2211040057
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221104_012932_447676_AEF6F676 
-X-CRM114-Status: GOOD (  18.56  )
+X-CRM114-CacheID: sfid-20221104_015456_034225_BBE9430E 
+X-CRM114-Status: GOOD (  19.46  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,98 +94,129 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-In a SoC based solution, it would be useful to know the versions of the
-various binary firmware blobs the system is running on. On a QCOM based
-SoC, this info can be obtained from socinfo debugfs infrastructure. For
-this to work, respective subsystem drivers have to export the firmware
-version information to an SMEM based version information table.
+Currently after the hardware restart triggered from the driver, the
+station interface connection remains intact, since a disconnect trigger
+is not sent to userspace. This can lead to a problem in targets where
+the wifi mac sequence is added by the firmware.
 
-Having firmware version information at one place will help quickly
-figure out the firmware versions of various subsystems on the device
-instead of going through builds/logs in an event of a system crash.
+After the target restart, its wifi mac sequence number gets reset to
+zero. Hence AP to which our device is connected will receive frames with
+a  wifi mac sequence number jump to the past, thereby resulting in the
+AP dropping all these frames, until the frame arrives with a wifi mac
+sequence number which AP was expecting.
 
-Fill WLAN firmware version information in SMEM version table to be
-printed as part of socinfo debugfs infrastructure on a Qualcomm based
-SoC.
+To avoid such frame drops, its better to trigger a station disconnect
+upon target hardware restart which can be done with API
+ieee80211_reconfig_disconnect exposed to mac80211.
 
-This change is applicable only for WCN399X targets.
+The other targets are not affected by this change, since the hardware
+params flag is not set.
 
 Reported-by: kernel test robot <lkp@intel.com>
 
-Tested-on: WCN3990 hw1.0 SNOC WLAN.HL.3.2.2.c10-00754-QCAHLSWMTPL-1
+Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
 
 Signed-off-by: Youghandhar Chintala <quic_youghand@quicinc.com>
 
 ---
 Changes from v1:
- - Changed print format specifier to %zu from %i
- - Changed ath10k_qmi_add_wlan_ver_smem() API argument
-	  to const char *fw_build_id from char *fw_build_id
- - Changed version_string_size with MACRO
+- Added arvif declaration
 ---
- drivers/net/wireless/ath/ath10k/qmi.c | 28 +++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+ drivers/net/wireless/ath/ath11k/core.c | 6 ++++++
+ drivers/net/wireless/ath/ath11k/hw.h   | 1 +
+ drivers/net/wireless/ath/ath11k/mac.c  | 8 ++++++++
+ 3 files changed, 15 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath10k/qmi.c b/drivers/net/wireless/ath/ath10k/qmi.c
-index 66cb7a1e628a..928d78f6d494 100644
---- a/drivers/net/wireless/ath/ath10k/qmi.c
-+++ b/drivers/net/wireless/ath/ath10k/qmi.c
-@@ -14,6 +14,7 @@
- #include <linux/net.h>
- #include <linux/platform_device.h>
- #include <linux/qcom_scm.h>
-+#include <linux/soc/qcom/smem.h>
- #include <linux/string.h>
- #include <net/sock.h>
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 0ab2f190f1ec..edf78df9b12f 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -195,6 +195,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.tcl_ring_retry = true,
+ 		.tx_ring_size = DP_TCL_DATA_RING_SIZE,
+ 		.smp2p_wow_exit = false,
++		.support_fw_mac_sequence = false,
+ 	},
+ 	{
+ 		.name = "qca6390 hw2.0",
+@@ -277,6 +278,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.tcl_ring_retry = true,
+ 		.tx_ring_size = DP_TCL_DATA_RING_SIZE,
+ 		.smp2p_wow_exit = false,
++		.support_fw_mac_sequence = true,
+ 	},
+ 	{
+ 		.name = "qcn9074 hw1.0",
+@@ -356,6 +358,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.tcl_ring_retry = true,
+ 		.tx_ring_size = DP_TCL_DATA_RING_SIZE,
+ 		.smp2p_wow_exit = false,
++		.support_fw_mac_sequence = false,
+ 	},
+ 	{
+ 		.name = "wcn6855 hw2.0",
+@@ -438,6 +441,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.tcl_ring_retry = true,
+ 		.tx_ring_size = DP_TCL_DATA_RING_SIZE,
+ 		.smp2p_wow_exit = false,
++		.support_fw_mac_sequence = true,
+ 	},
+ 	{
+ 		.name = "wcn6855 hw2.1",
+@@ -519,6 +523,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.tcl_ring_retry = true,
+ 		.tx_ring_size = DP_TCL_DATA_RING_SIZE,
+ 		.smp2p_wow_exit = false,
++		.support_fw_mac_sequence = true,
+ 	},
+ 	{
+ 		.name = "wcn6750 hw1.0",
+@@ -597,6 +602,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.tcl_ring_retry = false,
+ 		.tx_ring_size = DP_TCL_DATA_RING_SIZE_WCN6750,
+ 		.smp2p_wow_exit = true,
++		.support_fw_mac_sequence = true,
+ 	},
+ };
  
-@@ -22,6 +23,8 @@
+diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
+index 8a3f24862edc..0c5ef8a526d8 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.h
++++ b/drivers/net/wireless/ath/ath11k/hw.h
+@@ -219,6 +219,7 @@ struct ath11k_hw_params {
+ 	bool tcl_ring_retry;
+ 	u32 tx_ring_size;
+ 	bool smp2p_wow_exit;
++	bool support_fw_mac_sequence;
+ };
  
- #define ATH10K_QMI_CLIENT_ID		0x4b4e454c
- #define ATH10K_QMI_TIMEOUT		30
-+#define ATH10K_SMEM_IMAGE_VERSION_TABLE       469
-+#define ATH10K_SMEM_IMAGE_TABLE_CNSS_INDEX     13
+ struct ath11k_hw_ops {
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 6426a38f8961..d0ba05e7e879 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -8010,6 +8010,7 @@ ath11k_mac_op_reconfig_complete(struct ieee80211_hw *hw,
+ 	struct ath11k *ar = hw->priv;
+ 	struct ath11k_base *ab = ar->ab;
+ 	int recovery_count;
++	struct ath11k_vif *arvif;
  
- static int ath10k_qmi_map_msa_permission(struct ath10k_qmi *qmi,
- 					 struct ath10k_msa_mem_info *mem_info)
-@@ -536,6 +539,29 @@ int ath10k_qmi_wlan_disable(struct ath10k *ar)
- 	return ath10k_qmi_mode_send_sync_msg(ar, QMI_WLFW_OFF_V01);
- }
- 
-+static void ath10k_qmi_add_wlan_ver_smem(struct ath10k *ar, const char *fw_build_id)
-+{
-+	u8 *smem_table_ptr;
-+	size_t smem_block_size;
-+	const u32 version_string_size = MAX_BUILD_ID_LEN;
-+	const u32 smem_img_idx_wlan = ATH10K_SMEM_IMAGE_TABLE_CNSS_INDEX * 128;
+ 	if (reconfig_type != IEEE80211_RECONFIG_TYPE_RESTART)
+ 		return;
+@@ -8045,6 +8046,13 @@ ath11k_mac_op_reconfig_complete(struct ieee80211_hw *hw,
+ 				ath11k_dbg(ab, ATH11K_DBG_BOOT, "reset success\n");
+ 			}
+ 		}
++		if (ar->ab->hw_params.support_fw_mac_sequence) {
++			list_for_each_entry(arvif, &ar->arvifs, list) {
++				if (arvif->is_up && arvif->vdev_type == WMI_VDEV_TYPE_STA)
++					ieee80211_hw_restart_disconnect(arvif->vif);
++			}
++		}
 +
-+	smem_table_ptr = qcom_smem_get(QCOM_SMEM_HOST_ANY,
-+				       ATH10K_SMEM_IMAGE_VERSION_TABLE,
-+				       &smem_block_size);
-+	if (IS_ERR(smem_table_ptr)) {
-+		ath10k_dbg(ar, ATH10K_DBG_QMI, "smem image version table not found");
-+		return;
-+	}
-+	if (smem_img_idx_wlan + version_string_size > smem_block_size) {
-+		ath10k_dbg(ar, ATH10K_DBG_QMI, "smem block size too small: %zu",
-+			   smem_block_size);
-+		return;
-+	}
-+	memcpy(smem_table_ptr + smem_img_idx_wlan, fw_build_id,
-+	       version_string_size);
-+}
-+
- static int ath10k_qmi_cap_send_sync_msg(struct ath10k_qmi *qmi)
- {
- 	struct wlfw_cap_resp_msg_v01 *resp;
-@@ -606,6 +632,8 @@ static int ath10k_qmi_cap_send_sync_msg(struct ath10k_qmi *qmi)
- 			    qmi->fw_version, qmi->fw_build_timestamp, qmi->fw_build_id);
  	}
  
-+	ath10k_qmi_add_wlan_ver_smem(ar, qmi->fw_build_id);
-+
- 	kfree(resp);
- 	return 0;
- 
+ 	mutex_unlock(&ar->conf_mutex);
 -- 
 2.38.0
 
