@@ -4,66 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32A55C4332F
-	for <ath11k@archiver.kernel.org>; Sat,  5 Nov 2022 11:23:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26BB2C4332F
+	for <ath11k@archiver.kernel.org>; Sat,  5 Nov 2022 19:49:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	MIME-Version:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-	References:List-Owner; bh=qJRduK5jfG1nPf38nSo0eCHdcbjJjX7wPJtPNrA4Ftc=; b=CBz
-	WVhHL/ACKpamZ6oGi6khAhmYtCbq52KvIIQdAFXTSO9noKWH98su3xAdl1XWARIe/x3fNUTG8rRO9
-	4H7htcRvL4iwCwybktQZkU5rrqVhJWcOWRbijGtpk7WLOLJQAm+gdYiIsTct36bbxA7lQTm8cTKcf
-	KPrLsv8YGCv00m9GImx7oL4clyOZWh4X2MWblxp/wt3qaUId9q66cCsdZVYVTTG6xLv7usNqC3RWb
-	RqDWr7yFPEjo3Yyf3aCTBjUNeXRxiaU0XeXTltV5SsZvwxQwTTBhttAHwOW+XrISW1FWsBrEFLZsL
-	b+CPg5qxl8yqKnbNg6xPv35ZESfjaRA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=plEJUifP3jx76BTP0JZEtL/llTBggBWUpn9sRTa7wLw=; b=3RQXnVONT22T9+
+	ge6Ya2YBt1VJbqAjNXqheX+LvPjSn8MJkp4tlcJvY0GOb/skJovVyXFSB3lB/XTvIuMtW1cKekp2H
+	xPo6/I7EhpCfbar+ZqY02IBEYsB1LwfdImTNmUZYUS7SIHV1F428165X8Wp2uizqg9tzIp1wUdMxs
+	l5StJHRo0alLFY/mSPlaf/+jewM0LPK8ODJnvbrnG/3d3Q5j2FgbDd+fNQ7TsU8ndra7IjgPRW+nN
+	anxKrqqDM7BMlVh3pV8is53j/iKKshwjgDfihxslIUfGtLXAbQ1xBy/MuCkMeIX45ZdeUPMo2tZeT
+	9gshCH7NVc7YB8AFHqbA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1orHGg-006Pr3-4H; Sat, 05 Nov 2022 11:23:18 +0000
-Received: from mail-lf1-x135.google.com ([2a00:1450:4864:20::135])
+	id 1orPAx-007BW8-M4; Sat, 05 Nov 2022 19:49:55 +0000
+Received: from mail-ej1-x633.google.com ([2a00:1450:4864:20::633])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1orHGd-006PqN-I8
-	for ath11k@lists.infradead.org; Sat, 05 Nov 2022 11:23:16 +0000
-Received: by mail-lf1-x135.google.com with SMTP id f37so10651101lfv.8
-        for <ath11k@lists.infradead.org>; Sat, 05 Nov 2022 04:23:14 -0700 (PDT)
+	id 1orPAs-007BT8-7V
+	for ath11k@lists.infradead.org; Sat, 05 Nov 2022 19:49:54 +0000
+Received: by mail-ej1-x633.google.com with SMTP id n12so21022095eja.11
+        for <ath11k@lists.infradead.org>; Sat, 05 Nov 2022 12:49:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=vxo8n/GMKmES9uFXA4RVA3sVrDGSEmbTpjduBugUNOI=;
-        b=XjRrXhPyM7N6ZjfoDimBFHOBfITjk+TuWQaDqStBwbd/Wz6kDXTNJ1KUMX/ebkn97N
-         uUpKBfC4RcW8ZtVm0f7sb6uVAWsRnRRnc4nuS0uP6/Q6NPRwzj1Ulbj0ExqXkdcWx0XS
-         sdr4OhAvz1eyjGm2Slj0rXonLA+KGK+xX31RMXMfDfBlbJNZbn0v3P2EbM9nNRwtKC/4
-         u98VPon1hPf6uqAylq/BcDmfWk7AwI7s6OEQSAhujFBX22HIQSdmsowJFypyDzyT2S7I
-         Zust/jGTXZYqRjtKhWCvmmaYx7PbrJM5JohPt0ZNGkdkQbREqbvOt9dKoSqOHZ8PkWB2
-         +u8g==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=XNGGWZ6zU750lS4mF7crv8Fbn/LeLMY1NyuuVpO6zPs=;
+        b=Mh8FZiBPjmFaDt7ZQlPySqFcz/LaxiIfgNYqwSCg2uSzNCiedQL/UTmXUyJSf5WcVd
+         hOE+gJ3rQtKn7FzK4lWyviGpKV4yQtUKwZ+2EJRBfZxrTCdk8NbkKughVGPfDKBHzdoJ
+         Ni5J+cNbeEL6Oz+w+VbghkhnN61a9HaV6Qa85wzfG1/HKaUbmjYZkJzzi278/2NDotjl
+         5fhoiFh2UDDIz+/TUOVkq8qLMDQ0vzoS67KEBuDDPG6urdOfeiPv2kYYVodhGcnqtVrr
+         yjpEFKcSPGEy6h3NIpYSkb4sjKsEOGY8O8s7YPv0ARWyvkSii9EF1m7D9em+YzPwcMid
+         PKJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vxo8n/GMKmES9uFXA4RVA3sVrDGSEmbTpjduBugUNOI=;
-        b=6Hkei2fs3vnqg3wGi65OEVY5xhngsPFAH138v5OMQbUa7wkEdjOFbQuTUR7u4kIL6N
-         GP6ZECne4RlLfrYd83jfsjuzPYXLg8ty4YBVQq6SJKT6hoI0wiqFp4oCKO0Z2kInzx5h
-         VtJi7bMIjEzSB9A+nkB+hdP8IjR2ahY12Q1fbDO/dmAHqDHW4pBEVHPbb47XCPzfXpm+
-         9mh0ZpyOdABPXlZQ4ZMcSFYXUkDWAkTgn1dqjE+yNBpHIFaWYcoO+C7Rkt8H0rWBiX2m
-         Nek4oiFMlUPui60FJUJmjFxEDX09aaMPqh2wzdwYWOK/za4IJIqA3jKB5KdVHZQbCDlt
-         caVQ==
-X-Gm-Message-State: ACrzQf3g3IBuTJWRCIG5PyIxWnew9Ns7dJRsxRbiBDTPFbK5eDARq0Cl
-	QuIKs889SCGHs4pJ13q4waNs75m6Ppg6YL6xkxMUrfHO5tyiWw==
-X-Google-Smtp-Source: AMsMyM5JrWg6TCp64tjESl8pHJXmY7rKOQH2W1OR978UXEFvj2mDk+bcdRniFvYCCofQGbvooCyCRkLN8Q2lnB4+O0w=
-X-Received: by 2002:ac2:5dd4:0:b0:4af:fbde:bca4 with SMTP id
- x20-20020ac25dd4000000b004affbdebca4mr14380726lfq.387.1667647392715; Sat, 05
- Nov 2022 04:23:12 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XNGGWZ6zU750lS4mF7crv8Fbn/LeLMY1NyuuVpO6zPs=;
+        b=wtX9UzCYuldyHB4cIk0oRyTYbJ+wplSUfK6VoR+IHlBkX2Z96GGiyQShoMSq7hZTYV
+         alSAlx2rMzKwHInIIafC5+bwdkB19BwoLWeXf6Z+NrZztlSY6LiHj1GNo6LK97Y2casO
+         wST+Js479iDmUqHEDmzZZei9iCCGEaVs7sb8ek4OUpnnfFHQNI6rMQ51ee2469ZodKvU
+         yRkjn0Kl0hLj0opa/2Y5dLXufC4SAdPciOhikGx6eN0PV/PRcrjp6CBQ45o0DPzwaeyw
+         guKHW9I4ck2peHvGVkuDGE6acHBATRR2xHw1AzIG1xfnTSfx4iUpSDaWeJAjkYrx7H8l
+         XTGw==
+X-Gm-Message-State: ACrzQf3aiOJese45SS3sYTrHHxLxECWSV3C8SiDRYEdcXQ9hla/o5QWM
+	YTPbp1WDFuZW76qt8iGDzdU=
+X-Google-Smtp-Source: AMsMyM4PMnBmGhge8boYpR+/vT7VI0pVYOR28ruySN7vCrXt/Z6nw4oy9Hj6y6GGngNX0EON3MI3Ug==
+X-Received: by 2002:a17:906:847c:b0:7ad:d6c8:35d7 with SMTP id hx28-20020a170906847c00b007add6c835d7mr30749561ejc.170.1667677787252;
+        Sat, 05 Nov 2022 12:49:47 -0700 (PDT)
+Received: from fedora.. (dh207-96-23.xnet.hr. [88.207.96.23])
+        by smtp.googlemail.com with ESMTPSA id et19-20020a170907295300b0079b9f7509a0sm1289409ejc.52.2022.11.05.12.49.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 05 Nov 2022 12:49:46 -0700 (PDT)
+From: Robert Marko <robimarko@gmail.com>
+To: mani@kernel.org,
+	kvalo@kernel.org,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	gregkh@linuxfoundation.org,
+	elder@linaro.org,
+	hemantk@codeaurora.org,
+	quic_jhugo@quicinc.com,
+	quic_qianyu@quicinc.com,
+	bbhatt@codeaurora.org,
+	mhi@lists.linux.dev,
+	linux-arm-msm@vger.kernel.org,
+	ath11k@lists.infradead.org,
+	linux-wireless@vger.kernel.org,
+	netdev@vger.kernel.org
+Cc: ansuelsmth@gmail.com,
+	Robert Marko <robimarko@gmail.com>
+Subject: [PATCH 1/2] bus: mhi: core: add SBL state callback
+Date: Sat,  5 Nov 2022 20:49:42 +0100
+Message-Id: <20221105194943.826847-1-robimarko@gmail.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-From: Mariusz <enebeo@gmail.com>
-Date: Sat, 5 Nov 2022 12:23:02 +0100
-Message-ID: <CAJrE-q6NVEF4sNW1s4Zz7Pb2ryzCi69e+_vLQswBWm747DHYDw@mail.gmail.com>
-Subject: Wallys DR9074-6E(PN02.7) QCN9074 refuses to work on 6GHz band
-To: ath11k@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221105_042315_639881_E04A770D 
-X-CRM114-Status: GOOD (  12.16  )
+X-CRM114-CacheID: sfid-20221105_124950_291113_DD8CC4C0 
+X-CRM114-Status: UNSURE (   9.01  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,63 +104,56 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi,
+Add support for SBL state callback in MHI core.
 
-As support for QCN9074 got better I went ahead and built a 6E linux
-based AP. Dell R720 server x86 running Linux s4 5.19.0-23-generic
-#24-Ubuntu SMP PREEMPT_DYNAMIC Fri Oct 14 15:39:57 UTC 2022 x86_64
-x86_64 x86_64 GNU/Linux.
+It is required for ath11k MHI devices in order to be able to set QRTR
+instance ID in the SBL state so that QRTR instance ID-s dont conflict in
+case of multiple PCI/MHI cards or AHB + PCI/MHI card.
+Setting QRTR instance ID is only possible in SBL state and there is
+currently no way to ensure that we are in that state, so provide a
+callback that the controller can trigger off.
 
-My issue is that I cannot get it working on 6GHz bands but it works
-fine on 5GHz. I bought 6E version  and since this is a single band
-module it cannot be both 5G & 6G and linux driver does not agree with
-it being 6E version:
+Signed-off-by: Robert Marko <robimarko@gmail.com>
+---
+ drivers/bus/mhi/host/main.c | 1 +
+ include/linux/mhi.h         | 2 ++
+ 2 files changed, 3 insertions(+)
 
-[71914.038562] ath11k_pci 0000:03:00.0: BAR 0: assigned [mem
-0xdf800000-0xdf9fffff 64bit]
-[71914.038840] ath11k_pci 0000:03:00.0: MSI vectors: 16
-[71914.038852] ath11k_pci 0000:03:00.0: qcn9074 hw1.0
-[71914.194459] mhi mhi0: Requested to power ON
-[71914.194712] mhi mhi0: Power on setup success
-[71914.297749] mhi mhi0: Wait for device to enter SBL or Mission mode
-[71914.647118] ath11k_pci 0000:03:00.0: chip_id 0x0 chip_family 0x0
-board_id 0xff soc_id 0xffffffff
-[71914.647134] ath11k_pci 0000:03:00.0: fw_version 0x250a04b8
-fw_build_timestamp 2021-12-20 06:41 fw_build_id
-[71916.310787] ath11k_pci 0000:03:00.0 wlp3s0: renamed from wlan0
+diff --git a/drivers/bus/mhi/host/main.c b/drivers/bus/mhi/host/main.c
+index df0fbfee7b78..8b03dd1f0cb8 100644
+--- a/drivers/bus/mhi/host/main.c
++++ b/drivers/bus/mhi/host/main.c
+@@ -900,6 +900,7 @@ int mhi_process_ctrl_ev_ring(struct mhi_controller *mhi_cntrl,
+ 			switch (event) {
+ 			case MHI_EE_SBL:
+ 				st = DEV_ST_TRANSITION_SBL;
++				mhi_cntrl->status_cb(mhi_cntrl, MHI_CB_EE_SBL_MODE);
+ 				break;
+ 			case MHI_EE_WFW:
+ 			case MHI_EE_AMSS:
+diff --git a/include/linux/mhi.h b/include/linux/mhi.h
+index a5441ad33c74..beffe102dd19 100644
+--- a/include/linux/mhi.h
++++ b/include/linux/mhi.h
+@@ -34,6 +34,7 @@ struct mhi_buf_info;
+  * @MHI_CB_SYS_ERROR: MHI device entered error state (may recover)
+  * @MHI_CB_FATAL_ERROR: MHI device entered fatal error state
+  * @MHI_CB_BW_REQ: Received a bandwidth switch request from device
++ * @MHI_CB_EE_SBL_MODE: MHI device entered SBL mode
+  */
+ enum mhi_callback {
+ 	MHI_CB_IDLE,
+@@ -45,6 +46,7 @@ enum mhi_callback {
+ 	MHI_CB_SYS_ERROR,
+ 	MHI_CB_FATAL_ERROR,
+ 	MHI_CB_BW_REQ,
++	MHI_CB_EE_SBL_MODE,
+ };
+ 
+ /**
+-- 
+2.38.1
 
-HE PHY Capabilities: (0x1c604c88ffdb839c110c00):
-                                HE40/HE80/5GHz
-                                HE160/5GHz
-                                HE160/HE80+80/5GHz
-
-iw dev wlp3s0 set freq 6195 160MHz
-kernel reports: Channel is disabled
-command failed: Invalid argument (-22)
-
-I am using the latest firmware files from ath11k tree. Is there any
-special firmware to force this to 6GHz? I read somewhere board_id
-determines which one it is and 255 disables 6GHz but I miss more data
-on that.
-
-phy#2 (self-managed)
-country US: DFS-FCC
-        (2402 - 2472 @ 40), (6, 30), (N/A)
-        (5170 - 5250 @ 80), (N/A, 30), (N/A), AUTO-BW
-        (5250 - 5330 @ 80), (N/A, 24), (0 ms), DFS, AUTO-BW
-        (5490 - 5730 @ 160), (N/A, 24), (0 ms), DFS, AUTO-BW
-        (5735 - 5895 @ 160), (N/A, 30), (N/A), AUTO-BW
-        (5945 - 7125 @ 160), (N/A, 30), (N/A), NO-OUTDOOR, AUTO-BW
-
-It works fine in 5GHz but this is not what I purchased it for, so I am
-puzzled if this is something in software or I was sold wrong
-hardware.Is there a specific board-2.bin for 6GHz? Since the 9074 chip
-is the same in all versions perhaps this is a software hiccup.
-
-Any clues are welcome.
-
-Regards,
-Mario
 
 -- 
 ath11k mailing list
