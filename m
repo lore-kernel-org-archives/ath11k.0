@@ -4,74 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADFFBC433FE
-	for <ath11k@archiver.kernel.org>; Mon,  7 Nov 2022 17:35:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DCAAC4332F
+	for <ath11k@archiver.kernel.org>; Mon,  7 Nov 2022 17:47:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	References:In-Reply-To:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=p7FpEGAqYCReKJwiANwUyXndqWLgfGat8whuJ6tTR/E=; b=VjOQJkmVNwt6JY
-	HGoTRLkaAeGNJ1+DcE7rWF07S2oIweDggC84hxTgwqyEZOUyDYErlSls9/UmOphqvXCXi3qo1sc2X
-	uROKd+NRd9m1S9g3S0wIJjdA/OYGo6t/86ObFMIy2DUnUf4V/KCUdJ9HReFUZygmSZxVi8Y01YxsV
-	FuqVMZCbL+VIbDUwxXnrl9XqJbAv9zvVgihEJfRiJaIwGj8ycFgmvvN0281l9ALmUeN3hVTQnlk3R
-	20iaf1kGqKaSBTwfuAUa7wjLz7Xl1qoFr4Ek2P0iZwF8UMdeaNHh+xtw7nIG6HCSHzCHbkStsBCnR
-	VE2qbgd3uGFUnm7gXcRA==;
+	List-Owner; bh=6LJ+P4qxKkYxr0DG0pOQQrSe5lhiEEJbM5CQNjZxaW0=; b=p7HzOsj5s7Zm60
+	1jHTy0mLPF72Os0+0KdlKQ1tGnsGqyzQSVnPCq/4yfCCiLyrffcAguaD7UZsrbQNZIfSjbvB5GisE
+	7UpRR4DQubVzaY0p0lOyu7i/RfpjpyyQmqXbJDmqhyHYWM2ydoGrQoz7ps6f8TM5sfLq0Wto2Jv07
+	ZGzJLjTidQHhLFxWFvvSY/uKDsq72X61Gooka1udGB5w22mlNV5fXZ9F3MW9GDyvJgS3hr+NSjiEi
+	BiDPD8w0otToRldviV9aMkNXPdfwIy7kvLs4cqxT2dOIF5qeUGadav+rnotvKdrpIpKjeGYQNsxRW
+	5fRYRK4QuKAQYcEIcPxQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1os61j-00Gj4x-3c; Mon, 07 Nov 2022 17:35:15 +0000
-Received: from mail-lf1-x132.google.com ([2a00:1450:4864:20::132])
+	id 1os6Ds-00GuCN-2f; Mon, 07 Nov 2022 17:47:48 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1os61g-00Gj26-KI
-	for ath11k@lists.infradead.org; Mon, 07 Nov 2022 17:35:14 +0000
-Received: by mail-lf1-x132.google.com with SMTP id p8so17706705lfu.11
-        for <ath11k@lists.infradead.org>; Mon, 07 Nov 2022 09:35:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2vBV15/t75rMwmc5x5QmAZ8tvqjlJL8SG6UbJno1k6k=;
-        b=eKf2NTY8glHETLli+gjYNG+IL7W9ro7LFV1OPSmNRquYMgpRtorVcFqvCMK6rfgWAs
-         cF6QvwJC1qhgA6LiF45tB12iNeE+ZX0qgEVYC74n0t9+FbB0YDPFe74JOy4cLjGKERdF
-         GSbeGl7gTWXX8YH8SOEvG4oEVe40EX3D9qUn8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2vBV15/t75rMwmc5x5QmAZ8tvqjlJL8SG6UbJno1k6k=;
-        b=hHxX9Rr0YArjtra4uLXaeycL94hpZ8+pmRxuOyEC8/dus+rPcMN1knLGgyjHW+G6pz
-         OtLEK6JxPRaB2XjH4NkEIF838eFAWwak5WfOgW0Clm9p/UHztsdt9yWFM2rCDksVTYlq
-         4OiSXXBaskZT85Fc25kB6+AFsvxRoR22kniHEyw6VmyCXshRflzWqQTqqjal8I33byze
-         tBFBaqFvM+ad+7m4YWXCkH7D+ebILgjTqv8AC8MD3SW813e1Gq48cHNE33rF//yFerNx
-         oxkgLzLPXrHYAUzPvN+Ki4rQnS9CUaw1FYVs0mjjISMIqDkD1MlvRHtyvNgYZYk/5KsM
-         sbJg==
-X-Gm-Message-State: ACrzQf15rEgodDvOBtHizWXMpMeogv/+ryNosZhOmjMDite9OErAQ9fd
-	FcPcCyYgkBNZLMTd5LjODon2KVTcueNe1ISNtLwxFQ==
-X-Google-Smtp-Source: AMsMyM7peMcJhcxlagtzkci1EPQ3TVIfAF1dZ2y0sH/gOy81Qea1b0adzI4yu1Ty8KXCcPs0CqJkhVw/hwKwbbPcUs0=
-X-Received: by 2002:ac2:52af:0:b0:4a9:d072:f5c4 with SMTP id
- r15-20020ac252af000000b004a9d072f5c4mr390873lfm.82.1667842506322; Mon, 07 Nov
- 2022 09:35:06 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 7 Nov 2022 09:35:05 -0800
+	id 1os6Dp-00GuBu-9X
+	for ath11k@lists.infradead.org; Mon, 07 Nov 2022 17:47:46 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id EAAA5611EB;
+	Mon,  7 Nov 2022 17:47:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36564C433D6;
+	Mon,  7 Nov 2022 17:47:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1667843262;
+	bh=7WUGMjbQAmJLzpGQPB3dMUjNgFPkqKZ4u1QV1AW//uM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QKVrLSoKk6VveD4mEiq0tyP6ZWWZy6zJq0azmvsoVf3N/PJK21QvWCb3UWNXi11my
+	 p4byXoesl/ETA0NdclkejgJalCRfpF5uf1TqyKTyTkhjUcA8z0Nl5oYZEDA/bEgIlc
+	 P51p41dxF3U+y/WKbelikyBFyomeVrn2O1iMP7Ll8lVVkMpKfbftkw8EJ3/QnOgF35
+	 dwb71wuhLDecU+w/8qsRYRD/+6xZKvvIC5+a3jY1gEzwtgHqIg4YoVWbXW1lsEIeKM
+	 gq8mc8rLYHgBXZeMDA+guPFWi+UR1wzH6aUKyF+QUGG4jV/aND6eWJWIUCdqBNfbEq
+	 Sxu2L/rqSMAQg==
+Date: Mon, 7 Nov 2022 23:17:27 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Robert Marko <robimarko@gmail.com>
+Cc: mani@kernel.org, kvalo@kernel.org, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	gregkh@linuxfoundation.org, elder@linaro.org,
+	hemantk@codeaurora.org, quic_jhugo@quicinc.com,
+	quic_qianyu@quicinc.com, bbhatt@codeaurora.org, mhi@lists.linux.dev,
+	linux-arm-msm@vger.kernel.org, ath11k@lists.infradead.org,
+	linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+	ansuelsmth@gmail.com
+Subject: Re: [PATCH 2/2] wifi: ath11k: use unique QRTR instance ID
+Message-ID: <20221107174727.GA7535@thinkpad>
+References: <20221105194943.826847-1-robimarko@gmail.com>
+ <20221105194943.826847-2-robimarko@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20221104082828.14386-1-quic_youghand@quicinc.com>
-References: <20221104082828.14386-1-quic_youghand@quicinc.com>
-From: Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date: Mon, 7 Nov 2022 09:35:05 -0800
-Message-ID: <CAE-0n5260hssngqWE6j4A_YK0Rq_OSnscpkyVTTiPEMEDz6AGg@mail.gmail.com>
-Subject: Re: [PATCH v2] wifi: ath10k: Add WLAN firmware image version info
- into smem
-To: Youghandhar Chintala <quic_youghand@quicinc.com>, ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	quic_mpubbise@quicinc.com, linux-arm-msm@vger.kernel.org, 
-	kernel test robot <lkp@intel.com>
+Content-Disposition: inline
+In-Reply-To: <20221105194943.826847-2-robimarko@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221107_093512_696507_53BB2A62 
-X-CRM114-Status: GOOD (  21.49  )
+X-CRM114-CacheID: sfid-20221107_094745_431506_7153A297 
+X-CRM114-Status: GOOD (  30.23  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,116 +74,121 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Quoting Youghandhar Chintala (2022-11-04 01:28:28)
-> In a SoC based solution, it would be useful to know the versions of the
-> various binary firmware blobs the system is running on. On a QCOM based
-> SoC, this info can be obtained from socinfo debugfs infrastructure. For
-> this to work, respective subsystem drivers have to export the firmware
-> version information to an SMEM based version information table.
->
-> Having firmware version information at one place will help quickly
-> figure out the firmware versions of various subsystems on the device
-> instead of going through builds/logs in an event of a system crash.
->
-> Fill WLAN firmware version information in SMEM version table to be
-> printed as part of socinfo debugfs infrastructure on a Qualcomm based
-> SoC.
->
-> This change is applicable only for WCN399X targets.
->
-> Reported-by: kernel test robot <lkp@intel.com>
->
-> Tested-on: WCN3990 hw1.0 SNOC WLAN.HL.3.2.2.c10-00754-QCAHLSWMTPL-1
->
-> Signed-off-by: Youghandhar Chintala <quic_youghand@quicinc.com>
-
-The trailers go together, no blank lines between them.
-
->
-> ---
-> Changes from v1:
->  - Changed print format specifier to %zu from %i
->  - Changed ath10k_qmi_add_wlan_ver_smem() API argument
->           to const char *fw_build_id from char *fw_build_id
->  - Changed version_string_size with MACRO
-> ---
->  drivers/net/wireless/ath/ath10k/qmi.c | 28 +++++++++++++++++++++++++++
->  1 file changed, 28 insertions(+)
->
-> diff --git a/drivers/net/wireless/ath/ath10k/qmi.c b/drivers/net/wireless/ath/ath10k/qmi.c
-> index 66cb7a1e628a..928d78f6d494 100644
-> --- a/drivers/net/wireless/ath/ath10k/qmi.c
-> +++ b/drivers/net/wireless/ath/ath10k/qmi.c
-> @@ -14,6 +14,7 @@
->  #include <linux/net.h>
->  #include <linux/platform_device.h>
->  #include <linux/qcom_scm.h>
-> +#include <linux/soc/qcom/smem.h>
->  #include <linux/string.h>
->  #include <net/sock.h>
->
-> @@ -22,6 +23,8 @@
->
->  #define ATH10K_QMI_CLIENT_ID           0x4b4e454c
->  #define ATH10K_QMI_TIMEOUT             30
-> +#define ATH10K_SMEM_IMAGE_VERSION_TABLE       469
-> +#define ATH10K_SMEM_IMAGE_TABLE_CNSS_INDEX     13
->
->  static int ath10k_qmi_map_msa_permission(struct ath10k_qmi *qmi,
->                                          struct ath10k_msa_mem_info *mem_info)
-> @@ -536,6 +539,29 @@ int ath10k_qmi_wlan_disable(struct ath10k *ar)
->         return ath10k_qmi_mode_send_sync_msg(ar, QMI_WLFW_OFF_V01);
->  }
->
-> +static void ath10k_qmi_add_wlan_ver_smem(struct ath10k *ar, const char *fw_build_id)
-> +{
-> +       u8 *smem_table_ptr;
-> +       size_t smem_block_size;
-> +       const u32 version_string_size = MAX_BUILD_ID_LEN;
-
-Why not make this size_t as well so the type is the same for the
-comparison with smem_block_size?
-
-> +       const u32 smem_img_idx_wlan = ATH10K_SMEM_IMAGE_TABLE_CNSS_INDEX * 128;
-
-> +
-> +       smem_table_ptr = qcom_smem_get(QCOM_SMEM_HOST_ANY,
-> +                                      ATH10K_SMEM_IMAGE_VERSION_TABLE,
-> +                                      &smem_block_size);
-> +       if (IS_ERR(smem_table_ptr)) {
-> +               ath10k_dbg(ar, ATH10K_DBG_QMI, "smem image version table not found");
-
-Is this missing a newline?
-
-> +               return;
-> +       }
-> +       if (smem_img_idx_wlan + version_string_size > smem_block_size) {
-> +               ath10k_dbg(ar, ATH10K_DBG_QMI, "smem block size too small: %zu",
-
-Same newline question.
-
-> +                          smem_block_size);
-> +               return;
-> +       }
-> +       memcpy(smem_table_ptr + smem_img_idx_wlan, fw_build_id,
-
-Is it a string? Does it need to be NUL terminated? Should this use some
-sort of strcpy()? Does the comparison above need to leave a space for
-the NUL terminator?
-
-> +              version_string_size);
-> +}
-> +
->  static int ath10k_qmi_cap_send_sync_msg(struct ath10k_qmi *qmi)
->  {
->         struct wlfw_cap_resp_msg_v01 *resp;
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+T24gU2F0LCBOb3YgMDUsIDIwMjIgYXQgMDg6NDk6NDNQTSArMDEwMCwgUm9iZXJ0IE1hcmtvIHdy
+b3RlOgo+IEN1cnJlbnRseSwgdHJ5aW5nIHRvIHVzZSBBSEIgKyBQQ0kvTUhJIGNhcmRzIG9yIG11
+bHRpcGxlIFBDSS9NSEkgY2FyZHMKPiB3aWxsIGNhdXNlIGEgY2xhc2ggaW4gdGhlIFFSVFIgaW5z
+dGFuY2Ugbm9kZSBJRCBhbmQgcHJldmVudCB0aGUgZHJpdmVyCj4gZnJvbSB0YWxraW5nIHZpYSBR
+TUkgdG8gdGhlIGNhcmQgYW5kIHRodXMgaW5pdGlhbGl6aW5nIGl0IHdpdGg6Cj4gWyAgICA5Ljgz
+NjMyOV0gYXRoMTFrIGMwMDAwMDAud2lmaTogaG9zdCBjYXBhYmlsaXR5IHJlcXVlc3QgZmFpbGVk
+OiAxIDkwCj4gWyAgICA5Ljg0MjA0N10gYXRoMTFrIGMwMDAwMDAud2lmaTogZmFpbGVkIHRvIHNl
+bmQgcW1pIGhvc3QgY2FwOiAtMjIKPiAKClRoZXJlIGlzIHN0aWxsIGFuIG91dHN0YW5kaW5nIGlz
+c3VlIHdoZXJlIHlvdSBjYW5ub3QgY29ubmVjdCB0d28gV0xBTiBtb2R1bGVzCndpdGggc2FtZSBu
+b2RlIGlkLgoKPiBTbywgaW4gb3JkZXIgdG8gYWxsb3cgZm9yIHRoaXMgY29tYmluYXRpb24gb2Yg
+Y2FyZHMsIGVzcGVjaWFsbHkgQUhCICsgUENJCj4gY2FyZHMgbGlrZSBJUFE4MDc0ICsgUUNOOTA3
+NCAoVXNlZCBieSBtZSBhbmQgdGVzdGVkIG9uKSBzZXQgdGhlIGRlc2lyZWQKPiBRUlRSIGluc3Rh
+bmNlIElEIG9mZnNldCBieSBjYWxjdWxhdGluZyBhIHVuaXF1ZSBvbmUgYmFzZWQgb24gUENJIGRv
+bWFpbgo+IGFuZCBidXMgSUQtcyBhbmQgd3JpdGluZyBpdCB0byBiaXRzIDctMCBvZiBCSElfRVJS
+REJHMiBNSEkgcmVnaXN0ZXIgYnkKPiB1c2luZyB0aGUgU0JMIHN0YXRlIGNhbGxiYWNrIHRoYXQg
+aXMgYWRkZWQgYXMgcGFydCBvZiB0aGUgc2VyaWVzLgo+IFdlIGFsc28gaGF2ZSB0byBtYWtlIHN1
+cmUgdGhhdCBuZXcgUVJUUiBvZmZzZXQgaXMgYWRkZWQgb24gdG9wIG9mIHRoZQo+IGRlZmF1bHQg
+UVJUUiBpbnN0YW5jZSBJRC1zIHRoYXQgYXJlIGN1cnJlbnRseSB1c2VkIGluIHRoZSBkcml2ZXIu
+Cj4gCgpSZWdpc3RlciBCSElfRVJSREJHMiBpcyBsaXN0ZWQgYXMgUmVhZCBvbmx5IGZyb20gSG9z
+dCBhcyBwZXIgdGhlIEJISSBzcGVjLgpTbyBJJ20gbm90IHN1cmUgaWYgdGhpcyBzb2x1dGlvbiBp
+cyBnb2luZyB0byB3b3JrIG9uIGFsbCBhdGgxMWsgc3VwcG9ydGVkCmNoaXBzZXRzLgoKS2FsbGUs
+IGNhbiB5b3UgY29uZmlybT8KCj4gVGhpcyBmaW5hbGx5IGFsbG93cyB1c2luZyBBSEIgKyBQQ0kg
+b3IgbXVsdGlwbGUgUENJIGNhcmRzIG9uIHRoZSBzYW1lCj4gc3lzdGVtLgo+IAo+IEJlZm9yZToK
+PiByb290QE9wZW5XcnQ6LyMgcXJ0ci1sb29rdXAKPiAgIFNlcnZpY2UgVmVyc2lvbiBJbnN0YW5j
+ZSBOb2RlICBQb3J0Cj4gICAgICAxMDU0ICAgICAgIDEgICAgICAgIDAgICAgNyAgICAgMSA8dW5r
+bm93bj4KPiAgICAgICAgNjkgICAgICAgMSAgICAgICAgMiAgICA3ICAgICAzIEFUSDEwayBXTEFO
+IGZpcm13YXJlIHNlcnZpY2UKPiAKPiBBZnRlcjoKPiByb290QE9wZW5XcnQ6LyMgcXJ0ci1sb29r
+dXAKPiAgIFNlcnZpY2UgVmVyc2lvbiBJbnN0YW5jZSBOb2RlICBQb3J0Cj4gICAgICAxMDU0ICAg
+ICAgIDEgICAgICAgIDAgICAgNyAgICAgMSA8dW5rbm93bj4KPiAgICAgICAgNjkgICAgICAgMSAg
+ICAgICAgMiAgICA3ICAgICAzIEFUSDEwayBXTEFOIGZpcm13YXJlIHNlcnZpY2UKPiAgICAgICAg
+MTUgICAgICAgMSAgICAgICAgMCAgICA4ICAgICAxIFRlc3Qgc2VydmljZQo+ICAgICAgICA2OSAg
+ICAgICAxICAgICAgICA4ICAgIDggICAgIDIgQVRIMTBrIFdMQU4gZmlybXdhcmUgc2VydmljZQo+
+IAo+IFRlc3RlZC1vbjogSVBRODA3NCBodzIuMCBBSEIgV0xBTi5ISy4yLjUuMC4xLTAxMjA4LVFD
+QUhLU1dQTF9TSUxJQ09OWi0xCj4gVGVzdGVkLW9uOiBRQ045MDc0IGh3MS4wIFBDSSBXTEFOLkhL
+LjIuNS4wLjEtMDEyMDgtUUNBSEtTV1BMX1NJTElDT05aLTEKPiAKPiBTaWduZWQtb2ZmLWJ5OiBS
+b2JlcnQgTWFya28gPHJvYmltYXJrb0BnbWFpbC5jb20+Cj4gLS0tCj4gIGRyaXZlcnMvbmV0L3dp
+cmVsZXNzL2F0aC9hdGgxMWsvbWhpLmMgfCA0NyArKysrKysrKysrKysrKysrKystLS0tLS0tLS0K
+PiAgZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9taGkuaCB8ICAzICsrCj4gIGRyaXZl
+cnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvcGNpLmMgfCAgNSArKy0KPiAgMyBmaWxlcyBjaGFu
+Z2VkLCAzOCBpbnNlcnRpb25zKCspLCAxNyBkZWxldGlvbnMoLSkKPiAKPiBkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9taGkuYyBiL2RyaXZlcnMvbmV0L3dpcmVs
+ZXNzL2F0aC9hdGgxMWsvbWhpLmMKPiBpbmRleCA4Njk5NWU4ZGM5MTMuLjIzZTg1ZWE5MDJmNSAx
+MDA2NDQKPiAtLS0gYS9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRoMTFrL21oaS5jCj4gKysr
+IGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9taGkuYwo+IEBAIC0yOTQsNiArMjk0
+LDMyIEBAIHN0YXRpYyB2b2lkIGF0aDExa19taGlfb3BfcnVudGltZV9wdXQoc3RydWN0IG1oaV9j
+b250cm9sbGVyICptaGlfY250cmwpCj4gIHsKPiAgfQo+ICAKPiArc3RhdGljIGludCBhdGgxMWtf
+bWhpX29wX3JlYWRfcmVnKHN0cnVjdCBtaGlfY29udHJvbGxlciAqbWhpX2NudHJsLAo+ICsJCQkJ
+ICB2b2lkIF9faW9tZW0gKmFkZHIsCj4gKwkJCQkgIHUzMiAqb3V0KQo+ICt7Cj4gKwkqb3V0ID0g
+cmVhZGwoYWRkcik7Cj4gKwo+ICsJcmV0dXJuIDA7Cj4gK30KPiArCj4gK3N0YXRpYyB2b2lkIGF0
+aDExa19taGlfb3Bfd3JpdGVfcmVnKHN0cnVjdCBtaGlfY29udHJvbGxlciAqbWhpX2NudHJsLAo+
+ICsJCQkJICAgIHZvaWQgX19pb21lbSAqYWRkciwKPiArCQkJCSAgICB1MzIgdmFsKQo+ICt7Cj4g
+Kwl3cml0ZWwodmFsLCBhZGRyKTsKPiArfQo+ICsKPiArc3RhdGljIHZvaWQgYXRoMTFrX21oaV9x
+cnRyX2luc3RhbmNlX3NldChzdHJ1Y3QgbWhpX2NvbnRyb2xsZXIgKm1oaV9jbnRybCkKPiArewo+
+ICsJc3RydWN0IGF0aDExa19iYXNlICphYiA9IGRldl9nZXRfZHJ2ZGF0YShtaGlfY250cmwtPmNu
+dHJsX2Rldik7Cj4gKwo+ICsJYXRoMTFrX21oaV9vcF93cml0ZV9yZWcobWhpX2NudHJsLAo+ICsJ
+CQkJbWhpX2NudHJsLT5iaGkgKyBCSElfRVJSREJHMiwKPiArCQkJCUZJRUxEX1BSRVAoUVJUUl9J
+TlNUQU5DRV9NQVNLLAo+ICsJCQkJYWItPnFtaS5zZXJ2aWNlX2luc19pZCAtIGFiLT5od19wYXJh
+bXMucW1pX3NlcnZpY2VfaW5zX2lkKSk7Cj4gK30KPiArCj4gIHN0YXRpYyBjaGFyICphdGgxMWtf
+bWhpX29wX2NhbGxiYWNrX3RvX3N0cihlbnVtIG1oaV9jYWxsYmFjayByZWFzb24pCj4gIHsKPiAg
+CXN3aXRjaCAocmVhc29uKSB7Cj4gQEAgLTMxNSw2ICszNDEsOCBAQCBzdGF0aWMgY2hhciAqYXRo
+MTFrX21oaV9vcF9jYWxsYmFja190b19zdHIoZW51bSBtaGlfY2FsbGJhY2sgcmVhc29uKQo+ICAJ
+CXJldHVybiAiTUhJX0NCX0ZBVEFMX0VSUk9SIjsKPiAgCWNhc2UgTUhJX0NCX0JXX1JFUToKPiAg
+CQlyZXR1cm4gIk1ISV9DQl9CV19SRVEiOwo+ICsJY2FzZSBNSElfQ0JfRUVfU0JMX01PREU6Cj4g
+KwkJcmV0dXJuICJNSElfQ0JfRUVfU0JMX01PREUiOwo+ICAJZGVmYXVsdDoKPiAgCQlyZXR1cm4g
+IlVOS05PV04iOwo+ICAJfQo+IEBAIC0zMzYsMjcgKzM2NCwxNCBAQCBzdGF0aWMgdm9pZCBhdGgx
+MWtfbWhpX29wX3N0YXR1c19jYihzdHJ1Y3QgbWhpX2NvbnRyb2xsZXIgKm1oaV9jbnRybCwKPiAg
+CQlpZiAoISh0ZXN0X2JpdChBVEgxMUtfRkxBR19VTlJFR0lTVEVSSU5HLCAmYWItPmRldl9mbGFn
+cykpKQo+ICAJCQlxdWV1ZV93b3JrKGFiLT53b3JrcXVldWVfYXV4LCAmYWItPnJlc2V0X3dvcmsp
+Owo+ICAJCWJyZWFrOwo+ICsJY2FzZSBNSElfQ0JfRUVfU0JMX01PREU6Cj4gKwkJYXRoMTFrX21o
+aV9xcnRyX2luc3RhbmNlX3NldChtaGlfY250cmwpOwoKSSBzdGlsbCBkb24ndCB1bmRlcnN0YW5k
+IGhvdyBTQkwgY291bGQgbWFrZSB1c2Ugb2YgdGhpcyBpbmZvcm1hdGlvbiBkdXJpbmcKYm9vdCB3
+aXRob3V0IHdhaXRpbmcgZm9yIGFuIHVwZGF0ZS4KClRoYW5rcywKTWFuaQoKPiArCQlicmVhazsK
+PiAgCWRlZmF1bHQ6Cj4gIAkJYnJlYWs7Cj4gIAl9Cj4gIH0KPiAgCj4gLXN0YXRpYyBpbnQgYXRo
+MTFrX21oaV9vcF9yZWFkX3JlZyhzdHJ1Y3QgbWhpX2NvbnRyb2xsZXIgKm1oaV9jbnRybCwKPiAt
+CQkJCSAgdm9pZCBfX2lvbWVtICphZGRyLAo+IC0JCQkJICB1MzIgKm91dCkKPiAtewo+IC0JKm91
+dCA9IHJlYWRsKGFkZHIpOwo+IC0KPiAtCXJldHVybiAwOwo+IC19Cj4gLQo+IC1zdGF0aWMgdm9p
+ZCBhdGgxMWtfbWhpX29wX3dyaXRlX3JlZyhzdHJ1Y3QgbWhpX2NvbnRyb2xsZXIgKm1oaV9jbnRy
+bCwKPiAtCQkJCSAgICB2b2lkIF9faW9tZW0gKmFkZHIsCj4gLQkJCQkgICAgdTMyIHZhbCkKPiAt
+ewo+IC0Jd3JpdGVsKHZhbCwgYWRkcik7Cj4gLX0KPiAtCj4gIHN0YXRpYyBpbnQgYXRoMTFrX21o
+aV9yZWFkX2FkZHJfZnJvbV9kdChzdHJ1Y3QgbWhpX2NvbnRyb2xsZXIgKm1oaV9jdHJsKQo+ICB7
+Cj4gIAlzdHJ1Y3QgZGV2aWNlX25vZGUgKm5wOwo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL25ldC93
+aXJlbGVzcy9hdGgvYXRoMTFrL21oaS5oIGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDEx
+ay9taGkuaAo+IGluZGV4IDhkOWY4NTJkYTY5NS4uMGRiMzA4YmMzMDQ3IDEwMDY0NAo+IC0tLSBh
+L2RyaXZlcnMvbmV0L3dpcmVsZXNzL2F0aC9hdGgxMWsvbWhpLmgKPiArKysgYi9kcml2ZXJzL25l
+dC93aXJlbGVzcy9hdGgvYXRoMTFrL21oaS5oCj4gQEAgLTE2LDYgKzE2LDkgQEAKPiAgI2RlZmlu
+ZSBNSElDVFJMCQkJCQkweDM4Cj4gICNkZWZpbmUgTUhJQ1RSTF9SRVNFVF9NQVNLCQkJMHgyCj4g
+IAo+ICsjZGVmaW5lIEJISV9FUlJEQkcyCQkJCTB4MzgKPiArI2RlZmluZSBRUlRSX0lOU1RBTkNF
+X01BU0sJCQlHRU5NQVNLKDcsIDApCj4gKwo+ICBpbnQgYXRoMTFrX21oaV9zdGFydChzdHJ1Y3Qg
+YXRoMTFrX3BjaSAqYXJfcGNpKTsKPiAgdm9pZCBhdGgxMWtfbWhpX3N0b3Aoc3RydWN0IGF0aDEx
+a19wY2kgKmFyX3BjaSk7Cj4gIGludCBhdGgxMWtfbWhpX3JlZ2lzdGVyKHN0cnVjdCBhdGgxMWtf
+cGNpICphcl9wY2kpOwo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgvYXRo
+MTFrL3BjaS5jIGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvYXRoL2F0aDExay9wY2kuYwo+IGluZGV4
+IDk5Y2YzMzU3YzY2ZS4uY2QyNmMxNTY3NDE1IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvbmV0L3dp
+cmVsZXNzL2F0aC9hdGgxMWsvcGNpLmMKPiArKysgYi9kcml2ZXJzL25ldC93aXJlbGVzcy9hdGgv
+YXRoMTFrL3BjaS5jCj4gQEAgLTM3MCwxMyArMzcwLDE2IEBAIHN0YXRpYyB2b2lkIGF0aDExa19w
+Y2lfc3dfcmVzZXQoc3RydWN0IGF0aDExa19iYXNlICphYiwgYm9vbCBwb3dlcl9vbikKPiAgc3Rh
+dGljIHZvaWQgYXRoMTFrX3BjaV9pbml0X3FtaV9jZV9jb25maWcoc3RydWN0IGF0aDExa19iYXNl
+ICphYikKPiAgewo+ICAJc3RydWN0IGF0aDExa19xbWlfY2VfY2ZnICpjZmcgPSAmYWItPnFtaS5j
+ZV9jZmc7Cj4gKwlzdHJ1Y3QgYXRoMTFrX3BjaSAqYWJfcGNpID0gYXRoMTFrX3BjaV9wcml2KGFi
+KTsKPiArCXN0cnVjdCBwY2lfYnVzICpidXMgPSBhYl9wY2ktPnBkZXYtPmJ1czsKPiAgCj4gIAlj
+ZmctPnRndF9jZSA9IGFiLT5od19wYXJhbXMudGFyZ2V0X2NlX2NvbmZpZzsKPiAgCWNmZy0+dGd0
+X2NlX2xlbiA9IGFiLT5od19wYXJhbXMudGFyZ2V0X2NlX2NvdW50Owo+ICAKPiAgCWNmZy0+c3Zj
+X3RvX2NlX21hcCA9IGFiLT5od19wYXJhbXMuc3ZjX3RvX2NlX21hcDsKPiAgCWNmZy0+c3ZjX3Rv
+X2NlX21hcF9sZW4gPSBhYi0+aHdfcGFyYW1zLnN2Y190b19jZV9tYXBfbGVuOwo+IC0JYWItPnFt
+aS5zZXJ2aWNlX2luc19pZCA9IGFiLT5od19wYXJhbXMucW1pX3NlcnZpY2VfaW5zX2lkOwo+ICsJ
+YWItPnFtaS5zZXJ2aWNlX2luc19pZCA9IGFiLT5od19wYXJhbXMucW1pX3NlcnZpY2VfaW5zX2lk
+ICsKPiArCSgoKHBjaV9kb21haW5fbnIoYnVzKSAmIDB4RikgPDwgNCkgfCAoYnVzLT5udW1iZXIg
+JiAweEYpKTsKPiAgCj4gIAlhdGgxMWtfY2VfZ2V0X3NoYWRvd19jb25maWcoYWIsICZjZmctPnNo
+YWRvd19yZWdfdjIsCj4gIAkJCQkgICAgJmNmZy0+c2hhZG93X3JlZ192Ml9sZW4pOwo+IC0tIAo+
+IDIuMzguMQo+IAo+IAoKLS0gCuCuruCuo+Cuv+CuteCuo+CvjeCuo+CuqeCvjSDgrprgrqTgrr7g
+rprgrr/grrXgrq7gr40KCi0tIAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0cy5pbmZy
+YWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vYXRo
+MTFrCg==
