@@ -4,100 +4,138 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BDB4C433FE
-	for <ath11k@archiver.kernel.org>; Mon,  7 Nov 2022 15:10:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB2DBC433FE
+	for <ath11k@archiver.kernel.org>; Mon,  7 Nov 2022 16:08:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9ktrWzf58S9Uey1aMscdq6MitDYiIMDVeLmg3RPbIv8=; b=SAgiukC2FCtIGf
-	0sec7eDx+ylXembjO1gKI/7xl9eo4aXiNonmwXht7wP4BnwDr4v2uJTUlUNLFCTDozRsgOHLStzT7
-	IofkNMUo1dyAYEfUU1AVwC2ISdrDe0su2LyCAqOV7h18QeDW1W6pLovATzVWoui4kupfBggRoKeGx
-	uyQwftFPI5pz2xVX583zWbp+0KNTYJbc+Ji3Wxi47TxQHF+hJjPtAoXFe1ypytVxhQrWu4HwSXZ+S
-	3dNJBhrsIJtkhxI/n8IxsRfTxiFJWrXUYIxOK96d+H5eYvQpu4NfUyqVjAsGv5sfQGowAcOkUy3XB
-	Sd5sqLYZbl6ML35abGcw==;
+	List-Owner; bh=EmO3HXb5Imp+9e96f0TtBc5bqFEENpHgYun4LDLvmjw=; b=1qgCZVbTJ1uGE4
+	NXA0G9U5VFYaIPVWGm4kKleKmNZeBhZB5b0ZRJy2Eht2qdQDxNh1i4c3ZRnuCuooS38v7jsozF88p
+	YiM5K3S2heex6UFLST38RbaCLT8zUnzvkXUQ7Nu0mtxgjkmwRWdoDAxiUo+YHI7iyFcf0iw4f4i1O
+	7/UqGucxH/9lcdQxiJXej76jd+tUVCNEjpWqkyTruZRN1wcghp1IFq6FJHT2ERFqbde0vVzdqMrJs
+	/NqOhq3o0iwsSAMzbXDKWFQAq604R6pfZ9uqv1JJDjTUa4ZBOc6ESVJVVaWjLhVWXiBJrceJTZpAV
+	1HXGS3cTQOPRfu8Fd9qA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1os3lq-00FZs9-Ug; Mon, 07 Nov 2022 15:10:42 +0000
+	id 1os4g3-00G1wV-RP; Mon, 07 Nov 2022 16:08:47 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1os3lo-00FZpi-9d
-	for ath11k@lists.infradead.org; Mon, 07 Nov 2022 15:10:42 +0000
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2A7CsHxa031939;
-	Mon, 7 Nov 2022 15:10:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=97DbRwlEk3E6duDpQtGKjxqvG1D5WOcOP9p0tcjFgXE=;
- b=Lc3yKjHnk+IV2o0LBlfgxbG8KG48i23CqyNy7JCuKeD0VM6nnFtY+aqpZj7sEzh71ef1
- TlCUK1Bow4DXQ8GEa3c3iV3kt3Ti6dURmm1NwX7kCCxBpywzBTsfRfBKJxXpxzLiS6ut
- 2kWeXFZO2fn31qlyec1rB1/BpmE7RbYikhLnOIUNhz2MYG6djd3eKndrv5N5VscglIlu
- WscGewWLQXqhUHGT70UW/OPc1CpuDUMIS6fQYspI5DPgcwyeq0Xpksk8dclEQ6VfY/iZ
- fiA0r97RrbrBogI14shN46CE4UUGBNKGdVI7PgBZnM/FSyFAlkUp2ZHnpdpYiuNW+Zdv PQ== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kpx6nrvxr-1
+	id 1os4ea-00G0vj-5n
+	for ath11k@lists.infradead.org; Mon, 07 Nov 2022 16:07:18 +0000
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2A7DIqNc015284;
+	Mon, 7 Nov 2022 16:07:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : references : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=qcppdkim1;
+ bh=t40kG9BHmf66XU7YRPgK5BTgtbugIZM7bDWoY+8pyVk=;
+ b=LEwq7G5p2iutwVsdkLclBfUCcgjp4CTjvPfiWBuvtOtbiHE5sEoCwFSn3CAkiTKwHQFO
+ iXxy1Ns6A2l4aLdKm/9pvg6wmtvLqvm9Wt2F7I6fbWC4BLvWGv3yl4+P1wbhykJ0xUTq
+ FWiESOS+MOFcNptUXQ7wkxaS7BJO77hU3d0EusxCF5a2likSO3CuT+esFYjsat9XZMW6
+ zJd9jTESNMUhkBiRHV9sba+LTVdvUfd1LXPt2YlyK7f7031AMFRTH6h8dbXj+VLkbVre
+ 7DlGE0amT0ui/W584CXH79uyTmZQsW+V88zGNvszpWiefzGcQfDtedNMDsMeLz6dphwW 8w== 
+Received: from nam10-bn7-obe.outbound.protection.outlook.com (mail-bn7nam10lp2102.outbound.protection.outlook.com [104.47.70.102])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kpv531d9y-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 07 Nov 2022 15:10:01 +0000
-Received: from pps.filterd (NALASPPMTA01.qualcomm.com [127.0.0.1])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 2A7FA1Ak003502;
-	Mon, 7 Nov 2022 15:10:01 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by NALASPPMTA01.qualcomm.com (PPS) with ESMTPS id 3kngwkqfyw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 07 Nov 2022 15:10:01 +0000
-Received: from NALASPPMTA01.qualcomm.com (NALASPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 2A7FA0lF003480;
-	Mon, 7 Nov 2022 15:10:00 GMT
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (PPS) with ESMTPS id 2A7FA03l003473
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 07 Nov 2022 15:10:00 +0000
-Received: from [10.226.59.182] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Mon, 7 Nov 2022
- 07:09:59 -0800
-Message-ID: <9d61676a-888a-b172-141d-62257e2e9e84@quicinc.com>
-Date: Mon, 7 Nov 2022 08:09:58 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.0
-Subject: Re: [PATCH 2/2] wifi: ath11k: use unique QRTR instance ID
+	Mon, 07 Nov 2022 16:07:12 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mXrspYQJsMJv+/vERVdpXFeh2tRoDA9cnwknyobiLE9BX5FjoWAW94oklZpirafi7TzGSazzf6oRr632vhzzVNHgt6Q+CqrsD9+CR1IAOH1jqKslEizno0BCr6YV+fG0tK/lqruvZAdb4b9q/k8Cj1bz7IUM4biiMS1KjaxhqMkFMOw1NplaiMiEsX8gC8dvnmV2EjLvSufqDqRoh2yBDZXnDP4sjfJZUCb6joIUjkcILPjGTBnUvxPQttTfs7PtuzC41bbhyTGp8R2iGnG7jGcmsMedpc+fWYJGTGRUPwFbl6ocj6OzKvOAWYh//mkSPg0W7MsxWGEFRGX90KNiaQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=t40kG9BHmf66XU7YRPgK5BTgtbugIZM7bDWoY+8pyVk=;
+ b=MF5G0yc372Gc6Qx1zS5Gd+B9WPruSVfoF2OflKqoHxG7lNTuCr6TqQFgsOaHfqNvpn596cI3fnnhaSBZ3sSY3FwPYSouOATFJMUJixf9+rcQXHk1Q7C2SdsM0hH6Ic/sSs5xz64WzU8AwTC9xnttbsEOH1TlkmttPQPHAuVQJNTWmLZvwj+7b0LHuLrDGKX766CvIq07cP4VIR9KMCYP9D6lX/3CgoMeVsSgbzVpSE5c0thqXIRaF+40o631smDCBMmjxYjSLjXzkNBTwoj3YXLzCkmO/mMhqs14+x/BoZAPWLctD9Xyq8NOSobZ9JSWjdLmag3DdzUCn4DT/jxkGg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=quicinc.com; dmarc=pass action=none header.from=quicinc.com;
+ dkim=pass header.d=quicinc.com; arc=none
+Received: from MW2PR02MB3899.namprd02.prod.outlook.com (2603:10b6:907:3::30)
+ by SJ0PR02MB7661.namprd02.prod.outlook.com (2603:10b6:a03:328::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.24; Mon, 7 Nov
+ 2022 16:07:07 +0000
+Received: from MW2PR02MB3899.namprd02.prod.outlook.com
+ ([fe80::4957:92fd:2b06:8927]) by MW2PR02MB3899.namprd02.prod.outlook.com
+ ([fe80::4957:92fd:2b06:8927%5]) with mapi id 15.20.5791.026; Mon, 7 Nov 2022
+ 16:07:07 +0000
+From: "Nagarajan Maran (QUIC)" <quic_nmaran@quicinc.com>
+To: "enebeo@gmail.com" <enebeo@gmail.com>
+CC: "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
+Subject: RE: Wallys DR9074-6E(PN02.7) QCN9074 refuses to work on 6GHz band
+Thread-Topic: Wallys DR9074-6E(PN02.7) QCN9074 refuses to work on 6GHz band
+Thread-Index: AdjypdZHxUqV8yenTJihdx7pusARDA==
+Date: Mon, 7 Nov 2022 16:07:07 +0000
+Message-ID:  <MW2PR02MB3899226DC8F4EED0BF9A66ABED3C9@MW2PR02MB3899.namprd02.prod.outlook.com>
+References: <mailman.7.1667674802.1691884.ath11k@lists.infradead.org>
+In-Reply-To: <mailman.7.1667674802.1691884.ath11k@lists.infradead.org>
+Accept-Language: en-US
 Content-Language: en-US
-To: Robert Marko <robimarko@gmail.com>, <mani@kernel.org>, <kvalo@kernel.org>,
-        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <gregkh@linuxfoundation.org>, <elder@linaro.org>,
-        <hemantk@codeaurora.org>, <quic_qianyu@quicinc.com>,
-        <bbhatt@codeaurora.org>, <mhi@lists.linux.dev>,
-        <linux-arm-msm@vger.kernel.org>, <ath11k@lists.infradead.org>,
-        <linux-wireless@vger.kernel.org>, <netdev@vger.kernel.org>
-CC: <ansuelsmth@gmail.com>
-References: <20221105194943.826847-1-robimarko@gmail.com>
- <20221105194943.826847-2-robimarko@gmail.com>
-From: Jeffrey Hugo <quic_jhugo@quicinc.com>
-In-Reply-To: <20221105194943.826847-2-robimarko@gmail.com>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: knkLWmPQr3B5uSc_8E1wZY65TFXQrRd_
-X-Proofpoint-ORIG-GUID: knkLWmPQr3B5uSc_8E1wZY65TFXQrRd_
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MW2PR02MB3899:EE_|SJ0PR02MB7661:EE_
+x-ms-office365-filtering-correlation-id: c0aa1d89-0d5b-494c-3322-08dac0da1ebe
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:  bAECWOOk8iktXJ0p20tnvZy4k7dkHYzjG0gAVYOYICeGgjVFxE5Lql8RKc83mBM/qX1MPYVBBDFj7DAqNOEuLQvei8d+12t41OjNg1NTm8qe/lzDreFD+gH8z6mjex+9ZjrZAHjsONUYbxLLHsre7gps+tru7hd1NeTZwlWU7Vrn2+EQlMHyjTwj/0itFH+fENi23w5pplj6zqdxOXmt+98iin7bXrXTT+FgO1a+uUbzLco42sJ8xvuXAdIFPxMNSv6ImyrpOHZ1vQCZld3ZGoVZsUjMufySC87ucx5gsvHxihVxA06AQRJlKqjhUwZ6hYlSsyVEWVPgpdtps1a1hphuWyjpq3sY9Qq2mFgab59lq51xAAYY1EyKEpiRFTVLLhJzdLdasUoMxIYOVOahI1A8m3r/l1Tl9YC79YbTPpqmub95N5yqgkxbj0Sh9ljznhRU19knmW/T4IjUJs5HaC0pvLY0pbVS9h3/nqi3HG5ZP581CwyXpWKldljbTSC0k8gccuQtizDYbB+0ICFOrPWgnuMa4FN4tH+uGWqbnIITozRO4kyiMXDbxwUurN0TzrcapDFzFiDhXdvilB8xyXhxkN2PLbCory7buYjQvP2u/burJpKxAokjlCUr541fZSHiVPjEUtRmaFpEkc1yv9kRfVYpzue2chi1hYQa2vKWdtYOcVXxDaF7jwWTXC/O+nouQiPKeE8/nm7CxY6Q+8c+Gu1RJ+peazqoS1W/xAAY06Fk2RYOe2/HwEq4w1gx5eLR+0CeFbiZq11tsq1nZw==
+x-forefront-antispam-report:  CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW2PR02MB3899.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(396003)(136003)(366004)(39860400002)(376002)(346002)(451199015)(186003)(4326008)(8936002)(52536014)(41300700001)(6916009)(55016003)(316002)(7696005)(6506007)(5660300002)(8676002)(53546011)(64756008)(26005)(66446008)(66946007)(66556008)(76116006)(83380400001)(33656002)(66476007)(9686003)(2906002)(4001150100001)(66899015)(478600001)(38070700005)(86362001)(71200400001)(38100700002)(122000001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:  =?us-ascii?Q?kphSG5l9enkoxFGozP62UHAM4ilWjsjcQPyHG3cxuJLiI7U1dr1myhxEG0Ld?=
+ =?us-ascii?Q?j65Ca9mud4PJqvi2hAzosxkiStCFYcTRMrTj8wlp64UWcweJb+qkub39BvGg?=
+ =?us-ascii?Q?RcPRcXWC5vuOAehX+RwGSA8Biexn0ktN8yrL8BvVd4pt7uoZyhvu8apJQNOd?=
+ =?us-ascii?Q?narIIAIOpYxjxWFWkkRWPxyrSVQU3hn9tMG0//bv+lB21c1lg3fVIJWDdmyC?=
+ =?us-ascii?Q?3+POxidji1jckk+jVQg6vH2mdzkTajqiBG+/nd8IkGe0AP4883XjV4Yrs+k1?=
+ =?us-ascii?Q?+WeizRcotlGQ5hVVlnSE1KWlqHwQtJ2DAfdOmeax4aDT2xCdPzQAiDYE6TwL?=
+ =?us-ascii?Q?iABu+jyGWaZQzbsf7uiYqtVEm88R/wo8P/gCdM9Z41jeQudQO6q2YHLCIPGl?=
+ =?us-ascii?Q?e62BQ7bgY0xDSh65uAC5rP3dN8pJMElkgdY+hQVpykwRCmvAcso/zqbk6sJy?=
+ =?us-ascii?Q?PnT3491FWGUuhjJiodOs5RKL0Tp4gXB/BXP3xIVtBAwtQzMzK8A+BUwNUgq2?=
+ =?us-ascii?Q?muZ38qL2ZZjTD8jmV7WnBBGY5VmYAdW4yi3Ay2A1aaQ7tcOBMYr6yD9aolgq?=
+ =?us-ascii?Q?RI4BN51AagjNcQtQsO0waESu3vquy9eKVvAEJKfOWyXdBPZUPgZ511DH7P+q?=
+ =?us-ascii?Q?/dy/j7SmSa5FtSkFzbtazNFPULa+4gMRr3mOiJE4mNDahbeIeemg3k1DAnSw?=
+ =?us-ascii?Q?O7miPYbDmtsVnW8XuGlSBhl6d5zmA19jgZuOJx1KVVNGDBhaZOSuZ50s2QJN?=
+ =?us-ascii?Q?RUHdONjS9PIuGJRvKppsywkTED1QgkMYHyveHz+iGV2SPDnF+jxdZ3BBc56N?=
+ =?us-ascii?Q?8WxQDp2JXsKoLF848Maw+4tpXjSEa0CSpC40xEBKi3W1OTPEJo2/cYwAqLba?=
+ =?us-ascii?Q?K4Yj5hRwE6bho4l7WqdgAJ/x4kVn2mhZ+G6IW5eT7MxYQAH/NarYh/c1lB0U?=
+ =?us-ascii?Q?LysJ80mz+zEzSx+EOt8VH4pe7LpmPOX0x5jdWbgD/bwUq9c8N4cntBSLlJ5K?=
+ =?us-ascii?Q?OjPkf17SkLIyidaYaSzOdK4dkMstEF4APj2EyCklxP1PbvfkvbyJIeuyxQ2R?=
+ =?us-ascii?Q?ofWEUN+RYnoHfCPXAfbGbgjEGWPptee8ad0WGLUm1Mlqh4HGDNdVJmVCLthp?=
+ =?us-ascii?Q?0qwoiEPw7q8tPAfl20OriMPs8Y5lAA5y55CSZe1fNWHE07t/c5GCSl9NfveE?=
+ =?us-ascii?Q?91aN7QAbBtSqxyFS44Rkdr5vIqzh2ftQfKit/T8B8HIujt6Opz2Eb14xyUIT?=
+ =?us-ascii?Q?kl3aSGZoTEybq1/DLVHU1+ZfXwvt0Vqh+R/qJTP0uqP8H65MuwiSoFSiMv/p?=
+ =?us-ascii?Q?pHsZr6NqfEQhssG6FMY/HG2rNgZRpfhBzT1TlN+FRhHvITX5+59nk7NGGrDQ?=
+ =?us-ascii?Q?R7JrfawIJ1sNcVEQn4Zmxy8NPooX3jVO5rWtNzoXrjKMClgomN/H6968kzv/?=
+ =?us-ascii?Q?N8gIKvG2C/8XoylQllWFM5SVruFx46ua7bnCtEWgpyWyQ85GY6YsyN89y8Hk?=
+ =?us-ascii?Q?3wbRp58e7LORzRXP0CWevxPtz4QMCA+BLZOm7EwEM5uhRtpueno1txaOcVSt?=
+ =?us-ascii?Q?jibx6SmsbGyZdPMvHVXVq72x2m+NCDVjC9cbL0dg?=
+MIME-Version: 1.0
+X-OriginatorOrg: quicinc.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MW2PR02MB3899.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c0aa1d89-0d5b-494c-3322-08dac0da1ebe
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Nov 2022 16:07:07.7218
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 98e9ba89-e1a1-4e38-9007-8bdabc25de1d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 0vunvz9/lh+A4Bl7hMV7acg7YNCkvU75jvaIlgMXO2RCAjAgDXfdXf8y2GHKzNly4hSJ4Du9UIVzHFIQ7yAOdQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR02MB7661
+X-Proofpoint-GUID: MAJzuP-493ruznSvOdAqYYs74Z355YgX
+X-Proofpoint-ORIG-GUID: MAJzuP-493ruznSvOdAqYYs74Z355YgX
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-07_08,2022-11-07_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 spamscore=0
- clxscore=1011 priorityscore=1501 adultscore=0 mlxlogscore=999
- lowpriorityscore=0 mlxscore=0 phishscore=0 suspectscore=0 malwarescore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2211070122
+ definitions=2022-11-07_08,2022-11-07_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ priorityscore=1501 malwarescore=0 suspectscore=0 mlxscore=0 clxscore=1011
+ phishscore=0 spamscore=0 mlxlogscore=999 bulkscore=0 impostorscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2211070129
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221107_071040_377977_0343C394 
-X-CRM114-Status: GOOD (  28.01  )
+X-CRM114-CacheID: sfid-20221107_080716_286322_652373E2 
+X-CRM114-Status: GOOD (  22.07  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,176 +147,67 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 11/5/2022 1:49 PM, Robert Marko wrote:
-> Currently, trying to use AHB + PCI/MHI cards or multiple PCI/MHI cards
-> will cause a clash in the QRTR instance node ID and prevent the driver
-> from talking via QMI to the card and thus initializing it with:
-> [    9.836329] ath11k c000000.wifi: host capability request failed: 1 90
-> [    9.842047] ath11k c000000.wifi: failed to send qmi host cap: -22
-> 
-> So, in order to allow for this combination of cards, especially AHB + PCI
-> cards like IPQ8074 + QCN9074 (Used by me and tested on) set the desired
-> QRTR instance ID offset by calculating a unique one based on PCI domain
-> and bus ID-s and writing it to bits 7-0 of BHI_ERRDBG2 MHI register by
-> using the SBL state callback that is added as part of the series.
-> We also have to make sure that new QRTR offset is added on top of the
-> default QRTR instance ID-s that are currently used in the driver.
-> 
-> This finally allows using AHB + PCI or multiple PCI cards on the same
-> system.
-> 
-> Before:
-> root@OpenWrt:/# qrtr-lookup
->    Service Version Instance Node  Port
->       1054       1        0    7     1 <unknown>
->         69       1        2    7     3 ATH10k WLAN firmware service
-> 
-> After:
-> root@OpenWrt:/# qrtr-lookup
->    Service Version Instance Node  Port
->       1054       1        0    7     1 <unknown>
->         69       1        2    7     3 ATH10k WLAN firmware service
->         15       1        0    8     1 Test service
->         69       1        8    8     2 ATH10k WLAN firmware service
-> 
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1-01208-QCAHKSWPL_SILICONZ-1
-> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01208-QCAHKSWPL_SILICONZ-1
-> 
-> Signed-off-by: Robert Marko <robimarko@gmail.com>
-> ---
->   drivers/net/wireless/ath/ath11k/mhi.c | 47 ++++++++++++++++++---------
->   drivers/net/wireless/ath/ath11k/mhi.h |  3 ++
->   drivers/net/wireless/ath/ath11k/pci.c |  5 ++-
->   3 files changed, 38 insertions(+), 17 deletions(-)
-> 
-> diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
-> index 86995e8dc913..23e85ea902f5 100644
-> --- a/drivers/net/wireless/ath/ath11k/mhi.c
-> +++ b/drivers/net/wireless/ath/ath11k/mhi.c
-> @@ -294,6 +294,32 @@ static void ath11k_mhi_op_runtime_put(struct mhi_controller *mhi_cntrl)
->   {
->   }
->   
-> +static int ath11k_mhi_op_read_reg(struct mhi_controller *mhi_cntrl,
-> +				  void __iomem *addr,
-> +				  u32 *out)
-> +{
-> +	*out = readl(addr);
-> +
-> +	return 0;
-> +}
-> +
-> +static void ath11k_mhi_op_write_reg(struct mhi_controller *mhi_cntrl,
-> +				    void __iomem *addr,
-> +				    u32 val)
-> +{
-> +	writel(val, addr);
-> +}
-> +
-> +static void ath11k_mhi_qrtr_instance_set(struct mhi_controller *mhi_cntrl)
-> +{
-> +	struct ath11k_base *ab = dev_get_drvdata(mhi_cntrl->cntrl_dev);
-> +
-> +	ath11k_mhi_op_write_reg(mhi_cntrl,
-> +				mhi_cntrl->bhi + BHI_ERRDBG2,
-> +				FIELD_PREP(QRTR_INSTANCE_MASK,
-> +				ab->qmi.service_ins_id - ab->hw_params.qmi_service_ins_id));
-> +}
+Hi Mariusz,
 
-What kind of synchronization is there for this?
+We are looking into this issue. It seems that this error can occur when the given frequency is not present or when the given frequency is disabled.
+To further analyze the issue, could you kindly let us know the output of the below commands during failure case.
+     1) iw dev
+     2) iw phyX channels
 
-Does SBL spin until this is set?
+Also, could you kindly send the WiFi driver boot up logs with "debug_mask=0x212" enabled during insmod of ath11k.ko module.
 
-What would prevent SBL from booting, sending the notification to the 
-host, and then quickly entering runtime mode before the host had a 
-chance to get here?
+Thanks,
+Nagarajan M.
 
+-----Original Message-----
 
-> +
->   static char *ath11k_mhi_op_callback_to_str(enum mhi_callback reason)
->   {
->   	switch (reason) {
-> @@ -315,6 +341,8 @@ static char *ath11k_mhi_op_callback_to_str(enum mhi_callback reason)
->   		return "MHI_CB_FATAL_ERROR";
->   	case MHI_CB_BW_REQ:
->   		return "MHI_CB_BW_REQ";
-> +	case MHI_CB_EE_SBL_MODE:
-> +		return "MHI_CB_EE_SBL_MODE";
->   	default:
->   		return "UNKNOWN";
->   	}
-> @@ -336,27 +364,14 @@ static void ath11k_mhi_op_status_cb(struct mhi_controller *mhi_cntrl,
->   		if (!(test_bit(ATH11K_FLAG_UNREGISTERING, &ab->dev_flags)))
->   			queue_work(ab->workqueue_aux, &ab->reset_work);
->   		break;
-> +	case MHI_CB_EE_SBL_MODE:
-> +		ath11k_mhi_qrtr_instance_set(mhi_cntrl);
-> +		break;
->   	default:
->   		break;
->   	}
->   }
->   
-> -static int ath11k_mhi_op_read_reg(struct mhi_controller *mhi_cntrl,
-> -				  void __iomem *addr,
-> -				  u32 *out)
-> -{
-> -	*out = readl(addr);
-> -
-> -	return 0;
-> -}
-> -
-> -static void ath11k_mhi_op_write_reg(struct mhi_controller *mhi_cntrl,
-> -				    void __iomem *addr,
-> -				    u32 val)
-> -{
-> -	writel(val, addr);
-> -}
-> -
->   static int ath11k_mhi_read_addr_from_dt(struct mhi_controller *mhi_ctrl)
->   {
->   	struct device_node *np;
-> diff --git a/drivers/net/wireless/ath/ath11k/mhi.h b/drivers/net/wireless/ath/ath11k/mhi.h
-> index 8d9f852da695..0db308bc3047 100644
-> --- a/drivers/net/wireless/ath/ath11k/mhi.h
-> +++ b/drivers/net/wireless/ath/ath11k/mhi.h
-> @@ -16,6 +16,9 @@
->   #define MHICTRL					0x38
->   #define MHICTRL_RESET_MASK			0x2
->   
-> +#define BHI_ERRDBG2				0x38
-> +#define QRTR_INSTANCE_MASK			GENMASK(7, 0)
-> +
->   int ath11k_mhi_start(struct ath11k_pci *ar_pci);
->   void ath11k_mhi_stop(struct ath11k_pci *ar_pci);
->   int ath11k_mhi_register(struct ath11k_pci *ar_pci);
-> diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-> index 99cf3357c66e..cd26c1567415 100644
-> --- a/drivers/net/wireless/ath/ath11k/pci.c
-> +++ b/drivers/net/wireless/ath/ath11k/pci.c
-> @@ -370,13 +370,16 @@ static void ath11k_pci_sw_reset(struct ath11k_base *ab, bool power_on)
->   static void ath11k_pci_init_qmi_ce_config(struct ath11k_base *ab)
->   {
->   	struct ath11k_qmi_ce_cfg *cfg = &ab->qmi.ce_cfg;
-> +	struct ath11k_pci *ab_pci = ath11k_pci_priv(ab);
-> +	struct pci_bus *bus = ab_pci->pdev->bus;
->   
->   	cfg->tgt_ce = ab->hw_params.target_ce_config;
->   	cfg->tgt_ce_len = ab->hw_params.target_ce_count;
->   
->   	cfg->svc_to_ce_map = ab->hw_params.svc_to_ce_map;
->   	cfg->svc_to_ce_map_len = ab->hw_params.svc_to_ce_map_len;
-> -	ab->qmi.service_ins_id = ab->hw_params.qmi_service_ins_id;
-> +	ab->qmi.service_ins_id = ab->hw_params.qmi_service_ins_id +
-> +	(((pci_domain_nr(bus) & 0xF) << 4) | (bus->number & 0xF));
->   
->   	ath11k_ce_get_shadow_config(ab, &cfg->shadow_reg_v2,
->   				    &cfg->shadow_reg_v2_len);
+From: Mariusz <enebeo@gmail.com>
+To: ath11k@lists.infradead.org
+Subject: Wallys DR9074-6E(PN02.7) QCN9074 refuses to work on 6GHz band
+Message-ID:
+	<CAJrE-q6NVEF4sNW1s4Zz7Pb2ryzCi69e+_vLQswBWm747DHYDw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+
+Hi,
+
+As support for QCN9074 got better I went ahead and built a 6E linux based AP. Dell R720 server x86 running Linux s4 5.19.0-23-generic #24-Ubuntu SMP PREEMPT_DYNAMIC Fri Oct 14 15:39:57 UTC 2022 x86_64
+x86_64 x86_64 GNU/Linux.
+
+My issue is that I cannot get it working on 6GHz bands but it works fine on 5GHz. I bought 6E version  and since this is a single band module it cannot be both 5G & 6G and linux driver does not agree with it being 6E version:
+
+[71914.038562] ath11k_pci 0000:03:00.0: BAR 0: assigned [mem 0xdf800000-0xdf9fffff 64bit] [71914.038840] ath11k_pci 0000:03:00.0: MSI vectors: 16 [71914.038852] ath11k_pci 0000:03:00.0: qcn9074 hw1.0 [71914.194459] mhi mhi0: Requested to power ON [71914.194712] mhi mhi0: Power on setup success [71914.297749] mhi mhi0: Wait for device to enter SBL or Mission mode [71914.647118] ath11k_pci 0000:03:00.0: chip_id 0x0 chip_family 0x0 board_id 0xff soc_id 0xffffffff [71914.647134] ath11k_pci 0000:03:00.0: fw_version 0x250a04b8 fw_build_timestamp 2021-12-20 06:41 fw_build_id [71916.310787] ath11k_pci 0000:03:00.0 wlp3s0: renamed from wlan0
+
+HE PHY Capabilities: (0x1c604c88ffdb839c110c00):
+                                HE40/HE80/5GHz
+                                HE160/5GHz
+                                HE160/HE80+80/5GHz
+
+iw dev wlp3s0 set freq 6195 160MHz
+kernel reports: Channel is disabled
+command failed: Invalid argument (-22)
+
+I am using the latest firmware files from ath11k tree. Is there any special firmware to force this to 6GHz? I read somewhere board_id determines which one it is and 255 disables 6GHz but I miss more data on that.
+
+phy#2 (self-managed)
+country US: DFS-FCC
+        (2402 - 2472 @ 40), (6, 30), (N/A)
+        (5170 - 5250 @ 80), (N/A, 30), (N/A), AUTO-BW
+        (5250 - 5330 @ 80), (N/A, 24), (0 ms), DFS, AUTO-BW
+        (5490 - 5730 @ 160), (N/A, 24), (0 ms), DFS, AUTO-BW
+        (5735 - 5895 @ 160), (N/A, 30), (N/A), AUTO-BW
+        (5945 - 7125 @ 160), (N/A, 30), (N/A), NO-OUTDOOR, AUTO-BW
+
+It works fine in 5GHz but this is not what I purchased it for, so I am puzzled if this is something in software or I was sold wrong hardware.Is there a specific board-2.bin for 6GHz? Since the 9074 chip is the same in all versions perhaps this is a software hiccup.
+
+Any clues are welcome.
+
+Regards,
+Mario
 
 
 -- 
