@@ -4,83 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9228BC433FE
-	for <ath11k@archiver.kernel.org>; Fri, 18 Nov 2022 10:29:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20CB9C433FE
+	for <ath11k@archiver.kernel.org>; Fri, 18 Nov 2022 11:27:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=1p5+1IOgVqqciuMjlZUBJZEm0H1SCIk6BqxR5tHs89o=; b=PgfdVy6owiZYhW
-	FBmdu1AMlmthJMwXJd5DCId1Essp9XkSutSfr5zxWG/zgvjsN1PYp0XZ0Q6f5XJwMzvfgV6MdSbtY
-	w6bL2tWQOMXjQs2SdJAmdCtOb5ZNn0gMgLeCN3QBj2foRr4RCTSk2Lv3k/y4+kuDbw7HpxDkyHYwi
-	EbleTXVduH6Jfd1fsixAWiWq2ezqvmdbm6hc4iScXJtvAXQZS/ah07G1BuTbFebzTlx5alISAcsI8
-	+rM+JIysZZSiyX1Qo3dZX5VBu7YFUnDWpcN9LITl2zigE/OJCQWYE8K4lLHoiOMnrZkBkl+2y6sVY
-	95adPCqHcsB6lgGVyGDA==;
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=ph5c/EFcifwcKgDvX8Vp+BDS706tPG0mQ+49ql3Lxto=; b=CAffURUee5i+xfTbUgfoSc14tS
+	ngeguVkBnSY4u0kmhtn08ZSyWrjKJMrqTBqTqSnPYjbdJNyfQLiqQ5C7fFKp6X/VpBz6DQqxoJYMl
+	3339z6961p8grB1rTCxY6E0LNBL3B8Iby3ORI0l9m7ANH4sbsf+tC//jH7OlVisHa4z7EO+eZIp5K
+	C1Vbhzl7hYOhkCTxHWn3J+dULG2BWOmjoehyQgoueyBOQFD+TjEJ/rYCo+s7/+tru8DRLntKFS3Rl
+	Cu2sp3lCu9OStNTmcZBk3bn31szj1Gqe+XSzy+UbLQkA9tbT6MlTRk/gGOKWrrR2ulTVG9VZRyfXE
+	Aj0vVZzg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ovycq-003O4C-3f; Fri, 18 Nov 2022 10:29:36 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1ovzWa-003f2j-5J; Fri, 18 Nov 2022 11:27:12 +0000
+Received: from dvalin.narfation.org ([2a00:17d8:100::8b1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ovycn-003O2l-9l
-	for ath11k@lists.infradead.org; Fri, 18 Nov 2022 10:29:34 +0000
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AI9uI9h031832;
-	Fri, 18 Nov 2022 10:29:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=GiHEF5dV2KVSqC69lRuMtCY71E0Dcp9oocwYhqMtKdE=;
- b=R1W9wfd32nR5fIfbaY4rE5J+EFs6zcWd754uqBgzlEPGdZ/qekCHRgwOCd/4Fn8rpOw+
- AV26FVQGx/ilZvHjsiQvfSOwhQg7V3XGpqssJjwLDL2qbMe6PuCABh/aho9HpK/QPKuy
- Cdc5Qbl8DNHx+kqQMyNi4fMZGQpphn2xA969kE7SOaP1v3tarzadyXOfL6XHJ+XxIeik
- u5RK5MLaIYHAVmPbeTT0BOgZsUJZHmLz6TA7fKwyXvgOHBcAkyAuKJ3gAM/XVhdnf63e
- hLtRFJyDMZp8k1Iz6DxHyo9VnwGYjvdtYZp4dOldAolxyhk+VzWCqEf26yZLzvZBhGaq tw== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kx0ra9bdd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 18 Nov 2022 10:29:26 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2AIATQQB028950
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 18 Nov 2022 10:29:26 GMT
-Received: from [10.231.195.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Fri, 18 Nov
- 2022 02:29:25 -0800
-Message-ID: <cd96eea8-dce0-bcb9-e8ce-05fa0e0f22fb@quicinc.com>
-Date: Fri, 18 Nov 2022 18:29:22 +0800
+	id 1ovzWW-003f01-A5
+	for ath11k@lists.infradead.org; Fri, 18 Nov 2022 11:27:10 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+	s=20121; t=1668770822;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=V/kkoPA6snxiDqJuDxgfr1YC3nbPt3FiHpBQblCcGj0=;
+	b=PuOn7yDv83lLPuJB+Aanq7vxTldPGzTnuzWxWInk/uogxhSEFSevr9BHGbc1hN3V0IR1+i
+	M/rl7/BcM+5q1jYPNbwqIxN+gmvofAOu/qPnmzPdgOcB3kec0RNVhLHYvxxBY7NGtmZ12t
+	u0u2awnsgR/wuKoe8ZHAUNpOFUJAfw0=
+From: Sven Eckelmann <sven@narfation.org>
+To: walde <waldemar.stroh@uni-siegen.de>
+Cc: Mariusz <enebeo@gmail.com>, "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
+Subject: Re: Wallys DR9074-6E(PN02.7) QCN9074 refuses to work on 6GHz band
+Date: Fri, 18 Nov 2022 12:26:54 +0100
+Message-ID: <4660647.LvFx2qVVIh@sven-l14>
+In-Reply-To: <28dd9e69-a2f6-2e5e-90d7-c44611d700a5@uni-siegen.de>
+References: <mailman.7.1667674802.1691884.ath11k@lists.infradead.org> <CAJrE-q7-+b_6yGAP2Aq8nNM27n0unsSFOxy6ac-ZLOkKC_caZg@mail.gmail.com> <28dd9e69-a2f6-2e5e-90d7-c44611d700a5@uni-siegen.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v3 2/2] wifi: ath11k: reduce the timeout value back for hw
- scan from 10 seconds to 1 second
-Content-Language: en-US
-To: Kalle Valo <kvalo@kernel.org>
-CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
-References: <20221011072408.23731-1-quic_wgong@quicinc.com>
- <20221011072408.23731-3-quic_wgong@quicinc.com> <8735atg335.fsf@kernel.org>
-From: Wen Gong <quic_wgong@quicinc.com>
-In-Reply-To: <8735atg335.fsf@kernel.org>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: KQh0TAfKxqRp9oqshfrI3S-_DLHSQojH
-X-Proofpoint-GUID: KQh0TAfKxqRp9oqshfrI3S-_DLHSQojH
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-17_06,2022-11-18_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- adultscore=0 clxscore=1011 priorityscore=1501 mlxlogscore=999
- suspectscore=0 spamscore=0 bulkscore=0 malwarescore=0 impostorscore=0
- mlxscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2211180062
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221118_022933_397635_43FC6940 
-X-CRM114-Status: GOOD (  16.21  )
+X-CRM114-CacheID: sfid-20221118_032708_840627_2506EF81 
+X-CRM114-Status: UNSURE (   9.72  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,56 +58,84 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: multipart/mixed; boundary="===============2475791754601687917=="
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 11/8/2022 6:20 PM, Kalle Valo wrote:
-> Wen Gong <quic_wgong@quicinc.com> writes:
->
-...
-> [...]
->
->> @@ -3682,7 +3677,12 @@ static int ath11k_mac_op_hw_scan(struct ieee80211_hw *hw,
->>   
->>   	ret = ath11k_start_scan(ar, &arg);
->>   	if (ret) {
->> -		ath11k_warn(ar->ab, "failed to start hw scan: %d\n", ret);
->> +		if (ret == -EBUSY)
->> +			ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
->> +				   "scan engine is busy 11d state %d\n", ar->state_11d);
->> +		else
->> +			ath11k_warn(ar->ab, "failed to start hw scan: %d\n", ret);
->> +
->>   		spin_lock_bh(&ar->data_lock);
->>   		ar->scan.state = ATH11K_SCAN_IDLE;
->>   		spin_unlock_bh(&ar->data_lock);
-> This feels like a hack to me, for example will these failed scans now
-> cause delays is connection establishment? IMHO it's crucial from user's
-> point of view that we don't delay that in any way.
-It will not delay connection.
-After wlan load, the 1st hw scan will arrived to ath11k, and then 11d
-scan will be sent to firmware after the 1st hw scan. It means the hw
-scan for connection is run before 11d scan, and then connection could
-be started immediately after the 1st hw scan finished. It means no
-delay for connection.
-> I would rather fix the root cause, do we know what's causing this?
-In firmware, hw scan and 11d scan are all running in the same queue,
-they can not be run parallel.
+--===============2475791754601687917==
+Content-Type: multipart/signed; boundary="nextPart2480574.ElGaqSPkdT"; micalg="pgp-sha512"; protocol="application/pgp-signature"
 
-When 6 GHz enabled, the 1st hw scan cost about 7s and finished, and
-then 11d scan cost the next 7s. After the 14s, the each hw scan arrived
-to ath11k will be run immediately. If the 2nd hw scan arrived before
-the 11d scan finished, for example, it arrived 7.1 seconds after the
-1st hw scan, at this moment, the 11d scan is still running in firmware,
-then the 2nd hw scan will not receive scan started event untill the 11d
-scan finished, and meanwhile, the 2nd hw scan is holding the ar->conf_mutex
-in ath11k_mac_op_hw_scan(), it is not good to hold a lock for some
-seconds because ar->conf_mutex is widely used. So reduce the 10s to 1s
-to avoid holding ar->conf_mutex for long time.
+--nextPart2480574.ElGaqSPkdT
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
+From: Sven Eckelmann <sven@narfation.org>
+To: walde <waldemar.stroh@uni-siegen.de>
+Date: Fri, 18 Nov 2022 12:26:54 +0100
+Message-ID: <4660647.LvFx2qVVIh@sven-l14>
+In-Reply-To: <28dd9e69-a2f6-2e5e-90d7-c44611d700a5@uni-siegen.de>
+MIME-Version: 1.0
+
+On Tuesday, 15 November 2022 19:29:13 CET walde wrote:
+> we probably have the same problem.
+> We have two Pinapple 6 Wifi 6 cards from the manufacturer 8devices that 
+> we want to operate at 6 GHz. The modules have the QCN 9074 chipset and 
+> are also certified for the 6E standard. The modules work very well at 5 
+> GHZ. However the option to transmit on 6 GHz is not available. The board 
+> ID is also defined as 0xff. If there is any information you could share 
+> to enable the modules for 6 GHz, we would appreciate it.
+
+You have to return it to them via their RMA procedure [1]. I already did that 
+in (mid) January 2022 and they replaced our cards with properly working 
+versions in (mid) February 2022.
+
+Maybe you got a card from their first batch(es) (which had this problem) - or 
+the problem was reintroduced for some reason.
+
+Kind regards,
+	Sven
+
+[1] https://shop.8devices.com/index.php?route=account/return/add
+--nextPart2480574.ElGaqSPkdT
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmN3a/4ACgkQXYcKB8Em
+e0aVABAA1GpkrEUzfHmy/PHw2ZmZ8PvF+NIvKll5pEyrNc7doaIyAebLEXa98eYV
+FfJH8tj7OntOXiRpvvPWPnpstk2YYMA/A5Q5VP5YfV34mCekIOP83XYCIdmeU+6t
+L8UrYBy2vMnC8brSEs9R+/gpT7jlKBwA2Wgetqd2n4E1GFdVE2mXFi5Mc975kkBL
+/lnt1/7/ifZAUqLuf+DMqIOGOb22PIdfBLNuVcshQGPDNuXXUQAMNu5lUJNlne/8
+2NfQMYPglo/cjOQEWaYyZ55xjodWMdrb5LegRUuCGp4lFoyHiiY3RHHIhUkDoerV
+DZm9R+ljDDris8w9Z8ihUrwQVRHFI427FqrHmrtuqhyMqyNpizHAgkWJKEbsj4Kk
+Y0UUePo5h73c/izuLgWITEjUojwWcyc73/wW1s9gulrp3IsaE/MnDAr/gBSP67+c
+tt2e/qA2Id3bC7P7tlwMUAJZpPGrecWqpUeEFZJ9sszMQLT5Xt+KTop9iLMSX0Yf
+EAY3l5I+hnkT+sV/sE0+pbWDJndmZZ2HfkvFzdS58QftMOUAl572gMKQVxpXUpT4
+W9Jqzk+NU/VaOk0LH2t4tyrG1R66iouzhYPNX/jyQxVRNHshVVWty5uc8COPy5fn
+ZD7HTryWf9n+L1i7ZKIw9YzA6vOdfxFth05JT4+zq1acOkUXWpI=
+=ayfu
+-----END PGP SIGNATURE-----
+
+--nextPart2480574.ElGaqSPkdT--
+
+
+
+
+
+--===============2475791754601687917==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 -- 
 ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
+
+--===============2475791754601687917==--
+
+
+
+
