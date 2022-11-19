@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43A3DC433FE
-	for <ath11k@archiver.kernel.org>; Sat, 19 Nov 2022 02:11:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2DF0C4332F
+	for <ath11k@archiver.kernel.org>; Sat, 19 Nov 2022 02:14:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=OkBhp5Z6pT60Mck5wdXoSMY1e/xAPKrDZuvdaw3km/0=; b=3pH1y/vOFG5Jtu
-	c7Lp6/G1jNKQu5eSDiCdXA79/F7oZr/55TesL1qrlpSXDFhl0t1hvYFU5zkIGG6zArsmzSVFUszIu
-	FVY8fJUnSLs4LDCDE8yPz2VHI8rf7ZyNw1yexaf6Ug7SGZFHMpL6bNv+tVdHxQCLA50vIDtgQjXn4
-	ytIYhIEi29wYyOzLAlDqEjD8NZ1ZBOf5Ov51xp+laTYPOWvO1vdi+e2HimHD4yc3TWhqqa1KEoD9b
-	Drt9Phcbtovkz2/K7wP1/x/qypxjfOhmO1Oqe+KMtH1GK/zL4t972pYkk0jzMA2y8VmpRBvM6oHct
-	7WdjRBtQmmwJbT1XuQrg==;
+	List-Owner; bh=ftCGvHVDVjyNZvJlaw21cV8jTLNV8AEZXaeRAUZNh2A=; b=BYr9ZlSC0g1NDF
+	yBVZTdyYESSFPSAXOndgLbiL4ez57/h5XRzkgGXlNZjAOw82frgbWs5bpdmAVKKNY5neLqxYXjvTA
+	LmfI5FMqU6GVlu+EHGI2wssAapIxCOgMDfgqpv2siQG5ORTgTu0SSuLrWg47IBemJMZ2XtLEvKe8Z
+	hJFMXgODhYskzJNq/VEq5MELectfW8ram5woP6Vqt/EtYxFeqwY+1xPQSpPkwENFYJnLLoP5bQiMN
+	VBKfBIUjeI+zoRSknolHccH0C36KgvXfGFZfHgFzVq/WlBKM9I3fBJlT9i+cZHwlI4xd85JKkW2LI
+	9SThgqtBnGiLYpAa4/CA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1owDKj-00AFDQ-M6; Sat, 19 Nov 2022 02:11:53 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1owDN3-00AGKY-43; Sat, 19 Nov 2022 02:14:17 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1owDKg-00AFCY-Ky
-	for ath11k@lists.infradead.org; Sat, 19 Nov 2022 02:11:52 +0000
+	id 1owDMx-00AGGT-Cx
+	for ath11k@lists.infradead.org; Sat, 19 Nov 2022 02:14:15 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 962FB62834;
-	Sat, 19 Nov 2022 02:11:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 218F9C433D6;
-	Sat, 19 Nov 2022 02:11:47 +0000 (UTC)
+	by ams.source.kernel.org (Postfix) with ESMTPS id 05203B82678;
+	Sat, 19 Nov 2022 02:14:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79E51C433D7;
+	Sat, 19 Nov 2022 02:14:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1668823908;
-	bh=MlbvOiMIzJGCXboIDtutu175+4WxBuENiY1GhJnkDZ8=;
+	s=k20201202; t=1668824049;
+	bh=LJuXFRrohITPW5o/NWROAe/Hfesl4OxQ4ROoWvTWE60=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Wh2MdlZHjiBMPeR/gIIUiIJ4FZuwq2WGLD/ngAk4vb7E12EWPKEDvLjlvF+bkQLyX
-	 cqrQfZM90kjWpNI16b68VVgkTTKSsjigVBiJ18qZy0R2YfSFY4NyKS7FyozNf+hhEM
-	 e2zsgDMcklKVT0oJK2aamjTUL1rjDR7JsOTpv36l6UvNx7Gb2aAdgTIKwASmHAQkxX
-	 q/8xCy9K2iVVyGDim038YMMJrN3pwIVCwTrxv3pq6q0FZZJfv866wzHn56UOqet+dF
-	 +4tOAhFJJ7rXilkyfMKQzJWl4MZiwQEJdlO0W1yvxKnGlHQUaWmCSgqd9BpxKARi0S
-	 ckByuHzek6dww==
+	b=SLXbCudm6hcj6Q6m7zmlvqaU35EEmfkhlPT3Lyfmjad0Zc7o1m10SNdqRJUweiZFY
+	 QdTvySOpYtB2ehv0PCbROG8BcfAjL+yAIfF4YF6uT15rlbuz9Y3lm+Ql089WETT7K3
+	 8g9Y0zDxx1xpKrabrAaRLUKfzbNUlcBvINQe9fEm4JBsBVo+aqqKQ7I2B2lD+ozIs9
+	 /FX3E+kcQ7tKsg5pibSSih/6sKjxczzGuqhUomAs7bQSAxtNZUpLTcQCOi/3cM9SQU
+	 EMDtPNahWdZR5ux4iXsSIsW4MoIegoqNBf+zhR7YLkiHLW1+kLsJq+jePkr0lVEXpD
+	 QrSnc3NuVhLhg==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
@@ -56,18 +56,18 @@ Cc: "Tyler J. Stachecki" <stachecki.tyler@gmail.com>,
 	ath11k@lists.infradead.org,
 	linux-wireless@vger.kernel.org,
 	netdev@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.0 10/44] wifi: ath11k: Fix QCN9074 firmware boot on x86
-Date: Fri, 18 Nov 2022 21:10:50 -0500
-Message-Id: <20221119021124.1773699-10-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.15 07/27] wifi: ath11k: Fix QCN9074 firmware boot on x86
+Date: Fri, 18 Nov 2022 21:13:32 -0500
+Message-Id: <20221119021352.1774592-7-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221119021124.1773699-1-sashal@kernel.org>
-References: <20221119021124.1773699-1-sashal@kernel.org>
+In-Reply-To: <20221119021352.1774592-1-sashal@kernel.org>
+References: <20221119021352.1774592-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221118_181150_749674_71278E50 
-X-CRM114-Status: GOOD (  13.48  )
+X-CRM114-CacheID: sfid-20221118_181411_672701_DFD608BA 
+X-CRM114-Status: GOOD (  13.54  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,7 +114,7 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/qmi.h b/drivers/net/wireless/ath/ath11k/qmi.h
-index 2ec56a34fa81..0909d53cefeb 100644
+index 3d5930330703..25940b683ea4 100644
 --- a/drivers/net/wireless/ath/ath11k/qmi.h
 +++ b/drivers/net/wireless/ath/ath11k/qmi.h
 @@ -27,7 +27,7 @@
