@@ -4,48 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AEB16C433FE
-	for <ath11k@archiver.kernel.org>; Fri, 18 Nov 2022 14:06:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43A3DC433FE
+	for <ath11k@archiver.kernel.org>; Sat, 19 Nov 2022 02:11:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=CDpJNqUrh1d4sRES9rUAEQym6OZADZYXPxQMiJ9E0CE=; b=2Y1q7b+h7eLAnEBHFZDRb0LTsd
-	AMSNWJrmT7OipakgLkijLqDMTh+yxgqCiSdnI9Pwf5+J8C3RWkh2NhkBhbL6r+MSPIH80Ptyq1hY7
-	Vl+de2PRn6qobBCxGfdvfj3nFXY0j52cRwkykMlzXQsta0ukkbbjhq101JXoT8H9OoPaHgxW43Y/s
-	gt3uNzjdi1g7w5qlEz726EC4G2FHVen9yj+hd3iZYbwL5oZzQM5Q8k7PtYYlEKRrDp3j4zWiSulIL
-	bYeno34jNmxNjtZv54Jj/sgpJYB5RqMY1P6s0gjxq+xnKw2YMVsXW+w+JXpWbgUqQu2QJs/hA62Jm
-	tia6IsbQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=OkBhp5Z6pT60Mck5wdXoSMY1e/xAPKrDZuvdaw3km/0=; b=3pH1y/vOFG5Jtu
+	c7Lp6/G1jNKQu5eSDiCdXA79/F7oZr/55TesL1qrlpSXDFhl0t1hvYFU5zkIGG6zArsmzSVFUszIu
+	FVY8fJUnSLs4LDCDE8yPz2VHI8rf7ZyNw1yexaf6Ug7SGZFHMpL6bNv+tVdHxQCLA50vIDtgQjXn4
+	ytIYhIEi29wYyOzLAlDqEjD8NZ1ZBOf5Ov51xp+laTYPOWvO1vdi+e2HimHD4yc3TWhqqa1KEoD9b
+	Drt9Phcbtovkz2/K7wP1/x/qypxjfOhmO1Oqe+KMtH1GK/zL4t972pYkk0jzMA2y8VmpRBvM6oHct
+	7WdjRBtQmmwJbT1XuQrg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ow20R-004IVG-GY; Fri, 18 Nov 2022 14:06:11 +0000
-Received: from dvalin.narfation.org ([213.160.73.56])
+	id 1owDKj-00AFDQ-M6; Sat, 19 Nov 2022 02:11:53 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ow20P-004IRI-34
-	for ath11k@lists.infradead.org; Fri, 18 Nov 2022 14:06:10 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-	s=20121; t=1668780360;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=bXg5WspFU1PMc4bgF14+CaIwMFeLBy0BOMuqmwc+azA=;
-	b=PStTHLYDN4QbNGAg9R5LZPfZUp7Gt4xGXEMT3HRRRu9LgSlqFn8p8S0n0h8WCURCaDzss6
-	jXQZHvGk7GbRAf7y32xnqt5/58MkJrhEOd1D8dYCLJhhN8gS5F/s70C5LlmN+cQcL+NIRF
-	KUHZJMk9o0ghUw/MncXcuagH699gtZI=
-From: Sven Eckelmann <sven@narfation.org>
-To: Mariusz <enebeo@gmail.com>
-Cc: walde <waldemar.stroh@uni-siegen.de>, "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
-Subject: Re: Wallys DR9074-6E(PN02.7) QCN9074 refuses to work on 6GHz band
-Date: Fri, 18 Nov 2022 15:05:49 +0100
-Message-ID: <3684626.iIbC2pHGDl@sven-l14>
-In-Reply-To: <CAJrE-q7GshGMSoiP8Vb9itUvap2=tWHqQnDFnckzcRNNpya6Bw@mail.gmail.com>
-References: <mailman.7.1667674802.1691884.ath11k@lists.infradead.org> <4660647.LvFx2qVVIh@sven-l14> <CAJrE-q7GshGMSoiP8Vb9itUvap2=tWHqQnDFnckzcRNNpya6Bw@mail.gmail.com>
+	id 1owDKg-00AFCY-Ky
+	for ath11k@lists.infradead.org; Sat, 19 Nov 2022 02:11:52 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 962FB62834;
+	Sat, 19 Nov 2022 02:11:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 218F9C433D6;
+	Sat, 19 Nov 2022 02:11:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1668823908;
+	bh=MlbvOiMIzJGCXboIDtutu175+4WxBuENiY1GhJnkDZ8=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=Wh2MdlZHjiBMPeR/gIIUiIJ4FZuwq2WGLD/ngAk4vb7E12EWPKEDvLjlvF+bkQLyX
+	 cqrQfZM90kjWpNI16b68VVgkTTKSsjigVBiJ18qZy0R2YfSFY4NyKS7FyozNf+hhEM
+	 e2zsgDMcklKVT0oJK2aamjTUL1rjDR7JsOTpv36l6UvNx7Gb2aAdgTIKwASmHAQkxX
+	 q/8xCy9K2iVVyGDim038YMMJrN3pwIVCwTrxv3pq6q0FZZJfv866wzHn56UOqet+dF
+	 +4tOAhFJJ7rXilkyfMKQzJWl4MZiwQEJdlO0W1yvxKnGlHQUaWmCSgqd9BpxKARi0S
+	 ckByuHzek6dww==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Cc: "Tyler J. Stachecki" <stachecki.tyler@gmail.com>,
+	Kalle Valo <quic_kvalo@quicinc.com>,
+	Sasha Levin <sashal@kernel.org>,
+	kvalo@kernel.org,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	ath11k@lists.infradead.org,
+	linux-wireless@vger.kernel.org,
+	netdev@vger.kernel.org
+Subject: [PATCH AUTOSEL 6.0 10/44] wifi: ath11k: Fix QCN9074 firmware boot on x86
+Date: Fri, 18 Nov 2022 21:10:50 -0500
+Message-Id: <20221119021124.1773699-10-sashal@kernel.org>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20221119021124.1773699-1-sashal@kernel.org>
+References: <20221119021124.1773699-1-sashal@kernel.org>
 MIME-Version: 1.0
+X-stable: review
+X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221118_060609_316424_3B5FAA28 
-X-CRM114-Status: GOOD (  12.24  )
+X-CRM114-CacheID: sfid-20221118_181150_749674_71278E50 
+X-CRM114-Status: GOOD (  13.48  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -57,100 +79,58 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============0274716790517808406=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
---===============0274716790517808406==
-Content-Type: multipart/signed; boundary="nextPart9242861.CDJkKcVGEf"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+From: "Tyler J. Stachecki" <stachecki.tyler@gmail.com>
 
---nextPart9242861.CDJkKcVGEf
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Sven Eckelmann <sven@narfation.org>
-To: Mariusz <enebeo@gmail.com>
-Date: Fri, 18 Nov 2022 15:05:49 +0100
-Message-ID: <3684626.iIbC2pHGDl@sven-l14>
-MIME-Version: 1.0
+[ Upstream commit 3a89b6dec9920026eaa90fe8457f4348d3388a98 ]
 
-On Friday, 18 November 2022 13:48:43 CET Mariusz wrote:
-> Mine is from a different supplier - Wallys - and I bought it 2 weeks
-> ago but not sure how old their stock is. PCB looks slightly different
-> than Pinapple's. Is it likely to have the same issue?
+The 2.7.0 series of QCN9074's firmware requests 5 segments
+of memory instead of 3 (as in the 2.5.0 series).
 
-It definitely has the same issue (because you reported that board_id is 
-255/0xff) but I have no idea whether Wallytech ever fixed it. At least I was 
-never in contact about this problem with them. But sending around precompiled 
-kernel module binaries (for an unknown kernel build), with some hacks to fix 
-their hardware production errors (missing module id fusing in the OTP for 
-their separately sold modules), doesn't make me confident that they are able 
-to solve this problem correctly.
+The first segment (11M) is too large to be kalloc'd in one
+go on x86 and requires piecemeal 1MB allocations, as was
+the case with the prior public firmware (2.5.0, 15M).
 
-In their defense, QCA doesn't make it really easy. It seems like their 
-reference designs with Pine on 6Ghz are (mostly?) for (embedded Linux) APs 
-which use the normal flash (NOR or NAND) to store the calibration data. And 
-for these devices, they use the devicetree (or various other hacks) to load 
-the correct board data.
+Since f6f92968e1e5, ath11k will break the memory requests,
+but only if there were fewer than 3 segments requested by
+the firmware. It seems that 5 segments works fine and
+allows QCN9074 to boot on x86 with firmware 2.7.0, so
+change things accordingly.
 
-Wallystech has to find the correct document on createpoint which describes the 
-process. It was something like "module" "board id" "fusing". But it is not the 
-"Board ID Fusing for 802.11ax WLAN AP Chipsets" which only describes the way 
-how you would to it for thei internal wifi of the IPQ807x/IPQ60xx/... SoC.
-You/they are searching for the corresponding document for Pine IPQ9074. Most 
-likely hidden in some QDART documents.
+Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
+Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01208-QCAHKSWPL_SILICONZ-1
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.16
 
+Signed-off-by: Tyler J. Stachecki <stachecki.tyler@gmail.com>
+Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+Link: https://lore.kernel.org/r/20221022042728.43015-1-stachecki.tyler@gmail.com
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/net/wireless/ath/ath11k/qmi.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Regarding the problem that some countries are not allowing 6GHz: You have to 
-either get a firmware from QCA which has it enabled or you modify the BDFs 
-("board-" files in the board-2.bin) to enable 6GHz in the (enabled) embedded 
-REGDB of the BDFs for the specific country. Unfortunately, the data structures 
-of the BDF are not officially documented and you would need an official QSDK/
-ATH.11.X release from QCA to fetch the bdf2txt.py, txt2bdf.py and the 
-corresponding template for your BDF to extract and modify it.
+diff --git a/drivers/net/wireless/ath/ath11k/qmi.h b/drivers/net/wireless/ath/ath11k/qmi.h
+index 2ec56a34fa81..0909d53cefeb 100644
+--- a/drivers/net/wireless/ath/ath11k/qmi.h
++++ b/drivers/net/wireless/ath/ath11k/qmi.h
+@@ -27,7 +27,7 @@
+ #define ATH11K_QMI_WLANFW_MAX_NUM_MEM_SEG_V01	52
+ #define ATH11K_QMI_CALDB_SIZE			0x480000
+ #define ATH11K_QMI_BDF_EXT_STR_LENGTH		0x20
+-#define ATH11K_QMI_FW_MEM_REQ_SEGMENT_CNT	3
++#define ATH11K_QMI_FW_MEM_REQ_SEGMENT_CNT	5
+ 
+ #define QMI_WLFW_REQUEST_MEM_IND_V01		0x0035
+ #define QMI_WLFW_FW_MEM_READY_IND_V01		0x0037
+-- 
+2.35.1
 
-Kind regards,
-	Sven
---nextPart9242861.CDJkKcVGEf
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmN3kT4ACgkQXYcKB8Em
-e0Y+3hAAiDQOXXBQbPP1Fowwi3dLlP0E4hG/Tjt6yEpFMtBpS6FyIjzRacIr46gl
-UC7VTeSujtjXGec7p4KXUnui+kcIPB2BEaTiLDi9V40Kfhnd2mGym+3PozGe6zTV
-5dEpKvIMwUuGFm1B5B3/mca2ns295GNT9nAjaYa+s+AohzkVtR5NHYhHf5d4tmis
-hUTGjgjswFZ6zpYi3FDKqqvqYq9f0k4WL8nw8c3G3mQGwqxXgwgXMLJtgsGisPs/
-MhmrpBqFEz+sYEBiDMdQ7ygAlQXRvPzzvhE0VMur7kJ92DBiCkO5jEQKPkchv4O+
-pNbdxZTk5Doy9ct5uYIEtkoQyFzMVSz8Dvf5cB8pb14yTtdC/CizZxV/AqWJgJKz
-1b9JHgAVu/mKeCInUqy75tVrH6SanowG44CYG8yDc6HJSnH9sxZtKaXu7wR5JjcT
-ttMouej/+xV09KLVUJjBD34P6wAcLQEraV/cTIeX2DrsXm4EX0NfnO6MGEKEHmTY
-Jx8IBLdGOBj3jzSp+89emeijop54HDpou0oGq0uDYeb53KxYATI/2T7S1ppXnWQ0
-bk3PBSlnOEDwNVW3y1Pvw+xtkBDuziU5Y16fsgFoFQ3q7XrEnonL3Llicu8ZJNXF
-bWA/9zShj5bVYL4m3S+liv9lz35NAfwAvfElkba0SwBwzXxIvwI=
-=mn3J
------END PGP SIGNATURE-----
-
---nextPart9242861.CDJkKcVGEf--
-
-
-
-
-
---===============0274716790517808406==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 -- 
 ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
-
---===============0274716790517808406==--
-
-
-
-
