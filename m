@@ -4,70 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2DF0C4332F
-	for <ath11k@archiver.kernel.org>; Sat, 19 Nov 2022 02:14:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 232D3C4332F
+	for <ath11k@archiver.kernel.org>; Sat, 19 Nov 2022 13:39:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ftCGvHVDVjyNZvJlaw21cV8jTLNV8AEZXaeRAUZNh2A=; b=BYr9ZlSC0g1NDF
-	yBVZTdyYESSFPSAXOndgLbiL4ez57/h5XRzkgGXlNZjAOw82frgbWs5bpdmAVKKNY5neLqxYXjvTA
-	LmfI5FMqU6GVlu+EHGI2wssAapIxCOgMDfgqpv2siQG5ORTgTu0SSuLrWg47IBemJMZ2XtLEvKe8Z
-	hJFMXgODhYskzJNq/VEq5MELectfW8ram5woP6Vqt/EtYxFeqwY+1xPQSpPkwENFYJnLLoP5bQiMN
-	VBKfBIUjeI+zoRSknolHccH0C36KgvXfGFZfHgFzVq/WlBKM9I3fBJlT9i+cZHwlI4xd85JKkW2LI
-	9SThgqtBnGiLYpAa4/CA==;
+	List-Owner; bh=I6VNkAQ4oEB9JACZ8QbhvsC3/M/xJDAtOs4sDjqxTg8=; b=LSghnU9NFDCcGq
+	OovuUUsqHwbHoLmHyvqaMKK9HDcHR1+FYLQpzhnTHTaknpSEPMzssXSo7NPlzf9JRpHYdCRIGAiNf
+	khhbQHNS9X0DkFyp1KTO1mOq1IPsFJaS32C0nH8VGesw2lTm3P84FMgJOYITlbKQ3mBw6E0zCAVLJ
+	/FMGjm+xDj6kQiu/Sos9IDKxqnpQtx3qfpA7VG/H9ZdiErz+PxfYiLsSrVDI2qBz4O0tYFT7ZraTc
+	boXGoP0mhJgSYBSDPEnS5+HxJQVy9TMbQMTmuOH2tMS7C5+dyaO/1djcPeAb6vr6SbAUj88zxMVYi
+	ML0ypzb0nwjBgqwXczXw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1owDN3-00AGKY-43; Sat, 19 Nov 2022 02:14:17 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1owO4Z-00Dsr7-De; Sat, 19 Nov 2022 13:39:55 +0000
+Received: from mail-lj1-x232.google.com ([2a00:1450:4864:20::232])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1owDMx-00AGGT-Cx
-	for ath11k@lists.infradead.org; Sat, 19 Nov 2022 02:14:15 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id 05203B82678;
-	Sat, 19 Nov 2022 02:14:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79E51C433D7;
-	Sat, 19 Nov 2022 02:14:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1668824049;
-	bh=LJuXFRrohITPW5o/NWROAe/Hfesl4OxQ4ROoWvTWE60=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=SLXbCudm6hcj6Q6m7zmlvqaU35EEmfkhlPT3Lyfmjad0Zc7o1m10SNdqRJUweiZFY
-	 QdTvySOpYtB2ehv0PCbROG8BcfAjL+yAIfF4YF6uT15rlbuz9Y3lm+Ql089WETT7K3
-	 8g9Y0zDxx1xpKrabrAaRLUKfzbNUlcBvINQe9fEm4JBsBVo+aqqKQ7I2B2lD+ozIs9
-	 /FX3E+kcQ7tKsg5pibSSih/6sKjxczzGuqhUomAs7bQSAxtNZUpLTcQCOi/3cM9SQU
-	 EMDtPNahWdZR5ux4iXsSIsW4MoIegoqNBf+zhR7YLkiHLW1+kLsJq+jePkr0lVEXpD
-	 QrSnc3NuVhLhg==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Cc: "Tyler J. Stachecki" <stachecki.tyler@gmail.com>,
-	Kalle Valo <quic_kvalo@quicinc.com>,
-	Sasha Levin <sashal@kernel.org>,
-	kvalo@kernel.org,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	ath11k@lists.infradead.org,
-	linux-wireless@vger.kernel.org,
-	netdev@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.15 07/27] wifi: ath11k: Fix QCN9074 firmware boot on x86
-Date: Fri, 18 Nov 2022 21:13:32 -0500
-Message-Id: <20221119021352.1774592-7-sashal@kernel.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221119021352.1774592-1-sashal@kernel.org>
-References: <20221119021352.1774592-1-sashal@kernel.org>
+	id 1owO4W-00Dsqm-Fj
+	for ath11k@lists.infradead.org; Sat, 19 Nov 2022 13:39:53 +0000
+Received: by mail-lj1-x232.google.com with SMTP id u11so9935905ljk.6
+        for <ath11k@lists.infradead.org>; Sat, 19 Nov 2022 05:39:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=M+gb1dMYe1DXRigXfuYgTG29k4GjsxMYNyHdZyfKF28=;
+        b=S9J4nl6PglYJLOERkcImg6fw+uGBD3E+4gOJzDvAz4rCxTGL5uPwKBElg7Lc7wYtXp
+         /bzuh9+yxYT4UIB0vOKAkS/1zQbGoWMqBJP30BxYwjdgRWddDEbVV1e0ldsT+tY+77sc
+         oUvwJocg0EA02fq+rHS/tJkDqXsAHMuaCc3sxPLo1ldeU6ZW+0VXYHQNz1W98DFK4BPj
+         9v8ZavyNP8CS17OaYA3iSEDO24pmqs7C5t0oZvWvwfdRAHuDRveBWDg9nq/Hi9uxbTA1
+         cYlUixRNa+l6K/x6CXxKS927xdAl5bkOZvx0lxmMHdzB/xxgm9DsSxqL/wz2b3ujvLQO
+         aG1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=M+gb1dMYe1DXRigXfuYgTG29k4GjsxMYNyHdZyfKF28=;
+        b=w3fP1UPEKoCCGGIz2mckoV56N3B6UJFwy0MZDpJWnHOUUrqx01eudpxhTCh6moPFqV
+         C8sEVTFzXx/WrblXq1sEzm/nGHeXkrOtd31qCGhyDnTEWIr2dGhCtpDrljOqhREVlMTZ
+         FbQxLPrxnLltB/EvMupPMkiuSCPQOuXQYTimlMRoOkEk+hKK/SUDgpj3g3z39SOo3gq5
+         9HAxnxDTllLIbuaxUn9kZZIgtjIuPq2bH2nwHBgzbdaU6g/viqmKZaugJOKJkXHLCidF
+         c/y/gsNwq7ivrOyDodEVKOBnfcNJR7ONj1FbfGnI1mu4t0YaOYyVNY4dOQuDhclYZqFc
+         UduA==
+X-Gm-Message-State: ANoB5plppKnO0Y+YjsA0MlyUvbT6n4uld/gpHWxDQMy1cYzIvVYeCRXs
+	NlK9otyEvn7sAPROtGySNzYS1xXjhY+8LiNwflQxkYv8L1gaxw==
+X-Google-Smtp-Source: AA0mqf58x8xhl21ugi+03sdCUFuYEvDPCI0P16MQIkSRcWU3dgqENruxovjpQVzUC92DhEPV3Yk+AzZqVs0SYcIC+6Y=
+X-Received: by 2002:a2e:b602:0:b0:277:901:5e1 with SMTP id r2-20020a2eb602000000b00277090105e1mr3555593ljn.349.1668865186686;
+ Sat, 19 Nov 2022 05:39:46 -0800 (PST)
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
+References: <mailman.7.1667674802.1691884.ath11k@lists.infradead.org>
+ <4660647.LvFx2qVVIh@sven-l14> <CAJrE-q7GshGMSoiP8Vb9itUvap2=tWHqQnDFnckzcRNNpya6Bw@mail.gmail.com>
+ <3684626.iIbC2pHGDl@sven-l14>
+In-Reply-To: <3684626.iIbC2pHGDl@sven-l14>
+From: Mariusz <enebeo@gmail.com>
+Date: Sat, 19 Nov 2022 14:39:35 +0100
+Message-ID: <CAJrE-q7yW435fPqeNg9aEhbdyy152Q2q-dSbQ7_4xNP9EzHWHg@mail.gmail.com>
+Subject: Re: Wallys DR9074-6E(PN02.7) QCN9074 refuses to work on 6GHz band
+To: Sven Eckelmann <sven@narfation.org>
+Cc: walde <waldemar.stroh@uni-siegen.de>, 
+	"ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221118_181411_672701_DFD608BA 
-X-CRM114-Status: GOOD (  13.54  )
+X-CRM114-CacheID: sfid-20221119_053952_605597_47EABAFA 
+X-CRM114-Status: GOOD (  23.18  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,51 +86,64 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: "Tyler J. Stachecki" <stachecki.tyler@gmail.com>
+I have contacted Wallys again but I am skeptical about resolution.
+They don't consider board_id an issue and provided the same response,
+on integrated systems it is due the bootloader to set it properly so
+it is not fused and obviously not included in x86 scenario. Since this
+is a private project I doubt QCA will support my efforts and free
+access to their portals gives nothing. Found online some SDK for
+version ath10k/IPQ8074 and athtestcmd to deal with OTP/fusing but
+that's far beyond home project effort.
 
-[ Upstream commit 3a89b6dec9920026eaa90fe8457f4348d3388a98 ]
+Tried also to compile it in OpenWRT with moderate success. ath11ko /
+qrtr.ko modules are built but the module never goes past power on
+success.
+mhi mhi0: Requested to power ON
+mhi mhi0: Power on setup success
+mhi mhi0: Wait for device to enter SBL or Mission mode
 
-The 2.7.0 series of QCN9074's firmware requests 5 segments
-of memory instead of 3 (as in the 2.5.0 series).
+Even the newest kernel in OpenWRT master development branch 5.16 is
+quite behind and backporting anything is another non-trivial task.
 
-The first segment (11M) is too large to be kalloc'd in one
-go on x86 and requires piecemeal 1MB allocations, as was
-the case with the prior public firmware (2.5.0, 15M).
-
-Since f6f92968e1e5, ath11k will break the memory requests,
-but only if there were fewer than 3 segments requested by
-the firmware. It seems that 5 segments works fine and
-allows QCN9074 to boot on x86 with firmware 2.7.0, so
-change things accordingly.
-
-Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
-Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01208-QCAHKSWPL_SILICONZ-1
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.16
-
-Signed-off-by: Tyler J. Stachecki <stachecki.tyler@gmail.com>
-Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
-Link: https://lore.kernel.org/r/20221022042728.43015-1-stachecki.tyler@gmail.com
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/net/wireless/ath/ath11k/qmi.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.h b/drivers/net/wireless/ath/ath11k/qmi.h
-index 3d5930330703..25940b683ea4 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.h
-+++ b/drivers/net/wireless/ath/ath11k/qmi.h
-@@ -27,7 +27,7 @@
- #define ATH11K_QMI_WLANFW_MAX_NUM_MEM_SEG_V01	52
- #define ATH11K_QMI_CALDB_SIZE			0x480000
- #define ATH11K_QMI_BDF_EXT_STR_LENGTH		0x20
--#define ATH11K_QMI_FW_MEM_REQ_SEGMENT_CNT	3
-+#define ATH11K_QMI_FW_MEM_REQ_SEGMENT_CNT	5
- 
- #define QMI_WLFW_REQUEST_MEM_IND_V01		0x0035
- #define QMI_WLFW_FW_MEM_READY_IND_V01		0x0037
--- 
-2.35.1
-
+On Fri, 18 Nov 2022 at 15:06, Sven Eckelmann <sven@narfation.org> wrote:
+>
+> On Friday, 18 November 2022 13:48:43 CET Mariusz wrote:
+> > Mine is from a different supplier - Wallys - and I bought it 2 weeks
+> > ago but not sure how old their stock is. PCB looks slightly different
+> > than Pinapple's. Is it likely to have the same issue?
+>
+> It definitely has the same issue (because you reported that board_id is
+> 255/0xff) but I have no idea whether Wallytech ever fixed it. At least I was
+> never in contact about this problem with them. But sending around precompiled
+> kernel module binaries (for an unknown kernel build), with some hacks to fix
+> their hardware production errors (missing module id fusing in the OTP for
+> their separately sold modules), doesn't make me confident that they are able
+> to solve this problem correctly.
+>
+> In their defense, QCA doesn't make it really easy. It seems like their
+> reference designs with Pine on 6Ghz are (mostly?) for (embedded Linux) APs
+> which use the normal flash (NOR or NAND) to store the calibration data. And
+> for these devices, they use the devicetree (or various other hacks) to load
+> the correct board data.
+>
+> Wallystech has to find the correct document on createpoint which describes the
+> process. It was something like "module" "board id" "fusing". But it is not the
+> "Board ID Fusing for 802.11ax WLAN AP Chipsets" which only describes the way
+> how you would to it for thei internal wifi of the IPQ807x/IPQ60xx/... SoC.
+> You/they are searching for the corresponding document for Pine IPQ9074. Most
+> likely hidden in some QDART documents.
+>
+>
+> Regarding the problem that some countries are not allowing 6GHz: You have to
+> either get a firmware from QCA which has it enabled or you modify the BDFs
+> ("board-" files in the board-2.bin) to enable 6GHz in the (enabled) embedded
+> REGDB of the BDFs for the specific country. Unfortunately, the data structures
+> of the BDF are not officially documented and you would need an official QSDK/
+> ATH.11.X release from QCA to fetch the bdf2txt.py, txt2bdf.py and the
+> corresponding template for your BDF to extract and modify it.
+>
+> Kind regards,
+>         Sven
 
 -- 
 ath11k mailing list
