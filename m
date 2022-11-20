@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77CDFC4332F
-	for <ath11k@archiver.kernel.org>; Sat, 19 Nov 2022 16:10:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1B7CC433FE
+	for <ath11k@archiver.kernel.org>; Sun, 20 Nov 2022 08:13:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=aC63h3lZk/FkrKeV/nS9fDtDbrPR/slUsvjI/36t+vw=; b=XzWGKp1zKRuuW7
-	NOJzx5SjFHTMBIVL2i+Sp83UhktAkHB6aaRqaRAGELmX78iiGK3W7DkuK9K1nEon1gG+2DCS7OqZs
-	iBcIJkhPsyPhtPP/XvNTO60zg8nKRrLivC/pDAWj47nW6rsmhjrsbAscU/ek1ao7Xlc92np0IrI7O
-	tazajp51O5gOyuBDn2i4Yp9Goa3vXL1anb6ZWfzStIMeyzUucK4m/K+xiBR/pNf9P+UFCKkyu/NM2
-	DGmSoaoHCdHCeCL3bfoY1cKHJr3zJzEifbaAX0hFIAWaJPWqnggvD4Lze/pe3E3EpWxNVXsF4uKYg
-	u+NqkZqvtyZ1h6O7Jytw==;
+	List-Owner; bh=kL458Kw1LkZKH9cM3MazxhkTZn7REkCKF7aHfZYIsGo=; b=zoJV2iBeWpKPyg
+	KQg9uDbFFpUSfna5e1Y6eSp9CoD+9BHrjo2/qksg1QlAQsFF2eTczKFg6WH3BK5KIpF9UrQfcL7hO
+	/pqKxWibzARviBA6Po3kL1udJmifM5YhhuBK5z2ViVfiurOZxUZufGMA8Hq3dm5i64l+bG5PRUuBE
+	hJgAN53I/XpMX5guGiNn+72rqTzbBSRkyAqQRl1r9qfJu3GD+Fqob/mnwAbSe8RjwtI31tMV6TMsH
+	jg2q0J5w0SzQRadVf7I0sRlSuLm/Ji5Asd+1aQIN8B9ZvlI81tPmmcgv+9shuZXXhV/Ut9gBk6Dbk
+	X70Im9dHdVtfcAlLvtgA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1owQPs-00EsP6-IF; Sat, 19 Nov 2022 16:10:04 +0000
-Received: from mail-lf1-x135.google.com ([2a00:1450:4864:20::135])
+	id 1owfSE-002zs2-DV; Sun, 20 Nov 2022 08:13:30 +0000
+Received: from mail-lj1-x22c.google.com ([2a00:1450:4864:20::22c])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1owQPp-00EsGq-IK
-	for ath11k@lists.infradead.org; Sat, 19 Nov 2022 16:10:03 +0000
-Received: by mail-lf1-x135.google.com with SMTP id b3so12855072lfv.2
-        for <ath11k@lists.infradead.org>; Sat, 19 Nov 2022 08:09:59 -0800 (PST)
+	id 1owfSB-002zrW-9S
+	for ath11k@lists.infradead.org; Sun, 20 Nov 2022 08:13:29 +0000
+Received: by mail-lj1-x22c.google.com with SMTP id s24so11449863ljs.11
+        for <ath11k@lists.infradead.org>; Sun, 20 Nov 2022 00:13:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=JCRUeSvieg1P+WPED1XqFlENEXBLICCnQbS9NnGsPng=;
-        b=ZtGW1WDQUdUbjczbOQNUkYeJPSoEAUDnsRp33PAWaq5EDmst6S9iU/coUCeRFRBIQN
-         dZUcSodZD/v6i8BeZtfO40/daT5wgvqTXheSYchu7sAGH/D43Nc59SQfDD4HmvIBbE7h
-         HhmRsNIFUtIcBLfhR7QVF6dcDYzs5807xPTHhmpT56BdxnR7czYpXag4FfuPqzusYBzu
-         MwzqHq2p9IUq6c/pkxg8fFo8JnoDpCr1H5IsQPTREEiroQegj5Q8WffLLTnSOHbY+yU1
-         hIHfbvYWr5ebwuJi0MRhSyNGiRnEX+dRPA27ma2XyyCSn89g8EcHL0Ckdj61sStSZD75
-         +XxA==
+        bh=ESOG36Ho2ZT6yXqrz5s1bMp/VeSG+VVt6PUDn1qpyLQ=;
+        b=qV/RndYc3z4j5aylkXFUGc8nJNAlYt2ONkXyvlpn15vtOcEbOFA3FEpXCVtZ69XR4m
+         IklSGIJy1rcDp2osEDkO3TGZMdBQ0g3srynRV5b7BAUr74tJJT65FFpw8YLoNpMe/2hw
+         bT+lkzf3DSCkFHo4b1q/7H0ef1fqGmOm227smxYFFnyY9Uph0a45glVjZ5fGyKvtn/uR
+         cKby2dU9TKddhZBUZV+bEU8SPX1er2SZdMTdTG46OFnYTUDCqS94HERGuZ7It/UFbqzw
+         i4Z59Vcd4o7Py2ReLLDDFtRNaz1NcPAQQ1OQqChtQAfUhJkHW/GRXVa+lLKheRUPdNYz
+         Qk7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=JCRUeSvieg1P+WPED1XqFlENEXBLICCnQbS9NnGsPng=;
-        b=lfaB/OoaM7H7yvsJK296apcrboG1MDjU6tWhjUgoLyCyChRiyXVW6qLuXWuuobYIxv
-         AYan/adyuIToxrl/co5s8TPGWZ3nadNo07Z+FFDyeVFwEYNe4/uTBPa39kipePVhO3fN
-         Z/n3XA9GnD9wsykmdcXtuQBQGnoeRvLFXfYhJmXfJn0SULjPLix2rJ1/GQbxrS8sX+kU
-         8LM17tLds1gasFG6YclHv2QoOgjcZxp/B8uKmI6ACjdfjPTm7M8vByK16LfOx/A9S4gU
-         m7sqYNt5tUtWAHge48raKE6YsEgWr1UFeCoVsxJ5wYT7XVNGbug3penkFLJfrrL18TY4
-         siuQ==
-X-Gm-Message-State: ANoB5pkYF/y4jsRkpX2PZ2DNGunkFJNkqCW/BL1FKuc2L6qlqrG1Fq7p
-	N9fxhJLXiZsqPzINt9n8kwhfDIonAxhreIEPtTU=
-X-Google-Smtp-Source: AA0mqf5+cXbRur4wJRF2lKgGxq8D0yF2n77GgyX51BZyd+qkQ1DsQl03MpPJOivIpKXfctL55y8aqjLWMW0wS7ZUF1A=
-X-Received: by 2002:ac2:4ec3:0:b0:4a2:3c09:3019 with SMTP id
- p3-20020ac24ec3000000b004a23c093019mr3631214lfr.90.1668874198181; Sat, 19 Nov
- 2022 08:09:58 -0800 (PST)
+        bh=ESOG36Ho2ZT6yXqrz5s1bMp/VeSG+VVt6PUDn1qpyLQ=;
+        b=BRin79Kac/FSJcwiMnCDtv4ykNNm0lNiI0/TobzHsdhYZBsd/yV0G9QaPKm6DCT7ck
+         CZmaa2oWUwQxCU8ft3H0FO7tmq73LR6UtOcQyrbbQcZLGL2tXl2q9Hl8aGEO4ffzu//Y
+         N3/C0O3gmfqRLASRK/OKJCS91rc20KDjo2kW/IdMCmOSfKo+tTzbXUNbAi+tNo4hD37Y
+         jM6w0U+KCNbZ2rNE3HWZXa1BbdhxdHrouMSZAp3+6uQLjDMLTVmZPy57v/g9xhKLk/J1
+         XblinRbrqHefhBC+NX5Q7tOPWvNrVpPGNpBrUJnThKKX3sjIsVHyGwxKqS4aK1gMCDc7
+         G+vw==
+X-Gm-Message-State: ANoB5plKB7qIO3QJ4tEGpPT3mPzVlezjjFWnhB7pv++3BBtv6/SaudY8
+	04wiYBgGMa/bUERhCetJVS6i5ldjdz3rKs/3gsKjX6jWpxE=
+X-Google-Smtp-Source: AA0mqf6DYKZatHhpK80rXcTGsRzkrvyZLlnvgNCp7tPdKMgywil95xX+vWiYyv+HerC1tAq5wXGEyrYTk/RGmp+2NJs=
+X-Received: by 2002:a05:651c:2050:b0:278:eef5:8d17 with SMTP id
+ t16-20020a05651c205000b00278eef58d17mr4453746ljo.205.1668932004873; Sun, 20
+ Nov 2022 00:13:24 -0800 (PST)
 MIME-Version: 1.0
 References: <mailman.7.1667674802.1691884.ath11k@lists.infradead.org>
  <4660647.LvFx2qVVIh@sven-l14> <CAJrE-q7GshGMSoiP8Vb9itUvap2=tWHqQnDFnckzcRNNpya6Bw@mail.gmail.com>
@@ -63,15 +63,15 @@ References: <mailman.7.1667674802.1691884.ath11k@lists.infradead.org>
  <CA+HBbNGWQCR_RQK3iCX3cEHeMzMeKz6pdwG9=LrOw8fSB22x2Q@mail.gmail.com>
 In-Reply-To: <CA+HBbNGWQCR_RQK3iCX3cEHeMzMeKz6pdwG9=LrOw8fSB22x2Q@mail.gmail.com>
 From: Mariusz <enebeo@gmail.com>
-Date: Sat, 19 Nov 2022 17:09:46 +0100
-Message-ID: <CAJrE-q4nzWsHsCS5BQkiSkXyTqZLf8G1Bv_Ld_fp0-NJSdGgMA@mail.gmail.com>
+Date: Sun, 20 Nov 2022 09:13:16 +0100
+Message-ID: <CAJrE-q41T-A0My_+wRauGW9CQh53U7CLP5L9vNNMKtS4nEvFgA@mail.gmail.com>
 Subject: Re: Wallys DR9074-6E(PN02.7) QCN9074 refuses to work on 6GHz band
 To: Robert Marko <robert.marko@sartura.hr>
 Cc: Sven Eckelmann <sven@narfation.org>, walde <waldemar.stroh@uni-siegen.de>, 
 	"ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221119_081001_773957_9E35CFC7 
-X-CRM114-Status: GOOD (  46.44  )
+X-CRM114-CacheID: sfid-20221120_001327_374975_2E2B9018 
+X-CRM114-Status: GOOD (  42.26  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,42 +88,32 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-I am just relying on what I am told by their support, really wanted to
-deploy a 6E SoftAP for my home lab and expected some hackery but this
-is like an early dev sample kind of environment with most stuff in the
-works.
+I also got my hands on AXE75 which is a 6E router and I am able to get
+QCN9074 work in STA mode.
 
-For the time being this is exactly what I did with hardcoding board_id
-into the driver: /drivers/net/wireless/ath/ath11k/qmi.c:2234:
-ab->qmi.target.board_id = 0xA2;
-After this no more board.bin hackery is needed and correct firmware is
-loaded from board-2.bin. This of course means I cannot use any other
-ath11k card in the system as it would be forced to this id but that's
-not an issue. My objective is to have only 6E add on to my network.
+With 160Mhz it did not work but it may be anything. However with 80Mhz
+I am able to get a successful connection fully authenticated with
+WPA3. So radio wise it operates in 6Ghz band after driver patch with
+board_id=0xa2. Now I'm trying to understand why it still does not work
+in AP mode.
 
-Now correctly reported:
-[ 1525.142906] ath11k_pci 0000:07:00.0: chip_id 0x0 chip_family 0x0
-board_id 0xa2 soc_id 0xffffffff
-[ 1525.142909] ath11k_pci 0000:07:00.0: fw_version 0x270206d0
-fw_build_timestamp 2022-08-04 12:48 fw_build_id
-WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
-
-and the correct FW is loaded with 6Ghz channels enabled.
-
-
-Debug is no longer showing any errors, hostapd is not reporting
-anything wrong everything pretends to work but it does not in
-practice. What puzzles me is that raw dump of wireless frames off
-AX210 client shows there is beacon transmission from the module but
-for whatever reason the client ignores it as a valid AP option.
-
-airodump-ng -C 6115 -i wlan0mon --bssid C4:4B:D1:D0:00:7E
-
-Freq 6115 ][ Elapsed: 0 s ][ 2022-11-18 13:48
-
-BSSID PWR Beacons #Data, #/s CH MB ENC CIPHER AUTH ESSID
-
-C4:4B:D1:D0:00:7E -46 12 0 0 33 54e WPA3 CCMP SAE dupa
+root@s4:/home/angel# wpa_cli status
+Selected interface 'wlp6s0'
+bssid=1c:61:b4:c8:93:f4
+freq=6115
+ssid=test
+id=0
+mode=station
+wifi_generation=6
+pairwise_cipher=CCMP
+group_cipher=CCMP
+key_mgmt=SAE
+pmf=2
+mgmt_group_cipher=BIP
+wpa_state=COMPLETED
+ip_address=192.168.6.123
+address=c4:4b:d1:d0:00:7e
+uuid=07aaca38-a259-53ef-b12b-bb4cf5dad8d8
 
 On Sat, 19 Nov 2022 at 16:16, Robert Marko <robert.marko@sartura.hr> wrote:
 >
