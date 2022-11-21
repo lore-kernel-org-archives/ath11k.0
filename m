@@ -4,87 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FB65C4332F
-	for <ath11k@archiver.kernel.org>; Mon, 21 Nov 2022 10:56:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7456EC433FE
+	for <ath11k@archiver.kernel.org>; Mon, 21 Nov 2022 11:04:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:References:CC:To:From:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=b0ItnLS6JEcxR1OcPhOHF6bOlTf/i1OICTQgw9B5u6Y=; b=gt3ZeaXZC53yMs
-	YW178hXc1FqUU3568BF64Odif1YciWpE5YnCCl2NOaW76tLOP3kT+4bOb9qDSNcVy0OOW7s16XSx4
-	CRmeqMhymXZB397D4B4AWfDqhLgahXtYElGwxjQfgQeNoxFBDrEZ4dr9aTd/eSvt8D4wSBHtrJ/f2
-	W1aAhzbzyxZoH/NSnE1g9RDJVIZclFWhhihCk3no3ZV+UfTlZAgCJLLPn4/z3OK0aB9w1mDk7whI+
-	dS/onqHXoBh6006jESRJgTvB7ImXqW1JwmwFY7JPB398xNg2GHetwrCXlVyTVMoFoGrIvQJQzmHez
-	7/isCEbz8nuqLshi9dhg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=Pp6oAp7c7ahxL/HmnUHIefbj7A1Z0Up1Pk64G6KjRRU=; b=gcV5mza5CMU8D7
+	7RM3Sw57HDuOOPCHPSU4JPmmLJVzl5tLJyoSlVps48DYqg2GosrPz8We0hUogfee4Kc7jEm42z48m
+	wa60XpIE836ZTwqENpUAOG15656CZ7cUUK9bJVODxnBFuMDG+MT64/zhmpKNWW1E0RGZxanv51Sz0
+	cixMSkIgxz56eC3p+LNWXNG9UwoXgIdVGnLAh/ejTegV9COXW32XsrYREZJubRKADvU/WCElRngbx
+	HiP5+pmYXwT95AmYVY8LNWniqiPFtfymimDIZSbXPqHxkbt+24agQ5O+TqrGiQuxi1CgWE8lVcQYl
+	l7sh/TdcjghmU6aGpDsg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ox4TR-00CjxZ-If; Mon, 21 Nov 2022 10:56:25 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1ox4bB-00Cm7Y-Qs; Mon, 21 Nov 2022 11:04:25 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ox4TO-00CjwO-K3
-	for ath11k@lists.infradead.org; Mon, 21 Nov 2022 10:56:24 +0000
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2ALAJbVA000938;
-	Mon, 21 Nov 2022 10:56:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : from : to : cc : references : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=al1ITFpVQh1H6bn1aV9Hl/dIpYl8S/214h3vKvyk6TI=;
- b=CIyBcNmZ4WbvkWMsiBbqEsJDW//UtUqH6vDReBGK8cYdx2zW04MrbSrXmQbR9Cqw/ojP
- 5aBYt3NTr/bktY7s2a+EDHCBsCOWskeDX09/r87EplQpjGMhulxHPOtKpVgtzs/8GoAJ
- FZW5Cw5oPWQpI0dJDZX4SsBVauzrRYKZ8H+NdOr/ljwNoA2Oh075SLudZ3PMAoLHBRYG
- nunsyUaFHPFOQWcTKlQvZqKnm741TpZrHgCTCF76M8ecVmXd5+FpuWCJWisDVyZJds+D
- mj2VDrcx1IHcQUr9C6HDN8YCoeyQX6WPeYv+KBp+dTfg6xWF0gJrD7wdUmoPeg2pf9/a Xg== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kxrtqc4pq-1
+	id 1ox4b9-00Cm6D-OR
+	for ath11k@lists.infradead.org; Mon, 21 Nov 2022 11:04:25 +0000
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AL7wv2I018558;
+	Mon, 21 Nov 2022 11:04:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=sXz76b6lVEdoLg3u/wiKDk8TD3JBebCLTsYMhypEq0I=;
+ b=LR44CyUPMEeivy4iKL7iI6UZNtnDB3UhynONDYDG6n+FBgdlUDIFueCLJTHFawrQBglx
+ pdiVzfNl3EHJ0TP4bVT4CQqLsjSwyE0cJq6mU2cjLV1oOBbwrMYvzYOWUPmhPMaQcqrF
+ UaAQkHRXrO6RJVudl+EeCPwJ1cr3DbuiwcobVk6x7Lxpo7rBESQTTB3elxkPj9yX9T5L
+ zwHufDDzrUuMaQJG8l8jQ49hCtSVjoMlT50VdR/swgq9SuR65ELMsLr9TPZtSEMkVZql
+ 06i+QaWOg/RmUG6XvcnVtHTpApqz6Pc6zJWFQXVT7nk6+pLh0uNTv8t4rjXxD+5mCKHs 4Q== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kxrfbv9du-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 21 Nov 2022 10:56:16 +0000
+	Mon, 21 Nov 2022 11:04:22 +0000
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2ALAuFLk014819
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2ALB4L7q023569
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 21 Nov 2022 10:56:15 GMT
-Received: from [10.206.66.231] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 21 Nov
- 2022 02:56:14 -0800
-Message-ID: <0a765cb8-9e64-4345-f6eb-a143500ea24d@quicinc.com>
-Date: Mon, 21 Nov 2022 16:26:11 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v2 3/4] ath11k: Enable low power mode when WLAN is not
- active
+	Mon, 21 Nov 2022 11:04:21 GMT
+Received: from mpubbise-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Mon, 21 Nov 2022 03:04:20 -0800
 From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-To: Kalle Valo <kvalo@kernel.org>
-CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
-References: <20220825111818.30869-1-quic_mpubbise@quicinc.com>
- <20220825111818.30869-4-quic_mpubbise@quicinc.com>
- <874jxsdeov.fsf@kernel.org>
- <c10d7988-099b-cd10-64aa-41daca1ce12b@quicinc.com>
- <874jxpc3t8.fsf@kernel.org>
- <f5283344-a39d-f2f5-faa3-3fd11c3c70af@quicinc.com>
-Content-Language: en-US
-In-Reply-To: <f5283344-a39d-f2f5-faa3-3fd11c3c70af@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>,
+        Manikanta Pubbisetty
+	<quic_mpubbise@quicinc.com>
+Subject: [PATCH v3 0/3] Enable low power mode when WLAN is not active
+Date: Mon, 21 Nov 2022 16:33:56 +0530
+Message-ID: <20221121110359.4652-1-quic_mpubbise@quicinc.com>
+X-Mailer: git-send-email 2.38.0
+MIME-Version: 1.0
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: uvDi4pZqYry_vwytYvuenN3GG5mkiU2d
-X-Proofpoint-GUID: uvDi4pZqYry_vwytYvuenN3GG5mkiU2d
+X-Proofpoint-GUID: 45ZKwzzf-rEr_WY4SUrEYKGvG8YwSC8c
+X-Proofpoint-ORIG-GUID: 45ZKwzzf-rEr_WY4SUrEYKGvG8YwSC8c
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
  definitions=2022-11-21_06,2022-11-18_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1011
- malwarescore=0 bulkscore=0 phishscore=0 priorityscore=1501 impostorscore=0
- suspectscore=0 mlxlogscore=591 lowpriorityscore=0 adultscore=0 mlxscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2210170000
- definitions=main-2211210085
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 adultscore=0
+ lowpriorityscore=0 mlxlogscore=999 malwarescore=0 suspectscore=0
+ phishscore=0 priorityscore=1501 clxscore=1015 impostorscore=0 mlxscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2211210087
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221121_025622_820986_E5705213 
-X-CRM114-Status: GOOD (  21.86  )
+X-CRM114-CacheID: sfid-20221121_030423_822632_1EBADF49 
+X-CRM114-Status: GOOD (  17.20  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,137 +88,59 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-T24gOS8yLzIwMjIgNjo1NSBQTSwgTWFuaWthbnRhIFB1YmJpc2V0dHkgd3JvdGU6Cj4gT24gOS8y
-LzIwMjIgNjo0OCBQTSwgS2FsbGUgVmFsbyB3cm90ZToKPj4gTWFuaWthbnRhIFB1YmJpc2V0dHkg
-PHF1aWNfbXB1YmJpc2VAcXVpY2luYy5jb20+IHdyaXRlczoKPj4KPj4+IE9uIDgvMzEvMjAyMiAx
-OjMxIFBNLCBLYWxsZSBWYWxvIHdyb3RlOgo+Pj4KPj4+PiBXaXRoIHRoaXMgcGF0Y2ggMyBteSBy
-ZWdyZXNzaW9uIHRlc3RzIG9uIFdDTjY4NTUgcGFuaWM6Cj4+Pj4KPj4+PiBbwqAgMTA5LjAwOTQy
-N10gcm1tb2QgYXRoMTFrX3BjaQo+Pj4+IFvCoCAxMDkuNDM3MTIwXSBrd29ya2VyL2R5aW5nICgx
-NTYwKSB1c2VkIGdyZWF0ZXN0IHN0YWNrIGRlcHRoOiAyNDcwNCAKPj4+PiBieXRlcyBsZWZ0Cj4+
-Pj4gWyAxMDkuNDQ2MDUxXSBnZW5lcmFsIHByb3RlY3Rpb24gZmF1bHQsIHByb2JhYmx5IGZvciBu
-b24tY2Fub25pY2FsCj4+Pj4gYWRkcmVzcyAweGRmZmZmYzAwMDAwMDAwM2U6IDAwMDAgWyMxXSBQ
-UkVFTVBUIFNNUCBERUJVR19QQUdFQUxMT0MKPj4+PiBLQVNBTgo+Pj4+IFsgMTA5LjQ0NjEzM10g
-S0FTQU46IG51bGwtcHRyLWRlcmVmIGluIHJhbmdlCj4+Pj4gWzB4MDAwMDAwMDAwMDAwMDFmMC0w
-eDAwMDAwMDAwMDAwMDAxZjddCj4+Pj4gW8KgIDEwOS40NDYyMTFdIENQVTogMCBQSUQ6IDAgQ29t
-bTogc3dhcHBlci8wIE5vdCB0YWludGVkIAo+Pj4+IDYuMC4wLXJjMi13dC1hdGgrICM2ODMKPj4+
-PiBbIDEwOS40NDYzMTVdIEhhcmR3YXJlIG5hbWU6IEludGVsKFIpIENsaWVudCBTeXN0ZW1zCj4+
-Pj4gTlVDOGk3SFZLL05VQzhpN0hWQiwgQklPUyBITktCTGk3MC44NkEuMDA2Ny4yMDIxLjA1Mjgu
-MTMzOQo+Pj4+IDA1LzI4LzIwMjEKPj4+PiBbwqAgMTA5LjQ0NjM5M10gUklQOiAwMDEwOmF0aDEx
-a19kcF9wcm9jZXNzX3J4ZG1hX2VycisweDFjOC8weDgxMCAKPj4+PiBbYXRoMTFrXQo+Pj4+IFsg
-MTA5LjQ0NjQ4Nl0gQ29kZTogZDIgNDggNjMgZDggNDggOGIgNGMgMjQgMzggNDggOGQgMDQgNWIg
-NDggYzEgZTAKPj4+PiAwNCA0OCA4ZCBiYyAwMSBmNCAwMSAwMCAwMCA0OCBiOCAwMCAwMCAwMCAw
-MCAwMCBmYyBmZiBkZiA0OCA4OSBmYSA0OAo+Pj4+IGMxIGVhIDAzIDwwZj4gYjYgMTQgMDIgNDgg
-ODkgZjggODMgZTAgMDcgODMgYzAgMDMgMzggZDAgN2MgMDggODQgZDIKPj4+PiAwZiA4NSBhYQo+
-Pj4+IFvCoCAxMDkuNDQ2NTU3XSBSU1A6IDAwMTg6ZmZmZmM5MDAwMDAwN2I5MCBFRkxBR1M6IDAw
-MDEwMjAzCj4+Pj4gW8KgIDEwOS40NDY2MTldIFJBWDogZGZmZmZjMDAwMDAwMDAwMCBSQlg6IDAw
-MDAwMDAwMDAwMDAwMDAgUkNYOiAKPj4+PiAwMDAwMDAwMDAwMDAwMDAwCj4+Pj4gW8KgIDEwOS40
-NDY2NzddIFJEWDogMDAwMDAwMDAwMDAwMDAzZSBSU0k6IDAwMDAwMDAwMDAwMDAwMDAgUkRJOiAK
-Pj4+PiAwMDAwMDAwMDAwMDAwMWY0Cj4+Pj4gW8KgIDEwOS40NDY3MzRdIFJCUDogMDAwMDAwMDAw
-MDAwMDAwMCBSMDg6IGZmZmY4ODgxNGMwZTE0NzAgUjA5OiAKPj4+PiBmZmZmODg4MTRjMGY2Njc4
-Cj4+Pj4gW8KgIDEwOS40NDY3OTJdIFIxMDogZGZmZmZjMDAwMDAwMDAwMCBSMTE6IGZmZmZlZDEw
-Mjk4MWVjZDAgUjEyOiAKPj4+PiAwMDAwMDAwMDAwMDAwMDAwCj4+Pj4gW8KgIDEwOS40NDY5MDNd
-IFIxMzogMDAwMDAwMDAwMDAwMDA0MCBSMTQ6IDFmZmZmOTIwMDAwMDBmODEgUjE1OiAKPj4+PiBm
-ZmZmODg4MTRjMGUwMDAwCj4+Pj4gWyAxMDkuNDQ2OTYxXSBGUzogMDAwMDAwMDAwMDAwMDAwMCgw
-MDAwKSBHUzpmZmZmODg4MjMzNjAwMDAwKDAwMDApCj4+Pj4ga25sR1M6MDAwMDAwMDAwMDAwMDAw
-MAo+Pj4+IFvCoCAxMDkuNDQ3MDIwXSBDUzrCoCAwMDEwIERTOiAwMDAwIEVTOiAwMDAwIENSMDog
-MDAwMDAwMDA4MDA1MDAzMwo+Pj4+IFvCoCAxMDkuNDQ3MDgwXSBDUjI6IDAwMDA1NTU3MGZlODRj
-YzggQ1IzOiAwMDAwMDAwMTUyNTQwMDA2IENSNDogCj4+Pj4gMDAwMDAwMDAwMDM3MDZmMAo+Pj4+
-IFvCoCAxMDkuNDQ3MTM2XSBDYWxsIFRyYWNlOgo+Pj4+IFvCoCAxMDkuNDQ3MTk0XcKgIDxJUlE+
-Cj4+Pj4gW8KgIDEwOS40NDcyNTddwqAgPyBhdGgxMWtfZHBfcHJvY2Vzc19yZW9fc3RhdHVzKzB4
-M2NlLzB4NTYwIFthdGgxMWtdCj4+Pj4gW8KgIDEwOS40NDczNDldwqAgPyBhdGgxMWtfZHBfcnhf
-cHJvY2Vzc193Ym1fZXJyKzB4MTdkMC8weDE3ZDAgW2F0aDExa10KPj4+PiBbwqAgMTA5LjQ0NzQ0
-Ml3CoCBhdGgxMWtfZHBfc2VydmljZV9zcm5nKzB4MzU4LzB4YWIwIFthdGgxMWtdCj4+Pj4gW8Kg
-IDEwOS40NDc1MzZdwqAgYXRoMTFrX3BjaWNfZXh0X2dycF9uYXBpX3BvbGwrMHg0MC8weDFkMCBb
-YXRoMTFrXQo+Pj4+IFvCoCAxMDkuNDQ3NjI4XcKgIF9fbmFwaV9wb2xsLmNvbnN0cHJvcC4wKzB4
-OTcvMHgzNTAKPj4+PiBbwqAgMTA5LjQ0NzY5MF3CoCBuZXRfcnhfYWN0aW9uKzB4N2JmLzB4YmIw
-Cj4+Pj4gW8KgIDEwOS40NDc3NDldwqAgPyBfX25hcGlfcG9sbC5jb25zdHByb3AuMCsweDM1MC8w
-eDM1MAo+Pj4+IFvCoCAxMDkuNDQ3ODMxXcKgID8ga3RpbWVfZ2V0KzB4MTAxLzB4MmYwCj4+Pj4g
-W8KgIDEwOS40NDc5MTFdwqAgX19kb19zb2Z0aXJxKzB4MWNhLzB4ODk3Cj4+Pj4gW8KgIDEwOS40
-NDc5ODldwqAgX19pcnFfZXhpdF9yY3UrMHhkYi8weDE4MAo+Pj4+IFvCoCAxMDkuNDQ4MDQ5XcKg
-IGlycV9leGl0X3JjdSsweDUvMHgyMAo+Pj4+IFvCoCAxMDkuNDQ4MTA5XcKgIHN5c3ZlY19hcGlj
-X3RpbWVyX2ludGVycnVwdCsweDhhLzB4YjAKPj4+PiBbwqAgMTA5LjQ0ODE2OF3CoCA8L0lSUT4K
-Pj4+PiBbwqAgMTA5LjQ0ODIyNl3CoCA8VEFTSz4KPj4+PiBbwqAgMTA5LjQ0ODI4NF3CoCBhc21f
-c3lzdmVjX2FwaWNfdGltZXJfaW50ZXJydXB0KzB4MTYvMHgyMAo+Pj4+IFvCoCAxMDkuNDQ4MzQz
-XSBSSVA6IDAwMTA6Y3B1aWRsZV9lbnRlcl9zdGF0ZSsweDFlZi8weDlhMAo+Pj4+IFsgMTA5LjQ0
-ODQwN10gQ29kZTogMDAgMDAgOGIgNzMgMDQgYmYgZmYgZmYgZmYgZmYgZTggOGMgZjAgZmYgZmYg
-MzEKPj4+PiBmZiBlOCA3NSAxNiA0NyBmZSA4MCA3YyAyNCAwOCAwMCAwZiA4NSBhMSAwMSAwMCAw
-MCBlOCA3NSA3ZCA2YSBmZSBmYgo+Pj4+IDQ1IDg1IGY2IDwwZj4gODggNmYgMDIgMDAgMDAgNGQg
-NjMgZWUgNGIgOGQgNDQgNmQgMDAgNDkgOGQgNDQgODUgMDAKPj4+PiA0OCA4ZCA3Ywo+Pj4+IFvC
-oCAxMDkuNDQ4NDc3XSBSU1A6IDAwMTg6ZmZmZmZmZmZiOTQwN2RiOCBFRkxBR1M6IDAwMDAwMjAy
-Cj4+Pj4gW8KgIDEwOS40NDg1NDBdIFJBWDogMDAwMDAwMDAwMDEyNDk4NyBSQlg6IGZmZmY4ODgx
-MTQ5NjY0MDAgUkNYOiAKPj4+PiAxZmZmZmZmZmY3MzhhM2UxCj4+Pj4gW8KgIDEwOS40NDg2MDBd
-IFJEWDogMDAwMDAwMDAwMDAwMDAwMCBSU0k6IGZmZmZmZmZmYjhhNzFiYzAgUkRJOiAKPj4+PiBm
-ZmZmZmZmZmI4YmVjOWMwCj4+Pj4gW8KgIDEwOS40NDg2NTldIFJCUDogZmZmZmZmZmZiOTg2ZWZh
-MCBSMDg6IDAwMDAwMDAwMDAwMDAwMDEgUjA5OiAKPj4+PiBmZmZmZmZmZmI5YzU0NzE3Cj4+Pj4g
-W8KgIDEwOS40NDg3MTVdIFIxMDogZmZmZmZiZmZmNzM4YThlMiBSMTE6IDAwMDAwMDAwMDAwMDAy
-ZWMgUjEyOiAKPj4+PiAwMDAwMDAxOTdiN2E2YTE5Cj4+Pj4gW8KgIDEwOS40NDg3NzRdIFIxMzog
-MDAwMDAwMDAwMDAwMDAwMiBSMTQ6IDAwMDAwMDAwMDAwMDAwMDIgUjE1OiAKPj4+PiBmZmZmODg4
-MTE0OTY2NDA0Cj4+Pj4gW8KgIDEwOS40NDg4NzFdwqAgPyBjcHVpZGxlX2VudGVyX3N0YXRlKzB4
-MWViLzB4OWEwCj4+Pj4gW8KgIDEwOS40NDg5NDddwqAgPyBmaW5pc2hfdGFza19zd2l0Y2guaXNy
-YS4wKzB4MTIwLzB4ODcwCj4+Pj4gW8KgIDEwOS40NDkwMDZdwqAgY3B1aWRsZV9lbnRlcisweDQ1
-LzB4YTAKPj4+PiBbwqAgMTA5LjQ0OTA2NV3CoCBjcHVpZGxlX2lkbGVfY2FsbCsweDI3NC8weDNm
-MAo+Pj4+IFvCoCAxMDkuNDQ5MTI1XcKgID8gYXJjaF9jcHVfaWRsZV9leGl0KzB4MzAvMHgzMAo+
-Pj4+IFvCoCAxMDkuNDQ5MTg3XcKgID8gdHNjX3ZlcmlmeV90c2NfYWRqdXN0KzB4ODYvMHgyZDAK
-Pj4+PiBbwqAgMTA5LjQ0OTI0N13CoCA/IGxvY2tkZXBfaGFyZGlycXNfb2ZmKzB4OTAvMHhkMAo+
-Pj4+IFvCoCAxMDkuNDQ5MzA2XcKgIGRvX2lkbGUrMHhlMC8weDE0MAo+Pj4+IFvCoCAxMDkuNDQ5
-MzYzXcKgIGNwdV9zdGFydHVwX2VudHJ5KzB4MTQvMHgyMAo+Pj4+IFvCoCAxMDkuNDQ5NDIzXcKg
-IHJlc3RfaW5pdCsweDEzNS8weDFlMAo+Pj4+IFvCoCAxMDkuNDQ5NDgyXcKgIGFyY2hfY2FsbF9y
-ZXN0X2luaXQrMHhhLzB4Ygo+Pj4+IFvCoCAxMDkuNDQ5NTQyXcKgIHN0YXJ0X2tlcm5lbCsweDM5
-MS8weDNhZgo+Pj4+IFvCoCAxMDkuNDQ5NjA2XcKgIHNlY29uZGFyeV9zdGFydHVwXzY0X25vX3Zl
-cmlmeSsweGNlLzB4ZGIKPj4+PiBbwqAgMTA5LjQ0OTY3MV3CoCA8L1RBU0s+Cj4+Pj4gWyAxMDku
-NDQ5NzI5XSBNb2R1bGVzIGxpbmtlZCBpbjogYXRoMTFrX3BjaSgtKSBhdGgxMWsgbWFjODAyMTEK
-Pj4+PiBsaWJhcmM0IGNmZzgwMjExIHFtaV9oZWxwZXJzIHFydHJfbWhpIG1oaSBxcnRyIG52bWUg
-bnZtZV9jb3JlCj4+Pj4gW8KgIDEwOS40NDk4NDZdIC0tLVsgZW5kIHRyYWNlIDAwMDAwMDAwMDAw
-MDAwMDAgXS0tLQo+Pj4+IFvCoCAxMDkuNDQ5OTI3XSBSSVA6IDAwMTA6YXRoMTFrX2RwX3Byb2Nl
-c3NfcnhkbWFfZXJyKzB4MWM4LzB4ODEwIAo+Pj4+IFthdGgxMWtdCj4+Pj4gWyAxMDkuNDUwMDcz
-XSBDb2RlOiBkMiA0OCA2MyBkOCA0OCA4YiA0YyAyNCAzOCA0OCA4ZCAwNCA1YiA0OCBjMSBlMAo+
-Pj4+IDA0IDQ4IDhkIGJjIDAxIGY0IDAxIDAwIDAwIDQ4IGI4IDAwIDAwIDAwIDAwIDAwIGZjIGZm
-IGRmIDQ4IDg5IGZhIDQ4Cj4+Pj4gYzEgZWEgMDMgPDBmPiBiNiAxNCAwMiA0OCA4OSBmOCA4MyBl
-MCAwNyA4MyBjMCAwMyAzOCBkMCA3YyAwOCA4NCBkMgo+Pj4+IDBmIDg1IGFhCj4+Pj4gW8KgIDEw
-OS40NTAxNDddIFJTUDogMDAxODpmZmZmYzkwMDAwMDA3YjkwIEVGTEFHUzogMDAwMTAyMDMKPj4+
-PiBbwqAgMTA5LjQ1MDIxMl0gUkFYOiBkZmZmZmMwMDAwMDAwMDAwIFJCWDogMDAwMDAwMDAwMDAw
-MDAwMCBSQ1g6IAo+Pj4+IDAwMDAwMDAwMDAwMDAwMDAKPj4+PiBbwqAgMTA5LjQ1MDI3NV0gUkRY
-OiAwMDAwMDAwMDAwMDAwMDNlIFJTSTogMDAwMDAwMDAwMDAwMDAwMCBSREk6IAo+Pj4+IDAwMDAw
-MDAwMDAwMDAxZjQKPj4+PiBbwqAgMTA5LjQ1MDMzN10gUkJQOiAwMDAwMDAwMDAwMDAwMDAwIFIw
-ODogZmZmZjg4ODE0YzBlMTQ3MCBSMDk6IAo+Pj4+IGZmZmY4ODgxNGMwZjY2NzgKPj4+PiBbwqAg
-MTA5LjQ1MDQwMV0gUjEwOiBkZmZmZmMwMDAwMDAwMDAwIFIxMTogZmZmZmVkMTAyOTgxZWNkMCBS
-MTI6IAo+Pj4+IDAwMDAwMDAwMDAwMDAwMDAKPj4+PiBbwqAgMTA5LjQ1MDQ2NV0gUjEzOiAwMDAw
-MDAwMDAwMDAwMDQwIFIxNDogMWZmZmY5MjAwMDAwMGY4MSBSMTU6IAo+Pj4+IGZmZmY4ODgxNGMw
-ZTAwMDAKPj4+PiBbIDEwOS40NTA1MzFdIEZTOiAwMDAwMDAwMDAwMDAwMDAwKDAwMDApIEdTOmZm
-ZmY4ODgyMzM2MDAwMDAoMDAwMCkKPj4+PiBrbmxHUzowMDAwMDAwMDAwMDAwMDAwCj4+Pj4gW8Kg
-IDEwOS40NTA1OTVdIENTOsKgIDAwMTAgRFM6IDAwMDAgRVM6IDAwMDAgQ1IwOiAwMDAwMDAwMDgw
-MDUwMDMzCj4+Pj4gW8KgIDEwOS40NTA2NjFdIENSMjogMDAwMDU1NTcwZmU4NGNjOCBDUjM6IDAw
-MDAwMDAxNTI1NDAwMDYgQ1I0OiAKPj4+PiAwMDAwMDAwMDAwMzcwNmYwCj4+Pj4gW8KgIDEwOS40
-NTA3MjNdIEtlcm5lbCBwYW5pYyAtIG5vdCBzeW5jaW5nOiBGYXRhbCBleGNlcHRpb24gaW4gaW50
-ZXJydXB0Cj4+Pj4gWyAxMDkuNDUwNzk0XSBLZXJuZWwgT2Zmc2V0OiAweDM0ZTAwMDAwIGZyb20g
-MHhmZmZmZmZmZjgxMDAwMDAwCj4+Pj4gKHJlbG9jYXRpb24gcmFuZ2U6IDB4ZmZmZmZmZmY4MDAw
-MDAwMC0weGZmZmZmZmZmYmZmZmZmZmYpCj4+Pj4gW8KgIDEwOS40NTA4MzddIFJlYm9vdGluZyBp
-biAxMCBzZWNvbmRzLi4KPj4+Cj4+PiBUaGFua3MgZm9yIHRoZSByZXBvcnQuIEZyb20gdGhlIGxv
-Z3MsIEkgc2VlIHRoZSBzeXN0ZW0gY3Jhc2hlZCBkdXJpbmcKPj4+IHJtbW9kIGF0aDExa19wY2ku
-IEkgaGF2ZSBydW4gcm1tb2QgJiBpbnNtb2QgdGVzdHMgc2V2ZXJhbCB0aW1lcyBvbgo+Pj4gV0NO
-Njg1NSBiZWZvcmUgc2VuZGluZyB0aGUgcmV2aXNlZCB2ZXJzaW9uLiBQcm9iYWJseSBzb21lIHRl
-c3RzIGJlZm9yZQo+Pj4gcm1tb2Qgd291bGQgaGF2ZSBsZWQgdG8gdGhpcyBjcmFzaC4gQ291bGQg
-eW91IHBsZWFzZSBsZXQgbWUga25vdyB3aGF0Cj4+PiB0ZXN0cyBkb2VzIHRoZSByZWdyZXNzaW9u
-IHN1aXRlIGNvdmVycz8gSSdsbCB0cnkgcmVwcm8gdGhlIGJ1Zy4KPj4KPj4gVGhpcyBpcyBlYXJs
-eSBpbiB0aGUgdGVzdHMsIElJUkMgdGhlcmUgd2FzIG9ubHkgaW5zbW9kIGZvbGxvd2VkIGJ5Cj4+
-IHJtbW9kLiBEbyB5b3UgaGF2ZSBLQVNBTiBldGMgZW5hYmxlZD8KPj4KPiAKPiBJIHNlZS4gSSBk
-byBub3QgaGF2ZSBLQVNBTiBlbmFibGVkLiBMZXQgbWUgdHJ5IGVuYWJsaW5nIGl0Lgo+IAoKSGkg
-S2FsbGUsCgpJIGhhdmUgYmVlbiB0cnlpbmcgdG8gcmVwcm9kdWNlIHRoZSBhYm92ZSBpc3N1ZSBv
-biBXQ042ODU1IGZvciBzZXZlcmFsIAp3ZWVrcyBub3cgd2l0aCBLQVNBTiwgVUJTQU4sIExPQ0tE
-RUJVRyBldGMgZW5hYmxlZCBidXQgY291bGQgbm90IApyZXByb2R1Y2UgdGhpcyBpc3N1ZS4gRHVy
-aW5nIHRoaXMgbG9uZyBleGVyY2lzZSwgSSBoYXZlIHVuY292ZXJlZCBvdGhlciAKaXNzdWVzIGFu
-ZCBmaXhlZCB0aGVtIGJ1dCBJIGNvdWxkIG5vdCByZXByb2R1Y2UgdGhlIGFib3ZlIHNpZ25hdHVy
-ZS4KTm90IHN1cmUgaWYgdGhlcmUgaXMgYW55IHBhcnRpY3VsYXIgc2VxdWVuY2UgdG8gdHJpZ2dl
-ciB0aGUgYWJvdmUgY3Jhc2gKb3IgaXQgY291bGQgYmUgdGhhdCBpdCBpcyBhbiBleGlzdGluZyBv
-bmUgdGhhdCBjYW1lIHVwIHdoaWxlIHRlc3RpbmcgCnRoaXMgc2VyaWVzLgoKSSB3aWxsIHNlbmQg
-VjMgcGF0Y2ggZm9yIHJldmlldyB3aGljaCBmaXhlcyBvdGhlciBpc3N1ZXMgaW4gdGhlIHBhdGNo
-IApzZXQuIEknbSBpbiBuZWVkIG9mIHlvdXIgaGVscCB0byB0ZXN0IHRoaXMgc2VyaWVzIGluIHlv
-dXIgc2V0dXAgYW5kIHNlZSAKaWYgdGhlIGFib3ZlIGlzc3VlIGlzIHN0aWxsIG9jY3VycmluZy4K
-ClRoYW5rcywKTWFuaWthbnRhCgotLSAKYXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtAbGlzdHMu
-aW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2F0aDExawo=
+Currently, WLAN chip is powered once during driver probe and is kept
+ON (powered) always even when WLAN is not active; keeping the chip
+powered ON all the time will consume extra power which is not
+desirable for battery operated devices. Same is the case with non-WoW
+suspend, chip will not be put into low power mode when the system is
+suspended resulting in higher battery drain.
+
+Send QMI MODE OFF command to firmware during WiFi OFF to put device
+into low power mode.
+
+Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.16
+
+Manikanta Pubbisetty (3):
+  ath11k: Fix double free issue during SRNG deinit
+  ath11k: Move hardware initialization logic to start()
+  ath11k: Enable low power mode when WLAN is not active
+---
+V3:
+ - Removed patch "ath11k: Fix failed to parse regulatory event print" as it is not needed anymore
+ - Fixed a potential deadlock scenario reported by lockdep around ab->core_lock with V2 changes
+ - Fixed other minor issues that were found during code review
+ - Spelling corrections in the commit messages
+
+V2:
+ - "Enable low power mode when WLAN is not active" has been enabled only for WCN6750
+   as the device shutdown and turn-on changes are not same for all chipsets in ath11k.
+   A future patch will be sent to enable the logic for other devices.
+
+ - Rebased on ToT
+
+ drivers/net/wireless/ath/ath11k/ahb.c  |  45 ++++
+ drivers/net/wireless/ath/ath11k/core.c | 294 ++++++++++++++++++-------
+ drivers/net/wireless/ath/ath11k/core.h |  10 +-
+ drivers/net/wireless/ath/ath11k/hal.c  |   1 +
+ drivers/net/wireless/ath/ath11k/hif.h  |  11 +
+ drivers/net/wireless/ath/ath11k/mac.c  |  33 +--
+ drivers/net/wireless/ath/ath11k/pci.c  |  26 +++
+ drivers/net/wireless/ath/ath11k/qmi.c  |   3 +-
+ 8 files changed, 311 insertions(+), 112 deletions(-)
+
+
+base-commit: ef907406320c7af8b6a9e0b140a11ebb3a0fa371
+-- 
+2.38.0
+
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
