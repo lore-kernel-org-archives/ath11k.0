@@ -4,78 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0743CC433FE
-	for <ath11k@archiver.kernel.org>; Mon, 21 Nov 2022 16:16:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C9ACC4332F
+	for <ath11k@archiver.kernel.org>; Mon, 21 Nov 2022 16:17:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=eqhX5ODuHDSzSdPpE3EMZZgnzVkl9slTsy4qbVzYLUI=; b=kQDZsa47kDf0GC
-	WYrP8CKh76EO2/4ZFXk4ayblyaml2x9E+mKvyLr1m0d5nU5pkQzLlXt8Su/80o3VQ+uLX8XmJAt0c
-	9GPVGU5gL7JdqQAEtcVetrYMQhioXxazsb0qKr6mqp0dYfJ9kTQwX2DglpeaXlPMlVQw30fxIlaUp
-	uLHmc+F1frogAqQSN1kRXZ70J0ymq2i+pJH/N3B4YwERLjkA0RPgL9sEfLmT08Ewybrf0dYoBuqH+
-	Ogi/INRF3lg9sKD8zjDjV8UJY8m6n2RfJBldod/D+BTI+iUy8qgKJndLwA1dNwVOJtkzYIcG/NJtV
-	JYeTBaupTxY4eKcrjAVg==;
+	List-Owner; bh=n6GhyZ+sxpje/0uFe1oPmhTeXS4CNLTfZ/3Je7d7gjE=; b=p/wvAGx0bjBcCa
+	vRgtN9/xDHeLVvTbL+skF2ORnGneJpmZ/iLTI+Urdf8hTD5agMVaPUiDFFWZTyxR0N+G/Z5fI78S6
+	wRc8vZjiSs73sgaP6XYg2kS2C7uqrLzJoPYB3Gv9pF29KgUp7UhZer90A3qkDo+/tV4tf0vGn0fZl
+	jGijRe2OqSC6xDOwU1tTaoMFLeQiFYTy+S50vxfEJ8JsiRpuZd1RU4lSEXisyQeIEje7KNoxCOsjR
+	mJLoPLFGTucoXmFNYbV0+Z4x21ElrLnfXf6kt2dmxBMeFkgId5Gg622p5aXAkHtOexjkjUnY9lSEo
+	Joxpun4YytJ8VGUTa1Ig==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ox9TC-00FeA7-GH; Mon, 21 Nov 2022 16:16:30 +0000
-Received: from mail-lj1-x22b.google.com ([2a00:1450:4864:20::22b])
+	id 1ox9UM-00Ffq7-O0; Mon, 21 Nov 2022 16:17:42 +0000
+Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ox9TA-00Fdyo-2W
-	for ath11k@lists.infradead.org; Mon, 21 Nov 2022 16:16:29 +0000
-Received: by mail-lj1-x22b.google.com with SMTP id a15so15031665ljb.7
-        for <ath11k@lists.infradead.org>; Mon, 21 Nov 2022 08:16:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XF2VItxzhqzI0eYLXZvSQqAxAWYTmXjWXerxn0eM3F8=;
-        b=x8mRvr6w+0VV6ZuQ5XTFwNOiT8csc009G70yCaFBFOu+ZWSyRi+h/P9deDC8y1ws0T
-         LV7d/x6uMfmbr2keRfBBEMuEUWmlbt+VBucHdPFd8CPeenDOoEFuIv3t5XaUcaHz7OXr
-         sSow1zgz/6k2JCcXfjOlExLdB3sDgEYe+7MJSs8VxMWW2jDzeXOOGwdCVUTNhYI4K3Im
-         hqTnYyfKvZZMGrA1rkbA6ahoWSqL9JxMSfkYrkSn6ggRZKVeZ5E2s87INuHKJDYlTzXO
-         J6s7uRXhh1qRaXYAlw8C3mpywBkp031u2FM9g4roB8q648p7yyjj9HfNvDaubYg2XUDp
-         useg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XF2VItxzhqzI0eYLXZvSQqAxAWYTmXjWXerxn0eM3F8=;
-        b=aVsXcNotVgsNIzcXNJ+9p3QbWGh8E8AraQk1JyQRcZNvOcIK63WDPEMuSfABHAVL1L
-         OCT3Hm/NkjCs3xadB6RHbLihublx0UZxb8QPXGUy0/Myv8+nANeTW9B7V/LlIBCALQxg
-         jDb5IvNWMhOlhMX1AYQB8Vqey/rTIEqgux586j+szwHrgXsP3qm64Onm5raGKyGfLhuE
-         LoSFWAyyeBz4y6fxp/FbNFH0+xW9vdXW3ZITheqXEV0V6KZoQnqm48Udg2WNctjD9gOz
-         OjK0XRtai1srT08sDfJ77eSoqqV1RMUm+C5VTEqblJvR1ZrENK+9ZoJaBOY4NMexQXJy
-         5K7A==
-X-Gm-Message-State: ANoB5pk31xlnlCRymj6BRpo4808Jj8tjm2BU7vFHCmgvrbEc1QDc1Ll9
-	XYqx615q7nixWuniXBgzrWVmIBk0iBgygEJ6
-X-Google-Smtp-Source: AA0mqf5wyN6rdDEdVwv/vIKQyF9VXJuyANOxFWJYKqvMbBR5p5tmqCkTr63wn9v3+Eq1zD2JnkU/tw==
-X-Received: by 2002:a2e:bd8a:0:b0:277:b4e:6286 with SMTP id o10-20020a2ebd8a000000b002770b4e6286mr1324811ljq.279.1669047385054;
-        Mon, 21 Nov 2022 08:16:25 -0800 (PST)
-Received: from [192.168.1.101] (95.49.32.48.neoplus.adsl.tpnet.pl. [95.49.32.48])
-        by smtp.gmail.com with ESMTPSA id v16-20020a197410000000b004a03fd4476esm2081172lfe.287.2022.11.21.08.16.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Nov 2022 08:16:24 -0800 (PST)
-Message-ID: <015c1177-69c5-8b0c-3362-6f90d6420cd9@linaro.org>
-Date: Mon, 21 Nov 2022 17:16:23 +0100
+	id 1ox9UK-00FfiU-AI
+	for ath11k@lists.infradead.org; Mon, 21 Nov 2022 16:17:41 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by sin.source.kernel.org (Postfix) with ESMTPS id 2ECE6CE1399;
+	Mon, 21 Nov 2022 16:17:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A526EC433C1;
+	Mon, 21 Nov 2022 16:17:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1669047453;
+	bh=yQGbbm63/8Za4tULD4tZDuctTenWp7KiB2LGcuQYF2c=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=b9JhLlNvcmpedn/Yyqyj/qQF+NVjOrVwJv7OIUtZNDli+ucNsoZ3TnPpIRlQCu1v6
+	 ek7IlFTCSLmMdQSRrDRGLfoTBlu/jh/HRZ9+8F0XyIlbQCCjrnozS3Ogm+F+mlzhLw
+	 hJnjWS/uPoEwZD6CtJrtaDqYl/CpKbyS+rxUo4aJ+PlWYbmAJXJPn+7Fp1WhTWf5pP
+	 9pwhJbGEWP75wp1f29A08cwoTqNiX13IfVhNVO9ltwqC35ngY3MlWo2IGvsoF+aVOP
+	 X/Ci4i+M34X1hHhju2hbqZCRn8gvy86paoaF5Si3xU1cpEVEE+0znqP37BepPGeipm
+	 rVDEhmLFFryCw==
+From: Kalle Valo <kvalo@kernel.org>
+To: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
+Subject: Re: [PATCH v3 0/3] Enable low power mode when WLAN is not active
+References: <20221121110359.4652-1-quic_mpubbise@quicinc.com>
+Date: Mon, 21 Nov 2022 18:17:30 +0200
+In-Reply-To: <20221121110359.4652-1-quic_mpubbise@quicinc.com> (Manikanta
+	Pubbisetty's message of "Mon, 21 Nov 2022 16:33:56 +0530")
+Message-ID: <87h6ys8ep1.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: WCN6885 crashes on Xperia 1 IV
-Content-Language: en-US
-To: Kalle Valo <kvalo@kernel.org>
-Cc: ath11k@lists.infradead.org, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-References: <34956280-4716-d24e-1b2e-01be3366b605@linaro.org>
- <87o7t08etw.fsf@kernel.org>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <87o7t08etw.fsf@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221121_081628_145197_2781665D 
-X-CRM114-Status: GOOD (  12.89  )
+X-CRM114-CacheID: sfid-20221121_081740_566342_99266CE8 
+X-CRM114-Status: GOOD (  12.57  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,46 +72,32 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
 
+> Currently, WLAN chip is powered once during driver probe and is kept
+> ON (powered) always even when WLAN is not active; keeping the chip
+> powered ON all the time will consume extra power which is not
+> desirable for battery operated devices. Same is the case with non-WoW
+> suspend, chip will not be put into low power mode when the system is
+> suspended resulting in higher battery drain.
+>
+> Send QMI MODE OFF command to firmware during WiFi OFF to put device
+> into low power mode.
+>
+> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
+> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.16
+>
+> Manikanta Pubbisetty (3):
+>   ath11k: Fix double free issue during SRNG deinit
+>   ath11k: Move hardware initialization logic to start()
+>   ath11k: Enable low power mode when WLAN is not active
 
-On 21.11.2022 17:14, Kalle Valo wrote:
-> Konrad Dybcio <konrad.dybcio@linaro.org> writes:
-> 
->> Hi Kalle, Dmitry
->>
->> I recently got Wi-Fi to work on my SM8450 Sony Xperia 1 IV (with the
->> help of Dmitry), but I can only get it to function using very old CrOS
->> firmware [1]. Linux-next fw breaks for me in the same way that it did
->> for Dmitry here [2]. There is however also the fw shipped with the
->> phone (not sure how redistributable it is, you can extract it from the
->> OTA [3] update by running simg2img from android-tools and mounting it.
->> You will find it in image/):
->>
->> - amss20.bin (renamed to amss.bin)
->> - m3.bin
->> - board.e[0-9af] (Dmitry gave me a hint that I should choose board.e8d
->> based on the reported board_id; renamed to board.bin)
->> - regdb.bin
->>
->> Using this set of firmwares I get a veeery long and unpleasant set of
->> crashes [4].
->>
->> Any ideas where to start tackling this?
-> 
-> So if I'm understanding correctly, you are using ath11k firmware but the
-> board file from the somewhere else? That won't work, the ath11k firmware
-> has it's own board file format so you cannot take a board file from
-> another driver.
-No, the combinations I tried are:
+Nowadays we use "wifi:" prefix, but I can add it.
 
-- ath11k fw (doesn't work, see the bugzilla link)
-- Android-bundled fw (doesn't work, see [4])
-- CrOS fw (works)
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-where "fw" means "the full set of all firmware files (amss.bin/board[-2].bin/m3.bin) from that source"
-
-Konrad
-> 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
