@@ -4,81 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 016ACC4332F
-	for <ath11k@archiver.kernel.org>; Mon, 21 Nov 2022 11:04:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 730D2C4332F
+	for <ath11k@archiver.kernel.org>; Mon, 21 Nov 2022 16:14:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NEOMNc6ftdeFvEiEhS84kPfMuQRDYn/5AkhKmXysJOg=; b=xOFk1BES44JryV
-	uV8BBiaW/EEZXoopgEJAPXieLAYRw74IojqQf0NTiEA+dC3W69HVDsYwuEzJUaIvsJiLFBHjBRfXD
-	VLYYvPGhQ0j+YS/jwXEWiaJWXCvDjaG903FcNMsq5t8xbT2Yy4EfcqC63S4ODKA/Gpm2cJnNr35nE
-	tI/ONpWRn4NOU5kZg0qhG8b2/vZZl9AZYZ6jsapEw8dAqW5TwoCT/hRMTdULEVPYBTI50VVbhypqC
-	QaXHTRb15XSLmhVU9X7+FrOf4bvadyCGv4VFfHfB+nJ5WxNdsPp+VfuIvqVfpycnL87P87d+TEqXw
-	slpl4JJwL1KEczFgI9Xg==;
+	List-Owner; bh=4uaL7u13xxSO2SHTTqmgqMujrm7eUlFOUKtxcqFZRMM=; b=RGb6ibF64baITl
+	PUwqRDb8vDzPuHPbNvFneHVM9HXkB9R4Toh0PBtSUnWBzLyEW4I1/Icx36BAOipf7tjBsM/2xeBGZ
+	PhCCg7DbWNJYHspds8smP51R9FVXgOTptKoTBolGyb1ug4ItHBGfZeKzy3rsgrJIV8P5P5w9R5znU
+	JkkfJcnHISg9/QHQTnRhMMc3GRorFK0RxVpqm63QjofMCaPms5Kxd+B/N8pdiIml0Xlm5oHyg/AMl
+	2ZGtlnJU3abShQ+z4zMUCQ3MKfMUJZUxdF4BfpLA+B9EC/lGhPszFsi9uJn1uXdLg6KF5rDewsBJp
+	nMFKIGV395AyMPuPnTUQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ox4bI-00CmC0-Dm; Mon, 21 Nov 2022 11:04:32 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1ox9RR-00Fbgy-E5; Mon, 21 Nov 2022 16:14:41 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ox4bE-00Cm90-AH
-	for ath11k@lists.infradead.org; Mon, 21 Nov 2022 11:04:30 +0000
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AL8PS9Q021302;
-	Mon, 21 Nov 2022 11:04:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=3C6DFFQwcmVH7U/BKDUXzl7W96eE+xnicwWoEZMsLxc=;
- b=ef1m+4mhPrBf+HTRJsM6514p24/SkxrNxllT873F1w69pxiXVDcjJWxqyVJUXtStTifo
- 77Bo0+GTzhrXxgwD/izUhrHXEvDBOUtsyKUcxo0S28i2ClwCJ9htwJrU4BMwVOIE7uUa
- JeEF5S909aZ5P8e6Uj6o7qGPoT4fICDnM7YIfuG/YSjOE3mdYv/NUN0MoUDUIh4VKqqB
- ISUTL2z+v17xvQ8/2tJU4V6HSG4yqH75DajhtAnNRpamKzOrKwRAmnOMYalcPD8uUAKV
- A8QZ4LOxQrSZOXe5dUSyQ62aowCB7Nxz4LBQDnbmm23/XQmn22e9lusVyKfcexU7IGR8 BA== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kxrfbv9fe-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 21 Nov 2022 11:04:27 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2ALB4R74023605
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 21 Nov 2022 11:04:27 GMT
-Received: from mpubbise-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.36; Mon, 21 Nov 2022 03:04:25 -0800
-From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>,
-        Manikanta Pubbisetty
-	<quic_mpubbise@quicinc.com>
-Subject: [PATCH v3 3/3] ath11k: Enable low power mode when WLAN is not active
-Date: Mon, 21 Nov 2022 16:33:59 +0530
-Message-ID: <20221121110359.4652-4-quic_mpubbise@quicinc.com>
-X-Mailer: git-send-email 2.38.0
-In-Reply-To: <20221121110359.4652-1-quic_mpubbise@quicinc.com>
-References: <20221121110359.4652-1-quic_mpubbise@quicinc.com>
+	id 1ox9RP-00FbgB-A0
+	for ath11k@lists.infradead.org; Mon, 21 Nov 2022 16:14:40 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id CCE18612DD;
+	Mon, 21 Nov 2022 16:14:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72CE4C433C1;
+	Mon, 21 Nov 2022 16:14:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1669047278;
+	bh=Obxuz5Kw2UEILB88rYZT+CJVKc/PM+QgkPzSyjFgdr8=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=laIEwikYFfySQ3a6+xlI/U+ZFsTieU0ueF0GS6hfC8O8imrn/AqqVGE5yuVLdHMLp
+	 /nom2nbF+soLdOwSOS3mCNrqLDr8hIOz//t6MyZfAgLpTlysdngAHoKk43/GGM2Kg1
+	 JL8n8js1g17TxxOi3eqAiqJ2OKy0TWvjkTymhzwQ+6TIH6hgH2gatt9QIaguM2lR2Z
+	 Uj9VcYkyJylxFTSeDFJCA/RxHB75WCq+SKWHvMTjqXsrQPGTAoN02ytaFpavGcDQb7
+	 +ArZajJMkCaCZzp8RJBpE19QU+xReH7rCjkQgAIuAC9pIY+rv0PxOIMoA1cYQJqvES
+	 bjobHpQmtKkxQ==
+From: Kalle Valo <kvalo@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: ath11k@lists.infradead.org,  Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: Re: WCN6885 crashes on Xperia 1 IV
+References: <34956280-4716-d24e-1b2e-01be3366b605@linaro.org>
+Date: Mon, 21 Nov 2022 18:14:35 +0200
+In-Reply-To: <34956280-4716-d24e-1b2e-01be3366b605@linaro.org> (Konrad
+	Dybcio's message of "Wed, 16 Nov 2022 16:07:26 +0100")
+Message-ID: <87o7t08etw.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 2yqEDBOHJydCqes_y7YyMbm5abZMs1r7
-X-Proofpoint-ORIG-GUID: 2yqEDBOHJydCqes_y7YyMbm5abZMs1r7
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-21_06,2022-11-18_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 adultscore=0
- lowpriorityscore=0 mlxlogscore=999 malwarescore=0 suspectscore=0
- phishscore=0 priorityscore=1501 clxscore=1015 impostorscore=0 mlxscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2211210087
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221121_030428_394270_B4D7E028 
-X-CRM114-Status: GOOD (  29.03  )
+X-CRM114-CacheID: sfid-20221121_081439_409135_57BC9802 
+X-CRM114-Status: GOOD (  16.11  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,590 +72,38 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Currently, WLAN chip is powered once during driver probe and is kept
-ON (powered) always even when WLAN is not active; keeping the chip
-powered ON all the time will consume extra power which is not
-desirable for a battery operated device. Same is the case with non-WoW
-suspend, chip will never be put into low power mode when the system is
-suspended resulting in higher battery drain.
+Konrad Dybcio <konrad.dybcio@linaro.org> writes:
 
-As per the recommendation, sending a PDEV suspend WMI command followed
-by a QMI MODE OFF command will cease all WLAN activity and put the device
-in low power mode. When WLAN interfaces are brought up, sending a QMI
-MISSION MODE command would be sufficient to bring the chip out of low
-power. This is a better approach than doing hif_power_down()/hif_power_up()
-for every WiFi ON/OFF sequence since the turnaround time for entry/exit of
-low power mode is much less. Overhead is just the time taken for sending
-QMI MODE OFF & QMI MISSION MODE commands instead of going through the
-entire chip boot & QMI init sequence.
+> Hi Kalle, Dmitry
+>
+> I recently got Wi-Fi to work on my SM8450 Sony Xperia 1 IV (with the
+> help of Dmitry), but I can only get it to function using very old CrOS
+> firmware [1]. Linux-next fw breaks for me in the same way that it did
+> for Dmitry here [2]. There is however also the fw shipped with the
+> phone (not sure how redistributable it is, you can extract it from the
+> OTA [3] update by running simg2img from android-tools and mounting it.
+> You will find it in image/):
+>
+> - amss20.bin (renamed to amss.bin)
+> - m3.bin
+> - board.e[0-9af] (Dmitry gave me a hint that I should choose board.e8d
+> based on the reported board_id; renamed to board.bin)
+> - regdb.bin
+>
+> Using this set of firmwares I get a veeery long and unpleasant set of
+> crashes [4].
+>
+> Any ideas where to start tackling this?
 
-Currently the changes are applicable only for WCN6750. This can be
-extended to other targets with a future patch.
+So if I'm understanding correctly, you are using ath11k firmware but the
+board file from the somewhere else? That won't work, the ath11k firmware
+has it's own board file format so you cannot take a board file from
+another driver.
 
-Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.16
-
-Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/ahb.c  |  45 +++++
- drivers/net/wireless/ath/ath11k/core.c | 225 ++++++++++++++++++++-----
- drivers/net/wireless/ath/ath11k/core.h |   4 +
- drivers/net/wireless/ath/ath11k/hif.h  |  11 ++
- drivers/net/wireless/ath/ath11k/mac.c  |   8 +-
- drivers/net/wireless/ath/ath11k/pci.c  |  26 +++
- 6 files changed, 275 insertions(+), 44 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index d34a4d6325b2..5fe375014ecb 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.c
-+++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -191,6 +191,47 @@ static const struct ath11k_pci_ops ath11k_ahb_pci_ops_wcn6750 = {
- 	.window_read32 = ath11k_ahb_window_read32_wcn6750,
- };
- 
-+static int ath11k_ahb_core_start_wcn6750(struct ath11k_base *ab)
-+{
-+	/* Initialize the hardware/firmware only for the first PDEV
-+	 * or during hardware recovery.
-+	 */
-+	if (!test_bit(ATH11K_FLAG_RECOVERY, &ab->dev_flags) &&
-+	    ath11k_core_any_pdevs_on(ab))
-+		return 0;
-+
-+	return ath11k_core_start_device(ab);
-+}
-+
-+static void ath11k_ahb_core_stop_wcn6750(struct ath11k_base *ab)
-+{
-+	return ath11k_core_stop_device(ab);
-+}
-+
-+static int ath11k_ahb_core_start_ipq8074(struct ath11k_base *ab)
-+{
-+	/* TODO: Currently initializing the hardware/firmware only
-+	 * during hardware recovery. Support to shutdown/turn-on
-+	 * the hardware during Wi-Fi OFF/ON will be added later.
-+	 */
-+	if (!test_bit(ATH11K_FLAG_RECOVERY, &ab->dev_flags))
-+		return 0;
-+
-+	return ath11k_core_start_device(ab);
-+}
-+
-+static void ath11k_ahb_core_stop_ipq8074(struct ath11k_base *ab)
-+{
-+	/* TODO: Currently stopping the hardware/firmware only
-+	 * during driver unload. Support to shutdown/turn-on
-+	 * the hardware during Wi-Fi OFF/ON will be added later.
-+	 */
-+	if (!test_bit(ATH11K_FLAG_UNREGISTERING, &ab->dev_flags))
-+		return;
-+
-+	return ath11k_core_stop_device(ab);
-+}
-+
- static inline u32 ath11k_ahb_read32(struct ath11k_base *ab, u32 offset)
- {
- 	return ioread32(ab->mem + offset);
-@@ -778,6 +819,8 @@ static const struct ath11k_hif_ops ath11k_ahb_hif_ops_ipq8074 = {
- 	.map_service_to_pipe = ath11k_ahb_map_service_to_pipe,
- 	.power_down = ath11k_ahb_power_down,
- 	.power_up = ath11k_ahb_power_up,
-+	.core_start = ath11k_ahb_core_start_ipq8074,
-+	.core_stop = ath11k_ahb_core_stop_ipq8074,
- };
- 
- static const struct ath11k_hif_ops ath11k_ahb_hif_ops_wcn6750 = {
-@@ -797,6 +840,8 @@ static const struct ath11k_hif_ops ath11k_ahb_hif_ops_wcn6750 = {
- 	.resume = ath11k_ahb_hif_resume,
- 	.ce_irq_enable = ath11k_pci_enable_ce_irqs_except_wake_irq,
- 	.ce_irq_disable = ath11k_pci_disable_ce_irqs_except_wake_irq,
-+	.core_start = ath11k_ahb_core_start_wcn6750,
-+	.core_stop = ath11k_ahb_core_stop_wcn6750,
- };
- 
- static int ath11k_core_get_rproc(struct ath11k_base *ab)
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index d36e193b2db9..f64bf42048a3 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -1299,7 +1299,6 @@ static int ath11k_core_soc_create(struct ath11k_base *ab)
- static void ath11k_core_soc_destroy(struct ath11k_base *ab)
- {
- 	ath11k_debugfs_soc_destroy(ab);
--	ath11k_dp_free(ab);
- 	ath11k_reg_free(ab);
- 	ath11k_qmi_deinit_service(ab);
- }
-@@ -1320,31 +1319,14 @@ static int ath11k_core_pdev_create(struct ath11k_base *ab)
- 		goto err_pdev_debug;
- 	}
- 
--	ret = ath11k_mac_register(ab);
--	if (ret) {
--		ath11k_err(ab, "failed register the radio with mac80211: %d\n", ret);
--		goto err_dp_pdev_free;
--	}
--
--	ret = ath11k_thermal_register(ab);
--	if (ret) {
--		ath11k_err(ab, "could not register thermal device: %d\n",
--			   ret);
--		goto err_mac_unregister;
--	}
--
- 	ret = ath11k_spectral_init(ab);
- 	if (ret) {
- 		ath11k_err(ab, "failed to init spectral %d\n", ret);
--		goto err_thermal_unregister;
-+		goto err_dp_pdev_free;
- 	}
- 
- 	return 0;
- 
--err_thermal_unregister:
--	ath11k_thermal_unregister(ab);
--err_mac_unregister:
--	ath11k_mac_unregister(ab);
- err_dp_pdev_free:
- 	ath11k_dp_pdev_free(ab);
- err_pdev_debug:
-@@ -1355,11 +1337,8 @@ static int ath11k_core_pdev_create(struct ath11k_base *ab)
- 
- static void ath11k_core_pdev_destroy(struct ath11k_base *ab)
- {
--	ath11k_spectral_deinit(ab);
- 	ath11k_thermal_unregister(ab);
- 	ath11k_mac_unregister(ab);
--	ath11k_hif_irq_disable(ab);
--	ath11k_dp_pdev_free(ab);
- 	ath11k_debugfs_pdev_destroy(ab);
- }
- 
-@@ -1491,26 +1470,20 @@ static int ath11k_core_start_firmware(struct ath11k_base *ab,
- 	return ret;
- }
- 
--int ath11k_core_qmi_firmware_ready(struct ath11k_base *ab)
-+static int ath11k_core_setup_resources(struct ath11k_base *ab)
- {
- 	int ret;
- 
--	ret = ath11k_core_start_firmware(ab, ATH11K_FIRMWARE_MODE_NORMAL);
--	if (ret) {
--		ath11k_err(ab, "failed to start firmware: %d\n", ret);
--		return ret;
--	}
--
- 	ret = ath11k_ce_init_pipes(ab);
- 	if (ret) {
- 		ath11k_err(ab, "failed to initialize CE: %d\n", ret);
--		goto err_firmware_stop;
-+		return ret;
- 	}
- 
- 	ret = ath11k_dp_alloc(ab);
- 	if (ret) {
- 		ath11k_err(ab, "failed to init DP: %d\n", ret);
--		goto err_firmware_stop;
-+		return ret;
- 	}
- 
- 	switch (ath11k_crypto_mode) {
-@@ -1524,17 +1497,47 @@ int ath11k_core_qmi_firmware_ready(struct ath11k_base *ab)
- 		break;
- 	default:
- 		ath11k_info(ab, "invalid crypto_mode: %d\n", ath11k_crypto_mode);
--		return -EINVAL;
-+		ret = -EINVAL;
-+		goto err_dp_free;
- 	}
- 
- 	if (ath11k_frame_mode == ATH11K_HW_TXRX_RAW)
- 		set_bit(ATH11K_FLAG_RAW_MODE, &ab->dev_flags);
- 
-+	return 0;
-+
-+err_dp_free:
-+	ath11k_dp_free(ab);
-+
-+	return ret;
-+}
-+
-+static void ath11k_core_free_resources(struct ath11k_base *ab)
-+{
-+	ath11k_dp_free(ab);
-+}
-+
-+static int ath11k_core_setup_device(struct ath11k_base *ab)
-+{
-+	int ret;
-+
-+	ret = ath11k_core_start_firmware(ab, ATH11K_FIRMWARE_MODE_NORMAL);
-+	if (ret) {
-+		ath11k_err(ab, "failed to start firmware: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = ath11k_core_setup_resources(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to setup resources: %d\n", ret);
-+		goto err_firmware_stop;
-+	}
-+
- 	mutex_lock(&ab->core_lock);
- 	ret = ath11k_core_start(ab);
- 	if (ret) {
- 		ath11k_err(ab, "failed to start core: %d\n", ret);
--		goto err_dp_free;
-+		goto err_free_resources;
- 	}
- 
- 	ret = ath11k_core_pdev_create(ab);
-@@ -1542,7 +1545,10 @@ int ath11k_core_qmi_firmware_ready(struct ath11k_base *ab)
- 		ath11k_err(ab, "failed to create pdev core: %d\n", ret);
- 		goto err_core_stop;
- 	}
-+
- 	ath11k_hif_irq_enable(ab);
-+	ath11k_hif_core_stop(ab);
-+
- 	mutex_unlock(&ab->core_lock);
- 
- 	return 0;
-@@ -1550,8 +1556,8 @@ int ath11k_core_qmi_firmware_ready(struct ath11k_base *ab)
- err_core_stop:
- 	ath11k_core_stop(ab);
- 	ath11k_mac_destroy(ab);
--err_dp_free:
--	ath11k_dp_free(ab);
-+err_free_resources:
-+	ath11k_core_free_resources(ab);
- 	mutex_unlock(&ab->core_lock);
- err_firmware_stop:
- 	ath11k_qmi_firmware_stop(ab);
-@@ -1559,10 +1565,43 @@ int ath11k_core_qmi_firmware_ready(struct ath11k_base *ab)
- 	return ret;
- }
- 
-+int ath11k_core_qmi_firmware_ready(struct ath11k_base *ab)
-+{
-+	int ret;
-+
-+	ret = ath11k_core_setup_device(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to setup device: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = ath11k_mac_register(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed register the radio with mac80211: %d\n", ret);
-+		goto err_free_device;
-+	}
-+
-+	ret = ath11k_thermal_register(ab);
-+	if (ret) {
-+		ath11k_err(ab, "could not register thermal device: %d\n",
-+			   ret);
-+		goto err_mac_unregister;
-+	}
-+
-+	return 0;
-+
-+err_mac_unregister:
-+	ath11k_mac_unregister(ab);
-+err_free_device:
-+	ath11k_core_stop_device(ab);
-+	ath11k_mac_destroy(ab);
-+
-+	return ret;
-+}
-+
- static void ath11k_core_reconfigure_on_crash(struct ath11k_base *ab)
- {
- 	mutex_lock(&ab->core_lock);
--	ath11k_thermal_unregister(ab);
- 	ath11k_hif_irq_disable(ab);
- 	ath11k_dp_pdev_free(ab);
- 	ath11k_spectral_deinit(ab);
-@@ -1837,7 +1876,6 @@ void ath11k_core_deinit(struct ath11k_base *ab)
- 	mutex_lock(&ab->core_lock);
- 
- 	ath11k_core_pdev_destroy(ab);
--	ath11k_core_stop(ab);
- 
- 	mutex_unlock(&ab->core_lock);
- 
-@@ -1905,37 +1943,140 @@ struct ath11k_base *ath11k_core_alloc(struct device *dev, size_t priv_size,
- }
- EXPORT_SYMBOL(ath11k_core_alloc);
- 
-+static int ath11k_core_suspend_target(struct ath11k_base *ab, u32 suspend_opt)
-+{
-+	struct ath11k *ar;
-+	struct ath11k_pdev *pdev;
-+	unsigned long time_left;
-+	int ret;
-+	int i;
-+
-+	for (i = 0; i < ab->num_radios; i++) {
-+		pdev = &ab->pdevs[i];
-+		ar = pdev->ar;
-+
-+		reinit_completion(&ab->htc_suspend);
-+
-+		ret = ath11k_wmi_pdev_suspend(ar, suspend_opt, pdev->pdev_id);
-+		if (ret) {
-+			ath11k_warn(ab, "could not suspend target (%d)\n", ret);
-+			return ret;
-+		}
-+
-+		time_left = wait_for_completion_timeout(&ab->htc_suspend, 3 * HZ);
-+
-+		if (!time_left) {
-+			ath11k_warn(ab, "suspend timed out - target pause event never came\n");
-+			return -ETIMEDOUT;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+void ath11k_core_stop_device(struct ath11k_base *ab)
-+{
-+	if (ab->core_stopped)
-+		return;
-+
-+	ath11k_spectral_deinit(ab);
-+	ath11k_core_suspend_target(ab, WMI_PDEV_SUSPEND_AND_DISABLE_INTR);
-+	ath11k_hif_irq_disable(ab);
-+	ath11k_hif_stop(ab);
-+
-+	if (!test_bit(ATH11K_FLAG_CRASH_FLUSH, &ab->dev_flags))
-+		ath11k_qmi_firmware_stop(ab);
-+
-+	ath11k_wmi_detach(ab);
-+	ath11k_dp_pdev_reo_cleanup(ab);
-+	ath11k_dp_pdev_free(ab);
-+	ath11k_dp_free(ab);
-+
-+	ab->core_stopped = true;
-+}
-+EXPORT_SYMBOL(ath11k_core_stop_device);
-+
-+int ath11k_core_any_pdevs_on(struct ath11k_base *ab)
-+{
-+	struct ath11k_pdev *pdev;
-+	struct ath11k *ar;
-+	int i;
-+
-+	for (i = 0; i < ab->num_radios; i++) {
-+		pdev = &ab->pdevs[i];
-+		ar = pdev->ar;
-+		if (!ar)
-+			continue;
-+
-+		if (ar->state == ATH11K_STATE_ON)
-+			return true;
-+	}
-+
-+	return false;
-+}
-+EXPORT_SYMBOL(ath11k_core_any_pdevs_on);
-+
- int ath11k_core_start_device(struct ath11k_base *ab)
- {
- 	int ret;
- 
--	if (!test_bit(ATH11K_FLAG_RECOVERY, &ab->dev_flags))
--		return 0;
-+	mutex_lock(&ab->core_lock);
- 
- 	ath11k_hal_srng_deinit(ab);
- 
- 	ret = ath11k_hal_srng_init(ab);
- 	if (ret) {
- 		ath11k_err(ab, "failed to init srng: %d\n", ret);
--		return ret;
-+		goto err_unlock;
- 	}
- 
- 	clear_bit(ATH11K_FLAG_CRASH_FLUSH, &ab->dev_flags);
- 
--	ret = ath11k_core_qmi_firmware_ready(ab);
-+	ret = ath11k_core_start_firmware(ab, ATH11K_FIRMWARE_MODE_NORMAL);
- 	if (ret) {
--		ath11k_err(ab, "failed to init core: %d\n", ret);
-+		ath11k_err(ab, "failed to start firmware: %d\n", ret);
- 		goto err_hal_srng_deinit;
- 	}
- 
-+	ret = ath11k_core_setup_resources(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to setup resources: %d\n", ret);
-+		goto err_firmware_stop;
-+	}
-+
-+	ret = ath11k_core_start(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to start core: %d\n", ret);
-+		goto err_free_resources;
-+	}
-+
-+	ret = ath11k_core_pdev_create(ab);
-+	if (ret) {
-+		ath11k_err(ab, "failed to create pdev core: %d\n", ret);
-+		goto err_core_stop;
-+	}
-+
-+	ath11k_hif_irq_enable(ab);
- 	clear_bit(ATH11K_FLAG_RECOVERY, &ab->dev_flags);
- 
-+	mutex_unlock(&ab->core_lock);
-+
-+	ab->core_stopped = false;
- 	return 0;
- 
-+err_core_stop:
-+	ath11k_core_stop(ab);
-+err_free_resources:
-+	ath11k_core_free_resources(ab);
-+err_firmware_stop:
-+	ath11k_qmi_firmware_stop(ab);
- err_hal_srng_deinit:
- 	ath11k_hal_srng_deinit(ab);
-+err_unlock:
-+	mutex_unlock(&ab->core_lock);
- 	return ret;
- }
-+EXPORT_SYMBOL(ath11k_core_start_device);
- 
- MODULE_DESCRIPTION("Core module for Qualcomm Atheros 802.11ax wireless LAN cards.");
- MODULE_LICENSE("Dual BSD/GPL");
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 9b55ac94b36c..338f6f71baa0 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -964,6 +964,8 @@ struct ath11k_base {
- 		const struct ath11k_pci_ops *ops;
- 	} pci;
- 
-+	bool core_stopped;
-+
- 	/* must be last */
- 	u8 drv_priv[] __aligned(sizeof(void *));
- };
-@@ -1156,6 +1158,8 @@ int ath11k_core_resume(struct ath11k_base *ab);
- int ath11k_core_suspend(struct ath11k_base *ab);
- void ath11k_core_pre_reconfigure_recovery(struct ath11k_base *ab);
- int ath11k_core_start_device(struct ath11k_base *ab);
-+void ath11k_core_stop_device(struct ath11k_base *ab);
-+int ath11k_core_any_pdevs_on(struct ath11k_base *ab);
- 
- const struct firmware *ath11k_core_firmware_request(struct ath11k_base *ab,
- 						    const char *filename);
-diff --git a/drivers/net/wireless/ath/ath11k/hif.h b/drivers/net/wireless/ath/ath11k/hif.h
-index 659b80d2abd4..395b3dbf79b8 100644
---- a/drivers/net/wireless/ath/ath11k/hif.h
-+++ b/drivers/net/wireless/ath/ath11k/hif.h
-@@ -30,6 +30,8 @@ struct ath11k_hif_ops {
- 	void (*ce_irq_enable)(struct ath11k_base *ab);
- 	void (*ce_irq_disable)(struct ath11k_base *ab);
- 	void (*get_ce_msi_idx)(struct ath11k_base *ab, u32 ce_id, u32 *msi_idx);
-+	int (*core_start)(struct ath11k_base *ab);
-+	void (*core_stop)(struct ath11k_base *ab);
- };
- 
- static inline void ath11k_hif_ce_irq_enable(struct ath11k_base *ab)
-@@ -145,4 +147,13 @@ static inline void ath11k_get_ce_msi_idx(struct ath11k_base *ab, u32 ce_id,
- 		*msi_data_idx = ce_id;
- }
- 
-+static inline int ath11k_hif_core_start(struct ath11k_base *ab)
-+{
-+	return ab->hif.ops->core_start(ab);
-+}
-+
-+static inline void ath11k_hif_core_stop(struct ath11k_base *ab)
-+{
-+	return ab->hif.ops->core_stop(ab);
-+}
- #endif /* _HIF_H_ */
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index c21ebf0578dc..31b794ea52ad 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -5797,9 +5797,9 @@ static int ath11k_mac_op_start(struct ieee80211_hw *hw)
- 
- 	ath11k_mac_drain_tx(ar);
- 
--	ret = ath11k_core_start_device(ab);
-+	ret = ath11k_hif_core_start(ab);
- 	if (ret) {
--		ath11k_err(ab, "failed to start device : %d\n", ret);
-+		ath11k_err(ab, "failed to start core : %d\n", ret);
- 		return ret;
- 	}
- 
-@@ -5960,6 +5960,10 @@ static void ath11k_mac_op_stop(struct ieee80211_hw *hw)
- 	synchronize_rcu();
- 
- 	atomic_set(&ar->num_pending_mgmt_tx, 0);
-+
-+	/* If all PDEVs on the SoC are down, then power down the device */
-+	if (!ath11k_core_any_pdevs_on(ar->ab))
-+		ath11k_hif_core_stop(ar->ab);
- }
- 
- static void
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index 99cf3357c66e..be350ed671b7 100644
---- a/drivers/net/wireless/ath/ath11k/pci.c
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -680,6 +680,30 @@ static int ath11k_pci_start(struct ath11k_base *ab)
- 	return 0;
- }
- 
-+static int ath11k_pci_core_start(struct ath11k_base *ab)
-+{
-+	/* TODO: Currently initializing the hardware/firmware only
-+	 * during hardware recovery. Support to shutdown/turn-on
-+	 * the hardware during Wi-Fi OFF/ON will be added later.
-+	 */
-+	if (!test_bit(ATH11K_FLAG_RECOVERY, &ab->dev_flags))
-+		return 0;
-+
-+	return ath11k_core_start_device(ab);
-+}
-+
-+static void ath11k_pci_core_stop(struct ath11k_base *ab)
-+{
-+	/* TODO: Currently stopping the hardware/firmware only
-+	 * during driver unload. Support to shutdown/turn-on
-+	 * the hardware during Wi-Fi OFF/ON will be added later.
-+	 */
-+	if (!test_bit(ATH11K_FLAG_UNREGISTERING, &ab->dev_flags))
-+		return;
-+
-+	return ath11k_core_stop_device(ab);
-+}
-+
- static const struct ath11k_hif_ops ath11k_pci_hif_ops = {
- 	.start = ath11k_pci_start,
- 	.stop = ath11k_pcic_stop,
-@@ -698,6 +722,8 @@ static const struct ath11k_hif_ops ath11k_pci_hif_ops = {
- 	.ce_irq_enable = ath11k_pci_hif_ce_irq_enable,
- 	.ce_irq_disable = ath11k_pci_hif_ce_irq_disable,
- 	.get_ce_msi_idx = ath11k_pcic_get_ce_msi_idx,
-+	.core_start = ath11k_pci_core_start,
-+	.core_stop = ath11k_pci_core_stop,
- };
- 
- static void ath11k_pci_read_hw_version(struct ath11k_base *ab, u32 *major, u32 *minor)
 -- 
-2.38.0
+https://patchwork.kernel.org/project/linux-wireless/list/
 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
