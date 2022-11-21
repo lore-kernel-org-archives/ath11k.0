@@ -4,74 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1B7CC433FE
-	for <ath11k@archiver.kernel.org>; Sun, 20 Nov 2022 08:13:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FB65C4332F
+	for <ath11k@archiver.kernel.org>; Mon, 21 Nov 2022 10:56:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:References:CC:To:From:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=kL458Kw1LkZKH9cM3MazxhkTZn7REkCKF7aHfZYIsGo=; b=zoJV2iBeWpKPyg
-	KQg9uDbFFpUSfna5e1Y6eSp9CoD+9BHrjo2/qksg1QlAQsFF2eTczKFg6WH3BK5KIpF9UrQfcL7hO
-	/pqKxWibzARviBA6Po3kL1udJmifM5YhhuBK5z2ViVfiurOZxUZufGMA8Hq3dm5i64l+bG5PRUuBE
-	hJgAN53I/XpMX5guGiNn+72rqTzbBSRkyAqQRl1r9qfJu3GD+Fqob/mnwAbSe8RjwtI31tMV6TMsH
-	jg2q0J5w0SzQRadVf7I0sRlSuLm/Ji5Asd+1aQIN8B9ZvlI81tPmmcgv+9shuZXXhV/Ut9gBk6Dbk
-	X70Im9dHdVtfcAlLvtgA==;
+	List-Owner; bh=b0ItnLS6JEcxR1OcPhOHF6bOlTf/i1OICTQgw9B5u6Y=; b=gt3ZeaXZC53yMs
+	YW178hXc1FqUU3568BF64Odif1YciWpE5YnCCl2NOaW76tLOP3kT+4bOb9qDSNcVy0OOW7s16XSx4
+	CRmeqMhymXZB397D4B4AWfDqhLgahXtYElGwxjQfgQeNoxFBDrEZ4dr9aTd/eSvt8D4wSBHtrJ/f2
+	W1aAhzbzyxZoH/NSnE1g9RDJVIZclFWhhihCk3no3ZV+UfTlZAgCJLLPn4/z3OK0aB9w1mDk7whI+
+	dS/onqHXoBh6006jESRJgTvB7ImXqW1JwmwFY7JPB398xNg2GHetwrCXlVyTVMoFoGrIvQJQzmHez
+	7/isCEbz8nuqLshi9dhg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1owfSE-002zs2-DV; Sun, 20 Nov 2022 08:13:30 +0000
-Received: from mail-lj1-x22c.google.com ([2a00:1450:4864:20::22c])
+	id 1ox4TR-00CjxZ-If; Mon, 21 Nov 2022 10:56:25 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1owfSB-002zrW-9S
-	for ath11k@lists.infradead.org; Sun, 20 Nov 2022 08:13:29 +0000
-Received: by mail-lj1-x22c.google.com with SMTP id s24so11449863ljs.11
-        for <ath11k@lists.infradead.org>; Sun, 20 Nov 2022 00:13:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ESOG36Ho2ZT6yXqrz5s1bMp/VeSG+VVt6PUDn1qpyLQ=;
-        b=qV/RndYc3z4j5aylkXFUGc8nJNAlYt2ONkXyvlpn15vtOcEbOFA3FEpXCVtZ69XR4m
-         IklSGIJy1rcDp2osEDkO3TGZMdBQ0g3srynRV5b7BAUr74tJJT65FFpw8YLoNpMe/2hw
-         bT+lkzf3DSCkFHo4b1q/7H0ef1fqGmOm227smxYFFnyY9Uph0a45glVjZ5fGyKvtn/uR
-         cKby2dU9TKddhZBUZV+bEU8SPX1er2SZdMTdTG46OFnYTUDCqS94HERGuZ7It/UFbqzw
-         i4Z59Vcd4o7Py2ReLLDDFtRNaz1NcPAQQ1OQqChtQAfUhJkHW/GRXVa+lLKheRUPdNYz
-         Qk7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ESOG36Ho2ZT6yXqrz5s1bMp/VeSG+VVt6PUDn1qpyLQ=;
-        b=BRin79Kac/FSJcwiMnCDtv4ykNNm0lNiI0/TobzHsdhYZBsd/yV0G9QaPKm6DCT7ck
-         CZmaa2oWUwQxCU8ft3H0FO7tmq73LR6UtOcQyrbbQcZLGL2tXl2q9Hl8aGEO4ffzu//Y
-         N3/C0O3gmfqRLASRK/OKJCS91rc20KDjo2kW/IdMCmOSfKo+tTzbXUNbAi+tNo4hD37Y
-         jM6w0U+KCNbZ2rNE3HWZXa1BbdhxdHrouMSZAp3+6uQLjDMLTVmZPy57v/g9xhKLk/J1
-         XblinRbrqHefhBC+NX5Q7tOPWvNrVpPGNpBrUJnThKKX3sjIsVHyGwxKqS4aK1gMCDc7
-         G+vw==
-X-Gm-Message-State: ANoB5plKB7qIO3QJ4tEGpPT3mPzVlezjjFWnhB7pv++3BBtv6/SaudY8
-	04wiYBgGMa/bUERhCetJVS6i5ldjdz3rKs/3gsKjX6jWpxE=
-X-Google-Smtp-Source: AA0mqf6DYKZatHhpK80rXcTGsRzkrvyZLlnvgNCp7tPdKMgywil95xX+vWiYyv+HerC1tAq5wXGEyrYTk/RGmp+2NJs=
-X-Received: by 2002:a05:651c:2050:b0:278:eef5:8d17 with SMTP id
- t16-20020a05651c205000b00278eef58d17mr4453746ljo.205.1668932004873; Sun, 20
- Nov 2022 00:13:24 -0800 (PST)
+	id 1ox4TO-00CjwO-K3
+	for ath11k@lists.infradead.org; Mon, 21 Nov 2022 10:56:24 +0000
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2ALAJbVA000938;
+	Mon, 21 Nov 2022 10:56:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : from : to : cc : references : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=al1ITFpVQh1H6bn1aV9Hl/dIpYl8S/214h3vKvyk6TI=;
+ b=CIyBcNmZ4WbvkWMsiBbqEsJDW//UtUqH6vDReBGK8cYdx2zW04MrbSrXmQbR9Cqw/ojP
+ 5aBYt3NTr/bktY7s2a+EDHCBsCOWskeDX09/r87EplQpjGMhulxHPOtKpVgtzs/8GoAJ
+ FZW5Cw5oPWQpI0dJDZX4SsBVauzrRYKZ8H+NdOr/ljwNoA2Oh075SLudZ3PMAoLHBRYG
+ nunsyUaFHPFOQWcTKlQvZqKnm741TpZrHgCTCF76M8ecVmXd5+FpuWCJWisDVyZJds+D
+ mj2VDrcx1IHcQUr9C6HDN8YCoeyQX6WPeYv+KBp+dTfg6xWF0gJrD7wdUmoPeg2pf9/a Xg== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kxrtqc4pq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 21 Nov 2022 10:56:16 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2ALAuFLk014819
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 21 Nov 2022 10:56:15 GMT
+Received: from [10.206.66.231] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 21 Nov
+ 2022 02:56:14 -0800
+Message-ID: <0a765cb8-9e64-4345-f6eb-a143500ea24d@quicinc.com>
+Date: Mon, 21 Nov 2022 16:26:11 +0530
 MIME-Version: 1.0
-References: <mailman.7.1667674802.1691884.ath11k@lists.infradead.org>
- <4660647.LvFx2qVVIh@sven-l14> <CAJrE-q7GshGMSoiP8Vb9itUvap2=tWHqQnDFnckzcRNNpya6Bw@mail.gmail.com>
- <3684626.iIbC2pHGDl@sven-l14> <CAJrE-q7yW435fPqeNg9aEhbdyy152Q2q-dSbQ7_4xNP9EzHWHg@mail.gmail.com>
- <CA+HBbNGWQCR_RQK3iCX3cEHeMzMeKz6pdwG9=LrOw8fSB22x2Q@mail.gmail.com>
-In-Reply-To: <CA+HBbNGWQCR_RQK3iCX3cEHeMzMeKz6pdwG9=LrOw8fSB22x2Q@mail.gmail.com>
-From: Mariusz <enebeo@gmail.com>
-Date: Sun, 20 Nov 2022 09:13:16 +0100
-Message-ID: <CAJrE-q41T-A0My_+wRauGW9CQh53U7CLP5L9vNNMKtS4nEvFgA@mail.gmail.com>
-Subject: Re: Wallys DR9074-6E(PN02.7) QCN9074 refuses to work on 6GHz band
-To: Robert Marko <robert.marko@sartura.hr>
-Cc: Sven Eckelmann <sven@narfation.org>, walde <waldemar.stroh@uni-siegen.de>, 
-	"ath11k@lists.infradead.org" <ath11k@lists.infradead.org>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v2 3/4] ath11k: Enable low power mode when WLAN is not
+ active
+From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+To: Kalle Valo <kvalo@kernel.org>
+CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
+References: <20220825111818.30869-1-quic_mpubbise@quicinc.com>
+ <20220825111818.30869-4-quic_mpubbise@quicinc.com>
+ <874jxsdeov.fsf@kernel.org>
+ <c10d7988-099b-cd10-64aa-41daca1ce12b@quicinc.com>
+ <874jxpc3t8.fsf@kernel.org>
+ <f5283344-a39d-f2f5-faa3-3fd11c3c70af@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <f5283344-a39d-f2f5-faa3-3fd11c3c70af@quicinc.com>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: uvDi4pZqYry_vwytYvuenN3GG5mkiU2d
+X-Proofpoint-GUID: uvDi4pZqYry_vwytYvuenN3GG5mkiU2d
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-21_06,2022-11-18_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1011
+ malwarescore=0 bulkscore=0 phishscore=0 priorityscore=1501 impostorscore=0
+ suspectscore=0 mlxlogscore=591 lowpriorityscore=0 adultscore=0 mlxscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2210170000
+ definitions=main-2211210085
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221120_001327_374975_2E2B9018 
-X-CRM114-Status: GOOD (  42.26  )
+X-CRM114-CacheID: sfid-20221121_025622_820986_E5705213 
+X-CRM114-Status: GOOD (  21.86  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,133 +96,137 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-I also got my hands on AXE75 which is a 6E router and I am able to get
-QCN9074 work in STA mode.
-
-With 160Mhz it did not work but it may be anything. However with 80Mhz
-I am able to get a successful connection fully authenticated with
-WPA3. So radio wise it operates in 6Ghz band after driver patch with
-board_id=0xa2. Now I'm trying to understand why it still does not work
-in AP mode.
-
-root@s4:/home/angel# wpa_cli status
-Selected interface 'wlp6s0'
-bssid=1c:61:b4:c8:93:f4
-freq=6115
-ssid=test
-id=0
-mode=station
-wifi_generation=6
-pairwise_cipher=CCMP
-group_cipher=CCMP
-key_mgmt=SAE
-pmf=2
-mgmt_group_cipher=BIP
-wpa_state=COMPLETED
-ip_address=192.168.6.123
-address=c4:4b:d1:d0:00:7e
-uuid=07aaca38-a259-53ef-b12b-bb4cf5dad8d8
-
-On Sat, 19 Nov 2022 at 16:16, Robert Marko <robert.marko@sartura.hr> wrote:
->
-> On Sat, Nov 19, 2022 at 2:40 PM Mariusz <enebeo@gmail.com> wrote:
-> >
-> > I have contacted Wallys again but I am skeptical about resolution.
-> > They don't consider board_id an issue and provided the same response,
-> > on integrated systems it is due the bootloader to set it properly so
-> > it is not fused and obviously not included in x86 scenario.
->
-> Hi, this is not really the case, how would the bootloader set the board_id
-> which is supposed to be fused on the device so FW would report the correct one?
-> You can only workaround that by hardcoding it in the driver or on non-x86
-> in DTS and force-loading the correct BDF that way.
->
-> > Since this
-> > is a private project I doubt QCA will support my efforts and free
-> > access to their portals gives nothing. Found online some SDK for
-> > version ath10k/IPQ8074 and athtestcmd to deal with OTP/fusing but
-> > that's far beyond home project effort.
-> >
-> > Tried also to compile it in OpenWRT with moderate success. ath11ko /
-> > qrtr.ko modules are built but the module never goes past power on
-> > success.
-> > mhi mhi0: Requested to power ON
-> > mhi mhi0: Power on setup success
-> > mhi mhi0: Wait for device to enter SBL or Mission mode
-> >
-> > Even the newest kernel in OpenWRT master development branch 5.16 is
-> > quite behind and backporting anything is another non-trivial task.
->
-> ath11k won't work in OpenWrt master currently, I have been supporting IPQ807x
-> and recently PCI version as well out-of-tree with hopes of getting it soon into
-> OpenWrt once 6.1 backports become available as that gets rid of like 300-ish
-> backported patches.
->
-> Regards,
-> Robert
-> >
-> > On Fri, 18 Nov 2022 at 15:06, Sven Eckelmann <sven@narfation.org> wrote:
-> > >
-> > > On Friday, 18 November 2022 13:48:43 CET Mariusz wrote:
-> > > > Mine is from a different supplier - Wallys - and I bought it 2 weeks
-> > > > ago but not sure how old their stock is. PCB looks slightly different
-> > > > than Pinapple's. Is it likely to have the same issue?
-> > >
-> > > It definitely has the same issue (because you reported that board_id is
-> > > 255/0xff) but I have no idea whether Wallytech ever fixed it. At least I was
-> > > never in contact about this problem with them. But sending around precompiled
-> > > kernel module binaries (for an unknown kernel build), with some hacks to fix
-> > > their hardware production errors (missing module id fusing in the OTP for
-> > > their separately sold modules), doesn't make me confident that they are able
-> > > to solve this problem correctly.
-> > >
-> > > In their defense, QCA doesn't make it really easy. It seems like their
-> > > reference designs with Pine on 6Ghz are (mostly?) for (embedded Linux) APs
-> > > which use the normal flash (NOR or NAND) to store the calibration data. And
-> > > for these devices, they use the devicetree (or various other hacks) to load
-> > > the correct board data.
-> > >
-> > > Wallystech has to find the correct document on createpoint which describes the
-> > > process. It was something like "module" "board id" "fusing". But it is not the
-> > > "Board ID Fusing for 802.11ax WLAN AP Chipsets" which only describes the way
-> > > how you would to it for thei internal wifi of the IPQ807x/IPQ60xx/... SoC.
-> > > You/they are searching for the corresponding document for Pine IPQ9074. Most
-> > > likely hidden in some QDART documents.
-> > >
-> > >
-> > > Regarding the problem that some countries are not allowing 6GHz: You have to
-> > > either get a firmware from QCA which has it enabled or you modify the BDFs
-> > > ("board-" files in the board-2.bin) to enable 6GHz in the (enabled) embedded
-> > > REGDB of the BDFs for the specific country. Unfortunately, the data structures
-> > > of the BDF are not officially documented and you would need an official QSDK/
-> > > ATH.11.X release from QCA to fetch the bdf2txt.py, txt2bdf.py and the
-> > > corresponding template for your BDF to extract and modify it.
-> > >
-> > > Kind regards,
-> > >         Sven
-> >
-> > --
-> > ath11k mailing list
-> > ath11k@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/ath11k
->
->
->
-> --
-> Robert Marko
-> Staff Embedded Linux Engineer
-> Sartura Ltd.
-> Lendavska ulica 16a
-> 10000 Zagreb, Croatia
-> Email: robert.marko@sartura.hr
-> Web: www.sartura.hr
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+T24gOS8yLzIwMjIgNjo1NSBQTSwgTWFuaWthbnRhIFB1YmJpc2V0dHkgd3JvdGU6Cj4gT24gOS8y
+LzIwMjIgNjo0OCBQTSwgS2FsbGUgVmFsbyB3cm90ZToKPj4gTWFuaWthbnRhIFB1YmJpc2V0dHkg
+PHF1aWNfbXB1YmJpc2VAcXVpY2luYy5jb20+IHdyaXRlczoKPj4KPj4+IE9uIDgvMzEvMjAyMiAx
+OjMxIFBNLCBLYWxsZSBWYWxvIHdyb3RlOgo+Pj4KPj4+PiBXaXRoIHRoaXMgcGF0Y2ggMyBteSBy
+ZWdyZXNzaW9uIHRlc3RzIG9uIFdDTjY4NTUgcGFuaWM6Cj4+Pj4KPj4+PiBbwqAgMTA5LjAwOTQy
+N10gcm1tb2QgYXRoMTFrX3BjaQo+Pj4+IFvCoCAxMDkuNDM3MTIwXSBrd29ya2VyL2R5aW5nICgx
+NTYwKSB1c2VkIGdyZWF0ZXN0IHN0YWNrIGRlcHRoOiAyNDcwNCAKPj4+PiBieXRlcyBsZWZ0Cj4+
+Pj4gWyAxMDkuNDQ2MDUxXSBnZW5lcmFsIHByb3RlY3Rpb24gZmF1bHQsIHByb2JhYmx5IGZvciBu
+b24tY2Fub25pY2FsCj4+Pj4gYWRkcmVzcyAweGRmZmZmYzAwMDAwMDAwM2U6IDAwMDAgWyMxXSBQ
+UkVFTVBUIFNNUCBERUJVR19QQUdFQUxMT0MKPj4+PiBLQVNBTgo+Pj4+IFsgMTA5LjQ0NjEzM10g
+S0FTQU46IG51bGwtcHRyLWRlcmVmIGluIHJhbmdlCj4+Pj4gWzB4MDAwMDAwMDAwMDAwMDFmMC0w
+eDAwMDAwMDAwMDAwMDAxZjddCj4+Pj4gW8KgIDEwOS40NDYyMTFdIENQVTogMCBQSUQ6IDAgQ29t
+bTogc3dhcHBlci8wIE5vdCB0YWludGVkIAo+Pj4+IDYuMC4wLXJjMi13dC1hdGgrICM2ODMKPj4+
+PiBbIDEwOS40NDYzMTVdIEhhcmR3YXJlIG5hbWU6IEludGVsKFIpIENsaWVudCBTeXN0ZW1zCj4+
+Pj4gTlVDOGk3SFZLL05VQzhpN0hWQiwgQklPUyBITktCTGk3MC44NkEuMDA2Ny4yMDIxLjA1Mjgu
+MTMzOQo+Pj4+IDA1LzI4LzIwMjEKPj4+PiBbwqAgMTA5LjQ0NjM5M10gUklQOiAwMDEwOmF0aDEx
+a19kcF9wcm9jZXNzX3J4ZG1hX2VycisweDFjOC8weDgxMCAKPj4+PiBbYXRoMTFrXQo+Pj4+IFsg
+MTA5LjQ0NjQ4Nl0gQ29kZTogZDIgNDggNjMgZDggNDggOGIgNGMgMjQgMzggNDggOGQgMDQgNWIg
+NDggYzEgZTAKPj4+PiAwNCA0OCA4ZCBiYyAwMSBmNCAwMSAwMCAwMCA0OCBiOCAwMCAwMCAwMCAw
+MCAwMCBmYyBmZiBkZiA0OCA4OSBmYSA0OAo+Pj4+IGMxIGVhIDAzIDwwZj4gYjYgMTQgMDIgNDgg
+ODkgZjggODMgZTAgMDcgODMgYzAgMDMgMzggZDAgN2MgMDggODQgZDIKPj4+PiAwZiA4NSBhYQo+
+Pj4+IFvCoCAxMDkuNDQ2NTU3XSBSU1A6IDAwMTg6ZmZmZmM5MDAwMDAwN2I5MCBFRkxBR1M6IDAw
+MDEwMjAzCj4+Pj4gW8KgIDEwOS40NDY2MTldIFJBWDogZGZmZmZjMDAwMDAwMDAwMCBSQlg6IDAw
+MDAwMDAwMDAwMDAwMDAgUkNYOiAKPj4+PiAwMDAwMDAwMDAwMDAwMDAwCj4+Pj4gW8KgIDEwOS40
+NDY2NzddIFJEWDogMDAwMDAwMDAwMDAwMDAzZSBSU0k6IDAwMDAwMDAwMDAwMDAwMDAgUkRJOiAK
+Pj4+PiAwMDAwMDAwMDAwMDAwMWY0Cj4+Pj4gW8KgIDEwOS40NDY3MzRdIFJCUDogMDAwMDAwMDAw
+MDAwMDAwMCBSMDg6IGZmZmY4ODgxNGMwZTE0NzAgUjA5OiAKPj4+PiBmZmZmODg4MTRjMGY2Njc4
+Cj4+Pj4gW8KgIDEwOS40NDY3OTJdIFIxMDogZGZmZmZjMDAwMDAwMDAwMCBSMTE6IGZmZmZlZDEw
+Mjk4MWVjZDAgUjEyOiAKPj4+PiAwMDAwMDAwMDAwMDAwMDAwCj4+Pj4gW8KgIDEwOS40NDY5MDNd
+IFIxMzogMDAwMDAwMDAwMDAwMDA0MCBSMTQ6IDFmZmZmOTIwMDAwMDBmODEgUjE1OiAKPj4+PiBm
+ZmZmODg4MTRjMGUwMDAwCj4+Pj4gWyAxMDkuNDQ2OTYxXSBGUzogMDAwMDAwMDAwMDAwMDAwMCgw
+MDAwKSBHUzpmZmZmODg4MjMzNjAwMDAwKDAwMDApCj4+Pj4ga25sR1M6MDAwMDAwMDAwMDAwMDAw
+MAo+Pj4+IFvCoCAxMDkuNDQ3MDIwXSBDUzrCoCAwMDEwIERTOiAwMDAwIEVTOiAwMDAwIENSMDog
+MDAwMDAwMDA4MDA1MDAzMwo+Pj4+IFvCoCAxMDkuNDQ3MDgwXSBDUjI6IDAwMDA1NTU3MGZlODRj
+YzggQ1IzOiAwMDAwMDAwMTUyNTQwMDA2IENSNDogCj4+Pj4gMDAwMDAwMDAwMDM3MDZmMAo+Pj4+
+IFvCoCAxMDkuNDQ3MTM2XSBDYWxsIFRyYWNlOgo+Pj4+IFvCoCAxMDkuNDQ3MTk0XcKgIDxJUlE+
+Cj4+Pj4gW8KgIDEwOS40NDcyNTddwqAgPyBhdGgxMWtfZHBfcHJvY2Vzc19yZW9fc3RhdHVzKzB4
+M2NlLzB4NTYwIFthdGgxMWtdCj4+Pj4gW8KgIDEwOS40NDczNDldwqAgPyBhdGgxMWtfZHBfcnhf
+cHJvY2Vzc193Ym1fZXJyKzB4MTdkMC8weDE3ZDAgW2F0aDExa10KPj4+PiBbwqAgMTA5LjQ0NzQ0
+Ml3CoCBhdGgxMWtfZHBfc2VydmljZV9zcm5nKzB4MzU4LzB4YWIwIFthdGgxMWtdCj4+Pj4gW8Kg
+IDEwOS40NDc1MzZdwqAgYXRoMTFrX3BjaWNfZXh0X2dycF9uYXBpX3BvbGwrMHg0MC8weDFkMCBb
+YXRoMTFrXQo+Pj4+IFvCoCAxMDkuNDQ3NjI4XcKgIF9fbmFwaV9wb2xsLmNvbnN0cHJvcC4wKzB4
+OTcvMHgzNTAKPj4+PiBbwqAgMTA5LjQ0NzY5MF3CoCBuZXRfcnhfYWN0aW9uKzB4N2JmLzB4YmIw
+Cj4+Pj4gW8KgIDEwOS40NDc3NDldwqAgPyBfX25hcGlfcG9sbC5jb25zdHByb3AuMCsweDM1MC8w
+eDM1MAo+Pj4+IFvCoCAxMDkuNDQ3ODMxXcKgID8ga3RpbWVfZ2V0KzB4MTAxLzB4MmYwCj4+Pj4g
+W8KgIDEwOS40NDc5MTFdwqAgX19kb19zb2Z0aXJxKzB4MWNhLzB4ODk3Cj4+Pj4gW8KgIDEwOS40
+NDc5ODldwqAgX19pcnFfZXhpdF9yY3UrMHhkYi8weDE4MAo+Pj4+IFvCoCAxMDkuNDQ4MDQ5XcKg
+IGlycV9leGl0X3JjdSsweDUvMHgyMAo+Pj4+IFvCoCAxMDkuNDQ4MTA5XcKgIHN5c3ZlY19hcGlj
+X3RpbWVyX2ludGVycnVwdCsweDhhLzB4YjAKPj4+PiBbwqAgMTA5LjQ0ODE2OF3CoCA8L0lSUT4K
+Pj4+PiBbwqAgMTA5LjQ0ODIyNl3CoCA8VEFTSz4KPj4+PiBbwqAgMTA5LjQ0ODI4NF3CoCBhc21f
+c3lzdmVjX2FwaWNfdGltZXJfaW50ZXJydXB0KzB4MTYvMHgyMAo+Pj4+IFvCoCAxMDkuNDQ4MzQz
+XSBSSVA6IDAwMTA6Y3B1aWRsZV9lbnRlcl9zdGF0ZSsweDFlZi8weDlhMAo+Pj4+IFsgMTA5LjQ0
+ODQwN10gQ29kZTogMDAgMDAgOGIgNzMgMDQgYmYgZmYgZmYgZmYgZmYgZTggOGMgZjAgZmYgZmYg
+MzEKPj4+PiBmZiBlOCA3NSAxNiA0NyBmZSA4MCA3YyAyNCAwOCAwMCAwZiA4NSBhMSAwMSAwMCAw
+MCBlOCA3NSA3ZCA2YSBmZSBmYgo+Pj4+IDQ1IDg1IGY2IDwwZj4gODggNmYgMDIgMDAgMDAgNGQg
+NjMgZWUgNGIgOGQgNDQgNmQgMDAgNDkgOGQgNDQgODUgMDAKPj4+PiA0OCA4ZCA3Ywo+Pj4+IFvC
+oCAxMDkuNDQ4NDc3XSBSU1A6IDAwMTg6ZmZmZmZmZmZiOTQwN2RiOCBFRkxBR1M6IDAwMDAwMjAy
+Cj4+Pj4gW8KgIDEwOS40NDg1NDBdIFJBWDogMDAwMDAwMDAwMDEyNDk4NyBSQlg6IGZmZmY4ODgx
+MTQ5NjY0MDAgUkNYOiAKPj4+PiAxZmZmZmZmZmY3MzhhM2UxCj4+Pj4gW8KgIDEwOS40NDg2MDBd
+IFJEWDogMDAwMDAwMDAwMDAwMDAwMCBSU0k6IGZmZmZmZmZmYjhhNzFiYzAgUkRJOiAKPj4+PiBm
+ZmZmZmZmZmI4YmVjOWMwCj4+Pj4gW8KgIDEwOS40NDg2NTldIFJCUDogZmZmZmZmZmZiOTg2ZWZh
+MCBSMDg6IDAwMDAwMDAwMDAwMDAwMDEgUjA5OiAKPj4+PiBmZmZmZmZmZmI5YzU0NzE3Cj4+Pj4g
+W8KgIDEwOS40NDg3MTVdIFIxMDogZmZmZmZiZmZmNzM4YThlMiBSMTE6IDAwMDAwMDAwMDAwMDAy
+ZWMgUjEyOiAKPj4+PiAwMDAwMDAxOTdiN2E2YTE5Cj4+Pj4gW8KgIDEwOS40NDg3NzRdIFIxMzog
+MDAwMDAwMDAwMDAwMDAwMiBSMTQ6IDAwMDAwMDAwMDAwMDAwMDIgUjE1OiAKPj4+PiBmZmZmODg4
+MTE0OTY2NDA0Cj4+Pj4gW8KgIDEwOS40NDg4NzFdwqAgPyBjcHVpZGxlX2VudGVyX3N0YXRlKzB4
+MWViLzB4OWEwCj4+Pj4gW8KgIDEwOS40NDg5NDddwqAgPyBmaW5pc2hfdGFza19zd2l0Y2guaXNy
+YS4wKzB4MTIwLzB4ODcwCj4+Pj4gW8KgIDEwOS40NDkwMDZdwqAgY3B1aWRsZV9lbnRlcisweDQ1
+LzB4YTAKPj4+PiBbwqAgMTA5LjQ0OTA2NV3CoCBjcHVpZGxlX2lkbGVfY2FsbCsweDI3NC8weDNm
+MAo+Pj4+IFvCoCAxMDkuNDQ5MTI1XcKgID8gYXJjaF9jcHVfaWRsZV9leGl0KzB4MzAvMHgzMAo+
+Pj4+IFvCoCAxMDkuNDQ5MTg3XcKgID8gdHNjX3ZlcmlmeV90c2NfYWRqdXN0KzB4ODYvMHgyZDAK
+Pj4+PiBbwqAgMTA5LjQ0OTI0N13CoCA/IGxvY2tkZXBfaGFyZGlycXNfb2ZmKzB4OTAvMHhkMAo+
+Pj4+IFvCoCAxMDkuNDQ5MzA2XcKgIGRvX2lkbGUrMHhlMC8weDE0MAo+Pj4+IFvCoCAxMDkuNDQ5
+MzYzXcKgIGNwdV9zdGFydHVwX2VudHJ5KzB4MTQvMHgyMAo+Pj4+IFvCoCAxMDkuNDQ5NDIzXcKg
+IHJlc3RfaW5pdCsweDEzNS8weDFlMAo+Pj4+IFvCoCAxMDkuNDQ5NDgyXcKgIGFyY2hfY2FsbF9y
+ZXN0X2luaXQrMHhhLzB4Ygo+Pj4+IFvCoCAxMDkuNDQ5NTQyXcKgIHN0YXJ0X2tlcm5lbCsweDM5
+MS8weDNhZgo+Pj4+IFvCoCAxMDkuNDQ5NjA2XcKgIHNlY29uZGFyeV9zdGFydHVwXzY0X25vX3Zl
+cmlmeSsweGNlLzB4ZGIKPj4+PiBbwqAgMTA5LjQ0OTY3MV3CoCA8L1RBU0s+Cj4+Pj4gWyAxMDku
+NDQ5NzI5XSBNb2R1bGVzIGxpbmtlZCBpbjogYXRoMTFrX3BjaSgtKSBhdGgxMWsgbWFjODAyMTEK
+Pj4+PiBsaWJhcmM0IGNmZzgwMjExIHFtaV9oZWxwZXJzIHFydHJfbWhpIG1oaSBxcnRyIG52bWUg
+bnZtZV9jb3JlCj4+Pj4gW8KgIDEwOS40NDk4NDZdIC0tLVsgZW5kIHRyYWNlIDAwMDAwMDAwMDAw
+MDAwMDAgXS0tLQo+Pj4+IFvCoCAxMDkuNDQ5OTI3XSBSSVA6IDAwMTA6YXRoMTFrX2RwX3Byb2Nl
+c3NfcnhkbWFfZXJyKzB4MWM4LzB4ODEwIAo+Pj4+IFthdGgxMWtdCj4+Pj4gWyAxMDkuNDUwMDcz
+XSBDb2RlOiBkMiA0OCA2MyBkOCA0OCA4YiA0YyAyNCAzOCA0OCA4ZCAwNCA1YiA0OCBjMSBlMAo+
+Pj4+IDA0IDQ4IDhkIGJjIDAxIGY0IDAxIDAwIDAwIDQ4IGI4IDAwIDAwIDAwIDAwIDAwIGZjIGZm
+IGRmIDQ4IDg5IGZhIDQ4Cj4+Pj4gYzEgZWEgMDMgPDBmPiBiNiAxNCAwMiA0OCA4OSBmOCA4MyBl
+MCAwNyA4MyBjMCAwMyAzOCBkMCA3YyAwOCA4NCBkMgo+Pj4+IDBmIDg1IGFhCj4+Pj4gW8KgIDEw
+OS40NTAxNDddIFJTUDogMDAxODpmZmZmYzkwMDAwMDA3YjkwIEVGTEFHUzogMDAwMTAyMDMKPj4+
+PiBbwqAgMTA5LjQ1MDIxMl0gUkFYOiBkZmZmZmMwMDAwMDAwMDAwIFJCWDogMDAwMDAwMDAwMDAw
+MDAwMCBSQ1g6IAo+Pj4+IDAwMDAwMDAwMDAwMDAwMDAKPj4+PiBbwqAgMTA5LjQ1MDI3NV0gUkRY
+OiAwMDAwMDAwMDAwMDAwMDNlIFJTSTogMDAwMDAwMDAwMDAwMDAwMCBSREk6IAo+Pj4+IDAwMDAw
+MDAwMDAwMDAxZjQKPj4+PiBbwqAgMTA5LjQ1MDMzN10gUkJQOiAwMDAwMDAwMDAwMDAwMDAwIFIw
+ODogZmZmZjg4ODE0YzBlMTQ3MCBSMDk6IAo+Pj4+IGZmZmY4ODgxNGMwZjY2NzgKPj4+PiBbwqAg
+MTA5LjQ1MDQwMV0gUjEwOiBkZmZmZmMwMDAwMDAwMDAwIFIxMTogZmZmZmVkMTAyOTgxZWNkMCBS
+MTI6IAo+Pj4+IDAwMDAwMDAwMDAwMDAwMDAKPj4+PiBbwqAgMTA5LjQ1MDQ2NV0gUjEzOiAwMDAw
+MDAwMDAwMDAwMDQwIFIxNDogMWZmZmY5MjAwMDAwMGY4MSBSMTU6IAo+Pj4+IGZmZmY4ODgxNGMw
+ZTAwMDAKPj4+PiBbIDEwOS40NTA1MzFdIEZTOiAwMDAwMDAwMDAwMDAwMDAwKDAwMDApIEdTOmZm
+ZmY4ODgyMzM2MDAwMDAoMDAwMCkKPj4+PiBrbmxHUzowMDAwMDAwMDAwMDAwMDAwCj4+Pj4gW8Kg
+IDEwOS40NTA1OTVdIENTOsKgIDAwMTAgRFM6IDAwMDAgRVM6IDAwMDAgQ1IwOiAwMDAwMDAwMDgw
+MDUwMDMzCj4+Pj4gW8KgIDEwOS40NTA2NjFdIENSMjogMDAwMDU1NTcwZmU4NGNjOCBDUjM6IDAw
+MDAwMDAxNTI1NDAwMDYgQ1I0OiAKPj4+PiAwMDAwMDAwMDAwMzcwNmYwCj4+Pj4gW8KgIDEwOS40
+NTA3MjNdIEtlcm5lbCBwYW5pYyAtIG5vdCBzeW5jaW5nOiBGYXRhbCBleGNlcHRpb24gaW4gaW50
+ZXJydXB0Cj4+Pj4gWyAxMDkuNDUwNzk0XSBLZXJuZWwgT2Zmc2V0OiAweDM0ZTAwMDAwIGZyb20g
+MHhmZmZmZmZmZjgxMDAwMDAwCj4+Pj4gKHJlbG9jYXRpb24gcmFuZ2U6IDB4ZmZmZmZmZmY4MDAw
+MDAwMC0weGZmZmZmZmZmYmZmZmZmZmYpCj4+Pj4gW8KgIDEwOS40NTA4MzddIFJlYm9vdGluZyBp
+biAxMCBzZWNvbmRzLi4KPj4+Cj4+PiBUaGFua3MgZm9yIHRoZSByZXBvcnQuIEZyb20gdGhlIGxv
+Z3MsIEkgc2VlIHRoZSBzeXN0ZW0gY3Jhc2hlZCBkdXJpbmcKPj4+IHJtbW9kIGF0aDExa19wY2ku
+IEkgaGF2ZSBydW4gcm1tb2QgJiBpbnNtb2QgdGVzdHMgc2V2ZXJhbCB0aW1lcyBvbgo+Pj4gV0NO
+Njg1NSBiZWZvcmUgc2VuZGluZyB0aGUgcmV2aXNlZCB2ZXJzaW9uLiBQcm9iYWJseSBzb21lIHRl
+c3RzIGJlZm9yZQo+Pj4gcm1tb2Qgd291bGQgaGF2ZSBsZWQgdG8gdGhpcyBjcmFzaC4gQ291bGQg
+eW91IHBsZWFzZSBsZXQgbWUga25vdyB3aGF0Cj4+PiB0ZXN0cyBkb2VzIHRoZSByZWdyZXNzaW9u
+IHN1aXRlIGNvdmVycz8gSSdsbCB0cnkgcmVwcm8gdGhlIGJ1Zy4KPj4KPj4gVGhpcyBpcyBlYXJs
+eSBpbiB0aGUgdGVzdHMsIElJUkMgdGhlcmUgd2FzIG9ubHkgaW5zbW9kIGZvbGxvd2VkIGJ5Cj4+
+IHJtbW9kLiBEbyB5b3UgaGF2ZSBLQVNBTiBldGMgZW5hYmxlZD8KPj4KPiAKPiBJIHNlZS4gSSBk
+byBub3QgaGF2ZSBLQVNBTiBlbmFibGVkLiBMZXQgbWUgdHJ5IGVuYWJsaW5nIGl0Lgo+IAoKSGkg
+S2FsbGUsCgpJIGhhdmUgYmVlbiB0cnlpbmcgdG8gcmVwcm9kdWNlIHRoZSBhYm92ZSBpc3N1ZSBv
+biBXQ042ODU1IGZvciBzZXZlcmFsIAp3ZWVrcyBub3cgd2l0aCBLQVNBTiwgVUJTQU4sIExPQ0tE
+RUJVRyBldGMgZW5hYmxlZCBidXQgY291bGQgbm90IApyZXByb2R1Y2UgdGhpcyBpc3N1ZS4gRHVy
+aW5nIHRoaXMgbG9uZyBleGVyY2lzZSwgSSBoYXZlIHVuY292ZXJlZCBvdGhlciAKaXNzdWVzIGFu
+ZCBmaXhlZCB0aGVtIGJ1dCBJIGNvdWxkIG5vdCByZXByb2R1Y2UgdGhlIGFib3ZlIHNpZ25hdHVy
+ZS4KTm90IHN1cmUgaWYgdGhlcmUgaXMgYW55IHBhcnRpY3VsYXIgc2VxdWVuY2UgdG8gdHJpZ2dl
+ciB0aGUgYWJvdmUgY3Jhc2gKb3IgaXQgY291bGQgYmUgdGhhdCBpdCBpcyBhbiBleGlzdGluZyBv
+bmUgdGhhdCBjYW1lIHVwIHdoaWxlIHRlc3RpbmcgCnRoaXMgc2VyaWVzLgoKSSB3aWxsIHNlbmQg
+VjMgcGF0Y2ggZm9yIHJldmlldyB3aGljaCBmaXhlcyBvdGhlciBpc3N1ZXMgaW4gdGhlIHBhdGNo
+IApzZXQuIEknbSBpbiBuZWVkIG9mIHlvdXIgaGVscCB0byB0ZXN0IHRoaXMgc2VyaWVzIGluIHlv
+dXIgc2V0dXAgYW5kIHNlZSAKaWYgdGhlIGFib3ZlIGlzc3VlIGlzIHN0aWxsIG9jY3VycmluZy4K
+ClRoYW5rcywKTWFuaWthbnRhCgotLSAKYXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtAbGlzdHMu
+aW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L2F0aDExawo=
