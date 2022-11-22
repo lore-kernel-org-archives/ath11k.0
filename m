@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 098E3C07E9D
-	for <ath11k@archiver.kernel.org>; Tue, 22 Nov 2022 13:22:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5EBAC4332F
+	for <ath11k@archiver.kernel.org>; Tue, 22 Nov 2022 13:22:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9YvU6oQ26rEg72BBqp8CHRue8DtPw1Ri6rNBTl66eAQ=; b=tVPvJjtGgHFLxy
-	pn6wgtxobCWyOksCR0GphT/1XYgJ2F6K25ezDhdCyTH3L+AJr38QiNVJRr0n7QhIn6e1zn46pdwMK
-	TrGllgDXVBQL/bNJi1TTptfkCLMsL6RpuXorjmMdoJ+fVw8AaoEibQLg2Dv8BY2V+Kd0MGQDEmHSD
-	PVaMeIKYcYAc1F2yfrU5sIw1uamuAb03resOzRE5yx7V/bLxraRQBH/XAi/yz2E/iKf8GhO0tv1b3
-	HY3O34Wm//BbGaNiJJL6UkwzkWxQVrXSE7pY8kodKnIoXxjkCHsRhIfachIk9JJS/CYoCG0UntVPz
-	k65QIETK8lzc3oC/CA9w==;
+	List-Owner; bh=gUsCbEe3q4Y/DSWV75y8JkNw6skR9E4CPSxmSlJN69E=; b=E48t/9Z9fwR1o7
+	lJyG2+vGCtYKuBci+7/tMyBumQ+TzLoPgGqz7Ou0qsWUXApcHOyb3HUNAHsECb+0KBOGPtQIsg9m+
+	mIQXbks+dJ6p87uQe4JAOS9TcB2XiEZpciun6Z0jQkwjpx9hj0YnDjFOpC/edgvLjcLtGI/sMLMsC
+	KeV+7+yGK3S7F3zNA7E1WDe92EHUPcDDLRgnLGneo205j1wqEIsuX3m3TO3STpJJMAtmdpn/K7bk/
+	itgy7X6CJag5UBh0jRPixgNnFocfTLaa7Dbrksdu/W1FZU5z0L7SdSpdrj4KarsEvf6cp/OG3o9qH
+	Lg2n7uNfRa+VOMyhBcPg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oxTEF-009bzn-Dx; Tue, 22 Nov 2022 13:22:23 +0000
+	id 1oxTEI-009c2Z-6n; Tue, 22 Nov 2022 13:22:26 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oxTEC-009bwh-AY
-	for ath11k@lists.infradead.org; Tue, 22 Nov 2022 13:22:21 +0000
+	id 1oxTEE-009byy-QU
+	for ath11k@lists.infradead.org; Tue, 22 Nov 2022 13:22:24 +0000
 Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AMBmdb6010501;
-	Tue, 22 Nov 2022 13:22:20 GMT
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AMCwRS7002163;
+	Tue, 22 Nov 2022 13:22:22 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
  subject : date : message-id : in-reply-to : references : mime-version :
  content-transfer-encoding : content-type; s=qcppdkim1;
- bh=J12QCtSDhxpemVQ8EUqgMXVE7xBnjGNzgHG/deKJvMc=;
- b=J74ec4QOj60wR5llfkrO4FMtz6pCFlbNJbc+UE5xmo4VlYlt0Og41Ep9+vcD4bCgsq18
- trnwKn2ugLAF4XWYHL9uXALClBcDFpR0X0eI5/te9sWq7567s2a2h8DugRITIsV8e6aW
- 5eEuwrvRjkl0lmEJPFjX1f4MKCpCpCeXS7sr7XpP4tNCPRu0u5Cyvk3rqQVtF5IPn++T
- Dv73uW+nZmGr7toQjepyI6dKC8j2lRORrHybUplfxuDojAIWQ69uWtPxIgQUR3Es/Ko1
- Nz+FY6S/LDVxW8lv4Ytx6tj6fSRiNvikjLyizuDT8RQzaedPUT/BcXe34wfK+08hgppQ RA== 
+ bh=R+tQtHqVo/qITw68FEbeAIOz3qDabKdd/DAw1c/+DVY=;
+ b=BFwQKcUMrnNwPVawVgTEhxwMfTQocyjv1xAag3s8GL0cA8BcUXxOVImBTRR7AugoVSUt
+ thO2WG1HrV6K27hwQ8bZregO62cdFnZq8J8x++lrF4W3NfiQjB7qgXlOPkxmN/sChwd/
+ 9WsH2mXsOtwsOXGJZejz8oEzbYLzc94GBoq68Y1m4P6eB3ateolvPcJY9L6ShOvu8AjA
+ 1uvEUjH1xiYY8lJ9DptcNgySPxhQ3iWqkJ3iMRHRe4f1KaZrD7mg5BnnRNT748j3yzOw
+ 6qCAmRMSY2lYaP1ZcwS5RAO44HJa9nj6rFfESetzu2ZhYdPQ0FspmUG27hqQpO6x/php FA== 
 Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3m0hwp9ntn-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3m0hwp9ntu-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 22 Nov 2022 13:22:19 +0000
+	Tue, 22 Nov 2022 13:22:22 +0000
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2AMDMJhi004050
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2AMDML5A004066
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 22 Nov 2022 13:22:19 GMT
+	Tue, 22 Nov 2022 13:22:21 GMT
 Received: from kathirve-linux.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.36; Tue, 22 Nov 2022 05:22:17 -0800
+ 15.2.986.36; Tue, 22 Nov 2022 05:22:19 -0800
 From: Karthikeyan Kathirvel <quic_kathirve@quicinc.com>
 To: <ath11k@lists.infradead.org>
 CC: <linux-wireless@vger.kernel.org>, Sriram R <quic_srirrama@quicinc.com>,
         Karthikeyan Kathirvel <quic_kathirve@quicinc.com>
-Subject: [PATCHv2 6/8] wifi: ath11k: initialize hw_ops for IPQ5018
-Date: Tue, 22 Nov 2022 18:51:50 +0530
-Message-ID: <20221122132152.17771-7-quic_kathirve@quicinc.com>
+Subject: [PATCHv2 7/8] wifi: ath11k: add new hw ops for IPQ5018 to get rx dest ring hashmap
+Date: Tue, 22 Nov 2022 18:51:51 +0530
+Message-ID: <20221122132152.17771-8-quic_kathirve@quicinc.com>
 X-Mailer: git-send-email 2.38.0
 In-Reply-To: <20221122132152.17771-1-quic_kathirve@quicinc.com>
 References: <20221122132152.17771-1-quic_kathirve@quicinc.com>
@@ -65,19 +65,19 @@ X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: yiT_f-r283Dnv-SSihaZvC-zxDxA-Tlr
-X-Proofpoint-ORIG-GUID: yiT_f-r283Dnv-SSihaZvC-zxDxA-Tlr
+X-Proofpoint-GUID: 9gbHjciVK9dPDrotluzRWk02F_eY14Vm
+X-Proofpoint-ORIG-GUID: 9gbHjciVK9dPDrotluzRWk02F_eY14Vm
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
  definitions=2022-11-22_06,2022-11-18_01,2022-06-22_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 clxscore=1015
- malwarescore=0 mlxlogscore=999 lowpriorityscore=0 mlxscore=0 bulkscore=0
+ malwarescore=0 mlxlogscore=978 lowpriorityscore=0 mlxscore=0 bulkscore=0
  spamscore=0 phishscore=0 adultscore=0 priorityscore=1501 suspectscore=0
  classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2210170000
  definitions=main-2211220098
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221122_052220_406059_F9DDFBF6 
-X-CRM114-Status: GOOD (  14.72  )
+X-CRM114-CacheID: sfid-20221122_052222_900557_4871C10D 
+X-CRM114-Status: GOOD (  16.04  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,8 +96,12 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 From: Sriram R <quic_srirrama@quicinc.com>
 
-The ipq5018_ops is initialized for IPQ5018. This is different from
-other platforms.
+The Destination ring control register is different
+for IPQ5018 when compared to IPQ8074/IPQ6018/QCN9074.
+Hence create a new hw ops to fetch the hash ring map
+for different device variants. ipq5018 hw ops
+is similar to qcn9074 except for this change, so reuse
+all the qcn9074 ops for ipq5018.
 
 Tested-on : IPQ5018 hw1.0 AHB WLAN.HK.2.6.0.1-00861-QCAHKSWPL_SILICONZ-1
 
@@ -105,86 +109,71 @@ Signed-off-by: Sriram R <quic_srirrama@quicinc.com>
 Co-developed-by: Karthikeyan Kathirvel <quic_kathirve@quicinc.com>
 Signed-off-by: Karthikeyan Kathirvel <quic_kathirve@quicinc.com>
 ---
- drivers/net/wireless/ath/ath11k/core.c |  1 +
- drivers/net/wireless/ath/ath11k/hw.c   | 40 ++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/hw.h   |  1 +
- 3 files changed, 42 insertions(+)
+ drivers/net/wireless/ath/ath11k/hw.c | 44 ++++++++++++++++++++++++++++
+ 1 file changed, 44 insertions(+)
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 127d7317ac69..25cda5044a06 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -635,6 +635,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		},
- 		.internal_sleep_clock = false,
- 		.regs = &ipq5018_regs,
-+		.hw_ops = &ipq5018_ops,
- 		.host_ce_config = ath11k_host_ce_config_qcn9074,
- 		.ce_count = CE_CNT_5018,
- 		.target_ce_config = ath11k_target_ce_config_wlan_ipq5018,
 diff --git a/drivers/net/wireless/ath/ath11k/hw.c b/drivers/net/wireless/ath/ath11k/hw.c
-index ce62e26df70c..39a97a779b61 100644
+index 39a97a779b61..ab8f0ccacc6b 100644
 --- a/drivers/net/wireless/ath/ath11k/hw.c
 +++ b/drivers/net/wireless/ath/ath11k/hw.c
-@@ -1084,6 +1084,46 @@ const struct ath11k_hw_ops wcn6750_ops = {
- 	.get_ring_selector = ath11k_hw_wcn6750_get_tcl_ring_selector,
- };
+@@ -791,6 +791,49 @@ static void ath11k_hw_wcn6855_reo_setup(struct ath11k_base *ab)
+ 			   ring_hash_map);
+ }
  
-+/* IPQ5018 hw ops is similar to QCN9074 except for the dest ring remap */
-+const struct ath11k_hw_ops ipq5018_ops = {
-+	.get_hw_mac_from_pdev_id = ath11k_hw_ipq6018_mac_from_pdev_id,
-+	.wmi_init_config = ath11k_init_wmi_config_ipq8074,
-+	.mac_id_to_pdev_id = ath11k_hw_mac_id_to_pdev_id_ipq8074,
-+	.mac_id_to_srng_id = ath11k_hw_mac_id_to_srng_id_ipq8074,
-+	.tx_mesh_enable = ath11k_hw_qcn9074_tx_mesh_enable,
-+	.rx_desc_get_first_msdu = ath11k_hw_qcn9074_rx_desc_get_first_msdu,
-+	.rx_desc_get_last_msdu = ath11k_hw_qcn9074_rx_desc_get_last_msdu,
-+	.rx_desc_get_l3_pad_bytes = ath11k_hw_qcn9074_rx_desc_get_l3_pad_bytes,
-+	.rx_desc_get_hdr_status = ath11k_hw_qcn9074_rx_desc_get_hdr_status,
-+	.rx_desc_encrypt_valid = ath11k_hw_qcn9074_rx_desc_encrypt_valid,
-+	.rx_desc_get_encrypt_type = ath11k_hw_qcn9074_rx_desc_get_encrypt_type,
-+	.rx_desc_get_decap_type = ath11k_hw_qcn9074_rx_desc_get_decap_type,
-+	.rx_desc_get_mesh_ctl = ath11k_hw_qcn9074_rx_desc_get_mesh_ctl,
-+	.rx_desc_get_ldpc_support = ath11k_hw_qcn9074_rx_desc_get_ldpc_support,
-+	.rx_desc_get_mpdu_seq_ctl_vld = ath11k_hw_qcn9074_rx_desc_get_mpdu_seq_ctl_vld,
-+	.rx_desc_get_mpdu_fc_valid = ath11k_hw_qcn9074_rx_desc_get_mpdu_fc_valid,
-+	.rx_desc_get_mpdu_start_seq_no = ath11k_hw_qcn9074_rx_desc_get_mpdu_start_seq_no,
-+	.rx_desc_get_msdu_len = ath11k_hw_qcn9074_rx_desc_get_msdu_len,
-+	.rx_desc_get_msdu_sgi = ath11k_hw_qcn9074_rx_desc_get_msdu_sgi,
-+	.rx_desc_get_msdu_rate_mcs = ath11k_hw_qcn9074_rx_desc_get_msdu_rate_mcs,
-+	.rx_desc_get_msdu_rx_bw = ath11k_hw_qcn9074_rx_desc_get_msdu_rx_bw,
-+	.rx_desc_get_msdu_freq = ath11k_hw_qcn9074_rx_desc_get_msdu_freq,
-+	.rx_desc_get_msdu_pkt_type = ath11k_hw_qcn9074_rx_desc_get_msdu_pkt_type,
-+	.rx_desc_get_msdu_nss = ath11k_hw_qcn9074_rx_desc_get_msdu_nss,
-+	.rx_desc_get_mpdu_tid = ath11k_hw_qcn9074_rx_desc_get_mpdu_tid,
-+	.rx_desc_get_mpdu_peer_id = ath11k_hw_qcn9074_rx_desc_get_mpdu_peer_id,
-+	.rx_desc_copy_attn_end_tlv = ath11k_hw_qcn9074_rx_desc_copy_attn_end,
-+	.rx_desc_get_mpdu_start_tag = ath11k_hw_qcn9074_rx_desc_get_mpdu_start_tag,
-+	.rx_desc_get_mpdu_ppdu_id = ath11k_hw_qcn9074_rx_desc_get_mpdu_ppdu_id,
-+	.rx_desc_set_msdu_len = ath11k_hw_qcn9074_rx_desc_set_msdu_len,
-+	.rx_desc_get_attention = ath11k_hw_qcn9074_rx_desc_get_attention,
-+	.rx_desc_get_msdu_payload = ath11k_hw_qcn9074_rx_desc_get_msdu_payload,
-+	.mpdu_info_get_peerid = ath11k_hw_ipq8074_mpdu_info_get_peerid,
-+	.rx_desc_mac_addr2_valid = ath11k_hw_ipq9074_rx_desc_mac_addr2_valid,
-+	.rx_desc_mpdu_start_addr2 = ath11k_hw_ipq9074_rx_desc_mpdu_start_addr2,
++static void ath11k_hw_ipq5018_reo_setup(struct ath11k_base *ab)
++{
++	u32 reo_base = HAL_SEQ_WCSS_UMAC_REO_REG;
++	u32 val;
 +
-+};
++	/* Each hash entry uses three bits to map to a particular ring. */
++	u32 ring_hash_map = HAL_HASH_ROUTING_RING_SW1 << 0 |
++		HAL_HASH_ROUTING_RING_SW2 << 4 |
++		HAL_HASH_ROUTING_RING_SW3 << 8 |
++		HAL_HASH_ROUTING_RING_SW4 << 12 |
++		HAL_HASH_ROUTING_RING_SW1 << 16 |
++		HAL_HASH_ROUTING_RING_SW2 << 20 |
++		HAL_HASH_ROUTING_RING_SW3 << 24 |
++		HAL_HASH_ROUTING_RING_SW4 << 28;
 +
- #define ATH11K_TX_RING_MASK_0 BIT(0)
- #define ATH11K_TX_RING_MASK_1 BIT(1)
- #define ATH11K_TX_RING_MASK_2 BIT(2)
-diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
-index b8afd51d0c1e..9f45d061d826 100644
---- a/drivers/net/wireless/ath/ath11k/hw.h
-+++ b/drivers/net/wireless/ath/ath11k/hw.h
-@@ -275,6 +275,7 @@ extern const struct ath11k_hw_ops qca6390_ops;
- extern const struct ath11k_hw_ops qcn9074_ops;
- extern const struct ath11k_hw_ops wcn6855_ops;
- extern const struct ath11k_hw_ops wcn6750_ops;
-+extern const struct ath11k_hw_ops ipq5018_ops;
- 
- extern const struct ath11k_hw_ring_mask ath11k_hw_ring_mask_ipq8074;
- extern const struct ath11k_hw_ring_mask ath11k_hw_ring_mask_qca6390;
++	val = ath11k_hif_read32(ab, reo_base + HAL_REO1_GEN_ENABLE);
++
++	val &= ~HAL_REO1_GEN_ENABLE_FRAG_DST_RING;
++	val |= FIELD_PREP(HAL_REO1_GEN_ENABLE_FRAG_DST_RING,
++			HAL_SRNG_RING_ID_REO2SW1) |
++		FIELD_PREP(HAL_REO1_GEN_ENABLE_AGING_LIST_ENABLE, 1) |
++		FIELD_PREP(HAL_REO1_GEN_ENABLE_AGING_FLUSH_ENABLE, 1);
++	ath11k_hif_write32(ab, reo_base + HAL_REO1_GEN_ENABLE, val);
++
++	ath11k_hif_write32(ab, reo_base + HAL_REO1_AGING_THRESH_IX_0(ab),
++			   HAL_DEFAULT_REO_TIMEOUT_USEC);
++	ath11k_hif_write32(ab, reo_base + HAL_REO1_AGING_THRESH_IX_1(ab),
++			   HAL_DEFAULT_REO_TIMEOUT_USEC);
++	ath11k_hif_write32(ab, reo_base + HAL_REO1_AGING_THRESH_IX_2(ab),
++			   HAL_DEFAULT_REO_TIMEOUT_USEC);
++	ath11k_hif_write32(ab, reo_base + HAL_REO1_AGING_THRESH_IX_3(ab),
++			   HAL_DEFAULT_REO_TIMEOUT_USEC);
++
++	ath11k_hif_write32(ab, reo_base + HAL_REO1_DEST_RING_CTRL_IX_0,
++			   ring_hash_map);
++	ath11k_hif_write32(ab, reo_base + HAL_REO1_DEST_RING_CTRL_IX_1,
++			   ring_hash_map);
++	ath11k_hif_write32(ab, reo_base + HAL_REO1_DEST_RING_CTRL_IX_2,
++			   ring_hash_map);
++	ath11k_hif_write32(ab, reo_base + HAL_REO1_DEST_RING_CTRL_IX_3,
++			   ring_hash_map);
++}
++
+ static u16 ath11k_hw_ipq8074_mpdu_info_get_peerid(u8 *tlv_data)
+ {
+ 	u16 peer_id = 0;
+@@ -1117,6 +1160,7 @@ const struct ath11k_hw_ops ipq5018_ops = {
+ 	.rx_desc_get_mpdu_ppdu_id = ath11k_hw_qcn9074_rx_desc_get_mpdu_ppdu_id,
+ 	.rx_desc_set_msdu_len = ath11k_hw_qcn9074_rx_desc_set_msdu_len,
+ 	.rx_desc_get_attention = ath11k_hw_qcn9074_rx_desc_get_attention,
++	.reo_setup = ath11k_hw_ipq5018_reo_setup,
+ 	.rx_desc_get_msdu_payload = ath11k_hw_qcn9074_rx_desc_get_msdu_payload,
+ 	.mpdu_info_get_peerid = ath11k_hw_ipq8074_mpdu_info_get_peerid,
+ 	.rx_desc_mac_addr2_valid = ath11k_hw_ipq9074_rx_desc_mac_addr2_valid,
 -- 
 2.17.1
 
