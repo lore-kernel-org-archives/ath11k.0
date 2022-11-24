@@ -4,59 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76DE8C433FE
-	for <ath11k@archiver.kernel.org>; Wed, 23 Nov 2022 16:05:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 749FDC4332F
+	for <ath11k@archiver.kernel.org>; Thu, 24 Nov 2022 06:37:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vglCaVjFWucpky1xx2AZYAsw4wmlyZns6geZyAo5jHM=; b=qaXj+//L55UKPX
-	oVjBmwYeE/RkwVCeiLhZpnrOXaNQBdBmlrAmD7j/WDRqHwQ/T9Pbcl6SKDrGn4mUHqHEx4JSPSWtU
-	9vKVKEow2si1hTlNF73Kbw0DzUOim0cJ7tcFE8/ExBohc0zhyccVAzT7v2UHG93nheslIcQ0qae/f
-	DpDa37pacIFB6JI7DjAP6E7i1VVKj+a2FSr1+CParaeB9lZ+cWXiErwa6+Ihmjvw4/8xKIjpJUoIP
-	NhGUT4eWtYiYcNYSNinvdUhhHRVD+yGZfhb8mOdDVcDCJBn2ETv3Yq0lbUaBNN8ZBswiAMLXmVnXZ
-	iYcYyTleBjhtM2iAZ78w==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=eQZ9tCRQJJ26KbmXYoyvc/4ivA4Kcc2r64EwF3JsVD8=; b=OObu/0gR8bWLBO
+	KO+IYrsVVEwWpeijOIDzAV58CWUqSyuc2Wbihnmw4j9Zi/2HuveE6hnDew3Ww373b04oo4Tv/WYeV
+	39WvwFYPeoBEBAEiXuUQ7fkAiqzlI4zd05wddC4p6ek4NqA7JwE4jQlPz2d2s1rK74CfQCNrhSiYg
+	+Ct0zlcGCQBWxERNHMLTK1dI78mTDQ3Si7X9XBWH6YeF5I1NbxFE8O6grh2NcHvMd3UMRoagD1Jh6
+	9OI1QciRx7quf5um58pAK2vwsg+OGLength1t3C4Iip3/evyJI2Qz4nJIxV8d5Hp2x0OtpX/2HejR
+	lVt/m/UvLPnx2s0G7mkA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oxsG1-000jWT-7K; Wed, 23 Nov 2022 16:05:53 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1oy5rP-005lL0-Cs; Thu, 24 Nov 2022 06:37:23 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1oxsFx-000jUP-Vg
-	for ath11k@lists.infradead.org; Wed, 23 Nov 2022 16:05:51 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 7CE5F61DD6;
-	Wed, 23 Nov 2022 16:05:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2830EC433D6;
-	Wed, 23 Nov 2022 16:05:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1669219548;
-	bh=rPBZpdey+wlD577Iq7xu+PZhQ8jYJpnS5RXmoGt7JHU=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=DKxOBom/wfQKst49stTQ8sdJ74NL2Hyb5DdEchQGfOt62bmS1h/dFG6f1HqG+u9CO
-	 C/Hiap/c34RC0uzhUnesK4TDGYrCXLY5uFwUs7Zc4eZIRef3qSjO9g3RJOWw6M8kVW
-	 U/49GvQ5sqoAFdVTIGfqS0XolNfP2HDs3BXwBSBufnJm+8ULlQyMZlVkY3B2H64IlT
-	 HZ5OhC/V2atC65YHHif/liKg9f4Dca5yHLGRQYBpfb777gN1t27DPo3N74UkedfT6R
-	 kbTT+F0bi70C/B9q0RogMEpBOvwvQNze3KtV05+iTTIc1bWf0qJfv/De4RsYWLflFX
-	 t+f5a59HjNgfQ==
-From: Kalle Valo <kvalo@kernel.org>
-To: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
-Subject: Re: [PATCH v3 0/3] Enable low power mode when WLAN is not active
-References: <20221121110359.4652-1-quic_mpubbise@quicinc.com>
-	<87bkoz8ica.fsf@kernel.org>
-Date: Wed, 23 Nov 2022 18:05:44 +0200
-In-Reply-To: <87bkoz8ica.fsf@kernel.org> (Kalle Valo's message of "Tue, 22 Nov
-	2022 11:11:01 +0200")
-Message-ID: <87y1s17j1j.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+	id 1oy5rM-005lII-9O
+	for ath11k@lists.infradead.org; Thu, 24 Nov 2022 06:37:21 +0000
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AO4n8XA032604;
+	Thu, 24 Nov 2022 06:37:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=mXexrJEw2bptGf83p7kX6EVbTxiuwKnQaYQNpat7EOg=;
+ b=JXNWYMCWsbDLd3lc0+isL7qQbys3UVCpLe+QmqIL4ymV67V5oscltTRg3EkohSbPkRgL
+ ZZ/UJ9HJlGSMGgL4M46eJ3YaEce2ilSuBcZlflCV4wGKoynaTvox5hnpaj/HyKmwnPJS
+ IqSk4adksZAAnGIgGd6LtyvNV7qCv9+4DzU6CQns6JXNS9gyl/2PZRj32mWZrMSxphmh
+ 31UEY5Q/k3orMD3iV63uk4qANH/3X8wKi+1I5nBad8bNCRxhodMRARJfNkDhdbmGWwVf
+ EQiPc2vrL+QOiO6CAat4WQ97NyyXLWLn4/LMFIxYqjV0nl4AkoSm3yTcdoysQIJ2F+je 0w== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3m0nsjem79-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 24 Nov 2022 06:37:17 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2AO6bGPl010232
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 24 Nov 2022 06:37:16 GMT
+Received: from kathirve-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Wed, 23 Nov 2022 22:37:14 -0800
+From: Karthikeyan Kathirvel <quic_kathirve@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>,
+        Karthikeyan Kathirvel
+	<quic_kathirve@quicinc.com>,
+        Govindaraj Saminathan
+	<quic_gsaminat@quicinc.com>
+Subject: [PATCH] wifi: ath11k: Fix race condition with htt_ppdu_stats_info
+Date: Thu, 24 Nov 2022 12:06:57 +0530
+Message-ID: <20221124063657.2841-1-quic_kathirve@quicinc.com>
+X-Mailer: git-send-email 2.38.0
 MIME-Version: 1.0
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: -1xiDxMMPpACTjF6WbqUc_XvpCwTGZLg
+X-Proofpoint-ORIG-GUID: -1xiDxMMPpACTjF6WbqUc_XvpCwTGZLg
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-24_04,2022-11-23_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ lowpriorityscore=0 clxscore=1015 phishscore=0 mlxscore=0 adultscore=0
+ impostorscore=0 bulkscore=0 spamscore=0 priorityscore=1501 suspectscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2211240050
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221123_080550_115931_2A919E62 
-X-CRM114-Status: GOOD (  18.67  )
+X-CRM114-CacheID: sfid-20221123_223720_590091_EFAEBB8D 
+X-CRM114-Status: GOOD (  16.23  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,81 +95,104 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Kalle Valo <kvalo@kernel.org> writes:
+The below crash happens when running the traffic with multiple clients
 
-> Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
->
->> Currently, WLAN chip is powered once during driver probe and is kept
->> ON (powered) always even when WLAN is not active; keeping the chip
->> powered ON all the time will consume extra power which is not
->> desirable for battery operated devices. Same is the case with non-WoW
->> suspend, chip will not be put into low power mode when the system is
->> suspended resulting in higher battery drain.
->>
->> Send QMI MODE OFF command to firmware during WiFi OFF to put device
->> into low power mode.
->>
->> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
->> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.16
->>
->> Manikanta Pubbisetty (3):
->>   ath11k: Fix double free issue during SRNG deinit
->>   ath11k: Move hardware initialization logic to start()
->>   ath11k: Enable low power mode when WLAN is not active
->> ---
->> V3:
->>  - Removed patch "ath11k: Fix failed to parse regulatory event print" as it is not needed anymore
->>  - Fixed a potential deadlock scenario reported by lockdep around ab->core_lock with V2 changes
->>  - Fixed other minor issues that were found during code review
->>  - Spelling corrections in the commit messages
->
-> I still see a crash, immediately after the first rmmod:
->
-> Nov 22 11:05:47 nuc2  [  139.378719] rmmod ath11k_pci
-> Nov 22 11:05:48 nuc2 [ 139.892395] general protection fault, probably
-> for non-canonical address 0xdffffc000000003e: 0000 [#1] PREEMPT SMP
-> DEBUG_PAGEALLOC KASAN
-> Nov 22 11:05:48 nuc2 [ 139.892453] KASAN: null-ptr-deref in range
-> [0x00000000000001f0-0x00000000000001f7]
->
-> Really odd that you don't see it. Unfortunately not able to debug this
-> further right now.
->
-> This is with:
->
-> wcn6855 hw2.0 WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.9
+Crash Signature : Unable to handle kernel paging request at
+virtual address ffffffd700970918 During the crash, PC points to
+"ieee80211_tx_rate_update+0x30/0x68 [mac80211]"
+LR points to "ath11k_dp_htt_htc_t2h_msg_handler+0x5a8/0x8a0 [ath11k]".
 
-A bit more information how I see the crash. So first I have all modules
-loaded:
+ppdu_stats_info is allocated and accessed from event callback via copy
+engine tasklet, this has a problem when freeing it from ath11k_mac_op_stop.
 
-$ lsmod
-Module                  Size  Used by
-ath11k_pci             57344  0
-ath11k               2015232  1 ath11k_pci
-mac80211             3284992  1 ath11k
-libarc4                16384  1 mac80211
-cfg80211             2494464  2 ath11k,mac80211
-qmi_helpers            57344  1 ath11k
-qrtr_mhi               20480  0
-mhi                   217088  2 ath11k_pci,qrtr_mhi
-qrtr                   98304  5 qrtr_mhi
-nvme                  122880  3
-nvme_core             299008  5 nvme
-$
+Add spin lock to protect htt_ppdu_stats_info and to avoid race condition
+when accessing it from ath11k_mac_op_stop.
 
-Then I just remove ath11k_pci module and boom:
+Tested-on : IPQ8074 hw2.0 AHB WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
 
-$ sudo rmmod ath11k_pci
+Signed-off-by: Govindaraj Saminathan <quic_gsaminat@quicinc.com>
+Co-developed-by: Karthikeyan Kathirvel <quic_kathirve@quicinc.com>
+Signed-off-by: Karthikeyan Kathirvel <quic_kathirve@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 19 ++++++++++---------
+ 1 file changed, 10 insertions(+), 9 deletions(-)
 
-[  153.658409] general protection fault, probably for non-canonical address 0xdffffc000000003e: 0000 [#1] PREEMPT SMP DEBUG_PAGEALLOC KASAN
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index c5a4c34d7749..2384c8c3c55c 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -1535,11 +1535,11 @@ struct htt_ppdu_stats_info *ath11k_dp_htt_get_ppdu_desc(struct ath11k *ar,
+ {
+ 	struct htt_ppdu_stats_info *ppdu_info;
+ 
+-	spin_lock_bh(&ar->data_lock);
++	lockdep_assert_held(&ar->data_lock);
++
+ 	if (!list_empty(&ar->ppdu_stats_info)) {
+ 		list_for_each_entry(ppdu_info, &ar->ppdu_stats_info, list) {
+ 			if (ppdu_info->ppdu_id == ppdu_id) {
+-				spin_unlock_bh(&ar->data_lock);
+ 				return ppdu_info;
+ 			}
+ 		}
+@@ -1553,16 +1553,13 @@ struct htt_ppdu_stats_info *ath11k_dp_htt_get_ppdu_desc(struct ath11k *ar,
+ 			kfree(ppdu_info);
+ 		}
+ 	}
+-	spin_unlock_bh(&ar->data_lock);
+ 
+ 	ppdu_info = kzalloc(sizeof(*ppdu_info), GFP_ATOMIC);
+ 	if (!ppdu_info)
+ 		return NULL;
+ 
+-	spin_lock_bh(&ar->data_lock);
+ 	list_add_tail(&ppdu_info->list, &ar->ppdu_stats_info);
+ 	ar->ppdu_stat_list_depth++;
+-	spin_unlock_bh(&ar->data_lock);
+ 
+ 	return ppdu_info;
+ }
+@@ -1586,16 +1583,17 @@ static int ath11k_htt_pull_ppdu_stats(struct ath11k_base *ab,
+ 	ar = ath11k_mac_get_ar_by_pdev_id(ab, pdev_id);
+ 	if (!ar) {
+ 		ret = -EINVAL;
+-		goto exit;
++		goto out;
+ 	}
+ 
+ 	if (ath11k_debugfs_is_pktlog_lite_mode_enabled(ar))
+ 		trace_ath11k_htt_ppdu_stats(ar, skb->data, len);
+ 
++	spin_lock_bh(&ar->data_lock);
+ 	ppdu_info = ath11k_dp_htt_get_ppdu_desc(ar, ppdu_id);
+ 	if (!ppdu_info) {
+ 		ret = -EINVAL;
+-		goto exit;
++		goto out_unlock_data;
+ 	}
+ 
+ 	ppdu_info->ppdu_id = ppdu_id;
+@@ -1604,10 +1602,13 @@ static int ath11k_htt_pull_ppdu_stats(struct ath11k_base *ab,
+ 				     (void *)ppdu_info);
+ 	if (ret) {
+ 		ath11k_warn(ab, "Failed to parse tlv %d\n", ret);
+-		goto exit;
++		goto out_unlock_data;
+ 	}
+ 
+-exit:
++out_unlock_data:
++	spin_unlock_bh(&ar->data_lock);
++
++out:
+ 	rcu_read_unlock();
+ 
+ 	return ret;
 
-This happens every time, there doesn't seem to be any randomness on the
-behaviour.
-
+base-commit: 007979876af42db35d793765c72d665bd812d919
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+2.38.0
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
