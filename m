@@ -4,103 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83F07C433FE
-	for <ath11k@archiver.kernel.org>; Tue, 29 Nov 2022 07:05:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56FA3C4321E
+	for <ath11k@archiver.kernel.org>; Tue, 29 Nov 2022 14:26:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Iqd0mz3cD0wVjTpJExFSOF0uGQJmhSMIizwAUmsxatU=; b=yIQpElIsPNtLQ7
-	tuGZVHbnl4slIXsXVKda8ZsMvONabJKvyYwLmcgnxNwrF4wfDeFKKMWKmMG+3lvEDe69ULJaOf46t
-	RmhQtSVp0ccY63LB869NT7vYSrRb8Tt8+o9Vxlxa85xF65Q5UxTsRVIcGQoBRI9UXHr6lbn6otyfa
-	FMga9SRmabHqRz3FIrrllYAJD6CwZsgEUGAuFyIHMemvuDnE85NdfdkO7j/GpuP9qnQaH+jA8M5+I
-	tB8wo4x2NouJLyzFtQN5n2cxlZVnICBjha9OMhjs2wT3XG235wdsvvEB8HTIFXHcZcFeHI3Gf3kue
-	W+XNM63TclqKun6tNKDw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=MeTlvOAtDEmTI2wgmkh30QaTJqm31uxKW4n8Ei2CW/0=; b=gfHka2UEkeb4qY
+	2UUaCyLIriQoeM1ID/U/MlTdI2IqS4pDd2j/HIrGNvVI5mBBCHOzH3LJ/W5da6CDEGeJqh2evnL6s
+	3V/ZYbk6IkW9i4LUHbk6UuRDO6b13jnimEqTsPLO0HagYk9XJ1Wr/p+eD/GR5o5efH08tza665FTY
+	OmMo9Vzr8V5P3jG9d7OdtGyeLcpnUj6N+UUm8sJJmZRUd37FzdPyMryVWuharcevJvdYHtr1B5h1b
+	BcFZ2i4qdn8WsW41Rb5JWTcpyOVb5XbSpyo5oRIG2YhWZJBgTdhEGkrMoI2b9IyiSRdmzh/Y3wQ5x
+	aRNc5OSUSrWt37WTlqrw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ozug4-006lrb-Su; Tue, 29 Nov 2022 07:05:12 +0000
+	id 1p01Z7-009EhT-8n; Tue, 29 Nov 2022 14:26:29 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1ozufr-006lcT-HR
-	for ath11k@lists.infradead.org; Tue, 29 Nov 2022 07:05:00 +0000
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AT47dd7011459;
-	Tue, 29 Nov 2022 07:04:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=Uw0UXs4yjpgkacJNcaN5lIctnEhPb6+pG+i4QFSGQcA=;
- b=UfXBMfsFui3IJzWxllAi3OJfoje8RxoFXvo2Z76JAdfWQyGvlt0yGJw3ii4sfzu1r4Lq
- LEM1hUB6MoEoVnMDO6O71uUICaGYbMISU+1mOmKyH2Xxn3UQUADiun0Gw0S0E1vT4JIN
- /N63ZSeQjkmmpBM3YgwypazOovIuR2f+r4vGaCjcwOLfQulQgNj/Z+eYLpDHdqikEzE/
- uinogUtf9XRLjq8o/2EQTmeNzzE4x+aAS5QaJC3nNmrWcHmLbZz5vBZDeeL00swoBENw
- VRvQt/vgmGFuJeXgAyt90SE2He8ZYdeEVJli4fiNq0I2VJ4wh15XN+HGHhawf8IbbDYJ mw== 
+	id 1p01Z3-009EcV-F0
+	for ath11k@lists.infradead.org; Tue, 29 Nov 2022 14:26:27 +0000
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2ATCL1iR029556;
+	Tue, 29 Nov 2022 14:26:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=SZjnXHPPN1Ut8g8P2Y1+5FPJWLt+1zQbRkMMtSRzjZU=;
+ b=jY2TLn1S+BOjwsx6IGv+oYLmZrt6v8mk6uUKDhlU4mkgY7zRn0Jmy/sCi0WAw8KJniy8
+ bZj7KTm6SZgG9MKnWR7CaXmTqnpWa537ZqvRI4YXhOvEhbttiwNEBspaZd6QjhFcMkw6
+ X19px8GhQUUKshw/8Y+mjiR1ugsFr5Uzp9putDM9iphgo7X0+n1kPs7gr/Tv3oPVt29F
+ mDY42YkagSucZKvDbx9QpIYhqwQrXS9YVlZpVV4No/yeycE7UhqsWE4FyrWpyQlGXh5T
+ KQfnIlOgubiAKRI9pTWHjlfX1Alo0eaMw0SIF6oUg8p7f9QVLuuZGFxh8PwjQXna/f9n eQ== 
 Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3m55m90xe8-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3m56vca7ke-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 29 Nov 2022 07:04:57 +0000
+	Tue, 29 Nov 2022 14:26:20 +0000
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2AT74uv0003712
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2ATEQJCf032046
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 29 Nov 2022 07:04:56 GMT
-Received: from [10.231.195.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 28 Nov
- 2022 23:04:54 -0800
-Message-ID: <3d4d37ff-583e-ebd7-1ad5-6a577f6d9e42@quicinc.com>
-Date: Tue, 29 Nov 2022 15:04:52 +0800
+	Tue, 29 Nov 2022 14:26:19 GMT
+Received: from nmaran-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Tue, 29 Nov 2022 06:26:17 -0800
+From: Nagarajan Maran <quic_nmaran@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>,
+        Nagarajan Maran
+	<quic_nmaran@quicinc.com>
+Subject: [PATCH] wifi:ath11k: fix monitor mode bringup crash
+Date: Tue, 29 Nov 2022 19:55:32 +0530
+Message-ID: <20221129142532.23421-1-quic_nmaran@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: wifi: hostapd:/wpa_supplicant MLO Re: [PATCH 00/27] another set
- of MLO patches
-Content-Language: en-US
-To: "Otcheretianski, Andrei" <andrei.otcheretianski@intel.com>,
-        Johannes Berg
-	<johannes@sipsolutions.net>,
-        "linux-wireless@vger.kernel.org"
-	<linux-wireless@vger.kernel.org>,
-        "Peer, Ilan" <ilan.peer@intel.com>
-CC: "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>,
-        "quic_drohan@quicinc.com" <quic_drohan@quicinc.com>,
-        "quic_vjakkam@quicinc.com" <quic_vjakkam@quicinc.com>
-References: <20220902141259.377789-1-johannes@sipsolutions.net>
- <6175bc95-201c-cfab-2ae6-9ba77e830394@quicinc.com>
- <09556b33ad998ad243cf75dbc230f3b07349a87e.camel@sipsolutions.net>
- <935ef9e9-2092-e3f0-0edd-4aa29f4fa775@quicinc.com>
- <e01e75013f71ede7b29f2751238935e7147796f2.camel@sipsolutions.net>
- <f3afceb8-8120-12c7-74b9-caa3abce5cb8@quicinc.com>
- <DM6PR11MB3897D1A4E13419D9F938F559F5449@DM6PR11MB3897.namprd11.prod.outlook.com>
- <96bcc467-c530-46de-8f91-c5eb0af7a368@quicinc.com>
- <776991f3-384e-f487-83b7-e1fbfd40cc4f@quicinc.com>
- <de54f4e0-810b-70a0-7629-39a2957ecd3d@quicinc.com>
- <a3edddb2-82e4-2c79-564f-1918b59aead9@quicinc.com>
- <DM6PR11MB3897D1DE6EB7A89F4F6A6A16F5139@DM6PR11MB3897.namprd11.prod.outlook.com>
- <4390cf15-50e6-9941-15b7-4927d1afc976@quicinc.com>
- <DM6PR11MB38979D307490C7DDA235A7B7F5129@DM6PR11MB3897.namprd11.prod.outlook.com>
-From: Wen Gong <quic_wgong@quicinc.com>
-In-Reply-To: <DM6PR11MB38979D307490C7DDA235A7B7F5129@DM6PR11MB3897.namprd11.prod.outlook.com>
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: U1pB8RvHxUs3wnp3XliiZn9fTI7fX5AZ
-X-Proofpoint-GUID: U1pB8RvHxUs3wnp3XliiZn9fTI7fX5AZ
+X-Proofpoint-GUID: cgH_B42v_HiQ4IZaGYVB_a0tnJi6SiAa
+X-Proofpoint-ORIG-GUID: cgH_B42v_HiQ4IZaGYVB_a0tnJi6SiAa
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-29_04,2022-11-28_02,2022-06-22_01
+ definitions=2022-11-29_08,2022-11-29_01,2022-06-22_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- bulkscore=0 spamscore=0 malwarescore=0 mlxscore=0 phishscore=0
- suspectscore=0 priorityscore=1501 clxscore=1015 adultscore=0
- mlxlogscore=958 impostorscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2210170000 definitions=main-2211290046
+ adultscore=0 malwarescore=0 phishscore=0 priorityscore=1501 mlxscore=0
+ mlxlogscore=372 impostorscore=0 spamscore=0 bulkscore=0 clxscore=1015
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2211290082
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221128_230459_613297_C0259A87 
-X-CRM114-Status: UNSURE (   7.38  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20221129_062625_562641_BA487D29 
+X-CRM114-Status: GOOD (  14.47  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,18 +87,88 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 11/29/2022 2:59 PM, Otcheretianski, Andrei wrote:
->> Thanks Andrei, did you tested your station with single link or 2 link or more
->> link?
-> Tested with 1 and 2 links, but should also work with more links as well
->
-> Andrei
-Thanks a lot!
+When the interface is brought up in monitor mode, it leads
+to NULL pointer dereference crash. This crash happens when
+the packet type is extracted for a SKB. This extraction
+which is present in the received msdu delivery path,is
+not needed for the monitor ring packets since they are
+all RAW packets. Hence appending the flags with
+"RX_FLAG_ONLY_MONITOR" to skip that extraction.
+
+Observed calltrace:
+
+Unable to handle kernel NULL pointer dereference at virtual address
+0000000000000064
+Mem abort info:
+  ESR = 0x0000000096000004
+  EC = 0x25: DABT (current EL), IL = 32 bits
+  SET = 0, FnV = 0
+  EA = 0, S1PTW = 0
+  FSC = 0x04: level 0 translation fault
+Data abort info:
+  ISV = 0, ISS = 0x00000004
+  CM = 0, WnR = 0
+user pgtable: 4k pages, 48-bit VAs, pgdp=0000000048517000
+[0000000000000064] pgd=0000000000000000, p4d=0000000000000000
+Internal error: Oops: 0000000096000004 [#1] PREEMPT SMP
+Modules linked in: ath11k_pci ath11k qmi_helpers
+CPU: 2 PID: 1781 Comm: napi/-271 Not tainted
+6.1.0-rc5-wt-ath-656295-gef907406320c-dirty #6
+Hardware name: Qualcomm Technologies, Inc. IPQ8074/AP-HK10-C2 (DT)
+pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+pc : ath11k_hw_qcn9074_rx_desc_get_decap_type+0x34/0x60 [ath11k]
+lr : ath11k_hw_qcn9074_rx_desc_get_decap_type+0x5c/0x60 [ath11k]
+sp : ffff80000ef5bb10
+x29: ffff80000ef5bb10 x28: 0000000000000000 x27: ffff000007baafa0
+x26: ffff000014a91ed0 x25: 0000000000000000 x24: 0000000000000000
+x23: ffff800002b77378 x22: ffff000014a91ec0 x21: ffff000006c8d600
+x20: 0000000000000000 x19: ffff800002b77740 x18: 0000000000000006
+x17: 736564203634343a x16: 656e694c20657079 x15: 0000000000000143
+x14: 00000000ffffffea x13: ffff80000ef5b8b8 x12: ffff80000ef5b8c8
+x11: ffff80000a591d30 x10: ffff80000a579d40 x9 : c0000000ffffefff
+x8 : 0000000000000003 x7 : 0000000000017fe8 x6 : ffff80000a579ce8
+x5 : 0000000000000000 x4 : 0000000000000000 x3 : 0000000000000000
+x2 : 3a35ec12ed7f8900 x1 : 0000000000000000 x0 : 0000000000000052
+Call trace:
+ ath11k_hw_qcn9074_rx_desc_get_decap_type+0x34/0x60 [ath11k]
+ ath11k_dp_rx_deliver_msdu.isra.42+0xa4/0x3d0 [ath11k]
+ ath11k_dp_rx_mon_deliver.isra.43+0x2f8/0x458 [ath11k]
+ ath11k_dp_rx_process_mon_rings+0x310/0x4c0 [ath11k]
+ ath11k_dp_service_srng+0x234/0x338 [ath11k]
+ ath11k_pcic_ext_grp_napi_poll+0x30/0xb8 [ath11k]
+ __napi_poll+0x5c/0x190
+ napi_threaded_poll+0xf0/0x118
+ kthread+0xf4/0x110
+ ret_from_fork+0x10/0x20
+
+Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
+Reported-by: Florian Schmidt <florian@fls.name>
+Link: https://bugzilla.kernel.org/show_bug.cgi?id=216573
+Signed-off-by: Nagarajan Maran <quic_nmaran@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index c5a4c34d7749..2c2b9da37b3f 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -5022,6 +5022,7 @@ static int ath11k_dp_rx_mon_deliver(struct ath11k *ar, u32 mac_id,
+ 		} else {
+ 			rxs->flag |= RX_FLAG_ALLOW_SAME_PN;
+ 		}
++		rxs->flag |= RX_FLAG_ONLY_MONITOR;
+ 		ath11k_update_radiotap(ar, ppduinfo, mon_skb, rxs);
+ 
+ 		ath11k_dp_rx_deliver_msdu(ar, napi, mon_skb, rxs);
+-- 
+2.17.1
+
 
 -- 
 ath11k mailing list
