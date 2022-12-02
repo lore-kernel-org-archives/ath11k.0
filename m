@@ -4,60 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C8EBC433FE
-	for <ath11k@archiver.kernel.org>; Wed, 30 Nov 2022 17:19:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB771C4321E
+	for <ath11k@archiver.kernel.org>; Fri,  2 Dec 2022 13:06:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=CoMutWCX8cwEcDBL/tXcPT69Oqafu87COWMVVtk0n0U=; b=C63rxlcRqs/OvQ
-	pwwUNRruZWFiaM1K1zuTbMbi8D5LAs5B6SftMAh2OYTqdbzrgoLFDDwV1OCrCBDpSYxbzxFMCb6bQ
-	lh6pVNuQbqkCnXaBidDH7/gdCr+Ya6GiCAEDZZkapXFmfRymQfC1iE6kAeFBwzr5e2sEwVsTYuty0
-	OO73FHiLRmCdAbhMsoB9bFGfI/jpOHajwA/e/Ep851iSfZeqKPOaP8duxkiTMN8HcfyGr1PvItm3E
-	tRjsTymQChpvLBBdRPHjVCcPwwe4/Rps7eozV5AseaD6K7Z66/3PLMi7oJWkpgM0itFlVgT5wB5OW
-	Sg1ASZmy1PXlGpT3WWgA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=Ukil7hIp85o11TU527gzIpdb8nd20A6y5zGLqUCCGtU=; b=nJCta7Bxszq0TC
+	bzvqD1okctMjtn1H2i3FJcEHmqNQ5c4Q2oWBge16P+8XjhOPTMLWjRjZ0IxHICFf3hr9gM4m3vwYg
+	XwIZ1JVgi2R0mdRTk6gBavaHCB4U6SgGsE83gxvyBL3KD2gtYcb2wtkRLjHfn6E0AMB31yxn/iMiq
+	Akdw95f7WzqN7ELExWtmMgBhyoZLZfu2JWt7NkGGzFzfnkL92BQ+3wAQDGmVH8bUbribG0ykAKiTY
+	eDZ8mPpu+Nafo4s9vyNGDxKWbiu0M9S4w9x6X3Jkf2HcJLh5lMWK9PL0FLyLiYhODJ4ralime/7PI
+	v70JzvR1I8bNnYcK0LiA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p0Qjz-000vkF-QH; Wed, 30 Nov 2022 17:19:23 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
-	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p0QjU-000vNc-BC
-	for ath11k@lists.infradead.org; Wed, 30 Nov 2022 17:18:53 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id AB17B61D01;
-	Wed, 30 Nov 2022 17:18:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5769AC433C1;
-	Wed, 30 Nov 2022 17:18:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1669828731;
-	bh=xh6HipE9Jb75qlFWvlf55aInyFX0fmqtese0m4gUxyY=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=smgNIQC+mExQfP3XN3yjEnkpKTZGwN0HmfDTTSoWjynnlArhTQf8nkqWwSNcsgJ5i
-	 cgfafBBUOSKZIWzk0JTjyAI4bIC9DjY9g68M11VVxyie0w7omkaie/9C/qkrUhTtfg
-	 fJnq4d1koVf+afndK1pxoftAN1koA0EreP1hon09ksAA/tIgj+/mjuTYs+o74Pa+td
-	 FyD8op6Ae17r1yWzORt6qncqwM6AwZhgEscF+yOFTr2LRHLaT5fPHO5Ao3oiz8lI5m
-	 v98YONYUHsqmyN9JjLtsfGzUZAHA/u/OBI7ZOMDnMu1APjOiFWAJrEY8YiatMm13Oo
-	 EvMGlDW2arG0g==
-From: Kalle Valo <kvalo@kernel.org>
-To: Christoph Hellwig <hch@lst.de>
-Cc: ath11k@lists.infradead.org,  linux-wireless@vger.kernel.org
-Subject: Re: ath11k vs ar_qrtr?
-References: <20221130122807.GA31720@lst.de> <87o7so4nr2.fsf@kernel.org>
-	<20221130125236.GA865@lst.de> <87k03c4mdb.fsf@kernel.org>
-	<20221130132244.GB3055@lst.de>
-Date: Wed, 30 Nov 2022 19:18:47 +0200
-In-Reply-To: <20221130132244.GB3055@lst.de> (Christoph Hellwig's message of
-	"Wed, 30 Nov 2022 14:22:44 +0100")
-Message-ID: <875yewnyx4.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+	id 1p15jx-00GY3G-Si; Fri, 02 Dec 2022 13:06:05 +0000
+Received: from [2001:4bb8:192:26e7:bcd3:7e81:e7de:56fd] (helo=localhost)
+	by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+	id 1p15jv-00GY2K-VG; Fri, 02 Dec 2022 13:06:04 +0000
+From: Christoph Hellwig <hch@lst.de>
+To: kvalo@kernel.org,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com
+Cc: ath11k@lists.infradead.org,
+	linux-wireless@vger.kernel.org,
+	netdev@vger.kernel.org
+Subject: [PATCH] wifi: ath11k_pci: add a soft dependency on qrtr-mhi
+Date: Fri,  2 Dec 2022 14:06:00 +0100
+Message-Id: <20221202130600.883174-1-hch@lst.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221130_091852_448046_88230886 
-X-CRM114-Status: GOOD (  11.18  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,26 +54,36 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Christoph Hellwig <hch@lst.de> writes:
+While ath11k_pci can load without qrtr-mhi, probing the actual hardware
+will fail when qrtr and qrtr-mhi aren't loaded with
 
-> On Wed, Nov 30, 2022 at 03:12:32PM +0200, Kalle Valo wrote:
->> Heh, I'm learning something new here. But I wonder why nobody else has
->> seen this?
->
-> Good question.  How common is the ath11k hardware, especially on latptop
-> where it is required for installation given that only installers tend
-> to split up driver is non-standard ways.
+   failed to initialize qmi handle: -517
 
-I'm not sure about exact numbers, but not very common. I have seen
-something like 4-5 different laptop models with either QCA6390 or
-WCN6855 (both ath11k PCI devices). The PCI support was added to ath11k
-in v5.10 (released Dec 2020) so maybe installers haven't caught up yet?
-Just guessing though.
+Add a MODULE_SOFTDEP statement to bring the module in (and as a hint
+for kernel packaging) for those cases where it isn't autoloaded already
+for some reason.
 
+Signed-off-by: Christoph Hellwig <hch@lst.de>
+---
+ drivers/net/wireless/ath/ath11k/pci.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
+index 99cf3357c66e16..9d58856cbf8a94 100644
+--- a/drivers/net/wireless/ath/ath11k/pci.c
++++ b/drivers/net/wireless/ath/ath11k/pci.c
+@@ -1037,6 +1037,8 @@ module_exit(ath11k_pci_exit);
+ MODULE_DESCRIPTION("Driver support for Qualcomm Technologies 802.11ax WLAN PCIe devices");
+ MODULE_LICENSE("Dual BSD/GPL");
+ 
++MODULE_SOFTDEP("pre: qrtr-mhi");
++
+ /* QCA639x 2.0 firmware files */
+ MODULE_FIRMWARE(ATH11K_FW_DIR "/QCA6390/hw2.0/" ATH11K_BOARD_API2_FILE);
+ MODULE_FIRMWARE(ATH11K_FW_DIR "/QCA6390/hw2.0/" ATH11K_AMSS_FILE);
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+2.30.2
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
