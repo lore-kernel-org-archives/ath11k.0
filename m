@@ -4,61 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6C83C47088
-	for <ath11k@archiver.kernel.org>; Fri,  2 Dec 2022 19:45:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F8B0C4708D
+	for <ath11k@archiver.kernel.org>; Sat,  3 Dec 2022 15:52:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
-	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xqV3DR0vCbUOQPg5+Asp8Z8XXHjh8OJYPNZ699CpiTU=; b=py+gckLwd76RS2
-	UDbRfGs/whVsRbPN0n1A4rbI3n0s13CXfjD/M39gZATKXIW/IJgTT/rNBXLorjL7AtbjcZDL6X5Lh
-	+d+7H9WVbBgdtT80cXy5BaMJKBkIzowEHCkirPoiZ3GP8fdHGKLkmRYQzSVkjuHPbVrlb2BRU7yHD
-	FvTszUwi6TsK23Yl3ju75M3UHqeDvHUTYKew3JK2DiqlQ8mokaIz7lnoqHEmZPC6etRk6tNxOV1si
-	Lp+2timA1UhcSh6pkuRpB/f/Ifr+6llOuxrW7KAxdHRrkoH4YMxPzwOVAQJfv+mO+/90Bg9etL/QW
-	8CJjrUmGD4PqM0qkDuOg==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=pEWreKbl7FHlQ2bKVYFt5+xJfbnqkoo8gqRto/ECJvA=; b=jX4Ml2MXOFestr
+	GX7H/AfI2tIGcFZ+5oap1R1Sm6f7CtP4bhlxu1m2OOdFkGJEB5U+fvWLeqWZuU0pIlrvne1rwGyaE
+	1btBOZD/yFss2F4uWXu+mG5pYqO9/1zca4ZS6pMzZZu4KYuiHzs00Ayo45DrDist0UiukoKV/fOYK
+	IfbJbEbx/8OsHJop49MhNJZkOZpS7b32DD18ODTv3yerlGFA/52cXy3MllADwZo49nyTIDQZXEz2i
+	3TvUcCOM2WSXKFjNRnLU8hjyBWc1mEjRjdmWu3NySf65K+iphZcbMFQIIQkglm31olSIf4dHXYF/I
+	MkG0L/0k+KG9m5jo4s5Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p1ByX-0016eH-UF; Fri, 02 Dec 2022 19:45:33 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1p1Uoi-0041Ba-VV; Sat, 03 Dec 2022 15:52:41 +0000
+Received: from verein.lst.de ([213.95.11.211])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p1ByU-0016dQ-V1
-	for ath11k@lists.infradead.org; Fri, 02 Dec 2022 19:45:32 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id 4EF56B82274;
-	Fri,  2 Dec 2022 19:45:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAF3AC433D6;
-	Fri,  2 Dec 2022 19:45:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1670010326;
-	bh=+vuLtTA0VXJm+0+wd3FJqvgQoko7iiNr/V34abeWt+4=;
-	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=AeMR5nZ1GsW19O1s90l2bgS//XMUCQfX7zk79BPSO7Hi13KQ4Nlm5asBzN9WmPmpG
-	 Vpua0CmP3atR2KzhsvxOvOfjxWFn0qgspXhllfkAAE4ZucnEOkFo7L73aliLDLWOWW
-	 sDHFxU0ZbDQdwQMvJexcSvQAXjt6OTY5LhcHSFRjGcxOvw1zwDye6+1BPf6bLU5uO7
-	 G9ZoFNHGcBmhe/StsaFWPRlKnyZVyT8NW4G3ddL5X3zH3/Z/eCzSC6xbBcRvAL1yZg
-	 1PgKqXkNSiMhZMNJiLY3BTF1qEGBk/Z28WO6H3ocoMeLlkuch0jIboAW0XmJ8FBNK7
-	 /iGxe5RNgTkKA==
+	id 1p1Uof-00416U-Rh
+	for ath11k@lists.infradead.org; Sat, 03 Dec 2022 15:52:39 +0000
+Received: by verein.lst.de (Postfix, from userid 2407)
+	id 3E1E468AFE; Sat,  3 Dec 2022 16:52:28 +0100 (CET)
+Date: Sat, 3 Dec 2022 16:52:27 +0100
+From: Christoph Hellwig <hch@lst.de>
+To: Kalle Valo <kvalo@kernel.org>
+Cc: Christoph Hellwig <hch@lst.de>, ath11k@lists.infradead.org,
+	linux-wireless@vger.kernel.org
+Subject: Re: failed to insert STA entry for the AP (error -2)
+Message-ID: <20221203155227.GA13254@lst.de>
+References: <20221130122807.GA31720@lst.de> <87o7so4nr2.fsf@kernel.org> <20221130125236.GA865@lst.de> <87k03c4mdb.fsf@kernel.org> <20221130133016.GC3055@lst.de> <87sfhx3ap6.fsf@kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCHv2] wifi: ath11k: Fix race condition with
- htt_ppdu_stats_info
-From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20221124071104.22506-1-quic_kathirve@quicinc.com>
-References: <20221124071104.22506-1-quic_kathirve@quicinc.com>
-To: Karthikeyan Kathirvel <quic_kathirve@quicinc.com>
-Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- Govindaraj Saminathan <quic_gsaminat@quicinc.com>,
- Karthikeyan Kathirvel <quic_kathirve@quicinc.com>
-User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <167001032276.14016.8815714083482597468.kvalo@kernel.org>
-Date: Fri,  2 Dec 2022 19:45:24 +0000 (UTC)
+Content-Disposition: inline
+In-Reply-To: <87sfhx3ap6.fsf@kernel.org>
+User-Agent: Mutt/1.5.17 (2007-11-01)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221202_114531_176743_7CE3E060 
-X-CRM114-Status: UNSURE (   9.83  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20221203_075238_076049_66EFC586 
+X-CRM114-Status: GOOD (  15.30  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,38 +58,23 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Karthikeyan Kathirvel <quic_kathirve@quicinc.com> wrote:
+On Fri, Dec 02, 2022 at 08:46:45PM +0200, Kalle Valo wrote:
+> Haven't seen this before either. Really unfortunate that the warning
+> message message is not printing the error value (missed that during
+> review), but I suspect the error is coming from crypto_alloc_shash()
+> call:
 
-> A crash happens when running the traffic with multiple clients:
-> 
-> Crash Signature : Unable to handle kernel paging request at
-> virtual address ffffffd700970918 During the crash, PC points to
-> "ieee80211_tx_rate_update+0x30/0x68 [mac80211]"
-> LR points to "ath11k_dp_htt_htc_t2h_msg_handler+0x5a8/0x8a0 [ath11k]".
-> 
-> Struct ppdu_stats_info is allocated and accessed from event callback via copy
-> engine tasklet, this has a problem when freeing it from ath11k_mac_op_stop().
-> 
-> Use data_lock during entire ath11k_dp_htt_get_ppdu_desc() call to protect
-> struct htt_ppdu_stats_info access and to avoid race condition when accessing it
-> from ath11k_mac_op_stop().
-> 
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
-> 
-> Signed-off-by: Govindaraj Saminathan <quic_gsaminat@quicinc.com>
-> Co-developed-by: Karthikeyan Kathirvel <quic_kathirve@quicinc.com>
-> Signed-off-by: Karthikeyan Kathirvel <quic_kathirve@quicinc.com>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+> Any chance you could check that? Also please check that
+> CONFIG_CRYPTO_MICHAEL_MIC is enabled (it should be as CONFIG_ATH11K
+> depends on it).
 
-Patch applied to ath-next branch of ath.git, thanks.
+So, this is the debian-installer case onc again.  CONFIG_CRYPTO_MICHAEL_MIC
+is enabled in the kernel config, but michael_mic.ko is not present on
+the installation media. Once I side-load it, the problem goes away.
 
-e44de90453bb wifi: ath11k: Fix race condition with struct htt_ppdu_stats_info
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20221124071104.22506-1-quic_kathirve@quicinc.com/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
+I guess I'll respind the MODULE_SOFTDEP patch to include michael_mic,
+but if you have a good idea to make the error reporting more useful that
+would be appreciated as well.
 
 -- 
 ath11k mailing list
