@@ -4,85 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B39ACC47089
-	for <ath11k@archiver.kernel.org>; Wed,  7 Dec 2022 06:30:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 277A5C63705
+	for <ath11k@archiver.kernel.org>; Wed,  7 Dec 2022 12:49:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:References:CC:To:From:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=PPSEKzP37v+ZELebq8Q4WEj7AdKZGZrPdLlwC6jMH6o=; b=BlDnNZpUeWmpVa
-	aJZjHfzpmxyh8nfgy+pvekV1As4woCyMRqk/Yi32BpvQhmrEJAu94qfj8cL6yrvqiuFukdLnK8Cd9
-	A2wq4rwS2pu6hWUOb53fDlRxZXMGDMFI90TS5AluqrvC4ryvWlWwFQKS5g5z+peMo7hXngktO4dKb
-	mVTyP0HzAqjJWjAaK7y5ZNRb8pv3bYAeN1SLIoXPdE/z7d8DgaP0xqJk1SKFIWiG01eYgy73wdUW3
-	nGS9D79Arq0esG7tiyvMsQKtbZFokpvy5VsrZQ8eF0cy6TAmaSVc3rThJR3JHr6eHps8Yu8Aybb/r
-	YA7UX37sqaWfRdA6s4KQ==;
+	List-Owner; bh=ami4VoY+RGkpzQmd8OVznlL8hAQwZDAxrPH78pb8Y1o=; b=TC46k1DX0f6vfE
+	ID0nsdHA/Cp3OIwJHkcSB1i6c34pGdCAVBMIh+EIAE4I4w8jylSyyrT4kMncQxKA6QQsm5TvWPSgi
+	kjfQ/wNlKWL5i8GVf82bU3jAFH6OPXJlKSf1vBu9nga4dM8sIV65yjxvOm3CGXyAuctOypxY8z9l5
+	udQPjRfvOlGuCIQ/0eN0apXp37lBeZQzFOZhsln84RQ4d7GRhtZo1sbMsXizXpcxeUQEV5sRdHwsG
+	Vqjt3TvHTUPkss52P38BsO6GgZhErCEo5Qav0x0HVYCPb07IZKxlXQ5uDHNcSqvBMeN5G9etuU3yE
+	7t/lCszYaoijuK/cKulA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p2nxJ-00CuTb-7t; Wed, 07 Dec 2022 06:30:57 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1p2try-002khb-CN; Wed, 07 Dec 2022 12:49:50 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p2nxG-00CuSq-CU
-	for ath11k@lists.infradead.org; Wed, 07 Dec 2022 06:30:55 +0000
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2B76Sx8O006248;
-	Wed, 7 Dec 2022 06:30:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : from : to : cc : references : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=iqbD+cQtd1UGaRJXi190+6NCgeDp6/5xq40RNlyCweI=;
- b=K9IBarCF9P4t774oF+zm/v1P2QQFR8xqTT9HeMrCn77LyYixkv4ZGPVEM8WhoCbcUfyH
- WNIp60Dhn3D+j4/jWJFjgMCUNhQzBy6H3uojh2NGfRTwSs3nk5wSRxknv/FpmlEPYh5A
- QUjAoXgSzPTUPNS+073jy0+CS9S329lt64u6CLp9y+EKbXd6jOmlwe4Sc/EUNoPf0UAE
- q0ytxG4Np1JiuCzwcdrQP0hEYrMbYyiqmPVlP6LO/fOE4x1yz742KjCI5dbOQzlf3gKL
- Uc+V96ipoFg7c5r/s/bNdQ56v7YVt6F2WlDJKFEFrAyqniPIcoocHSDPGIxz8PhHGY27 vQ== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3majt4878n-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 07 Dec 2022 06:30:50 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2B76UnmD004268
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 7 Dec 2022 06:30:49 GMT
-Received: from [10.231.195.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 6 Dec 2022
- 22:30:47 -0800
-Message-ID: <a918d3ee-edc7-b6a2-d15a-e0d77f0683e2@quicinc.com>
-Date: Wed, 7 Dec 2022 14:30:45 +0800
+	id 1p2trv-002kfE-3Q
+	for ath11k@lists.infradead.org; Wed, 07 Dec 2022 12:49:48 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ams.source.kernel.org (Postfix) with ESMTPS id E991BB815D2;
+	Wed,  7 Dec 2022 12:49:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0F79C433B5;
+	Wed,  7 Dec 2022 12:49:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1670417383;
+	bh=AXicRcbMt6Q30lfd1HklcIN6z+8S6e+8Nbh/BfqFBgk=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=pL0sNtJOp87husA4rUHe1JkHAF5bZpQn6WhCXER45b1lPOOWP2E8Fqy91f2H7rTGz
+	 7ErSGTb+xM03Wpi7FpRBIgy9Jxgm5LZdVAfKORVVadtJCJk5Fk1MCRAOOd3LgY+YgW
+	 D7G9fqQVuOYzOvu7qNj3Tr6AYd5w0iW44m4biLt6hozci1WwTu/9VmMG4IajRn8/hp
+	 QsHDEsQiStayrMlq/yk8OQa4RkwhRxMgr7lptyzAWNBzTPWfaONWQoSALeGKLXbrgQ
+	 XcmEKKc5B/w5bpqqkrtD0kCqG8RNi2raNKSY17DtwOeKdUFoR7uZyJraecbdHHe1wK
+	 GCLPzv1eSS7DA==
+From: Kalle Valo <kvalo@kernel.org>
+To: Christoph Hellwig <hch@lst.de>
+Cc: ath11k@lists.infradead.org,  linux-wireless@vger.kernel.org
+Subject: Re: failed to insert STA entry for the AP (error -2)
+In-Reply-To: <20221203155227.GA13254@lst.de> (Christoph Hellwig's message of
+	"Sat, 3 Dec 2022 16:52:27 +0100")
+References: <20221130122807.GA31720@lst.de> <87o7so4nr2.fsf@kernel.org>
+	<20221130125236.GA865@lst.de> <87k03c4mdb.fsf@kernel.org>
+	<20221130133016.GC3055@lst.de> <87sfhx3ap6.fsf@kernel.org>
+	<20221203155227.GA13254@lst.de>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+Date: Wed, 07 Dec 2022 14:49:37 +0200
+Message-ID: <87cz8v2xb2.fsf@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH 4/5] mac80211: run late dequeue late tx handlers without
- holding fq->lock
-Content-Language: en-US
-From: Wen Gong <quic_wgong@quicinc.com>
-To: Felix Fietkau <nbd@nbd.name>, <linux-wireless@vger.kernel.org>
-CC: <johannes@sipsolutions.net>, <ath11k@lists.infradead.org>,
-        <johannes.berg@intel.com>
-References: <20190316170634.13125-1-nbd@nbd.name>
- <20190316170634.13125-4-nbd@nbd.name>
- <9bce39db-1de4-f129-8d2f-77f51a64a5db@quicinc.com>
-In-Reply-To: <9bce39db-1de4-f129-8d2f-77f51a64a5db@quicinc.com>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: QxurZ4iFmhiJHlSblpQWCJGRvEzziWge
-X-Proofpoint-ORIG-GUID: QxurZ4iFmhiJHlSblpQWCJGRvEzziWge
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-12-07_02,2022-12-06_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- mlxlogscore=999 bulkscore=0 clxscore=1011 adultscore=0 mlxscore=0
- priorityscore=1501 impostorscore=0 phishscore=0 spamscore=0 malwarescore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2212070050
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221206_223054_451267_B779D48E 
-X-CRM114-Status: GOOD (  16.32  )
+X-CRM114-CacheID: sfid-20221207_044947_327071_6F90D7EE 
+X-CRM114-Status: GOOD (  23.06  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,43 +70,67 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-SGkgSm9oYW5uZXMsCgpkbyB5b3Uga25vdyBpdD8KCk9uIDEyLzUvMjAyMiA1OjQ2IFBNLCBXZW4g
-R29uZyB3cm90ZToKPiBPbiAzLzE3LzIwMTkgMTowNiBBTSwgRmVsaXggRmlldGthdSB3cm90ZToK
-Pj4gUmVkdWNlcyBsb2NrIGNvbnRlbnRpb24gb24gZW5xdWV1ZS9kZXF1ZXVlIG9mIGlUWFEgcGFj
-a2V0cwo+Pgo+PiBTaWduZWQtb2ZmLWJ5OiBGZWxpeCBGaWV0a2F1IDxuYmRAbmJkLm5hbWU+Cj4+
-IC0tLQo+PiDCoCBuZXQvbWFjODAyMTEvdHguYyB8IDEwICsrKysrKysrLS0KPj4gwqAgMSBmaWxl
-IGNoYW5nZWQsIDggaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKPj4KPj4gZGlmZiAtLWdp
-dCBhL25ldC9tYWM4MDIxMS90eC5jIGIvbmV0L21hYzgwMjExL3R4LmMKPj4gaW5kZXggODEyN2U0
-M2UxMmIxLi5mODUzNDRjOWFmNjIgMTAwNjQ0Cj4+IC0tLSBhL25ldC9tYWM4MDIxMS90eC5jCj4+
-ICsrKyBiL25ldC9tYWM4MDIxMS90eC5jCj4+IEBAIC0zNTQ0LDYgKzM1NDQsNyBAQCBzdHJ1Y3Qg
-c2tfYnVmZiAqaWVlZTgwMjExX3R4X2RlcXVldWUoc3RydWN0IAo+PiBpZWVlODAyMTFfaHcgKmh3
-LAo+PiDCoMKgwqDCoMKgIGllZWU4MDIxMV90eF9yZXN1bHQgcjsKPj4gwqDCoMKgwqDCoCBzdHJ1
-Y3QgaWVlZTgwMjExX3ZpZiAqdmlmID0gdHhxLT52aWY7Cj4+IMKgICtiZWdpbjoKPj4gwqDCoMKg
-wqDCoCBzcGluX2xvY2tfYmgoJmZxLT5sb2NrKTsKPiBNYXliZSB1c2UtYWZ0ZXItZnJlZSB3aWxs
-IGhhcHBlbmVkPwo+Cj4gWW91IGNhbiBzZWUgaWVlZTgwMjExX3R4X2RlcXVldWUoKSBpbiB0eC5j
-IGFzIGJlbG93LCBhZnRlciAKPiBpZWVlODAyMTFfZnJlZV90eHNrYigpLCBpdCB3aWxsIGdvdG8g
-YmVnaW4sCj4gSWYgZ290byBvdXQgaGFwcGVuZWQgaW4gYmVsb3cgY2hlY2ssIHRoZW4gdGhlIHNr
-YiB3aGljaCBpcyBmcmVlZCB3aWxsIAo+IGJlIHJldHVybmVkLCBhbmQgdXNlLWFmdGVyLWZyZWUg
-d2lsbCBoYXBwZW4uCj4KPiBodHRwczovL2dpdC5rZXJuZWwub3JnL3B1Yi9zY20vbGludXgva2Vy
-bmVsL2dpdC9rdmFsby9hdGguZ2l0L3RyZWUvbmV0L21hYzgwMjExL3R4LmM/aWQ9ZGVkNDY5OGI1
-OGNiMjNjMjJiMGRjYmQ4MjljZWQxOWNlNGU2Y2UwMiNuMzUzOCAKPgo+IGJlZ2luOgo+IMKgwqAg
-wqBzcGluX2xvY2tfYmgoJmZxLT5sb2NrKTsKPgo+IMKgwqAgwqBpZiAodGVzdF9iaXQoSUVFRTgw
-MjExX1RYUV9TVE9QLCAmdHhxaS0+ZmxhZ3MpIHx8Cj4gwqDCoCDCoMKgwqDCoCB0ZXN0X2JpdChJ
-RUVFODAyMTFfVFhRX1NUT1BfTkVUSUZfVFgsICZ0eHFpLT5mbGFncykpCj4gwqDCoCDCoMKgwqDC
-oCBnb3RvIG91dDsKPgo+IMKgwqAgwqBpZiAodmlmLT50eHFzX3N0b3BwZWRbaWVlZTgwMjExX2Fj
-X2Zyb21fdGlkKHR4cS0+dGlkKV0pIHsKPiDCoMKgIMKgwqDCoMKgIHNldF9iaXQoSUVFRTgwMjEx
-X1RYUV9TVE9QX05FVElGX1RYLCAmdHhxaS0+ZmxhZ3MpOwo+IMKgwqAgwqDCoMKgwqAgZ290byBv
-dXQ7Cj4gwqDCoCDCoH0KPgo+IMKgwqAgwqAvKiBNYWtlIHN1cmUgZnJhZ21lbnRzIHN0YXkgdG9n
-ZXRoZXIuICovCj4gwqDCoCDCoHNrYiA9IF9fc2tiX2RlcXVldWUoJnR4cWktPmZyYWdzKTsKPiDC
-oMKgIMKgaWYgKHNrYikKPiDCoMKgIMKgwqDCoMKgIGdvdG8gb3V0Owo+Cj4gwqDCoCDCoHNrYiA9
-IGZxX3Rpbl9kZXF1ZXVlKGZxLCB0aW4sIGZxX3Rpbl9kZXF1ZXVlX2Z1bmMpOwo+IMKgwqAgwqBp
-ZiAoIXNrYikKPiDCoMKgIMKgwqDCoMKgIGdvdG8gb3V0Owo+Cj4gwqDCoCDCoHNwaW5fdW5sb2Nr
-X2JoKCZmcS0+bG9jayk7Cj4KPiBNYXliZSAic2tiID0gTlVMTDsiIHNob3VsZCBiZSBhZGRlZCBh
-ZnRlciAiYmVnaW46Ii4KPgo+IC4uLgo+CgotLSAKYXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtA
-bGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL2F0aDExawo=
+Hi Christoph,
+
+Sorry for the delay, it was Finland's Independence Day so I was offline
+for a long weekend.
+
+Christoph Hellwig <hch@lst.de> writes:
+
+> On Fri, Dec 02, 2022 at 08:46:45PM +0200, Kalle Valo wrote:
+>> Haven't seen this before either. Really unfortunate that the warning
+>> message message is not printing the error value (missed that during
+>> review), but I suspect the error is coming from crypto_alloc_shash()
+>> call:
+>
+>> Any chance you could check that? Also please check that
+>> CONFIG_CRYPTO_MICHAEL_MIC is enabled (it should be as CONFIG_ATH11K
+>> depends on it).
+>
+> So, this is the debian-installer case onc again.  CONFIG_CRYPTO_MICHAEL_MIC
+> is enabled in the kernel config, but michael_mic.ko is not present on
+> the installation media. Once I side-load it, the problem goes away.
+>
+> I guess I'll respind the MODULE_SOFTDEP patch to include michael_mic,
+
+Thanks. But this makes me wonder is it sensible to randomly install a
+set of .ko files and drop the rest, like Debian's installer apparently
+does? The dependency for drivers is pretty well documented in Kconfig
+files, thanks to build testers testing with random configurations, but
+if the installer omits all that there will be problems just like you are
+experiencing. So for me MODULE_SOFTDEP() feels just like a band aid and
+not a robust solution.
+
+Though I am happy to take your MODULE_SOFTDEP() patch, just wondering if
+there is a better way to solve this. For example net/mac80211 (the
+802.11 stack) has a lot of crypto dependencies:
+
+	select CRYPTO
+	select CRYPTO_LIB_ARC4
+	select CRYPTO_AES
+	select CRYPTO_CCM
+	select CRYPTO_GCM
+	select CRYPTO_CMAC
+	select CRC32
+
+And it's not using MODULE_SOFTDEP() at all.
+
+> but if you have a good idea to make the error reporting more useful that
+> would be appreciated as well.
+
+I'll send a patch to improve the error messages in this case.
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
