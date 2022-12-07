@@ -4,66 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 035BEC4708E
-	for <ath11k@archiver.kernel.org>; Wed,  7 Dec 2022 14:25:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B5C8C352A1
+	for <ath11k@archiver.kernel.org>; Wed,  7 Dec 2022 17:17:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=6bLE3oogp6qRWYf0lrx8Yhtve5a8La7OZzZJgOQwwuQ=; b=ntO9UgcUcG0ZZTusjufSQjAmH3
-	7H71l1nMuCc69XgdSztf6EWd3nlz6LpMKqRcC4CkvxN1Py82RANlnjHyWy2IBrIlEyv5cC83P8+/s
-	sIKQ2ZtIhC7BkeeWhk0cDzRMZiWeUNPSjO2kLqlUbV9rjp7tuaeDuxigv7lq9hxj/CrgUUzl2Ma58
-	G/6T4+4kpifITxdEdWte+lqmmDar725Gzt+EoRx2xdAb0KS1GlHyaNkxHRORkUlnjfbDBlJfJfOtm
-	t1nN+fItEhA/xbWe0brqAJbT+WiYDO32eKQ3d0WQX3rhAmsDpMX8cw1eDyhAcoVBhLqWMCzozf+O6
-	yCzhkhzw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
+	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=8NU0JgW6i8USDm9vRfqsVFBKHummo5C2zx2QogrEYRo=; b=kHbS3S+witL13F
+	xgfw0/1qmKVIEZYpys+BUdFD+wLrPoQyT6XqdyABSONOvcurhibzEAHyiSAjlovTTn6iazaWf9Et2
+	QM1XoPT0e208oiF0dF72rvht9rJvMwYnxdjBYlhOyXxzGNx/9Rl2MZa1WOpX/O1XAeAGMf4MFXhFg
+	8B1St6KBiEvkxalYgQVuN55aq2VnY2/THmmg6/vqgRbjMiU/OjKWLOkwYrHUEJIFw6Klyznc1pJRY
+	SpIEbV/wd8+kkXTSDTrAcnCkONBujTI6+FhcDbR6u4JfLBAdVMPfb/G2/TX2hhoC/TAY5fmyXCyfg
+	ZUH3lrpMOwU9RXsCfgPg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p2vMK-004oT0-MQ; Wed, 07 Dec 2022 14:25:16 +0000
-Received: from stravinsky.debian.org ([2001:41b8:202:deb::311:108])
+	id 1p2y2s-007FFw-DA; Wed, 07 Dec 2022 17:17:22 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p2vMH-004oFF-6b
-	for ath11k@lists.infradead.org; Wed, 07 Dec 2022 14:25:14 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=debian.org;
-	s=smtpauto.stravinsky; h=X-Debian-User:In-Reply-To:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=Eov9yMg5vnGx30TB6qkIL9b8Z7I1iUBVN2gDoOFOPiU=; b=AgtPs+Wm0e+CLyozKzjrb3MJ+q
-	CVWZ6eRfiqFktAbjMTiDSaxqWWPM1pugM57gTUD5yfUg41ugUxxvAgCQtNpKYQL2HXTn8tlUGjvem
-	W7t1Ot8TocpXq0aiUDsin7sR3OljTdvtxIK7aMfqwWMeujBcZ04NXygworE3aT+URy/r0HfjWfh8G
-	1x3c2/Iuyva+71LW57ODRtlhcHO9fBKSBhRHgEr9NThDxutH1y2y8J2HL/AfbHS1WLRM2bnVB3nXE
-	y7ktq4cNKPq4MiUdV2OwuNf49RPT45V9a3HSY15s/8BMy3F+NaVNDQbWAMRxqa9xMntY2/bsSeSt6
-	p4zRKwbw==;
-Received: from authenticated user
-	by stravinsky.debian.org with esmtpsa (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
-	(Exim 4.94.2)
-	(envelope-from <kibi@debian.org>)
-	id 1p2vM5-00E00a-Cc; Wed, 07 Dec 2022 14:25:02 +0000
-Date: Wed, 7 Dec 2022 15:24:58 +0100
-From: Cyril Brulebois <kibi@debian.org>
-To: Christoph Hellwig <hch@lst.de>
-Cc: Kalle Valo <kvalo@kernel.org>, ath11k@lists.infradead.org,
-	linux-wireless@vger.kernel.org, debian-kernel@lists.debian.org,
-	debian-boot@lists.debian.org
-Subject: Re: failed to insert STA entry for the AP (error -2)
-Message-ID: <20221207142458.mlulpx6jts3yt72b@mraw.org>
-Organization: Debian
-References: <20221130122807.GA31720@lst.de>
- <87o7so4nr2.fsf@kernel.org>
- <20221130125236.GA865@lst.de>
- <87k03c4mdb.fsf@kernel.org>
- <20221130133016.GC3055@lst.de>
- <87sfhx3ap6.fsf@kernel.org>
- <20221203155227.GA13254@lst.de>
- <87cz8v2xb2.fsf@kernel.org>
- <20221207134025.GA21691@lst.de>
+	id 1p2y2q-007FAs-Bn
+	for ath11k@lists.infradead.org; Wed, 07 Dec 2022 17:17:21 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id E63D161B50;
+	Wed,  7 Dec 2022 17:17:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3932DC433D6;
+	Wed,  7 Dec 2022 17:17:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1670433439;
+	bh=tPvUf0/sHdPV2YSh+0nDeUZk9yqOADgoGBRp/xdd1ec=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=QNWHRme9Df4ybFR7rFOSzuxpFvTW3G8Qp7Az4UX8sbO0IWRdl1CPnBvxx0Ut0Uf9J
+	 ejCxHHXihKOfaMYAzd+gA1gwKxI3OzNW4604voB7AQwkOfG4fUuTa6pjr07hf1ni4v
+	 16l43HKxOwvn3e3r6MXq1ZxpIBupIuWpP7nuOHwWFoI2L7hru0bxjo2Ah42P7CGy7Q
+	 gJMGWAm2l5j9QoUTzu4swvRqpahw5n1UDkqpM+AvTbQ0HHt+U96oVA7e8/ds1BiH1e
+	 Ax2bpxMc/szaPSvYsIdRAZTh0H1nG2TYQP9MPVd+LNLW/UdH1PXz8BnlII8YtRwVjw
+	 4x6bWlr0Cx9Jg==
 MIME-Version: 1.0
-In-Reply-To: <20221207134025.GA21691@lst.de>
-X-Debian-User: kibi
+Subject: Re: [PATCHv2 1/8] wifi: dt: bindings: net: add IPQ5018 compatible
+ entry
+ for ath11k
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20221122132152.17771-2-quic_kathirve@quicinc.com>
+References: <20221122132152.17771-2-quic_kathirve@quicinc.com>
+To: Karthikeyan Kathirvel <quic_kathirve@quicinc.com>
+Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+ Sriram R <quic_srirrama@quicinc.com>,
+ Karthikeyan Kathirvel <quic_kathirve@quicinc.com>
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-ID: <167043343244.16838.6003784480944515283.kvalo@kernel.org>
+Date: Wed,  7 Dec 2022 17:17:18 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221207_062513_294939_E2E8581F 
-X-CRM114-Status: UNSURE (   9.78  )
+X-CRM114-CacheID: sfid-20221207_091720_476179_86E1A76E 
+X-CRM114-Status: UNSURE (   5.91  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -76,82 +71,38 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============2827322739129788614=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+Karthikeyan Kathirvel <quic_kathirve@quicinc.com> wrote:
 
---===============2827322739129788614==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="pcmiubcz63uhxe3f"
-Content-Disposition: inline
+> Add IPQ5018 device support for ath11k.
+> 
+> Signed-off-by: Sriram R <quic_srirrama@quicinc.com>
+> Co-developed-by: Karthikeyan Kathirvel <quic_kathirve@quicinc.com>
+> Signed-off-by: Karthikeyan Kathirvel <quic_kathirve@quicinc.com>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
+8 patches applied to ath-next branch of ath.git, thanks.
 
---pcmiubcz63uhxe3f
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+679d708a10ec dt: bindings: net: ath11k: add IPQ5018 compatible
+8dfe875aa24a wifi: ath11k: update hw params for IPQ5018
+26af7aabd2d8 wifi: ath11k: update ce configurations for IPQ5018
+b42b3678c91f wifi: ath11k: remap ce register space for IPQ5018
+711b80acbdfb wifi: ath11k: update hal srng regs for IPQ5018
+ba60f2793d3a wifi: ath11k: initialize hw_ops for IPQ5018
+69968f88f177 wifi: ath11k: add new hw ops for IPQ5018 to get rx dest ring hashmap
+25edca7bb18a wifi: ath11k: add ipq5018 device support
 
-Hallo Christoph,
+-- 
+https://patchwork.kernel.org/project/linux-wireless/patch/20221122132152.17771-2-quic_kathirve@quicinc.com/
 
-Christoph Hellwig <hch@lst.de> (2022-12-07):
-> It turns out that while d-i comes with the ath11k and ath11k_pci
-> drivers, but misses the qrtr, qrtr-mki and michael_mic modules that
-> are needed for the driver to actually work and not just load.
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
-Reminds me of: https://bugs.debian.org/761902 which meant my wireless
-adapter was happy with WEP but not WPA.
-
-> Yes.  I'm not quite sure how the packages for d-i select which modules
-> to include where, but given that other wifi hardware seems to work in
-> the installer they must have figured this out somehow.
-
-What modules end up in what udebs is decided in src:linux, under
-debian/installer/modules.
-
-Commit fixing the bug mentioned above:
-  https://salsa.debian.org/kernel-team/linux/-/commit/782d644da7ab74e04bfeb=
-d30b66c264654028da3
-
-
-Cheers,
---=20
-Cyril Brulebois (kibi@debian.org)            <https://debamax.com/>
-D-I release manager -- Release team member -- Freelance Consultant
-
---pcmiubcz63uhxe3f
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEtg6/KYRFPHDXTPR4/5FK8MKzVSAFAmOQojcACgkQ/5FK8MKz
-VSDkFA/6A/nAxvhQJb+QA8y2Q+wT8r3MSJcucTOf/kp52oMgjjwM4wQsgjEvUFVG
-nb5oM9rlvBgm6X5oRL8+Mb5DHyNMb2roh8HK4EXn1Xy3WcPOyRKP1sTPSLx1qe9C
-0h5BBZgfFayBfiU4s2eFQSArJQPRYFm8E5stZY+pwJevgaJ0jC8mOOZ2MMnau34S
-5PWvR/Z86tZ+z114LcdLthi+tGPSCOHxsitmACLFMQZ5WsxZKR3WDJoZMKhu9E1M
-XNhyZJ/y5IYwa5/fEgj2RzYO4ExPUVYplefMQEeHrp+xcBB9nCfyb59BJbQ1t1+S
-+9Iir7K7OMMGlBA0EDCMqvUgHgQswVSvCHHEsz5lEefme54pWebDoZQ4hysYJxhq
-zcQK6/1oX8phSu8sY/ZeXU5slCUMZQJjgVd5rS0gKenbE0OEYAhJAqAFBpwJ/ZzY
-Xn9c8Dii9XJqlWO9c8km8bhvjn9Y7PMSo7aUsp2Uq9XHh7gV/rPQri+sIB7q6Nro
-Pahee/O4wX8NEEZk16UTQS0rvqVf1ZNOKi1PrvxkDwCrtxwTq3rbhZ9z/yJhl3DS
-yiZo8GWo/0Us6k+pSFPZ12O8Id2pQojm6+UKBW3EsUVEwq2v9U6O21BUngdnRIY+
-sfaXRYr2c7VqeWTBVXDcW+GOKgXKAbErJA/e3HUjVwEmJQC7j+Y=
-=TgTW
------END PGP SIGNATURE-----
-
---pcmiubcz63uhxe3f--
-
-
---===============2827322739129788614==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 -- 
 ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
-
---===============2827322739129788614==--
-
