@@ -4,73 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B76B8C4332F
-	for <ath11k@archiver.kernel.org>; Fri,  9 Dec 2022 11:35:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09BD4C4332F
+	for <ath11k@archiver.kernel.org>; Mon, 12 Dec 2022 08:31:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:References:CC:To:From:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=OOwwD6hdQyemdGrtQ3+ODQDczlSrtHbwEM3fcfD4lTI=; b=q3aUCXQIbq2Gq5
-	JEbzO22RVWhGbSKeVvrXpLjZjDhIlKbtCY+SkGbYh6x71S0nxIV6XDiub/UxfDJ5vCqshnuTmXfdr
-	wCxBcSj7Y+Y3l/wR9jUVqTc1d9R8un46paEiH4qhZxZ2jBXu5pMRXu5lktoeL/cvw+wIngxHkLQKd
-	i37SneWdUf2Z1Is/BtT4Hmr5knVbt0uTJ9DEmwGrBUEYg4oxeIaBZ6Un3FQv0nHLt/j1vuWbnUuJv
-	b5Qxa2PGVFMbeXzIKmRiui9Bq7KfxtD8kqY/ZJEqbOHlnjwaUYdJtZNzGiuX1c5TwIfR1GFnD7O+p
-	FowQxE2O6CxWfdq2IhlA==;
+	List-Owner; bh=GW6603/Be+IXi6XnPe8jp4mI8fgzeIo+vm8sP2YelNw=; b=jb0nWRivyvrrK7
+	NZnKq25AjBBnFe/PJI31H4Pte6uiJM9hwzYWse8qxB8uiSOa5j6EnNxreOZo16dIBDMS3nbLVwubr
+	qZV+1jKsmswbjEUsGeCQ3RdHZTA2cKJZ2mVZP/no6BiR4PkMZz6fOLvsLg8ykK5TXYvB3Tx+V0Dz1
+	ieM9hmVtFwv7POyE2423VEUSpdkOkkeE/nVDykXpzGIJp84yhW5IbysTP6UCW+amQxQV9qmykwBaB
+	JpfwQImyOO2775/RNAWkxHuOr6WYeDT5mifLJxB+LU5nWqoMlRalYP6mI6Gx8Flg/TARdlNHNaVKI
+	ovx8yKyFcv8Qir6vJJMQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p3bfN-0079r3-4i; Fri, 09 Dec 2022 11:35:45 +0000
-Received: from mail-pj1-x1029.google.com ([2607:f8b0:4864:20::1029])
+	id 1p4eDt-00ABQB-Nf; Mon, 12 Dec 2022 08:31:41 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p3bfK-0079mz-4v
-	for ath11k@lists.infradead.org; Fri, 09 Dec 2022 11:35:43 +0000
-Received: by mail-pj1-x1029.google.com with SMTP id t11-20020a17090a024b00b0021932afece4so7814739pje.5
-        for <ath11k@lists.infradead.org>; Fri, 09 Dec 2022 03:35:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura.hr; s=sartura;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Mzg8lYqW6VRWsnakITVoj+GziAx50d6fMFJrXXU3zAo=;
-        b=BtICw9wqXghzHB8cOJPgNOAeso8hfOfLsHoyUdz8gx58FNQn1+3aeEcN/0tmtVcv9K
-         gG1eYdeiUeBtK6m/4o0VabCUNUgHcUx7noAiGP05b0aKb7vQmTRSEKoRpoZ4Z85Nd11l
-         IwsfN5sSScO4np3E3UAqh+ObsmCoe+VEvPUd4whqiuVRR9REgVN0ADfSnfR8yP0wtBpM
-         NNjmQiy1cH8/I4suTuvHNtiNBCwX0V8GYXRAo9UkRTZ0CmSYH0DE4uTpQHlswl91vfBm
-         44pCA4/PLf1ZESx3VKGyo45G32pXDAPnrKomLGBhouW028h51rqEE6Ysig4nfpdLAIWF
-         z9mw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Mzg8lYqW6VRWsnakITVoj+GziAx50d6fMFJrXXU3zAo=;
-        b=Xh+FUkJy9ut5zug3l/ioGCer/lHAxgpbF/jr2nsuYMXgIEMN1/ES2D8XjvgkCf85u9
-         7go/4vJBq9DyCbJniyZJha0rcCXvVLUTdsWIXYLRVPHR6oVHhGZc+RJ2JdPlm663evxC
-         fI/a0L2RtmTRLS8gZ84+jS82q3B25Ip3uCv8y9qFGzajubG8kP2ELchIpp+7mEixkDQT
-         I6QIagf24cx2JxY0+gATRTqevqDn3sCmxYF5maLarCsSxytYM98aqFBZUVKfRScK2X3d
-         zIfV4JbG//YMQQqg28LwvHUNvYs/yCmo6EKWBmB35P8msiA6h5E1bKAZ0YxPbh0/P/7u
-         9peQ==
-X-Gm-Message-State: ANoB5plT7MBLrO+ePUcE5fiLoI3LYdRkGLw06d/S7+WEGOmJ/YDB0WNT
-	U2zVzdaOZhJVtIpI2n8+dmFpVKeQqGjXArjOwXqpbnDbtFmjDYBy
-X-Google-Smtp-Source: AA0mqf5RpYMRMASAza7+6Ajtg9nRn6kTRNNAOfMXOvyzePjXsm9EOuImvNcFsdkKd6g7kGrgQjSzyH5FTstwY5qHlMg=
-X-Received: by 2002:a17:902:70c8:b0:189:d37f:d97 with SMTP id
- l8-20020a17090270c800b00189d37f0d97mr19471253plt.72.1670585738287; Fri, 09
- Dec 2022 03:35:38 -0800 (PST)
+	id 1p4eDq-00ABBm-Bj
+	for ath11k@lists.infradead.org; Mon, 12 Dec 2022 08:31:40 +0000
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BC4vmaF001093;
+	Mon, 12 Dec 2022 08:31:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : from : to : cc : references : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=uLukQXnW7qTf2gG7t76e726ocOVRjK3PcZw8x4yvRXM=;
+ b=g47ILgnLAlMsFq3QOmT5lv+oh/S4/DNke22RVTUVZCqqf69an0mRpWzAon3rsrS90G5i
+ b/bKPlCQIYHEMNj5B2w25VxRu9KR/y4tUh+vqqX4myyxtpoulngkALByPCiqX4wfdspQ
+ YaLaj+DXuyt6JeRWcvtoVnSQLZJhTdiOaVB/qj2kyqeWunaMb/n9EtViF7Zg+P5li6xN
+ +vovgp+zTkij8gzcNCSF2P5CEwlfbuXfHVET2K8C5nn3HYc9eRrrDN80kEt+/Se8pFXJ
+ eG28lIg4LejADh6vNaAxbJKRN9CK2uc7gSCa+0TDX20Z49T/cYk1DEf89WE55jsxNpxI Ow== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3mch30kjp4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 12 Dec 2022 08:31:30 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2BC8VUPi005923
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 12 Dec 2022 08:31:30 GMT
+Received: from [10.231.195.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 12 Dec
+ 2022 00:31:28 -0800
+Message-ID: <e42f6580-b113-46ed-2fc0-cf3cdc099c7b@quicinc.com>
+Date: Mon, 12 Dec 2022 16:31:26 +0800
 MIME-Version: 1.0
-References: <CACDmYyc7G=pv5gBpwxm=tYChnbnmtTV990aEDCieLeKvwr=pOg@mail.gmail.com>
- <878rjj2ww9.fsf@kernel.org> <CA+HBbNF4MrEKjG=cVmu0d6UyO6NDyw=cVoG93hrkxVKQLF1h+w@mail.gmail.com>
- <874ju72w7g.fsf@kernel.org> <CA+HBbNHQvgt+_ihFST=ZPeuxjRzovL71oKgbP2X5B8a6ZBq0HA@mail.gmail.com>
- <87pmct214x.fsf@kernel.org>
-In-Reply-To: <87pmct214x.fsf@kernel.org>
-From: Robert Marko <robert.marko@sartura.hr>
-Date: Fri, 9 Dec 2022 12:35:27 +0100
-Message-ID: <CA+HBbNFHdME47FT2-_pMvo8W3-2y79d_0YdvM7ADq1ofBtzmjQ@mail.gmail.com>
-Subject: Re: wifi: ath11k: ipq6018 monitor mode is not working properly
-To: Kalle Valo <kvalo@kernel.org>
-Cc: Legale Legage <legale.legale@gmail.com>, ath11k@lists.infradead.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.1
+Subject: Re: [PATCH 4/5] mac80211: run late dequeue late tx handlers without
+ holding fq->lock
+Content-Language: en-US
+From: Wen Gong <quic_wgong@quicinc.com>
+To: Felix Fietkau <nbd@nbd.name>, <linux-wireless@vger.kernel.org>
+CC: <johannes@sipsolutions.net>, <ath11k@lists.infradead.org>,
+        <johannes.berg@intel.com>
+References: <20190316170634.13125-1-nbd@nbd.name>
+ <20190316170634.13125-4-nbd@nbd.name>
+ <9bce39db-1de4-f129-8d2f-77f51a64a5db@quicinc.com>
+ <a918d3ee-edc7-b6a2-d15a-e0d77f0683e2@quicinc.com>
+In-Reply-To: <a918d3ee-edc7-b6a2-d15a-e0d77f0683e2@quicinc.com>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 8UBPuGyZ2_LT_8FAqRHHpFs0Xa2ULh09
+X-Proofpoint-GUID: 8UBPuGyZ2_LT_8FAqRHHpFs0Xa2ULh09
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-12-12_01,2022-12-08_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
+ adultscore=0 phishscore=0 spamscore=0 clxscore=1015 mlxlogscore=892
+ priorityscore=1501 mlxscore=0 lowpriorityscore=0 impostorscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2212120079
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221209_033542_225299_D25B892B 
-X-CRM114-Status: GOOD (  41.51  )
+X-CRM114-CacheID: sfid-20221212_003138_429791_8EA999B9 
+X-CRM114-Status: GOOD (  16.17  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,139 +95,46 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Thu, Dec 8, 2022 at 7:36 PM Kalle Valo <kvalo@kernel.org> wrote:
->
-> Robert Marko <robert.marko@sartura.hr> writes:
->
-> > On Wed, Dec 7, 2022 at 2:13 PM Kalle Valo <kvalo@kernel.org> wrote:
-> >> Robert Marko <robert.marko@sartura.hr> writes:
-> >>
-> >> > The issue with mainline kernels is that there is no remoteproc support
-> >> > for IPQ8074 nor IPQ6018, I have been working towards getting the
-> >> > IPQ8074 and its working with remoteproc patches added but the
-> >> > situation is not ideal as for example coldboot calibration does not
-> >> > work which could be a bug in the remoteproc patches I am using.
-> >>
-> >> Nice, do you have the patches available somewhere? What distro are you
-> >> using?
-> >
-> > Yes, they are available on my GitHub kernel repo under the
-> > ipq807x-next branches:
-> > https://github.com/robimarko/linux.git
->
-> Thanks, I will take a look.
->
-> > I am testing the next based branches with Buildroot as its quick and
-> > easy as I regularly update on newer next as I am upstreaming and stuff
-> > is getting merged. A lot of stuff got merged so the SoC is in a way,
-> > way better shape than a year or two ago but we are still missing
-> > upstream remoteproc support as well as CPR support and there is no
-> > offloading obviously.
->
-> Great that you brought this up. I have been thinking how could I do easy
-> and quickly do some smoke testing on IPQ8074 using latest ath11k from my
-> ath.git master branch and latest firmware from ath11k-firmware.git.
-> Currently I'm only testing PCI devices, so quite limited testing.
->
-> What you are using sounds like just what I would need as well :) Would
-> you happen to have any notes, pointers etc how to get started with that?
-> Unfortunately I can't use much time for this, so the simpler the
-> instructions are the better. I haven't used Buildroot for years.
-
-I made a BSP "layer" for IPQ8074 under Buildroot:
-https://github.com/robimarko/buildroot-external-ipq807x.git
-
-It allowed me to easily update through Buildroot versions and provide the
-development packages I need.
-
-So, you can easily use the defconfig like.
-make BR2_EXTERNAL=../buildroot-external-ipq807x/ ipq807x_defconfig
-
-And then modify the BSP layer for any board and include new packages with
-menuconfig.
-
-Do note that you need to add the DTS for new boards obviously.
-
-BTW, I currently have to revert SCM/MDT loader changes cause I found out that
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?h=next-20221208&id=3a99f121fe0bfa4b65ff74d9e980018caf54c2d4
-broke remoteproc on IPQ8074 as now it fails on qcom_scm_pas_auth_and_reset()
-and I have not found out why exactly.
-
->
-> > I am also maintaining an OpenWrt ipq807x target that is based on 5.15
-> > and 6.1 backports for which I plan to make a PR to get it officially
-> > included once 6.1 backports are merged. This is what a lot of users
-> > are currently using as it's gotten into quite a good state.
->
-> Excellent, looking forward to that.
->
-> > The one thing that has been bothering is move to FW 2.7 which is not
-> > working on a number of routers as their BDF-s were generated for way
-> > older BDF as well as outdated regulatory information.
->
-> The board files are always a major problem. But can you tell more about
-> this? Are you saying that firmware branches 2.5.0.1 [1] and 2.7.0.1 [2]
-> are using different board file formats?
-
-No, they are using the same format, but it looks like some defaults
-for BDF fields
-that did not exist when the vendor was generating the BDF break certain boards
-or the vendor did not include regulatory DB in the BDF and currently,
-QCA does not
-have the regdb.bin for IPQ8074 publicly available at all so on those
-devices you are
-stuck with the firmware fallback of WORLD regulatory.
-
-2.7 FW is breaking most of the boards, only the ones where
-vendor-generated the BDF
-against newer SPF releases it kind of works but regulatory info is
-still way outdated,
-however Xiaomi AX6 is completely broken, remoteproc will just crash,
-so far we narrowed
-it is down to it being the only device using QFP4550 FEM and BDF has
-some config specific for
-it.
-
-QCA removed the firmware regulatory fallback so now if your BDF
-doesn't have regulatory embedded
-or it just doesn't have the regDB version field set remoteproc will
-crash without an external regdb.bin
-which is not public.
-So, we currently cannot use 2.7 FW at all which has a lot of issues
-that 2.5 FW has fixed.
-
-I am happy to share more details, we have quite a lively community
-using these devices currently.
-
-Regards,
-Robert
->
-> [1] https://github.com/kvalo/ath11k-firmware/tree/master/IPQ8074/hw2.0/2.5.0.1
->
-> [2] https://github.com/kvalo/ath11k-firmware/tree/master/IPQ8074/hw2.0/2.7.0.1
->
-> --
-> https://patchwork.kernel.org/project/linux-wireless/list/
->
-> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
-
-
--- 
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+SSB3aWxsIHNlbmQgYSBwYXRjaCBmb3IgaXQgdG8gYXZvaWQgdGhlIHBvdGVudGlhbCB1c2VyLWFm
+dGVyLWZyZWUgcmlzay4KCk9uIDEyLzcvMjAyMiAyOjMwIFBNLCBXZW4gR29uZyB3cm90ZToKPiBI
+aSBKb2hhbm5lcywKPgo+IGRvIHlvdSBrbm93IGl0Pwo+Cj4gT24gMTIvNS8yMDIyIDU6NDYgUE0s
+IFdlbiBHb25nIHdyb3RlOgo+PiBPbiAzLzE3LzIwMTkgMTowNiBBTSwgRmVsaXggRmlldGthdSB3
+cm90ZToKPj4+IFJlZHVjZXMgbG9jayBjb250ZW50aW9uIG9uIGVucXVldWUvZGVxdWV1ZSBvZiBp
+VFhRIHBhY2tldHMKPj4+Cj4+PiBTaWduZWQtb2ZmLWJ5OiBGZWxpeCBGaWV0a2F1IDxuYmRAbmJk
+Lm5hbWU+Cj4+PiAtLS0KPj4+IMKgIG5ldC9tYWM4MDIxMS90eC5jIHwgMTAgKysrKysrKystLQo+
+Pj4gwqAgMSBmaWxlIGNoYW5nZWQsIDggaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKPj4+
+Cj4+PiBkaWZmIC0tZ2l0IGEvbmV0L21hYzgwMjExL3R4LmMgYi9uZXQvbWFjODAyMTEvdHguYwo+
+Pj4gaW5kZXggODEyN2U0M2UxMmIxLi5mODUzNDRjOWFmNjIgMTAwNjQ0Cj4+PiAtLS0gYS9uZXQv
+bWFjODAyMTEvdHguYwo+Pj4gKysrIGIvbmV0L21hYzgwMjExL3R4LmMKPj4+IEBAIC0zNTQ0LDYg
+KzM1NDQsNyBAQCBzdHJ1Y3Qgc2tfYnVmZiAqaWVlZTgwMjExX3R4X2RlcXVldWUoc3RydWN0IAo+
+Pj4gaWVlZTgwMjExX2h3ICpodywKPj4+IMKgwqDCoMKgwqAgaWVlZTgwMjExX3R4X3Jlc3VsdCBy
+Owo+Pj4gwqDCoMKgwqDCoCBzdHJ1Y3QgaWVlZTgwMjExX3ZpZiAqdmlmID0gdHhxLT52aWY7Cj4+
+PiDCoCArYmVnaW46Cj4+PiDCoMKgwqDCoMKgIHNwaW5fbG9ja19iaCgmZnEtPmxvY2spOwo+PiBN
+YXliZSB1c2UtYWZ0ZXItZnJlZSB3aWxsIGhhcHBlbmVkPwo+Pgo+PiBZb3UgY2FuIHNlZSBpZWVl
+ODAyMTFfdHhfZGVxdWV1ZSgpIGluIHR4LmMgYXMgYmVsb3csIGFmdGVyIAo+PiBpZWVlODAyMTFf
+ZnJlZV90eHNrYigpLCBpdCB3aWxsIGdvdG8gYmVnaW4sCj4+IElmIGdvdG8gb3V0IGhhcHBlbmVk
+IGluIGJlbG93IGNoZWNrLCB0aGVuIHRoZSBza2Igd2hpY2ggaXMgZnJlZWQgd2lsbCAKPj4gYmUg
+cmV0dXJuZWQsIGFuZCB1c2UtYWZ0ZXItZnJlZSB3aWxsIGhhcHBlbi4KPj4KPj4gaHR0cHM6Ly9n
+aXQua2VybmVsLm9yZy9wdWIvc2NtL2xpbnV4L2tlcm5lbC9naXQva3ZhbG8vYXRoLmdpdC90cmVl
+L25ldC9tYWM4MDIxMS90eC5jP2lkPWRlZDQ2OThiNThjYjIzYzIyYjBkY2JkODI5Y2VkMTljZTRl
+NmNlMDIjbjM1MzggCj4+Cj4+IGJlZ2luOgo+PiDCoMKgIMKgc3Bpbl9sb2NrX2JoKCZmcS0+bG9j
+ayk7Cj4+Cj4+IMKgwqAgwqBpZiAodGVzdF9iaXQoSUVFRTgwMjExX1RYUV9TVE9QLCAmdHhxaS0+
+ZmxhZ3MpIHx8Cj4+IMKgwqAgwqDCoMKgwqAgdGVzdF9iaXQoSUVFRTgwMjExX1RYUV9TVE9QX05F
+VElGX1RYLCAmdHhxaS0+ZmxhZ3MpKQo+PiDCoMKgIMKgwqDCoMKgIGdvdG8gb3V0Owo+Pgo+PiDC
+oMKgIMKgaWYgKHZpZi0+dHhxc19zdG9wcGVkW2llZWU4MDIxMV9hY19mcm9tX3RpZCh0eHEtPnRp
+ZCldKSB7Cj4+IMKgwqAgwqDCoMKgwqAgc2V0X2JpdChJRUVFODAyMTFfVFhRX1NUT1BfTkVUSUZf
+VFgsICZ0eHFpLT5mbGFncyk7Cj4+IMKgwqAgwqDCoMKgwqAgZ290byBvdXQ7Cj4+IMKgwqAgwqB9
+Cj4+Cj4+IMKgwqAgwqAvKiBNYWtlIHN1cmUgZnJhZ21lbnRzIHN0YXkgdG9nZXRoZXIuICovCj4+
+IMKgwqAgwqBza2IgPSBfX3NrYl9kZXF1ZXVlKCZ0eHFpLT5mcmFncyk7Cj4+IMKgwqAgwqBpZiAo
+c2tiKQo+PiDCoMKgIMKgwqDCoMKgIGdvdG8gb3V0Owo+Pgo+PiDCoMKgIMKgc2tiID0gZnFfdGlu
+X2RlcXVldWUoZnEsIHRpbiwgZnFfdGluX2RlcXVldWVfZnVuYyk7Cj4+IMKgwqAgwqBpZiAoIXNr
+YikKPj4gwqDCoCDCoMKgwqDCoCBnb3RvIG91dDsKPj4KPj4gwqDCoCDCoHNwaW5fdW5sb2NrX2Jo
+KCZmcS0+bG9jayk7Cj4+Cj4+IE1heWJlICJza2IgPSBOVUxMOyIgc2hvdWxkIGJlIGFkZGVkIGFm
+dGVyICJiZWdpbjoiLgo+Pgo+PiAuLi4KPj4KCi0tIAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDEx
+a0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4v
+bGlzdGluZm8vYXRoMTFrCg==
