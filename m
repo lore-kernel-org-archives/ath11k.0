@@ -4,77 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF433C4332F
-	for <ath11k@archiver.kernel.org>; Tue, 20 Dec 2022 10:26:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36447C4332F
+	for <ath11k@archiver.kernel.org>; Tue, 20 Dec 2022 12:16:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=ZFtTdhiiZ0PhxfgEObiuDXU9OwrfBGa9fIio6iQhaBo=; b=Zczb0DDwBqMFtk
-	IY9mcNFinYGntjaNNoGLKgTelzo7JZ9KseWvtb4P29gC/wq4uDSsMfKIgQURM89k8TMWI9YxyfVRN
-	jS2dOjbxkVzfoanJJ2ZG3s0QvNkgnwDpSRa7uYBOLPxZjdUwV72K2aE41/wvvE8TAKadxVOB13Rpi
-	pl5QZbpUP7q2NIsqwXjVGxAzzP0WkVUrPHYvbBZkvB6PlxpnFEZy0JVeT3WaUay6mWIrb6wF8O5IU
-	ghbVMhT6LOGeByFTqgLGjsAv5P56XJHQgnTm8W0lRhRoCKTR23LGSQlQ6quEmZ33KHCqnweFBaU79
-	xXI5eb8geci3rDVtjBgg==;
+	List-Owner; bh=KX7ceQh0rAwnljPtaqeHhRD8o0ct3LjYMjYG/0DoZBU=; b=gHjYPBfQVodHdS
+	WwNgGRjMpkj0O5iZO5VoneFWuaKpR1O8mOQnxATXBYO4A7zwsJW1P6JuerTzEj++fwzmwGXy0mbxE
+	AcIiBb4GvrHWSFN4mwcOjPBLRxZxbloFYPAsuQrXGR0kKj9s33G9V//1WsQCXh4r9obMdCEu6XXTz
+	5bL1cMb60vo97cEirYD5oe+LRZfgjdGIun/6jgjKPiFOFn39aoWnhvHZ9EqO/0uXP4GG1SXuKtomr
+	tSCpqc7knJ4xzF0cYZzzXxS9+6cWDsQMLhqHNtonvlTC3RWlaOlaR8BTB4TdN/ou3QICY4e+Bq1dM
+	Vr2801u8KuhQQFvcSpSg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p7Zp6-00DHad-8B; Tue, 20 Dec 2022 10:26:13 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1p7bXq-00EYPY-IO; Tue, 20 Dec 2022 12:16:30 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p7Zj9-00DF2c-Ud
-	for ath11k@lists.infradead.org; Tue, 20 Dec 2022 10:20:35 +0000
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BK7Oc3w027435;
-	Tue, 20 Dec 2022 10:19:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-transfer-encoding :
- content-type; s=qcppdkim1;
- bh=f0zNRHLa0LuAjyM3HtBA8mT0JPE4vYwJ/YDTqTzs/og=;
- b=EzoDAKOwmp1pyJavoFLJk/wH2w7ZZSDRBwQMgb+2t3daUQAzIzHh4my0V+F57UzzctD3
- w9tj38xXNqfnKb1KyelqVFYDt59rCLgUOjuS4+560OwAXoUT6+z1+tTum5+WYdK54qwh
- Tfz7zbWysH94reFkow4KCM/GNmUUUosLxtPqoLmeA6EZyEpKhgtFjUD0uhW8zPqcI6A1
- zx3mNRO993xxjext7vLLnuElw2gQfwZDPB0M+vZ/CCyo2T9jIsZAyEpOMIAaWSdS6neL
- pktjjxW95Fh9DiowMZwC5bz4uTct8dKywE/2bxDy+JqSnIs2b9y4v3wJ/gmIIMBeWxBD Gg== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3mk8mn0c7c-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 20 Dec 2022 10:19:28 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2BKAJRRM000515
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 20 Dec 2022 10:19:27 GMT
-Received: from wgong-HP3-Z230-SFF-Workstation.qca.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.36; Tue, 20 Dec 2022 02:19:26 -0800
-From: Wen Gong <quic_wgong@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, <quic_wgong@quicinc.com>
-Subject: [PATCH] wifi: ath11k: add channel 177 into 5 GHz channel list
-Date: Tue, 20 Dec 2022 05:19:12 -0500
-Message-ID: <20221220101912.30816-1-quic_wgong@quicinc.com>
-X-Mailer: git-send-email 2.31.1
+	id 1p7bU5-00ETdg-Jk
+	for ath11k@lists.infradead.org; Tue, 20 Dec 2022 12:12:40 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ams.source.kernel.org (Postfix) with ESMTPS id 07664B811A2
+	for <ath11k@lists.infradead.org>; Tue, 20 Dec 2022 12:12:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A3A0C433F0;
+	Tue, 20 Dec 2022 12:12:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1671538354;
+	bh=hYDHwsE9piAh72BiV3VVBIriKByV2pTVruzTBjQPzEk=;
+	h=From:To:Cc:Subject:Date:From;
+	b=h3xR20mUS8l3hWFSdj+iPwT4eX5ykUtEYT75i1NcG3VSqnbOUCeNf7vlpOMi3bL8y
+	 g28V7lDRaq4mHpGkjZ2krwcuLQMKt05RaDjQ+DmKiQmhZ1LKwfHSnLGJhigf9MMY0J
+	 OxzhMaNGz7SMIc80fQKSmQihT1MBZq/HIUmXrlIRgEuk3k51orUgvjS7e6i7OqhVmg
+	 Hy238CvK9G2fP6D0xBZFJgTEE2oBXjnzentm0kA+TkK7EiaIPMfeyAiIMTVhXgG0sB
+	 tFcVHIHrTdKPIIoWORtEXoRbIizgmH96vwwOIGLAjmiYeLGjv9XbP9Bx5XjXqUH/SK
+	 eoRUjFIG/E+CQ==
+From: Kalle Valo <kvalo@kernel.org>
+To: ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org
+Subject: [PATCH] ath11k: debugfs: fix to work with multiple PCI devices
+Date: Tue, 20 Dec 2022 14:12:31 +0200
+Message-Id: <20221220121231.20120-1-kvalo@kernel.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Qtfm7Pzm7wHoOCid1vaxn2pUenOCZ_F4
-X-Proofpoint-GUID: Qtfm7Pzm7wHoOCid1vaxn2pUenOCZ_F4
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-12-20_03,2022-12-20_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- malwarescore=0 adultscore=0 lowpriorityscore=0 phishscore=0 clxscore=1015
- bulkscore=0 mlxscore=0 mlxlogscore=999 spamscore=0 suspectscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2212200085
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221220_022016_885506_2907914D 
-X-CRM114-Status: GOOD (  15.47  )
+X-CRM114-CacheID: sfid-20221220_041238_044616_29119315 
+X-CRM114-Status: GOOD (  18.86  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,48 +69,146 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Add support for the 5 GHz channel 177 with center frequency 5885 MHz and
-operating class 125 per IEEE Std 802.11ax-2021, Table E-4.
+From: Kalle Valo <quic_kvalo@quicinc.com>
 
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
+ath11k fails to load if there are multiple ath11k PCI devices with same name:
 
-Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
+ ath11k_pci 0000:01:00.0: Hardware name qcn9074 hw1.0
+ debugfs: Directory 'ath11k' with parent '/' already present!
+ ath11k_pci 0000:01:00.0: failed to create ath11k debugfs
+ ath11k_pci 0000:01:00.0: failed to create soc core: -17
+ ath11k_pci 0000:01:00.0: failed to init core: -17
+ ath11k_pci: probe of 0000:01:00.0 failed with error -17
+
+Fix this by creating a directory for each ath11k device using schema
+<bus>-<devname>, for example "pci-0000:06:00.0". This directory created under
+the top-level ath11k directory, for example /sys/kernel/debug/ath11k.
+
+The reference to the toplevel ath11k directory is not stored anymore within ath11k, instead
+it's retrieved using debugfs_lookup(). If the directory does not exist it will
+be created. After the last directory from the ath11k directory is removed, for
+example when doing rmmod ath11k, the empty ath11k directory is left in place,
+it's a minor cosmetic issue anyway.
+
+Here's an example hierarchy with one WCN6855:
+
+ath11k
+`-- pci-0000:06:00.0
+    |-- mac0
+    |   |-- dfs_block_radar_events
+    |   |-- dfs_simulate_radar
+    |   |-- ext_rx_stats
+    |   |-- ext_tx_stats
+    |   |-- fw_dbglog_config
+    |   |-- fw_stats
+    |   |   |-- beacon_stats
+    |   |   |-- pdev_stats
+    |   |   `-- vdev_stats
+    |   |-- htt_stats
+    |   |-- htt_stats_reset
+    |   |-- htt_stats_type
+    |   `-- pktlog_filter
+    |-- simulate_fw_crash
+    `-- soc_dp_stats
+
+I didn't have a test setup where I could connect multiple ath11k devices to the
+same the host, so I have only tested this with one device.
+
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.9
+
+Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 ---
- drivers/net/wireless/ath/ath11k/core.h | 4 ++--
- drivers/net/wireless/ath/ath11k/mac.c  | 1 +
- 2 files changed, 3 insertions(+), 2 deletions(-)
+ drivers/net/wireless/ath/ath11k/core.h    |  1 -
+ drivers/net/wireless/ath/ath11k/debugfs.c | 48 +++++++++++++++++++----
+ 2 files changed, 40 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index a8acb8b7b8d5..1abd2a4c1bd6 100644
+index a8acb8b7b8d5..beb552108ac3 100644
 --- a/drivers/net/wireless/ath/ath11k/core.h
 +++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -520,8 +520,8 @@ struct ath11k_sta {
- #define ATH11K_MIN_5G_FREQ 4150
- #define ATH11K_MIN_6G_FREQ 5925
- #define ATH11K_MAX_6G_FREQ 7115
--#define ATH11K_NUM_CHANS 101
--#define ATH11K_MAX_5G_CHAN 173
-+#define ATH11K_NUM_CHANS 102
-+#define ATH11K_MAX_5G_CHAN 177
+@@ -921,7 +921,6 @@ struct ath11k_base {
+ 	enum ath11k_dfs_region dfs_region;
+ #ifdef CONFIG_ATH11K_DEBUGFS
+ 	struct dentry *debugfs_soc;
+-	struct dentry *debugfs_ath11k;
+ #endif
+ 	struct ath11k_soc_dp_stats soc_stats;
  
- enum ath11k_state {
- 	ATH11K_STATE_OFF,
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index b198edba76eb..317b8ab734ff 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -96,6 +96,7 @@ static const struct ieee80211_channel ath11k_5ghz_channels[] = {
- 	CHAN5G(165, 5825, 0),
- 	CHAN5G(169, 5845, 0),
- 	CHAN5G(173, 5865, 0),
-+	CHAN5G(177, 5885, 0),
- };
+diff --git a/drivers/net/wireless/ath/ath11k/debugfs.c b/drivers/net/wireless/ath/ath11k/debugfs.c
+index ccdf3d5ba1ab..5bb6fd17fdf6 100644
+--- a/drivers/net/wireless/ath/ath11k/debugfs.c
++++ b/drivers/net/wireless/ath/ath11k/debugfs.c
+@@ -976,10 +976,6 @@ int ath11k_debugfs_pdev_create(struct ath11k_base *ab)
+ 	if (test_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags))
+ 		return 0;
  
- static const struct ieee80211_channel ath11k_6ghz_channels[] = {
+-	ab->debugfs_soc = debugfs_create_dir(ab->hw_params.name, ab->debugfs_ath11k);
+-	if (IS_ERR(ab->debugfs_soc))
+-		return PTR_ERR(ab->debugfs_soc);
+-
+ 	debugfs_create_file("simulate_fw_crash", 0600, ab->debugfs_soc, ab,
+ 			    &fops_simulate_fw_crash);
+ 
+@@ -1001,15 +997,51 @@ void ath11k_debugfs_pdev_destroy(struct ath11k_base *ab)
+ 
+ int ath11k_debugfs_soc_create(struct ath11k_base *ab)
+ {
+-	ab->debugfs_ath11k = debugfs_create_dir("ath11k", NULL);
++	struct dentry *root;
++	bool dput_needed;
++	char name[64];
++	int ret;
++
++	root = debugfs_lookup("ath11k", NULL);
++	if (!root) {
++		root = debugfs_create_dir("ath11k", NULL);
++		if (IS_ERR_OR_NULL(root))
++			return PTR_ERR(root);
++
++		dput_needed = false;
++	} else {
++		/* a dentry from lookup() needs dput() after we don't use it */
++		dput_needed = true;
++	}
++
++	scnprintf(name, sizeof(name), "%s-%s", ath11k_bus_str(ab->hif.bus),
++		  dev_name(ab->dev));
++
++	ab->debugfs_soc = debugfs_create_dir(name, root);
++	if (IS_ERR_OR_NULL(ab->debugfs_soc)) {
++		ret = PTR_ERR(ab->debugfs_soc);
++		goto out;
++	}
++
++	ret = 0;
+ 
+-	return PTR_ERR_OR_ZERO(ab->debugfs_ath11k);
++out:
++	if (dput_needed)
++		dput(root);
++
++	return ret;
+ }
+ 
+ void ath11k_debugfs_soc_destroy(struct ath11k_base *ab)
+ {
+-	debugfs_remove_recursive(ab->debugfs_ath11k);
+-	ab->debugfs_ath11k = NULL;
++	debugfs_remove_recursive(ab->debugfs_soc);
++	ab->debugfs_soc = NULL;
++
++	/* We are not removing ath11k directory on purpose, even if it
++	 * would be empty. This simplifies the directory handling and it's
++	 * a minor cosmetic issue to leave an empty ath11k directory to
++	 * debugfs.
++	 */
+ }
+ EXPORT_SYMBOL(ath11k_debugfs_soc_destroy);
+ 
 
-base-commit: 58e4b9df840cad439a4c878f81bc105cac2197a7
+base-commit: 922932ca02191a390f7f52fb6e21c44b50e14025
 -- 
-2.31.1
+2.30.2
 
 
 -- 
