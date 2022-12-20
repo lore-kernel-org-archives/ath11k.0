@@ -4,68 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F273C4332F
-	for <ath11k@archiver.kernel.org>; Tue, 20 Dec 2022 04:38:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB024C4332F
+	for <ath11k@archiver.kernel.org>; Tue, 20 Dec 2022 04:45:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=NA6aZ3xyZ0XCMcZEluElTGzlyztxmZ7Sm8S+sG6snWw=; b=EijwEsILiZWXHo
-	bAeCCIgokel0HkWnjvFrZtgJcF5fk2YXZR0e9o3UsSKVTCVue8fo9meQHllajNOedPRxIpSB4Yob7
-	NKzXGLGvspnVhL2yCSxUqbB5nBj3icFp80EqKK9zDvuB6130EdIoZyPnLu2j6PUgsvgVnJ6h7aN+5
-	AZ2DBNGrk37z9uiuXyjQiYHRnNBQ9WCf74WMKBDbJonFn4jauNZhHBQY4b5LRgbTxqh3Kq4z2hbpB
-	ctavLUxaduTbDrpBtDszZPT/T21QyW+9uHbxQ3UlWG/8Bt3UF1pRArv/CssPHYllVgoc3G6FMzc9W
-	tqL8BOwizopn9ml3ZyWQ==;
+	List-Owner; bh=3M6txdQ1OTp98rsxDqbJnGLDTIIfch2Mfl3VwfGm8P0=; b=V8ZScoIi2m6yr1
+	wYQ22qjZI0p7BRhdErWnDTCXR5v12+hxIQIXIu9UbD8Kd/qLGKdQCAjKBkccp3VgM5N4V1UvSWoKF
+	0mgVkOlu4mmM1igtHCqP+ETmHnS7x4dxEh5AsGpMBr7GjEsINCPalFD6seodXJH3lnMMHOUre2viR
+	2atymPjSYqJ4SblKTSdBjeF75a+Qoj3AhBb3OzTYsDefyxsVvQ2M3CtMKx0vBKznWacCEJPw0zZWA
+	l2MarjQ/bhZO6Q9L7c1q26AXdb0t38DEUlX4MNIw0QA8BOPgWS9bU5lPVeDUirS+Q9I3pDGmANgn7
+	Ou1BYqW3O1ZM77e4TNsQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p7UOu-009C1t-EH; Tue, 20 Dec 2022 04:38:48 +0000
+	id 1p7UVU-009Fh5-1F; Tue, 20 Dec 2022 04:45:36 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p7UOr-009Bxm-8A
-	for ath11k@lists.infradead.org; Tue, 20 Dec 2022 04:38:46 +0000
+	id 1p7UVR-009FdE-Fm
+	for ath11k@lists.infradead.org; Tue, 20 Dec 2022 04:45:35 +0000
 Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BK2XkXR001947;
-	Tue, 20 Dec 2022 04:38:41 GMT
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BK2XkYo001989;
+	Tue, 20 Dec 2022 04:45:30 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-transfer-encoding :
- content-type; s=qcppdkim1;
- bh=Hid7a/6gAOWFJ9oQxxHZXyvLIaP27YVJK6wI1MCttLg=;
- b=Q+VeYGQRbj0jZdLtnnAcOfz5tnnA74KnRKRFS3knEdYtCvrA6e2jaZXeXBKFPZk1uzGo
- qivYYIzkNNyjngNah847mXpkI5UK3C/UVN1X9lWgw9r/GU2TuQIaE1T+Kb5iXl4NVOIv
- rwrFxFWWHuTqWoMEE+dWfwJS3t9ICt+l5WKLC97kEcoN63zu7xPeQJmlrbaJLdXKk9w6
- JpfOWU0QI4v+QN81ELhXGP5/4h2pVg/lIBXS3OUd5zM/lUSZ8nCXdc3tHzwxYF/NDw2O
- ri/NEwwQaWtb8G212xicdzeau+/kMnW9fABGqDJl8PFvpOJps3IbX6N330MYcRuqjxSv Mg== 
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=eyaRlWh64pdyOs/RgZYtOLxNNIgrxZZn927yBG+2lXM=;
+ b=l2h2CBPMZ9skwyebmuwDj+rvRE9l4Mpvtt/PxlVTyBjdZpdmcb3Sbr0GjrqjIW7pGqTj
+ /sFXL3b2ZraWR2ycH4OMiA7yaPpQsXk2pVzLe505RPSebppfMZVdKMQM7q6B74jPPWSE
+ IeWpfrx5/78kCWxR+mGBItMXHZqEV8EK/er4MQr5s4uTrWkZNPi4QZGjeD/t+dhfjSwV
+ J3MiHl8k/MQqyPV4oNis9pYNTKaMpoap1kX7JotxyE9fh7SfJHEwgwZRZsgB9uPeznqR
+ KNiK7Cxz9vh5BTRZ4akwghGKKAjWLhbo0t+FFN9RQBe8fIBHqcfuS6hkRTMKJbjDN9Po KQ== 
 Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3mh72gdn2b-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3mh72gdnbh-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 20 Dec 2022 04:38:41 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2BK4ceRY004744
+	Tue, 20 Dec 2022 04:45:30 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2BK4jT5K012293
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 20 Dec 2022 04:38:40 GMT
-Received: from mpubbise-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+	Tue, 20 Dec 2022 04:45:29 GMT
+Received: from rajkbhag-linux.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.36; Mon, 19 Dec 2022 20:38:39 -0800
-From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+ 15.2.986.36; Mon, 19 Dec 2022 20:45:27 -0800
+From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
 To: <ath11k@lists.infradead.org>
 CC: <linux-wireless@vger.kernel.org>,
-        Manikanta Pubbisetty
-	<quic_mpubbise@quicinc.com>
-Subject: [PATCH] wifi: ath11k: Optimize 6 GHz scan time
-Date: Tue, 20 Dec 2022 10:08:23 +0530
-Message-ID: <20221220043823.20382-1-quic_mpubbise@quicinc.com>
-X-Mailer: git-send-email 2.38.0
+        Sowmiya Sree Elavalagan
+	<quic_ssreeela@quicinc.com>,
+        Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+Subject: [PATCH] wifi: ath11k: Add support to configure FTM responder role
+Date: Tue, 20 Dec 2022 10:14:35 +0530
+Message-ID: <20221220044435.10506-1-quic_rajkbhag@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+ nalasex01b.na.qualcomm.com (10.47.209.197)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 9as0-J3TfYDwU07Z9ZR31SLBCMbIP8Qi
-X-Proofpoint-ORIG-GUID: 9as0-J3TfYDwU07Z9ZR31SLBCMbIP8Qi
+X-Proofpoint-GUID: Rngxt95eTtt8K-K_CeCuNiWrpo8V2Nzx
+X-Proofpoint-ORIG-GUID: Rngxt95eTtt8K-K_CeCuNiWrpo8V2Nzx
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
  definitions=2022-12-19_05,2022-12-15_02,2022-06-22_01
@@ -73,10 +73,10 @@ X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malware
  suspectscore=0 impostorscore=0 bulkscore=0 mlxlogscore=999 adultscore=0
  spamscore=0 priorityscore=1501 lowpriorityscore=0 phishscore=0 mlxscore=0
  classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
- definitions=main-2212200038
+ definitions=main-2212200040
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221219_203845_350632_E38A3598 
-X-CRM114-Status: GOOD (  23.50  )
+X-CRM114-CacheID: sfid-20221219_204533_568379_48D9D11C 
+X-CRM114-Status: GOOD (  20.35  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,108 +93,182 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Currently, time taken to scan all supported channels on WCN6750
-is ~8 seconds and connection time is almost 10 seconds. WCN6750
-supports three Wi-Fi bands (i.e., 2.4/5/6 GHz) and the numbers of
-channels for scan come around ~100 channels (default case).
-Since the chip doesn't have support for DBS (Dual Band Simultaneous),
-scans cannot be parallelized resulting in longer scan times.
+From: Sowmiya Sree Elavalagan <quic_ssreeela@quicinc.com>
 
-Among the 100 odd channels, ~60 channels are in 6 GHz band. Therefore,
-optimizing the scan for 6 GHz channels will bring down the overall
-scan time.
+Fine Timing Measurement(FTM) support is used to measure round trip
+time between two nodes.
 
-WCN6750 firmware has support to scan a 6 GHz channel based on co-located
-AP information i.e., RNR IE which is found in the legacy 2.4/5 GHz scan
-results. When a scan request with all supported channel list is enqueued
-to the firmware, then based on WMI_SCAN_CHAN_FLAG_SCAN_ONLY_IF_RNR_FOUND
-scan channel flag, firmware will scan only those 6 GHz channels for which
-RNR IEs are found in the legacy scan results.
+Enable FTM responder feature using hw_params on supported device.
+Since FTM functionality is offloaded to firmware, adding the
+interface allows user space to enable or disable FTM responder.
+Also add support for advertising the same in extended capabilities.
 
-In the proposed design, based on NL80211_SCAN_FLAG_COLOCATED_6GHZ scan
-flag, driver will set the WMI_SCAN_CHAN_FLAG_SCAN_ONLY_IF_RNR_FOUND flag
-for non-PSC channels. Since there is high probability to find 6 GHz APs
-on PSC channels, these channels are always scanned. Only non-PSC channels
-are selectively scanned based on cached RNR information from the legacy
-scan results.
+QCA6390, WCN6855 and WCN6750 do not support this feature.
 
-If NL80211_SCAN_FLAG_COLOCATED_6GHZ is not set in the scan flags,
-then scan will happen on all supported channels (default behavior).
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
+Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
 
-With these optimizations, scan time is improved by 1.5-1.8 seconds on
-WCN6750. Similar savings have been observed on WCN6855.
-
-Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
-Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.16
-
-Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+Signed-off-by: Sowmiya Sree Elavalagan <quic_ssreeela@quicinc.com>
+Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 25 +++++++++++++++++++++++--
- drivers/net/wireless/ath/ath11k/wmi.h |  4 ++++
- 2 files changed, 27 insertions(+), 2 deletions(-)
+ drivers/net/wireless/ath/ath11k/core.c |  8 ++++++++
+ drivers/net/wireless/ath/ath11k/core.h |  1 +
+ drivers/net/wireless/ath/ath11k/hw.h   |  1 +
+ drivers/net/wireless/ath/ath11k/mac.c  | 20 +++++++++++++++++++-
+ drivers/net/wireless/ath/ath11k/wmi.h  |  1 +
+ 5 files changed, 30 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
+index 809f47e6f90f..706dc86fe25c 100644
+--- a/drivers/net/wireless/ath/ath11k/core.c
++++ b/drivers/net/wireless/ath/ath11k/core.c
+@@ -116,6 +116,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.tcl_ring_retry = true,
+ 		.tx_ring_size = DP_TCL_DATA_RING_SIZE,
+ 		.smp2p_wow_exit = false,
++		.ftm_responder = true,
+ 	},
+ 	{
+ 		.hw_rev = ATH11K_HW_IPQ6018_HW10,
+@@ -198,6 +199,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.tx_ring_size = DP_TCL_DATA_RING_SIZE,
+ 		.smp2p_wow_exit = false,
+ 		.support_fw_mac_sequence = false,
++		.ftm_responder = true,
+ 	},
+ 	{
+ 		.name = "qca6390 hw2.0",
+@@ -282,6 +284,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.tx_ring_size = DP_TCL_DATA_RING_SIZE,
+ 		.smp2p_wow_exit = false,
+ 		.support_fw_mac_sequence = true,
++		.ftm_responder = false,
+ 	},
+ 	{
+ 		.name = "qcn9074 hw1.0",
+@@ -363,6 +366,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.tx_ring_size = DP_TCL_DATA_RING_SIZE,
+ 		.smp2p_wow_exit = false,
+ 		.support_fw_mac_sequence = false,
++		.ftm_responder = true,
+ 	},
+ 	{
+ 		.name = "wcn6855 hw2.0",
+@@ -447,6 +451,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.tx_ring_size = DP_TCL_DATA_RING_SIZE,
+ 		.smp2p_wow_exit = false,
+ 		.support_fw_mac_sequence = true,
++		.ftm_responder = false,
+ 	},
+ 	{
+ 		.name = "wcn6855 hw2.1",
+@@ -529,6 +534,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.tx_ring_size = DP_TCL_DATA_RING_SIZE,
+ 		.smp2p_wow_exit = false,
+ 		.support_fw_mac_sequence = true,
++		.ftm_responder = false,
+ 	},
+ 	{
+ 		.name = "wcn6750 hw1.0",
+@@ -609,6 +615,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.tx_ring_size = DP_TCL_DATA_RING_SIZE_WCN6750,
+ 		.smp2p_wow_exit = true,
+ 		.support_fw_mac_sequence = true,
++		.ftm_responder = false,
+ 	},
+ 	{
+ 		.hw_rev = ATH11K_HW_IPQ5018_HW10,
+@@ -688,6 +695,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
+ 		.tx_ring_size = DP_TCL_DATA_RING_SIZE,
+ 		.smp2p_wow_exit = false,
+ 		.support_fw_mac_sequence = false,
++		.ftm_responder = true,
+ 	},
+ };
+ 
+diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
+index beb552108ac3..b01c806ffa23 100644
+--- a/drivers/net/wireless/ath/ath11k/core.h
++++ b/drivers/net/wireless/ath/ath11k/core.h
+@@ -346,6 +346,7 @@ struct ath11k_vif {
+ 
+ 	bool is_started;
+ 	bool is_up;
++	bool ftm_responder;
+ 	bool spectral_enabled;
+ 	bool ps;
+ 	u32 aid;
+diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
+index 9f45d061d826..0be4e1232384 100644
+--- a/drivers/net/wireless/ath/ath11k/hw.h
++++ b/drivers/net/wireless/ath/ath11k/hw.h
+@@ -224,6 +224,7 @@ struct ath11k_hw_params {
+ 	u32 tx_ring_size;
+ 	bool smp2p_wow_exit;
+ 	bool support_fw_mac_sequence;
++	bool ftm_responder;
+ };
+ 
+ struct ath11k_hw_ops {
 diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index b198edba76eb..0332e91c2c1c 100644
+index b198edba76eb..767a2a39ad6a 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -3681,8 +3681,29 @@ static int ath11k_mac_op_hw_scan(struct ieee80211_hw *hw,
- 			goto exit;
- 		}
+@@ -3110,7 +3110,7 @@ static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
+ 	u16 bitrate;
+ 	int ret = 0;
+ 	u8 rateidx;
+-	u32 rate;
++	u32 rate, param;
+ 	u32 ipv4_cnt;
  
--		for (i = 0; i < arg->num_chan; i++)
--			arg->chan_list[i] = req->channels[i]->center_freq;
-+		for (i = 0; i < arg->num_chan; i++) {
-+			if (test_bit(WMI_TLV_SERVICE_SCAN_CONFIG_PER_CHANNEL,
-+				     ar->ab->wmi_ab.svc_map)) {
-+				arg->chan_list[i] =
-+					u32_encode_bits(req->channels[i]->center_freq,
-+							WMI_SCAN_CONF_PER_CH_CHANNEL_MASK);
-+
-+				/* If NL80211_SCAN_FLAG_COLOCATED_6GHZ is set in scan
-+				 * flags, then scan all PSC channels in 6 GHz band and
-+				 * those non-PSC channels where RNR IE is found during
-+				 * the legacy 2.4/5 GHz scan.
-+				 * If NL80211_SCAN_FLAG_COLOCATED_6GHZ is not set,
-+				 * then all channels in 6 GHz will be scanned.
-+				 */
-+				if (req->channels[i]->band == NL80211_BAND_6GHZ &&
-+				    req->flags & NL80211_SCAN_FLAG_COLOCATED_6GHZ &&
-+				    !cfg80211_channel_is_psc(req->channels[i]))
-+					arg->chan_list[i] |=
-+						WMI_SCAN_CH_FLAG_SCAN_ONLY_IF_RNR_FOUND;
-+			} else {
-+				arg->chan_list[i] = req->channels[i]->center_freq;
-+			}
-+		}
+ 	mutex_lock(&ar->conf_mutex);
+@@ -3412,6 +3412,20 @@ static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
+ 		}
  	}
  
- 	if (req->flags & NL80211_SCAN_FLAG_RANDOM_ADDR) {
++	if (changed & BSS_CHANGED_FTM_RESPONDER &&
++	    arvif->ftm_responder != info->ftm_responder &&
++	    ar->ab->hw_params.ftm_responder &&
++	    (vif->type == NL80211_IFTYPE_AP ||
++	     vif->type == NL80211_IFTYPE_MESH_POINT)) {
++		arvif->ftm_responder = info->ftm_responder;
++		param = WMI_VDEV_PARAM_ENABLE_DISABLE_RTT_RESPONDER_ROLE;
++		ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id, param,
++						    arvif->ftm_responder);
++		if (ret)
++			ath11k_warn(ar->ab, "Failed to set ftm responder %i: %d\n",
++				    arvif->vdev_id, ret);
++	}
++
+ 	if (changed & BSS_CHANGED_FILS_DISCOVERY ||
+ 	    changed & BSS_CHANGED_UNSOL_BCAST_PROBE_RESP)
+ 		ath11k_mac_fils_discovery(arvif, info);
+@@ -9113,6 +9127,10 @@ static int __ath11k_mac_register(struct ath11k *ar)
+ 	wiphy_ext_feature_set(ar->hw->wiphy,
+ 			      NL80211_EXT_FEATURE_SET_SCAN_DWELL);
+ 
++	if (ab->hw_params.ftm_responder)
++		wiphy_ext_feature_set(ar->hw->wiphy,
++				      NL80211_EXT_FEATURE_ENABLE_FTM_RESPONDER);
++
+ 	ath11k_reg_init(ar);
+ 
+ 	if (!test_bit(ATH11K_FLAG_RAW_MODE, &ab->dev_flags)) {
 diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index 8f2c07d70a4a..90497a93598b 100644
+index 8f2c07d70a4a..0a045af5419b 100644
 --- a/drivers/net/wireless/ath/ath11k/wmi.h
 +++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -2095,6 +2095,7 @@ enum wmi_tlv_service {
- 
- 	/* The second 128 bits */
- 	WMI_MAX_EXT_SERVICE = 256,
-+	WMI_TLV_SERVICE_SCAN_CONFIG_PER_CHANNEL = 265,
- 	WMI_TLV_SERVICE_BIOS_SAR_SUPPORT = 326,
- 
- 	/* The third 128 bits */
-@@ -3223,6 +3224,9 @@ struct  wmi_start_scan_cmd {
- #define WMI_SCAN_DWELL_MODE_MASK 0x00E00000
- #define WMI_SCAN_DWELL_MODE_SHIFT        21
- 
-+#define WMI_SCAN_CONF_PER_CH_CHANNEL_MASK	GENMASK(19, 0)
-+#define WMI_SCAN_CH_FLAG_SCAN_ONLY_IF_RNR_FOUND	BIT(20)
-+
- enum {
- 	WMI_SCAN_DWELL_MODE_DEFAULT      = 0,
- 	WMI_SCAN_DWELL_MODE_CONSERVATIVE = 1,
-
-base-commit: 58e4b9df840cad439a4c878f81bc105cac2197a7
+@@ -1073,6 +1073,7 @@ enum wmi_tlv_vdev_param {
+ 	WMI_VDEV_PARAM_ENABLE_BCAST_PROBE_RESPONSE,
+ 	WMI_VDEV_PARAM_FILS_MAX_CHANNEL_GUARD_TIME,
+ 	WMI_VDEV_PARAM_HE_LTF = 0x74,
++	WMI_VDEV_PARAM_ENABLE_DISABLE_RTT_RESPONDER_ROLE = 0x7d,
+ 	WMI_VDEV_PARAM_BA_MODE = 0x7e,
+ 	WMI_VDEV_PARAM_AUTORATE_MISC_CFG = 0x80,
+ 	WMI_VDEV_PARAM_SET_HE_SOUNDING_MODE = 0x87,
 -- 
-2.38.0
+2.17.1
 
 
 -- 
