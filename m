@@ -4,82 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2E50C4332F
-	for <ath11k@archiver.kernel.org>; Wed, 21 Dec 2022 04:03:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D421EC4332F
+	for <ath11k@archiver.kernel.org>; Wed, 21 Dec 2022 12:56:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/RMGJeMg+iJrsjH75fmuoF+Hk6Nocjlzzj2YHk6SiQM=; b=O3x9qdT/38fZyJ
-	kfZjcPnQlJMsKBx1aSPlWLyjFithxQ/F7Z6GKBYCCGSdVt+f5vrqIb6uz3Z3LqLIoD6ZYZqNvcQRY
-	S7va91mbMbgQVn5MK2VrjGP9ebHW/DfJbU3fSIC0CX6T0KGGoExN4KpMEInyk4minyy5sOFOf39pi
-	+g6D7aPrF2t0Bri7reHsNlrgAjAhfvg6JF4k2QgCsqqal9jdnSPGnmu1NSZRl001zONPu2lkEbcpR
-	h7nEt8Z44hKU4EAkxoxP3w1mKxMfiIB7cwpOlUJqIL1VeLfw6V8s9UG2DSNYXi9wCVp5BFopliCUU
-	nUPk3I866n7DTrUlinBQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
+	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=LpWWKXkrt/CIwGV3nBnS92ZyyFCwPCTvqzluI9iAu6I=; b=iMthcSCAqgbjDz
+	tP/18K93jI1+x95b3hcyUQYCaeETjVWR2hn/Thd4OpCajdMJi4pZnibY+byqJWVZD4IszKSC7Vs9d
+	BgicODmZWsG0vu5UaNfteu9mzFzqGd1SNHIUGzdPbL0yFDPH/QW1QxbmiAZAfDg+N/8wMSINySG1V
+	95cAf0H/GIu99ysuefBoDrFVIw+2eI9lakowJ9164ouImnzWDC+G4uXSDRb6C2e2bMXhqSH6BMCPK
+	RhrI/nQLuSBcPANWRWTZybUcZrjV0OPyuXNvd6j529yvv7y/99B2mJ3fWc6UifwhkggzsWdMBLlkD
+	0YirjBBFz+2/Eil4BZZw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p7qKG-0097w4-Kf; Wed, 21 Dec 2022 04:03:28 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1p7ye7-00Er9q-8g; Wed, 21 Dec 2022 12:56:31 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p7qKD-0097sT-DC
-	for ath11k@lists.infradead.org; Wed, 21 Dec 2022 04:03:27 +0000
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BL3tien014587;
-	Wed, 21 Dec 2022 04:03:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=gMrGCfKxPrrwY87VGowNJZG2KWyCdqUNdxWrMP6Zwdw=;
- b=GZzTfPsOexkG3rHQdcBC4n3mid2vPGSPqKks8rolWBp7QT5bqFlXatn1IHyRMAw6k45c
- 53+KB8reLxWOjcBl0Z80UjQW0GBCxbL03qoR29Pv/J199OOoen1D0t9J73TCq1ebTXla
- 8gSTA56rMF21xYihwqxgAGJ5maeVpN9+3kp4wfMexFBm7Jo2wHdSrKsm+2EYMVS5u4QQ
- 9CgexhO53lPV4Y2Q8DtK45vpACH5mE42jJSXUWqFaJcyaUNEoQm+rltMuC+xJeLnhM4t
- WtONSfv/3x9s7uCh8eZ65oLzhTcUw6gqBMYbWzUfEuRPu9qpOpKK/e5+yD4UC5Hzal0K eA== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3mjyk53aj8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 Dec 2022 04:03:19 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2BL43IHC024879
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 Dec 2022 04:03:18 GMT
-Received: from [10.252.219.182] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 20 Dec
- 2022 20:03:17 -0800
-Message-ID: <2861463e-a097-7efe-bc75-f13c8faf9547@quicinc.com>
-Date: Wed, 21 Dec 2022 09:33:14 +0530
+	id 1p7yYk-00EolT-3O
+	for ath11k@lists.infradead.org; Wed, 21 Dec 2022 12:50:59 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ams.source.kernel.org (Postfix) with ESMTPS id 808DEB81B6A;
+	Wed, 21 Dec 2022 12:50:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F189CC433EF;
+	Wed, 21 Dec 2022 12:50:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1671627050;
+	bh=w+bo5wdpOHW/2setB3OgJQMiL7ZmgUaSvGy1sczlENE=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=o6VyS4vmhWELQt7vRJowldL221EnYDOQNjgwY+/715tL89woKITSWRa+tP+2Y5Uva
+	 hu0+Vww65jROMY04gSkH+5s2DsR3+jbGjIrh55ilUqlmIFxIJjxeGAl551VRswlqQe
+	 5z/8Gv2zk8wqS+/00YqHjCgpSdCd6Od+zu6r/nWqU5XNCUG0G/JpECXTec+3eiQxoB
+	 S9hm4UzB60yTjMuxRNLiLWEWh35Lnp8viuvVzDdZcxnAosqUUbTP7JLvudvVlO6yuJ
+	 p/n+I8otzRM/Xbdm/exaikYRbO33iqy7NsRbTutPDS284LAqdS3pWz5I/3P8AoSJLK
+	 mC2i3uoGQWzcg==
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH] wifi: ath11k: Optimize 6 GHz scan time
-Content-Language: en-US
-To: Marcel Holtmann <marcel@holtmann.org>
-CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
-References: <20221220043823.20382-1-quic_mpubbise@quicinc.com>
- <5DAEA8B2-2B44-4A91-9E57-12B6C6B6C1FC@holtmann.org>
-From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-In-Reply-To: <5DAEA8B2-2B44-4A91-9E57-12B6C6B6C1FC@holtmann.org>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Y9HFeA0E8069duueKJ1ADO2TxwOFpX3z
-X-Proofpoint-ORIG-GUID: Y9HFeA0E8069duueKJ1ADO2TxwOFpX3z
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-12-21_01,2022-12-20_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 adultscore=0
- clxscore=1011 suspectscore=0 impostorscore=0 bulkscore=0
- priorityscore=1501 spamscore=0 lowpriorityscore=0 phishscore=0 mlxscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2212210026
+Subject: Re: [PATCH v2 2/3] wifi: ath11k: add support to parse new WMI event
+ for 6
+ GHz
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20221214164639.31542-3-quic_adisi@quicinc.com>
+References: <20221214164639.31542-3-quic_adisi@quicinc.com>
+To: Aditya Kumar Singh <quic_adisi@quicinc.com>
+Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+ Aditya Kumar Singh <quic_adisi@quicinc.com>,
+ Lavanya Suresh <quic_lavaks@quicinc.com>, Wen Gong <quic_wgong@quicinc.com>
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-ID: <167162704604.23347.8011938867680129068.kvalo@kernel.org>
+Date: Wed, 21 Dec 2022 12:50:48 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221220_200325_523294_9E4A0926 
-X-CRM114-Status: GOOD (  28.40  )
+X-CRM114-CacheID: sfid-20221221_045058_361945_F3DA5A36 
+X-CRM114-Status: GOOD (  10.13  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,94 +70,52 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 12/20/2022 6:36 PM, Marcel Holtmann wrote:
-> Hi Manikanta,
+Aditya Kumar Singh <quic_adisi@quicinc.com> wrote:
+
+> In order to support different power levels of 6 GHz AP and client,
+> new WMI event for regulatory - WMI_REG_CHAN_LIST_CC_EXT_EVENTID is
+> added in firmware. This event provides new parameters required for
+> 6 GHz regulatory rules.
 > 
->> Currently, time taken to scan all supported channels on WCN6750
->> is ~8 seconds and connection time is almost 10 seconds. WCN6750
->> supports three Wi-Fi bands (i.e., 2.4/5/6 GHz) and the numbers of
->> channels for scan come around ~100 channels (default case).
->> Since the chip doesn't have support for DBS (Dual Band Simultaneous),
->> scans cannot be parallelized resulting in longer scan times.
->>
->> Among the 100 odd channels, ~60 channels are in 6 GHz band. Therefore,
->> optimizing the scan for 6 GHz channels will bring down the overall
->> scan time.
->>
->> WCN6750 firmware has support to scan a 6 GHz channel based on co-located
->> AP information i.e., RNR IE which is found in the legacy 2.4/5 GHz scan
->> results. When a scan request with all supported channel list is enqueued
->> to the firmware, then based on WMI_SCAN_CHAN_FLAG_SCAN_ONLY_IF_RNR_FOUND
->> scan channel flag, firmware will scan only those 6 GHz channels for which
->> RNR IEs are found in the legacy scan results.
->>
->> In the proposed design, based on NL80211_SCAN_FLAG_COLOCATED_6GHZ scan
->> flag, driver will set the WMI_SCAN_CHAN_FLAG_SCAN_ONLY_IF_RNR_FOUND flag
->> for non-PSC channels. Since there is high probability to find 6 GHz APs
->> on PSC channels, these channels are always scanned. Only non-PSC channels
->> are selectively scanned based on cached RNR information from the legacy
->> scan results.
->>
->> If NL80211_SCAN_FLAG_COLOCATED_6GHZ is not set in the scan flags,
->> then scan will happen on all supported channels (default behavior).
+> Add support for parsing 2.4 GHz, 5 GHz and 6 GHz reg rules and other
+> parameters from WMI_REG_CHAN_LIST_CC_EXT_EVENTID.
 > 
-> is this really a good idea? The interpretation on what scan results will
-> be reported would be preferable the same no matter what hardware is
-> present. Why would ath11k now have a different behavior?
+> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
+> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
+> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
 > 
-> And more important, why is this something driver or even Linux kernel
-> specific. Let userspace select the frequencies to scan.
-> 
+> Reported-by: kernel test robot <lkp@intel.com>
 
-By the way, userspace itself selects the frequencies to scan, not the 
-driver.
+I don't think using Reported-by is correct here. You are
+adding a new feature, not fixing a bug reported the bot.
 
-If we see the split scan implementation in cfg80211, this is the how it 
-is implemented. If NL80211_SCAN_FLAG_COLOCATED_6GHZ is set, it selects 
-all PSC channels and those non-PSC channels where RNR IE information is 
-found in the legacy scan results. If this flag is not set, all channels 
-in 6 GHz are included in the scan freq list. It is upto userspace to 
-decide what it wants.
+> Signed-off-by: Lavanya Suresh <quic_lavaks@quicinc.com>
+> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
+> Signed-off-by: Aditya Kumar Singh <quic_adisi@quicinc.com>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-> Looks like that iwd and wpa_supplicant set this flag regardless which
-> means to me that a driver should respect the requested frequencies to
-> be scanned.
-> 
-> Anyhow, if you worry about time-to-connect, then fix userspace to be
-> smart with scanning. I am also confused on how a savings of 1.5 seconds
-> out of 8 seconds is significant.
+This patch added new checkpatch warnings, they were too complex for me to fix them:
 
-Most of the times, we see ~2 seconds of savings. 2 seconds of scan time 
-improvement out of 8 seconds is about 25% improvement and this is indeed 
-significant.
+drivers/net/wireless/ath/ath11k/reg.c:678: line length of 92 exceeds 90 columns
+drivers/net/wireless/ath/ath11k/wmi.h:4090: Please don't use multiple blank lines
+drivers/net/wireless/ath/ath11k/wmi.h:4212: line length of 92 exceeds 90 columns
+drivers/net/wireless/ath/ath11k/wmi.c:5002: line length of 91 exceeds 90 columns
+drivers/net/wireless/ath/ath11k/wmi.c:5102: line length of 94 exceeds 90 columns
+drivers/net/wireless/ath/ath11k/wmi.c:5208: line length of 91 exceeds 90 columns
+drivers/net/wireless/ath/ath11k/wmi.c:5209: line length of 92 exceeds 90 columns
+drivers/net/wireless/ath/ath11k/wmi.c:5235: line length of 95 exceeds 90 columns
+drivers/net/wireless/ath/ath11k/wmi.c:5298: line length of 91 exceeds 90 columns
 
-8 seconds of time I'm talking here is for passive scan when the 
-regdomain is set to WORLD. If correct regdomain is set and channel flags 
-are proper, then the time it takes to complete scan & connection is much 
-lesser with this change. It is around 4 seconds.
+-- 
+https://patchwork.kernel.org/project/linux-wireless/patch/20221214164639.31542-3-quic_adisi@quicinc.com/
 
-  It still means you spent 6+ seconds
-> in the 2.4 GHz and 5 GHz bands. I assume that you spent most time in
-> 5 GHz right now.
-> 
-> I highly doubt that a 6+ seconds plus 2 seconds connection time is
-> anywhere acceptable
-As I said before, this is the worst case scenario. Active scan and 
-connection on legacy band takes less than 4 seconds in normal usecase.
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
-  Have you tried using iwd and see what the
-> connection time actually is after initial connection.
-> 
-
-Not really, I'll try it out. Thanks for the suggestion.
-
-Thanks,
-Manikanta
 
 -- 
 ath11k mailing list
