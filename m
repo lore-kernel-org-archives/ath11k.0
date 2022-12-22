@@ -4,60 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67B13C4332F
-	for <ath11k@archiver.kernel.org>; Thu, 22 Dec 2022 15:33:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41062C4332F
+	for <ath11k@archiver.kernel.org>; Thu, 22 Dec 2022 16:26:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
-	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Bl//d1MiXJHOzuVp7jXBjzH7mBnaNQ2DqSBkpvUGfIU=; b=Oj7OCg7BRJlCw6
-	LoHv2fWt+VUMTodwfYx7bqa5sIevFBCrXoXYglZ3wk7dFBOQUMqN9HLHljm2zeCXftYg2SyvD/h5p
-	OcA1CCY4N1t/8m2AfRAn7pGDVDS3F1OORg/FRGc0SJU9N6ngBYZijINYy0KI1aM4U5niS8DNptRqO
-	sZwUjygx5m+UCc/rIcR3UGerrfr1/Heq9Bqm6rjlacXrRQV6HVqqidM6STUqtORw/ilqzYsSjoDtd
-	T9e52bMh4yZuUDa7YVmP+lBd6v6sBDHGcA/Wi4qc1eCRDRXJ7JkLeVrPZO89VzUv/lePkNm9NL/2s
-	qKejdEei6oRZKOSDd5Bg==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=dM2ZnAOvMh86wwtScTDftqxNvWcnTSxQZpvhXFwmlDg=; b=cRJEWZ8qGHphjL
+	6g0dmGKrUtQLD8TaGWCanpYkefGBMU8Em/uFoULZhxfJe53WBFN9PbYaQ3WqotHuG35CLwrNapPtE
+	EYZAv8hY8bHmagfHFaExhqa2IdQV6+DJ6D+YF3bAsSgLbAx35fGUnsdqIbHTp1izSokkNtrDqmx1x
+	1i/BdkTedY+fCQl3XYte3M/hDQ+WMF+DcQDq5xJQ+RMzsB0f+O0+ByJAM7A0cikBw+Os8eJW9IqEx
+	OOOR+Dafl2+HLP7HeX/LA1ikKNZmVyw2bAoWu3lgWHJEqx/WR0O8PXm51RzGSZ+A7WQj3sb5DsBXK
+	xNK+wZQ/S2xXgskU4AWQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p8NZh-00DYen-9S; Thu, 22 Dec 2022 15:33:37 +0000
-Received: from sin.source.kernel.org ([2604:1380:40e1:4800::1])
+	id 1p8OOZ-00E2Re-0G; Thu, 22 Dec 2022 16:26:11 +0000
+Received: from mail-pl1-x634.google.com ([2607:f8b0:4864:20::634])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1p8NUe-00DVoK-Pu
-	for ath11k@lists.infradead.org; Thu, 22 Dec 2022 15:28:26 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by sin.source.kernel.org (Postfix) with ESMTPS id 94CE8CE1AA4;
-	Thu, 22 Dec 2022 15:28:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3D25C433D2;
-	Thu, 22 Dec 2022 15:28:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1671722899;
-	bh=KsnoqTPaGbCsUNb4K8sISomHfCTSNpMkJmK/bkrjvvg=;
-	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=j4K2VSyevxAJPgjlmRhxJ+Ce20Y5Dk7VDpSsR6+OE6SqrsXPon+AUzojKZ55VOnLK
-	 yfEr5vVRlnbYhiYiJO3OuZtWZIBrEjakHLSNtX1wAEE7fxIF12X2zEbP/3Z2dCSdEh
-	 NFHZ91K9FQO+FoVZPbfxBat3IzvF/jdVbfVFahEZvGrU08siWyM7uJK9DO4YtHJFm7
-	 IPKCTmOvvT9huHzX7bflgC4Dwvod61O/EGqaiTxZuJLuQob0Hr7GnIUnPa5Cy7ljmO
-	 jVhBStAglDLxfBrvPNjRBbSKVogWzjJHSwT92gYBku63xWX2qUzYGhprstglZzLbqk
-	 q98dOBEBDsOrw==
+	id 1p8OBv-00DuSA-1M
+	for ath11k@lists.infradead.org; Thu, 22 Dec 2022 16:13:08 +0000
+Received: by mail-pl1-x634.google.com with SMTP id d7so2431064pll.9
+        for <ath11k@lists.infradead.org>; Thu, 22 Dec 2022 08:13:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=9uXNAtYOJaSAVj8GIAOcJQJhRtdrN5F+vlXiT7Hfv2g=;
+        b=mDQ05lSeOPHwSmB2OQRRHdm65XcK/R0vRPyGkwr1KymHAzAXrhggUE9fJh2UwIobQ6
+         evhHBagwzNUmHCp1Q3reHhyNeF3/6unIBwXajG3gdD8Ni+PaODK18/wgu7dJIhYZVt+v
+         W0sZ8MHdnj06OMrsztpJ7wtSzjvDe/EWF8rthVfCPQVtSX8VjCON1+M8hB9klCouBBYz
+         oXUzmkVdQKeezWYwtX34/kvRJB2uen5sVWPjgBU/f+EfO/hJKNpZUhcNRcfPeMK1xL4g
+         H6wOaDhj/x0YgpUaUe1sS4m0d9P//V3l/IQ1bBCvxRE7xr0MJt9/9bo2bUc3Ct+RQuLd
+         7UbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9uXNAtYOJaSAVj8GIAOcJQJhRtdrN5F+vlXiT7Hfv2g=;
+        b=uTae4wUGzCYsKoOqEooJsLrGwfvXqI/purLQyfdsN0KDTzE93dL7hPBuKii5RCldtb
+         MpykhcVpg/3rGwXl4o8WezGJ496YkOFep2R2WwDpWTaVPfBufL4aSQkz99d7SH5lnSC8
+         UQ4uxFGH15DPyiP7jFakMYoUu6Jx/lHpsPuDFjto/feGvsN496JhNFeQ+tvT1hCaptQl
+         cZxDhM533NzLUKFtZFIdzC3kKN7nSAFuDgQdrIjzhA09oe5G8DnRBDtZzvoWjAFp/dlY
+         HEtdDbPm4oOtrAHR13u3tSRP3/LLUJTmB/TW6FmI1Ix+X+j7KYRrEx/X0EsJJDy+/aoy
+         aQYg==
+X-Gm-Message-State: AFqh2koyyX3fymO1VAsjxn1t6FZu8pW7bnwPLqha+9DfXw4lUHDR9X1y
+	uUdaoRG9EK2iomL+uuJMIRK6sXPk5eDF8b5Qe7E=
+X-Google-Smtp-Source: AMrXdXs/FMZfzNV1KLet70sMpoG21tJj/qea+qbe/DN5br24FzinN4nMoT2doxX2nF5kL9/09clAdZLMhyyoH+l0oDU=
+X-Received: by 2002:a17:903:2301:b0:192:55ab:890c with SMTP id
+ d1-20020a170903230100b0019255ab890cmr143738plh.57.1671725583098; Thu, 22 Dec
+ 2022 08:13:03 -0800 (PST)
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: update debugfs support for mupltiple radios in
- PCI
- bus
-From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <1614160542-27882-1-git-send-email-akolli@codeaurora.org>
-References: <1614160542-27882-1-git-send-email-akolli@codeaurora.org>
-To: Anilkumar Kolli <akolli@codeaurora.org>
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- Anilkumar Kolli <akolli@codeaurora.org>
-User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <167172289467.8231.1004330123245787946.kvalo@kernel.org>
-Date: Thu, 22 Dec 2022 15:28:18 +0000 (UTC)
+References: <CAOX2RU5ATBuuPewx4DgveKjhc+E1a=Kt2COWDhYqQtLiJ1=NoQ@mail.gmail.com>
+ <87o7rvzgpn.fsf@kernel.org>
+In-Reply-To: <87o7rvzgpn.fsf@kernel.org>
+From: Robert Marko <robimarko@gmail.com>
+Date: Thu, 22 Dec 2022 17:12:51 +0100
+Message-ID: <CAOX2RU6oieaGjpPpYwnMtBk=-nG13=JGW+-+838REQ4HsPcRNg@mail.gmail.com>
+Subject: Re: regdb.bin availability
+To: Kalle Valo <kvalo@kernel.org>
+Cc: ath11k@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20221222_072825_098741_B4246381 
-X-CRM114-Status: GOOD (  10.88  )
+X-CRM114-CacheID: sfid-20221222_081307_146306_C4993395 
+X-CRM114-Status: GOOD (  12.48  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,49 +85,35 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Anilkumar Kolli <akolli@codeaurora.org> wrote:
+On Thu, 22 Dec 2022 at 14:54, Kalle Valo <kvalo@kernel.org> wrote:
+>
+> Robert Marko <robimarko@gmail.com> writes:
+>
+> > Would it be possible to make the regdb.bin publicly available?
+> >
+> > Newer FW-s support using it as the external regulatory database and it
+> > would really allow the community running AHB radios to avoid being
+> > stuck with the outdated or even non-existent regulatory data in the
+> > BDF.
+>
+> I thought we were providing that for all hardware, I guess that was
+> missed. Would you mind reporting this to bugzilla? That way it's easier
+> for me to track.
 
-> debugfs_ath11k struct is moved to ath11k_core, since its common
-> for both pci and ahb.
-> 
-> Current ath11k_pci insmod fails if there are multiple PCI rdaios,
-> 
->  ath11k_pci 0000:01:00.0: Hardware name qcn9074 hw1.0
->  debugfs: Directory 'ath11k' with parent '/' already present!
->  ath11k_pci 0000:01:00.0: failed to create ath11k debugfs
->  ath11k_pci 0000:01:00.0: failed to create soc core: -17
->  ath11k_pci 0000:01:00.0: failed to init core: -17
->  ath11k_pci: probe of 0000:01:00.0 failed with error -17
-> 
-> To avoid the failure, debugfs directory is created with soc_name
-> and bus_id to allow creating debugfs directory for second PCI radio.
-> 
-> with this Debugfs entries looks like,
->  # ls -l /sys/kernel/debug/ath11k/
->  ipq8074 hw2.0 qcn9000 hw1.0_0000:01:00.0 qcn9000 hw1.0_0001:01:00.0
-> 
->  # ls -l /sys/kernel/debug/ath11k/ipq8074 hw2.0/
->   mac0  mac1 simulate_fw_crash soc_dp_stats
-> 
->  # ls -l /sys/kernel/debug/ath11k/qcn9000 hw1.0_0000:01:00.0
->   mac0 simulate_fw_crash soc_dp_stats
-> 
->  # /sys/kernel/debug/ath11k/qcn9000 hw1.0_0001:01:00.0:
->    mac0  simulate_fw_crash soc_dp_stats
-> 
-> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.4.0.1.r2-00012-QCAHKSWPL_SILICONZ-1
-> 
-> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
+Currently, its available only for WCN6855.
 
-I submitted my version here:
+Sure, bug opened:
+https://bugzilla.kernel.org/show_bug.cgi?id=216832
 
-https://patchwork.kernel.org/project/linux-wireless/patch/20221220121231.20120-1-kvalo@kernel.org/
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/patch/1614160542-27882-1-git-send-email-akolli@codeaurora.org/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
+Regards,
+Robert
+>
+> https://wireless.wiki.kernel.org/en/users/drivers/ath11k/bugreport
+>
+> --
+> https://patchwork.kernel.org/project/linux-wireless/list/
+>
+> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
