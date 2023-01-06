@@ -4,77 +4,137 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9247EC4708E
-	for <ath11k@archiver.kernel.org>; Thu,  5 Jan 2023 19:05:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 194D4C3DA7A
+	for <ath11k@archiver.kernel.org>; Fri,  6 Jan 2023 16:54:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=p51cpRkOaFjZ1p3lph1B1brgHkYxa8coDfTcNyiwIHQ=; b=xLACsXu/1lBqSx
-	KIIg7eZ5d7iGCQNbr0LViDJ+tIb19UogogCz7V9rOTX5Z81Ojcw16RFd3nPrJvhghh5orb8FvWBRk
-	PxjKPcOW3tDgeDG5x7bxj0em5gYZ8Q03odCuhX33ClAZUhW7ieBaclnYGenjlCj12hDQboP+VBbIt
-	l5DgzOFnF3fE44PXpCW2ZwpXDxRk6mIM7y16jXp3+D22x9GU5UgOJTrOcQrTsEfDwqbxCDgOhXbmD
-	8CMNWC6/A2Gx6LMeUJSu/GXiV1wDV7FdM/aJhpTa/rmeF20J9K1rgTFQ156rWo31PXCFS1fMmhKvq
-	wxtb4wCiJLpB0O/z1KYg==;
+	List-Owner; bh=Bpbjo6WIDNE1j6rvbc6hDBhrjXtqhJ1Fx2p96BtNJrg=; b=yGSqElkfJB3lbq
+	DN0CGnGnQh9dMuKWSNuYTmSpyMGMneYfF/DtEO1yqHzPPcsB8JGSySx+v2+G7mIr5sIa5CNgXamIx
+	ibmkNsdTOqajbNrvZw0SShT5KB7ktHi4vwvbloEPXHOl3tx4upXoDQPYBrkCoA8+9EE6zXCznjtkL
+	ryMhI60NKhbazi7qcWlKEdeelG/+Dlm1e9QmhhFbA8+IGiTJ5Qv41LnX2aC6ovYYtMTIyat06GRA+
+	fZ0uXHoZrV7mHD4mnuU7UcnwCt4kRclh7oOwjlV5l1AS+gVN3mgf1oa7hPZrkYYOGV3zmiysdC6eM
+	xlWH5HWm2P+KQ4ZOqCNg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pDVY5-00DxFE-Jf; Thu, 05 Jan 2023 19:05:09 +0000
-Received: from mail-oo1-xc2e.google.com ([2607:f8b0:4864:20::c2e])
+	id 1pDpzR-00AihJ-T4; Fri, 06 Jan 2023 16:54:45 +0000
+Received: from mail-mw2nam12on2083.outbound.protection.outlook.com ([40.107.244.83] helo=NAM12-MW2-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pDImC-004DRq-Q8
-	for ath11k@lists.infradead.org; Thu, 05 Jan 2023 05:26:54 +0000
-Received: by mail-oo1-xc2e.google.com with SMTP id d9-20020a4aa589000000b004af737509f4so6913729oom.11
-        for <ath11k@lists.infradead.org>; Wed, 04 Jan 2023 21:26:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=OejcpZVMfMg3HPzlGve79DiPK6ngwBTotFLTcHuW0S0=;
-        b=J6UJsKf/o83rMEvTny2BngrmRZsqGt+0e84OD41ne1VVCEZHscE+TS70G/Mlm5uvoc
-         9i9uE2bQWTWmP1jE3MMcEGYgbfp54Z1XQvi1BcCDBhA77hvZYTubLqQavXuI2ETnP9Gg
-         LhW50GGL2fAHsBr/50pXJ2zw4lDWVge8aILzWLY/cJ/FSo1weiSTAvUtwgAyDmpBwDlX
-         nSqKmObiT1GXe0uAEYKK9bccQAuwM//Mom226qhJ/6++HYXiYU5ToL8l1qjsWWIP84Da
-         LmlsNlOZ5BVL67/cR4Ibd986+k8QuHJTQhBocivE4jTaWCGAUBwmjS4/wlmPwzl0mEki
-         DC1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OejcpZVMfMg3HPzlGve79DiPK6ngwBTotFLTcHuW0S0=;
-        b=D3huP9Vv+CTuoZ3yTKNyNcpx0xXNrJddsJLV0brASohW51sX+d50Vg3UYgXdseN/A/
-         6Pu/2KzPhzeoJ/aMFS1dw/Q7w6myHXUD80JkQr2OCN6PsjWWrzrhdQmCETLylHmrSgqn
-         9Bbzej7ia4jXNnKsWBR0FNR1IOwqSez19qK8ibw2Wy6g3zZm5NV/gPR2o7owvyO8Zpyg
-         GBCJrmICGvI5sYiUsz6dXvtqaTJ45A3uUL77TS3Vj3IKwAlSYzsGiiG1K0+31uWsuDDY
-         NtQdNbH7Zh4xMzxv8ItnQMKUokmcLEawcJI0xOP1rjiadUvuOqGFOkwGHYND4GktAxDD
-         QFnQ==
-X-Gm-Message-State: AFqh2kquozpmOdfeD/f5WvnyJ5Ozyhzsl4nDHT76YLxTVz3Sqz8yDdK1
-	pRVYQ57Dv51nWoeTjgMNUVo=
-X-Google-Smtp-Source: AMrXdXttu0b/leqvQ8POfETF0m7gdR0UtPXKHCzV8TzDzqgpBV5fm3PJMcTXvidr7VJaAL6mzGGkOQ==
-X-Received: by 2002:a4a:df0d:0:b0:4a3:e7ac:d31b with SMTP id i13-20020a4adf0d000000b004a3e7acd31bmr26779114oou.5.1672896410090;
-        Wed, 04 Jan 2023 21:26:50 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id f13-20020a4ab64d000000b004ce5d00de73sm12342587ooo.46.2023.01.04.21.26.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Jan 2023 21:26:49 -0800 (PST)
-Date: Wed, 4 Jan 2023 21:26:47 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: Wen Gong <quic_wgong@quicinc.com>
-Cc: johannes@sipsolutions.net, ath11k@lists.infradead.org,
-	linux-wireless@vger.kernel.org
-Subject: Re: [PATCH] wifi: mac80211: change initialize for sk_buff in
- ieee80211_tx_dequeue()
-Message-ID: <20230105052647.GA2477583@roeck-us.net>
-References: <20221212083607.21536-1-quic_wgong@quicinc.com>
+	id 1pDpo0-00AMQW-OI; Fri, 06 Jan 2023 16:43:03 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=F6ItEc+W/PEJ7Hyi9yk5HZG1Bv7hM92M/Ok6qdUvReTYUWAK0NDuTg2hulZmSGvxuQgn1H+FE8mA2dpDFlUP/TLPMShB/D4USO76folnD0USqPtH5fN+ikYqRN8mHuxP3ZBv3+XdoYMFqQex2inTBmSWhoyxtxg8gCqx3TJe3AcauEWJEA8FqZL6iVzsLlxKS485Jw0D8Vk4dz1a275d3qzMbGxRHhXyps+t3d//HBj+0QCqtnBWzJXeFzK7h3+Z4AbuovxWhAbZxUZpbz8MJzwbIbr+z0+Na4YAvWv4hw/lyiDDopSIIDFz3ZQTJAcwoWzC4YWFKr/or87GvaNXFQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hW/5mujLMwqrzVEZt7wBA4VSpYB7Lob2U3kTzSD4quE=;
+ b=kHyQe7kG2O2a9FP30LqIl9Xs0JK6NbixiSSxFjeR8TaZ0HIWfDMiq/jLSeB0Yb3xe2QJtyP+aCQ/vVGQIjQs/rTsVEx+9IHM6N+rzQjfjJEtQDwCRr4o49NeQAC02+icMdgMYuPNFiiD2k+qETKbXC1sQYh5DBnBCJp7EEB8x0dl6Nj5oqQnfozaZzjq3plU8FsPsRQr6gsej+OIoIZi15F2DqSWeS9iwYvGVmJP9NWR3Ml25rATyxVFV3Eou5byj+SUwPTGj3W4F/hGvL366VmyhCCDWy5FkRnturkzpSyVlQNFa2O2hOn/PIaM3WbTmiIaYNQnjgCoV3QQdNUpBg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hW/5mujLMwqrzVEZt7wBA4VSpYB7Lob2U3kTzSD4quE=;
+ b=nP0WBqG05j/lW1Ul2cBQ0y+XWUfxP3UXC+CDjzBG19i5/XPiJaOOC9NdYk2HwA+QsnpvMxjjIEP8IyWBgAlUicgg8n0wrQ2fR2+fIWglRCdy9qn/o7eeeaeG3AcoUe3ppNlQ2ZCN4zy+Vyf+EBQvVBpC5ZWjVf766lVFCP5p6j/CRouvA6HWW+ed7L3WsFjEA3eROoGe25whLIL7ubDYarg8Q8WhNF5zcv0FTolTtk3uYGR33PZVyyn2vLGwIVhXHnK2uwOyFowy2RY5ZOgwKsocDJ8npSy0gY8TjugMyQ0fayj+GH1I/ea9DrUMrEUejvrH0ddEHajw2wD3WltXoQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
+ by DS0PR12MB6437.namprd12.prod.outlook.com (2603:10b6:8:cb::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5944.19; Fri, 6 Jan
+ 2023 16:42:50 +0000
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::f8b0:df13:5f8d:12a]) by LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::f8b0:df13:5f8d:12a%9]) with mapi id 15.20.5944.019; Fri, 6 Jan 2023
+ 16:42:49 +0000
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Lu Baolu <baolu.lu@linux.intel.com>,
+	Joerg Roedel <joro@8bytes.org>,
+	Kevin Tian <kevin.tian@intel.com>,
+	Matthew Rosato <mjrosato@linux.ibm.com>,
+	Robin Murphy <robin.murphy@arm.com>
+Cc: Alex Williamson <alex.williamson@redhat.com>,
+	ath10k@lists.infradead.org,
+	ath11k@lists.infradead.org,
+	Christian Borntraeger <borntraeger@linux.ibm.com>,
+	dri-devel@lists.freedesktop.org,
+	iommu@lists.linux.dev,
+	kvm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	linux-rdma@vger.kernel.org,
+	linux-remoteproc@vger.kernel.org,
+	linux-s390@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-tegra@vger.kernel.org,
+	linux-wireless@vger.kernel.org,
+	netdev@vger.kernel.org,
+	nouveau@lists.freedesktop.org,
+	Niklas Schnelle <schnelle@linux.ibm.com>,
+	virtualization@lists.linux-foundation.org
+Subject: [PATCH 5/8] iommufd: Use GFP_KERNEL_ACCOUNT for iommu_map()
+Date: Fri,  6 Jan 2023 12:42:45 -0400
+Message-Id: <5-v1-6e8b3997c46d+89e-iommu_map_gfp_jgg@nvidia.com>
+In-Reply-To: <0-v1-6e8b3997c46d+89e-iommu_map_gfp_jgg@nvidia.com>
+References: 
+X-ClientProxiedBy: BL1PR13CA0105.namprd13.prod.outlook.com
+ (2603:10b6:208:2b9::20) To LV2PR12MB5869.namprd12.prod.outlook.com
+ (2603:10b6:408:176::16)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20221212083607.21536-1-quic_wgong@quicinc.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|DS0PR12MB6437:EE_
+X-MS-Office365-Filtering-Correlation-Id: f0cd8f24-13bf-491a-932d-08daf0050bd6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 	nNwogv+Zcd6dTZcXqTYou5TM/aBn+LlTv/ZfmHv6l/7EhFrKfn+rCcz6u2dZ743pwoj1EBsr3Gidopf6AUeKqYxlxrFr2Rlpj/J9VqCR4mK5Bq59qvW9rWgGpagmrlbRjVBG68ak3MVu8g3w2oD/1p9uEgJnjMkD9QzgkwsjzDOZc6ZXvo7sPiI5pFPPrNIP2h2E72QJiPiSluHfLBnA+PBOSJpFKxsQuYK+4hDPrnhFrVMTiAYs7rncublT6CCW3PqXtBWkCAU/jL0ujLJjlur/FPSN0gA+hD7cpyD26cfsaNggxcRZPyM5Ep0Ht1rOl/Z33HJSEQ5v41i0jqB2/l12vUIqBMwkpoogSfqfmZeQNAzoMoKFHbOu1TqLE7mlR94ItzChMAdscBiNIl7FRa2RGAfs2yUZUrHvHAVfj3NHlNZkaPK6+QJe4fh+H829Vi4yjbib/LajRcLAtB8fZS0WEy6BF4ZyMjWvny/SSiA3QjSAFyHFGwCQ4Brats1rfE2UMQ3LwZYEQesBHO2RJSpBt7yUc3Y9aBeT26g6WJjN5AqRTNTC6vCYONgB9OmNWIeq46SfFRfXYtOLh5XXjGuZHxOiZIssPloD30Mo9WfsVQVJHq0oJcjcW7fiElcT+5LYNfY6t/IyvT0dkcVhu7gDI04tErvTRpcij9RVaE2rLS1Iqc4tjkQSTgTeWU/4
+X-Forefront-Antispam-Report: 	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LV2PR12MB5869.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(136003)(376002)(346002)(39860400002)(396003)(451199015)(7416002)(5660300002)(54906003)(2906002)(41300700001)(8676002)(66946007)(8936002)(66476007)(316002)(4326008)(66556008)(83380400001)(6666004)(478600001)(110136005)(6506007)(36756003)(186003)(2616005)(26005)(6512007)(6486002)(86362001)(38100700002)(4216001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 	=?us-ascii?Q?nkqw+k8ttZP4vYmGw7Pd5s8mJHGc1JmpfkdqbHN2glQN/h13IJ1EX33jg28A?=
+ =?us-ascii?Q?gPXIsULNdIwvmnoqv8VGV7bAzj0TliTcpm/mNPfT/TGO6va6/8ZCodnpDDUS?=
+ =?us-ascii?Q?Ubr0qOuSt0bKuEjgzJB3Ar7NC39KVfZUuRepTegkgRvdnHz2k/7CYUrtbzH3?=
+ =?us-ascii?Q?YUItBx82JW/CnFrLkOj0U8NVue5Yr1P9f3Q7z80EvXNIeHdJ/m1DhEX2Bmlf?=
+ =?us-ascii?Q?TQN5CpqkPPhZvQZK8FWY5KFwbD6d5+BMH/q+yEGxMif00WYqBJZS9gT3Q0cZ?=
+ =?us-ascii?Q?OD3WNHb/bg7kSpQokiPVF7uhAqf08B0PWv88IH5I1SRpD+dZCHZypZ9DHmpK?=
+ =?us-ascii?Q?sqpzuTEkaahO5fgLva6b0FjFyjq0DIelBq6yNOGxyie0KpXly9dTOd4o82H3?=
+ =?us-ascii?Q?eLS9FnGOioqdYH2KcwQVYAhFY5vLPambY/DCi27Lo6CwX7CwBdm78j+yDVhI?=
+ =?us-ascii?Q?DZkVdYQCqtIX69VrdYvdUVzr1EXzw2yMVMKyCBPrYn/S7xv+V1tCU1b4DOkR?=
+ =?us-ascii?Q?Lt24buiOKCb1zfcAnL6hP4tsG/Ge8AT6wtNT4o5BVcW5meHvksizfPkaUeT6?=
+ =?us-ascii?Q?SqM+ZQ01NCUyDTDWzasl16lxaV/7JGJuKJG9LCxEvIP3T41FhQtYavTRqTwQ?=
+ =?us-ascii?Q?dZAHJLLI1tMKgg9+FnB4BwOeCwOGS/ArGwi58UQqoXfa11Y6FJdfMUHSSu+x?=
+ =?us-ascii?Q?FljeXEweuyAlNgbaFH9+nYx7VewCFHoKnf88pFvlbhBB61SVaKmSkBuOrf5R?=
+ =?us-ascii?Q?p8Hxarx4QlC3qTc4i1wgCj4AZmV4ZlJn/B5X72rDvElE7ff1CMtAas7UiuNa?=
+ =?us-ascii?Q?jQoeWh+GN9srnBkOADz4ZljkR0yOenr1Z6+roarIdmeOm4PSD1mLRjIohcoX?=
+ =?us-ascii?Q?r1V7P9i2L+G71+Z2v0sNJ4APV7eay6GE/15JHXOPeWlBWa0WKGrX/1ZaUqMW?=
+ =?us-ascii?Q?UdSxxg3zMO0OH6kR8yU8kJ4k47+XdGRbqZ9h/t/u3vN9rvymOPaD26A1oCJX?=
+ =?us-ascii?Q?t0BqHuPhNapojIhUPVHWg2ABavoWLXr2t4l+ZF9PbX2smchJ51K8xWms+pZV?=
+ =?us-ascii?Q?wIh0Ahk8cl67IW7kHvl8UVS1tqX97TZ4f5QEAMmzxGjTiEASntc+kSnFDsKM?=
+ =?us-ascii?Q?dkMYXMoqRnZ5+lyfRC3ptNHrnNzS+cby1jQ6nmmBocWtM37dhFhi/C2/cVSt?=
+ =?us-ascii?Q?zbVEPFf8DaHjBce1H3M1slBVB5IW17vdM5kftaeVOVhpy7FXCglN1m1SA/sa?=
+ =?us-ascii?Q?C0mX61AomnRYDDqAp38UlLBxMuNaj7GB5fKA4Hxkc9HYrZDOpTzwlg69zsjr?=
+ =?us-ascii?Q?JxWO8OH/5h/z+5+O0HNhSeEoj87rMGDLmH6bk2UuSk5DO8mlDOJ8ylxwk+/x?=
+ =?us-ascii?Q?hcAlooQs5oTAt5toLHLAbsy6IuaoHcGkvEVmGj1GSCoE4TrBU6IB1GtIPGa/?=
+ =?us-ascii?Q?MyFIUEdf9T0gtg+6wZpb2Fy1BbuVGAhs5S6rDqReCPcqmL094GOixmbIMFvL?=
+ =?us-ascii?Q?KLuURWJELDbqlTWkg9ioEtQoijqfDAV5c07XnHQqsHhjLKFBHngyuKzn5GIn?=
+ =?us-ascii?Q?CyPjrFDFSm7Rhl2WdffnYGkH8vSd2WHYWmSN1U0y?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f0cd8f24-13bf-491a-932d-08daf0050bd6
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jan 2023 16:42:49.2491
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: SJc7a4+DiKTeFPENw3c3eTK4mEkL8GK2M1HtB7cPkg6HaFV1JzmxnPKOIWKHSmDt
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB6437
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230104_212652_958793_8FB76868 
-X-CRM114-Status: GOOD (  19.72  )
+X-CRM114-CacheID: sfid-20230106_084257_059537_90FA48B7 
+X-CRM114-Status: GOOD (  11.31  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,51 +151,45 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Mon, Dec 12, 2022 at 03:36:07AM -0500, Wen Gong wrote:
-> The sk_buff is only set to NULL when initialize, sometimes it will goto
-> label "begin" after ieee80211_free_txskb(), then it points to a sk_buff
-> which is already freed. If it run into the "goto out" after arrived to
-> label "begin", then it will return a sk_buff which is freed, it is a
-> risk for use-after-free.
-> 
-> Fixes: ded4698b58cb ("mac80211: run late dequeue late tx handlers without holding fq->lock")
-> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
+iommufd follows the same design as KVM and uses memory cgroups to limit
+the amount of kernel memory a iommufd file descriptor can pin down. The
+various internal data structures already use GFP_KERNEL_ACCOUNT.
 
-I don't see any progress on this patch. Is there a problem with it ?
-Did it get lost ?
+However, one of the biggest consumers of kernel memory is the IOPTEs
+stored under the iommu_domain. Many drivers will allocate these at
+iommu_map() time and will trivially do the right thing if we pass in
+GFP_KERNEL_ACCOUNT.
 
-Thanks,
-Guenter
+Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
+---
+ drivers/iommu/iommufd/pages.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-> ---
->  net/mac80211/tx.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> 
-> base-commit: 922932ca02191a390f7f52fb6e21c44b50e14025
-> 
-> diff --git a/net/mac80211/tx.c b/net/mac80211/tx.c
-> index 2171cd1ca807..0b23cc9ab9c7 100644
-> --- a/net/mac80211/tx.c
-> +++ b/net/mac80211/tx.c
-> @@ -3776,7 +3776,7 @@ struct sk_buff *ieee80211_tx_dequeue(struct ieee80211_hw *hw,
->  	struct ieee80211_local *local = hw_to_local(hw);
->  	struct txq_info *txqi = container_of(txq, struct txq_info, txq);
->  	struct ieee80211_hdr *hdr;
-> -	struct sk_buff *skb = NULL;
-> +	struct sk_buff *skb;
->  	struct fq *fq = &local->fq;
->  	struct fq_tin *tin = &txqi->tin;
->  	struct ieee80211_tx_info *info;
-> @@ -3790,6 +3790,8 @@ struct sk_buff *ieee80211_tx_dequeue(struct ieee80211_hw *hw,
->  		return NULL;
->  
->  begin:
-> +	skb = NULL;
-> +
->  	spin_lock_bh(&fq->lock);
->  
->  	if (test_bit(IEEE80211_TXQ_STOP, &txqi->flags) ||
+diff --git a/drivers/iommu/iommufd/pages.c b/drivers/iommu/iommufd/pages.c
+index 22cc3bb0c6c55a..f8d92c9bb65b60 100644
+--- a/drivers/iommu/iommufd/pages.c
++++ b/drivers/iommu/iommufd/pages.c
+@@ -457,7 +457,7 @@ static int batch_iommu_map_small(struct iommu_domain *domain,
+ 
+ 	while (size) {
+ 		rc = iommu_map(domain, iova, paddr, PAGE_SIZE, prot,
+-			       GFP_KERNEL);
++			       GFP_KERNEL_ACCOUNT);
+ 		if (rc)
+ 			goto err_unmap;
+ 		iova += PAGE_SIZE;
+@@ -502,7 +502,7 @@ static int batch_to_domain(struct pfn_batch *batch, struct iommu_domain *domain,
+ 			rc = iommu_map(domain, iova,
+ 				       PFN_PHYS(batch->pfns[cur]) + page_offset,
+ 				       next_iova - iova, area->iommu_prot,
+-				       GFP_KERNEL);
++				       GFP_KERNEL_ACCOUNT);
+ 		if (rc)
+ 			goto err_unmap;
+ 		iova = next_iova;
+-- 
+2.39.0
+
 
 -- 
 ath11k mailing list
