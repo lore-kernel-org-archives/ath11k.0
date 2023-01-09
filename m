@@ -4,67 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1954C61DB3
-	for <ath11k@archiver.kernel.org>; Mon,  9 Jan 2023 15:41:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42859C54EBD
+	for <ath11k@archiver.kernel.org>; Mon,  9 Jan 2023 15:43:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:Subject:From:References:Cc:To:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NJ7umOSPkRD9iHv4UDyem73qG2IQ3wgKiC2lh45inVE=; b=l5zLVrW9aVMfYO
-	8+8GfldJGvheWCL46G0pbp3UU7ZoOzpf1slf/nmOMiWRatxv8XotMRd/xGKgcQcey0QTxJKg+lkwZ
-	cKVGaqKO94U4BT7jNGbH2672vo5Yx0ulAWoJRDP4lyO2O/cZ3SsgJm71waIVWQXudam8FcoIuwa4P
-	hX+e7Lm7E0Uvaaijscd0HU5G3Zf5oHfaZXMcy4evHwYhUDV4FYXAh2Dx6Ow8uGr1vOHMYrTVu0qKY
-	MWxAcq8Hd6GDZHUJ2fWNZAwmD1puGxg25KQPO2mfP8r9mIW+PFG6sa0m4HTinBWbltpNTkMM3CisV
-	llytvC7A9rvPGiE65q6Q==;
+	List-Owner; bh=gsxQZ9rFAfpQF09nZM3fERbsBQKR9dO/+YS3xKE79MI=; b=Kvfo0e9UOjCLoE
+	ZVXXs0lApyd6pBYRt8s9GXdVtAfTysEJFKs15b2HrAgEG8QdlN5JZXh+bVYrpbiLQaWMlHzzDecnG
+	EeNrPfMinqEWVtfOmn5Z6ydimDdsF0nFZPFGfD6zeegEVHlyaHpE2dXD55xDFVV8BgHbVpP0ApfXx
+	BDKtZKXfOx3Oy3tK510GgBvESjJ8Oht7sN3QlXTSjl2r9n+9MD17AiD2OO8UGkxDEQUVcbfGs5KGG
+	6YsnALVWsEF6WuJO5rCpkcWYgCaTs7vYiwm6edDmdJ7ZnjhMg+uscaHQ3PlhowbGaUDXYqIFz342W
+	+iwIEngIEWkghWA1+5YQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pEuGu-002LXX-FO; Mon, 09 Jan 2023 15:41:12 +0000
-Received: from mail-oi1-x231.google.com ([2607:f8b0:4864:20::231])
+	id 1pEuJ4-002Mc0-Mf; Mon, 09 Jan 2023 15:43:26 +0000
+Received: from mail-ot1-x32e.google.com ([2607:f8b0:4864:20::32e])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pEuFQ-002Kln-7D
-	for ath11k@lists.infradead.org; Mon, 09 Jan 2023 15:39:42 +0000
-Received: by mail-oi1-x231.google.com with SMTP id j130so7430722oif.4
-        for <ath11k@lists.infradead.org>; Mon, 09 Jan 2023 07:39:37 -0800 (PST)
+	id 1pEuIy-002MYG-Ga
+	for ath11k@lists.infradead.org; Mon, 09 Jan 2023 15:43:22 +0000
+Received: by mail-ot1-x32e.google.com with SMTP id j16-20020a056830271000b0067202045ee9so5364360otu.7
+        for <ath11k@lists.infradead.org>; Mon, 09 Jan 2023 07:43:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:content-language
-         :references:cc:to:user-agent:mime-version:date:message-id:sender
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4A3Ftur2eKpa5av6Mw9JhBpO5ttJgQ/Gh6WYfLvuDMA=;
-        b=jpE3nTlhZerX5p05h7yUGA9S9KIoHunY8JIQF4GGh/sXv8JVhrD/18tsYILYoX4Mzc
-         9KOofcxbZJF1DOAWmKef6TAsI33PHCrEB7MavqA7cGh62lPdb+jY5C1povDUe+SJDX++
-         5xWUWKCS/lnZR48jjSt90MT54dAf6UbRnU0J318VXWHc6FPApr7V966YzNM7mmcS3xx+
-         u0lpHQGiwTMHbKIdZsq0y5m+pRYDSdgGWmC15qN/3kyVs5Z9mIiyDwpFBAjATfItdLFq
-         Mt5z2oqiEo41ApcZeGbfe5m+jEPI4gJkgN/YX54oGAt/FynmmiHIrqCLhDPqdqVIQRdg
-         xeyA==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=dk0DIf3m8mAbPrZmJ7FA4rKsFWKveZQh5DZJPWwG10Q=;
+        b=IvAS/2RRpoD6HLWNsjz2sTSejxq0r/thJ5+JV6cxos4fYHyqvgXt0BFuKhqKfSygXc
+         ik2SkgMH/+LSCEid9NlwBm0vxzOI/fQOPay0w7H4Qq+xAgVPU6GFOr8evqemOAgFB/hv
+         gR+jzFOpNifkTCpMqjdzcgqVynYm97YzCwuSgLpHldHNsa2fipVWyOyNg0MAxLYnMu7i
+         ipqDnrkkPIwGbP6MF593t/G52b/CmuQbQjYRFC4r2nScENsvbv6Mn3EYCjwcztejKOCU
+         BfrzFCvn5kp3dyKsRFa5g1R+OH1o9L4PztArVj+W68Jyo29AMRag4MPpeOuPZNwJk/IY
+         lvAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:content-language
-         :references:cc:to:user-agent:mime-version:date:message-id:sender
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4A3Ftur2eKpa5av6Mw9JhBpO5ttJgQ/Gh6WYfLvuDMA=;
-        b=uNGQkR3cOtEKGzNx2XBSkc0BKZsZmTx+OgT4om7WeY9gtXNd/EKpl9wFMM1YxMSU07
-         Z7zKq9IMf+2iRzqyeGzqbd5Hk/49Qi4sySJwSuMAOj+to79tL0zHXHs8NFdMxWk3SfiT
-         z7x6JoRqArF3TVSJ6+kdFGFN3RDfINqLPgBu+6zADvVsbIKZrT/p0ImxGTDrClxeoNH5
-         OkOAzQUgWf4fc5zjuuRyjXytoL6d9vosdMcWSH6jrdoYSogJ+O/opb6oOlSXWIJMYQnp
-         Ip4DI8MBYzX/oPgVesFBg4rOes7155qtUc3I9Olb2XhIf7L8xoR85cj67V9qXonSIH9I
-         9eBA==
-X-Gm-Message-State: AFqh2kpSuQjKlRry+HNj8WQOb5XS6Nossw+Ap/BYPNSXAkGMLdatin0t
-	d+rZ5VWqebI2uIq/qvhqcao=
-X-Google-Smtp-Source: AMrXdXvUSMPWGI5OIFgCIPPRoBkTq1gbUyEqJOO9eA+A8wvurEjZAv1njxMKsdrggpkpNvVDPV/q6w==
-X-Received: by 2002:a05:6808:210d:b0:360:e954:9dda with SMTP id r13-20020a056808210d00b00360e9549ddamr39122810oiw.12.1673278777030;
-        Mon, 09 Jan 2023 07:39:37 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dk0DIf3m8mAbPrZmJ7FA4rKsFWKveZQh5DZJPWwG10Q=;
+        b=nrKpR7LYPNlxe9sipbP0qOvYZX+GezSFPxvtTsp/NEux+5SF/yJGsOCbFBRUINFY15
+         LDnNPXoVWaWpC+nWp0K2uzFbKNxlkVoHCz4FIH3sRfzb5aQgpzoSBmZ9m4YblfdFP9gK
+         9kB2r6BHDuC3CSBA7uQCwZWWUpiOg+zH2tv5Zh7jT3iWwI2NfZ2lOj4FgLkz+IXhzKIb
+         slGGAw+zwAAQGmWrv3bTifOdzN7l+B7jsF85yBjdmzRhqI/xE/ExaaS4rlg8CsfhS4tr
+         jNmboIavwxPrRb6OL/gMaXQOF5Qdy3p6G+bUJarllOG8Y5Kep9WUd1k/JvHAWlbT18EV
+         X6GQ==
+X-Gm-Message-State: AFqh2kpLjxQ9/e+cBwWaLvUUVlxahO23KXLA59vFLTBQCowBeAtjckAm
+	DKGOmeuKDTkjeTc13ygCruU=
+X-Google-Smtp-Source: AMrXdXsCo9IbAIuhu0R12wYIv4CfWGyRJgXt+ImyWl7YfAeRdnCTZZcHIHRqdD9kJ0JuUJUfuWezpg==
+X-Received: by 2002:a9d:674c:0:b0:66e:6d33:fb32 with SMTP id w12-20020a9d674c000000b0066e6d33fb32mr29729864otm.26.1673278997558;
+        Mon, 09 Jan 2023 07:43:17 -0800 (PST)
 Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id y28-20020a544d9c000000b0035474ff66b3sm3988236oix.35.2023.01.09.07.39.35
+        by smtp.gmail.com with ESMTPSA id e18-20020a9d6e12000000b006849b445543sm159134otr.18.2023.01.09.07.43.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Jan 2023 07:39:36 -0800 (PST)
-Message-ID: <6b39574f-e067-395f-f579-b0b805983996@roeck-us.net>
-Date: Mon, 9 Jan 2023 07:39:34 -0800
+        Mon, 09 Jan 2023 07:43:17 -0800 (PST)
+Message-ID: <065cf0e5-2c64-56c6-ee66-a6b61be2dddf@roeck-us.net>
+Date: Mon, 9 Jan 2023 07:43:15 -0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
+Subject: Re: [PATCH] wifi: mac80211: change initialize for sk_buff in
+ ieee80211_tx_dequeue()
+Content-Language: en-US
 To: Alexander Wetzel <alexander@wetzel-home.de>,
  Wen Gong <quic_wgong@quicinc.com>
 Cc: johannes@sipsolutions.net, ath11k@lists.infradead.org,
@@ -72,14 +76,12 @@ Cc: johannes@sipsolutions.net, ath11k@lists.infradead.org,
 References: <20221212083607.21536-1-quic_wgong@quicinc.com>
  <20230105052647.GA2477583@roeck-us.net>
  <d28c6340-7ad2-d7f6-939d-3a1a057cb7da@wetzel-home.de>
-Content-Language: en-US
+ <3372b42f-b9bf-20e8-35f9-5370571a9e35@wetzel-home.de>
 From: Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH] wifi: mac80211: change initialize for sk_buff in
- ieee80211_tx_dequeue()
-In-Reply-To: <d28c6340-7ad2-d7f6-939d-3a1a057cb7da@wetzel-home.de>
+In-Reply-To: <3372b42f-b9bf-20e8-35f9-5370571a9e35@wetzel-home.de>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230109_073940_336891_7917B1CD 
-X-CRM114-Status: GOOD (  20.89  )
+X-CRM114-CacheID: sfid-20230109_074320_620599_04F18BD9 
+X-CRM114-Status: GOOD (  14.98  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,54 +93,49 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-T24gMS85LzIzIDA2OjA1LCBBbGV4YW5kZXIgV2V0emVsIHdyb3RlOgo+IE9uIDA1LjAxLjIzIDA2
-OjI2LCBHdWVudGVyIFJvZWNrIHdyb3RlOgo+PiBPbiBNb24sIERlYyAxMiwgMjAyMiBhdCAwMzoz
-NjowN0FNIC0wNTAwLCBXZW4gR29uZyB3cm90ZToKPj4+IFRoZSBza19idWZmIGlzIG9ubHkgc2V0
-IHRvIE5VTEwgd2hlbiBpbml0aWFsaXplLCBzb21ldGltZXMgaXQgd2lsbCBnb3RvCj4+PiBsYWJl
-bCAiYmVnaW4iIGFmdGVyIGllZWU4MDIxMV9mcmVlX3R4c2tiKCksIHRoZW4gaXQgcG9pbnRzIHRv
-IGEgc2tfYnVmZgo+Pj4gd2hpY2ggaXMgYWxyZWFkeSBmcmVlZC4gSWYgaXQgcnVuIGludG8gdGhl
-ICJnb3RvIG91dCIgYWZ0ZXIgYXJyaXZlZCB0bwo+Pj4gbGFiZWwgImJlZ2luIiwgdGhlbiBpdCB3
-aWxsIHJldHVybiBhIHNrX2J1ZmYgd2hpY2ggaXMgZnJlZWQsIGl0IGlzIGEKPj4+IHJpc2sgZm9y
-IHVzZS1hZnRlci1mcmVlLgo+Pj4KPj4+IEZpeGVzOiBkZWQ0Njk4YjU4Y2IgKCJtYWM4MDIxMTog
-cnVuIGxhdGUgZGVxdWV1ZSBsYXRlIHR4IGhhbmRsZXJzIHdpdGhvdXQgaG9sZGluZyBmcS0+bG9j
-ayIpCj4+PiBTaWduZWQtb2ZmLWJ5OiBXZW4gR29uZyA8cXVpY193Z29uZ0BxdWljaW5jLmNvbT4K
-Pj4KPj4gSSBkb24ndCBzZWUgYW55IHByb2dyZXNzIG9uIHRoaXMgcGF0Y2guIElzIHRoZXJlIGEg
-cHJvYmxlbSB3aXRoIGl0ID8KPj4gRGlkIGl0IGdldCBsb3N0ID8KPj4KPiAKPiBMb29rcyBvayBm
-b3IgbWUuIEJ1dCBJIGp1c3Qgbm90aWNlZCB0aGF0IG15IHBhdGNoCj4gaHR0cHM6Ly9wYXRjaHdv
-cmsua2VybmVsLm9yZy9wcm9qZWN0L2xpbnV4LXdpcmVsZXNzL3BhdGNoLzIwMjIxMjMwMTIxODUw
-LjIxODgxMC0xLWFsZXhhbmRlckB3ZXR6ZWwtaG9tZS5kZS8KPiAKPiBzaG91bGQgYWxzbyBmaXgg
-dGhlIGlzc3VlIGFzIGFuIHVuaW50ZW5kZWQgc2lkZSBlZmZlY3QuCj4gCgpVbmxlc3MgSSBhbSBt
-aXNzaW5nIHNvbWV0aGluZywgdGhlcmUgaXMgc3RpbGwgYSBwYXRoCgpiZWdpbjoKCS4uLgoJCglp
-ZiAodW5saWtlbHkodGVzdF9iaXQoSUVFRTgwMjExX1RYUV9TVE9QLCAmdHhxaS0+ZmxhZ3MpKSkK
-ICAJCWdvdG8gb3V0OwoJLi4uCglza2IgPSAuLi4KCS4uLgogICAgICAgICAgICAgICAgICAgICAg
-ICAgaWVlZTgwMjExX2ZyZWVfdHhza2IoJmxvY2FsLT5odywgc2tiKTsKICAgICAgICAgICAgICAg
-ICAgICAgICAgIGdvdG8gYmVnaW47CgphZnRlciB5b3VyIHBhdGNoIGlzIGFwcGxpZWQuIFVubGVz
-cyB0aGUgSUVFRTgwMjExX1RYUV9TVE9QIGNhbiBuZXZlciBiZSB0cnVlCmFmdGVyIHRoZSBmaXJz
-dCBpdGVyYXRpb24gSSBkb24ndCBzZWUgaG93IHlvdXIgcGF0Y2ggd291bGQgZml4IHRoZSBwcm9i
-bGVtLgoKR3VlbnRlcgoKPiBBbGV4YW5kZXIKPiAKPj4gVGhhbmtzLAo+PiBHdWVudGVyCj4+Cj4+
-PiAtLS0KPj4+IMKgIG5ldC9tYWM4MDIxMS90eC5jIHwgNCArKystCj4+PiDCoCAxIGZpbGUgY2hh
-bmdlZCwgMyBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCj4+Pgo+Pj4KPj4+IGJhc2UtY29t
-bWl0OiA5MjI5MzJjYTAyMTkxYTM5MGY3ZjUyZmI2ZTIxYzQ0YjUwZTE0MDI1Cj4+Pgo+Pj4gZGlm
-ZiAtLWdpdCBhL25ldC9tYWM4MDIxMS90eC5jIGIvbmV0L21hYzgwMjExL3R4LmMKPj4+IGluZGV4
-IDIxNzFjZDFjYTgwNy4uMGIyM2NjOWFiOWM3IDEwMDY0NAo+Pj4gLS0tIGEvbmV0L21hYzgwMjEx
-L3R4LmMKPj4+ICsrKyBiL25ldC9tYWM4MDIxMS90eC5jCj4+PiBAQCAtMzc3Niw3ICszNzc2LDcg
-QEAgc3RydWN0IHNrX2J1ZmYgKmllZWU4MDIxMV90eF9kZXF1ZXVlKHN0cnVjdCBpZWVlODAyMTFf
-aHcgKmh3LAo+Pj4gwqDCoMKgwqDCoCBzdHJ1Y3QgaWVlZTgwMjExX2xvY2FsICpsb2NhbCA9IGh3
-X3RvX2xvY2FsKGh3KTsKPj4+IMKgwqDCoMKgwqAgc3RydWN0IHR4cV9pbmZvICp0eHFpID0gY29u
-dGFpbmVyX29mKHR4cSwgc3RydWN0IHR4cV9pbmZvLCB0eHEpOwo+Pj4gwqDCoMKgwqDCoCBzdHJ1
-Y3QgaWVlZTgwMjExX2hkciAqaGRyOwo+Pj4gLcKgwqDCoCBzdHJ1Y3Qgc2tfYnVmZiAqc2tiID0g
-TlVMTDsKPj4+ICvCoMKgwqAgc3RydWN0IHNrX2J1ZmYgKnNrYjsKPj4+IMKgwqDCoMKgwqAgc3Ry
-dWN0IGZxICpmcSA9ICZsb2NhbC0+ZnE7Cj4+PiDCoMKgwqDCoMKgIHN0cnVjdCBmcV90aW4gKnRp
-biA9ICZ0eHFpLT50aW47Cj4+PiDCoMKgwqDCoMKgIHN0cnVjdCBpZWVlODAyMTFfdHhfaW5mbyAq
-aW5mbzsKPj4+IEBAIC0zNzkwLDYgKzM3OTAsOCBAQCBzdHJ1Y3Qgc2tfYnVmZiAqaWVlZTgwMjEx
-X3R4X2RlcXVldWUoc3RydWN0IGllZWU4MDIxMV9odyAqaHcsCj4+PiDCoMKgwqDCoMKgwqDCoMKg
-wqAgcmV0dXJuIE5VTEw7Cj4+PiDCoCBiZWdpbjoKPj4+ICvCoMKgwqAgc2tiID0gTlVMTDsKPj4+
-ICsKPj4+IMKgwqDCoMKgwqAgc3Bpbl9sb2NrX2JoKCZmcS0+bG9jayk7Cj4+PiDCoMKgwqDCoMKg
-IGlmICh0ZXN0X2JpdChJRUVFODAyMTFfVFhRX1NUT1AsICZ0eHFpLT5mbGFncykgfHwKPiAKCgot
-LSAKYXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8v
-bGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2F0aDExawo=
+On 1/9/23 06:22, Alexander Wetzel wrote:
+> On 09.01.23 15:05, Alexander Wetzel wrote:
+>> On 05.01.23 06:26, Guenter Roeck wrote:
+>>> On Mon, Dec 12, 2022 at 03:36:07AM -0500, Wen Gong wrote:
+>>>> The sk_buff is only set to NULL when initialize, sometimes it will goto
+>>>> label "begin" after ieee80211_free_txskb(), then it points to a sk_buff
+>>>> which is already freed. If it run into the "goto out" after arrived to
+>>>> label "begin", then it will return a sk_buff which is freed, it is a
+>>>> risk for use-after-free.
+>>>>
+>>>> Fixes: ded4698b58cb ("mac80211: run late dequeue late tx handlers without holding fq->lock")
+>>>> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
+>>>
+>>> I don't see any progress on this patch. Is there a problem with it ?
+>>> Did it get lost ?
+>>>
+>>
+>> Looks ok for me. But I just noticed that my patch
+>> https://patchwork.kernel.org/project/linux-wireless/patch/20221230121850.218810-1-alexander@wetzel-home.de/
+>>
+>> should also fix the issue as an unintended side effect.
+> 
+> Sorry that statement was incomplete: It's only fixed when
+> https://patchwork.kernel.org/project/linux-wireless/patch/20221230121850.218810-1-alexander@wetzel-home.de/
+> and
+> https://patchwork.kernel.org/project/linux-wireless/patch/20230106223141.98696-1-alexander@wetzel-home.de/
+> 
+> are applied.
+> 
+
+Ah, yes. That is indeed correct. Let's just hope those patches will apply (and are
+going to be applied) to stable releases since this is a real problem there which
+does cause UAF and crashes.
+
+Guenter
+
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
