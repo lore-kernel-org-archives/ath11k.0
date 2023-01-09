@@ -4,80 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 124F7C5479D
-	for <ath11k@archiver.kernel.org>; Mon,  9 Jan 2023 09:48:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AC5FC5479D
+	for <ath11k@archiver.kernel.org>; Mon,  9 Jan 2023 10:04:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Subject:From:CC:To:MIME-Version:Date:Message-ID:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
-	bh=YVFrKZs9yAtgc1U/yzq31sAR8hgn0U9qSdWqAMUpEf8=; b=VuGFIGyiyHvJjXkXuGnl9MR6O9
-	E3goBBmlugjcG397aXT/pMc10ktZbMAaIp5ogWAnjjLwgtytjX+THivSUw77D+/B490yZ2d8i94Bq
-	CNI4poIBsqVtKci64lWLJ/PPtDwXP6P8Nn+t1n4nV2VnddZN+d4Eemw/K7HurRHF/9wJtew3VyvCc
-	2tiudqdN0wG1OpZ4pJ8661rLr6xQ72lEOCbNWDHIfs773z4x/KXpdPXCR+ha37shT04ciY5Z+BON7
-	kq40EVYGJRdkbd6Kri0RxSwKDBGJt9AtgXeZX+4q5TkTQUCNDPE+/jBSdCuCetesZ4W0L1QtMMNTs
-	C78+XPpg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=CiJ57wMFRORQ0rfaOHhZdEbigfCXI/PTePIHuB2KTIA=; b=o7UQQYafdnjKT1
+	y3VFYS0B6WXmCCtdOA2wtm3EVPINwQL64bfq3/8DmdeIbEMwA03B4B0QR+v2HhHHAXl23CWaWMQdO
+	im58UO/hOAuRtVXJygNfVd2ccQifZ2UtPv78kfm5n3qzEnnvMVgEra34DrM0SHdYccNjNq/8IBp+T
+	BQCEXXGu+OVDCxVKgv3Q9aDJ4Uhs+6xx4OVuSt3Nswl3FxLFIoV1+WEfT4iM98t4LXONdcfU6Yy8q
+	jSKfQPaGJgcZ8WBM7fXJhAlmNVgoe5ZbSx8gTa387vW6eD/rEDHZ2wS3WjqCE2JRfucZcDw8mdhg2
+	w0jkj/p6UZqr9T4/4/AA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pEolZ-000fAA-TW; Mon, 09 Jan 2023 09:48:30 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1pEp0z-000hX0-Fq; Mon, 09 Jan 2023 10:04:25 +0000
+Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2] helo=sipsolutions.net)
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pEolW-000f89-7w
-	for ath11k@lists.infradead.org; Mon, 09 Jan 2023 09:48:27 +0000
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3098oGSs002826;
-	Mon, 9 Jan 2023 09:48:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : to : cc : from : subject : content-type :
- content-transfer-encoding; s=qcppdkim1;
- bh=yqqk2EzZfeChfMWrB1gzEFSlZdqXxGS89cKk9izFgVY=;
- b=Ugue+L0hOlXcLo+DKbUPbEbFRP77du/E495phwwnoyZJW9VipWzuYp8cR8d4wFfoZJ5y
- wQf2tOxDhE7DTibE0gooH9bCr+8JgqeX+0+Ev5EVZvj88kjZxAdFj0WFvLm5sppeqMaT
- hFmnDyPuwuGBGxoooDeyqM+MQUkw14bK5osqmD3UibaD2ZKkciM6rKEDS0TnvxTsc278
- D6zvxUCF252TvKiZIQsB/gTF8uhJhQybSk3nVRbxM91HhuU1nWSt2H4F8CU59giGymB+
- 1ggmSpNhaW+8tlpDC3SmY+9tj+qf7btqqSldCsVXJmcFDRD2tJOEpYXNQYEdHxnCA4XP 1w== 
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3my0yaasnc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 09 Jan 2023 09:48:20 +0000
-Received: from nasanex01a.na.qualcomm.com (corens_vlan604_snip.qualcomm.com [10.53.140.1])
-	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3099mKqZ006922
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 9 Jan 2023 09:48:20 GMT
-Received: from [10.253.34.122] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 9 Jan 2023
- 01:48:19 -0800
-Message-ID: <efad76dd-14ff-4a36-ec67-fe6f3b8dcc5b@quicinc.com>
-Date: Mon, 9 Jan 2023 17:48:16 +0800
+	id 1pEp0w-000hTG-DU
+	for ath11k@lists.infradead.org; Mon, 09 Jan 2023 10:04:24 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
+	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
+	Resent-Cc:Resent-Message-ID; bh=LXYtkwCulJxyYDxEsC2KhrmJMtqjpJOVDebzve+DexM=;
+	t=1673258653; x=1674468253; b=B69eJkjruIaa5wI2WvV2QIIDB9ZFgZsKknN5cpi+3b8lp04
+	FWIuIi1Q7wl8E+SEOxW+g610QWYZl4Mn2Sm0xIzOUc3D0O3Xm99/MkWjjP4+XXT2N1V2VVXTYwNYe
+	Z4kVtMp3Lsd4yVx3AMfPoPwFQ7+/oc3RuKK1I1lLma5Io1+ZrmuPSZzOvFSwg423oDgfHQhHzykiD
+	RP7i1cj6zKYq8OCNi2iusVqN3wmK9CwshCaSUOGetRt+dtG5mJVCtsF6wisaVD9kma3fw9mefB2A8
+	nAWsqEl/fXR8QuALqagXVUtITIYiObHctvnTMlu9r2qyhUYyB14GBiuNR5hR3fgA==;
+Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+	(Exim 4.96)
+	(envelope-from <johannes@sipsolutions.net>)
+	id 1pEp0h-00EE7p-1e;
+	Mon, 09 Jan 2023 11:04:08 +0100
+Message-ID: <598af0e9da276e2e7f03f3a7c2a85e3391333a9d.camel@sipsolutions.net>
+Subject: Re: authentication timed out by "wifi: mac80211: do link->MLD
+ address translation on RX"
+From: Johannes Berg <johannes@sipsolutions.net>
+To: Wen Gong <quic_wgong@quicinc.com>, linux-wireless@vger.kernel.org
+Cc: ath11k@lists.infradead.org
+Date: Mon, 09 Jan 2023 11:04:06 +0100
+In-Reply-To: <efad76dd-14ff-4a36-ec67-fe6f3b8dcc5b@quicinc.com>
+References: <efad76dd-14ff-4a36-ec67-fe6f3b8dcc5b@quicinc.com>
+User-Agent: Evolution 3.44.4 (3.44.4-2.fc36) 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Content-Language: en-US
-To: <johannes@sipsolutions.net>, <linux-wireless@vger.kernel.org>
-CC: <ath11k@lists.infradead.org>
-From: Wen Gong <quic_wgong@quicinc.com>
-Subject: authentication timed out by "wifi: mac80211: do link->MLD address
- translation on RX"
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: PTJ2GypClcugAyHHyzlm3V0Qdho-t7kl
-X-Proofpoint-ORIG-GUID: PTJ2GypClcugAyHHyzlm3V0Qdho-t7kl
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2023-01-09_03,2023-01-06_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=861 adultscore=0
- malwarescore=0 clxscore=1015 phishscore=0 bulkscore=0 priorityscore=1501
- mlxscore=0 impostorscore=0 spamscore=0 suspectscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
- definitions=main-2301090069
+X-malware-bazaar: not-scanned
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230109_014826_310784_11601EE9 
-X-CRM114-Status: UNSURE (   7.31  )
+X-CRM114-CacheID: sfid-20230109_020422_466089_CC05E63D 
+X-CRM114-Status: UNSURE (   8.17  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -90,29 +67,39 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-SGkgSm9oYW5uZXMsCgpXaGVuIHRoZSByeCBwYWNrZXQgaXMgc2tiX2NvcHkoKSwgdGhlIGhkciBp
-cyBub3QgcmUtYXNzaWduIHRoZSBuZXcgc2tiIAp2YWx1ZSwgYW5kIGxlYWQgdGhlCgpvcGVyYXRp
-b24gb2YgInRyYW5zbGF0ZSB0byBNTEQgYWRkcmVzc2VzIiB0YWtlIGVmZmVjdCBvbiB0aGUgb3Jp
-Z2luYWwgCnNrYiwgYW5kIGxlYWQKCnRoZSBjaGVjayAiaWYgKCFldGhlcl9hZGRyX2VxdWFsKGlm
-bWdkLT5hdXRoX2RhdGEtPmFwX2FkZHIsIAptZ210LT5ic3NpZCkpIiBmYWlsIGluIGllZWU4MDIx
-MV9yeF9tZ210X2F1dGgoKSwKCmFuZCB0aHVzIGhhcHBlbmVkICJhdXRoZW50aWNhdGlvbiB0aW1l
-ZCBvdXQiLgoKQWZ0ZXIgYmVsb3cgY2hhbmdlLCBpc3N1ZSBub3QgaGFwcGVuIGFnYWluLgoKLS0t
-IGEvbmV0L21hYzgwMjExL3J4LmMKKysrIGIvbmV0L21hYzgwMjExL3J4LmMKQEAgLTQ4NTQsNiAr
-NDg1NCw4IEBAIHN0YXRpYyBib29sIGllZWU4MDIxMV9wcmVwYXJlX2FuZF9yeF9oYW5kbGUoc3Ry
-dWN0IAppZWVlODAyMTFfcnhfZGF0YSAqcngsCiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgIHJldHVybiB0cnVlOwogwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgIH0KCivCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGhkciA9ICh2b2lkICopcngt
-PnNrYi0+ZGF0YTsKKwogwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC8qIHNrYl9jb3B5
-KCkgZG9lcyBub3QgY29weSB0aGUgaHcgdGltZXN0YW1wcywgc28gY29weSBpdAogwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKiBleHBsaWNpdGx5CiDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCAqLwoKCmNvbW1pdDoKCmh0dHBzOi8vZ2l0Lmtlcm5lbC5vcmcvcHViL3Nj
-bS9saW51eC9rZXJuZWwvZ2l0L2t2YWxvL2F0aC5naXQvY29tbWl0Lz9pZD00MmZiOTE0OGMwNzgw
-MDRkMDdiNGMzOWJkN2IxMDg2YjYxNjU3ODBjCgp3aWZpOiBtYWM4MDIxMTogZG8gbGluay0+TUxE
-IGFkZHJlc3MgdHJhbnNsYXRpb24gb24gUlgKCgotLSAKYXRoMTFrIG1haWxpbmcgbGlzdAphdGgx
-MWtAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL2F0aDExawo=
+Hi,
+
+On Mon, 2023-01-09 at 17:48 +0800, Wen Gong wrote:
+> Hi Johannes,
+> 
+> When the rx packet is skb_copy(), the hdr is not re-assign the new skb 
+> value, and lead the
+> 
+> operation of "translate to MLD addresses" take effect on the original 
+> skb, and lead
+> 
+> the check "if (!ether_addr_equal(ifmgd->auth_data->ap_addr, 
+> mgmt->bssid))" fail in ieee80211_rx_mgmt_auth(),
+> 
+> and thus happened "authentication timed out".
+> 
+> After below change, issue not happen again.
+> 
+
+Yeah ... We found and fixed this, and then a few days later someone else
+submitted a patch for it:
+
+
+https://patchwork.kernel.org/project/linux-wireless/patch/20221208040050.25922-1-quic_srirrama@quicinc.com/
+
+johannes
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
