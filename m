@@ -4,131 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45B87C54E76
-	for <ath11k@archiver.kernel.org>; Fri,  6 Jan 2023 17:32:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F33C0C54EBD
+	for <ath11k@archiver.kernel.org>; Mon,  9 Jan 2023 09:40:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=60mbfN+XFXRoHyhCkJLEhnHCPFApYcUGV0Zjuxp2o2E=; b=ZvTcm55nPiKBwT
-	DM2IY+PhtIUtnrobwIi4kUlyOUpcWgirFiaLkuW9iVZU+wjZYz+XpalgYjIpdexve0BO6jEJGsNYD
-	YoEnXGe/CRp8TPDNATRa1wNJ0AU64MXJi7qTP/mC888rR+cBJUcxrgtGX7l2dQrOCkrLZ/TFq+CZ2
-	bA6ryaBbRrmdnHYTjPVBm9ropWQICDPwzv2YVZiIYAVeRLtT8QYtK6kNazcdTfF0px+huVe7j2oWY
-	/jHaRIZeUMZoaZ400QRVyDVAFBIMTSJYDF0cOFC2WOHfDudoaJciWKvIEYOET319YCvkxN+kYY5c9
-	3mNSy3WQqQQ30qqqwiOA==;
+	List-Owner; bh=OKHFIv1M+WMEq8z1srBj31vQ2Rlv3nfs6k6CsKl1iVk=; b=TDD02qMk+b5dzx
+	TgiVOTv0o7QDEn51WCijfX9kajJ6MuQdWKqSnTOS0kPc9d9uPNn8cTqgAxRZDGEkY4YuA0mnEszdw
+	KOBbu1yhGDRojS1oTsL59JCAkuvczHy+WThdfZ05aYDBuDGUTDrRZlo4lQWn7Gb/sCLvtOzoQbqK9
+	VvRAl5Ncl3b8zgk7I9AKVeNmuRTBcSYXeKdaTDXjiiNeqMNDL68k+cmbh5muiKb8RgZkLqF9K+dn7
+	GKZ9LQyjCyV0qosb6j5snVUPnifD4RCCiZ8NQEVSvvhkhDuBcvUM18vmTTloxnUqybRGmtO5MOrOu
+	v4mcLnVjEqYwmFiMXlVQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pDqZr-00BxOw-Sl; Fri, 06 Jan 2023 17:32:23 +0000
-Received: from mail-dm6nam12on2063.outbound.protection.outlook.com ([40.107.243.63] helo=NAM12-DM6-obe.outbound.protection.outlook.com)
+	id 1pEoda-000dYM-1b; Mon, 09 Jan 2023 09:40:14 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pDqS1-00BZhF-CI; Fri, 06 Jan 2023 17:24:18 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eS4WQQpuFUVu0BIQ24Tne76BrkHarT20WNH5gB/5ZCjZ2L+s1EdaNDyOqch0er8vtw/9lToOafchyylBbZeuHv+RvAuM8duxVEGJ07Mz2fgG6tyiU0B60Z2MgHkorqOBoXDAMUhoicyK1JN3PbUpyUAfEC2lbMX6wSz9PDJyG7z8JXkc3wEWZWo/hXaW8MQVy8B1NPOVn6jf4MMiwHGFr0VwbXt+fqlRc2P8Jdto5J9qOE+mkt9VpjClLUIxsDNEsjVDa52k6a6V39smSUBd5IpOHEiQPO5YZT0HoPtrrwI7zv0fs8JjwtrpQ6SJl+geNwIuhJ6S6wbYEtmoN6yV0Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nC8yyf2i/rJX4emyigWAVpCtFlGoeW7cDYHn+lLikTc=;
- b=f8Kz8Bfw5h9iCquFZM+HlJpSwJQF6rMLmXtlDFR350JAV+djauH7kN9fqYBRjQpwUPou3Miju5Kd+QZUIKRDc2jRcoYC8zlAqg7nEtD+4spvf+uLcyZfuM91Sl/zM+YXp5VjA7O55rKfckOTA2Plqc4YK2PCJfSXbxxtDt5BSRzq3oalIwiaGHZIXf3UqCmD5WyQj1jC8lnXyVncOcAR9MpoLC5NPcJDuqsKw3lmEYAXadBRPB7tHokA2rYPfD8vZkvkUdeU58SHYHX3wydiQM+EOFYnpEECVduqSc0UI3VLSfqmWo26YEMgnjBun5PpfoAjXcgWnpQrIp4MFhYFEw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nC8yyf2i/rJX4emyigWAVpCtFlGoeW7cDYHn+lLikTc=;
- b=dy20YQ0zCwCUynL/UqFT3QUZ6wkH8WAP961E41nFNktXLo5DgWVcTZKTe7YDgLfdAcUIDLJPX/QE3pfrYPzi5jbiSj24JpPmIVKd23pD9DbbQr1F3gQlDH90P2a2V0kniP0DC7a1tpqk89VJ0Z6unmx9H8CUFWpaKHoJhUZsxjVoszhyGWwc6JizHnzZ1MAn1gnAnl5YNZwCu8cwxWx65d1H0hCipwIXGaU5bpWmVJc3qXQJBQGb+aChnmOEzrzYDcNzzbtLJOfTuoSV3asnKKxbYyVdkOA3BqmpbFOYVQbk4fxanA5qkSMXtI3qT1j7dwlWSkanKzhPKrArovVEtg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
- by MW4PR12MB5601.namprd12.prod.outlook.com (2603:10b6:303:168::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5944.19; Fri, 6 Jan
- 2023 17:24:13 +0000
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::f8b0:df13:5f8d:12a]) by LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::f8b0:df13:5f8d:12a%9]) with mapi id 15.20.5944.019; Fri, 6 Jan 2023
- 17:24:12 +0000
-Date: Fri, 6 Jan 2023 13:24:11 -0400
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: Robin Murphy <robin.murphy@arm.com>
-Cc: Lu Baolu <baolu.lu@linux.intel.com>, Joerg Roedel <joro@8bytes.org>,
-	Kevin Tian <kevin.tian@intel.com>,
-	Matthew Rosato <mjrosato@linux.ibm.com>,
-	Alex Williamson <alex.williamson@redhat.com>,
-	ath10k@lists.infradead.org, ath11k@lists.infradead.org,
-	Christian Borntraeger <borntraeger@linux.ibm.com>,
-	dri-devel@lists.freedesktop.org, iommu@lists.linux.dev,
-	kvm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-	linux-rdma@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-	linux-s390@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-tegra@vger.kernel.org, linux-wireless@vger.kernel.org,
-	netdev@vger.kernel.org, nouveau@lists.freedesktop.org,
-	Niklas Schnelle <schnelle@linux.ibm.com>,
-	virtualization@lists.linux-foundation.org
-Subject: Re: [PATCH 1/8] iommu: Add a gfp parameter to iommu_map()
-Message-ID: <Y7hZOwerwljDKoQq@nvidia.com>
-References: <1-v1-6e8b3997c46d+89e-iommu_map_gfp_jgg@nvidia.com>
- <4fd1b194-29ef-621d-4059-a8336058f217@arm.com>
-Content-Disposition: inline
-In-Reply-To: <4fd1b194-29ef-621d-4059-a8336058f217@arm.com>
-X-ClientProxiedBy: MN2PR12CA0004.namprd12.prod.outlook.com
- (2603:10b6:208:a8::17) To LV2PR12MB5869.namprd12.prod.outlook.com
- (2603:10b6:408:176::16)
+	id 1pEodL-000dVm-RM
+	for ath11k@lists.infradead.org; Mon, 09 Jan 2023 09:40:11 +0000
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3098h8Qv030005;
+	Mon, 9 Jan 2023 09:39:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=K4wq11DfWu5N/17+iiCpGthkHxvKT155yOBJf//IEEs=;
+ b=LtRwuNgTsnXAVrz2p+aTujuBM3sgN0T/Wql+RiU8XAoHsOQWLt7V/LONaQP6u2S2vSSF
+ 74r7sM+D/VpS/a21PI0J5Zz3XbQze/HSzjvi6PrOQaqXKfrWEZ6M+K6HNmIGlA3Vmqb8
+ AI6TJo9Y+XnF+cLZ7CYCUBvyn8rztrKYusA37a6jUzhhCs/tp30h9ap5p58NBgI2w5s9
+ TwV9Wy+j3nM227Pg+O140/TWzSwccQpQEI+4omERHyiCtx7nOf45pxA8lb7wKFKBoKu/
+ cqtGOBklfOVKV2Mo0mE5Gn+jfyNYGadv6j/tM3KwnbW0uPYWDwOiKgRmmGxW6cKVtJBj DA== 
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3my0b92r7g-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 09 Jan 2023 09:39:55 +0000
+Received: from nasanex01a.na.qualcomm.com (corens_vlan604_snip.qualcomm.com [10.53.140.1])
+	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3099dsoQ024325
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 9 Jan 2023 09:39:54 GMT
+Received: from [10.253.34.122] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 9 Jan 2023
+ 01:39:51 -0800
+Message-ID: <4de1f964-b623-2b31-c044-60cc188fc134@quicinc.com>
+Date: Mon, 9 Jan 2023 17:39:49 +0800
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|MW4PR12MB5601:EE_
-X-MS-Office365-Filtering-Correlation-Id: a380c960-bbc3-4788-e1ef-08daf00ad407
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 	6qJH666CBhIW5tUF2AsyhSKgkkKCL7qQ+0QvpkGXxA5fosBL2pe5k3FzB+YXv22Q2GysE6xXwb1HuOzGxF+qXLaq+nXCQrFd4y/n1GxEk8+S0bp5z9AYM0xBOoKAYRNbd5PBTl0BT7ABQFgzk9OqAQX5tRnqsTsNUgBG0TB6XpeH2RH6klh8Cza8zimRZeiqwEfNkiY3aK2XlvkEJU3OBi1agbVr2x8o2xq1CGGL+CTyWuYyEAF8w4caTrGQGp4bPYE1xwnPc3b3DyeMDZnVgNbBJD+h3lD+VE60bntuYQaIzJqRiOtJI2ksLPU6h8vEggZPTmS1rG51A3T3uTYAWG+dKn1+SxZ+G8iD4GtUWRVLKbLYNCjLOeHX6LsN6vv0fyQYQc8ud+tt9hIV8CdlrqHrpuAwoFwQ5pRuNvPPewxJ4OZILiGc+u6MVIw8lrm5XwFJG2m5n4m0ru0Y6rlol2eqebZJUSM84fCUCjd2fr4ChBU1OyOi34eIEBiJwDRPe6xIuWahIJSlBbFBY3Fv7/KwkjYRD35ynFav+MidO58TKqaGY2VimiJ/rbDKyPX3SXaN5HGJ0QaWCnld407OD+S9TFDS2mf2CozxQjxNITbgoKZqXwrbfspiAk41amQrhl4+9anZ9rkFCh+0s5XviQ==
-X-Forefront-Antispam-Report: 	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LV2PR12MB5869.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(396003)(136003)(376002)(366004)(346002)(451199015)(54906003)(186003)(26005)(66556008)(66476007)(2616005)(6486002)(478600001)(6512007)(8676002)(8936002)(7416002)(83380400001)(41300700001)(5660300002)(2906002)(4326008)(316002)(66946007)(86362001)(6916009)(6506007)(53546011)(38100700002)(36756003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 	=?us-ascii?Q?gUtguh/BhjSsWFMyOvOkTocwMW34MIv6f+dQH0dsuXmPdkuOjqZjELhOoCBR?=
- =?us-ascii?Q?jw/9LzWuOml7GUNslDGnwn35hTk3PfwFosS/n//Om1Omq40fna+7KkqQTSF4?=
- =?us-ascii?Q?D6sIJr7h9Gfk0ZeWsJBVRBm11B+Darv7rylsGsY0WKszhDnvMWSWJRA/MqI9?=
- =?us-ascii?Q?hsetMQd/d1+oJdZAlyW1iiJTtgk8PrMuAzfkTs42KLEZ+2QU6H8iSsT1FyBt?=
- =?us-ascii?Q?VSLPzGYe8cQxO1WUF86hM/4N4RWO3dfhARjrkUizubFVbCstcWf4VA2Q4sm9?=
- =?us-ascii?Q?42sdcJJNEd0DrrgSCfk0chB21gvbI14S6UJ6XJhl81+UKR1TlxKjdkfIVroU?=
- =?us-ascii?Q?vHa3qlcSPjUK7l9PJk46XCLZSa7BLIZLIEn2ktcKl47Azrm6LIu/XszuIu+8?=
- =?us-ascii?Q?UZOWwrCt74fT43uZdnZT9Zfbrwn0w7BW0mGaXpCth8FfaFN07Rl2mam0O7D0?=
- =?us-ascii?Q?gxA1/xJcSE7aUKUncuhSvGsSCPeFfgx1T71E+59Z+8/rGdGH6PD0HwxggPz+?=
- =?us-ascii?Q?gFjHo/QAVRvyJqoTqP3N9gzeaLxiWLoaDwWM+O2eCTe3VaEavpuLW+X7ZqaB?=
- =?us-ascii?Q?nZAyRj8OV/ujMXMFsg4pKDLJSWMsd8u/f5t5rjZgfVBkKFGTZ0CVRjEi2OIM?=
- =?us-ascii?Q?HplJ3hvt6yMxfJ8HU7BcD1G2JXVtQhGD/Lxt8braTiN/MSuDWSO6tUoUmIvs?=
- =?us-ascii?Q?4MVTggacoJznwyUTxA7mKHOs3oX1EQD3Bi/0DAxiCXsWKShBaITtJh6m9ucK?=
- =?us-ascii?Q?k5gbShKvKfd8d6t5YWtP1RrTSUXXVxaXGLHzPg8KlSPCNHcUQhQBWTWYY4By?=
- =?us-ascii?Q?NFE5y/n2dynXHdjy2/nIf8Yxd/vSzBW/gx2vDf7m0kJjIAJk/vdXr8x755Up?=
- =?us-ascii?Q?qgnC7KJ8wu3VE42HIMu+T0s0WGsEZlRNtPGlwAxEI+OisFxdreVgEUmHHFpK?=
- =?us-ascii?Q?nJagpumxXtxVoVDp6I4zPrivqQSVZzplcfplE0qu6mXkdj9qZK2F6wL36b3q?=
- =?us-ascii?Q?jrCXpMZaCFpv+Xal25tX6jqHeYX+3OPYeLc+jZYNZzEpqkTyy2VRvTomYZt1?=
- =?us-ascii?Q?PRhA5xSzVWtHhxDWZXLj+Ha4bpATSb8KkyB1f+G0W5F+OX0f3+U44ZXm5G/d?=
- =?us-ascii?Q?nmuL44r/aT8Odag8gE0zL+vnZsYjkif6UEqiH4w1p/fPdVOTy2Ze8kiB6Ecv?=
- =?us-ascii?Q?GeS18tfQFq2kBnYk/+U6iSkDavbJo5rO8mpMqLb+BzxQfpGAQJZMrfOknBnK?=
- =?us-ascii?Q?oBPIbmEe5Jzp/w1D1B+nuoTMCYm0i6YBD+84hAOe06aU2IVF70WG8pa0Lo67?=
- =?us-ascii?Q?y3gr3I894Exe5oQkhznS2TuG3UDApRj7jZQYSxdOp62P83+SwGHOgL1P6jgA?=
- =?us-ascii?Q?GbV53ubvNCNTBM0uP9GhYwb4WWnjh7jjIDhyZELmQDlSTtuh1tOr67dGTqW2?=
- =?us-ascii?Q?nKOaf5OvnXFR3G+ycDWf6znVbK0mGti3bQ51KYU1ieMy+4Oc9L8HJDxAScD+?=
- =?us-ascii?Q?eUzyRx/JZt4JOZ75y4YnKNES9JvIpZjayYtbPSws/bsAm12Qp7pbrpsNv0Bf?=
- =?us-ascii?Q?BLbdROencX9YMTiONhIirY8MXkPGWLo+bBmeTMjI?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a380c960-bbc3-4788-e1ef-08daf00ad407
-X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jan 2023 17:24:12.7096
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /G4slPQ9LdfbZ+iK5j2t1fMDw7VqdkXkdo74dzB3f1XOhCF0xdxdWnTliW/zmjfK
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB5601
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.1
+Subject: Re: [PATCH v10 3/5] cfg80211/mac80211: move interface counting for
+ combination check to mac80211
+Content-Language: en-US
+To: Luciano Coelho <luciano.coelho@intel.com>,
+        <linux-wireless@vger.kernel.org>
+CC: <johannes@sipsolutions.net>, <michal.kazior@tieto.com>,
+        <sw@simonwunderlich.de>, <andrei.otcheretianski@intel.com>,
+        <eliad@wizery.com>, <ath11k@lists.infradead.org>
+References: <1394547394-3910-1-git-send-email-luciano.coelho@intel.com>
+ <1394547394-3910-4-git-send-email-luciano.coelho@intel.com>
+From: Wen Gong <quic_wgong@quicinc.com>
+In-Reply-To: <1394547394-3910-4-git-send-email-luciano.coelho@intel.com>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: v1tYP6z3NXpfbBYbV1NHTm6HBd95eYrj
+X-Proofpoint-ORIG-GUID: v1tYP6z3NXpfbBYbV1NHTm6HBd95eYrj
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2023-01-09_03,2023-01-06_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxscore=0
+ clxscore=1011 adultscore=0 impostorscore=0 phishscore=0 bulkscore=0
+ lowpriorityscore=0 suspectscore=0 mlxlogscore=802 priorityscore=1501
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301090067
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230106_092417_485375_65A52F33 
-X-CRM114-Status: GOOD (  17.63  )
+X-CRM114-CacheID: sfid-20230109_014000_050784_1AF603FA 
+X-CRM114-Status: GOOD (  15.10  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -140,43 +95,91 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Fri, Jan 06, 2023 at 05:15:28PM +0000, Robin Murphy wrote:
-> On 2023-01-06 16:42, Jason Gunthorpe wrote:
-> > The internal mechanisms support this, but instead of exposting the gfp to
-> > the caller it wrappers it into iommu_map() and iommu_map_atomic()
-> > 
-> > Fix this instead of adding more variants for GFP_KERNEL_ACCOUNT.
-> 
-> FWIW, since we *do* have two variants already, I think I'd have a mild
-> preference for leaving the regular map calls as-is (i.e. implicit
-> GFP_KERNEL), and just generalising the _atomic versions for the special
-> cases.
+On 3/11/2014 10:16 PM, Luciano Coelho wrote:
+> ...
+> +int ieee80211_check_combinations(struct ieee80211_sub_if_data *sdata,
+> +				 const struct cfg80211_chan_def *chandef,
+> +				 enum ieee80211_chanctx_mode chanmode,
+> +				 u8 radar_detect)
+> +{
+> +	struct ieee80211_local *local = sdata->local;
+> +	struct ieee80211_sub_if_data *sdata_iter;
+> +	enum nl80211_iftype iftype = sdata->wdev.iftype;
+> +	int num[NUM_NL80211_IFTYPES];
+> +	struct ieee80211_chanctx *ctx;
+> +	int num_different_channels = 1;
+> +	int total = 1;
+> +
+> +	lockdep_assert_held(&local->chanctx_mtx);
+> +
+> +	if (WARN_ON(hweight32(radar_detect) > 1))
+> +		return -EINVAL;
+> +
+> +	if (WARN_ON(chanmode == IEEE80211_CHANCTX_SHARED && !chandef->chan))
+> +		return -EINVAL;
+> +
+> +	if (WARN_ON(iftype >= NUM_NL80211_IFTYPES))
+> +		return -EINVAL;
+> +
+> +	/* Always allow software iftypes */
+> +	if (local->hw.wiphy->software_iftypes & BIT(iftype)) {
+> +		if (radar_detect)
+> +			return -EINVAL;
+> +		return 0;
+> +	}
+> +
+> +	memset(num, 0, sizeof(num));
+> +
+> +	if (iftype != NL80211_IFTYPE_UNSPECIFIED)
+> +		num[iftype] = 1;
+> +
+> +	list_for_each_entry(ctx, &local->chanctx_list, list) {
+> +		if (ctx->conf.radar_enabled)
+> +			radar_detect |= BIT(ctx->conf.def.width);
+> +		if (ctx->mode == IEEE80211_CHANCTX_EXCLUSIVE) {
+> +			num_different_channels++;
+> +			continue;
+> +		}
+> +		if ((chanmode == IEEE80211_CHANCTX_SHARED) &&
+> +		    cfg80211_chandef_compatible(chandef,
+> +						&ctx->conf.def))
+> +			continue;
+> +		num_different_channels++;
+> +	}
+> +
+> +	list_for_each_entry_rcu(sdata_iter, &local->interfaces, list) {
+> +		struct wireless_dev *wdev_iter;
+> +
+> +		wdev_iter = &sdata_iter->wdev;
+> +
+> +		if (sdata_iter == sdata ||
+> +		    rcu_access_pointer(sdata_iter->vif.chanctx_conf) == NULL ||
+> +		    local->hw.wiphy->software_iftypes & BIT(wdev_iter->iftype))
+> +			continue;
+> +
+> +		num[wdev_iter->iftype]++;
+> +		total++;
+> +	}
+> +
+> +	if (total == 1 && !radar_detect)
+> +		return 0;
+> +
 
-I think it is just better to follow kernel convention and have
-allocation functions include the GFP because it is a clear signal to
-the user that there is an allocation hidden inside the API. The whole
-point of gfp is not to have multitudes of every function for every
-allocation mode.
+should also check with cfg80211_check_combinations() when total == 1 and 
+num_different_channels > 1 ?
 
-There are not so many callers that it seems worth worrying about
-removing the extra GFP_KERNEL argument.
+When MLO is enabled, it could have 2 channels for one ieee80211_sub_if_data.
 
-> However, echoing the recent activity over on the DMA API side of things, I
-> think it's still worth proactively constraining the set of permissible
-> flags, lest we end up with more weird problems if stuff that doesn't really
-> make sense, like GFP_COMP or zone flags, manages to leak through (that may
-> have been part of the reason for having the current wrappers rather than a
-> bare gfp argument in the first place, I forget now).
-
-Yeah, that can be done
-
-Thanks,
-Jason
+> +	return cfg80211_check_combinations(local->hw.wiphy,
+> +					   num_different_channels,
+> +					   radar_detect, num);
+> +}
+> ...
 
 -- 
 ath11k mailing list
