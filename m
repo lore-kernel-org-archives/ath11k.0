@@ -4,84 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42859C54EBD
-	for <ath11k@archiver.kernel.org>; Mon,  9 Jan 2023 15:43:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44C38C54EBE
+	for <ath11k@archiver.kernel.org>; Tue, 10 Jan 2023 05:20:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=gsxQZ9rFAfpQF09nZM3fERbsBQKR9dO/+YS3xKE79MI=; b=Kvfo0e9UOjCLoE
-	ZVXXs0lApyd6pBYRt8s9GXdVtAfTysEJFKs15b2HrAgEG8QdlN5JZXh+bVYrpbiLQaWMlHzzDecnG
-	EeNrPfMinqEWVtfOmn5Z6ydimDdsF0nFZPFGfD6zeegEVHlyaHpE2dXD55xDFVV8BgHbVpP0ApfXx
-	BDKtZKXfOx3Oy3tK510GgBvESjJ8Oht7sN3QlXTSjl2r9n+9MD17AiD2OO8UGkxDEQUVcbfGs5KGG
-	6YsnALVWsEF6WuJO5rCpkcWYgCaTs7vYiwm6edDmdJ7ZnjhMg+uscaHQ3PlhowbGaUDXYqIFz342W
-	+iwIEngIEWkghWA1+5YQ==;
+	List-Owner; bh=icx1WFFiud7B3fFQysyIOT1jE9/+NcQYg57fS1Q/Lmk=; b=LB5rc7z3q/pKSr
+	+3cjEqveR53pq5YFoTFsSVwA2V0rDdcVWTrnyNDU/suIRDgv8I+kVVISlJtYL1thtsEE8OfqeKKsc
+	HRH3i0HBhtTtdVyF+O97/4QqdVbNGH7yWpAyttV0JF2v0vvdbZNGwlyYcCaS8Xwl9DZQ7P4tBgLnL
+	PLNi8FKWRPHBZjibjLnov/cPmh5X/nTFjb599H/wHyb7aXt7PIBgJb8/koRa67fXBe966HD6WT6ar
+	is67UFX9vsZickNIB+RdAMtX7ay0UTfO8srC4TpGG1Tjunwe5J2HOqZiuqYhQ4ziLhTuXBI+dgCte
+	fcfk795uJeh2R2obZjlA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pEuJ4-002Mc0-Mf; Mon, 09 Jan 2023 15:43:26 +0000
-Received: from mail-ot1-x32e.google.com ([2607:f8b0:4864:20::32e])
+	id 1pF73K-005KZ3-4Q; Tue, 10 Jan 2023 05:20:02 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pEuIy-002MYG-Ga
-	for ath11k@lists.infradead.org; Mon, 09 Jan 2023 15:43:22 +0000
-Received: by mail-ot1-x32e.google.com with SMTP id j16-20020a056830271000b0067202045ee9so5364360otu.7
-        for <ath11k@lists.infradead.org>; Mon, 09 Jan 2023 07:43:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=dk0DIf3m8mAbPrZmJ7FA4rKsFWKveZQh5DZJPWwG10Q=;
-        b=IvAS/2RRpoD6HLWNsjz2sTSejxq0r/thJ5+JV6cxos4fYHyqvgXt0BFuKhqKfSygXc
-         ik2SkgMH/+LSCEid9NlwBm0vxzOI/fQOPay0w7H4Qq+xAgVPU6GFOr8evqemOAgFB/hv
-         gR+jzFOpNifkTCpMqjdzcgqVynYm97YzCwuSgLpHldHNsa2fipVWyOyNg0MAxLYnMu7i
-         ipqDnrkkPIwGbP6MF593t/G52b/CmuQbQjYRFC4r2nScENsvbv6Mn3EYCjwcztejKOCU
-         BfrzFCvn5kp3dyKsRFa5g1R+OH1o9L4PztArVj+W68Jyo29AMRag4MPpeOuPZNwJk/IY
-         lvAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=dk0DIf3m8mAbPrZmJ7FA4rKsFWKveZQh5DZJPWwG10Q=;
-        b=nrKpR7LYPNlxe9sipbP0qOvYZX+GezSFPxvtTsp/NEux+5SF/yJGsOCbFBRUINFY15
-         LDnNPXoVWaWpC+nWp0K2uzFbKNxlkVoHCz4FIH3sRfzb5aQgpzoSBmZ9m4YblfdFP9gK
-         9kB2r6BHDuC3CSBA7uQCwZWWUpiOg+zH2tv5Zh7jT3iWwI2NfZ2lOj4FgLkz+IXhzKIb
-         slGGAw+zwAAQGmWrv3bTifOdzN7l+B7jsF85yBjdmzRhqI/xE/ExaaS4rlg8CsfhS4tr
-         jNmboIavwxPrRb6OL/gMaXQOF5Qdy3p6G+bUJarllOG8Y5Kep9WUd1k/JvHAWlbT18EV
-         X6GQ==
-X-Gm-Message-State: AFqh2kpLjxQ9/e+cBwWaLvUUVlxahO23KXLA59vFLTBQCowBeAtjckAm
-	DKGOmeuKDTkjeTc13ygCruU=
-X-Google-Smtp-Source: AMrXdXsCo9IbAIuhu0R12wYIv4CfWGyRJgXt+ImyWl7YfAeRdnCTZZcHIHRqdD9kJ0JuUJUfuWezpg==
-X-Received: by 2002:a9d:674c:0:b0:66e:6d33:fb32 with SMTP id w12-20020a9d674c000000b0066e6d33fb32mr29729864otm.26.1673278997558;
-        Mon, 09 Jan 2023 07:43:17 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id e18-20020a9d6e12000000b006849b445543sm159134otr.18.2023.01.09.07.43.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Jan 2023 07:43:17 -0800 (PST)
-Message-ID: <065cf0e5-2c64-56c6-ee66-a6b61be2dddf@roeck-us.net>
-Date: Mon, 9 Jan 2023 07:43:15 -0800
+	id 1pF73H-005KYE-9e
+	for ath11k@lists.infradead.org; Tue, 10 Jan 2023 05:20:01 +0000
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30A5FUFd021053;
+	Tue, 10 Jan 2023 05:19:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=3gqZAOAujEYkFiUKx/24Z83ZKWFv0qHC4gnwhRZhOc4=;
+ b=hxk/tYAFE4/SfP6JC6pHzg0unAxRFg86c6xdNeURlXMEqlj0VfcNqzjgWXpcO1bGKRUb
+ A/rR4mv91rx/O9Oe2AcCIg6AgVTx7dskCYQc1MOBjDSdEpZCh7qRwoYQUymYkCjKmyLt
+ uovVlsXcXM23LvNk8P9/9QqXcqPgCg5xHyoyuMTTE2VU9InRuXKSW2xUVTqSbIcfjyZt
+ QrXcNwYfiMO55DgDDXTBesoRFzO2UZnmlsQe8qThVlK8B1TLmdaOpFkEOi37jb6TybpD
+ PZmD5r+f4ItskZ7yR5ep4xRKRbOI+A8wsqYBypwVnRK0Xf9IxRqDPcu4DEwDnuHM18Dn lg== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n0q6es5nv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 10 Jan 2023 05:19:52 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30A5JpK5001401
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 10 Jan 2023 05:19:51 GMT
+Received: from [10.216.51.52] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 9 Jan 2023
+ 21:19:49 -0800
+Message-ID: <0b06dea9-d5be-1edc-62ca-576398d1bcd8@quicinc.com>
+Date: Tue, 10 Jan 2023 10:49:46 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH] wifi: mac80211: change initialize for sk_buff in
- ieee80211_tx_dequeue()
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH] wifi: ath11k: Optimize 6 GHz scan time
 Content-Language: en-US
-To: Alexander Wetzel <alexander@wetzel-home.de>,
- Wen Gong <quic_wgong@quicinc.com>
-Cc: johannes@sipsolutions.net, ath11k@lists.infradead.org,
- linux-wireless@vger.kernel.org
-References: <20221212083607.21536-1-quic_wgong@quicinc.com>
- <20230105052647.GA2477583@roeck-us.net>
- <d28c6340-7ad2-d7f6-939d-3a1a057cb7da@wetzel-home.de>
- <3372b42f-b9bf-20e8-35f9-5370571a9e35@wetzel-home.de>
-From: Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <3372b42f-b9bf-20e8-35f9-5370571a9e35@wetzel-home.de>
+To: James Prestwood <prestwoj@gmail.com>,
+        Marcel Holtmann
+	<marcel@holtmann.org>
+CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
+References: <20221220043823.20382-1-quic_mpubbise@quicinc.com>
+ <5DAEA8B2-2B44-4A91-9E57-12B6C6B6C1FC@holtmann.org>
+ <2861463e-a097-7efe-bc75-f13c8faf9547@quicinc.com>
+ <378a1d63b3752ace7384c44d6f5184753fa7795d.camel@gmail.com>
+From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+In-Reply-To: <378a1d63b3752ace7384c44d6f5184753fa7795d.camel@gmail.com>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: y_Aa44rV7LHfrgpiK6cllbkIQJ-faya1
+X-Proofpoint-ORIG-GUID: y_Aa44rV7LHfrgpiK6cllbkIQJ-faya1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2023-01-09_16,2023-01-09_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxlogscore=806
+ clxscore=1011 impostorscore=0 lowpriorityscore=0 suspectscore=0
+ priorityscore=1501 mlxscore=0 bulkscore=0 spamscore=0 phishscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2301100033
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230109_074320_620599_04F18BD9 
-X-CRM114-Status: GOOD (  14.98  )
+X-CRM114-CacheID: sfid-20230109_211959_502072_46BACDD5 
+X-CRM114-Status: GOOD (  22.56  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,42 +100,53 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 1/9/23 06:22, Alexander Wetzel wrote:
-> On 09.01.23 15:05, Alexander Wetzel wrote:
->> On 05.01.23 06:26, Guenter Roeck wrote:
->>> On Mon, Dec 12, 2022 at 03:36:07AM -0500, Wen Gong wrote:
->>>> The sk_buff is only set to NULL when initialize, sometimes it will goto
->>>> label "begin" after ieee80211_free_txskb(), then it points to a sk_buff
->>>> which is already freed. If it run into the "goto out" after arrived to
->>>> label "begin", then it will return a sk_buff which is freed, it is a
->>>> risk for use-after-free.
->>>>
->>>> Fixes: ded4698b58cb ("mac80211: run late dequeue late tx handlers without holding fq->lock")
->>>> Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
->>>
->>> I don't see any progress on this patch. Is there a problem with it ?
->>> Did it get lost ?
->>>
+On 12/29/2022 2:52 AM, James Prestwood wrote:
+> Hi Manikanta,
+>> By the way, userspace itself selects the frequencies to scan, not the
+>> driver.
 >>
->> Looks ok for me. But I just noticed that my patch
->> https://patchwork.kernel.org/project/linux-wireless/patch/20221230121850.218810-1-alexander@wetzel-home.de/
->>
->> should also fix the issue as an unintended side effect.
+>> If we see the split scan implementation in cfg80211, this is the how
+>> it
+>> is implemented. If NL80211_SCAN_FLAG_COLOCATED_6GHZ is set, it
+>> selects
+>> all PSC channels and those non-PSC channels where RNR IE information
+>> is
+>> found in the legacy scan results. If this flag is not set, all
+>> channels
+>> in 6 GHz are included in the scan freq list. It is upto userspace to
+>> decide what it wants.
 > 
-> Sorry that statement was incomplete: It's only fixed when
-> https://patchwork.kernel.org/project/linux-wireless/patch/20221230121850.218810-1-alexander@wetzel-home.de/
-> and
-> https://patchwork.kernel.org/project/linux-wireless/patch/20230106223141.98696-1-alexander@wetzel-home.de/
 > 
-> are applied.
+> This isn't your problem, but it needs to be said:
 > 
+> The nl80211 docs need and update to reflect this behavior (or remove
+> the PSC logic). IMO this is really weird that the kernel selects PSC's
+> based on the co-located flag. The docs don't describe this behavior and
+> the flag's name is misleading (its not
+> SCAN_FLAG_COLOCATED_AND_PSC_6GHZ) :)
+>
 
-Ah, yes. That is indeed correct. Let's just hope those patches will apply (and are
-going to be applied) to stable releases since this is a real problem there which
-does cause UAF and crashes.
+Sorry for the late reply, I was on vacation.
 
-Guenter
+What you said make sense. The existing flag should not add PSC channels 
+according to the flag description.
 
+We can add another flag something like you pointed out 
+SCAN_FLAG_COLOCATED_AND_PSC_6GHZ and include PSC channels if this flag 
+is set. What do you say?
+
+> If userspace doesn't specify a channel list then the kernel can do
+> whatever it wants, but otherwise it should stick to the requested
+> channels and scan only for co-located APs if the flag was set, not
+> PSC's too.
+> 
+> This basically adds ~3x the time to IWD's quick scan's for 6GHz capable
+> cards regardless if there are any co-located AP's. ugh.
+
+True.
+
+Thanks,
+Manikanta
 
 -- 
 ath11k mailing list
