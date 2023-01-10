@@ -4,57 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA4B4C46467
-	for <ath11k@archiver.kernel.org>; Tue, 10 Jan 2023 13:27:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFFFEC54EBC
+	for <ath11k@archiver.kernel.org>; Tue, 10 Jan 2023 17:05:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
-	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+RoO0I/Alua3dBzbUI8RM3JwNMWrTYFf4blS6gNY3hA=; b=U29/wEGH8NI6zH
-	uT8xenRHRx+bGFl7mXJMPWaqHZgcglLaiFDrVQUeDyZd1CWtgabJMP345bStxQUx38fMR8dooc18p
-	J0Sm+BnWUil4xFXYJn6Zi14YTHrvS2Wbd4dlUbjW5kzUwuucatdtXeOm3fia+9muXp3zKsX1tR8NE
-	cRKkCO37SQlZCXrx5vLSb60Tgx3QJlQVl8rlRC30FCL1LPQICMBz7ZT5B3iiefpyZy3PfP+0CPlvb
-	pOPOMWPrMrLsWO+6J3pjdWv+TZ1KrIQFzvoymid+bym+7GfPGsLGKvG1HcyNBYnW00owieQgsMpdg
-	MTwtKe0t6KBkRTT5vJ3g==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=sUfFdVSsgwyZaPz2tUC+5KmwwzNHSnsJma06/Of2drE=; b=5CuI8/pGyBT0uE
+	//1cTTXvwc2PKwUFYwWOSs+WshVMfyJgudPfNfeFNCZvaVPBU/18Z18m1y7IS1DvBjMYEdAH8vJ6F
+	jkO7cCZ5IVEFR8XIh6Svy3DF8gcg1zyI+48alp13kUtZ34sk+JUf8EuxfrvmEzo0M97YPJDqmLyis
+	fNtYMqS+YufFIcklC4L5KqoStU1LKPdlndr+Q9tnRaO/oQveLo3QfMwFA98ZK1UBreIByiEKRZVrm
+	4n7otqsyEVJ7H+OJF5LhjHHeHzMlKo9a3L1vXxjH398BwHm/uwKlvnhyzm37ZxvqGNoU2fRy58efK
+	ELnVZYOdcY7lRSRwgn0w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pFEew-0072qO-F5; Tue, 10 Jan 2023 13:27:22 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1pFI4C-007ucp-58; Tue, 10 Jan 2023 17:05:40 +0000
+Received: from mail-pf1-x429.google.com ([2607:f8b0:4864:20::429])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pFEes-0072po-QB
-	for ath11k@lists.infradead.org; Tue, 10 Jan 2023 13:27:20 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id 17636B81630
-	for <ath11k@lists.infradead.org>; Tue, 10 Jan 2023 13:27:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADCF8C433D2;
-	Tue, 10 Jan 2023 13:27:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1673357235;
-	bh=fLMyic9Kl202nlqpBzKTc0Mqy/BXCOzUfblO7YoPzMI=;
-	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=T1YvgQMLwp7yUO4KNl6fBvq6w3+ujzpfRBb0KwbOjZ8a+KJI0L3ez+n3gAtRoqIC6
-	 4AVN6ibArKnDb7w25SRIh+vK9ww+27L2cdHi+EMJzrRWV8UXFjGgjGn/SRigOITeuy
-	 bQECpKYcWzhh/3VkoVqj1t5fypC3Gurfsw/11rW7f2X1zkWzz7AyuT9NMIlcATnIMg
-	 1CAZe5Zb+eMsHRPVbEUEorE+e/yGd16uWfzmFw9qH3uVSAOc4LP15wMgZx2vz2k90t
-	 q0j14kgEBLZhO2oqOtlodY+f+zxGaxJC1Qh5RxAto0t+ISRA+Ffx4B3mYgmwIXx8Ca
-	 6LPzi0pSsNytg==
-MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: debugfs: fix to work with multiple PCI devices
-From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20221220121231.20120-1-kvalo@kernel.org>
-References: <20221220121231.20120-1-kvalo@kernel.org>
-To: Kalle Valo <kvalo@kernel.org>
+	id 1pFI48-007ucF-T0
+	for ath11k@lists.infradead.org; Tue, 10 Jan 2023 17:05:38 +0000
+Received: by mail-pf1-x429.google.com with SMTP id c85so6062149pfc.8
+        for <ath11k@lists.infradead.org>; Tue, 10 Jan 2023 09:05:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:user-agent:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=P7VqYujN76bTRmrMaoEIHiHeEhQrUIdz6GC94wtp4J8=;
+        b=oakdv63xlZhd+vcuUCU8xc0JKkQZ3pIx+6U4d3EjnHUwJSmH087Wffbk5LRMaRk1Gr
+         P1oSg6d1Z5T2acqHnD1VgEWJprQPK+fmjFEK5H4uaVgpX2wBEo5OPvJwZ+zopI2DiRTL
+         pkhw6NSvcs+pkqb0g2VVaPI/dQdqIfgiMtnz9Mvt7ANEVQO++yRpd5Mo/b1W2uNwzCPv
+         4JRDleHMpUSbDdwm6gpGhvp6oGvkxEYOtdiWCYPGFyEmgvb1li794YYirYKKUw/6MTMy
+         UXyWmbsyyK7dKWPq4iVQkwbQn2wGvrkr4FQIovTMTLrtpJUjUPcTXa5gzdH4EELuL3SB
+         vQWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:user-agent:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=P7VqYujN76bTRmrMaoEIHiHeEhQrUIdz6GC94wtp4J8=;
+        b=W9wTeWGgVLmdtYmEMTVL+cUl1OdkuNG/DZjZgL7ByQvq0cWyk/mwoqFQo6GKo9TMQa
+         8tjJOWErTv0av1uXPh2yKdSOBa9mEaPJ4ARqS65vA6eRLtuhwlzm1YekeXPzGHfFcJCy
+         QmSKZuCRYna5cP/eTNIP4G6O3LttverbO7erKARlFSZNzagLkFeJdfxSxAf0dccKq4XM
+         gWox3YvrVz3XEKUSWYeBNoWXvFBeSbQ7Tu9OOSBBcdOr0Yjeb86TG64dypQHVLo6qAQq
+         24lkUUOaK4X2ljtrqLrKuZufYhZZnB6TNBDT2CCPOtVcvCes+lF/PwW/eLuWQdj65EJC
+         kdXA==
+X-Gm-Message-State: AFqh2kqpuhF/44Fesr35Ggjdm1TVSvPWqRnbEMEJ9yLxejk5qo6+ykVy
+	QyJDQ4GUZqYZDDZV44/xfmcgFOlSq+4=
+X-Google-Smtp-Source: AMrXdXs+VL0xrwwY1lY317Ko3FUXiqiprqFoQCSiYZmoRgaKA/w5pnLHFlxCog/EiNC00Wdzw/mU8A==
+X-Received: by 2002:aa7:8209:0:b0:581:3328:b468 with SMTP id k9-20020aa78209000000b005813328b468mr48635107pfi.6.1673370331500;
+        Tue, 10 Jan 2023 09:05:31 -0800 (PST)
+Received: from [192.168.254.20] ([50.39.160.234])
+        by smtp.gmail.com with ESMTPSA id i8-20020a056a00004800b00576145a9bd0sm8302689pfk.127.2023.01.10.09.05.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Jan 2023 09:05:31 -0800 (PST)
+Message-ID: <0e7644cbfa9e4ba0d534681166ca467ea1684719.camel@gmail.com>
+Subject: Re: [PATCH] wifi: ath11k: Optimize 6 GHz scan time
+From: James Prestwood <prestwoj@gmail.com>
+To: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>, Marcel Holtmann
+	 <marcel@holtmann.org>
 Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
-User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <167335721814.4132.1940344098269572941.kvalo@kernel.org>
-Date: Tue, 10 Jan 2023 13:27:14 +0000 (UTC)
+Date: Tue, 10 Jan 2023 09:05:30 -0800
+In-Reply-To: <0b06dea9-d5be-1edc-62ca-576398d1bcd8@quicinc.com>
+References: <20221220043823.20382-1-quic_mpubbise@quicinc.com>
+	 <5DAEA8B2-2B44-4A91-9E57-12B6C6B6C1FC@holtmann.org>
+	 <2861463e-a097-7efe-bc75-f13c8faf9547@quicinc.com>
+	 <378a1d63b3752ace7384c44d6f5184753fa7795d.camel@gmail.com>
+	 <0b06dea9-d5be-1edc-62ca-576398d1bcd8@quicinc.com>
+User-Agent: Evolution 3.40.4 (3.40.4-5.fc34) 
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230110_052719_033399_4647BDA9 
-X-CRM114-Status: GOOD (  14.26  )
+X-CRM114-CacheID: sfid-20230110_090536_970838_7EC06D9F 
+X-CRM114-Status: GOOD (  26.21  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,66 +94,63 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Kalle Valo <kvalo@kernel.org> wrote:
+On Tue, 2023-01-10 at 10:49 +0530, Manikanta Pubbisetty wrote:
+> On 12/29/2022 2:52 AM, James Prestwood wrote:
+> > Hi Manikanta,
+> > > By the way, userspace itself selects the frequencies to scan, not
+> > > the
+> > > driver.
+> > > 
+> > > If we see the split scan implementation in cfg80211, this is the
+> > > how
+> > > it
+> > > is implemented. If NL80211_SCAN_FLAG_COLOCATED_6GHZ is set, it
+> > > selects
+> > > all PSC channels and those non-PSC channels where RNR IE
+> > > information
+> > > is
+> > > found in the legacy scan results. If this flag is not set, all
+> > > channels
+> > > in 6 GHz are included in the scan freq list. It is upto userspace
+> > > to
+> > > decide what it wants.
+> > 
+> > 
+> > This isn't your problem, but it needs to be said:
+> > 
+> > The nl80211 docs need and update to reflect this behavior (or
+> > remove
+> > the PSC logic). IMO this is really weird that the kernel selects
+> > PSC's
+> > based on the co-located flag. The docs don't describe this behavior
+> > and
+> > the flag's name is misleading (its not
+> > SCAN_FLAG_COLOCATED_AND_PSC_6GHZ) :)
+> > 
+> 
+> Sorry for the late reply, I was on vacation.
+> 
+> What you said make sense. The existing flag should not add PSC
+> channels 
+> according to the flag description.
+> 
+> We can add another flag something like you pointed out 
+> SCAN_FLAG_COLOCATED_AND_PSC_6GHZ and include PSC channels if this
+> flag 
+> is set. What do you say?
 
-> ath11k fails to load if there are multiple ath11k PCI devices with same name:
-> 
->  ath11k_pci 0000:01:00.0: Hardware name qcn9074 hw1.0
->  debugfs: Directory 'ath11k' with parent '/' already present!
->  ath11k_pci 0000:01:00.0: failed to create ath11k debugfs
->  ath11k_pci 0000:01:00.0: failed to create soc core: -17
->  ath11k_pci 0000:01:00.0: failed to init core: -17
->  ath11k_pci: probe of 0000:01:00.0 failed with error -17
-> 
-> Fix this by creating a directory for each ath11k device using schema
-> <bus>-<devname>, for example "pci-0000:06:00.0". This directory created under
-> the top-level ath11k directory, for example /sys/kernel/debug/ath11k.
-> 
-> The reference to the toplevel ath11k directory is not stored anymore within ath11k, instead
-> it's retrieved using debugfs_lookup(). If the directory does not exist it will
-> be created. After the last directory from the ath11k directory is removed, for
-> example when doing rmmod ath11k, the empty ath11k directory is left in place,
-> it's a minor cosmetic issue anyway.
-> 
-> Here's an example hierarchy with one WCN6855:
-> 
-> ath11k
-> `-- pci-0000:06:00.0
->     |-- mac0
->     |   |-- dfs_block_radar_events
->     |   |-- dfs_simulate_radar
->     |   |-- ext_rx_stats
->     |   |-- ext_tx_stats
->     |   |-- fw_dbglog_config
->     |   |-- fw_stats
->     |   |   |-- beacon_stats
->     |   |   |-- pdev_stats
->     |   |   `-- vdev_stats
->     |   |-- htt_stats
->     |   |-- htt_stats_reset
->     |   |-- htt_stats_type
->     |   `-- pktlog_filter
->     |-- simulate_fw_crash
->     `-- soc_dp_stats
-> 
-> I didn't have a test setup where I could connect multiple ath11k devices to the
-> same the host, so I have only tested this with one device.
-> 
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.9
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1-01208-QCAHKSWPL_SILICONZ-1
-> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01208-QCAHKSWPL_SILICONZ-1
-> 
-> Tested-by: Robert Marko <robert.marko@sartura.hr>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+I'm no authority here, just wanted to point this out. This is something
+that would need to be in mac80211 though, not just a specific driver.
+It would be up to the maintainers and would require changing the
+behavior of the existing flag, which then changes behavior in
+wpa_supplicant/hostapd. So its somewhat intrusive.
 
-Patch applied to ath-next branch of ath.git, thanks.
+But personally I'd be for it. And just require userspace include PSC's
+like any other channels if they need those.
 
-323d91d4684d wifi: ath11k: debugfs: fix to work with multiple PCI devices
+Thanks,
+James
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20221220121231.20120-1-kvalo@kernel.org/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 
 -- 
