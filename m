@@ -4,59 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E4FBC54EBD
-	for <ath11k@archiver.kernel.org>; Thu, 12 Jan 2023 09:09:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECCF5C54EBC
+	for <ath11k@archiver.kernel.org>; Thu, 12 Jan 2023 09:13:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
 	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=aLeBAKN+e18FCI2C6jyk47tBlgcQg8Xt5VkNdhQrJzc=; b=Hhw4VBOtDXbUeF
-	nSxMMihbe2BRliDPaCLJekD+Z2SEuVYJUzQx36rR0UVrPUVtP2+ayW2u+J6GBB9+NhlhS83TbBr3N
-	za4cNJqvbla/5a3FiwO6ECVYUSU3dF10QwcEhB8sxCZb9Dh4OJciprWyqZIfetVpP/qCjrUywlocB
-	vaFi9gMWxIuuT/nxbknggUnZ8G8Rj0reEpHpLLMXI1SG6+x0KHee8EPteivD91WDTuJaY6e+zxq5m
-	eEIpKQFAtNk5QrgP6vPb/aDaO9WXjbaJRJGXEPgNvDEfQGyu2E0fMjoiSphrKd7orjzAy/hEFnsHG
-	3ZbgseQbAVX9gjD8zA9g==;
+	List-Owner; bh=Xl3lM5gXmd4Lhix9gWfXxdIK6szx2/k8qCKpUrdSySA=; b=wiwR/KhMYaWr55
+	CmPxx8yVvfP9cO8dXNHTb+mE8jRJmi+De5buDfVMLUeIvYNBxfqsXahWxBl9+s/m6TStNUfp+gmMr
+	5JNX7GstlDv4SLwSCyapYMV01trwEy2Xev5qETwZCwpqjkwoODpvN0aeoS6y9923DvcrINL3H5h9M
+	hu2LK/u6toXDcG2CmDQplPRcvST08x4Ynx2HDx7i6bgphyt/8H3maEGLCPHGQHM45ZrekqWfMN4dy
+	u1wFMlhg28ImxNCXkebwyKJ9AWVNcHyrK7K+grLkmHIkn7Qy5HndRxZH2SDrMQwyzMn+pXaDzqbrD
+	wU4NkCQ1tSEabt6hhgsA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pFtaS-00EI7H-KO; Thu, 12 Jan 2023 09:09:28 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1pFteD-00EJWd-0l; Thu, 12 Jan 2023 09:13:21 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pFtaP-00EI5L-Ed
-	for ath11k@lists.infradead.org; Thu, 12 Jan 2023 09:09:27 +0000
+	id 1pFte7-00EJTU-Rx
+	for ath11k@lists.infradead.org; Thu, 12 Jan 2023 09:13:19 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id E7A7A61FA0;
-	Thu, 12 Jan 2023 09:09:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93078C433D2;
-	Thu, 12 Jan 2023 09:09:23 +0000 (UTC)
+	by ams.source.kernel.org (Postfix) with ESMTPS id 487B6B81DD7;
+	Thu, 12 Jan 2023 09:13:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6F4CC433F2;
+	Thu, 12 Jan 2023 09:13:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1673514564;
-	bh=rrrY0mwZBiE2S9b+NOyUnVV3BWYMdajkh1hhqZrk2vE=;
+	s=k20201202; t=1673514793;
+	bh=kEGTvDm5segAcaadzq0wJ5MfNW2R7JZZKdchDCKJD0E=;
 	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=dGILvNc5uMcKYgPlrMWrBZnl+YW5fWCeWcMxMYJ01CrHU2xR5Owyniz+3EpXmeCav
-	 vO7RkxlJlLga/N/qKBEiFfKaKbNnCOzadCESjovjUln8qmMD3bW3X5q8VISDEb/mm3
-	 NFyEXVj/fVJV45ZqgkD1ec1uszwIkhnISsyWIdWKna0AP/ASa+ySMhl07Rosq5B6a+
-	 4h2hmdsQ02tBk8kYdzaRRDerRs7rKQz1e22FRPpSas/lOG5oh52S0Cdr49NopQZNm8
-	 E1cqGU3jUd6CJ+/PC2Ssu5+mguj8WDMEgE5GEyxbWu7lxFnI8HQn3xZsc1vVGbqBHG
-	 mSXG8UN4p8FKw==
+	b=e6PtrDaTa+SrVnqR0EL9ZA1/+axqXM3X5ItynF6qLmzEgYLuMdC8iQZq9B6bun8AU
+	 aUGczTnlCC/jSO8DenY7D2DZKCoBFjA9IpO5d2jMeUarSi9mNDPOgaTcfxODkdP9dH
+	 4T0FkjXaO8jJrFUVp6I/SttzFIxR2qdhRqJ4FsZEzuOr0K6ghtBAs1WnrR5YRPKm02
+	 JE5A/6cVFCv7+2UqZ79O/EbVgpGq7XoZCU7gYoj3VdojGYXAkslFxryJ6PAoQjdfTz
+	 8FJ5NMfi4yFPcsnkJ1OmGYcxpwU4/FeR93AcEJ8Nq3Wty9URzwBicsXNyrZiGMcqa5
+	 j6KPiO3f+5zdg==
 From: Kalle Valo <kvalo@kernel.org>
-To: Robert Marko <robert.marko@sartura.hr>
-Cc: ath11k@lists.infradead.org,  linux-wireless@vger.kernel.org
-Subject: Re: [PATCH] ath11k: debugfs: fix to work with multiple PCI devices
-References: <20221220121231.20120-1-kvalo@kernel.org>
-	<CA+HBbNGBKemtF9ZsFBFCe7_1eqMJ80QhEPCsinOJY2LQ4+tiFg@mail.gmail.com>
-Date: Thu, 12 Jan 2023 11:09:21 +0200
-In-Reply-To: <CA+HBbNGBKemtF9ZsFBFCe7_1eqMJ80QhEPCsinOJY2LQ4+tiFg@mail.gmail.com>
-	(Robert Marko's message of "Mon, 2 Jan 2023 16:42:55 +0100")
-Message-ID: <87k01sdsqm.fsf@kernel.org>
+To: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Cc: Baochen Qiang <quic_bqiang@quicinc.com>,  manivannan.sadhasivam@linaro.org,  linux-arm-msm@vger.kernel.org,  linux-kernel@vger.kernel.org,  ath11k@lists.infradead.org
+Subject: Re: [PATCH] bus: mhi: host: Change the log levels for SYS_ERR event
+References: <20230104021445.47484-1-quic_bqiang@quicinc.com>
+	<CAOCk7NpGBD-2nHFBE3a4WxNb4XPhEV3uoCDz1J9ArbaOE7Vscg@mail.gmail.com>
+Date: Thu, 12 Jan 2023 11:13:09 +0200
+In-Reply-To: <CAOCk7NpGBD-2nHFBE3a4WxNb4XPhEV3uoCDz1J9ArbaOE7Vscg@mail.gmail.com>
+	(Jeffrey Hugo's message of "Tue, 3 Jan 2023 19:41:44 -0700")
+Message-ID: <87fscgdska.fsf@kernel.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230112_010925_615106_F80D1E8C 
-X-CRM114-Status: GOOD (  16.39  )
+X-CRM114-CacheID: sfid-20230112_011317_576966_A8B7750F 
+X-CRM114-Status: GOOD (  18.82  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,67 +73,31 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Robert Marko <robert.marko@sartura.hr> writes:
+Jeffrey Hugo <jeffrey.l.hugo@gmail.com> writes:
 
-> On Tue, Dec 20, 2022 at 1:16 PM Kalle Valo <kvalo@kernel.org> wrote:
->>
->> From: Kalle Valo <quic_kvalo@quicinc.com>
->>
->> ath11k fails to load if there are multiple ath11k PCI devices with same name:
->>
->>  ath11k_pci 0000:01:00.0: Hardware name qcn9074 hw1.0
->>  debugfs: Directory 'ath11k' with parent '/' already present!
->>  ath11k_pci 0000:01:00.0: failed to create ath11k debugfs
->>  ath11k_pci 0000:01:00.0: failed to create soc core: -17
->>  ath11k_pci 0000:01:00.0: failed to init core: -17
->>  ath11k_pci: probe of 0000:01:00.0 failed with error -17
->>
->> Fix this by creating a directory for each ath11k device using schema
->> <bus>-<devname>, for example "pci-0000:06:00.0". This directory created under
->> the top-level ath11k directory, for example /sys/kernel/debug/ath11k.
->>
->> The reference to the toplevel ath11k directory is not stored anymore within ath11k, instead
->> it's retrieved using debugfs_lookup(). If the directory does not exist it will
->> be created. After the last directory from the ath11k directory is removed, for
->> example when doing rmmod ath11k, the empty ath11k directory is left in place,
->> it's a minor cosmetic issue anyway.
->>
->> Here's an example hierarchy with one WCN6855:
->>
->> ath11k
->> `-- pci-0000:06:00.0
->>     |-- mac0
->>     |   |-- dfs_block_radar_events
->>     |   |-- dfs_simulate_radar
->>     |   |-- ext_rx_stats
->>     |   |-- ext_tx_stats
->>     |   |-- fw_dbglog_config
->>     |   |-- fw_stats
->>     |   |   |-- beacon_stats
->>     |   |   |-- pdev_stats
->>     |   |   `-- vdev_stats
->>     |   |-- htt_stats
->>     |   |-- htt_stats_reset
->>     |   |-- htt_stats_type
->>     |   `-- pktlog_filter
->>     |-- simulate_fw_crash
->>     `-- soc_dp_stats
->>
->> I didn't have a test setup where I could connect multiple ath11k devices to the
->> same the host, so I have only tested this with one device.
->>
->> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.9
+> Why was this not sent to the MHI mailing list?
 >
+> On Tue, Jan 3, 2023 at 7:19 PM Baochen Qiang <quic_bqiang@quicinc.com> wrote:
+>>
+>> Currently no log printed when SYS_ERR happens, this makes
+>> debug quite hard, so change log level to make it noisy.
 >
-> I can confirm that this works on a combination of IPQ8074 with an
-> external QCN9074 radio which would previously clash and error out, so:
+> You are going to need to explain this more.
+> There are two drivers in the upstream kernel that are MHI clients -
+> pci_generic and ath11k.
+> I'm assuming that you care about ath11k because you included that mail list.
+> In ath11k_mhi_op_status_cb() I see a warning message printed when the
+> syserr callback is triggered.
+> I see something similar in pci_generic.
 >
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1-01208-QCAHKSWPL_SILICONZ-1
-> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01208-QCAHKSWPL_SILICONZ-1
-> Tested-by: Robert Marko <robert.marko@sartura.hr>
+> Looks like a log is printed when SYS_ERR happens in all possible
+> scenarios, so I don't understand the point of this change.
+> Particularly given that dev_dbg messages can be trivially enabled.
 
-Great, thank you for testing this. Very much appreciated. I added the
-tags tags to the commit.
+Also the error messages are not very informative, especially if there
+are three identical messages it's hard to track down which code path is
+triggering them. If these are changed to error messages, I would prefer
+to improve them as well.
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
