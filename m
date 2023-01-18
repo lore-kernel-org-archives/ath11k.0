@@ -4,94 +4,137 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61407C32793
-	for <ath11k@archiver.kernel.org>; Wed, 18 Jan 2023 17:54:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5FAEC38147
+	for <ath11k@archiver.kernel.org>; Wed, 18 Jan 2023 18:01:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=WaZIZWtj7m5f/M50nPNu+DkjdvfahbU5CKxx591sWwY=; b=Oa0tO0J90rtqRt
-	nt7TGSyYSw1sAYWEZIInQNbDpGATsv9YS8EXsvzfEVCVegkjrqC9+dnaPaFKCPgq18H/38x53glT3
-	6xCCGOXnzAtr5mPLDtF/T7kqwSixws4Pg7mwhUCXVEuHtfvxPXR2MLzS3433LifdSMAm7nR+0TKxn
-	OLtv5i/qYex3a8a+PISTj+hA7OuUh1jt8hGKT8HCRN9PyLSECJjQtzikn+L0QWMmNDyVC5W41+bv2
-	uK+eD91gup7EzP/pkNQb1x3fFkhYYF9ygxWoXKI+wxZ9Xjbi6kfQhj2geshykETp4Xry3PkYkxa+r
-	p4+Q5UQXEcfAA1EupmzA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=n2gcAkfH+hdLNpAl/Y90oGCw0bwaFVG/etjcVqabYeA=; b=0IBLMhLaPFu31x
+	/YeNAminrApNu2EWZWaEUqtS0dNfWI26EDcnNFCNLl3rmKy/7QVn/qn5HdfbR9DS6U/KzmoxcGP7A
+	wJ1WVxF+4pGzknh1x/eh7H7CAHBgM4TrmMRmX83veF9z/cD8Ak4bWAEJHVKtj5UraF2Ubh3oa1D7y
+	PUNECCYzkMS2F6Y1Mhja6klTP9bMKu1QBL3PGJAC/tbVD0VofqEhQc7ZAnrxa5KEUXuGVhHn/ZgBL
+	tTPPiEvB0KBJRz+vrSeprC4ENBiNWrRJFpktr27MMpVhvsbm9TnWcu4r8FDWF+OFAQii/R/YK8ErB
+	5kZNtJny46mCykzPEP5A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pICdj-0027nt-9i; Wed, 18 Jan 2023 17:54:23 +0000
-Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
+	id 1pICkU-0029QL-3B; Wed, 18 Jan 2023 18:01:22 +0000
+Received: from mail-bn8nam04on2083.outbound.protection.outlook.com ([40.107.100.83] helo=NAM04-BN8-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pICdg-0027mH-PY
-	for ath11k@lists.infradead.org; Wed, 18 Jan 2023 17:54:22 +0000
-Received: by mail-wm1-x32d.google.com with SMTP id f12-20020a7bc8cc000000b003daf6b2f9b9so1952649wml.3
-        for <ath11k@lists.infradead.org>; Wed, 18 Jan 2023 09:54:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=TWpO1YbgA04yjZBzLFJGZr2Ux7J9tn5oLTa4Qr7uJbk=;
-        b=yPqo3wCU1xKWJPTbuSCKCbqYu6Q+pewK3OQ1KwO4DvrbPw4kUHaYyutclqFtr8rniv
-         rFB6x+jo6VQZ3dIlql4OO3K15gyVQVAKU3AYVC2LM+MZh6yPUdKhf9nv6PA2T845Jgx0
-         7yms/WQF5TaY3zASjHlGhI5n4Bamh23pq1kXrtkbHWpAmcRoSyGmggfj3vgMv2XT0hVc
-         ny3oYDCyascDlK2oamvzZXNSAKXv97QzBO8GY3CF9s0p+ggSH3VBEFKJ7FowVdowCM0s
-         lOyVHWx9INpOjZ9m5zUjoUnY8HVAxBrvv6R0qQ9om98BW0nVvP1h4U8BW7Fog/yjGxf+
-         Wzzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TWpO1YbgA04yjZBzLFJGZr2Ux7J9tn5oLTa4Qr7uJbk=;
-        b=yYM8Y7IX2eZ2t9xAUxnT6koxJj8vIyKNEI950gIfk/FaV3YpvnrCPkArdZVTdjVmaX
-         WJsBFMg1ryvbEsMpHON9q6qIXnT7O6Lfm2Nx+I5Jub1nBLhRI1Zl1EfgyW4Z7E9fMqCp
-         /64loDRqB+LFIkTVJ5SV9mhFC+uQriiE5b9RwF6yfFpwIzFL43ADfgKHWECEiztHa6G+
-         2RM2Sfg2ZBfQzGImyH8nEXjk4p01XX8FjvQrYNWzgCWpAXg11g/Z1DWPnfwaRonbAI3+
-         88NtuxVUw92Pt20xetMuuKP22mCO+hd3caSvXAQ5ZLV7QOKvA8/HRiJrlem+/P+Oz7g9
-         7Uzw==
-X-Gm-Message-State: AFqh2krm/FyFtRe6Yr8XmXXd5G5g5hcg8OERt6VILxrx7v/W7ijI+m1A
-	eya8niNbKG826RsolY8tVkz85Q==
-X-Google-Smtp-Source: AMrXdXuVbyarxnAiepfXzbwTR1RHkFZszrKxbE5DGbOdnNgX139UqeLC5+bUZ7kndu3Jzieu7igTOQ==
-X-Received: by 2002:a05:600c:4d93:b0:3d9:efd1:214d with SMTP id v19-20020a05600c4d9300b003d9efd1214dmr7568201wmp.25.1674064457145;
-        Wed, 18 Jan 2023 09:54:17 -0800 (PST)
-Received: from krzk-bin.. ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id o2-20020a05600c4fc200b003cf894dbc4fsm2730015wmq.25.2023.01.18.09.54.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Jan 2023 09:54:16 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Kalle Valo <kvalo@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Felix Fietkau <nbd@nbd.name>,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	Ryder Lee <ryder.lee@mediatek.com>,
-	Shayne Chen <shayne.chen@mediatek.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	=?UTF-8?q?J=C3=A9r=C3=B4me=20Pouiller?= <jerome.pouiller@silabs.com>,
-	de Goede <hdegoede@redhat.com>,
-	Tony Lindgren <tony@atomide.com>,
+	id 1pICjz-00297e-MU; Wed, 18 Jan 2023 18:00:53 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hXoTCCFLZnOD9YXHQINsoNJysimNrVNAz3rNG+c2a8vlhmhYnZKx8Vvj5dsCJcNVEc5iBRKd7nmr76JNdkGzgliNRUSsmBWtS8zsDl4TDrNi6waQ0wAo5a/MwbvXVDcpAFHxjyXlFM53uQkNMqeQ1vfDypvRrHrPJ+knizM1bDSm+IhlkCA9apZ8VLrREpIggCSG/B+Et6xkako5nyUpbDGDYwgSSqczuSim6qSftxp0mqZzFt29HmXaOC6jOYZxL7VcR0KoIbjDkEyw2VN3VvAhpFTd8NFwi9ykBW4qF+pDw4UTW85zHEXPaYJxjmi95pt6+M0hHX+Hy/RW0fgoiA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=1rgow5diNk+hVt+Qqw0FXU33IcXQf0aq5YG3bZTDQaI=;
+ b=YJHXP40dKqKDwVDEviHWtEf2+d4oYsiHyB21j7UWWRbiUo1Nkuvs2qZxeA4mscr/7D+HNp8dZjq05MnEiKxKWEilFwAceCsGtrfKiH8KnVPP7aIriRrPxsfvsNo4y5lzVxJbXgSKsb/gW5iIJ/sbLlaT3oaPDyPbIab9zByrLu3aallUoA6lx7MHTCoH2AFQ3Afvzfb1p5cvj0j5we87oVaq3Yzi49KORD5bRbr9rwUcV5eOc488WlKRHjBXZwzbfCBKA97Q27qvt65RNFJLvdgFLPUMhp6IgDzWQXU61MP6Rp9z1TGozcfxbNCdtvAoeMIRncmU6njoqWQkKWvaJg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1rgow5diNk+hVt+Qqw0FXU33IcXQf0aq5YG3bZTDQaI=;
+ b=tB8X5gTZH+CJRpWO9vB+DaX/UJdLa4S44i9WjPyrM+xIhyf75jrjn/O+2SFjtIpe9FHmJ9SKnJjBU2tmnseVEAhJUnJorjbYTudRDGkDhJE/VZEWU19NvDNXfePEa/bt+F1+VmhYXhYHXyYLCGe05jzXFURA8MqzIAbfu44YL1LokoKuHit7lJ3LwGQQlxmaN68vF+3wB0OTI2yfK4SyixAAryHmVM8TPs+KlcVUf0lfKtQ3h0ZV/aEfl8kpybw17TYv2BvUB0VApGiiO8I/sOnMC8qT4pakH5mykmv4xNRt+JTMh3kYPNGbIzVOfBq0rQzHREE9R0yjWNKbzqw9YQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
+ by IA1PR12MB7614.namprd12.prod.outlook.com (2603:10b6:208:429::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.13; Wed, 18 Jan
+ 2023 18:00:45 +0000
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::f8b0:df13:5f8d:12a]) by LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::f8b0:df13:5f8d:12a%9]) with mapi id 15.20.6002.013; Wed, 18 Jan 2023
+ 18:00:45 +0000
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Lu Baolu <baolu.lu@linux.intel.com>,
+	Joerg Roedel <joro@8bytes.org>,
+	Kevin Tian <kevin.tian@intel.com>,
+	Matthew Rosato <mjrosato@linux.ibm.com>,
+	Robin Murphy <robin.murphy@arm.com>
+Cc: Alex Williamson <alex.williamson@redhat.com>,
+	ath10k@lists.infradead.org,
+	ath11k@lists.infradead.org,
+	Christian Borntraeger <borntraeger@linux.ibm.com>,
+	dri-devel@lists.freedesktop.org,
+	iommu@lists.linux.dev,
+	kvm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	linux-rdma@vger.kernel.org,
+	linux-remoteproc@vger.kernel.org,
+	linux-s390@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-tegra@vger.kernel.org,
 	linux-wireless@vger.kernel.org,
 	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	ath11k@lists.infradead.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: net: wireless: minor whitespace and name cleanups
-Date: Wed, 18 Jan 2023 18:54:13 +0100
-Message-Id: <20230118175413.360153-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+	nouveau@lists.freedesktop.org,
+	Niklas Schnelle <schnelle@linux.ibm.com>,
+	virtualization@lists.linux-foundation.org
+Subject: [PATCH v2 03/10] iommu: Add a gfp parameter to iommu_map_sg()
+Date: Wed, 18 Jan 2023 14:00:37 -0400
+Message-Id: <3-v2-ce66f632bd0d+484-iommu_map_gfp_jgg@nvidia.com>
+In-Reply-To: <0-v2-ce66f632bd0d+484-iommu_map_gfp_jgg@nvidia.com>
+References: 
+X-ClientProxiedBy: BLAPR03CA0064.namprd03.prod.outlook.com
+ (2603:10b6:208:329::9) To LV2PR12MB5869.namprd12.prod.outlook.com
+ (2603:10b6:408:176::16)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|IA1PR12MB7614:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3289005d-6cf5-4741-cb9e-08daf97debe6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 	EAquh9wTbVTZvNn7pq2JL2hrLPhCXhIIKiU5KfbQCyQk4TWnAjyEY40G8WU8zObnfa+Vl3YB9E8rXOLTjVp0m1Drz4Kic1KbvCmDgfjjRsR2DJvlxOfJ+SkbtwPur6XFoWQfYD9AURxA0yjdOn7I5IOjKDdfueh3sz6AtUQQWbFRvaBAS4EDKvzUp3rTEa9MRfvGKwB06Ny4MCW5Pu4L+WvqcZxmmd809GDu/XGIakZsqFpDLcKl1HbQtGsmBqEnpmh4s8UI9jMTcRNDowLURHPCPSKLL0V2ltLTHPM0bvfgzZi+ObdeXhiQcuE/YZlzZcgjcLUoWayuOUOTRQWufPe+a0ZTd4mOjwwso9ESUQasoILWH858lzexVI6eIx/H5mQUuMUiVLcUtwJqbyfwGP9vwa/a5cGArI46mS9mflNOzIV7Ei1DjGB2PqQLCFiUZhksRGIEwqW4t30zPtZH7NRrcaJghGcVvsGSFPS7IgQYpVhAJRTV79aPi2HJBK42KbuVrAPKJd7XQpVqqi5eKAjri12Hyd/oUFumCqKr7+ymL4rY+KbY8JCoVlHSAd92Z5gyzMwEVvCQMOtSyi2lj2m5KruireIJRJ8vO+VoBLqYCJDfpxBfxnheo3AkW/XI+dT6xb4S3F4acVohgQrq0qffjgS0x7fZjM3sce39dUfGPKE5BeceJ/72mtC3fQcF
+X-Forefront-Antispam-Report: 	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LV2PR12MB5869.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(39860400002)(396003)(136003)(366004)(376002)(451199015)(6506007)(186003)(26005)(478600001)(6512007)(6486002)(6666004)(54906003)(316002)(110136005)(4326008)(66946007)(66556008)(8676002)(66476007)(36756003)(2616005)(41300700001)(8936002)(83380400001)(2906002)(7416002)(5660300002)(38100700002)(86362001)(4216001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 	=?us-ascii?Q?7f+aQxlhcqWHrfjoUc+2E6lpzU9E5X6C5dQ/JnnFutQxJSisp2jl5QB+Klo9?=
+ =?us-ascii?Q?JxohTCoUv5u4LiMOTNsIb20mWefqV3alHEu0oje2vWgGxZHHeDt4rczkIGYC?=
+ =?us-ascii?Q?/+a5tRdbxQlJp4B/2Bj79XdTLw6jyGkpOEIv5lPbzZn7jVUi1hyR56r3KnTq?=
+ =?us-ascii?Q?hV5lrPdFKcIAdx37myMNUYO/h8rhMaa7V9HRigmYNHAsX9msFduCX4vQmumr?=
+ =?us-ascii?Q?PC3QtX+rUxCsWAOOg+eoZoDsKhBUdUB2C4vm9RQZUq194e8c39+mltOJI7ql?=
+ =?us-ascii?Q?FaGShFVVQM99j1t1yd5d93XZpraZdUz+r7xcQwIxQ3/iSPbPGWxzbX/dFEkY?=
+ =?us-ascii?Q?+Nmn+Oa3lIpg+GBgRyoalwdeoDWDnD6CkM0IaGQYMBjQQonjxz+XvaB9+k+C?=
+ =?us-ascii?Q?/RBeJjBx8FxA7yFlSuXm0SD6G09CaO0xLHUwrywAJHpQJAXJH9VhEFeerOCZ?=
+ =?us-ascii?Q?QQX1q0ITQWxD8BqDLofugTuRh21bnjgvqUZAxfMSzZo9tTMBR5vSbD2wpB8X?=
+ =?us-ascii?Q?g7fIXAUl8k9uWuS89+FopjZXOCiabvKyoIvY36h0DPgRjI/kwtjNpD5rKJwK?=
+ =?us-ascii?Q?SrfVI0V5RyBxx+lx+gXFzpDeA0VwbeBOEU5sI5CYV3zfeGM3NJQGOpH3Vo36?=
+ =?us-ascii?Q?e6e1eXn1ZcYHhBU0Tn7xZFb8+nNEwcxm3Y1rNe/jOKEXyQ0D86J98F3YZHiY?=
+ =?us-ascii?Q?aitTN6I39iB99qkG0T6UcxqlD3k/qv0Ob55C0aC/qvMUrN1vB8La9e4clQRL?=
+ =?us-ascii?Q?Hi0VutivUxPvAtbURdFEqMsk0eh1+wm6fLJlD+ks7+lV0DXXC2KrYAr8teDF?=
+ =?us-ascii?Q?4+RIOwZmlwJ3OpHL/xsfehiPHrjythoRXADm0vkBEe8K3ci9sbS87yAFYv6l?=
+ =?us-ascii?Q?dmKChfpD3v3MSLHFEO320DIIN+qgWbfsCt/HIHZtgHKhj3Og6U2DYRDrrLpy?=
+ =?us-ascii?Q?mBtnY7nTMfupE5AoFRq/EqhPR4gYS7qpD9972GvVRFh/QKVh/Rtk9e3b/mBo?=
+ =?us-ascii?Q?hMbrpJATKX4WXBrGIQtRkgm4bDaqtuh4Qc4ArAnWAnDsYrNQNT8rpEJP52M8?=
+ =?us-ascii?Q?ok5C1A5J4iGMVWUQNkbqZlmTkz+AbtgWehIQ8vKWUuFuFEUJMTygf8kCZzQ+?=
+ =?us-ascii?Q?l1kIRL8YnGQaiHa7nff7v09Ah+0nZiTkKoYhxL52+NAz74o6tbC47Jv70BQo?=
+ =?us-ascii?Q?or3Cx0bGEHaEXY1iG2iLfRBPqdy6B0jOmG106Pyby8xO/qlFU3Ue5ZdRClRc?=
+ =?us-ascii?Q?xxqybE9MJE/nJjQ6iaGvcj7JClHbZg880quf8K7KHMtW1yUL2jnKrkkSWWy9?=
+ =?us-ascii?Q?ce7uubi8ithEXhJZrvMlbgteuZ/vaOH48/gHmr4MheP6j6P5sapk8HNAOkHU?=
+ =?us-ascii?Q?bHxgC/aVuvDEcMUTQcSKdZV461mBt53e/9dxWnnSGfE6Li/nW95jW8Y7F1Qr?=
+ =?us-ascii?Q?cGPrzVmPxMTh1o/snnk1Fjgk8sTxenPnYdes8DquN/7c8tT337lRCTGeq9eV?=
+ =?us-ascii?Q?MWmVJeHN3uT+HWGZ5Fn+GBIWBLKB6d00p3r+KQja/fpXYRFWejxZKuQhdGIL?=
+ =?us-ascii?Q?asj6glqzU7D8jkj8sVGqWXaF4wEqHdehu9UHWSSL?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3289005d-6cf5-4741-cb9e-08daf97debe6
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jan 2023 18:00:45.3015
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: VQ1WX3Ma18fOY83qY8rk8IB+ZaB0YFwzIbDxfHZcEPBDEisJQmbDs0D2J/7qFl9k
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB7614
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230118_095420_842256_0AC6A416 
-X-CRM114-Status: GOOD (  10.97  )
+X-CRM114-CacheID: sfid-20230118_100051_803077_504DCCD7 
+X-CRM114-Status: GOOD (  13.94  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,219 +151,139 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Minor cleanups:
- - Drop redundant blank lines,
- - Correct indentaion in examples,
- - Correct node names in examples to drop underscore and use generic
-   name.
+Follow the pattern for iommu_map() and remove iommu_map_sg_atomic().
 
-No functional impact except adjusting to preferred coding style.
+This allows __iommu_dma_alloc_noncontiguous() to use a GFP_KERNEL
+allocation here, based on the provided gfp flags.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
 ---
- .../bindings/net/wireless/esp,esp8089.yaml    | 20 +++---
- .../bindings/net/wireless/ieee80211.yaml      |  1 -
- .../bindings/net/wireless/mediatek,mt76.yaml  |  1 -
- .../bindings/net/wireless/qcom,ath11k.yaml    | 11 ++-
- .../bindings/net/wireless/silabs,wfx.yaml     |  1 -
- .../bindings/net/wireless/ti,wlcore.yaml      | 70 +++++++++----------
- 6 files changed, 50 insertions(+), 54 deletions(-)
+ drivers/iommu/dma-iommu.c |  5 +++--
+ drivers/iommu/iommu.c     | 26 ++++++++++----------------
+ include/linux/iommu.h     | 18 +++++-------------
+ 3 files changed, 18 insertions(+), 31 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/esp,esp8089.yaml b/Documentation/devicetree/bindings/net/wireless/esp,esp8089.yaml
-index 5557676e9d4b..0ea84d6fe73e 100644
---- a/Documentation/devicetree/bindings/net/wireless/esp,esp8089.yaml
-+++ b/Documentation/devicetree/bindings/net/wireless/esp,esp8089.yaml
-@@ -29,15 +29,15 @@ additionalProperties: false
+diff --git a/drivers/iommu/dma-iommu.c b/drivers/iommu/dma-iommu.c
+index 7016db569f81fc..8c2788633c1766 100644
+--- a/drivers/iommu/dma-iommu.c
++++ b/drivers/iommu/dma-iommu.c
+@@ -833,7 +833,8 @@ static struct page **__iommu_dma_alloc_noncontiguous(struct device *dev,
+ 			arch_dma_prep_coherent(sg_page(sg), sg->length);
+ 	}
  
- examples:
-   - |
--      mmc {
--          #address-cells = <1>;
--          #size-cells = <0>;
--
--          wifi@1 {
--              compatible = "esp,esp8089";
--              reg = <1>;
--              esp,crystal-26M-en = <2>;
--          };
--      };
-+    mmc {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
+-	ret = iommu_map_sg_atomic(domain, iova, sgt->sgl, sgt->orig_nents, ioprot);
++	ret = iommu_map_sg(domain, iova, sgt->sgl, sgt->orig_nents, ioprot,
++			   gfp);
+ 	if (ret < 0 || ret < size)
+ 		goto out_free_sg;
+ 
+@@ -1281,7 +1282,7 @@ static int iommu_dma_map_sg(struct device *dev, struct scatterlist *sg,
+ 	 * We'll leave any physical concatenation to the IOMMU driver's
+ 	 * implementation - it knows better than we do.
+ 	 */
+-	ret = iommu_map_sg_atomic(domain, iova, sg, nents, prot);
++	ret = iommu_map_sg(domain, iova, sg, nents, prot, GFP_ATOMIC);
+ 	if (ret < 0 || ret < iova_len)
+ 		goto out_free_iova;
+ 
+diff --git a/drivers/iommu/iommu.c b/drivers/iommu/iommu.c
+index 9412b420d07257..cc6e7c6bf72758 100644
+--- a/drivers/iommu/iommu.c
++++ b/drivers/iommu/iommu.c
+@@ -2470,9 +2470,9 @@ size_t iommu_unmap_fast(struct iommu_domain *domain,
+ }
+ EXPORT_SYMBOL_GPL(iommu_unmap_fast);
+ 
+-static ssize_t __iommu_map_sg(struct iommu_domain *domain, unsigned long iova,
+-		struct scatterlist *sg, unsigned int nents, int prot,
+-		gfp_t gfp)
++ssize_t iommu_map_sg(struct iommu_domain *domain, unsigned long iova,
++		     struct scatterlist *sg, unsigned int nents, int prot,
++		     gfp_t gfp)
+ {
+ 	const struct iommu_domain_ops *ops = domain->ops;
+ 	size_t len = 0, mapped = 0;
+@@ -2480,6 +2480,13 @@ static ssize_t __iommu_map_sg(struct iommu_domain *domain, unsigned long iova,
+ 	unsigned int i = 0;
+ 	int ret;
+ 
++	might_sleep_if(gfpflags_allow_blocking(gfp));
 +
-+        wifi@1 {
-+            compatible = "esp,esp8089";
-+            reg = <1>;
-+            esp,crystal-26M-en = <2>;
-+        };
-+    };
- 
- ...
-diff --git a/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml b/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml
-index e68ed9423150..d89f7a3f88a7 100644
---- a/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml
-+++ b/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml
-@@ -1,6 +1,5 @@
- # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- # Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
--
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/net/wireless/ieee80211.yaml#
-diff --git a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-index f0c78f994491..7d526ff53fb7 100644
---- a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-+++ b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-@@ -1,6 +1,5 @@
- # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- # Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
--
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/net/wireless/mediatek,mt76.yaml#
-diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-index 556eb523606a..5f4b141ba813 100644
---- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-+++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-@@ -1,6 +1,5 @@
- # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- # Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
--
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/net/wireless/qcom,ath11k.yaml#
-@@ -262,10 +261,10 @@ allOf:
- examples:
-   - |
- 
--    q6v5_wcss: q6v5_wcss@CD00000 {
-+    q6v5_wcss: remoteproc@cd00000 {
-         compatible = "qcom,ipq8074-wcss-pil";
--        reg = <0xCD00000 0x4040>,
--              <0x4AB000 0x20>;
-+        reg = <0xcd00000 0x4040>,
-+              <0x4ab000 0x20>;
-         reg-names = "qdsp6",
-                     "rmb";
-     };
-@@ -386,7 +385,7 @@ examples:
-         #address-cells = <2>;
-         #size-cells = <2>;
- 
--        qcn9074_0: qcn9074_0@51100000 {
-+        qcn9074_0: wifi@51100000 {
-             no-map;
-             reg = <0x0 0x51100000 0x0 0x03500000>;
-         };
-@@ -463,6 +462,6 @@ examples:
-         qcom,smem-states = <&wlan_smp2p_out 0>;
-         qcom,smem-state-names = "wlan-smp2p-out";
-         wifi-firmware {
--                iommus = <&apps_smmu 0x1c02 0x1>;
-+            iommus = <&apps_smmu 0x1c02 0x1>;
-         };
-     };
-diff --git a/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml b/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
-index 583db5d42226..84e5659e50ef 100644
---- a/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
-+++ b/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
-@@ -2,7 +2,6 @@
- # Copyright (c) 2020, Silicon Laboratories, Inc.
- %YAML 1.2
- ---
--
- $id: http://devicetree.org/schemas/net/wireless/silabs,wfx.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
-diff --git a/Documentation/devicetree/bindings/net/wireless/ti,wlcore.yaml b/Documentation/devicetree/bindings/net/wireless/ti,wlcore.yaml
-index e31456730e9f..f799a1e52173 100644
---- a/Documentation/devicetree/bindings/net/wireless/ti,wlcore.yaml
-+++ b/Documentation/devicetree/bindings/net/wireless/ti,wlcore.yaml
-@@ -90,47 +90,47 @@ examples:
- 
-     // For wl12xx family:
-     spi1 {
--            #address-cells = <1>;
--            #size-cells = <0>;
--
--            wlcore1: wlcore@1 {
--                    compatible = "ti,wl1271";
--                    reg = <1>;
--                    spi-max-frequency = <48000000>;
--                    interrupts = <8 IRQ_TYPE_LEVEL_HIGH>;
--                    vwlan-supply = <&vwlan_fixed>;
--                    clock-xtal;
--                    ref-clock-frequency = <38400000>;
--            };
-+        #address-cells = <1>;
-+        #size-cells = <0>;
++	/* Discourage passing strange GFP flags */
++	if (WARN_ON_ONCE(gfp & (__GFP_COMP | __GFP_DMA | __GFP_DMA32 |
++				__GFP_HIGHMEM)))
++		return -EINVAL;
 +
-+        wlcore1: wlcore@1 {
-+            compatible = "ti,wl1271";
-+            reg = <1>;
-+            spi-max-frequency = <48000000>;
-+            interrupts = <8 IRQ_TYPE_LEVEL_HIGH>;
-+            vwlan-supply = <&vwlan_fixed>;
-+            clock-xtal;
-+            ref-clock-frequency = <38400000>;
-+        };
-     };
+ 	while (i <= nents) {
+ 		phys_addr_t s_phys = sg_phys(sg);
  
-     // For wl18xx family:
-     spi2 {
--            #address-cells = <1>;
--            #size-cells = <0>;
--
--            wlcore2: wlcore@0 {
--                    compatible = "ti,wl1835";
--                    reg = <0>;
--                    spi-max-frequency = <48000000>;
--                    interrupts = <27 IRQ_TYPE_EDGE_RISING>;
--                    vwlan-supply = <&vwlan_fixed>;
--            };
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        wlcore2: wlcore@0 {
-+            compatible = "ti,wl1835";
-+            reg = <0>;
-+            spi-max-frequency = <48000000>;
-+            interrupts = <27 IRQ_TYPE_EDGE_RISING>;
-+            vwlan-supply = <&vwlan_fixed>;
-+        };
-     };
+@@ -2519,21 +2526,8 @@ static ssize_t __iommu_map_sg(struct iommu_domain *domain, unsigned long iova,
  
-     // SDIO example:
-     mmc3 {
--            vmmc-supply = <&wlan_en_reg>;
--            bus-width = <4>;
--            cap-power-off-card;
--            keep-power-in-suspend;
+ 	return ret;
+ }
 -
--            #address-cells = <1>;
--            #size-cells = <0>;
+-ssize_t iommu_map_sg(struct iommu_domain *domain, unsigned long iova,
+-		     struct scatterlist *sg, unsigned int nents, int prot)
+-{
+-	might_sleep();
+-	return __iommu_map_sg(domain, iova, sg, nents, prot, GFP_KERNEL);
+-}
+ EXPORT_SYMBOL_GPL(iommu_map_sg);
+ 
+-ssize_t iommu_map_sg_atomic(struct iommu_domain *domain, unsigned long iova,
+-		    struct scatterlist *sg, unsigned int nents, int prot)
+-{
+-	return __iommu_map_sg(domain, iova, sg, nents, prot, GFP_ATOMIC);
+-}
 -
--            wlcore3: wlcore@2 {
--                    compatible = "ti,wl1835";
--                    reg = <2>;
--                    interrupts = <19 IRQ_TYPE_LEVEL_HIGH>;
--            };
-+        vmmc-supply = <&wlan_en_reg>;
-+        bus-width = <4>;
-+        cap-power-off-card;
-+        keep-power-in-suspend;
-+
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        wlcore3: wlcore@2 {
-+            compatible = "ti,wl1835";
-+            reg = <2>;
-+            interrupts = <19 IRQ_TYPE_LEVEL_HIGH>;
-+        };
-     };
+ /**
+  * report_iommu_fault() - report about an IOMMU fault to the IOMMU framework
+  * @domain: the iommu domain where the fault has happened
+diff --git a/include/linux/iommu.h b/include/linux/iommu.h
+index 521cd79700f4d8..d5c16dc33c87de 100644
+--- a/include/linux/iommu.h
++++ b/include/linux/iommu.h
+@@ -474,10 +474,8 @@ extern size_t iommu_unmap_fast(struct iommu_domain *domain,
+ 			       unsigned long iova, size_t size,
+ 			       struct iommu_iotlb_gather *iotlb_gather);
+ extern ssize_t iommu_map_sg(struct iommu_domain *domain, unsigned long iova,
+-		struct scatterlist *sg, unsigned int nents, int prot);
+-extern ssize_t iommu_map_sg_atomic(struct iommu_domain *domain,
+-				   unsigned long iova, struct scatterlist *sg,
+-				   unsigned int nents, int prot);
++			    struct scatterlist *sg, unsigned int nents,
++			    int prot, gfp_t gfp);
+ extern phys_addr_t iommu_iova_to_phys(struct iommu_domain *domain, dma_addr_t iova);
+ extern void iommu_set_fault_handler(struct iommu_domain *domain,
+ 			iommu_fault_handler_t handler, void *token);
+@@ -791,14 +789,7 @@ static inline size_t iommu_unmap_fast(struct iommu_domain *domain,
+ 
+ static inline ssize_t iommu_map_sg(struct iommu_domain *domain,
+ 				   unsigned long iova, struct scatterlist *sg,
+-				   unsigned int nents, int prot)
+-{
+-	return -ENODEV;
+-}
+-
+-static inline ssize_t iommu_map_sg_atomic(struct iommu_domain *domain,
+-				  unsigned long iova, struct scatterlist *sg,
+-				  unsigned int nents, int prot)
++				   unsigned int nents, int prot, gfp_t gfp)
+ {
+ 	return -ENODEV;
+ }
+@@ -1109,7 +1100,8 @@ iommu_get_domain_for_dev_pasid(struct device *dev, ioasid_t pasid,
+ static inline size_t iommu_map_sgtable(struct iommu_domain *domain,
+ 			unsigned long iova, struct sg_table *sgt, int prot)
+ {
+-	return iommu_map_sg(domain, iova, sgt->sgl, sgt->orig_nents, prot);
++	return iommu_map_sg(domain, iova, sgt->sgl, sgt->orig_nents, prot,
++			    GFP_KERNEL);
+ }
+ 
+ #ifdef CONFIG_IOMMU_DEBUGFS
 -- 
-2.34.1
+2.39.0
 
 
 -- 
