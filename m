@@ -4,142 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62237C32793
-	for <ath11k@archiver.kernel.org>; Wed, 18 Jan 2023 15:15:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61407C32793
+	for <ath11k@archiver.kernel.org>; Wed, 18 Jan 2023 17:54:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Yoocvw8pmsxtFN4j/7ZqSFtm89i0qlAQMZqehumhwmY=; b=gS9rSYC0qfOdQQ
-	w704dL4UKjgPYFPsEwypQMCWqSlXeeiTGiSPvG9iBzK8yWcrz5FDYQ+hEOQ4lI91gaIdHl2q/YnwX
-	xgHNnuHNyTs+XLA8j/djNa3zGp7WZEjMN2gLqf8bCNr7SKNMho9nXsCETyZwPqHSPL2PwymBFh6Mb
-	zGeNbRkUpDMNstpYGaYZHd9g9dM5tTWkQPk2wDvrDsc6e9S5nQNt3JqMefHLWlc9pw2DLC7WhBV2/
-	38Ug3aNIkGZRGvFUuGU34M5bNpN/nriVInEvATMWW8xNAhjpsmRq2K32+gXQUQByGEl0uXa4qqMR1
-	YLVlHblNqovblCC5goVA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=WaZIZWtj7m5f/M50nPNu+DkjdvfahbU5CKxx591sWwY=; b=Oa0tO0J90rtqRt
+	nt7TGSyYSw1sAYWEZIInQNbDpGATsv9YS8EXsvzfEVCVegkjrqC9+dnaPaFKCPgq18H/38x53glT3
+	6xCCGOXnzAtr5mPLDtF/T7kqwSixws4Pg7mwhUCXVEuHtfvxPXR2MLzS3433LifdSMAm7nR+0TKxn
+	OLtv5i/qYex3a8a+PISTj+hA7OuUh1jt8hGKT8HCRN9PyLSECJjQtzikn+L0QWMmNDyVC5W41+bv2
+	uK+eD91gup7EzP/pkNQb1x3fFkhYYF9ygxWoXKI+wxZ9Xjbi6kfQhj2geshykETp4Xry3PkYkxa+r
+	p4+Q5UQXEcfAA1EupmzA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pIAAF-001X01-Es; Wed, 18 Jan 2023 15:15:47 +0000
-Received: from mail-bn7nam10on2081.outbound.protection.outlook.com ([40.107.92.81] helo=NAM10-BN7-obe.outbound.protection.outlook.com)
+	id 1pICdj-0027nt-9i; Wed, 18 Jan 2023 17:54:23 +0000
+Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pIAA2-001Wwf-QQ; Wed, 18 Jan 2023 15:15:36 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=d7AMX38483WMPLEb3WZe3hdAXOyWBjU8bq8505wLWPPFt2I43KyNklfeLBafcpRyr1jvvkERuvu7NLWT1k0l3EzbZLb2JQkBpk6ZychWFq5rD2CCLeelpVRA2Qh7qE8iM4iH+/OFMG9OwQGQ50oBN2YT1nmKXPqaT4YY8mNopARdNNIwjnwo+bsXjj5HeyE2w7yUtBtzxL9vduRipRI2QaDCxeyZgAY4KLlL1QhHyvNigQWbG1h37EwSKeQzVgYxFvweE+AsLS4i7VHU//EDUCNj08dedIMej9UVgvBT+zGJOD52kXha32k3VfBPY/88zh9HGoZY3d4CzHUrN7HENA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/xLXlvtemBKhxT+1GV7IkwISw+CoMPNriPHVjiccKyA=;
- b=NwqBfDjTL9xcC0sw95Z/BkrjXRS34JQ0NzO+Df15tYzRxCWYDRtOngEdQY1wnTe8eLqf5fRinTUu9dxFjCAlKJKbcKDLfMpD78AQQlMKajnUNIsqyRuN1e55eDf0dOgXNXR6lpZA6QQ/kGiyeYZQaGSWO2ccPqH1tsrvkQfJJQyzhaN8/WXcoyBx48S4jncD7ylQrLup9aruPtcA9Zt0jqHWJ5LwmdXo1IBcBHpO2HC08HDhFtmsD/CBFRdAKNQvFqWBOHaz5+pxOiyeWRCo0w+ugr1Tf7GOxY9tkjGfCt1MHlt0VXOBMXK9KzUAgUeIBr8XeJ+HC2F8CASTR1GPBA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/xLXlvtemBKhxT+1GV7IkwISw+CoMPNriPHVjiccKyA=;
- b=hdyLkqGV5r+91p5X4Cz0z4Gxj3XKt/blPaQ2OlUIIaTxLLkobqR5tjiuPbGnsDDZYc9/o/HMJLMl0p0o+e6L1VokvX013F+npis3JW9ltWLGCBYHURr6t39/Yychin8Y3ius32/Z+85BSIU7Nt6O/M2uUQwDaY8v8hH2fO4YodleDQ9i0nmUcEWeTrfFB5q8EF3zWbeJCpE13eEjrkVWE4Edik0fm3oa2B/rL+66ZSDGRl8mFitw+jACxPAoKnSWsejWUI7QlO5U98izRvq9t4VtrdxGQkFtmbJkeeyleAl2+qPkPLzR9VXI8WVMTgPJvEc0+Gpz7t2Os8D5JezY2g==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
- by PH8PR12MB6770.namprd12.prod.outlook.com (2603:10b6:510:1c5::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.23; Wed, 18 Jan
- 2023 15:15:30 +0000
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::f8b0:df13:5f8d:12a]) by LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::f8b0:df13:5f8d:12a%9]) with mapi id 15.20.6002.013; Wed, 18 Jan 2023
- 15:15:30 +0000
-Date: Wed, 18 Jan 2023 11:15:29 -0400
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: "Tian, Kevin" <kevin.tian@intel.com>
-Cc: Lu Baolu <baolu.lu@linux.intel.com>, Joerg Roedel <joro@8bytes.org>,
-	Matthew Rosato <mjrosato@linux.ibm.com>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Alex Williamson <alex.williamson@redhat.com>,
-	"ath10k@lists.infradead.org" <ath10k@lists.infradead.org>,
-	"ath11k@lists.infradead.org" <ath11k@lists.infradead.org>,
-	Christian Borntraeger <borntraeger@linux.ibm.com>,
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-	"iommu@lists.linux.dev" <iommu@lists.linux.dev>,
-	"kvm@vger.kernel.org" <kvm@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-	"linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>,
-	"linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-	"linux-s390@vger.kernel.org" <linux-s390@vger.kernel.org>,
-	"linux-stm32@st-md-mailman.stormreply.com" <linux-stm32@st-md-mailman.stormreply.com>,
-	"linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
-	"linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
-	Niklas Schnelle <schnelle@linux.ibm.com>,
-	"virtualization@lists.linux-foundation.org" <virtualization@lists.linux-foundation.org>
-Subject: Re: [PATCH 6/8] iommu/intel: Add a gfp parameter to
- alloc_pgtable_page()
-Message-ID: <Y8gNEUJ9ffSdfH51@nvidia.com>
-References: <0-v1-6e8b3997c46d+89e-iommu_map_gfp_jgg@nvidia.com>
- <6-v1-6e8b3997c46d+89e-iommu_map_gfp_jgg@nvidia.com>
- <BN9PR11MB5276A8193DE752CA8D8D89928CC69@BN9PR11MB5276.namprd11.prod.outlook.com>
- <Y8ai8i2FpW4CuAX6@nvidia.com>
- <BN9PR11MB52769B8225A81D0636FFE5648CC79@BN9PR11MB5276.namprd11.prod.outlook.com>
-Content-Disposition: inline
-In-Reply-To: <BN9PR11MB52769B8225A81D0636FFE5648CC79@BN9PR11MB5276.namprd11.prod.outlook.com>
-X-ClientProxiedBy: MN2PR08CA0004.namprd08.prod.outlook.com
- (2603:10b6:208:239::9) To LV2PR12MB5869.namprd12.prod.outlook.com
- (2603:10b6:408:176::16)
+	id 1pICdg-0027mH-PY
+	for ath11k@lists.infradead.org; Wed, 18 Jan 2023 17:54:22 +0000
+Received: by mail-wm1-x32d.google.com with SMTP id f12-20020a7bc8cc000000b003daf6b2f9b9so1952649wml.3
+        for <ath11k@lists.infradead.org>; Wed, 18 Jan 2023 09:54:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=TWpO1YbgA04yjZBzLFJGZr2Ux7J9tn5oLTa4Qr7uJbk=;
+        b=yPqo3wCU1xKWJPTbuSCKCbqYu6Q+pewK3OQ1KwO4DvrbPw4kUHaYyutclqFtr8rniv
+         rFB6x+jo6VQZ3dIlql4OO3K15gyVQVAKU3AYVC2LM+MZh6yPUdKhf9nv6PA2T845Jgx0
+         7yms/WQF5TaY3zASjHlGhI5n4Bamh23pq1kXrtkbHWpAmcRoSyGmggfj3vgMv2XT0hVc
+         ny3oYDCyascDlK2oamvzZXNSAKXv97QzBO8GY3CF9s0p+ggSH3VBEFKJ7FowVdowCM0s
+         lOyVHWx9INpOjZ9m5zUjoUnY8HVAxBrvv6R0qQ9om98BW0nVvP1h4U8BW7Fog/yjGxf+
+         Wzzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TWpO1YbgA04yjZBzLFJGZr2Ux7J9tn5oLTa4Qr7uJbk=;
+        b=yYM8Y7IX2eZ2t9xAUxnT6koxJj8vIyKNEI950gIfk/FaV3YpvnrCPkArdZVTdjVmaX
+         WJsBFMg1ryvbEsMpHON9q6qIXnT7O6Lfm2Nx+I5Jub1nBLhRI1Zl1EfgyW4Z7E9fMqCp
+         /64loDRqB+LFIkTVJ5SV9mhFC+uQriiE5b9RwF6yfFpwIzFL43ADfgKHWECEiztHa6G+
+         2RM2Sfg2ZBfQzGImyH8nEXjk4p01XX8FjvQrYNWzgCWpAXg11g/Z1DWPnfwaRonbAI3+
+         88NtuxVUw92Pt20xetMuuKP22mCO+hd3caSvXAQ5ZLV7QOKvA8/HRiJrlem+/P+Oz7g9
+         7Uzw==
+X-Gm-Message-State: AFqh2krm/FyFtRe6Yr8XmXXd5G5g5hcg8OERt6VILxrx7v/W7ijI+m1A
+	eya8niNbKG826RsolY8tVkz85Q==
+X-Google-Smtp-Source: AMrXdXuVbyarxnAiepfXzbwTR1RHkFZszrKxbE5DGbOdnNgX139UqeLC5+bUZ7kndu3Jzieu7igTOQ==
+X-Received: by 2002:a05:600c:4d93:b0:3d9:efd1:214d with SMTP id v19-20020a05600c4d9300b003d9efd1214dmr7568201wmp.25.1674064457145;
+        Wed, 18 Jan 2023 09:54:17 -0800 (PST)
+Received: from krzk-bin.. ([178.197.216.144])
+        by smtp.gmail.com with ESMTPSA id o2-20020a05600c4fc200b003cf894dbc4fsm2730015wmq.25.2023.01.18.09.54.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Jan 2023 09:54:16 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Kalle Valo <kvalo@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Felix Fietkau <nbd@nbd.name>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	Ryder Lee <ryder.lee@mediatek.com>,
+	Shayne Chen <shayne.chen@mediatek.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	=?UTF-8?q?J=C3=A9r=C3=B4me=20Pouiller?= <jerome.pouiller@silabs.com>,
+	de Goede <hdegoede@redhat.com>,
+	Tony Lindgren <tony@atomide.com>,
+	linux-wireless@vger.kernel.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	ath11k@lists.infradead.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: net: wireless: minor whitespace and name cleanups
+Date: Wed, 18 Jan 2023 18:54:13 +0100
+Message-Id: <20230118175413.360153-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|PH8PR12MB6770:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8e88fa23-14eb-49ed-3ef4-08daf966d618
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 	VqkeOZyMHCubF29L0ig33g7+rBZaJdLP+HxE0a7KWTJL1bO/GVHuwH9VXCWVlC8VA/puDGcmtuq76cwVUl0ZaiubsrY+G5yqnP8ZQQ4saMe5U3sfka7QSOvqvWfHZshzjspmc1yOJ5vM8ih+9Cp45lxg8mhQ8PBKK8qQVCfIwZhAcFvKm6FKAmivzU4OBx8T6wDuBvbmI/wK4PECoih9kksnc/RqiyfKd+GXHKZ/lsfs8X0kGCb9KpSs03anNaLXD00IuY77tgeC6/tDKeUmc5KLUQwr4hEtNNsISCNDvfRpalXq4fjJgHPPzOStm1e9bLumMS8EefC+xGRbW1kim7YVNmEuPwVkNqWr59/qyYThYyTsZnWLVGAGzw7ZjDRq6ZR0UQgQ+Md+Raqg8G97nFjpjvSR7SHsJaqoIqK7HktLd16n3lzNCYvg372pxEQatUL/5ogQQ01ZNy+GysuzOOPvypfgFwXzRDyaxX6dc5axLUqyeiE05PiJ750Giw7y5PMQeG8ohRL7pOeiWNKslGGhCZtxu19IZWE+34MakhMi0kMVqjQnpxAfxUDvnQ6h8eSuURkqnDwwH3njv/OG23efH9oXzdHPpRgKh1mwQ4JLwNTid9nN9T25fcuqHlFQADHXZ1Zl1RjFdXwP9zS8Kw==
-X-Forefront-Antispam-Report: 	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LV2PR12MB5869.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(136003)(396003)(346002)(376002)(366004)(451199015)(8676002)(86362001)(38100700002)(7416002)(6916009)(5660300002)(8936002)(2906002)(66476007)(66556008)(4326008)(66946007)(41300700001)(26005)(6506007)(6512007)(2616005)(186003)(478600001)(316002)(6486002)(54906003)(36756003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 	=?us-ascii?Q?rOpluIWQy+1NxO6yGe6376cl0Tmrlsf1pZTdI6ZISSltWdpHsrIiC4ygZANe?=
- =?us-ascii?Q?17iMBFpiXH4dIj+MYVDYKWyTveytvsJF2TOyJO5X1MlPo95dQoAhiUZ7QgDV?=
- =?us-ascii?Q?HRjO53y8p/CLi4uyqIptvgGlTAZ1krXuBCoqwMV1XBftLDafDofGSfqFtGLw?=
- =?us-ascii?Q?9vq17QpRDzBfpb8+ROqpZdXZ7MV2VUD50zrpemUVoSn2j96Nkc6rZGKfieay?=
- =?us-ascii?Q?yHFpo8kTLwS4vvRPmLA/uCc1c2W+gF8NMSDQp0X8ynTWZpNRMp6FM9COr1nJ?=
- =?us-ascii?Q?43gE7/bUZhZ6J5CpG38EscYXh+y021z0rwTppvb09+Ql2mZ7pZTfzfYrV4eT?=
- =?us-ascii?Q?LnZ985b0NzwyET1IlONll8NWUybOnM9fsXckRpbOjzrEwb2v70aB21+SpXOf?=
- =?us-ascii?Q?48pC8xG7QPVIi8v9iWhx/2xwY4XDJWHOGJeiNe4ZUc01cCENSYPPosjCe5yi?=
- =?us-ascii?Q?2mwTe2/ItMW/2Y96l58WNDyXSdYCR8xkMgkns3D3D0gfI75wcHehQootzEAJ?=
- =?us-ascii?Q?UbWs18WKCJJF3foRcypxCJXTeZJncGNXvZgEzbjL1++p6yYCdb4bu+wHQaR7?=
- =?us-ascii?Q?9G6zINy0P483Dd3KMSatfyfTg02vTavPXr4HzgC6i8E0VDfcpCA7DOPolRAQ?=
- =?us-ascii?Q?2m6A4KUG5W8wTIm5pyh6y0x5Unc2fzbtR6MJ4VR1no0nQuccP2HnfVkvLydG?=
- =?us-ascii?Q?+4eA/9wdzo4uPxZqQR47HRE3uYV58Rnb7ZqIoT+xYq/qATaACOnxEhqEZ3HF?=
- =?us-ascii?Q?CdBJltqtvbTCLrDaNxNciB1mXpdwTKsOc4pLONzhok200Xk51N10CgsYpsAK?=
- =?us-ascii?Q?uwSRrS1wVIqq3UxxUyGY1Nsqa5BivnMdx5sA/En3sKtrKSTfv1sChnKgid52?=
- =?us-ascii?Q?jmGiyAJS1eY+NzCgO7Z/sxlBB7BC3i2DPOA39yCeSk4EfOm0HBAKWzh0kt+f?=
- =?us-ascii?Q?Jy8VxJzPXcRBc9iA96noM+qXoQyJl0cQChyU56UZkJn5LkELEHh6Rw1tOCny?=
- =?us-ascii?Q?/b8CSSFY9yKISluAOJ3pW4qR5jYejr/erVAxDfcYgx8YdP5BPrNZpD1rJ/ku?=
- =?us-ascii?Q?l6ghcHY6T3R++zs7rXqcLMoEfYkRdrU8uKwF1KApSrppyyPmvYvNb/XuOHRR?=
- =?us-ascii?Q?AIBQfs0b+cHEuu1kkPiqkoSUYBfkeUJ1Cbsncuqv2BTz3/iAjPicZl92UXj2?=
- =?us-ascii?Q?3Lh0iT/dPcRpPIvRzjl5tA1KFbDHd0n8R+sfgqLCl5O3F0B9icuij+tAtpZ1?=
- =?us-ascii?Q?NPhniNuoj+IZWJATC49hWlImv4VSdGc8PBlHZdTmDCDe7tifFG9N/JWv/wsV?=
- =?us-ascii?Q?4qLUWJy4uMpEZpSQtfZJ6HPcAgGBovxLPWZX/nglgpTXAUNEhMzVDgMvrNkB?=
- =?us-ascii?Q?lV9w937M6Hl/UvmqzoZK8JPt93HzAcydjCRxnz799wJPT0qUnzowEQWoCRpK?=
- =?us-ascii?Q?YZTyXf6+S9bkQvdE09DsNutidZ+MGx/C7YY8u11SGhtMOlOt24XE0hHrXZi5?=
- =?us-ascii?Q?eG6p+iJZPMzd88nG073Uj7uBMNRf+tY1t2lng8RKyn73ITCoQX9k6AjH6oH7?=
- =?us-ascii?Q?cXCgHAg/1bu1JK4byEAKLxJ1JOvx3Hx3RYokkAWq?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8e88fa23-14eb-49ed-3ef4-08daf966d618
-X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jan 2023 15:15:30.2895
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: QIZyr6v+oKhwQQpCgWjDbbncIhOISvKiO9v5UR7uZ6xhPj2xLZYEfjszUIXgPrOV
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB6770
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230118_071535_091473_82254C00 
-X-CRM114-Status: GOOD (  15.39  )
+X-CRM114-CacheID: sfid-20230118_095420_842256_0AC6A416 
+X-CRM114-Status: GOOD (  10.97  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -156,57 +108,220 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed, Jan 18, 2023 at 01:18:18AM +0000, Tian, Kevin wrote:
-> > From: Jason Gunthorpe <jgg@nvidia.com>
-> > Sent: Tuesday, January 17, 2023 9:30 PM
-> > 
-> > On Tue, Jan 17, 2023 at 03:35:08AM +0000, Tian, Kevin wrote:
-> > > > From: Jason Gunthorpe <jgg@nvidia.com>
-> > > > Sent: Saturday, January 7, 2023 12:43 AM
-> > > >
-> > > > @@ -2676,7 +2676,7 @@ static int copy_context_table(struct
-> > intel_iommu
-> > > > *iommu,
-> > > >  			if (!old_ce)
-> > > >  				goto out;
-> > > >
-> > > > -			new_ce = alloc_pgtable_page(iommu->node);
-> > > > +			new_ce = alloc_pgtable_page(iommu->node,
-> > > > GFP_KERNEL);
-> > >
-> > > GFP_ATOMIC
-> > 
-> > Can't be:
-> > 
-> > 			old_ce = memremap(old_ce_phys, PAGE_SIZE,
-> > 					MEMREMAP_WB);
-> > 			if (!old_ce)
-> > 				goto out;
-> > 
-> > 			new_ce = alloc_pgtable_page(iommu->node,
-> > GFP_KERNEL);
-> > 			if (!new_ce)
-> > 
-> > memremap() is sleeping.
-> > 
-> > And the only caller is:
-> > 
-> > 	ctxt_tbls = kcalloc(ctxt_table_entries, sizeof(void *), GFP_KERNEL);
-> > 	if (!ctxt_tbls)
-> > 		goto out_unmap;
-> > 
-> > 	for (bus = 0; bus < 256; bus++) {
-> > 		ret = copy_context_table(iommu, &old_rt[bus],
-> > 					 ctxt_tbls, bus, ext);
-> > 
-> 
-> Yes, but the patch description says "Push the GFP_ATOMIC to all
-> callers." implying it's purely a refactoring w/o changing those
-> semantics.
+Minor cleanups:
+ - Drop redundant blank lines,
+ - Correct indentaion in examples,
+ - Correct node names in examples to drop underscore and use generic
+   name.
 
-Sure, lets split the patch, it is a good idea
+No functional impact except adjusting to preferred coding style.
 
-Jason
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../bindings/net/wireless/esp,esp8089.yaml    | 20 +++---
+ .../bindings/net/wireless/ieee80211.yaml      |  1 -
+ .../bindings/net/wireless/mediatek,mt76.yaml  |  1 -
+ .../bindings/net/wireless/qcom,ath11k.yaml    | 11 ++-
+ .../bindings/net/wireless/silabs,wfx.yaml     |  1 -
+ .../bindings/net/wireless/ti,wlcore.yaml      | 70 +++++++++----------
+ 6 files changed, 50 insertions(+), 54 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/net/wireless/esp,esp8089.yaml b/Documentation/devicetree/bindings/net/wireless/esp,esp8089.yaml
+index 5557676e9d4b..0ea84d6fe73e 100644
+--- a/Documentation/devicetree/bindings/net/wireless/esp,esp8089.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/esp,esp8089.yaml
+@@ -29,15 +29,15 @@ additionalProperties: false
+ 
+ examples:
+   - |
+-      mmc {
+-          #address-cells = <1>;
+-          #size-cells = <0>;
+-
+-          wifi@1 {
+-              compatible = "esp,esp8089";
+-              reg = <1>;
+-              esp,crystal-26M-en = <2>;
+-          };
+-      };
++    mmc {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        wifi@1 {
++            compatible = "esp,esp8089";
++            reg = <1>;
++            esp,crystal-26M-en = <2>;
++        };
++    };
+ 
+ ...
+diff --git a/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml b/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml
+index e68ed9423150..d89f7a3f88a7 100644
+--- a/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/ieee80211.yaml
+@@ -1,6 +1,5 @@
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ # Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+-
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/net/wireless/ieee80211.yaml#
+diff --git a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+index f0c78f994491..7d526ff53fb7 100644
+--- a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+@@ -1,6 +1,5 @@
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ # Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+-
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/net/wireless/mediatek,mt76.yaml#
+diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+index 556eb523606a..5f4b141ba813 100644
+--- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+@@ -1,6 +1,5 @@
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ # Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+-
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/net/wireless/qcom,ath11k.yaml#
+@@ -262,10 +261,10 @@ allOf:
+ examples:
+   - |
+ 
+-    q6v5_wcss: q6v5_wcss@CD00000 {
++    q6v5_wcss: remoteproc@cd00000 {
+         compatible = "qcom,ipq8074-wcss-pil";
+-        reg = <0xCD00000 0x4040>,
+-              <0x4AB000 0x20>;
++        reg = <0xcd00000 0x4040>,
++              <0x4ab000 0x20>;
+         reg-names = "qdsp6",
+                     "rmb";
+     };
+@@ -386,7 +385,7 @@ examples:
+         #address-cells = <2>;
+         #size-cells = <2>;
+ 
+-        qcn9074_0: qcn9074_0@51100000 {
++        qcn9074_0: wifi@51100000 {
+             no-map;
+             reg = <0x0 0x51100000 0x0 0x03500000>;
+         };
+@@ -463,6 +462,6 @@ examples:
+         qcom,smem-states = <&wlan_smp2p_out 0>;
+         qcom,smem-state-names = "wlan-smp2p-out";
+         wifi-firmware {
+-                iommus = <&apps_smmu 0x1c02 0x1>;
++            iommus = <&apps_smmu 0x1c02 0x1>;
+         };
+     };
+diff --git a/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml b/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
+index 583db5d42226..84e5659e50ef 100644
+--- a/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
+@@ -2,7 +2,6 @@
+ # Copyright (c) 2020, Silicon Laboratories, Inc.
+ %YAML 1.2
+ ---
+-
+ $id: http://devicetree.org/schemas/net/wireless/silabs,wfx.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+diff --git a/Documentation/devicetree/bindings/net/wireless/ti,wlcore.yaml b/Documentation/devicetree/bindings/net/wireless/ti,wlcore.yaml
+index e31456730e9f..f799a1e52173 100644
+--- a/Documentation/devicetree/bindings/net/wireless/ti,wlcore.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/ti,wlcore.yaml
+@@ -90,47 +90,47 @@ examples:
+ 
+     // For wl12xx family:
+     spi1 {
+-            #address-cells = <1>;
+-            #size-cells = <0>;
+-
+-            wlcore1: wlcore@1 {
+-                    compatible = "ti,wl1271";
+-                    reg = <1>;
+-                    spi-max-frequency = <48000000>;
+-                    interrupts = <8 IRQ_TYPE_LEVEL_HIGH>;
+-                    vwlan-supply = <&vwlan_fixed>;
+-                    clock-xtal;
+-                    ref-clock-frequency = <38400000>;
+-            };
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        wlcore1: wlcore@1 {
++            compatible = "ti,wl1271";
++            reg = <1>;
++            spi-max-frequency = <48000000>;
++            interrupts = <8 IRQ_TYPE_LEVEL_HIGH>;
++            vwlan-supply = <&vwlan_fixed>;
++            clock-xtal;
++            ref-clock-frequency = <38400000>;
++        };
+     };
+ 
+     // For wl18xx family:
+     spi2 {
+-            #address-cells = <1>;
+-            #size-cells = <0>;
+-
+-            wlcore2: wlcore@0 {
+-                    compatible = "ti,wl1835";
+-                    reg = <0>;
+-                    spi-max-frequency = <48000000>;
+-                    interrupts = <27 IRQ_TYPE_EDGE_RISING>;
+-                    vwlan-supply = <&vwlan_fixed>;
+-            };
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        wlcore2: wlcore@0 {
++            compatible = "ti,wl1835";
++            reg = <0>;
++            spi-max-frequency = <48000000>;
++            interrupts = <27 IRQ_TYPE_EDGE_RISING>;
++            vwlan-supply = <&vwlan_fixed>;
++        };
+     };
+ 
+     // SDIO example:
+     mmc3 {
+-            vmmc-supply = <&wlan_en_reg>;
+-            bus-width = <4>;
+-            cap-power-off-card;
+-            keep-power-in-suspend;
+-
+-            #address-cells = <1>;
+-            #size-cells = <0>;
+-
+-            wlcore3: wlcore@2 {
+-                    compatible = "ti,wl1835";
+-                    reg = <2>;
+-                    interrupts = <19 IRQ_TYPE_LEVEL_HIGH>;
+-            };
++        vmmc-supply = <&wlan_en_reg>;
++        bus-width = <4>;
++        cap-power-off-card;
++        keep-power-in-suspend;
++
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        wlcore3: wlcore@2 {
++            compatible = "ti,wl1835";
++            reg = <2>;
++            interrupts = <19 IRQ_TYPE_LEVEL_HIGH>;
++        };
+     };
+-- 
+2.34.1
+
 
 -- 
 ath11k mailing list
