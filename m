@@ -4,91 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A1EDC38142
-	for <ath11k@archiver.kernel.org>; Thu, 19 Jan 2023 07:32:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B2DBC00A5A
+	for <ath11k@archiver.kernel.org>; Thu, 19 Jan 2023 11:48:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:To:Subject:Cc:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7tcQraBb68/fVQW7Ym7JlLtLwqOmWIndS1DQSOKsN2Y=; b=jOfZzLoiRpV9Zd
-	Ne57tq/iUEX1Go3FRphZEILTc59RMm3RSAbBbVUPQyaQmUPukw0lRdz1nEIUIYFPvNOjD5XT3nbDu
-	ugMoJk40zYCIhwrNpRvS0bKqagG+g3Y4NRKhCoZ8wuVfxFJzEpgVH0+63vo7dr3HjsB2nkOr3Kooy
-	O4agDpw0yS3FoNYp8/0om+PDTALPsf0DDnILq2mb3RYqsIsqAHgDF1BO3+RdSGk9+wEchxG7GRv7a
-	Z1m3eDoxUcbjgA8d0uZOrscrAaV6+pQZ0tEpPCcoGA4dxHABQ6UGnhoQ3/CijOnHjfK/BuU8YhOaV
-	f/c94cUgs0T8biggegUw==;
+	List-Owner; bh=re5vfgV/Hh1sSuJKgP7ZdbQ43mKTHMjtPAU2A7mjTHY=; b=VidYgkeNGF6U4h
+	rOrc7II27T7evqZAyL6aUXJiTJVuDH0tjvcTG1+Ui/Z+HFxB/1EQMJWwyui6EsvW1YHKzJMUT7kQ4
+	Rnjr/6ACbVVqOg4uKqRnRHjSCkhJZ9ZBbJYK8P3rIpCClB2dZZi+m6ZLfPIvr4/DuyWS5xNSvS9us
+	2WfWz0CxFnuoZMNXnoN28R/8DNyt9kP7mtNA6ILSTPGnkf/gQ2fCtnOcWH7fibcR1jkNmvL05yvXz
+	XOQt3h6iVmcIywm8rjsMVgQ9XoJ2nrLLtecqf2JW5UuImw+lz+HTvKvZHKbzV6IEG3TkMynIfgBoG
+	X6yawwFvi2PceyZ/8Ysw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pIPPb-003rIW-96; Thu, 19 Jan 2023 07:32:39 +0000
-Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
+	id 1pITOv-004dpP-0G; Thu, 19 Jan 2023 11:48:13 +0000
+Received: from mga18.intel.com ([134.134.136.126])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pIPPP-003rEn-5P
-	for ath11k@lists.infradead.org; Thu, 19 Jan 2023 07:32:28 +0000
-Received: by mail-wr1-x42d.google.com with SMTP id h16so906901wrz.12
-        for <ath11k@lists.infradead.org>; Wed, 18 Jan 2023 23:32:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yOAGtEwwl9ah5X14+fr3xyjQkxYKgtW7wTdmd7LaFEg=;
-        b=vRIRpio+Aom4lroZdxIv5dfYLWZdktfYVL3jHgETXcsxRJ2IKyD1BV36YuWKt8r1nQ
-         +07wunX4ZC3IPo0SiFKP/4cW4rCUCfgTlN/S3oDPCkSQ31hkzmGIEBxm3gnmd4L6UmKl
-         skGsnD6BenqldlGA2OrrmLySBX41OvAjMUQRJ8cUUO+fWk72verQOTsg+UiyW/fjh7X1
-         z5zfL1pWRMbdqXu+TUTUh+4KfrCuKlXZ/i2QJReFETSj/UWiGssDGb/4JCGsPml6Njtc
-         k+zsV+4nZoM+MsAECNOaZY1mX1Eygrw9Sjwbj8l1hy5tTux8/UmnXFK4RdG5XA8ZJ+a4
-         Jxlg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yOAGtEwwl9ah5X14+fr3xyjQkxYKgtW7wTdmd7LaFEg=;
-        b=x4LEpdRZvX19csDWiheHNzHmEW1keTGi/JeVBS1o470eE69L9Rbcy5QRHbTK50oal6
-         qxpiwMuFztBJSBNIcHtGCcA9XTPLhJliNpdT8sNqULYkYVYXOpuwXdytf4R39FFZK4ph
-         I+rdKhPyed+GcJf3/ByiZGp3Zo7pqdOZFUHNSu73EW2jEc4GT6U0ODnWxcrzOwgPka4G
-         h4HhB6QsrpL5A4bcI78ziySAEu9rJy6qImJmfg4cUkL1Eic63szjky/Q69BD85u02ekW
-         Ylz6btLwDXvCX2K82dHyJnlQ9XVFBZ4ZUY60CHD46dKDdkYNkx6UhgsLCztFUuHy5WIr
-         Be7A==
-X-Gm-Message-State: AFqh2kpFL4etD1Ca8RjYo6eXMpTQeAtvKYyfK70rGwat4h5zVCjLviL8
-	FiFAiK3CTQGH9mu+rlmBpuMZ3w==
-X-Google-Smtp-Source: AMrXdXsYozDSX5UXzU8eViFCPgDNSOimFqf7m+5mZ3D5VIeY9Dv8lV1BtejtIKH3WhVddwYIOFPnhQ==
-X-Received: by 2002:a5d:4dc9:0:b0:2be:21fc:ae3 with SMTP id f9-20020a5d4dc9000000b002be21fc0ae3mr7080130wru.11.1674113545389;
-        Wed, 18 Jan 2023 23:32:25 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id w10-20020a5d404a000000b00275970a85f4sm32958865wrp.74.2023.01.18.23.32.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Jan 2023 23:32:24 -0800 (PST)
-Message-ID: <0662e292-91b4-0b1a-f012-83cb2f316353@linaro.org>
-Date: Thu, 19 Jan 2023 08:32:22 +0100
+	id 1pITOd-004dke-9o; Thu, 19 Jan 2023 11:47:56 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1674128875; x=1705664875;
+  h=message-id:date:mime-version:cc:subject:to:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=DuOBg1V/kEEpNk+BV4bYqVrWJSOOFRR3sdWDamFrvt0=;
+  b=F4wyTMFx5wuW2t3jdCnAWHtqhXaClbBJ9FADIrmsAJ/RFANVjSpXJ3C4
+   in7lP3/KlCyU+oFr4masD4A1ki0OeDJNbE4hsfO5zZHloNQVDaPp35gKq
+   Z5ch68xkwvaemSEAV7FW2rmscLotYVF2iBcoxahg2d9ibqkno3o26Igwd
+   HCc9FHtwxufmd7Nt557TBWN2MBdhwHduFENGJ48g+tMGaH2OZPIviyNWx
+   4dNBeGZbCXYECZ2+BrQDbZKTyeraT2GzEJGcQfoUjC2gkAH69mA1K4qsy
+   i9Px1Bl11ntTvkX5Gz0qUx1r4QnbZPr5mtx9DNkaRp7kjgSAQ0Bl9ndd0
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="308821085"
+X-IronPort-AV: E=Sophos;i="5.97,229,1669104000"; 
+   d="scan'208";a="308821085"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jan 2023 03:47:51 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10594"; a="988957189"
+X-IronPort-AV: E=Sophos;i="5.97,229,1669104000"; 
+   d="scan'208";a="988957189"
+Received: from blu2-mobl.ccr.corp.intel.com (HELO [10.252.185.248]) ([10.252.185.248])
+  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jan 2023 03:47:45 -0800
+Message-ID: <08c874f6-0c59-0b74-a2c8-7ad61356af6f@linux.intel.com>
+Date: Thu, 19 Jan 2023 19:47:42 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH] dt-bindings: net: wireless: minor whitespace and name
- cleanups
-To: Kalle Valo <kvalo@kernel.org>
-Cc: "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Felix Fietkau <nbd@nbd.name>, Lorenzo Bianconi <lorenzo@kernel.org>,
- Ryder Lee <ryder.lee@mediatek.com>, Shayne Chen <shayne.chen@mediatek.com>,
- Sean Wang <sean.wang@mediatek.com>, Matthias Brugger
- <matthias.bgg@gmail.com>, =?UTF-8?B?SsOpcsO0bWUgUG91aWxsZXI=?=
- <jerome.pouiller@silabs.com>, de Goede <hdegoede@redhat.com>,
- Tony Lindgren <tony@atomide.com>, linux-wireless@vger.kernel.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, ath11k@lists.infradead.org
-References: <20230118175413.360153-1-krzysztof.kozlowski@linaro.org>
- <87bkmv85tb.fsf@kernel.org>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Cc: baolu.lu@linux.intel.com, Alex Williamson <alex.williamson@redhat.com>,
+ ath10k@lists.infradead.org, ath11k@lists.infradead.org,
+ Christian Borntraeger <borntraeger@linux.ibm.com>,
+ dri-devel@lists.freedesktop.org, iommu@lists.linux.dev, kvm@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-rdma@vger.kernel.org,
+ linux-remoteproc@vger.kernel.org, linux-s390@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-tegra@vger.kernel.org,
+ linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+ nouveau@lists.freedesktop.org, Niklas Schnelle <schnelle@linux.ibm.com>,
+ virtualization@lists.linux-foundation.org
+Subject: Re: [PATCH v2 06/10] iommu/intel: Add a gfp parameter to
+ alloc_pgtable_page()
 Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <87bkmv85tb.fsf@kernel.org>
+To: Jason Gunthorpe <jgg@nvidia.com>, Joerg Roedel <joro@8bytes.org>,
+ Kevin Tian <kevin.tian@intel.com>, Matthew Rosato <mjrosato@linux.ibm.com>,
+ Robin Murphy <robin.murphy@arm.com>
+References: <6-v2-ce66f632bd0d+484-iommu_map_gfp_jgg@nvidia.com>
+From: Baolu Lu <baolu.lu@linux.intel.com>
+In-Reply-To: <6-v2-ce66f632bd0d+484-iommu_map_gfp_jgg@nvidia.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230118_233227_265599_7C3C19D3 
-X-CRM114-Status: GOOD (  11.12  )
+X-CRM114-CacheID: sfid-20230119_034755_445039_CAF01C05 
+X-CRM114-Status: UNSURE (   5.67  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,40 +87,21 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 19/01/2023 06:13, Kalle Valo wrote:
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
+On 2023/1/19 2:00, Jason Gunthorpe wrote:
+> This is eventually called by iommufd through intel_iommu_map_pages() and
+> it should not be forced to atomic. Push the GFP_ATOMIC to all callers.
 > 
->> Minor cleanups:
->>  - Drop redundant blank lines,
->>  - Correct indentaion in examples,
->>  - Correct node names in examples to drop underscore and use generic
->>    name.
->>
->> No functional impact except adjusting to preferred coding style.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  .../bindings/net/wireless/esp,esp8089.yaml    | 20 +++---
->>  .../bindings/net/wireless/ieee80211.yaml      |  1 -
->>  .../bindings/net/wireless/mediatek,mt76.yaml  |  1 -
->>  .../bindings/net/wireless/qcom,ath11k.yaml    | 11 ++-
->>  .../bindings/net/wireless/silabs,wfx.yaml     |  1 -
->>  .../bindings/net/wireless/ti,wlcore.yaml      | 70 +++++++++----------
->>  6 files changed, 50 insertions(+), 54 deletions(-)
-> 
-> Thanks for the cleanup. Would you like to me to take this to
-> wireless-next or do you have other plans?
+> Signed-off-by: Jason Gunthorpe<jgg@nvidia.com>
 
-Go ahead and grab it for wireless-next, please. Thanks!
+Reviewed-by: Lu Baolu <baolu.lu@linux.intel.com>
 
 Best regards,
-Krzysztof
-
+baolu
 
 -- 
 ath11k mailing list
