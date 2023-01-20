@@ -4,109 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD425C004D4
-	for <ath11k@archiver.kernel.org>; Thu, 19 Jan 2023 21:57:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D7B4C05027
+	for <ath11k@archiver.kernel.org>; Fri, 20 Jan 2023 09:51:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jaREwuu27CvdsPhSmpOvks8Eqo9BMobmpQRExTeoBHE=; b=iLpTRX7hYHMT8T
-	qV62f2YgHjrGpM8Jd9LCsPeWYe4h6YdKgZy6beRuawAn4apgT7zYWysOQCDiQFCOf1mDeZtrUP2nL
-	qLDwW2JfssQmTAK8TryAfnDqQk0ytM5czmU2FWCBpevv4SlAMhE2IGWC+zr4ydDFfOIAqP/hDYPrd
-	VV+LqzvqfFJP7n37tT6sHxbpfTEt3zU2DA89ajQ/afIRQt7LA71sYb30abAP0nfQ4rkBHbrOyWbzq
-	JflegwXlhsLzsol1b9B69E+yJjXp6rpJzXWydXmVhyI+vJ53r9N+moG7OtOEe6sse6jTrnUnp5ub6
-	7kzwuGc5mxqw3nIZ9clg==;
+	List-Owner; bh=59ssB/yULgBBBIOB4CSsHtR83A9MPmZ3+3INGqdox5Q=; b=yYZtqEsXqriNcC
+	4guyQZGh7gv2D2OXR6oQDUFJRaMzWKWOVTisfm/BmWcxH6ifnU5et4GJCFS1F7YgQTQcQYLKP7ULA
+	kaakRx2lKUD0+0tghy9Q+qpVCSY1BHosopm7ydGE465lzekbD/em+FcWH9WK7wOiSfMa4US1a39Xb
+	9mh7iNUBb3H0WAhDKxgSkPJTXYkW5phwsKiTBAhei5p0BpMbvXXZDxsgD8PyV1WHdcDPSnjWSkwvt
+	YXmBoQbNX1SZ1UAbb5/8FVBJap2Kd1/QQXhVwISL6l0xgZTW8ZH1dE6JNVlqrRIsvWVYbO/ZUhtMS
+	m0BdkfXCsSMm3IrySgLg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pIcuR-007Mc6-1E; Thu, 19 Jan 2023 21:57:23 +0000
-Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1])
-	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pIcu8-007MWo-6u; Thu, 19 Jan 2023 21:57:05 +0000
-Received: from pps.filterd (m0098399.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30JLlbHM030199;
-	Thu, 19 Jan 2023 21:56:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=pp1;
- bh=uEw62BCO1kAE3MnqsTANbbpQMbTsLDdWyYH4p4E1DCA=;
- b=JeBeAbeePVqEpUQNApMZ8YIYEPuLwCZ2G/HwUA0cmJLkPk7ui0A5vQFQYJEVqdVbML5U
- e91pt5oFbU7tm1Nh7A8SxsxN045+sZTvEQ5k8ODQuVBWfdMnWWEOx2plljcn1hE/uFx1
- 3c3qdPwGLHTfGV+Xj1XOZLv9pGhrORCY0KStHgA+e6dM1txf3fJgNK7v77HTGl6GazGJ
- vDcd9/OoOTa4KBu/a3iDR5icyiDw5I5jPYFd9BbKlvc9N3qsIOsgjCHSEzgOptqfLcJ/
- HoXfR0nLDnjtgu6JzBG5EYU4milBxTfxfY0/ItTN9LsByz11xbMq6hTzsAZfSsNbZ4cY 7Q== 
-Received: from pps.reinject (localhost [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3n7e3d866k-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 19 Jan 2023 21:56:56 +0000
-Received: from m0098399.ppops.net (m0098399.ppops.net [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 30JLuu21027289;
-	Thu, 19 Jan 2023 21:56:56 GMT
-Received: from ppma04dal.us.ibm.com (7a.29.35a9.ip4.static.sl-reverse.com [169.53.41.122])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3n7e3d8667-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 19 Jan 2023 21:56:56 +0000
-Received: from pps.filterd (ppma04dal.us.ibm.com [127.0.0.1])
-	by ppma04dal.us.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 30JJkuri025991;
-	Thu, 19 Jan 2023 21:56:54 GMT
-Received: from smtprelay05.wdc07v.mail.ibm.com ([9.208.129.117])
-	by ppma04dal.us.ibm.com (PPS) with ESMTPS id 3n3m18897y-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 19 Jan 2023 21:56:54 +0000
-Received: from smtpav01.wdc07v.mail.ibm.com (smtpav01.wdc07v.mail.ibm.com [10.39.53.228])
-	by smtprelay05.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 30JLuqn966453836
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 19 Jan 2023 21:56:52 GMT
-Received: from smtpav01.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 66B7458059;
-	Thu, 19 Jan 2023 21:56:52 +0000 (GMT)
-Received: from smtpav01.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 9964F5805B;
-	Thu, 19 Jan 2023 21:56:49 +0000 (GMT)
-Received: from [9.160.87.67] (unknown [9.160.87.67])
-	by smtpav01.wdc07v.mail.ibm.com (Postfix) with ESMTP;
-	Thu, 19 Jan 2023 21:56:49 +0000 (GMT)
-Message-ID: <1c7a7395-dabf-ddbf-00eb-9e7e44910750@linux.ibm.com>
-Date: Thu, 19 Jan 2023 16:56:49 -0500
+	id 1pIo3R-009XpZ-DZ; Fri, 20 Jan 2023 09:51:25 +0000
+Received: from mail.8bytes.org ([2a01:238:42d9:3f00:e505:6202:4f0c:f051])
+	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
+	id 1pIndq-009LNg-LW; Fri, 20 Jan 2023 09:25:00 +0000
+Received: from 8bytes.org (p200300c27714bc0086ad4f9d2505dd0d.dip0.t-ipconnect.de [IPv6:2003:c2:7714:bc00:86ad:4f9d:2505:dd0d])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.8bytes.org (Postfix) with ESMTPSA id E12D62626D1;
+	Fri, 20 Jan 2023 10:24:56 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=8bytes.org;
+	s=default; t=1674206697;
+	bh=N0Ez9jlBhYWiOK7+xYABfIe0+VmfRPgpACpzUje2F4A=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lOLKVLD4dyMYfuGfszt0Aqi18MMtbwUvgwVbHoDO6hE/pu3jlsoFnfOvfV2sSJ6i8
+	 k3lOBgDA7x9bkKbnD+qVSk6qrzEVOc/9/JS99/CzblV3IjUWMNUsDLegoejr0hYkyT
+	 NIAGgbjvSNtqhO8clUAYjH7vWYcGoTKi2kDTgKFmFcsSDinl9Vo2l2M2oUTe7UNJh3
+	 4hHtdAX4so62XBRGFWlRKgCJW94p/lPduMMBp2SCZ238xwGOe1m0xh9F5SouN8x7NO
+	 06U5w+umYu9ogUcIQK1YpQ4ciXMhW+H2quzpMMrP7f3cTLkb2U0hf6Ab3xk/GMJY5E
+	 1P63Vv4/HChRw==
+Date: Fri, 20 Jan 2023 10:24:55 +0100
+From: Joerg Roedel <joro@8bytes.org>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Cc: Robin Murphy <robin.murphy@arm.com>,
+	Lu Baolu <baolu.lu@linux.intel.com>,
+	Kevin Tian <kevin.tian@intel.com>,
+	Matthew Rosato <mjrosato@linux.ibm.com>,
+	Alex Williamson <alex.williamson@redhat.com>,
+	ath10k@lists.infradead.org, ath11k@lists.infradead.org,
+	Christian Borntraeger <borntraeger@linux.ibm.com>,
+	dri-devel@lists.freedesktop.org, iommu@lists.linux.dev,
+	kvm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+	linux-rdma@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+	linux-s390@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-tegra@vger.kernel.org, linux-wireless@vger.kernel.org,
+	netdev@vger.kernel.org, nouveau@lists.freedesktop.org,
+	Niklas Schnelle <schnelle@linux.ibm.com>,
+	virtualization@lists.linux-foundation.org
+Subject: Re: [PATCH 1/8] iommu: Add a gfp parameter to iommu_map()
+Message-ID: <Y8pd50mdNShTyVRX@8bytes.org>
+References: <1-v1-6e8b3997c46d+89e-iommu_map_gfp_jgg@nvidia.com>
+ <4fd1b194-29ef-621d-4059-a8336058f217@arm.com>
+ <Y7hZOwerwljDKoQq@nvidia.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v2 10/10] iommu/s390: Use GFP_KERNEL in sleepable contexts
-Content-Language: en-US
-To: Jason Gunthorpe <jgg@nvidia.com>, Lu Baolu <baolu.lu@linux.intel.com>,
-        Joerg Roedel <joro@8bytes.org>, Kevin Tian <kevin.tian@intel.com>,
-        Robin Murphy <robin.murphy@arm.com>
-Cc: Alex Williamson <alex.williamson@redhat.com>, ath10k@lists.infradead.org,
-        ath11k@lists.infradead.org,
-        Christian Borntraeger
- <borntraeger@linux.ibm.com>,
-        dri-devel@lists.freedesktop.org, iommu@lists.linux.dev,
-        kvm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-rdma@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        linux-s390@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
-        linux-tegra@vger.kernel.org, linux-wireless@vger.kernel.org,
-        netdev@vger.kernel.org, nouveau@lists.freedesktop.org,
-        Niklas Schnelle <schnelle@linux.ibm.com>,
-        virtualization@lists.linux-foundation.org
-References: <10-v2-ce66f632bd0d+484-iommu_map_gfp_jgg@nvidia.com>
-From: Matthew Rosato <mjrosato@linux.ibm.com>
-In-Reply-To: <10-v2-ce66f632bd0d+484-iommu_map_gfp_jgg@nvidia.com>
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: u9tb2Epyw4L_fk2u2w9vs35Q310gGVQW
-X-Proofpoint-ORIG-GUID: CtIEVTzNTPEu57hDSdzSORw4_xg43p3H
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-19_14,2023-01-19_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- mlxlogscore=773 clxscore=1015 impostorscore=0 mlxscore=0 malwarescore=0
- spamscore=0 priorityscore=1501 lowpriorityscore=0 adultscore=0 bulkscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2301190181
+Content-Disposition: inline
+In-Reply-To: <Y7hZOwerwljDKoQq@nvidia.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230119_135704_367680_BD57D055 
-X-CRM114-Status: GOOD (  15.27  )
+X-CRM114-CacheID: sfid-20230120_012458_987084_573ECD0C 
+X-CRM114-Status: GOOD (  12.28  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,19 +87,22 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 1/18/23 1:00 PM, Jason Gunthorpe wrote:
-> These contexts are sleepable, so use the proper annotation. The GFP_ATOMIC
-> was added mechanically in the prior patches.
-> 
-> Reviewed-by: Niklas Schnelle <schnelle@linux.ibm.com>
-> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
-> ---
->  arch/s390/pci/pci_dma.c    | 2 +-
->  drivers/iommu/s390-iommu.c | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
+On Fri, Jan 06, 2023 at 01:24:11PM -0400, Jason Gunthorpe wrote:
+> I think it is just better to follow kernel convention and have
+> allocation functions include the GFP because it is a clear signal to
+> the user that there is an allocation hidden inside the API. The whole
+> point of gfp is not to have multitudes of every function for every
+> allocation mode.
 
-Reviewed-by: Matthew Rosato <mjrosato@linux.ibm.com>
+Well, having GFP parameters is not a strict kernel convention. There are
+places doing it differently and have sleeping and atomic variants of
+APIs. I have to say I like the latter more. But given that this leads to
+an invasion of API functions here which all do the same under the hood, I
+agree it is better to go with a GFP parameter here.
 
+Regards,
+
+	Joerg
 
 -- 
 ath11k mailing list
