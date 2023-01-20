@@ -4,62 +4,134 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD470C05027
-	for <ath11k@archiver.kernel.org>; Fri, 20 Jan 2023 17:04:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C98B6C05027
+	for <ath11k@archiver.kernel.org>; Fri, 20 Jan 2023 17:54:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
-	:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ffIt8LGQXAF3Q1CGHTtwDLeT8F5ux1bqL4JCpwu8aaI=; b=WLrqW9Z+knYjrfqQSxyebB/2EC
-	190/GeZYNYY6ogBLc0lx1lQlOlmubr8aw//6ZthasaXtioO1zRvZzVd+Oq+oOpoGckNWDcAg+2SNk
-	A9VBTT9tJB2/yOfLOuBZ0eunonOMiLm6tCPZBjvChLP9SMRFOWtH3tnYiV9mXSpm2XFwBh6vOomDZ
-	FEoYbIbWP0REygFKAyolSTo8rFU2FZQ0PD/vk3UBZbUGxV4PzBkT4Xex3K5RSrLw/haO5y+KCnnmi
-	Gu3D6LKLeW5rIXSMP5J4aYf/SgwMbNLBdTcwOr+fJvxeKnO8UkNbveSPEs0yqhfV382SkF2XTcbl1
-	LjPLtuxA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=NMgY+FbEB8RWCVbj4IZTtMd9FDA5VEGsCgjuGBn9/Qw=; b=DPLefUYpOPrZ1n
+	5E4+1aBMEGy7GsY39YOtaca1PC5pqR85UvjgApv2UlC9ZTTG80yCIY3Z3pK0lUsMeJByhC//Aza8Y
+	qeSXQhW1q+A67HOMY7/0TCsSK9Sn7tNgrVpb1nDhxUEMwE/+fLaygB6OoL7IgMY6waqHnpdNmeK2H
+	5FfQ1SlYYLfiIoEq/s8/pb1p4PX5b1rBurMcfgQCrmU4PHG5Xr+nWSKztaRdBPQvCnCyrLjUptkUH
+	MiHIqcMnNHEjr8MBSwZ4qF9o0gWkWsR4VyVWbBF8UUSr7CQslObKg2n/3AuNIKvzyv2LB48Ia9+Gn
+	2MB+yJM1D+vW8DHe/GFA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pIuoi-00BP83-1L; Fri, 20 Jan 2023 17:04:40 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1pIvaZ-00BlQN-9s; Fri, 20 Jan 2023 17:54:07 +0000
+Received: from mail-dm6nam10on2059.outbound.protection.outlook.com ([40.107.93.59] helo=NAM10-DM6-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pItjh-00B6lX-1Y
-	for ath11k@lists.infradead.org; Fri, 20 Jan 2023 15:55:26 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 30F2961FC0;
-	Fri, 20 Jan 2023 15:55:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 458B8C433D2;
-	Fri, 20 Jan 2023 15:55:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1674230123;
-	bh=qvm8DqBkaTHT07BZ556an1tEajb8dh7gFEoJgp6bbRM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=l5jDRx6T6LkTemR9BtnDpiE6T6uAoeE+/u0Y/iRBggEzMri1MVkD0c8yginGVIIjD
-	 qHRkwEmdYjFbp/X6w3DeQziph306hDuwgmidpTSwpMACOcdNmjJOgsNnTdWd6oHh1U
-	 wSdTE8gpOVP/XFPYFxDQKZloMOSz8EUYOZApHHzIUfZWO7sAyQ/LIzYacPfB0lL1p0
-	 M08OzyQto2R695PZrnFoZ0a9PWJqwjYTXffbsV9DzABOoH0cNRYwWm0mHoY4V6Jca5
-	 V2GjZ5FQeskct6+TCqrz2L2VWDcfF23XoXKCbROLqZD6Fn6rFAyFNYjyszdQm5DAhM
-	 IZvRdIjAWhCig==
-Date: Fri, 20 Jan 2023 16:55:19 +0100
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Nicolas Cavallari <nicolas.cavallari@green-communications.fr>
-Cc: Johannes Berg <johannes@sipsolutions.net>,
-	Rameshkumar Sundaram <quic_ramess@quicinc.com>,
-	ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
-Subject: Re: [PATCH 1/2] nl80211: add support to enable/disable bss color
- collision detection
-Message-ID: <Y8q5Z98S3pODD77W@lore-desk>
-References: <20221226083328.29051-1-quic_ramess@quicinc.com>
- <20221226083328.29051-2-quic_ramess@quicinc.com>
- <74c57dc34af10537f98f5bb9b6ce80e5676e09b0.camel@sipsolutions.net>
- <1609a645-3e23-7e37-9aa1-94f970e481e2@green-communications.fr>
+	id 1pIvaD-00BlI4-8x; Fri, 20 Jan 2023 17:53:48 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jKwTwhEOI2/vKWprvfhYxukFWV1hORC3apUFwJDo2g4NIv8TZQR2gqf6s3KkVYoU30eS9qBIwLLblyVbvAV34UqOoaQSs5reamaYvzE350fm/62IWhVgr2GTNpEdwqmPq2Fkwa6vE+JcM2FgrsIvNXjJkXML/wbRFpj/YsBnjasmbQNWKCiiMnUvN1mgdbE2q6JTD1tiBnWQSxkM/55cMvEpebfScKSYJ6lJdxFUxY5+YM1YoZVi+ihjeAOvlTH6FVT16KMNJ9qGg3ZH/GkUDDCeoYQFzLVMKDVcDh5ll6wiMpbC95ZFTvkW4cWZ9Z9Vs/vUENvyC5MU6RXNlXrRAg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cXFt93pMtQTD3Nr5BElncWhLzk/oOeSjayXm6n79zuw=;
+ b=i7BF2hVOIQ3YlJNTULTu2B68T5G+R9CjuSqjvagzh4tBs5GmNsLXx51wkll2UYfRWgBeZdCtkIsaiehqzR3ybXVvbF6QTRjydo9VYW0NZ1mUrHNuJ/1U3/UhHTLv3mdTlM0uq64naoHMyaH+sTVBvgXTruaFJ8bL7CPe2m4rF+p9oEn/8q+8UKJZNBSZN9J2tkGk3zpnfuknK/pwmIISXc6rtyLKDvmSg5WNsJec89HOQn5S/bYSr0UT1d3zyFGugJVoEPAgkT9quPW7U4W68Gfycm4QrMGYt+MmTZdMQWm6hqM9o9zjm+Rhbr5EltuClgYAeHuP8VtaK6KbKyVkKg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cXFt93pMtQTD3Nr5BElncWhLzk/oOeSjayXm6n79zuw=;
+ b=DrF3k+K+897Yq50c0abDAZ6YHYeB9xWUTjXZ0pCSws1N29HXJ3TDUxMxQNvFNz0yZNTVu/YOje/Gco99n0OaPgWEu8q221L3VpCSTqzbrsYfCk8iwiHYKoE0CU/dKNE89cHW9mKyy1FNkbVi5iQaA3ZVqLoqbrP6T9a0QIZIW/QhYWh6AIxhw8IJZcD5bvRvc77NqNoP5eTbkUBbk1bYpETUgWFNKPg5T/rPrGDUfTNJjWox3goggBJGPbG8rK8Op1PDykN6zHDEhA6QmZrXnodKunBw5SR+v1Zuk2Wr7G2byH3knDOdQ1hYP+XXZ7KD7eaWwT9Jhsvipo96YZP2+g==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
+ by DM6PR12MB4076.namprd12.prod.outlook.com (2603:10b6:5:213::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6002.13; Fri, 20 Jan
+ 2023 17:53:41 +0000
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::f8b0:df13:5f8d:12a]) by LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::f8b0:df13:5f8d:12a%9]) with mapi id 15.20.6002.013; Fri, 20 Jan 2023
+ 17:53:41 +0000
+Date: Fri, 20 Jan 2023 13:53:40 -0400
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Joerg Roedel <joro@8bytes.org>
+Cc: Robin Murphy <robin.murphy@arm.com>,
+	Lu Baolu <baolu.lu@linux.intel.com>,
+	Kevin Tian <kevin.tian@intel.com>,
+	Matthew Rosato <mjrosato@linux.ibm.com>,
+	Alex Williamson <alex.williamson@redhat.com>,
+	ath10k@lists.infradead.org, ath11k@lists.infradead.org,
+	Christian Borntraeger <borntraeger@linux.ibm.com>,
+	dri-devel@lists.freedesktop.org, iommu@lists.linux.dev,
+	kvm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+	linux-rdma@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+	linux-s390@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-tegra@vger.kernel.org, linux-wireless@vger.kernel.org,
+	netdev@vger.kernel.org, nouveau@lists.freedesktop.org,
+	Niklas Schnelle <schnelle@linux.ibm.com>,
+	virtualization@lists.linux-foundation.org
+Subject: Re: [PATCH 1/8] iommu: Add a gfp parameter to iommu_map()
+Message-ID: <Y8rVJGyTKAjXjLwV@nvidia.com>
+References: <1-v1-6e8b3997c46d+89e-iommu_map_gfp_jgg@nvidia.com>
+ <4fd1b194-29ef-621d-4059-a8336058f217@arm.com>
+ <Y7hZOwerwljDKoQq@nvidia.com>
+ <Y8pd50mdNShTyVRX@8bytes.org>
+Content-Disposition: inline
+In-Reply-To: <Y8pd50mdNShTyVRX@8bytes.org>
+X-ClientProxiedBy: MN2PR03CA0029.namprd03.prod.outlook.com
+ (2603:10b6:208:23a::34) To LV2PR12MB5869.namprd12.prod.outlook.com
+ (2603:10b6:408:176::16)
 MIME-Version: 1.0
-In-Reply-To: <1609a645-3e23-7e37-9aa1-94f970e481e2@green-communications.fr>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|DM6PR12MB4076:EE_
+X-MS-Office365-Filtering-Correlation-Id: e29fdfc1-a93a-4424-19c0-08dafb0f440c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 	f6qU6mqG7QQPIANewSeV3NY/O6fs4qOmTSfk9eK3ubu9AyrR1Anxe0vmSpG10K3DWpbZ9mn+/9wXZJpPWZoiR3md3epyfFdJkMwD1B82Vxq/js99fWzuIYoJr0hqGfRlVJZagOwxyNI8B5ViK6l5TINHNSnIInltEgJF5u0Td0xURxNGpW1euuiQ3iG4Vd7ceq1JbqIqu1ZSCd2E3BJBjCxMulhP140Uk/sqYRtAyRh/r42qK0XuwQlsNUt+b+dshRTT6FbbxsYSvGhtnkCIEyEJLPu3+4D5mNxyJaRTDJS3iTO7qwX4G0GZ9co6/dfeE6XjqxfhOfra918zxu8u6ageYBix5Sl8VpC8GAiOpHNk5wZWKW/qdKPjhxAjNkbayedJLlvQvCtoDj/iAxrXYzu2bQfVL3bl1ZiHruNyOi+doxL6tK5URthNNG1Yl1W5mOqTHCRY/mNQxhTIYoBY1vpva13nNn7zHx9wmQu/ZQpA0ggvaBd2Eh6cDP0EjTifOK83jDHVb/byllW0dqkJud1whWIvZO0Cm+Aj1/3AypijWJuan/nUdJB7EFvXhxmnxkUgKcybKWtThY0SCEcLN5Qx1N4xjVYP7esNJOJNAToXJJgQwW7eaOt+QMqocAyMZL6dyzhbQxscA64t1BBRxA==
+X-Forefront-Antispam-Report: 	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LV2PR12MB5869.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(396003)(346002)(39860400002)(366004)(136003)(376002)(451199015)(66476007)(38100700002)(66556008)(5660300002)(478600001)(86362001)(316002)(8936002)(66946007)(4744005)(7416002)(2906002)(4326008)(6916009)(41300700001)(8676002)(26005)(186003)(2616005)(54906003)(6506007)(36756003)(6512007)(6486002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 	=?us-ascii?Q?8v1EMXBN73/TrR2ymZ61ASZdsthvduOnp0JZ6UJItEqeJepd8eAVU6K1Jhnt?=
+ =?us-ascii?Q?mDjxgkEMVIrj/bjh1Zx1u3DnlsOIM9XXW7xCNzCVWBO2u3D2wUEHzzQg0Su1?=
+ =?us-ascii?Q?3zcQmxgFb/nj04eBQbjW060wF60MXYY9vBiZXDehCKAClS+HXaC9vRs/lHES?=
+ =?us-ascii?Q?IxKQfymRS/3DeIQmQNfe91HTd6raseBBLXhfKYqZN6cRiu5hq6Vkwep+xCJO?=
+ =?us-ascii?Q?r3qquSbMNLcjCtC3oiXaE/WmOM4G1gxafA9NrA+Y0Z/ibN174RqAOi5lMBNH?=
+ =?us-ascii?Q?5cXjgxxPwdFA5Jyniahx0ScHEiG6VR+vYQzQC6KSIdvzoAK4cx3U11F6O+oD?=
+ =?us-ascii?Q?PpXytuzURAysCVMqDnsEuzxVb5zg722xy1wvxzetAN6mkbGq20uzkzXlxehV?=
+ =?us-ascii?Q?oTaTmK2KHHOt8mgFusxeAF68eQt7+9hwgqx34QLSbUBvVTvRsugWslELuOuj?=
+ =?us-ascii?Q?1Vf49DLhosezcSprLKncMfDiOB+lliDnuT9qVWlc/Y2/1UIidUxk6HIgjm8x?=
+ =?us-ascii?Q?pTn3z4O+5JWfK3wwV5NoJyBUr+2NUWVbGifatEsJF++/mN6hwBesHJyZwmsb?=
+ =?us-ascii?Q?5vdZg426Hwx/FgYlWhZv6kzihSqj6JtaKxwHlZkinOBOL9lwrbThQKdkg1XC?=
+ =?us-ascii?Q?5zsRIl/FA0StWJ3gJ46tAxlNvcUb4zSVxU5Jt1Pwo9XuzOdJeOavoD5w9q3z?=
+ =?us-ascii?Q?aVe36csh7yNtT1j8fB05xnfJHDXPxrPciW7hm7aieWst4InpWdFBkqPdfiGF?=
+ =?us-ascii?Q?s/lH/xFfWRIM4GNKBQtkbvhdlHVYDG8Rr6IXrsGhZHDFTchwZKj8m+qKlrW3?=
+ =?us-ascii?Q?XduIzE8+DUvWoroATR1hXDj4jcqXRwela2x9fRT0pGMM7ofM2T4CKv1cEI4r?=
+ =?us-ascii?Q?tfs9NX1aaIqBhNnUHIq6T5KvXNTQ5ryETOgfGH1NBQlagFFVT3y6rt9oACpS?=
+ =?us-ascii?Q?jwOu5HfZc1CxlvU5gqELhJuzU74vo4FQAwNZV59kE0b3BmTAVrkLjqh+Ds0/?=
+ =?us-ascii?Q?2RFa8zX7HQaPd+S6tu5tXc/xoP+vn4xmjAaRo4Ki4avXBXGz3oHdzTQCKa2P?=
+ =?us-ascii?Q?FnPJ/OCZc9Yw822T2tKpQy7lci+6Sy1ojeBobphKiyLIYI/eKvr5t5TFA97Q?=
+ =?us-ascii?Q?kBymkNkxj7KaXpR5YVs/0V75LTJfv2BXQ0EFcc667lVWlz0kx4EvcxyUjKMu?=
+ =?us-ascii?Q?vUjniN7MEp02WN5wMPozpgXPajQ6HKnYSvdI2BLsbGTOh5UGfc4q+l6hKbTV?=
+ =?us-ascii?Q?l9RmF4ZpepGbEIO0d2dPQjod8n6H/QaWv39uFP+GuUmXiaVxyFuUOPgZzKjS?=
+ =?us-ascii?Q?o/bOuYLizTog3+p1x+72B3/+uJFPVzu4eIpRJXDdB8V/RPkxrDTtJgGagv0w?=
+ =?us-ascii?Q?OWXbno3cNXWjxDpi3VhDIP+hqbu/Frrx/1T/cyPd4gcm1FZhAyUrt47TQeAs?=
+ =?us-ascii?Q?huM7u5pF9aW+fZcW24foaSJGN7v04Y7sAM3R/ccJ6/qzyrHw9gFLTh/Vfsz+?=
+ =?us-ascii?Q?tj8rPV9vW2RoSsDRwsvvP4bZvkxmJeqRMsBVjoGqQf5gkUkN3uwrZQ3L4EiF?=
+ =?us-ascii?Q?3q+iP4mIYpeIHLdhp1oYXyWlrMgO3yUnR6KcLSVL?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e29fdfc1-a93a-4424-19c0-08dafb0f440c
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2023 17:53:41.3258
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: S/ShNRiahaTIoIB6a/UQRktiU0bLbxGlrw3I9KvaFFDMptah/1bC4Sxj+oCgwfl+
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4076
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230120_075525_205990_663A6761 
-X-CRM114-Status: GOOD (  31.61  )
+X-CRM114-CacheID: sfid-20230120_095345_528584_DDED2CC8 
+X-CRM114-Status: GOOD (  15.93  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,193 +143,32 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============9182640801038824586=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+On Fri, Jan 20, 2023 at 10:24:55AM +0100, Joerg Roedel wrote:
+> On Fri, Jan 06, 2023 at 01:24:11PM -0400, Jason Gunthorpe wrote:
+> > I think it is just better to follow kernel convention and have
+> > allocation functions include the GFP because it is a clear signal to
+> > the user that there is an allocation hidden inside the API. The whole
+> > point of gfp is not to have multitudes of every function for every
+> > allocation mode.
+> 
+> Well, having GFP parameters is not a strict kernel convention. There are
+> places doing it differently and have sleeping and atomic variants of
+> APIs. I have to say I like the latter more. But given that this leads to
+> an invasion of API functions here which all do the same under the hood, I
+> agree it is better to go with a GFP parameter here.
 
---===============9182640801038824586==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Yo7JkSdJuEIsiG7Q"
-Content-Disposition: inline
+Ok, I think we are done with this series, I'll stick it in linux-next
+for a bit and send you a PR so the trees stay in sync
 
-
---Yo7JkSdJuEIsiG7Q
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-> On 19/01/2023 15:02, Johannes Berg wrote:
-> > On Mon, 2022-12-26 at 14:03 +0530, Rameshkumar Sundaram wrote:
-> > > As per 802.11ax-2021, STAs shall process BSS Color Change Announcement
-> > > (BCCA) from AP and switch to new color, but some STAs aren't processi=
-ng
-> > > BCCA from AP and not doing color switch, causing them to drop data
-> > > frames from AP post color change.
-> > >=20
-> > > Provide an option to disable color collision detection and therefore
-> > > not to do BCCA to mitigate the same from AP. If it's required in case
-> > > where STA supports BCCA handling, then it can enabled in AP using this
-> > > option.
-> > >=20
-> >=20
-> > You should probably split this into cfg80211 and mac80211.
-> >=20
-> > Also, this doesn't really seem to make a lot of _sense_ since nothing in
-> > the kernel actually acts on detection of a color collision - hostapd is
-> > acting on that.
-> >=20
-> > So since you can easily make hostapd ignore the event, why do you even
-> > need this?
->=20
-> This may not be related, but the software color collision detection sends=
- a
-> netlink message for every colliding frame and it can hose up the system if
-> the other network is very active.
->=20
-> Also, cfg80211_bss_color_notify() complains that the wdev lock isn't held.
-
-Hi Nicolas,
-
-I agree, I think we can ratelimit netlink messages sent by the kernel to
-userspace (e.g. to hostapd), I would say every 500ms is ok.
-I guess we can move cfg80211_obss_color_collision_notify() in a dedicated
-delayed_work so we can grab wdev mutex (cfg80211_obss_color_collision_notif=
-y is
-currently running in interrupt context).
-To give an idea, what do you think about patch below? (please note it is ju=
-st
-compiled tested so far).
-
-Regards,
-Lorenzo
-
-diff --git a/net/mac80211/cfg.c b/net/mac80211/cfg.c
-index f5d43f42f6d8..0aefaca989aa 100644
---- a/net/mac80211/cfg.c
-+++ b/net/mac80211/cfg.c
-@@ -4652,6 +4652,20 @@ void ieee80211_color_change_finalize_work(struct wor=
-k_struct *work)
- 	sdata_unlock(sdata);
- }
-=20
-+void ieee80211_color_collision_detection_work(struct work_struct *work)
-+{
-+	struct delayed_work *delayed_work =3D to_delayed_work(work);
-+	struct ieee80211_link_data *link =3D
-+		container_of(delayed_work, struct ieee80211_link_data,
-+			     dfs_cac_timer_work);
-+	struct ieee80211_sub_if_data *sdata =3D link->sdata;
-+
-+	sdata_lock(sdata);
-+	cfg80211_obss_color_collision_notify(sdata->dev, link->color_bitmap,
-+					     GFP_KERNEL);
-+	sdata_unlock(sdata);
-+}
-+
- void ieee80211_color_change_finish(struct ieee80211_vif *vif)
- {
- 	struct ieee80211_sub_if_data *sdata =3D vif_to_sdata(vif);
-@@ -4666,11 +4680,21 @@ ieee80211_obss_color_collision_notify(struct ieee80=
-211_vif *vif,
- 				       u64 color_bitmap, gfp_t gfp)
- {
- 	struct ieee80211_sub_if_data *sdata =3D vif_to_sdata(vif);
-+	struct ieee80211_link_data *link =3D &sdata->deflink;
-=20
- 	if (sdata->vif.bss_conf.color_change_active || sdata->vif.bss_conf.csa_ac=
-tive)
- 		return;
-=20
--	cfg80211_obss_color_collision_notify(sdata->dev, color_bitmap, gfp);
-+	if (delayed_work_pending(&link->color_collision_detect_work))
-+		return;
-+
-+	link->color_bitmap =3D color_bitmap;
-+	/* queue the color collision detection event every 500 ms in order to
-+	 * avoid sending too much netlink messages to userspace.
-+	 */
-+	ieee80211_queue_delayed_work(&sdata->local->hw,
-+				     &link->color_collision_detect_work,
-+				     msecs_to_jiffies(500)); /* 500 ms */
- }
- EXPORT_SYMBOL_GPL(ieee80211_obss_color_collision_notify);
-=20
-diff --git a/net/mac80211/ieee80211_i.h b/net/mac80211/ieee80211_i.h
-index d16606e84e22..7ca9bde3c6d2 100644
---- a/net/mac80211/ieee80211_i.h
-+++ b/net/mac80211/ieee80211_i.h
-@@ -974,6 +974,8 @@ struct ieee80211_link_data {
- 	struct cfg80211_chan_def csa_chandef;
-=20
- 	struct work_struct color_change_finalize_work;
-+	struct delayed_work color_collision_detect_work;
-+	u64 color_bitmap;
-=20
- 	/* context reservation -- protected with chanctx_mtx */
- 	struct ieee80211_chanctx *reserved_chanctx;
-@@ -1929,6 +1931,7 @@ int ieee80211_channel_switch(struct wiphy *wiphy, str=
-uct net_device *dev,
-=20
- /* color change handling */
- void ieee80211_color_change_finalize_work(struct work_struct *work);
-+void ieee80211_color_collision_detection_work(struct work_struct *work);
-=20
- /* interface handling */
- #define MAC80211_SUPPORTED_FEATURES_TX	(NETIF_F_IP_CSUM | NETIF_F_IPV6_CSU=
-M | \
-diff --git a/net/mac80211/iface.c b/net/mac80211/iface.c
-index 23ed13f15067..1ef970b457d1 100644
---- a/net/mac80211/iface.c
-+++ b/net/mac80211/iface.c
-@@ -541,6 +541,7 @@ static void ieee80211_do_stop(struct ieee80211_sub_if_d=
-ata *sdata, bool going_do
- 	cancel_work_sync(&sdata->deflink.color_change_finalize_work);
-=20
- 	cancel_delayed_work_sync(&sdata->deflink.dfs_cac_timer_work);
-+	cancel_delayed_work_sync(&sdata->deflink.color_collision_detect_work);
-=20
- 	if (sdata->wdev.cac_started) {
- 		chandef =3D sdata->vif.bss_conf.chandef;
-diff --git a/net/mac80211/link.c b/net/mac80211/link.c
-index d1f5a9f7c647..acab8309d2d6 100644
---- a/net/mac80211/link.c
-+++ b/net/mac80211/link.c
-@@ -39,6 +39,8 @@ void ieee80211_link_init(struct ieee80211_sub_if_data *sd=
-ata,
- 		  ieee80211_csa_finalize_work);
- 	INIT_WORK(&link->color_change_finalize_work,
- 		  ieee80211_color_change_finalize_work);
-+	INIT_DELAYED_WORK(&link->color_collision_detect_work,
-+			  ieee80211_color_collision_detection_work);
- 	INIT_LIST_HEAD(&link->assigned_chanctx_list);
- 	INIT_LIST_HEAD(&link->reserved_chanctx_list);
- 	INIT_DELAYED_WORK(&link->dfs_cac_timer_work,
-
---Yo7JkSdJuEIsiG7Q
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCY8q5ZwAKCRA6cBh0uS2t
-rCTLAQDgp2pVIY4trzeG7eSzEsaiNyMvPWLtKsyNyS6LJ229sgD9FfB12AhLJ0qk
-I8BJCppf82H2IJp+FvwTYm+4o7u4rgA=
-=16w5
------END PGP SIGNATURE-----
-
---Yo7JkSdJuEIsiG7Q--
-
-
---===============9182640801038824586==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Thanks,
+Jason
 
 -- 
 ath11k mailing list
 ath11k@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/ath11k
-
---===============9182640801038824586==--
-
