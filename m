@@ -4,73 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D7B4C05027
-	for <ath11k@archiver.kernel.org>; Fri, 20 Jan 2023 09:51:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADC9AC05027
+	for <ath11k@archiver.kernel.org>; Fri, 20 Jan 2023 16:10:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:Subject:From:References:Cc:To:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=59ssB/yULgBBBIOB4CSsHtR83A9MPmZ3+3INGqdox5Q=; b=yYZtqEsXqriNcC
-	4guyQZGh7gv2D2OXR6oQDUFJRaMzWKWOVTisfm/BmWcxH6ifnU5et4GJCFS1F7YgQTQcQYLKP7ULA
-	kaakRx2lKUD0+0tghy9Q+qpVCSY1BHosopm7ydGE465lzekbD/em+FcWH9WK7wOiSfMa4US1a39Xb
-	9mh7iNUBb3H0WAhDKxgSkPJTXYkW5phwsKiTBAhei5p0BpMbvXXZDxsgD8PyV1WHdcDPSnjWSkwvt
-	YXmBoQbNX1SZ1UAbb5/8FVBJap2Kd1/QQXhVwISL6l0xgZTW8ZH1dE6JNVlqrRIsvWVYbO/ZUhtMS
-	m0BdkfXCsSMm3IrySgLg==;
+	List-Owner; bh=fH9p7FWnSWLFBkelvwPn6D6uEgsdwdNT/08NaledavE=; b=3nUwGgMr74Z72y
+	7ivmmISiZEeAKK0IEKrQdQA5ckiU7EH57NRxFjlUOf5PZM7mWjtctOyIMkcOGl9k6NhvaLK/brKDI
+	GjCK0k5O5RsnS3THrDyQZA3NgJGHJcLOy+I9OgnSGDfWTwQQCpGNFHbByTAhyTcx1JnbaL/vvMQh3
+	KvUZKkmAOpjqeLGgDtXBLo3zLRpNaxOe+1rYWDRFtPbtyfq7u17Fx9dcrA1lJzZaknYGGvPW7Bkhc
+	DmJXO67JmmyKgK5dxAHo8aptqEc47zElc3NbaLw76PQ/iPww6OmM8j8YyiMG8Yb60KfWOPS1nso9V
+	8OQ3dTsQ68jTAntjnMRA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pIo3R-009XpZ-DZ; Fri, 20 Jan 2023 09:51:25 +0000
-Received: from mail.8bytes.org ([2a01:238:42d9:3f00:e505:6202:4f0c:f051])
-	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pIndq-009LNg-LW; Fri, 20 Jan 2023 09:25:00 +0000
-Received: from 8bytes.org (p200300c27714bc0086ad4f9d2505dd0d.dip0.t-ipconnect.de [IPv6:2003:c2:7714:bc00:86ad:4f9d:2505:dd0d])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail.8bytes.org (Postfix) with ESMTPSA id E12D62626D1;
-	Fri, 20 Jan 2023 10:24:56 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=8bytes.org;
-	s=default; t=1674206697;
-	bh=N0Ez9jlBhYWiOK7+xYABfIe0+VmfRPgpACpzUje2F4A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lOLKVLD4dyMYfuGfszt0Aqi18MMtbwUvgwVbHoDO6hE/pu3jlsoFnfOvfV2sSJ6i8
-	 k3lOBgDA7x9bkKbnD+qVSk6qrzEVOc/9/JS99/CzblV3IjUWMNUsDLegoejr0hYkyT
-	 NIAGgbjvSNtqhO8clUAYjH7vWYcGoTKi2kDTgKFmFcsSDinl9Vo2l2M2oUTe7UNJh3
-	 4hHtdAX4so62XBRGFWlRKgCJW94p/lPduMMBp2SCZ238xwGOe1m0xh9F5SouN8x7NO
-	 06U5w+umYu9ogUcIQK1YpQ4ciXMhW+H2quzpMMrP7f3cTLkb2U0hf6Ab3xk/GMJY5E
-	 1P63Vv4/HChRw==
-Date: Fri, 20 Jan 2023 10:24:55 +0100
-From: Joerg Roedel <joro@8bytes.org>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Cc: Robin Murphy <robin.murphy@arm.com>,
-	Lu Baolu <baolu.lu@linux.intel.com>,
-	Kevin Tian <kevin.tian@intel.com>,
-	Matthew Rosato <mjrosato@linux.ibm.com>,
-	Alex Williamson <alex.williamson@redhat.com>,
-	ath10k@lists.infradead.org, ath11k@lists.infradead.org,
-	Christian Borntraeger <borntraeger@linux.ibm.com>,
-	dri-devel@lists.freedesktop.org, iommu@lists.linux.dev,
-	kvm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-	linux-rdma@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-	linux-s390@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-tegra@vger.kernel.org, linux-wireless@vger.kernel.org,
-	netdev@vger.kernel.org, nouveau@lists.freedesktop.org,
-	Niklas Schnelle <schnelle@linux.ibm.com>,
-	virtualization@lists.linux-foundation.org
-Subject: Re: [PATCH 1/8] iommu: Add a gfp parameter to iommu_map()
-Message-ID: <Y8pd50mdNShTyVRX@8bytes.org>
-References: <1-v1-6e8b3997c46d+89e-iommu_map_gfp_jgg@nvidia.com>
- <4fd1b194-29ef-621d-4059-a8336058f217@arm.com>
- <Y7hZOwerwljDKoQq@nvidia.com>
+	id 1pIty8-00BAP9-Hz; Fri, 20 Jan 2023 16:10:20 +0000
+Received: from mout.kundenserver.de ([212.227.17.13])
+	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
+	id 1pIty5-00BANb-3O
+	for ath11k@lists.infradead.org; Fri, 20 Jan 2023 16:10:18 +0000
+Received: from [192.168.0.66] ([92.154.77.116]) by mrelayeu.kundenserver.de
+ (mreue107 [213.165.67.119]) with ESMTPSA (Nemesis) id
+ 1MmkjY-1ossYL0wNi-00jpAB; Fri, 20 Jan 2023 17:10:07 +0100
+Message-ID: <17d8494a-ebae-e317-6096-c8621d0f33e3@green-communications.fr>
+Date: Fri, 20 Jan 2023 17:10:04 +0100
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <Y7hZOwerwljDKoQq@nvidia.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Content-Language: en-US
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: Johannes Berg <johannes@sipsolutions.net>,
+ Rameshkumar Sundaram <quic_ramess@quicinc.com>, ath11k@lists.infradead.org,
+ linux-wireless@vger.kernel.org
+References: <20221226083328.29051-1-quic_ramess@quicinc.com>
+ <20221226083328.29051-2-quic_ramess@quicinc.com>
+ <74c57dc34af10537f98f5bb9b6ce80e5676e09b0.camel@sipsolutions.net>
+ <1609a645-3e23-7e37-9aa1-94f970e481e2@green-communications.fr>
+ <Y8q5Z98S3pODD77W@lore-desk>
+From: Nicolas Cavallari <Nicolas.Cavallari@green-communications.fr>
+Subject: Re: [PATCH 1/2] nl80211: add support to enable/disable bss color
+ collision detection
+In-Reply-To: <Y8q5Z98S3pODD77W@lore-desk>
+X-Provags-ID: V03:K1:ObD765wio49tePRoLNkQoY65FCwoq76N2r4NslnAaTOOEu7KI1U
+ WFvZ/6CpT4VOxURHjfWLzWNsbf5Jf6J76c08W5SXmIAl/7pn1Q9UFARbl4UZ/S68/mJIKUi
+ uuIdpwhASY6iNHxNG1OZSzwTkUjm3jS++y0201Nfbd6jWQdHs/s3yK48uBqNTzkyReIPomq
+ 1h1wxZz7CsovK3JoYLUZw==
+UI-OutboundReport: notjunk:1;M01:P0:FiYN9gKFjCE=;tI6JCKDhoFnMrHshqud2NXDEUPi
+ YORbniZUfR8vEvcllZHxhjvnvYIUpgNCRWrZnMuaE7AtqfZtx1ImvIOvBmGY7Ww7vo8Vkqrnb
+ K4AsuSiGOBq03PhShm6YnuXAJ0GfupOP1BF6YOUhmiAh9FmhORcKkuqzvbPID7+tol6F97sTy
+ YycyghuZ96FQ+VNSQnR40F56OIaEKgGCc+knRvvRXyrgUYv7ASlFnJyiJmXYfsMruGF6XJ8v3
+ n/kPGNyDiOh470Wz+PasGL5OftTgZ7b4GbDtPhRM8lxaZCsN3mTEObUekiAlDttXErTwyxQuR
+ rlAuB/xv1XgVaYTYIdtXqSVoF9s97uSZe0n/NVfuuHIpRcieCs4hrig3C8JdjvVsDNfpynWW2
+ u3SrLIqJdkxpagsp1iQhK83qcHONIaxeB6fViXCPh1mNBptRGdD5hnfFJvG8KCQQ276Mi/vc8
+ z+YU7Ya0SNOrOvXF/oMn4fzCJO2l3qoJrkpuJum9Zv0XsTgHFv80VT46bCGHHqo+WLUPbPq6B
+ ZOuD5lFEAHJg5U8fOVj0/Jto+u60Vno0oWy/7f7gbKzHaG+XEY+Qcck2LmPZ2rRXx2L4MW0jh
+ GhZQo8pqJOofuKr0yzLIaPaE7YpOtqLQo37jvs3B1pzpYujLLCPN+GC2KBKP3rD07OOHjsoLI
+ y2FCNORBoei3D3QcHPgimr/2PjQ0ZLKVjlQwhDYZkA==
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230120_012458_987084_573ECD0C 
-X-CRM114-Status: GOOD (  12.28  )
+X-CRM114-CacheID: sfid-20230120_081017_479507_328AC983 
+X-CRM114-Status: GOOD (  17.10  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,27 +76,57 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Fri, Jan 06, 2023 at 01:24:11PM -0400, Jason Gunthorpe wrote:
-> I think it is just better to follow kernel convention and have
-> allocation functions include the GFP because it is a clear signal to
-> the user that there is an allocation hidden inside the API. The whole
-> point of gfp is not to have multitudes of every function for every
-> allocation mode.
+On 20/01/2023 16:55, Lorenzo Bianconi wrote:
+>> On 19/01/2023 15:02, Johannes Berg wrote:
+>>> On Mon, 2022-12-26 at 14:03 +0530, Rameshkumar Sundaram wrote:
+>>>> As per 802.11ax-2021, STAs shall process BSS Color Change Announcement
+>>>> (BCCA) from AP and switch to new color, but some STAs aren't processing
+>>>> BCCA from AP and not doing color switch, causing them to drop data
+>>>> frames from AP post color change.
+>>>>
+>>>> Provide an option to disable color collision detection and therefore
+>>>> not to do BCCA to mitigate the same from AP. If it's required in case
+>>>> where STA supports BCCA handling, then it can enabled in AP using this
+>>>> option.
+>>>>
+>>>
+>>> You should probably split this into cfg80211 and mac80211.
+>>>
+>>> Also, this doesn't really seem to make a lot of _sense_ since nothing in
+>>> the kernel actually acts on detection of a color collision - hostapd is
+>>> acting on that.
+>>>
+>>> So since you can easily make hostapd ignore the event, why do you even
+>>> need this?
+>>
+>> This may not be related, but the software color collision detection sends a
+>> netlink message for every colliding frame and it can hose up the system if
+>> the other network is very active.
+>>
+>> Also, cfg80211_bss_color_notify() complains that the wdev lock isn't held.
+> 
+> Hi Nicolas,
+> 
+> I agree, I think we can ratelimit netlink messages sent by the kernel to
+> userspace (e.g. to hostapd), I would say every 500ms is ok.
+> I guess we can move cfg80211_obss_color_collision_notify() in a dedicated
+> delayed_work so we can grab wdev mutex (cfg80211_obss_color_collision_notify is
+> currently running in interrupt context).
+> To give an idea, what do you think about patch below? (please note it is just
+> compiled tested so far).
 
-Well, having GFP parameters is not a strict kernel convention. There are
-places doing it differently and have sleeping and atomic variants of
-APIs. I have to say I like the latter more. But given that this leads to
-an invasion of API functions here which all do the same under the hood, I
-agree it is better to go with a GFP parameter here.
+I think it should fix the problem, I'll try to test it.
 
-Regards,
+Thanks!
 
-	Joerg
+> Regards,
+> Lorenzo
+
 
 -- 
 ath11k mailing list
