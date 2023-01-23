@@ -4,157 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8ADCC05027
-	for <ath11k@archiver.kernel.org>; Mon, 23 Jan 2023 04:57:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DFF5AC25B50
+	for <ath11k@archiver.kernel.org>; Mon, 23 Jan 2023 10:01:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/uwHRw1Yf1JrU0YiIQfJtHR++VEz5xItfI2WhgEovUA=; b=gCQ51BoIFJtwH6
-	I+/xK8NjpXXivVJf9QZJelcY3cwRHlTxpthKjkThdFFwM3wdO7XmnT/v+Vz+iEm1xQZBQ6XLah7DV
-	ZH+6NIKlGgxJHdk2BFncNOF2hioEmOyDEIPqOWZSAhwp3mPTVNvSFucgAVOxmbRML95xeUQTz+Lm2
-	Saq9s7n3qBpmJDrzAnJy+LGSrwwX8KM16WraH4z3DSXCVwLYplRT+KLktmPSWsnwikqUriSzyZhix
-	u6whw1ZYVMbwmmxIpxmWruFUA4FUHpHQcI7C/hZFvzV3TmmES1pq9NeuGovu/Vy5PGL8YlodJP8P9
-	ls7FzlqREtvmlWrggGEA==;
+	List-Owner; bh=gZAe2S+wT4JCO2SPBgD7z7ht1rS5o9xIL3no1SDlB3o=; b=Vs0MkjaAIcjCXZ
+	GivdC+jRaxKyfZveZoZSOj7g5k7cSGzL6owTBu4BJXXT4wXVsfMRzvfTfe0LGZ8ynfNcQszQQDJcX
+	Fv5R3v/SUNuYSQClXtk8h//7yBLcQBc72+Xre7sUX0/zNxLb89gRu6fpZRT5IROKh+9s6CjLuQ2du
+	dljCMometqoTvEZGliQmhhkxbtxLHXsy9TeZ5HWWnP42lhZJOlo/R156D/t92bAvGkqIhBwktWEkX
+	meqH8/x9HC8AevN4NsWAVq98F/scMHkDkaEWF/KDbDLnPwEvRt9pDolH3kxbOUW3LkUCBqFi0scla
+	A22NTw5QZ5VsMHDJtvQw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pJotn-00G3AP-GX; Mon, 23 Jan 2023 04:57:39 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
-	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pJotk-00G3A2-5R
-	for ath11k@lists.infradead.org; Mon, 23 Jan 2023 04:57:38 +0000
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30N4vWbZ004256;
-	Mon, 23 Jan 2023 04:57:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : references : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=qcppdkim1;
- bh=OAxjjSyJhs/+CIOCKk9oH5SXbeNSkMDBacqqv0sv3/g=;
- b=R57SZohot1EBJIBKAdFWuxfM5pdnvUZPVTIJpBT9gMnSwWNK8yWO0hPd3qHIWXXGIm6/
- vDIiL4k7xS9mPefRYhSmXqJFu2Jx1kCjBmGEoxi5Jds/RTTDIrSk0+I9mMbTFFvOSYCZ
- 002CWcLSCqNV0/dfKyEwr0UNQmdDClCBmL9KnpK7A+N7GSWr/FG0OIrjlmoaiErJMTRW
- OgZF4IbyxTz0nAd2fVuMH/f6PWhTq8+p/DoMj2EUcRmHqsCxEP0bGgpgnlITFmYABFH7
- klaRF5OWr6cw7PEA9hZR0p/OXbY3rmgzoSxxhI68oCI3hCHHoZLp3Uju+zI81XpmYH9v Sg== 
-Received: from nam11-dm6-obe.outbound.protection.outlook.com (mail-dm6nam11lp2175.outbound.protection.outlook.com [104.47.57.175])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3n89fra9re-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 23 Jan 2023 04:57:32 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=S9JTWTyXCEssEfn894tuRgRJopvZ+6psMnZ3aizZyqgObU5Nd1ERiPyDuST+xFaWb0us8R5joCI2U8fA8q4TmC6ypjW4M/o+VW2NqhLdk0NXeVEtduFW13SGfnRhflAAuXY04gwmBWMXxM0KKff9xaJ7N0pevI4ZrohQEzgUGXesOnRT7F4E9Y7ke8AwgIN2gZUxq5saekKIIIpUXeAVmOkBnM2gcmWaZ10+pLqVoaByxJcRZsfuPqjuPto/23HwSSQQU1f/2aMT/0kVSaCvoxvNEIyt7HW82aE1WXq3z52q88QX7mXdd8HZwmaVkmYriDVjmPv8JBBXZso0jEZhHA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OAxjjSyJhs/+CIOCKk9oH5SXbeNSkMDBacqqv0sv3/g=;
- b=VObUDe1JuiR5yckD2mv3oTRq5A3THoZ9zi0uZnniZIucyx4euuPTLWQb9QqKw694QqcoV2cCYWuWK4btfjjEfpnR8YNUJOdPogh92LX7FGeaaDY2c/d6nXe9U1MrJoQy+KRgZDUYqCpL8pVJb7z/W3RbbE4ELqmDWal6m4SEn1IOXSNZla/Q7rKl/PAiU2OpY6NsR/7IXrZfz23rftByBU7JDzmv1RAMX7tskh53m7XPxttOBrvi6SLpIx29T+3hzuL7kZjEp21U+LwGDGuPJstlreQVzqdGiYL1XCZhmCYg3+XJEsUcWI8WIMo32aaWd3tY72tcyCNVHm0DgF97rQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=quicinc.com; dmarc=pass action=none header.from=quicinc.com;
- dkim=pass header.d=quicinc.com; arc=none
-Received: from DM6PR02MB4937.namprd02.prod.outlook.com (2603:10b6:5:1a::16) by
- IA0PR02MB9463.namprd02.prod.outlook.com (2603:10b6:208:402::6) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6002.28; Mon, 23 Jan 2023 04:57:27 +0000
-Received: from DM6PR02MB4937.namprd02.prod.outlook.com
- ([fe80::c7ad:bed:829a:e7b2]) by DM6PR02MB4937.namprd02.prod.outlook.com
- ([fe80::c7ad:bed:829a:e7b2%3]) with mapi id 15.20.6002.033; Mon, 23 Jan 2023
- 04:57:27 +0000
-From: "Rameshkumar Sundaram (QUIC)" <quic_ramess@quicinc.com>
-To: Johannes Berg <johannes@sipsolutions.net>,
-        "Rameshkumar Sundaram (QUIC)"
-	<quic_ramess@quicinc.com>,
-        "ath11k@lists.infradead.org"
-	<ath11k@lists.infradead.org>
-CC: "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>
-Subject: RE: [PATCH 1/2] nl80211: add support to enable/disable bss color
- collision detection
-Thread-Topic: [PATCH 1/2] nl80211: add support to enable/disable bss color
- collision detection
-Thread-Index: AQHZGQTEdMPbxxNBSEOPQ9UHmDOQsa6mcV8AgAUpSvA=
-Date: Mon, 23 Jan 2023 04:57:27 +0000
-Message-ID:  <DM6PR02MB49372BB7FCB6E31CCAC20E9AE9C89@DM6PR02MB4937.namprd02.prod.outlook.com>
-References: <20221226083328.29051-1-quic_ramess@quicinc.com>
-	 <20221226083328.29051-2-quic_ramess@quicinc.com>
- <74c57dc34af10537f98f5bb9b6ce80e5676e09b0.camel@sipsolutions.net>
-In-Reply-To: <74c57dc34af10537f98f5bb9b6ce80e5676e09b0.camel@sipsolutions.net>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM6PR02MB4937:EE_|IA0PR02MB9463:EE_
-x-ms-office365-filtering-correlation-id: d1f91813-af26-4a61-0d93-08dafcfe5353
-x-ld-processed: 98e9ba89-e1a1-4e38-9007-8bdabc25de1d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:  9m0TCRoKMfWxW5m+aioBsCLGeDthS6Km6DmvwX+nUAgwr06/ZwwvDjMMaEQxr71bneAEjgSdcfmpP+RoOwJMpWwiew6quSHTOcDK8tu397r7Szo7mW05voC7S2UNrfH2i5QJJkEgNIW8x/JEC3R0Jjjj0Lo25rJMQ5e1RwD+PBbjoYDROs9NO1kqXTp3RgBWYaf/zopKkrQ8wL+ZDHY8HDJJ1x5EaLPXGrXjq3aMBSci5ZhtGU1ALCD9SaFuWDw6dPDmirrko6XjSXe27S1aOnlhoDGZimjcdwXhKUnwXigzz/FdJ4OWznkOhTwcSNejUjibTIpIVpeemngsVs8+rON0ZphDsC95oJiviscNRxkvLErgIOXTSHTnD+GWKgGb/9GE6ZayQPUEjwnptJ2nfh/STZRJvwrQamsRAhwUb0S17RrRB6b9P/28STA5aqeFlDdZr8Y/ByQeZ7UTiawUd8PFjeZ7QZ+LHGdU/wXC6XXgBGgFzP2ZGtdzHkgknrCPzkn+K2mC9vkehcC6uYIoHRj7MBNsdBrHDi+lzF/EPPHdMvlv/uHdXcged8WQn2X841pFvTTTYEtEjUBqfnjIzHm34m5EvD/PG7HieUfKr2mYL0ZlywG6O/+ujuJoYY+CMWOX2YhiTPjdfXsjSNRysf4ExzF+iWkaboClBfPqFLqACx41LAyrmRerHFs5Q305IdLEqyXvgR9aCJxYN0NjXQ==
-x-forefront-antispam-report:  CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR02MB4937.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(346002)(366004)(376002)(136003)(396003)(451199015)(4001150100001)(86362001)(55016003)(33656002)(4326008)(41300700001)(2906002)(66556008)(76116006)(66476007)(9686003)(186003)(26005)(66446008)(478600001)(8676002)(64756008)(66946007)(53546011)(71200400001)(6506007)(122000001)(110136005)(5660300002)(8936002)(38100700002)(316002)(38070700005)(52536014)(83380400001)(7696005);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:  =?utf-8?B?emNGTFpCRVdBZzhoNi8xL3BVVHl0cWVhbGRrVHJDMzdVTWgrR3JSck03NWNP?=
- =?utf-8?B?TlRzRmlrTWhtdkcrTzRBb3l1VnVTZXNXbGRpeGpMTkpjcVVhTmZqTWhMR3hC?=
- =?utf-8?B?RXczbXVFYWpYRGRQakZYL3BCY0p0WVhXQnRrWEFLbWhObmMwVzVYbzc5a3VU?=
- =?utf-8?B?Q0VWc3VacHNWY0tqSHVSOWNlQm02Y1NSckNrZm8zdE5vRzdRWlhKa0Z3SURZ?=
- =?utf-8?B?TCt1TEQvUGt5KzgxR1FrZXVNQ25nbHlGNDh5V05SNVFwdTlsSzZ0aERMZGk3?=
- =?utf-8?B?SkFwYVdzbmxidjBSVDRqRmhkOFpDMzN3ZkxRTWtpYnhWN21nTDNXZytBNTRT?=
- =?utf-8?B?ZjlXMG1ob1MrWE1RNVpmcTBER0c2ZHp3SHZQUjgwR0lxeHhTLzRicGdTT2Uz?=
- =?utf-8?B?Z0FvTTNpVmh0VWM4c2VRQUdlUXFTUkZ2MWpkV1pMUGhIRnZtSHo1OE1ieUg4?=
- =?utf-8?B?M216TDQrRlV2aklEMzNnc0YxWFpvZWVPOGdxRTNHQXk2N05VZnVGN2c3Z0ha?=
- =?utf-8?B?OVhsZkt6dXVJRW5pNXBhUHlweTZyaDlPeGZzUllWb2ZjdXI3alFqYlY2YmJI?=
- =?utf-8?B?V1pCTHpGaDJHNEd4K3NLclJHZVJXazI1MlNKS1hTamxkR0dWVDQvdlZDeTJE?=
- =?utf-8?B?eTVUTnR3UmFycGM3RDRsYWhsYmxMTGZrcytWaENmVmJzeTduWERHVUx2QUJq?=
- =?utf-8?B?a08rS0lXV0J0NWhVNUpJcVBFVGhWdHNVbUNvSDRhYjYwU0VkL1o1eVJKaWo1?=
- =?utf-8?B?TEt5WnNibU9DNGxaYzVMN1djRk9JUnlSbitHaUMzVVNsSTlHTm1IZlYvSXEv?=
- =?utf-8?B?RGM4UEFLWjhWT0xPZm1zekY1aUtMNVpDTG00aVExZVVLZWJKek9vZmxvQU9Y?=
- =?utf-8?B?RGx5V3E2NWtOYWNmWWJaMFlaMEJXR1hYMTFTbTNKdkwwYlRKS0ZMNlZvZ2Vv?=
- =?utf-8?B?N25kQ0xTYkE1NXpCN092SXA4MFB2RVIxYWxmWkNvdzFxWUxLNjJUWVZwZXNG?=
- =?utf-8?B?ZzJBcmNHdk92STlvOEV3T29PZHlzNWVkMWI0Vjc4TkpXSkxPK3libGlBVjVv?=
- =?utf-8?B?enlwc2dzVGpVbi9GZmltVVNId2pyb3lTdUtyZ3JidEQ1b2plUkNFZVJ1dkJu?=
- =?utf-8?B?OTVWQXBBSVo2OXhxcUZSVHduQmljSnQ0VXdmMWpHOUFEb2REUnZSYzNWWGF2?=
- =?utf-8?B?d3dEWGJUTU1mYXUwcXJSbzFGR0h4ZUhHaklKWld0VDlmZVJ4UEc5MXJWb3Zi?=
- =?utf-8?B?dW1ydkZ2YTloVzNmNWVCZWREV1J0a21GRFZSTnl2Z3hOQ3owK3NTWGVVSVNU?=
- =?utf-8?B?TGlnbEh5NERQRGxOVU1UcUg0U2huenhDWVc5eFgxZ1ZGa0VTakZXZzMwN1VM?=
- =?utf-8?B?SFpWa3Z5KzJsZEtxbjczRzRENmordUJIbm1QTThTRC9VV213bHcyMmZwOHI5?=
- =?utf-8?B?MTZZbEgrY3FaMGxoaHhXZmhzUFYvaS9TTENVb0daVzhLamNmdnc4QWxBNjds?=
- =?utf-8?B?emJmbWRHTHJEdGJKODBtbGZUYk12Z1JSMXhUOFVROG1FeUN6QVAyaVhycEFE?=
- =?utf-8?B?M3gxWFd5eWdCbVNjdEJQZTBFMk9ic3Vzc1dhang1ZVFsNkF2NWk3bkFpVndx?=
- =?utf-8?B?WGtVTTRBZVJJdHRMMXpsWTlBU3lFTTR4dndNdFFPYnFzOE84VkxoK0pKR0Vr?=
- =?utf-8?B?NGh4dXJ3a0tMM2NxN3RuSTdZZ2hsRCtMVjA0dkkvN0t5dDR6amRXby91SUZG?=
- =?utf-8?B?TjhYNkRyUHMyeVFKbE9zUEVSNWswSCsrZEdLSGhkdEZpVkZJbjZXMU4zQlRX?=
- =?utf-8?B?RkIvYjVNb1RDTk5BU0ZJU3NKcVNmaFZLYk1mbm9BK2RGYVZWUFRuVU5hSGNB?=
- =?utf-8?B?YVpSKytRb3dJMUoxeWxYU3gyTUVxbFhhR2NiczY3aUNPMVYyWlRhOUxlVmlT?=
- =?utf-8?B?NE43bUlFWi8yd0RaUk9aTGlVL1M4OU4zSFZnbEFtM0pxYUpOQTJlVmdteU1F?=
- =?utf-8?B?MmwrbFdRWmRhVHc1dkphYUx1aVNONWptOWRvTTFvR0RHa1ZUbzJ6MzZHUVUr?=
- =?utf-8?B?MVZtTkdWeENVOUwwZEt4Vyt4SEVQazJYNWZmbWtSNWpjUjdMSE1Yc2MwNC9R?=
- =?utf-8?Q?rtBRD+vAKVP1AyjCMqDXU7Lxk?=
+	id 1pJte4-00Gdwx-JX; Mon, 23 Jan 2023 10:01:44 +0000
+Received: from mail.8bytes.org ([2a01:238:42d9:3f00:e505:6202:4f0c:f051])
+	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
+	id 1pJtc3-00Gctm-Nh; Mon, 23 Jan 2023 09:59:41 +0000
+Received: from 8bytes.org (p5b006afb.dip0.t-ipconnect.de [91.0.106.251])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.8bytes.org (Postfix) with ESMTPSA id 9A316262C2B;
+	Mon, 23 Jan 2023 10:59:34 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=8bytes.org;
+	s=default; t=1674467975;
+	bh=0KQBObUcnpg5GrqXq3hC5RyjGf2zS6TIXg2zcVgFWn0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Tr3JGNsZMXVI480xgKW5iIBnC2CS9vyEqh9gWSstha079Y/cRMHa9gi+uxnReHb5d
+	 fwek2sY7wwUJnFwFFwIvWemH12HdN0YbgdSZ2RWwC0269UqDUwGwB35CRDyXhq60AT
+	 USyIwI3wP05/5oGtUOpS94M53A08jNcPckKA5ZXpZIPRaNJ96Q+BFkTkmpgSNGCPm5
+	 YogHT95t/tBdYhxC9Y35A2TokJihCUBd4VwOl8Pa35zfKfyCatWPy6AY7P+apvfw5a
+	 T/W6TQnG+GLz390G6KRQWUX8KnoKg77Sxn7JUzcugID6/sS1m397rjmidCEXxQK2Lj
+	 1j8HX1fY4eNAw==
+Date: Mon, 23 Jan 2023 10:59:32 +0100
+From: Joerg Roedel <joro@8bytes.org>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Cc: Robin Murphy <robin.murphy@arm.com>,
+	Lu Baolu <baolu.lu@linux.intel.com>,
+	Kevin Tian <kevin.tian@intel.com>,
+	Matthew Rosato <mjrosato@linux.ibm.com>,
+	Alex Williamson <alex.williamson@redhat.com>,
+	ath10k@lists.infradead.org, ath11k@lists.infradead.org,
+	Christian Borntraeger <borntraeger@linux.ibm.com>,
+	dri-devel@lists.freedesktop.org, iommu@lists.linux.dev,
+	kvm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+	linux-rdma@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+	linux-s390@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-tegra@vger.kernel.org, linux-wireless@vger.kernel.org,
+	netdev@vger.kernel.org, nouveau@lists.freedesktop.org,
+	Niklas Schnelle <schnelle@linux.ibm.com>,
+	virtualization@lists.linux-foundation.org
+Subject: Re: [PATCH 1/8] iommu: Add a gfp parameter to iommu_map()
+Message-ID: <Y85ahCk3sRTVAU8O@8bytes.org>
+References: <1-v1-6e8b3997c46d+89e-iommu_map_gfp_jgg@nvidia.com>
+ <4fd1b194-29ef-621d-4059-a8336058f217@arm.com>
+ <Y7hZOwerwljDKoQq@nvidia.com>
+ <Y8pd50mdNShTyVRX@8bytes.org>
+ <Y8rVJGyTKAjXjLwV@nvidia.com>
 MIME-Version: 1.0
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: 	wKcyWveMi+Y4PQQnFqBGoHLOycULKhNEv8clVGK1tBKx1X2yq0AjnnZh81E0kmMR6tgg+zKRDpL/6N0lN6ZmDW/TWAc1MgVc54Jz6jvvk1VgeozLifHbQRik/oZxnSSJPPgA1v2OUdx8JreecoNzj2cIyHdjs773lYZPFnuZZMpwp7lQmChficUqlww5eDqEDRRxvKCanVw1y4qStUonyswzpAM7kLDsM4AIv272kvT8dBY/KDpD5AjQqBTZMge63dmPd+pqvTkj80EFuwcsiVc3+ZBGbkadAcABfUmVrvt/i/UqqYCvdhR5Cx6wKCygBtzhgXMZyGgy7ZjOVmcUWz2VZWd/oLW5QgHb7PGoznizw6uwk4UWNNgafZ0yUAwzj60dHaHcjR38ikrw5iQI09cqZDO3JNtJcOL7upsNphmYUih/ysX0OSZ/lC5VJidkMe/1JTzizxYNStZrg9OfR7/PNaIZ8XohyY+eLTkaZdgv9u+SD1dVELnDkXtUqdyZDjo3mOsQYe9gx+AHFhve+9ctRPv2Yl2hpyE7grIXyWebt244jLs1zk2SSd8gAVozL4RUS4WhhvIBnb52oxkIixKLSkvfokbBNRD1v1X67dWzanyf16QjWG/cXByTBbtxaNFPaaptuMUkvkilAwiuuMA6w+RfBVB5myygUJpBNkEPRVky9UluqLhAgc0zI3P6YitK8b3jNBmaJsUZtvUWqxwdcznzGfKz6L5QlW87mlEx2UikFbp52W65Zqet4Tfxlhg7w285ff5aDmuFrigCyvIgm4RSFKhiMmFTpPIDkQQYWtjP7kh+lD6Vt+9ftyLZ70NltCGWuhvY+QcQMdrex/arYtcODWWX1ply5bIhb+4AUP18+nJFDaKcL2n5dZJS
-X-OriginatorOrg: quicinc.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR02MB4937.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d1f91813-af26-4a61-0d93-08dafcfe5353
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jan 2023 04:57:27.6034
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 98e9ba89-e1a1-4e38-9007-8bdabc25de1d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: tbZjOR+V2hT1CqA0AaHPhvnAMxOkdUek7t3mp9AauEV8L8oWnNmxQD7QuCEP6y7hBU0P6RD8hoq4AgCKT2t3oA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR02MB9463
-X-Proofpoint-ORIG-GUID: ExvL7j2XgTwQ8P97G3j0fhQvpMaUNC0z
-X-Proofpoint-GUID: ExvL7j2XgTwQ8P97G3j0fhQvpMaUNC0z
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-01-23_02,2023-01-20_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=566
- lowpriorityscore=0 phishscore=0 malwarescore=0 suspectscore=0 adultscore=0
- impostorscore=0 priorityscore=1501 spamscore=0 bulkscore=0 mlxscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2301230046
+Content-Disposition: inline
+In-Reply-To: <Y8rVJGyTKAjXjLwV@nvidia.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230122_205736_367272_B22D9B34 
-X-CRM114-Status: GOOD (  25.55  )
+X-CRM114-CacheID: sfid-20230123_015939_942978_01EEDE88 
+X-CRM114-Status: GOOD (  14.64  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -171,42 +89,25 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
+On Fri, Jan 20, 2023 at 01:53:40PM -0400, Jason Gunthorpe wrote:
+> > Well, having GFP parameters is not a strict kernel convention. There are
+> > places doing it differently and have sleeping and atomic variants of
+> > APIs. I have to say I like the latter more. But given that this leads to
+> > an invasion of API functions here which all do the same under the hood, I
+> > agree it is better to go with a GFP parameter here.
+> 
+> Ok, I think we are done with this series, I'll stick it in linux-next
+> for a bit and send you a PR so the trees stay in sync
 
-> -----Original Message-----
-> From: Johannes Berg <johannes@sipsolutions.net>
-> Sent: Thursday, January 19, 2023 7:32 PM
-> To: Rameshkumar Sundaram (QUIC) <quic_ramess@quicinc.com>;
-> ath11k@lists.infradead.org
-> Cc: linux-wireless@vger.kernel.org
-> Subject: Re: [PATCH 1/2] nl80211: add support to enable/disable bss color
-> collision detection
-> 
-> On Mon, 2022-12-26 at 14:03 +0530, Rameshkumar Sundaram wrote:
-> > As per 802.11ax-2021, STAs shall process BSS Color Change Announcement
-> > (BCCA) from AP and switch to new color, but some STAs aren't
-> > processing BCCA from AP and not doing color switch, causing them to
-> > drop data frames from AP post color change.
-> >
-> > Provide an option to disable color collision detection and therefore
-> > not to do BCCA to mitigate the same from AP. If it's required in case
-> > where STA supports BCCA handling, then it can enabled in AP using this
-> > option.
-> >
-> 
-> You should probably split this into cfg80211 and mac80211.
-Sure I will do it.
-> 
-> Also, this doesn't really seem to make a lot of _sense_ since nothing in the
-> kernel actually acts on detection of a color collision - hostapd is acting on
-> that.
-> 
-> So since you can easily make hostapd ignore the event, why do you even
-> need this?
-> 
-Kernel will keep sending collision events until we switch color/disable BSS color
-Hence wanted to avoid the detection itself.
+This series mostly touches parts outside of IOMMUFD, so we should follow
+the process here and let this reach linux-next via the IOMMU tree.
+Please send me a new version and I will put it into a separate branch
+where you can pull it from.
 
-> johannes
+Regards,
+
+	Joerg
+
 -- 
 ath11k mailing list
 ath11k@lists.infradead.org
