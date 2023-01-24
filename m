@@ -4,59 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D661C61D97
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73E5DC54EB4
 	for <ath11k@archiver.kernel.org>; Tue, 24 Jan 2023 19:01:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=G91oWvmob3opKmlF5ucCrYLC1UtWTYr8BlMs9/5kWXU=; b=wPPHBJ6Z7ygKR3
-	cgHn1C8udE4r6GOewiRdTRxtA0GMJnfFZiBl7YDHG5sLlIW1mC7hVrHNxdlWrtGKPPn+kWuYeC2S/
-	1ck6MI58GWfpFP0hKTL2VQ/lIgSAEkYZ6gUcCSRJjjIJrMTAvp0f4ftDDTkw1djyPSay6q5hMzSC6
-	bGVFdke8WAjLxwe4PPTJCwKEP0WTk7A4D7AwYxRhYjmVvRpg2KFNxSSIyYsG0/+Zw35rGjmFPYTTl
-	0jfx5dzUrpBCI8HzW0EH5jCsDzOy2G8SFshzPP0BaHpFDEH8w+AciE6ZHkofXWyQp7u4vcfnkedoE
-	DJ1lLiYOuADaY/3EGxnw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=Lstx581j3O8h/WJPewcnRs9jd61x2IxSrR3Yh8VE1BQ=; b=I6AiXA2h7eCegp
+	qwjV/Wxm00hpqM2ma6Ecgzqz48epoep5Z34kVbZfdInI9CedRy+9/J814lWzw8tZ+XD2gZoO0HAuE
+	+KfKaj4xsD2PytOym9OY0ha51G/uc9t/LTwfS87/08ox3+/z5b7RyhLVz7THE1Z8EfLAuir4R/MkU
+	QmfjBsLhPgkmPi6MWRq4OlatkeTy4z3e5L2JDUkTSEbZ5n4ddZKACQvTFqPR34e29kxTa1vtRrU6m
+	KAsICxH2ZwXK/DZH00U5v7gc9XD2QKEkURfr8IHAyYlsyKZTCcc9ngC0BspUsTUBZVY5j0k0SJTCt
+	VqeLjphuYt9JvWdo4TAw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pKOXz-00504l-Oy; Tue, 24 Jan 2023 19:01:31 +0000
-Received: from mail-pl1-x62a.google.com ([2607:f8b0:4864:20::62a])
+	id 1pKOXy-00503q-35; Tue, 24 Jan 2023 19:01:30 +0000
+Received: from mail-pj1-x102d.google.com ([2607:f8b0:4864:20::102d])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pKOXw-00503B-Ji
-	for ath11k@lists.infradead.org; Tue, 24 Jan 2023 19:01:29 +0000
-Received: by mail-pl1-x62a.google.com with SMTP id p24so15638763plw.11
-        for <ath11k@lists.infradead.org>; Tue, 24 Jan 2023 11:01:27 -0800 (PST)
+	id 1pKOXu-00502n-Q6
+	for ath11k@lists.infradead.org; Tue, 24 Jan 2023 19:01:28 +0000
+Received: by mail-pj1-x102d.google.com with SMTP id u1-20020a17090a450100b0022936a63a21so19606082pjg.4
+        for <ath11k@lists.infradead.org>; Tue, 24 Jan 2023 11:01:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=50cO/6ZppDTgK/hTEwdsnZtIUmof/i6Am5RFe+y6fDg=;
-        b=jfE7I7WvzTda77if8o0AnlZyXeVHxwVIDww/9+S2ljpISGdXCqTC5lnP6jAn25+P3s
-         JiEJswbNMHjeomPV9fvhWaP1X+eg4zcs17gt/efjfnNzHMspdGlPF5yq+/Cfg1HOvLg2
-         Kp5IWDoo6CYqTnsILJ5HtBvSIVzD/oqlSVKFI=
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=SEJDfnpuHczelrJ6vp0fb1JDaeIwWS2iq2BACn7e/IE=;
+        b=ZPjYuk0ya4aeNvJO7qCFVWhUdg0oqrtCfCmpbpBLA+ntney22BIz/3+x+FcjsEArwy
+         EhC1rTUOzPpnWRcgDlgTPkpWxjQVhxbNJKGVBjVKQb4u+qsL8owwjnObWFkBj3oGR3sl
+         BW7yKEPe0fUVC9ATGwooiBc7H5EhIV8q26nao=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=50cO/6ZppDTgK/hTEwdsnZtIUmof/i6Am5RFe+y6fDg=;
-        b=GvKkxyBefzOZlC9DLR1oOxN6lLHNqqeAAasGJwEQDuvTXPR+KzNfJxT1AMLbE12arj
-         ENSiGY0Nh4Bzj2UADbRKBza3dJ0R4XLlJTMfVR/2iygdH8FL/Run9tiqpFvna+Gh2tk8
-         jySdI2Y/o4tSa1PsWJvGWDV38JycSaFP+wNMgaD28lqpxbiLoCdeRrjaV+rkyY9DIGKt
-         qXrPLa5ev2K6GtKB8CtCmm2nLSYeOdlrxntp7hA8KYZqw/DYMrjdUOGYvARxcIvnPMsE
-         NiOSipm4wbJmx3mAyr7BTwH5qrM0tOewsAJKkqOqzNdp4LR1PNR3/i/4LTXmIWXjc+nV
-         PHWA==
-X-Gm-Message-State: AO0yUKXrFZu3UbQ+M11dX20QROAFW1maGuH7c4xT3AClIlxUrWvU5s0l
-	TG6JmFlI24yBs/WHT6knr4cK0Mg2k1+UGj9x
-X-Google-Smtp-Source: AK7set8UGHGugxZPfIDZziY43UqyiSusorvSQsjCeo4te4wOprdvp/KbTUT4tFW/IJ4PPfPd66crVg==
-X-Received: by 2002:a17:903:18f:b0:196:cea:487a with SMTP id z15-20020a170903018f00b001960cea487amr6070801plg.53.1674586886656;
-        Tue, 24 Jan 2023 11:01:26 -0800 (PST)
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SEJDfnpuHczelrJ6vp0fb1JDaeIwWS2iq2BACn7e/IE=;
+        b=Ao4j8E46gXLPwxk3SaoYuNyWZnldevmEoznfLj85HF/uWsScl3pnbIdwu9gK59wjIa
+         9ibi8tjc0D7uyRuqTTpN/F50oOBaq//VjVUQORIo/XAV6z07UeYyiPOdT+dtlAZXGTnD
+         rDGGyQQzln5Kih+rL6jkjpJml2V3Dk8YFg/F0tMbgLsMIwOizjCeW+lRfDsThJHpU3JM
+         jlUJMJCYL6q62SMSLLau/3Vt6ehY9zeP/ovhqc1mdPXd0HNi/RtFoDwBHxzQHAHPM9Ko
+         T+6RpZkf9XU1V5Y9ZNl2IoJyztye6pYfjHB3hEh67SBvlPE8KFS1voBYIqlrvXH6HimL
+         Dx8w==
+X-Gm-Message-State: AO0yUKUMtiYaqQVc680jOgE+rJlnbgpLtsWxml8L3sS2i/7ElNYXg8ds
+	q51hXDOTJqWkaZrhoArCayKfJJhPuVp4EfkZ
+X-Google-Smtp-Source: AK7set9PfKKjjgxVS13+YwcKa14yZ/3qzh0IOTUKCI7B6Y/ZCJe76Mnqs2L7VttHh0r/YqkC2bCS7Q==
+X-Received: by 2002:a17:902:e747:b0:196:1d89:7002 with SMTP id p7-20020a170902e74700b001961d897002mr1941570plf.31.1674586884928;
+        Tue, 24 Jan 2023 11:01:24 -0800 (PST)
 Received: from tictac2.mtv.corp.google.com ([2620:15c:9d:2:7b28:de8d:ee0:2cd6])
-        by smtp.gmail.com with ESMTPSA id f10-20020a17090274ca00b001948720f6bdsm2010415plt.98.2023.01.24.11.01.25
+        by smtp.gmail.com with ESMTPSA id f10-20020a17090274ca00b001948720f6bdsm2010415plt.98.2023.01.24.11.01.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Jan 2023 11:01:26 -0800 (PST)
+        Tue, 24 Jan 2023 11:01:24 -0800 (PST)
 From: Douglas Anderson <dianders@chromium.org>
 To: ath11k@lists.infradead.org,
 	linux-wireless@vger.kernel.org
@@ -70,19 +69,18 @@ Cc: Luis Chamberlain <mcgrof@kernel.org>,
 	"David S. Miller" <davem@davemloft.net>,
 	Eric Dumazet <edumazet@google.com>,
 	Jakub Kicinski <kuba@kernel.org>,
+	Manikanta Pubbisetty <quic_mpubbise@quicinc.com>,
 	Paolo Abeni <pabeni@redhat.com>,
 	linux-kernel@vger.kernel.org,
 	netdev@vger.kernel.org
-Subject: [PATCH 2/2] wifi: ath5k: Use platform_get_irq() to get the interrupt
-Date: Tue, 24 Jan 2023 11:01:01 -0800
-Message-Id: <20230124110057.2.Ic4f8542b0588d7eb4bc6e322d4af3d2064e84ff0@changeid>
+Subject: [PATCH 1/2] wifi: ath11k: Use platform_get_irq() to get the interrupt
+Date: Tue, 24 Jan 2023 11:01:00 -0800
+Message-Id: <20230124110057.1.I69cf3d56c97098287fe3a70084ee515098390b70@changeid>
 X-Mailer: git-send-email 2.39.1.405.gd4c25cc71f-goog
-In-Reply-To: <20230124110057.1.I69cf3d56c97098287fe3a70084ee515098390b70@changeid>
-References: <20230124110057.1.I69cf3d56c97098287fe3a70084ee515098390b70@changeid>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230124_110128_665176_FB3206D1 
-X-CRM114-Status: GOOD (  16.23  )
+X-CRM114-CacheID: sfid-20230124_110126_885925_612C579A 
+X-CRM114-Status: GOOD (  16.29  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,46 +99,51 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 For the same reasons talked about in commit 9503a1fc123d ("ath9k: Use
 platform_get_irq() to get the interrupt"), we should be using
-platform_get_irq() in ath5k. Let's make the switch.
+platform_get_irq() in ath11k. Let's make the switch.
 
+Without this change, WiFi wasn't coming up on my Qualcomm sc7280-based
+hardware. Specifically, "platform_get_resource(pdev, IORESOURCE_IRQ,
+i)" was failing even for i=0. Digging into the platform device there
+truly were no IRQs present in the list of resources when the call was
+made.
+
+I didn't dig into what changed between 5.15 (where
+platform_get_resource() seems to work) and mainline Linux (where it
+doesn't). Given the zeal robot report for ath9k I assume it's a known
+issue. I'll mark this as "fixing" the patch that introduced the
+platform_get_resource() call since it should have always been fine to
+just call platform_get_irq() and that'll make sure it goes back as far
+as it needs to go.
+
+Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
+
+Fixes: 00402f49d26f ("ath11k: Add support for WCN6750 device")
 Signed-off-by: Douglas Anderson <dianders@chromium.org>
 ---
-I'm not setup to actually test this, but I figured that I might as
-well go all the way and fix all the instances of the same pattern that
-I found in the ath drivers since the old call was actually breaking me
-in ath11k. I did at least confirm that the code compiles for me.
 
-If folks would rather not land an untested patch like this, though,
-feel free to drop this and just land patch #1 as long as that one
-looks OK.
+ drivers/net/wireless/ath/ath11k/ahb.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
- drivers/net/wireless/ath/ath5k/ahb.c | 10 ++++------
- 1 file changed, 4 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath5k/ahb.c b/drivers/net/wireless/ath/ath5k/ahb.c
-index 2c9cec8b53d9..28a1e5eff204 100644
---- a/drivers/net/wireless/ath/ath5k/ahb.c
-+++ b/drivers/net/wireless/ath/ath5k/ahb.c
-@@ -113,15 +113,13 @@ static int ath_ahb_probe(struct platform_device *pdev)
- 		goto err_out;
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+index d34a4d6325b2..f70a119bb5c8 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.c
++++ b/drivers/net/wireless/ath/ath11k/ahb.c
+@@ -859,11 +859,11 @@ static int ath11k_ahb_setup_msi_resources(struct ath11k_base *ab)
+ 	ab->pci.msi.ep_base_data = int_prop + 32;
+ 
+ 	for (i = 0; i < ab->pci.msi.config->total_vectors; i++) {
+-		res = platform_get_resource(pdev, IORESOURCE_IRQ, i);
+-		if (!res)
+-			return -ENODEV;
++		ret = platform_get_irq(pdev, i);
++		if (ret < 0)
++			return ret;
+ 
+-		ab->pci.msi.irqs[i] = res->start;
++		ab->pci.msi.irqs[i] = ret;
  	}
  
--	res = platform_get_resource(pdev, IORESOURCE_IRQ, 0);
--	if (res == NULL) {
--		dev_err(&pdev->dev, "no IRQ resource found\n");
--		ret = -ENXIO;
-+	irq = platform_get_irq(pdev, 0);
-+	if (irq < 0) {
-+		dev_err(&pdev->dev, "no IRQ resource found: %d\n", irq);
-+		ret = irq;
- 		goto err_iounmap;
- 	}
- 
--	irq = res->start;
--
- 	hw = ieee80211_alloc_hw(sizeof(struct ath5k_hw), &ath5k_hw_ops);
- 	if (hw == NULL) {
- 		dev_err(&pdev->dev, "no memory for ieee80211_hw\n");
+ 	set_bit(ATH11K_FLAG_MULTI_MSI_VECTORS, &ab->dev_flags);
 -- 
 2.39.1.405.gd4c25cc71f-goog
 
