@@ -4,59 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5B13C38142
-	for <ath11k@archiver.kernel.org>; Tue, 31 Jan 2023 09:12:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3838CC38142
+	for <ath11k@archiver.kernel.org>; Tue, 31 Jan 2023 14:04:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=6aNkqXjtB5WUeDOD4kPZAfcN8r/tGCQaDGYvZeIihEQ=; b=2ZflK185fHFq2k
-	LWDpdzUuFpTnmydB9ldZ9/iAt75IrvxP0amHg1OWDgkhUEum3A9sr9utKLISIxFlxSDwhyGVA5VO9
-	FMilwr9xqKLZisidSXiz+AW3COeF/6oBUKYYpb7G6uGsz9XEiJjGJp3TmzH+T1OpLulJMp8T53nB8
-	DTGON3N6fN2rh735Ssj0SgPNhaDOV54pZLkclFbh5wnxI6jaQPm73BmJx2kgybKODvsW+3UJdTJj4
-	t1ThpjAkJzrs7q+G5otH7xoISBw8K8iP8zyKFtoirpQDJhpq/uLQD4TMNmPJvudZBao5w9/K8meLc
-	Bj/WpyGc87MIOIjrH2Xw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=5J39vifOoaKzOSmDGj6sBZ3HxErgHpwKTrlf/Yzr/WM=; b=lz1zWGry/rJ3iA
+	H2rUPma5W0pjEuLW+QdRIFxLT+XXjJhLKm5eu6bv9XNxgc7lKqmmiR65VYIqSGaVFppndGL8xVhjg
+	pw4CHfdcglg+GFj7e47P+zanAXBsXRoAnETJM0+wq75zeR/lyiscWMO1avUdO5N8xVFfhKWguIzJu
+	yO015NahY1UGwpe+BObKIS//TfBxtDGME9VqxpgOD/BtNgOcy8syHshtCbMIurvtZBQpOqVZU4Kvs
+	JKA9gJHe3t1omKrYDC3Gc0iJTQZlGWOr8tjI6MXJx+masWINZsMA+gEXkGtALzW70ACLuhOfqtDfS
+	DlKsOCA0ZzSJiuMHWGXw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pMmgh-006vbv-Lb; Tue, 31 Jan 2023 09:12:23 +0000
-Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2] helo=sipsolutions.net)
+	id 1pMrFd-008EIh-2t; Tue, 31 Jan 2023 14:04:45 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pMmge-006vbA-PM
-	for ath11k@lists.infradead.org; Tue, 31 Jan 2023 09:12:22 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
-	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
-	Resent-Cc:Resent-Message-ID; bh=wHpyEmUDwtWILP/PZi9ibazx/yx6gRrjsYE8DG/i8M4=;
-	t=1675156340; x=1676365940; b=bc9kK8eI392bsfgx6bNgMqBipMipCw+aH8tOhsKvLYBiRZ6
-	nlr5l/hAdgDyUPOlo8GPz23Ixt6kwiKeeDeqhbB+uKmRjyUVgv+VRRahQGKsLo5CWMSK1NaHj7PoF
-	fVxPl2uwoiOcPvGk+SMtkw3HukxqwSXv62nKgB3Mz/5myPHtdP0tX5AWfhBwVITtZe9XXRsmpbbQ3
-	KnGjPEoBSWqV/0OvTWM8DuBcYMRFpRK75HHep4jpO6JCcI+nwLYyTiYXzIAKEjTBCdmjDY5MF6MGQ
-	6CG6A6K41gGa017Otn6LpB2+9lZp9SXnQN7/UyhET5r5GOMi3vrKnwifU7K7XZVw==;
-Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
-	(Exim 4.96)
-	(envelope-from <johannes@sipsolutions.net>)
-	id 1pMmgc-00Gulb-2T;
-	Tue, 31 Jan 2023 10:12:18 +0100
-Message-ID: <958c5e666aaab3b18065c1e1c140c9ea34f2229c.camel@sipsolutions.net>
-Subject: Re: [PATCH] wifi: cfg80211: call reg_notifier for self managed
- wiphy from driver hint
-From: Johannes Berg <johannes@sipsolutions.net>
-To: Wen Gong <quic_wgong@quicinc.com>, ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
-Date: Tue, 31 Jan 2023 10:12:17 +0100
-In-Reply-To: <31632d31-8c98-081f-bcf4-0966efe1256a@quicinc.com>
-References: <20221214093937.14987-1-quic_wgong@quicinc.com>
-	 <0881ee1d0ae43ae18ab4b71ec8b5fd62263bbb69.camel@sipsolutions.net>
-	 <31632d31-8c98-081f-bcf4-0966efe1256a@quicinc.com>
-User-Agent: Evolution 3.46.3 (3.46.3-1.fc37) 
+	id 1pMrFa-008EGu-G3
+	for ath11k@lists.infradead.org; Tue, 31 Jan 2023 14:04:44 +0000
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 30VDlsPZ016449;
+	Tue, 31 Jan 2023 14:04:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=sNyspbgSQavAe6hhen9QEwZiWWvxgslE5XAUFkc5gjE=;
+ b=KAaWnWAbEpDJLHVjJyhRhiCJB2lnn7SDeVxf0SDL98nN0vad/6t2th7Pesnd2J0aZyFt
+ t8Y0waQWI094pd138o4NqmzRWKjSNjLVN65PXZrfoug5+5MdlhOandKeI4hlaK2r/Vew
+ /HCqCGCOWmqLUpBHY3cM9F7NsnLf2p7ifyLAUiNd22AIETgn3Pz9K+3tJOwcHz5enECV
+ H05lqHnbJTCCiOvfymMvALzTTpRL+03kHFhAVR8pLEQXrAf5OTgX8q1aKiAoE3nwO4ci
+ X6GR3SHj9j5lLhSyqdVDzyGkttN590jT8XqFZRcMTnrMsbeI4JayfN17gqueFJTAJThz TA== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nefmftvrm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 31 Jan 2023 14:04:27 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 30VE4Q13028516
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 31 Jan 2023 14:04:26 GMT
+Received: from youghand-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Tue, 31 Jan 2023 06:04:21 -0800
+From: Youghandhar Chintala <quic_youghand@quicinc.com>
+To: <kvalo@kernel.org>, <davem@davemloft.net>, <edumazet@google.com>,
+        <kuba@kernel.org>, <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Youghandhar Chintala
+	<quic_youghand@quicinc.com>
+Subject: [PATCH v2 0/2] dt: bindings: add dt entry for XO calibration support
+Date: Tue, 31 Jan 2023 19:33:43 +0530
+Message-ID: <20230131140345.6193-1-quic_youghand@quicinc.com>
+X-Mailer: git-send-email 2.38.0
 MIME-Version: 1.0
-X-malware-bazaar: not-scanned
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: keooHaK5NLQm3oVQb0nRrG6fo6HCXO2b
+X-Proofpoint-GUID: keooHaK5NLQm3oVQb0nRrG6fo6HCXO2b
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-01-31_08,2023-01-31_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 adultscore=0
+ priorityscore=1501 mlxlogscore=816 suspectscore=0 bulkscore=0 mlxscore=0
+ impostorscore=0 phishscore=0 lowpriorityscore=0 spamscore=0 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
+ definitions=main-2301310125
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230131_011220_869306_00EE906E 
-X-CRM114-Status: GOOD (  17.96  )
+X-CRM114-CacheID: sfid-20230131_060442_748728_581DD478 
+X-CRM114-Status: GOOD (  13.79  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,31 +97,27 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Tue, 2023-01-31 at 14:07 +0800, Wen Gong wrote:
-> On 1/19/2023 9:52 PM, Johannes Berg wrote:
-> > On Wed, 2022-12-14 at 04:39 -0500, Wen Gong wrote:
-> > > Currently the regulatory driver does not call the regulatory callback
-> > > reg_notifier for self managed wiphys. Sometimes driver needs cfg80211
-> > > to calculate the info of ieee80211_channel such as flags and power,
-> > > and driver needs to get the info of ieee80211_channel after hint of
-> > > driver, but driver does not know when calculation of the info of
-> > > ieee80211_channel become finished, so add notify to driver after
-> > > reg_process_self_managed_hint() from cfg80211 is a good way, then
-> > > driver could get the correct info in callback of reg_notifier.
-> > Seems reasonable - but maybe unexpected to some drivers, perhaps it
-> > should be opt-in?
-> > 
-> > Though I guess not many drivers actually use this infrastructure in the
-> > first place?
-> 
-> Yes, I will add a new flag such as WIPHY_FLAG_NOTIFY_REGDOM_BY_DRIVER 
-> for this driver.
-> 
-> is it ok?
+Add dt binding to get XO calibration data support for Wi-Fi RF clock.
 
-Sounds OK.
+Signed-off-by: Youghandhar Chintala <quic_youghand@quicinc.com>
 
-johannes
+Changes from v1:
+ - Sending the series to right list
+
+Youghandhar Chintala (2):
+  dt: bindings: add dt entry for XO calibration support
+  wifi: ath11k: PMIC XO cal data support
+
+ .../bindings/net/wireless/qcom,ath11k.yaml    |  4 ++++
+ drivers/net/wireless/ath/ath11k/ahb.c         |  8 +++++++
+ drivers/net/wireless/ath/ath11k/core.h        |  3 +++
+ drivers/net/wireless/ath/ath11k/qmi.c         | 24 +++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/qmi.h         |  4 +++-
+ 5 files changed, 42 insertions(+), 1 deletion(-)
+
+-- 
+2.38.0
+
 
 -- 
 ath11k mailing list
