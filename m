@@ -4,59 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B19F2C05027
-	for <ath11k@archiver.kernel.org>; Wed,  1 Feb 2023 06:57:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53084C636D4
+	for <ath11k@archiver.kernel.org>; Wed,  1 Feb 2023 06:57:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=uuBSJzgDDPvgTxV1q2+x14DVtYdlapK8EGJvEACRZTg=; b=zjukwfbi5bHUD/
-	qzSxWM3CS1Sxf+qeZ76DHO+WMY4EoxXum+ZkoWgpFNAEjXCy/LAlxgxX6VFWnMfvJZVvcHa4h3950
-	MQnp3AIusLsOCnqqAv3Xz29ZeFFlN8KIoPV1hqdr1Uei+GxnynHTeUsAnWwlyWKNcaniYL61juIOn
-	qtOMNOE0eXV5rirULG/0LQFutXimvRYIcbzS+zFSzGPy5NZnA5W7o9zsG4V2EmZYmJVYO+s3QvFaY
-	rPOlM/X1vpbBRpQc9vB5b2rjJfw+33Z+0fYy2se1qxo3asxxfO76wRdSsTYDpjtnwBtPfdnlMZrKY
-	H4d9wSU3b0eyAMNiuOLQ==;
+	List-Owner; bh=1j54zEE0PRCCZ70ieTohR/5S6sRZBFU0YJQrRq5KBSs=; b=2dID6n6S+Sj70J
+	VbbHiTznKlTobODgIZ33FfCSkfq44Iz9ddKUCo/jUUFOli5AzIatzJ0Gkek07CEw3ozYm7z61SRed
+	3KZaJd8R8BfiIhCqeZIfvP6Y9wtRbeDWM3kP7nYQe2iA9A/gPbYu8SWlVr1fAzT5tolWUPrdgj2jT
+	HBeAPxSqTiLEJl7YtDhVNBkLbjepVSfDozrmBv7ij0/m5zwMo/wN5NzBPq4awllqhIN4w8h2BzbSu
+	F5N2/vfikg+RFUHRKWrc6hS3D8/jDNSKCbBNZzPU5ACSRSTMgPinOUcl8FUFxgiKJ6g7GFL39X2Pf
+	VRCSPo+INte/Y7xMUyUg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pN73f-00AXNG-4L; Wed, 01 Feb 2023 06:57:27 +0000
+	id 1pN73h-00AXOZ-Np; Wed, 01 Feb 2023 06:57:29 +0000
 Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pN73c-00AXLZ-6f
-	for ath11k@lists.infradead.org; Wed, 01 Feb 2023 06:57:25 +0000
+	id 1pN73e-00AXMc-El
+	for ath11k@lists.infradead.org; Wed, 01 Feb 2023 06:57:27 +0000
 Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3116t4mU032320;
-	Wed, 1 Feb 2023 06:57:23 GMT
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3116kRUI010894;
+	Wed, 1 Feb 2023 06:57:25 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
  subject : date : message-id : in-reply-to : references : mime-version :
  content-type; s=qcppdkim1;
- bh=kMp2iDdEPIDlOrLi2rUM/K6vE+/A5EEzk+yp83bhZSo=;
- b=aizOQmfwtElw4Y99OLXIyLzChVNyD+QkwkMAL13tfh5B/1nf6TZYEBCbwKQY3PJhdBqH
- icyXPu74OFOcjJZuJlYPXWks/sT5cVROvVHba8AUP9fDS/hDp3zQynWYG/u8aiimJEdR
- Z5N3r/+Mq23zT4UnvkBAmv98/d36Pvaa3z2bJTWakQ/Yrplq9vjGUPzsQIzBqd1UlPaZ
- wBf3lV1xWiW8PUF3Sw5b34q0SOVNUyjbIg8w0HfSmareSXTdHx4dgYyXpDy9Nzrp758q
- VB/y/WCR2VBpehCWJPpwf3Gj6Wk7EK+hVfxU239SkNlleFpFs3JLvYbzbqLa+Q1fox6f pA== 
+ bh=W/BAUuFz1Nwd8KZNQzffNYl5Rqqhtt0te+jAOvUkxbc=;
+ b=gB0Rq9xXEXKdVIJnT3p4TwKjFowK+HawbZ/af7NDASOEChGoMz9rI7Iu5DXm22jc/kaG
+ g/cLXVTAJSzmZuF/xjAEAVk6lG7Yy83xMNCQ4QrzfjbpfAFN4lmwveqZ1i3w9UOmV+oz
+ RD4vI0WDGLUHkbpZIosK5fXtOIFG4uCBB1I4hBq9K9IGTJnM/ecW7SuGTs70og77keYg
+ //e0/VpqMWF2yE+nLV85pHUfBSYSB2RE1GJGROZBGzhKQkbf1WJg3EExfQ6aAzLoRmQU
+ OU1y6HG2JaIHVid649HijEi2/Qtn9IgjHlWuyoV9JT82F+32+v9aw9+LBNCfKhW+OURw 7g== 
 Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3new3ub72u-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3new3ub72w-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 01 Feb 2023 06:57:23 +0000
+	Wed, 01 Feb 2023 06:57:25 +0000
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3116vMNs021360
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3116vOTv021375
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 1 Feb 2023 06:57:22 GMT
+	Wed, 1 Feb 2023 06:57:24 GMT
 Received: from ramess-linux.qualcomm.com (10.80.80.8) by
  nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.36; Tue, 31 Jan 2023 22:57:19 -0800
+ 15.2.986.36; Tue, 31 Jan 2023 22:57:22 -0800
 From: Rameshkumar Sundaram <quic_ramess@quicinc.com>
 To: <johannes@sipsolutions.net>, <ath11k@lists.infradead.org>
 CC: <linux-wireless@vger.kernel.org>,
         Rameshkumar Sundaram
 	<quic_ramess@quicinc.com>
-Subject: [PATCH v3 2/3] wifi: mac80211: Avoid BSS color collision detection if its disabled
-Date: Wed, 1 Feb 2023 12:26:37 +0530
-Message-ID: <20230201065638.25990-3-quic_ramess@quicinc.com>
+Subject: [PATCH v3 3/3] wifi: ath11k: add support to enable/disable BSS color collision detection
+Date: Wed, 1 Feb 2023 12:26:38 +0530
+Message-ID: <20230201065638.25990-4-quic_ramess@quicinc.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20230201065638.25990-1-quic_ramess@quicinc.com>
 References: <20230201065638.25990-1-quic_ramess@quicinc.com>
@@ -66,19 +66,19 @@ X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: TwwdMYMKr0X38IregJirGq7qkbSvviBx
-X-Proofpoint-ORIG-GUID: TwwdMYMKr0X38IregJirGq7qkbSvviBx
+X-Proofpoint-GUID: GKR9co4MAXwVdS1u5orXMD-MgYm1QvuB
+X-Proofpoint-ORIG-GUID: GKR9co4MAXwVdS1u5orXMD-MgYm1QvuB
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
  definitions=2023-02-01_02,2023-01-31_01,2022-06-22_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- phishscore=0 clxscore=1015 suspectscore=0 mlxscore=0 mlxlogscore=946
+ phishscore=0 clxscore=1015 suspectscore=0 mlxscore=0 mlxlogscore=967
  impostorscore=0 adultscore=0 bulkscore=0 malwarescore=0 priorityscore=1501
  spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
  engine=8.12.0-2212070000 definitions=main-2302010059
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230131_225724_376960_EB135096 
-X-CRM114-Status: GOOD (  14.80  )
+X-CRM114-CacheID: sfid-20230131_225726_618689_462305A7 
+X-CRM114-Status: GOOD (  15.93  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,28 +95,43 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Don't detect BSS color collision and send collision events
-to userspace if it is disabled.
+Enable/Disable BSS color collision detection based on user
+configuration of collision detection and BSS color feature
+itself.
+
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.1.0.1-01228-QCAHKSWPL_SILICONZ-1
 
 Signed-off-by: Rameshkumar Sundaram <quic_ramess@quicinc.com>
 ---
- net/mac80211/rx.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/mac.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/net/mac80211/rx.c b/net/mac80211/rx.c
-index e284897ba5e9..5588067b2af2 100644
---- a/net/mac80211/rx.c
-+++ b/net/mac80211/rx.c
-@@ -3195,7 +3195,8 @@ ieee80211_rx_check_bss_color_collision(struct ieee80211_rx_data *rx)
- 	if (ieee80211_hw_check(&rx->local->hw, DETECTS_COLOR_COLLISION))
- 		return;
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 9e923ecb0891..6d5290996d9f 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -3112,6 +3112,7 @@ static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
+ 	u8 rateidx;
+ 	u32 rate;
+ 	u32 ipv4_cnt;
++	bool color_collision_detect;
  
--	if (rx->sdata->vif.bss_conf.csa_active)
-+	if (rx->sdata->vif.bss_conf.csa_active ||
-+	    rx->sdata->vif.bss_conf.he_bss_color.collision_detection_enabled)
- 		return;
+ 	mutex_lock(&ar->conf_mutex);
  
- 	baselen = mgmt->u.beacon.variable - rx->skb->data;
+@@ -3370,10 +3371,12 @@ static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
+ 
+ 	if (changed & BSS_CHANGED_HE_BSS_COLOR) {
+ 		if (vif->type == NL80211_IFTYPE_AP) {
++			color_collision_detect = (info->he_bss_color.enabled &&
++						  info->he_bss_color.collision_detection_enabled);
+ 			ret = ath11k_wmi_send_obss_color_collision_cfg_cmd(
+ 				ar, arvif->vdev_id, info->he_bss_color.color,
+ 				ATH11K_BSS_COLOR_COLLISION_DETECTION_AP_PERIOD_MS,
+-				info->he_bss_color.enabled);
++				color_collision_detect);
+ 			if (ret)
+ 				ath11k_warn(ar->ab, "failed to set bss color collision on vdev %i: %d\n",
+ 					    arvif->vdev_id,  ret);
 -- 
 2.17.1
 
