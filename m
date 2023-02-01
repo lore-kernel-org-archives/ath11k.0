@@ -4,77 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83DF0C05027
-	for <ath11k@archiver.kernel.org>; Wed,  1 Feb 2023 07:03:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69796C05027
+	for <ath11k@archiver.kernel.org>; Wed,  1 Feb 2023 16:55:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=r/FZuuK9UIzNAFu5GpLUkBh3QxcmXMu0On2QsSsQBQA=; b=qrS8MO/PFOGqy7
-	J1u7Sirh+Hbm3i/34uEnae9Ofe8aNATFzql21it5zyHvvBiuUrXEJnapm3RKNoxZUUhedkx7aQ/+F
-	FSZ/xesvLVEc7x8uxsAhJ1YNrrgsvoPoPP0bsOe0esk+yDF/3Utb9giMK8EkL96wSA5hf/h78JvZ6
-	DA6ofSN2Fw/wb2qi7FCAYFSuNnX1xTonuO7dq1roRQ6/N83AJexyYoX37He+gBsDGX4Uy7lKEf6ZG
-	pgK2PHM3+x/J+ZIpR4GQTGw0hhW58cnY2X+ydkvKlprl4WpDCAZYg9iuZDnJg+kt+jHKZrus4hCxF
-	vuHJwpbtM99WlG9kfrCQ==;
+	List-Owner; bh=2qWzQQvgZhB97s+tjN0VHlR32szIb6i6yk6w+oUllOw=; b=1HW9Vu1wGChoUR
+	T9s/6vdDtMlMlu5IsXpXJUAfc3ThSxVemJSFmM0bLsbeT8auZJBhHSKY3Ad5Aib7m/FDykHRkti+3
+	qWiLPpLnfgVULhsYi2oeeozZ+3px2wCR3xa30y+8ebX3RId0lqd5hADJNrMbaf6t0D+zCGOpTvYpc
+	p3OmBlwK9jS+heEmLliFjiQMFqnU4t0etA6XzSQsj92RpJ4m7ccaBiHrICE+Ej4Nwum+BiZAxSVxs
+	zEnrzwxkMnToKz5/gciRUvj95Ff9MtUIKwqz8sICTEfywBdMZfVBl5367IFXj4R/7wJlLkuMxfsuK
+	TI7Z784AHPwoKW/5LWhg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pN79n-00AYMQ-QQ; Wed, 01 Feb 2023 07:03:47 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1pNGO0-00CuEn-Jy; Wed, 01 Feb 2023 16:55:04 +0000
+Received: from mail-pf1-x430.google.com ([2607:f8b0:4864:20::430])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pN79k-00AYLr-IF
-	for ath11k@lists.infradead.org; Wed, 01 Feb 2023 07:03:46 +0000
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3115FNNZ004227;
-	Wed, 1 Feb 2023 07:03:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-transfer-encoding :
- content-type; s=qcppdkim1;
- bh=wRqmfD9+40B6tDDrqJWib+TvKyDYFqk6QODOXhPPsG8=;
- b=VI8/BOvWogDUGWB+eZ71+4JXrHkQI055T4LIEE51Hl43QP6kA8iOPvEGznkkohRRYbYR
- lNtT5NEp0uDJDHj556pBHJLPI2itDA4BECMEj9wuEx0+ApwiY2992ww03YOxhkAk0Gz2
- MwJECunEodEanatJh47EAIZxz3Z8tphG8WzFqeNSoMLE12Zlr7N0t6SkNMRtH3roPaed
- CtiKvCf3pAX9N0qhmAvKDs9iGZKhQMxSFZ3ffOC9thrhWh/x7kLkPB+ulrey4rUHxfOd
- cqvXmswE28B6AF7YHVp1Fy2OJBYJPjzojxGl01tixAZPDtQKkdS5jpqQ/978pcFq5xej EQ== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3neuwcbbvs-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 01 Feb 2023 07:03:43 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31173gfp025851
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 1 Feb 2023 07:03:42 GMT
-Received: from wgong-HP3-Z230-SFF-Workstation.qca.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.36; Tue, 31 Jan 2023 23:03:40 -0800
-From: Wen Gong <quic_wgong@quicinc.com>
-To: <johannes@sipsolutions.net>, <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, <quic_wgong@quicinc.com>
-Subject: [PATCH v3] wifi: cfg80211: call reg_notifier for self managed wiphy from driver hint
-Date: Wed, 1 Feb 2023 02:03:27 -0500
-Message-ID: <20230201070327.27578-1-quic_wgong@quicinc.com>
-X-Mailer: git-send-email 2.31.1
+	id 1pNGNx-00CuBO-RM
+	for ath11k@lists.infradead.org; Wed, 01 Feb 2023 16:55:03 +0000
+Received: by mail-pf1-x430.google.com with SMTP id t17so1731354pfj.0
+        for <ath11k@lists.infradead.org>; Wed, 01 Feb 2023 08:54:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=v42abFOaxIlmW4awj8kF2Nh0ZkUL+DGZkQ/FsMg5/Lo=;
+        b=VrF1mG7zFBzc+C7jPblzg3iCFvvDjx/+tr7aA+HecgsS4iWudNCaPX0qWgYt2dCN0e
+         PUmM93Vz92MUceh+zk1SV2VAWdhH8oePYHYIgZI435fyTmnP9z3hGnrOY3I0PyzsNeWs
+         tHMMajIgi3fbTPiqhxmZlJiypDtRj4yIt4mXo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=v42abFOaxIlmW4awj8kF2Nh0ZkUL+DGZkQ/FsMg5/Lo=;
+        b=fWlNTXcjr+q7d9WZte0k0nyWHJQMKO428CrYxM3L2MN9+sPdUiVCwoFsMZYUktdNTJ
+         TS0qsplqV81db9qEfwMhYJoWt+1hDD8OSC2hkWESAj874JCnCUAXTHjkZqsKVO4+/PoI
+         SM99bowaKHnAK+Uky90rkP7WY9oiQu4gOGCDfAUMy8SgCXNnpiFTJDiWEFabpDIsj2nO
+         8jR4Ym0LEwJk9d6OESB91jF314jpQAbqoS+3mNzotzSOLmrV2OYJ/yGeryVjTFPsKqQq
+         8jUbbvrqzkWidNDhWqoQrw86LsnsL7xSSPI9UMfPJAPnHmvcL5vYZfEEL428gAHmMT7i
+         tQCg==
+X-Gm-Message-State: AO0yUKUnWZStq5gd3fo1gxjUOfIQo/eoLDMw8c2MrIziRZjWxnjLMNyc
+	ZZ0+AE9j6f/HpWSOLz++VLT4ceMB4vtSPwIsWxg=
+X-Google-Smtp-Source: AK7set/Ngk6EWKR6yWWn0hLrOjHifSFiaIyR4hRkotMraLijRfBa3zbKNX1T18IRweHaOow9z4BwTg==
+X-Received: by 2002:a05:6a00:1d9a:b0:592:6313:20fb with SMTP id z26-20020a056a001d9a00b00592631320fbmr2864421pfw.30.1675270494150;
+        Wed, 01 Feb 2023 08:54:54 -0800 (PST)
+Received: from tictac2.mtv.corp.google.com ([2620:15c:9d:2:ba26:efe8:5132:5fcf])
+        by smtp.gmail.com with ESMTPSA id b15-20020aa7870f000000b0058119caa82csm11605090pfo.205.2023.02.01.08.54.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Feb 2023 08:54:53 -0800 (PST)
+From: Douglas Anderson <dianders@chromium.org>
+To: ath11k@lists.infradead.org,
+	linux-wireless@vger.kernel.org
+Cc: Kalle Valo <kvalo@kernel.org>,
+	junyuu@chromium.org,
+	Youghandhar Chintala <quic_youghand@quicinc.com>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Luis Chamberlain <mcgrof@kernel.org>,
+	Nick Kossifidis <mickflemm@gmail.com>,
+	Abhinav Kumar <quic_abhinavk@quicinc.com>,
+	Douglas Anderson <dianders@chromium.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Manikanta Pubbisetty <quic_mpubbise@quicinc.com>,
+	Marc Zyngier <maz@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org
+Subject: [PATCH v2 1/2] wifi: ath11k: Use platform_get_irq() to get the interrupt
+Date: Wed,  1 Feb 2023 08:54:42 -0800
+Message-Id: <20230201084131.v2.1.I69cf3d56c97098287fe3a70084ee515098390b70@changeid>
+X-Mailer: git-send-email 2.39.1.456.gfc5497dd1b-goog
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: JmSdLx13mWrbxOoZPrwRBqcQ8b0s7Mye
-X-Proofpoint-ORIG-GUID: JmSdLx13mWrbxOoZPrwRBqcQ8b0s7Mye
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-02-01_02,2023-01-31_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=871 adultscore=0
- malwarescore=0 bulkscore=0 suspectscore=0 phishscore=0 spamscore=0
- impostorscore=0 priorityscore=1501 lowpriorityscore=0 mlxscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2302010060
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230131_230344_737889_9E22ABAF 
-X-CRM114-Status: GOOD (  17.80  )
+X-CRM114-CacheID: sfid-20230201_085501_899106_42EDFFC9 
+X-CRM114-Status: GOOD (  13.93  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,68 +101,56 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Currently the regulatory driver does not call the regulatory callback
-reg_notifier for self managed wiphys. Sometimes driver needs cfg80211
-to calculate the info of ieee80211_channel such as flags and power,
-and driver needs to get the info of ieee80211_channel after hint of
-driver, but driver does not know when calculation of the info of
-ieee80211_channel become finished, so add notify to driver in
-reg_process_self_managed_hint() from cfg80211 is a good way, then
-driver could get the correct info in callback of reg_notifier.
+As of commit a1a2b7125e10 ("of/platform: Drop static setup of IRQ
+resource from DT core"), we need to use platform_get_irq() instead of
+platform_get_resource() to get our IRQs because
+platform_get_resource() simply won't get them anymore.
 
-Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
+This was already fixed in several other Atheros WiFi drivers,
+apparently in response to Zeal Robot reports. An example of another
+fix is commit 9503a1fc123d ("ath9k: Use platform_get_irq() to get the
+interrupt"). ath11k seems to have been missed in this effort, though.
+
+Without this change, WiFi wasn't coming up on my Qualcomm sc7280-based
+hardware. Specifically, "platform_get_resource(pdev, IORESOURCE_IRQ,
+i)" was failing even for i=0.
+
+Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
+
+Fixes: a1a2b7125e10 ("of/platform: Drop static setup of IRQ resource from DT core")
+Fixes: 00402f49d26f ("ath11k: Add support for WCN6750 device")
+Signed-off-by: Douglas Anderson <dianders@chromium.org>
+Tested-by: Jun Yu <junyuu@chromium.org>
 ---
-v3: use hole for BIT(24) which delete by commit 585b6e1304dc ("wifi: cfg80211: remove support for static WEP") 
 
-v2:
-   1. add flag WIPHY_FLAG_NOTIFY_REGDOM_BY_DRIVER
-   2. change to use reg_call_notifier()
+Changes in v2:
+- Update commit message and point to patch that broke us (Jonas)
 
- include/net/cfg80211.h | 4 ++++
- net/wireless/reg.c     | 3 +++
- 2 files changed, 7 insertions(+)
+ drivers/net/wireless/ath/ath11k/ahb.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/include/net/cfg80211.h b/include/net/cfg80211.h
-index 1f8f827290a2..ef96fc5b060d 100644
---- a/include/net/cfg80211.h
-+++ b/include/net/cfg80211.h
-@@ -4682,6 +4682,8 @@ struct cfg80211_ops {
-  *	in order to not have them reachable in normal drivers, until we have
-  *	complete feature/interface combinations/etc. advertisement. No driver
-  *	should set this flag for now.
-+ * @WIPHY_FLAG_NOTIFY_REGDOM_BY_DRIVER: The device could handle reg notify for
-+ *	NL80211_REGDOM_SET_BY_DRIVER.
-  */
- enum wiphy_flags {
- 	WIPHY_FLAG_SUPPORTS_EXT_KEK_KCK		= BIT(0),
-@@ -4707,6 +4709,8 @@ enum wiphy_flags {
- 	WIPHY_FLAG_HAS_REMAIN_ON_CHANNEL	= BIT(21),
- 	WIPHY_FLAG_SUPPORTS_5_10_MHZ		= BIT(22),
- 	WIPHY_FLAG_HAS_CHANNEL_SWITCH		= BIT(23),
-+	/* use hole at 24 */
-+	WIPHY_FLAG_NOTIFY_REGDOM_BY_DRIVER	= BIT(25),
- };
+diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+index d34a4d6325b2..f70a119bb5c8 100644
+--- a/drivers/net/wireless/ath/ath11k/ahb.c
++++ b/drivers/net/wireless/ath/ath11k/ahb.c
+@@ -859,11 +859,11 @@ static int ath11k_ahb_setup_msi_resources(struct ath11k_base *ab)
+ 	ab->pci.msi.ep_base_data = int_prop + 32;
  
- /**
-diff --git a/net/wireless/reg.c b/net/wireless/reg.c
-index 4f3f31244e8b..cb35c8e9ced7 100644
---- a/net/wireless/reg.c
-+++ b/net/wireless/reg.c
-@@ -3198,6 +3198,9 @@ static void reg_process_self_managed_hint(struct wiphy *wiphy)
- 	request.alpha2[1] = regd->alpha2[1];
- 	request.initiator = NL80211_REGDOM_SET_BY_DRIVER;
+ 	for (i = 0; i < ab->pci.msi.config->total_vectors; i++) {
+-		res = platform_get_resource(pdev, IORESOURCE_IRQ, i);
+-		if (!res)
+-			return -ENODEV;
++		ret = platform_get_irq(pdev, i);
++		if (ret < 0)
++			return ret;
  
-+	if (wiphy->flags & WIPHY_FLAG_NOTIFY_REGDOM_BY_DRIVER)
-+		reg_call_notifier(wiphy, &request);
-+
- 	nl80211_send_wiphy_reg_change_event(&request);
- }
+-		ab->pci.msi.irqs[i] = res->start;
++		ab->pci.msi.irqs[i] = ret;
+ 	}
  
-
-base-commit: 922932ca02191a390f7f52fb6e21c44b50e14025
-prerequisite-patch-id: e365a8f3f2dda71872409315b416797c771a6c51
+ 	set_bit(ATH11K_FLAG_MULTI_MSI_VECTORS, &ab->dev_flags);
 -- 
-2.31.1
+2.39.1.456.gfc5497dd1b-goog
 
 
 -- 
