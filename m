@@ -4,68 +4,132 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5DF1C38142
-	for <ath11k@archiver.kernel.org>; Wed,  1 Feb 2023 17:20:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA78AC636D4
+	for <ath11k@archiver.kernel.org>; Wed,  1 Feb 2023 20:39:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=B491kSTqL/DPrcJ2MELzMxTu+2YYz9GE2ylGSIMke9A=; b=jCBJYS56qCykIF
-	Wb5jSIwGIAGW5FDCkzsNbVF8bkyPvXx7DuOu1V/KuNxMcgHO5SgdWGVPqKuyk++7IgaltR6RYeXH8
-	+5MIlOs59FQALrFzhcefJT/FrnH8WTvsJzuyQSLMOyMUF7yVpQWzEyrzRXw2t35CWYbY8zil6khxp
-	W+ex0XWIz7aoTDvifqi83SMiURZSWCKB4OMK5qNV0jKaXL+l1Vl4JAAgsQVY7oxQJ6MqQQbWfT1SF
-	UAIVjqkaYRa5iq/x/Ncnjw/cKLaqZoVS7DoO0KKZIjM616r3hmNaKUweUbTXFJDLzKOcKcy9fA4yy
-	4WLf1Mb4cwlF8OWQfylA==;
+	List-Owner; bh=hr7BYOQQ44j4AIaC2JWiStjmqT4wnKtaYq5Ld1yP5Cc=; b=iVa6hdZlKoHZeB
+	52oLShcZEH9Yy8wlefcq19fj9L2DJGx2Rp6QuqWywoZ10b/Z3WiUn8safYuqciEYWRgBJ4jrhOb33
+	DjRNFuNLWabdoeL7cLXO48yPGSWIW9H12EWVFobxkrcOWwBiLy1eGMYSkdWCZ/IvK8XVV2F9xlgyH
+	D6fAGOpRxtCjd8HAnfv3moZz5ZGb3pf93zRxQHpUKY5bEKW7O7M3+k2l/7vSye08LLYeFO5ur4uNk
+	oFV97FCAfbKwcAuPv2s4/38zshuvhRTVScQiSa6Tyor32kMRohw5ng9Mez15tEFyYfEOux1hi8M8L
+	WEm8I37tCbMgioZoESTw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pNGmL-00D0Ps-KV; Wed, 01 Feb 2023 17:20:13 +0000
-Received: from mail-oa1-f52.google.com ([209.85.160.52])
+	id 1pNJtU-00DZxD-KY; Wed, 01 Feb 2023 20:39:48 +0000
+Received: from mail-sgaapc01on2072b.outbound.protection.outlook.com ([2a01:111:f400:feab::72b] helo=APC01-SG2-obe.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pNGmI-00D0PN-7a
-	for ath11k@lists.infradead.org; Wed, 01 Feb 2023 17:20:11 +0000
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-16332831ed0so24392510fac.10
-        for <ath11k@lists.infradead.org>; Wed, 01 Feb 2023 09:20:09 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JvS6IzC8bwewPncy4ABn16veV+Ux4xgWqkXAqCcyLxY=;
-        b=s1v/te+T8TZfVxTEt3kQKrC57vybigjtiDExDEsaRKFHiv3Vn4D1n91LcEvk3qYp9L
-         EyOXuiYirpxOcrqlPwWB5PSKbIww07CN8C0B0X8XPCkx9HJmb0AsFIFRzeLVIHYU64Qs
-         miAU5i7h2iPIBh8gwNAtqAu5ze6h/qVZsljnpaLvlNJ2iCeOo2tYLsjrmLLkuduZU8cN
-         mNGJ+PM1xMiXi2jYHGz7aDNHPH6jxrkNMdJR0aptOmwy5TaIYI+Ho6EqSQuOqVLRvMKo
-         /xQdHVl3sfbnd6ZCfvIn2dFVkQDKZoQvwDWz+Rnb8Njuv+YzTVVDIbWEUZJLcbX/uUU2
-         SPuA==
-X-Gm-Message-State: AO0yUKVItj9xWdDiiBbmYdCKnnWKgXx/Onm4dbLXXk1hKhyAsLy7xnUI
-	RaWs6Iz23DmSltzA9sqoDA==
-X-Google-Smtp-Source: AK7set/BDnVzkpsE8Teoq5qX/sm2jzdvxGaWqxAltLjnnVeHkNBTa305CN2wWkzToMcN1ClyGheccg==
-X-Received: by 2002:a05:6871:28e:b0:166:732f:243b with SMTP id i14-20020a056871028e00b00166732f243bmr1364046oae.52.1675272009003;
-        Wed, 01 Feb 2023 09:20:09 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q42-20020a05687082aa00b001676a4dc22bsm1312853oae.58.2023.02.01.09.20.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Feb 2023 09:20:08 -0800 (PST)
-Received: (nullmailer pid 3750008 invoked by uid 1000);
-	Wed, 01 Feb 2023 17:20:07 -0000
-Date: Wed, 1 Feb 2023 11:20:07 -0600
-From: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Youghandhar Chintala <quic_youghand@quicinc.com>, kvalo@kernel.org, davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, krzysztof.kozlowski+dt@linaro.org, ath11k@lists.infradead.org, linux-wireless@vger.kernel.org, netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt: bindings: add dt entry for XO calibration
- support
-Message-ID: <20230201172007.GA3733090-robh@kernel.org>
-References: <20230131140345.6193-1-quic_youghand@quicinc.com>
- <20230131140345.6193-2-quic_youghand@quicinc.com>
- <622ef51f-643e-5eb5-3884-3f22bf4fa9be@linaro.org>
+	id 1pNJtP-00DZta-6H
+	for ath11k@lists.infradead.org; Wed, 01 Feb 2023 20:39:46 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YKPvgyiA/JVgPYePBcO/hDmT6Xqa1CF6n+uyvzY39om10WsYTHzrUOAJlSmuU4nTQ13Nq2Ky8WodqUpwi/l+e9E56ubO1XImfVOfD5BdRRXl968B7Wi+t65A3FgDDjFabBOPjfJN6zSZo6jhsiqmZJNIn/s9SfhohsRUIY5Zu9ddQBpQtVGhbNcEqZxcoJwHy7tHuBy+W4Oi42xn6WsBmkmvMmsAhh1EXCix9Me3b3d0lzTuuV3r73vZs1TYs82fq6F8+VpymD3CYszYZnBBBfBpDnw9spTX41Fa0WMnbDooI7nHrjuTUM5RwGwmrnaEyzuElCmlaFpHIca+uEwRYQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Rmm4I1n3rEZ0avEfmKm3p8Gp3mppcDsF7P1GYCQyPxo=;
+ b=oD+1W8vhmSR7wCsrjndTBarSNPgPcOZNU4mmRP6I72iA5C4z6cLcrpMIxN0exha9WH4L3UTETtkponm/J5RgDa9B9pbrj9G9VXtDo8X1fKO6Lz0TpcwmTSPdBeD6TUJjVKI4+QbdFfmKGRsxuYW1JtZC62bcAR+yjTML4BB8LM/MJLdmBqXj8xxBQQZL2tO+915fxqliMZIXtbsZfEW+Hk+2mNb28aM33+UgRBAfSTLDt1O5KU/d7pquji7MvPGcw36E1QxR3war2xKlmgy+DOu8gaOxgpxPFkBEAuvNEZjypeeyFyKD9oRNOFlky4GsuMpm/AkoMdb6hNC/PSKK7w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Rmm4I1n3rEZ0avEfmKm3p8Gp3mppcDsF7P1GYCQyPxo=;
+ b=RyyEvIWWtBlVZsZ3zYw5PkZHa3tQ1TTA0sGp1xowCTrvOmbZG7xEHoupusS0ynNgt0mYPXDh3NW39C0Z9+xnJyLiAjM05AHKksXYhZODxj5QmfVr6ka5YQmWK+euYvuLxLxLX6bJJIps0wwOkM7kdpesqEM5V/EFH1hf49r8/1Y=
+Received: from OSZPR01MB7019.jpnprd01.prod.outlook.com (2603:1096:604:13c::8)
+ by OS3PR01MB6228.jpnprd01.prod.outlook.com (2603:1096:604:f1::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6064.22; Wed, 1 Feb
+ 2023 20:39:35 +0000
+Received: from OSZPR01MB7019.jpnprd01.prod.outlook.com
+ ([fe80::a249:60f:e09a:70bc]) by OSZPR01MB7019.jpnprd01.prod.outlook.com
+ ([fe80::a249:60f:e09a:70bc%9]) with mapi id 15.20.6064.022; Wed, 1 Feb 2023
+ 20:39:35 +0000
+From: Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Douglas Anderson <dianders@chromium.org>, "ath11k@lists.infradead.org"
+	<ath11k@lists.infradead.org>, "linux-wireless@vger.kernel.org"
+	<linux-wireless@vger.kernel.org>
+CC: Kalle Valo <kvalo@kernel.org>, "junyuu@chromium.org"
+	<junyuu@chromium.org>, Youghandhar Chintala <quic_youghand@quicinc.com>, Jiri
+ Slaby <jirislaby@kernel.org>, Luis Chamberlain <mcgrof@kernel.org>, Nick
+ Kossifidis <mickflemm@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Manikanta Pubbisetty
+	<quic_mpubbise@quicinc.com>, Marc Zyngier <maz@kernel.org>, Paolo Abeni
+	<pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>
+Subject: RE: [PATCH v2 1/2] wifi: ath11k: Use platform_get_irq() to get the
+ interrupt
+Thread-Topic: [PATCH v2 1/2] wifi: ath11k: Use platform_get_irq() to get the
+ interrupt
+Thread-Index: AQHZNl3qWoWF4hqjYEqUe1oE70EsXa66jOTQ
+Date: Wed, 1 Feb 2023 20:39:35 +0000
+Message-ID:  <OSZPR01MB701949307C9DFB0E064B74ACAAD19@OSZPR01MB7019.jpnprd01.prod.outlook.com>
+References:  <20230201084131.v2.1.I69cf3d56c97098287fe3a70084ee515098390b70@changeid>
+In-Reply-To:  <20230201084131.v2.1.I69cf3d56c97098287fe3a70084ee515098390b70@changeid>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: OSZPR01MB7019:EE_|OS3PR01MB6228:EE_
+x-ms-office365-filtering-correlation-id: 6cede696-077e-4ff1-20eb-08db04946e07
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:  2fxPykS09IGczXfGedx90JXgzbexbH7IRBf7+M+GYeLal8JuhGVgnFOs4CIlFvGVmhXwWNMIhSlPQsHqsyeX2tflogoDBlDsPLQiQ1gdzM3LfTIsZ8zwdolZKyHNVru9k8HuwroHgCWgpGWmYu5RLrchly+qQZbliGens8BRP9ty8/47LIBS4ghN9WpXVIFWxCWSRjfoRxBped+71OpxeLewm8SyzF0T08w/TLgmZW/TG4uRcJR5KsNZm0Z5F3vUSOH7IfgqumnB7fRcj1z4NYZUEbjua2URGcziFFDVzBR5d9jLzJYPA51fd7KleOxDEwzVJ5skx9d1dteE1FcHlb+3Kolwnklq7F20qE/nYR87SIeaaGrKE/HjXDXsqpS5Sy6ReKMZlrkuVyki2kOEkNkadMf2n9TYUbJ1SensC320AohUPEv3u5zKCvSXcUQ64MJ1Nk78e1gTHLxnu/HBobsJYGBSSdixBZ0LloefmIosAl/mb7/9buhrSc/8FfRuo/LbEtsumkpmi3ZkqqqWBim5nmioDyPi6yyovZ+q4WYQajSYYwV7sQ7hpcNFckUynzlX4HJnWIXGR6IiP+Hym0m25GCoQMuyPIQcw/I3ZEvfvtrQx6tMQEUXVYO1H3WVt651aba/M+TV+oeR30k7vq5l3TWFSzjbgU5HhXshcE6Z9vpAHnK/rwJomqVFW+ex3FmUI+Z/ORazstEmdu3b3ZiNoTpeF29g+hsM1E4pZwY=
+x-forefront-antispam-report:  CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OSZPR01MB7019.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(376002)(39860400002)(346002)(136003)(366004)(396003)(451199018)(186003)(6506007)(478600001)(9686003)(71200400001)(26005)(7696005)(86362001)(38070700005)(110136005)(54906003)(33656002)(83380400001)(55016003)(316002)(76116006)(66446008)(66476007)(8676002)(4326008)(38100700002)(64756008)(66946007)(66556008)(52536014)(122000001)(41300700001)(5660300002)(7416002)(8936002)(2906002)(15583001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:  =?us-ascii?Q?9+ZtP1yvCbquV6r5DZxrfYt6q0FZGZxjXvNLLFZ9UP0QzM/Px11l4FzgSR2h?=
+ =?us-ascii?Q?8u8NXJnrFWLL1f5PSV89NA91zjksnt1dBJZ2EXRPjPVoZsVkbrjL1wI3eWTC?=
+ =?us-ascii?Q?wSjqX2cob/mKF5hPctRxgKOqLftDJPHqJKDPjpaOPzRMBizKzJkPryfqqjFR?=
+ =?us-ascii?Q?X9Qm32aJX7CC5WsmAM90pgeR7PRxXiY2lOUFzaQmMzSMShO93ov6egy9Gwc2?=
+ =?us-ascii?Q?lZWfw7HUj+LRPh6gI5u0cIHceTOYhsbxQ1rI+cXGS2mAT1r+zimKgwLL++jc?=
+ =?us-ascii?Q?lnDsWZ9VO3L6yDywJKMB6pnpnTsWM/IB7cXjBeOkIMNhaDStMdsDSmtp5w80?=
+ =?us-ascii?Q?E+ZDqXOU7A4hAS/wtgNsU7MmhShNGWR1/3VNEqaOHY8lblRDrbyG+JLN0d1C?=
+ =?us-ascii?Q?eq7XKA+1TafNiZFJFg1C5tHSE5j7NleEf0xXbgd9U29xDe6L1GIyy7n473sp?=
+ =?us-ascii?Q?ro7Va37nsVEN7uXcaHTk4EFsZJgY39WIEjeSBJnkzl4mwg7FlilD84Xr+Zez?=
+ =?us-ascii?Q?ZSRs7HV+x8n1zE7u+GvFQlYasVoWWoD5Jc5opul+6fvOe1lvG3hrWyEypxR+?=
+ =?us-ascii?Q?qoptdjk4A1GYgngDdnzIsEW+7FBjFSSOuETBBFCSEBiMlkKPYg1WbglqNmB3?=
+ =?us-ascii?Q?3TMTSqJVeroVaMB8kM23BzCYa8W6YRRug7VumXGGp1+lQNnagI1wW8RECfnt?=
+ =?us-ascii?Q?XK0S/amiJzx8efj9z3QFuF0bj8dp9N/E60ZuDAVGyc4+FlVtWRRCG+hBaB2B?=
+ =?us-ascii?Q?q99FM+/b6JZ5/f01IexeCo7rZmUdVP/+a0qa4dCrmDdogZk20O1QVCkrP7ib?=
+ =?us-ascii?Q?W24Io4/W8MsQZ6ZKdydsuJQLUKQVQc9MVJEjsbKdKip71nqkAvqwOTKGJkr6?=
+ =?us-ascii?Q?ZneeTaISf55zmN/wRoog9HFk50cVXD1Z2Lv2kPcw8Yox9wa/+nQaS8bQOmSm?=
+ =?us-ascii?Q?xJ42b+XykS2f8a1/ILWVgAZr6urbTFDMLZhBvLWO18YMhZwakrgVYOR12qbU?=
+ =?us-ascii?Q?SMDqKl7XhZfLoGS2IrMS5pS+E3NaiVS5fUMZvjVaTeFJjMMGYhrkYESa8b9s?=
+ =?us-ascii?Q?xilPOUUA3dThRZ4bQOn47Nz6iXNlkTFdUEs1HgPf8XB5YbrROWQXuKg46053?=
+ =?us-ascii?Q?9HV2hgYlGBRI6lo+e9d/7gfXdVx9PAgpfHLyrtdWAuOGkqLYlr8x+Xq4dFnm?=
+ =?us-ascii?Q?H0PbgsmfXMT6x2HFR6tV9a1t/r3fcbp5O7PEq+b81adJxccwRTQV0IoFR/o1?=
+ =?us-ascii?Q?o77rkI93xsDBCiMnxwWMpNdy2wL6OkHcnWG3MrqTNamysPcFq0rW7DphlX/P?=
+ =?us-ascii?Q?Yf5vbxXYuoxitP2paT8ICexDEqh0/cAi7yJBRUAeoFWiacK6ga+f0HGm8ukQ?=
+ =?us-ascii?Q?omdQzLPTc4oeuVgDoDmnWSLuVpe9SaD5aF5P2IFkQlGsNPrQ2p9dsCRkq+Wr?=
+ =?us-ascii?Q?9tiPL/NHRoT5d8vFD8WF7pX35zPJ+adphzt4hJ56C4uIKe6nkvxAfSLGxqNa?=
+ =?us-ascii?Q?7CWPsPpuR1C4aS8wfv8wY/2lunU8UzOovuz4M2XcYHaEKsEvIB18CKD6mkKg?=
+ =?us-ascii?Q?p8NARP5jYsqysy/y6SYOFTUbKyhlC+6HOaqiusxb8nAxUUQSyeV8okbzGn8H?=
+ =?us-ascii?Q?ERsg6SRd62S8d3y+zeQh0b4=3D?=
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <622ef51f-643e-5eb5-3884-3f22bf4fa9be@linaro.org>
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OSZPR01MB7019.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6cede696-077e-4ff1-20eb-08db04946e07
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Feb 2023 20:39:35.0532
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: dwv1znjG1lHETeQ08DKSLmxgfL1jvQEPbElMN9QJKZ6S6Cn8+J1IGbhnCrMHvd/3MNqB0dMV4fHn6DUFf+cwvRgouBqLdVR+0pnWxhQ3UcdumnAUZMwaB0c9rI3V9GwZ
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB6228
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230201_092010_312633_5B3C47E5 
-X-CRM114-Status: GOOD (  18.44  )
+X-CRM114-CacheID: sfid-20230201_123943_801775_AB82F372 
+X-CRM114-Status: GOOD (  20.34  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,43 +146,67 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Tue, Jan 31, 2023 at 07:02:16PM +0100, Krzysztof Kozlowski wrote:
-> On 31/01/2023 15:03, Youghandhar Chintala wrote:
-> > Add dt binding to get XO calibration data support for Wi-Fi RF clock.
-> 
-> Use subject prefixes matching the subsystem (which you can get for
-> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-> your patch is touching).
-> Hint: dt-bindings: net: qcom,ath11k:
-> 
-> > 
-> > Signed-off-by: Youghandhar Chintala <quic_youghand@quicinc.com>
-> > ---
-> >  .../devicetree/bindings/net/wireless/qcom,ath11k.yaml         | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-> > index f7cf135aa37f..205ee949daba 100644
-> > --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-> > +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-> > @@ -41,6 +41,10 @@ properties:
-> >          * reg
-> >          * reg-names
-> >  
-> > +  xo-cal-data:
-> > +    description:
-> > +      XO cal offset to be configured in XO trim register
-> 
-> Missing type. I also do not understand what's this and why some register
-> offset should be stored in DT. Please give us some justification why
-> this is suitable for DT.
+Hi Douglas,
 
-I think that's a voltage offset or something, but you are right, we 
-shouldn't have to guess.
+Thank you for the patch.
 
-It needs a vendor prefix, too.
+> As of commit a1a2b7125e10 ("of/platform: Drop static setup of IRQ resource from DT core"), we need to
+> use platform_get_irq() instead of
+> platform_get_resource() to get our IRQs because
+> platform_get_resource() simply won't get them anymore.
+> 
+> This was already fixed in several other Atheros WiFi drivers, apparently in response to Zeal Robot
+> reports. An example of another fix is commit 9503a1fc123d ("ath9k: Use platform_get_irq() to get the
+> interrupt"). ath11k seems to have been missed in this effort, though.
+> 
+> Without this change, WiFi wasn't coming up on my Qualcomm sc7280-based hardware. Specifically,
+> "platform_get_resource(pdev, IORESOURCE_IRQ, i)" was failing even for i=0.
+> 
+> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
+> 
+> Fixes: a1a2b7125e10 ("of/platform: Drop static setup of IRQ resource from DT core")
+> Fixes: 00402f49d26f ("ath11k: Add support for WCN6750 device")
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> Tested-by: Jun Yu <junyuu@chromium.org>
+> ---
+> 
+> Changes in v2:
+> - Update commit message and point to patch that broke us (Jonas)
+> 
+>  drivers/net/wireless/ath/ath11k/ahb.c | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+>
 
-Rob
+Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+
+Unrelated to this patch, I think you need to call dma_unamp_resource() in the error path?
+
+Cheers,
+Prabhakar
+ 
+> diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
+> index d34a4d6325b2..f70a119bb5c8 100644
+> --- a/drivers/net/wireless/ath/ath11k/ahb.c
+> +++ b/drivers/net/wireless/ath/ath11k/ahb.c
+> @@ -859,11 +859,11 @@ static int ath11k_ahb_setup_msi_resources(struct ath11k_base *ab)
+>  	ab->pci.msi.ep_base_data = int_prop + 32;
+> 
+>  	for (i = 0; i < ab->pci.msi.config->total_vectors; i++) {
+> -		res = platform_get_resource(pdev, IORESOURCE_IRQ, i);
+> -		if (!res)
+> -			return -ENODEV;
+> +		ret = platform_get_irq(pdev, i);
+> +		if (ret < 0)
+> +			return ret;
+> 
+> -		ab->pci.msi.irqs[i] = res->start;
+> +		ab->pci.msi.irqs[i] = ret;
+>  	}
+> 
+>  	set_bit(ATH11K_FLAG_MULTI_MSI_VECTORS, &ab->dev_flags);
+> --
+> 2.39.1.456.gfc5497dd1b-goog
+
 
 -- 
 ath11k mailing list
