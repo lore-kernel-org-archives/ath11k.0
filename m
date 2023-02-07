@@ -4,77 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B2D3C61DA4
-	for <ath11k@archiver.kernel.org>; Mon,  6 Feb 2023 04:08:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CEA4C636CD
+	for <ath11k@archiver.kernel.org>; Tue,  7 Feb 2023 06:40:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=GQQfudcHqXQ1ApRwB2MjMnwwlx9qgYdxDtBKcSwXGHQ=; b=anHmtE3eKszsLN
-	uGTiXGqE9k06rWt23/To2fDEpgBafyN19QkmOA8q/wm6L+J/5l1WrExvKQiBAnSq30lU7QT7RHsmg
-	8J2VjY+/P2hl6TY9qWnzerxUIutJpOlOLKkinILJjUL67k/eb34n+2gUOO6kn8nAO58k9zUEVLNsv
-	pYip1TRKFj281+x1oGBjhwAVIn79PuJw7rVqLCO0uv3QPcolMB00wkY1+/6Sh+jaKfr9RhPJwHPkf
-	Bt761VEYeSqJl3Qm4UnLog7EI3Hpd8pxeks5N2BfalFjmmAjkBIrCIFvLMxyYiSDo6krXtt2Ja23A
-	pjrAPOok9tvk6ro2Iucg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=9U16zUNw5E7/qSh9fxs6WNHuUYvVFEp83IkyU0mobec=; b=db6E/0UZjOYWGV
+	5THG9c2ysZUAGN9N1hX4oRwNNcMUIFmdklSJMDj/uGo3URvtlLxUN3dCM9xy279K1nQ615pP/NK4B
+	R2Ooffah1KwFDGgqnGIlQJ0SndXpOlPRfFh/DKTpjnNTpmTykj+KkEt9oc0XEwQP4IlJdSErKlivp
+	ecIJbVNMain0Jmjl1ay7lpv/puRcwEfDKFRitpyk5zj1vKetNIVLhr+qGYptw0AwzKuyRbBlXxPjg
+	BWd3GoKWL9qV6iWVLaRdC+mTCdHrvwUuVLusOu2nRZ+963LkR0HOAVI8QItpSTG0tInbi1cdgtWak
+	JIXluMiGQFdkvEBwBHWw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pOsni-007In8-Ih; Mon, 06 Feb 2023 04:08:18 +0000
+	id 1pPHea-00B14o-Ba; Tue, 07 Feb 2023 06:40:32 +0000
 Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pOsnd-007Il9-Lx
-	for ath11k@lists.infradead.org; Mon, 06 Feb 2023 04:08:16 +0000
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31640AGt016873;
-	Mon, 6 Feb 2023 04:07:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-transfer-encoding :
- content-type; s=qcppdkim1;
- bh=10nzPa5P/bRTYJAi6IEL0gzHqQXdbzkmNu7cu58WREk=;
- b=ZLHTPy3fCBHPmQvmJy5Si8GPTyGMcuLpit40aTJDjqCAqnI/sQL85JxoEZ/PZ443pbVc
- XudvzLi4gnaPCvkoKxgW+Ii3OVXfRPGrMIDz15ElsP4X6nofIcO+gTh97lJgZ3EL4YBQ
- KLuQQMLm8pPa1ncbifrEtX/den8iJIAEMnBVydroD/DgQXlwCXZxrQEOXm+fgY7bQnj/
- ZCdocCj0uct9chTn0Xb2Itc9gfjO2W8e5Ytm9ycN2QgZ62hnGOK6TRoG09KI8F7MhpPr
- DdHw9OscxpgCPDTBaXmzkyV4X/H1ubAH3V4ir3a2WeudNn76AMZfEclXdENyeoOHd25Y aA== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nhfretq9y-1
+	id 1pPHeY-00B12I-4N
+	for ath11k@lists.infradead.org; Tue, 07 Feb 2023 06:40:31 +0000
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3176COwI022435;
+	Tue, 7 Feb 2023 06:40:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=GZq7550o3hV/zZ6fBo1m7XvSv7PhPhTDoWFMEIh09Dw=;
+ b=daf5GUTt9qUJ4Yh+SG20S5p9Lemk37fwuE8OTNwxHWSHIDp8CHnDoS4zOLQZIOC0/zIM
+ oogaJhPA7YZQRXvZyXdMdaxzIznRf9K7oTAcCS8rDjdh04y2IfeKQFshGbhLNvi8OU3R
+ ZY7KoVa83NbbDeiG4x2zLYwPK460Hi5CKrJmh/YEn5CvRXjPDv2bjG0JHeVr9gc201ku
+ qXRayV2Nqwjh7HIhnZlWGLbsUrl1bEKS15OAuFUefa/ZRvgct0lW7Vvlwb7yNgYzWPah
+ LA0pXScMZBSwjn5R+nKmPd0Xcc+fy7R2iVPf5dwNhI0pIe4PO5THNNJy430it0yJprot EQ== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nkfes89m7-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 06 Feb 2023 04:07:55 +0000
+	Tue, 07 Feb 2023 06:40:22 +0000
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31647snW027611
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3176eLBf015285
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 6 Feb 2023 04:07:54 GMT
-Received: from wgong-HP3-Z230-SFF-Workstation.qca.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.36; Sun, 5 Feb 2023 20:07:53 -0800
-From: Wen Gong <quic_wgong@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, <quic_wgong@quicinc.com>
-Subject: [PATCH v4] wifi: ath11k: change to set 11d state instead of start 11d scan while disconnect
-Date: Sun, 5 Feb 2023 23:07:39 -0500
-Message-ID: <20230206040739.1290-1-quic_wgong@quicinc.com>
-X-Mailer: git-send-email 2.31.1
+	Tue, 7 Feb 2023 06:40:21 GMT
+Received: from [10.50.24.106] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Mon, 6 Feb 2023
+ 22:40:16 -0800
+Message-ID: <7fe7eedc-97ee-e5fc-a458-193e556d3174@quicinc.com>
+Date: Tue, 7 Feb 2023 12:10:04 +0530
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v2 1/2] dt: bindings: add dt entry for XO calibration
+ support
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <kvalo@kernel.org>,
+        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230131140345.6193-1-quic_youghand@quicinc.com>
+ <20230131140345.6193-2-quic_youghand@quicinc.com>
+ <622ef51f-643e-5eb5-3884-3f22bf4fa9be@linaro.org>
+Content-Language: en-US
+From: "Youghandhar Chintala (Temp)" <quic_youghand@quicinc.com>
+In-Reply-To: <622ef51f-643e-5eb5-3884-3f22bf4fa9be@linaro.org>
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: hBmHc1wGohmJi2GJUmm80fxJHAu4n8uB
-X-Proofpoint-GUID: hBmHc1wGohmJi2GJUmm80fxJHAu4n8uB
+X-Proofpoint-GUID: U8gb2KESa60EQ4sSWCohkjVTNrBq8vWy
+X-Proofpoint-ORIG-GUID: U8gb2KESa60EQ4sSWCohkjVTNrBq8vWy
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-02-06_02,2023-02-03_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
- lowpriorityscore=0 spamscore=0 clxscore=1015 impostorscore=0 mlxscore=0
- malwarescore=0 priorityscore=1501 adultscore=0 mlxlogscore=999
- phishscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2212070000 definitions=main-2302060036
+ definitions=2023-02-06_07,2023-02-06_03,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ adultscore=0 suspectscore=0 mlxlogscore=999 impostorscore=0 mlxscore=0
+ malwarescore=0 spamscore=0 lowpriorityscore=0 clxscore=1011 phishscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2302070060
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230205_200813_888104_20D2E800 
-X-CRM114-Status: GOOD (  17.43  )
+X-CRM114-CacheID: sfid-20230206_224030_343704_58E6232D 
+X-CRM114-Status: GOOD (  17.35  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,69 +98,51 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-When switch to connect to a new AP for station which is already connected
-to an AP, the time cost is too long, it arrives 10 seconds.
 
-The reason is when switch connection, disconnect operation happened on
-the 1st AP, then 11d scan start command sent to firmware, and then a
-new hw scan arrived for the 2nd AP. The 11d scan is running at this
-moment, so the hw scan can not start immediately, it needs to wait
-the 11d scan finished, it increased the time cost of switch AP and
-even happened scan fail as log below after apply the incoming patch.
+On 1/31/2023 11:32 PM, Krzysztof Kozlowski wrote:
+> On 31/01/2023 15:03, Youghandhar Chintala wrote:
+>> Add dt binding to get XO calibration data support for Wi-Fi RF clock.
+> Use subject prefixes matching the subsystem (which you can get for
+> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+> your patch is touching).
+> Hint: dt-bindings: net: qcom,ath11k:
+>
+>> Signed-off-by: Youghandhar Chintala <quic_youghand@quicinc.com>
+>> ---
+>>   .../devicetree/bindings/net/wireless/qcom,ath11k.yaml         | 4 ++++
+>>   1 file changed, 4 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+>> index f7cf135aa37f..205ee949daba 100644
+>> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+>> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+>> @@ -41,6 +41,10 @@ properties:
+>>           * reg
+>>           * reg-names
+>>   
+>> +  xo-cal-data:
+>> +    description:
+>> +      XO cal offset to be configured in XO trim register
+> Missing type. I also do not understand what's this and why some register
+> offset should be stored in DT. Please give us some justification why
+> this is suitable for DT.
+>
+> Best regards,
+> Krzysztof
+>
+Hi Krzysztof,
 
-[ 1194.815104] ath11k_pci 0000:06:00.0: failed to start hw scan: -110
-[ 1196.864157] ath11k_pci 0000:06:00.0: failed to start hw scan: -110
-[ 1198.911926] ath11k_pci 0000:06:00.0: failed to start hw scan: -110
+I will address you comments in next version of patch.
 
-Change to set 11d state while disconnect, and the 11d scan will be
-started after the new hw scan in ath11k_mac_op_hw_scan(). Then the
-time cost of switching AP is small and not happened scan fail.
+Regards,
 
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3
+Youghandhar
 
-Fixes: 9dcf6808b253 ("ath11k: add 11d scan offload support")
-Signed-off-by: Wen Gong <quic_wgong@quicinc.com>
----
-v4: remove patch "[PATCH v3 2/2] wifi: ath11k: reduce the timeout value back for hw scan from 10 seconds to 1 second"
-
-v3:
-change code and log of "wifi: ath11k: reduce the timeout value back for hw scan from 10 seconds to 1 second"
-to handle the "failed to start hw scan: -110" correctly.
-
-v2:
-add "wifi: ath11k: change to set 11d state instead of start 11d scan while disconnect"
-
- drivers/net/wireless/ath/ath11k/mac.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index 4218211afa30..b0c3cf258d12 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -7190,8 +7190,12 @@ ath11k_mac_op_unassign_vif_chanctx(struct ieee80211_hw *hw,
- 				    ret);
- 	}
- 
--	if (arvif->vdev_type == WMI_VDEV_TYPE_STA)
--		ath11k_mac_11d_scan_start(ar, arvif->vdev_id);
-+	if (arvif->vdev_type == WMI_VDEV_TYPE_STA &&
-+	    ar->state_11d != ATH11K_11D_PREPARING &&
-+	    test_bit(WMI_TLV_SERVICE_11D_OFFLOAD, ab->wmi_ab.svc_map)) {
-+		reinit_completion(&ar->completed_11d_scan);
-+		ar->state_11d = ATH11K_11D_PREPARING;
-+	}
- 
- 	mutex_unlock(&ar->conf_mutex);
- }
-
-base-commit: c6d18be90f9b0c7fb64c6138b51c49151140fb57
--- 
-2.31.1
 
 
 -- 
