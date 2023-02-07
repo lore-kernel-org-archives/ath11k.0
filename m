@@ -4,84 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D290C636CC
-	for <ath11k@archiver.kernel.org>; Tue,  7 Feb 2023 10:38:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78AA3C636CC
+	for <ath11k@archiver.kernel.org>; Tue,  7 Feb 2023 11:39:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8bSgNIEEtjYYybbX3wMp3daLVh5SwQwHeEx2YWwm1mc=; b=c7jsYT0zg50Nub
-	UP4IuQWOwYV+ZcM922ju82xHSr1MTlMOnt+seUia2mpJj+rrSqE0FuMYCsUQYbJU6gsOsSxOuzEkn
-	zlWvBQnyfSlFhgyKbt+gWJ1n4pjUhYyWMpOqLv3MykumpyJ9FX1nPYQX2tfFNP2viWrHT8kfQXtc3
-	SPIJIGmZRS2MdydqqTF/P3xxLUg7yJd78ttolrigh2yOiKvyYulEF1Ls2tX500w1J1AXNMDscVLJR
-	TrqV/pzFjQkqq4wpJEKBfh6TV3blWVcYJ+GBu7ty855KAsn463jNGvhsK2C8tXB7BnQi4WjCa4EJq
-	lUf17melDGhjfZ3/9iPQ==;
+	List-Owner; bh=lnoFDfj88OqTbD9NYvluoKDvl5KiX9A5loP8t2TRxvE=; b=j5CAd+ebu+kfvg
+	urGBteGszuaVtIwJOgvJE1B4YA2hkpK8L7y1vRIVQ1a6H29jcJj9wd3Y50YBXTqjruKb3RQ5ZMGlc
+	JftGQRUAy7d93Z61KLrS+zINOkOEs88ozM1/WrJKItNtzBVM+ENkqOb7n2tsXH13bvQNeyZQrjkXo
+	tOio4Dv5PWRikfy87u2AhP9Oiv1SUcSbueHRJwJTc/9d3D03i4ritnpSR7etxAl24BO88vW+E3Vcp
+	kEzt4mWo8zpnZL/e+b8knsPjvTY9f9E5rC4HZknp0xMCo9mmgP4YGcmACgQ6zOMYasgOUjeuljy05
+	dOzwBmWc9jYhZP6OoHPA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pPLNH-00BktQ-Gi; Tue, 07 Feb 2023 10:38:55 +0000
-Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	id 1pPMKE-00C0Hx-Gi; Tue, 07 Feb 2023 11:39:50 +0000
+Received: from mail-pf1-x429.google.com ([2607:f8b0:4864:20::429])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pPLNF-00BksE-8F
-	for ath11k@lists.infradead.org; Tue, 07 Feb 2023 10:38:54 +0000
-Received: by mail-wm1-x32b.google.com with SMTP id bg26so10722025wmb.0
-        for <ath11k@lists.infradead.org>; Tue, 07 Feb 2023 02:38:53 -0800 (PST)
+	id 1pPMK9-00C0Fg-Kx
+	for ath11k@lists.infradead.org; Tue, 07 Feb 2023 11:39:49 +0000
+Received: by mail-pf1-x429.google.com with SMTP id ay1so10544619pfb.7
+        for <ath11k@lists.infradead.org>; Tue, 07 Feb 2023 03:39:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4lFvnNUEfmFOZfC45OwvN3PFMk0fFsXufSpzORMwHDk=;
-        b=EDxzu3TsCDNriK0w84Lk1nw+1AacJKCVYQf/T5G5+W4VcReJW6LHMqspzdCN8XFBhM
-         Esm0DmEjb8XJGxHv9CiXEKYvhiY0GsW08xyGl7izi1HmeWxF4RJVJUdYRYjTx0Z4F0AV
-         h4uocSKdFbqP0fuJbflEBWAliE7VPwf8R55x/qvS906+9Ij3d+8SEEhQR9GCUXDNHVJy
-         El8L4lc0pOUNfjRVszr5zgLgGNxivA5YV6uYsdLF+ywgMgNlvtU+uY3zq1ultazVANqH
-         Yl/OSk7aOqNvolpM01EiDUEi2X52i3aFPBigRXtIpdBvYHqA5j6O20SsDytYHZ9sg6G+
-         7B+A==
+        d=sartura.hr; s=sartura;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=awGdc6vvdnASa9k5c6MAYpBjpVnLRNqpBJbVcDH3NdI=;
+        b=WkMT3n0DUzKUATPfbGnq8x00pCbFFpaYL+KFq7R+NnCEpVg/RnC62UgGXebohRt4bK
+         iLNDtFZyXpbNYT3/fD4SQkM1gkI8DLNDG9Lw6xUtC4wLncU25IKqcWPqbuhWxn/E8Ktr
+         umjvinS0IebV0fpH75vB4MPUGDNIDS/QJBZ8PIIONbeJNUjuWwOQfSm6PAzmkdSdmtNa
+         VWc2KwppUr+U/PJWdsnE7nTmzElGN6NXDRi0bBF8Rw98Q9o2QpjusXL6g4iD+++EBlFd
+         nuovogDhmS4UnfBc6gBXdNyxB9wJmLH9oKR8PrqrnwRBUg3XoccDEbUajMsfN2Y9ofv5
+         D0kg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4lFvnNUEfmFOZfC45OwvN3PFMk0fFsXufSpzORMwHDk=;
-        b=G8JAPmyWGT9byHXOE9I67xa22iBYRuTyWVGimOWAHLRCl1jO8mjy6kiYcyihRT/u6Q
-         K7r6W/A74cBromHfb9Dsjg02bQP6s8/dHj2SVdYfpPWB+34hZeJ95Ew9IPZq17Fr14BN
-         WjwqRCEuu2LhmR75+NJ9IbC+tyl1dgxqWf9tygKc/DP7qD4g2KOSeWlDoMPN/N3n0Iik
-         f+EthoU+VbpQmGOah6uQ5z724bjpSbhM/eH/GyI5cccbY6jAlYgBpMB3btGCYhLeXf1w
-         QZxjsBhua4WU5huoLBFhEggbaFXCMG4Ld9+VuhCW3pKlsYKuCArDo9uyfVd03G49mKNU
-         7nLA==
-X-Gm-Message-State: AO0yUKU0x3VKlUMKk8xs48Qa8R7dlSDfj2eceZnR3cX+CazVgS2fMd0G
-	4DY00SwWf/211nG2tSw4vESZyA==
-X-Google-Smtp-Source: AK7set9EA70AZrV3ayvDW+3CXaJxEpJLLXtDp/TCoH8Algcq36FWfYcEPeGEadcXYAC4a1d9kulBKg==
-X-Received: by 2002:a05:600c:4919:b0:3df:a04a:1a7 with SMTP id f25-20020a05600c491900b003dfa04a01a7mr2731579wmp.22.1675766332065;
-        Tue, 07 Feb 2023 02:38:52 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id t6-20020a05600c450600b003dc433bb5e1sm14444330wmo.9.2023.02.07.02.38.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Feb 2023 02:38:51 -0800 (PST)
-Message-ID: <4fb45056-3004-b68d-06b7-b4109e813c51@linaro.org>
-Date: Tue, 7 Feb 2023 11:38:50 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=awGdc6vvdnASa9k5c6MAYpBjpVnLRNqpBJbVcDH3NdI=;
+        b=5IuSTxNCh1G1Rg2xfqbWYMdgzFoG2cVCU1mw1OyQQ9u9j6k1tLNKZ1OKzZSCbpWYFy
+         zt7lvdfedFuJdOUn+uhXe43F5Yvz5vl4axDtCrfdeuZfNhXJiwTsm23qFubujbRaQQSD
+         mdo0k5myf6MoYSmOkXvpH7fUvaCD146+MmjwzkBUxM0zY+Q1Z83Y8N5MLU5RCskbbLao
+         4gqrKV+bnk8upxPwNuHTovkOS3rF0740fXl3WfOnrYaXLhkxGZhwQg1PcyE/vSP0SHlU
+         PRgOXAT8jFKpdrAGSVTpACu0qS1Q10yVA86KC+aOgE6mn12z+8BDbOdUpIrXr/J1w6LK
+         RiSg==
+X-Gm-Message-State: AO0yUKXDHXF3rj4FW6N2i0+Lgg+NdPrzv6prh5y/wIx4k0pYScDFLLNJ
+	a0cLBKQZmDk/cJDQrfklG4ImbAYamjrsfjZA96ywlw==
+X-Google-Smtp-Source: AK7set86Fg5GskT1uJxQuQ3+VRf1r3gnYlqEdILFoIa4evll1X9oCmtHX8x+0rhvgrGEc/mN5YHWM3AfWKkjzQIF4L0=
+X-Received: by 2002:a63:9550:0:b0:4db:99fb:e855 with SMTP id
+ t16-20020a639550000000b004db99fbe855mr473871pgn.42.1675769982746; Tue, 07 Feb
+ 2023 03:39:42 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v3 1/2] dt: bindings: net: ath11k: add dt entry for XO
- calibration support
-Content-Language: en-US
-To: Youghandhar Chintala <quic_youghand@quicinc.com>, kvalo@kernel.org,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20230207103607.12213-1-quic_youghand@quicinc.com>
- <20230207103607.12213-2-quic_youghand@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230207103607.12213-2-quic_youghand@quicinc.com>
+References: <CAOX2RU5ATBuuPewx4DgveKjhc+E1a=Kt2COWDhYqQtLiJ1=NoQ@mail.gmail.com>
+ <87o7rvzgpn.fsf@kernel.org> <CAOX2RU6oieaGjpPpYwnMtBk=-nG13=JGW+-+838REQ4HsPcRNg@mail.gmail.com>
+In-Reply-To: <CAOX2RU6oieaGjpPpYwnMtBk=-nG13=JGW+-+838REQ4HsPcRNg@mail.gmail.com>
+From: Robert Marko <robert.marko@sartura.hr>
+Date: Tue, 7 Feb 2023 12:39:31 +0100
+Message-ID: <CA+HBbNGCKvP=qTRm32Pkq+CHX5k8BB0qjahX_ppmegNyu_k1Jg@mail.gmail.com>
+Subject: Re: regdb.bin availability
+To: Robert Marko <robimarko@gmail.com>
+Cc: Kalle Valo <kvalo@kernel.org>, ath11k@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230207_023853_330049_EB1818D8 
-X-CRM114-Status: UNSURE (   9.95  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230207_033945_719566_8DED7C55 
+X-CRM114-Status: GOOD (  17.74  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,22 +85,59 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 07/02/2023 11:36, Youghandhar Chintala wrote:
-> Add dt binding to get XO calibration data support for Wi-Fi RF clock.
-> 
-> Retrieve the XO trim offset via system firmware (e.g., device tree),
-> especially in the case where the device doesn't have a useful EEPROM
-> on which to store the calibrated XO offset.
-> Calibrated XO offset is sent to firmware, which compensate the RF clock
-> drift by programing the XO trim register.
-> 
+On Thu, Dec 22, 2022 at 5:26 PM Robert Marko <robimarko@gmail.com> wrote:
+>
+> On Thu, 22 Dec 2022 at 14:54, Kalle Valo <kvalo@kernel.org> wrote:
+> >
+> > Robert Marko <robimarko@gmail.com> writes:
+> >
+> > > Would it be possible to make the regdb.bin publicly available?
+> > >
+> > > Newer FW-s support using it as the external regulatory database and it
+> > > would really allow the community running AHB radios to avoid being
+> > > stuck with the outdated or even non-existent regulatory data in the
+> > > BDF.
+> >
+> > I thought we were providing that for all hardware, I guess that was
+> > missed. Would you mind reporting this to bugzilla? That way it's easier
+> > for me to track.
+>
+> Currently, its available only for WCN6855.
+>
+> Sure, bug opened:
+> https://bugzilla.kernel.org/show_bug.cgi?id=216832
 
-And this is second v3 and still not fixed. The same as previous v3 and
-previous v2 (???).
+Kalle, can you please look into this?
+It's currently completely blocking the community from using 2.7 FW on IPQ8074.
 
-Best regards,
-Krzysztof
+Regards,
+Robert
+>
+> Regards,
+> Robert
+> >
+> > https://wireless.wiki.kernel.org/en/users/drivers/ath11k/bugreport
+> >
+> > --
+> > https://patchwork.kernel.org/project/linux-wireless/list/
+> >
+> > https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+>
+> --
+> ath11k mailing list
+> ath11k@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/ath11k
 
+
+
+-- 
+Robert Marko
+Staff Embedded Linux Engineer
+Sartura Ltd.
+Lendavska ulica 16a
+10000 Zagreb, Croatia
+Email: robert.marko@sartura.hr
+Web: www.sartura.hr
 
 -- 
 ath11k mailing list
