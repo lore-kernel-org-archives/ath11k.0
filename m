@@ -4,83 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C16CCC636CC
-	for <ath11k@archiver.kernel.org>; Tue,  7 Feb 2023 10:36:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19B56C636D6
+	for <ath11k@archiver.kernel.org>; Tue,  7 Feb 2023 10:36:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jsZeGft8LyWD28DsXL8SA3o46EIpZ2i4ZIsdpquiQhA=; b=XhJJrki6oO05/N
-	V5TPDsxepicPv+J48NX3KgemgbxEAc5ehRRaXMv85rSEP+CqK+jxoNnYHcmptOpUAHeCPqT+vIRND
-	GXNeOANOlRZTAzH27uizCSXkaSlOhWA4vPBOTOm5RAVJuXuuta9tsUeQlldz/xsDv+xTdGocs+7vh
-	CrKsfMWXcV6mW3B3MdByvac00v6ajgtjMgbynw9C6QMVX0C309mHgG+VVmoHyyyonZEvaGbJRuIcH
-	PTrPNiqIB2Vgw0BZPgeZ/UhP31ng5q4X81REPSJ8UddJRH3ohMElVf6l/MX1011rYDRzR3dyOl0cd
-	NvOvvzVaL4e4xZix0CMQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=OMXwCFHZXKV5r9hsk791iwdUaG1ZDdRlOY3L4Oqu1fQ=; b=Qxkt9+IIhi5oHc
+	RDfM0AktZ2K1dCFag94vLUTBaQuW0mi+kVaIFa5tyo0SVH9PBv+ZK9G4yE5Z8/Q9yvP1LhFkdrxXb
+	fEXIDSI96x5b8zI459qAXHOGw7lM+bXKPfmix1sSeqA27jh9Ix6uRLw+OcpjkJTMwIJC5IU7Ygahg
+	OnrQU6O9NvnB0FbjsblTZmjmgflDDbRd5dySIgk5MHAmx3lNeFoob9LjQlcW50yyMMvT2oiLT4Pkj
+	3zn/XgAiNKEhjc/8b92QOqLiFTvP16CzbRIkCI+gi6im31SZwjD89eaA4Evid0SBMe1Y/kIj1oQbJ
+	pGRoptFk3miuszMIBY2A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pPLL4-00Bk17-1y; Tue, 07 Feb 2023 10:36:38 +0000
-Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
+	id 1pPLLM-00Bk63-Gk; Tue, 07 Feb 2023 10:36:56 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pPLL1-00Bjzx-TE
-	for ath11k@lists.infradead.org; Tue, 07 Feb 2023 10:36:37 +0000
-Received: by mail-wm1-x329.google.com with SMTP id l21-20020a05600c1d1500b003dfe462b7e4so836837wms.0
-        for <ath11k@lists.infradead.org>; Tue, 07 Feb 2023 02:36:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6akUIoItLi3FPLFbzJ7SrzjHSbuoH+2n41Ug/RmLJwc=;
-        b=dRcfv9CHkDxW/ZUOibWuY6fjH5+3zcpZ2Sx+P63o+6bUh6UFzD2QexUPBR2Nak9U8C
-         YDq7V41MvojNOMA3BpXiMb9cV0gqX9oTi9uElt/85ajXg+xShHs4aaSlGbPw4+mnFYeS
-         43v9xxZ868hbEK0E8vxdK1GgltJPpBthIgBg032n9N6P5zj4gH0Kxz6xL8JfXLZ4BsaX
-         OSITbJR82H18wIS5pEc7QG1JQR26r3HLURTxe0KKShSre1H7BnEn1TK5A3sl5FzMRYnL
-         HvUtSHb25hixtvU/gIAcxTEpQJ8KlqKK2UVvRXR8Yc4pIQB/nJmLPjXQ+vJq1Yai9i0e
-         7tfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6akUIoItLi3FPLFbzJ7SrzjHSbuoH+2n41Ug/RmLJwc=;
-        b=CQS/ADN6CXKg9x0OZjAjaDeQjKQEQN1H7iqXHDXT4i28tg1XlciEIE4en99q0HUN76
-         /ZLewDS/QD+subQLJlnh33S9uCY4nSQ2eR3+BAgb4ZUyG2fYgk1PCvx5ESNV+8jrfpVA
-         DQ2bzRXmk9Q9jjrnm/jEZ0VDUMXLZeXk2XaQ9ovtxsl40WaeuGwnmyOVoovSKRTl9hBr
-         d4kkosJYSicKF26pTQc6FZQR4MVwELdiAvGnzLg3Xe181ZaG1TPFAOM5O+M7JlsRjR83
-         /IhnLOijzndKAdJkFzAjl3mGHvRT5OAuxB9LvkgO6jzJqUhrQTtF1nao16Ee4m5tZDIa
-         +msw==
-X-Gm-Message-State: AO0yUKXAy2VViK4pI1CEUbL30XkD+sH62g+u28u2tlBf+fq9di559OU4
-	CUerZLZzwVX3mWIZ9OM/syBfCw==
-X-Google-Smtp-Source: AK7set9dhWTRjD2sCEQ1PXiRWCf6P/rNr3G4SvS5+IcLaf3dVJAC7IrrK5MTz5yTEI2K3JWwmtIJ2A==
-X-Received: by 2002:a05:600c:44c4:b0:3e0:14a:697a with SMTP id f4-20020a05600c44c400b003e0014a697amr2728064wmo.6.1675766193599;
-        Tue, 07 Feb 2023 02:36:33 -0800 (PST)
-Received: from [192.168.1.109] ([178.197.216.144])
-        by smtp.gmail.com with ESMTPSA id w14-20020a05600c474e00b003dfe57f6f61sm13680712wmo.33.2023.02.07.02.36.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Feb 2023 02:36:33 -0800 (PST)
-Message-ID: <e56a9985-001e-fb42-f916-94f2bb5d6d13@linaro.org>
-Date: Tue, 7 Feb 2023 11:36:31 +0100
+	id 1pPLLF-00Bk4A-4q
+	for ath11k@lists.infradead.org; Tue, 07 Feb 2023 10:36:50 +0000
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 317ARnIE009568;
+	Tue, 7 Feb 2023 10:36:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=XYWGTMx8nkY55fjz80XdD7trT0iRpLykxSOelem5Nkw=;
+ b=E/ow4Q+RLHhQWJqQxOigljLOgSZ4QffWnUxs4FQiFaK8oGJo68A3CY317g9wc5AL72YI
+ +tt8bTyTLaGTdhI7nhNvCGo795wsIy8tPKf6pkVfSBr5JpLQDM+t8uVCuMAZMVsxHQGD
+ 2C6GCENQUygPoWGuj7oZFGNZKAdES2Krgp2KUO/BLX/qzrUV9VMm/iR4vMAuk8OmcRFp
+ nytTD9LpNHJNV3riVHeShVDUB/S635yqFir4hs+v4nVHFSYrJPSA31ipVdSbl77Bukbx
+ U3P4kZK8//+gZlAR/elp8LvHXzubd5yOEMkWBsovbazErGL6UIiUzz5iCAW9k6TlZNlW Aw== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nkmwqg0hj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 07 Feb 2023 10:36:44 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 317Aaia3012321
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 7 Feb 2023 10:36:44 GMT
+Received: from youghand-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Tue, 7 Feb 2023 02:36:39 -0800
+From: Youghandhar Chintala <quic_youghand@quicinc.com>
+To: <kvalo@kernel.org>, <davem@davemloft.net>, <edumazet@google.com>,
+        <kuba@kernel.org>, <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Youghandhar Chintala
+	<quic_youghand@quicinc.com>
+Subject: [PATCH v3 0/2] dt: bindings: net: ath11k: add dt entry for XO calibration support
+Date: Tue, 7 Feb 2023 16:06:05 +0530
+Message-ID: <20230207103607.12213-1-quic_youghand@quicinc.com>
+X-Mailer: git-send-email 2.38.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH v3 1/2] dt: bindings: net: ath11k: add dt entry for XO
- calibration support
-To: Youghandhar Chintala <quic_youghand@quicinc.com>, kvalo@kernel.org,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20230207103207.759-1-quic_youghand@quicinc.com>
- <20230207103207.759-3-quic_youghand@quicinc.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230207103207.759-3-quic_youghand@quicinc.com>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: tzH8HSU3lxFs2OnRu3Ma8DxIwWdNdJDq
+X-Proofpoint-GUID: tzH8HSU3lxFs2OnRu3Ma8DxIwWdNdJDq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
+ definitions=2023-02-07_02,2023-02-06_03,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ priorityscore=1501 bulkscore=0 mlxscore=0 spamscore=0 adultscore=0
+ mlxlogscore=999 impostorscore=0 malwarescore=0 phishscore=0 suspectscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2302070095
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230207_023636_021590_DCD37A52 
-X-CRM114-Status: GOOD (  17.37  )
+X-CRM114-CacheID: sfid-20230207_023649_200917_E0F05595 
+X-CRM114-Status: GOOD (  14.26  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,65 +97,33 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 07/02/2023 11:32, Youghandhar Chintala wrote:
-> Add dt binding to get XO calibration data support for Wi-Fi RF clock.
+Add dt binding to get XO calibration data support for Wi-Fi RF clock.
 
-This is a friendly reminder during the review process.
+Retrieve the XO trim offset via system firmware (e.g., device tree),
+especially in the case where the device doesn't have a useful EEPROM
+on which to store the calibrated XO offset.
+Calibrated XO offset is sent to firmware, which compensate the RF clock
+drift by programing the XO trim register.
 
-It seems my previous comments were not fully addressed. Maybe my
-feedback got lost between the quotes, maybe you just forgot to apply it.
-Please go back to the previous discussion and either implement all
-requested changes or keep discussing them.
+Changes from v2:
+ - Added proper commit text
 
-Several comments were ignored.
+Changes from v1:
+ - Sending the series to right list
 
-Use subject prefixes matching the subsystem (which you can get for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching).
+Youghandhar Chintala (2):
+  dt: bindings: net: ath11k: add dt entry for XO calibration support
+  wifi: ath11k: PMIC XO cal data support
 
-Subject: drop second/last, redundant "dt entry for". The "dt-bindings"
-prefix is already stating that these are bindings.
+ .../bindings/net/wireless/qcom,ath11k.yaml    |  4 ++++
+ drivers/net/wireless/ath/ath11k/ahb.c         |  8 +++++++
+ drivers/net/wireless/ath/ath11k/core.h        |  3 +++
+ drivers/net/wireless/ath/ath11k/qmi.c         | 24 +++++++++++++++++++
+ drivers/net/wireless/ath/ath11k/qmi.h         |  4 +++-
+ 5 files changed, 42 insertions(+), 1 deletion(-)
 
-dt-bindings: net: qcom,ath11k: add XO frequency offset
-
-> 
-> Retrieve the XO trim offset via system firmware (e.g., device tree),
-> especially in the case where the device doesn't have a useful EEPROM
-> on which to store the calibrated XO offset.
-> Calibrated XO offset is sent to firmware, which compensate the RF clock
-> drift by programing the XO trim register.
-> 
-> Signed-off-by: Youghandhar Chintala <quic_youghand@quicinc.com>
-> ---
->  .../devicetree/bindings/net/wireless/qcom,ath11k.yaml         | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-> index f7cf135aa37f..4745251e70d4 100644
-> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
-> @@ -41,6 +41,10 @@ properties:
->          * reg
->          * reg-names
->  
-> +  xo-cal-data:
-> +    description:
-> +      XO frequency offset to program the XO trim register
-
-This is a friendly reminder during the review process.
-
-It seems my previous comments were not fully addressed. Maybe my
-feedback got lost between the quotes, maybe you just forgot to apply it.
-Please go back to the previous discussion and either implement all
-requested changes or keep discussing them.
-
-Thank you.
-
-(missing type/ref, vendor prefix).
-
-
-Best regards,
-Krzysztof
+-- 
+2.38.0
 
 
 -- 
