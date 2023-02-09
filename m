@@ -4,67 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 678BBC636CD
-	for <ath11k@archiver.kernel.org>; Tue,  7 Feb 2023 13:47:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07D8AC05027
+	for <ath11k@archiver.kernel.org>; Thu,  9 Feb 2023 09:35:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	MIME-Version:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-	References:List-Owner; bh=rFzeMoMDrMu8JyjNVc3IaqnFGBPQ5eLkIQF4uKVNMs0=; b=oTc
-	szG6aeufTr1bSXRN+sa1OQa4G8BQ8PI2SlgBWQMOwcGZl52djpGo92m1YuG2AmXUrzWaFHO2wT1bP
-	Rzqp9viGCBVXayX/yjJcgyT4tQFnQ+6rFhT1kZ+AbKbLJCX9DfTunjCfizypeQdK0XCwO5HjZrC9p
-	DcOE3raQXfm4Ahc3B3xo+0Nvr5LmqWK0tpvYEnjHOUeU9oKbBMHNxecLNCrlnrOGefNfR917NbYH+
-	1d9ntxX28vSKFyIrtdo3UARPviVV4EpsAn4C16N5ALE+LirQBqgwAxSKr85hzP6+BZHkX7rb4/Ewc
-	CNkEo9sMMB7hMhYTX9C5m5I1/3yUnsw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=Ti6obCGmnv/+Jplp/uY1pJXBDLRU+MCEEBavZ7lf2FM=; b=gJ4bWkliBd32dO
+	UGXnl1suaoUUAsrkSe7MIdAdPeWEKrPY+O3R2EMla4J07z8v3DsxFIuZFoRd8CVzKQ2F04VilWxOT
+	UTY48bHzh+7dOoOresaXxhU4wF9OkDBEFMHauITVP5RWWZ23ZeZu/m3A9Na13pXxEZtmm8ZEI9QJw
+	nItuNeBYgPaQIaADy1FpQAkpiEg6xhmOJfQPEQEySBx87hGuPGR40MVHhEj0xR55iiHuLOm7MqqKo
+	QKt5EES554PjdkStlfNlRoMqHsf3+DEBRoy61uKqx0TjLSuBOegUGNDwN3eyfSUlxsOKC4EF06J5D
+	ED86fJuW7szwLr8OtkjQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pPOKC-00CLwZ-BK; Tue, 07 Feb 2023 13:47:56 +0000
-Received: from mail-yw1-x112b.google.com ([2607:f8b0:4864:20::112b])
+	id 1pQ3L7-000rlf-Qp; Thu, 09 Feb 2023 09:35:37 +0000
+Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pPOK9-00CLvu-5E
-	for ath11k@lists.infradead.org; Tue, 07 Feb 2023 13:47:54 +0000
-Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-52770ee8cf0so119879397b3.2
-        for <ath11k@lists.infradead.org>; Tue, 07 Feb 2023 05:47:52 -0800 (PST)
+	id 1pQ3L5-000rjP-5R
+	for ath11k@lists.infradead.org; Thu, 09 Feb 2023 09:35:37 +0000
+Received: by mail-wm1-x32d.google.com with SMTP id k8-20020a05600c1c8800b003dc57ea0dfeso3439027wms.0
+        for <ath11k@lists.infradead.org>; Thu, 09 Feb 2023 01:35:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=h3feSrdNX7UsAr/gHLzI9hOOhzUVdb88aNZ2wt4j9Nk=;
-        b=WCdkBV5pcH62VnUYarTyTQieLpPEDlEkrQKVQ0fGN1n0SRADaRpccFO/KUt1aATZ/o
-         TWexSWEoaHcxHmEhfwTeRwVjZk+Yotd1fKoe3dnxmw+wXp2N88QnbtzgXbj7eS2kqP+6
-         fWPK1NmhNgpoD9fwRy/ZNezBio9Hso1wFt3u0w3IRLA/81myBHLdtOsExh/v/hnSrc2n
-         cm+yprHcScJiJzfvKrl+ylDmSVxpWsnMgzBw/7GPqEHZVCh+/k8hml1J3c4EuHITFCo7
-         Mg4fqFWcu/H1Un59oFObC+Fr1/roooXoZYtF9ctT9hIyrlqY3sAZ4oetVM9AbXkcsBnL
-         tEsA==
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=l3BSPGq3HqzF1esjY3NCmu0wkpZ9eCQFuOZ9+Q8hvyo=;
+        b=FbhimYHRaU74JelXcj3msRkYATf6zYmUX6SPxIpbSgI3QhwhyFxcT0CMafpvJ1SKeV
+         HRqNIA6DJFHqREJ60sTkyF+ocK7cVuq13vqlgUbOzN2NsQLH4zIsTmGTMQBJHdcg8F3U
+         o1ftD2d7+3DuW9zi5t31il78ulz3a8AWRykgRxpXF/T1hMiqMHG+3xoXodP72oeocCVw
+         M33IezI0JiUW7MDiuV2J98EJGWTcgJew4/dX3emRVcBbvGYq9QlpvvG8rg0geA49TCzl
+         VUByB4UzhPYqp/xs6cWysLSXOWA0anRle0UTsSVdb/d3Cb4hAdQMDY+cxGj9ACdYWP6F
+         lx4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=h3feSrdNX7UsAr/gHLzI9hOOhzUVdb88aNZ2wt4j9Nk=;
-        b=WAyoSek9F/CF32lGykCNAYJq11eXpYKZV6rxpNej5c4kfcvyrIVSP8Y4KfOpulgdl/
-         ujanLF/lJiIYZUMpzP26xtwYGff7K1QXkAsIkH0Eiih0u0GTmCASTF/7bGGQbXEkqVrK
-         0uerEGRQzvnVdrtzJC+utAXIbpSqfuJ+IVzhBfOnsUcGnHaitmLPPEoJHH02E9q5nwwd
-         tBnwKSM9BGbHk6sxn5OpcRbluMvxVMvba5e5mo0iCQCmTrOJ3S6aHhbNXjDQP8vd7gI5
-         ghYq2Cz+Yoa798OUpHxYoA+pbCnIR3ez+SB5+rq354n2YhHT48dTxFI39tJWIvwC+fRj
-         NeyQ==
-X-Gm-Message-State: AO0yUKXM8gb4UeBQhuxrK8wpDnP5Rq3xAmDb/KLUtpyOHHl50/6zIDQ5
-	LfFtSE8xfVhfMv2o/33S3BVN3RPCFMWx7XpphVUGL139L3A=
-X-Google-Smtp-Source: AK7set/m4kooNMocaZHWONeg0Hg36Unp5/vURsyBJxbAEeTA/hZghd0jq3kp7kUVLm/zPxbUSpv4yYNnWiQzeAJ5V6c=
-X-Received: by 2002:a81:de46:0:b0:527:83f5:3f08 with SMTP id
- o6-20020a81de46000000b0052783f53f08mr273704ywl.425.1675777672202; Tue, 07 Feb
- 2023 05:47:52 -0800 (PST)
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=l3BSPGq3HqzF1esjY3NCmu0wkpZ9eCQFuOZ9+Q8hvyo=;
+        b=j5KtHxqowDBYXDl6wwvhVLf/+ukIGQUEAE4fezwZrFKsCjjPlCIswjpPfv43RUN2MK
+         V8OfdVYXcfq4QKM7PG1ojkToWnrMo+QJLyClJAfXo3aAgiHF0352zIHmaFeYfQTevXYp
+         o30aysCaCKA72N+vtQKs5/hUzZ/3givfETjsbNzAzN55/t7XeHKvzEZmRTLw3oaozBRV
+         kkhJ0PTEvsZ31cJ074VN+opIhBVGqNdLBWB69zcyHDqKhcDgR6yK6102y5GLr+Auxx2N
+         3KCF1D/wSxqjnOoRi/OFvktS1HdbgOMh8B2KXixzlf7c5Y12K8dqQHRzX+6njSOlULmu
+         ufeQ==
+X-Gm-Message-State: AO0yUKUMl+aTjxoflNZIcFER0IOsv2hHKOOn6xabAX7NsJUTX6dD5AHB
+	CcOKaWMw72Q8I5V+mhxtNPjgytLmpto=
+X-Google-Smtp-Source: AK7set8dd+0y6im2b6YPrd0rGZUw9MHg+Foxz/xFfZCbLYEoljpBTmSwUydS8+HJIZIPNiNUptAFTA==
+X-Received: by 2002:a05:600c:705:b0:3dc:572f:edb7 with SMTP id i5-20020a05600c070500b003dc572fedb7mr3793118wmn.1.1675935331378;
+        Thu, 09 Feb 2023 01:35:31 -0800 (PST)
+Received: from localhost ([102.36.222.112])
+        by smtp.gmail.com with ESMTPSA id r14-20020a05600c35ce00b003dc4ecfc4d7sm1365993wmq.29.2023.02.09.01.35.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Feb 2023 01:35:31 -0800 (PST)
+Date: Thu, 9 Feb 2023 12:35:20 +0300
+From: Dan Carpenter <error27@gmail.com>
+To: ansuelsmth@gmail.com
+Cc: ath11k@lists.infradead.org
+Subject: [bug report] wifi: ath11k: fix peer addition/deletion error on sta
+ band migration
+Message-ID: <Y+S+WDeZqeooMdiM@kili>
 MIME-Version: 1.0
-From: Carsten Hatger <xmb8dsv4@gmail.com>
-Date: Tue, 7 Feb 2023 14:47:39 +0100
-Message-ID: <CACp=KFTTOpKzDkMuGyYm3ynF53nqHLwdAqt79mMJLpCyTyy-Zw@mail.gmail.com>
-Subject: FIX: Frequent wakeups on HP Pro x360 435 13.3 inch G9 using Qualcomm
- FastConnect 6900
-To: ath11k@lists.infradead.org
+Content-Disposition: inline
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230207_054753_216091_0B31FE1F 
-X-CRM114-Status: UNSURE (   3.45  )
+X-CRM114-CacheID: sfid-20230209_013535_235936_0B2D56DF 
+X-CRM114-Status: UNSURE (   6.23  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -82,27 +87,58 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-To whom it may concern:
+Hello Christian Marangi,
 
-I was experiencing frequent wake-ups from s0i3x on a HP Pro 435 G9
-convertible [1] using the Qualcomm FastConnect 6900 SoC [2]. The issue
-is related to FW revision
-WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.9 that comes
-bundled with Ubuntu 22.10. It appears the SoC increasingly triggers
-wake-ups after being suspended for approx. 4 hrs.
+The patch d673cb6fe6c0: "wifi: ath11k: fix peer addition/deletion
+error on sta band migration" from Sep 22, 2022, leads to the
+following Smatch static checker warning:
 
-Read the full story at [4].
+	drivers/net/wireless/ath/ath11k/peer.c:396 ath11k_peer_create()
+	warn: sleeping in atomic context
 
-The solution is to upgrade SoC firmware to rev
-WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23/ [3]
+drivers/net/wireless/ath/ath11k/peer.c
+    370 int ath11k_peer_create(struct ath11k *ar, struct ath11k_vif *arvif,
+    371                        struct ieee80211_sta *sta, struct peer_create_params *param)
+    372 {
+    373         struct ath11k_peer *peer;
+    374         struct ath11k_sta *arsta;
+    375         int ret, fbret;
+    376 
+    377         lockdep_assert_held(&ar->conf_mutex);
+    378 
+    379         if (ar->num_peers > (ar->max_num_peers - 1)) {
+    380                 ath11k_warn(ar->ab,
+    381                             "failed to create peer due to insufficient peer entry resource in firmware\n");
+    382                 return -ENOBUFS;
+    383         }
+    384 
+    385         spin_lock_bh(&ar->ab->base_lock);
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Holding a spin lock.
 
-Best regards,
-Carsten
+    386         peer = ath11k_peer_find_by_addr(ar->ab, param->peer_addr);
+    387         if (peer) {
+    388                 if (peer->vdev_id == param->vdev_id) {
+    389                         spin_unlock_bh(&ar->ab->base_lock);
+    390                         return -EINVAL;
+    391                 }
+    392 
+    393                 /* Assume sta is transitioning to another band.
+    394                  * Remove here the peer from rhash.
+    395                  */
+--> 396                 mutex_lock(&ar->ab->tbl_mtx_lock);
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+So we can't take a mutex.
 
-[1] https://support.hp.com/us-en/product/hp-pro-x360-435-13.3-inch-g9-notebook-pc/2101144107/document/ish_6053745-6053789-16
-[2] https://www.qualcomm.com/products/technology/wi-fi/fastconnect/fastconnect-6900
-[3] https://github.com/kvalo/ath11k-firmware/tree/master/WCN6855/hw2.0/1.1/WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
-[4] https://gitlab.freedesktop.org/drm/amd/-/issues/2377
+    397                 ath11k_peer_rhash_delete(ar->ab, peer);
+    398                 mutex_unlock(&ar->ab->tbl_mtx_lock);
+    399         }
+    400         spin_unlock_bh(&ar->ab->base_lock);
+    401 
+    402         ret = ath11k_wmi_send_peer_create_cmd(ar, param);
+
+regards,
+dan carpenter
 
 -- 
 ath11k mailing list
