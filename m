@@ -4,81 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B14D9C636D3
-	for <ath11k@archiver.kernel.org>; Thu,  9 Feb 2023 22:27:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F228C05027
+	for <ath11k@archiver.kernel.org>; Thu,  9 Feb 2023 23:55:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=iUEmL2+QYwXc6T0Qx+Rf4YWwy5fVlg6EPbaE54BGys4=; b=VcDpZ/mCC+r3Pb
-	AE1b0MEfB0qs8X5hgpct0xEMtE70FtDv7x4QOPR4WtSnjxeqXLH541lGc7+Q0te9+/HxvAPkJgwOj
-	/9lmnCEGUUBtQS3VfwQMDlKVsjff7NJju1uHSOrZpa+N1z/YuRND0IwMu105gtM2niggCZsovikAh
-	QwFavryAcIC4qZSqS7euag4sjye5JW7ibb2AXDq8bpetoOEbiPvZBYo1ypsN/5n7MuIu0gMh6v8TA
-	OCKJsuYxntsp7sRXoQFe4QaCGcCSd9VrT2xp3xfRVEGWh+iwsdjLM/FV/qXZ8iNQSnAFZ/F/j3A8e
-	fJ3kd9thTf5k+/b/t7WQ==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Subject:Cc:To:From:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=vo24Y5VYRKEH/iu3y79g0HI2YZW8CbLLHrDS522QGHU=; b=aO+pu4dTLbk9C5
+	KPUh+n+9qoHKUoZfgenwxsQhnEc3S4hF7e42+dOaDhhCwbfBY46mB/nltxZn5FYTpW7VWDoIACCoE
+	fSBnC8M2w21uGVcj7pekmgPlciCXugxWFvwmQTVTJYPcGx+rjqCt4ZA0tnDhQtpCEvJ6L9F0uhbZE
+	Tp7mAOpdh9GkMYZ0zHboAajkB5PpgdCFhrKQ4sXktgI/CETO24Ag5IhKZYSuVCWPX5vg+1UpcOmLs
+	pY1OW/kDROSqF+85DjxOfm8dfY2iX+QWoPMx/Qr2poaUtuu+QFoo8tWJKjkE1trNPEsr27y2axs7F
+	Zr4MaxF/1ioB4IrSv6fg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pQFNk-003Oso-MJ; Thu, 09 Feb 2023 22:27:08 +0000
-Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
+	id 1pQGld-003f0J-Cx; Thu, 09 Feb 2023 23:55:53 +0000
+Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pQFNh-003Os2-Ry
-	for ath11k@lists.infradead.org; Thu, 09 Feb 2023 22:27:07 +0000
-Received: by mail-wm1-x330.google.com with SMTP id l21-20020a05600c1d1500b003dfe462b7e4so4752175wms.0
-        for <ath11k@lists.infradead.org>; Thu, 09 Feb 2023 14:27:03 -0800 (PST)
+	id 1pQGla-003ezB-6J
+	for ath11k@lists.infradead.org; Thu, 09 Feb 2023 23:55:51 +0000
+Received: by mail-wr1-x42e.google.com with SMTP id o18so3533928wrj.3
+        for <ath11k@lists.infradead.org>; Thu, 09 Feb 2023 15:55:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=mA+W2iIOZyTuxfiY1E6tdbEkL6JPb15N04qIIGKc1Bo=;
-        b=grXmBtKibLp67pM4ScaLs8kExZlNValb1oKoIp5YGcr5Ka8i5Vst+TIefQJ5MpCB2K
-         VpPw/jCAfXG9qHDSmBCEXEsY5abPFUomHZoUOkjAhusUsT0KWs/mRzHw/Bjytfo2xvqB
-         35I0J8FA2XqUPrUh/JwRiZql3tU04aw8cu907PJbOcyPSxWYifpN076p3fVwKC+9GZCs
-         XsavH/GYiGWIL+sOHCxOTYP9yRpJGezm2MWtd9+01hSuQ+dWDRs+OPRkXZoixrYwbeNd
-         Okax6wTuJMxGGj1Rhvi+8GnzIctYs5qdmDjNexCH6XjlPTSe915zwj5iqq9V8luXkvb5
-         7nQg==
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=wYx40Ioj9i9PsEdtDolsKgt3a/gVa4rBcWv41DLes+s=;
+        b=VhL3bBt/cfqa75Di4uMcm9WXwKSvBoumJ4fVF09tOMHa19vjEXKBjy2F7ynGYxFoj9
+         0FRtntnSyyqXowgPOMbr5kOoWGbinseA9HcDWYhR9ppIvuPD/qth1AQIC0hyi3VcWzkh
+         xVTTqZT25HpnH1aSYCENbHphhnmS5nsXobtGy0mRyIb8Zz3lZWJKdT6MG5jOVndnAkMB
+         q8W7hW3q4YLvrv7L84DF+PwvnLe+Q36fONvCL8yRTyfb2jpIrr8cYA2p5gaGvpvzwFpl
+         i5vvYLceSQEY9DjL2kbQ47SJBuvuBR7zo5zdog1GIw70xdx7hpbYT/7ljDlUgYT6XTFU
+         6PTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mA+W2iIOZyTuxfiY1E6tdbEkL6JPb15N04qIIGKc1Bo=;
-        b=OEMGHQsga2Bi8sy9BZ9QcLahYVx67Aq2MnvTYqM3tTzs3zfm3JLRXFiUnzSxAq6iCE
-         Mthwz2yfeZCkRcySoYt6JJbPe6eo8fKcjDJ+PsoL5tKOeG4FBpmWDPEEXXzkW/BukMTj
-         aSabPATDqopqz/JtXyyPYBvBRsrWaO/K/4O/l7oHQLmdlbOmRYrSgTmiISnQxo25XpNw
-         NVxo8FbCTcMAsPQZFmJyoCk3EAI6jNleffB/QKVlPkF30eaMcKajg9jrxBlAQDkKNB+Q
-         TDVl9MtwekHPyrn4KRJbqtY+MGyyxSB2ZE5zA6q5oo1jl8GVsConZiFoOQIiZ0+5uyAN
-         N54g==
-X-Gm-Message-State: AO0yUKVYHF8FEYdN2oxLoZ3u3Wsho1nxeFuOzsc3Zt7CGbJPMeCazi8Q
-	n8wRko341jaVRxjZyKLXazQ=
-X-Google-Smtp-Source: AK7set9Ua413yrHnTvV7eGnWB8gqVZ8rPiEhK2aJcYr1DUcPahcls/IN6j8/3u9hoWhWels9ombxLQ==
-X-Received: by 2002:a05:600c:45cf:b0:3df:9858:c03c with SMTP id s15-20020a05600c45cf00b003df9858c03cmr7827388wmo.17.1675981622191;
-        Thu, 09 Feb 2023 14:27:02 -0800 (PST)
-Received: from localhost.localdomain (93-34-91-73.ip49.fastwebnet.it. [93.34.91.73])
-        by smtp.googlemail.com with ESMTPSA id l40-20020a05600c1d2800b003dd1b00bd9asm3573030wms.32.2023.02.09.14.27.01
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wYx40Ioj9i9PsEdtDolsKgt3a/gVa4rBcWv41DLes+s=;
+        b=KKqW+IcM2Zlc3LrBbhVXRRZjfBymV52XOA1OhtZgqXW9B1qJ23JgHL0Q1hIdtfZNci
+         GDp+PGgQwRSBdpt5SfGKiipUr8bETAvGoB+jNhIiJQaD4NMjBQnx8S9eOm9AeY6TJdYj
+         r5WhwOUAqxVOoLMOJCaoiLq/9FaRTtCSIE2/uAc+DaEMAEk4C0o+YiDvyGrhUfTscFgJ
+         /dfG4FsEcSp90bX6XXL/uKL9YGEsJhvtTL+KfHhjBW1KWDPP/d8DVeQaLOu3Lph13xCB
+         cM0InKZ3TnMcaROcqw16aPcqpgz85J7B0sH1BLH3nz2YE+uoBpju/MvSxkgc1j2YAJqH
+         CFiw==
+X-Gm-Message-State: AO0yUKVBpSm1msX10WOQpS4cLbr1UiQRsqIxRxV6EH0iKkk3aHPnDsXf
+	+Q1NlrZlOjBlbD7sXj7mh/M=
+X-Google-Smtp-Source: AK7set+H07pyUGYyp73j0GH05TSRd0rlBiGl6Seh6bBxxBooU5eMeVe9rXe+ZPPzLTgE6BkOIgPiSg==
+X-Received: by 2002:adf:fbc2:0:b0:2c3:d707:7339 with SMTP id d2-20020adffbc2000000b002c3d7077339mr5528952wrs.6.1675986942514;
+        Thu, 09 Feb 2023 15:55:42 -0800 (PST)
+Received: from Ansuel-xps. (93-34-91-73.ip49.fastwebnet.it. [93.34.91.73])
+        by smtp.gmail.com with ESMTPSA id q9-20020adff789000000b002c3f022945fsm2213577wrp.77.2023.02.09.15.55.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Feb 2023 14:27:01 -0800 (PST)
+        Thu, 09 Feb 2023 15:55:42 -0800 (PST)
+Message-ID: <63e587fe.df0a0220.47373.9a06@mx.google.com>
+X-Google-Original-Message-ID: <Y+WH/UbJDm0JbljO@Ansuel-xps.>
+Date: Fri, 10 Feb 2023 00:55:41 +0100
 From: Christian Marangi <ansuelsmth@gmail.com>
-To: Kalle Valo <kvalo@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	ath11k@lists.infradead.org,
-	linux-wireless@vger.kernel.org,
-	netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Dan Carpenter <error27@gmail.com>
-Subject: [PATCH] wifi: ath11k: fix SAC bug on peer addition with sta band migration
-Date: Thu,  9 Feb 2023 23:26:22 +0100
-Message-Id: <20230209222622.1751-1-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.38.1
+To: Dan Carpenter <error27@gmail.com>
+Cc: ath11k@lists.infradead.org
+Subject: Re: [bug report] wifi: ath11k: fix peer addition/deletion error on
+ sta band migration
+References: <Y+S+WDeZqeooMdiM@kili>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <Y+S+WDeZqeooMdiM@kili>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230209_142705_978604_F2484A96 
-X-CRM114-Status: GOOD (  10.37  )
+X-CRM114-CacheID: sfid-20230209_155550_294297_FFE18F34 
+X-CRM114-Status: GOOD (  12.39  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,54 +90,63 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Fix sleep in atomic context warning detected by Smatch static checker
-analyzer.
+On Thu, Feb 09, 2023 at 12:35:20PM +0300, Dan Carpenter wrote:
+> Hello Christian Marangi,
+> 
+> The patch d673cb6fe6c0: "wifi: ath11k: fix peer addition/deletion
+> error on sta band migration" from Sep 22, 2022, leads to the
+> following Smatch static checker warning:
+> 
+> 	drivers/net/wireless/ath/ath11k/peer.c:396 ath11k_peer_create()
+> 	warn: sleeping in atomic context
+> 
+> drivers/net/wireless/ath/ath11k/peer.c
+>     370 int ath11k_peer_create(struct ath11k *ar, struct ath11k_vif *arvif,
+>     371                        struct ieee80211_sta *sta, struct peer_create_params *param)
+>     372 {
+>     373         struct ath11k_peer *peer;
+>     374         struct ath11k_sta *arsta;
+>     375         int ret, fbret;
+>     376 
+>     377         lockdep_assert_held(&ar->conf_mutex);
+>     378 
+>     379         if (ar->num_peers > (ar->max_num_peers - 1)) {
+>     380                 ath11k_warn(ar->ab,
+>     381                             "failed to create peer due to insufficient peer entry resource in firmware\n");
+>     382                 return -ENOBUFS;
+>     383         }
+>     384 
+>     385         spin_lock_bh(&ar->ab->base_lock);
+>                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> Holding a spin lock.
+> 
+>     386         peer = ath11k_peer_find_by_addr(ar->ab, param->peer_addr);
+>     387         if (peer) {
+>     388                 if (peer->vdev_id == param->vdev_id) {
+>     389                         spin_unlock_bh(&ar->ab->base_lock);
+>     390                         return -EINVAL;
+>     391                 }
+>     392 
+>     393                 /* Assume sta is transitioning to another band.
+>     394                  * Remove here the peer from rhash.
+>     395                  */
+> --> 396                 mutex_lock(&ar->ab->tbl_mtx_lock);
+>                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> So we can't take a mutex.
+> 
+>     397                 ath11k_peer_rhash_delete(ar->ab, peer);
+>     398                 mutex_unlock(&ar->ab->tbl_mtx_lock);
+>     399         }
+>     400         spin_unlock_bh(&ar->ab->base_lock);
+>     401 
+>     402         ret = ath11k_wmi_send_peer_create_cmd(ar, param);
 
-Following the locking pattern for peer_rhash_add lock tbl_mtx_lock mutex
-always even if sta is not transitioning to another band.
-This is peer_add function and a more secure locking should not cause
-performance regression.
+Hi,
+thanks for the report. I send a patch to ath mailing list that should
+fix this bug!
 
-Fixes: d673cb6fe6c0 ("wifi: ath11k: fix peer addition/deletion error on sta band migration")
-Reported-by: Dan Carpenter <error27@gmail.com>
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
- drivers/net/wireless/ath/ath11k/peer.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/peer.c b/drivers/net/wireless/ath/ath11k/peer.c
-index 1ae7af02c364..1380811827a8 100644
---- a/drivers/net/wireless/ath/ath11k/peer.c
-+++ b/drivers/net/wireless/ath/ath11k/peer.c
-@@ -382,22 +382,23 @@ int ath11k_peer_create(struct ath11k *ar, struct ath11k_vif *arvif,
- 		return -ENOBUFS;
- 	}
- 
-+	mutex_lock(&ar->ab->tbl_mtx_lock);
- 	spin_lock_bh(&ar->ab->base_lock);
- 	peer = ath11k_peer_find_by_addr(ar->ab, param->peer_addr);
- 	if (peer) {
- 		if (peer->vdev_id == param->vdev_id) {
- 			spin_unlock_bh(&ar->ab->base_lock);
-+			mutex_unlock(&ar->ab->tbl_mtx_lock);
- 			return -EINVAL;
- 		}
- 
- 		/* Assume sta is transitioning to another band.
- 		 * Remove here the peer from rhash.
- 		 */
--		mutex_lock(&ar->ab->tbl_mtx_lock);
- 		ath11k_peer_rhash_delete(ar->ab, peer);
--		mutex_unlock(&ar->ab->tbl_mtx_lock);
- 	}
- 	spin_unlock_bh(&ar->ab->base_lock);
-+	mutex_unlock(&ar->ab->tbl_mtx_lock);
- 
- 	ret = ath11k_wmi_send_peer_create_cmd(ar, param);
- 	if (ret) {
 -- 
-2.38.1
-
+	Ansuel
 
 -- 
 ath11k mailing list
