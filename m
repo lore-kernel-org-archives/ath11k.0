@@ -4,76 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F228C05027
-	for <ath11k@archiver.kernel.org>; Thu,  9 Feb 2023 23:55:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BF74C636CD
+	for <ath11k@archiver.kernel.org>; Fri, 10 Feb 2023 08:56:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Subject:Cc:To:From:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vo24Y5VYRKEH/iu3y79g0HI2YZW8CbLLHrDS522QGHU=; b=aO+pu4dTLbk9C5
-	KPUh+n+9qoHKUoZfgenwxsQhnEc3S4hF7e42+dOaDhhCwbfBY46mB/nltxZn5FYTpW7VWDoIACCoE
-	fSBnC8M2w21uGVcj7pekmgPlciCXugxWFvwmQTVTJYPcGx+rjqCt4ZA0tnDhQtpCEvJ6L9F0uhbZE
-	Tp7mAOpdh9GkMYZ0zHboAajkB5PpgdCFhrKQ4sXktgI/CETO24Ag5IhKZYSuVCWPX5vg+1UpcOmLs
-	pY1OW/kDROSqF+85DjxOfm8dfY2iX+QWoPMx/Qr2poaUtuu+QFoo8tWJKjkE1trNPEsr27y2axs7F
-	Zr4MaxF/1ioB4IrSv6fg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Subject:To:From:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=d/hdHfjQC4OT8w6YVigz8bpZ4VuIOhlHIB1TFZyaERw=; b=30mD0OicYZN9uh
+	Sd2E0sJaQTAqkCzqTjf/Lt2Ivfo0/e2/9qJ3bNopQo/Qench2PpYrZmgtVaFE+cK3g2OgDMJyyKOM
+	BaeKfuBcW3yi/z+DmBvmKbCNSDCzj+Loka4qy+tX+7YNHC5l4t6YyyyEoOrBhlNApiMi5l4OsHe8O
+	e9SFIjpCLXD+7DCrDrhD9btmhDNQ3zs90ut29xVObmKyVQqGACJ2gLU6S4FYcHTzWvrF9O8+KkC1s
+	hV+c7hcHLiqH5R239AmcfTJ9aVClOvs/lggcT6hRP+aD2Alxk5d4GSrRgnnOLMI3KRoiCoVrFj1yu
+	ff41hMoEcQOttPPsTYJA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pQGld-003f0J-Cx; Thu, 09 Feb 2023 23:55:53 +0000
-Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
+	id 1pQPD4-004rvL-Ax; Fri, 10 Feb 2023 08:56:46 +0000
+Received: from mail.culbokie.pl ([217.61.97.164])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pQGla-003ezB-6J
-	for ath11k@lists.infradead.org; Thu, 09 Feb 2023 23:55:51 +0000
-Received: by mail-wr1-x42e.google.com with SMTP id o18so3533928wrj.3
-        for <ath11k@lists.infradead.org>; Thu, 09 Feb 2023 15:55:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=wYx40Ioj9i9PsEdtDolsKgt3a/gVa4rBcWv41DLes+s=;
-        b=VhL3bBt/cfqa75Di4uMcm9WXwKSvBoumJ4fVF09tOMHa19vjEXKBjy2F7ynGYxFoj9
-         0FRtntnSyyqXowgPOMbr5kOoWGbinseA9HcDWYhR9ppIvuPD/qth1AQIC0hyi3VcWzkh
-         xVTTqZT25HpnH1aSYCENbHphhnmS5nsXobtGy0mRyIb8Zz3lZWJKdT6MG5jOVndnAkMB
-         q8W7hW3q4YLvrv7L84DF+PwvnLe+Q36fONvCL8yRTyfb2jpIrr8cYA2p5gaGvpvzwFpl
-         i5vvYLceSQEY9DjL2kbQ47SJBuvuBR7zo5zdog1GIw70xdx7hpbYT/7ljDlUgYT6XTFU
-         6PTA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wYx40Ioj9i9PsEdtDolsKgt3a/gVa4rBcWv41DLes+s=;
-        b=KKqW+IcM2Zlc3LrBbhVXRRZjfBymV52XOA1OhtZgqXW9B1qJ23JgHL0Q1hIdtfZNci
-         GDp+PGgQwRSBdpt5SfGKiipUr8bETAvGoB+jNhIiJQaD4NMjBQnx8S9eOm9AeY6TJdYj
-         r5WhwOUAqxVOoLMOJCaoiLq/9FaRTtCSIE2/uAc+DaEMAEk4C0o+YiDvyGrhUfTscFgJ
-         /dfG4FsEcSp90bX6XXL/uKL9YGEsJhvtTL+KfHhjBW1KWDPP/d8DVeQaLOu3Lph13xCB
-         cM0InKZ3TnMcaROcqw16aPcqpgz85J7B0sH1BLH3nz2YE+uoBpju/MvSxkgc1j2YAJqH
-         CFiw==
-X-Gm-Message-State: AO0yUKVBpSm1msX10WOQpS4cLbr1UiQRsqIxRxV6EH0iKkk3aHPnDsXf
-	+Q1NlrZlOjBlbD7sXj7mh/M=
-X-Google-Smtp-Source: AK7set+H07pyUGYyp73j0GH05TSRd0rlBiGl6Seh6bBxxBooU5eMeVe9rXe+ZPPzLTgE6BkOIgPiSg==
-X-Received: by 2002:adf:fbc2:0:b0:2c3:d707:7339 with SMTP id d2-20020adffbc2000000b002c3d7077339mr5528952wrs.6.1675986942514;
-        Thu, 09 Feb 2023 15:55:42 -0800 (PST)
-Received: from Ansuel-xps. (93-34-91-73.ip49.fastwebnet.it. [93.34.91.73])
-        by smtp.gmail.com with ESMTPSA id q9-20020adff789000000b002c3f022945fsm2213577wrp.77.2023.02.09.15.55.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Feb 2023 15:55:42 -0800 (PST)
-Message-ID: <63e587fe.df0a0220.47373.9a06@mx.google.com>
-X-Google-Original-Message-ID: <Y+WH/UbJDm0JbljO@Ansuel-xps.>
-Date: Fri, 10 Feb 2023 00:55:41 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Dan Carpenter <error27@gmail.com>
-Cc: ath11k@lists.infradead.org
-Subject: Re: [bug report] wifi: ath11k: fix peer addition/deletion error on
- sta band migration
-References: <Y+S+WDeZqeooMdiM@kili>
+	id 1pQPD0-004rrA-JS
+	for ath11k@lists.infradead.org; Fri, 10 Feb 2023 08:56:44 +0000
+Received: by mail.culbokie.pl (Postfix, from userid 1001)
+	id 5169C827FC; Fri, 10 Feb 2023 08:56:24 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=culbokie.pl; s=mail;
+	t=1676019396; bh=cNbZL9WXZbgcQtzgDCharPn7EQBjUHnC1FAZ/+OQVjk=;
+	h=Date:From:To:Subject:From;
+	b=z7m42hIZbAdmwBGWH8gwgppNgN4fX45HZN5cC7cAN6KmmCvvyJag2Bj6SzBNnHQxR
+	 wgPmbxucwxa1FsRW3I/HjmmfVjjzChCpo8REh2sqtYgEYcZYQxmVHh3kSxqi7z8NEe
+	 euPHKLBQgq66/s6boSzyYS/v0VUokF/CU9JzcImSJOg4A+fJBJqGj7rNRlzwYIyAI4
+	 k4Spf8B3b+VzfJYcs8QmDuNBHCBUV85yEoPvtIi3QBB8C3ZRcIfKHDqGsoFiUCAfdn
+	 QI6qFkqzDa9jP/0QwIKHdo4CfWiwAptGmmwcZ0Dn0F+7Biro7YihHF8A8f+0RTDz0A
+	 MKM3EEfx7X4TA==
+Received: by mail.culbokie.pl for <ath11k@lists.infradead.org>; Fri, 10 Feb 2023 08:55:31 GMT
+Message-ID: <20230210074501-0.1.1l.34r5.0.m1dc1bwc5l@culbokie.pl>
+Date: Fri, 10 Feb 2023 08:55:31 GMT
+From: =?UTF-8?Q?"Pawe=C5=82_Kamieniecki"?= <pawel.kamieniecki@culbokie.pl>
+To: <ath11k@lists.infradead.org>
+Subject: Prezentacja
+X-Mailer: mail.culbokie.pl
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <Y+S+WDeZqeooMdiM@kili>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230209_155550_294297_FFE18F34 
-X-CRM114-Status: GOOD (  12.39  )
+X-CRM114-CacheID: sfid-20230210_005643_136735_DFFF3092 
+X-CRM114-Status: UNSURE (   1.05  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,70 +59,22 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Thu, Feb 09, 2023 at 12:35:20PM +0300, Dan Carpenter wrote:
-> Hello Christian Marangi,
-> 
-> The patch d673cb6fe6c0: "wifi: ath11k: fix peer addition/deletion
-> error on sta band migration" from Sep 22, 2022, leads to the
-> following Smatch static checker warning:
-> 
-> 	drivers/net/wireless/ath/ath11k/peer.c:396 ath11k_peer_create()
-> 	warn: sleeping in atomic context
-> 
-> drivers/net/wireless/ath/ath11k/peer.c
->     370 int ath11k_peer_create(struct ath11k *ar, struct ath11k_vif *arvif,
->     371                        struct ieee80211_sta *sta, struct peer_create_params *param)
->     372 {
->     373         struct ath11k_peer *peer;
->     374         struct ath11k_sta *arsta;
->     375         int ret, fbret;
->     376 
->     377         lockdep_assert_held(&ar->conf_mutex);
->     378 
->     379         if (ar->num_peers > (ar->max_num_peers - 1)) {
->     380                 ath11k_warn(ar->ab,
->     381                             "failed to create peer due to insufficient peer entry resource in firmware\n");
->     382                 return -ENOBUFS;
->     383         }
->     384 
->     385         spin_lock_bh(&ar->ab->base_lock);
->                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> Holding a spin lock.
-> 
->     386         peer = ath11k_peer_find_by_addr(ar->ab, param->peer_addr);
->     387         if (peer) {
->     388                 if (peer->vdev_id == param->vdev_id) {
->     389                         spin_unlock_bh(&ar->ab->base_lock);
->     390                         return -EINVAL;
->     391                 }
->     392 
->     393                 /* Assume sta is transitioning to another band.
->     394                  * Remove here the peer from rhash.
->     395                  */
-> --> 396                 mutex_lock(&ar->ab->tbl_mtx_lock);
->                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> So we can't take a mutex.
-> 
->     397                 ath11k_peer_rhash_delete(ar->ab, peer);
->     398                 mutex_unlock(&ar->ab->tbl_mtx_lock);
->     399         }
->     400         spin_unlock_bh(&ar->ab->base_lock);
->     401 
->     402         ret = ath11k_wmi_send_peer_create_cmd(ar, param);
-
-Hi,
-thanks for the report. I send a patch to ath mailing list that should
-fix this bug!
-
--- 
-	Ansuel
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+RHppZcWEIGRvYnJ5IQoKQ3p5IG3Ds2fFgmJ5bSBwcnplZHN0YXdpxIcgcm96d2nEhXphbmllLCBr
+dMOzcmUgdW1vxbxsaXdpYSBtb25pdG9yaW5nIGthxbxkZWdvIGF1dGEgdyBjemFzaWUgcnplY3p5
+d2lzdHltIHcgdHltIGplZ28gcG96eWNqxJksIHp1xbx5Y2llIHBhbGl3YSBpIHByemViaWVnPwoK
+RG9kYXRrb3dvIG5hc3plIG5hcnrEmWR6aWUgbWluaW1hbGl6dWplIGtvc3p0eSB1dHJ6eW1hbmlh
+IHNhbW9jaG9kw7N3LCBza3JhY2EgY3phcyBwcnplamF6ZMOzdywgYSB0YWvFvGUgdHdvcnplbmll
+IHBsYW51IHRyYXMgY3p5IGRvc3Rhdy4KClogbmFzemVqIHdpZWR6eSBpIGRvxZt3aWFkY3plbmlh
+IGtvcnp5c3RhIGp1xbwgcG9uYWQgNDkgdHlzLiBLbGllbnTDs3cuIE1vbml0b3J1amVteSA4MDkg
+MDAwIHBvamF6ZMOzdyBuYSBjYcWCeW0gxZt3aWVjaWUsIGNvIGplc3QgbmFzesSFIG5hamxlcHN6
+xIUgd2l6eXTDs3drxIUuCgpCYXJkem8gcHJvc3rEmSBvIGUtbWFpbGEgendyb3RuZWdvLCBqZcWb
+bGkgbW9nbGliecWbbXkgd3Nww7NsbmllIG9tw7N3acSHIHBvdGVuY2phxYIgd3lrb3J6eXN0YW5p
+YSB0YWtpZWdvIHJvendpxIV6YW5pYSB3IFBhxYRzdHdhIGZpcm1pZS4KCgpQb3pkcmF3aWFtLApQ
+YXdlxYIgS2FtaWVuaWVja2kKCi0tIAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0cy5p
+bmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8v
+YXRoMTFrCg==
