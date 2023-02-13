@@ -4,61 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A55F4C636CC
-	for <ath11k@archiver.kernel.org>; Mon, 13 Feb 2023 12:24:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6A20C636CC
+	for <ath11k@archiver.kernel.org>; Mon, 13 Feb 2023 12:27:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Subject:References:
-	In-Reply-To:Message-ID:Cc:To:From:Date:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=mm8plIedm/ma1O1MQ2HXoXl5wD1kAB5P6mew9MpZAmA=; b=VGLbA/b8Bermhf5VSyaxw2rW71
-	PLe0pjrosb1T12O1/dVpEcOIutHE6uXBCYaDk+vZeWzjMBUMe6Kf+y5Bns3rX8USZn26opgNYccOv
-	mdFR7ZVIrmLjOYuFJ4g0H7W/IHtTOlFo8klxzcldbc5v2EJyWGPHD46oKoYU6+cf9ueXsdd8Z03/l
-	Rd0d9fiRKySq3dceHNSflnoyn/2jJZAP+Ki1hK2Sbc592G2pitieK2vtmOISKnCTOJGkKqujeNfg7
-	l+a/q5+JRFZqlKLNGQvGRrUEow4GsB6i5lK80qVUxyLjobgmBvYbPwpdHt34MHrlxyJ3gSO9BRTzf
-	VXYBhing==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=j6L99zWdhtsirvK780INva9sZoSaP+pYeLTE3ExrIiU=; b=o+uwq5TvyosfJa
+	2PObZzs+yQwWNMqygWsPn6hyX4FiiMR3fZ4JYUdCA6BaqkYld5xqhVxqfAC/ZMio/IsyIfSWrjmL1
+	BOIbO+uQ+CEjy6mdPzwy2bjRCNyvYW+cTNEYC4gq1E/Xl8bER4LoLY/cGXPH4L5qnEjN+waxBkBl8
+	iPAxhiM1noDUSTXMZvNI4bNCfJC+1dEVJvrcjK3T8bSPBYKPBk8Fmba9OdCdEV/ChcF9H1sTGcY1g
+	V6Eyhrde3o5yAtV+GeplhUbiYxfwHZv47ODdOP2SHhD0XphETHCWb611iSW1zXMFC8cfodSoUO7j9
+	TYLtE4YkJyMWVfSmfpWg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pRXsy-00Ecr4-Ur; Mon, 13 Feb 2023 12:24:44 +0000
-Received: from lithops.sigma-star.at ([195.201.40.130])
+	id 1pRXvI-00EdHy-9K; Mon, 13 Feb 2023 12:27:08 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pRXsv-00EcoK-Dl
-	for ath11k@lists.infradead.org; Mon, 13 Feb 2023 12:24:43 +0000
-Received: from localhost (localhost [127.0.0.1])
-	by lithops.sigma-star.at (Postfix) with ESMTP id 89C31642ECB8;
-	Mon, 13 Feb 2023 13:24:34 +0100 (CET)
-Received: from lithops.sigma-star.at ([127.0.0.1])
-	by localhost (lithops.sigma-star.at [127.0.0.1]) (amavisd-new, port 10032)
-	with ESMTP id 5JmuXyD4XZKA; Mon, 13 Feb 2023 13:24:34 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-	by lithops.sigma-star.at (Postfix) with ESMTP id 05FC76323048;
-	Mon, 13 Feb 2023 13:24:34 +0100 (CET)
-Received: from lithops.sigma-star.at ([127.0.0.1])
-	by localhost (lithops.sigma-star.at [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id vvfLvRO0uh4R; Mon, 13 Feb 2023 13:24:33 +0100 (CET)
-Received: from lithops.sigma-star.at (lithops.sigma-star.at [195.201.40.130])
-	by lithops.sigma-star.at (Postfix) with ESMTP id DC5F2642ECB8;
-	Mon, 13 Feb 2023 13:24:33 +0100 (CET)
-Date: Mon, 13 Feb 2023 13:24:33 +0100 (CET)
-From: Richard Weinberger <richard@nod.at>
-To: kvalo <kvalo@kernel.org>
-Cc: linux-wireless <linux-wireless@vger.kernel.org>, 
-	ath11k <ath11k@lists.infradead.org>
-Message-ID: <370539199.123516.1676291073661.JavaMail.zimbra@nod.at>
-In-Reply-To: <873579wze8.fsf@kernel.org>
-References: <1263051271.53086.1674425560245.JavaMail.zimbra@nod.at> <873579wze8.fsf@kernel.org>
-Subject: Re: Resume from hibernation fails due to ath11k_pci
+	id 1pRXvE-00EdGx-ED
+	for ath11k@lists.infradead.org; Mon, 13 Feb 2023 12:27:05 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 8694A60FF2;
+	Mon, 13 Feb 2023 12:27:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CBA7C433D2;
+	Mon, 13 Feb 2023 12:27:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1676291222;
+	bh=Lbnpmnk2FiIXritFY8FG4TwnWR9C5gs7XyzYU2n5g1k=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=F+WkbyIxRzV9Oeko9shNsjnhKR8U5W1KTKIxeVNIqUzYuQjQWLZBC1ItkL/AwUlGe
+	 5bkNF/RV+3qsirGCuENHhNC5/ldNEY5c8rikxl22FAiXjSj1pjMdDMUTF/MjEKH1S6
+	 iH3V12QJKvZIkCDq9mOjR3yL3A+Oh1nmQkE7e9Anto2hLxS+TAadGRaOaPBqvlXCLB
+	 FJDh4XS+bJaM6Bm8n40Fl30ua2CjYVzzcmmSFrvHQWt8dlbtHYfF2vUgW3nbYxzms+
+	 rMiRO6WM94dZzzlOAr7KHnJlVLZalXhjQZ36IVOLI8rkqYeEedc344pqbbJ9OnZTDS
+	 jPQMU+7RQyUfQ==
+From: Kalle Valo <kvalo@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Dan Carpenter <error27@gmail.com>,  ath11k@lists.infradead.org
+Subject: Re: [bug report] wifi: ath11k: fix peer addition/deletion error on sta band migration
+References: <Y+S+WDeZqeooMdiM@kili>
+	<63e587fe.df0a0220.47373.9a06@mx.google.com>
+Date: Mon, 13 Feb 2023 14:26:59 +0200
+In-Reply-To: <63e587fe.df0a0220.47373.9a06@mx.google.com> (Christian Marangi's
+	message of "Fri, 10 Feb 2023 00:55:41 +0100")
+Message-ID: <87ttzpvjho.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-X-Originating-IP: [195.201.40.130]
-X-Mailer: Zimbra 8.8.12_GA_3807 (ZimbraWebClient - FF97 (Linux)/8.8.12_GA_3809)
-Thread-Topic: Resume from hibernation fails due to ath11k_pci
-Thread-Index: m1FCqBhgubupsnJMxfUBeHozk0YSRg==
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230213_042441_648253_4B4F28F6 
-X-CRM114-Status: UNSURE (   5.90  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230213_042704_577113_11634BFF 
+X-CRM114-Status: GOOD (  13.31  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,22 +68,78 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-LS0tLS0gVXJzcHLDvG5nbGljaGUgTWFpbCAtLS0tLQo+IFZvbjogImt2YWxvIiA8a3ZhbG9Aa2Vy
-bmVsLm9yZz4KPiBSaWNoYXJkIFdlaW5iZXJnZXIgPHJpY2hhcmRAbm9kLmF0PiB3cml0ZXM6Cj4g
-Cj4+IE9uIG15IHNoaW55IG5ldyBMZW5vdm8gVDE0cyByZXN1bWUgZnJvbSBoaWJlcm5hdGlvbiBh
-bHdheXMgZmFpbHMsIGFuZCBjcmFzaGVzCj4+IHRoZSBrZXJuZWwuCj4+IExvb2tzIGxpa2UgYXRo
-MTFrX3BjaSBpcyB1bmFibGUgdG8gcmVzdW1lIHRoZSBkZXZpY2UuCj4+IFRoaXMgaGFwcGVucyBh
-bHNvIHdpdGggTGludXMnIHRyZWUgYXMgb2YgdG9kYXkuCj4gCj4gVW5mb3J0dW5hdGVseSBhIGtu
-b3duIGlzc3VlIGluIGF0aDExayBidXQgbm8gZml4IGF2YWlsYWJsZToKPiAKPiBodHRwczovL2J1
-Z3ppbGxhLmtlcm5lbC5vcmcvc2hvd19idWcuY2dpP2lkPTIxNDY0OQoKU28gdGhlIGRldmljZSBp
-cyB1bmFibGUgdG8gb3BlcmF0ZSBhZnRlciBlbnRlcmluZyBBQ1BJIFM0LgoKSXMgdGhpcyBhIGJ1
-ZyBpbiB0aGUgTGludXggYXRoMTFrIGRyaXZlciBpdHNlbGYgb3IgbW9yZSBsaWtlbHkgYSBmaXJt
-d2FyZQpjaGlwIGlzc3VlPwpJIGRpZG4ndCB2ZXJpZnkgd2hldGhlciByZXN1bWUgd29ya3Mgb24g
-V2luZG93cyB0aG91Z2guCgpUaGFua3MsCi8vcmljaGFyZAoKLS0gCmF0aDExayBtYWlsaW5nIGxp
-c3QKYXRoMTFrQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9hdGgxMWsK
+Christian Marangi <ansuelsmth@gmail.com> writes:
+
+> On Thu, Feb 09, 2023 at 12:35:20PM +0300, Dan Carpenter wrote:
+>
+>> Hello Christian Marangi,
+>> 
+>> The patch d673cb6fe6c0: "wifi: ath11k: fix peer addition/deletion
+>> error on sta band migration" from Sep 22, 2022, leads to the
+>> following Smatch static checker warning:
+>> 
+>> 	drivers/net/wireless/ath/ath11k/peer.c:396 ath11k_peer_create()
+>> 	warn: sleeping in atomic context
+>> 
+>> drivers/net/wireless/ath/ath11k/peer.c
+>>     370 int ath11k_peer_create(struct ath11k *ar, struct ath11k_vif *arvif,
+>>     371                        struct ieee80211_sta *sta, struct peer_create_params *param)
+>>     372 {
+>>     373         struct ath11k_peer *peer;
+>>     374         struct ath11k_sta *arsta;
+>>     375         int ret, fbret;
+>>     376 
+>>     377         lockdep_assert_held(&ar->conf_mutex);
+>>     378 
+>>     379         if (ar->num_peers > (ar->max_num_peers - 1)) {
+>>     380                 ath11k_warn(ar->ab,
+>>     381                             "failed to create peer due to insufficient peer entry resource in firmware\n");
+>>     382                 return -ENOBUFS;
+>>     383         }
+>>     384 
+>>     385         spin_lock_bh(&ar->ab->base_lock);
+>>                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>> Holding a spin lock.
+>> 
+>>     386         peer = ath11k_peer_find_by_addr(ar->ab, param->peer_addr);
+>>     387         if (peer) {
+>>     388                 if (peer->vdev_id == param->vdev_id) {
+>>     389                         spin_unlock_bh(&ar->ab->base_lock);
+>>     390                         return -EINVAL;
+>>     391                 }
+>>     392 
+>>     393                 /* Assume sta is transitioning to another band.
+>>     394                  * Remove here the peer from rhash.
+>>     395                  */
+>> --> 396                 mutex_lock(&ar->ab->tbl_mtx_lock);
+>>                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>> So we can't take a mutex.
+>> 
+>>     397                 ath11k_peer_rhash_delete(ar->ab, peer);
+>>     398                 mutex_unlock(&ar->ab->tbl_mtx_lock);
+>>     399         }
+>>     400         spin_unlock_bh(&ar->ab->base_lock);
+>>     401 
+>>     402         ret = ath11k_wmi_send_peer_create_cmd(ar, param);
+>
+> thanks for the report. I send a patch to ath mailing list that should
+> fix this bug!
+
+Christian, thanks for the patch. For reference here's the patch:
+
+https://patchwork.kernel.org/project/linux-wireless/patch/20230209222622.1751-1-ansuelsmth@gmail.com/
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
