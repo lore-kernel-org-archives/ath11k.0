@@ -4,58 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9EA4DC636CC
-	for <ath11k@archiver.kernel.org>; Mon, 13 Feb 2023 11:56:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83A2DC636D7
+	for <ath11k@archiver.kernel.org>; Mon, 13 Feb 2023 11:58:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
 	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Ehgn/Kq7R9zDbHG9hQ7b0FeGAwT1JlR0KIip5SroE3A=; b=fO+uYCiue/2QS6
-	4abSROEUE25BiY09Fiv862fBSvZEaDr/l4Y55BMNn3cFV3wv9QhPtCtaAvavKrdBry9pS6+WUPlN0
-	0I5pXmlXFF2tvtjA1S+S+KemXld3jcCMfyE1HtEUxkQ7OQsWeXO/wa/opOYv76VKmx7hrU3kmuA11
-	zRO8Ke5GfKMY3IMZjcqE+9wHS9qzKO0w/VCz91NMxzTR8fuekwnPSOU9lHmbW94TvGjBUs3Fl3XiK
-	tSgt3308/LF1CN2YrqhLOHqpVoQtAyirGNUEvW6Z/QU8LzHIDZ9pQlEht9Qv2bbgiGMdjcXn7cy8Z
-	AyG02dkr6m+FMlm7GbKg==;
+	List-Owner; bh=2nBpfeW5fxRC0e8N4pkXJwkYjcvBCdbHh/oO9ZvnSDA=; b=ImY/TchcKS9g/6
+	5gFHBovPQBHgYxpLjRYRLuOHdnHbi+aB03+gT1iZhM28/r8kmbwsbkCOYCVfhwyhXfJpYQPi3xHkc
+	Bvmmkc1FHxKAwwVhU0Pyx8HoJL2goyMyuAuELpb7veQCPUJo2kxnn6MRWJvnO/pCcdiCu5JRufFGj
+	5/N6sawfHb0N+tX3ExrahKoDvvNhBZVGW6rZrDCMUZbRQrzftNvfM4SKzvqwI+OieKZgdD1ujM07g
+	4EvdKI5HJNfq/N5dpmYZp2ZeJPAe/z1v9zaQYwol64MhhKMrh85Vu01l/27uC22Nc+bBSYLHujTsj
+	+l630jB+TeGC+pfO0bVQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pRXRM-00EWtX-Mh; Mon, 13 Feb 2023 11:56:12 +0000
+	id 1pRXTJ-00EXNg-Um; Mon, 13 Feb 2023 11:58:13 +0000
 Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pRXRD-00EWs5-KB
-	for ath11k@lists.infradead.org; Mon, 13 Feb 2023 11:56:09 +0000
+	id 1pRXTH-00EXMI-Al
+	for ath11k@lists.infradead.org; Mon, 13 Feb 2023 11:58:12 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 6EA4B60FE9;
-	Mon, 13 Feb 2023 11:56:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E2C5C433EF;
-	Mon, 13 Feb 2023 11:56:01 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id BF7C760FF1;
+	Mon, 13 Feb 2023 11:58:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69DD4C433D2;
+	Mon, 13 Feb 2023 11:58:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1676289361;
-	bh=88BqJ+xPD+H2LYmO4uT5ILXDRu/5JC7lveoTYzSu3K4=;
+	s=k20201202; t=1676289490;
+	bh=Z0drZy9PrVSG3ZVXlacA1InhW5BoDam4jRCgidTy4sE=;
 	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=AKNbVqDP5+Xa/hCSyLoNAzNdN867XQHdwm04s821+P6WCR3/qyeGeyN8oczqEsVa7
-	 2tnHvFB6hyDO4xYJyQoYNyYIeIkOhB7dQrqxpAWQCI4q3P++JpQJKUbvk2DqViHZ5O
-	 cYjC+z9LWmQKwafrc6AzLKzirAF4jYZVdGoMUmeWU/mC7u/Q5Z+5Hsirdt8+wu0o3U
-	 T7PTd59XLleGKfjOMzlSpfYnuyHwkOL877L7g5fH/zTI2X9csYalEI+o8Gsuvz5oY1
-	 pWlfrViuaeqxREl8Zzynmun5bc8HHxTR4Gbb+0yQFBlQMGil+dGswGg+sq5NBp8BFd
-	 fPX/JyF5r3xGg==
+	b=bfTfPrq5wQkBEH9lbs04W+FotxiQ8rO9olGsd+ybwGPmANXGits/Tf4S2TVoMwEkP
+	 J/fx6+Zi3R3MUXEgsncvu0KRvcil43FkgypYjgKcCRKlgXNJMXKiCB86+aSrtNFx5q
+	 qUUu3UgLVIDvEtt5RneA+la4WYrNeUaNPjAkgyn6IV6neCy3WV1g80U0UN+lXZN3OO
+	 A0+xqeEzZSDi2Tl1y8KmyFoZLOXLwWCuI9nttk3Uzzi2nUzuPf27KrsSrMc1PnnKdV
+	 gekqVX7l4xRTia3iJlzTmMUFzvR/TpOc1il3bGXGr89qW5GNZGIMnl+zpvsxkS9BnK
+	 R+li9q5UiLLhQ==
 From: Kalle Valo <kvalo@kernel.org>
-To: Shengyu Qu <wiagn233@outlook.com>
-Cc: ath11k@lists.infradead.org
-Subject: Re: WCN6855 board-2.bin update date?
-References: <TY3P286MB2611B5894FD76753446C6B1D98CB9@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
-Date: Mon, 13 Feb 2023 13:55:57 +0200
-In-Reply-To: <TY3P286MB2611B5894FD76753446C6B1D98CB9@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
-	(Shengyu Qu's message of "Sun, 22 Jan 2023 15:24:24 +0800")
-Message-ID: <877cwlwzhu.fsf@kernel.org>
+To: Richard Weinberger <richard@nod.at>
+Cc: linux-wireless@vger.kernel.org,  ath11k@lists.infradead.org
+Subject: Re: Resume from hibernation fails due to ath11k_pci
+References: <1263051271.53086.1674425560245.JavaMail.zimbra@nod.at>
+Date: Mon, 13 Feb 2023 13:58:07 +0200
+In-Reply-To: <1263051271.53086.1674425560245.JavaMail.zimbra@nod.at> (Richard
+	Weinberger's message of "Sun, 22 Jan 2023 23:12:40 +0100 (CET)")
+Message-ID: <873579wze8.fsf@kernel.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230213_035603_743663_77C74EE6 
-X-CRM114-Status: GOOD (  11.16  )
+X-CRM114-CacheID: sfid-20230213_035811_696736_D32C01A7 
+X-CRM114-Status: UNSURE (   8.92  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,18 +73,15 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Shengyu Qu <wiagn233@outlook.com> writes:
+Richard Weinberger <richard@nod.at> writes:
 
-> I'm using WCN6855 in my notebook currently. There is no related
-> calibration information for my card OEM version in linux-firmware
-> version of board-2.bin now. And correct calibration information already
-> exists in Kalle's git repo. So I'm asking when could we get a update in
-> linux-firmware? I'm using Ubuntu, and almost every apt upgrade would
-> overwrite newer board-2.bin with linux-firmware one, which really annoys me.
+> On my shiny new Lenovo T14s resume from hibernation always fails, and crashes the kernel.
+> Looks like ath11k_pci is unable to resume the device.
+> This happens also with Linus' tree as of today.
 
-IIRC dpkg has a some kind of "do not overwrite a file" feature, you
-might want to see if that works as a temporary workaround. But I'm
-planning to submit a pull request to linux-firmware soon.
+Unfortunately a known issue in ath11k but no fix available:
+
+https://bugzilla.kernel.org/show_bug.cgi?id=214649
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
