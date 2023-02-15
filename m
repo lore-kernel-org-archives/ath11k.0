@@ -4,61 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1969DC636D4
-	for <ath11k@archiver.kernel.org>; Wed, 15 Feb 2023 16:57:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B2DFC636CC
+	for <ath11k@archiver.kernel.org>; Wed, 15 Feb 2023 17:35:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=F6TyMVcz1+KWNPn3Ib/YLtNDm4DSN8fBGGhJ7GWz6XA=; b=nzY0zAdlnX9oRB
-	V2pO2ke1k06Un7325QkrdqCpuBmQm/vwpk+CwOg3XdA/gqJx8pXVHFgq8MvPPZUZZuHRXezoHKyM/
-	s9Ac0xP/OdDk5B1m5LKeNY8LAtXjzRzG7f8Bc3T7oI3HeTxd+VF4IF/bZPVua4E4XCSLJ71pCRwLH
-	HaQznNDx3UlhC/uqlutdIQmSUFBdTvPrPlxXf9oHSu2MWqhiTUTVTm7gunRmI2m8oGAMp96jx9aIS
-	suqzvyGI5q+CzpZTwyDZLexYgiMYLz0fRm8mKy0LC4reI9z+a1h0fkEAS43g8O0P32TycygZxvx3v
-	qdn9vcn/vfl2fNPo3LKA==;
+	List-Owner; bh=Uc6R+uRVenlDl3voTJSPg5PFpH6YeIFdEnri0/HWRsw=; b=ZIxTcOkxFozO2t
+	Rlz4gC9pha0Bt3SLOQS/nTQ+BSjD3NUroK8R5M1r1zS5gKpusVBE+vpSj8fHN/wBqbcrJJxNVjFII
+	/QoNoMKDN90yCZL3ryUSV60+7KfF3PuYaRfPDB3Gi1JSUBT7a3wujaDJAVnvritcxzoBivAd6052O
+	iUlg3pxdQHZ56UZonei+S3gvCAtmqNM/Lv7+E7AHvhaBUz6kuzEXwsyoLuLMuVz+x7fArVEEz3y9E
+	JYtK07W5+1e+oRNQQy+PRBOrSt4JFiM6xOM8MfiNxdLcNkwoqbDxBMBXpSfOGM1X6cFmXxhNN4T0n
+	9wTNLdLhry2Eq1hQ3YIA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pSL6T-006asB-ST; Wed, 15 Feb 2023 16:57:57 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1pSLgR-006i8M-PV; Wed, 15 Feb 2023 17:35:07 +0000
+Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2] helo=sipsolutions.net)
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pSL6Q-006aqv-Sr
-	for ath11k@lists.infradead.org; Wed, 15 Feb 2023 16:57:56 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 733D661CDE;
-	Wed, 15 Feb 2023 16:57:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CEAAC433D2;
-	Wed, 15 Feb 2023 16:57:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1676480273;
-	bh=pZYngPe4e773XbJzeeYSvB5/vkb/xhwvgUaG89tXrRQ=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=ZWsYfnvAPD5WNVOl0t89Mz0uR+AeKy5lpK2S3+tNQ8j3O8DEjmjUl6bkq6+arFU0H
-	 VzEH4RgGFRmQKBZKfJX8Yp8tkesbPanBzEc95FW2Vx0Qp4Wq+OsAahVHTGqc9R0Dh3
-	 o+1WaqbEqQgS+5R7iMjIpJP66h272Ydpv9CcNUFBaKLnVohx0Vv6ik37Q2TxxhXkUy
-	 9KGwAD1B7LJTQ2TZFlQzTHRYlSM3V2IQQFLaW4WPXB5sDuoGoJTfGSZR0Axqs08+c5
-	 24BrQYs/7KTkrVOq/WC8iLu8KcNuUDIoY9Gk2H5atoz2CL+dCpb1adZYOzDNfDdZII
-	 5VPOTX6Qa5Jkg==
-From: Kalle Valo <kvalo@kernel.org>
-To: Robert Marko <robert.marko@sartura.hr>
-Cc: Robert Marko <robimarko@gmail.com>,  ath11k@lists.infradead.org
-Subject: Re: regdb.bin availability
-References: <CAOX2RU5ATBuuPewx4DgveKjhc+E1a=Kt2COWDhYqQtLiJ1=NoQ@mail.gmail.com>
-	<87o7rvzgpn.fsf@kernel.org>
-	<CAOX2RU6oieaGjpPpYwnMtBk=-nG13=JGW+-+838REQ4HsPcRNg@mail.gmail.com>
-	<CA+HBbNGCKvP=qTRm32Pkq+CHX5k8BB0qjahX_ppmegNyu_k1Jg@mail.gmail.com>
-Date: Wed, 15 Feb 2023 18:57:48 +0200
-In-Reply-To: <CA+HBbNGCKvP=qTRm32Pkq+CHX5k8BB0qjahX_ppmegNyu_k1Jg@mail.gmail.com>
-	(Robert Marko's message of "Tue, 7 Feb 2023 12:39:31 +0100")
-Message-ID: <87lekyuar7.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+	id 1pSLgP-006i5m-2A
+	for ath11k@lists.infradead.org; Wed, 15 Feb 2023 17:35:06 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
+	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
+	Resent-Cc:Resent-Message-ID; bh=9AXJuCaXJEyUZLD5x7msrVhjTKmunuVp3q/Olzo3bto=;
+	t=1676482502; x=1677692102; b=oS0ap/rv3kD6TK4X9JFBWVdVV7xorc03KwSSII98Wouex79
+	U9Gzwavm8nBlIdwR8+zhJE8HxFJrMLcIRpAVKyJctUASFY9rkzx4cIHlRg/m2NN4YhjPC5rkNICIC
+	5YN7EBP0GHkbDJbsXirTBQKQp0Q3N8zyKSgEKJer4IcvchW8zsJH3htIT4zRszSI2IiyYTKalFIx/
+	ZxwVgUY4ZqyTfzyvsyK6neYLv0Z904RrHrkhwWp2Gm+K80G6igdOjbNgB/ysbiM0u0J+UbKRnd5ug
+	f8bYXz9J2535LKAlPktOCS061ubaM4gzIYVkK9iELnAko+sUS8r0S+mNnzgyUdpg==;
+Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+	(Exim 4.96)
+	(envelope-from <johannes@sipsolutions.net>)
+	id 1pSLgJ-00D9Id-0K;
+	Wed, 15 Feb 2023 18:34:59 +0100
+Message-ID: <65670cf42abc593502e9f7bafc56c1d0360d5631.camel@sipsolutions.net>
+Subject: Re: [PATCH v3 1/3] wifi: cfg80211: add support to enable/disable
+ bss color collision detection
+From: Johannes Berg <johannes@sipsolutions.net>
+To: Rameshkumar Sundaram <quic_ramess@quicinc.com>, 
+	ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org, Jouni Malinen <j@w1.fi>
+Date: Wed, 15 Feb 2023 18:34:58 +0100
+In-Reply-To: <20230201065638.25990-2-quic_ramess@quicinc.com>
+References: <20230201065638.25990-1-quic_ramess@quicinc.com>
+	 <20230201065638.25990-2-quic_ramess@quicinc.com>
+User-Agent: Evolution 3.46.3 (3.46.3-1.fc37) 
 MIME-Version: 1.0
+X-malware-bazaar: not-scanned
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230215_085754_988519_B7337E75 
-X-CRM114-Status: GOOD (  18.76  )
+X-CRM114-CacheID: sfid-20230215_093505_120614_9D5E367E 
+X-CRM114-Status: GOOD (  11.25  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,40 +73,35 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Robert Marko <robert.marko@sartura.hr> writes:
+On Wed, 2023-02-01 at 12:26 +0530, Rameshkumar Sundaram wrote:
+> As per 802.11ax-2021, STAs shall process BSS Color Change Announcement
+> (BCCA) from AP and switch to new color, but some STAs aren't processing
+> BCCA from AP and not doing color switch, causing them to drop data
+> frames from AP post color change.
 
-> On Thu, Dec 22, 2022 at 5:26 PM Robert Marko <robimarko@gmail.com> wrote:
->>
->> On Thu, 22 Dec 2022 at 14:54, Kalle Valo <kvalo@kernel.org> wrote:
->> >
->> > Robert Marko <robimarko@gmail.com> writes:
->> >
->> > > Would it be possible to make the regdb.bin publicly available?
->> > >
->> > > Newer FW-s support using it as the external regulatory database and it
->> > > would really allow the community running AHB radios to avoid being
->> > > stuck with the outdated or even non-existent regulatory data in the
->> > > BDF.
->> >
->> > I thought we were providing that for all hardware, I guess that was
->> > missed. Would you mind reporting this to bugzilla? That way it's easier
->> > for me to track.
->>
->> Currently, its available only for WCN6855.
->>
->> Sure, bug opened:
->> https://bugzilla.kernel.org/show_bug.cgi?id=216832
->
-> Kalle, can you please look into this? It's currently completely
-> blocking the community from using 2.7 FW on IPQ8074.
+Hmm. We had this bug in EHT. Should we really allow this? It's a station
+bug, why bother?
 
-Sorry for the delay. Yes, I will definitely look into it and will get
-back to you via bugzilla.
+> Provide an option to disable color collision detection and therefore
+> not to do BCCA to mitigate the same from AP. If it's required in case
+> where STA supports BCCA handling, then it can enabled in AP using this
+> option.
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+This could be rewritten a bit, not entirely clear to me. "enabled" is
+more like "disabled"? Or no? Confusing.
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+> + * @NL80211_HE_BSS_COLOR_ATTR_COLLISION_DETECTION_DISABLED: is BSS
+> + * color collision detection disabled.
+
+please use a tab to indent the second line like elsewhere
+
+> +	he_bss_color->collision_detection_enabled =
+> +		!nla_get_flag(tb[NL80211_HE_BSS_COLOR_ATTR_COLLISION_DETECTION_DISABLED]);
+
+Is it really worth to have one side say "enabled" and the other
+"disabled"?
+
+johannes
 
 -- 
 ath11k mailing list
