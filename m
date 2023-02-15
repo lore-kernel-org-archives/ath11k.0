@@ -4,59 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B2DFC636CC
-	for <ath11k@archiver.kernel.org>; Wed, 15 Feb 2023 17:35:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA365C636CC
+	for <ath11k@archiver.kernel.org>; Wed, 15 Feb 2023 17:35:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Uc6R+uRVenlDl3voTJSPg5PFpH6YeIFdEnri0/HWRsw=; b=ZIxTcOkxFozO2t
-	Rlz4gC9pha0Bt3SLOQS/nTQ+BSjD3NUroK8R5M1r1zS5gKpusVBE+vpSj8fHN/wBqbcrJJxNVjFII
-	/QoNoMKDN90yCZL3ryUSV60+7KfF3PuYaRfPDB3Gi1JSUBT7a3wujaDJAVnvritcxzoBivAd6052O
-	iUlg3pxdQHZ56UZonei+S3gvCAtmqNM/Lv7+E7AHvhaBUz6kuzEXwsyoLuLMuVz+x7fArVEEz3y9E
-	JYtK07W5+1e+oRNQQy+PRBOrSt4JFiM6xOM8MfiNxdLcNkwoqbDxBMBXpSfOGM1X6cFmXxhNN4T0n
-	9wTNLdLhry2Eq1hQ3YIA==;
+	List-Owner; bh=ioZ9VYkXH1RuKdVo5Sc7n8xKGxYWrMkRGsCPyQgTaZU=; b=JvRhROaNaDw3Pq
+	+uJS1m29tMxE3T3Guw6qwOQ6wMaXCeXtcg8iiRJiD22cbMhxYRgLQXuceDAkXLN74P0B68lX94cIl
+	H1B1jSBRguuwiqkLqFau6DG4kmj8Kr6OizvZ4VIPqhV4S7Csjd87Ql4yVtlmwqrEJ0wxrJ6IKzzVt
+	WRwcvdX3yeeJn7y52ZSaDW0HlkpeV1WGG89yinkJ5X+8fcCb0x6901hHnueVW8GEoee/Ya2AD9IgP
+	tpWmI3VhM+7L+6E3XcKaKOPuEwLmA69tAJwg3dyamOF8FOoq3sNh5bj4geo3zShTlcrFf/oUJXy9r
+	/vSY7xTh+CimEXgODo2A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pSLgR-006i8M-PV; Wed, 15 Feb 2023 17:35:07 +0000
+	id 1pSLhC-006iQ9-TR; Wed, 15 Feb 2023 17:35:54 +0000
 Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2] helo=sipsolutions.net)
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pSLgP-006i5m-2A
-	for ath11k@lists.infradead.org; Wed, 15 Feb 2023 17:35:06 +0000
+	id 1pSLh9-006iOx-JI
+	for ath11k@lists.infradead.org; Wed, 15 Feb 2023 17:35:52 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
 	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
 	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
-	Resent-Cc:Resent-Message-ID; bh=9AXJuCaXJEyUZLD5x7msrVhjTKmunuVp3q/Olzo3bto=;
-	t=1676482502; x=1677692102; b=oS0ap/rv3kD6TK4X9JFBWVdVV7xorc03KwSSII98Wouex79
-	U9Gzwavm8nBlIdwR8+zhJE8HxFJrMLcIRpAVKyJctUASFY9rkzx4cIHlRg/m2NN4YhjPC5rkNICIC
-	5YN7EBP0GHkbDJbsXirTBQKQp0Q3N8zyKSgEKJer4IcvchW8zsJH3htIT4zRszSI2IiyYTKalFIx/
-	ZxwVgUY4ZqyTfzyvsyK6neYLv0Z904RrHrkhwWp2Gm+K80G6igdOjbNgB/ysbiM0u0J+UbKRnd5ug
-	f8bYXz9J2535LKAlPktOCS061ubaM4gzIYVkK9iELnAko+sUS8r0S+mNnzgyUdpg==;
+	Resent-Cc:Resent-Message-ID; bh=Yxxd4SRBeMcxv/d15Lefe27giEN1CCN93R+1EThdVBw=;
+	t=1676482551; x=1677692151; b=tNh7Gg4XL5Pus7QiKrp7K1PGFuR+xlvYDMdf8waa9mTTR11
+	QN1csIP/9VqoupnJCCeqYh7W9TarV/VvgjN0bqVnOWeeKPf9yF52kbPyne+s4JWduZkJQ+kRQji3n
+	yPEY0aqoP2vzEVtpzhbSKiTj/7ofG6zAIg91IhkT5ni4YpbKYREeE9OYyg9ikjHGqqfn2b50gKxP+
+	IDScNcwAHg8druO101jlk5IWYq9VU+Apf+kl9J0d/aWoRXDww8fUAHWGzex5jY+A8MyImWID0LKlP
+	jPJvQC1ysRRs6+NdqK+WZ6u7ZTtNJJZFEjSdklrBZQXDzgnV9eFWyxIglCVX+IdQ==;
 Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
 	(Exim 4.96)
 	(envelope-from <johannes@sipsolutions.net>)
-	id 1pSLgJ-00D9Id-0K;
-	Wed, 15 Feb 2023 18:34:59 +0100
-Message-ID: <65670cf42abc593502e9f7bafc56c1d0360d5631.camel@sipsolutions.net>
-Subject: Re: [PATCH v3 1/3] wifi: cfg80211: add support to enable/disable
- bss color collision detection
+	id 1pSLh7-00D9K3-2H;
+	Wed, 15 Feb 2023 18:35:49 +0100
+Message-ID: <5dadf98596e71485155225368c68eb71ee69e89e.camel@sipsolutions.net>
+Subject: Re: [PATCH v3 2/3] wifi: mac80211: Avoid BSS color collision
+ detection if its disabled
 From: Johannes Berg <johannes@sipsolutions.net>
 To: Rameshkumar Sundaram <quic_ramess@quicinc.com>, 
 	ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org, Jouni Malinen <j@w1.fi>
-Date: Wed, 15 Feb 2023 18:34:58 +0100
-In-Reply-To: <20230201065638.25990-2-quic_ramess@quicinc.com>
+Cc: linux-wireless@vger.kernel.org
+Date: Wed, 15 Feb 2023 18:35:48 +0100
+In-Reply-To: <20230201065638.25990-3-quic_ramess@quicinc.com>
 References: <20230201065638.25990-1-quic_ramess@quicinc.com>
-	 <20230201065638.25990-2-quic_ramess@quicinc.com>
+	 <20230201065638.25990-3-quic_ramess@quicinc.com>
 User-Agent: Evolution 3.46.3 (3.46.3-1.fc37) 
 MIME-Version: 1.0
 X-malware-bazaar: not-scanned
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230215_093505_120614_9D5E367E 
-X-CRM114-Status: GOOD (  11.25  )
+X-CRM114-CacheID: sfid-20230215_093551_651266_D6076239 
+X-CRM114-Status: GOOD (  12.46  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,32 +74,30 @@ Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 On Wed, 2023-02-01 at 12:26 +0530, Rameshkumar Sundaram wrote:
-> As per 802.11ax-2021, STAs shall process BSS Color Change Announcement
-> (BCCA) from AP and switch to new color, but some STAs aren't processing
-> BCCA from AP and not doing color switch, causing them to drop data
-> frames from AP post color change.
+> Don't detect BSS color collision and send collision events
+> to userspace if it is disabled.
+> 
+> Signed-off-by: Rameshkumar Sundaram <quic_ramess@quicinc.com>
+> ---
+>  net/mac80211/rx.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/net/mac80211/rx.c b/net/mac80211/rx.c
+> index e284897ba5e9..5588067b2af2 100644
+> --- a/net/mac80211/rx.c
+> +++ b/net/mac80211/rx.c
+> @@ -3195,7 +3195,8 @@ ieee80211_rx_check_bss_color_collision(struct ieee80211_rx_data *rx)
+>  	if (ieee80211_hw_check(&rx->local->hw, DETECTS_COLOR_COLLISION))
+>  		return;
+>  
+> -	if (rx->sdata->vif.bss_conf.csa_active)
+> +	if (rx->sdata->vif.bss_conf.csa_active ||
+> +	    rx->sdata->vif.bss_conf.he_bss_color.collision_detection_enabled)
+>  		return;
 
-Hmm. We had this bug in EHT. Should we really allow this? It's a station
-bug, why bother?
+And this kind of answers my question on the previous patch ...
 
-> Provide an option to disable color collision detection and therefore
-> not to do BCCA to mitigate the same from AP. If it's required in case
-> where STA supports BCCA handling, then it can enabled in AP using this
-> option.
-
-This could be rewritten a bit, not entirely clear to me. "enabled" is
-more like "disabled"? Or no? Confusing.
-
-> + * @NL80211_HE_BSS_COLOR_ATTR_COLLISION_DETECTION_DISABLED: is BSS
-> + * color collision detection disabled.
-
-please use a tab to indent the second line like elsewhere
-
-> +	he_bss_color->collision_detection_enabled =
-> +		!nla_get_flag(tb[NL80211_HE_BSS_COLOR_ATTR_COLLISION_DETECTION_DISABLED]);
-
-Is it really worth to have one side say "enabled" and the other
-"disabled"?
+???
 
 johannes
 
