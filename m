@@ -4,59 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81A07C636D4
-	for <ath11k@archiver.kernel.org>; Wed, 15 Feb 2023 17:37:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD115C636CC
+	for <ath11k@archiver.kernel.org>; Wed, 15 Feb 2023 19:28:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=pMEKGzan2biWIAfPb7f1n4xe1MvVOMJXUY4tVInduvw=; b=UGNbLxcssp/ZUg
-	mNg+RIzDCZXEWfqlfjRg8v/rg7sBi5/XdB2GRbwdqaSy7IPFSXb1WP2lcpuzPkOdhaMrMkiA96RPi
-	RlLdZiiJ4ZZsccTlxW9joVUcsMJIMRXaNHfGJSltFbVrmdv63q5MZ2Z2UXfXFbcgt6ZcxA97Otsm4
-	Qc/v+S5jC34Hy00sNQC8XYvx968V3ev+MzodmTk8ea8tH3QxhJnVpOKO8dMpL2xihHvYB4N2Fc2GG
-	COmbRMcbAT9d3oVdA0uEX4+s43CunNZqfMs8qTPOYhicMCkW8VDCbIsv0T8fNgBrU4iTv6U/SmQ/H
-	teKYGtuLfjikmrsX6G/g==;
+	List-Owner; bh=oUc8eH7/I9gHg1iu1EnLEnWaP+J2dTxOrn3MIINGZp8=; b=P5hmf8GlY35WdS
+	iR/VLtzYKl7itKUhME4xyhzplAf9Axs/10nQfzo93BRulWVsJoNedY2ej7Pdj3iXk/o7iqdEcijIM
+	FX2yrAg0t4JfiYDbGs8WABjnv7Z6XUOBCimDQCb0rHcatZSMDvqBib4X3gRSXOkVD4f730N9wWZPu
+	pYOLp3O+Xo0r5bF/gn10uNQq8HPO7lBH6PFmqokoVzQOfBhQc4wAgwJiEjN2K3dMO5ex37ncBX9ke
+	O+U/4lcn1mCUzx2JfQgqbfoo7jcheR1ywEPnY9XMA0W0H/fANBMtpKFiJpCNk6aHBh7yexIQ2o9f8
+	t0qoJhDEIVhH8jH+sKAA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pSLjA-006j6E-Um; Wed, 15 Feb 2023 17:37:56 +0000
-Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2] helo=sipsolutions.net)
+	id 1pSNRj-006y0d-R5; Wed, 15 Feb 2023 19:28:03 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pSLj8-006j5H-Eg
-	for ath11k@lists.infradead.org; Wed, 15 Feb 2023 17:37:55 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
-	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
-	Resent-Cc:Resent-Message-ID; bh=zd92LPo7R+krbsALRLGyUaaTkdnACGv/4SBRzWXgf3U=;
-	t=1676482674; x=1677692274; b=uzQS9oLoJOWnYARTFnOzM4hGoUT/gufz9ZTmrlNrpB4zthe
-	cDUfuEhUTJ83PnxPn03oYZ3w8Gk8YxozgOpdjcVZAMtMVsU3gp6lna4SsfPDNPNJJ7N0muiu1MDPu
-	pIE9VD8u3lMrE6afSGbdtfRpypeDTSDksIxE6n55U2ZFdCS0ymAtFbBboyDW7DBG82gFn9M534jsS
-	76SMvgqichM11RfiDTSfWuM0X4UOXahIDSQ9mHrcJRySHkwzH4k+7ZHr1Zb7vcANokqJK0n6gQSGf
-	HPNyghRc5tbMdY2fMfx6Fu0xltkwGaosCY7uocZu//CkeyTIBcsyzgaLV3IOst4w==;
-Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
-	(Exim 4.96)
-	(envelope-from <johannes@sipsolutions.net>)
-	id 1pSLj6-00D9MO-13;
-	Wed, 15 Feb 2023 18:37:52 +0100
-Message-ID: <3dbd12c5c46b28c36504a0ebaf7d3b13bc2f141e.camel@sipsolutions.net>
-Subject: Re: [PATCH v3 3/3] wifi: ath11k: add support to enable/disable BSS
- color collision detection
-From: Johannes Berg <johannes@sipsolutions.net>
-To: Rameshkumar Sundaram <quic_ramess@quicinc.com>, 
-	ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
-Date: Wed, 15 Feb 2023 18:37:51 +0100
-In-Reply-To: <20230201065638.25990-4-quic_ramess@quicinc.com>
-References: <20230201065638.25990-1-quic_ramess@quicinc.com>
-	 <20230201065638.25990-4-quic_ramess@quicinc.com>
-User-Agent: Evolution 3.46.3 (3.46.3-1.fc37) 
+	id 1pSNRf-006xz0-MC; Wed, 15 Feb 2023 19:28:01 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 5528261BD5;
+	Wed, 15 Feb 2023 19:27:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8BC1C433EF;
+	Wed, 15 Feb 2023 19:27:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1676489276;
+	bh=77deFbh1kwzI95YfY2HOEGkz4OJJgjpZQiM18t9j1YI=;
+	h=References:In-Reply-To:From:Date:Subject:To:List-Id:Cc:From;
+	b=JSB57JY5SU4XD8WCG/8IqtCLsJ7HbfO/vun00tY9rynBj3oPJ6WYArYWkCbtgl2nr
+	 0AAeormczFQnH6FJPmtK+g8/VcbHGc+isuOvEmxG9QdbUmPNbEhKVJ5Y+2b+LH5gwG
+	 VH/OwttOxK/59+4DGpnsOhQwLIPy2p7bZLpGt+udNODZx2H0GFaDxq3hZLzsLhBH88
+	 PVU6yGeaczNPsPWQGSODSJv7qOo3YP8FEimhEnnFNymrBBBCZZRiassuxni17U+KTb
+	 t57ZmVlyvPZj9uyb5QidTBmmK7GvzD2jPix/TWNwLW8sgbjHQGhc/mZZ29wLrVahbX
+	 pNh7VYNUZqdqg==
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-530b9a0a789so69410807b3.13;
+        Wed, 15 Feb 2023 11:27:56 -0800 (PST)
+X-Gm-Message-State: AO0yUKXavQpt0ubcotnxb+nnD1Ev7V7KGUPlcxtuRutf/HfsIqbEeW69
+	IuuoTuLKrBhCtcLV2RTQKnse6cdfstmr80y6YvE=
+X-Google-Smtp-Source: AK7set8YE4F0WC5yQ6uu/RsU32AgWOEa1eUtcJ9r+GVQcQ8y0YXMwNvjSc6L7U5wNA9mrQitnIu3TbnJLfgP1XpXIK4=
+X-Received: by 2002:a25:ab30:0:b0:8d7:814e:4e53 with SMTP id
+ u45-20020a25ab30000000b008d7814e4e53mr303226ybi.564.1676489275682; Wed, 15
+ Feb 2023 11:27:55 -0800 (PST)
 MIME-Version: 1.0
-X-malware-bazaar: not-scanned
+References: <878rgzuw37.fsf@kernel.org>
+In-Reply-To: <878rgzuw37.fsf@kernel.org>
+From: Josh Boyer <jwboyer@kernel.org>
+Date: Wed, 15 Feb 2023 14:27:44 -0500
+X-Gmail-Original-Message-ID: <CA+5PVA40QB4_5eEiQ_s0M4OSD+-Abbzr8z+YasUGasMZBxboYw@mail.gmail.com>
+Message-ID: <CA+5PVA40QB4_5eEiQ_s0M4OSD+-Abbzr8z+YasUGasMZBxboYw@mail.gmail.com>
+Subject: Re: [PULL linux-firmware] ath10k & ath11k firmware 20230215
+To: Kalle Valo <kvalo@kernel.org>
+Cc: linux-firmware@kernel.org, linux-wireless@vger.kernel.org, 
+	ath10k@lists.infradead.org, ath11k@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230215_093754_512047_A49AB022 
-X-CRM114-Status: GOOD (  12.53  )
+X-CRM114-CacheID: sfid-20230215_112759_848604_13EC5233 
+X-CRM114-Status: GOOD (  20.83  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,39 +79,97 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed, 2023-02-01 at 12:26 +0530, Rameshkumar Sundaram wrote:
-> Enable/Disable BSS color collision detection based on user
-> configuration of collision detection and BSS color feature
-> itself.
-> 
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.1.0.1-01228-QCAHKSWPL_SILICONZ-1
-> 
-> Signed-off-by: Rameshkumar Sundaram <quic_ramess@quicinc.com>
-> ---
->  drivers/net/wireless/ath/ath11k/mac.c | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-> index 9e923ecb0891..6d5290996d9f 100644
-> --- a/drivers/net/wireless/ath/ath11k/mac.c
-> +++ b/drivers/net/wireless/ath/ath11k/mac.c
-> @@ -3112,6 +3112,7 @@ static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
->  	u8 rateidx;
->  	u32 rate;
->  	u32 ipv4_cnt;
-> +	bool color_collision_detect;
->  
->  	mutex_lock(&ar->conf_mutex);
->  
-> @@ -3370,10 +3371,12 @@ static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
->  
->  	if (changed & BSS_CHANGED_HE_BSS_COLOR) {
+On Wed, Feb 15, 2023 at 4:17 AM Kalle Valo <kvalo@kernel.org> wrote:
+>
+> Hi,
+>
+> Here's a new pull request for ath10k and ath11k. We have new hardware
+> IPQ5018 and various updates for existing hardware. Especially many have
+> requested the firmware update for WCN6855 which seems to fix an
+> important suspend problem.
+>
+> Please let me know if there are any problems.
+>
+> Kalle
+>
+> The following changes since commit a253a3723f8a0ee5bc5d4f551981a651ba660186:
+>
+>   cnm: update chips&media wave521c firmware. (2023-02-14 12:58:03 -0500)
+>
+> are available in the Git repository at:
+>
+>   git://git.kernel.org/pub/scm/linux/kernel/git/kvalo/linux-firmware.git ath10k-20230215
 
-You never set this flag in the prior change, and it also doesn't even
-*mean* the BSS color _detection_ changed ..??
+Pulled and pushed out.  Thanks.
 
-johannes
+josh
 
+>
+> for you to fetch changes up to c7a57ef688f7d99d8338a5d8edddc8836ff0e6de:
+>
+>   ath11k: WCN6855 hw2.0: update to WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23 (2023-02-15 11:09:53 +0200)
+>
+> ----------------------------------------------------------------
+> Kalle Valo (7):
+>       ath10k: WCN3990 hw1.0: update board-2.bin
+>       ath10k: QCA6174 hw3.0: update firmware-sdio-6.bin to version WLAN.RMH.4.4.1-00174
+>       ath11k: IPQ5018 hw1.0: add board-2.bin
+>       ath11k: IPQ5018 hw1.0: add to WLAN.HK.2.6.0.1-00861-QCAHKSWPL_SILICONZ-1
+>       ath11k: WCN6750 hw1.0: update board-2.bin
+>       ath11k: WCN6855 hw2.0: update board-2.bin
+>       ath11k: WCN6855 hw2.0: update to WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
+>
+>  WHENCE                                   |   27 +-
+>  ath10k/QCA6174/hw3.0/firmware-sdio-6.bin |  Bin 604416 -> 607252 bytes
+>  ath10k/WCN3990/hw1.0/board-2.bin         |  Bin 461060 -> 513892 bytes
+>  ath11k/IPQ5018/hw1.0/Notice.txt          | 4094 ++++++++++++++++++++++++++++++
+>  ath11k/IPQ5018/hw1.0/board-2.bin         |  Bin 0 -> 524564 bytes
+>  ath11k/IPQ5018/hw1.0/m3_fw.b00           |  Bin 0 -> 148 bytes
+>  ath11k/IPQ5018/hw1.0/m3_fw.b01           |  Bin 0 -> 136 bytes
+>  ath11k/IPQ5018/hw1.0/m3_fw.b02           |  Bin 0 -> 262144 bytes
+>  ath11k/IPQ5018/hw1.0/m3_fw.flist         |    3 +
+>  ath11k/IPQ5018/hw1.0/m3_fw.mdt           |  Bin 0 -> 284 bytes
+>  ath11k/IPQ5018/hw1.0/q6_fw.b00           |  Bin 0 -> 532 bytes
+>  ath11k/IPQ5018/hw1.0/q6_fw.b01           |  Bin 0 -> 520 bytes
+>  ath11k/IPQ5018/hw1.0/q6_fw.b02           |  Bin 0 -> 7552 bytes
+>  ath11k/IPQ5018/hw1.0/q6_fw.b03           |  Bin 0 -> 545008 bytes
+>  ath11k/IPQ5018/hw1.0/q6_fw.b04           |  Bin 0 -> 86788 bytes
+>  ath11k/IPQ5018/hw1.0/q6_fw.b05           |  Bin 0 -> 17776 bytes
+>  ath11k/IPQ5018/hw1.0/q6_fw.b07           |  Bin 0 -> 1488 bytes
+>  ath11k/IPQ5018/hw1.0/q6_fw.b08           |  Bin 0 -> 4096 bytes
+>  ath11k/IPQ5018/hw1.0/q6_fw.b09           |  Bin 0 -> 2330624 bytes
+>  ath11k/IPQ5018/hw1.0/q6_fw.b10           |  Bin 0 -> 269028 bytes
+>  ath11k/IPQ5018/hw1.0/q6_fw.b11           |  Bin 0 -> 99436 bytes
+>  ath11k/IPQ5018/hw1.0/q6_fw.b13           |  Bin 0 -> 7024 bytes
+>  ath11k/IPQ5018/hw1.0/q6_fw.b14           |  Bin 0 -> 1668 bytes
+>  ath11k/IPQ5018/hw1.0/q6_fw.flist         |   13 +
+>  ath11k/IPQ5018/hw1.0/q6_fw.mdt           |  Bin 0 -> 1052 bytes
+>  ath11k/WCN6750/hw1.0/board-2.bin         |  Bin 843548 -> 843548 bytes
+>  ath11k/WCN6855/hw2.0/amss.bin            |  Bin 4972544 -> 4980736 bytes
+>  ath11k/WCN6855/hw2.0/board-2.bin         |  Bin 1322820 -> 6158196 bytes
+>  28 files changed, 4135 insertions(+), 2 deletions(-)
+>  create mode 100644 ath11k/IPQ5018/hw1.0/Notice.txt
+>  create mode 100644 ath11k/IPQ5018/hw1.0/board-2.bin
+>  create mode 100644 ath11k/IPQ5018/hw1.0/m3_fw.b00
+>  create mode 100644 ath11k/IPQ5018/hw1.0/m3_fw.b01
+>  create mode 100644 ath11k/IPQ5018/hw1.0/m3_fw.b02
+>  create mode 100644 ath11k/IPQ5018/hw1.0/m3_fw.flist
+>  create mode 100644 ath11k/IPQ5018/hw1.0/m3_fw.mdt
+>  create mode 100644 ath11k/IPQ5018/hw1.0/q6_fw.b00
+>  create mode 100644 ath11k/IPQ5018/hw1.0/q6_fw.b01
+>  create mode 100644 ath11k/IPQ5018/hw1.0/q6_fw.b02
+>  create mode 100644 ath11k/IPQ5018/hw1.0/q6_fw.b03
+>  create mode 100644 ath11k/IPQ5018/hw1.0/q6_fw.b04
+>  create mode 100644 ath11k/IPQ5018/hw1.0/q6_fw.b05
+>  create mode 100644 ath11k/IPQ5018/hw1.0/q6_fw.b07
+>  create mode 100644 ath11k/IPQ5018/hw1.0/q6_fw.b08
+>  create mode 100644 ath11k/IPQ5018/hw1.0/q6_fw.b09
+>  create mode 100644 ath11k/IPQ5018/hw1.0/q6_fw.b10
+>  create mode 100644 ath11k/IPQ5018/hw1.0/q6_fw.b11
+>  create mode 100644 ath11k/IPQ5018/hw1.0/q6_fw.b13
+>  create mode 100644 ath11k/IPQ5018/hw1.0/q6_fw.b14
+>  create mode 100644 ath11k/IPQ5018/hw1.0/q6_fw.flist
+>  create mode 100644 ath11k/IPQ5018/hw1.0/q6_fw.mdt
 
 -- 
 ath11k mailing list
