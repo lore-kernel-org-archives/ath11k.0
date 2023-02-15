@@ -4,72 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F41ACC64EC7
-	for <ath11k@archiver.kernel.org>; Wed, 15 Feb 2023 13:05:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1969DC636D4
+	for <ath11k@archiver.kernel.org>; Wed, 15 Feb 2023 16:57:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=TcAD5rmfk+sG/Q+1fuHEtznFLICPwFSeuTQdW2a2ERw=; b=ppraYgdCEPdZl8
-	phX/m81F6h1+Y4YR8MdkRqoKrAKm7GyhUwHZlc4fqCuHfmKiYu3yXIwENDImgBQmrrXv/dUcjh/57
-	FOIl+jqZ7ZSyyWH10QvbH1v+O5QMlZBoFIIW1utc01QivxsC+hdYK1CU/KacRHsQ0Vr5CKLk5N1rg
-	y4OjIlbSiNHsBzL4ECNsTxHGAikUGZPRuLZTGERPpL276w+2TJ1NqVktR7kOtd1JAkhLROSWNy5JT
-	4JoxJTpVCXpZJdM5svBqqtqIubJwJwh+O/J6xfCCcw8U031/24tdub5P+xwa30XmRY34gS/i5T1gS
-	iXeh9UI9rup5YkIHhvxw==;
+	List-Owner; bh=F6TyMVcz1+KWNPn3Ib/YLtNDm4DSN8fBGGhJ7GWz6XA=; b=nzY0zAdlnX9oRB
+	V2pO2ke1k06Un7325QkrdqCpuBmQm/vwpk+CwOg3XdA/gqJx8pXVHFgq8MvPPZUZZuHRXezoHKyM/
+	s9Ac0xP/OdDk5B1m5LKeNY8LAtXjzRzG7f8Bc3T7oI3HeTxd+VF4IF/bZPVua4E4XCSLJ71pCRwLH
+	HaQznNDx3UlhC/uqlutdIQmSUFBdTvPrPlxXf9oHSu2MWqhiTUTVTm7gunRmI2m8oGAMp96jx9aIS
+	suqzvyGI5q+CzpZTwyDZLexYgiMYLz0fRm8mKy0LC4reI9z+a1h0fkEAS43g8O0P32TycygZxvx3v
+	qdn9vcn/vfl2fNPo3LKA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pSHTM-005uWS-0F; Wed, 15 Feb 2023 13:05:20 +0000
-Received: from mail-yw1-x1131.google.com ([2607:f8b0:4864:20::1131])
+	id 1pSL6T-006asB-ST; Wed, 15 Feb 2023 16:57:57 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pSHTI-005uV0-Ie
-	for ath11k@lists.infradead.org; Wed, 15 Feb 2023 13:05:18 +0000
-Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-52ebee9a848so251330447b3.3
-        for <ath11k@lists.infradead.org>; Wed, 15 Feb 2023 05:05:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=k3jl06NnikfcuVY00mZXg6It9MxzIjeX1FKJCqs2aaY=;
-        b=ZSszZwaoqJ0mPrKmgAeH6PgyJ5aiYpmEiuSD4sU8nE72z336FEbofgu0PmZy+IOjzS
-         lyMh1HmsKJMWjSW3nnFgOfYydwgT7B8I/Wwjg7WDwxEG4kpqVLvj3VuTLMWSwgCpl/Q7
-         J56eD6RwCisZuNHUDrRj5SHPUjnEmkYBPVwsj3ljUDjcT/yz8JGhpzIWcXxe55giKoGG
-         QeP7VHt5kH7uRzU3LmSUXxBsRZib+6Jn2KaYJklueJEkTax46FdU2bfPqIcMKPAWjdgz
-         eMMCEt6Ow8vizW79OTuje7FlDjkd+ABqE0y8zKfm+rQhl+jTXmXDWvchftJtQjhP9hzQ
-         yXgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=k3jl06NnikfcuVY00mZXg6It9MxzIjeX1FKJCqs2aaY=;
-        b=DTNZjt/+GW/2OEpozQ8IITbwCp5cxlMT1fm2lo4e80wfdFQtw8Wdl/2cUfQYDRpbuZ
-         M5jrhGfbCO1blJz5H/+DZ0OAbCWk9HupmFoPndutSfVOVsh24QOH/jMRsJBbFmYUd9Ky
-         0CWuuH8w6TI98YuFjI0rhl3E5/PCLbPq3I4CKUjcPJasgObq9DgKcTNLzaJe501C3vMr
-         hZ823VWqoX2Sn+NrNt4WqboSq0kQ6e350wbh2zO/meSM83FCDu7/3QTIpGrF7sga6Smt
-         JwiXZSDglRs3+axtMxRYhqPHAUaC81Z2iTnSLWkHYYGM5RUb0gnGVaZ97yvlLkVjwwm1
-         RsIw==
-X-Gm-Message-State: AO0yUKUnQFBDNsS6rWOw4xeOOPUabcNv8cQIXIla0uBFs185+GGHqBdR
-	R8zmG2nEwYOLHIQWLRk2gAMDanKFD4L7SrMdY4xZnPFS
-X-Google-Smtp-Source: AK7set8KlqR+Lgemjc61wZTjP3xln5jAZNdqJmFxTB7isYxXIgRSoqj6db4552uanMG7WClGKStJB8UKZDUNAL22NS8=
-X-Received: by 2002:a81:a50f:0:b0:52f:b76:e21d with SMTP id
- u15-20020a81a50f000000b0052f0b76e21dmr284771ywg.493.1676466311725; Wed, 15
- Feb 2023 05:05:11 -0800 (PST)
+	id 1pSL6Q-006aqv-Sr
+	for ath11k@lists.infradead.org; Wed, 15 Feb 2023 16:57:56 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 733D661CDE;
+	Wed, 15 Feb 2023 16:57:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CEAAC433D2;
+	Wed, 15 Feb 2023 16:57:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1676480273;
+	bh=pZYngPe4e773XbJzeeYSvB5/vkb/xhwvgUaG89tXrRQ=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=ZWsYfnvAPD5WNVOl0t89Mz0uR+AeKy5lpK2S3+tNQ8j3O8DEjmjUl6bkq6+arFU0H
+	 VzEH4RgGFRmQKBZKfJX8Yp8tkesbPanBzEc95FW2Vx0Qp4Wq+OsAahVHTGqc9R0Dh3
+	 o+1WaqbEqQgS+5R7iMjIpJP66h272Ydpv9CcNUFBaKLnVohx0Vv6ik37Q2TxxhXkUy
+	 9KGwAD1B7LJTQ2TZFlQzTHRYlSM3V2IQQFLaW4WPXB5sDuoGoJTfGSZR0Axqs08+c5
+	 24BrQYs/7KTkrVOq/WC8iLu8KcNuUDIoY9Gk2H5atoz2CL+dCpb1adZYOzDNfDdZII
+	 5VPOTX6Qa5Jkg==
+From: Kalle Valo <kvalo@kernel.org>
+To: Robert Marko <robert.marko@sartura.hr>
+Cc: Robert Marko <robimarko@gmail.com>,  ath11k@lists.infradead.org
+Subject: Re: regdb.bin availability
+References: <CAOX2RU5ATBuuPewx4DgveKjhc+E1a=Kt2COWDhYqQtLiJ1=NoQ@mail.gmail.com>
+	<87o7rvzgpn.fsf@kernel.org>
+	<CAOX2RU6oieaGjpPpYwnMtBk=-nG13=JGW+-+838REQ4HsPcRNg@mail.gmail.com>
+	<CA+HBbNGCKvP=qTRm32Pkq+CHX5k8BB0qjahX_ppmegNyu_k1Jg@mail.gmail.com>
+Date: Wed, 15 Feb 2023 18:57:48 +0200
+In-Reply-To: <CA+HBbNGCKvP=qTRm32Pkq+CHX5k8BB0qjahX_ppmegNyu_k1Jg@mail.gmail.com>
+	(Robert Marko's message of "Tue, 7 Feb 2023 12:39:31 +0100")
+Message-ID: <87lekyuar7.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-References: <CACp=KFTTOpKzDkMuGyYm3ynF53nqHLwdAqt79mMJLpCyTyy-Zw@mail.gmail.com>
- <87y1p1vjnl.fsf@kernel.org> <874jrnuvxe.fsf@kernel.org>
-In-Reply-To: <874jrnuvxe.fsf@kernel.org>
-From: Carsten Hatger <xmb8dsv4@gmail.com>
-Date: Wed, 15 Feb 2023 14:04:59 +0100
-Message-ID: <CACp=KFRWuxdZJpeB5V96fB7u+=CTnz0fS3OFsR6Mp4K6Cwg_PA@mail.gmail.com>
-Subject: Re: FIX: Frequent wakeups on HP Pro x360 435 13.3 inch G9 using
- Qualcomm FastConnect 6900
-To: Kalle Valo <kvalo@kernel.org>
-Cc: ath11k@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230215_050516_652383_804F1E04 
-X-CRM114-Status: GOOD (  13.00  )
+X-CRM114-CacheID: sfid-20230215_085754_988519_B7337E75 
+X-CRM114-Status: GOOD (  18.76  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,52 +75,40 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Thanks!
+Robert Marko <robert.marko@sartura.hr> writes:
 
-Best regards,
-Carsten
+> On Thu, Dec 22, 2022 at 5:26 PM Robert Marko <robimarko@gmail.com> wrote:
+>>
+>> On Thu, 22 Dec 2022 at 14:54, Kalle Valo <kvalo@kernel.org> wrote:
+>> >
+>> > Robert Marko <robimarko@gmail.com> writes:
+>> >
+>> > > Would it be possible to make the regdb.bin publicly available?
+>> > >
+>> > > Newer FW-s support using it as the external regulatory database and it
+>> > > would really allow the community running AHB radios to avoid being
+>> > > stuck with the outdated or even non-existent regulatory data in the
+>> > > BDF.
+>> >
+>> > I thought we were providing that for all hardware, I guess that was
+>> > missed. Would you mind reporting this to bugzilla? That way it's easier
+>> > for me to track.
+>>
+>> Currently, its available only for WCN6855.
+>>
+>> Sure, bug opened:
+>> https://bugzilla.kernel.org/show_bug.cgi?id=216832
+>
+> Kalle, can you please look into this? It's currently completely
+> blocking the community from using 2.7 FW on IPQ8074.
 
-On Wed, Feb 15, 2023 at 10:20 AM Kalle Valo <kvalo@kernel.org> wrote:
->
-> Kalle Valo <kvalo@kernel.org> writes:
->
-> > Carsten Hatger <xmb8dsv4@gmail.com> writes:
-> >
-> >> To whom it may concern:
-> >>
-> >> I was experiencing frequent wake-ups from s0i3x on a HP Pro 435 G9
-> >> convertible [1] using the Qualcomm FastConnect 6900 SoC [2]. The issue
-> >> is related to FW revision
-> >> WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.9 that comes
-> >> bundled with Ubuntu 22.10. It appears the SoC increasingly triggers
-> >> wake-ups after being suspended for approx. 4 hrs.
-> >>
-> >> Read the full story at [4].
-> >>
-> >> The solution is to upgrade SoC firmware to rev
-> >> WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23/ [3]
-> >>
-> >> Best regards,
-> >> Carsten
-> >>
-> >> [1]
-> >> https://support.hp.com/us-en/product/hp-pro-x360-435-13.3-inch-g9-notebook-pc/2101144107/document/ish_6053745-6053789-16
-> >> [2] https://www.qualcomm.com/products/technology/wi-fi/fastconnect/fastconnect-6900
-> >> [3]
-> >> https://github.com/kvalo/ath11k-firmware/tree/master/WCN6855/hw2.0/1.1/WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
-> >> [4] https://gitlab.freedesktop.org/drm/amd/-/issues/2377
-> >
-> > Very good to know, thanks for the info. I'll try to submit that firmware
-> > to linux-firmware ASAP.
->
-> Here's the pull request:
->
-> https://lore.kernel.org/ath11k/878rgzuw37.fsf@kernel.org/
->
-> --
-> https://patchwork.kernel.org/project/linux-wireless/list/
->
-> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+Sorry for the delay. Yes, I will definitely look into it and will get
+back to you via bugzilla.
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
