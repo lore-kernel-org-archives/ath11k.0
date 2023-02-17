@@ -4,51 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B4B0C61DA4
-	for <ath11k@archiver.kernel.org>; Fri, 17 Feb 2023 03:01:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58D63C6379F
+	for <ath11k@archiver.kernel.org>; Fri, 17 Feb 2023 15:57:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Y9eM/gkEW0JI6IDUqyappHG1mkwY8sNzoUvG0yHZu9w=; b=DnCB+Vf2eRTFUJ
-	8DAdSW00y7vblBkTWf0gYxrLbFvHAp2l5av5pAcLewarMNIw6f406ju7K83rA34kQ8x+tzeRJ/Aw1
-	lf69xvtAxEZjmPfiy5AOK74ZKSRwJucH76Bi/qRLuR+3wSLNQPM//ck4lNFXO2ZHtCvw4z2nWi1Xx
-	Unuq17eO1pNUUmJJlsp9+pC3NuLXnaERJxC0jO3ibATmbmArB6TLQzOFpvtlSrx+YKqb8Uq+URlfu
-	RL+XEYpKWWpxerr+d/XN87n4NuqOZ0wmPNs4AmAq9xwHhw6YA/zRO+wm6pF7UaCi5IuEVZNQs8XOg
-	rOVDQyMLIaZx2U3wmc0Q==;
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
+	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=7z9GJkZ2YIDkTHErMlLpLnhN3Y9IIQ8nWkEM+GMWrw4=; b=kysKZH/S+IwFN/
+	2iVyZ/xMt/JMUkxVpFphSoNGwawUCD0gQ+Lpx3VBnsqrAtvahGTu94LozC8F+uar9lQrzcU1g7TyN
+	RoGo5bhVi2Af9SEUf44rEWeREhuXvYv888TEoSi7xwXKXidS3jrITqDzr7D+j5ieZPVU1hgAoQ83f
+	K3bwRMTZS54DFrbx0BrYkfZnIP1J3GJJLhkElp6gdJ+eEhKYLDfX790l0iwa/mS687v1JOYIp23r0
+	AdJsXy6yVrs9AURCRvgWQqRt/FSqVTaYeq1DSwuFF+7hJLHcYXUMXui2RNq1hdYqQsQXAMma0YF/C
+	Oog/+BzOduzeIBljbarA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pSqzz-00CShK-Lp; Fri, 17 Feb 2023 03:01:23 +0000
-Received: from szxga02-in.huawei.com ([45.249.212.188])
+	id 1pT37J-00Ewei-9e; Fri, 17 Feb 2023 15:57:45 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pSqzw-00CSfM-Np
-	for ath11k@lists.infradead.org; Fri, 17 Feb 2023 03:01:22 +0000
-Received: from dggpemm100007.china.huawei.com (unknown [172.30.72.57])
-	by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4PHxNq4ZgYzGphk;
-	Fri, 17 Feb 2023 10:59:23 +0800 (CST)
-Received: from huawei.com (10.175.103.91) by dggpemm100007.china.huawei.com
- (7.185.36.116) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Fri, 17 Feb
- 2023 11:01:12 +0800
-From: Yang Yingliang <yangyingliang@huawei.com>
-To: <linux-wireless@vger.kernel.org>, <ath11k@lists.infradead.org>
-CC: <kvalo@kernel.org>, <quic_kathirve@quicinc.com>,
-	<quic_srirrama@quicinc.com>, <yangyingliang@huawei.com>,
-	<liwei391@huawei.com>
-Subject: [PATCH -next] wifi: ath11k: fix return value check in ath11k_ahb_probe()
-Date: Fri, 17 Feb 2023 11:00:31 +0800
-Message-ID: <20230217030031.4021289-1-yangyingliang@huawei.com>
-X-Mailer: git-send-email 2.25.1
+	id 1pT37F-00Ewck-W3
+	for ath11k@lists.infradead.org; Fri, 17 Feb 2023 15:57:43 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id B9C9461E10;
+	Fri, 17 Feb 2023 15:57:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DDC1C433EF;
+	Fri, 17 Feb 2023 15:57:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1676649460;
+	bh=g8Q+/5BohF9DA50sSIUOESQeowqyhkU5uSpAtgg+bIo=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=PVo6edfuRWyPDs50DOZYRLy3R/jE1/D3DXWifZsAMSNSj3w1/hCoPuvyB4r81xpmJ
+	 cKwjzDT0dLBXpF2wgbCoJwN6fCGr/U+GBJnXyXktGT/cjx2j6ocSe4fkkCGDYhARmT
+	 eciGQ+mixo2sQJMEePFyxAqZgNvFf7exV54A4U/ZpOL8B8WmsjfEogSIX/4+U50Hid
+	 /V9Aj3mRIjf2w2RvAbooryTFvyLvK7dh5q8TKR8DdNQW9hkEK8rgN7Ha3XOieFNSlw
+	 NyUWTRVeqXv2Ts2lU+GMgPirXI+97yL76GSluehqnzALd2NSymSnWzGYpcy9iwUL7G
+	 OR62LFgFb2SLA==
 MIME-Version: 1.0
-X-Originating-IP: [10.175.103.91]
-X-ClientProxiedBy: dggems702-chm.china.huawei.com (10.3.19.179) To
- dggpemm100007.china.huawei.com (7.185.36.116)
-X-CFilter-Loop: Reflected
+Subject: Re: [PATCH] wifi: ath11k: Set ext passive scan flag to adjust passive
+ scan start time
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20221222131720.11368-1-quic_tamizhr@quicinc.com>
+References: <20221222131720.11368-1-quic_tamizhr@quicinc.com>
+To: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
+Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+ Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-ID: <167664945324.27521.5550862746397183155.kvalo@kernel.org>
+Date: Fri, 17 Feb 2023 15:57:39 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230216_190120_979335_E18859B6 
-X-CRM114-Status: GOOD (  10.08  )
+X-CRM114-CacheID: sfid-20230217_075742_157140_8FD47489 
+X-CRM114-Status: UNSURE (   7.84  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -65,30 +74,28 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-ioremap() returns NULL pointer not PTR_ERR() when it fails,
-so replace the IS_ERR() check with NULL pointer check.
+Tamizh Chelvam Raja <quic_tamizhr@quicinc.com> wrote:
 
-Fixes: b42b3678c91f ("wifi: ath11k: remap ce register space for IPQ5018")
-Signed-off-by: Yang Yingliang <yangyingliang@huawei.com>
----
- drivers/net/wireless/ath/ath11k/ahb.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> Set the WMI_SCAN_FLAG_EXT_PASSIVE_SCAN_START_TIME_ENHANCE flag
+> while sending the scan command.  If this flag is enabled when the
+> incoming scan request comes with a strict start time and its duration
+> overlaps with next TBTT, then target adjust the start time accordingly
+> for passive scan. Target supporting this feature will advertise
+> WMI_TLV_SERVICE_PASSIVE_SCAN_START_TIME_ENHANCE.
+> 
+> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-01467-QCAHKSWPL_SILICONZ-1
+> 
+> Signed-off-by: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index 920abce9053a..bad3946b44bf 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.c
-+++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -1174,7 +1174,7 @@ static int ath11k_ahb_probe(struct platform_device *pdev)
- 		 * to a new space for accessing them.
- 		 */
- 		ab->mem_ce = ioremap(ce_remap->base, ce_remap->size);
--		if (IS_ERR(ab->mem_ce)) {
-+		if (!ab->mem_ce) {
- 			dev_err(&pdev->dev, "ce ioremap error\n");
- 			ret = -ENOMEM;
- 			goto err_core_free;
+Patch applied to ath-next branch of ath.git, thanks.
+
+cf8f3d4deb02 wifi: ath11k: Set ext passive scan flag to adjust passive scan start time
+
 -- 
-2.25.1
+https://patchwork.kernel.org/project/linux-wireless/patch/20221222131720.11368-1-quic_tamizhr@quicinc.com/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 
 -- 
