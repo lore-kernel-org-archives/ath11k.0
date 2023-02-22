@@ -4,103 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A0B6C636D6
-	for <ath11k@archiver.kernel.org>; Mon, 20 Feb 2023 21:38:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC5C1C61DA4
+	for <ath11k@archiver.kernel.org>; Wed, 22 Feb 2023 10:29:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=45gXQlpOgaFqO6EqYpnVBzgm8WpmxRXsW04pjSSkHc8=; b=ZOxt3li1qyYSau
-	qn+V4h5sbOUXIfKusHaxCbHkF0u85xMK0CHHrMLm9k7Y5qAne+EFG0mrsNej9q31+fU3q4MOynHxn
-	/38xTH2jc03Uq26Zo7JFMDcBQyTdgtgf2Kga8kqLONzO8wT09fCeQSVtEqF8ZuQlvKfsIkDP6X2gl
-	KlHV/IJFGGYm7z+ju+6xXCbqqbox2ff8rTMRr7F6gMRaqKSIJPl5Mb4vISMxtaatdeHgRQTPdpdNM
-	Rbg/7Tq5QlgE30Wp+omPatNFjI988+qdIdMP+83Joa9QzkdkxvTT37vdE30HUBwfCUY2MxhI/twhs
-	tTTs6S8pfZxcwKazIcLA==;
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
+	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=mjGUJ3d1IdmazTB0zc6ZsIMq9WYNXr+B4nmzZ4wiFTQ=; b=b9VJNT10Rihod7
+	WgU9NP2cmXayKkCw/dKB531JFlPJklppBUnTN8k7VtqMsZdBG6UTAkA4PA/tjzSZbqnF8rmDT7Qv7
+	7jwQc+40WoqEBKIU71GTOt/wz+77dbk1jYb3zQbh9yc4qXqYsFAJeA4xxQSfG3wtH2WghGL518afF
+	vM/aWz/WPIBLyIxxzlx7ZEZdrejjnbEOSu3qCF+cfs+zmxRU7n94jVwYZ5Yd/vdiPrpXXwuxpTXpq
+	+oQ242hHYvEFOeeOVlTkN6T3MK1+3mbZi2mKUArZNMLtYCN8UKyOpGG/TUQZ5U4K3VxKXrIv24I4r
+	kaywXlmE/x34wJz4SO1w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pUDrp-005fvZ-2g; Mon, 20 Feb 2023 21:38:37 +0000
-Received: from mail-bn8nam11on20600.outbound.protection.outlook.com ([2a01:111:f400:7eae::600] helo=NAM11-BN8-obe.outbound.protection.outlook.com)
+	id 1pUmNb-00BvuZ-0A; Wed, 22 Feb 2023 10:29:43 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pUDrl-005ftY-4V
-	for ath11k@lists.infradead.org; Mon, 20 Feb 2023 21:38:35 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ca2vasW2YFlcEcTK8kivHX1LfFQhnFxdaxKOTRWACAGEc5JHhNmtB7V58fgSjov23QnkSYQGiGfEvt7DeQNPDaRpkl2EGRUlizyjgvr5/I71NENtf55A36qzCu94q0jVdgQAeb/UKL0WvQ4Apq9N1EpqDJv6nlBkRQM2br7D1sI2QNooQvBda7K3gDUB30rON9UczwzlZLr7GtLkVO9ZEujoLeMCeKoFCIboZEHHkOq1MknLdnB13cuT4Z7FrWFLwTUyFDwGOsjGK6VOhPpxPDJH6KETORvn75o4xGmBwacFjC98I0/5NNoJREMuhD7kb1g+hYLqL6ALKbgRXtPi6Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DUkGOzt/+Hbe+de4gZgHZAUJWSh1j4FCkwg3wdLxzlY=;
- b=Aw6vfGrv11mYd1ftbN/BXhLxEPt6Vagxa/PXyIfheRU2ggPcVIo/uAFtKWDn4z1CUvw5DdPzgdp1k5Ry+7PLU1hyXc7+dRhVdV5aOu9A+PczhdzL6Qa+vSwPyEPs9M/9nnK/wLwQ8NiPKLYn6yyP55Wr0IHvNH2nBMhMUhD3ccIb/ZILFAHn/W8+ntzT5pkVlpeqTNV9nzz9AAIwAk4ovGZB9GH1snrbGTm694rOIs+ftzlHxFDYkdFRUhicIUBatfi7bE3HPq/Nu558Oud8zaACPJeWqHFWuNrtr5eLdr8C70jxFGXe5Ko6vIBFpBZ4xISG7yGtpX6gAZGUjxwUMA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DUkGOzt/+Hbe+de4gZgHZAUJWSh1j4FCkwg3wdLxzlY=;
- b=j4dL361i+XM+eTtOz9DXodc1HpU+ex1UjtrfjK1Igl87nt5CAqlTnOiRiheYB6qI5kg2zANcYtCUINpbAAbpYSigcWIOErsdv5sEYnEftgUYvR6fYq+VumBuEjbojZoZPV75ft2NGacKCHADBfDCBDW5D6NXBOnkFk1EbUJbKPQ=
-Received: from DM6PR13CA0062.namprd13.prod.outlook.com (2603:10b6:5:134::39)
- by DM6PR12MB5008.namprd12.prod.outlook.com (2603:10b6:5:1b7::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6111.20; Mon, 20 Feb
- 2023 21:38:23 +0000
-Received: from DM6NAM11FT048.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:134:cafe::e0) by DM6PR13CA0062.outlook.office365.com
- (2603:10b6:5:134::39) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6134.16 via Frontend
- Transport; Mon, 20 Feb 2023 21:38:23 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT048.mail.protection.outlook.com (10.13.173.114) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6111.18 via Frontend Transport; Mon, 20 Feb 2023 21:38:23 +0000
-Received: from AUS-LX-MLIMONCI.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Mon, 20 Feb
- 2023 15:38:22 -0600
-From: Mario Limonciello <mario.limonciello@amd.com>
-To: Kalle Valo <kvalo@kernel.org>
-CC: Mario Limonciello <mario.limonciello@amd.com>, "David S. Miller"
-	<davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
-	<kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	<ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
-	<netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH] wifi: ath11k: Add a warning for wcn6855 spurious wakeup events
-Date: Mon, 20 Feb 2023 15:38:07 -0600
-Message-ID: <20230220213807.28523-1-mario.limonciello@amd.com>
-X-Mailer: git-send-email 2.25.1
+	id 1pUln5-00Bd9i-5P
+	for ath11k@lists.infradead.org; Wed, 22 Feb 2023 09:52:00 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ams.source.kernel.org (Postfix) with ESMTPS id C2881B81235;
+	Wed, 22 Feb 2023 09:51:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6649CC433D2;
+	Wed, 22 Feb 2023 09:51:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1677059516;
+	bh=PyUDgmO8GAvIrVIlTy6DR+3I37FfQ9drabu8uH/vTLU=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=f+/ukOx2KzvGnXjS/bxr1wPEjhw6z37QZrpnv0SwajPPUQ1ZHAKYXHtBPSLDScMqw
+	 PkxpaO60xDNd6ttMJ7M8TZpa9YSbEVCMGathT54evZ//094i4gNguukSXdBzv1xPDD
+	 xcteuIeJWzI6KMgel7MWe/0VD5zesSPl6wUP7mc6aNFskGi7befFGCoYEgTVjC1j1X
+	 YJ7oZVG1Bk2LexqTt6AqItVUW0m27B0mDth/9GrVa+k9Eb95zhzaB6UJ5EMo39c/KJ
+	 M0XxMzjqqivo+aob78SL6f72gJGW+dtERSPQ0bMS3zVcWI72fHQxI8hqE/D3rWpyI4
+	 2Qz59+Q1vZmCQ==
 MIME-Version: 1.0
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT048:EE_|DM6PR12MB5008:EE_
-X-MS-Office365-Filtering-Correlation-Id: c87f3562-213b-4d04-c160-08db138acaf5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 	gH7ypasQzs6lFqO3odqCOic+d4gfuDyMZYpbXXJ0yLM7nxnZHbvZ2/DmKiaSnq6M8GW0oG8YOiMxhYrWNvt4wYkfvQ4u0v8UD/s+81r9OKsVSBywc92gpxVvXhVhwWyYKntujzuhQs+1Hghchs/rIrgHFpktiwnuEWJNWNZrjMmgjsv26DKA3VDbUiQO1HpBP9IIFNnQBHK1xCfYSGSKmttWkus8jBGFXiOJzU3pB7BoyBm/fKGRSltpnCjXmZk0760pmVLj5m2sYiGGOKzXlp84MmjrcX7y1o93CYCfXcxMbDUlHuTrX3k2ZZDMLeX7uBJk51NfRTUEeJnHYDhg6jI9hlJkkr6PmA6F1k74uKi4HExiWAaERNiLlpUxb+wI3hdSV9BwpsL8r/FrutPNiDpbU+/fNTmHo3PjWAW8XriDQ7eouh12urVwQiRDrqX2wQq73ZPqyxDxR6CEnMvp9TwAJS1NKpJrbuytmgJXCrT7Qr3bfKn8VOp1cZuH5OeVOFksbp89Ntor+mIFNs+jCJZN0Kn0yRPMGturp123uMnyU5LwSpz3KLXiLDqjOpyI48sAV3+xqgNT2vQoV+vF1PvqhRBaRGLHTsxlR/wy13nmHBKCcdoXhBhwU85lEM0/NYpH8VKlRQD4BQ4vkYnC35Finkd9NvIU087JCHIzD0S/VMULZ/An37Pm5NIYReELs+VCGXohXpRNXxmCXKrzqoXFcp9Z63FQIpGbESnPT1cIVdYGG8gZd8fAHoeTk/6/LxQuafveJeqqVm87cxanFg==
-X-Forefront-Antispam-Report: 	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230025)(4636009)(376002)(396003)(39860400002)(346002)(136003)(451199018)(36840700001)(46966006)(40470700004)(5660300002)(36860700001)(8936002)(47076005)(426003)(83380400001)(356005)(40460700003)(86362001)(40480700001)(7696005)(81166007)(336012)(54906003)(316002)(478600001)(82310400005)(82740400003)(4326008)(41300700001)(70586007)(8676002)(6916009)(16526019)(1076003)(2616005)(36756003)(966005)(6666004)(26005)(186003)(70206006)(2906002)(44832011)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Feb 2023 21:38:23.3793
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c87f3562-213b-4d04-c160-08db138acaf5
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: 	DM6NAM11FT048.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB5008
+Subject: Re: [PATCH v2 1/2] wifi: ath11k: Use platform_get_irq() to get the
+ interrupt
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To:  <20230201084131.v2.1.I69cf3d56c97098287fe3a70084ee515098390b70@changeid>
+References:  <20230201084131.v2.1.I69cf3d56c97098287fe3a70084ee515098390b70@changeid>
+To: Douglas Anderson <dianders@chromium.org>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ junyuu@chromium.org, Youghandhar Chintala <quic_youghand@quicinc.com>,
+ Jiri Slaby <jirislaby@kernel.org>, Luis Chamberlain <mcgrof@kernel.org>,
+ Nick Kossifidis <mickflemm@gmail.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Douglas Anderson <dianders@chromium.org>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ Manikanta Pubbisetty <quic_mpubbise@quicinc.com>,
+ Marc Zyngier <maz@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-ID: <167705951022.25767.9800855263902793000.kvalo@kernel.org>
+Date: Wed, 22 Feb 2023 09:51:52 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230220_133833_208696_235B1524 
-X-CRM114-Status: GOOD (  14.69  )
+X-CRM114-CacheID: sfid-20230222_015159_382092_F1BE6AB1 
+X-CRM114-Status: GOOD (  12.95  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,86 +84,40 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-When WCN6855 firmware versions less than 0x110B196E are used with
-an AMD APU and the user puts the system into s2idle spurious wakeup
-events can occur. These are difficult to attribute to the WLAN F/W
-so add a warning to the kernel driver to give users a hint where
-to look.
+Douglas Anderson <dianders@chromium.org> wrote:
 
-This was tested on WCN6855 and a Lenovo Z13 with the following
-firmware versions:
-WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.9
-WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
+> As of commit a1a2b7125e10 ("of/platform: Drop static setup of IRQ
+> resource from DT core"), we need to use platform_get_irq() instead of
+> platform_get_resource() to get our IRQs because
+> platform_get_resource() simply won't get them anymore.
+> 
+> This was already fixed in several other Atheros WiFi drivers,
+> apparently in response to Zeal Robot reports. An example of another
+> fix is commit 9503a1fc123d ("ath9k: Use platform_get_irq() to get the
+> interrupt"). ath11k seems to have been missed in this effort, though.
+> 
+> Without this change, WiFi wasn't coming up on my Qualcomm sc7280-based
+> hardware. Specifically, "platform_get_resource(pdev, IORESOURCE_IRQ,
+> i)" was failing even for i=0.
+> 
+> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
+> 
+> Fixes: a1a2b7125e10 ("of/platform: Drop static setup of IRQ resource from DT core")
+> Fixes: 00402f49d26f ("ath11k: Add support for WCN6750 device")
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> Tested-by: Jun Yu <junyuu@chromium.org>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-Link: http://lists.infradead.org/pipermail/ath11k/2023-February/004024.html
-Link: https://gitlab.freedesktop.org/drm/amd/-/issues/2377
-Link: https://bugs.launchpad.net/ubuntu/+source/linux-firmware/+bug/2006458
-Link: https://lore.kernel.org/linux-gpio/20221012221028.4817-1-mario.limonciello@amd.com/
-Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
----
- drivers/net/wireless/ath/ath11k/pci.c | 26 ++++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+2 patches applied to ath-next branch of ath.git, thanks.
 
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index 99cf3357c66e..87536327e214 100644
---- a/drivers/net/wireless/ath/ath11k/pci.c
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -8,6 +8,7 @@
- #include <linux/msi.h>
- #include <linux/pci.h>
- #include <linux/of.h>
-+#include <linux/suspend.h>
- 
- #include "pci.h"
- #include "core.h"
-@@ -27,6 +28,8 @@
- #define QCN9074_DEVICE_ID		0x1104
- #define WCN6855_DEVICE_ID		0x1103
- 
-+#define WCN6855_S2IDLE_VER		0x110b196e
-+
- static const struct pci_device_id ath11k_pci_id_table[] = {
- 	{ PCI_VDEVICE(QCOM, QCA6390_DEVICE_ID) },
- 	{ PCI_VDEVICE(QCOM, WCN6855_DEVICE_ID) },
-@@ -965,6 +968,27 @@ static void ath11k_pci_shutdown(struct pci_dev *pdev)
- 	ath11k_pci_power_down(ab);
- }
- 
-+static void ath11k_check_s2idle_bug(struct ath11k_base *ab)
-+{
-+	struct pci_dev *rdev;
-+
-+	if (pm_suspend_target_state != PM_SUSPEND_TO_IDLE)
-+		return;
-+
-+	if (ab->id.device != WCN6855_DEVICE_ID)
-+		return;
-+
-+	if (ab->qmi.target.fw_version >= WCN6855_S2IDLE_VER)
-+		return;
-+
-+	rdev = pci_get_domain_bus_and_slot(0, 0, PCI_DEVFN(0, 0));
-+	if (rdev->vendor == PCI_VENDOR_ID_AMD)
-+		ath11k_warn(ab, "fw_version 0x%x may cause spurious wakeups. Upgrade to 0x%x or later.",
-+			    ab->qmi.target.fw_version, WCN6855_S2IDLE_VER);
-+
-+	pci_dev_put(rdev);
-+}
-+
- static __maybe_unused int ath11k_pci_pm_suspend(struct device *dev)
- {
- 	struct ath11k_base *ab = dev_get_drvdata(dev);
-@@ -975,6 +999,8 @@ static __maybe_unused int ath11k_pci_pm_suspend(struct device *dev)
- 		return 0;
- 	}
- 
-+	ath11k_check_s2idle_bug(ab);
-+
- 	ret = ath11k_core_suspend(ab);
- 	if (ret)
- 		ath11k_warn(ab, "failed to suspend core: %d\n", ret);
+f117276638b7 wifi: ath11k: Use platform_get_irq() to get the interrupt
+95c95251d054 wifi: ath5k: Use platform_get_irq() to get the interrupt
+
 -- 
-2.34.1
+https://patchwork.kernel.org/project/linux-wireless/patch/20230201084131.v2.1.I69cf3d56c97098287fe3a70084ee515098390b70@changeid/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 
 -- 
