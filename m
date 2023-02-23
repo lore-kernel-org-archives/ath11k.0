@@ -4,64 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D4BAC64ED6
-	for <ath11k@archiver.kernel.org>; Wed, 22 Feb 2023 10:35:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D294C636D6
+	for <ath11k@archiver.kernel.org>; Thu, 23 Feb 2023 16:01:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
-	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=zOVKaFoMrfQmpX2h1phXLgC6xm9NLgCKw8LJUJ7ys90=; b=iG54Pmjhf2tqNM
-	avfpl60/uzta5wWj6JH9bIIrivjLe9mMp6F7kGSdycN5pJMzmxh9mXTWvhInvCESvATTLlzmezBt2
-	1N9XhEM3wEAyAtjiXpIsrMwNJypjsU8yZ1UtoCRUwv83kqm08X+iw2s4U/9v+556Zp6D5AA/xrez1
-	mBfpeU+O4ezMKI5z9Px82RoTBEg4OXTmcx8Tmv7hIzBs/1duh6xdqnVUg/tGQT5IPCCTelty3LBEj
-	7nAGaqJBeQecXsOtQvqljm5R2kkEfHXqPAxMRHDcLrhjXDIeYH+2LnIsuQ1gTvX8E12w5NLiaLb0q
-	xX9FSCyqC1fMLLUCRodQ==;
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Subject:Cc:To:From:
+	MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	References:List-Owner; bh=egk773HBQrnHzp/y1UP74KzXTyOHyH0zyJaz7vEG6BA=; b=bGK
+	VFkuf6yA4YJkqs1tqifZoCUAFx6HVGmGlFWyL1SsFZqoubRIDroOkJhIfK0JmP893HfSwA2LqzK+Y
+	m9gEePAeltZfTzTj+zYmyaOHcO8LMI8f/EFLRMZ7Omp1qrOd87aq2ExW/D3cNssqP+Yf/G5h7pojT
+	KgD1Ur+07oZYM+8XsdLza4/OeyprhxVVTeQLTMoiIkEi6CF53zegHL1XhgGBU2FBXcm4EyUnGhnwu
+	Gqq4B9pUXhoOO9lHtG80xTGCydWSBuxj2AI2IntHaqg2Dvi8/O/Um0uvTGMWTX4wI6l4+HdnVtONx
+	VnoFAachussbqfBA/n9cX49xMKk4isQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pUmTP-00ByqK-Ez; Wed, 22 Feb 2023 10:35:43 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1pVE2C-00HAJ1-Rb; Thu, 23 Feb 2023 16:01:28 +0000
+Received: from wp530.webpack.hosteurope.de ([80.237.130.52])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pUm4j-00BmVu-I0
-	for ath11k@lists.infradead.org; Wed, 22 Feb 2023 10:10:15 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id EC67E61307;
-	Wed, 22 Feb 2023 10:10:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1593BC433D2;
-	Wed, 22 Feb 2023 10:10:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1677060612;
-	bh=0EjWaW8FZbf/rs4S89php6TeZDRc/tzK7/iJgWJKpSk=;
-	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=G2CGdBU8wgzdtt3+iOQ/BysR27IMxblAj4vBx7/K3cM2RgQCcsnyeJFoQfitdFtld
-	 0eIWMniczTdNmkRxFePeBRRDJNMdenaM3sRERb6ZcEpPcz8qebzYq0RhiiCfEkc1n5
-	 53j3nhK62MNAsYMIAe7BL2+FcuOcfOmzkGgpp+koYU5xNpxBjVhhHo2cdRQyYiKu05
-	 SpnYw0CM1ls7Lx7Vh1Jy60l3y73aAeePkGGeiysQERp3uH+1EkPNtPlfU2jGF52o4T
-	 aveZENp3vK2h9i72bHf/m5akqCFrtjMiemvCJ5CxgSKJnaxLRroyOEdy2RQ6jjdtQ4
-	 B7RgacBZppUOQ==
+	id 1pVE28-00HAGc-T9
+	for ath11k@lists.infradead.org; Thu, 23 Feb 2023 16:01:26 +0000
+Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
+	by wp530.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+	id 1pVE23-0007wG-N0; Thu, 23 Feb 2023 17:01:19 +0100
+Message-ID: <c7a7e21a-0eac-8e84-aa8e-59ba4116e6af@leemhuis.info>
+Date: Thu, 23 Feb 2023 17:01:19 +0100
 MIME-Version: 1.0
-Subject: Re: [PATCH] wifi: ath11k: fix SAC bug on peer addition with sta band
- migration
-From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20230209222622.1751-1-ansuelsmth@gmail.com>
-References: <20230209222622.1751-1-ansuelsmth@gmail.com>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Christian Marangi <ansuelsmth@gmail.com>,
- ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- Dan Carpenter <error27@gmail.com>
-User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <167706060829.17720.10858738686921337257.kvalo@kernel.org>
-Date: Wed, 22 Feb 2023 10:10:09 +0000 (UTC)
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Content-Language: en-US, de-DE
+From: "Linux regression tracking (Thorsten Leemhuis)"
+ <regressions@leemhuis.info>
+To: Kalle Valo <kvalo@kernel.org>
+Cc: ath11k <ath11k@lists.infradead.org>,
+ "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
+ netdev <netdev@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+ Linux kernel regressions list <regressions@lists.linux.dev>, mani@kernel.org
+Subject: [regression] Bug 217070 - ath11k: QCA6390: Regression on 6.2-rc1
+X-bounce-key: webpack.hosteurope.de;regressions@leemhuis.info;1677168084;03522b4e;
+X-HE-SMSGID: 1pVE23-0007wG-N0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230222_021013_724626_8715E8F8 
-X-CRM114-Status: UNSURE (   7.68  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230223_080125_121756_2DB2C6D2 
+X-CRM114-Status: GOOD (  16.16  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,39 +58,79 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Christian Marangi <ansuelsmth@gmail.com> wrote:
-
-> Fix sleep in atomic context warning detected by Smatch static checker
-> analyzer.
-> 
-> Following the locking pattern for peer_rhash_add lock tbl_mtx_lock mutex
-> always even if sta is not transitioning to another band.
-> This is peer_add function and a more secure locking should not cause
-> performance regression.
-> 
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1-01208-QCAHKSWPL_SILICONZ-1
-> 
-> Fixes: d673cb6fe6c0 ("wifi: ath11k: fix peer addition/deletion error on sta band migration")
-> Reported-by: Dan Carpenter <error27@gmail.com>
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
-
-Patch applied to ath-next branch of ath.git, thanks.
-
-60b7d62ba8cd wifi: ath11k: fix SAC bug on peer addition with sta band migration
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20230209222622.1751-1-ansuelsmth@gmail.com/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+SGksIHRoaXMgaXMgeW91ciBMaW51eCBrZXJuZWwgcmVncmVzc2lvbiB0cmFja2VyLgoKSSBub3Rp
+Y2VkIGEgcmVncmVzc2lvbiByZXBvcnQgaW4gYnVnemlsbGEua2VybmVsLm9yZy4gQXMgbWFueSAo
+bW9zdD8pCmtlcm5lbCBkZXZlbG9wZXIgZG9uJ3Qga2VlcCBhbiBleWUgb24gaXQsIEkgZGVjaWRl
+ZCB0byBmb3J3YXJkIGl0IGJ5Cm1haWwuIFF1b3RpbmcgZnJvbSBodHRwczovL2J1Z3ppbGxhLmtl
+cm5lbC5vcmcvc2hvd19idWcuY2dpP2lkPTIxNzA3MCA6Cgo+ICBtYW5pQGtlcm5lbC5vcmcgMjAy
+My0wMi0yMiAwODo0MzoxNSBVVEMKPiAKPiBIaSwKPiAKPiBXaXRoIHRoZSBmaXJtd2FyZSBmcm9t
+IGxpbnV4LWZpcm13YXJlIGFuZCB2ZW5kb3IgU0RLLCBhdGgxMWsgdXNlZCB0bwo+IHdvcmsgb24g
+a2VybmVsIHY1LjE5LXJjNiBidXQgaXQgaXMgbm93IGZhaWxpbmcgb24ga2VybmVsIHY2LjItcmMx
+Lgo+IAo+IGRtZXNnIG9mIHRoZSBmYWlsdXJlIHdpdGggZmlybXdhcmUgZnJvbSBsaW51eC1maXJt
+d2FyZToKPiAKPiBbICAgMzMuMjI0MTQ4XSBhdGgxMWtfcGNpIDAwMDA6MDE6MDAuMDogQWRkaW5n
+IHRvIGlvbW11IGdyb3VwIDEKPiBbICAgMzMuMjM4MDAwXSBhdGgxMWtfcGNpIDAwMDA6MDE6MDAu
+MDogQkFSIDA6IGFzc2lnbmVkIFttZW0gMHg0MDMwMDAwMC0weDQwM2ZmZmZmIDY0Yml0XQo+IFsg
+ICAzMy4yMzgyNjBdIGF0aDExa19wY2kgMDAwMDowMTowMC4wOiBlbmFibGluZyBkZXZpY2UgKDAx
+NDAgLT4gMDE0MikKPiBbICAgMzMuMjc1ODk4XSBhdGgxMWtfcGNpIDAwMDA6MDE6MDAuMDogTVNJ
+IHZlY3RvcnM6IDMyCj4gWyAgIDMzLjI3NjA1M10gYXRoMTFrX3BjaSAwMDAwOjAxOjAwLjA6IHFj
+YTYzOTAgaHcyLjAKPiBbICAgMzUuOTAxODE5XSBhdGgxMWtfcGNpIDAwMDA6MDE6MDAuMDogY2hp
+cF9pZCAweDAgY2hpcF9mYW1pbHkgMHhiIGJvYXJkX2lkIDB4ZmYgc29jX2lkIDB4ZmZmZmZmZmYK
+PiBbICAgMzUuOTAyMDExXSBhdGgxMWtfcGNpIDAwMDA6MDE6MDAuMDogZndfdmVyc2lvbiAweDEw
+MTIxNDkyIGZ3X2J1aWxkX3RpbWVzdGFtcCAyMDIxLTExLTA0IDExOjIzIGZ3X2J1aWxkX2lkIAo+
+IFsgICAzOC4xMzQwMjldIGF0aDExa19wY2kgMDAwMDowMTowMC4wOiBmYWlsZWQgdG8gcmVjZWl2
+ZSBjb250cm9sIHJlc3BvbnNlIGNvbXBsZXRpb24sIHBvbGxpbmcuLgo+IFsgICAzOS4xNzM4OThd
+IGF0aDExa19wY2kgMDAwMDowMTowMC4wOiBjdGxfcmVzcCBuZXZlciBjYW1lIGluICgtMTEwKQo+
+IFsgICAzOS4xNzQwMjJdIGF0aDExa19wY2kgMDAwMDowMTowMC4wOiBmYWlsZWQgdG8gY29ubmVj
+dCB0byBIVEM6IC0xMTAKPiBbICAgMzkuMjgwNjE4XSBhdGgxMWtfcGNpIDAwMDA6MDE6MDAuMDog
+ZmFpbGVkIHRvIHN0YXJ0IGNvcmU6IC0xMTAKPiAKPiBkbWVzZyBvZiB0aGUgZmFpbHVyZSB3aXRo
+IGZpcm13YXJlIGZyb20gdmVuZG9yIFNESzoKPiAKPiBbICAgMzMuMjk0MjkxXSBhdGgxMWtfcGNp
+IDAwMDA6MDE6MDAuMDogQWRkaW5nIHRvIGlvbW11IGdyb3VwIDEKPiBbICAgMzMuMjk1NjcxXSBh
+dGgxMWtfcGNpIDAwMDA6MDE6MDAuMDogQkFSIDA6IGFzc2lnbmVkIFttZW0gMHg0MDMwMDAwMC0w
+eDQwM2ZmZmZmIDY0Yml0XQo+IFsgICAzMy4yOTkyMjNdIGF0aDExa19wY2kgMDAwMDowMTowMC4w
+OiBlbmFibGluZyBkZXZpY2UgKDAxNDAgLT4gMDE0MikKPiBbICAgMzMuMzM4NTYyXSBhdGgxMWtf
+cGNpIDAwMDA6MDE6MDAuMDogTVNJIHZlY3RvcnM6IDMyCj4gWyAgIDMzLjMzODcxMV0gYXRoMTFr
+X3BjaSAwMDAwOjAxOjAwLjA6IHFjYTYzOTAgaHcyLjAKPiBbICAgMzguNTA2ODUwXSBhdGgxMWtf
+cGNpIDAwMDA6MDE6MDAuMDogaWdub3JlIHJlc2V0IGRldiBmbGFncyAweDgwMDAKPiBbICAgMzgu
+NTA3MTgxXSBhdGgxMWtfcGNpIDAwMDA6MDE6MDAuMDogZmFpbGVkIHRvIHBvd2VyIHVwIG1oaTog
+LTExMAo+IFsgICAzOC41MjA1NDZdIGF0aDExa19wY2kgMDAwMDowMTowMC4wOiBmYWlsZWQgdG8g
+c3RhcnQgbWhpOiAtMTEwCj4gWyAgIDM4LjUyMDY2NV0gYXRoMTFrX3BjaSAwMDAwOjAxOjAwLjA6
+IGZhaWxlZCB0byBwb3dlciB1cCA6LTExMAo+IFsgICAzOC41NTQyOTddIGF0aDExa19wY2kgMDAw
+MDowMTowMC4wOiBmYWlsZWQgdG8gY3JlYXRlIHNvYyBjb3JlOiAtMTEwCj4gWyAgIDM4LjU1NDQy
+NF0gYXRoMTFrX3BjaSAwMDAwOjAxOjAwLjA6IGZhaWxlZCB0byBpbml0IGNvcmU6IC0xMTAKPiBb
+ICAgMzguODg4NTM5XSBhdGgxMWtfcGNpOiBwcm9iZSBvZiAwMDAwOjAxOjAwLjAgZmFpbGVkIHdp
+dGggZXJyb3IgLTExMAo+IAo+IFt0YWddIFtyZXBseV0gW+KIkl0KPiBQcml2YXRlCj4gQ29tbWVu
+dCAxIG1hbmlAa2VybmVsLm9yZyAyMDIzLTAyLTIyIDA4OjQ1OjI3IFVUQwo+IAo+IEhvc3QgcGxh
+dGZvcm0gaXMgVGh1bmRlcmNvbW0gVDU1IGJvYXJkIGJhc2VkIG9uIFF1YWxjb21tIFNEWDU1IFNv
+QyAoQVJNMzIpLgoKU2VlIHRoZSB0aWNrZXQgZm9yIG1vcmUgZGV0YWlscy4KCgpbVExEUiBmb3Ig
+dGhlIHJlc3Qgb2YgdGhpcyBtYWlsOiBJJ20gYWRkaW5nIHRoaXMgcmVwb3J0IHRvIHRoZSBsaXN0
+IG9mCnRyYWNrZWQgTGludXgga2VybmVsIHJlZ3Jlc3Npb25zOyB0aGUgdGV4dCB5b3UgZmluZCBi
+ZWxvdyBpcyBiYXNlZCBvbiBhCmZldyB0ZW1wbGF0ZXMgcGFyYWdyYXBocyB5b3UgbWlnaHQgaGF2
+ZSBlbmNvdW50ZXJlZCBhbHJlYWR5IGluIHNpbWlsYXIKZm9ybS5dCgpCVFcsIGxldCBtZSB1c2Ug
+dGhpcyBtYWlsIHRvIGFsc28gYWRkIHRoZSByZXBvcnQgdG8gdGhlIGxpc3Qgb2YgdHJhY2tlZApy
+ZWdyZXNzaW9ucyB0byBlbnN1cmUgaXQncyBkb2Vzbid0IGZhbGwgdGhyb3VnaCB0aGUgY3JhY2tz
+OgoKI3JlZ3pib3QgaW50cm9kdWNlZDogdjUuMTktcmM2Li52Ni4yLXJjMQpodHRwczovL2J1Z3pp
+bGxhLmtlcm5lbC5vcmcvc2hvd19idWcuY2dpP2lkPTIxNzA3MAojcmVnemJvdCB0aXRsZTogbmV0
+OiB3aXJlbGVzczogYXRoMTFrOiBRQ0E2MzkwCiNyZWd6Ym90IGlnbm9yZS1hY3Rpdml0eQoKVGhp
+cyBpc24ndCBhIHJlZ3Jlc3Npb24/IFRoaXMgaXNzdWUgb3IgYSBmaXggZm9yIGl0IGFyZSBhbHJl
+YWR5CmRpc2N1c3NlZCBzb21ld2hlcmUgZWxzZT8gSXQgd2FzIGZpeGVkIGFscmVhZHk/IFlvdSB3
+YW50IHRvIGNsYXJpZnkgd2hlbgp0aGUgcmVncmVzc2lvbiBzdGFydGVkIHRvIGhhcHBlbj8gT3Ig
+cG9pbnQgb3V0IEkgZ290IHRoZSB0aXRsZSBvcgpzb21ldGhpbmcgZWxzZSB0b3RhbGx5IHdyb25n
+PyBUaGVuIGp1c3QgcmVwbHkgYW5kIHRlbGwgbWUgLS0gaWRlYWxseQp3aGlsZSBhbHNvIHRlbGxp
+bmcgcmVnemJvdCBhYm91dCBpdCwgYXMgZXhwbGFpbmVkIGJ5IHRoZSBwYWdlIGxpc3RlZCBpbgp0
+aGUgZm9vdGVyIG9mIHRoaXMgbWFpbC4KCkRldmVsb3BlcnM6IFdoZW4gZml4aW5nIHRoZSBpc3N1
+ZSwgcmVtZW1iZXIgdG8gYWRkICdMaW5rOicgdGFncyBwb2ludGluZwp0byB0aGUgcmVwb3J0IChl
+LmcuIHRoZSBidXpnemlsbGEgdGlja2V0IGFuZCBtYXliZSB0aGlzIG1haWwgYXMgd2VsbCwgaWYK
+dGhpcyB0aHJlYWQgc2VlcyBzb21lIGRpc2N1c3Npb24pLiBTZWUgcGFnZSBsaW5rZWQgaW4gZm9v
+dGVyIGZvciBkZXRhaWxzLgoKQ2lhbywgVGhvcnN0ZW4gKHdlYXJpbmcgaGlzICd0aGUgTGludXgg
+a2VybmVsJ3MgcmVncmVzc2lvbiB0cmFja2VyJyBoYXQpCi0tCkV2ZXJ5dGhpbmcgeW91IHdhbm5h
+IGtub3cgYWJvdXQgTGludXgga2VybmVsIHJlZ3Jlc3Npb24gdHJhY2tpbmc6Cmh0dHBzOi8vbGlu
+dXgtcmVndHJhY2tpbmcubGVlbWh1aXMuaW5mby9hYm91dC8jdGxkcgpJZiBJIGRpZCBzb21ldGhp
+bmcgc3R1cGlkLCBwbGVhc2UgdGVsbCBtZSwgYXMgZXhwbGFpbmVkIG9uIHRoYXQgcGFnZS4KCi0t
+IAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9s
+aXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vYXRoMTFrCg==
