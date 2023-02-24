@@ -4,49 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D294C636D6
-	for <ath11k@archiver.kernel.org>; Thu, 23 Feb 2023 16:01:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52AC8C64ED8
+	for <ath11k@archiver.kernel.org>; Fri, 24 Feb 2023 10:10:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Subject:Cc:To:From:
-	MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-	References:List-Owner; bh=egk773HBQrnHzp/y1UP74KzXTyOHyH0zyJaz7vEG6BA=; b=bGK
-	VFkuf6yA4YJkqs1tqifZoCUAFx6HVGmGlFWyL1SsFZqoubRIDroOkJhIfK0JmP893HfSwA2LqzK+Y
-	m9gEePAeltZfTzTj+zYmyaOHcO8LMI8f/EFLRMZ7Omp1qrOd87aq2ExW/D3cNssqP+Yf/G5h7pojT
-	KgD1Ur+07oZYM+8XsdLza4/OeyprhxVVTeQLTMoiIkEi6CF53zegHL1XhgGBU2FBXcm4EyUnGhnwu
-	Gqq4B9pUXhoOO9lHtG80xTGCydWSBuxj2AI2IntHaqg2Dvi8/O/Um0uvTGMWTX4wI6l4+HdnVtONx
-	VnoFAachussbqfBA/n9cX49xMKk4isQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=lcRhxuFD28g0Z5FXkZRqp3/HY19hoY/stmlsx9dfKqU=; b=niAaXgGDsUnxH6
+	QgkX7EqQbYNOKVN3uoECue7TIvE1Ax8KQFEGMT86JSP1fYQsDCND6+/Q5+JFbPHPNRZJltNQM/bue
+	82BJlKg5jkXqMK3deMkqM9sETmeXPSbFwSPBENsutER8aKpJChuUp1B7GMvgDIRuW7A2jm3lU3Jx4
+	tZM3nW1cstmDvJtudNb+pL9i1M1L2cSa3DRBmWskJW5irDaBlKAZ47Y7W9ej8QQiGApZBlAAh4DiP
+	KfL6gcG4X6yJNFTAzx+6A+Xyq7owJ05HnOjE1A/WTI2OQBm03mXJQlmIIEL7FpR/YXuB+Ry8StTWJ
+	LQ1c+b1OBx8lmKN5KYGA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pVE2C-00HAJ1-Rb; Thu, 23 Feb 2023 16:01:28 +0000
-Received: from wp530.webpack.hosteurope.de ([80.237.130.52])
+	id 1pVV2W-001uUh-Ar; Fri, 24 Feb 2023 10:10:56 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pVE28-00HAGc-T9
-	for ath11k@lists.infradead.org; Thu, 23 Feb 2023 16:01:26 +0000
-Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
-	by wp530.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
-	id 1pVE23-0007wG-N0; Thu, 23 Feb 2023 17:01:19 +0100
-Message-ID: <c7a7e21a-0eac-8e84-aa8e-59ba4116e6af@leemhuis.info>
-Date: Thu, 23 Feb 2023 17:01:19 +0100
+	id 1pVV0J-001tKK-Sl
+	for ath11k@lists.infradead.org; Fri, 24 Feb 2023 10:08:41 +0000
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31O4LbiZ016756;
+	Fri, 24 Feb 2023 10:08:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=NObgMQoBcXpCo1Ze11rufi67mVaLJfn4suB7qxRc9Hg=;
+ b=jnhNkHO0mCrN0JE3LAnLOv6MkDlosPtwteVggShyh7PGL/6HOvKEkAFqH8lRxn3MetfM
+ IGaB4MpPhRYz5DHw8xBa7PJTbsOET2HtbAvRZazC/98s25LbU5VJ24Z/iT7TZQhhr1gB
+ XnOdSN4qpXCfwpRPGCRguckEAYACuL969/GfTWAC0HihExLHPW/p8jOirgkh5+w25QCw
+ XgZ/jQDI0WlCF9DZAaA9ceZKE4bpYTHNFuFYuyDI73Kl82ZoHmzTuf93QtcmwA3MVM/V
+ RL68YqpI91aGTVBjsYUf41DDYfFPmWPHUj/nPHra8w1qwkrOdfBVfXe0V41rmUAmJQzF ng== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nwycnm5ym-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 24 Feb 2023 10:08:30 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31OA8Tux026683
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 24 Feb 2023 10:08:29 GMT
+Received: from [10.216.30.226] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Fri, 24 Feb
+ 2023 02:08:27 -0800
+Message-ID: <10e4b6bf-f375-e50f-063a-b44471359d25@quicinc.com>
+Date: Fri, 24 Feb 2023 15:38:23 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US, de-DE
-From: "Linux regression tracking (Thorsten Leemhuis)"
- <regressions@leemhuis.info>
-To: Kalle Valo <kvalo@kernel.org>
-Cc: ath11k <ath11k@lists.infradead.org>,
- "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
- netdev <netdev@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
- Linux kernel regressions list <regressions@lists.linux.dev>, mani@kernel.org
-Subject: [regression] Bug 217070 - ath11k: QCA6390: Regression on 6.2-rc1
-X-bounce-key: webpack.hosteurope.de;regressions@leemhuis.info;1677168084;03522b4e;
-X-HE-SMSGID: 1pVE23-0007wG-N0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH] wifi: ath11k: Optimize 6 GHz scan time
+To: James Prestwood <prestwoj@gmail.com>,
+        Marcel Holtmann
+	<marcel@holtmann.org>, <johannes@sipsolutions.net>
+CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
+References: <20221220043823.20382-1-quic_mpubbise@quicinc.com>
+ <5DAEA8B2-2B44-4A91-9E57-12B6C6B6C1FC@holtmann.org>
+ <2861463e-a097-7efe-bc75-f13c8faf9547@quicinc.com>
+ <378a1d63b3752ace7384c44d6f5184753fa7795d.camel@gmail.com>
+ <0b06dea9-d5be-1edc-62ca-576398d1bcd8@quicinc.com>
+ <0e7644cbfa9e4ba0d534681166ca467ea1684719.camel@gmail.com>
+Content-Language: en-US
+From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+In-Reply-To: <0e7644cbfa9e4ba0d534681166ca467ea1684719.camel@gmail.com>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: e9-ptvrkJa4zdNpVpb5OalxbSzu1ixaY
+X-Proofpoint-GUID: e9-ptvrkJa4zdNpVpb5OalxbSzu1ixaY
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
+ definitions=2023-02-24_06,2023-02-24_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 impostorscore=0
+ suspectscore=0 lowpriorityscore=0 phishscore=0 adultscore=0 spamscore=0
+ clxscore=1011 mlxlogscore=958 priorityscore=1501 malwarescore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2302240084
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230223_080125_121756_2DB2C6D2 
-X-CRM114-Status: GOOD (  16.16  )
+X-CRM114-CacheID: sfid-20230224_020840_021435_0E39ED42 
+X-CRM114-Status: GOOD (  22.36  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -58,79 +97,77 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-SGksIHRoaXMgaXMgeW91ciBMaW51eCBrZXJuZWwgcmVncmVzc2lvbiB0cmFja2VyLgoKSSBub3Rp
-Y2VkIGEgcmVncmVzc2lvbiByZXBvcnQgaW4gYnVnemlsbGEua2VybmVsLm9yZy4gQXMgbWFueSAo
-bW9zdD8pCmtlcm5lbCBkZXZlbG9wZXIgZG9uJ3Qga2VlcCBhbiBleWUgb24gaXQsIEkgZGVjaWRl
-ZCB0byBmb3J3YXJkIGl0IGJ5Cm1haWwuIFF1b3RpbmcgZnJvbSBodHRwczovL2J1Z3ppbGxhLmtl
-cm5lbC5vcmcvc2hvd19idWcuY2dpP2lkPTIxNzA3MCA6Cgo+ICBtYW5pQGtlcm5lbC5vcmcgMjAy
-My0wMi0yMiAwODo0MzoxNSBVVEMKPiAKPiBIaSwKPiAKPiBXaXRoIHRoZSBmaXJtd2FyZSBmcm9t
-IGxpbnV4LWZpcm13YXJlIGFuZCB2ZW5kb3IgU0RLLCBhdGgxMWsgdXNlZCB0bwo+IHdvcmsgb24g
-a2VybmVsIHY1LjE5LXJjNiBidXQgaXQgaXMgbm93IGZhaWxpbmcgb24ga2VybmVsIHY2LjItcmMx
-Lgo+IAo+IGRtZXNnIG9mIHRoZSBmYWlsdXJlIHdpdGggZmlybXdhcmUgZnJvbSBsaW51eC1maXJt
-d2FyZToKPiAKPiBbICAgMzMuMjI0MTQ4XSBhdGgxMWtfcGNpIDAwMDA6MDE6MDAuMDogQWRkaW5n
-IHRvIGlvbW11IGdyb3VwIDEKPiBbICAgMzMuMjM4MDAwXSBhdGgxMWtfcGNpIDAwMDA6MDE6MDAu
-MDogQkFSIDA6IGFzc2lnbmVkIFttZW0gMHg0MDMwMDAwMC0weDQwM2ZmZmZmIDY0Yml0XQo+IFsg
-ICAzMy4yMzgyNjBdIGF0aDExa19wY2kgMDAwMDowMTowMC4wOiBlbmFibGluZyBkZXZpY2UgKDAx
-NDAgLT4gMDE0MikKPiBbICAgMzMuMjc1ODk4XSBhdGgxMWtfcGNpIDAwMDA6MDE6MDAuMDogTVNJ
-IHZlY3RvcnM6IDMyCj4gWyAgIDMzLjI3NjA1M10gYXRoMTFrX3BjaSAwMDAwOjAxOjAwLjA6IHFj
-YTYzOTAgaHcyLjAKPiBbICAgMzUuOTAxODE5XSBhdGgxMWtfcGNpIDAwMDA6MDE6MDAuMDogY2hp
-cF9pZCAweDAgY2hpcF9mYW1pbHkgMHhiIGJvYXJkX2lkIDB4ZmYgc29jX2lkIDB4ZmZmZmZmZmYK
-PiBbICAgMzUuOTAyMDExXSBhdGgxMWtfcGNpIDAwMDA6MDE6MDAuMDogZndfdmVyc2lvbiAweDEw
-MTIxNDkyIGZ3X2J1aWxkX3RpbWVzdGFtcCAyMDIxLTExLTA0IDExOjIzIGZ3X2J1aWxkX2lkIAo+
-IFsgICAzOC4xMzQwMjldIGF0aDExa19wY2kgMDAwMDowMTowMC4wOiBmYWlsZWQgdG8gcmVjZWl2
-ZSBjb250cm9sIHJlc3BvbnNlIGNvbXBsZXRpb24sIHBvbGxpbmcuLgo+IFsgICAzOS4xNzM4OThd
-IGF0aDExa19wY2kgMDAwMDowMTowMC4wOiBjdGxfcmVzcCBuZXZlciBjYW1lIGluICgtMTEwKQo+
-IFsgICAzOS4xNzQwMjJdIGF0aDExa19wY2kgMDAwMDowMTowMC4wOiBmYWlsZWQgdG8gY29ubmVj
-dCB0byBIVEM6IC0xMTAKPiBbICAgMzkuMjgwNjE4XSBhdGgxMWtfcGNpIDAwMDA6MDE6MDAuMDog
-ZmFpbGVkIHRvIHN0YXJ0IGNvcmU6IC0xMTAKPiAKPiBkbWVzZyBvZiB0aGUgZmFpbHVyZSB3aXRo
-IGZpcm13YXJlIGZyb20gdmVuZG9yIFNESzoKPiAKPiBbICAgMzMuMjk0MjkxXSBhdGgxMWtfcGNp
-IDAwMDA6MDE6MDAuMDogQWRkaW5nIHRvIGlvbW11IGdyb3VwIDEKPiBbICAgMzMuMjk1NjcxXSBh
-dGgxMWtfcGNpIDAwMDA6MDE6MDAuMDogQkFSIDA6IGFzc2lnbmVkIFttZW0gMHg0MDMwMDAwMC0w
-eDQwM2ZmZmZmIDY0Yml0XQo+IFsgICAzMy4yOTkyMjNdIGF0aDExa19wY2kgMDAwMDowMTowMC4w
-OiBlbmFibGluZyBkZXZpY2UgKDAxNDAgLT4gMDE0MikKPiBbICAgMzMuMzM4NTYyXSBhdGgxMWtf
-cGNpIDAwMDA6MDE6MDAuMDogTVNJIHZlY3RvcnM6IDMyCj4gWyAgIDMzLjMzODcxMV0gYXRoMTFr
-X3BjaSAwMDAwOjAxOjAwLjA6IHFjYTYzOTAgaHcyLjAKPiBbICAgMzguNTA2ODUwXSBhdGgxMWtf
-cGNpIDAwMDA6MDE6MDAuMDogaWdub3JlIHJlc2V0IGRldiBmbGFncyAweDgwMDAKPiBbICAgMzgu
-NTA3MTgxXSBhdGgxMWtfcGNpIDAwMDA6MDE6MDAuMDogZmFpbGVkIHRvIHBvd2VyIHVwIG1oaTog
-LTExMAo+IFsgICAzOC41MjA1NDZdIGF0aDExa19wY2kgMDAwMDowMTowMC4wOiBmYWlsZWQgdG8g
-c3RhcnQgbWhpOiAtMTEwCj4gWyAgIDM4LjUyMDY2NV0gYXRoMTFrX3BjaSAwMDAwOjAxOjAwLjA6
-IGZhaWxlZCB0byBwb3dlciB1cCA6LTExMAo+IFsgICAzOC41NTQyOTddIGF0aDExa19wY2kgMDAw
-MDowMTowMC4wOiBmYWlsZWQgdG8gY3JlYXRlIHNvYyBjb3JlOiAtMTEwCj4gWyAgIDM4LjU1NDQy
-NF0gYXRoMTFrX3BjaSAwMDAwOjAxOjAwLjA6IGZhaWxlZCB0byBpbml0IGNvcmU6IC0xMTAKPiBb
-ICAgMzguODg4NTM5XSBhdGgxMWtfcGNpOiBwcm9iZSBvZiAwMDAwOjAxOjAwLjAgZmFpbGVkIHdp
-dGggZXJyb3IgLTExMAo+IAo+IFt0YWddIFtyZXBseV0gW+KIkl0KPiBQcml2YXRlCj4gQ29tbWVu
-dCAxIG1hbmlAa2VybmVsLm9yZyAyMDIzLTAyLTIyIDA4OjQ1OjI3IFVUQwo+IAo+IEhvc3QgcGxh
-dGZvcm0gaXMgVGh1bmRlcmNvbW0gVDU1IGJvYXJkIGJhc2VkIG9uIFF1YWxjb21tIFNEWDU1IFNv
-QyAoQVJNMzIpLgoKU2VlIHRoZSB0aWNrZXQgZm9yIG1vcmUgZGV0YWlscy4KCgpbVExEUiBmb3Ig
-dGhlIHJlc3Qgb2YgdGhpcyBtYWlsOiBJJ20gYWRkaW5nIHRoaXMgcmVwb3J0IHRvIHRoZSBsaXN0
-IG9mCnRyYWNrZWQgTGludXgga2VybmVsIHJlZ3Jlc3Npb25zOyB0aGUgdGV4dCB5b3UgZmluZCBi
-ZWxvdyBpcyBiYXNlZCBvbiBhCmZldyB0ZW1wbGF0ZXMgcGFyYWdyYXBocyB5b3UgbWlnaHQgaGF2
-ZSBlbmNvdW50ZXJlZCBhbHJlYWR5IGluIHNpbWlsYXIKZm9ybS5dCgpCVFcsIGxldCBtZSB1c2Ug
-dGhpcyBtYWlsIHRvIGFsc28gYWRkIHRoZSByZXBvcnQgdG8gdGhlIGxpc3Qgb2YgdHJhY2tlZApy
-ZWdyZXNzaW9ucyB0byBlbnN1cmUgaXQncyBkb2Vzbid0IGZhbGwgdGhyb3VnaCB0aGUgY3JhY2tz
-OgoKI3JlZ3pib3QgaW50cm9kdWNlZDogdjUuMTktcmM2Li52Ni4yLXJjMQpodHRwczovL2J1Z3pp
-bGxhLmtlcm5lbC5vcmcvc2hvd19idWcuY2dpP2lkPTIxNzA3MAojcmVnemJvdCB0aXRsZTogbmV0
-OiB3aXJlbGVzczogYXRoMTFrOiBRQ0E2MzkwCiNyZWd6Ym90IGlnbm9yZS1hY3Rpdml0eQoKVGhp
-cyBpc24ndCBhIHJlZ3Jlc3Npb24/IFRoaXMgaXNzdWUgb3IgYSBmaXggZm9yIGl0IGFyZSBhbHJl
-YWR5CmRpc2N1c3NlZCBzb21ld2hlcmUgZWxzZT8gSXQgd2FzIGZpeGVkIGFscmVhZHk/IFlvdSB3
-YW50IHRvIGNsYXJpZnkgd2hlbgp0aGUgcmVncmVzc2lvbiBzdGFydGVkIHRvIGhhcHBlbj8gT3Ig
-cG9pbnQgb3V0IEkgZ290IHRoZSB0aXRsZSBvcgpzb21ldGhpbmcgZWxzZSB0b3RhbGx5IHdyb25n
-PyBUaGVuIGp1c3QgcmVwbHkgYW5kIHRlbGwgbWUgLS0gaWRlYWxseQp3aGlsZSBhbHNvIHRlbGxp
-bmcgcmVnemJvdCBhYm91dCBpdCwgYXMgZXhwbGFpbmVkIGJ5IHRoZSBwYWdlIGxpc3RlZCBpbgp0
-aGUgZm9vdGVyIG9mIHRoaXMgbWFpbC4KCkRldmVsb3BlcnM6IFdoZW4gZml4aW5nIHRoZSBpc3N1
-ZSwgcmVtZW1iZXIgdG8gYWRkICdMaW5rOicgdGFncyBwb2ludGluZwp0byB0aGUgcmVwb3J0IChl
-LmcuIHRoZSBidXpnemlsbGEgdGlja2V0IGFuZCBtYXliZSB0aGlzIG1haWwgYXMgd2VsbCwgaWYK
-dGhpcyB0aHJlYWQgc2VlcyBzb21lIGRpc2N1c3Npb24pLiBTZWUgcGFnZSBsaW5rZWQgaW4gZm9v
-dGVyIGZvciBkZXRhaWxzLgoKQ2lhbywgVGhvcnN0ZW4gKHdlYXJpbmcgaGlzICd0aGUgTGludXgg
-a2VybmVsJ3MgcmVncmVzc2lvbiB0cmFja2VyJyBoYXQpCi0tCkV2ZXJ5dGhpbmcgeW91IHdhbm5h
-IGtub3cgYWJvdXQgTGludXgga2VybmVsIHJlZ3Jlc3Npb24gdHJhY2tpbmc6Cmh0dHBzOi8vbGlu
-dXgtcmVndHJhY2tpbmcubGVlbWh1aXMuaW5mby9hYm91dC8jdGxkcgpJZiBJIGRpZCBzb21ldGhp
-bmcgc3R1cGlkLCBwbGVhc2UgdGVsbCBtZSwgYXMgZXhwbGFpbmVkIG9uIHRoYXQgcGFnZS4KCi0t
-IAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9s
-aXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vYXRoMTFrCg==
+On 1/10/2023 10:35 PM, James Prestwood wrote:
+> On Tue, 2023-01-10 at 10:49 +0530, Manikanta Pubbisetty wrote:
+>> On 12/29/2022 2:52 AM, James Prestwood wrote:
+>>> Hi Manikanta,
+>>>> By the way, userspace itself selects the frequencies to scan, not
+>>>> the
+>>>> driver.
+>>>>
+>>>> If we see the split scan implementation in cfg80211, this is the
+>>>> how
+>>>> it
+>>>> is implemented. If NL80211_SCAN_FLAG_COLOCATED_6GHZ is set, it
+>>>> selects
+>>>> all PSC channels and those non-PSC channels where RNR IE
+>>>> information
+>>>> is
+>>>> found in the legacy scan results. If this flag is not set, all
+>>>> channels
+>>>> in 6 GHz are included in the scan freq list. It is upto userspace
+>>>> to
+>>>> decide what it wants.
+>>>
+>>>
+>>> This isn't your problem, but it needs to be said:
+>>>
+>>> The nl80211 docs need and update to reflect this behavior (or
+>>> remove
+>>> the PSC logic). IMO this is really weird that the kernel selects
+>>> PSC's
+>>> based on the co-located flag. The docs don't describe this behavior
+>>> and
+>>> the flag's name is misleading (its not
+>>> SCAN_FLAG_COLOCATED_AND_PSC_6GHZ) :)
+>>>
+>>
+>> Sorry for the late reply, I was on vacation.
+>>
+>> What you said make sense. The existing flag should not add PSC
+>> channels
+>> according to the flag description.
+>>
+>> We can add another flag something like you pointed out
+>> SCAN_FLAG_COLOCATED_AND_PSC_6GHZ and include PSC channels if this
+>> flag
+>> is set. What do you say?
+> 
+> I'm no authority here, just wanted to point this out. This is something
+> that would need to be in mac80211 though, not just a specific driver.
+> It would be up to the maintainers and would require changing the
+> behavior of the existing flag, which then changes behavior in
+> wpa_supplicant/hostapd. So its somewhat intrusive.
+> 
+> But personally I'd be for it. And just require userspace include PSC's
+> like any other channels if they need those.
+> 
+
+Hi Johannes,
+
+What is your opinion on the changes being proposed to the 6 GHz scan in 
+cfg80211 that is being discussed in this thread?
+
+Thanks,
+Manikanta
+
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
