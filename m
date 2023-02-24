@@ -4,64 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41646C64ED8
-	for <ath11k@archiver.kernel.org>; Fri, 24 Feb 2023 10:15:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C1C5C61DA3
+	for <ath11k@archiver.kernel.org>; Fri, 24 Feb 2023 14:46:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Q7TwFpWXStFekDzHie4dH8nnLcZ80AD+jH4MKC5SK3Y=; b=ar9fWyvXuaeRpC
-	al+1vhx+txL7nCnFZoWbhWc6a1lLhYrT+cVDw6wAM2qiXCWakFljQ+neKDVC79p3sliV6xfTLL9MH
-	za9QZpvMX7sicIJi5s4rKmMgqSaH4fIpiR7+CJKwjIqrqY7ZlN8zuDxZTTgXvB777/7/bolxK0c2Y
-	Mzz+CGsMwKAt8pEHBW8Gqhz2JFWaV17t5QFu03Lvf3UCzKakAAUUjS9KGImYVl4OivxmEyIuwPJCF
-	uFkgXVPQKHnq8+o2n/MOGTqXkTuDuKF+ZPMn/EcHPDefEqH/KpAA26rolgLj1lH8izldi5ReBqg7X
-	WufnTkc1VLON/7By1u8Q==;
+	List-Owner; bh=xFpmQVkIzq9nOP4PiFvluCqD2VXBpoVuT4tyi0iHV/I=; b=Aw86+/bDY4VItT
+	uXG2FRScaPzQWms7DOc19fii54lmTjBcCIHs04l0Gy0Ld6SUKOfIPaaN7TzqQu4BO8JHsKSNsbXNd
+	l6cF4Pj4spWL8PE2IIESgJPo/GWRFToBMQzrWo9ib0ZRhQU26ZSJ1fNsZs5H+e7valhPMyRrDKiTs
+	+PKMvM56csBKO7Y3/48xJH4jdVwWgfo71tyXFSR0Mg69fGfuNKZpYuCngRZm5ZuPCO7oFe9OySIbf
+	ZMeGapgdGNVXEo6UxQZYzS9JzVFa5dqM+yCbU1JZZ0D3T+J8jIgaXqgBnj9AnEPZQmPyMf9aauwWq
+	XsNEUB1Bi0EylcR0E6QA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pVV7J-001wlw-L0; Fri, 24 Feb 2023 10:15:53 +0000
-Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2] helo=sipsolutions.net)
+	id 1pVZLP-002np6-Hm; Fri, 24 Feb 2023 14:46:43 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pVV7G-001whz-7O
-	for ath11k@lists.infradead.org; Fri, 24 Feb 2023 10:15:51 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
-	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
-	Resent-Cc:Resent-Message-ID; bh=tkM+SFdwRaFOFd0Ny9sr17OCmX6BuWzOVwVIIiMjVYo=;
-	t=1677233747; x=1678443347; b=ihOjvW/CQwzEPyKbMVfOaDIKuOOqGA7jRqaGz0mnndFaOCs
-	kp3hpviR3G9zKOjQihNxBeA7U4MJQnlfPsZibtDd748y6PnVJveOduFOZGI+qni0HTKwlGf/EJCzT
-	v6e4mIt06wKL/F3egjjFp9M+ZYUk4e/6mH2hoQAe6OfX41P8ILIJRmMUnkdxAOVFDRnIxMbMa0bL5
-	3o1vs4SkPSfzjdERD+akg1CcWjKG6v3/Vp49MYOxlL/SN4Y9wlhr47Lpv/QjLhAmigDd2YQj6WJBW
-	oUlZ1HYFxgZ2iIDNV5Xk2vuwSNtRBm+YZM5ksRN19lgaHl9StXNb3nNnQsvgROxg==;
-Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
-	(Exim 4.96)
-	(envelope-from <johannes@sipsolutions.net>)
-	id 1pVV76-00498c-2G;
-	Fri, 24 Feb 2023 11:15:40 +0100
-Message-ID: <56a3651e48ae621afa4c50f1ba0d9fedeefb2c31.camel@sipsolutions.net>
-Subject: Re: [PATCH] wifi: ath11k: Optimize 6 GHz scan time
-From: Johannes Berg <johannes@sipsolutions.net>
-To: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>, James Prestwood
-	 <prestwoj@gmail.com>, Marcel Holtmann <marcel@holtmann.org>
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org, 
-	ilan.peer@intel.com
-Date: Fri, 24 Feb 2023 11:15:39 +0100
-In-Reply-To: <10e4b6bf-f375-e50f-063a-b44471359d25@quicinc.com>
-References: <20221220043823.20382-1-quic_mpubbise@quicinc.com>
-	 <5DAEA8B2-2B44-4A91-9E57-12B6C6B6C1FC@holtmann.org>
-	 <2861463e-a097-7efe-bc75-f13c8faf9547@quicinc.com>
-	 <378a1d63b3752ace7384c44d6f5184753fa7795d.camel@gmail.com>
-	 <0b06dea9-d5be-1edc-62ca-576398d1bcd8@quicinc.com>
-	 <0e7644cbfa9e4ba0d534681166ca467ea1684719.camel@gmail.com>
-	 <10e4b6bf-f375-e50f-063a-b44471359d25@quicinc.com>
-User-Agent: Evolution 3.46.3 (3.46.3-1.fc37) 
+	id 1pVZLM-002noG-Gj
+	for ath11k@lists.infradead.org; Fri, 24 Feb 2023 14:46:42 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ams.source.kernel.org (Postfix) with ESMTPS id E2234B81C87;
+	Fri, 24 Feb 2023 14:46:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFC29C4339B;
+	Fri, 24 Feb 2023 14:46:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1677249997;
+	bh=peavsqg3yenBn7QYS5SDS1x3WO3lozC0ZMCB4rY0fq0=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=qzDxEPZESXm4rZnZ7XMi7/exNMnHAFbUNiurGfGjGAzPmtL5aVBweXUICr0/Gdi29
+	 ewrxnCt4zOLBwPJy1LpKRJUaaxUYAu7fHGIX9YA80FItxsoGz/wjSJdu/shF9TYDw5
+	 llJoI8JElrKGB1LqZ2XgXRGvMNKz2vlHAVm8L+bBxHZm8RAnxRpL72X3Snm0KSursJ
+	 DPsMYQwmriIQq8igBts6UKYHIPPEKNgdFwNpcfgD58faQ7m50yFjWvANJqRdekMMUE
+	 LiBf0ZgcvvGCFJNt9+j20M01oZlRSBI4y79jvwKhgXG+noUwVP7c5lDS67AxAh5OwT
+	 C8f01EOr1PjaQ==
+From: Kalle Valo <kvalo@kernel.org>
+To: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
+Subject: Re: [PATCH v4 3/3] ath11k: Enable low power mode when WLAN is not active
+References: <20230203060128.19625-1-quic_mpubbise@quicinc.com>
+	<20230203060128.19625-4-quic_mpubbise@quicinc.com>
+Date: Fri, 24 Feb 2023 16:46:31 +0200
+In-Reply-To: <20230203060128.19625-4-quic_mpubbise@quicinc.com> (Manikanta
+	Pubbisetty's message of "Fri, 3 Feb 2023 11:31:28 +0530")
+Message-ID: <87h6vbruig.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-X-malware-bazaar: not-scanned
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230224_021550_299844_D04F26BC 
-X-CRM114-Status: GOOD (  33.28  )
+X-CRM114-CacheID: sfid-20230224_064640_869629_F4ABA045 
+X-CRM114-Status: GOOD (  21.97  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,74 +73,82 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Fri, 2023-02-24 at 15:38 +0530, Manikanta Pubbisetty wrote:
-> On 1/10/2023 10:35 PM, James Prestwood wrote:
-> > On Tue, 2023-01-10 at 10:49 +0530, Manikanta Pubbisetty wrote:
-> > > On 12/29/2022 2:52 AM, James Prestwood wrote:
-> > > > Hi Manikanta,
-> > > > > By the way, userspace itself selects the frequencies to scan, not
-> > > > > the
-> > > > > driver.
-> > > > > 
-> > > > > If we see the split scan implementation in cfg80211, this is the
-> > > > > how
-> > > > > it
-> > > > > is implemented. If NL80211_SCAN_FLAG_COLOCATED_6GHZ is set, it
-> > > > > selects
-> > > > > all PSC channels and those non-PSC channels where RNR IE
-> > > > > information
-> > > > > is
-> > > > > found in the legacy scan results. If this flag is not set, all
-> > > > > channels
-> > > > > in 6 GHz are included in the scan freq list. It is upto userspace
-> > > > > to
-> > > > > decide what it wants.
-> > > > 
-> > > > 
-> > > > This isn't your problem, but it needs to be said:
-> > > > 
-> > > > The nl80211 docs need and update to reflect this behavior (or
-> > > > remove
-> > > > the PSC logic). IMO this is really weird that the kernel selects
-> > > > PSC's
-> > > > based on the co-located flag. The docs don't describe this behavior
-> > > > and
-> > > > the flag's name is misleading (its not
-> > > > SCAN_FLAG_COLOCATED_AND_PSC_6GHZ) :)
-> > > > 
-> > > 
-> > > Sorry for the late reply, I was on vacation.
-> > > 
-> > > What you said make sense. The existing flag should not add PSC
-> > > channels
-> > > according to the flag description.
-> > > 
-> > > We can add another flag something like you pointed out
-> > > SCAN_FLAG_COLOCATED_AND_PSC_6GHZ and include PSC channels if this
-> > > flag
-> > > is set. What do you say?
-> > 
-> > I'm no authority here, just wanted to point this out. This is something
-> > that would need to be in mac80211 though, not just a specific driver.
-> > It would be up to the maintainers and would require changing the
-> > behavior of the existing flag, which then changes behavior in
-> > wpa_supplicant/hostapd. So its somewhat intrusive.
-> > 
-> > But personally I'd be for it. And just require userspace include PSC's
-> > like any other channels if they need those.
-> > 
-> 
-> Hi Johannes,
-> 
-> What is your opinion on the changes being proposed to the 6 GHz scan in 
-> cfg80211 that is being discussed in this thread?
-> 
+Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
 
-I don't think we can/should change the semantics of an existing flag
-now, but we can certainly update the documentation to match the
-implementation, and add more flags to make it more flexible.
+> Currently, WLAN chip is powered once during driver probe and is kept
+> ON (powered) always even when WLAN is not active; keeping the chip
+> powered ON all the time will consume extra power which is not
+> desirable for a battery operated device. Same is the case with non-WoW
+> suspend, chip will never be put into low power mode when the system is
+> suspended resulting in higher battery drain.
+>
+> As per the recommendation, sending a PDEV suspend WMI command followed
+> by a QMI MODE OFF command will cease all WLAN activity and put the device
+> in low power mode. When WLAN interfaces are brought up, sending a QMI
+> MISSION MODE command would be sufficient to bring the chip out of low
+> power. This is a better approach than doing hif_power_down()/hif_power_up()
+> for every WiFi ON/OFF sequence since the turnaround time for entry/exit of
+> low power mode is much less. Overhead is just the time taken for sending
+> QMI MODE OFF & QMI MISSION MODE commands instead of going through the
+> entire chip boot & QMI init sequence.
+>
+> Currently the changes are applicable only for WCN6750. This can be
+> extended to other targets with a future patch.
+>
+> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
+> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.16
+>
+> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
 
-johannes
+This is still crashing for me every time with WCN6855 on a NUC x86
+device when I rmmod ath11k. Interestingly enough QCA6390 on a Dell XPS
+13 9310 does not crash.
+
+I investigated the crash more, the crash happens in
+ath11k_dp_process_rxdma_err() on this line:
+
+	srng = &ab->hal.srng_list[err_ring->ring_id];
+
+Here are the debug messages before the crash (first and last are my
+own messages):
+
+[  226.766111] rmmod ath11k_pci
+[  227.003678] ath11k_pci 0000:06:00.0: txpower from firmware NaN, reported -2147483648 dBm
+[  227.082283] ath11k_pci 0000:06:00.0: qmi wifi fw del server
+[  227.195760] ath11k_pci 0000:06:00.0: cookie:0x0
+[  227.195843] ath11k_pci 0000:06:00.0: WLAON_WARM_SW_ENTRY 0x15b894d
+[  227.216022] ath11k_pci 0000:06:00.0: WLAON_WARM_SW_ENTRY 0x0
+[  227.216086] ath11k_pci 0000:06:00.0: soc reset cause:0
+[  227.236170] ath11k_pci 0000:06:00.0: MHISTATUS 0xff04
+[  227.270816] ath11k_pci 0000:06:00.0: ext irq:167
+[  227.271231] ath11k_dp_process_rxdma_err() 4187 ab ffff888145520000 err_ring 00000000000001d0
+
+So we get irq 167 which is:
+
+ 167:          0          0          0          0          0          0          0          0  IR-PCI-MSI-0000:06:00.0   14-edge      DP_EXT_IRQ
+
+But in ath11k_pcic_ext_interrupt_handler() ATH11K_FLAG_EXT_IRQ_ENABLED
+is still enabled so the irq is processed:
+
+	if (!test_bit(ATH11K_FLAG_EXT_IRQ_ENABLED, &ab->dev_flags))
+		return IRQ_HANDLED;
+
+It looks like that, after applying this patch 3, whenever
+ath11k_pci_remove() is called we are not calling
+ath11k_hif_irq_disable() anymore. I checked that without patch 3
+ath11k_hif_irq_disable() is always called. So this patch is definitely
+breaking something fundamental, but I ran out of time to invetigate
+further. I hope this still helps.
+
+Do note I have concerns about this patchset, it just changes quite a lot
+of the driver logic and I'm worried what else this breaks. Also we
+should definitely test with another AHB device like IPQ8074, this
+patchset needs extensive testing.
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
