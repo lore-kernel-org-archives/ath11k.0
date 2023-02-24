@@ -4,59 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C1C5C61DA3
-	for <ath11k@archiver.kernel.org>; Fri, 24 Feb 2023 14:46:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1844C61DA3
+	for <ath11k@archiver.kernel.org>; Fri, 24 Feb 2023 14:50:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
 	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xFpmQVkIzq9nOP4PiFvluCqD2VXBpoVuT4tyi0iHV/I=; b=Aw86+/bDY4VItT
-	uXG2FRScaPzQWms7DOc19fii54lmTjBcCIHs04l0Gy0Ld6SUKOfIPaaN7TzqQu4BO8JHsKSNsbXNd
-	l6cF4Pj4spWL8PE2IIESgJPo/GWRFToBMQzrWo9ib0ZRhQU26ZSJ1fNsZs5H+e7valhPMyRrDKiTs
-	+PKMvM56csBKO7Y3/48xJH4jdVwWgfo71tyXFSR0Mg69fGfuNKZpYuCngRZm5ZuPCO7oFe9OySIbf
-	ZMeGapgdGNVXEo6UxQZYzS9JzVFa5dqM+yCbU1JZZ0D3T+J8jIgaXqgBnj9AnEPZQmPyMf9aauwWq
-	XsNEUB1Bi0EylcR0E6QA==;
+	List-Owner; bh=ftuh0C5XFAfvwsPMpl/Y9jV6Lwi/kYEHRRU9WZQeRmo=; b=eFPxD5j8iUVTHN
+	lhvLCkulMXHPXPojnCA2y+rWyE12kHUqLHbLEv/2g/w8lm2A5l1CtpwPI4l8r6FffL8ZScxaxlWqQ
+	JajX6df5wDPA/ZKeJrmvPK5WBZ/1CrKCQFIm1laSYScjdw+zUpUYZ+IeOtwum17IBUdZBvewwJ+p9
+	kl2jO8m1rNV9fPQHbV0Vv2VSqGyxzZpbNESfV8EMFegLO+UtLaaMV8pshmDgdwAk29xpgi1/iQgcH
+	GYgSO8KUYvgBXYrTuUw0YVPsdUxKixFBF9NDn7uLX4TgIGl1D5HXBUAvQEY5vsxj0Se9mfZA2c+4E
+	R+SZXgJr/ZYmhd4v0UIg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pVZLP-002np6-Hm; Fri, 24 Feb 2023 14:46:43 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1pVZOz-002oX3-6H; Fri, 24 Feb 2023 14:50:25 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pVZLM-002noG-Gj
-	for ath11k@lists.infradead.org; Fri, 24 Feb 2023 14:46:42 +0000
+	id 1pVZOw-002oWZ-SY
+	for ath11k@lists.infradead.org; Fri, 24 Feb 2023 14:50:24 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id E2234B81C87;
-	Fri, 24 Feb 2023 14:46:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFC29C4339B;
-	Fri, 24 Feb 2023 14:46:36 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 72095618CF;
+	Fri, 24 Feb 2023 14:50:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2255BC4339E;
+	Fri, 24 Feb 2023 14:50:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1677249997;
-	bh=peavsqg3yenBn7QYS5SDS1x3WO3lozC0ZMCB4rY0fq0=;
+	s=k20201202; t=1677250221;
+	bh=3KYModGEa1fFUiOUb3e6wEc1y8k/P7sxe/QwXRZ0OKc=;
 	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=qzDxEPZESXm4rZnZ7XMi7/exNMnHAFbUNiurGfGjGAzPmtL5aVBweXUICr0/Gdi29
-	 ewrxnCt4zOLBwPJy1LpKRJUaaxUYAu7fHGIX9YA80FItxsoGz/wjSJdu/shF9TYDw5
-	 llJoI8JElrKGB1LqZ2XgXRGvMNKz2vlHAVm8L+bBxHZm8RAnxRpL72X3Snm0KSursJ
-	 DPsMYQwmriIQq8igBts6UKYHIPPEKNgdFwNpcfgD58faQ7m50yFjWvANJqRdekMMUE
-	 LiBf0ZgcvvGCFJNt9+j20M01oZlRSBI4y79jvwKhgXG+noUwVP7c5lDS67AxAh5OwT
-	 C8f01EOr1PjaQ==
+	b=qGHibDBPCsXXluVYelKbKM01+ZB6GWzXSZLPFqoFEn96mLloJ0DDUvEagcn2loaNO
+	 fXKo/MPLbexwy+d/kInrZ58pU9ZMKMoEbBNNJynMhu32iFpy5t7bZyOn9C9ylGXWPP
+	 IhUmembG7wbhL7QVhyBD1GRlsei1nVSm/JIKjlWcZQ01r0VyhWNuRk8XFn5HvhAGbN
+	 5kHayr1gWZKPwUtIWTdrSrYsUgs4L5CSdNGsphj4Ka0VVm1L1hOKBHgWP2zN+OVvj6
+	 0a+Vbs/om6JCWsDvpNUHMuzYtCjwaz3zavUnaWCH4MnrVyBKv5M9tvsbgXgPk32u1Q
+	 /fWcr2cvXyHrQ==
 From: Kalle Valo <kvalo@kernel.org>
 To: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
 Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
 Subject: Re: [PATCH v4 3/3] ath11k: Enable low power mode when WLAN is not active
 References: <20230203060128.19625-1-quic_mpubbise@quicinc.com>
 	<20230203060128.19625-4-quic_mpubbise@quicinc.com>
-Date: Fri, 24 Feb 2023 16:46:31 +0200
+Date: Fri, 24 Feb 2023 16:50:17 +0200
 In-Reply-To: <20230203060128.19625-4-quic_mpubbise@quicinc.com> (Manikanta
 	Pubbisetty's message of "Fri, 3 Feb 2023 11:31:28 +0530")
-Message-ID: <87h6vbruig.fsf@kernel.org>
+Message-ID: <87cz5zruc6.fsf@kernel.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230224_064640_869629_F4ABA045 
-X-CRM114-Status: GOOD (  21.97  )
+X-CRM114-CacheID: sfid-20230224_065023_017465_EA6DC99B 
+X-CRM114-Status: GOOD (  22.80  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,50 +100,39 @@ Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
 >
 > Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
 
-This is still crashing for me every time with WCN6855 on a NUC x86
-device when I rmmod ath11k. Interestingly enough QCA6390 on a Dell XPS
-13 9310 does not crash.
+[...]
 
-I investigated the crash more, the crash happens in
-ath11k_dp_process_rxdma_err() on this line:
+> +static int ath11k_ahb_core_start_ipq8074(struct ath11k_base *ab)
+> +{
+> +	/* TODO: Currently initializing the hardware/firmware only
+> +	 * during hardware recovery. Support to shutdown/turn-on
+> +	 * the hardware during Wi-Fi OFF/ON will be added later.
+> +	 */
+> +	if (!test_bit(ATH11K_FLAG_RECOVERY, &ab->dev_flags))
+> +		return 0;
+> +
+> +	return ath11k_core_start_device(ab);
+> +}
+> +
+> +static void ath11k_ahb_core_stop_ipq8074(struct ath11k_base *ab)
+> +{
+> +	/* TODO: Currently stopping the hardware/firmware only
+> +	 * during driver unload. Support to shutdown/turn-on
+> +	 * the hardware during Wi-Fi OFF/ON will be added later.
+> +	 */
+> +	if (!test_bit(ATH11K_FLAG_UNREGISTERING, &ab->dev_flags))
+> +		return;
+> +
+> +	return ath11k_core_stop_device(ab);
+> +}
 
-	srng = &ab->hal.srng_list[err_ring->ring_id];
+Please clarify what Wi-Fi OFF/ON exactly means on these two comments,
+it's not clear for me.
 
-Here are the debug messages before the crash (first and last are my
-own messages):
+Also I want to mention that I suspect eventually we have to always power
+off the firmware during suspend to get hibernation working:
 
-[  226.766111] rmmod ath11k_pci
-[  227.003678] ath11k_pci 0000:06:00.0: txpower from firmware NaN, reported -2147483648 dBm
-[  227.082283] ath11k_pci 0000:06:00.0: qmi wifi fw del server
-[  227.195760] ath11k_pci 0000:06:00.0: cookie:0x0
-[  227.195843] ath11k_pci 0000:06:00.0: WLAON_WARM_SW_ENTRY 0x15b894d
-[  227.216022] ath11k_pci 0000:06:00.0: WLAON_WARM_SW_ENTRY 0x0
-[  227.216086] ath11k_pci 0000:06:00.0: soc reset cause:0
-[  227.236170] ath11k_pci 0000:06:00.0: MHISTATUS 0xff04
-[  227.270816] ath11k_pci 0000:06:00.0: ext irq:167
-[  227.271231] ath11k_dp_process_rxdma_err() 4187 ab ffff888145520000 err_ring 00000000000001d0
-
-So we get irq 167 which is:
-
- 167:          0          0          0          0          0          0          0          0  IR-PCI-MSI-0000:06:00.0   14-edge      DP_EXT_IRQ
-
-But in ath11k_pcic_ext_interrupt_handler() ATH11K_FLAG_EXT_IRQ_ENABLED
-is still enabled so the irq is processed:
-
-	if (!test_bit(ATH11K_FLAG_EXT_IRQ_ENABLED, &ab->dev_flags))
-		return IRQ_HANDLED;
-
-It looks like that, after applying this patch 3, whenever
-ath11k_pci_remove() is called we are not calling
-ath11k_hif_irq_disable() anymore. I checked that without patch 3
-ath11k_hif_irq_disable() is always called. So this patch is definitely
-breaking something fundamental, but I ran out of time to invetigate
-further. I hope this still helps.
-
-Do note I have concerns about this patchset, it just changes quite a lot
-of the driver logic and I'm worried what else this breaks. Also we
-should definitely test with another AHB device like IPQ8074, this
-patchset needs extensive testing.
+https://bugzilla.kernel.org/show_bug.cgi?id=214649
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
