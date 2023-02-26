@@ -4,58 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D585C61DA3
-	for <ath11k@archiver.kernel.org>; Fri, 24 Feb 2023 14:54:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71D64C7EE23
+	for <ath11k@archiver.kernel.org>; Sun, 26 Feb 2023 14:44:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mgn/Yfaxq5wzzrE62My55dwr76vxO4F+eIz+2SgOgh0=; b=jX2IoHZXiF1zjI
-	u7qz8K4sNyhoEmYzpeQRPaUUUgFHcUy3xFVBrnUb0nnf3pdZT4Bd6ngBPyUAYegk1Jnhd+jPn5N+o
-	uagDzxipmYvIU9XMTz/SVWDuNvRwCR+60Aurjo0xVapKpyTmmGrSLyJ/Wd4qJs9PAq1gLi+Tj6waT
-	dH64WkDPIo1z2kra5Y8RMd3THMaiwdxSA9HzWC4JfJy0Z3tPoLOf1XJ44dpI9iAW4+ViJ0Dy6AjcW
-	F0lUWUSbIkPuuQkWsPJF3vLkKOzXEKAmUjQIvf1C9bA+EH/967jeMojLaoL8T5qcV5tsaoafuz5kb
-	mdWych9nUx/8agsi6T6A==;
+	List-Owner; bh=Lh29N3eYfb6FjnKTmkabo+ZYuYrDF7krWDC7rpnQxds=; b=XLsWR2xcDMw/Uz
+	lfr+Ag7u8Lxbun1jvLOsrEHqd2nOK7F4Ml1aBasGQTnuceN3mb/R8ed4SYRIyVaU0iUOV5HjXquBV
+	JyaS7IzWJ9RDOIzOudPmxutLPhO4ikzOEB7oYrnOWSrN185sOF3VUcPUeDYiUWnsxZ9PyMFLsPumu
+	Bb/E6nLTN/xM9lQkJG/qLN/9fQR2q/K2QzwaOKXYPIMlhlVnqwwzfrs64oHsvTNCC+35CIQScPc5z
+	RRVjalnc1EVROqoTKSdk7Yce8BN3gmdqa+nmxnHrSxk3XgXfI2tXSXmde+wg13s0rJXfBs/wv1L6a
+	cIJ1zVRT+b2/GnRm8KwA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pVZT1-002oyR-AN; Fri, 24 Feb 2023 14:54:35 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1pWIGm-007OYR-GX; Sun, 26 Feb 2023 14:44:56 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pVZSy-002oxy-Vq
-	for ath11k@lists.infradead.org; Fri, 24 Feb 2023 14:54:34 +0000
+	id 1pWIGj-007OXr-FC
+	for ath11k@lists.infradead.org; Sun, 26 Feb 2023 14:44:55 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id 61D4EB81BF2;
-	Fri, 24 Feb 2023 14:54:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F153C433A0;
-	Fri, 24 Feb 2023 14:54:29 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 1102A60C17;
+	Sun, 26 Feb 2023 14:44:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14B84C433D2;
+	Sun, 26 Feb 2023 14:44:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1677250470;
-	bh=1kMgqLhHUiXtC2VnyR4OdoH2n+IV/DAzN4ozBkQZ1+I=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=CSk9nonCNQniRawxp0DZRNdOL4wJwqCVksw889+OP+ueoYNFjvw051TSe+8nZ9sZ3
-	 UmL7XFo0y0onve6ZzbjWP2DyqjyFkmWV1o5HICIMvqKtUxXsa+GZihaCuagsUllQDq
-	 cg2zos78w+rs/o3s+UL2xumlRUQIptZMObq7yQjguXs8lhPBPsNjg5ORMI0UPEHojx
-	 dGAS8EkVErnv2dGi5IBgJ5D9Th8ruzbxqAOykqnG/Qg08fUZVLQWgDFKuJg00mV977
-	 tHTvfuPcJzwkhYtXoPvpjgvhanDRndpEO6uzwntWir5xzVXn1ckIls4oI3MItOqNoD
-	 Pab/kMBEhRMcA==
-From: Kalle Valo <kvalo@kernel.org>
-To: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
-Subject: Re: [PATCH v4 0/3] Enable low power mode when WLAN is not active
-References: <20230203060128.19625-1-quic_mpubbise@quicinc.com>
-Date: Fri, 24 Feb 2023 16:54:26 +0200
-In-Reply-To: <20230203060128.19625-1-quic_mpubbise@quicinc.com> (Manikanta
-	Pubbisetty's message of "Fri, 3 Feb 2023 11:31:25 +0530")
-Message-ID: <878rgnru59.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+	s=k20201202; t=1677422691;
+	bh=+u7jStlcUUUltunC9OISuObdw424NUJH1LgK4IVaQHE=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=ny14dsorWbDTU0wZlPcV2SsVXByKB+qWz2W+k0BlGuOVhzOdQIc51KaXfdVugl9gz
+	 c+Xl5ydNKEewrPUJqvhkab4a7vuhx58/Tp/s3E81t99ICpFKeS685NbZUlrN/6X2tL
+	 D39iOGkuwEK8592JPHEIVWP+KCWsNC+xhsO5hD0cD6TjoU1mqFNYUGNWfbS6dgpIHv
+	 fo6t6ISPjY1NKSgrhEj0SGkcg+Cj8T/EwgIPqvhmASiwtBPOJ3xkc+iZnjRX+FeM7o
+	 Vub9/jtfoNwyvkl/TTD+e9MHddEUTcIP92BxejEWaBj9okFLlSpVTGjRnL5hLcd7UD
+	 8aJ5DloeAiJ5w==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Cc: Nagarajan Maran <quic_nmaran@quicinc.com>,
+	Florian Schmidt <florian@fls.name>,
+	Kalle Valo <quic_kvalo@quicinc.com>,
+	Sasha Levin <sashal@kernel.org>,
+	kvalo@kernel.org,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	ath11k@lists.infradead.org,
+	linux-wireless@vger.kernel.org,
+	netdev@vger.kernel.org
+Subject: [PATCH AUTOSEL 6.2 02/53] wifi: ath11k: fix monitor mode bringup crash
+Date: Sun, 26 Feb 2023 09:43:54 -0500
+Message-Id: <20230226144446.824580-2-sashal@kernel.org>
+X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20230226144446.824580-1-sashal@kernel.org>
+References: <20230226144446.824580-1-sashal@kernel.org>
 MIME-Version: 1.0
+X-stable: review
+X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230224_065433_192947_EB0847A9 
-X-CRM114-Status: GOOD (  12.30  )
+X-CRM114-CacheID: sfid-20230226_064453_657651_228C3E41 
+X-CRM114-Status: GOOD (  10.38  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,34 +85,90 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
+From: Nagarajan Maran <quic_nmaran@quicinc.com>
 
-> Currently, WLAN chip is powered once during driver probe and is kept
-> ON (powered) always even when WLAN is not active; keeping the chip
-> powered ON all the time will consume extra power which is not
-> desirable for battery operated devices. Same is the case with non-WoW
-> suspend, chip will not be put into low power mode when the system is
-> suspended resulting in higher battery drain.
->
-> Send QMI MODE OFF command to firmware during WiFi OFF to put device
-> into low power mode.
->
-> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.16
->
-> Manikanta Pubbisetty (3):
->   ath11k: Fix double free issue during SRNG deinit
->   ath11k: Move hardware initialization logic to start()
->   ath11k: Enable low power mode when WLAN is not active
+[ Upstream commit 950b43f8bd8a4d476d2da6d2a083a89bcd3c90d7 ]
 
-Please add "wifi:" to all patches.
+When the interface is brought up in monitor mode, it leads
+to NULL pointer dereference crash. This crash happens when
+the packet type is extracted for a SKB. This extraction
+which is present in the received msdu delivery path,is
+not needed for the monitor ring packets since they are
+all RAW packets. Hence appending the flags with
+"RX_FLAG_ONLY_MONITOR" to skip that extraction.
 
-And please add "wifi: ath11k:" to the cover letter.
+Observed calltrace:
 
+Unable to handle kernel NULL pointer dereference at virtual address
+0000000000000064
+Mem abort info:
+  ESR = 0x0000000096000004
+  EC = 0x25: DABT (current EL), IL = 32 bits
+  SET = 0, FnV = 0
+  EA = 0, S1PTW = 0
+  FSC = 0x04: level 0 translation fault
+Data abort info:
+  ISV = 0, ISS = 0x00000004
+  CM = 0, WnR = 0
+user pgtable: 4k pages, 48-bit VAs, pgdp=0000000048517000
+[0000000000000064] pgd=0000000000000000, p4d=0000000000000000
+Internal error: Oops: 0000000096000004 [#1] PREEMPT SMP
+Modules linked in: ath11k_pci ath11k qmi_helpers
+CPU: 2 PID: 1781 Comm: napi/-271 Not tainted
+6.1.0-rc5-wt-ath-656295-gef907406320c-dirty #6
+Hardware name: Qualcomm Technologies, Inc. IPQ8074/AP-HK10-C2 (DT)
+pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+pc : ath11k_hw_qcn9074_rx_desc_get_decap_type+0x34/0x60 [ath11k]
+lr : ath11k_hw_qcn9074_rx_desc_get_decap_type+0x5c/0x60 [ath11k]
+sp : ffff80000ef5bb10
+x29: ffff80000ef5bb10 x28: 0000000000000000 x27: ffff000007baafa0
+x26: ffff000014a91ed0 x25: 0000000000000000 x24: 0000000000000000
+x23: ffff800002b77378 x22: ffff000014a91ec0 x21: ffff000006c8d600
+x20: 0000000000000000 x19: ffff800002b77740 x18: 0000000000000006
+x17: 736564203634343a x16: 656e694c20657079 x15: 0000000000000143
+x14: 00000000ffffffea x13: ffff80000ef5b8b8 x12: ffff80000ef5b8c8
+x11: ffff80000a591d30 x10: ffff80000a579d40 x9 : c0000000ffffefff
+x8 : 0000000000000003 x7 : 0000000000017fe8 x6 : ffff80000a579ce8
+x5 : 0000000000000000 x4 : 0000000000000000 x3 : 0000000000000000
+x2 : 3a35ec12ed7f8900 x1 : 0000000000000000 x0 : 0000000000000052
+Call trace:
+ ath11k_hw_qcn9074_rx_desc_get_decap_type+0x34/0x60 [ath11k]
+ ath11k_dp_rx_deliver_msdu.isra.42+0xa4/0x3d0 [ath11k]
+ ath11k_dp_rx_mon_deliver.isra.43+0x2f8/0x458 [ath11k]
+ ath11k_dp_rx_process_mon_rings+0x310/0x4c0 [ath11k]
+ ath11k_dp_service_srng+0x234/0x338 [ath11k]
+ ath11k_pcic_ext_grp_napi_poll+0x30/0xb8 [ath11k]
+ __napi_poll+0x5c/0x190
+ napi_threaded_poll+0xf0/0x118
+ kthread+0xf4/0x110
+ ret_from_fork+0x10/0x20
+
+Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
+Reported-by: Florian Schmidt <florian@fls.name>
+Link: https://bugzilla.kernel.org/show_bug.cgi?id=216573
+Signed-off-by: Nagarajan Maran <quic_nmaran@quicinc.com>
+Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+Link: https://lore.kernel.org/r/20221129142532.23421-1-quic_nmaran@quicinc.com
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index c5a4c34d77499..2c2b9da37b3f0 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -5022,6 +5022,7 @@ static int ath11k_dp_rx_mon_deliver(struct ath11k *ar, u32 mac_id,
+ 		} else {
+ 			rxs->flag |= RX_FLAG_ALLOW_SAME_PN;
+ 		}
++		rxs->flag |= RX_FLAG_ONLY_MONITOR;
+ 		ath11k_update_radiotap(ar, ppduinfo, mon_skb, rxs);
+ 
+ 		ath11k_dp_rx_deliver_msdu(ar, napi, mon_skb, rxs);
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+2.39.0
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
