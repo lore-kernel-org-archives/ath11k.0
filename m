@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D53D2C6FA8E
-	for <ath11k@archiver.kernel.org>; Sun, 26 Feb 2023 14:49:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20171C64ED6
+	for <ath11k@archiver.kernel.org>; Sun, 26 Feb 2023 14:50:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=EKI2OfaivhS2+ILQW7BVIvWG16CYpxt2FTw25eCbfX0=; b=FP7du/pENtA9zY
-	Bx1pQGUksEfMAGVngEjZCfW1v1S5XdwZUV8XchnsIR0mEVVr3NDG5Ac7xSXwXMfP2L4+oCN71Td8K
-	Fcnus8c9s+1sS6RqmdEn6GKh3WbC/HnDyn+notejqFSPK5HH/12HvDJyUvWyY1WYiac/ZkeU8Lo2b
-	muL7CHUY2uev9SRASqYtf2owHB4esXkULffiPy9KtG0fmsNc6cNNCO/nY7dcJNazDFir4VYQMVaK1
-	3rPBmuudvfvEaypdiP8bgyLnGcDqdVv7i8pM9C9aZMfyW9uyKpoTjivNEL2zmf+R8Mzj2dTvJ7lM9
-	k21T1VV+4WCGIoKQqRLw==;
+	List-Owner; bh=AX5sraQRey5OH/qmgl2RDZYOHlWBCW3RRhIuXV4lCuo=; b=hAbHSD1SHN+Aio
+	3DQ1Mm6ASVO4Ru5gAXzJx+yo4gFzgSLjSPXqdNgr9X6okjQI2XFrsEcclsutCOjSlq1IDkwP0SVk0
+	uORIYV/A1+XIsdB+aWhJpdPewLI+JHpDw9xj9CTDMXWeQ/Uxd9OH4fLuf3tgZ1LZJLOkYZ1Fs52tw
+	8zb5WdlXINaOvpJsZ5lcwMAzavAQLZfwvzCrj089h6hj3XzsrTI0R8sizlrOMVp9J8IcGgbTydO80
+	I5H2E0SyPqBQECIFzf0iq4t7avoeQroMM5pBFtV5J+17QcPM8sopMHks51uxKOWD2V0unIsBmFkQs
+	LTe4y/TLHrPXBP6gOaNQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pWIKn-007QCs-2s; Sun, 26 Feb 2023 14:49:05 +0000
+	id 1pWIMC-007QuT-GB; Sun, 26 Feb 2023 14:50:32 +0000
 Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pWIKj-007QB3-UE
-	for ath11k@lists.infradead.org; Sun, 26 Feb 2023 14:49:03 +0000
+	id 1pWIM9-007QsT-TO
+	for ath11k@lists.infradead.org; Sun, 26 Feb 2023 14:50:31 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 74CEE60BEB;
-	Sun, 26 Feb 2023 14:49:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8EBA8C433A0;
-	Sun, 26 Feb 2023 14:48:59 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 7FCFC60C63;
+	Sun, 26 Feb 2023 14:50:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C9C1C4339C;
+	Sun, 26 Feb 2023 14:50:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1677422940;
-	bh=CUBmYu+VDOfw3tRx9G3iyf4SSGdnOxDE+tA/8QYyjcE=;
+	s=k20201202; t=1677423028;
+	bh=eDxvOg777Bup4V9O3JP71BuTUZyabPolavDcp8eaSgQ=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=FiNgfrbIvlINVTSI8q2N+E8h0QQq00v9HM57mMj6O4Q6RtGfblmSu2onajLy1wDVd
-	 p9vYWmU/HuuMVmU4ImKnOynD6FAP929F0Zim/CMp1SqAM9LazOR9EzVJQtV6k3stj8
-	 a/m1BoHj+KGgl+dRU3lF8Y0qoYyc3+qqOi/4KMnnIBznZM9PFIp0p0O8nTLNX0WHmK
-	 +qt7wT4/g6ejCJCd6bhNRwRhsjGbirgqX1JP7W2mVt4FZMoev4k1gNXajNdghPgPlt
-	 b9mGjmWjLDj2QWMrg+DWv3AfMgAcMHZMZe+aQerX/MfI98LQTPV1hD8a/ViAK7g7Ud
-	 pgtULteO+47xA==
+	b=ijAmrnr0mfzlXjGxKahLohKhXmRnK1PZ2Qnr7QAH2+w7UgOuayxRVlSVlLEA1Kzu0
+	 p112mhtIHi3EWCWt6FhJrnhvuiw1p2p3QG/pcGMMCna3kkZnuizpglUh8sE4d4kCz9
+	 9SpFVMZzyo53jPKSnZiKp/C057eg4IKIi3+6rdEJVKFifLF2ZYDOcuubzzapR+Tdru
+	 ISq4fQkKfnu1Ql6px3Pwfyl/SYvYe6LNunTEw3F8xY2KmEgLVYTWPG/mcDD20PNUrw
+	 eY4BOfUFjfq+svO4J+268cluGILmnKpPEtxIQIN+h5420dX9BELhu3suBmfEqVTTDG
+	 1AghkXY+Ddl3g==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
@@ -56,17 +56,17 @@ Cc: Kalle Valo <quic_kvalo@quicinc.com>,
 	ath11k@lists.infradead.org,
 	linux-wireless@vger.kernel.org,
 	netdev@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.15 06/36] wifi: ath11k: debugfs: fix to work with multiple PCI devices
-Date: Sun, 26 Feb 2023 09:48:14 -0500
-Message-Id: <20230226144845.827893-6-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.10 06/27] wifi: ath11k: debugfs: fix to work with multiple PCI devices
+Date: Sun, 26 Feb 2023 09:49:53 -0500
+Message-Id: <20230226145014.828855-6-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230226144845.827893-1-sashal@kernel.org>
-References: <20230226144845.827893-1-sashal@kernel.org>
+In-Reply-To: <20230226145014.828855-1-sashal@kernel.org>
+References: <20230226145014.828855-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230226_064902_286644_C02487F1 
+X-CRM114-CacheID: sfid-20230226_065030_080504_1ABBD359 
 X-CRM114-Status: GOOD (  18.87  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -145,10 +145,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  2 files changed, 40 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index caa8f6eba0097..fda1c2db05d0a 100644
+index d2f2898d17b49..a66e275af1eb4 100644
 --- a/drivers/net/wireless/ath/ath11k/core.h
 +++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -731,7 +731,6 @@ struct ath11k_base {
+@@ -712,7 +712,6 @@ struct ath11k_base {
  	enum ath11k_dfs_region dfs_region;
  #ifdef CONFIG_ATH11K_DEBUGFS
  	struct dentry *debugfs_soc;
@@ -157,7 +157,7 @@ index caa8f6eba0097..fda1c2db05d0a 100644
  	struct ath11k_soc_dp_stats soc_stats;
  
 diff --git a/drivers/net/wireless/ath/ath11k/debugfs.c b/drivers/net/wireless/ath/ath11k/debugfs.c
-index 554feaf1ed5cd..f827035f0dd2e 100644
+index 1b914e67d314d..196314ab4ff0b 100644
 --- a/drivers/net/wireless/ath/ath11k/debugfs.c
 +++ b/drivers/net/wireless/ath/ath11k/debugfs.c
 @@ -836,10 +836,6 @@ int ath11k_debugfs_pdev_create(struct ath11k_base *ab)
@@ -225,8 +225,8 @@ index 554feaf1ed5cd..f827035f0dd2e 100644
 +	 * debugfs.
 +	 */
  }
- EXPORT_SYMBOL(ath11k_debugfs_soc_destroy);
  
+ void ath11k_debugfs_fw_stats_init(struct ath11k *ar)
 -- 
 2.39.0
 
