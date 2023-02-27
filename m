@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C86A6C64ED8
-	for <ath11k@archiver.kernel.org>; Mon, 27 Feb 2023 10:42:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 403CAC64ED6
+	for <ath11k@archiver.kernel.org>; Mon, 27 Feb 2023 10:49:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=bDGqVPLjqdSo1DIW/eScqjGdltpJRiLZe70yBnwQDBE=; b=M9GR6ei83pEy9p
-	s7x4B7Gi6+JuCqredruewpsYaCGa/81n4ecVXa8HSsyqc088n3tp9482yZlLjVwsCVXXc5SOhwhFQ
-	I301GmoIZcNCLSt9uOer6yuM9na/q8TZQkQNWnNPujjNsPcxJrd0CyswNMmr2vxQ0Xkytp58yzIpn
-	32zUNlg97XZ/V0Svs86t47pXklHP8pwTtgnqZ4cWQhwoX+BucqIY154kxgqPsb2QvT8Ds8iqe7sji
-	/ow94d9oAQnmUgMkwJBQc1OcTH0uZsdfyBM/AUz8GSuFt8jcHQL9MUxgDV8q5Kdf4wE1yIfDT6KWE
-	Y7BTTJKspn6L1jrrewoQ==;
+	List-Owner; bh=op+LZeGjMMpixABDNTXTJZNa1GonQyVQromToM13WLo=; b=cbsRH3IKSu0ON5
+	Uqh9qA0XSKsoL7GqkTJjOcieZUDlDp9pY4ZAETxE/zAcpOHGsy0pybPoCjx9BpQDFc60srCCRnMjb
+	PjiqVl2kXLWZVRr8xoB6u9vSK9ToQnG6x5yNF6mvRQ8TFih9XFYOz7Hh2GNnJc31MMZhJpVQRYMsA
+	7tvDZWf29mQdmguQX5L9pyztbLCALJem/I36a/+d4nAaVp+r5dvFag6/zOygyfqeDPAlzIUQIvf7W
+	Nm8SCQ83bchEbmVCyblNDncVaFNZA1hcAi9dlfQrQuB5Y0MAOQwbhi2oyhfQg2Pu6A46C3TMRaSSv
+	Wkyb1tOWXOZzMbAVNzSw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pWay4-009GfQ-UT; Mon, 27 Feb 2023 10:42:53 +0000
+	id 1pWb4M-009HxD-Tx; Mon, 27 Feb 2023 10:49:23 +0000
 Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pWay1-009Gdi-CD
-	for ath11k@lists.infradead.org; Mon, 27 Feb 2023 10:42:51 +0000
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31R4VKB8015582;
-	Mon, 27 Feb 2023 10:42:43 GMT
+	id 1pWb4I-009Hw6-B0
+	for ath11k@lists.infradead.org; Mon, 27 Feb 2023 10:49:20 +0000
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31R7rIGA024285;
+	Mon, 27 Feb 2023 10:49:14 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
  mime-version : subject : to : cc : references : from : in-reply-to :
  content-type : content-transfer-encoding; s=qcppdkim1;
- bh=r8Bna+XeVO4+Lk2sTnSdQBRvqlkpHA7+Xe+z1Ny4jLc=;
- b=Zq3hFHkvklLMCYe1FQOLX+Ds3TqZLbJT0vnYaRdZrYi3yZTE4OKHbraPSRKqWm+sVsvA
- auGtg6BhtELc2s+WQilNS0oCxyNnZGg6FincLejL5ni5yo1ZsPZDnhcXfIvZQ6uK+TWg
- FUtQgzi5Ce2D80Hb8oGCRf0h28hHURbN72pWGGSotDqljt4lRmlcV8l9YVCAAxaTRQ1Z
- QozdWHzWtHiG1qrnFXtF6dQva+u8uOTANk2nPCXsOameX4T+CS2OF95YFUZiY1Y9YnfS
- 5T4xBjZgE9UQTJSFht36+or2mnb7QN0kdYmyLb2ILWXxYVv4niLnEudltB2hNtmNYJO1 Rg== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ny9bfcnjh-1
+ bh=JDFuaKQWUZNcCm302JgXwZ3jPZ2XVcfcpGsT1XU/cL0=;
+ b=Uqhba/WIQNjpVpFh8uPTS/fBoXLO57/FKiVlQidW5XhxSWaDKN//M7mjU2mz2+lq85Dd
+ QefoCkE85nWUtXtCeYxsbluGL9Dc+I1C4T/nDgHG1sy6fY0HThczNIUBNNn2kCE3Lyb7
+ ru27JFT5VZVg7O+vt0A4S9sNI2suyC8hnV8do0Kf6msquLZkJd9i1HnmUO4PMqCJ6Ove
+ wqzizVEZdRY64MdhK75v+mD4qhwNzWpgAlP9C7E4aNsFiavcGux4DDQ02uD0ebOn0t4F
+ ejURvio5xvcWpu5Wg24f9QG2rABMHhXSjEp/Ur8pwfOAr3l1nCVXCY0gIuU91yaJF0J2 yg== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ny9nuvn72-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 27 Feb 2023 10:42:43 +0000
+	Mon, 27 Feb 2023 10:49:14 +0000
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31RAgfRD009610
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31RAnDe3015262
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 27 Feb 2023 10:42:42 GMT
+	Mon, 27 Feb 2023 10:49:13 GMT
 Received: from [10.206.66.42] (10.80.80.8) by nalasex01a.na.qualcomm.com
  (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Mon, 27 Feb
- 2023 02:42:40 -0800
-Message-ID: <2f559252-c76e-7b3a-2b90-eea0261fdbb3@quicinc.com>
-Date: Mon, 27 Feb 2023 16:12:37 +0530
+ 2023 02:49:12 -0800
+Message-ID: <9efc2082-d46d-5d57-d275-1cb47277f639@quicinc.com>
+Date: Mon, 27 Feb 2023 16:19:08 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.6.1
@@ -61,27 +61,27 @@ To: Kalle Valo <kvalo@kernel.org>
 CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
 References: <20230203060128.19625-1-quic_mpubbise@quicinc.com>
  <20230203060128.19625-4-quic_mpubbise@quicinc.com>
- <87h6vbruig.fsf@kernel.org>
+ <87cz5zruc6.fsf@kernel.org>
 From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-In-Reply-To: <87h6vbruig.fsf@kernel.org>
+In-Reply-To: <87cz5zruc6.fsf@kernel.org>
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: dHpBDuld1Yfh20NUGIBONn6cVNIZtGo0
-X-Proofpoint-ORIG-GUID: dHpBDuld1Yfh20NUGIBONn6cVNIZtGo0
+X-Proofpoint-ORIG-GUID: wE4GSn03VrcfQcRmnMxyHJBJpZNBX9jc
+X-Proofpoint-GUID: wE4GSn03VrcfQcRmnMxyHJBJpZNBX9jc
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
  definitions=2023-02-26_22,2023-02-24_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=754
- priorityscore=1501 mlxscore=0 bulkscore=0 malwarescore=0 phishscore=0
- adultscore=0 spamscore=0 suspectscore=0 lowpriorityscore=0 impostorscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 spamscore=0
+ priorityscore=1501 lowpriorityscore=0 malwarescore=0 impostorscore=0
+ suspectscore=0 adultscore=0 phishscore=0 mlxlogscore=896 bulkscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
  engine=8.12.0-2212070000 definitions=main-2302270082
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230227_024249_581759_389A8389 
-X-CRM114-Status: GOOD (  30.88  )
+X-CRM114-CacheID: sfid-20230227_024918_540643_C12DDF7C 
+X-CRM114-Status: GOOD (  23.97  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,7 +98,8 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 2/24/2023 8:16 PM, Kalle Valo wrote:
+
+On 2/24/2023 8:20 PM, Kalle Valo wrote:
 > Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
 > 
 >> Currently, WLAN chip is powered once during driver probe and is kept
@@ -126,61 +127,46 @@ On 2/24/2023 8:16 PM, Kalle Valo wrote:
 >>
 >> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
 > 
-> This is still crashing for me every time with WCN6855 on a NUC x86
-> device when I rmmod ath11k. Interestingly enough QCA6390 on a Dell XPS
-> 13 9310 does not crash.
+> [...]
+> 
+>> +static int ath11k_ahb_core_start_ipq8074(struct ath11k_base *ab)
+>> +{
+>> +	/* TODO: Currently initializing the hardware/firmware only
+>> +	 * during hardware recovery. Support to shutdown/turn-on
+>> +	 * the hardware during Wi-Fi OFF/ON will be added later.
+>> +	 */
+>> +	if (!test_bit(ATH11K_FLAG_RECOVERY, &ab->dev_flags))
+>> +		return 0;
+>> +
+>> +	return ath11k_core_start_device(ab);
+>> +}
+>> +
+>> +static void ath11k_ahb_core_stop_ipq8074(struct ath11k_base *ab)
+>> +{
+>> +	/* TODO: Currently stopping the hardware/firmware only
+>> +	 * during driver unload. Support to shutdown/turn-on
+>> +	 * the hardware during Wi-Fi OFF/ON will be added later.
+>> +	 */
+>> +	if (!test_bit(ATH11K_FLAG_UNREGISTERING, &ab->dev_flags))
+>> +		return;
+>> +
+>> +	return ath11k_core_stop_device(ab);
+>> +}
+> 
+> Please clarify what Wi-Fi OFF/ON exactly means on these two comments,
+> it's not clear for me.
+>
+
+  By Wi-Fi OFF/ON I mean is the bringing the last wlan interface down/up
+which is nothing but the non-WoW suspend/resume.
+
+
+> Also I want to mention that I suspect eventually we have to always power
+> off the firmware during suspend to get hibernation working:
 > 
 
-Surprisingly enough, I was never been able to reproduce the problem on 
-my device which has WCN6855.
-
-> I investigated the crash more, the crash happens in
-> ath11k_dp_process_rxdma_err() on this line:
-> 
-> 	srng = &ab->hal.srng_list[err_ring->ring_id];
-> 
-> Here are the debug messages before the crash (first and last are my
-> own messages):
-> 
-> [  226.766111] rmmod ath11k_pci
-> [  227.003678] ath11k_pci 0000:06:00.0: txpower from firmware NaN, reported -2147483648 dBm
-> [  227.082283] ath11k_pci 0000:06:00.0: qmi wifi fw del server
-> [  227.195760] ath11k_pci 0000:06:00.0: cookie:0x0
-> [  227.195843] ath11k_pci 0000:06:00.0: WLAON_WARM_SW_ENTRY 0x15b894d
-> [  227.216022] ath11k_pci 0000:06:00.0: WLAON_WARM_SW_ENTRY 0x0
-> [  227.216086] ath11k_pci 0000:06:00.0: soc reset cause:0
-> [  227.236170] ath11k_pci 0000:06:00.0: MHISTATUS 0xff04
-> [  227.270816] ath11k_pci 0000:06:00.0: ext irq:167
-> [  227.271231] ath11k_dp_process_rxdma_err() 4187 ab ffff888145520000 err_ring 00000000000001d0
-> 
-> So we get irq 167 which is:
-> 
->   167:          0          0          0          0          0          0          0          0  IR-PCI-MSI-0000:06:00.0   14-edge      DP_EXT_IRQ
-> 
-> But in ath11k_pcic_ext_interrupt_handler() ATH11K_FLAG_EXT_IRQ_ENABLED
-> is still enabled so the irq is processed:
-> 
-> 	if (!test_bit(ATH11K_FLAG_EXT_IRQ_ENABLED, &ab->dev_flags))
-> 		return IRQ_HANDLED;
-> 
-> It looks like that, after applying this patch 3, whenever
-> ath11k_pci_remove() is called we are not calling
-> ath11k_hif_irq_disable() anymore. I checked that without patch 3
-> ath11k_hif_irq_disable() is always called. So this patch is definitely
-> breaking something fundamental, but I ran out of time to invetigate
-> further. I hope this still helps.
-> 
-
-This definitely helps, thanks a lot for the direction. I'll check what 
-is missing here.
-
-> Do note I have concerns about this patchset, it just changes quite a lot
-> of the driver logic and I'm worried what else this breaks. Also we
-> should definitely test with another AHB device like IPQ8074, this
-> patchset needs extensive testing.
-> 
-
-Noted.
+This patch will power off the firmware for WCN6750. I'm not sure how to 
+get that working for other ath11k devices.
 
 Thanks,
 Manikanta
