@@ -4,58 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3674C7EE30
-	for <ath11k@archiver.kernel.org>; Mon, 27 Feb 2023 12:36:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B7DCC7EE23
+	for <ath11k@archiver.kernel.org>; Mon, 27 Feb 2023 13:03:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FSBJwJiDIstUuayGBfjC/0Y68O9UsodNqrkkDBtzBCc=; b=CAQQ+0RbMolm7l
-	ox5Mn+9ibURRi88hmKNSCa4Y+0XVd/nqP2JsQox4YWlxazPVIBDNYwSdDc2CqGe0fVuAR8hoNbv5c
-	XgOzU34tkrDa1+cN2EWDFOBZ3ly/FsogZf0Sggpw2Mg/28T3OJs/Xd9WIVeJCUmmxiUutmPvI07AJ
-	x5dL2SdMZnU7zLcWGM/2quBAT2xSVTGA2XccmkNhqUNKYcfluZ8Q160pX32B0L43ov8kqAFbrYdnC
-	3VD0wDM55QBiZXRE1cf7T21ZizN7/gDuAJSchpjqT5N6wEBuNSzB3rX/FBxW3zPYVRem692Xemv4p
-	UGeDk2/GmCh6Q1ecXWeA==;
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
+	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=4csPUvNNcbGKr6yEXa3eCqWw/s+cvwSVc3LL4XBk36A=; b=Lca2RjLp0JKaTN
+	8eyJ2sFqpcjiSa33HicxXicYT1GBPCihS4rRB/fBQ/Wbt7/HKP/DLGLQ3GtN1+xrppvUInaPNqUdW
+	3KTYftfrwKYh/8f4god5fKm3g3nixjLgdl3VeFEB2YgLIz2C16BZk16PPq+Vov/XSHYziWphC4hVb
+	mm/nRhHgPnUQYU47Kfpus4DPXpJbRotHb9VMBdPeT4Szsvglu8k3FpblnL2UHaFMKZXLpnk4zuJD/
+	Q6Y8ViFp2jnC/S1osBzGAcTcTpyasZZX03+yDGyFnTdsbZFrRNFM41Wk14vZUBiFnSAMYm4dd5dBM
+	Rkg/BfntrHAW0q51gcxQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pWckV-009cCo-9o; Mon, 27 Feb 2023 12:36:59 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1pWdAL-009fiP-26; Mon, 27 Feb 2023 13:03:41 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pWckS-009cC7-Q4
-	for ath11k@lists.infradead.org; Mon, 27 Feb 2023 12:36:58 +0000
+	id 1pWdAF-009fgf-GK
+	for ath11k@lists.infradead.org; Mon, 27 Feb 2023 13:03:39 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id 121C8B80BE8;
-	Mon, 27 Feb 2023 12:36:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B94BEC433D2;
-	Mon, 27 Feb 2023 12:36:51 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id C6C5A60DF8;
+	Mon, 27 Feb 2023 13:03:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7975C4339B;
+	Mon, 27 Feb 2023 13:03:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1677501413;
-	bh=Jh8U22bdoYCQvBhJpj8kzG5Zg184640gUPfEPyJpG5Y=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=RVjc8k9xbwCbHoP8l76/xrwC55yQNIpxnHS2n/t0SgrkUkwr3q5EnNeMVXzqH8hpm
-	 ErOWQW96752JON4XtLE4qeumALHN6qB+ilR7j3VIps1pspoam5pXdJkBUXSjaoMh9q
-	 N3rYKQm4kDkzc5xP3c3CWMLBoAcmIo/OaCrJZyPkHSRnc9kpgBFvcdptNkHnDHbfVB
-	 jtVOuQ5aUBMaPaqetZEXWFij8gqm5z5eYY2rmC4RIi1wqYnHbuPSUKqBPQvfBlPjdN
-	 Wo1FfDDFThiKu8cFtwId/1PaAtl8kVSdcFYNKXKN12km9nunOQoyOrzryXkI+RfxGV
-	 Uuh6BJSJ1FCMA==
-From: Kalle Valo <kvalo@kernel.org>
-To: Mario Limonciello <mario.limonciello@amd.com>
-Cc: "David S. Miller" <davem@davemloft.net>,  Eric Dumazet <edumazet@google.com>,  Jakub Kicinski <kuba@kernel.org>,  Paolo Abeni <pabeni@redhat.com>,  <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>,  <netdev@vger.kernel.org>,  <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] wifi: ath11k: Add a warning for wcn6855 spurious wakeup events
-References: <20230220213807.28523-1-mario.limonciello@amd.com>
-Date: Mon, 27 Feb 2023 14:36:46 +0200
-In-Reply-To: <20230220213807.28523-1-mario.limonciello@amd.com> (Mario
-	Limonciello's message of "Mon, 20 Feb 2023 15:38:07 -0600")
-Message-ID: <87r0ubqo81.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+	s=k20201202; t=1677503014;
+	bh=RYkNAgZgiYeaaXL9Pl+5+zD1OJ5nLgaPwvvpaJezxjU=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=QRzgGMkPB96l+sx9SJpOakHuUyn1iNX8ZNFhNtlfcQQhiPrpZKB56cgxjhqEWD+08
+	 woL9tv3eU3uCqL9+G9vK6bRFn4U4Oi1mIFNURv7VgZd+vvgaAlzVpG2K8QPifkb9eT
+	 3Dmk7HGqiORTUtta+DnNKE6SF/nrNj1lWZk8ElFEdS4pYdzoLk0210b1yycRsToe3q
+	 IxrNozltw8JteCkahr99xGATVJT5Gxey9SPsJzkeVZijr7rUThzBJfupLst7pUL8zW
+	 Gebc9qQtmNLe74oEQRhpm3n51LNT6JzxDGOodHQRUegC6loCeXQtYCc1VtKwaL4mSN
+	 shWKkJsr3pYyA==
 MIME-Version: 1.0
+Subject: Re: [PATCH 1/2] wifi: ath11k: factory test mode support
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20230213130854.2473-2-quic_rajkbhag@quicinc.com>
+References: <20230213130854.2473-2-quic_rajkbhag@quicinc.com>
+To: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+ Govindaraj Saminathan <quic_gsaminat@quicinc.com>,
+ Sowmiya Sree Elavalagan <quic_ssreeela@quicinc.com>,
+ Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-ID: <167750301098.30655.1426219945777543435.kvalo@kernel.org>
+Date: Mon, 27 Feb 2023 13:03:32 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230227_043657_016905_DE300E38 
-X-CRM114-Status: GOOD (  18.12  )
+X-CRM114-CacheID: sfid-20230227_050335_612038_C439CF0C 
+X-CRM114-Status: GOOD (  16.27  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,55 +74,52 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Mario Limonciello <mario.limonciello@amd.com> writes:
+Raj Kumar Bhagat <quic_rajkbhag@quicinc.com> wrote:
 
-> When WCN6855 firmware versions less than 0x110B196E are used with
-> an AMD APU and the user puts the system into s2idle spurious wakeup
-> events can occur. These are difficult to attribute to the WLAN F/W
-> so add a warning to the kernel driver to give users a hint where
-> to look.
->
-> This was tested on WCN6855 and a Lenovo Z13 with the following
-> firmware versions:
-> WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.9
-> WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
->
-> Link: http://lists.infradead.org/pipermail/ath11k/2023-February/004024.html
-> Link: https://gitlab.freedesktop.org/drm/amd/-/issues/2377
-> Link: https://bugs.launchpad.net/ubuntu/+source/linux-firmware/+bug/2006458
-> Link: https://lore.kernel.org/linux-gpio/20221012221028.4817-1-mario.limonciello@amd.com/
-> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+> Add support to process factory test mode commands(FTM) for calibration.
+> By default firmware start with NORMAL mode and to process the FTM commands
+> firmware needs to be restarted in FTM mode using module parameter ftm_mode.
+> The pre-request is all the radios should be down before starting the test.
+> 
+> When start command ATH11K_TM_CMD_TESTMODE_START is received, ar state
+> is set to Test Mode. If the FTM command or event length is greater
+> than 256 bytes, it will be broken down into multiple segments and
+> encoded with TLV header if it is segmented commands, else it is sent
+> to firmware as it is.
+> 
+> On receiving UTF event from firmware, if it is segmented event, the driver
+> will wait until it receives all the segments and notify the complete
+> data to user application. In case the segmented sequence are missed or
+> lost from the firmware, driver will skip the already received partial data.
+> 
+> In case of unsegmented UTF event from firmware, driver notifies the
+> data to the user application as it comes. Applications handles
+> the data further.
+> 
+> Command to boot in ftm mode
+> insmod ath11k ftm_mode=1
+> 
+> Tested-on : IPQ8074 hw2.0 AHB WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
+> 
+> Signed-off-by: Govindaraj Saminathan <quic_gsaminat@quicinc.com>
+> Co-developed-by: Sowmiya Sree Elavalagan <quic_ssreeela@quicinc.com>
+> Signed-off-by: Sowmiya Sree Elavalagan <quic_ssreeela@quicinc.com>
+> Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-[...]
+This had new warnings:
 
-> +static void ath11k_check_s2idle_bug(struct ath11k_base *ab)
-> +{
-> +	struct pci_dev *rdev;
-> +
-> +	if (pm_suspend_target_state != PM_SUSPEND_TO_IDLE)
-> +		return;
-> +
-> +	if (ab->id.device != WCN6855_DEVICE_ID)
-> +		return;
-> +
-> +	if (ab->qmi.target.fw_version >= WCN6855_S2IDLE_VER)
-> +		return;
-> +
-> +	rdev = pci_get_domain_bus_and_slot(0, 0, PCI_DEVFN(0, 0));
-> +	if (rdev->vendor == PCI_VENDOR_ID_AMD)
-> +		ath11k_warn(ab, "fw_version 0x%x may cause spurious wakeups. Upgrade to 0x%x or later.",
-> +			    ab->qmi.target.fw_version, WCN6855_S2IDLE_VER);
+drivers/net/wireless/ath/ath11k/testmode.c:27:16: error: no previous prototype for 'ath11k_tm_get_ar' [-Werror=missing-prototypes]
+drivers/net/wireless/ath/ath11k/testmode.h:26: void function return statements are not generally useful
+drivers/net/wireless/ath/ath11k/core.c:1839: Blank lines aren't necessary before a close brace '}'
 
-I understand the reasons for this warning but I don't really trust the
-check 'ab->qmi.target.fw_version >= WCN6855_S2IDLE_VER'. I don't know
-how the firmware team populates the fw_version so I'm worried that if we
-ever switch to a different firmware branch (or similar) this warning
-might all of sudden start triggering for the users.
+I fixed them in the pending branch, but please always use ath11k-check before submitting patches.
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+https://patchwork.kernel.org/project/linux-wireless/patch/20230213130854.2473-2-quic_rajkbhag@quicinc.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
 -- 
 ath11k mailing list
