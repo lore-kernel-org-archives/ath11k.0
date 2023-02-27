@@ -4,70 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20171C64ED6
-	for <ath11k@archiver.kernel.org>; Sun, 26 Feb 2023 14:50:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD748C64ED8
+	for <ath11k@archiver.kernel.org>; Mon, 27 Feb 2023 04:24:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=AX5sraQRey5OH/qmgl2RDZYOHlWBCW3RRhIuXV4lCuo=; b=hAbHSD1SHN+Aio
-	3DQ1Mm6ASVO4Ru5gAXzJx+yo4gFzgSLjSPXqdNgr9X6okjQI2XFrsEcclsutCOjSlq1IDkwP0SVk0
-	uORIYV/A1+XIsdB+aWhJpdPewLI+JHpDw9xj9CTDMXWeQ/Uxd9OH4fLuf3tgZ1LZJLOkYZ1Fs52tw
-	8zb5WdlXINaOvpJsZ5lcwMAzavAQLZfwvzCrj089h6hj3XzsrTI0R8sizlrOMVp9J8IcGgbTydO80
-	I5H2E0SyPqBQECIFzf0iq4t7avoeQroMM5pBFtV5J+17QcPM8sopMHks51uxKOWD2V0unIsBmFkQs
-	LTe4y/TLHrPXBP6gOaNQ==;
+	List-Owner; bh=T+pt0QsrjL4GZwoPR4nBnPIxJOuLYuQwHNXFeUNZ50E=; b=cOI1PMQ6524hBM
+	4YG83phDbUHIl7MDLKTQlBiEiQfLOrebqSd8M/L/MsXA7Ktda8/Pkdm278LuPz2Nl0BqIo1dpchOB
+	0v/AZwIDBcSnCpIPBciU8jvkcRYIZjYQNu5RCT7FVuA84mWFTuDKES+hu2ChYMDrJzWDpeglR6XVt
+	113NqBECHVtNsuR2znYYMfLz0+nSPnEjMPKaKY2CopF3gZNOiBZ8pM1d/4Jl+CeF1GPyBRN8bah3y
+	pDgIqA025rLPDfmsBkJb4mLpOjyY7AtVh0BIoA8ToPY/pjVoJxw0tV4ztz92th9aLnXUfNpvTUYF7
+	Fd56Tima1aFGXxTiUyLw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pWIMC-007QuT-GB; Sun, 26 Feb 2023 14:50:32 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1pWV3T-008Qqx-NW; Mon, 27 Feb 2023 04:24:03 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pWIM9-007QsT-TO
-	for ath11k@lists.infradead.org; Sun, 26 Feb 2023 14:50:31 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 7FCFC60C63;
-	Sun, 26 Feb 2023 14:50:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C9C1C4339C;
-	Sun, 26 Feb 2023 14:50:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1677423028;
-	bh=eDxvOg777Bup4V9O3JP71BuTUZyabPolavDcp8eaSgQ=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ijAmrnr0mfzlXjGxKahLohKhXmRnK1PZ2Qnr7QAH2+w7UgOuayxRVlSVlLEA1Kzu0
-	 p112mhtIHi3EWCWt6FhJrnhvuiw1p2p3QG/pcGMMCna3kkZnuizpglUh8sE4d4kCz9
-	 9SpFVMZzyo53jPKSnZiKp/C057eg4IKIi3+6rdEJVKFifLF2ZYDOcuubzzapR+Tdru
-	 ISq4fQkKfnu1Ql6px3Pwfyl/SYvYe6LNunTEw3F8xY2KmEgLVYTWPG/mcDD20PNUrw
-	 eY4BOfUFjfq+svO4J+268cluGILmnKpPEtxIQIN+h5420dX9BELhu3suBmfEqVTTDG
-	 1AghkXY+Ddl3g==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Cc: Kalle Valo <quic_kvalo@quicinc.com>,
-	Robert Marko <robert.marko@sartura.hr>,
-	Sasha Levin <sashal@kernel.org>,
-	kvalo@kernel.org,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	ath11k@lists.infradead.org,
-	linux-wireless@vger.kernel.org,
-	netdev@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.10 06/27] wifi: ath11k: debugfs: fix to work with multiple PCI devices
-Date: Sun, 26 Feb 2023 09:49:53 -0500
-Message-Id: <20230226145014.828855-6-sashal@kernel.org>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230226145014.828855-1-sashal@kernel.org>
-References: <20230226145014.828855-1-sashal@kernel.org>
+	id 1pWV3Q-008Qpp-6c
+	for ath11k@lists.infradead.org; Mon, 27 Feb 2023 04:24:02 +0000
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31R3EAuO020400;
+	Mon, 27 Feb 2023 04:23:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=OZ4Le+Jv6MCMVpxGI1R59KHisIZXR02SKOyA7Ewrcww=;
+ b=oj8b/Gge1H5KF1bHcMk7T/j5rSVjgvAajxw3hyuDe1gVWtmB648zauzYxnhFqG05xE5L
+ FCnny1FOOi4hH1TwTD26d+AGWpBMNjTkAJh+5FDJEZp4VoCghvOWXSOB/Rr3j1/4f54i
+ F52nHb8277qV287ydzwksWHIpIJDSenWE1NlkT+EnI0LPUxjeFuXpB2v05LRt2jaZiOt
+ nJb+bzBqlDUNXJNG3mjeqIECSA/aSbbkNfjXawk0K2uFXN7DKUSg2xxqn8Lf1Vu4OHt7
+ l4tiugzdy2navH9xSjCmRMjRu3ppZLVvhLayzJZA+U6Y2tWo2sS/IuaiBFhrKbo1Fzfq Mg== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nyaqg3ka6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 27 Feb 2023 04:23:50 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31R4NnMi020267
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 27 Feb 2023 04:23:49 GMT
+Received: from [10.206.66.42] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Sun, 26 Feb
+ 2023 20:23:46 -0800
+Message-ID: <7ddf99b1-4aef-c950-f61b-ba79ed086095@quicinc.com>
+Date: Mon, 27 Feb 2023 09:53:43 +0530
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH] wifi: ath11k: Optimize 6 GHz scan time
+To: Johannes Berg <johannes@sipsolutions.net>,
+        James Prestwood
+	<prestwoj@gmail.com>,
+        Marcel Holtmann <marcel@holtmann.org>
+CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+        <ilan.peer@intel.com>
+References: <20221220043823.20382-1-quic_mpubbise@quicinc.com>
+ <5DAEA8B2-2B44-4A91-9E57-12B6C6B6C1FC@holtmann.org>
+ <2861463e-a097-7efe-bc75-f13c8faf9547@quicinc.com>
+ <378a1d63b3752ace7384c44d6f5184753fa7795d.camel@gmail.com>
+ <0b06dea9-d5be-1edc-62ca-576398d1bcd8@quicinc.com>
+ <0e7644cbfa9e4ba0d534681166ca467ea1684719.camel@gmail.com>
+ <10e4b6bf-f375-e50f-063a-b44471359d25@quicinc.com>
+ <56a3651e48ae621afa4c50f1ba0d9fedeefb2c31.camel@sipsolutions.net>
+Content-Language: en-US
+From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+In-Reply-To: <56a3651e48ae621afa4c50f1ba0d9fedeefb2c31.camel@sipsolutions.net>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: qg3mh418VYsK5UU7xLHyJh-_w92-tK0q
+X-Proofpoint-ORIG-GUID: qg3mh418VYsK5UU7xLHyJh-_w92-tK0q
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
+ definitions=2023-02-26_22,2023-02-24_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 impostorscore=0
+ mlxlogscore=774 phishscore=0 adultscore=0 malwarescore=0 suspectscore=0
+ priorityscore=1501 bulkscore=0 mlxscore=0 spamscore=0 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2212070000
+ definitions=main-2302270032
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230226_065030_080504_1ABBD359 
-X-CRM114-Status: GOOD (  18.87  )
+X-CRM114-CacheID: sfid-20230226_202400_417263_826FA319 
+X-CRM114-Status: GOOD (  22.20  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,157 +101,85 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Kalle Valo <quic_kvalo@quicinc.com>
+On 2/24/2023 3:45 PM, Johannes Berg wrote:
+> On Fri, 2023-02-24 at 15:38 +0530, Manikanta Pubbisetty wrote:
+>> On 1/10/2023 10:35 PM, James Prestwood wrote:
+>>> On Tue, 2023-01-10 at 10:49 +0530, Manikanta Pubbisetty wrote:
+>>>> On 12/29/2022 2:52 AM, James Prestwood wrote:
+>>>>> Hi Manikanta,
+>>>>>> By the way, userspace itself selects the frequencies to scan, not
+>>>>>> the
+>>>>>> driver.
+>>>>>>
+>>>>>> If we see the split scan implementation in cfg80211, this is the
+>>>>>> how
+>>>>>> it
+>>>>>> is implemented. If NL80211_SCAN_FLAG_COLOCATED_6GHZ is set, it
+>>>>>> selects
+>>>>>> all PSC channels and those non-PSC channels where RNR IE
+>>>>>> information
+>>>>>> is
+>>>>>> found in the legacy scan results. If this flag is not set, all
+>>>>>> channels
+>>>>>> in 6 GHz are included in the scan freq list. It is upto userspace
+>>>>>> to
+>>>>>> decide what it wants.
+>>>>>
+>>>>>
+>>>>> This isn't your problem, but it needs to be said:
+>>>>>
+>>>>> The nl80211 docs need and update to reflect this behavior (or
+>>>>> remove
+>>>>> the PSC logic). IMO this is really weird that the kernel selects
+>>>>> PSC's
+>>>>> based on the co-located flag. The docs don't describe this behavior
+>>>>> and
+>>>>> the flag's name is misleading (its not
+>>>>> SCAN_FLAG_COLOCATED_AND_PSC_6GHZ) :)
+>>>>>
+>>>>
+>>>> Sorry for the late reply, I was on vacation.
+>>>>
+>>>> What you said make sense. The existing flag should not add PSC
+>>>> channels
+>>>> according to the flag description.
+>>>>
+>>>> We can add another flag something like you pointed out
+>>>> SCAN_FLAG_COLOCATED_AND_PSC_6GHZ and include PSC channels if this
+>>>> flag
+>>>> is set. What do you say?
+>>>
+>>> I'm no authority here, just wanted to point this out. This is something
+>>> that would need to be in mac80211 though, not just a specific driver.
+>>> It would be up to the maintainers and would require changing the
+>>> behavior of the existing flag, which then changes behavior in
+>>> wpa_supplicant/hostapd. So its somewhat intrusive.
+>>>
+>>> But personally I'd be for it. And just require userspace include PSC's
+>>> like any other channels if they need those.
+>>>
+>>
+>> Hi Johannes,
+>>
+>> What is your opinion on the changes being proposed to the 6 GHz scan in
+>> cfg80211 that is being discussed in this thread?
+>>
+> 
+> I don't think we can/should change the semantics of an existing flag
+> now, but we can certainly update the documentation to match the
+> implementation, and add more flags to make it more flexible.
+> 
+> johannes
 
-[ Upstream commit 323d91d4684d238f6bc3693fed93caf795378fe0 ]
+Sure, makes sense. I'll make the changes and send them out for review.
 
-ath11k fails to load if there are multiple ath11k PCI devices with same name:
-
- ath11k_pci 0000:01:00.0: Hardware name qcn9074 hw1.0
- debugfs: Directory 'ath11k' with parent '/' already present!
- ath11k_pci 0000:01:00.0: failed to create ath11k debugfs
- ath11k_pci 0000:01:00.0: failed to create soc core: -17
- ath11k_pci 0000:01:00.0: failed to init core: -17
- ath11k_pci: probe of 0000:01:00.0 failed with error -17
-
-Fix this by creating a directory for each ath11k device using schema
-<bus>-<devname>, for example "pci-0000:06:00.0". This directory created under
-the top-level ath11k directory, for example /sys/kernel/debug/ath11k.
-
-The reference to the toplevel ath11k directory is not stored anymore within ath11k, instead
-it's retrieved using debugfs_lookup(). If the directory does not exist it will
-be created. After the last directory from the ath11k directory is removed, for
-example when doing rmmod ath11k, the empty ath11k directory is left in place,
-it's a minor cosmetic issue anyway.
-
-Here's an example hierarchy with one WCN6855:
-
-ath11k
-`-- pci-0000:06:00.0
-    |-- mac0
-    |   |-- dfs_block_radar_events
-    |   |-- dfs_simulate_radar
-    |   |-- ext_rx_stats
-    |   |-- ext_tx_stats
-    |   |-- fw_dbglog_config
-    |   |-- fw_stats
-    |   |   |-- beacon_stats
-    |   |   |-- pdev_stats
-    |   |   `-- vdev_stats
-    |   |-- htt_stats
-    |   |-- htt_stats_reset
-    |   |-- htt_stats_type
-    |   `-- pktlog_filter
-    |-- simulate_fw_crash
-    `-- soc_dp_stats
-
-I didn't have a test setup where I could connect multiple ath11k devices to the
-same the host, so I have only tested this with one device.
-
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.9
-Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.5.0.1-01208-QCAHKSWPL_SILICONZ-1
-Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01208-QCAHKSWPL_SILICONZ-1
-
-Tested-by: Robert Marko <robert.marko@sartura.hr>
-Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
-Link: https://lore.kernel.org/r/20221220121231.20120-1-kvalo@kernel.org
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/net/wireless/ath/ath11k/core.h    |  1 -
- drivers/net/wireless/ath/ath11k/debugfs.c | 48 +++++++++++++++++++----
- 2 files changed, 40 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index d2f2898d17b49..a66e275af1eb4 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -712,7 +712,6 @@ struct ath11k_base {
- 	enum ath11k_dfs_region dfs_region;
- #ifdef CONFIG_ATH11K_DEBUGFS
- 	struct dentry *debugfs_soc;
--	struct dentry *debugfs_ath11k;
- #endif
- 	struct ath11k_soc_dp_stats soc_stats;
- 
-diff --git a/drivers/net/wireless/ath/ath11k/debugfs.c b/drivers/net/wireless/ath/ath11k/debugfs.c
-index 1b914e67d314d..196314ab4ff0b 100644
---- a/drivers/net/wireless/ath/ath11k/debugfs.c
-+++ b/drivers/net/wireless/ath/ath11k/debugfs.c
-@@ -836,10 +836,6 @@ int ath11k_debugfs_pdev_create(struct ath11k_base *ab)
- 	if (test_bit(ATH11K_FLAG_REGISTERED, &ab->dev_flags))
- 		return 0;
- 
--	ab->debugfs_soc = debugfs_create_dir(ab->hw_params.name, ab->debugfs_ath11k);
--	if (IS_ERR(ab->debugfs_soc))
--		return PTR_ERR(ab->debugfs_soc);
--
- 	debugfs_create_file("simulate_fw_crash", 0600, ab->debugfs_soc, ab,
- 			    &fops_simulate_fw_crash);
- 
-@@ -857,15 +853,51 @@ void ath11k_debugfs_pdev_destroy(struct ath11k_base *ab)
- 
- int ath11k_debugfs_soc_create(struct ath11k_base *ab)
- {
--	ab->debugfs_ath11k = debugfs_create_dir("ath11k", NULL);
-+	struct dentry *root;
-+	bool dput_needed;
-+	char name[64];
-+	int ret;
-+
-+	root = debugfs_lookup("ath11k", NULL);
-+	if (!root) {
-+		root = debugfs_create_dir("ath11k", NULL);
-+		if (IS_ERR_OR_NULL(root))
-+			return PTR_ERR(root);
-+
-+		dput_needed = false;
-+	} else {
-+		/* a dentry from lookup() needs dput() after we don't use it */
-+		dput_needed = true;
-+	}
-+
-+	scnprintf(name, sizeof(name), "%s-%s", ath11k_bus_str(ab->hif.bus),
-+		  dev_name(ab->dev));
-+
-+	ab->debugfs_soc = debugfs_create_dir(name, root);
-+	if (IS_ERR_OR_NULL(ab->debugfs_soc)) {
-+		ret = PTR_ERR(ab->debugfs_soc);
-+		goto out;
-+	}
-+
-+	ret = 0;
- 
--	return PTR_ERR_OR_ZERO(ab->debugfs_ath11k);
-+out:
-+	if (dput_needed)
-+		dput(root);
-+
-+	return ret;
- }
- 
- void ath11k_debugfs_soc_destroy(struct ath11k_base *ab)
- {
--	debugfs_remove_recursive(ab->debugfs_ath11k);
--	ab->debugfs_ath11k = NULL;
-+	debugfs_remove_recursive(ab->debugfs_soc);
-+	ab->debugfs_soc = NULL;
-+
-+	/* We are not removing ath11k directory on purpose, even if it
-+	 * would be empty. This simplifies the directory handling and it's
-+	 * a minor cosmetic issue to leave an empty ath11k directory to
-+	 * debugfs.
-+	 */
- }
- 
- void ath11k_debugfs_fw_stats_init(struct ath11k *ar)
--- 
-2.39.0
-
+Thanks,
+Manikanta
 
 -- 
 ath11k mailing list
