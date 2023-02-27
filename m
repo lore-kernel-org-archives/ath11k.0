@@ -4,61 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 548A8C64ED8
-	for <ath11k@archiver.kernel.org>; Mon, 27 Feb 2023 12:26:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3674C7EE30
+	for <ath11k@archiver.kernel.org>; Mon, 27 Feb 2023 12:36:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
-	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FA+gKef0Lma2m1qknay1BNa5/nqVmRWDLETzKi19R8g=; b=EssETq71jYvoJz
-	c/hKin+FTd2yxR+DBZgitZuxTAv2UH9dMawa5ddwbT5kJn885ogoatyQLdE7DyjNoCT+n9tX8d+0f
-	jSbCqboiZPVA3wJ7cMRY0lZXS+xbgM6CEUzt2e1CC0U2/8wZgTmdDiLyHg7RCHxV/0WysPRtHsuVG
-	OlcEuur9gbI0Y4fHFlEIWhc7D3EhyZnsphNWiCun9/6BjgTleyOlNle13qtHH/AQhqr893AEqHrtV
-	NNv6SWasKngD9UQUxkLQED6LTZXtFdmdY6Pj/BotUZVvI1/Ff9OqOBruJ4/CRTlLBwbjRRAVC0aDU
-	0czirim48MhU8I0SYxaQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=FSBJwJiDIstUuayGBfjC/0Y68O9UsodNqrkkDBtzBCc=; b=CAQQ+0RbMolm7l
+	ox5Mn+9ibURRi88hmKNSCa4Y+0XVd/nqP2JsQox4YWlxazPVIBDNYwSdDc2CqGe0fVuAR8hoNbv5c
+	XgOzU34tkrDa1+cN2EWDFOBZ3ly/FsogZf0Sggpw2Mg/28T3OJs/Xd9WIVeJCUmmxiUutmPvI07AJ
+	x5dL2SdMZnU7zLcWGM/2quBAT2xSVTGA2XccmkNhqUNKYcfluZ8Q160pX32B0L43ov8kqAFbrYdnC
+	3VD0wDM55QBiZXRE1cf7T21ZizN7/gDuAJSchpjqT5N6wEBuNSzB3rX/FBxW3zPYVRem692Xemv4p
+	UGeDk2/GmCh6Q1ecXWeA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pWcaP-009anY-8J; Mon, 27 Feb 2023 12:26:33 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1pWckV-009cCo-9o; Mon, 27 Feb 2023 12:36:59 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pWcaM-009anE-SX
-	for ath11k@lists.infradead.org; Mon, 27 Feb 2023 12:26:32 +0000
+	id 1pWckS-009cC7-Q4
+	for ath11k@lists.infradead.org; Mon, 27 Feb 2023 12:36:58 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id 949B2B80D21;
-	Mon, 27 Feb 2023 12:26:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65E76C433D2;
-	Mon, 27 Feb 2023 12:26:26 +0000 (UTC)
+	by ams.source.kernel.org (Postfix) with ESMTPS id 121C8B80BE8;
+	Mon, 27 Feb 2023 12:36:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B94BEC433D2;
+	Mon, 27 Feb 2023 12:36:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1677500787;
-	bh=NWYcefWMGiJtQtWkVlsBbS8T38GxvFGeYVBhy11A6jo=;
-	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=kT/hGlUWVeyDb80mqmh97ccuUY8AuVsE6F166ITxuM8f6j6GZONG9Z9nO6OKgaaOD
-	 VF+pNlq7dqYKomIgImhp7vXMgle403G86W21uj07JlsFBLTyMVnsFbPtnXq4FqDN3G
-	 eI+VDYh1gG3FT+H8ko2N/EnPTqZ0hBm2e53XBxlToGOQ+b9K2/rDQ7RxZDHEWFszQ5
-	 cjvnvTxgE7NW1sistxT+c7aM/Wlwqfs7SGnLNsX8Xp4XyDDezNHgXeeqATjteECg7U
-	 an9EjfeYbqiRDb5ef/Xa2uKep3ncdb3t64NeK5+0X2Mc+Wz3BnBvueFWYEc5Q8LJTB
-	 UfN1WNxqGJr6w==
-MIME-Version: 1.0
-Subject: Re: [PATCH v2 1/4] wifi: ath11k: modify accessor macros to match
- index
- size
+	s=k20201202; t=1677501413;
+	bh=Jh8U22bdoYCQvBhJpj8kzG5Zg184640gUPfEPyJpG5Y=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=RVjc8k9xbwCbHoP8l76/xrwC55yQNIpxnHS2n/t0SgrkUkwr3q5EnNeMVXzqH8hpm
+	 ErOWQW96752JON4XtLE4qeumALHN6qB+ilR7j3VIps1pspoam5pXdJkBUXSjaoMh9q
+	 N3rYKQm4kDkzc5xP3c3CWMLBoAcmIo/OaCrJZyPkHSRnc9kpgBFvcdptNkHnDHbfVB
+	 jtVOuQ5aUBMaPaqetZEXWFij8gqm5z5eYY2rmC4RIi1wqYnHbuPSUKqBPQvfBlPjdN
+	 Wo1FfDDFThiKu8cFtwId/1PaAtl8kVSdcFYNKXKN12km9nunOQoyOrzryXkI+RfxGV
+	 Uuh6BJSJ1FCMA==
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <1666128501-12364-2-git-send-email-quic_msinada@quicinc.com>
-References: <1666128501-12364-2-git-send-email-quic_msinada@quicinc.com>
-To: Muna Sinada <quic_msinada@quicinc.com>
-Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- Muna Sinada <quic_msinada@quicinc.com>
-User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <167750078195.17465.18276986078298720145.kvalo@kernel.org>
-Date: Mon, 27 Feb 2023 12:26:26 +0000 (UTC)
+To: Mario Limonciello <mario.limonciello@amd.com>
+Cc: "David S. Miller" <davem@davemloft.net>,  Eric Dumazet <edumazet@google.com>,  Jakub Kicinski <kuba@kernel.org>,  Paolo Abeni <pabeni@redhat.com>,  <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>,  <netdev@vger.kernel.org>,  <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] wifi: ath11k: Add a warning for wcn6855 spurious wakeup events
+References: <20230220213807.28523-1-mario.limonciello@amd.com>
+Date: Mon, 27 Feb 2023 14:36:46 +0200
+In-Reply-To: <20230220213807.28523-1-mario.limonciello@amd.com> (Mario
+	Limonciello's message of "Mon, 20 Feb 2023 15:38:07 -0600")
+Message-ID: <87r0ubqo81.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230227_042631_109850_957FBACC 
-X-CRM114-Status: UNSURE (   7.50  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230227_043657_016905_DE300E38 
+X-CRM114-Status: GOOD (  18.12  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,26 +72,55 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Muna Sinada <quic_msinada@quicinc.com> wrote:
+Mario Limonciello <mario.limonciello@amd.com> writes:
 
-> HE PHY is only 11 bytes, therefore it should be using byte indexes
-> instead of dword. Change corresponding macros to reflect this.
-> 
-> Signed-off-by: Muna Sinada <quic_msinada@quicinc.com>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+> When WCN6855 firmware versions less than 0x110B196E are used with
+> an AMD APU and the user puts the system into s2idle spurious wakeup
+> events can occur. These are difficult to attribute to the WLAN F/W
+> so add a warning to the kernel driver to give users a hint where
+> to look.
+>
+> This was tested on WCN6855 and a Lenovo Z13 with the following
+> firmware versions:
+> WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.9
+> WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
+>
+> Link: http://lists.infradead.org/pipermail/ath11k/2023-February/004024.html
+> Link: https://gitlab.freedesktop.org/drm/amd/-/issues/2377
+> Link: https://bugs.launchpad.net/ubuntu/+source/linux-firmware/+bug/2006458
+> Link: https://lore.kernel.org/linux-gpio/20221012221028.4817-1-mario.limonciello@amd.com/
+> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 
-4 patches applied to ath-next branch of ath.git, thanks.
+[...]
 
-a96f10422e74 wifi: ath11k: modify accessor macros to match index size
-38dfe775d0ab wifi: ath11k: push MU-MIMO params from hostapd to hardware
-8077c1bbbc28 wifi: ath11k: move HE MCS mapper to a separate function
-ebf82988f844 wifi: ath11k: generate rx and tx mcs maps for supported HE mcs
+> +static void ath11k_check_s2idle_bug(struct ath11k_base *ab)
+> +{
+> +	struct pci_dev *rdev;
+> +
+> +	if (pm_suspend_target_state != PM_SUSPEND_TO_IDLE)
+> +		return;
+> +
+> +	if (ab->id.device != WCN6855_DEVICE_ID)
+> +		return;
+> +
+> +	if (ab->qmi.target.fw_version >= WCN6855_S2IDLE_VER)
+> +		return;
+> +
+> +	rdev = pci_get_domain_bus_and_slot(0, 0, PCI_DEVFN(0, 0));
+> +	if (rdev->vendor == PCI_VENDOR_ID_AMD)
+> +		ath11k_warn(ab, "fw_version 0x%x may cause spurious wakeups. Upgrade to 0x%x or later.",
+> +			    ab->qmi.target.fw_version, WCN6855_S2IDLE_VER);
+
+I understand the reasons for this warning but I don't really trust the
+check 'ab->qmi.target.fw_version >= WCN6855_S2IDLE_VER'. I don't know
+how the firmware team populates the fw_version so I'm worried that if we
+ever switch to a different firmware branch (or similar) this warning
+might all of sudden start triggering for the users.
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/1666128501-12364-2-git-send-email-quic_msinada@quicinc.com/
+https://patchwork.kernel.org/project/linux-wireless/list/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
 
 -- 
 ath11k mailing list
