@@ -4,96 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9853CC64ED8
-	for <ath11k@archiver.kernel.org>; Mon, 27 Feb 2023 10:57:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B605C64ED6
+	for <ath11k@archiver.kernel.org>; Mon, 27 Feb 2023 12:01:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jt7SQJ+NigTO8Mc2K5A310v2W+GvU6wbjVNXUW4pAQM=; b=cEzspEfk/AJQEH
-	+91eNpEo2VqmMOsl2ZzkvTpuOtCPH0PxDr9CP9FiHjAQlB0RDdFJVCQ9HPymNnmJfky/jgTiJO94M
-	qgU0zh7AUTrR6J6SCJmMLTwUVrD5nGtITGmG/GL3I7zSjRjIlHPkjeNOi4e/E3NEYcwCKhiSUcAa4
-	VjnqZ5dn6TsjzL0xJ/l8KYn1Uj0e19ldBWTfA1NsP4UMno0BZAjW6zTST2kATrwz/vKtRH72luzFf
-	AGsFj1qSDDDLHAvxD1Nte0DfqG29/pT7ViIrAR8FVIS0yPQCOXCzg3TLJe7VYaUUf/1btENfR/irv
-	Qcwek6xIEW1opo166Gdw==;
+	List-Owner; bh=DoQVpz23ueHBRLXKzlpfzhAbiuYFKDutje4iyGbOEH0=; b=EX3qPstWn25m4c
+	7E4SvZo2G0qRuW+o2wmoTqhaW3VioWZsj8m0dVBdZfczrbr5x6JQFhejZaQJwadI43pnidwqiNYZ7
+	wrmsnw3M7ok0Hgrbg9wvz64fmiymO15NuWpBKciqvZvuDRmmOzjbbsbYvShpKtcGzcfZ/ZXbRq7oY
+	oyDey3khJwv70j9rWVO23sk0ryWNuIMV3e4W/kYSgQ/2AWg5NUJTgHtRJMa7erf6BTY+V/EaalPtF
+	rBhYADmhAcDcmHYJrDFkkRHj+AVW5R5DXALneWH6bTP8Os8ymW/+oDpLTB+0x8R1T5S+86Pvpc0Ht
+	swMdoOGU6cYKcma+6oiA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pWbC7-009Ihz-KN; Mon, 27 Feb 2023 10:57:23 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1pWcBq-009Vd0-Sd; Mon, 27 Feb 2023 12:01:10 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pWbC4-009Ih9-6t
-	for ath11k@lists.infradead.org; Mon, 27 Feb 2023 10:57:22 +0000
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 31R4RDK1000851;
-	Mon, 27 Feb 2023 10:57:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=T2UBKH35Km+ksvs1n2JoUYmoK7+UYuEiucdXD1PUSG4=;
- b=k+QYkFcN9+9VT9tL7L9eC3oCEpJDCYHkV1FqejNjjygO/sCZqiRy+o+B2jSbUMovBpnz
- 537j9LVJZBWBH+BFMtoAzXqhJ1WybdAhCLDREbcV1ORZrDKEp/q02Ve5duGRfceSYK0Z
- 9zIZdzsid3SoYYgk8dUPlzltwc6y/IF0CvmUd/mubnZ5CauDWiqkzDRaVUR9/UNoqc45
- sDLmAl89Z8OgHw1K5bjUmGkE36ySRzf+hljEUcGVt7d4V4YdsnHZizp6m1ZpIRfNKcWc
- tmeQZGtYFjMdtfetoX8zlWY2QVme+ayIgzakhJ3PzdbuPmAe1HJu4TAD/DKbkJB51mSC jg== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3nyajavpw9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 27 Feb 2023 10:57:15 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 31RAvEUx027238
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 27 Feb 2023 10:57:14 GMT
-Received: from [10.206.66.42] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Mon, 27 Feb
- 2023 02:57:12 -0800
-Message-ID: <dd607593-2353-3c85-bc4c-1230c1419f8c@quicinc.com>
-Date: Mon, 27 Feb 2023 16:27:09 +0530
+	id 1pWc9t-009Uw1-Pq
+	for ath11k@lists.infradead.org; Mon, 27 Feb 2023 11:59:17 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ams.source.kernel.org (Postfix) with ESMTPS id 0E84CB80D1D;
+	Mon, 27 Feb 2023 11:59:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DCC1C433D2;
+	Mon, 27 Feb 2023 11:59:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1677499145;
+	bh=J1blplwPa0aZoNLKPB/GZBMFK3yDQyV1wzJAbyyKUGE=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=cApfinZDsVDBAJakIKHuMjjVGGZ8fEeMzdQ8A7dzPCgn3YcyJpIN4OZOhqnwZrHFm
+	 t1OnoB9W4h/+O81ScOWocmGkOHIUCp02mv4KiYx9XgUN/5h+le11ptAaYdSEjQ8ICY
+	 F1MAugrtUmbXRd8F1jbszNDgN72UAuGpG0OecXQPMFTgMyjvZuaGERaNEE71QF1vP3
+	 aU68PzfNswzj6WTsVLnwBWbHx2tNB4cFzLi1FyU5P2g6g113PphIQCLASMYa61urcE
+	 +EapjoGuSY3KN2pDh7MCgRY1YCKgH2q9w3GAjqo00Rcf096x6KGAz/5O0Q9zCUN9dl
+	 DJqQkxVgOQcow==
+From: Kalle Valo <kvalo@kernel.org>
+To: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
+Subject: Re: [PATCH v4 3/3] ath11k: Enable low power mode when WLAN is not active
+References: <20230203060128.19625-1-quic_mpubbise@quicinc.com>
+	<20230203060128.19625-4-quic_mpubbise@quicinc.com>
+	<87cz5zruc6.fsf@kernel.org>
+	<9efc2082-d46d-5d57-d275-1cb47277f639@quicinc.com>
+Date: Mon, 27 Feb 2023 13:59:02 +0200
+In-Reply-To: <9efc2082-d46d-5d57-d275-1cb47277f639@quicinc.com> (Manikanta
+	Pubbisetty's message of "Mon, 27 Feb 2023 16:19:08 +0530")
+Message-ID: <87v8jnqpyx.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH] wifi: ath11k: Optimize 6 GHz scan time
-Content-Language: en-US
-To: "Peer, Ilan" <ilan.peer@intel.com>,
-        Johannes Berg
-	<johannes@sipsolutions.net>,
-        James Prestwood <prestwoj@gmail.com>,
-        Marcel
- Holtmann <marcel@holtmann.org>
-CC: "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>,
-        "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>
-References: <20221220043823.20382-1-quic_mpubbise@quicinc.com>
- <5DAEA8B2-2B44-4A91-9E57-12B6C6B6C1FC@holtmann.org>
- <2861463e-a097-7efe-bc75-f13c8faf9547@quicinc.com>
- <378a1d63b3752ace7384c44d6f5184753fa7795d.camel@gmail.com>
- <0b06dea9-d5be-1edc-62ca-576398d1bcd8@quicinc.com>
- <0e7644cbfa9e4ba0d534681166ca467ea1684719.camel@gmail.com>
- <10e4b6bf-f375-e50f-063a-b44471359d25@quicinc.com>
- <56a3651e48ae621afa4c50f1ba0d9fedeefb2c31.camel@sipsolutions.net>
- <7ddf99b1-4aef-c950-f61b-ba79ed086095@quicinc.com>
- <DM4PR11MB6043976576E564D19D122B66E9AF9@DM4PR11MB6043.namprd11.prod.outlook.com>
-From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-In-Reply-To: <DM4PR11MB6043976576E564D19D122B66E9AF9@DM4PR11MB6043.namprd11.prod.outlook.com>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: JYuZpLAIVguUb-Q6IUgKaZEIRkqbNf4U
-X-Proofpoint-ORIG-GUID: JYuZpLAIVguUb-Q6IUgKaZEIRkqbNf4U
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.170.22
- definitions=2023-02-26_22,2023-02-27_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
- bulkscore=0 clxscore=1015 phishscore=0 mlxscore=0 mlxlogscore=735
- priorityscore=1501 impostorscore=0 suspectscore=0 spamscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2302270084
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230227_025720_332983_9BDB9EAE 
-X-CRM114-Status: GOOD (  31.63  )
+X-CRM114-CacheID: sfid-20230227_035910_120163_8C18A407 
+X-CRM114-Status: GOOD (  14.49  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,118 +70,29 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 2/27/2023 1:55 PM, Peer, Ilan wrote:
-> Hi,
-> 
->> -----Original Message-----
->> From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
->> Sent: Monday, February 27, 2023 06:24
->> To: Johannes Berg <johannes@sipsolutions.net>; James Prestwood
->> <prestwoj@gmail.com>; Marcel Holtmann <marcel@holtmann.org>
->> Cc: ath11k@lists.infradead.org; linux-wireless@vger.kernel.org; Peer, Ilan
->> <ilan.peer@intel.com>
->> Subject: Re: [PATCH] wifi: ath11k: Optimize 6 GHz scan time
->>
->> On 2/24/2023 3:45 PM, Johannes Berg wrote:
->>> On Fri, 2023-02-24 at 15:38 +0530, Manikanta Pubbisetty wrote:
->>>> On 1/10/2023 10:35 PM, James Prestwood wrote:
->>>>> On Tue, 2023-01-10 at 10:49 +0530, Manikanta Pubbisetty wrote:
->>>>>> On 12/29/2022 2:52 AM, James Prestwood wrote:
->>>>>>> Hi Manikanta,
->>>>>>>> By the way, userspace itself selects the frequencies to scan, not
->>>>>>>> the driver.
->>>>>>>>
->>>>>>>> If we see the split scan implementation in cfg80211, this is the
->>>>>>>> how it is implemented. If NL80211_SCAN_FLAG_COLOCATED_6GHZ
->> is
->>>>>>>> set, it selects all PSC channels and those non-PSC channels where
->>>>>>>> RNR IE information is found in the legacy scan results. If this
->>>>>>>> flag is not set, all channels in 6 GHz are included in the scan
->>>>>>>> freq list. It is upto userspace to decide what it wants.
->>>>>>>
->>>>>>>
->>>>>>> This isn't your problem, but it needs to be said:
->>>>>>>
->>>>>>> The nl80211 docs need and update to reflect this behavior (or
->>>>>>> remove the PSC logic). IMO this is really weird that the kernel
->>>>>>> selects PSC's based on the co-located flag. The docs don't
->>>>>>> describe this behavior and the flag's name is misleading (its not
->>>>>>> SCAN_FLAG_COLOCATED_AND_PSC_6GHZ) :)
->>>>>>>
->>>>>>
->>>>>> Sorry for the late reply, I was on vacation.
->>>>>>
->>>>>> What you said make sense. The existing flag should not add PSC
->>>>>> channels according to the flag description.
->>>>>>
->>>>>> We can add another flag something like you pointed out
->>>>>> SCAN_FLAG_COLOCATED_AND_PSC_6GHZ and include PSC channels if
->> this
->>>>>> flag is set. What do you say?
->>>>>
->>>>> I'm no authority here, just wanted to point this out. This is
->>>>> something that would need to be in mac80211 though, not just a specific
->> driver.
->>>>> It would be up to the maintainers and would require changing the
->>>>> behavior of the existing flag, which then changes behavior in
->>>>> wpa_supplicant/hostapd. So its somewhat intrusive.
->>>>>
->>>>> But personally I'd be for it. And just require userspace include
->>>>> PSC's like any other channels if they need those.
->>>>>
->>>>
->>>> Hi Johannes,
->>>>
->>>> What is your opinion on the changes being proposed to the 6 GHz scan
->>>> in
->>>> cfg80211 that is being discussed in this thread?
->>>>
->>>
->>> I don't think we can/should change the semantics of an existing flag
->>> now, but we can certainly update the documentation to match the
->>> implementation, and add more flags to make it more flexible.
->>>
->>> johannes
->>
->> Sure, makes sense. I'll make the changes and send them out for review.
->>
-> 
-> Sorry for joining this thread late. I agree that the documentation of the NL80211_SCAN_FLAG_COLOCATED_6GHZ
-> flag can be updated, but FWIW, I want to clarify the intention behind this flag:
-> 
-> First, the logic would always scan only the channels requested by user space, so if the PSC channels are
-> not included they would not be scanned.
-> 
+Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
 
-Agreed.
+>> Also I want to mention that I suspect eventually we have to always power
+>> off the firmware during suspend to get hibernation working:
+>
+> This patch will power off the firmware for WCN6750. I'm not sure how
+> to get that working for other ath11k devices.
 
-> Second, the intention of the NL80211_SCAN_FLAG_COLOCATED_6GHZ flag was to indicate to the kernel that
-> before going to scan the 6GHz channels it should first scan the 2GHz/5GHz bands such that it would retrieve information
-> about the collocated APs, so eventually it would only scan the given PSC channels and the channels on which collocated APs
-> are found (in which case direct probing of these APs is expected).
-> 
+Oh, I didn't release that. If you can, try to clarify the commit log on
+this part. For example, "for suspend we run command FOO_OFF which means
+that the power from the firmware is complete turned off". Or maybe just
+read them too hastily, but still having clear (and simple) commit logs
+help understanding the issue.
 
-Understood, currently the documentation of the 
-NL80211_SCAN_FLAG_COLOCATED_6GHZ flag doesn't state this. It simply 
-scans all the PSC channels the user space has asked for whether they are 
-co-located or not. As you mentioned earlier, we need to fix the 
-documentation part.
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-> While the PSC channels could have been scanned together with the 2GHz/5GHz channels, since collocated APs might also reside
-> on PSC channels, we wanted to avoid scanning PSC channels twice, so this is why they are scanned only after the scan on legacy
-> bands.
-> 
-> Hope this helps,
-> 
-
-Understood, thanks a lot for the clarification.
-
-Manikanta
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
