@@ -4,61 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B605C64ED6
-	for <ath11k@archiver.kernel.org>; Mon, 27 Feb 2023 12:01:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 548A8C64ED8
+	for <ath11k@archiver.kernel.org>; Mon, 27 Feb 2023 12:26:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DoQVpz23ueHBRLXKzlpfzhAbiuYFKDutje4iyGbOEH0=; b=EX3qPstWn25m4c
-	7E4SvZo2G0qRuW+o2wmoTqhaW3VioWZsj8m0dVBdZfczrbr5x6JQFhejZaQJwadI43pnidwqiNYZ7
-	wrmsnw3M7ok0Hgrbg9wvz64fmiymO15NuWpBKciqvZvuDRmmOzjbbsbYvShpKtcGzcfZ/ZXbRq7oY
-	oyDey3khJwv70j9rWVO23sk0ryWNuIMV3e4W/kYSgQ/2AWg5NUJTgHtRJMa7erf6BTY+V/EaalPtF
-	rBhYADmhAcDcmHYJrDFkkRHj+AVW5R5DXALneWH6bTP8Os8ymW/+oDpLTB+0x8R1T5S+86Pvpc0Ht
-	swMdoOGU6cYKcma+6oiA==;
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
+	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=FA+gKef0Lma2m1qknay1BNa5/nqVmRWDLETzKi19R8g=; b=EssETq71jYvoJz
+	c/hKin+FTd2yxR+DBZgitZuxTAv2UH9dMawa5ddwbT5kJn885ogoatyQLdE7DyjNoCT+n9tX8d+0f
+	jSbCqboiZPVA3wJ7cMRY0lZXS+xbgM6CEUzt2e1CC0U2/8wZgTmdDiLyHg7RCHxV/0WysPRtHsuVG
+	OlcEuur9gbI0Y4fHFlEIWhc7D3EhyZnsphNWiCun9/6BjgTleyOlNle13qtHH/AQhqr893AEqHrtV
+	NNv6SWasKngD9UQUxkLQED6LTZXtFdmdY6Pj/BotUZVvI1/Ff9OqOBruJ4/CRTlLBwbjRRAVC0aDU
+	0czirim48MhU8I0SYxaQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pWcBq-009Vd0-Sd; Mon, 27 Feb 2023 12:01:10 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1pWcaP-009anY-8J; Mon, 27 Feb 2023 12:26:33 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pWc9t-009Uw1-Pq
-	for ath11k@lists.infradead.org; Mon, 27 Feb 2023 11:59:17 +0000
+	id 1pWcaM-009anE-SX
+	for ath11k@lists.infradead.org; Mon, 27 Feb 2023 12:26:32 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id 0E84CB80D1D;
-	Mon, 27 Feb 2023 11:59:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DCC1C433D2;
-	Mon, 27 Feb 2023 11:59:04 +0000 (UTC)
+	by ams.source.kernel.org (Postfix) with ESMTPS id 949B2B80D21;
+	Mon, 27 Feb 2023 12:26:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65E76C433D2;
+	Mon, 27 Feb 2023 12:26:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1677499145;
-	bh=J1blplwPa0aZoNLKPB/GZBMFK3yDQyV1wzJAbyyKUGE=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=cApfinZDsVDBAJakIKHuMjjVGGZ8fEeMzdQ8A7dzPCgn3YcyJpIN4OZOhqnwZrHFm
-	 t1OnoB9W4h/+O81ScOWocmGkOHIUCp02mv4KiYx9XgUN/5h+le11ptAaYdSEjQ8ICY
-	 F1MAugrtUmbXRd8F1jbszNDgN72UAuGpG0OecXQPMFTgMyjvZuaGERaNEE71QF1vP3
-	 aU68PzfNswzj6WTsVLnwBWbHx2tNB4cFzLi1FyU5P2g6g113PphIQCLASMYa61urcE
-	 +EapjoGuSY3KN2pDh7MCgRY1YCKgH2q9w3GAjqo00Rcf096x6KGAz/5O0Q9zCUN9dl
-	 DJqQkxVgOQcow==
-From: Kalle Valo <kvalo@kernel.org>
-To: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
-Subject: Re: [PATCH v4 3/3] ath11k: Enable low power mode when WLAN is not active
-References: <20230203060128.19625-1-quic_mpubbise@quicinc.com>
-	<20230203060128.19625-4-quic_mpubbise@quicinc.com>
-	<87cz5zruc6.fsf@kernel.org>
-	<9efc2082-d46d-5d57-d275-1cb47277f639@quicinc.com>
-Date: Mon, 27 Feb 2023 13:59:02 +0200
-In-Reply-To: <9efc2082-d46d-5d57-d275-1cb47277f639@quicinc.com> (Manikanta
-	Pubbisetty's message of "Mon, 27 Feb 2023 16:19:08 +0530")
-Message-ID: <87v8jnqpyx.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+	s=k20201202; t=1677500787;
+	bh=NWYcefWMGiJtQtWkVlsBbS8T38GxvFGeYVBhy11A6jo=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=kT/hGlUWVeyDb80mqmh97ccuUY8AuVsE6F166ITxuM8f6j6GZONG9Z9nO6OKgaaOD
+	 VF+pNlq7dqYKomIgImhp7vXMgle403G86W21uj07JlsFBLTyMVnsFbPtnXq4FqDN3G
+	 eI+VDYh1gG3FT+H8ko2N/EnPTqZ0hBm2e53XBxlToGOQ+b9K2/rDQ7RxZDHEWFszQ5
+	 cjvnvTxgE7NW1sistxT+c7aM/Wlwqfs7SGnLNsX8Xp4XyDDezNHgXeeqATjteECg7U
+	 an9EjfeYbqiRDb5ef/Xa2uKep3ncdb3t64NeK5+0X2Mc+Wz3BnBvueFWYEc5Q8LJTB
+	 UfN1WNxqGJr6w==
 MIME-Version: 1.0
+Subject: Re: [PATCH v2 1/4] wifi: ath11k: modify accessor macros to match
+ index
+ size
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <1666128501-12364-2-git-send-email-quic_msinada@quicinc.com>
+References: <1666128501-12364-2-git-send-email-quic_msinada@quicinc.com>
+To: Muna Sinada <quic_msinada@quicinc.com>
+Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+ Muna Sinada <quic_msinada@quicinc.com>
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-ID: <167750078195.17465.18276986078298720145.kvalo@kernel.org>
+Date: Mon, 27 Feb 2023 12:26:26 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230227_035910_120163_8C18A407 
-X-CRM114-Status: GOOD (  14.49  )
+X-CRM114-CacheID: sfid-20230227_042631_109850_957FBACC 
+X-CRM114-Status: UNSURE (   7.50  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,24 +75,26 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
+Muna Sinada <quic_msinada@quicinc.com> wrote:
 
->> Also I want to mention that I suspect eventually we have to always power
->> off the firmware during suspend to get hibernation working:
->
-> This patch will power off the firmware for WCN6750. I'm not sure how
-> to get that working for other ath11k devices.
+> HE PHY is only 11 bytes, therefore it should be using byte indexes
+> instead of dword. Change corresponding macros to reflect this.
+> 
+> Signed-off-by: Muna Sinada <quic_msinada@quicinc.com>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-Oh, I didn't release that. If you can, try to clarify the commit log on
-this part. For example, "for suspend we run command FOO_OFF which means
-that the power from the firmware is complete turned off". Or maybe just
-read them too hastily, but still having clear (and simple) commit logs
-help understanding the issue.
+4 patches applied to ath-next branch of ath.git, thanks.
+
+a96f10422e74 wifi: ath11k: modify accessor macros to match index size
+38dfe775d0ab wifi: ath11k: push MU-MIMO params from hostapd to hardware
+8077c1bbbc28 wifi: ath11k: move HE MCS mapper to a separate function
+ebf82988f844 wifi: ath11k: generate rx and tx mcs maps for supported HE mcs
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+https://patchwork.kernel.org/project/linux-wireless/patch/1666128501-12364-2-git-send-email-quic_msinada@quicinc.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
 -- 
 ath11k mailing list
