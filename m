@@ -4,58 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22035C64EC4
-	for <ath11k@archiver.kernel.org>; Wed,  8 Mar 2023 15:25:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C99E6C742A7
+	for <ath11k@archiver.kernel.org>; Wed,  8 Mar 2023 15:25:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0n/12v+VDaeZBeJESNqW/xZk/UXcVrmi90o6ctf2UJ8=; b=Nr7mRhM6KfC61V
-	NHI3hZhXEh87tX/047OfuBT6EYbbxFYcG43hCeuRaw5Z+LEeJ8gOsGQJDqcfz44xAgp02wXaDApio
-	UDzqvRiDPYEZObv0AKvcpYVl/Sbe+xKwRvutNRJejNMYbUA6pdawcjkD2yQ1w88btQBX+cgQisAYR
-	oFUeNg+kwZthYrhKwjdM1olD2sIZXsMupEC5nUfSWKoASrkcawG002ml9vm1keVYkJsCToolJ6x70
-	EptiVAmpYWrb9sBJoBHVjIQqylya/1mkcUEMW7K1OF7UgQwWh9dTMGf2yy5oDeHIAzkNDYMW++p/k
-	sLDMNhsbaydh9BD1KrMg==;
+	List-Owner; bh=wGt6BN7Tyqk6UXxgsTeUdLTu68XLxLg+9YpZXBcOq+k=; b=rU2R3H64cOUgdG
+	IzHGAVKMaMa7fvI9Fdr7yqAbQjU2SqY2jrZMuNWuw4L5QAY6eO/z2z6Ie8A9GydsNAzN2nu3xTp+C
+	cWd4lVGX9Slso4epPtSsTgI1W+d+aOaWshQGqWKuF61zoL88L0CrswfBYMRIKwNK7h+Y7LCM1yRZz
+	bQPU7TYu8HUAmrRAN7OjidL3/AOCK+lTRqKHiHRJYfoahcXw7oGI6eKHNOjJLH1UM7HAbtq9S7LDX
+	XXwu1ZqWA1A1sN0pu7ADnAodYpx+XSCSJsJhb1aZa/HWtl5qK9uJXoqdnQ5cWvJrIlF5vxay6wkEC
+	7TDBvguYExxaiN3U4M8A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pZvfZ-005hE9-GV; Wed, 08 Mar 2023 15:25:33 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1pZvfb-005hEw-7m; Wed, 08 Mar 2023 15:25:35 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pZvfW-005hCP-JE
-	for ath11k@lists.infradead.org; Wed, 08 Mar 2023 15:25:32 +0000
+	id 1pZvfY-005hBv-SE
+	for ath11k@lists.infradead.org; Wed, 08 Mar 2023 15:25:34 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id 576E1B81D41
-	for <ath11k@lists.infradead.org>; Wed,  8 Mar 2023 15:25:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5986CC4339B;
-	Wed,  8 Mar 2023 15:25:27 +0000 (UTC)
+	by ams.source.kernel.org (Postfix) with ESMTPS id 1E291B81D2C
+	for <ath11k@lists.infradead.org>; Wed,  8 Mar 2023 15:25:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22FFBC433D2;
+	Wed,  8 Mar 2023 15:25:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1678289128;
-	bh=yPbKVKAGApGaOsxSfqbfmPNFgWvzf0UqkFIDaNWkG9I=;
+	s=k20201202; t=1678289126;
+	bh=SrAq+DDewNQuaVVmmMK7PUrDAUggwmxqEZ7rN80AGB0=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=WrYb1iI4/l6U8ChMdiGRhJnj6wxAOr6Elm7ZI6m8b9HWJ6vZdcbdjRoF1xniCXwQB
-	 /M7VRvn/hkSD+a87xa45v2C4qlGd9yuNjBU52Ahsj224OSzPEuGar1e1lsV0P5AdLH
-	 Eudbto2Y5Iaw9lpNUIBM2Jl5z10qel0zQzqBMOkq10oLePAQHkvvb26ZFPvcv8HSJP
-	 lLZ0r5pIWFG7RHxF0BJWXsKv8AgoD9fPYC1GEu0MV7jgNPvDUuEZJtbHE6Cz6cVbBI
-	 3+EJg2BIzsG12Dnzeo70wwq+Qdx9NcUiwPfta4euLShSCOirBD7ri9Q1pLOzDSc+v4
-	 I14eB1a+8+JOA==
+	b=WmHjS0oIiOPyujluEn8Xug0isgdipJ4IuIuERhik4Yy6ZdzSGbgndhEIClphaWcXP
+	 WSVyZn7T1SsPq0lzOZw0atkDjNJsk06ywjipjHKLxiMuiEiylJtrBcQyxTHtLBpgc0
+	 mOHtHYRcUmLX0ShCxRS6y8Fp9CqXM6InpwbWnuVnyfiWlF8vORdjxYukXETH0boTpv
+	 9twG8gyVretuQ179pispswO8l5IpOGUzvzrcebGZo1I3HbQ+mBTntqC2e2NK0ULrLp
+	 UpJZjw+a5rsq/TZOyH4DR6k6ThYGlxkx39T3UZC8SLWaRZwmTkJy5CeN+yizk+baLu
+	 DSR7Gq1GsfJ5Q==
 From: Kalle Valo <kvalo@kernel.org>
 To: mhi@lists.linux.dev
 Cc: ath11k@lists.infradead.org,
 	linux-wireless@vger.kernel.org
-Subject: [PATCH v2 2/3] wifi: ath11k: qmi: refactor ath11k_qmi_m3_load()
-Date: Wed,  8 Mar 2023 17:25:21 +0200
-Message-Id: <20230308152522.6728-3-kvalo@kernel.org>
+Subject: [PATCH v2 1/3] mhi: allow MHI client drivers to provide the firmware via a pointer
+Date: Wed,  8 Mar 2023 17:25:20 +0200
+Message-Id: <20230308152522.6728-2-kvalo@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20230308152522.6728-1-kvalo@kernel.org>
 References: <20230308152522.6728-1-kvalo@kernel.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230308_072530_798192_A24FC162 
-X-CRM114-Status: GOOD (  19.46  )
+X-CRM114-CacheID: sfid-20230308_072533_223809_DD6B7AAA 
+X-CRM114-Status: GOOD (  18.63  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,78 +74,139 @@ Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
 From: Kalle Valo <quic_kvalo@quicinc.com>
 
-Simple refactoring to make it easier to add firmware-2.bin support in the
-following patch.
+Currently MHI loads the firmware image from the path provided by client
+devices. ath11k needs to support firmware image embedded along with meta data
+(named as firmware-2.bin). So allow the client driver to request the firmware
+file from user space on it's own and provide the firmware image data and size
+to MHI via a pointer struct mhi_controller::fw_data.
 
-Earlier ath11k_qmi_m3_load() supported changing m3.bin contents while ath11k is
-running. But that's not going to actually work, m3.bin is supposed to the be
-same during the lifetime of ath11k, for example we don't support changing the
-firmware capabilities on the fly. Due to this ath11k requests m3.bin firmware
-file first and only then checks m3_mem->vaddr, so we are basically requesting
-the firmware file even if it's not needed. Reverse the code so that m3_mem
-buffer is checked first, and only if it doesn't exist, then m3.bin is requested
-from user space.
+This is an optional feature, if fw_data is NULL MHI load the firmware using the
+name from struct mhi_controller::fw_image string as before.
 
-Checking for m3_mem->size is redundant when m3_mem->vaddr is NULL, we would
-not be able to use the buffer in that case. So remove the check for size.
-
-Simplify the exit handling and use 'goto out'.
-
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.9
+Tested with ath11k and WCN6855 hw2.0.
 
 Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 ---
- drivers/net/wireless/ath/ath11k/qmi.c | 18 +++++++++++-------
- 1 file changed, 11 insertions(+), 7 deletions(-)
+ drivers/bus/mhi/host/boot.c | 28 +++++++++++++++++++---------
+ include/linux/mhi.h         |  6 ++++++
+ 2 files changed, 25 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index ab923e24b0a9..5bc98180aed4 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.c
-+++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -2493,6 +2493,10 @@ static int ath11k_qmi_m3_load(struct ath11k_base *ab)
- 	char path[100];
- 	int ret;
- 
-+	if (m3_mem->vaddr)
-+		/* m3 firmware buffer is already available in the DMA buffer */
-+		return 0;
-+
- 	fw = ath11k_core_firmware_request(ab, ATH11K_M3_FILE);
- 	if (IS_ERR(fw)) {
- 		ret = PTR_ERR(fw);
-@@ -2502,25 +2506,25 @@ static int ath11k_qmi_m3_load(struct ath11k_base *ab)
- 		return ret;
- 	}
- 
--	if (m3_mem->vaddr || m3_mem->size)
--		goto skip_m3_alloc;
--
- 	m3_mem->vaddr = dma_alloc_coherent(ab->dev,
- 					   fw->size, &m3_mem->paddr,
- 					   GFP_KERNEL);
- 	if (!m3_mem->vaddr) {
- 		ath11k_err(ab, "failed to allocate memory for M3 with size %zu\n",
- 			   fw->size);
--		release_firmware(fw);
--		return -ENOMEM;
-+		ret = -ENOMEM;
-+		goto out;
- 	}
- 
--skip_m3_alloc:
- 	memcpy(m3_mem->vaddr, fw->data, fw->size);
- 	m3_mem->size = fw->size;
-+
-+	ret = 0;
-+
-+out:
- 	release_firmware(fw);
- 
--	return 0;
-+	return ret;
+diff --git a/drivers/bus/mhi/host/boot.c b/drivers/bus/mhi/host/boot.c
+index 1c69feee1703..5e6e1e340057 100644
+--- a/drivers/bus/mhi/host/boot.c
++++ b/drivers/bus/mhi/host/boot.c
+@@ -365,12 +365,10 @@ int mhi_alloc_bhie_table(struct mhi_controller *mhi_cntrl,
  }
  
- static void ath11k_qmi_m3_free(struct ath11k_base *ab)
+ static void mhi_firmware_copy(struct mhi_controller *mhi_cntrl,
+-			      const struct firmware *firmware,
++			      const u8 *buf, size_t remainder,
+ 			      struct image_info *img_info)
+ {
+-	size_t remainder = firmware->size;
+ 	size_t to_cpy;
+-	const u8 *buf = firmware->data;
+ 	struct mhi_buf *mhi_buf = img_info->mhi_buf;
+ 	struct bhi_vec_entry *bhi_vec = img_info->bhi_vec;
+ 
+@@ -392,9 +390,10 @@ void mhi_fw_load_handler(struct mhi_controller *mhi_cntrl)
+ 	const struct firmware *firmware = NULL;
+ 	struct device *dev = &mhi_cntrl->mhi_dev->dev;
+ 	const char *fw_name;
++	const u8 *fw_data;
+ 	void *buf;
+ 	dma_addr_t dma_addr;
+-	size_t size;
++	size_t size, fw_sz;
+ 	int i, ret;
+ 
+ 	if (MHI_PM_IN_ERROR_STATE(mhi_cntrl->pm_state)) {
+@@ -424,6 +423,14 @@ void mhi_fw_load_handler(struct mhi_controller *mhi_cntrl)
+ 	fw_name = (mhi_cntrl->ee == MHI_EE_EDL) ?
+ 		mhi_cntrl->edl_image : mhi_cntrl->fw_image;
+ 
++	if (!fw_name && mhi_cntrl->fbc_download &&
++	    mhi_cntrl->fw_data && mhi_cntrl->fw_sz) {
++		size = mhi_cntrl->sbl_size;
++		fw_data = mhi_cntrl->fw_data;
++		fw_sz = mhi_cntrl->fw_sz;
++		goto skip_req_fw;
++	}
++
+ 	if (!fw_name || (mhi_cntrl->fbc_download && (!mhi_cntrl->sbl_size ||
+ 						     !mhi_cntrl->seg_len))) {
+ 		dev_err(dev,
+@@ -443,6 +450,10 @@ void mhi_fw_load_handler(struct mhi_controller *mhi_cntrl)
+ 	if (size > firmware->size)
+ 		size = firmware->size;
+ 
++	fw_data = firmware->data;
++	fw_sz = firmware->size;
++
++skip_req_fw:
+ 	buf = dma_alloc_coherent(mhi_cntrl->cntrl_dev, size, &dma_addr,
+ 				 GFP_KERNEL);
+ 	if (!buf) {
+@@ -451,7 +462,7 @@ void mhi_fw_load_handler(struct mhi_controller *mhi_cntrl)
+ 	}
+ 
+ 	/* Download image using BHI */
+-	memcpy(buf, firmware->data, size);
++	memcpy(buf, fw_data, size);
+ 	ret = mhi_fw_load_bhi(mhi_cntrl, dma_addr, size);
+ 	dma_free_coherent(mhi_cntrl->cntrl_dev, size, buf, dma_addr);
+ 
+@@ -463,7 +474,7 @@ void mhi_fw_load_handler(struct mhi_controller *mhi_cntrl)
+ 	}
+ 
+ 	/* Wait for ready since EDL image was loaded */
+-	if (fw_name == mhi_cntrl->edl_image) {
++	if (fw_name && fw_name == mhi_cntrl->edl_image) {
+ 		release_firmware(firmware);
+ 		goto fw_load_ready_state;
+ 	}
+@@ -477,15 +488,14 @@ void mhi_fw_load_handler(struct mhi_controller *mhi_cntrl)
+ 	 * device transitioning into MHI READY state
+ 	 */
+ 	if (mhi_cntrl->fbc_download) {
+-		ret = mhi_alloc_bhie_table(mhi_cntrl, &mhi_cntrl->fbc_image,
+-					   firmware->size);
++		ret = mhi_alloc_bhie_table(mhi_cntrl, &mhi_cntrl->fbc_image, fw_sz);
+ 		if (ret) {
+ 			release_firmware(firmware);
+ 			goto error_fw_load;
+ 		}
+ 
+ 		/* Load the firmware into BHIE vec table */
+-		mhi_firmware_copy(mhi_cntrl, firmware, mhi_cntrl->fbc_image);
++		mhi_firmware_copy(mhi_cntrl, fw_data, fw_sz, mhi_cntrl->fbc_image);
+ 	}
+ 
+ 	release_firmware(firmware);
+diff --git a/include/linux/mhi.h b/include/linux/mhi.h
+index a5441ad33c74..72eef7309736 100644
+--- a/include/linux/mhi.h
++++ b/include/linux/mhi.h
+@@ -299,6 +299,10 @@ struct mhi_controller_config {
+  * @iova_start: IOMMU starting address for data (required)
+  * @iova_stop: IOMMU stop address for data (required)
+  * @fw_image: Firmware image name for normal booting (optional)
++ * @fw_data: Firmware image data content for normal booting, used only
++ *           if fw_image is NULL (optional)
++ * @fw_sz: Firmware image data size for normal booting, used only if fw_image
++ *         is NULL and fbc_download is true (optional)
+  * @edl_image: Firmware image name for emergency download mode (optional)
+  * @rddm_size: RAM dump size that host should allocate for debugging purpose
+  * @sbl_size: SBL image size downloaded through BHIe (optional)
+@@ -384,6 +388,8 @@ struct mhi_controller {
+ 	dma_addr_t iova_start;
+ 	dma_addr_t iova_stop;
+ 	const char *fw_image;
++	const u8 *fw_data;
++	size_t fw_sz;
+ 	const char *edl_image;
+ 	size_t rddm_size;
+ 	size_t sbl_size;
 -- 
 2.30.2
 
