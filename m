@@ -4,59 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE6B7C64EC4
-	for <ath11k@archiver.kernel.org>; Wed,  8 Mar 2023 18:09:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F147C64EC4
+	for <ath11k@archiver.kernel.org>; Thu,  9 Mar 2023 04:02:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=w/S3qstTzjV2Us6ZHxcyerV6oinVb7ysOSbQO1vqFow=; b=elzLNKc4Uq97dC
-	1ah2Q5n9hUjD8m7fJOmf2dqutDjTcdTfiH1oekE2K8A7ZGnVCylDn8O8Eg0w8HYQkDPFAu4aTz4M5
-	4Dd4UplHFtOReZlG6/i4RlYvmEHsI1ZHer+jF8s9sg57dIAagZtmPqWlL9QLiocMip2vCzpFBfi5J
-	NSMDQ/0IAs4OLIJe2Rj4zRpqZk2bXJv/0VN2M92PH3nRQbiiwew4tmfrtu/YwD8UejU5CXhNAaTN+
-	whfkb0coJSlQI6ofBiiqNYVTzgEanfXlrrTB+oOKYhtCoeZA3j+onHQIsGe9he0GKGpv9Y6XojuEZ
-	c9xemTS9lhOMVygA7FXQ==;
+	List-Owner; bh=5JGB1rXtooVn8IcW2ektiBpSZgfC0z1Q6REC19v2Ep4=; b=Kz/2F2TfIToK53
+	QqgFutjdTwjXeOPliZaTRZFlL/+1ojpCSepqN0GgsUTYAoZDAqXDT9U3RVxAvaMM27ShjF08KLJQD
+	37NlCbsyQQIqJKT+gRUDMkpNjzn7wGMNZvUGFfoRvHPZJTrZEaDUteaok2kipoy0RpGUen2TFjGQb
+	qAHWA/JR0S3H7+onY9w+oQ0QraOSvuYUaSVhb9SBVFcdoYrbiTpaKNA9kDXTjZe/FdDtDm8qb4ZxJ
+	1ZOcd57skNaryrwtYTL4IsioR5mASSeibZosE2I72ygDN/QKfAQZKsmzTxnkwY+hqk/seGOQ2gUDb
+	N2RGkRM/Npk3cYfO256A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pZyE7-006Jjf-2G; Wed, 08 Mar 2023 18:09:23 +0000
-Received: from nbd.name ([46.4.11.11])
+	id 1pa7UG-007joJ-BP; Thu, 09 Mar 2023 04:02:40 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pZyE4-006Jhh-2A
-	for ath11k@lists.infradead.org; Wed, 08 Mar 2023 18:09:21 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=nbd.name;
-	s=20160729; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=XA1x4uHVuNlFCbntS4g34jb7QqqTzglZ8EyZUBaakfo=; b=CFVssRZFJbThJcyYmLxitnEnFr
-	4zlejIuKaKJDoj7zV8GUHmCLF/9DfTzs9nfXNyv3ExTXzdra5u7af+Y8Z7ymcWzodZr+VyMT2/Zsv
-	XEAQkN3VLhT2b3gORw18F6BpkWyzUOFUPEh3uckoWpbIvIMPfDX9z7zlkKwoj0IVLsdY=;
-Received: from p54ae9730.dip0.t-ipconnect.de ([84.174.151.48] helo=nf.local)
-	by ds12 with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-	(Exim 4.94.2)
-	(envelope-from <nbd@nbd.name>)
-	id 1pZyDx-00Fxwf-O9; Wed, 08 Mar 2023 19:09:13 +0100
-Message-ID: <380e302d-a444-e243-f868-aa3e1efdcb73@nbd.name>
-Date: Wed, 8 Mar 2023 19:09:13 +0100
+	id 1pa7UD-007jnN-7X
+	for ath11k@lists.infradead.org; Thu, 09 Mar 2023 04:02:38 +0000
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3293ZAFu029768;
+	Thu, 9 Mar 2023 04:02:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=JpsEkGIDIUXNRuynNTMJBdMb7l3qhUxc9N+yeE3K9ys=;
+ b=bMOkDC/7/b1u1k72RQIZM+m6Vrf0g+9sd/pkuILFrN4uJhFl4V6uHoYEfVrGd2e+Ho5z
+ FlDkTgb5EkMCNhrAEdtCwiXI/qYb4+/oLI4kYzSke/y1YGTioeW+NDWftujyFdTClX2o
+ W87pCSu2OPbfzCUNyHoE2UWSdNkWU7AZo3D8DQgksrlxe0CGVadn1jegkXOFWwsT25Dm
+ 6WQ5FIIgSkvzz+gGg7D4Kh3EUSVbSm8UxiBMZhb9hIFaviuyaDfnCzii0gaktbx95z66
+ yNEKVsuLYyR7n5/uIroaou3aONUQif5xcI/wmF14aRi/nSRH5nLVyxMntNk9+FA+7sC+ bQ== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p6wcmhhcc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 09 Mar 2023 04:02:33 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32942WYi007011
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 9 Mar 2023 04:02:32 GMT
+Received: from [10.216.31.114] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Wed, 8 Mar 2023
+ 20:02:31 -0800
+Message-ID: <57eeadc0-487a-5503-1312-ff90899b0eb5@quicinc.com>
+Date: Thu, 9 Mar 2023 09:32:27 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.8.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
 Subject: Re: [PATCH 1/2] wifi: ath11k: fix null ptr dereference when tx
  offload is enabled
 Content-Language: en-US
 To: Pradeep Kumar Chitrapu <quic_pradeepc@quicinc.com>,
- ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
+        <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>
 References: <20230308174703.12270-1-quic_pradeepc@quicinc.com>
  <20230308174703.12270-2-quic_pradeepc@quicinc.com>
-From: Felix Fietkau <nbd@nbd.name>
+From: Vasanthakumar Thiagarajan <quic_vthiagar@quicinc.com>
 In-Reply-To: <20230308174703.12270-2-quic_pradeepc@quicinc.com>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: cWoV0g-qwK5IyjgxgsD_8iiHVZiASrbX
+X-Proofpoint-ORIG-GUID: cWoV0g-qwK5IyjgxgsD_8iiHVZiASrbX
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-09_01,2023-03-08_03,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
+ spamscore=0 adultscore=0 bulkscore=0 mlxlogscore=999 clxscore=1011
+ priorityscore=1501 lowpriorityscore=0 impostorscore=0 suspectscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2303090030
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230308_100920_220183_5E8235A5 
-X-CRM114-Status: GOOD (  14.72  )
+X-CRM114-CacheID: sfid-20230308_200237_322732_4E58A992 
+X-CRM114-Status: GOOD (  20.36  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,10 +98,16 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 08.03.23 18:47, Pradeep Kumar Chitrapu wrote:
+
+
+On 3/8/2023 11:17 PM, Pradeep Kumar Chitrapu wrote:
 > When tx offload is enabled, info->band from skb cb is 0. This
 > causes null pointer access at mac80211 when sband is accessed.
 > 
+
+More specifically tx encap offload instead of tx offload will be clearer.
+
+
 > In offload case, ndo_hard_start will bypass mac80211 tx and no
 > function will set info->band in skb cb to correct value.
 > 
@@ -91,6 +122,33 @@ On 08.03.23 18:47, Pradeep Kumar Chitrapu wrote:
 > index 8afbba236935..0f3a32434970 100644
 > --- a/drivers/net/wireless/ath/ath11k/dp_tx.c
 > +++ b/drivers/net/wireless/ath/ath11k/dp_tx.c
+> @@ -320,6 +320,8 @@ ath11k_dp_tx_htt_tx_complete_buf(struct ath11k_base *ab,
+>   	struct ieee80211_tx_info *info;
+>   	struct ath11k_skb_cb *skb_cb;
+>   	struct ath11k *ar;
+> +	struct ieee80211_vif *vif;
+> +	u8 flags = 0;
+
+Is this initialization needed with the way flags is assigned below?
+
+>   
+>   	spin_lock(&tx_ring->tx_idr_lock);
+>   	msdu = idr_remove(&tx_ring->txbuf_idr, ts->msdu_id);
+> @@ -341,6 +343,14 @@ ath11k_dp_tx_htt_tx_complete_buf(struct ath11k_base *ab,
+>   
+>   	dma_unmap_single(ab->dev, skb_cb->paddr, msdu->len, DMA_TO_DEVICE);
+>   
+> +	if (!skb_cb->vif) {
+> +		dev_kfree_skb_any(msdu);
+> +		return;
+> +	}
+> +
+> +	flags = skb_cb->flags;
+> +	vif = skb_cb->vif;
+> +
+>   	memset(&info->status, 0, sizeof(info->status));
+>   
+>   	if (ts->acked) {
 > @@ -354,8 +364,10 @@ ath11k_dp_tx_htt_tx_complete_buf(struct ath11k_base *ab,
 >   			info->flags |= IEEE80211_TX_STAT_NOACK_TRANSMITTED;
 >   		}
@@ -104,6 +162,28 @@ On 08.03.23 18:47, Pradeep Kumar Chitrapu wrote:
 >   }
 >   
 >   static void
+> @@ -524,6 +536,8 @@ static void ath11k_dp_tx_complete_msdu(struct ath11k *ar,
+>   	struct ath11k_peer *peer;
+>   	struct ath11k_sta *arsta;
+>   	struct rate_info rate;
+> +	struct ieee80211_vif *vif;
+> +	u8 flags = 0;
+>   
+
+Same here on the initialization part.
+
+>   	if (WARN_ON_ONCE(ts->buf_rel_source != HAL_WBM_REL_SRC_MODULE_TQM)) {
+>   		/* Must not happen */
+> @@ -544,6 +558,9 @@ static void ath11k_dp_tx_complete_msdu(struct ath11k *ar,
+>   		return;
+>   	}
+>   
+> +	flags = skb_cb->flags;
+> +	vif = skb_cb->vif;
+> +
+>   	info = IEEE80211_SKB_CB(msdu);
+>   	memset(&info->status, 0, sizeof(info->status));
+>   
 > @@ -610,7 +627,10 @@ static void ath11k_dp_tx_complete_msdu(struct ath11k *ar,
 >   
 >   	spin_unlock_bh(&ab->base_lock);
@@ -116,15 +196,9 @@ On 08.03.23 18:47, Pradeep Kumar Chitrapu wrote:
 >   }
 >   
 >   static inline void ath11k_dp_tx_status_parse(struct ath11k_base *ab,
-I think using ieee80211_tx_status_8023 is a bad idea. It is simply a 
-wrapper around ieee80211_tx_status_ext which looks up the sta based on 
-the MSDU DA. This means it is incompatible with 4-address mode.
-If you can have a sta pointer available, it is much better to just use 
-ieee80211_tx_status_ext unconditionally.
 
-In fact, I think we should simply remove ieee80211_tx_status_8023.
 
-- Felix
+Vasanth
 
 -- 
 ath11k mailing list
