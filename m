@@ -4,78 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9E5AC6FD1C
-	for <ath11k@archiver.kernel.org>; Thu,  9 Mar 2023 09:53:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62E6FC61DA4
+	for <ath11k@archiver.kernel.org>; Thu,  9 Mar 2023 16:44:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:Subject:Cc:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=4jCbF5AnB9lxD99vhVZJ9Ieemxdd28kUrWbBLnpCQZI=; b=aS6JDd1yJQ3DDo
-	oIzyiZ8+AwnSuvor2xbO1WQFimOGyPgWQE9lZLz05tchyYVEFFhf7TRGjB6XINrmjwDJ9bQDwiKYi
-	EnM1Y8aVh8TOulNPmGh+QKGIWUinkRme3iJQCsTa5LboNPB91bm9EQUoFPwWdsQHqG7WVFrgB4PGZ
-	aNR4Bx01J5iR3F6Z21daJ1BkUtb1xGfEBljfZ+wCPN/C/TxpiDLMYjirbBeQHuSp6GmRmPVLX64aM
-	szaKqtMxUwGmI2GpwyeEG951ukTtLoj439KalKT4gu4z0o1N0gTnir+dAruXS8zo4o4q2XpzRelc/
-	qUkBBfc88po0BRlEHhKw==;
+	List-Owner; bh=NcjBMpAORb0MjPkRSoBpbzRKYP36Urp2Pf7I4w4ghPw=; b=f3+Sm/PuCjXTwK
+	XlwetqIf3xNLYa8wsZy9wHXwHhksOAVUa3Ed9eUq647jQOm7/X2X0JJKMgJOPP9o4IhHucF4Vjirm
+	yrv6uhA+kTXbtMUV67jfR+h/q4coeAUzyrg6ttSOIh+O9bCHcLjbs8p3aG3EAcvVZY8oSrpnck/nW
+	sVm58ecXjdhDO8/oZ8Teud7zRHvDcwfEffx/n2qoQ8R79UCYWeYyUNQchhD+WUdlb03Er5sp8XWRE
+	zVeS/81njhAsSb2muq+augUBotgz+zaW5dMedDzljCA9oU+7L0kNCdhGn+TQlvn8InCIQKwRdvZlF
+	tyNoMGVFUzXUMTEUDVxA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1paCxq-008wOk-31; Thu, 09 Mar 2023 09:53:34 +0000
+	id 1paJNo-00BJP4-MT; Thu, 09 Mar 2023 16:44:48 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1paCxk-008wKS-1S
-	for ath11k@lists.infradead.org; Thu, 09 Mar 2023 09:53:31 +0000
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3296WNkc023504;
-	Thu, 9 Mar 2023 09:53:25 GMT
+	id 1paJNm-00BJMy-63
+	for ath11k@lists.infradead.org; Thu, 09 Mar 2023 16:44:47 +0000
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 329C5utn027764;
+	Thu, 9 Mar 2023 16:44:40 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-type; s=qcppdkim1;
- bh=y/Cn/2xo01c+aPLThtrSQCJLfhOgxXonABwstlzf6E0=;
- b=M1h+C19uDDxK5Bx1cM9NkzT5o2TOQDtb4WfJzIfCifCxM9ULLDYYAY3r9AsPkEGKT0DD
- ntxd/Hzd3lakpGpnfw/GXDVI34aQIkFa2VktdleBTfwXxsLODLXiRZQRoYHaqYGQTFrc
- Jv+bSXPMPTotb/mPt0poJysXezgkcnLgAegtfAHx4epIRq3Upr0XbVQWXQRotMRso4ES
- VXST8RcHEubioucA70x55uphC/7Qy4T8RLfjUsT/84tr55MU0XTyEKS4UUEBJrB8oF8d
- 8k1+YmuibO0o39iHSPlF4hJBc9DrkAbAjQyZxt4aVoUdxClxwOzlPwYxknJAaC55vYQB 3Q== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p6wcmjb3p-1
+ subject : date : message-id; s=qcppdkim1;
+ bh=EAShPzONb0Brlo2Ny/sSxCn8fDGjSyCbwb1fOLzs3js=;
+ b=QIKS5ltK4IBhYpnYvGhA5mWJCt723eyenWPsQfQDLza7i4J+9W3U7qoMzMWrSVnEj8/W
+ R3s3gKYt2P10hlqqZNHiiq4T0DuXcR+QuKPCwYvw1UEJGQMgcPqG4cojHxYtgL+5y1hq
+ LqT0ucMBL8CgiK4im71fFqugcULChzOarP9b8Kl/IAoZPJwLkPWJQg/oAgQbFXtGNVIy
+ V0iNFDxXX2syTR2qLkTgClQZs17dfusIwWQdgqb17hdfKFz/WGLVdSnbaT56AAYDDj8O
+ hi61K4/nm/w5JDnyiACqS//3N5GvVSEVPe0cS18781LjsgHyuA2ckSNontTVZ/GVNDNX 1w== 
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p7bvk1cur-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 09 Mar 2023 09:53:25 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3299rOAe023923
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 9 Mar 2023 09:53:24 GMT
-Received: from adisi-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.41; Thu, 9 Mar 2023 01:53:22 -0800
-From: Aditya Kumar Singh <quic_adisi@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>,
-        Aditya Kumar Singh
-	<quic_adisi@quicinc.com>
-Subject: [PATCH] wifi: ath11k: fix deinitialization of firmware resources
-Date: Thu, 9 Mar 2023 15:23:08 +0530
-Message-ID: <20230309095308.24937-1-quic_adisi@quicinc.com>
+	Thu, 09 Mar 2023 16:44:40 +0000
+Received: from pps.filterd (NASANPPMTA02.qualcomm.com [127.0.0.1])
+	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 329GeM90010035;
+	Thu, 9 Mar 2023 16:44:39 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by NASANPPMTA02.qualcomm.com (PPS) with ESMTP id 3p785p6u9f-1;
+	Thu, 09 Mar 2023 16:44:39 +0000
+Received: from NASANPPMTA02.qualcomm.com (NASANPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 329GfEAL011094;
+	Thu, 9 Mar 2023 16:44:39 GMT
+Received: from hprem-linux.qualcomm.com (hprem-linux.qualcomm.com [10.201.162.248])
+	by NASANPPMTA02.qualcomm.com (PPS) with ESMTP id 329Gickh015003;
+	Thu, 09 Mar 2023 16:44:39 +0000
+Received: by hprem-linux.qualcomm.com (Postfix, from userid 4146166)
+	id 49037B003A1; Thu,  9 Mar 2023 22:14:37 +0530 (IST)
+From: Harshitha Prem <quic_hprem@quicinc.com>
+To: ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org, Harshitha Prem <quic_hprem@quicinc.com>,
+        Sathishkumar Muruganandam <quic_murugana@quicinc.com>
+Subject: [PATCH] wifi: ath11k: fix BUFFER_DONE read on monitor ring rx  buffer
+Date: Thu,  9 Mar 2023 22:14:34 +0530
+Message-Id: <20230309164434.32660-1-quic_hprem@quicinc.com>
 X-Mailer: git-send-email 2.17.1
-MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: O45KQiP010-f4vFbbH1CxPqU41WKtAOp
-X-Proofpoint-ORIG-GUID: O45KQiP010-f4vFbbH1CxPqU41WKtAOp
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: L99mi1qiUR3FvoGu847nKpU_eNBS2Aou
+X-Proofpoint-ORIG-GUID: L99mi1qiUR3FvoGu847nKpU_eNBS2Aou
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-09_06,2023-03-08_03,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
- spamscore=0 adultscore=0 bulkscore=0 mlxlogscore=999 clxscore=1011
- priorityscore=1501 lowpriorityscore=0 impostorscore=0 suspectscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2303090077
+ definitions=2023-03-09_08,2023-03-09_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 impostorscore=0
+ malwarescore=0 phishscore=0 spamscore=0 clxscore=1011 adultscore=0
+ mlxlogscore=907 lowpriorityscore=0 mlxscore=0 suspectscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2303090134
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230309_015328_128737_62EA8292 
-X-CRM114-Status: GOOD (  18.38  )
+X-CRM114-CacheID: sfid-20230309_084446_256001_4E5A7DE6 
+X-CRM114-Status: GOOD (  17.64  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,87 +90,137 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Currently, in ath11k_ahb_fw_resources_init(), iommu domain
-mapping is done only for the chipsets having fixed firmware
-memory. Also, for such chipsets, mapping is done only if it
-does not have TrustZone support.
+Perform dma_sync_single_for_cpu() on monitor ring rx buffer before
+reading BUFFER_DONE tag and do dma_unmap_single() only after device
+had set BUFFER_DONE tag to the buffer.
 
-During deinitialization, only if TrustZone support is not there,
-iommu is unmapped back. However, for non fixed firmware memory
-chipsets, TrustZone support is not there and this makes the
-condition check to true and it tries to unmap the memory which
-was not mapped during initialization.
+Also when BUFFER_DONE tag is not set, allow the buffer to get read
+next time without freeing skb.
 
-This leads to the following trace -
+This helps to fix AP+Monitor VAP with flood traffic scenario to see
+monitor ring rx buffer overrun missing BUFFER_DONE tag to be set.
 
-[   83.198790] Unable to handle kernel NULL pointer dereference at virtual address 0000000000000008
-[   83.259537] Modules linked in: ath11k_ahb ath11k qmi_helpers
-.. snip ..
-[   83.280286] pstate: 20000005 (nzCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
-[   83.287228] pc : __iommu_unmap+0x30/0x140
-[   83.293907] lr : iommu_unmap+0x5c/0xa4
-[   83.298072] sp : ffff80000b3abad0
-.. snip ..
-[   83.369175] Call trace:
-[   83.376282]  __iommu_unmap+0x30/0x140
-[   83.378541]  iommu_unmap+0x5c/0xa4
-[   83.382360]  ath11k_ahb_fw_resource_deinit.part.12+0x2c/0xac [ath11k_ahb]
-[   83.385666]  ath11k_ahb_free_resources+0x140/0x17c [ath11k_ahb]
-[   83.392521]  ath11k_ahb_shutdown+0x34/0x40 [ath11k_ahb]
-[   83.398248]  platform_shutdown+0x20/0x2c
-[   83.403455]  device_shutdown+0x16c/0x1c4
-[   83.407621]  kernel_restart_prepare+0x34/0x3c
-[   83.411529]  kernel_restart+0x14/0x74
-[   83.415781]  __do_sys_reboot+0x1c4/0x22c
-[   83.419427]  __arm64_sys_reboot+0x1c/0x24
-[   83.423420]  invoke_syscall+0x44/0xfc
-[   83.427326]  el0_svc_common.constprop.3+0xac/0xe8
-[   83.430974]  do_el0_svc+0xa0/0xa8
-[   83.435659]  el0_svc+0x1c/0x44
-[   83.438957]  el0t_64_sync_handler+0x60/0x144
-[   83.441910]  el0t_64_sync+0x15c/0x160
-[   83.446343] Code: aa0103f4 f9400001 f90027a1 d2800001 (f94006a0)
-[   83.449903] ---[ end trace 0000000000000000 ]---
-
-This can be reproduced by probing an AHB chipset which is not
-having a fixed memory region. During reboot (or rmmod) trace
-can be seen.
-
-Fix this issue by adding a condition check on firmware fixed memory
-hw_param as done in the counter initialization function.
+Also remove redundant rx dma buf free performed on DP
+rx_mon_status_refill_ring.
 
 Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
 
-Fixes: f9eec4947add ("ath11k: Add support for targets without trustzone")
-Signed-off-by: Aditya Kumar Singh <quic_adisi@quicinc.com>
+Signed-off-by: Sathishkumar Muruganandam <quic_murugana@quicinc.com>
+Signed-off-by: Harshitha Prem <quic_hprem@quicinc.com>
 ---
- drivers/net/wireless/ath/ath11k/ahb.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 56 ++++++++++---------------
+ 1 file changed, 23 insertions(+), 33 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/ahb.c b/drivers/net/wireless/ath/ath11k/ahb.c
-index 6b6059d5dc38..957db8a7db45 100644
---- a/drivers/net/wireless/ath/ath11k/ahb.c
-+++ b/drivers/net/wireless/ath/ath11k/ahb.c
-@@ -1078,6 +1078,12 @@ static int ath11k_ahb_fw_resource_deinit(struct ath11k_base *ab)
- 	struct iommu_domain *iommu;
- 	size_t unmapped_size;
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index b65a84a88264..1d0739866a71 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -435,7 +435,6 @@ int ath11k_dp_rxbufs_replenish(struct ath11k_base *ab, int mac_id,
+ static int ath11k_dp_rxdma_buf_ring_free(struct ath11k *ar,
+ 					 struct dp_rxdma_ring *rx_ring)
+ {
+-	struct ath11k_pdev_dp *dp = &ar->dp;
+ 	struct sk_buff *skb;
+ 	int buf_id;
  
-+	/* Chipsets not requiring MSA would have not initialized
-+	 * MSA resources, return success in such cases.
-+	 */
-+	if (!ab->hw_params.fixed_fw_mem)
-+		return 0;
+@@ -453,28 +452,6 @@ static int ath11k_dp_rxdma_buf_ring_free(struct ath11k *ar,
+ 	idr_destroy(&rx_ring->bufs_idr);
+ 	spin_unlock_bh(&rx_ring->idr_lock);
+ 
+-	/* if rxdma1_enable is false, mon_status_refill_ring
+-	 * isn't setup, so don't clean.
+-	 */
+-	if (!ar->ab->hw_params.rxdma1_enable)
+-		return 0;
+-
+-	rx_ring = &dp->rx_mon_status_refill_ring[0];
+-
+-	spin_lock_bh(&rx_ring->idr_lock);
+-	idr_for_each_entry(&rx_ring->bufs_idr, skb, buf_id) {
+-		idr_remove(&rx_ring->bufs_idr, buf_id);
+-		/* XXX: Understand where internal driver does this dma_unmap
+-		 * of rxdma_buffer.
+-		 */
+-		dma_unmap_single(ar->ab->dev, ATH11K_SKB_RXCB(skb)->paddr,
+-				 skb->len + skb_tailroom(skb), DMA_BIDIRECTIONAL);
+-		dev_kfree_skb_any(skb);
+-	}
+-
+-	idr_destroy(&rx_ring->bufs_idr);
+-	spin_unlock_bh(&rx_ring->idr_lock);
+-
+ 	return 0;
+ }
+ 
+@@ -3029,39 +3006,52 @@ static int ath11k_dp_rx_reap_mon_status_ring(struct ath11k_base *ab, int mac_id,
+ 
+ 			spin_lock_bh(&rx_ring->idr_lock);
+ 			skb = idr_find(&rx_ring->bufs_idr, buf_id);
++			spin_unlock_bh(&rx_ring->idr_lock);
 +
- 	if (ab_ahb->fw.use_tz)
- 		return 0;
+ 			if (!skb) {
+ 				ath11k_warn(ab, "rx monitor status with invalid buf_id %d\n",
+ 					    buf_id);
+-				spin_unlock_bh(&rx_ring->idr_lock);
+ 				pmon->buf_state = DP_MON_STATUS_REPLINISH;
+ 				goto move_next;
+ 			}
  
-
-base-commit: 1a304987a22c9f383f163f93beb47e89080d1cee
+-			idr_remove(&rx_ring->bufs_idr, buf_id);
+-			spin_unlock_bh(&rx_ring->idr_lock);
+ 
+ 			rxcb = ATH11K_SKB_RXCB(skb);
+ 
+-			dma_unmap_single(ab->dev, rxcb->paddr,
+-					 skb->len + skb_tailroom(skb),
+-					 DMA_FROM_DEVICE);
++			dma_sync_single_for_cpu(ab->dev, rxcb->paddr,
++						skb->len + skb_tailroom(skb),
++						DMA_FROM_DEVICE);
+ 
+ 			tlv = (struct hal_tlv_hdr *)skb->data;
+ 			if (FIELD_GET(HAL_TLV_HDR_TAG, tlv->tl) !=
+ 					HAL_RX_STATUS_BUFFER_DONE) {
+-				ath11k_warn(ab, "mon status DONE not set %lx\n",
++				ath11k_warn(ab, "mon status DONE not set %lx, buf_id %d\n",
+ 					    FIELD_GET(HAL_TLV_HDR_TAG,
+-						      tlv->tl));
+-				dev_kfree_skb_any(skb);
++						      tlv->tl), buf_id);
++				/* If done status is missing, hold onto status
++				 * ring until status is done for this status
++				 * ring buffer.
++				 * Keep HP in mon_status_ring unchanged,
++				 * and break from here.
++				 * Check status for same buffer for next time
++				 */
+ 				pmon->buf_state = DP_MON_STATUS_NO_DMA;
+-				goto move_next;
++				break;
+ 			}
+ 
++			spin_lock_bh(&rx_ring->idr_lock);
++			idr_remove(&rx_ring->bufs_idr, buf_id);
++			spin_unlock_bh(&rx_ring->idr_lock);
+ 			if (ab->hw_params.full_monitor_mode) {
+ 				ath11k_dp_rx_mon_update_status_buf_state(pmon, tlv);
+ 				if (paddr == pmon->mon_status_paddr)
+ 					pmon->buf_state = DP_MON_STATUS_MATCH;
+ 			}
++
++			dma_unmap_single(ab->dev, rxcb->paddr,
++					 skb->len + skb_tailroom(skb),
++					 DMA_FROM_DEVICE);
++
+ 			__skb_queue_tail(skb_list, skb);
+ 		} else {
+ 			pmon->buf_state = DP_MON_STATUS_REPLINISH;
 -- 
 2.17.1
 
