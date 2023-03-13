@@ -4,81 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62E6FC61DA4
-	for <ath11k@archiver.kernel.org>; Thu,  9 Mar 2023 16:44:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D136EC6FD1F
+	for <ath11k@archiver.kernel.org>; Mon, 13 Mar 2023 07:19:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:Subject:Cc:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=NcjBMpAORb0MjPkRSoBpbzRKYP36Urp2Pf7I4w4ghPw=; b=f3+Sm/PuCjXTwK
-	XlwetqIf3xNLYa8wsZy9wHXwHhksOAVUa3Ed9eUq647jQOm7/X2X0JJKMgJOPP9o4IhHucF4Vjirm
-	yrv6uhA+kTXbtMUV67jfR+h/q4coeAUzyrg6ttSOIh+O9bCHcLjbs8p3aG3EAcvVZY8oSrpnck/nW
-	sVm58ecXjdhDO8/oZ8Teud7zRHvDcwfEffx/n2qoQ8R79UCYWeYyUNQchhD+WUdlb03Er5sp8XWRE
-	zVeS/81njhAsSb2muq+augUBotgz+zaW5dMedDzljCA9oU+7L0kNCdhGn+TQlvn8InCIQKwRdvZlF
-	tyNoMGVFUzXUMTEUDVxA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Kq7wNtPIx/7BElIAvPdFAQMHG7xIL0zKAFp5Lr2PmKs=; b=xYO3Pw5TiJsSWd
+	jV/KRvCQiFdR7n3bN2jKQ9ONVGDY5emEN2mQLiytNLwnLTEbA/AH3JgcuultcDhrbng2LG0fQY4wO
+	S6ehAPssjGaiflBMiR4zaQ6XdHQo/9m7mwhFWBfAlNz+2sdedSV8spd+Gx5o4eMnvAScMLnYYqq09
+	1WlKBWYGub8koTreyR0AcMOO2cTtQK5pB0FAPBjc3O1erwdWVO4w7KVh4Egdhma3AxeWm+zOMQsYS
+	a15LrryjichVwdhptPhb/jBmrQ+WA/ndgRe/bvB47apIRmG1xUhiRzoyHijB8p8gBPJaEr4nNr3FG
+	wAMqsPjiPXNZ5JzHk9uA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1paJNo-00BJP4-MT; Thu, 09 Mar 2023 16:44:48 +0000
+	id 1pbcTL-004ZZ9-Q8; Mon, 13 Mar 2023 07:19:55 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1paJNm-00BJMy-63
-	for ath11k@lists.infradead.org; Thu, 09 Mar 2023 16:44:47 +0000
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 329C5utn027764;
-	Thu, 9 Mar 2023 16:44:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id; s=qcppdkim1;
- bh=EAShPzONb0Brlo2Ny/sSxCn8fDGjSyCbwb1fOLzs3js=;
- b=QIKS5ltK4IBhYpnYvGhA5mWJCt723eyenWPsQfQDLza7i4J+9W3U7qoMzMWrSVnEj8/W
- R3s3gKYt2P10hlqqZNHiiq4T0DuXcR+QuKPCwYvw1UEJGQMgcPqG4cojHxYtgL+5y1hq
- LqT0ucMBL8CgiK4im71fFqugcULChzOarP9b8Kl/IAoZPJwLkPWJQg/oAgQbFXtGNVIy
- V0iNFDxXX2syTR2qLkTgClQZs17dfusIwWQdgqb17hdfKFz/WGLVdSnbaT56AAYDDj8O
- hi61K4/nm/w5JDnyiACqS//3N5GvVSEVPe0cS18781LjsgHyuA2ckSNontTVZ/GVNDNX 1w== 
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p7bvk1cur-1
+	id 1pbcTB-004ZXH-8t
+	for ath11k@lists.infradead.org; Mon, 13 Mar 2023 07:19:47 +0000
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32D2lNgT027230;
+	Mon, 13 Mar 2023 07:19:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=uo0TYIVHwvkxJheXCnQ2pQ3vo9L0zIr3Z28HG5mr+U0=;
+ b=GZIP3sD4iImLj5OwAX93i9IA+6CXQGH6hLx8RMRbRmXDYo0tvaIIjbbtdhfq/xKGEfx+
+ CzUgmnyE24FRc4pDApfI6eywLrpo4V3E9YSmOKCP8QahMRudFoJa/9+llsamRamap1sr
+ TyJYNgY4o35BalWNlVJKU+vMcNnqrtmmDuELaEohnORHq9oMK23MbAiqBfL7EuAoDBjU
+ wvQnc6QtLe7bDU9JGUnGIwOJJhxVKhZgBramcvQqWxtlUPRf/PBfqOVBznJu+4A+6sFI
+ lwBWMQFqiKtl1idXwwf+zacovsK550UkkiXsW4O3qGFEQXK1v2canjLhKePzTHeDnCVJ QQ== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p8jtwv2a2-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 09 Mar 2023 16:44:40 +0000
-Received: from pps.filterd (NASANPPMTA02.qualcomm.com [127.0.0.1])
-	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 329GeM90010035;
-	Thu, 9 Mar 2023 16:44:39 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by NASANPPMTA02.qualcomm.com (PPS) with ESMTP id 3p785p6u9f-1;
-	Thu, 09 Mar 2023 16:44:39 +0000
-Received: from NASANPPMTA02.qualcomm.com (NASANPPMTA02.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 329GfEAL011094;
-	Thu, 9 Mar 2023 16:44:39 GMT
-Received: from hprem-linux.qualcomm.com (hprem-linux.qualcomm.com [10.201.162.248])
-	by NASANPPMTA02.qualcomm.com (PPS) with ESMTP id 329Gickh015003;
-	Thu, 09 Mar 2023 16:44:39 +0000
-Received: by hprem-linux.qualcomm.com (Postfix, from userid 4146166)
-	id 49037B003A1; Thu,  9 Mar 2023 22:14:37 +0530 (IST)
-From: Harshitha Prem <quic_hprem@quicinc.com>
-To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org, Harshitha Prem <quic_hprem@quicinc.com>,
-        Sathishkumar Muruganandam <quic_murugana@quicinc.com>
-Subject: [PATCH] wifi: ath11k: fix BUFFER_DONE read on monitor ring rx  buffer
-Date: Thu,  9 Mar 2023 22:14:34 +0530
-Message-Id: <20230309164434.32660-1-quic_hprem@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-X-QCInternal: smtphost
+	Mon, 13 Mar 2023 07:19:38 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32D7JbOv001865
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 13 Mar 2023 07:19:37 GMT
+Received: from [10.206.66.236] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Mon, 13 Mar
+ 2023 00:19:36 -0700
+Message-ID: <2777d841-21e3-8223-5f1c-e62319cd57ce@quicinc.com>
+Date: Mon, 13 Mar 2023 12:49:33 +0530
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH v4 3/3] ath11k: Enable low power mode when WLAN is not
+ active
+Content-Language: en-US
+To: Kalle Valo <kvalo@kernel.org>
+CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
+References: <20230203060128.19625-1-quic_mpubbise@quicinc.com>
+ <20230203060128.19625-4-quic_mpubbise@quicinc.com>
+ <87h6vbruig.fsf@kernel.org>
+From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+In-Reply-To: <87h6vbruig.fsf@kernel.org>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: L99mi1qiUR3FvoGu847nKpU_eNBS2Aou
-X-Proofpoint-ORIG-GUID: L99mi1qiUR3FvoGu847nKpU_eNBS2Aou
+X-Proofpoint-ORIG-GUID: _LWyzgm5ahE8tjvfULORjshkhtMqEZ95
+X-Proofpoint-GUID: _LWyzgm5ahE8tjvfULORjshkhtMqEZ95
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-09_08,2023-03-09_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 impostorscore=0
- malwarescore=0 phishscore=0 spamscore=0 clxscore=1011 adultscore=0
- mlxlogscore=907 lowpriorityscore=0 mlxscore=0 suspectscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2303090134
+ definitions=2023-03-12_10,2023-03-10_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 impostorscore=0
+ phishscore=0 suspectscore=0 priorityscore=1501 clxscore=1015
+ malwarescore=0 mlxscore=0 adultscore=0 lowpriorityscore=0 mlxlogscore=999
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2212070000 definitions=main-2303130059
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230309_084446_256001_4E5A7DE6 
-X-CRM114-Status: GOOD (  17.64  )
+X-CRM114-CacheID: sfid-20230313_001945_528477_2A052959 
+X-CRM114-Status: GOOD (  30.19  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,139 +93,124 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Perform dma_sync_single_for_cpu() on monitor ring rx buffer before
-reading BUFFER_DONE tag and do dma_unmap_single() only after device
-had set BUFFER_DONE tag to the buffer.
+On 2/24/2023 8:16 PM, Kalle Valo wrote:
+> Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
+> 
+>> Currently, WLAN chip is powered once during driver probe and is kept
+>> ON (powered) always even when WLAN is not active; keeping the chip
+>> powered ON all the time will consume extra power which is not
+>> desirable for a battery operated device. Same is the case with non-WoW
+>> suspend, chip will never be put into low power mode when the system is
+>> suspended resulting in higher battery drain.
+>>
+>> As per the recommendation, sending a PDEV suspend WMI command followed
+>> by a QMI MODE OFF command will cease all WLAN activity and put the device
+>> in low power mode. When WLAN interfaces are brought up, sending a QMI
+>> MISSION MODE command would be sufficient to bring the chip out of low
+>> power. This is a better approach than doing hif_power_down()/hif_power_up()
+>> for every WiFi ON/OFF sequence since the turnaround time for entry/exit of
+>> low power mode is much less. Overhead is just the time taken for sending
+>> QMI MODE OFF & QMI MISSION MODE commands instead of going through the
+>> entire chip boot & QMI init sequence.
+>>
+>> Currently the changes are applicable only for WCN6750. This can be
+>> extended to other targets with a future patch.
+>>
+>> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
+>> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.16
+>>
+>> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+> 
+> This is still crashing for me every time with WCN6855 on a NUC x86
+> device when I rmmod ath11k. Interestingly enough QCA6390 on a Dell XPS
+> 13 9310 does not crash.
+> 
+> I investigated the crash more, the crash happens in
+> ath11k_dp_process_rxdma_err() on this line:
+> 
+> 	srng = &ab->hal.srng_list[err_ring->ring_id];
+> 
+> Here are the debug messages before the crash (first and last are my
+> own messages):
+> 
+> [  226.766111] rmmod ath11k_pci
+> [  227.003678] ath11k_pci 0000:06:00.0: txpower from firmware NaN, reported -2147483648 dBm
+> [  227.082283] ath11k_pci 0000:06:00.0: qmi wifi fw del server
+> [  227.195760] ath11k_pci 0000:06:00.0: cookie:0x0
+> [  227.195843] ath11k_pci 0000:06:00.0: WLAON_WARM_SW_ENTRY 0x15b894d
+> [  227.216022] ath11k_pci 0000:06:00.0: WLAON_WARM_SW_ENTRY 0x0
+> [  227.216086] ath11k_pci 0000:06:00.0: soc reset cause:0
+> [  227.236170] ath11k_pci 0000:06:00.0: MHISTATUS 0xff04
+> [  227.270816] ath11k_pci 0000:06:00.0: ext irq:167
+> [  227.271231] ath11k_dp_process_rxdma_err() 4187 ab ffff888145520000 err_ring 00000000000001d0
+> 
+> So we get irq 167 which is:
+> 
+>   167:          0          0          0          0          0          0          0          0  IR-PCI-MSI-0000:06:00.0   14-edge      DP_EXT_IRQ
+> 
+> But in ath11k_pcic_ext_interrupt_handler() ATH11K_FLAG_EXT_IRQ_ENABLED
+> is still enabled so the irq is processed:
+> 
+> 	if (!test_bit(ATH11K_FLAG_EXT_IRQ_ENABLED, &ab->dev_flags))
+> 		return IRQ_HANDLED;
+> 
+> It looks like that, after applying this patch 3, whenever
+> ath11k_pci_remove() is called we are not calling
+> ath11k_hif_irq_disable() anymore. I checked that without patch 3
+> ath11k_hif_irq_disable() is always called. So this patch is definitely
+> breaking something fundamental, but I ran out of time to invetigate
+> further. I hope this still helps.
+> 
 
-Also when BUFFER_DONE tag is not set, allow the buffer to get read
-next time without freeing skb.
+Hi Kalle,
 
-This helps to fix AP+Monitor VAP with flood traffic scenario to see
-monitor ring rx buffer overrun missing BUFFER_DONE tag to be set.
+I was checking the logic around this and have added some debug logs to 
+check if all the de-init APIs are getting called in the rmmod path.
 
-Also remove redundant rx dma buf free performed on DP
-rx_mon_status_refill_ring.
+This is the function call flow with WCN6855 on my machine,
 
-Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
+ath11k_pci 0000:06:00.0: Manikanta: ath11k_core_pdev_destroy
+ath11k_pci 0000:06:00.0: Manikanta: ath11k_thermal_unregister
+ath11k_pci 0000:06:00.0: Manikanta: ath11k_mac_unregister
+ath11k_pci 0000:06:00.0: Manikanta: ath11k_pcic_ext_irq_disable
+ath11k_pci 0000:06:00.0: Manikanta: __ath11k_pcic_ext_irq_disable
+ath11k_pci 0000:06:00.0: Manikanta: ath11k_dp_pdev_free
+ath11k_pci 0000:06:00.0: Manikanta: ath11k_dp_rx_pdev_free
+ath11k_pci 0000:06:00.0: Manikanta: ath11k_dp_rx_pdev_mon_detach
+ath11k_pci 0000:06:00.0: Manikanta: ath11k_pcic_stop
+ath11k_pci 0000:06:00.0: Manikanta: ath11k_dp_pdev_reo_cleanup
+ath11k_pci 0000:06:00.0: Manikanta: ath11k_dp_free
+ath11k_pci 0000:06:00.0: Manikanta: ath11k_pci_power_down
+ath11k_pci 0000:06:00.0: Manikanta: ath11k_mac_destroy
+ath11k_pci 0000:06:00.0: Manikanta: ath11k_reg_free
+ath11k_pci 0000:06:00.0: Manikanta: ath11k_pcic_free_irq
+ath11k_pci 0000:06:00.0: Manikanta: ath11k_pci_free_msi
+ath11k_pci 0000:06:00.0: Manikanta: ath11k_hal_srng_deinit
+ath11k_pci 0000:06:00.0: Manikanta: ath11k_core_free
 
-Signed-off-by: Sathishkumar Muruganandam <quic_murugana@quicinc.com>
-Signed-off-by: Harshitha Prem <quic_hprem@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/dp_rx.c | 56 ++++++++++---------------
- 1 file changed, 23 insertions(+), 33 deletions(-)
+In stark contrast to your observations, from the above call flow, I see 
+that ath11k_hif_irq_disable() is getting called and the IRQs are getting 
+disabled. ath11k_pcic_ext_irq_disable() is registered for hif_irq_disable().
 
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index b65a84a88264..1d0739866a71 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -435,7 +435,6 @@ int ath11k_dp_rxbufs_replenish(struct ath11k_base *ab, int mac_id,
- static int ath11k_dp_rxdma_buf_ring_free(struct ath11k *ar,
- 					 struct dp_rxdma_ring *rx_ring)
- {
--	struct ath11k_pdev_dp *dp = &ar->dp;
- 	struct sk_buff *skb;
- 	int buf_id;
- 
-@@ -453,28 +452,6 @@ static int ath11k_dp_rxdma_buf_ring_free(struct ath11k *ar,
- 	idr_destroy(&rx_ring->bufs_idr);
- 	spin_unlock_bh(&rx_ring->idr_lock);
- 
--	/* if rxdma1_enable is false, mon_status_refill_ring
--	 * isn't setup, so don't clean.
--	 */
--	if (!ar->ab->hw_params.rxdma1_enable)
--		return 0;
--
--	rx_ring = &dp->rx_mon_status_refill_ring[0];
--
--	spin_lock_bh(&rx_ring->idr_lock);
--	idr_for_each_entry(&rx_ring->bufs_idr, skb, buf_id) {
--		idr_remove(&rx_ring->bufs_idr, buf_id);
--		/* XXX: Understand where internal driver does this dma_unmap
--		 * of rxdma_buffer.
--		 */
--		dma_unmap_single(ar->ab->dev, ATH11K_SKB_RXCB(skb)->paddr,
--				 skb->len + skb_tailroom(skb), DMA_BIDIRECTIONAL);
--		dev_kfree_skb_any(skb);
--	}
--
--	idr_destroy(&rx_ring->bufs_idr);
--	spin_unlock_bh(&rx_ring->idr_lock);
--
- 	return 0;
- }
- 
-@@ -3029,39 +3006,52 @@ static int ath11k_dp_rx_reap_mon_status_ring(struct ath11k_base *ab, int mac_id,
- 
- 			spin_lock_bh(&rx_ring->idr_lock);
- 			skb = idr_find(&rx_ring->bufs_idr, buf_id);
-+			spin_unlock_bh(&rx_ring->idr_lock);
-+
- 			if (!skb) {
- 				ath11k_warn(ab, "rx monitor status with invalid buf_id %d\n",
- 					    buf_id);
--				spin_unlock_bh(&rx_ring->idr_lock);
- 				pmon->buf_state = DP_MON_STATUS_REPLINISH;
- 				goto move_next;
- 			}
- 
--			idr_remove(&rx_ring->bufs_idr, buf_id);
--			spin_unlock_bh(&rx_ring->idr_lock);
- 
- 			rxcb = ATH11K_SKB_RXCB(skb);
- 
--			dma_unmap_single(ab->dev, rxcb->paddr,
--					 skb->len + skb_tailroom(skb),
--					 DMA_FROM_DEVICE);
-+			dma_sync_single_for_cpu(ab->dev, rxcb->paddr,
-+						skb->len + skb_tailroom(skb),
-+						DMA_FROM_DEVICE);
- 
- 			tlv = (struct hal_tlv_hdr *)skb->data;
- 			if (FIELD_GET(HAL_TLV_HDR_TAG, tlv->tl) !=
- 					HAL_RX_STATUS_BUFFER_DONE) {
--				ath11k_warn(ab, "mon status DONE not set %lx\n",
-+				ath11k_warn(ab, "mon status DONE not set %lx, buf_id %d\n",
- 					    FIELD_GET(HAL_TLV_HDR_TAG,
--						      tlv->tl));
--				dev_kfree_skb_any(skb);
-+						      tlv->tl), buf_id);
-+				/* If done status is missing, hold onto status
-+				 * ring until status is done for this status
-+				 * ring buffer.
-+				 * Keep HP in mon_status_ring unchanged,
-+				 * and break from here.
-+				 * Check status for same buffer for next time
-+				 */
- 				pmon->buf_state = DP_MON_STATUS_NO_DMA;
--				goto move_next;
-+				break;
- 			}
- 
-+			spin_lock_bh(&rx_ring->idr_lock);
-+			idr_remove(&rx_ring->bufs_idr, buf_id);
-+			spin_unlock_bh(&rx_ring->idr_lock);
- 			if (ab->hw_params.full_monitor_mode) {
- 				ath11k_dp_rx_mon_update_status_buf_state(pmon, tlv);
- 				if (paddr == pmon->mon_status_paddr)
- 					pmon->buf_state = DP_MON_STATUS_MATCH;
- 			}
-+
-+			dma_unmap_single(ab->dev, rxcb->paddr,
-+					 skb->len + skb_tailroom(skb),
-+					 DMA_FROM_DEVICE);
-+
- 			__skb_queue_tail(skb_list, skb);
- 		} else {
- 			pmon->buf_state = DP_MON_STATUS_REPLINISH;
--- 
-2.17.1
+I even tried the single MSI vector configuration suspecting that could 
+be the difference. Even in single MSI case, I don't see any crashes 
+during rmmod.
+
+I'm completely clueless as to why the same code is behaving differently 
+with the same hardware.
+
+How can we take this forward, could you please suggest?
+
+I'm thinking to keep these changes specific to WCN6750 for now.
+
+Thanks,
+Manikanta
+
 
 
 -- 
