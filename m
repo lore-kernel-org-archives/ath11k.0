@@ -4,84 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D136EC6FD1F
-	for <ath11k@archiver.kernel.org>; Mon, 13 Mar 2023 07:19:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81528C6FD19
+	for <ath11k@archiver.kernel.org>; Mon, 13 Mar 2023 09:53:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Kq7wNtPIx/7BElIAvPdFAQMHG7xIL0zKAFp5Lr2PmKs=; b=xYO3Pw5TiJsSWd
-	jV/KRvCQiFdR7n3bN2jKQ9ONVGDY5emEN2mQLiytNLwnLTEbA/AH3JgcuultcDhrbng2LG0fQY4wO
-	S6ehAPssjGaiflBMiR4zaQ6XdHQo/9m7mwhFWBfAlNz+2sdedSV8spd+Gx5o4eMnvAScMLnYYqq09
-	1WlKBWYGub8koTreyR0AcMOO2cTtQK5pB0FAPBjc3O1erwdWVO4w7KVh4Egdhma3AxeWm+zOMQsYS
-	a15LrryjichVwdhptPhb/jBmrQ+WA/ndgRe/bvB47apIRmG1xUhiRzoyHijB8p8gBPJaEr4nNr3FG
-	wAMqsPjiPXNZ5JzHk9uA==;
+	List-Owner; bh=o6HcL/kfbv3XLzlM2mmqwqU38Pjtx4d9u0tvodNgpok=; b=eZj8YPgfiD2k8U
+	jwZwGw3m8NS+3JHtU7StyBTymvwbrFhV/+a12GDBjppjThP+YZyUS1ZXbTQC41TjAZODA5FkS9fFZ
+	WdbTPyGe/Ar1IsL6FLcuiyEvSlOgNC38OIyG2ZOzqpl1XAW5+3qM6VQBEzOqB/LEbt/6B7gMU2RRj
+	YIeYgwWoKzQ5ys2vq9F8HfqkPO6Eus3t3PWq6/qeb0dEKgB5NVfQUE1vP7xmdaJPlyievb0GfQHCJ
+	4qjBHJm1YW8Hsjr7RgkYeecEP/wyXVFZzqqohr4n0t+IwWT9tXC+IIFKXcG7ah0hKlb+vJSJUtGR4
+	1nwzk9GsgnuMYlD/+57w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pbcTL-004ZZ9-Q8; Mon, 13 Mar 2023 07:19:55 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1pberk-00544Q-JX; Mon, 13 Mar 2023 09:53:16 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-	id 1pbcTB-004ZXH-8t
-	for ath11k@lists.infradead.org; Mon, 13 Mar 2023 07:19:47 +0000
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32D2lNgT027230;
-	Mon, 13 Mar 2023 07:19:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=uo0TYIVHwvkxJheXCnQ2pQ3vo9L0zIr3Z28HG5mr+U0=;
- b=GZIP3sD4iImLj5OwAX93i9IA+6CXQGH6hLx8RMRbRmXDYo0tvaIIjbbtdhfq/xKGEfx+
- CzUgmnyE24FRc4pDApfI6eywLrpo4V3E9YSmOKCP8QahMRudFoJa/9+llsamRamap1sr
- TyJYNgY4o35BalWNlVJKU+vMcNnqrtmmDuELaEohnORHq9oMK23MbAiqBfL7EuAoDBjU
- wvQnc6QtLe7bDU9JGUnGIwOJJhxVKhZgBramcvQqWxtlUPRf/PBfqOVBznJu+4A+6sFI
- lwBWMQFqiKtl1idXwwf+zacovsK550UkkiXsW4O3qGFEQXK1v2canjLhKePzTHeDnCVJ QQ== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3p8jtwv2a2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 13 Mar 2023 07:19:38 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32D7JbOv001865
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 13 Mar 2023 07:19:37 GMT
-Received: from [10.206.66.236] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Mon, 13 Mar
- 2023 00:19:36 -0700
-Message-ID: <2777d841-21e3-8223-5f1c-e62319cd57ce@quicinc.com>
-Date: Mon, 13 Mar 2023 12:49:33 +0530
+	id 1pbere-00541l-GX
+	for ath11k@lists.infradead.org; Mon, 13 Mar 2023 09:53:14 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ams.source.kernel.org (Postfix) with ESMTPS id B9937B80D54;
+	Mon, 13 Mar 2023 09:53:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2DDEFC433D2;
+	Mon, 13 Mar 2023 09:53:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1678701187;
+	bh=x6u+QHZ/yrtW4oMxZ8xAVWornOHySm8Eqv6ZRws+RJ4=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=e87vmpaRJifq2wYx2gksixrWREbapknb0xgWauBH2MNYzywJ602czAostEH4qdjXt
+	 33RHWqsO40ZjD7DhWXYRhLFqQa0NzhEbEVVarUu8O0dloa6hvDzEDRhGuPXtCkCeal
+	 hH/eIcgRl71z18Amj0XbgwrX2mI5IK75Y//FyQ9zuT+f7N3/c0PpdxoyJbwFHtgY+o
+	 U4KjJl4jJ8DDRResbdXfSa9KOQqJfbwZSWZ5X+9EPlBxfsB/uHexmNtgy2yB7m32aY
+	 /ofPSMxiXSDVmADSc3XWDxBx+L/8ZJ7SY/+szXBfzqmvHTlNCHTnZkEKwkizwigWvg
+	 qxczu8+B8icGQ==
+From: Kalle Valo <kvalo@kernel.org>
+To: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>,  Govindaraj Saminathan <quic_gsaminat@quicinc.com>,  Sowmiya Sree Elavalagan <quic_ssreeela@quicinc.com>
+Subject: Re: [PATCH 1/2] wifi: ath11k: factory test mode support
+References: <20230213130854.2473-1-quic_rajkbhag@quicinc.com>
+	<20230213130854.2473-2-quic_rajkbhag@quicinc.com>
+Date: Mon, 13 Mar 2023 11:53:01 +0200
+In-Reply-To: <20230213130854.2473-2-quic_rajkbhag@quicinc.com> (Raj Kumar
+	Bhagat's message of "Mon, 13 Feb 2023 18:38:53 +0530")
+Message-ID: <87mt4hnfk2.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.1
-Subject: Re: [PATCH v4 3/3] ath11k: Enable low power mode when WLAN is not
- active
-Content-Language: en-US
-To: Kalle Valo <kvalo@kernel.org>
-CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
-References: <20230203060128.19625-1-quic_mpubbise@quicinc.com>
- <20230203060128.19625-4-quic_mpubbise@quicinc.com>
- <87h6vbruig.fsf@kernel.org>
-From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-In-Reply-To: <87h6vbruig.fsf@kernel.org>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: _LWyzgm5ahE8tjvfULORjshkhtMqEZ95
-X-Proofpoint-GUID: _LWyzgm5ahE8tjvfULORjshkhtMqEZ95
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-12_10,2023-03-10_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 impostorscore=0
- phishscore=0 suspectscore=0 priorityscore=1501 clxscore=1015
- malwarescore=0 mlxscore=0 adultscore=0 lowpriorityscore=0 mlxlogscore=999
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2212070000 definitions=main-2303130059
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230313_001945_528477_2A052959 
-X-CRM114-Status: GOOD (  30.19  )
+X-CRM114-CacheID: sfid-20230313_025310_872146_5693A0B2 
+X-CRM114-Status: GOOD (  26.46  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,125 +68,138 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 2/24/2023 8:16 PM, Kalle Valo wrote:
-> Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
-> 
->> Currently, WLAN chip is powered once during driver probe and is kept
->> ON (powered) always even when WLAN is not active; keeping the chip
->> powered ON all the time will consume extra power which is not
->> desirable for a battery operated device. Same is the case with non-WoW
->> suspend, chip will never be put into low power mode when the system is
->> suspended resulting in higher battery drain.
->>
->> As per the recommendation, sending a PDEV suspend WMI command followed
->> by a QMI MODE OFF command will cease all WLAN activity and put the device
->> in low power mode. When WLAN interfaces are brought up, sending a QMI
->> MISSION MODE command would be sufficient to bring the chip out of low
->> power. This is a better approach than doing hif_power_down()/hif_power_up()
->> for every WiFi ON/OFF sequence since the turnaround time for entry/exit of
->> low power mode is much less. Overhead is just the time taken for sending
->> QMI MODE OFF & QMI MISSION MODE commands instead of going through the
->> entire chip boot & QMI init sequence.
->>
->> Currently the changes are applicable only for WCN6750. This can be
->> extended to other targets with a future patch.
->>
->> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
->> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.16
->>
->> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-> 
-> This is still crashing for me every time with WCN6855 on a NUC x86
-> device when I rmmod ath11k. Interestingly enough QCA6390 on a Dell XPS
-> 13 9310 does not crash.
-> 
-> I investigated the crash more, the crash happens in
-> ath11k_dp_process_rxdma_err() on this line:
-> 
-> 	srng = &ab->hal.srng_list[err_ring->ring_id];
-> 
-> Here are the debug messages before the crash (first and last are my
-> own messages):
-> 
-> [  226.766111] rmmod ath11k_pci
-> [  227.003678] ath11k_pci 0000:06:00.0: txpower from firmware NaN, reported -2147483648 dBm
-> [  227.082283] ath11k_pci 0000:06:00.0: qmi wifi fw del server
-> [  227.195760] ath11k_pci 0000:06:00.0: cookie:0x0
-> [  227.195843] ath11k_pci 0000:06:00.0: WLAON_WARM_SW_ENTRY 0x15b894d
-> [  227.216022] ath11k_pci 0000:06:00.0: WLAON_WARM_SW_ENTRY 0x0
-> [  227.216086] ath11k_pci 0000:06:00.0: soc reset cause:0
-> [  227.236170] ath11k_pci 0000:06:00.0: MHISTATUS 0xff04
-> [  227.270816] ath11k_pci 0000:06:00.0: ext irq:167
-> [  227.271231] ath11k_dp_process_rxdma_err() 4187 ab ffff888145520000 err_ring 00000000000001d0
-> 
-> So we get irq 167 which is:
-> 
->   167:          0          0          0          0          0          0          0          0  IR-PCI-MSI-0000:06:00.0   14-edge      DP_EXT_IRQ
-> 
-> But in ath11k_pcic_ext_interrupt_handler() ATH11K_FLAG_EXT_IRQ_ENABLED
-> is still enabled so the irq is processed:
-> 
-> 	if (!test_bit(ATH11K_FLAG_EXT_IRQ_ENABLED, &ab->dev_flags))
-> 		return IRQ_HANDLED;
-> 
-> It looks like that, after applying this patch 3, whenever
-> ath11k_pci_remove() is called we are not calling
-> ath11k_hif_irq_disable() anymore. I checked that without patch 3
-> ath11k_hif_irq_disable() is always called. So this patch is definitely
-> breaking something fundamental, but I ran out of time to invetigate
-> further. I hope this still helps.
-> 
+Raj Kumar Bhagat <quic_rajkbhag@quicinc.com> writes:
 
-Hi Kalle,
+> From: Govindaraj Saminathan <quic_gsaminat@quicinc.com>
+>
+> Add support to process factory test mode commands(FTM) for calibration.
+> By default firmware start with NORMAL mode and to process the FTM commands
+> firmware needs to be restarted in FTM mode using module parameter ftm_mode.
+> The pre-request is all the radios should be down before starting the test.
+>
+> When start command ATH11K_TM_CMD_TESTMODE_START is received, ar state
+> is set to Test Mode. If the FTM command or event length is greater
+> than 256 bytes, it will be broken down into multiple segments and
+> encoded with TLV header if it is segmented commands, else it is sent
+> to firmware as it is.
+>
+> On receiving UTF event from firmware, if it is segmented event, the driver
+> will wait until it receives all the segments and notify the complete
+> data to user application. In case the segmented sequence are missed or
+> lost from the firmware, driver will skip the already received partial data.
+>
+> In case of unsegmented UTF event from firmware, driver notifies the
+> data to the user application as it comes. Applications handles
+> the data further.
+>
+> Command to boot in ftm mode
+> insmod ath11k ftm_mode=1
+>
+> Tested-on : IPQ8074 hw2.0 AHB WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
+>
+> Signed-off-by: Govindaraj Saminathan <quic_gsaminat@quicinc.com>
+> Co-developed-by: Sowmiya Sree Elavalagan <quic_ssreeela@quicinc.com>
+> Signed-off-by: Sowmiya Sree Elavalagan <quic_ssreeela@quicinc.com>
+> Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
 
-I was checking the logic around this and have added some debug logs to 
-check if all the de-init APIs are getting called in the rmmod path.
+[...]
 
-This is the function call flow with WCN6855 on my machine,
+> --- a/drivers/net/wireless/ath/ath11k/core.c
+> +++ b/drivers/net/wireless/ath/ath11k/core.c
+> @@ -1,7 +1,7 @@
+>  // SPDX-License-Identifier: BSD-3-Clause-Clear
+>  /*
+>   * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+> - * Copyright (c) 2021-2022 Qualcomm Innovation Center, Inc. All rights reserved.
+> + * Copyright (c) 2021-2023 Qualcomm Innovation Center, Inc. All rights reserved.
+>   */
+>  
+>  #include <linux/module.h>
+> @@ -32,6 +32,10 @@ module_param_named(frame_mode, ath11k_frame_mode, uint, 0644);
+>  MODULE_PARM_DESC(frame_mode,
+>  		 "Datapath frame mode (0: raw, 1: native wifi (default), 2: ethernet)");
+>  
+> +unsigned int ath11k_ftm_mode;
+> +module_param_named(ftm_mode, ath11k_ftm_mode, uint, 0444);
+> +MODULE_PARM_DESC(ftm_mode, "Boots up in factory test mode");
 
-ath11k_pci 0000:06:00.0: Manikanta: ath11k_core_pdev_destroy
-ath11k_pci 0000:06:00.0: Manikanta: ath11k_thermal_unregister
-ath11k_pci 0000:06:00.0: Manikanta: ath11k_mac_unregister
-ath11k_pci 0000:06:00.0: Manikanta: ath11k_pcic_ext_irq_disable
-ath11k_pci 0000:06:00.0: Manikanta: __ath11k_pcic_ext_irq_disable
-ath11k_pci 0000:06:00.0: Manikanta: ath11k_dp_pdev_free
-ath11k_pci 0000:06:00.0: Manikanta: ath11k_dp_rx_pdev_free
-ath11k_pci 0000:06:00.0: Manikanta: ath11k_dp_rx_pdev_mon_detach
-ath11k_pci 0000:06:00.0: Manikanta: ath11k_pcic_stop
-ath11k_pci 0000:06:00.0: Manikanta: ath11k_dp_pdev_reo_cleanup
-ath11k_pci 0000:06:00.0: Manikanta: ath11k_dp_free
-ath11k_pci 0000:06:00.0: Manikanta: ath11k_pci_power_down
-ath11k_pci 0000:06:00.0: Manikanta: ath11k_mac_destroy
-ath11k_pci 0000:06:00.0: Manikanta: ath11k_reg_free
-ath11k_pci 0000:06:00.0: Manikanta: ath11k_pcic_free_irq
-ath11k_pci 0000:06:00.0: Manikanta: ath11k_pci_free_msi
-ath11k_pci 0000:06:00.0: Manikanta: ath11k_hal_srng_deinit
-ath11k_pci 0000:06:00.0: Manikanta: ath11k_core_free
+I changed this to bool as there's only two values, true or false.
 
-In stark contrast to your observations, from the above call flow, I see 
-that ath11k_hif_irq_disable() is getting called and the IRQs are getting 
-disabled. ath11k_pcic_ext_irq_disable() is registered for hif_irq_disable().
+> @@ -1362,6 +1366,11 @@ static int ath11k_core_soc_create(struct ath11k_base *ab)
+>  {
+>  	int ret;
+>  
+> +	if (ath11k_ftm_mode) {
+> +		ab->fw_mode = ATH11K_FIRMWARE_MODE_FTM;
+> +		ath11k_info(ab, "Booting in ftm mode\n");
+> +	}
 
-I even tried the single MSI vector configuration suspecting that could 
-be the difference. Even in single MSI case, I don't see any crashes 
-during rmmod.
+I changed this to:
 
-I'm completely clueless as to why the same code is behaving differently 
-with the same hardware.
+"Booting in factory test mode\n"
 
-How can we take this forward, could you please suggest?
+> @@ -1822,6 +1832,10 @@ static void ath11k_core_post_reconfigure_recovery(struct ath11k_base *ab)
+>  			ath11k_warn(ab,
+>  				    "device is wedged, will not restart radio %d\n", i);
+>  			break;
+> +		case ATH11K_STATE_TM:
+> +			ath11k_warn(ab, "fw mode reset done radio %d\n", i);
+> +			break;
 
-I'm thinking to keep these changes specific to WCN6750 for now.
+What is this warning supposed to tell the user? Should it be a debug
+message instead?
 
-Thanks,
-Manikanta
+> @@ -530,6 +531,7 @@ enum ath11k_state {
+>  	ATH11K_STATE_RESTARTING,
+>  	ATH11K_STATE_RESTARTED,
+>  	ATH11K_STATE_WEDGED,
+> +	ATH11K_STATE_TM,
 
+For consistency I renamed this to ATH11K_STATE_FTM.
 
+> --- a/drivers/net/wireless/ath/ath11k/debug.h
+> +++ b/drivers/net/wireless/ath/ath11k/debug.h
+> @@ -1,6 +1,7 @@
+>  /* SPDX-License-Identifier: BSD-3-Clause-Clear */
+>  /*
+>   * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+>   */
+>  
+>  #ifndef _ATH11K_DEBUG_H_
+> @@ -33,6 +34,7 @@ __printf(2, 3) void ath11k_err(struct ath11k_base *ab, const char *fmt, ...);
+>  __printf(2, 3) void ath11k_warn(struct ath11k_base *ab, const char *fmt, ...);
+>  
+>  extern unsigned int ath11k_debug_mask;
+> +extern unsigned int ath11k_ftm_mode;
+
+As the variable is is in core.c I moved this to core.h.
+
+> @@ -5838,6 +5841,11 @@ static int ath11k_mac_op_start(struct ieee80211_hw *hw)
+>  	struct ath11k_pdev *pdev = ar->pdev;
+>  	int ret;
+>  
+> +	if (ath11k_ftm_mode) {
+> +		ath11k_err(ab, "fail to start mac operations in ftm mode\n");
+
+I changed this to:
+
+ath11k_warn(ab, "mac operations not supported in factory test mode\n");
+
+> +		return -EWOULDBLOCK;
+
+EWOULDBLOCK is defined as EAGAIN, so it doesn't look approriate here. I
+changed it to EOPNOTSUPP.
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
