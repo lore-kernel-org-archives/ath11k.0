@@ -4,80 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2DBEC61DA4
-	for <ath11k@archiver.kernel.org>; Wed, 15 Mar 2023 16:18:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9173C61DA4
+	for <ath11k@archiver.kernel.org>; Wed, 15 Mar 2023 16:20:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=USNa3bUYf+sdeihkGlzN52V8rwYEvV7GZUKRy0BTbHc=; b=eF71y0aDcZpPDD
-	lgwxSU9uTZSzIaPySgFKZZ+J1tE/T7RsPLqJKzMyhtPNENmzamlLfnutMQQZm4n/jvXuhMywGbzTk
-	4A5vNlwT1vYoBjqifxWOqlBlROl0nGHFJcrDe6iBiaPD2YybtflA0l+jkJii0ZxUT7euFcDdM6yQ7
-	uQf9RquNjZ+LWhQRFNhhP+v3I+Q7Bf7quYNV9XmIY2ijrYK0HSqX9Ttg1oOsb672BLIKf/TzR2sdH
-	L0GtwryRocs2XGzsr+rmbTFI2PoezT9xpFO/JtkS29QnpZZgR4QEbcW9/AbzQrjnf4w3SpItZu8RE
-	fGUGRgEbkXVr3h0G3i5A==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:CC:To:References:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Jkk1DCfH43Z5j4Z6FTHA0WuvB1UWo24CLO77C+RMDsM=; b=oCuFCPzlvYVzEK
+	UlpH/S+X7l5KBhm7siCk3GqLGy0/gOEJ8Kcx0KVi4JTbkKbuvP4vszpqUBzxBbft/35aA3Yw5yQZM
+	aCeNpyEorfrABIcCJzjLaZj/dnT+6AKa+q5AvuQMIMCYT+McbAfDxyMQsfW3u+w+vk8HVpPp6I+Vl
+	2Xt++xDfr+fzK1Ny20FXOg9l5iWdq77sxZJALwFZdvUugjRlC6IChWDkLPlr/PnEmHdrD4gajvfaa
+	TxT8obHP0N9S/U2WE3l1EtHp7vgpUxoD9Jb4FTfMvP5b/QDcECHD/MnNIvMuKClI+6lG7dV86pihi
+	dHuXIcd9R+GuTS94BiSA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pcTpo-00E2cT-2o;
-	Wed, 15 Mar 2023 16:18:40 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1pcTrm-00E2rW-12;
+	Wed, 15 Mar 2023 16:20:42 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pcTpm-00E2bv-0T
+	id 1pcTri-00E2qm-2b
 	for ath11k@lists.infradead.org;
-	Wed, 15 Mar 2023 16:18:39 +0000
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32FALhJe022463;
-	Wed, 15 Mar 2023 16:18:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-type; s=qcppdkim1;
- bh=a5vkh8KYRT/AQdnIOeB7EMtU7n//se/Q0SSCfpqy7W0=;
- b=Y72DYTzkNZV5fonCFqvgF7YiBdKXimBRtHlmW7gn0nNeWvbUqovJ0d5RkDvJ1/Ozl8LI
- k5Bp4rC9RdKyfJOqCtEsAWYp1uYWZSP7CfnF3HLyNIRuXJHyTFCb8fZDfwd1vcu6unGB
- 7t3RT6Ql/8Ml2rBc0AwPG+x1ld68F7Vcj1W0vTog8b7lUR1Bf3I/1+aQnii4Yn8nJBUX
- t3UBNgDaAEzm9IUe9e3kjEBitEGa3vmoG+778Kug4u3AB2aAfLhsP6BnBY/a1XdX6wRy
- 7LsQLD95QiQwh9P0KuvKeQDwt/iyd6UiHZbM8fYN2OI4UgnI79/uNwZ9gjnNGTXkb2cz tw== 
+	Wed, 15 Mar 2023 16:20:40 +0000
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32FAUH07017223;
+	Wed, 15 Mar 2023 16:20:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : references : to : cc : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=t0thbpf06Kpdrn1rSYWH3OMixNsBn1UZH6hbYWCS/8g=;
+ b=pWSHYVaSx4p+CMASPsKSB8JMY5ccswbw/7Hp1fWLovmFpJjY8Cq4PxzA2r4Se7u9BO22
+ 5ohQzdinPf95tuup1lPI/sElGaxJEuRy2PujdQJnAPlS/PwGy8FcNVPz5ffwfShzVlD4
+ yjUsAdpTSFqf6ImaUK25/UpBj48WrXhilGmhtFI8/Eh2xWqtpcIVOZR9JiRDiproiUHJ
+ tXIYJ3dqBPwD1QHpaTyt0eKd7ep/DwP5EamhUUYQz4k6lYSk5jdgZkWGSIOwiZFHAzfk
+ mj7xXx6Cl40Mu5h70dCADFv0MTkSH2OVvu0AL5ebgZT/6XCJVKK7YWk9ZtBht6tfDWrT Pw== 
 Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pb2c8a7a6-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pb2ck27u8-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 15 Mar 2023 16:18:37 +0000
+	Wed, 15 Mar 2023 16:20:34 +0000
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32FGIaZE009300
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32FGKXbn011366
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 15 Mar 2023 16:18:36 GMT
-Received: from hu-mpubbise-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.41; Wed, 15 Mar 2023 09:18:34 -0700
-From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>,
-        Manikanta Pubbisetty
-	<quic_mpubbise@quicinc.com>
-Subject: [PATCH] wifi: ath11k: Send 11d scan start before WMI_START_SCAN_CMDID
-Date: Wed, 15 Mar 2023 21:48:17 +0530
-Message-ID: <20230315161817.29627-1-quic_mpubbise@quicinc.com>
-X-Mailer: git-send-email 2.17.1
+	Wed, 15 Mar 2023 16:20:33 GMT
+Received: from [10.110.5.11] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Wed, 15 Mar
+ 2023 09:20:32 -0700
+Message-ID: <7704d1be-c1c0-f06d-c828-a2da8fb84adc@quicinc.com>
+Date: Wed, 15 Mar 2023 09:20:32 -0700
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Fwd: FW: [PATCH 1/2] wifi: ath11k: fix null ptr dereference when tx
+ offload is enabled
+Content-Language: en-US
+References: <BYAPR02MB440521A89F19427CC8536690E6B99@BYAPR02MB4405.namprd02.prod.outlook.com>
+To: Felix Fietkau <nbd@nbd.name>
+CC: <linux-wireless@vger.kernel.org>, <ath11k@lists.infradead.org>
+From: Pradeep Kumar Chitrapu <quic_pradeepc@quicinc.com>
+In-Reply-To: <BYAPR02MB440521A89F19427CC8536690E6B99@BYAPR02MB4405.namprd02.prod.outlook.com>
+X-Forwarded-Message-Id: <BYAPR02MB440521A89F19427CC8536690E6B99@BYAPR02MB4405.namprd02.prod.outlook.com>
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: OivbBqcXioSxEGtBxRh5VbpCo_b-XWyR
-X-Proofpoint-ORIG-GUID: OivbBqcXioSxEGtBxRh5VbpCo_b-XWyR
+X-Proofpoint-ORIG-GUID: zeJDyol4l_liIvLlkYKoDIIO8KWtGBxA
+X-Proofpoint-GUID: zeJDyol4l_liIvLlkYKoDIIO8KWtGBxA
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
  definitions=2023-03-15_08,2023-03-15_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
- priorityscore=1501 impostorscore=0 mlxscore=0 suspectscore=0
- mlxlogscore=999 clxscore=1015 malwarescore=0 lowpriorityscore=0
- adultscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2302240000 definitions=main-2303150137
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 bulkscore=0
+ mlxlogscore=921 clxscore=1011 mlxscore=0 priorityscore=1501 malwarescore=0
+ spamscore=0 suspectscore=0 adultscore=0 phishscore=0 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2302240000
+ definitions=main-2303150137
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230315_091838_195731_32BC9B52 
-X-CRM114-Status: GOOD (  15.69  )
+X-CRM114-CacheID: sfid-20230315_092038_979424_7D13D98F 
+X-CRM114-Status: GOOD (  12.01  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,74 +94,42 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Firmwares advertising the support of triggering 11d algorithm on the
-scan results of a regular scan expects driver to send
-WMI_11D_SCAN_START_CMDID before sending WMI_START_SCAN_CMDID.
-Triggering 11d algorithm on the scan results of a normal scan helps
-in completely avoiding a separate 11d scan for determining regdomain.
-This indirectly helps in speeding up connections on station
-interfaces on the chipsets supporting 11D scan.
 
-To enable this feature, send WMI_11D_SCAN_START_CMDID just before
-sending WMI_START_SCAN_CMDID if the firmware advertises
-WMI_TLV_SERVICE_SUPPORT_11D_FOR_HOST_SCAN service flag.
+>    static void
+> @@ -610,7 +627,10 @@ static void ath11k_dp_tx_complete_msdu(struct
+> ath11k *ar,
+>
+>        spin_unlock_bh(&ab->base_lock);
+>
+> -     ieee80211_tx_status_ext(ar->hw, &status);
+> +     if (flags & ATH11K_SKB_HW_80211_ENCAP)
+> +             ieee80211_tx_status_8023(ar->hw, vif, msdu);
+> +     else
+> +             ieee80211_tx_status_ext(ar->hw, &status);
+>    }
+>
+>    static inline void ath11k_dp_tx_status_parse(struct ath11k_base *ab,
 
-WCN6750 & WCN6855 supports this feature.
+I think using ieee80211_tx_status_8023 is a bad idea. It is simply a 
+wrapper around ieee80211_tx_status_ext which looks up the sta based on 
+the MSDU DA. This means it is incompatible with 4-address mode.
+If you can have a sta pointer available, it is much better to just use 
+ieee80211_tx_status_ext unconditionally.
 
-Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-01160-QCAMSLSWPLZ-1
-Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
+In fact, I think we should simply remove ieee80211_tx_status_8023.
 
-Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/mac.c | 12 ++++++++++++
- drivers/net/wireless/ath/ath11k/wmi.h |  1 +
- 2 files changed, 13 insertions(+)
+- Felix
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index cad832e0e6b8..be2e17b641d1 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -3755,6 +3755,18 @@ static int ath11k_mac_op_hw_scan(struct ieee80211_hw *hw,
- 	int i;
- 	u32 scan_timeout;
- 
-+	/* Firmwares advertising the support of triggering 11D algorithm
-+	 * on the scan results of a regular scan expects driver to send
-+	 * WMI_11D_SCAN_START_CMDID before sending WMI_START_SCAN_CMDID.
-+	 * With this feature, separate 11D scan can be avoided since
-+	 * regdomain can be determined with the scan results of the
-+	 * regular scan.
-+	 */
-+	if (ar->state_11d == ATH11K_11D_PREPARING &&
-+	    test_bit(WMI_TLV_SERVICE_SUPPORT_11D_FOR_HOST_SCAN,
-+		     ar->ab->wmi_ab.svc_map))
-+		ath11k_mac_11d_scan_start(ar, arvif->vdev_id);
-+
- 	mutex_lock(&ar->conf_mutex);
- 
- 	spin_lock_bh(&ar->data_lock);
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index b23b7a22bc9a..21589d8efcc7 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -2102,6 +2102,7 @@ enum wmi_tlv_service {
- 	WMI_MAX_EXT_SERVICE = 256,
- 	WMI_TLV_SERVICE_REG_CC_EXT_EVENT_SUPPORT = 281,
- 	WMI_TLV_SERVICE_BIOS_SAR_SUPPORT = 326,
-+	WMI_TLV_SERVICE_SUPPORT_11D_FOR_HOST_SCAN = 357,
- 
- 	/* The third 128 bits */
- 	WMI_MAX_EXT2_SERVICE = 384
+Thanks Felix,
+Looks like the band error may not be present with the following commit.
+e5c0ee01fedf ("wifi: mac80211: status: look up band only where needed")
 
-base-commit: 3df3715e556027e94246b2cb30986563362a65f4
--- 
-2.17.1
-
+I will check further and amend in next revision.
 
 -- 
 ath11k mailing list
