@@ -4,78 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFD28C7618A
-	for <ath11k@archiver.kernel.org>; Mon, 20 Mar 2023 11:03:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87F25C7618D
+	for <ath11k@archiver.kernel.org>; Mon, 20 Mar 2023 13:39:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=2/4ClRYQoMGsCa/GHGRjVnO2+baHZbmG9aonMUHSqG8=; b=Q8T1kpy4L/xslx
-	9BlZIJ4cjedI9s21hWjRtj5trfRKC74Q2kbzLPwdxrbPtLoFgJZs8dZ8ic+g6Ea4DkfrtAFe+8the
-	7dYSDWLXsUR0b5Ok2TpmfDL8vI/fQcNnPWCBdtPZjPa2gjsvcE7MKTbn7OFuSf31rc3lamT7CIM8O
-	MVho2nDKMhe6xaRLsYA9xxrbmsSDE1/bDQBtX50QDKl5nUZT/ubC+T69+LBS2E+L0f1RJQsfh+LzK
-	Vjq0uMqULzbbUIpDrBu+ZWrPoloTHzn0uzuhKNIfOUW7+VLEReGWQPV3AlQXrBg7i6inBwAfmdjdl
-	cxYq0stnZ8sJejGFH79Q==;
+	List-Owner; bh=ZVRqWTiQ4cUc5IDcBPJSpny8UHfZYr2tNOy9W54rB7Y=; b=MulntI72EPZgvJ
+	FZA7fHwQ1a38HCOzkMXjOn2DrKSS54w+PHeCk5/qSobrQhk4dTFjHCc6TZXCXyTEpo585sw11kB7H
+	jOz8MtU1ItWLvvSDNw39Uk/PJlOYumvhrCgtTXR1sUZLBUSMxMeXB6wmR/fe07af5LIvzZWhmkmRR
+	KiqGIYmpMcEEw1eriffQm/UugHtHD+mJCgNTysHdDKvSrSpz8ll3uVstTivNzdAd00ejoBdxCxsQc
+	G41u1ZfDyEMYogLxr2Y68+U2I3hopmu7RgNk3otjr0LAJMiPv3ivzMRbb6O/rgZ5hR6A9D4tJV08w
+	5w3BOMDnBF60/CP3yErA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1peDIv-008l74-1S;
-	Mon, 20 Mar 2023 11:03:53 +0000
+	id 1peFjD-009CzL-1t;
+	Mon, 20 Mar 2023 13:39:11 +0000
 Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1peDIs-008l5t-0w
+	id 1peFjA-009Cy1-0b
 	for ath11k@lists.infradead.org;
-	Mon, 20 Mar 2023 11:03:52 +0000
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32K8PJVJ022463;
-	Mon, 20 Mar 2023 11:03:49 GMT
+	Mon, 20 Mar 2023 13:39:09 +0000
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32KBvFZ2004731;
+	Mon, 20 Mar 2023 13:39:05 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
  subject : date : message-id : mime-version : content-type; s=qcppdkim1;
- bh=qyGKriUovEi90eCubcSMPoWVgQF25Sy8dt628ZxhWLs=;
- b=pNXa3MMvLp3SGP9Zeo09KPrxHMZwbmq7Uc4V7zsAfY06QntIXpMXM/sHafi18utwalTr
- 79s1Xvf/3BnnrE72IXvElKpWyWFcbQ/gV/2DHzZMn0L8USYb+XNeHHsYAr2WHn+DxIxK
- U45M30eoMb6Xo4x6V6ffK+uSBYeIZrWma6jnR84XSXz/krwmw+BR5Qy6jxLdW70rrh39
- 73BzOpVV3G+UQLqpqKbHyoVhI5Oi9Ui081QJMVyLrtuq/SqejV5OjMwrQxemMj0NYLi7
- vsHQ4VtxrePIRPx0IuwTjlxHvmSprsCXuisGuQGNrWXn/kZrL3pd1/ovQr4hpjlsHQxk HA== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pd4w8vktn-1
+ bh=jMz2u2+gyjJJcj5tuRPYVv0di+sn1S5ni8sqhMu/9Kg=;
+ b=BNz+KGi99iSZhDkes9KWF52w7CzSYjHOAYXTfBPlCQk7pM1ZZAIsxB8H3zGnapUkas/r
+ 1FfSr/9GpQ+5F6LsOEhJ4KF4Us8wsGi/jZnw25FoCqH4jPqhHPQzcC4jaVzVtNdjiA/0
+ PlEKhMhP6ULKuRkpbM7RDNigSEYSRmhgqbWkVUL69mwPEJi2oHbhQgxFGFO75Rmfk+Gt
+ 8w4fd4JPJXA1PNOxL3X8nGYxxzxTsUvQi80R1Tm683dJg7fwBKlNOyD/BlmnrBGBeIqv
+ CMVmf/KTnEUEFt7WWsvQInmEBZG+JH8TvwUAZ9ndRKqA4kCNXqS5+79KGzUuBP80f3yv ow== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pen6hrh12-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 20 Mar 2023 11:03:48 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32KB3ljb007292
+	Mon, 20 Mar 2023 13:39:05 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32KDd4H6010152
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 20 Mar 2023 11:03:48 GMT
-Received: from ppranees-linux.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+	Mon, 20 Mar 2023 13:39:04 GMT
+Received: from nmaran-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.41; Mon, 20 Mar 2023 04:03:46 -0700
-From: P Praneesh <quic_ppranees@quicinc.com>
+ 15.2.986.41; Mon, 20 Mar 2023 06:39:02 -0700
+From: Nagarajan Maran <quic_nmaran@quicinc.com>
 To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, P Praneesh <quic_ppranees@quicinc.com>
-Subject: [PATCH] wifi: ath11k: fix rssi station dump not updated in QCN9074
-Date: Mon, 20 Mar 2023 16:33:12 +0530
-Message-ID: <20230320110312.20639-1-quic_ppranees@quicinc.com>
+CC: <linux-wireless@vger.kernel.org>,
+        Bhagavathi Perumal S
+	<quic_bperumal@quicinc.com>,
+        Nagarajan Maran <quic_nmaran@quicinc.com>
+Subject: [PATCH] wifi: ath11k: Fix invalid management rx frame length issue
+Date: Mon, 20 Mar 2023 19:08:40 +0530
+Message-ID: <20230320133840.30162-1-quic_nmaran@quicinc.com>
 X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: wBnIuuLeSsGGKqrx7oNHBFA8C1HbNvla
-X-Proofpoint-ORIG-GUID: wBnIuuLeSsGGKqrx7oNHBFA8C1HbNvla
+X-Proofpoint-ORIG-GUID: 8NkXcGNm6eXVpjTaeMT1e0VxZ9FeT59R
+X-Proofpoint-GUID: 8NkXcGNm6eXVpjTaeMT1e0VxZ9FeT59R
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-20_07,2023-03-20_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
- lowpriorityscore=0 malwarescore=0 suspectscore=0 impostorscore=0
- bulkscore=0 clxscore=1015 spamscore=0 adultscore=0 mlxlogscore=999
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303150002 definitions=main-2303200094
+ definitions=2023-03-20_09,2023-03-20_02,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
+ malwarescore=0 priorityscore=1501 mlxscore=0 bulkscore=0 adultscore=0
+ spamscore=0 impostorscore=0 phishscore=0 clxscore=1011 suspectscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303150002 definitions=main-2303200115
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230320_040350_445009_157F2729 
-X-CRM114-Status: GOOD (  17.71  )
+X-CRM114-CacheID: sfid-20230320_063908_362013_4C196B97 
+X-CRM114-Status: GOOD (  19.00  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,165 +95,121 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-In QCN9074, station dump signal values display default value which
-is -95 dbm, since there is firmware header change for HAL_RX_MPDU_START
-between QCN9074 and IPQ8074 which cause wrong peer_id fetch from msdu.
-Fix this by updating hal_rx_mpdu_info with corresponding QCN9074 tlv
-format.
+From: Bhagavathi Perumal S <quic_bperumal@quicinc.com>
+
+The WMI management rx event has multiple arrays of TLVs, however the common
+WMI TLV parser won't handle multiple TLV tags of same type.
+So the multiple array tags of WMI management rx TLV is parsed incorrectly
+and the length calculated becomes wrong when the target sends multiple
+array tags.
+
+Add separate TLV parser to handle multiple arrays for WMI management rx
+TLV. This fixes invalid length issue when the target sends multiple array
+tags.
 
 Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
-Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-01695-QCAHKSWPL_SILICONZ-1
 
-Signed-off-by: P Praneesh <quic_ppranees@quicinc.com>
+Signed-off-by: Bhagavathi Perumal S <quic_bperumal@quicinc.com>
+Co-developed-by: Nagarajan Maran <quic_nmaran@quicinc.com>
+Signed-off-by: Nagarajan Maran <quic_nmaran@quicinc.com>
+
 ---
- drivers/net/wireless/ath/ath11k/hal_rx.c | 10 ++++++++-
- drivers/net/wireless/ath/ath11k/hal_rx.h | 18 +++++++++++++++-
- drivers/net/wireless/ath/ath11k/hw.c     | 27 ++++++++++++++++--------
- drivers/net/wireless/ath/ath11k/hw.h     |  2 +-
- 4 files changed, 45 insertions(+), 12 deletions(-)
+ drivers/net/wireless/ath/ath11k/wmi.c | 45 +++++++++++++++++++++------
+ 1 file changed, 35 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/hal_rx.c b/drivers/net/wireless/ath/ath11k/hal_rx.c
-index 7f39c6fb7408..b9939c5a4ecd 100644
---- a/drivers/net/wireless/ath/ath11k/hal_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/hal_rx.c
-@@ -865,6 +865,12 @@ ath11k_hal_rx_populate_mu_user_info(void *rx_tlv, struct hal_rx_mon_ppdu_info *p
- 	ath11k_hal_rx_populate_byte_count(rx_tlv, ppdu_info, rx_user_status);
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 27f3fceb33c5..f338d4447f11 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -82,6 +82,12 @@ struct wmi_tlv_fw_stats_parse {
+ 	bool chain_rssi_done;
+ };
+ 
++struct wmi_tlv_mgmt_rx_parse {
++	const struct wmi_mgmt_rx_hdr *fixed;
++	const u8 *frame_buf;
++	bool frame_buf_done;
++};
++
+ static const struct wmi_tlv_policy wmi_tlv_policies[] = {
+ 	[WMI_TAG_ARRAY_BYTE]
+ 		= { .min_len = 0 },
+@@ -5633,28 +5639,49 @@ static int ath11k_pull_vdev_stopped_param_tlv(struct ath11k_base *ab, struct sk_
+ 	return 0;
  }
  
-+static u16 ath11k_hal_rx_mpduinfo_get_peerid(struct ath11k_base *ab,
-+					     struct hal_rx_mpdu_info *mpdu_info)
++static int ath11k_wmi_tlv_mgmt_rx_parse(struct ath11k_base *ab,
++					u16 tag, u16 len,
++					const void *ptr, void *data)
 +{
-+	return ab->hw_params.hw_ops->mpdu_info_get_peerid(mpdu_info);
++	struct wmi_tlv_mgmt_rx_parse *parse = data;
++
++	switch (tag) {
++	case WMI_TAG_MGMT_RX_HDR:
++		parse->fixed = ptr;
++		break;
++	case WMI_TAG_ARRAY_BYTE:
++		if (!parse->frame_buf_done) {
++			parse->frame_buf = ptr;
++			parse->frame_buf_done = true;
++		}
++		break;
++	}
++	return 0;
 +}
 +
- static enum hal_rx_mon_status
- ath11k_hal_rx_parse_mon_status_tlv(struct ath11k_base *ab,
- 				   struct hal_rx_mon_ppdu_info *ppdu_info,
-@@ -1459,9 +1465,11 @@ ath11k_hal_rx_parse_mon_status_tlv(struct ath11k_base *ab,
- 		break;
+ static int ath11k_pull_mgmt_rx_params_tlv(struct ath11k_base *ab,
+ 					  struct sk_buff *skb,
+ 					  struct mgmt_rx_event_params *hdr)
+ {
+-	const void **tb;
++	struct wmi_tlv_mgmt_rx_parse parse = { };
+ 	const struct wmi_mgmt_rx_hdr *ev;
+ 	const u8 *frame;
+ 	int ret;
+ 
+-	tb = ath11k_wmi_tlv_parse_alloc(ab, skb->data, skb->len, GFP_ATOMIC);
+-	if (IS_ERR(tb)) {
+-		ret = PTR_ERR(tb);
+-		ath11k_warn(ab, "failed to parse tlv: %d\n", ret);
++	ret = ath11k_wmi_tlv_iter(ab, skb->data, skb->len,
++				  ath11k_wmi_tlv_mgmt_rx_parse,
++				  &parse);
++	if (ret) {
++		ath11k_warn(ab, "failed to parse mgmt rx tlv %d\n",
++			    ret);
+ 		return ret;
  	}
- 	case HAL_RX_MPDU_START: {
-+		struct hal_rx_mpdu_info *mpdu_info =
-+				(struct hal_rx_mpdu_info *)tlv_data;
- 		u16 peer_id;
  
--		peer_id = ab->hw_params.hw_ops->mpdu_info_get_peerid(tlv_data);
-+		peer_id = ath11k_hal_rx_mpduinfo_get_peerid(ab, mpdu_info);
- 		if (peer_id)
- 			ppdu_info->peer_id = peer_id;
- 		break;
-diff --git a/drivers/net/wireless/ath/ath11k/hal_rx.h b/drivers/net/wireless/ath/ath11k/hal_rx.h
-index f6bae07abfd3..47e8208b22e1 100644
---- a/drivers/net/wireless/ath/ath11k/hal_rx.h
-+++ b/drivers/net/wireless/ath/ath11k/hal_rx.h
-@@ -405,7 +405,7 @@ struct hal_rx_phyrx_rssi_legacy_info {
- #define HAL_RX_MPDU_INFO_INFO0_PEERID_WCN6855	GENMASK(15, 0)
- #define HAL_RX_MPDU_INFO_INFO1_MPDU_LEN		GENMASK(13, 0)
+-	ev = tb[WMI_TAG_MGMT_RX_HDR];
+-	frame = tb[WMI_TAG_ARRAY_BYTE];
++	ev = parse.fixed;
++	frame = parse.frame_buf;
  
--struct hal_rx_mpdu_info {
-+struct hal_rx_mpdu_info_ipq8074 {
- 	__le32 rsvd0;
- 	__le32 info0;
- 	__le32 rsvd1[11];
-@@ -413,12 +413,28 @@ struct hal_rx_mpdu_info {
- 	__le32 rsvd2[9];
- } __packed;
+ 	if (!ev || !frame) {
+ 		ath11k_warn(ab, "failed to fetch mgmt rx hdr");
+-		kfree(tb);
+ 		return -EPROTO;
+ 	}
  
-+struct hal_rx_mpdu_info_qcn9074 {
-+	__le32 rsvd0[10];
-+	__le32 info0;
-+	__le32 rsvd1[2];
-+	__le32 info1;
-+	__le32 rsvd2[9];
-+} __packed;
-+
- struct hal_rx_mpdu_info_wcn6855 {
- 	__le32 rsvd0[8];
- 	__le32 info0;
- 	__le32 rsvd1[14];
- } __packed;
+@@ -5673,7 +5700,6 @@ static int ath11k_pull_mgmt_rx_params_tlv(struct ath11k_base *ab,
  
-+struct hal_rx_mpdu_info {
-+	union {
-+		struct hal_rx_mpdu_info_ipq8074 ipq8074;
-+		struct hal_rx_mpdu_info_qcn9074 qcn9074;
-+		struct hal_rx_mpdu_info_wcn6855 wcn6855;
-+	} u;
-+} __packed;
-+
- #define HAL_RX_PPDU_END_DURATION	GENMASK(23, 0)
- struct hal_rx_ppdu_end_duration {
- 	__le32 rsvd0[9];
-diff --git a/drivers/net/wireless/ath/ath11k/hw.c b/drivers/net/wireless/ath/ath11k/hw.c
-index 60ac215e0678..6b4355a68e26 100644
---- a/drivers/net/wireless/ath/ath11k/hw.c
-+++ b/drivers/net/wireless/ath/ath11k/hw.c
-@@ -835,26 +835,35 @@ static void ath11k_hw_ipq5018_reo_setup(struct ath11k_base *ab)
- 			   ring_hash_map);
+ 	if (skb->len < (frame - skb->data) + hdr->buf_len) {
+ 		ath11k_warn(ab, "invalid length in mgmt rx hdr ev");
+-		kfree(tb);
+ 		return -EPROTO;
+ 	}
+ 
+@@ -5685,7 +5711,6 @@ static int ath11k_pull_mgmt_rx_params_tlv(struct ath11k_base *ab,
+ 
+ 	ath11k_ce_byte_swap(skb->data, hdr->buf_len);
+ 
+-	kfree(tb);
+ 	return 0;
  }
  
--static u16 ath11k_hw_ipq8074_mpdu_info_get_peerid(u8 *tlv_data)
-+static u16
-+ath11k_hw_ipq8074_mpdu_info_get_peerid(struct hal_rx_mpdu_info *mpdu_info)
- {
- 	u16 peer_id = 0;
--	struct hal_rx_mpdu_info *mpdu_info =
--		(struct hal_rx_mpdu_info *)tlv_data;
- 
- 	peer_id = FIELD_GET(HAL_RX_MPDU_INFO_INFO0_PEERID,
--			    __le32_to_cpu(mpdu_info->info0));
-+			    __le32_to_cpu(mpdu_info->u.ipq8074.info0));
- 
- 	return peer_id;
- }
- 
--static u16 ath11k_hw_wcn6855_mpdu_info_get_peerid(u8 *tlv_data)
-+static u16
-+ath11k_hw_qcn9074_mpdu_info_get_peerid(struct hal_rx_mpdu_info *mpdu_info)
-+{
-+	u16 peer_id = 0;
-+
-+	peer_id = FIELD_GET(HAL_RX_MPDU_INFO_INFO0_PEERID,
-+			    __le32_to_cpu(mpdu_info->u.qcn9074.info0));
-+
-+	return peer_id;
-+}
-+
-+static u16
-+ath11k_hw_wcn6855_mpdu_info_get_peerid(struct hal_rx_mpdu_info *mpdu_info)
- {
- 	u16 peer_id = 0;
--	struct hal_rx_mpdu_info_wcn6855 *mpdu_info =
--		(struct hal_rx_mpdu_info_wcn6855 *)tlv_data;
- 
- 	peer_id = FIELD_GET(HAL_RX_MPDU_INFO_INFO0_PEERID_WCN6855,
--			    __le32_to_cpu(mpdu_info->info0));
-+			    __le32_to_cpu(mpdu_info->u.wcn6855.info0));
- 	return peer_id;
- }
- 
-@@ -1042,7 +1051,7 @@ const struct ath11k_hw_ops qcn9074_ops = {
- 	.rx_desc_get_attention = ath11k_hw_qcn9074_rx_desc_get_attention,
- 	.rx_desc_get_msdu_payload = ath11k_hw_qcn9074_rx_desc_get_msdu_payload,
- 	.reo_setup = ath11k_hw_ipq8074_reo_setup,
--	.mpdu_info_get_peerid = ath11k_hw_ipq8074_mpdu_info_get_peerid,
-+	.mpdu_info_get_peerid = ath11k_hw_qcn9074_mpdu_info_get_peerid,
- 	.rx_desc_mac_addr2_valid = ath11k_hw_ipq9074_rx_desc_mac_addr2_valid,
- 	.rx_desc_mpdu_start_addr2 = ath11k_hw_ipq9074_rx_desc_mpdu_start_addr2,
- 	.get_ring_selector = ath11k_hw_ipq8074_get_tcl_ring_selector,
-diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
-index 0be4e1232384..68380f2ccab5 100644
---- a/drivers/net/wireless/ath/ath11k/hw.h
-+++ b/drivers/net/wireless/ath/ath11k/hw.h
-@@ -264,7 +264,7 @@ struct ath11k_hw_ops {
- 	struct rx_attention *(*rx_desc_get_attention)(struct hal_rx_desc *desc);
- 	u8 *(*rx_desc_get_msdu_payload)(struct hal_rx_desc *desc);
- 	void (*reo_setup)(struct ath11k_base *ab);
--	u16 (*mpdu_info_get_peerid)(u8 *tlv_data);
-+	u16 (*mpdu_info_get_peerid)(struct hal_rx_mpdu_info *mpdu_info);
- 	bool (*rx_desc_mac_addr2_valid)(struct hal_rx_desc *desc);
- 	u8* (*rx_desc_mpdu_start_addr2)(struct hal_rx_desc *desc);
- 	u32 (*get_ring_selector)(struct sk_buff *skb);
+
+base-commit: 3df3715e556027e94246b2cb30986563362a65f4
 -- 
 2.17.1
 
