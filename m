@@ -4,84 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 103DEC76195
-	for <ath11k@archiver.kernel.org>; Mon, 20 Mar 2023 16:44:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6A59C6FD1D
+	for <ath11k@archiver.kernel.org>; Mon, 20 Mar 2023 17:05:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Rbznt+nJPdXvyWacYsbjbPRTixkeQGOXj2NzVa2TOLA=; b=ji8109GhtmXreR
-	nSYX5RMeZtA5FOAhOb+x1OTk03cKhpZC4S1qGqvsjP5ru4u4ZMvFBPC5AYm2/ToVvnuonRsD4ATuw
-	2adMXSkAJVu7FUogf5obKhShgMnCimclPgGXSlHNQ/NDAAVPK0F2aXny+BpewcMyU+2TJ3Y963VDS
-	aya1vrv4b7Wh+gyXrrN/6WYDWHqzQ4u1UiUpRV+YTaYKCnZO4F6hSfMjHbwazNp43vJnfhaWW6BxA
-	Lf9udVBuuWNq6dXOPByOEmHPOrjFimc6oPvNuv4Q/Iywv9qsz/MMFP2TGxMYVJO7bQHb4rx3PnTob
-	jazlnXLmgGVOYzKUdOtw==;
+	List-Owner; bh=Ap58Q5y/VWOQq/AMWniaZorPF0E9IzQHEFdBZ8Q83dM=; b=ZNhGKO9eKOTcSt
+	SxxZ3LpkH4XGl8kInd8qBwJAwK9u9QVlTSN+REJi2TX8XcD2DJxUQ0K4Q2Hnt/Y+NyFP23+FOzVOE
+	SOCq3hOv48ANcENH5dJkVmyLBQl83cNgfiR+vYcPUJ71QE9qMzrCjwIlEsKo1rwZ8bGFISo0pWIAm
+	EOSbq2Fuwuq6wA4IL3eCeRWtMeAP0+Sm97ZuFix5oYTcVrS81W4ZDVvdK/xHvzAB0LPHQXpdbYGKR
+	jiQrTJwaq2RuHxZB/RnNl9GCcCm9335d3JjhXTPkhKsluznYR2m3yJCVTcLxV1D7yum5SsIe3Jamd
+	mxAM8RLzLBCRs4ZqKfYA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1peIcI-009rBh-1u;
-	Mon, 20 Mar 2023 16:44:14 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1peIwW-009vO8-1a;
+	Mon, 20 Mar 2023 17:05:08 +0000
+Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2] helo=sipsolutions.net)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1peIcE-009r9A-2R
+	id 1peIwT-009vLL-1a
 	for ath11k@lists.infradead.org;
-	Mon, 20 Mar 2023 16:44:12 +0000
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32KCYfRZ012267;
-	Mon, 20 Mar 2023 16:44:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=0mJQqY0oGkzB9jiHI9vvpQXCd8AnpanNOaVldmBt824=;
- b=EzYLOoqjpXzCxTuH+zjc4ugOGObEcU63OLT3+zrozHTZsVir71aZyax6ceIcMa6tRG6V
- I4BZJ2b+yUv8stCwwqSVNDxHHKy+lTYkeojvp7z/P7pxGOvTWspxAlt2VTzLIV5Jgtjg
- ORn0hvVnUTDn+HfPG+n2NVwZV+175+Ni0qsvKt6YWbWFfVyshX7tzFey8IBgPAg8YVDK
- 4saC7db9ZcLHchC7b3HFze0Efgf0Z18iqhc4RmNripte520ukrP8Xm3Vtaz8Ruyxq+GA
- mXEbc8V8GVNydtSJvVJuos/uRyHWvgvOCx7XOighk+u+18/DQ9nG3oQGeKb8rYkTxYzS aA== 
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pek4fhb7t-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 20 Mar 2023 16:44:10 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32KGi9aP025236
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 20 Mar 2023 16:44:09 GMT
-Received: from che-siroccolnx03.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.41; Mon, 20 Mar 2023 09:44:07 -0700
-From: Maharaja Kennadyrajan <quic_mkenna@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>,
-        Venkateswara Naralasetty
-	<quic_vnaralas@quicinc.com>,
-        Maharaja Kennadyrajan <quic_mkenna@quicinc.com>
-Subject: [PATCH v2 4/4] wifi: ath11k: add AP power save support
-Date: Mon, 20 Mar 2023 22:13:34 +0530
-Message-ID: <20230320164334.3325886-5-quic_mkenna@quicinc.com>
-X-Mailer: git-send-email 2.25.1
+	Mon, 20 Mar 2023 17:05:07 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
+	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
+	Resent-Cc:Resent-Message-ID; bh=f18Jj1X5RBDBxDmYG5gdBT4DNpSY1VTIA46He4j4jkE=;
+	t=1679331902; x=1680541502; b=F+uZ4K+9GQ9Ksryal+VnomycPGHbKMrnMfDcMzI5hTbJJeM
+	JRNos9hE7wgmz4Do2nLZwUoiALWFWTLc6SySBVzL3dtANOWIZh0EBxOXOniPk5Q9FLbCyKE8RsB1X
+	GvUMqZHZsz8+7d3oetyuuOT9BGj7U9AyCkurmwtDoQGR0vIoVT43M7xMyWXiKGlQwCN30UczU77Sq
+	u0TeE3HaS6AMggj5p/2IKEdh3b4bFi1UvObF2U2cedjKriTGUQ2GAr5prkauqynbT5gKr5Y6A64Y0
+	skrY26Kwr+U/oBLtzw54naP7OryeVOcGxKcIjsDMi29UHcgXGKmrK7k/2Z8CFm6g==;
+Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+	(Exim 4.96)
+	(envelope-from <johannes@sipsolutions.net>)
+	id 1peIwM-0094EH-20;
+	Mon, 20 Mar 2023 18:04:58 +0100
+Message-ID: <5e4ebc0244dfaafe8fe640458130a4527f43c728.camel@sipsolutions.net>
+Subject: Re: [PATCH v2 0/4] Add AP power save support
+From: Johannes Berg <johannes@sipsolutions.net>
+To: Maharaja Kennadyrajan <quic_mkenna@quicinc.com>, 
+	ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org
+Date: Mon, 20 Mar 2023 18:04:57 +0100
 In-Reply-To: <20230320164334.3325886-1-quic_mkenna@quicinc.com>
 References: <20230320164334.3325886-1-quic_mkenna@quicinc.com>
+User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: KpyhKZLDxuv6TKsvPgH_u8RJjV2-C076
-X-Proofpoint-ORIG-GUID: KpyhKZLDxuv6TKsvPgH_u8RJjV2-C076
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-20_14,2023-03-20_02,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 malwarescore=0
- mlxscore=0 priorityscore=1501 adultscore=0 impostorscore=0 spamscore=0
- mlxlogscore=999 suspectscore=0 phishscore=0 clxscore=1015
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303150002 definitions=main-2303200141
+X-malware-bazaar: not-scanned
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230320_094410_798736_ADC36627 
-X-CRM114-Status: GOOD (  23.76  )
+X-CRM114-CacheID: sfid-20230320_100505_796124_38E30BBF 
+X-CRM114-Status: GOOD (  10.80  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,329 +73,26 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
+On Mon, 2023-03-20 at 22:13 +0530, Maharaja Kennadyrajan wrote:
+> AP power save feature is enabled when the driver and hardware
+> supports. If the driver suppots this feature then driver will
+> advertise this flag SUPPORTS_AP_PS to enable the AP power save
+> in mac80211.
+> 
+> AP goes into the power save mode, if no stations are connected
+> and it will come out of power save as and when any of the station
+> associate to it. Also, during the power save tx chain mask is
+> reduced to 1x1 until the any station connects with more than
+> 1x1 chain mask.
+> 
 
-AP goes into the power save mode if no stations
-are connected and it will come out of power save
-as and when any of the station associate to it.
+All of that seems entirely transparent, similar to how mac80211 today
+reduces bandwidth of the AP interface (min_def in a chandef) - what's
+the point of doing all this infrastructure to make it configurable then?
+Why not always have it, and perhaps make some debugfs to turn it off for
+debugging/experiments?
 
-Driver will advertise this flag SUPPORTS_AP_PS to
-enable the AP power save in mac80211.
-
-This AP power save capability can be used to save
-power with the drawback of reduced range or delayed
-discovery of the AP.
-
-This feature is enabled in QCN9074, IPQ8074, IPQ5018, QCN6122.
-
-Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
-
-Signed-off-by: Maharaja Kennadyrajan <quic_mkenna@quicinc.com>
-Signed-off-by: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/core.c |  8 ++++
- drivers/net/wireless/ath/ath11k/core.h |  8 ++++
- drivers/net/wireless/ath/ath11k/hw.h   |  1 +
- drivers/net/wireless/ath/ath11k/mac.c  | 58 ++++++++++++++++++++++++++
- drivers/net/wireless/ath/ath11k/wmi.c  | 32 ++++++++++++++
- drivers/net/wireless/ath/ath11k/wmi.h  |  8 ++++
- 6 files changed, 115 insertions(+)
-
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index 75fdbe4ef83a..5cf9203b751e 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -117,6 +117,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.tx_ring_size = DP_TCL_DATA_RING_SIZE,
- 		.smp2p_wow_exit = false,
- 		.ftm_responder = true,
-+		.supports_ap_ps = true,
- 	},
- 	{
- 		.hw_rev = ATH11K_HW_IPQ6018_HW10,
-@@ -200,6 +201,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.smp2p_wow_exit = false,
- 		.support_fw_mac_sequence = false,
- 		.ftm_responder = true,
-+		.supports_ap_ps = true,
- 	},
- 	{
- 		.name = "qca6390 hw2.0",
-@@ -285,6 +287,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.smp2p_wow_exit = false,
- 		.support_fw_mac_sequence = true,
- 		.ftm_responder = false,
-+		.supports_ap_ps = false,
- 	},
- 	{
- 		.name = "qcn9074 hw1.0",
-@@ -367,6 +370,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.smp2p_wow_exit = false,
- 		.support_fw_mac_sequence = false,
- 		.ftm_responder = true,
-+		.supports_ap_ps = true,
- 	},
- 	{
- 		.name = "wcn6855 hw2.0",
-@@ -452,6 +456,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.smp2p_wow_exit = false,
- 		.support_fw_mac_sequence = true,
- 		.ftm_responder = false,
-+		.supports_ap_ps = false,
- 	},
- 	{
- 		.name = "wcn6855 hw2.1",
-@@ -535,6 +540,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.smp2p_wow_exit = false,
- 		.support_fw_mac_sequence = true,
- 		.ftm_responder = false,
-+		.supports_ap_ps = false,
- 	},
- 	{
- 		.name = "wcn6750 hw1.0",
-@@ -616,6 +622,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.smp2p_wow_exit = true,
- 		.support_fw_mac_sequence = true,
- 		.ftm_responder = false,
-+		.supports_ap_ps = false,
- 	},
- 	{
- 		.hw_rev = ATH11K_HW_IPQ5018_HW10,
-@@ -696,6 +703,7 @@ static const struct ath11k_hw_params ath11k_hw_params[] = {
- 		.smp2p_wow_exit = false,
- 		.support_fw_mac_sequence = false,
- 		.ftm_responder = true,
-+		.supports_ap_ps = true,
- 	},
- };
- 
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 0830276e5028..fefb1fb5220d 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -363,6 +363,7 @@ struct ath11k_vif {
- 	struct ieee80211_chanctx_conf chanctx;
- 	struct ath11k_arp_ns_offload arp_ns_offload;
- 	struct ath11k_rekey_data rekey_data;
-+	bool vif_ap_ps_enabled;
- 
- #ifdef CONFIG_ATH11K_DEBUGFS
- 	struct dentry *debugfs_twt;
-@@ -589,6 +590,11 @@ struct ath11k_per_peer_tx_stats {
- #define ATH11K_FLUSH_TIMEOUT (5 * HZ)
- #define ATH11K_VDEV_DELETE_TIMEOUT_HZ (5 * HZ)
- 
-+enum ath11k_ap_ps_state {
-+	ATH11K_AP_PS_STATE_OFF,
-+	ATH11K_AP_PS_STATE_ON,
-+};
-+
- struct ath11k {
- 	struct ath11k_base *ab;
- 	struct ath11k_pdev *pdev;
-@@ -732,6 +738,8 @@ struct ath11k {
- 	/* protected by conf_mutex */
- 	bool ps_state_enable;
- 	bool ps_timekeeper_enable;
-+	bool ap_ps_enabled;
-+	enum ath11k_ap_ps_state ap_ps_state;
- };
- 
- struct ath11k_band_cap {
-diff --git a/drivers/net/wireless/ath/ath11k/hw.h b/drivers/net/wireless/ath/ath11k/hw.h
-index 0be4e1232384..40953e117cc5 100644
---- a/drivers/net/wireless/ath/ath11k/hw.h
-+++ b/drivers/net/wireless/ath/ath11k/hw.h
-@@ -225,6 +225,7 @@ struct ath11k_hw_params {
- 	bool smp2p_wow_exit;
- 	bool support_fw_mac_sequence;
- 	bool ftm_responder;
-+	bool supports_ap_ps;
- };
- 
- struct ath11k_hw_ops {
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index cad832e0e6b8..db0d772ff7c7 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -3215,6 +3215,43 @@ static int ath11k_mac_config_obss_pd(struct ath11k *ar,
- 	return 0;
- }
- 
-+void ath11k_mac_ap_ps_recalc(struct ath11k *ar)
-+{
-+	struct ath11k_vif *arvif;
-+	enum ath11k_ap_ps_state state = ATH11K_AP_PS_STATE_OFF;
-+	int ret;
-+	bool allow_ap_ps = true;
-+
-+	lockdep_assert_held(&ar->conf_mutex);
-+
-+	list_for_each_entry(arvif, &ar->arvifs, list) {
-+		if (arvif->vdev_type == WMI_VDEV_TYPE_STA ||
-+		    !arvif->vif_ap_ps_enabled) {
-+			allow_ap_ps = false;
-+			break;
-+		}
-+	}
-+
-+	if (!allow_ap_ps)
-+		ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "ap ps is not allowed\n");
-+
-+	if (allow_ap_ps && !ar->num_stations && ar->ap_ps_enabled)
-+		state = ATH11K_AP_PS_STATE_ON;
-+
-+	if (ar->ap_ps_state == state)
-+		return;
-+
-+	ret = ath11k_wmi_pdev_ap_ps_cmd_send(ar, ar->pdev->pdev_id, state);
-+	if (ret) {
-+		ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
-+			   "failed to send ap ps command pdev_id %u state %u\n",
-+			   ar->pdev->pdev_id, state);
-+		return;
-+	}
-+
-+	ar->ap_ps_state = state;
-+}
-+
- static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
- 					   struct ieee80211_vif *vif,
- 					   struct ieee80211_bss_conf *info,
-@@ -3567,6 +3604,16 @@ static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
- 			   vif->addr, arvif->arp_ns_offload.ipv4_addr);
- 	}
- 
-+	if ((changed & BSS_CHANGED_PS) && vif->type == NL80211_IFTYPE_AP) {
-+		if (!info->ap_ps_enable)
-+			arvif->vif_ap_ps_enabled = false;
-+		else
-+			arvif->vif_ap_ps_enabled = true;
-+
-+		ar->ap_ps_enabled = info->ap_ps_enable;
-+		ath11k_mac_ap_ps_recalc(ar);
-+	}
-+
- 	mutex_unlock(&ar->conf_mutex);
- }
- 
-@@ -4651,6 +4698,8 @@ static int ath11k_mac_station_add(struct ath11k *ar,
- 	ath11k_dbg(ab, ATH11K_DBG_MAC, "Added peer: %pM for VDEV: %d\n",
- 		   sta->addr, arvif->vdev_id);
- 
-+	ath11k_mac_ap_ps_recalc(ar);
-+
- 	if (ath11k_debugfs_is_extd_tx_stats_enabled(ar)) {
- 		arsta->tx_stats = kzalloc(sizeof(*arsta->tx_stats), GFP_KERNEL);
- 		if (!arsta->tx_stats) {
-@@ -4810,6 +4859,8 @@ static int ath11k_mac_op_sta_state(struct ieee80211_hw *hw,
- 
- 		kfree(arsta->rx_stats);
- 		arsta->rx_stats = NULL;
-+
-+		ath11k_mac_ap_ps_recalc(ar);
- 	} else if (old_state == IEEE80211_STA_AUTH &&
- 		   new_state == IEEE80211_STA_ASSOC &&
- 		   (vif->type == NL80211_IFTYPE_AP ||
-@@ -6599,6 +6650,8 @@ static int ath11k_mac_op_add_interface(struct ieee80211_hw *hw,
- 				    ret);
- 	}
- 
-+	ath11k_mac_ap_ps_recalc(ar);
-+
- 	mutex_unlock(&ar->conf_mutex);
- 
- 	return 0;
-@@ -6703,6 +6756,8 @@ static void ath11k_mac_op_remove_interface(struct ieee80211_hw *hw,
- 
- 	ath11k_debugfs_remove_interface(arvif);
- 
-+	ath11k_mac_ap_ps_recalc(ar);
-+
- 	/* TODO: recal traffic pause state based on the available vdevs */
- 
- 	mutex_unlock(&ar->conf_mutex);
-@@ -9122,6 +9177,9 @@ static int __ath11k_mac_register(struct ath11k *ar)
- 		ieee80211_hw_set(ar->hw, USES_RSS);
- 	}
- 
-+	if (ar->ab->hw_params.supports_ap_ps)
-+		ieee80211_hw_set(ar->hw, SUPPORTS_AP_PS);
-+
- 	ar->hw->wiphy->features |= NL80211_FEATURE_STATIC_SMPS;
- 	ar->hw->wiphy->flags |= WIPHY_FLAG_IBSS_RSN;
- 
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 27f3fceb33c5..02b14ba6ad45 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -1290,6 +1290,38 @@ ath11k_wmi_rx_reord_queue_remove(struct ath11k *ar,
- 	return ret;
- }
- 
-+int ath11k_wmi_pdev_ap_ps_cmd_send(struct ath11k *ar, u32 pdev_id,
-+				   u32 param_value)
-+{
-+	struct ath11k_pdev_wmi *wmi = ar->wmi;
-+	struct wmi_pdev_ap_ps_cmd *cmd;
-+	struct sk_buff *skb;
-+	int ret;
-+
-+	skb = ath11k_wmi_alloc_skb(wmi->wmi_ab, sizeof(*cmd));
-+	if (!skb)
-+		return -ENOMEM;
-+
-+	cmd = (struct wmi_pdev_ap_ps_cmd *)skb->data;
-+	cmd->tlv_header = FIELD_PREP(WMI_TLV_TAG,
-+				     WMI_TAG_PDEV_GREEN_AP_PS_ENABLE_CMD) |
-+			  FIELD_PREP(WMI_TLV_LEN, sizeof(*cmd) - TLV_HDR_SIZE);
-+	cmd->pdev_id = pdev_id;
-+	cmd->param_value = param_value;
-+
-+	ret = ath11k_wmi_cmd_send(wmi, skb, WMI_PDEV_GREEN_AP_PS_ENABLE_CMDID);
-+	if (ret) {
-+		ath11k_warn(ar->ab, "failed to send ap ps enable/disable cmd\n");
-+		dev_kfree_skb(skb);
-+	}
-+
-+	ath11k_dbg(ar->ab, ATH11K_DBG_WMI,
-+		   "wmi pdev ap ps set pdev id %d value %d\n",
-+		    pdev_id, param_value);
-+
-+	return ret;
-+}
-+
- int ath11k_wmi_pdev_set_param(struct ath11k *ar, u32 param_id,
- 			      u32 param_value, u8 pdev_id)
- {
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index b23b7a22bc9a..8b37dd935a95 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -3037,6 +3037,12 @@ struct wmi_fwtest_set_param_cmd_param {
- 	u32 param_value;
- };
- 
-+struct wmi_pdev_ap_ps_cmd {
-+	u32 tlv_header;
-+	u32 pdev_id;
-+	u32 param_value;
-+} __packed;
-+
- struct wmi_pdev_set_param_cmd {
- 	u32 tlv_header;
- 	u32 pdev_id;
-@@ -6445,5 +6451,7 @@ int ath11k_wmi_pdev_set_bios_sar_table_param(struct ath11k *ar, const u8 *sar_va
- int ath11k_wmi_pdev_set_bios_geo_table_param(struct ath11k *ar);
- int ath11k_wmi_sta_keepalive(struct ath11k *ar,
- 			     const struct wmi_sta_keepalive_arg *arg);
-+int ath11k_wmi_pdev_ap_ps_cmd_send(struct ath11k *ar, u32 pdev_id,
-+				   u32 value);
- 
- #endif
--- 
-2.25.1
-
+johannes
 
 -- 
 ath11k mailing list
