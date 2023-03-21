@@ -4,74 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73602C6FD1C
-	for <ath11k@archiver.kernel.org>; Tue, 21 Mar 2023 00:32:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5943C6FD1D
+	for <ath11k@archiver.kernel.org>; Tue, 21 Mar 2023 01:57:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=WuPwNAPqhdgV6vAvphIQS/O0k3oUSg7wpqo5yrlhhaE=; b=Vx88vx6DuXkvp9
-	aw1oaPDvj1RngORrvuunkrhRu/sHVMT+41JpvUmztKd4uxu0zFDs08FqfpWRABmQAcRNswGigMGg/
-	cBz+bf2hLuPeME8hxx2IQhdyOPFhPU53hqRZypybG1lEQ3lgY7AshMlO1jlsI3EhBZYVt0DhVIuZB
-	u7w62oTHwJumN7Y79Q1UyqEiVyYQ5GmTs1H3Qq0ly8qV5+XaX4wySl1kogTPor0LHqKwP6TfUBa4F
-	SFzRwUHDToTuAMSU15PPPWnuxhWwgZKFu2L3HtMXqcW1akWKySDia8+NXvZvO/kByOdActgfIYc4x
-	any17bSosKP0TW4oY9OA==;
+	List-Owner; bh=6opa6xqps5sxWMRunGtkSB7Q63OKjQn2goMaY0n7ENU=; b=eVSNqM/jjFG1xm
+	WbZCaZ+IDaSlY5S8mXvSwQQt5hHDF3E26DAQKS1mDt4KMtOFi35qy1/M74t8+O1zimfKbJ3cOwSlg
+	X4jK+awDR1EGq/42av+Tq7F6VVMNwonQXAkEvXMs7ntmz3LVgzWJNCfposdgFKY7r6O94H0OZ8VUW
+	hzjDV5XS+vHAAd8E9u+hIx9pyPEBK90saZrJ5rAGneTuMvgvZo64hDLhrRtd32855PkwvFRRGQ3TN
+	y6xlLzegPwA+fSO3xWo2MhcUXodBWE1zPGRTTXN/X+ae2rFXD567WpJwADWk6wVJOYVFypWU4yKxd
+	XutX8NQbjPrgw/c+aFAg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pePvN-00AsnN-0d;
-	Tue, 21 Mar 2023 00:32:25 +0000
-Received: from mga02.intel.com ([134.134.136.20])
+	id 1peRFs-00AyYi-1i;
+	Tue, 21 Mar 2023 01:57:40 +0000
+Received: from mga06b.intel.com ([134.134.136.31] helo=mga06.intel.com)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pePvJ-00AsmX-0v
+	id 1peRFp-00AyY4-2r
 	for ath11k@lists.infradead.org;
-	Tue, 21 Mar 2023 00:32:23 +0000
+	Tue, 21 Mar 2023 01:57:39 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1679358741; x=1710894741;
+  t=1679363857; x=1710899857;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=ughYfn4rC396+/ES2uTfWkC7cEbA2ZakXW6P0rlxqVA=;
-  b=kzPugJBC2YkP6ida/iaS6CszPgEb3JudbFPCXyEP3/Zi4p8gLePIPtWw
-   jR7KnCCGl4ZQxwCkTCdJ/v5eCr5Xlx/354aYC9UCixRd5VwhFcbMFrPiV
-   95bTB6ZQjIMoTubjbg+SkJhO2nXtWYWfBHcCpynfvF+yHcuXipwxfMvhM
-   neuYEr7rk33otROeclXFCO7UZKuSObtbPFR6hDUrtO3CBUGZrpwliJ2t8
-   2oaa8VBiINDR63SamyAlI9zM2JO6/dizqrFcgEBJqwy1HIdEmjmOyuSPf
-   IkEt3affUQSIIGRfjogk+m0wHlVZ5w4fCkhF4Dzjhf3iWEHguqhgmK96I
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="327186903"
+  bh=HCV+Jpzz/Fd9dCFOhk5Hovmo50YPsn4eR/cUdi+ZVtE=;
+  b=gLnRi9MUZ0S1Go116qxU4emgA4JDq3f+NxCUswcOb/SEnqyehgtZdDyY
+   ZRo9XcKBVcEfpSYwn601nludjJMphKylVHUXLWE8VmGhyLMtUFsIUj3OZ
+   au+Ot9RCn8EliUOQQrHHA/owo3zsr81ivHsljPi/yyRDtocZ6COsi07bT
+   fosB3i552Zc4cUi/Vf1UbV9reKudCKOwRygVWQjoJ7DshlRGTDf/Vd8Pm
+   oXMCXVt132U8oqC1Jx3aBi6QtEp91JXRzrF1Njlv3Q66RLZx00fy6rc8+
+   c1Bmw8OBmGbBt6uPJAUvbJB+e+JPEeLkFDEYFEN3d+0c4e9X+t7FbTzUZ
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="401398801"
 X-IronPort-AV: E=Sophos;i="5.98,277,1673942400"; 
-   d="scan'208";a="327186903"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2023 17:32:05 -0700
+   d="scan'208";a="401398801"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2023 18:57:13 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="824701152"
+X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="927209009"
 X-IronPort-AV: E=Sophos;i="5.98,277,1673942400"; 
-   d="scan'208";a="824701152"
+   d="scan'208";a="927209009"
 Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by fmsmga001.fm.intel.com with ESMTP; 20 Mar 2023 17:32:03 -0700
+  by fmsmga006.fm.intel.com with ESMTP; 20 Mar 2023 18:57:11 -0700
 Received: from kbuild by b613635ddfff with local (Exim 4.96)
 	(envelope-from <lkp@intel.com>)
-	id 1pePv1-000BRA-0p;
-	Tue, 21 Mar 2023 00:32:03 +0000
-Date: Tue, 21 Mar 2023 08:31:54 +0800
+	id 1peRFK-000BUC-0e;
+	Tue, 21 Mar 2023 01:57:06 +0000
+Date: Tue, 21 Mar 2023 09:56:35 +0800
 From: kernel test robot <lkp@intel.com>
 To: Maharaja Kennadyrajan <quic_mkenna@quicinc.com>,
 	ath11k@lists.infradead.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-wireless@vger.kernel.org,
+Cc: oe-kbuild-all@lists.linux.dev, linux-wireless@vger.kernel.org,
 	Venkateswara Naralasetty <quic_vnaralas@quicinc.com>,
 	Maharaja Kennadyrajan <quic_mkenna@quicinc.com>
 Subject: Re: [PATCH v2 4/4] wifi: ath11k: add AP power save support
-Message-ID: <202303210807.4SdWf5Ix-lkp@intel.com>
+Message-ID: <202303210910.Ag8f94jv-lkp@intel.com>
 References: <20230320164334.3325886-5-quic_mkenna@quicinc.com>
 MIME-Version: 1.0
 Content-Disposition: inline
 In-Reply-To: <20230320164334.3325886-5-quic_mkenna@quicinc.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230320_173221_473482_BCE8FFF8 
-X-CRM114-Status: GOOD (  15.51  )
+X-CRM114-CacheID: sfid-20230320_185737_999988_57A55A91 
+X-CRM114-Status: GOOD (  11.73  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,34 +102,27 @@ url:    https://github.com/intel-lab-lkp/linux/commits/Maharaja-Kennadyrajan/wif
 base:   https://git.kernel.org/pub/scm/linux/kernel/git/wireless/wireless-next.git main
 patch link:    https://lore.kernel.org/r/20230320164334.3325886-5-quic_mkenna%40quicinc.com
 patch subject: [PATCH v2 4/4] wifi: ath11k: add AP power save support
-config: i386-buildonly-randconfig-r006-20230320 (https://download.01.org/0day-ci/archive/20230321/202303210807.4SdWf5Ix-lkp@intel.com/config)
-compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
+config: i386-randconfig-a005 (https://download.01.org/0day-ci/archive/20230321/202303210910.Ag8f94jv-lkp@intel.com/config)
+compiler: gcc-11 (Debian 11.3.0-8) 11.3.0
 reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
         # https://github.com/intel-lab-lkp/linux/commit/289c49facf48da5a221a3c8072f97c4641eca9f0
         git remote add linux-review https://github.com/intel-lab-lkp/linux
         git fetch --no-tags linux-review Maharaja-Kennadyrajan/wifi-nl80211-rename-NL80211_CMD_SET_BEACON-to-NL80211_CMD_UDPATE_AP/20230321-005501
         git checkout 289c49facf48da5a221a3c8072f97c4641eca9f0
         # save the config file
         mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/net/wireless/ath/ath11k/
+        make W=1 O=build_dir ARCH=i386 olddefconfig
+        make W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/net/wireless/ath/ath11k/
 
 If you fix the issue, kindly add following tag where applicable
 | Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202303210807.4SdWf5Ix-lkp@intel.com/
+| Link: https://lore.kernel.org/oe-kbuild-all/202303210910.Ag8f94jv-lkp@intel.com/
 
 All warnings (new ones prefixed by >>):
 
->> drivers/net/wireless/ath/ath11k/mac.c:3218:6: warning: no previous prototype for function 'ath11k_mac_ap_ps_recalc' [-Wmissing-prototypes]
-   void ath11k_mac_ap_ps_recalc(struct ath11k *ar)
-        ^
-   drivers/net/wireless/ath/ath11k/mac.c:3218:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
-   void ath11k_mac_ap_ps_recalc(struct ath11k *ar)
-   ^
-   static 
-   1 warning generated.
+>> drivers/net/wireless/ath/ath11k/mac.c:3218:6: warning: no previous prototype for 'ath11k_mac_ap_ps_recalc' [-Wmissing-prototypes]
+    3218 | void ath11k_mac_ap_ps_recalc(struct ath11k *ar)
+         |      ^~~~~~~~~~~~~~~~~~~~~~~
 
 
 vim +/ath11k_mac_ap_ps_recalc +3218 drivers/net/wireless/ath/ath11k/mac.c
