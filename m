@@ -4,63 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B00A6C7618A
-	for <ath11k@archiver.kernel.org>; Mon, 20 Mar 2023 18:41:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73602C6FD1C
+	for <ath11k@archiver.kernel.org>; Tue, 21 Mar 2023 00:32:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=687REzTWC5CwLxFcyzxNPioDAjE3Hmob3m3DvJMJrbM=; b=aBodoFmvdaybM8
-	kbIMTCxdV5LTHkvf2nD0efr7SY5bbF8Vck0CIoSuN7PCZpy0En9Wn/PUGc9U33uFEHSv68+iW6LRr
-	wDYeDQtfVdhPUAIUUBV7lWuIjt9DkZrH/Sg/ooxoJhCc4Nz3bAcZnYryAVitSyQysusMQb3h9slpq
-	0+h1CQT2GAjBdNkyGKxNQffuVenNMFRMhvTBQTH1TDMruHKW0NSFzndBqrL95aAP9FEJvgPJfIwXc
-	HuZzQrYiwheCF8sq9IHmKmODsP0f+jy8VDUodnlAy615ruZNIUZKwcTYgwHEk7eEXTXhhiVzQ+l2e
-	DGs5UxqDcGaTqReWbwlw==;
+	List-Owner; bh=WuPwNAPqhdgV6vAvphIQS/O0k3oUSg7wpqo5yrlhhaE=; b=Vx88vx6DuXkvp9
+	aw1oaPDvj1RngORrvuunkrhRu/sHVMT+41JpvUmztKd4uxu0zFDs08FqfpWRABmQAcRNswGigMGg/
+	cBz+bf2hLuPeME8hxx2IQhdyOPFhPU53hqRZypybG1lEQ3lgY7AshMlO1jlsI3EhBZYVt0DhVIuZB
+	u7w62oTHwJumN7Y79Q1UyqEiVyYQ5GmTs1H3Qq0ly8qV5+XaX4wySl1kogTPor0LHqKwP6TfUBa4F
+	SFzRwUHDToTuAMSU15PPPWnuxhWwgZKFu2L3HtMXqcW1akWKySDia8+NXvZvO/kByOdActgfIYc4x
+	any17bSosKP0TW4oY9OA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1peKRr-00AA9P-0P;
-	Mon, 20 Mar 2023 18:41:35 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1pePvN-00AsnN-0d;
+	Tue, 21 Mar 2023 00:32:25 +0000
+Received: from mga02.intel.com ([134.134.136.20])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1peKRo-00AA8c-2X
+	id 1pePvJ-00AsmX-0v
 	for ath11k@lists.infradead.org;
-	Mon, 20 Mar 2023 18:41:34 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id EA9D2617B5;
-	Mon, 20 Mar 2023 18:41:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDF97C433D2;
-	Mon, 20 Mar 2023 18:41:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1679337689;
-	bh=2f37lfeV2uqUCawsoKtMP9QdXPtifZqxFzFW3xEcp8A=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=lWjFQyEDIo8MQTCiFBBVl1jHJQAxQmCPf74aa6CD2aNlUTBxZk29rMePvw8C6mLZc
-	 wrLYKoBIJEJBr84jjiWrDCUAOen5B8fxBAYivmL2MrxnYEaa7BLtJ0yNKhlJyJlhJn
-	 mwO2PQGUjdAF//4mjd+cijoCJT/NPCkgIT1s085wg/N6CmLzuCuhpmGN9xNZpRS996
-	 QgdIbY2voj2IIg2MFiNX4yGIE86800v/tQ4SJLTjcZCL3l3WbgQyAALlno3xrapB+e
-	 J9/eA4VdhrKZiarWIOG/mieT8wjMe8N+wVuD6CJPn5AKpxNeO6gSsg5qN2EH05S8Ga
-	 B9glULQd/XfTA==
-From: Kalle Valo <kvalo@kernel.org>
-To: Johan Hovold <johan@kernel.org>
-Cc: Johan Hovold <johan+linaro@kernel.org>,  Bjorn Andersson <andersson@kernel.org>,  "David S. Miller" <davem@davemloft.net>,  Eric Dumazet <edumazet@google.com>,  Jakub Kicinski <kuba@kernel.org>,  Paolo Abeni <pabeni@redhat.com>,  Rob Herring <robh+dt@kernel.org>,  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,  Andy Gross <agross@kernel.org>,  Konrad Dybcio <konrad.dybcio@linaro.org>,  linux-wireless@vger.kernel.org,  netdev@vger.kernel.org,  devicetree@vger.kernel.org,  linux-arm-msm@vger.kernel.org,  linux-kernel@vger.kernel.org,
-    ath11k@lists.infradead.org
-Subject: Re: [PATCH 1/3] dt-bindings: wireless: add ath11k pcie bindings
-References: <20230320104658.22186-1-johan+linaro@kernel.org>
-	<20230320104658.22186-2-johan+linaro@kernel.org>
-	<87ttyfhatn.fsf@kernel.org> <ZBhUo1C08U5mp9zP@hovoldconsulting.com>
-Date: Mon, 20 Mar 2023 20:41:21 +0200
-In-Reply-To: <ZBhUo1C08U5mp9zP@hovoldconsulting.com> (Johan Hovold's message
-	of "Mon, 20 Mar 2023 13:42:11 +0100")
-Message-ID: <87a607fepa.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+	Tue, 21 Mar 2023 00:32:23 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1679358741; x=1710894741;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ughYfn4rC396+/ES2uTfWkC7cEbA2ZakXW6P0rlxqVA=;
+  b=kzPugJBC2YkP6ida/iaS6CszPgEb3JudbFPCXyEP3/Zi4p8gLePIPtWw
+   jR7KnCCGl4ZQxwCkTCdJ/v5eCr5Xlx/354aYC9UCixRd5VwhFcbMFrPiV
+   95bTB6ZQjIMoTubjbg+SkJhO2nXtWYWfBHcCpynfvF+yHcuXipwxfMvhM
+   neuYEr7rk33otROeclXFCO7UZKuSObtbPFR6hDUrtO3CBUGZrpwliJ2t8
+   2oaa8VBiINDR63SamyAlI9zM2JO6/dizqrFcgEBJqwy1HIdEmjmOyuSPf
+   IkEt3affUQSIIGRfjogk+m0wHlVZ5w4fCkhF4Dzjhf3iWEHguqhgmK96I
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="327186903"
+X-IronPort-AV: E=Sophos;i="5.98,277,1673942400"; 
+   d="scan'208";a="327186903"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Mar 2023 17:32:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="824701152"
+X-IronPort-AV: E=Sophos;i="5.98,277,1673942400"; 
+   d="scan'208";a="824701152"
+Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
+  by fmsmga001.fm.intel.com with ESMTP; 20 Mar 2023 17:32:03 -0700
+Received: from kbuild by b613635ddfff with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1pePv1-000BRA-0p;
+	Tue, 21 Mar 2023 00:32:03 +0000
+Date: Tue, 21 Mar 2023 08:31:54 +0800
+From: kernel test robot <lkp@intel.com>
+To: Maharaja Kennadyrajan <quic_mkenna@quicinc.com>,
+	ath11k@lists.infradead.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-wireless@vger.kernel.org,
+	Venkateswara Naralasetty <quic_vnaralas@quicinc.com>,
+	Maharaja Kennadyrajan <quic_mkenna@quicinc.com>
+Subject: Re: [PATCH v2 4/4] wifi: ath11k: add AP power save support
+Message-ID: <202303210807.4SdWf5Ix-lkp@intel.com>
+References: <20230320164334.3325886-5-quic_mkenna@quicinc.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20230320164334.3325886-5-quic_mkenna@quicinc.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230320_114132_862738_090DB373 
-X-CRM114-Status: GOOD (  21.74  )
+X-CRM114-CacheID: sfid-20230320_173221_473482_BCE8FFF8 
+X-CRM114-Status: GOOD (  15.51  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,53 +88,95 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-+ ath11k list
+Hi Maharaja,
 
-Johan Hovold <johan@kernel.org> writes:
+Thank you for the patch! Perhaps something to improve:
 
-> On Mon, Mar 20, 2023 at 02:22:12PM +0200, Kalle Valo wrote:
->> Johan Hovold <johan+linaro@kernel.org> writes:
->> 
->> > Add devicetree bindings for Qualcomm ath11k PCIe devices such as WCN6856
->> > for which the calibration data variant may need to be described.
->> >
->> > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
->> > ---
->> >  .../bindings/net/wireless/pci17cb,1103.yaml   | 56 +++++++++++++++++++
->> >  1 file changed, 56 insertions(+)
->> >  create mode 100644
->> > Documentation/devicetree/bindings/net/wireless/pci17cb,1103.yaml
->> 
->> I'm confused (as usual), how does this differ from
->> bindings/net/wireless/qcom,ath11k.yaml? Why we need two .yaml files?
->
-> Almost none of bindings/net/wireless/qcom,ath11k.yaml applies to WCN6856
-> when using PCIe (e.g. as most properties are then discoverable).
->
-> We could try to encode everything in one file, but that would likely
-> just result in a big mess of a schema with conditionals all over.
+[auto build test WARNING on wireless-next/main]
+[also build test WARNING on kvalo-ath/ath-next next-20230320]
+[cannot apply to wireless/main linus/master v6.3-rc3]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Ah, so the current qcom,ath11k.yaml would be only for ath11k AHB devices
-and this new file is only for ath11k PCI devices? But why still the odd
-name pci17cb,1103.yaml? It's not really descriptive and I'm for sure
-will not remember that pci17cb,1103.yaml is for ath11k :)
+url:    https://github.com/intel-lab-lkp/linux/commits/Maharaja-Kennadyrajan/wifi-nl80211-rename-NL80211_CMD_SET_BEACON-to-NL80211_CMD_UDPATE_AP/20230321-005501
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/wireless/wireless-next.git main
+patch link:    https://lore.kernel.org/r/20230320164334.3325886-5-quic_mkenna%40quicinc.com
+patch subject: [PATCH v2 4/4] wifi: ath11k: add AP power save support
+config: i386-buildonly-randconfig-r006-20230320 (https://download.01.org/0day-ci/archive/20230321/202303210807.4SdWf5Ix-lkp@intel.com/config)
+compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/289c49facf48da5a221a3c8072f97c4641eca9f0
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Maharaja-Kennadyrajan/wifi-nl80211-rename-NL80211_CMD_SET_BEACON-to-NL80211_CMD_UDPATE_AP/20230321-005501
+        git checkout 289c49facf48da5a221a3c8072f97c4641eca9f0
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/net/wireless/ath/ath11k/
 
-Also it doesn't look good that we have qcom,ath11k-calibration-variant
-documented twice now. I'm no DT expert but isn't there any other way? Is
-it possible to include other files? For example, if we would have three
-files:
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303210807.4SdWf5Ix-lkp@intel.com/
 
-qcom,ath11k.yaml
-qcom,ath11k-ahb.yaml
-qcom,ath11k-pci.yaml
+All warnings (new ones prefixed by >>):
 
-Then have the common properties like ath11k-calibration-variant in the
-first file and ahb/pci files would include that.
+>> drivers/net/wireless/ath/ath11k/mac.c:3218:6: warning: no previous prototype for function 'ath11k_mac_ap_ps_recalc' [-Wmissing-prototypes]
+   void ath11k_mac_ap_ps_recalc(struct ath11k *ar)
+        ^
+   drivers/net/wireless/ath/ath11k/mac.c:3218:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+   void ath11k_mac_ap_ps_recalc(struct ath11k *ar)
+   ^
+   static 
+   1 warning generated.
+
+
+vim +/ath11k_mac_ap_ps_recalc +3218 drivers/net/wireless/ath/ath11k/mac.c
+
+  3217	
+> 3218	void ath11k_mac_ap_ps_recalc(struct ath11k *ar)
+  3219	{
+  3220		struct ath11k_vif *arvif;
+  3221		enum ath11k_ap_ps_state state = ATH11K_AP_PS_STATE_OFF;
+  3222		int ret;
+  3223		bool allow_ap_ps = true;
+  3224	
+  3225		lockdep_assert_held(&ar->conf_mutex);
+  3226	
+  3227		list_for_each_entry(arvif, &ar->arvifs, list) {
+  3228			if (arvif->vdev_type == WMI_VDEV_TYPE_STA ||
+  3229			    !arvif->vif_ap_ps_enabled) {
+  3230				allow_ap_ps = false;
+  3231				break;
+  3232			}
+  3233		}
+  3234	
+  3235		if (!allow_ap_ps)
+  3236			ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "ap ps is not allowed\n");
+  3237	
+  3238		if (allow_ap_ps && !ar->num_stations && ar->ap_ps_enabled)
+  3239			state = ATH11K_AP_PS_STATE_ON;
+  3240	
+  3241		if (ar->ap_ps_state == state)
+  3242			return;
+  3243	
+  3244		ret = ath11k_wmi_pdev_ap_ps_cmd_send(ar, ar->pdev->pdev_id, state);
+  3245		if (ret) {
+  3246			ath11k_dbg(ar->ab, ATH11K_DBG_MAC,
+  3247				   "failed to send ap ps command pdev_id %u state %u\n",
+  3248				   ar->pdev->pdev_id, state);
+  3249			return;
+  3250		}
+  3251	
+  3252		ar->ap_ps_state = state;
+  3253	}
+  3254	
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
 
 -- 
 ath11k mailing list
