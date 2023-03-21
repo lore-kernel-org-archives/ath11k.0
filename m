@@ -4,77 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FFDAC74A5B
-	for <ath11k@archiver.kernel.org>; Tue, 21 Mar 2023 08:20:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CCA7C6FD1D
+	for <ath11k@archiver.kernel.org>; Tue, 21 Mar 2023 08:51:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BmgvR/oIyAbsiUEhtkXs0EVQ5TE4Hp0VUKWgp5/7UIg=; b=PU2jf2uDruLxsV
-	//XdIOdOQbd/fXt2RPGO5HlgAUs8GTqTIUNNbtgdx7BgLlMQMg5jRM6n79CYddWAq+leM6+ymOU5O
-	aRQv5Y4aDzCAEP8OkXhObxLJpYdESNYyMq+w7UvcsqhhUFYPrXNr5WNeR2JCIgPFxhag8G1xacXQ7
-	JKEotPa9vY1Mj6a6wL83AwAvHE2ufcVhCQLPFCS83WwbhR/BooFSUCpViibd671cVDQyLacKTQ9+s
-	bOLPqgwR3VZSBiAnrUrR+U8WZQQOKS/ILcaSoWO5dTIjDSu4JI/cWzd1/D2xCeJsVbRigp+/1+eET
-	ZEWEWQYzN5shFHNR+uVg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Subject:To:From:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=UPdWV3wbuhRC4sBxC1ZW+ZNscPo+d84sGapigVbMZRE=; b=garEuNCvTg9cXK
+	IH48lwmDZgj57bIK/JwC6Y0GPz7NI12bUQ1H64UgwuYn3u35ex66bdfwIGQxe3xJ74g6gd117zD16
+	7KQeYt7pIek+GDjEAtY8J7Jjy0ZMzMqJnwJp85Xd0lTUGpgnmFDtcF/UhFGeFqmFeHU6dAHUDv3Hf
+	p48Nm49WdLRPGKIA2LHT2smNLIdDbq5lPGa9fGPNrRY1QgiN0z2laFviL0YDQT9HHC5DgU2MS5MY3
+	TTlOZBazLMQMBks892J4u4V3B5RkFjWFF7hcJPcgF9iK3tPSR7N7M3LlQr1DKzJbcGoHRM2aEx7BZ
+	xt6r+j+7Z7Wjqft3b6jg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1peXEc-00Beej-38;
-	Tue, 21 Mar 2023 08:20:46 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1peXht-00BmbY-2d;
+	Tue, 21 Mar 2023 08:51:01 +0000
+Received: from mail.craftsplex.pl ([162.19.155.126])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1peXEZ-00Bedu-2A
+	id 1peXhp-00BmXX-2L
 	for ath11k@lists.infradead.org;
-	Tue, 21 Mar 2023 08:20:45 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 890DB618FE;
-	Tue, 21 Mar 2023 08:20:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6E53C433EF;
-	Tue, 21 Mar 2023 08:20:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1679386842;
-	bh=r/XTwJ0ZGyepgVGIYhRMA7vXO27GpJFl+4EAu53pwyQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=I5AS0EjZPdovcIfa3Rxq3mpy1YE1tj4r7DxmltKUbA9HAIs/+Z3rldPFX190yJmF0
-	 sQOuPslQRdYDEVdHQO75fgvUapJNFIno4orOhWPya+T2rV2URacZhPj7Ib5K3+/AQV
-	 eeP68B66netd1yDsQpOLHJ51Z5lL6MIIe0CsV+2oO+KDJvJaLxCb7kFE6ccUF2XoCm
-	 5DiKhfZXfXjpDckX6zxSpHh9VXoylVZ8H2EkCu2PRRvP6yLsiciU7S0MvKNFq+2585
-	 tw4b7xjjkS2E+QM6dLgAiFdp99T5V0NSNsfHa0bALQkWc5iAc+wBwNVa8lQijepYHC
-	 Zeu7EAiuL+f2w==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-	(envelope-from <johan@kernel.org>)
-	id 1peXFs-00006M-Bo; Tue, 21 Mar 2023 09:22:05 +0100
-Date: Tue, 21 Mar 2023 09:22:04 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Kalle Valo <kvalo@kernel.org>
-Cc: Johan Hovold <johan+linaro@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Andy Gross <agross@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org, ath11k@lists.infradead.org
-Subject: Re: [PATCH 1/3] dt-bindings: wireless: add ath11k pcie bindings
-Message-ID: <ZBlpLJfqB1Q7JfQ+@hovoldconsulting.com>
-References: <20230320104658.22186-1-johan+linaro@kernel.org>
- <20230320104658.22186-2-johan+linaro@kernel.org>
- <87ttyfhatn.fsf@kernel.org>
- <ZBhUo1C08U5mp9zP@hovoldconsulting.com>
- <87a607fepa.fsf@kernel.org>
+	Tue, 21 Mar 2023 08:51:00 +0000
+Received: by mail.craftsplex.pl (Postfix, from userid 1002)
+	id 4611623247; Tue, 21 Mar 2023 08:50:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=craftsplex.pl;
+	s=mail; t=1679388650;
+	bh=PcMncQpBfIZCnTOfZJY5G1G+gaLn4c9QPfFvoXrE4rA=;
+	h=Date:From:To:Subject:From;
+	b=b9TkDQJXiGMPksEQJujXf1WVek4a3RFKwFCmVOYRasZmZbcW3xOdv4d9P1kdznpr+
+	 38qy5fo8Vj71dtEx5qNkeKdGcaTljY8+YT+odQkuTztI1M8V04vdlw+1cZNr8mYa7D
+	 LUKagmAy9WPaI9Sonix+1UgkDpFYVH/pNfPgP5VneBoqtwRrkc4+27WHl7HS7Jdrfy
+	 JNBmc+8J/TXUFYrd/ahUdIdhpc+Bhep6gyKm337t9t9CNaS7ARODXwP1d3j3onlXJk
+	 rDFyFWpz7h64Yte/omp+TMaeimqzCLu7VR+/MFhexowka3fjVO/j8xHoRW+J+mLXS1
+	 QEAmibuY0tJAw==
+Received: by mail.craftsplex.pl for <ath11k@lists.infradead.org>; Tue, 21 Mar 2023 08:50:20 GMT
+Message-ID: <20230321074500-0.1.51.jb57.0.4mo9fidkb0@craftsplex.pl>
+Date: Tue, 21 Mar 2023 08:50:20 GMT
+From: "Kamil Tralewski" <kamil.tralewski@craftsplex.pl>
+To: <ath11k@lists.infradead.org>
+Subject: =?UTF-8?Q?S=C5=82owa_kluczowe_do_wypozycjonowania?=
+X-Mailer: mail.craftsplex.pl
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <87a607fepa.fsf@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230321_012043_790901_D28CFBA7 
-X-CRM114-Status: GOOD (  33.07  )
+X-CRM114-CacheID: sfid-20230321_015057_990985_E317C385 
+X-CRM114-Status: UNSURE (   0.90  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,90 +62,18 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Mon, Mar 20, 2023 at 08:41:21PM +0200, Kalle Valo wrote:
-> + ath11k list
-> 
-> Johan Hovold <johan@kernel.org> writes:
-> 
-> > On Mon, Mar 20, 2023 at 02:22:12PM +0200, Kalle Valo wrote:
-> >> Johan Hovold <johan+linaro@kernel.org> writes:
-> >> 
-> >> > Add devicetree bindings for Qualcomm ath11k PCIe devices such as WCN6856
-> >> > for which the calibration data variant may need to be described.
-> >> >
-> >> > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> >> > ---
-> >> >  .../bindings/net/wireless/pci17cb,1103.yaml   | 56 +++++++++++++++++++
-> >> >  1 file changed, 56 insertions(+)
-> >> >  create mode 100644
-> >> > Documentation/devicetree/bindings/net/wireless/pci17cb,1103.yaml
-> >> 
-> >> I'm confused (as usual), how does this differ from
-> >> bindings/net/wireless/qcom,ath11k.yaml? Why we need two .yaml files?
-> >
-> > Almost none of bindings/net/wireless/qcom,ath11k.yaml applies to WCN6856
-> > when using PCIe (e.g. as most properties are then discoverable).
-> >
-> > We could try to encode everything in one file, but that would likely
-> > just result in a big mess of a schema with conditionals all over.
-> 
-> Ah, so the current qcom,ath11k.yaml would be only for ath11k AHB devices
-> and this new file is only for ath11k PCI devices?
-
-Right, there would two separate schema files for the two device classes.
-
-> But why still the odd
-> name pci17cb,1103.yaml? It's not really descriptive and I'm for sure
-> will not remember that pci17cb,1103.yaml is for ath11k :)
-
-Yeah, it's not the best name from that perspective, but it follows the
-current convention of naming the schema files after the first compatible
-added.
-
-That said, we don't have many schemas for PCI devices so perhaps we can
-establish a new convention for those. Perhaps by replacing the numerical
-ids with what we'd use if these were platform devices (e.g.
-'qcom,wcn6855.yaml').
-
-As long as the DT maintainers are OK with it, I'd also be happy with
-something like you suggest below:
-
-	qcom,ath11k-ahb.yaml
-	qcom,ath11k-pci.yaml
-
-(or simply not renaming the current file 'qcom,ath11k.yaml') but I have
-gotten push back on that in the past.
-
-> Also it doesn't look good that we have qcom,ath11k-calibration-variant
-> documented twice now. I'm no DT expert but isn't there any other way? Is
-> it possible to include other files? For example, if we would have three
-> files:
-> 
-> qcom,ath11k.yaml
-> qcom,ath11k-ahb.yaml
-> qcom,ath11k-pci.yaml
-> 
-> Then have the common properties like ath11k-calibration-variant in the
-> first file and ahb/pci files would include that.
-
-That should be possible, but it's not necessarily better as you'd then
-have to look up two files to see the bindings for either device class
-(and as far as I can tell there would not be much sharing beyond this
-single property).
-
-Note that the property could just have well have been named
-'qcom,calibration-variant' and then it would be shared also with the
-ath10k set of devices which currently holds another definition of what
-is essentially the same property ('qcom,ath10k-calibration-variant').
-
-Johan
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+RHppZcWEIGRvYnJ5LAoKemFwb3puYcWCZW0gc2nEmSB6IFBhxYRzdHdhIG9mZXJ0xIUgaSB6IHBy
+enlqZW1ub8WbY2nEhSBwcnp5em5hasSZLCDFvGUgcHJ6eWNpxIVnYSB1d2FnxJkgaSB6YWNoxJlj
+YSBkbyBkYWxzenljaCByb3ptw7N3LiAKClBvbXnFm2xhxYJlbSwgxbxlIG1vxbxlIG3Ds2fFgmJ5
+bSBtaWXEhyBzd8OzaiB3a8WCYWQgdyBQYcWEc3R3YSByb3p3w7NqIGkgcG9tw7NjIGRvdHJ6ZcSH
+IHogdMSFIG9mZXJ0xIUgZG8gd2nEmWtzemVnbyBncm9uYSBvZGJpb3Jjw7N3LiBQb3p5Y2pvbnVq
+xJkgc3Ryb255IHd3dywgZHppxJlraSBjemVtdSBnZW5lcnVqxIUgxZt3aWV0bnkgcnVjaCB3IHNp
+ZWNpLgoKTW/FvGVteSBwb3Jvem1hd2lhxIcgdyBuYWpibGnFvHN6eW0gY3phc2llPwoKUG96ZHJh
+d2lhbQpLYW1pbCBUcmFsZXdza2kKCi0tIAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0
+cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGlu
+Zm8vYXRoMTFrCg==
