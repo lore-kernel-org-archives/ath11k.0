@@ -4,63 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94B61C6FD1C
-	for <ath11k@archiver.kernel.org>; Wed, 22 Mar 2023 09:47:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBF36C7619A
+	for <ath11k@archiver.kernel.org>; Wed, 22 Mar 2023 11:55:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
 	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=15zYhf5dYsTt6iKLbKmrpMbweG0/MluKhl3y3+O/DXA=; b=HGy/Oc0nfzbe2j
-	SnbmwWK4QLkSsZKUrUjVItZkAcz1YlTf/vj/NttdHCGGK8sRXRVY5PGQsgGTvpgxL2MJU1Wea8aQZ
-	AZauvvuQVbO0Uxs9ENvorImr1m4SbikfJ13D8ATgnC0XOzGzzbb+xIOgCIxvsqkvBIKLLg5OO8pto
-	PvLcarADtApO0Ih9efDh2d9Oog0W/xxivkqN1nb5f09UCeizFi/5sdHKCIHyWcK/N6P0O8LZ1rDRH
-	qtJcKptzRMK2WszGBmP0dSYgWyc0mq1VkESv7PCHIaZwfMZXvDDNCew5rPQKXiq6jTwwlm1Gyp5le
-	loyAxmENNmTPjCH16gog==;
+	List-Owner; bh=17HYSwqfI4zZ/r6VWtOX7GlZDcHzzNTsA30teXZxcUU=; b=LOPkAQpkR7Expt
+	8XbQftbsX/RmsIH3NNnWoqh47ChWjtrblkmWmN/ny2MiNmLR9W7jJqwJ/l7oOuvYgs7fXLK+R40Lg
+	L+v3fDk2v7OTuiJzHKjdeLHapp9HK8OHxYOlmJ4KzfdbdQU+VdKR3cub0vM4Yocl26oQRxVzDYPgM
+	nw/SDIaROCbojnvKzWvgjWIwYwRyIlzR45yifPvehGVTa2okaWFG1u//DnEh7qfq3FYucI/1aCK2u
+	ruRMTqwwsJU0frWfM1PuZlwTR2bDrtIMrzTN9001IPSCcOeKmooXwuYY2viI6rlCHhXTGCG1Ao+qZ
+	sCkjXrYgH43l19O1UusQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pev4O-00FVmX-0A;
-	Wed, 22 Mar 2023 09:47:48 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1pex44-00FpqJ-1T;
+	Wed, 22 Mar 2023 11:55:36 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pev4A-00FVcy-0X
+	id 1pex41-00Fpp5-2i
 	for ath11k@lists.infradead.org;
-	Wed, 22 Mar 2023 09:47:35 +0000
+	Wed, 22 Mar 2023 11:55:35 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 589A561FEA;
-	Wed, 22 Mar 2023 09:47:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 975CEC433EF;
-	Wed, 22 Mar 2023 09:47:31 +0000 (UTC)
+	by ams.source.kernel.org (Postfix) with ESMTPS id 4790BB81C0B;
+	Wed, 22 Mar 2023 11:55:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22A90C433EF;
+	Wed, 22 Mar 2023 11:55:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1679478452;
-	bh=4HxVDzNfjJY6dkkmlEkbzo3As/3oTHbN33xG/hJluJA=;
+	s=k20201202; t=1679486131;
+	bh=n2WahzwgiovV5cbRnKKc02LtrVaWlWcnMCVFq52JbH8=;
 	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=B89Bbu6J/lWiotayPnDPHVfNeTGCqT/v8CLDJNXh7t4dXICawD5rAZJAuGXOzoczm
-	 IaUasWhyHp7kkhzPGlS/F9UrBi08wn+rfdsNyHeZZEJbgFUI+A0PiXYim98KDZqK3D
-	 ISfD64TML64uBjBYcbEuLltbGLKz7iAcLIXUUSZGgf9HEN+g0MkrlRzerluGATybXe
-	 VlBUEhqrkR5GyKYY+UwvIwS1t93oskYFpfC+o0RJySxERhhuji8gP6TakiAvKsIjX6
-	 f6/xtRiQLKPuIPLBdGqY4LlGcdNxFJoutkHupcE5MRB37Yahq7+3f/dmN6dVr1iCd5
-	 xXoiLQrzOOyzw==
+	b=EsXBPEI8D1ajdQ6EzJd1houYkDZVWvO8RVfu7ofCF6PuI5gYvsHgq78tep0zOXNUl
+	 cFrsnalsWwmsvT7TDstbpxTxhraJTNc7OjbDKPtUPCB3fD09OQ7hZYxgN4Mk5Jsh2X
+	 7AszjtUQEEeBbFH1fXZ7Jtz5S44yJwwFASzUOyqMdBjGNBx6jpJunby9DyZV0TNX14
+	 oK4c72wjnbongt7sAiTCPKXg9k0LqihxJfKcWoFadx5SioLiPi61J6JgRTqc4/nSr3
+	 0iyrDoFSldkQQPXBfpPsif4yGAwLCGCOYCEyCc6mPlB2rLJXZIv/6PWMqgi+1QGddC
+	 zKPrShR3N6eWg==
 MIME-Version: 1.0
-Subject: Re: [PATCH] wifi: ath11k: fix BUFFER_DONE read on monitor ring rx
-  buffer
+Subject: Re: [PATCH v3] wifi: ath11k: Optimize 6 GHz scan time
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20230309164434.32660-1-quic_hprem@quicinc.com>
-References: <20230309164434.32660-1-quic_hprem@quicinc.com>
-To: Harshitha Prem <quic_hprem@quicinc.com>
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- Harshitha Prem <quic_hprem@quicinc.com>,
- Sathishkumar Muruganandam <quic_murugana@quicinc.com>
+In-Reply-To: <20230315112103.18426-1-quic_mpubbise@quicinc.com>
+References: <20230315112103.18426-1-quic_mpubbise@quicinc.com>
+To: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+ Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
 User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <167947844748.8844.13661658322623444104.kvalo@kernel.org>
-Date: Wed, 22 Mar 2023 09:47:31 +0000 (UTC)
+Message-ID: <167948612507.6445.2579526780286789940.kvalo@kernel.org>
+Date: Wed, 22 Mar 2023 11:55:29 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230322_024734_252837_EDD11965 
-X-CRM114-Status: UNSURE (   9.36  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230322_045534_099360_6381A6A8 
+X-CRM114-Status: GOOD (  15.06  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,33 +74,53 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Harshitha Prem <quic_hprem@quicinc.com> wrote:
+Manikanta Pubbisetty <quic_mpubbise@quicinc.com> wrote:
 
-> Perform dma_sync_single_for_cpu() on monitor ring rx buffer before
-> reading BUFFER_DONE tag and do dma_unmap_single() only after device
-> had set BUFFER_DONE tag to the buffer.
+> Currently, time taken to scan all supported channels on WCN6750
+> is ~8 seconds and connection time is almost 10 seconds. WCN6750
+> supports three Wi-Fi bands (i.e., 2.4/5/6 GHz) and the numbers of
+> channels for scan come around ~100 channels (default case).
+> Since the chip doesn't have support for DBS (Dual Band Simultaneous),
+> scans cannot be parallelized resulting in longer scan times.
 > 
-> Also when BUFFER_DONE tag is not set, allow the buffer to get read
-> next time without freeing skb.
+> Among the 100 odd channels, ~60 channels are in 6 GHz band. Therefore,
+> optimizing the scan for 6 GHz channels will bring down the overall
+> scan time.
 > 
-> This helps to fix AP+Monitor VAP with flood traffic scenario to see
-> monitor ring rx buffer overrun missing BUFFER_DONE tag to be set.
+> WCN6750 firmware has support to scan a 6 GHz channel based on co-located
+> AP information i.e., RNR IE which is found in the legacy 2.4/5 GHz scan
+> results. When a scan request with all supported channel list is enqueued
+> to the firmware, then based on WMI_SCAN_CHAN_FLAG_SCAN_ONLY_IF_RNR_FOUND
+> scan channel flag, firmware will scan only those 6 GHz channels for which
+> RNR IEs are found in the legacy scan results.
 > 
-> Also remove redundant rx dma buf free performed on DP
-> rx_mon_status_refill_ring.
+> In the proposed design, based on NL80211_SCAN_FLAG_COLOCATED_6GHZ scan
+> flag, driver will set the WMI_SCAN_CHAN_FLAG_SCAN_ONLY_IF_RNR_FOUND flag
+> for non-PSC channels. Since there is high probability to find 6 GHz APs
+> on PSC channels, these channels are always scanned. Only non-PSC channels
+> are selectively scanned based on cached RNR information from the legacy
+> scan results.
 > 
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
+> If NL80211_SCAN_FLAG_COLOCATED_6GHZ is not set in the scan flags,
+> then scan will happen on all supported channels (default behavior).
 > 
-> Signed-off-by: Sathishkumar Muruganandam <quic_murugana@quicinc.com>
-> Signed-off-by: Harshitha Prem <quic_hprem@quicinc.com>
+> With these optimizations, scan time is improved by 1.5-1.8 seconds on
+> WCN6750. Similar savings have been observed on WCN6855.
+> 
+> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
+> Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.16
+> 
+> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
 > Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-Patch applied to ath-next branch of ath.git, thanks.
+New warning:
 
-68e93ac5a31d wifi: ath11k: fix BUFFER_DONE read on monitor ring rx  buffer
+drivers/net/wireless/ath/ath11k/mac.c:3827: line length of 91 exceeds 90 columns
+
+I couldn't quickly figure out how to fix that, any ideas?
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20230309164434.32660-1-quic_hprem@quicinc.com/
+https://patchwork.kernel.org/project/linux-wireless/patch/20230315112103.18426-1-quic_mpubbise@quicinc.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
