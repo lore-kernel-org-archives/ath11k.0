@@ -4,62 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C280C6FD20
-	for <ath11k@archiver.kernel.org>; Fri, 24 Mar 2023 05:41:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C2F6C6FD20
+	for <ath11k@archiver.kernel.org>; Fri, 24 Mar 2023 14:52:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/PebVFcTlIaZXJCnCwJ29Lw5ULyblNhh4Ewa4MgXo3g=; b=TVwu+HLkFJyQUC
-	Lhsl8d7ATYzRjgw0pMRYWPPAqaHf022wMpFxkrDqya509zD0PqMNWiQ3ODVTES3cna1HrIuPxlhkw
-	vLauNR9UCbSlB6POBbTiidiFxJOSOTvjMKkyZT2R+OmlkV5m26t6jpm22HnVCmQUJqk+iLy+kk3rt
-	Pwj4qBRVGJCxpwgYEz0ounKgOKz36hKgxZHEhsrtuDuC08BcxQlRxOYb22MAAkzkZsAzCi4gJLSSp
-	ZjtvGk40nCyuY4msRYFLgraK8Eud57Uye4aoq/QTjAu6uefMoihcX1lIrBsqknzteN93c+tfr8Ser
-	D7tbd3oDB4uAr3BkywEg==;
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
+	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=E7/uRgza88HNLSeLfyrHnVKkFVuxLzAqwiYyBpH7eCw=; b=XueCtxCondvOwo
+	XlyLP/1XnCQegiF3mfC+mfhXj1A+SM+Bxg5ukF81U/X6dp8czLiclKO4pa0PDiG/fr4H2M/EFPh6o
+	cXjFk1pq9UfTWEunOtwVlZhMUkxZEHH8ASKLNdqh8GemC2F888uX5d8OHPye4SnO/6+lVwvR/8D/C
+	p8wUkjB2DXIztE01+sgQszCAwbgrkd9yLhtF0HxuOMaQw3ncWin/T8LWVOEZcIxEYhpKpCoEPj58k
+	1nauh/QnVNfS9Qj/orYGpIqrKQwf9SW2H6xdUEyvaGS4zR2TwxJSrr+3PcuBEgW+ScUIg3Esy+s8m
+	bbZSLSdFGugQHhOwR5Dw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pfaBO-003com-02;
-	Fri, 24 Mar 2023 05:41:46 +0000
-Received: from ams.source.kernel.org ([145.40.68.75])
+	id 1pfim5-004iY3-0V;
+	Fri, 24 Mar 2023 14:52:13 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pfaBL-003coJ-0h
+	id 1pfim2-004iWt-2p
 	for ath11k@lists.infradead.org;
-	Fri, 24 Mar 2023 05:41:45 +0000
+	Fri, 24 Mar 2023 14:52:12 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id 94F51B822CD;
-	Fri, 24 Mar 2023 05:41:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B824C433EF;
-	Fri, 24 Mar 2023 05:41:39 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 4FC8A62B4A;
+	Fri, 24 Mar 2023 14:52:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19939C433D2;
+	Fri, 24 Mar 2023 14:52:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1679636500;
-	bh=h29nt0gEMF/1LgqRHfjBAUDV0ke/wpAkbvezYM26cRE=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=V56mWhUY5/ISlJsP5G3oazS58WlawYqZK9D5OZzDxvGmHzIRn57vwBKZPjnbETpZN
-	 zqbkEnb3VYQgNEfGbpZc1pdTSA9vWwE2f/MIQn74QdCmYVuoH9yLQuJ5psRNG5vaSA
-	 BObndQkOGaKv2uCeC2Hhh/TrKScRTztdwLJzU06DPTNi4B+oX3imzfNbcyYj2A9/l5
-	 Yk2s5DF8Wi+dv9jrFWd7/CkFLb88IuCpYj2hIcejEjinlteC13Z38AuhKd4mV/hLI4
-	 oa7SeZCUsddcxC+OIMa71S2GIVusPEed810snnPK3lM/6vzqpsl/Rj/IVIq7UrN+fD
-	 /1tnzrk89naiQ==
-From: Kalle Valo <kvalo@kernel.org>
-To: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
-Subject: Re: [PATCH v3] wifi: ath11k: Optimize 6 GHz scan time
-References: <20230315112103.18426-1-quic_mpubbise@quicinc.com>
-	<167948612507.6445.2579526780286789940.kvalo@kernel.org>
-	<2152e5f1-cecd-f5d2-ca4b-e7ed159f40b7@quicinc.com>
-Date: Fri, 24 Mar 2023 07:41:34 +0200
-In-Reply-To: <2152e5f1-cecd-f5d2-ca4b-e7ed159f40b7@quicinc.com> (Manikanta
-	Pubbisetty's message of "Thu, 23 Mar 2023 11:41:14 +0530")
-Message-ID: <871qleemep.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+	s=k20201202; t=1679669529;
+	bh=0PpDPmjLSqLkyprFWnCZwIMNanhy8NMfDChEItYUYNA=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=kvEY9K6hJSrfGheCe0CCWiJvR7+SACqnTDQvORE8gcs3GXKHKrl8XyQh5xdLsjJGN
+	 f+RgCo4voThMwXliDU07e4JaZHMnU/A8CXebqL+OYdGaGOthpKlAl8Jjd2fjiSiA5s
+	 LjNVYwmpsHVbh0RifGqcwtu7N/6FZO1abie/+uGBq4AsHmCBJqympi80JQxxRt1zsG
+	 WYddlOuILALfgxi3bukwSc8UJxrMQmwr5V9JDVU2YHaZRgKZ+KyBzzk2maiI+l4wUb
+	 8l9L+PSnRbTvPAdjvn5jwNpzAri92KiyY6B25NGeZ0+VLG/zhWBjvawRHr1iF+R+mv
+	 qBASAYbByTAFw==
 MIME-Version: 1.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: wireless: add ath11k pcie bindings
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20230321094011.9759-2-johan+linaro@kernel.org>
+References: <20230321094011.9759-2-johan+linaro@kernel.org>
+To: Johan Hovold <johan+linaro@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Andy Gross <agross@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Steev Klimaszewski <steev@kali.org>, linux-wireless@vger.kernel.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, ath11k@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Johan Hovold <johan+linaro@kernel.org>
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-ID: <167966952416.27260.9867436581416631920.kvalo@kernel.org>
+Date: Fri, 24 Mar 2023 14:52:05 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230323_224143_546691_AD46421D 
-X-CRM114-Status: GOOD (  13.95  )
+X-CRM114-CacheID: sfid-20230324_075210_949715_01190A49 
+X-CRM114-Status: UNSURE (   8.00  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,64 +83,24 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
+Johan Hovold <johan+linaro@kernel.org> wrote:
 
-> On 3/22/2023 5:25 PM, Kalle Valo wrote:
->
->> Manikanta Pubbisetty <quic_mpubbise@quicinc.com> wrote:
->>
->>> Currently, time taken to scan all supported channels on WCN6750
->>> is ~8 seconds and connection time is almost 10 seconds. WCN6750
->>> supports three Wi-Fi bands (i.e., 2.4/5/6 GHz) and the numbers of
->>> channels for scan come around ~100 channels (default case).
->>> Since the chip doesn't have support for DBS (Dual Band Simultaneous),
->>> scans cannot be parallelized resulting in longer scan times.
->>>
->>> Among the 100 odd channels, ~60 channels are in 6 GHz band. Therefore,
->>> optimizing the scan for 6 GHz channels will bring down the overall
->>> scan time.
->>>
->>> WCN6750 firmware has support to scan a 6 GHz channel based on co-located
->>> AP information i.e., RNR IE which is found in the legacy 2.4/5 GHz scan
->>> results. When a scan request with all supported channel list is enqueued
->>> to the firmware, then based on WMI_SCAN_CHAN_FLAG_SCAN_ONLY_IF_RNR_FOUND
->>> scan channel flag, firmware will scan only those 6 GHz channels for which
->>> RNR IEs are found in the legacy scan results.
->>>
->>> In the proposed design, based on NL80211_SCAN_FLAG_COLOCATED_6GHZ scan
->>> flag, driver will set the WMI_SCAN_CHAN_FLAG_SCAN_ONLY_IF_RNR_FOUND flag
->>> for non-PSC channels. Since there is high probability to find 6 GHz APs
->>> on PSC channels, these channels are always scanned. Only non-PSC channels
->>> are selectively scanned based on cached RNR information from the legacy
->>> scan results.
->>>
->>> If NL80211_SCAN_FLAG_COLOCATED_6GHZ is not set in the scan flags,
->>> then scan will happen on all supported channels (default behavior).
->>>
->>> With these optimizations, scan time is improved by 1.5-1.8 seconds on
->>> WCN6750. Similar savings have been observed on WCN6855.
->>>
->>> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
->>> Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.16
->>>
->>> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
->>> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
->>
->> New warning:
->>
->> drivers/net/wireless/ath/ath11k/mac.c:3827: line length of 91 exceeds 90 columns
->>
->> I couldn't quickly figure out how to fix that, any ideas?
->>
->
-> I'd thought that max_line_length is 100 from the checkpatch.pl
+> Add devicetree bindings for Qualcomm ath11k PCIe devices such as WCN6855
+> for which the calibration data variant may need to be described.
+> 
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-In ath11k-check it's set to 90.
+Patch applied to ath-next branch of ath.git, thanks.
+
+b6b88111c0db dt-bindings: net: wireless: add ath11k pcie bindings
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+https://patchwork.kernel.org/project/linux-wireless/patch/20230321094011.9759-2-johan+linaro@kernel.org/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
 -- 
 ath11k mailing list
