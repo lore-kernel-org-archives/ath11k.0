@@ -4,60 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1607C6FD1C
-	for <ath11k@archiver.kernel.org>; Fri, 24 Mar 2023 15:04:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE14FC76195
+	for <ath11k@archiver.kernel.org>; Fri, 24 Mar 2023 18:31:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=WxUMeOV9eCqKuiZGshJEq3CHzlFG4cUQgJv3DEGnD8Q=; b=T2xOz5050fslUs
-	mzsd4QIBY+v/cZpQuggHaCHgJCr2wq5NQFalH3xeyGr5fdvFhA1y5YbKpLK78d9eUirDad3I60u+2
-	z3PUUrKspB0ZD2lsqk5mQ1t/5QCVzlW7AE0N5YR2CV2QnR0pxv/ETXBOKkNQwonafAn3Rdu+f4K7d
-	6rHhBzQgFZEdKlrwvCB7pUv5Lf2LRJGsQtwTpkuGXPiCPr6CgmppqPHLhrv1GdLJUA2BtQD9Nk5di
-	Komoxb6yRlKmOhUIWENfZIxTpj9Z/sxCdLhCHNaCXon9GUa9m/azkJdWLCTqxm/NcPnVahPHWUkda
-	OboSuwD1SjUCGLNH3ORw==;
+	List-Owner; bh=BgUTq2+x0jAHWmV9GOoDKs0OTd02zPMXgWSC3TSVIvM=; b=1gA11atD/gLGDr
+	Jrqi2keXEUBHilH+4GoDK6NHepGAyQ6KYMmmdGUnHLa8Ev45wcFV7bUqv4P/f5q0hkVy2tzDm3Y6o
+	7e/n6lwYXGNO1RFpNB7IFi1ozXgp63TiERt7H9ijX0yJPNqKRVQtXkALap9pc6ij114fJgpfUYuhl
+	c0Lwt5Or0HsCjqMaLCaN3E6DlRKRE94OcbyqY7NXeIsxbW9BIkCF9GWdCdTc+mPcrYLbQmzBuzi/s
+	/r7+FW9VpG96uEGhK2ROd5faUJNPuUXpD5+0g27vIOV/+ZN6imIgap/phNL6458k+ErgV4Zdv0nFT
+	U3hLyt4dzm5DMZeIfX5Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pfixY-004ko6-0S;
-	Fri, 24 Mar 2023 15:04:04 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1pfmCM-005KDc-37;
+	Fri, 24 Mar 2023 18:31:34 +0000
+Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pfixV-004knK-11
+	id 1pfmCK-005KCZ-0N
 	for ath11k@lists.infradead.org;
-	Fri, 24 Mar 2023 15:04:02 +0000
+	Fri, 24 Mar 2023 18:31:33 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id AB02E62B54;
-	Fri, 24 Mar 2023 15:04:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2FB3C433D2;
-	Fri, 24 Mar 2023 15:03:59 +0000 (UTC)
+	by ams.source.kernel.org (Postfix) with ESMTPS id F3668B825DF;
+	Fri, 24 Mar 2023 18:31:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BD02C433A7;
+	Fri, 24 Mar 2023 18:31:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1679670240;
-	bh=/I23K0OXPPkwe4qTbG0o7pOV7z8FIYzoQPT2ceT+BVc=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=SzSJk5z4YzYZ3CE0dj+u5AejCQH0qD1LveYTn7RAmBheVRsZMgo02BK+RG1iqr9Ci
-	 SYJwRpEe7HSk3ld0IJJGN0z2YsBrWZXGz2Yt4ipUF4LIdCs07A5JuH8MM7TegsEtka
-	 GLYKvVYkS2GwE/FMHlJl2wUVelicV0Ok/AQSvzgRx8PzujvUyFqAsMYaIpLevuafjn
-	 HDeX5++1tzlVsqqNtCScYc1ypslorhEAu/LkHc/fsvVBOPfiHmX0IdiPDnSMg9qHhK
-	 76p/XZxmgO+oaOec1wCQOl3ttsn+4b/EPFX62FbGTb3p5pHAKdXKqeOZlmS2RAc7+p
-	 l6FPX+r5S7NHw==
-From: Kalle Valo <kvalo@kernel.org>
-To: Ganesh Babu Jothiram <quic_gjothira@quicinc.com>
-Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
-Subject: Re: [PATCH] wifi: ath11k: Configure the FTM responder role using firmware capability flag
-References: <20230317072034.8217-1-quic_gjothira@quicinc.com>
-Date: Fri, 24 Mar 2023 17:03:56 +0200
-In-Reply-To: <20230317072034.8217-1-quic_gjothira@quicinc.com> (Ganesh Babu
-	Jothiram's message of "Fri, 17 Mar 2023 12:50:34 +0530")
-Message-ID: <87sfduchsz.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+	s=k20201202; t=1679682688;
+	bh=EyfY0rlchlhdbsx6lA17xyjUo29eM3oqgBh+IZ8tAk8=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=HyNQ3xpqWyFxqVmTf/X/1Q/x9pbfYQs36lb0l2P4yIqamq5FeV3aUI02SKz+cmZcE
+	 fsdu8Cs2XEqDzMM9otoTQqpbGlUr6cNRHoLkMNTLHORkROY51/53c3hbAxyi/lMPWm
+	 E/6TRP3ONxbBX3aYWMSOKLc6NIbGnxwDe5HrIEcKJP3F+XKWqXd+iVmxbjbnXhE2xF
+	 T8vWKUSidnjcCKkrSVYvIIHIen5XB4mBz8zPu6CaFCBa/aUGs4Tdwpx9p8WZ7e6lXs
+	 7ih0Lj/Yjp4DFG4b6QO8n5H2sjSpx2MwwMGdHJGhd3AwXet88kDp6tb4N/dR0XxZih
+	 HD1f8GqiCL2tg==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Kalle Valo <kvalo@kernel.org>,
+	Johan Hovold <johan+linaro@kernel.org>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
+	linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	ath11k@lists.infradead.org,
+	Steev Klimaszewski <steev@kali.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	netdev@vger.kernel.org,
+	Eric Dumazet <edumazet@google.com>,
+	devicetree@vger.kernel.org,
+	Rob Herring <robh+dt@kernel.org>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	linux-wireless@vger.kernel.org,
+	Andy Gross <agross@kernel.org>
+Subject: Re: (subset) [PATCH v2 0/2] arm64: dts: qcom: sc8280xp-x13s: add wifi calibration variant
+Date: Fri, 24 Mar 2023 11:34:28 -0700
+Message-Id: <167968287203.2233401.18027204097957860016.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230321094011.9759-1-johan+linaro@kernel.org>
+References: <20230321094011.9759-1-johan+linaro@kernel.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230324_080401_412753_9025BD0D 
-X-CRM114-Status: GOOD (  10.47  )
+X-CRM114-CacheID: sfid-20230324_113132_317118_6561DF04 
+X-CRM114-Status: GOOD (  10.80  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,33 +88,24 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Ganesh Babu Jothiram <quic_gjothira@quicinc.com> writes:
+On Tue, 21 Mar 2023 10:40:09 +0100, Johan Hovold wrote:
+> This series adds the missing calibration variant devicetree property
+> which is needed to load the (just released) calibration data and use the
+> ath11k wifi on the Lenovo Thinkpad X13s.
+> 
+> Kalle, can you take the binding through your tree and then Bjorn can
+> take the devicetree update through the qcom tree?
+> 
+> [...]
 
-> Fine Time Measurement(FTM) is offloaded feature to firmware.
-> Hence, the configuration of FTM responder role is done using
-> firmware capability flag instead of hw param.
->
-> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
->
-> Signed-off-by: Ganesh Babu Jothiram <quic_gjothira@quicinc.com>
+Applied, thanks!
 
-[...]
+[2/2] arm64: dts: qcom: sc8280xp-x13s: add wifi calibration variant
+      commit: 2702f54f400ad3979632cdb76553772414f4c5e3
 
-> --- a/drivers/net/wireless/ath/ath11k/mac.c
-> +++ b/drivers/net/wireless/ath/ath11k/mac.c
-> @@ -3538,7 +3538,7 @@ static void ath11k_mac_op_bss_info_changed(struct ieee80211_hw *hw,
->  
->  	if (changed & BSS_CHANGED_FTM_RESPONDER &&
->  	    arvif->ftm_responder != info->ftm_responder &&
-> -	    ar->ab->hw_params.ftm_responder &&
-> +	    (test_bit(WMI_TLV_SERVICE_RTT, ar->ab->wmi_ab.svc_map)) &&
-
-Unnecessary parenthesis, I fixed that in the pending branch.
-
+Best regards,
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+Bjorn Andersson <andersson@kernel.org>
 
 -- 
 ath11k mailing list
