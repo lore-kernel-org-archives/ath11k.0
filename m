@@ -4,81 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA216C76196
-	for <ath11k@archiver.kernel.org>; Tue, 28 Mar 2023 07:18:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1546BC76196
+	for <ath11k@archiver.kernel.org>; Tue, 28 Mar 2023 07:37:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=GTfJTxeT6R7tj/5ynzdqeHhjoTm9A1U6bCVPnJahMc8=; b=QXiHRrPULjvS+G
-	vRD4GsxCaC000OKWapYQKYqiis4acbv5n8qdnzRJnkrozGBr6/GYf/jY/7CxDM7anMedGLg81ZROn
-	c/mSU1/gtXzY32FI+9pbYADQZ5hoj6GOCr8vTgkrLaXjqjx0Ab/n3QF6EKOfObppIQSEyvNylkvRB
-	1L64kd40kfr43W48v6AU6CQY5GTtTgJKVPgoe3p1n05bFwMNOUykj66Z+LKca49aygcnDdJU9s8/5
-	iUB6ZuXUGjYTNQjMvMORhjCeDQ+dZyOJ+rAOCAdywcJ5Xg2058XdnOX7UBJn9QI30rGffHBQjRiGE
-	nZ8cxub6prh0OQA3WlfQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=bC5mEa1dDq86xVBwgdy+gqKIS+QWUGgJVz+IQftLeA0=; b=rcHilZMW5KnoYB
+	8ABrO5UgLb7ZkAQJHXwx7swzBe4+z4LVGiVrjM9CZ12YGVaGE8N54qmPuXjbSs99wUemW66XCFz6C
+	PtHLMabdFSPaYn+JhXRbufNjs6dKt130t+waSi1vItzLv02govW5N3NkJZZLz69UGyZa4iJNMoCCE
+	/kmWVnTzy4u19Kewev0ojjvtAtqSFK66NqNhEkbFHZMI9clRStaAiTSy475OtrLbe2wdHEcxRRO9f
+	XmNYWqkt/WperhMJptlXEw2F7bV8zbRQkXzutgdmaleVn+QNQGBrpza0Z0CUZeUF/ic/gFr3iQUzm
+	Du6hWdlQEz/hm8ctr0LQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1ph3bI-00DQM1-0h;
-	Tue, 28 Mar 2023 07:18:36 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1ph3tt-00DUDN-23;
+	Tue, 28 Mar 2023 07:37:49 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1ph3bE-00DQLA-1H
-	for ath11k@lists.infradead.org;
-	Tue, 28 Mar 2023 07:18:34 +0000
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32S6XinJ003916;
-	Tue, 28 Mar 2023 07:18:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-type; s=qcppdkim1;
- bh=gGorp8Eq62rZ3X+Hg3TagEXw2J6KKpfmSiSPDsPpPDg=;
- b=ZvJZNOe8z9mK5wT/WQ62Baxy7kOwlpe3zCBSGj5U3ZL9KRuh17ti3qEsXpeUpugIg9XI
- Xc7c9Egc9Nq8vVRmoab07qR9DbTwMk3u1co7i2lF6NSbQyH2HW/Z2BTFNHznqtWshMxN
- 9Sfp1h2OuWMN/FUPWZOIZocGWpfG67x4EJV/EcUvUEYIPymDYUW2VAIa/hGaJvsoBpO1
- QlaeI4D+oseeVTHeTwLV5fecs+LNI+OJVSeT0IiPGAb1ede2wxCLOS3vOMbxFAF4GUAu
- QdeJH5ZQSC52BwikhrJ6U4Yp85gGK/mUlmiOvzBXPiAg/ffIWd2LTXOAwxlyzrpeD+cQ xQ== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pk7h8tyj8-1
+	id 1ph3tr-00DUBx-0K;
+	Tue, 28 Mar 2023 07:37:48 +0000
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32S6XI0j027091;
+	Tue, 28 Mar 2023 07:37:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=4MVlWy4NFhxOZasxy7oIO0wAjWNo3jsta2IHJO78OHE=;
+ b=B93GffEDcU9hXO2R9MDw5r1WDGyFGv/TTq5k0sf91YPs10MZDX/eoEti3hwB0mz0I4BR
+ d4NG5FF0sC7q6VZRC4pVVGU2WuPO6UWE+JyrYQifBOl+4vRKkcveljDJzCZUunqfpH0u
+ 5tAZNcROJ2+yYbaMAJC4S5r3J57OscTOziy2vkwjQI2puQF0sTVuSefXA4PXYKwbMJ9W
+ QOt1dvIr3fcxbEVQp2q+dW3zYSg8rVHUwpZwX2QLHYH8OrBC4Ob5aPz7XybsOnRDil7R
+ RiZcWUc+Yx21JGV0FLY7Rnp2sDIeLuL3paKZL66o1keCTRtaMDS4LeCyFjtF/zyta9+e Gg== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pkbywabb5-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 28 Mar 2023 07:18:30 +0000
+	Tue, 28 Mar 2023 07:37:46 +0000
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32S7ITts014323
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32S7bjS7004685
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 28 Mar 2023 07:18:29 GMT
-Received: from tamizhr-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.41; Tue, 28 Mar 2023 00:18:27 -0700
-From: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>,
-        Venkateswara Naralasetty
-	<quic_vnaralas@quicinc.com>,
-        Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
-Subject: [PATCH] wifi: ath11k: skip status ring entry processing
-Date: Tue, 28 Mar 2023 12:48:14 +0530
-Message-ID: <20230328071814.13018-1-quic_tamizhr@quicinc.com>
-X-Mailer: git-send-email 2.17.1
+	Tue, 28 Mar 2023 07:37:45 GMT
+Received: from [10.231.195.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Tue, 28 Mar
+ 2023 00:37:44 -0700
+Message-ID: <7872a08d-fe37-a876-713d-c5ec40c1893f@quicinc.com>
+Date: Tue, 28 Mar 2023 15:37:40 +0800
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 24/27] wifi: mac80211: implement link switching
+Content-Language: en-US
+To: Johannes Berg <johannes@sipsolutions.net>,
+        <linux-wireless@vger.kernel.org>
+CC: <ath11k@lists.infradead.org>, <ath12k@lists.infradead.org>
+References: <20220902141259.377789-1-johannes@sipsolutions.net>
+ <20220902161143.d99dfbe65c90.I92385ba882ec984a9a2ad18293173436657e82aa@changeid>
+ <ca5177fe-3b9f-2309-9afd-1d5e827540f7@quicinc.com>
+ <50719d34bc48d816d00b56d3d9efdb59e3e51a16.camel@sipsolutions.net>
+From: Wen Gong <quic_wgong@quicinc.com>
+In-Reply-To: <50719d34bc48d816d00b56d3d9efdb59e3e51a16.camel@sipsolutions.net>
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: -kyfwiQiz7nwINvCUj-grlmGyLhmOW6D
-X-Proofpoint-ORIG-GUID: -kyfwiQiz7nwINvCUj-grlmGyLhmOW6D
+X-Proofpoint-GUID: XPV9NJl-6xfUfQWlQrUYxi8WaQlYxG42
+X-Proofpoint-ORIG-GUID: XPV9NJl-6xfUfQWlQrUYxi8WaQlYxG42
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
  definitions=2023-03-24_11,2023-03-27_02,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
- bulkscore=0 impostorscore=0 malwarescore=0 adultscore=0 lowpriorityscore=0
- clxscore=1015 mlxlogscore=866 phishscore=0 priorityscore=1501
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2303280059
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
+ adultscore=0 priorityscore=1501 mlxlogscore=886 spamscore=0 malwarescore=0
+ impostorscore=0 bulkscore=0 lowpriorityscore=0 clxscore=1015 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2303200000
+ definitions=main-2303280062
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230328_001832_553293_AE8A2991 
-X-CRM114-Status: GOOD (  22.98  )
+X-CRM114-CacheID: sfid-20230328_003747_140917_ED3AA0B9 
+X-CRM114-Status: UNSURE (   8.84  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,216 +96,21 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
-
-If STATUS_BUFFER_DONE is not set for a monitor status ring entry,
-we don't process the status ring until STATUS_BUFFER_DONE set
-for that status ring entry.
-
-During LMAC reset it may happen that hardware will not write
-STATUS_BUFFER_DONE tlv in status buffer, in that case we end up
-waiting for STATUS_BUFFER_DONE leading to backpressure on monitor
-status ring.
-
-To fix the issue, when HP(Head Pointer) + 1 entry is peeked and if DMA
-is not done and if HP + 2 entry's DMA done is set,
-replenish HP + 1 entry and start processing in next interrupt.
-If HP + 2 entry's DMA done is not set, poll onto HP + 1 entry DMA
-done to be set.
-
-Also, during monitor attach HP points to the end of the ring and
-TP(Tail Pointer) points to the start of the ring.
-Using ath11k_hal_srng_src_peek() may result in processing invalid buffer
-for the very first interrupt. Since, HW starts writing buffer from TP.
-
-To avoid this issue call ath11k_hal_srng_src_next_peek() instead of
-calling ath11k_hal_srng_src_peek().
-
-Tested-on: IPQ5018 hw1.0 AHB WLAN.HK.2.6.0.1-00861-QCAHKSWPL_SILICONZ-1
-
-Signed-off-by: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
-Co-developed-by: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
-Signed-off-by: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/dp_rx.c | 91 +++++++++++++++++++++----
- drivers/net/wireless/ath/ath11k/hal.c   | 14 ++++
- drivers/net/wireless/ath/ath11k/hal.h   |  2 +
- 3 files changed, 94 insertions(+), 13 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 99859b59138e..b0eac59162a9 100644
---- a/drivers/net/wireless/ath/ath11k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -2960,6 +2960,46 @@ ath11k_dp_rx_mon_update_status_buf_state(struct ath11k_mon_data *pmon,
- 	}
- }
- 
-+enum dp_mon_status_buf_state
-+ath11k_dp_rx_mon_handle_status_buf_done(struct ath11k_base *ab, struct hal_srng *srng,
-+					struct dp_rxdma_ring *rx_ring)
-+{
-+	void *status_desc;
-+	struct sk_buff *skb;
-+	struct ath11k_skb_rxcb *rxcb;
-+	struct hal_tlv_hdr *tlv;
-+	dma_addr_t paddr;
-+	u32 cookie;
-+	int buf_id;
-+	u8 rbm;
-+
-+	status_desc = ath11k_hal_srng_src_next_peek(ab, srng);
-+	if (!status_desc)
-+		return DP_MON_STATUS_NO_DMA;
-+
-+	ath11k_hal_rx_buf_addr_info_get(status_desc, &paddr, &cookie, &rbm);
-+
-+	buf_id = FIELD_GET(DP_RXDMA_BUF_COOKIE_BUF_ID, cookie);
-+
-+	spin_lock_bh(&rx_ring->idr_lock);
-+	skb = idr_find(&rx_ring->bufs_idr, buf_id);
-+	spin_unlock_bh(&rx_ring->idr_lock);
-+
-+	if (!skb)
-+		return DP_MON_STATUS_NO_DMA;
-+
-+	rxcb = ATH11K_SKB_RXCB(skb);
-+	dma_sync_single_for_cpu(ab->dev, rxcb->paddr,
-+				skb->len + skb_tailroom(skb),
-+				DMA_FROM_DEVICE);
-+
-+	tlv = (struct hal_tlv_hdr *)skb->data;
-+	if (FIELD_GET(HAL_TLV_HDR_TAG, tlv->tl) != HAL_RX_STATUS_BUFFER_DONE)
-+		return DP_MON_STATUS_NO_DMA;
-+
-+	return DP_MON_STATUS_REPLINISH;
-+}
-+
- static int ath11k_dp_rx_reap_mon_status_ring(struct ath11k_base *ab, int mac_id,
- 					     int *budget, struct sk_buff_head *skb_list)
- {
-@@ -2973,6 +3013,7 @@ static int ath11k_dp_rx_reap_mon_status_ring(struct ath11k_base *ab, int mac_id,
- 	struct sk_buff *skb;
- 	struct ath11k_skb_rxcb *rxcb;
- 	struct hal_tlv_hdr *tlv;
-+	enum dp_mon_status_buf_state reap_status;
- 	u32 cookie;
- 	int buf_id, srng_id;
- 	dma_addr_t paddr;
-@@ -2992,8 +3033,7 @@ static int ath11k_dp_rx_reap_mon_status_ring(struct ath11k_base *ab, int mac_id,
- 	ath11k_hal_srng_access_begin(ab, srng);
- 	while (*budget) {
- 		*budget -= 1;
--		rx_mon_status_desc =
--			ath11k_hal_srng_src_peek(ab, srng);
-+		rx_mon_status_desc = ath11k_hal_srng_src_peek(ab, srng);
- 		if (!rx_mon_status_desc) {
- 			pmon->buf_state = DP_MON_STATUS_REPLINISH;
- 			break;
-@@ -3024,18 +3064,43 @@ static int ath11k_dp_rx_reap_mon_status_ring(struct ath11k_base *ab, int mac_id,
- 			tlv = (struct hal_tlv_hdr *)skb->data;
- 			if (FIELD_GET(HAL_TLV_HDR_TAG, tlv->tl) !=
- 					HAL_RX_STATUS_BUFFER_DONE) {
--				ath11k_warn(ab, "mon status DONE not set %lx, buf_id %d\n",
--					    FIELD_GET(HAL_TLV_HDR_TAG,
--						      tlv->tl), buf_id);
--				/* If done status is missing, hold onto status
--				 * ring until status is done for this status
--				 * ring buffer.
--				 * Keep HP in mon_status_ring unchanged,
--				 * and break from here.
--				 * Check status for same buffer for next time
-+				/* RxDMA status done bit might not be set even
-+				 * though tp is moved by HW.
- 				 */
--				pmon->buf_state = DP_MON_STATUS_NO_DMA;
--				break;
-+
-+				/* If done status is missing:
-+				 * 1. As per MAC team's suggestion,
-+				 *    when HP + 1 entry is peeked and if DMA
-+				 *    is not done and if HP + 2 entry's DMA done
-+				 *    is set. skip HP + 1 entry and
-+				 *    start processing in next interrupt.
-+				 * 2. If HP + 2 entry's DMA done is not set,
-+				 *    poll onto HP + 1 entry DMA done to be set.
-+				 *    Check status for same buffer for next time
-+				 *    dp_rx_mon_status_srng_process
-+				 */
-+
-+				reap_status = ath11k_dp_rx_mon_handle_status_buf_done(ab, srng,
-+										      rx_ring);
-+				if (reap_status == DP_MON_STATUS_NO_DMA) {
-+					continue;
-+				} else if (reap_status == DP_MON_STATUS_REPLINISH) {
-+					ath11k_warn(ab, "mon status DONE not set %lx, buf_id %d\n",
-+						    FIELD_GET(HAL_TLV_HDR_TAG, tlv->tl),
-+						    buf_id);
-+
-+					spin_lock_bh(&rx_ring->idr_lock);
-+					idr_remove(&rx_ring->bufs_idr, buf_id);
-+					spin_unlock_bh(&rx_ring->idr_lock);
-+
-+					dma_unmap_single(ab->dev, rxcb->paddr,
-+							 skb->len + skb_tailroom(skb),
-+							 DMA_FROM_DEVICE);
-+
-+					dev_kfree_skb_any(skb);
-+					pmon->buf_state = DP_MON_STATUS_REPLINISH;
-+					goto move_next;
-+				}
- 			}
- 
- 			spin_lock_bh(&rx_ring->idr_lock);
-diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
-index 22422237500c..31e499eaa795 100644
---- a/drivers/net/wireless/ath/ath11k/hal.c
-+++ b/drivers/net/wireless/ath/ath11k/hal.c
-@@ -783,6 +783,20 @@ u32 *ath11k_hal_srng_src_get_next_reaped(struct ath11k_base *ab,
- 	return desc;
- }
- 
-+u32 *ath11k_hal_srng_src_next_peek(struct ath11k_base *ab, struct hal_srng *srng)
-+{
-+	u32 next_hp;
-+
-+	lockdep_assert_held(&srng->lock);
-+
-+	next_hp = (srng->u.src_ring.hp + srng->entry_size) % srng->ring_size;
-+
-+	if (next_hp != srng->u.src_ring.cached_tp)
-+		return srng->ring_base_vaddr + next_hp;
-+
-+	return NULL;
-+}
-+
- u32 *ath11k_hal_srng_src_peek(struct ath11k_base *ab, struct hal_srng *srng)
- {
- 	lockdep_assert_held(&srng->lock);
-diff --git a/drivers/net/wireless/ath/ath11k/hal.h b/drivers/net/wireless/ath/ath11k/hal.h
-index 1942d41d6de5..f60a896a5fb8 100644
---- a/drivers/net/wireless/ath/ath11k/hal.h
-+++ b/drivers/net/wireless/ath/ath11k/hal.h
-@@ -946,6 +946,8 @@ u32 *ath11k_hal_srng_dst_peek(struct ath11k_base *ab, struct hal_srng *srng);
- int ath11k_hal_srng_dst_num_free(struct ath11k_base *ab, struct hal_srng *srng,
- 				 bool sync_hw_ptr);
- u32 *ath11k_hal_srng_src_peek(struct ath11k_base *ab, struct hal_srng *srng);
-+u32 *ath11k_hal_srng_src_next_peek(struct ath11k_base *ab,
-+				   struct hal_srng *srng);
- u32 *ath11k_hal_srng_src_get_next_reaped(struct ath11k_base *ab,
- 					 struct hal_srng *srng);
- u32 *ath11k_hal_srng_src_reap_next(struct ath11k_base *ab,
-
-base-commit: bea046575a2e6d7d1cf63cc7ab032647a3585de5
--- 
-2.17.1
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+T24gMy8yNy8yMDIzIDQ6MzEgUE0sIEpvaGFubmVzIEJlcmcgd3JvdGU6Ci4uLgo+PiBBbHNvIEkg
+c2VlIGNvbW1pdCg4ZmI3ZTJlZjRiYWIgbWFjODAyMTFfaHdzaW06IGFsd2F5cyBhY3RpdmF0ZSBh
+bGwgbGlua3MpIGFuZCBpZWVlODAyMTFfaWZfcGFyc2VfYWN0aXZlX2xpbmtzKCkKPj4gd2lsbCB1
+c2UgaWVlZTgwMjExX3NldF9hY3RpdmVfbGlua3MoKSwgc28gSSB0aGluayBpZWVlODAyMTFfc2V0
+X2FjdGl2ZV9saW5rcygpIGhhcyBwYXNzZWQgdGVzdCBjYXNlIHdpdGggc29tZSB0eXBlIGxvd2Vy
+IGRyaXZlci9jaGlwPwo+IFllcywgd2UgaGF2ZSB0aGlzIHdvcmtpbmcgb24gaXdsd2lmaS9tdm0u
+Cj4KPiBqb2hhbm5lcwpNYXkgSSBrbm93IGhvdyBkaWQgeW91IHRlc3QgaXQ/CgpEaWQgeW91IHRl
+c3Qgd2l0aCB0b29sIGxpa2UgdGhpcyB3aXRoIHBhcmFtZXRlciAiQWN0aXZlVHhNdWx0aUxpbmtz
+Ij8KCiDCoCIuXHNpZ21hLWR1dCAtbCAKc3RhX3NldF9yZmVhdHVyZSxJbnRlcmZhY2Usd2xhbjAs
+cHJvZyxFSFQsQWN0aXZlVHhNdWx0aUxpbmtzLDAyOjAzOjdmOjk1OjIxOjk3LEFjdGl2ZVJ4TXVs
+dGlMaW5rcywwMjowMzo3Zjo5NToyMTo5NyIKCgotLSAKYXRoMTFrIG1haWxpbmcgbGlzdAphdGgx
+MWtAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL2F0aDExawo=
