@@ -4,73 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE614C77B60
-	for <ath11k@archiver.kernel.org>; Tue, 28 Mar 2023 09:22:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E4B2C76195
+	for <ath11k@archiver.kernel.org>; Tue, 28 Mar 2023 10:08:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=nKz/EhioMq1w/wCKhFGxxTBFyjZBxlcDs/NcyYLDqnc=; b=1pMxPayZcfRNqy
-	iwg2n1Y0A3QvzNyojTF4wfrYPHLtzYDewpvEly6nY+CrqRMLCZ0yrh/lpCiROJIoIbSv+7bJIjIGA
-	BVEnP8+0SrTWbR8S5KyvC5bWohBxFFASfwMhDKMJ+n/KGQsTyLxMatbcaVmAm3gQ5DDkikLfv22uF
-	wvJQNFB4bZYfANprURvYVLzhePpQdrwGQl6nwH1wAldDx8hlJ7dYdL/cpjggGCt7xHTv2J1Oe/hYz
-	niziRg+pHBhHg+hwkeIESM79H5t2cy5VhHqez0YzuGNiyb2/ZcgSKvVEWNGGRz025JFWB/PEMvHF4
-	WMlvP5G4oxHOCHWfcQag==;
+	List-Owner; bh=CzHb5iH+Q7ZssjHEXitsxNyVjWEUjRYMkILUjU/Qgg4=; b=CfESnEkBMbIflf
+	Fpt5cMAYtjiVPGGEs691UhAtgIrGXY6+WCB7u63giUI3EmHGr5pPwM8Z1sotZdNw/Pf7/ok/ftFx4
+	O5CiHA/F3p5K7lZMJcLfiV2xGAnOyxDt74M4FLLWiFqonZ6qnTZbqU7lpX6ke8rpMzciZLY3qm87B
+	giiiUChtn+vd4UdN6b6A88K3MxXdeAuz9MPK0qQMmQF7aiQ93RAsaQdZWUtvzfINLeyEHkt3Em2uy
+	0aVkXd39Fc1OJlKCwZMwviN81FoxTGwv0kgyrnMyI2xh69820PkxI6DQ8oMAZ/QXrbCAYKCrywHNr
+	m1RK1ldpRBAJgFaGku2Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1ph5Wm-00Dir3-0M;
-	Tue, 28 Mar 2023 09:22:04 +0000
-Received: from mga12.intel.com ([192.55.52.136])
+	id 1ph6Fm-00DrBn-01;
+	Tue, 28 Mar 2023 10:08:34 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1ph5Wi-00DiqI-2e
-	for ath11k@lists.infradead.org;
-	Tue, 28 Mar 2023 09:22:02 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1679995320; x=1711531320;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=OpBwDm3bc0RVrygPOMQqxYOOiHUF9v3KqPn1PaW6G9U=;
-  b=TRNDLsKYs0vMdaeSoLfsJQxNMl/nsMms6sSnYA5lKL5dhb0VP5W7bgjD
-   p7n+LI6Z+koLr5oyQxzs0TDwH9O83M/mR4plkRND8CLj5QeIZ0FZ/Cn0O
-   fZwm/ATKL3/KWrj+T2Jcfwu+gxFRSpxAPJzwoU+nMlb4Yy4lg/dyTJ7X9
-   +X1Bnjp4Ucv3caLsbrU0pFFtn+3xSfS4G929yklLv//8/9eAxj+JG2PlK
-   uWwuVq4qZnNrnVzjKGuvL0kW5AOByggY9sCs8lxFIPRKUTJZJR2+Lhw+A
-   srNybyQAf4mkqZIBOmuO/5WXr3WsG/puxNSTiuzKnXtOm9s6O4pSE2zIs
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="320168603"
-X-IronPort-AV: E=Sophos;i="5.98,296,1673942400"; 
-   d="scan'208";a="320168603"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Mar 2023 02:22:00 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="753067433"
-X-IronPort-AV: E=Sophos;i="5.98,296,1673942400"; 
-   d="scan'208";a="753067433"
-Received: from lkp-server01.sh.intel.com (HELO b613635ddfff) ([10.239.97.150])
-  by fmsmga004.fm.intel.com with ESMTP; 28 Mar 2023 02:21:58 -0700
-Received: from kbuild by b613635ddfff with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1ph5Wf-000IQm-2l;
-	Tue, 28 Mar 2023 09:21:57 +0000
-Date: Tue, 28 Mar 2023 17:21:32 +0800
-From: kernel test robot <lkp@intel.com>
-To: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>,
-	ath11k@lists.infradead.org
-Cc: oe-kbuild-all@lists.linux.dev, linux-wireless@vger.kernel.org,
-	Venkateswara Naralasetty <quic_vnaralas@quicinc.com>,
-	Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
-Subject: Re: [PATCH] wifi: ath11k: skip status ring entry processing
-Message-ID: <202303281719.CvnPkOiK-lkp@intel.com>
-References: <20230328071814.13018-1-quic_tamizhr@quicinc.com>
+	id 1ph6Fe-00Dr7Y-39;
+	Tue, 28 Mar 2023 10:08:30 +0000
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32S6Wgux024423;
+	Tue, 28 Mar 2023 10:08:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=YEtdMWxFvwJB9IFe9RCVqd16TmzhWL46GUN6XDDo+Kk=;
+ b=fVzx/jMYW0Qu26YD1whXXgytbmMskMWIIx5zuJnTUGr0DL0lGMdUGa4+9wAqMF/phhfi
+ 5d+ca8rSH0QKcKZhw23i8EjaWEo0urCNdlBxbqxl2qyVPy9dPwLFveXgPrxFCSZUhqWQ
+ gsT9F1Jdfw7WxsVUjB5aHvxdqc8xj/yucSIN/UhZU9CEk3ulQRrSZyA3P6UcDZVmRWjr
+ nsfRTJvqrJT08EhL6XsBT2Ve7ODBR/y5YFcPKvzV9A5GdkNEu44XoeDCMd7kROQPheKh
+ M40ZHSpbkrGvdG9VS2HBu6XLdd9reJGz/Zp3ppZsrgCxOhYsGrp03p4kNNg5aZMiLmmX TQ== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pkbywan8a-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 28 Mar 2023 10:08:24 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32SA8NDS020614
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 28 Mar 2023 10:08:23 GMT
+Received: from [10.231.195.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Tue, 28 Mar
+ 2023 03:08:22 -0700
+Message-ID: <1ad3d3de-81b6-200b-edd8-10f3c5345aaf@quicinc.com>
+Date: Tue, 28 Mar 2023 18:08:19 +0800
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230328071814.13018-1-quic_tamizhr@quicinc.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v3 2/5] SME: Add support for handling authentication with
+ MLD
+Content-Language: en-US
+To: Andrei Otcheretianski <andrei.otcheretianski@intel.com>,
+        <hostap@lists.infradead.org>
+CC: Ilan Peer <ilan.peer@intel.com>,
+        "ath11k@lists.infradead.org"
+	<ath11k@lists.infradead.org>
+References: <20221206094609.104911-1-andrei.otcheretianski@intel.com>
+ <20221206094609.104911-2-andrei.otcheretianski@intel.com>
+From: Wen Gong <quic_wgong@quicinc.com>
+In-Reply-To: <20221206094609.104911-2-andrei.otcheretianski@intel.com>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: DfPHsXpiajYiu8bYn7PElhH5hBLKpxRU
+X-Proofpoint-ORIG-GUID: DfPHsXpiajYiu8bYn7PElhH5hBLKpxRU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-03-24_11,2023-03-27_02,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
+ adultscore=0 priorityscore=1501 mlxlogscore=999 spamscore=0 malwarescore=0
+ impostorscore=0 bulkscore=0 lowpriorityscore=0 clxscore=1015 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2303200000
+ definitions=main-2303280084
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230328_022200_868515_43E68DB4 
-X-CRM114-Status: GOOD (  10.79  )
+X-CRM114-CacheID: sfid-20230328_030827_030207_B194BB26 
+X-CRM114-Status: GOOD (  14.51  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,95 +96,38 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi Tamizh,
-
-Thank you for the patch! Perhaps something to improve:
-
-[auto build test WARNING on bea046575a2e6d7d1cf63cc7ab032647a3585de5]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Tamizh-Chelvam-Raja/wifi-ath11k-skip-status-ring-entry-processing/20230328-151947
-base:   bea046575a2e6d7d1cf63cc7ab032647a3585de5
-patch link:    https://lore.kernel.org/r/20230328071814.13018-1-quic_tamizhr%40quicinc.com
-patch subject: [PATCH] wifi: ath11k: skip status ring entry processing
-config: ia64-allyesconfig (https://download.01.org/0day-ci/archive/20230328/202303281719.CvnPkOiK-lkp@intel.com/config)
-compiler: ia64-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/c6e8f81ccc1ac66cdf84bc9bbe71993ffd267677
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Tamizh-Chelvam-Raja/wifi-ath11k-skip-status-ring-entry-processing/20230328-151947
-        git checkout c6e8f81ccc1ac66cdf84bc9bbe71993ffd267677
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=ia64 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=ia64 SHELL=/bin/bash drivers/net/
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202303281719.CvnPkOiK-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/net/wireless/ath/ath11k/dp_rx.c:2964:1: warning: no previous prototype for 'ath11k_dp_rx_mon_handle_status_buf_done' [-Wmissing-prototypes]
-    2964 | ath11k_dp_rx_mon_handle_status_buf_done(struct ath11k_base *ab, struct hal_srng *srng,
-         | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-vim +/ath11k_dp_rx_mon_handle_status_buf_done +2964 drivers/net/wireless/ath/ath11k/dp_rx.c
-
-  2962	
-  2963	enum dp_mon_status_buf_state
-> 2964	ath11k_dp_rx_mon_handle_status_buf_done(struct ath11k_base *ab, struct hal_srng *srng,
-  2965						struct dp_rxdma_ring *rx_ring)
-  2966	{
-  2967		void *status_desc;
-  2968		struct sk_buff *skb;
-  2969		struct ath11k_skb_rxcb *rxcb;
-  2970		struct hal_tlv_hdr *tlv;
-  2971		dma_addr_t paddr;
-  2972		u32 cookie;
-  2973		int buf_id;
-  2974		u8 rbm;
-  2975	
-  2976		status_desc = ath11k_hal_srng_src_next_peek(ab, srng);
-  2977		if (!status_desc)
-  2978			return DP_MON_STATUS_NO_DMA;
-  2979	
-  2980		ath11k_hal_rx_buf_addr_info_get(status_desc, &paddr, &cookie, &rbm);
-  2981	
-  2982		buf_id = FIELD_GET(DP_RXDMA_BUF_COOKIE_BUF_ID, cookie);
-  2983	
-  2984		spin_lock_bh(&rx_ring->idr_lock);
-  2985		skb = idr_find(&rx_ring->bufs_idr, buf_id);
-  2986		spin_unlock_bh(&rx_ring->idr_lock);
-  2987	
-  2988		if (!skb)
-  2989			return DP_MON_STATUS_NO_DMA;
-  2990	
-  2991		rxcb = ATH11K_SKB_RXCB(skb);
-  2992		dma_sync_single_for_cpu(ab->dev, rxcb->paddr,
-  2993					skb->len + skb_tailroom(skb),
-  2994					DMA_FROM_DEVICE);
-  2995	
-  2996		tlv = (struct hal_tlv_hdr *)skb->data;
-  2997		if (FIELD_GET(HAL_TLV_HDR_TAG, tlv->tl) != HAL_RX_STATUS_BUFFER_DONE)
-  2998			return DP_MON_STATUS_NO_DMA;
-  2999	
-  3000		return DP_MON_STATUS_REPLINISH;
-  3001	}
-  3002	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+T24gMTIvNi8yMDIyIDU6NDYgUE0sIEFuZHJlaSBPdGNoZXJldGlhbnNraSB3cm90ZToKLi4uCj4g
+ZGlmZiAtLWdpdCBhL3dwYV9zdXBwbGljYW50L3NtZS5jIGIvd3BhX3N1cHBsaWNhbnQvc21lLmMK
+PiBpbmRleCBmNmFjZTM3NjA2Li5hNDQwNDQwNzllIDEwMDY0NAo+IC0tLSBhL3dwYV9zdXBwbGlj
+YW50L3NtZS5jCj4gKysrIGIvd3BhX3N1cHBsaWNhbnQvc21lLmMKPiBAQCAtMzY3LDYgKzM2Nywx
+OTQgQEAgc3RhdGljIHZvaWQgc21lX2F1dGhfaGFuZGxlX3JybShzdHJ1Y3Qgd3BhX3N1cHBsaWNh
+bnQgKndwYV9zLAo+ICAgfQo+ICAgCj4gICAKPiArc3RhdGljIGJvb2wgd3Bhc19tbF9lbGVtZW50
+KHN0cnVjdCB3cGFfc3VwcGxpY2FudCAqd3BhX3MsIHN0cnVjdCB3cGFfYnNzICpic3MpCj4gLi4u
+Cj4gKwkJCWlmIChuZWlnaF9ic3MpIHsKPiArCQkJCWlmICh3cGFfc2Nhbl9yZXNfbWF0Y2god3Bh
+X3MsIDAsIG5laWdoX2JzcywKPiArCQkJCQkJICAgICAgIHdwYV9zLT5jdXJyZW50X3NzaWQsCj4g
+KwkJCQkJCSAgICAgICAxLCAwKSkgewpJZiB3cGFfc2Nhbl9yZXNfbWF0Y2goKSBmYWlsLCB0aGVu
+IHRoZSBuZWlnaF9ic3Mgd2lsbCBiZSBkcm9wcGVkLCBhbmQgCnRoZSBuZWlnaCBsaW5rIHdpbGwg
+Tk9UIGNvbm5lY3QsIHRoZW4gTiBsaW5rIHJlZHVjZWQgdG8gTi0xIGxpbmsuCgpmb3IgZXhhbXBs
+ZSwgdGhlIGJzc2lkIGZhaWxlZCBjb25uZWN0IGZvciBsYXN0IHRpbWUsIGl0IHdpbGwgYmUgaWdu
+b3JlZCAKZm9yIDEwIHNlY29uZHM6CkZlYiAxMyAxNzo0MjoyMCBjc3QtQ2VsYWRvbi1STiB3cGFf
+c3VwcGxpY2FudFs5NjddOiBBZGRlZCBCU1NJRCAKMDA6MDM6N2Y6MDE6NTk6NTAgaW50byBpZ25v
+cmUgbGlzdCwgaWdub3JpbmcgZm9yIDEwIHNlY29uZHMKRmViIDEzIDE3OjQyOjIwIGNzdC1DZWxh
+ZG9uLVJOIHdwYV9zdXBwbGljYW50Wzk2N106IEJTU0lEIAowMDowMzo3ZjowMTo1OTo1MCBpZ25v
+cmUgbGlzdCBjb3VudCBpbmNyZW1lbnRlZCB0byAyLCBpZ25vcmluZyBmb3IgMTAgCnNlY29uZHMK
+RmViIDEzIDE3OjQyOjIxIGNzdC1DZWxhZG9uLVJOIHdwYV9zdXBwbGljYW50Wzk2N106IHdsYW4w
+OsKgwqDCoCBza2lwIC0gCkJTU0lEIGlnbm9yZWQgKGNvdW50PTIgbGltaXQ9MCkKPiArCQkJCQl3
+cGFfcy0+dmFsaWRfbGlua3MgfD0gQklUKGxpbmtfaWQpOwo+ICsJCQkJCW9zX21lbWNweSh3cGFf
+cy0+bGlua3NbbGlua19pZF0uYnNzaWQsCj4gKwkJCQkJCSAgYXBfaW5mby0+ZGF0YSArIDEsIEVU
+SF9BTEVOKTsKPiArCQkJCQl3cGFfcy0+bGlua3NbbGlua19pZF0uZnJlcSA9Cj4gKwkJCQkJCW5l
+aWdoX2Jzcy0+ZnJlcTsKPiArCQkJCX0gZWxzZSB7Cj4gKwkJCQkJd3BhX3ByaW50ZihNU0dfREVC
+VUcsCj4gKwkJCQkJCSAgICJNTEQ6IG5laWdoYm9yIGRvZXNuJ3QgbWF0Y2ggY3VycmVudCBTU0lE
+IC0gc2tpcCBsaW5rIik7Cj4gKwkJCQl9Cj4gKwkJCX0gZWxzZSB7Cj4gKwkJCQl3cGFfcHJpbnRm
+KE1TR19ERUJVRywKPiArCQkJCQkgICAiTUxEOiBuZWlnaGJvciBub3QgZm91bmQgaW4gc2NhbiIp
+Owo+ICsJCQl9Cj4gKwkJfQouLi4KCi0tIAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0
+cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGlu
+Zm8vYXRoMTFrCg==
