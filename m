@@ -4,88 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 303F5C76195
-	for <ath11k@archiver.kernel.org>; Mon, 27 Mar 2023 09:10:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B47BDC76195
+	for <ath11k@archiver.kernel.org>; Tue, 28 Mar 2023 04:47:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7QuwJG6CAuo8y59mQ/i/8bar8TAxM3gYyF9xBZxitdc=; b=Ux1SRCyMDby/6x
-	h9Q5JZEUvwMCrXWa4gB6sLcJhqV7Teilepu3ls+umLXzrRT1fcRiLJ68UB54scFvyB9BKOSt3n1EO
-	lKKmeKOapaOS39TvGIsVj5+Nm1CvmuLWbcoJVOErT7KoyoXGM3YSpMK0GpDnXPq1RGxBrsc/ERhiX
-	dsW5OCqpQeVC9XvUOc/UcFcQ3g6tUnvQKv6PvGXB9E110wG5v/Md7fNtXQ/VE3XQoYznjFUFsOO8N
-	mlUVIRcyBBgNkmpk0LWm1WbNrrTrx1RhdP2sEfvPxn4gs9MQwYcPWtv1Xrg8xRhJR57903z38/iTv
-	57Qe1ouzz/HjMPcTPWIg==;
+	List-Owner; bh=O2f146kYCyKiIUQtAls0Xj8VvPrJcQyEwfTW2s02+Vs=; b=jsLRJ5K/JvBWZw
+	EGVNDisxfNQXvmT/pM50wV8vAcplDe/6OlB30FQbznw6gCg0wgPeOeqjWOw0xCC/k+tWa1VtVTmT0
+	N+YUOz5+FUVLdkeHCZNfyF/nhmgxpYd/tnC8PhImyxzq8aF2M4DdYSO3Z3zhgpkzSKyeACDsRCDHP
+	UOPEMUB8ps+ypt4zhZryelMBKL0dGtbSW0ioG5YnUhHcdTq8XEH4wOjNYmmZ00EA18qFx5zPUTzAf
+	unHK6BOQcu5hkFzQe55O9tZ53gfj/kLUct1AtdaJ6PrSI3SSyp3IKH6FeahFa0/o0xGewuc5LyPlR
+	I9r5t6RjeY2KS90WXb4w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pgiri-00AQIl-2E;
-	Mon, 27 Mar 2023 09:10:10 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1ph1FA-00D8Nb-0e;
+	Tue, 28 Mar 2023 04:47:36 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pgirg-00AQI5-0n;
-	Mon, 27 Mar 2023 09:10:09 +0000
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32R40nFJ015017;
-	Mon, 27 Mar 2023 09:10:07 GMT
+	id 1ph1F7-00D8My-1E
+	for ath11k@lists.infradead.org;
+	Tue, 28 Mar 2023 04:47:35 +0000
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 32S3kNNj026463;
+	Tue, 28 Mar 2023 04:47:20 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
  mime-version : subject : to : cc : references : from : in-reply-to :
  content-type : content-transfer-encoding; s=qcppdkim1;
- bh=C+FboeoZ/bFE8+DOViTg+lZYffF8U9jm8mht5SIImDc=;
- b=CcOG537NYudKIFQWwoVsWD+HNMi9N4raZoLnoH3x92RXY8O2blb9dKOEUiunUHVK6YuJ
- pAE7ZIkZVutu3+gXYRHwPM35YPLLxeyShcONXaNUaMUYNfp5FwSh4SsAWdm/C2AMRUTm
- 5V6Y9akXxMGEx0ACCBIlLekeGRcGXGgezhFfRAmAbVlUxATEMl0Rs1P2oqM3y8NoPdIM
- EefVXq0LihV6gwPVd3ZdmbguDvqHvme9mv4e1/mKgas4qqyQyA+uz7iZ/GQQF9LjSrTr
- +30az5BTWU16tTcf1enlhjLDlBm51F3jc17QI2a5STF7grI+Le4A7h4i2lPdpZ6u2Ak+ Gw== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3phte8btww-1
+ bh=m1ETkqQDyH5uYhMWfsgLcfrA3+Nvwy4QgGaXwtS8DEQ=;
+ b=PhbapCYuhEwi19BVnEA4FiS30Y92k7/NL85f3cMKTTgDvYRPr4Oc3TVv7UGPU69qgXBA
+ BLPiagBq2H44oo/t/tytgqnI6980kF0NSZa1Y9dhALNJFd0sUFK0RG6e43Gcot7ZIpiu
+ BQ9P5iBmvCvPVl9hOo4N5c6Gm3ZsRJzvmSqDnmArndibIPUdko2hQ1pBRMuAwAeXChYk
+ H5tXn4VfgoJ3/yRS17wj6q8KXd7s+XsCma6URpkdUxmzRZ/4daeVzNSECoSVAWBZe2kf
+ ROk8puCW1sJKMwkJXWza3/AAeYerbKJ3g2iigDorf/QySDjWBMLJiMlOQ26Snzv+Goua Xw== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pk8pvjdsd-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 27 Mar 2023 09:10:07 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32R9A6u1023501
+	Tue, 28 Mar 2023 04:47:20 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 32S4lJoI030166
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 27 Mar 2023 09:10:06 GMT
-Received: from [10.231.195.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 28 Mar 2023 04:47:19 GMT
+Received: from [10.242.242.48] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Mon, 27 Mar
- 2023 02:10:04 -0700
-Message-ID: <baf27fe2-4702-fb8b-49f5-f5b1541c0d0e@quicinc.com>
-Date: Mon, 27 Mar 2023 17:10:02 +0800
+ 2023 21:47:17 -0700
+Message-ID: <0289c7f1-e729-e924-5ae8-a6156266e675@quicinc.com>
+Date: Tue, 28 Mar 2023 10:16:58 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
-Subject: Re: [PATCH 24/27] wifi: mac80211: implement link switching
+Subject: Re: [PATCH 0/2] ath11k: factory test mode support
+To: Kalle Valo <kvalo@kernel.org>
+CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
+References: <20230213130854.2473-1-quic_rajkbhag@quicinc.com>
+ <87edpson9o.fsf@kernel.org>
 Content-Language: en-US
-To: Johannes Berg <johannes@sipsolutions.net>,
-        <linux-wireless@vger.kernel.org>
-CC: <ath11k@lists.infradead.org>, <ath12k@lists.infradead.org>
-References: <20220902141259.377789-1-johannes@sipsolutions.net>
- <20220902161143.d99dfbe65c90.I92385ba882ec984a9a2ad18293173436657e82aa@changeid>
- <ca5177fe-3b9f-2309-9afd-1d5e827540f7@quicinc.com>
- <50719d34bc48d816d00b56d3d9efdb59e3e51a16.camel@sipsolutions.net>
- <31b91fad-bd14-b6e1-8abe-fceb66085ecb@quicinc.com>
- <a20e39027ca0b89cae2259d35ff19d03c3c6951a.camel@sipsolutions.net>
-From: Wen Gong <quic_wgong@quicinc.com>
-In-Reply-To: <a20e39027ca0b89cae2259d35ff19d03c3c6951a.camel@sipsolutions.net>
+From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+In-Reply-To: <87edpson9o.fsf@kernel.org>
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+ nalasex01b.na.qualcomm.com (10.47.209.197)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 9t0_hyFabZfktjVANHhH0jKQxVwHIkMq
-X-Proofpoint-ORIG-GUID: 9t0_hyFabZfktjVANHhH0jKQxVwHIkMq
+X-Proofpoint-GUID: yV2G2Ec1YiJSJX-wiyyzPG4WUVrR3xdS
+X-Proofpoint-ORIG-GUID: yV2G2Ec1YiJSJX-wiyyzPG4WUVrR3xdS
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-24_11,2023-03-24_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
- suspectscore=0 priorityscore=1501 malwarescore=0 clxscore=1015 mlxscore=0
- bulkscore=0 spamscore=0 phishscore=0 mlxlogscore=400 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2303200000
- definitions=main-2303270074
+ definitions=2023-03-24_11,2023-03-27_02,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
+ clxscore=1011 lowpriorityscore=0 suspectscore=0 mlxlogscore=818
+ spamscore=0 phishscore=0 bulkscore=0 priorityscore=1501 impostorscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2303280037
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230327_021008_403841_EA913B39 
-X-CRM114-Status: GOOD (  15.02  )
+X-CRM114-CacheID: sfid-20230327_214733_470296_C389FA6D 
+X-CRM114-Status: GOOD (  15.44  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,38 +93,41 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 3/27/2023 5:04 PM, Johannes Berg wrote:
-> On Mon, 2023-03-27 at 16:40 +0800, Wen Gong wrote:
->>>>> +	for_each_set_bit(link_id, &add, IEEE80211_MLD_MAX_NUM_LINKS) {
->>>>> +		struct ieee80211_link_data *link;
->>>>> +
->>>>> +		link = sdata_dereference(sdata->link[link_id], sdata);
->>>>> +
->>>>> +		ret = ieee80211_link_use_channel(link, &link->conf->chandef,
->>>>> +						 IEEE80211_CHANCTX_SHARED);
->>>> For the 1st link of MLO connection/NON-MLO connetion, ieee80211_link_use_channel() is called before drv_change_sta_link(),
->>>> And now it is after drv_change_sta_link(), May I know is it also has some design here?
->>> Hmm, probably not really, at least I don't remember anything about that.
->>>
->>> Not sure it makes a huge difference? But I suppose we could change it, I
->>> don't really see why not either.
->> Not huge difference, I have made little change in lower-driver to match
->> that. So it is OK now.
-> OK. Still maybe we should change it for consistency? I can try that
-> later with our driver.
->
-> johannes
+On 3/13/2023 5:51 PM, Kalle Valo wrote:
+> Raj Kumar Bhagat <quic_rajkbhag@quicinc.com> writes:
+> 
+>> Device is booted in factory test mode to calibrate the board.
+>> The commands are sent from a userspace application, which is
+>> sent to firmware using wmi commands. Firmware will send the
+>> response back to the application which stores the calibration
+>> data in caldata.bin file. This file will be loaded when the
+>> device boots up normally next time.
+>>
+>> Govindaraj Saminathan (1):
+>>   wifi: ath11k: factory test mode support
+>>
+>> Sowmiya Sree Elavalagan (1):
+>>   wifi: ath11k: Allow ath11k to boot without caldata in ftm mode
+> 
+> While reviewing the patches I made quite a few style cleanup to patches
+> (too many to list):
+> 
+> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=master-pending&id=4a5ca29c396ace5c46b208a8c15a3ba53eabaddd
+> 
+> https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=master-pending&id=ba74c7478f5d15ce38e609b9ad4810db7511a3dd
+> 
+> I only compile tested them. Please use these as the baseline for v2.
+> 
+Hi Kalle,
 
-I think it is not urgent for that:)
-
-And lower-drvier should also handler different case.
-
->
+Unable to get the baseline patch for v2 from the above link. Getting the
+below error with the link:
+Bad commit reference: 4a5ca29c396ace5c46b208a8c15a3ba53eabaddd
 
 -- 
 ath11k mailing list
