@@ -4,57 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2D5CC6FD18
-	for <ath11k@archiver.kernel.org>; Wed, 29 Mar 2023 16:20:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B6CFC6FD1D
+	for <ath11k@archiver.kernel.org>; Thu, 30 Mar 2023 14:37:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=pTvNqHDrROCFXLGa1RNhZXbliCLkGvzPpp1mX7k/ZBE=; b=ihubnZ/z4FuVPB
-	oly1W8q1PlP5NENJ7JszZB1KJk8oikEywEByaciXmTjEPw6/6ao6d+yxZXYu9LSaSvTTi43EeAzP9
-	YrYKwd8ASkL7iAQlIQUxWDnO9ZaAiXsBGLMKrHMzZVfX9vzIk6vH3khmelFD47NOUZW3P3ppKTur4
-	6Aeh9tIK3SGIHGwmAbFMapYsiVfWnH/Mxctebvc17pcNVZp2f5N99cgDLFEpfPeWZcPUMC4rgTc9n
-	r8TT4qlcoICPOrWTrHB0xpMP1ggwM9CGRl5Vs6nhaItem40McV0YqpC/IL4ORrichoZuSQo+9bcfc
-	Pvd9uo9TGrRJU9W1nLhQ==;
+	List-Owner; bh=XojPooLsqDymTjew0uQQMbkNXCBxDds5Lqb1Fs31gxc=; b=vjX0mjjIJtIrbe
+	yBLBNnhflLsUlS9n8EhD9IMXK0Lo3yECXtqsX19ZGqyzdZeV7E/0vMAwJakniflG6swnSDfCTJMKM
+	BP7gFYv4T87oBCBNVlqjMLSLAjHoYSb4j7+yDFzXnT1ljCHwCuqUVw/GFt17s8C40BSjfa9nQ9/oc
+	ej5oNm7dAq5RB0FyKD0+e6XCcU7v2v1OUeftWlMdvIqExibR5h81K5uD0TZxgJED+KZyqn2DdQsnC
+	ADOY7uMAqEaKklcpCZ8N8A5y3qRdJ6igkhLq8EV06oE4V+0ND4gQMMW8wA40MK8x1MvD3H9llsg0T
+	lqdspGY73H8qfnQoOpkg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1phYXX-0014Rv-32;
-	Wed, 29 Mar 2023 16:20:47 +0000
-Received: from ams.source.kernel.org ([2604:1380:4601:e00::1])
+	id 1phtPC-0046S0-06;
+	Thu, 30 Mar 2023 14:37:34 +0000
+Received: from smtp-out1.suse.de ([2001:67c:2178:6::1c])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1phYXU-0014Qn-2i
+	id 1phtP8-0046Pu-2A
 	for ath11k@lists.infradead.org;
-	Wed, 29 Mar 2023 16:20:46 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	Thu, 30 Mar 2023 14:37:32 +0000
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
 	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id 2477BB81E4A
-	for <ath11k@lists.infradead.org>; Wed, 29 Mar 2023 16:20:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A45BC433EF;
-	Wed, 29 Mar 2023 16:20:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1680106841;
-	bh=vOk0cgYmlWsKP5u7OjDTcUC1HKBh/95816/u0sOAjso=;
-	h=From:To:Cc:Subject:Date:From;
-	b=clQU8xF6DNIhk2+760jsgMfW0RwLmNu5Jc3S/Yw2EYYrVzlIcM7mpbWr1tCV4ptmB
-	 +u4as1hB49NzaTQCj6uHu9956/KYzzkvJidMCwsIf6Jr0zYyS1CZxEC1PgTerwmBLt
-	 i9i2/pT6nzMeml4Nd+9feTGoVc+coW7cpoNVXeCjGCwqBjVKSAeRixIBz+zP7qRu/1
-	 /0z1wuVy7SC/O+Q5WZIapvycFhP3KfPZLgCpp4xR+Md/0RSnKWw1LKT9nDAiOdji+c
-	 57gwnOiVE+80Cq4wjluEFgyAlFjyNWanQhXpAIrWOSBNHzvkFHzLwhJC+HVRwJMFy5
-	 04et300/Pq8AA==
-From: Kalle Valo <kvalo@kernel.org>
-To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
-Subject: [PATCH] wifi: ath11k: reduce the MHI timeout to 20s
-Date: Wed, 29 Mar 2023 19:20:38 +0300
-Message-Id: <20230329162038.8637-1-kvalo@kernel.org>
-X-Mailer: git-send-email 2.30.2
+	by smtp-out1.suse.de (Postfix) with ESMTPS id B5EE6219D1;
+	Thu, 30 Mar 2023 14:37:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1680187041; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:  content-transfer-encoding:content-transfer-encoding;
+	bh=BspglNfkJsUS3r3lZLHtaMvBOeJH8poZYcalK2MjJCo=;
+	b=ZRAEANHjfjlm+/1Rnu369fVYRGG3XxIkifyQlbE3ZuIbYhwGZdqXQoaJDUvHqFAsCsVGad
+	22CfTKt2mh5JQZsCYRDwYU22l70i2nVCesaVFhopS0uS4yOGOdTfopvbtVfxKp5C1ftrLL
+	MFnaVDjZU/YjU+0gbN+NHeuqa5dczuM=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1680187041;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:  content-transfer-encoding:content-transfer-encoding;
+	bh=BspglNfkJsUS3r3lZLHtaMvBOeJH8poZYcalK2MjJCo=;
+	b=gyFQC9v0shXwm3T/y/HeCn0C4d119rgfEFucqMMGOqrVyBl7wbuh4WK0NA5byfaYwBZfUu
+	r2OOy8DwATUs8TCw==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+	(No client certificate requested)
+	by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 95841133E0;
+	Thu, 30 Mar 2023 14:37:21 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+	by imap2.suse-dmz.suse.de with ESMTPSA
+	id YvK2I6GeJWRkMAAAMHmgww
+	(envelope-from <tiwai@suse.de>); Thu, 30 Mar 2023 14:37:21 +0000
+From: Takashi Iwai <tiwai@suse.de>
+To: Kalle Valo <kvalo@kernel.org>
+Cc: ath11k@lists.infradead.org,
+	linux-wireless@vger.kernel.org,
+	netdev@vger.kernel.org
+Subject: [PATCH] ath11k: pci: Add more MODULE_FIRMWARE() entries
+Date: Thu, 30 Mar 2023 16:37:18 +0200
+Message-Id: <20230330143718.19511-1-tiwai@suse.de>
+X-Mailer: git-send-email 2.35.3
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230329_092045_054705_451A8F7B 
-X-CRM114-Status: GOOD (  14.69  )
+X-CRM114-CacheID: sfid-20230330_073730_869291_7A216326 
+X-CRM114-Status: GOOD (  10.24  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,49 +86,42 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Kalle Valo <quic_kvalo@quicinc.com>
+As there are a few more models supported by the driver, let's add the
+missing MODULE_FIRMWARE() entries for them.  The lack of them resulted
+in the missing device enablement on some systems, such as the
+installation image of openSUSE.
 
-Currently ath11k breaks after hibernation, the reason being that ath11k expects
-that the wireless device will have power during suspend and the firmware will
-continue running. But of course during hibernation the power from the device is
-cut off and firmware is not running when resuming, so ath11k will fail.
+While we are at it, use the wildcard instead of listing each firmware
+files individually for each.
 
-(The reason why ath11k needs the firmware running is the interaction between
-mac80211 and MHI stack, it's a long story and more info in the bugzilla report.)
-
-In SUSE kernels the watchdog timeout is reduced from the default 120 to 60 seconds:
-
-CONFIG_DPM_WATCHDOG_TIMEOUT=60
-
-But as the ath11k MHI timeout is 90 seconds the kernel will crash before will
-ath11k will recover in resume callback. To avoid the crash reduce the MHI
-timeout to just 20 seconds.
-
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.9
-
-Link: https://bugzilla.kernel.org/show_bug.cgi?id=214649
-Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+Signed-off-by: Takashi Iwai <tiwai@suse.de>
 ---
- drivers/net/wireless/ath/ath11k/mhi.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
-index 86995e8dc913..a62ee05c5409 100644
---- a/drivers/net/wireless/ath/ath11k/mhi.c
-+++ b/drivers/net/wireless/ath/ath11k/mhi.c
-@@ -16,7 +16,7 @@
- #include "pci.h"
- #include "pcic.h"
- 
--#define MHI_TIMEOUT_DEFAULT_MS	90000
-+#define MHI_TIMEOUT_DEFAULT_MS	20000
- #define RDDM_DUMP_SIZE	0x420000
- 
- static struct mhi_channel_config ath11k_mhi_channels_qca6390[] = {
+I can rewrite without wildcards if it's preferred, too.
+But IMO this makes easier to maintain.
 
-base-commit: bea046575a2e6d7d1cf63cc7ab032647a3585de5
+ drivers/net/wireless/ath/ath11k/pci.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
+index 0aeef2948ff5..379f7946a29e 100644
+--- a/drivers/net/wireless/ath/ath11k/pci.c
++++ b/drivers/net/wireless/ath/ath11k/pci.c
+@@ -1039,7 +1039,8 @@ module_exit(ath11k_pci_exit);
+ MODULE_DESCRIPTION("Driver support for Qualcomm Technologies 802.11ax WLAN PCIe devices");
+ MODULE_LICENSE("Dual BSD/GPL");
+ 
+-/* QCA639x 2.0 firmware files */
+-MODULE_FIRMWARE(ATH11K_FW_DIR "/QCA6390/hw2.0/" ATH11K_BOARD_API2_FILE);
+-MODULE_FIRMWARE(ATH11K_FW_DIR "/QCA6390/hw2.0/" ATH11K_AMSS_FILE);
+-MODULE_FIRMWARE(ATH11K_FW_DIR "/QCA6390/hw2.0/" ATH11K_M3_FILE);
++/* firmware files */
++MODULE_FIRMWARE(ATH11K_FW_DIR "/QCA6390/hw2.0/*");
++MODULE_FIRMWARE(ATH11K_FW_DIR "/QCN9074/hw1.0/*");
++MODULE_FIRMWARE(ATH11K_FW_DIR "/WCN6855/hw2.0/*");
++MODULE_FIRMWARE(ATH11K_FW_DIR "/WCN6855/hw2.1/*");
 -- 
-2.30.2
+2.35.3
 
 
 -- 
