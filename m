@@ -4,86 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A2F6C761A6
-	for <ath11k@archiver.kernel.org>; Mon,  3 Apr 2023 14:21:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA4CCC76188
+	for <ath11k@archiver.kernel.org>; Mon,  3 Apr 2023 16:06:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
 	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
 	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=gixrHVMz45ucMlNsOGvhy3J9ELOree4UJ1fj/yPeCe4=; b=0sor9a2a7QDUKA
-	tzmN8uJi4U0lmM6BLL4mimP2iW/2DLk144mrc8t2euyIhrrlFmkKdcckhGcP9SPqQENDsDXR28+rJ
-	J9tpN8lkpcZ8LAtCs970ct4gSdn3YLi+18BL27jTlT1ARqldi9a3DRtMpXmFhmSQoU/A6STiP2186
-	PRBX0nGa/uk1ZrtDQD26cRW8eBKOlW6FHJnIQKnIufr9PKhe7yP807A6q9iQSyAtes/h5ZnET4utC
-	kfcySeTJ43fmkk5kvnL1ZoS6+L4neNNhFDWQquIp3NTYz9xTgUn4YYEpJ8m5Fc+u1A2yCNWvXObMA
-	ZHOVhisMrm+XoH/orZ9A==;
+	List-Owner; bh=a0G2vIRcuUYjRjA1k7VqS1FSTvsZWRwjA2L8feJckRY=; b=h9apLggWwsz9zT
+	GsEMXGuJYZfehUP6V2bMUCLeu+SJjez4iSaQvpMRuVWtVDTroGLgirKmcyWfefK6Gqrcejf1ET/1S
+	ZRgsxpoLZoqsb4Ae1bOToOEREil6Dmh4AHqPfJHrwXAgXJjN4pwL64wpKO6040aCmEGnh42sUijE/
+	CIYvgmXO/dWryGnxoHeKHXhQuKczva0p6crfejVyPZ7enoG71EP7WP6kJp4eB6t+pcE6Kz9I8BU4T
+	VyPhTKQskEHtNaE8FE4YUOhFVUUjRFmKP7DojyCziDRVX0InKI81HiBNhYcRyRj2WaCfM+1NzoLmC
+	7kKDHd3Q9wdvh5OhNzGA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pjL3m-00Fcnz-0W;
-	Mon, 03 Apr 2023 14:21:26 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1pjMh9-00Futf-2f;
+	Mon, 03 Apr 2023 16:06:11 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pjL3g-00Fcla-30;
-	Mon, 03 Apr 2023 14:21:24 +0000
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 333Ailk9008610;
-	Mon, 3 Apr 2023 14:21:18 GMT
+	id 1pjMh5-00FutB-2j
+	for ath11k@lists.infradead.org;
+	Mon, 03 Apr 2023 16:06:09 +0000
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 333D2Znh027799;
+	Mon, 3 Apr 2023 16:06:03 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
  mime-version : subject : to : cc : references : from : in-reply-to :
  content-type : content-transfer-encoding; s=qcppdkim1;
- bh=TvJL6iO21505iTIUgNDYxI7ABKfy17PjIQZA4KoMYyE=;
- b=Qmo3Yp6oQZkZBQRCLyMc5dLzGHdbwfMXKs+9geaEbuzJoJcDOc1Wu+q67RsIMCdaT3iO
- t1+KDfn4RjIv+IKUdW3SmeKEXsJmUVMcFIsFZEohW0zTZw3GpnzpW26wVLFlbGYrOmI6
- ACBr6obLMMdrGJ8F1cpee0aRNEfkw4pffklWBPL3P/h0GA3GqzgBVE19gMZhokbe03OD
- MVVO+A5PlSJZQqGH0E4qHCDJAJSdgY5dOX3OlOy1OH44NbAMrYJhGtuJk1oZ/r54C/eh
- eNmUs5OoMGJN+6IuSGxWSepUe7Zh5Em9AaUnTPOux9+o/s/N8X1BswSiMBOBhN1bfFYX AQ== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pqus58qv0-1
+ bh=YBpa6PgIfuaR3CUTds9+lf9MsRdZK3byd0HnFJXvPEQ=;
+ b=Bc2XiK9chRqI9lFMVWwsmKZ4wtgXkDdfusAkSFd//kJSp1Dw1d9MfZBTgpE8s6Yl/3L0
+ bW3eCTEu4AX/ong3qJlPtlR/1p8EMtFStfzxaycLr5jkYpg9Ux24C1xvCjntVZb+O6jA
+ wCix4Q03asKdub+bctBFKWiaHLjrJUGzUOFTSQ9YhZbPtbyIehmDqtnCSNyWa36MtPLg
+ IREYoxtRIYJ1ahjKqzh7V0pL4491ANvDdM0/yGVn5kgbIjAJPzUZcfueqckv4zOFts26
+ YfVCYNdlVcQHdf2hUxl/1r2BupKHeoQugCSx/yKMg9dEpCeihO7xb+BLVWcx7Kv2EpuB ww== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pqwdrru8q-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 03 Apr 2023 14:21:18 +0000
+	Mon, 03 Apr 2023 16:06:02 +0000
 Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 333ELGN1007229
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 333G62Ca000562
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 3 Apr 2023 14:21:17 GMT
-Received: from [10.253.35.21] (10.80.80.8) by nalasex01a.na.qualcomm.com
+	Mon, 3 Apr 2023 16:06:02 GMT
+Received: from [10.110.28.137] (10.80.80.8) by nalasex01a.na.qualcomm.com
  (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Mon, 3 Apr 2023
- 07:21:15 -0700
-Message-ID: <955cf0b5-8973-86b5-109e-268917d70904@quicinc.com>
-Date: Mon, 3 Apr 2023 22:21:13 +0800
+ 09:06:01 -0700
+Message-ID: <667a38b0-b058-6083-6fa9-9b6d13c0c09e@quicinc.com>
+Date: Mon, 3 Apr 2023 09:06:01 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 24/27] wifi: mac80211: implement link switching
+ Thunderbird/102.7.2
+Subject: Re: [PATCH V2 0/2] wifi: ath11k: bug fixes in tx encap offload and
+ ppdu stats
 Content-Language: en-US
-To: Johannes Berg <johannes@sipsolutions.net>,
-        <linux-wireless@vger.kernel.org>
-CC: <ath11k@lists.infradead.org>, <ath12k@lists.infradead.org>
-References: <20220902141259.377789-1-johannes@sipsolutions.net>
- <20220902161143.d99dfbe65c90.I92385ba882ec984a9a2ad18293173436657e82aa@changeid>
- <ca5177fe-3b9f-2309-9afd-1d5e827540f7@quicinc.com>
- <50719d34bc48d816d00b56d3d9efdb59e3e51a16.camel@sipsolutions.net>
-From: Wen Gong <quic_wgong@quicinc.com>
-In-Reply-To: <50719d34bc48d816d00b56d3d9efdb59e3e51a16.camel@sipsolutions.net>
+To: Kalle Valo <kvalo@kernel.org>
+CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
+References: <20230401024932.11722-1-quic_pradeepc@quicinc.com>
+ <87edp1ba3j.fsf@kernel.org>
+From: Pradeep Kumar Chitrapu <quic_pradeepc@quicinc.com>
+In-Reply-To: <87edp1ba3j.fsf@kernel.org>
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 5uPBzRF3q1L1YZnYW10xnH9_gQex2MYP
-X-Proofpoint-GUID: 5uPBzRF3q1L1YZnYW10xnH9_gQex2MYP
+X-Proofpoint-GUID: eXPdY_LBV9U6ek1qoAIg2XS2SKsK49xR
+X-Proofpoint-ORIG-GUID: eXPdY_LBV9U6ek1qoAIg2XS2SKsK49xR
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-03_11,2023-04-03_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
- lowpriorityscore=0 suspectscore=0 bulkscore=0 spamscore=0 mlxlogscore=539
- adultscore=0 impostorscore=0 mlxscore=0 priorityscore=1501 clxscore=1015
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304030104
+ definitions=2023-04-03_13,2023-04-03_03,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ impostorscore=0 phishscore=0 spamscore=0 adultscore=0 mlxscore=0
+ priorityscore=1501 mlxlogscore=864 suspectscore=0 clxscore=1015
+ bulkscore=0 lowpriorityscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2303200000 definitions=main-2304030118
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230403_072121_092655_6E18368C 
-X-CRM114-Status: GOOD (  14.03  )
+X-CRM114-CacheID: sfid-20230403_090607_896452_2E0BA05E 
+X-CRM114-Status: UNSURE (   9.09  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,40 +100,26 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 3/27/2023 4:31 PM, Johannes Berg wrote:
-> Hi,
+
+On 4/3/2023 2:15 AM, Kalle Valo wrote:
+> Pradeep Kumar Chitrapu <quic_pradeepc@quicinc.com> writes:
 >
->>> +	list_for_each_entry(sta, &local->sta_list, list) {
->>> +		if (sdata != sta->sdata)
->>> +			continue;
->>> +		ret = drv_change_sta_links(local, sdata, &sta->sta,
->>> +					   old_active,
->>> +					   old_active | active_links);
->>> +		WARN_ON_ONCE(ret);
->>> +	}
->>> +
->>> +	ret = ieee80211_key_switch_links(sdata, rem, add);
->> I see ieee80211_key_switch_link() only handler the per-link(link_id >=
->> 0) keys,
+>> Fixes bugs in radiotap fields and tx status reporting in TX
+>> encapsulation offload cases.
 >>
->> So I think lower driver also install the pairwise keys(link_id = -1) for
->> the added links at this moment?
-> Well from mac80211 POV they're already installed, so we can't really
-> install them again. We'd have to remove them but that's racy, obviously.
-> So I think the low-level driver just has to handle that, e.g. when the
-> station links are updated (and the key belongs to the station.)
->
->
-Thanks Johannes,
+>> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
+>>
+>> Pradeep Kumar Chitrapu (2):
+>>    wifi: ath11k: fix tx status reporting in encap offload mode
+>>    wifi: ath11k: Fix incorrect update of radiotap fields
+> No changelog. What has changed since v1?
 
-Also it does not have BSS_CHANGED_ASSOC(exists in 
-ieee80211_set_associated()) for
+Thanks Kalle. Sorry about missing changelog. let me send V3 with updated 
+change log..
 
-ieee80211_link_info_change_notify()/ieee80211_vif_cfg_change_notify().
-
-So I think low-level driver also need to auto add BSS_CHANGED_ASSOC 
-logic for the added link as well as the pairwise key you said, right?
-
+changes are : avoid using ieee80211_tx_status_8023 and use 
+ieee80211_tx_status_ext instead,
+and fix commit description inorder to address previous review comments.
 
 
 -- 
