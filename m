@@ -4,60 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EBFBC76196
-	for <ath11k@archiver.kernel.org>; Mon,  3 Apr 2023 09:15:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 112D1C77B6D
+	for <ath11k@archiver.kernel.org>; Mon,  3 Apr 2023 13:39:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=tyq2MBcD2ZYS2CZ2ALIqXFRDknQ3JuXrhSv9ujJhG/s=; b=CcgJVXJ96xjdsL
-	CHn4pTQQoT9mzae+WM5oJuzepeLueiZ/5e8t2YJ4HQ6u+V5+fwKKfyOsLXwWNv3ceLrrWxyBqlyDw
-	z8WvdkIHFQ3YZwVdRLxDYcgdVSHKLcbYouobKJUsN0xSUpIgBXzbo/6ldUsOw3KZ+UHj+3THTTZuL
-	iuamgvUejSBhr2obIJ16RBbfgfSQZxOyzl47Dr7875VhN8Vb4BI6D9moJ/9sTiH30GD/A7pQJVQt4
-	TqRivE7uuotliugNfejw02IQwF6SRaagx7vhD6aEKeURnRoshNNe9gy6J+ml5WvJZjmdr+wFBThaT
-	GTy1/ktgwsYW5EXwEe1g==;
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
+	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=NTMUt9HYxLfox62qpfdQYTmPCB11r6rMh/t5V0yqxXU=; b=z/M3lp+TgxYfWs
+	aUZVRSIMzcXKi72N3/zHkKpdSwfj3gws1hSbvjlVrm79CX6w1Dk3xDjnsNxGdbUK1f7tnX+XH8IGl
+	t8K0+NkH0fxDFYVLd/69P0Eq0Bwblfs1eXZbM6vvzdfSu8kGUsyZ0cJk9rqhvZHem2w9Rqf0Ot4Zt
+	inqfEP+v4eje/hCSmmlTon6hyhk00lthMuSlgi2xwPnV/wZjsStGUFhDR2VlGazmTE4BeUkKjEqF7
+	44vnSW2ZmFEcnArH/nyRCT0jwtgtppYCrV9REMziW4gMaQ8pvYTwESLzitP06LfEZxybb6p1QIJb6
+	UpVwvqzUiLixHUEPmI5g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pjGHd-00EdwA-04;
-	Mon, 03 Apr 2023 09:15:25 +0000
+	id 1pjKOp-00FUOb-28;
+	Mon, 03 Apr 2023 13:39:07 +0000
 Received: from ams.source.kernel.org ([145.40.68.75])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pjGHZ-00EdvD-2Y
-	for ath11k@lists.infradead.org;
-	Mon, 03 Apr 2023 09:15:23 +0000
+	id 1pjKOl-00FUNU-1V;
+	Mon, 03 Apr 2023 13:39:04 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id 06F6BB8160E;
-	Mon,  3 Apr 2023 09:15:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E820BC433D2;
-	Mon,  3 Apr 2023 09:15:17 +0000 (UTC)
+	by ams.source.kernel.org (Postfix) with ESMTPS id 180A3B81ABE;
+	Mon,  3 Apr 2023 13:39:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5D49C433D2;
+	Mon,  3 Apr 2023 13:38:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1680513318;
-	bh=BVHiaqZpCtLErDvmtIzfl4mTYGJjwXmDlcErnLadaxk=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=jr+L7EyRSikbGYpRta4fBY0N5qQ2Wi5PUj6GCOF9ADLd8r3JKx/QankHEx8cRw3qi
-	 JMUwVTGwgbY2Cmp4TrYgBHdEEvqOimwowz3AVOZVCp4I+Z+H1YXQDtM/rwQHSVYzqD
-	 Y8mNtPcjSgJZs/e+wLoFEe3k7ghYvdOJu5oq8KDQIHtp4DnrG6Qd0KlvdTVJMU+pAw
-	 QGfi/WTUeSDuipgQWR3GvoLROMwgGStOLGB/4V+zaeJ35+P3QKaMXs1FF4pBRmT61R
-	 KGgCY5y4pc/uft4Trvg8b9MQCcAbkL6XTESn1oaYshTfbI9y/2UJObNPl/+DeWGRVO
-	 9lORJbdUuMLkw==
-From: Kalle Valo <kvalo@kernel.org>
-To: Pradeep Kumar Chitrapu <quic_pradeepc@quicinc.com>
-Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
-Subject: Re: [PATCH V2 0/2] wifi: ath11k: bug fixes in tx encap offload and ppdu stats
-References: <20230401024932.11722-1-quic_pradeepc@quicinc.com>
-Date: Mon, 03 Apr 2023 12:15:12 +0300
-In-Reply-To: <20230401024932.11722-1-quic_pradeepc@quicinc.com> (Pradeep Kumar
-	Chitrapu's message of "Fri, 31 Mar 2023 19:49:30 -0700")
-Message-ID: <87edp1ba3j.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+	s=k20201202; t=1680529140;
+	bh=WCFvnKJDN1ldCJrZMZbHk+9WKFAoxGDQHk9tIhXqgwo=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=bQx4o3H71KLPaOm6ptTMMh0RvtxCrxsDEkwm4PMtWC9GyNKGMDETnrLnj0Jy5rBJh
+	 e0AykclcdzyEyZQ2gD3hFOeO71+vIbBx050ZL5UKjSm6AYMU5sd1xtKJkngBkWiWea
+	 zezUPu7foE6Ydwgy28xzGHwitbzYq3KBeU2ofvrgNbum+sb57y8rS1HcQ1Fv5D9I3z
+	 SINpMH6zoFjI5DY/CEIdgFJtEOqZeg/j+2e6yJjNEEZ+XKrf3xIWyVuyxsMnRwRefw
+	 W7rOtuUijJaa4wa0s+pPOVo0A1CbWWFud7YdBH9KG/hBsvFYwZp9ZIwdaicVe4fsQ0
+	 erF1GlQuqxuIw==
 MIME-Version: 1.0
+Subject: Re: [PATCH 5/5] wifi: rtw89: Remove redundant pci_clear_master
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20230323112613.7550-5-cai.huoqing@linux.dev>
+References: <20230323112613.7550-5-cai.huoqing@linux.dev>
+To: Cai Huoqing <cai.huoqing@linux.dev>
+Cc: cai.huoqing@linux.dev, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Yan-Hsuan Chuang <tony0620emma@gmail.com>,
+ Ping-Ke Shih <pkshih@realtek.com>, ath10k@lists.infradead.org,
+ linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ath11k@lists.infradead.org,
+ ath12k@lists.infradead.org
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-ID: <168052913602.11825.8401946165259356841.kvalo@kernel.org>
+Date: Mon,  3 Apr 2023 13:38:57 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230403_021521_997215_09322A08 
-X-CRM114-Status: UNSURE (   7.61  )
+X-CRM114-CacheID: sfid-20230403_063903_649026_422C79F4 
+X-CRM114-Status: UNSURE (   9.09  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -75,24 +79,39 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Pradeep Kumar Chitrapu <quic_pradeepc@quicinc.com> writes:
+Cai Huoqing <cai.huoqing@linux.dev> wrote:
 
-> Fixes bugs in radiotap fields and tx status reporting in TX
-> encapsulation offload cases.
->
-> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
->
-> Pradeep Kumar Chitrapu (2):
->   wifi: ath11k: fix tx status reporting in encap offload mode
->   wifi: ath11k: Fix incorrect update of radiotap fields
+> Remove pci_clear_master to simplify the code,
+> the bus-mastering is also cleared in do_pci_disable_device,
+> like this:
+> ./drivers/pci/pci.c:2197
+> static void do_pci_disable_device(struct pci_dev *dev)
+> {
+> 	u16 pci_command;
+> 
+> 	pci_read_config_word(dev, PCI_COMMAND, &pci_command);
+> 	if (pci_command & PCI_COMMAND_MASTER) {
+> 		pci_command &= ~PCI_COMMAND_MASTER;
+> 		pci_write_config_word(dev, PCI_COMMAND, pci_command);
+> 	}
+> 
+> 	pcibios_disable_device(dev);
+> }.
+> And dev->is_busmaster is set to 0 in pci_disable_device.
+> 
+> Signed-off-by: Cai Huoqing <cai.huoqing@linux.dev>
+> Reviewed-by: Simon Horman <simon.horman@corigine.com>
+> Acked-by: Ping-Ke Shih <pkshih@realtek.com>
 
-No changelog. What has changed since v1?
+Patch applied to wireless-next.git, thanks.
 
+5995f7463101 wifi: rtw89: Remove redundant pci_clear_master
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+https://patchwork.kernel.org/project/linux-wireless/patch/20230323112613.7550-5-cai.huoqing@linux.dev/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
 -- 
 ath11k mailing list
