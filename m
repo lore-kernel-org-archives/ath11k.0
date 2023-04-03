@@ -4,54 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 664C2C761A6
-	for <ath11k@archiver.kernel.org>; Mon,  3 Apr 2023 08:21:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EBFBC76196
+	for <ath11k@archiver.kernel.org>; Mon,  3 Apr 2023 09:15:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:
-	From:Subject:MIME-Version:Date:Message-ID:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=uq+pHPMoz3jqPgHiMoCGo361E05LE7EfolT6u7T8SKw=; b=p89kdUrlIORBO+
-	A/6GbwN6QbkUqcS82+Zh1E7LsQuVByE+lT/6xaG5Vx4mZACqssRJiuPtuJ65lukFtc1v4GIInIRxN
-	DKjjitNqWrVittFkAlAPYtXwOAFUR8iayRH6Q0Wg980xF2qXGRVPJHQWOWvikGJH6+dy1zSBozGwZ
-	wQVNCgsOckeGeIn5JcGi+gPReGNAeAKgz3iILEIorj2U8XKiP4RFyLUOb0pBI8EGK8MNG8aocm0Gx
-	P9LgUnmFYUr8UMyY3qS/2B2FsCPL7WOGCR4mrAxMxVVwkHAc//NVkoQ9u2MEDiaIkl9S6z0t04FHC
-	08mWGTUdgTJBCpCi3bRg==;
+	List-Owner; bh=tyq2MBcD2ZYS2CZ2ALIqXFRDknQ3JuXrhSv9ujJhG/s=; b=CcgJVXJ96xjdsL
+	CHn4pTQQoT9mzae+WM5oJuzepeLueiZ/5e8t2YJ4HQ6u+V5+fwKKfyOsLXwWNv3ceLrrWxyBqlyDw
+	z8WvdkIHFQ3YZwVdRLxDYcgdVSHKLcbYouobKJUsN0xSUpIgBXzbo/6ldUsOw3KZ+UHj+3THTTZuL
+	iuamgvUejSBhr2obIJ16RBbfgfSQZxOyzl47Dr7875VhN8Vb4BI6D9moJ/9sTiH30GD/A7pQJVQt4
+	TqRivE7uuotliugNfejw02IQwF6SRaagx7vhD6aEKeURnRoshNNe9gy6J+ml5WvJZjmdr+wFBThaT
+	GTy1/ktgwsYW5EXwEe1g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pjFRC-00EVqe-0b;
-	Mon, 03 Apr 2023 08:21:14 +0000
-Received: from wp530.webpack.hosteurope.de ([80.237.130.52])
+	id 1pjGHd-00EdwA-04;
+	Mon, 03 Apr 2023 09:15:25 +0000
+Received: from ams.source.kernel.org ([145.40.68.75])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pjFR7-00EVne-2F
+	id 1pjGHZ-00EdvD-2Y
 	for ath11k@lists.infradead.org;
-	Mon, 03 Apr 2023 08:21:13 +0000
-Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
-	by wp530.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
-	id 1pjFR0-00042P-HF; Mon, 03 Apr 2023 10:21:02 +0200
-Message-ID: <1a8aaa86-0b63-f779-0604-ba6653efce6d@leemhuis.info>
-Date: Mon, 3 Apr 2023 10:21:01 +0200
+	Mon, 03 Apr 2023 09:15:23 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ams.source.kernel.org (Postfix) with ESMTPS id 06F6BB8160E;
+	Mon,  3 Apr 2023 09:15:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E820BC433D2;
+	Mon,  3 Apr 2023 09:15:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1680513318;
+	bh=BVHiaqZpCtLErDvmtIzfl4mTYGJjwXmDlcErnLadaxk=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=jr+L7EyRSikbGYpRta4fBY0N5qQ2Wi5PUj6GCOF9ADLd8r3JKx/QankHEx8cRw3qi
+	 JMUwVTGwgbY2Cmp4TrYgBHdEEvqOimwowz3AVOZVCp4I+Z+H1YXQDtM/rwQHSVYzqD
+	 Y8mNtPcjSgJZs/e+wLoFEe3k7ghYvdOJu5oq8KDQIHtp4DnrG6Qd0KlvdTVJMU+pAw
+	 QGfi/WTUeSDuipgQWR3GvoLROMwgGStOLGB/4V+zaeJ35+P3QKaMXs1FF4pBRmT61R
+	 KGgCY5y4pc/uft4Trvg8b9MQCcAbkL6XTESn1oaYshTfbI9y/2UJObNPl/+DeWGRVO
+	 9lORJbdUuMLkw==
+From: Kalle Valo <kvalo@kernel.org>
+To: Pradeep Kumar Chitrapu <quic_pradeepc@quicinc.com>
+Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
+Subject: Re: [PATCH V2 0/2] wifi: ath11k: bug fixes in tx encap offload and ppdu stats
+References: <20230401024932.11722-1-quic_pradeepc@quicinc.com>
+Date: Mon, 03 Apr 2023 12:15:12 +0300
+In-Reply-To: <20230401024932.11722-1-quic_pradeepc@quicinc.com> (Pradeep Kumar
+	Chitrapu's message of "Fri, 31 Mar 2023 19:49:30 -0700")
+Message-ID: <87edp1ba3j.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [regression] Bug 217282 - Regression: ath11k hang on boot since
- updating from 6.1.21 to 6.1.22
-Content-Language: en-US, de-DE
-From: Thorsten Leemhuis <regressions@leemhuis.info>
-To: Kalle Valo <kvalo@kernel.org>
-Cc: ath11k <ath11k@lists.infradead.org>,
- "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
- netdev <netdev@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
- Linux kernel regressions list <regressions@lists.linux.dev>,
- "stable@vger.kernel.org" <stable@vger.kernel.org>
-References: <83966474-658d-7e2f-3e7f-eb66100660e9@leemhuis.info>
-In-Reply-To: <83966474-658d-7e2f-3e7f-eb66100660e9@leemhuis.info>
-X-bounce-key: webpack.hosteurope.de;regressions@leemhuis.info;1680510069;5a90fa61;
-X-HE-SMSGID: 1pjFR0-00042P-HF
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230403_012109_917170_4B1847C4 
-X-CRM114-Status: UNSURE (   8.89  )
+X-CRM114-CacheID: sfid-20230403_021521_997215_09322A08 
+X-CRM114-Status: UNSURE (   7.61  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -64,34 +70,29 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 02.04.23 10:00, Linux regression tracking (Thorsten Leemhuis) wrote:
-> Hi, Thorsten here, the Linux kernel's regression tracker.
-> 
-> I noticed a regression report in bugzilla.kernel.org. As many (most?)
-> kernel developers don't keep an eye on it, I decided to forward it by mail.
-> 
-> Note, you have to use bugzilla to reach the reporter, as I sadly[1] can
-> not CCed them in mails like this.
-> 
-> Quoting from https://bugzilla.kernel.org/show_bug.cgi?id=217282 :
+Pradeep Kumar Chitrapu <quic_pradeepc@quicinc.com> writes:
 
-FYI: reporter rebuild the kernel and the problem vanished, for details
-see comment 2 of https://bugzilla.kernel.org/show_bug.cgi?id=217282
+> Fixes bugs in radiotap fields and tx status reporting in TX
+> encapsulation offload cases.
+>
+> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
+>
+> Pradeep Kumar Chitrapu (2):
+>   wifi: ath11k: fix tx status reporting in encap offload mode
+>   wifi: ath11k: Fix incorrect update of radiotap fields
 
-#regzbot resolve: Problem vanished on recompilation
-#regzbot ignore-activity
+No changelog. What has changed since v1?
 
-Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
---
-Everything you wanna know about Linux kernel regression tracking:
-https://linux-regtracking.leemhuis.info/about/#tldr
-If I did something stupid, please tell me, as explained on that page.
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
