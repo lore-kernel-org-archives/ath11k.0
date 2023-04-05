@@ -4,65 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E48F6C7619A
-	for <ath11k@archiver.kernel.org>; Wed,  5 Apr 2023 08:25:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F886C76188
+	for <ath11k@archiver.kernel.org>; Wed,  5 Apr 2023 09:04:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Subject:References:In-Reply-To:
-	Message-ID:To:From:MIME-Version:Reply-To:Cc:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+Np+TExzs6Jy4mR6rA97VeYG7UISSaWUEdqkFWya+h0=; b=U+3FHllucfUaBc
-	XOic71/qRdK+kxUFefIbQDmzgskBXljR4GKEJ9mfjeyBxfcliOlwUfpaYKH2dwaYQBJ5J4ocix9c7
-	Mzw1s5KPGMC0FtOa4X+0yVEjOHbGQpWzXhQz4tozc9dQgE7zhIWLurHHUt4AUqvc4XWXITdMf+CEf
-	t5QtaDVctXef3FFPLON4yF63n/oOLItnpID9pJumFtKx1fJoC+PMZQP0y6PLnUxxIq/4F0PBhS65J
-	EcSajOmAdtXoW4RF4ahuprDIBJbUlkAZJJEb/6ydVXT1I6BGrXsEb0+wGKk47KU7tx9X1fNPlkBwA
-	tbcCj9XgWEBZP9FFRujg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=tYkeSLGDrnyeUo//jp+JMCoM+MpNAAr0gwIADaF4mDE=; b=yenP046UQEMmGC
+	Glc6f56NMhs8IXg1nquWzFc1qcLtWjp1MnMEeObYKiiE2cufAgZ9UgoW0Qtoj1PEBKcuBRkJWKtcW
+	drKww2HCtSELPO99kKwSsm2OE/6jcl1Q64VzWPHzC24wP9vM3Dvlr34tbt425/HwjRjrU8S7z9F8C
+	FCjB0BG0Vm5DSw4+DKGA9Sos3XDOkehr1vVKOvjtO0xm/JJNoq90mCehu/hjU5uVR4DTrgpt8COIr
+	nSd+HTWGtOk5JTZRGnwtYduqQuFL0lT0fTtT9P/0mGbBA1F24cU2ca28ZrxL8U6TlugQIZQxHx1RK
+	rlQuYz2bGGInDfCL+0PQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pjyS2-003mDU-0a;
-	Wed, 05 Apr 2023 08:25:06 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1pjz4D-003tDb-08;
+	Wed, 05 Apr 2023 09:04:33 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pjyRy-003mCM-2O
+	id 1pjz49-003tCQ-2y
 	for ath11k@lists.infradead.org;
-	Wed, 05 Apr 2023 08:25:04 +0000
+	Wed, 05 Apr 2023 09:04:31 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 6CD30621FB;
-	Wed,  5 Apr 2023 08:25:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A9513C433D2;
-	Wed,  5 Apr 2023 08:25:00 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 4A8236253C
+	for <ath11k@lists.infradead.org>; Wed,  5 Apr 2023 09:04:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 118FDC4339C;
+	Wed,  5 Apr 2023 09:04:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1680683100;
-	bh=y/wyS1wybskgY3NT3qvYlhAj/QT7MG9Mf7/tNstaFbg=;
-	h=From:To:In-Reply-To:References:Subject:Date:From;
-	b=tEWPde6v5O5Fpb4rSsKWNahmteWdXVmcqIQnoQ4mWFU8EFg3tjnBCjePa1W7YfFW1
-	 wOtRDKzzA2vvHSG3hWLcBuWa1j6twfuBpFNOpBfrHcV4poYkgnmaqFOvsfD/spUBv0
-	 HC96N8MlsNxk8fVQMucVjiOXEd6c3cwfAN0A/juTC4NR7Ix4U5vCRTbymXQMnhf6mG
-	 YcSEWkR+Qoj2frXvxKZz5ssWroCV0jQnIAzq3yB/ZSWCVgan22KJzIRrZQsrqyEfKU
-	 ksblnsJxWJ36GRTMQsVgLwTN6BffEL4AdMMU/J4dfwpVvwWpy4RJBB/LkiHwF62Te9
-	 Q4n8GwxFFFoOg==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 8B9FFC4167B;
-	Wed,  5 Apr 2023 08:25:00 +0000 (UTC)
+	s=k20201202; t=1680685468;
+	bh=dXbpBAkd76lyuS9ClysGa5XOzVAb4r9ONCYrH5D+Juc=;
+	h=From:To:Cc:Subject:Date:From;
+	b=UOR8+hhoML7+N4bu+AC9mx9nSD2a5ppMkZSBuEjV3ivgysVQynBdAeh33FMdmlwCh
+	 ZiNxjwNom7W0mHmKRJ+EAlRcvQAJGz+qj3ZzaEnLFSL1mIcveArluS0G+qRum4GUrm
+	 7BSecbQe0oqFD2NugI+nSLcLc+HkfBOokMCvoJ4vr2zi+/6G9VafX/ImOr20/38IOg
+	 ZAveDuXBNh11AoKMWTS/KWjHFMmSYPmADIMv1Y9wPymPytoNH17/4cN8wSjF11njrg
+	 VmYJD0uQnacnFPqgtUBVBcaX9JbZnp/1t3mjSOXcvkawKTwqf77/KbpC4kXGtipACK
+	 iZ2MyiqJWsa5w==
+From: Kalle Valo <kvalo@kernel.org>
+To: ath11k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org
+Subject: [PATCH] wifi: ath11k: print a warning when crypto_alloc_shash() fails
+Date: Wed,  5 Apr 2023 12:04:25 +0300
+Message-Id: <20230405090425.1351-1-kvalo@kernel.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-From: "Kernel.org Bugbot" <bugbot@kernel.org>
-To: bugs@lists.linux.dev, linux-wireless@vger.kernel.org, 
- quic_msinada@quicinc.com, ath11k@lists.infradead.org
-Message-ID: <20230405-b217299-ec3c4e9b0c8a@bugzilla.kernel.org>
-In-Reply-To: <1666128501-12364-1-git-send-email-quic_msinada@quicinc.com>
-References: <1666128501-12364-1-git-send-email-quic_msinada@quicinc.com>
-Subject: Re: wifi: ath11k: push MU-MIMO configurations to hardware
-X-Bugzilla-Product: Linux
-X-Bugzilla-Component: Kernel
-X-Mailer: peebz 0.1
-Date: Wed,  5 Apr 2023 08:25:00 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230405_012502_842225_84528C73 
-X-CRM114-Status: UNSURE (   4.93  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230405_020430_017940_5B0932B5 
+X-CRM114-Status: GOOD (  10.77  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,15 +71,42 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hello:
+From: Kalle Valo <quic_kvalo@quicinc.com>
 
-This conversation is now tracked by Kernel.org Bugzilla:
-https://bugzilla.kernel.org/show_bug.cgi?id=217299
+Christoph reported that ath11k failed to initialise when michael_mic.ko
+module was not installed. To make it easier to notice that case print a
+warning when crypto_alloc_shash() fails.
 
-There is no need to do anything else, just keep talking.
+Compile tested only.
+
+Reported-by: Christoph Hellwig <hch@lst.de>
+Link: https://lore.kernel.org/all/20221130133016.GC3055@lst.de/
+Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index 99859b59138e..d22e5349c551 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -3106,8 +3106,11 @@ int ath11k_peer_rx_frag_setup(struct ath11k *ar, const u8 *peer_mac, int vdev_id
+ 	int i;
+ 
+ 	tfm = crypto_alloc_shash("michael_mic", 0, 0);
+-	if (IS_ERR(tfm))
++	if (IS_ERR(tfm)) {
++		ath11k_warn(ab, "failed to allocate michael_mic shash: %ld\n",
++			    PTR_ERR(tfm));
+ 		return PTR_ERR(tfm);
++	}
+ 
+ 	spin_lock_bh(&ab->base_lock);
+ 
+
+base-commit: bea046575a2e6d7d1cf63cc7ab032647a3585de5
 -- 
-Deet-doot-dot, I am a bot.
-Kernel.org Bugzilla (peebz 0.1)
+2.30.2
 
 
 -- 
