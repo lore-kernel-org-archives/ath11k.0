@@ -4,80 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4F67C77B75
-	for <ath11k@archiver.kernel.org>; Wed,  5 Apr 2023 22:17:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BF56C77B76
+	for <ath11k@archiver.kernel.org>; Wed,  5 Apr 2023 22:17:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=I1QqVZsUXl7TmkXFf7s1/kblSPGYiZqvTMyoxvi4WaU=; b=I2LQp258OeL3AP
-	0fWKCYYA6Ti3c4JFTVTz3dP7b1kw/EJHrysraLHvGxgYpu2EAPr1wThcCQYT1rfLvZInOstZc1sin
-	qrWr4RIbP9RVGsfdjcgSlOyZL9J1Fiu+JvQtoORFuk0fEPIJ8dW2uC36jly4ea8NvT5l80u2pyHaO
-	TC/5lov7/wsm6UlE3D7NgZR5exJIS8OxntfVQVzZA2VMJYscJjUAUYfd59rbrOhHQs29UI7mdg5el
-	aE97qrstX/wpZ1X3MwGLbajKZIYIZKDvs5mDJ3wrgxA+ceqh9RttRtkewVbCR+NK92tQNfsU3NGaZ
-	jF0STsd7a9UOiGsMzyxw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
+	:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=tnSg2GCPO9iWlSiGDtVcKXNZpTRoMghWEzkeoTpNvjI=; b=uwo2P5FHazE7ig
+	WnWHP3BIeJUbXPj6T2VUySxEoF5ydMd8p97bg2fDvoKKyltvgaqKOpPG7dcA3OhGpHByx4hnY8i4R
+	+mbxZ0rEVDTrAU2c5+O9mX9INMAcDHkNpM/sRbuUZfQEZduzWMqciRHCHIAm4+RM6ep/ZjNnU9NCp
+	Qpi7efKfb6c3qX+Adv2NHXNkQD5gTg95uu8JLEIO5QJjzNBAfzcD8YcmdQTuO8BMsKOcAW3OEq0gY
+	G5xcQRv0tMd8mF+Tep1ASlQHDfb5mTHkjTCMSttJxAjpdMuruYw0pvwR8E+EZDFh4jgmFUqDDFRlU
+	/hhjQH3H0IyCMIegfdKw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pkBRH-005pun-1U;
+	id 1pkBRH-005pv7-2o;
 	Wed, 05 Apr 2023 22:17:11 +0000
 Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pkBRB-005pqf-3A
+	id 1pkBRC-005pqV-01
 	for ath11k@lists.infradead.org;
-	Wed, 05 Apr 2023 22:17:09 +0000
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 335MGUg5006999;
-	Wed, 5 Apr 2023 22:17:00 GMT
+	Wed, 05 Apr 2023 22:17:10 +0000
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 335L22XI008457;
+	Wed, 5 Apr 2023 22:16:58 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=6p0WhPyYOsxZG+SRdZ7y/DE/uVNxgKEG71yhfpXDu2Y=;
- b=onuMoI3w6UP+XP/+7+uhnKYuvN/uCd+PNh2r61VoeIZplgPF59lJPuFg0JiPMpXBlBL3
- n8ENUtnXyOLtPP0LjfrUY4kzVAmxoxXj7caWWrmqjXyVePF3XfP74UK0OIw5BXh4DNwc
- kV8GTC8wWtwRJLgZS0PxWM2XzwgI5MkrvzNBfUDWpTjynCu/hQ3jQ6wqw1qyC53TD+al
- G7Mk7WOSEY9B97Wa2+zEbVQhkS+KpeXjWeURFMORalik80JLwQEM7X2TO4PHDjApmT3E
- H0XCOD6/zW5ZK0Oxc3lkXCJQMaZMcYgKaUBwspYMDKOWAdEDg2L74sFxgbU5Q8DwMJMy CA== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3prn7qm2wf-1
+ : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=R8ncFvCLQPnPx7umK9IQvUe/sHJyGe3E6GTifB1FMBo=;
+ b=hwxy2wOnVrg4EJrPsSjLVh+QQRt9m6SnzpU3sFfpLpyOcA889SQiaTlY0OKPZ2cJ2E+1
+ eCpfZf1i+vsGGrB5Q4Rf5vMRo5bQlMeUevO+8LMpivu6jX4yJlWkqDz3SFlJdvqwLFrg
+ bmMRdS1IQn2thAPD1+PEu+hvXX6PLjizRbptPRQ/2Klf98ky1ULRyBlhQpjynx8tnqNp
+ 120VVJIrA+axeRrW1tlYfAlWmNLy3HdMkna4YIBPz2azgjhxQjsfIhgUzKGFtA6bqTh3
+ r9I/X10JlsXp+EfiqQ7I4wXYcB+hu+MDoaaoWSrXQLOzNlARHUnSC1vuMDgrTBisQIk6 DQ== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ps6vf9g8w-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 05 Apr 2023 22:17:00 +0000
+	Wed, 05 Apr 2023 22:16:57 +0000
 Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 335MGxXJ002117
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 335MGu4K030975
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 5 Apr 2023 22:16:59 GMT
+	Wed, 5 Apr 2023 22:16:56 GMT
 Received: from alokad-linux.qualcomm.com (10.80.80.8) by
  nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Wed, 5 Apr 2023 15:16:59 -0700
+ 15.2.986.42; Wed, 5 Apr 2023 15:16:56 -0700
 From: Aloka Dixit <quic_alokad@quicinc.com>
 To: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
-Subject: [PATCH v3 7/7] wifi: ath11k: EMA beacon support
-Date: Wed, 5 Apr 2023 15:16:48 -0700
-Message-ID: <20230405221648.17950-8-quic_alokad@quicinc.com>
+Subject: [PATCH v3 0/7] v3: ath11k: MBSSID and EMA support in AP mode.
+Date: Wed, 5 Apr 2023 15:16:41 -0700
+Message-ID: <20230405221648.17950-1-quic_alokad@quicinc.com>
 X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230405221648.17950-1-quic_alokad@quicinc.com>
-References: <20230405221648.17950-1-quic_alokad@quicinc.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01b.na.qualcomm.com (10.47.209.197)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: G9YVWalrUnkpVaM_v7Evue25FsRLZq1q
-X-Proofpoint-GUID: G9YVWalrUnkpVaM_v7Evue25FsRLZq1q
+X-Proofpoint-GUID: 3l3FquQ_rhh09a2tSuR8evKJYe9hbAIY
+X-Proofpoint-ORIG-GUID: 3l3FquQ_rhh09a2tSuR8evKJYe9hbAIY
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
  definitions=2023-04-05_15,2023-04-05_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
- lowpriorityscore=0 spamscore=0 mlxlogscore=999 suspectscore=0 adultscore=0
- bulkscore=0 mlxscore=0 priorityscore=1501 phishscore=0 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2303200000
- definitions=main-2304050199
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 suspectscore=0
+ mlxscore=0 malwarescore=0 phishscore=0 priorityscore=1501 bulkscore=0
+ impostorscore=0 mlxlogscore=999 clxscore=1011 adultscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2304050199
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230405_151706_133288_CB549808 
-X-CRM114-Status: GOOD (  21.80  )
+X-CRM114-CacheID: sfid-20230405_151706_160108_D8DCBFC7 
+X-CRM114-Status: GOOD (  14.43  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,163 +92,45 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Add new function ath11k_mac_setup_bcn_tmpl_ema() which invokes the new
-API provided by MAC80211 to retrieve EMA beacons.
+Add support for multiple BSSID (MBSSID) and enhanced multi-BSSID
+advertisements (EMA) features in AP mode.
+Set the extended capabilities, WMI resource config parameters to
+advertise the driver support.
+Set the MBSSID profile parameter such as BSSID index, total BSS count.
+Retrieve and propagate the EMA beacon templates to firmware.
+Set the vif security parameters for the non-transmitting profiles.
 
-Tested-on : IPQ8074 hw2.0 AHB WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
-Signed-off-by: Aloka Dixit <quic_alokad@quicinc.com>
-Co-developed-by: John Crispin <john@phrozen.org>
-Signed-off-by: John Crispin <john@phrozen.org>
----
-v3: Moved the MBSSID (non-EMA) support to the previous patch.
-v2: Rebase only.
+This is the next version for the following series:
+https://patchwork.kernel.org/project/linux-wireless/list/?series=695229&state=%2A&archive=both
+- Added 'wifi: ' to the title in all patches.
+- Patch [v2,01/10] mac80211: generate EMA beacons in AP mode is
+merged hence no dependency.
+- Patch [v2,05/10] ath11k: create a structure for WMI vdev up parameters
+is deleted from this version as it was not adding much value.
+- Patch [v2,09/10] ath11k: EMA beacon support is split into two patches,
+  6/7 and 7/7 to make the EMA additions clearer.
+- Patch [v2,10/10] ath11k: configure WPA and RSN parameters for
+  nontransmitting interface is incorporated in 6/7 as it is required
+  to complete the MBSSID related support.
 
- drivers/net/wireless/ath/ath11k/mac.c | 59 ++++++++++++++++++++++++++-
- drivers/net/wireless/ath/ath11k/wmi.c |  3 +-
- drivers/net/wireless/ath/ath11k/wmi.h | 11 ++++-
- 3 files changed, 70 insertions(+), 3 deletions(-)
+Aloka Dixit (7):
+  wifi: ath11k: driver settings for MBSSID and EMA
+  wifi: ath11k: MBSSID configuration during vdev create/start
+  wifi: ath11k: rename MBSSID fields in wmi_vdev_up_cmd
+  wifi: ath11k: MBSSID parameter configuration in AP mode
+  wifi: ath11k: refactor vif parameter configurations
+  wifi: ath11k: MBSSID beacon support
+  wifi: ath11k: EMA beacon support
 
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index ee910fd756f2..ad22ec3d24bf 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -1452,6 +1452,60 @@ static void ath11k_mac_set_vif_params(struct ath11k_vif *arvif,
- 		arvif->wpaie_present = false;
- }
- 
-+static int ath11k_mac_setup_bcn_tmpl_ema(struct ath11k_vif *arvif)
-+{
-+	struct ath11k_vif *tx_arvif;
-+	struct ieee80211_ema_beacons *beacons;
-+	int ret = 0;
-+	bool nontx_vif_params_set = false;
-+	u32 params = 0;
-+	u8 i = 0;
-+
-+	tx_arvif = (void *)arvif->vif->mbssid_tx_vif->drv_priv;
-+
-+	beacons = ieee80211_beacon_get_template_ema_list(tx_arvif->ar->hw,
-+							 tx_arvif->vif, 0);
-+	if (!beacons || !beacons->cnt) {
-+		ath11k_warn(arvif->ar->ab,
-+			    "failed to get ema beacon templates from mac80211\n");
-+		return -EPERM;
-+	}
-+
-+	if (tx_arvif == arvif)
-+		ath11k_mac_set_vif_params(tx_arvif, beacons->bcn[0].skb);
-+	else
-+		arvif->wpaie_present = tx_arvif->wpaie_present;
-+
-+	for (i = 0; i < beacons->cnt; i++) {
-+		if (tx_arvif != arvif && !nontx_vif_params_set)
-+			nontx_vif_params_set =
-+				ath11k_mac_set_nontx_vif_params(tx_arvif, arvif,
-+								beacons->bcn[i].skb);
-+
-+		params = beacons->cnt;
-+		params |= (i << WMI_EMA_TMPL_IDX_SHIFT);
-+		params |= ((!i ? 1 : 0) << WMI_EMA_FIRST_TMPL_SHIFT);
-+		params |= ((i + 1 == beacons->cnt ? 1 : 0) << WMI_EMA_LAST_TMPL_SHIFT);
-+
-+		ret = ath11k_wmi_bcn_tmpl(tx_arvif->ar, tx_arvif->vdev_id,
-+					  &beacons->bcn[i].offs,
-+					  beacons->bcn[i].skb, params);
-+		if (ret) {
-+			ath11k_warn(tx_arvif->ar->ab,
-+				    "failed to set ema beacon template id %i error %d\n",
-+				    i, ret);
-+			break;
-+		}
-+	}
-+
-+	ieee80211_beacon_free_ema_list(beacons);
-+
-+	if (tx_arvif != arvif && !nontx_vif_params_set)
-+		return -EINVAL; /* Profile not found in the beacons */
-+
-+	return ret;
-+}
-+
- static int ath11k_mac_setup_bcn_tmpl_mbssid(struct ath11k_vif *arvif)
- {
- 	struct ath11k *ar = arvif->ar;
-@@ -1484,7 +1538,7 @@ static int ath11k_mac_setup_bcn_tmpl_mbssid(struct ath11k_vif *arvif)
- 	else if (!ath11k_mac_set_nontx_vif_params(tx_arvif, arvif, bcn))
- 		return -EINVAL;
- 
--	ret = ath11k_wmi_bcn_tmpl(ar, arvif->vdev_id, &offs, bcn);
-+	ret = ath11k_wmi_bcn_tmpl(ar, arvif->vdev_id, &offs, bcn, 0);
- 	kfree_skb(bcn);
- 
- 	if (ret)
-@@ -1508,6 +1562,9 @@ static int ath11k_mac_setup_bcn_tmpl(struct ath11k_vif *arvif)
- 	    arvif != (void *)vif->mbssid_tx_vif->drv_priv && arvif->is_up)
- 		return 0;
- 
-+	if (vif->bss_conf.ema_ap && vif->mbssid_tx_vif)
-+		return ath11k_mac_setup_bcn_tmpl_ema(arvif);
-+
- 	return ath11k_mac_setup_bcn_tmpl_mbssid(arvif);
- }
- 
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 16bc4d16c7d2..8efdc1e78ae4 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -1692,7 +1692,7 @@ int ath11k_wmi_send_bcn_offload_control_cmd(struct ath11k *ar,
- 
- int ath11k_wmi_bcn_tmpl(struct ath11k *ar, u32 vdev_id,
- 			struct ieee80211_mutable_offsets *offs,
--			struct sk_buff *bcn)
-+			struct sk_buff *bcn, u32 ema_params)
- {
- 	struct ath11k_pdev_wmi *wmi = ar->wmi;
- 	struct wmi_bcn_tmpl_cmd *cmd;
-@@ -1731,6 +1731,7 @@ int ath11k_wmi_bcn_tmpl(struct ath11k *ar, u32 vdev_id,
- 
- 	cmd->buf_len = bcn->len;
- 	cmd->mbssid_ie_offset = offs->mbssid_off;
-+	cmd->ema_params = ema_params;
- 
- 	ptr = skb->data + sizeof(*cmd);
- 
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.h b/drivers/net/wireless/ath/ath11k/wmi.h
-index b83807087174..c036aa037339 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.h
-+++ b/drivers/net/wireless/ath/ath11k/wmi.h
-@@ -3561,6 +3561,10 @@ struct wmi_get_pdev_temperature_cmd {
- 
- #define WMI_BEACON_TX_BUFFER_SIZE	512
- 
-+#define WMI_EMA_TMPL_IDX_SHIFT            8
-+#define WMI_EMA_FIRST_TMPL_SHIFT          16
-+#define WMI_EMA_LAST_TMPL_SHIFT           24
-+
- struct wmi_bcn_tmpl_cmd {
- 	u32 tlv_header;
- 	u32 vdev_id;
-@@ -3571,6 +3575,11 @@ struct wmi_bcn_tmpl_cmd {
- 	u32 csa_event_bitmap;
- 	u32 mbssid_ie_offset;
- 	u32 esp_ie_offset;
-+	u32 csc_switch_count_offset;
-+	u32 csc_event_bitmap;
-+	u32 mu_edca_ie_offset;
-+	u32 feature_enable_bitmap;
-+	u32 ema_params;
- } __packed;
- 
- struct wmi_key_seq_counter {
-@@ -6293,7 +6302,7 @@ int ath11k_wmi_mgmt_send(struct ath11k *ar, u32 vdev_id, u32 buf_id,
- 			 struct sk_buff *frame);
- int ath11k_wmi_bcn_tmpl(struct ath11k *ar, u32 vdev_id,
- 			struct ieee80211_mutable_offsets *offs,
--			struct sk_buff *bcn);
-+			struct sk_buff *bcn, u32 ema_param);
- int ath11k_wmi_vdev_down(struct ath11k *ar, u8 vdev_id);
- int ath11k_wmi_vdev_up(struct ath11k *ar, u32 vdev_id, u32 aid,
- 		       const u8 *bssid, u8 *tx_bssid, u32 nontx_profile_idx,
+ drivers/net/wireless/ath/ath11k/hw.c  |   3 +
+ drivers/net/wireless/ath/ath11k/hw.h  |   1 +
+ drivers/net/wireless/ath/ath11k/mac.c | 307 +++++++++++++++++++++++---
+ drivers/net/wireless/ath/ath11k/wmi.c |  26 ++-
+ drivers/net/wireless/ath/ath11k/wmi.h |  45 +++-
+ 5 files changed, 345 insertions(+), 37 deletions(-)
+
+
+base-commit: bea046575a2e6d7d1cf63cc7ab032647a3585de5
 -- 
 2.39.0
 
