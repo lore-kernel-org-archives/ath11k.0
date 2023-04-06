@@ -4,78 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BF56C77B76
-	for <ath11k@archiver.kernel.org>; Wed,  5 Apr 2023 22:17:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C07ECC76196
+	for <ath11k@archiver.kernel.org>; Thu,  6 Apr 2023 11:29:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
-	:From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=tnSg2GCPO9iWlSiGDtVcKXNZpTRoMghWEzkeoTpNvjI=; b=uwo2P5FHazE7ig
-	WnWHP3BIeJUbXPj6T2VUySxEoF5ydMd8p97bg2fDvoKKyltvgaqKOpPG7dcA3OhGpHByx4hnY8i4R
-	+mbxZ0rEVDTrAU2c5+O9mX9INMAcDHkNpM/sRbuUZfQEZduzWMqciRHCHIAm4+RM6ep/ZjNnU9NCp
-	Qpi7efKfb6c3qX+Adv2NHXNkQD5gTg95uu8JLEIO5QJjzNBAfzcD8YcmdQTuO8BMsKOcAW3OEq0gY
-	G5xcQRv0tMd8mF+Tep1ASlQHDfb5mTHkjTCMSttJxAjpdMuruYw0pvwR8E+EZDFh4jgmFUqDDFRlU
-	/hhjQH3H0IyCMIegfdKw==;
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=BCYD+GQ5HJagLYyCgWl6xBXnbY0GQZwV4BDlJT7LH6U=; b=CPeqjS87dWT8eu
+	LZNcP24K7oxLis7W7QQP58nG38kNQrAFmM1d88iUO+T0AUgNcZO6c0izamAZB6WGjWdIb5ZIWp38b
+	qGQcSSM3thKuBVcZimaKNhBTWKRdfsaZYEIws/pq2TQGsGuftnym3P6pHNFE2u9p/IwYQZWT6OwVO
+	QsB2hn9L7ZpT9Qc2klmineQ+nURQB6Z2Rnq09DATPNBeLH7Or5GRD2YqErJqS9BieHTzaSNQBYs3+
+	6bLDgUPOumVxr8QAUkk9gQ+I/V+Ku6EBWj6wlYfrre9j3kvcC7YDZtF/aJTTUygJQ/XbDjo9uf8iR
+	XAVyE2SQzjlL+2XbrdgQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pkBRH-005pv7-2o;
-	Wed, 05 Apr 2023 22:17:11 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1pkNoF-0079kC-1a;
+	Thu, 06 Apr 2023 11:29:43 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pkBRC-005pqV-01
-	for ath11k@lists.infradead.org;
-	Wed, 05 Apr 2023 22:17:10 +0000
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 335L22XI008457;
-	Wed, 5 Apr 2023 22:16:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : subject
- : date : message-id : mime-version : content-transfer-encoding :
- content-type; s=qcppdkim1;
- bh=R8ncFvCLQPnPx7umK9IQvUe/sHJyGe3E6GTifB1FMBo=;
- b=hwxy2wOnVrg4EJrPsSjLVh+QQRt9m6SnzpU3sFfpLpyOcA889SQiaTlY0OKPZ2cJ2E+1
- eCpfZf1i+vsGGrB5Q4Rf5vMRo5bQlMeUevO+8LMpivu6jX4yJlWkqDz3SFlJdvqwLFrg
- bmMRdS1IQn2thAPD1+PEu+hvXX6PLjizRbptPRQ/2Klf98ky1ULRyBlhQpjynx8tnqNp
- 120VVJIrA+axeRrW1tlYfAlWmNLy3HdMkna4YIBPz2azgjhxQjsfIhgUzKGFtA6bqTh3
- r9I/X10JlsXp+EfiqQ7I4wXYcB+hu+MDoaaoWSrXQLOzNlARHUnSC1vuMDgrTBisQIk6 DQ== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ps6vf9g8w-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 05 Apr 2023 22:16:57 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 335MGu4K030975
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 5 Apr 2023 22:16:56 GMT
-Received: from alokad-linux.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Wed, 5 Apr 2023 15:16:56 -0700
-From: Aloka Dixit <quic_alokad@quicinc.com>
-To: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>
-Subject: [PATCH v3 0/7] v3: ath11k: MBSSID and EMA support in AP mode.
-Date: Wed, 5 Apr 2023 15:16:41 -0700
-Message-ID: <20230405221648.17950-1-quic_alokad@quicinc.com>
-X-Mailer: git-send-email 2.39.0
+	id 1pkNoB-0079jG-2a;
+	Thu, 06 Apr 2023 11:29:41 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 95BE560CF9;
+	Thu,  6 Apr 2023 11:29:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 081C9C433EF;
+	Thu,  6 Apr 2023 11:29:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1680780578;
+	bh=u2VzX8NXGwIpE7sYmKgdhvAa1066NHln6fAaJSoi+Rg=;
+	h=References:In-Reply-To:From:Date:Subject:To:List-Id:Cc:From;
+	b=MwFXFpAzX6xdbVIPd2sh7eWo9V8VtGjIxUoXrqnV+m1jRO/JvabK7XF1RFfMH4sg/
+	 MLSVAhvuMgBL1G4yJyd2kdyYB06diMU6sOZquj58EXtAKTJYQ4uEtYVrJelc7MLpM+
+	 dtMlo3p/DASShpmLvPiSgbIZcRjtIAeUVvXE9I98t65YGg1hW08GD0/DxDc4BPiy3N
+	 7fe5ZmqnDhwme0JS7kMgRS6MIQQ8OMA+sZHoYhKdz2PD3+U6eD2CCSquqt7z/dn5YB
+	 TkA+O0erHDYiIdrhiwB8QWhmzAyHXlB0ymqzdNL4OzyGih5v34YZmXTOa6vjb5JuLC
+	 LzOENAnqgdpfQ==
+Received: by mail-yb1-f178.google.com with SMTP id r187so45742097ybr.6;
+        Thu, 06 Apr 2023 04:29:37 -0700 (PDT)
+X-Gm-Message-State: AAQBX9cRQwmb3Y+LW35djVUAe7Z9dqp3y5k+3Xx1kZKbxCX0NUYccJ98
+	JsZxCeLoP4gO/ffd7sgjmfkuQm/J/QjuWWKqa44=
+X-Google-Smtp-Source: AKy350ZUb7CzOMChMvtBqAf2Ouc+5U2rsElMXaijjVDj3r0F+Lv3pwbu6YpOsXFKKAOxVVeeX6JAc6hd0ixHytAEPAE=
+X-Received: by 2002:a25:3753:0:b0:b8b:fd21:2e63 with SMTP id
+ e80-20020a253753000000b00b8bfd212e63mr599755yba.2.1680780577053; Thu, 06 Apr
+ 2023 04:29:37 -0700 (PDT)
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 3l3FquQ_rhh09a2tSuR8evKJYe9hbAIY
-X-Proofpoint-ORIG-GUID: 3l3FquQ_rhh09a2tSuR8evKJYe9hbAIY
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-05_15,2023-04-05_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 suspectscore=0
- mlxscore=0 malwarescore=0 phishscore=0 priorityscore=1501 bulkscore=0
- impostorscore=0 mlxlogscore=999 clxscore=1011 adultscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304050199
+References: <87cz4ia35m.fsf@kernel.org>
+In-Reply-To: <87cz4ia35m.fsf@kernel.org>
+From: Josh Boyer <jwboyer@kernel.org>
+Date: Thu, 6 Apr 2023 07:29:26 -0400
+X-Gmail-Original-Message-ID: <CA+5PVA6=PoB=+GiKuZMYXY=fTOxVY-SrUDyAWxzOyEP5oqxdxA@mail.gmail.com>
+Message-ID: <CA+5PVA6=PoB=+GiKuZMYXY=fTOxVY-SrUDyAWxzOyEP5oqxdxA@mail.gmail.com>
+Subject: Re: [PULL linux-firmware] ath10k & ath11k firmware 20230405
+To: Kalle Valo <kvalo@kernel.org>
+Cc: linux-firmware@kernel.org, linux-wireless@vger.kernel.org, 
+	ath10k@lists.infradead.org, ath11k@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230405_151706_160108_D8DCBFC7 
-X-CRM114-Status: GOOD (  14.43  )
+X-CRM114-CacheID: sfid-20230406_042939_938811_91CC3FDF 
+X-CRM114-Status: GOOD (  20.64  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,55 +76,92 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Add support for multiple BSSID (MBSSID) and enhanced multi-BSSID
-advertisements (EMA) features in AP mode.
-Set the extended capabilities, WMI resource config parameters to
-advertise the driver support.
-Set the MBSSID profile parameter such as BSSID index, total BSS count.
-Retrieve and propagate the EMA beacon templates to firmware.
-Set the vif security parameters for the non-transmitting profiles.
-
-This is the next version for the following series:
-https://patchwork.kernel.org/project/linux-wireless/list/?series=695229&state=%2A&archive=both
-- Added 'wifi: ' to the title in all patches.
-- Patch [v2,01/10] mac80211: generate EMA beacons in AP mode is
-merged hence no dependency.
-- Patch [v2,05/10] ath11k: create a structure for WMI vdev up parameters
-is deleted from this version as it was not adding much value.
-- Patch [v2,09/10] ath11k: EMA beacon support is split into two patches,
-  6/7 and 7/7 to make the EMA additions clearer.
-- Patch [v2,10/10] ath11k: configure WPA and RSN parameters for
-  nontransmitting interface is incorporated in 6/7 as it is required
-  to complete the MBSSID related support.
-
-Aloka Dixit (7):
-  wifi: ath11k: driver settings for MBSSID and EMA
-  wifi: ath11k: MBSSID configuration during vdev create/start
-  wifi: ath11k: rename MBSSID fields in wmi_vdev_up_cmd
-  wifi: ath11k: MBSSID parameter configuration in AP mode
-  wifi: ath11k: refactor vif parameter configurations
-  wifi: ath11k: MBSSID beacon support
-  wifi: ath11k: EMA beacon support
-
- drivers/net/wireless/ath/ath11k/hw.c  |   3 +
- drivers/net/wireless/ath/ath11k/hw.h  |   1 +
- drivers/net/wireless/ath/ath11k/mac.c | 307 +++++++++++++++++++++++---
- drivers/net/wireless/ath/ath11k/wmi.c |  26 ++-
- drivers/net/wireless/ath/ath11k/wmi.h |  45 +++-
- 5 files changed, 345 insertions(+), 37 deletions(-)
-
-
-base-commit: bea046575a2e6d7d1cf63cc7ab032647a3585de5
--- 
-2.39.0
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+T24gV2VkLCBBcHIgNSwgMjAyMyBhdCA5OjA34oCvQU0gS2FsbGUgVmFsbyA8a3ZhbG9Aa2VybmVs
+Lm9yZz4gd3JvdGU6Cj4KPiBIaSwKPgo+IEhlcmUncyBhIHB1bGwgcmVxdWVzdCBmb3IgYXRoMTBr
+IGFuZCBhdGgxMWsuIEZvciBhdGgxMGsgd2UgaGF2ZSBsb3RzIG9mCj4gYm9hcmQgZmlsZSB1cGRh
+dGVzIGluIG11bHRpcGxlIGhhcmR3YXJlIGZhbWlsaWVzLiBGb3IgYXRoMTFrIHdlIGhhdmUgbmV3
+Cj4gZmlybXdhcmUgYnJhbmNoZXMgZm9yIFFDTjkwNzQsIElQUTYwMTggYW5kIElQUTgwNzQuIFdD
+TjY3NTAgYWxzbyBnb3QgYQo+IGZpcm13YXJlIHVwZGF0ZSBhbmQgV0NONjg1NSBoYXMgYm9hcmQg
+ZmlsZSB1cGRhdGVzLgo+Cj4gUGxlYXNlIGxldCBtZSBrbm93IGlmIHRoZXJlIGFyZSBhbnkgcHJv
+YmxlbXMuCj4KPiBLYWxsZQo+Cj4KPiBUaGUgZm9sbG93aW5nIGNoYW5nZXMgc2luY2UgY29tbWl0
+IDJlOTJhNDlmOTBmNzNjOGVkYzQ0YjI1YzZlNjY5ZDVlNzA4OTNjOTA6Cj4KPiAgIG52aWRpYTog
+dXBkYXRlIFR1MTB4IGFuZCBUdTExeCBzaWduZWQgZmlybXdhcmUgdG8gc3VwcG9ydCBuZXdlciBU
+dXJpbmcgSFcgKDIwMjMtMDQtMDQgMDg6MDM6NTMgLTA0MDApCj4KPiBhcmUgYXZhaWxhYmxlIGlu
+IHRoZSBHaXQgcmVwb3NpdG9yeSBhdDoKPgo+ICAgZ2l0Oi8vZ2l0Lmtlcm5lbC5vcmcvcHViL3Nj
+bS9saW51eC9rZXJuZWwvZ2l0L2t2YWxvL2xpbnV4LWZpcm13YXJlLmdpdCBhdGgxMGstMjAyMzA0
+MDUKClB1bGxlZCBhbmQgcHVzaGVkIG91dC4KCmpvc2gKCj4KPiBmb3IgeW91IHRvIGZldGNoIGNo
+YW5nZXMgdXAgdG8gZDFkYzMwNDgwZmVmNDc4YjA2ODI3YTQyODk3MGVmNWQ3NjNlZDc2ZToKPgo+
+ICAgYXRoMTFrOiBXQ042ODU1IGh3Mi4wOiB1cGRhdGUgYm9hcmQtMi5iaW4gKDIwMjMtMDQtMDUg
+MTU6NTY6MjEgKzAzMDApCj4KPiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCj4gS2FsbGUgVmFsbyAoMTIpOgo+ICAgICAgIGF0
+aDEwazogUUNBNDAxOSBodzEuMDogdXBkYXRlIGJvYXJkLTIuYmluCj4gICAgICAgYXRoMTBrOiBR
+Q0E2MTc0IGh3My4wOiB1cGRhdGUgYm9hcmQtMi5iaW4KPiAgICAgICBhdGgxMGs6IFFDQTk4ODgg
+aHcyLjA6IHVwZGF0ZSBib2FyZC0yLmJpbgo+ICAgICAgIGF0aDEwazogUUNBOTk4NCBodzEuMDog
+dXBkYXRlIGJvYXJkLTIuYmluCj4gICAgICAgYXRoMTBrOiBRQ0E5OVgwIGh3Mi4wOiB1cGRhdGUg
+Ym9hcmQtMi5iaW4KPiAgICAgICBhdGgxMWs6IElQUTYwMTggaHcxLjA6IHVwZGF0ZSBib2FyZC0y
+LmJpbgo+ICAgICAgIGF0aDExazogSVBRNjAxOCBodzEuMDogdXBkYXRlIHRvIFdMQU4uSEsuMi43
+LjAuMS0wMTc0NC1RQ0FIS1NXUExfU0lMSUNPTlotMQo+ICAgICAgIGF0aDExazogSVBRODA3NCBo
+dzIuMDogdXBkYXRlIGJvYXJkLTIuYmluCj4gICAgICAgYXRoMTFrOiBJUFE4MDc0IGh3Mi4wOiB1
+cGRhdGUgdG8gV0xBTi5ISy4yLjcuMC4xLTAxNzQ0LVFDQUhLU1dQTF9TSUxJQ09OWi0xCj4gICAg
+ICAgYXRoMTFrOiBRQ045MDc0IGh3MS4wOiB1cGRhdGUgdG8gV0xBTi5ISy4yLjcuMC4xLTAxNzQ0
+LVFDQUhLU1dQTF9TSUxJQ09OWi0xCj4gICAgICAgYXRoMTFrOiBXQ042NzUwIGh3MS4wOiB1cGRh
+dGUgdG8gV0xBTi5NU0wuMS4wLjEtMDExNjAtUUNBTVNMU1dQTFotMQo+ICAgICAgIGF0aDExazog
+V0NONjg1NSBodzIuMDogdXBkYXRlIGJvYXJkLTIuYmluCj4KPiAgV0hFTkNFICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgfCAgIDggKysrLS0tLQo+ICBhdGgxMGsvUUNBNDAxOS9odzEuMC9ib2Fy
+ZC0yLmJpbiB8IEJpbiAxMTU0MDc2IC0+IDE3OTgxNDggYnl0ZXMKPiAgYXRoMTBrL1FDQTYxNzQv
+aHczLjAvYm9hcmQtMi5iaW4gfCBCaW4gNzMxODUyIC0+IDc0MDA3NiBieXRlcwo+ICBhdGgxMGsv
+UUNBOTg4OC9odzIuMC9ib2FyZC0yLmJpbiB8IEJpbiAxNDU2ODQgLT4gMjA2NDQ0IGJ5dGVzCj4g
+IGF0aDEway9RQ0E5OTg0L2h3MS4wL2JvYXJkLTIuYmluIHwgQmluIDIyMDUyOCAtPiAyODEzMTIg
+Ynl0ZXMKPiAgYXRoMTBrL1FDQTk5WDAvaHcyLjAvYm9hcmQtMi5iaW4gfCBCaW4gMTU3NjgwIC0+
+IDE2OTgyNCBieXRlcwo+ICBhdGgxMWsvSVBRNjAxOC9odzEuMC9ib2FyZC0yLmJpbiB8IEJpbiA3
+ODcyMDggLT4gNzg3MjA4IGJ5dGVzCj4gIGF0aDExay9JUFE2MDE4L2h3MS4wL20zX2Z3LmIwMSAg
+IHwgQmluIDY3MTIgLT4gNjcxMiBieXRlcwo+ICBhdGgxMWsvSVBRNjAxOC9odzEuMC9tM19mdy5i
+MDIgICB8IEJpbiAyOTQ5MTIgLT4gMjk0OTEyIGJ5dGVzCj4gIGF0aDExay9JUFE2MDE4L2h3MS4w
+L20zX2Z3Lm1kdCAgIHwgQmluIDY4NjAgLT4gNjg2MCBieXRlcwo+ICBhdGgxMWsvSVBRNjAxOC9o
+dzEuMC9xNl9mdy5iMDAgICB8IEJpbiAzNDAgLT4gMzQwIGJ5dGVzCj4gIGF0aDExay9JUFE2MDE4
+L2h3MS4wL3E2X2Z3LmIwMSAgIHwgQmluIDcwMDAgLT4gNzAwMCBieXRlcwo+ICBhdGgxMWsvSVBR
+NjAxOC9odzEuMC9xNl9mdy5iMDIgICB8IEJpbiA0Njk2IC0+IDQ2OTYgYnl0ZXMKPiAgYXRoMTFr
+L0lQUTYwMTgvaHcxLjAvcTZfZncuYjAzICAgfCBCaW4gMjU1NzEzNiAtPiAyNjAyMzIwIGJ5dGVz
+Cj4gIGF0aDExay9JUFE2MDE4L2h3MS4wL3E2X2Z3LmIwNCAgIHwgQmluIDQxMjA2NCAtPiAzODYw
+MTYgYnl0ZXMKPiAgYXRoMTFrL0lQUTYwMTgvaHcxLjAvcTZfZncuYjA1ICAgfCBCaW4gMTk4MDUy
+IC0+IDIwMjUzMiBieXRlcwo+ICBhdGgxMWsvSVBRNjAxOC9odzEuMC9xNl9mdy5iMDcgICB8IEJp
+biA5NDE2IC0+IDk5MTIgYnl0ZXMKPiAgYXRoMTFrL0lQUTYwMTgvaHcxLjAvcTZfZncuYjA4ICAg
+fCBCaW4gNDUzMzY0IC0+IDQ2NDU2NCBieXRlcwo+ICBhdGgxMWsvSVBRNjAxOC9odzEuMC9xNl9m
+dy5tZHQgICB8IEJpbiA3MzQwIC0+IDczNDAgYnl0ZXMKPiAgYXRoMTFrL0lQUTgwNzQvaHcyLjAv
+Ym9hcmQtMi5iaW4gfCBCaW4gMTMxMTM4MCAtPiAxMzExMzgwIGJ5dGVzCj4gIGF0aDExay9JUFE4
+MDc0L2h3Mi4wL20zX2Z3LmIwMSAgIHwgQmluIDEzNiAtPiAxMzYgYnl0ZXMKPiAgYXRoMTFrL0lQ
+UTgwNzQvaHcyLjAvbTNfZncuYjAyICAgfCBCaW4gMzI3NjgwIC0+IDMyNzY4MCBieXRlcwo+ICBh
+dGgxMWsvSVBRODA3NC9odzIuMC9tM19mdy5tZHQgICB8IEJpbiAyODQgLT4gMjg0IGJ5dGVzCj4g
+IGF0aDExay9JUFE4MDc0L2h3Mi4wL3E2X2Z3LmIwMCAgIHwgQmluIDM0MCAtPiAzNDAgYnl0ZXMK
+PiAgYXRoMTFrL0lQUTgwNzQvaHcyLjAvcTZfZncuYjAxICAgfCBCaW4gMzI4IC0+IDMyOCBieXRl
+cwo+ICBhdGgxMWsvSVBRODA3NC9odzIuMC9xNl9mdy5iMDIgICB8IEJpbiA0Njk2IC0+IDQ2OTYg
+Ynl0ZXMKPiAgYXRoMTFrL0lQUTgwNzQvaHcyLjAvcTZfZncuYjAzICAgfCBCaW4gMjkzNDg2NCAt
+PiAyOTc4NzA0IGJ5dGVzCj4gIGF0aDExay9JUFE4MDc0L2h3Mi4wL3E2X2Z3LmIwNCAgIHwgQmlu
+IDEwMDk4ODggLT4gOTgyOTQ0IGJ5dGVzCj4gIGF0aDExay9JUFE4MDc0L2h3Mi4wL3E2X2Z3LmIw
+NSAgIHwgQmluIDI0MzY1MiAtPiAyNDgyNjAgYnl0ZXMKPiAgYXRoMTFrL0lQUTgwNzQvaHcyLjAv
+cTZfZncuYjA3ICAgfCBCaW4gOTgxNiAtPiAxMDExMiBieXRlcwo+ICBhdGgxMWsvSVBRODA3NC9o
+dzIuMC9xNl9mdy5iMDggICB8IEJpbiA0ODY1NDYgLT4gNTA0MTA0IGJ5dGVzCj4gIGF0aDExay9J
+UFE4MDc0L2h3Mi4wL3E2X2Z3Lm1kdCAgIHwgQmluIDY2OCAtPiA2NjggYnl0ZXMKPiAgYXRoMTFr
+L1FDTjkwNzQvaHcxLjAvYW1zcy5iaW4gICAgfCBCaW4gMTE5MDU4NzIgLT4gMzk2MzMzNiBieXRl
+cwo+ICBhdGgxMWsvUUNOOTA3NC9odzEuMC9tMy5iaW4gICAgICB8IEJpbiAzNDAxMDggLT4gMzQw
+MTA4IGJ5dGVzCj4gIGF0aDExay9XQ042NzUwL2h3MS4wL05vdGljZS50eHQgIHwgIDQ4ICsrKysr
+KysrKysrKysrKysrKysrKysrKysrKystLS0tLS0tLS0tLQo+ICBhdGgxMWsvV0NONjc1MC9odzEu
+MC93cHNzLmIwMCAgICB8IEJpbiAzNDAgLT4gMzQwIGJ5dGVzCj4gIGF0aDExay9XQ042NzUwL2h3
+MS4wL3dwc3MuYjAxICAgIHwgQmluIDY4NDggLT4gNjg0OCBieXRlcwo+ICBhdGgxMWsvV0NONjc1
+MC9odzEuMC93cHNzLmIwMiAgICB8IEJpbiAxMDMwMCAtPiAxMDMwMCBieXRlcwo+ICBhdGgxMWsv
+V0NONjc1MC9odzEuMC93cHNzLmIwMyAgICB8IEJpbiA0MDk2IC0+IDQwOTYgYnl0ZXMKPiAgYXRo
+MTFrL1dDTjY3NTAvaHcxLjAvd3Bzcy5iMDQgICAgfCBCaW4gNTc4MzIzMSAtPiA1ODE5OTk5IGJ5
+dGVzCj4gIGF0aDExay9XQ042NzUwL2h3MS4wL3dwc3MuYjA1ICAgIHwgQmluIDE3NTIzNiAtPiAx
+NjQzMzIgYnl0ZXMKPiAgYXRoMTFrL1dDTjY3NTAvaHcxLjAvd3Bzcy5iMDYgICAgfCBCaW4gMjY2
+Njg0IC0+IDI2NjY4NCBieXRlcwo+ICBhdGgxMWsvV0NONjc1MC9odzEuMC93cHNzLmIwNyAgICB8
+IEJpbiAxMTc2MzY4IC0+IDExNzYzNjggYnl0ZXMKPiAgYXRoMTFrL1dDTjY3NTAvaHcxLjAvd3Bz
+cy5tZHQgICAgfCBCaW4gNzE4OCAtPiA3MTg4IGJ5dGVzCj4gIGF0aDExay9XQ042ODU1L2h3Mi4w
+L2JvYXJkLTIuYmluIHwgQmluIDYxNTgxOTYgLT4gNjI3ODc3MiBieXRlcwo+ICA0NSBmaWxlcyBj
+aGFuZ2VkLCAzOSBpbnNlcnRpb25zKCspLCAxNyBkZWxldGlvbnMoLSkKCi0tIAphdGgxMWsgbWFp
+bGluZyBsaXN0CmF0aDExa0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRl
+YWQub3JnL21haWxtYW4vbGlzdGluZm8vYXRoMTFrCg==
