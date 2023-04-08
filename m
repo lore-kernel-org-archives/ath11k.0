@@ -4,80 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72124C6FD1D
-	for <ath11k@archiver.kernel.org>; Fri,  7 Apr 2023 13:35:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32A13C77B61
+	for <ath11k@archiver.kernel.org>; Sat,  8 Apr 2023 11:53:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:Cc:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=VAApbNxTa6wP1mF+3TKjT7QUb2sl6EOLeohpstptgRA=; b=nSp+gtkMiwBcIC
-	dyzprchbIp9yRWkxYVl8LQ2TeCOK1LV6+YFkA10DnUtxCJcUC7QSpUopcwQYf6w/T+aftIwz02/Vp
-	RgmCDRr6/KgCX3CgWH7vVNg00ldnK7iWzKIZ5uCs6DLvUI7JHtjLFSNrj8OaPJl7JR8g7tWUJSJFj
-	MZl2eF1YI6/5C6AWVzzLD9ldNQYRxUIkeszhJlWWrqQBEg8OnYNkkA1cuaFRnayjOadfXVvmZ+HP3
-	p5gNrL6QDYz2XLP9Dm8EXlXCUQLsc9ibaLEscW/5K2/bMQn2ppXnccJttkDgQMdL1UjSmI0nohuWu
-	cNxthlyErg+awKNzSwrg==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Subject:Cc:To:From:
+	MIME-Version:Date:Message-ID:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	References:List-Owner; bh=E3oLFDbkkl0koUV/xXA3pFhtoinOxgs64WaLBvAI6So=; b=oRL
+	RV5k4e4KPzn+MrVRKzWSt1Ch4v8/tvVHgslmi3St1HV4WpiWj9zG2rTSMirh5gQ9A/uC8KCmhAHpX
+	z1miEYnM32326Z0U0D97QIqf8oibFzpFRuWVJtCR1Kgjf/mMPwLoHuhHDFTlHMUSr8tS+EfojG0gf
+	KLR7dLKRA8yuaG+hIciUFWOwkquPPKYoSxf0UF2Ikgb9fzY/sd5B83tp+0SRJZbpRFz7qodKS8lIY
+	SozbeqzejU54SBMCmmDy1zunjgyBwi3W4v/rYPUlZ4n/slmuqhRxOaeWiz/Xn859coU7mHKUoUEO7
+	RSqhgvyrAlrUNVLK4U9JLyucRaU4++g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pkmFP-00ALqE-0A;
-	Fri, 07 Apr 2023 13:35:24 +0000
-Received: from mail-lf1-x133.google.com ([2a00:1450:4864:20::133])
+	id 1pl77u-00CFsJ-0v;
+	Sat, 08 Apr 2023 11:53:02 +0000
+Received: from wp530.webpack.hosteurope.de ([80.237.130.52])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pkmFF-00ALo9-2m
+	id 1pl77q-00CFrR-2R
 	for ath11k@lists.infradead.org;
-	Fri, 07 Apr 2023 13:35:20 +0000
-Received: by mail-lf1-x133.google.com with SMTP id g29so4655699lfj.4
-        for <ath11k@lists.infradead.org>; Fri, 07 Apr 2023 06:35:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1680874509;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DtaBXHMta717GpCuZ3wh1MM3SKnnue8iRo2CuX4LyJA=;
-        b=C0uULR956DWUq4yyn2ojN4NMe/JEa/qkhBvz1mLHZE6E+4OeYapJs8wBgvf5rYVHtk
-         UVurRhKyEk/mgh9qfmZ6QceyEzX0j28/3OxWegln1vq21BCdqGmGpUFXRIRX9hwx9ON6
-         AwoQND2MnjFVeaCtDTwz4U/1c/mHlwdKeQ2a3tV6UTtB8N6dOJsEPcPTJGeXmcBYY1d0
-         OjRqYk4EabZgIb01qL/Hw29ccVkBaFEwx/tkRsSLAAHEiFkAM/8warC7bd3w64WLwB8w
-         sep9+WlkXlS/dVBOHk2RBGfNW6fIvCE1ZoHCbrYJ2z81b7T1XKhwBuk2NxB1phNK5f52
-         cScQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680874509;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DtaBXHMta717GpCuZ3wh1MM3SKnnue8iRo2CuX4LyJA=;
-        b=geP39EtRlDLObt6b09nEiVIFybhedz4agkxqIWuyogPVA+wADMD1OXa2jXjKJBRhEc
-         6vW9le09vJi8JH7Ylh7aLyG0qRwzV7niW4z5DhgUvZRntIWgzrcwQ7EHlIcUqHmthqwB
-         gV/afZerdVEwW7+rMW56YPPmSpIIqezseGCZNZDKTeaq4urK/uZi7Y/m5sAghBF40YYS
-         ehHVyO4EfI9+hFwvgOCURbOw0+uiIjpVFDW4NgYbWqfYC0PMDGJ/xUiHXN2RF/yrhYfj
-         HTzdXLWGSQKTb33kUOyZPPJPKlKcomTZifeY7RwNWMWioax2ixyOIMdB4D9q+zNFCigI
-         S9pQ==
-X-Gm-Message-State: AAQBX9fzmJa+Wc1eUyWEcQbL8Fho/m6PCy+uRUMrt/gTvm8Wi4qqxmnF
-	PHXXZe9oCAC9i0+8pBEskD4EHOxPGCQdGIJVoA4=
-X-Google-Smtp-Source: AKy350aT0DmwbnnqzrraNugNo0+iMi/Li4QQ8L+y+1QlEdcYad0HE/PkOOlJ6OW+ED8Ingr9/fcD8Q==
-X-Received: by 2002:a19:f817:0:b0:4a4:68b8:f4bd with SMTP id a23-20020a19f817000000b004a468b8f4bdmr706625lff.3.1680874508840;
-        Fri, 07 Apr 2023 06:35:08 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id f14-20020a2ea0ce000000b00298a81f3184sm790704ljm.100.2023.04.07.06.35.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Apr 2023 06:35:08 -0700 (PDT)
-Message-ID: <8ceeee1e-8828-69a9-facb-20c3787207bd@linaro.org>
-Date: Fri, 7 Apr 2023 16:35:08 +0300
+	Sat, 08 Apr 2023 11:53:00 +0000
+Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
+	by wp530.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+	id 1pl77l-0002Tp-FL; Sat, 08 Apr 2023 13:52:53 +0200
+Message-ID: <ed31b6fe-e73d-34af-445b-81c5c644d615@leemhuis.info>
+Date: Sat, 8 Apr 2023 13:52:52 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PULL linux-firmware] ath10k & ath11k firmware 20230405
-Content-Language: en-GB
-To: Kalle Valo <kvalo@kernel.org>, linux-firmware@kernel.org
-Cc: linux-wireless@vger.kernel.org, ath10k@lists.infradead.org,
- ath11k@lists.infradead.org
-References: <87cz4ia35m.fsf@kernel.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <87cz4ia35m.fsf@kernel.org>
+ Thunderbird/102.9.1
+Content-Language: en-US, de-DE
+From: "Linux regression tracking (Thorsten Leemhuis)"
+ <regressions@leemhuis.info>
+To: Kalle Valo <kvalo@kernel.org>
+Cc: ath11k <ath11k@lists.infradead.org>,
+ "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
+ netdev <netdev@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+ Linux kernel regressions list <regressions@lists.linux.dev>
+Subject: [regression] Bug 217286 - ath11k:deny assoc request, Invalid
+ supported ch width and ext nss combination
+X-bounce-key: webpack.hosteurope.de;regressions@leemhuis.info;1680954778;3543a6f4;
+X-HE-SMSGID: 1pl77l-0002Tp-FL
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230407_063513_955223_1790D1E8 
-X-CRM114-Status: GOOD (  11.28  )
+X-CRM114-CacheID: sfid-20230408_045258_958477_FA5AD969 
+X-CRM114-Status: GOOD (  16.64  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,47 +61,73 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi Kalle,
+Hi, Thorsten here, the Linux kernel's regression tracker.
 
-On 05/04/2023 16:07, Kalle Valo wrote:
-> Hi,
+I noticed a regression report in bugzilla.kernel.org. As many (most?)
+kernel developers don't keep an eye on it, I decided to forward it by mail.
+
+Note, you have to use bugzilla to reach the reporter, as I sadly[1] can
+not CCed them in mails like this.
+
+Quoting from https://bugzilla.kernel.org/show_bug.cgi?id=217286 :
+
+> Built and installed v6.2 kernel (with ath11k_pci) on arm64 hardware
+> running Ubuntu22.04. Hardware has both Atheros QCN9074 module and Intel
+> AX210 module. Running each (separately) in station mode and try to
+> connect to Synology router with WiFi Access Point based on QCN9074.
+> AX210 has no problem connecting to AP but Atheros is successfully
+> authenticating but association is rejected by AP with this error message:
 > 
-> Here's a pull request for ath10k and ath11k. For ath10k we have lots of
-> board file updates in multiple hardware families. For ath11k we have new
-> firmware branches for QCN9074, IPQ6018 and IPQ8074. WCN6750 also got a
-> firmware update and WCN6855 has board file updates.
 > 
-> Please let me know if there are any problems.
+> wlan: [0:I:ANY] [UNSPECIFIED] vap-0(wlan100): [04:f0:21:a1:7c:3e]deny assoc request, Invalid supported ch width and ext nss combination
 > 
-> Kalle
+> Please note that when running v5.15.5 kernel (with ath11k_pci), I am
+> able to connect to the same AP without problems.
+> 
+> Detailed logs follow:
+> [...]
 
-Excuse me, a gentle reminder regarding WCN3990 board-2.bin. It was not 
-included into this pull request.
+See the ticket for more details.
 
-> ----------------------------------------------------------------
-> Kalle Valo (12):
->        ath10k: QCA4019 hw1.0: update board-2.bin
->        ath10k: QCA6174 hw3.0: update board-2.bin
->        ath10k: QCA9888 hw2.0: update board-2.bin
->        ath10k: QCA9984 hw1.0: update board-2.bin
->        ath10k: QCA99X0 hw2.0: update board-2.bin
->        ath11k: IPQ6018 hw1.0: update board-2.bin
->        ath11k: IPQ6018 hw1.0: update to WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
->        ath11k: IPQ8074 hw2.0: update board-2.bin
->        ath11k: IPQ8074 hw2.0: update to WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
->        ath11k: QCN9074 hw1.0: update to WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
->        ath11k: WCN6750 hw1.0: update to WLAN.MSL.1.0.1-01160-QCAMSLSWPLZ-1
->        ath11k: WCN6855 hw2.0: update board-2.bin
 
--- 
-With best wishes
-Dmitry
+[TLDR for the rest of this mail: I'm adding this report to the list of
+tracked Linux kernel regressions; the text you find below is based on a
+few templates paragraphs you might have encountered already in similar
+form.]
 
+BTW, let me use this mail to also add the report to the list of tracked
+regressions to ensure it's doesn't fall through the cracks:
+
+#regzbot introduced: v5.15..v6.2
+https://bugzilla.kernel.org/show_bug.cgi?id=217286
+#regzbot title: net: wireless: association is rejected by AP
+#regzbot ignore-activity
+
+This isn't a regression? This issue or a fix for it are already
+discussed somewhere else? It was fixed already? You want to clarify when
+the regression started to happen? Or point out I got the title or
+something else totally wrong? Then just reply and tell me -- ideally
+while also telling regzbot about it, as explained by the page listed in
+the footer of this mail.
+
+Developers: When fixing the issue, remember to add 'Link:' tags pointing
+to the report (e.g. the buzgzilla ticket and maybe this mail as well, if
+this thread sees some discussion). See page linked in footer for details.
+
+Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
+--
+Everything you wanna know about Linux kernel regression tracking:
+https://linux-regtracking.leemhuis.info/about/#tldr
+If I did something stupid, please tell me, as explained on that page.
+
+[1] because bugzilla.kernel.org tells users upon registration their
+"email address will never be displayed to logged out users"
 
 -- 
 ath11k mailing list
