@@ -4,60 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66122C77B6E
-	for <ath11k@archiver.kernel.org>; Wed, 12 Apr 2023 10:01:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3289DC7619A
+	for <ath11k@archiver.kernel.org>; Wed, 12 Apr 2023 10:01:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
 	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=H5X4SqOsvTWvrHndLADCzeTJ3d3Z6/BrC2O1ZZcUHbc=; b=ukudbpvgIjVAW5
-	7KxHSxvzFEY2vfkvs6CLOG+SDSRbly44I129tKfcOPWesNlJSKOr9JqQsgB6+dFf+J5NOtU3xccca
-	yVBfzzf49Ctrx+4rc7acEdPeMm5ykSTS/ZXVyqnrtuE/0a9nbw4lo+lHoaZ125qKcKCQSmTjbPwOA
-	hKQxI53oBrf90wkFknKJJhMrnV8q0vMehQZnt0QALoNpq1s8FDbQwsmqwi0DyBtSw5c5EgGGtb82R
-	GGtH52y4R5LH5S445pciGRoQuLt5x1jml9gec5t0EpUen5ZKH+TDd/BoFSs7zsrKcO/CLxhBO6j42
-	nDJWj1eJSro02Np5bqlA==;
+	List-Owner; bh=oQ73YDxcD3RK0wYmly/qV0nd7UetmB3GWYYN0+gwKAU=; b=UM8gzTgS217tUj
+	asGVtPn4qJZrdb118E6WMB2YQ6kmuFRZEWAuD18gwxCls/0d65YCCDl9OWQGFSyq0TXufuVA61Rqs
+	CpTLKy7fOOeCcvLmQ7hDvOiJ8fTfr0nudMQfmfrOMht2Eb6TFr09jdxF+nJ3Rp5MJ6da3iKQEnYnu
+	x4fna/Cc9iE7ebrEsEnfXmP3t08nqBowmEsH63IgUUQ3EYO2xvb/Z68rhyi5wpJ+K/Yq7D0TLN98X
+	ysGpHLAuTOD8yAUY3Zg59LlV3cCqs05W5Hbl2RtX2/K5KaDg7Vho4ScOqkmqA5/2+oJyzu/iVvEoQ
+	g2FMWXtm7fKq/5gLHyzQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pmXHo-002V20-2y;
-	Wed, 12 Apr 2023 10:01:08 +0000
+	id 1pmXIA-002V67-2m;
+	Wed, 12 Apr 2023 10:01:30 +0000
 Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pmXHl-002V10-2G
+	id 1pmXI7-002V5G-2h
 	for ath11k@lists.infradead.org;
-	Wed, 12 Apr 2023 10:01:07 +0000
+	Wed, 12 Apr 2023 10:01:29 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id D131363264;
-	Wed, 12 Apr 2023 10:01:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5827BC433EF;
-	Wed, 12 Apr 2023 10:01:02 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 7069A63288;
+	Wed, 12 Apr 2023 10:01:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 221EBC433D2;
+	Wed, 12 Apr 2023 10:01:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1681293663;
-	bh=wxQIxrE1sEIPcHGoXAoQ54vdCxjx5JCvEeSNNTXLzYI=;
+	s=k20201202; t=1681293687;
+	bh=vGpPRHSc8ZffrKJ/mbrxrrpaOdGMrHu7FQNPIsAjjMQ=;
 	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=M0svBZ3gmNs6WoDKi5roXLgNnbGcwpvCqV3aiVkjykUJMw31rY5XtjPjR3/1u2AgH
-	 2QrBdVq47UvGPKFxZ6Eh17JO53VvX9qbknBbOcsdxT2J06RMIODj+BQgeHjLK4o/s2
-	 y74CRd+ejNmDV13qV5QN9jmqEhXEnghPlwFZ9w8sAGfkKTaXGfEulIAGshSKb5p1/r
-	 ag/HDuIvBlrd5/HNZl1KyAd8nXld0Tenwkt+9/EvE/YV2z1tu9YYYvV9WpnaeIawB0
-	 BYSeYmDpAYQloL67UkinDfYo0OhMRnI/49CBh+vITONDtjpSAdLvbWSP3JzIODRZil
-	 8QE7Rz9fsYw/w==
+	b=gLcseSvo2jn2tXYrpc/8R0ZSjPUekxZKfG9Ubm0imOFhr0Z3Dyb1BbJC48pGXSGfK
+	 NkndqH6OTHQoi8BPXbq1ko2vk6CO66CKITwSrgMELNQzXIl02YQixDsa5mNkr5xsm4
+	 /J7e29El1SnuNHY3pnBXQDzCGk5o1RlgZEUWaEWqMznKIEyS333C1DeMrc/IVOseF+
+	 Td3vM9vwD1JjuGyUsNrOt2XbW+4RboHnTkqcqQeWb9jKE1R0KqWXEuV58Rei5EZnWE
+	 Q4Qmtyks01Vjt90q+pqB9FCx1d4Advr3wm3zhRpprm9mxp+6QPF+02v7yLo5ohxl5Z
+	 4DAZWM6go817g==
 MIME-Version: 1.0
-Subject: Re: [PATCH v2] wifi: ath11k: fix writing to unintended memory region
+Subject: Re: [PATCH] wifi: ath11k: Send 11d scan start before
+ WMI_START_SCAN_CMDID
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20230321052900.16895-1-quic_ppranees@quicinc.com>
-References: <20230321052900.16895-1-quic_ppranees@quicinc.com>
-To: P Praneesh <quic_ppranees@quicinc.com>
+In-Reply-To: <20230315161817.29627-1-quic_mpubbise@quicinc.com>
+References: <20230315161817.29627-1-quic_mpubbise@quicinc.com>
+To: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
 Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- P Praneesh <quic_ppranees@quicinc.com>
+ Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
 User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <168129366046.14673.5219483047779494901.kvalo@kernel.org>
-Date: Wed, 12 Apr 2023 10:01:02 +0000 (UTC)
+Message-ID: <168129368423.14673.5586980853495473147.kvalo@kernel.org>
+Date: Wed, 12 Apr 2023 10:01:25 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230412_030105_780831_1B492094 
-X-CRM114-Status: UNSURE (   8.63  )
+X-CRM114-CacheID: sfid-20230412_030127_911025_64ACB973 
+X-CRM114-Status: UNSURE (   9.10  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -75,26 +76,34 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-P Praneesh <quic_ppranees@quicinc.com> wrote:
+Manikanta Pubbisetty <quic_mpubbise@quicinc.com> wrote:
 
-> While initializing spectral, the magic value is getting written to the
-> invalid memory address leading to random boot-up crash. This occurs
-> due to the incorrect index increment in ath11k_dbring_fill_magic_value
-> function. Fix it by replacing the existing logic with memset32 to ensure
-> there is no invalid memory access.
+> Firmwares advertising the support of triggering 11d algorithm on the
+> scan results of a regular scan expects driver to send
+> WMI_11D_SCAN_START_CMDID before sending WMI_START_SCAN_CMDID.
+> Triggering 11d algorithm on the scan results of a normal scan helps
+> in completely avoiding a separate 11d scan for determining regdomain.
+> This indirectly helps in speeding up connections on station
+> interfaces on the chipsets supporting 11D scan.
 > 
-> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.4.0.1-01838-QCAHKSWPL_SILICONZ-1
+> To enable this feature, send WMI_11D_SCAN_START_CMDID just before
+> sending WMI_START_SCAN_CMDID if the firmware advertises
+> WMI_TLV_SERVICE_SUPPORT_11D_FOR_HOST_SCAN service flag.
 > 
-> Fixes: d3d358efc553 ("ath11k: add spectral/CFR buffer validation support")
-> Signed-off-by: P Praneesh <quic_ppranees@quicinc.com>
+> WCN6750 & WCN6855 supports this feature.
+> 
+> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-01160-QCAMSLSWPLZ-1
+> Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
+> 
+> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
 > Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
 Patch applied to ath-next branch of ath.git, thanks.
 
-756a7f90878f wifi: ath11k: fix writing to unintended memory region
+e89a51aedf38 wifi: ath11k: Send 11d scan start before WMI_START_SCAN_CMDID
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20230321052900.16895-1-quic_ppranees@quicinc.com/
+https://patchwork.kernel.org/project/linux-wireless/patch/20230315161817.29627-1-quic_mpubbise@quicinc.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
