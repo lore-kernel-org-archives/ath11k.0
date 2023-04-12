@@ -4,62 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA331C76196
-	for <ath11k@archiver.kernel.org>; Tue, 11 Apr 2023 10:18:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1C16C7619A
+	for <ath11k@archiver.kernel.org>; Wed, 12 Apr 2023 09:37:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=i13YV8zFX4vyVDFfiS9anjk2+jPOYC5HMfQ7LG1EViQ=; b=iwYuD8J9SAYoMu
-	3ozfVDCqhFDqvlHVsm68jp5uqNrrVMPyiael8DsFk3zQZMLtICafM9DU22yTY7TekLL1HdWEKZStx
-	DGV8mR9ZdVSS8uZ0eJfQQgV6U3M2cFwcDNRYVWwomTO5n9wXjHcdZBLqlhF86wqIflT8FguvlnS/s
-	rhh8XddPYV0MxxYtah5B9MmC/XCMySuewG52WPDtJq3eoG/6eSokrXU6NUpXs0jED+FMpGXX2fz8X
-	m4HIn2PDjtmBb0H754deCCe91IS8rAf0txWky25/tfhtF8Nvx1oMqHJowjvDhoUau7C+4h1VnWdwo
-	StVUnZMZAltpa4EAaeKg==;
+	List-Owner; bh=4DZTKsobmSy2CwBwUxNG8n8YupbofoE4zYASOxF/r4w=; b=OCRaaAiTXCmEr2
+	RsRbRS/pS+4joCIBRQ/mNPOMpYzidBPLKh7wCf6K2TowvUcnh1jFlaM5PfcQ7Ie3n/9KNhbBAbrXc
+	E+wHcNqclPJGxHiRABJpaBhhWJOk+jWVB+sF+UGeg6gfUgNABNAcCvYsHR6u34JNz7duygeTzoeIa
+	DkTlTrKIChcZqGUzaxQJuqeTuRQOUiZhdOeXbWIxN3lun29mYDzUz3+Svt3B357QXxclMHnQ1Otu6
+	uFvA+BWWvyfY0/LBMFK03lBYYPTBSGZUbCA7kGeu5QjWGjKHgUF9YFaRhIKNdrJCJlgKaBj7lSl7h
+	/6Qi1FP9qYhPz7xGwXGA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pmB50-00HEBh-1y;
-	Tue, 11 Apr 2023 10:18:26 +0000
-Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2] helo=sipsolutions.net)
+	id 1pmWuT-002Pqr-2l;
+	Wed, 12 Apr 2023 09:37:01 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pmB4x-00HEB7-2l;
-	Tue, 11 Apr 2023 10:18:25 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
-	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
-	Resent-Cc:Resent-Message-ID; bh=g37lg8wxChlnTFd5lG/0A02V1vDlQ8YaEb0RUigmtow=;
-	t=1681208303; x=1682417903; b=ojKNw5mpEYwiGT4/qf0SiiWDSMqazzMNSwCSQyMMboR88eM
-	U0bzX3vFRXmfP9eC2vRDROb2aMC9wj/aIdrbtEzsyRvtllwmQqRvq2ZNIeqMcVcG70DaMnpbyTZTG
-	/JMu0X1+ijNgu8IHRyh1q0alKxQmGeH5F2+YHbRibZ271PD5MCw7u4InxZDeWSUUiSa+aP27LboSL
-	JA/LvCHA/oj38zgXTx0A9rCyyyWPQHJHtAJmVJK7WKzNBcq9Nqlr3tY0mk6QJ4cKmqdjJi4eSTdkQ
-	kj1vAUyoMpnk8+6/Z5vRgq6oMfFzm2NYM53JEPhIqitfVc/pl084OB5DF9WaBi2A==;
-Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
-	(Exim 4.96)
-	(envelope-from <johannes@sipsolutions.net>)
-	id 1pmB4t-00CgIS-1p;
-	Tue, 11 Apr 2023 12:18:19 +0200
-Message-ID: <b352dc03e5b404e4caa7e836a6ee3efde7e17ba6.camel@sipsolutions.net>
-Subject: Re: [PATCH 24/27] wifi: mac80211: implement link switching
-From: Johannes Berg <johannes@sipsolutions.net>
-To: Wen Gong <quic_wgong@quicinc.com>, linux-wireless@vger.kernel.org
-Cc: ath11k@lists.infradead.org, ath12k@lists.infradead.org
-Date: Tue, 11 Apr 2023 12:18:18 +0200
-In-Reply-To: <955cf0b5-8973-86b5-109e-268917d70904@quicinc.com>
-References: <20220902141259.377789-1-johannes@sipsolutions.net>
-	 <20220902161143.d99dfbe65c90.I92385ba882ec984a9a2ad18293173436657e82aa@changeid>
-	 <ca5177fe-3b9f-2309-9afd-1d5e827540f7@quicinc.com>
-	 <50719d34bc48d816d00b56d3d9efdb59e3e51a16.camel@sipsolutions.net>
-	 <955cf0b5-8973-86b5-109e-268917d70904@quicinc.com>
-User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
+	id 1pmWuQ-002Ppg-25;
+	Wed, 12 Apr 2023 09:37:00 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 2DB9362888;
+	Wed, 12 Apr 2023 09:36:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 676E3C4339C;
+	Wed, 12 Apr 2023 09:36:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1681292217;
+	bh=59wVY3/LuZKY9TMD37GIsizY4kqoEg6quzbNKB7N/To=;
+	h=From:To:List-Id:Cc:Subject:References:Date:In-Reply-To:From;
+	b=uv8HdqXLam4ULkTjp5ZhSnbMfwlERdPjID5oxeJATNWd1JWuXSeAYydT+ktCTml4H
+	 LCXGPlUD/4uCFCahaS9GhVMXcQyvIAuC8f9ob2gSCeWmzcmlHAZIqWWRmjZAHzdFZR
+	 /bT6pwppaX2o+i+j3ZPrCmdmgSW7cf7eiAmsGOqLY5RwXlvbHhiFIwUMl/WF2dlct5
+	 pFXTBFW44EsSs/rtOKvBwpvH09uGirCNEkFyYKKR1V5UqlKhIkxF0/S50BaTw2O6IW
+	 CQXtDWcCyTM+oHZJm4tR21xjE6Xss5pCvB33aW9DUhSIi0uGpgRRIuQoP7GRtkNWTu
+	 zRyCU9Q7yQPiw==
+From: Kalle Valo <kvalo@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: linux-firmware@kernel.org,  linux-wireless@vger.kernel.org,  ath10k@lists.infradead.org,  ath11k@lists.infradead.org
+Subject: Re: [PULL linux-firmware] ath10k & ath11k firmware 20230405
+References: <87cz4ia35m.fsf@kernel.org>
+	<8ceeee1e-8828-69a9-facb-20c3787207bd@linaro.org>
+Date: Wed, 12 Apr 2023 12:36:51 +0300
+In-Reply-To: <8ceeee1e-8828-69a9-facb-20c3787207bd@linaro.org> (Dmitry
+	Baryshkov's message of "Fri, 7 Apr 2023 16:35:08 +0300")
+Message-ID: <87jzyh8mrw.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-X-malware-bazaar: not-scanned
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230411_031823_891208_6A7125D9 
-X-CRM114-Status: UNSURE (   8.65  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230412_023658_722068_E7A8F64B 
+X-CRM114-Status: GOOD (  12.62  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,26 +74,33 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Mon, 2023-04-03 at 22:21 +0800, Wen Gong wrote:
-> 
-> Also it does not have BSS_CHANGED_ASSOC(exists in 
-> ieee80211_set_associated()) for
-> 
-> ieee80211_link_info_change_notify()/ieee80211_vif_cfg_change_notify().
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org> writes:
 
-Well, that's clearly intentional though, since the assoc state is at the
-MLD level, so changing a link doesn't affect the assoc state, right?
-This is also done through _vif_cfg_change_notify().
+> Hi Kalle,
+>
+> On 05/04/2023 16:07, Kalle Valo wrote:
+>> Hi,
+>>
+>> Here's a pull request for ath10k and ath11k. For ath10k we have lots of
+>> board file updates in multiple hardware families. For ath11k we have new
+>> firmware branches for QCN9074, IPQ6018 and IPQ8074. WCN6750 also got a
+>> firmware update and WCN6855 has board file updates.
+>>
+>> Please let me know if there are any problems.
+>>
+>> Kalle
+>
+> Excuse me, a gentle reminder regarding WCN3990 board-2.bin. It was not
+> included into this pull request.
 
-> So I think low-level driver also need to auto add BSS_CHANGED_ASSOC 
-> logic for the added link as well as the pairwise key you said, right?
-> 
+Oh man, sorry about that. I guess my installation script was buggy and
+missed it somehow, I'll look at it later and make sure WCN3990 is not
+skipped anymore.
 
-That doesn't make a lot of sense as written, IMHO, but yes if you have
-something you need to do on links during assoc, then you'd have to take
-care of that as well, just like the keys.
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-johannes
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
