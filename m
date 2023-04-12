@@ -4,74 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68226C7619A
-	for <ath11k@archiver.kernel.org>; Wed, 12 Apr 2023 09:46:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0B54C77B6E
+	for <ath11k@archiver.kernel.org>; Wed, 12 Apr 2023 09:57:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+mVHkroaXL7XsnKqyonHqXBFDOUMtZ1zqFfwg0Ecl0M=; b=A0XM71XT4CW/ly
-	8D+brJNKp7wKKlRMafaBpsijV9MZFlkz6orboWn79LN/S8bTyod2itOhJnlCYADoRwPXFFwnLp3Fo
-	dsjPuo1hDdcgxFV6ukveyxLqOltEgIQGClDr+HfUI6QeanhB4LVUfKQUz76MSGdeBzesms0+B0IGI
-	iqIGemUowxu+pYmEpVFW1OJOMXGZDMpLyYGOE0FzYWFvCtJWe3h0VXZZ/F3k+uhNsIOgfgcgfkgBG
-	YLW6rwES8rVSZpfjo14/hgVsop9ZbRhuFWonpfXn4yJEn7X7Ty61mHrYKBnYWpqghZp8IlYADXjog
-	g/N3+0wBsqxh6/ec8Egw==;
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
+	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=9ukblVxeCOpeCa3ZFTcdHpWhCD88yBZzMccMwqHZreE=; b=pwfmoW4178ilzI
+	H7xm0bOoC5ZBZxqVeKJF38QYS5Pxz/joWSiYhEXZNzi6bAV32jb+YiPHypLU98WVVvPNFxeAIHAQ+
+	osRRTSRsxjPfrgctKK0CtYQqaJqs110/7D4M//lYy1OqrY7dWfkKIKtbcUKGWhztsms+DKUAM3wqQ
+	JGHcCRu33EQ+OzKzijENW28ZAAYUE76WbvMY5wevP7d9PjeYJ4qQ6G0KxOAkToOGw9hOmrapJyBUi
+	/72Gd6w/RdHFVUAFqYOtiuL1DhMS6rYDJyzAzsmy+V0cYZeS4sKnGOdYo1f1q/PS8d079SM+JrCwK
+	nfg0iZTBEdL/xxRMFzWQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pmX3b-002SSg-0Q;
-	Wed, 12 Apr 2023 09:46:27 +0000
-Received: from mail-yb1-xb36.google.com ([2607:f8b0:4864:20::b36])
+	id 1pmXEQ-002UUR-1R;
+	Wed, 12 Apr 2023 09:57:38 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pmX3Y-002SRB-0m
+	id 1pmXEO-002UTk-0Y
 	for ath11k@lists.infradead.org;
-	Wed, 12 Apr 2023 09:46:26 +0000
-Received: by mail-yb1-xb36.google.com with SMTP id d204so2636282ybh.6
-        for <ath11k@lists.infradead.org>; Wed, 12 Apr 2023 02:46:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1681292782; x=1683884782;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZNuVbYyBnP1BcaPopnX8lztKblurkV7/rLoacjW6Njs=;
-        b=yAaY1KHIpqwcoP5byyGOts6dHMQUhWaW8lZyTtgdsRUUgDlaAHH395rOIxlekGq55a
-         bAxYgNjrF5/lwJqeiX2SZRIlVk2wO1odlGdLhDv9ZjZ2OumLC3qfrIiMQFHTAFqR25OA
-         Tq4XhZxEjZAvYzp36dH5BRB6SW2vYxt8LosNPecG+dyOaNI09RB5a/JtDX8MusxhsSzW
-         Byn8erPSpBIlhHXnSrZzqjRlaYIdmdM+8LkwtNvqrZmqhF8RoY5A57vLjejbupdPrGyj
-         Win6bDULj8RGrz7JGPWkwlJEv6Gygsn0CLc+x8I+UaVtZentrbTSPAYiXwEANqQ3N8ED
-         beMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681292782; x=1683884782;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ZNuVbYyBnP1BcaPopnX8lztKblurkV7/rLoacjW6Njs=;
-        b=ejXUDeFhSXtDnJGtPD45eMhjKTsNV5KitivQeyZRluwSpz6MYur3JFmbKnEYTV6kQb
-         j8Zc0bjwogtSNWCvq1W1ggzfrxUt4zft3lulcNZIyxH3dHOfcKk7hgS4tdwBqAOcV7E+
-         vYH8q6ZkXH6UZtUlInvzd1Lk19CcDOoJt3qI0xbqJg3qzKThyPhgyTQbR52MyEzdInwh
-         VWPB+unL/K5iTBT8ePyWH6hWIaL545IRMDpNk7rYYFW41DAHJpW6Glju09xoBNdfMhhy
-         JhIurTNMqMsbMU+21Qo0QEbMXl8Z33ec8YtKNixwVtkrsDSsXT6GoTM1JfoSmAgHeopf
-         4dgA==
-X-Gm-Message-State: AAQBX9em8AmEP4VK/9ZX5igw17vF36o9vEJRGAV0x5xD5VfLdSe4yqD8
-	FzXVgdrMo8aKivbS3n+QrK/mMf0VhXSVJIzcIE5gnQ==
-X-Google-Smtp-Source: AKy350bOIfX5NAzv6KgxUT2B1YGM2RvsdUbOEM86g0uqawtzMv77LJ92an89N0cSH4dLXjtnO5ExgpcLpL6DNZjWOTY=
-X-Received: by 2002:a25:da8e:0:b0:b8f:3647:d753 with SMTP id
- n136-20020a25da8e000000b00b8f3647d753mr1197484ybf.9.1681292782236; Wed, 12
- Apr 2023 02:46:22 -0700 (PDT)
+	Wed, 12 Apr 2023 09:57:37 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id B99D562D3F;
+	Wed, 12 Apr 2023 09:57:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C3E3C433EF;
+	Wed, 12 Apr 2023 09:57:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1681293455;
+	bh=hE4La5t8yB1HoZ0gdw/pM5HDZGdI4D6Kb1y56YSkmco=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=WtvrHIJLg/LM826Jb+72eYripZIsNMHF+Oc9LSJaWvgJBd50zIwi9X3GUNM1wWwqZ
+	 Ah3xxRN8ip/5UxHisiitHuWfvgR1X6RdzvhEn3AGcBwjTMFR4api3LIVaGUXxXT6Jp
+	 4U/F6glSB1A+3bnsWCPR4pxqidKm7C4Mt6gD7Mh8NbN+dUAb4n8ztR/PK3vimDtb+O
+	 kBSx7GCK4Hyg8gpvo0RWb+QsHHLhMCM+uqgSLG+PoQ2jvkVribuZa/PoBB0R06xfkd
+	 OnyGXWVhqCAOQ+zaNfvmkfXBIgOgg06aQxdmfmBg35/65x94GtQPio0EEKk2DdYRGn
+	 eKTbKdTzITknQ==
 MIME-Version: 1.0
-References: <87cz4ia35m.fsf@kernel.org> <8ceeee1e-8828-69a9-facb-20c3787207bd@linaro.org>
- <87jzyh8mrw.fsf@kernel.org>
-In-Reply-To: <87jzyh8mrw.fsf@kernel.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 12 Apr 2023 12:46:11 +0300
-Message-ID: <CAA8EJpotq5KjbUAU+exR5uU9-9erFhdxPn_OTUJ58MrXM-Pngw@mail.gmail.com>
-Subject: Re: [PULL linux-firmware] ath10k & ath11k firmware 20230405
-To: Kalle Valo <kvalo@kernel.org>
-Cc: linux-firmware@kernel.org, linux-wireless@vger.kernel.org, 
-	ath10k@lists.infradead.org, ath11k@lists.infradead.org
+Subject: Re: [PATCH v4] wifi: ath11k: Optimize 6 GHz scan time
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20230323060913.10097-1-quic_mpubbise@quicinc.com>
+References: <20230323060913.10097-1-quic_mpubbise@quicinc.com>
+To: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+ Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-ID: <168129345224.14673.5339592403399193751.kvalo@kernel.org>
+Date: Wed, 12 Apr 2023 09:57:34 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230412_024624_292762_715D754F 
-X-CRM114-Status: GOOD (  13.59  )
+X-CRM114-CacheID: sfid-20230412_025736_248107_11A3A2F7 
+X-CRM114-Status: GOOD (  13.53  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,37 +74,54 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On Wed, 12 Apr 2023 at 12:36, Kalle Valo <kvalo@kernel.org> wrote:
->
-> Dmitry Baryshkov <dmitry.baryshkov@linaro.org> writes:
->
-> > Hi Kalle,
-> >
-> > On 05/04/2023 16:07, Kalle Valo wrote:
-> >> Hi,
-> >>
-> >> Here's a pull request for ath10k and ath11k. For ath10k we have lots of
-> >> board file updates in multiple hardware families. For ath11k we have new
-> >> firmware branches for QCN9074, IPQ6018 and IPQ8074. WCN6750 also got a
-> >> firmware update and WCN6855 has board file updates.
-> >>
-> >> Please let me know if there are any problems.
-> >>
-> >> Kalle
-> >
-> > Excuse me, a gentle reminder regarding WCN3990 board-2.bin. It was not
-> > included into this pull request.
->
-> Oh man, sorry about that. I guess my installation script was buggy and
-> missed it somehow, I'll look at it later and make sure WCN3990 is not
-> skipped anymore.
+Manikanta Pubbisetty <quic_mpubbise@quicinc.com> wrote:
 
-No problem, thanks a lot!
+> Currently, time taken to scan all supported channels on WCN6750
+> is ~8 seconds and connection time is almost 10 seconds. WCN6750
+> supports three Wi-Fi bands (i.e., 2.4/5/6 GHz) and the numbers of
+> channels for scan come around ~100 channels (default case).
+> Since the chip doesn't have support for DBS (Dual Band Simultaneous),
+> scans cannot be parallelized resulting in longer scan times.
+> 
+> Among the 100 odd channels, ~60 channels are in 6 GHz band. Therefore,
+> optimizing the scan for 6 GHz channels will bring down the overall
+> scan time.
+> 
+> WCN6750 firmware has support to scan a 6 GHz channel based on co-located
+> AP information i.e., RNR IE which is found in the legacy 2.4/5 GHz scan
+> results. When a scan request with all supported channel list is enqueued
+> to the firmware, then based on WMI_SCAN_CHAN_FLAG_SCAN_ONLY_IF_RNR_FOUND
+> scan channel flag, firmware will scan only those 6 GHz channels for which
+> RNR IEs are found in the legacy scan results.
+> 
+> In the proposed design, based on NL80211_SCAN_FLAG_COLOCATED_6GHZ scan
+> flag, driver will set the WMI_SCAN_CHAN_FLAG_SCAN_ONLY_IF_RNR_FOUND flag
+> for non-PSC channels. Since there is high probability to find 6 GHz APs
+> on PSC channels, these channels are always scanned. Only non-PSC channels
+> are selectively scanned based on cached RNR information from the legacy
+> scan results.
+> 
+> If NL80211_SCAN_FLAG_COLOCATED_6GHZ is not set in the scan flags,
+> then scan will happen on all supported channels (default behavior).
+> 
+> With these optimizations, scan time is improved by 1.5-1.8 seconds on
+> WCN6750. Similar savings have been observed on WCN6855.
+> 
+> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
+> Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.16
+> 
+> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
+Patch applied to ath-next branch of ath.git, thanks.
+
+8b4d2f080afb wifi: ath11k: Optimize 6 GHz scan time
 
 -- 
-With best wishes
-Dmitry
+https://patchwork.kernel.org/project/linux-wireless/patch/20230323060913.10097-1-quic_mpubbise@quicinc.com/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
 -- 
 ath11k mailing list
