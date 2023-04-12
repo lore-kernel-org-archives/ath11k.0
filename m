@@ -4,62 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B9AEC77B71
-	for <ath11k@archiver.kernel.org>; Wed, 12 Apr 2023 09:58:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3064C7619A
+	for <ath11k@archiver.kernel.org>; Wed, 12 Apr 2023 09:59:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
 	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=4SDjrbXPO7WnXzJtt+phcRM5/fOzAzUh14mQpPDXj+8=; b=Vb3WZkA8uv6y+5
-	J4NorA0ZQ3w4fYewNx/r4XF1EtRHdXkFw2fxijtnCI4Ejw8RVgY2Td3a6Veq2P13u8gySG3yXgUUB
-	40DUI1J5rkK00F1YLyM0wkQnFHLGkBhmHkUTcp2Os/G2xYx4HoPusH8xuIoTyM3w5k7PvnSLsug81
-	Mav5UvTuiQlkCdgMtNRnlWERVTA3NJExYzD/5LIr8piUD6aMVPYn+sU+qhIOKr9bMXDn7nZibcFae
-	gWYFoVdiopT2NhF4d7r4kkkgSoX9Zoz9EGM7WCMPpRE3c14K/+0KSqQA/ArtJcN4XYQQSx1NV7Cf8
-	ap7/n4q8eA11Bb44QtVA==;
+	List-Owner; bh=/l9sVVs4kdJ0VxNSNUvYa7Wda9NoAhTFvmYzgXQ0o6k=; b=WVPlYalL2+GZmM
+	+OQF0FuHyyI1g+A3dZUlgHfyfLluwH6wc3IQNrsGzcxMrrzREZnoZ1cs0/J5Z2UsMASKNkewkMYmS
+	eKBS9lHG5mOcs/WcDKlUkeNrk0XPyZy7zlj2PNcWkoaMYhm4SH0GooyuM38ob0T2el8Vbkk1KAqR/
+	8KSiNcCSpG1Ae9pPUW6owz/NCJqT3w09f4bta+G4NUpGfy088XtHCKuZzi1k9cQCHqp0w0SRkEbfz
+	7dfWMiNr7O1Ew1uqP5XMgj8trVwgROsQBG+KQGMajOmx2M+X6KrvuN07cI7U1w13+Ew/iu2SlEx9V
+	jPKIuifBF/A+M5Z3jCyA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pmXEy-002UZg-2F;
-	Wed, 12 Apr 2023 09:58:12 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1pmXFp-002Ugy-1P;
+	Wed, 12 Apr 2023 09:59:05 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pmXEv-002UZ1-1A
+	id 1pmXFm-002UgA-2Q
 	for ath11k@lists.infradead.org;
-	Wed, 12 Apr 2023 09:58:10 +0000
+	Wed, 12 Apr 2023 09:59:04 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id DF4E162D3F;
-	Wed, 12 Apr 2023 09:58:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62668C4339B;
-	Wed, 12 Apr 2023 09:58:07 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 52E3762AF9;
+	Wed, 12 Apr 2023 09:59:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDFBAC433EF;
+	Wed, 12 Apr 2023 09:59:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1681293488;
-	bh=GVh+aeYBaYA1KFeRtn+mqjStl4mXaYNEb0W2W45Xcvo=;
+	s=k20201202; t=1681293541;
+	bh=DkbdkJrCIGKo6sV6b92AMSs4dyTp3F0mcGn6aU5aGz0=;
 	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=eUG7oEY5x3ojHRZAxc1IWNdIgTbdBgdyPtb4607xe8NG5uPr3qVp3NFxDH5xjgZ9G
-	 0dlGZBfSPJJo/DL4e8N13YrUJJ4rqW8Dc0pjzjV0Pr9/LBCsuBaU5doGNTuuQAVQUd
-	 K6OZGgEk5l1JMzBAyL+uN7ss+brhw1v4gWkaCzpWNu7/WZ1M4CNAl6+PykXJz713AV
-	 fXMG0bFJuSYIy+Tqdj4qz+S7kdPHsafa7RiTOeNS6R2YF3GPT3XMFO4YJP0KLcH+WZ
-	 5mf5wYsTg9OxVdBypDdCJk6OZ0Glm1J1i7pIIrQkgu736GEAq3p/elRqgLsmkZN0hC
-	 cklPl3Hcv5i4g==
+	b=Kmc8KbfDorBPScEa8DazjKwdSUc4LEMuOO5/q6m5ssC3xMf5tk5qyQCaUgL5QGEEF
+	 C1C9qPE+kYZGDAj8VBzMa2BIUS4cxnW54MpZGo8Ml/gDDO9LHmo1hU/1sG7VfO2/ee
+	 GYwS4bvRcbTlJ4DC0S7JW2kzZT9u7/QbaqH00aVgYeID0+wmMF56+FY8RfATnmXP74
+	 iVIVZKeT4PiNfogmYMLOFnIWzP/aESORb8JBl6g4Y7goV09a4KLDq1a814KvTH62GW
+	 FSgmcjVDDBxKxi6bEyQ+E4zp73eYAR1DvYgLKzmqz+qJ/qBz6BU+IPU30lXGSh8fnN
+	 lWbyrV8oG/yGw==
 MIME-Version: 1.0
-Subject: Re: [PATCH] wifi: ath11k: Configure the FTM responder role using
- firmware
- capability flag
+Subject: Re: [PATCH] wifi: ath11k: fix rssi station dump not updated in
+ QCN9074
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20230317072034.8217-1-quic_gjothira@quicinc.com>
-References: <20230317072034.8217-1-quic_gjothira@quicinc.com>
-To: Ganesh Babu Jothiram <quic_gjothira@quicinc.com>
+In-Reply-To: <20230320110312.20639-1-quic_ppranees@quicinc.com>
+References: <20230320110312.20639-1-quic_ppranees@quicinc.com>
+To: P Praneesh <quic_ppranees@quicinc.com>
 Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- Ganesh Babu Jothiram <quic_gjothira@quicinc.com>
+ P Praneesh <quic_ppranees@quicinc.com>
 User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <168129348537.14673.10410864302995200064.kvalo@kernel.org>
-Date: Wed, 12 Apr 2023 09:58:07 +0000 (UTC)
+Message-ID: <168129353877.14673.14171521280937840187.kvalo@kernel.org>
+Date: Wed, 12 Apr 2023 09:59:00 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230412_025809_442000_C8E2E528 
-X-CRM114-Status: UNSURE (   6.29  )
+X-CRM114-CacheID: sfid-20230412_025902_821207_D40226B2 
+X-CRM114-Status: UNSURE (   7.04  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -77,23 +76,26 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Ganesh Babu Jothiram <quic_gjothira@quicinc.com> wrote:
+P Praneesh <quic_ppranees@quicinc.com> wrote:
 
-> Fine Time Measurement(FTM) is offloaded feature to firmware.
-> Hence, the configuration of FTM responder role is done using
-> firmware capability flag instead of hw param.
+> In QCN9074, station dump signal values display default value which
+> is -95 dbm, since there is firmware header change for HAL_RX_MPDU_START
+> between QCN9074 and IPQ8074 which cause wrong peer_id fetch from msdu.
+> Fix this by updating hal_rx_mpdu_info with corresponding QCN9074 tlv
+> format.
 > 
 > Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
+> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-01695-QCAHKSWPL_SILICONZ-1
 > 
-> Signed-off-by: Ganesh Babu Jothiram <quic_gjothira@quicinc.com>
+> Signed-off-by: P Praneesh <quic_ppranees@quicinc.com>
 > Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
 Patch applied to ath-next branch of ath.git, thanks.
 
-813968c24126 wifi: ath11k: Configure the FTM responder role using firmware capability flag
+031ffa6c2cd3 wifi: ath11k: fix rssi station dump not updated in QCN9074
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20230317072034.8217-1-quic_gjothira@quicinc.com/
+https://patchwork.kernel.org/project/linux-wireless/patch/20230320110312.20639-1-quic_ppranees@quicinc.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
