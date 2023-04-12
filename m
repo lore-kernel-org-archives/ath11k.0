@@ -4,61 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3289DC7619A
-	for <ath11k@archiver.kernel.org>; Wed, 12 Apr 2023 10:01:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1EBE0C77B71
+	for <ath11k@archiver.kernel.org>; Wed, 12 Apr 2023 10:03:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
 	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=oQ73YDxcD3RK0wYmly/qV0nd7UetmB3GWYYN0+gwKAU=; b=UM8gzTgS217tUj
-	asGVtPn4qJZrdb118E6WMB2YQ6kmuFRZEWAuD18gwxCls/0d65YCCDl9OWQGFSyq0TXufuVA61Rqs
-	CpTLKy7fOOeCcvLmQ7hDvOiJ8fTfr0nudMQfmfrOMht2Eb6TFr09jdxF+nJ3Rp5MJ6da3iKQEnYnu
-	x4fna/Cc9iE7ebrEsEnfXmP3t08nqBowmEsH63IgUUQ3EYO2xvb/Z68rhyi5wpJ+K/Yq7D0TLN98X
-	ysGpHLAuTOD8yAUY3Zg59LlV3cCqs05W5Hbl2RtX2/K5KaDg7Vho4ScOqkmqA5/2+oJyzu/iVvEoQ
-	g2FMWXtm7fKq/5gLHyzQ==;
+	List-Owner; bh=Nym8jdpPauC3ZX61T5q/1uUSLdx8rF5MErWn3XwvuXk=; b=ecGpUBeU+BgbOL
+	YUUSCN/mGd1iOPmziAyiuVcvwz4nQ1vkOgFwT39XQiO7NcCvxS/yKqq6EE01/UNUapzcWYNkNWNry
+	AEgLlB6CO+5wRZ2fbAVBEvRjSPsGN1oHZTbz0eGzKJ74h7EuePl/HetrRJxSHpInHZZAnu+vIIvrN
+	vTAAGcO6mquN3c6Xfb0bUXiVkmlwWRJ/Wb3KgeR12JRtzYqiXfjKMgVid2ZQiws5WhRGXE8ql34mn
+	ZXwXUuvGSO7FNUuq7pp92am8OuFENAUHBJhXZGR/qh+0EfuqRYwm7h3YB59AHA5iNYgrb5ATvAHLV
+	f8JQZxJqRjsPbGlScvew==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pmXIA-002V67-2m;
-	Wed, 12 Apr 2023 10:01:30 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1pmXKK-002VLg-2X;
+	Wed, 12 Apr 2023 10:03:44 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pmXI7-002V5G-2h
-	for ath11k@lists.infradead.org;
-	Wed, 12 Apr 2023 10:01:29 +0000
+	id 1pmXKG-002VKl-2e;
+	Wed, 12 Apr 2023 10:03:42 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 7069A63288;
-	Wed, 12 Apr 2023 10:01:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 221EBC433D2;
-	Wed, 12 Apr 2023 10:01:25 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 56D9660FC9;
+	Wed, 12 Apr 2023 10:03:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DABB7C4339E;
+	Wed, 12 Apr 2023 10:03:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1681293687;
-	bh=vGpPRHSc8ZffrKJ/mbrxrrpaOdGMrHu7FQNPIsAjjMQ=;
+	s=k20201202; t=1681293819;
+	bh=tEpNk+OfBlpzjfw7+X3xFjLc7iWcYLC+okDPMAZ5S8E=;
 	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=gLcseSvo2jn2tXYrpc/8R0ZSjPUekxZKfG9Ubm0imOFhr0Z3Dyb1BbJC48pGXSGfK
-	 NkndqH6OTHQoi8BPXbq1ko2vk6CO66CKITwSrgMELNQzXIl02YQixDsa5mNkr5xsm4
-	 /J7e29El1SnuNHY3pnBXQDzCGk5o1RlgZEUWaEWqMznKIEyS333C1DeMrc/IVOseF+
-	 Td3vM9vwD1JjuGyUsNrOt2XbW+4RboHnTkqcqQeWb9jKE1R0KqWXEuV58Rei5EZnWE
-	 Q4Qmtyks01Vjt90q+pqB9FCx1d4Advr3wm3zhRpprm9mxp+6QPF+02v7yLo5ohxl5Z
-	 4DAZWM6go817g==
+	b=j4vi955Im0u3442ZSdiXtcvq3q4XLPHy5S8sO5xupwMzU9LBAJb2K7uv25yw8DEJY
+	 n6pPjs4Zq1uW/F/0o4SaHjBzLO66/C9dxcYVm7cmBNPUbKFLJZZFBnaRwR7w0O/XSC
+	 Ro4U0XKjCqi3Wqa4/8d0vFMOGC77bFWw50msOjDqrIvt2cel8xAbP4oPaz21rpbcjS
+	 mOFVeg+CcbJt5MvIbAHnmXgd/2y6p0GgJRbCdcej0FcWWTY0MiHtD7DFtz9e04z3Ry
+	 cmtXeDmRgVkhI/tRtOEXNYy+KW7boYNAPjchqm6FeiZrpzY8WI1uL+t5hRQq+CnrDR
+	 Q8erlwVwUQvfA==
 MIME-Version: 1.0
-Subject: Re: [PATCH] wifi: ath11k: Send 11d scan start before
- WMI_START_SCAN_CMDID
+Subject: Re: [PATCH 1/5] wifi: ath11k: Remove redundant pci_clear_master
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20230315161817.29627-1-quic_mpubbise@quicinc.com>
-References: <20230315161817.29627-1-quic_mpubbise@quicinc.com>
-To: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+In-Reply-To: <20230323112613.7550-1-cai.huoqing@linux.dev>
+References: <20230323112613.7550-1-cai.huoqing@linux.dev>
+To: Cai Huoqing <cai.huoqing@linux.dev>
+Cc: cai.huoqing@linux.dev, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Yan-Hsuan Chuang <tony0620emma@gmail.com>,
+ Ping-Ke Shih <pkshih@realtek.com>, ath10k@lists.infradead.org,
+ linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ath11k@lists.infradead.org,
+ ath12k@lists.infradead.org
 User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <168129368423.14673.5586980853495473147.kvalo@kernel.org>
-Date: Wed, 12 Apr 2023 10:01:25 +0000 (UTC)
+Message-ID: <168129381469.14673.15764454080204541798.kvalo@kernel.org>
+Date: Wed, 12 Apr 2023 10:03:36 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230412_030127_911025_64ACB973 
-X-CRM114-Status: UNSURE (   9.10  )
+X-CRM114-CacheID: sfid-20230412_030340_896611_1B0D4356 
+X-CRM114-Status: UNSURE (   9.17  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -76,34 +79,37 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Manikanta Pubbisetty <quic_mpubbise@quicinc.com> wrote:
+Cai Huoqing <cai.huoqing@linux.dev> wrote:
 
-> Firmwares advertising the support of triggering 11d algorithm on the
-> scan results of a regular scan expects driver to send
-> WMI_11D_SCAN_START_CMDID before sending WMI_START_SCAN_CMDID.
-> Triggering 11d algorithm on the scan results of a normal scan helps
-> in completely avoiding a separate 11d scan for determining regdomain.
-> This indirectly helps in speeding up connections on station
-> interfaces on the chipsets supporting 11D scan.
+> Remove pci_clear_master to simplify the code,
+> the bus-mastering is also cleared in do_pci_disable_device,
+> like this:
+> ./drivers/pci/pci.c:2197
+> static void do_pci_disable_device(struct pci_dev *dev)
+> {
+>         u16 pci_command;
 > 
-> To enable this feature, send WMI_11D_SCAN_START_CMDID just before
-> sending WMI_START_SCAN_CMDID if the firmware advertises
-> WMI_TLV_SERVICE_SUPPORT_11D_FOR_HOST_SCAN service flag.
+>         pci_read_config_word(dev, PCI_COMMAND, &pci_command);
+>         if (pci_command & PCI_COMMAND_MASTER) {
+>                 pci_command &= ~PCI_COMMAND_MASTER;
+>                 pci_write_config_word(dev, PCI_COMMAND, pci_command);
+>         }
 > 
-> WCN6750 & WCN6855 supports this feature.
+>         pcibios_disable_device(dev);
+> }.
+> And dev->is_busmaster is set to 0 in pci_disable_device.
 > 
-> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-01160-QCAMSLSWPLZ-1
-> Tested-on: WCN6855 hw2.1 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.23
-> 
-> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+> Signed-off-by: Cai Huoqing <cai.huoqing@linux.dev>
 > Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
-Patch applied to ath-next branch of ath.git, thanks.
+3 patches applied to ath-next branch of ath.git, thanks.
 
-e89a51aedf38 wifi: ath11k: Send 11d scan start before WMI_START_SCAN_CMDID
+f812e2a9f85d wifi: ath11k: Remove redundant pci_clear_master
+76008fc13b09 wifi: ath10k: Remove redundant pci_clear_master
+b9235aef8492 wifi: ath12k: Remove redundant pci_clear_master
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20230315161817.29627-1-quic_mpubbise@quicinc.com/
+https://patchwork.kernel.org/project/linux-wireless/patch/20230323112613.7550-1-cai.huoqing@linux.dev/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
