@@ -4,71 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34DC2C7619A
-	for <ath11k@archiver.kernel.org>; Thu, 13 Apr 2023 02:37:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7FA3C77B6E
+	for <ath11k@archiver.kernel.org>; Fri, 14 Apr 2023 05:18:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2jS7EhKkBEsc3NFowQ60EdHaPoDfP2YTkhxxvJF/CxA=; b=ZpZwGJK3M7wzKK
-	lnXfm5hi90sbZJsOT7u/JPvs9D+EKEGyXaq/jFF8g+z5v7LdUQCpeBZsHaxrOHo4xgCIv9VFsRrBe
-	YS8QwrIdJWTVaU/FQfAz353T2eS6vQkClXIsZnEQ7IAjXxaGWuhcgh0W1u3dvlZI3OqefllY0qNOt
-	so+RxmQ+nV9UPoUG3R8hzaNHL2PlzPmfEat4Hmcts4oSDaMlQw0SfosoO+bXgZPdZeP5ui/8Uoffc
-	4GkbiYGlo3wxUAwds02j5L5L+tJW0CR1I1b858UY1Q37l5wjs0h7fulmBg7VgqxBFWt7OPlEalhpG
-	+X+sHh2px6gKVpauk0Ag==;
+	List-Owner; bh=+w/EVg60hz2lh0jfwzGei1ZCGhlRrDYxJle0Ughsm3A=; b=TZ/X9sfNUVZQOa
+	Tx+9aKvisUPwroCZC7OdF+e1OlICv7/KfMPMStIAY1LnU8GRwjGtu9616k2puHBCCfCbkkh6ChZTF
+	zYKgfMWb3tuWDEASYlqnGxdyfU1U6WpFAs3iaEyfebiM2D3xTR2IXCGCeO0iX5b4nHIyOvBfnONjs
+	1uQ9RiTuZR/nD5XVzunDhI7aH4EisAZfB8/fyEe2S5d/w9M/CAm3suWg42T0taYBfEG+BM9vXPn2G
+	UwJZJdpqI/BbCJl2tzPlaZDpZkdWYrRgI63PDixH1TxWqORFM3TroqvwBCABa+Q/8a2vAMzeFMm2k
+	KFSJPelUe7MN1NKlT6nQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pmmpw-004pgj-2e;
-	Thu, 13 Apr 2023 02:37:24 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1pnBpR-008LXK-0J;
+	Fri, 14 Apr 2023 05:18:33 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pmmpt-004peb-0A
+	id 1pnBpL-008LVs-0X
 	for ath11k@lists.infradead.org;
-	Thu, 13 Apr 2023 02:37:22 +0000
+	Fri, 14 Apr 2023 05:18:31 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 9AA9663AAB;
-	Thu, 13 Apr 2023 02:37:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2100C433D2;
-	Thu, 13 Apr 2023 02:37:18 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 26C22643F8;
+	Fri, 14 Apr 2023 05:18:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CC1DC433D2;
+	Fri, 14 Apr 2023 05:18:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1681353440;
-	bh=jpupAkuoIR9JZhgmPqEtxcQHV2WSoE1rm0Idsw6o3cc=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=EtGgtTGl3YfmCeKf/rY8PuUkLnSMD8f7ke7yjOhFrF3NlJdGavyIjD76YF2PUEem/
-	 9uVUWdDMkS7EhcDx5Cs+8YAm73rZrMzfBlsquoSBmQdken6IKPs3uKl+lsw4VlD/NC
-	 UjNhritWVxNCRo1HnKt6UO5V42oljxCui1HR7Q0cBI6Txr9X7uk6K59QH6D4zWEy/e
-	 artgpDPi1BZuxoVERxHYut8yTHXcxYmorCZPWXeD2jx6+tE1/wg6IjEHXCHQOyis3R
-	 eVvWweOILLf9WVlw6u5roaYYvBXWtQpIfEEkMBVxK2exhNAJzYCzpVlj5EMTtKabGz
-	 x3zG95VzIGHhw==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Cc: Kalle Valo <quic_kvalo@quicinc.com>,
-	Kalle Valo <kvalo@kernel.org>,
-	Sasha Levin <sashal@kernel.org>,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	ath11k@lists.infradead.org,
-	linux-wireless@vger.kernel.org,
-	netdev@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.1 14/17] wifi: ath11k: reduce the MHI timeout to 20s
-Date: Wed, 12 Apr 2023 22:36:42 -0400
-Message-Id: <20230413023647.74661-14-sashal@kernel.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230413023647.74661-1-sashal@kernel.org>
-References: <20230413023647.74661-1-sashal@kernel.org>
+	s=k20201202; t=1681449505;
+	bh=0jfh+3jf1drwBWCy/08jc6sPYtyF0xx9YjsPtAEc8ys=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=pgKaaAkvsJ0h++J7SoVft7yIFdVtqbR5H+O0bWh58dEUmNJyrQSMOlged5bDMwKcY
+	 xiVzkoXQm71mQ+VMAans1M9F82dq8HtyRruWVln1cApGkgcheKWUpqt6x1GggqxGG3
+	 vlUmrBEcEskACPyEoa76sl9ftY5orTVz2UCgHAry1k5ywhBLas68j/z+KaOBScIas0
+	 5doXbTge5cjztzkGq1wXoy9fXwh3ilH5r5WwgiDkPKLbpN30TGBjuTNzAUYkbL/fYA
+	 TrlZY+NpFD8B98UFNMoU6ZMDYWgyeNBKPRhemcrftAannf0rF72tzHQLYRFS2UHIL+
+	 MoLrB368XutNA==
+From: Kalle Valo <kvalo@kernel.org>
+To: "Muna Sinada \(QUIC\)" <quic_msinada@quicinc.com>
+Cc: Robert Marko <robert.marko@sartura.hr>,  "ath11k\@lists.infradead.org" <ath11k@lists.infradead.org>,  "linux-wireless\@vger.kernel.org" <linux-wireless@vger.kernel.org>,  "Anilkumar Kolli \(QUIC\)" <quic_akolli@quicinc.com>
+Subject: Re: [PATCH v2 2/4] wifi: ath11k: push MU-MIMO params from hostapd to hardware
+References: <1666128501-12364-1-git-send-email-quic_msinada@quicinc.com>
+	<1666128501-12364-3-git-send-email-quic_msinada@quicinc.com>
+	<CA+HBbNHw-0+Ty_-masxGKwT6ju_EBxT3n5B0Ygcn3XzQi_CzWg@mail.gmail.com>
+	<87fs9ndh6s.fsf@kernel.org>
+	<CA+HBbNEaNTkUv_UPgQievxaLya0XC6=AVj0=GWiH+qB9=vRZHg@mail.gmail.com>
+	<87bkkbdcfu.fsf@kernel.org> <87pm8iaggt.fsf@kernel.org>
+	<BY5PR02MB6164BAC2A418B3C5462C2C348F9B9@BY5PR02MB6164.namprd02.prod.outlook.com>
+Date: Fri, 14 Apr 2023 08:18:21 +0300
+In-Reply-To: <BY5PR02MB6164BAC2A418B3C5462C2C348F9B9@BY5PR02MB6164.namprd02.prod.outlook.com>
+	(Muna Sinada's message of "Wed, 12 Apr 2023 23:19:49 +0000")
+Message-ID: <87mt3b6nz6.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230412_193721_124912_65BF3BDD 
-X-CRM114-Status: GOOD (  14.61  )
+X-CRM114-CacheID: sfid-20230413_221827_294489_D460D4B5 
+X-CRM114-Status: GOOD (  17.88  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,60 +75,47 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Kalle Valo <quic_kvalo@quicinc.com>
-
-[ Upstream commit cf5fa3ca0552f1b7ba8490de40700bbfb6979b17 ]
-
-Currently ath11k breaks after hibernation, the reason being that ath11k expects
-that the wireless device will have power during suspend and the firmware will
-continue running. But of course during hibernation the power from the device is
-cut off and firmware is not running when resuming, so ath11k will fail.
-
-(The reason why ath11k needs the firmware running is the interaction between
-mac80211 and MHI stack, it's a long story and more info in the bugzilla report.)
-
-In SUSE kernels the watchdog timeout is reduced from the default 120 to 60 seconds:
-
-CONFIG_DPM_WATCHDOG_TIMEOUT=60
-
-But as the ath11k MHI timeout is 90 seconds the kernel will crash before will
-ath11k will recover in resume callback. To avoid the crash reduce the MHI
-timeout to just 20 seconds.
-
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.9
-
-Link: https://bugzilla.kernel.org/show_bug.cgi?id=214649
-Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
-Signed-off-by: Kalle Valo <kvalo@kernel.org>
-Link: https://lore.kernel.org/r/20230329162038.8637-1-kvalo@kernel.org
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/net/wireless/ath/ath11k/mhi.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
-index 86995e8dc9135..a62ee05c54097 100644
---- a/drivers/net/wireless/ath/ath11k/mhi.c
-+++ b/drivers/net/wireless/ath/ath11k/mhi.c
-@@ -16,7 +16,7 @@
- #include "pci.h"
- #include "pcic.h"
- 
--#define MHI_TIMEOUT_DEFAULT_MS	90000
-+#define MHI_TIMEOUT_DEFAULT_MS	20000
- #define RDDM_DUMP_SIZE	0x420000
- 
- static struct mhi_channel_config ath11k_mhi_channels_qca6390[] = {
--- 
-2.39.2
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+Ik11bmEgU2luYWRhIChRVUlDKSIgPHF1aWNfbXNpbmFkYUBxdWljaW5jLmNvbT4gd3JpdGVzOgoK
+PiBNdW5hIFNpbmFkYSA8cXVpY19tc2luYWRhQHF1aWNpbmMuY29tPiB3cml0ZXM6Cj4+IEthbGxl
+IFZhbG8gPGt2YWxvQGtlcm5lbC5vcmc+IHdyaXRlczoKPj4+IFJvYmVydCBNYXJrbyA8cm9iZXJ0
+Lm1hcmtvQHNhcnR1cmEuaHI+IHdyaXRlczoKPj4+Cj4+Pj4gT24gV2VkLCBNYXIgMjksIDIwMjMg
+YXQgMTE6NDXigK9BTSBLYWxsZSBWYWxvIDxrdmFsb0BrZXJuZWwub3JnPiB3cm90ZToKPj4+Pgo+
+Pj4+PiA+PiBAQCAtNTM2OSw2ICs1NDkxLDEwIEBAIHN0YXRpYyBpbnQgYXRoMTFrX21hY19jb3B5
+X2hlX2NhcChzdHJ1Y3QgCj4+Pj4+ID4+IGF0aDExayAqYXIsCj4+Pj4+ID4+Cj4+Pj4+ID4+ICAg
+ICAgICAgICAgICAgICBoZV9jYXBfZWxlbS0+bWFjX2NhcF9pbmZvWzFdICY9Cj4+Pj4+ID4+ICAg
+ICAgICAgICAgICAgICAgICAgICAgIAo+Pj4+PiA+PiBJRUVFODAyMTFfSEVfTUFDX0NBUDFfVEZf
+TUFDX1BBRF9EVVJfTUFTSzsKPj4+Pj4gPj4gKyAgICAgICAgICAgICAgIGhlX2NhcF9lbGVtLT5w
+aHlfY2FwX2luZm9bMF0gJj0KPj4+Pj4gPj4gKyAgICAgICAgICAgICAgICAgICAgICAgfklFRUU4
+MDIxMV9IRV9QSFlfQ0FQMF9DSEFOTkVMX1dJRFRIX1NFVF8xNjBNSFpfSU5fNUc7Cj4+Pj4+ID4+
+ICsgICAgICAgICAgICAgICBoZV9jYXBfZWxlbS0+cGh5X2NhcF9pbmZvWzBdICY9Cj4+Pj4+ID4+
+ICsgICAgICAgICAgICAgICAgICAgICAgIAo+Pj4+PiA+PiArIH5JRUVFODAyMTFfSEVfUEhZX0NB
+UDBfQ0hBTk5FTF9XSURUSF9TRVRfODBQTFVTODBfTUhaX0lOXzVHOwo+Pj4+PiA+Cj4+Pj4+ID4g
+VGhpcyBpcyBjYXVzaW5nIGEgcmVncmVzc2lvbiBmb3IgdXMgaW4gT3BlbldydCBhdCBsZWFzdCBv
+biBJUFE4MDc0IAo+Pj4+PiA+IGJ1dCBwcm9iYWJseSBvbiBhbGwgYXRoMTFrLXN1cHBvcnRlZCBI
+Vy4gQ2F1c2UgODArODAgYW5kIDE2ME1IeiAKPj4+Pj4gPiBzdXBwb3J0IGJpdHMgYXJlIGJlaW5n
+IGNsZWFyZWQgaGVyZSBzbyAxNjBNSHogaXMgbm90IGJlaW5nIAo+Pj4+PiA+IGFkdmVydGlzZWQg
+YWZ0ZXIgdGhpcyBwYXRjaC4KPj4+Pj4KPj4+Pj4gT2ggbWFuLCBub3QgZ29vZC4gUm9iZXJ0LCBz
+aG91bGQgd2UgcmV2ZXJ0IHRoaXMgcGF0Y2hzZXQgZW50aXJlbHk/IAo+Pj4+PiBPZiBjb3Vyc2Ug
+aXQgd291bGQgYmUgYmV0dGVyIGlmIE11bmEgY2FuIHN1Ym1pdCBxdWlja2x5IGEgZml4LCBidXQg
+Cj4+Pj4+IEknbSBub3QgZ29pbmcgdG8gd2FpdCBmb3IgbG9uZy4KPj4+Pgo+Pj4+IEkgd291bGQg
+cHJlZmVyIHRvIHNlZSBpdCBnZXQgZml4ZWQsIGNhdXNlIGp1c3QgcmVtb3ZpbmcgdGhlIGZsYWcg
+Cj4+Pj4gcmVtb3ZhbCBnZXRzIDE2ME1IeiB3b3JraW5nLCBidXQgSSBhbSBub3Qgc3VyZSBhYm91
+dCBvdGhlciBmbGFncyBhcyAKPj4+PiB3ZWxsLgo+Pj4KPj4+IE9rLCBsZXQncyB0cnkgdG8gZ2V0
+IGl0IGZpeGVkIHRoZW4uIE11bmEsIGNhbiB5b3UgY29tbWVudCBhbmQgc2VuZCBhIAo+Pj4gZml4
+IEFTQVA/Cj4+Cj4+Tm8gcmVwbHkgZnJvbSBNdW5hLiBJJ2xsIHRyeSB0aGUgbmV3IGJ1Z2JvdCB0
+byBvcGVuIGEgYnVnIGZvciB0aGlzIHJlZ3Jlc3Npb246Cj4+Cj4+YnVnYm90IG9uCj4KPiBJIGhh
+dmUgY3JlYXRlZCBmaXgsIHRlc3RlZCBpdCBhbmQgcHVzaGVkIGludGVybmFsbHkgZm9yIHJldmll
+dy4KPgo+IEBLYWxsZSwgaG93IGRvIEkgZ28gYWJvdXQgY29udGludWluZyB0aGUgY29udmVyc2F0
+aW9uIG9uIEJ1Z3ppbGxhPwoKQmV0dGVyIHRvIGNvbnRpbnVlIHRoZSBkaXNjdXNzaW9uIG9uIHRo
+ZSBsaXN0LiBJIG9ubHkgY3JlYXRlZCB0aGUgYnVnIG9uCkJ1Z3ppbGxhIHNvIHRoYXQgSSBkb24n
+dCBmb3JnZXQgdGhpcyBhcyBJIGRpZG4ndCBoZWFyIGFueXRoaW5nIGZyb20geW91LgoKLS0gCmh0
+dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcHJvamVjdC9saW51eC13aXJlbGVzcy9saXN0LwoK
+aHR0cHM6Ly93aXJlbGVzcy53aWtpLmtlcm5lbC5vcmcvZW4vZGV2ZWxvcGVycy9kb2N1bWVudGF0
+aW9uL3N1Ym1pdHRpbmdwYXRjaGVzCgotLSAKYXRoMTFrIG1haWxpbmcgbGlzdAphdGgxMWtAbGlz
+dHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL2F0aDExawo=
