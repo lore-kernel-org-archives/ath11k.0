@@ -4,79 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3977CC77B72
-	for <ath11k@archiver.kernel.org>; Mon, 17 Apr 2023 20:22:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8189DC77B78
+	for <ath11k@archiver.kernel.org>; Mon, 17 Apr 2023 20:54:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=XKBW+jVBu9sTYZ9D62RJt7+LeB0JazzRbjw9ZYxWS4k=; b=zLQofqRjs4t1s5
-	vbWI24q1IiYwgLaTWpf/vTWLjZyXZSSO9lVe3IMu2Zd+7mOONLGVEUuD46JoMmxzrTztUuWFU1IE9
-	ZpTSH6FhdOkloOSxqZ2g+Z8cdicY72p2dxzVU1vWhar4exC1pvkOZkfXK676fc1uaPDWiLOAhvnXR
-	ugYGyXj40ibW+weJz9fP4Ar8LxVtEJtLSaaQYGbFz16pnj4kiA6EB2C4vuqY/a50IVbwVky+wuc8M
-	AeKDy25zWNdRd44FopAKE5OwYIEra79WK3L6bLqI8XVb5YuNW22BYGIoKI74szm42Ih8sdlHIZwgS
-	muucxIVwmeqpgRoliQ1Q==;
+	List-Owner; bh=YCy/qTOfIaZ6eKoOvmTguc93jtvprbCrYpJITR3EIBY=; b=0VRKqTUJVcsZNB
+	hCkf0IrHBLT/Xj/TVom8LYCIbSYnH691GL4dlgnR3HTGKrm3UCkm8Ic6S+YZhzHOXIBnF0TT4lKJe
+	3d8iMlqm3XVepAVZZLP1WmkNhxcFUA0RWyXVyXBDoDkwYJitxU+nSFhD0fIfFwq1EeJXjW6oSP1/a
+	ukHdo0+eJVLs75S8AYCZDYUyuLGBpXmZpkLid7SKeifZ8/zwOi7/HLhsNbiDaS4Jq/gqN0fjgF8O0
+	3tASUVWznuIg1gjTaj6EPkQiusAPFiqU9uoZ4mOMkm5WmefVYYNbNNLkWaqBNR3dXIyv6C/sQwdUf
+	m8gIg6jLcs0Q0xw5kWfQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1poVNG-00HWAh-0t;
-	Mon, 17 Apr 2023 20:22:54 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1poVsJ-00HaUt-0N;
+	Mon, 17 Apr 2023 20:54:59 +0000
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1poVND-00HW9I-0b
-	for ath11k@lists.infradead.org;
-	Mon, 17 Apr 2023 20:22:52 +0000
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33HIsf5q010173;
-	Mon, 17 Apr 2023 20:22:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-type; s=qcppdkim1;
- bh=FGtbeAR6pG0KxyEKVLIRzkq1RXlKfaVfRT1iixzMcII=;
- b=jSdZBeFj4RAdCiUPrL/F9n+ufnpxT1pJNfZuA0tfEnUf54SCGUuHT5LtRdojYVh31YSS
- aAGDRFvl7tIKqq/c6h4tm7SDdlhWF+MU3sH1YJNrwDeMAUZD+RnviJjo+GfgnEtp9+z7
- PA75vGkpKiuMh6M8QFYB+/XxrJmx/XJBNESfMdAjBuMXnQf4S2yJ/IMwSxPkYKMU3lC6
- DNnUAcgC/8wawYt8T1d8gKWq5CgWls4i1quveZghsbGUuL01i7SRXdKVianDJJsHEa0G
- /brUp6LMMeJUgEI8wBfFAtcknzN0ADMVEqsJr+AHvQXnb1iHZyafl6BAeupXNS+Yi+fJ sw== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q171gh1hb-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 17 Apr 2023 20:22:47 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33HKMjHs007640
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 17 Apr 2023 20:22:46 GMT
-Received: from msinada-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Mon, 17 Apr 2023 13:22:44 -0700
-From: Muna Sinada <quic_msinada@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, Muna Sinada <quic_msinada@quicinc.com>,
-        P Praneesh <quic_ppranees@quicinc.com>
-Subject: [PATCH] wifi: ath11k: Remove disabling of 80+80 and 160 MHz
-Date: Mon, 17 Apr 2023 13:22:27 -0700
-Message-ID: <1681762947-13882-1-git-send-email-quic_msinada@quicinc.com>
-X-Mailer: git-send-email 2.7.4
+	id 1poVsF-00HaTy-2U;
+	Mon, 17 Apr 2023 20:54:57 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 4C41562A5B;
+	Mon, 17 Apr 2023 20:54:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FC1FC433EF;
+	Mon, 17 Apr 2023 20:54:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1681764894;
+	bh=moYYi4bJv8zGeQ0K0+Ne+l5Pi5iujfuXRILl1xpKhX4=;
+	h=From:To:Cc:Subject:Date:From;
+	b=U80ja+1SzcQ202GY/MR/HKPGvEWUeI+Xc2gUAU5uNT5lGU/HSaRvyE8BxOaMLO5tL
+	 xRIasBX5T/QwtzhQ+2rLuEKOV9HrGGBzOiYPEOxooWyM6UqZAi9oHAwYHb5ZHo/9t+
+	 VavPigphAxfhdnYbUUn4LS17ceOwbrjNzAmhNzbP67u7QLV6PG9jI9BunFH9GieKBI
+	 Rf4w/fSR1d4GJfu2B8zueaVftAseqsHM73MTVSRDQlMQGrlNarbhp6ks3tR8epgFrn
+	 i4d56r8ZG895VfwH+ys+nUe4wioyJptqFqAChbslE+wIrTTtBaS4FJV5Vg+L1GmdSp
+	 TBCz7Lip00L9w==
+From: Arnd Bergmann <arnd@kernel.org>
+To: Kalle Valo <kvalo@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>
+Cc: Arnd Bergmann <arnd@arndb.de>,
+	Johannes Berg <johannes.berg@intel.com>,
+	Manikanta Pubbisetty <quic_mpubbise@quicinc.com>,
+	Wen Gong <quic_wgong@quicinc.com>,
+	Baochen Qiang <quic_bqiang@quicinc.com>,
+	Sowmiya Sree Elavalagan <quic_ssreeela@quicinc.com>,
+	ath11k@lists.infradead.org,
+	linux-wireless@vger.kernel.org,
+	netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	ath12k@lists.infradead.org
+Subject: [PATCH] wireless: ath: work around false-positive stringop-overread warning
+Date: Mon, 17 Apr 2023 22:54:20 +0200
+Message-Id: <20230417205447.1800912-1-arnd@kernel.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: wqGG1zw0KpXNYk_yFYb16HwLWt9V-6o4
-X-Proofpoint-ORIG-GUID: wqGG1zw0KpXNYk_yFYb16HwLWt9V-6o4
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-17_13,2023-04-17_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
- mlxlogscore=796 suspectscore=0 impostorscore=0 bulkscore=0 spamscore=0
- clxscore=1015 phishscore=0 lowpriorityscore=0 malwarescore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2303200000
- definitions=main-2304170181
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230417_132251_359382_B5D4F749 
-X-CRM114-Status: GOOD (  15.94  )
+X-CRM114-CacheID: sfid-20230417_135455_892480_0D7E2007 
+X-CRM114-Status: GOOD (  10.34  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,53 +84,129 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-This is a regression fix for 80+80 and 160 MHz support bits being
-cleared, therefore not adverised. Remove disable of 80+80 and 160 MHz
-capability flags and assign valid center frequency 2 similar to
-VHT80_80.
+From: Arnd Bergmann <arnd@arndb.de>
 
-Fixes: 38dfe775d0ab ("wifi: ath11k: push MU-MIMO params from hostapd to hardware")
-Reported-by: Robert Marko <robert.marko@sartura.hr>
-Link: https://bugzilla.kernel.org/show_bug.cgi?id=217299
-Co-developed-by: P Praneesh <quic_ppranees@quicinc.com>
-Signed-off-by: P Praneesh <quic_ppranees@quicinc.com>
-Signed-off-by: Muna Sinada <quic_msinada@quicinc.com>
+In a rare arm64 randconfig build, I got multiple warnings for ath11k
+and ath12k:
+
+In function 'ath11k_peer_assoc_h_ht',
+    inlined from 'ath11k_peer_assoc_prepare' at drivers/net/wireless/ath/ath11k/mac.c:2665:2:
+drivers/net/wireless/ath/ath11k/mac.c:1709:13: error: 'ath11k_peer_assoc_h_ht_masked' reading 10 bytes from a region of size 0 [-Werror=stringop-overread]
+ 1709 |         if (ath11k_peer_assoc_h_ht_masked(ht_mcs_mask))
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This happens whenever gcc-13 fails to inline one of the functions
+that take a fixed-length array argument but gets passed a pointer.
+
+Change these functions to all take a regular pointer argument
+instead.
+
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
 ---
- drivers/net/wireless/ath/ath11k/mac.c | 4 ----
- drivers/net/wireless/ath/ath11k/wmi.c | 3 ++-
- 2 files changed, 2 insertions(+), 5 deletions(-)
+ drivers/net/wireless/ath/ath11k/mac.c | 12 ++++++------
+ drivers/net/wireless/ath/ath12k/mac.c |  8 ++++----
+ 2 files changed, 10 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index cad832e0e6b8..4f0bf62eb29f 100644
+index cad832e0e6b8..393669be7847 100644
 --- a/drivers/net/wireless/ath/ath11k/mac.c
 +++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -5552,10 +5552,6 @@ static int ath11k_mac_copy_he_cap(struct ath11k *ar,
+@@ -433,7 +433,7 @@ u8 ath11k_mac_bitrate_to_idx(const struct ieee80211_supported_band *sband,
+ }
  
- 		he_cap_elem->mac_cap_info[1] &=
- 			IEEE80211_HE_MAC_CAP1_TF_MAC_PAD_DUR_MASK;
--		he_cap_elem->phy_cap_info[0] &=
--			~IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_160MHZ_IN_5G;
--		he_cap_elem->phy_cap_info[0] &=
--			~IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_80PLUS80_MHZ_IN_5G;
+ static u32
+-ath11k_mac_max_ht_nss(const u8 ht_mcs_mask[IEEE80211_HT_MCS_MASK_LEN])
++ath11k_mac_max_ht_nss(const u8 *ht_mcs_mask)
+ {
+ 	int nss;
  
- 		he_cap_elem->phy_cap_info[5] &=
- 			~IEEE80211_HE_PHY_CAP5_BEAMFORMEE_NUM_SND_DIM_UNDER_80MHZ_MASK;
-diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
-index 27f3fceb33c5..fcc153df56d0 100644
---- a/drivers/net/wireless/ath/ath11k/wmi.c
-+++ b/drivers/net/wireless/ath/ath11k/wmi.c
-@@ -865,7 +865,8 @@ static void ath11k_wmi_put_wmi_channel(struct wmi_channel *chan,
+@@ -445,7 +445,7 @@ ath11k_mac_max_ht_nss(const u8 ht_mcs_mask[IEEE80211_HT_MCS_MASK_LEN])
+ }
  
- 		chan->band_center_freq2 = arg->channel.band_center_freq1;
+ static u32
+-ath11k_mac_max_vht_nss(const u16 vht_mcs_mask[NL80211_VHT_NSS_MAX])
++ath11k_mac_max_vht_nss(const u16 *vht_mcs_mask)
+ {
+ 	int nss;
  
--	} else if (arg->channel.mode == MODE_11AC_VHT80_80) {
-+	} else if ((arg->channel.mode == MODE_11AC_VHT80_80) ||
-+		   (arg->channel.mode == MODE_11AX_HE80_80)) {
- 		chan->band_center_freq2 = arg->channel.band_center_freq2;
- 	} else {
- 		chan->band_center_freq2 = 0;
+@@ -457,7 +457,7 @@ ath11k_mac_max_vht_nss(const u16 vht_mcs_mask[NL80211_VHT_NSS_MAX])
+ }
+ 
+ static u32
+-ath11k_mac_max_he_nss(const u16 he_mcs_mask[NL80211_HE_NSS_MAX])
++ath11k_mac_max_he_nss(const u16 *he_mcs_mask)
+ {
+ 	int nss;
+ 
+@@ -1658,7 +1658,7 @@ static void ath11k_peer_assoc_h_rates(struct ath11k *ar,
+ }
+ 
+ static bool
+-ath11k_peer_assoc_h_ht_masked(const u8 ht_mcs_mask[IEEE80211_HT_MCS_MASK_LEN])
++ath11k_peer_assoc_h_ht_masked(const u8 *ht_mcs_mask)
+ {
+ 	int nss;
+ 
+@@ -1670,7 +1670,7 @@ ath11k_peer_assoc_h_ht_masked(const u8 ht_mcs_mask[IEEE80211_HT_MCS_MASK_LEN])
+ }
+ 
+ static bool
+-ath11k_peer_assoc_h_vht_masked(const u16 vht_mcs_mask[])
++ath11k_peer_assoc_h_vht_masked(const u16 *vht_mcs_mask)
+ {
+ 	int nss;
+ 
+@@ -2065,7 +2065,7 @@ static u16 ath11k_peer_assoc_h_he_limit(u16 tx_mcs_set,
+ }
+ 
+ static bool
+-ath11k_peer_assoc_h_he_masked(const u16 he_mcs_mask[NL80211_HE_NSS_MAX])
++ath11k_peer_assoc_h_he_masked(const u16 *he_mcs_mask)
+ {
+ 	int nss;
+ 
+diff --git a/drivers/net/wireless/ath/ath12k/mac.c b/drivers/net/wireless/ath/ath12k/mac.c
+index d683a0668989..ea2313b6b759 100644
+--- a/drivers/net/wireless/ath/ath12k/mac.c
++++ b/drivers/net/wireless/ath/ath12k/mac.c
+@@ -381,7 +381,7 @@ u8 ath12k_mac_bitrate_to_idx(const struct ieee80211_supported_band *sband,
+ }
+ 
+ static u32
+-ath12k_mac_max_ht_nss(const u8 ht_mcs_mask[IEEE80211_HT_MCS_MASK_LEN])
++ath12k_mac_max_ht_nss(const u8 *ht_mcs_mask)
+ {
+ 	int nss;
+ 
+@@ -393,7 +393,7 @@ ath12k_mac_max_ht_nss(const u8 ht_mcs_mask[IEEE80211_HT_MCS_MASK_LEN])
+ }
+ 
+ static u32
+-ath12k_mac_max_vht_nss(const u16 vht_mcs_mask[NL80211_VHT_NSS_MAX])
++ath12k_mac_max_vht_nss(const u16 *vht_mcs_mask)
+ {
+ 	int nss;
+ 
+@@ -1303,7 +1303,7 @@ static void ath12k_peer_assoc_h_rates(struct ath12k *ar,
+ }
+ 
+ static bool
+-ath12k_peer_assoc_h_ht_masked(const u8 ht_mcs_mask[IEEE80211_HT_MCS_MASK_LEN])
++ath12k_peer_assoc_h_ht_masked(const u8 *ht_mcs_mask)
+ {
+ 	int nss;
+ 
+@@ -1315,7 +1315,7 @@ ath12k_peer_assoc_h_ht_masked(const u8 ht_mcs_mask[IEEE80211_HT_MCS_MASK_LEN])
+ }
+ 
+ static bool
+-ath12k_peer_assoc_h_vht_masked(const u16 vht_mcs_mask[NL80211_VHT_NSS_MAX])
++ath12k_peer_assoc_h_vht_masked(const u16 *vht_mcs_mask)
+ {
+ 	int nss;
+ 
 -- 
-2.7.4
+2.39.2
 
 
 -- 
