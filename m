@@ -4,62 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CACF3C77B72
-	for <ath11k@archiver.kernel.org>; Mon, 17 Apr 2023 10:28:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE28CC77B76
+	for <ath11k@archiver.kernel.org>; Mon, 17 Apr 2023 13:10:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
-	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=A3UzndfKv3wJp5y8WS4F3dAzxtahvcCXQc+pu6O3krs=; b=b05h8yE87lLn+m
-	XqxefvUlC0NcIIT8Ns6/x8sQ6Yxp757Gb7Q+Ibj0+m5yG2shmRQ5ERCn5ok9zEQ5JH1eEIWR3aVj5
-	8VkHGomDiol7ITktHmkTERUGKsI21L4JXVShOx0Zx1hgGuOQ8oA3wsvq4ucwYdTFE/OvUStblF9ie
-	R2Hj/xBNQNNcPveoUFwGh0USg7V9xITVtiav1BLqjPO4na/8eTgjuwzBAjh7BfUel66xIXHaaE6r0
-	egGtQtKRq1tcYF2eCcDthd2e/d92t19MSj06zCRC3j8il1NT1tc04W1Xy7Kru+GDAX3uHIlsCvBKB
-	7McY7T7EGHLM/cCW7CTA==;
+	List-Archive:List-Unsubscribe:List-Id:Date:Subject:Message-Id:References:
+	In-Reply-To:Cc:To:From:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=TYqdWf0gkNUUjh2W8GOSCaCkncE1025v+avxWr3OipY=; b=v1TgQK9/kOVofy
+	z+OX1gfuqzbPXRrALC8nKmgh6W7GUw44vJzbvOZmp0Xd7M/pJ+DKvSFOKQYUbaFlzx1fKVx04LVEe
+	fQCddxp0kB9BYVEdbhm4cGCT+cJ8JnD7TR/yB5zsXJZwiyGtfP7VDwP/GXxUQRED9KAdRlYveJ6I5
+	/w6CNErNPW7aXBg0Ft6BoRMhd2RMLmprjyA7vVMjeCsrWVu/s2Xx+ZR0aDr+98WtxXxAvofG+MJiH
+	/zQSsaFSdoxk+8OvBYTertPT4Z9U/cIwa5Emj8euxfK24vH6plQnxvleF4Ta5k/yt8QuQ9iaNAMPO
+	RVM6wg+0KyGn5Gv4psKQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1poM6U-00FjWF-1M;
-	Mon, 17 Apr 2023 10:28:58 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1poOcz-00GLAu-1O;
+	Mon, 17 Apr 2023 13:10:41 +0000
+Received: from mail-oi1-f174.google.com ([209.85.167.174])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1poM6R-00FjUc-1G
+	id 1poOcv-00GL9E-2W
 	for ath11k@lists.infradead.org;
-	Mon, 17 Apr 2023 10:28:56 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id C209960FC9;
-	Mon, 17 Apr 2023 10:28:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AB38C433D2;
-	Mon, 17 Apr 2023 10:28:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1681727331;
-	bh=3Iz5JePtM9cvykU/DcFaEXo6Tdj+TUSbHIg+gJXgJtM=;
-	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=jSRVAnegX0WNeUdqlH1s5pwjPZYfZg4DuSQXPevNIV0N/2vrliryZAJ3fPeKSKTd3
-	 lX3pKD2hJbO9kK6Naugv6xidXxYNIHLIhU2ZpmYdQcD1XOWmOdeehw8PHfcsmJmEgZ
-	 wkM2i8FBHN3nJIcSUfAVVgDV1QD+JXqW2MZYGi+zrCMSqO/+LIQ3Y5XHITpjMgnRLB
-	 fKaUszztHQ/ZgEuMLAU/4bleKVRA0MaVl3gjpBtL3/c6cN/vMH/nckOS329RHxIAJD
-	 5wHI4kjZsjhEkou4u/zAqFMo+mIHbLpBk3lQfLfDwjLLViX+XADh8aeg7veKOE2AFl
-	 L5inedWQjnXpw==
+	Mon, 17 Apr 2023 13:10:39 +0000
+Received: by mail-oi1-f174.google.com with SMTP id bg7so1359798oib.9
+        for <ath11k@lists.infradead.org>; Mon, 17 Apr 2023 06:10:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681737035; x=1684329035;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=VxzMSlWJqp0jC6TDxAVrz9kAacy8nE6CyreWMpO82qY=;
+        b=TCzkC57K0gKnsS3UuYZEFpJkWwPU3ayn1afKYsjLUROTIjgT1higwuwBHp8kSU2tay
+         qjPcY7eR5jtUzswFZ7cuTonkdV3VSkuvTHvFVIs15J7osxiJEw73cLXABqG5So11L8jU
+         OM/uwbojf83n4VoajTsLY5gXVJXlhgQhCMc5eO3MhAyLcL/e0/b3pLeVZ7cjtzWK2qTi
+         0zgUpM826Tv1IL/xSCpiyrxP1R6zhQM7fU0WxZg4u4zxCs3SsVnXoEaWTQyNNtMJDhbR
+         qJpzfcyoCOfpzYfHSFaz0fRz1Ghq63YF71c1WbDD7MfXsjKKVLhvUHYhpYdd6nbWG9oN
+         kBlg==
+X-Gm-Message-State: AAQBX9e4OmpZmK7M0ZvI8hBmtIqBp9VdxveHJFWTDR+BaMSOheXfk7TG
+	xH1jy3mkfj1NyKcU4alvoQ==
+X-Google-Smtp-Source: AKy350ZlGphdnLNiDveQNO6I/GKvTFb/FnKDX5Ft9E5IDzE2uMM2gZ+a2HIyvJqu2MA7klFBfhkVoQ==
+X-Received: by 2002:a05:6808:bd5:b0:38d:e9e4:1ebd with SMTP id o21-20020a0568080bd500b0038de9e41ebdmr3351197oik.8.1681737035239;
+        Mon, 17 Apr 2023 06:10:35 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id r7-20020acada07000000b003895430852dsm4607496oig.54.2023.04.17.06.10.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Apr 2023 06:10:34 -0700 (PDT)
+Received: (nullmailer pid 2588774 invoked by uid 1000);
+	Mon, 17 Apr 2023 13:10:27 -0000
 MIME-Version: 1.0
-Subject: Re: [PATCH 1/2] wifi: ath11k: Ignore frags from uninitialized peer in
- dp.
-From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20230403184155.8670-2-quic_nmaran@quicinc.com>
-References: <20230403184155.8670-2-quic_nmaran@quicinc.com>
-To: Nagarajan Maran <quic_nmaran@quicinc.com>
-Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- Harshitha Prem <quic_hprem@quicinc.com>,
- Nagarajan Maran <quic_nmaran@quicinc.com>
-User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <168172732519.21228.13363006785669066948.kvalo@kernel.org>
-Date: Mon, 17 Apr 2023 10:28:49 +0000 (UTC)
+From: Rob Herring <robh@kernel.org>
+To: =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>
+Cc: Paolo Abeni <pabeni@redhat.com>, ath11k@lists.infradead.org, devicetree@vger.kernel.org, =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, "David S . Miller" <davem@davemloft.net>, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, Robert Marko <robimarko@gmail.com>, Kalle Valo <kvalo@kernel.org>, Eric Dumazet <edumazet@google.com>
+In-Reply-To: <20230414212356.9326-1-zajec5@gmail.com>
+References: <20230414212356.9326-1-zajec5@gmail.com>
+Message-Id: <168173527510.2535500.15269428530497246338.robh@kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: net: wireless: qcom,ath11k: allow
+ describing radios
+Date: Mon, 17 Apr 2023 08:10:27 -0500
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230417_032855_468473_D757420A 
-X-CRM114-Status: GOOD (  10.60  )
+X-CRM114-CacheID: sfid-20230417_061037_817016_EC3C4C7B 
+X-CRM114-Status: GOOD (  11.12  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,64 +76,44 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Nagarajan Maran <quic_nmaran@quicinc.com> wrote:
-
-> When max virtual ap interfaces are configured in all the bands with
-> ACS and hostapd restart is done every 60s, a crash is observed at
-> random times.
-> In this certain scenario, a fragmented packet is received for
-> self peer, for which rx_tid and rx_frags are not initialized in
-> datapath. While handling this fragment, crash is observed as the
-> rx_frag list is uninitialised and when we walk in
-> ath11k_dp_rx_h_sort_frags, skb null leads to exception.
-> 
-> To address this, before processing received fragments we check
-> dp_setup_done flag is set to ensure that peer has completed its
-> dp peer setup for fragment queue, else ignore processing the
-> fragments.
-> 
-> Call trace:
->   ath11k_dp_process_rx_err+0x550/0x1084 [ath11k]
->   ath11k_dp_service_srng+0x70/0x370 [ath11k]
->   0xffffffc009693a04
->   __napi_poll+0x30/0xa4
->   net_rx_action+0x118/0x270
->   __do_softirq+0x10c/0x244
->   irq_exit+0x64/0xb4
->   __handle_domain_irq+0x88/0xac
->   gic_handle_irq+0x74/0xbc
->   el1_irq+0xf0/0x1c0
->   arch_cpu_idle+0x10/0x18
->   do_idle+0x104/0x248
->   cpu_startup_entry+0x20/0x64
->   rest_init+0xd0/0xdc
->   arch_call_rest_init+0xc/0x14
->   start_kernel+0x480/0x4b8
->   Code: f9400281 f94066a2 91405021 b94a0023 (f9406401)
-> 
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
-> 
-> Signed-off-by: Harshitha Prem <quic_hprem@quicinc.com>
-> Signed-off-by: Nagarajan Maran <quic_nmaran@quicinc.com>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
-
-2 patches applied to ath-next branch of ath.git, thanks.
-
-a06bfb3c9f69 wifi: ath11k: Ignore frags from uninitialized peer in dp.
-41e02bf4ae32 wifi: ath11k: fix undefined behavior with __fls in dp
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20230403184155.8670-2-quic_nmaran@quicinc.com/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
-
--- 
-ath11k mailing list
-ath11k@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/ath11k
+Ck9uIEZyaSwgMTQgQXByIDIwMjMgMjM6MjM6NTQgKzAyMDAsIFJhZmHFgiBNacWCZWNraSB3cm90
+ZToKPiBGcm9tOiBSYWZhxYIgTWnFgmVja2kgPHJhZmFsQG1pbGVja2kucGw+Cj4gCj4gUXVhbGNv
+bW0gYXRoMTFrIGNoaXBzZXRzIGNhbiBoYXZlIHVwIHRvIDMgcmFkaW9zLiBFYWNoIHJhZGlvIG1h
+eSBuZWVkIHRvCj4gYmUgYWRkaXRpb25hbGx5IGRlc2NyaWJlZCBieSBpbmNsdWRpbmcgaXRzIE1B
+QyBvciBhdmFpbGFibGUgZnJlcXVlbmN5Cj4gcmFuZ2VzLgo+IAo+IFNpZ25lZC1vZmYtYnk6IFJh
+ZmHFgiBNacWCZWNraSA8cmFmYWxAbWlsZWNraS5wbD4KPiAtLS0KPiAgLi4uL2JpbmRpbmdzL25l
+dC93aXJlbGVzcy9xY29tLGF0aDExay55YW1sICAgIHwgMjYgKysrKysrKysrKysrKysrKysrKwo+
+ICAxIGZpbGUgY2hhbmdlZCwgMjYgaW5zZXJ0aW9ucygrKQo+IAoKTXkgYm90IGZvdW5kIGVycm9y
+cyBydW5uaW5nICdtYWtlIERUX0NIRUNLRVJfRkxBR1M9LW0gZHRfYmluZGluZ19jaGVjaycKb24g
+eW91ciBwYXRjaCAoRFRfQ0hFQ0tFUl9GTEFHUyBpcyBuZXcgaW4gdjUuMTMpOgoKeWFtbGxpbnQg
+d2FybmluZ3MvZXJyb3JzOgoKZHRzY2hlbWEvZHRjIHdhcm5pbmdzL2Vycm9yczoKL2J1aWxkcy9y
+b2JoZXJyaW5nL2R0LXJldmlldy1jaS9saW51eC9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
+ZGluZ3MvbmV0L3dpcmVsZXNzL3Fjb20sYXRoMTFrLmV4YW1wbGUuZHRiOiB3aWZpQGMwMDAwMDA6
+IHJhZGlvQDA6IFVuZXZhbHVhdGVkIHByb3BlcnRpZXMgYXJlIG5vdCBhbGxvd2VkICgncmVnJyB3
+YXMgdW5leHBlY3RlZCkKCUZyb20gc2NoZW1hOiAvYnVpbGRzL3JvYmhlcnJpbmcvZHQtcmV2aWV3
+LWNpL2xpbnV4L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9uZXQvd2lyZWxlc3Mv
+cWNvbSxhdGgxMWsueWFtbAovYnVpbGRzL3JvYmhlcnJpbmcvZHQtcmV2aWV3LWNpL2xpbnV4L0Rv
+Y3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9uZXQvd2lyZWxlc3MvcWNvbSxhdGgxMWsu
+ZXhhbXBsZS5kdGI6IHdpZmlAYzAwMDAwMDogJyNhZGRyZXNzLWNlbGxzJywgJyNzaXplLWNlbGxz
+JyBkbyBub3QgbWF0Y2ggYW55IG9mIHRoZSByZWdleGVzOiAnXnJhZGlvQFswLTJdJCcsICdwaW5j
+dHJsLVswLTldKycKCUZyb20gc2NoZW1hOiAvYnVpbGRzL3JvYmhlcnJpbmcvZHQtcmV2aWV3LWNp
+L2xpbnV4L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9uZXQvd2lyZWxlc3MvcWNv
+bSxhdGgxMWsueWFtbAoKZG9jIHJlZmVyZW5jZSBlcnJvcnMgKG1ha2UgcmVmY2hlY2tkb2NzKToK
+ClNlZSBodHRwczovL3BhdGNod29yay5vemxhYnMub3JnL3Byb2plY3QvZGV2aWNldHJlZS1iaW5k
+aW5ncy9wYXRjaC8yMDIzMDQxNDIxMjM1Ni45MzI2LTEtemFqZWM1QGdtYWlsLmNvbQoKVGhlIGJh
+c2UgZm9yIHRoZSBzZXJpZXMgaXMgZ2VuZXJhbGx5IHRoZSBsYXRlc3QgcmMxLiBBIGRpZmZlcmVu
+dCBkZXBlbmRlbmN5CnNob3VsZCBiZSBub3RlZCBpbiAqdGhpcyogcGF0Y2guCgpJZiB5b3UgYWxy
+ZWFkeSByYW4gJ21ha2UgZHRfYmluZGluZ19jaGVjaycgYW5kIGRpZG4ndCBzZWUgdGhlIGFib3Zl
+CmVycm9yKHMpLCB0aGVuIG1ha2Ugc3VyZSAneWFtbGxpbnQnIGlzIGluc3RhbGxlZCBhbmQgZHQt
+c2NoZW1hIGlzIHVwIHRvCmRhdGU6CgpwaXAzIGluc3RhbGwgZHRzY2hlbWEgLS11cGdyYWRlCgpQ
+bGVhc2UgY2hlY2sgYW5kIHJlLXN1Ym1pdCBhZnRlciBydW5uaW5nIHRoZSBhYm92ZSBjb21tYW5k
+IHlvdXJzZWxmLiBOb3RlCnRoYXQgRFRfU0NIRU1BX0ZJTEVTIGNhbiBiZSBzZXQgdG8geW91ciBz
+Y2hlbWEgZmlsZSB0byBzcGVlZCB1cCBjaGVja2luZwp5b3VyIHNjaGVtYS4gSG93ZXZlciwgaXQg
+bXVzdCBiZSB1bnNldCB0byB0ZXN0IGFsbCBleGFtcGxlcyB3aXRoIHlvdXIgc2NoZW1hLgoKCi0t
+IAphdGgxMWsgbWFpbGluZyBsaXN0CmF0aDExa0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9s
+aXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vYXRoMTFrCg==
