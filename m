@@ -4,85 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15C0DC77B70
-	for <ath11k@archiver.kernel.org>; Mon, 17 Apr 2023 14:42:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3977CC77B72
+	for <ath11k@archiver.kernel.org>; Mon, 17 Apr 2023 20:22:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=c9n2GzxwoxUdLMn3q5/fS+X12gcAuCpW9EDCJMuscS8=; b=oSdMbz3+et2rqQ
-	rZBMQ7Z8Z2J/jMoN2Hc+yszBm6xGyw705CpRIbpyKFLFNSamJam82vibVzbi5NaWhcod6TlHorjnb
-	or/kN2+HCNyfmau4xR+QMRYI0KN5jj1ORjiq3k42mrHDrT5xlaDuRad7t6UIqy/LadayKKpnxQnkv
-	NvbXfkHa7ox+iGlE1sbj3yu/yALToBV5/rmTn8hhld/4024PLELxMNWv5AMZB/mNnkA7ihJxKdIHu
-	8OHxXUHgOjnm+9PrSAhnzTMlxGRrd+QsYfurM3fJU2NnsQuiSqPXoYnb+qZavqT4j21enyaZDPJQx
-	rGgxDMhcOPhmlEfp2aYQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=XKBW+jVBu9sTYZ9D62RJt7+LeB0JazzRbjw9ZYxWS4k=; b=zLQofqRjs4t1s5
+	vbWI24q1IiYwgLaTWpf/vTWLjZyXZSSO9lVe3IMu2Zd+7mOONLGVEUuD46JoMmxzrTztUuWFU1IE9
+	ZpTSH6FhdOkloOSxqZ2g+Z8cdicY72p2dxzVU1vWhar4exC1pvkOZkfXK676fc1uaPDWiLOAhvnXR
+	ugYGyXj40ibW+weJz9fP4Ar8LxVtEJtLSaaQYGbFz16pnj4kiA6EB2C4vuqY/a50IVbwVky+wuc8M
+	AeKDy25zWNdRd44FopAKE5OwYIEra79WK3L6bLqI8XVb5YuNW22BYGIoKI74szm42Ih8sdlHIZwgS
+	muucxIVwmeqpgRoliQ1Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1poQ4H-00Gftf-1t;
-	Mon, 17 Apr 2023 14:42:57 +0000
+	id 1poVNG-00HWAh-0t;
+	Mon, 17 Apr 2023 20:22:54 +0000
 Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1poQ4E-00Gfrw-0N
+	id 1poVND-00HW9I-0b
 	for ath11k@lists.infradead.org;
-	Mon, 17 Apr 2023 14:42:56 +0000
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33HCtV7Z007267;
-	Mon, 17 Apr 2023 14:42:51 GMT
+	Mon, 17 Apr 2023 20:22:52 +0000
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33HIsf5q010173;
+	Mon, 17 Apr 2023 20:22:47 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : references : date : in-reply-to : message-id : mime-version :
- content-type; s=qcppdkim1;
- bh=5qzd+c0AETChtvpI0vuLSbl7U7FbPzJnd0FfoOEhIaE=;
- b=d83kJ4LEVgpDwRbJIfScjM0ci2P9l7VFJg8STkWtX1Vk3RhnMg62DLAte+wcJjjZFwSK
- hpSsm6R9SirIQawc0FyNmpR2dqj/AfCB+IlEOlukxyt/pHw5VLULAc3tfvUdChjHlC2c
- ITR9VKacjAJ2zNVsl58jupmLNDC7p45UCZ88Pgr97wkplcGVXEy7dBi30E/iPtowZYUa
- 7lg9FVQX+mpQKjsyca6+WYXrWD1K5YUmMd3pYM4wwmLs301Jnbc0yCr8D5BiWxb2icOM
- a50Wbo2dPAZtv0/Zxdy2yUwKnfPQeaZ2POWtcH/iSPuUCwEcKzPnzQwBU45j516VpQsz UQ== 
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=FGtbeAR6pG0KxyEKVLIRzkq1RXlKfaVfRT1iixzMcII=;
+ b=jSdZBeFj4RAdCiUPrL/F9n+ufnpxT1pJNfZuA0tfEnUf54SCGUuHT5LtRdojYVh31YSS
+ aAGDRFvl7tIKqq/c6h4tm7SDdlhWF+MU3sH1YJNrwDeMAUZD+RnviJjo+GfgnEtp9+z7
+ PA75vGkpKiuMh6M8QFYB+/XxrJmx/XJBNESfMdAjBuMXnQf4S2yJ/IMwSxPkYKMU3lC6
+ DNnUAcgC/8wawYt8T1d8gKWq5CgWls4i1quveZghsbGUuL01i7SRXdKVianDJJsHEa0G
+ /brUp6LMMeJUgEI8wBfFAtcknzN0ADMVEqsJr+AHvQXnb1iHZyafl6BAeupXNS+Yi+fJ sw== 
 Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q11er8y0v-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q171gh1hb-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 17 Apr 2023 14:42:51 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33HEgnI2002301
+	Mon, 17 Apr 2023 20:22:47 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33HKMjHs007640
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 17 Apr 2023 14:42:50 GMT
-Received: from kvalo10 (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Mon, 17 Apr
- 2023 07:42:41 -0700
-From: Kalle Valo <quic_kvalo@quicinc.com>
-To: Dan Carpenter <error27@gmail.com>
-CC: <oe-kbuild@lists.linux.dev>, <lkp@intel.com>,
-        <oe-kbuild-all@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
-        <ath11k@lists.infradead.org>
-Subject: Re: drivers/net/wireless/ath/ath11k/debugfs.c:1009
- ath11k_debugfs_soc_create() warn: passing zero to 'PTR_ERR'
-References: <278dae1d-0cc2-4963-b7f0-5d611a5b31a4@kili.mountain>
-Date: Mon, 17 Apr 2023 17:42:38 +0300
-In-Reply-To: <278dae1d-0cc2-4963-b7f0-5d611a5b31a4@kili.mountain> (Dan
-	Carpenter's message of "Sat, 15 Apr 2023 16:15:07 +0300")
-Message-ID: <87o7nm4lk1.fsf@kvalo10.eu.qualcomm.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/27.1 (gnu/linux)
+	Mon, 17 Apr 2023 20:22:46 GMT
+Received: from msinada-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Mon, 17 Apr 2023 13:22:44 -0700
+From: Muna Sinada <quic_msinada@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, Muna Sinada <quic_msinada@quicinc.com>,
+        P Praneesh <quic_ppranees@quicinc.com>
+Subject: [PATCH] wifi: ath11k: Remove disabling of 80+80 and 160 MHz
+Date: Mon, 17 Apr 2023 13:22:27 -0700
+Message-ID: <1681762947-13882-1-git-send-email-quic_msinada@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: H9A4xvmLo5N9w1APDOkTIhTehPqH1_oK
-X-Proofpoint-ORIG-GUID: H9A4xvmLo5N9w1APDOkTIhTehPqH1_oK
+X-Proofpoint-GUID: wqGG1zw0KpXNYk_yFYb16HwLWt9V-6o4
+X-Proofpoint-ORIG-GUID: wqGG1zw0KpXNYk_yFYb16HwLWt9V-6o4
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-17_08,2023-04-17_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 impostorscore=0
- phishscore=0 malwarescore=0 lowpriorityscore=0 clxscore=1015 adultscore=0
- suspectscore=0 priorityscore=1501 mlxscore=0 spamscore=0 mlxlogscore=429
+ definitions=2023-04-17_13,2023-04-17_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
+ mlxlogscore=796 suspectscore=0 impostorscore=0 bulkscore=0 spamscore=0
+ clxscore=1015 phishscore=0 lowpriorityscore=0 malwarescore=0 adultscore=0
  classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2303200000
- definitions=main-2304170131
+ definitions=main-2304170181
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230417_074254_271672_64DDC96A 
-X-CRM114-Status: GOOD (  16.72  )
+X-CRM114-CacheID: sfid-20230417_132251_359382_B5D4F749 
+X-CRM114-Status: GOOD (  15.94  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,76 +93,54 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-+ ath11k list
+This is a regression fix for 80+80 and 160 MHz support bits being
+cleared, therefore not adverised. Remove disable of 80+80 and 160 MHz
+capability flags and assign valid center frequency 2 similar to
+VHT80_80.
 
-Including the full report below.
+Fixes: 38dfe775d0ab ("wifi: ath11k: push MU-MIMO params from hostapd to hardware")
+Reported-by: Robert Marko <robert.marko@sartura.hr>
+Link: https://bugzilla.kernel.org/show_bug.cgi?id=217299
+Co-developed-by: P Praneesh <quic_ppranees@quicinc.com>
+Signed-off-by: P Praneesh <quic_ppranees@quicinc.com>
+Signed-off-by: Muna Sinada <quic_msinada@quicinc.com>
+---
+ drivers/net/wireless/ath/ath11k/mac.c | 4 ----
+ drivers/net/wireless/ath/ath11k/wmi.c | 3 ++-
+ 2 files changed, 2 insertions(+), 5 deletions(-)
 
-Kalle
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index cad832e0e6b8..4f0bf62eb29f 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -5552,10 +5552,6 @@ static int ath11k_mac_copy_he_cap(struct ath11k *ar,
+ 
+ 		he_cap_elem->mac_cap_info[1] &=
+ 			IEEE80211_HE_MAC_CAP1_TF_MAC_PAD_DUR_MASK;
+-		he_cap_elem->phy_cap_info[0] &=
+-			~IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_160MHZ_IN_5G;
+-		he_cap_elem->phy_cap_info[0] &=
+-			~IEEE80211_HE_PHY_CAP0_CHANNEL_WIDTH_SET_80PLUS80_MHZ_IN_5G;
+ 
+ 		he_cap_elem->phy_cap_info[5] &=
+ 			~IEEE80211_HE_PHY_CAP5_BEAMFORMEE_NUM_SND_DIM_UNDER_80MHZ_MASK;
+diff --git a/drivers/net/wireless/ath/ath11k/wmi.c b/drivers/net/wireless/ath/ath11k/wmi.c
+index 27f3fceb33c5..fcc153df56d0 100644
+--- a/drivers/net/wireless/ath/ath11k/wmi.c
++++ b/drivers/net/wireless/ath/ath11k/wmi.c
+@@ -865,7 +865,8 @@ static void ath11k_wmi_put_wmi_channel(struct wmi_channel *chan,
+ 
+ 		chan->band_center_freq2 = arg->channel.band_center_freq1;
+ 
+-	} else if (arg->channel.mode == MODE_11AC_VHT80_80) {
++	} else if ((arg->channel.mode == MODE_11AC_VHT80_80) ||
++		   (arg->channel.mode == MODE_11AX_HE80_80)) {
+ 		chan->band_center_freq2 = arg->channel.band_center_freq2;
+ 	} else {
+ 		chan->band_center_freq2 = 0;
+-- 
+2.7.4
 
-Dan Carpenter <error27@gmail.com> writes:
-
-> tree:   https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git master
-> head:   7a934f4bd7d6f9da84c8812da3ba42ee10f5778e
-> commit: 323d91d4684d238f6bc3693fed93caf795378fe0 wifi: ath11k: debugfs: fix to work with multiple PCI devices
-> config: openrisc-randconfig-m041-20230414
-> (https://download.01.org/0day-ci/archive/20230415/202304152142.ssXYxFdQ-lkp@intel.com/config)
-> compiler: or1k-linux-gcc (GCC) 12.1.0
->
-> If you fix the issue, kindly add following tag where applicable
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Reported-by: Dan Carpenter <error27@gmail.com>
-> | Link: https://lore.kernel.org/r/202304152142.ssXYxFdQ-lkp@intel.com/
->
-> New smatch warnings:
-> drivers/net/wireless/ath/ath11k/debugfs.c:1009 ath11k_debugfs_soc_create() warn: passing zero to 'PTR_ERR'
->
-> Old smatch warnings:
-> drivers/net/wireless/ath/ath11k/debugfs.c:1022 ath11k_debugfs_soc_create() warn: passing zero to 'PTR_ERR'
->
-> vim +/PTR_ERR +1009 drivers/net/wireless/ath/ath11k/debugfs.c
->
-> cb4e57db2ff0c8 Kalle Valo 2020-09-16   998  int ath11k_debugfs_soc_create(struct ath11k_base *ab)
-> da3a9d3c15769b Kalle Valo 2020-09-16   999  {
-> 323d91d4684d23 Kalle Valo 2022-12-22  1000  	struct dentry *root;
-> 323d91d4684d23 Kalle Valo 2022-12-22  1001  	bool dput_needed;
-> 323d91d4684d23 Kalle Valo 2022-12-22  1002  	char name[64];
-> 323d91d4684d23 Kalle Valo 2022-12-22  1003  	int ret;
-> 323d91d4684d23 Kalle Valo 2022-12-22  1004  
-> 323d91d4684d23 Kalle Valo 2022-12-22  1005  	root = debugfs_lookup("ath11k", NULL);
-> 323d91d4684d23 Kalle Valo 2022-12-22  1006  	if (!root) {
-> 323d91d4684d23 Kalle Valo 2022-12-22  1007  		root = debugfs_create_dir("ath11k", NULL);
-> 323d91d4684d23 Kalle Valo 2022-12-22  1008  		if (IS_ERR_OR_NULL(root))
-> 323d91d4684d23 Kalle Valo 2022-12-22 @1009  			return PTR_ERR(root);
->
-> Debugfs used to return a mix of error pointers and NULL but we changed
-> the NULL return to an error pointer to encourage people to just delete
-> all debugfs error handling code.
->
-> 323d91d4684d23 Kalle Valo 2022-12-22  1010  
-> 323d91d4684d23 Kalle Valo 2022-12-22  1011  		dput_needed = false;
-> 323d91d4684d23 Kalle Valo 2022-12-22  1012  	} else {
-> 323d91d4684d23 Kalle Valo 2022-12-22 1013 /* a dentry from lookup()
-> needs dput() after we don't use it */
-> 323d91d4684d23 Kalle Valo 2022-12-22  1014  		dput_needed = true;
-> 323d91d4684d23 Kalle Valo 2022-12-22  1015  	}
-> 323d91d4684d23 Kalle Valo 2022-12-22  1016  
-> 323d91d4684d23 Kalle Valo 2022-12-22  1017  	scnprintf(name, sizeof(name), "%s-%s", ath11k_bus_str(ab->hif.bus),
-> 323d91d4684d23 Kalle Valo 2022-12-22  1018  		  dev_name(ab->dev));
-> da3a9d3c15769b Kalle Valo 2020-09-16  1019  
-> 323d91d4684d23 Kalle Valo 2022-12-22  1020  	ab->debugfs_soc = debugfs_create_dir(name, root);
-> 323d91d4684d23 Kalle Valo 2022-12-22  1021  	if (IS_ERR_OR_NULL(ab->debugfs_soc)) {
-> 323d91d4684d23 Kalle Valo 2022-12-22  1022  		ret = PTR_ERR(ab->debugfs_soc);
-> 323d91d4684d23 Kalle Valo 2022-12-22  1023  		goto out;
-> 323d91d4684d23 Kalle Valo 2022-12-22  1024  	}
-> 323d91d4684d23 Kalle Valo 2022-12-22  1025  
-> 323d91d4684d23 Kalle Valo 2022-12-22  1026  	ret = 0;
-> 323d91d4684d23 Kalle Valo 2022-12-22  1027  
-> 323d91d4684d23 Kalle Valo 2022-12-22  1028  out:
-> 323d91d4684d23 Kalle Valo 2022-12-22  1029  	if (dput_needed)
-> 323d91d4684d23 Kalle Valo 2022-12-22  1030  		dput(root);
-> 323d91d4684d23 Kalle Valo 2022-12-22  1031  
-> 323d91d4684d23 Kalle Valo 2022-12-22  1032  	return ret;
-> da3a9d3c15769b Kalle Valo 2020-09-16  1033  }
 
 -- 
 ath11k mailing list
