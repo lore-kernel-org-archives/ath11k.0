@@ -4,60 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34874C77B72
-	for <ath11k@archiver.kernel.org>; Mon, 17 Apr 2023 10:17:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 685C7C77B72
+	for <ath11k@archiver.kernel.org>; Mon, 17 Apr 2023 10:19:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
 	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=WFdQBGBdpjucGILiKzJTY+j7p90+AHkHA1tDN4xFNkg=; b=cw2W0mA846B2L+
-	ELVxUonVCCvycJDkDb2rSsNecethP1ZDtClQ39FlI/rv9dK1v7EtuU5RXYfze91v+QlmVTZ779lYy
-	NLzDmcH3YorjJR8yU9rbIxioGsOSYvDsUes3ivFrJGyl2BXV0reuWLk5dQPQh8WGvPLW6iUq1M5Dx
-	WwPI853g4FY8Pi6iyNy32ftgnYj2vRwMB6zbY0bhc9rjVuFU63oTD3V41X2s+LQwpauWUkEfCHd57
-	FaSlNmi4a5mpRXcTaZsnLseHHK8aNm1Cy2Ty6Lhw5MhJZu7wogsV4YsYq8lMG6vvU2hhXZ/IL7nlx
-	ugFudNIdY35t/d/tItOw==;
+	List-Owner; bh=0ugFCk6/zSPH/jZz0a7jhVEtccICjT+N35mOBRAc6P4=; b=l72JHNpsWOpOz2
+	dOQGq2tCeillXLDCO7HSTLhk2YzeboQfNA5LXU2gH4UMBiIo+WpQA6MBVKV77RdVeKZHB8exNc62y
+	VgBlEyVGzQj3dLinDaiRjPj+l2FRfALDs2iIo7pnpjEtZd3TXBsnsW+IeFvp98SZT7lQYKbe3N1l6
+	Yglemz/y5BTeZGKM+x9cOgF+mgmuBBIY+CvDZzfY1h6pSM9YbTsJFcOJivcwi4oAihg3ejN0iabVK
+	pFbxXXArsw4YABVto62y8CBspcWDDbxT2vczMHMhQOIEk+ksH+O0yCjKfur1Dldu4585KaRf9dqWZ
+	Tpb9Y8wBTBkW79rQR1wg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1poLvV-00Fht1-2h;
-	Mon, 17 Apr 2023 10:17:37 +0000
+	id 1poLx1-00Fi8m-0G;
+	Mon, 17 Apr 2023 10:19:11 +0000
 Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1poLvS-00Fhsa-2z
+	id 1poLwy-00Fi7w-09
 	for ath11k@lists.infradead.org;
-	Mon, 17 Apr 2023 10:17:36 +0000
+	Mon, 17 Apr 2023 10:19:09 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 7D1C0611E6;
-	Mon, 17 Apr 2023 10:17:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F4133C433D2;
-	Mon, 17 Apr 2023 10:17:32 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 6C88D621E4
+	for <ath11k@lists.infradead.org>; Mon, 17 Apr 2023 10:19:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B3C2C433EF;
+	Mon, 17 Apr 2023 10:19:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1681726653;
-	bh=/fPCzxyxSiGP6+JHJKOXA+nXbM/XfTTQ4dmQysYc8xM=;
+	s=k20201202; t=1681726746;
+	bh=HM9nC8PljvBOotxdB6u1S7tyFSUTY+vaSTJETjjfhr8=;
 	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=AxEDjweu9kmtwN8nD6Zyc7Mkcv1dAB/6Ld/IKmFw4kZoWBEkhDai0HgF2x1Aw7LGy
-	 qGwlzNYfBgl29sM3xECPdKGL4HyoEZKjhvzC0t6OXhdb0wIgRd0c8AVV51JAyjDzt5
-	 JdE1JJBuPxP4D982s61OWzQG+Y0qvKY0WOGE+OM5tSe9CSK2857oyXEtSRy7FQ3WOh
-	 fsUpeHjdDP1V5r3esIb9h5QSeC8d3ck5BHk0gK9WDRh+CtReq/IVpG4Jmn6ilDYW5n
-	 VHruYFJ/snxtyU3doYDgaiAVUEXaHtjwd8SsTTaHpwdWBCxYdzK0yQe3hiwK7jFo+Z
-	 uekvOq2kmg1Rw==
+	b=jEQUt1Ic7aUNjQ1OCKF0RRsXmLvv7TE3wot+pjLVb01tb3pxtua6Yv8zvwseo5W0u
+	 /OJ4X7Wp8cKODn75vEi0baFsFxpmVKY/K604t9d0eY6sx6lL2o8rx3OnV5xw/BMePd
+	 dPEYix6SCterJR9xbD1p7yri7Y/w7ilG3IBTJERFnC/eaQFQxFvP5Sm+1TduGzwGcn
+	 2N/Ryqx1rLGx9uYUftqDUYafjj1Cs2ZBjFFrp2nV3gxYOzRWU9mlOkSgapp2bova0i
+	 YDobCX+aHKhobRtDKY67pRVjaNoSKJv6Fqnlle1sQxjM34PR1kU9EC8k9UIEwFPgGo
+	 oqh1NGtsXkZeg==
 MIME-Version: 1.0
-Subject: Re: [PATCH] ath11k: pci: Add more MODULE_FIRMWARE() entries
+Subject: Re: [PATCH] wifi: ath11k: print a warning when crypto_alloc_shash()
+ fails
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20230330143718.19511-1-tiwai@suse.de>
-References: <20230330143718.19511-1-tiwai@suse.de>
-To: Takashi Iwai <tiwai@suse.de>
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
- netdev@vger.kernel.org
+In-Reply-To: <20230405090425.1351-1-kvalo@kernel.org>
+References: <20230405090425.1351-1-kvalo@kernel.org>
+To: Kalle Valo <kvalo@kernel.org>
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org
 User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <168172665084.12889.1483774754655787477.kvalo@kernel.org>
-Date: Mon, 17 Apr 2023 10:17:32 +0000 (UTC)
+Message-ID: <168172674407.12889.5186313051600365683.kvalo@kernel.org>
+Date: Mon, 17 Apr 2023 10:19:05 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230417_031735_003327_E5DAC7D4 
-X-CRM114-Status: GOOD (  11.01  )
+X-CRM114-CacheID: sfid-20230417_031908_121957_6CF673D3 
+X-CRM114-Status: UNSURE (   7.19  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,26 +75,24 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Takashi Iwai <tiwai@suse.de> wrote:
+Kalle Valo <kvalo@kernel.org> wrote:
 
-> As there are a few more models supported by the driver, let's add the
-> missing MODULE_FIRMWARE() entries for them.  The lack of them resulted
-> in the missing device enablement on some systems, such as the
-> installation image of openSUSE.
+> Christoph reported that ath11k failed to initialise when michael_mic.ko
+> module was not installed. To make it easier to notice that case print a
+> warning when crypto_alloc_shash() fails.
 > 
-> While we are at it, use the wildcard instead of listing each firmware
-> files individually for each.
+> Compile tested only.
 > 
-> Signed-off-by: Takashi Iwai <tiwai@suse.de>
-> Reviewed-by: Simon Horman <simon.horman@corigine.com>
+> Reported-by: Christoph Hellwig <hch@lst.de>
+> Link: https://lore.kernel.org/all/20221130133016.GC3055@lst.de/
 > Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
 Patch applied to ath-next branch of ath.git, thanks.
 
-06c584739692 wifi: ath11k: pci: Add more MODULE_FIRMWARE() entries
+a87a9110ac0d wifi: ath11k: print a warning when crypto_alloc_shash() fails
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20230330143718.19511-1-tiwai@suse.de/
+https://patchwork.kernel.org/project/linux-wireless/patch/20230405090425.1351-1-kvalo@kernel.org/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
