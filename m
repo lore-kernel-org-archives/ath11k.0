@@ -4,89 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0420BC77B76
-	for <ath11k@archiver.kernel.org>; Mon, 17 Apr 2023 14:13:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F18FC77B76
+	for <ath11k@archiver.kernel.org>; Mon, 17 Apr 2023 14:40:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=3v9bdfh87DsruAzz8kc5elYnvq1Es9nL7D6TOYq5B+I=; b=aN3NfeG43vf6ps
-	xpVk6euxdDHz+ZFPiH6DbU3iCJKoNe1zbEsg0fvq5m3xgKOyoZJemY4rfqUWduH2Z9j+5bex56Bes
-	zJ1Kvpq8MhEi4wslIwGvfOXVoJbgXxiBM6pg/3PzVfQA67lts6w7RqPKEUfHT9zVbesoI9xwg7C00
-	Pqbzb+5VaBa+Q2QmXDk8AqE69kpKCnrJB6mf9HG9MsPl0h9A09cRKiClhqlJouvYKBc7dzt/49ROj
-	251GuBcQMP+d7A+TCNM+VoGGzNamgssjW2/6SkbXjhnI7uo0dEgNWnZchOfe8KZ2IO3dNzmTQq88k
-	F3AxaFn6RSUKSmK+lrQQ==;
+	List-Owner; bh=9NB4KGU7lQbryKNXP+z0czAO6i7kO4pPKpcjo4KY8do=; b=wo5RMJNW3Rd9CA
+	JjOTOy2AcrlsFjwGyrD77XxmrZ6oLH3GSH/mHWZihpU042DAlWVK4deoqDhmhlEiSkBevs6jSAMI5
+	2wMqsQ4Srab1cvEwd2U0S7XecPdr1x3YOP8MKqs8/E4ViRramA6paoU8eQCm0JWRWWFQr2mifKLAi
+	N3lKHOx8J4hocdKrumnM47JTDHo1uG34sLLyzh5itGvGFNLhwiOAEoCcksgZoa12gNq186+a7J6JE
+	nBdcEyEiJg7yoSBomgpBWjJuRg0ZmWTXl/NRGObSdWsHZ2az9bL7PLEeNpDsjGcU7/UKXaXY6z8tU
+	6MRcHnwFr2k+0xFmMyGw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1poPbX-00GYun-0i;
-	Mon, 17 Apr 2023 14:13:15 +0000
+	id 1poQ2C-00GfYO-0R;
+	Mon, 17 Apr 2023 14:40:48 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1poPbV-00GYtp-0d
+	id 1poQ28-00GfXG-1x
 	for ath11k@lists.infradead.org;
-	Mon, 17 Apr 2023 14:13:14 +0000
+	Mon, 17 Apr 2023 14:40:46 +0000
 Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33H8tAwO006609;
-	Mon, 17 Apr 2023 14:13:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=DyeTitlKMgOzR9t9oQYxL+nfdGjKJlvEuLfb5WCEeTU=;
- b=CrtM57uehS9t2yTXfvFPsp8zErQzICskPPPKLYg5yJdEM+y0iKVzCA7EzjmnW/XvebN5
- clpwgeJjAtaSZ3Y3t+lG5PDk6vVbzdFcZrcVVPTuA6ftJbnSzEGTV+oYdhoJlUBwQ5qq
- dob5LCqy4QbQ9m4b1f8MLwohBnINMGaY0T9VYHo0D8LsHLzeKX+tdPTiQ4n9wIvtFpGD
- 0JaR+MEkVmjuKTESi1P8t08x5ZjRQ5t32bbDVFVbOAhWrlvZLaRyMVa0CnpwcZ9h2Beq
- WNm6LmzSV30S3B9s5NVY3P8o7NXA0gr3Ws05vSMImQuTC7rpd/22sviNqMo+jSyZSnII 8Q== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q12strq3e-1
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33HBTAAW025150;
+	Mon, 17 Apr 2023 14:40:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : references : date : in-reply-to : message-id : mime-version :
+ content-type; s=qcppdkim1;
+ bh=b1lGdYC6uUdXFinAGG6xvhPiid8KqvqvXLdg6rBqGzM=;
+ b=J2+vy0CyZA+2plhmuP1wrn/uQ0jHPd6x2UWoaTop7suBdSjrdiDorSYGQBiXhHKo+WOk
+ gdSLsFgYx5Ctrt8Ke9cFQxZgtIpq86tvcqfBrlreUREHPn2h5QycoDQvTq2Qs+SMgtcM
+ qS3hw9tRim729yHAb3iSXFoYeBiC8t6du09mSIxTeeqE8cLsLDvaWbyqjVf0yVxrbQD+
+ nhLEV2zJBUq5SYzyjpDgvTQnMzVW/rXgncWE79hx2v/q/RoeecljmiIVO+b3JRw96z7v
+ 3q7Z/qmyv7h2faJnc77wF9TEzCSk2heVrvhfe/zB/LqInpGQyZrcllAoWNKCUUbyYzC0 6w== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q12strt8s-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 17 Apr 2023 14:13:12 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33HEDBoG003380
+	Mon, 17 Apr 2023 14:40:40 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33HEeexu007537
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 17 Apr 2023 14:13:11 GMT
-Received: from [10.253.75.31] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 17 Apr 2023 14:40:40 GMT
+Received: from kvalo10 (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Mon, 17 Apr
- 2023 07:13:10 -0700
-Message-ID: <c15e368e-2fea-a1d8-9c0d-db9278ded5e5@quicinc.com>
-Date: Mon, 17 Apr 2023 22:13:07 +0800
+ 2023 07:40:37 -0700
+From: Kalle Valo <quic_kvalo@quicinc.com>
+To: Dan Carpenter <error27@gmail.com>
+CC: <oe-kbuild@lists.linux.dev>,
+        Manikanta Pubbisetty
+	<quic_mpubbise@quicinc.com>, <lkp@intel.com>,
+        <oe-kbuild-all@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
+        <ath11k@lists.infradead.org>
+Subject: Re: drivers/net/wireless/ath/ath11k/core.c:1309
+ ath11k_core_qmi_firmware_ready() warn: missing unwind goto?
+References: <b559bd3c-c7c2-409e-ab36-455236572fe5@kili.mountain>
+Date: Mon, 17 Apr 2023 17:40:35 +0300
+In-Reply-To: <b559bd3c-c7c2-409e-ab36-455236572fe5@kili.mountain> (Dan
+	Carpenter's message of "Sat, 15 Apr 2023 14:37:42 +0300")
+Message-ID: <87sfcy4lng.fsf@kvalo10.eu.qualcomm.com>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/27.1 (gnu/linux)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH 10/27] wifi: mac80211: isolate driver from inactive links
-Content-Language: en-US
-To: Johannes Berg <johannes@sipsolutions.net>,
-        <linux-wireless@vger.kernel.org>
-CC: <ath11k@lists.infradead.org>
-References: <20220902141259.377789-1-johannes@sipsolutions.net>
- <20220902161143.5ce3dad3be7c.I92e9f7a6c120cd4a3631baf486ad8b6aafcd796f@changeid>
- <5d82e564-86bf-c26b-077a-d0bc14e2d3c3@quicinc.com>
- <74f3eb848326607b15336c31a02bdd861ccafb47.camel@sipsolutions.net>
- <d10b88b4-0bd7-a38c-e8d7-8982a281c4b3@quicinc.com>
- <e5adbed1524b27228c152ba14f78c550c8730baa.camel@sipsolutions.net>
-From: Wen Gong <quic_wgong@quicinc.com>
-In-Reply-To: <e5adbed1524b27228c152ba14f78c550c8730baa.camel@sipsolutions.net>
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: pTSaSkIa6DuUp8ovzv0h2PtlccDewtUp
-X-Proofpoint-ORIG-GUID: pTSaSkIa6DuUp8ovzv0h2PtlccDewtUp
+X-Proofpoint-GUID: W_8UUP8aHYrY_1l6QBkfy38_89PmIFmj
+X-Proofpoint-ORIG-GUID: W_8UUP8aHYrY_1l6QBkfy38_89PmIFmj
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
  definitions=2023-04-17_09,2023-04-17_01,2023-02-09_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
  suspectscore=0 mlxscore=0 impostorscore=0 adultscore=0 bulkscore=0
- mlxlogscore=878 phishscore=0 clxscore=1015 spamscore=0 malwarescore=0
+ mlxlogscore=684 phishscore=0 clxscore=1011 spamscore=0 malwarescore=0
  lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304170127
+ engine=8.12.0-2303200000 definitions=main-2304170131
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230417_071313_239941_3907792C 
-X-CRM114-Status: GOOD (  16.54  )
+X-CRM114-CacheID: sfid-20230417_074044_653525_010E2E89 
+X-CRM114-Status: GOOD (  13.62  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,30 +96,131 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-T24gNC8xMS8yMDIzIDM6MzggUE0sIEpvaGFubmVzIEJlcmcgd3JvdGU6Cj4gT24gVHVlLCAyMDIz
-LTA0LTA0IGF0IDExOjI4ICswODAwLCBXZW4gR29uZyB3cm90ZToKPj4gTWF5IEkgYWxzbyBhZGQg
-YSBmaWVsZCBzdWNoIGFzICJ1MTYgYWN0aXZlX2xpbmtzX2NvdW50IiBpbiBzdHJ1Y3QKPj4gd2lw
-aHlfaWZ0eXBlX2V4dF9jYXBhYiwKPj4gYW5kIGFkZCBsb2dpYyBpbiBmdW5jdGlvbiBpZWVlODAy
-MTFfc2V0X3ZpZl9saW5rc19iaXRtYXBzKCkgZm9yIHN0YXRpb24KPj4gbGlrZSB0aGlzID86Cj4+
-IGlmIChhY3RpdmVfbGlua3NfY291bnQgJiYgaHdlaWdodDE2KGxpbmtzKSA8PSBhY3RpdmVfbGlu
-a3NfY291bnQpCj4+ICAgwqDCoMKgIHRoZW4gc2RhdGEtPnZpZi5hY3RpdmVfbGlua3MgPSBsaW5r
-czsKPj4KPiBBbHNvIGhlcmUsIG5vdCBzdXJlIGl0IG1ha2VzIHNlbnNlIGluIGNmZzgwMjExIGxl
-dmVsPwo+Cj4gVGhvdWdoIEknbSBub3Qgc3VyZSB3aGF0IHRoZSBpZGVhIGhlcmUgaXMgYXQgYWxs
-IC0geW91IGNhbiByZWZ1c2UgdG8KPiBsaW5rIHN3aXRjaCBldGMsIHdoYXQgd291bGQgeW91IHVz
-ZSB0aGlzIGZvcj8KSWYgSSB1c2UgaWVlZTgwMjExX3NldF9hY3RpdmVfbGlua3MoKSwKdGhlbiBJ
-IG5lZWQgYWRkIEJTU19DSEFOR0VEX0FTU09DIGFuZCBrZXkgZm9yIDJuZCBsaW5rIGluIGxvd2Vy
-LWRyaXZlci4KCkkgd291bGQgbGlrZSB0byBhY3RpdmUgYWxsIGxpbmtzIHdoaWxlIGFzc29jLAp0
-aGVuIEJTU19DSEFOR0VEX0FTU09DIGFuZCBrZXkgd2lsbCBhdXRvIHNldCBmb3IgdGhlIDJuZCBs
-aW5rIHRvIApsb3dlci1kcml2ZXIgZnJvbSBtYWM4MDIxMS4KPgo+IFRoZW4gYWdhaW4sIHdlIGhh
-dmVuJ3QgcmVhbGx5IGRlc2lnbmVkIG91dCBhbGwgdGhlIGxpbmsgc2VsZWN0aW9uIHN0dWZmLAo+
-IGRvIHdlIHdhbnQgd3BhX3MgdG8gZG8gaXQsIGRyaXZlciB0byBkbyBpdCwgZXRjLj8gSGVuY2Ug
-ZGVidWdmcy4gU28KPiBkZXBlbmRpbmcgb24gd2hhdCBlbmQgdXAgZG9pbmcgdGhlcmUsIHdlIHdp
-bGwgb2J2aW91c2x5IG5lZWQgdG8KPiBhZHZlcnRpc2Ugc29tZSBsZXZlbCBvZiBsaW5rLWNvbmN1
-cnJlbmN5IHRvIHVzZXJzcGFjZS4KPgo+IGpvaGFubmVzCgotLSAKYXRoMTFrIG1haWxpbmcgbGlz
-dAphdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL2F0aDExawo=
++ ath11k list
+
+Including the full report below.
+
+Kalle
+
+Dan Carpenter <error27@gmail.com> writes:
+
+> tree:   https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git master
+> head:   7a934f4bd7d6f9da84c8812da3ba42ee10f5778e
+> commit: 33b67a4b4e64275b6f2cbc4318f1596c70659111 ath11k: Update WBM idle ring HP after FW mode on
+> config: openrisc-randconfig-m041-20230414
+> (https://download.01.org/0day-ci/archive/20230415/202304151955.oqAetVFd-lkp@intel.com/config)
+> compiler: or1k-linux-gcc (GCC) 12.1.0
+>
+> If you fix the issue, kindly add following tag where applicable
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Reported-by: Dan Carpenter <error27@gmail.com>
+> | Link: https://lore.kernel.org/r/202304151955.oqAetVFd-lkp@intel.com/
+>
+> smatch warnings:
+> drivers/net/wireless/ath/ath11k/core.c:1309 ath11k_core_qmi_firmware_ready() warn: missing unwind goto?
+>
+> vim +1309 drivers/net/wireless/ath/ath11k/core.c
+>
+> d5c65159f28953 Kalle Valo 2019-11-23 1276 int
+> ath11k_core_qmi_firmware_ready(struct ath11k_base *ab)
+> d5c65159f28953 Kalle Valo                2019-11-23  1277  {
+> d5c65159f28953 Kalle Valo                2019-11-23  1278  	int ret;
+> d5c65159f28953 Kalle Valo                2019-11-23  1279  
+> 33b67a4b4e6427 Manikanta Pubbisetty 2022-04-06 1280 ret =
+> ath11k_core_start_firmware(ab, ATH11K_FIRMWARE_MODE_NORMAL);
+> 33b67a4b4e6427 Manikanta Pubbisetty      2022-04-06  1281  	if (ret) {
+> 33b67a4b4e6427 Manikanta Pubbisetty 2022-04-06 1282 ath11k_err(ab,
+> "failed to start firmware: %d\n", ret);
+> 33b67a4b4e6427 Manikanta Pubbisetty      2022-04-06  1283  		return ret;
+> 33b67a4b4e6427 Manikanta Pubbisetty      2022-04-06  1284  	}
+> 33b67a4b4e6427 Manikanta Pubbisetty      2022-04-06  1285  
+> d5c65159f28953 Kalle Valo                2019-11-23  1286  	ret = ath11k_ce_init_pipes(ab);
+> d5c65159f28953 Kalle Valo                2019-11-23  1287  	if (ret) {
+> d5c65159f28953 Kalle Valo 2019-11-23 1288 ath11k_err(ab, "failed to
+> initialize CE: %d\n", ret);
+> 33b67a4b4e6427 Manikanta Pubbisetty      2022-04-06  1289  		goto err_firmware_stop;
+> d5c65159f28953 Kalle Valo                2019-11-23  1290  	}
+> d5c65159f28953 Kalle Valo                2019-11-23  1291  
+> d5c65159f28953 Kalle Valo                2019-11-23  1292  	ret = ath11k_dp_alloc(ab);
+> d5c65159f28953 Kalle Valo                2019-11-23  1293  	if (ret) {
+> d5c65159f28953 Kalle Valo 2019-11-23 1294 ath11k_err(ab, "failed to
+> init DP: %d\n", ret);
+> 33b67a4b4e6427 Manikanta Pubbisetty      2022-04-06  1295  		goto err_firmware_stop;
+> d5c65159f28953 Kalle Valo                2019-11-23  1296  	}
+> d5c65159f28953 Kalle Valo                2019-11-23  1297  
+> aa2092a9bab3f8 Venkateswara Naralasetty  2020-09-08  1298  	switch (ath11k_crypto_mode) {
+> aa2092a9bab3f8 Venkateswara Naralasetty  2020-09-08  1299  	case ATH11K_CRYPT_MODE_SW:
+> aa2092a9bab3f8 Venkateswara Naralasetty 2020-09-08 1300
+> set_bit(ATH11K_FLAG_HW_CRYPTO_DISABLED, &ab->dev_flags);
+> aa2092a9bab3f8 Venkateswara Naralasetty 2020-09-08 1301
+> set_bit(ATH11K_FLAG_RAW_MODE, &ab->dev_flags);
+> aa2092a9bab3f8 Venkateswara Naralasetty  2020-09-08  1302  		break;
+> aa2092a9bab3f8 Venkateswara Naralasetty  2020-09-08  1303  	case ATH11K_CRYPT_MODE_HW:
+> aa2092a9bab3f8 Venkateswara Naralasetty 2020-09-08 1304
+> clear_bit(ATH11K_FLAG_HW_CRYPTO_DISABLED, &ab->dev_flags);
+> aa2092a9bab3f8 Venkateswara Naralasetty 2020-09-08 1305
+> clear_bit(ATH11K_FLAG_RAW_MODE, &ab->dev_flags);
+> aa2092a9bab3f8 Venkateswara Naralasetty  2020-09-08  1306  		break;
+> aa2092a9bab3f8 Venkateswara Naralasetty  2020-09-08  1307  	default:
+> aa2092a9bab3f8 Venkateswara Naralasetty 2020-09-08 1308
+> ath11k_info(ab, "invalid crypto_mode: %d\n", ath11k_crypto_mode);
+> aa2092a9bab3f8 Venkateswara Naralasetty  2020-09-08 @1309  		return -EINVAL;
+>
+> 	ret = -EINVAL;
+> 	goto err_dp_free;
+>
+> aa2092a9bab3f8 Venkateswara Naralasetty  2020-09-08  1310  	}
+> aa2092a9bab3f8 Venkateswara Naralasetty  2020-09-08  1311  
+> aa2092a9bab3f8 Venkateswara Naralasetty  2020-09-08  1312  	if (ath11k_frame_mode == ATH11K_HW_TXRX_RAW)
+> aa2092a9bab3f8 Venkateswara Naralasetty 2020-09-08 1313
+> set_bit(ATH11K_FLAG_RAW_MODE, &ab->dev_flags);
+> aa2092a9bab3f8 Venkateswara Naralasetty  2020-09-08  1314  
+> d5c65159f28953 Kalle Valo                2019-11-23  1315  	mutex_lock(&ab->core_lock);
+> 33b67a4b4e6427 Manikanta Pubbisetty      2022-04-06  1316  	ret = ath11k_core_start(ab);
+> d5c65159f28953 Kalle Valo                2019-11-23  1317  	if (ret) {
+> d5c65159f28953 Kalle Valo 2019-11-23 1318 ath11k_err(ab, "failed to
+> start core: %d\n", ret);
+> d5c65159f28953 Kalle Valo                2019-11-23  1319  		goto err_dp_free;
+> d5c65159f28953 Kalle Valo                2019-11-23  1320  	}
+> d5c65159f28953 Kalle Valo                2019-11-23  1321  
+> d5c65159f28953 Kalle Valo                2019-11-23  1322  	ret = ath11k_core_pdev_create(ab);
+> d5c65159f28953 Kalle Valo                2019-11-23  1323  	if (ret) {
+> d5c65159f28953 Kalle Valo 2019-11-23 1324 ath11k_err(ab, "failed to
+> create pdev core: %d\n", ret);
+> d5c65159f28953 Kalle Valo                2019-11-23  1325  		goto err_core_stop;
+> d5c65159f28953 Kalle Valo                2019-11-23  1326  	}
+> 31858805f91ac7 Govind Singh              2020-05-08  1327  	ath11k_hif_irq_enable(ab);
+> ec038c6127fa77 Wen Gong                  2021-12-20  1328  
+> ec038c6127fa77 Wen Gong                  2021-12-20  1329  	ret = ath11k_core_rfkill_config(ab);
+> ec038c6127fa77 Wen Gong                  2021-12-20  1330  	if (ret && ret != -EOPNOTSUPP) {
+> ec038c6127fa77 Wen Gong 2021-12-20 1331 ath11k_err(ab, "failed to
+> config rfkill: %d\n", ret);
+> ec038c6127fa77 Wen Gong                  2021-12-20  1332  		goto err_core_stop;
+> ec038c6127fa77 Wen Gong                  2021-12-20  1333  	}
+> ec038c6127fa77 Wen Gong                  2021-12-20  1334  
+> d5c65159f28953 Kalle Valo                2019-11-23  1335  	mutex_unlock(&ab->core_lock);
+> d5c65159f28953 Kalle Valo                2019-11-23  1336  
+> d5c65159f28953 Kalle Valo                2019-11-23  1337  	return 0;
+> d5c65159f28953 Kalle Valo                2019-11-23  1338  
+> d5c65159f28953 Kalle Valo                2019-11-23  1339  err_core_stop:
+> d5c65159f28953 Kalle Valo                2019-11-23  1340  	ath11k_core_stop(ab);
+> 0366f42640a410 Vasanthakumar Thiagarajan 2019-11-28  1341  	ath11k_mac_destroy(ab);
+> d5c65159f28953 Kalle Valo                2019-11-23  1342  err_dp_free:
+> d5c65159f28953 Kalle Valo                2019-11-23  1343  	ath11k_dp_free(ab);
+> ba47923974fb67 Govindaraj Saminathan     2019-11-27  1344  	mutex_unlock(&ab->core_lock);
+> 33b67a4b4e6427 Manikanta Pubbisetty      2022-04-06  1345  err_firmware_stop:
+> 33b67a4b4e6427 Manikanta Pubbisetty      2022-04-06  1346  	ath11k_qmi_firmware_stop(ab);
+> 33b67a4b4e6427 Manikanta Pubbisetty      2022-04-06  1347  
+> d5c65159f28953 Kalle Valo                2019-11-23  1348  	return ret;
+> d5c65159f28953 Kalle Valo                2019-11-23  1349  }
+> d5c65159f28953 Kalle Valo                2019-11-23  1350  
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
