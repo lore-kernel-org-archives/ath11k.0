@@ -4,83 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3AE5DC77B79
-	for <ath11k@archiver.kernel.org>; Mon, 17 Apr 2023 05:42:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A748C77B72
+	for <ath11k@archiver.kernel.org>; Mon, 17 Apr 2023 09:34:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Cc:To:
+	From:Subject:MIME-Version:Date:Message-ID:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=d+iZ4I/ckE3yozH4fBex+/+Yv0tmCsW5ZbXfergkm7M=; b=ozxHH7CA3O+Lf8
-	+PLeZn8JflUq934DeGi+n+Hvv9ub/rCqmzcRZ6Ei4KXkrpriL9dVzbUjxqy0qiuamGrUASLo4N2gr
-	pn3THSQ/GLLXjR3jr8cPNeizoqv+hGTKWcCB55gvsFuCNaXyJxcUr5H2hyK/6+XUVp8DKO04zeIbJ
-	jjXB6uWiRWTqGmhUKs5ZDRqys2duFCjZYM/wR20IyK2VN9fJaUMB6o+PAp5owZMCDkXwUTqg3ulRq
-	TQ/lZo7SWCAwG4QlsAztONgIwyq/4n2revKV4/ZgFDcEqC/BaQShvGi6+HEDyRRfB8LVTjzoNgppq
-	sM0h20kh3AvAJS+QOuIA==;
+	List-Owner; bh=XnjJGRqQe4RrcR3wuEYOtp2oMp9HzEEsgrgr54/Fayo=; b=YfkA3+TmPLOnQt
+	5pR7MNLKv/J1XPwVbz0NHG+J/xH0+lJNp2ibBbYPBFk365qCy16q20p/N5O4KbwOtO5+I+CebZUIj
+	6jV1WgkaEIcNz6rCrgm94yCWEyVwuzg+Y9Ouoi8N/AhSipYzkSrc3GbWlcau5Yoa6QBPwcD3Ijor7
+	MI9EwwjsUNNpC0msMFQamfmL0s65C7znxiPnfhixjTWf4Sn+Q+fcaX+Kedt38BtP8Lc962C1nnnUC
+	GlQrzbQOar8X+n3WXwYAMT8x/bU/jzNQXL9maFmPZ8VoOsbLDhEkuIeBqA5KDxRW5o45lUCPUP6s5
+	SXKq0veJEbN/iQniuAIQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1poHd1-00EvRi-2W;
-	Mon, 17 Apr 2023 05:42:15 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1poLFL-00FaWY-1p;
+	Mon, 17 Apr 2023 09:34:03 +0000
+Received: from wp530.webpack.hosteurope.de ([80.237.130.52])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1poHcy-00EvOx-2T
+	id 1poLFF-00FaVE-2w
 	for ath11k@lists.infradead.org;
-	Mon, 17 Apr 2023 05:42:14 +0000
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33H5Lj7c030400;
-	Mon, 17 Apr 2023 05:42:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=1FPaZK0DujB4XMNr4uk9x6Gwk6/TlGiCl5E079UHItA=;
- b=eyTqYqy7c7y6Pj8aB6AgzZAUwDcTqMIVpZy1uqTbfg1use4NroRPLXvS9Uf00lfsKcED
- eI6a6AJBalOUL1zjUMGp1R+5acQir3FqRADsf8++ympYAv7dK8+ktdwdlfXX9Yd44px8
- Sj85xiPRv7f7/VZesupQ7aMuL5rK75W/8t6x1eJSNdsE1g2zJEn5z5AgFRS8i3TtnNbJ
- fjbQCRkNvaGJNy7fGijq/0R/eYinCnMY4Qc3xbK/JISYuXszcJ1lF5u8+Zb+Vkaph8PN
- 9AynMwi232N0vybaZldvZcxOtrnA49I08BT+u3GHCi2RK9Yyeh/aIhyuTjmgpvNfAW2W lA== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3pymp4ap4r-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 17 Apr 2023 05:42:04 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33H5g3xH008811
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 17 Apr 2023 05:42:03 GMT
-Received: from hu-mpubbise-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Sun, 16 Apr 2023 22:42:01 -0700
-From: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>,
-        Manikanta Pubbisetty
-	<quic_mpubbise@quicinc.com>
-Subject: [PATCH v5 1/3] wifi: ath11k: Fix double free issue during SRNG deinit
-Date: Mon, 17 Apr 2023 11:11:43 +0530
-Message-ID: <20230417054145.12359-2-quic_mpubbise@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230417054145.12359-1-quic_mpubbise@quicinc.com>
-References: <20230417054145.12359-1-quic_mpubbise@quicinc.com>
+	Mon, 17 Apr 2023 09:34:01 +0000
+Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
+	by wp530.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+	id 1poLFA-0005dj-Nc; Mon, 17 Apr 2023 11:33:52 +0200
+Message-ID: <f84c39ed-b8d8-7d0c-0eff-c90feaf5ab4f@leemhuis.info>
+Date: Mon, 17 Apr 2023 11:33:49 +0200
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: WfIjgyziw7Tuw68VhU_p81CAdVku7APH
-X-Proofpoint-ORIG-GUID: WfIjgyziw7Tuw68VhU_p81CAdVku7APH
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-17_02,2023-04-14_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
- impostorscore=0 spamscore=0 mlxlogscore=692 lowpriorityscore=0
- phishscore=0 priorityscore=1501 bulkscore=0 adultscore=0 suspectscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304170051
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [regression] Bug 217286 - ath11k:deny assoc request, Invalid
+ supported ch width and ext nss combination
+Content-Language: en-US, de-DE
+From: Thorsten Leemhuis <regressions@leemhuis.info>
+To: P Praneesh <ppranees@codeaurora.org>,
+ Ganesh Sesetti <gseset@codeaurora.org>,
+ Sathishkumar Muruganandam <murugana@codeaurora.org>
+Cc: ath11k <ath11k@lists.infradead.org>,
+ "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
+ netdev <netdev@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+ Linux kernel regressions list <regressions@lists.linux.dev>,
+ Kalle Valo <kvalo@kernel.org>, Jouni Malinen <jouni@codeaurora.org>
+References: <ed31b6fe-e73d-34af-445b-81c5c644d615@leemhuis.info>
+In-Reply-To: <ed31b6fe-e73d-34af-445b-81c5c644d615@leemhuis.info>
+X-bounce-key: webpack.hosteurope.de;regressions@leemhuis.info;1681724037;2ed7e713;
+X-HE-SMSGID: 1poLFA-0005dj-Nc
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230416_224212_924331_FFC5A998 
-X-CRM114-Status: GOOD (  15.34  )
+X-CRM114-CacheID: sfid-20230417_023358_112128_89073AF2 
+X-CRM114-Status: GOOD (  14.80  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,51 +65,59 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Currently struct ath11k_hal::srng_config pointer is not assigned
-to NULL after freeing the memory in ath11k_hal_srng_deinit().
-This could lead to double free issue in a scenario where
-ath11k_hal_srng_deinit() is invoked back to back.
+On 08.04.23 13:52, Linux regression tracking (Thorsten Leemhuis) wrote:
+> Hi, Thorsten here, the Linux kernel's regression tracker.
+> 
+> I noticed a regression report in bugzilla.kernel.org. As many (most?)
+> kernel developers don't keep an eye on it, I decided to forward it by mail.
+> 
+> Note, you have to use bugzilla to reach the reporter, as I sadly[1] can
+> not CCed them in mails like this.
+> 
+> Quoting from https://bugzilla.kernel.org/show_bug.cgi?id=217286 :
+> 
+>> Built and installed v6.2 kernel (with ath11k_pci) on arm64 hardware
+>> running Ubuntu22.04. Hardware has both Atheros QCN9074 module and Intel
+>> AX210 module. Running each (separately) in station mode and try to
+>> connect to Synology router with WiFi Access Point based on QCN9074.
+>> AX210 has no problem connecting to AP but Atheros is successfully
+>> authenticating but association is rejected by AP with this error message:
+>>
+>>
+>> wlan: [0:I:ANY] [UNSPECIFIED] vap-0(wlan100): [04:f0:21:a1:7c:3e]deny assoc request, Invalid supported ch width and ext nss combination
+>>
+>> Please note that when running v5.15.5 kernel (with ath11k_pci), I am
+>> able to connect to the same AP without problems.
+>>
+>> Detailed logs follow:
+>> [...]
+> 
+> See the ticket for more details.
 
-In the current code, although the chances are very low, the above
-said scenario could happen when hardware recovery has failed and
-then there is another FW assert where ath11k_hal_srng_deinit() is
-invoked once again as part of recovery. Addressing this issue is
-important when low power mode support is enabled in the driver
-(will be added by a future patch) where this scenario is likely.
+FWIW, the reporter bisected the regression down to
 
-Fix this by assigning the struct ath11k_hal::srng_config pointer
-to NULL after freeing the memory.
+552d6fd2f2 ("ath11k: add support for 80P80 and 160 MHz bandwidth")
 
-Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00887-QCAMSLSWPLZ-1
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.16
-Tested-on: IPQ5018 hw1.0 AHB WLAN.HK.2.6.0.1-00861-QCAHKSWPL_SILICONZ-1
-Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
+Authored by P Praneesh, Ganesh Sesetti, and Sathishkumar Muruganandam,.
+all of which I added to the list of recipients (just like Jouni Malinen,
+who handled the patch). Could one of you please look into this?
 
-Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/hal.c | 1 +
- 1 file changed, 1 insertion(+)
+While at it, let me update the tracking status:
 
-diff --git a/drivers/net/wireless/ath/ath11k/hal.c b/drivers/net/wireless/ath/ath11k/hal.c
-index 22422237500c..a20bf2792672 100644
---- a/drivers/net/wireless/ath/ath11k/hal.c
-+++ b/drivers/net/wireless/ath/ath11k/hal.c
-@@ -1324,6 +1324,7 @@ void ath11k_hal_srng_deinit(struct ath11k_base *ab)
- 	ath11k_hal_free_cont_rdp(ab);
- 	ath11k_hal_free_cont_wrp(ab);
- 	kfree(hal->srng_config);
-+	hal->srng_config = NULL;
- }
- EXPORT_SYMBOL(ath11k_hal_srng_deinit);
- 
--- 
-2.17.1
+#regzbot introduced: 552d6fd2f2
+#regzbot ignore-activity
 
+Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
+--
+Everything you wanna know about Linux kernel regression tracking:
+https://linux-regtracking.leemhuis.info/about/#tldr
+If I did something stupid, please tell me, as explained on that page.
 
 -- 
 ath11k mailing list
