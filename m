@@ -4,70 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8189DC77B78
-	for <ath11k@archiver.kernel.org>; Mon, 17 Apr 2023 20:54:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0905CC77B75
+	for <ath11k@archiver.kernel.org>; Tue, 18 Apr 2023 08:15:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=YCy/qTOfIaZ6eKoOvmTguc93jtvprbCrYpJITR3EIBY=; b=0VRKqTUJVcsZNB
-	hCkf0IrHBLT/Xj/TVom8LYCIbSYnH691GL4dlgnR3HTGKrm3UCkm8Ic6S+YZhzHOXIBnF0TT4lKJe
-	3d8iMlqm3XVepAVZZLP1WmkNhxcFUA0RWyXVyXBDoDkwYJitxU+nSFhD0fIfFwq1EeJXjW6oSP1/a
-	ukHdo0+eJVLs75S8AYCZDYUyuLGBpXmZpkLid7SKeifZ8/zwOi7/HLhsNbiDaS4Jq/gqN0fjgF8O0
-	3tASUVWznuIg1gjTaj6EPkQiusAPFiqU9uoZ4mOMkm5WmefVYYNbNNLkWaqBNR3dXIyv6C/sQwdUf
-	m8gIg6jLcs0Q0xw5kWfQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=0YafVRrI9fys5pEqIkut+QGEjJ2m+qkggzd+5Is1GlQ=; b=g/+Y6Fio3RRMp7
+	evXhVLn2DQ4wMP35wPfTS98tWUcRlyz2rIU2XQLl3TOcWB1gnB94slT5rUcnOwl2YXPoLY9qjKtLU
+	nB10gLxjivFErAeSB7XZmPj5iA/9ItX8aRW3ELaDKA+QyBPbDlx//034481KjlvavQGmIgOkCcfnB
+	QU9klPHT1p1tqyR+laSuMCmD92ML1w9xm27Gr729ThiI0xAVVMVS8/m0G5cp7PoVHkC8Ny9WYWP8O
+	9znjNyoBIwsQZt+eY7AAT+RkdP5YnVKSGZREeGOM4A5HuZdvwHZAfF1cYcd0mMLOPVdp8cQWyIjP/
+	JdafzFDiHyN5IgBbMKRA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1poVsJ-00HaUt-0N;
-	Mon, 17 Apr 2023 20:54:59 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1pogV6-001HdW-34;
+	Tue, 18 Apr 2023 08:15:44 +0000
+Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2] helo=sipsolutions.net)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1poVsF-00HaTy-2U;
-	Mon, 17 Apr 2023 20:54:57 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 4C41562A5B;
-	Mon, 17 Apr 2023 20:54:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FC1FC433EF;
-	Mon, 17 Apr 2023 20:54:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1681764894;
-	bh=moYYi4bJv8zGeQ0K0+Ne+l5Pi5iujfuXRILl1xpKhX4=;
-	h=From:To:Cc:Subject:Date:From;
-	b=U80ja+1SzcQ202GY/MR/HKPGvEWUeI+Xc2gUAU5uNT5lGU/HSaRvyE8BxOaMLO5tL
-	 xRIasBX5T/QwtzhQ+2rLuEKOV9HrGGBzOiYPEOxooWyM6UqZAi9oHAwYHb5ZHo/9t+
-	 VavPigphAxfhdnYbUUn4LS17ceOwbrjNzAmhNzbP67u7QLV6PG9jI9BunFH9GieKBI
-	 Rf4w/fSR1d4GJfu2B8zueaVftAseqsHM73MTVSRDQlMQGrlNarbhp6ks3tR8epgFrn
-	 i4d56r8ZG895VfwH+ys+nUe4wioyJptqFqAChbslE+wIrTTtBaS4FJV5Vg+L1GmdSp
-	 TBCz7Lip00L9w==
-From: Arnd Bergmann <arnd@kernel.org>
-To: Kalle Valo <kvalo@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>
-Cc: Arnd Bergmann <arnd@arndb.de>,
-	Johannes Berg <johannes.berg@intel.com>,
-	Manikanta Pubbisetty <quic_mpubbise@quicinc.com>,
-	Wen Gong <quic_wgong@quicinc.com>,
-	Baochen Qiang <quic_bqiang@quicinc.com>,
-	Sowmiya Sree Elavalagan <quic_ssreeela@quicinc.com>,
-	ath11k@lists.infradead.org,
-	linux-wireless@vger.kernel.org,
-	netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	ath12k@lists.infradead.org
-Subject: [PATCH] wireless: ath: work around false-positive stringop-overread warning
-Date: Mon, 17 Apr 2023 22:54:20 +0200
-Message-Id: <20230417205447.1800912-1-arnd@kernel.org>
-X-Mailer: git-send-email 2.39.2
+	id 1pogV3-001Hcm-27
+	for ath11k@lists.infradead.org;
+	Tue, 18 Apr 2023 08:15:42 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
+	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
+	Resent-Cc:Resent-Message-ID; bh=8UW6ybr3e1Cm4qPC9xrTWnDCBJ859mXH3+qyEx+8l3g=;
+	t=1681805735; x=1683015335; b=iwS0/eCivqeBMBfIyXEEbdX8UCBGA5/vvHc6EFgBA8b4gbx
+	GvQXiLfaeR8wunG7lUvbD7+7JntbpMJG8gy4O1wX3vJ5tb7LlPDJMAFitO6OQsj8xKAA9zTING+BC
+	XMJohcXg3noA2O1D62cGf6UKICBGiWVb0tNIMGTlAlXAAVd8fUoOpiZUtWaZ1GJ3vx66POWbmCTCu
+	3HJieeQggD3qdoNTSvDMM8SvuI4hypeBi0XCpdyf1Iy3AEmQionLYHH0lluZe7m0PWPXWm5DEACOo
+	WcCe4hdCSHqDSr4zsd4cOCQXaLjyMFoRHWnVgwtGhwgfT8/+cDIZtpq38KGI5qmA==;
+Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+	(Exim 4.96)
+	(envelope-from <johannes@sipsolutions.net>)
+	id 1pogUr-001XWn-35;
+	Tue, 18 Apr 2023 10:15:30 +0200
+Message-ID: <61268d31f8a6dd4eea10fcb6048d39244bc584e2.camel@sipsolutions.net>
+Subject: Re: [PATCH 10/27] wifi: mac80211: isolate driver from inactive links
+From: Johannes Berg <johannes@sipsolutions.net>
+To: Wen Gong <quic_wgong@quicinc.com>, linux-wireless@vger.kernel.org
+Cc: ath11k@lists.infradead.org
+Date: Tue, 18 Apr 2023 10:15:29 +0200
+In-Reply-To: <edfc26b5-f6d1-2ab7-f3cc-60a74c8c334d@quicinc.com>
+References: <20220902141259.377789-1-johannes@sipsolutions.net>
+	 <20220902161143.5ce3dad3be7c.I92e9f7a6c120cd4a3631baf486ad8b6aafcd796f@changeid>
+	 <5d82e564-86bf-c26b-077a-d0bc14e2d3c3@quicinc.com>
+	 <74f3eb848326607b15336c31a02bdd861ccafb47.camel@sipsolutions.net>
+	 <2de44394-cb93-7be4-481f-2d92788b8d28@quicinc.com>
+	 <351f74e0e1cd6e9724f97dbd042bdc5e04c44842.camel@sipsolutions.net>
+	 <c05780bc-864c-9323-499d-a8b1ba1c2ef2@quicinc.com>
+	 <545227cf18baac94ea8aa24dc08b250c47949541.camel@sipsolutions.net>
+	 <c7fd18fa-531f-a90d-a8fb-442a5aa66d7d@quicinc.com>
+	 <d1fda46a-2481-8e05-e0a5-9f2bd3850ff4@quicinc.com>
+	 <868131d13ed7c4c8b5d4938adcd71cf1ff8e9677.camel@sipsolutions.net>
+	 <5765e3c5-46d4-e92b-a93b-4a2649acff2a@quicinc.com>
+	 <37958ca93039114b98909d730ff57dd1d10bb68d.camel@sipsolutions.net>
+	 <b9c6d022-12c3-a696-c4b9-cb14a6d30a45@quicinc.com>
+	 <91577d586475d290e08dee9e535cb6b4896e06d4.camel@sipsolutions.net>
+	 <edfc26b5-f6d1-2ab7-f3cc-60a74c8c334d@quicinc.com>
+User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
 MIME-Version: 1.0
+X-malware-bazaar: not-scanned
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230417_135455_892480_0D7E2007 
-X-CRM114-Status: GOOD (  10.34  )
+X-CRM114-CacheID: sfid-20230418_011541_696918_09D3604B 
+X-CRM114-Status: UNSURE (   7.31  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,130 +88,18 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Arnd Bergmann <arnd@arndb.de>
+On Mon, 2023-04-17 at 22:07 +0800, Wen Gong wrote:
+> 
+> OK. So I will try to put this in mac80211 layer, is it OK?
+> 
+I guess? I'm still not really sure why you even want it, but hey, that's
+up to you in a way. I really didn't like the suggestion with
+wiphy_iftype_ext_capab (or any other capability for that matter), it
+feels like it should be more dynamic, like maybe a new "add link"
+callback or something? At least then you can't blame mac80211 for when
+it breaks when you have two 5 GHz links ...
 
-In a rare arm64 randconfig build, I got multiple warnings for ath11k
-and ath12k:
-
-In function 'ath11k_peer_assoc_h_ht',
-    inlined from 'ath11k_peer_assoc_prepare' at drivers/net/wireless/ath/ath11k/mac.c:2665:2:
-drivers/net/wireless/ath/ath11k/mac.c:1709:13: error: 'ath11k_peer_assoc_h_ht_masked' reading 10 bytes from a region of size 0 [-Werror=stringop-overread]
- 1709 |         if (ath11k_peer_assoc_h_ht_masked(ht_mcs_mask))
-      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-This happens whenever gcc-13 fails to inline one of the functions
-that take a fixed-length array argument but gets passed a pointer.
-
-Change these functions to all take a regular pointer argument
-instead.
-
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
----
- drivers/net/wireless/ath/ath11k/mac.c | 12 ++++++------
- drivers/net/wireless/ath/ath12k/mac.c |  8 ++++----
- 2 files changed, 10 insertions(+), 10 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
-index cad832e0e6b8..393669be7847 100644
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -433,7 +433,7 @@ u8 ath11k_mac_bitrate_to_idx(const struct ieee80211_supported_band *sband,
- }
- 
- static u32
--ath11k_mac_max_ht_nss(const u8 ht_mcs_mask[IEEE80211_HT_MCS_MASK_LEN])
-+ath11k_mac_max_ht_nss(const u8 *ht_mcs_mask)
- {
- 	int nss;
- 
-@@ -445,7 +445,7 @@ ath11k_mac_max_ht_nss(const u8 ht_mcs_mask[IEEE80211_HT_MCS_MASK_LEN])
- }
- 
- static u32
--ath11k_mac_max_vht_nss(const u16 vht_mcs_mask[NL80211_VHT_NSS_MAX])
-+ath11k_mac_max_vht_nss(const u16 *vht_mcs_mask)
- {
- 	int nss;
- 
-@@ -457,7 +457,7 @@ ath11k_mac_max_vht_nss(const u16 vht_mcs_mask[NL80211_VHT_NSS_MAX])
- }
- 
- static u32
--ath11k_mac_max_he_nss(const u16 he_mcs_mask[NL80211_HE_NSS_MAX])
-+ath11k_mac_max_he_nss(const u16 *he_mcs_mask)
- {
- 	int nss;
- 
-@@ -1658,7 +1658,7 @@ static void ath11k_peer_assoc_h_rates(struct ath11k *ar,
- }
- 
- static bool
--ath11k_peer_assoc_h_ht_masked(const u8 ht_mcs_mask[IEEE80211_HT_MCS_MASK_LEN])
-+ath11k_peer_assoc_h_ht_masked(const u8 *ht_mcs_mask)
- {
- 	int nss;
- 
-@@ -1670,7 +1670,7 @@ ath11k_peer_assoc_h_ht_masked(const u8 ht_mcs_mask[IEEE80211_HT_MCS_MASK_LEN])
- }
- 
- static bool
--ath11k_peer_assoc_h_vht_masked(const u16 vht_mcs_mask[])
-+ath11k_peer_assoc_h_vht_masked(const u16 *vht_mcs_mask)
- {
- 	int nss;
- 
-@@ -2065,7 +2065,7 @@ static u16 ath11k_peer_assoc_h_he_limit(u16 tx_mcs_set,
- }
- 
- static bool
--ath11k_peer_assoc_h_he_masked(const u16 he_mcs_mask[NL80211_HE_NSS_MAX])
-+ath11k_peer_assoc_h_he_masked(const u16 *he_mcs_mask)
- {
- 	int nss;
- 
-diff --git a/drivers/net/wireless/ath/ath12k/mac.c b/drivers/net/wireless/ath/ath12k/mac.c
-index d683a0668989..ea2313b6b759 100644
---- a/drivers/net/wireless/ath/ath12k/mac.c
-+++ b/drivers/net/wireless/ath/ath12k/mac.c
-@@ -381,7 +381,7 @@ u8 ath12k_mac_bitrate_to_idx(const struct ieee80211_supported_band *sband,
- }
- 
- static u32
--ath12k_mac_max_ht_nss(const u8 ht_mcs_mask[IEEE80211_HT_MCS_MASK_LEN])
-+ath12k_mac_max_ht_nss(const u8 *ht_mcs_mask)
- {
- 	int nss;
- 
-@@ -393,7 +393,7 @@ ath12k_mac_max_ht_nss(const u8 ht_mcs_mask[IEEE80211_HT_MCS_MASK_LEN])
- }
- 
- static u32
--ath12k_mac_max_vht_nss(const u16 vht_mcs_mask[NL80211_VHT_NSS_MAX])
-+ath12k_mac_max_vht_nss(const u16 *vht_mcs_mask)
- {
- 	int nss;
- 
-@@ -1303,7 +1303,7 @@ static void ath12k_peer_assoc_h_rates(struct ath12k *ar,
- }
- 
- static bool
--ath12k_peer_assoc_h_ht_masked(const u8 ht_mcs_mask[IEEE80211_HT_MCS_MASK_LEN])
-+ath12k_peer_assoc_h_ht_masked(const u8 *ht_mcs_mask)
- {
- 	int nss;
- 
-@@ -1315,7 +1315,7 @@ ath12k_peer_assoc_h_ht_masked(const u8 ht_mcs_mask[IEEE80211_HT_MCS_MASK_LEN])
- }
- 
- static bool
--ath12k_peer_assoc_h_vht_masked(const u16 vht_mcs_mask[NL80211_VHT_NSS_MAX])
-+ath12k_peer_assoc_h_vht_masked(const u16 *vht_mcs_mask)
- {
- 	int nss;
- 
--- 
-2.39.2
-
+johannes
 
 -- 
 ath11k mailing list
