@@ -4,93 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE591C77B75
-	for <ath11k@archiver.kernel.org>; Tue, 18 Apr 2023 09:52:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 282A5C77B76
+	for <ath11k@archiver.kernel.org>; Tue, 18 Apr 2023 10:19:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
-	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
-	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:Cc:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=6ESKGUpCzq6oMSDfjHzkKmVdHllF7fp1v+BLye2PytU=; b=DXKmC3fWJkgdjm
-	BjHODBfHdzVRk8dkzzBPeY0UQxWIg7hij3fnIykP1YlB4TWDrQ05ETxdlyOVwH52BPlOutfMz1oeD
-	tiVTg3Bd284VFH6ETJ4s/AQZYJYpG4KdPvPfUAoKMNbjDlm1zjJ6iGF6vka1hMdsosdXR145gJzFt
-	XWEbSfbfeBNdQmdenj2EqZGddHXWtbekTvSmJcnEdUQUi12bFZa91XLnAivWekc4lfBrnbKbZKYkS
-	s8UqHe/TpW70i55HEolL9O32SbP9U5HRbkOAijkMLPXvrB/8jRLVh1u11bg9gNN+fWZ+iWGKGBosi
-	BvRsc97i0wrErQ891JVA==;
+	List-Owner; bh=L06QiQnz051P2uzSRh/Z1noOWlwbMJATL8Ylbv/C39k=; b=X9P1Mu8vqjFjGp
+	9Yqsok7g/Vl+dimNcMqxFtqhS/OhZwMj3EIoMkPdqgNKCM5qBEN4lTVar+n+oI5eSc5siCh/iK0Wm
+	bk8AYvgoZA6B58RI8mDaQ6GXyCC2NRzpf2AJTiBGbVMsFMVGGmpMhfzdMjlKJ5pMddNc+adv5mdpy
+	axtB1FBMJcZfyLwXka94qlw8yRx1daHBC65thuQtftE8YSjRWkXgmXi/R725bYUZZVZ+MXSKaZCi4
+	bt+uKFlIAyoLNqaud/fEEmgEVdc1A/IUa/CQnPaK9CDdZicD1UVT1PQgTyb66OBQBHDqIhIpin8zv
+	LTh8DQYrUBARbeVUaCtQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1poi0p-001XQe-20;
-	Tue, 18 Apr 2023 09:52:35 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1poiQT-001cMS-04;
+	Tue, 18 Apr 2023 10:19:05 +0000
+Received: from s3.sipsolutions.net ([2a01:4f8:191:4433::2] helo=sipsolutions.net)
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1poi0m-001XQ2-2m
+	id 1poiQQ-001cLG-0m
 	for ath11k@lists.infradead.org;
-	Tue, 18 Apr 2023 09:52:34 +0000
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33I9OJd8014737;
-	Tue, 18 Apr 2023 09:52:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=feChK+Xv7Pkb9WzfW4jsPTJiklFO8j+gdnrXC8uIr+U=;
- b=mb+ed36+7afd1Rs2iJuPiMFgCDn9TKckx5Wpa5HeB4UDGKlTqE/dP7LWBh2aA32/HWuG
- uWfJGM2+NP0n4VDDfjxtwmZKu5lottf87mhx+h14ArkJCdgb5eZCeTqEK9QgjaJciAjB
- j+uiuspESfpTKOhAIQ3xmUFc4HdPITo9lZGIbNMQifjI2OERnMK3n1ylU5ruIllOsjyL
- cy1gsUWtRdWAKtW4IsgfxlbUsukYXkShnFlYpdR44b7ceWq35V1z+XVEgLgeg/sak6cu
- 5c085rlNbMppHaJIP2GRoQSzlE0UsCSE4LIoexnu7apIiyNxCrqH+N1w4D1TDRNqwiiS UQ== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q19kg1tr6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 18 Apr 2023 09:52:32 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33I9qVLP028161
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 18 Apr 2023 09:52:31 GMT
-Received: from [10.253.75.31] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 18 Apr
- 2023 02:52:30 -0700
-Message-ID: <6c822410-9711-1166-d67d-4fa6b7996f86@quicinc.com>
-Date: Tue, 18 Apr 2023 17:52:27 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
+	Tue, 18 Apr 2023 10:19:03 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=sipsolutions.net; s=mail; h=MIME-Version:Content-Transfer-Encoding:
+	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
+	Resent-Cc:Resent-Message-ID; bh=F5GtC/Ug8FVHmzGkdMDsWJgCnt1hLX/XyGMcykgns/M=;
+	t=1681813141; x=1683022741; b=gxYmmUfRqUQXIHRQ/ShK1V18Ju4+O2hYTsnkegXZqo4v9p+
+	Td/hvlOfzV9UQt6dl77NRepN09Bwi1mBY6+BNae1CVCauyybcJvVYmIWtQDbjQYTVixIktAf9qOgF
+	f3Lh4T5N90a/IT14VJK5yyWFl60J18EsOfJ1LiQuUN/WFaZU7y5oikYYzzODopy8/X5XzlP1ov2OL
+	Szub5pWqmkh3j405GNmgfdOMKykKw7MbzVQDhuUrbOpwrtZyNmnet1Nk3zqrdrTvkONeIMbsR2Lty
+	di/a1Rb+HOS5vcfrC4FfcIlYDcB9mKt6TDzJTx2rkxWkCr+rjXcTxWEI1h5VQiCg==;
+Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+	(Exim 4.96)
+	(envelope-from <johannes@sipsolutions.net>)
+	id 1poiQK-001aBp-0x;
+	Tue, 18 Apr 2023 12:18:56 +0200
+Message-ID: <949040e5e573acef1a56269983a0e930951986ca.camel@sipsolutions.net>
 Subject: Re: [PATCH 10/27] wifi: mac80211: isolate driver from inactive links
-Content-Language: en-US
-To: Johannes Berg <johannes@sipsolutions.net>,
-        <linux-wireless@vger.kernel.org>
-CC: <ath11k@lists.infradead.org>
+From: Johannes Berg <johannes@sipsolutions.net>
+To: Wen Gong <quic_wgong@quicinc.com>, linux-wireless@vger.kernel.org
+Cc: ath11k@lists.infradead.org
+Date: Tue, 18 Apr 2023 12:18:55 +0200
+In-Reply-To: <a371eb4f-7d79-eeb4-5208-f9a342798021@quicinc.com>
 References: <20220902141259.377789-1-johannes@sipsolutions.net>
- <20220902161143.5ce3dad3be7c.I92e9f7a6c120cd4a3631baf486ad8b6aafcd796f@changeid>
- <5d82e564-86bf-c26b-077a-d0bc14e2d3c3@quicinc.com>
- <74f3eb848326607b15336c31a02bdd861ccafb47.camel@sipsolutions.net>
- <d10b88b4-0bd7-a38c-e8d7-8982a281c4b3@quicinc.com>
- <e5adbed1524b27228c152ba14f78c550c8730baa.camel@sipsolutions.net>
- <c15e368e-2fea-a1d8-9c0d-db9278ded5e5@quicinc.com>
- <113761966918b2f390d3c9304307b42a0b4a829b.camel@sipsolutions.net>
- <76863dec-1b2f-b933-7c5e-21c732de4bc6@quicinc.com>
- <2cc79101249548f2a92c14af6aff6121143907d6.camel@sipsolutions.net>
-From: Wen Gong <quic_wgong@quicinc.com>
-In-Reply-To: <2cc79101249548f2a92c14af6aff6121143907d6.camel@sipsolutions.net>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ZIwWj1ipNotlUYP9i56jdXunQ4ijB10k
-X-Proofpoint-ORIG-GUID: ZIwWj1ipNotlUYP9i56jdXunQ4ijB10k
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-18_06,2023-04-17_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=854
- suspectscore=0 bulkscore=0 spamscore=0 impostorscore=0 lowpriorityscore=0
- priorityscore=1501 clxscore=1015 mlxscore=0 adultscore=0 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2303200000
- definitions=main-2304180085
+	 <c7fd18fa-531f-a90d-a8fb-442a5aa66d7d@quicinc.com>
+	 <d1fda46a-2481-8e05-e0a5-9f2bd3850ff4@quicinc.com>
+	 <868131d13ed7c4c8b5d4938adcd71cf1ff8e9677.camel@sipsolutions.net>
+	 <5765e3c5-46d4-e92b-a93b-4a2649acff2a@quicinc.com>
+	 <37958ca93039114b98909d730ff57dd1d10bb68d.camel@sipsolutions.net>
+	 <b9c6d022-12c3-a696-c4b9-cb14a6d30a45@quicinc.com>
+	 <91577d586475d290e08dee9e535cb6b4896e06d4.camel@sipsolutions.net>
+	 <edfc26b5-f6d1-2ab7-f3cc-60a74c8c334d@quicinc.com>
+	 <61268d31f8a6dd4eea10fcb6048d39244bc584e2.camel@sipsolutions.net>
+	 <870ce439-85b1-f02c-70e5-2d424fd73372@quicinc.com>
+	 <34ed0938b69ead648da1aa250a2e081054fb49d4.camel@sipsolutions.net>
+	 <34212873-0b71-7f39-b064-6b50d8e514b4@quicinc.com>
+	 <09b156b1ef05377ca7fa0db35e8e13beb5c60e2c.camel@sipsolutions.net>
+	 <13980456-11a6-384c-7be2-63c005410267@quicinc.com>
+	 <ab8f9ed0f04873cafb81cc1c9f5d5c804b146aa9.camel@sipsolutions.net>
+	 <a371eb4f-7d79-eeb4-5208-f9a342798021@quicinc.com>
+User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
+MIME-Version: 1.0
+X-malware-bazaar: not-scanned
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230418_025232_907029_5D425B85 
-X-CRM114-Status: GOOD (  19.44  )
+X-CRM114-CacheID: sfid-20230418_031902_279893_9F0CD1EA 
+X-CRM114-Status: GOOD (  19.86  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,51 +83,42 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 4/18/2023 5:34 PM, Johannes Berg wrote:
-> On Tue, 2023-04-18 at 17:27 +0800, Wen Gong wrote:
->> Now lower driver I used do not store the key
->>
-> Sure, that's fine.
->
->> and do not trigger
->> BSS_CHANGED_ASSOC for new links after assoc.
-> I think you need to think hard about this ... whatever BSS_CHANGED_ASSOC
-> causes is likely no longer correct in MLO. Again, the assoc state
-> *itself* is only changed once, when the whole MLD associated.
->
->> So my suggestion is a way to active all links while assoc, this way is
->> simple for lower driver I used.
-> Sure, and we do that.
->
-> But that's not what you're asking - you're asking to re-do some *MLD*
-> state when a new link is added, and I'm saying that it doesn't make
-> sense to "add" (again) a key to the MLD that was already added, nor
-> calling a vif (MLD!) level method saying the MLD changed state to
-> associated (again).
+On Tue, 2023-04-18 at 17:44 +0800, Wen Gong wrote:
+> On 4/18/2023 5:38 PM, Johannes Berg wrote:
+> > On Tue, 2023-04-18 at 17:37 +0800, Wen Gong wrote:
+> > 
+> > 
+> > > > > the sdata->u.mgd.assoc_data is NOT empty,
+> > > > > 
+> > > > > and the sdata->u.mgd.assoc_data->link[link_id].addr is valid,
+> > > > > 
+> > > > > it is addr by eth_random_addr(assoc_data->link[i].addr) in
+> > > > > ieee80211_mgd_assoc().
+> > > > > 
+> > > > Exactly, so we've already decided on the address long before we actually
+> > > > add the link data structure, so your callback would be much too late.
+> > > > We'd need to have it called from ieee80211_mgd_assoc() already?
+> > > For the 2nd link, is it OK for me to use the random addr which is set in
+> > > ieee80211_mgd_assoc().
+> > > 
+> > > I only need to set the 1st assoc link in low driver.
+> > > 
+> > Ah. But does it make sense to restrict the API for that? I mean, if you
+> > just change the prototype a little bit and call it without the link
+> > conf, you can easily solve this problem too, no?
+> Sorry, I am not sure how to solve this problem by remove the link conf 
+> in prototype.
 
-My purpose it to:
+Why, then you can have an output parameter for the address, and call it
+in mac80211 wherever it calls eth_random_addr() today, no?
 
-add logic in function ieee80211_set_vif_links_bitmaps() for station,
-
-and to active all link as same as AP type.
-
->
-> I really think you should solve this in the driver, that doesn't mean
-> you have to _store_ he key, you can use one of the iteration functions
-> as well.
-Ok, I will try to find the iteration functions.
->
->> Also ieee80211_set_active_links() is another way to active all links
->> after assoc.
->>
-> Sure.
->
-> johannes
+johannes
+> 
 
 -- 
 ath11k mailing list
