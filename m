@@ -4,75 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25844C77B75
-	for <ath11k@archiver.kernel.org>; Tue, 18 Apr 2023 09:35:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE9F3C77B75
+	for <ath11k@archiver.kernel.org>; Tue, 18 Apr 2023 09:37:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:Subject:
+	MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=wDN7C8shReKCR20iFqQJdKvbpcCLulQMernSLRmnHAY=; b=ShtbQ7s/GdrcZr
-	+AU/OgLzRpzcmf5yPWXRiMvPof5dpaL0MQzSOycaBSqTPdWDvyzQjFAwkoBPi/JvfiZ6uXUAyll3o
-	A0Bm2AZV5sWchR/znQky/Ia/bMRaIzopv9R1fFw8Pao3gIblLQ4thE3V98nCwN5aSrcgoeyu/V0T1
-	SfddvavU6dmZjF4Kgo3stieuKYBwlYe6abykJBq0tlND7WPDhdtUXucOTmDVXcN24JFx899uKBkS2
-	p96NgZw39R8LuaQIXG2e9m5O/pzCOCmfP4YVPv8ImVuEIroU7vW1n8iyr6xASbmhnT8hMFE4NmW9a
-	x3lE69JSqHJQbuiyMbsg==;
+	List-Owner; bh=HIX17AA1NMdH4mO2jZ7IWs1fsl7ub4vXxeqA+Ok07q4=; b=Njj8VLjARCIw18
+	WIPcU50pq964iKpKfoDI2dErz0ubJh9qpDN5cdUrLKLl0nN521gjjaGkgPN9bwVSA5r1JSfaR2E1y
+	Zzq33n69XV/xFrIcephwyEdoqM1VXgoHafZObySb4jXEHQi91gI/kZOL7XqOOz8SH58/54OdwaOuh
+	j9XmsdOXGLUHzS8utTXgO1oZr/2LvljKpM0RQd9Vu1MzeOaQ3q8dOPxEPX36LGFCKJoxE/FynsUI9
+	tsSx6fBuYMBPpLK+rO+/HKPQm0AQ7UEGyoSFecjkxvEYFsQ5zFxlY/TrB2WD3oZHfoCrBxMqeK3q7
+	GNjcfuRHS9GBa7rRf1RQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pohkZ-001Uyx-2b;
-	Tue, 18 Apr 2023 09:35:47 +0000
-Received: from mail-pg1-x535.google.com ([2607:f8b0:4864:20::535])
+	id 1pohmL-001VG5-17;
+	Tue, 18 Apr 2023 09:37:37 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pohkV-001Ux2-24
+	id 1pohmH-001VF1-2Q
 	for ath11k@lists.infradead.org;
-	Tue, 18 Apr 2023 09:35:46 +0000
-Received: by mail-pg1-x535.google.com with SMTP id 41be03b00d2f7-5191796a483so1942568a12.0
-        for <ath11k@lists.infradead.org>; Tue, 18 Apr 2023 02:35:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura.hr; s=sartura; t=1681810540; x=1684402540;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oBHDCl6z6oJovCNvjDxh1E2Kytz5KU1DPO3cB3Y5kC0=;
-        b=fKUc5CdJ8+Mf6CmHcxop0V6ygsM95+snoENlzGoMxP/PmCoyBq2UWqdZAXEgdQWZ19
-         xy9T0EoLtQRAVXeK2lGY3XX6KcfjIsIbH1JytTlVADkIfh3glDlaSRdUUUBLxbdMqesP
-         7a08kVSTxATmYiFAlTVYjDhk/dx7wk2rIwiy8i2NOpiEuNouQRgCUWpt3Ys+hv8Kia2b
-         6rS7oPTXrM79GSV36v8TO/yxXXeTxG3u8jjgEkOWr/znZ04BJr4AQU4+Jxww/UuKIDb3
-         D+pg785dBoPksnOg8xm4nwM3lwkz5NcWbjPAHIlCaCtIqJPdTe0wuEvdDKn1SEP4X9e0
-         BCoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681810540; x=1684402540;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oBHDCl6z6oJovCNvjDxh1E2Kytz5KU1DPO3cB3Y5kC0=;
-        b=OtrsIR5Zmj9m/YAksSmjzWmuyv6KmFQy133ABvQfczpy/9a0LZJpnV1lG+0eEhbV5r
-         ylHrVF+rHKj0/T7IlRH+00t9RALauMs+Aa4j/ZdNktfkyNKcDQPpyeseMBNsEoR0reyp
-         VNhcS7N4VTs3i/I1k0JvmB+CITMMp+uT1JIeM7CmSJFo6UiMrTyAqDS6Vj3hVqmvatye
-         m90ysJvSFFAjXFjazC+WSx4Y0BKQT/o5L2zdSsR4+0dXuCNYrh+SRLq/EK/ofs8gdB8c
-         NwS5aSlEfj70LL6A9x9P1GZk+pSjXvOgsilJlws3Mdmr/R2yU0jbn/1VWjO/uXvpjni5
-         s4MA==
-X-Gm-Message-State: AAQBX9co75wk/JBR5IRcZT+djbDtKEXvdyt6VgQj1Q7L6Xx/TZlagK+3
-	o3yyTS4vejshfmBNgDuOnqgisJNs7YDE6OSoyxmkESt6V/IqOoY2T54=
-X-Google-Smtp-Source: AKy350bLgmod9zQU3mMT3TyLinWMqUG95Rh2K9AYMdWBVFTzdZvL9wg3Ril7H7BOthMpvnMS0UtF07YoHHXpAFfANAk=
-X-Received: by 2002:a17:90b:1a92:b0:247:bab1:d901 with SMTP id
- ng18-20020a17090b1a9200b00247bab1d901mr1399753pjb.17.1681810540487; Tue, 18
- Apr 2023 02:35:40 -0700 (PDT)
+	Tue, 18 Apr 2023 09:37:35 +0000
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33I9KVSj010503;
+	Tue, 18 Apr 2023 09:37:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=JGoZyb3Bl2kzdFe8/kjBkjoXn1iM36EmmSgf6udDhDY=;
+ b=m8gH74oz8Jb5Kmqw2hU86SdVlMYYu8n4kIc3B/LPU3QotIJ9h4NSlY3p43R+opLi367h
+ k2Fcc9pmbRbBbyhK87eClGYDhy2+qDuUlJd2819DunM/xLeCyKevvdW9bZc7j1W8qSgW
+ 0viExvn3CpRrETEDSx9OVcQG1/3+1FfGPTWmn6h8K1BZldWOVTKudXArsqmr+OHWXwHE
+ rm2BYgio/KVzQv8SFmjcLUBCBXIlTdFXHm9W3E+uEJG/z1G8kyau08wP/rZ4W4Bb/5SR
+ oe6optdtHRJRjfvXMRr2SdanGN7LGEJYQS6sGgFAAY2imb2Q8nkpwJVQy77mI91CJKgx yw== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q12utayd9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 18 Apr 2023 09:37:33 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33I9bW9X003875
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 18 Apr 2023 09:37:32 GMT
+Received: from [10.253.75.31] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 18 Apr
+ 2023 02:37:31 -0700
+Message-ID: <13980456-11a6-384c-7be2-63c005410267@quicinc.com>
+Date: Tue, 18 Apr 2023 17:37:28 +0800
 MIME-Version: 1.0
-References: <1681762947-13882-1-git-send-email-quic_msinada@quicinc.com>
-In-Reply-To: <1681762947-13882-1-git-send-email-quic_msinada@quicinc.com>
-From: Robert Marko <robert.marko@sartura.hr>
-Date: Tue, 18 Apr 2023 11:35:29 +0200
-Message-ID: <CA+HBbNHB5dOgojaxm4RT_psrA8XQTt=4VubZ0xJv3HogDdMRig@mail.gmail.com>
-Subject: Re: [PATCH] wifi: ath11k: Remove disabling of 80+80 and 160 MHz
-To: Muna Sinada <quic_msinada@quicinc.com>
-Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org, 
-	P Praneesh <quic_ppranees@quicinc.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 10/27] wifi: mac80211: isolate driver from inactive links
+Content-Language: en-US
+To: Johannes Berg <johannes@sipsolutions.net>,
+        <linux-wireless@vger.kernel.org>
+CC: <ath11k@lists.infradead.org>
+References: <20220902141259.377789-1-johannes@sipsolutions.net>
+ <c05780bc-864c-9323-499d-a8b1ba1c2ef2@quicinc.com>
+ <545227cf18baac94ea8aa24dc08b250c47949541.camel@sipsolutions.net>
+ <c7fd18fa-531f-a90d-a8fb-442a5aa66d7d@quicinc.com>
+ <d1fda46a-2481-8e05-e0a5-9f2bd3850ff4@quicinc.com>
+ <868131d13ed7c4c8b5d4938adcd71cf1ff8e9677.camel@sipsolutions.net>
+ <5765e3c5-46d4-e92b-a93b-4a2649acff2a@quicinc.com>
+ <37958ca93039114b98909d730ff57dd1d10bb68d.camel@sipsolutions.net>
+ <b9c6d022-12c3-a696-c4b9-cb14a6d30a45@quicinc.com>
+ <91577d586475d290e08dee9e535cb6b4896e06d4.camel@sipsolutions.net>
+ <edfc26b5-f6d1-2ab7-f3cc-60a74c8c334d@quicinc.com>
+ <61268d31f8a6dd4eea10fcb6048d39244bc584e2.camel@sipsolutions.net>
+ <870ce439-85b1-f02c-70e5-2d424fd73372@quicinc.com>
+ <34ed0938b69ead648da1aa250a2e081054fb49d4.camel@sipsolutions.net>
+ <34212873-0b71-7f39-b064-6b50d8e514b4@quicinc.com>
+ <09b156b1ef05377ca7fa0db35e8e13beb5c60e2c.camel@sipsolutions.net>
+From: Wen Gong <quic_wgong@quicinc.com>
+In-Reply-To: <09b156b1ef05377ca7fa0db35e8e13beb5c60e2c.camel@sipsolutions.net>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Cvxu9Q3TRFSYcn9yB3ViUWm7cw47ADof
+X-Proofpoint-ORIG-GUID: Cvxu9Q3TRFSYcn9yB3ViUWm7cw47ADof
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-18_05,2023-04-17_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 spamscore=0
+ priorityscore=1501 mlxlogscore=587 lowpriorityscore=0 adultscore=0
+ phishscore=0 mlxscore=0 clxscore=1015 suspectscore=0 impostorscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2304180083
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230418_023543_681155_DBDDB610 
-X-CRM114-Status: UNSURE (   8.05  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230418_023733_797560_B2E527B8 
+X-CRM114-Status: GOOD (  17.02  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,27 +108,49 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-T24gTW9uLCBBcHIgMTcsIDIwMjMgYXQgMTA6MjPigK9QTSBNdW5hIFNpbmFkYSA8cXVpY19tc2lu
-YWRhQHF1aWNpbmMuY29tPiB3cm90ZToKPgo+IFRoaXMgaXMgYSByZWdyZXNzaW9uIGZpeCBmb3Ig
-ODArODAgYW5kIDE2MCBNSHogc3VwcG9ydCBiaXRzIGJlaW5nCj4gY2xlYXJlZCwgdGhlcmVmb3Jl
-IG5vdCBhZHZlcmlzZWQuIFJlbW92ZSBkaXNhYmxlIG9mIDgwKzgwIGFuZCAxNjAgTUh6Cj4gY2Fw
-YWJpbGl0eSBmbGFncyBhbmQgYXNzaWduIHZhbGlkIGNlbnRlciBmcmVxdWVuY3kgMiBzaW1pbGFy
-IHRvCj4gVkhUODBfODAuCj4KPiBGaXhlczogMzhkZmU3NzVkMGFiICgid2lmaTogYXRoMTFrOiBw
-dXNoIE1VLU1JTU8gcGFyYW1zIGZyb20gaG9zdGFwZCB0byBoYXJkd2FyZSIpCj4gUmVwb3J0ZWQt
-Ynk6IFJvYmVydCBNYXJrbyA8cm9iZXJ0Lm1hcmtvQHNhcnR1cmEuaHI+Cj4gTGluazogaHR0cHM6
-Ly9idWd6aWxsYS5rZXJuZWwub3JnL3Nob3dfYnVnLmNnaT9pZD0yMTcyOTkKPiBDby1kZXZlbG9w
-ZWQtYnk6IFAgUHJhbmVlc2ggPHF1aWNfcHByYW5lZXNAcXVpY2luYy5jb20+Cj4gU2lnbmVkLW9m
-Zi1ieTogUCBQcmFuZWVzaCA8cXVpY19wcHJhbmVlc0BxdWljaW5jLmNvbT4KPiBTaWduZWQtb2Zm
-LWJ5OiBNdW5hIFNpbmFkYSA8cXVpY19tc2luYWRhQHF1aWNpbmMuY29tPgo+IC0tLQoKVGVzdGVk
-LWJ5OiBSb2JlcnQgTWFya28gPHJvYmVydC5tYXJrb0BzYXJ0dXJhLmhyPiAjSVBRODA3NApXTEFO
-LkhLLjIuOS4wLjEtMDEzODUtUUNBSEtTV1BMX1NJTElDT05aLTEKClJlZ2FyZHMsClJvYmVydAot
-LSAKUm9iZXJ0IE1hcmtvClN0YWZmIEVtYmVkZGVkIExpbnV4IEVuZ2luZWVyClNhcnR1cmEgTHRk
-LgpMZW5kYXZza2EgdWxpY2EgMTZhCjEwMDAwIFphZ3JlYiwgQ3JvYXRpYQpFbWFpbDogcm9iZXJ0
-Lm1hcmtvQHNhcnR1cmEuaHIKV2ViOiB3d3cuc2FydHVyYS5ocgoKLS0gCmF0aDExayBtYWlsaW5n
-IGxpc3QKYXRoMTFrQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9hdGgxMWsK
+On 4/18/2023 5:31 PM, Johannes Berg wrote:
+> On Tue, 2023-04-18 at 17:22 +0800, Wen Gong wrote:
+>> It should work, I will test it later.
+>>
+>> For the 1st assoc link, the data->u.mgd.assoc_data is empty in
+>> ieee80211_mgd_setup_link(),
+> Yeah for the first link it should work.
+>
+>> because ieee80211_mgd_setup_link() is called from nl80211_authenticate()
+>> for the 1st assoc link.
+>>
+>> So ieee80211_mgd_setup_link() use eth_random_addr() for the 1st assoc link.
+> Right.
+>
+>> For the 2nd link, ieee80211_mgd_setup_link() is called from
+>> nl80211_associate()
+> I don't think so, it should only be called from
+> ieee80211_assoc_success()?
+Yes, I checked again, you are right. It is not from nl80211_associate().
+>> the sdata->u.mgd.assoc_data is NOT empty,
+>>
+>> and the sdata->u.mgd.assoc_data->link[link_id].addr is valid,
+>>
+>> it is addr by eth_random_addr(assoc_data->link[i].addr) in
+>> ieee80211_mgd_assoc().
+>>
+> Exactly, so we've already decided on the address long before we actually
+> add the link data structure, so your callback would be much too late.
+> We'd need to have it called from ieee80211_mgd_assoc() already?
+
+For the 2nd link, is it OK for me to use the random addr which is set in 
+ieee80211_mgd_assoc().
+
+I only need to set the 1st assoc link in low driver.
+
+> johannes
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
