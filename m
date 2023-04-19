@@ -4,60 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1C9FC6FD18
-	for <ath11k@archiver.kernel.org>; Wed, 19 Apr 2023 14:24:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63F1EC6FD18
+	for <ath11k@archiver.kernel.org>; Wed, 19 Apr 2023 14:27:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:Cc:To:References:
 	In-Reply-To:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=SeCZQ0RDq1CWua8LyAvjykU+zN9kFVRf6NjrMJiKH3Q=; b=mzzEz1gKVSS0Yt
-	zqwFvQ0A/G/Y7pemDgk8AFv2Yp92bNwPNNPWsetrtIyWDOlIFqysBzNDALERoMQjN3ecMKAr2Tr0U
-	0OribGaWFJjyC71TjHbTQ76V9Iucx3EkI00Yyzk0C8KuKGvEEiod8XVmRUvAjtkMztjXOwVFh8MGQ
-	7xKdf6l13zobLpBJGTzmdy3QoGfCN4nHhbZTx1NKCTDOWNovGjG+wdtiak/DdzYy1dITgiNHdWK7B
-	L1uD3QZ2YSVnLtos7fSTeHvcPgWXlaL3P3YaUOeNXe3Z6XkM6+SDc3/7YzE9oCq3PCmA2XFjFTKnO
-	D+k19stYIIbqOU3oyUCA==;
+	List-Owner; bh=wugBQlhClYluphwklzhtwfhmTm4ymwf9a3kjen/oWig=; b=04tGZriKFNNMZl
+	nSMk1C/7KeWmyPc1/Pzwx1d15H3YazKFZJJAf5FSs00iUnceEiPOgzAF7lp3tcQrdfhOE+SRY9LMV
+	c4et6Ny7p/5x4ynFKlmKvPur461FA+Q0fA78Q4KVMcMmMMmD8+4e0OJyq1tBv3RQXiGcZkKf/U9At
+	Ypy2bnJcatrLz4RU/rxJIxbjlhejQFz9XlJHbcJzjzLI1/4MBliZ9bg3ajmTZ7OZV+O2YjMN9T4bo
+	PBBLwj96zGbde7sR7F+ukqjCcLYZ3P3gmBQQP1XZ2IORov4U30JRsRAaFMCv6LJWukD/RAq+pE1jl
+	9c3Z+84Kbb1uLt3/MA3g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pp8jP-005ejw-10;
-	Wed, 19 Apr 2023 14:24:23 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1pp8mq-005fa4-2Q;
+	Wed, 19 Apr 2023 14:27:56 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pp8jL-005eia-2M
+	id 1pp8mn-005fZQ-1K
 	for ath11k@lists.infradead.org;
-	Wed, 19 Apr 2023 14:24:21 +0000
+	Wed, 19 Apr 2023 14:27:54 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 3DDAE63AB7;
-	Wed, 19 Apr 2023 14:24:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A68BFC433D2;
-	Wed, 19 Apr 2023 14:24:17 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id C164963771;
+	Wed, 19 Apr 2023 14:27:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14F01C433EF;
+	Wed, 19 Apr 2023 14:27:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1681914258;
-	bh=tJZZqrGqSqQb66lSfUCypSSZbSXjYgIzHCvjRylaWUg=;
+	s=k20201202; t=1681914472;
+	bh=gWx+QASjkKFafxQB5xDEyDa4ePFAJmevoPkXkrErHlE=;
 	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=bYfdTw413uby8FkU9x+mjUBSKt8iOBQP2drrJI7QEhrZlPVWUSjOJnCCTvmnA5YOt
-	 K0c1Jf86GPrtEzNIhk4oifMm4LKiIDzcUBcGqt0UKEFWSp4YoMDC6gu+r4TNXBIWDZ
-	 pX6W53O6LiWTTUonO9/0eDdLD6s0HYCoLiDpqCoQqf58lZ7RwUXXwbxMC8vIjNbNXM
-	 pQmKZj2IN5CsQN9QJ4QV0L92ntl9/sMOmgEZrkszupPdmql0ebOUanR0ng/Gdtbqvw
-	 EfAIziV01vO9hgCRPYsAR6hRA5WhXMUJ2HCX0Pw/BThtUuT6GzdFeAXW5eqqE9mutH
-	 PEebccMSfPp3Q==
+	b=sL16OfcCytZToDgGENVBX+ixCL2tBubPsvP2YOacxBAdZrT/VEtcwt15hNQLC43Um
+	 zRBvdSzoDb0lqOf1Iu7VpjKbvIv8hrJX2+xfPoXt1hr8QjUYT5CV0bCTSqW0KgGi9t
+	 zXjr56llaXmT+EnE8eePFym0KnqlPrAzep8LpFMb+wW7VVdFusoYTk5iQdvXv+kQZP
+	 bkZuuIb5VK3B1DvBAP0fqJR67oQ7W9Gvb719jShzE2px3TMmHXj4xa/FUCHBwCX9I+
+	 CYF3eIsHRmAQixr6OZXmfdwfR5bCDWoneb2XSuchI6rSwHlrjFOcL8qG4p8A2YbNsr
+	 cLeyGHFbTlZ0g==
 MIME-Version: 1.0
-Subject: Re: [PATCH] wifi: ath11k: Fix SKB corruption in REO destination ring
+Subject: Re: [PATCH] wifi: ath11k: Remove disabling of 80+80 and 160 MHz
 From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20230403191533.28114-1-quic_nmaran@quicinc.com>
-References: <20230403191533.28114-1-quic_nmaran@quicinc.com>
-To: Nagarajan Maran <quic_nmaran@quicinc.com>
+In-Reply-To: <1681762947-13882-1-git-send-email-quic_msinada@quicinc.com>
+References: <1681762947-13882-1-git-send-email-quic_msinada@quicinc.com>
+To: Muna Sinada <quic_msinada@quicinc.com>
 Cc: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
- Nagarajan Maran <quic_nmaran@quicinc.com>
+ Muna Sinada <quic_msinada@quicinc.com>,
+ P Praneesh <quic_ppranees@quicinc.com>
 User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <168191425579.18451.5661406318387164374.kvalo@kernel.org>
-Date: Wed, 19 Apr 2023 14:24:17 +0000 (UTC)
+Message-ID: <168191446902.4082.1552676324698320209.kvalo@kernel.org>
+Date: Wed, 19 Apr 2023 14:27:50 +0000 (UTC)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230419_072419_808754_400CD673 
-X-CRM114-Status: GOOD (  12.53  )
+X-CRM114-CacheID: sfid-20230419_072753_490097_FD3132D1 
+X-CRM114-Status: UNSURE (   8.85  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,49 +76,28 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Nagarajan Maran <quic_nmaran@quicinc.com> wrote:
+Muna Sinada <quic_msinada@quicinc.com> wrote:
 
-> While running traffics for a long time, randomly an RX descriptor
-> filled with value "0" from REO destination ring is received.
-> This descriptor which is invalid causes the wrong SKB (SKB stored in
-> the IDR lookup with buffer id "0") to be fetched which in turn
-> causes SKB memory corruption issue and the same leads to crash
-> after some time.
+> This is a regression fix for 80+80 and 160 MHz support bits being
+> cleared, therefore not adverised. Remove disable of 80+80 and 160 MHz
+> capability flags and assign valid center frequency 2 similar to
+> VHT80_80.
 > 
-> Changed the start id for idr allocation to "1" and the buffer id "0"
-> is reserved for error validation. Introduced Sanity check to validate
-> the descriptor, before processing the SKB.
-> 
-> Crash Signature :
-> 
-> Unable to handle kernel paging request at virtual address 3f004900
-> PC points to "b15_dma_inv_range+0x30/0x50"
-> LR points to "dma_cache_maint_page+0x8c/0x128".
-> The Backtrace obtained is as follows:
-> [<8031716c>] (b15_dma_inv_range) from [<80313a4c>] (dma_cache_maint_page+0x8c/0x128)
-> [<80313a4c>] (dma_cache_maint_page) from [<80313b90>] (__dma_page_dev_to_cpu+0x28/0xcc)
-> [<80313b90>] (__dma_page_dev_to_cpu) from [<7fb5dd68>] (ath11k_dp_process_rx+0x1e8/0x4a4 [ath11k])
-> [<7fb5dd68>] (ath11k_dp_process_rx [ath11k]) from [<7fb53c20>] (ath11k_dp_service_srng+0xb0/0x2ac [ath11k])
-> [<7fb53c20>] (ath11k_dp_service_srng [ath11k]) from [<7f67bba4>] (ath11k_pci_ext_grp_napi_poll+0x1c/0x78 [ath11k_pci])
-> [<7f67bba4>] (ath11k_pci_ext_grp_napi_poll [ath11k_pci]) from [<807d5cf4>] (__napi_poll+0x28/0xb8)
-> [<807d5cf4>] (__napi_poll) from [<807d5f28>] (net_rx_action+0xf0/0x280)
-> [<807d5f28>] (net_rx_action) from [<80302148>] (__do_softirq+0xd0/0x280)
-> [<80302148>] (__do_softirq) from [<80320408>] (irq_exit+0x74/0xd4)
-> [<80320408>] (irq_exit) from [<803638a4>] (__handle_domain_irq+0x90/0xb4)
-> [<803638a4>] (__handle_domain_irq) from [<805bedec>] (gic_handle_irq+0x58/0x90)
-> [<805bedec>] (gic_handle_irq) from [<80301a78>] (__irq_svc+0x58/0x8c)
-> 
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
-> 
-> Signed-off-by: Nagarajan Maran <quic_nmaran@quicinc.com>
+> Fixes: 38dfe775d0ab ("wifi: ath11k: push MU-MIMO params from hostapd to hardware")
+> Reported-by: Robert Marko <robert.marko@sartura.hr>
+> Tested-by: Robert Marko <robert.marko@sartura.hr> # IPQ8074 WLAN.HK.2.9.0.1-01385-QCAHKSWPL_SILICONZ-1
+> Link: https://bugzilla.kernel.org/show_bug.cgi?id=217299
+> Co-developed-by: P Praneesh <quic_ppranees@quicinc.com>
+> Signed-off-by: P Praneesh <quic_ppranees@quicinc.com>
+> Signed-off-by: Muna Sinada <quic_msinada@quicinc.com>
 > Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
 
 Patch applied to ath-next branch of ath.git, thanks.
 
-f9fff67d2d7c wifi: ath11k: Fix SKB corruption in REO destination ring
+b100722a777f wifi: ath11k: Remove disabling of 80+80 and 160 MHz
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20230403191533.28114-1-quic_nmaran@quicinc.com/
+https://patchwork.kernel.org/project/linux-wireless/patch/1681762947-13882-1-git-send-email-quic_msinada@quicinc.com/
 
 https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
