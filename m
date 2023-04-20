@@ -4,71 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B64C3C77B7C
-	for <ath11k@archiver.kernel.org>; Thu, 20 Apr 2023 11:03:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1B3DC77B72
+	for <ath11k@archiver.kernel.org>; Thu, 20 Apr 2023 11:37:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2jS7EhKkBEsc3NFowQ60EdHaPoDfP2YTkhxxvJF/CxA=; b=LlGYDl7VoP21Vs
-	3EJZLQiOrp/RW9p5iLtr71I856BmCf8GvTA/LXWQT5VAoo7L7kM+irYAiY2AssCXnT36PoNGIREi8
-	JQR1xLbjYq+cs7RUavkebWTtYkx7DaY9GJ/5JdSo0qziXzO9lCwYZlYfDKlETIlTAv0aCyOIixpM/
-	Y3fjWAfFmNgVxuqLdTgMyCVCNX+T1b/jqViauCGmGcLPlyL9HLWWsG8baEtfy1CuBm/dQgZs+TZRS
-	he+1AYCVVGa4YlqGRBiZ/iuqkhJ/vaTXyhXBmMwCNJokchGP839wiTCaV2N32sf5X9WUTCH6e/9t3
-	+5UjBRfRQxfMERK01kzA==;
+	List-Owner; bh=sOKs0BGEdMaLsgmkLCf7QJX3SnD47t6Ol7PcfvuK7ZI=; b=al6lurovxXFp1V
+	+jnNkvZ0HD3WVuP82WnmnyX7K1SckU9031tITvTTSXzNHOzII5lH/7Edz1OCleKJ9UuWbS6bPc+FL
+	ovqcuerX1adh7/FrmMMH2ZBfX7fu4Motd7eOt6XwSC8kR1Wu19Sbu0fQlo7lKpERjZcvvFxtWgdcm
+	wsGAiuu8QPvdAm6I1Phs0R0Vj1oICKtdJDsHhow0FfrH7I6VOJubdWQqpG6zv1l2xwYpIBtVyhXWx
+	apyzutNlkQSjcmJCSRlz3k5h5TrzqbcHSTDe8Ct83y19rGd1iIQ6qA2AVbZRu0iJd0QXUsJZ6lt8V
+	yvLWT3cY//rqcy94YIBw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1ppS4F-007snd-15;
-	Thu, 20 Apr 2023 11:03:11 +0000
-Received: from dfw.source.kernel.org ([139.178.84.217])
+	id 1ppSbN-007x3d-0S;
+	Thu, 20 Apr 2023 11:37:25 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1ppS4A-007skD-0Q
+	id 1ppSbK-007x2W-1Y
 	for ath11k@lists.infradead.org;
-	Thu, 20 Apr 2023 11:03:10 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id A3DE3647BE;
-	Thu, 20 Apr 2023 11:03:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E22CAC4339B;
-	Thu, 20 Apr 2023 11:03:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1681988585;
-	bh=jpupAkuoIR9JZhgmPqEtxcQHV2WSoE1rm0Idsw6o3cc=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=MWk+tGb5SNwaYu2dCnSFjN6Zw8QyUEXjboVKhxmv5GiOhbxhv7AMtbLQmlqwIlbal
-	 +KZbrrL1II042orlvzRDZ/eI4wOAex+d/90L/7ayvIR03dM9xM+S1jUvY4epzBd0XU
-	 CBex9yzgecOTcyqbDEQmRONlqGfYLWfVyMVvtvf9YZOtxXl4YJAs4ZUs2LWVCwTWbE
-	 a7gMaDI3+gU8BAavznsTblzs21MTHyCpZAFinsWH4FaX2GkezonI7qkm9dEwb9cA7n
-	 oOna4vS1A31/Ah8a8GzolhFmLe6zMc9ylPTXJwpfHxY0m2jCMDSve4FMbAn+mkPrS/
-	 q7/WuIvsFlH6A==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Cc: Kalle Valo <quic_kvalo@quicinc.com>,
-	Kalle Valo <kvalo@kernel.org>,
-	Sasha Levin <sashal@kernel.org>,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	ath11k@lists.infradead.org,
-	linux-wireless@vger.kernel.org,
-	netdev@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.1 14/15] wifi: ath11k: reduce the MHI timeout to 20s
-Date: Thu, 20 Apr 2023 07:02:28 -0400
-Message-Id: <20230420110231.505992-14-sashal@kernel.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230420110231.505992-1-sashal@kernel.org>
-References: <20230420110231.505992-1-sashal@kernel.org>
+	Thu, 20 Apr 2023 11:37:24 +0000
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33KAorvl021661;
+	Thu, 20 Apr 2023 11:37:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references : mime-version :
+ content-type; s=qcppdkim1;
+ bh=gPGtNNfQYd+ivOq25xQBXbJ1gZfjzXsbfNhp+hv7hJc=;
+ b=XISi7PH8n+i3+WCr6d2j08Zd/8InO3dj2+VfOiwfIKQ1aeaBZbmeAMgpzSYIFB6C5vkW
+ yiMghsE5Dj1W3JiJE9hZCqL2EGII2A/mWlbJQnRAh1oDNayam1j3zeBVEgtxJio4rMvk
+ 6yF2YivIwfKDUhG68Y6EaK3FveTXFPmQ9FyLdG49+j7MFrZKUjo8QiDNBkwoG+erZxUV
+ KTukuDllJwRza4GjOWiSljhgviK04vLGk9NDSJWvxfQbIppC+UyDhJojPm4fZ7huuw/M
+ xQHs2/TV0YfZEyUuujFmqJf3BN2y31WCiCATOMMRY+AC2y75y4PkIPLDeeGTlWLqgy9X vA== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q2uh3h892-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 20 Apr 2023 11:37:21 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33KBbLwa027669
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 20 Apr 2023 11:37:21 GMT
+Received: from rajkbhag-linux.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Thu, 20 Apr 2023 04:37:19 -0700
+From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+To: <ath11k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>,
+        Govindaraj Saminathan
+	<quic_gsaminat@quicinc.com>,
+        Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+Subject: [PATCH v2 1/4] wifi: ath11k: remove unused function ath11k_tm_event_wmi
+Date: Thu, 20 Apr 2023 17:06:50 +0530
+Message-ID: <20230420113653.1686-2-quic_rajkbhag@quicinc.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20230420113653.1686-1-quic_rajkbhag@quicinc.com>
+References: <20230420113653.1686-1-quic_rajkbhag@quicinc.com>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: W9TeTho6_DRVqOaE6nikHQLeurg7yubX
+X-Proofpoint-GUID: W9TeTho6_DRVqOaE6nikHQLeurg7yubX
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-20_07,2023-04-20_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
+ bulkscore=0 spamscore=0 mlxscore=0 malwarescore=0 clxscore=1015
+ impostorscore=0 lowpriorityscore=0 adultscore=0 mlxlogscore=994
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2304200093
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230420_040306_215326_A0539059 
-X-CRM114-Status: GOOD (  15.08  )
+X-CRM114-CacheID: sfid-20230420_043722_567187_BB5B54F5 
+X-CRM114-Status: GOOD (  18.14  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,52 +98,132 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Kalle Valo <quic_kvalo@quicinc.com>
+From: Govindaraj Saminathan <quic_gsaminat@quicinc.com>
 
-[ Upstream commit cf5fa3ca0552f1b7ba8490de40700bbfb6979b17 ]
+The function ath11k_tm_event_wmi() is only defined and it is not used
+anywhere. Hence remove unused function ath11k_tm_event_wmi().
 
-Currently ath11k breaks after hibernation, the reason being that ath11k expects
-that the wireless device will have power during suspend and the firmware will
-continue running. But of course during hibernation the power from the device is
-cut off and firmware is not running when resuming, so ath11k will fail.
-
-(The reason why ath11k needs the firmware running is the interaction between
-mac80211 and MHI stack, it's a long story and more info in the bugzilla report.)
-
-In SUSE kernels the watchdog timeout is reduced from the default 120 to 60 seconds:
-
-CONFIG_DPM_WATCHDOG_TIMEOUT=60
-
-But as the ath11k MHI timeout is 90 seconds the kernel will crash before will
-ath11k will recover in resume callback. To avoid the crash reduce the MHI
-timeout to just 20 seconds.
-
-Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-03125-QCAHSPSWPL_V1_V2_SILICONZ_LITE-3.6510.9
-
-Link: https://bugzilla.kernel.org/show_bug.cgi?id=214649
-Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
-Signed-off-by: Kalle Valo <kvalo@kernel.org>
-Link: https://lore.kernel.org/r/20230329162038.8637-1-kvalo@kernel.org
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+Signed-off-by: Govindaraj Saminathan <quic_gsaminat@quicinc.com>
+Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
 ---
- drivers/net/wireless/ath/ath11k/mhi.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/net/wireless/ath/ath11k/testmode.c | 64 +---------------------
+ drivers/net/wireless/ath/ath11k/testmode.h |  8 +--
+ 2 files changed, 2 insertions(+), 70 deletions(-)
 
-diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
-index 86995e8dc9135..a62ee05c54097 100644
---- a/drivers/net/wireless/ath/ath11k/mhi.c
-+++ b/drivers/net/wireless/ath/ath11k/mhi.c
-@@ -16,7 +16,7 @@
- #include "pci.h"
- #include "pcic.h"
+diff --git a/drivers/net/wireless/ath/ath11k/testmode.c b/drivers/net/wireless/ath/ath11k/testmode.c
+index 4bf1931adbaa..ebeca5eb6a67 100644
+--- a/drivers/net/wireless/ath/ath11k/testmode.c
++++ b/drivers/net/wireless/ath/ath11k/testmode.c
+@@ -1,6 +1,7 @@
+ // SPDX-License-Identifier: BSD-3-Clause-Clear
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
++ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+  */
  
--#define MHI_TIMEOUT_DEFAULT_MS	90000
-+#define MHI_TIMEOUT_DEFAULT_MS	20000
- #define RDDM_DUMP_SIZE	0x420000
+ #include "testmode.h"
+@@ -20,69 +21,6 @@ static const struct nla_policy ath11k_tm_policy[ATH11K_TM_ATTR_MAX + 1] = {
+ 	[ATH11K_TM_ATTR_VERSION_MINOR]	= { .type = NLA_U32 },
+ };
  
- static struct mhi_channel_config ath11k_mhi_channels_qca6390[] = {
+-/* Returns true if callee consumes the skb and the skb should be discarded.
+- * Returns false if skb is not used. Does not sleep.
+- */
+-bool ath11k_tm_event_wmi(struct ath11k *ar, u32 cmd_id, struct sk_buff *skb)
+-{
+-	struct sk_buff *nl_skb;
+-	bool consumed;
+-	int ret;
+-
+-	ath11k_dbg(ar->ab, ATH11K_DBG_TESTMODE,
+-		   "testmode event wmi cmd_id %d skb %pK skb->len %d\n",
+-		   cmd_id, skb, skb->len);
+-
+-	ath11k_dbg_dump(ar->ab, ATH11K_DBG_TESTMODE, NULL, "", skb->data, skb->len);
+-
+-	spin_lock_bh(&ar->data_lock);
+-
+-	consumed = true;
+-
+-	nl_skb = cfg80211_testmode_alloc_event_skb(ar->hw->wiphy,
+-						   2 * sizeof(u32) + skb->len,
+-						   GFP_ATOMIC);
+-	if (!nl_skb) {
+-		ath11k_warn(ar->ab,
+-			    "failed to allocate skb for testmode wmi event\n");
+-		goto out;
+-	}
+-
+-	ret = nla_put_u32(nl_skb, ATH11K_TM_ATTR_CMD, ATH11K_TM_CMD_WMI);
+-	if (ret) {
+-		ath11k_warn(ar->ab,
+-			    "failed to put testmode wmi event cmd attribute: %d\n",
+-			    ret);
+-		kfree_skb(nl_skb);
+-		goto out;
+-	}
+-
+-	ret = nla_put_u32(nl_skb, ATH11K_TM_ATTR_WMI_CMDID, cmd_id);
+-	if (ret) {
+-		ath11k_warn(ar->ab,
+-			    "failed to put testmode wmi even cmd_id: %d\n",
+-			    ret);
+-		kfree_skb(nl_skb);
+-		goto out;
+-	}
+-
+-	ret = nla_put(nl_skb, ATH11K_TM_ATTR_DATA, skb->len, skb->data);
+-	if (ret) {
+-		ath11k_warn(ar->ab,
+-			    "failed to copy skb to testmode wmi event: %d\n",
+-			    ret);
+-		kfree_skb(nl_skb);
+-		goto out;
+-	}
+-
+-	cfg80211_testmode_event(nl_skb, GFP_ATOMIC);
+-
+-out:
+-	spin_unlock_bh(&ar->data_lock);
+-
+-	return consumed;
+-}
+-
+ static int ath11k_tm_cmd_get_version(struct ath11k *ar, struct nlattr *tb[])
+ {
+ 	struct sk_buff *skb;
+diff --git a/drivers/net/wireless/ath/ath11k/testmode.h b/drivers/net/wireless/ath/ath11k/testmode.h
+index aaa122ed9069..ffdb0c30b276 100644
+--- a/drivers/net/wireless/ath/ath11k/testmode.h
++++ b/drivers/net/wireless/ath/ath11k/testmode.h
+@@ -1,24 +1,18 @@
+ /* SPDX-License-Identifier: BSD-3-Clause-Clear */
+ /*
+  * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
++ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+  */
+ 
+ #include "core.h"
+ 
+ #ifdef CONFIG_NL80211_TESTMODE
+ 
+-bool ath11k_tm_event_wmi(struct ath11k *ar, u32 cmd_id, struct sk_buff *skb);
+ int ath11k_tm_cmd(struct ieee80211_hw *hw, struct ieee80211_vif *vif,
+ 		  void *data, int len);
+ 
+ #else
+ 
+-static inline bool ath11k_tm_event_wmi(struct ath11k *ar, u32 cmd_id,
+-				       struct sk_buff *skb)
+-{
+-	return false;
+-}
+-
+ static inline int ath11k_tm_cmd(struct ieee80211_hw *hw,
+ 				struct ieee80211_vif *vif,
+ 				void *data, int len)
 -- 
-2.39.2
+2.17.1
 
 
 -- 
