@@ -4,69 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3D3AC77B72
-	for <ath11k@archiver.kernel.org>; Thu, 20 Apr 2023 05:50:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87AAFC77B73
+	for <ath11k@archiver.kernel.org>; Thu, 20 Apr 2023 09:55:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	MIME-Version:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-	References:List-Owner; bh=cAwTfzx60iXMU5PPQie0fUMb+mIsle48eFkE/3tAKFg=; b=4b6
-	BTFiH8BaF2hAkVin/19fyeNz1HxcW5LbkwkDRGysQwOQkf4HMEfKmr5JdJbZERog+WMtrkH6Xalu6
-	CA/f4LrMisNfkcIUVfIyjp5xvsAgZ26KXRoNVP/mZdknXmWS3t1xieQMsJj4T3oMiZZzezOxYIwbF
-	H8rVoM08lQ4NJFN5JjoMEv9WreDRbVcDro5NbqXIWILfmPsUtRn2XsH1v4a5PZvLVS74exEBsefHp
-	VnOfr2vQkgeae0q4S67vUL7pa1dNpTb/yiFF7QpLlRX1fkUjVA5/x7xgTXasHtczgsJyxQACh0m0K
-	/ukB02XgqJgIlVGQzmDTFjz1k6hiSKQ==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
+	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=guLGA1tVQIwh61yBxGAYVN6blFcWLcj6G5xI9N9OJvQ=; b=gb1Op2gxO+YBYc
+	zMXTgZhG/Uhlym8Cbz4stZQYWG9thqPQEN01hpk0u/P/akfxVvrriwhV4pWnDiWb9NvP5UDEJlMua
+	JTNIFEohcUoUV5cS1ZIogma1cfULoXfI36s64BV6Pkj9iOh23l5ps1e25EOoBY2+W/Xa15ms6kR22
+	4Gr5KpTfiQu9sofwC//wfrJ5T+j7k8Z4cI5QpP+fWGbqf/uhVt1FejFqBBGqtqoLRUqMtY3Z6WE6/
+	vEE9WBlDIkno26Hex2lTk6TmduIeFpf3rIMEK/amwyNsqyvnLjOmQsLDbmDGgRSaDKA9qxkFZi+sK
+	e1JJ8mWSUy21JYRuOWcQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1ppNB8-0077oM-21;
-	Thu, 20 Apr 2023 05:49:58 +0000
-Received: from mail-ej1-x635.google.com ([2a00:1450:4864:20::635])
+	id 1ppR0S-007bpG-0U;
+	Thu, 20 Apr 2023 09:55:12 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1ppNB5-0077nC-1u
+	id 1ppR0P-007bo4-1Z
 	for ath11k@lists.infradead.org;
-	Thu, 20 Apr 2023 05:49:57 +0000
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-94f4b911570so37480566b.0
-        for <ath11k@lists.infradead.org>; Wed, 19 Apr 2023 22:49:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681969792; x=1684561792;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=mcax8DIcUfZMI9T8eX9QxIGqS/W8xIFbBfAvcZqoNgs=;
-        b=rzCMWgJ9a862tIoqei8huLBV1woXzEFNx6GlLcqFTDmaFRmef7BMWO0MxW/aWhoGEH
-         ue3jpR6ROipAWOGvPef3elmosq72lL3YIi3KdqSLyNFVEo/iuzRpChmP2iAp6nJML6nn
-         BRjwg32HUG+s0V83iKrBwiYPcn48o+5jKoRqJSl14VuHR/l4xWUL3xkZo/zBggYls2jd
-         /brCMawuCyTaegSBHz7fyJKn/MZ8qe2Wd8oWcuzjrXVz/WbTcn6s8Lz8/9KCwOQydcJc
-         bfqm9RoRLtclF3b9hBU0L+L6om3/PgbL5y62ppb8lW9H+7sYYe510/+eq6WIKTKgetT4
-         edxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681969792; x=1684561792;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mcax8DIcUfZMI9T8eX9QxIGqS/W8xIFbBfAvcZqoNgs=;
-        b=FPl9bEioMIvHNVV9Ktcd9/qyCPCuocgwQwi887B/w0DRJb3zRq8vV7YYBXVNXyka9B
-         d0QkshtgglpKRZXh4bVkQB+6nzZexPfoYouAVyhp6SAyUNQ3fc1hlgbTN4z6BxdQHxlx
-         6zkuW8R8Ax4+fLAHRTBMxnSeN+o5BqP2RQE37zK6T4/DNV+NxtVP3Uvh8LivitGFvXx3
-         /Z6J5EeqTv/xKxyKsdb8GwomNO0fW/QCpWjtqkwdLwd9z8nNvrNRMXznpaQ6vtqt89v7
-         FpJQ2+zD3EdA2BgFfjR7oyOt/g2G9Qc9uvqffc09sh9t4O93Od0raF0LZ3MG0kKK0e9k
-         40kw==
-X-Gm-Message-State: AAQBX9cPYH+LMJek7igZ11KW6DQxELghuR4ri33pdgz/JqLEeXsZ4n+d
-	8q+vtSh+6MEQYikC8KcW/HTB+htP706+kSU/TLX2/8rZ2WY=
-X-Google-Smtp-Source: AKy350bOSjN9DvHVsJ6LzvRiPsJbFJ81KkkG1HFmcuCF2qEqJG5jvhZWirrwj5zG3IYki2KY+YrUEym0ZHCY0gfnXNA=
-X-Received: by 2002:a05:6402:1009:b0:506:7f78:c4d3 with SMTP id
- c9-20020a056402100900b005067f78c4d3mr579051edu.27.1681969792070; Wed, 19 Apr
- 2023 22:49:52 -0700 (PDT)
+	Thu, 20 Apr 2023 09:55:11 +0000
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33K9haS0016455;
+	Thu, 20 Apr 2023 09:54:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=8Qn5q/7ax1KIXG8AqHLj5T63wtVyklBZfXUgFt4XpSM=;
+ b=G+5QXeiwtlqPr5Q6MEeAnkR9O7Yuo/i0SBF0XTpUA5TCi/DmCpu/ocL1NLQ69OlTRPhI
+ xYrrKqGPiCq+Rv7Yn8o6VSaLOhAkyiuGKMZxZr0/DUN5uCuhX3v+OFmFgS2kAWPdjdK0
+ Wg2fi695WzLSsgpSIq4KAc2tiju5vMW2Yl0fcK3acrxj9qUw8qq1o6xLn263jWkqM6wY
+ aSJMxveI6jxQ1LtVnVLII87JjJrlyX8E5zFwBC0JKTG94z4eiqDqmxx2r6YyFodZvZPM
+ 4mjv+lWJ/n25KQD0sEsdeWwCKTrwYIDuB6x/neFI8Zkxjsvdd2r+QkCCYn8+Rp1BHUS/ 8g== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q2nn81r2d-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 20 Apr 2023 09:54:58 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33K9svHB010058
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 20 Apr 2023 09:54:57 GMT
+Received: from [10.242.242.48] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Thu, 20 Apr
+ 2023 02:54:36 -0700
+Message-ID: <7d4eacd9-71be-e75f-fad4-ec07c00041d5@quicinc.com>
+Date: Thu, 20 Apr 2023 15:24:21 +0530
 MIME-Version: 1.0
-From: Doug Brewer <brewer.doug@gmail.com>
-Date: Thu, 20 Apr 2023 13:49:40 +0800
-Message-ID: <CAG0V13RiyW0HptSbZ6vxoTCmdjzrYZ9MQxCqKuiczJL9znW0-g@mail.gmail.com>
-Subject: QCA9074 problem on rk3568
-To: ath11k@lists.infradead.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH 1/2] wifi: ath11k: factory test mode support
+To: Kalle Valo <kvalo@kernel.org>
+CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+        "Govindaraj Saminathan" <quic_gsaminat@quicinc.com>,
+        Sowmiya Sree Elavalagan
+	<quic_ssreeela@quicinc.com>
+References: <20230213130854.2473-1-quic_rajkbhag@quicinc.com>
+ <20230213130854.2473-2-quic_rajkbhag@quicinc.com> <87mt4hnfk2.fsf@kernel.org>
+Content-Language: en-US
+From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+In-Reply-To: <87mt4hnfk2.fsf@kernel.org>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: RFRIjXMJs9kUZ2L_-MIrkk5XIeGVq5M3
+X-Proofpoint-GUID: RFRIjXMJs9kUZ2L_-MIrkk5XIeGVq5M3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-04-20_06,2023-04-18_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
+ spamscore=0 impostorscore=0 clxscore=1015 phishscore=0 mlxlogscore=999
+ bulkscore=0 priorityscore=1501 adultscore=0 suspectscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2303200000 definitions=main-2304200079
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230419_224955_635503_03F105F8 
-X-CRM114-Status: UNSURE (   6.24  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20230420_025509_541426_1535F788 
+X-CRM114-Status: GOOD (  22.22  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,32 +101,94 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Hi,
+On 3/13/2023 3:23 PM, Kalle Valo wrote:
+> Raj Kumar Bhagat <quic_rajkbhag@quicinc.com> writes:
+> 
+>> From: Govindaraj Saminathan <quic_gsaminat@quicinc.com>
+>>
+>> Add support to process factory test mode commands(FTM) for calibration.
+>> By default firmware start with NORMAL mode and to process the FTM commands
+>> firmware needs to be restarted in FTM mode using module parameter ftm_mode.
+>> The pre-request is all the radios should be down before starting the test.
+>>
+>> When start command ATH11K_TM_CMD_TESTMODE_START is received, ar state
+>> is set to Test Mode. If the FTM command or event length is greater
+>> than 256 bytes, it will be broken down into multiple segments and
+>> encoded with TLV header if it is segmented commands, else it is sent
+>> to firmware as it is.
+>>
+>> On receiving UTF event from firmware, if it is segmented event, the driver
+>> will wait until it receives all the segments and notify the complete
+>> data to user application. In case the segmented sequence are missed or
+>> lost from the firmware, driver will skip the already received partial data.
+>>
+>> In case of unsegmented UTF event from firmware, driver notifies the
+>> data to the user application as it comes. Applications handles
+>> the data further.
+>>
+>> Command to boot in ftm mode
+>> insmod ath11k ftm_mode=1
+>>
+>> Tested-on : IPQ8074 hw2.0 AHB WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
+>>
+>> Signed-off-by: Govindaraj Saminathan <quic_gsaminat@quicinc.com>
+>> Co-developed-by: Sowmiya Sree Elavalagan <quic_ssreeela@quicinc.com>
+>> Signed-off-by: Sowmiya Sree Elavalagan <quic_ssreeela@quicinc.com>
+>> Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+> 
+> [...]
+> 
+>> --- a/drivers/net/wireless/ath/ath11k/core.c
+>> +++ b/drivers/net/wireless/ath/ath11k/core.c
+>> @@ -1,7 +1,7 @@
+>>  // SPDX-License-Identifier: BSD-3-Clause-Clear
+>>  /*
+>>   * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
+>> - * Copyright (c) 2021-2022 Qualcomm Innovation Center, Inc. All rights reserved.
+>> + * Copyright (c) 2021-2023 Qualcomm Innovation Center, Inc. All rights reserved.
+>>   */
+>>  
+>>  #include <linux/module.h>
+>> @@ -32,6 +32,10 @@ module_param_named(frame_mode, ath11k_frame_mode, uint, 0644);
+>>  MODULE_PARM_DESC(frame_mode,
+>>  		 "Datapath frame mode (0: raw, 1: native wifi (default), 2: ethernet)");
+>>  
+>> +unsigned int ath11k_ftm_mode;
+>> +module_param_named(ftm_mode, ath11k_ftm_mode, uint, 0444);
+>> +MODULE_PARM_DESC(ftm_mode, "Boots up in factory test mode");
+> 
+> I changed this to bool as there's only two values, true or false.
+> 
+>> @@ -1362,6 +1366,11 @@ static int ath11k_core_soc_create(struct ath11k_base *ab)
+>>  {
+>>  	int ret;
+>>  
+>> +	if (ath11k_ftm_mode) {
+>> +		ab->fw_mode = ATH11K_FIRMWARE_MODE_FTM;
+>> +		ath11k_info(ab, "Booting in ftm mode\n");
+>> +	}
+> 
+> I changed this to:
+> 
+> "Booting in factory test mode\n"
+> 
+>> @@ -1822,6 +1832,10 @@ static void ath11k_core_post_reconfigure_recovery(struct ath11k_base *ab)
+>>  			ath11k_warn(ab,
+>>  				    "device is wedged, will not restart radio %d\n", i);
+>>  			break;
+>> +		case ATH11K_STATE_TM:
+>> +			ath11k_warn(ab, "fw mode reset done radio %d\n", i);
+>> +			break;
+> 
+> What is this warning supposed to tell the user? Should it be a debug
+> message instead?
 
-I tried to install linux kernel 6.3-rc7 on my rk3568 evb.  It seems there's
-a problem about MHI:
+Will move this to debug message in version 2.
 
-[   11.340558] ath11k_pci 0002:01:00.0: BAR 0: assigned [mem 0x380000000-0x3801f
-ffff 64bit]
-[   11.341399] ath11k_pci 0002:01:00.0: enabling device (0000 -> 0002)
-[   11.422849] ath11k_pci 0002:01:00.0: MSI vectors: 16
-[   11.423335] ath11k_pci 0002:01:00.0: qcn9074 hw1.0
-[   11.660846] mhi mhi0: Requested to power ON
-[   11.661271] mhi mhi0: Power on setup success
-[   31.716289] mhi mhi0: MHI did not load image over BHI, ret: -5
-[   60.551942] mhi mhi0: Device failed to enter READY state
-[   60.552544] mhi mhi0: Error moving from PM state: Firmware Download Error to:
-DISABLE
-[   60.553376] ath11k_pci 0002:01:00.0: failed to power up mhi: -110
-[   60.553972] ath11k_pci 0002:01:00.0: failed to start mhi: -110
-[   60.554532] ath11k_pci 0002:01:00.0: failed to power up :-110
-[   60.567907] ath11k_pci 0002:01:00.0: failed to create soc core:
--110
-[   60.568488] ath11k_pci 0002:01:00.0: failed to init core: -110
 
-Any idea how to fix it?  Thanks.
+Thanks,
+Raj
 
-- Doug
 
 -- 
 ath11k mailing list
