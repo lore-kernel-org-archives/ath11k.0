@@ -4,87 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87AAFC77B73
-	for <ath11k@archiver.kernel.org>; Thu, 20 Apr 2023 09:55:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE14FC77B72
+	for <ath11k@archiver.kernel.org>; Thu, 20 Apr 2023 10:02:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
 	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=guLGA1tVQIwh61yBxGAYVN6blFcWLcj6G5xI9N9OJvQ=; b=gb1Op2gxO+YBYc
-	zMXTgZhG/Uhlym8Cbz4stZQYWG9thqPQEN01hpk0u/P/akfxVvrriwhV4pWnDiWb9NvP5UDEJlMua
-	JTNIFEohcUoUV5cS1ZIogma1cfULoXfI36s64BV6Pkj9iOh23l5ps1e25EOoBY2+W/Xa15ms6kR22
-	4Gr5KpTfiQu9sofwC//wfrJ5T+j7k8Z4cI5QpP+fWGbqf/uhVt1FejFqBBGqtqoLRUqMtY3Z6WE6/
-	vEE9WBlDIkno26Hex2lTk6TmduIeFpf3rIMEK/amwyNsqyvnLjOmQsLDbmDGgRSaDKA9qxkFZi+sK
-	e1JJ8mWSUy21JYRuOWcQ==;
+	List-Owner; bh=GWssiK6pYWbi/n85l8zzWrqQP0DyKLf+i/tbbS9k7fs=; b=oa0YrO+VUWQDvN
+	aemb1Ih/MvHLM7Yclv0slFEuH1E3KmqRj6dhgT86h2X1TpxoWaLVwI7GgBhyIcBBK4DuTK3lrdBhs
+	2iWAm8dZE5G2avpqXgwE+AV4J70eDjczavDeAfS3629SsZodYwpuAeRbA1MYz100V64aBSSiNlnh5
+	6ACWgWTcGkosa8/uIRfZTlElSc0Q6BjHxprPntcOhJRy5/WxrW705UrOWA6ePPF7UK8KsaAGxXwrc
+	siK2eFBeGjmy00hpnBfgrwQ5yoJ34LB3eB/PQskpb696ZLmBqgPLqfJevwE5w47qe+DfMeZ/5BGXf
+	ZRmkYXqDwHFzAWNEiE0Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1ppR0S-007bpG-0U;
-	Thu, 20 Apr 2023 09:55:12 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1ppR7v-007ck1-1K;
+	Thu, 20 Apr 2023 10:02:55 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1ppR0P-007bo4-1Z
+	id 1ppR7s-007cid-36
 	for ath11k@lists.infradead.org;
-	Thu, 20 Apr 2023 09:55:11 +0000
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33K9haS0016455;
-	Thu, 20 Apr 2023 09:54:58 GMT
+	Thu, 20 Apr 2023 10:02:54 +0000
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33K9tkFG014393;
+	Thu, 20 Apr 2023 10:02:42 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
  mime-version : subject : to : cc : references : from : in-reply-to :
  content-type : content-transfer-encoding; s=qcppdkim1;
- bh=8Qn5q/7ax1KIXG8AqHLj5T63wtVyklBZfXUgFt4XpSM=;
- b=G+5QXeiwtlqPr5Q6MEeAnkR9O7Yuo/i0SBF0XTpUA5TCi/DmCpu/ocL1NLQ69OlTRPhI
- xYrrKqGPiCq+Rv7Yn8o6VSaLOhAkyiuGKMZxZr0/DUN5uCuhX3v+OFmFgS2kAWPdjdK0
- Wg2fi695WzLSsgpSIq4KAc2tiju5vMW2Yl0fcK3acrxj9qUw8qq1o6xLn263jWkqM6wY
- aSJMxveI6jxQ1LtVnVLII87JjJrlyX8E5zFwBC0JKTG94z4eiqDqmxx2r6YyFodZvZPM
- 4mjv+lWJ/n25KQD0sEsdeWwCKTrwYIDuB6x/neFI8Zkxjsvdd2r+QkCCYn8+Rp1BHUS/ 8g== 
+ bh=kP63/IWD6Fj6iskn0QZpM5NG8blh+w8LLmuthH8joTo=;
+ b=bBDlbD4xdw/qp5q8nhZTKTAq+f8iZXEspLXrokUrDlri1SuGJRPRFXM2zqQMql+6Xn49
+ SKyUy8gncZoxo3f6YHe8hzaKw45WVAoaSjHLktB2IyWr/uhGKAbgUyFPLjoz2KVyiqd6
+ tz3qHny4ma2E/Falv4lc2W++l+OdsqKf/Z6ubQCq/4KBmNAvrlk5v50Sj65yWDfT6dQK
+ SpLHisY038/WKSVIntyEw3G2rgs9F4DKW8kRoz3se1AktkqMZXo96zuZdhx9/xU7Jbx/
+ YAacsnYG4TLyIbz3GLQj6+IinulU+Itdw8XRnpzhU2S0SgQyEGGaV5K+EFDkV5IsnepT fQ== 
 Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q2nn81r2d-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q2hd9jhke-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 20 Apr 2023 09:54:58 +0000
+	Thu, 20 Apr 2023 10:02:41 +0000
 Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33K9svHB010058
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33KA2eI3019791
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 20 Apr 2023 09:54:57 GMT
+	Thu, 20 Apr 2023 10:02:40 GMT
 Received: from [10.242.242.48] (10.80.80.8) by nalasex01b.na.qualcomm.com
  (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Thu, 20 Apr
- 2023 02:54:36 -0700
-Message-ID: <7d4eacd9-71be-e75f-fad4-ec07c00041d5@quicinc.com>
-Date: Thu, 20 Apr 2023 15:24:21 +0530
+ 2023 03:02:37 -0700
+Message-ID: <ca872729-513a-e9dc-95f5-bc1692af648f@quicinc.com>
+Date: Thu, 20 Apr 2023 15:32:34 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
 Subject: Re: [PATCH 1/2] wifi: ath11k: factory test mode support
+Content-Language: en-US
 To: Kalle Valo <kvalo@kernel.org>
 CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
         "Govindaraj Saminathan" <quic_gsaminat@quicinc.com>,
         Sowmiya Sree Elavalagan
 	<quic_ssreeela@quicinc.com>
 References: <20230213130854.2473-1-quic_rajkbhag@quicinc.com>
- <20230213130854.2473-2-quic_rajkbhag@quicinc.com> <87mt4hnfk2.fsf@kernel.org>
-Content-Language: en-US
+ <20230213130854.2473-2-quic_rajkbhag@quicinc.com> <87ilf4onge.fsf@kernel.org>
 From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
-In-Reply-To: <87mt4hnfk2.fsf@kernel.org>
+In-Reply-To: <87ilf4onge.fsf@kernel.org>
 X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
  nalasex01b.na.qualcomm.com (10.47.209.197)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: RFRIjXMJs9kUZ2L_-MIrkk5XIeGVq5M3
-X-Proofpoint-GUID: RFRIjXMJs9kUZ2L_-MIrkk5XIeGVq5M3
+X-Proofpoint-GUID: tnrO8ExaT0GqP4U04dhSfPTum440UqBv
+X-Proofpoint-ORIG-GUID: tnrO8ExaT0GqP4U04dhSfPTum440UqBv
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
  definitions=2023-04-20_06,2023-04-18_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
- spamscore=0 impostorscore=0 clxscore=1015 phishscore=0 mlxlogscore=999
- bulkscore=0 priorityscore=1501 adultscore=0 suspectscore=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ malwarescore=0 impostorscore=0 adultscore=0 spamscore=0 clxscore=1015
+ mlxscore=0 mlxlogscore=999 phishscore=0 bulkscore=0 suspectscore=0
  lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304200079
+ engine=8.12.0-2303200000 definitions=main-2304200080
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230420_025509_541426_1535F788 
-X-CRM114-Status: GOOD (  22.22  )
+X-CRM114-CacheID: sfid-20230420_030253_113470_265F3F4E 
+X-CRM114-Status: GOOD (  30.42  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -101,7 +101,7 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 3/13/2023 3:23 PM, Kalle Valo wrote:
+On 3/13/2023 5:47 PM, Kalle Valo wrote:
 > Raj Kumar Bhagat <quic_rajkbhag@quicinc.com> writes:
 > 
 >> From: Govindaraj Saminathan <quic_gsaminat@quicinc.com>
@@ -138,57 +138,93 @@ On 3/13/2023 3:23 PM, Kalle Valo wrote:
 > 
 > [...]
 > 
->> --- a/drivers/net/wireless/ath/ath11k/core.c
->> +++ b/drivers/net/wireless/ath/ath11k/core.c
->> @@ -1,7 +1,7 @@
->>  // SPDX-License-Identifier: BSD-3-Clause-Clear
->>  /*
->>   * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
->> - * Copyright (c) 2021-2022 Qualcomm Innovation Center, Inc. All rights reserved.
->> + * Copyright (c) 2021-2023 Qualcomm Innovation Center, Inc. All rights reserved.
->>   */
->>  
->>  #include <linux/module.h>
->> @@ -32,6 +32,10 @@ module_param_named(frame_mode, ath11k_frame_mode, uint, 0644);
->>  MODULE_PARM_DESC(frame_mode,
->>  		 "Datapath frame mode (0: raw, 1: native wifi (default), 2: ethernet)");
->>  
->> +unsigned int ath11k_ftm_mode;
->> +module_param_named(ftm_mode, ath11k_ftm_mode, uint, 0444);
->> +MODULE_PARM_DESC(ftm_mode, "Boots up in factory test mode");
+>> -bool ath11k_tm_event_wmi(struct ath11k *ar, u32 cmd_id, struct sk_buff *skb)
 > 
-> I changed this to bool as there's only two values, true or false.
+> Please do removal of this ath11k_tm_event_wmi() in a separate patch,
+> then it's easier to read this patch.
+
+Will address this in next version.
+
 > 
->> @@ -1362,6 +1366,11 @@ static int ath11k_core_soc_create(struct ath11k_base *ab)
+>>  static int ath11k_tm_cmd_get_version(struct ath11k *ar, struct nlattr *tb[])
 >>  {
->>  	int ret;
+>>  	struct sk_buff *skb;
+>> -	int ret;
 >>  
->> +	if (ath11k_ftm_mode) {
->> +		ab->fw_mode = ATH11K_FIRMWARE_MODE_FTM;
->> +		ath11k_info(ab, "Booting in ftm mode\n");
->> +	}
+>>  	ath11k_dbg(ar->ab, ATH11K_DBG_TESTMODE,
+>>  		   "testmode cmd get version_major %d version_minor %d\n",
+>> @@ -98,21 +205,50 @@ static int ath11k_tm_cmd_get_version(struct ath11k *ar, struct nlattr *tb[])
+>>  	if (!skb)
+>>  		return -ENOMEM;
+>>  
+>> -	ret = nla_put_u32(skb, ATH11K_TM_ATTR_VERSION_MAJOR,
+>> -			  ATH11K_TESTMODE_VERSION_MAJOR);
+>> -	if (ret) {
+>> +	if (nla_put_u32(skb, ATH11K_TM_ATTR_VERSION_MAJOR,
+>> +			ATH11K_TESTMODE_VERSION_MAJOR) ||
+>> +	    nla_put_u32(skb, ATH11K_TM_ATTR_VERSION_MINOR,
+>> +			ATH11K_TESTMODE_VERSION_MINOR)) {
+>>  		kfree_skb(skb);
+>> -		return ret;
+>> +		return -ENOBUFS;
+>>  	}
+>>  
+>> -	ret = nla_put_u32(skb, ATH11K_TM_ATTR_VERSION_MINOR,
+>> -			  ATH11K_TESTMODE_VERSION_MINOR);
+>> -	if (ret) {
+>> -		kfree_skb(skb);
+>> -		return ret;
+>> +	return cfg80211_testmode_reply(skb);
+>> +}
 > 
-> I changed this to:
-> 
-> "Booting in factory test mode\n"
-> 
->> @@ -1822,6 +1832,10 @@ static void ath11k_core_post_reconfigure_recovery(struct ath11k_base *ab)
->>  			ath11k_warn(ab,
->>  				    "device is wedged, will not restart radio %d\n", i);
->>  			break;
->> +		case ATH11K_STATE_TM:
->> +			ath11k_warn(ab, "fw mode reset done radio %d\n", i);
->> +			break;
-> 
-> What is this warning supposed to tell the user? Should it be a debug
-> message instead?
+> Please also do the changes in ath11k_tm_cmd_get_version() in a separate
+> patch.
 
-Will move this to debug message in version 2.
+will address this in next version.
 
+> 
+>> @@ -47,4 +49,21 @@ enum ath11k_tm_cmd {
+>>  	 * ATH11K_TM_ATTR_DATA.
+>>  	 */
+>>  	ATH11K_TM_CMD_WMI = 1,
+>> +
+>> +	/* Boots the UTF firmware, the netdev interface must be down at the
+>> +	 * time.
+>> +	 */
+>> +	ATH11K_TM_CMD_TESTMODE_START = 2,
+>> +
+>> +	/* Shuts down the UTF firmware and puts the driver back into OFF
+>> +	 * state.
+>> +	 */
+>> +	ATH11K_TM_CMD_TESTMODE_STOP = 3,
+> 
+> The documentation for for the STOP command is misleading, now ath11k
+> just ignores that command. So is there any point even to have the
+> command if it doesn't do anything?
 
-Thanks,
+Will remove ATH11K_TM_CMD_TESTMODE_STOP as it is not used and send the
+next version.
+
+> 
+>> @@ -8096,6 +8128,12 @@ static void ath11k_wmi_tlv_op_rx(struct ath11k_base *ab, struct sk_buff *skb)
+>>  	case WMI_PDEV_CSA_SWITCH_COUNT_STATUS_EVENTID:
+>>  		ath11k_wmi_pdev_csa_switch_count_status_event(ab, skb);
+>>  		break;
+>> +	case WMI_PDEV_UTF_EVENTID:
+>> +		if (test_bit(ATH11K_FLAG_FTM_SEGMENTED, &ab->dev_flags))
+>> +			ath11k_wmi_tm_event_segmented(ab, id, skb);
+>> +		else
+>> +			ath11k_tm_wmi_event_unsegmented(ab, id, skb);
+>> +		break;
+> 
+> I didn't investigate this in detail, but I find the flag a bit
+> problematic as it alters the behaviour ATH11K_FLAG_FTM_SEGMENTED and the
+> behaviour difference it's not documented at all in enum ath11k_tm_cmd.
+> 
+Will document the behavior difference in enum ath11k_tm_cmd, in next version.
+
+Thanks
 Raj
-
 
 -- 
 ath11k mailing list
