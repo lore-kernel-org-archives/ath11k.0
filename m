@@ -4,74 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B735C77B73
-	for <ath11k@archiver.kernel.org>; Fri, 21 Apr 2023 01:35:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3ABEBC7618E
+	for <ath11k@archiver.kernel.org>; Fri, 21 Apr 2023 15:05:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=MZgYoH3T4Xndb4iC+V6wpVHBTq4aa6KzftxYktY57XY=; b=46nRfz0Vh3+mSJ
-	sytZDJkIul3ETaL1tyDzel5ujIoWwNF9K6xRNJFAdIMMd9+WXqrR66i82YpBYiTeBnzKzZl6S0Sz6
-	UaF/BhrfYYGy6ZxZY5/JUkQcUFqBoLbOT9eaGlhgw6+66wY49TTlHALir6lvEevrTitpLkEt5dlZr
-	Leo9ALhzz6xRnzldvtEAfGY+vNVKbpyOxyciQat7oR2ItkwWQ2viOGpcZjjgkHKdWBM+sZa80+L6T
-	wrukiqD9RqDXKp1emr6v+4aXyJ5UCVvYn8shyhlpKngZvZgDr7jXyLZ1f3/YtDAmjWfm+y+c6ggCT
-	uEG9zhVfPjG4wQls8vQg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:Cc
+	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=ulgeUZIoXs3Expuqu/12pVBfR+UEMkyojDayU/Z6p2A=; b=x3Q3MLPrs4Y8Gz
+	KlJuOr4PsUZoWrPrslbXxGTlJMH1dPmJkNctYg9YJTt39KkBSP6Kvo/6A/dHpn5PelErGyGRzeiLv
+	mBfdZRGqgN6H78qr8ySL0475gdLM2qxKMxMUViRr71aHXr/446Rqm5cTaeZi5ZJoarp6frapukkwv
+	uGfC87SeIjismlT4gwo9HHodfnl0NAqHVrj/RceXgKL5okJKyOE+TKr57xmbkS/2s5XPNtwLsaU46
+	Y06ZPJ5HE84Vfw/8Ere8m4Hos7flEXQc3oOMcMsrPT3Gw3GtK/zf73vSjAbjdw2WcnOPPsR94Ci4T
+	kMZasYpmWMj/D6beVlFg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1ppfgk-009OPU-2T;
-	Fri, 21 Apr 2023 01:35:50 +0000
-Received: from mail-ej1-x635.google.com ([2a00:1450:4864:20::635])
+	id 1ppsJo-00BEnJ-0o;
+	Fri, 21 Apr 2023 15:05:00 +0000
+Received: from ns.iliad.fr ([212.27.33.1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1ppfgj-009OOx-0I
+	id 1ppsJj-00BEmq-2i
 	for ath11k@lists.infradead.org;
-	Fri, 21 Apr 2023 01:35:50 +0000
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-94a34a0b9e2so131898066b.1
-        for <ath11k@lists.infradead.org>; Thu, 20 Apr 2023 18:35:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682040947; x=1684632947;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NAuouLcqr0ejtxe1AJw4cQCm6LeEd95tjcFXAUo30uc=;
-        b=KceSX6G8dDh0Ws08Haar67YsWPm6Q4KENSIFtttl+kGXIP074MxD5b6qFoTHOuqC9r
-         A1HLVkOZAGc1SOvwPhPXRRMZ1fUEemruPSy2AnpNtW+VkdSCR0YHMwfkfceGnwPN3/J7
-         uivGWQu8Pc9SD9TEWEBbZSd/KTMG7ijpDiZ0YSY5zWlci2xc7ExfYhakJGQJTUbGc6mv
-         lqNjKZf8VVk+GuU/OpWMqy8NwJlNypANNUYqDpwAHPD3duJkZDF415tiJ7foSzeGGyWh
-         5MtRjbeXCM5G0C44Av2iXGyJZyHqXu1e8I3VLqduF0JNhJf6Rid9oFyf9cfHBoZoauEk
-         B5Jw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682040947; x=1684632947;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NAuouLcqr0ejtxe1AJw4cQCm6LeEd95tjcFXAUo30uc=;
-        b=L8lHIqYJ2QBtTsTwyb6/5UXN8NXwHXL1ZzL4KenLD4SNEiQ9clxBhaw9JSPKRMOe6o
-         nAB1Vcy7VkX33udDr6f9VQWAjDBLBlSi3D0o9Pr5GkxxEvWCaInSAUY9dvsV+ZHL4EHD
-         OwZKGfLTVPeUan83a5vO5uk1fNilHvtcgqP0kT0MidiwlgWzHxI+wo/0is7w032dZGqw
-         EeIgFfAQuWrnHBeInEMWtGfJZDt3pVHWrQuVtuhbld7W0/pGUfvqjH0Rob0L1U1UNIN5
-         JenY0tk0hBWjuFWn+sMOYMC57wP2UYozCNs/AEMJ70DJ7m6QK178XmeqkjucQVldUZOS
-         dejg==
-X-Gm-Message-State: AAQBX9c+YnQ+F+Pr1m7pzZp58l4DIIlEWV3amFI1bN14NQV032/ErFY0
-	gUaHWTI7QHkgI3rhC2MKMjQ8P/2D6M7gSOrkfT/Pvvft+E26aA==
-X-Google-Smtp-Source: AKy350Z0BT/Khur+n4RfSTFHrflmeanrBkPtF3L5RlXNDFxyzRNTgKrGY5H2F4CThb9wtedqOJGXo6zDaXLRR6cJXxE=
-X-Received: by 2002:a17:906:c281:b0:94f:680d:3437 with SMTP id
- r1-20020a170906c28100b0094f680d3437mr738871ejz.17.1682040946564; Thu, 20 Apr
- 2023 18:35:46 -0700 (PDT)
+	Fri, 21 Apr 2023 15:04:58 +0000
+Received: from ns.iliad.fr (localhost [127.0.0.1])
+	by ns.iliad.fr (Postfix) with ESMTP id 8842C203D5;
+	Fri, 21 Apr 2023 16:55:04 +0200 (CEST)
+Received: from sakura.iliad.local (freebox.vlq16.iliad.fr [213.36.7.13])
+	by ns.iliad.fr (Postfix) with ESMTP id 6EBF1200FC;
+	Fri, 21 Apr 2023 16:55:04 +0200 (CEST)
+From: Maxime Bizon <mbizon@freebox.fr>
+To: Kalle Valo <kvalo@kernel.org>,
+	ath11k@lists.infradead.org,
+	linux-wireless@vger.kernel.org
+Cc: Maxime Bizon <mbizon@freebox.fr>
+Subject: [PATCH] ath11k: fix registration of 6Ghz-only phy without the full channel range
+Date: Fri, 21 Apr 2023 16:54:45 +0200
+Message-Id: <20230421145445.2612280-1-mbizon@freebox.fr>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <CAG0V13RiyW0HptSbZ6vxoTCmdjzrYZ9MQxCqKuiczJL9znW0-g@mail.gmail.com>
- <87mt32vjdm.fsf@kernel.org>
-In-Reply-To: <87mt32vjdm.fsf@kernel.org>
-From: Doug Brewer <brewer.doug@gmail.com>
-Date: Fri, 21 Apr 2023 09:35:34 +0800
-Message-ID: <CAG0V13SNRwhyyKMBxL71-u5mGH6kiagXecebage7xqCq7N3q3w@mail.gmail.com>
-Subject: Re: QCA9074 problem on rk3568
-To: Kalle Valo <kvalo@kernel.org>
-Cc: ath11k@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230420_183549_135697_E1EC9961 
-X-CRM114-Status: GOOD (  11.29  )
+X-CRM114-CacheID: sfid-20230421_080456_035346_9CA99961 
+X-CRM114-Status: GOOD (  10.48  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,39 +57,71 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-T24gVGh1LCBBcHIgMjAsIDIwMjMgYXQgODoxNuKAr1BNIEthbGxlIFZhbG8gPGt2YWxvQGtlcm5l
-bC5vcmc+IHdyb3RlOgo+Cj4gRG91ZyBCcmV3ZXIgPGJyZXdlci5kb3VnQGdtYWlsLmNvbT4gd3Jp
-dGVzOgo+Cj4gPiBJIHRyaWVkIHRvIGluc3RhbGwgbGludXgga2VybmVsIDYuMy1yYzcgb24gbXkg
-cmszNTY4IGV2Yi4gIEl0IHNlZW1zIHRoZXJlJ3MKPiA+IGEgcHJvYmxlbSBhYm91dCBNSEk6Cj4g
-Pgo+ID4gWyAgIDExLjM0MDU1OF0gYXRoMTFrX3BjaSAwMDAyOjAxOjAwLjA6IEJBUiAwOiBhc3Np
-Z25lZCBbbWVtIDB4MzgwMDAwMDAwLTB4MzgwMWYKPiA+IGZmZmYgNjRiaXRdCj4gPiBbICAgMTEu
-MzQxMzk5XSBhdGgxMWtfcGNpIDAwMDI6MDE6MDAuMDogZW5hYmxpbmcgZGV2aWNlICgwMDAwIC0+
-IDAwMDIpCj4gPiBbICAgMTEuNDIyODQ5XSBhdGgxMWtfcGNpIDAwMDI6MDE6MDAuMDogTVNJIHZl
-Y3RvcnM6IDE2Cj4gPiBbICAgMTEuNDIzMzM1XSBhdGgxMWtfcGNpIDAwMDI6MDE6MDAuMDogcWNu
-OTA3NCBodzEuMAo+ID4gWyAgIDExLjY2MDg0Nl0gbWhpIG1oaTA6IFJlcXVlc3RlZCB0byBwb3dl
-ciBPTgo+ID4gWyAgIDExLjY2MTI3MV0gbWhpIG1oaTA6IFBvd2VyIG9uIHNldHVwIHN1Y2Nlc3MK
-PiA+IFsgICAzMS43MTYyODldIG1oaSBtaGkwOiBNSEkgZGlkIG5vdCBsb2FkIGltYWdlIG92ZXIg
-QkhJLCByZXQ6IC01Cj4gPiBbICAgNjAuNTUxOTQyXSBtaGkgbWhpMDogRGV2aWNlIGZhaWxlZCB0
-byBlbnRlciBSRUFEWSBzdGF0ZQo+ID4gWyAgIDYwLjU1MjU0NF0gbWhpIG1oaTA6IEVycm9yIG1v
-dmluZyBmcm9tIFBNIHN0YXRlOiBGaXJtd2FyZSBEb3dubG9hZCBFcnJvciB0bzoKPiA+IERJU0FC
-TEUKPiA+IFsgICA2MC41NTMzNzZdIGF0aDExa19wY2kgMDAwMjowMTowMC4wOiBmYWlsZWQgdG8g
-cG93ZXIgdXAgbWhpOiAtMTEwCj4gPiBbICAgNjAuNTUzOTcyXSBhdGgxMWtfcGNpIDAwMDI6MDE6
-MDAuMDogZmFpbGVkIHRvIHN0YXJ0IG1oaTogLTExMAo+ID4gWyAgIDYwLjU1NDUzMl0gYXRoMTFr
-X3BjaSAwMDAyOjAxOjAwLjA6IGZhaWxlZCB0byBwb3dlciB1cCA6LTExMAo+ID4gWyAgIDYwLjU2
-NzkwN10gYXRoMTFrX3BjaSAwMDAyOjAxOjAwLjA6IGZhaWxlZCB0byBjcmVhdGUgc29jIGNvcmU6
-Cj4gPiAtMTEwCj4gPiBbICAgNjAuNTY4NDg4XSBhdGgxMWtfcGNpIDAwMDI6MDE6MDAuMDogZmFp
-bGVkIHRvIGluaXQgY29yZTogLTExMAo+ID4KPiA+IEFueSBpZGVhIGhvdyB0byBmaXggaXQ/ICBU
-aGFua3MuCj4KPiBJIHdvdWxkIGZpcnN0IGNoZWNrIHRoYXQgdGhlIGZpcm13YXJlIGZpbGVzIGFy
-ZSBub3QgY29ycnVwdGVkLgoKIyBzaGEyNTZzdW0gYW1zcy5iaW4gYm9hcmQtMi5iaW4gbTMuYmlu
-CjVlZTFiN2IyMDQ1NDFiNWY5OTk4NGYyMWQ2OTRlY2VjYWVjMDhmYmNlMWI1MjBmZmU2ZmU3NDBi
-MDJhNGFmZDcgIGFtc3MuYmluCmRiZjBjYTE0YWExMjI5ZWNjZDQ4ZjI2ZjEwMjY5MDFiOTcxOGIx
-NDNiZDMwYjUxYjhlYTY3Yzg0YmE2MjA3ZjEgIGJvYXJkLTIuYmluCmI2ZDk1N2YzMzUwNzNhMTVh
-OGRlODA5Mzk4ZTE1MDZmMDIwMGEwODc0N2VhZjcxODljODQzY2Y1MTlmZmMxZGUgIG0zLmJpbgoK
-VGhlIGZpcm13YXJlIGZpbGVzIGxvb2sgZ29vZCwgdGhhbmtzLgoKLSBEb3VnCgotLSAKYXRoMTFr
-IG1haWxpbmcgbGlzdAphdGgxMWtAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5m
-cmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2F0aDExawo=
+Because of what seems to be a typo, a 6Ghz-only phy for which the BDF
+does not allow the 7115Mhz channel will fail to register:
+
+  WARNING: CPU: 2 PID: 106 at net/wireless/core.c:907 wiphy_register+0x914/0x954
+  Modules linked in: ath11k_pci sbsa_gwdt
+  CPU: 2 PID: 106 Comm: kworker/u8:5 Not tainted 6.3.0-rc7-next-20230418-00549-g1e096a17625a-dirty #9
+  Hardware name: Freebox V7R Board (DT)
+  Workqueue: ath11k_qmi_driver_event ath11k_qmi_driver_event_work
+  pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+  pc : wiphy_register+0x914/0x954
+  lr : ieee80211_register_hw+0x67c/0xc10
+  sp : ffffff800b123aa0
+  x29: ffffff800b123aa0 x28: 0000000000000000 x27: 0000000000000000
+  x26: 0000000000000000 x25: 0000000000000006 x24: ffffffc008d51418
+  x23: ffffffc008cb0838 x22: ffffff80176c2460 x21: 0000000000000168
+  x20: ffffff80176c0000 x19: ffffff80176c03e0 x18: 0000000000000014
+  x17: 00000000cbef338c x16: 00000000d2a26f21 x15: 00000000ad6bb85f
+  x14: 0000000000000020 x13: 0000000000000020 x12: 00000000ffffffbd
+  x11: 0000000000000208 x10: 00000000fffffdf7 x9 : ffffffc009394718
+  x8 : ffffff80176c0528 x7 : 000000007fffffff x6 : 0000000000000006
+  x5 : 0000000000000005 x4 : ffffff800b304284 x3 : ffffff800b304284
+  x2 : ffffff800b304d98 x1 : 0000000000000000 x0 : 0000000000000000
+  Call trace:
+   wiphy_register+0x914/0x954
+   ieee80211_register_hw+0x67c/0xc10
+   ath11k_mac_register+0x7c4/0xe10
+   ath11k_core_qmi_firmware_ready+0x1f4/0x570
+   ath11k_qmi_driver_event_work+0x198/0x590
+   process_one_work+0x1b8/0x328
+   worker_thread+0x6c/0x414
+   kthread+0x100/0x104
+   ret_from_fork+0x10/0x20
+  ---[ end trace 0000000000000000 ]---
+  ath11k_pci 0002:01:00.0: ieee80211 registration failed: -22
+  ath11k_pci 0002:01:00.0: failed register the radio with mac80211: -22
+  ath11k_pci 0002:01:00.0: failed to create pdev core: -22
+
+Signed-off-by: Maxime Bizon <mbizon@freebox.fr>
+---
+ drivers/net/wireless/ath/ath11k/mac.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/mac.c b/drivers/net/wireless/ath/ath11k/mac.c
+index 110a38cce0a7..850ef35c1f75 100644
+--- a/drivers/net/wireless/ath/ath11k/mac.c
++++ b/drivers/net/wireless/ath/ath11k/mac.c
+@@ -8778,7 +8778,7 @@ static int ath11k_mac_setup_channels_rates(struct ath11k *ar,
+ 	}
+ 
+ 	if (supported_bands & WMI_HOST_WLAN_5G_CAP) {
+-		if (reg_cap->high_5ghz_chan >= ATH11K_MAX_6G_FREQ) {
++		if (reg_cap->high_5ghz_chan >= ATH11K_MIN_6G_FREQ) {
+ 			channels = kmemdup(ath11k_6ghz_channels,
+ 					   sizeof(ath11k_6ghz_channels), GFP_KERNEL);
+ 			if (!channels) {
+-- 
+2.34.1
+
+
+-- 
+ath11k mailing list
+ath11k@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/ath11k
