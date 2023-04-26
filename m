@@ -4,86 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A467C77B60
-	for <ath11k@archiver.kernel.org>; Wed, 26 Apr 2023 07:40:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1063BC77B60
+	for <ath11k@archiver.kernel.org>; Wed, 26 Apr 2023 13:45:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:From:References:CC:To:
-	Subject:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=lDm3mzd8B9daN1h3O6kJ4BgjB+zO6W4mihL29QTqlW0=; b=a4dbShgAmCbM3g
-	pBBxbq4ji5jTU7mKG5eYAcjec2XAv40XhLB0o7pJxIsejjpX89UPmqNPdgpaWv62/kYYj1ufgcsRe
-	PB4S3SsiWV0wngh2j//ebadI4571EvGShATOnp1QCoWzM9ZK6Gg57UEIJInCMANG/CS8Gpb2rGO75
-	WRQSlz7qMldZNWj6HieNy+991V4UVjX4UjKkM7DlXKup/TwJvKw+Nl6LRZgNZXOjm+nvIgG09jwmp
-	lTQbjJU4WeAB5nY17b04c0fwSjQpFKESbNxttz9dBr7in+56246Aqg7jCQo7+YH54ZMnFGTB+iJY8
-	U3IXIm8AW81GI6hiMfxw==;
+	List-Owner; bh=fdW40A1XggVX7Ynj7GP66TXzQLoaA9BVh3QK08WKH+c=; b=il+ltKw69LQsmW
+	0YCkfz3geWKjbZxlBEe9NKisEPY77cULRNmNrWnD8JnHMPl7CHrvhBKXBmVVB/DUE8sKsP9jjRgaA
+	zIF0eCQjdGXbYKjimcDwdrRtSDqTF5hjRcWi15o+Wm5uQyuj3o7WBGbvpARs8D+PMrPQEny9uzidz
+	bhv2r2t9VVDPdbcNVXlWpiHQ4CvigU3JVIhu5d8aKsBVWNxhMOlM6WDM5UI4/QXm9z+lMHrb7cKii
+	O2PmME2hdAkJ9I1VSse0yXbSE0LlkTTkWjOZGS8DIKUmHzXWeRFfb9csinCJ5GDykI9weQJhT5EUM
+	Cv/1iW7NRscjGqZhN0Gg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1prZlE-0033aI-2k;
-	Wed, 26 Apr 2023 07:40:20 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1prfSf-0047GG-1f;
+	Wed, 26 Apr 2023 13:45:33 +0000
+Received: from mail-pf1-x42d.google.com ([2607:f8b0:4864:20::42d])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1prZlC-0033Ya-07
+	id 1preRy-003wrR-1R
 	for ath11k@lists.infradead.org;
-	Wed, 26 Apr 2023 07:40:19 +0000
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 33Q4f98E002228;
-	Wed, 26 Apr 2023 07:40:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=/wn+UXvrkEcudbHBgVVgpcXn1/etkPr2gofIOA2w5fA=;
- b=Rz7zpAlTVAcHUUDWUZRbo3uKe/KquuiP0jUVDWWfrh+3LYYOiUx94EVqJkxakfdqlgGK
- ADh7TeVUmeGEIcuSbuRqNYMHA39V7tOdm5Zqi9Mp3vUq1MUM72RpHNc3GJgz90hLlW/l
- i7QAElrF+aQz6dnJa1xyIr/4xIFMNeRPejJ8wbdQpUCX5vVTthVc3TKvkY7dphUjL791
- 3cOX76xIFZd78Gx0Xmy2KH9Tch7vP3ghZXGnMA7rkBiOYD+whhQE5v73sP8l+el0I2hY
- EIGGf/c/Fz94pr+uwbM+574kzFJlrocWNejPxlSoh1MC5NbXrWExYrk6eIq7V2REYcy4 Iw== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3q6kw09e8h-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 26 Apr 2023 07:40:11 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 33Q7eAwW029366
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 26 Apr 2023 07:40:10 GMT
-Received: from [10.242.242.48] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Wed, 26 Apr
- 2023 00:40:08 -0700
-Message-ID: <763c41bb-7452-1ded-ace5-8cda9ca64788@quicinc.com>
-Date: Wed, 26 Apr 2023 13:09:56 +0530
+	Wed, 26 Apr 2023 12:40:47 +0000
+Received: by mail-pf1-x42d.google.com with SMTP id d2e1a72fcca58-63b50a02bffso5810688b3a.2
+        for <ath11k@lists.infradead.org>; Wed, 26 Apr 2023 05:40:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1682512843; x=1685104843;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=sosN6q7mjWABQa1iFcHLQ7HcWfsjeMtm3Mt392Dc1Ok=;
+        b=LHEhXfBwsoX5wQPtnAnd/oSeQOBl5rvEvn7Jq2inf11DTsMzwiilhui/ckik+6rGNf
+         qeVSAL7SRVHE2nj23tcVdeylQ9ODv7KttwZEha1dl04Uz2VuK3FanEMlfBA1WRgs8POM
+         G5Ae8uveZTMTYzFkzAjfO1rOf0DgWsHV2pin2KVCMJlqlF0CcP/ObpMkkG2KwrmYvR+a
+         DjmeyUb0tbVgM1POPQ0QoY/JJ/MDIiTWVHa4UgyNxL2IJW8DVXfSmB5msXnAe6NgA4Vu
+         9O2zG9VNIeDLh8bo3BQSxEQsCc1d9giheLcKV3mnd6NGuLTmQZvN7zs67YTC7hIIblOE
+         w+zw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682512843; x=1685104843;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sosN6q7mjWABQa1iFcHLQ7HcWfsjeMtm3Mt392Dc1Ok=;
+        b=SYRWnBbvAMHYcua9e3/k5+s79QMaEHIbnzmG4M3Gk0llmbmoz3V1Lm2Jy7a7zX4HPn
+         VE3oj5HKlejC/CFOf4FRO9AzFfYYaoTKT28dM9iAXBS9/Hdw0khE77mIJYU9ckmbthOg
+         S5wdiTyESJQMwHVVUGam/Iru9wS6YTiViqnHpJWLy8VhRKJRJcSFUA0LwD3z7eV7hfUH
+         s/5haVm++IST+YteDlcpi3V8C5FMce7BomsW74aIJsFm1gJEkZyTQS9V3sB9Lb8P5Mhr
+         FQhNAwsO+PZq2Dm5mXT81gHG555yzyloyW3QO7HF5h16motT7gfmybqrPJB1bMLfVwY+
+         YR5g==
+X-Gm-Message-State: AAQBX9f7NrUp/qDvcdSwg3CGfW6SJ83BmCb2T8B+9iKe1VBNWK675FvC
+	70pEceAFGU1IdwlF16zt1jul9Gdsg/UQfCjSikc=
+X-Google-Smtp-Source: AKy350ayHesJaV9Si6f/E/Wp+h9A2uT5MsJ/lHDtqljcQwtP1Ri7lwAypa0hf/VN91OAfADvz6myhrHxslCOx7xdqxE=
+X-Received: by 2002:a05:6a20:12ca:b0:f3:1b6:f468 with SMTP id
+ v10-20020a056a2012ca00b000f301b6f468mr19381338pzg.6.1682512843128; Wed, 26
+ Apr 2023 05:40:43 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH] wifi: ath11k: update proper pdev/vdev id for testmode
- command
-Content-Language: en-US
+References: <20221105194943.826847-1-robimarko@gmail.com> <20221105194943.826847-2-robimarko@gmail.com>
+ <20221107174727.GA7535@thinkpad> <87cz9xcqbd.fsf@kernel.org>
+ <877czn8c2n.fsf@kernel.org> <CA+HBbNFCFtJwzN=6SCsWnDmAjPkmxE4guH1RrLc+-HByLcVVXA@mail.gmail.com>
+ <87k02jzgkz.fsf@kernel.org> <CA+HBbNHi0zTeV0DRmwLjZu+XzUQEZQNnSpBMeQeUPiBu3v-2BQ@mail.gmail.com>
+ <87358hyp3x.fsf@kernel.org> <CA+HBbNGdOrOiCxhSouZ6uRPRnZmsBSAL+wWpLkczMK9cO8Mczg@mail.gmail.com>
+ <877cxsdrax.fsf@kernel.org> <CA+HBbNGbg88_3FDu+EZhqMj0UKb8Ja_vyYsxGtmJ_HGt4fNVBQ@mail.gmail.com>
+ <87y1q8ccc4.fsf@kernel.org> <CA+HBbNH2fzr_knOE9EWD4bUi-guvRa07FAxc9WyCH0jK10BLvw@mail.gmail.com>
+ <87fsafpg63.fsf@kernel.org>
+In-Reply-To: <87fsafpg63.fsf@kernel.org>
+From: Robert Marko <robimarko@gmail.com>
+Date: Wed, 26 Apr 2023 14:40:32 +0200
+Message-ID: <CAOX2RU5EaRrcKW7uhmDQbUO-TzOOnKAsx5HKtRjMDTMBEZj4tA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] wifi: ath11k: use unique QRTR instance ID
 To: Kalle Valo <kvalo@kernel.org>
-CC: <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
-        Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
-References: <20230424092420.12794-1-quic_rajkbhag@quicinc.com>
- <87a5yvt831.fsf@kernel.org>
-From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
-In-Reply-To: <87a5yvt831.fsf@kernel.org>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: n0BOrkUZLRU66NWJzGI6YnrYVJdKL9eN
-X-Proofpoint-ORIG-GUID: n0BOrkUZLRU66NWJzGI6YnrYVJdKL9eN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-04-26_02,2023-04-26_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 mlxlogscore=912
- malwarescore=0 impostorscore=0 lowpriorityscore=0 adultscore=0
- phishscore=0 bulkscore=0 spamscore=0 suspectscore=0 priorityscore=1501
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2303200000 definitions=main-2304260069
+Cc: Robert Marko <robert.marko@sartura.hr>, Manivannan Sadhasivam <mani@kernel.org>, davem@davemloft.net, 
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, 
+	gregkh@linuxfoundation.org, elder@linaro.org, hemantk@codeaurora.org, 
+	quic_jhugo@quicinc.com, quic_qianyu@quicinc.com, bbhatt@codeaurora.org, 
+	mhi@lists.linux.dev, linux-arm-msm@vger.kernel.org, 
+	ath11k@lists.infradead.org, linux-wireless@vger.kernel.org, 
+	netdev@vger.kernel.org, ansuelsmth@gmail.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230426_004018_212349_E5D8D898 
-X-CRM114-Status: GOOD (  12.41  )
+X-CRM114-CacheID: sfid-20230426_054046_480748_36C00CE6 
+X-CRM114-Status: GOOD (  19.62  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,36 +99,54 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-On 4/26/2023 12:59 PM, Kalle Valo wrote:
-> Raj Kumar Bhagat <quic_rajkbhag@quicinc.com> writes:
-> 
->> From: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
->>
->> User can extend test mode command support to set vdev and pdev params
->> for debug purpose at run time by sending vdev/pdev param set command
->> through the testmode command interface.
->>
->> Fill the proper pdev/vdev id in driver since, pdev/vdev id details may
->> not be available at user space. It will make sure that the proper
->> vdev/pdev ids are sent to firmware.
->>
->> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
->>
->> Depends-On:
->> 	[v3,3/4] wifi: ath11k: factory test mode support
->>
->> Signed-off-by: Venkateswara Naralasetty <quic_vnaralas@quicinc.com>
->> Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
->> ---
-> 
-> Please add 'Depends-on' after the '---' line. This is for future
-> patches, no need to resend because of this.
-> 
+> Still not sure what you mean. Are you saying that this patch under
+> discussion ("wifi: ath11k: use unique QRTR instance ID") also works with
+> QCA6390 and it's possible to connect two QCA6390 devices on the same
+> host?
+>
+> Or are you referring to some other hack? Or have I totally
+> misunderstood? :)
 
-Thanks for pointing this. Will take care for future patches.
+We probably have a misunderstanding, QCA6390 does not work with
+("wifi: ath11k: use unique QRTR instance ID"), that is why we in OpenWrt
+limited it to QCN9074 only so far.
 
-Thanks,
-Raj
+>
+> > so that is why its quite important for OpenWrt to have a generic
+> > solution that works on all cards.
+>
+> I fully agree on importance of having a generic solution. It's just sad
+> that it seems people who designed this didn't consider about having
+> multiple devices on the same host. It looks like there's no easy way to
+> implement a generic solution, we have only bad choices to choose from.
+> Your solution[1] is racy and writing to a register which is marked as
+> read-only in the spec.
+
+I agree, this is purely a hack based on what QCA is doing downstream where
+they hardcode the QRTR ID in DTS and write to the same register.
+
+>
+> Qualcomm's solution[2] needs changes in firmware and it's uncertain if
+> I'm able to convince all firmware teams to implement the support.
+> (Currently only QCN9074 firmware supports this.)
+>
+> Thoughts?
+
+I mean, we need some kind of a solution cause trying to pitch using a QCA
+AX SoC-s and PCI cards but then saying that they cannot use AHB+PCI
+or multiple PCI cards at the same time are not viable.
+
+Regards,
+Robert
+>
+> [1] https://patchwork.kernel.org/project/linux-wireless/patch/20221105194943.826847-2-robimarko@gmail.com/
+>
+> [2] https://patchwork.kernel.org/project/linux-wireless/patch/20230111170033.32454-1-kvalo@kernel.org/
+>
+> --
+> https://patchwork.kernel.org/project/linux-wireless/list/
+>
+> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
