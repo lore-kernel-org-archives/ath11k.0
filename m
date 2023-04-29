@@ -4,61 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FA35C7618E
-	for <ath11k@archiver.kernel.org>; Sat, 29 Apr 2023 05:37:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D74AC77B60
+	for <ath11k@archiver.kernel.org>; Sat, 29 Apr 2023 21:15:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
-	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NsN9VNmFw1pVbdL6SnT3yOMHkckq7wdVPxg57PNHq8s=; b=OoOznsJmQvzlTd
-	fdm6YC5puf7mo6B4Orli5B8nIjcrI4PqwtDk5r2SkQS9QfhkNMuSdz1N3I7b3x7+wvFYjykNTgsRD
-	r21Qf94tC78rHCcSYBdWo7Tkb+96S+FXDrqEWRs0XuF+ZQr9vO6FgLppqh2AvduN9Jrxc6EwzMeaG
-	emdwhlhHzxldY4MwTTS2K5HF3f0FoywwPr12FGe+v4GAwak34GJLDQChO9q1KsOsiTU9oKphRfVka
-	Z+dmjpFcat3TzsZaWuLjRq7WBogUFreJwNL0QsGhP9nVNpHjg8ekeiSlPys+8oSNqerrxxSeFY73E
-	A8vLcUqmJJgYQSS4NSPA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:To:Subject:From:MIME-Version:Date:Message-ID:
+	Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=7uWOf0WbYqvvus89ks4ydq9QPgZfoFHfN358/lcpWWA=; b=0/iYc/iFzTU/1z
+	bXPz9goqfRnZv6hudd1JKvM6XIM8D6J7Ryr65WxJzS+FsYAISjRzoQ8BErzTFGzJKS8Uwq8HTK120
+	JsrqsZtqoXeS5UspA+rmAbkA85mYCQNKJMxpFbaDc4/9FusXBh1g0F6ROG0qi3V5CoqowwwjRo7kj
+	cNYWOjGJYC8j8rbfO4O5laRvLs0sYFzqmpN3R12rYW7uTvKtbVl3X/g23UZokOdHTISLSbwhmyRlV
+	3Ye5mgWgOAD8WfAiedi2OwPt+WTPcEtMbgoHCh7CLLvhiabCatr3cnnH6X5r14QrqDdmBqphY8RY0
+	8lVd/Sqj0W8zxuInbHqQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1psdHL-00CHHJ-1q;
-	Sat, 29 Apr 2023 05:37:51 +0000
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	id 1psruW-00DB2g-0u;
+	Sat, 29 Apr 2023 21:15:16 +0000
+Received: from mail-ed1-x52a.google.com ([2a00:1450:4864:20::52a])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1psdHJ-00CHGd-0h
+	id 1psruT-00DB1t-0a
 	for ath11k@lists.infradead.org;
-	Sat, 29 Apr 2023 05:37:50 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 4E58061358;
-	Sat, 29 Apr 2023 05:37:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F119C43445;
-	Sat, 29 Apr 2023 05:37:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1682746667;
-	bh=KcRS/gSUxsdaEHHgcHS4mEbJp1Za+VdXFHnn97XmJA4=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=CcXINkHQdc/my3AWAk1Mwcc5+46F0VQHMzKEKYRnCGe1degcBR3qR6AH78YDk8n3U
-	 +HpfZ3CLLefCRrv5xs5XCCPQiFAeqyb0X/pF1MTVheWrfU/MnaTLhoy3q8pyAr0R9L
-	 qcMfRsb2D7aBRar5n0U+YXHvjXbROdFttCsctnLzdopMMfKAnyYEJlOkS52xg1sPZT
-	 9/n3byJq5Z/3Zo9n9DlvglUCQlSqmMhRKUcP1FlHUjFe5qbfKF78+ZE1A38qEnNXbA
-	 c1lgmWxoI4c5ynJO4BEc/k36D+/LADEfBnND8DmU/kw30uXwC+XINrvuUPqkZXw2e7
-	 EgDJQDhaZ8bsA==
-From: Kalle Valo <kvalo@kernel.org>
-To: Aloka Dixit <quic_alokad@quicinc.com>
-Cc: <ath11k@lists.infradead.org>,  <linux-wireless@vger.kernel.org>
-Subject: Re: [PATCH v3 4/7] wifi: ath11k: MBSSID parameter configuration in AP mode
-References: <20230405221648.17950-1-quic_alokad@quicinc.com>
-	<20230405221648.17950-5-quic_alokad@quicinc.com>
-Date: Sat, 29 Apr 2023 08:37:40 +0300
-In-Reply-To: <20230405221648.17950-5-quic_alokad@quicinc.com> (Aloka Dixit's
-	message of "Wed, 5 Apr 2023 15:16:45 -0700")
-Message-ID: <87leibqme3.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+	Sat, 29 Apr 2023 21:15:14 +0000
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-50bc075d6b2so511123a12.0
+        for <ath11k@lists.infradead.org>; Sat, 29 Apr 2023 14:15:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1682802910; x=1685394910;
+        h=content-transfer-encoding:to:subject:from:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=F+FmoMZqz7W3WZiQY76lgGN6Cl/cEC62w50Fo7l8reg=;
+        b=I04HYbsv9qKISnaB0zH0Sj0cTxH0U9biCopleAdg0PvedPB5I5s/XVJIDLAGWphM2b
+         mfkpnWd70+2OnkD6/kZETpOTDQL4dJH9AM+47KaGNkkWb6tfdmLNIC/G0Nr+yBO90czH
+         a+yEr51ak3rDwHu66L0Whgl+6ZI6Wc5Q37/PV8/lihXgzmjyTLy96d3cCvghYBSvXj6m
+         XR4O0/HiV0fRMb02vUheqWkId68VaaAjiqqPdeopHxWY/ASUz11THmif5wOKyK7fVH8A
+         fjnBy6tmhdzogymDNaziAug8nMTse3iT44nXOZWcdajVHH8YmYZe7VJpKEqnnjb4ehD/
+         oRag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682802910; x=1685394910;
+        h=content-transfer-encoding:to:subject:from:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=F+FmoMZqz7W3WZiQY76lgGN6Cl/cEC62w50Fo7l8reg=;
+        b=Qj8BHJODbf72hLXakhdpN2SKNq5qL7/Joh3SyV+qfn0J1YHPH9acVX91xnc16/ATVr
+         aFF9L5LVKhRLPtoMY1a06tuTZzk5CgzVVgteOqUfjEv1NUCO6dISJA/DSsE51Exq6n8W
+         EmREZ3Y2DuxergXWIpLyduKPHSa9e4SgqiWIclsPEolPeQfOQHQYKVOS1ewhu7yXtXyc
+         mUNvVcd6ko+4DRGkBN4ALvEphczM12lXkvAguKbkTs3eYIbjj9rm8lLFjA7F1qFCkOYI
+         hLlZAEQLjOlkHWm249oYD2r9iX4rJTTE4tochDdbczBmP9qd540chnCkTzaUHCrrNzkP
+         howw==
+X-Gm-Message-State: AC+VfDzN5Po44HjzCoQXjkH1OFsYwb0UO8l4XRyX5UNAS0cqgoExFzI4
+	yUqDGVExJ3CIXjyE6AV9belwMqxO0Sw=
+X-Google-Smtp-Source: ACHHUZ7EA/DYE17F7A+YefaNXCOAlgg6DXg9gZTBI/WfwwuIu1L46zID2LQAjLnl6X1WQ/p7jdrIJw==
+X-Received: by 2002:a05:6402:518:b0:500:46f2:e7db with SMTP id m24-20020a056402051800b0050046f2e7dbmr2214842edv.15.1682802910292;
+        Sat, 29 Apr 2023 14:15:10 -0700 (PDT)
+Received: from [192.168.1.72] (xdsl-31-165-208-238.adslplus.ch. [31.165.208.238])
+        by smtp.gmail.com with ESMTPSA id n9-20020aa7db49000000b00506a59795dcsm10588078edt.54.2023.04.29.14.15.09
+        for <ath11k@lists.infradead.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 29 Apr 2023 14:15:09 -0700 (PDT)
+Message-ID: <4fe0fc29-a0ed-7e4d-7b75-20362d8e2cda@gmail.com>
+Date: Sat, 29 Apr 2023 23:15:09 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+From: =?UTF-8?Q?Jakob_Br=c3=a4uchi?= <jbraeuchi@gmail.com>
+Subject: How can i disable Wifi 6
+To: ath11k@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230428_223749_291863_3424BE9B 
-X-CRM114-Status: GOOD (  12.44  )
+X-CRM114-CacheID: sfid-20230429_141513_220957_531C145D 
+X-CRM114-Status: UNSURE (   5.04  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,68 +85,24 @@ List-Post: <mailto:ath11k@lists.infradead.org>
 List-Help: <mailto:ath11k-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/ath11k>,
  <mailto:ath11k-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Aloka Dixit <quic_alokad@quicinc.com> writes:
+Hi
 
-> Include MBSSID parameters in WMI vdev up operation.
->
-> Tested-on : IPQ8074 hw2.0 AHB WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
-> Signed-off-by: Aloka Dixit <quic_alokad@quicinc.com>
-> Co-developed-by: John Crispin <john@phrozen.org>
-> Signed-off-by: John Crispin <john@phrozen.org>
-> ---
+My new notebook has Qualcomm Atheros QCNFA765 wifi-card but it does not 
+play well with the router of my internet provider.
+In Windows i could force the wifi-card to Wifi 5 mode by setting the 
+"wireless mode".
+How can i do the same in Linux ? I could not find a description of the 
+parameters for ath11k.
+I'm using Ubuntu 23.04 and the driver is ath11k_pci.
 
-[...]
+Thanks for your support
+Jakob
 
-> @@ -7153,8 +7161,13 @@ ath11k_mac_update_vif_chan(struct ath11k *ar,
->  			ath11k_warn(ab, "failed to update bcn tmpl during csa: %d\n",
->  				    ret);
->  
-> +		if (arvif->vif->mbssid_tx_vif)
-> +			tx_arvif = (struct ath11k_vif *)arvif->vif->mbssid_tx_vif->drv_priv;
-
-This had a warning:
-
-drivers/net/wireless/ath/ath11k/mac.c:7200: line length of 92 exceeds 90 columns
-
-In the pending branch I fixed it like this:
-
---- a/drivers/net/wireless/ath/ath11k/mac.c
-+++ b/drivers/net/wireless/ath/ath11k/mac.c
-@@ -7143,6 +7143,7 @@ ath11k_mac_update_vif_chan(struct ath11k *ar,
- {
-        struct ath11k_base *ab = ar->ab;
-        struct ath11k_vif *arvif, *tx_arvif = NULL;
-+       struct ieee80211_vif *mbssid_tx_vif;
-        int ret;
-        int i;
-        bool monitor_vif = false;
-@@ -7196,8 +7197,10 @@ ath11k_mac_update_vif_chan(struct ath11k *ar,
-                        ath11k_warn(ab, "failed to update bcn tmpl during csa: %d\n",
-                                    ret);
- 
--               if (arvif->vif->mbssid_tx_vif)
--                       tx_arvif = (struct ath11k_vif *)arvif->vif->mbssid_tx_vif->drv_priv;
-+               mbssid_tx_vif = arvif->vif->mbssid_tx_vif;
-+               if (mbssid_tx_vif)
-+                       tx_arvif = (struct ath11k_vif *)mbssid_tx_vif->drv_priv;
-+
-                ret = ath11k_wmi_vdev_up(arvif->ar, arvif->vdev_id, arvif->aid,
-                                         arvif->bssid,
-                                         tx_arvif ? tx_arvif->bssid : NULL,
-
-Link to the commit:
-
-https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/commit/?h=pending&id=c884238009e778a0c8202a5eb0a7f68b13200bde
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
