@@ -4,81 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4A9CC77B78
-	for <ath11k@archiver.kernel.org>; Thu,  4 May 2023 09:24:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EC1CC77B78
+	for <ath11k@archiver.kernel.org>; Thu,  4 May 2023 19:43:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:CC
-	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=yuM75jbxCrfxV39eWhvkinT3W+5MLfCag66jGlMafBc=; b=XcHa/DVEaMxSX7
-	abKAnGsmdXZmsw79ZZPBS4lH6QzkuIxLf4BSrVHUm/UMeCSFq7IbXRxY+tATY7LVW9B2ezwSoIBCK
-	06fpxcnx28mER8fqJlz2jRF9EvH4rBqe6dNmHxd5bztZlgah+q1IgcplEb5fn1LV0s4niFFi3JXPr
-	1Jy9aQlodnWOdmomy5miDIHmihV+R+9BatgQKtooabaGkG3O1afn1J8/ODR0mTc+lFXRbzHcXMQdQ
-	DNc2OfK0LIndr6bqFIPPO6xd9ZN7l2nGvxrn+qERTGcNECIHB52wICXYT3zHaBrCIHJK1BYJLnZy/
-	y+ynv8Ui4cPu5L6qc+IA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=nGPhVYMXsKssz/0V9Y7sv9EZGoWZ88GgLbdGJgM+LYo=; b=Lr4e5pvXgd3A/f
+	pywCPdAVBpQjm71WeT9IAoA4H9xrCscyK3rJtx2yPeMjk/TYgKN97XliA4TqnH99dY/4h6Egv+dna
+	Ijes+i+yWSfTxtnDSEMjx66kavqyWpiKv7fsVM6Wko631OT9DE8HXVYBp0zQb8EHCDzLlSx1Ypwus
+	o/SG/qdlrj7sklMxHV1n6q+ADkvTlPAT+DeDlgE9bC+h4jQwdmhJSq4ZjBqZ5VdGeroMHEGAOYnPY
+	B8xV9IuOXP37cKHXh2Vy324f5EVxUNqEz2iOv5cGsZ6wNXsfYxS8AROxBQsGZnHxM5FWvEzqc+IR1
+	fhFmobpxzNZsRZky/XuQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1puVC7-007Gm6-0G;
-	Thu, 04 May 2023 09:24:11 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1puerX-008pjN-2c;
+	Thu, 04 May 2023 19:43:35 +0000
+Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1puVC4-007Glg-11
+	id 1puerU-008pi8-24
 	for ath11k@lists.infradead.org;
-	Thu, 04 May 2023 09:24:09 +0000
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3449NhWK001438;
-	Thu, 4 May 2023 09:24:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-transfer-encoding :
- content-type; s=qcppdkim1;
- bh=U1zMZzPrvGfv84Zps+Dnkr3c9elj2CUX/+Piidq2f90=;
- b=lonVkg+WcQYwhhTSNs2QEMd88mC8eZkn8OwDxG/0WakJnpJNfFAmcgaKn4z32R4hT4+Z
- VKR9VV8vGLYNNILHa6yd5L8kQkrCP0l8bd6PnGWmlVdRIUSIEda2dXx25fFdoi1Dei3I
- d8HNf5E//dpBBMnSlu6suzbN2nR7ZLrfncQMthnqUsYlyVosiRoRkguz9T+cQ4VjYMeE
- oR80fQ4ICTpzPKtw1wbWbO4xExkgPXmu5g7BDhD10y7f7sVs1My9+S9qPRWp9oaSq4vc
- bVwMPKHMtLhbDno+X1IscSVkZczNGlcrdPYRa1xWQKOWof62DejK7P5b86bjd4Lm+OYs xw== 
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qbvghhffq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 04 May 2023 09:24:07 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3449O7vq031474
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 4 May 2023 09:24:07 GMT
-Received: from che-siroccolnx03.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Thu, 4 May 2023 02:24:05 -0700
-From: Maharaja Kennadyrajan <quic_mkenna@quicinc.com>
-To: <ath11k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>,
-        Maharaja Kennadyrajan
-	<quic_mkenna@quicinc.com>
-Subject: [PATCH 0/2] ath11k: Send HT fixed rate in WMI peer fixed param
-Date: Thu, 4 May 2023 14:53:49 +0530
-Message-ID: <20230504092349.3542530-1-quic_mkenna@quicinc.com>
-X-Mailer: git-send-email 2.25.1
+	Thu, 04 May 2023 19:43:34 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 08B736346C;
+	Thu,  4 May 2023 19:43:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9D3EC4339B;
+	Thu,  4 May 2023 19:43:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1683229411;
+	bh=mmm9lHBhX+OdRGdo5vBJXE3H0w3wBS8JU5CFAfWiQKQ=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=t3pcpCBU/WpdrG39q5JpugdmYwQchm+lNWenGxJS9+Ofg3IXEppStTAVRW6SZL00U
+	 uUQwYy7lIhYR94wxiAWzWKhfINc1G/hynX69A/9ngT1XJkVA1Q6oFhA2JOMRBqJPxM
+	 cYemZmYrc73dfLJjpK+KDDzzu8bojW9KGcgHlEzf0LH9mmB2nIi9Mx4V2Tr9n4maLS
+	 uHveRn6E4dSfWLwyIX2VyaCAkaOwvk67sjL3DB4JgbHokWnHqXIZhwr57QAnV/Ojb3
+	 vb9C3EyeKJuTKEsetNGqN2+6hcRou55nbzeYnhucmR+b6gOeW24h9fpWqjY2xMRsUj
+	 LP3UkGwsmYDRw==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Cc: Harshitha Prem <quic_hprem@quicinc.com>,
+	Nagarajan Maran <quic_nmaran@quicinc.com>,
+	Kalle Valo <quic_kvalo@quicinc.com>,
+	Sasha Levin <sashal@kernel.org>,
+	kvalo@kernel.org,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	ath11k@lists.infradead.org,
+	linux-wireless@vger.kernel.org,
+	netdev@vger.kernel.org
+Subject: [PATCH AUTOSEL 6.3 40/59] wifi: ath11k: Ignore frags from uninitialized peer in dp.
+Date: Thu,  4 May 2023 15:41:23 -0400
+Message-Id: <20230504194142.3805425-40-sashal@kernel.org>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230504194142.3805425-1-sashal@kernel.org>
+References: <20230504194142.3805425-1-sashal@kernel.org>
 MIME-Version: 1.0
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: iCMkK-13YkoM-rtU2E5EN3luBUmq-ukA
-X-Proofpoint-GUID: iCMkK-13YkoM-rtU2E5EN3luBUmq-ukA
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-04_06,2023-05-03_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
- lowpriorityscore=0 impostorscore=0 suspectscore=0 malwarescore=0
- bulkscore=0 clxscore=1015 phishscore=0 spamscore=0 adultscore=0
- priorityscore=1501 mlxscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2303200000 definitions=main-2305040076
+X-stable: review
+X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230504_022408_355955_BF03C4BA 
-X-CRM114-Status: GOOD (  11.62  )
+X-CRM114-CacheID: sfid-20230504_124332_763430_2095BDB1 
+X-CRM114-Status: GOOD (  15.94  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,29 +87,118 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-Due to the firmware behavior with HT fixed rate setting,
-HT fixed rate MCS with NSS > 1 are treated as NSS = 1
-HT rates in the firmware and enables the HT fixed rate of
-NSS = 1.
+From: Harshitha Prem <quic_hprem@quicinc.com>
 
-This leads to HT fixed rate is always configured for NSS = 1
-even though the user sets NSS = 2 or > 1 HT fixed MCS in the
-set bitrate command.
+[ Upstream commit a06bfb3c9f69f303692cdae87bc0899d2ae8b2a6 ]
 
-Currently HT fixed MCS is sent via WMI peer assoc command.
-Fix this issue, by sending the HT fixed rate MCS in WMI peer
-fixed param instead of sending in peer assoc command.
+When max virtual ap interfaces are configured in all the bands with
+ACS and hostapd restart is done every 60s, a crash is observed at
+random times.
+In this certain scenario, a fragmented packet is received for
+self peer, for which rx_tid and rx_frags are not initialized in
+datapath. While handling this fragment, crash is observed as the
+rx_frag list is uninitialised and when we walk in
+ath11k_dp_rx_h_sort_frags, skb null leads to exception.
 
-Maharaja Kennadyrajan (2):
-  ath11k: Relocate the func ath11k_mac_bitrate_mask_num_ht_rates() and
-    change hweight16 to hweight8
-  ath11k: Send HT fixed rate in WMI peer fixed param
+To address this, before processing received fragments we check
+dp_setup_done flag is set to ensure that peer has completed its
+dp peer setup for fragment queue, else ignore processing the
+fragments.
 
- drivers/net/wireless/ath/ath11k/mac.c | 93 ++++++++++++++++++++++-----
- 1 file changed, 76 insertions(+), 17 deletions(-)
+Call trace:
+  ath11k_dp_process_rx_err+0x550/0x1084 [ath11k]
+  ath11k_dp_service_srng+0x70/0x370 [ath11k]
+  0xffffffc009693a04
+  __napi_poll+0x30/0xa4
+  net_rx_action+0x118/0x270
+  __do_softirq+0x10c/0x244
+  irq_exit+0x64/0xb4
+  __handle_domain_irq+0x88/0xac
+  gic_handle_irq+0x74/0xbc
+  el1_irq+0xf0/0x1c0
+  arch_cpu_idle+0x10/0x18
+  do_idle+0x104/0x248
+  cpu_startup_entry+0x20/0x64
+  rest_init+0xd0/0xdc
+  arch_call_rest_init+0xc/0x14
+  start_kernel+0x480/0x4b8
+  Code: f9400281 f94066a2 91405021 b94a0023 (f9406401)
 
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1
+
+Signed-off-by: Harshitha Prem <quic_hprem@quicinc.com>
+Signed-off-by: Nagarajan Maran <quic_nmaran@quicinc.com>
+Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+Link: https://lore.kernel.org/r/20230403184155.8670-2-quic_nmaran@quicinc.com
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/net/wireless/ath/ath11k/dp.c    | 4 +++-
+ drivers/net/wireless/ath/ath11k/dp_rx.c | 8 ++++++++
+ drivers/net/wireless/ath/ath11k/peer.h  | 1 +
+ 3 files changed, 12 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/net/wireless/ath/ath11k/dp.c b/drivers/net/wireless/ath/ath11k/dp.c
+index f5156a7fbdd7a..d070bcb3fe247 100644
+--- a/drivers/net/wireless/ath/ath11k/dp.c
++++ b/drivers/net/wireless/ath/ath11k/dp.c
+@@ -36,6 +36,7 @@ void ath11k_dp_peer_cleanup(struct ath11k *ar, int vdev_id, const u8 *addr)
+ 	}
+ 
+ 	ath11k_peer_rx_tid_cleanup(ar, peer);
++	peer->dp_setup_done = false;
+ 	crypto_free_shash(peer->tfm_mmic);
+ 	spin_unlock_bh(&ab->base_lock);
+ }
+@@ -72,7 +73,8 @@ int ath11k_dp_peer_setup(struct ath11k *ar, int vdev_id, const u8 *addr)
+ 	ret = ath11k_peer_rx_frag_setup(ar, addr, vdev_id);
+ 	if (ret) {
+ 		ath11k_warn(ab, "failed to setup rx defrag context\n");
+-		return ret;
++		tid--;
++		goto peer_clean;
+ 	}
+ 
+ 	/* TODO: Setup other peer specific resource used in data path */
+diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
+index b65a84a882641..294c6fcfa1aa8 100644
+--- a/drivers/net/wireless/ath/ath11k/dp_rx.c
++++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
+@@ -3138,6 +3138,7 @@ int ath11k_peer_rx_frag_setup(struct ath11k *ar, const u8 *peer_mac, int vdev_id
+ 	}
+ 
+ 	peer->tfm_mmic = tfm;
++	peer->dp_setup_done = true;
+ 	spin_unlock_bh(&ab->base_lock);
+ 
+ 	return 0;
+@@ -3583,6 +3584,13 @@ static int ath11k_dp_rx_frag_h_mpdu(struct ath11k *ar,
+ 		ret = -ENOENT;
+ 		goto out_unlock;
+ 	}
++	if (!peer->dp_setup_done) {
++		ath11k_warn(ab, "The peer %pM [%d] has uninitialized datapath\n",
++			    peer->addr, peer_id);
++		ret = -ENOENT;
++		goto out_unlock;
++	}
++
+ 	rx_tid = &peer->rx_tid[tid];
+ 
+ 	if ((!skb_queue_empty(&rx_tid->rx_frags) && seqno != rx_tid->cur_sn) ||
+diff --git a/drivers/net/wireless/ath/ath11k/peer.h b/drivers/net/wireless/ath/ath11k/peer.h
+index 6dd17bafe3a0c..9bd385d0a38c9 100644
+--- a/drivers/net/wireless/ath/ath11k/peer.h
++++ b/drivers/net/wireless/ath/ath11k/peer.h
+@@ -35,6 +35,7 @@ struct ath11k_peer {
+ 	u16 sec_type;
+ 	u16 sec_type_grp;
+ 	bool is_authorized;
++	bool dp_setup_done;
+ };
+ 
+ void ath11k_peer_unmap_event(struct ath11k_base *ab, u16 peer_id);
 -- 
-2.25.1
+2.39.2
 
 
 -- 
