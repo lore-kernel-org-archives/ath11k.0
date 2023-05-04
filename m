@@ -4,61 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B540AC7EE21
-	for <ath11k@archiver.kernel.org>; Thu,  4 May 2023 21:42:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E2EAC7EE21
+	for <ath11k@archiver.kernel.org>; Thu,  4 May 2023 21:43:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=AB/bj2/wceqmnOw/g5lUHNKXBZSy/skEGoRvD2bRIqA=; b=b1K4BO6CGc1BDR
-	KPqE/5lqClSpoL0banKpQSPHTljcDcU/083LgGkH6MMOiaekctRfOvly/wKaqltKgrHXceYKh7zja
-	682Whm9euPwxsPO75y1PjbGLPXmFQhJXuOREDlMi9v3PNZVGf2E8htABKsVvReNZKSIhoqu+755Qk
-	HKIP9Ms5eHl2TQ11nvvCI8QWOAUawSp93kK2lfnhZONtaG0ulWXPEdYNyWti3hVfksyJE52YijYtJ
-	s2YBLhmQT71yJnSI0I0yOyB/wkBeNoLEworIOpgrrH9tlJqqZf7PPL3hf7+Boqun+SmZE+GgPMEpD
-	0J+8OsPT0rVs8P2GkCYg==;
+	List-Owner; bh=pm1qOtTnKa/1jkLaDQU6N5Z8kO6SS01CY4Uhd8lC1LM=; b=SgZNMWNKQmUz8y
+	jGXjoDcazaJESRIXBMpLdQjC/2A2K7j1iQWJJrjNt9XgNpO/kvBMqHHJydw09n1L0iFlq0qpcpKND
+	d2OaGaMBKbDTr26X/zsCHIDAyegfnFcCzrh58aTRApiqmxDWdIbZIHQyu7erq+UFR9IBLLJvx2aXL
+	3gLSr1KgnmGqmzw0uNMUxxUYoJX9ijgFr82+4Z5sVkTyDHyhPf0sZxeyHv4NFLTIvJNZ0rw+CqyD3
+	w/7G6Tjo4wnbVc6j/fRxu8i0QIpSLOhXrVBrWkGKDQNibzNM01/31KDXIHA65wEulza6slFy83ZzQ
+	lx2We9NAPImxy3Clhciw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pugib-0095NJ-1B;
-	Thu, 04 May 2023 21:42:29 +0000
+	id 1pugjP-0095kO-0v;
+	Thu, 04 May 2023 21:43:19 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pugia-0095MK-2H
+	id 1pugjO-0095k4-32
 	for ath11k@bombadil.infradead.org;
-	Thu, 04 May 2023 21:42:28 +0000
+	Thu, 04 May 2023 21:43:18 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
 	:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
 	Content-Type:Content-ID:Content-Description;
-	bh=rb5ozUYHH0WSskF5y7WLL/L2XzFcWdJbnaCc/Ce7w20=; b=oXfHZ/iW9n1QZk8T6kFsAKPF/q
-	K0rwHJcqpspb+8//w+QRceiuOtpNnOhaR0T2lv+XEWjCDWdztCmyI+l/8g3TwmC+8cqdFTEwHv/eu
-	p3oiVi5trhOGpzd3FyUdUhNzD6FN80WUyAYknORn9G/W6optkvRy/6OkQMDXelehJ8EwxpaSiUVsi
-	ZDfEMy++Spzsa7j6bzYz3nscEXvf7MxIYIIs4wliS4r8blM26G9iL/WgQrssl6MJFh3OAIB4EV09+
-	yCPdZaDByp7pNMYoTim3idHHVo5OaN0wmrih3ULQ+BeCl9Ngs9iTXzAWdr76BACtJE7hA7DU10Zbs
-	Ajqj+peA==;
-Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
+	bh=1yNDuk8OWz2uYaVU+/VfB5pHUrI26LvVRTjPQiNdj+4=; b=DE85rGIZq/NbNG5LOpwJLgIPtc
+	QWb+w1tq9p3zhNinPa8nshBZggGYQjyajPJRJuMiuMFyw0GobFhYg+KpzlyB/1dTIBryBCDWdtze3
+	OqryeZ/nyFlVjo+dA7xfRfdi2xG6Yfl0Apd930ccZFBOEjd0qFxxOLRreKXHUFOubTK4bim8Dh+Nq
+	oA9AV0qfB79cB6WTg9NmY6g+XgdBilzfKFBMyWdba3kYVOfGZwSu99R+fT9WFKtLVXSJC0sIUCX9u
+	ol4RHByItHm5MJcMeHiAbCD97U5BEoQ12zjvmZ9znJ53ZxSfx1NcC7HGV/zHUJuppDCnXUrjDdbWf
+	ZWsioJSA==;
+Received: from dfw.source.kernel.org ([139.178.84.217])
 	by desiato.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1puexF-001p7R-33
+	id 1pueyK-001pAf-1s
 	for ath11k@lists.infradead.org;
-	Thu, 04 May 2023 19:49:33 +0000
+	Thu, 04 May 2023 19:50:39 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 5D4C16372C;
-	Thu,  4 May 2023 19:49:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 753F6C433A0;
-	Thu,  4 May 2023 19:49:26 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id B038F63851;
+	Thu,  4 May 2023 19:50:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F7D8C43322;
+	Thu,  4 May 2023 19:50:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1683229767;
-	bh=v/QX8/J2LMzBPmGWzpe+0L0cIhMGU8UepbOnexClgAQ=;
+	s=k20201202; t=1683229834;
+	bh=t0cKe2cHOnGAtsQCasBMgUnSszKnn56mYy16TcMhNkk=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=iAoYV35FRvOu5/ICGWsMQ9KvhXvi4fGE7e4WgvDKvASR2ETb+nbWH0G24aYdRBaK3
-	 DYA3DiAAQmTjzYa4dz6gZuQjzsFSjawfgm8GxjUvZ32X+RwgHEccNUFp1ezJljihZB
-	 /HCIAttd1X5hDUuF1a4Y+GJNFCdnf0i5t08eyQIFaB7h8gDNmY5KYTSXrFyh9t6JjK
-	 UQJjQ3IHOR8ZXPMCRqFg5ioHFDBP5hug+J0U98lA9wBi2d5ogMNavaybmr9nmu9Mnc
-	 Kz3Q/TEAISYC7O9wOc++m8BxB9Aaky82Zg68HuSKAV3jdp6syOl/kCYpnAfC0bdw0f
-	 +Mm5EInbxc/lQ==
+	b=iP1XAdaFx5GRIge9jZHkk8wpwA/PNBmfYRCnwab1cxRDtXdadgGRcfuq0YJyzxAgY
+	 d3vp70ewPmrumyM5WsY/vHZ6Z39bD6/oseSYuczdGG1UCofxaIMcv3h5LZutbtceiO
+	 VuCLI7VgudMZMQ89/nvtrTM5qr9zWDEceMDXjd4cpBl9b8xgOs3FsJ10V3xLq6Or/k
+	 6THtArwquSJTFUQnGye//FuEZ4fKMDP09i1YHCWR8fIj2ltbvNB+Yw3rX7mxY2ZIe2
+	 72eTqHFq8mCimc1Njsp21KL2qWUhEGSFWczj/a+aefbM9cRSB6kpLnjA4038vsniub
+	 McAATKj2m5npw==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
@@ -73,17 +73,17 @@ Cc: Nagarajan Maran <quic_nmaran@quicinc.com>,
 	ath11k@lists.infradead.org,
 	linux-wireless@vger.kernel.org,
 	netdev@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.15 25/30] wifi: ath11k: Fix SKB corruption in REO destination ring
-Date: Thu,  4 May 2023 15:48:18 -0400
-Message-Id: <20230504194824.3808028-25-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.10 21/24] wifi: ath11k: Fix SKB corruption in REO destination ring
+Date: Thu,  4 May 2023 15:49:34 -0400
+Message-Id: <20230504194937.3808414-21-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230504194824.3808028-1-sashal@kernel.org>
-References: <20230504194824.3808028-1-sashal@kernel.org>
+In-Reply-To: <20230504194937.3808414-1-sashal@kernel.org>
+References: <20230504194937.3808414-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230504_204931_457314_A034FB13 
+X-CRM114-CacheID: sfid-20230504_205037_169037_2CFA88ED 
 X-CRM114-Status: GOOD (  12.79  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -146,10 +146,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 6 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/net/wireless/ath/ath11k/dp_rx.c b/drivers/net/wireless/ath/ath11k/dp_rx.c
-index 3c64d33d0133b..357abd87d5491 100644
+index 578fdc446bc03..583bcf148403b 100644
 --- a/drivers/net/wireless/ath/ath11k/dp_rx.c
 +++ b/drivers/net/wireless/ath/ath11k/dp_rx.c
-@@ -354,10 +354,10 @@ int ath11k_dp_rxbufs_replenish(struct ath11k_base *ab, int mac_id,
+@@ -324,10 +324,10 @@ int ath11k_dp_rxbufs_replenish(struct ath11k_base *ab, int mac_id,
  			goto fail_free_skb;
  
  		spin_lock_bh(&rx_ring->idr_lock);
@@ -163,7 +163,7 @@ index 3c64d33d0133b..357abd87d5491 100644
  			goto fail_dma_unmap;
  
  		desc = ath11k_hal_srng_src_get_next_entry(ab, srng);
-@@ -2602,6 +2602,9 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int ring_id,
+@@ -2564,6 +2564,9 @@ int ath11k_dp_process_rx(struct ath11k_base *ab, int ring_id,
  				   cookie);
  		mac_id = FIELD_GET(DP_RXDMA_BUF_COOKIE_PDEV_ID, cookie);
  
