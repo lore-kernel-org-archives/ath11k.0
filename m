@@ -4,70 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 984F0C77B73
-	for <ath11k@archiver.kernel.org>; Mon,  8 May 2023 10:17:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E775CC7EE2A
+	for <ath11k@archiver.kernel.org>; Mon,  8 May 2023 14:57:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9xrXEwgVPpqDnv9eMRD84hJvalGl5+87HK0zTdMYcK8=; b=hgUk9doLY/onE9
-	YDHFhLE6QtL85/xiZHNo5ObcDCY/cEC+ZhF/HxYb4q0lpytYyQp1X8eZ4kOBROLB78MRvC8M5nREq
-	wOBztkAWoLv7PUOnkbsSYGlxXvmBiwcHnKCYJV93UGEHna3beVg7ziNXVnqckF+1eO7MkTBgb6urJ
-	NCopC6a5upIveKcMuCPuMSJPpAZqpGlQAH5Z5VgilAGOoNCHcPuXo2k0lY3LCYtmlVEbBbNLDeXz5
-	d57owu38HJiZBJ1oxkRUkDJNWddMjbLGE0jEktfVNo8BbavYVmAA9uGYpbQEt4YdiTm90Rj/3QZCX
-	k8vMikK3zBDvlfQKGQyg==;
+	List-Owner; bh=9IAuJqlicwtysIqhxd0ssS9E1dSyxHbewwOAXd6ANdo=; b=DAoc4OnjV8fDGR
+	yFJ8h88NPi3ZkjzelQzPnPjq7tMI+odPHAKhEGC9UGucTxi9gOFlqFSuVyAljICFVjLIo+iJRbVB/
+	kr5DMtsaWO0fvJTOzgfu/f24colXW6GFaevN7ePIcA8ht/kHzDhLrKyZVFBsbaDJ6phgSbcPSHZpP
+	iHLssgB9Gr0hYqijJPd+CUNLjUhkpr01ZdEqJsuZwBFEYcgr08HsWxLoQ+11IsGqcAcgjH8od8nrO
+	9gIxP+ZC4X8IY6U8y1Je06aY78sYbd2qlCwtVK5WBjBx/wDxSjlHTNwmsnkYQprfsd2i2k6ssAwmd
+	70TO0UHZN2wX7WP4hoNQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.96 #2 (Red Hat Linux))
-	id 1pvxw6-0009yt-19;
-	Mon, 08 May 2023 10:17:42 +0000
+	id 1pw2JE-000oYh-0R;
+	Mon, 08 May 2023 14:57:52 +0000
 Received: from dfw.source.kernel.org ([2604:1380:4641:c500::1])
 	by bombadil.infradead.org with esmtps (Exim 4.96 #2 (Red Hat Linux))
-	id 1pvxw3-0009xO-2Y
-	for ath11k@lists.infradead.org;
-	Mon, 08 May 2023 10:17:41 +0000
+	id 1pw2JA-000oYB-2B;
+	Mon, 08 May 2023 14:57:50 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 5576B624DD;
-	Mon,  8 May 2023 10:17:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 464ABC433EF;
-	Mon,  8 May 2023 10:17:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1683541058;
-	bh=VcVr4HRav66u8ZpAo9LD0FoqBN0HlX52IbJUdRpdA3A=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=VFzLzFjuY2C57YW22SpejTYohrt+YvL6XWMUzbeAa2wmlMmPOaVr8IdIGpeZwHMKc
-	 sxMlYx/Yr9iHu7PvuUZj87Lu2qzGEO8ncC6q6+vrbI9VJZSJY0Ijtny12h9fzwM/Fm
-	 tlYgsK7xSIif8u2TFHCb7Ea3KE/ZOrMLSt2MkZr0=
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: stable@vger.kernel.org
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	patches@lists.linux.dev,
-	Martin Liska <mliska@suse.cz>,
-	Kalle Valo <kvalo@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	ath11k@lists.infradead.org,
-	linux-wireless@vger.kernel.org,
-	netdev@vger.kernel.org,
-	"Jiri Slaby (SUSE)" <jirislaby@kernel.org>,
-	Jeff Johnson <quic_jjohnson@quicinc.com>,
-	Kalle Valo <quic_kvalo@quicinc.com>
-Subject: [PATCH 6.1 601/611] wifi: ath11k: synchronize ath11k_mac_he_gi_to_nl80211_he_gi()s return type
-Date: Mon,  8 May 2023 11:47:23 +0200
-Message-Id: <20230508094441.433673192@linuxfoundation.org>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230508094421.513073170@linuxfoundation.org>
-References: <20230508094421.513073170@linuxfoundation.org>
-User-Agent: quilt/0.67
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 09C14616C6;
+	Mon,  8 May 2023 14:57:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25E4AC433EF;
+	Mon,  8 May 2023 14:57:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1683557867;
+	bh=jpGRNu5+FvMQ20aEk+IlpTRzk8prDExhd+C0AMyLLyw=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=anFJPecn/2S9eutk1Qd8p9EpzhLZTKjmEO6uDDAdmhnwqPwjC+Dc649EeATu+fW8r
+	 Lg03ejDhC2ypyNUTlQLqxMQyTrheCnxW9JNKqZ/QoLxxtg7k0ApxR63q0W9VEJhWWP
+	 m6bkgHqadtNE7lgaBMn+tvwFBbEBknyO1KrWqs1zMw4qkR7JHX/HmVnrfo6f7NDVkR
+	 f2i2wP6rKemgcTqz6COJVNofUvu/7lenlrfMXAECq8mpwJMC9uCVAaryQM9yCxUxhM
+	 gYP/Q0rVA0VyUYL0rrCee3i1S5oCGtxI7dZ0mXD2A3yR2NTTm1O/IoYkw0kaTkpMYH
+	 RnyR+vcJ8SGhw==
+From: Kalle Valo <kvalo@kernel.org>
+To: "Arnd Bergmann" <arnd@arndb.de>
+Cc: "Arnd Bergmann" <arnd@kernel.org>,  "David S . Miller" <davem@davemloft.net>,  "Eric Dumazet" <edumazet@google.com>,  "Jakub Kicinski" <kuba@kernel.org>,  "Paolo Abeni" <pabeni@redhat.com>,  "Johannes Berg" <johannes.berg@intel.com>,  "Manikanta Pubbisetty" <quic_mpubbise@quicinc.com>,  "Wen Gong" <quic_wgong@quicinc.com>,  "Baochen Qiang" <quic_bqiang@quicinc.com>,  "Sowmiya Sree Elavalagan" <quic_ssreeela@quicinc.com>,  ath11k@lists.infradead.org,  linux-wireless@vger.kernel.org,  Netdev <netdev@vger.kernel.org>,  linux-kernel@vger.kernel.org,  ath12k@lists.infradead.org
+Subject: Re: [PATCH] wireless: ath: work around false-positive stringop-overread warning
+References: <20230417205447.1800912-1-arnd@kernel.org>
+	<87ttwnnrer.fsf@kernel.org>
+	<504c5a7d-0bfd-4b1e-a7f0-65d072657e0a@app.fastmail.com>
+Date: Mon, 08 May 2023 17:57:39 +0300
+In-Reply-To: <504c5a7d-0bfd-4b1e-a7f0-65d072657e0a@app.fastmail.com> (Arnd
+	Bergmann's message of "Mon, 08 May 2023 10:52:11 +0200")
+Message-ID: <87mt2eoopo.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20230508_031739_879356_49D4DAFE 
-X-CRM114-Status: GOOD (  11.46  )
+X-CRM114-CacheID: sfid-20230508_075748_795261_44DCAC0E 
+X-CRM114-Status: GOOD (  17.48  )
 X-BeenThere: ath11k@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,49 +75,69 @@ Content-Transfer-Encoding: 7bit
 Sender: "ath11k" <ath11k-bounces@lists.infradead.org>
 Errors-To: ath11k-bounces+ath11k=archiver.kernel.org@lists.infradead.org
 
-From: Jiri Slaby (SUSE) <jirislaby@kernel.org>
+"Arnd Bergmann" <arnd@arndb.de> writes:
 
-commit dd1c2322694522f674c874f5fa02ac5ae39135dd upstream.
+> On Mon, May 8, 2023, at 10:44, Kalle Valo wrote:
+>
+>> Arnd Bergmann <arnd@kernel.org> writes:
+>>
+>>> From: Arnd Bergmann <arnd@arndb.de>
+>>>
+>>> In a rare arm64 randconfig build, I got multiple warnings for ath11k
+>>> and ath12k:
+>>>
+>>> In function 'ath11k_peer_assoc_h_ht',
+>>>     inlined from 'ath11k_peer_assoc_prepare' at drivers/net/wireless/ath/ath11k/mac.c:2665:2:
+>>> drivers/net/wireless/ath/ath11k/mac.c:1709:13: error: 'ath11k_peer_assoc_h_ht_masked' reading 10 bytes from a region of size 0 [-Werror=stringop-overread]
+>>>  1709 |         if (ath11k_peer_assoc_h_ht_masked(ht_mcs_mask))
+>>>       |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>>>
+>>> This happens whenever gcc-13 fails to inline one of the functions
+>>> that take a fixed-length array argument but gets passed a pointer.
+>>>
+>>> Change these functions to all take a regular pointer argument
+>>> instead.
+>>>
+>>> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+>>
+>> s/wireless:/wifi:/ but I can fix that.
+>
+> Ok, thanks!
+>
+>> In a awat it's a shame to lose the explicit length but I guess there's
+>> no other way to fix this?
+>
+> There might be, but I couldn't figure out a way that works.
 
-ath11k_mac_he_gi_to_nl80211_he_gi() generates a valid warning with gcc-13:
-  drivers/net/wireless/ath/ath11k/mac.c:321:20: error: conflicting types for 'ath11k_mac_he_gi_to_nl80211_he_gi' due to enum/integer mismatch; have 'enum nl80211_he_gi(u8)'
-  drivers/net/wireless/ath/ath11k/mac.h:166:5: note: previous declaration of 'ath11k_mac_he_gi_to_nl80211_he_gi' with type 'u32(u8)'
+Ok.
 
-I.e. the type of the return value ath11k_mac_he_gi_to_nl80211_he_gi() in
-the declaration is u32, while the definition spells enum nl80211_he_gi.
-Synchronize them to the latter.
+>> Also I hope you find the time to add GCC 13 to crosstool :) Related to
+>> this
+>
+> I uploaded gcc-13.1.0 binaries last week, but still need to
+> update the html page, so it's not yet linked. You can navigate
+> the directories from the gcc-12 builds.
 
-Cc: Martin Liska <mliska@suse.cz>
-Cc: Kalle Valo <kvalo@kernel.org>
-Cc: "David S. Miller" <davem@davemloft.net>
-Cc: Eric Dumazet <edumazet@google.com>
-Cc: Jakub Kicinski <kuba@kernel.org>
-Cc: Paolo Abeni <pabeni@redhat.com>
-Cc: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org
-Cc: netdev@vger.kernel.org
-Signed-off-by: Jiri Slaby (SUSE) <jirislaby@kernel.org>
-Reviewed-by: Jeff Johnson <quic_jjohnson@quicinc.com>
-Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
-Link: https://lore.kernel.org/r/20221031114341.10377-1-jirislaby@kernel.org
-Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
----
- drivers/net/wireless/ath/ath11k/mac.h |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Thanks! I was able to find the build[1] but having an issue:
 
---- a/drivers/net/wireless/ath/ath11k/mac.h
-+++ b/drivers/net/wireless/ath/ath11k/mac.h
-@@ -163,7 +163,7 @@ void ath11k_mac_drain_tx(struct ath11k *
- void ath11k_mac_peer_cleanup_all(struct ath11k *ar);
- int ath11k_mac_tx_mgmt_pending_free(int buf_id, void *skb, void *ctx);
- u8 ath11k_mac_bw_to_mac80211_bw(u8 bw);
--u32 ath11k_mac_he_gi_to_nl80211_he_gi(u8 sgi);
-+enum nl80211_he_gi ath11k_mac_he_gi_to_nl80211_he_gi(u8 sgi);
- enum nl80211_he_ru_alloc ath11k_mac_phy_he_ru_to_nl80211_he_ru_alloc(u16 ru_phy);
- enum nl80211_he_ru_alloc ath11k_mac_he_ru_tones_to_nl80211_he_ru_alloc(u16 ru_tones);
- enum ath11k_supported_bw ath11k_mac_mac80211_bw_to_ath11k_bw(enum rate_info_bw bw);
+$ ./x86_64-linux-gcc -v
+./x86_64-linux-gcc: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.35' not found (required by ./x86_64-linux-gcc)
+./x86_64-linux-gcc: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by ./x86_64-linux-gcc)
+./x86_64-linux-gcc: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.33' not found (required by ./x86_64-linux-gcc)
+./x86_64-linux-gcc: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.36' not found (required by ./x86_64-linux-gcc)
+./x86_64-linux-gcc: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found (required by ./x86_64-linux-gcc)
 
+With older GCC versions from your page I don't have this problem. I'm
+using Debian 10 still so so is my libc too old?
 
+ii  libc6:amd64          2.28-10+deb10u2:amd6 GNU C Library: Shared libraries
+
+[1] https://mirrors.edge.kernel.org/pub/tools/crosstool/files/bin/x86_64/13.1.0/x86_64-gcc-13.1.0-nolibc-x86_64-linux.tar.gz
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 -- 
 ath11k mailing list
